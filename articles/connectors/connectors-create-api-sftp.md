@@ -1,10 +1,10 @@
 <properties
-pageTitle="Learn how to use the SFTP connector in your logic apps | Microsoft Azure"
-description="Create logic apps with Azure App service. Connect to SFTP API to send and receive files. You can perform various operations such as create, update, get or delete files."
-services="logic-apps"   
-documentationCenter=".net,nodejs,java"  
-authors="msftman"   
-manager="erikre"    
+pageTitle="了解如何在您的邏輯應用程式中使用 SFTP 連接器 | Microsoft Azure"
+description="使用 Azure App Service 建立邏輯應用程式。連接到 SFTP API 來傳送及接收檔案。您可以執行各種作業，例如建立、更新、取得或刪除檔案。"
+services="logic-apps"	
+documentationCenter=".net,nodejs,java" 	
+authors="msftman"	
+manager="erikre"	
 editor=""
 tags="connectors" />
 
@@ -17,399 +17,398 @@ ms.workload="integration"
 ms.date="07/20/2016"
 ms.author="deonhe"/>
 
+# 開始使用 SFTP 連接器
 
-# <a name="get-started-with-the-sftp-connector"></a>Get started with the SFTP connector
+使用 SFTP 連接器存取 SFTP 帳戶來傳送及接收檔案。您可以執行各種作業，例如建立、更新、取得或刪除檔案。
 
-Use the SFTP connector to access an SFTP account to send and receive files. You can perform various operations such as create, update, get or delete files.  
+若要使用[任何連接器](./apis-list.md)，您必須先建立邏輯應用程式。您可以從[立即建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)來開始。
 
-To use [any connector](./apis-list.md), you first need to create a logic app. You can get started by [creating a logic app now](../app-service-logic/app-service-logic-create-a-logic-app.md).
+## 連接至 SFTP
 
-## <a name="connect-to-sftp"></a>Connect to SFTP
+您必須先建立與服務的「連線」，才能透過邏輯應用程式存取任何服務。[連線](./connectors-overview.md)可讓邏輯應用程式與另一個服務連線。
 
-Before your logic app can access any service, you first need to create a *connection* to the service. A [connection](./connectors-overview.md) provides connectivity between a logic app and another service.  
+### 建立至 SFTP 的連線
 
-### <a name="create-a-connection-to-sftp"></a>Create a connection to SFTP
+>[AZURE.INCLUDE [建立至 SFTP 連線的步驟](../../includes/connectors-create-api-sftp.md)]
 
->[AZURE.INCLUDE [Steps to create a connection to SFTP](../../includes/connectors-create-api-sftp.md)]
+## 使用 SFTP 觸發程序
 
-## <a name="use-an-sftp-trigger"></a>Use an SFTP trigger
+觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。[深入了解觸發程序](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
 
-A trigger is an event that can be used to start the workflow defined in a logic app. [Learn more about triggers](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts).  
+在此範例中，我將告訴您如何使用 **SFTP - 新增或修改檔案時**觸發程序，在檔案新增或修改於 SFTP 伺服器時起始邏輯應用程式工作流程。在範例中，您也將學習如何新增會檢查新的或修改檔案內容的條件，並在使用內容之前如果檔案指出它應該要解壓縮時，決定將檔案解壓縮。最後，您將學習如何新增動作以解壓縮檔案的內容，並將解壓縮的內容放在 SFTP 伺服器上的資料夾。
 
-In this example, I will show you how to use the **SFTP - When a file is added or modified** trigger to initiate a logic app workflow when a file is added to, or modified on, an SFTP server. In the example, you will also learn how to add a condition that checks the contents of the new or modified file and make a decision to extract the file if its contents indicate that it  should be extracted before using the contents. Finally, you will learn how to add an action to extract the contents of a file and place the extracted contents in a folder on the SFTP server. 
+在企業範例中，您可以使用此觸發程序來監視代表客戶訂單的新檔案 SFTP 資料夾。然後，您可以使用 SFTP 連接器動作 (例如**取得檔案內容**) 取得訂單的內容以進一步處理並儲存在訂單資料庫中。
 
-In an enterprise example, you could use this trigger to monitor an SFTP folder for new files that represent orders from customers.  You could then use an SFTP connector action such as **Get file content** to get the contents of the order for further processing and storage in your orders database.
+>[AZURE.INCLUDE [建立 SFTP 觸發程序的步驟](../../includes/connectors-create-api-sftp-trigger.md)]
 
->[AZURE.INCLUDE [Steps to create an SFTP trigger](../../includes/connectors-create-api-sftp-trigger.md)]
+## 新增條件
 
-## <a name="add-a-condition"></a>Add a condition
+>[AZURE.INCLUDE [新增條件的步驟](../../includes/connectors-create-api-sftp-condition.md)]
 
->[AZURE.INCLUDE [Steps to add a condition](../../includes/connectors-create-api-sftp-condition.md)]
+## 使用 SFTP 動作
 
-## <a name="use-an-sftp-action"></a>Use an SFTP action
+動作是由邏輯應用程式中定義的工作流程所執行的作業。[深入了解動作](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
 
-An action is an operation carried out by the workflow defined in a logic app. [Learn more about actions](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts).  
-
->[AZURE.INCLUDE [Steps to create an SFTP action](../../includes/connectors-create-api-sftp-action.md)]
+>[AZURE.INCLUDE [建立 SFTP 動作的步驟](../../includes/connectors-create-api-sftp-action.md)]
 
 
-## <a name="technical-details"></a>Technical Details
+## 技術詳細資料
 
-Here are the details about the triggers, actions and responses that this connection supports:
+以下是有關這個連接支援的觸發程序、動作和回應的詳細資料︰
 
-## <a name="sftp-triggers"></a>SFTP triggers
+## SFTP 觸發程序
 
-SFTP has the following trigger(s):  
+SFTP 具有下列觸發程序︰
 
-|Trigger | Description|
+|觸發程序 | 說明|
 |--- | ---|
-|[When a file is added or modified](connectors-create-api-sftp.md#when-a-file-is-added-or-modified)|This operation triggers a flow when a file is added or modified in a folder.|
+|[當新增或修改檔案時](connectors-create-api-sftp.md#when-a-file-is-added-or-modified)|當資料夾中新增或修改檔案時，此作業就會觸發流程。|
 
 
-## <a name="sftp-actions"></a>SFTP actions
+## SFTP 動作
 
-SFTP has the following actions:
+SFTP 具有下列動作︰
 
 
-|Action|Description|
+|動作|說明|
 |--- | ---|
-|[Get file metadata](connectors-create-api-sftp.md#get-file-metadata)|This operation gets file metadata using the file id.|
-|[Update file](connectors-create-api-sftp.md#update-file)|This operation updates the file content.|
-|[Delete file](connectors-create-api-sftp.md#delete-file)|This operation deletes a file.|
-|[Get file metadata using path](connectors-create-api-sftp.md#get-file-metadata-using-path)|This operation gets file metadata using the file path.|
-|[Get file content using path](connectors-create-api-sftp.md#get-file-content-using-path)|This operation gets file contents using the file path.|
-|[Get file content](connectors-create-api-sftp.md#get-file-content)|This operation gets file contents using the file id.|
-|[Create file](connectors-create-api-sftp.md#create-file)|This operation uploads a file to an SFTP server.|
-|[Copy file](connectors-create-api-sftp.md#copy-file)|This operation copies a file to an SFTP server.|
-|[List files in folder](connectors-create-api-sftp.md#list-files-in-folder)|This operation gets files contained in a folder.|
-|[List files in root folder](connectors-create-api-sftp.md#list-files-in-root-folder)|This operation gets the files in the root folder.|
-|[Extract folder](connectors-create-api-sftp.md#extract-folder)|This operation extracts an archive file into a folder (example: .zip).|
-### <a name="action-details"></a>Action details
+|[取得檔案中繼資料](connectors-create-api-sftp.md#get-file-metadata)|這項作業會使用檔案識別碼取得檔案中繼資料。|
+|[更新檔案](connectors-create-api-sftp.md#update-file)|這項作業會更新檔案內容。|
+|[刪除檔案](connectors-create-api-sftp.md#delete-file)|這項作業會刪除檔案。|
+|[使用路徑來取得檔案中繼資料](connectors-create-api-sftp.md#get-file-metadata-using-path)|這項作業會使用檔案路徑取得檔案中繼資料。|
+|[使用路徑來取得檔案內容](connectors-create-api-sftp.md#get-file-content-using-path)|這項作業會使用檔案路徑取得檔案內容。|
+|[取得檔案內容](connectors-create-api-sftp.md#get-file-content)|這項作業會使用檔案識別碼取得檔案內容。|
+|[建立檔案](connectors-create-api-sftp.md#create-file)|這項作業會將檔案上傳至 SFTP 伺服器。|
+|[複製檔案](connectors-create-api-sftp.md#copy-file)|這項作業會將檔案複製至 SFTP 伺服器。|
+|[列出資料夾中的檔案](connectors-create-api-sftp.md#list-files-in-folder)|這項作業會取得包含在資料夾中的檔案。|
+|[列出根資料夾中的檔案](connectors-create-api-sftp.md#list-files-in-root-folder)|這項作業會取得根資料夾中的檔案。|
+|[解壓縮到資料夾](connectors-create-api-sftp.md#extract-folder)|這項作業會將封存檔案解壓縮到資料夾 (範例︰.zip)。|
+### 動作詳細資料
 
-Here are the details for the actions and triggers for this connector, along with their responses:
-
-
-
-### <a name="get-file-metadata"></a>Get file metadata
-This operation gets file metadata using the file id. 
+以下是此連接器動作和觸發程序以及其回應的詳細資料︰
 
 
-|Property Name| Display Name|Description|
+
+### 取得檔案中繼資料
+這項作業會使用檔案識別碼取得檔案中繼資料。
+
+
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|id*|File|Specify the file|
+|識別碼*|檔案|指定檔案|
 
-An * indicates that a property is required
+* 表示這是必要屬性
 
-#### <a name="output-details"></a>Output Details
+#### 輸出詳細資料
 
 BlobMetadata
 
 
-| Property Name | Data Type |
+| 屬性名稱 | 資料類型 |
 |---|---|---|
-|Id|string|
-|Name|string|
-|DisplayName|string|
-|Path|string|
-|LastModified|string|
-|Size|integer|
-|MediaType|string|
-|IsFolder|boolean|
-|ETag|string|
-|FileLocator|string|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
 
 
 
 
-### <a name="update-file"></a>Update file
-This operation updates the file content. 
+### 更新檔案
+這項作業會更新檔案內容。
 
 
-|Property Name| Display Name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|id*|File|Specify the file|
-|body*|File content|Content of the file to update|
+|識別碼*|檔案|指定檔案|
+|body*|檔案內容|要更新之檔案的內容|
 
-An * indicates that a property is required
+* 表示這是必要屬性
 
-#### <a name="output-details"></a>Output Details
+#### 輸出詳細資料
 
 BlobMetadata
 
 
-| Property Name | Data Type |
+| 屬性名稱 | 資料類型 |
 |---|---|---|
-|Id|string|
-|Name|string|
-|DisplayName|string|
-|Path|string|
-|LastModified|string|
-|Size|integer|
-|MediaType|string|
-|IsFolder|boolean|
-|ETag|string|
-|FileLocator|string|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
 
 
 
 
-### <a name="delete-file"></a>Delete file
-This operation deletes a file. 
+### 刪除檔案
+這項作業會刪除檔案。
 
 
-|Property Name| Display Name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|id*|File|Specify the file|
+|識別碼*|檔案|指定檔案|
 
-An * indicates that a property is required
-
-
+* 表示這是必要屬性
 
 
-### <a name="get-file-metadata-using-path"></a>Get file metadata using path
-This operation gets file metadata using the file path. 
 
 
-|Property Name| Display Name|Description|
+### 使用路徑來取得檔案中繼資料
+這項作業會使用檔案路徑取得檔案中繼資料。
+
+
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|path*|File path|Unique path of the file|
+|path*|檔案路徑|檔案的唯一路徑|
 
-An * indicates that a property is required
+* 表示這是必要屬性
 
-#### <a name="output-details"></a>Output Details
+#### 輸出詳細資料
 
 BlobMetadata
 
 
-| Property Name | Data Type |
+| 屬性名稱 | 資料類型 |
 |---|---|---|
-|Id|string|
-|Name|string|
-|DisplayName|string|
-|Path|string|
-|LastModified|string|
-|Size|integer|
-|MediaType|string|
-|IsFolder|boolean|
-|ETag|string|
-|FileLocator|string|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
 
 
 
 
-### <a name="get-file-content-using-path"></a>Get file content using path
-This operation gets file contents using the file path. 
+### 使用路徑來取得檔案內容
+這項作業會使用檔案路徑取得檔案內容。
 
 
-|Property Name| Display Name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|path*|File path|Unique path of the file|
+|path*|檔案路徑|檔案的唯一路徑|
 
-An * indicates that a property is required
-
-
+* 表示這是必要屬性
 
 
-### <a name="get-file-content"></a>Get file content
-This operation gets file contents using the file id. 
 
 
-|Property Name| Display Name|Description|
+### 取得檔案內容
+這項作業會使用檔案識別碼取得檔案內容。
+
+
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|id*|File|Specify the file|
+|識別碼*|檔案|指定檔案|
 
-An * indicates that a property is required
-
-
+* 表示這是必要屬性
 
 
-### <a name="create-file"></a>Create file
-This operation uploads a file to an SFTP server. 
 
 
-|Property Name| Display Name|Description|
+### 建立檔案
+這項作業會將檔案上傳至 SFTP 伺服器。
+
+
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|folderPath*|Folder path|Unique path of the folder|
-|name*|File name|Name of the file|
-|body*|File content|Content of the file to create|
+|folderPath*|資料夾路徑|資料夾的唯一路徑|
+|name*|檔案名稱|檔案名稱|
+|body*|檔案內容|要建立之檔案的內容|
 
-An * indicates that a property is required
+* 表示這是必要屬性
 
-#### <a name="output-details"></a>Output Details
+#### 輸出詳細資料
 
 BlobMetadata
 
 
-|| Property Name | Data Type |
+|| 屬性名稱 | 資料類型 |
 |---|---|---|
-|Id|string|
-|Name|string|
-|DisplayName|string|
-|Path|string|
-|LastModified|string|
-|Size|integer|
-|MediaType|string|
-|IsFolder|boolean|
-|ETag|string|
-|FileLocator|string|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
 
 
 
 
-### <a name="copy-file"></a>Copy file
-This operation copies a file to an SFTP server. 
+### 複製檔案
+這項作業會將檔案複製至 SFTP 伺服器。
 
 
-|Property Name| Display Name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|source*|Source file path|Path to the source file|
-|destination*|Destination file path|Path to the destination file, including file name|
-|overwrite|Overwrite?|Overwrites the destination file if set to 'true'|
+|source*|來源檔案路徑|來源檔案的路徑|
+|destination*|目的地檔案路徑|目的檔案的路徑，包括目標檔案名稱|
+|overwrite|覆寫？|如果設定為「True」，則會覆寫目的檔案|
 
-An * indicates that a property is required
+* 表示這是必要屬性
 
-#### <a name="output-details"></a>Output Details
+#### 輸出詳細資料
 
 BlobMetadata
 
 
-| Property Name | Data Type |
+| 屬性名稱 | 資料類型 |
 |---|---|---|
-|Id|string|
-|Name|string|
-|DisplayName|string|
-|Path|string|
-|LastModified|string|
-|Size|integer|
-|MediaType|string|
-|IsFolder|boolean|
-|ETag|string|
-|FileLocator|string|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
 
 
 
 
-### <a name="when-a-file-is-added-or-modified"></a>When a file is added or modified
-This operation triggers a flow when a file is added or modified in a folder. 
+### 當新增或修改檔案時
+當資料夾中新增或修改檔案時，此作業就會觸發流程。
 
 
-|Property Name| Display Name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|folderId*|Folder|Specify a folder|
+|folderId*|資料夾|指定資料夾|
 
-An * indicates that a property is required
-
-
+* 表示這是必要屬性
 
 
-### <a name="list-files-in-folder"></a>List files in folder
-This operation gets files contained in a folder. 
 
 
-|Property Name| Display Name|Description|
+### 列出資料夾中的檔案
+這項作業會取得包含在資料夾中的檔案。
+
+
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|id*|Folder|Specify the folder|
+|識別碼*|資料夾|指定資料夾|
 
-An * indicates that a property is required
+* 表示這是必要屬性
 
 
 
-#### <a name="output-details"></a>Output Details
+#### 輸出詳細資料
 
 BlobMetadata
 
 
-| Property Name | Data Type |
+| 屬性名稱 | 資料類型 |
 |---|---|---|
-|Id|string|
-|Name|string|
-|DisplayName|string|
-|Path|string|
-|LastModified|string|
-|Size|integer|
-|MediaType|string|
-|IsFolder|boolean|
-|ETag|string|
-|FileLocator|string|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
 
 
 
 
-### <a name="list-files-in-root-folder"></a>List files in root folder
-This operation gets the files in the root folder. 
+### 列出根資料夾中的檔案
+這項作業會取得根資料夾中的檔案。
 
 
-There are no parameters for this call
+這個呼叫沒有參數
 
-#### <a name="output-details"></a>Output Details
+#### 輸出詳細資料
 
 BlobMetadata
 
 
-| Property Name | Data Type |
+| 屬性名稱 | 資料類型 |
 |---|---|---|
-|Id|string|
-|Name|string|
-|DisplayName|string|
-|Path|string|
-|LastModified|string|
-|Size|integer|
-|MediaType|string|
-|IsFolder|boolean|
-|ETag|string|
-|FileLocator|string|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
 
 
 
 
-### <a name="extract-folder"></a>Extract folder
-This operation extracts an archive file into a folder (example: .zip). 
+### 解壓縮到資料夾
+這項作業會將封存檔案解壓縮到資料夾 (範例︰.zip)。
 
 
-|Property Name| Display Name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|source*|Source archive file path|Path to the archive file|
-|destination*|Destination folder path|Path to the destination folder|
-|overwrite|Overwrite?|Overwrites the destination files if set to 'true'|
+|source*|來源封存檔案路徑|封存檔案的路徑|
+|destination*|目的地資料夾路徑|目的資料夾的路徑|
+|overwrite|覆寫？|如果設定為「True」，則會覆寫目的檔案|
 
-An * indicates that a property is required
+* 表示這是必要屬性
 
 
 
-#### <a name="output-details"></a>Output Details
+#### 輸出詳細資料
 
 BlobMetadata
 
 
-| Property Name | Data Type |
+| 屬性名稱 | 資料類型 |
 |---|---|---|
-|Id|string|
-|Name|string|
-|DisplayName|string|
-|Path|string|
-|LastModified|string|
-|Size|integer|
-|MediaType|string|
-|IsFolder|boolean|
-|ETag|string|
-|FileLocator|string|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
 
 
 
-## <a name="http-responses"></a>HTTP responses
+## HTTP 回應
 
-The actions and triggers above can return one or more of the following HTTP status codes: 
+上述動作和觸發程序可以傳回一或多個下列的 HTTP 狀態碼︰
 
-|Name|Description|
+|名稱|說明|
 |---|---|
 |200|OK|
-|202|Accepted|
-|400|Bad Request|
-|401|Unauthorized|
-|403|Forbidden|
-|404|Not Found|
-|500|Internal Server Error. Unknown error occurred.|
-|default|Operation Failed.|
+|202|已接受|
+|400|不正確的要求|
+|401|未經授權|
+|403|禁止|
+|404|找不到|
+|500|內部伺服器錯誤。發生未知錯誤。|
+|預設值|作業失敗。|
 
 
 
@@ -417,10 +416,7 @@ The actions and triggers above can return one or more of the following HTTP stat
 
 
 
-## <a name="next-steps"></a>Next Steps
-[Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md)
+## 後續步驟
+[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!----HONumber=AcomDC_0803_2016-->

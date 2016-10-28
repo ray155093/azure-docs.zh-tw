@@ -1,80 +1,64 @@
 <properties 
-    pageTitle="Overview of maps Enterprise Integration Pack | Microsoft Azure App Service | Microsoft Azure" 
-    description="Learn how to use maps with the Enterprise Integration Pack and Logic apps" 
-    services="logic-apps" 
-    documentationCenter=".net,nodejs,java"
-    authors="msftman" 
-    manager="erikre" 
-    editor="cgronlun"/>
+	pageTitle="企業整合套件的對應概觀 | Microsoft Azure App Service | Microsoft Azure" 
+	description="了解如何使用對應搭配企業整合套件與 Logic Apps" 
+	services="logic-apps" 
+	documentationCenter=".net,nodejs,java"
+	authors="msftman" 
+	manager="erikre" 
+	editor="cgronlun"/>
 
 <tags 
-    ms.service="logic-apps" 
-    ms.workload="integration" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="07/08/2016" 
-    ms.author="deonhe"/>
+	ms.service="logic-apps" 
+	ms.workload="integration" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="07/08/2016" 
+	ms.author="deonhe"/>
 
+# 了解對應與企業整合套件
 
-# <a name="learn-about-maps-and-the-enterprise-integration-pack"></a>Learn about maps and the Enterprise Integration Pack
+## Overview
+企業整合會使用對應，將 XML 資料從某種格式轉換成其他格式。
 
-## <a name="overview"></a>Overview
-Enterprise integration uses maps to transform XML data from one format to another format. 
+## 何謂對應？
+對應是一份 XML 文件，可定義應將文件中的哪些資料轉換成其他格式。
 
-## <a name="what-is-a-map?"></a>What is a map?
-A map is an XML document that defines which data in a document should be transformed into another format. 
+## 為什麼要使用對應？
+讓我們假設您會定期收到客戶的 B2B 訂單或發票，而該客戶使用 YYYMMDD 格式的日期。不過，在您的組織中，您是以 MMDDYYY 格式儲存日期。您可以使用對應，先將 YYYMMDD 日期格式「轉換」為 MMDDYYY，然後再將訂單或發票儲存於客戶活動資料庫中。
 
-## <a name="why-use-maps?"></a>Why use maps?
-Let's assume you regularly receive B2B orders or invoices from a customers who uses the YYYMMDD format for dates. However, in your organization, you store dates in the MMDDYYY format. You can use a map to *transform* the YYYMMDD date format into the MMDDYYY before storing the order or invoice details in your customer activity database.
+## 如何建立對應？
+Visual Studio 2015 的 [Enterprise 整合套件](./app-service-logic-enterprise-integration-overview.md "了解企業整合套件")可用來建立 Biztalk 整合專案。建立整合對應檔案可讓您以視覺化方式對應兩個 XML 結構描述檔案之間的項目。在建置此專案之後，XSLT 文件是輸出。
 
-## <a name="how-do-i-create-a-map?"></a>How do i create a map?
-The [Enterprise Integration Pack](./app-service-logic-enterprise-integration-overview.md "Learn about the enterprise integration pack") for Visual Studio 2015 allows Biztalk Integration projects to be created.  Creating an Integration Map file will allow you to visually map items between two XML schema files.  After building this project, an XSLT document is output.
+## 如何上傳對應？
+從 Azure 入口網站：
+1. 選取 [瀏覽] ![](./media/app-service-logic-enterprise-integration-overview/overview-1.png)
+2. 在篩選搜尋方塊中輸入**整合**，然後從結果清單中選取 [整合帳戶] ![](./media/app-service-logic-enterprise-integration-overview/overview-2.png)
+3. 選取您將新增對應的**整合帳戶** ![](./media/app-service-logic-enterprise-integration-overview/overview-3.png)
+4.  選取 [對應] 圖格 ![](./media/app-service-logic-enterprise-integration-maps/map-1.png)
+5. 在開啟的 [對應] 刀鋒視窗中選取 [新增] 按鈕 ![](./media/app-service-logic-enterprise-integration-maps/map-2.png)
+6. 輸入對應的**名稱**，接著，若要上傳對應檔案，可選取 [對應] 文字方塊右邊的資料夾圖示。完成上傳程序之後，選取 [確定] 按鈕。![](./media/app-service-logic-enterprise-integration-maps/map-3.png)
+7. 現在已將對應新增到您的整合帳戶中。您將會收到螢幕上的通知，指出新增對應檔案成功或失敗。當您收到通知之後，選取 [對應] 圖格，您接著將會在 [對應] 刀鋒視窗中看到新加入的對應︰![](./media/app-service-logic-enterprise-integration-maps/map-4.png)
 
-## <a name="how-to-upload-a-map?"></a>How to upload a map?
-From the Azure portal:  
-1. Select **Browse**  
-![](./media/app-service-logic-enterprise-integration-overview/overview-1.png)    
-2. Enter **integration** in the filter search box and select **Integration Accounts** from the results list     
- ![](./media/app-service-logic-enterprise-integration-overview/overview-2.png)  
-3. Select the **integration account** into which you will add the map  
-![](./media/app-service-logic-enterprise-integration-overview/overview-3.png)  
-4.  Select the **Maps** tile  
-![](./media/app-service-logic-enterprise-integration-maps/map-1.png)  
-5. Select the **Add** button in the Maps blade that opens  
-![](./media/app-service-logic-enterprise-integration-maps/map-2.png)  
-6. Enter a **Name** for your map then, to upload the map file, select the folder icon on the right side of the **Map** text box. After the upload process is completed, select the **OK** button.  
-![](./media/app-service-logic-enterprise-integration-maps/map-3.png)  
-7. The map is now being added into your integration account. You will receive an onscreen notification that indicates the success or failure of adding the map file. After you receive the notification, select the **Maps** tile, you will then see your newly added map in the Maps blade:    
-![](./media/app-service-logic-enterprise-integration-maps/map-4.png)  
+## 如何編輯對應？
+若要編輯對應，您必須上傳新的對應檔，其中含有您所需的變更。您可以先下載對應並加以編輯。
 
-## <a name="how-to-edit-a-map?"></a>How to edit a map?
-To edit a map, you must upload a new map file with the changes you desire. You can first download the map and edit it. 
+遵循下列步驟來上傳新的對應，以取代現有的對應：
+1. 選取 [對應] 圖格
+2. 開啟 [對應] 刀鋒視窗時，選取您想要編輯的對應
+3. 在 [對應] 刀鋒視窗中，選取 [更新] 連結 ![](./media/app-service-logic-enterprise-integration-maps/edit-1.png)
+4. 選取您想要上傳的對應檔案，方法是使用開啟的檔案選擇器對話方塊，然後在檔案選擇器中選取 [開啟] ![](./media/app-service-logic-enterprise-integration-maps/edit-2.png)
+5. 上傳對應之後，您將會收到通知快顯視窗。
 
-Follow these steps to upload a new map that replaces an existing map:  
-1. Select the **Maps** tile  
-2. Select the map you wish to edit when the Maps blade opens up  
-3. On the **Maps** blade, select the **Update** link  
-![](./media/app-service-logic-enterprise-integration-maps/edit-1.png)   
-4. Select the map file you wish to upload by using the file picker dialog that opens up then select **Open** in the file picker   
-![](./media/app-service-logic-enterprise-integration-maps/edit-2.png)   
-5. You will receive a notification popup after the map is uploaded.    
+## 如何刪除對應？
+1. 選取 [對應] 圖格
+2. 開啟 [對應] 刀鋒視窗時，選取您想要刪除的對應
+3. 選取 [刪除] 連結 ![](./media/app-service-logic-enterprise-integration-maps/delete.png)
+4. 確認您真的想要刪除對應。![](./media/app-service-logic-enterprise-integration-maps/delete-confirmation-1.png)
 
-## <a name="how-to-delete-a-map?"></a>How to delete a map?
-1. Select the **Maps** tile  
-2. Select the map you wish to delete when the Maps blade opens up  
-3. Select the **Delete** link    
-![](./media/app-service-logic-enterprise-integration-maps/delete.png)   
-4. Confirm you that you really intend to delete the map.  
-![](./media/app-service-logic-enterprise-integration-maps/delete-confirmation-1.png)   
+## 後續步驟
+- [深入了解企業整合套件](./app-service-logic-enterprise-integration-overview.md "了解企業整合套件")
+- [深入了解合約](./app-service-logic-enterprise-integration-agreements.md "了解企業整合合約")
+- [深入了解轉換](./app-service-logic-enterprise-integration-transform.md "了解企業整合轉換")
 
-## <a name="next-steps"></a>Next Steps
-- [Learn more about the Enterprise Integration Pack](./app-service-logic-enterprise-integration-overview.md "Learn about Enterprise Integration Pack")  
-- [Learn more about agreements](./app-service-logic-enterprise-integration-agreements.md "Learn about enterprise integration agreements")  
-- [Learn more about transforms](./app-service-logic-enterprise-integration-transform.md "Learn about enterprise integration transforms")  
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

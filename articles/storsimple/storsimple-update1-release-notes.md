@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="StorSimple 8000 Series Update 1.2 release notes | Microsoft Azure"
-   description="Describes the new features, issues, and workarounds for StorSimple 8000 Series Update 1.2."
+   pageTitle="StorSimple 8000 系列 Update 1.2 版本資訊 | Microsoft Azure"
+   description="說明 StorSimple 8000 系列 Update 1.2 的新功能、問題及因應措施。"
    services="storsimple"
    documentationCenter="NA"
    authors="alkohli"
@@ -15,118 +15,113 @@
    ms.date="08/18/2016"
    ms.author="alkohli" />
 
+# StorSimple 8000 系列 Update 1.2 版本資訊  
 
-# <a name="storsimple-8000-series-update-1.2-release-notes"></a>StorSimple 8000 Series Update 1.2 release notes  
+## 概觀
 
-## <a name="overview"></a>Overview
+下列版本資訊說明 StorSimple 8000 系列 Update 1.2 的新功能，並識別未決的重要問題。當中也包含此版本中隨附之 StorSimple 軟體、驅動程式與磁碟韌體更新的清單。
 
-The following release notes describe the new features and identify the critical open issues for StorSimple 8000 Series Update 1.2. They also contain a list of the StorSimple software, driver and disk firmware updates included in this release. 
+Update 1.2 可以套用至任何執行 Release (GA)、Update 0.1、Update 0.2 或 Update 0.3 軟體的 StorSimple 裝置。如果您的裝置是執行 Update 1 或 Update 1.1，就無法使用 Update 1.2。如果您的裝置是執行 Release (GA)，請[連絡 Microsoft 支援服務](storsimple-contact-microsoft-support.md)協助您安裝此更新。
 
-Update 1.2 can be applied to any StorSimple device running Release (GA), Update 0.1, Update 0.2, or Update 0.3 software. Update 1.2 is not available if your device is running Update 1 or Update 1.1. If your device is running Release (GA), please [contact Microsoft Support](storsimple-contact-microsoft-support.md) to assist you with installing this update.
+下表列出 Updates 1、1.1 和 1.2 的對應裝置軟體版本。
 
-The following table lists the device software versions corresponding to Updates 1, 1.1, and 1.2.
-
-| If running update … | this is your device software version. |
+| 如果執行更新... | 這是您裝置的軟體版本。 |
 |---------------------|---------------------------------------|
-| Update 1.2          | 6.3.9600.17584                        |
-| Update 1.1          | 6.3.9600.17521                        |
-| Update 1.0          | 6.3.9600.17491                        |
+| Update 1.2 | 6\.3.9600.17584 |
+| Update 1.1 | 6\.3.9600.17521 |
+| Update 1.0 | 6\.3.9600.17491 |
 
-Please review the information contained in the release notes before you deploy the update in your StorSimple solution. For more information, see how to [install Update 1.2 on your StorSimple device](storsimple-install-update-1.md). 
+在 StorSimple 方案中部署更新之前，請檢閱版本資訊中所包含的資訊。如需詳細資訊，請參閱如何[在 StorSimple 裝置上安裝 Update 1.2](storsimple-install-update-1.md)。
 
 >[AZURE.IMPORTANT]
 > 
-- It takes approximately 5-10 hours to install this update (including the Windows Updates). 
-- Update 1.2 has software, LSI driver and disk firmware updates. To install, follow the instructions in [install Update 1.2 on your StorSimple device](storsimple-install-update-1.md).
-- For new releases, you may not see updates immediately because we do a phased rollout of the updates. Scan for updates in a few days again as these will become available soon.
+- 安裝此更新大約需要 5-10 小時 (包括 Windows Update)。
+- Update 1.2 具有軟體、LSI 驅動程式和磁碟韌體更新。若要安裝，請遵循[在 StorSimple 裝置上安裝 Update 1.2](storsimple-install-update-1.md) 中的指示。
+- 如果是新版本，您可能不會立即看到更新，因為我們會分階段推出更新。請在數天內再次掃描更新，因為很快就會提供更新。
 
 
-## <a name="what's-new-in-update-1.2"></a>What's new in Update 1.2
+## Update 1.2 的新功能
 
-These features were first released with Update 1 that was made available to a limited set of users. With the Update 1.2 release, most of the StorSimple users would see the following new features and improvements:
+這些功能在 Update 1 初次發行時，僅供有限的使用者使用。而在 Update 1.2 版本中，大多數 StorSimple 使用者都可發現下列新功能與改進功能：
 
-- **Migration from 5000-7000 series to 8000 series devices** – This release introduces a new migration feature that allows the StorSimple 5000-7000 series appliance users to migrate their data to a StorSimple 8000 series physical appliance or a virtual appliance. The migration feature has two key value propositions:                                                                  
+- **從 5000-7000 系列移轉至 8000 系列裝置** – 此版本導入新的移轉功能，可讓 StorSimple 5000-7000 系列應用裝置使用者將其資料移轉至 StorSimple 8000 系列實體應用裝置或虛擬應用裝置。移轉功能包含兩個重要的價值主張：
 
-    - **Business continuity**, by enabling migration of existing data on 5000-7000 series appliances to 8000 series appliances.
-    - **Improved feature offerings of the 8000 series appliances**, such as efficient centralized management of multiple appliances through StorSimple Manager service, better class of hardware and updated firmware, virtual appliances, data mobility, and features in the future roadmap.
+    - **業務持續性**：透過允許將 5000-7000 系列應用裝置上的現有資料移轉到 8000 系列應用裝置。
+    - **8000 系列應用裝置的改進功能**：例如透過 StorSimple Manager 服務對多個應用裝置進行有效率的集中式管理、更高等級的硬體和更新的韌體、虛擬應用裝置、資料行動力，以及未來藍圖中的功能。
 
-    Refer to the [migration guide](http://www.microsoft.com/download/details.aspx?id=47322) for details on how to migrate a StorSimple 5000-7000 series to an 8000 series device. 
+    如需如何將 StorSimple 5000-7000 系列移轉至 8000 系列裝置的詳細資訊，請參閱《移轉指南》[](http://www.microsoft.com/download/details.aspx?id=47322)。
 
-- **Availability in the Azure Government Portal** – StorSimple is now available in the Azure Government portal. See how to [deploy a StorSimple device in the Azure Government Portal](storsimple-deployment-walkthrough-gov.md).
+- **Azure Government 入口網站的可用性** – Azure Government 入口網站現已提供 StorSimple。請參閱如何[在 Azure Government 入口網站中部署 StorSimple 裝置](storsimple-deployment-walkthrough-gov.md)。
 
-- **Support for other cloud service providers** – The other cloud service providers supported are Amazon S3, Amazon S3 with RRS, HP, and OpenStack (beta).
+- **其他雲端服務提供者的支援** – 支援的其他雲端服務提供者包括 Amazon S3、含 RRS 的 Amazon S3、HP 以及 OpenStack (beta)。
 
-- **Update to latest Storage APIs** – With this release, StorSimple has been updated to the latest Azure Storage service APIs. StorSimple 8000 series devices that are running pre-Update 1 software versions (Release, 0.1, 0.2, and 0.3) are using versions of the Azure Storage Service APIs older than July 17, 2009. As stated in the updated [announcement about removal of Storage service versions](http://blogs.msdn.com/b/windowsazurestorage/archive/2015/10/19/microsoft-azure-storage-service-version-removal-update-extension-to-2016.aspx), by August 1, 2016, these APIs will be deprecated. It is imperative that you apply the StorSimple 8000 Series Update 1 prior to August 1, 2016. If you fail to do so, StorSimple devices will stop functioning correctly.
+- **最新儲存 API 的更新** – StorSimple 已經透過這個版本，更新為最新的 Azure 儲存體服務 API。執行 Update 1 前軟體版本 (發行、0.1、0.2 和 0.3 版本) 的 StorSimple 8000 系列裝置，是使用 2009 年 7 月 17 日之前的 Azure 儲存體服務 API 版本。如更新的[移除儲存體服務版本相關公告](http://blogs.msdn.com/b/windowsazurestorage/archive/2015/10/19/microsoft-azure-storage-service-version-removal-update-extension-to-2016.aspx)中所述，這些 API 將於 2016 年 8 月 1 日被取代。請務必在 2016 年 8 月 1 日之前，套用 StorSimple 8000 Series Update 1。如果您無法執行這項操作，StorSimple 裝置將會停止正常運作。
 
-- **Support for Zone Redundant Storage (ZRS)** – With the upgrade to the latest version of the Storage APIs, the StorSimple 8000 series will support Zone Redundant Storage (ZRS) in addition to Locally Redundant Storage (LRS) and Geo-redundant Storage (GRS). Refer to this [article on Azure Storage redundancy options](../storage/storage-redundancy.md) for ZRS details.
+- **區域備援儲存體 (ZRS) 的支援** – 升級至最新版的儲存體 API 之後，StorSimple 8000 系列除了本地備援儲存體 (LRS) 和異地備援儲存體 (GRS) 之外，也將支援區域備援儲存體 (ZRS)。如需 ZRS 的詳細資訊，請參閱本文件的 [Azure 儲存體備援選項](../storage/storage-redundancy.md)。
 
-- **Enhanced initial deployment and update experience** – In this release, the installation and update processes have been enhanced. The installation through the setup wizard is improved to provide feedback to the user if the network configuration and firewall settings are incorrect. Additional diagnostic cmdlets have been provided to help you with troubleshooting networking of the device. See the [troubleshooting deployment article](storsimple-troubleshoot-deployment.md) for more information about the new diagnostic cmdlets used for troubleshooting.
+- **增強的初始部署和更新經驗** – 在此版本中，已增強安裝和更新程序。安裝精靈安裝已獲得改善，如果網路組態和防火牆設定不正確，可提供意見給使用者。已提供其他診斷 Cmdlet 來協助您為裝置的網路連線進行疑難排解。如需有關用於疑難排解的新診斷 Cmdlet 的詳細資訊，請參閱[疑難排解部署文件](storsimple-troubleshoot-deployment.md)。
 
-## <a name="issues-fixed-in-update-1.2"></a>Issues fixed in Update 1.2
+## 在 Update 1.2 中修正的問題
 
-The following table provides a summary of issues that were fixed in Updates 1.2, 1.1, and 1.    
+下表提供 Update 1.2、1.1 及 1 中已修正問題的摘要。
 
 
-| No. | Feature | Issue | Fixed in Update | Applies to physical device | Applies to virtual device |
+| 編號 | 功能 | 問題 | 在 Update 中修正的問題 | 適用於實體裝置 | 適用於虛擬裝置 |
 |-----|---------|-------|-----------------|---------------------------------|--------------------------------|
-| 1 | Windows PowerShell for StorSimple | When a user remotely accessed the StorSimple device by using Windows PowerShell for StorSimple and then started the setup wizard, a crash occurred as soon as Data 0 IP was input. This bug is now fixed in Update 1. | Update 1 | Yes | Yes |
-| 2 | Factory reset | In some instances, when you performed a factory reset, the StorSimple device became stuck and displayed this message: **Reset to factory is in progress (phase 8)**. This happened if you pressed CTRL+C while the cmdlet was in progress. This bug is now fixed.| Update 1 | Yes | No |
-| 3 | Factory reset | After a failed dual controller factory reset, you were allowed to proceed with device registration. This resulted in an unsupported system configuration. In Update 1, an error message is shown and registration is blocked on a device that has a failed factory reset. | Update 1 | Yes | No |
-| 4 | Factory reset | In some instances, false positive mismatch alerts were raised. Incorrect mismatch alerts will no longer be generated on devices running Update 1. | Update 1 | Yes | No |
-| 5 | Factory reset | If a factory reset was interrupted prior to completion, the device entered recovery mode and did not allow you to access Windows PowerShell for StorSimple. This bug is now fixed. | Update 1 | Yes | No |
-| 6 | Disaster recovery | A disaster recovery (DR) bug was fixed wherein DR would fail during the discovery of backups on the target device. | Update 1 | Yes | Yes |
-| 7 | Monitoring LEDs | In certain instances, monitoring LEDs at the back of appliance did not indicate correct status. The blue LED was turned off. DATA 0 and DATA 1 LEDs were flashing even when these interfaces were not configured. The issue has been fixed and monitoring LEDs now indicate the correct status.  | Update 1 | Yes | No |
-| 8 | Monitoring LEDs | In certain instances, after applying Update 1, the blue light on the active controller turned off thereby making it hard to identify the active controller. This issue has been fixed in this patch release.| Update 1.2 | Yes | No |
-| 9 | Network interfaces | In previous versions, a StorSimple device configured with a non-routable gateway could go offline. In this release, the routing metric for Data 0 has been made the lowest; therefore, even if other network interfaces are cloud-enabled, all the cloud traffic from the device will be routed via Data 0. | Update 1 | Yes | Yes | 
-| 10 | Backups | A bug in Update 1 which caused backups to fail after 24 days has been fixed in the patch release Update 1.1. | Update 1.1 | Yes | Yes |
-| 11 | Backups | A bug in previous versions resulted in poor performance for cloud snapshots with low change rates. This bug has been fixed in this patch release.| Update 1.2 | Yes | Yes |
-| 12 | Updates | A bug in Update 1 that reported a failed upgrade and caused the controllers to go into Recovery mode, has been fixed in this patch release.| Update 1.2 | Yes | Yes |
+| 1 | Windows PowerShell for StorSimple | 當使用者從遠端使用 Windows PowerShell for StorSimple 存取 StorSimple 裝置，然後再啟動安裝精靈時，只要輸入 Data 0 IP，就會當機。這個 Bug 現在已在 Update 1 中修正。 | Update 1 | 是 | 是 |
+| 2 | 恢復出廠預設值 | 在某些情況下，當您要恢復出廠預設值時，StorSimple 裝置會卡住，並顯示此訊息：「正在重設為原廠預設值 (階段 8)」。如果正在進行 Cmdlet 時，按 CTRL+C，就會發生這種情況。這個 Bug 現在已修正。| Update 1 | 是 | 否 |
+| 3 | 恢復出廠預設值 | 雙控制器恢復出廠預設值失敗之後，允許您繼續進行裝置註冊。這會產生不支援的系統組態。在 Update 1 中，會顯示錯誤訊息，而且在恢復出廠預設值失敗的裝置上，會阻止進行註冊。 | Update 1 | 是 | 否 |
+| 4 | 恢復出廠預設值 | 在某些情況下，會引發誤判的不相符警示。在執行 Update 1 的裝置上，將不會再產生不正確的不相符警示。 | Update 1 | 是 | 否 |
+| 5 | 恢復出廠預設值 | 如果恢復出廠預設值在完成前遭到中斷，裝置會進入復原模式，且不允許您存取 Windows PowerShell for StorSimple。這個 Bug 現在已修正。 | Update 1 | 是 | 否 |
+| 6 | 災害復原 | 災害復原 (DR) 在目標裝置上探索備份期間失敗的災害復原 (DR) Bug 已修正。 | Update 1 | 是 | 是 |
+| 7 | 監控 LED | 在某些情況下，應用裝置背面的監控 LED 並未指出正確的狀態。藍色 LED 已熄滅。即使在未設定這些介面時，DATA 0 和 DATA 1 LED 也在閃爍。此問題已修正，且監控 LED 現在會指出正確的狀態。 | Update 1 | 是 | 否 |
+| 8 | 監控 LED | 在某些情況下，套用 Update 1 之後，作用中控制器上的藍色燈號會關閉，導致難以識別作用中控制器。此修補程式版本已修正此問題。| Update 1.2 | 是 | 否 |
+| 9 | 網路介面 | 在舊版中，使用無法路由的閘道設定的 StorSimple 裝置可能會離線。在此版本中，已將 Data 0 的路由計量設為最低，因此，即使其他網路介面都具備雲端功能，來自裝置的所有雲端流量還是會透過 Data 0 路由。 | Update 1 | 是 | 是 | 
+| 10 | 備份 | 修補程式版本 Update 1.1 已修正了 Update 1 中，導致備份在建立 24 天後損毀的錯誤。 | Update 1.1 | 是 | 是 |
+| 11 | 備份 | 舊版中的錯誤導致雲端快照集變更率低，且效能不佳。此修補程式版本已修正此問題。| Update 1.2 | 是 | 是 |
+| 12 | 更新 | 此修補程式版本已修正 Update 1 會報告升級失敗，並導致控制器進入修復模式的錯誤。| Update 1.2 | 是 | 是 |
 
 
-## <a name="known-issues-in-update-1.2"></a>Known issues in Update 1.2
+## Update 1.2 中的已知問題
 
-The following table provides a summary of known issues in this release.
+下表提供此版本的已知問題摘要。
 
-| No. | Feature | Issue | Comments/workaround | Applies to physical device | Applies to virtual device |
+| 編號 | 功能 | 問題 | 註解/因應措施 | 適用於實體裝置 | 適用於虛擬裝置 |
 |-----|---------|-------|----------------------------|----------------------------|---------------------------|
-| 1 | Disk quorum | In rare instances, if the majority of disks in the EBOD enclosure of an 8600 device are disconnected resulting in no disk quorum, then the storage pool will be offline. It will stay offline even if the disks are reconnected. | You will need to reboot the device. If the issue persists, please contact Microsoft Support for next steps. | Yes | No |
-| 2 | Incorrect controller ID | When a controller replacement is performed, controller 0 may show up as controller 1. During controller replacement, when the image is loaded from the peer node, the controller ID can show up initially as the peer controller’s ID. In rare instances, this behavior may also be seen after a system reboot. | No user action is required. This situation will resolve itself after the controller replacement is complete. | Yes | No |
-| 3 | Storage accounts | Using the Storage service to delete the storage account is an unsupported scenario. This will lead to a situation in which user data cannot be retrieved. | Yes | Yes |
-| 4 | Device failover | Multiple failovers of a volume container from the same source device to different target devices is not supported. Device failover from a single dead device to multiple devices will make the volume containers on the first failed over device lose data ownership. After such a failover, these volume containers will appear or behave differently when you view them in the Azure classic portal. | | Yes | No |
-| 5 | Installation | During StorSimple Adapter for SharePoint installation, you need to provide a device IP in order for the install to finish successfully.    | | Yes | No |
-| 6 | Web proxy | If your web proxy configuration has HTTPS as the specified protocol, then your device-to-service communication will be affected and the device will go offline. Support packages will also be generated in the process, consuming significant resources on your device. | Make sure that the web proxy URL has HTTP as the specified protocol. For more information, go to [Configure web proxy for your device](storsimple-configure-web-proxy.md). | Yes | No |
-| 7 | Web proxy | If you configure and enable web proxy on a registered device, then you will need to restart the active controller on your device. | | Yes | No |
-| 8 | High cloud latency and high I/O workload | When your StorSimple device encounters a combination of very high cloud latencies (order of seconds) and high I/O workload, the device volumes go into a degraded state and the I/Os may fail with a "device not ready" error. | You will need to manually reboot the device controllers or perform a device failover to recover from this situation. | Yes | No |
-| 9 | Azure PowerShell | When you use the StorSimple cmdlet **Get-AzureStorSimpleStorageAccountCredential &#124; Select-Object -First 1 -Wait** to select the first object so that you can create a new **VolumeContainer** object, the cmdlet returns all the objects. | Wrap the cmdlet in parentheses as follows: **(Get-Azure-StorSimpleStorageAccountCredential) &#124; Select-Object -First 1 -Wait** | Yes | Yes |
-| 10| Migration | When multiple volume containers are passed for migration, the ETA for latest backup is accurate only for the first volume container. Additionally, parallel migration will start after the first 4 backups in the first volume container are migrated. | We recommend that you migrate one volume container at a time. | Yes | No |
-| 11| Migration | After the restore, volumes are not added to the backup policy or the virtual disk group. | You will need to add these volumes to a backup policy in order to create backups. | Yes | Yes |
-| 12| Migration | After the migration is complete, the 5000/7000 series device must not access the migrated data containers. | We recommend that you delete the migrated data containers after the migration is complete and committed. | Yes | No |
-| 13| Clone and DR | A StorSimple device running Update 1 cannot clone or perform Disaster Recovery to a device running pre-update 1 software. | You will need to update the target device to Update 1 to allow these operations | Yes | Yes |
-| 14 | Migration | Configuration backup for migration may fail on a 5000-7000 series device when there are volume groups with no associated volumes. | Delete all the empty volume groups with no associated volumes and then retry the configuration backup.| Yes | No |
+| 1 | 磁碟仲裁 | 在罕見情況下，如果 8600 裝置的 EBOD 機箱中大部分的磁碟都已中斷連線，而導致沒有磁碟仲裁，那麼將會使存放集區離線。即使已重新連接磁碟時，它依然會保持離線。 | 您必須重新啟動裝置。如果問題持續發生， 請連絡 Microsoft 支援以進行後續步驟。 | 是 | 否 |
+| 2 | 不正確的控制器識別碼 | 進行控制器更換時，控制器 0 可能顯示為控制器 1。在控制器更換期間從對等節點載入影像時，控制器識別碼一開始可能會顯示為對等控制器的識別碼。在罕見情況下，可能會在系統重新開機後出現這種行為。 | 因此，使用者不需要採取任何動作。控制器更換完成之後，會自行解決這種情況。 | 是 | 否 |
+| 3 | 儲存體帳戶 | 不支援使用儲存體服務刪除儲存體帳戶的案例。這會導致無法擷取使用者資料的情況。 | 是 | 是 |
+| 4 | 裝置容錯移轉 | 不支援從相同來源裝置將某個磁碟區容器多次容錯移轉至不同的目標裝置。當裝置容錯移轉是從單一失效裝置容錯移轉到多個裝置時，會讓第一個容錯移轉裝置上的磁碟區容器失去資料擁有權。進行這類容錯移轉之後，當您在 Azure 傳統入口網站中檢視這些磁碟區容器時，會發現它們的外觀或行為有所不同。 | | 是 | 否 |
+| 5 | 安裝 | 在 StorSimple Adapter for SharePoint 安裝其間，您必須提供裝置 IP，才能順利完成安裝。 | | 是 | 否 |
+| 6 | Web Proxy | 如果您的 Web Proxy 組態設定將 HTTPS 做為指定的通訊協定，您的裝置對服務通訊將會受到影響並使裝置離線。同時會在程序中產生支援封裝，耗用裝置上的大量資源。 | 請確定 Web Proxy URL 指定的通訊協定為 HTTP。如需詳細資訊，請參閱[設定裝置的 Web Proxy](storsimple-configure-web-proxy.md)。 | 是 | 否 |
+| 7 | Web Proxy | 如果您在註冊的裝置上設定並啟用 Web Proxy，將需要重新啟動裝置上的主動控制器。 | | 是 | 否 |
+| 8 | 雲端高延遲與高 I/O 工作負載 | 當 StorSimple 裝置同時出現雲端延遲情況嚴重 (大約數秒) 和 I/O 工作負載高的情況時，裝置磁碟區會進入降級的狀態，而且 I/O 可能會失敗，發生「裝置未就緒」錯誤。 | 您必須以手動方式將裝置控制器重新開機，或或執行裝置容錯移轉，才能從這種情況下復原。 | 是 | 否 |
+| 9 | Azure PowerShell | 當您使用 StorSimple Cmdlet **Get-AzureStorSimpleStorageAccountCredential &#124; Select-Object -First 1 -Wait** 選取第一個物件，讓您可以建立新的 **VolumeContainer** 物件時，此 Cmdlet 會傳回所有物件。 | 將此 Cmdlet 以括號括住，如下所示：**(Get-Azure-StorSimpleStorageAccountCredential) &#124; Select-Object -First 1 -Wait** | 是 | 是 |
+| 10| 移轉 | 傳遞多個磁碟區容器以進行移轉時，只有第一個磁碟區容器的最新備份的 ETA 正確。此外，在移轉第一個磁碟區容器中的前 4 個備份之後，將會開始進行平行移轉。 | 建議您一次移轉一個磁碟區容器。 | 是 | 否 |
+| 11| 移轉 | 還原之後，不會將磁碟區新增至備份原則或虛擬磁碟群組。 | 您必須將這些磁碟區新增至備份原則，才能建立備份。 | 是 | 是 |
+| 12| 移轉 | 完成移轉之後，5000/7000 系列裝置不得存取移轉的資料容器。 | 建議您在移轉完成並認可之後，刪除移轉的資料容器。 | 是 | 否 |
+| 13| 複製和 DR | 執行 Update 1 的 StorSimple 裝置無法對執行 Update 1 前軟體的裝置複製或執行災害復原。 | 您必須將目標裝置更新為 Update 1，以允許這些作業 | 是 | 是 |
+| 14 | 移轉 | 當磁碟區群組中沒有相關聯的磁碟區時，5000-7000 系列裝置上用於移轉的設定備份可能會失敗。 | 刪除不含相關聯磁碟區的所有空磁碟區群組，然後重試設定備份。| 是 | 否 |
 
-## <a name="physical-device-updates-in-update-1.2"></a>Physical device updates in Update 1.2
+## Update 1.2 中的實體裝置更新
 
-If patch update 1.2 is applied to a physical device (running versions prior to Update 1), the software version will change to 6.3.9600.17584.
+如果將修補程式 Update 1.2 套用至執行 Update 1 之前版本的實體裝置，軟體版本會變更為 6.3.9600.17584。
 
-## <a name="controller-and-firmware-updates-in-update-1.2"></a>Controller and firmware updates in Update 1.2
+## Update 1.2 中的控制器和韌體更新
 
-This release updates the driver and the disk firmware on your device.
+這個版本會更新裝置上的驅動程式和磁碟韌體。
  
-- For more information about the SAS controller update, see [Update 1 for LSI SAS controllers in Microsoft Azure StorSimple Appliance](https://support.microsoft.com/kb/3043005). 
+- 如需有關 SAS 控制器更新的詳細資訊，請參閱[適用於 Microsoft Azure StorSimple 應用裝置的 LSI SAS 控制器的 Update 1](https://support.microsoft.com/kb/3043005)。
 
-- For more information about the disk firmware update, see [Disk firmware Update 1 for Microsoft Azure StorSimple Appliance](https://support.microsoft.com/kb/3063416).
+- 如需有關磁碟韌體更新的詳細資訊，請參閱[適用於 Microsoft Azure StorSimple 應用裝置的磁碟韌體 Update 1](https://support.microsoft.com/kb/3063416)。
  
-## <a name="virtual-device-updates-in-update-1.2"></a>Virtual device updates in Update 1.2
+## Update 1.2 中的虛擬裝置更新
 
-This update cannot be applied to the virtual device. New virtual devices will need to be created. 
+這項更新無法套用至虛擬裝置。將需要建立新的虛擬裝置。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-- [Install Update 1.2 on your device](storsimple-install-update-1.md).
+- [在您的裝置上安裝 Update 1.2](storsimple-install-update-1.md)。
  
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

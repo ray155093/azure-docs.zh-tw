@@ -1,48 +1,43 @@
 <properties
-    pageTitle="Database on server is not currently available, connect to SQL Database | Microsoft Azure"
-    description="Troubleshoot the database on server is not currently available error when an application connects to SQL Database."
-    services="sql-database"
-    documentationCenter=""
-    authors="dalechen"
-    manager="felixwu"
-    editor=""
-    keywords="database on server is not currently available, connect to sql database"/>
+	pageTitle="目前無法使用伺服器上的資料庫，連接到 SQL Database | Microsoft Azure"
+	description="針對應用程式連接到 SQL Database 時發生的「目前無法使用伺服器上的資料庫」錯誤進行。"
+	services="sql-database"
+	documentationCenter=""
+	authors="dalechen"
+	manager="felixwu"
+	editor=""
+	keywords="目前無法使用伺服器上的資料庫，連接到 SQL Database"/>
 
 <tags
-    ms.service="sql-database"
-    ms.workload="data-management"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/21/2016"
-    ms.author="daleche"/>
+	ms.service="sql-database"
+	ms.workload="data-management"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/21/2016"
+	ms.author="daleche"/>
 
+# 連接到 SQL Database 時發生「目前無法使用伺服器上的資料庫」錯誤
+[AZURE.INCLUDE [支援免責聲明](../../includes/support-disclaimer.md)]
 
-# <a name="error-"database-on-server-is-not-currently-available"-when-connecting-to-sql-database"></a>Error "Database on server is not currently available" when connecting to sql database
-[AZURE.INCLUDE [support-disclaimer](../../includes/support-disclaimer.md)]
-
-When an application connects to an Azure SQL database, you receive the following error message:
+當應用程式連接到 Azure SQL Database 時，您會收到下列錯誤訊息︰
 
 ```
 Error code 40613: "Database <x> on server <y> is not currently available. Please retry the connection later. If the problem persists, contact customer support, and provide them the session tracing ID of <z>"
 ```
 
-> [AZURE.NOTE] This error message is typically transient (short-lived).
+> [AZURE.NOTE] 此錯誤訊息是通常是暫時性 (短期)。
 
-This error occurs when the Azure database is being moved (or reconfigured) and your application loses its connection to the SQL database. SQL database reconfiguration events occurs because of a planned event (for example, a software upgrade) or an unplanned event (for example, a process crash, or load balancing). Most reconfiguration events are generally short-lived and should be completed in less than 60 seconds at most. However, these events can occasionally take longer to finish, such as when a large transaction causes a long-running recovery.
+當移動 (或重新設定) Azure 資料庫時會發生此錯誤，而且您的應用程式會失去與 SQL Database 的連接。SQL Database 重新設定事件由於規劃的事件 (例如，軟體升級) 或未規劃的事件 (例如，處理序損毀或負載平衡) 而發生。大部分的重新設定事件通常只是短期的，至多應在不到 60 秒的時間完成。不過，這些事件可能偶爾會需要更長時間才能完成，例如當大型交易導致長時間執行的復原時。
 
-## <a name="steps-to-resolve-transient-connectivity-issues"></a>Steps to resolve transient connectivity issues
-1.  Check the [Microsoft Azure Service Dashboard](https://azure.microsoft.com/status) for any known outages that occurred during the time during which the errors were reported by the application.
-2. Applications that connect to a cloud service such as Azure SQL Database should expect periodic reconfiguration events and implement retry logic to handle these errors instead of surfacing these as application errors to users. Review the [Transient errors](sql-database-connectivity-issues.md) section and the best practices and design guidelines at [SQL Database Development Overview](sql-database-develop-overview.md) for more information and general retry strategies. Then, see code samples at [Connection Libraries for SQL Database and SQL Server](sql-database-libraries.md) for specifics.
-3.  As a database approaches its resource limits, it can seem to be a transient connectivity issue. See [Troubleshooting Performance Issues](sql-database-troubleshoot-performance.md).
-4.  If connectivity problems continue, or if the duration for which your application encounters the error exceeds 60 seconds or if you see multiple occurrences of the error in a given day, file an Azure support request by selecting **Get Support** on the [Azure Support](https://azure.microsoft.com/support/options) site.
+## 解決暫時性連線問題的步驟
+1.	檢查 [Microsoft Azure 服務儀表板](https://azure.microsoft.com/status)，以取得應用程式報告錯誤期間發生的任何已知中斷。
+2. 連接到雲端服務的應用程式 (例如 Azure SQL Database) 應該預期定期的重新設定事件，並實作應用程式重試邏輯來處理這些錯誤，而不是將這些錯誤當做應用程式錯誤呈現給使用者。如需詳細資訊和一般重試策略，請檢閱[暫時性錯誤](sql-database-connectivity-issues.md)一節以及 [SQL Database 開發概觀](sql-database-develop-overview.md)的最佳作法和設計指南。如需詳細資訊，請接著參閱[適用於 SQL Database 和 SQL Server 的連線庫](sql-database-libraries.md)的程式碼範例 。
+3.	由於資料庫接近其資源限制，因此似乎是暫時性連線問題。請參閱[移難排解效能問題](sql-database-troubleshoot-performance.md)。
+4.	如果連線問題繼續發生，或如果您的應用程式發生錯誤的持續時間超過 60 秒，或如果您在一天當中，看到錯誤多次發生，請在 [Azure 支援](https://azure.microsoft.com/support/options)網站上選取 [取得支援]，來提出 Azure 支援要求。
 
-## <a name="next-steps"></a>Next steps
-- If you receive a different error, evaluate the [error message](sql-database-develop-error-messages.md) for clues about the cause.
-- If the issue is persistent, visit the guidance in [Troubleshoot common connection issues to Azure SQL Database](sql-database-troubleshoot-common-connection-issues.md).
+## 後續步驟
+- 如果您收到不同的錯誤，請評估[錯誤訊息](sql-database-develop-error-messages.md)，找出問題的線索。
+- 如果問題持續發生，請造訪[針對 Azure SQL Database 常見的連接問題進行疑難排解](sql-database-troubleshoot-common-connection-issues.md)中的指引。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

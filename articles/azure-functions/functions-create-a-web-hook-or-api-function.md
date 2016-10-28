@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Create a web hook or API Azure Function | Microsoft Azure"
-   description="Use Azure Functions to create a function that is invoked by a WebHook or API call."
+   pageTitle="建立 Web 攔截或 API Azure 函數 | Microsoft Azure"
+   description="使用 Azure Functions 建立 WebHook 或 API 呼叫所叫用的函數。"
    services="azure-functions"
    documentationCenter="na"
    authors="ggailey777"
@@ -18,84 +18,75 @@
    ms.date="08/30/2016"
    ms.author="glenga"/>
    
+# 建立 Webhook 或 API Azure 函式
 
-# <a name="create-a-webhook-or-api-azure-function"></a>Create a webhook or API Azure Function
+Azure Functions 是事件驅動、依需求計算的體驗，可讓您建立以各種程式設計語言實作的已排程或觸發的程式碼單位。若要深入了解 Azure Functions，請參閱 [Azure Functions 概觀](functions-overview.md)。
 
-Azure Functions is an event-driven, compute-on-demand experience that enables you to create scheduled or triggered units of code implemented in a variety of programming languages. To learn more about Azure Functions, see the [Azure Functions Overview](functions-overview.md).
+本主題說明如何建立由 GitHub Webhook 叫用的新 Node.js 函數。新的函式是根據 Azure Functions 入口網站中的預先定義範本所建立。您也可以觀賞短片，了解如何在入口網站中執行這些步驟。
 
-This topic shows you how to create a new Node.js function that is invoked by a GitHub webhook. The new function is created based on a pre-defined template in the Azure Functions portal. You can also watch a short video to see how these steps are performed in the portal.
+## 觀賞影片
 
-## <a name="watch-the-video"></a>Watch the video
-
-The following video show how to perform the basic steps in this tutorial 
+下列影片顯示如何在本教學課程中執行基本步驟
 
 [AZURE.VIDEO create-a-web-hook-or-api-azure-function]
 
-##<a name="create-a-webhook-triggered-function-from-the-template"></a>Create a webhook-triggered function from the template
+##從範本建立 Webhook 觸發函式
 
-A function app hosts the execution of your functions in Azure. Before you can create a function, you need to have an active Azure account. If you don't already have an Azure account, [free accounts are available](https://azure.microsoft.com/free/). 
+函式應用程式可在 Azure 中主控函式的執行。您必須先具備有效的 Azure 帳戶，才可以建立函式。如果您還沒有 Azure 帳戶，[可以使用免費帳戶](https://azure.microsoft.com/free/)。
 
-1. Go to the [Azure Functions portal](https://functions.azure.com/signin) and sign-in with your Azure account.
+1. 移至 [Azure Functions 入口網站](https://functions.azure.com/signin)，然後以您的 Azure 帳戶登入。
 
-2. If you have an existing function app to use, select it from **Your function apps** then click **Open**. To create a new function app, type a unique **Name** for your new function app or accept the generated one, select your preferred **Region**, then click **Create + get started**. 
+2. 如果您要使用現有的函式應用程式，請從 [Your function apps]\(函式應用程式) 中選取，然後按一下 [開啟]。若要建立新的函式應用程式，請輸入新函式應用程式的唯一 [名稱] 或接受所產生的名稱，選取您偏好的 [區域]，然後按一下 [Create + get started]\(建立 + 開始)。
 
-3. In your function app, click **+ New Function** > **GitHub Webhook - Node** > **Create**. This creates a function with a default name that is based on the specified template. 
+3. 在函式應用程式中，依序按一下 [+ New Function]\(+ 新增函式) > [GitHub Webhook - Node]\(GitHub Webhook - 節點) > [建立]。這會根據指定的範本以預設名稱建立函式。
 
-    ![Create new GitHub webhook function](./media/functions-create-a-web-hook-or-api-function/functions-create-new-github-webhook.png) 
+	![建立新的 GitHub Webhook 函式](./media/functions-create-a-web-hook-or-api-function/functions-create-new-github-webhook.png)
 
-4. In **Develop**, note the sample express.js function in the **Code** window. This function receives a GitHub request from an issue comment webhook, logs the issue text and sends a response to the webhook as `New GitHub comment: <Your issue comment text>`.
+4. 在 [開發] 中，注意 [程式碼] 視窗中的範例 express.js 函式。這個函式從問題註解 Webhook 接收 GitHub 要求、記錄問題文字，將回應傳送到 Webhook 當做 `New GitHub comment: <Your issue comment text>`。
 
 
-    ![Create new GitHub webhook function](./media/functions-create-a-web-hook-or-api-function/functions-new-webhook-in-portal.png) 
+	![建立新的 GitHub Webhook 函式](./media/functions-create-a-web-hook-or-api-function/functions-new-webhook-in-portal.png)
 
-5. Copy the **Function URL** and **GitHub Secret** values. You will need these when you create the webhook in GitHub. 
+5. 複製 [函式 URL] 和 [GitHub 密碼] 值。當您在 GitHub 中建立 Webhook 時，您會需要它們。
 
-6. Scroll down to **Run**, note the predefined JSON body of an issue comment in the Request body, then click **Run**. 
+6. 向下捲動至 [執行]，注意要求主體中問題註解之預先定義的 JSON 主體，然後按一下 [執行]。
  
-    You can always test a new template-based function right in the **Develop** tab by supplying any expected body JSON data and clicking the **Run** button. In this case, the template has a predefined body for an issue comment. 
+	只要提供所有預期主體的 JSON 資料，然後按一下 [執行] 按鈕，就可以在 [開發] 索引標籤中測試新的範本函式。這樣範本就有問題註解的預先定義主體。
  
-Next, you will create the actual webhook in your GitHub repository.
+接下來，您要在 GitHub 儲存機制中建立實際的 Webhook。
 
-##<a name="configure-the-webhook"></a>Configure the webhook
+##設定 Webhook
 
-1. In GitHub, navigate to a repository that you own; this includes any repositories that you have forked.
+1. 在 GitHub 中，瀏覽至您擁有的儲存機制，這包括您分岔的任何儲存機制。
  
-2. Click **Settings** > **Webhooks & services** > **Add webhook**.
+2. 按一下 [設定] > [Webhooks & services]\(Webhooks 和服務) > [Add Webhook]\(加入 Webhook)。
 
-    ![Create new GitHub webhook function](./media/functions-create-a-web-hook-or-api-function/functions-create-new-github-webhook-2.png)   
+	![建立新的 GitHub Webhook 函式](./media/functions-create-a-web-hook-or-api-function/functions-create-new-github-webhook-2.png)
 
-3. Paste your function's URL and secret into **Payload URL** and **Secret**, then click **Let me select individual events**, select **Issue comment** and click **Add webhook**.
+3. 將您的函式 URL 和密碼貼入 [Payload URL]\(承載 URL) 和 [密碼]，然後按一下 [Let me select individual events]\(讓我選擇個別事件)，選取 [問題註解] 並按一下 [Add Webhook]\(加入 Webhook)。
 
-    ![Create new GitHub webhook function](./media/functions-create-a-web-hook-or-api-function/functions-create-new-github-webhook-3.png) 
+	![建立新的 GitHub Webhook 函式](./media/functions-create-a-web-hook-or-api-function/functions-create-new-github-webhook-3.png)
 
-At this point, the GitHub webhook is configured to trigger your function when a new issue comment is added.  
-Now, it's time to test it out.
+此時，GitHub Webhook 會設定成在加入新的問題註解時觸發您的函式。現在，請測試它。
 
-##<a name="test-the-function"></a>Test the function
+##測試函式
 
-1. In your GitHub repo, open the **Issues** tab in a new browser window, click **New Issue**, type a title then click **Submit new issue**. You can also open an existing issue.
+1. 在 GitHub 儲存機制中的新瀏覽器視窗中開啟 [問題] 索引標籤，按一下 [新增問題]，輸入標題，然後按一下 [Submit new issue]\(提交新問題)。您也可以開啟現有的問題。
 
-2. In the issue, type a comment and click **Comment**. At this point, you can go back to your new webhook in GitHub and under **Recent Deliveries** see that a webhook request was sent and that the body of response is `New GitHub comment: <Your issue comment text>`.
+2. 在問題中輸入註解，然後按一下 [註解]。此時，您可以回到 GitHub 的新 Webhook，在 [Recent Deliveries]\(最近的傳遞) 下查看已傳送的 Webhook 要求及 `New GitHub comment: <Your issue comment text>` 回應本文。
 
-3. Back in the Functions portal, scroll down to the logs and see that the function has been triggered and the value `New GitHub comment: <Your issue comment text>` is written to the streaming logs.
-
-
-##<a name="next-steps"></a>Next steps
-
-See these topics for more information about Azure Functions.
-
-+ [Azure Functions developer reference](functions-reference.md)  
-Programmer reference for coding functions.
-+ [Testing Azure Functions](functions-test-a-function.md)  
-Describes various tools and techniques for testing your functions.
-+ [How to scale Azure Functions](functions-scale.md)  
-Discusses service plans available with Azure Functions, including the Dynamic service plan, and how to choose the right plan.  
+3. 回到 Functions 入口網站，向下捲動至記錄檔，查看已觸發的函式和已寫入資料流記錄檔的值 `New GitHub comment: <Your issue comment text>`。
 
 
-[AZURE.INCLUDE [Getting Started Note](../../includes/functions-get-help.md)]
+##後續步驟
+
+如需 Azure Functions 的詳細資訊，請參閱下列主題。
+
++ [Azure Functions 開發人員參考](functions-reference.md) 可供程式設計人員撰寫函式程式碼時參考。
++ [測試 Azure Functions](functions-test-a-function.md) 說明可用於測試函式的各種工具和技巧。
++ [如何調整 Azure 函式](functions-scale.md)討論 Azure Functions 可用的服務方案，包括動態服務方案，以及如何選擇正確的方案。
 
 
+[AZURE.INCLUDE [開始使用注意事項](../../includes/functions-get-help.md)]
 
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0928_2016-->

@@ -1,12 +1,12 @@
 <properties
-   pageTitle="Use Hadoop Hive and Remote Desktop in HDInsight | Microsoft Azure"
-   description="Learn how to connect to Hadoop cluster in HDInsight by using Remote Desktop, and then run Hive queries by using the Hive Command-Line Interface."
+   pageTitle="在 HDInsight 中使用 Hadoop Hive 與遠端桌面 | Microsoft Azure"
+   description="學習如何使用遠端桌面連接到 HDInsight 中的 Hadoop 叢集，然後使用 Hive 命令列介面執行 Hive 查詢。"
    services="hdinsight"
    documentationCenter=""
    authors="Blackmist"
    manager="jhubbard"
    editor="cgronlun"
-    tags="azure-portal"/>
+	tags="azure-portal"/>
 
 <tags
    ms.service="hdinsight"
@@ -17,40 +17,39 @@
    ms.date="09/06/2016"
    ms.author="larryfr"/>
 
+# 利用遠端桌面搭配使用 Hive 與 HDInsight 上的 Hadoop
 
-# <a name="use-hive-with-hadoop-on-hdinsight-with-remote-desktop"></a>Use Hive with Hadoop on HDInsight with Remote Desktop
+[AZURE.INCLUDE [Hive 選取器](../../includes/hdinsight-selector-use-hive.md)]
 
-[AZURE.INCLUDE [hive-selector](../../includes/hdinsight-selector-use-hive.md)]
+在本文中，您將學習如何使用遠端桌面連接到 HDInsight 叢集，然後使用 Hive 命令列介面 (CLI) 執行 Hive 查詢。
 
-In this article, you will learn how to connect to an HDInsight cluster by using Remote Desktop, and then run Hive queries by using the Hive Command-Line Interface (CLI).
+> [AZURE.NOTE] 本文件不提供範例中使用的 HiveQL 陳述式所執行的工作詳細的描述。如需此範例中使用的 HiveQL 的相關資訊，請參閱[在 HDInsight 上搭配 Hadoop 使用 Hive](hdinsight-use-hive.md)。
 
-> [AZURE.NOTE] This document does not provide a detailed description of what the HiveQL statements that are used in the examples do. For information about the HiveQL that is used in this example, see [Use Hive with Hadoop on HDInsight](hdinsight-use-hive.md).
+##<a id="prereq"></a>必要條件
 
-##<a name="<a-id="prereq"></a>prerequisites"></a><a id="prereq"></a>Prerequisites
+若要完成本文中的步驟，您需要下列項目。
 
-To complete the steps in this article, you will need the following:
+* Windows 型 HDInsight (HDInsight 上的 Hadoop) 叢集
 
-* A Windows-based HDInsight (Hadoop on HDInsight) cluster
+* 執行 Windows 10、Windows 8 或 Windows 7 的用戶端電腦
 
-* A client computer running Windows 10, Window 8, or Windows 7
+##<a id="connect"></a>使用遠端桌面連線
 
-##<a name="<a-id="connect"></a>connect-with-remote-desktop"></a><a id="connect"></a>Connect with Remote Desktop
+依照[使用 RDP 連線到 HDInsight 叢集](hdinsight-administer-use-management-portal.md#rdp)中的指示，為 HDInsight 叢集啟用遠端桌面，然後進行連線。
 
-Enable Remote Desktop for the HDInsight cluster, then connect to it by following the instructions at [Connect to HDInsight clusters using RDP](hdinsight-administer-use-management-portal.md#rdp).
+##<a id="hive"></a>使用 Hive 命令
 
-##<a name="<a-id="hive"></a>use-the-hive-command"></a><a id="hive"></a>Use the Hive command
+當您連線到 HDInsight 叢集的桌面時，請使用下列步驟來使用 Hive：
 
-When you have connected to the desktop for the HDInsight cluster, use the following steps to work with Hive:
+1. 從 HDInsight 桌面，啟動 **Hadoop 命令列**。
 
-1. From the HDInsight desktop, start the **Hadoop Command Line**.
-
-2. Enter the following command to start the Hive CLI:
+2. 輸入下列命令以啟動 Hive CLI：
 
         %hive_home%\bin\hive
 
-    When the CLI has started, you will see the Hive CLI prompt: `hive>`.
+    啟動 CLI 之後，將會看到 Hive CLI 提示字元：`hive>`。
 
-3. Using the CLI, enter the following statements to create a new table named **log4jLogs** using sample data:
+3. 使用 CLI，輸入下列陳述式，以使用範例資料來建立名為 **log4jLogs** 的新資料表：
 
         set hive.execution.engine=tez;
         DROP TABLE log4jLogs;
@@ -59,67 +58,67 @@ When you have connected to the desktop for the HDInsight cluster, use the follow
         STORED AS TEXTFILE LOCATION 'wasbs:///example/data/';
         SELECT t4 AS sev, COUNT(*) AS count FROM log4jLogs WHERE t4 = '[ERROR]' AND INPUT__FILE__NAME LIKE '%.log' GROUP BY t4;
 
-    These statements perform the following actions:
+    這些陳述式會執行下列動作：
 
-    * **DROP TABLE**: Deletes the table and the data file if the table already exists.
+    * **DROP TABLE**：刪除資料表和資料檔 (如果資料表已存在)。
 
-    * **CREATE EXTERNAL TABLE**: Creates a new 'external' table in Hive. External tables store only the table definition in Hive (the data is left in the original location).
+    * **CREATE EXTERNAL TABLE**：在 Hive 中建立新的「外部」資料表。外部資料表只會在 Hive 中儲存資料表定義 (資料會保留在原始位置)。
 
-        > [AZURE.NOTE] External tables should be used when you expect the underlying data to be updated by an external source (such as an automated data upload process) or by another MapReduce operation, but you always want Hive queries to use the latest data.
-        >
-        > Dropping an external table does **not** delete the data, only the table definition.
+		> [AZURE.NOTE] 當您預期以外部來源更新基礎資料 (例如自動化資料上傳程序)，或以其他 MapReduce 作業更新基礎資料，但希望 Hive 查詢一律使用最新資料時，必須使用外部資料表。
+    	>
+    	> 捨棄外部資料表並**不會**刪除資料，只會刪除資料表定義。
 
-    * **ROW FORMAT**: Tells Hive how the data is formatted. In this case, the fields in each log are separated by a space.
+	* **ROW FORMAT**：告訴 Hive 如何格式化資料。在此情況下，每個記錄中的欄位會以空格隔開。
 
-    * **STORED AS TEXTFILE LOCATION**: Tells Hive where the data is stored (the example/data directory) and that it is stored as text.
+    * **STORED AS TEXTFILE LOCATION**：告訴 Hive 資料的儲存位置 (example/data 目錄) 且資料儲存為文字。
 
-    * **SELECT**: Selects a count of all rows where column **t4** contains the value **[ERROR]**. This should return a value of **3** because there are three rows that contain this value.
+    * **SELECT**：選取其資料行 **t4** 包含 **[ERROR]** 值的所有資料列計數。這應該會傳回值 **3**，因為有三個資料列包含此值。
 
-    * **INPUT__FILE__NAME LIKE '%.log'** - Tells Hive that we should only return data from files ending in .log. This restricts the search to the sample.log file that contains the data, and keeps it from returning data from other example data files that do not match the schema we defined.
+    * **INPUT\_\_FILE\_\_NAME LIKE '%.log'** - 告訴 Hive 我們只應該從檔名以 log 結尾的檔案中傳回資料。這將限制包含此資料的 sample.log 檔案搜尋，對於不符合我們所定義結構描述的其他範例資料檔案，會防止其傳回資料。
 
 
-4. Use the following statements to create a new 'internal' table named **errorLogs**:
+4. 使用下列陳述式來建立名為 **errorLogs** 的新「內部」資料表：
 
         CREATE TABLE IF NOT EXISTS errorLogs (t1 string, t2 string, t3 string, t4 string, t5 string, t6 string, t7 string) STORED AS ORC;
         INSERT OVERWRITE TABLE errorLogs SELECT t1, t2, t3, t4, t5, t6, t7 FROM log4jLogs WHERE t4 = '[ERROR]' AND INPUT__FILE__NAME LIKE '%.log';
 
-    These statements perform the following actions:
+    這些陳述式會執行下列動作：
 
-    * **CREATE TABLE IF NOT EXISTS**: Creates a table if it does not already exist. Because the **EXTERNAL** keyword is not used, this is an internal table, which is stored in the Hive data warehouse and is managed completely by Hive.
+    * **CREATE TABLE IF NOT EXISTS**：建立資料表 (如果不存在)。因為未使用 **EXTERNAL** 關鍵字，所以這是內部資料表，而內部資料表儲存在 Hive 資料倉儲中，並完全透過 Hive 來管理。
 
-        > [AZURE.NOTE] Unlike **EXTERNAL** tables, dropping an internal table also deletes the underlying data.
+		> [AZURE.NOTE] 與 **EXTERNAL** 資料表不同之處在於，捨棄內部資料表也會刪除基礎資料。
 
-    * **STORED AS ORC**: Stores the data in optimized row columnar (ORC) format. This is a highly optimized and efficient format for storing Hive data.
+    * **STORED AS ORC**：以最佳化資料列單欄式 (Optimized Row Columnar, ORC) 格式儲存資料。這是高度最佳化且有效率的 Hive 資料儲存格式。
 
-    * **INSERT OVERWRITE ... SELECT**: Selects rows from the **log4jLogs** table that contain **[ERROR]**, then inserts the data into the **errorLogs** table.
+    * **INSERT OVERWRITE ...SELECT**：從包含 **[ERROR]** 的 **log4jLogs** 資料表選取資料列，然後將資料插入 **errorLogs** 資料表
 
-    To verify that only rows that contain **[ERROR]** in column t4 were stored to the **errorLogs** table, use the following statement to return all the rows from **errorLogs**:
+    若要確認只將資料行 t4 中包含 **[ERROR]** 的資料列儲存至 **errorLogs** 資料表，請使用下列陳述式，傳回 **errorLogs** 中的所有資料列：
 
         SELECT * from errorLogs;
 
-    Three rows of data should be returned, all containing **[ERROR]** in column t4.
+    應該傳回三個資料列，且在資料行 t4 中全部包含 **[ERROR]**。
 
-##<a name="<a-id="summary"></a>summary"></a><a id="summary"></a>Summary
+##<a id="summary"></a>摘要
 
-As you can see, the the Hive command provides an easy way to interactively run Hive queries on an HDInsight cluster, monitor the job status, and retrieve the output.
+如您所見，Hive 命令提供簡單的方法，以互動方式在 HDInsight 叢集上執行 Hive 查詢、監視工作狀態，以及擷取輸出。
 
-##<a name="<a-id="nextsteps"></a>next-steps"></a><a id="nextsteps"></a>Next steps
+##<a id="nextsteps"></a>接續步驟
 
-For general information about Hive in HDInsight:
+如需 HDInsight 中 Hive 的一般資訊：
 
-* [Use Hive with Hadoop on HDInsight](hdinsight-use-hive.md)
+* [搭配使用 Hive 與 HDInsight 上的 Hadoop](hdinsight-use-hive.md)
 
-For information about other ways you can work with Hadoop on HDInsight:
+如需您可以在 HDInsight 上使用 Hadoop 之其他方式的詳細資訊：
 
-* [Use Pig with Hadoop on HDInsight](hdinsight-use-pig.md)
+* [搭配使用 Pig 與 HDInsight 上的 Hadoop](hdinsight-use-pig.md)
 
-* [Use MapReduce with Hadoop on HDInsight](hdinsight-use-mapreduce.md)
+* [搭配 HDInsight 上的 Hadoop 使用 MapReduce](hdinsight-use-mapreduce.md)
 
-If you are using Tez with Hive, see the following documents for debugging information:
+如果您搭配使用 Tez 和 Hive，請參閱下列文件所提供的偵錯資訊：
 
-* [Use the Tez UI on Windows-based HDInsight](hdinsight-debug-tez-ui.md)
+* [在以 Windows 為基礎的 HDInsight 上使用 Tez UI](hdinsight-debug-tez-ui.md)
 
-* [Use the Ambari Tez view on Linux-based HDInsight](hdinsight-debug-ambari-tez-view.md)
+* [在以 Linux 為基礎的 HDInsight 上使用 Ambari Tez 檢視](hdinsight-debug-ambari-tez-view.md)
 
 [1]: ../HDInsight/hdinsight-hadoop-visual-studio-tools-get-started.md
 
@@ -151,9 +150,4 @@ If you are using Tez with Hive, see the following documents for debugging inform
 [Powershell-install-configure]: ../powershell-install-configure.md
 [powershell-here-strings]: http://technet.microsoft.com/library/ee692792.aspx
 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

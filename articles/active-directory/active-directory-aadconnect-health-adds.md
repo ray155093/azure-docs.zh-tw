@@ -1,68 +1,63 @@
 
 <properties
-    pageTitle="Using Azure AD Connect Health with AD DS | Microsoft Azure"
-    description="This is the Azure AD Connect Health page that will discuss how to monitor AD DS."
-    services="active-directory"
-    documentationCenter=""
-    authors="arluca"
-    manager="samueld"
-    editor="curtand"/>
+	pageTitle="使用 Azure AD Connect Health 搭配 AD DS | Microsoft Azure"
+	description="這是 Azure AD Connect Health 頁面，其中討論如何監視 AD DS。"
+	services="active-directory"
+	documentationCenter=""
+	authors="arluca"
+	manager="samueld"
+	editor="curtand"/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="get-started-article"
-    ms.date="10/18/2016"
-    ms.author="arluca"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="get-started-article"
+	ms.date="09/30/2016"
+	ms.author="arluca"/>
 
+# 在 AD DS 使用 Azure AD Connect Health
+下列文件適用於使用 Azure AD Connect Health 來監視 Active Directory 網域服務。AD DS 支援的版本：Windows Server 2008 R2、Windows Server 2012 及 Windows Server 2012 R2。
 
-# <a name="using-azure-ad-connect-health-with-ad-ds"></a>Using Azure AD Connect Health with AD DS
-The following documentation is specific to monitoring Active Directory Domain Services with Azure AD Connect Health. The supported versions of AD DS are: Windows Server 2008 R2, Windows Server 2012, and Windows Server 2012 R2.
+如需使用 Azure AD Connect Health 來監視 AD FS 的詳細資訊，請參閱[在 AD FS 使用 Azure AD Connect Health](active-directory-aadconnect-health-adfs.md)。此外，如需使用 Azure AD Connect Health 來監視 Azure AD Connect (同步處理) 的詳細資訊，請參閱 [使用適用於同步處理的 Azure AD Connect Health](active-directory-aadconnect-health-sync.md)。
 
-For more information on monitoring AD FS with Azure AD Connect Health, see [Using Azure AD Connect Health with AD FS](active-directory-aadconnect-health-adfs.md). Additionally, for information on monitoring Azure AD Connect (Sync) with Azure AD Connect Health see [Using Azure AD Connect Health for Sync](active-directory-aadconnect-health-sync.md).
+![適用於 AD DS 的 Azure AD Connect Health](./media/active-directory-aadconnect-health/aadconnect-health-adds-entry.png)
 
-![Azure AD Connect Health for AD DS](./media/active-directory-aadconnect-health/aadconnect-health-adds-entry.png)
+## 適用於 AD DS 的 Azure AD Connect Health 警示
+適用於 AD DS 的 Azure AD Connect Health 中 [警示] 區段提供的作用中和已解決警示清單，與您的網域控制站相關。選取作用中或已解決的警示會開啟新的刀鋒視窗，內含其他資訊和解決步驟以及支援文件的連結。每個警示類型可以有一或多個執行個體，會對應到受該特定警示影響的各個網域控制站。在靠近警示刀鋒視窗的底部，您可以連按兩下受影響的網域控制站來開啟額外的刀鋒視窗，內含有關該警示執行個體的其他詳細資訊。
 
-## <a name="alerts-for-azure-ad-connect-health-for-ad-ds"></a>Alerts for Azure AD Connect Health for AD DS
-The Alerts section within Azure AD Connect Health for AD DS, provides you a list of active and resolved alerts, related to your domain controllers. Selecting an active or resolved alert opens a new blade with additional information, along with resolution steps, and links to supporting documentation. Each alert type can have one or more instances, which correspond to each of the domain controllers affected by that particular alert. Near the bottom of the alert blade, you can double-click an affected domain controller to open an additional blade with more details about that alert instance.
+在此刀鋒視窗內，您可以啟用警示的電子郵件通知，以及變更檢視中的時間範圍。展開時間範圍可讓您查看先前已解決的警示。
 
-Within this blade, you can enable email notifications for alerts and change the time range in view. Expanding the time range allows you to see prior resolved alerts.
+![Azure AD Connect 同步處理錯誤](./media/active-directory-aadconnect-health/aadconnect-health-adds-alerts.png)
 
-![Azure AD Connect sync error](./media/active-directory-aadconnect-health/aadconnect-health-adds-alerts.png)
+## 網域控制站儀表板
+此儀表板提供環境的拓撲檢視，以及關鍵作業計量和每個受監視網域控制站的健康狀態。顯示的計量有助於快速識別任何可能需要進一步調查的網域控制站。根據預設，只會顯示部份的資料行。不過，連按兩下資料行命令，即可找到整組可用的資料行。選取您最想關注的資料行，即可在儀表板中單一且輕鬆地檢視 AD DS 環境的健康狀態。
 
-## <a name="domain-controllers-dashboard"></a>Domain Controllers Dashboard
-This dashboard provides a topological view of your environment, along with key operational metrics and health status of each of your monitored domain controllers. The presented metrics help to quickly identify, any domain controllers that might require further investigation. By default, only a subset of the columns is displayed. However, you can find the entire set of available columns, by double-clicking the columns command. Selecting the columns that you most care about, turns this dashboard into a single and easy place to view the health of your AD DS environment.
+![網域控制站](./media/active-directory-aadconnect-health/aadconnect-health-adds-domainsandsites-dashboard.png)
 
-![Domain Controllers](./media/active-directory-aadconnect-health/aadconnect-health-adds-domainsandsites-dashboard.png)
+網域控制站可依其各別的網域或網站分組，有助您瞭解環境拓撲。最後，如果連按兩下刀鋒視窗標頭，儀表板便會最大化以利用可用的螢幕畫面。顯示多個資料行時，此較大的檢視很有幫助。
 
-Domain controllers can be grouped by their respective domain or site, which is helpful for understanding the environment topology. Lastly, if you double-click the blade header, the dashboard maximizes to utilize the available screen real-estate. This larger view is helpful when multiple columns are displayed.
+## 複寫狀態儀表板
+此儀表板可檢視複寫狀態和受監視網域控制站的複寫拓撲。最新的複寫嘗試狀態會列出來，並附上針對所發現錯誤的有用文件。您可以連按兩下包含錯誤的網域控制站，以開啟內含下列資訊的新刀鋒視窗：錯誤詳細資訊、建議的解決步驟，以及疑難排解文件的連結。
 
-## <a name="replication-status-dashboard"></a>Replication Status Dashboard
-This dashboard provides a view of the replication status and replication topology of your monitored domain controllers. The status of the most recent replication attempt is listed, along with helpful documentation for any error that is found. You can double-click a domain controller with an error, to open a new blade with information such as: details about the error, recommended resolution steps, and links to troubleshooting documentation.
+![複寫狀態](./media/active-directory-aadconnect-health/aadconnect-health-adds-replication.png)
 
-![Replication Status](./media/active-directory-aadconnect-health/aadconnect-health-adds-replication.png)
+## 監視
+這項功能提供不同效能計數器的圖形化趨勢，這是持續從每個受監視的網域控制站收集而來。網域控制站的效能可以輕鬆地和樹系中所有其他受監視的網域控制站進行比較。此外，您可以看到各種效能計數器並排，在環境中針對問題進行疑難排解時這很有用。
 
-## <a name="monitoring"></a>Monitoring
-This feature provides graphical trends of different performance counters, which are continuously collected from each of the monitored domain controllers. Performance of a domain controller can easily be compared across all other monitored domain controllers in your forest. Additionally, you can see various performance counters side by side, which is helpful when troubleshooting issues in your environment.
+![監視](./media/active-directory-aadconnect-health/aadconnect-health-adds-monitoring.png)
 
-![Monitoring](./media/active-directory-aadconnect-health/aadconnect-health-adds-monitoring.png)
+根據預設，已預先選取四個效能計數器；不過，您可以按篩選命令並選取或取消選取任何想要的效能計數器。此外，您可以連按兩下效能計數器圖形以開啟新的刀鋒視窗，其中包含每個受監視網域控制站的資料點。
 
-By default, we have preselected four performance counters; however, you can include others by clicking the filter command and selecting or deselecting any desired performance counters. Additionally, you can double-click a performance counter graph to open a new blade, which includes data points for each of the monitored domain controllers.
-
-## <a name="related-links"></a>Related links
+## 相關連結
 
 * [Azure AD Connect Health](active-directory-aadconnect-health.md)
-* [Azure AD Connect Health Agent Installation](active-directory-aadconnect-health-agent-install.md)
-* [Azure AD Connect Health Operations](active-directory-aadconnect-health-operations.md)
-* [Using Azure AD Connect Health with AD FS](active-directory-aadconnect-health-adfs.md)
-* [Using Azure AD Connect Health for sync](active-directory-aadconnect-health-sync.md)
-* [Azure AD Connect Health FAQ](active-directory-aadconnect-health-faq.md)
-* [Azure AD Connect Health Version History](active-directory-aadconnect-health-version-history.md)
+* [Azure AD Connect Health 代理程式安裝](active-directory-aadconnect-health-agent-install.md)
+* [Azure AD Connect Health 操作](active-directory-aadconnect-health-operations.md)
+* [在 AD FS 使用 Azure AD Connect Health](active-directory-aadconnect-health-adfs.md)
+* [使用 Azure AD Connect Health 進行同步處理](active-directory-aadconnect-health-sync.md)
+* [Azure AD Connect Health 常見問題集](active-directory-aadconnect-health-faq.md)
+* [Azure AD Connect Health 版本歷程記錄](active-directory-aadconnect-health-version-history.md)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_1005_2016-->

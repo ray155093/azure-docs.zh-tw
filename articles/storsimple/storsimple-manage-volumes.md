@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Manage your StorSimple volumes | Microsoft Azure"
-   description="Explains how to add, modify, monitor, and delete StorSimple volumes, and how to take them offline if necessary."
+   pageTitle="管理 StorSimple 磁碟區 | Microsoft Azure"
+   description="說明如何加入、修改及監視 StorSimple 磁碟區，以及如何在必要時使其離線。"
    services="storsimple"
    documentationCenter="NA"
    authors="SharS"
@@ -15,192 +15,187 @@
    ms.date="05/11/2016"
    ms.author="v-sharos" />
 
-
-# <a name="use-the-storsimple-manager-service-to-manage-volumes"></a>Use the StorSimple Manager service to manage volumes
+# 使用 StorSimple Manager 服務來管理磁碟區
 
 [AZURE.INCLUDE [storsimple-version-selector-manage-volumes](../../includes/storsimple-version-selector-manage-volumes.md)]
 
-## <a name="overview"></a>Overview
+## 概觀
 
-This tutorial explains how to use the StorSimple Manager service to create and manage volumes on the StorSimple device and StorSimple virtual device.
+本教學課程說明如何使用 StorSimple Manager 服務來建立和管理 StorSimple 裝置與 StorSimple 虛擬裝置上的磁碟區。
 
-The StorSimple Manager service is an extension of the Azure classic portal that lets you manage your StorSimple solution from a single web interface. In addition to managing volumes, you can use the StorSimple Manager service to create and manage StorSimple services, view and manage devices, view alerts, and view and manage backup policies and the backup catalog.
+StorSimple Manager 服務是 Azure 傳統入口網站的延伸模組，可讓您透過單一 Web 介面管理 StorSimple 解決方案。除了管理磁碟區，您可以使用 StorSimple Manager 服務來建立和管理 StorSimple 服務、檢視和管理裝置、檢視警示，以及檢視和管理備份原則與備份類別目錄。
 
-> [AZURE.NOTE] Azure StorSimple can create thinly provisioned volumes only. You cannot create fully provisioned or partially provisioned volumes on an Azure StorSimple system.
+> [AZURE.NOTE] Azure StorSimple 只能建立精簡佈建的磁碟區。您無法在 Azure StorSimple 系統上建立完整佈建或部分佈建的磁碟區。
 >
-> Thin provisioning is a virtualization technology in which available storage appears to exceed physical resources. Instead of reserving sufficient storage in advance, Azure StorSimple uses thin provisioning to allocate just enough space to meet current requirements. The elastic nature of cloud storage facilitates this approach because Azure StorSimple can increase or decrease cloud storage to meet changing demands.
+> 精簡佈建是一項虛擬化技術，讓可用的儲存空間超過實體資源。Azure StorSimple 不預先保留足夠的儲存空間，而是利用精簡佈建來配置剛好符合目前需求的空間。雲端儲存體本質有彈性可協助這種方法，因為 Azure StorSimple 可以隨需求變化，增加或減少雲端儲存體。
 
-## <a name="the-volumes-page"></a>The Volumes page
+## [磁碟區] 頁面
 
-The **Volumes** page allows you to manage the storage volumes that are provisioned on the Microsoft Azure StorSimple device for your initiators (servers). It displays the list of volumes on your StorSimple device.
+您為啟動器 (伺服器) 佈建在 Microsoft Azure StorSimple 裝置的存放磁碟區，可以在 [磁碟區] 頁面管理 。它會顯示 StorSimple 裝置上的磁碟區清單。
 
- ![Volumes page](./media/storsimple-manage-volumes/HCS_VolumesPage.png)
+ ![磁碟區頁面](./media/storsimple-manage-volumes/HCS_VolumesPage.png)
 
-A volume consists of a series of attributes:
+磁碟區是由一系列屬性所組成：
 
-- **Name** – A descriptive name that must be unique and helps identify the volume. This name is also used in monitoring reports when you filter on a specific volume.
+- **名稱** – 必須是唯一且有助於識別磁碟區的描述性名稱。這個名稱也可在您篩選特定磁碟區時用於監視報告。
 
-- **Status** – Can be online or offline. If a volume if offline, it is not visible to initiators (servers) that are allowed access to use the volume.
+- **狀態** – 可為連線或離線。如果是離線的磁碟區，允許存取使用它的啟動器 (伺服器) 會看不到該磁碟區。
 
-- **Capacity** – Specifies how large the volume is, as perceived by the initiator (server). Capacity specifies the total amount of data that can be stored by the initiator (server). Volumes are thinly provisioned, and data is deduplicated. This implies that your device doesn’t pre-allocate physical storage capacity internally or on the cloud according to configured volume capacity. The volume capacity is allocated and consumed on demand.
+- **容量** – 指定啟動器 (伺服器) 所認知的磁碟區大小。容量指定啟動器 (伺服器) 可以儲存的總資料量。磁碟區採精簡佈建，而且會刪除重複的資料。這表示您的裝置不會根據設定的磁碟區容量，在內部或在雲端預先配置實體儲存體容量。磁碟區容量會依需求來配置和耗用。
 
-- **Type** – The volume type can be tiered or archival (a sub-type of tiered)
+- **類型** – 磁碟區類型可以是分層或封存 (子類型分層)
 
-- **Access** – Specifies the initiators (servers) that are allowed access to this volume. Initiators that are not members of access control record (ACR) that is associated with the volume will not see the volume.
+- **存取** – 指定允許存取此磁碟區的啟動器 (伺服器)。啟動器不是與磁碟區相關聯的存取控制記錄 (ACR) 成員，就看不到磁碟區。
 
-- **Monitoring** – Specifies whether or not a volume is being monitored. A volume will have monitoring enabled by default when it is created. Monitoring will, however, be disabled for a volume clone. To enable monitoring for a volume, follow the instructions in Monitor a volume.
+- **監視** – 指定是否正在監視磁碟區。預設會在建立磁碟區時啟用監視。不過，磁碟區複製會停用監視。若要啟用監視磁碟區，請依照＜監視磁碟區＞中的指示執行。
 
-The most common tasks associated with a volume are:
+最常見與磁碟區相關聯的工作如下：
 
-- Add a volume
-- Modify a volume
-- Delete a volume
-- Take a volume offline
-- Monitor a volume
+- 新增磁碟區
+- 修改磁碟區
+- 刪除磁碟區
+- 使磁碟區離線
+- 監視磁碟區
 
-## <a name="add-a-volume"></a>Add a volume
+## 新增磁碟區
 
-You [created a volume](storsimple-deployment-walkthrough-u1.md#step-6-create-a-volume) during deployment of your StorSimple solution. Adding a volume is a similar procedure.
+您已在部署 StorSimple 方案期間[建立磁碟區](storsimple-deployment-walkthrough-u1.md#step-6-create-a-volume)。新增磁碟區會是類似的程序。
 
-### <a name="to-add-a-volume"></a>To add a volume
+### 若要新增磁碟區
 
-1. On the **Devices** page, select the device, double-click it, and then click the **Volume Containers** tab.
+1. 在 [裝置] 頁面中，選取並按兩下裝置，然後按一下 [磁碟區容器] 索引標籤。
 
-2. Select a volume container and click the arrow in the corresponding row to access the volumes associated with the container.
+2. 選取磁碟區容器，然後按一下對應資料列的箭號來存取與該容器相關聯的磁碟區。
 
-3. Click **Add** at the bottom of the page. The Add a volume wizard starts.
+3. 按一下頁面底部的 [新增]。[新增磁碟區精靈] 隨即啟動。
 
-     ![Add volume wizard Basic Settings](./media/storsimple-manage-volumes/AddVolume1.png)
+     ![加入磁碟區精靈基本設定](./media/storsimple-manage-volumes/AddVolume1.png)
 
-4. In the Add a volume wizard, under **Basic Settings**, do the following:
+4. 在 [新增磁碟區精靈] 的 [基本設定] 下，執行列動作：
 
-  1. Supply a **Name** for your volume.
-  2. Specify the **Provisioned Capacity** for your volume in GB or TB. The capacity must be between 1 GB and 64 TB for a physical device. The maximum capacity that can be provisioned for a volume on a StorSimple virtual device is 30 TB.
-  3. Select the **Usage Type** for your volume. If you are using the tiered volume for archival data, selecting the **Use this volume for less frequently accessed archival data** check box changes the deduplication chunk size for your volume to 512 KB. If you do not select this option, the corresponding tiered volume will use a chunk size of 64 KB. A larger deduplication chunk size allows the device to expedite the transfer of large archival data to the cloud.(Tiered volumes were formerly called primary volumes.)
-  5. Click the arrow icon ![Arrow icon](./media/storsimple-manage-volumes/HCS_ArrowIcon.png)to go to the **Additional Settings** page.
+  1. 輸入磁碟區的 [名稱]。
+  2. 為磁碟區指定 [佈建的容量] \(GB 或 TB)。實體裝置的容量必須介於 1 GB 到 64 TB 之間。可為 StorSimple 虛擬裝置上的磁碟區佈建的最大容量為 30 TB。
+  3. 為磁碟區選取 [使用類型]。如果您針對封存資料使用分層磁碟區，選取 [使用此磁碟區存放不常存取的封存資料] 核取方塊會將您磁碟區的重複資料刪除區塊大小變更為 512 KB。如果未核取此選項，對應的分層磁碟區會使用 64 KB 的區塊大小。較大的重複資料刪除區塊大小可讓裝置加速傳送大型封存資料到雲端 (分層式磁碟區之前稱為主要磁碟區)。
+  5. 按一下箭號圖示 ![箭號圖示](./media/storsimple-manage-volumes/HCS_ArrowIcon.png)，前往 [其他設定] 頁面。
 
         ![Add Volume wizard Additional Settings](./media/storsimple-manage-volumes/AddVolume2.png)
 
-5. Under **Additional Settings**, add a new access control record (ACR):
+5. 在 [其他設定] 下，加入新的存取控制記錄 (ACR)：
 
-  1. Select an access control record (ACR) from the drop-down list. Alternatively, you can add a new ACR. ACRs determine which hosts can access your volumes by matching the host IQN with that listed in the record.
-  2. We recommend that you enable a default backup by selecting the **Enable a default backup for this volume** check box.
-   3. Click the check icon ![Check icon](./media/storsimple-manage-volumes/HCS_CheckIcon.png) to create the volume with the specified settings.
+  1. 在下拉式清單中選取存取控制記錄 (ACR)。或者，您可以加入新的 ACR。ACR 會藉由比對主機與記錄中列出的 IQN 來決定哪些主機可以存取磁碟區。
+  2. 建議選取 [**啟用此磁碟區的預設備份**] 核取方塊啟用預設備份。
+   3. 按一下核取圖示 ![核取圖示](./media/storsimple-manage-volumes/HCS_CheckIcon.png)，以利用指定的設定來建立磁碟區。
 
-Your new volume is now ready to use.
+新的磁碟區現在已備妥可供使用。
 
-## <a name="modify-a-volume"></a>Modify a volume
+## 修改磁碟區
 
-Modify a volume when you need to expand it or change the hosts that access the volume.
+當您需要擴充磁碟區，或變更存取該磁碟區的主機時，請修改磁碟區。
 
 > [AZURE.IMPORTANT]
 >
-> - If you modify the volume size on the device, the volume size needs to be changed on the host as well.
-> - The host-side steps described here are for Windows Server 2012 (2012R2). Procedures for Linux or other host operating systems will be different. Refer to your host operating system instructions when modifying the volume on a host running another operating system.
+> - 如果您修改裝置上的磁碟區大小，也必須變更主機上的磁碟區大小。
+> - 此處所述的主機端步驟適用於 Windows Server 2012 (2012R2)。Linux 或其他主機作業系統的程序會有所不同。如果要在執行其他作業系統的主機上修改磁碟區，請參考主機作業系統的指示。
 
-### <a name="to-modify-a-volume"></a>To modify a volume
+### 若要修改磁碟區
 
-1. On the **Devices** page, select the device, double-click it, and then click the **Volume Container** tab. This page lists in a tabular format all the volume containers that are associated with the device.
+1. 在 [裝置] 頁面中，選取並按兩下裝置，然後按一下 [磁碟區容器] 索引標籤。此頁面會以表格列出與裝置相關聯的所有磁碟區容器。
 
-2. Select a volume container and click it to display the list of all the volumes within the container.
+2. 選取並按一下磁碟區容器，以清單顯示該容器內的所有磁碟區。
 
-3. On the **Volumes** page, select a volume and click **Modify**.
+3. 在 [磁碟區] 頁面上，選取磁碟區，然後按一下 [修改]。
 
-4. In the Modify volume wizard, under **Basic Settings**, you can do the following:
+4. 在 [修改磁碟區精靈] 的 [基本設定] 下，您可以執行列動作：
 
-  - Edit the **Name** and **Type** if you wish to modify a tiered volume to an archival volume by selecting the **Use this volume for less frequently accessed archival data** check box to change the deduplication chunk size for your volume to 512 KB.
-  - Increase the **Provisioned Capacity**. The **Provisioned Capacity** can only be increased. You cannot shrink a volume after it is created.
+  - 如果您要藉由選取 [使用此磁碟區存放不常存取的封存資料] 核取方塊，將您磁碟區的重複資料刪除區塊大小變更為 512 KB，將分層磁碟區修改為封存磁碟區，請編輯 [名稱] 和 [類型]。
+  - 增加 [佈建的容量]。[佈建的容量] 只能增加。您無法在磁碟區建立後予以壓縮。
 
-    > [AZURE.NOTE] You cannot change the volume container after it is assigned to a volume.
+    > [AZURE.NOTE] 磁碟區容器一經指派給磁碟區後，便無法變更。
 
-5. Under **Additional Settings**, you can do the following:
+5. 在 [其他設定] 下，您可以執行下列動作：
 
-  - Modify the ACRs, provided that the volume is offline. If the volume is online, you will need to take it offline first. Refer to the steps in [Take a volume offline](#take-a-volume-offline) prior to modifying the ACR.
-  - Modify the list of ACRs after the volume is offline.
+  - 修改 ACR，若是磁碟區已離線。如果磁碟區已連線，您必須先讓它離線。修改 ACR 之前，請參閱[使磁碟區離線](#take-a-volume-offline)中的步驟。
+  - 在磁碟區離線之後，才修改 ACR 清單。
 
-    > [AZURE.NOTE] You cannot change the **Enable a default backup for this volume** option for the volume.
+    > [AZURE.NOTE] 您無法變更此磁碟區的 [**啟用此磁碟區的預設備份**] 選項。
 
-6. Save your changes by clicking the check icon ![check-icon](./media/storsimple-manage-volumes/HCS_CheckIcon.png). The Azure classic portal will display an updating volume message. It will display a success message when the volume has been successfully updated.
+6. 按一下核取圖示 ![核取圖示](./media/storsimple-manage-volumes/HCS_CheckIcon.png)，即可儲存您的變更。Azure 傳統入口網站將會顯示更新磁碟區訊息。如果磁碟區已成功更新，即會顯示成功訊息。
 
-7. If you are expanding a volume, complete the following steps on your Windows host computer:
+7. 如果您要延伸磁碟區，請在 Windows 主機電腦上完成下列步驟：
 
-   1. Go to **Computer Management** ->**Disk Management**.
-   2. Right-click **Disk Management** and select **Rescan Disks**.
-   3. In the list of disks, select the volume that you updated, right-click, and then select **Extend Volume**. The Extend Volume wizard starts. Click **Next**.
-   4. Complete the wizard, accepting the default values. After the wizard is finished, the volume should show the increased size.
+   1. 移至 [電腦管理] -> [磁碟管理]。
+   2. 以滑鼠右鍵按一下 [磁碟管理]，並選取 [重新掃描磁碟]。
+   3. 在磁碟清單中，選取您已更新的磁碟區，按一下滑鼠右鍵，然後選取 [延伸磁碟區]。[延伸磁碟區精靈] 隨即啟動。按 [下一步]。
+   4. 使用預設值完成精靈。完成精靈後，磁碟區應該會顯示增加的大小。
 
-![Video available](./media/storsimple-manage-volumes/Video_icon.png) **Video available**
+![提供的影片](./media/storsimple-manage-volumes/Video_icon.png)**提供的影片**
 
-To watch a video that demonstrates how to expand a volume, click [here](https://azure.microsoft.com/documentation/videos/expand-a-storsimple-volume/).
+若要觀看影片示範如何擴充磁碟區，請按一下[這裡](https://azure.microsoft.com/documentation/videos/expand-a-storsimple-volume/)。
 
-## <a name="take-a-volume-offline"></a>Take a volume offline
+## 使磁碟區離線
 
-You may need to take a volume offline when you are planning to modify it or delete it. When a volume is offline, it is not available for read-write access. You will need to take the volume offline on the host as well as on the device. Perform the following steps to take a volume offline.
+您想要修改或刪除磁碟區時，可能需要先使其離線。當磁碟區離線時，即無法進行讀寫存取。您必須使主機與裝置上的磁碟區同時離線。請執行下列步驟以使磁碟區離線。
 
-### <a name="to-take-a-volume-offline"></a>To take a volume offline
+### 若要使磁碟區離線
 
-1. Make sure that the volume in question is not in use before taking it offline.
+1. 請確定有問題的磁碟區不在使用中後，再使其離線。
 
-2. Take the volume offline on the host first. This eliminates any potential risk of data corruption on the volume. For specific steps, refer to the instructions for your host operating system.
+2. 先使主機上的磁碟區離線。這樣做可以排除任何會造成磁碟區上資料損毀的潛在風險。如需特定步驟，請參閱主機作業系統的指示。
 
-3. After the host is offline, take the volume on the device offline by performing the following steps:
+3. 在主機離線之後，請執行下列步驟以使裝置上的磁碟區離線：
 
-  1. On the **Devices** page, select the device, double-click it, and then click the **Volume Containers** tab. The **Volume Containers** tab lists in a tabular format all the volume containers that are associated with the device.
-  2. Select a volume container and click it to display the list of all the volumes within the container.
-  3. Select a volume and click **Take offline**.
-  4. When prompted for confirmation, click **Yes**. The volume should now be offline.
+  1. 在 [裝置] 頁面中，選取並按兩下裝置，然後按一下 [磁碟區容器] 索引標籤。[磁碟區容器] 索引標籤會以表格列出與裝置相關聯的所有磁碟區容器。
+  2. 選取並按一下磁碟區容器，以清單顯示該容器內的所有磁碟區。
+  3. 選取磁碟區，然後按一下 [離線]。
+  4. 系統提示您進行確認時，按一下 [是]。磁碟區現在應已離線。
 
-    After a volume is offline, the **Bring Online** option becomes available.
+    磁碟區離線之後，[上線] 選項就會變成可用。
 
-> [AZURE.NOTE] The **Take Offline** command sends a request to the device to take the volume offline. If hosts are still using the volume, this results in broken connections, but taking the volume offline will not fail.
+> [AZURE.NOTE] [離線] 命令會將要求傳送到裝置，以使磁碟區離線。如果主機仍在使用該磁碟區，這會導致連線中斷，但是使磁碟區離線不會失敗。
 
-## <a name="delete-a-volume"></a>Delete a volume
+## 刪除磁碟區
 
-> [AZURE.IMPORTANT] You can delete a volume only if it is offline.
+> [AZURE.IMPORTANT] 只有當磁碟區離線時，您才能予以刪除。
 
-Complete the following steps to delete a volume.
+請完成下列步驟來刪除磁碟區。
 
-### <a name="to-delete-a-volume"></a>To delete a volume
+### 若要刪除磁碟區
 
-1. On the **Devices** page, select the device, double-click it, and then click the **Volume Containers** tab.
+1. 在 [裝置] 頁面中，選取並按兩下裝置，然後按一下 [磁碟區容器] 索引標籤。
 
-2. Select the volume container that has the volume you want to delete. Click the volume container to access the **Volumes** page.
+2. 選取含有您想要刪除之磁碟區的磁碟區容器。按一下該磁碟區容器，即可存取 [磁碟區] 頁面。
 
-3. All the volumes associated with this container are displayed in a tabular format. Check the status of the volume you want to delete. If the volume you want to delete is not offline, take it offline first, following the steps in [Take a volume offline](#take-a-volume-offline).
+3. 與這個容器相關聯的所有磁碟區會以表格顯示。檢查您想要刪除之磁碟區的狀態。如果您想要刪除的磁碟區未離線，請先使其離線，請依照[使磁碟區離線](#take-a-volume-offline)中的步驟執行。
 
-4. After the volume is offline, click **Delete** at the bottom of the page.
+4. 在磁碟區離線之後，按一下頁面底部的 [刪除]。
 
-5. When prompted for confirmation, click **Yes**. The volume will now be deleted and the **Volumes** page will show the updated list of volumes within the container.
+5. 系統提示您進行確認時，按一下 [是]。現已刪除磁碟區，而 [磁碟區] 頁面會顯示容器內已更新的磁碟區清單。
 
-## <a name="monitor-a-volume"></a>Monitor a volume
+## 監視磁碟區
 
-Volume monitoring allows you to collect I/O-related statistics for a volume. Monitoring is enabled by default for the first 32 volumes that you create. Monitoring of additional volumes is disabled by default. Monitoring of cloned volumes is also disabled by default.
+監視磁碟區可讓您為磁碟區收集 I/O 相關的統計資料。根據預設，您建立的前 32 個磁碟區會啟用監視。預設會停用監視其他磁碟區。預設也會停用監視複製的磁碟區。
 
-Perform the following steps to enable or disable monitoring for a volume.
+請執行下列步驟來啟用或停用監視磁碟區。
 
-### <a name="to-enable-or-disable-volume-monitoring"></a>To enable or disable volume monitoring
+### 若要啟用或停用監視磁碟區
 
-1. On the **Devices** page, select the device, double-click it, and then click the **Volume Containers** tab.
+1. 在 [裝置] 頁面中，選取並按兩下裝置，然後按一下 [磁碟區容器] 索引標籤。
 
-2. Select the volume container in which the volume resides, and then click the volume container to access the **Volumes** page.
+2. 選取磁碟區所在的磁碟區容器，然後按一下該磁碟區容器來存取 [磁碟區] 頁面。
 
-3. All the volumes associated with this container are listed in the tabular display. Click and select the volume or volume clone.
+3. 以表格顯示所列出與這個容器相關聯的所有磁碟區。按一下並選取磁碟區或磁碟區複製。
 
-4. At the bottom of the page, click **Modify**.
+4. 按一下頁面底部的 [修改]。
 
-5. In the Modify Volume wizard, under **Basic Settings**, select **Enable** or **Disable** from the **Monitoring** drop-down list.
+5. 在 [修改磁碟區精靈] 的 [基本設定] 下，從 [監視] 下拉式清單中選取 [啟用] 或 [停用]。
 
-    ![Modify a volume Basic Settings](./media/storsimple-manage-volumes/HCS_MonitorVolumeM.png)
-
-
-## <a name="next-steps"></a>Next steps
-
-- Learn how to [clone a StorSimple volume](storsimple-clone-volume.md).
-
-- Learn how to [use the StorSimple Manager service to administer your StorSimple device](storsimple-manager-service-administration.md).
+    ![修改磁碟區基本設定](./media/storsimple-manage-volumes/HCS_MonitorVolumeM.png)
 
 
+## 後續步驟
 
-<!--HONumber=Oct16_HO2-->
+- 了解如何[複製 StorSimple 磁碟區](storsimple-clone-volume.md)。
 
+- 了解如何[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
 
+<!---HONumber=AcomDC_0518_2016-->

@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Explore Azure SQL Database Tutorials | Microsoft Azure"
-   description="Learn about SQL Database features and capabilities"
+   pageTitle="探索 Azure SQL Database 教學課程 | Microsoft Azure"
+   description="了解 SQL Database 特性與功能"
    keywords=""
    services="sql-database"
    documentationCenter=""
@@ -17,176 +17,171 @@
    ms.date="08/24/2016"
    ms.author="carlrab"/>
    
+# 探索 Azure SQL Database 教學課程
 
-# <a name="explore-azure-sql-database-tutorials"></a>Explore Azure SQL Database Tutorials
+下列連結會帶您前往每個所列功能區域的概觀，以及每個區域的簡單逐步教學課程。如需以解決方案為範圍、根據真實世界案例示範在完整解決方案中如何使用 SQL Database 的快速入門，請參閱 [Azure SQL Database 解決方案快速入門](sql-database-solution-quick-starts.md)。
 
-The links below take you to an overview of each listed feature area and a simple step-by-start tutorial for each area. For solution-scoped quick starts that demonstrate the use of SQL Database in a complete solution based on real world scenarios, see [Azure SQL Database Solution Quick Starts](sql-database-solution-quick-starts.md).
+## 使用 SQL Server Management Studio
 
-## <a name="using-sql-server-management-studio"></a>Using SQL Server Management Studio
-
-In the following tutorials, you will learn about using SQL Server Management Studio to administer and query Azure SQL Database.
-
-
-> [AZURE.IMPORTANT] It is recommended that you always use the latest version of Management Studio to remain synchronized with updates to Microsoft Azure and SQL Database. [Update SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx).
+在下列教學課程中，您將會了解如何使用 SQL Server Management Studio 來管理及查詢 Azure SQL Database。
 
 
-| Tutorial  | Description  |
+> [AZURE.IMPORTANT] 建議您一律使用最新版本的 Management Studio 保持與 Microsoft Azure 及 SQL Database 更新同步。[更新 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)。
+
+
+| 教學課程 | 說明 |
 |---|---|---|
-| [Connect to Azure SQL Database using a server-level principal login](sql-database-get-started-security.md#connect-to-azure-sql-database-using-a-server-level-principal-login)| In this tutorial, you learn how to connect to Azure SQL Database using a server-level principal login.|
-| [Connect to Azure SQL Database as a user](sql-database-get-started-security.md#connect-to-azure-sql-database-as-a-user) | In this tutorial, you will learn how to connect to an Azure SQL database using a database-level user account.|
+| [使用伺服器層級主體登入來連接到 SQL Database](sql-database-get-started-security.md#connect-to-azure-sql-database-using-a-server-level-principal-login)| 在本教學課程中，您將了解如何使用伺服器層級主體登入連線到 Azure SQL Database。|
+| [以使用者身分連接到 Azure SQL Database](sql-database-get-started-security.md#connect-to-azure-sql-database-as-a-user) | 在本教學課程中，您將了解如何使用資料庫層級使用者帳戶連線到 Azure SQL Database。|
 ||||
 
-## <a name="elastic-pools"></a>Elastic pools
+## 彈性集區
 
-In the following tutorials, you will learn about using [elastic pools](sql-database-elastic-pool.md) to manage the performance goals for multiple databases that have widely varying and unpredictable usage patterns.
+在下列教學課程中，您將了解如何使用[彈性集區](sql-database-elastic-pool.md)，針對使用模式顯著不同且無法預測的多個資料庫，管理其效能目標。
 
-| Tutorial  | Description  |
+| 教學課程 | 說明 |
 |---|---|---|
-| [Create an elastic pool](sql-database-elastic-pool-create-portal.md) | In this tutorial, you learn how to create a scalable pool of Azure SQL databases. |
-| [Monitor an elastic database](sql-database-elastic-pool-manage-portal.md#elastic-database-monitoring) | In this tutorial, you learn how to monitor an individual elastic database for potential trouble. |
-| [Add an alert to a pool resource](sql-database-elastic-pool-manage-portal.md#add-an-alert-to-a-pool-resource) | In this tutorial, you learn how to add rules to resources that send email to people or alert strings to URL endpoints when the resource hits a utilization threshold that you set up. |
-| [Move a database into an elastic pool](sql-database-elastic-pool-manage-portal.md#move-a-database-into-an-elastic-pool) | In this tutorial, you learn how to move a database into an elastic pool. |
-| [Move a database out of an elastic pool](sql-database-elastic-pool-manage-portal.md#move-a-database-out-of-an-elastic-pool) | In this tutorial, you learn how to move a database out of an elastic pool. |
-| [Change performance settings of a pool](sql-database-elastic-pool-manage-portal.md#change-performance-settings-of-a-pool) | In this tutorial, you learn how to adjust the performance and storage limits for a pool. |
+| [建立彈性集區](sql-database-elastic-pool-create-portal.md) | 在本教學課程中，您將了解如何建立可調整的 Azure SQL Database 集區。 |
+| [監視彈性資料庫](sql-database-elastic-pool-manage-portal.md#elastic-database-monitoring) | 在本教學課程中，您將了解如何針對潛在的問題監視個別彈性資料庫。 |
+| [將警示加入集區資源](sql-database-elastic-pool-manage-portal.md#add-an-alert-to-a-pool-resource) | 在本教學課程中，您將了解如何將規則加入資源，以在當資源達到您設定的使用率閾值時，傳送電子郵件給人員或傳送警示字串到 URL 端點。 |
+| [將資料庫移入彈性集區](sql-database-elastic-pool-manage-portal.md#move-a-database-into-an-elastic-pool) | 在本教學課程中，您將了解如何將資料庫移入彈性集區。 |
+| [將資料庫移出彈性集區](sql-database-elastic-pool-manage-portal.md#move-a-database-out-of-an-elastic-pool) | 在本教學課程中，您將了解如何將資料庫移出彈性集區。 |
+| [變更集區的效能設定](sql-database-elastic-pool-manage-portal.md#change-performance-settings-of-a-pool) | 在本教學課程中，您將了解如何調整集區的效能和儲存體限制。 |
 ||||
 
-## <a name="elastic-database-jobs"></a>Elastic database jobs
+## 彈性資料庫工作
 
-In the following tutorials, you will learn about using [elastic database jobs](sql-database-elastic-jobs-overview.md).
+在下列教學課程中，您將了解如何使用[彈性資料庫工作](sql-database-elastic-jobs-overview.md)。
 
-| Tutorial  | Description  |
+| 教學課程 | 說明 |
 |---|---|---|
-| [Get started with Elastic Database tools](sql-database-elastic-scale-get-started.md) | In this tutorial, you learn how to use the capabilities of elastic database tools using a simple sharded application. |
-| [Get started with Azure SQL Database elastic jobs](sql-database-elastic-jobs-getting-started.md)  | In this tutorial, you learn how to  how to create and manage jobs that manage a group of related databases.  | 
+| [開始使用彈性資料庫工具](sql-database-elastic-scale-get-started.md) | 在本教學課程中，您將了解如何利用簡單的分區化應用程式來使用彈性資料庫工具的功能。 |
+| [開始使用 Azure SQL Database 彈性工作](sql-database-elastic-jobs-getting-started.md) | 在本教學課程中，您將了解如何建立及管理用來管理相關資料庫群組的工作。 | 
 ||||
 
-## <a name="elastic-queries"></a>Elastic queries
+## 彈性查詢
 
-In the following tutorials, you will learn about running [elastic queries](sql-database-elastic-query-overview.md). 
+在下列教學課程中，您將了解如何執行[彈性查詢](sql-database-elastic-query-overview.md)。
 
-| Tutorial  | Description  |
+| 教學課程 | 說明 |
 |---|---|---|
-| [Querying across a horizontally partitioned (sharded) database)](sql-database-elastic-query-getting-started.md) | In this tutorial, you learn how to create reports from all databases in a horizontally partitioned (sharded) database using [elastic query](sql-database-elastic-query-overview.md) |
-| [Querying across a vertically partitioned database)](sql-database-elastic-query-getting-started-vertical.md#create-database-objects) | In this tutorial, you learn how to create reports from all databases in a vertically database using [elastic query](sql-database-elastic-query-overview.md) |
-| [Migrate an existing database to scale-out](sql-database-elastic-convert-to-use-elastic-tools.md)| In this tutorial, you learn to horizontally scale (shard) an Azure SQL database. |
+| [查詢跨水平資料分割 (分區化) 資料庫](sql-database-elastic-query-getting-started.md) | 在本教學課程中，您將了解如何使用[彈性查詢](sql-database-elastic-query-overview.md)，從水平資料分割 (分區化) 資料庫中的所有資料庫建立報表。 |
+| [查詢跨垂直資料分割資料庫)](sql-database-elastic-query-getting-started-vertical.md#create-database-objects) | 在本教學課程中，您將了解如何使用[彈性查詢](sql-database-elastic-query-overview.md)，從垂直資料庫中的所有資料庫建立報表。 |
+| [將現有的資料庫移轉到相應放大的資料庫](sql-database-elastic-convert-to-use-elastic-tools.md)| 在本教學課程中，您將了解如何水平調整 (分區) Azure SQL Database。 |
 ||||
 
-## <a name="performance-optimization"></a>Performance Optimization
+## 效能最佳化
 
-In the following tutorials, you will learn about optimizing the [performance of single databases](sql-database-performance-guidance.md). For optimizing the performance of multiple databases, see [Elastic pools](#elastic-pools).
+在下列教學課程中，您將了解如何將[單一資料庫的效能](sql-database-performance-guidance.md)最佳化。如需了解如何將多個資料庫的效能最佳化，請參閱[彈性集區](#elastic-pools)。
 
-| Tutorial  | Description  |
+| 教學課程 | 說明 |
 |---|---|---|
-| [Change the service tier and performance level of your database](sql-database-scale-up.md#change-the-service-tier-and-performance-level-of-your-database) | In this tutorial, you learn how to scale up or scale down the performance of an Azure SQL database using service tiers. |
-| [SQL Database Advisor Query Performance Insight](sql-database-performance.md#performance-overview) | In this tutorial, you learn how to open and use SQL Database Advisor Query Performance Insight.|
-| [SQL Database Advisor performance recommendations](sql-database-advisor.md#viewing-recommendations) | In this tutorial, you learn how to view and apply SQL Database Advisor performance recommendations. |
-| [Review top CPU consuming queries](sql-database-query-performance.md#review-top-cpu-consuming-queries)| In this tutorial, you learn how to use SQL Database Advisor Query Performance Insight to review top CPU consuming queries.|
-| [Viewing individual query details](sql-database-query-performance.md#viewing-individual-query-details)| In this tutorial, you learn how to use SQL Database Advisor Query Performance Insight to view individual query performance details.|
+| [變更您資料庫的服務層級和效能等級](sql-database-scale-up.md#change-the-service-tier-and-performance-level-of-your-database) | 在本教學課程中，您將了解如何使用服務層相應增加或相應減少 Azure SQL Database 的效能。 |
+| [SQL Database 建議程式查詢效能深入解析](sql-database-performance.md#performance-overview) | 在本教學課程中，您將了解如何開啟和使用 SQL Database 建議程式查詢效能深入解析。|
+| [SQL Database 建議程式效能建議](sql-database-advisor.md#viewing-recommendations) | 在本教學課程中，您將了解如何檢視並套用 SQL Database 建議程式效能建議。 |
+| [檢閱排名最前面的 CPU 取用查詢](sql-database-query-performance.md#review-top-cpu-consuming-queries)| 在本教學課程中，您將了解如何使用 SQL Database 建議程式查詢效能深入解析來檢閱排名最前面的 CPU 取用查詢。|
+| [檢視個別查詢詳細資料](sql-database-query-performance.md#viewing-individual-query-details)| 在本教學課程中，您將了解如何使用 SQL Database 建議程式查詢效能深入解析以檢視個別查詢效能詳細資料。|
 ||||
 
-## <a name="sql-database-migration-and-archive"></a>SQL Database Migration and Archive 
+## SQL Database 移轉與封存 
 
-In the following tutorials, you will learn about [migrating an existing SQL Server database to Azure SQL Database](sql-database-cloud-migrate.md).
+在下列教學課程中，您將了解如何[將現有的 SQL Server 資料庫移轉到 Azure SQL Database](sql-database-cloud-migrate.md)。
 
-| Tutorial  | Description  |
+| 教學課程 | 說明 |
 |---|---|---|
-| [Detecting Compatibility Issues Using SQL Server Data Tools for Visual Studio](sql-database-cloud-migrate-fix-compatibility-issues-ssdt.md#detecting-compatibility-issues-using-sql-server-data-tools-for-visual-studio) | In this tutorial, you learn how to use SQL Server Data Tools for Visual Studio to determine Azure SQL Database compatibility. |
-| [Fixing Compatibility Issues Using SQL Server Data Tools for Visual Studio](sql-database-cloud-migrate-fix-compatibility-issues-ssdt#fixing-compatibility-issues-using-sql-server-data-tools-for-visual-studio) | In this tutorial, you learn how to use SQL Server Data Tools for Visual Studio to fix Azure SQL Database compatibility issues. |
-| [Determine SQL Database compatibility using SqlPackage.exe](sql-database-cloud-migrate-determine-compatibility-sqlpackage.md#using-sqlpackageexe) | In this tutorial, you learn how to use the SQLPackage.exe command-line utility to determine Azure SQL Database compatibility.|
-| [Determine SQL Database compatibility using SSMS](sql-database-cloud-migrate-determine-compatibility-ssms.md#using-sql-server-management-studio) |In this tutorial, you learn how to use SQL Server Management Studio to determine Azure SQL Database compatibility.|
-| [Migrate SQL Server database to SQL Database using Deploy Database to Microsoft Azure Database Wizard](sql-database-cloud-migrate-compatible-using-ssms-migration-wizard.md#use-the-deploy-database-to-microsoft-azure-database-wizard) | In this tutorial, you will learn how to migrate a compatible SQL Server database to Azure SQL Database using the Deploy Database to Microsoft Azure Database Wizard in SQL Server Management Studio.
-| [Export a SQL Server database to a BACPAC file using SSMS](sql-database-cloud-migrate-compatible-export-bacpac-ssms.md) | In this tutorial, you will learn how to export a compatible SQL Server database to a BACPAC file using the Export Data Tier Application Wizard in SQL Server Management Studio.|
-| [Export a SQL Server database to a BACPAC file using SqlPackage](sql-database-cloud-migrate-compatible-export-bacpac-sqlpackage.md) | In this tutorial, you will learn how to export a compatible SQL Server database to a BACPAC file using the SQLPackage.exe command-line utility.|
-| [Import a BACPAC file into Azure SQL Database using SSMS](sql-database-cloud-migrate-compatible-import-bacpac-ssms.md) | In this tutorial, you will learn how to import a database into Azure SQL Database from a BACPAC file using the Export Data Tier Application Wizard in SQL Server Management Studio. |
-| [Import a BACPAC file into Azure SQL Database using SqlPackage](sql-database-cloud-migrate-compatible-import-bacpac-sqlpackage.md#import-from-a-bacpac-file-into-azure-sql-database-using-sqlpackage) | In this tutorial, you will learn how to import a database into Azure SQL Database from a BACPAC file using the SQLPackage command-line utility. |
-| [Import a BACPAC file into Azure SQL Database using the Azure portal](sql-database-import.md) | In this tutorial, you will learn how to import a database into Azure SQL Database from a BACPAC file that is stored in an Azure blob using the Azure Portal.|
-| [Import a BACPAC file into Azure SQL Database using PowerShell](sql-database-import-powershell.md) | In this tutorial, you will learn how to import a database into Azure SQL Database from a BACPAC file using PowerShell.|
-| [Archive an Azure SQL database using the Azure portal](sql-database-export.md#export-your-database) | In this tutorial, you learn how to archive an Azure SQL database to a BACPAC file using the Azure portal. |
-| [Archive an Azure SQL database using PowerShell](sql-database-export-powershell.md) | In this tutorial, you learn how to archive an Azure SQL database to a BACPAC file using PowerShell. |
-| [Copy an Azure SQL database using the Azure portal](sql-database-copy.md#copy-your-sql-database) | In this tutorial, you learn how to copy an Azure SQL database using the Azure portal. |
-| [Copy an Azure SQL database using PowerShell](sql-database-copy-powershell#copy-your-sql-database) | In this tutorial, you learn how to copy an Azure SQL database using PowerShell. |
-| [Copy an Azure SQL database using Transact-SQL](sql-database-copy-transact-sql.md#copy-your-sql-database) | In this tutorial, you learn how to copy an Azure SQL database using Transact-SQL. |
+| [使用 SQL Server Data Tools for Visual Studio 偵測相容性問題](sql-database-cloud-migrate-fix-compatibility-issues-ssdt.md#detecting-compatibility-issues-using-sql-server-data-tools-for-visual-studio) | 在本教學課程中，您將了解如何使用 Visual Studio 的 SQL Server Data Tools 來判斷 Azure SQL Database 相容性。 |
+| [使用 SQL Server Data Tools for Visual Studio 修正相容性問題](sql-database-cloud-migrate-fix-compatibility-issues-ssdt#fixing-compatibility-issues-using-sql-server-data-tools-for-visual-studio) | 在本教學課程中，您將了解如何使用 Visual Studio 的 SQL Server Data Tools 來修正 Azure SQL Database 相容性問題。 |
+| [使用 SqlPackage.exe 判斷 SQL Database 相容性](ql-database-cloud-migrate-determine-compatibility-sqlpackage.md#using-sqlpackageexe) | 在本教學課程中，您將了解如何使用 SQLPackage.exe 命令列公用程式來判斷 Azure SQL Database 相容性。|
+| [使用 SSMS 判斷 SQL Database 相容性](sql-database-cloud-migrate-determine-compatibility-ssms.md#using-sql-server-management-studio) |在本教學課程中，您將了解如何使用 SQL Server Management Studio 來判斷 Azure SQL Database 相容性。|
+| [使用「將資料庫部署到 Microsoft Azure Database 精靈」將 SQL Database 移轉到 SQL Database](sql-database-cloud-migrate-compatible-using-ssms-migration-wizard.md#use-the-deploy-database-to-microsoft-azure-database-wizard) | 在本教學課程中，您將了解如何使用 SQL Server Management Studio 中的「部署資料庫到 Microsoft Azure Database 精靈」來將相容的 SQL Server 資料庫移轉到 Azure SQL Database。
+| [使用 SSMS 將 SQL Server Database 匯出到 BACPAC 檔案](sql-database-cloud-migrate-compatible-export-bacpac-ssms.md) | 在本教學課程中，您將了解如何使用 SQL Server Management Studio 中的「匯出資料層應用程式精靈」將相容的 SQL Server 資料庫匯出成 BACPAC 檔案。|
+| [使用 SqlPackage 將的 SQL Server Database 匯出到 BACPAC 檔案](sql-database-cloud-migrate-compatible-export-bacpac-sqlpackage.md) | 在本教學課程中，您將了解如何使用 SQLPackage.exe 命令列公用程式將相容的 SQL Server 資料庫匯出成 BACPAC 檔案。|
+| [使用 SSMS 將 BACPAC 檔案匯入 Azure SQL Database](sql-database-cloud-migrate-compatible-import-bacpac-ssms.md) | 在本教學課程中，您將了解如何使用 SQL Server Management Studio 中的「匯出資料層應用程式精靈」從 BACPAC 檔案將資料庫匯入 Azure SQL Database。 |
+| [使用 SqlPackage 將 BACPAC 檔案匯入 Azure SQL Database](sql-database-cloud-migrate-compatible-import-bacpac-sqlpackage.md#import-from-a-bacpac-file-into-azure-sql-database-using-sqlpackage) | 在本教學課程中，您將了解如何使用 SQLPackage.exe 命令列公用程式從 BACPAC 檔案將資料庫匯入 Azure SQL Database。 |
+| [使用 Azure 入口網站將 BACPAC 檔案匯入 Azure SQL Database](sql-database-import.md) | 在本教學課程中，您將了解如何使用 Azure 入口網站從儲存在 Azure Blob 中的 BACPAC 檔案將資料庫匯入 Azure SQL Database。|
+| [使用 PowerShell 將 BACPAC 檔案匯入 Azure SQL Database](sql-database-import-powershell.md) | 在本教學課程中，您將了解如何使用 PowerShell 從 BACPAC 檔案將資料庫匯入 Azure SQL Database。|
+| [使用 Azure 入口網站封存 Azure SQL Database](sql-database-export.md#export-your-database) | 在本教學課程中，您將了解如何使用 Azure 入口網站將 Azure SQL Database 封存到 BACPAC 檔案。 |
+| [使用 PowerShell 封存 Azure SQL Database](sql-database-export-powershell.md) | 在本教學課程中，您將了解如何使用 PowerShell 將 Azure SQL Database 封存到 BACPAC 檔案。 |
+| [使用 Azure 入口網站複製 Azure SQL Database](sql-database-copy.md#copy-your-sql-database) | 在本教學課程中，您將了解如何使用 Azure 入口網站複製 Azure SQL Database。 |
+| [使用 PowerShell 複製 Azure SQL Database](sql-database-copy-powershell#copy-your-sql-database) | 在本教學課程中，您將了解如何使用 PowerShell 複製 Azure SQL Database。 |
+| [使用 Transact-SQL 複製 Azure SQL Database](sql-database-copy-transact-sql.md#copy-your-sql-database) | 在本教學課程中，您將了解如何使用 Transact-SQL 複製 Azure SQL Database。 |
 ||||
 
-##<a name="develop"></a>Develop
+##開發
 
-In the following tutorials, you will learn about [SQL Database Development](sql-database-develop-overview.md) and using [connectivity libraries](sql-database-libraries.md).
+在下列教學課程中，您將了解 [SQL Database 開發](sql-database-develop-overview.md)和如何使用[連線庫](sql-database-libraries.md)。
 
-| Tutorial  | Description  |
+| 教學課程 | 說明 |
 |---|---|---|
-| [Connect to SQL Database by using .NET (C#)](sql-database-develop-dotnet-simple.md) | In this tutorial, you learn how to connect to an Azure SQL database using C#. |
-| [Connect to SQL Database by using Java](sql-database-develop-java-simple.md) | In this tutorial, you learn how to connect to an Azure SQL database using Java. |
-| [Connect to SQL Database by using Node.js](sql-database-develop-nodejs-simple.md) | In this tutorial, you learn how to connect to an Azure SQL database using Node.js. |
-| [Connect to SQL Database by using PHP](sql-database-develop-php-simple.md) | In this tutorial, you learn how to connect to an Azure SQL database using PHP. |
-| [Connect to SQL Database by using Python](sql-database-develop-python-simple.md) | In this tutorial, you learn how to connect to an Azure SQL database using Python. |
-| [Connect to SQL Database by using Ruby](sql-database-develop-ruby-simple.md) | In this tutorial, you learn how to connect to an Azure SQL database using Ruby. |
+| [使用 .NET (C#) 連接到 SQL Database](sql-database-develop-dotnet-simple.md) | 在本教學課程中，您將了解如何使用 C# 連接到 Azure SQL Database。 |
+| [使用 Java 連接到 SQL Database](sql-database-develop-java-simple.md) | 在本教學課程中，您將了解如何使用 Java 連接到 Azure SQL Database。 |
+| [使用 Node.js 連接到 SQL Database](sql-database-develop-nodejs-simple.md) | 在本教學課程中，您將了解如何使用 Node.js 連接到 Azure SQL Database。 |
+| [使用 PHP 連接到 SQL Database](sql-database-develop-php-simple.md) | 在本教學課程中，您將了解如何使用 PHP 連接到 Azure SQL Database。 |
+| [使用 Python 連接到 SQL Database](sql-database-develop-python-simple.md) | 在本教學課程中，您將了解如何使用 Python 連接到 Azure SQL Database。 |
+| [使用 Ruby 連接到 SQL Database](sql-database-develop-ruby-simple.md) | 在本教學課程中，您將了解如何使用 Ruby 連接到 Azure SQL Database。 |
 ||||
  
-## <a name="database-access"></a>Database Access
+## 資料庫存取
 
-In the following tutorials, you will learn about [creating and managing logins and users](sql-database-manage-logins.md).
+在下列教學課程中，您將了解如何[建立和管理登入與使用者](sql-database-manage-logins.md)。
 
-| Tutorial  | Description  |
+| 教學課程 | 說明 |
 |---|---|---|
-| [Create an Azure SQL Database server-level firewall rule using the Azure portal](sql-database-configure-firewall-settings.md)  | In this tutorial, you learn how to configure a SQL Database server-level firewall using the Azure portal.  |
-| [Create a database-level firewall rule using Transact-SQL](sql-database-configure-firewall-settings-tsql.md#database-level-firewall-rules) | In this tutorial, you will learn how to create a database-level firewall rule using Transact-SQL.|
-| [Manage server-level firewall rules using Transact-SQL](sql-database-configure-firewall-settings-tsql.md#manage-server-level-firewall-rules-through-transact-sql) | In this tutorial, you will learn how to manage an Azure SQL Database server-level firewall using Transact-SQL.|
-| [Manage server-level firewall rules using PowerShell](sql-database-configure-firewall-settings-powershell.md#manage-firewall-rules-using-powershell) | In this tutorial, you will learn how to manage an Azure SQL Database server-level firewall using PowerShell.|
-| [Manage server-level firewall rules using the REST API](sql-database-configure-firewall-settings-rest.md#manage-firewall-rules-using-the-service-management-rest-api) | In this tutorial, you will learn how to manage an Azure SQL Database server-level firewall using the RESET API.|
-| [Connect to Azure SQL Database using a server-level principal login](sql-database-get-started-security.md#connect-to-azure-sql-database-using-a-server-level-principal-login)| In this tutorial, you learn how to connect to Azure SQL Database using a server-level principal login.|
-| [Granting database access to a login](sql-database-manage-logins.md#granting-database-access-to-a-login() | In this tutorial, you learn how to grant database access to a server-level login.|
-| [Create new database user using SSMS](sql-database-get-started-security.md#create-new-database-user-using-ssms) | In this tutorial, you learn how to create a new database user in an existing database using SSMS.|
-| [Grant new database user db_owner permissions](sql-database-get-started-security.md#grant-new-database-user-dbowner-permissions) | In this tutorial, you learn how to grant an existing database user db_owner permissions.|
-| [Connect to Azure SQL Database as a user](sql-database-get-started-security.md#connect-to-azure-sql-database-as-a-user) | In this tutorial, you learn how to connect to an Azure SQL database using a database-level user account.|
+| [使用 Azure 入口網站建立 Azure SQL Database 伺服器層級防火牆規則](sql-database-configure-firewall-settings.md) | 在本教學課程中，您將了解如何使用 Azure 入口網站設定 SQL Database 伺服器層級防火牆。 |
+| [使用 Transact-SQL 建立資料庫層級防火牆規則](sql-database-configure-firewall-settings-tsql.md#database-level-firewall-rules) | 在本教學課程中，您將了解如何使用 Transact-SQL 建立資料庫層級防火牆規則。|
+| [使用 Transact-SQL 管理伺服器層級防火牆規則](sql-database-configure-firewall-settings-tsql.md#manage-server-level-firewall-rules-through-transact-sql) | 在本教學課程中，您將了解如何使用 Transact-SQL 管理 Azure SQL Database 伺服器層級防火牆。|
+| [使用 PowerShell 管理伺服器層級防火牆規則](sql-database-configure-firewall-settings-powershell.md#manage-firewall-rules-using-powershell) | 在本教學課程中，您將了解如何使用 PowerShell 管理 Azure SQL Database 伺服器層級防火牆。|
+| [使用 REST API 管理伺服器層級防火牆規則](sql-database-configure-firewall-settings-rest.md#manage-firewall-rules-using-the-service-management-rest-api) | 在本教學課程中，您將了解如何使用 REST API 管理 Azure SQL Database 伺服器層級防火牆。|
+| [使用伺服器層級主體登入來連接到 SQL Database](sql-database-get-started-security.md#connect-to-azure-sql-database-using-a-server-level-principal-login)| 在本教學課程中，您將了解如何使用伺服器層級主體登入連線到 Azure SQL Database。|
+| [授與登入資料庫存取權](sql-database-manage-logins.md#granting-database-access-to-a-login() | 在本教學課程中，您將了解如何授與伺服器層級登入資料庫存取權。|
+| [使用 SSMS 建立新的資料庫使用者](sql-database-get-started-security.md#create-new-database-user-using-ssms) | 在本教學課程中，您將了解如何使用 SSMS 在現有資料庫中建立新的資料庫使用者。|
+| [授與新的資料庫使用者 db\_owner 權限](sql-database-get-started-security.md#grant-new-database-user-dbowner-permissions) | 在本教學課程中，您將了解如何授與現有的資料庫使用者 db\_owner 權限。|
+| [以使用者身分連接到 Azure SQL Database](sql-database-get-started-security.md#connect-to-azure-sql-database-as-a-user) | 在本教學課程中，您將了解如何使用資料庫層級使用者帳戶連線到 Azure SQL Database。|
 ||||
 
 
-## <a name="data-security"></a>Data Security
+## 資料安全性
 
-In the following tutorials, you will learn about [securing Azure SQL Database data](sql-database-security.md). 
+在下列教學課程中，您將了解如何[保護 Azure SQL Database 資料](sql-database-security.md)。
 
-| Tutorial  | Description  |
+| 教學課程 | 說明 |
 |---|---|---|
-| [Enable threat detection for your database using the Azure portal](sql-database-threat-detection-get-started.md#set-up-threat-detection-for-your-database) | In this tutorial, you learn how to set up threat detection in the Azure portal for your database.|
-| [Secure sensitive data uisng Always Encrypted ](sql-database-always-encrypted-azure-key-vault.md) | In this tutorial, you will use the Always Encrypted wizard to secure sensitive data in an Azure SQL database.|
-| [Secure senstive data using transparent data encryption](https://msdn.microsoft.com/library/dn948096.aspx)| In this tutorial, you learn how to use transparent data encryption to secure senstive data.|
-| [Encrypt a column of data](https://msdn.microsoft.com/library/ms179331.aspx)| In this tutorial, you learn how to encrypt a column of data using Transact-SQL.|
-| [Set up dynamic data masking](sql-database-dynamic-data-masking-get-started.md#set-up-dynamic-data-masking-for-your-database-using-the-azure-portal)  | In this tutorial, you learn how to set up dynamic data masking for your Azure SQL database. |
+| [使用 Azure 入口網站為資料庫啟用威脅偵測](sql-database-threat-detection-get-started.md#set-up-threat-detection-for-your-database) | 在本教學課程中，您將了解如何在 Azure 入口網站中為您的資料庫設定威脅偵測。|
+| [使用「永遠加密」保護機密資料](sql-database-always-encrypted-azure-key-vault.md) | 在本教學課程中，您將使用「永遠加密」精靈保護 Azure SQL Database 中的機密資料。|
+| [使用透明資料加密保護機密資料](https://msdn.microsoft.com/library/dn948096.aspx)| 在本教學課程中，您將了解如何使用透明資料加密來保護機密資料。|
+| [加密資料行](https://msdn.microsoft.com/library/ms179331.aspx)| 在本教學課程中，您將了解如何使用 Transact-SQL 加密資料行。|
+| [設定動態資料遮罩](sql-database-dynamic-data-masking-get-started.md#set-up-dynamic-data-masking-for-your-database-using-the-azure-portal) | 在本教學課程中，您將了解如何為您的 Azure SQL Database 設定動態資料遮罩。 |
 ||||
 
-## <a name="business-continuity-and-query-scale-out"></a>Business Continuity and Query Scale-Out
+## 商務持續性和向外延展查詢
 
-In the following tutorials, you will learn about using [Geo-Restore and Active Geo-Replication](sql-database-business-continuity.md) to reccover from errors, for business continuity and for query scale-out.
+在下列教學課程中，您將了解如何使用[異地復原和作用中異地複寫](sql-database-business-continuity.md)來從錯誤復原，以提供商務持續性及向外延展查詢。
 
-| Tutorial  | Description  |
+| 教學課程 | 說明 |
 |---|---|---|
-| [Restore an Azure SQL Database to a previous point in time with the Azure Portal](sql-database-point-in-time-restore-portal.md)| In this tutorial, you learn how to restore your database to an earlier point in time using the Azure portal.|
-| [Restore an Azure SQL Database to a previous point in time with PowerShell](sql-database-point-in-time-restore-powershell.md) | In this tutorial, you learn how to restore your database to an earlier point in time using PowerShell|
-| [Restore a deleted Azure SQL database using the Azure Portal](sql-database-restore-deleted-database-portal.md) | In this tutorial, you learn how to restore a deleted database using the Azure portal.|
-| [Restore a deleted Azure SQL database using the PowerShell](sql-database-restore-deleted-database-powershell.md) | In this tutorial, you learn how to restore a deleted database using PowerShell.|
-| [Configure Geo-Replication for Azure SQL Database using the Azure portal](sql-database-geo-replication-portal.md)| In this tutorial, you learn how to configure Active Geo-Replication using the Azure portal.|
-| [Configure Geo-Replication for Azure SQL Database using PowerShell](sql-database-geo-replication-powershell.md)| In this tutorial, you learn how to configure Active Geo-Replication using PowerShell.|
-| [Configure Geo-Replication for Azure SQL Database using Transact-SQL](sql-database-geo-replication-transact-sql.md)| In this tutorial, you learn how to configure Active Geo-Replication using Transact-SQL.|
-| [Initiate a planned or unplanned failover for Azure SQL Database using the Azure portal](sql-database-geo-replication-failover-portal.md) | In this tutorial, you learn how to failover to a geo-replicated secondary replica using the Azure portal.|
-| [Initiate a planned or unplanned failover for Azure SQL Database using PowerShell](sql-database-geo-replication-failover-powershell.md) | In this tutorial, you learn how to failover to a geo-replicated secondary replica using PowerShell.|
-| [Initiate a planned or unplanned failover for Azure SQL Database using Transact-SQL](sql-database-geo-replication-failover-transact-sql.md) | In this tutorial, you learn how to failover to a geo-replicated secondary replica using Transact-SQL.|
+| [使用 Azure 入口網站將 Azure SQL Database 還原至先前的時間點](sql-database-point-in-time-restore-portal.md)| 在本教學課程中，您將了解如何使用 Azure 入口網站將資料庫還原至先前的時間點。|
+| [使用 PowerShell 將 Azure SQL Database 還原至先前的時間點](sql-database-point-in-time-restore-powershell.md) | 在本教學課程中，您將了解如何使用 PowerShell 將資料庫還原至先前的時間點。|
+| [還原使用 Azure 入口網站的已刪除 Azure SQL Database](sql-database-restore-deleted-database-portal.md) | 在本教學課程中，您將了解如何使用 Azure 入口網站還原已刪除的資料庫。|
+| [使用 PowerShell 還原已刪除的 Azure SQL Database](sql-database-restore-deleted-database-powershell.md) | 在本教學課程中，您將了解如何使用 PowerShell 還原已刪除的資料庫。|
+| [使用 Azure 入口網站為 Azure SQL Database 設定異地複寫](sql-database-geo-replication-portal.md)| 在本教學課程中，您將了解如何使用 Azure 入口網站來設定「作用中異地複寫」。|
+| [使用 PowerShell 為 Azure SQL Database 設定異地複寫](sql-database-geo-replication-powershell.md)| 在本教學課程中，您將了解如何使用 PowerShell 來設定「作用中異地複寫」。|
+| [使用 Transact-SQL 為 Azure SQL Database 設定異地複寫](sql-database-geo-replication-transact-sql.md)| 在本教學課程中，您將了解如何使用 Transact-SQL 來設定「作用中異地複寫」。|
+| [使用 Azure 入口網站為 Azure SQL Database 起始計劃性或非計劃性容錯移轉](sql-database-geo-replication-failover-portal.md) | 在本教學課程中，您將了解如何使用 Azure 入口網站容錯移轉至異地複寫的次要複本。|
+| [使用 PowerShell 為 Azure SQL Database 起始計劃性或非計劃性容錯移轉](sql-database-geo-replication-failover-powershell.md) | 在本教學課程中，您將了解如何使用 PowerShell 容錯移轉至異地複寫的次要複本。|
+| [使用 Transact-SQL 為 Azure SQL Database 起始計劃性或非計劃性容錯移轉](sql-database-geo-replication-failover-transact-sql.md) | 在本教學課程中，您將了解如何使用 Transact-SQL 容錯移轉至異地複寫的次要複本。|
 ||||
 
-## <a name="data-sync"></a>Data Sync
+## 資料同步
 
-In this tutorial, you will learn about [Data Sync](http://download.microsoft.com/download/4/E/3/4E394315-A4CB-4C59-9696-B25215A19CEF/SQL_Data_Sync_Preview.pdf).
+在本教學課程中，您將了解[資料同步](http://download.microsoft.com/download/4/E/3/4E394315-A4CB-4C59-9696-B25215A19CEF/SQL_Data_Sync_Preview.pdf)。
 
-| Tutorial  | Description  |
+| 教學課程 | 說明 |
 |---|---|---| 
-| [Getting Started with Azure SQL Data Sync (Preview)](sql-database-get-started-sql-data-sync.md)  | In this tutorial, you learn the fundamentals of Azure SQL Data Sync using the Azure Classic Portal. |
+| [開始使用 Azure SQL 資料同步 (預覽)](sql-database-get-started-sql-data-sync.md) | 在本教學課程中，您將了解使用 Azure 傳統入口網站的 Azure SQL 資料同步基本概念。 |
 ||||
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-[Explore Azure SQL Database Solution Quick Starts](sql-database-solution-quick-starts.md)
+[探索 Azure SQL Database 解決方案快速入門](sql-database-solution-quick-starts.md)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

@@ -1,75 +1,71 @@
 <properties
-    pageTitle="Create a lab in Azure DevTest Labs | Microsoft Azure"
-    description="Create a lab in Azure DevTest Labs for virtual machines"
-    services="devtest-lab,virtual-machines"
-    documentationCenter="na"
-    authors="tomarcher"
-    manager="douge"
-    editor=""/>
+	pageTitle="在 Azure DevTest Labs 中建立實驗室 | Microsoft Azure"
+	description="在 Azure DevTest Labs 中為虛擬機器建立實驗室"
+	services="devtest-lab,virtual-machines"
+	documentationCenter="na"
+	authors="tomarcher"
+	manager="douge"
+	editor=""/>
 
 <tags
-    ms.service="devtest-lab"
-    ms.workload="na"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="get-started-article"
-    ms.date="09/12/2016"
-    ms.author="tarcher"/>
+	ms.service="devtest-lab"
+	ms.workload="na"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="get-started-article"
+	ms.date="09/12/2016"
+	ms.author="tarcher"/>
 
+# 在 Azure 研測實驗室中建立實驗室
 
-# <a name="create-a-lab-in-azure-devtest-labs"></a>Create a lab in Azure DevTest Labs
+## 必要條件
 
-## <a name="prerequisites"></a>Prerequisites
+若要建立實驗室，您需要：
 
-To create a lab, you need:
+- Azure 訂用帳戶。若要深入了解 Azure 購買選項，請參閱[如何購買 Azure](https://azure.microsoft.com/pricing/purchase-options/) 或[免費試用一個月](https://azure.microsoft.com/pricing/free-trial/)。您必須是訂用帳戶的擁有者才能建立實驗室。
 
-- An Azure subscription. To learn about Azure purchase options, see [How to buy Azure](https://azure.microsoft.com/pricing/purchase-options/) or [Free one-month trial](https://azure.microsoft.com/pricing/free-trial/). You must be the owner of the subscription to create the lab.
+## 在 Azure DevTest Labs 中建立實驗室的步驟
 
-## <a name="steps-to-create-a-lab-in-azure-devtest-labs"></a>Steps to create a lab in Azure DevTest Labs
+下列步驟說明如何使用 Azure 入口網站在 Azure DevTest Labs 中建立實驗室。
 
-The following steps illustrate how to use the Azure portal to create a lab in Azure DevTest Labs. 
+1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
 
-1. Sign in to the [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+1. 選取 [更多服務]，然後從清單中選取 [DevTest Labs]。
 
-1. Select **More services**, and then select **DevTest Labs** from the list.
+1. 在 [DevTest Labs] 刀鋒視窗上，選取 [加入]。
 
-1. On the **DevTest Labs** blade, select **Add**.
+    ![新增實驗室](./media/devtest-lab-create-lab/add-lab-button.png)
 
-    ![Add a lab](./media/devtest-lab-create-lab/add-lab-button.png)
+1. 在 [建立 DevTest 實驗室] 刀鋒視窗上：
 
-1. On the **Create a DevTest Lab** blade:
-
-    1. Enter a **Lab Name** for the new lab.
+    1. 輸入新實驗室的**實驗室名稱**。
     
-    1. Select the **Subscription** to associate with the lab.
+	1. 選取要與實驗室關聯的**訂用帳戶**。
     
-    1. Select a **Location** in which to store the lab.
+	1. 選取用來儲存實驗室的 [位置]。
     
-    1. Select **Auto-shutdown** to specify if you want to enable - and define the parameters for - the automatic shutting down of all the lab's VMs.
+	1. 選取 [自動關機] 來指定是否要啟用所有實驗室 VM 的自動關閉，以及定義其參數。
+	
+	1. 選取 [儲存體類型]，指出實驗室 VM 的儲存體磁碟類型。
     
-    1. Select the **Storage type** to indicate the storage disk type for the lab's VMs. 
-    
-    1. Select **Create**.
+	1. 選取 [**建立**]。
 
-    ![Create a lab blade](./media/devtest-lab-create-lab/create-devtestlab-blade.png)
+    ![建立實驗室刀鋒視窗](./media/devtest-lab-create-lab/create-devtestlab-blade.png)
 
 [AZURE.INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-Once you've created your lab, here are some next steps to consider:
+建立您的實驗室之後，以下是要考慮的一些後續步驟：
 
-- [Secure access to a lab](devtest-lab-add-devtest-user.md).
+- [安全存取實驗室](devtest-lab-add-devtest-user.md)。
 
-- [Set lab policies](devtest-lab-set-lab-policy.md).
+- [設定實驗室原則](devtest-lab-set-lab-policy.md)。
 
-- [Create a lab template](devtest-lab-create-template.md).
+- [建立實驗室範本](devtest-lab-create-template.md)。
 
-- [Create custom artifacts for your VMs](devtest-lab-artifact-author.md).
+- [為您的 VM 建立自訂成品](devtest-lab-artifact-author.md)。
 
-- [Add a VM with artifacts to a lab](devtest-lab-add-vm-with-artifacts.md).
+- [將具有構件的 VM 加入實驗室](devtest-lab-add-vm-with-artifacts.md)。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

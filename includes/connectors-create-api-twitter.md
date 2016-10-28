@@ -1,21 +1,19 @@
-### <a name="prerequisites"></a>Prerequisites
-- A Twitter account 
+### 必要條件
+- Twitter 帳戶
 
-Before you can use your Twitter account in a logic app, you must authorize the logic app to connect to your Twitter account. Fortunately, you can do this easily from within your logic app on the Azure Portal. 
+您必須先授權邏輯應用程式連線到您的 Twitter 帳戶，才能在該邏輯應用程式中使用您的 Twitter 帳戶。所幸，您可以使用 Azure 入口網站在邏輯應用程式內輕易達成這項作業。
 
-Here are the steps to authorize your logic app to connect to your Twitter account:
+若要授權邏輯應用程式連線到您的 Twitter 帳戶，其步驟如下：
 
-1. To create a connection to Twitter, in the logic app designer, select **Show Microsoft managed APIs** in the drop down list then enter *Twitter* in the search box. Select the trigger or action you'll like to use:  
-  ![Twitter connection image 0](./media/connectors-create-api-twitter/twitter-0.png)
-2. If you haven't created any connections to Twitter before, you'll get prompted to provide your Twitter credentials. These credentials will be used to authorize your logic app to connect to, and access your Twitter account's data:  
-  ![Twitter connection image 1](./media/connectors-create-api-twitter/twitter-1.png)  
-3. Provide your Twitter user name and password to authorize your logic app:  
-  ![Twitter connection image 2](./media/connectors-create-api-twitter/twitter-2.png)  
-4. Confirm your authorization:  
-  ![Twitter connection image 3](./media/connectors-create-api-twitter/twitter-3.png)  
-6. Notice the connection has been created and you are now free to proceed with the other steps in your logic app:  
-  ![Twitter connection image 4](./media/connectors-create-api-twitter/twitter-4.png)
+1. 若要建立與 Twitter 的連線，請在邏輯應用程式設計工具中，從下拉式清單中選取 [顯示 Microsoft Managed API]，然後在搜尋方塊中輸入 *Twitter*。請選取您想要使用的觸發程序或動作：  
+  ![Twitter 連線圖像 0](./media/connectors-create-api-twitter/twitter-0.png)
+2. 如果您之前尚未建立任何 Twitter 連線，系統會提示您提供 Twitter 認證。這些認證將用來授權邏輯應用程式連線及存取您 Twitter 帳戶的資料：  
+  ![Twitter 連線圖像 1](./media/connectors-create-api-twitter/twitter-1.png)  
+3. 提供您的 Twitter 使用者名稱和密碼來授權邏輯應用程式：  
+  ![Twitter 連線圖像 2](./media/connectors-create-api-twitter/twitter-2.png)  
+4. 確認您的授權：  
+  ![Twitter 連線圖像 3](./media/connectors-create-api-twitter/twitter-3.png)  
+6. 請注意，連線已經建立，您現在可以繼續進行邏輯應用程式中的其他步驟：  
+  ![Twitter 連線圖像 4](./media/connectors-create-api-twitter/twitter-4.png)
 
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0727_2016-->

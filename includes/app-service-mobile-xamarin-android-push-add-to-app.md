@@ -1,56 +1,56 @@
 
-4. Create a new class in the project called `ToDoBroadcastReceiver`.
+4. 在名為 `ToDoBroadcastReceiver` 的專案中建立新類別。
 
-5. Add the following using statements to **ToDoBroadcastReceiver** class:
+5. 在 **ToDoBroadcastReceiver** 類別中新增下列 using 陳述式：
 
-        using Gcm.Client;
-        using Microsoft.WindowsAzure.MobileServices;
-        using Newtonsoft.Json.Linq;
+		using Gcm.Client;
+		using Microsoft.WindowsAzure.MobileServices;
+		using Newtonsoft.Json.Linq;
 
-6. Add the following permission requests between the **using** statements and the **namespace** declaration:
+6. 在 **using** 陳述式與 **namespace** 宣告之間新增下列權限要求：
 
-        [assembly: Permission(Name = "@PACKAGE_NAME@.permission.C2D_MESSAGE")]
-        [assembly: UsesPermission(Name = "@PACKAGE_NAME@.permission.C2D_MESSAGE")]
-        [assembly: UsesPermission(Name = "com.google.android.c2dm.permission.RECEIVE")]
+		[assembly: Permission(Name = "@PACKAGE_NAME@.permission.C2D_MESSAGE")]
+		[assembly: UsesPermission(Name = "@PACKAGE_NAME@.permission.C2D_MESSAGE")]
+		[assembly: UsesPermission(Name = "com.google.android.c2dm.permission.RECEIVE")]
 
-        //GET_ACCOUNTS is only needed for android versions 4.0.3 and below
-        [assembly: UsesPermission(Name = "android.permission.GET_ACCOUNTS")]
-        [assembly: UsesPermission(Name = "android.permission.INTERNET")]
-        [assembly: UsesPermission(Name = "android.permission.WAKE_LOCK")]
+		//GET_ACCOUNTS is only needed for android versions 4.0.3 and below
+		[assembly: UsesPermission(Name = "android.permission.GET_ACCOUNTS")]
+		[assembly: UsesPermission(Name = "android.permission.INTERNET")]
+		[assembly: UsesPermission(Name = "android.permission.WAKE_LOCK")]
 
-7. Replace the existing **ToDoBroadcastReceiver** class definition with the following:
+7. 使用下列程式碼取代現有的 **ToDoBroadcastReceiver** 類別定義：
  
-        [BroadcastReceiver(Permission = Gcm.Client.Constants.PERMISSION_GCM_INTENTS)]
-        [IntentFilter(new string[] { Gcm.Client.Constants.INTENT_FROM_GCM_MESSAGE }, 
-            Categories = new string[] { "@PACKAGE_NAME@" })]
-        [IntentFilter(new string[] { Gcm.Client.Constants.INTENT_FROM_GCM_REGISTRATION_CALLBACK }, 
-            Categories = new string[] { "@PACKAGE_NAME@" })]
-        [IntentFilter(new string[] { Gcm.Client.Constants.INTENT_FROM_GCM_LIBRARY_RETRY }, 
+	    [BroadcastReceiver(Permission = Gcm.Client.Constants.PERMISSION_GCM_INTENTS)]
+	    [IntentFilter(new string[] { Gcm.Client.Constants.INTENT_FROM_GCM_MESSAGE }, 
+	        Categories = new string[] { "@PACKAGE_NAME@" })]
+	    [IntentFilter(new string[] { Gcm.Client.Constants.INTENT_FROM_GCM_REGISTRATION_CALLBACK }, 
+	        Categories = new string[] { "@PACKAGE_NAME@" })]
+	    [IntentFilter(new string[] { Gcm.Client.Constants.INTENT_FROM_GCM_LIBRARY_RETRY }, 
         Categories = new string[] { "@PACKAGE_NAME@" })]
         public class ToDoBroadcastReceiver : GcmBroadcastReceiverBase<PushHandlerService>
         {
-            // Set the Google app ID.
-            public static string[] senderIDs = new string[] { "<PROJECT_NUMBER>" };
+	        // Set the Google app ID.
+	        public static string[] senderIDs = new string[] { "<PROJECT_NUMBER>" };
         }
 
-    In the above code, you must replace _`<PROJECT_NUMBER>`_ with the project number assigned by Google when you provisioned your app in the Google developer portal. 
+	在上述程式碼中，您必須使用在 Google 開發人員入口網站佈建您的應用程式時由 Google 指派給您的專案編號來取代 _`<PROJECT_NUMBER>`_。
 
-8. In the ToDoBroadcastReceiver.cs project file, add the following code that defines the **PushHandlerService** class:
+8. 在 ToDoBroadcastReceiver.cs 專案檔案中，加入下列可定義 **PushHandlerService** 類別的程式碼：
  
-        // The ServiceAttribute must be applied to the class.
-        [Service] 
-        public class PushHandlerService : GcmServiceBase
-        {
-            public static string RegistrationID { get; private set; }
+		// The ServiceAttribute must be applied to the class.
+    	[Service] 
+    	public class PushHandlerService : GcmServiceBase
+    	{
+        	public static string RegistrationID { get; private set; }
  
-            public PushHandlerService() : base(ToDoBroadcastReceiver.senderIDs) { }
-        }
+        	public PushHandlerService() : base(ToDoBroadcastReceiver.senderIDs) { }
+    	}
 
-    Note that this class derives from **GcmServiceBase** and that the **Service** attribute must be applied to this class.
+	請注意，此類別衍生自 **GcmServiceBase** 而且必須對此類別套用 **Service** 屬性。
 
-    >[AZURE.NOTE]The **GcmServiceBase** class implements the **OnRegistered()**, **OnUnRegistered()**, **OnMessage()** and **OnError()** methods. You must override these methods in the **PushHandlerService** class.
+	>[AZURE.NOTE]**GcmServiceBase** 類別實作 **OnRegistered()**、**OnUnRegistered()**、**OnMessage()** 及 **OnError()** 方法。您必須覆寫 **PushHandlerService** 類別中的這些方法。
 
-5. Add the following code to the **PushHandlerService** class that overrides the **OnRegistered** event handler. 
+5. 在 **PushHandlerService** 類別中加入下列程式碼，以覆寫 **OnRegistered** 事件處理常式。
 
         protected override void OnRegistered(Context context, string registrationId)
         {
@@ -61,7 +61,7 @@
             var push = client.GetPush();
 
             // Define a message body for GCM.
-            const string templateBodyGCM = "{\"data\":{\"message\":\"$(messageParam)\"}}";
+            const string templateBodyGCM = "{"data":{"message":"$(messageParam)"}}";
 
             // Define the template registration as JSON.
             JObject templates = new JObject();
@@ -89,9 +89,9 @@
             }
         }
 
-    This method uses the returned GCM registration ID to register with Azure for push notifications. Tags can only be added to the registration after it is created. For more information, see [How to: Add tags to a device installation to enable push-to-tags](../articles/app-service-mobile/app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#tags).
+	此方法使用傳回的 GCM 註冊識別碼，向 Azure 註冊以取得推送通知。只能在建立註冊之後加入標記。如需詳細資訊，請參閱[做法：將標記新增至裝置安裝以啟用發送到標記](../articles/app-service-mobile/app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#tags)。
 
-10. Override the **OnMessage** method in **PushHandlerService** with the following code:
+10. 以下列程式碼覆寫 **PushHandlerService** 中的 **OnMessage** 方法：
 
         protected override void OnMessage(Context context, Intent intent)
         {          
@@ -109,8 +109,8 @@
 
                 // Create a new intent to show the notification in the UI. 
                 PendingIntent contentIntent = 
-                    PendingIntent.GetActivity(context, 0, 
-                    new Intent(this, typeof(ToDoActivity)), 0);           
+					PendingIntent.GetActivity(context, 0, 
+					new Intent(this, typeof(ToDoActivity)), 0);	          
 
                 // Create the notification using the builder.
                 var builder = new Notification.Builder(context);
@@ -127,7 +127,7 @@
             }
         }
 
-12. Override the **OnUnRegistered()** and **OnError()** methods with the following code.
+12. 使用下列程式碼覆寫 **onunregistered ()** 和 **onerror ()** 方法。
 
         protected override void OnUnRegistered(Context context, string registrationId)
         {
@@ -140,6 +140,4 @@
                 string.Format("Error occurred in the notification: {0}.", errorId));
         }
 
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_1203_2015-->

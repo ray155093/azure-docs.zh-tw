@@ -1,62 +1,57 @@
 <properties
-    pageTitle="Azure Active Directory B2C: Application registration | Microsoft Azure"
-    description="How to register your application with Azure Active Directory B2C"
-    services="active-directory-b2c"
-    documentationCenter=""
-    authors="swkrish"
-    manager="mbaldwin"
-    editor="bryanla"/>
+	pageTitle="Azure Active Directory B2C：應用程式註冊 | Microsoft Azure"
+	description="如何向 Azure Active Directory B2C 註冊您的應用程式"
+	services="active-directory-b2c"
+	documentationCenter=""
+	authors="swkrish"
+	manager="mbaldwin"
+	editor="bryanla"/>
 
 <tags
-    ms.service="active-directory-b2c"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="get-started-article"
-    ms.date="08/30/2016"
-    ms.author="swkrish"/>
+	ms.service="active-directory-b2c"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="get-started-article"
+	ms.date="08/30/2016"
+	ms.author="swkrish"/>
 
 
+# Azure Active Directory B2C：註冊您的應用程式
 
-# <a name="azure-active-directory-b2c:-register-your-application"></a>Azure Active Directory B2C: Register your application
+## 必要條件
 
-## <a name="prerequisite"></a>Prerequisite
-
-To build an application that accepts consumer sign-up and sign-in, you first need to register the application with an Azure Active Directory B2C tenant. Get your own tenant by using the steps outlined in [Create an Azure AD B2C tenant](active-directory-b2c-get-started.md). After you follow all the steps in that article, you will have the B2C features blade pinned to your Startboard.
+若要建置可接受取用者註冊與登入的應用程式，您必須先使用 Azure Active Directory B2C 租用戶註冊該應用程式。使用[建立 Azure AD B2C 租用戶](active-directory-b2c-get-started.md)中概述的步驟來建立您自己的租用戶。在您遵循該文章中的所有步驟之後，B2C 功能刀鋒視窗應會釘選至您的「開始面板」。
 
 [AZURE.INCLUDE [active-directory-b2c-devquickstarts-v2-apps](../../includes/active-directory-b2c-devquickstarts-v2-apps.md)]
 
-## <a name="navigate-to-the-b2c-features-blade"></a>Navigate to the B2C features blade
+## 瀏覽至 B2C 功能刀鋒視窗
 
-If you have the B2C features blade pinned to your Startboard, you will see the blade as soon as you sign in to the [Azure portal](https://portal.azure.com/) as the Global Administrator of the B2C tenant.
+若您已將 B2C 功能刀鋒視窗釘選至「開始面板」，則在您以 B2C 租用戶的全域管理員身分登入 [Azure 入口網站](https://portal.azure.com/)時，即會看見該刀鋒視窗。
 
-You can also access the blade by clicking **Browse** and then **Azure AD B2C** in the left navigation pane on the [Azure portal](https://portal.azure.com/).
+您也可以在 [Azure 入口網站](https://portal.azure.com/)的左側功能窗格中依序按一下 [瀏覽] 和 [Azure AD B2C]，來存取刀鋒視窗。
 
-> [AZURE.IMPORTANT] You need to be a Global Administrator of the B2C tenant to be able to access the B2C features blade. A Global Administrator from any other tenant or a user from any tenant cannot access it.  You can switch to your B2C tenant by using the tenant switcher in the top right corner of the Azure Portal.
+> [AZURE.IMPORTANT] 您必須是 B2C 租用戶的全域管理員，才能存取 B2C 功能刀鋒視窗。其他租用戶的全域管理員或所有租用戶的使用者均無法存取。您可以使用 Azure 入口網站右上角中的租用戶切換器來切換至 B2C 租用戶。
 
-## <a name="register-an-application"></a>Register an application
+## 註冊應用程式
 
-1. On the B2C features blade on the Azure portal, click **Applications**.
-2. Click **+Add** at the top of the blade.
-3. Enter a **Name** for the application that will describe your application to consumers. For example, you could enter "Contoso B2C app".
-4. If you are writing a web-based application, toggle the **Include web app / web API** switch to **Yes**. The **Reply URLs** are endpoints where Azure AD B2C will return any tokens that your application requests. For example, enter `https://localhost:44321/`. If your web application will also be calling some web API secured by Azure AD B2C, you'll want to create an **Application Secret** as well by clicking the **Generate Key** button.
+1. 在 Azure 入口網站的 B2C 功能刀鋒視窗中，按一下 [應用程式]。
+2. 按一下刀鋒視窗頂端的 [新增]。
+3. 輸入應用程式的**名稱**，此名稱將會為取用者說明您的應用程式。例如，您可以輸入「Contoso B2C app」。
+4. 如果您正在撰寫 Web 應用程式，請將 [包含 Web 應用程式/Web API] 切換為 [是]。**回覆 URL** 是 Azure AD B2C 傳回您應用程式要求之任何權杖的所在端點。例如，輸入 `https://localhost:44321/`。若您的 Web 應用程式也會呼叫 Azure AD B2C 所保護的一些 Web API，您可按一下 [產生金鑰] 按鈕以建立 [應用程式密碼]。
 
-    > [AZURE.NOTE] An **Application Secret** is an important security credential, and should be secured appropriately.
+    > [AZURE.NOTE] **應用程式密碼**是重要的安全性認證，應該適當地加以保護。
 
-5. If you are writing a mobile application, toggle the **Include native client** switch to **Yes**. Copy down the default **Redirect URI** that is automatically created for you.
-6. Click **Create** to register your application.
-7. Click the application that you just created and copy down the globally unique **Application Client ID** that you'll use later in your code.
+5. 如果您正在撰寫行動應用程式，請將 [包含原生用戶端] 切換為 [是]。複製系統自動為您建立的預設**重新導向 URI**。
+6. 按一下 [建立] 以註冊您的應用程式。
+7. 按一下您剛才建立的應用程式，並複製稍後要在程式碼中使用的全域唯一**應用程式用戶端識別碼**。
 
-> [AZURE.IMPORTANT] Applications created in the B2C features blade have to managed in the same location. If you edit B2C applications using PowerShell or another portal, they become unsupported and will likely not work with Azure AD B2C.
+> [AZURE.IMPORTANT] 在 B2C 功能刀鋒視窗中建立的應用程式必須在相同的位置中進行管理。如果您使用 PowerShell 或其他入口網站編輯 B2C 應用程式，這些應用程式會變得不受支援且可能不適用於 Azure AD B2C。
 
-## <a name="build-a-quick-start-application"></a>Build a Quick Start Application
+## 建置快速啟動應用程式
 
-Now that you have an application registered with Azure AD B2C, you can complete one of our quick-start tutorials to get up and running. Here are a few recommendations:
+您現已在 Azure AD B2C 註冊應用程式，只需完成其中一個快速啟動教學課程，即可開始操作和執行。以下是一些建議：
 
 [AZURE.INCLUDE [active-directory-v2-quickstart-table](../../includes/active-directory-b2c-quickstart-table.md)]
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0831_2016-->

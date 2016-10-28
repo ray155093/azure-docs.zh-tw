@@ -1,13 +1,11 @@
-## <a name="scenario"></a>Scenario
+## 案例
 
-To better illustrate how to configure a static IP address for a VM, this document will use the scenario below.
+為了更清楚說明如何設定 VM 的靜態 IP 位址，本文件會使用下列案例。
 
-![VNet scenario](./media/virtual-networks-static-ip-scenario-include/static-ip-scenario.png)
+![VNet 案例](./media/virtual-networks-static-ip-scenario-include/static-ip-scenario.png)
 
-In this scenario you will create a VM named **DNS01** in the **FrontEnd** subnet, and set it to use a static IP address of **192.168.1.101**.
+在這個案例中，您將建立名為 **DNS01** 的 VM，位於 **前端**子網路，並將其設定為使用靜態 IP 位址 **192.168.1.101**。
 
  
 
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=Oct15_HO3-->

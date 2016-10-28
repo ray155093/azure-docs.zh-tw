@@ -1,129 +1,123 @@
 <properties
-    pageTitle="Troubleshooting Azure Diagnostics"
-    description="Troubleshoot problems when using Azure diagnostics in Azure Cloud Services, Virtual Machines and "
-    services="multiple"
-    documentationCenter=".net"
-    authors="rboucher"
-    manager="jwhit"
-    editor=""/>
+	pageTitle="針對 Azure 診斷疑難排解"
+	description="針對在 Azure 雲端服務、虛擬機器中使用 Azure 診斷時出現的問題進行疑難排解"
+	services="multiple"
+	documentationCenter=".net"
+	authors="rboucher"
+	manager="jwhit"
+	editor=""/>
 
 <tags
-    ms.service="multiple"
-    ms.workload="na"
-    ms.tgt_pltfrm="na"
-    ms.devlang="dotnet"
-    ms.topic="article"
-    ms.date="02/20/2016"
-    ms.author="robb"/>
+	ms.service="multiple"
+	ms.workload="na"
+	ms.tgt_pltfrm="na"
+	ms.devlang="dotnet"
+	ms.topic="article"
+	ms.date="02/20/2016"
+	ms.author="robb"/>
 
 
+# Azure 診斷疑難排解
+有關使用 Azure 診斷的疑難排解資訊。如需有關 Azure 診斷的詳細資訊，請參閱 [Azure 診斷概觀](azure-diagnostics.md#cloud-services)。
 
-# <a name="azure-diagnostics-troubleshooting"></a>Azure Diagnostics Troubleshooting
-Troubleshooting information relevant to using Azure Diagnostics. For more information on Azure diagnostics, see [Azure Diagnostics Overview](azure-diagnostics.md#cloud-services).
+## Azure 診斷未啟動
+診斷是由兩個元件所組成：客體代理程式外掛程式和監視代理程式。
 
-## <a name="azure-diagnostics-is-not-starting"></a>Azure Diagnostics is not Starting
-Diagnostics is comprised of two components: A guest agent plugin and the monitoring agent.
+在雲端服務角色中，客體代理程式外掛程式的記錄檔位於下列檔案中：
 
-In a Cloud Service role, log files for the guest agent plugin are located in the file:
+	*%SystemDrive%\ WindowsAzure\Logs\Plugins\Microsoft.Azure.Diagnostics.PaaSDiagnostics<DiagnosticsVersion>*\CommandExecution.log
 
-    *%SystemDrive%\ WindowsAzure\Logs\Plugins\Microsoft.Azure.Diagnostics.PaaSDiagnostics\<DiagnosticsVersion>*\CommandExecution.log
+在 Azure 虛擬機器中，客體代理程式外掛程式的記錄檔位於下列檔案中：
 
-In an Azure Virtual Machine, log files for the guest agent plugin are located in the file:
+		C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Diagnostics.IaaSDiagnostics<DiagnosticsVersion>\CommandExecution.log
 
-        C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Diagnostics.IaaSDiagnostics\<DiagnosticsVersion>\CommandExecution.log
+外掛程式會傳回下列錯誤碼：
 
-The following error codes are returned by the plugin:
-
-Exit Code|Description
+結束代碼|說明
 ---|---
-0|Success.
--1|Generic Error.
--2|Unable to load the rcf file.<p>This is an internal error that should only happen if the guest agent plugin launcher is manually invoked, incorrectly, on the VM.
--3|Cannot load the Diagnostics configuration file.<p><p>Solution: This is the result of a configuration file not passing schema validation. The solution is to provide a configuration file that complies with the schema.
--4|Another instance of the monitoring agent Diagnostics is already using the local resource directory.<p><p>Solution: Specify a different value for **LocalResourceDirectory**.
--6|The guest agent plugin launcher attempted to launch Diagnostics with an invalid command line.<p><p>This is an internal error that should only happen if the guest agent plugin launcher is manually invoked, incorrectly, on the VM.
--10|The Diagnostics plugin exited with an unhandled exception.
--11|The guest agent was unable to create the process responsible for launching and monitoring the monitoring agent.<p><p>Solution: Verify that sufficient system resources are available to launch new processes.<p>
--101|Invalid arguments when calling the Diagnostics plugin.<p><p>This is an internal error that should only happen if the guest agent plugin launcher is manually invoked, incorrectly, on the VM.
--102|The plugin process is unable to initialize itself.<p><p>Solution: Verify that sufficient system resources are available to launch new processes.
--103|The plugin process is unable to initialize itself. Specifically it is unable to create the logger object.<p><p>Solution: Verify that sufficient system resources are available to launch new processes.
--104|Unable to load the rcf file provided by the guest agent.<p><p>This is an internal error that should only happen if the guest agent plugin launcher is manually invoked, incorrectly, on the VM.
--105|The Diagnostics plugin cannot open the Diagnostics configuration file.<p><p>This is an internal error that should only happen if the Diagnostics plugin is manually invoked, incorrectly, on the VM.
--106|Cannot read the Diagnostics configuration file.<p><p>Solution: This is the result of a configuration file not passing schema validation. So the solution is to provide a configuration file that complies with the schema. You can find the XML that is delivered to the Diagnostics extension in the folder *%SystemDrive%\WindowsAzure\Config* on the VM. Open the appropriate XML file and search for **Microsoft.Azure.Diagnostics**, then for the **xmlCfg** field. The data is base64 encoded so you’ll need to [decode it](http://www.bing.com/search?q=base64+decoder) to see the XML that was loaded by Diagnostics.<p>
--107|The resource directory pass to the monitoring agent is invalid.<p><p>This is an internal error that should only happen if the monitoring agent is manually invoked, incorrectly, on the VM.</p>
--108    |Unable to convert the Diagnostics configuration file into the monitoring agent configuration file.<p><p>This is an internal error that should only happen if the Diagnostics plugin is manually invoked with an invalid configuration file.
--110|General Diagnostics configuration error.<p><p>This is an internal error that should only happen if the Diagnostics plugin is manually invoked with an invalid configuration file.
--111|Unable to start the monitoring agent.<p><p>Solution: Verify that sufficient system resources are available.
--112|General error
+0|成功。
+-1|一般錯誤。
+-2|無法載入 rcf 檔。<p>這是內部錯誤，只有當不正確地在 VM 上以手動方式叫用客體代理程式外掛程式啟動器時才會發生。
+-3|無法載入診斷組態檔。<p><p>解決方法：這是組態檔未通過結構描述驗證的結果。解決方法是提供以結構描述編譯的組態檔。
+-4|診斷之監視代理程式的另一個執行個體已在使用本機資源目錄。<p><p>解決方法：為 **LocalResourceDirectory** 指定其他值。
+-6|客體代理程式外掛程式啟動器嘗試使用無效的命令列來啟動診斷。<p><p>這是內部錯誤，只有當不正確地在 VM 上以手動方式叫用客體代理程式外掛程式啟動器時才會發生。
+-10|診斷外掛程式結束並發生未處理的例外狀況。
+-11|客體代理程式無法建立負責啟動及監視監視代理程式的處理序。<p><p>解決方法：確認有足夠的系統資源，可啟動新的處理序。<p>
+-101|呼叫診斷外掛程式時的引數無效。<p><p>這是內部錯誤，只有當不正確地在 VM 上以手動方式叫用客體代理程式外掛程式啟動器時才會發生。
+-102|外掛程式處理序無法對本身進行初始化。<p><p>解決方法：確認有足夠的系統資源，可啟動新的處理序。
+-103|外掛程式處理序無法對本身進行初始化。具體而言，其無法建立記錄器物件。<p><p>解決方法：確認有足夠的系統資源，可啟動新的處理序。
+-104|無法載入客體代理程式提供的 rcf 檔。<p><p>這是內部錯誤，只有當不正確地在 VM 上以手動方式叫用客體代理程式外掛程式啟動器時才會發生。
+-105|診斷外掛程式無法開啟診斷組態檔。<p><p>這是內部錯誤，只有當不正確地在 VM 上以手動方式叫用診斷外掛程式時才會發生。
+-106|無法讀取診斷組態檔。<p><p>解決方法：這是組態檔未通過結構描述驗證的結果。因此，解決方法是提供以結構描述編譯的組態檔。您可以在 VM 上的 *%SystemDrive%\\WindowsAzure\\Config* 資料夾中，找到傳送給診斷擴充功能的 XML。開啟適當的 XML 檔並搜尋 **Microsoft.Azure.Diagnostics**，然後搜尋 [xmlCfg] 欄位。該資料是以 base64 編碼，因此您將需要[進行解碼](http://www.bing.com/search?q=base64+decoder)，才能查看診斷載入的 XML。<p>
+-107|傳遞給監視代理程式的資源目錄無效。<p><p>這是內部錯誤，只有當不正確地在 VM 上以手動方式叫用監視代理程式時才會發生。</p>
+-108 |無法將診斷組態檔轉換成監視代理程式組態檔。<p><p>這是內部錯誤，只有當使用無效的組態檔以手動方式叫用診斷外掛程式時才會發生。
+-110|一般診斷組態錯誤。<p><p>這是內部錯誤，只有當使用無效的組態檔以手動方式叫用診斷外掛程式時才會發生。
+-111|無法啟動監視代理程式。<p><p>解決方法：確認有足夠的系統資源可用。
+-112|一般錯誤
 
 
-## <a name="diagnostics-data-is-not-logged-to-azure-storage"></a>Diagnostics Data is Not Logged to Azure Storage
-Azure diagnostics stores all data in Azure Storage.
+## 診斷資料未記錄至 Azure 儲存體
+Azure 診斷會將所有資料儲存至 Azure 儲存體。
 
-The most common cause of missing event data is incorrectly defined storage account information.
+遺漏事件資料的最常見原因是不正確地定義儲存體帳戶資訊。
 
-Solution: Correct your Diagnostics configuration file and re-install Diagnostics.
-If the issue persists after re-installing the diagnostics extension then you may have to debug further by looking through the any monitoring agent errors. Before event data is uploaded to your storage account it is stored in the LocalResourceDirectory.
+解決方法：更正 Diagnostics 組態檔，並重新安裝 Diagnostics。如果在重新安裝診斷擴充功能後仍有問題，則您可能要進一步偵錯，做法為：仔細檢查監視代理程式的任何錯誤。將事件資料上傳至您的儲存體帳戶之前，資料是儲存在 LocalResourceDirectory 中。
 
-For Cloud Service Role the LocalResourceDirectory is:
+針對雲端服務角色，LocalResourceDirectory 為：
 
-    C:\Resources\Directory\<CloudServiceDeploymentID>.<RoleName>.DiagnosticStore\WAD<DiagnosticsMajorandMinorVersion>\Tables
+	C:\Resources\Directory<CloudServiceDeploymentID>.<RoleName>.DiagnosticStore\WAD<DiagnosticsMajorandMinorVersion>\Tables
 
-For Virtual Machines the LocalResourceDirectory is:
+針對虛擬機器，LocalResourceDirectory 為：
 
-    C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Diagnostics.IaaSDiagnostics\<DiagnosticsVersion>\WAD<DiagnosticsMajorandMinorVersion>\Tables
+	C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Diagnostics.IaaSDiagnostics<DiagnosticsVersion>\WAD<DiagnosticsMajorandMinorVersion>\Tables
 
-If there are no files in the LocalResourceDirectory folder, the monitoring agent is unable to launch. This is typically caused by an invalid configuration file, an event that should be reported in the CommandExecution.log.
+如果 LocalResourceDirectory 資料夾中沒有檔案，則監視代理程式將無法啟動。這種情況通常是由於無效的組態檔所造成，即應在 CommandExecution.log 中回報的事件。
 
-If the Monitoring Agent is successfully collecting event data you will see .tsf files for each event defined in your configuration file. The Monitoring Agent logs its errors in the file MaEventTable.tsf. To inspect the contents of this file you can use the tabel2csv application to convert the .tsf file to a comma separated values(.csv) file:
+如果監視代理程式成功收集事件資料，您將看到組態檔中所定義之每個事件的 .tsf 檔案。監視代理程式會在 MaEventTable.tsf 檔案中記錄錯誤。若要檢查此檔案的內容，您可以使用 tabel2csv 應用程式，將 .tsf 檔案轉換為逗號分隔值 (.csv) 檔案：
 
-On a Cloud Service Role:
+在雲端服務角色上：
 
-    %SystemDrive%\Packages\Plugins\Microsoft.Azure.Diagnostics.PaaSDiagnostics\<DiagnosticsVersion>\Monitor\x64\table2csv maeventtable.tsf
+	%SystemDrive%\Packages\Plugins\Microsoft.Azure.Diagnostics.PaaSDiagnostics<DiagnosticsVersion>\Monitor\x64\table2csv maeventtable.tsf
 
-*%SystemDrive%* on a Cloud Service Role is typically D:
+雲端服務角色上的 *%SystemDrive%* 通常為是 D：
 
-On a Virtual Machine:
+在虛擬機器上：
 
-    C:\Packages\Plugins\Microsoft.Azure.Diagnostics.IaaSDiagnostics\<DiagnosticsVersion>\Monitor\x64\table2csv maeventtable.tsf
+	C:\Packages\Plugins\Microsoft.Azure.Diagnostics.IaaSDiagnostics<DiagnosticsVersion>\Monitor\x64\table2csv maeventtable.tsf
 
-The above commands generates the log file *maeventtable.csv*, which you can open and inspect for failure messages.    
+上述命令會產生記錄檔 *maeventtable.csv*，您可以開啟檔案並檢查失敗的訊息。
 
 
-## <a name="diagnostics-data-tables-not-found"></a>Diagnostics data Tables not found
-The tables in Azure storage holding Azure diagnostics data are named using the code below:
+## 找不到診斷資料資料表
+在內含 Azure 診斷資料的 Azure 儲存體中，資料表是以下列程式碼命名：
 
-        if (String.IsNullOrEmpty(eventDestination)) {
-            if (e == "DefaultEvents")
-                tableName = "WADDefault" + MD5(provider);
-            else
-                tableName = "WADEvent" + MD5(provider) + eventId;
-        }
-        else
-            tableName = "WAD" + eventDestination;
+		if (String.IsNullOrEmpty(eventDestination)) {
+		    if (e == "DefaultEvents")
+		        tableName = "WADDefault" + MD5(provider);
+		    else
+		        tableName = "WADEvent" + MD5(provider) + eventId;
+		}
+		else
+		    tableName = "WAD" + eventDestination;
 
-Here is an example:
+下列是一個範例：
 
-        <EtwEventSourceProviderConfiguration provider=”prov1”>
-          <Event id=”1” />
-          <Event id=”2” eventDestination=”dest1” />
-          <DefaultEvents />
-        </EtwEventSourceProviderConfiguration>
-        <EtwEventSourceProviderConfiguration provider=”prov2”>
-          <DefaultEvents eventDestination=”dest2” />
-        </EtwEventSourceProviderConfiguration>
+		<EtwEventSourceProviderConfiguration provider=”prov1”>
+		  <Event id=”1” />
+		  <Event id=”2” eventDestination=”dest1” />
+		  <DefaultEvents />
+		</EtwEventSourceProviderConfiguration>
+		<EtwEventSourceProviderConfiguration provider=”prov2”>
+		  <DefaultEvents eventDestination=”dest2” />
+		</EtwEventSourceProviderConfiguration>
 
-That will generate 4 tables:
+這會產生 4 個資料表：
 
-Event|Table Name
+事件|資料表名稱
 ---|---
 provider=”prov1” &lt;Event id=”1” /&gt;|WADEvent+MD5(“prov1”)+”1”
 provider=”prov1” &lt;Event id=”2” eventDestination=”dest1” /&gt;|WADdest1
 provider=”prov1” &lt;DefaultEvents /&gt;|WADDefault+MD5(“prov1”)
 provider=”prov2” &lt;DefaultEvents eventDestination=”dest2” /&gt;|WADdest2
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0302_2016-------->

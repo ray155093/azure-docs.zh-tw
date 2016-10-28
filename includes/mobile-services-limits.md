@@ -1,20 +1,17 @@
 
-| TIER: | FREE | BASIC | STANDARD |
+| 層： | 可用 | 基本 | 標準 |
 |----|----|----|----|
-| API Calls | 500 K | 1.5 M / unit | 15 M / unit |
-| Active Devices | 500 | Unlimited | Unlimited |
-| Scale | N/A | Up to 6 units | Unlimited units |
-| Push Notifications | Notification Hubs Free Tier included, up to 1 M pushes | Notification Hubs Basic Tier included, up to 10 M pushes | Notification Hubs Standard Tier included, up to 10 M pushes |
-| Real time messaging/<br/>Web Sockets | Limited | 350 / mobile service | Unlimited |
-| Offline synchronizations | Limited | Included | Included |
-| Scheduled jobs  | Limited | Included | Included |
-| SQL Database (required) <br/>Standard rates apply for additional capacity | 20 MB included | 20 MB included | 20 MB included |
-| CPU capacity | 60 minutes / day | Unlimited | Unlimited |
-| Outbound data transfer | 165 MB per day (daily Rollover) | Included | Included |
+| API 呼叫 | 50 萬個 | 150 萬 / 單位 | 1500 萬 / 單位 |
+| 使用中裝置 | 500 | 無限 | 無限 |
+| 調整 | N/A | 最多 6 個單位 | 無單位限制 |
+| 推播通知 | 包含通知中樞免費層，最多 100 萬個推播 | 包含通知中樞基本層，最多 1000 萬個推播 | 包含通知中樞標準層，最多 1000 萬個推播 |
+| 即時傳訊/<br/>Web 通訊端 | 限制 | 350 / 行動服務 | 無限 |
+| 離線同步處理 | 限制 | 已包括 | 已包括 |
+| Scheduled jobs | 限制 | 已包括 | 已包括 |
+| SQL Database (必要) <br/>額外容量適用標準費率 | 包含 20 MB | 包含 20 MB | 包含 20 MB |
+| CPU 容量 | 60 分鐘 / 天 | 無限 | 無限 |
+| 輸出資料傳輸 | 每日 165 MB (每日變換) | 已包括 | 已包括 |
 
-For additional details on these limits and for information on pricing, see [Mobile Services Pricing](https://azure.microsoft.com/pricing/details/mobile-services/). 
+如需這些限制的其他詳細資料和價格的相關資訊，請參閱[行動服務價格](https://azure.microsoft.com/pricing/details/mobile-services/)。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=Oct15_HO3-->

@@ -1,79 +1,78 @@
 <properties 
-    pageTitle="What are Logic Apps?" 
-    description="Learn more about App Service Logic Apps" 
-    authors="kevinlam1" 
-    manager="dwrede" 
-    editor="" 
-    services="logic-apps" 
-    documentationCenter=""/>
+	pageTitle="什麼是 Logic Apps？" 
+	description="深入了解應用程式服務 Logic Apps" 
+	authors="kevinlam1" 
+	manager="dwrede" 
+	editor="" 
+	services="logic-apps" 
+	documentationCenter=""/>
 
 <tags
-    ms.service="logic-apps"
-    ms.workload="na"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="hero-article" 
-    ms.date="10/12/2016"
-    ms.author="klam"/>
+	ms.service="logic-apps"
+	ms.workload="na"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="hero-article" 
+	ms.date="07/12/2016"
+	ms.author="klam"/>
 
+#什麼是 Logic Apps？
 
-# <a name="what-are-logic-apps?"></a>What are Logic Apps?
+Logic Apps 提供簡化和實作雲端中可擴充整合和工作流程的途徑。它提供視覺化設計工具，以一系列的步驟 (也稱為工作流程) 為您的程序建立模型並加以自動化。雲端和內部部署中有[許多連接器](../connectors/apis-list.md)可快速整合各項服務和通訊協定。邏輯應用程式是以觸發程序為開端 (如「當帳戶加入至 Dynamics CRM 時」)，而在觸發後可以開始處理各種組合的動作、轉換和條件邏輯。
 
-Logic Apps provide a way to simplify and implement scalable integrations and workflows in the cloud. It provides a visual designer to model and automate your process as a series of steps known as a workflow.  There are [many connectors](../connectors/apis-list.md) across the cloud and on-premises to quickly integrate across services and protocols.  A logic app begins with a trigger (like 'When an account is added to Dynamics CRM') and after firing can begin many combinations actions, conversions, and condition logic.
+使用 Logic Apps 的優點包括︰
 
-The advantages of using Logic Apps include the following:  
+- 使用易於了解的設計工具來設計複雜程序以節省時間
+- 順暢地實作難以在程式碼中實作的模式和工作流程。
+- 從範本快速開始使用
+- 使用自己的自訂 API、程式碼和動作來自訂邏輯應用程式
+- 連接並同步處理跨內部部署與雲端的不同系統
+- 利用頂級整合支援打造 BizTalk Server、API 管理、Azure Functions 和 Azure 服務匯流排
 
-- Saving time by designing complex processes using easy to understand design tools
-- Implementing patterns and workflows seamlessly, that would otherwise be difficult to implement in code
-- Getting started quickly from templates
-- Customizing your logic app with your own custom APIs, code, and actions
-- Connect and synchronise disparate systems across on-premises and the cloud
-- Build off of BizTalk server, API Management, Azure Functions, and Azure Service Bus with first-class integration support
+Logic Apps 是完全受管理的 iPaaS (整合平台即服務)，可讓開發人員不必擔心建置裝載、延展性、可用性和管理。邏輯應用程式會自動相應增加以滿足需求。
 
-Logic Apps is a fully managed iPaaS (integration Platform as a Service) allowing developers not to have to worry about building hosting, scalability, availability and management.  Logic Apps will scale up automatically to meet demand.
+![流程應用程式設計工具](./media/app-service-logic-what-are-logic-apps/LogicAppCapture2.png)
 
-![Flow app designer](./media/app-service-logic-what-are-logic-apps/LogicAppCapture2.png)
-
-As mentioned, with Logic Apps, you can automate business processes. Here are a couple examples:  
+如先前所述，您可以使用 Logic Apps 將商務程序自動化。以下是一些範例︰
  
-* Move files uploaded to an FTP server into Azure Storage
-* Process and route orders across on-premises and cloud systems
-* Monitor all tweets about a certain topic, analyze the sentiment, and create alerts and tasks for items needing followup.
+* 將上傳至 FTP 伺服器的檔案移到 Azure 儲存體
+* 處理並路由傳送跨內部部署與雲端系統的訂單
+* 監視有關特定主題的所有推文、分析情感，以及針對需要後續追蹤的項目建立警示和工作。
 
-Scenarios such as these can be configured all from the visual designer and without writing a single line of code. Get started [building your logic app now][create].  Once written - a logic app can be [quickly deployed and reconfigured](app-service-logic-create-deploy-template.md) across multiple environments and regions.
+這些案例都能從視覺化設計工具加以設定，無需撰寫程式碼。立即開始[建置邏輯應用程式][create]。撰寫後 - 邏輯應用程式可能會[快速部署並重新設定](app-service-logic-create-deploy-template.md)於多個環境和區域。
 
-## <a name="why-logic-apps?"></a>Why Logic Apps?
+## 為什麼要使用 Logic Apps？
 
-Logic Apps brings speed and scalability into the enterprise integration space.  The ease of use of the designer, variety of available triggers and actions, and powerful management tools make centralizing your APIs simpler than ever.  As businesses move towards digitalization, Logic Apps allows you to connect legacy and cutting-edge systems together.
+Logic Apps 可提高企業整合的速度和延展性。容易使用的設計工具、各種可用的觸發程序和動作以及強大的管理工具，均讓您的 API 集中管理比以往更簡單。隨著企業邁向數位化，Logic Apps 可讓您將舊版和最先進的系統連接在一起。
 
-Additionally, with our [Enterprise Integration Account][biztalk] you can scale to mature integration scenarios with the power of a [XML messaging][xml], [trading partner management][tpm], and more.
+此外，透過我們的[企業整合帳戶][biztalk]，您可以利用 [XML 訊息][xml]、[交易夥伴管理][tpm]等的功能，擴展至成熟的整合案例。
 
-- **Easy to use design tools** - Logic Apps can be designed end-to-end in the browser or with Visual Studio tools. Start with a trigger - from a simple schedule to when a GitHub issue is created. Then orchestrate any number of actions using the rich gallery of connectors.
+- **容易使用的設計工具** - Logic Apps 可在瀏覽器中或使用 Visual Studio 工具端對端地設計。從觸發程序著手 - 從簡單的排程，以至建立 GitHub 問題時。然後，使用豐富的連接器資源庫協調任何數量的動作。
 
-- **Connect APIs easily** - Even composition tasks that are easy to describe are difficult to implement in code. Logic Apps makes it easy to connect disparate systems. Want to connect your cloud marketing solution to your on-premises billing system? Want to centralize messaging across APIs and systems with an Enterprise Service Bus? Logic apps are the fastest, most reliable way to deliver solutions to these problems.
+- **輕鬆連接 API** - 即使可輕鬆說明的撰寫工作，也很難在程式碼中實作。Logic Apps 可讓您輕鬆連接不同的系統。想要將您的雲端行銷解決方案連接到內部部署計費系統嗎？ 想要利用企業服務匯流排集中處理跨 API 與系統的訊息嗎？ 邏輯應用程式可用最快、最可靠方式，提供這些問題的解決方案。
 
-- **Get started quickly from templates** - To help you get started we've provided a [gallery of templates][templates] that allow you to rapidly create some common solutions. From advanced B2B solutions to simple SaaS connectivity, and even a few that are just 'for fun' - the gallery is the fastest way to get started with the power of Logic Apps.
+- **從範本快速開始使用** - 為了方便您著手使用，我們提供[範本庫][templates]，讓您可快速建立一些常見的解決方案。從進階 B2B 解決方案到簡單的 SaaS 連線 (甚至只為了「好玩」) - 資源庫是開始使用Logic Apps 強大功能的最快方式。
 
-- **Extensibility baked-in** - Don't see the connector you need? Logic Apps is designed to work with your own APIs and code; you can easily create your own API app to use as a custom connector, or call into an [Azure Function](https://functions.azure.com) to execute snippets of code on-demand. 
+- **現成可用的擴充性** - 找不到您所需要的連接器嗎？ Logic Apps 主要是用來處理您自己的 API 和程式碼。您可以輕鬆地建立自己的 API 應用程式以做為自訂連接器，或呼叫 [Azure 函式](https://functions.azure.com)以執行隨選程式碼片段。
 
-- **Real integration horsepower** - Start easy and grow as you need. Logic Apps can easily leverage the power of BizTalk, Microsoft's industry leading integration solution to enable integration professionals to build the solutions they need. Find out more about the [Enterprise Integration Pack](./app-service-logic-enterprise-integration-overview.md).
+- **真正的整合能力** - 入門容易，並且可依需求擴充。Logic Apps 可輕易地讓 Microsoft 領先業界的整合解決方案 BizTalk 發揮效益，使整合專業人員得以建置其所需的解決方案。深入了解[企業整合套件](./app-service-logic-enterprise-integration-overview.md)。
 
-## <a name="logic-app-concepts"></a>Logic App Concepts
+## 邏輯應用程式概念
 
-The following are some of the key pieces that comprise the Logic Apps experience. 
+以下是構成 Logic Apps 使用性的一些重要元素。
 
-- **Workflow** - Logic Apps provides a graphical way to model your business processes as a series of steps or a workflow.
-- **Managed Connectors** - Your logic apps need access to data and services. Managed connectors are created specifically to aid you when you are connecting to and working with your data. See the list of connectors available now in [managed connectors][managedapis].
-- **Triggers** - Some Managed Connectors can also act as a trigger. A trigger starts a new instance of a workflow based on a specific event, like the arrival of an e-mail or a change in your Azure Storage account.
--  **Actions** - Each step after the trigger in a workflow is called an action. Each action typically maps to an operation on your managed connector or custom API apps.
-- **Enterprise Integration Pack** - For more advanced integration scenarios, Logic Apps includes capabilities from BizTalk. BizTalk is Microsoft's industry leading integration platform. The Enterprise Integration Pack connectors allow you to easily include validation, transformation, and more in to your Logic App workflows.
+- **工作流程** - Logic Apps 提供圖形化的方式，以一系列的步驟或工作流程的形式為您的商務程序建立模型。
+- **受管理連接器** - 邏輯應用程式需要存取資料和服務。受管理連接器是為了讓協助您連接及使用資料而特別設計的。請參閱[受管理連接器][managedapis]中目前提供的連接器清單。
+- **觸發程序** - 某些受管理連接器也可以做為觸發程序。觸發程序會根據特定的事件建立新的工作流程執行個體，例如在電子郵件送達或您的 Azure 儲存體帳戶有所變更時。
+-  **動作** - 工作流程中觸發程序後的每個步驟登稱為動作。每個動作通常會對應至受管理連接器或自訂 API 應用程式上的作業。
+- **企業整合套件** - 在更進階的整合案例中，Logic Apps 會包含來自 BizTalk 的功能。BizTalk 是 Microsoft 領先業界的整合平台。「企業整合套件」連接器可讓您輕鬆地將驗證、轉換等項目納入邏輯應用程式工作流程中。
 
-## <a name="getting-started"></a>Getting Started  
+## 開始使用  
 
-- To get started with Logic Apps, follow the [create a Logic App][create] tutorial.  
-- [View common examples and scenarios](app-service-logic-examples-and-scenarios.md)
-- [You can automate business processes with Logic Apps](http://channel9.msdn.com/Events/Build/2016/T694) 
-- [Learn How to Integrate your systems with Logic Apps](http://channel9.msdn.com/Events/Build/2016/P462)
+- 若要開始使用 Logic Apps，請遵循[建立 Logic Apps ][create]教學課程。
+- [檢視常見的範例和案例](app-service-logic-examples-and-scenarios.md)
+- [您可以使用 Logic Apps 自動化商務程序](http://channel9.msdn.com/Events/Build/2016/T694)
+- [了解如何整合您的系統與 Logic Apps](http://channel9.msdn.com/Events/Build/2016/P462)
 
 [biztalk]: app-service-logic-enterprise-integration-accounts.md
 [appservice]: ../app-service/app-service-value-prop-what-is.md
@@ -83,8 +82,4 @@ The following are some of the key pieces that comprise the Logic Apps experience
 [xml]: app-service-logic-enterprise-integration-b2b.md
 [templates]: app-service-logic-use-logic-app-templates.md
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

@@ -1,129 +1,134 @@
 <properties
-    pageTitle="How Traffic Manager Works | Microsoft Azure"
-    description="This article explains how Azure Traffic Manager works"
-    services="traffic-manager"
-    documentationCenter=""
-    authors="sdwheeler"
-    manager="carmonm"
-    editor=""
-/>
+   pageTitle="流量管理員的運作方式 | Microsoft Azure"
+   description="本文會協助您了解流量管理員的運作方式"
+   services="traffic-manager"
+   documentationCenter=""
+   authors="sdwheeler"
+   manager="carmonm"
+   editor="tysonn"/>
+
 <tags
-    ms.service="traffic-manager"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.tgt_pltfrm="na"
-    ms.workload="infrastructure-services"
-    ms.date="10/11/2016"
-    ms.author="sewhee"
-/>
+   ms.service="traffic-manager"
+   ms.devlang="na"
+   ms.topic="article"
+   ms.tgt_pltfrm="na"
+   ms.workload="infrastructure-services"
+   ms.date="06/07/2016"
+   ms.author="sewhee"/>
 
+# 流量管理員的運作方式
 
-# <a name="how-traffic-manager-works"></a>How Traffic Manager works
+Azure 流量管理員可讓您控制流量分散到應用程式端點的方式。端點可以是裝載於 Azure 或 Azure 外部的任何網際網路對向端點。
 
-Azure Traffic Manager enables you to control the distribution of traffic across your application endpoints. An endpoint is any Internet-facing service hosted inside or outside of Azure.
+流量管理員提供兩大優點︰
 
-Traffic Manager provides two key benefits:
+1. 根據幾個[流量路由方法](traffic-manager-routing-methods.md)的其中之一分散流量
+2. [連續監視端點健康狀態](traffic-manager-monitoring.md)以及在端點失敗時自動容錯移轉
 
-1. Distribution of traffic according to one of several [traffic-routing methods](traffic-manager-routing-methods.md)
-2. [Continuous monitoring of endpoint health](traffic-manager-monitoring.md) and automatic failover when endpoints fail
+當使用者嘗試連接到服務端點時，他們的用戶端 (電腦、電話等等) 必須先將該端點的 DNS 名稱解析為 IP 位址。然後用戶端才能連接到該 IP 位址以存取服務。
 
-When a client attempts to connect to a service, it must first resolve the DNS name of the service to an IP address. The client then connects to that IP address to access the service.
+**最重要的一點是了解流量管理員是在 DNS 層級上運作。** 流量管理員會根據選擇的流量路由方法和目前的端點健康狀態，使用 DNS 將使用者導向至特定的服務端點。然後用戶端就會**直接**連接到所選端點。流量管理員不是 Proxy，看不到在用戶端與服務間傳遞的流量。
 
-**The most important point to understand is that Traffic Manager works at the DNS level.**  Traffic Manager uses DNS to direct clients to specific service endpoints based on the rules of the traffic-routing method. Clients connect to the selected endpoint **directly**. Traffic Manager is not a proxy or a gateway. Traffic Manager does not see the traffic passing between the client and the service.
+## 流量管理員範例
 
-## <a name="traffic-manager-example"></a>Traffic Manager example
+Contoso Corp 開發出新的合作夥伴入口網站。這個入口網站的 URL 會是 https://partners.contoso.com/login.aspx。應用程式裝載在 Azure 中，為改善可用性和全域效能最大化，他們想要將此應用程式部署到全球 3 個區域，並使用流量管理員將使用者分散到距離最近的可用端點。
 
-Contoso Corp have developed a new partner portal. The URL for this portal is https://partners.contoso.com/login.aspx. The application is hosted in three regions of Azure. To improve availability and maximize global performance, they use Traffic Manager to distribute client traffic to the closest available endpoint.
+若要達成這項組態︰
 
-To achieve this configuration:
+- 他們要部署 3 個服務執行個體。這些部署的 DNS 名稱為 ‘contoso-us.cloudapp.net’、’contoso-eu.cloudapp.net’ 和 ‘contoso-asia.cloudapp.net’。
+- 然後他們要建立名為 'contoso.trafficmanager.net' 的流量管理員設定檔，它已設定為在前述 3 個端點之間使用「效能」流量路由方法。
+- 最後，他們會使用 DNS CNAME 記錄，將虛名網域 'partners.contoso.com' 設定成指向 'contoso.trafficmanager.net'。
 
-- They deploy three instances of their service. The DNS names of these deployments are 'contoso-us.cloudapp.net', 'contoso-eu.cloudapp.net', and 'contoso-asia.cloudapp.net'.
-- They then create a Traffic Manager profile, named 'contoso.trafficmanager.net', and configure it to use the 'Performance' traffic-routing method across the three endpoints.
-- Finally, they configure their vanity domain name, 'partners.contoso.com', to point to 'contoso.trafficmanager.net', using a DNS CNAME record.
+![流量管理員 DNS 組態][1]
 
-![Traffic Manager DNS configuration][1]
+> [AZURE.NOTE] 虛名網域配合 Azure 流量管理員使用時，您必須使用 CNAME 將虛名網域名稱指向流量管理員網域名稱。
 
-> [AZURE.NOTE] When using a vanity domain with Azure Traffic Manager, you must use a CNAME to point your vanity domain name to your Traffic Manager domain name. DNS standards do not allow you to create a CNAME at the 'apex' (or root) of a domain. Thus you cannot create a CNAME for 'contoso.com' (sometimes called a 'naked' domain). You can only create a CNAME for a domain under 'contoso.com', such as 'www.contoso.com'. To work around this limitation, we recommend using a simple HTTP redirect to direct requests for 'contoso.com' to an alternative name such as 'www.contoso.com'.
+> 由於 DNS 標準的限制，CNAME 無法建立在網域的「頂點」(或根)。因此您無法建立 'contoso.com' 的 CNAME (有時稱為「裸」網域)。您可以只為 'contoso.com' 下的網域建立 CNAME，例如 'www.contoso.com'。
 
-## <a name="how-clients-connect-using-traffic-manager"></a>How clients connect using Traffic Manager
+> 因此，您無法直接對裸網域使用流量管理員。若要解決這個問題，我們建議您使用簡單的 HTTP 重新導向至替代名稱的 'contoso.com' 直接要求，例如 'www.contoso.com'。
 
-Continuing from the previous example, when a client requests the page https://partners.contoso.com/login.aspx, the client performs the following steps to resolve the DNS name and establish a connection:
+## 用戶端連接如何使用流量管理員
 
-![Connection establishment using Traffic Manager][2]
+當使用者要求網頁 https://partners.contoso.com/login.aspx 時 (如上例所述)，其用戶端會執行下列步驟來解析 DNS 名稱並建立連接。
 
-1. The client sends a DNS query to its configured recursive DNS service to resolve the name 'partners.contoso.com'. A recursive DNS service, sometimes called a 'local DNS' service, does not host DNS domains directly. Rather, the client off-loads the work of contacting the various authoritative DNS services across the Internet needed to resolve a DNS name.
-2. To resolve the DNS name, the recursive DNS service finds the name servers for the 'contoso.com' domain. It then contacts those name servers to request the 'partners.contoso.com' DNS record. The contoso.com DNS servers return the CNAME record that points to contoso.trafficmanager.net.
-3. Next, the recursive DNS service finds the name servers for the 'trafficmanager.net' domain, which are provided by the Azure Traffic Manager service. It then sends a request for the 'contoso.trafficmanager.net' DNS record to those DNS servers.
-4. The Traffic Manager name servers receive the request. They choose an endpoint based on:
+![使用流量管理員建立連接][2]
 
-    * The configured state of each endpoint (disabled endpoints are not returned)
-    * The current health of each endpoint, as determined by the Traffic Manager health checks. For more information, see [Traffic Manager Endpoint Monitoring](traffic-manager-monitoring.md).
-    * The chosen traffic-routing method. For more information, see [Traffic Manager Routing Methods](traffic-manager-routing-methods.md).
+1.	用戶端 (電腦、電話等等) 會對其設定的遞迴 DNS 服務建立 'partners.contoso.com' 的 DNS 查詢。(遞迴 DNS 服務有時稱為「本機 DNS」服務，不直接裝載 DNS 網域。反而是用戶端用它來卸載網際網路所需之各種授權的 DNS 服務聯繫工作，以解析 DNS 名稱。)
+2.	遞迴 DNS 服務現在會解析 'partners.contoso.com' DNS 名稱。遞迴 DNS 服務會先找出 'contoso.com' 網域的名稱伺服器。接著連絡這些名稱伺服器，要求 'partners.contoso.com' DNS 記錄。傳回 contoso.trafficmanager.net 的 CNAME。
+3.	遞迴 DNS 服務現在會尋找 Azure 流量管理員服務所提供的 'trafficmanager.net' 網域名稱伺服器。連絡這些名稱伺服器，要求 ‘contoso.trafficmanager.net’ DNS 記錄。
+4.	流量管理員名稱伺服器接收要求。它們會選擇應該傳回的端點，其依據為︰a.每個端點的啟用/停用狀態 (不傳回停用的端點) b.每個端點目前的健康狀態，由流量管理員健康狀態檢查所決定。如需詳細資訊，請參閱＜流量管理員端點監視＞。c.所選的流量路由方法。如需詳細資訊，請參閱＜流量管理員流量路由方法＞。
+5.	所選端點會傳回為另一個 DNS CNAME 記錄，在本例中，讓我們假設傳回的是 contoso-us.cloudapp.net。
+6.	遞迴 DNS 服務現在會找出 ‘cloudapp.net’ 網域的名稱伺服器。連絡這些名稱伺服器，要求 ‘contoso-us.cloudapp.net’ DNS 記錄。即傳回包含美國服務端點 IP 位址的 DNS 'A' 記錄。
+7.	遞迴 DNS 服務會將上述名稱解析序列的合併結果傳回用戶端。
+8.	用戶端收到來自遞迴 DNS 服務的 DNS 結果並連接至指定的 IP 位址。請注意，它會直接連接至應用程式服務端點，不透過流量管理員。因為它是 HTTPS 端點，所以會執行必要的 SSL/TLS 交握，然後提出 ‘/login.aspx’ 頁面的 HTTP GET 要求。
 
-5. The chosen endpoint is returned as another DNS CNAME record. In this case, let us suppose contoso-us.cloudapp.net is returned.
-6. Next, the recursive DNS service finds the name servers for the 'cloudapp.net' domain. It contacts those name servers to request the 'contoso-us.cloudapp.net' DNS record. A DNS 'A' record containing the IP address of the US-based service endpoint is returned.
-7. The recursive DNS service consolidates the results and returns a single DNS response to the client.
-8. The client receives the DNS results and connects to the given IP address. The client connects to the application service endpoint directly, not through Traffic Manager. Since it is an HTTPS endpoint, the client performs the necessary SSL/TLS handshake, and then makes an HTTP GET request for the '/login.aspx' page.
+請注意，遞迴 DNS 服務會快取它收到的 DNS 回應，使用者裝置上的 DNS 用戶端也會這樣做。使用快取的資料而不查詢其他名稱伺服器，可以更快回應後續的 DNS 查詢。快取持續時間取決於每個 DNS 記錄的「存留時間」(TTL) 屬性。較短的值會有更快的快取到期，因此出入流量管理員名稱伺服器的次數會更多；較長的值則表示從失敗的端點導出流量需要更長的時間。流量管理員允許您設定流量管理員 DNS 回應中使用的 TTL，讓您選擇最能平衡應用程式需求的值。
 
-The recursive DNS service caches the DNS responses it receives. The DNS resolver on the client device also caches the result. Caching enables subsequent DNS queries to be answered more quickly by using data from the cache rather than querying other name servers. The duration of the cache is determined by the 'time-to-live' (TTL) property of each DNS record. Shorter values result in faster cache expiry and thus more round-trips to the Traffic Manager name servers. Longer values mean that it can take longer to direct traffic away from a failed endpoint. Traffic Manager allows you to configure the TTL used in Traffic Manager DNS responses, enabling you to choose the value that best balances the needs of your application.
+## 常見問題集
 
-## <a name="faq"></a>FAQ
+### 「流量管理員」使用什麼 IP 位址？
 
-### <a name="what-ip-address-does-traffic-manager-use?"></a>What IP address does Traffic Manager use?
+如＜流量管理員的運作方式＞所述，「流量管理員」是在 DNS 層級運作。它會使用 DNS 回應將用戶端導向到適當的服務端點。用戶端會接著直接連線到服務端點，而不會透過「流量管理員」。
 
-As explained in How Traffic Manager Works, Traffic Manager works at the DNS level. It sends DNS responses to direct clients to the appropriate service endpoint. Clients then connect to the service endpoint directly, not through Traffic Manager.
+因此，「流量管理員」並不提供端點或 IP 位址來供用戶端連線。所以，舉例來說，如果需要靜態 IP 位址，就必須在服務設定該位址，而不在「流量管理員」中設定。
 
-Therefore, Traffic Manager does not provide an endpoint or IP address for clients to connect to. Therefore, if you want static IP address for your service, that must be configured at the service, not in Traffic Manager.
+### 「流量管理員」是否支援「黏性」工作階段？
 
-### <a name="does-traffic-manager-support-'sticky'-sessions?"></a>Does Traffic Manager support 'sticky' sessions?
+如[上面](#how-clients-connect-using-traffic-manager)所述，「流量管理員」是在 DNS 層級上運作。它會使用 DNS 回應將用戶端導向到適當的服務端點。用戶端會接著直接連線到服務端點，而不會透過「流量管理員」。因此，「流量管理員」並看不見用戶端與伺服器之間的 HTTP 流量，包括 Cookie。
 
-As explained [previously](#how-clients-connect-using-traffic-manager), Traffic Manager works at the DNS level. It uses DNS responses to direct clients to the appropriate service endpoint. Clients connect to the service endpoint directly, not through Traffic Manager. Therefore, Traffic Manager does not see the HTTP traffic between the client and the server.
+此外，請注意，「流量管理員」所收到之 DNS 查詢的來源 IP 位址是遞迴 DNS 服務的 IP 位址，而不是用戶端的 IP 位址。
 
-Additionally, the source IP address of the DNS query received by Traffic Manager belongs to the recursive DNS service, not the client. Therefore, Traffic Manager has no way to track individual clients and cannot implement 'sticky' sessions. This limitation is common to all DNS-based traffic management systems and is not specific to Traffic Manager.
+因此，「流量管理員」無法識別或追蹤個別的用戶端，也就無法實作「黏性」工作階段。這對所有 DNS 型流量管理系統來說很常見，並不是因使用「流量管理員」而產生的限制。
 
-### <a name="why-am-i-seeing-an-http-error-when-using-traffic-manager?"></a>Why am I seeing an HTTP error when using Traffic Manager?
+### 我在使用「流量管理員」時看到 HTTP 錯誤，為什麼？
 
-As explained [previously](#how-clients-connect-using-traffic-manager), Traffic Manager works at the DNS level. It uses DNS responses to direct clients to the appropriate service endpoint. Clients then connect to the service endpoint directly, not through Traffic Manager. Traffic Manager does not see HTTP traffic between client and server. Therefore, any HTTP error you see must be coming from your application. For the client to connect to the application, all DNS resolution steps are complete. That includes any interaction that Traffic Manager has on the application traffic flow.
+如[上面](#how-clients-connect-using-traffic-manager)所述，「流量管理員」是在 DNS 層級上運作。它會使用 DNS 回應將用戶端導向到適當的服務端點。用戶端會接著直接連線到服務端點，而不會透過「流量管理員」。
 
-Further investigation should therefore focus on the application.
+因此，「流量管理員」並看不見用戶端與伺服器之間的 HTTP 流量，也就無法產生 HTTP 層級的錯誤。您看到的任何 HTTP 錯誤必定來自您的應用程式。因為用戶端是連線到應用程式，所以這也意謂著包括「流量管理員」角色在內的 DNS 解析必定已經完成。
 
-The HTTP host header sent from the client's browser is the most common source of problems. Make sure that the application is configured to accept the correct host header for the domain name you are using. For endpoints using the Azure App Service, see [configuring a custom domain name for a web app in Azure App Service using Traffic Manager](../app-service-web/web-sites-traffic-manager-custom-domain-name.md).
+因此，進一步的調查應該將焦點放在應用程式上。
 
-### <a name="what-is-the-performance-impact-of-using-traffic-manager?"></a>What is the performance impact of using Traffic Manager?
+一個常見的問題是使用「流量管理員」時，瀏覽器傳遞給應用程式的「主機」HTTP 標頭會顯示瀏覽器中使用的網域名稱。如果您在測試期間使用「流量管理員」網域名稱 (例如 myprofile.trafficmanager.net)，這就可能是該網域名稱，或者也可能是設定為指向「流量管理員」網域名稱的虛名網域 CNAME。不論是上述哪一種情況，都請確認應用程式已設定為接受此主機標頭。
 
-As explained [previously](#how-clients-connect-using-traffic-manager), Traffic Manager works at the DNS level. Since clients connect to your service endpoints directly, there is no performance impact incurred when using Traffic Manager once the connection is established.
+如果您的應用程式是裝載在 Azure App Service 中，請參閱[在使用流量管理員的 Azure App Service 中設定 Web 應用程式的自訂網域名稱](../app-service-web/web-sites-traffic-manager-custom-domain-name.md)。
 
-Since Traffic Manager integrates with applications at the DNS level, it does require an additional DNS lookup to be inserted into the DNS resolution chain (see [Traffic Manager examples](#traffic-manager-example)). The impact of Traffic Manager on DNS resolution time is minimal. Traffic Manager uses a global network of name servers, and uses [anycast](https://en.wikipedia.org/wiki/Anycast) networking to ensure DNS queries are always routed to the closest available name server. In addition, caching of DNS responses means that the additional DNS latency incurred by using Traffic Manager applies only to a fraction of sessions.
+### 使用「流量管理員」對效能有什麼影響？
 
-The Performance method routes traffic to the closest available endpoint. The net result is that the overall performance impact associated with this method should be minimal. Any increase in DNS latency should be offset by lower network latency to the endpoint.
+如[上面](#how-clients-connect-using-traffic-manager)所述，「流量管理員」是在 DNS 層級上運作。它會使用 DNS 回應將用戶端導向到適當的服務端點。用戶端會接著直接連線到服務端點，而不會透過「流量管理員」。
 
-### <a name="what-application-protocols-can-i-use-with-traffic-manager?"></a>What application protocols can I use with Traffic Manager?
+由於用戶端會直接連線到服務端點，因此在連線建立之後，使用「流量管理員」時並不會造成任何效能影響。
 
-As explained [previously](#how-clients-connect-using-traffic-manager), Traffic Manager works at the DNS level. Once the DNS lookup is complete, clients connect to the application endpoint directly, not through Traffic Manager. Therefore the connection can use any application protocol. However, Traffic Manager's endpoint health checks require either an HTTP or HTTPS endpoint. The endpoint for a health check can be different than the application endpoint that clients connect to.
+因為「流量管理員」會在 DNS 層級與應用程式整合，所以它確實需要在 DNS 解析鏈結中插入額外的 DNS 查閱 (請參閱 [流量管理員範例](#traffic-manager-example))。「流量管理員」對 DNS 解析時間的影響極小。「流量管理員」會使用名稱伺服器全球網路，以及使用任一傳播網路功能，來確保一律會將 DNS 查詢傳遞至最靠近的可用名稱伺服器。此外，快取 DNS 回應意謂著因使用「流量管理員」而造成的額外 DNS 延遲僅適用於一小部分工作階段。
 
-### <a name="can-i-use-traffic-manager-with-a-'naked'-domain-name?"></a>Can I use Traffic Manager with a 'naked' domain name?
+最後結果就是與將「流量管理員」併入您應用程式中關聯的整體效能影響應該極小。
 
-No. The DNS standards do not permit CNAMEs to co-exist with other DNS records of the same name. The apex (or root) of a DNS zone always contains two pre-existing DNS records; the SOA and the authoritative NS records. This means a CNAME record cannot be created at the zone apex without violating the DNS standards.
+此外，在使用「流量管理員」的[「效能」流量路由方法](traffic-manager-routing-methods.md#performance-traffic-routing-method)的情況下，所增加的 DNS 延遲應該遠大於透過將使用者傳遞至其最靠近之可用端點來達成的效能改進幅度。
 
-As explained in the [Traffic Manager example](#traffic-manager-example), Traffic Manager requires a DNS CNAME record to map the vanity DNS name. For example, you map www.contoso.com to the Traffic Manager profile DNS name contoso.trafficmanager.net. Additionally, the Traffic Manager profile returns a second DNS CNAME to indicate which endpoint the client should connect to.
+### 我可以搭配「流量管理員」使用哪些應用程式通訊協定？
+如[上面](#how-clients-connect-using-traffic-manager)所述，「流量管理員」是在 DNS 層級上運作。完成 DNS 查閱之後，用戶端就會直接連線到應用程式端點，而不會透過「流量管理員」。因此，此連線可以使用任何應用程式通訊協定。
 
-To work around this issue, we recommend using an HTTP redirect to direct traffic from the naked domain name to a different URL, which can then use Traffic Manager. For example, the naked domain 'contoso.com' can redirect users to the CNAME 'www.contoso.com' that points to the Traffic Manager DNS name.
+不過，「流量管理員」的端點健全狀況檢查會需要 HTTP 或 HTTPS 端點。這可以與用戶端所連線的應用程式端點分開，方法是在「流量管理員」設定檔健全狀況檢查設定中指定不同的 TCP 連接埠或 URI 路徑。
 
-Full support for naked domains in Traffic Manager is tracked in our feature backlog. You can register your support for this feature request by [voting for it on our community feedback site](https://feedback.azure.com/forums/217313-networking/suggestions/5485350-support-apex-naked-domains-more-seamlessly).
+### 我是否可以使用「流量管理員」搭配「裸」(無 www) 網域名稱？
 
-## <a name="next-steps"></a>Next steps
+目前不支援。
 
-Learn more about Traffic Manager [endpoint monitoring and automatic failover](traffic-manager-monitoring.md).
+DNS CNAME 記錄類型是用來建立從一個 DNS 名稱到另一個名稱的對應。如[流量管理員範例](#traffic-manager-example)所述，「流量管理員」必須要有 DNS CNAME 記錄，才能將虛名 DNS 名稱 (例如 www.contoso.com) 對應到「流量管理員」設定檔 DNS 名稱 (例如 contoso.trafficmanager.net)。此外，「流量管理員」設定檔本身會傳回第二個 DNS CNAME，以指出用戶端應該連線到哪一個端點。
 
-Learn more about Traffic Manager [traffic routing methods](traffic-manager-routing-methods.md).
+DNS 標準並不允許 CNAME 與其他相同類型的 DNS 記錄並存。由於 DNS 區域的頂點 (或根) 一律會包含兩個預先存在的 DNS 記錄 (SOA 和權威性 NS 記錄)，因此這意謂著無法在不違反 DNS 標準的情況下，在區域頂點建立 CNAME 記錄。
+
+為了解決此問題，我們建議使用裸 (無 www) 網域且想要使用「流量管理員」的服務應該使用 HTTP 重新導向，將流量從裸網域導向到不同的 URL，然後便可藉此使用「流量管理員」。例如，裸網域 ‘contoso.com’ 可以將使用者重新導向到 ‘www.contoso.com’，然後便可藉此使用「流量管理員」。
+
+我們的功能待處理項目中追蹤了對「流量管理員」中裸網域的完整支援。如果您對此功能感興趣，請[在我們的社群意見反應網站投票給它](https://feedback.azure.com/forums/217313-networking/suggestions/5485350-support-apex-naked-domains-more-seamlessly)來登錄您的支持。
+
+## 後續步驟
+
+深入了解「流量管理員」的[端點監視和自動容錯移轉](traffic-manager-monitoring.md)。
+
+深入了解「流量管理員」的[流量路由方法](traffic-manager-routing-methods.md)。
 
 <!--Image references-->
 [1]: ./media/traffic-manager-how-traffic-manager-works/dns-configuration.png
 [2]: ./media/traffic-manager-how-traffic-manager-works/flow.png
 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

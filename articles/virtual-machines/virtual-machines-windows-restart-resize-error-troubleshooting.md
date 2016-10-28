@@ -1,6 +1,6 @@
 <properties
-   pageTitle="VM restarting or resizing issues | Microsoft Azure"
-   description="Troubleshoot Resource Manager deployment issues with restarting or resizing an existing Windows Virtual Machine in Azure"
+   pageTitle="VM 重新啟動或調整大小的問題 | Microsoft Azure"
+   description="針對在 Azure 中重新啟動或調整現有 Windows 虛擬機器的 Resource Manager 部署問題進行疑難排解"
    services="virtual-machines-windows, azure-resource-manager"
    documentationCenter=""
    authors="Deland-Han"
@@ -17,66 +17,61 @@
    ms.date="09/09/2016"
    ms.author="delhan"/>
 
+# 針對在 Azure 中重新啟動或調整現有 Windows 虛擬機器的 Resource Manager 部署問題進行疑難排解
 
-# <a name="troubleshoot-resource-manager-deployment-issues-with-restarting-or-resizing-an-existing-windows-virtual-machine-in-azure"></a>Troubleshoot Resource Manager deployment issues with restarting or resizing an existing Windows Virtual Machine in Azure
+當您嘗試啟動已停止的 Azure 虛擬機器 (VM)，或調整現有 Azure VM 的大小時，常會遇到的錯誤是配置失敗。當叢集或區域沒有可用的資源或無法支援所要求的 VM 大小，就會產生此錯誤。
 
-When you try to start a stopped Azure Virtual Machine (VM), or resize an existing Azure VM, the common error you encounter is an allocation failure. This error results when the cluster or region either does not have resources available or cannot support the requested VM size.
+[AZURE.INCLUDE [支援免責聲明](../../includes/support-disclaimer.md)]
 
-[AZURE.INCLUDE [support-disclaimer](../../includes/support-disclaimer.md)]
+## 收集稽核記錄檔
 
-## <a name="collect-audit-logs"></a>Collect audit logs
+若要開始進行排解疑難，請收集稽核記錄，識別與問題相關的錯誤。下列連結提供此程序的更多詳細資訊：
 
-To start troubleshooting, collect the audit logs to identify the error associated with the issue. The following links contain detailed information on the process:
+[使用 Azure 入口網站疑難排解資源群組部署](../resource-manager-troubleshoot-deployments-portal.md)
 
-[Troubleshooting resource group deployments with Azure Portal](../resource-manager-troubleshoot-deployments-portal.md)
+[使用 Resource Manager 來稽核作業](../resource-group-audit.md)
 
-[Audit operations with Resource Manager](../resource-group-audit.md)
+## 問題：啟動已停止的 VM 時發生錯誤
 
-## <a name="issue:-error-when-starting-a-stopped-vm"></a>Issue: Error when starting a stopped VM
+您嘗試啟動已停止的 VM，但是發現配置失敗。
 
-You try to start a stopped VM but get an allocation failure.
+### 原因
 
-### <a name="cause"></a>Cause
+必須在架設雲端服務的原始叢集上嘗試提出啟動已停止的 VM 要求。不過，叢集沒有足夠空間可完成要求。
 
-The request to start the stopped VM has to be attempted at the original cluster that hosts the cloud service. However, the cluster does not have free space available to fulfill the request.
+### 解決方案
 
-### <a name="resolution"></a>Resolution
+*	停止可用性設定組中的所有 VM，然後重新啟動每一部 VM。
 
-*   Stop all the VMs in the availability set, and then restart each VM.
+  1. 按一下 [資源群組] >「您的資源群組」 > [資源] >「您的可用性設定組」 > [虛擬機器] >「您的虛擬機器」 > [停止]。
 
-  1. Click **Resource groups** > _your resource group_ > **Resources** > _your availability set_ > **Virtual Machines** > _your virtual machine_ > **Stop**.
+  2. 所有 VM 都停止後，選取每個已停止的 VM，然後按一下 [開始]。
 
-  2. After all the VMs stop, select each of the stopped VMs and click Start.
+*	稍後再重試重新啟動要求。
 
-*   Retry the restart request at a later time.
+## 問題：調整現有 VM 的大小時發生錯誤
 
-## <a name="issue:-error-when-resizing-an-existing-vm"></a>Issue: Error when resizing an existing VM
+您嘗試調整現有 VM 的大小，但是發現配置失敗。
 
-You try to resize an existing VM but get an allocation failure.
+### 原因
 
-### <a name="cause"></a>Cause
+必須在架設雲端服務的原始叢集上嘗試提出調整 VM 大小的要求。不過，叢集不支援要求的 VM 大小。
 
-The request to resize the VM has to be attempted at the original cluster that hosts the cloud service. However, the cluster does not support the requested VM size.
+### 解決方案
 
-### <a name="resolution"></a>Resolution
+* 以較小的 VM 大小重試要求。
 
-* Retry the request using a smaller VM size.
+* 如果無法變更要求的 VM 的大小︰
 
-* If the size of the requested VM cannot be changed：
+  1. 停止可用性設定組中的所有 VM。
 
-  1. Stop all the VMs in the availability set.
+    * 按一下 [資源群組] >「您的資源群組」 > [資源] >「您的可用性設定組」 > [虛擬機器] >「您的虛擬機器」 > [停止]。
 
-    * Click **Resource groups** > _your resource group_ > **Resources** > _your availability set_ > **Virtual Machines** > _your virtual machine_ > **Stop**.
+  2. 所有 VM 都停止後，將所需 VM 調整為較大的大小。
+  3. 選取已調整大小的 VM，按一下 [啟動]，然後啟動每個已停止的 VM。
 
-  2. After all the VMs stop, resize the desired VM to a larger size.
-  3. Select the resized VM and click **Start**, and then start each of the stopped VMs.
+## 後續步驟
 
-## <a name="next-steps"></a>Next steps
+如果您在 Azure 中建立新的 Windows VM 時遇到問題，請參閱[針對在 Azure 中建立新 Windows 虛擬機器的部署問題進行疑難排解](../virtual-machines/virtual-machines-windows-troubleshoot-deployment-new-vm.md)。
 
-If you encounter issues when you create a new Windows VM in Azure, see [Troubleshoot deployment issues with creating a new Windows virtual machine in Azure](../virtual-machines/virtual-machines-windows-troubleshoot-deployment-new-vm.md).
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

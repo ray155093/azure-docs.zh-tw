@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Using the Box Connector in Logic Apps | Microsoft Azure App Service"
-   description="How to create and configure the Box Connector or API app and use it in a logic app in Azure App Service"
+   pageTitle="在 Logic Apps 中使用 Box 連接器 | Microsoft Azure App Service"
+   description="如何建立並設定 Box 連接器或 API 應用程式，並在 Azure App Service 的邏輯應用程式中使用它"
    services="logic-apps"
    documentationCenter=".net,nodejs,java"
    authors="msftman"
@@ -16,18 +16,14 @@
    ms.date="04/19/2016"
    ms.author="deonhe"/>
 
+# Box 連接器已改善 
 
-# <a name="we've-improved-the-box-connector"></a>We've improved the Box connector 
-
-We've removed the content (which targeted Logic apps version 2014-12-01-preview) from this page because this connector has been upgraded and is now only supported on the new [Logic Apps schema version 2015-08-01-preview](./app-service-logic-schema-2015-08-01.md) and later. 
-
-
-## <a name="next-steps"></a>Next steps    
-
-- [Learn more about the this new connector](../connectors/connectors-create-api-box.md)
-- See [the full list](../connectors/apis-list.md) of all connectors that run on the new Logic Apps schema version 2015-08-01-preview  
+已移除本頁中與邏輯應用程式版本 2014-12-01 預覽相關的內容，因為這個連接器已升級，而且現在只獲新的[邏輯應用程式結構描述版本 2015-08-01 預覽](./app-service-logic-schema-2015-08-01.md)和更新版本支援。
 
 
-<!--HONumber=Oct16_HO2-->
+## 後續步驟    
 
+- [深入了解這個新連接器](../connectors/connectors-create-api-box.md)
+- 請參閱在新的邏輯應用程式結構描述版本 2015-08-01 預覽上執行之所有連接器的[完整清單](../connectors/apis-list.md)
 
+<!---HONumber=AcomDC_0803_2016-->

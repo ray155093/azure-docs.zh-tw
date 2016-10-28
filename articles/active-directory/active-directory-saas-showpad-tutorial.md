@@ -1,290 +1,289 @@
 <properties
-    pageTitle="Tutorial: Azure Active Directory integration with Showpad | Microsoft Azure"
-    description="Learn how to configure single sign-on between Azure Active Directory and Showpad."
-    services="active-directory"
-    documentationCenter=""
-    authors="jeevansd"
-    manager="femila"
-    editor=""/>
+	pageTitle="教學課程：Azure Active Directory 與 Showpad 整合 | Microsoft Azure"
+	description="了解如何設定 Azure Active Directory 與 Showpad 之間的單一登入。"
+	services="active-directory"
+	documentationCenter=""
+	authors="jeevansd"
+	manager="femila"
+	editor=""/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/01/2016"
-    ms.author="jeedes"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/01/2016"
+	ms.author="jeedes"/>
 
 
+# 教學課程：Azure Active Directory 與 Showpad 整合
 
-# <a name="tutorial:-azure-active-directory-integration-with-showpad"></a>Tutorial: Azure Active Directory integration with Showpad
+本教學課程旨在說明如何整合 Showpad 與 Azure Active Directory (Azure AD)。
 
-The objective of this tutorial is to show you how to integrate Showpad with Azure Active Directory (Azure AD).
+Showpad 與 Azure AD 整合提供下列優點：
 
-Integrating Showpad with Azure AD provides you with the following benefits:
+- 您可以在 Azure AD 中控制可存取 Showpad 的人員
+- 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Showpad (單一登入)
+- 您可以在 Azure Active Directory 入口網站集中管理您的帳戶。
 
-- You can control in Azure AD who has access to Showpad
-- You can enable your users to automatically get signed-on to Showpad (Single Sign-On) with their Azure AD accounts
-- You can manage your accounts in one central location - the Azure Active Directory Portal
+若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
 
-If you want to know more details about SaaS app integration with Azure AD, see [What is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).
+## 必要條件
 
-## <a name="prerequisites"></a>Prerequisites
+若要設定 Azure AD 與 Showpad 的整合，您需要下列項目：
 
-To configure Azure AD integration with Showpad, you need the following items:
-
-- An Azure AD subscription
-- A Showpad subscription
-
-
-> [AZURE.NOTE] To test the steps in this tutorial, we do not recommend using a production environment.
+- Azure AD 訂用帳戶
+- Showpad 訂用帳戶
 
 
-To test the steps in this tutorial, you should follow these recommendations:
-
-- You should not use your production environment, unless this is necessary.
-- If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).
+> [AZURE.NOTE] 若要測試本教學課程中的步驟，我們不建議使用生產環境。
 
 
-## <a name="scenario-description"></a>Scenario Description
-The objective of this tutorial is to enable you to test Azure AD single sign-on in a test environment. 
+若要測試本教學課程中的步驟，您應該遵循這些建議：
 
-The scenario outlined in this tutorial consists of two main building blocks:
-
-1. Adding Showpad from the gallery
-2. Configuring and testing Azure AD single sign-on
+- 除非必要，否則您不應使用生產環境，。
+- 如果您沒有 Azure AD 試用環境，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
 
 
-## <a name="adding-showpad-from-the-gallery"></a>Adding Showpad from the gallery
-To configure the integration of Showpad into Azure AD, you need to add Showpad from the gallery to your list of managed SaaS apps.
+## 案例描述
+此教學課程的目標是讓您在測試環境中測試 Azure AD 單一登入。
 
-**To add Showpad from the gallery, perform the following steps:**
+本教學課程中說明的案例由二個主要建置組塊組成：
 
-1. In the **Azure classic portal**, on the left navigation pane, click **Active Directory**. 
+1. 從資源庫新增 Showpad
+2. 設定並測試 Azure AD 單一登入
 
-    ![Applications][1]
 
-2. From the **Directory** list, select the directory for which you want to enable directory integration.
+## 從資源庫新增 Showpad
+若要設定將 Showpad 整合到 Azure AD 中，您需要從資源庫將 Showpad 新增到受管理的 SaaS 應用程式清單。
 
-3. To open the applications view, in the directory view, click **Applications** in the top menu.
+**若要從資源庫新增 Showpad，請執行下列步驟：**
 
-    ![Applications][2]
+1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
 
-4. Click **Add** at the bottom of the page.
+	![應用程式][1]
 
-    ![Applications][3]
+2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-5. On the **What do you want to do** dialog, click **Add an application from the gallery**.
+3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+
+	![應用程式][2]
+
+4. 按一下頁面底部的 [新增]。
+
+	![應用程式][3]
+
+5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫新增應用程式]。
  
-    ![Applications][4]
+	![應用程式][4]
 
-6. In the search box, type **Showpad**.
+6. 在 [搜尋方塊]中，輸入 **Showpad**。
 
-    ![Applications](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_01.png)
+	![應用程式](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_01.png)
 
-7. In the results pane, select **Showpad**, and then click **Complete** to add the application.
+7. 在結果窗格中，選取 [Showpad]，然後按一下 [完成] 加入應用程式。
 
-    ![Applications](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_02.png)
+	![應用程式](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_02.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuring and testing Azure AD single sign-on
-The objective of this section is to show you how to configure and test Azure AD single sign-on with Showpad based on a test user called "Britta Simon".
+##  設定並測試 Azure AD 單一登入
+本節目標是說明如何以名為 "Britta Simon" 的測試使用者為基礎，設定及測試對 Showpad 的 Azure AD 單一登入。
 
-For single sign-on to work, Azure AD needs to know what the counterpart user in Showpad to an user in Azure AD is. In other words, a link relationship between an Azure AD user and the related user in Showpad needs to be established.
+若要讓單一登入運作，Azure AD 必須知道 Showpad 與 Azure AD 中互相對應的使用者。換句話說，必須要建立某位 Azure AD 使用者與 Showpad 中相關使用者之間的連結關聯性。
 
-This link relationship is established by assigning the value of the **user name** in Azure AD as the value of the **Username** in Showpad.
+建立此連結關聯性的方法是將 Azure AD 中**使用者名稱**的值指派為 Showpad 中 **Username** 的值。
 
-To configure and test Azure AD single sign-on with Showpad, you need to complete the following building blocks:
+若要使用 Showpad 設定及測試 Azure AD 單一登入功能，您需要完成下列建置組塊：
 
-1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-single-sign-on)** - to enable your users to use this feature.
-2. **[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.
-3. **[Creating a Showpad test user](#creating-a-showpad-test-user)** - to have a counterpart of Britta Simon in Showpad that is linked to the Azure AD representation of her.
-4. **[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.
-5. **[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.
+1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-single-sign-on)** - 讓您的使用者能夠使用此功能。
+2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
+3. **[建立 Showpad 測試使用者](#creating-a-showpad-test-user)** - 在 Showpad 中建立 Britta Simon 的對應項目，且該項目必須與 Azure AD 中代表 Britta Simon 的項目連結。
+4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
+5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
 
-### <a name="configuring-azure-ad-single-sign-on"></a>Configuring Azure AD Single Sign-On
+### 設定 Azure AD 單一登入
 
-The objective of this section is to enable Azure AD single sign-on in the Azure classic portal and to configure single sign-on in your Showpad application.
-
-
-
-**To configure Azure AD single sign-on with Showpad, perform the following steps:**
-
-1. In the Azure classic portal, on the **Showpad** application integration page, click **Configure single sign-on** to open the **Configure Single Sign-On**  dialog.
-
-    ![Configure Single Sign-On][6] 
-
-2. On the **How would you like users to sign on to Showpad** page, select **Azure AD Single Sign-On**, and then click **Next**.
-
-    ![Configure Single Sign-On](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_03.png)
-
-3. On the **Configure App Settings** dialog page, perform the following steps and then click **Next**:
-
-    ![Configure Single Sign-On](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_04.png) 
+本節的目標是在 Azure 傳統入口網站中啟用 Azure AD 單一登入，並在您的 Showpad 應用程式中設定單一登入。
 
 
-    a. In the **Sign On URL** textbox, type the URL used by your users to sign-on to your Showpad application using the following pattern: `https://<company name>.showpad.biz/login`
 
-    b. In the **Identifier** textbox, type the URL using the following pattern: `https://<company name>.showpad.biz`
+**若要使用 Showpad 設定 Azure AD 單一登入，請執行下列步驟：**
 
-    c. Click **Next**
+1. 在 Azure 傳統入口網站的 **Showpad** 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
+
+	![設定單一登入][6]
+
+2. 在 [要如何讓使用者登入 Showpad] 頁面上，選取 [Azure AD 單一登入]，然後按 [下一步]。
+
+	![設定單一登入](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_03.png)
+
+3. 在 [設定應用程式設定] 對話方塊頁面上，執行下列步驟，然後按 [下一步]：
+
+	![設定單一登入](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_04.png)
 
 
-4. On the **Configure single sign-on at Showpad** page, perform the following steps and then click **Next**:
+    a.在 [登入 URL] 文字方塊中，使用以下模式輸入使用者登入您的 Showpad 應用程式時所使用的 URL：`https://<company name>.showpad.biz/login`
 
-    ![Configure Single Sign-On](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_05.png)
+	b.在 [識別碼] 文字方塊中，以下列模式輸入 URL：`https://<company name>.showpad.biz`
 
-    a. Click **Download metadata**, and then save the file on your computer.
-
-    b. Click **Next**.
+	c.按 [下一步]
 
 
-5. Sign-on to your Showpad tenant as an administrator.
+4. 在 [設定在 Showpad 單一登入] 頁面上，執行下列步驟，然後按 [下一步]：
 
-6. In the menu on the top, click the **Settings**.
+	![設定單一登入](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_05.png)
 
-    ![Configure Single Sign-On On App Side](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_001.png) 
+    a.按一下 [下載中繼資料]，然後將檔案儲存在您的電腦上。
 
-7. Navigate to "**Single Sign-On**" and click "**Enable**".
+    b.按 [下一步]。
+
+
+5. 以系統管理員身分登入 Showpad 租用戶。
+
+6. 在頂端的功能表中，按一下 [設定]。
+
+	![在應用程式端設定單一登入](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_001.png)
+
+7. 瀏覽至 [單一登入]，然後按一下 [啟用]。
  
-    ![Configure Single Sign-On On App Side](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_002.png)
+	![在應用程式端設定單一登入](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_002.png)
 
-8. On the **Add a SAML 2.0 Service** dialog, perform the following steps:
+8. 在 [新增 SAML 2.0 服務] 對話方塊中，執行下列步驟：
 
-    ![Configure Single Sign-On On App Side](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_003.png) 
+	![在應用程式端設定單一登入](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_003.png)
 
-    a. In the **Name** textbox, type the name of Identifier Provider (e.g.: your company name).
+	a.在 [名稱] 文字方塊中，輸入識別碼提供者的名稱 (例如：您的公司名稱)。
 
-    b. As **Metadata Source**, select **XML**.
+	b.對於 [中繼資料來源]，選取 [XML]。
 
-    c. Copy the content of the downloaded metadata XML file, and then paste it into the **Metadata XML** textbox.
+	c.複製下載的中繼資料 XML 檔案內容，然後貼到 [中繼資料 XML] 文字方塊中。
 
-    d. Select **Auto-provision accounts for new users when they log in**.
+	d.選取 [在新使用者登入時自動佈建帳戶]。
 
-    e. Click **Submit**.
-
-
-10. In the Azure classic portal, select the single sign-on configuration confirmation, and then click **Next**.
-
-    ![Azure AD Single Sign-On][10]
+	e.按一下 [提交]。
 
 
-11. On the **Single sign-on confirmation** page, click **Complete**.  
+10. 在 Azure 傳統入口網站中，選取單一登入設定確認項目，然後按一下 [下一步]。
+
+	![Azure AD 單一登入][10]
+
+
+11. 在 [單一登入確認] 頁面上，按一下 [完成]。
   
-    ![Azure AD Single Sign-On][11]
+	![Azure AD 單一登入][11]
 
 
 
 
 
 
-### <a name="creating-an-azure-ad-test-user"></a>Creating an Azure AD test user
-The objective of this section is to create a test user in the Azure classic portal called Britta Simon.
+### 建立 Azure AD 測試使用者
+本節的目標是要在 Azure 傳統入口網站中建立一個名為 Britta Simon 的測試使用者。
 
-![Create Azure AD User][20]
+![建立 Azure AD 使用者][20]
 
-**To create a Showpad test user in Azure AD, perform the following steps:**
+**若要在 Azure AD 中建立 Showpad 測試使用者，請執行下列步驟：**
 
-1. In the **Azure classic portal**, on the left navigation pane, click **Active Directory**.
+1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
 
-    ![Creating an Azure AD test user](./media/active-directory-saas-showpad-tutorial/create_aaduser_09.png) 
+	![建立 Azure AD 測試使用者](./media/active-directory-saas-showpad-tutorial/create_aaduser_09.png)
 
-2. From the **Directory** list, select the directory for which you want to enable directory integration.
+2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3. To display the list of users, in the menu on the top, click **Users**.
+3. 若要顯示使用者清單，請按一下頂端功能表中的 [使用者]。
 
-    ![Creating an Azure AD test user](./media/active-directory-saas-showpad-tutorial/create_aaduser_03.png) 
+	![建立 Azure AD 測試使用者](./media/active-directory-saas-showpad-tutorial/create_aaduser_03.png)
 
-4. To open the **Add User** dialog, in the toolbar on the bottom, click **Add User**.
+4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列中的 [加入使用者]。
 
-    ![Creating an Azure AD test user](./media/active-directory-saas-showpad-tutorial/create_aaduser_04.png) 
+	![建立 Azure AD 測試使用者](./media/active-directory-saas-showpad-tutorial/create_aaduser_04.png)
 
-5. On the **Tell us about this user** dialog page, perform the following steps:
+5. 在 [告訴我們這位使用者] 對話方塊頁面上，執行下列步驟：
 
-    ![Creating an Azure AD test user](./media/active-directory-saas-showpad-tutorial/create_aaduser_05.png) 
+	![建立 Azure AD 測試使用者](./media/active-directory-saas-showpad-tutorial/create_aaduser_05.png)
 
-    a. In the **User Name** textbox, type **BrittaSimon**.
+    a.在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
 
-    b. Click **Next**.
+    b.按 [下一步]。
 
-6.  On the **User Profile** dialog page, perform the following steps:
+6.  在 [使用者設定檔]對話方塊頁面上，執行下列步驟：
 
-    ![Creating an Azure AD test user](./media/active-directory-saas-showpad-tutorial/create_aaduser_06.png) 
+	![建立 Azure AD 測試使用者](./media/active-directory-saas-showpad-tutorial/create_aaduser_06.png)
 
-    a. In the **First Name** textbox, type **Britta**.  
+    a.在 [名字] 文字方塊中，輸入 **Britta**。
 
-    b. In the **Last Name** textbox, type, **Simon**.
+    b.在 [姓氏] 文字方塊中，輸入 **Simon**。
 
-    c. In the **Display Name** textbox, type **Britta Simon**.
+    c.在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
 
-    d. As **Role**, select **User**.
+    d.針對 [角色]，選取 [使用者]。
 
-    e. Click **Next**.
+    e.按 [下一步]。
 
-7. On the **Get temporary password** dialog page, click **create**.
+7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
 
-    ![Creating an Azure AD test user](./media/active-directory-saas-showpad-tutorial/create_aaduser_07.png)
+	![建立 Azure AD 測試使用者](./media/active-directory-saas-showpad-tutorial/create_aaduser_07.png)
 
-8. On the **Get temporary password** dialog page, perform the following steps:
+8. 在 [取得暫時密碼] 對話方塊頁面上，執行下列步驟：
 
-    ![Creating an Azure AD test user](./media/active-directory-saas-showpad-tutorial/create_aaduser_08.png) 
+	![建立 Azure AD 測試使用者](./media/active-directory-saas-showpad-tutorial/create_aaduser_08.png)
 
-    a. Write down the value of the **New Password**.
+    a.記下 [新密碼] 的值。
 
-    b. Click **Complete**.
-
-
-### <a name="creating-a-showpad-test-user"></a>Creating a Showpad test user
-
-The objective of this section is to create a user called Britta Simon in Showpad. 
-
-Showpad supports just-in-time provisioning. You have enabled provisioning in **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-single-sign-on)**. 
-
-There is no action item for you in this section. 
+    b.按一下 [完成]。
 
 
+### 建立 Showpad 測試使用者
 
+本節的目標是在 Showpad 中建立名為 Britta Simon 的使用者。
 
-### <a name="assigning-the-azure-ad-test-user"></a>Assigning the Azure AD test user
+Showpad 支援 Just-in-Time 佈建。您已在**[設定 Azure AD 單一登入](#configuring-azure-ad-single-single-sign-on)**中啟用佈建。
 
-The objective of this section is to enabling Britta Simon to use Azure single sign-on by granting her access to Showpad.
-
-![Assign User][200]
-
-**To assign Britta Simon to Showpad, perform the following steps:**
-
-1. On the Azure classic portal, in the menu on the top, click **Applications**.
-
-    ![Assign User][201] 
-
-2. In the applications list, click **Showpad**.
-
-    ![Configure Single Sign-On](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_50.png) 
-
-1. In the menu on the top, click **Users**.
-
-    ![Assign User][203]
-
-1. In the Users list, select **Britta Simon**.
-
-2. In the toolbar on the bottom, click **Assign**.
-
-    ![Assign User][205]
+在這一節沒有您需要進行的動作項目。
 
 
 
 
-### <a name="testing-single-sign-on"></a>Testing Single Sign-On
+### 指派 Azure AD 測試使用者
 
-The objective of this section is to test your Azure AD single sign-on configuration using the Access Panel.
+本節的目標是授與 Britta Simon 對 Showpad 的存取權，讓她能夠使用 Azure 單一登入。
 
-When you click the **Showpad** tile in the Access Panel, you should get automatically signed-on to your Showpad application.
+![指派使用者][200]
+
+**若要將 Britta Simon 指派給 Showpad，請執行下列步驟：**
+
+1. 在 Azure 傳統入口網站中，按一下頂端功能表中的 [應用程式]。
+
+	![指派使用者][201]
+
+2. 在應用程式清單中，按一下 [Showpad]。
+
+	![設定單一登入](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_50.png)
+
+1. 在頂端的功能表中，按一下 [使用者]。
+
+	![指派使用者][203]
+
+1. 在 [使用者] 清單中，選取 [Britta Simon]。
+
+2. 在底部的工具列中，按一下 [指派]。
+
+	![指派使用者][205]
 
 
-## <a name="additional-resources"></a>Additional Resources
 
-* [List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory](active-directory-saas-tutorial-list.md)
-* [What is application access and single sign-on with Azure Active Directory?](active-directory-appssoaccess-whatis.md)
+
+### 測試單一登入
+
+本節的目標是要使用存取面板來測試您的 Azure AD 單一登入組態。
+
+當您在存取面板中按一下 [Showpad] 圖格時，應該會自動登入您的 Showpad 應用程式。
+
+
+## 其他資源
+
+* [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
+* [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
 
 
 <!--Image references-->
@@ -305,8 +304,4 @@ When you click the **Showpad** tile in the Access Panel, you should get automati
 [204]: ./media/active-directory-saas-showpad-tutorial/tutorial_general_204.png
 [205]: ./media/active-directory-saas-showpad-tutorial/tutorial_general_205.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!----HONumber=AcomDC_0907_2016-->

@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Scalability of Service Fabric services | Microsoft Azure"
-   description="Describes how to scale Service Fabric services"
+   pageTitle="Service Fabric 服務的延展性 | Microsoft Azure"
+   description="描述如何調整 Service Fabric 服務"
    services="service-fabric"
    documentationCenter=".net"
    authors="appi101"
@@ -16,53 +16,48 @@
    ms.date="08/10/2016"
    ms.author="aprameyr"/>
 
+# 調整 Service Fabric 應用程式
+Azure Service Fabric 可讓您透過負載平衡服務、資料分割和叢集中所有節點上的複本，輕鬆建置可調整的應用程式。這可最大化資源使用率。
 
-# <a name="scaling-service-fabric-applications"></a>Scaling Service Fabric applications
-Azure Service Fabric makes it easy to build scalable applications by load-balancing services, partitions, and replicas on all the nodes in a cluster. This enables maximum resource utilization.
+Service Fabric 應用程式的高延展性可以透過兩種方式來達成：
 
-High scale for Service Fabric applications can be achieved in two ways:
+1. 調整資料分割層級
 
-1. Scaling at the partition level
+2. 調整服務名稱層級
 
-2. Scaling at the service name level
+## 調整資料分割層級
+Service Fabric 支援將個別服務分割為多個小型的資料分割。[資料分割概觀](service-fabric-concepts-partitioning.md)提供所支援資料分割配置類型的相關資訊。每個資料分割的複本會散佈到叢集中的節點。假設有一個使用範圍資料分割配置的服務，其中低索引鍵為 0、高索引鍵為 99 且有四個資料分割。在三個節點叢集中，服務可能使用四個複本進行配置，並共用每個節點上的資源，如下所示：
 
-## <a name="scaling-at-the-partition-level"></a>Scaling at the partition level
-Service Fabric supports partitioning an individual service into multiple smaller partitions. The [partitioning overview](service-fabric-concepts-partitioning.md) provides information on the types of partitioning schemes that are supported. The replicas of each partition are spread across the nodes in a cluster. Consider a service that uses a ranged partitioning scheme with a low key of 0, a high key of 99, and four partitions. In a three-node cluster, the service might be laid out with four replicas that share the resources on each node as shown here:
+![使用三個節點分割配置](./media/service-fabric-concepts-scalability/layout-three-nodes.png)
 
-![Partition layout with three nodes](./media/service-fabric-concepts-scalability/layout-three-nodes.png)
+增加節點數目可讓 Service Fabric 透過將某些複本移動至空白節點，以利用新的節點上的資源。藉由將節點數目增加至四個，服務現在會在每個節點上執行三個複本 (屬於不同的資料分割)，可達成更佳的資源使用率和效能。
 
-Increasing the number of nodes allows Service Fabric to utilize the resources on the new nodes by moving some of the replicas to empty nodes. By increasing the number of nodes to four, the service now has three replicas running on each node (of different partitions), allowing for better resource utilization and performance.
+![使用四個節點分割配置](./media/service-fabric-concepts-scalability/layout-four-nodes.png)
 
-![Partition layout with four nodes](./media/service-fabric-concepts-scalability/layout-four-nodes.png)
+## 調整服務名稱層級
+服務執行個體是應用程式名稱和服務類型名稱的特定執行個體 (請參閱 [Service Fabric 應用程式生命週期](service-fabric-application-lifecycle.md))。在服務建立期間，您可以指定要使用的資料分割配置 (請參閱[分割 Service Fabric 服務](service-fabric-concepts-partitioning.md))。
 
-## <a name="scaling-at-the-service-name-level"></a>Scaling at the service name level
-A service instance is a specific instance of an application name and a service type name (see [Service Fabric application life cycle](service-fabric-application-lifecycle.md)). During the creation of a service, you specify the partition scheme (see [Partitioning Service Fabric services](service-fabric-concepts-partitioning.md)) to be used.
+第一層的調整比例是根據服務名稱。當您較舊的服務執行個體變得忙碌時，您可以建立新的服務執行個體，並包含不同的資料分割層級。這可讓新的服務取用者使用較不忙碌的服務執行個體，而非較忙碌的服務執行個體。
 
-The first level of scaling is by service name. You can create new instances of a service, with different levels of partitioning, as your older service instances become busy. This allows new service consumers to use less-busy service instances, rather than busier ones.
+增加容量以及增加或減少資料分割計數的一個選項，是使用新的資料分割配置建立新的服務執行個體。但這會增加複雜度，因為任何取用的用戶端需要了解何時及如何使用不同名稱的服務。
 
-One option for increasing capacity, as well as increasing or decreasing partition counts, is to create a new service instance with a new partition scheme. This adds complexity, though, as any consuming clients need to know when and how to use the differently named service.
+### 範例案例：內嵌的日期
+一個可能的案例是使用日期資訊作為服務名稱的一部分。例如，您可以針對 2013 年加入的所有客戶使用具有特定名稱的服務執行個體，而 2014 年加入的客戶則使用其他名稱。此命名配置可以允許名稱根據日期 (2014年的服務執行個體可以透過隨選方式建立來作為 2014 年的方法) 而以程式設計方式增加。
 
-### <a name="example-scenario:-embedded-dates"></a>Example scenario: Embedded dates
-One possible scenario would be to use date information as part of the service name. For example, you could use a service instance with a specific name for all customers who joined in 2013 and another name for customers who joined in 2014. This naming scheme allows for programmatically increasing the names depending on the date (as 2014 approaches, the service instance for 2014 can be created on demand).
+不過，此方法是根據使用應用程式特定命名資訊的用戶端，超出 Service Fabric 的知識領域之外。
 
-However, this approach is based on the clients using application-specific naming information that is outside the scope of Service Fabric knowledge.
+- *使用命名慣例*：當您在 2013 年啟動應用程式時，將建立一個稱為 fabric:/app/service2013 的服務。接近到 2013 年的第二季時，則將建立另一個稱為 fabric:/app/service2014 的服務。這兩個服務都屬於相同的服務類型。在此方法中，您的用戶端必須根據年份運用邏輯來建構適當的服務名稱。
 
-- *Using a naming convention*: In 2013, when your application goes live, you create a service called fabric:/app/service2013. Near the second quarter of 2013, you create another service, called fabric:/app/service2014. Both of these services are of the same service type. In this approach, your client will need to employ logic to construct the appropriate service name based on the year.
+- *使用查閱服務*：另一個模式是提供次要的「查閱服務」，可提供所需索引鍵的服務名稱。接著新的服務執行個體可透過查閱服務來建立。查閱服務本身不會保留任何應用程式資料，僅保留其所建立的服務名稱相關資料。因此在以上的年份範例中，用戶端會先連絡查閱服務以針對特定年份找出服務處理資料的名稱，然後使用該服務名稱以執行實際的作業。第一次的查閱結果可以進行快取。
 
-- *Using a lookup service*: Another pattern is to provide a secondary lookup service, which can provide the name of the service for a desired key. New service instances can then be created by the lookup service. The lookup service itself doesn't retain any application data, only data about the service names that it creates. Thus, for the year-based example above, the client would first contact the lookup service to find out the name of the service handling data for a given year, and then use that service name for performing the actual operation. The result of the first lookup can be cached.
+## 後續步驟
 
-## <a name="next-steps"></a>Next steps
+如需 Service Fabric 概念的詳細資訊，請參閱：
 
-For more information on Service Fabric concepts, see the following:
+- [Service Fabric 服務的可用性](service-fabric-availability-services.md)
 
-- [Availability of Service Fabric services](service-fabric-availability-services.md)
+- [分割 Service Fabric 服務](service-fabric-concepts-partitioning.md)
 
-- [Partitioning Service Fabric services](service-fabric-concepts-partitioning.md)
+- [定義和管理狀態](service-fabric-concepts-state.md)
 
-- [Defining and managing state](service-fabric-concepts-state.md)
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

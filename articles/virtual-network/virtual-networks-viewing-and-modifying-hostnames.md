@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="Viewing and Modifying Hostnames | Microsoft Azure"
-   description="How to view and change hostnames for Azure virtual machines, web and worker roles for name resolution"
+   pageTitle="檢視與修改主機名稱 | Microsoft Azure"
+   description="如何檢視和變更 Azure 虛擬機器的主機名稱、Web 和背景工作角色以進行名稱解析"
    services="virtual-network"
    documentationCenter="na"
    authors="jimdial"
@@ -15,65 +15,60 @@
    ms.date="04/27/2016"
    ms.author="jdial" />
 
+# 檢視與修改主機名稱
 
-# <a name="viewing-and-modifying-hostnames"></a>Viewing and modifying hostnames
+若要允許主機名稱參考您的角色執行個體，您必須在各個角色的服務組態檔中設定主機名稱的值。您可以將需要的主機名稱新增到 **Role** 項目的 **vmName** 屬性。**vmName** 屬性的值會做為各個角色執行個體之主機名稱的基底。例如，如果 **vmName** 是 *webrole* 且有三個該角色的執行個體，執行個體的主機名稱將是 *webrole0*、*webrole1* 以及 *webrole2*。您不需要指定組態檔中虛擬機器的主機名稱，因為虛擬機器的主機名稱會根據虛擬機器名稱填入。如需設定 Microsoft Azure 服務的詳細資訊，請參閱 [Azure 服務組態結構描述 (.cscfg 檔)](https://msdn.microsoft.com/library/azure/ee758710.aspx)
 
-To allow your role instances to be referenced by host name, you must set the value for the host name in the service configuration file for each role. You do that by adding the desired host name to the **vmName** attribute of the **Role** element. The value of the **vmName** attribute is used as a base for the host name of each role instance. For example, if **vmName** is *webrole* and there are three instances of that role, the host names of the instances will be *webrole0*, *webrole1*, and *webrole2*. You do not need to specify a host name for virtual machines in the configuration file, because the host name for a virtual machine is populated based on the virtual machine name. For more information about configuring a Microsoft Azure service, see [Azure Service Configuration Schema (.cscfg File)](https://msdn.microsoft.com/library/azure/ee758710.aspx)
+## 檢視主機名稱
 
-## <a name="viewing-hostnames"></a>Viewing hostnames
+您可以使用下列任何工具，在雲端服務中檢視虛擬機器和角色執行個體的主機名稱。
 
-You can view the host names of virtual machines and role instances in a cloud service by using any of the tools below.
+### Azure 入口網站
 
-### <a name="azure-portal"></a>Azure Portal
+您可以使用 [Azure 入口網站](http://portal.azure.com)檢視虛擬機器概觀刀鋒視窗上虛擬機器的主機名稱。請記住，刀鋒視窗中顯示**名稱**和**主機名稱**的值。雖然它們一開始都相同，但是變更主機名稱不會變更虛擬機器或角色執行個體的名稱。
 
-You can use the [Azure portal](http://portal.azure.com) to view the host names for virtual machines on the overview blade for a virtual machine. Keep in mind that the blade shows a value for **Name** and **Host Name**. Although they are initially the same, changing the host name will not change the name of the virtual machine or role instance.
+角色執行個體也能在 Azure 入口網站中檢視，但是當您列出雲端服務中的執行個體時不會顯示主機名稱。您將會看到各個執行個體的名稱，但是該名稱不代表主機名稱。
 
-Role instances can also be viewed in the Azure portal, but when you list the instances in a cloud service, the host name is not displayed. You will see a name for each instance, but that name does not represent the host name.
+### 服務組態檔
 
-### <a name="service-configuration-file"></a>Service configuration file
+您可以從 Azure 入口網站中服務的 [設定] 刀鋒視窗，下載已部署服務的服務組態檔。然後您可以尋找 **Role name** 項目的**vmName** 屬性，查看主機名稱。請記住，這個主機名稱是做為各個角色執行個體之主機名稱的基底。例如，如果 **vmName** 是 *webrole* 且有三個該角色的執行個體，執行個體的主機名稱將是 *webrole0*、*webrole1* 以及 *webrole2*。
 
-You can download the service configuration file for a deployed service from the **Configure** blade of the service in the Azure portal. You can then look for the **vmName** attribute for the **Role name** element to see the host name. Keep in mind that this host name is used as a base for the host name of each role instance. For example, if **vmName** is *webrole* and there are three instances of that role, the host names of the instances will be *webrole0*, *webrole1*, and *webrole2*.
+### 遠端桌面
 
-### <a name="remote-desktop"></a>Remote Desktop
+啟用您虛擬機器或角色執行個體的遠端桌面 (Windows)、Windows PowerShell 遠端執行功能 (Windows) 或 SSH (Linux 和 Windows) 連線之後，您可以利用多種方式檢視使用中遠端桌面連線的主機名稱：
 
-After you enable Remote Desktop (Windows), Windows PowerShell remoting (Windows), or SSH (Linux and Windows) connections to your virtual machines or role instances, you can view the host name from an active Remote Desktop connection in various ways:
+- 在命令提示字元或 SSH 終端機中輸入主機名稱。
 
-- Type hostname at the command prompt or SSH terminal.
+- 在命令提示字元中輸入 ipconfig /all (僅限 Windows)。
 
-- Type ipconfig /all at the command prompt (Windows only).
+- 在系統設定中檢視電腦名稱 (僅限 Windows)。
 
-- View the computer name in the system settings (Windows only).
+### Azure 服務管理 REST API
 
-### <a name="azure-service-management-rest-api"></a>Azure Service Management REST API
+從 REST 用戶端，請遵循下列指示：
 
-From a REST client, follow these instructions:
+1. 確定您有連線到 Azure 入口網站的用戶端憑證若要取得用戶端憑證，請遵循[做法：下載與匯入發行設定與訂閱資訊中的步驟](https://msdn.microsoft.com/library/dn385850.aspx)。
 
-1. Ensure that you have a client certificate to connect to the Azure portal. To obtain a client certificate, follow the steps presented in [How to: Download and Import Publish Settings and Subscription Information](https://msdn.microsoft.com/library/dn385850.aspx). 
+1. 設定名稱為 x-ms-version，值為 2013-11-01 的標頭項目。
 
-1. Set a header entry named x-ms-version with a value of 2013-11-01.
+1. 傳送下列格式的要求：https://management.core.windows.net/\<subscrition-id>/services/hostedservices/<service-name>?embed-detail=true
 
-1. Send a request in the following format: https://management.core.windows.net/\<subscrition-id\>/services/hostedservices/\<service-name\>?embed-detail=true
+1. 尋找各個 **RoleInstance** 項目的 **HostName** 項目。
 
-1. Look for the **HostName** element for each **RoleInstance** element.
+>[AZURE.WARNING] 您也可以透過檢查 **InternalDnsSuffix** 項目、從遠端桌面工作階段中的命令提示字元執行 ipconfig /all (Windows)，或從 SSH 終端機執行 cat /etc/resolv.conf (Linux)，檢視 REST 呼叫回應中您雲端服務的內部網域尾碼。
 
->[AZURE.WARNING] You can also view the internal domain suffix for your cloud service from the REST call response by checking the **InternalDnsSuffix** element, or by running ipconfig /all from a command prompt in a Remote Desktop session (Windows), or by running cat /etc/resolv.conf from an SSH terminal (Linux).
+## 修改主機名稱
 
-## <a name="modifying-a-hostname"></a>Modifying a hostname
+您可以透過上傳已修改的服務組態檔，或是從遠端桌面工作階段重新命名電腦，來修改任何虛擬機器或角色執行個體的主機名稱。
 
-You can modify the host name for any virtual machine or role instance by uploading a modified service configuration file, or by renaming the computer from a Remote Desktop session.
+## 後續步驟
 
-## <a name="next-steps"></a>Next steps
+[名稱解析 (DNS)](virtual-networks-name-resolution-for-vms-and-role-instances.md)
 
-[Name Resolution (DNS)](virtual-networks-name-resolution-for-vms-and-role-instances.md)
+[Azure 服務組態結構描述 (.cscfg)](https://msdn.microsoft.com/library/windowsazure/ee758710.aspx)
 
-[Azure Service Configuration Schema (.cscfg)](https://msdn.microsoft.com/library/windowsazure/ee758710.aspx)
+[Azure 虛擬網路組態結構描述](http://go.microsoft.com/fwlink/?LinkId=248093)
 
-[Azure Virtual Network Configuration Schema](http://go.microsoft.com/fwlink/?LinkId=248093)
+[使用網路組態檔指定 DNS 設定](virtual-networks-specifying-a-dns-settings-in-a-virtual-network-configuration-file.md)
 
-[Specify DNS settings using network configuration files](virtual-networks-specifying-a-dns-settings-in-a-virtual-network-configuration-file.md)
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Verify a gateway connection | Microsoft Azure"
-   description="This article shows you how to verify a gateway connection in the Resource Manager deployment model"
+   pageTitle="驗證閘道連線 | Microsoft Azure"
+   description="本文說明如何在 Resource Manager 部署模型中驗證虛擬連線"
    services="vpn-gateway"
    documentationCenter="na"
    authors="cherylmc"
@@ -17,41 +17,35 @@
    ms.date="08/03/2016"
    ms.author="cherylmc"/>
 
+# 驗證閘道連線
 
-# <a name="verify-a-gateway-connection"></a>Verify a gateway connection
-
-You can verify your gateway connection in a few different ways. This article will show you how to verify the status of a Resource Manager gateway connection by using the Azure portal and by using PowerShell.
+您可以用數種不同的方式驗證閘道連線。本文將說明如何使用 Azure 入口網站和 PowerShell 來驗證 Resource Manager 閘道連線的狀態。
 
 
-## <a name="before-you-begin"></a>Before you begin
+## 開始之前
 
-If you plan to use PowerShell, you'll need to install the latest version of the Azure Resource Manager PowerShell cmdlets. See [How to install and configure Azure PowerShell](../powershell-install-configure.md) for more information about installing the PowerShell cmdlets. For more information about using Resource Manager cmdlets, see [Using Windows PowerShell with Resource Manager](../powershell-azure-resource-manager.md).
+如果您打算使用 PowerShell，您必須安裝最新版的 Azure Resource Manager PowerShell Cmdlet。如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。如需使用 Resource Manager Cmdlet 的詳細資訊，請參閱[搭配使用 Windows PowerShell 與 Resource Manager](../powershell-azure-resource-manager.md)。
 
-1. Open your PowerShell console and connect to your account.
+1. 開啟 PowerShell 主控台並連接到您的帳戶。
 
-        Login-AzureRmAccount
+		Login-AzureRmAccount
 
-2. Check the subscriptions for the account.
+2. 檢查帳戶的訂用帳戶。
 
-        Get-AzureRmSubscription 
+		Get-AzureRmSubscription 
 
-3. Specify the subscription that you want to use.
+3. 指定您要使用的訂用帳戶。
 
-        Select-AzureRmSubscription -SubscriptionName "Replace_with_your_subscription_name"
+		Select-AzureRmSubscription -SubscriptionName "Replace_with_your_subscription_name"
 
-## <a name="verifying-your-connection"></a>Verifying your connection
+## 驗證您的連線
 
 
 [AZURE.INCLUDE [vpn-gateway-verify-connection-rm](../../includes/vpn-gateway-verify-connection-rm-include.md)]
 
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-- You can add virtual machines to your virtual networks. See [Create a Virtual Machine](../virtual-machines/virtual-machines-windows-hero-tutorial.md) for steps.
+- 您可以將虛擬機器加入您的虛擬網路。請參閱[建立網站的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)以取得相關步驟。
 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

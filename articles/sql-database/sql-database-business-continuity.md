@@ -1,7 +1,7 @@
 <properties
-   pageTitle="Cloud business continuity - database recovery - SQL Database | Microsoft Azure"
-   description="Learn how Azure SQL Database supports cloud business continuity and database recovery and helps keep mission-critical cloud applications running."
-   keywords="business continuity,cloud business continuity,database disaster recovery,database recovery"
+   pageTitle="雲端商務持續性 - 資料庫復原 - SQL Database | Microsoft Azure"
+   description="了解 Azure SQL Database 如何支援雲端商務持續性和資料庫復原，以及如何協助維持任務關鍵性雲端應用程式持續執行。"
+   keywords="business continuity,cloud business continuity,database disaster recovery,database recovery,商務持續性,雲端商務持續性,資料庫災害復原,資料庫復原"
    services="sql-database"
    documentationCenter=""
    authors="CarlRabeler"
@@ -14,145 +14,134 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="10/13/2016"
+   ms.date="07/20/2016"
    ms.author="carlrab"/>
 
+# 使用 Azure SQL Database 的商務持續性概觀
 
-# <a name="overview-of-business-continuity-with-azure-sql-database"></a>Overview of business continuity with Azure SQL Database
+本概觀說明 Azure SQL Database 針對商務持續性和災害復原所提供的功能。它提供從可能導致資料遺失或造成資料庫和應用程式無法使用的干擾性事件復原的選項、建議和教學課程。討論包含當使用者或應用程式錯誤影響資料完整性、Azure 區域中斷，或您的應用程式需要維護時該如何處理。
 
-This overview describes the capabilities that Azure SQL Database provides for business continuity and disaster recovery. It provides options, recommendations, and tutorials for recovering from disruptive events that could cause data loss or cause your database and application to become unavailable. The discussion includes what to do when a user or application error affects data integrity, an Azure region has an outage, or your application requires maintenance. 
+## 您可用來提供商務持續性的 SQL Database 功能
 
-## <a name="sql-database-features-that-you-can-use-to-provide-business-continuity"></a>SQL Database features that you can use to provide business continuity
+SQL Database 提供幾種商務持續性功能，包括自動備份和選用的資料庫複寫。每個功能對於預估的復原時間 (ERT) 都有不同的特性，最近的交易都有可能遺失資料。一旦您了解這些選項，就可以在其中選擇，而在大部分情況下，可以針對不同情況一起搭配使用。當您開發商務持續性方案時，您必須了解應用程式在干擾性事件之後完全復原的最大可接受時間 - 這是您的復原時間目標 (RTO)。您也必須了解在干擾性事件之後復原時，應用程式可忍受遺失的最近資料更新 (時間間隔) 最大數量 - 復原點目標 (RPO)。
 
-SQL Database provides several business continuity features, including automated backups and optional database replication. Each has different characteristics for estimated recovery time (ERT) and potential data loss for recent transactions. Once you understand these options, you can choose among them - and, in most scenarios, use them together for different scenarios. As you develop your business continuity plan, you need to understand the maximum acceptable time before the application fully recovers after the disruptive event - this is your recovery time objective (RTO). You also need to understand the maximum amount of recent data updates (time interval) the application can tolerate losing when recovering after the disruptive event - the recovery point objective (RPO). 
+下表針對三種最常見的案例提供 ERT 與 RPO 的比較。
 
-The following table compares the ERT and RPO for the three most common scenarios.
-
-| Capability |  Basic tier | Standard tier  | Premium tier |
+| 功能 |	基本層 | 標準層 | 高階層 |
 |---|---|---|---|
-| Point in Time Restore from backup | Any restore point within 7 days   | Any restore point within 35 days  | Any restore point within 35 days |
-Geo-Restore from geo-replicated backups | ERT < 12h, RPO < 1h   | ERT < 12h, RPO < 1h   | ERT < 12h, RPO < 1h |
-|Active Geo-Replication | ERT < 30s, RPO < 5s   | ERT < 30s, RPO < 5s | ERT < 30s, RPO < 5s |
+| 從備份進行時間點還原 | 7 天內的任何還原點 | 35 天內的任何還原點 | 35 天內的任何還原點 |
+從異地複寫備份進行異地還原 | ERT < 12 小時，RPO < 1 小時 | ERT < 12 小時，RPO < 1 小時 | ERT < 12 小時，RPO < 1 小時 |
+|主動式異地複寫 | ERT < 30 秒，RPO < 5 秒 | ERT < 30 秒，RPO < 5 秒 |	ERT < 30 秒，RPO < 5 秒 |
 
 
-### <a name="use-database-backups-to-recover-a-database"></a>Use database backups to recover a database
+### 使用資料庫備份來復原資料庫
 
-SQL Database automatically performs a combination of full database backups weekly, differential database backups hourly, and transaction log backups every five minutes to protect your business from data loss. These backups are stored in locally redundant storage for 35 days for databases in the Standard and Premium service tiers and seven days for databases in the Basic service tier - see [service tiers](sql-database-service-tiers.md) for more details on service tiers. If the retention period for your service tier does not meet your business requirements, you can increase the retention period by [changing the service tier](sql-database-scale-up.md). The full and differential database backups are also replicated to a [paired data center](../best-practices-availability-paired-regions.md) for protection against a data center outage - see [automatic database backups](sql-database-automated-backups.md) for more details.
+SQL Database 會每週自動執行完整資料庫備份、每小時自動執行差異資料庫備份，以及每 5 分鐘自動執行交易記錄備份，透過這樣的備份組合來防止您的企業遺失資料。針對「標準」和「進階」服務層中的資料庫，這些備份會在本地備援儲存體中儲存達 35 天，如果是「基本」服務層中的資料庫，則儲存天數為 7 天 - 如需有關服務層的更多詳細資料，請參閱[服務層](sql-database-service-tiers.md)。如果服務層的保留期間不符合您的企業需求，您可以[變更服務層](sql-database-scale-up.md)來增長保留期間。完整和差異資料庫備份也會複寫到[配對的資料中心](../best-practices-availability-paired-regions.md)，以防止發生資料中心中斷的情況 - 如需更多詳細資料，請參閱[自動資料庫備份](sql-database-automated-backups.md)。
 
-You can use these automatic database backups to recover a database from various disruptive events, both within your data center and to another data center. Using automatic database backups, the estimated time of recovery depends on several factors including the total number of databases recovering in the same region at the same time, the database size, the transaction log size, and network bandwidth. In most cases, the recovery time is less than 12 hours. When recovering to another data region, the potential data loss is limited to 1 hour by the geo-redundant storage of hourly differential database backups. 
+您可以使用這些自動資料庫備份，將資料庫從各種干擾性事件復原，不論是在您的資料中心內復原，還是復原到另一個資料中心，都可以。使用自動資料庫備份時，預估的復原時間取決於數個因素，包括在相同區域中同時進行復原的資料庫總數、資料庫大小、交易記錄大小，以及網路頻寬。大部分情況下，復原時間會小於 12 小時。復原到另一個資料區域時，每小時差異資料庫備份的異地備援儲存體就限制為可能遺失 1 小時的資料。
 
-> [AZURE.IMPORTANT] To recover using automated backups, you must be a member of the SQL Server Contributor role or the subscription owner - see [RBAC: Built-in roles](../active-directory/role-based-access-built-in-roles.md). You can recover using the Azure portal, PowerShell, or the REST API. You cannot use Transact-SQL.
+> [AZURE.IMPORTANT] 若要使用自動備份來進行復原，您必須是「SQL Server 參與者」角色的成員或訂用帳戶擁有者 - 請參閱 [RBAC︰內建角色](../active-directory/role-based-access-built-in-roles.md)。您可以使用 Azure 入口網站、PowerShell 或 REST API 來進行復原。您無法使用 Transact-SQL。
 
-Use automated backups as your business continuity and recovery mechanism if your application:
+如果您的應用程式有下列狀況，可以使用自動備份做為您的商務持續性和復原機制︰
 
-- Is not considered mission critical.
-- Doesn't have a binding SLA therefore the downtime of 24 hours or longer will not result in financial liability.
-- Has a low rate of data change (low transactions per hour) and losing up to an hour of change is an acceptable data loss. 
-- Is cost sensitive. 
+- 非關鍵性應用程式。
+- 沒有繫結 SLA，因此停機 24 小時或更長的時間不會衍生財務責任。
+- 資料變更率低 (每小時的交易次數低)，並且最多可接受遺失一小時的資料變更。
+- 成本有限。
 
-If you need faster recovery, use [Active Geo-Replication](sql-database-geo-replication-overview.md) (discussed next). If you need to be able to recover data from a period older than 35 days, consider archiving your database regularly to a BACPAC file (a compressed file containing your database schema and associated data) stored either in Azure blob storage or in another location of your choice. For more information on how to create a transactionally consistent database archive, see [create a database copy](sql-database-copy.md) and [export the database copy](sql-database-export.md). 
+如果您需要更快速的復原，請使用[主動式異地複寫](sql-database-geo-replication-overview.md) (接下來將討論)。如果您需要能夠復原 35 天前的資料，請考慮將您的資料庫定期封存成 BACPAC 檔案 (一種包含您資料庫結構描述和相關資料的壓縮檔案)，並儲存在 Azure Blob 儲存體或您所選擇的另一個位置中。如需有關如何建立交易一致資料庫封存的詳細資訊，請參閱[建立資料庫複本](sql-database-copy.md)和[匯出資料庫複本](sql-database-export.md)。
 
-### <a name="use-active-geo-replication-to-reduce-recovery-time-and-limit-data-loss-associated-with-a-recovery"></a>Use Active Geo-Replication to reduce recovery time and limit data loss associated with a recovery
+### 使用主動式異地複寫減少復原時間，並限制與復原相關聯的資料遺失
 
-In addition to using database backups for database recovery in the event of a business disruption, you can use [Active Geo-Replication](sql-database-geo-replication-overview.md) to configure a database to have up to four readable secondary databases in the regions of your choice. These secondary databases are kept synchronized with the primary database using an asynchronous replication mechanism. This feature is used to protect against business disruption in the event of a data center outage or during an application upgrade. Active Geo-Replication can also be used to provide better query performance for read-only queries to geographically dispersed users.
+除了在發生業務中斷時使用資料庫備份來進行資料庫復原之外，您還可以使用[主動式異地複寫](sql-database-geo-replication-overview.md)來設定資料庫，在您選擇的區域中最多可擁有 4 個可讀取的次要資料庫。這些次要資料庫會使用非同步複寫機制與主要資料庫保持同步。此功能可用來防範資料中心中斷或應用程式升級期間的業務中斷。「主動式異地複寫」也可用來為地理位置分散的使用者，就唯讀查詢方面提供較佳的查詢效能。
 
-If the primary database goes offline unexpectedly or you need to take it offline for maintenance activities, you can quickly promote a secondary to become the primary (also called a failover) and configure applications to connect to the newly promoted primary. With a planned failover, there is no data loss. With an unplanned failover, there may be some small amount of data loss for very recent transactions due to the nature of asynchronous replication. After a failover, you can later failback - either according to a plan or when the data center comes back online. In all cases, users experience a small amount of downtime and need to reconnect. 
+如果主要資料庫意外離線，或者您需要離線進行維護活動，可以快速將次要升級成主要 (也稱為容錯移轉)，並且設定應用程式連線到新升級的主要資料庫。使用計劃性容錯移轉時，不會有任何資料遺失。使用非計劃性容錯移轉時，則由於非同步複寫的性質緣故，可能會有一些少量的資料遺失。容錯移轉之後，無論是根據計畫或當資料中心再次上線時，就可以容錯回復。在所有情況下，使用者都會經歷短暫的停機時間，而需要重新連線。
 
-> [AZURE.IMPORTANT] To use Active Geo-Replication, you must either be the subscription owner or have administrative permissions in SQL Server. You can configure and failover using the Azure portal, PowerShell, or the REST API using permissions on the subscription or using Transact-SQL using permissions within SQL Server.
+> [AZURE.IMPORTANT] 若要使用主動式異地複寫，您必須是訂用帳戶擁有者，或是在 SQL Server 中擁有系統管理權限。您可以使用 Azure 入口網站、PowerShell 或 REST API，透過訂用帳戶的權限，或使用 Transact-SQL 透過 SQL Server 中的權限，來設定和容錯移轉。
 
-Use Active Geo-Replication if your application meets any of these criteria:
+如果您的應用程式符合下列任何準則，就使用主動式異地複寫：
 
-- Is mission critical.
-- Has a service level agreement (SLA) that does not allow for 24 hours or more of downtime.
-- Downtime will result in financial liability.
-- Has a high rate of data change is high and losing an hour of data is not acceptable.
-- The additional cost of active geo-replication is lower than the potential financial liability and associated loss of business.
+- 是關鍵性應用程式。
+- 具有服務等級協定 (SLA)，不允許 24 小時以上的停機時間。
+- 停機時間會衍生財務責任。
+- 具有很高的資料變更率，而且不接受遺失一個小時的資料。
+- 與潛在的財務責任和相關企業損失相較下，使用主動式異地複寫的額外成本較低。
 
-## <a name="recover-a-database-after-a-user-or-application-error"></a>Recover a database after a user or application error
+## 在使用者或應用程式錯誤之後復原資料庫
 
-*No one is perfect! A user might accidentally delete some data, inadvertently drop an important table, or even drop an entire database. Or, an application might accidentally overwrite good data with bad data due to an application defect. 
+* 沒有人是完美的！ 使用者可能會不小心刪除某些資料、不小心卸除重要的資料表，或甚至是卸除整個資料庫。或者，應用程式可能會因為應用程式缺陷，而意外以不正確的資料覆寫正確的資料。
 
-In this scenario, these are your recovery options.
+在此案例中，以下是您的復原選項。
 
-### <a name="perform-a-point-in-time-restore"></a>Perform a point-in-time restore
+### 執行還原時間點
 
-You can use the automated backups to recover a copy of your database to a known good point in time, provided that time is within the database retention period. After the database is restored, you can either replace the original database with the restored database or copy the needed data from the restored data into the original database. If the database uses Active Geo-Replication, we recommend copying the required data from the restored copy into the original database. If you replace the original database with the restored database, you will need to reconfigure and resynchronize Active Geo-Replication (which can take quite some time for a large database). 
+您可以使用自動備份，將資料庫的複本復原到已知是在資料庫保留期限內的時間點。資料庫還原之後，您可以將原始資料庫取代為還原的資料庫，或從還原的資料將所需的資料複製到原始資料庫。如果資料庫使用主動式異地複寫，我們建議從還原的複本將所需的資料複製到原始資料庫。如果您將原始資料庫取代為還原的資料庫，則必須重新設定並重新同步處理主動式異地複寫 (大型資料庫可能要花費很久的時間)。
 
-For more information and for detailed steps for restoring a database to a point in time using the Azure portal or using PowerShell, see [point-in-time restore](sql-database-recovery-using-backups.md#point-in-time-restore). You cannot recover using Transact-SQL.
+如需詳細資訊以及使用 Azure 入口網站或 PowerShell 將資料庫還原至某個時間點的詳細步驟，請參閱[還原時間點](sql-database-recovery-using-backups.md#point-in-time-restore)。您無法使用 Transact-SQL 進行復原。
 
-### <a name="restore-a-deleted-database"></a>Restore a deleted database
+### 還原已刪除的資料庫
 
-If the database is deleted but the logical server has not been deleted, you can restore the deleted database to the point at which it was deleted. This restores a database backup to the same logical SQL server from which it was deleted. You can restore it using the original name or provide a new name or the restored database.
+如果資料庫已刪除，但邏輯伺服器尚未刪除，您可以將已刪除的資料庫還原到它被刪除時的時間點。這會將資料庫備份還原到資料庫被刪除的相同邏輯 SQL 伺服器。您可以使用原始名稱還原，或是為還原的資料庫提供新的名稱。
 
-For more information and for detailed steps for restoring a deleted database using the Azure portal or using PowerShell, see [restore a deleted database](sql-database-recovery-using-backups.md#deleted-database-restore). You cannot restore using Transact-SQL.
+如需詳細資訊以及使用 Azure 入口網站或 PowerShell 來還原已刪除資料庫的詳細步驟，請參閱[還原已刪除的資料庫](sql-database-recovery-using-backups.md#deleted-database-restore)。您無法使用 Transact-SQL 進行還原。
 
-> [AZURE.IMPORTANT] If the logical server is deleted, you cannot recover a deleted database. 
+> [AZURE.IMPORTANT] 如果邏輯伺服器已刪除，您就無法復原已刪除的資料庫。
 
-### <a name="import-from-a-database-archive"></a>Import from a database archive
+### 從資料庫封存匯入
 
-If the data loss occurred outside the current retention period for automated backups and you have been archiving the database, you can [Import an archived BACPAC file](sql-database-import.md) to a new database. At this point, you can either replace the original database with the imported database or copy the needed data from the imported data into the original database. 
+如果資料遺失是發生在目前的自動備份保留期間外，而您一直都有執行資料庫封存，則您可以[匯入封存的 BACPAC 檔案](sql-database-import.md)到新的資料庫。此時您可以將原始資料庫取代為匯入的資料庫，或從匯入的資料將所需的資料複製到原始資料庫。
 
-## <a name="recover-a-database-to-another-region-from-an-azure-regional-data-center-outage"></a>Recover a database to another region from an Azure regional data center outage
+## 將資料庫從 Azure 區域資料中心中斷復原到另一個區域
 
 <!-- Explain this scenario -->
 
-Although rare, an Azure data center can have an outage. When an outage occurs, it causes a business disruption that might only last a few minutes or might last for hours. 
+雖然很罕見，但 Azure 資料中心也可能會有中斷的時候。發生中斷時，可能只會讓業務中斷幾分鐘，也可能會持續幾小時。
 
-- One option is to wait for your database to come back online when the data center outage is over. This works for applications that can afford to have the database offline. For example, a development project or free trial you don't need to work on constantly. When a data center has an outage, you won't know how long the outage will last, so this option only works if you don't need your database for a while.
-- Another option is to either failover to another data region if you are using Active Geo-Replication or the recover using geo-redundant database backups (Geo-Restore). Failover takes only a few seconds, while recovery from backups takes hours.
+- 其中一個選項是在資料中心中斷結束時等待您的資料庫重新上線。這適用於可以容忍資料庫離線的應用程式。例如，您不需要不斷處理的開發專案或免費試用版。當資料中心中斷時，您不會知道中斷會持續多久，因此這個選項僅適用於您可以一段時間暫時不需要資料庫。
+- 另一個選項是容錯移轉到另一個資料區域 (如果您使用主動式異地複寫) 或使用異地備援資料庫備份進行復原 (異地還原)。容錯移轉只需要幾秒鐘的時間，而從備份復原則需要幾個小時。
 
-When you take action, how long it takes you to recover, and how much data loss you incur in the event of a data center outage depends upon how you decide to use the business continuity features discussed above in your application. Indeed, you may choose to use a combination of database backups and Active Geo-Replication depending upon your application requirements. For a discussion of application design considerations for stand-alone databases and for elastic pools using these business continuity features, see [Design an application for cloud disaster recovery](sql-database-designing-cloud-solutions-for-disaster-recovery.md) and [Elastic Pool disaster recovery strategies](sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md).
+當您採取行動時，復原所需的時間，以及資料中心中斷而導致多少資料遺失，取決於您如何決定在應用程式中使用上述討論的商務持續性功能。事實上，您可以根據應用程式需求，選擇使用資料庫備份和主動式異地複寫的組合。若要探討使用這些商務持續性功能針對獨立資料庫和彈性集區進行應用程式設計時的考量，請參閱[設計雲端災害復原應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)和[彈性集區災害復原策略](sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md)。
 
-The sections below provide an overview of the steps to recover using either database backups or Active Geo-Replication. For detailed steps including planning requirements, post recovery steps and information about how to simulate an outage to perform a disaster recovery drill, see [Recover a SQL Database from an outage](sql-database-disaster-recovery.md).
+下列各節概述使用資料庫備份或主動式異地複寫來進行復原的步驟。如需包括規劃需求的詳細步驟、復原後步驟，以及有關如何模擬中斷以執行災害復原演練的資訊，請參閱[從中斷復原 SQL Database](sql-database-disaster-recovery.md)。
 
-### <a name="prepare-for-an-outage"></a>Prepare for an outage
+### 準備中斷
 
-Regardless of the business continuity feature you use, you must:
+無論您要使用何種商務持續性功能，您都必須︰
 
-- Identify and prepare the target server, including server-level firewall rules, logins, and master database level permissions.
-- Determine how to redirect clients and client applications to the new server
-- Document other dependencies, such as auditing settings and alerts 
+- 識別並準備目標伺服器，包括伺服器層級防火牆規則、登入和 master 資料庫層級權限。
+- 決定如何將用戶端和用戶端應用程式重新導向到新的伺服器
+- 記錄其他相依性，例如稽核設定和警示
  
-If you do not plan and prepare properly, bringing your applications online after a failover or a recovery takes additional time and likely also require troubleshooting at a time of stress - a bad combination.
+如果您沒有適當地規劃和準備，在容錯移轉或復原後讓應用程式上線將會多花費時間，而且也可能需要在有壓力的情況下進行疑難排解 - 這是不良的情況組合。
 
-### <a name="failover-to-a-geo-replicated-secondary-database"></a>Failover to a geo-replicated secondary database 
+### 容錯移轉至異地複寫的次要資料庫 
 
-If you are using Active Geo-Replication as your recovery mechanism, [force a failover to a geo-replicated secondary](sql-database-disaster-recovery.md#failover-to-geo-replicated-secondary-database). Within seconds, the secondary is promoted to become the new primary and is ready to record new transactions and respond to any queries - with only a few seconds of data loss for the data that had not yet been replicated. For information on automating the failover process, see [Design an application for cloud disaster recovery](sql-database-designing-cloud-solutions-for-disaster-recovery.md).
+如果您使用「主動式異地複寫」作為復原機制，請[強制容錯移轉至異地複寫的次要資料庫](sql-database-disaster-recovery.md#failover-to-geo-replicated-secondary-database)。在幾秒鐘內，次要資料庫就會升級成為新的主要資料庫，而且準備好記錄新的交易，並回應任何查詢 - 只會遺失幾秒尚未複寫的資料。如需有關將容錯移轉程序自動化的資訊，請參閱[設計雲端災害復原應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)。
 
-> [AZURE.NOTE] When the data center comes back online, you can failback to the original primary (or not).
+> [AZURE.NOTE] 當資料中心再次上線時，您就可以選擇容錯回復到原始的主要資料庫。
 
-### <a name="perform-a-geo-restore"></a>Perform a Geo-Restore 
+### 執行異地還原 
 
-If you are using automated backups with geo-redundant storage replication as your recovery mechanism, [initiate a database recovery using Geo-Restore](sql-database-disaster-recovery.md#recover-using-geo-restore). Recovery usually takes place within 12 hours - with data loss of up to one hour determined by when the last hourly differential backup with taken and replicated. Until the recovery completes, the database is unable to record any transactions or respond to any queries. 
+如果您使用自動備份搭配異地備援儲存體複寫作為復原機制，請[使用異地還原起始資料庫復原](sql-database-disaster-recovery.md#recover-using-geo-restore)。復原通常會在 12 小時內進行 - 視最後一次每小時差異備份的執行和複寫時間而定，最多可能遺失 1 小時的資料。在復原完成之前，資料庫無法記錄任何交易或回應任何查詢。
 
-> [AZURE.NOTE] If the data center comes back online before you switch your application over to the recovered database, you can simply cancel the recovery.  
+> [AZURE.NOTE] 如果資料中心在您的應用程式切換到復原的資料庫之前就再次上線，您只要取消復原即可。
 
-### <a name="perform-post-failover-/-recovery-tasks"></a>Perform post failover / recovery tasks 
+### 執行容錯移轉後/復原後工作 
 
-After recovery from either recovery mechanism, you must perform the following additional tasks before your users and applications are back up and running:
+從其中任何一種復原機制復原之後，您都必須執行下列額外的工作，您的使用者和應用程式才能回復正常執行狀態︰
 
-- Redirect clients and client applications to the new server and restored database
-- Ensure appropriate server-level firewall rules are in place for users to connect (or use [database-level firewalls](sql-database-firewall-configure.md#creating-database-level-firewall-rules))
-- Ensure appropriate logins and master database level permissions are in place (or use [contained users](https://msdn.microsoft.com/library/ff929188.aspx))
-- Configure auditing, as appropriate
-- Configure alerts, as appropriate
+- 重新導向用戶端與用戶端應用程式到新的伺服器與還原的資料庫
+- 確定有適當的伺服器層級防火牆規則供使用者連線 (或使用[資料庫層級防火牆](sql-database-firewall-configure.md#creating-database-level-firewall-rules))
+- 確定有適當的登入和 master 資料庫層級權限 (或使用[自主的使用者](https://msdn.microsoft.com/library/ff929188.aspx))
+- 依適當情況設定稽核
+- 依適當情況設定警示
 
-## <a name="upgrade-an-application-with-minimal-downtime"></a>Upgrade an application with minimal downtime
+## 在最少停機時間的情況下升級應用程式
 
-Sometimes an application needs to be taken offline because of planned maintenance such as an application upgrade. [Manage application upgrades](sql-database-manage-application-rolling-upgrade.md) describes how to use Active Geo-Replication to enable rolling upgrades of your cloud application to minimize downtime during upgrades and provide a recovery path in the event something goes wrong. This article looks at two different methods of orchestrating the upgrade process and discusses the benefits and trade-offs of each option.
+有時，應用程式會因為計劃性維護 (例如應用程式升級) 而必須離線。[管理應用程式升級](sql-database-manage-application-rolling-upgrade.md)說明如何使用「主動式異地複寫」來輪流升級雲端應用程式，以將升級時的停機時間縮到最短，並提供萬一發生錯誤時的復原路徑。本文將探討兩種不同的升級程序協調方法，並討論每個選項的優缺點。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-For a discussion of application design considerations for stand-alone databases and for elastic pools, see [Design an application for cloud disaster recovery](sql-database-designing-cloud-solutions-for-disaster-recovery.md) and [Elastic Pool disaster recovery strategies](sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md).
+如需獨立資料庫和彈性集區的應用程式設計考量探討，請參閱[設計雲端災害復原應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)和[彈性集區災害復原策略](sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md)。
 
-
-
-
-
-
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

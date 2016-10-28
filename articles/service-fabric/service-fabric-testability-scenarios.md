@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Chaos and failover tests | Microsoft Azure"
-   description="Using the Service Fabric chaos test and failover test scenarios to induce faults and verify the reliability of your services."
+   pageTitle="混亂和容錯移轉測試 | Microsoft Azure"
+   description="使用 Service Fabric 混亂測試和容錯移轉測試案例來引發錯誤並確認服務的可靠性。"
    services="service-fabric"
    documentationCenter=".net"
    authors="motanv"
@@ -16,40 +16,39 @@
    ms.date="07/08/2016"
    ms.author="motanv"/>
 
+# Testability 案例
+雲端基礎結構之類的大型分散式系統本身並不可靠。Azure Service Fabric 讓開發人員能夠撰寫可在不可靠的基礎結構上執行的服務。為了撰寫高品質的服務，開發人員必須能夠產生這類不可靠的基礎結構，才能測試其服務的穩定性。
 
-# <a name="testability-scenarios"></a>Testability scenarios
-Large distributed systems like cloud infrastructures are inherently unreliable. Azure Service Fabric gives developers the ability to write services to run on top of unreliable infrastructures. In order to write high-quality services, developers need to be able to induce such unreliable infrastructure to test the stability of their services.
+「錯誤分析服務」讓開發人員可以引發錯誤動作，藉此以失敗情況測試服務。但鎖定式模擬錯誤就僅只於此了。若要進一步測試，您可以在 Service Fabric 中使用測試案例：混亂測試和容錯移轉測試。這些案例會以很長的時間在整個叢集上模擬連續的交錯錯誤，包括非失誤性和失誤性錯誤。一旦設定測試的比率和錯誤類型後，即可開始透過 C# API 或 PowerShell 在叢集和您的服務中產生錯誤。
 
-The Fault Analysis Service gives developers the ability to induce fault actions to test services in the presence of failures. However, targeted simulated faults will get you only so far. To take the testing further, you can use the test scenarios in Service Fabric: a chaos test and a failover test. These scenarios simulate continuous interleaved faults, both graceful and ungraceful, throughout the cluster over extended periods of time. Once a test is configured with the rate and kind of faults, it can be started through either C# APIs or PowerShell, to generate faults in the cluster and your service.
+>[AZURE.WARNING] ChaosTestScenario 已被更有彈性、以服務為基礎的混亂取代。請參閱[控制的混亂](service-fabric-controlled-chaos.md)了解詳細資訊。
 
->[AZURE.WARNING] ChaosTestScenario is being replaced by a more resilient, service-based Chaos. Please refer to the new article [Controlled Chaos](service-fabric-controlled-chaos.md) for more details.
+## 混亂測試
+混亂案例會在整個 Service Fabric 叢集中產生錯誤。此案例會壓縮錯誤，通常是將幾個月或幾年壓縮到幾小時。交錯錯誤和高錯誤率的組合，可以找到會在其他情形下被遺漏的極端狀況。這會使服務的程式碼品質大幅提升。
 
-## <a name="chaos-test"></a>Chaos test
-The chaos scenario generates faults across the entire Service Fabric cluster. The scenario compresses faults generally seen in months or years to a few hours. The combination of interleaved faults with the high fault rate finds corner cases that are otherwise missed. This leads to a significant improvement in the code quality of the service.
+### 混亂測試中模擬的錯誤
+ - 重新啟動節點
+ - 重新啟動已部署的程式碼封裝
+ - 移除複本
+ - 重新啟動複本
+ - 移動主要複本 (選擇性)
+ - 移動次要複本 (選擇性)
 
-### <a name="faults-simulated-in-the-chaos-test"></a>Faults simulated in the chaos test
- - Restart a node
- - Restart a deployed code package
- - Remove a replica
- - Restart a replica
- - Move a primary replica (optional)
- - Move a secondary replica (optional)
+混亂測試會在指定的一段時間中，多次執行反覆的錯誤和叢集驗證。讓叢集穩定和驗證成功的所需時間也是可設定的。當您在叢集驗證中發生一次失敗，案例就會失敗。
 
-The chaos test runs multiple iterations of faults and cluster validations for the specified period of time. The time spent for the cluster to stabilize and for validation to succeed is also configurable. The scenario fails when you hit a single failure in cluster validation.
+例如，請考慮將測試設為執行 1 小時，且最多 3 個並行錯誤。測試會引發 3 個錯誤，然後驗證叢集的健康情況。上一個步驟的測試會反覆進行，直到叢集變成狀況不佳，或經過了 1 小時為止。如果任何反覆運算中的叢集變成狀況不佳，也就是在設定的時間內不穩定，則測試就會失敗並產生例外狀況。此例外狀況表示發生了錯誤，且需要進一步調查。
 
-For example, consider a test set to run for one hour with a maximum of three concurrent faults. The test will induce three faults, and then validate the cluster health. The test will iterate through the previous step till the cluster becomes unhealthy or one hour passes. If the cluster becomes unhealthy in any iteration, i.e. it does not stabilize within a configured time, the test will fail with an exception. This exception indicates that something has gone wrong and needs further investigation.
+以目前的形式來看，混亂測試的錯誤產生引擎只會引發安全的錯誤。這表示因為沒有外部錯誤，所以永遠不會發生仲裁或資料遺失。
 
-In its current form, the fault generation engine in the chaos test induces only safe faults. This means that in the absence of external faults, a quorum or data loss will never occur.
+### 重要的組態選項
+ - **TimeToRun**：測試在成功完成前的總執行時間。測試可以提前完成，而不必等驗證失敗。
+ - **MaxClusterStabilizationTimeout**：測試失敗前，等候叢集變成狀況良好的時間上限。執行的檢查會查看叢集健康情況或服務健康情況是否正常、服務分割區是否達到目標複本的設定大小，以及是否沒有 InBuild 複本。
+ - **MaxConcurrentFaults**：每個反覆運算中引發的最大並行錯誤數。數量越大，測試會越積極，因此導致更複雜的容錯移轉和轉換組合。無論此組態的數量多高，測試都能保證缺少外部錯誤時，就不會發生仲裁或資料遺失。
+ - **EnableMoveReplicaFaults**：啟用或停用造成主要或次要複本移動的錯誤。預設會停用這些錯誤。
+ - **WaitTimeBetweenIterations**：反覆運算之間的等待時間長度，也就是在一輪的錯誤與對應的驗證後等待下一輪。
 
-### <a name="important-configuration-options"></a>Important configuration options
- - **TimeToRun**: Total time that the test will run before finishing with success. The test can finish earlier in lieu of a validation failure.
- - **MaxClusterStabilizationTimeout**: Maximum amount of time to wait for the cluster to become healthy before failing the test. The checks performed are whether cluster health is OK, service health is OK, the target replica set size is achieved for the service partition, and no InBuild replicas exist.
- - **MaxConcurrentFaults**: Maximum number of concurrent faults induced in each iteration. The higher the number, the more aggressive the test, hence resulting in more complex failovers and transition combinations. The test guarantees that in absence of external faults there will not be a quorum or data loss, irrespective of how high this configuration is.
- - **EnableMoveReplicaFaults**: Enables or disables the faults that are causing the move of the primary or secondary replicas. These faults are disabled by default.
- - **WaitTimeBetweenIterations**: Amount of time to wait between iterations, i.e. after a round of faults and corresponding validation.
-
-### <a name="how-to-run-the-chaos-test"></a>How to run the chaos test
-C# sample
+### 如何執行混亂測試
+C# 範例
 
 ```csharp
 using System;
@@ -139,27 +138,27 @@ Invoke-ServiceFabricChaosTestScenario -TimeToRunMinute $timeToRun -MaxClusterSta
 ```
 
 
-## <a name="failover-test"></a>Failover test
+## 容錯移轉測試
 
-The failover test scenario is a version of the chaos test scenario that targets a specific service partition. It tests the effect of failover on a specific service partition while leaving the other services unaffected. Once it's configured with the target partition information and other parameters, it runs as a client-side tool that uses either C# APIs or PowerShell to generate faults for a service partition. The scenario iterates through a sequence of simulated faults and service validation while your business logic runs on the side to provide a workload. A failure in service validation indicates an issue that needs further investigation.
+容錯移轉測試案例是以特定服務分割區為目標的混亂測試案例版本。此測試會測試容錯移轉對特定服務分割區的影響，且其他服務不會受到影響。設定了目標分割區資訊和其他參數後，此測試會以用戶端工具的形式執行，並使用 C# API 或 Powershell 來產生服務分割區的錯誤。案例會在您的商務邏輯執行時，反覆進行一連串模擬的錯誤及服務驗證，同時提供工作負載。服務驗證中若有失敗，表示有需要進一步調查的問題。
 
-### <a name="faults-simulated-in-the-failover-test"></a>Faults simulated in the failover test
-- Restart a deployed code package where the partition is hosted
-- Remove a primary/secondary replica or stateless instance
-- Restart a primary secondary replica (if a persisted service)
-- Move a primary replica
-- Move a secondary replica
-- Restart the partition
+### 在容錯移轉測試中模擬的錯誤
+- 重新啟動分割區所在的已部署程式碼封裝
+- 移除主要/次要複本或無狀態執行個體
+- 重新啟動主要的次要複本 (如果是保存的服務)
+- 移動主要複本
+- 移動次要複本
+- 重新啟動分割區
 
-The failover test induces a chosen fault and then runs validation on the service to ensure its stability. The failover test induces only one fault at a time, as opposed to possible multiple faults in the chaos test. If the service partition does not stabilize within the configured timeout after each fault, the test fails. The test induces only safe faults. This means that in absence of external failures, a quorum or data loss will not occur.
+容錯移轉測試會引發選定的錯誤，然後在服務上執行驗證，以確保其穩定性。容錯移轉測試一次只會引發一個錯誤，不像混亂測試中可能會有多個錯誤。如果在每個錯誤後，服務分割區沒有在設定的逾時內變穩定，測試會失敗。此測試只會引發安全的錯誤。這表示因為沒有外部錯誤，所以不會發生仲裁或資料遺失。
 
-### <a name="important-configuration-options"></a>Important configuration options
- - **PartitionSelector**: Selector object that specifies the partition that needs to be targeted.
- - **TimeToRun**: Total time that the test will run before finishing.
- - **MaxServiceStabilizationTimeout**: Maximum amount of time to wait for the cluster to become healthy before failing the test. The checks performed are whether service health is OK, the target replica set size is achieved for all partitions, and no InBuild replicas exist.
- - **WaitTimeBetweenFaults**: Amount of time to wait between every fault and validation cycle.
+### 重要的組態選項
+ - **PartitionSelector**：指定需要做為目標分割區的選取器物件。
+ - **TimeToRun**：測試在完成前的總執行時間。
+ - **MaxServiceStabilizationTimeout**：測試失敗前，等候叢集變成狀況良好的時間上限。執行的檢查會查看服務健康情況是否正常，或是所有分割區是否達到目標複本的設定大小，以及是否沒有 InBuild 複本。
+ - **WaitTimeBetweenFaults**：每個錯誤和驗證的循環之間要等候的時間長度。
 
-### <a name="how-to-run-the-failover-test"></a>How to run the failover test
+### 如何執行容錯移轉測試
 
 **C#**
 
@@ -250,8 +249,4 @@ Connect-ServiceFabricCluster $connection
 Invoke-ServiceFabricFailoverTestScenario -TimeToRunMinute $timeToRun -MaxServiceStabilizationTimeoutSec $maxStabilizationTimeSecs -WaitTimeBetweenFaultsSec $waitTimeBetweenFaultsSec -ServiceName $serviceName -PartitionKindSingleton
 ```
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

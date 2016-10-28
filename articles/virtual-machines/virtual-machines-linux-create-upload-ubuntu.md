@@ -1,130 +1,125 @@
 <properties
-    pageTitle="Create and upload an Ubuntu Linux VHD in Azure"
-    description="Learn to create and upload an Azure virtual hard disk (VHD) that contains an Ubuntu Linux operating system."
-    services="virtual-machines-linux"
-    documentationCenter=""
-    authors="szarkos"
-    manager="timlt"
-    editor="tysonn"
-    tags="azure-resource-manager,azure-service-management"/>
+	pageTitle="在 Azure 中建立及上傳 Ubuntu Linux VHD"
+	description="了解如何建立及上傳包含 Ubuntu Linux 作業系統的 Azure 虛擬硬碟 (VHD)。"
+	services="virtual-machines-linux"
+	documentationCenter=""
+	authors="szarkos"
+	manager="timlt"
+	editor="tysonn"
+	tags="azure-resource-manager,azure-service-management"/>
 
 <tags
-    ms.service="virtual-machines-linux"
-    ms.workload="infrastructure-services"
-    ms.tgt_pltfrm="vm-linux"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/24/2016"
-    ms.author="szark"/>
+	ms.service="virtual-machines-linux"
+	ms.workload="infrastructure-services"
+	ms.tgt_pltfrm="vm-linux"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/24/2016"
+	ms.author="szark"/>
 
-
-# <a name="prepare-an-ubuntu-virtual-machine-for-azure"></a>Prepare an Ubuntu virtual machine for Azure
+# 準備適用於 Azure 的 Ubuntu 虛擬機器
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
-## <a name="official-ubuntu-cloud-images"></a>Official Ubuntu cloud images
-Ubuntu now publishes official Azure VHDs for download at [http://cloud-images.ubuntu.com/](http://cloud-images.ubuntu.com/). If you need to build your own specialized Ubuntu image for Azure, rather than use the manual procedure below it is recommended to start with these known working VHDs and customize as needed. The latest image releases can always be found at the following locations:
+## 官方 Ubuntu 雲端映像
+Ubuntu 現在發佈官方 Azure VHD 提供下載 ([http://cloud-images.ubuntu.com/](http://cloud-images.ubuntu.com/))。如果您需要針對 Azure 建置您專用的 Ubuntu 映像，而不使用下面的手動程序，建議您視需要從使用這些已知可運作的 VHD 並加以自訂來開始建置。最新的映像版本一律可以在下列位置找到︰
 
- - Ubuntu 12.04/Precise: [ubuntu-12.04-server-cloudimg-amd64-disk1.vhd.zip](http://cloud-images.ubuntu.com/releases/precise/release/ubuntu-12.04-server-cloudimg-amd64-disk1.vhd.zip)
- - Ubuntu 14.04/Trusty: [ubuntu-14.04-server-cloudimg-amd64-disk1.vhd.zip](http://cloud-images.ubuntu.com/releases/trusty/release/ubuntu-14.04-server-cloudimg-amd64-disk1.vhd.zip)
- - Ubuntu 16.04/Xenial: [ubuntu-16.04-server-cloudimg-amd64-disk1.vhd.zip](http://cloud-images.ubuntu.com/releases/xenial/release/ubuntu-16.04-server-cloudimg-amd64-disk1.vhd.zip)
-
-
-## <a name="prerequisites"></a>Prerequisites
-
-This article assumes that you have already installed an Ubuntu Linux operating system to a virtual hard disk. Multiple tools exist to create .vhd files, for example a virtualization solution such as Hyper-V. For instructions, see [Install the Hyper-V Role and Configure a Virtual Machine](http://technet.microsoft.com/library/hh846766.aspx).
-
-**Ubuntu installation notes**
-
-- Please see also [General Linux Installation Notes](virtual-machines-linux-create-upload-generic.md#general-linux-installation-notes) for more tips on preparing Linux for Azure.
-- The VHDX format is not supported in Azure, only **fixed VHD**.  You can convert the disk to VHD format using Hyper-V Manager or the convert-vhd cmdlet.
-- When installing the Linux system it is recommended that you use standard partitions rather than LVM (often the default for many installations). This will avoid LVM name conflicts with cloned VMs, particularly if an OS disk ever needs to be attached to another VM for troubleshooting. [LVM](virtual-machines-linux-configure-lvm.md) or [RAID](virtual-machines-linux-configure-raid.md) may be used on data disks if preferred.
-- Do not configure a swap partition on the OS disk. The Linux agent can be configured to create a swap file on the temporary resource disk.  More information about this can be found in the steps below.
-- All of the VHDs must have sizes that are multiples of 1 MB.
+ - Ubuntu 12.04/Precise︰[ubuntu-12.04-server-cloudimg-amd64-disk1.vhd.zip](http://cloud-images.ubuntu.com/releases/precise/release/ubuntu-12.04-server-cloudimg-amd64-disk1.vhd.zip)
+ - Ubuntu 14.04/Trusty︰[ubuntu-14.04-server-cloudimg-amd64-disk1.vhd.zip](http://cloud-images.ubuntu.com/releases/trusty/release/ubuntu-14.04-server-cloudimg-amd64-disk1.vhd.zip)
+ - Ubuntu 16.04/Xenial︰[ubuntu-16.04-server-cloudimg-amd64-disk1.vhd.zip](http://cloud-images.ubuntu.com/releases/xenial/release/ubuntu-16.04-server-cloudimg-amd64-disk1.vhd.zip)
 
 
-## <a name="manual-steps"></a>Manual steps
+## 必要條件
 
-> [AZURE.NOTE] Before creating your own custom Ubuntu image for Azure, please consider using the images from [http://cloud-images.ubuntu.com/](http://cloud-images.ubuntu.com/) instead.
+本文假設您已將 Ubuntu Linux 作業系統安裝到虛擬硬碟。有多個工具可用來建立 .vhd 檔案，例如，像是 Hyper-V 的虛擬化解決方案。如需指示，請參閱[安裝 Hyper-V 角色及設定虛擬機器](http://technet.microsoft.com/library/hh846766.aspx)。
 
+**Ubuntu 安裝注意事項**
 
-1. In the center pane of Hyper-V Manager, select the virtual machine.
-
-2. Click **Connect** to open the window for the virtual machine.
-
-3.  Replace the current repositories in the image to use Ubuntu's Azure repos. The steps vary slightly depending on the Ubuntu version.
-
-    Before editing /etc/apt/sources.list, it is recommended to make a backup:
-
-        # sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
-
-    Ubuntu 12.04:
-
-        # sudo sed -i "s/[a-z][a-z].archive.ubuntu.com/azure.archive.ubuntu.com/g" /etc/apt/sources.list
-        # sudo apt-get update
-
-    Ubuntu 14.04:
-
-        # sudo sed -i "s/[a-z][a-z].archive.ubuntu.com/azure.archive.ubuntu.com/g" /etc/apt/sources.list
-        # sudo apt-get update
-
-4. The Ubuntu Azure images are now following the *hardware enablement* (HWE) kernel. Update the operating system to the latest kernel by running the following commands:
-
-    Ubuntu 12.04:
-
-        # sudo apt-get update
-        # sudo apt-get install linux-image-generic-lts-trusty linux-cloud-tools-generic-lts-trusty
-        # sudo apt-get install hv-kvp-daemon-init
-        (recommended) sudo apt-get dist-upgrade
-
-        # sudo reboot
-
-    Ubuntu 14.04:
-
-        # sudo apt-get update
-        # sudo apt-get install linux-image-virtual-lts-vivid linux-lts-vivid-tools-common
-        # sudo apt-get install hv-kvp-daemon-init
-        (recommended) sudo apt-get dist-upgrade
-
-        # sudo reboot
+- 另請參閱 [一般 Linux 安裝注意事項](virtual-machines-linux-create-upload-generic.md#general-linux-installation-notes)，了解為 Azure 準備 Linux 的更多秘訣。
+- Azure 不支援 VHDX 格式，只支援**固定 VHD**。您可以使用 Hyper-V 管理員或 convert-vhd Cmdlet，將磁碟轉換為 VHD 格式。
+- 安裝 Linux 系統時，建議您使用標準磁碟分割而不是 LVM (常是許多安裝的預設設定)。這可避免 LVM 與複製之虛擬機器的名稱衝突，特別是為了疑難排解而需要將作業系統磁碟連接至其他虛擬機器時。如果想要的話，您可以在資料磁碟上使用 [LVM](virtual-machines-linux-configure-lvm.md) 或 [RAID](virtual-machines-linux-configure-raid.md)。
+- 請勿在作業系統磁碟上設定交換磁碟分割。您可以設定 Linux 代理程式在暫存資源磁碟上建立交換檔。您可以在以下步驟中找到與此有關的詳細資訊。
+- 所有 VHD 的大小都必須是 1 MB 的倍數。
 
 
-5. Modify the kernel boot line for Grub to include additional kernel parameters for Azure. To do this open "/etc/default/grub" in a text editor, find the variable called `GRUB_CMDLINE_LINUX_DEFAULT` (or add it if needed) and edit it to include the following parameters:
+## 手動步驟
 
-        GRUB_CMDLINE_LINUX_DEFAULT="console=tty1 console=ttyS0,115200n8 earlyprintk=ttyS0,115200 rootdelay=300"
-
-    Save and close this file, and then run '`sudo update-grub`'. This will ensure all console messages are sent to the first serial port, which can assist Azure technical support with debugging issues.
-
-6.  Ensure that the SSH server is installed and configured to start at boot time.  This is usually the default.
-
-7.  Install the Azure Linux Agent:
-
-        # sudo apt-get update
-        # sudo apt-get install walinuxagent
-
-    Note that installing the `walinuxagent` package will remove the `NetworkManager` and `NetworkManager-gnome` packages, if they are installed.
-
-8.  Run the following commands to deprovision the virtual machine and prepare it for provisioning on Azure:
-
-        # sudo waagent -force -deprovision
-        # export HISTSIZE=0
-        # logout
-
-9. Click **Action -> Shut Down** in Hyper-V Manager. Your Linux VHD is now ready to be uploaded to Azure.
+> [AZURE.NOTE] 在針對 Azure 建立您自訂的 Ubuntu 映像之前，請考慮改用來自 [http://cloud-images.ubuntu.com/](http://cloud-images.ubuntu.com/) 的映像。
 
 
-## <a name="next-steps"></a>Next steps
-You're now ready to use your Ubuntu Linux virtual hard disk to create new virtual machines in Azure. If this is the first time that you're uploading the .vhd file to Azure, see steps 2 and 3 in [Creating and uploading a virtual hard disk that contains the Linux operating system](virtual-machines-linux-classic-create-upload-vhd.md).
+1. 在 Hyper-V 管理員的中間窗格中，選取虛擬機器。
 
-## <a name="references"></a>References ##
+2. 按一下 **[連接]**，以開啟虛擬機器的視窗。
 
-Ubuntu hardware enablement (HWE) kernel:
+3.	取代映像中的目前儲存機制，以使用 Ubuntu 的 Azure 儲存機制。此步驟會隨著 Ubuntu 版本而略有不同。
+
+	建議您在編輯 /etc/apt/sources.list 之前先進行備份：
+
+		# sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
+
+	Ubuntu 12.04：
+
+		# sudo sed -i "s/[a-z][a-z].archive.ubuntu.com/azure.archive.ubuntu.com/g" /etc/apt/sources.list
+		# sudo apt-get update
+
+	Ubuntu 14.04：
+
+		# sudo sed -i "s/[a-z][a-z].archive.ubuntu.com/azure.archive.ubuntu.com/g" /etc/apt/sources.list
+		# sudo apt-get update
+
+4. Ubuntu 的 Azure 映像現在遵循「硬體啟用」(HWE) 核心。執行下列命令，將作業系統更新為最新的核心：
+
+	Ubuntu 12.04：
+
+		# sudo apt-get update
+		# sudo apt-get install linux-image-generic-lts-trusty linux-cloud-tools-generic-lts-trusty
+		# sudo apt-get install hv-kvp-daemon-init
+		(recommended) sudo apt-get dist-upgrade
+
+		# sudo reboot
+
+	Ubuntu 14.04：
+
+		# sudo apt-get update
+		# sudo apt-get install linux-image-virtual-lts-vivid linux-lts-vivid-tools-common
+		# sudo apt-get install hv-kvp-daemon-init
+		(recommended) sudo apt-get dist-upgrade
+
+		# sudo reboot
+
+
+5. 修改 Grub 的核心開機程式行，使其額外包含用於 Azure 的核心參數。若要執行這個動作，請在文字編輯器中開啟 "/etc/default/grub"，找到名為 `GRUB_CMDLINE_LINUX_DEFAULT` 的變數 (或視需要加入它)，然後進行編輯以使其包含以下參數：
+
+		GRUB_CMDLINE_LINUX_DEFAULT="console=tty1 console=ttyS0,115200n8 earlyprintk=ttyS0,115200 rootdelay=300"
+
+	儲存並關閉此檔案，然後執行 '`sudo update-grub`'。這將確保所有主控台訊息都會傳送給第一個序列埠，有助於 Azure 技術支援團隊進行問題偵錯程序。
+
+6.	確定您已安裝 SSH 伺服器，並已設定為在開機時啟動。這通常是預設值。
+
+7.	安裝 Azure Linux 代理程式：
+
+		# sudo apt-get update
+		# sudo apt-get install walinuxagent
+
+	請注意，若已安裝 `NetworkManager` 和 `NetworkManager-gnome` 封裝，則會在安裝 `walinuxagent` 封裝時移除它們。
+
+8.	執行下列命令，以取消佈建虛擬機器，並準備將其佈建於 Azure 上：
+
+		# sudo waagent -force -deprovision
+		# export HISTSIZE=0
+		# logout
+
+9. 在 Hyper-V 管理員中，依序按一下 [動作] -> [關閉]。您現在可以將 Linux VHD 上傳至 Azure。
+
+
+## 後續步驟
+您現在可以開始使用您的 Ubuntu Linux 虛擬硬碟在 Azure 建立新的虛擬機器。若這是您第一次將該 .vhd 檔案上傳到 Azure，請參閱[建立及上傳包含 Linux 作業系統的虛擬硬碟](virtual-machines-linux-classic-create-upload-vhd.md)中的步驟 2 和步驟 3。
+
+## 參考 ##
+
+Ubuntu 硬體啟用 (HWE) 核心：
 
 - [http://blog.utlemming.org/2015/01/ubuntu-1404-azure-images-now-tracking.html](http://blog.utlemming.org/2015/01/ubuntu-1404-azure-images-now-tracking.html)
 - [http://blog.utlemming.org/2015/02/1204-azure-cloud-images-now-using-hwe.html](http://blog.utlemming.org/2015/02/1204-azure-cloud-images-now-using-hwe.html)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0831_2016-->

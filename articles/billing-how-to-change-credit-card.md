@@ -1,71 +1,66 @@
 <properties
-    pageTitle="How to change the credit card used to pay for an Azure subscription | Microsoft Azure"
-    description="Describes how to How to change the credit card used to pay for an Azure subscription"
-    services=""
-    documentationCenter=""
-    authors="genlin"
-    manager="mbaldwin"
-    editor=""
-    tags="billing"
-    />
+	pageTitle="如何變更用來支付 Azure 訂用帳戶的信用卡 | Microsoft Azure"
+	description="描述如何變更用來支付 Azure 訂用帳戶的信用卡"
+	services=""
+	documentationCenter=""
+	authors="genlin"
+	manager="mbaldwin"
+	editor=""
+	tags="billing"
+	/>
 
 <tags
-    ms.service="billing"
-    ms.workload="na"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/24/2016"
-    ms.author="genli"/>
+	ms.service="billing"
+	ms.workload="na"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/24/2016"
+	ms.author="genli"/>
 
+# 如何變更用來支付 Azure 訂用帳戶的信用卡
 
-# <a name="how-to-change-the-credit-card-used-to-pay-for-an-azure-subscription"></a>How to change the credit card used to pay for an Azure subscription
+您有時可能需要在帳戶資訊中更新信用卡的詳細資料，或變更用來支付帳單的信用卡。
 
-You may sometimes need to update details of the credit card in your account information, or change the card used to pay your bill.
+如果您的信用卡換卡，但號碼維持不變，則只要更新現有信用卡的詳細資料即可，例如有效期限。
 
-If your credit card gets renewed and the number remains the same, you can simply update the details of the existing credit card, such as expiration date.
+如果您的信用卡號碼由於遺失、遭竊或過期而變更過，您必須將新的信用卡新增至您的帳戶。這是因為信用卡號碼變更時，卡片上的 CVV 安全碼也會變更。
 
-If your credit card number ever changes, due to being lost, stolen, or expired, you need to add the new credit card to your account. This is because the CVV security code on the card is changed when the credit card number changes.
+> [AZURE.NOTE] 如果您對於本文任何內容有需要進一步的協助，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
 
-> [AZURE.NOTE] If you need more help at any point in this article, please [contact support](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) to get your issue resolved quickly.
+## 編輯現有信用卡的付款資訊
+1. 以帳戶管理員登入 [Azure 帳戶中心](https://account.windowsazure.com/Subscriptions)。在 [Azure 入口網站](https://portal.azure.com)，您可以藉由選取 [訂用帳戶] > 訂用帳戶名稱 > [管理] 來存取帳戶中心。
 
-## <a name="edit-payment-information-for-an-existing-credit-card"></a>Edit payment information for an existing credit card
-1. Log on to the [Azure Account Center](https://account.windowsazure.com/Subscriptions) as the account administrator. In the [Azure portal](https://portal.azure.com), you can access the Account Center by selecting **Subscription**>*the subscription name*>**Manage**.
+	> [AZURE.NOTE] 只有帳戶管理員有權存取帳戶中心。如需帳戶管理員的詳細資訊，請參閱[如何新增或變更 Azure 管理員角色](billing-add-change-azure-subscription-administrator.md)。
 
-    > [AZURE.NOTE] Only the  account administrator has permission to access the Account Center. For more information about account administrator, see [How to add or change Azure administrator roles](billing-add-change-azure-subscription-administrator.md).
+2. 在 [按一下訂用帳戶即可檢視詳細資料及使用量] 下方，選取連結至信用卡的訂用帳戶。</br> ![selectsub](./media/billing-how-to-change-credit-card/selectsub.png)
+3. 在頁面右側，選取 [管理付款方式]。</br>![changesub](./media/billing-how-to-change-credit-card/changesub_new.png)
+4. 在 [管理付款方式] 頁面上，選取信用卡號碼旁邊的 [編輯]。</br> ![changesub](./media/billing-how-to-change-credit-card/editcard_new.png)
+5. 在 [編輯] 頁面上，確認您已選取正確的信用卡類型與信用卡號碼。
+6. 對於信用卡詳細資料進行您需要的變更，然後選取 [下一步] 以返回 [選擇付款方式] 頁面。
 
-2. Under **Click a subscription to view details and usage**, select the subscription that is linked to the credit card.</br> ![selectsub](./media/billing-how-to-change-credit-card/selectsub.png)
-3. On the right side of the page, select **Manage payment methods**.</br> ![changesub](./media/billing-how-to-change-credit-card/changesub_new.png)
-4. On the **Manage payment methods** page, select **Edit** next to the credit card number.</br> ![changesub](./media/billing-how-to-change-credit-card/editcard_new.png)
-5. On the **Edit** page, verify that you have selected the correct credit card type and card number.
-6. Make the changes you need to the card details, and then select **Next** to the **Choose payment method** page.
+## 新增新的信用卡做為付款方式
+1. 以帳戶管理員登入 [Azure 帳戶中心](https://account.windowsazure.com/Subscriptions)。
+2. 在 [按一下訂用帳戶即可檢視詳細資料及使用量] 下方，選取您要新增付款方式的訂用帳戶。
+3. 在頁面右側，選取 [管理付款方式]。
+4. 在 [管理付款方式] 頁面上，選取 "+" 以新增新的信用卡。
+5. 選擇信用卡類型，並提供所有必要的資訊。
+6. 選取 [下一步] 以返回 [管理付款方式] 頁面。如果您新增的信用卡有效，它會新增至可用付款方式的清單。
 
-## <a name="add-a-new-credit-card-as-a-payment-method"></a>Add a new credit card as a payment method
-1. Log on to the [Azure Account Center](https://account.windowsazure.com/Subscriptions) as the Account Administrator.
-2. Under **Click a subscription to view details and usage**, select the subscription for which you want to add a new payment method.
-3. On the right side of the page, select **Manage payment methods**.
-4. On the **Manage payment methods** page, select “+” to add a new credit card.
-5. Choose a credit card type, and then provide all the required information.
-6. Select **Next** to return to the **Manage payment methods** page. If the card you added is valid, it will be added to the list of available payment methods.
+## 變更用來支付 Azure 帳單的信用卡
+1. 以帳戶管理員登入 [Azure 帳戶中心](https://account.windowsazure.com/Subscriptions)。
+2. 在 [按一下訂用帳戶即可檢視詳細資料及使用量] 下方，選取您要更新付款方式的訂用帳戶。
+3. 在頁面右側，選取 [管理付款方式]。
+4. 在 [管理付款方式] 頁面上，按一下 [改用] 來選取您要使用的信用卡。
 
-## <a name="change-the-credit-card-that-you-use-to-pay-an-azure-bill"></a>Change the credit card that you use to pay an Azure bill
-1. Log on to the [Azure Account Center](https://account.windowsazure.com/Subscriptions) as the Account Administrator.
-2. Under **Click a subscription to view details and usage**, select the subscription for which you want to update the payment method.
-3. On the right side of the page, select **Manage payment methods**.
-4. On the **Manage payment methods** page, click **Use Instead** to select the credit card you want to use.
+## 從帳戶中移除信用卡
+1. 以帳戶管理員登入 [Azure 帳戶中心](https://account.windowsazure.com/Subscriptions)。
+2. 在 [按一下訂用帳戶即可檢視詳細資料及使用量] 下方，選取您要更新付款方式的訂用帳戶。
+3. 在頁面右側，選取 [管理付款方式]。
+4. 在 [管理付款方式] 頁面上，按一下 [刪除] 來選取您要刪除的信用卡。
 
-## <a name="removing-a-credit-card-from-the-account"></a>Removing a credit card from the account
-1. Log on to the [Azure Account Center](https://account.windowsazure.com/Subscriptions) as the Account Administrator.
-2. Under **Click a subscription to view details and usage**, select the subscription for which you want to update the payment method.
-3. On the right side of the page, select **Manage payment methods**.
-4. On the **Manage payment methods** page, click **Delete** to select the credit card you want to delete.
+	> [AZURE.NOTE] 您無法刪除與其他使用中 Microsoft 訂用帳戶相關聯的信用卡。如果您收到信用卡已使用的錯誤，請確定它已與您擁有的所有使用中 Microsoft 訂用帳戶取消關聯。
 
-    > [AZURE.NOTE] You will not be able to delete a credit card if it is associated with other active Microsoft subscriptions. If you receive an error that the card is in use, please ensure that it is disassociated from all active subscriptions that you have with Microsoft.
+> [AZURE.NOTE] 如果您仍有其他問題，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
 
-> [AZURE.NOTE] If you still have further questions, please [contact support](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) to get your issue resolved quickly.
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0831_2016-->

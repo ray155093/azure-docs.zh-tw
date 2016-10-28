@@ -1,43 +1,38 @@
 <properties
-    pageTitle="Sign ins from multiple geographies"
-    description="A report that indicates users where two sign ins appeared to originate from different regions and the time between the sign ins makes it impossible for the user to have travelled between those regions."
-    services="active-directory"
-    documentationCenter=""
-    authors="SSalahAhmed"
-    manager="gchander"
-    editor=""/>
+	pageTitle="從多個地理區域登入"
+	description="這份報告指出使用者有兩次登入似乎來自不同的地區，且使用者不可能在登入間的時間內在這兩個區域之間移動。"
+	services="active-directory"
+	documentationCenter=""
+	authors="SSalahAhmed"
+	manager="gchander"
+	editor=""/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="03/04/2016"
-    ms.author="saah;kenhoff"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="03/04/2016"
+	ms.author="saah;kenhoff"/>
+
+# 從多個地理區域登入
+
+這份報告包含使用者的成功登入，而其中有兩次登入似乎來自不同的區域，且使用者不可能在登入間的時間內在這兩個區域之間移動。可能的原因包括：
+
+- 使用者與其他使用者共用其密碼
+
+- 使用者正在使用遠端桌面啟動 Web 瀏覽器來登入
+
+- 駭客已從不同的國家/地區登入使用者帳戶
+
+- 使用者使用 VPN 或 Proxy
+
+- 使用者同時從多個裝置登入 (例如桌上型電腦和行動電話)，而行動電話的 IP 位址異常。
+
+這份報表的結果會顯示成功登入事件，以及登入間的時間、登入疑似源自哪些區域，以及這些區域間估計的移動時間。顯示的移動時間只是估計值，而且可能不同於位置之間的實際移動時間。
 
 
-# <a name="sign-ins-from-multiple-geographies"></a>Sign-ins from multiple geographies
+![從多個地理區域登入](./media/active-directory-reporting-sign-ins-from-multiple-geographies/signInsFromMultipleGeographies.PNG)
 
-This report includes successful sign-ins from a user where two sign-ins appeared to originate from different regions and the time between the sign-ins makes it impossible for the user to have traveled between those regions. Possible causes include:
-
-- User is sharing their password with other users
-
-- User is using a remote desktop to launch a web browser for sign-in
-
-- A hacker has signed in to the account of a user from a different country
-
-- User is using a VPN or proxy
-
-- User is signed in from multiple devices at the same time, such as a desktop and a mobile phone, and the IP address of the mobile phone is unusual.
-
-Results from this report will show you the successful sign-in events, together with the time between the sign-ins, the regions where the sign-ins appeared to originate from, and the estimated travel time between those regions. The travel time shown is only an estimate and may be different from the actual travel time between the locations.
-
-
-![Sign ins from multiple geographies](./media/active-directory-reporting-sign-ins-from-multiple-geographies/signInsFromMultipleGeographies.PNG)
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0309_2016-->

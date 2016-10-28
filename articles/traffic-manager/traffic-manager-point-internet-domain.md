@@ -1,43 +1,38 @@
 <properties
-    pageTitle="Point a company Internet domain to a Traffic Manager domain name | Microsoft Azure"
-    description="This article will help you point your company domain name to a Traffic Manager domain name."
-    services="traffic-manager"
-    documentationCenter=""
-    authors="sdwheeler"
-    manager="carmonm"
-    editor=""
-/>
+   pageTitle="將公司網際網路網域指向流量管理員網域 | Microsoft Azure"
+   description="本文將協助您將公司網域名稱指向流量管理員網域名稱。"
+   services="traffic-manager"
+   documentationCenter=""
+   authors="sdwheeler"
+   manager="carmonm"
+   editor="tysonn" />
 <tags
-    ms.service="traffic-manager"
-    ms.devlang="na"
-    ms.topic="get-started-article"
-    ms.tgt_pltfrm="na"
-    ms.workload="infrastructure-services"
-    ms.date="10/11/2016"
-    ms.author="sewhee"
-/>
+   ms.service="traffic-manager"
+   ms.devlang="na"
+   ms.topic="get-started-article"
+   ms.tgt_pltfrm="na"
+   ms.workload="infrastructure-services"
+   ms.date="03/17/2016"
+   ms.author="sewhee" />
 
+# 將公司網際網路網域指向 Azure 流量管理員網域
 
-# <a name="point-a-company-internet-domain-to-an-azure-traffic-manager-domain"></a>Point a company Internet domain to an Azure Traffic Manager domain
+若要將公司網域名稱指向流量管理員網域名稱，請將網際網路 DNS 伺服器上的 DNS 資源記錄改為使用 CNAME 記錄，這會將公司網域名稱對應到流量管理員設定檔的網域名稱。您可以在流量管理員設定檔的 [組態] 頁面上的 [一般] 區段查看流量管理員網域名稱。
 
-When you create a Traffic Manager profile, Azure automatically assigns a DNS name for that profile. To use a name from your DNS zone, create a CNAME DNS record that maps to the domain name of your Traffic Manager profile. You can find the Traffic Manager domain name in the **General** section on the Configuration page of the Traffic Manager profile.
-
-For example, to point name www.contoso.com to the Traffic Manager DNS name contoso.trafficmanager.net, you would create the following DNS resource record:
+例如，若要將公司網域名稱指向 www.contoso.com 流量管理員網域名稱 contoso.trafficmanager.net，您會更新 DNS 資源記錄如下：
 
     www.contoso.com IN CNAME contoso.trafficmanager.net
 
-All traffic requests to *www.contoso.com* get directed to *contoso.trafficmanager.net*.
+進入 *www.contoso.com* 的所有流量要求現在將會被導向至 *contoso.trafficmanager.net*。
 
->[AZURE.IMPORTANT] You cannot point a second-level domain, such as *contoso.com*, to the Traffic Manager domain. DNS protocol standards do not allow CNAME records for second-level domain names.
+>[AZURE.IMPORTANT] 您無法將第二層網域 (例如 *contoso.com* ) 指向流量管理員網域。這是 DNS 通訊協定的限制，不允許第二層網域名稱的 CNAME 記錄。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-- [Traffic Manager routing methods](traffic-manager-routing-methods.md)
-- [Traffic Manager - Disable, enable or delete a profile](disable-enable-or-delete-a-profile.md)
-- [Traffic Manager - Disable or enable an endpoint](disable-or-enable-an-endpoint.md)
+[流量管理員路由方法](traffic-manager-routing-methods.md)
 
+[流量管理員 - 停用、啟用或刪除設定檔](disable-enable-or-delete-a-profile.md)
 
+[流量管理員 - 停用或啟用端點](disable-or-enable-an-endpoint.md)
 
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

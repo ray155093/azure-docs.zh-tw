@@ -1,59 +1,54 @@
 <properties
-    pageTitle="Change the name or logo of an enterprise app in Azure Active Directory preview | Microsoft Azure"
-    description="How to change the name or logo for a custom enterprise app in Azure Active Directory"
-    services="active-directory"
-    documentationCenter=""
-    authors="curtand"
-    manager="femila"
-    editor=""/>
+	pageTitle="在 Azure Active Directory 預覽版中變更企業應用程式的名稱或標誌 | Microsoft Azure"
+	description="如何在 Azure Active Directory 中變更自訂企業應用程式的名稱或標誌"
+	services="active-directory"
+	documentationCenter=""
+	authors="curtand"
+	manager="femila"
+	editor=""/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/30/2016"
-    ms.author="curtand"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/12/2016"
+	ms.author="curtand"/>
 
+# 在 Azure Active Directory 預覽版中變更企業應用程式的名稱或標誌
 
-# <a name="change-the-name-or-logo-of-an-enterprise-app-in-azure-active-directory-preview"></a>Change the name or logo of an enterprise app in Azure Active Directory preview
+在 Azure Active Directory (Azure AD) 預覽版中，您可以輕鬆變更自訂企業應用程式的名稱或標誌。[預覽版有何功能？](active-directory-preview-explainer.md) 您必須具備適當的權限，才能進行這些變更。在目前的預覽版中，您必須是自訂應用程式的建立者。
 
-It's easy to change the name or logo for a custom enterprise application in Azure Active Directory (Azure AD) preview. [What's in the preview?](active-directory-preview-explainer.md) You must have the appropriate permissions to make these changes. In the current preview, you must be the creator of the custom app.
+## 如何變更企業應用程式的名稱或標誌？
 
-## <a name="how-do-i-change-an-enterprise-app's-name-or-logo?"></a>How do I change an enterprise app's name or logo?
+1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com)。
 
-1. Sign in to the [Azure portal](https://portal.azure.com) with an account that's a global admin for the directory.
+2. 選取 [更多服務]，在文字方塊中輸入 **Azure Active Directory**，然後選取 **Enter**。
 
-2. Select **More services**, enter **Azure Active Directory** in the text box, and then select **Enter**.
+3. 在 [Azure Active Directory- *directoryname*] 刀鋒視窗 (也就是您所管理目錄的 Azure AD 刀鋒視窗) 上，選取 [企業應用程式]。
 
-3. On the **Azure Active Directory - *directoryname*** blade (that is, the Azure AD blade for the directory you are managing), select **Enterprise applications**.
+	![開啟企業應用程式](./media/active-directory-coreapps-change-app-logo-azure-portal/open-enterprise-apps.png)
 
-    ![Opening Enterprise apps](./media/active-directory-coreapps-change-app-logo-azure-portal/open-enterprise-apps.png)
+4. 在 [企業應用程式] 刀鋒視窗上，選取 [所有應用程式]。您將會看到一份您可以管理的應用程式清單。
 
-4. On the **Enterprise applications** blade, select **All applications**. You'll see a list of the apps you can manage.
+5. 在 [企業應用程式 - 所有應用程式] 刀鋒視窗上，選取一個應用程式。
 
-5. On the **Enterprise applications - All applications** blade, select an app.
+6. 在 [***appname***] 刀鋒視窗 (亦即標題中含有所選應用程式名稱的刀鋒視窗) 上，選取 [屬性]。
 
-6. On the ***appname*** blade (that is, the blade with the name of the selected app in the title), select **Properties**.
+	![選取 [屬性] 命令](./media/active-directory-coreapps-change-app-logo-azure-portal/select-app.png)
 
-    ![Selecting the properties command](./media/active-directory-coreapps-change-app-logo-azure-portal/select-app.png)
+7. 在 [*appname* - 屬性] 刀鋒視窗上，瀏覽要作為新標誌的檔案或編輯應用程式名稱，或同時執行兩者。
 
-7. On the ***appname*** **- Properties** blade, browse for a file to use as a new logo, or edit the app name, or both.
+	![變更應用程式標誌或名稱屬性命令](./media/active-directory-coreapps-change-app-logo-azure-portal/change-logo.png)
 
-    ![Changing the app logo or nameproperties command](./media/active-directory-coreapps-change-app-logo-azure-portal/change-logo.png)
+8. 選取 [儲存] 命令。
 
-8. Select the **Save** command.
+## 後續步驟
 
-## <a name="next-steps"></a>Next steps
+- [查看我的所有群組](active-directory-groups-view-azure-portal.md)
+- [將使用者或群組指派給企業應用程式](active-directory-coreapps-assign-user-azure-portal.md)
+- [從企業應用程式中移除使用者或群組指派](active-directory-coreapps-remove-assignment-user-azure-portal.md)
+- [停用企業應用程式的使用者登入](active-directory-coreapps-disable-app-azure-portal.md)
 
-- [See all of my groups](active-directory-groups-view-azure-portal.md)
-- [Assign a user or group to an enterprise app](active-directory-coreapps-assign-user-azure-portal.md)
-- [Remove a user or group assignment from an enterprise app](active-directory-coreapps-remove-assignment-azure-portal.md)
-- [Disable user sign-ins for an enterprise app](active-directory-coreapps-disable-app-azure-portal.md)
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

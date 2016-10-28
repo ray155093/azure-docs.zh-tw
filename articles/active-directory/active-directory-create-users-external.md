@@ -1,96 +1,91 @@
 <properties
-    pageTitle="Add users from other directories or partner companies in Azure Active Directory | Microsoft Azure"
-    description="Explains how to add users or change user information in Azure Active Directory, including external and guest users."
-    services="active-directory"
-    documentationCenter=""
-    authors="curtand"
-    manager="femila"
-    editor=""/>
+	pageTitle="新增來自 Azure Active Directory 中其他目錄或合作夥伴公司的使用者 | Microsoft Azure"
+	description="說明如何在 Azure Active Directory 中新增使用者或變更使用者資訊，包括外部使用者和來賓使用者。"
+	services="active-directory"
+	documentationCenter=""
+	authors="curtand"
+	manager="femila"
+	editor=""/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="get-started-article"
-    ms.date="09/22/2016"
-    ms.author="curtand"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="get-started-article"
+	ms.date="09/22/2016"
+	ms.author="curtand"/>
 
-
-# <a name="add-users-from-other-directories-or-partner-companies-in-azure-active-directory"></a>Add users from other directories or partner companies in Azure Active Directory
+# 新增來自 Azure Active Directory 中其他目錄或合作夥伴公司的使用者
 
 > [AZURE.SELECTOR]
-- [Azure portal](active-directory-users-create-external-azure-portal.md)
-- [Azure classic portal](active-directory-create-users-external.md)
+- [Azure 入口網站](active-directory-users-create-external-azure-portal.md)
+- [Azure 傳統入口網站](active-directory-create-users-external.md)
 
-This article explains how to add users from other directories in Azure Active Directory or add users from partner companies. For information about adding new users in your organization, and adding users who have Microsoft accounts, see [Add new users to Azure Active Directory](active-directory-create-users.md). Added users don't have administrator permissions by default, but you can assign roles to them at any time.
+本文說明如何新增 Azure Active Directory 中其他目錄的使用者或新增合作夥伴公司的使用者。如需新增您的組織內之使用者以及新增具有 Microsoft 帳戶之使用者的相關資訊，請參閱[將新的使用者新增到 Azure Active Directory](active-directory-create-users.md)。新增的使用者預設不會有系統管理員權限，但是您可以隨時指派角色給他們。
 
-## <a name="add-a-user"></a>Add a user
+## 新增使用者
 
-1. Sign in to the [Azure classic portal](https://manage.windowsazure.com) with an account that's a global admin for the directory.
+1. 使用屬於目錄全域管理員的帳戶登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
 
-2. Select **Active Directory**, and then open your directory.
+2. 選取 [Active Directory]，然後開啟您的目錄。
 
-3. Select the **Users** tab, and then, in the command bar, select **Add User**.
+3. 選取 [使用者] 索引標籤，然後在命令列中選取 [新增使用者]。
 
-4. On the **Tell us about this user** page, under **Type of user**, select either:
+4. 在 [告訴我們這位使用者] 頁面上，於 [使用者類型] 底下選取下列其中一項：
 
-    - **User in another Azure AD directory** – adds a user account to your directory that's sourced from another Azure AD directory. You can select a user in another directory only if you're also a member of that directory.
-    - **Users in partner companies** - to invite and authorize partner company users to your directory (See [Azure Active Directory B2B collaboration](active-directory-b2b-what-is-azure-ad-b2b.md)). You'll need to [upload a CSV file specifying email addresses](active-directory-b2b-references-csv-file-format.md).
+	- **另一個 Azure AD 目錄中的使用者** – 將源自另一個 Azure AD 目錄的使用者帳戶新增至您的目錄。只有在您也是另一個目錄的成員時，才能選取該目錄中的使用者。
+	- **合作夥伴公司中的使用者** - 邀請並授權合作夥伴公司使用者使用您的目錄 ([請參閱 Azure Active Directory B2B 共同作業](active-directory-b2b-what-is-azure-ad-b2b.md))。您將需要[上傳指定電子郵件地址的 CSV 檔案](active-directory-b2b-references-csv-file-format.md)。
 
-6. On the user **Profile** page, provide a first and last name, a user-friendly name, and a user role from the **Roles** list. For more information about user and administrator roles, see [Assigning administrator roles in Azure AD](active-directory-assign-admin-roles.md). Specify whether to **Enable Multi-Factor Authentication** for the user.
+6. 在 [使用者設定檔] 頁面上，提供姓氏和名字、使用者易記名稱，並從 [角色] 清單中選擇使用者角色。如需有關使用者和系統管理員角色的詳細資訊，請參閱[在 Azure AD 中指派系統管理員角色](active-directory-assign-admin-roles.md)。指定是否為使用者**啟用 Multi-Factor Authentication**。
 
-7. On the **Get temporary password** page, select **Create**.
+7. 在 [取得暫時密碼] 頁面上，選取 [建立]。
 
-> [AZURE.IMPORTANT] If your organization uses more than one domain, you should know about the following issues when you add a user account:
+> [AZURE.IMPORTANT] 如果您的組織使用多個網域，當您新增使用者帳戶時，請注意下列問題：
 >
-> - TO add user accounts with the same user principal name (UPN) across domains, **first** add, for example, geoffgrisso@contoso.onmicrosoft.com, **followed by** geoffgrisso@contoso.com.
-> - **Don't** add geoffgrisso@contoso.com before you add geoffgrisso@contoso.onmicrosoft.com. This order is important, and can be cumbersome to undo.
+> - 若要跨網域新增具有相同使用者主體名稱 (UPN) 的使用者帳戶，請「先」新增 geoffgrisso@contoso.onmicrosoft.com，「再」新增 geoffgrisso@contoso.com。
+> - 請「勿」先新增 geoffgrisso@contoso.com 再新增 geoffgrisso@contoso.onmicrosoft.com。此順序很重要，事後想要復原會很麻煩。
 
-If you change information for a user whose identity is synchronized with your on-premises Active Directory service, you can't change the user information in the Azure classic portal. To change the user information, use your on-premises Active Directory management tools.
+如果您變更其身分識別已與您的內部部署 Active Directory 服務同步處理之使用者的資訊，您就無法在 Azure 傳統入口網站中變更使用者資訊。若要變更此使用者資訊，請使用您的內部部署 Active Directory 管理工具。
 
-## <a name="add-external-users"></a>Add external users
+## 新增外部使用者
 
-You can also add users from another Azure AD directory to which you belong, or from partner companies by uploading a CSV file. To add an external user, for **Type of User**, specify **User in another Microsoft Azure AD directory** or **Users in partner companies**.
+您也可以從另一個所屬 Azure AD 目錄，或從合作夥伴公司上傳 CSV 檔案來新增使用者。若要新增外部使用者，請在 [使用者類型] 中指定 [另一個 Microsoft Azure AD 目錄中的使用者] 或 [合作夥伴公司中的使用者]。
 
-Users of either type are sourced from another directory and are added as **external users**. External users can collaborate with other users in a directory without any requirement to add new accounts and credentials. External users authenticate with their home directory when they sign in, and that authentication works for any other directories to which they have been added.
+這兩種類型的使用者是源自另一個目錄，並且新增為 [外部使用者]。外部使用者可以和目錄中的其他使用者共同作業，而不需要另外新增帳戶和認證。外部使用者登入時會使用其主目錄進行驗證，驗證結果適用於其已加入的其他所有目錄。
 
-## <a name="external-user-management-and-limitations"></a>External user management and limitations
+## 外部使用者管理和限制
 
-When you add a user from another directory to your directory, that user is an external user in your directory. The display name and user name are copied from their home directory and used for the external user in your directory. From then on, properties of the external user account are entirely independent. If property changes are made to the user in their home directory, those changes aren't propagated to the external user account in your directory.
+當您將另一個目錄的使用者加入至您的目錄時，該使用者在您的目錄中就是外部使用者。顯示名稱和使用者名稱會從其主目錄複製而來，並用於您的目錄中的外部使用者。從此以後，外部使用者帳戶的屬性就會完全獨立。如果對使用者在其主目錄中變更屬性，這些變更不會傳播到您的目錄中的外部使用者帳戶。
 
-The only linkage between the two accounts is that the user always authenticates against their home directory or with their Microsoft account. That's why you don't see an option to reset the password or enable multi-factor authentication for an external user. Currently, the authentication policy of the home directory or Microsoft account is the only one that's evaluated when the user signs in.
+兩個帳戶之間的唯一連結是，使用者永遠針對其主目錄或使用其 Microsoft 帳戶進行驗證。這就是為什麼您沒有看到針對外部使用者重設密碼或啟用 Multi-Factor Authentication 的選項。目前，主目錄或 Microsoft 帳戶的驗證原則是使用者登入時唯一會評估的原則。
 
 > [AZURE.NOTE]
-> You can still disable the external user in the directory, which blocks access to your directory.
+您仍然可以停用目錄中的外部使用者，以阻止其存取您的目錄。
 
-If a user is deleted in their home directory or they cancel their Microsoft account, the external user still exists in your directory. However, the user in your directory can't access resources because they can't authenticate with a home directory or Microsoft account.
+如果使用者在其主目錄中被刪除，或取消其 Microsoft 帳戶，外部使用者仍存在您的目錄中。不過，您的目錄中的使用者無法存取資源，因為這些資源無法使用主目錄或 Microsoft 帳戶進行驗證。
 
-### <a name="services-that-currently-support-access-by-azure-ad-external-users"></a>Services that currently support access by Azure AD external users
+### 目前支援讓 Azure AD 外部使用者存取的服務
 
-- **Azure classic portal**: allows an external user who's an administrator of multiple directories to manage each of those directories.
-- **SharePoint Online**: if external sharing is enabled, allows an external user to access SharePoint Online authorized resources.
-- **Dynamics CRM**: if the user is licensed via PowerShell, allows an external user to access authorized resources in Dynamics CRM.
-- **Dynamics AX**: if the user is licensed via PowerShell, allows an external user to access authorized resources in Dynamics AX. The limitations for [Azure AD external users](#known-limitations-of-azure-ad-external-users) apply to external users in Dynamics AX as well.
+- **Azure 傳統入口網站**：允許身為多個目錄的管理員的外部使用者，管理這些目錄。
+- **SharePoint Online**：如果啟用外部共用，允許外部使用者存取 SharePoint Online 授權資源。
+- **Dynamics CRM**：如果使用者透過 PowerShell 獲得授權，允許外部使用者存取 Dynamics CRM 中的授權資源。
+- **Dynamics AX**：如果使用者透過 PowerShell 獲得授權，允許外部使用者存取 Dynamics AX 中的授權資源。[Azure AD 外部使用者](#known-limitations-of-azure-ad-external-users)的限制也適用於 Dynamics AX 中的外部使用者。
 
-### <a name="known-limitations-of-azure-ad-external-users"></a>Known limitations of Azure AD external users
+### Azure AD 外部使用者的已知限制
 
-- External users who are admins can't add users from partner companies to directories (B2B collaboration) outside their home directory
-- External users can't consent to multi-tenant applications in directories outside of their home directory
-- PowerBI doesn't currently support access by external users
-- Office Portal doesn't support licensing external users
-- With respect to Azure AD PowerShell, external users are logged into their home directory and cannot manage directories in which they are external users
-
-
-## <a name="what's-next"></a>What's next
-
-- [Add new users to Azure Active Directory](active-directory-create-users.md)
-- [Administering Azure AD](active-directory-administer.md)
-- [Manage passwords in Azure AD](active-directory-manage-passwords.md)
-- [Manage groups in Azure AD](active-directory-manage-groups.md)
+- 身為管理員的外部使用者無法將來自合作夥伴公司的使用者加入至其主目錄以外的目錄 (B2B 共同作業)
+- 外部使用者無法同意在其主目錄以外的目錄中的多租用戶應用程式
+- PowerBI 目前不支援讓外部使用者存取
+- Office 入口網站不支援授權外部使用者
+- 對於 Azure AD PowerShell，外部使用者會登入其主目錄，因此無法管理其身分為外部使用者的目錄
 
 
+## 後續步驟
 
-<!--HONumber=Oct16_HO2-->
+- [將新的使用者加入 Azure Active Directory](active-directory-create-users.md)
+- [管理 Azure AD](active-directory-administer.md)
+- [在 Azure AD 中管理密碼](active-directory-manage-passwords.md)
+- [在 Azure AD 中管理群組](active-directory-manage-groups.md)
 
-
+<!---HONumber=AcomDC_0928_2016-->

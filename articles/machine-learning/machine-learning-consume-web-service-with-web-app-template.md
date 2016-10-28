@@ -1,127 +1,122 @@
 <properties
-    pageTitle="Consume a Machine Learning web service with a web app template | Microsoft Azure"
-    description="Use a web app template in Azure Marketplace to consume a predictive web service in Azure Machine Learning."
-    keywords="web service,operationalization,REST API,machine learning"
-    services="machine-learning"
-    documentationCenter=""
-    authors="garyericson"
-    manager="jhubbard"
-    editor="cgronlun"/>
+	pageTitle="使用 Machine Learning Web 服務與 Web 應用程式範本 | Microsoft Azure"
+	description="使用 Azure Marketplace 中的 Web 應用程式範本以使用 Azure Machine Learning 中的預測 Web 服務。"
+	keywords="Web 服務、operationalization、REST API、機器學習服務"
+	services="machine-learning"
+	documentationCenter=""
+	authors="garyericson"
+	manager="jhubbard"
+	editor="cgronlun"/>
 
 <tags
-    ms.service="machine-learning"
-    ms.workload="data-services"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="10/10/2016"
-    ms.author="garye;raymondl"/>
+	ms.service="machine-learning"
+	ms.workload="data-services"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/06/2016"
+	ms.author="garye;raymondl"/>
 
+# 使用 Azure Machine Learning Web 服務與 Web 應用程式範本
 
-# <a name="consume-an-azure-machine-learning-web-service-with-a-web-app-template"></a>Consume an Azure Machine Learning web service with a web app template
+>[AZURE.NOTE] 本主題描述適用於傳統 Web 服務的技巧。
 
->[AZURE.NOTE] This topic describes techniques applicable to a classic web service. 
+一旦使用 Machine Learning Studio，或使用 R 或 Python 之類的工具開發預測模型並部署為 Azure Web 服務後，即可使用 REST API 存取實際運作模型。
 
-Once you've developed your predictive model and deployed it as an Azure web service using Machine Learning Studio, or using tools such as R or Python, you can access the operationalized model using a REST API.
+有數種方法可以使用 REST API 和存取 Web 服務。例如，您可以使用當您部署 Web 服務時為您產生的範例程式碼，在 C#、R 或 Python 中寫入應用程式 (可以在 Machine Learning Studio 中 Web 服務儀表板中的 API 說明頁面上取得)。或者您可以使用為您建立的範例 Microsoft Excel 活頁簿 (也可以在 Studio 中的 Web 服務儀表板取得)。
 
-There are a number of ways to consume the REST API and access the web service. For example, you can write an application in C#, R, or Python using the sample code generated for you when you deployed the web service (available on the API Help Page in the web service dashboard in Machine Learning Studio). Or you can use the sample Microsoft Excel workbook created for you (also available in the web service dashboard in Studio).
-
-But the quickest and easiest way to access your web service is through the Web App Templates available in the [Azure Web App Marketplace](https://azure.microsoft.com/marketplace/web-applications/all/).
+但是最簡單快速存取 Web 服務的方式是透過 [Azure Web 應用程式 Marketplace](https://azure.microsoft.com/marketplace/web-applications/all/) 中提供的 Web 應用程式範本。
 
 [AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-## <a name="the-azure-machine-learning-web-app-templates"></a>The Azure Machine Learning Web App Templates
+## Azure Machine Learning Web 應用程式範本
 
-The web app templates available in the Azure Marketplace can build a custom web app that knows your web service's input data and expected results. All you need to do is give the web app access to your web service and data, and the template does the rest.
+Azure Marketplace 中可用的 Web 應用程式範本可以建立自訂的 Web 應用程式，該應用程式知道您的 Web 服務的輸入資料和預期的結果。您所需要做的就是將您的 Web 服務和資料的存取權授與 Web 應用程式，範本會執行其餘部分。
 
-Two templates are available:
+兩個範本可供使用：
 
-- [Azure ML Request-Response Service Web App Template](https://azure.microsoft.com/marketplace/partners/microsoft/azuremlaspnettemplateforrrs/)
-- [Azure ML Batch Execution Service Web App Template](https://azure.microsoft.com/marketplace/partners/microsoft/azuremlbeswebapptemplate/)
+- [Azure ML 要求回應服務 Web 應用程式範本](https://azure.microsoft.com/marketplace/partners/microsoft/azuremlaspnettemplateforrrs/)
+- [Azure ML 批次執行服務 Web 應用程式範本](https://azure.microsoft.com/marketplace/partners/microsoft/azuremlbeswebapptemplate/)
 
-Each template creates a sample ASP.NET application, using the API URI and Key for your web service, and deploys it as a web site to Azure. The Request-Response Service (RRS) template creates a web app that allows you to send a single row of data to the web service to get a single result. The Batch Execution Service (BES) template creates a web app that allows you to send many rows of data to get multiple results.
+每個範本會建立範例 ASP.NET 應用程式，使用您的 Web 服務的 API URI 和金鑰，並做為網站部署至 Azure。要求回應服務 (RRS) 範本會建立 Web 應用程式，可讓您將資料的單一資料列傳送至 Web 服務以取得單一結果。批次執行服務 (BES) 範本會建立 Web 應用程式，可讓您傳送資料的許多資料列以取得多個結果。
 
-No coding is required to use these templates. You just supply the API URI and Key and the template builds the application for you.
+不必撰寫程式碼就可以使用這些範本。您只需提供 API URI 和金鑰，範本就會為您建置應用程式。
 
-## <a name="how-to-use-the-request-response-service-(rrs)-template"></a>How to use the Request-Response Service (RRS) template
+## 如何使用要求回應服務 (RRS) 範本
 
-Once you've deployed your web service, you can follow the steps below to use the RRS web app template, as shown in the following diagram.
+一旦您部署您的 Web 服務，就可以遵循以下的步驟以使用 RRS Web 應用程式範本，如下圖所示。
 
-![Process to use RRS web template][image1]
+![使用 RRS Web 範本的程序][image1]
 
-1. In Machine Learning Studio, open the **Web Services** tab and then open the web service you want to access. Copy the key listed under **API key** and save it.
+1. 在 Machine Learning Studio 中，開啟 [Web 服務] 索引標籤，然後開啟您想要存取的 Web 服務。複製 [API 金鑰] 底下所列的金鑰並儲存。
 
-    ![API Key][image3]
+	![API 金鑰][image3]
 
-2. Open the **REQUEST/RESPONSE** API Help Page. At the top of the help page, under **Request**, copy the **Request URI** value and save it. This value will look like this:
+2. 開啟 [要求/回應] API 說明頁面。在說明頁面頂端的 [要求] 底下，複製 [要求 URI] 值並儲存。此值如下所示：
 
-        https://ussouthcentral.services.azureml.net/workspaces/<workspace-id>/services/<service-id>/execute?api-version=2.0&details=true
+		https://ussouthcentral.services.azureml.net/workspaces/<workspace-id>/services/<service-id>/execute?api-version=2.0&details=true
 
-    ![Request URI][image4]
+	![要求 URI][image4]
 
-3. Go to the [Azure portal](https://portal.azure.com), **Login**, click **New**, Search for and select **Azure ML Request-Response Service Web App**, then click **Create**. 
+3. 移至 [Azure 入口網站](https://portal.azure.com)的 [登入]，按一下 [新增]，搜尋並選取 [Azure ML 要求-回應服務 Web 應用程式]，然後按一下 [建立]。
 
-    - Give your web app a unique name. The URL of the web app will be this name followed by `.azurewebsites.net.` For example, `http://carprediction.azurewebsites.net.`
+	- 為您的 Web 應用程式提供唯一名稱。Web 應用程式的 URL 將是此名稱後面加上 `.azurewebsites.net.`。例如，`http://carprediction.azurewebsites.net.`
 
-    - Select the Azure subscription and services under which your web service is running.
+	- 選擇 Azure 訂用帳戶及您的 Web 服務在其下執行的服務。
 
-    - Click **Create**.
+	- 按一下 [建立]。
 
-    ![Create web app][image5]
+	![建立 Web 應用程式][image5]
 
-4. When Azure has finished deploying the web app, click the **URL** on the web app settings page in Azure, or enter the URL in a web browser. For example, `http://carprediction.azurewebsites.net.`
+4. 當 Azure 完成部署 Web 應用程式時，請按一下 Azure 中 Web 應用程式設定頁面上的 [URL]，或在網頁瀏覽器中輸入 URL。例如，`http://carprediction.azurewebsites.net.`
 
-5. When the web app first runs it will ask you for the **API Post URL** and **API Key**.
-Enter the values you saved earlier:
-    - **Request URI** from the API Help Page for **API Post URL**
-    - **API Key** from the web service dashboard for the **API Key**.
+5. 當 Web 應用程式第一次執行時，它會要求您提供 **API 貼文 URL** 和 **API 金鑰**。輸入您先前儲存的值：
+	- API 說明頁面針對 **API 貼文 URL** 的**要求 URI**
+	- Web 服務儀表板針對 **API 金鑰**的 **API 金鑰**。
 
-    Click **Submit**.
+	按一下 [提交]。
 
-    ![Enter Post URI and API Key][image6]
+	![輸入貼文 URI 和 API 金鑰][image6]
 
-6. The web app displays its **Web App Configuration** page with the current web service settings. Here you can make changes to the settings used by the web app.
+6. Web 應用程式以目前 Web 服務設定顯示其 [Web 應用程式組態] 頁面。您可以在這裡變更 Web 應用程式所使用的設定。
 
-    > [AZURE.NOTE] Changing the settings here only changes them for this web app. It doesn't change the default settings of your web service. For example, if you change the **Description** here it doesn't change the description shown on the web service dashboard in Machine Learning Studio.
+	> [AZURE.NOTE] 變更此處的設定只會變更此 Web 應用程式的設定。不會變更您的 Web 服務的預設設定。例如，如果您變更這裡的 [描述]，則不會變更在 Machine Learning Studio 中 Web 服務儀表板上顯示的描述。
 
-    When you're done, click **Save changes**, and then click **Go to Home Page**.
+	當您完成時，按一下 [儲存變更]，然後按一下 [到首頁]。
 
-7. From the home page you can enter values to send to your web service, click **Submit**, and the result will be returned.
+7. 您可以在首頁輸入要傳送至 Web 服務的值，按一下 [提交]，即會傳回結果。
 
-If you want to return to the **Configuration** page, go to the `setting.aspx` page of the web app. For example: `http://carprediction.azurewebsites.net/setting.aspx.` You will be prompted to enter the API key again - you need that to access the page and update the settings.
+如果您想要返回 [組態] 頁面上，請移至 Web 應用程式的 `setting.aspx` 頁面。例如：`http://carprediction.azurewebsites.net/setting.aspx.`。系統會提示您再次輸入 API 金鑰，您需要該金鑰以存取頁面和更新設定。
 
-You can stop, restart, or delete the web app in the Azure portal like any other web app. As long as it is running you can browse to the home web address and enter new values.
+您可以在 Azure 入口網站停止、重新啟動或刪除 Web 應用程式，就像任何其他 Web 應用程式一樣。只要它正在執行中，您就可以瀏覽至首頁網址並輸入新值。
 
-## <a name="how-to-use-the-batch-execution-service-(bes)-template"></a>How to use the Batch Execution Service (BES) template
+## 如何使用批次執行服務 (BES) 範本
 
-You can use the BES web app template in the same way as the RRS template, except that the web app that's created will allow you to submit multiple rows of data and receive multiple results.
+您可以使用與 RRS 範本相同的方式使用 BES Web 應用程式範本，不同的是建立的 Web 應用程式可讓您提交資料的多個資料列和接收多個結果。
 
-The results from a batch execution web service are stored in an Azure storage container; the input values can come from Azure storage or a local file.
-So, you'll need an Azure storage container to hold the results returned by the web app, and you'll need to get your input data ready.
+批次執行 Web 服務的結果會儲存在 Azure 儲存體容器。輸入值可能來自 Azure 儲存體或本機檔案。因此，您需要 Azure 儲存體容器以存放 Web 應用程式所傳回的結果，您也必須準備好您的輸入資料。
 
-![Process to use BES web template][image2]
+![使用 BES Web 範本的程序][image2]
 
-1. Follow the same procedure to create the BES web app as for the RRS template, except:
-    - Get the **Request URI** from the **BATCH EXECUTION** API Help Page for the web service.
-    - Go to [Azure ML Batch Execution Service Web App Template](https://azure.microsoft.com/marketplace/partners/microsoft/azuremlbeswebapptemplate/) to open the BES template on Azure Marketplace and click **Create Web App**.
+1. 遵循與 RRS 範本相同的程序來建立 BES Web 應用程式，不同之處為：
+	- 從**批次執行** API 說明頁面取得 Web 服務的**要求 URI**。
+	- 移至 [Azure ML Batch 執行服務 Web 應用程式範本](https://azure.microsoft.com/marketplace/partners/microsoft/azuremlbeswebapptemplate/)以開啟 Azure Marketplace 上的 BES 範本，然後按一下 [建立 Web 應用程式]。
 
-2. To specify where you want the results stored, enter the destination container information on the web app home page. Also specify where the web app can get the input values, either in a local file or an Azure storage container.
-Click **Submit**.
+2. 若要指定您想要儲存結果的位置，請在 Web 應用程式的首頁上輸入目的地容器資訊。同時指定 Web 應用程式可以在哪裡取得輸入值，在本機檔案或 Azure 儲存體容器。按一下 [提交]。
 
-    ![Storage information][image7]
+	![儲存體資訊][image7]
 
-The web app will display a page with job status.
-When the job has completed you'll be given the location of the results in Azure blob storage. You also have the option of downloading the results to a local file.
+Web 應用程式將會顯示具有工作狀態的頁面。工作完成時，系統會提供您 Azure Blob 儲存體中結果的位置。您也可以選擇將結果下載到本機檔案。
 
-## <a name="for-more-information"></a>For more information
+## 如需 Blob 的詳細資訊，
 
-To learn more about...
+深入了解...
 
-- creating a machine learning experiment with Machine Learning Studio, see [Create your first experiment in Azure Machine Learning Studio](machine-learning-create-experiment.md)
+- 使用 Machine Learning Studio 建立機器學習服務實驗，請參閱[在 Azure Machine Learning Studio 中建立您的第一個實驗](machine-learning-create-experiment.md)
 
-- how to deploy your machine learning experiment as a web service, see [Deploy an Azure Machine Learning web service](machine-learning-publish-a-machine-learning-web-service.md)
+- 如何將您的機器學習服務實驗部署為 Web 服務，請參閱[部署 Azure Machine Learning Web 服務](machine-learning-publish-a-machine-learning-web-service.md)
 
-- other ways to access your web service, see [How to consume an Azure Machine Learning web service](machine-learning-consume-web-services.md)
+- 關於存取您 Web 服務的其他方式，請參閱[如何使用 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)
 
 
 [image1]: media\machine-learning-consume-web-service-with-web-app-template\rrs-web-template-flow.png
@@ -132,8 +127,4 @@ To learn more about...
 [image6]: media\machine-learning-consume-web-service-with-web-app-template\web-service-info.png
 [image7]: media\machine-learning-consume-web-service-with-web-app-template\storage.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

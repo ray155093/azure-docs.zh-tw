@@ -1,45 +1,44 @@
 <properties
-    pageTitle="Quick start guide: Machine Learning Recommendations API | Microsoft Azure"
-    description="Azure Machine Learning Recommendations--quick start guide"
-    services="cognitive-services"
-    documentationCenter=""
-    authors="luiscabrer"
-    manager="jhubbard"
-    editor="cgronlun"/>
+	pageTitle="快速入門指南：Machine Learning 建議 API | Microsoft Azure"
+	description="Azure Machine Learning Recommendations--快速入門指南"
+	services="cognitive-services"
+	documentationCenter=""
+	authors="luiscabrer"
+	manager="jhubbard"
+	editor="cgronlun"/>
 
 <tags
-    ms.service="cognitive-services"
-    ms.workload="data-services"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/20/2016"
-    ms.author="luisca"/>
+	ms.service="cognitive-services"
+	ms.workload="data-services"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/20/2016"
+	ms.author="luisca"/>
 
-
-#  <a name="build-types-and-model-quality"></a>Build types and model quality #
+#  組建類型與模型品質 #
 
 <a name="TypeofBuilds"></a>
-## <a name="supported-build-types"></a>Supported build types ##
+## 支援的組建類型 ##
 
-The Recommendations API currently supports two build types: *recommendation* and *FBT*. Each is built using different algorithms, and each has different strengths. This document describes each of these builds and techniques for comparing the quality of the models generated.
+建議 API 目前支援兩種組建類型︰「建議」和「FBT」。這兩種類型各使用不同的演算法來建立，並各具不同優點。本文件說明這其中的每一個組建，以及用來比較所產生之模型品質的技術。
 
-If you have not done so already, we recommend that you complete the [quick start guide](cognitive-services-recommendations-quick-start.md).
+如果您尚未這樣做，我們建議您先完成[快速入門指南](cognitive-services-recommendations-quick-start.md)。
 
 <a name="RecommendationBuild"></a>
-### <a name="recommendation-build-type"></a>Recommendation build type ###
+### 建議組建類型 ###
 
-The recommendation build type uses matrix factorization to provide recommendations. It generates [latent feature](https://en.wikipedia.org/wiki/Latent_variable) vectors based on your transactions to describe each item, and then uses those latent vectors to compare items that are similar.
+「建議」組建類型使用矩陣分解來提供建議。它會根據交易來產生[潛伏功能](https://en.wikipedia.org/wiki/Latent_variable)向量以描述每個項目，然後使用這些潛伏的向量來比較類似的項目。
 
-If you train the model based on purchases made in your electronics store and provide a Lumia 650 phone as the input to the model, the model will return a set of items that tend to be purchased by people who are likely to purchase a Lumia 650 phone. The items may not be complementary. In this example, it is possible that the model will return other phones because people who like the Lumia 650 may like other phones.
+若您根據在您的電子產品商店中所做的採購來定型模型，並提供 Lumia 650 手機做為模型的輸入，則模型會傳回可能購買 Lumia 650 手機的人通常會購買的一組項目。這些項目可能不互補。在此範例中，模型可能會傳回其他手機，因為喜歡 Lumia 650 的人可能會喜歡其他手機。
 
-The recommendation build has two capabilities that make it attractive:
+建議組建有兩項功能可讓它更具吸引力︰
 
-**The recommendation build supports *cold item* placement**
+**建議組建支援「冷項目」放置**
 
-Items that do not have significant usage are called cold items. For instance, if you receive a shipment of a phone you have never sold before, the system cannot infer recommendations for this product on transactions alone. This means that the system should learn from information about the product itself.
+沒有太大用途的項目被稱為冷項目。例如，如果您收到一批未曾銷售過的某款手機，系統無法單獨推斷此產品的交易建議。這表示系統應該了解產品本身的相關資訊。
 
-If you want to use cold item placement, you need to provide features information for each of your items in the catalog. Following is what the first few lines of your catalog may look like (note the key=value format for the features).
+如果您想要使用冷項目放置，則需要提供目錄中各個項目的功能資訊。以下是目錄前幾行的可能樣貌 (請注意功能的「索引鍵=值」格式)。
 
 >6CX-00001,Surface Pro2, Surface,, Type=Hardware, Storage=128 GB, Memory=4G, Manufacturer=Microsoft
 
@@ -47,147 +46,143 @@ If you want to use cold item placement, you need to provide features information
 
 >WAH-0F05,Minecraft Xbox 360,Gaming,, * Type=Software, Language=Spanish, Rating=Youth
 
-You also need to set the following build parameters:
+您還需要設定下列組建參數︰
 
-| Build parameter         | Notes
+| 組建參數 | 注意事項
 |------------------     |-----------
-|*useFeaturesInModel*     | Set to **true**.  Indicates if features can be used to enhance the recommendation model.
-|*allowColdItemPlacement*   | Set to **true**. Indicates if the recommendation should also push cold items via feature similarity.
-| *modelingFeatureList*   | Comma-separated list of feature names to be used in the recommendation build to enhance the recommendation. For instance, “Language,Storage” for the preceding example.
+|*useFeaturesInModel* | 設定為 **True**。指出是否可以使用功能以加強建議模型。
+|*allowColdItemPlacement* | 設定為 **True**。指出建議是否也應該透過功能相似度推入冷項目。
+| *modelingFeatureList* | 使用於建議組建中的功能名稱逗號分隔清單，可加強建議。例如，上述範例中的 “Language,Storage”。
 
-**The recommendation build supports user recommendations**
+**建議組建支援使用者建議**
 
-A recommendation build supports [user recommendations](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3dd). This means that it can provide personalized recommendations for users based on their transaction histories. For user recommendations, you might provide the user ID or the recent history of transactions for that user.
+建議組建支援[使用者建議](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3dd)。這表示它可以根據使用者的交易歷程記錄為其提供個人化的建議。對於使用者建議，您可以提供該使用者的使用者識別碼或最近的交易歷程記錄。
 
-One classic example of where you might want to apply user recommendations is at sign-in on the welcome page. There you can promote content that applies to the specific user.
+其中一個您可能會想要套用使用者建議的典型範例是在登入時的歡迎頁面上。您可以在那裡推銷適用於特定使用者的內容。
 
-You might also want to apply a recommendations build type when the user is about to check out. At that point, you have the list of items the user is about to purchase, and you can provide recommendations based on the current market basket.
+您可能也想要在使用者即將簽出時套用建議組建類型。這時候，您會有使用者即將購買的項目清單，而您可以根據目前的購物籃提供建議。
 
-#### <a name="recommendations-build-parameters"></a>Recommendations build parameters
+#### 建議組建參數
 
-| Name  |   Description |    Type, <br>  valid values, <br> (default value)
+| Name | 	說明 |	 類型，<br>有效值 <br>(預設值)
 |-------|-------------------|------------------
-| *NumberOfModelIterations* |   The number of iterations the model performs is reflected by the overall compute time and the model accuracy. The higher the number, the more accurate the model, but the compute time takes longer.  |   Integer, <br>  10 to 50 <br>(40)
-| *NumberOfModelDimensions* |   The number of dimensions relates to the number of features the model will try to find within your data. Increasing the number of dimensions will allow better fine-tuning of the results into smaller clusters. However, too many dimensions will prevent the model from finding correlations between items. |  Integer, <br> 10 to 40 <br>(20) |
-| *ItemCutOffLowerBound* |  Defines the minimum number of usage points an item should be in for it to be considered part of the model. |        Integer, <br> 2 or more <br> (2) |
-| *ItemCutOffUpperBound* |  Defines the maximum number of usage points an item should be in for it to be considered part of the model. |  Integer, <br>2 or more<br> (2147483647) |
-|*UserCutOffLowerBound* |   Defines the minimum number of transactions a user must have performed to be considered part of the model. | Integer, <br> 2 or more <br> (2)
-| *UserCutOffUpperBound* |  Defines the maximum number of transactions a user must have performed to be considered part of the model. | Integer, <br>2 or more <br> (2147483647)|
-| *UseFeaturesInModel* |    Indicates if features can be used to enhance the recommendation model. |     Boolean<br> Default: True
-|*ModelingFeatureList* |    Comma-separated list of feature names to be used in the recommendation build to enhance the recommendation. It depends on the features that are important. |    String, up to 512 chars
-| *AllowColdItemPlacement* |    Indicates if the recommendation should also push cold items via feature similarity. | Boolean <br> Default: False
-| *EnableFeatureCorrelation*    | Indicates if features can be used in reasoning. | Boolean <br> Default: False
-| *ReasoningFeatureList* |  Comma-separated list of feature names to be used for reasoning sentences, such as recommendation explanations. It depends on the features that are important to customers. | String, up to 512 chars
-| *EnableU2I* | Enable personalized recommendations, also called user to item (U2I) recommendations. | Boolean <br>Default: True
-|*EnableModelingInsights* | Defines whether offline evaluation should be performed to gather modeling insights (that is, precision and diversity metrics). If set to true, a subset of the data will not be used for training because it will need to be reserved for testing of the model. Read more about [offline evaluations](#OfflineEvaluation). | Boolean <br> Default: False
-| *SplitterStrategy* | If enable modeling insights is set to *true*, this is how data should be split for evaluation purposes.  | String, *RandomSplitter* or *LastEventSplitter* <br>Default:  RandomSplitter
+| *NumberOfModelIterations* |	整體運算時間和模型精確度會反映模型執行反覆運算的次數。數字越高，模型就越精確，但計算時間也會拉長。 |	 整數，<br>10 到 50 <br>(40)
+| *NumberOfModelDimensions* |	維度的數目與功能的數目相關，模型會嘗試尋找資料中的數目。增加維度的數目將允許結果進一步微調成較小的叢集。不過，太多維度會讓模型無法尋找項目之間的關聯。 |	整數，<br>10 到 40 <br>(20) |
+| *ItemCutOffLowerBound* |	定義項目最少應該位於多少個使用點，才能被視為模型的一部分。 |		整數，<br>2 或以上<br> (2) |
+| *ItemCutOffUpperBound* | 	定義項目最多應該位於多少個使用點，才能被視為模型的一部分。 | 整數，<br>2 或以上<br> (2147483647) |
+|*UserCutOffLowerBound* |	定義使用者最少必須已執行多少次交易，才能被視為模型的一部分。 |	整數，<br>2 或以上<br> (2)
+| *UserCutOffUpperBound* |	定義使用者最多必須已執行多少次交易，才能被視為模型的一部分。 |	整數，<br>2 或以上<br> (2147483647)|
+| *UseFeaturesInModel* |	指出是否可以使用功能以加強建議模型。 | 	 布林值<br> 預設值︰True
+|*ModelingFeatureList* |	使用於建議組建中的功能名稱逗號分隔清單，可加強建議。它取決於重要的功能。 |	字串，最多 512 個字元
+| *AllowColdItemPlacement* |	指出建議是否也應該透過功能相似度推入冷項目。 | 布林值<br> 預設值︰False
+| *EnableFeatureCorrelation* | 指出功能是否可用於推論。 |	布林值<br> 預設值︰False
+| *ReasoningFeatureList* |	用於推論句 (例如建議說明) 的功能名稱逗號分隔清單。它取決於對客戶而言很重要的功能。 | 字串，最多 512 個字元
+| *EnableU2I* |	啟用個人化的建議，也稱為「使用者對項目 (U2I)」建議。 | 布林值<br> 預設值︰True
+|*EnableModelingInsights* |	定義是否應該執行離線評估，才能收集模型深入解析 (也就是精確度和多樣性度量)。若設為 true，就不會將資料的子集用於訓練，因為要將它保留來供測試模型使用。深入了解[離線評估](#OfflineEvaluation)。 | 布林值<br> 預設值︰False
+| *SplitterStrategy* | 如果將啟用模型深入解析設為「true」，則這是應基於評估目的用來分割資料的方式。 | 字串，「RandomSplitter」或「LastEventSplitter」<br>預設值︰RandomSplitter
 
 
 <a name="FBTBuild"></a>
-### <a name="fbt-build-type"></a>FBT build type ###
+### FBT 組建類型 ###
 
-The frequently bought together (FBT) build does an analysis that counts the number of times two or three different products co-occur together. It then sorts the sets based on a similarity function (**co-occurrences**, **Jaccard**, **lift**).
+人氣組合 (FBT) 組建會進行分析，以計算兩項或三項不同產品一起共同出現的次數。然後根據相似度函式 (**co-occurrences**、**Jaccard**、**lift**) 將集合排序。
 
-Think of **Jaccard** and **lift** as ways to normalize the co-occurrences.  This means that the items will be returned only if they where purchased together with the seed item.
+請將 **Jaccard** 和 **lift** 視為標準化 Co-occurrences 的方法。這表示只有在項目與種子項目一起購買時才會傳回這些項目。
 
-In our Lumia 650 phone example, phone X will be returned only if phone X was purchased in the same session as the Lumia 650 phone. Because this may be unlikely, we would expect items complementary to the Lumia 650 to be returned; for instance, a screen protector, or a power adapter for the Lumia 650.
+在 Lumia 650 手機範例中，只有在與 Lumia 650 手機相同的工作階段中購買手機 X 時，才會傳回手機 X。因為這不太可能發生，所以我們會預期傳回 Lumia 650 的補充項目；例如，螢幕保護裝置或 Lumia 650 的電源配接器。
 
-Currently, two items are assumed to be purchased in the same session if they occur in a transaction with the same user ID and timestamp.
+目前，如果有兩個具有相同使用者識別碼和時間戳記的項目出現在一筆交易中，則假設會在相同的工作階段中購買這兩個項目。
 
-FBT builds do not support cold items, because by definition they expect two items to be purchased in the same transaction. While FBT builds can return sets of items (triplets), they do not support personalized recommendations because they accept a single seed item as the input.
+FBT 組建目前不支援冷項目，因為依照定義，它會預期同一筆交易中購買了兩個項目。FBT 組建可傳回項目集 (三個一組)，但因為它們接受以單一種子項目做為輸入，所以不支援個人化建議。
 
 
-#### <a name="fbt-build-parameters"></a>FBT build parameters
+#### FBT 組建參數
 
-| Name  |   Description |       Type,  <br> valid values, <br> (default value)
+| Name | 	說明 |		類型，<br>有效值 <br>(預設值)
 |-------|---------------|-----------------------
-| *FbtSupportThreshold* | How conservative the model is. Number of co-occurrences of items to be considered for modeling. |  Integer, <br> 3-50 <br> (6)
-| *FbtMaxItemSetSize* | Bounds the number of items in a frequent set.| Integer  <br> 2-3 <br> (2)
-| *FbtMinimalScore* | Minimal score that a frequent set should have to be included in the returned results. The higher the better. | Double <br> 0 and above <br> (0)
-| *FbtSimilarityFunction* | Defines the similarity function to be used by the build. **Lift** favors serendipity, **co-occurrence** favors predictability, and **Jaccard** is a compromise between the two. | String,  <br>  <i>cooccurrence, lift, jaccard</i><br> Default: <i>jaccard</i>
+| *FbtSupportThreshold* | 模型的保守程度。模型化時要考量項目的共同出現次數。 | 整數，<br>3-50 <br>(6)
+| *FbtMaxItemSetSize* | 頻繁集合中的項目數界限。| 整數，<br>2-3 <br>(2)
+| *FbtMinimalScore* | 頻繁集合應該具有的最低分數，以包含在傳回的結果中。愈高愈好。 | 雙精準數 <br> 0 以上 <br> (0)
+| *FbtSimilarityFunction* | 定義組建所使用的相似度函式。**Lift** 有利於機緣巧合、**co-occurrence** 有助於可預測性，而 **Jaccard** 可在兩者間取得一個很好的平衡。 | 字串，<br> <i>cooccurrence、lift、jaccard</i><br> 預設值︰ <i>jaccard</i>
 
 <a name="SelectBuild"></a>
-## <a name="build-evaluation-and-selection"></a>Build evaluation and selection ##
+## 組件評估和選取 ##
 
-This guidance might help you determine whether you should use a recommendations build or an FBT build, but it does not provide a definitive answer in cases where you could use either of them. Also, even if you know that you want to use an FBT build type, you might still want to choose **Jaccard** or **lift** as the similarity function.
+本指引可協助您判斷是否應該使用建議組建或 FBT 組建，但是在您可以使用其中任一組建的情況下，它不會提供明確的答案。此外，即使您知道要使用 FBT 組建類型，但仍可能想要選擇使用 **Jaccard** 或 **lift** 做為相似度函式。
 
-The best way to select between two different builds is to test them in the real world (online evaluation) and track a conversion rate for the different builds. The conversion rate could be measured based on recommendation clicks, the number actual purchases from recommendations shown, or even on the actual purchase amounts when the different recommendations were shown. You may select your conversion rate metric based on your business objective.
+在這兩種組建之間進行選取的最佳方式就是在真實世界中進行測試 (線上評估版)，並追蹤不同組建的轉換率。根據建議點選次數、來自顯示建議的實際購買數目，或甚至是顯示不同建議時的實際購買量，可以測量轉換率。您可以根據您的商務目標來選取轉換率計量。
 
-In some cases, you may want to evaluate the model offline before you put it in production. While offline evaluation is not a replacement for online evaluation, it can serve as a metric.
+在某些情況下，建議您在模型投入生產之前，先離線評估模型。雖然離線評估無法取代線上評估，但可以做為度量。
 
 <a name="OfflineEvaluation"></a>
-## <a name="offline-evaluation"></a>Offline evaluation  ##
+## 離線評估  ##
 
-The goal of an offline evaluation is to predict precision (the number of users that will purchase one of the recommended items) and the diversity of recommendations (the number of items that are recommended).
-As part of the precision and diversity metrics evaluation, the system finds a sample of users and splits  the transactions for those users into two groups: the training dataset and the test dataset.
+離線評估的目的是要預測精確度 (會購買其中一個建議項目的使用者數目) 和建議的多樣性 (建議的項目數)。在精確度和多樣性度量評估中，系統會找出使用者樣本，並將這些使用者的交易分成兩個群組︰訓練資料集和測試資料集。
 
-> [AZURE.NOTE] To use offline metrics, you must have timestamps in your usage data.
-> Time data is required to split usage correctly between training and test datasets.
+> [AZURE.NOTE] 若要使用離線度量，您的使用量資料中必須有時間戳記。必須有時間資料，才能正確分割訓練和測試資料集之間的使用量。
 
-> Also, offline evaluation may not yield results for small usage files. For the evaluation to be thorough, there should be a minimum of 1,000 usage points in the test dataset.
+> 此外，離線評估可能不會產生小型使用量檔案的結果。為了徹底評估，測試資料集中應該至少有 1000 個使用點。
 
 <a name="Precision"></a>
-### <a name="precision-at-k"></a>Precision-at-k ###
-The following table represents the output of the precision-at-k offline evaluation.
+### Precision-at-k ###
+下表代表 precision-at-k 離線評估的輸出。
 
-| K | 1 | 2 | 3 |   4 |     5
+| K | 1 | 2 | 3 | 	4 | 	5
 |---|---|---|---|---|---|
-|Percentage |   13.75 | 18.04   | 21 |  24.31 | 26.61
-|Users in test |    10,000 |    10,000 |    10,000 |    10,000 |    10,000
-|Users considered | 10,000 |    10,000 |    10,000 |    10,000 |    10,000
-|Users not considered | 0 | 0 | 0 | 0 | 0
+|百分比 |	13\.75 |	18\.04 | 21 |	24\.31 |	26\.61
+|測試的使用者 |	10,000 |	10,000 |	10,000 |	10,000 |	10,000
+|考量的使用者 |	10,000 |	10,000 |	10,000 |	10,000 |	10,000
+|不考量的使用者 |	0 |	0 |	0 |	0 |	0
 
-#### <a name="k"></a>K
-In the preceding table, *k* represents the number of recommendations shown to the customer. The table reads as follows: “If during the test period, only one recommendation was shown to the customers, only 13.75 of the users would have purchased that recommendation.” This statement is based on the assumption that the model was trained with purchase data. Another way to say this is that the precision at 1 is 13.75.
+#### K
+在上表中，「K」代表要向客戶顯示的建議數目。資料表顯示的意思如下：「如果在測試期間只對客戶顯示了一個建議，則只有 13.75 的使用者會購買該項建議」。 此陳述的根據是模型是以購買資料來定型的假設。另一種說法是「K=1 時的精確度」是 13.75。
 
-You will notice that as more items are shown to the customer, the likelihood of the customer purchasing a recommended item goes up. For the preceding experiment, the probability almost doubles to 26.61 percent when 5 items are recommended.
+您發現，對客戶顯示的項目愈多，客戶購買建議項目的可能性愈大。在上述實驗中，建議 5 個項目時的機率幾乎倍增至 26.61%。
 
-#### <a name="percentage"></a>Percentage
-The percentage of users that interacted with at least one of the *k* recommendations is shown. The percentage is calculated by dividing the number of users that interacted with at least one recommendation by the total number of users considered. See Users considered for more information.
+#### 百分比
+與至少一個顯示的「k」建議互動的使用者百分比。此百分比的計算方式：將與至少一個建議互動的使用者數目除以考量的使用者總數。如需詳細資訊，請參閱考量的使用者。
 
-#### <a name="users-in-test"></a>Users in test
-Data in this row represents the total number of users in the test dataset.
+#### 測試的使用者
+此資料列中的資料代表測試資料集中的使用者總數。
 
-#### <a name="users-considered"></a>Users considered
-A user is only considered if the system recommended at least *k* items based on the model generated using the training dataset.
+#### 考量的使用者
+只有在系統根據使用訓練資料集所產生的模型而建議至少「k」個項目時，使用者才會納入考量。
 
-#### <a name="users-not-considered"></a>Users not considered
-Data in this row represents any users not considered. The users that did not receive at least *k* recommended items.
+#### 不考量的使用者
+此資料列中的資料代表任何不考量的使用者。未收到至少「k」個建議項目的使用者。
 
-User not considered = users in test – users considered
+不考量的使用者 = 測試的使用者 – 考量的使用者
 
 <a name="Diversity"></a>
-### <a name="diversity"></a>Diversity ###
-Diversity metrics measure the type of items recommended. The following table represents the output of the diversity offline evaluation.
+### 多樣性 ###
+多樣性計量會測量建議的項目類型。下表代表多樣性離線評估的輸出。
 
-|Percentile bucket |    0-90|  90-99| 99-100
+|百分位數值區 |	0-90| 90-99| 99-100
 |------------------|--------|-------|---------
-|Percentage        | 34.258 | 55.127| 10.615
+|百分比 | 34\.258 | 55\.127| 10\.615
 
 
-Total items recommended: 100,000
+建議的項目總數：100,000
 
-Unique items recommended: 954
+建議的唯一項目數：954
 
-#### <a name="percentile-buckets"></a>Percentile buckets
-Each percentile bucket is represented by a span (minimum and maximum values that range between 0 and 100). The items close to 100 are the most popular items, and the items close to 0 are the least popular. For instance, if the percentage value for the 99-100 percentile bucket is 10.6, it means that 10.6 percent of the recommendations returned only the top one percent most popular items. The percentile bucket minimum value is inclusive, and the maximum value is exclusive, except for 100.
-#### <a name="unique-items-recommended"></a>Unique items recommended
-The unique items recommended metric shows the number of distinct items that were returned for evaluation.
-#### <a name="total-items-recommended"></a>Total items recommended
-The total items recommended metric shows the number of items recommended. Some may be duplicates.
+#### 百分位數值區
+每個百分位數值區都是以一個範圍 (介於 0 與 100 之間的最小值和最大值) 表示。接近 100 的項目是最受歡迎的項目，而接近 0 的項目則最不受歡迎。比方說，如果 99-100 百分位數值區的百分比值為 10.6，這表示 10.6% 的建議只傳回前 1% 最受歡迎的項目。百分位數值區最小值會包含在內，而最大值則是排除在外 (但 100 除外)。
+#### 建議的唯一項目數
+建議的唯一項目數度量會顯示傳回進行評估的不同項目數目。
+#### 建議的項目總數
+建議的項目總數度量會顯示建議的項目數目。有些項目可能會重複。
 
 <a name="ImplementingEvaluation"></a>
-### <a name="offline-evaluation-metrics"></a>Offline evaluation metrics ###
-The precision and diversity offline metrics may be useful when you select which build to use. At build time, as part of the respective FBT or recommendation build parameters:
+### 離線評估度量 ###
+精確度和多樣性離線度量可能有助於您選取要使用的組建。在建置階段，於個別的 FBT 或建議組建參數中︰
 
--   Set the *enableModelingInsights* build parameter to **true**.
--   Optionally, select the *splitterStrategy* (Either *RandomSplitter* or *LastEventSplitter*).
-*RandomSplitter* splits the usage data in train and test sets based on the given *randomSplitterParameters* test percent and random seed values.
-*LastEventSplitter* splits the usage data in train and test sets based on the last transaction for each user.
+-	將「enableModelingInsights」組建參數設為 **true**。
+-	(選擇性) 選取「splitterStrategy」(「RandomSplitter」或「LastEventSplitter」)。「RandomSplitter」會根據指定的「randomSplitterParameters」測試百分比和隨機種子值，分割訓練和測試集中的使用量資料。「LastEventSplitter」會根據每個使用者的最後一筆交易，分割訓練和測試集中的使用量資料。
 
-This will trigger a build that uses only a subset of the data for training and uses the rest of the data to compute evaluation metrics.  After the build is completed, to get the output of the evaluation, you need to call the [Get build metrics API](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/577eaa75eda565095421666f), passing the respective *modelId* and *buildId*.
+這會觸發一個組建，該組建僅使用一部分的資料進行訓練，並使用其餘資料來計算評估度量。在組建完成之後，若要取得評估的輸出，您必須呼叫[取得組建計量 API](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/577eaa75eda565095421666f)，並傳遞個別的「modelId」和「buildId」。
 
- Following is the JSON output for the sample evaluation.
+ 以下是範例評估的 JSON 輸出。
 
 
     {
@@ -268,8 +263,4 @@ This will trigger a build that uses only a subset of the data for training and u
     "IsFaulted": false
     }
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="Tutorial: Azure Active Directory integration with Box | Microsoft Azure" 
-    description="Learn how to use Box with Azure Active Directory to enable single sign-on, automated provisioning, and more!" 
+    pageTitle="教學課程：Azure Active Directory 與 Box 整合 | Microsoft Azure" 
+    description="了解如何使用 Box 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -11,188 +11,182 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="09/29/2016" 
+    ms.date="07/13/2016" 
     ms.author="jeedes" />
 
 
 
 
-
-#<a name="tutorial:-azure-active-directory-integration-with-box"></a>Tutorial: Azure Active Directory integration with Box
+#教學課程：Azure Active Directory 與 Box 整合
 
 
   
-The objective of this tutorial is to show the integration of Azure and Box.  
-The scenario outlined in this tutorial assumes that you already have the following items:
+本教學課程的目的是要示範 Azure 與 Box 的整合。本教學課程中說明的案例假設您已經具有下列項目：
 
--   A valid Azure subscription
--   A test tenant in Box
+-   有效的 Azure 訂閱
+-   Box 中的測試租用戶
   
-After completing this tutorial, the Azure AD users you have assigned to Box will be able to single sign into the application at your Box company site (service provider initiated sign on), or using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+完成本教學課程之後，您指派給 Box 的 Azure AD 使用者就能夠單一登入您 Box 公司網站 (服務提供者起始登入) 的應用程式，或是使用[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
   
-The scenario outlined in this tutorial consists of the following building blocks:
+本教學課程中說明的案例由下列建置組塊組成：
 
-1.  Enabling the application integration for Box
-2.  Configuring single sign-on
-3.  Configuring user and group provisioning
-4.  Assigning users
+1.  啟用 Box 的應用程式整合
+2.  設定單一登入
+3.  設定使用者和群組佈建
+4.  指派使用者
 
-![Scenario](./media/active-directory-saas-box-tutorial/IC769537.png "Scenario")
+![案例](./media/active-directory-saas-box-tutorial/IC769537.png "案例")
 
 
 
-##<a name="enabling-the-application-integration-for-box"></a>Enabling the application integration for Box
+##啟用 Box 的應用程式整合
   
-The objective of this section is to outline how to enable the application integration for Box.
+本節的目的是概述如何啟用 Box 的應用程式整合。
 
-###<a name="to-enable-the-application-integration-for-box,-perform-the-following-steps:"></a>To enable the application integration for Box, perform the following steps:
+###若要啟用 Box 的應用程式整合，請執行下列步驟：
 
-1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-box-tutorial/IC700993.png "Active Directory")
 
-2.  From the **Directory** list, select the directory for which you want to enable directory integration.
+2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3.  To open the applications view, in the directory view, click **Applications** in the top menu.
+3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
 
-    ![Applications](./media/active-directory-saas-box-tutorial/IC700994.png "Applications")
+    ![應用程式](./media/active-directory-saas-box-tutorial/IC700994.png "應用程式")
 
-4.  Click **Add** at the bottom of the page.
+4.  按一下頁面底部的 [新增]。
 
-    ![Add application](./media/active-directory-saas-box-tutorial/IC749321.png "Add application")
+    ![新增應用程式](./media/active-directory-saas-box-tutorial/IC749321.png "新增應用程式")
 
-5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
-    ![Add an application from gallerry](./media/active-directory-saas-box-tutorial/IC749322.png "Add an application from gallerry")
+    ![從組件庫新增應用程式](./media/active-directory-saas-box-tutorial/IC749322.png "從組件庫新增應用程式")
 
-6.  In the **search box**, type **Box**.
+6.  在**搜尋方塊**中，輸入 **Box**。
 
-    ![Application gallery](./media/active-directory-saas-box-tutorial/IC701023.png "Application gallery")
+    ![應用程式庫](./media/active-directory-saas-box-tutorial/IC701023.png "應用程式庫")
 
-7.  In the results pane, select **box**, and then click **Complete** to add the application.
+7.  在結果窗格中，選取 [Box]，然後按一下 [完成] 以加入應用程式。
 
     ![Box](./media/active-directory-saas-box-tutorial/IC701024.png "Box")
 
 
 
-##<a name="configuring-single-sign-on"></a>Configuring single sign-on
+##設定單一登入
   
-The objective of this section is to outline how to enable users to authenticate to Box with their account in Azure AD using federation based on the SAML protocol. As part of this procedure, you are required to upload metadata to Box.com.
+本節的目的是概述如何依據 SAML 通訊協定來使用同盟，讓使用者能夠以自己的 Azure AD 帳戶在 Box 中進行驗證。在此程序中，您必須將中繼資料上傳至 Box.com。
 
-###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
+###若要設定單一登入，請執行下列步驟：
 
-1.  In the Azure classic portal, on the **Box** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
+1.  在 Azure 傳統入口網站的 [Box] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
-    ![Configure single sign-on](./media/active-directory-saas-box-tutorial/IC769538.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-box-tutorial/IC769538.png "設定單一登入")
 
-2.  On the **How would you like users to sign on to Box** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
+2.  在 [要如何讓使用者登入 Box] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
 
-    ![Configure single sign-on](./media/active-directory-saas-box-tutorial/IC769539.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-box-tutorial/IC769539.png "設定單一登入")
 
-3.  On the **Configure App URL** page, in the **Box Tenant URL** textbox, type your Box tenant URL (e.g.: https://<mydomainname>.box.com), and then click **Next**.
+3.  在 [設定應用程式 URL] 頁面的 [Box 租用戶 URL] 文字方塊中，輸入您的 Box 租用戶 URL (例如︰https://<mydomainname>.box.com)，然後按 [下一步]。
 
-    ![Configure app URL](./media/active-directory-saas-box-tutorial/IC669826.png "Configure app URL")
+    ![設定應用程式 URL](./media/active-directory-saas-box-tutorial/IC669826.png "設定應用程式 URL")
 
-4.  On the **Configure single sign-on at Box** page, to download your metadata, click **Download metadata**, and then the data file locally on your computer.
+4.  在 [設定在 Box 單一登入] 頁面上，按一下 [下載中繼資料] 來下載您的中繼資料，然後將資料檔儲存在您的本機電腦中。
 
-    ![Configure single sign-on](./media/active-directory-saas-box-tutorial/IC669824.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-box-tutorial/IC669824.png "設定單一登入")
 
-5.  Forward that metadata file to Box support team. The support team needs configures single sign-on for you.
+5.  將該中繼資料檔案轉寄給 Box 支援小組。支援小組需要為您設定單一登入。
 
-6.  Select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
+6.  選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
-    ![Configure single sign-on](./media/active-directory-saas-box-tutorial/IC769540.png "Configure single sign-on")
-##<a name="configuring-user-provisioning"></a>Configuring user provisioning
+    ![設定單一登入](./media/active-directory-saas-box-tutorial/IC769540.png "設定單一登入")
+##設定使用者佈建
   
-The objective of this section is to outline how to enable provisioning of Active Directory user accounts to Box.
+本節的目的是要說明如何對 Box 啟用 Active Directory 使用者帳戶的佈建。
 
-###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
+###若要設定單一登入，請執行下列步驟：
 
-1. In the Azure classic portal, on the **Box** application integration page, click **Configure user provisioning** to open the **Configure User Provisioning** dialog. 
+1. 在 Azure 傳統入口網站中的 [Box] 應用程式整合頁面上，按一下 [設定使用者佈建] 以開啟 [設定使用者佈建] 對話方塊。
 
-    ![Enable automatic user provisioning](./media/active-directory-saas-box-tutorial/IC769541.png "Enable automatic user provisioning")
+	![啟用自動使用者佈建](./media/active-directory-saas-box-tutorial/IC769541.png "啟用自動使用者佈建")
 
-2. On the **Enable user provisioning to Box** dialog page, click **Enable user provisioning**. 
+2. 在 [**啟用使用者佈建到 Box**] 對話方塊頁面上，按一下 [**啟用使用者佈建**]。
 
-    ![Enable automatic user provisioning](./media/active-directory-saas-box-tutorial/IC769544.png "Enable automatic user provisioning")
+	![啟用自動使用者佈建](./media/active-directory-saas-box-tutorial/IC769544.png "啟用自動使用者佈建")
 
-3. On the **Log in to grant access to Box** page, provide the required credentials, and then click **Authorize**. 
+3. 在 [登入以授與 Box 存取權] 頁面上，提供必要的認證，然後按一下 [授權]。
 
-    ![Enable automatic user provisioning](./media/active-directory-saas-box-tutorial/IC769546.png "Enable automatic user provisioning")
-
-
-4. Click **Grant access to Box** to authorize this operation and to return to the Azure classic portal. 
-
-    ![Enable automatic user provisioning](./media/active-directory-saas-box-tutorial/IC769549.png "Enable automatic user provisioning")
+	![啟用自動使用者佈建](./media/active-directory-saas-box-tutorial/IC769546.png "啟用自動使用者佈建")
 
 
-5. On the **Provisioning Options** page, the **Object types to provision** checkboxes allow you to select whether or not group objects are provisioned to Box in addition to user objects.  See "Assigning users and groups section" below for more information.
+4. 按一下 [授與 Box 存取權]，以授權進行此作業並返回 Azure 傳統入口網站。
+
+	![啟用自動使用者佈建](./media/active-directory-saas-box-tutorial/IC769549.png "啟用自動使用者佈建")
 
 
-6. To finish the configuration, click the Complete button. 
-
-    ![Enable automatic user provisioning](./media/active-directory-saas-box-tutorial/IC769551.png "Enable automatic user provisioning")
+5. 在 [佈建選項] 頁面上，[要佈建的物件類型] 核取方塊可讓您選取是否在使用者物件之外，也在 Box 佈建群組物件。如需詳細資訊，請參閱以下＜指派使用者和群組＞一節。
 
 
+6. 若要完成設定，請按一下 [完成] 按鈕。
 
-##<a name="assigning-a-test-user"></a>Assigning a test user
+	![啟用自動使用者佈建](./media/active-directory-saas-box-tutorial/IC769551.png "啟用自動使用者佈建")
+
+
+
+##指派測試使用者
   
-To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
+若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-###<a name="to-assign-users-to-box,-perform-the-following-steps:"></a>To assign users to Box, perform the following steps:
+###若要指派使用者給 Box，請執行下列步驟：
 
-1. In the Azure classic portal, create a test account.
+1. 在 Azure 傳統入口網站中建立測試帳戶。
 
-2. On the **Box **application integration page, click **Assign users**. 
+2. 在 [Box] 應用程式整合頁面上，按一下 [指派使用者]。
 
-    ![Assign users](./media/active-directory-saas-box-tutorial/IC769552.png "Assign users")
+	![指派使用者](./media/active-directory-saas-box-tutorial/IC769552.png "指派使用者")
 
-3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment. 
+3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
 
-    ![Yes](./media/active-directory-saas-box-tutorial/IC767830.png "Yes")
+	![是](./media/active-directory-saas-box-tutorial/IC767830.png "是")
   
-You should now wait for 10 minutes and verify that the account has been synchronized to Box.
+請等候 10 分鐘並確認帳戶已同步至 Box。
 
-As a first verification step, you can check the provisioning status, by clicking Dashboard in the D on the Box application integration page on the Azure classic portal.
+在第一個驗證步驟中，您可以在 Azure 傳統入口網站的 Box 應用程式整合頁面上，按一下 D 的儀表板來檢查佈建狀態。
 
-![Dashboard](./media/active-directory-saas-box-tutorial/IC769553.png "Dashboard")
+![儀表板](./media/active-directory-saas-box-tutorial/IC769553.png "儀表板")
 
-A successfully completed user provisioning cycle is indicated by a related status:
+成功完成的使用者佈建週期會以相關狀態表示：
 
-![Integration status](./media/active-directory-saas-box-tutorial/IC769555.png "Integration status")
-
-
-In your Box tenant, synchronized users are listed under **Managed Users** in the **Admin Console**.
-
-![Integration status](./media/active-directory-saas-box-tutorial/IC769556.png "Integration status")
+![整合狀態](./media/active-directory-saas-box-tutorial/IC769555.png "整合狀態")
 
 
-##<a name="assigning-users-and-groups"></a>Assigning users and groups
+在 Box 租用戶中，已同步處理的使用者會列在 [管理主控台] 的 [管理使用者] 之下。
 
-The **Box > Users and Groups** tab in the Azure classic portal allows you to specify which users and groups should be granted access to Box. Assignment of a user or group causes the following things to occur:
+![整合狀態](./media/active-directory-saas-box-tutorial/IC769556.png "整合狀態")
 
-* Azure AD permits the assigned user (either by direct assignment or group membership) to authenticate to Box. If a user is not assigned, then Azure AD will not permit them to sign in to Box and will return an error on the Azure AD sign-in page.
 
-* An app tile for Box is added to the user's [application launcher](active-directory-appssoaccess-whatis.md#deploying-azure-ad-integrated-applications-to-users).
+##指派使用者和群組
 
-* If automatic provisioning is enabled, then the assigned users and/or groups are added to the provisioning queue to be automatically provisioned.
+Azure 傳統入口網站的 [Box] > [使用者和群組] 索引標籤可讓您指定應該授與哪些使用者和群組 Box 的存取權。指派使用者或群組會導致下列事項發生︰
 
-    * If only user objects were configured to be provisioned, then all directly-assigned users are placed in the provisioning queue, and all users that are members of any assigned groups will be placed in the provisioning queue. 
+* Azure AD 允許指派的使用者 (直接指派或群組成員資格) 驗證 Box。如果使用者未經指派，則 Azure AD 不會允許他們登入 Box，並會在 Azure AD 登入頁面傳回錯誤。
+
+* Box 的應用程式圖格會加入使用者的[應用程式啟動程式](active-directory-appssoaccess-whatis.md#deploying-azure-ad-integrated-applications-to-users)中。
+
+* 如已啟用自動佈建，則指派的使用者及/或群組就會加入佈建佇列進行自動佈建。
+
+    * 如果只設定要佈建使用者物件，則所有直接指派的使用者都會放在佈建佇列中，而任何指派群組成員的所有使用者也會放在佈建佇列中。
     
-    * If group objects were configured to be provisioned, then all assigned group objects are provisioned to Box, as well as all users that are members of those groups. The group and user memberships are preserved upon being written to Box.
+    * 如果設定要佈建的是群組物件，則所有指派的群組物件以及這些群組成員的所有使用者都會佈建到 Box。群組和使用者成員資格都會保留寫入 Box。
     
-You can use the **Attributes > Single Sign-On** tab to configure which user attributes (or claims) are presented to Box during SAML-based authentication, and the **Attributes > Provisioning** tab to configure how user and group attributes flow from Azure AD to Box during provisioning operations. See the resources below for more information.
+您可以使用 [屬性] > [單一登入] 索引標籤來設定，在 SAML 驗證期間，要向 Box 呈現哪些使用者屬性 (或宣告)；使用 [屬性] > [佈建] 索引標籤來設定，在佈建作業期間，使用者及群組屬性如何從 Azure AD 流向 Box。如需詳細資訊，請參閱底下的資源。
 
 
-## <a name="additional-resources"></a>Additional Resources
+## 其他資源
 
-* [Customizing claims issued in the SAML token](active-directory-saml-claims-customization.md)
-* [Provisioning: Customize Attribute Mappings](active-directory-saas-customizing-attribute-mappings.md)
-* [List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory](active-directory-saas-tutorial-list.md)
-* [What is application access and single sign-on with Azure Active Directory?](active-directory-appssoaccess-whatis.md)
+* [自訂 SAML 權杖發出的宣告](active-directory-saml-claims-customization.md)
+* [佈建︰自訂屬性對應](active-directory-saas-customizing-attribute-mappings.md)
+* [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
+* [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0720_2016-->

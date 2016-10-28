@@ -1,148 +1,147 @@
 <properties
-    pageTitle="Create a web app from the Azure Marketplace | Microsoft Azure"
-    description="Learn how to create a new WordPress web app from the Azure Marketplace by using the Azure Portal."
-    services="app-service\web"
-    documentationCenter=""
-    authors="rmcmurray"
-    manager="wpickett"
-    editor=""/>
+	pageTitle="從 Azure Marketplace 建立 Web 應用程式 | Microsoft Azure"
+	description="了解如何使用 Azure 入口網站，從 Azure Marketplace 建立新的 WordPress Web 應用程式。"
+	services="app-service\web"
+	documentationCenter=""
+	authors="rmcmurray"
+	manager="wpickett"
+	editor=""/>
 
 <tags
-    ms.service="app-service-web"
-    ms.workload="na"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="get-started-article"
-    ms.date="09/20/2016"
-    ms.author="robmcm"/>
-
+	ms.service="app-service-web"
+	ms.workload="na"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="get-started-article"
+	ms.date="09/20/2016"
+	ms.author="robmcm"/>
 
 <!-- Note: This article replaces web-sites-php-web-site-gallery.md -->
 
-# <a name="create-a-web-app-from-the-azure-marketplace"></a>Create a web app from the Azure Marketplace
+# 從 Azure Marketplace 建立 Web 應用程式
 
-[AZURE.INCLUDE [tabs](../../includes/app-service-web-get-started-nav-tabs.md)]
+[AZURE.INCLUDE [索引標籤](../../includes/app-service-web-get-started-nav-tabs.md)]
 
-The Azure Marketplace makes available a wide range of popular web apps developed by Microsoft, third party companies, and open source software initiatives. For example, WordPress, Umbraco CMS, Drupal, etc. These web apps are built on a wide range of popular frameworks, such as [PHP] in this WordPress example, [.NET], [Node.js], [Java], and [Python], to name a few. To create a web app from the Azure Marketplace the only software you need is the browser that you use for the [Azure Portal].
+Azure Marketplace 提供由 Microsoft、協力廠商公司及開放原始碼軟體計劃所開發的各種熱門 Web 應用程式。例如，WordPress、Umbraco CMS、Drupal 等。這些 Web 應用程式建置在各種熱門架構上，例如本 WordPress 範例中的 [PHP]、[.NET]、[Node.js]、[Java] 和 [Python] 等等。若要從 Azure Marketplace 建立 Web 應用程式，您唯一需要的軟體就是用於 [Azure 入口網站]的瀏覽器。
 
-In this tutorial you'll learn how to:
+在本教學課程中，您將了解如何：
 
-* Find and create web app in Azure App Service that is based on an Azure Marketplace template.
-* Configure Azure App Service settings for the new web app.
-* Launch and manage your web app.
+* 在 Azure App Service 中尋找和建立以 Azure Marketplace 範本為基礎的 Web 應用程式。
+* 為新的 Web 應用程式進行 Azure App Service 設定。
+* 啟動及管理您的 Web 應用程式。
 
-For the purpose of this tutorial, you will deploy a WordPress blog site from the Azure Marketplace. When you have completed the steps in this tutorial, you'll have your own WordPress site up and running in the cloud.
+基於本教學課程的目的，您將會從 Azure Marketplace 部署 WordPress 部落格網站。當您完成本教學課程中的步驟時，您的專屬 WordPress 網站將在雲端中啟動並執行。
 
-![Example WordPress wep app dashboard][WordPressDashboard1]
+![WordPress Web 應用程式儀表板範例][WordPressDashboard1]
 
-The WordPress site that you'll deploy in this tutorial uses MySQL for the database. If you wish to instead use SQL Database for the database, see [Project Nami], which is also available through the Azure Marketplace.
+您在本教學課程中部署的 WordPress 網站使用 MySQL 來做為資料庫。如果您想改為使用 SQL Database 來做為資料庫，請參閱 [專案 Nami]，其也可透過 Azure Marketplace 來取得。
 
 > [AZURE.NOTE]
-> To complete this tutorial, you need a Microsoft Azure account. If you don't have an account, you can [activate your Visual Studio subscriber benefits][activate] or [sign up for a free trial][free trial].
+若要完成此教學課程，您需要 Microsoft Azure 帳戶。如果您沒有這類帳戶，可以[啟用自己的 Visual Studio 訂閱者權益][activate]，或是[申請免費試用][free trial]。
 >
-> If you want to get started with Azure App Service before you sign up for an Azure account, go to [Try App Service]. From there you can immediately create a short-lived starter web app in App Service — no credit card is required, and there are no commitments.
+> 如果您想在註冊 Azure 帳戶之前先開始使用 Azure App Service，請前往[試用 App Service]。您可以於該處，在 App Service 中立即建立短期的入門 Web 應用程式 - 不需信用卡，不需任何承諾。
 
-## <a name="find-and-create-a-web-app-in-azure-app-service"></a>Find and Create a Web App in Azure App Service
+## 在 Azure App Service 中尋找及建立 Web 應用程式
 
-1. Log in to the [Azure Portal].
+1. 登入 [Azure 入口網站]。
 
-1. Click **New**.
-    
-    ![Create a new Azure resource][MarketplaceStart]
-    
-1. Search for **WordPress**, and then click **WordPress**. (If you wish to use SQL Database instead of MySQL, search for **Project Nami**.)
+1. 按一下 [新增]。
+	
+	![建立新的 Azure 資源][MarketplaceStart]
+	
+1. 搜尋 **WordPress**，然後按一下 [WordPress]。(如果您想要使用 SQL Database，而不是 MySQL，請搜尋**專案 Nami**。)
 
-    ![Search for WordPress in the Marketplace][MarketplaceSearch]
-    
-1. After reading the description of the WordPress app, click **Create**.
+	![在 Marketplace 中搜尋 WordPress][MarketplaceSearch]
+	
+1. 在閱讀 WordPress 應用程式的描述之後，請按一下 [建立]。
 
-    ![Create WordPress web app][MarketplaceCreate]
+	![建立 WordPress Web 應用程式][MarketplaceCreate]
 
-## <a name="configure-azure-app-service-settings-for-your-new-web-app"></a>Configure Azure App Service Settings for your New Web App
+## 為新的 Web 應用程式進行 Azure App Service 設定
 
-1. After you have created a new web app, the WordPress settings blade will be displayed, which you will use to complete the following steps:
+1. 建立新的 Web 應用程式之後，[WordPress 設定] 刀鋒視窗隨即會顯示，以供您完成下列步驟︰
 
-    ![Configure WordPress web app settings][ConfigStart]
+	![設定 WordPress Web 應用程式設定][ConfigStart]
 
-1. Enter a name for the web app in the **Web app** box.
+1. 在 [Web 應用程式] 方塊中，輸入 Web 應用程式的名稱。
 
-    This name must be unique in the azurewebsites.net domain because the URL of the web app will be *{name}*.azurewebsites.net. If the name you enter isn't unique, a red exclamation mark appears in the text box.
+	此名稱在 azurewebsites.net 網域中必須是唯一的，因為 Web 應用程式的 URL 將是 {name}.azurewebsites.net。如果您輸入的名稱不是唯一的，紅色驚嘆號會出現在文字方塊中。
 
-    ![Configure the WordPress web app name][ConfigAppName]
+	![設定 WordPress Web 應用程式名稱][ConfigAppName]
 
-1. If you have more than one subscription, choose the one you want to use. 
+1. 如果您有多個訂用帳戶，請選擇您想要使用的訂用帳戶。
 
-    ![Configure the subscription for the web app][ConfigSubscription]
+	![設定 Web 應用程式的訂用帳戶][ConfigSubscription]
 
-1. Select a **Resource Group** or create a new one.
+1. 選取 [資源群組]，或建立新的資源群組。
 
-    For more information about resource groups, see [Azure Resource Manager overview][ResourceGroups].
+	如需有關資源群組的詳細資訊，請參閱 [Azure Resource Manager 概觀][ResourceGroups]。
 
-    ![Configure the resource group for the web app][ConfigResourceGroup]
+	![設定 Web 應用程式的資源群組][ConfigResourceGroup]
 
-1. Select an **App Service plan/Location** or create a new one.
+1. 選取 [App Service 方案/位置]，或建立新的 App Service 方案/位置。
 
-    For more information about App Service plans, see [Azure App Service plans overview][AzureAppServicePlans]. 
+	如需 App Service 方案的詳細資訊，請參閱 [Azure App Service 方案概觀][AzureAppServicePlans]。
 
-    ![Configure the service plan for the web app][ConfigServicePlan]
+	![設定 Web 應用程式的服務方案][ConfigServicePlan]
 
-1. Click **Database**, and then in the **New MySQL Database** blade provide the required values for configuring your MySQL database.
+1. 按一下 [資料庫]，然後在 [新增 MySQL 資料庫] 刀鋒視窗中，提供設定 MySQL 資料庫所需的值。
 
-    a. Enter a new name or leave the default name.
+	a.輸入新名稱或保留預設名稱。
 
-    b. Leave the **Database Type** set to **Shared**.
+	b.保留設為 [共用] 的 [資料庫類型]。
 
-    c. Choose the same location as the one you chose for the web app.
+	c.選擇與您選擇 Web 應用程式的同一位置。
 
-    d. Choose a pricing tier. **Mercury** - which is free with minimal connections and disk space - is fine for this tutorial.
+	d.選擇定價層。對本教學課程來說，**Mercury** (可免費使用最少的連線數和磁碟空間) 已夠用。
 
-    e. In the **New MySQL Database** blade, accept the legal terms, and then click **OK**. 
+	e.在 [新增 MySQL 資料庫] 刀鋒視窗中，接受法律條款，然後按一下 [確定]。
 
-    ![Configure the database settings for the web app][ConfigDatabase]
+	![設定 Web 應用程式的資料庫設定][ConfigDatabase]
 
-1. In the **WordPress** blade, accept the legal terms, and then click **Create**. 
+1. 在 [WordPress] 刀鋒視窗中，接受法律條款，然後按一下 [建立]。
 
-    ![Finish the web app settings and click OK][ConfigFinished]
+	![完成 Web 應用程式設定，然後按一下 [確定]][ConfigFinished]
 
-    Azure App Service creates the web app, typically in less than a minute. You can watch the progress by clicking the bell icon at the top of the portal page.
+	Azure App Service 即會建立 Web 應用程式，通常不到一分鐘。您可以按一下入口網站頁面頂端的鐘圖示查看進度。
 
-    ![Progress indicator][ConfigProgress]
+	![進度指示器][ConfigProgress]
 
-## <a name="launch-and-manage-your-wordpress-web-app"></a>Launch and manage your WordPress web app
-    
-1. When the web app creation is finished, navigate in the Azure Portal to the resource group in which you created the application, and you can see the web app and the database.
+## 啟動和管理 WordPress Web 應用程式
+	
+1. 當您完成建立 Web 應用程式時，請在 Azure 入口網站中瀏覽至您在其中建立應用程式的資源群組，然後您就能看到 Web 應用程式和資料庫。
 
-    The extra resource with the light bulb icon is [Application Insights][ApplicationInsights], which provides monitoring services for your web app.
+	具有燈泡圖示的額外資源是 [Application Insights][ApplicationInsights]，它會提供 Web 應用程式的監視服務。
 
-1. In the **Resource group** blade, click the web app line.
+1. 在 [資源群組] 刀鋒視窗中，按一下 Web 應用程式列。
 
-    ![Select your WordPress web app][WordPressSelect]
+	![選取您的 WordPress Web 應用程式][WordPressSelect]
 
-1. In the Web app blade, click **Browse**.
+1. 在 [Web 應用程式] 刀鋒視窗中，按一下 [瀏覽]。
 
-    ![Browse to your WordPress web app][WordPressBrowse]
+	![瀏覽至您的 WordPress Web 應用程式][WordPressBrowse]
 
-1. If you are prompted to select the language for your WordPress blog, select your desired language and then click **Continue**.
+1. 如果系統提示您選取 WordPress 部落格的語言，請選取您想要的語言，然後按一下 [繼續]。
 
-    ![Configure the language for your WordPress web app][WordPressLanguage]
+	![設定 WordPress Web 應用程式的語言][WordPressLanguage]
 
-1. In the WordPress **Welcome** page, enter the configuration information required by WordPress, and then click **Install WordPress**.
+1. 在 WordPress 的 [歡迎使用] 頁面中，輸入 WordPress 所需的組態資訊，然後按一下 [安裝 WordPress]。
 
-    ![Configure the settings your WordPress web app][WordPressConfigure]
+	![設定 WordPress Web 應用程式的設定][WordPressConfigure]
 
-1. Log in using the credentials you created on the **Welcome** page.  
+1. 使用您已在 [歡迎使用] 頁面上建立的認證登入。
 
-1. Your site Dashboard page will open and display the information that you provided.    
+1. 您網站的 [儀表板] 頁面便會開啟，並顯示您所提供的資訊。
 
-    ![View your WordPress dashboard][WordPressDashboard2]
+	![檢視您的 WordPress 儀表板][WordPressDashboard2]
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-In this tutorial you've seen how to create and deploy an example web app from the Azure Marketplace.
+在本教學課程中，您已了解如何從 Azure Marketplace 中建立及部署範例 Web 應用程式。
 
-For more information about how to work with App Service Web Apps, see the links on the left side of the page (for wide browser windows) or at the top of the page (for narrow browser windows).
+如需如何使用 App Service Web Apps 的詳細資訊，請參閱頁面左邊上的連結 (適用於寬瀏覽器視窗) 或頁面頂端的連結 (適用於窄瀏覽器視窗)。
 
-For more information about developing WordPress web apps on Azure, see [Developing WordPress on Azure App Service][WordPressOnAzure]. 
+如需在 Azure 上開發 WordPress Web 應用程式的詳細資訊，請參閱[在 Azure App Service 上開發 WordPress][WordPressOnAzure]。
 
 <!-- URL List -->
 
@@ -153,12 +152,12 @@ For more information about developing WordPress web apps on Azure, see [Developi
 [Python]: https://azure.microsoft.com/develop/python/
 [activate]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/
 [free trial]: https://azure.microsoft.com/pricing/free-trial/
-[Try App Service]: http://go.microsoft.com/fwlink/?LinkId=523751
+[試用 App Service]: http://go.microsoft.com/fwlink/?LinkId=523751
 [ResourceGroups]: ../resource-group-overview.md
 [AzureAppServicePlans]: ../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md
 [ApplicationInsights]: https://azure.microsoft.com/services/application-insights/
-[Azure Portal]: https://portal.azure.com/
-[Project Nami]: http://projectnami.org/
+[Azure 入口網站]: https://portal.azure.com/
+[專案 Nami]: http://projectnami.org/
 [WordPressOnAzure]: ./develop-wordpress-on-app-service-web-apps.md
 
 <!-- IMG List -->
@@ -181,8 +180,4 @@ For more information about developing WordPress web apps on Azure, see [Developi
 [WordPressDashboard2]: ./media/app-service-web-create-web-app-from-marketplace/wpdashboard2.png
 [WordPressConfigure]: ./media/app-service-web-create-web-app-from-marketplace/wpconfigure.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

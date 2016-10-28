@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="StorSimple Snapshot Manager user interface | Microsoft Azure"
-   description="Describes the StorSimple Snapshot Manager user interface and explains how to use it to manage backup jobs and the backup catalog."
+   pageTitle="StorSimple Snapshot Manager 使用者介面 | Microsoft Azure"
+   description="描述 StorSimple Snapshot Manager 使用者介面，並說明如何使用其來管理備份作業和備份目錄。"
    services="storsimple"
    documentationCenter="NA"
    authors="SharS"
@@ -15,510 +15,505 @@
    ms.date="04/25/2016"
    ms.author="v-sharos" />
 
+# StorSimple Snapshot Manager 使用者介面
 
-# <a name="storsimple-snapshot-manager-user-interface"></a>StorSimple Snapshot Manager user interface
+## 概觀
 
-## <a name="overview"></a>Overview
+StorSimple Snapshot Manager 有直覺式使用者介面，可讓您用來取得並管理備份。本教學課程提供使用者介面的簡介，並接著說明如何使用每個元件。如需 StorSimple Snapshot Manager 的詳細說明，請參閱[何謂 StorSimple Snapshot Manager？](storsimple-what-is-snapshot-manager.md)
 
-The StorSimple Snapshot Manager has an intuitive user interface that you can use to take and manage backups. This tutorial provides an introduction to the user interface, and then explains how to use each of the components. For a detailed description of the StorSimple Snapshot Manager, see [What is StorSimple Snapshot Manager?](storsimple-what-is-snapshot-manager.md)
+### 主控台說明
 
-### <a name="console-description"></a>Console description
+若要檢視使用者介面，請按一下桌面上的 StorSimple Snapshot Manager 圖示。主控台視窗隨即出現，如下圖所示。
 
-To view the user interface, click the StorSimple Snapshot Manager icon on your desktop. The console window appears, as shown in the following illustration.
+![StorSimple Snapshot Manager 密碼](./media/storsimple-use-snapshot-manager/HCS_SSM_gui_panes.png)
 
-![StorSimple Snapshot Manager panes](./media/storsimple-use-snapshot-manager/HCS_SSM_gui_panes.png)
+主控台視窗有五個主要元素。按一下適當的連結，以取得每個元素的完整說明。
 
-The console window has five major elements. Click the appropriate link for a complete description of each element.
+- [功能表列](#menu-bar) 
+- [工具列](#tool-bar) 
+- [範圍窗格](#scope-pane) 
+- [結果窗格](#results-pane) 
+- [動作窗格](#actions-pane) 
 
-- [Menu bar](#menu-bar) 
-- [Tool bar](#tool-bar) 
-- [Scope pane](#scope-pane) 
-- [Results pane](#results-pane) 
-- [Actions pane](#actions-pane) 
+此外，StorSimple Snapshot Manager 也支援[鍵盤導覽和數個快速鍵](#keyboard-navigation-and-shortcuts)。
 
-Additionally, the StorSimple Snapshot Manager supports [keyboard navigation and a number of shortcuts](#keyboard-navigation-and-shortcuts).
+### 主控台協助工具
 
-### <a name="console-accessibility"></a>Console accessibility
+StorSimple Snapshot Manager 使用者介面支援 Windows 作業系統和 Microsoft Management Console (MMC) 所提供的協助工具功能，以及某些 StorSimple Snapshot Manager 專用的鍵盤快速鍵。
 
-The StorSimple Snapshot Manager user interface supports the accessibility features provided by the Windows operating system and the Microsoft Management Console (MMC), as well as some StorSimple Snapshot Manager–specific keyboard shortcuts. 
+- 如需 Windows 協助工具功能的說明，請移至《[Windows 的鍵盤快速鍵](https://support.microsoft.com/kb/126449)》。 
 
-- For a description of the Windows accessibility features, go to [Keyboard shortcuts for Windows](https://support.microsoft.com/kb/126449). 
+- 如需 MMC 協助工具功能的說明，請移至 《[MMC 3.0 的協助工具](https://technet.microsoft.com/library/cc766075.aspx)》
 
-- For a description of the MMC accessibility features, go to [Accessibility for MMC 3.0](https://technet.microsoft.com/library/cc766075.aspx)
+- 如需 StorSimple Snapshot Manager 協助工具功能的說明，請移至《[鍵盤瀏覽和快速鍵](#keyboard-navigation-and-shortcuts)》。
 
-- For a description of the StorSimple Snapshot Manager accessibility features, go to [Keyboard navigation and shortcuts](#keyboard-navigation-and-shortcuts).
+## 功能表列
 
-## <a name="menu-bar"></a>Menu bar
+主控台視窗頂端的功能表列包含 [[檔案](#file-menu)]、[[動作](#action-menu)]、[[檢視](#view-menu)]、[[我的最愛](#favorites-menu)]、[[視窗](#window-menu)] 與 [[說明](#help-menu)] 功能表。
 
-The menu bar at the top of the console window contains [File](#file-menu), [Action](#action-menu), [View](#view-menu), [Favorites](#favorites-menu), [Window](#window-menu), and [Help](#help-menu) menus.
+按一下功能表列上的任何項目，即可查看可用的命令清單。下列範例顯示在功能表列上選取的 [**檢視**] 功能表。
 
-Click any item on the menu bar to see a list of available commands on that menu. The following example shows the **View** menu selected on the menu bar.
+![已選取 [檢視] 功能表](./media/storsimple-use-snapshot-manager/HCS_SSM_View_menu.png)
 
-![View menu selected](./media/storsimple-use-snapshot-manager/HCS_SSM_View_menu.png)
+### [檔案] 功能表
 
-### <a name="file-menu"></a>File menu
+[**檔案**] 功能表包含標準 Microsoft Management Console (MMC) 命令。
 
-The **File** menu contains standard Microsoft Management Console (MMC) commands.
+#### 功能表存取
 
-#### <a name="menu-access"></a>Menu access
+若要檢視 [**檔案**] 功能表，請按一下功能表列上的 [**檔案**]。下列功能表隨即出現。
 
-To view the **File** menu, click **File** on the menu bar. The following menu appears.
+![StorSimple Snapshot Manager 檔案功能表](./media/storsimple-use-snapshot-manager/HCS_SSM_FileMenu.png)
 
-![StorSimple Snapshot Manager File menu](./media/storsimple-use-snapshot-manager/HCS_SSM_FileMenu.png) 
+#### 功能表說明
 
-#### <a name="menu-description"></a>Menu description
+下表說明 [**檔案**] 功能表上出現的項目。
 
-The following table describes items that appear on the **File** menu.
-
-| Menu item | Description |
+| 功能表項目 | 說明 |
 |:----------|:-------------|
-| New       | Click **New** to create a new console based on the StorSimple Snapshot Manager. |
-| Open      | Click **Open** to open an existing console. |
-| Save      | Click **Save** to save the current console. |
-| Save as   | Click **Save As** to create a new, renamed instance of the current console. Use the **Save As** option to customize a view and save it for later retrieval. For example, you could create StorSimple Snapshot Manager snap-ins that point to specific servers. |
-| Add/Remove Snap-in | Click **Add/Remove Snap-in** to add or remove snap-ins and to organize nodes in the **Scope** pane. For more information, go to [Add, Remove, and Organize Snap-ins and Extensions in MMC 3.0](https://technet.microsoft.com/library/cc722035.aspx). |
-| Options   | Click **Options** to change the console icon, specify user access modes and permissions, or delete console files to increase available disk space. |
-| List of file paths | Click a path in the numbered list to reopen a file that you recently opened. |
-| Exit      | Click **Exit** to close the **File** menu. |
+| 新增 | 按一下 [**新增**]，可根據 StorSimple Snapshot Manager 建立新的主控台。 |
+| 開啟 | 按一下 [**開啟**]，可開啟現有的主控台。 |
+| 儲存 | 按一下 [**儲存**]，可儲存目前的主控台。 |
+| 另存新檔 | 按一下 [**另存新檔**]，可建立目前主控台之新的且重新命名的執行個體。使用 [**另存新檔**] 選項，可自訂檢視並加以儲存，以供稍後擷取。例如，您可以建立 StorSimple Snapshot Manager 嵌入式管理單元，指向特定伺服器。 |
+| 新增/移除嵌入式管理單元 | 按一下 [**新增/移除嵌入式管理單元**]可新增或移除嵌入式管理單元，以及組織 [**範圍**]窗格中的節點。如需詳細資訊，請移至《[在 MMC 3.0 中新增、移除及組織嵌入式管理單元和延伸](https://technet.microsoft.com/library/cc722035.aspx)》。 |
+| 選項 | 按一下 [**選項**]可變更主控台圖示，指定使用者存取模式和權限，或刪除主控台檔案以增加可用的磁碟空間。 |
+| 檔案路徑的清單 | 按一下編號清單中的路徑，可重新開啟您最近開啟的檔案。 |
+| 結束 | 按一下 [**結束**]，以關閉 [**檔案**] 功能表。 |
  
-### <a name="action-menu"></a>Action menu
+### 動作功能表
 
-Use the **Action** menu to select from available actions. The items available to you depend on the selection you make in the **Scope** pane or **Results** pane.
+使用 [**動作**] 功能表，以選取可用的動作。您可以使用的項目取決於您在 [**範圍**] 窗格或 [**結果**] 窗格中所做的選擇。
 
-#### <a name="menu-access"></a>Menu access
+#### 功能表存取
 
-To view the **Action** menu, do one of the following:
+若要檢視 [**動作**] 功能表，請執行下列其中一項：
 
-- Right-click an item in the **Scope** pane or **Results** pane.
+- 以滑鼠右鍵按一下 [**範圍**] 窗格或 [**結果**] 窗格中的項目。
 
-- Select an item in the **Scope** pane or **Results** pane, and then click **Action** on the menu bar. 
+- 選取 [**範圍**] 窗格或 [**結果**] 窗格中的項目，然後按一下功能表列上的 [**動作**]。
 
-For example, if you select the top node in the **Scope** pane, and then right-click or click **Action** in the menu bar, the following menu appears.
+比方說，如果您選取 [**範圍**] 窗格中的最上層節點，然後按一下滑鼠右鍵或按一下功能表列中的 [**動作**]，下列功能表即會出現。
  
-![StorSimple Snapshot Manager Action menu](./media/storsimple-use-snapshot-manager/HCS_SSM_Action_menu.png)
+![StorSimple Snapshot Manager 動作功能表](./media/storsimple-use-snapshot-manager/HCS_SSM_Action_menu.png)
 
-The **Actions** pane (on the right of the console) contains the same list of actions as the **Action** menu. Additionally, the **Actions** pane contains the **View** menu options, which enable you to create a custom view of the **Results** pane.
+[**動作**] 窗格 (在主控台的右側) 包含與 [**動作**] 功能表相同的動作清單。此外，[**動作**] 窗格也包含 [**檢視**] 功能表選項，可讓您建立 [**結果**] 窗格的自訂檢視。
 
-![Actions pane with View menu open](./media/storsimple-use-snapshot-manager/HCS_SSM_ActionsPane_Results.png)
+![已開啟 [檢視] 功能表的 [動作] 窗格](./media/storsimple-use-snapshot-manager/HCS_SSM_ActionsPane_Results.png)
 
-#### <a name="menu-description"></a>Menu description
+#### 功能表說明
 
-The following table contains an alphabetical list of StorSimple Snapshot Manager actions. 
+下表包含 StorSimple Snapshot Manager 動作的清單，按字母順序排列。
 
-- The **Action** column lists actions that you can perform on nodes and results. 
+- [**動作**] 欄列出您可以在節點和結果上執行的動作。 
 
-- The **Navigation** column explains how to display the appropriate **Action** menu so that you can select the action. Some actions appear in multiple **Action** menus. For these actions, select one **Navigation** option from the bulleted list. 
+- [**導覽**] 欄說明如何顯示適當的 [**動作**] 功能表，讓您可以選取動作。有些動作會出現在多個 [**動作**] 功能表中。對於這些動作，請從項目符號清單中選取一個 [**導覽**] 選項。
 
-- The **Description** column describes how to use each action on the **Action** menu or Actions pane, and explains what it does.
+- [**說明**] 欄說明如何使用 [**動作**] 功能表或 [動作] 窗格上的每個動作，並解釋其用途。
 
->[AZURE.NOTE] The **Actions** pane and **Action** menus contain additional options, such as **View**, **New Window from here**, **Refresh**, **Export List**, and **Help**. These options are available as a part of the MMC, and are not specific to StorSimple Snapshot Manager. The table includes descriptions of these options.
+>[AZURE.NOTE] [**動作**] 窗格和 [**動作**] 功能表包含其他選項，例如 [**檢視**]、[**從這裡開啟新視窗**]、[**重新整理**]、[**匯出清單**]，以及 [**說明**]。這些選項可當做 MMC 一部分來使用，並不是 StorSimple Snapshot Manager 專用的。下表包含這些選項的說明。
  
-| Action  | Navigation  | Description  |
+| 動作 | 瀏覽 | 說明 |
 |:--------|:------------|:-------------|
-| Authenticate | Click the **Devices** node, and right-click a device in the **Results** pane. | Click **Authenticate** to enter the password that you configured for the device. |
-| Clone  | Expand **Backup Catalog**, expand **Cloud Snapshots**, click a dated backup, and then select a volume in the **Results** pane. | Click **Clone** to create a copy of a cloud snapshot and store it in a location that you designate. |
-| Configure a Device | Right-click the **Devices** node. | Click **Configure a Device** to configure a single device or multiple devices to connect to the Windows host. |
-| Create Backup Policy | Do one of the following:<ul><li>Right-click **Backup Policies**.</li><li>Click or expand **Volume Groups**, and then right-click a volume group.</li><li>Click or expand **Backup Catalog**, and then right-click a volume group.</li></ul> | Click **Create Backup Policy** to configure a scheduled backup for a volume group. |
-| Create Volume Group | Do one of the following:<ul><li>Click the **Volumes** node, and then right-click a volume in the **Results** pane.</li><li>Right-click the **Volume Groups** node.</li></ul> | Click **Create Volume Group** to assign volumes to a volume group. |
-| Delete | Click a node or result (This item appears on many **Action** menus and  **Actions** panes.) | Click **Delete** to delete the node or result that you selected. When the confirmation dialog box appears, confirm or cancel the deletion. |
-| Details | Click the **Devices** node, and then right-click a device in the **Results** pane. | Click **Details** to see the configuration details for a device. |
-| Edit | Click **Backup Policies**, and then right-click a policy in the **Results** pane. | Click **Edit** to change the backup schedule for a volume group. |
-| Export List | Click any node or result (This item appears on all **Action** menus and **Actions** panes.) | Click **Export List** to save a list in a comma-separated value (CSV) file. You can then import this file into a spreadsheet application for analysis. |
-| Help | Click any node or result. (This item appears on all **Action** menus and **Actions** panes.) | Click **Help** to open online Help in a separate browser window. |
-| New Window from Here | Click any node or result (This item appears on all **Action** menus and **Actions** panes.) | Click **New Window from Here** to open a new StorSimple Snapshot Manager window.|
-| Refresh | Click any node or result (This item appears on all **Action** menus and **Actions** panes.) | Click **Refresh** to update the currently displayed StorSimple Snapshot Manager window. |
-| Refresh Device | Click the **Devices** node, and right-click a device in the **Results** pane. | Click **Refresh Device** to synchronize a specific connected device with StorSimple Snapshot Manager. |
-| Refresh Devices | Right-click the **Devices** node. | Click **Refresh Devices** to synchronize your list of connected devices with StorSimple Snapshot Manager. |
-| Rescan volumes | Right-click the **Volumes** node. | Click **Rescan volumes** to update the list of volumes that appears in the **Results** pane. |
-| Restore | Expand **Backup Catalog**, expand a volume group, expand **Local Snapshots** or **Cloud Snapshots**, and then right-click a backup. | Click **Restore** to replace the current volume group data with the data from the selected backup. |
-| Take Backup | Do one of the following:<ul><li>Expand **Volume Groups**, and then right-click a volume group.</li><li>Expand **Backup Catalog**, and then right-click a volume group.</li></ul> | Click **Take Backup** to start a backup job immediately. |
-| Toggle Imports Display | Right-click the top node in the **Scope** pane (the **StorSimple Snapshot Manager** node in the examples). | Click **Toggle Imports Display** to show or hide the volume groups and associated backups that were imported from the StorSimple Manager service dashboard. |
+| 驗證 | 按一下 [**裝置**] 節點，並以滑鼠右鍵按一下 [**結果**] 窗格中的裝置。 | 按一下 [**驗證**]，以輸入您為裝置設定的密碼。 |
+| 複製 | 依序展開 [**備份目錄**]、[**雲端快照**]，再按一下帶有日期的備份，然後選取 [**結果**] 窗格中的磁碟區。 | 按一下 [**複製**]，以建立雲端快照的複本，並將其儲存在您指定的位置。 |
+| 設定裝置 | 以滑鼠右鍵按一下 [**裝置**] 節點。 | 按一下 [**設定裝置**]，以設定單一裝置或多個裝置來連接至 Windows 主機。 |
+| 建立備份原則 | 請執行下列其中一項：<ul><li>以滑鼠右鍵按一下 [備份原則]。</li><li>按一下或展開 [磁碟區群組]，然後以滑鼠右鍵按一下磁碟區群組。</li><li>按一下或展開 [備份目錄]，然後以滑鼠右鍵按一下磁碟區群組。</li></ul> | 按一下 [**建立備份原則**] 以設定磁碟區群組的排程備份。 |
+| 建立磁碟區群組 | 請執行下列其中一項：<ul><li>按一下 [**磁碟區**] 節點，然後以滑鼠右鍵按一下 [**結果**] 窗格中的磁碟區。</li><li>以滑鼠右鍵按一下 [**磁碟區群組**] 節點。</li></ul> | 按一下 [**建立磁碟區群組**]，將磁碟區指派給磁碟區群組。 |
+| 刪除 | 按一下節點或結果 (此項目出現在許多 [**動作**] 功能表和 [**動作**] 窗格上。) | 按一下 [**刪除**]，以刪除或您所選取的節點和結果。確認對話方塊出現時，請確認或取消刪除。 |
+| 詳細資料 | 按一下 [**裝置**] 節點，然後以滑鼠右鍵按一下 [**結果**] 窗格中的裝置。 | 按一下 [**詳細資料**]，以查看裝置的組態詳細資料。 |
+| 編輯 | 按一下 [**備份原則**]，然後以滑鼠右鍵按一下 [**結果**] 窗格中的原則。 | 按一下 [**編輯**]，以變更磁碟區群組的備份排程。 |
+| 匯出清單 | 按一下任何節點或結果 (此項目出現在所有 [**動作**] 功能表和 [**動作**] 窗格上。) | 按一下 [**匯出清單**]，以將清單儲存為逗號分隔值 (CSV) 檔案。然後，您可以將這個檔案匯入試算表應用程式進行分析。 |
+| 說明 | 按一下任何節點或結果。(此項目出現在所有 [**動作**] 功能表和 [**動作**] 窗格上。) | 按一下 [**說明**]，在個別瀏覽器視窗中開啟線上說明。 |
+| 從這裡開啟新視窗 | 按一下任何節點或結果 (此項目出現在所有 [**動作**] 功能表和 [**動作**] 窗格上。) | 按一下 [**從這裡開啟新視窗**]，以開啟新的 StorSimple Snapshot Manager 視窗。|
+| 重新整理 | 按一下任何節點或結果 (此項目出現在所有 [**動作**] 功能表和 [**動作**] 窗格上。) | 按一下 [**重新整理**]，以更新目前顯示的 StorSimple Snapshot Manager 視窗。 |
+| 重新整理裝置 | 按一下 [**裝置**] 節點，並以滑鼠右鍵按一下 [**結果**] 窗格中的裝置。 | 按一下 [**重新整理裝置**]，以利用 StorSimple Snapshot Manager 同步處理特定連接的裝置。 |
+| 重新整理裝置 | 以滑鼠右鍵按一下 [**裝置**] 節點。 | 按一下 [**重新整理裝置**]，以利用 StorSimple Snapshot Manager 同步處理連接的裝置清單。 |
+| 重新掃描磁碟區 | 以滑鼠右鍵按一下 [**磁碟區**] 節點。 | 按一下 [**重新掃描磁碟區**]，以更新 [**結果**] 窗格中出現的磁碟區清單。 |
+| 還原 | 依序展開 [**備份目錄**]、磁碟區群組和[**本機快照**] 或 [**雲端快照**]，然後以滑鼠右鍵按一下備份。 | 按一下 [**還原**]，以所選取備份的資料取代目前的磁碟區群組資料。 |
+| 進行備份 | 請執行下列其中一項：<ul><li>展開 [**磁碟區群組**]，然後以滑鼠右鍵按一下磁碟區群組。</li><li>展開 [**備份目錄**]，然後以滑鼠右鍵按一下磁碟區群組。</li></ul> | 按一下 [**取得備份**] 以立即開始備份作業。 |
+| 切換匯入顯示 | 以滑鼠右鍵按一下 [**範圍**] 窗格中的最上層節點 (範例中的 [**StorSimple Snapshot Manager**] 節點)。 | 按一下 [**切換匯入顯示**]，以顯示或隱藏磁碟區群組，以及從 StorSimple Manager 服務儀表板匯入的相關聯備份。 |
 
-### <a name="view-menu"></a>View menu
+### 檢視功能表
 
-Use the **View** menu to create a custom view of the **Results** pane contents. The **View** menu contains **Add/Remove Columns** and **Customize** options.
+使用 [**檢視**] 功能表，可建立 [**結果**] 窗格內容的自訂檢視。[**檢視**] 功能表包含 [**新增/移除資料行**] 和 [**自訂**] 選項。
 
-#### <a name="menu-access"></a>Menu access
+#### 功能表存取
 
-You can access the **View** menu on the menu bar or in the **Actions** pane.
+您可以存取功能表列上或 [**動作**] 窗格中的 [**檢視**] 功能表。
 
-![StorSimple Snapshot Manager View menu](./media/storsimple-use-snapshot-manager/HCS_SSM_View_menu.png) 
+![StorSimple Snapshot Manager 檢視功能表](./media/storsimple-use-snapshot-manager/HCS_SSM_View_menu.png)
 
-#### <a name="menu-description"></a>Menu description
+#### 功能表說明
 
-The following table describes items that appear on the **View** menu.
+下表描述 [**檢視**] 功能表上出現的項目。
 
-| Menu item  | Description |
+| 功能表項目 | 說明 |
 |:-----------|:-------------|
-| Add/Remove Columns | Click **Add/Remove Columns** to add or remove columns in the **Results** pane. |
-| Customize | Click **Customize** to show or hide items in the StorSimple Snapshot Manager console window. |
+| 新增/移除資料行 | 按一下 [**新增/移除資料行**]，可新增或移除 [**結果**] 窗格中的資料行。 |
+| 自訂 | 按一下 [**自訂**]，可顯示或隱藏 StorSimple Snapshot Manager 主控台視窗中的項目。 |
 
-### <a name="favorites-menu"></a>Favorites menu
+### 我的最愛功能表
 
-Use the **Favorites** menu to add, remove, and organize page views and tasks that you use frequently. 
+使用 [**我的最愛**] 功能表，可新增、移除及組織頁面檢視和您經常使用的工作。
 
-#### <a name="menu-access"></a>Menu access
+#### 功能表存取
 
-You can access the **Favorites** menu on the menu bar.
+您可以存取功能表列上的 [**我的最愛**] 功能表。
 
-![StorSimple Snapshot Manager Favorites menu](./media/storsimple-use-snapshot-manager/HCS_SSM_FavoritesMenu.png)
+![StorSimple Snapshot Manager 我的最愛功能表](./media/storsimple-use-snapshot-manager/HCS_SSM_FavoritesMenu.png)
 
-#### <a name="menu-description"></a>Menu description
+#### 功能表說明
 
-The following table describes items that appear on the **Favorites** menu.
+下表描述 [**我的最愛**] 功能表上出現的項目。
 
-| Menu item |  Description |
+| 功能表項目 | 說明 |
 |:----------|:-------------|
-| Add to Favorites | Click **Add to Favorites** to add the current view to your list of favorites. |
-| Organize Favorites | Click **Organize Favorites** to organize the contents of your Favorites folder. |
+| 加到我的最愛 | 按一下 [**加到我的最愛**]，可將目前的檢視新增至我的最愛清單。 |
+| 組織我的最愛 | 按一下 [**組織我的最愛**]，可組織 [我的最愛] 資料夾的內容。 |
 
-### <a name="window-menu"></a>Window menu
+### 視窗功能表
 
-Use the **Window** menu to add and rearrange StorSimple Snapshot Manager console windows.
+使用 [**視窗**] 功能表，可新增和重新排列 StorSimple Snapshot Manager 主控台視窗。
 
-#### <a name="menu-access"></a>Menu access
+#### 功能表存取
 
-You can access the **Window** menu on the menu bar.
+您可以存取功能表列上的 [**視窗**] 功能表。
 
-![StorSimple Snapshot Manager Window menu](./media/storsimple-use-snapshot-manager/HCS_SSM_WindowMenu.png)
+![StorSimple Snapshot Manager 視窗功能表](./media/storsimple-use-snapshot-manager/HCS_SSM_WindowMenu.png)
 
-The numbered list at the bottom of the menu shows the windows that are currently open. Click any window in that list to bring the window into the foreground. 
+功能表底部的編號清單會顯示目前開啟的視窗。按一下該清單中的任何視窗，即可將視窗帶至前景。
 
-#### <a name="menu-description"></a>Menu description
+#### 功能表說明
 
-The following table describes the items that appear on the Window menu.
+下表描述 [視窗] 功能表上出現的項目。
 
-| Menu item  | Description |
+| 功能表項目 | 說明 |
 |:-----------|:-------------|
-| New Window | Click **New Window** to open a new console window (in addition to the existing window). |
-| Cascade   | Click **Cascade** to display the open console windows in a cascading style. |
-| Tile Horizontally | Click **Tile Horizontally** to display the open console windows in a tile (or grid) format. |
-| Arrange Icons | If you have multiple console windows open and scattered over your desktop, minimize them and then click **Arrange Icons** to arrange them in a horizontal row on the bottom of your screen. |
+| 開新視窗 | 按一下 [**開新視窗**]，可開啟新的主控台視窗 (除了現有的視窗外)。 |
+| 重疊顯示 | 按一下 [**重疊顯示**]，以重疊顯示樣式顯示開啟的主控台視窗。 |
+| 水平並排顯示 | 按一下 [**水平並排顯示**]，以並排顯示 (或格線) 格式顯示開啟的主控台視窗。 |
+| 排列圖示 | 如果您有多個主控台視窗開啟並散落於整個桌面上，請將它們縮至最小，然後按一下 [**排列圖示**]，以水平列方式排列在畫面底部上。 |
 
-### <a name="help-menu"></a>Help menu
+### 說明功能表
 
-Use the **Help** menu to view available online help for StorSimple Snapshot Manager and the MMC. You can also view information about the MMC and StorSimple Snapshot Manager software versions that are currently installed on your system. 
+使用 [**說明**] 功能表，可檢視 StorSimple Snapshot Manager 和 MMC 的可用線上說明。您也可以檢視系統上目前安裝之 MMC 和 StorSimple Snapshot Manager 軟體版本的相關資訊。
 
-You can access the **Help** menu on the menu bar. You can also access StorSimple Snapshot Manager help topics from the **Actions** pane.
+您可以存取功能表列上的 [**說明**] 功能表。您也可以從 [**動作**] 窗格存取 StorSimple Snapshot Manager 說明主題。
 
-![StorSimple Snapshot Manager Help menu](./media/storsimple-use-snapshot-manager/HCS_SSM_HelpMenu.png)
+![StorSimple Snapshot Manager 說明功能表](./media/storsimple-use-snapshot-manager/HCS_SSM_HelpMenu.png)
 
-#### <a name="menu-description"></a>Menu description
+#### 功能表說明
 
-The following table describes items that appear on the Help menu.
+下表說明描述功能表上出現的項目。
 
-| Menu item  | Description  |
+| 功能表項目 | 說明 |
 |:-----------|:-------------|
-| Help on StorSimple Snapshot Manager | Click **Help on StorSimple Snapshot Manager** to open StorSimple Snapshot Manager help in a separate window. |
-| Help Topics |Click **Help Topics** to open MMC online help in a separate window. |
-| TechCenter Web Site | Click **TechCenter Web Site** to open the Microsoft TechNet Tech Center home page in a separate window. |
-| About Microsoft Management Console | Click **About Microsoft Management Console** to see which version of the Microsoft Management Console is installed on your system. |
-| About StorSimple Snapshot Manager | Click **About StorSimple Snapshot Manager** to see which version of the snap-in is installed on your system. |
+| StorSimple Snapshot Manager 的相關說明 | 按一下 [**StorSimple Snapshot Manager 的相關說明**]，可在個別視窗中開啟 StorSimple Snapshot Manager 說明。 |
+| 說明主題 |按一下 [**說明主題**]，可在個別視窗中開啟 MMC 線上說明。 |
+| TechCenter 網站 | 按一下 [**TechCenter 網站**]，可在個別視窗中開啟 Microsoft TechNet 技術中心首頁。 |
+| 關於 Microsoft Management Console | 按一下 [**關於 Microsoft Management Console**]，可查看系統上安裝的 Microsoft Management console 版本。 |
+| 關於 StorSimple Snapshot Manager | 按一下 [關於 StorSimple Snapshot Manager]，可查看系統上安裝的嵌入式管理單元版本。 |
 
-## <a name="tool-bar"></a>Tool bar
+## 工具列
 
-The tool bar, located below the menu bar, contains navigation and task icons. Each icon is a shortcut to a specific task.
+位於功能表列下方的工具列包含導覽工作圖示。每個圖示都是特定工作的捷徑。
 
-### <a name="icon-descriptions"></a>Icon descriptions
+### 圖示說明
 
-The following table describes the icons that appear on the tool bar. 
+下表描述工具列上出現的圖示。
 
-| Icon  | Description  |
+| 圖示 | 說明 |
 |:------|:-------------| 
-| ![Left arrow](./media/storsimple-use-snapshot-manager/HCS_SSM_LeftArrow.png) | Click the left arrow icon to return to the previous page. |
-| ![Right arrow](./media/storsimple-use-snapshot-manager/HCS_SSM_RightArrow.png) | Click the right arrow to go to the next page (if the arrow is gray, the action is unavailable). |
-| ![Up icon](./media/storsimple-use-snapshot-manager/HCS_SSM_Up.png) | Click the up icon to go up one level in the console tree (the **Scope** pane). |
-| ![Show/hide console tree](./media/storsimple-use-snapshot-manager/HCS_SSM_ShowConsoleTree.png) | Click the show/hide console tree icon to show or hide the **Scope** pane. |
-| ![Export list](./media/storsimple-use-snapshot-manager/HCS_SSM_ExportListIcon.png) | Click the export list icon to export a list to a CSV file that you specify. |
-| ![Help icon](./media/storsimple-use-snapshot-manager/HCS_SSM_HelpIcon.png)  |Click the help icon to open an online MMC help topic. |
-| ![Show/hide Actions pane](./media/storsimple-use-snapshot-manager/HCS_SSM_ShowAction.png) | Click the show/hide **Actions** pane icon to show or hide the **Actions** pane. 
+| ![向左箭號](./media/storsimple-use-snapshot-manager/HCS_SSM_LeftArrow.png) | 按一下向左箭號圖示，可返回上一頁。 |
+| ![向右箭號](./media/storsimple-use-snapshot-manager/HCS_SSM_RightArrow.png) | 按一下向右箭號，可移至下一頁 (如果箭號呈現灰色，則動作無法使用)。 |
+| ![向上圖示](./media/storsimple-use-snapshot-manager/HCS_SSM_Up.png) | 按一下向上圖示，可在主控台樹狀目錄 ([**範圍**] 窗格) 中往上一層。 |
+| ![顯示/隱藏主控台樹狀目錄](./media/storsimple-use-snapshot-manager/HCS_SSM_ShowConsoleTree.png) | 按一下顯示/隱藏樹狀目錄圖示，可顯示或隱藏 [**範圍**] 窗格。 |
+| ![匯出清單](./media/storsimple-use-snapshot-manager/HCS_SSM_ExportListIcon.png) | 按一下匯出清單圖示，可將清單匯出至您指定的 CSV 檔案。 |
+| ![説明圖示](./media/storsimple-use-snapshot-manager/HCS_SSM_HelpIcon.png) |按一下說明圖示，可開啟線上 MMC 說明主題。 |
+| ![顯示/隱藏動作窗格](./media/storsimple-use-snapshot-manager/HCS_SSM_ShowAction.png) | 按一下顯示/隱藏 [**動作**] 窗格圖示，可顯示或隱藏 [**動作**] 窗格。 
  
-## <a name="scope-pane"></a>Scope pane
+## 範圍窗格
 
-The **Scope** pane is the leftmost pane in the StorSimple Snapshot Manager UI. It contains the console (or node) tree and is the primary navigation mechanism for StorSimple Snapshot Manager. 
+[範圍] 窗格是 StorSimple Snapshot Manager UI 中最左邊的窗格。其包含主控台 (或節點) 樹狀目錄，而且是 StorSimple Snapshot Manager 的主要導覽機制。
  
-### <a name="scope-pane-structure"></a>Scope pane structure
+### 範圍窗格結構
 
-The **Scope** pane contains a series of clickable objects (nodes) organized in a tree structure. 
+[**範圍**] 窗格包含一系列組織成樹狀結構的可點按物件 (節點)。
 
-![Scope pane](./media/storsimple-use-snapshot-manager/HCS_SSM_Scope_pane.png) 
+![範圍窗格](./media/storsimple-use-snapshot-manager/HCS_SSM_Scope_pane.png)
 
-- To expand or collapse a node, click the arrow icon next to the node name.
+- 若要展開或摺疊節點，請按一下節點名稱旁的箭號圖示。
 
-- To view the status or contents of a node, click the node name. The information appears in the **Results** pane. 
+- 若要檢視節點的狀態或內容，請按一下節點名稱。資訊會出現在 [**結果**] 窗格中。
 
-The **Scope** pane contains the following nodes: 
+[**範圍**] 窗格包含下列節點：
 
-- [Devices node](#devices-node) 
-- [Volumes node](#volumes-node) 
-- [Volume Groups node](#volume-groups-node) 
-- [Backup Policies node](#backup-policies-node) 
-- [Backup Catalog node](#backup-catalog-node) 
-- [Jobs node](#jobs-node) 
+- [裝置節點](#devices-node) 
+- [磁碟區節點](#volumes-node) 
+- [磁碟區群組節點](#volume-groups-node) 
+- [備份原則節點](#backup-policies-node) 
+- [備份目錄節點](#backup-catalog-node) 
+- [作業節點](#jobs-node) 
 
-### <a name="scope-pane-tasks"></a>Scope pane tasks
+### 範圍窗格工作
 
-You can use the **Scope** pane to complete an action on a specific node. To select a task, do one of the following:
+您可以使用 [**範圍**] 窗格來完成特定節點上的動作。若要選取一項工作，請執行下列其中一項：
 
-- Right-click the node, and then select the task from the menu that appears.
+- 以滑鼠右鍵按一下節點，然後從出現的功能表中選取工作。
 
-- Click the node, and then click **Action** on the menu bar. Select the task from the menu that appears.
+- 按一下節點，然後按一下功能表列上的 [**動作**]。從出現的功能表中選取工作。
 
-- Click the node, and then select the action in the **Actions** pane.
+- 按一下節點，然後選取 [**動作**] 窗格中的動作。
 
-When you select a node and use any of these methods to see a task list, only those actions that can be performed on that node are shown.
+當選取節點，並使用其中任何一種方法來查看工作清單時，只會顯示那些可在該節點上執行的動作。
 
-### <a name="devices-node"></a>Devices node
+### 裝置節點
 
-The **Devices** node represents the StorSimple devices and StorSimple virtual devices that are connected to StorSimple Snapshot Manager. Select this node to connect and configure a device, and import its associated volumes, volumes groups, and existing backup copies. Multiple devices can be connected to a single host.
+[**裝置**] 節點代表已連接至 StorSimple Snapshot Manager 的 StorSimple 裝置和 StorSimple 虛擬裝置。選取此節點來連接並設定裝置，然後匯入其相關聯的磁碟區、磁碟區群組，以及現有的備份複本。多個裝置可以連接至單一主機。
 
-- To expand the node, click the arrow icon next to **Devices**.
+- 若要展開節點，請按一下 [裝置] 旁的箭號圖示。
 
-- To see a menu of available actions, right-click the **Devices** node or right-click any of the nodes that appear in the expanded view.
+- 若要查看可用動作的功能表，請以滑鼠右鍵按一下 [**裝置**] 節點，或以滑鼠右鍵按一下展開之檢視中出現的任一個節點。
 
-- To see a list of configured devices, click **Devices** in the **Scope** pane. The list of devices, together with information about each device, appears in the **Results** pane.
+- 若要查看已設定的裝置清單，請按一下 [**結果**] 窗格中的 [**裝置**]。裝置清單連同每個裝置的相關資訊清單會出現在 [**結果**] 窗格中。
 
-### <a name="volumes-node"></a>Volumes node
+### 磁碟區節點
 
-The **Volumes** node represents the drives that correspond to the volumes mounted by the host, including those discovered through iSCSI and those discovered through a device. Use this node to view the list of available volumes and assign individual volumes to volume groups.
+[**磁碟區**] 節點代表對應至主機所掛接之磁碟區的磁碟機，包括透過 iSCSI 探索到的磁碟機，以及透過裝置探索到的磁碟機。請使用這個節點，來檢視可用的磁碟區清單，並將個別磁碟區指派給磁碟區群組。
 
-- To expand the node, click the arrow icon next to **Volumes**.
+- 若要展開節點，請按一下 [**磁碟區**] 旁的箭號圖示。
 
-- To see a menu of available actions, right-click the **Volumes** node or right-click any of the nodes that appear in the expanded view.
+- 若要查看可用動作的功能表，請以滑鼠右鍵按一下 [**磁碟區**] 節點，或以滑鼠右鍵按一下展開之檢視中出現的任一個節點。
 
-- To see a list of volumes, click **Volumes** in the **Scope** pane. The list of volumes, together with information about each volume, appears in the **Results** pane.
+- 若要查看磁碟區清單，請按一下 [**範圍**] 窗格中的 [**磁碟區**]。磁碟區清單連同每個磁碟區的相關資訊清單會出現在 [**結果**] 窗格中。
 
-### <a name="volume-groups-node"></a>Volume Groups node
+### 磁碟區群組節點
 
-Volume groups are also known as consistency groups. Each volume group is a pool of application-related volumes that helps to ensure application consistency during backup operations. Use the **Volume Groups** node to configure these groups and to take interactive backups or create backup schedules. 
+磁碟區群組也稱為一致性群組。每個磁碟區群組是應用程式相關磁碟區的集區，可協助確保備份作業期間應用程式的一致性。使用 [**磁碟區群組**] 節點，可設定這些群組，並進行互動式備份，或建立備份排程。
 
-- To expand the node, click the arrow icon next to **Volume Groups**.
+- 若要展開節點，請按一下 [**磁碟區群組**] 旁的箭號圖示。
 
-- To see a menu of available actions, right-click the **Volume Groups** node or right-click any of the nodes that appear in the expanded view.
+- 若要查看可用動作的功能表，請以滑鼠右鍵按一下 [**磁碟區群組**] 節點，或以滑鼠右鍵按一下展開之檢視中出現的任一個節點。
 
-- To see a list of volume groups, click **Volume Groups** in the **Scope** pane. The list of volume groups, together with information about each volume group, appears in the **Results** pane.
+- 若要查看磁碟區群組清單，請按一下 [**範圍**] 窗格中的 [**磁碟區群組**]。磁碟區群組清單連同每個磁碟區群組的相關資訊清單會出現在 [**結果**] 窗格中。
 
-### <a name="backup-policies-node"></a>Backup Policies node
+### 備份原則節點
 
-Backup policies are job schedules for local and cloud snapshots. Use the **Backup Policies** node to specify how often a backup is created and how long a backup should be retained. 
+備份原則是本機和雲端快照的作業排程。使用 [**備份原則**] 節點可指定建立備份的頻率，以及應該保留備份多長時間。
 
-- To expand the node, click the arrow icon next to **Backup Policies**.
+- 若要展開節點，請按一下 [**備份原則**] 旁的箭號圖示。
 
-- To see a menu of available actions, right-click the **Backup Policies** node or right-click any of the nodes that appear in the expanded view.
+- 若要查看可用動作的功能表，請以滑鼠右鍵按一下 [**備份原則**] 節點，或以滑鼠右鍵按一下展開之檢視中出現的任一個節點。
 
-- To see a list of backup policies, click **Backup Policies** in the **Scope** pane. The list of backup policies, together with information about each policy, appears in the **Results** pane.
+- 若要查看備份原則清單，請按一下 [**範圍**] 窗格中的 [**備份原則**]。備份原則清單連同每個原則的相關資訊清單會出現在 [**結果**] 窗格中。
 
->[AZURE.NOTE] You can retain a maximum of 64 backups.
+>[AZURE.NOTE] 您最多可以保留 64 個備份。
 
 
-### <a name="backup-catalog-node"></a>Backup Catalog node
+### 備份目錄頁面
 
-The **Backup Catalog** node contains lists of on-site and off-site backups of Azure StorSimple volumes. This node is organized by volume group, and each volume group container contains separate structures for local snapshots (the **Local Snapshot**s node) and cloud snapshots (the **Cloud Snapshots** node). When expanded, each volume group container lists all the successful backups that were taken interactively or by a configured policy.
+[**備份目錄**] 節點包含 Azure StorSimple 磁碟區的現場和異地備份清單。此節點是依磁碟區群組組織，而且每個磁碟區群組容器包含本機快照 ([**本機快照**] 節點) 和雲端快照 ([**雲端快照**] 節點) 的個別結構。展開時，每個磁碟區群組容器會列出以互動方式或透過已設定的原則所取得的所有成功備份。
 
-- To expand the node, click the arrow icon next to **Backup Catalog**.
+- 若要展開節點，請按一下 [**備份目錄**] 旁的箭號圖示。
 
-- To see a menu of available actions, right-click the **Backup Catalog** node or right-click any of the nodes that appear in the expanded view.
+- 若要查看可用動作的功能表，請以滑鼠右鍵按一下 [**備份目錄**] 節點，或以滑鼠右鍵按一下展開之檢視中出現的任一個節點。
 
-- To see a list of backup snapshots, click **Backup Catalog** in the **Scope** pane. The list of snapshots, together with information about each snapshot, appears in the **Results** pane.
+- 若要查看備份快照清單，請按一下 [**範圍**] 窗格中的 [**備份目錄**]。快照清單連同每個快照的相關資訊清單會出現在 [**結果**] 窗格中。
 
-### <a name="local-snapshots-node"></a>Local Snapshots node
+### 本機快照節點
 
-The **Local Snapshots** node lists local snapshots for a specific volume group. The node is located under the **Backup Catalog** node in the **Scope** pane. Local snapshots are point-in-time copies of volume data that are stored on the Azure StorSimple device. Typically, this type of backup can be created and restored quickly. You can use a local snapshot as you would a local backup copy.
+[**本機快照**] 節點會列出特定磁碟區群組的本機快照。節點位於 [**範圍**] 窗格中的 [**備份目錄**] 節點之下。本機快照是儲存在 Azure StorSimple 裝置之磁碟區資料的時間點複本。一般而言，可以快速建立和還原這種類型的備份。您可以如同使用本機備份複本一般使用本機快照。
 
-- To expand the node, click the arrow icon next to **Local Snapshots**.
+- 若要展開節點，請按一下 [**本機快照**] 旁的箭號圖示。
 
-- To see a menu of available actions, right-click the **Local Snapshots** node or right-click any of the nodes that appear in the expanded view.
+- 若要查看可用動作的功能表，請以滑鼠右鍵按一下 [**本機快照**] 節點，或以滑鼠右鍵按一下展開之檢視中出現的任一個節點。
 
-- To see a list of local snapshots, click **Local Snapshots** in the **Scope** pane. The list of snapshots, together with information about each snapshot, appears in the **Results** pane.
+- 若要查看本機快照清單，請按一下 [**範圍**] 窗格中的 [**本機快照**]。快照清單連同每個快照的相關資訊清單會出現在 [**結果**] 窗格中。
 
-### <a name="cloud-snapshots-node"></a>Cloud Snapshots node
+### 雲端快照節點
 
-The **Cloud Snapshots** node lists cloud snapshots for a specific volume group. The node is located under the **Backup Catalog** node in the **Scope** pane. Cloud snapshots are point-in-time copies of volume data that are stored in the cloud. A cloud snapshot is equivalent to a snapshot replicated on a different, off-site storage system. Cloud snapshots are particularly useful in disaster recovery scenarios.
+[**雲端快照**] 節點會列出特定磁碟區群組的雲端快照集。節點位於 [**範圍**] 窗格中的 [**備份目錄**] 節點之下。雲端快照是儲存在雲端之磁碟區資料的時間點複本。雲端快照相當於在不同的異地儲存體系統上複寫的快照。雲端快照在災害復原案例中特別有用。
 
-- To expand the node, click the arrow icon next to **Cloud Snapshots**.
+- 若要展開節點，請按一下 [**雲端快照**] 旁的箭號圖示。
 
-- To see a menu of available actions, right-click the **Cloud Snapshots** node or right-click any of the nodes that appear in the expanded view.
+- 若要查看可用動作的功能表，請以滑鼠右鍵按一下 [**雲端快照**] 節點，或以滑鼠右鍵按一下展開之檢視中出現的任一個節點。
 
-- To see a list of cloud snapshots, click **Cloud Snapshots** in the **Scope** pane. The list of snapshots, together with information about each snapshot, appears in the **Results** pane.
+- 若要查看雲端快照清單，請按一下 [**範圍**] 窗格中的 [**雲端快照**]。快照清單連同每個快照的相關資訊清單會出現在 [**結果**] 窗格中。
 
-### <a name="jobs-node"></a>Jobs node
+### 作業節點
 
-The **Jobs** node contains information about scheduled, running, and recently completed backup jobs. 
+[作業] 節點包含已排程、執行中和最近完成之備份作業的相關資訊。
 
-- To expand the node, click the arrow icon next to **Jobs**.
+- 若要展開節點，請按一下 [**作業**] 旁的箭號圖示。
 
-- To see a menu of available actions, right-click the **Jobs** node or right-click any of the nodes that appear in the expanded view.
+- 若要查看可用動作的功能表，請以滑鼠右鍵按一下 [**作業**] 節點，或以滑鼠右鍵按一下展開之檢視中出現的任一個節點。
 
-- To see a list of scheduled jobs, expand the **Jobs** node, and then click **Scheduled**. The list of previously configured jobs and information about each job appears in the **Results** pane. 
+- 若要查看已排程的工作清單，請展開 [**作業**] 節點，然後再按一下 [**已排程**]。先前設定的作業清單和每個作業的相關資訊的清單會出現在 [**結果**] 窗格中。
 
-- To see a list of recently completed jobs, expand the **Jobs** node, and then click **Last 24 Hours**. A list of jobs that were completed in the last 24 hours appears in the **Results** pane. The **Results** pane also contains information about each completed job.
+- 若要查看最近完成的作業清單，請展開 [**作業**] 節點，然後按一下 [**過去 24 小時**]。過去 24 小時內完成的作業清單會出現在 [**結果**] 窗格中。[**結果**] 窗格也包含每個已完成作業的相關資訊。
 
-- To see a list of jobs that are currently running, expand the **Jobs** node, and then click **Running**. The list of currently running jobs and information about each job appears in the **Results** pane.
+- 若要查看目前執行中的工作清單，請展開 [**作業**] 節點，然後按一下 [**執行中**]。目前執行中的作業清單和每個作業的相關資訊的清單會出現在 [**結果**] 窗格中。
 
-## <a name="results-pane"></a>Results pane
+## 結果窗格
 
-The **Results** pane is the center pane in the StorSimple Snapshot Manager UI. It contains lists and detailed status information for the node you selected in the **Scope** pane.
+[**結果**] 窗格是 StorSimple Snapshot Manager UI 的中心窗格。其包含您在 [**範圍**] 窗格中選取之節點的清單和詳細狀態資訊。
 
-### <a name="example"></a>Example
+### 範例
 
-To see the following example, click the **Volume Groups** node in the **Scope** pane. The **Results** pane displays a list of volume groups with details about each group.
+若要查看下列範例，請按一下 [**範圍**] 窗格中的 [**磁碟區群組**] 節點。[**結果**] 窗格會顯示磁碟區群組的清單，以及每個群組的詳細資料。
 
-![Results pane](./media/storsimple-use-snapshot-manager/HCS_SSM_Results_pane.png) 
+![結果窗格](./media/storsimple-use-snapshot-manager/HCS_SSM_Results_pane.png)
 
-You can configure the details shown in the **Results** pane: right-click a node in the **Scope** pane, click **View**, and then click **Add/Remove Columns**.
+您可以設定 [**結果**] 窗格中顯示的詳細資料：以滑鼠右鍵按一下 [**範圍**] 窗格中的節點，按一下 [**檢視**]，然後按一下 [**新增/移除資料行**]。
 
-## <a name="actions-pane"></a>Actions pane
+## 動作窗格
 
-The **Actions** pane is the right pane in the StorSimple Snapshot Manager UI. It contains a menu of operations that you can perform on the node, view, or data that you select in the **Scope** pane or **Results** pane. The **Actions** pane contains the same commands as the **Action** menus that are available for items in the **Scope** pane and **Results** pane. For a description of each action, see the table in the **Action** menu section.
+[**動作**] 窗格是 StorSimple Snapshot Manager UI 中的右窗格。其包含您可在 [**範圍**] 窗格或 [**結果**] 窗格中選取的節點、檢視或資料上執行之作業的功能表。[**動作**] 窗格包含與 [**動作**] 功能表相同的命令，可供 [**範圍**] 窗格和 [**結果**] 窗格中的項目使用。如需每個動作的說明，請參閱 [**動作**] 功能表一節中的資料表。
 
-### <a name="examples"></a>Examples
+### 範例
 
-To see the following example, in the **Scope** pane, expand the **Jobs** node and click **Scheduled**. The **Actions** pane displays the available actions for the **Scheduled** node.
+若要查看下列範例中，請在 [**範圍**] 窗格中，展開 [**作業**] 節點，然後按一下 [**已排程**]。[**動作**] 窗格會顯示 [**已排程**] 節點的可用動作。
 
-![Actions pane scheduled jobs example](./media/storsimple-use-snapshot-manager/HCS_SSM_ActionsPane.png) 
+![動作窗格的已排程作業範例](./media/storsimple-use-snapshot-manager/HCS_SSM_ActionsPane.png)
 
-To see more options, in the **Scope** pane, expand the **Jobs** node, click **Scheduled**, and then click a scheduled job in the **Results** pane. The **Actions** pane displays the available actions for the scheduled job, as shown in the following example.
+若要查看其他選項，請在 [**範圍**] 窗格中，展開 [**作業**] 節點，按一下 [**已排程**]，然後按一下 [**結果**] 窗格中的已排程作業。[**動作**] 窗格會顯示已排程作業的可用動作，如下列範例所示。
 
-![Actions pane job actions example](./media/storsimple-use-snapshot-manager/HCS_SSM_ActionsPane_Results.png)
+![動作窗格的作業動作範例](./media/storsimple-use-snapshot-manager/HCS_SSM_ActionsPane_Results.png)
 
-## <a name="keyboard-navigation-and-shortcuts"></a>Keyboard navigation and shortcuts
+## 鍵盤導覽和快速鍵
 
-StorSimple Snapshot Manager enables the accessibility features of the Windows operating system and the Microsoft Management Console (MMC). It also includes some keyboard navigation features and shortcuts that are specific to the StorSimple Snapshot Manager, as described in the following sections.
+StorSimple Snapshot Manager 可啟用 Windows 作業系統和 Microsoft Management Console (MMC) 的協助工具功能。其也包含一些 StorSimple Snapshot Manager 專用的鍵盤導覽功能和快速鍵，如下列各節所述。
  
-- [Keyboard navigation keys](#keyboard-navigation-keys) 
-- [Menu bar shortcut keys](#menu-bar-shortcut-keys) 
-- [Scope pane shortcut keys](#scope-pane-shortcut-keys) 
+- [鍵盤導覽鍵](#keyboard-navigation-keys) 
+- [功能表列快速鍵](#menu-bar-shortcut-keys) 
+- [範圍窗格快速鍵](#scope-pane-shortcut-keys) 
 
-### <a name="keyboard-navigation-keys"></a>Keyboard navigation keys
+### 鍵盤導覽鍵
 
-The following table describes the keys that you can use to navigate the StorSimple Snapshot Manager user interface. 
+下表描述您可以用來導覽 StorSimple Snapshot Manager 使用者介面的按鍵。
 
-| Navigation key  | Action  |
+| 導覽鍵 | 動作 |
 |:----------------|:--------| 
-| Down arrow key | Use the down arrow key to move vertically to the next item in a menu or pane. |
-| Enter | Press the Enter key to complete an action and then proceed to the next step. For example, you can press Enter to select **Next**, **OK**, or **Create**, and then go to the next step in a wizard.|
-| Esc | Press the Esc key to close a menu or to cancel and close a page.|
-| F1 | Press the F1 key to view a help topic for the currently active window.|
-| F5 | Press the F5 key to refresh a node. |
-| F6 | Press the F6 key to move from the **Scope** pane to the **Results** pane.|
-| F10 | Press the F10 key to go to the menu bar. |
-| Left arrow key | Use the left arrow key to move horizontally from a menu bar option to the previous option. When you move to the previous item on the menu bar, the action (or context) menu for the previous item appears. |
-| Right arrow key | Use the right arrow key to move horizontally from one menu bar option to the next. When you move to the next item on the menu bar, the action (or context) menu for the new item appears.
-| Tab key | Use the Tab key to move to the next pane on the console or to the next selection or text box in a page. |
-| Up arrow key | Use the up arrow key to move vertically to the previous item on a menu or pane. |
+| 向下鍵 | 使用向下鍵，可垂直移至功能表或窗格中的下一個項目。 |
+| Enter | 按 Enter 鍵，可完成動作，然後繼續進行下一個步驟。例如，您可以按 Enter 鍵來選取 [**下一步**]、[**確定**] 或 [**建立**]，然後移至精靈中的下一個步驟。|
+| Esc | 按 Esc 鍵，可關閉功能表或取消並關閉頁面。|
+| F1 | 按 F1 鍵，可來檢視目前使用中視窗的說明主題。|
+| F5 | 按 F5 鍵，可重新整理節點。 |
+| F6 | 按 F6 鍵，可從 [**範圍**] 窗格移至 [**結果**] 窗格。|
+| F10 | 按 F10 鍵，可移至功能表列。 |
+| 向左鍵 | 使用向左鍵，可從某個功能表列選項水平移至前一個選項。當您移至功能表列上的前一個項目時，前一個項目的動作 (或內容) 功能表即會出現。 |
+| 向右鍵 | 使用向右鍵，可從某個功能表列選項垂直移至下一個選項。當您移至功能表列上的下一個項目時，新項目的動作 (或內容) 功能表即會出現。
+| Tab 鍵 | 使用 Tab 鍵，可移至主控台上的下一個窗格，或頁面中的下一個選取項目或文字方塊。 |
+| 向上鍵 | 使用向上鍵，可垂直移至功能表或窗格上的前一個項目。 |
 
-### <a name="menu-bar-shortcut-keys"></a>Menu bar shortcut keys
+### 功能表列快速鍵
 
-The following table describes the shortcut key combinations for the menu bar. After you press the shortcut keys and the menu opens, you can use menu shortcut keys (the underlined keys on the menu). For more information about the menu bar, go to [Menu bar](#menu-bar).
+下表描述功能表列的快速鍵組合。在按下快速鍵和功能表之後，您可以使用功能表快速鍵 (功能表上加上底線的按鍵)。如需功能表列的詳細資訊，請移至[功能表列](#menu-bar)。
 
-| Shortcut | Result                    | Menu Shortcut Key | Result          |
+| 快速鍵 | 結果 | 功能表快速鍵 | 結果 |
 |:---------|:--------------------------|:------------------|:----------------|
-| ALT+F    | Opens the **File** menu.  | N | Opens a new console instance.   |
-|          |                           | O | Opens the **Administrative Tools** page. |
-|          |                           | S | Saves the StorSimple Snapshot Manager console.|
-|          |                           | A | Opens the **Save As** page. |
-|          |                           | M | Opens the **Add/Remove Snap-in** page.|
-|          |                           | P | Opens the **Options** page. |
-|          |                           | H | Opens online Help.|
-| ALT+A    | Opens the **Action** menu.| I | Turns the import display option on and off.|
-|          |                           | W | Opens a new StorSimple Snapshot Manager console.|
-|          |                           | F | Updates the StorSimple Snapshot Manager console.|
-|          |                           | L | Opens the **Export List** page. 
-|          |                           | H | Opens online Help.|
-| ALT+V    | Opens the **View** menu.  | A | Opens the **Add/Remove Columns** page. |
-|          |                           | U | Opens the **Customize View** page. |
-| ALT+O    | Opens the **Favorites** menu. | A | Opens the **Add to Favorites** page. |
-|          |                           | O | Opens the **Organize Favorites** page.|
-| ALT+W    | Opens the **Window** menu.| N | Opens another StorSimple Snapshot Manager window.|
-|          |                           | C | Displays all open console windows in a cascading style.|
-|          |                           | T | Displays all open console windows in a grid pattern. |
-|          |                           | I | Arranges icons in a horizontal row at the bottom of your screen.|
-| ALT+H    | Opens the **Help** menu.  | H | Opens online Help.|
-|          |                           | T | Opens the Microsoft TechNet Tech Center web page.|
-|          |                           | A | Opens the **About Microsoft Management Console** page. |
+| ALT+F | 開啟 [**檔案**] 功能表。 | N | 開啟新的主控台執行個體。 |
+| | | O | 開啟 [**系統管理工具**] 頁面。 |
+| | | S | 儲存 StorSimple Snapshot Manager 主控台。|
+| | | A | 開啟 [**另存新檔**] 頁面。 |
+| | | M | 開啟 [**新增/移除嵌入式管理單元**] 頁面。|
+| | | P | 開啟 [選項] 頁面。 |
+| | | H | 開啟線上說明。|
+| ALT+A | 開啟 [**動作**] 功能表。| I | 開啟和關閉 [匯入顯示] 選項。|
+| | | W | 開啟新的 StorSimple Snapshot Manager 主控台。|
+| | | F | 更新 StorSimple Snapshot Manager 主控台。|
+| | | L | 開啟 [**匯出清單**] 頁面。 
+| | | H | 開啟線上說明。|
+| ALT+V | 開啟 [**檢視**] 功能表。 | A | 開啟 [**新增/移除資料行**] 頁面。 |
+| | | U | 開啟 [**自訂檢視**] 頁面。 |
+| ALT+O | 開啟 [**我的最愛**] 功能表。 | A | 開啟 [**加到我的最愛**] 頁面。 |
+| | | O | 開啟 [**組織我的最愛**] 頁面。|
+| ALT+W | 開啟 [**視窗**] 功能表。| N | 開啟另一個 StorSimple Snapshot Manager 視窗。|
+| | | C | 以重疊顯示樣式顯示所有開啟的主控台視窗。|
+| | | T | 以格線模式顯示所有開啟的主控台視窗。 |
+| | | I | 以水平列方式將圖示排列在畫面底部。|
+| ALT+H | 開啟 [**說明**] 功能表。 | H | 開啟線上說明。|
+| | | T | 開啟 Microsoft TechNet 技術中心網頁。|
+| | | A | 開啟 [**關於 Microsoft Management Console**] 頁面。 |
  
-### <a name="scope-pane-shortcut-keys"></a>Scope pane shortcut keys
+### 範圍窗格快速鍵
 
-The following tables show the shortcut key combinations for each node in the **Scope** pane. 
+下表顯示 [**範圍**] 窗格中每個節點的快速鍵組合。
 
-- [Devices node shortcut keys](#devices-node-shortcut-keys)
-- [Volumes node shortcut keys](#volumes-node-shortcut-keys)
-- [Volume Groups node shortcut keys](#volume-groups-node-shortcut-keys)
-- [Backup Policies node shortcut keys](#backup-policies-node-shortcut-keys)
-- [Backup Catalog node shortcut keys](#backup-catalog-node-shortcut-keys)
-- [Jobs node shortcut keys](#jobs-node-shortcut-keys)
+- [裝置節點快速鍵](#devices-node-shortcut-keys)
+- [磁碟區節點快速鍵](#volumes-node-shortcut-keys)
+- [磁碟區群組節點快速鍵](#volume-groups-node-shortcut-keys)
+- [備份原則節點快速鍵](#backup-policies-node-shortcut-keys)
+- [備份目錄節點快速鍵](#backup-catalog-node-shortcut-keys)
+- [作業節點快速鍵](#jobs-node-shortcut-keys)
 
-#### <a name="devices-node-shortcut-keys"></a>Devices node shortcut keys
+#### 裝置節點快速鍵
 
-| Menu Shortcut | Result                               |
+| 功能表快速鍵 | 結果 |
 |:--------------|:-------------------------------------|
-| C             | Opens the **Configure a Device** page. |
-| D             | Refreshes the list of devices and device details.|
-| V             | Opens the **View** menu. |
-| W             | Opens a new StorSimple Snapshot Manager console focused on the **Details** node. |
-| F             | Updates the StorSimple Snapshot Manager console. |
-| L             | Opens the **Export List** page. 
-| H             | Opens online Help.|
+| C | 開啟 [**設定裝置**] 頁面。 |
+| D | 重新整理裝置清單和裝置詳細資料。|
+| V | 開啟 [**檢視**] 功能表。 |
+| W | 開啟新的 StorSimple Snapshot Manager 主控台，且焦點在 [**詳細資料**] 節點。 |
+| F | 更新 StorSimple Snapshot Manager 主控台。 |
+| L | 開啟 [**匯出清單**] 頁面。 
+| H | 開啟線上說明。|
  
 
-#### <a name="volumes-node-shortcut-keys"></a>Volumes node shortcut keys
+#### 磁碟區節點快速鍵
 
-| Menu Shortcut   | Result                              |
+| 功能表快速鍵 | 結果 |
 |:----------------|:------------------------------------|
-| V               | Updates the list of volumes.        |
-| V (press twice) | Opens the **View** menu.            |
-| W               | Opens a new StorSimple Snapshot Manager console focused on the **Volumes** node.|
-| F               | Updates the StorSimple Snapshot Manager console.|
-| L               | Opens the **Export List** page. 
-| H               | Opens online Help.|
+| V | 更新磁碟區清單。 |
+| V (按兩次) | 開啟 [**檢視**] 功能表。 |
+| W | 開啟新的 StorSimple Snapshot Manager 主控台，且焦點在 [**磁碟區**] 節點。|
+| F | 更新 StorSimple Snapshot Manager 主控台。|
+| L | 開啟 [**匯出清單**] 頁面。 
+| H | 開啟線上說明。|
  
-#### <a name="volume-groups-node-shortcut-keys"></a>Volume Groups node shortcut keys
+#### 磁碟區群組節點快速鍵
 
-| Menu Shortcut   | Result                              |
+| 功能表快速鍵 | 結果 |
 |:----------------|:------------------------------------|
-| G               | Opens the **Create a Volume Group** page. |
-| V               | Opens the **View** menu. |
-| W               | Opens a new StorSimple Snapshot Manager console focused on the **Volume Groups** node.|
-| F               | Updates the StorSimple Snapshot Manager console. |
-| L               | Opens the **Export List** page. |
-| H               | Opens online Help.|
+| G | 開啟 [**建立磁碟區群組**] 頁面。 |
+| V | 開啟 [**檢視**] 功能表。 |
+| W | 開啟新的 StorSimple Snapshot Manager 主控台，且焦點在 [**磁碟區群組**] 節點。|
+| F | 更新 StorSimple Snapshot Manager 主控台。 |
+| L | 開啟 [**匯出清單**] 頁面。 |
+| H | 開啟線上說明。|
 
-#### <a name="backup-policies-node-shortcut-keys"></a>Backup Policies node shortcut keys
+#### 備份原則節點快速鍵
 
-| Menu Shortcut   | Result                              |
+| 功能表快速鍵 | 結果 |
 |:----------------|:------------------------------------|
-| B               | Opens the **Create a Policy** page. |
-| V               | Opens the **View** menu.            |
-| W               | Opens a new StorSimple Snapshot Manager console focused on the **Volume Groups** node.|
-| F               | Updates the StorSimple Snapshot Manager console.|
-| L               | Opens the **Export List **page. 
-| H               | Opens online Help.|
+| B | 開啟 [**建立原則**] 頁面。 |
+| V | 開啟 [**檢視**] 功能表。 |
+| W | 開啟新的 StorSimple Snapshot Manager 主控台，且焦點在 [**磁碟區群組**] 節點。|
+| F | 更新 StorSimple Snapshot Manager 主控台。|
+| L | 開啟 **匯出清單** 頁面。
+| H |開啟線上說明。|
  
-#### <a name="backup-catalog-node-shortcut-keys"></a>Backup Catalog node shortcut keys
+#### 備份目錄節點快速鍵
 
-| Menu Shortcut   | Result                              |
+| 功能表快速鍵 | 結果 |
 |:----------------|:------------------------------------|
-| W               | Opens a new StorSimple Snapshot Manager console focused on the **Volume Groups** node. |
-| F               | Updates the StorSimple Snapshot Manager console. |
-| H               | Opens online Help.|
+| W | 開啟新的 StorSimple Snapshot Manager 主控台，且焦點在 [**磁碟區群組**] 節點。 |
+| F | 更新 StorSimple Snapshot Manager 主控台。 |
+| H | 開啟線上說明。|
  
-#### <a name="jobs-node-shortcut-keys"></a>Jobs node shortcut keys
+#### 作業節點快速鍵
 
-| Menu Shortcut   | Result                              |
+| 功能表快速鍵 | 結果 |
 |:----------------|:------------------------------------|
-| V               | Opens the **View** menu.            |
-| W               | Opens a new StorSimple Snapshot Manager console focused on the **Jobs** node.|
-| F               | Updates the StorSimple Snapshot Manager console.|
-| L               | Opens the **Export List** page.     |
-| H               | Opens online Help                   |
+| V | 開啟 [**檢視**] 功能表。 |
+| W | 開啟新的 StorSimple Snapshot Manager 主控台，且焦點在 [**作業**] 節點。|
+| F | 更新 StorSimple Snapshot Manager 主控台。|
+| L | 開啟 [**匯出清單**] 頁面。 |
+| H | 開啟線上說明 |
  
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-- Learn how to [use StorSimple Snapshot Manager to administer your StorSimple solution](storsimple-snapshot-manager-admin.md).
-- Learn how to [use StorSimple Snapshot Manager to connect and manage devices](storsimple-snapshot-manager-manage-devices.md).
+- 了解如何[使用 StorSimple Snapshot Manager 來管理您的 StorSimple 解決方案](storsimple-snapshot-manager-admin.md)。
+- 了解如何[使用 StorSimple Snapshot Manager 來連接和管理裝置](storsimple-snapshot-manager-manage-devices.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0511_2016-->

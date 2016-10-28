@@ -1,106 +1,101 @@
 <properties 
-    pageTitle="Azure Multi-Factor Authentication - How it works"
-    description="Azure Multi-Factor Authentication helps safeguard access to data and applications while meeting user demand for a simple sign-in process. It provides additional security by requiring a second form of authentication and delivers strong authentication via a range of easy verification options."
-    services="multi-factor-authentication"
-    documentationCenter=""
-    authors="kgremban"
-    manager="femila"
-    editor="curtland"/>
+	pageTitle="Azure Multi-Factor Authentication -它的作用"
+	description="Azure Multi-Factor Authentication 有助於保護對資料與應用程式的存取，同時可以滿足使用者對簡單登入程序的需求。它藉由要求第二種形式的驗證提供額外的安全性，並透過一系列簡單的驗證選項提供增強式驗證。"
+	services="multi-factor-authentication"
+	documentationCenter=""
+	authors="kgremban"
+	manager="femila"
+	editor="curtland"/>
 
 <tags
-    ms.service="multi-factor-authentication"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/04/2016"
-    ms.author="kgremban"/>
+	ms.service="multi-factor-authentication"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/04/2016"
+	ms.author="kgremban"/>
 
+#Azure Multi-Factor Authentication 的作用
 
-#<a name="how-azure-multi-factor-authentication-works"></a>How Azure Multi-Factor Authentication works
-
-The security of multi-factor authentication lies in its layered approach. Compromising multiple authentication factors presents a significant challenge for attackers. Even if an attacker manages to learn the user's password, it is useless without also having possession of the trusted device. Should the user lose the device, the person who finds it won't be able to use it unless he or she also knows the user's password.
+多因素驗證的安全性仰賴其分層方法。使用多重驗證因素會為攻擊者帶來相當程度的挑戰。即使攻擊者試圖打探使用者的密碼，在不持有信任裝置的情況下便沒有任何意義。如果使用者遺失裝置，拾獲該裝置的人仍然無法使用此裝置，除非他或她剛好知道使用者的密碼。
 
 ![Proofup](./media/multi-factor-authentication-how-it-works/howitworks.png)
 
 
 
-Azure Multi-Factor Authentication helps safeguard access to data and applications while meeting user demand for a simple sign-in process.  It provides additional security by requiring a second form of authentication and delivers strong authentication via a range of easy verification options:
+Azure Multi-Factor Authentication 有助於保護對資料與應用程式的存取，同時可以滿足使用者對簡單登入程序的需求。它藉由要求第二種形式的驗證提供額外的安全性，並透過一系列簡單的驗證選項提供增強式驗證：
 
-- phone call
-- text message
-- mobile app notification—allowing users to choose the method they prefer
-- mobile app verification code
-- 3rd party OATH tokens
+- 撥打電話
+- 簡訊
+- 行動應用程式通知，讓使用者選擇偏好的方法
+- 行動應用程式驗證碼
+- 協力廠商 OATH 權杖
 
-For additional information oh how it works see the following video.
+如需其作用的詳細資訊，請觀看以下影片。
 
 >[AZURE.VIDEO multi-factor-authentication-deep-dive-securing-access-on-premises]
 
-##<a name="methods-available-for-multi-factor-authentication"></a>Methods available for multi-factor authentication
-When a user signs in, an additional verification is sent to the user.  The following are a list of methods that can be used for this second verification.
+##適用於 Multi-Factor Authentication 的方法
+當使用者登入時，系統會將額外的驗證傳送給使用者。以下是適用於這個第二次驗證的方法清單。
 
-Verification Method  | Description
+驗證方法 | 說明
 ------------- | ------------- |
-Phone Call | A call is placed to a user’s smart phone asking them to verify that they are signing in by pressing the # sign.  This will complete the verification process.  This option is configurable and can be changed to a code that you specify.
-Text Message | A text message will be sent to a user’s smart phone with a 6 digit code.  Enter this code in to complete the verification process.
-Mobile App Notification | A verification request will be sent to a user’s smart phone asking them complete the verification by selecting Verify from the mobile app. This will occur if you selected app notification as your primary verification method.  If they receive this when they are not signing in, they can choose to report it as fraud.
-Verification code with Mobile App | A verification code will be sent to the mobile app that is running on a user’s smart phone.  This will occur if you selected a verification code as your primary verification method.
+撥打電話 | 撥打使用者的智慧型手機，要求他們按 # 符號來驗證登入。如此將可完成驗證程序。這是可設定的選項，您可以變更為指定的代碼。
+簡訊 | 傳送含 6 位數代碼的簡訊到使用者智慧型手機。輸入此代碼可完成驗證程序。
+行動應用程式通知 | 將驗證要求傳送到使用者的智慧型手機，要求他們在行動應用程式中選取 [驗證] 來完成驗證。如果您將應用程式通知選為主要驗證方法，這種情況便會發生。如果它們在未登入時收到通知，他們可以選擇提報詐騙。
+透過行動應用程式的驗證碼 | 將驗證碼傳送到在使用者智慧型手機中運作的行動應用程式。如果您將驗證碼選為主要驗證方法，這種情況便會發生。
 
 
-##<a name="available-versions-of-azure-multi-factor-authentication"></a>Available versions of Azure Multi-Factor Authentication
-Azure Multi-Factor Authentication is available in three different versions.  The table below describes each of these in more detail.
+##可用的 Azure Multi-Factor Authentication 版本
+Azure Multi-Factor Authentication 備有三個不同的版本。下表是每種版本的詳述。
 
-Version  | Description
+版本 | 說明
 ------------- | ------------- |
-Multi-Factor Authentication for Office 365 | This version works exclusively with Office 365 applications and is managed from the Office 365 portal. So administrators can now help secure their Office 365 resources by using multi-factor authentication.  This version comes with an Office 365 subscription.
-Multi-Factor Authentication for Azure Administrators | The same subset of Multi-Factor Authentication capabilities for Office 365 will be available at no cost to all Azure administrators. Every administrative account of a Azure subscription can now get additional protection by enabling this core multi-factor authentication functionality. So an administrator that wants to access Azure portal to create a VM, a web site, manage storage, mobile services or any other Azure Service can add multi-factor authentication to his administrator account.
-Azure Multi-Factor Authentication | Azure Multi-Factor Authentication offers the richest set of capabilities. <br><br>It provides additional configuration options via the Azure Management portal, advanced reporting, and support for a range of on-premises and cloud applications. Azure Multi-Factor Authentication can be purchased as a stand-alone license and is bundled within Azure Active Directory Premium and Enterprise Mobility Suite. <br><br>It can also be purchased on a consumption basis by creating an Azure Multi-Factor Authentication Provider in an Azure subscription.
-##<a name="feature-comparison-of-versions"></a>Feature comparison of versions
-The following table below provides a list of the features that are available in the various versions of Azure Multi-Factor Authentication.
+Multi-Factor Authentication for Office 365 | 這個版本專門搭配 Office 365 應用程式運作，並且可從 Office 365 入口網站管理。系統管理員現在可以使用 Multi-Factor Authentication 來保護其 Office 365 資源的安全。此版本隨附於 Office 365 訂用帳戶。
+適用於 Azure 系統管理員的 Multi-Factor Authentication | 適用於 Office 365 的 Multi-Factor Authentication 功能的相同子集將免費提供給所有 Azure 系統管理員。Azure 訂用帳戶的每個管理帳戶現可透過啟用此 Multi-Factor Authentication 核心功能來取得額外防護。因此想要存取 Azure 入口網站以建立 VM、網站、管理儲存體、行動服務或任何其他 Azure 服務的系統管理員，可在其系統管理員帳戶中新增多因素驗證。
+Azure Multi-Factor Authentication | Azure Multi-Factor Authentication 提供最豐富的功能。<br><br>它能透過 Azure 管理入口網站、進階報告及支援一系列內部部署和雲端應用程式來提供其他組態選項。Azure Multi-Factor Authentication 可以當做獨立授權購買，也能搭配 Azure Active Directory Premium 和 Enterprise Mobility Suite 銷售。<br><br>它也可以透過在 Azure 訂用帳戶中建立 Azure Multi-Factor Authentication 提供者，根據耗用量購買。
+##版本的功能比較
+下表提供 Azure Multi-Factor Authentication 各版本中可用的功能清單。
 
 
-Feature  | Multi-Factor Authentication for Office 365 (included in Office 365 SKUs)|Multi-Factor Authentication for Azure Administrators (included with Azure subscription) | Azure Multi-Factor Authentication (included in Azure AD Premium and Enterprise Mobility Suite)
+功能 | Multi-Factor Authentication for Office 365 (隨附於 Office 365 SKU 中)|適用於 Azure 系統管理員的 Multi-Factor Authentication (隨附於 Azure 訂用帳戶中) | Azure Multi-Factor Authentication (隨附於 Azure AD Premium 和 Enterprise Mobility Suite 中)
 ------------- | :-------------: |:-------------: |:-------------: |
-Administrators can protect accounts with MFA| * | * (Available only for Azure Administrator accounts)|*
-Mobile app as a second factor|* | * | *
-Phone call as a second factor|* | * | *
-SMS as a second factor|* | * | *
-App passwords for clients that don't support MFA|* | * | *
-Admin control over authentication methods| *| *| *
-PIN mode| | | *
-Fraud alert| | | *
-MFA Reports| | | *
-One-Time Bypass| | | *
-Custom greetings for phone calls| | | *
-Customization of caller ID for phone calls| | | *
-Event Confirmation| | | *
-Trusted IPs| | | *
-Suspend MFA for remembered devices (Public Preview)| | | *
+系統管理員可以透過 MFA 保護帳戶| * | * (僅適用於 Azure 系統管理員帳戶)|*
+以行動應用程式做為第二個因素|* | * | *
+以撥打電話做為第二個因素|* | * | *
+以 SMS 做為第二個因素|* | * | *
+用戶端應用程式密碼不支援 MFA|* | * | *
+系統管理員控制驗證方法| *| *| *
+PIN 模式| | | *
+詐騙警示| | | *
+MFA 報告| | | *
+一次性略過| | | *
+通話的自訂問候語| | | *
+自訂通話來電者 ID| | | *
+事件確認| | | *
+信任的 IP| | | *
+暫停對已記住的裝置進行 MFA (公開預覽)| | | *
 MFA SDK| | | *
-MFA for on-premises applications using MFA server| | | *
+對使用 MFA Server 的內部部署應用程式進行 MFA| | | *
 
 
-##<a name="how-to-get-azure-multi-factor-authentication"></a>How to get Azure Multi-Factor Authentication
+##如何取得 Azure Multi-Factor Authentication
 
-If you would like the full functionality offered by Azure Multi-Factor Authentication instead of just those provided for Office 365 users and Azure administrators, there are several options to get it:
+如果您想要 Azure Multi-Factor Authentication 所提供的完整功能，而不是只針對 Office 365 使用者和 Azure 系統管理員所提供的功能，有數個可取得 Azure Multi-Factor Authentication 的選項：
 
-1.  Purchase Azure Multi-Factor Authentication licenses and assign them to your users.
-2.  Purchase licenses that have Azure Multi-Factor Authentication bundled within them such as Azure Active Directory Premium or Enterprise Mobility Suite and assign them to your users.
-3.  Create an Azure Multi-Factor Authentication Provider within an Azure subscription. If you don’t already have an Azure subscription, you can sign up for an Azure trial subscription. Trial subscriptions will need to be converted to regular subscriptions prior to trial expiration.
+1.	購買 Azure Multi-Factor Authentication 授權，並將其指派給您的使用者。
+2.	購買其中隨附 Azure Multi-Factor Authentication 的授權 (例如 Azure Active Directory Premium 或 Enterprise Mobility Suite)，並將其指派給您的使用者。
+3.	在 Azure 訂用帳戶中建立 Azure Multi-Factor Authentication 提供者。如果您還沒有 Azure 訂用帳戶，可以註冊一個 Azure 試用訂用帳戶。在試用到期之前，必須將試用訂用帳戶轉換為一般訂用帳戶。
 
-When using an Azure Multi-Factor Authentication Provider there are two usage models available that are billed through your Azure subscription:
-
-
-- **Per User**. Generally for enterprises that want to enable multi-factor authentication for a fixed number of employees who regularly need authentication.
-- **Per Authentication**. Generally for enterprises that want to enable multi-factor authentication for a large group of external users who infrequently need authentication.
-
-For pricing details see [Azure MFA Pricing.](https://azure.microsoft.com/pricing/details/multi-factor-authentication/)
-
-Choose the per-seat or consumption-based model that works best for your organization.   Then to get started see [Getting Started](multi-factor-authentication-get-started.md)
+使用 Azure Multi-Factor Authentication 提供者時，有兩種使用量模型可透過您的 Azure 訂用帳戶計費：
 
 
+- **每位使用者**。通常適用於想要為一群定期需要驗證之固定數量員工啟用 Multi-Factor Authentication 的企業。
+- **每次驗證**。通常適用於想要為大量不定期需要驗證之外部使用者啟用 Multi-Factor Authentication 的企業。
 
-<!--HONumber=Oct16_HO2-->
+如需定價詳細資料，請參閱 [Azure MFA 定價](https://azure.microsoft.com/pricing/details/multi-factor-authentication/)。
 
+選擇最適合您組織的每一基座或消費型模型。接下來，若要開始使用，請參閱[開始使用](multi-factor-authentication-get-started.md)
 
+<!---HONumber=AcomDC_0921_2016-->

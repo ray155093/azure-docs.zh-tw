@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Create an ASP.NET 5 web app in Visual Studio Code"
-   description="This tutorial illustrates how to create an ASP.NET 5 web app using Visual Studio Code."
+   pageTitle="在 Visual Studio Code 中建立 ASP.NET 5 Web 應用程式"
+   description="本教學課程說明如何使用 Visual Studio Code 建立 ASP.NET 5 Web 應用程式。"
    services="app-service\web"
    documentationCenter=".net"
    authors="erikre"
@@ -8,264 +8,258 @@
    editor="jimbe"/>
 
 <tags
-    ms.service="app-service-web" 
-    ms.workload="web" 
-    ms.tgt_pltfrm="dotnet" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="02/26/2016" 
-    ms.author="cephalin"/>
+	ms.service="app-service-web" 
+	ms.workload="web" 
+	ms.tgt_pltfrm="dotnet" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="02/26/2016" 
+	ms.author="cephalin"/>
 
+# 在 Visual Studio Code 中建立 ASP.NET 5 Web 應用程式
 
-# <a name="create-an-asp.net-5-web-app-in-visual-studio-code"></a>Create an ASP.NET 5 web app in Visual Studio Code
+## 概觀
 
-## <a name="overview"></a>Overview
+本教學課程示範如何使用 [Visual Studio Code (VS Code)](http://code.visualstudio.com//Docs/whyvscode) 建立 ASP.NET Web 5 應用程式，並將其部署到 [Azure App Service](../app-service/app-service-value-prop-what-is.md)。
 
-This tutorial shows you how to create an ASP.NET 5 web app using [Visual Studio Code (VS Code)](http://code.visualstudio.com//Docs/whyvscode) and deploy it to [Azure App Service](../app-service/app-service-value-prop-what-is.md). 
+> [AZURE.NOTE] 雖然這篇文章主要針對 Web Apps，但也適用於 API Apps 和 Mobile Apps。
 
-> [AZURE.NOTE] Although this article refers to web apps, it also applies to API apps and mobile apps. 
-
-ASP.NET 5 is a significant redesign of ASP.NET. ASP.NET 5 is a new open-source and cross-platform framework for building modern cloud-based web apps using .NET. For more information, see [Introduction to ASP.NET 5](http://docs.asp.net/en/latest/conceptual-overview/aspnet.html). For information about Azure App Service web apps, see [Web Apps Overview](app-service-web-overview.md).
+ASP.NET 5 是大幅重新設計的 ASP.NET。ASP.NET 5 是新的開放原始碼和跨平台架構，用於使用 .NET 建置新代雲端式 Web 應用程式。如需詳細資訊，請參閱 [ASP.NET 5 簡介](http://docs.asp.net/en/latest/conceptual-overview/aspnet.html)。如需有關 Azure App Service Web Apps 的詳細資訊，請參閱 [Web Apps 概觀](app-service-web-overview.md)。
 
 [AZURE.INCLUDE [app-service-web-try-app-service.md](../../includes/app-service-web-try-app-service.md)]
 
-## <a name="prerequisites"></a>Prerequisites  
+## 必要條件  
 
-* Install [VS Code](http://code.visualstudio.com/Docs/setup).
-* Install [Node.js](http://nodejs.org) - Node.js is a platform for building fast and scalable server applications using JavaScript. Node is the runtime (Node), and [npm](http://www.npmjs.com/) is the Package Manager for Node modules. You will use npm to scaffold an ASP.NET 5 web app in this tutorial.
-* Install Git - You can install it from either of these locations: [Chocolatey](https://chocolatey.org/packages/git) or [git-scm.com](http://git-scm.com/downloads). If you are new to Git, choose [git-scm.com](http://git-scm.com/downloads) and select the option to **Use Git from the Windows Command Prompt**. Once you install Git, you'll also need to set the Git user name and email as it's required later in the tutorial (when performing a commit from VS Code).  
+* 安裝 [VS Code](http://code.visualstudio.com/Docs/setup)。
+* 安裝 [Node.js](http://nodejs.org) - Node.js 是一種平台，可使用 JavaScript 來建置快速且可調整的伺服器應用程式。Node 是執行階段 (Node)，而 [npm](http://www.npmjs.com/) 是Node 模組的封裝管理員。您將使用 npm，在本教學課程中建立 ASP.NET 5 Web 應用程式的結構。
+* 安裝 Git - 您可以從下列位置安裝它：[Chocolatey](https://chocolatey.org/packages/git) 或 [git scm.com](http://git-scm.com/downloads)。如果您不熟悉 Git，請選擇 [git-scm.com](http://git-scm.com/downloads)，然後選取 [從 Windows 命令提示字元使用 Git] 選項。一旦您安裝 Git，也需要設定 Git 使用者名稱和電子郵件，因為稍後教學課程將需要用到 (從 VS Code 執行認可時)。
 
-## <a name="install-asp.net-5-and-dnx"></a>Install ASP.NET 5 and DNX
-ASP.NET 5/DNX (the .NET Execution Environment) is a lean .NET stack for building modern cloud and web apps that run on OS X, Linux, and Windows. It has been built from the ground up to provide an optimized development framework for apps that are either deployed to the cloud or run on-premises. It consists of modular components with minimal overhead, so you retain flexibility while constructing your solutions.
+## 安裝 ASP.NET 5 和 DNX
+ASP.NET 5/DNX (.NET 執行環境) 是精簡的 .NET 堆疊，可建置在 OS X、Linux 及 Windows 上執行的新式雲端和 Web 應用程式。它已從頭建置，以將最佳化的開發架構提供給已部署至雲端或執行內部部署的應用程式。其由額外負荷最低的模組化元件組成，以便您可以在建構解決方案時保留彈性。
 
-This tutorial is designed to get you started building applications with the latest development versions of ASP.NET 5 and DNX. The following instructions are specific to Windows. For more detailed installation instructions for OS X, Linux, and Windows, see [Installing ASP.NET 5 and DNX](https://code.visualstudio.com/Docs/ASPnet5#_installing-aspnet-5-and-dnx). 
+本教學課程的設計旨在讓您使用最新開發版本的 ASP.NET 5 和 DNX 開始建置應用程式。下列是 Windows 特有的指示。如需 OS X、 Linux 和 Windows 的更詳細安裝指示，請參閱[安裝 ASP.NET 5 和 DNX](https://code.visualstudio.com/Docs/ASPnet5#_installing-aspnet-5-and-dnx)。
 
-1. To install .NET Version Manager (DNVM) in Windows, open a command prompt, and run the following command.
+1. 若要在 Windows 中安裝 .NET 版本管理員 (DNVM)，請開啟命令提示字元並執行下列命令。
 
-        @powershell -NoProfile -ExecutionPolicy unrestricted -Command "&{$Branch='dev';iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.ps1'))}"
+		@powershell -NoProfile -ExecutionPolicy unrestricted -Command "&{$Branch='dev';iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.ps1'))}"
 
-    This will download the DNVM script and put it in your user profile directory. 
+	這將下載 DNVM 指令碼，並將它放在您的使用者設定檔目錄中。
 
-2. **Restart Windows** to complete the DNVM installation. 
+2. **重新啟動 Windows** 以完成 DNVM 安裝。
 
-    After you have restarted Windows, you can open the command prompt to verify the location of DNVM by entering the following:
+	重新啟動 Windows 之後，您可以開啟命令提示字元，藉由輸入下列命令確認 DNVM 的位置：
 
-        where dnvm
+		where dnvm
 
-    The command prompt will show a path similar to the following.
+	命令提示字元將會顯示類似以下的路徑。
 
-    ![dnvm location](./media/web-sites-create-web-app-using-vscode/00-where-dnvm.png)
+	![dnvm 位置](./media/web-sites-create-web-app-using-vscode/00-where-dnvm.png)
 
-3. Now that you have DNVM, you must use it to download DNX to run your applications. Run the following at the command prompt:
+3. 既然您已有 DNVM，您必須使用它來下載 DNX 以執行您的應用程式。在命令提示字元執行下列命令：
 
-        dnvm upgrade
+		dnvm upgrade
 
-    Verify your DNVM, and view the active runtime by entering the following at the command prompt:
+	確認您的 DNVM，並藉由在命令提示字元輸入下列命令，檢視使用中的執行階段：
 
-        dnvm list
+		dnvm list
 
-    The command prompt will show the details of the active runtime.
+	命令提示字元將顯示使用中執行階段的詳細資料。
 
-    ![DNVM location](./media/web-sites-create-web-app-using-vscode/00b-dnvm-list.png)
+	![DNVM 位置](./media/web-sites-create-web-app-using-vscode/00b-dnvm-list.png)
 
-    If more than one DNX runtime is listed, you can choose to enter the following (or a more recent version) at the command prompt to set the active DNX runtime. Set it to the same version that is used by the ASP.NET 5 generator when you create your web app later in this tutorial. *You may not need to change the active runtime if it is set to the latest available.*
+	如果列出的 DNX 執行階段有多個，您可以選擇在命令提示字元輸入下列命令 (或使用更新的版本) 來設定使用中的 DNX 執行階段。請將它設定成您在本教學課程中稍後建立 Web 應用程式時 ASP.NET 5 產生器所使用的相同版本。*您可能不需要變更作用中的執行階段，如果它設定為最新可用的話。*
 
-        dnvm use 1.0.0-update1 –p
+		dnvm use 1.0.0-update1 –p
 
-> [AZURE.NOTE] For more detailed installation instructions for OS X, Linux, and Windows, see [Installing ASP.NET 5 and DNX](https://code.visualstudio.com/Docs/ASPnet5#_installing-aspnet-5-and-dnx). 
+> [AZURE.NOTE] 如需 OS X、Linux 和 Windows 的更詳細安裝指示，請參閱[安裝 ASP.NET 5 和 DNX](https://code.visualstudio.com/Docs/ASPnet5#_installing-aspnet-5-and-dnx)。
 
-## <a name="create-the-web-app"></a>Create the web app 
+## 建立 Web 應用程式 
 
-This section shows you how to scaffold a new app ASP.NET web app. You will use the node package manager (npm) to install [Yeoman](http://yeoman.io/) (application scaffolding tool - the VS Code equivalent of the Visual Studio **File > New Project** operation), [Grunt](http://gruntjs.com/) (JavaScript task runner), and [Bower](http://bower.io/) (client side package manager). 
+本節說明如何建立新的應用程式 ASP.NET Web 應用程式的結構。您將使用 node 封裝管理員 (npm) 來安裝 [Yeoman](http://yeoman.io/) (應用程式建立結構工具 - 相當於 Visual Studio [檔案] > [新專案] 作業的 VS Code)、[Grunt](http://gruntjs.com/) (JavaScript 工作執行程式) 和 [Bower](http://bower.io/) (用戶端封裝管理員)。
 
-1. Open a command prompt with Administrator rights and navigate to the location where you want to create your ASP.NET project. For instance, create a *vscodeprojects* directory at the root of C:\.
+1. 以系統管理員權限開啟命令提示字元，並瀏覽至您想要用來建立 ASP.NET 專案的位置。例如，在 C: 的根目錄中建立 [vscodeprojects] 目錄。
 
-2. Enter the following at the command prompt to install Yeoman and the supporting tools.
+2. 在命令提示字元輸入下列命令來安裝 Yeoman 和支援的工具。
 
-        npm install -g yo grunt-cli generator-aspnet bower
+		npm install -g yo grunt-cli generator-aspnet bower
 
-    > [AZURE.NOTE] You may get a warning suggesting that your npm version is out of date. This warning should not affect this tutorial.
+	> [AZURE.NOTE] 您可能會收到暗示您的 npm 版本已過期的警告。這個警告應該不會影響本教學課程。
 
-3. Enter the following at the command prompt to create the project folder and scaffold the app.
+3. 在命令提示字元輸入下列命令，來建立專案資料夾，並建立應用程式的結構。
 
-        yo aspnet
+		yo aspnet
 
-4. Use the arrow keys to select the **Web Application Basic** type from the ASP.NET 5 generator menu, and press **&lt;Enter>**.
+4. 使用方向鍵從 ASP.NET 5 產生器功能表中選取 [基本 Web 應用程式] 類型，然後按下 **&lt;Enter>**。
 
-    ![Yeoman - ASP.NET 5 generator](./media/web-sites-create-web-app-using-vscode/01-yo-aspnet.png)
+	![Yeoman-ASP.NET 5 產生器](./media/web-sites-create-web-app-using-vscode/01-yo-aspnet.png)
 
-5. Set the name of your new ASP.NET web app to **SampleWebApp**. As this name is used throughout the tutorial, if you select a different name, you'll need to substitute it for each occurrence of **SampleWebApp**. When you press **&lt;Enter>**, Yeoman will create a new folder named **SampleWebApp** and the necessary files for your new app.
+5. 將新的 ASP.NET web 應用程式的名稱設定為 **SampleWebApp**。因為整個教學課程會使用此名稱，所以如果您選取不同的名稱，您需要取代每次出現的 **SampleWebApp**。按下 ** &lt;Enter>** 時，Yeoman 將會建立名為 **SampleWebApp** 的新資料夾，以及新應用程式必要的檔案。
 
-6. At the command prompt, change directories to your new project folder:
+6. 在命令提示字元，將目錄切換到您的新專案資料夾：
 
-        cd SampleWebApp
+		cd SampleWebApp
 
-7. Also at the command prompt, to install the necessary NuGet packages to run the application, enter the following command:
+7. 此外，在命令提示字元輸入下列命令，以安裝必要的 NuGet 封裝來執行應用程式：
 
-        dnu restore
+		dnu restore
 
-8. Open VS Code by entering the following at the command prompt:
+8. 在命令提示字元輸入下列命令來開啟 VS Code。
 
-        code .
+		code .
 
-## <a name="run-the-web-app-locally"></a>Run the web app locally
+## 在本機執行 Web 應用程式
 
-Now that you have created the web app and retrieved all the NuGet packages for the app, you can run the web app locally.
+既然您已建立 Web 應用程式，並擷取應用程式的所有 NuGet 封裝，就可以在本機執行 Web 應用程式。
 
-1. From the **Command Palette** in VS Code, enter the following to show the available run command options:
+1. 在 VS Code 的 [命令選擇區] 中，輸入下列命令以顯示可用的執行命令選項：
 
-        dnx: Run Command
+		dnx: Run Command
 
-    > [AZURE.NOTE] If the Omnisharp server is not currently running, it will start up. Re-enter the above command.
+	> [AZURE.NOTE] 如果 Omnisharp 伺服器目前未執行，它就會啟動。重新輸入上述命令。
 
-    Next, select the following command to run your web app:
-        
-        dnx web - (SampleWebApp)
+	接著，選取下列命令來執行您的 Web 應用程式：
+		
+		dnx web - (SampleWebApp)
 
-    The command window will display that the application has started. If the command window doesn't display this message, check the lower left corning of VS Code for errors in your project.
-    
-    > [AZURE.NOTE] Issuing a command from the **Command Palette** requires a **>** character at the beginning of the command line. You can view the details related to the **web** command in the *project.json* file.   
-    > If the command does not appear or is not available, you may need to install the C# extension. Run  `>Extensions: Install Extension` and `ext install c#` to install the C# extensions.
+	命令視窗將會顯示該應用程式已啟動。如果命令視窗未顯示此訊息，請檢查 VS Code 左下角以找出專案中的錯誤。
+	
+	> [AZURE.NOTE] 在 [命令選擇區] 發出命令時，命令列的開頭必須要有 **>** 字元。您可以在 *project.json* 檔案中檢視 **web** 命令的相關詳細資料。如果命令未出現或無法使用，您可能需要安裝 C# 擴充功能。執行 `>Extensions: Install Extension` 和 `ext install c#` 來安裝 C# 擴充功能。
 
-2. Open a browser and navigate to the following URL.
+2. 開啟瀏覽器並瀏覽至下列 URL。
 
-    **http://localhost:5000**
+	**http://localhost:5000**
 
-    The default page of the web app will appear as follows.
+	Web 應用程式的預設頁面將出現，如下所示。
 
-    ![Local web app in a browser](./media/web-sites-create-web-app-using-vscode/08-web-app.png)
+	![在瀏覽器中的本機 Web 應用程式](./media/web-sites-create-web-app-using-vscode/08-web-app.png)
 
-3. Close your browser. In the **Command Window**, press **Ctrl+C** to shut down the application and close the **Command Window**. 
+3. 關閉瀏覽器。在 [命令視窗] 中，按下 **Ctrl+C** 來關閉應用程式，以及關閉 [命令視窗]。
 
-## <a name="create-a-web-app-in-the-azure-portal"></a>Create a web app in the Azure Portal
+## 在 Azure 入口網站中建立 Web 應用程式
 
-The following steps will guide you through creating a web app in the Azure Portal.
+下列步驟將引導您在 Azure 入口網站中建立 Web 應用程式。
 
-1. Log in to the [Azure Portal](https://portal.azure.com).
+1. 登入 [Azure 入口網站](https://portal.azure.com)。
 
-2. Click **NEW** at the top left of the Portal.
+2. 按一下入口網站左上角的 [新增]。
 
-3. Click **Web Apps > Web App**.
+3. 按一下 [Web Apps] > [Web 應用程式]。
 
-    ![Azure new web app](./media/web-sites-create-web-app-using-vscode/09-azure-newwebapp.png)
+	![Azure 的新 Web 應用程式](./media/web-sites-create-web-app-using-vscode/09-azure-newwebapp.png)
 
-4. Enter a value for **Name**, such as **SampleWebAppDemo**. Note that this name needs to be unique, and the portal will enforce that when you attempt to enter the name. Therefore, if you select a enter a different value, you'll need to substitute that value for each occurrence of **SampleWebAppDemo** that you see in this tutorial. 
+4. 輸入 [名稱] 的值，例如 **SampleWebAppDemo**。請注意，此名稱必須是唯一的，而且當您嘗試輸入名稱時，入口網站將會強制執行此要求。因此，如果選取或輸入不同值，您將需要以該值取代每次出現的 **SampleWebAppDemo**，您會在本教學課程中看到。
 
-5. Select an existing **App Service Plan** or create a new one. If you create a new plan, select the pricing tier, location, and other options. For more information on App Service plans, see the article, [Azure App Service plans in-depth overview](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md).
+5. 選取現有的 **App Service 方案**或建立新方案。如果您建立新方案，請選取定價層、位置和其他選項。如需 App Service 方案的詳細資訊，請參閱文章：[Azure App Service 方案深入概觀](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)。
 
-    ![Azure new web app blade](./media/web-sites-create-web-app-using-vscode/10-azure-newappblade.png)
+	![Azure 的新 Web 應用程式刀鋒視窗](./media/web-sites-create-web-app-using-vscode/10-azure-newappblade.png)
 
-6. Click **Create**.
+6. 按一下 [建立]。
 
-    ![web app blade](./media/web-sites-create-web-app-using-vscode/11-azure-webappblade.png)
+	![Web 應用程式刀鋒視窗](./media/web-sites-create-web-app-using-vscode/11-azure-webappblade.png)
 
-## <a name="enable-git-publishing-for-the-new-web-app"></a>Enable Git publishing for the new web app
+## 啟用新 Web 應用程式的 Git 發佈
 
-Git is a distributed version control system that you can use to deploy your Azure App Service web app. You'll store the code you write for your web app in a local Git repository, and you'll deploy your code to Azure by pushing to a remote repository.   
+Git 是一個您可用來部署 Azure App Service Web 應用程式的分散式版本控制系統。您將會在本機 Git 儲存機制中儲存您為 Web 應用程式撰寫的程式碼，並藉由發送至遠端儲存機制，將您的程式碼部署至 Azure。
 
-1. Log into the [Azure Portal](https://portal.azure.com).
+1. 登入 [Azure 入口網站](https://portal.azure.com)。
 
-2. Click **Browse**.
+2. 按一下 [瀏覽]。
 
-3. Click **Web Apps** to view a list of the web apps associated with your Azure subscription.
+3. 按一下 [Web Apps]，檢視與 Azure 訂用帳戶相關聯之 Web 應用程式的清單。
 
-4. Select the web app you created in this tutorial.
+4. 選取您已在本教學課程中建立的 Web 應用程式。
 
-5. In the web app blade, click **Settings** > **Continuous deployment**. 
+5. 在 Web 應用程式刀鋒視窗中，按一下 [設定] > [連續部署]。
 
-    ![Azure web app host](./media/web-sites-create-web-app-using-vscode/14-azure-deployment.png)
+	![Azure Web 應用程式主機](./media/web-sites-create-web-app-using-vscode/14-azure-deployment.png)
 
-6. Click **Choose Source > Local Git Repository**.
+6. 按一下 **[選擇來源] > [本機 Git 儲存機制]**。
 
-7. Click **OK**.
+7. 按一下 [確定]。
 
-    ![Azure Local Git Respository](./media/web-sites-create-web-app-using-vscode/15-azure-localrepository.png)
+	![Azure 本機 Git 儲存機制](./media/web-sites-create-web-app-using-vscode/15-azure-localrepository.png)
 
-8. If you have not previously set up deployment credentials for publishing a web app or other App Service app, set them up now:
+8. 如果您先前尚未設定部署認證以供發佈 Web 應用程式或其他 App Service 應用程式，請立即設定：
 
-    * Click **Settings** > **Deployment credentials**. The **Set deployment credentials** blade will be displayed.
+	* 按一下 [設定] > [部署認證]。[設定部署認證] 刀鋒視窗會隨即顯示。
 
-    * Create a user name and password.  You'll need this password later when setting up Git.
+	* 建立使用者名稱和密碼。稍後設定 Git 時，您將需要此密碼。
 
-    * Click **Save**.
+	* 按一下 [儲存]。
 
-9. In your web app's blade, click **Settings > Properties**. The URL of the remote Git repository that you'll deploy to is shown under **GIT URL**.
+9. 在 Web 應用程式的刀鋒視窗中，按一下 [設定] > [屬性]。做為部署目的地的遠端 Git 儲存機制的 URL，會顯示在 [GIT URL] 下方。
 
-10. Copy the **GIT URL** value for later use in the tutorial.
+10. 複製 [GIT URL] 值以供教學課程稍後使用。
 
-    ![Azure Git URL](./media/web-sites-create-web-app-using-vscode/17-azure-giturl.png)
+	![Azure Git URL](./media/web-sites-create-web-app-using-vscode/17-azure-giturl.png)
 
-## <a name="publish-your-web-app-to-azure-app-service"></a>Publish your web app to Azure App Service
+## 將您的 Web 應用程式發佈至 Azure App Service
 
-In this section, you will create a local Git repository and push from that repository to Azure to deploy your web app to Azure.
+在本節中，您將建立本機 Git 儲存機制，並從該儲存機制發送至 Azure，以將 Web 應用程式部署至 Azure。
 
-1. In VS Code, select the **Git** option in the left navigation bar.
+1. 在 VS Code 中，選取導覽列左側的 [Git] 選項。
 
-    ![Git icon in VS Code](./media/web-sites-create-web-app-using-vscode/git-icon.png)
+	![VS Code 中的 Git 圖示](./media/web-sites-create-web-app-using-vscode/git-icon.png)
 
-2. Select **Initialize git repository** to make sure your workspace is under git source control. 
+2. 選取 [初始化 git 儲存機制]，確定您的工作區受到 git 原始檔控制。
 
-    ![Initialize Git](./media/web-sites-create-web-app-using-vscode/19-initgit.png)
+	![初始化 Git](./media/web-sites-create-web-app-using-vscode/19-initgit.png)
 
-3. Open the Command Window and change directories to the directory of your web app. Then, enter the following command:
+3. 開啟 [命令視窗]，並切換至 Web 應用程式的目錄。然後，輸入下列命令：
 
-        git config core.autocrlf false
+		git config core.autocrlf false
 
-    This command prevents an issue about text where CRLF endings and LF endings are involved.
+	此命令可防止涉及 CRLF 行尾結束符號和 LF 行尾結束符號之文字的相關問題。
 
-4. In VS Code, add a commit message and click the **Commit All** check icon.
+4. 在 VS Code 中，新增認可訊息，然後按一下**全部認可**核取圖示。
 
-    ![Git Commit All](./media/web-sites-create-web-app-using-vscode/20-git-commit.png)
+	![Git 全部認可](./media/web-sites-create-web-app-using-vscode/20-git-commit.png)
 
-5. After Git has completed processing, you'll see that there are no files listed in the Git window under **Changes**. 
+5. Git 完成處理之後，您會看到沒有檔案列在 Git 視窗的 [變更] 之下。
 
-    ![Git no changes](./media/web-sites-create-web-app-using-vscode/no-changes.png)
+	![Git 沒有變更](./media/web-sites-create-web-app-using-vscode/no-changes.png)
 
-6. Change back to the Command Window where the command prompt points to the directory where your web app is located.
+6. 變更回命令提示字元指向您的 Web 應用程式所在目錄的 [命令視窗]。
 
-7. Create a remote reference for pushing updates to your web app by using the Git URL (ending in ".git") that you copied earlier.
+7. 使用您稍早複製的 Git URL (結尾是 ".git")，建立遠端參考，以便將更新發送至 Web 應用程式。
 
-        git remote add azure [URL for remote repository]
+		git remote add azure [URL for remote repository]
 
-8. Configure Git to save your credentials locally so that they will be automatically appended to your push commands generated from VS Code.
+8. 設定讓 Git 將認證儲存在本機，以便將它們自動附加至您從 VS Code 產生的推送命令。
 
-        git config credential.helper store
+		git config credential.helper store
 
-9. Push your changes to Azure by entering the following command. After this initial push to Azure, you will be able to do all the push commands from VS Code. 
+9. 輸入下列命令，將您的變更推播至 Azure。在對 Azure 進行這項初始推送之後，您便可以從 VS Code 執行所有推送命令。
 
-        git push -u azure master
+		git push -u azure master
 
-    You are prompted for the password you created earlier in Azure. **Note: Your password will not be visible.**
+	系統會提示您輸入先前在 Azure 建立的密碼。**注意：將看不到您的密碼。**
 
-    The output from the above command ends with a message that deployment is successful.
+	上述命令的輸出結尾會出現部署成功的訊息。
 
-        remote: Deployment successful.
-        To https://user@testsite.scm.azurewebsites.net/testsite.git
-        [new branch]      master -> master
+		remote: Deployment successful.
+		To https://user@testsite.scm.azurewebsites.net/testsite.git
+		[new branch]      master -> master
 
-> [AZURE.NOTE] If you make changes to your app, you can republish directly in VS Code using the built-in Git functionality by selecting the **Commit All** option followed by the **Push** option. You will find the **Push** option available in the drop-down menu next to the **Commit All** and **Refresh** buttons.
+> [AZURE.NOTE] 如果您變更應用程式，則可以使用內建 Git 功能在 VS 程式碼中直接重新發佈，方法是依序選取 [**全部認可**] 選項和 [**推送**] 選項。您會發現 [**全部認可**] 和 [**重新整理**] 按鈕旁邊之下拉式功能表中可用的 [**推送**] 選項。
 
-If you need to collaborate on a project, you should consider pushing to GitHub in between pushing to Azure.
+如果您需要與他人對專案進行共同作業，則應該考慮在推送至 Azure 之間推送至 GitHub。
 
-## <a name="run-the-app-in-azure"></a>Run the app in Azure
-Now that you have deployed your web app, let's run the app while hosted in Azure. 
+## 在 Azure 中執行應用程式
+既然您已部署 Web 應用程式，讓我們執行裝載於 Azure 的應用程式。
 
-This can be done in two ways:
+這有兩種方式可以完成：
 
-* Open a browser and enter the name of your web app as follows.   
+* 開啟瀏覽器並輸入 Web 應用程式的名稱，如下所示。
 
-        http://SampleWebAppDemo.azurewebsites.net
+		http://SampleWebAppDemo.azurewebsites.net
  
-* In the Azure Portal, locate the web app blade for your web app, and click **Browse** to view your app 
-* in your default browser.
+* 在 Azure 入口網站中，找出您 Web 應用程式的 Web 應用程式刀鋒視窗，然後按一下 [瀏覽] 來檢視您的應用程式。
+* 預設瀏覽器
 
-![Azure web app](./media/web-sites-create-web-app-using-vscode/21-azurewebapp.png)
+![Azure Web 應用程式](./media/web-sites-create-web-app-using-vscode/21-azurewebapp.png)
 
-## <a name="summary"></a>Summary
-In this tutorial, you learned how to create a web app in VS Code and deploy it to Azure. For more information about VS Code, see the article, [Why Visual Studio Code?](https://code.visualstudio.com/Docs/) For information about App Service web apps, see [Web Apps Overview](app-service-web-overview.md). 
+## 摘要
+在本教學課程中，您學到如何在 VS Code 建立 Web 應用程式，並將其部署至 Azure。如需有關 VS Code 的詳細資訊，請參閱文章：[為什選擇 Visual Studio Code？](https://code.visualstudio.com/Docs/) 如需 App Service Web Apps 的相關資訊，請參閱 [Web 應用程式概觀](app-service-web-overview.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0706_2016-->

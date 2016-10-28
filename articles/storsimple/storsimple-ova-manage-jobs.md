@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="View and manage StorSimple Virtual Array jobs | Microsoft Azure"
-   description="Describes the StorSimple Manager service Jobs page and how to use it to track recent and current jobs for the StorSimple Virtual Array."
+   pageTitle="檢視和管理 StorSimple Virtual Array 作業 | Microsoft Azure"
+   description="說明 StorSimple Manager 服務作業頁面，以及如何使用該頁面來追蹤 StorSimple Virtual Array 的最近和目前作業。"
    services="storsimple"
    documentationCenter="NA"
    authors="alkohli"
@@ -15,66 +15,61 @@
    ms.date="06/07/2016"
    ms.author="alkohli" />
 
+# 針對 StorSimple Virtual Array 使用 StorSimple Manager 服務檢視工作
 
-# <a name="use-the-storsimple-manager-service-to-view-jobs-for-the-storsimple-virtual-array"></a>Use the StorSimple Manager service to view jobs for the StorSimple Virtual Array
+## 概觀
 
-## <a name="overview"></a>Overview
+[作業] 頁面提供單一中央入口網站，可針對連接到 StorSimple Manager 服務的 Virtual Arrays (也稱為內部部署虛擬裝置) 上啟動的作業，進行檢視和管理。您可以針對多個虛擬裝置，檢視執行中、完成和失敗的作業。結果會以表格式格式呈現。
 
-The **Jobs** page provides a single central portal for viewing and managing jobs that are started on Virtual Arrays (also known as on-premises virtual devices) that are connected to your StorSimple Manager service. You can view running, completed, and failed jobs for multiple virtual devices. Results are presented in a tabular format. 
+![[工作] 頁面](./media/storsimple-ova-manage-jobs/ovajobs1.png)
 
-![Jobs page](./media/storsimple-ova-manage-jobs/ovajobs1.png)
+您可以透過篩選欄位，快速找到您所感興趣的工作，例如：
 
-You can quickly find the jobs you are interested in by filtering on fields such as:
+- **狀態** – 您可以搜尋全部、執行中、完成或已取消的作業。
+- **起迄** – 工作可以根據日期和時間範圍進行篩選。
+- **類型** – 作業類型可以是全部、備份、還原、容錯移轉、下載更新，或安裝更新。
+- **裝置** – 作業會在連線到服務的特定裝置上進行初始化。篩選的工作接著會根據下列屬性製成表格：
 
-- **Status** – You can search for all, running, completed, or failed jobs.
-- **From and To** – Jobs can be filtered based on the date and time range.
-- **Type** – The job type can be all, backup, restore, failover, download updates, or install updates.
-- **Devices** – Jobs are initiated on a specific device connected to your service. The filtered jobs are then tabulated on the basis of the following attributes:
+    - **類型** – 作業類型可以是全部、備份、還原、容錯移轉、下載更新，或安裝更新。
 
-    - **Type** – The job type can be all, backup, restore, failover, download updates, or install updates.
+    - **狀態** – 作業可以是全部、執行中、完成或失敗。
 
-    - **Status** – Jobs can be all, running, completed, or failed.
+    - **實體** – 作業可以與磁碟區、共用或裝置相關聯。
 
-    - **Entity** – The jobs can be associated with a volume, share, or device. 
+    - **裝置** – 用來啟動工作之裝置的名稱。
 
-    - **Device** – The name of the device on which the job was started.
+    - **啟動於** – 啟動工作的時間。
 
-    - **Started on** – The time when the job was started.
+    - **進度** – 執行中工作的完成度百分比。對於完成的工作，百分比應該永遠是 100%。
 
-    - **Progress** – The percentage completion of a running job. For a completed job, this should always be 100%.
+工作清單每隔 30 秒會重新整理。
 
-The list of jobs is refreshed every 30 seconds.
+## 檢視工作詳細資料
 
-## <a name="view-job-details"></a>View job details
+執行下列步驟來檢視任何工作的詳細資料。
 
-Perform the following steps to view the details of any job.
+#### 若要檢視工作詳細資料
 
-#### <a name="to-view-job-details"></a>To view job details
+1. 在 [工作] 頁面上，透過搭配適當的篩選器執行查詢來顯示您所感興趣的工作。您可以搜尋完成或執行中作業。
 
-1. On the **Jobs** page, display the job(s) you are interested in by running a query with appropriate filters. You can search for completed or running jobs.
+2. 從作業表格式清單中選取作業。
 
-2. Select a job from the tabular list of jobs.
+3. 按一下頁面底部的 [詳細資料]。
 
-3. At the bottom of the page, click **Details**.
-
-4. In the **Details** dialog box, you can view status, details,  and time statistics. The following illustration shows an example of the **Backup Job Details** dialog box.
+4. 在 [詳細資料] 對話方塊中，您可以檢視狀態、詳細資料和時間統計資料。下圖顯示 [備份作業詳細資料] 對話方塊的範例。
  
-    ![Job details page](./media/storsimple-ova-manage-jobs/ovajobs2.png)
+    ![工作詳細資料頁面](./media/storsimple-ova-manage-jobs/ovajobs2.png)
 
-#### <a name="job-failures-when-the-virtual-machine-is-paused-in-the-hypervisor"></a>Job failures when the virtual machine is paused in the hypervisor
+#### 虛擬機器在 hypervisor 中暫停時，作業失敗
 
-When a job is in progress on your StorSimple Virtual Array and the device (virtual machine provisioned in hypervisor) is paused for greater than 15 minutes, the job will fail. This is due to your StorSimple Virtual Array time being out of sync with the Microsoft Azure time. An example for a restore job failure is shown in the following screenshot.
+當正在您的 StorSimple Virtual Array 和裝置 (hypervisor 中佈建的虛擬機器) 中進行的作業暫停超過 15 分鐘，則作業會失敗。這是因為您的 StorSimple Virtual Array 時間未與 Microsoft Azure 時間同步處理。還原作業失敗的範例如下列螢幕擷取畫面所示。
 
-![Restore job failure](./media/storsimple-ova-manage-jobs/restorejobfailure.png)
+![還原作業失敗](./media/storsimple-ova-manage-jobs/restorejobfailure.png)
 
-These failures will apply to backup, restore, update, and failover jobs. If your virtual machine is provisioned in Hyper-V, the machine will eventually synchronize time with your hypervisor. Once that happens, you can restart your job. 
+這些失敗會套用至備份、還原、更新和容錯移轉作業。如果您的虛擬機器已佈建到 Hyper-V，電腦將最終會與您的 hypervisor 同步處理時間。一旦發生這種情況，您可以重新啟動您的作業。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-[Learn how to use the local web UI to administer your StorSimple Virtual Array](storsimple-ova-web-ui-admin.md).
+了解如何[使用本機 Web UI 來管理 StorSimple Virtual Array](storsimple-ova-web-ui-admin.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0622_2016-->

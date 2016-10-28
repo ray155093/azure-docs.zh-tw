@@ -1,7 +1,7 @@
 
 <properties
-   pageTitle="Azure virtual network peering | Microsoft Azure"
-   description="Learn about VNet peering in Azure."
+   pageTitle="Azure 虛擬網路對等互連 | Microsoft Azure"
+   description="了解 Azure 中的 VNet 對等互連。"
    services="virtual-network"
    documentationCenter="na"
    authors="NarayanAnnamalai"
@@ -16,81 +16,76 @@
    ms.date="07/28/2016"
    ms.author="narayan" />
 
+# VNet 對等互連
 
-# <a name="vnet-peering"></a>VNet peering
+VNet 對等互連是透過 Azure 骨幹網路來連接同一區域中兩個虛擬網路的機制。一旦對等互連，針對用作連線而言兩個虛擬網路看起來就像一個。它們仍做為不同的資源進行管理，但這些虛擬網路中的虛擬機器可以使用私人 IP 位址彼此直接通訊。
 
-VNet peering is a mechanism that connects two virtual networks in the same region through the Azure backbone network. Once peered, the two virtual networks appear as one for all connectivity purposes. They are still managed as separate resources, but virtual machines in these virtual networks can communicate with each other directly by using private IP addresses.
+在已對等互連虛擬網路中虛擬機器之間的流量會透過 Azure 基礎結構路由傳送，如同在同一虛擬網路中 VM 之間路由傳送的流量。使用 VNet 對等互連的一些優點包括︰
 
-The traffic between virtual machines in the peered virtual networks is routed through the Azure infrastructure much like traffic is routed between VMs in the same virtual network. Some of the benefits of using VNet peering include:
+- 不同虛擬網路的資源之間具有低延遲、高頻寬連線。
+- 可以在已對等互連的 VNet 中將網路應用裝置和 VPN 閘道等資源當做傳輸點。
+- 可以將使用 Azure Resource Manager 模型的虛擬網路連接到使用傳統部署模型的虛擬網路，並在這些虛擬網路的資源之間啟用完整連線能力。
 
-- A low-latency, high-bandwidth connection between resources in different virtual networks.
-- The ability to use resources such as network appliances and VPN gateways as transit points in a peered VNet.
-- The ability to connect a virtual network that uses the Azure Resource Manager model to a virtual network that uses the classic deployment model and enable full connectivity between resources in these virtual networks.
+VNet 對等互連的需求和重要層面︰
 
-Requirements and key aspects of VNet peering:
-
-- The two virtual networks that are peered should be in the same Azure region.
-- The virtual networks that are peered should have non-overlapping IP address spaces.
-- VNet peering is between two virtual networks, and there is no derived transitive relationship. For example, if virtual network A is peered with virtual network B, and if virtual network B is peered with virtual network C, it does not translate to virtual network A being peered with virtual network C.
-- Peering can be established between virtual networks in two different subscriptions as long a privileged user of both subscriptions authorizes the peering and the subscriptions are associated to the same Active Directory tenant. 
-- A virtual network that uses the Resource Manager deployment model can be peered with another virtual network that uses this model, or with a virtual network that uses the classic deployment model. However, virtual networks that use the classic deployment model can't be peered to each other.
-- Though the communication between virtual machines in peered virtual networks has no additional bandwidth restrictions, bandwidth cap based on VM size still applies.
-
-
-![Basic VNet peering](./media/virtual-networks-peering-overview/figure01.png)
-
-## <a name="connectivity"></a>Connectivity
-After two virtual networks are peered, a virtual machine (web/worker role) in the virtual network can directly connect with other virtual machines in the peered virtual network. These two networks have full IP-level connectivity.
-
-The network latency for a round trip between two virtual machines in peered virtual networks is the same as for a round trip within a local virtual network. The network throughput is based on the bandwidth that's allowed for the virtual machine proportionate to its size. There isn't any additional restriction on bandwidth.
-
-The traffic between the virtual machines in peered virtual networks is routed directly through the Azure back-end infrastructure and not through a gateway.
-
-Virtual machines in a virtual network can access the internal load-balanced (ILB) endpoints in the peered virtual network. Network security groups (NSGs) can be applied in either virtual network to block access to other virtual networks or subnets if desired.
-
-When users configure peering, they can either open or close the NSG rules between the virtual networks. If the user chooses to open full connectivity between peered virtual networks (which is the default option), they can then use NSGs on specific subnets or virtual machines to block or deny specific access.
-
-Azure-provided internal DNS name resolution for virtual machines doesn't work across peered virtual networks. Virtual machines have internal DNS names that are resolvable only within the local virtual network. However, users can configure virtual machines that are running in peered virtual networks as DNS servers for a virtual network.
-
-## <a name="service-chaining"></a>Service chaining
-Users can configure user-defined route tables that point to virtual machines in peered virtual networks as the "next hop" IP address, as shown in the diagram later in this article. This enables users to achieve service chaining, through which they can direct traffic from one virtual network to a virtual appliance that's running in a peered virtual network through user-defined route tables.
-
-Users can also effectively build hub-and-spoke type environments where the hub can host infrastructure components such as a network virtual appliance. All the spoke virtual networks can then peer with it, as well as a subset of traffic to appliances that are running in the hub virtual network. In short, VNet peering enables the next hop IP address on the ‘User defined route table’ to be the IP address of a virtual machine in the peered virtual network.
-
-## <a name="gateways-and-on-premises-connectivity"></a>Gateways and on-premises connectivity
-Each virtual network, regardless of whether it is peered with another virtual network, can still have its own gateway and use it to connect to on-premises. Users can also configure [VNet-to-VNet connections](../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md) by using gateways, even though the virtual networks are peered.
-
-When both options for virtual network interconnectivity are configured, the traffic between the virtual networks flows through the peering configuration (that is, through the Azure backbone).
-
-When virtual networks are peered, users can also configure the gateway in the peered virtual network as a transit point to on-premises. In this case, the virtual network that is using a remote gateway cannot have its own gateway. One virtual network can have only one gateway. It can either be a local gateway or a remote gateway (in the peered virtual network), as shown in the following picture.
-
-Gateway transit is not supported in the peering relationship between virtual networks using the Resource Manager model and those using the classic deployment model. Both virtual networks in the peering relationship need to use the Resource Manager deployment model for a gateway transit to work.
-
-When the virtual networks that are sharing a single Azure ExpressRoute connection are peered, the traffic between them goes through the peering relationship (that is, through the Azure backbone network). Users can still use local gateways in each virtual network to connect to the on-premises circuit. Alternatively, they can use a shared gateway and configure transit for on-premises connectivity.
-
-![VNet peering transit](./media/virtual-networks-peering-overview/figure02.png)
-
-## <a name="provisioning"></a>Provisioning
-VNet peering is a privileged operation. It’s a separate function under the VirtualNetworks namespace. A user can be given specific rights to authorize peering. A user who has read-write access to the virtual network inherits these rights automatically.
-
-A user who is either an admin or a privileged user of the peering ability can initiate a peering operation on another VNet. If there is a matching request for peering on the other side, and if other requirements are met, the peering will be established.
-
-Refer to the articles in the "Next steps" section to learn more about how to establish VNet peering between two virtual networks.
-
-## <a name="limits"></a>Limits
-There are limits on the number of peerings that are allowed for a single virtual network. Refer to [Azure networking limits](../azure-subscription-service-limits.md#networking-limits) for more information.
-
-## <a name="pricing"></a>Pricing
-VNet peering will be free of charge during the review period. After it is released, there will be a nominal charge on ingress and egress traffic that utilizes the peering. For more information, refer to the [pricing page](https://azure.microsoft.com/pricing/details/virtual-network).
+- 已對等互連的兩個虛擬網路應位於相同的 Azure 區域。
+- 已對等互連的虛擬網路應該要有非重疊的 IP 位址空間。
+- VNet 對等互連的目標是兩個虛擬網路，且之間沒有任何衍生的可轉移關聯性。例如，如果虛擬網路 A 與虛擬網路 B 對等互連，同時虛擬網路 B 與虛擬網路 C 對等互連，不代表虛擬網路 A 與虛擬網路 C 對等互連。
+- 只要兩個訂用帳戶之間有一個具有權限的使用者授權對等互連，就可以建立兩個不同訂用帳戶虛擬網路之間的對等互連，而訂用帳戶會與相同的 Azure Active Directory 租用戶產生關聯。
+- 使用 Resource Manager 部署模型的虛擬網路可以與另一個使用此模型的虛擬網路對等互連，或與使用傳統部署模型的虛擬網路對等互連。然而，使用傳統部署模型的虛擬網路無法彼此對等互連。
+- 雖然在已對等互連虛擬網路中虛擬機器之間的通訊沒有其他頻寬限制，但仍然會有基於 VM 大小的頻寬上限。
 
 
-## <a name="next-steps"></a>Next steps
-- [Set up peering between virtual networks](virtual-networks-create-vnetpeering-arm-portal.md).
-- Learn about [NSGs](virtual-networks-nsg.md).
-- Learn about [user-defined routes and IP forwarding](virtual-networks-udr-overview.md).
+![基本 VNet 對等互連](./media/virtual-networks-peering-overview/figure01.png)
+
+## 連線能力
+兩個虛擬網路對等互連後，虛擬網路中的虛擬機器 (Web 角色/背景工作角色) 可以直接與已對等互連虛擬網路中的其他虛擬機器連線。這兩個網路具有完整的 IP 層級連線能力。
+
+在對等互連虛擬網路中，兩部虛擬機器之間的來回網路延遲與在本機虛擬網路中的來回網路延遲相同。網路輸送量為依照虛擬機器大小，按比例允許的頻寬。對於頻寬則沒有其他額外限制。
+
+已對等互連虛擬網路中虛擬機器之間的流量會透過 Azure 後端基礎結構直接路由傳送，而不是透過閘道。
+
+在已對等互連的虛擬網路中，虛擬網路中的虛擬機器可存取內部負載平衡 (ILB) 端點。如有需要，可以將網路安全性群組 (NSG) 套用在任一個虛擬網路，以封鎖其他虛擬網路或子網路的存取權限。
+
+當使用者設定對等互連時，他們可以開啟或關閉虛擬網路之間的 NSG 規則。如果使用者選擇開啟對等互連虛擬網路 (預設選項) 之間完整的連線，則使用者接著可以在特定子網路或虛擬機器上使用 NSG 以封鎖或拒絕特定的存取。
+
+Azure 提供的虛擬機器內部 DNS 名稱解析無法在對等互連虛擬網路中運作。虛擬機器必須具有只在本機虛擬網路內可解析的內部 DNS 名稱。不過，使用者可以將在對等互連虛擬網路中執行的虛擬機器設定為虛擬網路的 DNS 伺服器。
+
+## 服務鏈結
+使用者可以設定使用者定義的路由表，將指向對等互連虛擬網路中的虛擬機器當做「下一個躍點」IP 位址，如本文稍後的圖表所示。這可讓使用者達到服務鏈結，他們可以透過使用者定義路徑資料表將流量從一個虛擬網路導向在對等互連虛擬網路中執行的虛擬應用裝置。
+
+使用者也可以有效地建立中樞和輪輻類型的環境，讓中樞得以裝載網路虛擬應用裝置等基礎結構元件。所有輪輻虛擬網路都能與其對等互連，也能與在中樞虛擬網路中執行之應用裝置的流量子集對等互量。簡單來說，VNet 對等互連可讓在「使用者定義路由表」上的下一個躍點 IP 位址等於對等互連虛擬網路中虛擬機器的位址。
+
+## 閘道及內部部署連線能力
+不論每個虛擬網路是否與其他虛擬網路對等互連，它們仍可以擁有自己的閘道並使用它來連線至內部部署。即使虛擬網路已對等互連，使用者也可以使用閘道來設定 [VNet 對 VNet 連線](../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md)。
+
+當針對虛擬網路內部連線的兩個選項已設定時，虛擬網路之間的流量將會透過對等互連設定流動 (也就是透過 Azure 骨幹)。
+
+當虛擬網路已對等互連時，使用者也可以將對等互連虛擬網路中的閘道設定為內部部署傳輸點。在此情況下，使用遠端閘道的虛擬網路不能擁有專屬閘道。每個虛擬網路只能擁有一個閘道。它可以是本機閘道或遠端閘道 (在已對等互連的虛擬網路中)，如下圖所示。
+
+使用 Resource Manager 模式之虛擬網路與使用傳統部署模型之虛擬網路間的對等互連關聯性不支援閘道傳輸。對等互連關聯性中的這兩個虛擬網路都需要使用 Resource Manager 部署模型，閘道傳輸才能正常運作。
+
+當共用單一 Azure ExpressRoute 連線的虛擬網路已對等互連時，它們之間的流量會經過對等互連關聯性 (也就是透過 Azure 骨幹網路)。使用者依然可以在每個虛擬網路中使用本機閘道來連接內部部署線路。他們也可以使用共用閘道，並設定內部部署連線的傳輸。
+
+![VNet 對等互連傳輸](./media/virtual-networks-peering-overview/figure02.png)
+
+## 佈建
+VNet 對等互連是需要權限的作業。它是 VirtualNetworks 命名空間下的個別功能。使用者可以取得特定權限以授權對等互連。具有虛擬網路讀寫權限的使用者會自動繼承這些權限。
+
+身為系統管理員或具有對等互連功能權限的使用者可以啟動對另一個 VNet 的對等互連作業。如果另一端有對等互連的相符要求而且其他需求也符合，就會建立對等互連。
+
+請參閱「後續步驟」一節中的文章，進一步了解如何建立兩個虛擬網路之間的 VNet 對等互連。
+
+## 限制
+單一虛擬網路允許的對等互連數目有其限制。如需詳細資訊，請參閱 [Azure 網路限制](../azure-subscription-service-limits.md#networking-limits)。
+
+## 價格
+VNet 對等互連在審查期間不需支付費用。發行後，我們會針對使用對等互連的輸入和輸出流量會收取少許費用。如需詳細資訊，請參閱[定價頁面](https://azure.microsoft.com/pricing/details/virtual-network)。
 
 
+## 後續步驟
+- [設定虛擬網路之間的對等互連](virtual-networks-create-vnetpeering-arm-portal.md)。
+- 了解 [NSG](virtual-networks-nsg.md)。
+- 了解[使用者定義的路由和 IP 轉送](virtual-networks-udr-overview.md)。
 
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0928_2016-->

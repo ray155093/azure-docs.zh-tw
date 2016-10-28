@@ -1,39 +1,33 @@
 <properties 
-    pageTitle="Azure Data Factory Developer Reference" 
-    description="Learn about different ways to create, monitor, and manage Azure data factories"
-    services="data-factory" 
-    documentationCenter="" 
-    authors="spelluru" 
-    manager="jhubbard" 
-    editor="monicar"/>
+	pageTitle="Azure Data Factory 開發人員參考" 
+	description="學習各種建立、監視和管理 Azure 資料處理站的方法。"
+	services="data-factory" 
+	documentationCenter="" 
+	authors="spelluru" 
+	manager="jhubbard" 
+	editor="monicar"/>
 
 <tags 
-    ms.service="data-factory" 
-    ms.workload="data-services" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="09/06/2016" 
-    ms.author="spelluru"/>
+	ms.service="data-factory" 
+	ms.workload="data-services" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="09/06/2016" 
+	ms.author="spelluru"/>
 
+# Azure Data Factory 開發人員參考
 
-# <a name="azure-data-factory-developer-reference"></a>Azure Data Factory Developer Reference
+您可以建立、監視和管理使用 Azure 入口網站、Azure PowerShell、.NET 類別庫或 REST API 的處理站。
 
-You can create, monitor, and manage the factories using either Azure portal, Azure PowerShell, .NET Class Library, or REST API.
-
-Method | Resource Location | Developer References
+方法 | 資源位置 | 開發人員參考
 ---------------------------------------------------- | ------------------------------ | -----------
-Azure portal  | [https://portal.azure.com/](https://portal.azure.com) | [Get started with Azure Data Factory (Azure portal)](data-factory-build-your-first-pipeline-using-editor.md)
-Azure PowerShell | Download the latest [Azure PowerShell](http://go.microsoft.com/?linkid=9811175&clcid=0x409) | [Cmdlet reference](https://msdn.microsoft.com/library/dn820234.aspx) 
-.NET Class Library | The Azure Data Factory .NET SDK enables you to create, monitor, and manage Azure data factories and extend Data Factory using a .NET activity. See [Use custom activities in an Azure Data Factory pipeline](data-factory-use-custom-activities.md) and [Create, monitor, and manage Azure data factories using Data Factory .NET SDK](data-factory-create-data-factories-programmatically.md) articles to help you get started.<br/><br/><b>Downloading the latest Nuget</b><br/>You can download the latest Azure Data Factory Management Library Nuget package from: [https://www.nuget.org/packages/Microsoft.Azure.Management.DataFactories/](https://www.nuget.org/packages/Microsoft.Azure.Management.DataFactories/)<br/><br/>**Using Package Manager Console in Visual Studio**<br/>You can run the following command in Visual Studio’s Package Manager Console to get the latest Azure Data Factory Management Library<br/><br/>Install-Package Microsoft.Azure.Management.DataFactories | [.NET SDK Reference](https://msdn.microsoft.com/library/mt415893.aspx)
-REST API | You can use the Data Factory REST API to create, monitor, and manage Azure data factories. | [REST API Reference](https://msdn.microsoft.com/library/dn906738.aspx)
+Azure 入口網站 | [https://portal.azure.com/](https://portal.azure.com) | [開始使用 Azure Data Factory (Azure 入口網站)](data-factory-build-your-first-pipeline-using-editor.md)
+Azure PowerShell | 下載最新 [Azure PowerShell](http://go.microsoft.com/?linkid=9811175&clcid=0x409) | [Cmdlet 參考](https://msdn.microsoft.com/library/dn820234.aspx) 
+.NET 類別庫 | Azure Data Factory .NET SDK 可讓您建立、監視及管理 Azure 的 Data Factory，以及使用 .NET 活動擴充 Data Factory。請參閱[在 Azure Data Factory 管線中使用自訂活動](data-factory-use-custom-activities.md)和[使用 Data Factory .NET SDK 來建立、監視及管理 Azure Data Factory](data-factory-create-data-factories-programmatically.md) 等文章，以協助您開始著手。<br/><br/><b>下載最新的 Nuget</b><br/>您可以下載最新的 Azure Data Factory 管理庫 Nuget 套件，請前往：[https://www.nuget.org/packages/Microsoft.Azure.Management.DataFactories/](https://www.nuget.org/packages/Microsoft.Azure.Management.DataFactories/)<br/><br/>**使用 Visual Studio 的 Package Manager Console**<br/>您可以在 Visual Studio 的 Package Manager Console 中執行下列命令，以取得最新的 Azure Data Factory 管理庫<br/><br/>Install-Package Microsoft.Azure.Management.DataFactories | [.NET SDK 參考](https://msdn.microsoft.com/library/mt415893.aspx)
+REST API | 使用 Data Factory REST API 來建立、監視和管理 Azure Data Factory。 | [REST API 參考](https://msdn.microsoft.com/library/dn906738.aspx)
 
 
  
 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!----HONumber=AcomDC_0907_2016-->

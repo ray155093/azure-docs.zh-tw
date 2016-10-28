@@ -1,12 +1,12 @@
 <properties
-    pageTitle="Use request and response actions | Microsoft Azure"
-    description="Overview of the request and response trigger and action in an Azure logic app"
-    services=""
-    documentationCenter=""
-    authors="jeffhollan"
-    manager="erikre"
-    editor=""
-    tags="connectors"/>
+	pageTitle="使用要求和回應動作 | Microsoft Azure"
+	description="Azure 邏輯應用程式中要求和回應之觸發程序與動作的概觀"
+	services=""
+	documentationCenter=""
+	authors="jeffhollan"
+	manager="erikre"
+	editor=""
+	tags="connectors"/>
 
 <tags
    ms.service="logic-apps"
@@ -17,105 +17,100 @@
    ms.date="07/18/2016"
    ms.author="jehollan"/>
 
+# 開始使用要求和回應元件
 
-# <a name="get-started-with-the-request-and-response-components"></a>Get started with the request and response components
+透過邏輯應用程式中的要求和回應元件，您可以即時回應事件。
 
-With the request and response components in a logic app, you can respond in real time to events.
+例如，您可以：
 
-For example, you can:
+- 透過邏輯應用程式使用內部部署資料庫中的資料回應 HTTP 要求。
+- 從外部 Webhook 事件觸發邏輯應用程式。
+- 從另一個邏輯應用程式內使用要求和回應動作呼叫邏輯應用程式。
 
-- Respond to an HTTP request with data from an on-premises database through a logic app.
-- Trigger a logic app from an external webhook event.
-- Call a logic app with a request and response action from within another logic app.
+若要使用邏輯應用程式中的要求和回應動作來開始作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
-To get started using the request and response actions in a logic app, see [Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md).
+## 使用 HTTP 要求觸發程序
 
-## <a name="use-the-http-request-trigger"></a>Use the HTTP Request trigger
+觸發程序是一個事件，可用來啟動邏輯應用程式中定義的工作流程。[深入了解觸發程序](connectors-overview.md)。
 
-A trigger is an event that can be used to start the workflow that is defined in a logic app. [Learn more about triggers](connectors-overview.md).
+以下是如何在邏輯應用程式設計工具中設定 HTTP 要求的範例順序。
 
-Here’s an example sequence of how to set up an HTTP request in the Logic App Designer.
+1. 將 [要求 - 收到 HTTP 要求時] 觸發程序新增到您的邏輯應用程式。您可以選擇性地提供 JSON 結構描述 (透過使用 [JSONSchema.net](http://jsonschema.net) 之類的工具) 來做為要求本文。這可讓設計工具在 HTTP 要求中產生屬性的權杖。
+2. 新增另一個動作以儲存邏輯應用程式。
+3. 在儲存邏輯應用程式之後，您可以從要求卡片取得 HTTP 要求 URL。
+4. 針對 URL 的 HTTP POST (您可以使用 [Postman](https://www.getpostman.com/) 之類的工具) 會觸發邏輯應用程式。
 
-1. Add the trigger **Request - When an HTTP request is received** in your logic app. You can optionally provide a JSON schema (by using a tool like [JSONSchema.net](http://jsonschema.net)) for the request body. This allows the designer to generate tokens for properties in the HTTP request.
-2. Add another action so that you can save the logic app.
-3. After saving the logic app, you can get the HTTP request URL from the request card.
-4. An HTTP POST (you can use a tool like [Postman](https://www.getpostman.com/)) to the URL triggers the logic app.
+>[AZURE.NOTE] 如果您未定義回應動作，系統會立即將 `202 ACCEPTED` 回應傳回給呼叫者。您可以使用回應動作以自訂回應。
 
->[AZURE.NOTE] If you don't define a response action, a `202 ACCEPTED` response is immediately returned to the caller. You can use the response action to customize a response.
+![回應觸發程序](./media/connectors-native-reqres/using-trigger.png)
 
-![Response trigger](./media/connectors-native-reqres/using-trigger.png)
+## 使用 HTTP 回應動作
 
-## <a name="use-the-http-response-action"></a>Use the HTTP Response action
+HTTP 回應動作只適用於在 HTTP 要求所觸發的工作流程中使用時。如果您未定義回應動作，系統會立即將 `202 ACCEPTED` 回應傳回給呼叫者。您可以在工作流程的任何步驟新增回應動作。邏輯應用程式只會讓連入要求針對回應開放一分鐘。一分鐘後，如果工作流程未傳送任何回應 (且定義中存在回應動作)，則系統會將 `504 GATEWAY TIMEOUT` 傳回給呼叫者。
 
-The HTTP Response action is only valid when you use it in a workflow that is triggered by an HTTP request. If you don't define a response action, a `202 ACCEPTED` response is immediately returned to the caller.  You can add a response action at any step within the workflow. The logic app only keeps the incoming request open for one minute for a response.  After one minute, if no response was sent from the workflow (and a response action exists in the definition), a `504 GATEWAY TIMEOUT` is returned to the caller.
+以下是新增 HTTP 回應動作的方法︰
 
-Here's how to add an HTTP Response action:
+1. 選取 [新增步驟] 按鈕。
+2. 選擇 [新增動作]。
+3. 在動作搜尋方塊中，輸入**回應**以列出回應動作。
 
-1. Select the **New Step** button.
-2. Choose **Add an action**.
-3. In the action search box, type **response** to list the Response action.
+	![選取回應動作](./media/connectors-native-reqres/using-action-1.png)
 
-    ![Select the response action](./media/connectors-native-reqres/using-action-1.png)
+4. 新增 HTTP 回應訊息所需的任何參數。
 
-4. Add in any parameters that are required for the HTTP response message.
+	![完成回應動作](./media/connectors-native-reqres/using-action-2.png)
 
-    ![Complete the response action](./media/connectors-native-reqres/using-action-2.png)
+5. 按一下工具列左上角以便儲存，然後邏輯應用程式便會儲存並發佈 (啟動)。
 
-5. Click the upper-left corner of the toolbar to save, and your logic app will both save and publish (activate).
+## 要求觸發程序
 
-## <a name="request-trigger"></a>Request trigger
+以下是此連接器所支援觸發程序的詳細資料。只有一個要求觸發程序。
 
-Here are the details for the trigger that this connector supports. There is a single request trigger.
-
-|Trigger|Description|
+|觸發程序|說明|
 |---|---|
-|Request|Occurs when an HTTP request is received|
+|要求|收到 HTTP 要求時發生|
 
-## <a name="response-action"></a>Response action
+## 回應動作
 
-Here are the details for the action that this connector supports. There is a single response action that can only be used when it is accompanied by a request trigger.
+以下是此連接器所支援動作的詳細資料。只有一個回應動作，此動作只能在伴隨要求觸發程序時使用。
 
-|Action|Description|
+|動作|說明|
 |---|---|
-|Response|Returns a response to the correlated HTTP request|
+|Response|傳回相互關聯的 HTTP 要求的回應|
 
-### <a name="trigger-and-action-details"></a>Trigger and action details
+### 觸發程序和動作詳細資料
 
-The following tables describe the input fields for the trigger and action, and the corresponding output details.
+下表描述觸發程序和動作的輸入欄位，以及對應的輸出詳細資料。
 
-#### <a name="request-trigger"></a>Request trigger
-The following is an input field for the trigger from an incoming HTTP request.
+#### 要求觸發程序
+以下是傳入 HTTP 要求之觸發程序的輸入欄位。
 
-|Display name|Property name|Description|
+|顯示名稱|屬性名稱|說明|
 |---|---|---|
-|JSON Schema|schema|The JSON schema of the HTTP request body|
+|JSON 結構描述|結構描述|HTTP 要求本文的 JSON 結構描述|
 <br>
 
-**Output details**
+**輸出詳細資料**
 
-The following are output details for the request.
+以下是要求的輸出詳細資料。
 
-|Property name|Data type|Description|
+|屬性名稱|資料類型|說明|
 |---|---|---|
-|Headers|object|Request headers|
-|Body|object|Request object|
+|標頭|物件|要求標頭|
+|內文|物件|要求物件|
 
-#### <a name="response-action"></a>Response action
+#### 回應動作
 
-The following are input fields for the HTTP Response action. A * means that it is a required field.
+以下是 HTTP 回應動作的輸入欄位。標示 * 代表必要欄位。
 
-|Display name|Property name|Description|
+|顯示名稱|屬性名稱|說明|
 |---|---|---|
-|Status Code*|statusCode|The HTTP status code|
-|Headers|headers|A JSON object of any response headers to include|
-|Body|body|The response body|
+|狀態碼 *|StatusCode|HTTP 狀態碼|
+|標頭|headers|要包含的任何回應標頭的 JSON 物件|
+|內文|body|回應本文|
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-Now, try out the platform and [create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md). You can explore the other available connectors in logic apps by looking at our [APIs list](apis-list.md).
+立即試用平台和[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。您可以查看我們的 [API 清單](apis-list.md)，以探索邏輯應用程式中其他可用的連接器。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

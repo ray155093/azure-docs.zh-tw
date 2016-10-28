@@ -1,6 +1,6 @@
 <properties
-pageTitle="Azure Search indexer field mappings bridge the differences between data sources and search indexes"
-description="Configure Azure Search indexer field mappings to account for differences in field names and data representations"
+pageTitle="Azure 搜尋服務索引子欄位對應會橋接資料來源和搜尋索引之間的差異"
+description="設定 Azure 搜尋服務索引子欄位對應交代欄位名稱和資料表示的差異"
 services="search"
 documentationCenter=""
 authors="chaosrealm"
@@ -16,35 +16,34 @@ ms.tgt_pltfrm="na"
 ms.date="04/30/2016"
 ms.author="eugenesh" />
 
+# Azure 搜尋服務索引子欄位對應會橋接資料來源和搜尋索引之間的差異
 
-# <a name="azure-search-indexer-field-mappings-bridge-the-differences-between-data-sources-and-search-indexes"></a>Azure Search indexer field mappings bridge the differences between data sources and search indexes
+使用 Azure 搜尋服務索引子時，您偶爾會發現置身於輸入資料不完全符合目標索引結構描述的情況中。在這些情況下，您可以使用**欄位對應**將您的資料轉換成所需的形狀。
 
-When using Azure Search indexers, you can occasionally find yourself in situations where your input data doesn't quite match the schema of your target index. In those cases, you can use **field mappings** to transform your data into the desired shape. 
-
-Some situations where field mappings are useful:
+欄位對應在某些情況下很有用︰
  
-- Your data source has a field `_id`, but Azure Search doesn't allow field names starting with an underscore. A field mapping allows you to "rename" a field. 
-- You want to populate several fields in the index with the same data source data, for example because you want to apply different analyzers to those fields. Field mappings let you "fork" a data source field.
-- You need to Base64 encode or decode your data. Field mappings support several **mapping functions**, including functions for Base64 encoding and decoding.   
+- 您的資料來源有 `_id` 欄位，但 Azure 搜尋服務不允許以底線開頭的欄位名稱。欄位對應允許您「重新命名」欄位。 
+- 例如，您想要用相同的資料來源資料填入索引中的多個欄位，因為您想要將不同的分析器套用到這些欄位。欄位對應讓您「分岔」資料來源欄位。
+- 您必須以 Base64 格式編碼或解碼資料。欄位對應支援數個**對應函式**，包括 Base64 編碼和解碼的函式。   
 
 
-> [AZURE.IMPORTANT] Currently, field mappings functionality is in preview. It is available only in the REST API using version **2015-02-28-Preview**. Please remember, preview APIs are intended for testing and evaluation, and should not be used in production environments.
+> [AZURE.IMPORTANT] 欄位對應功能目前為預覽狀態。僅適用於使用 **2015-02-28-Preview** 版本的 REST API。請記住，預覽 API 是針對測試與評估，不應該用於生產環境。
 
-## <a name="setting-up-field-mappings"></a>Setting up field mappings
+## 設定欄位對應
 
-You can add field mappings when creating a new indexer using the [Create Indexer](search-api-indexers-2015-02-28-preview.md#create-indexer) API. You can manage field mappings on an indexing indexer using the [Update Indexer](search-api-indexers-2015-02-28-preview.md#update-indexer) API. 
+您可以在建立新的索引子時，使用[建立索引子](search-api-indexers-2015-02-28-preview.md#create-indexer) API 加入欄位對應。您可以使用[更新索引子](search-api-indexers-2015-02-28-preview.md#update-indexer) API 管理編製索引子的欄位對應。
 
-A field mapping consists of 3 parts: 
+欄位對應包含 3 個部分︰
 
-1. A `sourceFieldName`, which represents a field in your data source. This property is required. 
+1. `sourceFieldName`，表示資料來源中的欄位。這是必要屬性。 
 
-2. An optional `targetFieldName`, which represents a field in your search index. If omitted, the same name as in the data source is used. 
+2. 選擇性的 `targetFieldName`，表示搜尋索引中的欄位。如果省略，則會使用資料來源中的相同名稱。
 
-3. An optional `mappingFunction`, which can transform your data using one of several predefined functions. The full list of functions is [below](#mappingFunctions).
+3. 選擇性的 `mappingFunction`，可以使用數個預先定義的函式之一轉換您的資料。函式的完整清單[如下](#mappingFunctions)。
 
-Fields mappings are added to the `fieldMappings` array on the indexer definition. 
+欄位對應會加入索引子定義上的 `fieldMappings` 陣列中。
 
-For example, here's how you can accommodate differences in field names: 
+例如，以下是容納欄位名稱差異的方式︰
 
 ```JSON
 
@@ -58,22 +57,22 @@ api-key: [admin key]
 } 
 ```
 
-An indexer can have multiple field mappings. For example, here's how you can "fork" a field:
+索引子可以有多個欄位對應。例如，以下是「分岔」欄位的方式︰
 
 ```JSON
 
 "fieldMappings" : [ 
-    { "sourceFieldName" : "text", "targetFieldName" : "textStandardEnglishAnalyzer" },
-    { "sourceFieldName" : "text", "targetFieldName" : "textSoundexAnalyzer" }, 
+	{ "sourceFieldName" : "text", "targetFieldName" : "textStandardEnglishAnalyzer" },
+	{ "sourceFieldName" : "text", "targetFieldName" : "textSoundexAnalyzer" }, 
 ] 
 ```
 
-> [AZURE.NOTE] Azure Search uses case-insensitive comparison to resolve the field and function names in field mappings. This is convenient (you don't have to get all the casing right), but it means that your data source or index cannot have fields that differ only by case.  
+> [AZURE.NOTE] Azure 搜尋服務會使用不區分大小寫的比較，來解析欄位對應的欄位和函式名稱。這很方便 (大小寫不需要完全正確)，但這表示資料來源或索引不能有只以大小寫區分的欄位。
 
 <a name="mappingFunctions"></a>
-## <a name="field-mapping-functions"></a>Field mapping functions
+## 欄位對應函式
 
-These functions are currently supported: 
+目前支援的函式如下︰
 
 - [base64Encode](#base64EncodeFunction)
 - [base64Decode](#base64DecodeFunction)
@@ -81,15 +80,15 @@ These functions are currently supported:
 - [jsonArrayToStringCollection](#jsonArrayToStringCollectionFunction)
 
 <a name="base64EncodeFunction"></a>
-### <a name="base64encode"></a>base64Encode 
+### base64Encode 
 
-Performs *URL-safe* Base64 encoding of the input string. Assumes that the input is UTF-8 encoded. 
+執行輸入字串的安全 URL Base64 編碼。假設輸入以 UTF-8 編碼。
 
-#### <a name="sample-use-case"></a>Sample use case 
+#### 範例使用案例 
 
-Only URL-safe characters can appear in an Azure Search document key (because customers must be able to address the document using the Lookup API, for example). If your data contains URL-unsafe characters and you want to use it to populate a key field in your search index, use this function.   
+Azure 搜尋服務文件索引鍵只顯示安全的 URL 字元 (因為，例如，客戶必須能夠使用查閱 API 處理文件)。如果資料包含不安全的 URL 字元，而且您想要使用它填入搜尋索引中的索引鍵欄位，請使用這個函式。
 
-#### <a name="example"></a>Example 
+#### 範例 
 
 ```JSON
 
@@ -102,15 +101,15 @@ Only URL-safe characters can appear in an Azure Search document key (because cus
 ```
 
 <a name="base64DecodeFunction"></a>
-### <a name="base64decode"></a>base64Decode
+### base64Decode
 
-Performs Base64 decoding of the input string. The input is assumed to a *URL-safe* Base64-encoded string. 
+執行輸入字串的 Base64 解碼。輸入假定為安全的 URL Base64 編碼字串。
 
-#### <a name="sample-use-case"></a>Sample use case 
+#### 範例使用案例 
 
-Blob custom metadata values must be ASCII-encoded. You can use Base64 encoding to represent arbitrary Unicode strings in blob custom metadata. However, to make search meaningful, you can use this function to turn the encoded data back into "regular" strings when populating your search index.  
+Blob 的自訂中繼資料值必須以 ASCII 編碼。您可以使用 Base64 編碼表現 Blob 自訂中繼資料中任意的 Unicode 字串。不過，若要進行有意義的搜尋，您可以在填入搜尋索引時，使用這個函式將編碼的資料變回「一般」字串。
 
-#### <a name="example"></a>Example 
+#### 範例 
 
 ```JSON
 
@@ -123,22 +122,22 @@ Blob custom metadata values must be ASCII-encoded. You can use Base64 encoding t
 ```
 
 <a name="extractTokenAtPositionFunction"></a>
-### <a name="extracttokenatposition"></a>extractTokenAtPosition
+### extractTokenAtPosition
 
-Splits a string field using the specified delimiter, and picks the token at the specified position in the resulting split.
+使用指定的分隔符號分割字串欄位，並在分割結果的指定位置挑選權杖。
 
-For example, if the input is `Jane Doe`, the `delimiter` is `" "`(space) and the `position` is 0, the result is `Jane`; if the `position` is 1, the result is `Doe`. If the position refers to a token that doesn't exist, an error will be returned.
+例如，如果輸入是 `Jane Doe`，而 `delimiter` 是 `" "` (空格) 且 `position` 為 0，則結果是 `Jane`；如果 `position` 為 1，則結果是 `Doe`。如果位置參考不存在的權杖，則會傳回錯誤。
 
-#### <a name="sample-use-case"></a>Sample use case 
+#### 範例使用案例 
 
-Your data source contains a `PersonName` field, and you want to index it as two separate `FirstName` and `LastName` fields. You can use this function to split the input using the space character as the delimiter.
+資料來源包含 `PersonName` 欄位，而您想要將它編製為 `FirstName` 和 `LastName` 兩個不同欄位的索引。您可以使用這個函式來分割以空格字元作為分隔符號的輸入。
 
-#### <a name="parameters"></a>Parameters
+#### 參數
 
-- `delimiter`: a string to use as the separator when splitting the input string.
-- `position`: an integer zero-based position of the token to pick after the input string is split.    
+- `delimiter`︰分割輸入字串時，用為分隔符號的字串。
+- `position`：分割輸入字串後，要挑選的權杖以零為基底位置的整數。    
 
-#### <a name="example"></a>Example
+#### 範例
 
 ```JSON 
 
@@ -156,17 +155,17 @@ Your data source contains a `PersonName` field, and you want to index it as two 
 ```
 
 <a name="jsonArrayToStringCollectionFunction"></a>
-### <a name="jsonarraytostringcollection"></a>jsonArrayToStringCollection
+### jsonArrayToStringCollection
 
-Transforms a string formatted as a JSON array of strings into a string array that can be used to populate a `Collection(Edm.String)` field in the index. 
+將格式化為字串 JSON 陣列的字串，轉換為可用來填入索引中 `Collection(Edm.String)` 欄位的字串陣列。
 
-For example, if the input string is `["red", "white", "blue"]`, then the target field of type `Collection(Edm.String)` will be populated with the three values `red`, `white` and `blue`. For input values that cannot be parsed as JSON string arrays, an error will be returned. 
+例如，若輸入字串是 `["red", "white", "blue"]`，則 `Collection(Edm.String)` 類型的目標欄位會填入下列三個值：`red`、`white` 與 `blue`。若為無法剖析為 JSON 字串陣列的輸入值，會傳回錯誤。
 
-#### <a name="sample-use-case"></a>Sample use case
+#### 範例使用案例
 
-Azure SQL database doesn't have a built-in data type that naturally maps to `Collection(Edm.String)` fields in Azure Search. To populate string collection fields, format your source data as a JSON string array and use this function. 
+Azure SQL 資料庫沒有內建資料類型，不能自然對應至 Azure 搜尋服務的 `Collection(Edm.String)` 欄位。若要填入字串集合欄位，請將來源資料格式化為 JSON 字串陣列，並使用這個函式。
 
-#### <a name="example"></a>Example 
+#### 範例 
 
 ```JSON
 
@@ -175,11 +174,8 @@ Azure SQL database doesn't have a built-in data type that naturally maps to `Col
 ] 
 ```
 
-## <a name="help-us-make-azure-search-better"></a>Help us make Azure Search better
+## 協助我們改進 Azure 搜尋服務
 
-If you have feature requests or ideas for improvements, please reach out to us on our [UserVoice site](https://feedback.azure.com/forums/263029-azure-search/).
+如果您有功能要求或改進的想法，請在我們的 [UserVoice 網站](https://feedback.azure.com/forums/263029-azure-search/)與我們連絡。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0504_2016-->

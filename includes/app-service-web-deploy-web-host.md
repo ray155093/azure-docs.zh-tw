@@ -1,6 +1,6 @@
-### <a name="app-service-plan"></a>App Service plan
+### App Service 方案
 
-Creates the service plan for hosting the web app. You provide the name of the plan through the **hostingPlanName** parameter. The location of the plan is the same location used for the resource group. The pricing tier and worker size are specified in the **sku** and **workerSize** parameters
+建立主控 Web 應用程式的服務方案。您可以透過 **hostingPlanName** 參數提供方案名稱。方案的位置與用於資源群組的位置相同。定價層和背景工作大小指定於 **sku** 和 **workerSize** 參數
 
     {
       "apiVersion": "2015-08-01",
@@ -15,9 +15,4 @@ Creates the service plan for hosting the web app. You provide the name of the pl
         "name": "[parameters('hostingPlanName')]"
       }
     },
-
-
-
-<!--HONumber=Oct16_HO2-->
-
 

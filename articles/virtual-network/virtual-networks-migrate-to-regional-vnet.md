@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="How to migrate from Affinity Groups to a Regional Virtual Network (VNet)"
-   description="Learn how to migrate from affinity groups to regional vnets"
+   pageTitle="如何從同質群組移轉至區域虛擬網路 (VNet)"
+   description="了解如何從同質群組移轉至區域 VNet"
    services="virtual-network"
    documentationCenter="na"
    authors="jimdial"
@@ -15,60 +15,55 @@
    ms.date="03/15/2016"
    ms.author="jdial" />
 
+# 如何從同質群組移轉至區域虛擬網路 (VNet)
 
-# <a name="how-to-migrate-from-affinity-groups-to-a-regional-virtual-network-(vnet)"></a>How to migrate from Affinity Groups to a Regional Virtual Network (VNet)
+您可以使用同質群組，以確保在相同同質群組內建立的資源由伺服器所實際主控，這些伺服器彼此鄰近，可讓這些資源進行更快速的通訊。在過去，建立虛擬網路 (VNet) 需要同質群組。當時，管理 VNet 的網路管理員服務僅能在一組實體伺服器或縮放單位內工作。架構改進則增加區域的網路管理範圍。
 
-You can use an affinity group to ensure that resources created within the same affinity group are physically hosted by servers that are close together, enabling these resources to communicate quicker. In the past, affinity groups were a requirement for creating virtual networks (VNets). At that time, the network manager service that managed VNets could only work within a set of physical servers or scale unit. Architectural improvements have increased the scope of network management to a region.
+因為這些架構的改進，造成同質群組不再建議使用，或虛擬網路不再需要。針對 VNet 使用的同質群組現在已取代為區域。與區域相關聯的 VNet 稱為區域 VNet。
 
-As a result of these architectural improvements, affinity groups are no longer recommended, or required for virtual networks. The use of affinity groups for VNets is being replaced by regions. VNets that are associated with regions are called regional VNets.
+此外，我們建議您在一般情況下不要使用同質群組。除了 VNet 的需求，過去也必須使用同質群組來確保資源，例如放置在彼此鄰近位置的計算和儲存體。不過，使用目前的 Azure 網路架構時，這些放置需求不再必要。請參閱＜[同質群組和 VM](#Affinity-groups-and-VMs)＞以查看您可能要使用同質群組的少數剩餘特定情況。
 
-Additionally, we recommend that you don't use affinity groups in general. Aside from the VNet requirement, affinity groups were also important to use to ensure resources, such as compute and storage, were placed near each other. However, with the current Azure network architecture, these placement requirements are no longer necessary. See [Affinity groups and VMs](#Affinity-groups-and-VMs) for the few remaining specific cases where you may want to use an affinity group.
+## 建立和移轉至區域 VNet
 
-## <a name="creating-and-migrating-to-regional-vnets"></a>Creating and migrating to regional VNets
+從現在開始，建立新的 VNet 時，將使用*區域*。您會在管理入口網站中看到這個選項。請注意，在網路組態檔中，這會顯示為*位置*。
 
-Going forward, when creating new VNets, use *Region*. You'll see this as an option in the Management Portal. Note that in the network configuration file, this shows as *Location*.
+>[AZURE.IMPORTANT] 雖然技術上來說仍然可以建立與同質群組相關聯的虛擬網路，但是這樣做沒有令人信服的理由。許多新功能，例如網路安全性群組在使用區域 VNet 時才能使用，且不適用於與同質群組相關聯的虛擬網路。
 
->[AZURE.IMPORTANT] Although it is still technically possible to create a virtual network that is associated with an affinity group, there is no compelling reason to do so. Many new features, such as Network Security Groups, are only available when using a regional VNet and are not available for virtual networks that are associated with affinity groups.
+### 關於目前與同質群組相關聯的 VNet
 
-### <a name="about-vnets-currently-associated-with-affinity-groups"></a>About VNets currently associated with affinity groups
+目前與同質群組相關聯的 VNet 可移轉至區域 VNet。若要移轉至區域 VNet，請遵循下列步驟：
 
-VNets that are currently associated with affinity groups are enabled for migration to regional VNets. To migrate to a regional VNet, follow these steps:
+1. 匯出網路組態檔。您可以使用 PowerShell 或管理入口網站。如需使用管理入口網站的指示，請參閱＜[使用網路組態檔設定 VNet](virtual-networks-using-network-configuration-file.md)＞。
 
-1. Export the network configuration file. You can use PowerShell or the Management Portal. For instructions using the Management Portal, see [Configure your VNet using a Network Configuration File](virtual-networks-using-network-configuration-file.md).
+1. 編輯網路組態檔，並以新值取代舊值。
 
-1. Edit your network configuration file, replacing the old values with the new values. 
+	> [AZURE.NOTE]  **位置**是您所指定與 VNet 相關聯的同質群組區域。例如，如果 VNet 與位於美國西部的同質群組相關聯，則當您移轉時，您的位置必須指向美國西部。
+	
+	在網路組態檔中編輯下列幾行，並取代為您需要的值：
 
-    > [AZURE.NOTE] The **Location** is the region that you specified for the affinity group that is associated with your VNet. For example, if your VNet is associated with an affinity group that is located in West US, when you migrate, your Location must point to West US. 
-    
-    Edit the following lines in your network configuration file, replacing the values with your own: 
+	**舊值：**\<VirtualNetworkSitename="VNetUSWest" AffinityGroup="VNetDemoAG"\>
 
-    **Old value:** \<VirtualNetworkSitename="VNetUSWest" AffinityGroup="VNetDemoAG"\> 
+	**新值：**\<VirtualNetworkSitename="VNetUSWest" Location="West US"\>
 
-    **New value:** \<VirtualNetworkSitename="VNetUSWest" Location="West US"\>
+1. 儲存您的變更並網路組態[匯入](virtual-networks-using-network-configuration-file.md)至 Azure。
 
-1. Save your changes and [import](virtual-networks-using-network-configuration-file.md) the network configuration to Azure.
+>[AZURE.NOTE] 這項移轉不會對您的服務造成任何停機時間。
 
->[AZURE.NOTE] This migration does NOT cause any downtime to your services.
+## 同質群組和 VM
 
-## <a name="affinity-groups-and-vms"></a>Affinity groups and VMs
+如先前所述，同質群組通常不再建議針對 VM 來使用。您應該僅在一組 VM 與 VM 之間必須具有絕對最低的網路延遲時使用同質群組。將 VM 放置在同質群組中，則 VM 會全部放置於相同的計算叢集或縮放單位中。
 
-As mentioned previously, affinity groups are no longer generally recommended for VMs. You should use an affinity group only when a set of VMs must have the absolute lowest network latency between the VMs. By placing VMs in an affinity group, the VMs will all be placed in the same compute cluster or scale unit.
+請務必注意使用同質群組可能會有兩個負面的結果：
 
-It's important to note that using an affinity group can have two, possibly negative, consequences:
+- VM 大小的集合會受限於計算縮放單位所提供 VM 大小的集合。
 
-- The set of VM sizes will be limited to the set of VM sizes offered by the compute scale unit.
+- 會有更高的可能性無法配置新的 VM。當同質群組的特定縮放單位超出容量時會發生這種情況。
 
-- There is a higher probability of not being able to allocate a new VM. This happens when the specific scale unit for the affinity group is out of capacity.
+### 如果您在同質群組中擁有 VM 時該怎麼辦
 
-### <a name="what-to-do-if-you-have-a-vm-in-an-affinity-group"></a>What to do if you have a VM in an affinity group
+目前在同質群組中的 VM 不需要從同質群組中移除。
 
-VMs that are currently in an affinity group do not need to be removed from the affinity group.
-
-Once a VM is deployed, it is deployed to a single scale unit. Affinity groups can restrict the set of available VM sizes for a new VM deployment, but any existing VM that is deployed is already restricted to the set of VM sizes available in the scale unit in which the VM is deployed. Because of this, removing a VM from the affinity group will have no effect.
+一旦部署 VM，其會部署至單一的縮放單位。同質群組可針對新的 VM 部署限制可用的 VM 大小集合，但任何已部署的現有 VM 部署，已在 VM 所部署的位置限制縮放單位中可用的 VM 大小集合。因此，從同質群組中移除 VM 不會產生任何效果。
  
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

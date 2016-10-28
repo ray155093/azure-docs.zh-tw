@@ -1,13 +1,13 @@
 <properties
-   pageTitle="Install the DC/OS CLI | Microsoft Azure"
-   description="Install the DC/OS CLI."
+   pageTitle="安裝 DC/OS CLI | Microsoft Azure"
+   description="安裝 DC/OS CLI。"
    services="container-service"
    documentationCenter=""
    authors="rgardler"
    manager="timlt"
    editor=""
    tags="acs, azure-container-service"
-   keywords="Containers, Micro-services, DC/OS, Azure"/>
+   keywords="容器, 微服務, DC/OS, Azure"/>
 
 <tags
    ms.service="container-service"
@@ -18,10 +18,9 @@
    ms.date="05/10/2016"
    ms.author="rogardle"/>
 
+>[AZURE.NOTE] 這適用於使用 DC/OS 型 ACS 叢集時。若是 Swarm 型 ACS 叢集，就不需要執行此工作。
 
->[AZURE.NOTE] This is for working with DC/OS-based ACS clusters. There is no need to do this for Swarm-based ACS clusters.
-
-First, [connect to your DC/OS-based ACS cluster](../articles/container-service/container-service-connect.md). Once you have done this, you can install the DC/OS CLI on your client machine with the commands below:
+首先，[連線到 DC/OS 型 ACS 叢集](../articles/container-service/container-service-connect.md)。完成後，就可以使用下列命令在用戶端電腦上安裝 DC/OS CLI：
 
 ```bash
 sudo pip install virtualenv
@@ -31,23 +30,18 @@ chmod +x install-optout-dcos-cli.sh
 ./install-optout-dcos-cli.sh . http://localhost --add-path yes
 ```
 
-If you are using an old version of Python, you may notice some "InsecurePlatformWarnings". You can safely ignore these.
+如果您使用舊版 Python，您可能會注意到一些 "InsecurePlatformWarnings"。您可以放心地忽略這些警告。
 
-In order to get started without restarting your shell, run:
+若要直接開始進行而不重新啟動殼層，請執行︰
 
 ```bash
 source ~/.bashrc
 ```
 
-This step will not be necessary when you start new shells.
+當您啟動新殼層時，就不需要此步驟。
 
-Now you can confirm that the CLI is installed:
+現在，您可以確認 CLI 是否已安裝：
 
 ```bash
 dcos --help
 ```
-
-
-<!--HONumber=Oct16_HO2-->
-
-

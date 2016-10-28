@@ -1,6 +1,6 @@
 <properties
-   pageTitle="How to manage reverse DNS records for your services using Azure CLI in Resource Manager | Microsoft Azure"
-   description="How to manage reverse DNS records or PTR records for Azure services using the Azure CLI in Resource Manager"
+   pageTitle="如何在資源管理員中使用 Azure CLI 管理服務的反向 DNS 記錄 | Microsoft Azure"
+   description="如何在資源管理員中使用 Azure CLI 管理 Azure 服務的反向 DNS 記錄或 PTR 記錄"
    services="DNS"
    documentationCenter="na"
    authors="s-malone"
@@ -17,52 +17,47 @@
    ms.date="09/05/2016"
    ms.author="smalone" />
 
-
-# <a name="how-to-manage-reverse-dns-records-for-your-services-using-the-azure-cli"></a>How to manage reverse DNS records for your services using the Azure CLI
+# 如何使用 Azure CLI 管理服務的反向 DNS 記錄
 
 [AZURE.INCLUDE [DNS-reverse-dns-record-operations-arm-selectors-include.md](../../includes/dns-reverse-dns-record-operations-arm-selectors-include.md)]
 <BR>
 [AZURE.INCLUDE [DNS-reverse-dns-record-operations-intro-include.md](../../includes/dns-reverse-dns-record-operations-intro-include.md)]
 <BR>
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-rm-include.md)] [classic deployment model](dns-reverse-dns-record-operations-classic-ps.md).
+[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-rm-include.md)] [classic deployment model](dns-reverse-dns-record-operations-classic-ps.md)。
 
-## <a name="validation-of-reverse-dns-records"></a>Validation of reverse DNS records
-To ensure a third party can’t create reverse DNS records mapping to your DNS domains, Azure only allows the creation of a reverse DNS record where one of the following is true:
+## 反向 DNS 記錄的驗證
+為了確保其他人無法建立對應至您 DNS 網域的反向 DNS 記錄，Azure 僅會在下列其中一種情況成立時允許建立反向 DNS 記錄：
 
-- The “ReverseFqdn” is the same as the “Fqdn” for the Public IP Address resource for which it has been specified, or the “Fqdn” for any Public IP Address within the same subscription e.g., “ReverseFqdn” is “contosoapp1.northus.cloudapp.azure.com.”.
+- "ReverseFqdn" 與其所指定之公用 IP 位址資源的 "Fqdn" 相同，或是相同訂用帳戶內任何公用 IP 位址的 "Fqdn"，例如，"ReverseFqdn" 為 "contosoapp1.northus.cloudapp.azure.com."。
 
-- The “ReverseFqdn” forward resolves to the name or IP of the Public IP Address for which it has been specified, or to any Public IP Address “Fqdn” or IP within the same subscription e.g., “ReverseFqdn” is “app1.contoso.com.” which is a CName alias for “contosoapp1.northus.cloudapp.azure.com.”
+- "ReverseFqdn" 正向解析為其所指定之公用 IP 位址的名稱或 IP，或是相同訂用帳戶內任何公用 IP 位址的 "Fqdn" 或 IP，例如，"ReverseFqdn" 為 "app1.contoso.com."，這是 "contosoapp1.northus.cloudapp.azure.com." 的 CName 別名。
 
-Validation checks are only performed when the reverse DNS property for a Public IP Address is set or modified. Periodic re-validation is not performed.
+驗證檢查只會在設定或修改公用 IP 位址的反向 DNS 屬性時才會執行。不會執行定期的重新驗證。
 
-## <a name="add-reverse-dns-to-existing-public-ip-addresses"></a>Add reverse DNS to existing Public IP addresses
-You can add reverse DNS to an existing Public IP address using the azure network public-ip set:
+## 將反向 DNS 新增至現有的公用 IP 位址
+您可以使用 azure network public-ip set，將反向 DNS 新增至現有的公用 IP 位址：
 
-    azure network public-ip set -n PublicIp -g NRP-DemoRG-PS -f contosoapp1.westus.cloudapp.azure.com.
+	azure network public-ip set -n PublicIp -g NRP-DemoRG-PS -f contosoapp1.westus.cloudapp.azure.com.
 
-If you wish to add reverse DNS to an existing Public IP Address that doesn't already have a DNS name, you must also specify a DNS name. You can add achieve this using the azure network public-ip set:
+如果您想要將反向 DNS 新增至尚未有 DNS 名稱的現有公用 IP 位址，您也必須指定 DNS 名稱。您可以使用 azure network public-ip set 來達到此目的：
 
-    azure network public-ip set -n PublicIp -g NRP-DemoRG-PS -d contosoapp1 -f contosoapp1.westus.cloudapp.azure.com.
+	azure network public-ip set -n PublicIp -g NRP-DemoRG-PS -d contosoapp1 -f contosoapp1.westus.cloudapp.azure.com.
 
-## <a name="create-a-public-ip-address-with-reverse-dns"></a>Create a Public IP Address with reverse DNS
-You can add a new Public IP Address with the reverse DNS property specified using the azure network public-ip create:
+## 建立具有反向 DNS 的公用 IP 位址
+您可以透過使用 azure network public-ip create 指定的反向 DNS 屬性，建立新的公用 IP 位址：
 
-    azure network public-ip create -n PublicIp3 -g NRP-DemoRG-PS -l westus -d contosoapp3 -f contosoapp3.westus.cloudapp.azure.com.
+	azure network public-ip create -n PublicIp3 -g NRP-DemoRG-PS -l westus -d contosoapp3 -f contosoapp3.westus.cloudapp.azure.com.
 
-## <a name="view-reverse-dns-for-existing-public-ip-addresses"></a>View reverse DNS for existing Public IP Addresses
-You can view the configured value for an existing Public IP Address using the azure network public-ip show:
+## 檢視現有公用 IP 位址的反向 DNS
+您可以使用 azure network public-ip show，檢視現有公用 IP 位址的設定值：
 
-    azure network public-ip show -n PublicIp3 -g NRP-DemoRG-PS
+	azure network public-ip show -n PublicIp3 -g NRP-DemoRG-PS
 
-## <a name="remove-reverse-dns-from-existing-public-ip-addresses"></a>Remove reverse DNS from existing Public IP Addresses
-You can remove a reverse DNS property from an existing Public IP Address using azure network public-ip set. This is done by setting the ReverseFqdn property value to blank:
+## 移除現有公用 IP 位址的反向 DNS
+您可以使用 azure network public-ip set，移除現有公用 IP 位址的反向 DNS 屬性。這可以透過將 ReverseFqdn 屬性值設定為空白來完成：
 
-    azure network public-ip set -n PublicIp3 -g NRP-DemoRG-PS –f “”
+	azure network public-ip set -n PublicIp3 -g NRP-DemoRG-PS –f “”
 
-[AZURE.INCLUDE [FAQ](../../includes/dns-reverse-dns-record-operations-faq-arm-include.md)]
+[AZURE.INCLUDE [常見問題集](../../includes/dns-reverse-dns-record-operations-faq-arm-include.md)]
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!----HONumber=AcomDC_0907_2016-->

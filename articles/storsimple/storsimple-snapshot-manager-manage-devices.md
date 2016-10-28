@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="Manage devices with StorSimple Snapshot Manager | Microsoft Azure"
-   description="Describes how to use the StorSimple Snapshot Manager MMC snap-in to connect and manage StorSimple devices."
+   pageTitle="使用 StorSimple Snapshot Manager 來管理裝置 | Microsoft Azure"
+   description="描述如何使用 StorSimple Snapshot Manager MMC 嵌入式管理單元，來連接和管理 StorSimple 裝置。"
    services="storsimple"
    documentationCenter=""
    authors="SharS"
@@ -15,258 +15,252 @@
    ms.date="04/18/2016"
    ms.author="v-sharos" />
 
+# 使用 StorSimple Snapshot Manager 來連接和管理 StorSimple 裝置
 
-# <a name="use-storsimple-snapshot-manager-to-connect-and-manage-storsimple-devices"></a>Use StorSimple Snapshot Manager to connect and manage StorSimple devices
+## 概觀
 
-## <a name="overview"></a>Overview
+您可以使用 StorSimple Snapshot Manager [**範圍**] 窗格中的節點，來確認已匯入的 StorSimple 裝置資料，並重新整理已連接的儲存體裝置。此外，當您按一下 [**裝置**] 節點時，也可以在 [**結果**] 窗格中看到已連接的裝置清單和對應的狀態資訊。
 
-You can use nodes in the StorSimple Snapshot Manager **Scope** pane to verify imported StorSimple device data and refresh connected storage devices. Additionally, when you click the **Devices** node, you can see a list of connected devices and corresponding status information in the **Results** pane.
+![連接的裝置](./media/storsimple-snapshot-manager-manage-devices/HCS_SSM_connect_devices.png)
 
-![Connected devices](./media/storsimple-snapshot-manager-manage-devices/HCS_SSM_connect_devices.png)
+**圖 1：StorSimple Snapshot Manager 連接的裝置**
 
-**Figure 1: StorSimple Snapshot Manager connected device** 
-
-Depending on your **View** selections, the **Results** pane shows the following information about each device. (For more information about configuring a view, go to [View menu](storsimple-use-snapshot-manager.md#view-menu).
+視您的 [**檢視**] 選項而定，[**結果**] 窗格會顯示每個裝置的下列相關資訊。(如需設定檢視的詳細資訊，請移至[檢視功能表](storsimple-use-snapshot-manager.md#view-menu)。
 
 
-| Results column  |Description          |
+| 結果資料行 |說明 |
 |:----------------|:--------------------| 
-| Name            | The name of the device as configured in the Azure classic portal|
-| Model           | The model number of the device|
-| Version         | The version of the software installed on the device |
-| Status          | Whether the device is available |
-| Last Synced     | Date and time when the device was last synchronized |
-| Serial No.      | The serial number for the device |
+| 名稱 | Azure 傳統入口網站中設定的裝置名稱|
+| 模型 | 裝置的型號|
+| 版本 | 裝置上安裝的軟體版本 |
+| Status | 裝置是否可用 |
+| 上次同步處理 | 上次同步處理裝置的日期和時間時 |
+| 序號 | 裝置的序號 |
  
-If you right-click the **Devices** node in the **Scope** pane, you can select from the following actions:
+如果您以滑鼠右鍵按一下 [**範圍**] 窗格中的 [**裝置**] 節點，則可以選取下列動作：
 
-- Add or replace a device 
-- Connect a device and verify imports 
-- Refresh connected devices 
+- 新增或更換裝置 
+- 連接裝置並確認匯入 
+- 重新整理已連接的裝置 
 
-If you click the **Devices** node and then right-click a device name in the **Results** pane, you can select from the following actions:
+如果您按一下 [**裝置**] 節點，然後再以滑鼠右鍵按一下 [**結果**] 窗格中的裝置名稱，則可以選取下列動作：
 
-- Authenticate a device 
-- View device details 
-- Refresh a device 
-- Delete a device configuration 
-- Change a device password
+- 驗證裝置 
+- 檢視裝置詳細資料 
+- 重新整理裝置 
+- 刪除裝置組態 
+- 變更裝置密碼
 
->[AZURE.NOTE] All of these actions are also available in the **Actions** pane.
+>[AZURE.NOTE] 所有這些動作也可在 [**動作**] 窗格中取得。
  
-This tutorial explains how to use StorSimple Snapshot Manager to connect and manage devices and perform the following tasks:
+本教學課程說明如何使用 StorSimple Snapshot Manager，來連接和管理裝置，並執行下列工作：
 
-- Add or replace a device 
-- Connect a device and verify imports 
-- Refresh connected devices 
-- Authenticate a device 
-- View device details 
-- Refresh an individual device 
-- Delete a device configuration 
-- Change an expired device password
-- Replace a failed device
+- 新增或更換裝置 
+- 連接裝置並確認匯入 
+- 重新整理已連接的裝置 
+- 驗證裝置 
+- 檢視裝置詳細資料 
+- 重新整理個別裝置 
+- 刪除裝置組態 
+- 變更過期的裝置密碼
+- 更換故障的裝置
 
->[AZURE.NOTE] For general information about using the StorSimple Snapshot Manager interface, go to [StorSimple Snapshot Manager user interface](storsimple-use-snapshot-manager.md).
+>[AZURE.NOTE] 如需使用 StorSimple Snapshot Manager 介面的一般資訊，請至 [StorSimple Snapshot Manager 使用者介面](storsimple-use-snapshot-manager.md)。
 
 
-## <a name="add-or-replace-a-device"></a>Add or replace a device
+## 新增或更換裝置
 
-Use the following procedure to add or replace a StorSimple device.
+請使用下列程序來新增或更換 StorSimple 裝置。
 
-#### <a name="to-add-or-replace-a-device"></a>To add or replace a device
+#### 若要新增或更換裝置
 
-1. Click the desktop icon to start StorSimple Snapshot Manager.
+1. 按一下桌面圖示，以啟動 StorSimple Snapshot Manager。
 
-2. In the **Scope** pane, right-click the **Devices** node, and then click **Configure a device**. The **Configure a Device** dialog box appears.
+2. 在 [**範圍**] 窗格中，以滑鼠右鍵按一下 [**裝置**] 節點，然後按一下 [**設定裝置**]。[**設定裝置**] 對話方塊隨即出現。
 
-    ![Configure a StorSimple device](./media/storsimple-snapshot-manager-manage-devices/HCS_SSM_config_device.png) 
+    ![設定 StorSimple 裝置](./media/storsimple-snapshot-manager-manage-devices/HCS_SSM_config_device.png)
 
-3. In the **Device** drop-down box, select the IP address of the device or virtual device. 
+3. 在 [**裝置**] 下拉式清單方塊中，選取裝置或虛擬裝置的 IP 位址。
 
-4. In the **Password** text box, type the StorSimple Snapshot Manager password that you created for the device in the Azure classic portal. Click **OK**. StorSimple Snapshot Manager searches for the device that you identified. 
+4. 在 [密碼] 文字方塊中，輸入您在 Azure 傳統入口網站中為裝置建立的 StorSimple Snapshot Manager 密碼。按一下 [確定]。StorSimple Snapshot Manager 會搜尋您所識別的裝置。
 
-    - If the device is available, StorSimple Snapshot Manager adds a connection. 
+    - 如果裝置可用，StorSimple Snapshot Manager 會新增連接。 
 
-    - If the device is unavailable for any reason, StorSimple Snapshot Manager returns an error message. Click **OK** to close the error message, and then click **Cancel** to close the **Configure a Device** dialog box.
+    - 如果由於任何原因而無法使用裝置，StorSimple Snapshot Manager 會傳回錯誤訊息。按一下 [**確定**] 以關閉錯誤訊息，然後按一下 [**取消**] 以關閉 [**設定裝置**] 對話方塊。
 
-## <a name="connect-a-device-and-verify-imports"></a>Connect a device and verify imports
+## 連接裝置並確認匯入
 
-Use the following procedure to connect a StorSimple device and verify that any existing volume groups that have associated backups are imported.
+請使用下列程序來連接 StorSimple 裝置，並確認任何已匯入的現有磁碟區群組具有相關聯的備份，。
 
-#### <a name="to-connect-a-device-and-verify-imports"></a>To connect a device and verify imports
+#### 若要連接裝置並確認匯入
 
-1. To connect a device to StorSimple Snapshot Manager, follow the instructions in Add or replace a device. When it connects to a device, StorSimple Snapshot Manager responds as follows:
+1. 若要將裝置連接至 StorSimple Snapshot Manager，請遵循新增或更換裝置中的指示。當它連接至裝置時，StorSimple Snapshot Manager 的回應如下：
 
-    - If the device is unavailable for any reason, StorSimple Snapshot Manager returns an error message. 
+    - 如果由於任何原因而無法使用裝置，StorSimple Snapshot Manager 會傳回錯誤訊息。 
 
-   - If the device is available, StorSimple Snapshot Manager adds a connection. When you select the device, it appears in the **Results** pane, and the status field indicates that the device is **Available**. StorSimple Snapshot Manager imports any volume groups configured for the device, provided that the volume groups have associated backups. Backup policies are not imported. Volume groups that do not have associated backups are not imported.
+   - 如果裝置可用，StorSimple Snapshot Manager 會新增連接。當您選取裝置時，它會出現在 [**結果**] 窗格中，而且狀態欄位會指出該裝置 [**可用**]。StorSimple Snapshot Manager 會匯入任何針對裝置設定的磁碟區群組，前提是磁碟區群組具有相關聯的備份。不會匯入備份原則。不會匯入沒有相關聯之備份的磁碟區群組。
 
-2. Click the desktop icon to start StorSimple Snapshot Manager.
+2. 按一下桌面圖示，以啟動 StorSimple Snapshot Manager。
 
-3. Right-click the top node in the **Scope** pane, and then click **Toggle Imports Display**.
+3. 以滑鼠右鍵按一下 [**範圍**] 窗格中的最上層節點，然後按一下 [**切換匯入顯示**]。
 
-    ![Select Toggle Imports Display](./media/storsimple-snapshot-manager-manage-devices/HCS_SSM_Toggle_Imports_Display.png) 
+    ![選取 [切換匯入顯示]](./media/storsimple-snapshot-manager-manage-devices/HCS_SSM_Toggle_Imports_Display.png)
 
-4. The **Toggle Imports Display** dialog box appears, showing the status of the imported volume groups and backups. Click **OK**. 
+4. [**切換匯入顯示**] 對話方塊隨即出現，顯示已匯入之磁碟區群組和備份的狀態。按一下 [確定]。
 
-After the volume groups and backups are successfully imported, you can use StorSimple Snapshot Manager to manage them, just as you would manage volume groups and backups that you created and configured with StorSimple Snapshot Manager. 
+在順利匯入磁碟區群組和備份之後，您可以使用 StorSimple Snapshot Manager 來管理它們，就如同您管理您使用 StorSimple Snapshot Manager 所建立並設定的磁碟區群組和備份一般。
 
-## <a name="refresh-connected-devices"></a>Refresh connected devices
+## 重新整理已連接的裝置
 
-Use the following procedure to synchronize the connected StorSimple devices with StorSimple Snapshot Manager.
+請使用下列程序，同步處理已連接的 StorSimple 裝置與 StorSimple Snapshot Manager。
 
-####<a name="to-refresh-connected-devices"></a>To refresh connected devices
+####若要重新整理已連接的裝置
 
-1. Click the desktop icon to start StorSimple Snapshot Manager.
+1. 按一下桌面圖示，以啟動 StorSimple Snapshot Manager。
 
-2. In the **Scope** pane, right-click **Devices**, and then click **Refresh Devices**. This synchronizes the connected devices with StorSimple Snapshot Manager so that you can view the volume groups and backups, including any recent additions. 
+2. 在 [**範圍**] 窗格中，以滑鼠右鍵按一下 [**裝置**]，然後按一下 [**重新整理裝置**]。這會同步處理已連接的裝置與 StorSimple Snapshot Manager，讓您可以檢視磁碟區群組和備份，包括任何最近新增的項目。
 
-    ![Refresh the StorSimple devices](./media/storsimple-snapshot-manager-manage-devices/HCS_SSM_Refresh_devices.png)
+    ![重新整理 StorSimple 裝置](./media/storsimple-snapshot-manager-manage-devices/HCS_SSM_Refresh_devices.png)
  
-The **Refresh Devices** action retrieves any new volume groups and any associated backups from connected devices. Unlike the **Rescan volumes** action available for the **Volumes** node, **Refresh Devices** does not restore the backup registry.
+[**重新整理裝置**] 動作會從已連接的裝置擷取任何新的磁碟區群組和任何相關聯的備份。不同於適用於 [**磁碟區**] 節點的 [**重新掃描磁碟區**] 動作，[**重新整理裝置**] 不會還原備份登錄。
 
-## <a name="authenticate-a-device"></a>Authenticate a device
+## 驗證裝置
 
-Use the following procedure to authenticate a StorSimple device with StorSimple Snapshot Manager.
+請使用下列程序，利用 StorSimple Snapshot Manager 來驗證 StorSimple 裝置。
 
-#### <a name="to-authenticate-a-device"></a>To authenticate a device
+#### 若要驗證裝置
 
-1. Click the desktop icon to start StorSimple Snapshot Manager.
+1. 按一下桌面圖示，以啟動 StorSimple Snapshot Manager。
 
-2. In the **Scope** pane, click **Devices**.
+2. 在 [**範圍**] 窗格中，按一下 [**裝置**]。
 
-3. In the **Results** pane, right-click the name of the device, and then click **Authenticate**.
+3. 在 [**結果**] 窗格中，以滑鼠右鍵按一下裝置的名稱，然後按一下 [**驗證**]。
 
-4. The **Authenticate** dialog box appears. Type the device password, and then click **OK**.
+4. [**驗證**] 對話方塊隨即出現。輸入裝置密碼，然後按一下 [**確定**]。
 
-    ![Authenticate dialog box](./media/storsimple-snapshot-manager-manage-devices/HCS_SSM_Authenticate.png) 
+    ![[驗證] 對話方塊](./media/storsimple-snapshot-manager-manage-devices/HCS_SSM_Authenticate.png)
  
-## <a name="view-device-details"></a>View device details
+## 檢視裝置詳細資料
 
-Use the following procedure to view the details of a StorSimple device and, if necessary, resynchronize the device with StorSimple Snapshot Manager.
+請使用下列程序來檢視 StorSimple 裝置的詳細資料，如有必要，請重新同步處理裝置與 StorSimple Snapshot Manager。
 
-#### <a name="to-view-and-resynchronize-device-details"></a>To view and resynchronize device details
+#### 若要檢視和重新同步處理裝置詳細資料
 
-1. Click the desktop icon to start StorSimple Snapshot Manager.
+1. 按一下桌面圖示，以啟動 StorSimple Snapshot Manager。
 
-2. In the **Scope** pane, click **Devices**.
+2. 在 [**範圍**] 窗格中，按一下 [**裝置**]。
 
-3. In the **Results** pane, right-click the name of the device, and then click **Details**. 
+3. 在 [**結果**] 窗格中，以滑鼠右鍵按一下裝置的名稱，然後按一下 [**詳細資料**]。
 
-4.The **Device Details** dialog box appears. This box shows the name, model, version, serial number, status, target iSCSI Qualified Name (IQN), and last synchronization date and time. 
+4\.[**裝置詳細資料**] 對話方塊隨即出現。此方塊會顯示名稱、型號、版本、序號、狀態、目標 iSCSI 合格名稱 (IQN)，以及上次同步處理日期和時間。
 
-   - Click **Resync** to synchronize the device.
+   - 按一下 [**重新同步處理**] 以同步處理裝置。
 
-   - Click **OK** or **Cancel** to close the dialog box.
+   - 按一下 [**確定**] 或 [**取消**] 以關閉對話方塊。
 
-    ![Device details](./media/storsimple-snapshot-manager-manage-devices/HCS_SSM_Device_details.png) 
+    ![裝置詳細資料](./media/storsimple-snapshot-manager-manage-devices/HCS_SSM_Device_details.png)
  
-## <a name="refresh-an-individual-device"></a>Refresh an individual device
+## 重新整理個別裝置
 
-Use the following procedure to resynchronize an individual StorSimple device with StorSimple Snapshot Manager.
+請使用下列程序，來重新同步處理個別的 StorSimple 裝置與 StorSimple Snapshot Manager 。
 
-#### <a name="to-refresh-a-device"></a>To refresh a device
+#### 若要重新整理裝置
 
-1. Click the desktop icon to start StorSimple Snapshot Manager. 
+1. 按一下桌面圖示，以啟動 StorSimple Snapshot Manager。 
 
-2. In the **Scope** pane, click **Devices**. 
+2. 在 [**範圍**] 窗格中，按一下 [**裝置**]。
 
-3. In the **Results** pane, right-click the name of the device, and then click **Refresh Device**. This synchronizes the device with StorSimple Snapshot Manager. 
+3. 在 [**結果**] 窗格中，以滑鼠右鍵按一下裝置的名稱，然後按一下 [**重新整理裝置**]。這會同步處理裝置與 StorSimple Snapshot Manager。
 
-## <a name="delete-a-device-configuration"></a>Delete a device configuration
+## 刪除裝置組態
 
-Use the following procedure to delete an individual StorSimple device configuration from StorSimple Snapshot Manager.
+請使用下列程序，從 StorSimple Snapshot Manager 刪除個別的 StorSimple 裝置組態。
 
-#### <a name="to-delete-a-device-configuration"></a>To delete a device configuration
+#### 若要刪除裝置組態
 
-1. Click the desktop icon to start StorSimple Snapshot Manager. 
+1. 按一下桌面圖示，以啟動 StorSimple Snapshot Manager。 
 
-2. In the **Scope** pane, click **Devices**. 
+2. 在 [**範圍**] 窗格中，按一下 [**裝置**]。
 
-3. In the **Results** pane, right-click the name of the device, and then click **Delete**. 
+3. 在 [**結果**] 窗格中，以滑鼠右鍵按一下裝置的名稱，然後按一下 [**刪除**]。
 
-4. The following message appears. Click **Yes** to delete the configuration or click **No** to cancel the deletion.
+4. 下列訊息隨即出現。按一下 [**是**] 以刪除組態，或按一下 [**否**] 以取消刪除。
 
-    ![Delete device configuration](./media/storsimple-snapshot-manager-manage-devices/HCS_SSM_DeleteDevice.png)
+    ![刪除裝置組態](./media/storsimple-snapshot-manager-manage-devices/HCS_SSM_DeleteDevice.png)
 
-## <a name="change-an-expired-device-password"></a>Change an expired device password
+## 變更過期的裝置密碼
 
-You must enter a password to authenticate a StorSimple device with StorSimple Snapshot Manager. You configure this password when you use the Windows PowerShell interface to set up the device. However, the password can expire. If this happens, you can use the Azure classic portal to change the password. Then, because the device was configured in StorSimple Snapshot Manager before the password expired, you must re-authenticate the device in StorSimple Snapshot Manager. 
+您必須輸入密碼，才能使用 StorSimple Snapshot Manager 驗證 StorSimple 裝置。當使用 Windows PowerShell 介面來設定裝置時，您可以設定此密碼。不過，密碼會過期。如果發生這種情況，您可以使用 Azure 傳統入口網站變更密碼。然後，因為在密碼過期之前，已在 StorSimple Snapshot Manager 設定裝置，所以您必須在 StorSimple Snapshot Manager 重新驗證裝置。
 
-#### <a name="to-change-the-expired-password"></a>To change the expired password
+#### 若要變更過期的密碼
 
-1. In the Azure classic portal, start the StorSimple Manager service.
+1. 在 Azure 傳統入口網站中，啟動 StorSimple Manager 服務。
 
-2. Click **Devices** > **Configure** for the device.
+2. 對裝置按一下 [**裝置**] > [**設定**]。
 
-3. Scroll down to the StorSimple Snapshot Manager section. Enter a password that is 14-15 characters. Make sure that the password contains a mix of uppercase, lowercase, numeric, and special characters.
+3. 向下捲動到 StorSimple Snapshot Manager 區段。輸入 14 或 15 個字元的密碼。請確定密碼混有大寫、小寫、數字和特殊字元。
 
-4. Re-enter the password to confirm it.
+4. 請重新輸入密碼加以確認。
 
-5. Click **Save** at the bottom of the page.
+5. 按一下頁面底部的 [儲存]。
 
-#### <a name="to-re-authenticate-the-device"></a>To re-authenticate the device
+#### 若要重新驗證裝置
 
-1. Start StorSimple Snapshot Manager.
+1. 啟動 StorSimple Snapshot Manager。
 
-2. In the **Scope** pane, click **Devices**. A list of configured devices appears in the **Results** pane. 
+2. 在 [**範圍**] 窗格中，按一下 [**裝置**]。已設定的裝置清單會出現在 [**結果**] 窗格中。
 
-3. Select the device, right-click, and then click **Authenticate**.
+3. 選取裝置、按一下滑鼠右鍵，然後按一下 [**驗證**]。
 
-4. In the **Authenticate** window, enter the new password. 
+4. 在 [**驗證**] 視窗中，輸入新密碼。
 
-5. Select the device, right-click, and select **Refresh device**. This synchronizes the device with StorSimple Snapshot Manager. 
+5. 選取裝置、按一下滑鼠右鍵，然後選取 [**重新整理裝置**]。這會同步處理裝置與 StorSimple Snapshot Manager。
 
-## <a name="replace-a-failed-device"></a>Replace a failed device
+## 更換故障的裝置
 
-If a StorSimple device fails and is replaced by a standby (failover) device, use the following steps to connect to the new device and view the associated backups.
+如果 StorSimple 裝置故障，並更換為備用 (容錯移轉) 裝置，請使用下列步驟，連接至新裝置並檢視相關聯的備份。
 
-#### <a name="to-connect-to-a-new-device-after-failover"></a>To connect to a new device after failover
+#### 若要在容錯移轉之後連接至新裝置
 
-1. Reconfigure the iSCSI connection to the new device. For instructions, go to "Step 7: Mount, initialize, and format a volume" in [Deploy your on-premises StorSimple device](storsimple-deployment-walkthrough-u2.md). 
+1. 重新設定新裝置的 iSCSI 連接。如需相關指示，請移至[部署您的內部部署 StorSimple 裝置](storsimple-deployment-walkthrough-u2.md)中的「步驟 7：掛載、初始化和格式磁碟區」。 
 
->[AZURE.NOTE] If the new StorSimple device has the same IP address as the old one, you might be able to connect the old configuration. 
+>[AZURE.NOTE] 如果新的 StorSimple 裝置具有與舊裝置相同的 IP 位址，則您也許能夠連接舊組態。
 
-2. Stop the Microsoft StorSimple Management Service:
+2. 停止 Microsoft StorSimple 管理服務：
 
-    1. Start Server Manager.
+    1. 啟動伺服器管理員。
 
-    2. On the Server Manager Dashboard, on the **Tools** menu, select **Services**. 
+    2. 在 [伺服器管理員儀表板] 的 [**工具**] 功能表上，選取 [**服務**]。
 
-    3. On the **Services** window, select the **Microsoft StorSimple Management Service**. 
+    3. 在 [**服務**] 視窗中，選取 [**Microsoft StorSimple 管理服務**]。
 
-    4. In the right pane, under **Microsoft StorSimple Management Service**, click **Stop the service**. 
+    4. 在右窗格的 [**Microsoft StorSimple 管理服務**] 之下，按一下 [**停止服務**]。
 
-3. Remove the configuration information related to the old device: 
+3. 移除與舊裝置相關的組態資訊：
 
-    1. In File Explorer, browse to C:\ProgramData\Microsoft\StorSimple\BACatalog. 
+    1. 在 [檔案總管] 中，瀏覽至 C:\\ProgramData\\Microsoft\\StorSimple\\BACatalog. 
 
-    2. Delete the files in the BACatalog folder. 
+    2. 刪除 BACatalog 資料夾中的檔案。
 
-4. Restart the Microsoft StorSimple Management Service: 
+4. 重新啟動 Microsoft StorSimple 管理服務：
 
-    1. On the Server Manager Dashboard, on the **Tools** menu, select **Services**. 
+    1. 在 [伺服器管理員儀表板] 的 [**工具**] 功能表上，選取 [**服務**]。 
 
-    2. On the **Services** window, select the **Microsoft StorSimple Management Service**. 
+    2. 在 [**服務**] 視窗中，選取 [**Microsoft StorSimple 管理服務**]。
 
-    3. In the right pane, under **Microsoft StorSimple Management Service**, click **Restart the service**. 
+    3. 在右窗格的 [**Microsoft StorSimple 管理服務**] 之下，按一下 [**重新啟動服務**]。
 
-5. Start StorSimple Snapshot Manager. 
+5. 啟動 StorSimple Snapshot Manager。
 
-6. To configure the new StorSimple device, complete the steps in Step 2: Connect a StorSimple device in [Deploy StorSimple Snapshot Manager](storsimple-snapshot-manager-deployment.md). 
+6. 若要設定新的 StorSimple 裝置，請完成＜部署 StorSimple Snapshot Manager＞中的[步驟 2：連接 StorSimple 裝置](storsimple-snapshot-manager-deployment.md)中的步驟。
 
-7. Right-click the top-level node in the **Scope** pane (StorSimple Snapshot Manager in the example), and then click **Toggle Imports Display**. 
+7. 以滑鼠右鍵按一下 [**範圍**] 窗格中的最上層節點 (範例中的 StorSimple Snapshot Manager)，然後按一下 [**切換匯入顯示**]。
 
-8. A message appears when the imported volume groups and backups are visible in StorSimple Snapshot Manager. Click **OK**. 
+8. 當可在 StorSimple Snapshot Manager 中看到匯入的磁碟區群組和備份時，即會出現一則訊息。按一下 [確定]。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-- Learn how to [use StorSimple Snapshot Manager to administer your StorSimple solution](storsimple-snapshot-manager-admin.md).
-- Learn how to [use StorSimple Snapshot Manager to view and manage volumes](storsimple-snapshot-manager-manage-volumes.md).
+- 了解如何[使用 StorSimple Snapshot Manager 來管理您的 StorSimple 解決方案](storsimple-snapshot-manager-admin.md)。
+- 了解如何[使用 StorSimple Snapshot Manager 來檢視和管理磁碟區](storsimple-snapshot-manager-manage-volumes.md)。
 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0427_2016-->

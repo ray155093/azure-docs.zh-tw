@@ -2,67 +2,67 @@
 - [Linux](../articles/iot-hub/iot-hub-linux-gateway-sdk-get-started.md)
 - [Windows](../articles/iot-hub/iot-hub-windows-gateway-sdk-get-started.md)
 
-This article provides a detailed walkthrough of the [Hello World sample code][lnk-helloworld-sample] to illustrate the fundamental components of the [Azure IoT Gateway SDK][lnk-gateway-sdk] architecture. The sample uses the IoT Hub Gateway SDK to build a simple gateway that logs a "hello world" message to a file every five seconds.
+本文提供 [Hello World 範例程式碼][lnk-helloworld-sample]的詳細逐步解說，來說明 [Azure IoT 閘道 SDK][lnk-gateway-sdk] 架構的基本元件。此範例使用 IoT 中樞閘道 SDK，建置每五秒即將 "hello world" 訊息記錄到檔案的簡單閘道。
 
-This walkthrough covers:
+本逐步解說涵蓋下列項目：
 
-- **Concepts**: A conceptual overview of the components that compose any gateway you create with the Gateway SDK.  
-- **Hello World sample architecture**: Describes how the concepts apply to the Hello World sample and how the components fit together.
-- **How to build the sample**: The steps required to build the sample.
-- **How to run the sample**: The steps required to run the sample. 
-- **Typical output**: An example of the output to expect when you run the sample.
-- **Code snippets**: A collection of code snippets to show how the Hello World sample implements key gateway components.
+- **概念**︰概念式概觀，說明撰寫使用閘道 SDK 所建立之任何閘道的元件。
+- **Hello World 範例架構**︰描述概念套用到 Hello World 範例的方式，以及元件如何彼此搭配運作。
+- **如何建置範例**︰建置範例所需的步驟。
+- **如何執行範例**︰執行範例所需的步驟。
+- **典型輸出**：執行範例時所預期的輸出範例。
+- **程式碼片段**︰程式碼片段集合，顯示 Hello World 範例如何實作重要閘道元件。
 
-## <a name="gateway-sdk-concepts"></a>Gateway SDK concepts
+## 閘道 SDK 概念
 
-Before you examine the sample code or create your own field gateway using the Gateway SDK, you should understand the key concepts that underpin the architecture of the SDK.
+檢查範例程式碼或使用閘道 SDK 建立專屬現場閘道之前，您應該了解可加強 SDK 架構的重要概念。
 
-### <a name="modules"></a>Modules
+### 模組
 
-You build a gateway with the Azure IoT Gateway SDK by creating and assembling *modules*. Modules use *messages* to exchange data with each other. A module receives a message, performs some action on it, optionally transforms it into a new message, and then publishes it for other modules to process. Some modules might only produce new messages and never process incoming messages. A chain of modules creates a data processing pipeline with each module performing a transformation on the data at one point in that pipeline.
+建立和組合「模組」，即可使用 Azure IoT 閘道 SDK 來建置閘道。模組使用「訊息」來彼此交換資料。模組會接收訊息、對其執行某個動作、選擇性地將其轉換為新的訊息，然後發佈它，以供其他模組處理。某些模組可能只會產生新的訊息，且永遠不會處理內送訊息。一連串的模組可建立資料處理管線，而每個模組都會執行該管線中某個點的資料轉換。
 
-![A chain of modules in gateway built with the Azure IoT Gateway SDK][1]
+![使用 Azure IoT 閘道 SDK 所建置之閘道中的模組鏈結][1]
  
-The SDK contains the following:
+SDK 包含下列項目：
 
-- Pre-written modules which perform common gateway functions.
-- The interfaces a developer can use to write custom modules.
-- The infrastructure necessary to deploy and run a set of modules.
+- 可執行常見閘道函式的預先撰寫模組。
+- 開發人員可用來撰寫自訂模組的介面。
+- 部署和執行一組模組所需的基礎結構。
 
-The SDK provides an abstraction layer that enables you to build gateways to run on a variety of operating systems and platforms.
+SDK 提供一個抽象層，可讓您建置要在各種作業系統和平台上執行的閘道。
 
-![Azure IoT Hub Gateway SDK abstraction layer][2]
+![Azure IoT 中樞閘道 SDK 抽象層][2]
 
-### <a name="messages"></a>Messages
+### 訊息
 
-Although thinking about modules passing messages to each other is a convenient way to conceptualize how a gateway functions, it does not accurately reflect what happens. Modules use a broker to communicate with each other, they publish messages to the broker (bus, pubsub, or any other messaging pattern) and then let the broker route the message to the modules connected to it.
+雖然考量到彼此傳遞訊息的模組是概念化閘道運作方式的便利方式，但是它不會精確地反映所發生的事情。模組會使用訊息代理程式來彼此通訊，它們會將訊息發佈到訊息代理程式 (匯流排、發佈訂閱或任何其他傳訊模式)，然後讓訊息代理程式將訊息路由傳送到與其連接的模組。
 
-A modules uses the **Broker_Publish** function to publish a message to the broker. The broker delivers messages to a module by invoking a callback function. A message consists of a set of key/value properties and content passed as a block of memory.
+模組使用 **Broker\_Publish** 函式將訊息發佈到訊息代理程式。訊息代理程式會叫用回呼函式，以將訊息傳遞到模組。訊息包含一組索引鍵/值屬性以及傳遞為記憶體區塊的內容。
 
-![The role of the Broker in the Azure IoT Gateway SDK][3]
+![Azure IoT 閘道 SDK 中的訊息代理程式角色][3]
 
-### <a name="message-routing-and-filtering"></a>Message routing and filtering
+### 訊息路由和篩選
 
-There are two ways of directing messages to the correct modules. A set of links can be passed to the broker so the broker knows the source and sink for each module, or the module can filter on the properties of the message. A module should only act upon a message if the message is intended for it. The links and message filtering is what effectively creates a message pipeline.
+有兩種方式可將訊息導向到正確的模組。可將一組連結傳遞給訊息代理程式，讓訊息代理程式知道每個模組的來源和接收，或是模組可以根據訊息的屬性進行篩選。模組只應對其為適用對象的訊息採取動作。連結和訊息篩選可有效地建立訊息管線。
 
-## <a name="hello-world-sample-architecture"></a>Hello World sample architecture
+## Hello World 範例架構
 
-The Hello World sample illustrates the concepts described in the previous section. The Hello World sample implements a gateway that has a pipeline made up of two modules:
+Hello World 範例說明上節中所述的概念。Hello World 範例會實作管線由兩個模組所構成的閘道︰
 
--   The *hello world* module creates a message every five seconds and passes it to the logger module.
--   The *logger* module writes the messages it receives to a file.
+-	「Hello World」模組每五秒會建立一則訊息，並將其傳遞到 Logger 模組。
+-	「Logger」模組會將所收到的訊息寫入檔案。
 
-![Architecture of Hello World sample built with the Azure IoT Gateway SDK][4]
+![使用 Azure IoT 閘道 SDK 所建置之 Hello World 範例的架構][4]
 
-As described in the previous section, the Hello World module does not pass messages directly to the logger module every five seconds. Instead, it publishes a message to the broker every five seconds.
+如上節所述，Hello World 模組不會每五秒將訊息直接傳遞到 Logger 模組。而是每五秒將訊息發佈到訊息代理程式。
 
-The logger module receives the message from the broker and acts upon it, writing the contents of the message to a file.
+Logger 模組會接收來自訊息代理程式的訊息並對其採取動作，以將訊息的內容寫入檔案。
 
-The logger module only consumes messages from the broker, it never publishes new messages to the broker.
+Logger 模組只會取用來自訊息代理程式的訊息，永遠不會對訊息代理程式發佈新訊息。
 
-![How the broker routes messages between modules in the Azure IoT Gateway SDK][5]
+![訊息代理程式如何在 Azure IoT 閘道 SDK 的模組之間路由傳送訊息][5]
 
-The figure above shows the architecture of the Hello World sample and the relative paths to the source files that implement different portions of the sample in the [repository][lnk-gateway-sdk]. Explore the code on your own, or use the code snippets below as a guide.
+上圖顯示 Hello World 範例的架構，以及實作[儲存機制][lnk-gateway-sdk]中範例不同部分之來源檔案的相對路徑。自行探索程式碼，或使用下面的程式碼片段作為指南。
 
 <!-- Images -->
 [1]: media/iot-hub-gateway-sdk-getstarted-selector/modules.png
@@ -75,6 +75,4 @@ The figure above shows the architecture of the Hello World sample and the relati
 [lnk-helloworld-sample]: https://github.com/Azure/azure-iot-gateway-sdk/tree/master/samples/hello_world
 [lnk-gateway-sdk]: https://github.com/Azure/azure-iot-gateway-sdk
 
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_1005_2016-->

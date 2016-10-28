@@ -1,72 +1,69 @@
 
-### <a name="basic-elastic-pool-limits"></a>Basic elastic pool limits
+### 基本彈性集區限制
 
-|   |  |
+| | |
 |---|:---:|
-| Max eDTUs per pool | &nbsp;100 &nbsp;&nbsp;&nbsp; 200 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 400 &nbsp;&nbsp;&nbsp;&nbsp; 800 &nbsp;&nbsp;&nbsp;&nbsp; 1200 |
-| Max storage per pool (GB)*| &nbsp;&nbsp;&nbsp;&nbsp;10 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;20 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;39 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;73 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;117 |
-| Max number of databases per pool | &nbsp;&nbsp;&nbsp;200 &nbsp;&nbsp;&nbsp;&nbsp;400 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;400 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;400 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;400 |
-| Max in-memory OLTP storage (GB) per pool| N/A |
-| Max concurrent workers per pool | &nbsp;&nbsp;&nbsp;200 &nbsp;&nbsp; 400 &nbsp;&nbsp;&nbsp;&nbsp; 800 &nbsp;&nbsp;&nbsp; 1600 &nbsp;&nbsp;&nbsp;&nbsp;2400 |
-| Max concurrent logins per pool | &nbsp;&nbsp;&nbsp;200 &nbsp;&nbsp; 400 &nbsp;&nbsp;&nbsp;&nbsp; 800 &nbsp;&nbsp;&nbsp; 1600 &nbsp;&nbsp;&nbsp;&nbsp;2400 |
-| Max concurrent sessions per pool | 4800 &nbsp;9600 &nbsp; 19200 &nbsp; 28800 &nbsp; 28800 |
-| Max eDTUs per database* | 5 |
-| Min eDTUs per database* | 0,5 |
-| Max storage per database (GB)** | 2 |
-| Point-in-time-restore | Any point last 7 days |
-| Disaster recovery | Active Geo-Replication |
+| 每個集區的最大 eDTU | &nbsp;100 &nbsp;&nbsp;&nbsp; 200 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 400 &nbsp;&nbsp;&nbsp;&nbsp; 800 &nbsp;&nbsp;&nbsp;&nbsp; 1200 |
+| 每個集區的儲存體上限 (GB)*| &nbsp;&nbsp;&nbsp;&nbsp;10 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;20 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;39 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;73 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;117 |
+| 每個集區的資料庫數目上限 | &nbsp;&nbsp;&nbsp;200 &nbsp;&nbsp;&nbsp;&nbsp;400 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;400 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;400 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;400 |
+| 每個集區的 OLTP 記憶體內部儲存體上限 (GB)| N/A |
+| 每個集區的並行背景工作數上限 | &nbsp;&nbsp;&nbsp;200 &nbsp;&nbsp; 400 &nbsp;&nbsp;&nbsp;&nbsp; 800 &nbsp;&nbsp;&nbsp; 1600 &nbsp;&nbsp;&nbsp;&nbsp;2400 |
+| 每集區的並行登入數上限 | &nbsp;&nbsp;&nbsp;200 &nbsp;&nbsp; 400 &nbsp;&nbsp;&nbsp;&nbsp; 800 &nbsp;&nbsp;&nbsp; 1600 &nbsp;&nbsp;&nbsp;&nbsp;2400 |
+| 每集區並行工作階段數上限 | 4800 &nbsp;9600 &nbsp; 19200 &nbsp; 28800 &nbsp; 28800 |
+| 每個資料庫的 eDTU 上限* | 5 |
+| 每個資料庫的 eDTU 下限* | 0,5 |
+| 每個資料庫的儲存體上限 (GB)** | 2 |
+| 還原時間點 | 過去 7 天內任何一點 |
+| 災害復原 | 主動式異地複寫 |
 |||
 
-* Max and Min eDTU’s per database may be set to any of the listed values as long as the pool DTU size selected is at least as great as the max eDTUs per DB 
+* 只要選取的集區 DTU 大小至少與每個資料庫的 eDTU 上限一樣大，每個資料庫的 eDTU 上限和下限就可能設定為任何所列的值
 
-** Elastic database share pool storage, so database storage is limited to the smaller of the remaining pool storage or max storage per database
+** 彈性資料庫會共用集區儲存體，所以資料庫儲存體的大小會限制為以下兩者中較小的一個：剩餘的集區儲存體或每個資料庫儲存體的上限
 
 
-### <a name="standard-elastic-pool-limits"></a>Standard elastic pool limits
+### 標準彈性集區限制
 
-|   |  |
+| | |
 |---|:---:|
-| Max eDTUs per pool | &nbsp;100 &nbsp;&nbsp;&nbsp; 200 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 400 &nbsp;&nbsp;&nbsp;&nbsp; 800 &nbsp;&nbsp;&nbsp;&nbsp; 1200 |
-| Max storage per pool (GB)*| &nbsp;100 &nbsp;&nbsp;&nbsp; 200 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 400 &nbsp;&nbsp;&nbsp;&nbsp; 800 &nbsp;&nbsp;&nbsp;&nbsp; 1200 |
-| Max number of databases per pool | &nbsp;200 &nbsp;&nbsp;&nbsp;&nbsp;400 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;400 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;400 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;400 |
-| Max in-memory OLTP storage (GB) per pool| N/A |
-| Max concurrent workers per pool | &nbsp;&nbsp;200 &nbsp;&nbsp;&nbsp; 400 &nbsp;&nbsp;&nbsp; 800 &nbsp;&nbsp; 1600 &nbsp;&nbsp;&nbsp; 2400 |
-| Max concurrent logins per pool | &nbsp;&nbsp;200 &nbsp;&nbsp;&nbsp; 400 &nbsp;&nbsp;&nbsp; 800 &nbsp;&nbsp; 1600 &nbsp;&nbsp;&nbsp; 2400 |
-| Max concurrent sessions per pool | 4800 &nbsp; 9600 &nbsp;19200 &nbsp;28800 &nbsp;&nbsp; 28800 |
-| Max eDTUs per database* | 10, 20, 50, 100 |
-| Min eDTUs per database* | 0, 10, 20, 50, 100 |
-| Max storage per database (GB)** | 250 |
-| Point-in-time-restore | Any point last 35 days |
-| Disaster recovery | Active Geo-Replication |
+| 每個集區的最大 eDTU | &nbsp;100 &nbsp;&nbsp;&nbsp; 200 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 400 &nbsp;&nbsp;&nbsp;&nbsp; 800 &nbsp;&nbsp;&nbsp;&nbsp; 1200 |
+| 每個集區的儲存體上限 (GB)*| &nbsp;100 &nbsp;&nbsp;&nbsp; 200 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 400 &nbsp;&nbsp;&nbsp;&nbsp; 800 &nbsp;&nbsp;&nbsp;&nbsp; 1200 |
+| 每個集區的資料庫數目上限 | &nbsp;200 &nbsp;&nbsp;&nbsp;&nbsp;400 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;400 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;400 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;400 |
+| 每個集區的 OLTP 記憶體內部儲存體上限 (GB)| N/A |
+| 每個集區的並行背景工作數上限 | &nbsp;&nbsp;200 &nbsp;&nbsp;&nbsp; 400 &nbsp;&nbsp;&nbsp; 800 &nbsp;&nbsp; 1600 &nbsp;&nbsp;&nbsp; 2400 |
+| 每集區的並行登入數上限 | &nbsp;&nbsp;200 &nbsp;&nbsp;&nbsp; 400 &nbsp;&nbsp;&nbsp; 800 &nbsp;&nbsp; 1600 &nbsp;&nbsp;&nbsp; 2400 |
+| 每集區並行工作階段數上限 | 4800 &nbsp; 9600 &nbsp;19200 &nbsp;28800 &nbsp;&nbsp; 28800 |
+| 每個資料庫的 eDTU 上限* | 10、20、50、100 |
+| 每個資料庫的 eDTU 下限* | 0、10、20、50、100 |
+| 每個資料庫的儲存體上限 (GB)** | 250 |
+| 還原時間點 | 過去 35 天內任何一點 |
+| 災害復原 | 主動式異地複寫 |
 |||
 
-* Max and Min eDTU’s per database may be set to any of the listed values as long as the pool DTU size selected is at least as great as the max eDTUs per DB 
+* 只要選取的集區 DTU 大小至少與每個資料庫的 eDTU 上限一樣大，每個資料庫的 eDTU 上限和下限就可能設定為任何所列的值
 
-** Elastic database share pool storage, so database storage is limited to the smaller of the remaining pool storage or max storage per database
+** 彈性資料庫會共用集區儲存體，所以資料庫儲存體的大小會限制為以下兩者中較小的一個：剩餘的集區儲存體或每個資料庫儲存體的上限
 
-### <a name="premium-elastic-pool-limits"></a>Premium elastic pool limits
+### 高階彈性集區限制
 
-|   |  |
+| | |
 |---|:---:|
-| Max eDTUs per pool | 125 &nbsp;&nbsp;&nbsp; 250 &nbsp;&nbsp;&nbsp; 500 &nbsp;&nbsp;&nbsp; 1000 &nbsp;&nbsp;&nbsp; &nbsp;1500 |
-| Max storage per pool (GB)*| 250 &nbsp;&nbsp;&nbsp; 500 &nbsp;&nbsp;&nbsp; 750 &nbsp;&nbsp;&nbsp;&nbsp; 750 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 750 |
-| Max number of databases per pool | 50 |
-| Max in-memory OLTP storage (GB) per pool| N/A |
-| Max concurrent workers per pool | &nbsp;&nbsp;200 &nbsp;&nbsp;&nbsp; 400 &nbsp;&nbsp;&nbsp; 800 &nbsp;&nbsp; 1600 &nbsp;&nbsp;&nbsp; 2400 |
-| Max concurrent logins per pool | &nbsp;&nbsp;200 &nbsp;&nbsp;&nbsp; 400 &nbsp;&nbsp;&nbsp; 800 &nbsp;&nbsp; 1600 &nbsp;&nbsp;&nbsp; 2400 |
-| Max concurrent sessions per pool | 4800 &nbsp; 9600 &nbsp;19200 &nbsp;28800 &nbsp;&nbsp; 28800 |
-| Max eDTUs per database* | 125, 250, 500, 1000 |
-| Min eDTUs per database* | 0, 125, 250, 500, 1000 |
-| Max storage per database (GB)** | 500 |
-| Point-in-time-restore | Any point last 35 days |
-| Disaster recovery | Active Geo-Replication |
+| 每個集區的最大 eDTU | 125 &nbsp;&nbsp;&nbsp; 250 &nbsp;&nbsp;&nbsp; 500 &nbsp;&nbsp;&nbsp; 1000 &nbsp;&nbsp;&nbsp; &nbsp;1500 |
+| 每個集區的儲存體上限 (GB)*| 250 &nbsp;&nbsp;&nbsp; 500 &nbsp;&nbsp;&nbsp; 750 &nbsp;&nbsp;&nbsp;&nbsp; 750 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 750 |
+| 每個集區的資料庫數目上限 | 50 |
+| 每個集區的 OLTP 記憶體內部儲存體上限 (GB)| N/A |
+| 每個集區的並行背景工作數上限 | &nbsp;&nbsp;200 &nbsp;&nbsp;&nbsp; 400 &nbsp;&nbsp;&nbsp; 800 &nbsp;&nbsp; 1600 &nbsp;&nbsp;&nbsp; 2400 |
+| 每集區的並行登入數上限 | &nbsp;&nbsp;200 &nbsp;&nbsp;&nbsp; 400 &nbsp;&nbsp;&nbsp; 800 &nbsp;&nbsp; 1600 &nbsp;&nbsp;&nbsp; 2400 |
+| 每集區並行工作階段數上限 | 4800 &nbsp; 9600 &nbsp;19200 &nbsp;28800 &nbsp;&nbsp; 28800 |
+| 每個資料庫的 eDTU 上限* | 125、250、500、1000 |
+| 每個資料庫的 eDTU 下限* | 0、125、250、500、1000 |
+| 每個資料庫的儲存體上限 (GB)** | 500 |
+| 還原時間點 | 過去 35 天內任何一點 |
+| 災害復原 | 主動式異地複寫 |
 |||
 
-* Max and Min eDTU’s per database may be set to any of the listed values as long as the pool DTU size selected is at least as great as the max eDTUs per DB 
+* 只要選取的集區 DTU 大小至少與每個資料庫的 eDTU 上限一樣大，每個資料庫的 eDTU 上限和下限就可能設定為任何所列的值
 
-** Elastic database share pool storage, so database storage is limited to the smaller of the remaining pool storage or max storage per database
+** 彈性資料庫會共用集區儲存體，所以資料庫儲存體的大小會限制為以下兩者中較小的一個：剩餘的集區儲存體或每個資料庫儲存體的上限
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

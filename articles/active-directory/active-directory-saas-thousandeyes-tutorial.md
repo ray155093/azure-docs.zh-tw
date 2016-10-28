@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="Tutorial: Azure Active Directory integration with ThousandEyes | Microsoft Azure" 
-    description="Learn how to use ThousandEyes with Azure Active Directory to enable single sign-on, automated provisioning, and more!" 
+    pageTitle="教學課程：Azure Active Directory 與 ThousandEyes 整合 | Microsoft Azure" 
+    description="了解如何使用 ThousandEyes 搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -14,160 +14,154 @@
     ms.date="09/11/2016" 
     ms.author="jeedes" />
 
-
-#<a name="tutorial:-azure-active-directory-integration-with-thousandeyes"></a>Tutorial: Azure Active Directory integration with ThousandEyes
+#教學課程：Azure Active Directory 與 ThousandEyes 整合
   
-The objective of this tutorial is to show how to set up single sign-on between Azure Active Directory (Azure AD) and ThousandEyes.
+本教學課程的目的是示範如何設定 Azure Active Directory (Azure AD) 與 ThousandEyes 之間的單一登入。
   
-The scenario outlined in this tutorial assumes that you already have the following items:
+本教學課程中說明的案例假設您已經具有下列項目：
 
--   A valid Azure subscription
--   A ThousandEyes single sign on enabled subscription
+-   有效的 Azure 訂用帳戶
+-   已啟用 ThousandEyes 單一登入功能的訂用帳戶
   
-After completing this tutorial, the AAD users to whom you have assign ThousandEyes access will be able to single sign into the application at your ThousandEyes company site (service provider initiated sign on), or using the AAD Access Panel .
+完成本教學課程之後，或是使用 AAD 存取面板，您指派給 ThousandEyes 存取的 AAD 使用者就能夠單一登入您 ThousandEyes 公司網站 (服務提供者起始登入) 的應用程式。
 
-1.  Enabling the application integration for ThousandEyes
-2.  Configuring Single Sign-On
-3.  Configuring user provisioning
-4.  Assigning users
+1.  啟用 ThousandEyes 的應用程式整合
+2.  設定單一登入
+3.  設定使用者佈建
+4.  指派使用者
 
-![Scenario](./media/active-directory-saas-thousandeyes-tutorial/IC790059.png "Scenario")
+![案例](./media/active-directory-saas-thousandeyes-tutorial/IC790059.png "案例")
 
-##<a name="enabling-the-application-integration-for-thousandeyes"></a>Enabling the application integration for ThousandEyes
+##啟用 ThousandEyes 的應用程式整合
   
-The objective of this section is to outline how to enable the application integration for ThousandEyes.
+本節的目的是要說明如何啟用 ThousandEyes 的應用程式整合。
 
-###<a name="to-enable-the-application-integration-for-thousandeyes,-perform-the-following-steps:"></a>To enable the application integration for ThousandEyes, perform the following steps:
+###若要啟用 ThousandEyes 的應用程式整合，請執行下列步驟：
 
-1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-thousandeyes-tutorial/IC700993.png "Active Directory")
 
-2.  From the **Directory** list, select the directory for which you want to enable directory integration.
+2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3.  To open the applications view, in the directory view, click **Applications** in the top menu.
+3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
 
-    ![Applications](./media/active-directory-saas-thousandeyes-tutorial/IC700994.png "Applications")
+    ![應用程式](./media/active-directory-saas-thousandeyes-tutorial/IC700994.png "應用程式")
 
-4.  Click **Add** at the bottom of the page.
+4.  按一下頁面底部的 [新增]。
 
-    ![Add application](./media/active-directory-saas-thousandeyes-tutorial/IC749321.png "Add application")
+    ![新增應用程式](./media/active-directory-saas-thousandeyes-tutorial/IC749321.png "新增應用程式")
 
-5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
-    ![Add an application from gallerry](./media/active-directory-saas-thousandeyes-tutorial/IC749322.png "Add an application from gallerry")
+    ![從資源庫新增應用程式](./media/active-directory-saas-thousandeyes-tutorial/IC749322.png "從資源庫新增應用程式")
 
-6.  In the **search box**, type **ThousandEyes**.
+6.  在 [搜尋方塊] 中，輸入 **ThousandEyes**。
 
-    ![Application Gallery](./media/active-directory-saas-thousandeyes-tutorial/IC790060.png "Application Gallery")
+    ![應用程式庫](./media/active-directory-saas-thousandeyes-tutorial/IC790060.png "應用程式庫")
 
-7.  In the results pane, select **ThousandEyes**, and then click **Complete** to add the application.
+7.  在結果窗格中，選取 [ThousandEyes]，然後按一下 [完成] 以新增應用程式。
 
     ![ThousandEyes](./media/active-directory-saas-thousandeyes-tutorial/IC790061.png "ThousandEyes")
 
-##<a name="configuring-single-sign-on"></a>Configuring Single Sign-On
+##設定單一登入
   
-This section outlines how to enable users to authenticate to ThousandEyes with their account in Azure Active Directory, using federation based on the SAML protocol.
+本節說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure Active Directory 帳戶驗證至 ThousandEyes。
 
-###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
+###若要設定單一登入，請執行下列步驟：
 
-1.  In the Azure classic portal, on the **ThousandEyes** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
+1.  在 Azure 傳統入口網站的 [ThousandEyes] 應用程式整合頁面上，按一下 [設定單一登入] 以開啟 [設定單一登入] 對話方塊。
 
-    ![Configure Single SignOn](./media/active-directory-saas-thousandeyes-tutorial/IC790062.png "Configure Single SignOn")
+    ![設定單一登入](./media/active-directory-saas-thousandeyes-tutorial/IC790062.png "設定單一登入")
 
-2.  On the **How would you like users to sign on to ThousandEyes** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
+2.  在 [您希望使用者如何登入 ThousandEyes] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
 
-    ![Configure Single SignOn](./media/active-directory-saas-thousandeyes-tutorial/IC790063.png "Configure Single SignOn")
+    ![設定單一登入](./media/active-directory-saas-thousandeyes-tutorial/IC790063.png "設定單一登入")
 
-3.  On the **Configure App URL** page, in the **ThousandEyes Sign On URL** textbox, type the URL users are using to sign into your ThousandEyes application (e.g.: "*https://app.thousandeyes.com/login/sso*"), and then click **Next**. 
+3.  在 [設定應用程式 URL] 頁面的 [ThousandEyes 登入 URL] 文字方塊中，輸入使用者用來登入 ThousandEyes 應用程式的 URL (例如："https://app.thousandeyes.com/login/sso*")，然後按 [下一步]*。
 
-    ![Configure App URL](./media/active-directory-saas-thousandeyes-tutorial/IC790064.png "Configure App URL")
+    ![設定應用程式 URL](./media/active-directory-saas-thousandeyes-tutorial/IC790064.png "設定應用程式 URL")
 
-4.  On the **Configure single sign-on at ThousandEyes** page, to download your certificate, click **Download certificate**, and then save the certificate file locally to your computer.
+4.  在 [設定在 ThousandEyes 單一登入] 頁面上，若要下載您的憑證，請按一下 [下載憑證]，然後將憑證檔案儲存在本機電腦上。
 
-    ![Configure Single SignOn](./media/active-directory-saas-thousandeyes-tutorial/IC790065.png "Configure Single SignOn")
+    ![設定單一登入](./media/active-directory-saas-thousandeyes-tutorial/IC790065.png "設定單一登入")
 
-5.  In a different web browser window, sign on to your **ThousandEyes** company site as an administrator.
+5.  在不同的網頁瀏覽器視窗中，以系統管理員身分登入您的 **ThousandEyes** 公司網站。
 
-6.  In the menu on the top, click **Settings**.
+6.  在頂端的功能表中，按一下 [設定]。
 
     ![Settings](./media/active-directory-saas-thousandeyes-tutorial/IC790066.png "Settings")
 
-7.  Click **Account**
+7.  按一下 [帳戶]
 
-    ![Account](./media/active-directory-saas-thousandeyes-tutorial/IC790067.png "Account")
+    ![帳戶](./media/active-directory-saas-thousandeyes-tutorial/IC790067.png "帳戶")
 
-8.  Click the **Security & Authentication** tab.
+8.  按一下 [安全性與驗證] 索引標籤。
 
-    ![Security & Authentication](./media/active-directory-saas-thousandeyes-tutorial/IC790068.png "Security & Authentication")
+    ![安全性和驗證](./media/active-directory-saas-thousandeyes-tutorial/IC790068.png "安全性和驗證")
 
-9.  In the **Setup Single Sign-On** section, perform the following steps:
+9.  在 [設定單一登入] 區段中，執行下列步驟：
 
-    ![Setup Single Sign-On](./media/active-directory-saas-thousandeyes-tutorial/IC790069.png "Setup Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-thousandeyes-tutorial/IC790069.png "設定單一登入")
 
-    1.  Select **Enable Single Sign-On**.
-    2.  In the Microsoft Azure classic portal, on the **Configure single sign-on at ThousandEyes** page, copy the **Remote Login URL** value, and then paste it into the **Login Page URL** textbox.
-    3.  In the Microsoft Azure classic portal, on the **Configure single sign-on at ThousandEyes** page, copy the **Remote Logout URL** value, and then paste it into the **Logout Page URL** textbox.
-    4.  In the Microsoft Azure classic portal, on the **Configure single sign-on at ThousandEyes** page, copy the **Issuer URL** value, and then paste it into the **Identity Provider Issuer** textbox.
-    5.  In **Identity Provider Certificate**, click **Choose file**, and then upload the certificate you have downloaded from the Microsoft Azure classic portal.
-    6.  Click **Save**.
+    1.  選取 [啟用單一登入]。
+    2.  在 Microsoft Azure 傳統入口網站的 [設定在 ThousandEyes 單一登入] 頁面上，複製 [遠端登入 URL] 值，然後將它貼到 [登入頁面 URL] 文字方塊中。
+    3.  在 Microsoft Azure 傳統入口網站的 [設定在 ThousandEyes 單一登入] 頁面上，複製 [遠端登出 URL] 值，然後將它貼到 [登出頁面 URL] 文字方塊中。
+    4.  在 Microsoft Azure 傳統入口網站的 [設定在 ThousandEyes 單一登入] 頁面上，複製 [簽發者 URL] 值，然後將它貼到 [識別提供者簽發者] 文字方塊中。
+    5.  在 [識別提供者憑證] 中，按一下 [選擇檔案]，然後上傳您已從 Microsoft Azure 傳統入口網站下載的憑證。
+    6.  按一下 [儲存]。
 
-10. On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
+10. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
-    ![Configure Single SignOn](./media/active-directory-saas-thousandeyes-tutorial/IC790070.png "Configure Single SignOn")
+    ![設定單一登入](./media/active-directory-saas-thousandeyes-tutorial/IC790070.png "設定單一登入")
 
-##<a name="configuring-user-provisioning"></a>Configuring user provisioning
+##設定使用者佈建
   
-In order to enable Azure AD users to log into ThousandEyes, they must be provisioned into ThousandEyes.  
-In the case of ThousandEyes, provisioning is a manual task.
+若要讓 Azure AD 使用者可以登入 ThousandEyes，則必須將他們佈建到 ThousandEyes。ThousandEyes 需以手動的方式佈建。
 
-###<a name="to-provision-a-user-account-to-thousandeyes,-perform-the-following-steps:"></a>To provision a user account to ThousandEyes, perform the following steps:
+###若要佈建使用者帳戶到 ThousandEyes，請執行下列步驟：
 
-1.  Log into your ThousandEyes company site as an administrator.
+1.  以系統管理員身分登入您的 ThousandEyes 公司網站。
 
-2.  Click **Settings**.
+2.  按一下 [設定]。
 
     ![Settings](./media/active-directory-saas-thousandeyes-tutorial/IC790066.png "Settings")
 
-3.  Click **Account**.
+3.  按一下 [帳戶]。
 
-    ![Account](./media/active-directory-saas-thousandeyes-tutorial/IC790067.png "Account")
+    ![帳戶](./media/active-directory-saas-thousandeyes-tutorial/IC790067.png "帳戶")
 
-4.  Click the **Accounts & Users** tab.
+4.  按一下 [帳戶和使用者] 索引標籤。
 
-    ![Accounts & Users](./media/active-directory-saas-thousandeyes-tutorial/IC790073.png "Accounts & Users")
+    ![帳戶和使用者](./media/active-directory-saas-thousandeyes-tutorial/IC790073.png "帳戶和使用者")
 
-5.  In the **Add Users & Accounts** section, perform the following steps:
+5.  在 [加入使用者和帳戶] 區段中，執行下列步驟：
 
-    ![Add User Accounts](./media/active-directory-saas-thousandeyes-tutorial/IC790074.png "Add User Accounts")
+    ![新增使用者帳戶](./media/active-directory-saas-thousandeyes-tutorial/IC790074.png "新增使用者帳戶")
 
-    1.  Type the **Name**, **Email** and other details of a valid Azure Active Directory account you want to provision into the related textboxes.
-    2.  Click **Add New User to Account**.
+    1.  在相關的文字方塊中，輸入您要佈建之有效 Active Directory 帳戶的 [名稱]、[電子郵件] 及其他詳細資料。
+    2.  按一下 [加入使用者至帳戶] 按鈕。
 
-        >[AZURE.NOTE] The AAD account holder will get an email including a link to confirm and activate the account.
+        >[AZURE.NOTE] AAD 帳戶的持有者會收到一封包含連結的電子郵件，以進行確認並啟用帳戶。
 
->[AZURE.NOTE] You can use any other ThousandEyes user account creation tools or APIs provided by ThousandEyes to provision AAD user accounts.
+>[AZURE.NOTE] 您可以使用任何其他的 ThousandEyes 使用者帳戶建立工具或 ThousandEyes 提供的 API 來佈建 AAD 使用者帳戶。
 
-##<a name="assigning-users"></a>Assigning users
+##指派使用者
   
-To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
+若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-###<a name="to-assign-users-to-thousandeyes,-perform-the-following-steps:"></a>To assign users to ThousandEyes, perform the following steps:
+###若要指派使用者給 ThousandEyes，請執行下列步驟：
 
-1.  In the Azure classic portal, create a test account.
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
-2.  On the **ThousandEyes** application integration page, click **Assign users**.
+2.  在 [ThousandEyes] 應用程式整合頁面上，按一下 [指派使用者]。
 
-    ![Assign Users](./media/active-directory-saas-thousandeyes-tutorial/IC790075.png "Assign Users")
+    ![指派使用者](./media/active-directory-saas-thousandeyes-tutorial/IC790075.png "指派使用者")
 
-3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
+3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
 
-    ![Yes](./media/active-directory-saas-thousandeyes-tutorial/IC767830.png "Yes")
+    ![是](./media/active-directory-saas-thousandeyes-tutorial/IC767830.png "是")
   
-If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

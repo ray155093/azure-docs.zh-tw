@@ -1,117 +1,113 @@
 <properties
-    pageTitle="Infrastructure Naming Guidelines | Microsoft Azure"
-    description="Learn about the key design and implementation guidelines for naming in Azure infrastructure services."
-    documentationCenter=""
-    services="virtual-machines-windows"
-    authors="iainfoulds"
-    manager="timlt"
-    editor=""
-    tags="azure-resource-manager"/>
+	pageTitle="基礎結構命名指導方針 | Microsoft Azure"
+	description="了解適合用來在 Azure 基礎結構服務中進行命名的關鍵設計和實作指導方針。"
+	documentationCenter=""
+	services="virtual-machines-windows"
+	authors="iainfoulds"
+	manager="timlt"
+	editor=""
+	tags="azure-resource-manager"/>
 
 <tags
-    ms.service="virtual-machines-windows"
-    ms.workload="infrastructure-services"
-    ms.tgt_pltfrm="vm-windows"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/08/2016"
-    ms.author="iainfou"/>
+	ms.service="virtual-machines-windows"
+	ms.workload="infrastructure-services"
+	ms.tgt_pltfrm="vm-windows"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/08/2016"
+	ms.author="iainfou"/>
 
+# 基礎結構命名指導方針
 
-# <a name="infrastructure-naming-guidelines"></a>Infrastructure naming guidelines
+[AZURE.INCLUDE [virtual-machines-windows-infrastructure-guidelines-intro](../../includes/virtual-machines-windows-infrastructure-guidelines-intro.md)]
 
-[AZURE.INCLUDE [virtual-machines-windows-infrastructure-guidelines-intro](../../includes/virtual-machines-windows-infrastructure-guidelines-intro.md)] 
+本文著重於了解各種 Azure 資源的命名慣例做法，以在整個環境中建置一組具邏輯性且可輕鬆識別的資源集合。
 
-This article focuses on understanding how to approach naming conventions for all your various Azure resources to build a logical and easily identifiable set of resources across your environment.
+## 命名慣例的實作指導方針
 
-## <a name="implementation-guidelines-for-naming-conventions"></a>Implementation guidelines for naming conventions
+决策：
 
-Decisions:
+- 哪些是您的 Azure 資源命名慣例？
 
-- What are your naming conventions for Azure resources?
+工作：
 
-Tasks:
+- 定義在資源間使用以維護一致性的詞綴。
+- 定義必須是全域唯一的儲存體帳戶名稱。
+- 記錄要使用並散發給所有相關合作對象的命名慣例，以確保部屬之間的一致性。
 
-- Define the affixes to use across your resources to maintain consistency.
-- Define storage account names given the requirement for them to be globally unique.
-- Document the naming convention to be used and distribute to all parties involved to ensure consistency across deployments.
+## 命名慣例
 
-## <a name="naming-conventions"></a>Naming conventions
+在 Azure 中建立任何項目之前，應先建立良好的命名慣例。命名慣例可確保所有資源都擁有可預測的名稱，有助於降低與這些資源管理相關聯的系統管理負擔。
 
-You should have a good naming convention in place before creating anything in Azure. A naming convention ensures that all the resources have a predictable name, which helps lower the administrative burden associated with managing those resources.
+您可以選擇遵循為整個組織所定義的一組特定命名慣例，或適用於特定 Azure 訂用帳戶或帳戶的命名慣例。儘管對組織內的個人來說，在使用 Azure 資源時建立隱含規則非常容易，但當小組需要在 Azure 上致力於某個專案時，該模型並不會適當地調整範圍。
 
-You might choose to follow a specific set of naming conventions defined for your entire organization or for a specific Azure subscription or account. Although it is easy for individuals within organizations to establish implicit rules when working with Azure resources, when a team needs to work on a project on Azure, that model does not scale well.
+預先針對命名慣例組合取得一致的意見。有些關於命名慣例的考量會牽涉到規則組合。
 
-Agree on a set of naming conventions up front. There are some considerations regarding naming conventions that cut across that sets of rules.
+## 詞綴
 
-## <a name="affixes"></a>Affixes
+當您定義命名慣例時，其中一個決定便是詞綴的位置應該位於：
 
-As you look to define a naming convention, one decision comes as to whether the affix is at:
+- 名稱開頭 (前置)
+- 名稱結尾 (後置)
 
-- The beginning of the name (prefix)
-- The end of the name (suffix)
+例如，針對使用 `rg` 詞綴的資源群組，以下是兩個可能的名稱：
 
-For instance, here are two possible names for a Resource Group using the `rg` affix:
+- Rg-WebApp (前置)
+- WebApp-Rg (後置)
 
-- Rg-WebApp (prefix)
-- WebApp-Rg (suffix)
+詞綴指的是可說明特定資源的各個層面。下列表格顯示一些常用範例。
 
-Affixes can refer to different aspects that describe the particular resources. The following table shows some examples typically used.
-
-| Aspect                               | Examples                                                               | Notes                                                                                                      |
+| 層面 | 範例 | 注意事項 |
 |:-------------------------------------|:-----------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------|
-| Environment                          | dev, stg, prod                                                         | Depending on the purpose and name of each environment.                                                     |
-| Location                             | usw (West US), use (East US 2)                                         | Depending on the region of the datacenter or the region of the organization.                               |
-| Azure component, service, or product | Rg for resource group, VNet for virtual network                        | Depending on the product for which the resource provides support.                                          |
-| Role                                 | sql, ora, sp, iis                                                      | Depending on the role of the virtual machine.                                                              |
-| Instance                             | 01, 02, 03, etc.                                                       | For resources that have more than one instance. For example, load balanced web servers in a cloud service. |
+| Environment | dev、stg、prod | 取決於每個環境的用途與名稱。 |
+| 位置 | usw (West US)、use (East US 2) | 取決於資料中心的區域或組織的區域。 |
+| Azure 元件、服務或產品 | Rg (適用於資源群組)、VNet (適用於虛擬網路) | 取決於資源提供支援的產品。 |
+| 角色 | sql、ora、sp、iis | 取決於虛擬機器的角色。 |
+| 執行個體 | 01、02 和 03 等 | 適用於有一個以上執行個體的資源。例如，雲端服務中負載平衡的 Web 伺服器。 |
 
 
-When establishing your naming conventions, make sure that they clearly state which affixes to use for each type of resource, and in which position (prefix vs suffix).
+建立命名慣例時，請確定它們會清楚描述要針對每個資源類型使用哪些詞綴，以及使用的位置 (前置或後置)。
 
-## <a name="dates"></a>Dates
+## 日期
 
-It is often important to determine the date of creation from the name of a resource. We recommend the YYYYMMDD date format. This format ensures that not only the full date is recorded, but also that two resources whose names differ only on the date is sorted alphabetically and chronologically at the same time.
+從資源名稱來判斷建立日期通常非常重要。我們建議使用 YYYYMMDD 日期格式。此格式可確保不僅會記錄完整的日期，而且這兩個名稱只有日期不同的資源會同時以依字母順序和依時間先後順序的方式來排序。
 
-## <a name="naming-resources"></a>Naming resources
+## 命名資源
 
-Define each type of resource in the naming convention, which should have rules that define how to assign names to each resource that is created. These rules should apply to all types of resources, for example:
+在命名慣例中定義每個資源類型，慣例中應包含規則來定義為每個所建立資源指派名稱的方式。這些規則應套用到所有資源類型，例如：
 
-- Subscriptions
-- Accounts
-- Storage accounts
-- Virtual networks
-- Subnets
-- Availability sets
-- Resource groups
-- Virtual machines
-- Endpoints
-- Network security groups
-- Roles
+- 訂用帳戶
+- 帳戶
+- 儲存體帳戶
+- 虛擬網路
+- 子網路
+- 可用性設定組
+- 資源群組
+- 虛擬機器
+- 端點
+- 網路安全性群組
+- 角色
 
-To ensure that the name provides enough information to determine to which resource it refers, you should use descriptive names.
+若要確保名稱可提供足夠的資訊來判斷其指稱的是哪一個資源，您應使用描述性名稱。
 
-## <a name="computer-names"></a>Computer names
+## 電腦名稱
 
-When you create a virtual machine (VM), Microsoft Azure requires a VM name of up to 15 characters which is used for the resource name. Azure uses the same name for the operating system installed in the VM. However, these names might not always be the same.
+當您建立虛擬機器 (VM) 時，Microsoft Azure 會要求一個由最多 15 個字元組成的 VM 名稱，這會用來做為資源名稱。Azure 會針對安裝在 VM 中的作業系統使用相同的名稱。但是，這些名稱不一定相同。
 
-In case a VM is created from a .vhd image file that already contains an operating system, the VM name in Azure can differ from the VM's operating system computer name. This situation can add a degree of difficulty to VM management, which we therefore do not recommend. Assign the Azure VM resource the same name as the computer name that you assign to the operating system of that VM.
+若 VM 是從已經包含作業系統的 .vhd 映像檔中所建立，Azure 中的 VM 名稱可能會與 VM 的作業系統電腦名稱不同。這種情況可能會增加 VM 管理的困難度，因此我們不建議使用。將 Azure VM 資源的名稱指派為該 VM 作業系統上所指派的相同電腦名稱。
 
-We recommend that the Azure VM name is the same as the underlying operating system computer name.
+我們建議讓 Azure VM 名稱與基礎作業系統電腦名稱相同。
 
-## <a name="storage-account-names"></a>Storage account names
+## 儲存體帳戶名稱
 
-Storage accounts have special rules governing their names. You can only use lowercase letters and numbers. See [Create a storage account](../storage/storage-create-storage-account.md#create-a-storage-account) for more information. Additionally, the storage account name, along with core.windows.net, should be a globally valid, unique DNS name. For instance, if the storage account is called mystorageaccount, the following resulting DNS names should be unique:
+儲存體帳戶具備負責管理其名稱的特殊規則。您只能使用小寫字母和數字。如需詳細資訊，請參閱[建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)。此外，儲存體帳戶名稱 (以及 core.windows.net) 應是全域有效的唯一 DNS 名稱。例如，如果儲存體帳戶名稱為 mystorageaccount，則以下產生的 DNS 名稱應該是唯一的：
 
 - mystorageaccount.blob.core.windows.net
 - mystorageaccount.table.core.windows.net
 - mystorageaccount.queue.core.windows.net
 
 
-## <a name="next-steps"></a>Next steps
-[AZURE.INCLUDE [virtual-machines-windows-infrastructure-guidelines-next-steps](../../includes/virtual-machines-windows-infrastructure-guidelines-next-steps.md)] 
+## 後續步驟
+[AZURE.INCLUDE [virtual-machines-windows-infrastructure-guidelines-next-steps](../../includes/virtual-machines-windows-infrastructure-guidelines-next-steps.md)]
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

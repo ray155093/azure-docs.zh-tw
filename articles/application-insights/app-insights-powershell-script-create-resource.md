@@ -1,40 +1,39 @@
 <properties 
-    pageTitle="PowerShell script to create an Application Insights resource" 
-    description="Automate creation of Application Insights resources." 
-    services="application-insights" 
+	pageTitle="建立 Application Insights 資源的 PowerShell 指令碼" 
+	description="自動建立 Application Insights 資源。" 
+	services="application-insights" 
     documentationCenter="windows"
-    authors="alancameronwills" 
-    manager="douge"/>
+	authors="alancameronwills" 
+	manager="douge"/>
 
 <tags 
-    ms.service="application-insights" 
-    ms.workload="tbd" 
-    ms.tgt_pltfrm="ibiza" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="02/19/2016" 
-    ms.author="awills"/>
+	ms.service="application-insights" 
+	ms.workload="tbd" 
+	ms.tgt_pltfrm="ibiza" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="02/19/2016" 
+	ms.author="awills"/>
 
+#  建立 Application Insights 資源的 PowerShell 指令碼
 
-#  <a name="powershell-script-to-create-an-application-insights-resource"></a>PowerShell script to create an Application Insights resource
+*Application Insights 目前僅供預覽。*
 
-*Application Insights is in preview.*
+當您想要使用 [Visual Studio Application Insights](https://azure.microsoft.com/services/application-insights/) 監視新的應用程式或新版應用程式時，會在 Microsoft Azure 中設定新的資源。此資源是分析和顯示應用程式之遙測資料的位置。
 
-When you want to monitor a new application - or a new version of an application - with [Visual Studio Application Insights](https://azure.microsoft.com/services/application-insights/), you set up a new resource in Microsoft Azure. This resource is where the telemetry data from your app is analyzed and displayed. 
+您可以使用 PowerShell 將建立新資源的過程自動化。
 
-You can automate the creation of a new resource by using PowerShell.
+例如，如果您正在開發行動裝置應用程式，則客戶可能會在任何時候，同時使用數個已發行的應用程式版本。您不想取得不同版本混在一起的遙測結果。因此您讓建置流程針對每個新組建建立新的資源。
 
-For example, if you are developing a mobile device app, it's likely that, at any time, there will be several published versions of your app in use by your customers. You don't want to get the telemetry results from different versions mixed up. So you get your build process to create a new resource for each build.
+## 建立 Application Insights 資源的指令碼
 
-## <a name="script-to-create-an-application-insights-resource"></a>Script to create an Application Insights resource
-
-See the relevant cmdlet specs:
+請參閱相關的 Cmdlet 規格：
 
 * [New-AzureRmResource](https://msdn.microsoft.com/library/mt652510.aspx)
 * [New-AzureRmRoleAssignment](https://msdn.microsoft.com/library/mt678995.aspx)
 
 
-*PowerShell Script*  
+*PowerShell 指令碼*
 
 ```PowerShell
 
@@ -92,29 +91,26 @@ Write-Host "IKey = " $resource.Properties.InstrumentationKey
 
 ```
 
-## <a name="what-to-do-with-the-ikey"></a>What to do with the iKey
+## 如何使用 iKey
 
-Each resource is identified by its instrumentation key (iKey). The iKey is an output of the resource creation script. Your build script should provide the iKey to the Application Insights SDK embedded in your app.
+每項資源均是由其檢測金鑰 (iKey) 識別。iKey 是資源建立指令碼的輸出。您的建置指令碼應該將 iKey 提供給內嵌在您應用程式中的 Application Insights SDK。
 
-There are two ways to make the iKey available to the SDK:
+有兩種方式可讓 SDK 取得 iKey：
   
-* In [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md): 
+* 在 [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md) 中： 
  * `<instrumentationkey>`*ikey*`</instrumentationkey>`
-* Or in [initialization code](app-insights-api-custom-events-metrics.md): 
+* 或在[初始化程式碼](app-insights-api-custom-events-metrics.md)中： 
  * `Microsoft.ApplicationInsights.Extensibility.
     TelemetryConfiguration.Active.InstrumentationKey = "`*iKey*`";`
 
 
 
-## <a name="see-also"></a>See also
+## 另請參閱
 
-* [Create Application Insights and web test resources from templates](app-insights-powershell.md)
-* [Set up monitoring of Azure diagnostics with PowerShell](app-insights-powershell-azure-diagnostics.md) 
-* [Set alerts by using PowerShell](app-insights-powershell-alerts.md)
+* [從範本建立 Application Insights 和 Web 測試資源](app-insights-powershell.md)
+* [Set 使用 PowerShell 設定 Azure 診斷的監視](app-insights-powershell-azure-diagnostics.md) 
+* [使用 PowerShell 設定警示](app-insights-powershell-alerts.md)
 
  
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0224_2016-->

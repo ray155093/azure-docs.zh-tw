@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="Tutorial: Azure Active Directory integration with Sprinklr | Microsoft Azure" 
-    description="Learn how to use Sprinklr with Azure Active Directory to enable single sign-on, automated provisioning, and more!" 
+    pageTitle="教學課程：Azure Active Directory 與 Sprinklr 整合 | Microsoft Azure" 
+    description="了解如何使用 Sprinklr 搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -14,182 +14,174 @@
     ms.date="09/19/2016" 
     ms.author="jeedes" />
 
-
-#<a name="tutorial:-azure-active-directory-integration-with-sprinklr"></a>Tutorial: Azure Active Directory integration with Sprinklr
+#教學課程：Azure Active Directory 與 Sprinklr 整合
   
-The objective of this tutorial is to show the integration of Azure and Sprinklr.  
-The scenario outlined in this tutorial assumes that you already have the following items:
+本教學課程的目的是要示範 Azure 與 Sprinklr 的整合。本教學課程中說明的案例假設您已經具有下列項目：
 
--   A valid Azure subscription
--   A Sprinklr tenant
+-   有效的 Azure 訂用帳戶
+-   Sprinklr 租用戶
   
-After completing this tutorial, the Azure AD users you have assigned to Sprinklr will be able to single sign into the application at your Sprinklr company site (service provider initiated sign on), or using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+完成本教學課程之後，您指派給 Sprinklr 的 Azure AD 使用者就能夠單一登入您 Sprinklr 公司網站 (服務提供者起始登入) 的應用程式，或是使用[存取面板簡介](active-directory-saas-access-panel-introduction.md)進行單一登入。
   
-The scenario outlined in this tutorial consists of the following building blocks:
+本教學課程中說明的案例由下列建置組塊組成：
 
-1.  Enabling the application integration for Sprinklr
-2.  Configuring single sign-on
-3.  Configuring user provisioning
-4.  Assigning users
+1.  啟用 Sprinklr 的應用程式整合
+2.  設定單一登入
+3.  設定使用者佈建
+4.  指派使用者
 
-![Scenario](./media/active-directory-saas-sprinklr-tutorial/IC782900.png "Scenario")
+![案例](./media/active-directory-saas-sprinklr-tutorial/IC782900.png "案例")
 
-##<a name="enabling-the-application-integration-for-sprinklr"></a>Enabling the application integration for Sprinklr
+##啟用 Sprinklr 的應用程式整合
   
-The objective of this section is to outline how to enable the application integration for Sprinklr.
+本節的目的是概述如何啟用 Sprinklr 的應用程式整合。
 
-###<a name="to-enable-the-application-integration-for-sprinklr,-perform-the-following-steps:"></a>To enable the application integration for Sprinklr, perform the following steps:
+###若要啟用 Sprinklr 的應用程式整合，請執行下列步驟：
 
-1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-sprinklr-tutorial/IC700993.png "Active Directory")
 
-2.  From the **Directory** list, select the directory for which you want to enable directory integration.
+2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3.  To open the applications view, in the directory view, click **Applications** in the top menu.
+3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
 
-    ![Applications](./media/active-directory-saas-sprinklr-tutorial/IC700994.png "Applications")
+    ![應用程式](./media/active-directory-saas-sprinklr-tutorial/IC700994.png "應用程式")
 
-4.  Click **Add** at the bottom of the page.
+4.  按一下頁面底部的 [新增]。
 
-    ![Add application](./media/active-directory-saas-sprinklr-tutorial/IC749321.png "Add application")
+    ![新增應用程式](./media/active-directory-saas-sprinklr-tutorial/IC749321.png "新增應用程式")
 
-5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
-    ![Add an application from gallerry](./media/active-directory-saas-sprinklr-tutorial/IC749322.png "Add an application from gallerry")
+    ![從資源庫新增應用程式](./media/active-directory-saas-sprinklr-tutorial/IC749322.png "從資源庫新增應用程式")
 
-6.  In the **search box**, type **Sprinklr**.
+6.  在 [搜尋方塊] 中，輸入 **Sprinklr**。
 
-    ![Application Gallery](./media/active-directory-saas-sprinklr-tutorial/IC782901.png "Application Gallery")
+    ![應用程式庫](./media/active-directory-saas-sprinklr-tutorial/IC782901.png "應用程式庫")
 
-7.  In the results pane, select **Sprinklr**, and then click **Complete** to add the application.
+7.  在結果窗格中，選取 [Sprinklr]，然後按一下 [完成] 加入應用程式。
 
     ![Sprinklr](./media/active-directory-saas-sprinklr-tutorial/IC782902.png "Sprinklr")
 
-##<a name="configuring-single-sign-on"></a>Configuring single sign-on
+##設定單一登入
   
-The objective of this section is to outline how to enable users to authenticate to Sprinklr with their account in Azure AD using federation based on the SAML protocol.  
-As part of this procedure, you are required to create a base-64 encoded certificate file.  
-If you are not familiar with this procedure, see [How to convert a binary certificate into a text file](http://youtu.be/PlgrzUZ-Y1o).
+本節的目的是概述如何依據 SAML 通訊協定來使用同盟，讓使用者能夠以自己的 Azure AD 帳戶在 Sprinklr 中進行驗證。在此程序中，您必須建立 Base-64 編碼的憑證檔案。如果您不熟悉此程序，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
 
-###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
+###若要設定單一登入，請執行下列步驟：
 
-1.  In the Azure classic portal, on the **Sprinklr** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
+1.  在 Azure 傳統入口網站的 [Sprinklr] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
-    ![Configure single sign-on](./media/active-directory-saas-sprinklr-tutorial/IC782903.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-sprinklr-tutorial/IC782903.png "設定單一登入")
 
-2.  On the **How would you like users to sign on to Sprinklr** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
+2.  在 [要如何讓使用者登入 Sprinklr] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
 
-    ![Configure single sign-on](./media/active-directory-saas-sprinklr-tutorial/IC782904.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-sprinklr-tutorial/IC782904.png "設定單一登入")
 
-3.  On the **Configure App URL** page, in the **Sprinklr Sign In URL** textbox, type your URL using the following pattern "*https://\<tenant-name\>.sprinklr.com*", and then click **Next**.
+3.  在 [設定應用程式 URL] 頁面的 [Sprinklr 登入 URL] 文字方塊中，使用下列模式輸入您的 URL："*https://\<租用戶名稱>.sprinklr.com*"，然後按 [下一步]。
 
-    ![Configure App URL](./media/active-directory-saas-sprinklr-tutorial/IC782905.png "Configure App URL")
+    ![設定應用程式 URL](./media/active-directory-saas-sprinklr-tutorial/IC782905.png "設定應用程式 URL")
 
-4.  On the **Configure single sign-on at Sprinklr** page, to download your certificate, click **Download certificate**, and then save the certificate file on your computer.
+4.  在 [設定在 Sprinklr 單一登入] 頁面上，按一下 [下載憑證] 以下載您的憑證，然後將憑證檔案儲存在您的電腦中。
 
-    ![Configure single sign-on](./media/active-directory-saas-sprinklr-tutorial/IC782906.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-sprinklr-tutorial/IC782906.png "設定單一登入")
 
-5.  In a different web browser window, log into your Sprinklr company site as an administrator.
+5.  在不同的 Web 瀏覽器視窗中，以系統管理員身分登入您的 Sprinklr 公司網站。
 
-6.  Go to **Administration \> Settings**.
+6.  移至 [管理] > [設定]。
 
-    ![Administration](./media/active-directory-saas-sprinklr-tutorial/IC782907.png "Administration")
+    ![系統管理](./media/active-directory-saas-sprinklr-tutorial/IC782907.png "系統管理")
 
-7.  Go to **Manage Partner \> Single Sign** on from the left pane.
+7.  從左窗格移至 [管理夥伴] > [單一登入]。
 
-    ![Manage Partner](./media/active-directory-saas-sprinklr-tutorial/IC782908.png "Manage Partner")
+    ![管理夥伴](./media/active-directory-saas-sprinklr-tutorial/IC782908.png "管理夥伴")
 
-8.  Click **+Add Single Sign Ons**.
+8.  按一下 [新增單一登入]。
 
-    ![Single Sign-Ons](./media/active-directory-saas-sprinklr-tutorial/IC782909.png "Single Sign-Ons")
+    ![單一登入](./media/active-directory-saas-sprinklr-tutorial/IC782909.png "單一登入")
 
-9.  On the **Single Sign on** page, perform the following steps:
+9.  在 [單一登入] 頁面上，執行下列步驟：
 
-    ![Single Sign-Ons](./media/active-directory-saas-sprinklr-tutorial/IC782910.png "Single Sign-Ons")
+    ![單一登入](./media/active-directory-saas-sprinklr-tutorial/IC782910.png "單一登入")
 
-    1.  In the **Name** textbox, type a name for your configuration (e.g.: *WAADSSOTest*).
-    2.  Select **Enabled**.
-    3.  Select **Use new SSO Certificate**.
-    4.  Create a **base-64 encoded** file from your downloaded certificate.  
+    1.  在 [名稱] 文字方塊中，輸入您的組態名稱 (例如：*WAADSSOTest*)。
+    2.  選取 [啟用]。
+    3.  選取 [使用新的 SSO 憑證]。
+    4.  從您下載的憑證建立「Base-64 編碼」檔案。
 
-        >[AZURE.TIP] For more details, see [How to convert a binary certificate into a text file](http://youtu.be/PlgrzUZ-Y1o)
+        >[AZURE.TIP] 如需詳細資訊，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)
 
-    5.  Open your base-64 encoded certificate in notepad, copy the content of it into your clipboard, and then paste it to the **Identity Provider Certificate** textbox,
-    6.  In the Azure classic portal, on the **Configure single sign-on at Sprinklr** dialog page, copy the **Identity Provider ID** value, and then paste it into the **Entity Id** textbox.
-    7.  In the Azure classic portal, on the **Configure single sign-on at Sprinklr** dialog page, copy the **Remote Login URL** value, and then paste it into the **Identity Provider Login URL** textbox.
-    8.  In the Azure classic portal, on the **Configure single sign-on at Sprinklr** dialog page, copy the **Remote Logout URL** value, and then paste it into the **Identity Provider Logout URL** textbox.
-    9.  As **SAML User ID Type**, select **Assertion contains User”s sprinklr.com username**.
-    10. As **SAML User ID Location**, select **User ID is in the Name Identifier element of the Subject statement**.
-    11. Close **Save**.
+    5.  在記事本中開啟您的 base-64 編碼的憑證，將它的內容複製到您的剪貼簿，然後貼到 [識別提供者憑證] 文字方塊中。
+    6.  在 Azure 傳統入口網站中的 [設定在 Sprinklr 單一登入] 對話頁面上，複製 [識別提供者識別碼] 值，然後將它貼至 [實體 ID] 文字方塊中。
+    7.  在 Azure 傳統入口網站中的 [設定在 Sprinklr 單一登入] 對話頁面上，複製 [遠端登入 URL] 值，然後將它貼至 [識別提供者登入 URL] 文字方塊中。
+    8.  在 Azure 傳統入口網站中的 [設定在 Sprinklr 單一登入] 對話頁面上，複製 [遠端登出 URL] 值，然後將它貼至 [識別提供者登出 URL] 文字方塊中。
+    9.  在 [SAML 使用者識別碼類型] 選取 [判斷提示包含使用者的 sprinklr.com 使用者名稱]。
+    10. 在 [SAML 使用者識別碼位置] 選取 [使用者識別碼位於 Subject 陳述式的 NameIdentifier 元素中]。
+    11. 關閉 [儲存]。
 
         ![SAML](./media/active-directory-saas-sprinklr-tutorial/IC782911.png "SAML")
 
-10. On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
+10. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
-    ![Configure single sign-on](./media/active-directory-saas-sprinklr-tutorial/IC782912.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-sprinklr-tutorial/IC782912.png "設定單一登入")
 
-##<a name="configuring-user-provisioning"></a>Configuring user provisioning
+##設定使用者佈建
   
-For AAD users to be able to sign in, they must be provisioned for access inside the Sprinklr application.  
-This section describes how to create AAD user accounts inside Sprinklr.
+必須先針對 Sprinklr 應用程式內的存取佈建 AAD 使用者，才可以讓他們登入。本章節描述如何建立 Sprinklr 內的 AAD 使用者帳戶。
 
-###<a name="to-provision-a-user-account-in-sprinklr,-perform-the-following-steps:"></a>To provision a user account in Sprinklr, perform the following steps:
+###若要佈建使用者帳戶到 Sprinklr，請執行下列步驟：
 
-1.  Log into your Sprinklr company site as an administrator.
+1.  以系統管理員身分登入您的 Sprinklr 公司網站。
 
-2.  Go to **Administration \> Settings**.
+2.  移至 [管理] > [設定]。
 
-    ![Administration](./media/active-directory-saas-sprinklr-tutorial/IC782907.png "Administration")
+    ![系統管理](./media/active-directory-saas-sprinklr-tutorial/IC782907.png "系統管理")
 
-3.  Go to **Manage Client \> Users** from the left pane.
+3.  從左窗格移至 [管理用戶端] > [使用者]。
 
     ![Settings](./media/active-directory-saas-sprinklr-tutorial/IC782914.png "Settings")
 
-4.  Click **Add User**.
+4.  按一下 [新增使用者]。
 
     ![Settings](./media/active-directory-saas-sprinklr-tutorial/IC782915.png "Settings")
 
-5.  On the **Edit user** dialog, perform the following steps:
+5.  在 [編輯使用者] 對話方塊上，執行下列步驟：
 
-    ![Edit user](./media/active-directory-saas-sprinklr-tutorial/IC782916.png "Edit user")
+    ![編輯使用者](./media/active-directory-saas-sprinklr-tutorial/IC782916.png "編輯使用者")
 
-    1.  In the **Email**, **First Name** and **Last Name** textboxes, type the information of an Azure AD user account you want to provision.
-    2.  Select **Password Disabled**.
-    3.  Select a **Language**.
-    4.  Select a **User Type**.
-    5.  Click **Update**.
+    1.  在 [電子郵件]、[名字] 和 [姓氏] 文字方塊中，輸入您想要佈建之 Azure AD 使用者帳戶資訊。
+    2.  選取 [密碼已停用]。
+    3.  選取 [語言]。
+    4.  選取 [使用者類型]。
+    5.  按一下 [更新]。
 
-    >[AZURE.IMPORTANT] **Password Disabled** must be selected to enable a user to log in via an Identity provider.
+    >[AZURE.IMPORTANT] 必須選取 [密碼已停用]，才能讓使用者透過識別提供者登入。
 
-6.  Go to **Role**, and then perform the following steps:
+6.  請移至 [角色]，然後執行下列步驟：
 
-    ![Partner Roles](./media/active-directory-saas-sprinklr-tutorial/IC782917.png "Partner Roles")
+    ![夥伴角色](./media/active-directory-saas-sprinklr-tutorial/IC782917.png "夥伴角色")
 
-    1.  From the **Global** list, select **ALL\_Permissions**.
-    2.  Click **Update**.
+    1.  在 [全域] 清單中選取 [所有權限]。
+    2.  按一下 [更新]。
 
->[AZURE.NOTE] You can use any other Sprinklr user account creation tools or APIs provided by Sprinklr to provision Azure AD user accounts.
+>[AZURE.NOTE] 您可以使用任何其他的 Sprinklr 使用者帳戶建立工具或 Sprinklr 提供的 API 來佈建 Azure AD 使用者帳戶。
 
-##<a name="assigning-users"></a>Assigning users
+##指派使用者
   
-To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
+若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-###<a name="to-assign-users-to-sprinklr,-perform-the-following-steps:"></a>To assign users to Sprinklr, perform the following steps:
+###若要將使用者指派到 Sprinklr，請執行下列步驟：
 
-1.  In the Azure classic portal, create a test account.
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
-2.  On the **Sprinklr **application integration page, click **Assign users**.
+2.  在 [Sprinklr] 應用程式整合頁面上，按一下 [指派使用者]。
 
-    ![Assign users](./media/active-directory-saas-sprinklr-tutorial/IC782918.png "Assign users")
+    ![指派使用者](./media/active-directory-saas-sprinklr-tutorial/IC782918.png "指派使用者")
 
-3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
+3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
 
-    ![Yes](./media/active-directory-saas-sprinklr-tutorial/IC767830.png "Yes")
+    ![是](./media/active-directory-saas-sprinklr-tutorial/IC767830.png "是")
   
-If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資料，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

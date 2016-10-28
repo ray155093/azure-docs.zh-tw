@@ -1,67 +1,63 @@
 <properties 
-    pageTitle="How to use io.js with Azure App Service Web Apps" 
-    description="Learn how to use a web app in Azure App Service with io.js." 
-    services="app-service\web" 
-    documentationCenter="nodejs" 
-    authors="rmcmurray" 
-    manager="wpickett" 
-    editor=""/>
+	pageTitle="如何搭配使用 io.js 和 Azure App Service Web Apps" 
+	description="了解如何搭配使用 Azure App Service 中的 Web 應用程式和 io.js。" 
+	services="app-service\web" 
+	documentationCenter="nodejs" 
+	authors="rmcmurray" 
+	manager="wpickett" 
+	editor=""/>
 
 <tags 
-    ms.service="app-service-web" 
-    ms.workload="web" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="nodejs" 
-    ms.topic="article" 
-    ms.date="08/11/2016"
-    ms.author="robmcm" />
+	ms.service="app-service-web" 
+	ms.workload="web" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="nodejs" 
+	ms.topic="article" 
+	ms.date="08/11/2016"
+	ms.author="robmcm" />
 
+# 如何搭配使用 io.js 和 Azure App Service Web Apps
 
-# <a name="how-to-use-io.js-with-azure-app-service-web-apps"></a>How to use io.js with Azure App Service Web Apps
+受歡迎的 Node 會將 [io.js] 功能的各種差異分散至 Joyent 的 Node.js 專案，包括更開放的控管模型、更快速的發行週期，以及更快速地採用全新和實驗性的 JavaScript 功能。
 
-The popular Node fork [io.js] features various differences to Joyent's Node.js project, including a more open governance model, a faster release cycle and a faster adoption of new and experimental JavaScript features.
-
-While [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) Web Apps has many Node.js versions preinstalled, it also allows for an user-provided Node.js binary. This article discusses two methods enabling the use of io.js on App Service Web Apps: The use of an extended deployment script, which automatically configures Azure to use the latest available io.js version, as well as the manual upload of a io.js binary. 
+雖然 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) Web Apps 有許多預先安裝的 Node.js 版本，但它也允許使用者提供的 Node.js 二進位檔。本文討論兩種方法可用來啟用 App Service Web Apps 上的 io.js：使用擴充的部署指令碼(其會自動設定 Azure 來使用最新的可用 io.js 版本)，以及手動上傳 io.js 二進位檔。
 
 <a id="deploymentscript"></a>
-## <a name="using-a-deployment-script"></a>Using a Deployment Script
+## 使用部署指令碼
 
-Upon deployment of a Node.js app, App Service Web Apps runs a number of small commands to ensure that the environment is configured properly. Using a deployment script, this process can be customized to include the download and configuration of io.js.
+部署 Node.js 應用程式時，App Service Web Apps 會執行一些小型命令，以確保會正確設定環境。使用部署指令碼，可自訂此程序來加入 io.js 的下載和組態。
 
-The [io.js Deployment Script](https://github.com/felixrieseberg/iojs-azure) is available on GitHub. To enable io.js on your web app, simply copy **.deployment**, **deploy.cmd** and **IISNode.yml** to the root of your application folder and deploy to Web Apps.  
+[Io.js 部署指令碼](https://github.com/felixrieseberg/iojs-azure)可在 GitHub 上取得。若要在 Web 應用程式上啟用 io.js，只要將 **.deployment**、**deploy.cmd** 和 **IISNode.yml** 複製到應用程式資料夾的根目錄，以及部署至 Web Apps。
 
-The first file, **.deployment**, instructs Web Apps to run **deploy.cmd** upon deployment. This script runs all the usual steps for a Node.js application, but also downloads the latest version of io.js. Finally, **IISNode.yml** configures Web Apps to use just the downloaded io.js binary instead of a pre-installed Node.js binary.
+第一個檔案 **.deployment** 會在部署時指示 Web Apps 執行 **deploy.cmd**。此指令碼會針對 Node.js 應用程式執行所有一般步驟，但也會下載最新版的 io.js。最後，**IISNode.yml** 會設定 Web Apps 使用剛才下載的 io.js 二進位檔，而不是預先安裝的 Node.js 二進位檔。
 
-> [AZURE.NOTE] To update the used io.js binary, just redeploy your application - the script will download a new version of io.js every single time the application is deployed.
+> [AZURE.NOTE] 若要更新使用的 io.js 二進位檔，只要重新部署應用程式即可；每次部署應用程式時，指令碼都會下載新版 io.js。
 
 <a id="manualinstallation"></a>
-## <a name="using-manual-installation"></a>Using Manual Installation
+## 使用手動安裝
 
-The manual installation of a custom io.js version includes only two steps. First, download the **win-x64** binary directly from the [io.js distribution]. Required are two files - **iojs.exe** and **iojs.lib**. Save both files to a folder inside your web app, for example in **bin/iojs**.
+手動安裝的自訂 io.js 版本只包括兩個步驟。首先，直接從 [io.js 散發]下載 **win-x64** 二進位檔。需要兩個檔案 - **iojs.exe** 和 **iojs.lib**。將這兩個檔案儲存至 Web 應用程式內的資料夾，例如儲存在 **bin/iojs**。
 
-To configure Web Apps to use **iojs.exe** instead of a pre-installed Node version, create a **IISNode.yml** file at the root of your application and add the following line.
+若要設定 Web Apps 使用 **iojs.exe**，而不是預先安裝的 Node 版本，請在應用程式的根目錄建立 **IISNode.yml** 檔案並加入下一行。
 
     nodeProcessCommandLine: "D:\home\site\wwwroot\bin\iojs\iojs.exe"
 
 <a id="nextsteps"></a>
-## <a name="next-steps"></a>Next Steps
+## 後續步驟
 
-In this article you learned how to use io.js with App Service Web Apps, using both provided deployment scripts as well as manual installation. 
+在本文中，您學到如何搭配使用 io.js 與 App Service Web Apps、使用這兩個提供的部署指令碼，以及手動安裝。
 
-> [AZURE.NOTE] io.js is in heavy development and updated more frequently than Node.js. A number of Node.js modules might not work with io.js - please consult [io.js on GitHub] for troubleshooting.
+> [AZURE.NOTE] io.js 正在密集的開發中，而且比 Node.js 更頻繁地更新。許多 Node.js 模組可能不適用於 io.js，請參閱 [GitHub 上的 io.js] 以進行疑難排解。
 
-## <a name="what's-changed"></a>What's changed
-* For a guide to the change from Websites to App Service see: [Azure App Service and Its Impact on Existing Azure Services](http://go.microsoft.com/fwlink/?LinkId=529714)
+## 變更的項目
+* 如需從網站變更為 App Service 的指南，請參閱：[Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
 
->[AZURE.NOTE] If you want to get started with Azure App Service before signing up for an Azure account, go to [Try App Service](http://go.microsoft.com/fwlink/?LinkId=523751), where you can immediately create a short-lived starter web app in App Service. No credit cards required; no commitments.
+>[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；無需承諾。
 
 [io.js]: https://iojs.org
-[io.js distribution]: https://iojs.org/dist/
-[io.js on GitHub]: https://github.com/iojs/io.js
+[io.js 散發]: https://iojs.org/dist/
+[GitHub 上的 io.js]: https://github.com/iojs/io.js
 [io.js Deployment Script]: https://github.com/felixrieseberg/iojs-azure
  
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

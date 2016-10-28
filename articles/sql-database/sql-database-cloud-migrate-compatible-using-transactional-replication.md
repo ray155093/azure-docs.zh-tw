@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Migrate to SQL Database using transactional replication | Microsoft Azure"
-   description="Microsoft Azure SQL Database, database migration, import database, transactional replication"
+   pageTitle="使用異動複寫移轉到 SQL Database | Microsoft Azure"
+   description="Microsoft Azure SQL Database, 資料庫移轉, 匯入資料庫, 異動複寫"
    services="sql-database"
    documentationCenter=""
    authors="CarlRabeler"
@@ -16,56 +16,51 @@
    ms.date="08/23/2016"
    ms.author="carlrab"/>
 
-
-# <a name="migrate-sql-server-database-to-azure-sql-database-using-transactional-replication"></a>Migrate SQL Server database to Azure SQL Database using transactional replication
+# 使用異動複寫將 SQL Server 資料庫移轉到 Azure SQL Database
 
 > [AZURE.SELECTOR]
-- [SSMS Migration Wizard](sql-database-cloud-migrate-compatible-using-ssms-migration-wizard.md)
-- [Export to BACPAC File](sql-database-cloud-migrate-compatible-export-bacpac-ssms.md)
-- [Import from BACPAC File](sql-database-cloud-migrate-compatible-import-bacpac-ssms.md)
-- [Transactional Replication](sql-database-cloud-migrate-compatible-using-transactional-replication.md)
+- [SSMS 移轉精靈](sql-database-cloud-migrate-compatible-using-ssms-migration-wizard.md)
+- [匯出至 BACPAC 檔案](sql-database-cloud-migrate-compatible-export-bacpac-ssms.md)
+- [從 BACPAC 檔案匯入](sql-database-cloud-migrate-compatible-import-bacpac-ssms.md)
+- [異動複寫](sql-database-cloud-migrate-compatible-using-transactional-replication.md)
 
-In this article, you learn to migrate a compatible SQL Server database to Azure SQL Database with minimal downtime using SQL Server transactional replication.
+在這篇文章中，您將了解如何使用 SQL Server 異動複寫，在最短的停機時間內，將相容的 SQL Server 資料庫移轉到 Azure SQL Database。
 
-## <a name="understanding-the-transactional-replication-architecture"></a>Understanding the Transactional Replication architecture
+## 了解異動複寫架構
 
-When you cannot afford to remove your SQL Server database from production while the migration is occurring, you can use SQL Server transactional replication as your migration solution. To use this solution, you configure your Azure SQL Database as a subscriber to the on-premises SQL Server instance that you wish to migrate. The on-premises transactional replication distributor synchronizes data from the on-premises database to be synchronized (the publisher) while new transactions continue occur. 
+當您在移轉發生時無法負擔從實際執行中移除 SQL Server 資料庫時，可以使用 SQL Server 異動複寫做為移轉解決方案。若要使用此解決方案，您需將 Azure SQL Database 設定為您想要移轉之內部部署 SQL Server 執行個體的訂閱者。內部部署異動複寫散發者會在新交易繼續進行的同時，從要被同步處理的內部部署資料庫 (發行者) 同步處理資料。
 
-You can also use transactional replication to migrate a subset of your on-premises database. The publication that you replicate to Azure SQL Database can be limited to a subset of the tables in the database being replicated. For each table being replicated, you can limit the data to a subset of the rows and/or a subset of the columns.
+您也可以使用異動複寫以移轉內部部署資料庫的子集。您複寫至 Azure SQL Database 的發佈可以限制為複寫的資料庫中資料表的子集。針對要複寫的每一個資料表，您可以將資料限制在資料列的子集和 (或) 資料行的子集。
 
-With transactional replication, all changes to your data or schema show up in your Azure SQL Database. Once the synchronization is complete and you are ready to migrate, change the connection string of your applications to point them to your Azure SQL Database. Once transactional replication drains any changes left on your on-premises database and all your applications point to Azure DB, you can uninstall transactional replication. Your Azure SQL Database is now your production system.
+使用異動複寫時，對您資料或結構描述所做的一切變更都會顯示在 Azure SQL Database 中。同步處理完成且您已準備好進行移轉之後，請將您應用程式的連接字串變更成指向您的 Azure SQL Database。當異動複寫清空留在內部部署資料庫上的所有變更，並且您的所有應用程式都指向 Azure DB 之後，您便可以將異動複寫解除安裝。您的 Azure SQL Database 現在已是您的生產環境系統。
 
- ![SeedCloudTR diagram](./media/sql-database-cloud-migrate/SeedCloudTR.png)
+ ![SeedCloudTR 圖表](./media/sql-database-cloud-migrate/SeedCloudTR.png)
 
-## <a name="transactional-replication-requirements"></a>Transactional Replication requirements
+## 異動複寫需求
 
-Transactional replication is a technology built-in and integrated with SQL Server since SQL Server 6.5. It is a mature and proven technology that most of DBAs know with which they have experience. With the [SQL Server 2016](https://www.microsoft.com/en-us/cloud-platform/sql-server), it is now possible to configure your Azure SQL Database as a [transactional replication subscriber](https://msdn.microsoft.com/library/mt589530.aspx) to your on-premises publication. The experience that you get setting it up from Management Studio is the same as if you set up a transactional replication subscriber on an on-premises server. Support for this scenario is supported when the publisher and the distributor are at least one of the following SQL Server versions:
+異動複寫是內建技術，與 SQL Server 6.5 之後的 SQL Server 整合。它是一項成熟且經過實證的技術，大多數 DBA 都知道這項技術且有相關的經驗。有了 [SQL Server 2016](https://www.microsoft.com/zh-TW/cloud-platform/sql-server)，現在便能夠將 Azure SQL Database 設定為內部部署發佈的[異動複寫訂閱者](https://msdn.microsoft.com/library/mt589530.aspx)。您從 Management Studio 設定它的體驗，與在內部部署伺服器上設定異動複寫訂閱者相同。當發行者和散發者至少是下列其中一個 SQL Server 版本時，即支援對此案例的支援：
 
- - SQL Server 2016 and above 
- - SQL Server 2014 SP1 CU3 and above
- - SQL Server 2014 RTM CU10 and above
- - SQL Server 2012 SP2 CU8 and above
- - SQL Server 2012 SP3 and above
-
-
-> [AZURE.IMPORTANT] Use the latest version of SQL Server Management Studio to remain synchronized with updates to Microsoft Azure and SQL Database. Older versions of SQL Server Management Studio cannot set up SQL Database as a subscriber. [Update SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx).
+ - SQL Server 2016 或以上版本
+ - SQL Server 2014 SP1 CU3 和更新版本
+ - SQL Server 2014 RTM CU10 和更新版本
+ - SQL Server 2012 SP2 CU8 和更新版本
+ - SQL Server 2012 SP3 和更新版本
 
 
-## <a name="next-steps"></a>Next steps
+> [AZURE.IMPORTANT] 請使用最新版的 SQL Server Management Studio 以便與 Microsoft Azure 及 SQL Database 更新保持同步。舊版 SQL Server Management Studio 無法將 SQL Database 設定為訂閱者。[更新 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)。
 
-- [Newest version of SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)
-- [Newest version of SSDT](https://msdn.microsoft.com/library/mt204009.aspx)
-- [SQL Server 2016 ](https://www.microsoft.com/en-us/cloud-platform/sql-server)
 
-## <a name="additional-resources"></a>Additional resources
+## 後續步驟
 
-- [Transactional Replication](https://msdn.microsoft.com/library/mt589530.aspx)
+- [最新版本的 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)
+- [最新版本的 SSDT](https://msdn.microsoft.com/library/mt204009.aspx)
+- [SQL Server 2016](https://www.microsoft.com/zh-TW/cloud-platform/sql-server)
+
+## 其他資源
+
+- [異動複寫](https://msdn.microsoft.com/library/mt589530.aspx)
 - [SQL Database V12](sql-database-v12-whats-new.md)
-- [Transact-SQL partially or unsupported functions](sql-database-transact-sql-information.md)
-- [Migrate non-SQL Server databases using SQL Server Migration Assistant](http://blogs.msdn.com/b/ssma/)
+- [Transact-SQL 部分支援或不支援的函數](sql-database-transact-sql-information.md)
+- [使用 SQL Server 移轉小幫手來移轉非 SQL Server 資料庫](http://blogs.msdn.com/b/ssma/)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

@@ -1,7 +1,7 @@
 <properties
-    pageTitle="Create a SQL Server Virtual Machine in Azure PowerShell (Resource Manager) | Microsoft Azure"
-    description="Provides steps and PowerShell scripts for creating an Azure VM with SQL Server virtual machine gallery images."
-    services="virtual-machines-windows"
+    pageTitle="以 Azure PowerShell 建立 SQL Server 虛擬機器 (Resource Manager) | Microsoft Azure"
+    description="提供使用 SQL Server 虛擬機器資源庫映像建立 Azure VM 的步驟和 PowerShell 指令碼。"
+	services="virtual-machines-windows"
     documentationCenter="na"
     authors="rothja"
     manager="jhubbard"
@@ -9,74 +9,73 @@
     tags="azure-resource-manager" />
 <tags
     ms.service="virtual-machines-windows"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.tgt_pltfrm="vm-windows-sql-server"
-    ms.workload="infrastructure-services"
-    ms.date="07/15/2016"
-    ms.author="jroth"/>
+	ms.devlang="na"
+	ms.topic="article"
+	ms.tgt_pltfrm="vm-windows-sql-server"
+	ms.workload="infrastructure-services"
+	ms.date="07/15/2016"
+	ms.author="jroth"/>
 
-
-# <a name="provision-a-sql-server-virtual-machine-using-azure-powershell-(resource-manager)"></a>Provision a SQL Server virtual machine using Azure PowerShell (Resource Manager)
+# 使用 Azure PowerShell 佈建 SQL Server 虛擬機器 (Resource Manager)
 
 > [AZURE.SELECTOR]
-- [Portal](virtual-machines-windows-portal-sql-server-provision.md)
+- [入口網站](virtual-machines-windows-portal-sql-server-provision.md)
 - [PowerShell](virtual-machines-windows-ps-sql-create.md)
 
-## <a name="overview"></a>Overview
+## 概觀
 
-This tutorial shows you how to create a single Azure virtual machine using the **Azure Resource Manager** deployment model using Azure PowerShell cmdlets. In this tutorial, we will create a single virtual machine using a single disk drive from an image in the SQL Gallery. We will create new providers for the storage, network, and compute resources that will be used by the virtual machine. If you have existing providers for any of these resources, you can use those providers instead.
+本教學課程示範如何使用 Azure PowerShell Cmdlet，建立採用 **Azure Resource Manager** 部署模型的單一 Azure 虛擬機器。在本教學課程中，我們將從 SQL 資源庫中的映像建立使用單一磁碟機的單一虛擬機器。我們將為虛擬機器所要使用的儲存體、網路和計算資源，建立新的提供者。如果上述任何資源有現有的提供者，您可以改用這些提供者。
 
-If you need the classic version of this topic, see [Provision a SQL Server virtual machine using Azure PowerShell Classic](virtual-machines-windows-classic-ps-sql-create.md).
+如果您需要本主題的傳統版本，請參閱[使用 Azure PowerShell 佈建 SQL Server 虛擬機器 (傳統)](virtual-machines-windows-classic-ps-sql-create.md)。
 
-## <a name="prerequisites"></a>Prerequisites
+## 必要條件
 
-For this tutorial you'll need:
+本教學課程中，您將需要：
 
-- An Azure account and subscription before you start. If you don't have one, sign up for a [free trial](https://azure.microsoft.com/pricing/free-trial/).
-- [Azure PowerShell)](../powershell-install-configure.md), minimum version of 1.4.0 or later (this tutorial written using version 1.5.0).
-    - To retrieve your version, type **Get-Module Azure -ListAvailable**.
+- 在開始之前，您需要有 Azure 帳戶和訂用帳戶。如果您沒有帳戶，請註冊[免費試用](https://azure.microsoft.com/pricing/free-trial/)。
+- [Azure PowerShell)](../powershell-install-configure.md)，最低版本 1.4.0 或更新版本 (本教學課程是以 1.5.0 版撰寫)。
+    - 若要擷取您的版本，請輸入 **Get-Module Azure -ListAvailable**。
 
-## <a name="configure-your-subscription"></a>Configure your subscription
+## 設定您的訂用帳戶
 
-Open Windows PowerShell and establish access to your Azure account by running the following cmdlet. You will be presented with a sign in screen to enter your credentials. Use the same email and password that you use to sign in to the Azure portal.
+開啟 Windows PowerShell 並執行下列 Cmdlet 來建立您的 Azure 帳戶存取權限。您會看到要輸入認證的登入畫面。請使用與登入 Azure 入口網站相同的電子郵件和密碼。
 
-    Add-AzureRmAccount
+	Add-AzureRmAccount
 
-After successfully signing in you will see some information on screen that includes the SubscriptionId with which you signed in. This is the subscription in which the resources for this tutorial will be created unless you change to a different subscription. If you have multiple SubscriptionIds, run the following cmdlet to return a list of all of your SubscriptionIds:
+成功登入後，您將會在畫面上看到一些資訊，包括您用於登入的 SubscriptionId。這是本教學課程中將於其中建立資源的訂用帳戶，除非您將它變更為不同的訂用帳戶。如果您有多個 SubscriptionId，請執行下列 Cmdlet 以傳回所有 SubscriptionId 的清單：
 
-    Get-AzureRmSubscription
+	Get-AzureRmSubscription
 
-To change to another SubscriptionID, run the following cmdlet with your desired SubscriptionId.
+若要變更為另一個 SubscriptionID，請使用您所需的 SubscriptionId 執行下列 Cmdlet。
 
-    Select-AzureRmSubscription -SubscriptionId xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+	Select-AzureRmSubscription -SubscriptionId xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
-## <a name="define-image-variables"></a>Define image variables
+## 定義映像變數
 
-To simplify usability and understanding of the completed script from this tutorial, we will start by defining a number of variables. Change the parameter values as you see fit, but beware of naming restrictions related to name lengths and special characters when modifying the values provided.
+為了簡化可用性和了解本教學課程中完整的指令碼，我們首先會定義數個變數。視需要變更參數值，但在修改所提供的值時，請注意與名稱長度和特殊字元相關的命名限制。
 
-### <a name="location-and-resource-group"></a>Location and Resource Group
-Use two variables to define the data region and the resource group into which you will create the other resources for the virtual machine.
+### 位置和資源群組
+使用兩個變數來定義資料區域，以及您將在其中為虛擬機器建立其他資源的資源群組。
 
-Modify as desired and then execute the following cmdlets to initialize these variables.
+視需要修改並執行下列 Cmdlet 來初始化這些變數。
 
-    $Location = "SouthCentralUS"
+	$Location = "SouthCentralUS"
     $ResourceGroupName = "sqlvm1"
 
-### <a name="storage-properties"></a>Storage properties
+### 儲存體屬性
 
-Use the following variables to define the storage account and the type of storage to be used by the virtual machine.
+使用下列變數來定義儲存體帳戶和虛擬機器所要使用的儲存體類型。
 
-Modify as desired and then execute the following cmdlet to initialize these variables. Note that in this example, we are using [Premium Storage](../storage/storage-premium-storage.md), which is recommended for production workloads. For details on this guidance and other recommendations, see [Performance best practices for SQL Server in Azure Virtual Machines](virtual-machines-windows-sql-performance.md).
+視需要修改並執行下列 Cmdlet 來初始化這些變數。請注意，在此範例中，我們使用[進階儲存體](../storage/storage-premium-storage.md)，這是針對生產環境工作負載建議使用的儲存體。如需有關本指南及其他建議的詳細資料，請參閱 [Azure 虛擬機器中的 SQL Server 效能最佳做法](virtual-machines-windows-sql-performance.md)。
 
     $StorageName = $ResourceGroupName + "storage"
     $StorageSku = "Premium_LRS"
 
-### <a name="network-properties"></a>Network properties
+### 網路屬性
 
-Use the following variables to define the network interface, the TCP/IP allocation method, the virtual network name, the virtual subnet name, the range of IP addresses for the virtual network, the range of IP addresses for the subnet, and the public domain name label to be used by the network in the virtual machine.
+使用下列變數來定義網路介面、TCP/IP 配置方法、虛擬網路名稱、虛擬子網路名稱、虛擬網路的 IP 位址範圍、子網路的 IP 位址範圍，以及虛擬機器中的網路所要使用的公用網域名稱標籤。
 
-Modify as desired and then execute the following cmdlet to initialize these variables.
+視需要修改並執行下列 Cmdlet 來初始化這些變數。
 
     $InterfaceName = $ResourceGroupName + "ServerInterface"
     $TCPIPAllocationMethod = "Dynamic"
@@ -86,171 +85,171 @@ Modify as desired and then execute the following cmdlet to initialize these vari
     $VNetSubnetAddressPrefix = "10.0.0.0/24"
     $DomainName = "sqlvm1"   
 
-### <a name="virtual-machine-properties"></a>Virtual machine properties
+### 虛擬機器屬性
 
-Use the following variables to define the virtual machine name, the computer name, the virtual machine size, and the operating system disk name for the virtual machine.
+使用下列變數來定義虛擬機器名稱、電腦名稱、虛擬機器大小和虛擬機器的作業系統磁碟名稱。
 
-Modify as desired and then execute the following cmdlet to initialize these variables.
+視需要修改並執行下列 Cmdlet 來初始化這些變數。
 
     $VMName = $ResourceGroupName + "VM"
     $ComputerName = $ResourceGroupName + "Server"
     $VMSize = "Standard_DS13"
     $OSDiskName = $VMName + "OSDisk"
 
-### <a name="image-properties"></a>Image properties
+### 映像屬性
 
-Use the following variables to define the image to use for the virtual machine. In this example, the SQL Server 2016 RC3 evaluation image is used.
+使用下列變數來定義要用來虛擬機器的映像。在此範例中，會使用 SQL Server 2016 RC3 評估映像。
 
-Modify as desired and then execute the following cmdlet to initialize these variables.
+視需要修改並執行下列 Cmdlet 來初始化這些變數。
 
     $PublisherName = "MicrosoftSQLServer"
     $OfferName = "SQL2016RC3-WS2012R2"
     $Sku = "Evaluation"
     $Version = "latest"
 
-Note that you can get a full list of SQL Server image offerings with the Get-AzureRmVMImageOffer command:
+請注意，您可以使用 Get-AzureRmVMImageOffer 命令來取得 SQL Server 映像提供項目的完整清單︰
 
     Get-AzureRmVMImageOffer -Location 'East US' -Publisher 'MicrosoftSQLServer'
 
-And you can see the Skus available for an offering with the Get-AzureRmVMImageSku command. The following command shows all Skus available for the **SQL2014SP1-WS2012R2** offer.
+而您可以使用 Get-AzureRmVMImageSku 來查看提供項目可用的 Sku。下列命令會顯示 **SQL2014SP1-WS2012R2** 提供項目可用的所有 Sku。
 
     Get-AzureRmVMImageSku -Location 'East US' -Publisher 'MicrosoftSQLServer' -Offer 'SQL2014SP1-WS2012R2' | Select Skus
 
-## <a name="create-a-resource-group"></a>Create a resource group
+## 建立資源群組
 
-With the Resource Manager deployment model, the first object that you create is the resource group. We will use the [New-AzureRmResourceGroup](https://msdn.microsoft.com/library/mt678985.aspx) cmdlet to create an Azure resource group and its resources with the resource group name and location defined by the variables that you previously initialized.
+在 Resource Manager 部署模型中，您所建立的第一個物件是資源群組。我們將使用 [New-AzureRmResourceGroup](https://msdn.microsoft.com/library/mt678985.aspx) Cmdlet，以您先前初始化的變數所定義的資源群組名稱和位置，來建立 Azure 資源群組及其資源。
 
-Execute the following cmdlet to create your new resource group.
+執行下列 Cmdlet 來建立新的資源群組。
 
     New-AzureRmResourceGroup -Name $ResourceGroupName -Location $Location
 
-## <a name="create-a-storage-account"></a>Create a storage account
+## 建立儲存體帳戶
 
-The virtual machine requires storage resources for the operating system disk and for the SQL Server data and log files. For simplicity, we will create a single disk for both. You can attach additional disks later using the [Add-Azure Disk](https://msdn.microsoft.com/library/azure/dn495252.aspx) cmdlet in order to place your SQL Server data and log files on dedicated disks. We will use the [New-AzureRmStorageAccount](https://msdn.microsoft.com/library/mt607148.aspx) cmdlet to create a standard storage account in your new resource group and with the storage account name, storage Sku name, and location defined using the variables that you previously initialized.
+虛擬機器需要作業系統磁碟和 SQL Server 資料和記錄檔的儲存體資源。為了簡單起見，我們將針對兩者建立單一磁碟。您可以在之後使用 [Add-Azure Disk](https://msdn.microsoft.com/library/azure/dn495252.aspx) Cmdlet 來連結額外的磁碟，以便將您的 SQL Server 資料和記錄檔放在專用的磁碟上。我們將使用 [New-AzureRmStorageAccount](https://msdn.microsoft.com/library/mt607148.aspx) Cmdlet 在新的資源群組中建立標準儲存體帳戶，此帳戶會使用以您先前初始化的變數定義的儲存體帳戶名稱、儲存體 Sku 名稱及位置。
 
-Execute the following cmdlet to create your new storage account.  
+執行下列 Cmdlet 來建立新的儲存體帳戶。
 
     $StorageAccount = New-AzureRmStorageAccount -ResourceGroupName $ResourceGroupName -Name $StorageName -SkuName $StorageSku -Kind "Storage" -Location $Location
 
-## <a name="create-network-resources"></a>Create network resources
+## 建立網路資源
 
-The virtual machine requires a number of network resources for network connectivity.
+虛擬機器需要數個網路資源才能連接網路。
 
-- Each virtual machine requires a virtual network.
-- A virtual network must have at least one subnet defined.
-- A network interface must be defined with either a public or a private IP address.
+- 每部虛擬機器都需要虛擬網路。
+- 虛擬網路必須定義至少一個子網路。
+- 網路介面必須以公用或私人 IP 位址定義。
 
-### <a name="create-a-virtual-network-subnet-configuration"></a>Create a virtual network subnet configuration
+### 建立虛擬網路子網路組態
 
-We will start by creating a subnet configuration for our virtual network. For our tutorial, we will create a default subnet using the [New-AzureRmVirtualNetworkSubnetConfig](https://msdn.microsoft.com/library/mt619412.aspx) cmdlet. We will create our virtual network subnet configuration with the subnet name and address prefix defined using the variables that you previously initialized.
+我們首先會建立虛擬網路的子網路組態。在本教學課程中，我們將使用 [New-AzureRmVirtualNetworkSubnetConfig](https://msdn.microsoft.com/library/mt619412.aspx) Cmdlet 來建立預設子網路。我們將使用您先前初始化的變數所定義的子網路名稱和位址首碼，建立虛擬網路子網路組態。
 
->[AZURE.NOTE] You can define additional properties of the virtual network subnet configuration using this cmdlet, but that is beyond the scope of this tutorial.
+>[AZURE.NOTE] 您可以使用這個 Cmdlet 來定義虛擬網路子網路組態的其他屬性，但這已超出本教學課程的範圍。
 
-Execute the following cmdlet to create your virtual subnet configuration.
+執行下列 Cmdlet 來建立虛擬子網路組態。
 
     $SubnetConfig = New-AzureRmVirtualNetworkSubnetConfig -Name $SubnetName -AddressPrefix $VNetSubnetAddressPrefix
 
-### <a name="create-a-virtual-network"></a>Create a virtual network
+### 建立虛擬網路
 
-Next, we will create our virtual network using the [New-AzureRmVirtualNetwork](https://msdn.microsoft.com/library/mt603657.aspx) cmdlet. We will create our virtual network in your new resource group, with the name, location, and address prefix defined using the variables that you previously initialized, and using the subnet configuration that you defined in the previous step.
+接著，我們將使用 [New-AzureRmVirtualNetwork](https://msdn.microsoft.com/library/mt603657.aspx) Cmdlet 來建立虛擬網路。我們將使用您先前初始化的變數所定義的名稱、位置和位址首碼，以及使用您在前一個步驟中定義的子網路組態，在新的資源群組中建立虛擬網路。
 
-Execute the following cmdlet to create your virtual network.
+執行下列 Cmdlet 來建立虛擬網路。
 
     $VNet = New-AzureRmVirtualNetwork -Name $VNetName -ResourceGroupName $ResourceGroupName -Location $Location -AddressPrefix $VNetAddressPrefix -Subnet $SubnetConfig
 
-### <a name="create-the-public-ip-address"></a>Create the public IP address
+### 建立公用 IP 位址
 
-Now that we have our virtual network defined, we need to configure an IP address for connectivity to the virtual machine. For this tutorial, we will create a public IP address using dynamic IP addressing to support Internet connectivity. We will use the [New-AzureRmPublicIpAddress](https://msdn.microsoft.com/library/mt603620.aspx) cmdlet to create the public IP address in the resource group created prevously and with the name, location, allocation method, and DNS domain name label defined using the variables that you previously initialized.
+我們現已定義虛擬網路，我們還必須設定 IP 位址才能連接至虛擬機器。在本教學課程中，我們將使用動態 IP 位址來建立公用 IP 位址，以支援網際網路連線。我們將使用 [New-AzureRmPublicIpAddress](https://msdn.microsoft.com/library/mt603620.aspx) Cmdlet 在先前建立的資源群組中建立公用 IP 位址，此位址會使用以您先前初始化的變數定義的名稱、位置、配置方法及 DNS 網域名稱標籤。
 
->[AZURE.NOTE] You can define additional properties of the public IP address using this cmdlet, but that is beyond the scope of this initial tutorial. You could also create a private address or an address with a static address, but that is also beyond the scope of this tutorial.
+>[AZURE.NOTE] 您可以使用這個 Cmdlet 來定義公用 IP 位址的其他屬性，但這已超出本初期教學課程的範圍。您也可以建立私人位址或具有靜態位址的位址，但這也已超出本教學課程的範圍。
 
-Execute the following cmdlet to create your public IP address.
+執行下列 Cmdlet 來公用 IP 位址。
 
     $PublicIp = New-AzureRmPublicIpAddress -Name $InterfaceName -ResourceGroupName $ResourceGroupName -Location $Location -AllocationMethod $TCPIPAllocationMethod -DomainNameLabel $DomainName
 
-### <a name="create-the-network-interface"></a>Create the network interface
+### 建立網路介面
 
-We are now ready to create the network interface that our virtual machine will use. We will use the [New-AzureRmNetworkInterface](https://msdn.microsoft.com/library/mt619370.aspx) cmdlet to create our network interface in the resource group created earlier and with the name, location, subnet and public IP address previously defined.
+我們現在已準備好建立虛擬機器將要使用的網路介面。我們將使用 [New-AzureRmNetworkInterface](https://msdn.microsoft.com/library/mt619370.aspx) Cmdlet 在稍早建立的資源群組中建立網路介面，此網路介面會使用先前定義的名稱、位置、子網路及公用 IP 位址。
 
-Execute the following cmdlet to create your network interface.
+執行下列 Cmdlet 來建立網路介面。
 
     $Interface = New-AzureRmNetworkInterface -Name $InterfaceName -ResourceGroupName $ResourceGroupName -Location $Location -SubnetId $VNet.Subnets[0].Id -PublicIpAddressId $PublicIp.Id
 
-## <a name="configure-a-vm-object"></a>Configure a VM object
+## 設定 VM 物件
 
-Now that we have storage and network resources defined, we are ready to define compute resources for the virtual machine. For our tutorial, we will specify the virtual machine size and various operating system properties, specify the network interface that we previously created, define blob storage, and then specify the operating system disk.
+我們現已定義儲存體和網路資源，我們便準備好定義虛擬機器的計算資源。在本教學課程中，我們將指定虛擬機器大小和各種作業系統屬性、指定我們先前建立的網路介面、定義 Blob 儲存體，然後指定作業系統磁碟。
 
-### <a name="create-the-vm-object"></a>Create the VM object
+### 建立 VM 物件
 
-We will start by specifying the virtual machine size. For this tutorial, we are specifying a DS13. We will use the [New-AzureRmVMConfig](https://msdn.microsoft.com/library/mt603727.aspx) cmdlet to create a configurable virtual machine object with the name and size defined using the variables that you previously initialized.
+我們首先會指定虛擬機器大小。在本教學課程諸ㄥ，我們會指定 DS13。我們將使用 [New-AzureRmVMConfig](https://msdn.microsoft.com/library/mt603727.aspx) Cmdlet 來建立可設定的虛擬機器物件，此物件會使用以您先前初始化的變數定義的名稱與大小。
 
-Execute the following cmdlet to create the virtual machine object.
+執行下列 Cmdlet 來建立虛擬機器物件。
 
     $VirtualMachine = New-AzureRmVMConfig -VMName $VMName -VMSize $VMSize
 
-### <a name="create-a-credential-object-to-hold-the-name-and-password-for-the-local-administrator-credentials"></a>Create a credential object to hold the name and password for the local administrator credentials
+### 建立認證物件，以保留本機系統管理員認證的名稱和密碼
 
-Before we can set the operating system properties for the virtual machine, we need to supply the credentials for the local administrator account as a secure string. To accomplish this, we will use the [Get-Credential](https://technet.microsoft.com/library/hh849815.aspx) cmdlet.
+我們必須先提供本機系統管理員帳戶的認證做為安全字串，才可以設定虛擬機器的作業系統屬性。為了達成此目的，我們將使用 [Get-Credential](https://technet.microsoft.com/library/hh849815.aspx) Cmdlet。
 
-Execute the following cmdlet and, in the Windows PowerShell credential request window, type the name and password to use for the local administrator account in the Windows virtual machine.
+執行下列 Cmdlet，並在 Windows PowerShell 認證要求視窗中，輸入要使用於 Windows 虛擬機器中本機系統管理員帳戶的名稱和密碼。
 
     $Credential = Get-Credential -Message "Type the name and password of the local administrator account."
 
-### <a name="set-the-operating-system-properties-for-the-virtual-machine"></a>Set the operating system properties for the virtual machine
+### 設定虛擬機器的作業系統屬性
 
-Now we are ready to set the virtual machine's operating system properties. We will use the [Set-AzureRmVMOperatingSystem](https://msdn.microsoft.com/library/mt603843.aspx) cmdlet to set the type of operating system as Windows, require the [virtual machine agent](virtual-machines-windows-classic-agents-and-extensions.md) to be installed, specify that the cmdlet enables auto update and set the virtual machine name, the computer name, and the credential using the variables that you previously initialized.
+我們現在已準備好設定虛擬機器的作業系統屬性。我們將使用 [Set-AzureRmVMOperatingSystem](https://msdn.microsoft.com/library/mt603843.aspx) Cmdlet 將作業系統的類型設定為 Windows、要求安裝[虛擬機器代理程式](virtual-machines-windows-classic-agents-and-extensions.md)、指定此 Cmdlet 啟用自動更新，以及使用您先前初始化的變數來設定虛擬機器名稱、電腦名稱和認證。
 
-Execute the following cmdlet to set the operating system properties for your virtual machine.
+執行下列 Cmdlet 來設定虛擬機器的作業系統屬性。
 
     $VirtualMachine = Set-AzureRmVMOperatingSystem -VM $VirtualMachine -Windows -ComputerName $ComputerName -Credential $Credential -ProvisionVMAgent -EnableAutoUpdate
 
-### <a name="add-the-network-interface-to-the-virtual-machine"></a>Add the network interface to the virtual machine
+### 將網路介面新增至虛擬機器
 
-Next, we will add the network interface that we created previously to the virtual machine. We will use the [Add-AzureRmVMNetworkInterface](https://msdn.microsoft.com/library/mt619351.aspx) cmdlet to add the network interface using the network interface variable that you defined earlier.
+接下來，我們會將先前建立的網路介面新增至虛擬機器。我們將使用 [Add-AzureRmVMNetworkInterface](https://msdn.microsoft.com/library/mt619351.aspx) Cmdlet 以您稍早定義的網路介面變數來新增網路介面。
 
-Execute the following cmdlet to set the network interface for your virtual machine.
+執行下列 Cmdlet 來設定虛擬機器的網路介面。
 
     $VirtualMachine = Add-AzureRmVMNetworkInterface -VM $VirtualMachine -Id $Interface.Id
 
-### <a name="set-the-blob-storage-location-for-the-disk-to-be-used-by-the-virtual-machine"></a>Set the blob storage location for the disk to be used by the virtual machine
+### 設定虛擬機器所要使用之磁碟的 Blob 儲存體位置
 
-Next, we will set the blob storage location for the disk to be used by the virtual machine using the variables that you defined earlier.
+接下來，我們將使用您稍早定義的變數，設定虛擬機器所要使用之磁碟的 Blob 儲存體位置。
 
-Execute the following cmdlet to set the blob storage location.
+執行下列 Cmdlet 來設定 Blob 儲存體位置。
 
     $OSDiskUri = $StorageAccount.PrimaryEndpoints.Blob.ToString() + "vhds/" + $OSDiskName + ".vhd"
 
-### <a name="set-the-operating-system-disk-properties-for-the-virtual-machine"></a>Set the operating system disk properties for the virtual machine
+### 設定虛擬機器的作業系統磁碟屬性
 
-Next, we will set the operating system disk properties for the virtual machine. We will use the [Set-AzureRmVMOSDisk](https://msdn.microsoft.com/library/mt603746.aspx) cmdlet to specify that the operating system for the virtual machine will come from an image, to set caching to read only (because SQL Server is being installed on the same disk) and define the virtual machine name and the operating system disk defined using the variables that we defined earlier.
+接下來，我們將設定虛擬機器的作業系統磁碟屬性。我們將使用 [Set-AzureRmVMOSDisk](https://msdn.microsoft.com/library/mt603746.aspx) Cmdlet 來指定虛擬機器的作業系統會來自映像、將快取設定成唯讀 (因為 SQL Server 要安裝在相同的磁碟上)，以及定義使用我們稍早定義之變數來定義的虛擬機器名稱和作業系統磁碟。
 
-Execute the following cmdlet to set the operating system disk properties for your virtual machine.
+執行下列 Cmdlet 來設定虛擬機器的作業系統磁碟屬性。
 
     $VirtualMachine = Set-AzureRmVMOSDisk -VM $VirtualMachine -Name $OSDiskName -VhdUri $OSDiskUri -Caching ReadOnly -CreateOption FromImage
 
-### <a name="specify-the-platform-image-for-the-virtual-machine"></a>Specify the platform image for the virtual machine
+### 指定虛擬機器的平台映像
 
-Our last configuration step is to specify the platform image for our virtual machine. For our tutorial, we are using the latest SQL Server 2016 CTP image. We will use the [Set-AzureRmVMSourceImage](https://msdn.microsoft.com/library/mt619344.aspx) cmdlet to use this image as defined by the variables that you defined earlier.
+最後一個設定步驟是指定虛擬機器的平台映像。在本教學課程中，我們會使用最新的 SQL Server 2016 CTP 映像。我們將使用 [Set-AzureRmVMSourceImage](https://msdn.microsoft.com/library/mt619344.aspx) Cmdlet 以使用如您稍早定義的變數所定義的這個映像。
 
-Execute the following cmdlet to specify the platform image for your virtual machine.
+執行下列 Cmdlet 來設定虛擬機器的平台映像。
 
     $VirtualMachine = Set-AzureRmVMSourceImage -VM $VirtualMachine -PublisherName $PublisherName -Offer $OfferName -Skus $Sku -Version $Version
 
-## <a name="create-the-sql-vm"></a>Create the SQL VM
+## 建立 SQL VM
 
-Now that you have finished the configuration steps, you are ready to create the virtual machine. We will use the [New-AzureRmVM](https://msdn.microsoft.com/library/mt603754.aspx) cmdlet to create the virtual machine using the variables that we have defined.
+您現在已完成設定步驟，即可開始建立虛擬機器。我們將使用 [New-AzureRmVM](https://msdn.microsoft.com/library/mt603754.aspx) Cmdlet 以我們已定義的變數來建立虛擬機器。
 
-Execute the following cmdlet to create your virtual machine.
+執行下列 Cmdlet 來建立虛擬機器。
 
     New-AzureRmVM -ResourceGroupName $ResourceGroupName -Location $Location -VM $VirtualMachine
 
-The virtual machine is created. Notice that a standard storage account is created for boot diagnostics because the specified storage account for the virtual machine's disk is a premium storage account.
+虛擬機器已建立。請注意，系統會建立標準儲存體帳戶以供開機診斷，因為虛擬機器磁碟的指定儲存體帳戶是進階儲存體帳戶。
 
-You can now view this machine in the Azure Portal to see [its public IP address and its fully qualified domain name](virtual-machines-windows-portal-sql-server-provision.md#Connect).  
+您現在可以在「Azure 入口網站」中檢視此機器，以查看[其公用 IP 位址及其完整的網域名稱](virtual-machines-windows-portal-sql-server-provision.md#Connect)。
 
-## <a name="example-script"></a>Example script
+## 範例指令碼
 
-The following script contains the complete PowerShell script for this tutorial. It assumes that you have already setup the Azure subscription to use with the **Add-AzureRmAccount** and **Select-AzureRmSubscription** commands.
+下列指令碼包含本教學課程的完整 PowerShell 指令碼。此指令碼假設您已設定要與 **Add-AzureRmAccount** 和 **Select-AzureRmSubscription** 命令搭配使用的 Azure 訂用帳戶。
 
 
     # Variables
@@ -308,11 +307,7 @@ The following script contains the complete PowerShell script for this tutorial. 
     ## Create the VM in Azure
     New-AzureRmVM -ResourceGroupName $ResourceGroupName -Location $Location -VM $VirtualMachine
 
-## <a name="next-steps"></a>Next steps
-After the virtual machine is created, you are ready to connect to the virtual machine using RDP and setup connectivity. For more information, see [Connect to a SQL Server Virtual Machine on Azure (Resource Manager)](virtual-machines-windows-sql-connect.md).
+## 後續步驟
+建立虛擬機器之後，您即可準備使用 RDP 和設定連線能力來連接到虛擬機器。如需詳細資訊，請參閱[連線到 Azure 上的 SQL Server 虛擬機器 (資源管理員)](virtual-machines-windows-sql-connect.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0720_2016-->

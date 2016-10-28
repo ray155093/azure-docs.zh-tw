@@ -1,254 +1,255 @@
 <properties 
-    pageTitle="Access datasets with Machine Learning Python client library | Microsoft Azure" 
-    description="Install and use the Python client library to access and manage Azure Machine Learning data securely from a local Python environment." 
-    services="machine-learning" 
-    documentationCenter="python" 
-    authors="bradsev" 
-    manager="jhubbard" 
-    editor="cgronlun"/>
+	pageTitle="使用 Machine Learning Python 用戶端程式庫存取資料集 | Microsoft Azure" 
+	description="安裝並使用 Python 用戶端程式庫，從本機 Python 環境存取和管理 Azure Machine Learning 資料。" 
+	services="machine-learning" 
+	documentationCenter="python" 
+	authors="bradsev" 
+	manager="jhubbard" 
+	editor="cgronlun"/>
 
 <tags 
-    ms.service="machine-learning" 
-    ms.workload="data-services" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="09/12/2016" 
-    ms.author="huvalo;bradsev" />
+	ms.service="machine-learning" 
+	ms.workload="data-services" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="09/12/2016" 
+	ms.author="huvalo;bradsev" />
 
 
+#使用 Azure Machine Learning Python 用戶端程式庫利用 Python 存取資料集 
 
-#<a name="access-datasets-with-python-using-the-azure-machine-learning-python-client-library"></a>Access datasets with Python using the Azure Machine Learning Python client library 
+Microsoft Azure Machine Learning Python 用戶端程式庫的預覽能夠從本機 Python 環境安全存取您的 Azure Machine Learning 資料集，並且可在工作區中建立和管理資料集。
 
-The preview of Microsoft Azure Machine Learning Python client library can enable secure access to your Azure Machine Learning datasets from a local Python environment and enables the creation and management of datasets in a workspace.
+本主題提供如何執行以下作業的指示：
 
-This topic provides instructions on how to:
-
-* install the Machine Learning Python client library 
-* access and upload datasets, including instructions on how to get authorization to access Azure Machine Learning datasets from your local Python environment
-*  access intermediate datasets from experiments
-*  use the Python client library to enumerate datasets, access metadata, read the contents of a dataset, create new datasets and update existing datasets
+* 安裝 Machine Learning Python 用戶端程式庫
+* 存取和上傳資料集，包括如何從本機 Python 環境取得授權以存取 Azure Machine Learning 資料集
+*  存取實驗中的中繼資料集
+*  使用 Python 用端程式庫列舉資料集、存取中繼資料、讀取資料集內容、建立新資料集以及更新現有資料集
 
 [AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
  
-##<a name="<a-name="prerequisites"></a>prerequisites"></a><a name="prerequisites"></a>Prerequisites
+##<a name="prerequisites"></a>必要條件
 
-The Python client library has been tested under the following environments:
+Python 用戶端程式庫已在下列環境下經過測試：
 
- - Windows, Mac and Linux
- - Python 2.7, 3.3 and 3.4
+ - Windows、Mac 及 Linux
+ - Python 2.7、3.3 及 3.4
 
-It has a dependency on the following packages:
+對下列套件具相依性：
 
  - requests
  - python-dateutil
  - pandas
 
-We recommend using a Python distribution such as [Anaconda](http://continuum.io/downloads#all) or [Canopy](https://store.enthought.com/downloads/), which come with Python, IPython and the three packages listed above installed. Although IPython is not strictly required, it is a great environment for manipulating and visualizing data interactively.
+建議您使用 Python、IPython 隨附的 [Anaconda](http://continuum.io/downloads#all) 或 [Canopy](https://store.enthought.com/downloads/) 等 Python 發佈，並安裝上面列出的三個套件。雖然不一定需要 IPython，但它是以互動方式操作和虛擬化資料的絕佳環境。
 
 
-###<a name="<a-name="installation"></a>how-to-install-the-azure-machine-learning-python-client-library"></a><a name="installation"></a>How to install the Azure Machine Learning Python client library
+###<a name="installation"></a>如何安裝 Azure Machine Learning Python 用戶端程式庫
 
-The Azure Machine Learning Python client library must also be installed to complete the tasks outlined in this topic. It is available from the [Python Package Index](https://pypi.python.org/pypi/azureml). To install it in your Python environment, run the following command from your local Python environment:
+務必要安裝 Azure Machine Learning Python 用戶端程式庫，才能完成本主題概述的工作。您可以從 [Python 套件索引](https://pypi.python.org/pypi/azureml)取得。若要在 Python 環境中安裝它，請從本機 Python 環境執行下列命令：
 
     pip install azureml
 
-Alternatively, you can download and install from the sources on [github](https://github.com/Azure/Azure-MachineLearning-ClientLibrary-Python).
+或者，您可以從 [github](https://github.com/Azure/Azure-MachineLearning-ClientLibrary-Python) 上的來源下載和安裝。
 
     python setup.py install
 
-If you have git installed on your machine, you can use pip to install directly from the git repository:
+如果必須在您的電腦上安裝 git，您可以使用 PIP 從 git 儲存機制直接安裝：
 
-    pip install git+https://github.com/Azure/Azure-MachineLearning-ClientLibrary-Python.git
-
-
-##<a name="<a-name="datasetaccess"></a>use-studio-code-snippets-to-access-datasets"></a><a name="datasetAccess"></a>Use Studio Code snippets to access datasets
-
-The Python client library gives you programmatic access to your existing datasets from experiments that have been run.
-
-From the Studio web interface, you can generate code snippets that include all the necessary information to download and deserialize datasets as Pandas DataFrame objects on your location machine.
-
-### <a name="<a-name="security"></a>security-for-data-access"></a><a name="security"></a>Security for data access
-
-The code snippets provided by Studio for use with the Python client library includes your workspace id and authorization token. These provide full access to your workspace and must be protected, like a password.
-
-For security reasons, the code snippet functionality is only available to users that have their role set as **Owner** for the workspace. Your role is displayed in Azure Machine Learning Studio on the **USERS** page under **Settings**.
-
-![Security][security]
-
-If your role is not set as **Owner**, you can either request to be reinvited as an owner, or ask the owner of the workspace to provide you with the code snippet.
-
-To obtain the authorization token, you can do one of the following:
+	pip install git+https://github.com/Azure/Azure-MachineLearning-ClientLibrary-Python.git
 
 
+##<a name="datasetAccess"></a>使用Studio 程式碼片段存取資料集
 
-- Ask for a token from an owner. Owners can access their authorization tokens from the Settings page of their workspace in Studio. Select **Settings** from the left pane and click **AUTHORIZATION TOKENS** to see the primary and secondary tokens.  Although either the primary or the secondary authorization tokens can be used in the code snippet, it is recommended that owners only share the secondary authorization tokens.
+Python 用戶端程式庫讓您以程式設計方式存取執行實驗所得的現有資料集。
+
+您可以從 Studio Web 介面，產生包含所有必要資訊的程式碼片段，以下載資料集並和還原序列化為您位置電腦的 Pandas DataFrame 物件。
+
+### <a name="security"></a>資料存取安全性
+
+Studio 所提供可與 Python 用戶端程式碼搭配使用的程式碼片段包括工作區識別碼與授權權杖。這些項目可提供工作區的完整存取權，且務必加以保護，像是密碼。
+
+基於安全性理由，程式碼片段功能只提供給其角色設定為工作區「擁有者」的使用者。您的角色會在 Azure Machine Learning Studio 中，顯示於 [設定] 下的 [使用者] 頁面上。
+
+![安全性][security]
+
+如果您的角色未設定為 [擁有者]，您可以要求重新受邀為擁有者，或要求該工作區的擁有者將程式碼片段提供給您。
+
+若要取得授權權杖，您可以執行下列其中一項：
+
+
+
+- 向擁有者要求權杖。擁有者能夠在 Studio 中，從他們工作區的 [設定] 頁面存取其授權權杖。選取左窗格中的 [設定]，然後按一下 [授權權杖]，即可看到主要與次要權杖。雖然主要或次要授權權杖都能用於程式碼片段，但建議擁有者只共用次要授權權杖。
 
 ![](./media/machine-learning-python-data-access/ml-python-access-settings-tokens.png)
 
-- Ask to be promoted to role of owner.  To do this, a current owner of the workspace needs to first remove you from the workspace then re-invite you to it as an owner.
+- 要求升級成擁有者角色。若要這樣做，工作區目前的擁有者必須先將您從工作區中移除，再重新邀請您成為其擁有者。
 
-Once developers have obtained the workspace id and authorization token, they are able to access the workspace using the code snippet regardless of their role.
+開發人員一旦取得工作區識別碼與授權權杖，無論其角色為何，都能夠使用程式碼片段存取該工作區。
 
-Authorization tokens are managed on the **AUTHORIZATION TOKENS** page under **SETTINGS**. You can regenerate them, but this procedure revokes access to the previous token.
+授權權杖可以在 [設定] 下的 [授權權杖] 頁面上管理。您可以重新產生權杖，但這個程序會撤銷上一個權杖的存取權。
 
-### <a name="<a-name="accessingdatasets"></a>access-datasets-from-a-local-python-application"></a><a name="accessingDatasets"></a>Access datasets from a local Python application
+### <a name="accessingDatasets"></a>從本機 Python 應用程式存取資料集
 
-1. In Machine Learning Studio, click **DATASETS** in the navigation bar on the left.
+1. 在 Machine Learning Studio 的左邊導覽列中，按一下 [資料集]。
 
-2. Select the dataset you would like to access. You can select any of the datasets from the **MY DATASETS** list or from the **SAMPLES** list.
+2. 選取您想要存取的資料集。您可以從 [範例] 清單的 [我的資料集] 清單中，選擇任何資料集。
 
-3. From the bottom toolbar, click **Generate Data Access Code**. If the data is in a format incompatible with the Python client library, this button is disabled.
+3. 按一下底部工具列上的 [產生資料存取程式碼]。如果資料格式與 Python 用戶端程式的不相容，就會停用這個按鈕。
 
-    ![Datasets][datasets]
+	![資料集][datasets]
 
-4. Select the code snippet from the window that appears and copy it to your clipboard.
+4. 從出現的視窗中選取程式碼片段，然後複製到剪貼簿。
 
-    ![Access Code][dataset-access-code]
+	![存取程式碼][dataset-access-code]
 
-5. Paste the code into the notebook of your local Python application.
+5. 將程式碼貼入本機 Python 應用程式的筆記本。
 
-    ![Notebook][ipython-dataset]
+	![筆記本][ipython-dataset]
 
-## <a name="<a-name="accessingintermediatedatasets"></a>access-intermediate-datasets-from-machine-learning-experiments"></a><a name="accessingIntermediateDatasets"></a>Access intermediate datasets from Machine Learning experiments
+## <a name="accessingIntermediateDatasets"></a>存取機器學習服務實驗中的中繼資料
 
-After an experiment is run in the Machine Learning Studio, it is possible to access the intermediate datasets from the output nodes of modules. Intermediate datasets are data that has been created and used for intermediate steps when a model tool has been run.
+在 Machine Learning Studio 中進行實驗後，您能夠從模組的輸出節點存取中繼資料集。中繼資料集是指當模型工具執行時  
+為中繼步驟建立和使用的資料。
 
-Intermediate datasets can be accessed as long as the data format is compatible with the Python client library.
+只要其資料格式能與 Python 用戶端程式庫相容，就能夠存取中繼資料集。
 
-The following formats are supported (constants for these are in the `azureml.DataTypeIds` class):
+以下是支援的格式 (這些都是 `azureml.DataTypeIds` 類別的常數)：
 
- - PlainText
+ - 純文字
  - GenericCSV
  - GenericTSV
  - GenericCSVNoHeader
  - GenericTSVNoHeader
 
-You can determine the format by hovering over a module output node. It is displayed along with the node name, in a tooltip.
+您可以將滑鼠停留在模組輸出節點上方來判斷其格式。其會與節點名稱一同顯示在工具提示中。
 
-Some of the modules, such as the [Split][split] module, output to a format named `Dataset`, which is not supported by the Python client library.
+有些模組 (例如[分割][split]模組) 輸出的格式稱為 `Dataset`，Python 用戶端程式碼不支援該格式。
 
-![Dataset Format][dataset-format]
+![資料集格式][dataset-format]
 
-You need to use a conversion module, such as [Convert to CSV][convert-to-csv], to get an output into a supported format.
+您必須使用轉換模組 (例如，[轉換成 CSV][convert-to-csv])，以讓輸出變成支援的格式。
 
-![GenericCSV Format][csv-format]
+![GenericCSV 格式][csv-format]
 
-The following steps show an example that creates an experiment, runs it and accesses the intermediate dataset.
+下列步驟示範說明建立實驗、加以執行，然後群組中繼資料集。
 
-1. Create a new experiment.
+1. 建立新實驗。
 
-2. Insert an **Adult Census Income Binary Classification dataset** module.
+2. 插入 [成人收入普查二進位分類資料集] 模組。
 
-3. Insert a [Split][split] module, and connect its input to the dataset module output.
+3. 插入[分割][split]模組，然後將其輸入連接到資料集模組輸出。
 
-4. Insert a [Convert to CSV][convert-to-csv] module and connect its input to one of the [Split][split] module outputs.
+4. 插入[轉換成 CSV][convert-to-csv] 模組，然後將其輸入連接到其中一個[分割][split]模組輸出。
 
-5. Save the experiment, run it, and wait for it to finish running.
+5. 儲存此實驗、加以執行，然後等待執行完成。
 
-6. Click the output node on the [Convert to CSV][convert-to-csv] module.
+6. 按一下[轉換成 CSV][convert-to-csv] 模組上的輸出節點。
 
-7. When the context menu appears, select **Generate Data Access Code**.
+7. 內容功能表
+8.  隨即出現，選取 [產生資料存取程式碼]。
 
-    ![Context Menu][experiment]
+	![內容功能表][experiment]
 
-8. Select the code snippet and copy it to your clipboard from the window that appears.
+8. 選取程式碼片段，然後從出現的視窗中將它複製到剪貼簿。
 
-    ![Access Code][intermediate-dataset-access-code]
+	![存取程式碼][intermediate-dataset-access-code]
 
-9. Paste the code in your notebook.
+9. 將程式碼貼入筆記本。
 
-    ![Notebook][ipython-intermediate-dataset]
+	![筆記本][ipython-intermediate-dataset]
 
-10. You can visualize the data using matplotlib. This displays in a histogram for the age column:
+10. 您可以使用 matplotlib 將資料視覺化。這樣會以長條圖顯示年齡欄：
 
-    ![Histogram][ipython-histogram]
+	![長條圖][ipython-histogram]
 
 
-##<a name="<a-name="clientapis"></a>use-the-machine-learning-python-client-library-to-access,-read,-create,-and-manage-datasets"></a><a name="clientApis"></a>Use the Machine Learning Python client library to access, read, create, and manage datasets
+##<a name="clientApis"></a>使用 Machine Learning Python 用戶端程式碼來存取、讀取、建立及管理資料集
 
-### <a name="workspace"></a>Workspace
+### 工作區
 
-The workspace is the entry point for the Python client library. Provide the `Workspace` class with your workspace id and authorization token to create an instance:
+工作區是 Python 用戶端程式碼的進入點。將您的工作區識別碼與授權權杖提供給 `Workspace` 類別，就會建立一個執行個體：
 
     ws = Workspace(workspace_id='4c29e1adeba2e5a7cbeb0e4f4adfb4df',
                    authorization_token='f4f3ade2c6aefdb1afb043cd8bcf3daf')
 
 
-### <a name="enumerate-datasets"></a>Enumerate datasets
+### 列舉資料集
 
-To enumerate all datasets in a given workspace:
+若要列舉指定工作區中的所有資料集：
 
     for ds in ws.datasets:
         print(ds.name)
 
-To enumerate just the user-created datasets:
+若只要列舉使用者建立的資料集：
 
     for ds in ws.user_datasets:
         print(ds.name)
 
-To enumerate just the example datasets:
+若只要列舉範例資料集：
 
     for ds in ws.example_datasets:
         print(ds.name)
 
-You can access a dataset by name (which is case-sensitive):
+您可以依名稱 (區分大小寫) 存取資料集：
 
     ds = ws.datasets['my dataset name']
 
-Or you can access it by index:
+或您可以依索引來存取：
 
     ds = ws.datasets[0]
 
 
-### <a name="metadata"></a>Metadata
+### 中繼資料
 
-Datasets have metadata, in addition to content. (Intermediate datasets are an exception to this rule and do not have any metadata.)
+除了內容，資料集還有中繼資料。(中繼資料集是這個規則的例外，而且沒有任何中繼資料)。
 
-Some metadata values are assigned by the user at creation time:
+有些中繼資料值是由使用者在建立時指派：
 
     print(ds.name)
     print(ds.description)
     print(ds.family_id)
     print(ds.data_type_id)
 
-Others are values assigned by Azure ML:
+其他則是由 Azure ML 指派的值：
 
     print(ds.id)
     print(ds.created_date)
     print(ds.size)
 
-See the `SourceDataset` class for more on the available metadata.
+如需可用中繼資料的詳細資訊，請參閱 `SourceDataset` 類別。
 
 
-### <a name="read-contents"></a>Read contents
+### 讀取內容
 
-The code snippets provided by Machine Learning Studio automatically download and deserialize the dataset to a Pandas DataFrame object. This is done with the `to_dataframe` method:
+Machine Learning Studio 提供的程式碼片段會自動下載並將資料集還原序列化為 Pandas DataFrame 物件。此動作可用 `to_dataframe` 方法來完成：
 
     frame = ds.to_dataframe()
 
-If you prefer to download the raw data, and perform the deserialization yourself, that is an option. At the moment, this is the only option for formats such as 'ARFF', which the Python client library cannot deserialize.
+您也可以選擇下載原始資料，並自己執行還原序列化。對於 Python 用戶端程式庫無法還原序列化的格式 (例如 'ARFF')，目前這是唯一選擇。
 
-To read the contents as text:
+若要以文字格式讀取內容：
 
     text_data = ds.read_as_text()
 
-To read the contents as binary:
+若要以二進位格式讀取內容：
 
     binary_data = ds.read_as_binary()
 
-You can also just open a stream to the contents:
+您也可以開啟內容的資料流：
 
     with ds.open() as file:
         binary_data_chunk = file.read(1000)
 
 
-### <a name="create-a-new-dataset"></a>Create a new dataset
+### 建立新的資料集
 
-The Python client library allows you to upload datasets from your Python program. These datasets are then available for use in your workspace.
+Python 用戶端程式碼可讓您上傳 Python 程式中的資料集。這些資料集接著可在您的工作區中使用。
 
-If you have your data in a Pandas DataFrame, use the following code:
+如果您有資料在 Pandas DataFrame 中，可以使用下列程式碼：
 
     from azureml import DataTypeIds
 
@@ -259,7 +260,7 @@ If you have your data in a Pandas DataFrame, use the following code:
         description='my description'
     )
 
-If your data is already serialized, you can use:
+如果您的資料已經序列化，則可以使用：
 
     from azureml import DataTypeIds
 
@@ -270,20 +271,20 @@ If your data is already serialized, you can use:
         description='my description'
     )
 
-The Python client library is able to serialize a Pandas DataFrame to the following formats (constants for these are in the `azureml.DataTypeIds` class):
+Python 用戶端程式碼能夠將 Pandas DataFrame 序列化為下列格式 (這些都是 `azureml.DataTypeIds` 類別的常數)：
 
- - PlainText
+ - 純文字
  - GenericCSV
  - GenericTSV
  - GenericCSVNoHeader
  - GenericTSVNoHeader
 
 
-### <a name="update-an-existing-dataset"></a>Update an existing dataset
+### 更新現有資料集
 
-If you try to upload a new dataset with a name that matches an existing dataset, you should get a conflict error.
+如果您嘗試以與現有資料集相符的名稱上傳新的資料集，應會發生衝突錯誤。
 
-To update an existing dataset, you first need to get a reference to the existing dataset:
+若要更新現有資料集，您必須先取得現有資料集的參照：
 
     dataset = ws.datasets['existing dataset']
 
@@ -291,7 +292,7 @@ To update an existing dataset, you first need to get a reference to the existing
     print(dataset.name)         # 'existing dataset'
     print(dataset.description)  # 'data up to jan 2015'
 
-Then use `update_from_dataframe` to serialize and replace the contents of the dataset on Azure:
+然後使用 `update_from_dataframe` 以序列化並取代 Azure 上資料集的內容：
 
     dataset = ws.datasets['existing dataset']
 
@@ -301,7 +302,7 @@ Then use `update_from_dataframe` to serialize and replace the contents of the da
     print(dataset.name)         # 'existing dataset'
     print(dataset.description)  # 'data up to jan 2015'
 
-If you want to serialize the data to a different format, specify a value for the optional `data_type_id` parameter.
+如果您想要將資料序列化為不同的格式，可為選擇性 `data_type_id` 參數指定一個值。
 
     from azureml import DataTypeIds
 
@@ -316,7 +317,7 @@ If you want to serialize the data to a different format, specify a value for the
     print(dataset.name)         # 'existing dataset'
     print(dataset.description)  # 'data up to jan 2015'
 
-You can optionally set a new description by specifying a value for the `description` parameter.
+您可以選擇性地為 `description` 參數指定一個值，以設定新的描述。
 
     dataset = ws.datasets['existing dataset']
 
@@ -329,7 +330,7 @@ You can optionally set a new description by specifying a value for the `descript
     print(dataset.name)         # 'existing dataset'
     print(dataset.description)  # 'data up to feb 2015'
 
-You can optionally set a new name by specifying a value for the `name` parameter. From now on, you'll retrieve the dataset using the new name only. The following code updates the data, name and description.
+您可以選擇性地為 `name` 參數指定一個值，以設定新的名稱。從現在起，您只會擷取使用新名稱的資料集。下列程式碼可更新資料、名稱及描述。
 
     dataset = ws.datasets['existing dataset']
 
@@ -346,23 +347,23 @@ You can optionally set a new name by specifying a value for the `name` parameter
     print(ws.datasets['existing dataset v2'].name) # 'existing dataset v2'
     print(ws.datasets['existing dataset'].name)    # IndexError
 
-The `data_type_id`, `name` and `description` parameters are optional and default to their previous value. The `dataframe` parameter is always required.
+`data_type_id`、`name` 及 `description` 都是選擇性參數，並以先前的值為預設值。`dataframe` 一向是必要參數。
 
-If your data is already serialized, use `update_from_raw_data` instead of `update_from_dataframe`. If you just pass in `raw_data` instead of  `dataframe`, it works in a similar way.
+如果您的資料已經序列化，請使用 `update_from_raw_data`，而不是 `update_from_dataframe`：如果您只傳入 `raw_data`，而不是 `dataframe`，其會以類似方式運作。
 
 
 
 <!-- Images -->
-[security]:./media/machine-learning-python-data-access/security.png
-[dataset-format]:./media/machine-learning-python-data-access/dataset-format.png
-[csv-format]:./media/machine-learning-python-data-access/csv-format.png
-[datasets]:./media/machine-learning-python-data-access/datasets.png
-[dataset-access-code]:./media/machine-learning-python-data-access/dataset-access-code.png
-[ipython-dataset]:./media/machine-learning-python-data-access/ipython-dataset.png
-[experiment]:./media/machine-learning-python-data-access/experiment.png
-[intermediate-dataset-access-code]:./media/machine-learning-python-data-access/intermediate-dataset-access-code.png
-[ipython-intermediate-dataset]:./media/machine-learning-python-data-access/ipython-intermediate-dataset.png
-[ipython-histogram]:./media/machine-learning-python-data-access/ipython-histogram.png
+[security]: ./media/machine-learning-python-data-access/security.png
+[dataset-format]: ./media/machine-learning-python-data-access/dataset-format.png
+[csv-format]: ./media/machine-learning-python-data-access/csv-format.png
+[datasets]: ./media/machine-learning-python-data-access/datasets.png
+[dataset-access-code]: ./media/machine-learning-python-data-access/dataset-access-code.png
+[ipython-dataset]: ./media/machine-learning-python-data-access/ipython-dataset.png
+[experiment]: ./media/machine-learning-python-data-access/experiment.png
+[intermediate-dataset-access-code]: ./media/machine-learning-python-data-access/intermediate-dataset-access-code.png
+[ipython-intermediate-dataset]: ./media/machine-learning-python-data-access/ipython-intermediate-dataset.png
+[ipython-histogram]: ./media/machine-learning-python-data-access/ipython-histogram.png
 
 
 <!-- Module References -->
@@ -370,8 +371,4 @@ If your data is already serialized, use `update_from_raw_data` instead of `updat
 [split]: https://msdn.microsoft.com/library/azure/70530644-c97a-4ab6-85f7-88bf30a8be5f/
  
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

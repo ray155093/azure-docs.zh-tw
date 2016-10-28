@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Azure Resource health overview | Microsoft Azure"
-   description="Overview of Azure Resource health"
+   pageTitle="Azure 資源健康狀態概觀 | Microsoft Azure"
+   description="Azure 資源健康狀態的概觀"
    services="Resource health"
    documentationCenter="dev-center-name"
    authors="BernardoAMunoz"
@@ -16,100 +16,95 @@
    ms.date="06/01/2016"
    ms.author="BernardoAMunoz"/>
 
+# Azure 資源健康狀態概觀
 
-# <a name="azure-resource-health-overview"></a>Azure Resource health overview
+Azure 資源健康狀態是一項服務，會揭露個別 Azure 資源的健康狀態，並提供可採取動作的指導以針對問題進行疑難排解。在無法直接存取伺服器或基礎結構元素的雲端環境中，資源健康狀態旨在減少客戶在疑難排解上所花費的時間，尤其是花在判斷問題根源是出自應用程式本身還是 Azure 平台內事件的時間。
 
-Azure Resource health is a service that exposes the health of individual Azure resources and provides actionable guidance to troubleshoot problems. In a cloud environment where it isn’t possible to directly access servers or infrastructure elements, the goal for Resource health is to reduce the time customers spend on troubleshooting, in particular reducing the time spent determining if the root of the problem lays inside the application or if it is caused by an event inside the Azure platform.
+## 何謂資源，以及資源健康狀態如何決定資源健康與否？ 
+資源是使用者針對服務提供的資源類型所建立的執行個體，例如︰虛擬機器、Web 應用程式或 SQL Database。
 
-## <a name="what-is-considered-a-resource-and-how-does-resource-health-decides-if-the-resource-is-healthy-or-not?"></a>What is considered a Resource and how does resource health decides if the resource is healthy or not? 
-A resource is a user created instance of a resource type provided by a service, for example: a virtual machine, a Web app or a SQL database. 
+資源健康狀態依賴資源和/或服務所發出的訊號，來決定資源健康與否。請務必注意，資源健康狀態目前只會考慮一種特定資源類型的健康狀態，並不會考慮其他可能構成整體健康狀態的項目。例如，在報告虛擬機器的狀態時，只會考慮基礎結構的計算部分，也就是說，除非有宣告服務中斷，否則網路中發生的問題不會顯示在資源健康狀態中；若已宣告服務中斷，則會透過刀鋒視窗頂端的橫幅顯示此問題。本文稍後會提供關於服務中斷的詳細資訊。
 
-Resource health relies on signals emitted by the resource and/or the service to determine if a resource is healthy or not. It is important to notice that currently Resource health only accounts for the health of one specific resource type and does not consider other elements that may contribute to the overall health. For example, when reporting the status of a virtual machine, only the compute portion of the infrastructure is considered, i.e. issues in the network will not be shown in Resource health, unless there is a declared service outage, in which case, it will be surfaced through the banner at the top of the blade. More information about service outage is offered later in this article. 
+## 資源健康狀態和服務健康狀態儀表板有何不同？
 
-## <a name="how-is-resource-health-different-from-service-health-dashboard?"></a>How is Resource health different from Service Health Dashboard?
+資源健康狀態可提供比服務健康狀態儀表板更細部的資訊。SHD 會傳達影響區域中服務可用性的事件，資源健康狀態則會揭露與特定資源有關的資訊，例如，它會揭露影響虛擬機器、Web 應用程式或 SQL Database 可用性的事件。例如，如果有節點意外重新啟動，則手上有虛擬機器在該節點執行的客戶，將能夠取得其 VM 之所以有一段時間無法使用的原因。
 
-The information provided by Resource health is more granular than what is provided by the Service Health Dashboard. While SHD communicates events that impact the availability of a service in a region, Resource health exposes information relevant to a specific resource, e.g. it will expose events that impact the availability of a virtual machine, a web app, or a SQL database. For example, if a node unexpectedly reboots, customers whose virtual machines were running on that node will be able to obtain the reason why their VM was unavailable for a period of time.   
+## 如何存取資源健康狀態
+如需可透過資源健康狀態取得的服務，您有 2 種方式可存取資源健康狀態。
 
-## <a name="how-to-access-resource-health"></a>How to access Resource health
-For the services available through Resource health, there are 2 ways to access Resource health.
+### Azure 入口網站
+Azure 入口網站中的 [資源健康狀態] 刀鋒視窗，可提供資源健康狀態的詳細資訊以及建議採取的動作 (依據資源目前的健康狀態而定，會提供不同的建議)。此刀鋒視窗可在查詢資源健康狀態時提供最佳體驗，因為它能讓使用者便利地存取入口網站內的其他資源。如先前所述，[資源健康狀態] 刀鋒視窗中所建議的一組動作，會隨著目前的健康狀態而有所不同︰
 
-### <a name="azure-portal"></a>Azure Portal
-The Resource health blade in the Azure Portal, provides detailed information about the health of the resource as well as recommended actions that vary depending on the current health of the resource. This blade provides the best experience when querying Resource health, as it facilitates access to other resources inside the portal. As mentioned before, the set of recommended actions in the Resource health blade will vary based on the current health:
+* 健康狀態良好的資源︰由於未偵測到任何可能影響資源健康狀態的問題，所建議的動作會著重在協助疑難排解程序。例如，它可供直接存取 [疑難排解] 刀鋒視窗，裡面會指導您如何解決客戶最常面臨的問題。
+* 健康狀態不良的資源︰若為 Azure 所造成的問題，刀鋒視窗中會顯示 Microsoft 將會採取 (或已採取) 以便復原資源的動作。若為使用者起始的動作所造成的問題，刀鋒視窗中會顯示客戶可以採取以便解決問題並復原資源的動作清單。
 
-* Healthy resources: Since no issue that could impact the health of the resource has been detected, the actions are focused on helping the troubleshooting process. For example, it provides direct access to the Troubleshooting blade, which offers guidance on how to solve the most common problems customers face.
-* Unhealthy resource: For problems caused by Azure, the blade will display actions Microsoft is taking (or has taken) to recover the resource. For problems caused by user initiated actions, the blade will a list of actions customers can take so address the problem and recover the resource.  
+在登入 Azure 入口網站之後，有兩種方式可以存取 [資源健康狀態] 刀鋒視窗︰
 
-Once you have logged into the Azure Portal, there are two ways to access the Resource health blade: 
+###開啟資源刀鋒視窗
+開啟指定資源的 [資源] 刀鋒視窗。在 [資源] 刀鋒視窗旁邊所開啟的 [設定] 刀鋒視窗中，按一下 [資源健康狀態] 以開啟 [資源健康狀態] 刀鋒視窗。
 
-###<a name="open-the-resource-blade"></a>Open the Resource blade
-Open the Resource blade for a given resource. On the Settings blade that opens next to the Resource blade, click on Resource Health to open the Resource health blade. 
+![資源健康狀態刀鋒視窗](./media/resource-health-overview/resourceBladeAndResourceHealth.png)
 
-![Resource health blade](./media/resource-health-overview/resourceBladeAndResourceHealth.png)
+### 說明及支援刀鋒視窗
+按一下右上角的問號，然後選取 [說明 + 支援]，即可開啟 [說明及支援] 刀鋒視窗。
 
-### <a name="help-and-support-blade"></a>Help and Support blade
-Open the Help and Support blade by clicking on the question mark in the upper right corner then selecting Help + Support. 
+**從頂端導覽列**
 
-**From the top navigation bar**
+![說明 + 支援](./media/resource-health-overview/HelpAndSupport.png)
 
-![Help + support](./media/resource-health-overview/HelpAndSupport.png)
+按一下磚會開啟 [資源健康狀態訂用帳戶] 刀鋒視窗，其中會列出訂用帳戶中的所有資源。每個資源旁邊各有一個圖示會指出其健康狀態。按一下每個資源就會開啟 [資源健康狀態] 刀鋒視窗。
 
-Clicking the tile opens the Resource health subscription blade which will list all of the resources in your subscription. Beside each resource, there is an icon indicating its health. Clicking on each resource will open the Resource health blade.
+**資源健康狀態圖格**
 
-**Resource health tile**
+![資源健康狀態圖格](./media/resource-health-overview/resourceHealthTile.png)
 
-![Resource health tile](./media/resource-health-overview/resourceHealthTile.png)
+## 資源健康狀態所代表的意義為何？
+您可能會看到 4 種不同的資源健康狀態。
 
-## <a name="what-does-my-resource-health-status-mean?"></a>What does my Resource health status mean?
-There are 4 different health statuses that you might see for your resource.
+### 可用
+服務未偵測到平台中有任何可能影響資源可用性的問題。其代表圖示為綠色核取記號。
 
-### <a name="available"></a>Available
-The service has not detected any problems in the platform that could be impacting the availability of the resource. This is indicated by a green check mark icon. 
+![資源可用](./media/resource-health-overview/Available.png)
 
-![Resource is available](./media/resource-health-overview/Available.png)
+### 無法使用
 
-### <a name="unavailable"></a>Unavailable
+在此情況下，表示服務已偵測到平台中正有問題在影響這項資源的可用性，例如，VM 執行所在的節點正在執行非預期的重新啟動。其代表圖示為紅色警告圖示。刀鋒視窗中段會提供問題的其他相關資訊，包括︰
 
-In this case the service has detected an ongoing problem in the platform that is impacting the availability of this resource, for example, the node where the VM was running unexpectedly rebooted. This is indicated by a red warning icon. Additional information about the problem is provided in the middle section of the blade, including: 
+1.	Microsoft 將會採取以便復原資源的動作
+2.	問題的詳細時間表，包括預期的解決時間
+3.	建議使用者採取的動作清單
 
-1.  What actions Microsoft is taking to recover the resource 
-2.  A detailed timeline of the problem, including the expected resolution time
-3.  A list recommended actions for users 
+![資源無法使用](./media/resource-health-overview/Unavailable.png)
 
-![Resource is unavailable](./media/resource-health-overview/Unavailable.png)
+### 無法使用 - 客戶起始
+資源因為客戶要求 (例如停止資源或要求重新啟動) 而無法使用。其代表圖示為藍色資訊圖示。
 
-### <a name="unavailable-–-customer-initiated"></a>Unavailable – customer initiated
-The resource is unavailable due to a customer request such as stopping a resource or requesting a restart. This is indicated by a blue informational icon. 
+![資源因為使用者起始的動作而無法使用](./media/resource-health-overview/userInitiated.png)
 
-![Resource is unavailable due to user an initiated action](./media/resource-health-overview/userInitiated.png)
+### 不明
+服務已超過 5 分鐘未收到此資源的相關資訊。其代表圖示為灰色問號。
 
-### <a name="unknown"></a>Unknown
-The service has not received information about this resource for more than 5 minutes. This is indicated by a grey question mark icon. 
+請務必注意，這並非明確表示資源發生問題，因此客戶應遵循下列建議︰
 
-It is important to note that this is not a definitive indication that there is something wrong with a resource, so customers should follow these recommendations:
+* 如果資源如預期般執行，但其健康狀態在資源健康狀態中設定為 [未知]，表示並未發生任何問題，幾分鐘之後，資源的狀態應該就會更新為健康狀態良好。
+* 如果在存取資源時發生問題，而且其健康狀態在資源健康狀態中設定為 [未知]，這可能是一項預警，表示可能有問題發生，因此您應該進行其他調查，直到健康狀態更新為健康狀態良好或健康狀態不良
 
-* If the resource is running as expected but its health is set to Unknown in Resource health, there are no problems and you can expect the status of the resource to update to healthy after a few minutes.
-* If there are problems accessing the resource and its health is set to Unknown in Resource health, this could be an early indication there could be an issue and additional investigations should be done until the health is updated to either healthy or unhealthy
+![資源健康狀態不明](./media/resource-health-overview/unknown.png)
 
-![Resource health is unknown](./media/resource-health-overview/unknown.png)
+## 服務影響事件
+如果資源可能受到發生中的服務影響事件所影響，[資源健康狀態] 刀鋒視窗的頂端就會顯示橫幅。按一下橫幅將會開啟 [稽核事件] 刀鋒視窗，其中將顯示關於中斷的其他資訊。
 
-## <a name="service-impacting-events"></a>Service Impacting Events
-If the resource may be impacted by an ongoing Service Impacting Event, a banner will be displayed at the top of the Resource health blade. Clicking on the banner will open the Audit Events blade, which will display additional information about the outage.
+![資源健康狀態可能會受 SIE 所影響](./media/resource-health-overview/serviceImpactingEvent.png)
 
-![Resource health may be impacted by a SIE](./media/resource-health-overview/serviceImpactingEvent.png)
+## 資源健康狀態還有其他須知事項嗎？
 
-## <a name="what-else-do-i-need-to-know-about-resource-health?"></a>What else do I need to know about Resource health?
+### 訊號延遲
+提供資源健康狀態的訊號最長可能會延遲 15 分鐘，因而造成資源目前的健康狀態與實際可用性不一致。請務必牢記這一點，因為這能讓您避免浪費時間調查可能的問題。
 
-### <a name="signal-latency"></a>Signal latency
-The signals that feed Resource health, may be up to 15 min delayed, which can cause discrepancies between the current health status of the resource and its actual availability. It is important to keep this in mind as it will help eliminate unnecessary time spent investigating possible issues. 
+### SQL 的特例 
+資源健康狀態會報告 SQL Database 而非 SQL Server 的狀態。雖然這種方式可提供更詳實的資源健康資訊，但必須考慮多個元件和服務才能決定資料庫的健康狀態。目前的訊號仰賴資料庫登入，這表示如果資料庫定期收到登入 (此外也包括收到查詢執行要求)，則會定期顯示健康狀態。如果超過 10 分鐘以上的時間未存取資料庫，資料庫就會變成未知狀態。這並非表示資料庫無法使用，而只是表示因為未執行登入而未發出訊號。連線到資料庫並執行查詢，就會發出用來決定和更新資料庫健康狀態所需的訊號。
 
-### <a name="special-case-for-sql"></a>Special case for SQL 
-Resource health reports the status of the SQL database, not the SQL server. While going this route provides a more realistic health picture, it requires that multiple components and services be taken into consideration to determine the health of the database. The current signal relies on logins to the database, which means that for databases that receive regular logins (which includes among other things, receiving query execution requests) the health status will be regularly displayed. If the database has not been accessed for a period of 10 minutes or more, it will be moved to the unknown state. This does not mean that the database is unavailable, just that no signal has been emitted because no logins have been performed. Connecting to the database and running a query will emit the signals needed to determine and update the health status of the database.
+## 意見反應
+我們歡迎意見反應和建議！ 請將您的[建議](https://feedback.azure.com/forums/266794-support-feedback)傳送給我們。此外，您可以透過 [Twitter](https://twitter.com/azuresupport) 或 [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure)與我們連絡。
 
-## <a name="feedback"></a>Feedback
-We are always open to feedback and suggestions! Please send us your [suggestions](https://feedback.azure.com/forums/266794-support-feedback). Additionally, you can engage with us via [Twitter](https://twitter.com/azuresupport) or the [MSDN forums](https://social.msdn.microsoft.com/Forums/azure).
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0831_2016-->

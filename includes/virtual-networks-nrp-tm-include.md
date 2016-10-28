@@ -1,28 +1,28 @@
-## <a name="traffic-manager-profile"></a>Traffic Manager Profile
+## 流量管理員設定檔
 
-Traffic manager and its child endpoint resource enable DNS routing to endpoints in Azure and outside of Azure. Such traffic distribution is governed by routing  policy methods. Traffic manager also allows endpoint health to be monitored, and traffic diverted appropriately based on the health of an endpoint. 
+流量管理員和它的子端點資源讓 DNS 路由可路由至 Azure 內部和 Azure 外部端點。這類流量分配是由路由原則方法所管理。流量管理員也可監視端點健全狀況，並根據端點健全狀況適當地轉向流量。
 
-| Property | Description |
+| 屬性 | 說明 |
 |---|---|
-|**trafficRoutingMethod**| possible values are *Performance*, *Weighted*, and *Priority* | 
-| **dnsConfig** | FQDN for the profile | 
-| **Protocol** | monitoring protocol, possible values are *HTTP* and *HTTPS*|
-| **Port** | monitoring port |  
-| **Path** | monitoring path |
-| **Endpoints** |  container for endpoint resources | 
+|**trafficRoutingMethod**| 可能的值為 *Performance*、*Weighted* 和 *Priority* | 
+| **dnsConfig** | 設定檔的 FQDN | 
+| **通訊協定** | 監視通訊協定，可能的值為 *HTTP* 和 *HTTPS*|
+| **連接埠** | 監視連接埠 |  
+| **路徑** | 監視路徑 |
+| **Endpoints** | 端點資源的容器 | 
 
-### <a name="endpoint"></a>Endpoint 
+### 端點 
 
-An endpoint is a child resource of a Traffic Manager Profile. It represents a service or web endpoint to which user traffic is distributed based on the configured policy in the Traffic Manager Profile resource. 
+端點是流量管理員設定檔的子資源。它代表服務或 Web 端點，並根據流量管理員設定檔資源中所設定的原則，將使用者流量散發到此服務或 Web 端點。
 
-| Property | Description | 
+| 屬性 | 說明 | 
 |---|---| 
-| **Type** |  the type of the endpoint, possible values are *Azure End point*, *External Endpoint*, and  *Nested Endpoint* | 
-| **targetResourceId** |  public IP address of a service or web endpoint. This can be an Azure or external endpoint. | 
-| **Weight** | endpoint weight used in traffic management. | 
-| **Priority** | priority of the endpoint, used to define a failover action |
+| **類型** | 端點的類型，可能的值為 *Azure End point*、*External Endpoint* 和 *Nested Endpoint* | 
+| **targetResourceId** | 服務或 Web 端點的公用 IP 位址。這可以是 Azure 或外部端點。 | 
+| **重量** | 用於流量管理的端點加權。 | 
+| **優先順序** | 端點的優先順序，用來定義容錯移轉動作。 |
 
-Sample of Traffic Manager in Json format: 
+JSON 格式的流量管理員範例：
 
 
         {
@@ -80,11 +80,8 @@ Sample of Traffic Manager in Json format:
         }
 
  
-## <a name="additional-resources"></a>Additional resources
+## 其他資源
 
-Read [REST API documentation for Traffic Manager](https://msdn.microsoft.com/library/azure/mt163664.aspx) for more information.
+如需詳細資訊，請閱讀[流量管理員的 REST API 文件](https://msdn.microsoft.com/library/azure/mt163664.aspx)。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_1223_2015-->

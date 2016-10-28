@@ -1,12 +1,12 @@
 <properties
-    pageTitle="Use dynamic telemetry | Microsoft Azure"
-    description="Follow this tutorial to learn how to use dynamic telemetry with the remote monitoring preconfigured solution."
-    services=""
+	pageTitle="使用動態遙測 |Microsoft Azure"
+	description="遵循本教學課程以了解如何使用動態遙測搭配遠端監視預先設定解決方案。"
+	services=""
     suite="iot-suite"
-    documentationCenter=""
-    authors="dominicbetts"
-    manager="timlt"
-    editor=""/>
+	documentationCenter=""
+	authors="dominicbetts"
+	manager="timlt"
+	editor=""/>
 
 <tags
      ms.service="iot-suite"
@@ -17,81 +17,80 @@
      ms.date="08/25/2016"
      ms.author="dobett"/>
 
+# 搭配使用動態遙測與遠端監視預先設定解決方案
 
-# <a name="use-dynamic-telemetry-with-the-remote-monitoring-preconfigured-solution"></a>Use dynamic telemetry with the remote monitoring preconfigured solution
+## 簡介
 
-## <a name="introduction"></a>Introduction
+動態遙測可讓您將傳送至遠端監視預先設定解決方案的任何遙測視覺化。使用預先設定解決方案部署的模擬裝置會傳送溫度與濕度遙測，您可以在儀表板上將這些遙測視覺化。如果您自訂現有的模擬裝置、建立新的模擬裝置，或將實體裝置連線到預先設定解決方案，您可以傳送其他的遙測值，例如外部溫度、RPM 或風速。然後，您可以在儀表板上將此額外遙測視覺化。
 
-Dynamic telemetry enables you to visualize any telemetry sent to the remote monitoring preconfigured solution. The simulated devices that deploy with the preconfigured solution send temperature and humidity telemetry, which you can visualize on the dashboard. If you customize the existing simulated devices, create new simulated devices, or connect physical devices to the preconfigured solution you can send other telemetry values such as the external temperature, RPM, or windspeed. You can then visualize this additional telemetry on the dashboard.
+本教學課程使用簡單的 Node.js 模擬裝置，您可以輕鬆地修改它來實驗動態遙測。
 
-This tutorial uses a simple Node.js simulated device that you can easily modify to experiment with dynamic telemetry.
+若要完成本教學課程，您需要：
 
-To complete this tutorial, you’ll need:
+- 有效的 Azure 訂用帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用][lnk_free_trial]。
+- [Node.js][lnk-node] 0.12.x 版或更新版本。
 
-- An active Azure subscription. If you don’t have an account, you can create a free trial account in just a couple of minutes. For details, see [Azure Free Trial][lnk_free_trial].
-- [Node.js][lnk-node] version 0.12.x or later.
-
-You can complete this tutorial on any operating system, such as Windows or Linux, where you can install Node.js.
+您可以在任何作業系統上完成本教學課程，例如 Windows 或 Linux，只要您可以在其中安裝 Node.js。
 
 [AZURE.INCLUDE [iot-suite-provision-remote-monitoring](../../includes/iot-suite-provision-remote-monitoring.md)]
 
-## <a name="configure-the-node.js-simulated-device"></a>Configure the Node.js simulated device
+## 設定 Node.js 模擬裝置
 
-1. On the remote monitoring dashboard, click **+ Add a device** and then add a custom device. Make a note of the IoT Hub hostname, device id, and device key. You need them later in this tutorial when you prepare the remote_monitoring.js device client application.
+1. 在遠端監視儀表板上，按一下 [+ 新增裝置]，然後新增自訂裝置。記下 IoT 中樞主機名稱、裝置識別碼和裝置金鑰。當您在本教學課程稍後準備 remote\_monitoring.js 裝置用戶端應用程式時，需要這些資料。
 
-2. Ensure that Node.js version 0.12.x or later is installed on your development machine. Run `node --version` at a command prompt or in a shell to check the version. For information about using a package manager to install Node.js on Linux, see [Installing Node.js via package manager][node-linux].
+2. 請確定 Node.js 0.12.x 版或更新版本已經安裝在您的開發電腦上。在命令提示字元或殼層中執行 `node --version` 來檢查版本。如需使用套件管理員在 Linux 上安裝 Node.js 的資訊，請參閱 [Installing Node.js via package manager (透過套件管理員安裝 Node.js)][node-linux]。
 
-3. When you have installed Node.js, clone the latest version of the [azure-iot-sdks][lnk-github-repo] repository to your development machine. Always use the **master** branch for the latest version of the libraries and samples.
+3. 安裝 Node.js 之後，請將最新版本的 [azure-iot-sdks][lnk-github-repo] 儲存機制複製到您的開發電腦。一律使用 **master** 分支取得最新版本的程式庫和範例。
 
-4. From your local copy of the [azure-iot-sdks][lnk-github-repo] repository, copy the following two files from the node/device/samples folder to an empty folder on your development machine:
+4. 從您的本機複本 [azure-iot-sdks][lnk-github-repo] 儲存機制，將下列兩個檔案從 node/device/samples 資料夾複製到您開發電腦的空白資料夾中：
 
   - packages.json
-  - remote_monitoring.js
+  - remote\_monitoring.js
 
-5. Open the remote_monitoring.js file and look for the following variable definition:
+5. 開啟 remote\_monitoring.js 檔案並尋找下列變數定義：
 
     ```
     var connectionString = "[IoT Hub device connection string]";
     ```
 
-6. Replace **[IoT Hub device connection string]** with your device connection string. Use the values for your IoT Hub hostname, device id, and device key that you made a note of in step 1. A device connection string has the following format:
+6. 以您裝置的連接字串取代 **[IoT 中樞裝置連接字串]**。使用您在步驟 1 記下的 IoT 中樞主機名稱、裝置識別碼，以及裝置金鑰的值。裝置連接字串使用的格式如下：
 
     ```
     HostName={your IoT Hub hostname};DeviceId={your device id};SharedAccessKey={your device key}
     ```
 
-    If your IoT Hub hostname is **contoso** and your device id is **mydevice**, your connection string looks like the following:
+    如果 IoT 中樞主機名稱是 **contoso** 且裝置識別碼是 **mydevice**，連接字串看起來如下：
 
     ```
     var connectionString = "HostName=contoso.azure-devices.net;DeviceId=mydevice;SharedAccessKey=2s ... =="
     ```
 
-7. Save the file. Run the following commands in a shell or command prompt in the folder that contains these files to install the necessary packages and then run the sample application:
+7. 儲存檔案。在殼層或命令提示字元中，於包含這些檔案的資料夾，執行下列命令以安裝必要的套件，然後執行範例應用程式：
 
     ```
     npm install
     node remote_monitoring.js
     ```
 
-## <a name="observe-dynamic-telemetry-in-action"></a>Observe dynamic telemetry in action
+## 觀察運作中的動態遙測
 
-The dashboard shows the temperature and humidity telemetry from the existing simulated devices:
+儀表板會顯示現有模擬裝置的溫度與濕度遙測：
 
-![The default dashboard][image1]
+![預設儀表板][image1]
 
-If you select the Node.js simulated device you ran in the previous section, you see temperature, humidity, and external temperature telemetry:
+如果您選取在上一節執行的 Node.js 模擬裝置，您會看到溫度、濕度與外部溫度遙測：
 
-![Add external temperature to the dashboard][image2]
+![新增外部溫度到儀表板][image2]
 
-The remote monitoring solution automatically detects the additional external temperature telemetry type and adds it to the chart on the dashboard.
+遠端監視解決方案會自動偵測其他的外部溫度遙測類型，並將它新增到儀表板的圖表上。
 
-## <a name="add-a-telemetry-type"></a>Add a telemetry type
+## 新增遙測類型
 
-The next step is to replace the telemetry generated by the Node.js simulated device with a new set of values:
+下一個步驟是將 Node.js 模擬裝置產生的遙測以新的一組值取代：
 
-1. Stop the Node.js simulated device by typing **Ctrl+C** in your command prompt or shell.
+1. 停止 Node.js 模擬裝置，方法是在命令提示字元或殼層中輸入 **Ctrl+C**。
 
-2. In the remote_monitoring.js file, you can see the base data values for the existing temperature, humidity, and external temperature telemetry. Add a base data value for **rpm** as follows:
+2. 在 remote\_monitoring.js 檔案中，您可以查看現有溫度、濕度和外部溫度遙測的基底資料值。加入 **rpm** 的基底資料值，如下所示：
 
     ```
     // Sensors data
@@ -101,7 +100,7 @@ The next step is to replace the telemetry generated by the Node.js simulated dev
     var rpm = 200;
     ```
 
-3. The Node.js simulated device uses the **generateRandomIncrement** function in the remote_monitoring.js file to add a random increment to the base data values. Randomize the **rpm** value by adding a line of code after the existing randomizations as follows:
+3. Node.js 模擬裝置會使用 remote\_monitoring.js 檔案中的 **generateRandomIncrement** 函式，對基底資料值加上隨機增量。在現有的隨機設定後方加上一行程式碼，將 **rpm** 的值隨機化，如下所示：
 
     ```
     temperature += generateRandomIncrement();
@@ -110,7 +109,7 @@ The next step is to replace the telemetry generated by the Node.js simulated dev
     rpm += generateRandomIncrement();
     ```
 
-4. Add the new rpm value to the JSON payload the device sends to IoT Hub:
+4. 將新的 rpm 值加入到裝置送給 IoT 中樞的 JSON 承載：
 
     ```
     var data = JSON.stringify({
@@ -122,21 +121,21 @@ The next step is to replace the telemetry generated by the Node.js simulated dev
     });
     ```
 
-5. Run the Node.js simulated device using the following command:
+5. 使用下列命令，執行 Node.js 模擬裝置：
 
     ```
     node remote_monitoring.js
     ```
 
-6. Observe the new RPM telemetry type that displays on the chart in the dashboard:
+6. 觀察儀表板圖表上所顯示的新 RPM 遙測類型：
 
-![Add RPM to the dashboard][image3]
+![新增 RPM 到儀表板][image3]
 
-> [AZURE.NOTE] You may need to disable and then enable the Node.js device on the **Devices** page in the dashboard to see the change immediately.
+> [AZURE.NOTE] 您可能需要在儀表板中的 [裝置] 頁面停用 Node.js 裝置，然後再啟用以立即查看變更。
 
-## <a name="customize-the-dashboard-display"></a>Customize the dashboard display
+## 自訂儀表板顯示
 
-The **Device-Info** message can include metadata about the telemetry the device can send to IoT Hub. This metadata can specify the telemetry types the device sends. Modify the **deviceMetaData** value in the remote_monitoring.js file to include a **Telemetry** definition following the **Commands** definition. The following code snippet shows the **Commands** definition (be sure to add a `,` after the **Commands** definition):
+**Device-Info** 訊息可能包含裝置可傳送給 IoT 中樞的遙測相關中繼資料。此中繼資料可指定裝置傳送的遙測類型。修改 remote\_monitoring.js 檔案中的 **deviceMetaData** 值，以在 **Commands** 定義後方包含 **Telemetry** 定義。以下程式碼片段會顯示 **Commands** 定義 (請務必在 **Commands** 定義後方加上 `,`)：
 
 ```
 'Commands': [{
@@ -167,9 +166,9 @@ The **Device-Info** message can include metadata about the telemetry the device 
 }]
 ```
 
-> [AZURE.NOTE] The remote monitoring solution uses a case-insensitive match to compare the metadata definition with data in the telemetry stream.
+> [AZURE.NOTE] 遠端監視解決方案會使用區分大小寫的配對，來比對中繼資料定義與遙測串流中的資料。
 
-Adding a **Telemetry** definition as shown in the preceding code snippet does not change the behavior of the dashboard. However, the metadata can also include a **DisplayName** attribute to customize the display in the dashboard. Update the **Telemetry** metadata definition as shown in the following snippet:
+以上方程式碼片段所示方式加入 **Telemetry** 定義，並不會變更儀表板的行為。不過，中繼資料也可以包含 **DisplayName** 屬性來自訂儀表板中的顯示。更新 **Telemetry** 中繼資料定義，如下列程式碼片段所示：
 
 ```
 'Telemetry': [
@@ -191,17 +190,17 @@ Adding a **Telemetry** definition as shown in the preceding code snippet does no
 ]
 ```
 
-The following screenshot shows how this change modifies the chart legend on the dashboard:
+下列螢幕擷取畫面說明這項變更如何修改儀表板上的圖表圖例：
 
-![Customize the chart legend][image4]
+![自訂圖表圖例][image4]
 
-> [AZURE.NOTE] You may need to disable and then enable the Node.js device on the **Devices** page in the dashboard to see the change immediately.
+> [AZURE.NOTE] 您可能需要在儀表板的 [裝置] 頁面上停用 Node.js 裝置，接著再次啟用，以立即查看變更。
 
-## <a name="filter-the-telemetry-types"></a>Filter the telemetry types
+## 篩選遙測類型
 
-By default, the chart on the dashboard shows every data series in the telemetry stream. You can use the **Device-Info** metadata to suppress the display of specific telemetry types on the chart. 
+根據預設，儀表板上的圖表會顯示遙測串流中的每個資料數列。您可以使用 **Device-Info** 中繼資料，來隱藏圖表上特定遙測類型的顯示。
 
-To make the chart show only Temperature and Humidity telemetry, omit **ExternalTemperature** from the **Device-Info** **Telemetry** metadata as follows:
+若要讓圖表只顯示溫度和濕度遙測，請從 **Device-Info** **Telemetry** 中繼資料省略 **ExternalTemperature**，如下所示：
 
 ```
 'Telemetry': [
@@ -223,21 +222,21 @@ To make the chart show only Temperature and Humidity telemetry, omit **ExternalT
 ]
 ```
 
-The **Outdoor Temperature** no longer displays on the chart:
+**Outdoor Temperature (戶外溫度)** 不會再顯示在圖表上：
 
-![Filter the telemetry on the dashboard][image5]
+![篩選儀表板上的遙測][image5]
 
-This change only affects the chart display. The **ExternalTemperature** data values are still stored and made available for any backend processing.
+這項變更只會影響圖表顯示。**ExternalTemperature** 資料值仍會儲存，並可供任何後端處理使用。
 
-> [AZURE.NOTE] You may need to disable and then enable the Node.js device on the **Devices** page in the dashboard to see the change immediately.
+> [AZURE.NOTE] 您可能需要在儀表板的 [裝置] 頁面上停用 Node.js 裝置，接著再次啟用，以立即查看變更。
 
-## <a name="handle-errors"></a>Handle errors
+## 處理錯誤
 
-For a data stream to display on the chart, its **Type** in the **Device-Info** metadata must match the data type of the telemetry values. For example, if the metadata specifies that the **Type** of humidity data is **int** and a **double** is found in the telemetry stream then the humidity telemetry does not display on the chart. However, the **Humidity** values are still stored and made available for any backend processing.
+針對要在圖表上顯示的資料串流，其在 **Device-Info** 中繼資料中的 **Type** 必須符合遙測值的資料類型。例如，如果中繼資料指定濕度資料的 **Type** 必須為 **int**，而在遙測串流中找到 **double**，則濕度遙測將不會顯示在圖表上。不過，**濕度**的值仍會儲存，並可供任何後端處理使用。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-Now that you've seen how to use dynamic telemetry, you can learn more about how the preconfigured solutions use device information: [Device information metadata in the remote monitoring preconfigured solution][lnk-devinfo].
+既然您已了解如何使用動態的遙測，您可以進一步了解預先設定的解決方案如何使用裝置資訊︰[遠端監視預先設定方案中的裝置資訊中繼資料][lnk-devinfo]。
 
 [lnk-devinfo]: iot-suite-remote-monitoring-device-info.md
 
@@ -252,8 +251,4 @@ Now that you've seen how to use dynamic telemetry, you can learn more about how 
 [node-linux]: https://github.com/nodejs/node-v0.x-archive/wiki/Installing-Node.js-via-package-manager
 [lnk-github-repo]: https://github.com/Azure/azure-iot-sdks
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0831_2016-->

@@ -1,163 +1,140 @@
 <properties 
-    pageTitle="Add functionality to your first web app" 
-    description="Add cool features to your first web app in a few minutes." 
-    services="app-service\web"
-    documentationCenter=""
-    authors="cephalin" 
-    manager="wpickett" 
-    editor="" 
+	pageTitle="在您的第一個 Web 應用程式中新增功能" 
+	description="幾分鐘之內就在您的第一個 Web 應用程式中新增絕妙功能。" 
+	services="app-service\web"
+	documentationCenter=""
+	authors="cephalin" 
+	manager="wpickett" 
+	editor="" 
 />
 
 <tags 
-    ms.service="app-service-web" 
-    ms.workload="web" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="hero-article"
-    ms.date="05/12/2016" 
-    ms.author="cephalin"
+	ms.service="app-service-web" 
+	ms.workload="web" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="hero-article"
+	ms.date="05/12/2016" 
+	ms.author="cephalin"
 />
 
+# 在您的第一個 Web 應用程式中新增功能
 
-# <a name="add-functionality-to-your-first-web-app"></a>Add functionality to your first web app
+在[在 5 分鐘內將 Web 應用程式部署至 Azure](app-service-web-get-started.md) 中，您已將範例 Web 應用程式部署至 [Azure App Service](../app-service/app-service-value-prop-what-is.md)。在本文中，您將快速地在已部署的 Web 應用程式中新增一些很棒的功能。您將在幾分鐘內︰
 
-In [Deploy a web app to Azure in 5 minutes](app-service-web-get-started.md), you deployed a sample web app to [Azure App Service](../app-service/app-service-value-prop-what-is.md). In this article, you'll quickly add some great functionalities to your deployed web app. In a few minutes, you will:
+- 強制執行使用者驗證
+- 自動調整您的應用程式
+- 接收您應用程式的效能警示
 
-- enforce authentication for your users
-- scale your app automatically
-- receive alerts on the performance of your app
+不論您在前一篇文章中部署哪一個範例應用程式，您都可以依照本教學課程執行。
 
-Regardless of which sample app you deployed in the previous article, you can follow along in the tutorial.
+本教學課程中的三個活動，只是您在 App Service 中放入 Web 應用程式時所能獲得的許多實用功能的其中幾個範例。其中有許多功能都可在**免費**層使用 (即您的第一個 Web 應用程式執行所在的定價層)，您可以使用試用額度來試用需要較高定價層的功能。請放心，除非您明確地將 Web 應用程式變更為不同的定價層，否則它仍會留在**免費**層。
 
-The three activities in this tutorial are only a few examples of the many useful features you get when you put your web app in App Service. Many of the features are available in the **Free** tier (which is what your first web app is running on), and you can use your trial credits to try out features that require higher pricing tiers. Rest assured that your web app remains in **Free** tier unless you explicitly changes it to a different pricing tier.
+>[AZURE.NOTE] 您使用 Azure CLI 建立的 Web 應用程式會在**免費**層執行，其只允許一個具有資源配額的共用 VM 執行個體。如需可在**免費**層獲得之資源的詳細資訊，請參閱 [App Service 限制](../azure-subscription-service-limits.md#app-service-limits)。
 
->[AZURE.NOTE] The web app you created with Azure CLI runs in **Free** tier, which only allows one shared VM instance with resource quotas. For more information on what you get with **Free** tier, see [App Service limits](../azure-subscription-service-limits.md#app-service-limits).
+## 驗證您的使用者
 
-## <a name="authenticate-your-users"></a>Authenticate your users
+現在，讓我們來看看，在應用程式中新增驗證有多麼簡單 (進一步的資訊請參閱 [App Service 驗證/授權](https://azure.microsoft.com/blog/announcing-app-service-authentication-authorization/))。
 
-Now, let's see how easy it is to add authentication to your app (further reading at [App Service Authentication/Authorization](https://azure.microsoft.com/blog/announcing-app-service-authentication-authorization/)).
-
-1. In the portal blade for your app, which you just opened, click **Settings** > **Authentication / Authorization**.  
-    ![Authenticate - settings blade](./media/app-service-web-get-started/aad-login-settings.png)
+1. 在您應用程式的入口網站刀鋒視窗中，按一下 [設定] > [驗證 / 授權]。![驗證 - 設定刀鋒視窗](./media/app-service-web-get-started/aad-login-settings.png)
     
-2. Click **On** to turn on authentication.  
+2. 按一下 [開啟] 以開啟驗證。
     
-4. In **Authentication Providers**, click **Azure Active Directory**.  
-    ![Authenticate - select Azure AD](./media/app-service-web-get-started/aad-login-config.png)
+4. 在 [驗證提供者] 中，按一下 [Azure Active Directory]。![驗證 - 選取 Azure AD](./media/app-service-web-get-started/aad-login-config.png)
 
-5. In the **Azure Active Directory Settings** blade, click **Express**, then click **OK**. The default settings create a new Azure AD application in your default directory.  
- ![Authenticate - express configuration](./media/app-service-web-get-started/aad-login-express.png)
+5. 在 [Azure Active Directory 設定] 刀鋒視窗中，按一下 [快速]，然後按一下 [確定]。預設設定會在您的預設目錄中建立新的 Azure AD 應用程式。![驗證 - 快速設定](./media/app-service-web-get-started/aad-login-express.png)
 
-6. Click **Save**.  
-    ![Authenticate - save configuration](./media/app-service-web-get-started/aad-login-save.png)
+6. 按一下 [儲存]。![驗證 - 儲存設定](./media/app-service-web-get-started/aad-login-save.png)
 
-    Once the change is successful, you'll see the notification bell turn green, along with a friendly message.
+    成功變更之後，您會看到通知鈴變成綠色，以及一則清楚的訊息。
 
-7. Back in the portal blade of your app, click the **URL** link (or **Browse** in the menu bar). The link is an HTTP address.  
-    ![Authenticate - browse to URL](./media/app-service-web-get-started/aad-login-browse-click.png)  
-    But once it opens the app in a new tab, the URL box redirects several times and finishes on your app with an HTTPS address. What you're seeing is that you're already logged in to your Azure subscription, and you're automatically authenticated in the app.  
-    ![Authenticate - logged in](./media/app-service-web-get-started/aad-login-browse-http-postclick.png)  
-    So if you now open an unauthenticated session in a different browser, you'll see a login screen when you navigate to the same URL.  
+7. 回到您應用程式的入口網站刀鋒視窗，按一下 [URL] 連結 (或功能表列中的 [瀏覽])。此連結是 HTTP 位址。![驗證 - 瀏覽至 URL](./media/app-service-web-get-started/aad-login-browse-click.png) 但是在新的索引標籤中開啟應用程式後，URL 方塊就會重新導向數次並透過 HTTPS 位址到達您的應用程式。您會看到您已登入您的 Azure 訂用帳戶，而且您已自動在應用程式中進行驗證。![驗證 - 已登入](./media/app-service-web-get-started/aad-login-browse-http-postclick.png) 因此，如果您現在於不同瀏覽器中開啟未驗證的工作階段，當您瀏覽至相同 URL 時，將會看到登入畫面。
     <!-- ![Authenticate - login page](./media/app-service-web-get-started/aad-login-browse.png)  -->
-    If you've never done anything with Azure Active Directory, your default directory might not have any Azure AD users. In that case, probably the only account in there is the Microsoft account with your Azure subscription. That's why you were automatically logged in to the app in the same browser earlier. You can use that same Microsoft account to log in on this login page as well.
+    如果您從未使用 Azure Active Directory 執行任何作業，預設目錄可能沒有任何 Azure AD 使用者。在此情況下，那裡唯一的帳戶可能是以您的 Azure 訂用帳戶登入的 Microsoft 帳戶。這就是為什麼您先前會在相同的瀏覽器中自動登入此應用程式。您也可以使用相同的 Microsoft 帳戶登入此登入頁面。
 
-Congratulations, you are authenticating all traffic to your web app.
+恭喜，您已在驗證流向 Web 應用程式的所有流量。
 
-You may have noticed in the **Authentication / Authorization** blade that you can do a lot more, such as:
+您可能已注意到在 [驗證 / 授權] 刀鋒視窗中，您能做的不僅止於此，例如︰
 
-- Enable social login
-- Enable multiple login options
-- Change the default behavior when people first navigate to your app
+- 啟用社交登入
+- 啟用多個登入選項
+- 變更當使用者第一次瀏覽至您的應用程式時的預設行為
 
-App Service provides a turn-key solution for some of the common authentication needs so you don't need to provide the authentication logic yourself. For more information, see [App Service Authentication/Authorization](https://azure.microsoft.com/blog/announcing-app-service-authentication-authorization/).
+App Service 會針對某些常見的驗證需求提供周全的解決方案，所以您不需要自行提供驗證邏輯。如需詳細資訊，請參閱 [App Service 驗證/授權](https://azure.microsoft.com/blog/announcing-app-service-authentication-authorization/)。
 
-## <a name="scale-your-app-automatically-based-on-demand"></a>Scale your app automatically based on demand
+## 自動根據需求調整您的應用程式
 
-Next, let's autoscale your app so that it will automatically adjust it capacity to respond to user demand (further reading at [Scale up your app in Azure](web-sites-scale.md) and [Scale instance count manually or automatically](../azure-portal/insights-how-to-scale.md)). 
+接下來，讓我們自動調整您的應用程式，讓它能自動調整容量以回應使用者的需求 (進一步的資訊請參閱[在 Azure 中相應增加您的應用程式](web-sites-scale.md)和[手動或自動調整執行個體計數](../azure-portal/insights-how-to-scale.md))。
 
-Briefly, you scale your web app in two ways:
+簡單地說，Web 應用程式有兩種調整方法︰
 
-- [Scale up](https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling): Get more CPU, memory, disk space, and extra features like dedicated VMs, custom domains and certificates, staging slots, autoscaling, and more. You scale out by changing the pricing tier of the App Service plan your app belongs to.
-- [Scale out](https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling): Increasing the number VM instances that run your app.
-You can scale out to as many as 50 instances, depending on your pricing tier.
+- [相應增加](https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling)︰取得更多的 CPU、記憶體、磁碟空間和額外的功能，例如專用 VM、自訂網域和憑證、預備位置，以及自動調整等等。您可以藉由變更應用程式所屬的 App Service 方案定價層來相應放大。
+- [相應放大](https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling)︰增加執行您的應用程式的 VM 執行個體數目。視您的定價層而定，最多可以相應放大至 50 個執行個體。
 
-Without further ado, let's set up autoscaling.
+我們就不再贅言，馬上來設定自動調整。
 
-1. First, let's scale up to enable autoscaling. In the portal blade of your app, click **Settings** > **Scale Up (App Service Plan)**.  
-    ![Scale up - settings blade](./media/app-service-web-get-started/scale-up-settings.png)
+1. 首先，相應增加以啟用自動調整。在您應用程式的刀鋒視窗中，按一下 [設定] > [相應增加 (App Service 方案)]。![相應增加 - 設定刀鋒視窗](./media/app-service-web-get-started/scale-up-settings.png)
 
-2. Scroll and select the **S1 Standard** tier, the lowest tier that supports autoscaling (circled in screenshot), then click **Select**.  
-    ![Scale up - choose tier](./media/app-service-web-get-started/scale-up-select.png)
+2. 捲動並選取 [S1 標準] 層 (這是支援自動調整的最低層 (如螢幕擷取畫面所圈選))，然後按一下 [選取]。![相應增加 - 選擇層次](./media/app-service-web-get-started/scale-up-select.png)
 
-    You're done scaling up.
+    您已完成相應增加。
     
-    >[AZURE.IMPORTANT] This tier expends your free trial credits. If you have a pay-per-use account, it incurs charges to your account.
+    >[AZURE.IMPORTANT] 這一層會耗用您的免費試用額度。如果您有每次使用付費的帳戶，您的帳戶就會產生費用。
     
-3. Next, let's configure autoscaling. In the portal blade of your app, click **Settings** > **Scale Out (App Service Plan)**.  
-    ![Scale out - settings blade](./media/app-service-web-get-started/scale-out-settings.png)
+3. 接下來，設定自動調整。在您應用程式的刀鋒視窗中，按一下 [設定] > [相應放大 (App Service 方案)]。![相應放大 - 設定刀鋒視窗](./media/app-service-web-get-started/scale-out-settings.png)
 
-4. Change **Scale by** to **CPU Percentage**. The sliders underneath the dropdown update accordingly. Then, define an **Instances** range between **1** and **2** and a **Target range** between **40** and **80**. Do it by typing in the boxes or by moving the sliders.  
- ![Scale out - configure autoscaling](./media/app-service-web-get-started/scale-out-configure.png)
+4. 將 [調整依據] 變更為 [CPU 百分比]。下拉式清單之下的滑桿會跟著更新。然後，定義介於 **1** 與 **2** 之間的 [執行個體] 範圍，以及介於 **40** 與 **80** 之間的 [目標範圍]。做法為在方塊中輸入資料或移動滑桿。![相應放大 - 設定自動調整](./media/app-service-web-get-started/scale-out-configure.png)
     
-    Based on this configuration, your app automatically scales out when CPU utilization is above 80% and scales in when CPU utilization is below 40%. 
+    根據此設定，當 CPU 使用率高於 80% 時，您的應用程式會自動相應放大，而當 CPU 使用率低於 40% 時則會相應縮小。
     
-5. Click **Save** in the menu bar.
+5. 按一下功能表列中的 [儲存]。
 
-Congratulations, your app is autoscaling.
+恭喜，您的應用程式已在自動調整。
 
-You may have noticed in the **Scale Settings** blade that you can do a lot more, such as:
+您可能已注意到在 [調整設定] 刀鋒視窗中，您還能︰
 
-- Scale to a specific number of instances manually
-- Scale by other performance metrics, such as memory percentage or disk queue
-- Customize scaling behavior when a performance rule is triggered
-- Autoscale on a schedule
-- Set autoscaling behavior for a future event
+- 手動調整成特定的執行個體數目
+- 依其他效能計量 (例如記憶體百分比或磁碟佇列) 調整
+- 自訂觸發效能規則時的調整行為
+- 根據排程自動調整
+- 設定未來事件的自動調整行為
 
-For more information on scaling up your app, see [Scale up your app in Azure](../app-service-web/web-sites-scale.md). For more information on scaling out, see [Scale instance count manually or automatically](../azure-portal/insights-how-to-scale.md).
+如需有關相應增加應用程式的詳細資訊，請參閱[在 Azure 中相應增加您的應用程式](../app-service-web/web-sites-scale.md)。如需有關相應放大的詳細資訊，請參閱[手動或自動調整執行個體計數](../azure-portal/insights-how-to-scale.md)。
 
-## <a name="receive-alerts-for-your-app"></a>Receive alerts for your app
+## 接收應用程式的警示
 
-Now that your app is autoscaling, what happens when it reaches the maximum instance count (2) and CPU is above desired utilization (80%)? You can set up an alert (further reading at [Receive alert notifications](../azure-portal/insights-receive-alert-notifications.md)) to inform you of this situation so you can further scale up/out your app, for example. Let's quickly set up an alert for this scenario.
+現在，您的應用程式正在自動調整，當它達到最大執行個體計數 (2)，且 CPU 高於所需的使用率 (80%) 時，會發生什麼狀況？ 您可以設定警示 (進一步的資訊請參閱[接收警示通知](../azure-portal/insights-receive-alert-notifications.md)) 來通知您這種情況，以便您可以進一步相應增加/相應放大您的應用程式 (舉例來說)。為此案例迅速設定警示。
 
-1. In the portal blade of your app, click **Tools** > **Alerts**.  
-    ![Alerts - settings blade](./media/app-service-web-get-started/alert-settings.png)
+1. 在您應用程式的刀鋒視窗中，按一下 [工具] > [警示]。![警示 - 設定刀鋒視窗](./media/app-service-web-get-started/alert-settings.png)
 
-2. Click **Add alert**. Then, in the **Resource** box, select the resource that ends with **(serverfarms)**. That's your App Service plan.  
-    ![Alerts - add alert for App Service plan](./media/app-service-web-get-started/alert-add.png)
+2. 按一下 [新增警示]。然後，在 [資源] 方塊中，選取結尾是 (serverfarms) 的資源。這就是您的 App Service 方案。![警示 - 新增 App Service 方案的警示](./media/app-service-web-get-started/alert-add.png)
 
-3. Specify **Name** as `CPU Maxed`, **Metric** as **CPU Percentage**, and **Threshold** as `90`, then select **Email owners, contributors, and readers**, and then click **OK**.   
- ![Alerts - configure alert](./media/app-service-web-get-started/alert-configure.png)
+3. 將 [名稱] 指定為 `CPU Maxed`、[計量] 指定為 [CPU 百分比]，以及 [臨界值] 指定為 `90`，然後選取 [電子郵件擁有者、參與者和讀者]，再按一下 [確定]。![警示 - 設定警示](./media/app-service-web-get-started/alert-configure.png)
     
-    When Azure finishes creating the alert, you'll see it in the **Alerts** blade.  
-    ![Alerts - finished view](./media/app-service-web-get-started/alert-done.png)
+    當 Azure 完成警示建立時，您會在 [警示] 刀鋒視窗中看見該警示。![警示 - 已完成的檢視](./media/app-service-web-get-started/alert-done.png)
 
-Congratulations, you're now getting alerts. 
+恭喜，您現已接收警示。
 
-This alert setting checks CPU utilization every five minutes. If that number goes above 90%, you'll receive an email alert, along with anyone who is authorized. To see everyone who is authorized to receive the alerts, go back to the portal blade of your app and click the **Access** button.  
-![See who gets alerts](./media/app-service-web-get-started/alert-rbac.png)
+此警示設定會每隔 5 分鐘檢查一次 CPU 使用率。如果該數字高於 90%，您以及獲得授權的人員都會收到電子郵件警示。若要查看有權接收警示的人員，請回到您應用程式的刀鋒視窗，然後按一下 [存取] 按鈕。![查看有誰收到警示](./media/app-service-web-get-started/alert-rbac.png)
 
-You should see that **Subscription admins** are already the **Owner** of the app. This group would include you if you're the account administrator of your Azure subscription (e.g. your trial subscription). For more information on Azure role-based access control, see [Azure Role-Based Access Control](../active-directory/role-based-access-control-configure.md).
+您應該會看到 [訂用帳戶管理員] 已經是應用程式的 [擁有者]。如果您是 Azure 訂用帳戶 (如您的試用訂用帳戶) 的帳戶管理員，您就包含在此群組中。如需 Azure 角色型存取控制的詳細資訊，請參閱 [Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md)。
 
-> [AZURE.NOTE] Alert rules is an Azure feature. For more information, see [Receive alert notifications](../azure-portal/insights-receive-alert-notifications.md). 
+> [AZURE.NOTE] 警示規則是一項 Azure 功能。如需詳細資訊，請參閱[接收警示通知](../azure-portal/insights-receive-alert-notifications.md)。
 
-## <a name="next-steps"></a>Next Steps
+## 後續步驟
 
-On your way to configure the alert, you may have noticed a rich set of tools in the **Tools** blade. Here, you can troubleshoot issues, monitor performance, test for vulnerabilities, manage resources, interact with the VM console, and add useful extensions. We invite you to click on each one of these tools to discover the simple yet powerful tools at your finger tips. 
+當您設定警示時，可能已注意到 [工具] 刀鋒視窗中有一組豐富的工具。您可以在此排解疑難問題、監視效能、測試弱點、管理資源、與 VM 主控台互動，以及新增實用的擴充功能。我們邀請您按一下每一個工具，輕鬆探索這些簡單卻功能強大的工具。
 
-Find out how to do more with your deployed app. Here's only a partial list:
+了解如何以您部署的應用程式執行更多作業。以下只是部分清單︰
 
-- [Buy and configure a custom domain name](custom-dns-web-site-buydomains-web-app.md) - Buy an attractive domain for your web app instead of the *.azurewebsites.net domain. Or use a domain that you already have.
-- [Set up staging environments](web-sites-staged-publishing.md) - Deploy your app to a staging URL before putting it into production. Update your live web app with confidence. Set up an elaborate DevOps solution with multiple deployment slots. 
-- [Set up continuous deployment](app-service-continuous-deployment.md) - Integrate app deployment into your source control system. Deploy to Azure with every commit.
-- [Access on-premises resources](web-sites-hybrid-connection-get-started.md) - Access an existing on-premises database or CRM system.
-- [Back up your app](web-sites-backup.md) - Set up back up and restore for your web app. Prepare for unexpected failures and recover from them.
-- [Enable diagnostic logs](web-sites-enable-diagnostic-log.md) - Read the IIS logs from Azure or application traces. Read them in a stream, download them, or port them into [Application Insights](../application-insights/app-insights-overview.md) for turn-key analysis.
-- [Scan your app for vulnerabilities](https://azure.microsoft.com/blog/web-vulnerability-scanning-for-azure-app-service-powered-by-tinfoil-security/) -
-Scan your web app against modern threats using service provided by [Tinfoil Security](https://www.tinfoilsecurity.com/).
-- [Run background jobs](../azure-functions/functions-overview.md) - Run jobs for data processing, reporting, etc.
-- [Learn how App Service works](../app-service/app-service-how-works-readme.md) 
+- [購買並設定自訂網域名稱](custom-dns-web-site-buydomains-web-app.md) - 為您的 Web 應用程式購買引人注意的網域，而非 *.azurewebsites.net 網域。或使用既有網域。
+- [設定預備環境](web-sites-staged-publishing.md) - 先將應用程式部署至預備 URL，再將它放到生產環境。放心地更新執行中的 Web 應用程式。為精心規劃的 DevOps 方案設定多個部署位置。
+- [設定連續部署](app-service-continuous-deployment.md) - 將應用程式部署整合至原始檔控制系統。使用每個認可部署到 Azure。
+- [存取內部部署資源](web-sites-hybrid-connection-get-started.md) - 存取現有的內部部署資料庫或 CRM 系統。
+- [備份您的應用程式](web-sites-backup.md) - 為 Web 應用程式設定備份與還原。為非預期的失敗做好準備，並從中復原。
+- [啟用診斷記錄](web-sites-enable-diagnostic-log.md) - 讀取 Azure 或應用程式追蹤內的 IIS 記錄檔。在串流中讀取記錄檔、下載記錄檔，或將記錄檔移植到 [Application Insights](../application-insights/app-insights-overview.md) 來進行周全分析。
+- [掃描應用程式中的弱點](https://azure.microsoft.com/blog/web-vulnerability-scanning-for-azure-app-service-powered-by-tinfoil-security/) - 使用 [Tinfoil Security](https://www.tinfoilsecurity.com/) 所提供的服務，掃描 Web 應用程式中是否有新型威脅。
+- [執行背景工作](../azure-functions/functions-overview.md) - 執行資料處理、報告等工作。
+- [了解 App Service 的運作方式](../app-service/app-service-how-works-readme.md)
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

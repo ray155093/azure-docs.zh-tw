@@ -1,17 +1,14 @@
-The following table lists quotas and limits specific to Azure Event Hubs. For more information about Event Hubs, see [Event Hubs Pricing](https://azure.microsoft.com/pricing/details/event-hubs/). For information about pricing and other quotas for Service Bus, see the [Service Bus Pricing](https://azure.microsoft.com/pricing/details/service-bus/) overview.
+下表列出 Azure 事件中樞的特定配額與限制。如需事件中樞的詳細資訊，請參閱[事件中樞定價](https://azure.microsoft.com/pricing/details/event-hubs/)。如需有關服務匯流排的價格及其他配額的詳細資訊，請參閱[服務匯流排價格](https://azure.microsoft.com/pricing/details/service-bus/)概觀。
 
-| Limit                                            | Scope       | Type   | Behavior when exceeded                                                                                                 | Value    |
+| 限制 | Scope | 類型 | 超出時的行為 | 值 |
 |--------------------------------------------------|-------------|--------|------------------------------------------------------------------------------------------------------------------------|----------|
-| Number of Event Hubs per namespace               | Namespace   | Static | Subsequent requests for creation of a new namespace will be rejected.                                                  | 10       |
-| Number of partitions per Event Hub               | Entity      | Static |  -                                                                                                                      | 32       |
-| Number of consumer groups per Event Hub          | Entity      | Static |  -                                                                                                                      | 20       |
-| Number of AMQP connections per namespace         | Namespace   | Static | Subsequent requests for additional connections will be rejected and an exception will be received by the calling code. | 5,000    |
-| Maximum event size                               | System-wide | Static |  -                                                                                                                      | 256KB    |
-| Number of non-epoch receivers per consumer group | Entity      | Static |  -                                                                                                                      | 5        |
-| Maximum retention period of event data           | Entity      | Static |  -                                                                                                                      | 1-7 days |
-| Maximum throughput units           | Namespace      | Static | Exceeding the throughput unit limit will cause your data to be throttled and generate a **ServerBusyException**. You can request a larger number of throughput units for a Standard tier by filing a support ticket. Additional throughput units are available in blocks of twenty on a committed purchase basis.                                                                                                                       | 20 |
+| 每個命名空間的事件中樞數目 | 命名空間 | 靜態 | 建立新的命名空間的後續要求將遭到拒絕。 | 10 |
+| 每一個事件中樞的資料分割數目 | 實體 | 靜態 | - | 32 |
+| 每一個事件中樞的取用者群組數目 | 實體 | 靜態 | - | 20 |
+| 每一個命名空間的 AMQP 連線數目 | 命名空間 | 靜態 | 其他連線的後續要求將遭到拒絕，且呼叫程式碼將會收到例外狀況。| 5,000 |
+| 最大事件大小 | 全系統 | 靜態 | - | 256KB |
+| 每一個取用者群組的非 Epoch 接收者數目 | 實體 | 靜態 | - | 5 |
+| 事件資料的最大保留期限 | 實體 | 靜態 | - | 1-7 天 |
+| 最大輸送量單位 | 命名空間 | 靜態 | 超過輸送量單位的限制會導致您的資料受到節流控制，並產生 **ServerBusyException**。您可以篩選支援票證來為標準層要求大量的輸送量單位。更多輸送量單位依承諾購買方式，以 20 個為一組來取得。| 20 |
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0615_2016-->

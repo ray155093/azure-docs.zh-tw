@@ -1,6 +1,6 @@
 <properties
-pageTitle="Add language-specific company branding to your sign-in page in the Azure Active Directory preview | Microsoft Azure"
-description="Learn how to add a language specific company branding pictures and text to an Azure sign-in page"
+pageTitle="在 Azure Active Directory 預覽版中將語言特定公司商標新增到登入頁面 | Microsoft Azure"
+description="了解如何將語言特定公司商標圖片和文字新增到 Azure 登入頁面"
 services="active-directory"
 documentationCenter=""
 authors="curtand"
@@ -16,47 +16,42 @@ ms.topic="article"
 ms.date="09/12/2016"
 ms.author="curtand"/>
 
+# 在 Azure Active Directory 預覽版中將語言特定公司商標新增到登入頁面
 
-# <a name="add-language-specific-company-branding-to-your-sign-in-page-in-the-azure-active-directory-preview"></a>Add language-specific company branding to your sign-in page in the Azure Active Directory preview
+為了避免混淆，許多公司都想對其管理的所有網站和服務套用一致的外觀與風格。Azure Active Directory 是透過讓您利用公司標誌和自訂色彩配置來自訂登入頁面外觀的方式，提供這項功能。[預覽版有何功能？](active-directory-preview-explainer.md) 登入頁面是當您登入 Office 365 或其他使用 Azure AD 作為識別提供者的 Web 型應用程式時，所顯示的頁面。您可以與此頁面互動來輸入您的認證。
 
-To avoid confusion, many companies want to apply a consistent look and feel across all the websites and services they manage. Azure Active Directory preview provides this capability by allowing you to customize the appearance of the sign-in page with your company logo and custom color schemes. [What's in the preview?](active-directory-preview-explainer.md) The sign-in page is the page that appears when you sign in to Office 365 or other web-based applications that are using Azure AD as your identity provider. You interact with this page to enter your credentials.
+## 自訂另一個語言的登入頁面
 
-## <a name="customizing-the-sign-in-page-for-another-language"></a>Customizing the sign-in page for another language
+只有當您已如[將公司商標新增到登入頁面](active-directory-branding-custom-signon-azure-portal.md)所述建立自訂登入頁面時，您才可以將語言特定元素新增到自訂登入頁面。您可以使用一組預設的可自訂元素，為每一目錄設定一個登入頁面。在您已設定一組預設的頁面元素之後，就可以設定不同地區設定的其他版本。您也可以混合使用並符合各種元素。例如，您可以：
 
-You can add language-specific elements to your custom sign-in page only if you have already created a custom sign-in page as described in [Add company branding to your sign-in page](active-directory-branding-custom-signon-azure-portal.md). You can configure one sign-in page per directory with a default set of customizable elements. After you’ve configured the default set of page elements, you can configure more versions for different locales. You can also mix and match various elements. For example, you could:
+- 建立適用於所有文化特性的預設「登入頁面影像」，然後建立英文和法文的特定版本。當您將瀏覽器設定為這兩種語言其中之一時，就會顯示語言特定影像，而針對其他所有語言則會顯示預設圖例。
 
-- Create a default **Sign-in page image** that works for all cultures, then create specific versions for English and French. When you set your browsers to one of these two languages, the language-specific image appears, while the default illustration appears for all other languages.
+- 為您的組織設定不同的標誌 (例如日文或希伯來文版本)。
 
-- Configure different logos for your organization (for example, Japanese or Hebrew versions).
+基於維護和效能考量，建議您不要使用太多語言變化。
 
-We recommend that you keep the number of language variations low, for maintenance and performance reasons.
+**將公司商標新增到您的目錄：**
 
-**To add company branding to your directory:**
+1.  使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com)。
 
-1.  Sign in to the [Azure portal](https://portal.azure.com) with an account that's a global admin for the directory.
+2.  選取 [更多服務]，在文字方塊中輸入「使用者和群組」，然後選取 **Enter**。
 
-2.  Select **More services**, enter **Users and groups** in the text box, and then select **Enter**.
+    ![開啟使用者管理](./media/active-directory-branding-localize-azure-portal/user-management.png)
 
-    ![Opening user management](./media/active-directory-branding-localize-azure-portal/user-management.png)
+3. 在 [使用者和群組] 刀鋒視窗上，選取 [公司商標]。
 
-3. On the **Users and groups** blade, select **Company branding**.
+4. 在 [使用者和群組 - 公司商標] 刀鋒視窗上，選取 [新增語言] 命令。
 
-4. On the **Users and groups - Company branding** blade, select the **Add language** command.
+    ![新增語言特定商標元素](./media/active-directory-branding-localize-azure-portal/add-language.png)
 
-    ![Add language-specific branding elements](./media/active-directory-branding-localize-azure-portal/add-language.png)
+5. 修改您想要自訂的元素。所有元素都是選用的。
 
-5. Modify the elements you want to customize. All elements are optional.
+6. 按一下 [儲存]。
 
-6. Click **Save**.
+您對登入頁面商標所做的任何變更可能最多需要一個小時才會顯示。
 
-It can take up to an hour for any changes you made to the sign-in page branding to appear.
+## 後續步驟
 
-## <a name="next-steps"></a>Next steps
+[將公司商標新增到您的登入頁面](active-directory-branding-custom-signon-azure-portal.md)
 
-[Add company branding to your sign-in page](active-directory-branding-custom-signon-azure-portal.md)
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

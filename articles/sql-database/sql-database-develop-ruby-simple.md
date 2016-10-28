@@ -1,58 +1,53 @@
 <properties
-    pageTitle="Connect to SQL Database by using Ruby | Microsoft Azure"
-    description="Give a Ruby code sample you can run to connect to Azure SQL Database."
-    services="sql-database"
-    documentationCenter=""
-    authors="ajlam"
-    manager="jhubbard"
-    editor=""/>
+	pageTitle="使用 Ruby 連接到 SQL Database | Microsoft Azure"
+	description="提供您可執行以連接到 Azure SQL Database 的 Ruby 程式碼範例。"
+	services="sql-database"
+	documentationCenter=""
+	authors="ajlam"
+	manager="jhubbard"
+	editor=""/>
 
 
 <tags
-    ms.service="sql-database"
-    ms.workload="drivers"
-    ms.tgt_pltfrm="na"
-    ms.devlang="ruby"
-    ms.topic="article"
-    ms.date="10/03/2016"
-    ms.author="andrela"/>
+	ms.service="sql-database"
+	ms.workload="drivers"
+	ms.tgt_pltfrm="na"
+	ms.devlang="ruby"
+	ms.topic="article"
+	ms.date="09/16/2016"
+	ms.author="andrela"/>
 
 
+# 使用 Ruby 連接到 SQL Database 
 
-# <a name="connect-to-sql-database-by-using-ruby"></a>Connect to SQL Database by using Ruby 
+[AZURE.INCLUDE [sql-database-develop-includes-selector-language-platform-depth](../../includes/sql-database-develop-includes-selector-language-platform-depth.md)]
 
-[AZURE.INCLUDE [sql-database-develop-includes-selector-language-platform-depth](../../includes/sql-database-develop-includes-selector-language-platform-depth.md)] 
+本主題說明如何使用 Ruby 來連接及查詢 Azure SQL Database。您可以從 Windows、Ubuntu Linux 或 Mac 平台執行這個範例。
 
-This topic shows how to connect and query an Azure SQL Database using Ruby. You can run this sample from Windows, Ubuntu Linux, or Mac platforms.
+## 步驟 1︰設定開發環境
 
-## <a name="step-1:-configure-development-environment"></a>Step 1: Configure Development Environment
+[使用 TinyTDS Ruby Driver for SQL Server 的必要條件](https://msdn.microsoft.com/library/mt711041.aspx)
 
-[Prerequisites for using the TinyTDS Ruby Driver for SQL Server](https://msdn.microsoft.com/library/mt711041.aspx)
+## 步驟 2：建立 SQL Database
 
-## <a name="step-2:-create-a-sql-database"></a>Step 2: Create a SQL database
+請參閱[快速入門頁面](sql-database-get-started.md)，以了解如何建立範例資料庫。請務必遵循該指南以建立 **AdventureWorks 資料庫範本**。以下所示的範例僅適用於 **AdventureWorks 結構描述**。
 
-See the [getting started page](sql-database-get-started.md) to learn how to create a sample database.  It is important you follow the guide to create an **AdventureWorks database template**. The samples shown below only work with the **AdventureWorks schema**.
-
-## <a name="step-3:-get-connection-details"></a>Step 3: Get Connection Details
+## 步驟 3：取得連接詳細資料
 
 [AZURE.INCLUDE [sql-database-include-connection-string-details-20-portalshots](../../includes/sql-database-include-connection-string-details-20-portalshots.md)]
 
-## <a name="step-4:-run-sample-code"></a>Step 4: Run sample code
+## 步驟 4︰執行範例程式碼
 
-[Proof of Concept connecting to SQL using Ruby](http://msdn.microsoft.com/library/mt715797.aspx)
+[使用 Ruby 連接到 SQL 的概念證明](http://msdn.microsoft.com/library/mt715797.aspx)
 
-## <a name="next-steps"></a>Next Steps
+## 後續步驟
 
-* Review the [SQL Database Development Overview](sql-database-develop-overview.md)
-* More information on the [Microsoft Ruby Driver for SQL Server](https://msdn.microsoft.com/library/mt691981.aspx)
+* 檢閱 [SQL Database 開發概觀](sql-database-develop-overview.md)
+* 更多有關 [Microsoft Ruby Driver for SQL Server](https://msdn.microsoft.com/library/mt691981.aspx) 的資訊
 
-## <a name="additional-resources"></a>Additional resources 
+## 其他資源 
 
-* [Design Patterns for Multi-tenant SaaS Applications with Azure SQL Database](sql-database-design-patterns-multi-tenancy-saas-applications.md)
-* Explore all the [capabilities of SQL Database](https://azure.microsoft.com/services/sql-database/)
+* [多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)
+* 瀏覽所有 [SQL Database 的能力](https://azure.microsoft.com/services/sql-database/)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

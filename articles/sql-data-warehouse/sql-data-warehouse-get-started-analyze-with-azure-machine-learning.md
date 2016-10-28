@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Analyze data with Azure Machine Learning | Microsoft Azure"
-   description="Use Azure Machine Learning to build a predictive machine learning model based on data stored in Azure SQL Data Warehouse."
+   pageTitle="使用 Azure Machine Learning 分析資料 | Microsoft Azure"
+   description="使用 Azure Machine Learning，根據 Azure 資料倉儲中儲存的資料建置預測性機器學習模型。"
    services="sql-data-warehouse"
    documentationCenter="NA"
    authors="kevinvngo"
@@ -16,34 +16,33 @@
    ms.date="09/14/2016"
    ms.author="kevin;barbkess;sonyama"/>
 
-
-# <a name="analyze-data-with-azure-machine-learning"></a>Analyze data with Azure Machine Learning
+# 使用 Azure Machine Learning 分析資料
 
 > [AZURE.SELECTOR]
 - [Power BI](sql-data-warehouse-get-started-visualize-with-power-bi.md)
 - [Azure Machine Learning](sql-data-warehouse-get-started-analyze-with-azure-machine-learning.md)
 - [Visual Studio](sql-data-warehouse-query-visual-studio.md)
-- [sqlcmd](sql-data-warehouse-get-started-connect-sqlcmd.md) 
+- [sqlcmd](sql-data-warehouse-get-started-connect-sqlcmd.md)
 
-This tutorial uses Azure Machine Learning to build a predictive machine learning model based on data stored in Azure SQL Data Warehouse. Specifically, this builds a targeted marketing campaign for Adventure Works, the bike shop, by predicting if a customer is likely to buy a bike or not.
+本教學課程會使用 Azure Machine Learning，根據 Azure 資料倉儲中儲存的資料建置預測性機器學習模型。具體來說，這會為 Adventure Work 建置鎖定目標的行銷活動，預測客戶是否可能購買自行車。
 
 > [AZURE.VIDEO integrating-azure-machine-learning-with-azure-sql-data-warehouse]
 
 
-## <a name="prerequisites"></a>Prerequisites
-To step through this tutorial, you need:
+## 必要條件
+若要逐步執行本教學課程，您需要：
 
-- A SQL Data Warehouse pre-loaded with AdventureWorksDW sample data. To provision this, see [Create a SQL Data Warehouse][] and choose to load the sample data. If you already have a data warehouse but do not have sample data, you can [load sample data manually][].
+- 預先載入 AdventureWorksDW 範例資料的 SQL 資料倉儲。若要進行佈建，請參閱[建立 SQL 資料倉儲][]並選擇載入範例資料。如果您已經有資料倉儲但沒有範例資料，您可以[手動載入範例資料][]。
 
-## <a name="1.-get-data"></a>1. Get data
-The data is in the dbo.vTargetMail view in the AdventureWorksDW database. To read this data:
+## 1\.取得資料
+此資料位於 AdventureWorksDW 資料庫的 dbo.vTargetMail 檢視中。如何讀取此資料：
 
-1. Sign into [Azure Machine Learning studio][] and click on my experiments.
-2. Click **+NEW** and select **Blank Experiment**.
-3. Enter a name for your experiment: Targeted Marketing.
-4. Drag the **Reader** module from the modules pane into the canvas.
-5. Specify the details of your SQL Data Warehouse database in the Properties pane.
-6. Specify the database **query** to read the data of interest.
+1. 登入 [Azure Machine Learning Studio][] 並按一下我的實驗。
+2. 按一下 [+ 新增] 並選取 [空白實驗]。
+3. 輸入您的實驗名稱：目標行銷。
+4. 將 [讀取器] 模組從模組窗格拖曳到畫布上。
+5. 在 [屬性] 窗格中指定 SQL 資料倉儲資料庫的詳細資料。
+6. 指定資料庫**查詢**以利讀取感興趣的資料。
 
 ```sql
 SELECT [CustomerKey]
@@ -65,66 +64,55 @@ SELECT [CustomerKey]
 FROM [dbo].[vTargetMail]
 ```
 
-Run the experiment by clicking **Run** under the experiment canvas.
-![Run the experiment][1]
+按一下實驗畫布下方的 [執行]，以執行實驗。![執行實驗][1]
 
 
-After the experiment finishes running successfully, click the output port at the bottom of the Reader module and select **Visualize** to see the imported data.
-![View imported data][3]
+實驗成功執行完畢之後，按一下讀取器模組底部的輸出連接埠，然後選取 [視覺化] 以查看匯入的資料。![檢視匯入的資料][3]
 
 
-## <a name="2.-clean-the-data"></a>2. Clean the data
-To clean the data, drop some columns that are not relevant for the model. To do this:
+## 2\.清除資料
+若要清除資料，請卸除與模型無關的某些資料行。作法：
 
-1. Drag the **Project Columns** module into the canvas.
-2. Click **Launch column selector** in the Properties pane to specify which columns you wish to drop.
-![Project Columns][4]
+1. 將 [專案資料行] 模組拖曳到畫布上。
+2. 按一下 [屬性] 窗格中的 [啟動資料行選取器] 來指定您想要卸除的資料行。![專案資料行][4]
 
-3. Exclude two columns: CustomerAlternateKey and GeographyKey.
-![Remove unnecessary columns][5]
+3. 排除兩個資料行：CustomerAlternateKey 和 GeographyKey。![移除不必要的資料行][5]
 
 
-## <a name="3.-build-the-model"></a>3. Build the model
-We will split the data 80-20: 80% to train a machine learning model and 20% to test the model. We will make use of the “Two-Class” algorithms for this binary classification problem.
+## 3\.建立模型
+我們將會以 80-20 的比例分割資料：80% 訓練機器學習模型以及 20% 測試模型。我們將使用「二元」演算法處理這個二進位分類問題。
 
-1. Drag the **Split** module into the canvas.
-2. Enter 0.8 for Fraction of rows in the first output dataset in the Properties pane.
-![Split data into training and test set][6]
-3. Drag the **Two-Class Boosted Decision Tree** module into the canvas.
-4. Drag the **Train Model** module into the canvas and specify the inputs. Then, click **Launch column selector** in the Properties pane.
-      - First input: ML algorithm.
-      - Second input: Data to train the algorithm on.
-![Connect the Train Model module][7]
-5. Select the **BikeBuyer** column as the column to predict.
-![Select Column to predict][8]
+1. 將 [分割] 模組拖曳至畫布。
+2. 在 [屬性] 窗格中第一個輸出資料集的 [比例] 資料列輸入 0.8。![將資料分成訓練集和測試集][6]
+3. 將 [二元促進式決策樹] 模組拖曳至畫布。
+4. 將 [培訓模型] 模組拖曳至畫布並指定輸入。然後，按一下 [屬性] 窗格中的 [啟動資料行選取器]。
+      - 第一個輸入：ML 演算法。
+      - 第二個輸入：用來將演算法定型的資料。![連接培訓模型模組][7]
+5. 選取 **BikeBuyer** 資料行做為要預測的資料行。![選取要預測的資料行][8]
 
 
-## <a name="4.-score-the-model"></a>4. Score the model
-Now, we will test how the model performs on test data. We will compare the algorithm of our choice with a different algorithm to see which performs better.
+## 4\.評分模型
+現在，我們將測試模型如何在測試資料上執行。我們將會比較我們選擇的演算法和不同的演算法，以查看何者的執行效果比較好。
 
-1. Drag **Score Model** module into the canvas.
-    First input: Trained model Second input: Test data ![Score the model][9]
-2. Drag the **Two-Class Bayes Point Machine** into the experiment canvas. We will compare how this algorithm performs in comparison to the Two-Class Boosted Decision Tree.
-3. Copy and Paste the modules Train Model and Score Model in the canvas.
-4. Drag the **Evaluate Model** module into the canvas to compare the two algorithms.
-5. **Run** the experiment.
-![Run the experiment][10]
-6. Click the output port at the bottom of the Evaluate Model module and click Visualize.
-![Visualize evaluation results][11]
+1. 將 [分數模型] 拖曳至畫布。第一個輸入：定型模型，第二個輸入：測試資料 ![評分模型][9]
+2. 將 [二元貝氏點機器] 拖曳至實驗畫布。我們將會比較這個演算法和二元促進式決策樹的執行效果。
+3. 複製定型模型和分數模型等模組並貼在畫布上。
+4. 將 [評估模型] 模組拖曳至畫布以比較兩個演算法。
+5. **執行**實驗。![執行實驗][10]
+6. 按一下 [評估模型] 模組底部的輸出連接埠，然後按一下 [視覺化]。![將評估結果視覺化][11]
 
-The metrics provided are the ROC curve, precision-recall diagram and lift curve. Looking at these metrics, we can see that the first model performed better than the second one. To look at the what the first model predicted, click on output port of the Score Model and click Visualize.
-![Visualize score results][12]
+提供的度量資訊包括 ROC 曲線、正確性-召回圖表和升力曲線。查看這些度量，我們可以看到第一個模型的執行效果優於第二個。若要查看第一個模型的預測內容，請按一下 [分數模型] 的輸出連接埠，再按一下 [視覺化]。![將評分結果視覺化][12]
 
-You will see two more columns added to your test dataset.
+您會看到另外兩個資料行加入至您的測試資料集。
 
-- Scored Probabilities: the likelihood that a customer is a bike buyer.
-- Scored Labels: the classification done by the model – bike buyer (1) or not (0). This probability threshold for labeling is set to 50% and can be adjusted.
+- 評分機率：客戶成為自行車購買者的可能性。
+- 評分標籤：由模型完成的分類 – 是自行車購買者 (1) 或不是 (0)。標籤的機率臨界值設定為 50%，而且可以調整。
 
-Comparing the column BikeBuyer (actual) with the Scored Labels (prediction), you can see how well the model has performed. As next steps, you can use this model to make predictions for new customers and publish this model as a web service or write results back to SQL Data Warehouse.
+比較 BikeBuyer (實際) 資料行和評分標籤 (預測)，您可以看到模型的執行效果。在接下來的步驟中，您可以使用此模型預測新的客戶，並將其發佈為 web 服務，或將結果寫回 SQL 資料倉儲。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-To learn more about building predictive machine learning models, refer to [Introduction to Machine Learning on Azure][].
+若要深入了解如何建置預測性機器學習模型，請參閱 [Azure 上的機器學習服務簡介][]。
 
 <!--Image references-->
 [1]: media/sql-data-warehouse-get-started-analyze-with-azure-machine-learning/img1_reader.png
@@ -142,13 +130,9 @@ To learn more about building predictive machine learning models, refer to [Intro
 
 
 <!--Article references-->
-[Azure Machine Learning studio]:https://studio.azureml.net/
-[Introduction to Machine Learning on Azure]:https://azure.microsoft.com/documentation/articles/machine-learning-what-is-machine-learning/
-[load sample data manually]: sql-data-warehouse-load-sample-databases.md
-[Create a SQL Data Warehouse]: sql-data-warehouse-get-started-provision.md
+[Azure Machine Learning studio]: https://studio.azureml.net/
+[Azure 上的機器學習服務簡介]: https://azure.microsoft.com/documentation/articles/machine-learning-what-is-machine-learning/
+[手動載入範例資料]: sql-data-warehouse-load-sample-databases.md
+[建立 SQL 資料倉儲]: sql-data-warehouse-get-started-provision.md
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

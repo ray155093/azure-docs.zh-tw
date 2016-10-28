@@ -1,226 +1,221 @@
 <properties
-    pageTitle="HBase tutorial: Get started with HBase in Hadoop | Microsoft Azure"
-    description="Follow this HBase tutorial to get started using Apache HBase with Hadoop in HDInsight. Create tables from the HBase shell and query them using Hive."
-    keywords="apache hbase,hbase,hbase shell,hbase tutorial"
-    services="hdinsight"
-    documentationCenter=""
-    authors="mumian"
-    manager="jhubbard"
-    editor="cgronlun"/>
+	pageTitle="HBase 教學課程：開始在 Hadoop 中使用 HBase |Microsoft Azure"
+	description="遵循本 HBase 教學課程，開始在 HDInsight 中搭配 Hadoop 使用 Apache HBase。使用 Hive 從 HBase Shell 建立資料表並加以查詢。"
+	keywords="apache hbase,hbase,hbase shell,hbase 教學課程"
+	services="hdinsight"
+	documentationCenter=""
+	authors="mumian"
+	manager="jhubbard"
+	editor="cgronlun"/>
 
 <tags
-    ms.service="hdinsight"
-    ms.workload="big-data"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="07/25/2016"
-    ms.author="jgao"/>
+	ms.service="hdinsight"
+	ms.workload="big-data"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/25/2016"
+	ms.author="jgao"/>
 
 
 
+# HBase 教學課程：開始在 HDInsight 中搭配以 Windows 為基礎的 Hadoop 使用 Apache HBase
 
-# <a name="hbase-tutorial:-get-started-using-apache-hbase-with-windows-based-hadoop-in-hdinsight"></a>HBase tutorial: Get started using Apache HBase with Windows-based Hadoop in HDInsight
+[AZURE.INCLUDE [HBase 選取器](../../includes/hdinsight-hbase-selector.md)]
 
-[AZURE.INCLUDE [hbase-selector](../../includes/hdinsight-hbase-selector.md)]
+了解如何使用 Apache Hive 在 HDInsight 中建立 HBase 叢集、建立 HBase 資料表，以及查詢資料表。如需一般 HBase 資訊，請參閱 [HDInsight HBase 概觀][hdinsight-hbase-overview]。
 
-Learn how to create HBase clusters in HDInsight, create HBase tables, and query the tables by using Apache Hive. For general HBase information, see [HDInsight HBase overview][hdinsight-hbase-overview].
+本文件的資訊是 以 Windows 為基礎之 HDInsight 叢集的特定資訊。如需 windows 叢集相關資訊，請使用頁面頂端的索引標籤選取器進行切換。
 
-The information in this document is specific to Windows-based HDInsight clusters. For information on Windows-based clusters, use the tab selector on the top of the page to switch.
+> [AZURE.NOTE] 以 Windows 為基礎的 HDInsight 上的 HBase (0.98.0 版) 只能與 HDInsight 3.1 叢集一起使用 (以 Apache Hadoop 和 YARN 2.4.0 為基礎)。如需版本資訊，請參閱 [HDInsight 在 Hadoop 叢集版本中提供的新功能？][hdinsight-versions]
 
-> [AZURE.NOTE] HBase (version 0.98.0) on Windows-based HDInsight is only available for use with HDInsight 3.1 clusters (based on Apache Hadoop and YARN 2.4.0). For version information, see [What's new in the Hadoop cluster versions provided by HDInsight?][hdinsight-versions]
-
-## <a name="before-you-begin"></a>Before you begin
+###開始之前
 
 [AZURE.INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
-Before you begin this HBase tutorial, you must have the following:
+開始進行本 HBase 教學課程之前，您必須具備下列條件：
 
-- **A Microsoft Azure subscription**. See [Get Azure free trial](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).
-- **A workstation** with Visual Studio 2013 or greater: For instructions, see [Install Visual Studio](http://msdn.microsoft.com/library/e2h7fzkw.aspx).
+- **Microsoft Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
+- 擁有 Visual Studio 2013 或更新版本的**工作站**：如需相關指示，請參閱[安裝 Visual Studio](http://msdn.microsoft.com/library/e2h7fzkw.aspx)。
 
-### <a name="access-control-requirements"></a>Access control requirements
-
-[AZURE.INCLUDE [access-control](../../includes/hdinsight-access-control-requirements.md)]
-
-## <a name="create-hbase-cluster"></a>Create HBase cluster
+## 建立 HBase 叢集
 
 [AZURE.INCLUDE [provisioningnote](../../includes/hdinsight-provisioning.md)]
 
-**To create an HBase cluster by using the Azure portal**
+**使用 Azure 入口網站建立 HBase 叢集**
 
-1. Sign in to the [Azure portal][azure-management-portal].
-2. Click **New** or **+** in the upper left corner, and then click **Data + Analytics**, **HDInsight**.
-3. Enter the following values:
+1. 登入 [Azure 入口網站][azure-management-portal]。
+2. 按一下左上角的 [新增] 或 [+]，再依序按一下 [資料 + 分析]、[HDInsight]。
+3. 輸入下列值：
 
-    - **Cluster Name** - Enter a name to identify this cluster.
-    - **Cluster Type** - Select **HBase**.
-    - **Cluster Operating System** - Select **Windows**.  For creating Linux-based HBase cluster, see  [HBase tutorial: Get started using Apache HBase with Hadoop in HDInsight (Linux)](hdinsight-hbase-tutorial-get-started-linux.md).
-    - **Version** - Select an HBase version.
-    - **Subscription** - Select your Azure subscription used for creating this cluster.
-    - **Resource Group** -  Create a new Azure resource group or select an existing one. For more information, see [Azure Resource Manager Overview](resource-group-overview.md)
-    - **Credentials** - For Windows based cluster, you can create a cluster user (a.k.a HTTP user, HTTP web service user) and a Remote Desktop user. Click **Enable Remote Desktop** to add the remote desktop user credentials. The next section requires RDP.
-    - **Data Source** - create a new Azure storage account or select an existing Azure storage account to be used as the default file system for the cluster. The default storage account location determines the location of the cluster location. The default storage account and the cluster must co-locate in the same data center.
-    - **Node Pricing Tiers** - Select the number of region servers for the HBase cluster
+	- **叢集名稱**：請輸入可識別此叢集的名稱。
+	- **叢集類型**：請選取 [HBase]。
+	- **叢集作業系統**：請選取 [Windows]。如需建立以 Linux 為基礎的叢集，請參閱 [HBase 教學課程：開始在 HDInsight (Linux) 中搭配 Hadoop 使用 Apache HBase](hdinsight-hbase-tutorial-get-started-linux.md)。
+	- **版本**：請選取 HBase 的版本。
+	- **訂用帳戶**：選取用來建立此叢集的 Azure 訂用帳戶。
+	- **資源群組**：請建立新的 Azure 資源群組，或選取現有的資源群組。如需詳細資訊，請參閱 [Azure 資源管理員概觀](resource-group-overview.md)。
+	- **認證**：對於以 Windows 為基礎的叢集，您可以建立叢集使用者 (也就是 HTTP 使用者、HTTP Web 服務使用者) 和遠端桌面使用者。請按一下 [啟用遠端桌面] 來新增遠端桌面使用者認證。我們在下一節將需要使用 RDP。
+	- **資料來源**：請建立新的 Azure 儲存體帳戶，或選取現有的 Azure 儲存體帳戶，來做為叢集的預設檔案系統。預設儲存體帳戶的位置，會決定叢集的位置。預設儲存體帳戶和叢集必須位於同一個資料中心。
+	- **節點定價層** - 選取 HBase 叢集的區域伺服器數目
 
-        > [AZURE.WARNING] For high availability of HBase services, you must create a cluster that contains at least **three** nodes. This ensures that, if one node goes down, the HBase data regions are available on other nodes.
+		> [AZURE.WARNING] 若要讓 HBase 服務擁有高可用性，您必須建立包含至少**三個**節點的叢集。這可確保如果一個節點故障，仍可在其他節點上使用 HBase 資料區域。
 
-        > If you are learning HBase, always choose 1 for the cluster size, and delete the cluster after each use to reduce the cost.
+		> 若仍處於 HBase 的學習階段，請務必選擇 1 做為叢集大小，並在每次使用叢集後予以刪除，以降低成本。
 
-    - **Optional Configuration** - Configure Azure virtual network, configure Script actions, and add additional storage accounts.
+	- **選用組態**：請設定 Azure 虛擬網路、設定指令碼動作，以及新增其他的儲存體帳戶。
 
-4. Click **Create**.
+4. 按一下 [建立]。
 
->[AZURE.NOTE] After an HBase cluster is deleted, you can create another HBase cluster by using the same default storage account and the default blob container. The new cluster will pick up the HBase tables you created in the original cluster. To avoid inconsistencies, we recommend that you disable the HBase tables before you delete the cluster.
+>[AZURE.NOTE] 刪除 HBase 叢集之後，您可以使用相同的預設儲存體帳戶和預設 Blob 容器來建立另一個 HBase 叢集。這個新叢集將選取您在原始叢集中建立的 HBase 資料表。為了避免不一致，建議您在刪除叢集之前，先停用 HBase 資料表。
 
-## <a name="create-tables-and-insert-data"></a>Create tables and insert data
+## 建立資料表和插入資料
 
-Currently, there are two way to access HBase. This section covers using the HBase shell. The next section covers using the .NET SDK.
+目前，存取 HBase 有兩種方式。本節將說明如何使用 HBase Shell。下一節將說明如何使用 .NET SDK。
 
-For most people, data appears in the tabular format:
+對大多數人而言，資料會以表格形式出現：
 
-![hdinsight hbase tabular data][img-hbase-sample-data-tabular]
+![hdinsight hbase 表格式資料][img-hbase-sample-data-tabular]
 
-In HBase which is an implementation of BigTable, the same data looks like:
+在實作 BigTable 的 HBase 中，相同的資料看起來像：
 
-![hdinsight hbase bigtable data][img-hbase-sample-data-bigtable]
+![hdinsight hbase bigtable 資料][img-hbase-sample-data-bigtable]
 
-It'll make more sense after you finish the next procedure.  
+在您完成下一個程序後，就會更有意義。
 
-**To use the HBase shell**
+**使用 HBase Shell**
 
-1. Use RDP to connect to your HBase cluster in HDInsight. For the RDP instructions, see [Manage Hadoop clusters in HDInsight using the Azure Portal][hdinsight-manage-portal].
-2. Within your RDP session, click the **Hadoop Command Line** shortcut located on the desktop.
-3. Open the HBase shell:
+1. 使用 RDP 連接至 HDInsight 中的 HBase 叢集。如需 RDP 指示，請參閱[使用 Azure 入口網站管理 HDInsight 上的 Hadoop 叢集][hdinsight-manage-portal]。
+2. 在您的 RDP 工作階段內，按一下位於桌面上的 [Hadoop 命令列] 捷徑。
+3. 開啟 HBase Shell：
 
-        cd %HBASE_HOME%\bin
-        hbase shell
+		cd %HBASE_HOME%\bin
+		hbase shell
 
-4. Create an HBase with two column families:
+4. 使用兩個資料行系列建立 HBase：
 
-        create 'Contacts', 'Personal', 'Office'
-        list
-5. Insert some data:
+		create 'Contacts', 'Personal', 'Office'
+		list
+5. 插入一些資料：
 
-        put 'Contacts', '1000', 'Personal:Name', 'John Dole'
-        put 'Contacts', '1000', 'Personal:Phone', '1-425-000-0001'
-        put 'Contacts', '1000', 'Office:Phone', '1-425-000-0002'
-        put 'Contacts', '1000', 'Office:Address', '1111 San Gabriel Dr.'
-        scan 'Contacts'
+		put 'Contacts', '1000', 'Personal:Name', 'John Dole'
+		put 'Contacts', '1000', 'Personal:Phone', '1-425-000-0001'
+		put 'Contacts', '1000', 'Office:Phone', '1-425-000-0002'
+		put 'Contacts', '1000', 'Office:Address', '1111 San Gabriel Dr.'
+		scan 'Contacts'
 
-    ![hdinsight hadoop hbase shell][img-hbase-shell]
+	![hdinsight hadoop hbase shell][img-hbase-shell]
 
-6. Get a single row
+6. 取得單一資料列
 
-        get 'Contacts', '1000'
+		get 'Contacts', '1000'
 
-    You'll see the same results as using the scan command because there is only one row.
+	您會看到與使用掃描命令相同的結果，因為只有一個資料列。
 
-    For more information about the Hbase table schema, see [Introduction to HBase Schema Design][hbase-schema]. For more HBase commands, see [Apache HBase reference guide][hbase-quick-start].
+	如需 Hbase 資料表結構描述的詳細資訊，請參閱 [HBase 結構描述設計簡介][hbase-schema]。如需其他 HBase 命令，請參閱 [Apache HBase 參考指南][hbase-quick-start]。
 
 
-6. Exit the shell
+6. 結束 Shell
 
-        exit
+		exit
 
-**To bulk load data into the contacts HBase table**
+**將資料大量載入連絡人 HBase 資料表中**
 
-HBase includes several methods of loading data into tables. For more information, see [Bulk loading](http://hbase.apache.org/book.html#arch.bulk.load).
+HBase 包含數個將資料載入資料表的方法。如需詳細資訊，請參閱[大量載入](http://hbase.apache.org/book.html#arch.bulk.load)。
 
 
-A sample data file has been uploaded to a public blob container, wasbs://hbasecontacts@hditutorialdata.blob.core.windows.net/contacts.txt. The content of the data file is:
+範例資料檔案已上傳到公用 Blob 容器：wasbs://hbasecontacts@hditutorialdata.blob.core.windows.net/contacts.txt。資料檔案的內容：
 
-    8396    Calvin Raji     230-555-0191    230-555-0191    5415 San Gabriel Dr.
-    16600   Karen Wu        646-555-0113    230-555-0192    9265 La Paz
-    4324    Karl Xie        508-555-0163    230-555-0193    4912 La Vuelta
-    16891   Jonn Jackson    674-555-0110    230-555-0194    40 Ellis St.
-    3273    Miguel Miller   397-555-0155    230-555-0195    6696 Anchor Drive
-    3588    Osa Agbonile    592-555-0152    230-555-0196    1873 Lion Circle
-    10272   Julia Lee       870-555-0110    230-555-0197    3148 Rose Street
-    4868    Jose Hayes      599-555-0171    230-555-0198    793 Crawford Street
-    4761    Caleb Alexander 670-555-0141    230-555-0199    4775 Kentucky Dr.
-    16443   Terry Chander   998-555-0171    230-555-0200    771 Northridge Drive
+	8396	Calvin Raji		230-555-0191	230-555-0191	5415 San Gabriel Dr.
+	16600	Karen Wu		646-555-0113	230-555-0192	9265 La Paz
+	4324	Karl Xie		508-555-0163	230-555-0193	4912 La Vuelta
+	16891	Jonn Jackson	674-555-0110	230-555-0194	40 Ellis St.
+	3273	Miguel Miller	397-555-0155	230-555-0195	6696 Anchor Drive
+	3588	Osa Agbonile	592-555-0152	230-555-0196	1873 Lion Circle
+	10272	Julia Lee		870-555-0110	230-555-0197	3148 Rose Street
+	4868	Jose Hayes		599-555-0171	230-555-0198	793 Crawford Street
+	4761	Caleb Alexander	670-555-0141	230-555-0199	4775 Kentucky Dr.
+	16443	Terry Chander	998-555-0171	230-555-0200	771 Northridge Drive
 
-You can create a text file and upload the file to your own storage account if you want. For the instructions, see [Upload data for Hadoop jobs in HDInsight][hdinsight-upload-data].
+您可以建立文字檔，並將檔案上載至自己的儲存體帳戶 (如果您要的話)。如需指示，請參閱[在 HDInsight 中將 Hadoop 工作的資料上傳][hdinsight-upload-data]。
 
-> [AZURE.NOTE] This procedure uses the Contacts HBase table you created in the last procedure.
+> [AZURE.NOTE] 此程序會使用您在上一個程序中建立的連絡人 HBase 資料表。
 
-1. Within your RDP session, click the **Hadoop Command Line** shortcut located on the desktop.
-2. Change directory:
+1. 在您的 RDP 工作階段內，按一下位於桌面上的 [Hadoop 命令列] 捷徑。
+2. 變更目錄：
 
-        cd %HBASE_HOME%\bin
+		cd %HBASE_HOME%\bin
 
-3. Run the following command to transform the data file to StoreFiles and store at a relative path specified by Dimporttsv.bulk.output:
+3. 執行下列命令，將資料檔案轉換成 StoreFiles 並存放在 Dimporttsv.bulk.output 所指定的相對路徑：
 
-        hbase org.apache.hadoop.hbase.mapreduce.ImportTsv -Dimporttsv.columns="HBASE_ROW_KEY,Personal:Name, Personal:Phone, Office:Phone, Office:Address" -Dimporttsv.bulk.output="/example/data/storeDataFileOutput" Contacts wasbs://hbasecontacts@hditutorialdata.blob.core.windows.net/contacts.txt
+		hbase org.apache.hadoop.hbase.mapreduce.ImportTsv -Dimporttsv.columns="HBASE_ROW_KEY,Personal:Name, Personal:Phone, Office:Phone, Office:Address" -Dimporttsv.bulk.output="/example/data/storeDataFileOutput" Contacts wasbs://hbasecontacts@hditutorialdata.blob.core.windows.net/contacts.txt
 
-4. Run the following command to upload the data from /example/data/storeDataFileOutput to the HBase table:
+4. 執行下列命令，將資料從 /example/data/storeDataFileOutput 上傳至 HBase 資料表：
 
-        hbase org.apache.hadoop.hbase.mapreduce.LoadIncrementalHFiles /example/data/storeDataFileOutput Contacts
+		hbase org.apache.hadoop.hbase.mapreduce.LoadIncrementalHFiles /example/data/storeDataFileOutput Contacts
 
-5. You can open the HBase shell, and use the scan command to list the table content.
+5. 您可以開啟 HBase Shell，並使用掃描命令來列出資料表內容。
 
 
 
-## <a name="use-hive-to-query-hbase-tables"></a>Use Hive to query HBase tables
+## 使用 Hive 查詢 HBase 資料表
 
-You can query data stored in HBase by using Hive. This section creates a Hive table that maps to the HBase table and uses it to query the data in your HBase table.
+您可以使用 Hive 來查詢儲存在 HBase 中的資料。本節將建立對應至 HBase 資料表的 Hive 資料表，並用以查詢您 HBase 資料表中的資料。
 
-**To open the cluster dashboard**
+**開啟叢集儀表板**
 
-1. Browse to **https://<HDInsight Cluster Name>.azurehdinsight.net/**.
-5. Enter the Hadoop user account user name and password. The default user name is **admin** and the password is what you entered during the creation process. A new browser tab opens.
-6. Click **Hive Editor** at the top of the page. The Hive Editor looks like this:
+1. 瀏覽至 **https://<HDInsight 叢集名稱>.azurehdinsight.net/**。
+5. 輸入 Hadoop 使用者帳戶的使用者名稱和密碼。預設使用者名稱為 **admin**，密碼則是您在建立程序中輸入的密碼。隨即開啟新的瀏覽器索引標籤。
+6. 按一下頁面頂端的 [Hive 編輯器]。Hive 編輯器外觀如下：
 
-    ![HDInsight cluster dashboard.][img-hdinsight-hbase-hive-editor]
+	![HDInsight 叢集儀表板。][img-hdinsight-hbase-hive-editor]
 
-**To run Hive queries**
+**執行 Hive 查詢**
 
-1. Enter the following HiveQL script into Hive Editor and click **Submit** to create a Hive Table that maps to the HBase table. Make sure that you created the sample table referenced earlier in this tutorial by using the HBase shell before you run this statement.
+1. 將下列 HiveQL 指令碼輸入 Hive 編輯器，然後按一下 [提交]，以建立對應到 HBase 資料表的 Hive 資料表。在執行此陳述式前，請確定您已使用 HBase Shell 建立參考先前本教學課程的範例資料表。
 
-        CREATE EXTERNAL TABLE hbasecontacts(rowkey STRING, name STRING, homephone STRING, officephone STRING, officeaddress STRING)
-        STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
-        WITH SERDEPROPERTIES ('hbase.columns.mapping' = ':key,Personal:Name,Personal:Phone,Office:Phone,Office:Address')
-        TBLPROPERTIES ('hbase.table.name' = 'Contacts');
+		CREATE EXTERNAL TABLE hbasecontacts(rowkey STRING, name STRING, homephone STRING, officephone STRING, officeaddress STRING)
+		STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
+		WITH SERDEPROPERTIES ('hbase.columns.mapping' = ':key,Personal:Name,Personal:Phone,Office:Phone,Office:Address')
+		TBLPROPERTIES ('hbase.table.name' = 'Contacts');
 
-    Wait until the **Status** updates to **Completed**.
+	請等到 [狀態] 更新為 [已完成]。
 
-2. Enter the following HiveQL script into Hive Editor, and then click **Submit**. The Hive query queries the data in the HBase table:
+2. 將下列 HiveQL 指令碼輸入 Hive 編輯器，然後按一下 [提交]。Hive 查詢會查詢 HBase 資料表中的資料：
 
-        SELECT count(*) FROM hbasecontacts;
+     	SELECT count(*) FROM hbasecontacts;
 
-4. To retrieve the results of the Hive query, click the **View Details** link in the **Job Session** window when the job finishes running. There will be only one job output file because you put one record into the HBase table.
+4. 若要擷取 Hive 查詢的結果，請在工作執行完成時，按一下 [工作階段] 視窗中的 [檢視詳細資料] 連結。只會有一個工作輸出檔案，因為您將一個記錄放置到 HBase 資料表。
 
 
 
 
-**To browse the output file**
+**瀏覽輸出檔案**
 
-1. In the Query Console, click **File Browser**.
-2. Click the Azure storage account that is used as the default file system for the HBase cluster.
-3. Click the HBase cluster name. The default Azure storage account container uses the cluster name.
-4. Click **User**, and then click **Admin**. (This is the Hadoop user name.)
-6. Click the job name with the **Last Modified** time that matches the time when the SELECT Hive query ran.
-4. Click **stdout**. Save the file and open the file with Notepad. There will be one output file.
+1. 在查詢主控台中，按一下 [檔案瀏覽器]。
+2. 按一下做為 HBase 叢集之預設檔案系統的 Azure 儲存體帳戶。
+3. 按一下 HBase 叢集名稱。預設 Azure 儲存體帳戶容器會使用叢集名稱。
+4. 按一下 [使用者]，然後按一下 [Admin]。(此為 Hadoop 使用者名稱。)
+6. 按一下工作名稱為符合 SELECT Hive 查詢執行時間的 [上次修改] 時間。
+4. 按一下 [stdout]。儲存檔案並以記事本開啟檔案。將會有一個輸出檔案。
 
-    ![HDInsight HBase Hive Editor File Browser][img-hdinsight-hbase-file-browser]
+	![HDInsight HBase Hive 編輯器檔案瀏覽器][img-hdinsight-hbase-file-browser]
 
-## <a name="use-the-.net-hbase-rest-api-client-library"></a>Use the .NET HBase REST API client library
+## 使用 .NET HBase REST API 用戶端程式庫
 
-You must download the HBase REST API client library for .NET from GitHub and build the project so that you can use the HBase .NET SDK. The following procedure includes the instructions for this task.
+您必須從 GitHub 下載適用於 .NET 的 HBase REST API 用戶端程式庫並建置專案，才能使用 HBase .NET SDK。下列程序包括此工作的指示。
 
-1. Create a new C# Visual Studio Windows Desktop Console application.
-2. Open the NuGet Package Manager Console by clicking **Tools** > **NuGet Package Manager** > **Package Manager Console**.
-3. Run the following NuGet command in the console:
+1. 建立新的 C# Visual Studio Windows 桌面主控台應用程式。
+2. 按一下 [工具] > [NuGet 封裝管理員] > [封裝管理員主控台]，以開啟 NuGet 封裝管理員主控台。
+3. 在主控台中，執行下列 NuGet 命令：
 
-        Install-Package Microsoft.HBase.Client
+		Install-Package Microsoft.HBase.Client
 
-5. Add the following **using** statements at the top of the file:
+5. 在檔案頂端加入下列 **using** 陳述式：
 
-        using Microsoft.HBase.Client;
-        using org.apache.hadoop.hbase.rest.protobuf.generated;
+		using Microsoft.HBase.Client;
+		using org.apache.hadoop.hbase.rest.protobuf.generated;
 
-6. Replace the **Main** function with the following:
+6. 使用下列程式碼來取代 **Main** 函數：
 
         static void Main(string[] args)
         {
@@ -261,60 +256,56 @@ You must download the HBase REST API client library for .NET from GitHub and bui
             Console.WriteLine("The data with the key '" + testKey + "' is: " + Encoding.UTF8.GetString(cellSet.rows[0].values[0].data));
             // with the previous insert, it should yield: "the force is strong in this column"
 
-            //Scan over rows in a table. Assume the table has integer keys and you want data between keys 25 and 35.
-            Scanner scanSettings = new Scanner()
-            {
-                batch = 10,
-                startRow = BitConverter.GetBytes(25),
-                endRow = BitConverter.GetBytes(35)
-            };
+		    //Scan over rows in a table. Assume the table has integer keys and you want data between keys 25 and 35.
+		    Scanner scanSettings = new Scanner()
+		    {
+    		    batch = 10,
+    		    startRow = BitConverter.GetBytes(25),
+    		    endRow = BitConverter.GetBytes(35)
+		    };
 
-            ScannerInformation scannerInfo = hbaseClient.CreateScanner(hbaseTableName, scanSettings);
-            CellSet next = null;
+		    ScannerInformation scannerInfo = hbaseClient.CreateScanner(hbaseTableName, scanSettings);
+		    CellSet next = null;
             Console.WriteLine("Scan results");
 
             while ((next = hbaseClient.ScannerGetNext(scannerInfo)) != null)
-            {
-                foreach (CellSet.Row row in next.rows)
-                {
+		    {
+    		    foreach (CellSet.Row row in next.rows)
+    		    {
                     Console.WriteLine(row.key + " : " + Encoding.UTF8.GetString(row.values[0].data));
-                }
-            }
+    		    }
+		    }
 
             Console.WriteLine("Press ENTER to continue ...");
             Console.ReadLine();
         }
 
-7. Set the first three variables in the **Main** function.
-8. Press **F5** to run the application.
+7. 設定 **Main** 函數中的前三個變數。
+8. 按 **F5** 鍵執行應用程式。
 
-## <a name="check-cluster-status"></a>Check cluster status
+## 檢查叢集狀態
 
-HBase in HDInsight ships with a Web UI for monitoring clusters. Using the Web UI, you can request statistics or information about regions.
+HDInsight 中的 HBase 隨附於 Web UI，以供監視叢集。使用 Web UI，您可要求關於區域的統計資料或資訊。
 
-To open the Web UI, you must RDP into the cluster, and then click the HMaster Info Web UI shortcut on your desktop, or use the following URL in a web browser:
+若要開啟 Web UI，您必須 RDP 到叢集中，然後按一下桌面上的 HMaster 資訊 Web UI 捷徑，或在網頁瀏覽器中使用下列 URL：
 
-    http://zookeeper[0-2]:60010/master-status
+	http://zookeeper[0-2]:60010/master-status
 
-In a high availability cluster, you'll find a link to the current active HBase master node that is hosting the Web UI.
+在高可用性叢集中，您會找到目前使用中之 HBase 主要節點 (其正在主控 WebUI) 的連結。
 
-##<a name="delete-the-cluster"></a>Delete the cluster
-To avoid inconsistencies, we recommend that you disable the HBase tables before you delete the cluster.
-[AZURE.INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
+##刪除叢集
+為了避免不一致，建議您在刪除叢集之前，先停用 HBase 資料表。[AZURE.INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
 
-## <a name="what's-next?"></a>What's next?
-In this HBase tutorial for HDInsight, you learned how to create an HBase cluster and how to create tables and view the data in those tables from the HBase shell. You also learned how use a Hive query on data in HBase tables and how to use the HBase C# REST APIs to create an HBase table and retrieve data from the table.
+## 後續步驟
+在 HDInsight 的本 HBase 教學課程中，您已了解如何建立 HBase 叢集，以及如何建立資料表，並從 HBase Shell 檢視這些資料表中的資料。您同時也了解到如何使用 Hive 查詢 HBase 資料表中的資料，以及如何使用 HBase C# REST API 建立 HBase 資料表，並擷取其資料表中的資料。
 
-For more information, see:
+如需詳細資訊，請參閱：
 
-- [HDInsight HBase overview][hdinsight-hbase-overview].
-HBase is an Apache, open-source, NoSQL database built on Hadoop that provides random access and strong consistency for large amounts of unstructured and semistructured data.
-- [Create HBase clusters on Azure Virtual Network][hdinsight-hbase-provision-vnet].
-With virtual network integration, HBase clusters can be deployed to the same virtual network as your applications so that applications can communicate with HBase directly.
-- [Configure HBase replication in HDInsight](hdinsight-hbase-geo-replication.md). Learn how to configure HBase replication across two Azure datacenters.
-- [Analyze Twitter sentiment with HBase in HDInsight][hbase-twitter-sentiment].
-Learn how to do real-time [sentiment analysis](http://en.wikipedia.org/wiki/Sentiment_analysis) of big data by using HBase in a Hadoop cluster in HDInsight.
+- [HDInsight HBase 概觀][hdinsight-hbase-overview]HBase 是建置於 Hadoop 上的 Apache 開放原始碼 NoSQL 資料庫，可針對大量非結構化及半結構化資料，提供隨機存取功能和強大一致性。
+- [在 Azure 虛擬網路上建立 HBase 叢集][hdinsight-hbase-provision-vnet]。由於 HBase 叢集已與虛擬網路整合，因此能夠部署到與您應用程式相同的虛擬網路，讓應用程式得以和 HBase 直接通訊。
+- [在 HDInsight 中設定 HBase 複寫](hdinsight-hbase-geo-replication.md)了解如何跨兩個 Azure 資料中心設定 HBase 複寫。
+- [使用 HDInsight 中的 HBase 分析 Twitter 情緒][hbase-twitter-sentiment]了解如何在 HDInsight 中使用 Hadoop 叢集中的 HBase 針對巨量資料進行即時[情緒分析](http://en.wikipedia.org/wiki/Sentiment_analysis)。
 
 [hdinsight-manage-portal]: hdinsight-administer-use-management-portal.md
 [hdinsight-upload-data]: hdinsight-upload-data.md
@@ -343,8 +334,4 @@ Learn how to do real-time [sentiment analysis](http://en.wikipedia.org/wiki/Sent
 [img-hbase-sample-data-tabular]: ./media/hdinsight-hbase-tutorial-get-started/hdinsight-hbase-contacts-tabular.png
 [img-hbase-sample-data-bigtable]: ./media/hdinsight-hbase-tutorial-get-started/hdinsight-hbase-contacts-bigtable.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

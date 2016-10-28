@@ -1,6 +1,6 @@
 <properties
-pageTitle="Customize your sign-in page in the Azure Active Directory preview | Microsoft Azure"
-description="Learn how to add a company branding to the Azure sign-in page"
+pageTitle="在 Azure Active Directory 預覽版中自訂登入頁面 | Microsoft Azure"
+description="了解如何將公司商標新增到 Azure 登入頁面"
 services="active-directory"
 documentationCenter=""
 authors="curtand"
@@ -13,83 +13,61 @@ ms.workload="identity"
 ms.tgt_pltfrm="na"
 ms.devlang="na"
 ms.topic="article"
-ms.date="09/30/2016"
+ms.date="09/12/2016"
 ms.author="curtand"/>
 
+# 在 Azure Active Directory 預覽版中將公司商標新增到登入頁面
 
-# <a name="add-company-branding-to-your-sign-in-page-in-the-azure-active-directory-preview"></a>Add company branding to your sign-in page in the Azure Active Directory preview
+為了避免混淆，許多公司都想對其管理的所有網站和服務套用一致的外觀與風格。Azure Active Directory 是透過讓您利用公司標誌和自訂色彩配置來自訂登入頁面外觀的方式，提供這項功能。[預覽版有何功能？](active-directory-preview-explainer.md) 登入頁面是當您登入 Office 365 或其他使用 Azure AD 作為識別提供者的 Web 型應用程式時，所顯示的頁面。您可以與此頁面互動來輸入您的認證。
 
-To avoid confusion, many companies want to apply a consistent look and feel across all the websites and services they manage. Azure Active Directory preview provides this capability by allowing you to customize the appearance of the sign-in page with your company logo and custom color schemes. [What's in the preview?](active-directory-preview-explainer.md) The sign-in page is the page that appears when you sign in to Office 365 or other web-based applications that are using Azure AD as your identity provider. You interact with this page to enter your credentials.
+如果您想要在此頁面上顯示您的公司商標、色彩和其他可自訂的元素，請參閱下列影像以了解這兩種做法的差異。
 
-If you want to show your company brand, colors and other customizable elements on this page, see the following images to understand the difference between the two experiences.
+下列螢幕擷取畫面顯示桌上型電腦上 Office 365 登入頁面的自訂「前」範例︰
 
-The following screenshot shows and example for the Office 365 sign-in page on a desktop computer **before** a customization:
+![自訂前的 Office 365 登入頁面](./media/active-directory-branding-custom-signon-azure-portal/sign-in-page-before-customization.png)
 
-![Office 365 sign-in page before customization](./media/active-directory-branding-custom-signon-azure-portal/sign-in-page-before-customization.png)
+下列螢幕擷取畫面顯示桌上型電腦上 Office 365 登入頁面的自訂「後」範例︰
 
-The following screenshot shows and example for the Office 365 sign-in page on a desktop computer **after** a customization:
-
-![Office 365 sign-in page after customization](./media/active-directory-branding-custom-signon-azure-portal/sign-in-page-after-customization.png)
+![自訂後的 Office 365 登入頁面](./media/active-directory-branding-custom-signon-azure-portal/sign-in-page-after-customization.png)
 
 
-## <a name="customizing-the-sign-in-page"></a>Customizing the sign-in page
+## 自訂登入頁面
 
-Typically, if you need browser-based access to your cloud apps and services that your organization subscribes to, you use the sign-in page.
+一般而言，如果您需要透過瀏覽器存取貴組織訂閱的雲端應用程式和服務，您可使用登入頁面。
 
-If you have applied changes to your sign-in page, it can take up to an hour for the changes to appear.
+如果您已對登入頁面套用變更，最多需要一小時變更才會出現。
 
-A branded sign-in page only appears when you visit a service with a tenant-specific URL such as https://outlook.com/**contoso**.com, or https://mail.**contoso**.com.
+只有當您使用租用戶特定 URL (例如 https://outlook.com/**contoso**.com 或 https://mail.**contoso**.com) 來造訪服務時，才會顯示加上商標的登入頁面。
 
-When you visit a service with non-tenant specific URLs (e.g.: https://mail.office365.com), a non-branded sign-in page appears. in this case, your branding appears once you have entered your user ID or you have selected a user tile.
+當您使用非租用戶特定 URL (例如 https://mail.office365.com) 來造訪服務時，則會顯示沒有商標的登入頁面。在此情況下，只要您一輸入使用者識別碼或是選取使用者磚，就會顯示您的商標。
 
 > [AZURE.NOTE]
 >
-- Your domain name must appear as “Active" in the **Domains** portion of the Azure portal in which you have configured branding. For more information, see [Add custom domain names](active-directory-domains-add-azure-portal.md).
-- Sign-in page branding doesn’t carry over to the consumer sign in page of Microsoft. If you sign in with a Microsoft account, you may see a branded list of user tiles rendered by Azure AD, but the branding of your organization does not apply to the Microsoft account sign-in page.
+- 在您已設定商標之 Azure 入口網站的 [網域] 部分，您的網域名稱必須顯示為 [作用中]。如需詳細資訊，請參閱[新增自訂網域名稱](active-directory-domains-add-azure-portal.md)。
+- 登入頁面商標不會延續到 Microsoft 的消費者登入頁面。如果您使用 Microsoft 帳戶進行登入，您可能會看到 Azure AD 所呈現且已加上商標的使用者磚清單，但是您組織的商標不會套用到 Microsoft 帳戶登入頁面。
 
-On your sign-in page, the **Keep me signed in** checkbox allows a user to remain signed in when they close and re-open their browser. 
+**將公司商標新增到您的目錄：**
 
-   ![Keep me signed-in](./media/active-directory-branding-custom-signon-azure-portal/01.png)
+1.  使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com)。
 
-It does not effect session lifetime. You can hide the checkbox on the Azure Active Directory sign-in page.
-Whether the checkbox is displayed depends on the setting of **Keep me signed in disabled**.
+2.  選取 [更多服務]，在文字方塊中輸入「使用者和群組」，然後選取 **Enter**。
 
-   ![Keep me signed-in](./media/active-directory-branding-custom-signon-azure-portal/02.png)
+    ![開啟使用者管理](./media/active-directory-branding-custom-signon-azure-portal/user-management.png)
 
+3. 在 [使用者和群組] 刀鋒視窗上，選取 [公司商標]。
 
-To hide the checkbox, configure this setting to **Yes**. 
+4. 在 [使用者和群組 - 公司商標] 刀鋒視窗上，選取 [編輯] 命令。
 
-> [AZURE.NOTE] Some features of SharePoint Online and Office 2010 depend on users being able to check this box. If you configure this setting to hidden, your users may see additional and unexpected prompts to sign-in.
+    ![編輯自訂商標](./media/active-directory-branding-custom-signon-azure-portal/edit-branding.png)
 
+5. 修改您想要自訂的元素。所有元素都是選用的。
 
+6. 按一下 [儲存]。
 
+您對登入頁面商標所做的任何變更可能最多需要一個小時才會顯示。
 
-**To add company branding to your directory:**
+## 後續步驟
 
-1.  Sign in to the [Azure portal](https://portal.azure.com) with an account that's a global admin for the directory.
+[新增語言特定公司商標](active-directory-branding-localize-azure-portal.md)
 
-2.  Select **More services**, enter **Users and groups** in the text box, and then select **Enter**.
-
-    ![Opening user management](./media/active-directory-branding-custom-signon-azure-portal/user-management.png)
-
-3. On the **Users and groups** blade, select **Company branding**.
-
-4. On the **Users and groups - Company branding** blade, select the **Edit** command.
-
-    ![Edit custom branding](./media/active-directory-branding-custom-signon-azure-portal/edit-branding.png)
-
-5. Modify the elements you want to customize. All elements are optional.
-
-6. Click **Save**.
-
-It can take up to an hour for any changes you made to the sign-in page branding to appear.
-
-## <a name="next-steps"></a>Next steps
-
-[Add language-specific company branding](active-directory-branding-localize-azure-portal.md)
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

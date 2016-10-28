@@ -1,53 +1,43 @@
 <properties 
-    pageTitle="Overview of XML validation in the Enterprise Integration Pack | Microsoft Azure App Service | Microsoft Azure" 
-    description="Learn how validation works in the Enterprise Integration Pack and Logic apps" 
-    services="logic-apps" 
-    documentationCenter=".net,nodejs,java"
-    authors="msftman" 
-    manager="erikre" 
-    editor="cgronlun"/>
+	pageTitle="企業整合套件中 XML 驗證的概觀 | Microsoft Azure App Service | Microsoft Azure" 
+	description="了解驗證如何在企業整合套件與 Logic Apps 中運作" 
+	services="logic-apps" 
+	documentationCenter=".net,nodejs,java"
+	authors="msftman" 
+	manager="erikre" 
+	editor="cgronlun"/>
 
 <tags 
-    ms.service="logic-apps" 
-    ms.workload="integration" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="07/08/2016" 
-    ms.author="deonhe"/>
+	ms.service="logic-apps" 
+	ms.workload="integration" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="07/08/2016" 
+	ms.author="deonhe"/>
 
+# 具備 XML 驗證的企業整合
 
-# <a name="enterprise-integration-with-xml-validation"></a>Enterprise integration with XML validation
+## 概觀
+在 B2B 案例中，合約的夥伴通常需要先驗證彼此間所交換訊息是有效的，才能開始處理資料。在企業整合套件中，您可以使用 XML 驗證連接器，根據預先定義的結構描述來驗證文件。
 
-## <a name="overview"></a>Overview
-Often, in B2B scenarios, the partners to an agreement need to validate that messages they exchange among each other are valid before processing of the data can begin. In the Enterprise Integration Pack, you can use the XML Validation connector to validate documents against a predefined schema.  
+## 如何利用 XML 驗證連接器驗證文件
+1. 建立邏輯應用程式並[將它連結到整合帳戶](./app-service-logic-enterprise-integration-accounts.md "了解如何將整合帳戶連結到邏輯應用程式")，其中包含用來驗證 XML 資料的結構描述。
+2. 將 [要求 - 收到 HTTP 要求時] 觸發程序新增到您的邏輯應用程式 ![](./media/app-service-logic-enterprise-integration-xml/xml-1.png)
+3. 先選取 [新增動作] 來新增 [XML 驗證] 動作
+4. 在搜尋方塊中輸入「xml」，篩選所有動作以取得您想要使用的動作
+5. 選取 [XML 驗證] ![](./media/app-service-logic-enterprise-integration-xml/xml-2.png)
+6. 選取 [內容] 文字方塊 ![](./media/app-service-logic-enterprise-integration-xml/xml-1-5.png)
+7. 選取內文標記做為要驗證的內容。![](./media/app-service-logic-enterprise-integration-xml/xml-3.png)
+8. 選取 [結構描述名稱] 清單方塊，然後選擇您想要用來驗證上述輸入內容的結構描述 ![](./media/app-service-logic-enterprise-integration-xml/xml-4.png)
+9. 儲存您的工作 ![](./media/app-service-logic-enterprise-integration-xml/xml-5.png)
 
-## <a name="how-to-validate-a-document-with-the-xml-validation-connector"></a>How to validate a document with the XML Validation connector
-1. Create a Logic app and [link it to your integration account](./app-service-logic-enterprise-integration-accounts.md "Learn to link an integration account to a Logic app") that contains the schema you will use to validate the XML data.
-2. Add a **Request - When an HTTP request is received** trigger to your Logic app  
-![](./media/app-service-logic-enterprise-integration-xml/xml-1.png)    
-3. Add the **XML Validation** action by first selecting **Add an action**  
-4. Enter *xml* in the search box in order to filter all the actions to the one that you want to use 
-5. Select **XML Validation**     
-![](./media/app-service-logic-enterprise-integration-xml/xml-2.png)   
-6. Select the **CONTENT** text box  
-![](./media/app-service-logic-enterprise-integration-xml/xml-1-5.png)
-7. Select the body tag as the content that will be validated.   
-![](./media/app-service-logic-enterprise-integration-xml/xml-3.png)  
-8. Select the **SCHEMA NAME** list box and chose the schema you want to use to validate the input *content* above     
-![](./media/app-service-logic-enterprise-integration-xml/xml-4.png) 
-9. Save your work  
-![](./media/app-service-logic-enterprise-integration-xml/xml-5.png) 
+此時，您已完成設定驗證連接器。在真實世界應用程式中，您可能想要在 LOB 應用程式 (例如 SalesForce) 中儲存已驗證的資料。您可以輕鬆新增動作，來將驗證的輸出傳送到 Salesforce。
 
-At this point, you are finished setting up your validation connector. In a real world application, you may want to store the validated data in an LOB application such as SalesForce. You can easily add an action to send the output of the validation to Salesforce. 
+您現在可以藉由向 HTTP 端點提出要求來測試驗證動作。
 
-You can now test your validation action by making a request to the HTTP endpoint.  
+## 後續步驟
 
-## <a name="next-steps"></a>Next steps
+[深入了解企業整合套件](./app-service-logic-enterprise-integration-overview.md "了解企業整合套件")
 
-[Learn more about the Enterprise Integration Pack](./app-service-logic-enterprise-integration-overview.md "Learn about Enterprise Integration Pack")   
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

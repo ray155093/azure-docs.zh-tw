@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="Tutorial: Azure Active Directory integration with TOPdesk - Public | Microsoft Azure" 
-    description="Learn how to use TOPdesk - Public with Azure Active Directory to enable single sign-on, automated provisioning, and more!" 
+    pageTitle="教學課程：Azure Active Directory 與 TOPdesk - Public 整合 | Microsoft Azure" 
+    description="了解如何使用 TOPdesk - Public 搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -14,195 +14,191 @@
     ms.date="09/11/2016" 
     ms.author="jeedes" />
 
+#教學課程：Azure Directory 與 TOPdesk - Public 整合
 
-#<a name="tutorial:-azure-directory-integration-with-topdesk---public"></a>Tutorial: Azure Directory integration with TOPdesk - Public
+本教學課程的目的是要示範 Azure 與 TOPdesk - Public 的整合。  
+本教學課程中說明的案例假設您已經具有下列項目：
 
-The objective of this tutorial is to show the integration of Azure and TOPdesk - Public.  
-The scenario outlined in this tutorial assumes that you already have the following items:
-
--   A valid Azure subscription
--   A TOPdesk - Public single sign-on enabled subscription
+-   有效的 Azure 訂用帳戶
+-   已啟用 TOPdesk - Public 單一登入功能的訂用帳戶
   
-After completing this tutorial, the Azure AD users you have assigned to TOPdesk - Public will be able to single sign into the application at your TOPdesk - Public company site (service provider initiated sign on), or using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+完成本教學課程之後，您指派給 TOPdesk - Public 的 Azure AD 使用者就能夠從您的 TOPdesk - Public 公司網站 (服務提供者起始登入)，或使用[存取面板](active-directory-saas-access-panel-introduction.md)來單一登入應用程式。
   
-The scenario outlined in this tutorial consists of the following building blocks:
+本教學課程中說明的案例由下列建置組塊組成：
 
-1.  Enabling the application integration for TOPdesk - Public
-2.  Configuring single sign-on
-3.  Configuring user provisioning
-4.  Assigning users
+1.  啟用 TOPdesk - Public 的應用程式整合
+2.  設定單一登入
+3.  設定使用者佈建
+4.  指派使用者
 
-![Scenario](./media/active-directory-saas-topdesk-public-tutorial/IC790613.png "Scenario")
+![案例](./media/active-directory-saas-topdesk-public-tutorial/IC790613.png "案例")
 
-##<a name="enabling-the-application-integration-for-topdesk---public"></a>Enabling the application integration for TOPdesk - Public
+##啟用 TOPdesk - Public 的應用程式整合
   
-The objective of this section is to outline how to enable the application integration for TOPdesk - Public.
+本節的目的是要說明如何啟用 TOPdesk - Public 的應用程式整合。
 
-###<a name="to-enable-the-application-integration-for-topdesk---public,-perform-the-following-steps:"></a>To enable the application integration for TOPdesk - Public, perform the following steps:
+###若要啟用 TOPdesk - Public 的應用程式整合，請執行下列步驟：
 
-1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-topdesk-public-tutorial/IC700993.png "Active Directory")
 
-2.  From the **Directory** list, select the directory for which you want to enable directory integration.
+2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3.  To open the applications view, in the directory view, click **Applications** in the top menu.
+3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
 
-    ![Applications](./media/active-directory-saas-topdesk-public-tutorial/IC700994.png "Applications")
+    ![應用程式](./media/active-directory-saas-topdesk-public-tutorial/IC700994.png "應用程式")
 
-4.  Click **Add** at the bottom of the page.
+4.  按一下頁面底部的 [新增]。
 
-    ![Add application](./media/active-directory-saas-topdesk-public-tutorial/IC749321.png "Add application")
+    ![新增應用程式](./media/active-directory-saas-topdesk-public-tutorial/IC749321.png "新增應用程式")
 
-5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
-    ![Add an application from gallerry](./media/active-directory-saas-topdesk-public-tutorial/IC749322.png "Add an application from gallerry")
+    ![從資源庫新增應用程式](./media/active-directory-saas-topdesk-public-tutorial/IC749322.png "從資源庫新增應用程式")
 
-6.  In the **search box**, type **TOPdesk - Public**.
+6.  在 [搜尋方塊] 中，輸入 **TOPdesk - Public**。
 
-    ![Application Gallery](./media/active-directory-saas-topdesk-public-tutorial/IC790614.png "Application Gallery")
+    ![應用程式庫](./media/active-directory-saas-topdesk-public-tutorial/IC790614.png "應用程式庫")
 
-7.  In the results pane, select **TOPdesk - Public**, and then click **Complete** to add the application.
+7.  在結果窗格中，選取 [TOPdesk - Public]，然後按一下 [完成] 以新增應用程式。
 
     ![TOPdesk Public](./media/active-directory-saas-topdesk-public-tutorial/IC791317.png "TOPdesk Public")
 
-##<a name="configuring-single-sign-on"></a>Configuring single sign-on
+##設定單一登入
   
-The objective of this section is to outline how to enable users to authenticate to TOPdesk - Public with their account in Azure AD using federation based on the SAML protocol.  
-Configuring single sign-on for TOPdesk - Public requires you to upload a logo icon file. To get the icon file, contact the TOPdesk support team.
+本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶驗證至 TOPdesk - Public。  
+設定 TOPdesk - Public 的單一登入需要您上傳標誌的圖示檔。若要取得圖示檔，請連絡 TOPdesk 支援小組。
 
-###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
+###若要設定單一登入，請執行下列步驟：
 
-1.  Sign on to your **TOPdesk - Public** company site as an administrator.
+1.  以系統管理員身分登入您的 **TOPdesk - Public** 公司網站。
 
-2.  In the **TOPdesk** menu, click **Settings**.
+2.  在 [TOPdesk] 功能表中按一下 [設定]。
+
+    ![設定](./media/active-directory-saas-topdesk-public-tutorial/IC790598.png "Settings")
+
+3.  按一下 [登入設定]。
+
+    ![登入設定](./media/active-directory-saas-topdesk-public-tutorial/IC790599.png "登入設定")
+
+4.  展開 [登入設定] 功能表，然後按一下 [一般]。
+
+    ![一般](./media/active-directory-saas-topdesk-public-tutorial/IC790600.png "一般")
+
+5.  在 [SAML 登入] 組態區段的 [Public] 區段中，執行下列步驟：
+
+    ![技術設定](./media/active-directory-saas-topdesk-public-tutorial/IC790601.png "技術設定")
+
+    1.  按 [下載] 來下載公用中繼資料檔案，然後再將它儲存在本機電腦上。
+    2.  開啟此中繼資料檔案，然後找到 **AssertionConsumerService** 節點。
+    	![AssertionConsumerService](./media/active-directory-saas-topdesk-public-tutorial/IC790619.png "AssertionConsumerService")
+    3.  複製 **AssertionConsumerService** 值。  
+
+        >[AZURE.NOTE] 在本教學課程稍後的＜**設定應用程式 URL**＞一節中，您將需要這個值。
+
+6.  在不同的網頁瀏覽器視窗中，以系統管理員身分登入您的 **Azure 傳統入口網站**。
+
+7.  在 [TOPdesk - Public] 應用程式整合頁面上，按一下 [設定單一登入] 以開啟 [設定單一登入] 對話方塊。
+
+    ![設定單一登入](./media/active-directory-saas-topdesk-public-tutorial/IC790620.png "設定單一登入")
+
+8.  在 [要如何讓使用者登入 TOPdesk - Public] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
+
+    ![設定單一登入](./media/active-directory-saas-topdesk-public-tutorial/IC790621.png "設定單一登入")
+
+9.  在 [設定應用程式 URL] 頁面上，執行下列步驟：
+
+    ![設定應用程式 URL](./media/active-directory-saas-topdesk-public-tutorial/IC790622.png "設定應用程式 URL")
+
+    1.  在 [TOPdesk - Public 登入 URL] 文字方塊中，輸入使用者用來登入 TOPdesk - Public 應用程式的 URL (例如："*https://qssolutions.topdesk.net*")。
+    2.  在 [TOPdesk - Public 回覆 URL] 文字方塊中，貼上 **TOPdesk - Public AssertionConsumerService URL** (例如："*https://qssolutions.topdesk.net/tas/public/login/saml*")。
+    3.  按 [下一步]。
+
+10. 在 [設定在 TOPdesk - Public 單一登入] 頁面上，若要下載您的中繼資料檔，請按一下 [下載中繼資料]，然後將檔案儲存在本機電腦上。
+
+    ![設定單一登入](./media/active-directory-saas-topdesk-public-tutorial/IC790623.png "設定單一登入")
+
+11. 若要建立憑證檔案，請執行下列步驟：
+
+    ![憑證](./media/active-directory-saas-topdesk-public-tutorial/IC790606.png "憑證")
+
+    1.  開啟下載的中繼資料檔案。
+    2.  展開 **RoleDescriptor** 節點，其具有 **fed:ApplicationServiceType** 的 **xsi:type**。
+    3.  複製 **X509Certificate** 節點的值。
+    4.  儲存複製的 **X509Certificate** 值到本機電腦的檔案中。
+
+12. 在您 TOPdesk - Public 公司網站的 [TOPdesk] 功能表上，按一下 [設定]。
 
     ![Settings](./media/active-directory-saas-topdesk-public-tutorial/IC790598.png "Settings")
 
-3.  Click **Login Settings**.
+13. 按一下 [登入設定]。
 
-    ![Login Settings](./media/active-directory-saas-topdesk-public-tutorial/IC790599.png "Login Settings")
+    ![登入設定](./media/active-directory-saas-topdesk-public-tutorial/IC790599.png "登入設定")
 
-4.  Expand the **Login Settings** menu, and then click **General**.
+14. 展開 [登入設定] 功能表，然後按一下 [一般]。
 
-    ![General](./media/active-directory-saas-topdesk-public-tutorial/IC790600.png "General")
+    ![一般](./media/active-directory-saas-topdesk-public-tutorial/IC790600.png "一般")
 
-5.  In the **Public** section of the **SAML login** configuration section, perform the following steps:
+15. 在 **Public** 區段中，按一下 [加入]。
 
-    ![Technical Settings](./media/active-directory-saas-topdesk-public-tutorial/IC790601.png "Technical Settings")
+    ![SAML 登入](./media/active-directory-saas-topdesk-public-tutorial/IC790625.png "SAML 登入")
 
-    1.  Click **Download** to download the public metadata file, and then save it locally on your computer.
-    2.  Open the metadata file, and then locate the **AssertionConsumerService** node.
-        ![AssertionConsumerService](./media/active-directory-saas-topdesk-public-tutorial/IC790619.png "AssertionConsumerService")
-    3.  Copy the **AssertionConsumerService** value.  
+16. 在 [SAML 組態輔助程式] 對話頁面上，執行下列步驟：
 
-        >[AZURE.NOTE] You will need the value in the **Configure App URL** section later in this tutorial.
+    ![SAML 組態輔助程式](./media/active-directory-saas-topdesk-public-tutorial/IC790608.png "SAML 組態輔助程式")
 
-6.  In a different web browser window, log into your **Azure classic portal** as an administrator.
+    1.  若要上傳您下載的中繼資料檔，請在 [同盟中繼資料] 下按一下 [瀏覽]。
+    2.  若要上傳您的憑證檔案，請在 [憑證 (RSA)] 下按一下 [瀏覽]。
+    3.  若要上傳您從 TOPdesk 支援小組取得的標誌檔案，請在 [標誌圖示] 下按一下 [瀏覽]。
+    4.  在 [使用者名稱屬性] 文字方塊中輸入 **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress**。
+    5.  在 [顯示名稱] 文字方塊中，輸入您的組態名稱。
+    6.  按一下 [儲存]。
 
-7.  On the **TOPdesk - Public** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
+17. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-topdesk-public-tutorial/IC790620.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-topdesk-public-tutorial/IC790627.png "設定單一登入")
 
-8.  On the **How would you like users to sign on to TOPdesk - Public** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
-
-    ![Configure Single Sign-On](./media/active-directory-saas-topdesk-public-tutorial/IC790621.png "Configure Single Sign-On")
-
-9.  On the **Configure App URL** page, perform the following steps:
-
-    ![Configure App URL](./media/active-directory-saas-topdesk-public-tutorial/IC790622.png "Configure App URL")
-
-    1.  In the **TOPdesk - Public Sign On URL** textbox, type the URL used by your users to sign into your TOPdesk - Public application (e.g.: "*https://qssolutions.topdesk.net*").
-    2.  In the **TOPdesk – Public Reply URL** textbox, paste the **TOPdesk - Public AssertionConsumerService URL** (e.g.: "*https://qssolutions.topdesk.net/tas/public/login/saml*")
-    3.  Click **Next**.
-
-10. On the **Configure single sign-on at TOPdesk - Public** page, to download your metadata file, click **Download metadata**, and then save the file locally on your computer.
-
-    ![Configure Single Sign-On](./media/active-directory-saas-topdesk-public-tutorial/IC790623.png "Configure Single Sign-On")
-
-11. To create a certificate file, perform the following steps:
-
-    ![Certificate](./media/active-directory-saas-topdesk-public-tutorial/IC790606.png "Certificate")
-
-    1.  Open the downloaded metadata file.
-    2.  Expand the **RoleDescriptor** node that has a **xsi:type** of **fed:ApplicationServiceType**.
-    3.  Copy the value of the **X509Certificate** node.
-    4.  Save the copied **X509Certificate** value locally on your computer in a file.
-
-12. On your TOPdesk - Public company site, in the **TOPdesk** menu, click **Settings**.
-
-    ![Settings](./media/active-directory-saas-topdesk-public-tutorial/IC790598.png "Settings")
-
-13. Click **Login Settings**.
-
-    ![Login Settings](./media/active-directory-saas-topdesk-public-tutorial/IC790599.png "Login Settings")
-
-14. Expand the **Login Settings** menu, and then click **General**.
-
-    ![General](./media/active-directory-saas-topdesk-public-tutorial/IC790600.png "General")
-
-15. In the **Public** section, click **Add**.
-
-    ![SAML Login](./media/active-directory-saas-topdesk-public-tutorial/IC790625.png "SAML Login")
-
-16. On the **SAML configuration assistant** dialog page, perform the following steps:
-
-    ![SAML Configuration Assistant](./media/active-directory-saas-topdesk-public-tutorial/IC790608.png "SAML Configuration Assistant")
-
-    1.  To upload your downloaded metadata file, under **Federation Metadata**, click **Browse**.
-    2.  To upload your certificate file, under **Certificate (RSA)**, click **Browse**.
-    3.  To upload the logo file you got from the TOPdesk support team, under **Logo icon**, click **Browse**.
-    4.  In the **User name attribute** textbox, type **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress**.
-    5.  In the **Display name** textbox, type a name for your configuration.
-    6.  Click **Save**.
-
-17. On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
-
-    ![Configure Single Sign-On](./media/active-directory-saas-topdesk-public-tutorial/IC790627.png "Configure Single Sign-On")
-
-##<a name="configuring-user-provisioning"></a>Configuring user provisioning
+##設定使用者佈建
   
-In order to enable Azure AD users to log into TOPdesk - Public, they must be provisioned into TOPdesk - Public.  
-In the case of TOPdesk - Public, provisioning is a manual task.
+若要讓 Azure AD 使用者可以登入 TOPdesk - Public，則必須將他們佈建到 TOPdesk - Public。  
+TOPdesk - Public 需以手動的方式佈建。
 
-###<a name="to-configure-user-provisioning,-perform-the-following-steps:"></a>To configure user provisioning, perform the following steps:
+###若要設定使用者佈建，請執行下列步驟：
 
-1.  Sign on to your **TOPdesk - Public** company site as administrator.
+1.  以系統管理員身分登入您的 **TOPdesk - Public** 公司網站。
 
-2.  In the menu on the top, click **TOPdesk \> New \> Support Files \> Person**.
+2.  在上方功能表中按一下 [TOPdesk] > [新增] > [支援檔案] > [人員]。
 
     ![Person](./media/active-directory-saas-topdesk-public-tutorial/IC790628.png "Person")
 
-3.  On the New Person dialog, perform the following steps:
+3.  在 [新增人員] 對話方塊上，執行下列步驟：
 
-    ![New Person](./media/active-directory-saas-topdesk-public-tutorial/IC790629.png "New Person")
+    ![新增人員](./media/active-directory-saas-topdesk-public-tutorial/IC790629.png "新增人員")
 
-    1.  Click the General tab.
-    2.  In the Surname textbox, type the last name of a valid Azure Active Directory account you want to provision.
-    3.  Select a **Site** for the account.
-    4.  Click **Save**.
+    1.  按一下 [一般] 索引標籤。
+    2.  在 [姓氏] 文字方塊中，輸入您要佈建之有效 Azure Active Directory 帳戶的姓氏。
+    3.  選取該帳戶的**網站**。
+    4.  按一下 [儲存]。
 
->[AZURE.NOTE] You can use any other TOPdesk - Public user account creation tools or APIs provided by TOPdesk - Public to provision AAD user accounts.
+>[AZURE.NOTE]您可以使用任何其他的 TOPdesk - Public 使用者帳戶建立工具或 TOPdesk - Public 提供的 API 來佈建 AAD 使用者帳戶。
 
-##<a name="assigning-users"></a>Assigning users
+##指派使用者
   
-To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
+若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-###<a name="to-assign-users-to-topdesk---public,-perform-the-following-steps:"></a>To assign users to TOPdesk - Public, perform the following steps:
+###若要指派使用者給 TOPdesk - Public，請執行下列步驟：
 
-1.  In the Azure classic portal, create a test account.
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
-2.  On the **TOPdesk - Public **application integration page, click **Assign users**.
+2.  在 [TOPdesk - Public] 應用程式整合頁面上，按一下 [指派使用者]。
 
-    ![Assign Users](./media/active-directory-saas-topdesk-public-tutorial/IC790630.png "Assign Users")
+    ![指派使用者](./media/active-directory-saas-topdesk-public-tutorial/IC790630.png "指派使用者")
 
-3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
+3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
 
-    ![Yes](./media/active-directory-saas-topdesk-public-tutorial/IC767830.png "Yes")
+    ![是](./media/active-directory-saas-topdesk-public-tutorial/IC767830.png "是")
   
-If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

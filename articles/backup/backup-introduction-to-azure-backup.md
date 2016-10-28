@@ -1,228 +1,226 @@
 <properties
-    pageTitle="What is Azure Backup? | Microsoft Azure"
-    description="By using Azure Backup and Recovery Services, you can back up and restore data and applications from Windows Servers, Windows client machines, System Center DPM servers and Azure virtual machines."
-    services="backup"
-    documentationCenter=""
-    authors="markgalioto"
-    manager="cfreeman"
-    editor="tysonn"
-    keywords="backup and restore; recovery services; backup solutions"/>
+	pageTitle="何謂 Azure 備份中心？ | Microsoft Azure"
+	description="您可以使用 Azure 備份和復原服務，從 Windows Server、Windows 用戶端電腦、System Center DPM 伺服器和 Azure 虛擬機器備份和還原資料與應用程式。"
+	services="backup"
+	documentationCenter=""
+	authors="markgalioto"
+	manager="cfreeman"
+	editor="tysonn"
+	keywords="備份與還原；復原服務；備份解決方案"/>
 
 <tags
-    ms.service="backup"
-    ms.workload="storage-backup-recovery"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="get-started-article"
-    ms.date="10/19/2016"
-    ms.author="jimpark; trinadhk"/>
+	ms.service="backup"
+	ms.workload="storage-backup-recovery"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="get-started-article"
+	ms.date="07/21/2016"
+	ms.author="jimpark; trinadhk"/>
 
+# 何謂 Azure 備份？
+Azure 備份是您用來備份和還原 Microsoft 雲端資料的服務。它將以一個可靠、安全及具成本競爭力的雲端架構解決方案，取代您現有的內部部署或異地備份解決方案。它也有助於保護在雲端中執行的資產。Azure 備份提供的復原服務是以可調整、持久和高可用性的世界級基礎結構為建置基礎。
 
-# <a name="what-is-azure-backup?"></a>What is Azure Backup?
-Azure Backup is the service that you use to back up and restore your data in the Microsoft cloud. It replaces your existing on-premises or off-site backup solution with a cloud-based solution that is reliable, secure, and cost-competitive. It also helps protect assets that run in the cloud. Azure Backup provides recovery services built on a world-class infrastructure that is scalable, durable, and highly available.
+[觀看 Azure 備份的影片概觀](https://azure.microsoft.com/documentation/videos/what-is-azure-backup/)
 
-[Watch a video overview of Azure Backup](https://azure.microsoft.com/documentation/videos/what-is-azure-backup/)
+## 為何使用 Azure 備份？
+傳統的備份解決方案已演變成將雲端視為類似於磁碟或磁帶的端點。雖然此方法很簡單，但是也有限制。它並不會完整運用基礎雲端平台，可謂是效率不佳又昂貴的解決方案。相反地，Azure 備份可提供功能強大且價格合理的雲端備份解決方案的所有優點。以下是一些 Azure 備份提供的主要優點。
 
-## <a name="why-use-azure-backup?"></a>Why use Azure Backup?
-Traditional backup solutions have evolved to treat the cloud as an endpoint similar to disks or tape. While this approach is simple, it is also limited. It does not take full advantage of an underlying cloud platform and translates to an inefficient, expensive solution.
-In contrast, Azure Backup delivers all the advantages of a powerful and affordable cloud backup solution. Here are some of the key benefits that Azure Backup provides.
-
-| Feature | Benefit |
+| 功能 | 優點 |
 | ------- | ------- |
-| Automatic storage management | No capital expenditure is needed for on-premises storage devices. Azure Backup automatically allocates and manages backup storage, and it uses a pay-as-you-use consumption model. |
-| Unlimited scaling | Take advantage of high availability guarantees without the overhead of maintenance and monitoring. Azure Backup uses the underlying power and scale of the Azure cloud, with its nonintrusive autoscaling capabilities. |
-| Multiple storage options | Choose your backup storage based on need:<li>A locally redundant storage block blob is ideal for price-conscious customers, and it still helps protect data against local hardware failures. <li>A geo-replication storage block blob provides three more copies in a paired datacenter. These extra copies help ensure that your backup data is highly available even if an Azure site-level disaster occurs. |
-| Unlimited data transfer | There is no charge for any egress (outbound) data transfer during a restore operation from the Backup vault. Data inbound to Azure is also free. Works with the import service where it is available. |
-| Data encryption | Data encryption allows for secure transmission and storage of customer data in the public cloud. The encryption passphrase is stored at the source, and it is never transmitted or stored in Azure. The encryption key is required to restore any of the data, and only the customer has full access to the data in the service. |  
-| Application-consistent backup | Application-consistent backups on Windows help ensure that fixes are not needed at the time of restore, which reduces the recovery time objective. This allows customers to return to a running state more quickly. |
-| Long-term retention | Rather than pay for off-site tape backup solutions, customers can back up to Azure, which provides a compelling tape-like solution at a low cost. |
+| 自動儲存體管理 | 內部部署儲存裝置不需要資本支出。Azure 備份會自動配置和管理備份儲存體，且採用使用時付費制。 |
+| 無限制的調整 | 利用高可用性保證不會造成額外的維護與監控負荷。Azure 備份會透過非干擾式的自動調整功能，使用 Azure 雲端的基礎能力和調整。 |
+| 多個儲存體選項 | 根據需求選擇備份儲存體：<li>本地備援儲存體區塊 Blob 非常適合於注重價格的客戶，同時為資料提供本機硬體故障的防護。<li>異地複寫存體區塊 Blob 在配對的資料中心提供額外三個複本。這些額外複本有助於確保備份資料具高可用性，即使發生 Azure 網站層級損毀亦然。 |
+| 無限制的資料傳輸 | 不會收取從備份保存庫進行還原作業期間的任何出口流量 (輸出) 資料傳送費用。資料輸入至 Azure 也是免費的。適用於可用的匯入服務。 |
+| 資料加密 | 資料加密可讓公用雲端中的客戶資料安全傳輸與儲存。加密複雜密碼會儲存在來源，並且永遠不會傳送至或儲存在 Azure 中。還原任何資料皆需要加密金鑰，而只有客戶在服務中擁有資料的完整存取權。 |  
+| 應用程式一致備份 | Windows 上應用程式一致的備份可協助確保在還原時不需要修正，進而減少復原時間目標。這可讓客戶更快恢復執行中狀態。 |
+| 長期保留 | 與其為異地磁帶備份解決方案付費，客戶可以備份至以低成本提供令人信服且近似磁帶解決方案的 Azure。 |
 
-## <a name="azure-backup-components"></a>Azure Backup components
-Because Backup is a hybrid backup solution, it consists of multiple components that work together to enable end-to-end backup and restore workflows.
+## Azure 備份元件
+因為備份是一個混合式備份解決方案，所以是由多個一起運作以進行端對端備份及還原工作流程的元件所組成。
 
-![Azure Backup components](./media/backup-introduction-to-azure-backup/azure-backup-overview.png)
+![Azure 備份元件](./media/backup-introduction-to-azure-backup/azure-backup-overview.png)
 
-### <a name="deployment-scenarios"></a>Deployment scenarios
+### 部署案例
 
-| Component | Can be deployed in Azure? | Can be deployed on-premises? | Target storage supported|
+| 元件 | 可以在 Azure 中部署嗎？ | 可以在內部部署嗎？ | 支援的目標儲存體|
 | --- | --- | --- | --- |
-| Azure Backup agent | <p>**Yes**</p> <p>The Azure Backup agent can be deployed on any Windows Server VM that runs in Azure.</p> | <p>**Yes**</p> <p>The Backup agent can be deployed on any Windows Server VM or physical machine.</p> | <p>Azure Backup vault</p> |
-| System Center Data Protection Manager (DPM) | <p>**Yes**</p><p>Learn more about [how to protect workloads in Azure by using System Center DPM](http://blogs.technet.com/b/dpm/archive/2014/09/02/azure-iaas-workload-protection-using-data-protection-manager.aspx).</p> | <p>**Yes**</p> <p>Learn more about [how to protect workloads and VMs in your datacenter](https://technet.microsoft.com/library/hh758173.aspx).</p> | <p>Locally attached disk,</p> <p>Azure Backup vault,</p> <p>tape (on-premises only)</p> |
-| Azure Backup Server | <p>**Yes**</p><p>Learn more about [how to protect workloads in Azure by using Azure Backup Server](backup-azure-microsoft-azure-backup.md).</p> | <p>**Yes**</p> <p>Learn more about [how to protect workloads in Azure by using Azure Backup Server](backup-azure-microsoft-azure-backup.md).</p> | <p>Locally attached disk,</p> <p>Azure Backup vault</p> |
-| Azure Backup (VM extension) | <p>**Yes**</p><p>Part of Azure fabric</p><p>Specialized for [backup of Azure infrastructure as a service (IaaS) virtual machines](backup-azure-vms-introduction.md).</p> | <p>**No**</p> <p>Use System Center DPM to back up virtual machines in your datacenter.</p> | <p>Azure Backup vault</p> |
+| Azure 備份代理程式 | <p>**是**</p> <p>您可以在 Azure 中執行的任何 Windows Server VM 上部署 Azure 備份代理程式。</p> | <p>**是**</p> <p>您可以在 Windows Server VM 或實體機器上部署備份代理程式。</p> | <p>Azure 備份保存庫</p> |
+| System Center Data Protection Manager (DPM) | <p>**是**</p><p>深入了解[如何使用 System Center DPM 保護 Azure 中的工作負載](http://blogs.technet.com/b/dpm/archive/2014/09/02/azure-iaas-workload-protection-using-data-protection-manager.aspx)。</p> | <p>**是**</p> <p>深入了解[如何保護工作負載和資料中心內的 VM](https://technet.microsoft.com/library/hh758173.aspx)。</p> | <p>本機連接的磁碟、</p> <p>Azure 備份保存庫、</p> <p>磁帶 (僅限內部部署)</p> |
+| Azure 備份伺服器 | <p>**是**</p><p>深入了解[如何使用 Azure 備份伺服器保護 Azure 中的工作負載](backup-azure-microsoft-azure-backup.md)。</p> | <p>**是**</p> <p>深入了解[如何使用 Azure 備份伺服器保護 Azure 中的工作負載](backup-azure-microsoft-azure-backup.md)。</p> | <p>本機連接的磁碟、</p> <p>Azure 備份保存庫</p> |
+| Azure 備份 (VM 延伸模組) | <p>**是**</p><p>Azure 網狀架構的一部分</p><p>適用於[備份 Azure 基礎結構即服務 (IaaS) 虛擬機器](backup-azure-vms-introduction.md)。</p> | <p>**否**</p> <p>請使用 System Center DPM 備份資料中心內的虛擬機器。</p> | <p>Azure 備份保存庫</p> |
 
-### <a name="component-level-benefits-and-limitations"></a>Component level benefits and limitations
+### 元件層級的優點與限制
 
-| Component | Benefits | Limitations | Recovery granularity |
+| 元件 | 優點 | 限制 | 復原細微度 |
 | --- | --- | --- | --- |
-| Azure Backup (MARS) agent | <li>Can backup files and folders on a Windows OS machine, be it physical or virtual (VMs can be anywhere on-premises or Azure)<li>No separate backup server required<li>Uses Azure Backup Vault | <li>Three times a day backup/file level restore<li>File/folder/volume level restore only, not application aware<li>No support for Linux | files/folders/volumes |
-| System Center Data Protection Manager | <li>App aware snapshots (VSS)<li>Full flexibility for when to take backups<li>Recovery granularity (all)<li>Can use Azure Backup vault<li>Linux support (if hosted on Hyper-V) | <li>Lack of heterogeneous support (VMware VM back up, Oracle workload back up).  | files/folders/volumes<br>/VMs/applications |
-| Microsoft Azure Backup Server | <li>App aware snapshots (VSS)<li>Full flexibility for when to take backups<li>Recovery granularity (all)<li>Can use Azure Backup vault<li>Linux support (if hosted on Hyper-V)<li>Does not require a System Center license | <li>Lack of heterogeneous support (VMware VM back up, Oracle workload back up).<li>Always requires live Azure subscription<li>No support for tape backup | files/folders/volumes<br>/VMs/applications |
-| Azure IaaS VM Backup | <li>Native backups for Windows/Linux<li>No specific agent installation required<li>Fabric level backup with no backup infrastructure needed | <li>Once a day back up/disk level restore<li>Cannot back up on-premises | VMs<br>All disks(using PowerShell) |
+| Azure 備份 (MARS) 代理程式 | <li>可以在 Windows OS 電腦上備份檔案和資料夾 (不論是實體或虛擬，VM 可位於內部部署或 Azure 上的任意處)<li>不需要個別的備份伺服器<li>使用 Azure 備份保存庫 | <li>一天備份三次/檔案層級還原<li>僅限檔案/資料夾/磁碟區層級還原，非應用程式感知<li>不支援 Linux | 檔案/資料夾/磁碟區 |
+| System Center Data Protection Manager | <li>應用程式感知快照 (VSS)<li>具有充分彈性的備份時間<li>復原細微度 (全部)<li>可以使用 Azure 備份保存庫<li>Linux 支援 (如果裝載於 Hyper-V) | <li>缺乏異質支援 (VMware VM 備份、Oracle 工作負載備份)。 | 檔案/資料夾/磁碟區<br>/VM/應用程式 |
+| Microsoft Azure 備份伺服器 | <li>應用程式感知快照 (VSS)<li>具有充分彈性的備份時間<li>復原細微度 (全部)<li>可以使用 Azure 備份保存庫<li>Linux 支援 (如果裝載於 Hyper-V)<li>不需要 System Center 授權 | <li>缺乏異質支援 (VMware VM 備份、Oracle 工作負載備份)。<li>永遠需要即時 Azure 訂用帳戶<li>不支援磁帶備份 | 檔案/資料夾/磁碟區<br>/VM/應用程式 |
+| Azure IaaS VM 備份 | <li>適用於 Windows/Linux 的原生備份<li>不需要安裝特定代理程式<li>不需要備份基礎結構的網狀架構層級備份 | <li>一天備份一次/磁碟層級還原<li>無法備份內部部署 | VM<br>所有磁碟 (使用 PowerShell) |
 
-## <a name="which-applications-and-workloads-can-be-backed-up?"></a>Which applications and workloads can be backed up?
+## 可以備份哪些應用程式和工作負載？
 
-| Workload | Source machine | Azure Backup solution |
+| 工作負載 | 來源機器 | Azure 備份方案 |
 | --- | --- |---|
-| Files and folders | Windows Server | <p>[Azure Backup agent](backup-configure-vault.md),</p> <p>[System Center DPM](backup-azure-dpm-introduction.md) (+ the Azure Backup agent),</p> <p>[Azure Backup Server](backup-azure-microsoft-azure-backup.md) (includes the Azure Backup agent)</p>  |
-| Files and folders | Windows client | <p>[Azure Backup agent](backup-configure-vault.md),</p> <p>[System Center DPM](backup-azure-dpm-introduction.md) (+ the Azure Backup agent),</p> <p>[Azure Backup Server](backup-azure-microsoft-azure-backup.md) (includes the Azure Backup agent)</p>  |
-| Hyper-V virtual machine (Windows) | Windows Server | <p>[System Center DPM](backup-azure-backup-sql.md) (+ the Azure Backup agent),</p> <p>[Azure Backup Server](backup-azure-microsoft-azure-backup.md) (includes the Azure Backup agent)</p> |
-| Hyper-V virtual machine (Linux) | Windows Server | <p>[System Center DPM](backup-azure-backup-sql.md) (+ the Azure Backup agent),</p> <p>[Azure Backup Server](backup-azure-microsoft-azure-backup.md) (includes the Azure Backup agent)</p>  |
-| Microsoft SQL Server | Windows Server | <p>[System Center DPM](backup-azure-backup-sql.md) (+ the Azure Backup agent),</p> <p>[Azure Backup Server](backup-azure-microsoft-azure-backup.md) (includes the Azure Backup agent)</p>  |
-| Microsoft SharePoint | Windows Server | <p>[System Center DPM](backup-azure-backup-sql.md) (+ the Azure Backup agent),</p> <p>[Azure Backup Server](backup-azure-microsoft-azure-backup.md) (includes the Azure Backup agent)</p>   |
-| Microsoft Exchange |  Windows Server | <p>[System Center DPM](backup-azure-backup-sql.md) (+ the Azure Backup agent),</p> <p>[Azure Backup Server](backup-azure-microsoft-azure-backup.md) (includes the Azure Backup agent)</p>   |
-| Azure IaaS VMs (Windows) | - | [Azure Backup (VM extension)](backup-azure-vms-introduction.md) |
-| Azure IaaS VMs (Linux) | - | [Azure Backup (VM extension)](backup-azure-vms-introduction.md) |
+| 檔案和資料夾 | Windows Server | <p>[Azure 備份代理程式](backup-configure-vault.md)、</p> <p>[System Center DPM](backup-azure-dpm-introduction.md) (+ Azure 備份代理程式)、</p> <p>[Azure 備份伺服器](backup-azure-microsoft-azure-backup.md) (包括 Azure 備份代理程式)</p> |
+| 檔案和資料夾 | Windows 用戶端 | <p>[Azure 備份代理程式](backup-configure-vault.md)、</p> <p>[System Center DPM](backup-azure-dpm-introduction.md) (+ Azure 備份代理程式)、</p> <p>[Azure 備份伺服器](backup-azure-microsoft-azure-backup.md) (包括 Azure 備份代理程式)</p> |
+| Hyper-V 虛擬機器 (Windows) | Windows Server | <p>[System Center DPM](backup-azure-backup-sql.md) (+ Azure 備份代理程式)、</p> <p>[Azure 備份伺服器](backup-azure-microsoft-azure-backup.md) (包括 Azure 備份代理程式)</p> |
+| Hyper-V 虛擬機器 (Linux) | Windows Server | <p>[System Center DPM](backup-azure-backup-sql.md) (+ Azure 備份代理程式)、</p> <p>[Azure 備份伺服器](backup-azure-microsoft-azure-backup.md) (包括 Azure 備份代理程式)</p> |
+| Microsoft SQL Server | Windows Server | <p>[System Center DPM](backup-azure-backup-sql.md) (+ Azure 備份代理程式)、</p> <p>[Azure 備份伺服器](backup-azure-microsoft-azure-backup.md) (包括 Azure 備份代理程式)</p> |
+| Microsoft SharePoint | Windows Server | <p>[System Center DPM](backup-azure-backup-sql.md) (+ Azure 備份代理程式)、</p> <p>[Azure 備份伺服器](backup-azure-microsoft-azure-backup.md) (包括 Azure 備份代理程式)</p> |
+| Microsoft Exchange | Windows Server | <p>[System Center DPM](backup-azure-backup-sql.md) (+ Azure 備份代理程式)、</p> <p>[Azure 備份伺服器](backup-azure-microsoft-azure-backup.md) (包括 Azure 備份代理程式)</p> |
+| Azure IaaS VM (Windows) | - | [Azure 備份 (VM 延伸模組)](backup-azure-vms-introduction.md) |
+| Azure IaaS VM (Linux) | - | [Azure 備份 (VM 延伸模組)](backup-azure-vms-introduction.md) |
 
-## <a name="arm-and-linux-support"></a>ARM and Linux support
+## ARM 和 Linux 支援
 
-| Component | ARM Support | Linux (Azure endorsed) Support |
+| 元件 | ARM 支援 | Linux (Azure 背書) 支援 |
 | --- | --- | --- |
-| Azure Backup (MARS) agent | Yes | No (Only Windows based agent) |
-| System Center Data Protection Manager | Yes (Agent in guest) | Only Hyper-V (Not Azure VM) Only file-consistent backup is possible |
-| Azure Backup Server (MABS) | Yes (Agent in guest) | Only Hyper-V (Not Azure VM) Only file-consistent backup is possible (Same as DPM) |
-| Azure IaaS VM Backup | Yes | Yes |
+| Azure 備份 (MARS) 代理程式 | 是 | 否 (僅限 Windows 代理程式) |
+| System Center Data Protection Manager | 是 (客體中的代理程式) | 僅限 Hyper-V (不是 Azure VM)，只能進行檔案一致的備份 |
+| Azure 備份伺服器 (MABS) | 是 (客體中的代理程式) | 僅限 Hyper-V (不是 Azure VM)，只能進行檔案一致的備份 (與 DPM 相同) |
+| Azure IaaS VM 備份 | 是 | 是 |
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-include.md)]
 
 
-## <a name="back-up-and-restore-premium-storage-vms"></a>Back up and Restore Premium Storage VMs
+## 備份和還原進階儲存體 VM
 
-The Azure Backup service now protects Premium Storage VMs.
+Azure 備份服務現在可保護進階儲存體 VM。
 
-### <a name="back-up-premium-storage-vms"></a>Back up Premium Storage VMs
+### 備份進階儲存體 VM
 
-While backing up Premium Storage VMs, the Backup service creates a temporary staging location in the Premium Storage account. The staging location, named "AzureBackup-", is equal to the total data size of the premium disks attached to the VM.
+在備份進階儲存體 VM 時，備份服務會在進階儲存體帳戶中建立臨時預備位置。名為「AzureBackup-」的預備位置等於連接至 VM 之進階磁碟的資料大小總計。
 
->[AZURE.NOTE] Do not modify or edit the staging location.
+>[AZURE.NOTE] 請勿修改或編輯預備位置。
 
-Once the backup job finishes, the staging location is deleted. The price of storage used for the staging location is consistent with all [Premium storage pricing](../storage/storage-premium-storage.md#pricing-and-billing).
+備份作業完成後，就會刪除預備位置。用於預備位置之儲存體的價格在所有[進階儲存體價格](../storage/storage-premium-storage.md#pricing-and-billing)中皆一致。
 
-### <a name="restore-premium-storage-vms"></a>Restore Premium Storage VMs
+### 還原進階儲存體 VM
 
-Premium Storage VM can be restored to either Premium Storage or to normal storage. Restoring a Premium Storage VM recovery point back to Premium Storage is the typical process of restoration. However, it can be cost effective to restore a Premium Storage VM recovery point to standard storage. This type of restoration can be used if you need a subset of files from the VM.
+進階儲存體 VM 可以還原至進階儲存體或一般儲存體。將進階儲存體 VM 的復原點還原到進階儲存體是常見的還原程序。不過，將進階儲存體 VM 的復原點還原至標準儲存體比較符合成本效益。如果您需要 VM 檔案的子集，則可以使用此還原類型。
 
-## <a name="functionality"></a>Functionality
-These five tables summarize how backup functionality is handled in each component.
+## 功能
+以下五個資料表概述備份功能如何處理每個元件。
 
-### <a name="storage"></a>Storage
+### 儲存體
 
-| Feature | Azure Backup agent | System Center DPM | Azure Backup Server | Azure Backup (VM extension) |
+| 功能 | Azure 備份代理程式 | System Center DPM | Azure 備份伺服器 | Azure 備份 (VM 延伸模組) |
 | ------- | --- | --- | --- | ---- |
-| Azure Backup vault | ![Yes][green] | ![Yes][green] | ![Yes][green] | ![Yes][green] |
-| Disk storage | | ![Yes][green] | ![Yes][green] |  |
-| Tape storage | | ![Yes][green] |  | |
-| Compression (in backup vault) | ![Yes][green] | ![Yes][green]| ![Yes][green] | |
-| Incremental backup | ![Yes][green] | ![Yes][green] | ![Yes][green] | ![Yes][green] |
-| Disk deduplication | | ![Partially][yellow] | ![Partially][yellow]| | |
+| Azure 備份保存庫 | ![是][green] | ![是][green] | ![是][green] | ![是][green] |
+| 磁碟儲存體 | | ![是][green] | ![是][green] | |
+| 磁帶儲存體 | | ![是][green] | | |
+| 壓縮 (在備份保存庫中) | ![是][green] | ![是][green]| ![是][green] | |
+| 增量備份 | ![是][green] | ![是][green] | ![是][green] | ![是][green] |
+| 磁碟重複資料刪除 | | ![部分][yellow] | ![部分][yellow]| | |
 
-![table key](./media/backup-introduction-to-azure-backup/table-key.png)
+![資料表索引鍵](./media/backup-introduction-to-azure-backup/table-key.png)
 
-The Backup vault is the preferred storage target across all components. System Center DPM and Backup Server also provide the option to have a local disk copy. However, only System Center DPM provides the option to write data to a tape storage device.
+備份保存庫是所有元件慣用的儲存體目標。System Center DPM 和備份伺服器也提供產生本機磁碟複本的選項。不過，System Center DPM 會提供將資料寫入磁帶儲存裝置的選項。
 
-#### <a name="incremental-backup"></a>Incremental backup
-Every component supports incremental backup regardless of the target storage (disk, tape, backup vault). Incremental backup ensures that backups are storage and time efficient, by transferring only those changes made since the last backup.
+#### 增量備份
+不論目標儲存體 (磁碟、磁帶、備份保存庫) 為何，每個元件都支援增量備份。增量備份可確保備份符合儲存和時間效率，因為它只會傳輸自上次備份後所做的變更。
 
-#### <a name="compression"></a>Compression
-Backups are compressed to reduce the required storage space. The only component that does not use compression is the VM extension. With VM extension, all backup data is copied from the customer storage account to the backup vault in the same region without compressing it. While going without compression slightly inflates the storage used, storing the data without compression allows for faster restore times.
+#### 壓縮
+備份會經過壓縮以減少所需的儲存空間。唯一不進行壓縮的元件為 VM 延伸模組。透過 VM 延伸模組，所有備份資料會從客戶儲存體帳戶複製到相同區域中的備份保存庫，且不加以壓縮。雖然未經壓縮會稍微擴大使用的儲存體，但儲存未經壓縮的資料可讓還原時間加快。
 
-#### <a name="deduplication"></a>Deduplication
-Deduplication is supported for System Center DPM and Backup Server when it is [deployed in a Hyper-V virtual machine](http://blogs.technet.com/b/dpm/archive/2015/01/06/deduplication-of-dpm-storage-reduce-dpm-storage-consumption.aspx). Deduplication is performed at the host level by using Windows Server deduplication on virtual hard disks (VHDs) that are attached to the virtual machine as backup storage.
+#### 重複資料刪除
+[部署在 Hyper-V 虛擬機器中](http://blogs.technet.com/b/dpm/archive/2015/01/06/deduplication-of-dpm-storage-reduce-dpm-storage-consumption.aspx)的 System Center DPM 和備份伺服器可支援重複資料刪除。使用 Windows Server 重複資料刪除可在主機層級執行重複資料刪除，在當作備份儲存體連接至虛擬機器的虛擬硬碟 (VHD) 上。
 
->[AZURE.WARNING] Deduplication is not available in Azure for any of the Backup components. When System Center DPM and Backup Server are deployed in Azure, the storage disks attached to the VM cannot be deduplicated.
+>[AZURE.WARNING] 重複資料刪除不適用於 Azure 中任何的備份元件。當 System Center DPM 和備份伺服器部署在 Azure 中，連接至 VM 的儲存體磁碟不能進行重複資料刪除。
 
-### <a name="security"></a>Security
+### 安全性
 
-| Feature | Azure Backup agent | System Center DPM | Azure Backup Server | Azure Backup (VM extension) |
+| 功能 | Azure 備份代理程式 | System Center DPM | Azure 備份伺服器 | Azure 備份 (VM 延伸模組) |
 | ------- | --- | --- | --- | ---- |
-| Network security (to Azure) | ![Yes][green] |![Yes][green] | ![Yes][green] | ![Partially][yellow]|
-| Data security (in Azure) | ![Yes][green] |![Yes][green] | ![Yes][green] | ![Partially][yellow]|
+| 網路安全性 (至 Azure) | ![是][green] |![是][green] | ![是][green] | ![部分][yellow]|
+| 資料安全性 (在 Azure 中) | ![是][green] |![是][green] | ![是][green] | ![部分][yellow]|
 
-![table key](./media/backup-introduction-to-azure-backup/table-key.png)
+![資料表索引鍵](./media/backup-introduction-to-azure-backup/table-key.png)
 
-All backup traffic from your servers to the Backup vault is encrypted by using Advanced Encryption Standard 256. The data is sent over a secure HTTPS link. The backup data is also stored in the Backup vault in encrypted form. Only the customer holds the passphrase to unlock this data. Microsoft cannot decrypt the backup data at any point.
+從您的伺服器到備份保存庫的所有備份流量都會使用進階加密標準 256 加密。資料會透過安全的 HTTPS 連結來傳送。備份資料也會在備份保存庫中以加密格式儲存。只有持有複雜密碼的客戶可以解除鎖定此資料。Microsoft 無法解密在任何時間點所備份的資料。
 
->[AZURE.WARNING] The key used to encrypt the backup data is present only with the customer. Microsoft does not maintain a copy in Azure and does not have any access to the key. If the key is misplaced, Microsoft cannot recover the backup data.
+>[AZURE.WARNING] 只有客戶會看見用來加密備份資料的金鑰。Microsoft 不會維護 Azure 中的複本，且無法存取金鑰。如果錯置金鑰，則 Microsoft 無法復原備份資料。
 
-Backing up Azure VMs requires setting up encryption *within* the virtual machine. Use BitLocker on Windows virtual machines and **dm-crypt** on Linux virtual machines. Azure Backup does not automatically encrypt backup data that comes through this path.
+備份 Azure VM 時，需要在虛擬機器「內」設定加密。在 Windows 虛擬機器上使用 BitLocker，而在 Linux 虛擬機器上使用 **dm-crypt**。Azure 備份不會自動加密來自此路徑的備份資料。
 
-### <a name="supported-workloads"></a>Supported workloads
+### 支援的工作負載
 
-| Feature | Azure Backup agent | System Center DPM | Azure Backup Server | Azure Backup (VM extension) |
+| 功能 | Azure 備份代理程式 | System Center DPM | Azure 備份伺服器 | Azure 備份 (VM 延伸模組) |
 | ------- | --- | --- | --- | ---- |
-| Windows Server machine--files and folders | ![Yes][green] | ![Yes][green] | ![Yes][green] | |
-| Windows client machine--files and folders | ![Yes][green] | ![Yes][green] | ![Yes][green] | |
-| Hyper-V virtual machine (Windows) | | ![Yes][green] | ![Yes][green] | |
-| Hyper-V virtual machine (Linux) | | ![Yes][green] | ![Yes][green] | |
-| Microsoft SQL Server | | ![Yes][green] | ![Yes][green] | |
-| Microsoft SharePoint | | ![Yes][green] | ![Yes][green] | |
-| Microsoft Exchange  | | ![Yes][green] | ![Yes][green] | |
-| Azure virtual machine (Windows) | | | | ![Yes][green] |
-| Azure virtual machine (Linux) | | | | ![Yes][green] |
+| Windows Server 機器 - 檔案和資料夾 | ![是][green] | ![是][green] | ![是][green] | |
+| Windows 用戶端機器 - 檔案和資料夾 | ![是][green] | ![是][green] | ![是][green] | |
+| Hyper-V 虛擬機器 (Windows) | | ![是][green] | ![是][green] | |
+| Hyper-V 虛擬機器 (Linux) | | ![是][green] | ![是][green] | |
+| Microsoft SQL Server | | ![是][green] | ![是][green] | |
+| Microsoft SharePoint | | ![是][green] | ![是][green] | |
+| Microsoft Exchange | | ![是][green] | ![是][green] | |
+| Azure 虛擬機器 (Windows) | | | | ![是][green] |
+| Azure 虛擬機器 (Linux) | | | | ![是][green] |
 
-![table key](./media/backup-introduction-to-azure-backup/table-key-2.png)
+![資料表索引鍵](./media/backup-introduction-to-azure-backup/table-key-2.png)
 
-### <a name="network"></a>Network
+### 網路
 
-| Feature | Azure Backup agent | System Center DPM | Azure Backup Server | Azure Backup (VM extension) |
+| 功能 | Azure 備份代理程式 | System Center DPM | Azure 備份伺服器 | Azure 備份 (VM 延伸模組) |
 | ------- | --- | --- | --- | ---- |
-| Network compression (to the backup server) | | ![Yes][green] | ![Yes][green] | |
-| Network compression (to the backup vault) | ![Yes][green] | ![Yes][green] | ![Yes][green] | |
-| Network protocol (to the backup server) | | TCP | TCP | |
-| Network protocol (to the backup vault) | HTTPS | HTTPS | HTTPS | HTTPS |
+| 網路壓縮 (至備份伺服器) | | ![是][green] | ![是][green] | |
+| 網路壓縮 (至備份保存庫) | ![是][green] | ![是][green] | ![是][green] | |
+| 網路通訊協定 (至備份伺服器) | | TCP | TCP | |
+| 網路通訊協定 (至備份保存庫) | HTTPS | HTTPS | HTTPS | HTTPS |
 
-![table key](./media/backup-introduction-to-azure-backup/table-key-2.png)
+![資料表索引鍵](./media/backup-introduction-to-azure-backup/table-key-2.png)
 
-Because the VM extension reads the data directly from the Azure storage account over the storage network, it is not necessary to optimize this traffic. The traffic is over the local storage network in the Azure datacenter, so there is little need for compression because of bandwidth considerations.
+因為 VM 延伸模組會透過儲存體網路直接從 Azure 儲存體帳戶讀取資料，所以不需要最佳化此流量。流量會透過 Azure 資料中心中的本機儲存體網路傳送，因此不太需要因為頻寬考量而進行壓縮。
 
-If you are backing up your data to a backup server (DPM or Backup Server), traffic from the primary server to the backup server can be compressed to save on bandwidth.
+如果您要將資料備份到備份伺服器 (DPM 或備份伺服器)，可以壓縮從主要伺服器到備份伺服器的流量以節省頻寬。
 
-#### <a name="network-throttling"></a>Network Throttling
-The Azure Backup agent provides throttling capability, which allows you to control how network bandwidth is used during data transfer. Throttling can be helpful if you need to back up data during work hours but do not want the backup process to interfere with other internet traffic. Throttling for data transfer applies to back up and restore activities.
+#### 網路節流
+Azure 備份代理程式提供的節流功能可讓您控制在資料傳輸期間使用網路頻寬的方式。如果您需要在上班時間內備份資料，但不希望備份程序干擾其他網際網路流量，節流會很有幫助。資料傳輸的節流適用於備份和還原活動。
 
-### <a name="backup-and-retention"></a>Backup and retention
+### 備份和保留
 
-|  | Azure Backup agent | System Center DPM | Azure Backup Server | Azure Backup (VM extension) |
+| | Azure 備份代理程式 | System Center DPM | Azure 備份伺服器 | Azure 備份 (VM 延伸模組) |
 | --- | --- | --- | --- | --- |
-| Backup frequency (to the backup vault) | Three backups per day | Two backups per day |Two backups per day | One backup per day |
-| Backup frequency (to disk) | Not applicable | <p>Every 15 minutes for SQL Server</p> <p>Every hour for other workloads</p> | <p>Every 15 minutes for SQL Server</p> <p>Every hour for other workloads</p> |Not applicable |
-| Retention options | Daily, weekly, monthly, yearly | Daily, weekly, monthly, yearly | Daily, weekly, monthly, yearly |Daily, weekly, monthly, yearly |
-| Retention period | Up to 99 years | Up to 99 years | Up to 99 years | Up to 99 years |
-| Recovery points in Backup vault | Unlimited | Unlimited | Unlimited | Unlimited |
-| Recovery points on local disk | Not applicable | 64 for File Servers,<br><br>448 for Application Servers | 64 for File Servers,<br><br>448 for Application Servers |Not applicable |
-| Recovery points on tape | Not applicable | Unlimited | Not applicable | Not applicable |
+| 備份頻率 (至備份保存庫) | 每天備份 3 次 | 每天備份 2 次 |每天備份 2 次 | 每天備份 1 次 |
+| 備份頻率 (至磁碟) | 不適用 | <p>每隔 15 分鐘 (SQL Server)</p> <p>每隔 1 小時 (其他工作負載)</p> | <p>每隔 15 分鐘 (SQL Server)</p> <p>每隔 1 小時 (其他工作負載)</p> |不適用 |
+| 保留選項 | 每日、每週、每月、每年 | 每日、每週、每月、每年 | 每日、每週、每月、每年 |每日、每週、每月、每年 |
+| 保留期限 | 最多 99 年 | 最多 99 年 | 最多 99 年 | 最多 99 年 |
+| 備份保存庫中的復原點 | 無限 | 無限 | 無限 | 無限 |
+| 本機磁碟上的復原點 | 不適用 | 64 (檔案伺服器)、<br><br>448 (應用程式伺服器) | 64 (檔案伺服器)、<br><br>448 (應用程式伺服器) |不適用 |
+| 磁帶上的復原點 | 不適用 | 無限 | 不適用 | 不適用 |
 
-## <a name="what-is-the-vault-credential-file?"></a>What is the vault credential file?
+## 什麼是保存庫認證檔？
 
-The vault credentials file is a certificate generated by the portal for each backup vault. The portal then uploads the public key to the Access Control Service (ACS). The private key is provided to the user when downloading the credentials and then entered during the machine registration. The private key authenticates the machine to send backup data to an identified vault in the Azure Backup service.
+保存庫認證檔是入口網站針對每個備份保存庫所產生的憑證。入口網站接著會將公開金鑰上傳至「存取控制服務」(ACS)。當使用者下載認證，而後在電腦註冊期間輸入認證時，會提供私密金鑰給使用者。私密金鑰會對電腦進行驗證，以便將備份資料傳送至 Azure 備份服務中的已識別保存庫。
 
-The vault credential is used only during the registration workflow. It is your responsibility to ensure that the vault credentials file is not compromised. If it falls in the hands of any rogue-user, the vault credentials file can be used to register other machines against the same vault. However, since the backup data is encrypted using a passphrase belonging only to the customer, existing backup data cannot be compromised. To mitigate this concern, vault credentials are set to expire in 48 hours. While you can download the vault credentials of a backup vault any number of times, only the latest file is applicable during the registration workflow.
+保存庫認證僅在註冊工作流程期間使用。您應自行負責，並確保保存庫認證檔不會遭到破解。保存庫認證檔落入任何惡意使用者的手中，則可用來針對相同的保存庫註冊其他電腦。不過，因為備份資料是使用客戶專屬的複雜密碼進行加密，所以現有的備份資料不會遭到洩漏。若要減輕這個問題，保存庫認證設在 48 小時後過期。您可以下載備份保存庫的保存庫認證，次數不受限制，但僅最新的檔案可在註冊工作流程期間提供使用。
 
-## <a name="how-does-azure-backup-differ-from-azure-site-recovery?"></a>How does Azure Backup differ from Azure Site Recovery?
-Many customers confuse backup recovery and disaster recovery. Both capture data and provide restore semantics, but their core value propositions are different.
+## Azure 備份與 Azure Site Recovery 有何不同？
+許多客戶會混淆備份復原和災害復原。兩者都可擷取資料和提供還原語意，但兩者的核心價值主張不同。
 
-Azure Backup backs up data on-premises and in the cloud. Azure Site Recovery coordinates virtual-machine and physical-server replication, failover, and failback. Both services are important because your disaster recovery solution needs to keep your data safe and recoverable (Backup) *and* keep your workloads available (Site Recovery) when outages occur.
+Azure 備份會在內部部署和雲端備份資料。Azure Site Recovery 可協調虛擬機器和實體伺服器的複寫、容錯移轉及容錯回復。這兩項服務都很重要，因為您的災害復原解決方案必須讓資料保持安全且可復原 (備份)，「並且」在服務中斷時讓您的工作負載可供使用 (Site Recovery)。
 
-The following concepts help you make important decisions around backup and disaster recovery.
+下列概念可協助您做出有關備份和災害復原的重要決策。
 
-| Concept | Details | Backup | Disaster recovery (DR) |
+| 概念 | 詳細資料 | 備份 | 災害復原 (DR) |
 | ------- | ------- | ------ | ----------------- |
-| Recovery point objective (RPO) | The amount of acceptable data loss if a recovery needs to be done. | Backup solutions have wide variability in their acceptable RPO. Virtual machine backups usually have an RPO of one day, while database backups have RPOs as low as 15 minutes. | Disaster recovery solutions have low RPOs. The DR copy can be behind by a few seconds or a few minutes. |
-| Recovery time objective (RTO) | The amount of time that it takes to complete a recovery or restore. | Because of the larger RPO, the amount of data that a backup solution needs to process is typically much higher, which leads to longer RTOs. For example, it can take days to restore data from tapes, depending on the time it takes to transport the tape from an off-site location. | Disaster recovery solutions have smaller RTOs because they are more in sync with the source. Fewer changes need to be processed. |
-| Retention | How long data needs to be stored | For scenarios that require operational recovery (data corruption, inadvertent file deletion, OS failure), backup data is typically retained for 30 days or less.<br>From a compliance standpoint, data might need to be stored for months or even years. Backup data is ideally suited for archiving in such cases. | Disaster recovery needs only operational recovery data, which typically takes a few hours or up to a day. Because of the fine-grained data capture used in DR solutions, using DR data for long-term retention is not recommended. |
+| 復原點目標 (RPO) | 在需要進行復原的情況下可接受的資料遺失數量。 | 備份解決方案在其可接受的 RPO 有寬廣的變化性。虛擬機器備份的 RPO 通常為 1 天，而資料庫備份的 RPO 只需 15 分鐘。 | 災害復原解決方案的 RPO 很低。DR 複本可以落後幾秒鐘或幾分鐘的時間。 |
+| 復原時間目標 (RTO) | 完成復原或還原所需的時間量。 | 由於 RPO 較大，備份解決方案需要處理的資料量通常更多，這會導致 RTO 較長。例如，根據從異地傳輸磁帶所需的時間，從磁帶還原資料可能需要數天的時間。 | 因為災害復原解決方案與來源比較能保持同步，所以其 RTO 比較小。需要處理的變更也比較少。 |
+| 保留 | 資料需要儲存多久？ | 在需要作業復原的情況下 (資料損毀、不小心刪除檔案、作業系統失敗)，備份資料通常會保留 30 天或更短。<br>從法規遵循觀點來看，資料可能需要儲存達數個月或甚至數年。在這類情況下，最理想的方式是將備份資料封存。 | 災害復原只需要作業復原資料，通常是幾個小時或最多一天。因為 DR 解決方案中使用的細部資料擷取，所以不建議使用 DR 資料進行長期保留。 |
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-Try out a simple Azure Backup. For instructions, see one of these tutorials:
+嘗試簡單的 Azure 備份。如需指示，請參閱下列教學課程︰
 
-- [Try Azure Backup](backup-try-azure-backup-in-10-mins.md)
-- [Try Azure VM Backup](backup-azure-vms-first-look.md)
+- [試用 Azure 備份](backup-try-azure-backup-in-10-mins.md)
+- [試用 Azure VM 備份](backup-azure-vms-first-look.md)
 
-Because those tutorials help you back up quickly, they show you only the most direct path for backing up your data. For additional information about the type of back up you want to do, see:
+這些教學課程可協助您快速備份，因此只會顯示備份資料的最直接路徑。如需您要執行之備份類型的詳細資訊，請參閱︰
 
-- [Back up Windows machine](backup-configure-vault.md)
-- [Back up application workloads](backup-azure-microsoft-azure-backup.md)
-- [Backup Azure IaaS VMs](backup-azure-vms-prepare.md)
+- [備份 Windows 電腦](backup-configure-vault.md)
+- [備份應用程式工作負載](backup-azure-microsoft-azure-backup.md)
+- [備份 Azure IaaS VM](backup-azure-vms-prepare.md)
 
 
 
@@ -230,8 +228,4 @@ Because those tutorials help you back up quickly, they show you only the most di
 [yellow]: ./media/backup-introduction-to-azure-backup/yellow.png
 [red]: ./media/backup-introduction-to-azure-backup/red.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016-->

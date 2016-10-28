@@ -1,93 +1,90 @@
-## <a name="azure-dns"></a>Azure DNS
+## Azure DNS
 
-Azure DNS is a hosting service for DNS domains, providing name resolution using Microsoft Azure infrastructure.
+Azure DNS 是 DNS 網域的主機服務，採用 Microsoft Azure 基礎結構提供名稱解析。
 
 
-| Property | Description | Sample Value |
+| 屬性 | 說明 | 範例值 |
 |---|---|---|
-| **DNSzones** | Domain zone information to host DNS records of a particular domain | /subscriptions/{guid}/.../providers/Microsoft.Network/dnszones/contoso.com"| 
+| **DNSzones** | 託管特定網域 DNS 記錄的網域區域資訊 | /subscriptions/{guid}/.../providers/Microsoft.Network/dnszones/contoso.com"| 
 
 
-### <a name="dns-record-sets"></a>DNS record sets
+### DNS 記錄集
 
-DNS zones have a child object named record set. Record sets are a collection of host records by type for a DNS zone. Record types are A, AAAA, CNAME, MX, NS, SOA,SRV and TXT.
+DNS 區域擁有名為「記錄集」的子物件。記錄集是 DNS 區域依類型分類之主機記錄的集合。記錄類型有 A、AAAA、CNAME、MX、NS、SOA、SRV 和 TXT。
 
-| Property | Description | Sample value |
+| 屬性 | 說明 | 範例值 |
 |---|---|---|
-| A | IPv4 record type | /subscriptions/{guid}/.../providers/Microsoft.Network/dnszones/contoso.com/A/www |
-| AAAA | IPv6 record type| /subscriptions/{guid}/.../providers/Microsoft.Network/dnszones/contoso.com/AAAA/hostrecord |
-| CNAME | canonical name record type <sup>1</sup> | /subscriptions/{guid}/.../providers/Microsoft.Network/dnszones/contoso.com/CNAME/www |
-| MX | mail record type | /subscriptions/{guid}/.../providers/Microsoft.Network/dnszones/contoso.com/MX/mail |
-| NS | name server record type | /subscriptions/{guid}/.../providers/Microsoft.Network/dnszones/contoso.com/NS/ |
-| SOA | Start of Authority record type <sup>2</sup> | /subscriptions/{guid}/.../providers/Microsoft.Network/dnszones/contoso.com/SOA |
-| SRV | service record type | /subscriptions/{guid}/.../providers/Microsoft.Network/dnszones/contoso.com/SRV |
+| A | IPv4 記錄類型 | /subscriptions/{guid}/.../providers/Microsoft.Network/dnszones/contoso.com/A/www |
+| AAAA | IPv6 記錄類型| /subscriptions/{guid}/.../providers/Microsoft.Network/dnszones/contoso.com/AAAA/hostrecord |
+| CNAME | 正式名稱記錄類型 <sup>1</sup> | /subscriptions/{guid}/.../providers/Microsoft.Network/dnszones/contoso.com/CNAME/www |
+| MX | 郵件記錄類型 | /subscriptions/{guid}/.../providers/Microsoft.Network/dnszones/contoso.com/MX/mail |
+| NS | 名稱伺服器記錄類型 | /subscriptions/{guid}/.../providers/Microsoft.Network/dnszones/contoso.com/NS/ |
+| SOA | 起始授權記錄類型 <sup>2</sup> | /subscriptions/{guid}/.../providers/Microsoft.Network/dnszones/contoso.com/SOA |
+| SRV | 服務記錄類型 | /subscriptions/{guid}/.../providers/Microsoft.Network/dnszones/contoso.com/SRV |
 
-<sup>1</sup> only allows one value per record set.
+<sup>1</sup> 每個記錄集僅允許一個值。
 
-<sup>2</sup> only allows one record type SOA per DNS zone. 
+<sup>2</sup> 每個 DNS 區域僅允許一種記錄類型 SOA。
 
-Sample of DNS zone in Json format:
+Json 格式的 DNS 區域範例：
 
-    {
-      "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json",
-      "contentVersion": "1.0.0.0",
-      "parameters": {
-        "newZoneName": {
-          "type": "String",
-          "metadata": {
-              "description": "The name of the DNS zone to be created."
-          }
-        },
-        "newRecordName": {
-          "type": "String",
-          "defaultValue": "www",
-          "metadata": {
-              "description": "The name of the DNS record to be created.  The name is relative to the zone, not the FQDN."
-          }
-        }
-      },
-      "resources": 
-      [
-        {
-          "type": "microsoft.network/dnszones",
-          "name": "[parameters('newZoneName')]",
-          "apiVersion": "2015-05-04-preview",
-          "location": "global",
-          "properties": {
-          }
-        },
-        {
-          "type": "microsoft.network/dnszones/a",
-          "name": "[concat(parameters('newZoneName'), concat('/', parameters('newRecordName')))]",
-        "apiVersion": "2015-05-04-preview",
-        "location": "global",
-        "properties": 
-        {
-            "TTL": 3600,
-            "ARecords": 
-            [
-                {
-                    "ipv4Address": "1.2.3.4"
-                },
-                {
-                    "ipv4Address": "1.2.3.5"
-                }
-            ]
-        },
-        "dependsOn": [
-            "[concat('Microsoft.Network/dnszones/', parameters('newZoneName'))]"
-        ]
-        }
-        ]
-    }
+	{
+	  "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json",
+	  "contentVersion": "1.0.0.0",
+	  "parameters": {
+	    "newZoneName": {
+	      "type": "String",
+	      "metadata": {
+	          "description": "The name of the DNS zone to be created."
+	      }
+	    },
+	    "newRecordName": {
+	      "type": "String",
+	      "defaultValue": "www",
+	      "metadata": {
+	          "description": "The name of the DNS record to be created.  The name is relative to the zone, not the FQDN."
+	      }
+	    }
+	  },
+	  "resources": 
+	  [
+	    {
+	      "type": "microsoft.network/dnszones",
+	      "name": "[parameters('newZoneName')]",
+	      "apiVersion": "2015-05-04-preview",
+	      "location": "global",
+	      "properties": {
+	      }
+	    },
+	    {
+	      "type": "microsoft.network/dnszones/a",
+		  "name": "[concat(parameters('newZoneName'), concat('/', parameters('newRecordName')))]",
+      	"apiVersion": "2015-05-04-preview",
+      	"location": "global",
+	  	"properties": 
+	  	{
+        	"TTL": 3600,
+			"ARecords": 
+			[
+			    {
+				    "ipv4Address": "1.2.3.4"
+				},
+				{
+				    "ipv4Address": "1.2.3.5"
+				}
+			]
+	  	},
+	  	"dependsOn": [
+        	"[concat('Microsoft.Network/dnszones/', parameters('newZoneName'))]"
+      	]
+    	}
+	  	]
+	}
 
-## <a name="additional-resources"></a>Additional resources
+## 其他資源
 
-Read the [REST API documentation for DNS zones ](https://msdn.microsoft.com/library/azure/mt130626.aspx) for more information.
+如需詳細資訊，請參閱[適用於 DNS 區域的 REST API 文件](https://msdn.microsoft.com/library/azure/mt130626.aspx)。
 
-Read the [REST API documentation for DNS record sets](https://msdn.microsoft.com/library/azure/mt130627.aspx) for more information.
+如需詳細資訊，請參閱[適用於 DNS 記錄集的 REST API 文件](https://msdn.microsoft.com/library/azure/mt130627.aspx)。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0128_2016-->

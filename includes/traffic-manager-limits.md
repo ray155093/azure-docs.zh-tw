@@ -1,10 +1,8 @@
-Resource| Default limit
+資源| 預設限制
 ---|---
-Profiles per subscription | 100 <sup>1</sup>
-Endpoints per profile| 200
+每一訂用帳戶的設定檔 | 100 <sup>1</sup>
+每一設定檔的端點| 200
 
-<sup>1</sup>Contact support in case you need to increase these limits.
+<sup>1</sup>若您需要增加這些限制，請連絡支援人員。
 
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=Nov15_HO1-->

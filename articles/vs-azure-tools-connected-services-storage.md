@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="Add Azure Storage by using Connected Services in Visual Studio | Microsoft Azure"
-   description="Add Azure Storage to your app by using the Visual Studio Add Connected Services dialog box"
+   pageTitle="使用 Visual Studio 的加入已連接服務加入 Azure 儲存體 | Microsoft Azure"
+   description="使用 Visual Studio 的加入已連接服務對話方塊加入 Azure 儲存體"
    services="visual-studio-online"
    documentationCenter="na"
    authors="TomArcher"
@@ -15,89 +15,83 @@
    ms.date="08/15/2016"
    ms.author="tarcher" />
 
+# 使用 Visual Studio 的已連接服務加入 Azure 儲存體
 
-# <a name="adding-azure-storage-by-using-visual-studio-connected-services"></a>Adding Azure storage by using Visual Studio Connected Services
+## Overview
 
-## <a name="overview"></a>Overview
+透過 Visual Studio 2015，您可以使用 [加入已連接服務] 對話方塊，將任何 C# 雲端服務、.NET 後端行動服務、ASP.NET 網站或服務、ASP.NET 5 服務或 Azure WebJob 服務連接至 Azure 儲存體。已連接服務功能會加入所有必要的參考和連接程式碼，並且適當地修改組態檔。對話方塊也會帶您前往說明後續步驟的文件，以啟動 Blob 儲存體、佇列和資料表。
 
-With Visual Studio 2015, you can connect any C# cloud service, .NET backend mobile service, ASP.NET website or service, ASP.NET 5 service, or Azure WebJob service to Azure Storage by using the **Add Connected Services** dialog. The connected service functionality adds all the needed references and connection code, and modifies your configuration files appropriately. The dialog also takes you to documentation that tells you what the next steps are to start blob storage, queues, and tables.
+## 支援的專案類型
 
-## <a name="supported-project-types"></a>Supported Project Types
+您可以使用 [已連接服務] 對話方塊來連接到 Azure 儲存體中的下列專案類型。
 
-You can use the Connected Services dialog to connect to Azure Storage in the following project types.
+- ASP.NET Web 專案
 
-- ASP.NET Web Projects
+- ASP.NET 5 專案
 
-- ASP.NET 5 Projects
+- .NET 雲端服務 Web 角色和背景工作角色專案
 
-- .NET Cloud Service Web Role and Worker Role Projects
+- .NET 行動服務專案
 
-- .NET Mobile Services Projects
-
-- Azure WebJob Projects
+- Azure WebJob 專案
 
 
-## <a name="connect-to-azure-storage-using-the-connected-services-dialog"></a>Connect to Azure Storage using the Connected Services dialog
+## 使用已連接服務對話方塊連接到 Azure 儲存體
 
-1. Make sure you have an Azure account. If you don't have an Azure account, you can sign up for a [free trial](http://go.microsoft.com/fwlink/?LinkId=518146). Once you have an Azure account, you can create storage accounts, create mobile services, and configure Azure Active Directory.
+1. 確定您具有 Azure 帳戶。如果您沒有 Azure 帳戶，您可以註冊[免費試用](http://go.microsoft.com/fwlink/?LinkId=518146)。一旦您有 Azure 帳戶，即可建立儲存體帳戶、建立行動服務並設定 Azure Active Directory。
 
-1. Open your project in Visual Studio, open the context menu for the **References** node in Solution Explorer, and then choose **Add Connected Service**.
+1. 在 Visual Studio 中開啟您的專案，開啟 [方案總管] 中 [參考] 節點的內容功能表，然後選擇 [加入已連接服務]。
 
-    ![Adding a connected service](./media/vs-azure-tools-connected-services-storage/IC796702.png)
+    ![加入已連接服務](./media/vs-azure-tools-connected-services-storage/IC796702.png)
 
-1. In the **Add Connected Service** dialog box, choose **Azure Storage**, and then choose the **Configure** button. You may be prompted to log into Azure if you haven't already done so.
+1. 在 [加入已連接服務] 對話方塊中，選擇 [Azure 儲存體]，然後選擇 [設定] 按鈕。如果您尚未登入 Azure，系統可能會提示您這麼做。
 
-    ![Add Connected Service dialog box - Storage](./media/vs-azure-tools-connected-services-storage/IC796703.png)
+    ![加入已連接服務對話方塊 - 儲存體](./media/vs-azure-tools-connected-services-storage/IC796703.png)
 
-1. In the **Azure Storage** dialog box, select an existing storage account, and select **Add**.
+1. 在 [Azure 儲存體] 對話方塊方塊中，選取現有的儲存體帳戶，然後選取 [新增]。
 
-    If you need to create a new storage account, go to the next step. Otherwise, skip to step 6.
+    如果您需要建立新的儲存體帳戶，請移至下一個步驟。否則，跳到步驟 6。
 
-    ![Azure Storage dialog box](./media/vs-azure-tools-connected-services-storage/IC796704.png)
+    ![Azure 儲存體對話方塊](./media/vs-azure-tools-connected-services-storage/IC796704.png)
 
-1. To create a new storage account: 
+1. 若要建立新的儲存體帳戶：
 
-    1. Choose the **Create a New Storage Account** button at the bottom of the Azure Storage dialog box.
+    1. 選擇 [Azure 儲存體] 對話方塊底部的 [建立新的儲存體帳戶] 按鈕。
 
-    1. Fill out the **Create Storage Account** dialog box and then choose the **Create** button.
+    1. 填寫 [建立儲存體帳戶] 對話方塊，然後選擇 [建立] 按鈕。
     
-        ![Azure Storage dialog box](./media/vs-azure-tools-connected-services-storage/create-storage-account.png)
+        ![Azure 儲存體對話方塊](./media/vs-azure-tools-connected-services-storage/create-storage-account.png)
 
-        When you're back in the **Azure Storage** dialog box, the new storage appears in the list.
+        當您回到 [Azure 儲存體] 對話方塊時，新的儲存體會出現在清單中。
 
-    1. Select the new storage in the list, and select **Add**.
+    1. 選取清單中的新儲存體，然後選取 [新增]。
 
-1. The  storage connected service appears under the Service References node of your WebJob project.
+1. 儲存體的已連接服務會出現在 WebJob 專案的 [服務參考] 節點之下。
 
-    ![Azure storage in web jobs project](./media/vs-azure-tools-connected-services-storage/IC796705.png)
+    ![Web 工作專案中的 Azure 儲存體](./media/vs-azure-tools-connected-services-storage/IC796705.png)
 
-1. Review the Getting Started page that appears and find out how your project was modified. A Getting Started page appears in your browser whenever you add a connected service. You can review the suggested next steps and code examples, or switch to the What Happened page to see what references were added to your project, and how your code and configuration files were modified.
+1. 檢閱所顯示的 [開始使用] 頁面並了解您的專案修改方式。每當您加入已連接服務時，您的瀏覽器就會出現 [開始使用] 頁面。您可以檢閱建議的後續步驟和程式碼範例，或切換到 [發生什麼情形] 頁面以查看哪些參考已加入至您的專案，以及您的程式碼和組態檔的修改方式。
 
-## <a name="how-your-project-is-modified"></a>How your project is modified
+## 您的專案修改方式
 
-When you finish the dialog, Visual Studio adds references and modifies certain configuration files. The specific changes depend on the project type. 
+當您完成對話方塊時，Visual Studio 會加入參考並修改某些組態檔。特定變更視專案類型而定。
 
- - For ASP.NET projects, see [What happened – ASP.NET Projects](http://go.microsoft.com/fwlink/p/?LinkId=513126). 
- - For ASP.NET 5 projects, see [What happened – ASP.NET 5 Projects](http://go.microsoft.com/fwlink/p/?LinkId=513124). 
- - For cloud service projects (web roles and worker roles), see [What happened – Cloud Service projects](http://go.microsoft.com/fwlink/p/?LinkId=516965). 
- - For WebJob projects, see [What happened - WebJob projects](./storage/vs-storage-webjobs-what-happened.md).
+ - 若為 ASP.NET 專案，請參閱[發生什麼情形 – ASP.NET 專案](http://go.microsoft.com/fwlink/p/?LinkId=513126)。
+ - 若為 ASP.NET 5 專案，請參閱[發生什麼情形 – ASP.NET 5 專案](http://go.microsoft.com/fwlink/p/?LinkId=513124)。
+ - 若為雲端服務專案 (Web 角色和背景工作角色)，請參閱[發生什麼情形 – 雲端服務專案](http://go.microsoft.com/fwlink/p/?LinkId=516965)。
+ - 若為 WebJob 專案，請參閱[發生什麼情形 – WebJob 專案](./storage/vs-storage-webjobs-what-happened.md)。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-1. Using the Getting Started code samples as a guide, create the type of storage that you want, and then start writing code to access your storage account!
+1. 使用 [開始使用] 程式碼範例做為指南，建立您要的儲存體類型，然後開始撰寫程式碼以存取您的儲存體帳戶！
 
-1. Ask questions and get help
-     - [MSDN Forum: Azure Storage](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazuredata)
+1. 提出問題並取得協助
+     - [MSDN 論壇︰Azure 儲存體](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazuredata)
 
-     - [Azure Storage Team Blog](http://blogs.msdn.com/b/windowsazurestorage/)
+     - [Azure 儲存體團隊部落格](http://blogs.msdn.com/b/windowsazurestorage/)
 
-     - [Storage at azure.microsoft.com](https://azure.microsoft.com/services/storage/)
+     - [azure.microsoft.com 上的儲存體](https://azure.microsoft.com/services/storage/)
 
-     - [Storage Documentation at azure.microsoft.com](https://azure.microsoft.com/documentation/services/storage/)
+     - [azure.microsoft.com 上的儲存體文件](https://azure.microsoft.com/documentation/services/storage/)
 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

@@ -1,149 +1,141 @@
 <properties
-    pageTitle="Add a VM with artifacts to a lab in Azure DevTest Labs | Microsoft Azure"
-    description="Learn how to add a VM with artifacts in Azure DevTest Labs"
-    services="devtest-lab,virtual-machines"
-    documentationCenter="na"
-    authors="tomarcher"
-    manager="douge"
-    editor=""/>
+	pageTitle="將具有構件的 VM 加入 Azure DevTest Labs 中的實驗室 | Microsoft Azure"
+	description="了解如何將具有構件的 VM 加入 Azure DevTest Labs"
+	services="devtest-lab,virtual-machines"
+	documentationCenter="na"
+	authors="tomarcher"
+	manager="douge"
+	editor=""/>
 
 <tags
-    ms.service="devtest-lab"
-    ms.workload="na"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/30/2016"
-    ms.author="tarcher"/>
+	ms.service="devtest-lab"
+	ms.workload="na"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/30/2016"
+	ms.author="tarcher"/>
 
-
-# <a name="add-a-vm-with-artifacts-to-a-lab-in-azure-devtest-labs"></a>Add a VM with artifacts to a lab in Azure DevTest Labs
+# 將具有構件的 VM 加入 Azure DevTest Labs 中的實驗室
 
 > [AZURE.VIDEO how-to-create-vms-with-artifacts-in-a-devtest-lab]
 
-You create a VM in a lab from a *base* that is either a [custom image](./devtest-lab-create-template.md), [formula](./devtest-lab-manage-formulas.md), or [Marketplace image](./devtest-lab-configure-marketplace-images.md).
+您會在實驗室中，從一個「基底」([自訂映像](./devtest-lab-create-template.md)、[公式](./devtest-lab-manage-formulas.md)或 [Marketplace 映像](./devtest-lab-configure-marketplace-images.md)) 建立 VM。
 
-DevTest Labs *artifacts* let you specify *actions* that are performed when the VM is created. 
+研發/測試實驗室的「構件」可讓您指定在建立 VM 時所執行的「動作」。
 
-Artifact actions can perform procedures such as running Windows PowerShell scripts, running Bash commands, and installing software. 
+構件動作可以執行諸如下列動作的程序：執行 Windows PowerShell 指令碼、執行 Bash 命令，以及安裝軟體。
 
-Artifact *parameters* let you customize the artifact for your particular scenario.
+構件「參數」可讓您自訂適用於特定案例的構件。
 
-This article shows you how to create a VM in your lab with artifacts.
+本文將示範如何使用構件，在實驗室中建立 VM。
 
-## <a name="add-a-vm-with-artifacts"></a>Add a VM with artifacts
+## 加入具有構件的 VM
 
-1. Sign in to the [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
 
-1. Select **More Services**, and then select **DevTest Labs** from the list.
+1. 選取 [更多服務]，然後從清單中選取 [DevTest Labs]。
 
-1. From the list of labs, select the lab in which you want to create the VM.  
+1. 從實驗室清單中，選取您想要在其中建立 VM 的實驗室。
 
-1. On the lab's **Overview** blade, select **+ Virtual Machine**.  
-    ![Add VM button](./media/devtest-lab-add-vm-with-artifacts/devtestlab-home-blade-add-vm.png)
+1. 在實驗室的 [概觀] 刀鋒視窗中，選取 [+ 虛擬機器]。![加入 VM 按鈕](./media/devtest-lab-add-vm-with-artifacts/devtestlab-home-blade-add-vm.png)
 
-1. On the **Choose a base** blade, select a base for the VM.
+1. 在 [選擇基底] 刀鋒視窗中，選取 VM 的基底。
 
-1. On the **Virtual machine** blade, enter a name for the new virtual machine in the **Virtual machine name** text box.
+1. 在 [虛擬機器] 刀鋒視窗的 [虛擬機器名稱] 文字方塊中，輸入新虛擬機器的名稱。
 
-    ![Lab VM blade](./media/devtest-lab-add-vm-with-artifacts/devtestlab-lab-vm-blade.png)
+	![實驗室 VM 刀鋒視窗](./media/devtest-lab-add-vm-with-artifacts/devtestlab-lab-vm-blade.png)
 
-1. Enter a **User Name** that will be granted administrator privileges on the virtual machine.  
+1. 輸入**使用者名稱**，此名稱將被授與虛擬機器上的系統管理員權限。
 
-1. If you want to use a password stored in your *secret store*, select **Use secrets from my secret store**, and specify a key value that corresponds to your secret (password). Otherwise, simply enter a password in the text field labeled **Type a value**.
+1. 如果您想使用儲存在「密碼存放區」的密碼，請選取 [使用密碼存放區中的密碼]，並指定對應您的密碼的金鑰值。否則，請在標示為 [輸入值] 的文字欄位中輸入密碼。
  
-1. Select **Virtual machine size** and select one of the predefined items that specify the processor cores, RAM size, and the hard drive size of the VM to create.
+1. 選取 [虛擬機器大小]，然後選取其中一個預先定義的項目，這些項目可以指定處理器核心、RAM 大小，以及要建立的 VM 的硬碟大小。
 
-1. Select **Virtual network** and select the desired virtual network.
+1. 選取 [虛擬網路]，然後選取所需的虛擬網路。
 
-1. Select **Subnet** and select subnet.
+1. 選取 [子網路]，然後選取子網路。
 
-1. If the lab policy is set to allow public IP addresses for the selected subnet, specify whether you want the IP address to be public by selecting either **Yes** or **No**. Otherwise, this option is disabled and selected as **No**. 
+1. 如果將實驗室原則設定為允許所選子網路的公用 IP 位址，請選取 [是] 或 [否]，來指定您是否想要讓 IP 位址成為公用的位址。否則，這個選項會停用並選取為 [否]。
 
-1. Select **Artifacts** and - from the list of artifacts - select and configure the artifacts that you want to add to the base image. 
-**Note:** If you're new to DevTest Labs or configuring artifacts, skip to the [Add an existing artifact to a VM](#add-an-existing-artifact-to-a-vm) section, and then return here when finished.
+1. 選取 [構件]，從構件清單中選取並設定您想要加入至基本映像的構件。**附註：**如果您剛接觸到研發/測試實驗室或設定構件，請先跳到[將現有的構件加入至 VM](#add-an-existing-artifact-to-a-vm) 一節，完成該節之後再返回此處。
 
-1. If you want to view or copy the Azure Resource Manager template, skip to the [Save Azure Resource Manager template](#save-arm-template) section, and return here when finished.
+1. 如果您想要檢視或複製 Azure Resource Manager 範本，請跳至[儲存 Azure Resource Manager 範本](#save-arm-template)一節，然後在完成時回到這裡。
 
-1. Select **Create** to add the specified VM to the lab.
+1. 選取 [建立]，將指定的 VM 加入實驗室。
 
-1. The lab blade displays the status of the VM's creation; first as **Creating**, then as **Running** after the VM has been started.
+1. [實驗室] 刀鋒視窗會顯示 VM 的建立狀態，其狀態會先是 [正在建立]，在啟動該 VM 之後才會變成 [正在執行]。
 
-1. Go to the [Next Steps](#next-steps) section. 
+1. 請移至[後續步驟](#next-steps)一節。
 
-## <a name="add-an-existing-artifact-to-a-vm"></a>Add an existing artifact to a VM
+## 將現有的構件加入至 VM
 
-While creating a VM, you can add existing artifacts. Each lab includes artifacts from the Public DevTest Labs Artifact Repository as well as artifacts that you've created and added to your own Artifact Repository.
-To discover how to create artifacts, see the article, [Learn how to author your own artifacts for use with DevTest Labs](devtest-lab-artifact-author.md).
+建立 VM 時，您可以加入現有的構件。每個實驗室都會包括來自公用研發/測試實驗室構件儲存機制的構件，以及您已建立並加入至您自己之構件儲存機制的構件。若要了解如何建立構件，請參閱[了解如何撰寫您自己的構件以用於研發/測試實驗室](devtest-lab-artifact-author.md)文章。
 
-1. On the **Virtual machine** blade, select **Artifacts**. 
+1. 在 [虛擬機器] 刀鋒視窗中，選取 [構件]。
 
-1. On the **Add artifacts** blade, select the desired artifact.  
+1. 在 [加入構件] 刀鋒視窗中，選取所需的構件。
 
-    ![Add Artifacts blade](./media/devtest-lab-add-vm-with-artifacts/devtestlab-add-artifact-blade.png)
+	![加入構件刀鋒視窗](./media/devtest-lab-add-vm-with-artifacts/devtestlab-add-artifact-blade.png)
 
-1. Enter the required parameter values and any optional parameters that you need.  
+1. 輸入必要的參數值以及任何您所需的選用參數。
 
-1. Select **Add** to add the artifact and return to the **Add Artifacts** blade.
+1. 選取 [加入] 以加入構件，並返回 [加入構件] 刀鋒視窗。
 
-1. Continue adding artifacts as needed for your VM.
+1. 視需要繼續為您的 VM 加入構件。
 
-1. Once you've added your artifacts, you can [change the order in which the artifacts are run](#change-the-order-in-which-artifacts-are-run). You can also go back to [view or modify an artifact](#view-or-modify-an-artifact).
+1. 加入構件之後，您可以[變更構件的執行順序](#change-the-order-in-which-artifacts-are-run)。您也可以返回來[檢視或修改構件](#view-or-modify-an-artifact)。
 
-## <a name="change-the-order-in-which-artifacts-are-run"></a>Change the order in which artifacts are run
+## 變更構件的執行順序
 
-By default, the actions of the artifacts are executed in the order in which they are added to the VM. The following steps illustrate how to change the order in which the artifacts are run.
+根據預設，構件的動作是依照它們加入 VM 的順序來執行。下列步驟說明如何變更構件的執行順序。
 
-1. At the top of the **Add Artifacts** blade, select the link indicating the number of artifacts that have been added to the VM.
+1. 在 [加入構件] 刀鋒視窗頂端，選取會指出已加入 VM 的構件數目的連結。
 
-    ![Number of artifacts added to VM](./media/devtest-lab-add-vm-with-artifacts/devtestlab-add-artifacts-blade-selected-artifacts.png)
+    ![新增至 VM 的構件數目](./media/devtest-lab-add-vm-with-artifacts/devtestlab-add-artifacts-blade-selected-artifacts.png)
 
-1. To specify the order in which the artifacts are run, drag and drop the artifacts into the desired order. **Note:** If you have having trouble dragging the artifact, make sure that you are dragging from the left side of the artifact. 
+1. 若要指定構件執行的順序，請將構件拖放到預期的順序。**附註︰**如果您在拖曳構件時發生問題，請確定您是從構件左側進行拖曳。
 
-1. Select **OK** when done.  
+1. 完成時選取 [確定]。
 
-## <a name="view-or-modify-an-artifact"></a>View or modify an artifact
+## 檢視或修改構件
 
-The following steps illustrate how to view or modify the parameters of an artifact:
+下列步驟說明如何檢視或修改構件的參數︰
 
-1. At the top of the **Add Artifacts** blade, select the link indicating the number of artifacts that have been added to the VM.
+1. 在 [加入構件] 刀鋒視窗頂端，選取會指出已加入 VM 的構件數目的連結。
 
-    ![Number of artifacts added to VM](./media/devtest-lab-add-vm-with-artifacts/devtestlab-add-artifacts-blade-selected-artifacts.png)
+    ![新增至 VM 的構件數目](./media/devtest-lab-add-vm-with-artifacts/devtestlab-add-artifacts-blade-selected-artifacts.png)
 
-1. On the **Selected Artifacts** blade, select the artifact that you want to view or edit.  
+1. 在 [選取的構件] 刀鋒視窗中，選取您想要檢視或編輯的構件。
 
-1. On the **Add Artifact** blade, make any needed changes, and select **OK** to close the **Add Artifact** blade.
+1. 在 [加入構件] 刀鋒視窗中，進行任何所需的變更，然後選取 [確定] 以關閉 [加入構件] 刀鋒視窗 。
 
-1. Select **OK** to close the **Selected Artifacts** blade.
+1. 選取 [確定] 以關閉 [選取的構件] 刀鋒視窗。
 
-## <a name="save-azure-resource-manager-template"></a>Save Azure Resource Manager template
+## 儲存 Azure Resource Manager 範本
 
-An Azure Resource Manager template provides a declarative way to define a repeatable deployment. The following steps explain how to save the Azure Resource Manager template for the VM being created.
-Once saved, you can use the Azure Resource Manager template to [deploy new VMs with Azure PowerShell](../resource-group-overview.md#template-deployment).
+Azure Resource Manager 範本提供宣告式方法來定義可重複的部署。下列步驟說明如何為建立的 VM 儲存 Azure Resource Manager 範本。儲存之後，您可以使用 Azure Resource Manager 範本[透過 Azure PowerShell 部署新的 VM](../resource-group-overview.md#template-deployment)。
 
-1. On the **Virtual machine** blade, select **View ARM Template**.
+1. 在 [虛擬機器] 刀鋒視窗中，選取 [檢視 ARM 範本]。
 
-1. On the **View Azure Resource Manager Template blade**, select the template text.
+1. 在 [檢視 Azure Resource Manager 範本] 刀鋒視窗中，選取範本文字。
 
-1. Copy the selected text to the clipboard.
+1. 將選取的文字複製到剪貼簿。
 
-1. Select **OK** to close the **View Azure Resource Manager Template blade**.
+1. 選取 [確定] 以關閉 [檢視 Azure Resource Manager 範本] 刀鋒視窗。
 
-1. Open a text editor.
+1. 開啟文字編輯器。
 
-1. Paste in the template text from the clipboard.
+1. 從剪貼簿貼上範本文字。
 
-1. Save the file for later use.
+1. 儲存檔案供稍後使用。
 
 [AZURE.INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-- Once the VM has been created, you can connect to the VM by selecting **Connect** on the VM's blade.
-- Learn how to [create custom artifacts for your DevTest Labs VM](devtest-lab-artifact-author.md).
-- Explore the [DevTest Labs ARM QuickStart template gallery](https://github.com/Azure/azure-devtestlab/tree/master/ARMTemplates)
+- 一旦建立 VM 之後，您可以選取 VM 刀鋒視窗上的 [連接] 來連接至 VM。
+- 了解如何[為您的 DevTest Labs VM 建立自訂構件](devtest-lab-artifact-author.md)。
+- 瀏覽 [DevTest Labs ARM 快速入門範本資源庫](https://github.com/Azure/azure-devtestlab/tree/master/ARMTemplates)
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!----HONumber=AcomDC_0907_2016-->

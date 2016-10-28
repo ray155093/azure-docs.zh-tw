@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Resource Manager template for a secret in a key vault | Microsoft Azure"
-   description="Shows the Resource Manager schema for deploying key vault secrets through a template."
+   pageTitle="適用於金鑰保存庫中密碼的資源管理員範本 | Microsoft Azure"
+   description="說明可透過範本部署金鑰保存庫密碼的資源管理員結構描述。"
    services="azure-resource-manager,key-vault"
    documentationCenter="na"
    authors="tfitzmac"
@@ -16,14 +16,13 @@
    ms.date="06/23/2016"
    ms.author="tomfitz"/>
 
+# 金鑰保存庫密碼範本結構描述
 
-# <a name="key-vault-secret-template-schema"></a>Key vault secret template schema
+建立儲存於金鑰保存庫的密碼。此資源類型通常會部署為[金鑰保存庫](resource-manager-template-keyvault.md)的子資源。
 
-Creates a secret that is stored in a key vault. This resource type is frequently deployed as a child resource of [key vault](resource-manager-template-keyvault.md).
+## 結構描述格式
 
-## <a name="schema-format"></a>Schema format
-
-To create a key vault secret, add the following schema to your template. The secret can be defined as either a child resource of a key vault or as top-level resource. You can define it as a child resource when the key vault is deployed in the same template. You will need to define the secret as a top-level resource when the key vault is not deployed in the same template, or when you need to create multiple secrets by looping on the resource type. 
+若要建立金鑰保存庫密碼，可將下列結構描述新增至範本。密碼可定義為金鑰保存庫的子資源或做為最上層資源。將金鑰保存庫部署於同一個範本時，您可以將密碼定義為子資源。若金鑰保存庫未部署於同一個範本，或者您需要藉由在資源類型中執行迴圈來建立多個密碼時，就需要將密碼定義為最上層資源。
 
     {
         "type": enum,
@@ -35,29 +34,29 @@ To create a key vault secret, add the following schema to your template. The sec
         "dependsOn": [ array values ]
     }
 
-## <a name="values"></a>Values
+## 值
 
-The following tables describe the values you need to set in the schema.
+下表描述您在結構描述中必須設定的值。
 
-| Name | Value |
+| 名稱 | 值 |
 | ---- | ---- | 
-| type | Enum<br />Required<br />**secrets** (when deployed as a child resource of key vault) or<br /> **Microsoft.KeyVault/vaults/secrets** (when deployed as a top-level resource)<br /><br />The resource type to create. |
-| apiVersion | Enum<br />Required<br />**2015-06-01** or **2014-12-19-preview**<br /><br />The API version to use for creating the resource. | 
-| name | String<br />Required<br />A single word when deployed as a child resource of a key vault, or in the format **{key-vault-name}/{secret-name}** when deployed as a top-level resource to be added to an existing key vault.<br /><br />The name of the secret to create. |
-| properties | Object<br />Required<br />[properties object](#properties)<br /><br />An object that specifies the value of the secret to create. |
-| dependsOn | Array<br />Optional<br />A comma-separated list of a resource names or resource unique identifiers.<br /><br />The collection of resources this link depends on. If the key vault for the secret is deployed in the same template, include the name of the key vault in this element to ensure it is deployed first. |
+| 類型 | 列舉<br />必要<br />**secrets** (部署為金鑰保存庫的子資源時) 或<br /> **Microsoft.KeyVault/vaults/secrets** (部署為最上層資源時)<br /><br />要建立的資源類型。 |
+| apiVersion | 列舉<br />必要<br />**2015-06-01** 或 **2014-12-19-preview**<br /><br />要用來建立資源的應用程式開發介面 (API) 版本。 | 
+| 名稱 | 字串<br />必要<br />部署為金鑰保存庫子資源時的單一字組，或部署為要新增至現有金鑰保存庫的最上層資源且格式為 **{金鑰保存庫名稱}/{密碼名稱}** 時的單一字組。<br /><br />要建立的密碼名稱。 |
+| 屬性 | 物件<br />必要<br />[屬性物件](#properties)<br /><br />指定要建立之密碼值的物件。 |
+| dependsOn | 陣列<br />選用<br />以逗號分隔的資源名稱或資源唯一識別碼清單。<br /><br />此連結所相依的資源集合。如果將密碼的金鑰保存庫部署於同一個範本，請在這個項目中包含金鑰保存庫的名稱，以確保會優先部署它。 |
 
 <a id="properties" />
-### <a name="properties-object"></a>properties object
+### 屬性物件
 
-| Name | Value |
+| 名稱 | 值 |
 | ---- | ---- | 
-| value | String<br />Required<br /><br />The secret value to store in the key vault. When passing in a value for this property, use a parameter of type **securestring**.  |
+| value | 字串<br />必要<br /><br />儲存於金鑰保存庫的密碼值。傳入這個屬性的值時，請使用類型為 **securestring** 的參數。 |
 
-    
-## <a name="examples"></a>Examples
+	
+## 範例
 
-The first example deploys a secret as a child resource of a key vault.
+第一個範例將密碼部署為金鑰保存庫的子資源。
 
     {
         "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
@@ -183,7 +182,7 @@ The first example deploys a secret as a child resource of a key vault.
         }]
     }
 
-The second example deploys the secret as a top-level resource that is stored in an existing key vault.
+第二個範例將密碼部署為最上層資源 (其儲存於現有的金鑰保存庫中)。
 
     {
         "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
@@ -223,15 +222,9 @@ The second example deploys the secret as a top-level resource that is stored in 
     }
 
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-- For general information about key vaults, see [Get started with Azure Key Vault](./key-vault/key-vault-get-started.md).
-- For an example of referencing a key vault secret when deploying templates, see [Pass secure values during deployment](resource-manager-keyvault-parameter.md).
+- 如需金鑰保存庫的一般資訊，請參閱[開始使用 Azure 金鑰保存庫](./key-vault/key-vault-get-started.md)。
+- 如需部署範本時參考金鑰保存庫密碼的範例，請參閱[在部署期間傳遞安全值](resource-manager-keyvault-parameter.md)。
 
-
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0629_2016-->

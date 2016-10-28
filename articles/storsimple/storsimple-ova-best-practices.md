@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="Best practices for StorSimple Virtual Array | Microsoft Azure"
-   description="Describes the best practices for deploying and managing the StorSimple Virtual Array."
+   pageTitle="StorSimple Virtual Array 的最佳作法 | Microsoft Azure"
+   description="描述部署和管理 StorSimple Virtual Array 的最佳作法。"
    services="storsimple"
    documentationCenter="NA"
    authors="alkohli"
@@ -15,344 +15,338 @@
    ms.date="08/09/2016"
    ms.author="alkohli" />
 
+# StorSimple Virtual Array 的最佳作法
 
-# <a name="storsimple-virtual-array-best-practices"></a>StorSimple Virtual Array best practices
+## Overview
 
-## <a name="overview"></a>Overview
+Microsoft Azure StorSimple Virtual Array 是一個整合式儲存體解決方案，可管理 Hypervisor 中執行之內部部署虛擬裝置與 Microsoft Azure 雲端儲存體之間的儲存體工作。StorSimple Virtual Array 是 8000 系列實體陣列的替代品，它既有效率又符合成本效益。虛擬陣列可在現有 Hypervisor 基礎結構上執行、支援 iSCSI 和 SMB 通訊協定，而且適合用於遠端辦公室/分公司案例。如需 StorSimple 解決方案的詳細資訊，請前往 [Microsoft Azure StorSimple 概觀](https://www.microsoft.com/zh-TW/server-cloud/products/storsimple/overview.aspx)。
 
-Microsoft Azure StorSimple Virtual Array is an integrated storage solution that manages storage tasks between an on-premises virtual device running in a hypervisor and Microsoft Azure cloud storage. StorSimple Virtual Array is an efficient, cost-effective alternative to the 8000 series physical array. The virtual array can run on your existing hypervisor infrastructure, supports both the iSCSI and the SMB protocols, and is well-suited for remote office/branch office scenarios. For more information on the StorSimple solutions, go to [Microsoft Azure StorSimple Overview](https://www.microsoft.com/en-us/server-cloud/products/storsimple/overview.aspx).
+本文內容涵蓋 StorSimple Virtual Array 的初始設定、部署和管理期間所實作的最佳作法。這些最佳作法提供了經過驗證的指導方針，可讓您了解如何設定和管理虛擬陣列。本文適用對象為部署和管理資料中心內虛擬陣列的 IT 系統管理員。
 
-This article covers the best practices implemented during the initial setup, deployment, and management of the StorSimple Virtual Array. These best practices provide validated guidelines for the setup and management of your virtual array. This article is targeted towards the IT administrators who deploy and manage the virtual arrays in their datacenters.
+建議您定期檢閱最佳作法，以協助確保設定或作業流程有所變更時，裝置仍符合規範。如果您在虛擬陣列上實作這些最佳作法時遇到任何問題，請[連絡 Microsoft 支援服務](storsimple-contact-microsoft-support.md)以取得協助。
 
-We recommend a periodic review of the best practices to help ensure your device is still in compliance when changes are made to the setup or operation flow. Should you encounter any issues while implementing these best practices on your virtual array, [contact Microsoft Support](storsimple-contact-microsoft-support.md) for assistance.
+## 組態的最佳作法 
 
-## <a name="configuration-best-practices"></a>Configuration best practices 
+這些最佳作法涵蓋初始設定和部署虛擬陣列時所需遵循的指導方針。最佳作法包括了與佈建虛擬機器、群組原則設定、調整大小、設定網路功能、設定儲存體帳戶，以及建立虛擬陣列的共用和磁碟區有關的最佳作法。
 
-These best practices cover the guidelines that need to be followed during the initial setup and deployment of the virtual arrays. These best practices include those related to the provisioning of the virtual machine, group policy settings, sizing, setting up the networking, configuring storage accounts, and creating shares and volumes for the virtual array. 
+### 佈建 
 
-### <a name="provisioning"></a>Provisioning 
+StorSimple Virtual Array 是佈建在主機伺服器 Hypervisor (Hyper-V 或 VMware) 上的虛擬機器 (VM)。在佈建虛擬機器時，請確保主機能夠提供足夠的資源。如需詳細資訊，請移至佈建陣列所需的[最低資源需求](storsimple-ova-deploy2-provision-hyperv.md#step-1-ensure-that-the-host-system-meets-minimum-virtual-device-requirements)。
 
-StorSimple Virtual Array is a virtual machine (VM) provisioned on the hypervisor (Hyper-V or VMware) of your host server. When provisioning the virtual machine, ensure that your host is able to dedicate sufficient resources. For more information, go to [minimum resource requirements](storsimple-ova-deploy2-provision-hyperv.md#step-1-ensure-that-the-host-system-meets-minimum-virtual-device-requirements) to provision an array. 
-
-Implement the following best practices when provisioning the virtual array:
+在佈建虛擬陣列時，請實作下列最佳作法︰
 
 
-|                        | Hyper-V                                                                                                                                        | VMware                                                                                                               |
+| | Hyper-V | VMware |
 |------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
-| **Virtual machine type**   | **Generation 2** VM for use with Windows Server 2012 or later and a *.vhdx* image. <br></br> **Generation 1** VM for use with a Windows Server 2008 or later and a *.vhd* image.                                                                                                              | Use virtual machine version 8 - 11 when using *.vmdk* image.                                                                      |
-| **Memory type**            | Configure as **static memory**. <br></br> Do not use the **dynamic memory** option.            |                                                    |
-| **Data disk type**         | Provision as **dynamically expanding**.<br></br> **Fixed size** takes a long time. <br></br> Do not use the **differencing** option.                                                                                                                   | Use the **thin provision** option.                                                                                      |
-| **Data disk modification** | Expansion or shrinking is not allowed. An attempt to do so results in the loss of all the local data on device.                       | Expansion or shrinking is not allowed. An attempt to do so results in the loss of all the local data on device. |
+| **虛擬機器類型** | 可與 Windows Server 2012 或更新版本搭配使用的**第 2 代** VM 和「.vhdx」映像。<br></br> 可與 Windows Server 2008 或更新版本搭配使用的**第 1 代** VM 和「.vhd」映像。 | 在使用「.vmdk」映像時，請使用虛擬機器第 8 版至第 11 版。 |
+| **記憶體類型** | 設定為**靜態記憶體**。<br></br> 請勿使用**動態記憶體**選項。 | |
+| **資料磁碟類型** | 佈建為**動態擴充**。<br></br> **固定大小**需要很長的時間。<br></br> 請勿使用**差異**選項。 | 使用**精簡佈建**選項。 |
+| **資料磁碟修改** | 不允許擴充或縮小。嘗試這麼做會造成裝置上的本機資料遺失。 | 不允許擴充或縮小。嘗試這麼做會造成裝置上的本機資料遺失。 |
 
-### <a name="sizing"></a>Sizing
+### 調整大小
 
-When sizing your StorSimple Virtual Array, consider the following factors:
+在調整 StorSimple Virtual Array 的大小時，請考量下列因素︰
 
-- Local reservation for volumes or shares. Approximately 12% of the space is reserved on the local tier for each provisioned tiered volume or share. Roughly 10% of the space is also reserved for a locally pinned volume for file system.
-- Snapshot overhead. Roughly 15% space on the local tier is reserved for snapshots.
-- Need for restores. If doing restore as a new operation, sizing should account for the space needed for restore. Restore is done to a share or volume of the same size or larger.
-- Some buffer should be allocated for any unexpected growth.
+- 保留給磁碟區或共用的本機空間。本機層會保留大約 12% 的空間給每個佈建的分層式磁碟區或共用。還會保留大約 10% 的空間給固定在本機的磁碟區以供存放檔案系統。
+- 快照額外負荷。本機層會保留大約 15% 的空間給快照。
+- 還原需求。如果以新作業的形式進行還原，則調整大小時應考量還原所需的空間。進行還原時的目的地是相同大小以上的共用或磁碟區。
+- 應配置部分緩衝區來應付非預期的成長。
 
-Based on the preceding factors, the sizing requirements can be represented by the following equation:
+根據上述因素，調整大小需求可以表示為以下方程式︰
 
 `Total usable local disk size = (Total provisioned locally pinned volume/share size including space for file system) + (Max (local reservation for a volume/share) for all tiered volumes/share) + (Local reservation for all tiered volumes/shares)`
 
 `Data disk size = Total usable local disk size + Snapshot overhead + buffer for unexpected growth or new share or volume`
 
 
-The following examples illustrate how you can size a virtual array based on your requirements.
+下列範例說明要如何根據需求調整虛擬陣列大小。
 
-#### <a name="example-1:"></a>Example 1:
-On your virtual array, you want to be able to 
+#### 範例 1：
+您想要能夠在虛擬陣列上
 
-- provision a 2 TB tiered volume or share.
-- provision a 1 TB tiered volume or share.
-- provision a 300 GB of locally pinned volume or share.
-
-
-For the preceding volumes or shares, let us calculate the space requirements on the local tier. 
-
-First, for each tiered volume/share, local reservation would be equal to 12% of the volume/share size. For the locally pinned volume/share, local reservation would be 10 % of the volume/share size. In this example, you need
-
-- 240 GB local reservation (for a 2 TB tiered volume/share)
-- 120 GB local reservation (for a 1 TB tiered volume/share)
-- 330 GB for locally pinned volume or share
-
-The total space required on the local tier so far is: 240 GB + 120 GB + 330 GB = 690 GB.
-
-Second, we need at least as much space on the local tier as the largest single reservation. This extra amount is used in case you need to restore from a cloud snapshot. In this example, the largest local reservation is 330 GB (including reservation for file system), so you would add that to the 660 GB: 660 GB + 330 GB = 990 GB.
-If we performed subsequent additional restores, we can always free up the space from the previous restore operation.
-
-Third, we need 15 % of your total local space so far to store local snapshots, so that only 85% of it is available. In this example, that would be around 990 GB = 0.85&ast;provisioned data disk TB. So, the provisioned data disk would be (990&ast;(1/0.85))= 1164 GB = 1.16 TB ~ 1.25 TB (rounding off to nearest quartile)
-
-Factoring in unexpected growth and new restores, you should provision a local disk of around 1.25 - 1.5 TB.
-
-> [AZURE.NOTE] We also recommend that the local disk is thinly provisioned. This recommendation is because the restore space is only needed when you want to restore data that is older than five days. Item-level recovery allows you to restore data for the last five days without requiring the extra space for restore.
-
-#### <a name="example-2:"></a>Example 2: 
-On your virtual array, you want to be able to 
-
-- provision a 2 TB tiered volume
-- provision a 300 GB locally pinned volume
-
-Based on 12 % of local space reservation for tiered volumes/shares and 10 % for locally pinned volumes/shares, we need
-
-- 240 GB local reservation (for 2 TB tiered volume/share)
-- 330 GB for locally pinned volume or share
-
-Total space required on the local tier is: 240 GB + 330 GB = 570 GB
-
-The minimum local space needed for restore is 330 GB. 
-
-15 % of your total disk is used to store snapshots so that only 0.85 is available. So, the disk size is (900&ast;(1/0.85)) = 1.06 TB ~ 1.25 TB (rounding off to nearest quartile) 
-
-Factoring in any unexpected growth, you can provision a 1.25 - 1.5 TB local disk.
+- 佈建 2 TB 的分層式磁碟區或共用。
+- 佈建 1 TB 的分層式磁碟區或共用。
+- 佈建 300 GB 的固定在本機的磁碟區或共用。
 
 
-### <a name="group-policy"></a>Group policy
+針對上述磁碟區或共用，我們來計算一下本機層的空間需求。
 
-Group Policy is an infrastructure that allows you to implement specific configurations for users and computers. Group Policy settings are contained in Group Policy objects (GPOs), which are linked to the following Active Directory Domain Services (AD DS) containers: sites, domains, or organizational units (OUs). 
+首先，針對每個分層式磁碟區/共用，本機保留空間等於 12% 的磁碟區/共用大小。針對固定在本機的磁碟區/共用，本機保留空間等於 10% 的磁碟區/共用大小。在此範例中，您需要
 
-If your virtual array is domain-joined, GPOs can be applied to it. These GPOs can install applications such as an antivirus software that can adversely impact the operation of the StorSimple Virtual Array.
+- 240 GB 的本機保留空間 (針對 2 TB 的分層式磁碟區/共用)
+- 120 GB 的本機保留空間 (針對 1 TB 的分層式磁碟區/共用)
+- 330 GB (針對固定在本機的磁碟區或共用)
 
-Therefore, we recommend that you:
+到目前為止，本機層所需的總空間是︰240 GB + 120 GB + 330 GB = 690 GB。
 
--   Ensure that your virtual array is in its own organizational unit (OU) for Active Directory. 
+其次，本機層所需的空間至少要和最大的單一保留空間一樣大。萬一您需要從雲端快照還原，就會使用這個額外的空間量。在此範例中，最大的本機保留空間是 330 GB (包括檔案系統的保留空間)，因此，您要為 660 GB 加上該空間量：660 GB + 330 GB = 990 GB。我們在執行其他後續還原作業時，一律可以釋放先前還原作業的空間。
 
--   Make sure that no group policy objects (GPOs) are applied to your virtual array. You can block inheritance to ensure that the virtual array (child node) does not automatically inherit any GPOs from the parent. For more information, go to [block inheritance](https://technet.microsoft.com/library/cc731076.aspx).
+第三，到目前為止，我們需要本機總空間的 15% 來儲存本機快照，因此只剩 85% 的空間可以使用。在此範例中，這大約是 990 GB，而這等於 85% 的已佈建資料磁碟 TB。因此，已佈建的資料磁碟會是 (990&ast;(1/0.85)) = 1164 GB = 1.16 TB ~ 1.25 TB (四捨五入至最接近的四分位數)
 
+將非預期的成長和新的還原作業考慮進來後，您應該佈建大約 1.25 - 1.5 TB 的本機磁碟。
 
-### <a name="networking"></a>Networking
+> [AZURE.NOTE] 我們也建議您精簡佈建本機磁碟。此建議是因為當您想要還原已超過 5 天的資料時，才需要有還原空間。若是項目層級的復原，則不需要額外的還原空間就可以還原過去 5 天的資料。
 
-The network configuration for your virtual array is done through the local web UI. A virtual network interface is enabled through the hypervisor in which the virtual array is provisioned. Use the [Network Settings](storsimple-ova-deploy3-fs-setup.md) page to configure the virtual network interface IP address, subnet, and gateway.  You can also configure the primary and secondary DNS server, time settings, and optional proxy settings for your device. Most of the network configuration is a one-time setup. Review the [StorSimple networking requirements](storsimple-ova-system-requirements.md#networking-requirements) prior to deploying the virtual array.
+#### 範例 2： 
+您想要能夠在虛擬陣列上
 
-When deploying your virtual array, we recommend that you follow these best practices:
+- 佈建 2 TB 的分層式磁碟區
+- 佈建 300 GB 的固定在本機的磁碟區
 
--   Ensure that the network in which the virtual array is deployed always has the capacity to dedicate 5 Mbps Internet bandwidth (or more). 
+根據 12% 的本機空間要保留給分層式磁碟區/共用，10% 要給固定在本機的磁碟區/共用的原則，我們需要
 
-    -   Internet bandwidth need varies depending on your workload characteristics and the rate of data change.
+- 240 GB 的本機保留空間 (針對 2 TB 的分層式磁碟區/共用)
+- 330 GB (針對固定在本機的磁碟區或共用)
 
-    -   The data change that can be handled is directly proportional to your Internet bandwidth. As an example when taking a backup, a 5 Mbps bandwidth can accommodate a data change of around 18 GB in 8 hours. With four times more bandwidth (20 Mbps), you can handle four times more data change (72 GB). 
+本機層所需的總空間是︰240 GB + 330 GB = 570 GB
 
--   Ensure connectivity to the Internet is always available. Sporadic or unreliable Internet connections to the devices may result in a loss of access to data in the cloud and could result in an unsupported configuration.
+還原所需的最小本機空間是 330 GB。
 
--   If you plan to deploy your device as an iSCSI server: 
-    -   We recommend that you disable the **Get IP address automatically** option (DHCP). 
-    -   Configure static IP addresses. You must configure a primary and a secondary DNS server.
+15% 的總磁碟會用來儲存快照，因此可供使用的空間只有 85%。因此，磁碟大小是 (900&ast;(1/0.85)) = 1.06 TB ~ 1.25 TB (四捨五入至最接近的四分位數)
 
-    -   If defining multiple network interfaces on your virtual array, only the first network interface (by default, this interface is **Ethernet**) can reach the cloud. To control the type of traffic, you can create multiple virtual network interfaces on your virtual array (configured as an iSCSI server) and connect those interfaces to different subnets.
-
--   To throttle the cloud bandwidth only (used by the virtual array), configure throttling on the router or the firewall. If you define throttling in your hypervisor, it will throttle all the protocols including iSCSI and SMB instead of just the cloud bandwidth. 
-
--   Ensure that time synchronization for hypervisors is enabled. If using Hyper-V, select your virtual array in the Hyper-V Manager, go to **Settings &gt; Integration Services**, and ensure that the **Time synchronization** is checked.
-
-### <a name="storage-accounts"></a>Storage accounts
-
-StorSimple Virtual Array can be associated with a single storage account. This storage account could be an automatically generated storage account, an account in the same subscription as the service, or a storage account related to another subscription. For more information, see how to [manage storage accounts for your virtual array](storsimple-ova-manage-storage-accounts.md).
-
-Use the following recommendations for storage accounts associated with your virtual array.
-
--   When linking multiple virtual arrays with a single storage account, factor in the maximum capacity (64 TB) for a virtual array and the maximum size (500 TB) for a storage account. This limits the number of full-sized virtual arrays that can be associated with that storage account to about 7.
-
--   When creating a new storage account
-    -   We recommend that you create it in the region closest to the remote office/branch office where your StorSimple Virtual Array is deployed to minimize latencies.
-
-    -   Bear in mind that you cannot move a storage account across different regions. Also you cannot move a service across subscriptions.
-
-    -   Use a storage account that implements redundancy between the datacenters. Geo-Redundant Storage (GRS), Zone Redundant Storage (ZRS), and Locally Redundant Storage (LRS) are all supported for use with your virtual array. For more information on the different types of storage accounts, go to [Azure storage replication](../storage/storage-redundancy.md).
+將非預期的成長考慮進來後，您可以佈建 1.25 - 1.5 TB 的本機磁碟。
 
 
-### <a name="shares-and-volumes"></a>Shares and volumes
+### 群組原則
 
-For your StorSimple Virtual Array, you can provision shares when it is configured as a file server and volumes when configured as an iSCSI server. The best practices for creating shares and volumes are related to the size and the type configured.
+群組原則是一種基礎結構，可讓您針對使用者和電腦實作特定組態。群組原則設定包含在群組原則物件 (GPO) 中，後者則連結至下列 Active Directory 網域服務 (AD DS) 容器︰網站、網域或組織單位 (OU)。
 
-#### <a name="volume/share-size"></a>Volume/Share size
+如果虛擬陣列已加入網域，就能對它套用 GPO。這些 GPO 可以安裝會對 StorSimple Virtual Array 的作業造成負面影響的應用程式，例如防毒軟體。
 
-On your virtual array, you can provision shares when it is configured as a file server and volumes when configured as an iSCSI server. The best practices for creating shares and volumes relate to the size and the type configured. 
+因此，我們建議您︰
 
-Keep in mind the following best practices when provisioning shares or volumes on your virtual device.
+-   確定虛擬陣列位於它自己的 Active Directory 組織單位 (OU) 中。
 
--   The file sizes relative to the provisioned size of a tiered share can impact the tiering performance. Working with large files could result in a slow tier out. When working with large files, we recommend that the largest file is smaller than 3% of the share size.
+-   確定虛擬陣列沒有套用群組原則物件 (GPO)。您可以禁止繼承，以確保虛擬陣列 (子節點) 不會自動繼承父節點的任何 GPO。如需詳細資訊，請移至[禁止繼承](https://technet.microsoft.com/library/cc731076.aspx)。
 
--   A maximum of 16 volumes/shares can be created on the virtual array. If locally pinned, the volumes/shares can be between 50 GB to 2 TB. If tiered, the volumes/shares must be between 500 GB to 20 TB. 
 
--   When creating a volume, factor in the expected data consumption as well as future growth. While the volume cannot be expanded later, you can always restore to a larger volume.
+### 網路
 
--   Once the volume has been created, you cannot shrink the size of the volume on StorSimple.
+虛擬陣列的網路組態是透過本機 Web UI 來設定。虛擬網路介面則是透過虛擬陣列佈建所在的 Hypervisor 來啟用。使用[網路設定](storsimple-ova-deploy3-fs-setup.md)頁面可設定虛擬網路介面的 IP 位址、子網路和閘道。您也可以為裝置設定主要和次要 DNS 伺服器、時間設定和選用的 Proxy 設定。大部分網路組態都是一次性設定。在部署虛擬陣列之前，請檢閱 [StorSimple 網路需求](storsimple-ova-system-requirements.md#networking-requirements)。
+
+在部署虛擬陣列時，建議您遵循下列最佳作法︰
+
+-   確定虛擬陣列部署所在的網路永遠都有能力提供 5 Mbps 的網際網路頻寬 (或以上)。
+
+    -   視工作負載特性和資料變更率而定，所需的網際網路頻寬會有所不同。
+
+    -   可以處理的資料變更與網際網路頻寬成正比。舉例來說，在進行備份時，5 Mbps 的頻寬可以在 8 小時內應付大約 18 GB 的資料變更。頻寬大 4 倍時 (20 Mbps)，則可以處理大 4 倍的資料變更 (72 GB)。
+
+-   確定隨時都可以連線到網際網路。裝置的網際網路連線若斷斷續續或不可靠，可能會導致無法存取雲端資料，並可能會導致組態不受支援。
+
+-   如果您打算將裝置部署為 iSCSI 伺服器︰
+	-   建議您停用 [自動取得 IP 位址] 選項 (DHCP)。
+	-   設定靜態 IP 位址。您必須設定主要和次要 DNS 伺服器。
+
+	-   如果您在虛擬陣列定義多個網路介面，只有第一個網路介面 (根據預設，此介面是**乙太網路**) 可以連線到雲端。若要控制流量類型，您可以在虛擬陣列建立多個虛擬網路介面 (設定為 iSCSI 伺服器)，並將這些介面連線至不同子網路。
+
+-   若只要節流雲端頻寬 (虛擬陣列所使用)，請在路由器或防火牆設定節流。如果您在 Hypervisor 定義節流，它會節流所有通訊協定 (包括 iSCSI 和 SMB)，而非只節流雲端頻寬。
+
+-   確定 Hypervisor 的時間同步處理會啟用。如果使用 Hyper-V，請在 Hyper-V 管理員選取虛擬陣列，移至 [設定] &gt; [整合服務]，並確定已核取 [時間同步處理]。
+
+### 儲存體帳戶
+
+StorSimple Virtual Array 可與單一儲存體帳戶相關聯。此儲存體帳戶可以是自動產生的儲存體帳戶、位於和服務相同的訂用帳戶內的帳戶，或是與另一個訂用帳戶有關的儲存體帳戶。如需詳細資訊，請參閱如何[管理虛擬陣列的儲存體帳戶](storsimple-ova-manage-storage-accounts.md)。
+
+針對與虛擬陣列相關聯的儲存體帳戶，請使用下列建議。
+
+-   將多個虛擬陣列與單一儲存體帳戶連結時，請將虛擬陣列的最大容量 (64 TB) 和儲存體帳戶的大小上限 (500 TB) 納入考量。這會將可與該儲存體帳戶相關聯的完整大小虛擬陣列數目限制為大約 7 個。
+
+-   建立新的儲存體帳戶時
+	-   建議您將它建立在最接近 StorSimple Virtual Array 部署所在的遠端辦公室/分公司的區域中，以將延遲降到最低。
+
+	-   請記住，您無法跨不同區域移動儲存體帳戶。同時，您無法跨訂用帳戶移動服務。
+
+	-   使用可實作資料中心之間備援的儲存體帳戶。異地備援儲存體 (GRS)、區域備援儲存體 (ZRS) 和本地備援儲存體 (LRS) 皆支援與虛擬陣列搭配使用。如需不同類型的儲存體帳戶的詳細資訊，請移至 [Azure 儲存體複寫](../storage/storage-redundancy.md)。
+
+
+### 共用和磁碟區
+
+若 StorSimple Virtual Array 設定為檔案伺服器，您可以佈建共用，若設定為 iSCSI 伺服器，則可以佈建磁碟區。建立共用和磁碟區的最佳作法與大小及所設定的類型有關。
+
+#### 磁碟區/共用大小
+
+若虛擬陣列設定為檔案伺服器，您可以在上面佈建共用，若設定為 iSCSI 伺服器，則可以在上面佈建磁碟區。建立共用和磁碟區的最佳作法與大小及所設定的類型有關。
+
+在虛擬裝置上佈建共用或磁碟區時，請記住下列最佳作法。
+
+-   相對於已佈建的分層式共用大小的檔案大小可能會影響分層效能。使用大型檔案可能會導致緩慢分層輸出。使用大型檔案時，建議最大檔案不要超過共用大小的 3%。
+
+-   虛擬陣列上最多可以建立 16 個磁碟區/共用。如果固定在本機，磁碟區/共用可以介於 50 GB 到 2 TB 之間。如果分層，磁碟區/共用必須介於 500 GB 到 20 TB 之間。
+
+-   在建立磁碟區時，請將預期的資料使用量以及未來成長量納入考量。雖然磁碟區無法在之後擴充，但您永遠可以還原到較大的磁碟區。
+
+-   一旦建立了磁碟區，就不能縮小 StorSimple 上磁碟區的大小。
    
--   When writing to a tiered volume on StorSimple, when the volume data reaches a certain threshold (relative to the local space reserved for the volume), the IO is throttled. Continuing to write to this volume slows down the IO significantly. Though you can write to a tiered volume beyond its provisioned capacity (we do not actively stop the user from writing beyond the provisioned capacity), you see an alert notification to the effect that you have oversubscribed. Once you see the alert, it is imperative that you take remedial measures such as delete the volume data or restore the volume to a larger volume (volume expansion is currently not supported).
+-   在寫入 StorSimple 上的分層式磁碟區時，當磁碟區資料到達特定臨界值 (相對於保留給磁碟區的本機空間)，就會節流 IO。繼續寫入這個磁碟區會讓 IO 明顯變慢。雖然您可以在分層式磁碟區寫入超過其佈建容量 (我們不要主動停止使用者寫入時超出已佈建的容量)，但您會看到警示通知指出您已超過訂閱量。一旦您看到警示，請務必要採取補救措施，例如刪除磁碟區資料，或將磁碟區還原到較大的磁碟區 (目前不支援擴充磁碟區)。
 
--   For disaster recovery use cases, as the number of allowable shares/volumes is 16 and the maximum number of shares/volumes that can be processed in parallel is also 16, the number of shares/volumes does not have a bearing on your RPO and RTOs. 
+-   針對災害復原使用案例，可允許的共用/磁碟區數目為 16 個，而且可平行處理的共用/磁碟區數目上限也是 16 個，因此共用/磁碟區數目並不會影響到 RPO 和 RTO。
 
-#### <a name="volume/share-type"></a>Volume/Share type
+#### 磁碟區/共用類型
 
-StorSimple supports two volume/share types based on the usage: locally pinned and tiered. Locally pinned volumes/shares are thickly provisioned whereas the tiered volumes/shares are thinly provisioned. 
+根據使用方式，StorSimple 可支援兩種磁碟區/共用類型︰固定在本機和分層。固定在本機的磁碟區/共用會密集佈建，而分層式磁碟區/共用則會精簡佈建。
 
-We recommend that you implement the following best practices when configuring StorSimple volumes/shares:
+在設定 StorSimple 磁碟區/共用時，建議您實作下列最佳作法︰
 
--   Identify the volume type based on the workloads that you intend to deploy before you create a volume. Use locally pinned volumes for workloads that require local guarantees of data (even during a cloud outage) and that require low cloud latencies. Once you create a volume on your virtual array, you cannot change the volume type from locally pinned to tiered or *vice-versa*. As an example, create locally pinned volumes when deploying SQL workloads or workloads hosting virtual machines (VMs); use tiered volumes for file share workloads.
+-   在建立磁碟區之前，請先根據您想要部署的工作負載識別磁碟區類型。對於需要確保資料位於本機 (即使在雲端中斷的期間) 以及需要低雲端延遲的工作負載，請使用固定在本機的磁碟區。一旦在虛擬陣列上建立磁碟區，就無法將磁碟區類型從固定在本機變更為分層，「反之亦然」。例如，在部署 SQL 工作負載或裝載虛擬機器 (VM) 的工作負載時，請建立固定在本機的磁碟區；若為檔案共用工作負載，則使用分層式磁碟區。
 
--   Check the option for less frequently used archival data when dealing with large file sizes. A larger deduplication chunk size of 512 K is used when this option is enabled to expedite the data transfer to the cloud.
+-   在處理大型檔案大小時，請核取不常使用的封存資料的選項。若啟用此選項，則會使用較大的重複資料刪除區塊大小 512 K，以加快將資料傳輸至雲端的速度。
 
-#### <a name="volume-format"></a>Volume format
+#### 磁碟區格式
 
-After you create StorSimple volumes on your iSCSI server, you need to initialize, mount, and format the volumes. This operation is performed on the host connected to your StorSimple device. Following best practices are recommended when mounting and formatting volumes on the StorSimple host.
+在 iSCSI 伺服器上建立 StorSimple 磁碟區之後，您必須初始化、掛接和格式化磁碟區。此作業會在連線至 StorSimple 裝置的主機上執行。在 StorSimple 主機上掛接和格式化磁碟區時，建議您遵循下列最佳作法。
 
--   Perform a quick format on all StorSimple volumes.
+-   對所有 StorSimple 磁碟區執行快速格式化。
 
--   When formatting a StorSimple volume, use an allocation unit size (AUS) of 64 KB (default is 4 KB). The 64 KB AUS is based on testing done in-house for common StorSimple workloads and other workloads.
+-   在格式化 StorSimple 磁碟區時，使用 64 KB 的配置單位大小 (AUS) (預設值為 4 KB)。使用 64 KB AUS 的根據為在內部針對一般 StorSimple 工作負載及其他工作負載所進行的測試。
 
--   When using the StorSimple Virtual Array configured as an iSCSI server, do not use spanned volumes or dynamic disks as these volumes or disks are not supported by StorSimple.
+-   在使用設定為 iSCSI 伺服器的 StorSimple Virtual Array 時，請勿使用跨距磁碟區或動態磁碟，因為這些磁碟區或磁碟不受 StorSimple 支援。
 
-#### <a name="share-access"></a>Share access
+#### 共用的存取
 
-When creating shares on your virtual array file server, follow these guidelines:
+在虛擬陣列檔案伺服器上建立共用時，請遵循下列指導方針︰
 
--   When creating a share, assign a user group as a share administrator instead of a single user.
+-   在建立共用時，請指派使用者群組 (而非單一使用者) 來做為共用系統管理員。
 
--   You can manage the NTFS permissions after the share is created by editing the shares through Windows Explorer.
+-   在建立共用之後，您可以透過 Windows 檔案總管編輯共用，以管理 NTFS 權限。
 
-#### <a name="volume-access"></a>Volume access
+#### 磁碟區的存取
 
-When configuring the iSCSI volumes on your StorSimple Virtual Array, it is important to control access wherever necessary. To determine which host servers can access volumes, create, and associate access control records (ACRs) with StorSimple volumes.
+在 StorSimple Virtual Array 上設定 iSCSI 磁碟區時，請務必在必要之處控制存取。若要決定哪些主機伺服器可以存取磁碟區，請建立存取控制記錄 (ACR) 並與 StorSimple 磁碟區相關聯。
 
-Use the following best practices when configuring ACRs for StorSimple volumes:
+在設定 StorSimple 磁碟區的 ACR 時，請使用下列最佳作法︰
 
--   Always associate at least one ACR with a volume.
+-   一律至少將一個 ACR 關聯至磁碟區。
 
--   Define multiple ACRs only in a clustered environment.
+-   只在叢集環境中定義多個 ACR。
 
--   When assigning more than one ACR to a volume, ensure that the volume is not exposed in a way where it can be concurrently accessed by more than one non-clustered host. If you have assigned multiple ACRs to a volume, a warning message pops up for you to review your configuration.
+-   將多個 ACR 指派到磁碟區時，請確保磁碟區在公開時，並無法讓多個非叢集主機並行存取。如果您指派多個 ACR 到磁碟區，將會彈現警告訊息以供您檢閱組態。
 
-### <a name="data-security-and-encryption"></a>Data security and encryption
+### 資料安全性與加密
 
-Your StorSimple Virtual Array has data security and encryption features that ensure the confidentiality and integrity of your data. When using these features, it is recommended that you follow these best practices: 
+StorSimple Virtual Array 擁有資料安全性和加密功能，可確保資料的機密性和完整性。在使用這些功能時，建議您遵循下列最佳作法︰
 
--   Define a cloud storage encryption key to generate AES-256 encryption before the data is sent from your virtual array to the cloud. This key is not required if your data is encrypted to begin with. The key can be generated and kept safe using a key management system such as [Azure key vault](../key-vault/key-vault-whatis.md).
+-   先定義用來產生 AES-256 加密的雲端儲存體加密金鑰，再將資料從虛擬陣列傳送至雲端。如果資料一開始就已加密，則不需要此金鑰。使用金鑰管理系統 (例如 [Azure 金鑰保存庫](../key-vault/key-vault-whatis.md)) 即可產生並妥善保存金鑰。
 
--   When configuring the storage account via the StorSimple Manager service, make sure that you enable the SSL mode to create a secure channel for network communication between your StorSimple device and the cloud.
+-   在透過 StorSimple Manager 服務設定儲存體帳戶時，請確實啟用 SSL 模式來建立供 StorSimple 裝置與雲端之間的網路通訊使用的安全通道。
 
--   Regenerate the keys for your storage accounts (by accessing the Azure Storage service) periodically to account for any changes to access based on the changed list of administrators.
+-   定期重新產生儲存體帳戶的金鑰 (藉由存取 Azure 儲存體服務)，以說明因為系統管理員清單變更而造成的存取權變更。
 
--   Data on your virtual array is compressed and deduplicated before it is sent to Azure. We don't recommend using the Data Deduplication role service on your Windows Server host.
+-   虛擬陣列上的資料會先壓縮並進行重複資料刪除，再傳送至 Azure。Windows Server 主機上不建議使用「重複資料刪除」角色服務。
 
 
-## <a name="operational-best-practices"></a>Operational best practices
+## 作業的最佳作法
 
-The operational best practices are guidelines that should be followed during the day-to-day management or operation of the virtual array. These practices cover specific management tasks such as taking backups, restoring from a backup set, performing a failover, deactivating and deleting the array, monitoring system usage and health, and running virus scans on your virtual array.
+作業的最佳作法是在虛擬陣列的日常管理或作業期間所應遵循的指導方針。這些最佳作法涵蓋特定的管理工作，例如備份、從備份組還原、執行容錯移轉、停用及刪除陣列、監視系統使用量和健全狀況，以及對虛擬陣列執行病毒掃描。
 
-### <a name="backups"></a>Backups
+### 備份
 
-The data on your virtual array is backed up to the cloud in two ways, a default automated daily backup of the entire device starting at 22:30 or via a manual on-demand backup. By default, the device automatically creates daily cloud snapshots of all the data residing on it. For more information, go to [back up your StorSimple Virtual Array](storsimple-ova-backup.md).
+虛擬陣列上的資料會透過兩種方式備份到雲端，預設在每天 22:30 自動啟動的全裝置備份，或是手動進行的隨選備份。根據預設，裝置會自動建立其上所有資料的每日雲端快照。如需詳細資訊，請移至[備份 StorSimple Virtual Array](storsimple-ova-backup.md)。
 
-The frequency and retention associated with the default backups cannot be changed but you can configure the time at which the daily backups are initiated every day. When configuring the start time for the automated backups, we recommend that:
+與預設備份相關聯的頻率和保留期無法變更，但您可以設定每一天起始每日備份的時間。在設定自動備份的開始時間時，我們建議︰
 
--   Schedule your backups for off-peak hours. Backup start time should not coincide with numerous host IO.
+-   將備份排程在離峰時間。備份開始時間不應該與大量主機 IO 一致。
 
--   Initiate a manual on-demand backup when planning to perform a device failover or prior to the maintenance window, to protect the data on your virtual array.
+-   在打算執行裝置容錯移轉時或在維護前，先起始手動的隨選備份，以保護虛擬陣列上的資料。
 
-### <a name="restore"></a>Restore
+### 還原
 
-You can restore from a backup set in two ways: restore to another volume or share or perform an item-level recovery (available only on a virtual array configured as a file server). Item-level recovery allows you to do a granular recovery of files and folders from a cloud backup of all the shares on the StorSimple device. For more information, go to [restore from a backup](storsimple-ova-restore.md).
+從備份組還原的方法有兩種︰還原到另一個磁碟區或共用，或執行項目層級復原 (僅適用於設定為檔案伺服器的虛擬陣列)。項目層級復原可讓您從 StorSimple 裝置上所有共用的雲端備份執行檔案和資料夾的細微復原。如需詳細資訊，請移至[從備份還原](storsimple-ova-restore.md)。
 
-When performing a restore, keep the following guidelines in mind:
+在執行還原時，請記住下列指導方針︰
 
--   Your StorSimple Virtual Array does not support in-place restore. This can however be readily achieved by a two-step process: make space on the virtual array and then restore to another volume/share.
+-   StorSimple Virtual Array 不支援就地還原。不過，這可以輕易地透過兩個步驟的程序來達成︰在虛擬陣列挪出空間，然後還原到另一個磁碟區/共用。
 
--   When restoring from a local volume, keep in mind the restore will be a long running operation. Though the volume may quickly come online, the data continues to be hydrated in the background.
+-   從本機磁碟區還原時請記住，還原是長時間執行的作業。雖然磁碟區可能很快就會上線，但資料仍會凍結在背景中。
 
--   The volume type remains the same during the restore process. A tiered volume is restored to another tiered volume and a locally pinned volume to another locally pinned volume.
+-   還原程序期間，磁碟區類型會維持不變。分層式磁碟區會還原到另一個分層式磁碟區，而固定在本機的磁碟區則會還原到另一個固定在本機的磁碟區。
 
--   When trying to restore a volume or a share from a backup set, if the restore job fails, a target volume or share may still be created in the portal. It is important that you delete this unused target volume or share in the portal to minimize any future issues arising from this element.
+-   嘗試從備份組還原磁碟區或共用時，如果還原作業失敗，仍會在入口網站建立目標磁碟區或共用。請務必在入口網站中刪除這個未使用的目標磁碟區或共用，以將未來這個項目所造成的任何問題降至最低。
 
-### <a name="failover-and-disaster-recovery"></a>Failover and disaster recovery
+### 容錯移轉和災害復原
 
-A device failover allows you to migrate your data from a *source* device in the datacenter to another *target* device located in the same or a different geographical location. The device failover is for the entire device. During failover, the cloud data for the source device changes ownership to that of the target device.
+裝置容錯移轉可讓您將資料中心的「來源」裝置資料移轉至位於相同或不同地理位置的另一個「目標」裝置。裝置容錯移轉適用於整個裝置。在容錯移轉期間，來源裝置的雲端資料會將擁有權變更為目標裝置雲端資料。
 
-For your StorSimple Virtual Array, you can only fail over to another virtual array managed by the same StorSimple Manager service. A failover to an 8000 series device or an array managed by a different StorSimple Manager service (than the one for the source device) is not allowed. To learn more about the failover considerations, go to [prerequisites for the device failover](storsimple-ova-failover-dr.md).
+針對 StorSimple Virtual Array，您只能容錯移轉至另一個由相同 StorSimple Manager 服務管理的虛擬陣列。不允許容錯移轉至 8000 系列裝置或不同 StorSimple Manager 服務 (非來源裝置的服務) 管理的陣列。若要深入了解容錯移轉考量，請移至[裝置容錯移轉的必要條件](storsimple-ova-failover-dr.md)。
 
-When performing a fail over for your virtual array, keep the following in mind:
+為虛擬陣列執行容錯移轉時，請記住下列事項︰
 
--   For a planned failover, it is a recommended best practice to take all the volumes/shares offline prior to initiating the failover. Follow the operating system-specific instructions to take the volumes/shares offline on the host first and then take those offline on your virtual device.
+-   針對計劃性容錯移轉，建議的最佳作法是先讓所有磁碟區/共用離線，再起始容錯移轉。依照作業系統特定指示，先讓主機上的磁碟區/共用離線，再讓虛擬裝置上的磁碟區/共用離線。
 
--   For a file server disaster recovery (DR), we recommend that you join the target device to the same domain as the source so that the share permissions are automatically resolved. Only the failover to a target device in the same domain is supported in this release.
+-   針對檔案伺服器災害復原 (DR)，建議您將目標裝置加入與來源網域相同的網域，以自動解析共用權限。只有這個版本才支援容錯移轉至相同網域中的目標裝置。
 
--   Once the DR is successfully completed, the source device is automatically deleted. Though the device is no longer available, the virtual machine that you provisioned on the host system is still consuming resources. We recommend that you delete this virtual machine from your host system to prevent any charges from accruing.
+-   一旦成功完成 DR，就會自動刪除來源裝置。雖然裝置無法再使用，但是您在主機系統上佈建的虛擬機器仍然會耗用資源。建議您在主機系統中刪除此虛擬機器，以防產生任何費用。
 
--   Do note that even if the failover is unsuccessful, **the data is always safe in the cloud**. Consider the following three scenarios in which the failover did not complete successfully:
+-   請注意，即使容錯移轉不成功，**雲端中的資料永遠都會安全無虞**。請設想下列三個容錯移轉未成功完成的案例︰
 
-    -   A failure occurred in the initial stages of the failover such as when the DR pre-checks are being performed. In this situation, your target device is still usable. You can retry the failover on the same target device.
+    -   容錯移轉的初始階段發生失敗，例如在執行 DR 預先檢查時。在此情況下，目標裝置仍可使用。您可以在相同的目標裝置上重試容錯移轉。
 
-    -   A failure occurred during the actual failover process. In this case, the target device is marked unusable. You must provision and configure another target virtual array and use that for failover.
+    -   在實際的容錯移轉程序期間發生失敗。在此情況下，目標裝置會標示為無法使用。您必須佈建並設定另一個目標虛擬陣列，以用於容錯移轉。
 
-    -   The failover was complete following which the source device was deleted but the target device has issues and you cannot access any data. The data is still safe in the cloud and can be easily retrieved by creating another virtual array and then using it as a target device for the DR.
+    -   容錯移轉已完成，接下來刪除了來源裝置，但目標裝置有問題，您無法存取任何資料。雲端中的資料仍安全無虞，只要建立另一個虛擬陣列，然後將它做為 DR 的目標裝置，即可輕鬆擷取資料。
 
-### <a name="deactivate"></a>Deactivate
+### 停用
 
-When you deactivate a StorSimple Virtual Array, you sever the connection between the device and the corresponding StorSimple Manager service. Deactivation is a **permanent** operation and cannot be undone. A deactivated device cannot be registered with the StorSimple Manager service again. For more information, go to [deactivate and delete your StorSimple Virtual Array](storsimple-deactivate-and-delete-device.md).
+當您停用 StorSimple Virtual Array 時，會切斷裝置與相對應 StorSimple Manager 服務之間的連接。停用是**永久性**作業，而且無法復原。停用的裝置無法再次向 StorSimple Manager 服務登錄。如需詳細資訊，請移至[停用及刪除 StorSimple Virtual Array](storsimple-deactivate-and-delete-device.md)。
 
-Keep the following best practices in mind when deactivating your virtual array:
+在停用虛擬陣列時，請記住下列最佳作法︰
 
--   Take a cloud snapshot of all the data prior to deactivating a virtual device. When you deactivate a virtual array, all the local device data is lost. Taking a cloud snapshot will allow you to recover data at a later stage.
+-   先擷取所有資料的雲端快照，再停用虛擬裝置。當您停用虛擬陣列時，所有的本機裝置資料都會遺失。擷取雲端快照可讓您在稍後的階段中復原資料。
 
--   Before you deactivate a StorSimple Virtual Array, make sure to stop or delete clients and hosts that depend on that device.
+-   停用 StorSimple Virtual Array 之前，請務必停止或刪除依賴該裝置的用戶端和主機。
 
--   Delete a deactivated device if you are no longer using so that it doesn't accrue charges.
+-   刪除不再使用的已停用裝置，以免它產生費用。
 
-### <a name="monitoring"></a>Monitoring
+### 監視
 
-To ensure that your StorSimple Virtual Array is in a continuous healthy state, you need to monitor the array and ensure that you receive information from the system including alerts. To monitor the overall health of the virtual array, implement the following best practices:
+為了確保 StorSimple Virtual Array 持續處於狀況良好狀態，您必須監視陣列，並確保能夠收到系統傳來的資訊，包括警示。若要監視虛擬陣列的整體健全狀況，請實作下列最佳作法︰
 
-- Configure monitoring to track the disk usage of your virtual array data disk as well as the OS disk. If running Hyper-V, you can use a combination of System Center Virtual Machine Manager (SCVMM) and System Center Operations Manager (SCOM) to monitor your virtualization hosts.   
+- 設定監視功能來追蹤虛擬陣列資料磁碟以及作業系統磁碟的磁碟使用量。如果執行 Hyper-V，您可以使用 System Center Virtual Machine Manager (SCVMM) 和 System Center Operations Manager (SCOM) 的組合來監視虛擬化主機。
 
-- Configure email notifications on your virtual array to send alerts at certain usage levels.                                                                                                                                                                                                
+- 在虛擬陣列上設定電子郵件通知，在到達特定使用量層級時傳送警示。
 
-### <a name="index-search-and-virus-scan-applications"></a>Index search and virus scan applications
+### 索引搜尋和病毒掃描應用程式
 
-A StorSimple Virtual Array can automatically tier data from the local tier to the Microsoft Azure cloud. When an application such as an index search or a virus scan is used to scan the data stored on StorSimple, you need to take care that the cloud data does not get accessed and pulled back to the local tier.
+StorSimple Virtual Array 可以自動將資料從本機層提升到 Microsoft Azure 雲端。在使用索引搜尋或病毒掃描之類的應用程式掃描 StorSimple 上儲存的資料時，請注意過程中並不會存取雲端資料並提取回本機層。
 
-We recommend that you implement the following best practices when configuring the index search or virus scan on your virtual array:
+在虛擬陣列上設定索引搜尋或病毒掃描時，建議您實作下列最佳作法︰
 
--   Disable any automatically configured full scan operations.
+-   停用任何自動設定的完整掃描作業。
 
--   For tiered volumes, configure the index search or virus scan application to perform an incremental scan. This would scan only the new data likely residing on the local tier. The data that is tiered to the cloud is not accessed during an incremental operation.
+-   對於分層式磁碟區，請設定索引搜尋或病毒掃描應用程式以執行增量掃描。這會只掃描可能位於本機層上的新資料。增量作業期間不會存取提升到雲端的資料。
 
--   Ensure the correct search filters and settings are configured so that only the intended types of files get scanned. For example, image files (JPEG, GIF, and TIFF) and engineering drawings should not be scanned during the incremental or full index rebuild.
+-   確定已設定正確的搜尋篩選和設定，以便只掃描目標類型的檔案。例如，增量或完整索引重建期間，不應掃描影像檔 (JPEG、GIF 和 TIFF) 和工程繪圖。
 
-If using Windows indexing process, follow these guidelines:
+如果使用 Windows 索引程序，請遵循下列指導方針︰
 
--   Do not use the Windows Indexer for tiered volumes as it recalls large amounts of data (TBs) from the cloud if the index needs to be rebuilt frequently. Rebuilding the index would retrieve all file types to index their content.
+-   請勿將 Windows 索引子用於分層式磁碟區，因為如果索引需要經常重建，則會從雲端重新叫用大量資料 (TB)。重建索引會擷取所有檔案類型以將其內容編製索引。
 
--   Use the Windows indexing process for locally pinned volumes as this would only access data on the local tiers to build the index (the cloud data will not be accessed).
+-   對固定在本機的磁碟區使用 Windows 索引程序，因為這只會存取本機層上的資料來建立索引 (不會存取雲端資料)。
 
-### <a name="byte-range-locking"></a>Byte range locking
+### 位元組範圍鎖定
 
-Applications can lock a specified range of bytes within the files. If byte range locking is enabled on the applications that are writing to your StorSimple, then tiering does not work on your virtual array. For the tiering to work, all areas of the files accessed should be unlocked. Byte range locking is not supported with tiered volumes on your virtual array.
+應用程式可以鎖定檔案內指定範圍的位元組。如果寫入到 StorSimple 的應用程式啟用位元組範圍鎖定，則分層無法在虛擬陣列上運作。若要讓分層運作，所存取之檔案的所有區域應解除鎖定。虛擬陣列上的分層式磁碟區不支援位元組範圍鎖定。
 
-Recommended measures to alleviate byte range locking include:
+減輕位元組範圍鎖定的建議措施包括︰
 
--   Turn off byte range locking in your application logic.
+-   關閉應用程式邏輯中的位元組範圍鎖定。
 
--   Use locally pinned volumes (instead of tiered) for the data associated with this application. Locally pinned volumes do not tier into the cloud.
+-   針對與此應用程式相關聯的資料使用固定在本機的磁碟區 (而非分層式磁碟區)。固定在本機的磁碟區不會提升到雲端。
 
--   When using locally pinned volumes with byte range locking enabled, the volume can come online before the restore is complete. In these instances, you must wait for the restore to be complete.
+-   在啟用位元組範圍鎖定的情況下使用固定在本機的磁碟區時，磁碟區可以在還原完成之前上線。在這些情況下，您必須等到還原完成。
 
-## <a name="multiple-arrays"></a>Multiple arrays
+## 多個陣列
 
-Multiple virtual arrays may need to be deployed to account for a growing working set of data that could spill onto the cloud thus affecting the performance of the device. In these instances, it is best to scale devices as the working set grows. This requires one or more devices to be added in the on-premises data center. When adding the devices, you could:
+您可能需要部署多個虛擬陣列，以應付因為資料的工作集不斷成長而溢出到雲端，進而影響裝置效能的情形。在這些情況下，最好是隨著工作集的成長調整裝置。這需要在內部部署資料中心內新增一或多個裝置。在新增裝置時，您可以︰
 
--   Split the current set of data.
--   Deploy new workloads to new device(s).
--   If deploying multiple virtual arrays, we recommend that from load-balancing perspective, distribute the array across different hypervisor hosts.
+-   分割目前的資料集。
+-   將新的工作負載部署到新的裝置。
+-   從負載平衡的觀點來看，如果部署多個虛擬陣列，建議您將這些陣列分散到不同的 Hypervisor 主機。
 
--  Multiple virtual arrays (when configured as a file server or an iSCSI server) can be deployed in a Distributed File System Namespace. For detailed steps, go to [Distributed File System Namespace Solution with Hybrid Cloud Storage Deployment Guide](https://www.microsoft.com/download/details.aspx?id=45507). Distributed File System Replication is currently not recommended for use with the virtual array. 
+-  分散式檔案系統命名空間中可以部署多個虛擬陣列 (設定為檔案伺服器或 iSCSI 伺服器時)。如需詳細步驟，請移至[使用混合式雲端儲存體的分散式檔案系統命名空間解決方案部署指南](https://www.microsoft.com/download/details.aspx?id=45507)。分散式檔案系統複寫目前不建議用於虛擬陣列。
 
 
-## <a name="see-also"></a>See also
-Learn how to [administer your StorSimple Virtual Array](storsimple-ova-manager-service-administration.md) via the StorSimple Manager service.
+## 另請參閱
+了解如何透過 StorSimple Manager 服務[管理 StorSimple Virtual Array](storsimple-ova-manager-service-administration.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

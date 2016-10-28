@@ -1,338 +1,329 @@
 <properties
-    pageTitle="Azure billing and subscription FAQ | Microsoft Azure"
-    description="Provide answers to the common Azure Billing and Subscription questions"
-    services=""
-    documentationCenter=""
-    authors="genlin"
-    manager="mbaldwin"
-    editor=""
-    tags="billing"/>
+	pageTitle="Azure 計費及訂用帳戶常見問題集 | Microsoft Azure"
+	description="提供 Azure 計費及訂用帳戶常見問題的解答"
+	services=""
+	documentationCenter=""
+	authors="genlin"
+	manager="msmbaldwin"
+	editor=""
+	tags="billing"/>
 
 <tags
-    ms.service="billing"
-    ms.workload="na"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/07/2016"
-    ms.author="genli"/>
+	ms.service="billing"
+	ms.workload="na"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/07/2016"
+	ms.author="genli"/>
 
+#  Azure 計費及訂用帳戶常見問題集
 
-#  <a name="azure-billing-and-subscription-faq"></a>Azure billing and subscription FAQ
+這篇文章回答一些有關 Azure 計費及訂用帳戶的最常見問題。
 
-This article answers some of the most common questions about Azure Billing and Subscription.
+> [AZURE.NOTE] 如果您對於本文任何內容有需要進一步的協助，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
 
-> [AZURE.NOTE] If you need more help at any point in this article, please [contact support](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) to get your issue resolved quickly.
+## 帳戶管理
 
-## <a name="account-administration"></a>Account administration
+- [如何在新的 Azure 入口網站中管理系統管理員帳戶？](#how-do-i-manage-administrator-accounts-in-the-new-azure-portal)
+- [可以讓通知寄送到其他電子郵件地址，而非我的帳戶所關聯的帳戶擁有者電子郵件地址嗎？](#can-notifications-be-sent-to-a-different-email-address-other-than-the-account-owner-email-address-associated-with-my-account)
+- [為什麼我無法編輯或新增詳細資料到我的訂用帳戶中？](#why-cant-i-edit-or-add-details-to-my-subscription)
+- [我無法登入 Azure 入口網站](#i-am-unable-to-log-in-to-the-azure-portal)
 
-- [How do I manage Administrator accounts in the new Azure portal?](#how-do-i-manage-administrator-accounts-in-the-new-azure-portal)
-- [Can notifications be sent to a different email address other than the Account Owner email address associated with my account?](#can-notifications-be-sent-to-a-different-email-address-other-than-the-account-owner-email-address-associated-with-my-account)
-- [Why can't I edit or add details to my subscription?](#why-cant-i-edit-or-add-details-to-my-subscription)
-- [I am unable to log in to the Azure portal](#i-am-unable-to-log-in-to-the-azure-portal)
+## 計費
 
-## <a name="billing"></a>Billing
+- [如何取得我的發票副本？](#how-do-i-get-a-copy-of-my-invoice)
+- [我沒有看見上期的發票。原因為何？](#i-do-not-see-an-invoice-for-the-last-billing-period-why)
+- [我要如何進行付款？](#how-do-i-make-a-payment)
 
-- [How do I get a copy of my invoice?](#how-do-i-get-a-copy-of-my-invoice)
-- [I do not see an invoice for the last billing period. Why?](#i-do-not-see-an-invoice-for-the-last-billing-period-why)
-- [How do I make a payment?](#how-do-i-make-a-payment)
+## 免費試用
 
-## <a name="free-trial"></a>Free Trial
+- [我可以免費試用 Azure，不需擔心收費問題嗎？](#can-i-try-azure-for-free-without-any-risk-of-being-charged)
+- [什麼是免費試用訂用帳戶，其持續時間有多久？](#what-is-a-free-trial-subscription-and-how-long-does-it-last)
+- [使用免費試用時有哪些資源可用？](#what-resources-are-available-whzh-TWing-a-free-trial)
+- [如果我在我的免費試用中移除消費限制，會發生什麼事？](#what-happens-if-i-remove-the-spending-limit-on-my-free-trial)
+- [是否可以增加免費試用訂用帳戶的配額？](#can-i-get-a-quota-increase-on-a-free-trial-subscription)
+- [哪裡可以取得更多關於免費試用的詳細資料？](#where-can-i-get-more-details-on-free-trial)
 
-- [Can I try Azure for free without any risk of being charged?](#can-i-try-azure-for-free-without-any-risk-of-being-charged)
-- [What is a Free Trial subscription and how long does it last?](#what-is-a-free-trial-subscription-and-how-long-does-it-last)
-- [What resources are available when using a Free Trial?](#what-resources-are-available-when-using-a-free-trial)
-- [What happens if I remove the spending limit on my free trial?](#what-happens-if-i-remove-the-spending-limit-on-my-free-trial)
-- [Can I get a quota increase on a free trial subscription?](#can-i-get-a-quota-increase-on-a-free-trial-subscription)
-- [Where can I get more details on Free Trial?](#where-can-i-get-more-details-on-free-trial)
+## 如何購買 Azure
 
-## <a name="how-to-buy-azure"></a>How to buy Azure
+- [Microsoft Azure 在那些國家/地區和區域上市，以及可以使用哪些貨幣購買 Azure？](#in-which-countries-and-regions-is-microsoft-azure-commercially-available-and-what-currencies-can-be-used-to-purchase-azure)
+- [我們是否限制將 Azure 服務轉售至實施禁運的國家/地區？](#do-we-restrict-resale-of-azure-based-service-into-countries-under-embargo)
+- [Azure 和 SQL Database 是否都可透過 Microsoft 服務提供者授權合約取得？](#are-azure-and-sql-database-available-through-microsoft-services-provider-license-agreement)
+- [可以使用在 Azure 外部購買的現有 Windows 授權嗎？](#can-i-use-my-existing-windows-licenses-that-i-bought-outside-of-azure)
+- [誰可以購買 Azure 服務？](#who-can-purchase-azure-services)
 
-- [In which countries and regions is Microsoft Azure commercially available and what currencies can be used to purchase Azure?](#in-which-countries-and-regions-is-microsoft-azure-commercially-available-and-what-currencies-can-be-used-to-purchase-azure)
-- [Do we restrict resale of Azure based service into countries under embargo?](#do-we-restrict-resale-of-azure-based-service-into-countries-under-embargo)
-- [Are Azure and SQL Database available through Microsoft Services Provider License Agreement?](#are-azure-and-sql-database-available-through-microsoft-services-provider-license-agreement)
-- [Can I use my existing Windows licenses that I bought outside of Azure?](#can-i-use-my-existing-windows-licenses-that-i-bought-outside-of-azure)
-- [Who can purchase Azure services?](#who-can-purchase-azure-services)
+## 付款
 
-## <a name="making-payments"></a>Making payments
+- [購買 Azure 有哪些付款方式？](#what-payment-options-do-i-have-in-purchasing-azure)
+- [如何要求發票付款方式？](#how-can-i-request-the-invoice-method-of-payment)
+- [如何檢查信用卡付款的狀態？](#how-do-i-check-the-status-of-a-payment-made-by-credit-card)
+- [如何移除不再使用於 Azure 付款方式的信用卡？](#how-do-i-remove-a-credit-card-that-i-no-longer-use-as-an-azure-payment-method)
+- [如何更新或變更信用卡資訊？](#how-can-i-update-or-change-my-credit-card-information)
+- [我要如何編輯 Azure 訂用帳戶的付費資訊？](#how-can-i-edit-my-payment-information-for-my-azure-subscriptions)
+- [為什麼我看到必須使用國際信用卡的訊息？](#why-am-i-seeing-a-message-that-i-need-to-use-an-international-credit-card)
 
-- [What payment options do I have in purchasing Azure?](#what-payment-options-do-i-have-in-purchasing-azure)
-- [How can I request the invoice method of payment?](#how-can-i-request-the-invoice-method-of-payment)
-- [How do I check the status of a payment made by credit card?](#how-do-i-check-the-status-of-a-payment-made-by-credit-card)
-- [How do I remove a credit card that I no longer use as an Azure payment method?](#how-do-i-remove-a-credit-card-that-i-no-longer-use-as-an-azure-payment-method)
-- [How can I update or change my credit card information?](#how-can-i-update-or-change-my-credit-card-information)
-- [How can I edit my payment information for my Azure subscriptions?](#how-can-i-edit-my-payment-information-for-my-azure-subscriptions)
-- [Why am I seeing a message that I need to use an international credit card?](#why-am-i-seeing-a-message-that-i-need-to-use-an-international-credit-card)
+## Azure 定價
 
-## <a name="azure-pricing"></a>Azure pricing
+- [哪裡可以找到 Azure 服務的權益和定價資訊？](#where-can-i-find-the-benefits-and-pricing-information-for-azure-services)
+- [如何變更我的定價計劃？](#how-do-i-change-my-pricing-plan)
 
-- [Where can I find the Benefits and Pricing information for Azure Services?](#where-can-i-find-the-benefits-and-pricing-information-for-azure-services)
-- [How do I change my pricing plan?](#how-do-i-change-my-pricing-plan)
+## 服務等級協定 (SLA)
 
-## <a name="service-level-agreements-(sla)"></a>Service Level Agreements (SLA)
+- [我們如何預先知道因維護計劃而停止服務的時間？](#how-do-we-know-in-advance-about-service-downtime-for-planned-maintenance)
+- [何謂執行時間與連線能力的 Azure SLA 合約？](#what-is-the-azure-sla-agreement-for-uptime-and-connectivity)
+- [什麼是 Azure SLA 信用額度？](#what-are-the-azure-sla-credits)
+- [Azure 服務等級協定如何搭配目前的內部部署 Microsoft 授權合約運作？](#how-will-azure-service-level-agreements-work-with-current-on-premises-microsoft-licensing-agreements)
 
-- [How do we know in advance about service downtime for planned maintenance?](#how-do-we-know-in-advance-about-service-downtime-for-planned-maintenance)
-- [What is the Azure SLA agreement for uptime and connectivity?](#what-is-the-azure-sla-agreement-for-uptime-and-connectivity)
-- [What are the Azure SLA Credits?](#what-are-the-azure-sla-credits)
-- [How will Azure Service Level Agreements work with current on-premises Microsoft licensing agreements?](#how-will-azure-service-level-agreements-work-with-current-on-premises-microsoft-licensing-agreements)
+## 消費限制
 
-## <a name="spending-limits"></a>Spending limits
+- [如果我關閉「消費限制」功能，還能再重新開啟嗎？](#can-i-turn-the-spending-limit-back-on-if-i-turn-off-it)
+- [我可以調整「消費限制」的金額嗎？](#can-i-adjust-the-amount-of-the-spending-limit)
 
-- [Can I turn the Spending Limit back on if I turn off it?](#can-i-turn-the-spending-limit-back-on-if-i-turn-off-it)
-- [Can I adjust the amount of the Spending Limit?](#can-i-adjust-the-amount-of-the-spending-limit)
+## 支援方案
 
-## <a name="support-plans"></a>Support plans
+- [如何購買 Azure 支援？](#how-do-i-purchase-azure-support)
+- [月費會涵蓋單一 Azure 方案還是整個帳戶？](#does-the-monthly-rate-cover-a-single-azure-plan-or-the-entire-account)
+- [如何升級為更高階的 Azure 支援方案？](#how-do-i-upgrade-to-a-higher-tier-azure-support-plan)
+- [何時會收取 Azure 支援的費用？](#when-will-i-be-billed-for-azure-support)
+- [期限結束時，該怎麼辦？](#what-happens-at-the-end-of-the-term)
+- [如何取消我的 Azure 支援方案？](#how-do-i-cancel-my-azure-support-plan)
 
-- [How do I purchase Azure Support?](#how-do-i-purchase-azure-support)
-- [Does the monthly rate cover a single Azure plan or the entire account?](#does-the-monthly-rate-cover-a-single-azure-plan-or-the-entire-account)
-- [How do I upgrade to a higher tier Azure Support plan?](#how-do-i-upgrade-to-a-higher-tier-azure-support-plan)
-- [When will I be billed for Azure Support?](#when-will-i-be-billed-for-azure-support)
-- [What happens at the end of the term?](#what-happens-at-the-end-of-the-term)
-- [How do I cancel my Azure Support plan?](#how-do-i-cancel-my-azure-support-plan)
+## 移轉訂用帳戶、服務和資料
 
-## <a name="migrating-subscriptions,-services,-and-data"></a>Migrating subscriptions, services, and data
+- [如何將我的 Azure 訂用帳戶資料與服務移轉至新的訂用帳戶？](#how-do-i-migrate-data-and-services-for-my-azure-subscription-to-a-new-subscription)
+- [如何移轉我的訂用帳戶的擁有權？](#how-do-i-transfer-ownership-of-my-subscriptions)
 
-- [How do I migrate data and services for my Azure subscription to a new subscription?](#how-do-i-migrate-data-and-services-for-my-azure-subscription-to-a-new-subscription)
-- [How do I transfer ownership of my subscriptions?](#how-do-i-transfer-ownership-of-my-subscriptions)
+## 訂用帳戶服務限制 (配額)
 
-## <a name="subscription-service-limits-(quotas)"></a>Subscription service limits (quotas)
+- [是否可以增加免費試用訂用帳戶的配額？](#can-i-get-a-quota-increase-on-a-free-trial-subscription)
 
-- [Can I get a quota increase on a free trial subscription?](#can-i-get-a-quota-increase-on-a-free-trial-subscription)
+### 購買 Azure 有哪些付款方式？
 
-### <a name="what-payment-options-do-i-have-in-purchasing-azure?"></a>What payment options do I have in purchasing Azure?
-
-You can purchase Azure using a credit or debit card or choose to be invoiced.
+您可以使用信用卡或金融卡購買 Azure，或選擇開立發票。
 
 > [AZURE.NOTE]
 
-> - Once you opt for the invoice option, you can't move to the credit card option. To sign up for invoicing, see [Azure Invoicing](https://azure.microsoft.com/pricing/invoicing/).
-> - Please note that we do not accept prepaid and virtual credit cards.
-> - You are solely responsible for any credit card interest or other credit card charges that may result.
+> - 一旦您選擇了發票選項，就不能轉為使用信用卡選項。若要註冊以開立發票，請參閱 [Azure 發票](https://azure.microsoft.com/pricing/invoicing/)。
+> - 請注意我們不接受預付款項和虛擬信用卡。
+> - 您是信用卡利息或其他費用的唯一付款人。
 
-### <a name="how-can-i-request-the-invoice-method-of-payment?"></a>How can I request the invoice method of payment?
+### 如何要求發票付款方式？
 
-Follow the steps in [Azure Invoicing](https://azure.microsoft.com//pricing/invoicing/) to submit a request to pay by invoice. Once your request has been approved, you will be provided instructions on how to set up your subscription for the invoice payment method.
+請遵循 [Azure 發票](https://azure.microsoft.com//pricing/invoicing/)中的步驟，提交依發票付款的要求。您的要求獲准之後，您將會收到說明如何設定您的訂用帳戶以使用發票付款方式的指示。
 
-### <a name="how-do-i-check-the-status-of-a-payment-made-by-credit-card?"></a>How do I check the status of a payment made by credit card?
+### 如何檢查信用卡付款的狀態？
 
-You must submit a support ticket to request assistance. To create a support ticket to check the status of a payment made by credit card see [How to Create a Support Ticket for Azure Billing and Subscription Issues](billing-how-to-create-billing-support-ticket.md).
+您必須提交支援票證來要求協助。若要建立支援票證以檢查信用卡付款狀況，請參閱 [How to Create a Support Ticket for Azure Billing and Subscription Issues (如何針對 Azure 計費和訂用帳戶問題建立支援票證)](billing-how-to-create-billing-support-ticket.md)。
 
-### <a name="how-do-i-get-a-copy-of-my-invoice?"></a>How do I get a copy of my invoice?
+### 如何取得我的發票副本？
 
-As the Azure Account Administrator, you can view the current bill at the Azure Account Center and download statements for the previous six billing periods as well. For more detail, see [How to download your Azure billing invoice and daily usage data](billing-download-azure-invoice-daily-usage-date.md).
+身為 Azure 帳戶系統管理員，您可以在 Azure 帳戶中心檢視目前的帳單，並下載過去六個計費週期的明細。如需詳細資訊，請參閱 [How to download your Azure billing invoice and daily usage data (如何下載您的 Azure 帳單發票和每日使用量資料)](billing-download-azure-invoice-daily-usage-date.md)。
 
-### <a name="how-do-i-remove-a-credit-card-that-i-no-longer-use-as-an-azure-payment-method?"></a>How do I remove a credit card that I no longer use as an Azure payment method?
+### 如何移除不再使用於 Azure 付款方式的信用卡？
 
-You must submit a support ticket to request assistance. To create a support ticket to remove a credit card, see the article [How to Create a Support Ticket for Azure Billing and Subscription Issues](billing-how-to-create-billing-support-ticket.md).
+您必須提交支援票證來要求協助。若要建立支援票證以移除信用卡，請參閱 [How to Create a Support Ticket for Azure Billing and Subscription Issues (如何針對 Azure 計費和訂用帳戶問題建立支援票證)](billing-how-to-create-billing-support-ticket.md)。
 
-### <a name="how-can-i-update-or-change-my-credit-card-information?"></a>How can I update or change my credit card information?
+### 如何更新或變更信用卡資訊？
 
-If your credit card gets renewed and the number remains the same, you can simply update the details of the existing credit card, such as expiration date. If your card number changes or you would like to use a different card, you will need to add the new card. You can find instructions to update or add a credit card here: [How to change the credit card used to pay for an Azure subscription](billing-how-to-change-credit-card.md).
+如果您的信用卡換卡，但號碼維持不變，則只要更新現有信用卡的詳細資料即可，例如有效期限。如果您的信用卡號碼已變更，或您想要使用不同的信用卡，便需要新增信用卡。您可以在這裡找到更新或新增信用卡的指示︰[How to change the credit card used to pay for an Azure subscription (如何變更用來支付 Azure 訂用帳戶的信用卡)](billing-how-to-change-credit-card.md)。
 
-### <a name="how-do-we-know-in-advance-about-service-downtime-for-planned-maintenance?"></a>How do we know in advance about service downtime for planned maintenance?
+### 我們如何預先知道因維護計劃而停止服務的時間？
 
-Our Service Level Agreement for availability applies to customer applications which use a minimum of two role instances.  There is no SLA for single instances. Please refer to your [SLA page](https://azure.microsoft.com/support/legal/sla/) for complete details.
+我們的可用性服務等級協定適用於至少使用兩個角色執行個體的客戶應用程式。單一執行個體沒有 SLA。如需完整詳細資訊，請參閱 [SLA 頁面](https://azure.microsoft.com/support/legal/sla/)。
 
-#### <a name="planned-maintenance-(classic-portal)"></a>Planned maintenance (Classic Portal)
+#### 計劃性維護 (傳統入口網站)
 
-For both single- and multi-instance configurations, Azure sends email communications in advance to alert you of upcoming planned maintenance (one week in advance for single-instance and 48 hours in advance for multi-instance). The email will be sent to the Account Administrator, Service Administrator and Co-administrator email accounts provided in the subscription.
+針對單一執行個體和多重執行個體組態，Azure 會預先傳送電子郵件通訊，警告您有關即將到來的計劃性維護 (單一執行個體為提前一週，多個執行個體為提前 48 小時)。這封電子郵件將會傳送到訂用帳戶中提供的帳戶管理員、系統管理員及共同系統管理員電子郵件帳戶。
 
->[AZURE.NOTE] For more information specific to Virtual Machines see the article [Planned maintenance for Azure virtual machines](virtual-machines/virtual-machines-linux-planned-maintenance.md).
+>[AZURE.NOTE] 如需虛擬機器的特定詳細資訊，請參閱 [Planned maintenance for Azure virtual machines (Azure 虛擬機器的計劃性維護)](virtual-machines/virtual-machines-linux-planned-maintenance.md) 一文。
 
-#### <a name="unplanned-maintenance"></a>Unplanned maintenance
+#### 非計劃性維護
 
-In the event of an unplanned service disruption on the Azure Platform, status updates will be made on our [service dashboard](http://status.azure.com/)  and customers will also receive notice in the [Azure classic portal](https://manage.windowsazure.com/).
+如果 Azure 平台發生非計劃性服務中斷，我們的[服務儀表板](http://status.azure.com/)上會進行狀態更新，而客戶會同時在 [Azure 傳統入口網站](https://manage.windowsazure.com/)收到通知。
 
-### <a name="what-is-the-azure-sla-agreement-for-uptime-and-connectivity?"></a>What is the Azure SLA agreement for uptime and connectivity?
+### 何謂執行時間與連線能力的 Azure SLA 合約？
 
-Azure has separate SLA’s for all services that are generally available and not in preview. The Service Level Agreement (SLA) describes Microsoft’s commitments for uptime and connectivity. Please refer to your [SLA page](https://azure.microsoft.com/support/legal/sla/) for the latest details.
+Azure 針對所有已正式推出、且不在預覽階段的服務，另外備有 SLA。服務等級協定 (SLA) 描述 Microsoft 對執行時間與連線能力的承諾。如需最新詳細資訊，請參閱 [SLA 頁面](https://azure.microsoft.com/support/legal/sla/)。
 
-### <a name="what-are-the-azure-sla-credits?"></a>What are the Azure SLA Credits?
+### 什麼是 Azure SLA 信用額度？
 
-Azure SLA Credits are calculated on a per subscription basis as a percentage of the bill for that service in the billing month the SLA was missed. The service credits are applied to the subsequent month’s bill. Generally, we provide 10% credit if we fall below the first threshold (99.95% or 99.9%, depending on the service) and 25% if we fall beneath the subsequent threshold (99%). Please refer to your [SLA page](https://azure.microsoft.com/support/legal/sla/) for complete details.
+Azure SLA 信用額度是依個別訂用帳戶來計算，形式為該服務在未達到 SLA 的帳務月份之帳單的百分比。服務信用額度會套用至下個月的帳單。一般而言，我們如果未達到最高臨界值 (99.95% 或 99.9%，視服務而定)，則會提供 10% 的信用額度；如果未達到次高臨界值 (99%)，則會提供 25% 的信用額度。如需完整詳細資訊，請參閱 [SLA 頁面](https://azure.microsoft.com/support/legal/sla/)。
 
-### <a name="how-will-azure-service-level-agreements-work-with-current-on-premises-microsoft-licensing-agreements?"></a>How will Azure Service Level Agreements work with current on premises Microsoft licensing agreements?
+### Azure 服務等級協定如何搭配目前的內部部署 Microsoft 授權合約運作？
 
-Azure Service Level Agreements are independent of our on-premises Microsoft licensing agreements. Our SLAs for Azure provide you a monthly uptime guarantee for those services you consume in the cloud, with SLA credits against what we have billed you in the event we fail to meet the guarantee.
+Azure 服務等級協定是獨立於我們的內部部署 Microsoft 授權合約來運作。我們的 Azure SLA 針對您在雲端中使用的那些服務，提供每月執行時間保證，而且當我們未達到保證的內容時，提供您已計費的 SLA 信用額度。
 
-### <a name="i-do-not-see-an-invoice-for-the-last-billing-period.-why?"></a>I do not see an invoice for the last billing period. Why?
+### 我沒有看見上期的發票。原因為何？
 
-There could be several reasons for this:
+可能的原因如下：
 
-- It is less than 30 days from the day you subscribed to Azure.
+- 您的 Azure 訂閱不滿 30 天。
 
-- Your subscription type is Free Trial or one of the member offers (MSDN/Open/BizSpark/DreamSpark) that doesn't have a credit card or other payment instrument associated with it.
+- 您的訂用帳戶是免費試用版，或沒有信用卡或其他相關付款方式的成員優惠之一 (MSDN/Open/BizSpark/DreamSpark)。
 
-- The invoice generation date has not yet arrived.
+- 還沒到發票產生日期。
 
-### <a name="i-am-unable-to-log-in-to-the-azure-portal"></a>I am unable to log in to the Azure portal
+### 我無法登入 Azure 入口網站
 
-Please see [I am unable to log in to manage my Azure subscription](billing-cannot-login-subscription.md).
+請參閱[我無法登入來管理我的 Azure 訂用帳戶](billing-cannot-login-subscription.md)。
 
->[AZURE.NOTE] Make sure you are logging in as the right administrator: an Account Administrator can only access the [Account Center](https://account.windowsazure.com/) whereas Service Administrators (SA) and Co-Administrators (CA) only have access to the [Azure portal](https://portal.azure.com/) or the [Azure classic portal](https://manage.windowsazure.com/).
+>[AZURE.NOTE] 請確定以正確的系統管理員身分登入：帳戶管理員只能存取[帳戶中心](https://account.windowsazure.com/)，而服務管理員 (SA) 和共同管理員 (CA) 只有 [Azure 入口網站](https://portal.azure.com/)或 [Azure 傳統入口網站](https://manage.windowsazure.com/)的存取權。
 
-### <a name="how-do-i-purchase-azure-support?"></a>How do I purchase Azure Support?
+### 如何購買 Azure 支援？
 
-Azure Support plans may be purchased either online or through an Enterprise Agreement. The Developer, Standard, or Professional Direct Support plans are available online through the [Azure Support Plans](https://azure.microsoft.com/support/plans/) page. You must be the Microsoft Azure account owner to purchase a support plan.
+Azure 支援方案可於線上或透過 Enterprise 合約購買。開發人員、標準或專業直接支援方案可透過 [Azure 支援方案](https://azure.microsoft.com/support/plans/)頁面在線上取得。您必須是 Microsoft Azure 帳戶擁有者才能購買支援方案。
 
-If you purchase Microsoft Azure through an Enterprise Agreement (EA), you can add either a Standard or Professional Direct support plan to your Enterprise Agreement, by contacting your Large Account Reseller (LAR). Developer Support is not available through an Enterprise Agreement.
+如果您透過 Enterprise 合約 (EA) 購買 Microsoft Azure，可以連絡您的大型客戶轉銷商 (LAR)，將標準或專業直接支援方案加入您的 Enterprise 合約中。開發人員支援無法透過 Enterprise 合約取得。
 
-### <a name="does-the-monthly-rate-cover-a-single-azure-plan-or-the-entire-account?"></a>Does the monthly rate cover a single Azure plan or the entire account?
+### 月費會涵蓋單一 Azure 方案還是整個帳戶？
 
-The flat monthly cost for Azure Support covers one account, regardless of how many subscriptions or users you have on the account.
+不論您的帳戶底下包含多少個訂用帳戶或使用者，Azure 支援的均一價月費都會涵蓋單一帳戶。
 
-All subscriptions under an account will share the same support plan, and all users with admin/owner access to any of the subscriptions under the account with a Support Plan will also be entitled to support for those specific account’s subscriptions they have access to.
+單一帳戶下的所有訂用帳戶都會共用相同的支援方案，而所有具任一訂用帳戶(其隸屬在具支援方案的帳戶之下) 之系統管理員/擁有者存取權的使用者，也具其可存取之帳戶的訂用帳戶支援資格。
 
-A Microsoft Azure account can be accessed from the [Azure Account Center](https://account.windowsazure.com/Home/Index). From there you can see the list of subscriptions that belong to the account and will be entitled for support.
+Microsoft Azure 帳戶可從 [Azure 帳戶中心](https://account.windowsazure.com/Home/Index)存取。您可於該處查看隸屬於帳戶且將符合支援資格的訂用帳戶清單。
 
-### <a name="how-do-i-upgrade-to-a-higher-tier-azure-support-plan?"></a>How do I upgrade to a higher tier Azure Support plan?
+### 如何升級為更高階的 Azure 支援方案？
 
-You can upgrade to a higher-tier plan by [submitting a support request](billing-how-to-create-billing-support-ticket.md) and choosing **Subscription Management**. Microsoft will waive the remaining payments on your original Azure Support plan and charge you at the higher tier for the remaining months of your initial commitment.
+您可以透過[提交支援要求](billing-how-to-create-billing-support-ticket.md)並選擇 [訂用帳戶管理]，升級至更高階的方案。Microsoft 將免除您原始 Azure 支援方案的其餘付款，並且針對初始承諾用量的其餘月份，向您收取更高階方案的費用。
 
-### <a name="when-will-i-be-billed-for-azure-support?"></a>When will I be billed for Azure Support?
+### 何時會收取 Azure 支援的費用？
 
-When you purchase an Azure Support plan online, you will be charged immediately for the first month. You will be charged the monthly amount on the first day of each subsequent billing cycle. Enterprise Agreement (EA) purchases will follow the agreement billing cycle.
+當您於線上購買 Azure 支援方案時，系統就會立即收取第一個月的費用。之後，系統將在每個後續計費週期的第一天收取每月金額。Enterprise 合約 (EA) 購買項目會遵循合約計費週期。
 
-### <a name="what-happens-at-the-end-of-the-term?"></a>What happens at the end of the term?
+### 期限結束時，該怎麼辦？
 
-At the end of your 6-month term, your plans will automatically renew to the same Azure Support plan for another 6 months, using the same payment method. As an account owner, you can elect to turn off the auto-renew functionality through the [Azure Account Center](https://account.windowsazure.com/Home/Index).
+當您的 6 個月期結束時，您的方案將使用相同的付款方式，自動續訂相同的 Azure 支援方案 6 個月。身為帳戶擁有者，您可以選擇透過 [Azure 帳戶中心](https://account.windowsazure.com/Home/Index)關閉自動續約功能。
 
-If you do not wish to auto renew, please log into the [Azure Account Center](https://account.windowsazure.com/Home/Index), select the support plan in question, click on the "Change renewal details," and unselect the default option to auto renew.
+如果您不想要自動續約，請登入 [Azure 帳戶中心](https://account.windowsazure.com/Home/Index)、選取要取消自動續約的支援方案、按一下 [變更續約詳細資料]，然後取消選取自動續約的預設選項。
 
-### <a name="how-do-i-cancel-my-azure-support-plan?"></a>How do I cancel my Azure Support plan?
+### 如何取消我的 Azure 支援方案？
 
-An account owner can cancel an Azure Support plan by logging into the [Azure Account Center](https://account.windowsazure.com/Home/Index), then selecting **subscriptions**. If you have a subscription, your list of subscriptions will be displayed. Select the subscription you wish to cancel. The details of the subscription will then be displayed with a list of options on the right side of the screen. Select **Cancel** and proceed. If you do not have a subscription, then the message “You do not have any subscriptions.” will be displayed.
+帳戶擁有者可以登入 [Azure 帳戶中心](https://account.windowsazure.com/Home/Index)，然後選取 [訂用帳戶]，藉以取消 Azure 支援方案。若您具有訂用帳戶，便會顯示您的訂用帳戶清單。選取您想要取消的訂用帳戶。接著會在螢幕右方顯示訂用帳戶的詳細資料及選項清單。選取 [取消] 並繼續。若您不具訂用帳戶，則會顯示「您不具任何訂用帳戶」訊息。
 
->[AZURE.NOTE] An Azure Support plan has a 6-month term and Microsoft requires continued monetary commitment for the duration of the term. Cancellation before the term expires does not forgive the remaining commitment or provide refunds any pre-paid amount.
-For details see [How to cancel your Azure subscription](billing-how-to-cancel-azure-subscription.md).
+>[AZURE.NOTE] Azure 支援方案為 6 個月期，而 Microsoft 要求您對該期的期間履行貨幣承諾量。在期限到期前解約並不會免除剩餘的承諾量，亦不會針對任何預付金額進行退款。如需詳細資訊，請參閱 [How to cancel your Azure subscription (如何取消 Azure 訂用帳戶)](billing-how-to-cancel-azure-subscription.md)。
 
-### <a name="how-do-i-migrate-data-and-services-for-my-azure-subscription-to-a-new-subscription?"></a>How do I migrate data and services for my Azure subscription to a new subscription?
+### 如何將我的 Azure 訂用帳戶資料與服務移轉至新的訂用帳戶？
 
-Please contact [Azure support](https://azure.microsoft.com/support/options/) for more information. To create a support ticket to migrate data and services for an Azure subscription to a new subscription see the article [How to Create a Support Ticket for Azure Billing and Subscription Issues](billing-how-to-create-billing-support-ticket.md).
+如需詳細資訊，請連絡 [Azure 支援服務](https://azure.microsoft.com/support/options/)。若要建立支援票證以將 Azure 訂用帳戶的資料及服務移轉到新的訂用帳戶，請參閱 [How to Create a Support Ticket for Azure Billing and Subscription Issues (如何針對 Azure 計費和訂用帳戶問題建立支援票證)](billing-how-to-create-billing-support-ticket.md) 一文。
 
-### <a name="how-do-i-manage-administrator-accounts-in-the-new-azure-portal?"></a>How do I manage Administrator accounts in the new Azure portal?
+### 如何在新的 Azure 入口網站中管理系統管理員帳戶？
 
-Azure Role-Based Access Control (RBAC) enables fine-grained access management for Azure. Using RBAC, you can segregate duties within your DevOps team and grant only the amount of access to users that they need to perform their jobs. For more information, see [Azure Role-Based Access Control](.\active-directory\Azure Role-Based Access Control.md).
+Azure 角色型存取控制 (RBAC) 可以對 Azure 進行更細緻的存取權管理。您可以使用 RBAC 來區隔開發小組的職責，僅授與使用者作業所需的存取權。如需詳細資訊，請參閱 [Azure 角色型存取控制](.\\active-directory\\Azure Role-Based Access Control.md)。
 
-### <a name="how-do-i-transfer-ownership-of-my-subscriptions?"></a>How do I transfer ownership of my subscriptions?
+### 如何移轉我的訂用帳戶的擁有權？
 
-You can now do this easily in the Microsoft Azure Account Center- for Pay-As-You-Go, MSDN, Action Pack, or BizSpark subscriptions. We’ve added the ability to transfer your subscription to another user. In other words, you can now change the account admin on any Pay-As-You-Go, MSDN, Action Pack, or BizSpark subscription that you own. Note that the recipient’s user account must be in the same country and that you cannot transfer subscriptions that are associated with a marketplace purchase.
-For details, see the article [How to transfer an Azure subscription](billing-subscription-transfer.md).
+您現在可以針對隨用隨付、MSDN、行動套件或 BizSpark 訂用帳戶，輕鬆地在 Microsoft Azure 帳戶中心執行此動作。我們已經可讓您將您的訂用帳戶轉移給另一位使用者。換句話說，您現在可以在所擁有的任何隨用隨付、MSDN、行動套件或 BizSpark 訂用帳戶上變更帳戶管理員。請注意，收件者的使用者帳戶必須是在相同的國家/地區，且您無法轉移與 Marketplace 購買相關聯的訂用帳戶。如需詳細資訊，請參閱[如何傳輸 Azure 訂用帳戶](billing-subscription-transfer.md)一文。
 
-### <a name="can-i-use-my-existing-windows-licenses-that-i-bought-outside-of-azure?"></a>Can I use my existing Windows licenses that I bought outside of Azure?
+### 可以使用在 Azure 外部購買的現有 Windows 授權嗎？
 
-Yes, through license mobility if you have SA you can "bring-your-own-license" for all Virtual Machines supported server products except for Windows Server. For more information see [License Mobility through Software Assurance on Azure](https://azure.microsoft.com/pricing/license-mobility/).
+可以，若您具備軟體保證，即可透過授權流動性將您的自備授權用於所有支援虛擬機器的伺服器產品上，但是 Windows Server 除外。如需詳細資訊，請參閱 [Azure 上透過軟體保證的授權機動性](https://azure.microsoft.com/pricing/license-mobility/)。
 
-### <a name="where-can-i-find-the-benefits-and-pricing-information-for-azure-services?"></a>Where can I find the Benefits and Pricing information for Azure Services?
+### 哪裡可以找到 Azure 服務的權益和定價資訊？
 
-For information on the benefits of Azure services, see [Microsoft Azure Offer Details](https://azure.microsoft.com/support/legal/offer-details/). For pricing information, see the [Azure pricing page](https://azure.microsoft.com/pricing/).
+如需 Azure 服務權益的相關資訊，請參閱 [Microsoft Azure 優惠詳細資料](https://azure.microsoft.com/support/legal/offer-details/)。如需價格資訊，請參閱 [Azure 價格頁面](https://azure.microsoft.com/pricing/)。
 
-### <a name="how-do-i-change-my-pricing-plan?"></a>How do I change my pricing plan?
+### 如何變更我的定價計劃？
 
-You can switch your Pay-As-You-Go subscription to the [12-Month Prepay Offer](https://azure.microsoft.com/offers/ms-azr-0026p/). With this offer, you prepay for Azure services for a 12-month term and receive a 5% discount on Azure services. In the [Azure Account Center](https://account.windowsazure.com/Subscriptions), go to your subscription and click on Switch Offer. This is currently the only offer that can be switched via the Account Center. Alternatively, you can contact [Azure support](https://azure.microsoft.com/support/options/) to switch to a different offer.
+您可以將隨用隨付訂用帳戶切換為 [12 個月預付優惠](https://azure.microsoft.com/offers/ms-azr-0026p/)。利用這項優惠，您可預付 12 個月的 Azure 服務費用，並在使用 Azure 服務時享有 5% 的折扣。在 [Azure 帳戶中心](https://account.windowsazure.com/Subscriptions)，移至您的訂用帳戶，並按一下 [切換優惠]。這是目前唯一可以透過「帳戶中心」切換的優惠。或者，您可以連絡 [Azure 支援服務](https://azure.microsoft.com/support/options/)以切換至不同的優惠。
 
-### <a name="can-notifications-be-sent-to-a-different-email-address-other-than-the-account-owner-email-address-associated-with-my-account?"></a>Can notifications be sent to a different email address other than the Account Owner email address associated with my account?
+### 可以讓通知寄送到其他電子郵件地址，而非我的帳戶所關聯的帳戶擁有者電子郵件地址嗎？
 
-Yes. If you would like to specify a different email address to receive notifications, please follow these directions:
+是。如果您想要指定不同的電子郵件地址來接收通知，請遵循下列指示：
 
-1.  Go to the [Profile tab](https://account.windowsazure.com/Profile) in the Azure Accounts Portal.
-2.  Click **Edit Details** to update your email address to receive notifications.
+1.	移至 Azure 帳戶入口網站中的 [設定檔] 索引標籤[](https://account.windowsazure.com/Profile)。
+2.	按一下 [編輯詳細資料] 更新您的電子郵件地址以接收通知。
 
-### <a name="how-can-i-edit-my-payment-information-for-my-azure-subscription/s?"></a>How can I edit my payment information for my Azure Subscription/s?
+### 我要如何編輯 Azure 訂用帳戶的付費資訊？
 
-To view and edit the Azure account information, you must sign in to the Azure Account Center as the account administrator. Below are instructions in managing the payment method for Azure subscription/s.**
+若要檢視及編輯 Azure 帳戶資訊，您必須以帳戶管理員的身分登入 Azure 帳戶中心。以下為管理 Azure 訂用帳戶付款方式的指示。**
 
-1.  Go to the [Azure Account Center](https://account.windowsazure.com/Subscriptions).
-2.  On the subscriptions page, click the subscription for which you want to update the payment method.
-3.  On the **subscription** summary page, click Change payment method. The **Change Payment Method** tool appears in a separate window.
+1.	移至 [Azure 帳戶中心](https://account.windowsazure.com/Subscriptions)。
+2.	在訂用帳戶頁面上，按一下您想要加以更新付款方式的訂用帳戶。
+3.	在 [訂用帳戶] 摘要頁面上，按一下 [變更付款方式]。[變更付款方式] 工具就會在另一個視窗中顯示。
 
-    **Note**: You can also access the Account Center from the Microsoft Azure classic portal. To do so, click your account name, and then click View my bill.
-4.  On the **Choose payment method** page, click the drop-down list, select the payment method you want update, and then click **Edit**.
-5.  On the details page, verify that you have selected the correct credit card type and card number.
-6.  Make necessary changes to the card details, and then click **Next**.
+	**注意**：您也可以從 Microsoft Azure 傳統入口網站存取帳戶中心。若要這麼做，請依序按一下帳戶名稱以及 [檢視我的帳單]。
+4.	在 [選擇付款方式] 頁面上，按一下下拉式清單，選取要更新的付款方式，然後按一下 [編輯]。
+5.	在詳細資料頁面上，確認您已選取正確的信用卡類型及卡號。
+6.	視需要變更信用卡詳細資料，然後按一下 [下一步]。
 
-For more information, see the article [How to change the credit card used to pay for an Azure subscription](billing-how-to-change-credit-card.md).
+如需詳細資訊，請參閱 [How to change the credit card used to pay for an Azure subscription (如何變更用來支付 Azure 訂用帳戶的信用卡)](billing-how-to-change-credit-card.md) 一文。
 
->[AZURE.NOTE] Currently, the Change Payment Method tool does not allow you to remove an existing credit card as a payment method. For information about how to remove a credit card, see the [How do I remove a credit card that I no longer use as an Azure payment method?](#how-do-i-remove-a-credit-card-that-i-no-longer-use-as-an-azure-payment-method) in this article.
+>[AZURE.NOTE] 目前 [變更付款方式] 工具不允許您移除現有作為付款方式的信用卡。如需如何移除信用卡方式的相關資訊，請參閱本文的[如何移除不再使用於 Azure 付款方式的信用卡？](#how-do-i-remove-a-credit-card-that-i-no-longer-use-as-an-azure-payment-method)。
 
-### <a name="why-am-i-seeing-a-message-that-i-need-to-use-an-international-credit-card?"></a>Why am I seeing a message that I need to use an international credit card?
+### 為什麼我會看到必須使用國際信用卡的訊息？
 
-In some cases, although you’re paying for Azure services in your local/preferred currency, you are purchasing services through a non-local Microsoft entity and your credit card is being processed by a non-local bank. In these cases, cards issued by local banks may fail which can negatively impact your Azure services. If you’re unsure whether your credit card is enabled for international transactions, please contact your bank or card issuer to confirm. See [supported countries and currencies](billing-countries-and-currencies.md).
+在某些情況下，雖然您是以本地/慣用貨幣支付 Azure 服務，但卻是透過非本地 Microsoft 實體購買服務，而處理您信用卡的銀行並非本地銀行。在這些情況下，本地銀行所發行的卡片可能會失敗，而對您的 Azure 服務造成負面影響。如果您不確定您的信用卡是否具備國際交易功能，請連絡您的銀行或發卡機構來進行確認。請參閱[支援的國家/地區與貨幣](billing-countries-and-currencies.md)。
 
-### <a name="why-can't-i-edit-or-add-details-to-my-subscription?"></a>Why can't I edit or add details to my subscription?
+### 為什麼我無法編輯或新增詳細資料到我的訂用帳戶中？
 
-To view and edit the Azure account information, you must sign in to the Azure Account Center as the account administrator.  If you are the AA and still cannot edit the subscription, please submit a support ticket to request assistance. To create a support ticket, see the article [How to Create a Support Ticket for Azure Billing and Subscription Issues](billing-how-to-create-billing-support-ticket.md).
+若要檢視及編輯 Azure 帳戶資訊，您必須以帳戶管理員的身分登入 Azure 帳戶中心。如果您是帳戶管理員，且仍無法編輯訂用帳戶，請提交支援票證以要求協助。若要建立支援票證，請參閱 [How to Create a Support Ticket for Azure Billing and Subscription Issues (如何針對 Azure 計費和訂用帳戶問題建立支援票證)](billing-how-to-create-billing-support-ticket.md) 一文。
 
-### <a name="who-can-purchase-azure-services?"></a>Who can purchase Azure services?
+### 誰可以購買 Azure 服務？
 
-Azure is intended for use by businesses to build cloud scale applications and services. However, anyone may purchase Azure services.
+Azure 原本是要供企業用來建置雲端規模的應用程式與服務。不過，任何人都可以購買 Azure 服務。
 
-### <a name="can-i-try-azure-for-free,-without-any-risk-of-being-charged?"></a>Can I try Azure for free, without any risk of being charged?
+### 我可以免費試用 Azure，不需擔心收費問題嗎？
 
-Yes. With our [Spending Limit feature](https://azure.microsoft.com/pricing/spending-limits/), customers who sign up for a Free Trial, MSDN, MPN, or BizSpark offer can utilize Azure without getting charged as long as they keep the Spending Limit feature turned on. All new customers who sign up for these offers will have the Spending Limit turned on with a value of $0.
+是。我們的[消費限制功能](https://azure.microsoft.com/pricing/spending-limits/)，可讓註冊免費試用、MSDN、MPN 或 BizSpark 優惠的客戶在使用 Azure 時，只要持續開啟「消費限制」功能，就不會收費。所有註冊這些服務的新客戶都會開啟 [消費限制]，且其值為 $0。
 
-For information on signing up for Azure, see the article [How to sign up for, purchase, upgrade or activate an Azure subscription](billing-buy-sign-up-azure-subscription.md).
+如需註冊 Azure 的詳細資訊，請參閱 [How to sign up for, purchase, upgrade or activate an Azure subscription (如何註冊、購買、升級或啟動 Azure 訂用帳戶)](billing-buy-sign-up-azure-subscription.md) 一文。
 
-### <a name="can-i-turn-the-spending-limit-back-on-if-i-turn-off-it?"></a>Can I turn the Spending Limit back on if I turn off it?
+### 如果我關閉「消費限制」功能，還能再重新開啟嗎？
 
-For those on our member benefit offers (e.g., MSDN), you do have the ability to have the Spending Limit feature re-enabled at the beginning of your next billing cycle. The Spending Limit cannot be re-enabled for the current billing period once turned off.
-For more information, see [Change the Azure Spending Limit](https://msdn.microsoft.com/library/azure/dn465781.aspx).
+使用會員優惠 (如 MSDN) 的人可以在下個計費週期重新啟用「消費限制」功能。「消費限制」功能一旦停用，就無法在目前計費週期重新啟用。如需詳細資訊，請參閱[變更 Azure 消費限制](https://msdn.microsoft.com/library/azure/dn465781.aspx)。
 
-### <a name="can-i-adjust-the-amount-of-the-spending-limit?"></a>Can I adjust the amount of the Spending Limit?
+### 我可以調整「消費限制」的金額嗎？
 
-For the initial release of this feature, the Spending Limit is set at $0 and cannot be adjusted. It is designed to enable customers on our Free Trial, MSDN, MPN or BizSpark offers to utilize Azure with complete assurance of not being billed.
-For more information, see [Azure Spending Limit](https://azure.microsoft.com/pricing/spending-limits/).
+針對此功能的初始版本，「消費限制」設為 $0 (美金)，而且無法調整。其設計是要讓享有免費試用、MSDN、MPN 或 BizSpark 優惠的客戶使用 Azure 時，完全不用擔心會被計費。如需詳細資訊，請參閱 [Azure 消費限制](https://azure.microsoft.com/pricing/spending-limits/)。
 
-### <a name="in-which-countries-and-regions-is-microsoft-azure-commercially-available,-and-what-currencies-can-be-used-to-purchase-azure?"></a>In which countries and regions is Microsoft Azure commercially available, and what currencies can be used to purchase Azure?
+### Microsoft Azure 在那些國家/地區和區域上市，以及可以使用哪些貨幣購買 Azure？
 
-Azure is available for purchase in more than 140 countries around the world, and we support billing in many currencies. Click [here](billing-countries-and-currencies.md) to see a list of countries and currencies.
+Auzre 已在全球超過 140 個國家/地區銷售，並可以多種貨幣計費。按一下[這裡](billing-countries-and-currencies.md)，以查看國家/地區與貨幣的列表。
 
-### <a name="do-we-restrict-resale-of-azure-based-service-into-countries-under-embargo?"></a>Do we restrict resale of Azure based service into countries under embargo?
+### 我們是否限制將 Azure 服務轉售至實施禁運的國家/地區？
 
-Yes.
+是。
 
-### <a name="are-azure-and-sql-database-available-through-microsoft-services-provider-license-agreement?"></a>Are Azure and SQL Database available through Microsoft Services Provider License Agreement?
+### Azure 和 SQL Database 是否都可透過 Microsoft 服務提供者授權合約取得？
 
-There are currently no plans to offer Azure or SQL Database through SPLA.
+目前並沒有透過 SPLA 提供 Azure 和 SQL Database 的計劃。
 
-### <a name="what-is-a-free-trial-subscription-and-how-long-does-it-last?"></a>What is a Free Trial subscription and how long does it last?
+### 什麼是免費試用訂用帳戶，其持續時間有多久？
 
-An Azure Free Trial subscription is a one-month free trial for any new customer and provide credits of $200 USD of Azure at no charge. To see what services free trial credits cover and do not cover, see the [Free Trial offer page](https://azure.microsoft.com/offers/ms-azr-0044p/).
+Azure 免費試用訂用帳戶是為任何新客戶提供的為期一個月的免費試用，並且免費提供 $200 美元的 Azure 信用額度。若要查看免費試用的信用額度涵蓋和不涵蓋哪些服務，請參閱[免費試用優惠網頁](https://azure.microsoft.com/offers/ms-azr-0044p/)。
 
-You can sign up for a trial subscription [here](http://azure.microsoft.com/pricing/free-trial/). See [this guide](billing-buy-sign-up-azure-subscription.md#sign-up-for-an-azure-free-trial-subscription) for step-by-step instructions.
+您可以在[這裡](http://azure.microsoft.com/pricing/free-trial/)註冊試用訂用帳戶。如需逐步指示，請參閱[本指南](billing-buy-sign-up-azure-subscription.md#sign-up-for-an-azure-free-trial-subscription)。
 
-### <a name="what-resources-are-available-when-using-a-free-trial?"></a>What resources are available when using a Free Trial?
+### 使用免費試用時有哪些資源可用？
 
-You receive $200 USD of Azure credits with the Free Trial to use over 30 days. The choice is now yours on how you use your Azure credits. See the [Free Trial offer page](https://azure.microsoft.com/offers/ms-azr-0044p/) for more details.
+您會在免費試用時收到 $200 美元的 Azure 信用額度，以在這 30 天內使用。您現在可以自行選擇如何運用 Azure 點數。如需詳細資料，請參閱[免費試用優惠網頁](https://azure.microsoft.com/offers/ms-azr-0044p/)。
 
-You can sign up for a trial subscription [here](http://azure.microsoft.com/pricing/free-trial/).
+您可以在[這裡](http://azure.microsoft.com/pricing/free-trial/)註冊試用訂用帳戶。
 
-Also see the [Free Trial FAQ](https://azure.microsoft.com/pricing/free-trial-faq/).
+另請參閱[免費試用常見問題集](https://azure.microsoft.com/pricing/free-trial-faq/)。
 
-### <a name="what-happens-if-i-remove-the-spending-limit-on-my-free-trial?"></a>What happens if I remove the spending limit on my free trial?
+### 如果我在我的免費試用中移除消費限制，會發生什麼事？
 
-Once you remove the spending limit, you start getting charged for consuming resources beyond the free trial credit. You will not be able to reset the spending limit once it has been removed.
+一旦您移除消費限制，就會開始向您收取超過免費試用信用額度的資源取用費用。消費限制一旦移除就無法重設。
 
-### <a name="can-i-get-a-quota-increase-on-a-free-trial-subscription?"></a>Can I get a quota increase on a Free Trial subscription?
+### 是否可以增加免費試用訂用帳戶的配額？
 
-Free Trial subscriptions are not eligible for quota increases. If you have a Free Trial, you can upgrade to a [Pay-As-You-Go](https://azure.microsoft.com/offers/ms-azr-0003p/) subscription. For details on how to upgrade see [Upgrade Azure Free Trial to Pay-As-You-Go](billing-buy-sign-up-azure-subscription.md#UpgradeFreeToPYG).
+免費試用訂用帳戶無法增加配額。如果您有免費試用，則可以升級到[隨用隨付](https://azure.microsoft.com/offers/ms-azr-0003p/)訂用帳戶。如需如何升級的詳細資訊，請參閱[將 Azure 免費試用版升級至隨用隨付](billing-buy-sign-up-azure-subscription.md#UpgradeFreeToPYG)。
 
->[AZURE.NOTE] DreamSpark subscriptions are also ineligible for quota increases.
+>[AZURE.NOTE] DreamSpark 訂用帳戶也無法增加配額。
 
-### <a name="where-can-i-get-more-details-on-free-trial?"></a>Where can I get more details on Free Trial?
+### 哪裡可以取得更多關於免費試用的詳細資料？
 
-Visit the [Free Trial offer page](https://azure.microsoft.com/offers/ms-azr-0044p/) and read the [Official Free Trial FAQ](https://azure.microsoft.com/pricing/free-trial-faq/).
+請瀏覽[免費試用優惠網頁](https://azure.microsoft.com/offers/ms-azr-0044p/)和閱讀[官方的免費試用常見問題集](https://azure.microsoft.com/pricing/free-trial-faq/)。
 
-> [AZURE.NOTE] If you still have further questions, please [contact support](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) to get your issue resolved quickly.
+> [AZURE.NOTE] 如果您仍有其他問題，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
 
-### <a name="how-do-i-make-a-payment?"></a>How do I make a payment?
+### 我要如何進行付款？
 
-If you have set up a credit card or a debit card as your payment method, the payment will be made automatically.
+如果您設定信用卡或金融卡作為付款方法，系統將會自動扣款。
 
-If you are set up to use an [invoice method of payment](https://azure.microsoft.com/pricing/invoicing/), send your payment to the location listed at the bottom of your invoice. For more help, [contact support](billing-how-to-create-billing-support-ticket.md).
+如果您設定為使用[發票付款方法](https://azure.microsoft.com/pricing/invoicing/)，請將您的付款交付至您發票底部所列的位置。如需詳細說明，請[連絡支援服務](billing-how-to-create-billing-support-ticket.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

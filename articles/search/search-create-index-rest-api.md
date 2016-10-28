@@ -1,6 +1,6 @@
 <properties
-    pageTitle="Create an Azure Search index using the REST API | Microsoft Azure | Hosted cloud search service"
-    description="Create an index in code using the Azure Search HTTP REST API."
+    pageTitle="使用 REST API 建立 Azure 搜尋服務索引 | Microsoft Azure | 雲端託管搜尋服務"
+    description="使用 Azure 搜尋服務 HTTP REST API 在程式碼中建立索引。"
     services="search"
     documentationCenter=""
     authors="ashmaka"
@@ -17,45 +17,44 @@
     ms.date="08/29/2016"
     ms.author="ashmaka"/>
 
-
-# <a name="create-an-azure-search-index-using-the-rest-api"></a>Create an Azure Search index using the REST API
+# 使用 REST API 建立 Azure 搜尋服務索引
 > [AZURE.SELECTOR]
-- [Overview](search-what-is-an-index.md)
-- [Portal](search-create-index-portal.md)
+- [概觀](search-what-is-an-index.md)
+- [入口網站](search-create-index-portal.md)
 - [.NET](search-create-index-dotnet.md)
 - [REST](search-create-index-rest-api.md)
 
 
-This article will walk you through the process of creating an Azure Search [index](https://msdn.microsoft.com/library/azure/dn798941.aspx) using the Azure Search REST API.
+本文將逐步引導您完成使用 Azure 搜尋服務 REST API 建立 Azure 搜尋服務[索引](https://msdn.microsoft.com/library/azure/dn798941.aspx)的程序。
 
-Before following this guide and creating an index, you should have already [created an Azure Search service](search-create-service-portal.md).
+在按照本指南進行並建立索引錢，請先[建立好 Azure 搜尋服務](search-create-service-portal.md)。
 
-To create an Azure Search index using the REST API, you will issue a single HTTP POST request to your Azure Search service's URL endpoint. Your index definition will be contained in the request body as well-formed JSON content.
+若要使用 REST API 建立 Azure 搜尋服務索引，您將會發出單一 HTTP POST 要求到 Azure 搜尋服務的 URL 端點。索引定義會以正確格式之 JSON 內容的形式包含在要求主體中。
 
 
-## <a name="i.-identify-your-azure-search-service's-admin-api-key"></a>I. Identify your Azure Search service's admin api-key
-Now that you have provisioned an Azure Search service, you can issue HTTP requests against your service's URL endpoint using the REST API. However, *all* API requests must include the api-key that was generated for the Search service you provisioned. Having a valid key establishes trust, on a per request basis, between the application sending the request and the service that handles it.
+## I.識別 Azure 搜尋服務的系統管理 API 金鑰
+既然您已佈建好 Azure 搜尋服務，您接著可以針對使用 REST API 的服務 URL 端點發出 HTTP 要求。不過，所有 API 要求都必須包含針對您佈建的搜尋服務所產生的 API 金鑰。擁有有效的金鑰就能為每個要求在傳送要求之應用程式與處理要求之服務間建立信任。
 
-1. To find your service's api-keys you must log into the [Azure Portal](https://portal.azure.com/)
-2. Go to your Azure Search service's blade
-3. Click on the "Keys" icon
+1. 若要尋找服務的 API 金鑰，您必須登入 [Azure 入口網站](https://portal.azure.com/)。
+2. 前往 Azure 搜尋服務的刀鋒視窗。
+3. 按一下 [金鑰] 圖示。
 
-Your service will have *admin keys* and *query keys*.
+服務會有系統管理金鑰和查詢金鑰。
 
- - Your primary and secondary *admin keys* grant full rights to all operations, including the ability to manage the service, create and delete indexes, indexers, and data sources. There are two keys so that you can continue to use the secondary key if you decide to regenerate the primary key, and vice-versa.
- - Your *query keys* grant read-only access to indexes and documents, and are typically distributed to client applications that issue search requests.
+ - 主要和次要系統管理金鑰會授與所有作業的完整權限，包括管理服務以及建立和刪除索引、索引子與資料來源的能力。由於有兩個金鑰，因此如果您決定重新產生主要金鑰，您可以繼續使用次要金鑰，反之亦然。
+ - 查詢金鑰會授與索引和文件的唯讀存取權，且通常會分派給發出搜尋要求的用戶端應用程式。
 
-For the purposes of creating an index, you can use either your primary or secondary admin key.
+主要或次要系統管理金鑰都可用於建立索引。
 
-## <a name="ii.-define-your-azure-search-index-using-well-formed-json"></a>II. Define your Azure Search index using well-formed JSON
-A single HTTP POST request to your service will create your index. The body of your HTTP POST request will contain a single JSON object that defines your Azure Search index.
+## II.使用正確格式的 JSON 定義 Azure 搜尋服務索引
+針對服務提出單一 HTTP POST 要求就會建立索引。HTTP POST 要求主體會包含單一 JSON 物件以定義 Azure 搜尋服務索引。
 
-1. The first property of this JSON object is the name of your index.
-2. The second property of this JSON object is a JSON array named `fields` that contains a separate JSON object for each field in your index. Each of these JSON objects contain multiple name/value pairs for each of the field attributes including "name," "type," etc.
+1. 此 JSON 物件的第一個屬性是索引名稱。
+2. 此 JSON 物件的第二個屬性是名為 `fields` 的 JSON 陣列，其針對索引中的每個欄位各包含一個 JSON 物件。每個 JSON 物件都針對每個欄位屬性 (包括 [名稱]、[類型] 等) 包含多個名稱/值組。
 
-It is important that you keep your search user experience and business needs in mind when designing your index as each field must be assigned the [proper attributes](https://msdn.microsoft.com/library/azure/dn798941.aspx). These attributes control which search features (filtering, faceting, sorting full-text search, etc.) apply to which fields. For any attribute you do not specify, the default will be to enable the corresponding search feature unless you specifically disable it.
+由於必須為每個欄位指派[適當屬性](https://msdn.microsoft.com/library/azure/dn798941.aspx)，因此在設計索引時，請務必牢記搜尋服務使用者體驗和商務需求。這些屬性可控制要對哪些欄位套用哪些搜尋功能 (篩選、面向設定、排序全文檢索搜尋等)。對於未指定的屬性，除非您明確停用，否則其預設值是啟用對應的搜尋功能。
 
-For our example, we've named our index "hotels" and defined our fields as follows:
+在我們的範例中，我們已將索引命名為 "hotels"，並將欄位定義如下：
 
 ```JSON
 {
@@ -77,18 +76,18 @@ For our example, we've named our index "hotels" and defined our fields as follow
 }
 ```
 
-We have carefully chosen the index attributes for each field based on how we think they will be used in an application. For example, `hotelId` is a unique key that people searching for hotels likely won't know, so we disable full-text search for that field by setting `searchable` to `false`, which saves space in the index.
+我們已根據欄位在應用程式中的可能使用方式仔細選擇其各自的索引屬性。例如，`hotelId` 是搜尋飯店的使用者可能不會知道的唯一索引鍵，因此我們將 `searchable` 設定為 `false` 以停用該欄位的全文檢索搜尋，以節省索引中的空間。
 
-Please note that exactly one field in your index of type `Edm.String` must be the designated as the 'key' field.
+請注意，`Edm.String` 類型的索引中必須有一個欄位 (且只有一個) 指定為 'key' 欄位。
 
-The index definition above uses a custom language analyzer for the `description_fr` field because it is intended to store French text. See [the Language support topic on MSDN](https://msdn.microsoft.com/library/azure/dn879793.aspx) as well as the corresponding [blog post](https://azure.microsoft.com/blog/language-support-in-azure-search/) for more information about language analyzers.
+`description_fr` 欄位會用來儲存法文文字，因此上述索引定義會對此欄位使用自訂語言分析器。如需語言分析器的詳細資訊，請參閱 [MSDN 上的語言支援主題](https://msdn.microsoft.com/library/azure/dn879793.aspx)以及對應的[部落格文章](https://azure.microsoft.com/blog/language-support-in-azure-search/)。
 
-## <a name="iii.-issue-the-http-request"></a>III. Issue the HTTP request
-1. Using your index definition as the request body, issue an HTTP POST request to your Azure Search service endpoint URL. In the URL, be sure to use your service name as the host name, and put the proper `api-version` as a query string parameter (the current API version is `2015-02-28` at the time of publishing this document).
-2. In the request headers, specify the `Content-Type` as `application/json`. You will also need to provide your service's admin key that you identified in Step I in the `api-key` header.
+## III.發出 HTTP 要求
+1. 請使用索引定義做為要求主體來對 Azure 搜尋服務端點 URL 發出 HTTP POST 要求。在 URL 中，請務必使用服務名稱做為主機名稱，然後放置適當的 `api-version` 做為查詢字串參數 (本文件發行時的最新 API 版本是 `2015-02-28`)。
+2. 在要求標頭中，指定 `Content-Type` 做為 `application/json`。您也必須提供您在步驟 I 中於 `api-key` 標頭所識別的服務系統管理金鑰。
 
 
-You will have to provide your own service name and api key to issue the request below:
+您必須提供自己的服務名稱和 API 金鑰來發出以下要求︰
 
 
     POST https://[service name].search.windows.net/indexes?api-version=2015-02-28
@@ -96,19 +95,15 @@ You will have to provide your own service name and api key to issue the request 
     api-key: [api-key]
 
 
-For a successful request, you should see status code 201 (Created). For more information on creating an index via the REST API, please visit the API reference on [MSDN](https://msdn.microsoft.com/library/azure/dn798941.aspx). For more information on other HTTP status codes that could be returned in case of failure, see [HTTP status codes (Azure Search)](https://msdn.microsoft.com/library/azure/dn798925.aspx).
+若要求成功，您應該會看到狀態碼 201 (已建立)。如需透過 REST API 建立索引的詳細資訊，請瀏覽 [MSDN](https://msdn.microsoft.com/library/azure/dn798941.aspx) 上的 API 參考資料。如需失敗時可能傳回的其他 HTTP 狀態碼詳細資訊，請參閱 [HTTP 狀態碼 (Azure 搜尋服務)](https://msdn.microsoft.com/library/azure/dn798925.aspx)。
 
-When you're done with an index and want to delete it, just issue an HTTP DELETE request. For example, this is how we would delete the "hotels" index:
+索引已使用完畢而想要將其刪除時，請直接發出 HTTP DELETE 要求。例如，以下是我們刪除 "hotels" 索引的方式：
 
     DELETE https://[service name].search.windows.net/indexes/hotels?api-version=2015-02-28
     api-key: [api-key]
 
 
-## <a name="next"></a>Next
-After creating an Azure Search index, you will be ready to [upload your content into the index](search-what-is-data-import.md) so you can start searching your data.
+## 下一步
+建立 Azure 搜尋服務索引後，您就可以[將內容上傳到索引](search-what-is-data-import.md)，以便開始搜尋資料。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0831_2016-->

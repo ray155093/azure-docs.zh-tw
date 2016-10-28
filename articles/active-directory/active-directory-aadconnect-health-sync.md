@@ -1,77 +1,71 @@
 
 <properties
-    pageTitle="Using Azure AD Connect Health with sync | Microsoft Azure"
-    description="This is the Azure AD Connect Health page that will discuss how to monitor Azure AD Connect sync."
-    services="active-directory"
-    documentationCenter=""
-    authors="billmath"
-    manager="femila"
-    editor="curtand"/>
+	pageTitle="使用 Azure AD Connect Health 進行同步處理 | Microsoft Azure"
+	description="這是 Azure AD Connect Health 頁面，其中討論如何監視 Azure AD Connect 同步處理。"
+	services="active-directory"
+	documentationCenter=""
+	authors="billmath"
+	manager="femila"
+	editor="curtand"/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="get-started-article"
-    ms.date="08/08/2016"
-    ms.author="billmath"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="get-started-article"
+	ms.date="08/08/2016"
+	ms.author="billmath"/>
 
+# 使用適用於同步處理的 Azure AD Connect Health
+下列文件適用於使用 Azure AD Connect Health 來監視 Azure AD Connect (同步處理)。如需使用 Azure AD Connect Health 來監視 AD FS 的詳細資訊，請參閱[在 AD FS 使用 Azure AD Connect Health](active-directory-aadconnect-health-adfs.md)。此外，如需使用 Azure AD Connect Health 來監視 Active Directory 網域服務的詳細資訊，請參閱 [在 AD DS 使用 Azure AD Connect Health](active-directory-aadconnect-health-adds.md)。
 
-# <a name="using-azure-ad-connect-health-for-sync"></a>Using Azure AD Connect Health for sync
-The following documentation is specific to monitoring Azure AD Connect (Sync) with Azure AD Connect Health.  For information on monitoring AD FS with Azure AD Connect Health see [Using Azure AD Connect Health with AD FS](active-directory-aadconnect-health-adfs.md). Additionally, for information on monitoring Active Directory Domain Services with Azure AD Connect Health see [Using Azure AD Connect Health with AD DS](active-directory-aadconnect-health-adds.md).
+![適用於同步處理的 Azure AD Connect Health](./media/active-directory-aadconnect-health-sync/sync.png)
 
-![Azure AD Connect Health for Sync](./media/active-directory-aadconnect-health-sync/sync.png)
+## 適用於同步處理的 Azure AD Connect Health 警示
+＜適用於同步處理的 Azure AD Connect Health 警示＞小節將為您提供作用中警示的清單。每個警示都包含相關資訊、解決步驟，以及相關文件的連結。選取作用中或已解決的警示，您將會看到一個包含額外資訊的新刀鋒視窗，以及解決警示可以採取的步驟，和其他文件的連結。您也可以檢視過去已解決的警示的歷史資料。
 
-## <a name="alerts-for-azure-ad-connect-health-for-sync"></a>Alerts for Azure AD Connect Health for sync
-The Azure AD Connect Health Alerts for sync section provides you the list of active alerts. Each alert includes relevant information, resolution steps, and links to related documentation. By selecting an active or resolved alert you will see a new blade with additional information, as well as steps you can take to resolve the alert, and links to additional documentation. You can also view historical data on alerts that were resolved in the past.
+選取警示，將會為您提供其他資訊，以及解決警示可以採取的步驟，和其他文件的連結。
 
-By selecting an alert you will be provided with additional information as well as steps you can take to resolve the alert and links to additional documentation.
+![Azure AD Connect 同步處理錯誤](./media/active-directory-aadconnect-health-sync/alert.png)
 
-![Azure AD Connect sync error](./media/active-directory-aadconnect-health-sync/alert.png)
+### 有限的警示評估
+如果 Azure AD Connect 不使用預設組態 (比方說，如果 [屬性篩選] 從預設組態變更為自訂組態)，則 Azure AD Connect Health 代理程式不會上傳 Azure AD Connect 相關的錯誤事件。
 
-### <a name="limited-evaluation-of-alerts"></a>Limited Evaluation of Alerts
-If Azure AD Connect is NOT using the default configuration (for example, if Attribute Filtering is changed from the default configuration to a custom configuration), then the Azure AD Connect Health agent will not upload the error events related to Azure AD Connect. 
+這會限制服務的警示評估。您應會在 Azure 入口網站中您的服務之下，看到指出這種情況的橫幅。
 
-This limits the evaluation of alerts by the service. You'd will see a banner that indicates this condition in the Azure Portal under your service.
+![適用於同步處理的 Azure AD Connect Health](./media/active-directory-aadconnect-health-sync/banner.png)
 
-![Azure AD Connect Health for Sync](./media/active-directory-aadconnect-health-sync/banner.png)
+您可以按一下 [設定] 並允許 Azure AD Connect Health 代理程式上傳所有的錯誤記錄檔，加以變更。
 
-You can change this by clicking "Settings" and allowing Azure AD Connect Health agent to upload all error logs.
+![適用於同步處理的 Azure AD Connect Health](./media/active-directory-aadconnect-health-sync/banner2.png)
 
-![Azure AD Connect Health for Sync](./media/active-directory-aadconnect-health-sync/banner2.png)
+## 同步處理深入了解
+藉由適用於同步處理的 Azure AD Connect Health 的最新版本，新增了下列新功能：
 
-## <a name="sync-insight"></a>Sync Insight
-With the latest release of Azure AD Connect Health for sync the following new capabilities have been added:
+- 同步處理作業的延遲
+- 物件變更趨勢
 
-- Latency of sync operations
-- Object Change trend
+### 同步處理延遲
+這項功能提供連接器同步處理作業 (匯入、匯出等) 延遲的圖形化趨勢。這提供快速且輕鬆的方式，讓您了解不僅僅作業的延遲 (如果您會發生大量變更也很好)，還提供一個方式來偵測延遲中可能需要進一步調查的異常行為。
 
-### <a name="sync-latency"></a>Sync Latency
-This feature provides a graphical trend of latency of the sync operations (import, export, etc.) for connectors.  This provides a quick and easy way to understand not only the latency of your operations (great if you have a large set of changes occurring) but also a way to detect anomalies in the latency that may require further investigation.
+![同步處理延遲](./media/active-directory-aadconnect-health-sync/synclatency.png)
 
-![Sync Latency](./media/active-directory-aadconnect-health-sync/synclatency.png)
+根據預設，只會顯示 Azure AD 連接器「匯出」作業的延遲。若要查看連接器上的更多作業，或檢視其他連接器的作業，請以滑鼠右鍵按一下圖表並選擇特定作業和連接器。
 
-By default, only the latency of the 'Export' operation for the Azure AD connector is shown.  To see more operations on the connector or to view operations from other connectors, right-click on the chart and choose the specific operation and connector.
+### 同步處理物件的變更
+這項功能提供正在評估並匯出至 Azure AD 的變更數的圖形化趨勢。現在，嘗試從同步處理記錄檔收集此資訊並不容易。圖表不僅可讓您以更簡單的方式監視您的環境中發生的變更數，同時提供正在發生的失敗的視覺化檢視。
 
-### <a name="sync-object-changes"></a>Sync Object Changes
-This feature provides a graphical trend of the number of changes that are being evaluated and exported to Azure AD.  Today, trying to gather this information from the sync logs is difficult.  The chart gives you, not only a simpler way of monitoring the number of changes that are occurring in your environment, but also a visual view of the failures that are occurring.
+![同步處理延遲](./media/active-directory-aadconnect-health-sync/syncobjectchanges.png)
 
-![Sync Latency](./media/active-directory-aadconnect-health-sync/syncobjectchanges.png)
-
-## <a name="related-links"></a>Related links
+## 相關連結
 
 * [Azure AD Connect Health](active-directory-aadconnect-health.md)
-* [Azure AD Connect Health Agent Installation](active-directory-aadconnect-health-agent-install.md)
-* [Azure AD Connect Health Operations](active-directory-aadconnect-health-operations.md)
-* [Using Azure AD Connect Health with AD FS](active-directory-aadconnect-health-adfs.md)
-* [Using Azure AD Connect Health with AD DS](active-directory-aadconnect-health-adds.md)
-* [Azure AD Connect Health FAQ](active-directory-aadconnect-health-faq.md)
-* [Azure AD Connect Health Version History](active-directory-aadconnect-health-version-history.md)
+* [Azure AD Connect Health 代理程式安裝](active-directory-aadconnect-health-agent-install.md)
+* [Azure AD Connect Health 操作](active-directory-aadconnect-health-operations.md)
+* [使用 Azure AD Connect Health 來搭配 AD FS](active-directory-aadconnect-health-adfs.md)
+* [在 AD DS 使用 Azure AD Connect Health](active-directory-aadconnect-health-adds.md)
+* [Azure AD Connect Health 常見問題集](active-directory-aadconnect-health-faq.md)
+* [Azure AD Connect Health 版本歷程記錄](active-directory-aadconnect-health-version-history.md)
 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0928_2016-->

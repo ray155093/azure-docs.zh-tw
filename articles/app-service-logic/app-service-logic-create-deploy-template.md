@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Create a logic app deployment template | Microsoft Azure"
-   description="Learn how to create a logic app deployment template and use it for release management"
+   pageTitle="建立邏輯應用程式部署範本 | Microsoft Azure"
+   description="了解如何建立邏輯應用程式部署範本，並使用它進行發行管理"
    services="logic-apps"
    documentationCenter=".net,nodejs,java"
    authors="jeffhollan"
@@ -16,78 +16,73 @@
    ms.date="05/25/2016"
    ms.author="jehollan"/>
 
+# 建立邏輯應用程式部署範本
 
-# <a name="create-a-logic-app-deployment-template"></a>Create a logic app deployment template
+建立邏輯應用程式之後，您可能想要將其建立為 Azure Resource Manager 範本。如此一來，您就可以輕鬆地將邏輯應用程式部署到您可能需要在其中用到它的任何環境或資源群組。如需 Resource Manager 範本的簡介，請務必查看[編寫 Azure Resource Manager 範本](../resource-group-authoring-templates.md)和[使用 Azure Resource Manager 範本部署資源](../resource-group-template-deploy.md)文章。
 
-After a logic app has been created, you might want to create it as an Azure Resource Manager template. This way, you can easily deploy the logic app to any environment or resource group where you might need it. For an introduction to Resource Manager templates, be sure to check out the articles on [authoring Azure Resource Manager templates](../resource-group-authoring-templates.md) and [deploying resources by using Azure Resource Manager templates](../resource-group-template-deploy.md).
+## 邏輯應用程式部署範本
 
-## <a name="logic-app-deployment-template"></a>Logic app deployment template
+邏輯應用程式有三個基本元件：
 
-A logic app has three basic components:
+* **邏輯應用程式資源**。這個資源包含定價方案、位置和工作流程定義等相關資訊。
+* **工作流程定義**。這就是您在程式碼檢視中看到的內容。它包含流程步驟的定義，以及引擎應如何執行。這是邏輯應用程式資源的 `definition` 屬性。
+* **連接**。有一些個別資源可安全地儲存關於任何連接器連接的中繼資料，例如連接字串和存取權杖。您可以在邏輯應用程式中，於邏輯應用程式資源的 `parameters` 區段中參考這些連接。
 
-* **Logic app resource**. This resource contains information about things like pricing plan, location, and the workflow definition.
-* **Workflow definition**. This is what is seen in code view. It includes the definition of the steps of the flow and how the engine should execute. This is the `definition` property of the logic app resource.
-* **Connections**. These are separate resources that securely store metadata about any connector connections, such as a connection string and an access token. You reference these in a logic app in the `parameters` section of the logic app resource.
+您可以使用 [Azure 資源總管](http://resources.azure.com)等工具，檢視現有邏輯應用程式的這些所有部分。
 
-You can view all of these pieces for existing logic apps by using a tool like [Azure Resource Explorer](http://resources.azure.com).
+若要讓邏輯應用程式的範本可與資源群組部署搭配使用，您需要定義資源並視需要參數化。例如，如果部署到開發、測試和生產環境，您可能想要在每個環境中使用不同連接字串連至 SQL Database，或者在不同的訂用帳戶或資源群組中部署。
 
-To make a template for a logic app to use with resource group deployments, you need to define the resources and parameterize as needed. For example, if you're deploying to a development, test, and production environment, you'll likely want to use different connection strings to a SQL database in each environment. Or, you might want to deploy within different subscriptions or resource groups.  
+## 建立邏輯應用程式部署範本
 
-## <a name="create-a-logic-app-deployment-template"></a>Create a logic app deployment template
+有一些工具可在您建立邏輯應用程式部署範本時提供協助。您可以手動撰寫，也就是視需要使用此處已討論過的資源來建立參數。另一個選項是使用[邏輯應用程式範本建立者](https://github.com/jeffhollan/LogicAppTemplateCreator) PowerShell 模組。這個開放原始碼模組會先評估邏輯應用程式和它所使用的任何連接，然後以部署所需的參數產生範本資源。例如，如果您的邏輯應用程式收到來自 Azure 服務匯流排佇列的訊息並將資料加入至 Azure SQL Database，則此工具將會保留所有的協調流程邏輯並將 SQL 和服務匯流排連接字串參數化，如此便可在部署時進行設定。
 
-A few tools can assist you as you create a logic app deployment template. You can author by hand, that is, by using the resources already discussed here to create parameters as needed. Another option is to use a [logic app template creator](https://github.com/jeffhollan/LogicAppTemplateCreator) PowerShell module. This open-source module first evaluates the logic app and any connections that it is using, and then generates template resources with the necessary parameters for deployment. For example, if you have a logic app that receives a message from an Azure Service Bus queue and adds data to an Azure SQL database, the tool will preserve all of the orchestration logic and parameterize the SQL and Service Bus connection strings so that they can be set at deployment.
+>[AZURE.NOTE] 連接必須位於與邏輯應用程式相同的資源群組內。
 
->[AZURE.NOTE] Connections must be within the same resource group as the logic app.
+### 安裝邏輯應用程式範本 PowerShell 模組
 
-### <a name="install-the-logic-app-template-powershell-module"></a>Install the logic app template PowerShell module
+最簡單的安裝方式是透過 [PowerShell 資源庫](https://www.powershellgallery.com/packages/LogicAppTemplate/0.1) 使用 `Install-Module -Name LogicAppTemplate` 命令。
 
-The easiest way to install the module is via the [PowerShell Gallery](https://www.powershellgallery.com/packages/LogicAppTemplate/0.1), by using the command `Install-Module -Name LogicAppTemplate`.  
+您也可以手動安裝 PowerShell 模組：
 
-You also can install the PowerShell module manually:
+1. 下載最新版的[邏輯應用程式範本建立者](https://github.com/jeffhollan/LogicAppTemplateCreator/releases)。
+1. 將此資料夾解壓縮至您的 PowerShell 模組資料夾 (通常是 `%UserProfile%\Documents\WindowsPowerShell\Modules`)。
 
-1. Download the latest release of the [logic app template creator](https://github.com/jeffhollan/LogicAppTemplateCreator/releases).  
-1. Extract the folder in your PowerShell module folder (usually `%UserProfile%\Documents\WindowsPowerShell\Modules`).
+為了讓模組能使用任何租用戶和訂用帳戶存取權杖，我們建議您搭配 [ARMClient](https://github.com/projectkudu/ARMClient) 命令列工具使用。這篇[部落格文章](http://blog.davidebbo.com/2015/01/azure-resource-manager-client.html)會更詳細地討論 ARMClient。
 
-For the module to work with any tenant and subscription access token, we recommend that you use it with the [ARMClient](https://github.com/projectkudu/ARMClient) command line tool.  This [blog post ](http://blog.davidebbo.com/2015/01/azure-resource-manager-client.html) discusses ARMClient in more detail.
+### 使用 PowerShell 產生邏輯應用程式範本
 
-### <a name="generate-a-logic-app-template-by-using-powershell"></a>Generate a logic app template by using PowerShell
-
-After PowerShell is installed, you can generate a template by using the following command:
+安裝 PowerShell 之後，您可以使用下列命令來產生範本：
 
 `armclient token $SubscriptionId | Get-LogicAppTemplate -LogicApp MyApp -ResourceGroup MyRG -SubscriptionId $SubscriptionId -Verbose | Out-File C:\template.json`
 
-`$SubscriptionId` is the Azure subscription ID. This line first gets an access token via ARMClient, then pipes it through to the PowerShell script, and then creates the template in a JSON file.
+`$SubscriptionId` 是 Azure 訂用帳戶識別碼。這行程式碼會先透過 ARMClient 取得存取權杖，然後透過管線將它傳送到 PowerShell 指令碼，接著在 JSON 檔案中建立範本。
 
-## <a name="add-parameters-to-a-logic-app-template"></a>Add parameters to a logic app template
+## 將參數加入至邏輯應用程式範本
 
-After you create your logic app template, you can continue to add or modify parameters that you might need. For example, if your definition includes a resource ID to an Azure function or nested workflow that you plan to deploy in a single deployment, you can add more resources to your template and parameterize IDs as needed. The same applies to any references to custom APIs or Swagger endpoints you expect to deploy with each resource group.
+建立邏輯應用程式範本之後，您可以繼續加入或修改您可能需要的參數。例如，如果您的定義包含您打算在單一部署中部署的 Azure 函數或巢狀工作流程的資源識別碼，您可以將更多資源新增至範本，並視需要將識別碼參數化。相同情況亦適用於您預計要與各資源群組一起部署的自訂 API 或 Swagger 端點的任何參考。
 
-## <a name="deploy-a-logic-app-template"></a>Deploy a logic app template
+## 部署邏輯應用程式範本
 
-You can deploy your template by using any number of tools, including PowerShell, REST API, Visual Studio Release Management, and the Azure Portal Template Deployment. See this article about [deploying resources by using Azure Resource Manager templates](../resource-group-template-deploy.md) for additional information. Also, we recommend that you create a [parameter file](../resource-group-template-deploy.md#parameter-file) to store values for the parameter.
+您可以使用多項工具部署範本，包括 PowerShell、REST API、Visual Studio Release Management 及 Azure 入口網站範本部署。如需詳細資訊，請參閱這篇關於[使用 Azure Resource Manager 範本部署資源](../resource-group-template-deploy.md)的文章。此外，我們也建議您建立[參數檔案](../resource-group-template-deploy.md#parameter-file)來儲存參數值。
 
-### <a name="authorize-oauth-connections"></a>Authorize OAuth connections
+### 授權 OAuth 連接
 
-After deployment, the logic app works end-to-end with valid parameters. However, OAuth connections still will need to be authorized to generate a valid access token. You can do this by opening the logic app in the designer and then authorizing connections. Or, if you want to automate, you can use a script to consent to each OAuth connection. There's an example script on GitHub under the [LogicAppConnectionAuth](https://github.com/logicappsio/LogicAppConnectionAuth) project.
+部署之後，邏輯應用程式就能搭配有效參數端對端運作。不過，OAuth 連接仍然必須經過授權，才能產生有效的存取權杖。您可以在設計工具中開啟邏輯應用程式，然後授權連接，藉以執行此動作。或者，如果您想要自動化，您可以使用指令碼來同意每個 OAuth 連接。在 GitHub 上的 [LogicAppConnectionAuth](https://github.com/logicappsio/LogicAppConnectionAuth) 專案下方有一個範例指令碼。
 
-## <a name="visual-studio-release-management"></a>Visual Studio Release Management
+## Visual Studio Release Management
 
-A common scenario for deploying and managing an environment is to use a tool like Visual Studio Release Management, with a logic app deployment template. Visual Studio Team Services includes a [Deploy Azure Resource Group](https://github.com/Microsoft/vsts-tasks/tree/master/Tasks/DeployAzureResourceGroup) task that you can add to any build or release pipeline. You need to have a [service principal](https://blogs.msdn.microsoft.com/visualstudioalm/2015/10/04/automating-azure-resource-group-deployment-using-a-service-principal-in-visual-studio-online-buildrelease-management/) for authorization to deploy, and then you can generate the release definition.
+適用於部署和管理環境的常見案例是搭配使用 Visual Studio Release Management 之類的工具與邏輯應用程式部署範本。Visual Studio Team Services 包含可加入至任何組建或版本管線的[部署 Azure 資源群組](https://github.com/Microsoft/vsts-tasks/tree/master/Tasks/DeployAzureResourceGroup)工作。您必須擁有[服務主體](https://blogs.msdn.microsoft.com/visualstudioalm/2015/10/04/automating-azure-resource-group-deployment-using-a-service-principal-in-visual-studio-online-buildrelease-management/)才能授權部署，而後可以產生版本定義。
 
-1. In Release Management, to create a new definition, select **Empty**  to start with an empty definition.
+1. 在 Release Management 中，若要建立新的定義，請選取 [空白]，使用空白定義來開始。
 
-    ![Create a new, empty definition][1]   
+    ![建立新的空白定義][1]
 
-1. Choose any resources you need for this. This likely will be the logic app template generated manually or as part of the build process.
-1. Add an **Azure Resource Group Deployment** task.
-1. Configure with a [service principal](https://blogs.msdn.microsoft.com/visualstudioalm/2015/10/04/automating-azure-resource-group-deployment-using-a-service-principal-in-visual-studio-online-buildrelease-management/), and reference the Template and Template Parameters files.
-1. Continue to build out steps in the release process for any other environment, automated test, or approvers as needed.
+1. 選擇任何您需要的資源。這很可能是以手動方式產生或在建置過程中產生的邏輯應用程式範本。
+1. 新增 [Azure 資源群組部署] 工作。
+1. 設定[服務主體](https://blogs.msdn.microsoft.com/visualstudioalm/2015/10/04/automating-azure-resource-group-deployment-using-a-service-principal-in-visual-studio-online-buildrelease-management/)並參考 [範本] 和 [範本參數] 檔案。
+1. 視需要針對任何其他環境、自動化測試或核准者，繼續在發行程序中建置步驟。
 
 <!-- Image References -->
 [1]: ./media/app-service-logic-create-deploy-template/emptyReleaseDefinition.PNG
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

@@ -1,266 +1,260 @@
 <properties
-    pageTitle="Manage Azure Blob Storage resources with Storage Explorer (Preview) | Microsoft Azure"
-    description="Manage Azure Blob Containers and Blobs with Storage Explorer (Preview)"
-    services="storage"
-    documentationCenter="na"
-    authors="TomArcher"
-    manager="douge"
-    editor="" />
+	pageTitle="使用儲存體 Explorer 管理 Azure Blob 儲存體資源 (預覽) | Microsoft Azure"
+	description="使用儲存體 Explorer 來管理 Azure Blob 容器和 Blob (預覽)"
+	services="storage"
+	documentationCenter="na"
+	authors="TomArcher"
+	manager="douge"
+	editor="" />
 
  <tags
-    ms.service="storage"
-    ms.devlang="multiple"
-    ms.topic="article"
-    ms.tgt_pltfrm="na"
-    ms.workload="na"
-    ms.date="08/17/2016"
-    ms.author="tarcher" />
+	ms.service="storage"
+	ms.devlang="multiple"
+	ms.topic="article"
+	ms.tgt_pltfrm="na"
+	ms.workload="na"
+	ms.date="08/17/2016"
+	ms.author="tarcher" />
 
+# 使用儲存體 Explorer 來管理 Azure Blob 儲存體資源 (預覽)
 
-# <a name="manage-azure-blob-storage-resources-with-storage-explorer-(preview)"></a>Manage Azure Blob Storage resources with Storage Explorer (Preview)
+## Overview
 
-## <a name="overview"></a>Overview
+[Azure Blob 儲存體](./storage/storage-dotnet-how-to-use-blobs.md)是一項儲存大量非結構化資料的服務 (例如文字或二進位資料)，全球任何地方都可透過 HTTP 或 HTTPS 來存取這些資料。您可以使用 Blob 儲存體向全球公開資料，或私下儲存應用程式資料。在本文中，您將學習如何使用儲存體 Explorer (預覽) 來使用 blob 容器和 blob。
 
-[Azure Blob Storage](./storage/storage-dotnet-how-to-use-blobs.md) is a service for storing large amounts of unstructured data, such as text or binary data, that can be accessed from anywhere in the world via HTTP or HTTPS.
-You can use Blob storage to expose data publicly to the world, or to store application data privately. In this article, you'll learn how to use Storage Explorer (Preview) to work with blob containers and blobs.
+## 必要條件
 
-## <a name="prerequisites"></a>Prerequisites
+若要完成這篇文章中的步驟，您需要下列項目︰
 
-To complete the steps in this article, you'll need the following:
+- [下載並安裝儲存體 Explorer (預覽)](http://www.storageexplorer.com)
+- [連接到 Azure 儲存體帳戶或服務](./vs-azure-tools-storage-manage-with-storage-explorer.md#connect-to-a-storage-account-or-service)
 
-- [Download and install Storage Explorer (preview)](http://www.storageexplorer.com)
-- [Connect to a Azure storage account or service](./vs-azure-tools-storage-manage-with-storage-explorer.md#connect-to-a-storage-account-or-service)
+## 建立 Blob 容器
 
-## <a name="create-a-blob-container"></a>Create a blob container
+所有 blob 必須都位於 blob 容器，這是 blob 的邏輯群組。帳戶可以包含無限數量的容器，每個容器可以儲存無限數量的 blob。
 
-All blobs must reside in a blob container, which is simply a logical grouping of blobs. An account can contain an unlimited number of containers, and each container can store an unlimited number of blobs.
+下列步驟說明如何在儲存體 Explorer (預覽) 中建立 blob 容器。
 
-The following steps illustrate how to create a blob container within Storage Explorer (Preview).
+1.	開啟儲存體 Explorer (預覽)。
+1.	在左窗格中，展開您要在其中建立 blob 容器的儲存體帳戶。
+1.	以滑鼠右鍵按一下 [Blob 容器]，從內容功能表中，選取 [建立 Blob 容器]。
 
-1.  Open Storage Explorer (Preview).
-1.  In the left pane, expand the storage account within which you wish to create the blob container.
-1.  Right-click **Blob Containers**, and - from the context menu - select **Create Blob Container**.
+	![建立 Blob 容器內容功能表][0]
 
-    ![Create blob containers context menu][0]
+1.	[Blob 容器] 資料夾底下會出現文字方塊。輸入 blob 容器的名稱。請參閱[容器命名規則](./storage/storage-dotnet-how-to-use-blobs.md#create-a-container)區段，以取得命名 blob 容器的規則和限制的清單。
 
-1.  A text box will appear below the **Blob Containers** folder. Enter the name for your blob container. See the [Container naming rules](./storage/storage-dotnet-how-to-use-blobs.md#create-a-container) section for a list of rules and restrictions on naming blob containers.
+	![建立 Blob 容器文字方塊][1]
 
-    ![Create Blob Containers text box][1]
+1.	完成建立 blob 容器時按下 **Enter** 鍵，或按下 **Esc** 鍵取消。一旦成功建立 blob 容器，它就會顯示在所選的儲存體帳戶的 [Blob 容器] 資料夾底下。
 
-1.  Press **Enter** when done to create the blob container, or **Esc** to cancel. Once the blob container has been successfully created, it will be displayed under the **Blob Containers** folder for the selected storage account.
+	![Blob 容器已建立][2]
 
-    ![Blob Container created][2]
+## 檢視 blob 容器的內容
 
-## <a name="view-a-blob-container's-contents"></a>View a blob container's contents
+Blob 容器包含 blob 和資料夾 (也包含 blob)。
 
-Blob containers contain blobs and folders (that can also contain blobs).
+下列步驟說明如何在儲存體 Explorer (預覽) 中檢視 blob 容器的內容：
 
-The following steps illustrate how to view the contents of a blob container within Storage Explorer (Preview):
+1.	開啟儲存體 Explorer (預覽)。
+1.	在左窗格中，展開儲存體帳戶，其中包含您要檢視的 blob 容器。
+1.	展開儲存體帳戶的 [Blob 容器]。
+1.	以滑鼠右鍵按一下您想要檢視的 blob 容器，從內容功能表中，選取 [開啟 Blob 容器編輯器]。您也可以按兩下想要檢視的 blob 容器。
 
-1.  Open Storage Explorer (Preview).
-1.  In the left pane, expand the storage account containing the blob container you wish to view.
-1.  Expand the storage account's **Blob Containers**.
-1.  Right-click the blob container you wish to view, and - from the context menu - select **Open Blob Container Editor**.
-You can also double-click the blob container you wish to view.
+	![開啟 blob 容器編輯器內容功能表][19]
 
-    ![Open blob container editor context menu][19]
+1.	主窗格會顯示 blob 容器的內容。
 
-1.  The main pane will display the blob container's contents.
+	![Blob 容器編輯器][3]
 
-    ![Blob container editor][3]
+## 刪除 Blob 容器
 
-## <a name="delete-a-blob-container"></a>Delete a blob container
+Blob 容器可以輕鬆地建立並視需要刪除。(若要查看如何刪除個別的 blob，請參閱[管理 blob 容器中的 blob](./#managing-blobs-in-a-blob-container) 區段。)
 
-Blob containers can be easily created and deleted as needed. (To see how to delete individual blobs, refer to the section, [Managing blobs in a blob container](./#managing-blobs-in-a-blob-container).)
+下列步驟說明如何在儲存體 Explorer (預覽) 中刪除 blob 容器：
 
-The following steps illustrate how to delete a blob container within Storage Explorer (Preview):
+1.	開啟儲存體 Explorer (預覽)。
+1.	在左窗格中，展開儲存體帳戶，其中包含您要檢視的 blob 容器。
+1.	展開儲存體帳戶的 [Blob 容器]。
+1.	以滑鼠右鍵按一下您想要刪除的 blob 容器，從內容功能表中，選取 [刪除]。您也可以按 [刪除] 以刪除目前選取的 blob 容器。
 
-1.  Open Storage Explorer (Preview).
-1.  In the left pane, expand the storage account containing the blob container you wish to view.
-1.  Expand the storage account's **Blob Containers**.
-1.  Right-click the blob container you wish to delete, and - from the context menu - select **Delete**.
-You can also press **Delete** to delete the currently selected blob container.
+	![刪除 Blob 容器內容功能表][4]
 
-    ![Delete blob container context menu][4]
+1.	選取確認對話方塊上的 [是]。
 
-1.  Select **Yes** to the confirmation dialog.
+	![刪除 Blob 容器確認][5]
 
-    ![Delete blob Container confirmation][5]
+## 複製 Blob 容器
 
-## <a name="copy-a-blob-container"></a>Copy a blob container
+儲存體 Explorer (預覽) 可讓您將 blob 容器複製到剪貼簿，然後將該 blob 容器貼到另一個儲存體帳戶。(若要查看如何複製個別的 blob，請參閱[管理 blob 容器中的 blob](./#managing-blobs-in-a-blob-container) 區段。)
 
-Storage Explorer (Preview) enables you to copy a blob container to the clipboard, and then paste that blob container into another storage account. (To see how to copy individual blobs, refer to the section, [Managing blobs in a blob container](./#managing-blobs-in-a-blob-container).)
+下列步驟說明如何將 blob 容器從某個儲存體帳戶複製到另一個儲存體帳戶。
 
-The following steps illustrate how to copy a blob container from one storage account to another.
+1.	開啟儲存體 Explorer (預覽)。
+1.	在左窗格中，展開儲存體帳戶，其中包含您要複製的 blob 容器。
+1.	展開儲存體帳戶的 [Blob 容器]。
+1.	以滑鼠右鍵按一下您想要複製的 blob 容器，從內容功能表中，選取 [複製 Blob 容器編輯器]。
 
-1.  Open Storage Explorer (Preview).
-1.  In the left pane, expand the storage account containing the blob container you wish to copy.
-1.  Expand the storage account's **Blob Containers**.
-1.  Right-click the blob container you wish to copy, and - from the context menu - select **Copy Blob Container**.
+	![複製 Blob 容器內容功能表][6]
 
-    ![Copy blob container context menu][6]
+1.	以滑鼠右鍵按一下想要貼上至 blob 容器的「目標」儲存體帳戶，從內容功能表中，選取 [貼上 Blob 容器]。
 
-1.  Right-click the desired "target" storage account into which you want to paste the blob container, and - from the context menu - select **Paste Blob Container**.
+	![貼上 Blob 容器內容功能表][7]
 
-    ![Paste blob container context menu][7]
+## 取得 Blob 容器的 SAS
 
-## <a name="get-the-sas-for-a-blob-container"></a>Get the SAS for a blob container
+[共用存取簽章 (SAS)](./storage/storage-dotnet-shared-access-signature-part-1.md) 可提供您儲存體帳戶中資源的委派存取。這表示您可以在無需分享您帳戶存取金鑰的情況下，將您儲存體帳戶中的物件有限權限授與用戶端，該用戶端便可在指定的時間期間內及使用指定的權限集來進行存取。
 
-A [shared access signature (SAS)](./storage/storage-dotnet-shared-access-signature-part-1.md) provides delegated access to resources in your storage account.
-This means that you can grant a client limited permissions to objects in your storage account for a specified period of time and with a specified set of permissions, without having to share your account access keys.
+下列步驟說明如何建立 blob 容器的 SAS：
 
-The following steps illustrate how to create a SAS for a blob container:
+1.	開啟儲存體 Explorer (預覽)。
+1.	在左窗格中，展開儲存體帳戶，其中包含您要取得 SAS 的 blob 容器。
+1.	展開儲存體帳戶的 [Blob 容器]。
+1.	以滑鼠右鍵按一下想要的 blob 容器，從內容功能表中，選取 [取得共用存取簽章]。
 
-1.  Open Storage Explorer (Preview).
-1.  In the left pane, expand the storage account containing the blob container for which you wish to get a SAS.
-1.  Expand the storage account's **Blob Containers**.
-1.  Right-click the desired blob container, and - from the context menu - select **Get Shared Access Signature**.
+	![取得 SAS 內容功能表][8]
 
-    ![Get SAS context menu][8]
+1.	在 [共用存取簽章] 對話方塊中，指定您要用於資源的原則、開始和到期日期、時區和存取層級。
 
-1.  In the **Shared Access Signature** dialog, specify the policy, start and expiration dates, time zone, and access levels you want for the resource.
+	![取得 SAS 選項][9]
 
-    ![Get SAS options][9]
+1.	當您完成指定 SAS 選項時，選取 [建立]。
 
-1.  When you're finished specifying the SAS options, select **Create**.
+1.	第二個 [共用存取簽章] 對話方塊會顯示，列出您可以用來存取儲存體資源的 blob 容器及 URL 和 QueryStrings。選取您想要複製到剪貼簿的 URL 旁邊的 [複製]。
 
-1.  A second **Shared Access Signature** dialog will then display that lists the blob container along with the URL and QueryStrings you can use to access the storage resource.
-Select **Copy** next to the URL you wish to copy to the clipboard.
+	![複製 SAS URL][10]
 
-    ![Copy SAS URLs][10]
+1.	完成時，選取 [關閉]。
 
-1.  When done, select **Close**.
+## 管理 blob 容器的存取原則
 
-## <a name="manage-access-policies-for-a-blob-container"></a>Manage Access Policies for a blob container
+下列步驟說明如何管理 (新增和移除) blob 容器的存取原則︰
 
-The following steps illustrate how to manage (add and remove) access policies for a blob container:
+1.	開啟儲存體 Explorer (預覽)。
+1.	在左窗格中，展開儲存體帳戶，其中包含您要管理其存取原則的 blob 容器。
+1.	展開儲存體帳戶的 [Blob 容器]。
+1.	選取想要的 blob 容器，從內容功能表中，選取 [管理存取原則]。
 
-1.  Open Storage Explorer (Preview).
-1.  In the left pane, expand the storage account containing the blob container whose access policies you wish to manage.
-1.  Expand the storage account's **Blob Containers**.
-1.  Select the desired blob container, and - from the context menu - select **Manage Access Policies**.
+	![管理存取原則內容功能表][11]
 
-    ![Manage access policies context menu][11]
+1.	[存取原則] 對話方塊會列出已針對所選的 blob 容器建立的任何存取原則。
 
-1.  The **Access Policies** dialog will list any access policies already created for the selected blob container.
+	![存取原則選項][12]
 
-    ![Access Policy options][12]        
+1.	根據存取原則管理工作遵循下列步驟︰
 
-1.  Follow these steps depending on the access policy management task:
+	- **新增新的存取原則** -選取 [新增]。一旦產生，[存取原則] 對話方塊將會顯示新加入的存取原則 (具有預設設定)。
+	- **編輯存取原則** -進行任何所需的編輯，然後選取 [儲存]。
+	- **移除存取原則** -選取您想要移除的存取原則旁邊的 [移除]。
 
-    - **Add a new access policy** - Select **Add**. Once generated, the **Access Policies** dialog will display the newly added access policy (with default settings).
-    - **Edit an access policy** -  Make any desired edits, and select **Save**.
-    - **Remove an access policy** - Select **Remove** next to the access policy you wish to remove.
+## 設定 blob 容器的公用存取層級
 
-## <a name="set-the-public-access-level-for-a-blob-container"></a>Set the Public Access Level for a blob container
+根據預設，每個 blob 容器設定為「沒有公用存取」。
 
-By default, every blob container is set to "No public access".
+下列步驟說明如何指定 blob 容器的公用存取層級。
 
-The following steps illustrate how to specify a public access level for a blob container.
+1.	開啟儲存體 Explorer (預覽)。
+1.	在左窗格中，展開儲存體帳戶，其中包含您要管理其存取原則的 blob 容器。
+1.	展開儲存體帳戶的 [Blob 容器]。
+1.	選取想要的 blob 容器，從內容功能表中，選取 [設定公用存取層級]。
 
-1.  Open Storage Explorer (Preview).
-1.  In the left pane, expand the storage account containing the blob container whose access policies you wish to manage.
-1.  Expand the storage account's **Blob Containers**.
-1.  Select the desired blob container, and - from the context menu - select **Set Public Access Level**.
+	![設定公用存取層級內容功能表][13]
 
-    ![Set public access level context menu][13]
+1.	在 [設定容器公用存取層級] 對話方塊中，指定所需的存取層級。
 
-1.  In the **Set Container Public Access Level** dialog, specify the desired access level.
+	![設定公用存取層級選項][14]
 
-    ![Set public access level options][14]
+1.	選取 [套用]。
 
-1.  Select **Apply**.
+## 管理 blob 容器中的 blob
 
-## <a name="managing-blobs-in-a-blob-container"></a>Managing blobs in a blob container
+建立 blob 容器之後，您可以將 blob 上傳至 blob 容器、將 blob 下載到本機電腦或在本機電腦上開啟 blob 等等。
 
-Once you've created a blob container, you can upload a blob to that blob container, download a blob to your local computer, open a blob on your local computer, and much more.
+下列步驟說明如何管理 blob 容器中的 blob (及資料夾)。
 
-The following steps illustrate how to manage the blobs (and folders) within a blob container.
+1.	開啟儲存體 Explorer (預覽)。
+1.	在左窗格中，展開儲存體帳戶，其中包含您要管理的 blob 容器。
+1.	展開儲存體帳戶的 [Blob 容器]。
+1.	按兩下您想要檢視的 blob 容器。
+1.	主窗格會顯示 blob 容器的內容。
 
-1.  Open Storage Explorer (Preview).
-1.  In the left pane, expand the storage account containing the blob container you wish to manage.
-1.  Expand the storage account's **Blob Containers**.
-1.  Double-click the blob container you wish to view.
-1.  The main pane will display the blob container's contents.
+	![檢視 Blob 容器][3]
 
-    ![View blob container][3]
+1.	主窗格會顯示 blob 容器的內容。
 
-1.  The main pane will display the blob container's contents.
+1.	根據您想要執行的工作遵循下列步驟︰
 
-1.  Follow these steps depending on the task you wish to perform:
+	- **將檔案上傳至 blob 容器**
 
-    - **Upload files to a blob container**
+		1.	在主窗格工具列上，選取 [上傳]，然後從下拉式功能表選取 [上傳檔案]。
 
-        1.  On the main pane's toolbar, select **Upload**, and then **Upload Files** from the drop-down menu.
+			![上傳檔案功能表][15]
 
-            ![Upload files menu][15]
+		1.	在 [上傳檔案] 對話方塊中，選擇 [檔案] 文字方塊右側的省略符號 (**...**) 按鈕，以選取您想要上傳的檔案。
 
-        1.  In the **Upload files** dialog, select the ellipsis (**…**) button on the right side of the **Files** text box to select the file(s) you wish to upload.
+			![上傳檔案選項][16]
 
-            ![Upload files options][16]
+		1.	指定 [Blob 類型]的類型。文章[以 .NET 開始使用 Azure Blob 儲存體](./storage/storage-dotnet-how-to-use-blobs.md#blob-service-concepts)說明各種不同的 blob 類型之間的差異。
 
-        1.  Specify the type of **Blob type**. The article [Get started with Azure Blob storage using .NET](./storage/storage-dotnet-how-to-use-blobs.md#blob-service-concepts) explains the differences between the various blob types.
+		1.	選擇性地指定選取的檔案將會上傳至其中的目標資料夾。如果目標資料夾不存在，系統就會加以建立。
 
-        1.  Optionally, specify a target folder into which the selected file(s) will be uploaded. If the target folder doesn’t exist, it will be created.
+		1.	選取 [上傳]。
 
-        1.  Select **Upload**.
+	- **將資料夾上傳至 blob 容器**
 
-    - **Upload a folder to a blob container**
+		1.	在主窗格工具列上，選取 [上傳]，然後從下拉式功能表選取 [上傳資料夾]。
 
-        1.  On the main pane's toolbar, select **Upload**, and then **Upload Folder** from the drop-down menu.
+			![上傳資料夾功能表][17]
 
-            ![Upload folder menu][17]
+		1.	在 [上傳資料夾] 對話方塊中，選擇 [資料夾] 文字方塊右側的省略符號 (**...**) 按鈕，以選取您想要上傳其內容的資料夾。
 
-        1.  In the **Upload folder** dialog, select the ellipsis (**…**) button on the right side of the **Folder** text box to select the folder whose contents you wish to upload.
+			![上傳資料夾選項][18]
 
-            ![Upload folder options][18]
+		1.	指定 [Blob 類型]的類型。文章[以 .NET 開始使用 Azure Blob 儲存體](./storage/storage-dotnet-how-to-use-blobs.md#blob-service-concepts)說明各種不同的 blob 類型之間的差異。
 
-        1.  Specify the type of **Blob type**. The article [Get started with Azure Blob storage using .NET](./storage/storage-dotnet-how-to-use-blobs.md#blob-service-concepts) explains the differences between the various blob types.
+		1.	選擇性地指定選取的資料夾的內容將會上傳至其中的目標資料夾。如果目標資料夾不存在，系統就會加以建立。
 
-        1.  Optionally, specify a target folder into which the selected folder's contents will be uploaded. If the target folder doesn’t exist, it will be created.
+		1.	選取 [上傳]。
 
-        1.  Select **Upload**.
+	- **將 blob 下載到本機電腦**
 
-    - **Download a blob to your local computer**
+		1.	選取您想要下載的 blob。
 
-        1.  Select the blob you wish to download.
+		1.	在主窗格工具列上選取 [下載]。
 
-        1.  On the main pane's toolbar, select **Download**.
+		1.	在 [指定儲存下載的 blob 的位置] 對話方塊中，指定要下載 blob 的位置，和您想要給予它的名稱。
 
-        1.  In the **Specify where to save the downloaded blob** dialog, specify the location where you want the blob downloaded, and the name you wish to give it.  
+		1.	選取 [**儲存**]。
 
-        1.  Select **Save**.
+	- **在您的本機電腦上開啟 blob**
 
-    - **Open a blob on your local computer**
+		1.	選取您想要開啟的 blob。
 
-        1.  Select the blob you wish to open.
+		1.	在主窗格工具列上選取 [開啟]。
 
-        1.  On the main pane's toolbar, select **Open**.
+		1.	Blob 會被下載，並使用與 blob 的基礎檔案類型相關聯的應用程式開啟。
 
-        1.  The blob will be downloaded and opened using the application associated with the blob's underlying file type.
+	- **將 blob 複製到剪貼簿**
 
-    - **Copy a blob to the clipboard**
+		1.	選取您想要複製的 blob。
 
-        1.  Select the blob you wish to copy.
+		1.	在主窗格工具列上選取 [複製]。
 
-        1.  On the main pane's toolbar, select **Copy**.
+		1.	在左窗格中，瀏覽至另一個 blob 容器，然後在主窗格中按兩下加以檢視。
 
-        1.  In the left pane, navigate to another blob container, and double-click it to view it in the main pane.
+		1.	在主窗格工具列上選取 [貼上] 以建立 blob 的複本。
 
-        1.  On the main pane's toolbar, select **Paste** to create a copy of the blob.
+	- **刪除 Blob**
 
-    - **Delete a blob**
+		1.	選取您想要刪除的 blob。
 
-        1.  Select the blob you wish to delete.
+		1.	在主窗格工具列上選取 [刪除]。
 
-        1.  On the main pane's toolbar, select **Delete**.
+		1.	選取確認對話方塊上的 [是]。
 
-        1.  Select **Yes** to the confirmation dialog.
+## 後續步驟
 
-## <a name="next-steps"></a>Next steps
-
-- View the [latest Storage Explorer (Preview) release notes and videos](http://www.storageexplorer.com).
-- Learn how to [create applications using Azure blobs, tables, queues, and files](https://azure.microsoft.com/documentation/services/storage/).
+- 檢視[最新的儲存體 Explorer (預覽) 版本資訊與影片](http://www.storageexplorer.com)。
+- 了解如何[利用 Azure Blob、資料表、佇列和檔案建立應用程式](https://azure.microsoft.com/documentation/services/storage/)。
 
 [0]: ./media/vs-azure-tools-storage-explorer-blobs/blob-containers-create-context-menu.png
 [1]: ./media/vs-azure-tools-storage-explorer-blobs/blob-container-create.png
@@ -283,7 +277,4 @@ The following steps illustrate how to manage the blobs (and folders) within a bl
 [18]: ./media/vs-azure-tools-storage-explorer-blobs/blob-upload-folder-options.png
 [19]: ./media/vs-azure-tools-storage-explorer-blobs/blob-container-open-editor-context-menu.png
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

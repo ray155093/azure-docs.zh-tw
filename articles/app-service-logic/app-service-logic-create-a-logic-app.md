@@ -1,74 +1,67 @@
 <properties
-    pageTitle="Create a Logic App | Microsoft Azure"
-    description="Learn how to create a Logic App connecting SaaS services"
-    authors="jeffhollan"
-    manager="dwrede"
-    editor=""
-    services="logic-apps"
-    documentationCenter=""/>
+	pageTitle="建立邏輯應用程式 | Microsoft Azure"
+	description="了解如何建立連接 SaaS 服務的邏輯應用程式"
+	authors="jeffhollan"
+	manager="dwrede"
+	editor=""
+	services="logic-apps"
+	documentationCenter=""/>
 
 <tags
-    ms.service="logic-apps"
-    ms.workload="na"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="get-started-article"
-    ms.date="10/18/2016"
-    ms.author="jehollan"/>
+	ms.service="logic-apps"
+	ms.workload="na"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="get-started-article"
+	ms.date="07/16/2016"
+	ms.author="jehollan"/>
 
+# 建立連接 SaaS 服務的新邏輯應用程式
 
-# <a name="create-a-new-logic-app-connecting-saas-services"></a>Create a new logic app connecting SaaS services
+本主題只花幾分鐘就能示範如何開始使用 [Azure Logic Apps](app-service-logic-what-are-logic-apps.md)。我們將逐步說明可讓您將有趣的推文傳送至您的電子郵件的簡單工作流程。
 
-This topic demonstrates how, in just a few minutes, you can get started with [Azure Logic Apps](app-service-logic-what-are-logic-apps.md). We'll walk through a simple workflow that lets you send interesting tweets to your email.
+若要使用此案例，您需要：
 
-To use this scenario, you need:
+- Azure 訂用帳戶
+- Twitter 帳戶
+- Outlook.com 或裝載的 Office 365 信箱
 
-- An Azure subscription
-- A Twitter account
-- A Outlook.com or hosted Office 365 mailbox
+## 建立新的邏輯應用程式，以電子郵件傳送您的推文
 
-## <a name="create-a-new-logic-app-to-email-you-tweets"></a>Create a new logic app to email you tweets
+1. 在 [Azure 入口網站儀表板](https://portal.azure.com)上選取 [新增]。
+2. 在搜尋列中搜尋「邏輯應用程式」，然後選取 [邏輯應用程式]。您也可以選取 [新增]、[Web + 行動]，然後選取 [邏輯應用程式]。
+3. 輸入邏輯應用程式的名稱，選取位置、資源群組，然後選取 [建立]。如果您選取 [釘選到儀表板]，邏輯應用程式將會在部署後自動開啟。
+4. 第一次開啟邏輯應用程式之後，您可以從要啟動的範本進行選取。現在按一下 [空白邏輯應用程式]，從頭開始建置。
+1. 您所需建立的第一個項目是觸發程序。這是將啟動邏輯應用程式的事件。在觸發搜尋方塊中搜尋 **twitter** 並加以選取。
+7. 您現在會輸入據以觸發的搜尋詞彙。[頻率] 和 [間隔] 會決定邏輯應用程式檢查新推文 (以及傳回該時間範圍內的所有推文) 的頻率。![Twitter 搜尋](./media/app-service-logic-create-a-logic-app/twittersearch.png)
 
-1. On the [Azure portal dashboard](https://portal.azure.com), select **New**. 
-2. In the search bar, search for 'logic app', and then select **Logic App**. You can also select **New**, **Web + Mobile**, and select **Logic App**. 
-3. Enter a name for your logic app, select a location, resource group, and select **Create**.  If you select **Pin to Dashboard** the logic app will automatically open once deployed.  
-4. After opening your logic app for the first time you can select from a template to start.  For now click **Blank Logic App** to build this from scratch. 
-1. The first item you need to create is the trigger.  This is the event that will start your logic app.  Search for **twitter** in the trigger search box, and select it.
-7. Now you'll type in a search term to trigger on.  The **Frequency** and **Interval** will determine how often your logic app will check for new tweets (and return all tweets during that time span).
-    ![Twitter search](./media/app-service-logic-create-a-logic-app/twittersearch.png)
+5. 選取 [新步驟] 按鈕，然後選擇 [新增動作] 或 [新增條件]
+6. 當您選取 [新增動作] 時，您可以從[可用的連接器](../connectors/apis-list.md)搜尋以選擇動作。例如，您可以選取 [Outlook.com - 傳送電子郵件]，以從 outlook.com 位址傳送郵件︰![動作](./media/app-service-logic-create-a-logic-app/actions.png)
 
-5. Select the **New step** button, and then choose **Add an action** or **Add a condition**
-6. When you select **Add an Action**, you can search from the [available connectors](../connectors/apis-list.md) to choose an action. For example, you can select **Outlook.com - Send Email** to send mail from an outlook.com address:  
-    ![Actions](./media/app-service-logic-create-a-logic-app/actions.png)
+7. 您現在必須針對您要的電子郵件填寫參數：![參數](./media/app-service-logic-create-a-logic-app/parameters.png)
 
-7. Now you have to fill out the parameters for the email you want:  ![Parameters](./media/app-service-logic-create-a-logic-app/parameters.png)
+8. 最後，您可以選取 [儲存]，以存留您的邏輯應用程式。
 
-8. Finally, you can select **Save** to make your logic app live.
+## 在建立後管理邏輯應用程式
 
-## <a name="manage-your-logic-app-after-creation"></a>Manage your logic app after creation
+現在，您的邏輯應用程式已啟動並執行。它會以輸入的搜尋詞彙定期檢查推文。當它找到符合的推文時，就會傳送郵件給您。最後，您將看到如何停用應用程式，或看到它的執行狀況。
 
-Now your logic app is up and running. It will periodically check for tweets with the search term entered. When it finds a matching tweet, it will send you an email. Finally, you'll see how to disable the app, or see how it’s doing.
+1. 移至 [Azure 入口網站](https://portal.azure.com)。
 
-1. Go to the [Azure Portal](https://portal.azure.com)
+1. 在螢幕左邊按一下 [瀏覽]，然後選取 [Logic Apps]。
 
-1. Click **Browse** on the left side of the screen and select **Logic Apps**.
+2. 按一下您剛剛建立的新邏輯應用程式，以查看目前狀態和一般資訊。
 
-2. Click the new logic app that you just created to see current status and general information.
+3. 若要編輯新的邏輯應用程式，請按一下 [編輯]。
 
-3. To edit your new logic app, click **Edit**.
+5. 若要關閉應用程式，請按一下命令列中的 [停用]。
 
-5. To turn off the app, click **Disable** in the command bar.
+1. 檢視當邏輯應用程式正在執行時所要監視的執行和觸發歷程記錄。您可以按一下 [重新整理] 來查看最新資料。
 
-1. View run and trigger histories to monitor when your logic app is running.  You can click **Refresh** to see the latest data.
-
-In less than 5 minutes you were able to set up a simple logic app running in the cloud. To learn more about using Logic Apps features, see [Use logic app features]. To learn about the Logic App definitions themselves, see [author Logic App definitions](app-service-logic-author-definitions.md).
+不到 5 分鐘的時間，您便能夠設定在雲端中執行的簡單邏輯應用程式。若要深入了解如何使用邏輯應用程式功能，請參閱[使用邏輯應用程式功能]。若要深入了解邏輯應用程式定義本身，請參閱[撰寫邏輯應用程式定義](app-service-logic-author-definitions.md)。
 
 <!-- Shared links -->
 [Azure portal]: https://portal.azure.com
-[Use logic app features]: app-service-logic-create-a-logic-app.md
+[使用邏輯應用程式功能]: app-service-logic-create-a-logic-app.md
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

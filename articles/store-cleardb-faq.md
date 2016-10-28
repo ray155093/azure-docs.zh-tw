@@ -1,144 +1,139 @@
 <properties
-    pageTitle="FAQ for ClearDB MySql databases with Azure App Service | Microsoft Azure"
-    description="Answers to common questions about using ClearDB MySQL databases with Azure App Service."
-    documentationCenter="php"
-    services=""
-    authors="sunbuild"
-    manager="yochayk"
-    editor=""
-    tags="mysql"/>
+	pageTitle="ClearDB MySQL 資料庫搭配 Azure App Service 的常見問題集 | Microsoft Azure"
+	description="使用 ClearDB MySQL 資料庫搭配 Azure App Service 常見問題的解答。"
+	documentationCenter="php"
+	services=""
+	authors="sunbuild"
+	manager="yochayk"
+	editor=""
+	tags="mysql"/>
 
 <tags
-    ms.service="multiple"
-    ms.workload="data-management"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="02/08/2016"
-    ms.author="sumuth"/>
+	ms.service="multiple"
+	ms.workload="data-management"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="02/08/2016"
+	ms.author="sumuth"/>
 
+# ClearDB MySQL 資料庫搭配 Azure App Service 的常見問題集
 
-# <a name="faq-for-cleardb-mysql-databases-with-azure-app-service"></a>FAQ for ClearDB MySql databases with Azure App Service
+此常見問題集可回答為 Azure Web Apps 使用及購買 ClearDB MySQL 資料庫的常見問題。
 
-This FAQ answers common questions about using and purchasing ClearDB MySQL databases for Azure Web Apps.
+## 在 Azure 上的 MySQL 有哪些選項？
 
-## <a name="what-options-do-i-have-for-mysql-on-azure?"></a>What options do I have for MySQL on Azure?
+您有幾種選項：
 
-You have several options:
+* [ClearDB Shared MySQL 資料庫](/marketplace/partners/cleardb/databases/)
 
-* [ClearDB Shared MySQL database](/marketplace/partners/cleardb/databases/)
+* [ClearDB MySQL Premium 叢集](/marketplace/partners/cleardb-clusters/cluster/)
 
-* [ClearDB MySQL Premium clusters](/marketplace/partners/cleardb-clusters/cluster/)
+* [Azure VM 上執行的 MySQL 叢集](https://github.com/azure/azure-quickstart-templates/tree/master/mysql-replication)
 
-* [MySQL cluster running on an Azure VM](https://github.com/azure/azure-quickstart-templates/tree/master/mysql-replication)
+* [Azure VM 上執行的 MySQL 單一執行個體](virtual-machines/virtual-machines-windows-classic-mysql-2008r2.md)
 
-* [Single instance of MySQL running on an Azure VM](virtual-machines/virtual-machines-windows-classic-mysql-2008r2.md)
+ClearDB 是 MySQL 代管服務，會為您管理 MySQL 基礎結構。在 Azure 虛擬機器上執行自己的 MySQL 叢集或資料庫時，您必須設定 MySQL 伺服器，並使用修補程式讓它保持更新。
 
-ClearDB is a MySQL hosting service and manages the MySQL infrastructure for you. When you run your own MySQL cluster or database on an Azure Virtual Machine you have to set up the MySQL server and keep it updated with patches.
+## 要取得 Azure Marketplace 中的 Web 應用程式與 MySQL 範本需要使用信用卡嗎？
 
-## <a name="do-i-need-a-credit-card-for-the-web-app-+-mysql-template-in-the-azure-marketplace?"></a>Do I need a credit card for the Web app + MySQL template in the Azure Marketplace?
+這取決於您使用的訂用帳戶類型。以下是一些常用的訂用帳戶類型：
 
-This depends on the type of subscription you are using. Here are some commonly used subscription types:
+* [預付型](/offers/ms-azr-0003p/)：需要信用卡，購買付費的 MySQL 資料庫時，將向您的信用卡收費。
 
-* [Pay as you Go](/offers/ms-azr-0003p/): Requires a credit card, and when you purchase a paid MySQL database your credit card will be charged.
+* [免費試用](https://azure.microsoft.com/pricing/free-trial/)：包括可用於 Microsoft Azure 服務的信用額度，但不允許購買第三方資源。若要購買第三方服務或付費的 MySQL 資料庫，您需要使用啟用信用卡的訂用帳戶。針對 Web Apps，您可以建立免費的 ClearDB MySQL 資料庫。
 
-* [Free trial](https://azure.microsoft.com/pricing/free-trial/): Includes credits for use with Microsoft Azure services but doesn't allow purchase of third party resources. To purchase third party services or a paid MySQL database you need to use a credit card enabled subscription. For Web Apps you can create a FREE ClearDB MySQL database.
+* [MSDN 訂用帳戶](/pricing/member-offers/msdn-benefits/)和 **MSDN 開發人員測試預付型**：類似於免費試用，MSDN 訂用帳戶要求您使用信用卡向 ClearDB 購買付費的 MySQL 解決方案。
 
-* [MSDN subscription](/pricing/member-offers/msdn-benefits/) and **MSDN Dev Test Pay as you go**: Similar to Free trial, an MSDN subscription requires you to have a credit card to purchase a paid MySQL solution from ClearDB.
+* [Enterprise 合約 (EA)](/pricing/enterprise-agreement/)：我們會每季以單一彙總的發票就 EA 向 EA 客戶的所有 Azure Marketplace (第三方) 購買項目收費。對於任何 Marketplace 購買項目，將向您就財務承諾以外收費。請注意，目前 Azure 市集無法供在亞塞拜然、克羅埃西亞、挪威和波多黎各註冊的客戶使用。
 
-* [Enterprise Agreement (EA)](/pricing/enterprise-agreement/): EA customers are billed against their EA each quarter for all of their Azure Marketplace (third party) purchases on a separate, consolidated invoice. You will be billed outside the monetary commitment for any marketplace purchases. Please note that, at this time, Azure Store is not available to customers enrolled in Azerbaijan, Croatia, Norway and Puerto Rico. 
+*   [DreamSpark](https://www.dreamspark.com/Product/Product.aspx?productid=99)：您只能為 Web Apps 建立免費的 ClearDB 資料庫。可以建立的免費 ClearDB MySQL 資料庫數目沒有任何限制。請注意，免費資料庫並非要用於生產 Web 應用程式，因為此服務僅供試用。
 
-*   [DreamSpark](https://www.dreamspark.com/Product/Product.aspx?productid=99): You can create only FREE ClearDB databases for Web Apps. There is no limit on the number of Free ClearDB MySQL databases you can create. Note that Free databases are not to be used for production web apps, as this service is intended only for trial.
+## 為什麼透過 Azure Marketplace 向我收取 Web 應用程式 + MySQL 3.50 元美金的費用？
 
-## <a name="why-was-i-charged-$3.50-for-a-web-app-+-mysql-from-the-azure-marketplace?"></a>Why was I charged $3.50 for a Web app + MySQL from the Azure Marketplace?
+預設資料庫選項是 Titan，也就是 3.50 元美金。建立資料庫時我們不會顯示成本，您可能會錯誤地購買您不想要的資料庫。我們正在設法改善此情況，但在那之前，您必須檢查對 Web 應用程式和資料庫所選取的定價層，之後才按一下 [建立] 並開始部署資源。
 
-The default database option is Titan, which is $3.50. We don’t show the cost during database creation, and you may mistakenly purchase a database you didn’t intend to.  We are trying to find a way to improve the experience but until then you must check all your selected pricing tiers for web app and database before clicking **Create** and starting the deployment of the resources.
+## 我在自己的 Azure 虛擬機器上執行 MySQL。可以將我的 Azure Web 應用程式連接到我的資料庫嗎？
 
-## <a name="i-am-running-mysql-on-my-own-azure-virtual-machine.-can-i-connect-my-azure-web-app-to-my-database?"></a>I am running MySQL on my own Azure virtual machine. Can I connect my Azure web app to my database?
+是。只要您的 Azure VM 已將遠端存取權提供給 Web 應用程式，Web 應用程式就能連線到您的資料庫。如需詳細資訊，請參閱[在虛擬機器上安裝 MySQL](virtual-machines/virtual-machines-windows-classic-mysql-2008r2.md)。
 
-Yes. You can connect your web app to your database as long as your Azure VM has given remote access to your web app. For more information, see [Install MySQL on a virtual machine](virtual-machines/virtual-machines-windows-classic-mysql-2008r2.md).
+## 支援 ClearDB Premium MySQL 叢集的國家 (地區)有哪些？
 
-## <a name="in-which-countries-are-cleardb-premium-mysql-clusters-supported?"></a>In which countries are ClearDB Premium MySQL clusters supported?
+除了印度、澳大利亞、巴西南部及中國之外的所有 Azure 區域都可使用 [ClearDB Premium MySQL 叢集](/marketplace/partners/cleardb-clusters/cluster/)。
 
-[ClearDB Premium MySQL clusters](/marketplace/partners/cleardb-clusters/cluster/) are available in all Azure regions worldwide with the exception of India, Australia, Brazil South, and China.
+## 可以於使用 ClearDB Premium 叢集解決方案建立資料庫之前建立新的叢集嗎？
 
-## <a name="can-i-create-a-new-cluster-prior-to-creating-a-database-with-cleardb-premium-cluster-solution?"></a>Can I create a new cluster prior to creating a database with ClearDB premium cluster solution?
+否，不支援建立空白的 ClearDB 叢集。Azure 入口網站可讓您在叢集中建立資料庫，這可能會同時建立新的叢集。
 
-No, creating empty ClearDB clusters is not supported. The Azure Portal allows you to create databases in a cluster, which may create a new cluster at the same time.
+## 如果我嘗試刪除正由其中一個應用程式使用的 ClearDB MySQL 資料庫，會收到警告嗎？
 
-## <a name="will-i-be-warned-if-i-try-to-delete-a-cleardb-mysql-database-that-is-in-use-by-one-of-my-applications?"></a>Will I be warned if I try to delete a ClearDB MySQL database that is in use by one of my applications?
+否，如果您刪除應用程式所相依的 Marketplace 購買項目，Azure 將不會警告您。
 
-No, Azure will not warn you if you delete a marketplace purchase that your application depends on.
+## 可以在哪些區域中建立 ClearDB 資料庫？
 
-## <a name="which-regions-can-i-create-cleardb-databases-in?"></a>Which regions can I create ClearDB databases in?
+Azure Marketplace 無法供在亞塞拜然、克羅埃西亞、挪威或波多黎各註冊的客戶使用。這些區域中無法使用 ClearDB。
 
-Azure Marketplace is not available to customers enrolled in Azerbaijan, Croatia, Norway or Puerto Rico. ClearDB is not available in these regions.
+## 針對生產 Web 應用程式和資料庫，應該選擇哪個定價層？
 
-## <a name="what-pricing-tier-should-i-choose-for-a-production-web-app-and-database?"></a>What pricing tier should I choose for a production web app and database?
+對 Web Apps 使用「基本」或更高的定價層。針對 ClearDB，我們建議 Saturn 或 Jupiter 計劃。請檢閱 [Web Apps](/pricing/details/app-service/) 和 [ClearDB MySQL 資料庫](/marketplace/partners/cleardb/databases/)每個定價層的功能和限制，來選擇符合您需求的定價層。
 
-Use Basic or a higher pricing tier for Web Apps. For ClearDB, we recommend either a Saturn or Jupiter plan. Review the features & limitations of each pricing tier for both [Web Apps](/pricing/details/app-service/) and [ClearDB MySQL databases](/marketplace/partners/cleardb/databases/) to choose the one that fits your needs.
+## 如何將我的 ClearDB 資料庫從一個計劃升級到另一個？
 
-## <a name="how-do-i-upgrade-my-cleardb-database-from-one-plan-to-another?"></a>How do I upgrade my ClearDB database from one plan to another?
+您可以使用 [ClearDB 升級精靈](https://www.cleardb.com/store/azure/upgrade)。目前我們在 Azure 入口網站中沒有升級途徑。
 
-You can use the [ClearDB Upgrade Wizard](https://www.cleardb.com/store/azure/upgrade). Currently we don’t have an upgrade path in the Azure portal.
+## 我在 Azure 入口網站中看不到我的 ClearDB 資料庫？
 
-## <a name="i-can’t-see-my-cleardb-database-in-azure-portal-?"></a>I can’t see my ClearDB database in Azure portal ?
+如果我們使用 Azure Resource Manager 或[新的 Azure 入口網站](https://portal.azure.com) 建立 ClearDB 資料庫，將無法在[舊的 Azure 入口網站](https://manage.windowsazure.com)中看到此資料庫。若要解決此問題，請將您的資料庫手動連結至 Web 應用程式。同樣地，如果在[舊的入口網站](https://manage.windowsazure.com)中建立 ClearDB 資料庫，則您在[新的 Azure 入口網站](https://portal.azure.com)中將看不到您的資料庫。對於後者情況，沒有任何解決之道。
 
-If we create ClearDB database using Azure resource Manager or [new azure portal](https://portal.azure.com) , it will not be visible in the [old azure portal](https://manage.windowsazure.com). To workaround this is to link your database manually to the web app. Similarly if create ClearDB database in the [old portal](https://manage.windowsazure.com) you will not be able to see your database in the [new azure portal](https://portal.azure.com).There is no workaround for the latter scenario.
+## 我的資料庫關閉時應向誰連絡尋求支援？
 
-## <a name="who-do-i-contact-for-support-when-my-database-is-down?"></a>Who do I contact for support when my database is down?
+如有任何資料庫相關的問題，請連絡 [ClearDB 支援](https://www.cleardb.com/developers/help/support)。準備好提供問題資訊與您的 Azure 訂用帳戶資訊。
 
-Contact [ClearDB support](https://www.cleardb.com/developers/help/support) for any database related issues. Be prepared to provide them with your Azure subscription information.
+## 我可以為自己的 ClearDB MySQL 資料庫叢集解決方案建立其他的使用者嗎？  
 
-## <a name="can-i-create-additional-users-for-my-cleardb-mysql-database-cluster-solution?"></a>Can I create additional users for my ClearDB MySQL database cluster solution?  
+不行。您無法建立其他的使用者，但可以在自己的 ClearDB 資料庫叢集上建立其他的資料庫。
 
-No. You cannot create additional users but you can create additional databases on your ClearDB database cluster.   
+## 與 ClearDB 入口網站上目前的 Planetary 計劃類似，是否可以就地升級基本/專業系列資料庫嗎？
 
-## <a name="can-basic/pro-series-databases-be-upgraded-in-place-similar-to-planetary-plans-today-on-cleardb-portal?"></a>Can Basic/Pro series databases be upgraded in-place similar to Planetary plans today on ClearDB portal?
+是，可以就地升級基本系列資料庫 (基本 60 到基本 500)。可以就地升級專業系列 (專業 125 到專業 1000)，但專業 60 除外。我們目前不支援升級專業 60 資料庫。
 
-Yes, Basic series databases can be upgraded in-place (Basic 60 through Basic 500). Pro series can be upgraded in-place (Pro 125 through Pro 1000) with the exception of Pro 60. We do not support upgrading Pro 60 database currently. 
+## 當我把資源從某個訂用帳戶移轉到另一個訂用帳戶時，我的 ClearDB MySQL 資料庫也會跟著移轉嗎？  
 
-## <a name="when-i-migrate-my-resources-from-one-subscription-to-another,-does-my-cleardb-mysql-database-get-migrated-as-well?"></a>When I migrate my resources from one subscription to another, does my ClearDB MySQL database get migrated as well?  
+當跨訂用帳戶執行資源移轉時，適用某些[限制](./app-service-web/app-service-move-resources.md)。ClearDB MySQL 資料庫是第三方服務，因此在 Azure 訂用帳戶移轉期間是不會移轉的。如果您在移轉 Azure 資源之前，沒有管理自己 MySQL 資料庫的移轉作業，您的 ClearDB MySQL 資料庫可能會遭到停用。請先手動移轉資料庫，然後再為您的 Web 應用程式執行 Azure 訂用帳戶移轉作業。
 
-When you perform resource migration across subscriptions, some [limitations](./app-service-web/app-service-move-resources.md) apply. A ClearDB MySQL database is a third party service and hence does not get migrated during Azure subscription migration. If you do not manage the migration of your MySQL database prior to migrating Azure resources, your ClearDB MySQL databases can be disabled. Manually migrate your databases first and then perform Azure subscription migration for your web app. 
+## 可以使用 Enterprise 合約 (EA) 訂用帳戶購買 Scalable WordPress 嗎？
 
-## <a name="can-i-purchase-scalable-wordpress-with-an-enterprise-agreement-(ea)-subscription?"></a>Can I purchase Scalable WordPress with an Enterprise Agreement (EA) subscription?
+此程序對任何訂用帳戶是相同的。請前往 [Azure 入口網站](https://portal.azure.com/)中的 Azure Marketplace，然後選取 [[可調整規模的 WordPress](https://portal.azure.com/?feature.customportal=false#create/WordPress.ScalableWordPress)] 來開始建立應用程式。可調整規模的 WordPress 只支援 ClearDB Saturn 及 Jupiter 定價層，且您的 EA 信用額度將用於在標準 Web Apps 定價層上執行的 Web 應用程式，以及付費 ClearDB (共用) MySQL 資料庫。[/marketplace/faq/](/marketplace/faq/) 我們每季將根據您的 EA，以不同的彙總發票來為您在 Azure 市集購買的項目收費。
 
-The process is the same for any subscription. Go to Azure Marketplace in the [Azure portal](https://portal.azure.com/), and select [Scalable WordPress](https://portal.azure.com/?feature.customportal=false#create/WordPress.ScalableWordPress) to start creating the app. Scalable WordPress only supports ClearDB Saturn and Jupiter pricing tiers, and your EA credits will go towards both your web application running on the Standard Web Apps pricing tier and the paid ClearDB (shared) MySQL database.[/marketplace/faq/](/marketplace/faq/)  You will be billed against your EA each quarter for all Store purchases on a separate, consolidated invoice.
+## 我可以將 ClearDB 資料庫從信用卡訂用帳戶移轉給 EA 訂用帳戶嗎？
 
-## <a name="can-i-transfer-a-cleardb-database-from-a-credit-card-subscription-to-an-ea-subscription?"></a>Can I transfer a ClearDB database from a credit card subscription to an EA subscription?
+現有的 ClearDB 資料庫將使用與現有的訂用帳戶相關聯的信用卡。若要使用 EA 訂用帳戶，您需要將資料移轉到新的資料庫：
 
-Existing ClearDB databases will use the credit card associated with the existing subscriptions. To use an EA subscription you need to migrate your data to a new database:
+* 使用您的 EA 訂用帳戶購買新 ClearDB 資料庫。
+* 將資料移轉至新的資料庫。
+* 更新應用程式以使用新的資料庫。
+* 刪除舊的 ClearDB 資料庫。
 
-* Purchase a new ClearDB database with your EA subscription.
-* Migrate your data to your new database.
-* Update your application to use the new database.
-* Delete your old ClearDB database.
+使用 MySQL (ClearDB) 建立新的 Web 應用程式，或建立 MySQL 資料庫 (ClearDB) 時，您選擇的訂用帳戶會決定您將支付服務的方式。請注意，使用 EA 訂用帳戶，對於在 Azure 入口網站中採購第三方服務，例如 ClearDB，我們不會進行封鎖。將每季並以後付方式向 EA 訂用帳戶就財務承諾以外收費。EA 客戶必須設定付款方式，例如信用卡，才能支付任何第三方 Marketplace 服務。
 
-When you create a new web app with MySQL (ClearDB) or create a MySQL database (ClearDB), the subscription you choose determines how you will pay for the service. Note that with an EA subscription, we will not block the procurement of the third party services such as ClearDB in the Azure portal. EA subscriptions are billed outside of Monetary Commitment and are billed quarterly and in arrears. The EA customer would have to set up a payment method such as a credit card to pay for any third party marketplace services.
+## 在哪裡可以查看 EA 訂用帳戶中 ClearDB 資源的費用？
 
-## <a name="where-can-i-see-the-charges-for-cleardb-resources-in-an-ea-subscription?"></a>Where can I see the charges for ClearDB resources in an EA subscription?
+針對直接 EA 客戶，可以在企業入口網站上看見 Azure Marketplace 費用。請注意，所有 Marketplace 購買項目和使用均會每季並以後付方式就財務承諾以外收費。EA 客戶需要直接付費給第三方服務提供者，並且能夠藉由啟用其 EA 帳戶的付款方式 (例如：信用卡) 來完成。
 
-For Direct EA customers, Azure Marketplace charges are visible on the Enterprise Portal. Note that all marketplace purchases and consumption are billed outside of Monetary Commitment and are billed quarterly and in arrears. EA customers have to pay directly to the third party service providers and can do so by enabling a payment method such as a credit card with their EA account.
+間接的 EA 客戶可以在企業版入口網站的 [管理訂用帳戶] 頁面上找到自己的 Azure Marketplace 訂用帳戶，但價格是隱藏的。客戶應該連絡其 LSP 以了解相關的 Marketplace 費用資訊。
 
-Indirect EA customers can find their Azure Marketplace subscriptions on the **Manage Subscriptions** page of the Enterprise Portal, but pricing is hidden. Customers should contact their LSP for information on marketplace charges.
+您的 EA Azure 註冊管理員可以管理對 Azure Marketplace 第三方服務的存取權。他們可以透過市集的 [管理帳戶] 和企業入口網站中 [帳戶] 區段下的訂用帳戶，來停用或重新啟用對第三方購買項目的存取。
 
-Access to Azure Marketplace for third party services can be managed by your EA Azure enrollment administrators. They can disable or re-enable access to 3rd party purchases from the Store in Manage Accounts and Subscriptions under the Accounts section in the Enterprise Portal.
+## 若對我的 EA 訂用帳戶中 ClearDB 服務的帳單有問題，應該連絡誰？
 
-## <a name="who-do-i-contact-for-questions-about-my-bill-for-cleardb-services-in-my-ea-subscription?"></a>Who do I contact for questions about my bill for ClearDB services in my EA subscription?
-
-Contact [Enterprise Customer Support](http://aka.ms/AzureEntSupport) with regards to billing under their EA enrollment. The EA Portal Support Team will answer your question or help resolve your issue.
+如有任何關於自己 EA 註冊的計費問題，請連絡[企業版客戶支援](http://aka.ms/AzureEntSupport)。EA 入口網站支援小組會回答您的問題或協助解決您的問題。
 
  
 
 
 
-## <a name="more-information"></a>More information
+## 詳細資訊
 
-[Azure Marketplace FAQ](/marketplace/faq/)
+[Azure Marketplace 常見問題集](/marketplace/faq/)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0330_2016-->

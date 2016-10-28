@@ -1,89 +1,81 @@
 <properties
-    pageTitle="Types of risk events detected by Azure Active Directory Identity Protection | Microsoft Azure"
-    description="This topic gives you a detailed overview of the available types of risk events in Azure Active Directory Identity Protection"
-    services="active-directory"
-    keywords="azure active directory identity protection, cloud app discovery, managing applications, security, risk, risk level, vulnerability, security policy"
-    documentationCenter=""
-    authors="MarkusVi"
-    manager="femila"
-    editor=""/>
+	pageTitle="Azure Active Directory Identity Protection 偵測到的風險事件類型 | Microsoft Azure"
+	description="本主題詳述 Azure Active Directory Identity Protection 中可用的風險事件類型"
+	services="active-directory"
+	keywords="azure active directory identity protection, cloud app discovery, 管理應用程式, 安全性, 風險, 風險層級, 弱點, 安全性原則"
+	documentationCenter=""
+	authors="markusvi"
+	manager="femila"
+	editor=""/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="10/20/2016"
-    ms.author="markvi"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/02/2016"
+	ms.author="markvi"/>
+
+#Azure Active Directory Identity Protection 偵測到的風險事件類型 
+
+在 Azure Active Directory Identity Protection 中，風險事件是下列類型的事件︰
+
+- 已標示為可疑
+
+- 指出某個身分識別可能已遭入侵。
+
+本主題詳述可用的風險事件類型。
 
 
-#<a name="types-of-risk-events-detected-by-azure-active-directory-identity-protection"></a>Types of risk events detected by Azure Active Directory Identity Protection 
+## 認證外洩
 
-In Azure Active Directory Identity Protection, risk events are events that:
+Microsoft 安全性研究人員發現外洩的認證公開張貼於黑暗網路 (Dark Web)。這些認證通常在純文字中找到。它們會根據 Azure AD 認證進行檢查，如果有相符項目，則會在 Identity Protection 中回報為「認證外洩」。
 
-- were flagged as suspicious
+認證外洩風險事件會被歸類為「高」嚴重性風險事件，因為它們清楚指出攻擊者可使用使用者名稱和密碼。
 
-- indicate that an identity may have been compromised. 
+## 不可能到達非典型位置的移動
 
-This topic gives you a detailed overview of the available types of risk events.
+此風險事件類型會識別來自距離遙遠的位置的兩次登入，而根據使用者過去的行為，其中至少有一個位置可能不尋常。此外，兩次登入之間的時間比使用者從第一個位置移到第二個位置所需的時間還要短，這表示有不同的使用者正在使用相同的認證。
 
+這種機器學習演算法會忽略明顯的「誤判」，以致發生不可能的移動情況，例如，組織中的其他使用者定期使用的 VPN 和位置。系統有為期 14 天的初始學習期間，它會在這段期間了解新使用者的登入行為。
 
-## <a name="leaked-credentials"></a>Leaked credentials
+不可能的移動通常會明顯指出駭客已能夠成功登入。不過，當使用者使用新裝置或使用組織中其他使用者通常不會使用的 VPN 進行移動時，可能會發生誤判。另一個誤判來源是誤將伺服器 IP 當作用戶端 IP 傳遞的應用程式，其可能會導致從裝載應用程式後端的資料中心進行登入 (這些通常是 Microsoft 資料中心，其可能導致從 Microsoft 擁有的 IP 位址進行登入)。這些誤判以致此風險事件的風險層級為「**中**」。
 
-Leaked credentials are found posted publicly in the dark web by Microsoft security researchers. These credentials are usually found in plain text. They are checked against Azure AD credentials, and if there is a match, they are reported as “Leaked credentials” in Identity Protection.
+##從受感染的裝置登入
 
-Leaked credentials risk events are classified as a “High” severity risk event, because they provide a clear indication that the user name and password are available to an attacker.
+此風險事件類型會識別從感染惡意程式碼的裝置登入，已知這類登入會主動與 Bot 伺服器通訊。讓使用者裝置的 IP 位址與聯繫 Bot 伺服器的 IP 位址相互關聯，即可判定此類型。
 
-## <a name="impossible-travel-to-atypical-locations"></a>Impossible travel to atypical locations
+此風險事件可識別 IP 位址，而不是使用者裝置。如果單一 IP 位址背後有數個裝置，而只有某些裝置受 Bot 網路控制，則來自其他裝置的登入可能會不必要地觸發此事件，這就是將此風險事件歸類為「**低**」的原因。
 
-This risk event type identifies two sign-ins originating from geographically distant locations, where at least one of the locations may also be atypical for the user, given past behavior. In addition, the time between the two sign-ins is shorter than the time it would have taken the user to travel from the first location to the second, indicating that a different user is using the same credentials. 
+建議您連絡使用者並掃描使用者的所有裝置。使用者的個人裝置也可能受到感染，或如前所述，可能是其他人從與使用者相同的 IP 位址使用受感染的裝置。受感染的裝置通常是受到防毒軟體尚未識別的惡意程式碼所感染，這也表示不良的使用者習慣可能會導致裝置受到感染。
 
-This machine learning algorithm that ignores obvious "*false positives*" contributing to the impossible travel condition, such as VPNs and locations regularly used by other users in the organization.  The system has an initial learning period of 14 days during which it learns a new user’s sign-in behavior.
-
-Impossible travel is usually a good indicator that a hacker was able to successfully sign-in. However, false-positives may occur when a user is traveling using a new device or using a VPN that is typically not used by other users in the organization. Another source of false-positives is applications that incorrectly pass server IPs as client IPs, which may give the appearance of sign-ins taking place from the data center where that application’s back-end is hosted (often these are Microsoft datacenters, which may give the appearance of sign-ins taking place from Microsoft owned IP addresses). As a result of these false-positives, the risk level for this risk event is “**Medium**”.
-
-##<a name="sign-ins-from-infected-devices"></a>Sign-ins from infected devices
-
-This risk event type identifies sign-ins from devices infected with malware, that are known to actively communicate with a bot server. This is determined by correlating IP addresses of the user’s device against IP addresses that were in contact with a bot server. 
-
-This risk event identifies IP addresses, not user devices. If several devices are behind a single IP address, and only some are controlled by a bot network, sign-ins from other devices my trigger this event unnecessarily, which is the reason for classifying this risk event as “**Low**”.  
-
-We recommend that you contact the user and scan all the user's devices. It is also possible that a user's personal device is infected, or as mentioned earlier, that someone else was using an infected device from the same IP address as the user. Infected devices are often infected by malware that have not yet been identified by anti-virus software, and may also indicate as bad user habits that may have caused the device to become infected.
-
-For more information about how to address malware infections, see the [Malware Protection Center](http://go.microsoft.com/fwlink/?linkid=335773&clcid=0x409).
+如需如何處理惡意程式碼感染的詳細資訊，請參閱[惡意程式碼防護中心](http://go.microsoft.com/fwlink/?linkid=335773&clcid=0x409)。
 
 
-## <a name="sign-ins-from-anonymous-ip-addresses"></a>Sign-ins from anonymous IP addresses
+## 從匿名 IP 位址登入
 
-This risk event type identifies users who have successfully signed in from an IP address that has been identified as an anonymous proxy IP address. These proxies are used by people who want to hide their device’s IP address, and may be used for malicious intent.
+此風險事件類型會識別從被視為匿名 Proxy IP 位址的 IP 位址成功登入的使用者。這些 Proxy 通常由想要隱藏其裝置 IP 位址的人員使用，而且可能用於惡意意圖。
 
-We recommend that you immediately contact the user to verify if they were using anonymous IP addresses. The risk level for this risk event type is “**Medium**” because in itself an anonymous IP is not a strong indication of an account compromise.
+我們建議您立即連絡使用者，確認他們是否使用匿名 IP 位址。此風險事件類型的風險層級為「**中**」，因為匿名 IP 本身並未強烈指出帳戶遭到入侵。
 
-## <a name="sign-ins-from-ip-addresses-with-suspicious-activity"></a>Sign-ins from IP addresses with suspicious activity
+## 從具有可疑活動的 IP 位址登入
 
-This risk event type identifies IP addresses from which a high number of failed sign-in attempts were seen, across multiple user accounts, over a short period of time. This matches traffic patterns of IP addresses used by attackers, and is a strong indicator that accounts are either already or are about to be compromised. This is a machine learning algorithm that ignores obvious "*false-positives*", such as IP addresses that are regularly used by other users in the organization.  The system has an initial learning period of 14 days where it learns the sign-in behavior of a new user and new tenant.
+此風險事件類型會識別在短期內透過多個使用者帳戶多次嘗試登入失敗的 IP 位址。這符合攻擊者所使用的 IP 位址流量模式，而且強烈指出帳戶已經或即將遭到入侵。這種機器學習演算法會忽略明顯的「誤判」，例如，組織中的其他使用者定期使用的 IP 位址。系統有為期 14 天的初始學習期間，它會在這段期間了解新使用者和新租用戶的登入行為。
 
-We recommend that you contact the user to verify if they actually signed in from an IP address that was marked as suspicious. The risk level for this event type is “**Medium**” because several devices may be behind the same IP address, while only some may be responsible for the suspicious activity. 
+我們建議您連絡使用者，確認他們是否實際從標示為可疑的 IP 位址進行登入。此事件類型的風險層級為「**中**」，因為相同 IP 位址背後可能有數個裝置，而只有某些裝置可能負責進行可疑的活動。
 
 
-## <a name="sign-in-from-unfamiliar-locations"></a>Sign-in from unfamiliar locations
+## 從不熟悉的位置登入
 
-This risk event type is a real-time sign-in evaluation mechanism that considers past sign-in locations (IP, Latitude / Longitude and ASN) to determine new / unfamiliar locations. The system stores information about previous locations used by a user, and considers these “familiar” locations. The risk even is triggered when the sign-in occurs from a location that's not already in the list of familiar locations. The system has an initial learning period of 14 days, during which it does not flag any new locations as unfamiliar locations. The system also ignores sign-ins from familiar devices, and locations that are geographically close to a familiar location. <br>
-Unfamiliar locations can provide a strong indication that an attacker is able attempting to use a stolen identity. False-positives may occur when a user is traveling, trying out a new device or uses a new VPN. As a result of these false positives, the risk level for this event type is “**Medium**”.
+此風險事件類型是一種即時登入評估機制，它會考量過去的登入位置 (IP、經緯度和 ASN) 以判斷新的 / 不熟悉的位置。系統會儲存有關使用者先前所用位置的資訊，並考量這些「熟悉的」位置。從不在熟悉位置清單中的位置登入時，甚至會觸發此風險。系統有為期 14 天的初始學習期間，在這段期間內，它不會將任何新位置標示為不熟悉的位置。系統也會忽略從熟悉的裝置以及地理上靠近熟悉位置的位置進行的登入。<br> 不熟悉的位置可以強烈指出攻擊者可嘗試使用遭竊的身分識別。當使用者正在移動，並試用新裝置或使用新的 VPN 時，可能會發生誤判。這些誤判以致此事件類型的風險層級為「**中**」。
 
 
 
 
 
-## <a name="see-also"></a>See also
+## 另請參閱
 
 - [Azure Active Directory Identity Protection](active-directory-identityprotection.md)
 
-
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

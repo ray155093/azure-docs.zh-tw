@@ -1,9 +1,9 @@
 <properties
-   pageTitle="Import and export a domain zone file to Azure DNS using CLI| Microsoft Azure"
-   description="Learn how to import and export a DNS zone file to Azure DNS by using Azure CLI"
+   pageTitle="使用 CLI 將網域區域匯入及匯出至 Azure DNS | Microsoft Azure"
+   description="了解如何使用 Azure CLI 匯入和匯出 DNS 區域檔案至 Azure DNS"
    services="dns"
    documentationCenter="na"
-   authors="sdwheeler"
+   authors="cherylmc"
    manager="carmonm"
    editor=""/>
 
@@ -14,190 +14,183 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="08/16/2016"
-   ms.author="sewhee"/>
+   ms.author="cherylmc"/>
 
+# 使用 Azure CLI 匯入及匯出 DNS 區域檔案
 
-# <a name="import-and-export-a-dns-zone-file-using-the-azure-cli"></a>Import and export a DNS zone file using the Azure CLI
 
+本文將引導您了解如何使用 Azure CLI 匯入和匯出 Azure DNS 的 DNS 區域檔案。
 
-This article will walk you through how to import and export DNS zone files for Azure DNS using the Azure CLI.
+## DNS 區域移轉簡介
 
-## <a name="introduction-to-dns-zone-migration"></a>Introduction to DNS zone migration
+DNS 區域檔案是一個文字檔，其中包含區域中每筆網域名稱系統 (DNS) 記錄的詳細資料。它會遵循標準格式，使其適合於在 DNS 系統之間傳送 DNS 記錄。使用區域檔案是從 Azure DNS 移入或移出 DNS 區域的快速、可靠又方便的方法。
 
-A DNS zone file is a text file that contains details of every Domain Name System (DNS) record in the zone. It follows a standard format, making it suitable for transferring DNS records between DNS systems. Using a zone file is a quick, reliable, and convenient way to transfer a DNS zone into or out of Azure DNS.
+Azure DNS 支援使用 Azure 命令列介面 (CLI) 匯入和匯出區域檔案。Azure CLI 是用來管理 Azure 服務的跨平台命令列工具。它可從 [Azure 下載頁面](https://azure.microsoft.com/downloads/)取得，且適用於 Windows、Mac 及 Linux 平台。跨平台支援對於匯入和匯出區域檔案特別重要，因為最常見的名稱伺服器軟體 [BIND](https://www.isc.org/downloads/bind/) 通常會在 Linux 上執行。
 
-Azure DNS supports importing and exporting zone files by using the Azure command-line interface (CLI). The Azure CLI is a cross-platform command-line tool used for managing Azure services. It is available for the Windows, Mac, and Linux platforms from the [Azure downloads page](https://azure.microsoft.com/downloads/). Cross-platform support is particularly important for importing and exporting zone files, because the most common name server software, [BIND](https://www.isc.org/downloads/bind/), typically runs on Linux.
+## 取得現有的 DNS 區域檔案
 
-## <a name="obtain-your-existing-dns-zone-file"></a>Obtain your existing DNS zone file
+將 DNS 區域檔案匯入 Azure DNS 之前，您必須取得區域檔案的複本。此檔案的來源將取決於目前裝載 DNS 區域的位置。
 
-Before you import a DNS zone file into Azure DNS, you will need to obtain a copy of the zone file. The source of this file will depend on where the DNS zone is currently hosted.
+- 如果 DNS 區域是由合作夥伴服務 (例如網域註冊機構、專用 DNS 主機服務提供者或其他雲端提供者) 託管，該服務應提供下載 DNS 區域檔案的能力。
 
-- If your DNS zone is hosted by a partner service (such as a domain registrar, dedicated DNS hosting provider, or alternative cloud provider), that service should provide the ability to download the DNS zone file.
+- 如果 DNS 區域託管在 Windows DNS 上，區域檔案的預設資料夾是 **%systemroot%\\system32\\dns**。DNS 服務管理主控台的 [一般] 索引標籤上，也會顯示每個區域檔案的完整路徑。
 
-- If your DNS zone is hosted on Windows DNS, the default folder for the zone files is **%systemroot%\system32\dns**. The full path to each zone file also shows on the **General** tab of the DNS service management console.
+- 如果使用 BIND 裝載 DNS 區域，則 BIND 組態檔 **named.conf** 中會指定每個區域的區域檔案位置。
 
-- If your DNS zone is hosted by using BIND, the location of the zone file for each zone is specified in the BIND configuration file **named.conf**.
+**使用 GoDaddy 的區域檔案**<BR>下載自 GoDaddy 的區域檔案會包含一些非標準格式。您必須先修正格式，再將這些區域檔案匯入 Azure DNS。每個 DNS 記錄 RData 中的 DNS 名稱會指定為完整名稱，但是結尾沒有 "."。 這表示其他 DNS 系統會將這些名稱解譯為相對名稱。將區域檔案匯入 Azure DNS 之前，您必須先加以編輯，以將結尾的 "." 附加至這些名稱。
 
-**Working with zone files from GoDaddy**<BR>
-Zone files downloaded from GoDaddy have a slightly nonstandard format. You need to correct this before you import these zone files into Azure DNS. DNS names in the RData of each DNS record are specified as fully qualified names, but they don't have a terminating "." This means they are interpreted by other DNS systems as relative names. You need to edit the zone file to append the terminating "." to their names before you import them into Azure DNS.
+## 將 DNS 區域檔案匯入 Azure DNS
 
-## <a name="import-a-dns-zone-file-into-azure-dns"></a>Import a DNS zone file into Azure DNS
 
+匯入區域檔案將會在 Azure DNS 中建立新區域 (如果區域不存在)。如果區域已經存在，則區域檔案中的記錄集必須與現有的記錄集合併。
 
-Importing a zone file will create a new zone in Azure DNS if one does not already exist. If the zone already exists, the record sets in the zone file must be merged with the existing record sets.
+### 合併行為
 
-### <a name="merge-behavior"></a>Merge behavior
+- 預設會合併現有和新的記錄集。合併的資料錄集內相同的記錄會進行重複資料刪除。
 
-- By default, existing and new record sets are merged. Identical records within a merged record set are de-duplicated.
+- 或者，透過指定 `--force` 選項，匯入程序將會以新的記錄集取代現有記錄集。不會移除在匯入的區域檔案中沒有對應記錄集的現有記錄集。
 
-- Alternatively, by specifying the `--force` option, the import process will replace existing record sets with new record sets. Existing record sets that do not have a corresponding record set in the imported zone file will not be removed.
+- 合併記錄集時，會使用預先存在之記錄集的存留時間 (TTL)。使用 `--force` 時，會使用新記錄集的 TTL。
 
-- When record sets are merged, the time to live (TTL) of preexisting record sets is used. When `--force` is used, the TTL of the new record set is used.
+- 無論是否使用 `--force`，起始點授權 (SOA) 參數 (`host` 除外) 一律取自匯入的區域檔案。同樣地，對於位於區域頂點的名稱伺服器記錄集，TTL 一律取自匯入的區域檔案。
 
-- Start of Authority (SOA) parameters (except `host`) are always taken from the imported zone file, regardless of whether `--force` is used. Similarly, for the name server record set at the zone apex, the TTL is always taken from the imported zone file.
+- 除非指定 `--force` 參數，否則匯入的 CNAME 記錄將不會取代具有相同名稱的現有 CNAME 記錄。
 
-- An imported CNAME record will not replace an existing CNAME record with the same name unless the `--force` parameter is specified.
+- 當 CNAME 記錄與另一筆同名但不同類型的記錄 (不論何者是現有或新的記錄) 之間發生衝突時，會保留現有的記錄。這與使用 `--force` 無關。
 
-- When a conflict arises between a CNAME record and another record of the same name but different type (regardless of which is existing or new), the existing record is retained. This is independent of the use of `--force`.
+### 匯入的其他資訊
 
-### <a name="additional-information-about-importing"></a>Additional information about importing
+下列幾點提供有關區域匯入程序的其他技術詳細資訊。
 
-The following notes provide additional technical details about the zone import process.
+- `$TTL` 指示詞為選擇性並受到支援。若未提供 `$TTL` 指示詞，將會匯入沒有明確 TTL 的記錄，並設定為預設 TTL 3600 秒。如果相同資料錄集中有兩筆記錄指定不同的 TTL，則會使用較低的值。
 
-- The `$TTL` directive is optional, and it is supported. When no `$TTL` directive is given, records without an explicit TTL will be imported set to a default TTL of 3600 seconds. When two records in the same record set specify different TTLs, the lower value is used.
+- `$ORIGIN` 指示詞為選擇性並受到支援。若未設定 `$ORIGIN`，則使用的預設值是在命令列上指定的區域名稱 (加上結尾的 ".")。
 
-- The `$ORIGIN` directive is optional, and it is supported. When no `$ORIGIN` is set, the default value used is the zone name as specified on the command line (plus the terminating ".").
+- `$INCLUDE` 和 `$GENERATE` 指示詞不受支援。
 
-- The `$INCLUDE` and `$GENERATE` directives are not supported.
+- 支援這些記錄類型：A、AAAA、CNAME、MX、NS、SOA、SRV 和 TXT。
 
-- These record types are supported: A, AAAA, CNAME, MX, NS, SOA, SRV, and TXT.
+- Azure DNS 會在建立區域時，自動建立 SOA 記錄。當您匯入區域檔案時，所有 SOA 參數都會取自該區域檔案，但 `host` 參數*除外*。這個參數會使用 Azure DNS 所提供的值。這是因為此參數必須參照 Azure DNS 所提供的主要名稱伺服器。
 
-- The SOA record is created automatically by Azure DNS when a zone is created. When you import a zone file, all SOA parameters are taken from the zone file *except* the `host` parameter. This parameter uses the value provided by Azure DNS. This is because this parameter must refer to the primary name server provided by Azure DNS.
+- Azure DNS 也會在建立區域時，自動建立位於區域頂點的名稱伺服器記錄集。只會匯入此記錄集的 TTL。這些記錄包含 Azure DNS 所提供的名稱伺服器名稱。所匯入區域檔案中包含的值不會覆寫記錄資料。
 
-- The name server record set at the zone apex is also created automatically by Azure DNS when the zone is created. Only the TTL of this record set is imported. These records contain the name server names provided by Azure DNS. The record data is not overwritten by the values contained in the imported zone file.
+- 在公開預覽期間，Azure DNS 僅支援單一字串 TXT 記錄。Multistring TXT 記錄會串連起來並截斷為 255 個字元。
 
-- During Public Preview, Azure DNS supports only single-string TXT records. Multistring TXT records will be concatenated and truncated to 255 characters.
+### CLI 格式和值
 
-### <a name="cli-format-and-values"></a>CLI format and values
 
+用來匯入 DNS 區域的 Azure CLI 命令格式為：<BR>`azure network dns zone import [options] <resource group> <zone name> <zone file name>`
 
-The format of the Azure CLI command to import a DNS zone is:<BR>`azure network dns zone import [options] <resource group> <zone name> <zone file name>`
+值：
 
-Values:
+- `<resource group>` 是 Azure DNS 中區域的資源群組名稱。
+- `<zone name>` 是區域的名稱。
+- `<zone file name>` 是要匯入之區域檔案的路徑/名稱。
 
-- `<resource group>` is the name of the resource group for the zone in Azure DNS.
-- `<zone name>` is the name of the zone.
-- `<zone file name>` is the path/name of the zone file to be imported.
+如果資源群組中不存在具有此名稱的區域，則會為您建立。如果區域已經存在，則匯入的記錄集將會與現有的記錄集合併。若要覆寫現有的記錄集，請使用 `--force` 選項。
 
-If a zone with this name does not exist in the resource group, it will be created for you. If the zone already exists, the imported record sets will be merged with existing record sets. To overwrite the existing record sets, use the `--force` option.
+若要確認區域檔案的格式，但不實際進行匯入，請使用 `--parse-only` 選項。
 
-To verify the format of a zone file without actually importing it, use the `--parse-only` option.
+### 步驟 1.匯入區域檔案
 
-### <a name="step-1.-import-a-zone-file"></a>Step 1. Import a zone file
+匯入 **contoso.com** 區域的區域檔案。
 
-To import a zone file for the zone **contoso.com**.
+1. 使用 Azure CLI 登入您的 Azure 訂用帳戶。
 
-1. Sign in to your Azure subscription by using the Azure CLI.
+		azure login
 
-        azure login
+2. 選取您要建立新的 DNS 區域的訂用帳戶。
 
-2. Select the subscription where you want to create your new DNS zone.
+		azure account set <subscription name>
 
-        azure account set <subscription name>
+3. Azure DNS 是僅供 Azure 資源管理員使用的服務，因此 Azure CLI 必須切換到資源管理員模式。
 
-3. Azure DNS is an Azure Resource Manager-only service, so the Azure CLI must be switched to Resource Manager mode.
+		azure config mode arm
 
-        azure config mode arm
+4. 使用 Azure DNS 服務之前，您必須註冊您的訂用帳戶才能使用 Microsoft.Network 資源提供者(每個訂用帳戶只需執行一次此作業)。
 
-4. Before you use the Azure DNS service, you must register your subscription to use the Microsoft.Network resource provider. (This is a one-time operation for each subscription.)
+		azure provider register Microsoft.Network
 
-        azure provider register Microsoft.Network
+5. 如果您還沒有資源管理員資源群組，您也必須加以建立。
 
-5. If you don’t have one already, you also need to create a Resource Manager resource group.
+		azure group create myresourcegroup westeurope
 
-        azure group create myresourcegroup westeurope
+6. 若要將 **contoso.com.txt** 檔案中的 **contoso.com** 區域匯入至 **myresourcegroup** 資源群組中的新 DNS 區域，請執行命令 `azure network dns zone import`。<BR>此命令將會載入並剖析該區域檔案。此命令會在 Azure DNS 服務上執行一系列的命令，以建立區域和區域中的所有記錄集。此命令也會在主控台視窗中報告進度，以及任何的錯誤或警告。由於記錄集是以系列方式建立，可能需要幾分鐘的時間來匯入大型的區域檔案。
 
-6. To import the zone **contoso.com** from the file **contoso.com.txt** into a new DNS zone in the resource group **myresourcegroup**, run the command `azure network dns zone import`.<BR>This command will load the zone file and parse it. The command will execute a series of commands on the Azure DNS service to create the zone and all of the record sets in the zone. The command will also report progress in the console window, along with any errors or warnings. Because record sets are created in series, it may take a few minutes to import a large zone file.
+		azure network dns zone import myresourcegroup contoso.com contoso.com.txt
 
-        azure network dns zone import myresourcegroup contoso.com contoso.com.txt
 
 
+### 步驟 2.確認區域
 
-### <a name="step-2.-verify-the-zone"></a>Step 2. Verify the zone
+若要在匯入檔案之後確認 DNS 區域，您可以使用下列任何一個方法︰
 
-To verify the DNS zone after you import the file, you can use any one of the following methods:
+- 您可以使用下列 Azure CLI 命令來列出記錄。
 
-- You can list the records by using the following Azure CLI command.
+		azure network dns record-set list myresourcegroup contoso.com
 
-        azure network dns record-set list myresourcegroup contoso.com
+- 您可以使用 PowerShell Cmdlet `Get-AzureRmDnsRecordSet` 來列出記錄。
 
-- You can list the records by using the PowerShell cmdlet `Get-AzureRmDnsRecordSet`.
+- 您可以使用 `nslookup` 來驗證記錄的名稱解析。因為尚未委派區域，您必須明確指定正確的 Azure DNS 名稱伺服器。以下範例顯示如何擷取已指派給區域的名稱伺服器名稱。IT 也會示範如何使用 `nslookup` 查詢 "www" 記錄。
 
-- You can use `nslookup` to verify name resolution for the records. Because the zone isn’t delegated yet, you will need to specify the correct Azure DNS name servers explicitly. The sample below shows how to retrieve the name server names assigned to the zone. IT also shows how to query the "www" record by using `nslookup`.
+    	C:\>azure network dns record-set show myresourcegroup contoso.com @ NS
+    	info:Executing command network dns record-set show
+    	+ Looking up the DNS Record Set "@" of type "NS"
+    	data:Id: /subscriptions/…/resourceGroups/myresourcegroup/providers/Microsoft.Network/dnszones/contoso.com/NS/@
+    	data:Name: @
+    	data:Type: Microsoft.Network/dnszones/NS
+    	data:Location: global
+    	data:TTL : 3600
+    	data:NS records
+    	data:Name server domain name : ns1-01.azure-dns.com
+    	data:Name server domain name : ns2-01.azure-dns.net
+    	data:Name server domain name : ns3-01.azure-dns.org
+    	data:Name server domain name : ns4-01.azure-dns.info
+    	data:
+    	info:network dns record-set show command OK
+    
+    	C:\> nslookup www.contoso.com ns1-01.azure-dns.com
+    
+    	Server: ns1-01.azure-dns.com
+    	Address:  40.90.4.1
+    
+    	Name:www.contoso.com
+    	Addresses:  134.170.185.46
+    	134.170.188.221
 
-        C:\>azure network dns record-set show myresourcegroup contoso.com @ NS
-        info:Executing command network dns record-set show
-        + Looking up the DNS Record Set "@" of type "NS"
-        data:Id: /subscriptions/…/resourceGroups/myresourcegroup/providers/Microsoft.Network/dnszones/contoso.com/NS/@
-        data:Name: @
-        data:Type: Microsoft.Network/dnszones/NS
-        data:Location: global
-        data:TTL : 3600
-        data:NS records
-        data:Name server domain name : ns1-01.azure-dns.com
-        data:Name server domain name : ns2-01.azure-dns.net
-        data:Name server domain name : ns3-01.azure-dns.org
-        data:Name server domain name : ns4-01.azure-dns.info
-        data:
-        info:network dns record-set show command OK
+### 步驟 3.更新 DNS 委派
 
-        C:\> nslookup www.contoso.com ns1-01.azure-dns.com
+在確認已正確匯入區域後，您必須更新 DNS 委派為指向 Azure DNS 名稱伺服器。如需詳細資訊，請參閱[更新 DNS 委派](dns-domain-delegation.md)。
 
-        Server: ns1-01.azure-dns.com
-        Address:  40.90.4.1
+## 從 Azure DNS 匯出 DNS 區域檔案
 
-        Name:www.contoso.com
-        Addresses:  134.170.185.46
-        134.170.188.221
+用來匯入 DNS 區域的 Azure CLI 命令格式為：<BR>`azure network dns zone export [options] <resource group> <zone name> <zone file name>`
 
-### <a name="step-3.-update-dns-delegation"></a>Step 3. Update DNS delegation
+值：
 
-After you have verified that the zone has been imported correctly, you will need to update the DNS delegation to point to the Azure DNS name servers. For more information, see the article [Update the DNS delegation](dns-domain-delegation.md).
+- `<resource group>` 是 Azure DNS 中區域的資源群組名稱。
+- `<zone name>` 是區域的名稱。
+- `<zone file name>` 是要匯出之區域檔案的路徑/名稱。
 
-## <a name="export-a-dns-zone-file-from-azure-dns"></a>Export a DNS zone file from Azure DNS
+和區域匯入時一樣，您必須先登入，選擇訂用帳戶，然後設定 Azure CLI 以使用資源管理員模式。
 
-The format of the Azure CLI command to import a DNS zone is:<BR>`azure network dns zone export [options] <resource group> <zone name> <zone file name>`
+### 匯出區域檔案
 
-Values:
 
-- `<resource group>` is the name of the resource group for the zone in Azure DNS.
-- `<zone name>` is the name of the zone.
-- `<zone file name>` is the path/name of the zone file to be exported.
+1. 使用 Azure CLI 登入您的 Azure 訂用帳戶。
 
-As with the zone import, you first need to sign in, choose your subscription, and configure the Azure CLI to use Resource Manager mode.
+		azure login
 
-### <a name="to-export-a-zone-file"></a>To export a zone file
+2. 選取您要建立新的 DNS 區域的訂用帳戶。
 
+		azure account set <subscription name>
 
-1. Sign in to your Azure subscription by using the Azure CLI.
+3. Azure DNS 是僅能以 Azure 資源管理員運作的服務。Azure CLI 必須切換為資源管理員模式。
 
-        azure login
+		azure config mode arm
 
-2. Select the subscription where you want to create your new DNS zone.
+4. 若要將 **myresourcegroup** 資源群組中的現有 Azure DNS 區域 **contoso.com** 匯出至 **contoso.com.txt** 檔案 (在目前資料夾中)，請執行 `azure network dns zone export`。此命令會呼叫 Azure DNS 服務，以列舉區域中的記錄集並將結果匯出至 BIND 相容的區域檔案。
 
-        azure account set <subscription name>
+		azure network dns zone export myresourcegroup contoso.com contoso.com.txt
 
-3. Azure DNS is an Azure Resource Manager-only service. The Azure CLI must be switched to Resource Manager mode.
-
-        azure config mode arm
-
-4. To export the existing Azure DNS zone **contoso.com** in resource group **myresourcegroup** to the file **contoso.com.txt** (in the current folder), run `azure network dns zone export`. This command will call the Azure DNS service to enumerate record sets in the zone and export the results to a BIND-compatible zone file.
-
-        azure network dns zone export myresourcegroup contoso.com contoso.com.txt
-
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

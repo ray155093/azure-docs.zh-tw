@@ -1,129 +1,123 @@
 <properties 
-    pageTitle="Ports beyond 1433 for SQL Database | Microsoft Azure"
-    description="Client connections from ADO.NET to Azure SQL Database V12 sometimes bypass the proxy and interact directly with the database. Ports other than 1433 become important."
-    services="sql-database"
-    documentationCenter=""
-    authors="MightyPen"
-    manager="jhubbard"
-    editor="" />
+	pageTitle="SQL Database 1433 以外的連接埠 | Microsoft Azure"
+	description="從 ADO.NET 至 Azure SQL Database V12 的用戶端連線有時會略過 Proxy 並直接與資料庫互動。1433 以外的連接埠變得重要。"
+	services="sql-database"
+	documentationCenter=""
+	authors="MightyPen"
+	manager="jhubbard"
+	editor="" />
 
 
 <tags 
-    ms.service="sql-database" 
-    ms.workload="drivers"
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="08/17/2016"
-    ms.author="annemill"/>
+	ms.service="sql-database" 
+	ms.workload="drivers"
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="08/17/2016"
+	ms.author="annemill"/>
 
 
+# 針對 ADO.NET 4.5 及 SQL Database V12 的 1433 以外的連接埠
 
-# <a name="ports-beyond-1433-for-ado.net-4.5-and-sql-database-v12"></a>Ports beyond 1433 for ADO.NET 4.5 and SQL Database V12
 
+本主題說明 Azure SQL Database V12 對於使用 ADO.NET 4.5 或更新版本的用戶端的連接行為所帶來的變更。
 
-This topic describes the changes that Azure SQL Database V12 brings to the connection behavior of clients that use ADO.NET 4.5 or a later version.
 
+## SQL Database V11：連接埠 1433
 
-## <a name="v11-of-sql-database:-port-1433"></a>V11 of SQL Database: Port 1433
 
+當用戶端程式使用 ADO.NET 4.5 來連接並查詢 SQL Database V11 時，內部順序如下：
 
-When your client program uses ADO.NET 4.5 to connect and query with SQL Database V11, the internal sequence is as follows:
 
+1. ADO.NET 嘗試連線到 SQL Database。
 
-1. ADO.NET attempts to connect to SQL Database.
+2. ADO.NET 使用連接埠 1433 來呼叫中介軟體模組，中介軟體會連線至 SQL Database。
 
-2. ADO.NET uses port 1433 to call a middleware module, and the middleware connects to SQL Database.
+3. SQL Database 會將其回應傳回給中介軟體，中介軟體將回應轉送給 ADO.NET 連接埠 1433。
 
-3. SQL Database sends its response back to the middleware, which forwards the response to ADO.NET to port 1433.
 
+**術語：**我們使用 *proxy 路由*來說明 ADO.NET 與 SQL Database 互動的上述順序。如果沒有牽涉到中介軟體，我們會說使用的是「直接路由」。
 
-**Terminology:** We describe the preceding sequence by saying that ADO.NET interacts with SQL Database by using the *proxy route*. If no middleware were involved, we would say the *direct route* was used.
 
+## SQL Database V12：內部與外部
 
-## <a name="v12-of-sql-database:-outside-vs-inside"></a>V12 of SQL Database: Outside vs inside
 
+對於連線到 V12，我們必須詢問您的用戶端程式是在 Azure 雲端界限「外部」或「內部」執行。這些小節將討論兩種常見案例。
 
-For connections to V12, we must ask whether your client program runs *outside* or *inside* the Azure cloud boundary. The subsections discuss two common scenarios.
 
+#### *外部：*在桌上型電腦上執行的用戶端
 
-#### <a name="*outside:*-client-runs-on-your-desktop-computer"></a>*Outside:* Client runs on your desktop computer
 
+連接埠 1433 是裝載您的 SQL Database 用戶端應用程式的桌上型電腦上唯一必須開啟的連接埠。
 
-Port 1433 is the only port that must be open on your desktop computer that hosts your SQL Database client application.
 
+#### *內部：*在 Azure 上執行的用戶端
 
-#### <a name="*inside:*-client-runs-on-azure"></a>*Inside:* Client runs on Azure
 
+當您的用戶端是在 Azure 雲端界限內部執行時，它會使用我們可以稱為*直接路由*的路由與 SQL Database 伺服器互動。建立連線之後，用戶端和資料庫之間的進一步互動未牽涉到任何中介軟體 proxy。
 
-When your client runs inside the Azure cloud boundary, it uses what we can call a *direct route* to interact with the SQL Database server. After a connection is established, further interactions between the client and database involve no middleware proxy.
 
+順序如下：
 
-The sequence is as follows:
 
+1. ADO.NET 4.5 (或更新版本) 會起始與 Azure 雲端的簡短互動，並且接收動態已識別的連接埠號碼。
+ - 動態識別的連接埠號碼範圍為 11000-11999 或 14000-14999。
 
-1. ADO.NET 4.5 (or later) initiates a brief interaction with the Azure cloud, and receives a dynamically identified port number.
- - The dynamically identified port number is in the range of 11000-11999 or 14000-14999.
+2. 然後 ADO.NET 會直接連線到 SQL Database 伺服器，中間沒有中介軟體。
 
-2. ADO.NET then connects to the SQL Database server directly, with no middleware in between.
+3. 查詢會直接傳送到資料庫，結果會直接傳回至用戶端。
 
-3. Queries are sent directly to the database, and results are returned directly to the client.
 
+請確定 Azure 用戶端電腦上 11000-11999 及 14000-14999 的連接埠範圍已保留可供 ADO.NET 4.5 用戶端與 SQL Database V12 互動。
 
-Ensure that the port ranges of 11000-11999 and 14000-14999 on your Azure client machine are left available for ADO.NET 4.5 client interactions with SQL Database V12.
+- 特別是範圍中的連接埠必須沒有其他任何輸出封鎖器。
 
-- In particular, ports in the range must be free of any other outbound blockers.
+- 在您的 Azure VM 上，**具有進階安全性的 Windows 防火牆**會控制此連接埠設定。
+ - 您可以使用[防火牆的使用者介面](http://msdn.microsoft.com/library/cc646023.aspx)來新增規則，其中您可使用如 **11000-11999** 的語法指定 **TCP** 通訊協定和連接埠範圍。
 
-- On your Azure VM, the **Windows Firewall with Advanced Security** controls the port settings.
- - You can use the [firewall's user interface](http://msdn.microsoft.com/library/cc646023.aspx) to add a rule for which you specify the **TCP** protocol along with a port range with the syntax like **11000-11999**.
 
+## 版本說明
 
-## <a name="version-clarifications"></a>Version clarifications
 
+本章節將釐清參考產品版本的 Moniker。它也會列出產品之間的一些版本配對。
 
-This section clarifies the monikers that refer to product versions. It also lists some pairings of versions between products.
 
+#### ADO.NET
 
-#### <a name="ado.net"></a>ADO.NET
 
+- ADO.NET 4.0 支援 TDS 7.3 通訊協定，但不支援 7.4。
+- ADO.NET 4.5 和更新版本支援 TDS 7.4 通訊協定。
 
-- ADO.NET 4.0 supports the TDS 7.3 protocol, but not 7.4.
-- ADO.NET 4.5 and later supports the TDS 7.4 protocol.
 
+#### SQL Database V11 和 V12
 
-#### <a name="sql-database-v11-and-v12"></a>SQL Database V11 and V12
 
+SQL Database V11 和 V12 之間的用戶端連線差異是本主題中的重點。
 
-The client connection differences between SQL Database V11 and V12 are highlighted in this topic.
 
+*附註：*Transact-SQL 陳述式 `SELECT @@version;` 會傳回值，從例如 '11.' 或 '12.' 的數字開頭，以及符合我們的 SQL Database V11 和 V12 版本名稱。
 
-*Note:* The Transact-SQL statement `SELECT @@version;` returns a value that start with a number such as '11.' or '12.', and those match our version names of V11 and V12 for SQL Database.
 
+## 相關連結
 
-## <a name="related-links"></a>Related links
 
+- ADO.NET 4.6 於 2015 年 7 月 20 日發行。您可以在[這裡](http://blogs.msdn.com/b/dotnet/archive/2015/07/20/announcing-net-framework-4-6.aspx)查看 .NET 小組的部落格公告。
 
-- ADO.NET 4.6 was released on July 20, 2015. A blog announcement from the .NET team is available [here](http://blogs.msdn.com/b/dotnet/archive/2015/07/20/announcing-net-framework-4-6.aspx).
 
+- ADO.NET 4.5 於 2012 年 8 月 15 日發行。您可以在[這裡](http://blogs.msdn.com/b/dotnet/archive/2012/08/15/announcing-the-release-of-net-framework-4-5-rtm-product-and-source-code.aspx)查看 .NET 小組的部落格公告。
+ - 您可以在[這裡](http://blogs.msdn.com/b/dotnet/archive/2013/06/26/announcing-the-net-framework-4-5-1-preview.aspx)查看有關 ADO.NET 4.5.1 的部落格文章。
 
-- ADO.NET 4.5 was released on August 15, 2012. A blog announcement from the .NET team is available [here](http://blogs.msdn.com/b/dotnet/archive/2012/08/15/announcing-the-release-of-net-framework-4-5-rtm-product-and-source-code.aspx).
- - A blog post about ADO.NET 4.5.1 is available [here](http://blogs.msdn.com/b/dotnet/archive/2013/06/26/announcing-the-net-framework-4-5-1-preview.aspx).
 
+- [TDS 通訊協定版本清單](http://www.freetds.org/userguide/tdshistory.htm)
 
-- [TDS protocol version list](http://www.freetds.org/userguide/tdshistory.htm)
 
+- [SQL Database 開發概觀](sql-database-develop-overview.md)
 
-- [SQL Database Development Overview](sql-database-develop-overview.md)
 
+- [Azure SQL Database 防火牆](sql-database-firewall-configure.md)
 
-- [Azure SQL Database firewall](sql-database-firewall-configure.md)
 
+- [如何：在 SQL Database 上進行防火牆設定](sql-database-configure-firewall-settings.md)
 
-- [How to: Configure firewall settings on SQL Database](sql-database-configure-firewall-settings.md)
-
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

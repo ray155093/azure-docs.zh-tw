@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="Tutorial: Azure Active Directory integration with Chromeriver | Microsoft Azure" 
-    description="Learn how to use Chromeriver with Azure Active Directory to enable single sign-on, automated provisioning, and more!" 
+    pageTitle="教學課程：Azure Active Directory 與 Chromeriver 整合 | Microsoft Azure" 
+    description="了解如何使用 Chromeriver 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -11,121 +11,113 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="09/29/2016" 
+    ms.date="07/11/2016" 
     ms.author="jeedes" />
 
 
+#教學課程：Azure Active Directory 與 Chromeriver 整合
 
-#<a name="tutorial:-azure-active-directory-integration-with-chromeriver"></a>Tutorial: Azure Active Directory integration with Chromeriver
+本教學課程的目的是要示範 Azure 與 Chromeriver 的整合。本教學課程中說明的案例假設您已經具有下列項目：
 
-The objective of this tutorial is to show the integration of Azure and Chromeriver.  
-The scenario outlined in this tutorial assumes that you already have the following items:
+-   有效的 Azure 訂閱
+-   啟用 Chromeriver 單一登入的訂用帳戶
 
--   A valid Azure subscription
--   A Chromeriver single sign-on enabled subscription
+完成本教學課程之後，您指派給 Chromeriver 的 Azure AD 使用者就能夠單一登入您 Chromeriver 公司網站 (服務提供者起始登入) 的應用程式，或是使用[存取面板簡介](active-directory-saas-access-panel-introduction.md)進行單一登入。
 
-After completing this tutorial, the Azure AD users you have assigned to Chromeriver will be able to single sign into the application at your Chromeriver company site (service provider initiated sign on), or using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+本教學課程中說明的案例由下列建置組塊組成：
 
-The scenario outlined in this tutorial consists of the following building blocks:
+1.  啟用 Chromeriver 的應用程式整合
+2.  設定單一登入
+3.  設定使用者佈建
+4.  指派使用者
 
-1.  Enabling the application integration for Chromeriver
-2.  Configuring single sign-on
-3.  Configuring user provisioning
-4.  Assigning users
+![案例](./media/active-directory-saas-chromeriver-tutorial/IC802755.png "案例")
+##啟用 Chromeriver 的應用程式整合
 
-![Scenario](./media/active-directory-saas-chromeriver-tutorial/IC802755.png "Scenario")
-##<a name="enabling-the-application-integration-for-chromeriver"></a>Enabling the application integration for Chromeriver
+本節的目的是要說明如何啟用 Chromeriver 的應用程式整合。
 
-The objective of this section is to outline how to enable the application integration for Chromeriver.
+###若要啟用 Chromeriver 的應用程式整合，請執行下列步驟：
 
-###<a name="to-enable-the-application-integration-for-chromeriver,-perform-the-following-steps:"></a>To enable the application integration for Chromeriver, perform the following steps:
-
-1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-chromeriver-tutorial/IC700993.png "Active Directory")
 
-2.  From the **Directory** list, select the directory for which you want to enable directory integration.
+2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3.  To open the applications view, in the directory view, click **Applications** in the top menu.
+3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
 
-    ![Applications](./media/active-directory-saas-chromeriver-tutorial/IC700994.png "Applications")
+    ![應用程式](./media/active-directory-saas-chromeriver-tutorial/IC700994.png "應用程式")
 
-4.  Click **Add** at the bottom of the page.
+4.  按一下頁面底部的 [新增]。
 
-    ![Add application](./media/active-directory-saas-chromeriver-tutorial/IC749321.png "Add application")
+    ![新增應用程式](./media/active-directory-saas-chromeriver-tutorial/IC749321.png "新增應用程式")
 
-5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
-    ![Add an application from gallerry](./media/active-directory-saas-chromeriver-tutorial/IC749322.png "Add an application from gallerry")
+    ![從組件庫新增應用程式](./media/active-directory-saas-chromeriver-tutorial/IC749322.png "從組件庫新增應用程式")
 
-6.  In the **search box**, type **Chromeriver**.
+6.  在**搜尋方塊**中，輸入 **Chromeriver**。
 
-    ![Application Gallery](./media/active-directory-saas-chromeriver-tutorial/IC802756.png "Application Gallery")
+    ![應用程式庫](./media/active-directory-saas-chromeriver-tutorial/IC802756.png "應用程式庫")
 
-7.  In the results pane, select **Chromeriver**, and then click **Complete** to add the application.
-##<a name="configuring-single-sign-on"></a>Configuring single sign-on
+7.  在結果窗格中，選取 [Chromeriver]，然後按一下 [完成] 以加入應用程式。
+##設定單一登入
 
-The objective of this section is to outline how to enable users to authenticate to Chromeriver with their account in Azure AD using federation based on the SAML protocol.
+本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶驗證至 Chromeriver。
 
-###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
+###若要設定單一登入，請執行下列步驟：
 
-1.  In the Azure classic portal, on the **Chromeriver** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
+1.  在 Azure 傳統入口網站的 [Chromeriver] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-chromeriver-tutorial/IC802757.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-chromeriver-tutorial/IC802757.png "設定單一登入")
 
-2.  On the **How would you like users to sign on to Chromeriver** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
+2.  在 [要如何讓使用者登入 Chromeriver] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-chromeriver-tutorial/IC802758.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-chromeriver-tutorial/IC802758.png "設定單一登入")
 
-3.  On the **Configure App Settings** page, perform the following steps:
+3.  在 [設定應用程式設定] 頁面上，執行下列步驟：
 
-    ![Configure App Settings](./media/active-directory-saas-chromeriver-tutorial/IC802759.png "Configure App Settings")
+    ![設定 App 設定](./media/active-directory-saas-chromeriver-tutorial/IC802759.png "設定 App 設定")
 
-    1.  In the **Reply URL** textbox, type your Chromeriver **AssertionConsumerService URL** (e.g.: *https://qa-app.chromeriver.com/login/sso/saml/consume?customerId=911*).  
+    1.  在 [回覆 URL] 文字方塊中，輸入您的 Chromeriver **AssertionConsumerService URL** (例如：*https://qa-app.chromeriver.com/login/sso/saml/consume?customerId=911*)。
 
-        >[AZURE.NOTE] You can get this value from your Chromeriver support team.
+        >[AZURE.NOTE] 您可以向 Chromeriver 支援小組取得這個值。
 
-    2.  Click **Next**
+    2.  按 [**下一步**]
 
-4.  On the **Configure single sign-on at Chromeriver** page, to download your metadata, click **Download metadata**, and then save the metadata file on your computer.
+4.  於 [在 Chromeriver 設定單一登入] 頁面上，按 [下載中繼資料] 以下載您的中繼資料，然後將中繼資料檔儲存在您的電腦中。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-chromeriver-tutorial/IC802760.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-chromeriver-tutorial/IC802760.png "設定單一登入")
 
-5.  Send the downloaded metadata file to your Chromeriver support team.
+5.  將下載的中繼資料檔傳送給 Chromeriver 支援小組。
 
-    >[AZURE.NOTE] Your Chromeriver support team has to do the actual SSO configuration.  
-    You will get a notification when SSO has been enabled for your subscription.
+    >[AZURE.NOTE] Chromeriver 支援小組必須執行實際的 SSO 組態。當您的訂用帳戶啟用 SSO 之後，您會收到通知。
 
-6.  On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
+6.  在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-chromeriver-tutorial/IC802761.png "Configure Single Sign-On")
-##<a name="configuring-user-provisioning"></a>Configuring user provisioning
+    ![設定單一登入](./media/active-directory-saas-chromeriver-tutorial/IC802761.png "設定單一登入")
+##設定使用者佈建
 
-In order to enable Azure AD users to log into Chromeriver, they must be provisioned into Chromeriver.  
-In the case of Chromeriver, the user accounts need to be created by your Chromeriver support team.
+若要讓 Azure AD 使用者可以登入 Chromeriver，必須將他們佈建到 Chromeriver。Chromeriver 的使用者帳戶必須由 Chromeriver 支援小組建立。
 
->[AZURE.NOTE] You can use any other Chromeriver user account creation tools or APIs provided by Chromeriver to provision Azure Active Directory user accounts.
+>[AZURE.NOTE] 您可以使用任何其他的 Chromeriver 使用者帳戶建立工具或 Chromeriver 提供的 API 來佈建 Azure Active Directory 使用者帳戶。
 
-##<a name="assigning-users"></a>Assigning users
+##指派使用者
 
-To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
+若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-###<a name="to-assign-users-to-chromeriver,-perform-the-following-steps:"></a>To assign users to Chromeriver, perform the following steps:
+###若要指派使用者給 Chromeriver，請執行下列步驟：
 
-1.  In the Azure classic portal, create a test account.
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
-2.  On the **Chromeriver **application integration page, click **Assign users**.
+2.  在 [Chromeriver] 應用程式整合頁面上，按一下 [指派使用者]。
 
-    ![Assign Users](./media/active-directory-saas-chromeriver-tutorial/IC802762.png "Assign Users")
+    ![指派使用者](./media/active-directory-saas-chromeriver-tutorial/IC802762.png "指派使用者")
 
-3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
+3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
 
-    ![Yes](./media/active-directory-saas-chromeriver-tutorial/IC767830.png "Yes")
+    ![是](./media/active-directory-saas-chromeriver-tutorial/IC767830.png "是")
 
-If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0713_2016-->

@@ -1,54 +1,49 @@
 <properties
-    pageTitle="Getting started with Azure Multi-Factor Authentication and Active Directory Federation Services"
-    description="This is the Azure Multi-Factor authentication page that describes how to get started with Azure MFA and AD FS."
-    services="multi-factor-authentication"
-    documentationCenter=""
-    authors="kgremban"
-    manager="femila"
-    editor="curtland"/>
+	pageTitle="開始使用 Azure Multi-Factor Authentication Server 和 Active Directory Federation Services"
+	description="這是說明如何開始使用 Azure MFA 和 AD FS 的 Azure Multi-Factor Authentication 頁面。"
+	services="multi-factor-authentication"
+	documentationCenter=""
+	authors="kgremban"
+	manager="femila"
+	editor="curtland"/>
 
 <tags
-    ms.service="multi-factor-authentication"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na" ms.topic="get-started-article"
-    ms.date="08/04/2016"
-    ms.author="kgremban"/>
+	ms.service="multi-factor-authentication"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na" ms.topic="get-started-article"
+	ms.date="08/04/2016"
+	ms.author="kgremban"/>
 
-
-# <a name="getting-started-with-azure-multi-factor-authentication-and-active-directory-federation-services"></a>Getting started with Azure Multi-Factor Authentication and Active Directory Federation Services
+# 開始使用 Azure Multi-Factor Authentication Server 和 Active Directory Federation Services
 
 
 
 <center>![Cloud](./media/multi-factor-authentication-get-started-adfs/adfs.png)</center>
 
-If your organization has federated your on-premises Active Directory with Azure Active Directory using AD FS, the following 2 options for using Azure Multi-Factor Authentication are available.
+如果貴組織已使用 AD FS 讓內部部署 Active Directory 與 Azure Active Directory 同盟，便可以使用以下 2 個 Azure Multi-Factor Authentication 使用選項。
 
-- Secure cloud resources using Azure Multi-Factor Authentication or Active Directory Federation Services
-- Secure cloud and on-premises resources using Azure Multi-Factor Authentication Server
+- 使用 Azure Multi-Factor Authentication 或 Active Directory Federation Services 保護雲端資源
+- 使用 Azure Multi-Factor Authentication Server 保護雲端和內部部署資源
 
-The following table summarizes the authentication experience between securing resources with Azure Multi-Factor Authentication and AD FS
+下表摘要說明保護使用 Azure Multi-Factor Authentication 和 AD FS 兩者保護資源的驗證體驗
 
-|Authentication Experience - Browser based Apps|Authentication Experience - Non-Browser based Apps
+|驗證體驗 - 瀏覽器型應用程式|驗證體驗 - 非瀏覽器型應用程式
 :------------- | :------------- | :------------- |
-Securing Azure AD resources using Azure Multi-Factor Authentication |<li>The 1st factor of authentication is performed on-premises using AD FS.</li> <li>The 2nd factor is a phone based method carried out using cloud authentication.</li>|End users can use app passwords to sign-in.
-Securing Azure AD resources using Active Directory Federation Services |<li>The 1st factor of authentication is performed on-premises using AD FS.</li><li>The 2nd factor is performed on-premises by honoring the claim.</li>|End users can use app passwords to sign-in.
+使用 Azure Multi-Factor Authentication 保護 Azure AD 資源 |<li>驗證的第一個因素是使用 AD FS 在內部部署。</li> <li>第二個因素是使用雲端驗證執行的電話式方法。</li>|使用者可以使用應用程式密碼來登入。
+使用 Active Directory Federation Services 保護 Azure AD 資源 |<li>驗證的第一個因素是使用 AD FS 在內部部署。</li><li>第二個因素是遵守宣告在內部部署。</li>|使用者可以使用應用程式密碼來登入。
 
-Caveats with app passwords for federated users:
+有關同盟使用者之應用程式密碼的警告：
 
-- App Password is verified using cloud authentication and hence bypasses federations. Federation is only actively used when setting up App Password.
-- On-premises Client Access Control settings are not honored by App Password.
-- You lose on-premises auth logging capability for App Password.
-- Account disable/deletion may take up to 3 hours for dirsync, delaying disable/deletion of app password in the cloud identity.
+- 應用程式密碼乃使用雲端驗證進行驗證，因此會略過同盟。唯有在設定應用程式密碼時才能主動使用同盟。
+- 應用程式密碼不會遵守內部部署用戶端存取控制設定。
+- 您會失去應用程式密碼的內部部署驗證記錄功能。
+- 帳戶停用/刪除最長可能需要 3 個小時才能完成目錄同步處理，導致雲端身分識別中的應用程式密碼停用/刪除延遲。
 
-For information on setting up either Azure Multi-Factor Authentication or the Azure Multi-Factor Authentication Server with AD FS see the following:
+如需使用 AD FS 設定 Azure Multi-Factor Authentication 和 Azure Multi-Factor Authentication Server 的詳細資訊，請參閱下列各項：
 
-- [Secure cloud resources using Azure Multi-Factor Authentication and AD FS](multi-factor-authentication-get-started-adfs-cloud.md)
-- [Secure cloud and on-premises resources using Azure Multi-Factor Authentication Server with Windows Server 2012 R2 AD FS](multi-factor-authentication-get-started-adfs-w2k12.md)
-- [Secure cloud and on-premises resources using Azure Multi-Factor Authentication Server with AD FS 2.0](multi-factor-authentication-get-started-adfs-adfs2.md)
+- [使用 Azure Multi-Factor Authentication 和 AD FS 保護雲端資源](multi-factor-authentication-get-started-adfs-cloud.md)
+- [搭配 Windows Server 2012 R2 AD FS 使用 Azure Multi-Factor Authentication Server 保護雲端和內部部署資源](multi-factor-authentication-get-started-adfs-w2k12.md)
+- [搭配 AD FS 2.0 使用 Azure Multi-Factor Authentication Server 保護雲端和內部部署資源](multi-factor-authentication-get-started-adfs-adfs2.md)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Create a DNS zone using CLI| Microsoft Azure"
-   description="Learn how to create DNS zones for Azure DNS step-by-step to start hosting your DNS domain using CLI"
+   pageTitle="使用 CLI 建立 DNS 區域 | Microsoft Azure"
+   description="了解如何使用 CLI 逐步建立 Azure DNS 的 DNS 區域來開始裝載 DNS 網域"
    services="dns"
    documentationCenter="na"
    authors="sdwheeler"
@@ -16,180 +16,173 @@
    ms.date="08/16/2016"
    ms.author="sewhee"/>
 
-
-# <a name="create-an-azure-dns-zone-using-cli"></a>Create an Azure DNS zone using CLI
+# 使用 CLI 建立 Azure DNS 區域
 
 
 > [AZURE.SELECTOR]
-- [Azure Portal](dns-getstarted-create-dnszone-portal.md)
+- [Azure 入口網站](dns-getstarted-create-dnszone-portal.md)
 - [PowerShell](dns-getstarted-create-dnszone.md)
 - [Azure CLI](dns-getstarted-create-dnszone-cli.md)
 
 
-This article will walk you through the steps to create a DNS zone by using CLI. You can also create a DNS zone using PowerShell or the Azure portal.
+本文將逐步引導您完成使用 CLI 建立 DNS 區域的步驟。您也可以使用 PowerShell 或 Azure 入口網站來建立 DNS 區域。
 
 [AZURE.INCLUDE [dns-create-zone-about](../../includes/dns-create-zone-about-include.md)]
 
 
-## <a name="before-you-begin"></a>Before you begin
+## 開始之前
 
-These instructions use Microsoft Azure CLI. Be sure to update to the latest Azure CLI (0.9.8 or later) to use the Azure DNS commands. Type `azure -v` to check which Azure CLI version is currently installed in your computer.
+這些指示使用 Microsoft Azure CLI。請務必更新至最新的 Azure CLI (0.9.8 或更新版本)，才能使用 Azure DNS 命令。請輸入 `azure -v`，以檢查哪一個 Azure CLI 版本目前安裝在您的電腦。
 
-## <a name="step-1---set-up-azure-cli"></a>Step 1 - Set up Azure CLI
+## 步驟 1 - 設定 Azure CLI
 
-### <a name="1.-install-azure-cli"></a>1. Install Azure CLI
+### 1\.安裝 Azure CLI
 
-You can install Azure CLI for Windows, Linux, or MAC. The following steps need to be completed before you can manage Azure DNS using Azure CLI. More information is available at [Install the Azure CLI](../xplat-cli-install.md). The DNS commands require Azure CLI version 0.9.8 or later.
+您可以安裝適用於 Windows、Linux 或 MAC 的 Azure CLI。必須先完成下列步驟，才能使用 Azure CLI 管理 Azure DNS。您可以在[安裝 Azure CLI](../xplat-cli-install.md) 中取得詳細資訊。此 DNS 命令需要 Azure CLI 0.9.8 版或更新版本。
 
-All the network provider commands on CLI can be found using the following command:
+使用下列命令，可以找到 CLI 上的所有網路提供者命令：
 
-    azure network
+	azure network
 
-### <a name="2.-switch-cli-mode"></a>2. Switch CLI mode
+### 2\.切換 CLI 模式
 
-Azure DNS uses Azure Resource Manager. Make sure you switch CLI mode to use ARM commands.
+Azure DNS 使用 Azure Resource Manager。請確定您已將 CLI 模式切換為使用 ARM 命令。
 
-    azure config mode arm
+	azure config mode arm
 
-### <a name="3.-sign-in-to-your-azure-account"></a>3. Sign in to your Azure account
+### 3\.登入您的 Azure 帳戶
 
-You will be prompted to authenticate with your credentials. Keep in mind that you can only use ORGID accounts.
+系統會提示使用您的認證進行驗證。請注意，您只能使用 ORGID 的帳戶。
 
     azure login -u "username"
 
-### <a name="4.-select-the-subscription"></a>4. Select the subscription
+### 4\.選取訂用帳戶
 
-Choose which of your Azure subscriptions to use.
+選擇要使用哪一個 Azure 訂用帳戶。
 
     azure account set "subscription name"
 
-### <a name="5.-create-a-resource-group"></a>5. Create a resource group
+### 5\.建立資源群組
 
-Azure Resource Manager requires that all resource groups specify a location. This is used as the default location for resources in that resource group. However, because all DNS resources are global, not regional, the choice of resource group location has no impact on Azure DNS.
+Azure Resource Manager 需要所有的資源群組指定一個位置。這用來作為該資源群組中資源的預設位置。然而，因為所有 DNS 資源是全球性，而非區域性，資源群組位置的選擇不會對 Azure DNS 造成影響。
 
-You can skip this step if you are using an existing resource group.
+如果您使用現有的資源群組，則可略過此步驟。
 
     azure group create -n myresourcegroup --location "West US"
 
 
-### <a name="6.-register"></a>6. Register
+### 6\.註冊
 
-The Azure DNS service is managed by the Microsoft.Network resource provider. Your Azure subscription needs to be registered to use this resource provider before you can use Azure DNS. This is a one-time operation for each subscription.
+Azure DNS 服務由 Microsoft.Network 資源提供者管理。您的 Azure 訂用帳戶必須註冊為使用此資源提供者，您才能使用 Azure DNS。每個訂用帳戶只需執行一次此作業。
 
-    azure provider register --namespace Microsoft.Network
-
-
-## <a name="step-2---create-a-dns-zone"></a>Step 2 - Create a DNS zone
-
-A DNS zone is created using the `azure network dns zone create` command. You can optionally create a DNS zone along with tags. Tags are a list of name-value pairs and are used by Azure Resource Manager to label resources for billing or grouping purposes. For more information about tags, see [Using tags to organize your Azure resources](../resource-group-using-tags.md).
-
-In Azure DNS, zone names should be specified without a terminating **‘.’**. For example, as '**contoso.com**' rather than '**contoso.com.**'.
+	azure provider register --namespace Microsoft.Network
 
 
-### <a name="to-create-a-dns-zone"></a>To create a DNS zone
+## 步驟 2 - 建立 DNS 區域
 
-The example below creates a DNS zone called *contoso.com* in the resource group called *MyResourceGroup*.
+使用 `azure network dns zone create` 命令建立 DNS 區域。您可以選擇建立 DNS 區域以及標記。標記是名稱-值組的清單，由 Azure Resource Manager 在計費或分群用途上用來標示資源。如需標記的詳細資訊，請參閱[使用標記來組織您的 Azure 資源](../resource-group-using-tags.md)。
 
-Use the example to create your DNS zone, substituting the values for your own.
+在 Azure DNS 中，指定的區域名稱結尾不能有 **‘.’**。例如，指定為 '**contoso.com**'，而非 '**contoso.com**'。
+
+
+### 建立 DNS 區域
+
+下列範例會在稱為「MyResourceGroup」的資源群組中建立稱為「contoso.com」的 DNS 區域。
+
+使用範例來建立您的 DNS 區域，並將值替換為您自己的值。
 
     azure network dns zone create myresourcegroup contoso.com
 
-### <a name="to-create-a-dns-zone-and-tags."></a>To create a DNS zone and tags.
+### 建立 DNS 區域和標記
 
-Azure DNS CLI supports tags of DNS zones specified by using the optional *-Tag* parameter. The following example shows how to create a DNS zone with two tags, project = demo and env = test.
+Azure DNS CLI 透過使用選擇性的「-Tag」參數來支援所指定 DNS 區域的標記。下列範例示範如何使用兩個標記 project = demo 和 env = test 建立 DNS 區域。
 
-Use the example below to create a DNS zone and tags, substituting the values for your own.
+使用下列範例來建立 DNS 區域和標記，並將值替換為您自己的值。
 
-    azure network dns zone create myresourcegroup contoso.com -t "project=demo";"env=test"
+	azure network dns zone create myresourcegroup contoso.com -t "project=demo";"env=test"
 
-## <a name="view-records"></a>View records
+## 檢視記錄
 
-Creating a DNS zone also creates the following DNS records:
+建立 DNS 區域也會建立下列 DNS 記錄：
 
-- The ‘Start of Authority’ (SOA) record. This is present at the root of every DNS zone.
+- 「起始點授權」(SOA) 記錄。這出現在每個 DNS 區域的根。
 
-- The authoritative name server (NS) records. These show which name servers are hosting the zone. Azure DNS uses a pool of name servers, and so different name servers can be assigned to different zones in Azure DNS. See [Delegate a domain to Azure DNS](dns-domain-delegation.md) for more information.
+- 授權名稱伺服器 (NS) 記錄。這些顯示哪些名稱伺服器裝載該區域。Azure DNS 使用名稱伺服器集區，因此，不同的名稱伺服器可以指派至 Azure DNS 中的不同區域。如需詳細資訊，請參閱[將網域委派給 Azure DNS](dns-domain-delegation.md)。
 
-To view these records, use `azure network dns-record-set show`.<BR>
-*Usage: network dns record-set show <resource-group> <dns-zone-name> <name> <type>*
-
-
-In the example below, if you run the command with resource group *myresourcegroup*, record set name *"@"* (for a root record), and type *SOA*, it will yield the following output:
+若要檢視這些記錄，請使用 `azure network dns-record-set show`。<BR> *使用方式：network dns record-set show <resource-group> <dns-zone-name> <name> <type>*
 
 
-    azure network dns record-set show myresourcegroup "contoso.com" "@" SOA
-    info:    Executing command network dns-record-set show
-    + Looking up the DNS record set "@"
-    data:    Id                              : /subscriptions/#######################/resourceGroups/myresourcegroup/providers/Microsoft.Network/dnszones/contoso.com/SOA/@
-    data:    Name                            : @
-    data:    Type                            : Microsoft.Network/dnszones/SOA
-    data:    Location                        : global
-    data:    TTL                             : 3600
-    data:    SOA record:
-    data:      Email                         : msnhst.microsoft.com
-    data:      Expire time                   : 604800
-    data:      Host                          : edge1.azuredns-cloud.net
-    data:      Minimum TTL                   : 300
-    data:      Refresh time                  : 900
-    data:      Retry time                    : 300
-    data:                                    :
-<BR>
-To view the NS records created with the zone, use the following command:
-
-    azure network dns record-set show myresourcegroup "contoso.com" "@" NS
-    info:    Executing command network dns-record-set show
-    + Looking up the DNS record set "@"
-    data:    Id                              : /subscriptions/#######################/resourceGroups/myresourcegroup/providers/Microsoft.Network/dnszones/contoso.com/NS/@
-    data:    Name                            : @
-    data:    Type                            : Microsoft.Network/dnszones/NS
-    data:    Location                        : global
-    data:    TTL                             : 3600
-    data:    NS records
-    data:        Name server domain name     : ns1-05.azure-dns.com
-    data:        Name server domain name     : ns2-05.azure-dns.net
-    data:        Name server domain name     : ns3-05.azure-dns.org
-    data:        Name server domain name     : ns4-05.azure-dns.info
-    data:
-    info:    network dns-record-set show command OK
-
->[AZURE.NOTE] Record sets at the root (or *apex*) of a DNS Zone use **@** as the record set name.
-
-## <a name="test"></a>Test
-
-You can test your DNS zone by using DNS tools such as nslookup, DIG, or the `Resolve-DnsName` PowerShell cmdlet.
-
-If you haven’t yet delegated your domain to use the new zone in Azure DNS, you need to direct the DNS query directly to one of the name servers for your zone. The name servers for your zone are given in the NS records, as listed by "azure network dns record-set show" above. Be sure the substitute the correct values for your zone in the command below.
-
-The following example uses DIG to query the domain contoso.com using the name servers assigned for the DNS zone. The query has to point to a name server for which we used *@<name server for the zone>* and zone name using DIG.
-
-     <<>> DiG 9.10.2-P2 <<>> @ns1-05.azure-dns.com contoso.com
-    (1 server found)
-    global options: +cmd
-    Got answer:
-    ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 60963
-    flags: qr aa rd; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
-    WARNING: recursion requested but not available
-
-    OPT PSEUDOSECTION:
-    EDNS: version: 0, flags:; udp: 4000
-    QUESTION SECTION:
-    contoso.com.                        IN      A
-
-    AUTHORITY SECTION:
-    contoso.com.         300     IN      SOA     edge1.azuredns-cloud.net.
-    msnhst.microsoft.com. 6 900 300 604800 300
-
-    Query time: 93 msec
-    SERVER: 208.76.47.5#53(208.76.47.5)
-    WHEN: Tue Jul 21 16:04:51 Pacific Daylight Time 2015
-    MSG SIZE  rcvd: 120
-
-## <a name="next-steps"></a>Next steps
-
-After creating a DNS zone, create [record sets and records](dns-getstarted-create-recordset-cli.md) to start resolving names for your Internet domain.
+在下列範例中，如果您使用資源群組 myresourcegroup、記錄集名稱 "@" (適用於根記錄) 和類型 SOA 執行命令，則會產生下列輸出：
 
 
+	azure network dns record-set show myresourcegroup "contoso.com" "@" SOA
+	info:    Executing command network dns-record-set show
+	+ Looking up the DNS record set "@"
+	data:    Id                              : /subscriptions/#######################/resourceGroups/myresourcegroup/providers/Microsoft.Network/dnszones/contoso.com/SOA/@
+	data:    Name                            : @
+	data:    Type                            : Microsoft.Network/dnszones/SOA
+	data:    Location                        : global
+	data:    TTL                             : 3600
+	data:    SOA record:
+	data:      Email                         : msnhst.microsoft.com
+	data:      Expire time                   : 604800
+	data:      Host                          : edge1.azuredns-cloud.net
+	data:      Minimum TTL                   : 300
+	data:      Refresh time                  : 900
+	data:      Retry time                    : 300
+	data:                                    :
+<BR> 若要檢視使用區域建立的 NS 記錄，請使用下列命令：
 
-<!--HONumber=Oct16_HO2-->
+	azure network dns record-set show myresourcegroup "contoso.com" "@" NS
+	info:    Executing command network dns-record-set show
+	+ Looking up the DNS record set "@"
+	data:    Id                              : /subscriptions/#######################/resourceGroups/myresourcegroup/providers/Microsoft.Network/dnszones/contoso.com/NS/@
+	data:    Name                            : @
+	data:    Type                            : Microsoft.Network/dnszones/NS
+	data:    Location                        : global
+	data:    TTL                             : 3600
+	data:    NS records
+	data:        Name server domain name     : ns1-05.azure-dns.com
+	data:        Name server domain name     : ns2-05.azure-dns.net
+	data:        Name server domain name     : ns3-05.azure-dns.org
+	data:        Name server domain name     : ns4-05.azure-dns.info
+	data:
+	info:    network dns-record-set show command OK
 
+>[AZURE.NOTE] 位於 DNS 區域的根 (或「頂點」) 的記錄集使用 **@** 做為記錄集名稱。
 
+## 測試
+
+您可以使用 nslookup、DIG 或 `Resolve-DnsName` PowerShell Cmdlet 等 DNS 工具測試您的 DNS 區域。
+
+如果您還沒有將網域委派給 Azure DNS 中的新區域，您必須將 DNS 查詢直接導向您的區域的其中一個名稱伺服器。如上面的 "azure network dns record-set show" 所列，NS 記錄提供您區域的名稱伺服器。請務必在下列命令中用正確的值取代您的區域。
+
+下列範例使用 DIG，使用為 DNS 區域指派的名稱伺服器來查詢網域 contoso.com。使用 DIG 的查詢必須指向我們將 @<區域的名稱伺服器> 和區域名稱用於的名稱伺服器。
+
+	 <<>> DiG 9.10.2-P2 <<>> @ns1-05.azure-dns.com contoso.com
+	(1 server found)
+	global options: +cmd
+ 	Got answer:
+	->>HEADER<<- opcode: QUERY, status: NOERROR, id: 60963
+ 	flags: qr aa rd; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+ 	WARNING: recursion requested but not available
+
+ 	OPT PSEUDOSECTION:
+ 	EDNS: version: 0, flags:; udp: 4000
+  	QUESTION SECTION:
+	contoso.com.                        IN      A
+
+ 	AUTHORITY SECTION:
+	contoso.com.         300     IN      SOA     edge1.azuredns-cloud.net.
+	msnhst.microsoft.com. 6 900 300 604800 300
+
+	Query time: 93 msec
+	SERVER: 208.76.47.5#53(208.76.47.5)
+	WHEN: Tue Jul 21 16:04:51 Pacific Daylight Time 2015
+	MSG SIZE  rcvd: 120
+
+## 後續步驟
+
+建立 DNS 區域之後，請建立[記錄集和記錄](dns-getstarted-create-recordset-cli.md)，以開始解析您的網際網路網域名稱。
+
+<!---HONumber=AcomDC_1005_2016-->

@@ -1,390 +1,385 @@
 <properties
-    pageTitle="Learn More: Azure AD Password Management | Microsoft Azure"
-    description="Advanced topics on Azure AD Password Management, including how password writeback works, password writeback security, how the password reset portal works, and what data is used by password reset."
-    services="active-directory"
-    documentationCenter=""
-    authors="asteen"
-    manager="femila"
-    editor="curtand"/>
+	pageTitle="深入了解：Azure AD 密碼管理 | Microsoft Azure"
+	description="Azure AD 密碼管理的進階主題，包括密碼回寫的運作方式、密碼回寫安全性、密碼重設入口網站的運作方式，以及密碼重設使用哪些資料。"
+	services="active-directory"
+	documentationCenter=""
+	authors="asteen"
+	manager="femila"
+	editor="curtand"/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="07/12/2016"
-    ms.author="asteen"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/12/2016"
+	ms.author="asteen"/>
 
+# 深入了解密碼管理
 
-# <a name="learn-more-about-password-management"></a>Learn more about Password Management
+> [AZURE.IMPORTANT] **您來到此處是因為有登入問題嗎？** 若是如此，[以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
 
-> [AZURE.IMPORTANT] **Are you here because you're having problems signing in?** If so, [here's how you can change and reset your own password](active-directory-passwords-update-your-own-password.md).
+如果您已部署密碼管理，或只是想要在部署之前先深入了解其運作方式的技術細節，本節可讓您大致了解這項服務背後的技術概念。我們將探討以下內容：
 
-If you have already deployed Password Management, or are just looking to learn more about the technical nitty gritty of how it works before deploying, this section will give you a good overview of the technical concepts behind the service. We'll cover the following:
+* [**密碼回寫概觀**](#password-writeback-overview)
+  - [密碼回寫的運作方式](#how-password-writeback-works)
+  - [密碼回寫的支援案例](#scenarios-supported-for-password-writeback)
+  - [密碼回寫的安全性模型](#password-writeback-security-model)
+* [**密碼重設入口網站的運作方式**](#how-does-the-password-reset-portal-work)
+  - [密碼重設使用哪些資料？](#what-data-is-used-by-password-reset)
+  - [如何存取密碼為使用者重設資料](#how-to-access-password-reset-data-for-your-users)
 
-* [**Password writeback overview**](#password-writeback-overview)
-  - [How pasword writeback works](#how-password-writeback-works)
-  - [Scenarios supported for password writeback](#scenarios-supported-for-password-writeback)
-  - [Password writeback security model](#password-writeback-security-model)
-* [**How does the password reset portal work?**](#how-does-the-password-reset-portal-work)
-  - [What data is used by password reset?](#what-data-is-used-by-password-reset)
-  - [How to access password reset data for your users](#how-to-access-password-reset-data-for-your-users)
+## 密碼回寫概觀
+密碼回寫是一種可供目前的 Azure Active Directory Premium 訂閱者啟用及使用的 [Azure Active Directory Connect](active-directory-aadconnect.md) 元件。如需詳細資訊，請參閱 [Azure Active Directory 版本](active-directory-editions.md)。
 
-## <a name="password-writeback-overview"></a>Password writeback overview
-Password writeback is an [Azure Active Directory Connect](active-directory-aadconnect.md) component that can be enabled and used by the current subscribers of Azure Active Directory Premium. For more information, see [Azure Active Directory Editions](active-directory-editions.md).
+密碼回寫可讓您設定雲端租用戶以在內部部署 Active Directory 中將密碼回寫給您。此服務讓您不需設定和管理複雜的內部部署自助式密碼重設解決方案，並且會提供便利的雲端方式供您的使用者重設其內部部署密碼，無論他們身處何處。請繼續閱讀以下內容，以了解密碼回寫的某些重要功能：
 
-Password writeback allows you to configure your cloud tenant to write passwords back to you on-premises Active Directory.  It obviates you from having to set up and manage a complicated on-premises self-service password reset solution, and it provides a convenient cloud-based way for your users to reset their on-premises passwords wherever they are.  Read on for some of the key features of password writeback:
+- **零延遲的意見反應。** 密碼回寫是一項同步作業。如果使用者的密碼不符合原則，或因為任何原因而無法重設或變更，他們會立即收到通知。
+- **支援使用 AD FS 或其他同盟技術的使用者重設密碼。** 在使用密碼回寫後，只要同盟的使用者帳戶同步處理到您的 Azure AD 租用戶，他們就能夠從雲端管理自己的內部部署 AD 密碼。
+- **支援使用密碼雜湊同步處理的使用者重設密碼。** 當密碼重設服務偵測到同步處理的使用者帳戶已啟用密碼雜湊同步處理時，我們會同時重設此帳戶的內部部署密碼和雲端密碼。
+- **支援從存取面板和 Office 365 變更密碼。** 當已同盟或密碼同步處理的使用者過來變更已過期或尚未過期的密碼時，我們會將這些密碼回寫到您的本機 AD 環境。
+- **支援在系統管理員從** [**Azure 管理入口網站**](https://manage.windowsazure.com)重設密碼時回寫密碼。每當系統管理員在 [Azure 管理入口網站](https://manage.windowsazure.com)重設使用者的密碼，如果該使用者已啟用同盟或密碼同步處理，我們也會在您的本機 AD 上設定系統管理員所選取的密碼。Office 系統管理入口網站目前不支援這項作業。
+- **強制執行您的內部部署 AD 密碼原則。** 當使用者重設其密碼時，我們會確保它符合您的內部部署 AD 原則，然後再認可到該目錄。這當中包括歷程記錄、複雜度、使用期限、密碼篩選和您在本機 AD 中定義的任何其他密碼限制。
+- **不需要任何輸入防火牆規則。** 密碼回寫會以 Azure 服務匯流排轉送做為基礎通訊管道，這表示您不必在防火牆上開啟任何輸入連接埠，這項功能就能正常運作。
+- **不支援存在於內部部署 Active Directory 中的受保護群組內的使用者帳戶。** 如需受保護群組的詳細資訊，請參閱 [Active Directory 中的受保護帳戶和群組](https://technet.microsoft.com/library/dn535499.aspx)。
 
-- **Zero delay feedback.**  Password writeback is a synchronous operation.  Your users will be notified immediately if their password did not meet policy or was not able to be reset or changed for any reason.
-- **Supports resetting passwords for users using AD FS or other federation technologies.**  With password writeback, as long as the federated user accounts are synchronized into your Azure AD tenant, they will be able to manage their on-premises AD passwords from the cloud.
-- **Supports resetting passwords for users using password hash sync.** When the password reset service detects that a synchronized user account is enabled for password hash sync, we reset both this account’s on-premises and cloud password simultaneously.
-- **Supports changing passwords from the access panel and Office 365.**  When federated or password sync’d users come to change their expired or non-expired passwords, we’ll write those passwords back to your local AD environment.
-- **Supports writing back passwords when an admin reset them from the** [**Azure Management Portal**](https://manage.windowsazure.com).  Whenever an admin resets a user’s password in the [Azure Management Portal](https://manage.windowsazure.com), if that user is federated or password sync’d, we’ll set the password the admin selects on your local AD, as well.  This is currently not supported in the Office Admin Portal.
-- **Enforces your on-premises AD password policies.**  When a user resets his/her password, we make sure that it meets your on-premises AD policy before committing it to that directory.  This includes history, complexity, age, password filters, and any other password restrictions you have defined in your local AD.
-- **Doesn’t require any inbound firewall rules.**  Password writeback uses an Azure Service Bus relay as an underlying communication channel, meaning that you do not have to open any inbound ports on your firewall for this feature to work.
-- **Is not supported for user accounts that exist within protected groups in your on-premises Active Directory.** For more information about protected groups, see [Protected Accounts and Groups in Active Directory](https://technet.microsoft.com/library/dn535499.aspx).
+### 密碼回寫的運作方式
+密碼回寫有三個主要元件：
 
-### <a name="how-password-writeback-works"></a>How password writeback works
-Password writeback has three main components:
+- 密碼重設雲端服務 (這也會整合至 Azure AD 的密碼變更頁面)
+- 租用戶特定的 Azure 服務匯流排轉送
+- 內部部屬密碼重設端點
 
-- Password Reset cloud service (this is also integrated into Azure AD’s password change pages)
-- Tenant-specific Azure Service Bus relay
-- On-prem password reset endpoint
-
-They fit together as described in the below diagram:
+其組合方式如下圖所示：
 
   ![][001]
 
-When a federated or password hash sync’d user comes to reset or change his or her password in the cloud, the following occurs:
+當已同盟或密碼雜湊同步處理的使用者過來重設或變更其雲端密碼時，會發生下列情況：
 
-1.  We check to see what type of password the user has.  If we see the password is managed on premises, then we ensure the writeback service is up and running.  If it is, we let the user proceed, if it is not, we tell the user that their password cannot be reset here.
-2.  Next, the user passes the appropriate authentication gates and reaches the reset password screen.
-3.  The user selects a new password and confirms it.
-4.  Upon clicking submit, we encrypt the plaintext password with a symmetric key that was created during the writeback setup process.
-5.  After encrypting the password, we include it in a payload that gets sent over an HTTPS channel to your tenant specific service bus relay (that we also set up for you during the writeback setup process).  This relay is protected by a randomly generated password that only your on-premises installation knows.
-6.  Once the message reaches service bus, the password reset endpoint automatically wakes up and sees that it has a reset request pending.
-7.  The service then looks for the user in question by using the cloud anchor attribute.  For this lookup to succeed, the user object must exist in the AD connector space, it must be linked to the corresponding MV object, and it must be linked to the corresponding AAD connector object. Finally, in order for sync to find this user account, the link from AD connector object to MV must have the sync rule `Microsoft.InfromADUserAccountEnabled.xxx` on the link.  This is needed because when the call comes in from the cloud, the sync engine uses the cloudAnchor attribute to look up the AAD connector space object, then follows the link back to the MV object, and then follows the link back to the AD object. Because there could be multiple AD objects (multi-forest) for the same user, the sync engine relies on the `Microsoft.InfromADUserAccountEnabled.xxx` link to pick the correct one.
-8.  Once the user account is found, we attempt to reset the password directly in the appropriate AD forest.
-9.  If the password set operation is successful, we tell the user their password has been modified and that they can go on their merry way.
-10. If the password set operation fails, we return the error to the user and let them try again.  The operation might fail because the service was down, because the password they selected did not meet organization policies, because we could not find the user in the local AD, or any number of reasons.  We have a specific message for many of these cases and tell the user what they can do to resolve the issue.
+1.	我們會檢查看看使用者擁有哪一種密碼。如果我們看到密碼是在內部部署中進行管理，便會確保回寫服務已啟動並正在執行。如果情況正是如此，我們會讓使用者繼續進行，如果不是，我們會告訴使用者不能在此處重設其密碼。
+2.	接下來，使用者通過適當的驗證關卡，並到達重設密碼畫面。
+3.	使用者選取新的密碼，並加以確認。
+4.	按一下送出，我們便會以回寫設定程序期間所建立的對稱金鑰加密純文字密碼。
+5.	在加密密碼後，我們會將它放入裝載中，透過 HTTPS 通道傳送到您租用戶特定的服務匯流排轉送 (我們也會在回寫設定過程中為您設定此轉送)。此轉送受到只有您的內部部署安裝才會知道的隨機產生密碼所保護。
+6.	一旦訊息抵達服務匯流排，密碼重設端點就會自動甦醒，並看到它有擱置中的重設要求。
+7.	服務接著會使用雲端錨點屬性來尋找提出要求的使用者。此查閱若要成功，使用者物件必須存在於 AD 連接器空間、必須連結至對應的 MV 物件，而且必須連結至對應的 AAD 連接器物件。最後，為了讓同步處理找到此使用者帳戶，AD 連接器物件與 MV 的連結上必須有同步處理規則 `Microsoft.InfromADUserAccountEnabled.xxx`。之所以需要這樣，是因為當呼叫是來自雲端時，同步處理引擎會使用 cloudAnchor 屬性來查閱 AAD 連接器空間物件，然後順著連結回到 MV 物件，接著再順著連結回到 AD 物件。因為相同使用者可能有多個 AD 物件 (多樹系)，同步處理引擎需仰賴 `Microsoft.InfromADUserAccountEnabled.xxx` 連結來選出正確的物件。
+8.	一旦找到使用者帳戶，我們會嘗試直接在適當的 AD 樹系中重設密碼。
+9.	如果密碼設定作業成功，我們會告訴使用者他們的密碼已修改完成，可以放心繼續進行其他工作。
+10.	如果密碼設定作業失敗，我們會對使用者傳回錯誤，請他們再試一次。作業可能因各種原因而失敗，例如服務已關閉、所選密碼不符合組織原則、在本機 AD 中找不到使用者等等。其中的許多原因會有特定的訊息，讓使用者知道該怎麼做來解決問題。
 
-### <a name="scenarios-supported-for-password-writeback"></a>Scenarios supported for password writeback
-The table below describes which scenarios are supported for which versions of our sync capabilities.  In general, it is highly recommended that you install the latest version of [Azure AD Connect](active-directory-aadconnect.md#install-azure-ad-connect) if you want to use password writeback.
+### 密碼回寫的支援案例
+下表描述同步處理功能的各個版本所支援的案例。如果您想要使用密碼回寫，我們一般會強烈建議您安裝最新版的 [Azure AD Connect](active-directory-aadconnect.md#install-azure-ad-connect)。
 
   ![][002]
 
-### <a name="password-writeback-security-model"></a>Password writeback security model
-Password writeback is a highly secure and robust service.  In order to ensure your information is protected, we enable a 4-tiered security model that is described below.
+### 密碼回寫的安全性模型
+密碼回寫服務極為安全、穩固。為了確保您的資訊受到保護，我們啟用了 4 層式的安全性模型，詳細情形如下所述。
 
-- **Tenant specific service-bus relay** – When you set up the service, we set up a tenant-specific service bus relay that is protected by a randomly generated strong password that Microsoft never has access to.
-- **Locked down, cryptographically strong, password encryption key** – After the service bus relay is created, we create a strong symmetric key which we use to encrypt the password as it comes over the wire.  This key lives only in your company's secret store in the cloud, which is heavily locked down and audited, just like any password in the directory.
-- **Industry standard TLS** – When a password reset or change operation occurs in the cloud, we take the plaintext password and encrypt it with your public key.  We then plop that into an HTTPS message which is sent over an encrypted channel using Microsoft’s SSL certs to your service bus relay.  After that message arrives into Service Bus, your on-prem agent wakes up, authenticates to Service Bus using the strong password that had been previously generated, picks up the encrypted message, decrypts it using the private key we generated, and then attempts to set the password through the AD DS SetPassword API.  This step is what allows us to enforce your AD on-prem password policy (complexity, age, history, filters, etc) in the cloud.
-- **Message expiration policies** – Finally, if for some reason the message sits in Service Bus because your on-prem service is down, it will be timed out and removed after several minutes in order to increase security even further.
+- **租用戶特定的服務匯流排轉送** – 當您在設定服務時，我們會設定租用戶特定的服務匯流排轉送，並以隨機產生的強式密碼加以保護，Microsoft 永遠無法得知此密碼。
+- **受到鎖定的密碼編譯強式密碼加密金鑰** – 在建立服務匯流排轉送後，我們會建立強式對稱金鑰，以在密碼透過線路傳送過來時予以加密。此金鑰只會存在於您在雲端的公司密碼存放區中，並受到嚴密鎖定和稽核，情形就和目錄中的任何密碼一樣。
+- **業界標準的 TLS** – 當雲端上發生密碼重設或變更作業時，我們會擷取純文字密碼，並以公開金鑰予以加密。然後將它放入 HTTPS 訊息中，使用 Microsoft 的 SSL 憑證透過加密通道傳送到您的服務匯流排轉送中。該訊息抵達服務匯流排後，您的內部部署代理程式便會甦醒、使用先前產生的強式密碼向服務匯流排驗證、擷取加密的訊息、使用我們產生的私密金鑰加以解密，然後嘗試透過 AD DS SetPassword API 設定密碼。這個步驟能讓我們在雲端上強制執行 AD 內部部屬密碼原則 (複雜度、使用期限、歷程記錄、篩選等)。
+- **訊息到期原則** – 最後，如果訊息因為內部部署服務已關閉而停留在服務匯流排，它將會在數分鐘後逾時並遭到移除，以便更進一步地提升安全性。
 
-## <a name="how-does-the-password-reset-portal-work?"></a>How does the password reset portal work?
-When a user navigates to the password reset portal, a workflow is kicked off to determine if that user account is valid, what organization that users belongs to, where that user’s password is managed, and whether or not the user is licensed to use the feature.  Read through the steps below to learn about the logic behind the password reset page.
+## 密碼重設入口網站的運作方式
+當使用者瀏覽到密碼重設入口網站時，便會啟動一項工作流程，以判斷該使用者帳戶是否有效、使用者屬於哪個組織，該使用者密碼的管理位置，以及使用者是否有獲得功能的使用授權。請看完下列步驟，以了解密碼重設頁面背後的邏輯。
 
-1.  User clicks on the Can’t access your account link or goes directly to [https://passwordreset.microsoftonline.com](https://passwordreset.microsoftonline.com).
-2.  User enters a user id and passes a captcha.
-3.  Azure AD verifies if the user is able to use this feature by doing the following:
-    - Checks that the user has this feature enabled and an Azure AD license assigned.
-        - If the user does not have this feature enabled or a license assigned, the user is asked to contact his or her administrator to reset his or her password.
-    - Checks that the user has the right challenge data defined on his or her account in accordance with administrator policy.
-        - If policy requires only one challenge, then it is ensured that the user has the appropriate data defined for at least one of the challenges enabled by the administrator policy.
-          - If the user is not configured, then the user is advised to contact his or her administrator to reset his or her password.
-        - If the policy requires two challenges, then it is ensured that the user has the appropriate data defined for at least two of the challenges enabled by the administrator policy.
-          - If the user is not configured, then we the user is advised to contact his or her administrator to reset his or her password.
-    - Checks whether or not the user’s password is managed on premises (federated or password hash sync’d).
-       - If writeback is deployed and the user’s password is managed on premises, then the user is allowed to proceed to authenticate and reset his or her password.
-       - If writeback is not deployed and the user’s password is managed on premises, then the user is asked to contact his or her administrator to reset his or her password.
-4.  If it is determined that the user is able to successfully reset his or her password, then the user is guided through the reset process.
+1.	使用者按一下 [無法存取帳戶] 連結或直接移至 [https://passwordreset.microsoftonline.com](https://passwordreset.microsoftonline.com)。
+2.	使用者輸入使用者識別碼並通過文字驗證。
+3.	Azure AD 執行下列動作，驗證使用者是否能夠使用這項功能：
+    - 檢查使用者是否已啟用這項功能，並已獲得 Azure AD 授權。
+        - 如果使用者未啟用這項功能或未獲得授權，便會要求使用者連絡其系統管理員來重設其密碼。
+    - 檢查使用者是否已按照系統管理員原則在其帳戶上定義正確的查問資料。
+        - 如果原則只需要一項查問，則表示使用者必定已針對系統管理員原則所啟用的至少一項查問定義適當的資料。
+          - 如果使用者未進行設定，便會建議使用者連絡其系統管理員來重設其密碼。
+        - 如果原則需要兩項查問，則表示使用者必定已針對系統管理員原則所啟用的至少兩項查問定義適當的資料。
+          - 如果使用者未進行設定，便會建議使用者連絡其系統管理員來重設其密碼。
+    - 檢查使用者的密碼是否在內部部署進行管理 (已同盟或密碼雜湊同步處理)。
+       - 如果在內部部署中有部署回寫和管理使用者的密碼，則允許使用者進行驗證及重設其密碼。
+       - 如果在內部部署中未部署回寫但有管理使用者的密碼，則會要求使用者連絡其系統管理員來重設其密碼。
+4.	如果判斷使用者能夠成功重設其密碼，則會引導使用者完成重設程序。
 
-Learn more about how to deploy password writeback at [Getting Started: Azure AD Password Management](active-directory-passwords-getting-started.md).
+若要深入了解如何部署密碼回寫，請參閱[開始使用：Azure AD 密碼管理](active-directory-passwords-getting-started.md)。
 
-### <a name="what-data-is-used-by-password-reset?"></a>What data is used by password reset?
-The following table outlines where and how this data is used during password reset and is designed to help you decide which authentication options are appropriate for your organization. This table also shows any formatting requirements for cases where you are providing data on behalf of users from input paths that do not validate this data.
+### 密碼重設使用哪些資料？
+下表概述密碼重設期間會在何處以及如何使用這些資料，並且說明其設計可如何協助您決定您的組織適合使用哪些驗證選項。下表也會說明您代表使用者從不會驗證這些資料的輸入路徑提供資料時的所有格式需求。
 
-> [AZURE.NOTE] Office Phone does not appear in the registration portal because users are currently not able to edit this property in the directory.
+> [AZURE.NOTE] 「辦公室電話」不會出現在註冊入口網站中，因為使用者目前無法在目錄中編輯此屬性。
 
 <table>
           <tbody><tr>
             <td>
               <p>
-                <strong>Contact Method Name</strong>
+                <strong>連絡方法名稱</strong>
               </p>
             </td>
             <td>
               <p>
-                <strong>Azure Active Directory Data Element</strong>
+                <strong>Azure Active Directory 資料元素</strong>
               </p>
             </td>
             <td>
               <p>
-                <strong>Used / Settable Where?</strong>
+                <strong>使用位置/可供設定位置</strong>
               </p>
             </td>
             <td>
               <p>
-                <strong>Format requirements</strong>
+                <strong>格式需求</strong>
               </p>
             </td>
           </tr>
           <tr>
             <td>
-              <p>Office Phone</p>
+              <p>辦公室電話</p>
             </td>
             <td>
               <p>PhoneNumber</p>
-              <p>e.g. Set-MsolUser -UserPrincipalName JWarner@contoso.com -PhoneNumber "+1 1234567890x1234"</p>
+              <p>例如 Set-MsolUser -UserPrincipalName JWarner@contoso.com -PhoneNumber "+1 1234567890x1234"</p>
             </td>
             <td>
-              <p>Used in:</p>
-              <p>Password Reset Portal</p>
-              <p>Settable from:</p>
-              <p>PhoneNumber is settable from PowerShell, DirSync, Azure Management Portal, and the Office Admin Portal</p>
+              <p>使用位置：</p>
+              <p>密碼重設入口網站</p>
+              <p>可供設定位置：</p>
+              <p>PhoneNumber 可從 PowerShell、DirSync、Azure 管理入口網站和 Office 系統管理入口網站進行設定</p>
             </td>
             <td>
-              <p>+ccc xxxyyyzzzz (e.g. +1 1234567890)</p>
+              <p>+ccc xxxyyyzzzz (例如 +1 1234567890)</p>
               <ul>
                 <li class="unordered">
-Must provide a country code<br><br></li>
+										必須提供國碼<br><br></li>
               </ul>
               <ul>
                 <li class="unordered">
-Must provide an area code (where applicable)<br><br></li>
+										必須提供區碼 (如果適用的話)<br><br></li>
               </ul>
               <ul>
                 <li class="unordered">
-Must have provide a + in front of the country code<br><br></li>
+										必須在國碼前加上 + 號<br><br></li>
               </ul>
               <ul>
                 <li class="unordered">
-Must have a space between country code and the rest of the number<br><br></li>
+										國碼和其餘號碼之間必須有一個空格<br><br></li>
               </ul>
               <ul>
                 <li class="unordered">
-Extensions are not supported, if you have any extensions specified, we will strip it from the number before dispatching the phone call.<br><br></li>
+										不支援分機號碼，如果您指定了任何分機號碼，我們會在撥號前將它從號碼中刪除。<br><br></li>
               </ul>
             </td>
           </tr>
           <tr>
             <td>
-              <p>Mobile Phone</p>
+              <p>行動電話</p>
             </td>
             <td>
               <p>AuthenticationPhone</p>
-              <p>OR</p>
+              <p>或</p>
               <p>MobilePhone</p>
-              <p>(Authentication Phone is used if there is data present, otherwise this falls back to the mobile phone field).</p>
-              <p>e.g. Set-MsolUser -UserPrincipalName JWarner@contoso.com -MobilePhone "+1 1234567890x1234"</p>
+              <p>(如果已有資料，就會使用驗證電話，否則會回復到行動電話欄位)。</p>
+              <p>例如 Set-MsolUser -UserPrincipalName JWarner@contoso.com -MobilePhone "+1 1234567890x1234"</p>
             </td>
             <td>
-              <p>Used in:</p>
-              <p>Password Reset Portal</p>
-              <p>Registration Portal</p>
-              <p>Settable from: </p>
-              <p>AuthenticationPhone is settable from the password reset registration portal or MFA registration portal.</p>
-              <p>MobilePhone is settable from PowerShell, DirSync, Azure Management Portal, and the Office Admin Portal</p>
+              <p>使用位置：</p>
+              <p>密碼重設入口網站</p>
+              <p>註冊入口網站</p>
+              <p>可供設定位置： </p>
+              <p>AuthenticationPhone 可從密碼重設註冊入口網站或 MFA 註冊入口網站進行設定。</p>
+              <p>MobilePhone 可從 PowerShell、DirSync、Azure 管理入口網站和 Office 系統管理入口網站進行設定</p>
             </td>
             <td>
-              <p>+ccc xxxyyyzzzz (e.g. +1 1234567890)</p>
+              <p>+ccc xxxyyyzzzz (例如 +1 1234567890)</p>
               <ul>
                 <li class="unordered">
-Must provide a country code.<br><br></li>
+										必須提供國碼。<br><br></li>
               </ul>
               <ul>
                 <li class="unordered">
-Must provide an area code (where applicable).<br><br></li>
+										必須提供區碼 (如果適用的話)。<br><br></li>
               </ul>
               <ul>
                 <li class="unordered">
-Must have provide a + in front of the country code.<br><br></li>
+										必須在國碼前加上 + 號。<br><br></li>
               </ul>
               <ul>
                 <li class="unordered">
-Must have a space between country code and the rest of the number.<br><br></li>
+										國碼和其餘號碼之間必須有一個空格。<br><br></li>
               </ul>
               <ul>
                 <li class="unordered">
-Extensions are not supported, if you have any extensions specified, we ignore it when dispatching the phone call.<br><br></li>
+										不支援分機號碼，如果您指定了任何分機號碼，我們會在撥號時予以忽略。<br><br></li>
               </ul>
             </td>
           </tr>
           <tr>
             <td>
-              <p>Alternate Email</p>
+              <p>替代電子郵件</p>
             </td>
             <td>
               <p>AuthenticationEmail</p>
-              <p>OR</p>
+              <p>或</p>
               <p>AlternateEmailAddresses[0] </p>
-              <p>(Authentication Email is used if there is data present, otherwise this falls back to the Alternate Email field).</p>
-              <p>Note: the alternate email field is specified as an array of strings in the directory.  We use the first entry in this array.</p>
-              <p>e.g. Set-MsolUser -UserPrincipalName JWarner@contoso.com -AlternateEmailAddresses "email@live.com"</p>
+              <p>(如果已有資料，就會使用驗證電子郵件，否則會回復到替代電子郵件欄位)。</p>
+              <p>注意：替代電子郵件欄位在目錄中會指定為字串陣列。我們會使用此陣列中的第一個項目。</p>
+              <p>例如 Set-MsolUser -UserPrincipalName JWarner@contoso.com -AlternateEmailAddresses "email@live.com"</p>
             </td>
             <td>
-              <p>Used in:</p>
-              <p>Password Reset Portal</p>
-              <p>Registration Portal</p>
-              <p>Settable from: </p>
-              <p>AuthenticationEmail is settable from the password reset registration portal or MFA registration portal.</p>
-              <p>AlternateEmail is settable from PowerShell, the Azure Management Portal, and the Office Admin Portal</p>
+              <p>使用位置：</p>
+              <p>密碼重設入口網站</p>
+              <p>註冊入口網站</p>
+              <p>可供設定位置： </p>
+              <p>AuthenticationEmail 可從密碼重設註冊入口網站或 MFA 註冊入口網站進行設定。</p>
+              <p>AlternateEmail 可從 PowerShell、Azure 管理入口網站和 Office 系統管理入口網站進行設定</p>
             </td>
             <td>
               <p>
-                <a href="mailto:user@domain.com">user@domain.com</a> or 甲斐@黒川.日本</p>
+                <a href="mailto:user@domain.com">user@domain.com</a> 或甲斐@黒川.日本</p>
               <ul>
                 <li class="unordered">
-Emails should follow standard formatting as per .<br><br></li>
+										電子郵件應該遵循標準格式。<br><br></li>
               </ul>
               <ul>
                 <li class="unordered">
-Unicode emails are supported.<br><br></li>
+										支援 Unicode 電子郵件。<br><br></li>
               </ul>
             </td>
           </tr>
           <tr>
             <td>
-              <p>Security Questions and Answers</p>
+              <p>安全性問題和答案</p>
             </td>
             <td>
-              <p>Not available to modify directly in the directory.</p>
+              <p>無法在目錄中直接修改。</p>
             </td>
             <td>
-              <p>Used in:</p>
-              <p>Password Reset Portal</p>
-              <p>Registration Portal </p>
-              <p>Settable from: </p>
-              <p>The only way to set security questions is through the Azure Management Portal.</p>
-              <p>The only way to set answers to security questions for a given user is through the Registration Portal.</p>
+              <p>使用位置：</p>
+              <p>密碼重設入口網站</p>
+              <p>註冊入口網站 </p>
+              <p>可供設定位置： </p>
+              <p>若要設定安全性問題，唯一的方法是透過 Azure 管理入口網站。</p>
+              <p>若要設定指定使用者的安全性問題答案，唯一的方法是透過註冊入口網站。</p>
             </td>
             <td>
-              <p>Security questions have a max of 200 characters and a min of 3 characters</p>
-              <p>Answers have a max of 40 characters and a min of 3 characters</p>
+              <p>安全性問題的字元數上限和下限分別是 200 個字元和 3 個字元</p>
+              <p>答案的字元數上限和下限分別是 40 個字元和 3 個字元</p>
             </td>
           </tr>
         </tbody></table>
 
-###<a name="how-to-access-password-reset-data-for-your-users"></a>How to access password reset data for your users
-####<a name="data-settable-via-synchronization"></a>Data settable via synchronization
-The following fields can be synchronized from on-premises:
+###如何存取密碼為使用者重設資料
+####可透過同步處理設定的資料
+下列欄位可以從内部部署同步處理：
 
-* Mobile Phone
-* Office Phone
+* 行動電話
+* 辦公室電話
 
-####<a name="data-settable-with-azure-ad-powershell"></a>Data settable with Azure AD PowerShell
-The following fields are accessible with Azure AD PowerShell & the Graph API:
+####可使用 Azure AD PowerShell 設定的資料
+下列欄位可使用 Azure AD PowerShell 和圖形 API 存取：
 
-* Alternate Email
-* Mobile Phone
-* Office Phone
-* Authentication Phone
-* Authentication Email
+* 替代電子郵件
+* 行動電話
+* 辦公室電話
+* 驗證電話
+* 驗證電子郵件
 
-####<a name="data-settable-with-registration-ui-only"></a>Data settable with registration UI only
-The following fields are only accessible via the SSPR registration UI (https://aka.ms/ssprsetup):
+####只能使用註冊 UI 設定的資料
+下列欄位只能透過 SSPR 註冊 UI (https://aka.ms/ssprsetup) 來存取：
 
-* Security Questions and Answers
+* 安全性問題和答案
 
-####<a name="what-happens-when-a-user-registers?"></a>What happens when a user registers?
-When a user registers, the registration page will **always** set the following fields:
+####當使用者註冊時會發生什麼事？
+當使用者註冊時，註冊頁面**一律**會設定下列欄位：
 
-* Authentication Phone
-* Authentication Email
-* Security Questions and Answers
+* 驗證電話
+* 驗證電子郵件
+* 安全性問題和答案
 
-If you have provided a value for **Mobile Phone** or **Alternate Email**, users can immediately use those to reset their passwords, even if they haven't registered for the service.  In addition, users will see those values when registering for the first time, and modify them if they wish.  However, after they successfully register, these values will be persisted in the **Authentication Phone** and **Authentication Email** fields, respectively.
+如已提供**行動電話**或**備用電子郵件**的值，使用者就可以立即使用這些資訊重設密碼，即使他們尚未註冊此服務。此外，使用者會在第一次註冊時看到這些值，並可隨意加以修改。不過，成功註冊之後，這些值就會分別保存在 [驗證電話] 和 [驗證電子郵件] 欄位中。
 
-This can be a useful way to unblock large numbers of users to use SSPR while still allowing users to validate this information through the registration process.
+這在解除封鎖大量使用者使其得以使用 SSPR，同時允許使用者在整個註冊程序中驗證這項資訊，是很有用的方式。
 
-####<a name="setting-password-reset-data-with-powershell"></a>Setting password reset data with PowerShell
-You can set values for the following fields with Azure AD PowerShell.
+####使用 PowerShell 設定密碼重設資料
+您可使用 Azure AD PowerShell 設定下列欄位的值。
 
-* Alternate Email
-* Mobile Phone
-* Office Phone
+* 替代電子郵件
+* 行動電話
+* 辦公室電話
 
-To get started, you'll first need to [download and install the Azure AD PowerShell module](https://msdn.microsoft.com/library/azure/jj151815.aspx#bkmk_installmodule).  Once you have it installed, you can follow the steps below to configure each field.
+若要開始，您必須先[下載並安裝 Azure AD PowerShell 模組](https://msdn.microsoft.com/library/azure/jj151815.aspx#bkmk_installmodule)。一旦安裝好，即可依照下列步驟設定每一個欄位。
 
-#####<a name="alternate-email"></a>Alternate Email
+#####替代電子郵件
 ```
 Connect-MsolService
 Set-MsolUser -UserPrincipalName user@domain.com -AlternateEmailAddresses @("email@domain.com")
 ```
 
-#####<a name="mobile-phone"></a>Mobile Phone
+#####行動電話
 ```
 Connect-MsolService
 Set-MsolUser -UserPrincipalName user@domain.com -MobilePhone "+1 1234567890"
 ```
 
-#####<a name="office-phone"></a>Office Phone
+#####辦公室電話
 ```
 Connect-MsolService
 Set-MsolUser -UserPrincipalName user@domain.com -PhoneNumber "+1 1234567890"
 ```
 
-####<a name="reading-password-reset-data-with-powershell"></a>Reading password reset data with PowerShell
-You can read values for the following fields with Azure AD PowerShell.
+####使用 PowerShell 讀取密碼重設資料
+您可以使用 Azure AD PowerShell 閱讀下列欄位的值。
 
-* Alternate Email
-* Mobile Phone
-* Office Phone
-* Authentication Phone
-* Authentication Email
+* 替代電子郵件
+* 行動電話
+* 辦公室電話
+* 驗證電話
+* 驗證電子郵件
 
-To get started, you'll first need to [download and install the Azure AD PowerShell module](https://msdn.microsoft.com/library/azure/jj151815.aspx#bkmk_installmodule).  Once you have it installed, you can follow the steps below to configure each field.
+若要開始，您必須先[下載並安裝 Azure AD PowerShell 模組](https://msdn.microsoft.com/library/azure/jj151815.aspx#bkmk_installmodule)。一旦安裝好，即可依照下列步驟設定每一個欄位。
 
-#####<a name="alternate-email"></a>Alternate Email
+#####替代電子郵件
 ```
 Connect-MsolService
 Get-MsolUser -UserPrincipalName user@domain.com | select AlternateEmailAddresses
 ```
 
-#####<a name="mobile-phone"></a>Mobile Phone
+#####行動電話
 ```
 Connect-MsolService
 Get-MsolUser -UserPrincipalName user@domain.com | select MobilePhone
 ```
 
-#####<a name="office-phone"></a>Office Phone
+#####辦公室電話
 ```
 Connect-MsolService
 Get-MsolUser -UserPrincipalName user@domain.com | select PhoneNumber
 ```
 
-#####<a name="authentication-phone"></a>Authentication Phone
+#####驗證電話
 ```
 Connect-MsolService
 Get-MsolUser -UserPrincipalName user@domain.com | select -Expand StrongAuthenticationUserDetails | select PhoneNumber
 ```
 
-#####<a name="authentication-email"></a>Authentication Email
+#####驗證電子郵件
 ```
 Connect-MsolService
 Get-MsolUser -UserPrincipalName user@domain.com | select -Expand StrongAuthenticationUserDetails | select Email
 ```
 
-## <a name="links-to-password-reset-documentation"></a>Links to password reset documentation
-Below are links to all of the Azure AD Password Reset documentation pages:
+## 密碼重設文件的連結
+以下是所有 Azure AD 密碼重設文件頁面的連結：
 
-* **Are you here because you're having problems signing in?** If so, [here's how you can change and reset your own password](active-directory-passwords-update-your-own-password.md).
-* [**How it works**](active-directory-passwords-how-it-works.md) - learn about the six different components of the service and what each does
-* [**Getting started**](active-directory-passwords-getting-started.md) - learn how to allow you users to reset and change their cloud or on-premises passwords
-* [**Customize**](active-directory-passwords-customize.md) - learn how to customize the look & feel and behavior of the service to your organization's needs
-* [**Best practices**](active-directory-passwords-best-practices.md) - learn how to quickly deploy and effectively manage passwords in your organization
-* [**Get insights**](active-directory-passwords-get-insights.md) - learn about our integrated reporting capabilities
-* [**FAQ**](active-directory-passwords-faq.md) - get answers to frequently asked questions
-* [**Troubleshooting**](active-directory-passwords-troubleshoot.md) - learn how to quickly troubleshoot problems with the service
+* **您來到此處是因為有登入問題嗎？** 若是如此，[以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
+* [**運作方式**](active-directory-passwords-how-it-works.md) - 了解六個不同的服務元件及其功能
+* [**開始使用**](active-directory-passwords-getting-started.md) - 了解如何讓使用者重設及變更雲端或內部部署密碼
+* [**自訂**](active-directory-passwords-customize.md) - 了解如何依照組織的需求自訂外觀和服務行為
+* [**最佳作法**](active-directory-passwords-best-practices.md) - 了解如何快速部署且有效管理組織的密碼
+* [**深入探索**](active-directory-passwords-get-insights.md) - 了解整合式報告功能
+* [**常見問題集**](active-directory-passwords-faq.md) - 取得常見問題的解答
+* [**疑難排解**](active-directory-passwords-troubleshoot.md) - 了解如何快速移難排解服務的問題
 
 
 
 [001]: ./media/active-directory-passwords-learn-more/001.jpg "Image_001.jpg"
 [002]: ./media/active-directory-passwords-learn-more/002.jpg "Image_002.jpg"
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0713_2016-->

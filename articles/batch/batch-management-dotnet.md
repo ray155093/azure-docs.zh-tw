@@ -1,104 +1,103 @@
 <properties
-    pageTitle="Account management with Batch Management .NET | Microsoft Azure"
-    description="Create, delete, and modify Azure Batch accounts in your applications with the Batch Management .NET library."
-    services="batch"
-    documentationCenter=".net"
-    authors="mmacy"
-    manager="timlt"
-    editor=""
-    tags="azure-resource-manager"/>
+	pageTitle="使用 Batch Management .NET 進行帳戶管理 | Microsoft Azure"
+	description="使用 Batch Management .NET 程式庫在您的應用程式中建立、刪除和修改 Azure Batch 帳戶。"
+	services="batch"
+	documentationCenter=".net"
+	authors="mmacy"
+	manager="timlt"
+	editor=""
+	tags="azure-resource-manager"/>
 
 <tags
-    ms.service="batch"
-    ms.devlang="multiple"
-    ms.topic="article"
-    ms.tgt_pltfrm="vm-windows"
-    ms.workload="big-compute"
-    ms.date="08/03/2016"
-    ms.author="marsma"/>
+	ms.service="batch"
+	ms.devlang="multiple"
+	ms.topic="article"
+	ms.tgt_pltfrm="vm-windows"
+	ms.workload="big-compute"
+	ms.date="08/03/2016"
+	ms.author="marsma"/>
 
-
-# <a name="manage-azure-batch-accounts-and-quotas-with-batch-management-.net"></a>Manage Azure Batch accounts and quotas with Batch Management .NET
+# 使用 Batch Management .NET 管理 Azure Batch 帳戶和配額
 
 > [AZURE.SELECTOR]
-- [Azure portal](batch-account-create-portal.md)
+- [Azure 入口網站](batch-account-create-portal.md)
 - [Batch Management .NET](batch-management-dotnet.md)
 
-You can lower maintenance overhead in your Azure Batch applications by using the [Batch Management .NET][api_mgmt_net] library to automate Batch account creation, deletion, key management, and quota discovery.
+您可以透過使用 [Batch Management .NET][api_mgmt_net] 程式庫來自動化 Batch 帳戶的建立、刪除、金鑰管理和配額探索，可降低 Azure Batch 應用程式中的維護負擔。
 
-- **Create and delete Batch accounts** within any region. If, as an independent software vendor (ISV) for example, you provide a service for your clients in which each is assigned a separate Batch account for billing purposes, you can add account creation and deletion capabilities to your customer portal.
-- **Retrieve and regenerate account keys** programmatically for any of your Batch accounts. This is particularly handy for maintaining compliance with security policies that might enforce the periodic rollover or expiry of account keys. When you have a number of a Batch accounts in various Azure regions, automation of this rollover process will increase your solution's efficiency.
-- **Check account quotas** and take the trial-and-error guesswork out of determining which Batch accounts have what limits. By checking your account quotas prior to starting jobs, creating pools, or adding compute nodes, you can proactively adjust where or when these compute resources are created. You can determine which accounts require quota increases prior to the allocation of additional resources in those accounts.
-- **Combine features of other Azure services** for a full-featured management experience--by leveraging Batch Management .NET, [Azure Active Directory][aad_about], and the [Azure Resource Manager][resman_overview] together in the same application. By using these features and their APIs, you can provide a frictionless authentication experience, the ability to create and delete resource groups, and the capabilities that are described above for an end-to-end management solution.
+- 在任何區域內**建立和刪除 Batch 帳戶**。比方說，身為獨立軟體廠商 (ISV)，您為每個獲派不同 Batch 帳戶的客戶針對計費目的提供服務，您可以將帳戶建立和刪除功能加入至客戶入口網站。
+- 以程式設計的方式為您的任何 Batch 帳戶**擷取和重新產生帳戶金鑰**。這尤其有利於保持符合可能會對帳戶金鑰強制執行定期變換或過期的安全性原則。當您在各種不同的 Azure 區域中有許多 Batch 帳戶時，將此變換程序自動化將增加解決方案的效率。
+- **檢查帳戶配額**並採取反復試驗的猜測，判斷哪一個 Batch 帳戶有哪些限制。藉由開始作業、建立集區或加入計算節點之前檢查您的帳戶配額，您可以主動地調整建立計算資源的位置或時機。您可以決定在帳戶中配置其他資源之前，哪些帳戶需要增加配額。
+- 藉由在同一個應用程式中利用 Batch Management .NET、[Azure Active Directory][aad_about] 和 [Azure Resource Manager][resman_overview]，**結合其他 Azure 服務的功能**可獲得完整功能的管理體驗。透過使用這些功能和其 API，您可以提供順暢的驗證體驗、建立和刪除資源群組的能力，以及上面所述的功能，以獲得端對端管理解決方案。
 
-> [AZURE.NOTE] While this article focuses on the programmatic management of your Batch accounts, keys, and quotas, you can perform many of these activities by using the [Azure portal][azure_portal]. See [Create an Azure Batch account using the Azure portal](batch-account-create-portal.md) and [Quotas and limits for the Azure Batch service](batch-quota-limit.md) for more information.
+> [AZURE.NOTE] 雖然這篇文章著重在以程式設計方式管理 Batch 帳戶、金鑰和配額，您可以使用 [Azure 入口網站][azure_portal]執行許多活動。如需詳細資訊，請參閱[使用 Azure 入口網站建立 Azure Batch 帳戶](batch-account-create-portal.md)和 [Azure Batch 服務的配額和限制](batch-quota-limit.md)。
 
-## <a name="create-and-delete-batch-accounts"></a>Create and delete Batch accounts
+## 建立和刪除 Batch 帳戶
 
-As mentioned above, one of the primary features of the Batch Management API is to create and delete Batch accounts within an Azure region. To do so, you will use [BatchManagementClient.Account.CreateAsync][net_create] and [DeleteAsync][net_delete], or their synchronous counterparts.
+如上所述，Batch Management API 的主要功能之一就是在 Azure 區域內建立和刪除 Batch 帳戶。若要這樣做，您將使用 [BatchManagementClient.Account.CreateAsync][net_create] 和 [DeleteAsync][net_delete]，或其同步對應項目。
 
-The following code snippet creates an account, obtains the newly created account from the Batch service, and then deletes it. In this and the other snippets in this article, `batchManagementClient` is a fully initialized instance of [BatchManagementClient][net_mgmt_client].
+下列程式碼片段會建立一個帳戶、從 Batch 服務取得新建立的帳戶，然後將它刪除。在此部分與在本文中的其他程式碼片段中，`batchManagementClient` 是 [BatchManagementClient][net_mgmt_client] 完整初始化的執行個體。
 
 ```csharp
 // Create a new Batch account
 await batchManagementClient.Account.CreateAsync("MyResourceGroup",
-    "mynewaccount",
-    new BatchAccountCreateParameters() { Location = "West US" });
+	"mynewaccount",
+	new BatchAccountCreateParameters() { Location = "West US" });
 
 // Get the new account from the Batch service
 AccountResource account = await batchManagementClient.Account.GetAsync(
-    "MyResourceGroup",
-    "mynewaccount");
+	"MyResourceGroup",
+	"mynewaccount");
 
 // Delete the account
 await batchManagementClient.Account.DeleteAsync("MyResourceGroup", account.Name);
 ```
 
-> [AZURE.NOTE] Applications that use the Batch Management .NET library and its BatchManagementClient class require **service administrator** or **coadministrator** access to the subscription that owns the Batch account to be managed. See the [Azure Active Directory](#azure-active-directory) section below and the [AccountManagement][acct_mgmt_sample] code sample for more information.
+> [AZURE.NOTE] 使用 Batch Management .NET 程式庫和其 BatchManagementClient 類別的應用程式需要**服務管理員**或**共同管理員**存取權，以使用擁有要管理的 Batch 帳戶的訂用帳戶。如需詳細資訊，請參閱以下的 [Azure Active Directory](#azure-active-directory) 一節和 [AccountManagement][acct_mgmt_sample] 程式碼範例。
 
-## <a name="retrieve-and-regenerate-account-keys"></a>Retrieve and regenerate account keys
+## 擷取和重新產生帳戶金鑰
 
-Obtain primary and secondary account keys from any Batch account within your subscription by using [ListKeysAsync][net_list_keys]. You can regenerate those keys by using [RegenerateKeyAsync][net_regenerate_keys].
+使用 [ListKeysAsync][net_list_keys] 從您的訂用帳戶內的任何 Batch 帳戶取得主要和次要帳戶金鑰。您可以使用 [RegenerateKeyAsync][net_regenerate_keys] 重新產生這些金鑰。
 
 ```csharp
 // Get and print the primary and secondary keys
 BatchAccountListKeyResult accountKeys =
-    await batchManagementClient.Account.ListKeysAsync(
-        "MyResourceGroup",
-        "mybatchaccount");
+	await batchManagementClient.Account.ListKeysAsync(
+		"MyResourceGroup",
+		"mybatchaccount");
 Console.WriteLine("Primary key:   {0}", accountKeys.Primary);
 Console.WriteLine("Secondary key: {0}", accountKeys.Secondary);
 
 // Regenerate the primary key
 BatchAccountRegenerateKeyResponse newKeys =
-    await batchManagementClient.Account.RegenerateKeyAsync(
-        "MyResourceGroup",
-        "mybatchaccount",
-        new BatchAccountRegenerateKeyParameters() {
-            KeyName = AccountKeyType.Primary
-            });
+	await batchManagementClient.Account.RegenerateKeyAsync(
+		"MyResourceGroup",
+		"mybatchaccount",
+		new BatchAccountRegenerateKeyParameters() {
+			KeyName = AccountKeyType.Primary
+			});
 ```
 
-> [AZURE.TIP] You can create a streamlined connection workflow for your management applications. First, obtain an account key for the Batch account you wish to manage with [ListKeysAsync][net_list_keys]. Then, use this key when initializing the Batch .NET library's [BatchSharedKeyCredentials][net_sharedkeycred] class, which is used when initializing [BatchClient][net_batch_client].
+> [AZURE.TIP] 您可以為您的管理應用程式建立簡化的連線工作流程。首先，取得您想要使用 [ListKeysAsync][net_list_keys] 管理的 Batch 帳戶的帳戶金鑰。接著，在初始化 Batch .NET 程式庫的 [BatchSharedKeyCredentials][net_sharedkeycred] 類別 (初始化時 [BatchClient][net_batch_client] 時使用) 時使用此金鑰。
 
-## <a name="check-azure-subscription-and-batch-account-quotas"></a>Check Azure subscription and Batch account quotas
+## 檢查 Azure 訂用帳戶和 Batch 帳戶配額
 
-Azure subscriptions and the individual Azure services like Batch all have default quotas that limit the number of certain entities within them. For the default quotas for Azure subscriptions, see [Azure subscription and service limits, quotas, and constraints](./../azure-subscription-service-limits.md). For the default quotas of the Batch service, see [Quotas and limits for the Azure Batch service](batch-quota-limit.md). By using the Batch Management .NET library, you can check these quotas within your applications. This enables you to make allocation decisions before you add accounts or compute resources like pools and compute nodes.
+Azure 訂用帳戶和 Batch 之類的個別 Azure 服務均具有預設配額，限制其中特定實體的數目。如需 Azure 訂用帳戶的預設配額，請參閱 [Azure 訂用帳戶和服務限制、配額及條件約束](./../azure-subscription-service-limits.md)。如需 Batch 服務的預設配額，請參閱 [Azure Batch 服務的配額和限制](batch-quota-limit.md)。藉由使用 Batch Management .NET 程式庫，您可以檢查您的應用程式中的這些配額。這可讓您在加入帳戶或計算資源 (如集區和計算節點) 之前進行配置決策。
 
-### <a name="check-an-azure-subscription-for-batch-account-quotas"></a>Check an Azure subscription for Batch account quotas
+### 檢查 Azure 訂用帳戶和 Batch 帳戶配額
 
-Before creating a Batch account in a region, you can check your Azure subscription to see whether you are able to add an account in that region.
+在區域中建立 Batch 帳戶之前，您可以檢查您的 Azure 訂用帳戶，以查看您是否能夠將帳戶加入該區域中。
 
-In the code snippet below, we first use [BatchManagementClient.Account.ListAsync][net_mgmt_listaccounts] to get a collection of all Batch accounts that are within a subscription. Once we've obtained this collection, we determine how many accounts are in the target region. Then we use [BatchManagementClient.Subscriptions][net_mgmt_subscriptions] to obtain the Batch account quota and determine how many accounts (if any) can be created in that region.
+在以下的程式碼片段中，我們先使用 [BatchManagementClient.Account.ListAsync][net_mgmt_listaccounts] 來取得訂用帳戶內所有 Batch 帳戶的集合。在我們取得此集合後，我們會判斷目標區域中有多少個帳戶。接著，我們使用 [BatchManagementClient.Subscriptions][net_mgmt_subscriptions] 來取得 Batch 帳戶配額，並判斷該區域中可以建立多少個帳戶 (如果有的話)。
 
 ```csharp
 // Get a collection of all Batch accounts within the subscription
 BatchAccountListResponse listResponse =
-        await batchManagementClient.Account.ListAsync(new AccountListParameters());
+		await batchManagementClient.Account.ListAsync(new AccountListParameters());
 IList<AccountResource> accounts = listResponse.Accounts;
 Console.WriteLine("Total number of Batch accounts under subscription id {0}:  {1}",
-    creds.SubscriptionId,
-    accounts.Count);
+	creds.SubscriptionId,
+	accounts.Count);
 
 // Get a count of all accounts within the target region
 string region = "westus";
@@ -113,16 +112,16 @@ Console.WriteLine("Accounts in {0}: {1}", region, accountsInRegion);
 Console.WriteLine("You can create {0} accounts in the {1} region.", quotaResponse.AccountQuota - accountsInRegion, region);
 ```
 
-In the snippet above, `creds` is an instance of [TokenCloudCredentials][azure_tokencreds]. To see an example of creating this object, see the [AccountManagement][acct_mgmt_sample] code sample on GitHub.
+在上述程式碼片段中，`creds` 是 [TokenCloudCredentials][azure_tokencreds] 的執行個體。若要查看建立此物件的範例，請參閱 GitHub 上的 [AccountManagement][acct_mgmt_sample] 程式碼範例。
 
-### <a name="check-a-batch-account-for-compute-resource-quotas"></a>Check a Batch account for compute resource quotas
+### 檢查 Batch 帳戶的計算資源配額
 
-Prior to increasing compute resources within your Batch solution, you can check to ensure that the resources that you intend to allocate will not exceed account quotas that are currently in place. In the code snippet below, we simply print the quota information for the Batch account named `mybatchaccount`. But in your own application, you could use such information to determine whether the account can handle the additional resources that you wish to create.
+在增加 Batch 解決方案內的計算資源之前，您可以檢查以確定您想要配置的資源不會超出目前既有的帳戶配額。在下列程式碼片段中，我們只要列印名為`mybatchaccount` 的 Batch 帳戶的配額資訊。但在您自己的應用程式中，您可以使用這類資訊來判斷帳戶是否可以處理您想要建立的其他資源。
 
 ```csharp
 // First obtain the Batch account
 BatchAccountGetResponse getResponse =
-    await batchManagementClient.Account.GetAsync("MyResourceGroup", "mybatchaccount");
+	await batchManagementClient.Account.GetAsync("MyResourceGroup", "mybatchaccount");
 AccountResource account = getResponse.Resource;
 
 // Now print the compute resource quotas for the account
@@ -131,66 +130,64 @@ Console.WriteLine("Pool quota: {0}", account.Properties.PoolQuota);
 Console.WriteLine("Active job and job schedule quota: {0}", account.Properties.ActiveJobAndJobScheduleQuota);
 ```
 
-> [AZURE.IMPORTANT] While there are default quotas for Azure subscriptions and services, many of these limits can be raised by issuing a request in the [Azure portal][azure_portal]. For example, see [Quotas and limits for the Azure Batch service](batch-quota-limit.md) for instructions on increasing your Batch account quotas.
+> [AZURE.IMPORTANT] 雖然 Azure 訂用帳戶和服務有預設配額，這許多限制都可以透過在 [Azure 入口網站][azure_portal]中提出要求來提高。例如，請參閱 [Azure Batch 服務的配額和限制](batch-quota-limit.md)以取得增加您的 Batch 帳戶配額的指示。
 
-## <a name="batch-management-.net,-azure-ad,-and-resource-manager"></a>Batch Management .NET, Azure AD, and Resource Manager
+## Batch Management .NET、Azure AD 和資源管理員
 
-When you work with the Batch Management .NET library, you will typically leverage the capabilities of both [Azure Active Directory][aad_about] (Azure AD) and the [Azure Resource Manager][resman_overview]. The sample project discussed below employs both Azure Active Directory and the Resource Manager while it demonstrates the Batch Management .NET API.
+使用 Batch Management .NET 程式庫時，您通常會利用 [Azure Active Directory][aad_about] \(Azure AD) 和 [Azure Resource Manager][resman_overview] 兩者的功能。下面討論的範例專案，在示範 Batch Management .NET API 時同時運用 Azure Active Directory 和資源管理員。
 
-### <a name="azure-active-directory"></a>Azure Active Directory
+### Azure Active Directory
 
-Azure itself uses Azure AD for the authentication of its customers, service administrators, and organizational users. In the context of Batch Management .NET, you will use it to authenticate a subscription administrator or coadminstrator. This will then allow the management library to query the Batch service and perform the operations that are described in this article.
+Azure 本身會使用 Azure AD 來驗證其客戶、服務管理員和組織的使用者。在 Batch Management .NET 內容中，您將使用它來驗證的訂用帳戶管理員或共同管理員。如此將允許管理程式庫查詢 Batch 服務並執行本文中所述的作業。
 
-In the sample project discussed below, the Azure [Active Directory Authentication Library][aad_adal] (ADAL) is used to prompt the user for their Microsoft credentials. When service administrator or coadministrator credentials are supplied, the application can query Azure for a list of subscriptions--and can create and delete both resource groups and Batch accounts.
+在以下討論的範例專案中，Azure [Active Directory 驗證程式庫][aad_adal] \(ADAL) 用來提示使用者輸入他們的 Microsoft 認證。提供服務管理員或共同管理員認證時，讓應用程式查詢 Azure 訂用帳戶的清單，以及建立和刪除資源群組和 Batch 帳戶。
 
-### <a name="resource-manager"></a>Resource Manager
+### Resource Manager
 
-When you create Batch accounts with the Batch Management .NET library, you will typically be creating them within a [resource group][resman_overview]. You can create the resource group programmatically by using the [ResourceManagementClient][resman_client] class in the [Resource Manager .NET][resman_api] library. Or you can add an account to an existing resource group that you created previously by using the [Azure portal][azure_portal].
+使用 Batch Management .NET 程式庫建立 Batch 帳戶時，您通常會在[資源群組][resman_overview]內建立帳戶。您可以使用[資源管理員.NET][resman_api] 程式庫中的 [ResourceManagementClient][resman_client] 類別，以程式設計方式建立資源群組。或您可以將帳戶加入至您先前使用 [Azure 入口網站][azure_portal]建立的現有資源群組。
 
-## <a name="sample-project-on-github"></a>Sample project on GitHub
+## GitHub 上的範例專案
 
-Check out the [AccountManagment][acct_mgmt_sample] sample project on GitHub to see the Batch Management .NET library in action. This console application shows the creation and usage of  [BatchManagementClient][net_mgmt_client] and [ResourceManagementClient][resman_client]. It also demonstrates the usage of the Azure [Active Directory Authentication Library][aad_adal] (ADAL), which is required by both clients.
+查看 GitHub 上的 [AccountManagment][acct_mgmt_sample] 範例專案，以查看 Batch Management .NET 程式庫實務。此主控台應用程式顯示 [BatchManagementClient][net_mgmt_client] 和 [ResourceManagementClient][resman_client] 的建立與使用方式。它也會示範兩個用戶端所需的 Azure [Active Directory 驗證程式庫][aad_adal] \(ADAL) 使用方式。
 
-To run the sample application successfully, you must first register it with Azure AD by using the Azure portal. Follow the steps in the [Adding an Application](../active-directory/active-directory-integrating-applications.md#adding-an-application) section in [Integrating applications with Azure Active Directory][aad_integrate] to register the sample application within your own account's Default Directory. Be sure to select **Native Client Application** for the type of application, and you may specify any valid URI (such as `http://myaccountmanagementsample`) for the **Redirect URI**--it does not need to be a real endpoint.
+若要成功執行範例應用程式，您必須先使用 Azure 入口網站向 Azure AD 登錄它。遵循[整合應用程式與 Azure Active Directory](../active-directory/active-directory-integrating-applications.md#adding-an-application)之[加入應用程式][aad_integrate]一節中的步驟，在您自己帳戶的預設目錄內註冊範例應用程式。請務必針對應用程式的類型選取**原生用戶端應用程式**，且您可以針對**重新導向 URI**指定任何有效的 URI (例如 `http://myaccountmanagementsample`) - 不需要是實際的端點。
 
-After adding your application, delegate the **Access Azure Service Management as organization** permission to the *Windows Azure Service Management API* application in the application's settings in the portal:
+加入您的應用程式之後，在入口網站的應用程式設定中，將**以組織身分存取 Azure 服務管理**權限委派給 *Windows Azure 服務管理 API* 應用程式：
 
-![Application permissions in Azure portal][2]
+![Azure 入口網站的應用程式權限][2]
 
-> [AZURE.TIP] If **Windows Azure Service Management API** does not appear under *permissions to other applications*, click **Add application**, select **Windows Azure Service Management API**, then click the check mark button. Then, delegate permissions as specified above.
+> [AZURE.TIP] 如果 [其他應用程式的權限] 下沒有顯示 **Windows Azure 服務管理 API**，請按一下 [加入應用程式]，選取 [Windows Azure 服務管理 API]，然後按一下核取記號按鈕。接著，依上文指定方式委派權限。
 
-Once you've added the application as described above, update `Program.cs` in the [AccountManagment][acct_mgmt_sample] sample project with your application's Redirect URI and Client ID. You can find these values in the **Configure** tab of your application:
+一旦您已經如上面所述加入應用程式，請使用您的應用程式的重新導向 URI 和用戶端 ID，更新 [AccountManagment][acct_mgmt_sample] 範例專案中的 `Program.cs`。您可以在您的應用程式的 [設定] 索引標籤中找到這些值：
 
-![Application configuration in Azure portal][3]
+![Azure 入口網站的應用程式組態][3]
 
-The [AccountManagment][acct_mgmt_sample] sample application demonstrates the following operations:
+[AccountManagment][acct_mgmt_sample] 範例應用程式會示範下列作業：
 
-1. Acquire a security token from Azure AD by using [ADAL][aad_adal]. If the user is not already signed in, they will be prompted for their Azure credentials.
-2. By using the security token that was obtained from Azure AD, create [SubscriptionClient][resman_subclient] to query Azure for a list of subscriptions that are associated with the account. This allows the user to select one subscription if multiple are found.
-3. Create a new credentials object that is associated with the selected subscription.
-4. Create [ResourceManagementClient][resman_client] by using the new credentials.
-5. Use [ResourceManagementClient][resman_client] to create a new resource group.
-6. Use [BatchManagementClient][net_mgmt_client] to perform a number of Batch account operations:
-  - Create a new Batch account within the newly created resource group.
-  - Get the newly created account from the Batch service.
-  - Print the account keys for the new account.
-  - Regenerate a new primary key for the account.
-  - Print the quota information for the account.
-  - Print the quota information for the subscription.
-  - Print all accounts within the subscription.
-  - Delete newly created account.
-7. Delete the resource group.
+1. 使用 [ADAL][aad_adal] 向 Azure AD 取得安全性權杖。如果使用者尚未登入，將提示使用者輸入其 Azure 認證。
+2. 使用從 Azure AD 取得的安全性權杖，建立 [SubscriptionClient][resman_subclient] 以查詢 Azure 與帳戶相關聯的訂用帳戶清單。這可讓使用者選取一個訂用帳戶 (如果找到多個)。
+3. 建立與選取的訂用帳戶相關聯的新認證物件。
+4. 使用新認證來建立 [ResourceManagementClient][resman_client]。
+5. 使用 [ResourceManagementClient][resman_client] 來建立新資源群組。
+6. 使用 [BatchManagementClient][net_mgmt_client] 可執行許多 Batch 帳戶作業：
+  - 在新建立的資源群組中建立新 Batch 帳戶。
+  - 從 Batch 服務取得新建立的帳戶。
+  - 列印新帳戶的帳戶金鑰。
+  - 重新產生帳戶的新主要金鑰。
+  - 列印帳戶的配額資訊。
+  - 列印訂用帳戶的配額資訊。
+  - 列印訂用帳戶內的所有帳戶。
+  - 刪除新建立的帳戶。
+7. 刪除資源群組。
 
-Before deleting the newly created Batch account and resource group, you can inspect both in the [Azure portal][azure_portal]:
+刪除新建立的 Batch 帳戶和資源群組之前，您可以在 [Azure 入口網站][azure_portal]中檢查這兩者：
 
-![Azure portal displaying the resource group and Batch account][1]
-<br />
-*Azure portal displaying new resource group and Batch account*
+![顯示資源群組和 Batch 帳戶的 Azure 入口網站][1] <br /> *顯示新的資源群組和 Batch 帳戶的 Azure 入口網站*
 
-[aad_about]: ../active-directory/active-directory-whatis.md "What is Azure Active Directory?"
+[aad_about]: ../active-directory/active-directory-whatis.md "什麼是 Azure Active Directory？"
 [aad_adal]: ../active-directory/active-directory-authentication-libraries.md
-[aad_auth_scenarios]: ../active-directory/active-directory-authentication-scenarios.md "Authentication Scenarios for Azure AD"
-[aad_integrate]: ../active-directory/active-directory-integrating-applications.md "Integrating Applications with Azure Active Directory"
+[aad_auth_scenarios]: ../active-directory/active-directory-authentication-scenarios.md "Azure AD 的驗證案例"
+[aad_integrate]: ../active-directory/active-directory-integrating-applications.md "整合應用程式與 Azure Active Directory"
 [acct_mgmt_sample]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/AccountManagement
 [api_net]: http://msdn.microsoft.com/library/azure/mt348682.aspx
 [api_mgmt_net]: https://msdn.microsoft.com/library/azure/mt463120.aspx
@@ -216,8 +213,4 @@ Before deleting the newly created Batch account and resource group, you can insp
 [2]: ./media/batch-management-dotnet/portal-02.png
 [3]: ./media/batch-management-dotnet/portal-03.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0831_2016-->

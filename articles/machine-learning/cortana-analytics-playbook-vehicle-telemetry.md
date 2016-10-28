@@ -1,66 +1,60 @@
 <properties 
-    pageTitle="Vehicle telemetry analytics solution playbook | Microsoft Azure" 
-    description="Use the capabilities of Cortana Intelligence to gain real-time and predictive insights on vehicle health and driving habits." 
-    services="machine-learning" 
-    documentationCenter="" 
-    authors="bradsev" 
-    manager="jhubbard" 
-    editor="cgronlun" />
+	pageTitle="車輛遙測分析解決方案腳本 | Microsoft Azure" 
+	description="使用 Cortana Intelligence 具備的強大功能，取得關於車輛健全狀態與駕駛習慣的即時預測情資。" 
+	services="machine-learning" 
+	documentationCenter="" 
+	authors="bradsev" 
+	manager="jhubbard" 
+	editor="cgronlun" />
 
 <tags 
-    ms.service="machine-learning" 
-    ms.workload="data-services" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="09/12/2016" 
-    ms.author="bradsev" />
+	ms.service="machine-learning" 
+	ms.workload="data-services" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="09/12/2016" 
+	ms.author="bradsev" />
 
 
+# 車輛遙測分析解決方案腳本
 
-# <a name="vehicle-telemetry-analytics-solution-playbook"></a>Vehicle telemetry analytics solution playbook
-
-This **menu** links to the chapters in this playbook. 
+此**功能表**連結至此腳本的章節。
 
 [AZURE.INCLUDE [cap-vehicle-telemetry-playbook-selector](../../includes/cap-vehicle-telemetry-playbook-selector.md)]
 
-## <a name="overview"></a>Overview
-Super computers have moved out of the lab and are now parked in our garage! These cutting-edge automobiles contain a myriad of sensors, giving them the ability to track and monitor millions of events every second. We expect that by 2020, most of these cars will have been connected to the internet. Imagine tapping into this wealth of data to provide best in class safety, reliability and driving experience! Microsoft has made this dream a reality with Cortana Intelligence.
+## Overview
+讓超級電腦步出實驗室並停駐在我們的車庫！ 這些新銳汽車內含大量感應器，每秒可追蹤和監控數以百萬計的事件。預計在 2020 年前，在上述新銳汽車中，絕大部分的車輛都已能連接至網際網路。想像一下使用此豐富資料提供頂級安全性、可靠性和駕駛體驗的美好願景！ Microsoft 透過 Cortana Intelligence 讓此一美好想像成真。
 
-Microsoft’s Cortana Intelligence is a fully managed big data and advanced analytics suite that enables you to transform your data into intelligent action. We want to introduce you to the Cortana Intelligence Vehicle Telemetry Analytics Solution Template. This solution demonstrates how car dealerships, automobile manufacturers, and insurance companies can use the capabilities of Cortana Intelligence to gain real-time and predictive insights on vehicle health and driving habits. 
+Microsoft Cortana Intelligence 是受完整管理的巨量資料與進階分析套件，您可利用其將資料轉換成可採取的智慧行動。我們在此為您介紹「Cortana Intelligence 車輛遙測分析解決方案範本」。本解決方案將示範汽車經銷商、汽車製造商和保險公司如何運用 Cortana Intelligence 功能，取得車輛健全狀態與駕駛習慣的即時預測情資。
 
-The solution is implemented as a [lambda architecture pattern](https://en.wikipedia.org/wiki/Lambda_architecture) showing the full potential of the Cortana Intelligence platform for real-time and batch processing. The solution: 
+此解決方案是以 [lambda 架構模式](https://en.wikipedia.org/wiki/Lambda_architecture)實作，完全展現 Cortana Intelligence 平台在即時批次處理方面的優異潛力。此解決方案：
 
-- provides a Vehicle Telematics simulator
-- leverages Event Hubs for ingesting millions of simulated vehicle telemetry events into Azure 
-- uses Stream Analytics to gain real-time insights on vehicle health
--  persists the data into long-term storage for richer batch analytics. 
-- takes advantage of Machine Learning for anomaly detection in real-time and batch processing to gain predictive insights.
-- leverages HDInsight to transform data at scale and Data Factory to handle orchestration, scheduling, resource management, and monitoring of the batch processing pipeline 
-- gives this solution a rich dashboard for real-time data and predictive analytics visualizations using Power BI
+- 提供車輛遠程資訊服務模擬器
+- 運用事件中樞，以將數百萬計的模擬車輛遙測事件擷取至 Azure
+- 使用串流分析，來獲取車輛健全狀況的即時深入解析
+-  將資料保存於長期的儲存體中，以進行更豐富的批次分析。
+- 利用「機器學習服務」，即時進行異常偵測與批次處理，以取得預測情資。
+- 運用 HDInsight 大規模轉換資料，以及運用 Data Factory 來執行批次處理管線的協調、排程、資源管理和監控工作
+- 使用 Power BI 為此解決方案提供一個豐富的儀表板，來提供即時資料和預測性分析視覺效果
 
-## <a name="architecture"></a>Architecture
+## 架構
 
-![](./media/cortana-analytics-playbook-vehicle-telemetry/fig1-vehicle-telemetry-annalytics-solution-architecture.png)
-*Figure 1 – Vehicle Telemetry Analytics Solution Architecture*
+![](./media/cortana-analytics-playbook-vehicle-telemetry/fig1-vehicle-telemetry-annalytics-solution-architecture.png) *圖 1 – 車輛遙測分析解決方案架構*
 
-This solution includes the following **Cortana Intelligence components** and showcases their end to end integration
-
-
-- **Event Hubs** for ingesting millions of vehicle telemetry events into Azure.
-- **Stream Analytics** for gaining real-time insights on vehicle health and persists that data into long-term storage for richer batch analytics.
-- **Machine Learning** for anomaly detection in real-time and batch processing to gain predictive insights.
-- **HDInsight** is leveraged to transform data at scale
-- **Data Factory** handles orchestration, scheduling, resource management and monitoring of the batch processing pipeline.
-- **Power BI** gives this solution a rich dashboard for real-time data and predictive analytics visualizations.
-
-This solution accesses two different **data sources**: 
-
-- **Simulated vehicle signals and diagnostics**: A vehicle telematics simulator emits diagnostic information and signals that correspond to the state of the vehicle and the driving pattern at a given point in time. 
-- **Vehicle catalog**: A reference dataset containing a VIN to model mapping.
+此解決方案包含下列 **Cortana Intelligence 元件**，並展示端對端整合功能
 
 
+- **事件中樞**可將數百萬計的車輛遙測事件擷取至 Azure。
+- 「**串流分析**」可取得關於車輛健全狀態的即時情資，同時以長期儲存的方式保存這些資料，供日後進行更豐富廣泛的批次分析之用。
+- 「**機器學習服務**」可即時進行異常偵測與批次處理以取得預測情資。
+- **HDInsight** 用於大規模的資料轉換
+- **Data Factory** 可執行批次處理管線的協調、排程、資源管理和監控工作。
+- **Power BI** 為此解決方案提供具備即時資料與預測性分析視覺效果等豐富功能的儀表板。
 
-<!--HONumber=Oct16_HO2-->
+此解決方案可存取兩種不同的**資料來源**：
 
+- **模擬車輛訊號和診斷**：針對指定時點的車輛狀態與駕駛模式，車輛遠程資訊服務模擬器可發出與其對應的診斷資訊和訊號。
+- **車輛目錄**：包含 VIN 模型對應的參考資料集。
 
+<!---HONumber=AcomDC_0914_2016-->

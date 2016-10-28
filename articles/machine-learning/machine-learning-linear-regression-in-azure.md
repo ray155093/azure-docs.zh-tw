@@ -1,151 +1,150 @@
 <properties 
-    pageTitle="Using Linear Regression in Machine Learning | Microsoft Azure" 
-    description="A comparison of linear regression models in Excel and in Azure Machine Learning Studio" 
-    metaKeywords="" 
-    services="machine-learning" 
-    documentationCenter="" 
-    authors="garyericson" 
-    manager="jhubbard" 
-    editor="cgronlun"  />
+	pageTitle="在 Machine Learning 中使用線性迴歸 | Microsoft Azure" 
+	description="在 Excel 和 Azure Machine Learning Studio 中的線性迴歸模型的比較" 
+	metaKeywords="" 
+	services="machine-learning" 
+	documentationCenter="" 
+	authors="garyericson" 
+	manager="jhubbard" 
+	editor="cgronlun"  />
 
 <tags 
-    ms.service="machine-learning" 
-    ms.workload="data-services" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="09/09/2016" 
-    ms.author="kbaroni;garye" />
+	ms.service="machine-learning" 
+	ms.workload="data-services" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="09/09/2016" 
+	ms.author="kbaroni;garye" />
 
+# 在 Azure Machine Learning 中使用線性迴歸
 
-# <a name="using-linear-regression-in-azure-machine-learning"></a>Using linear regression in Azure Machine Learning
-
-> *Kate Baroni* and *Ben Boatman* are enterprise solution architects in Microsoft’s Data Insights Center of Excellence. In this article, they describe their experience migrating an existing regression analysis suite to a cloud-based solution using Azure Machine Learning.  
+> *Kate Baroni* 和 *Ben Boatman* 是 Microsoft 的 Data Insights Center of Excellence 的企業方案架構設計人員。在本文章中，他們將說明使用 Azure Machine Learning 將現有的迴歸分析套件移轉至雲端式解決方案的經驗。
  
-&nbsp; 
+&nbsp;
   
-[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]  
+[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
  
-## <a name="goal"></a>Goal
+## 目標
 
-Our project started with two goals in mind:  
+我們的專案開始時有兩個目標：
 
-1. Use predictive analytics to improve the accuracy of our organization’s monthly revenue projections  
-2. Use Azure ML to confirm, optimize, increase velocity, and scale of our results.  
+1. 使用預測分析來改善我們組織每月營收預測的準確度  
+2. 使用 Azure ML 確認、最佳化、加快我們的成果的速度和規模。  
 
-Like many businesses, our organization goes through a monthly revenue forecasting process. Our small team of business analysts was tasked with using Machine Learning to support the process and improve forecast accuracy.  The team spent several months collecting data from multiple sources and running the data attributes through statistical analysis identifying key attributes relevant to services sales forecasting.  Next steps was to begin prototyping statistical regression models on the data in Excel.  Within a few weeks we had an Excel regression model that was outperforming the current field and finance forecasting processes. This became the baseline prediction result.  
-
-
-We then took the next step to moving our predictive analytics over to Azure ML to find out how Azure ML could improve on predictive performance.
+與許多企業一樣，我們的組織會每個月都會經歷營收預測程序。我們的商務分析師小組被賦與使用機器學習服務來支援程序並改善預測的準確度工作。小組花費數個月收集多個來源的資料，並透過可識別與服務銷售預測相關的索引鍵屬性的統計分析，來執行資料屬性。下一步是要開始在 Excel 中建立為資料建立統計迴歸模型的原型。在幾週內我們便有了 Excel 迴歸模型，其效果優於目前的欄位和財務預測程序。這也成為預測結果的比較基準。
 
 
-## <a name="achieving-predictive-performance-parity"></a>Achieving predictive performance parity
+然後我們進行下一步，將我們的預測分析移至 Azure ML 以了解 Azure ML 對預測的效能如何進行改善。
 
-Our first priority was to achieve parity between Azure ML and Excel regression models.  Given the exact same data, and the same split for training and testing data we wanted to achieve predictive performance parity between Excel and Azure ML.   Initially we failed. The Excel model outperformed the Azure ML model.   The failure was due to a lack of understanding of the base tool setting in Azure ML. After a sync with the Azure ML product team, we gained a better understanding of the base setting required for our data sets, and achieved parity between the two models.  
 
-### <a name="create-regression-model-in-excel"></a>Create regression model in Excel
-Our Excel Regression used the standard linear regression model found in the Excel Analysis ToolPak. 
+## 達成預測效能同位檢查
 
-We calculated *Mean Absolute % Error* and used it as the performance measure for the model.  It took 3 months to arrive at a working model using Excel.  We brought much of the learning into the Azure ML experiment which ultimately was beneficial in understanding requirements.
+我們的第一優先是達到 Azure ML 和 Excel 迴歸模型之間的同位檢查。對我們想要在 Excel 和 Azure ML 之間達到預測效能同位檢查的訓練和測試資料，指定完全相同的資料，而且相同的分割。一開始我們失敗。Excel 模型的效能勝過 Azure ML 模型。失敗是因為對 Azure ML 的基礎工具設定缺乏了解。與 Azure ML 產品團隊同步討論之後，我們對於我們的資料集需要的基礎設定獲得進一步了解，並達成兩個模型之間的同位檢查。
 
-### <a name="create-comparable-experiment-in-azure-machine-learning"></a>Create comparable experiment in Azure Machine Learning  
-We followed these steps to create our experiment in Azure ML:  
+### 在 Excel 中建立迴歸模型
+我們的 Excel 迴歸使用可在 Excel 分析工具箱找到的標準的線性迴歸模型。
 
-1.  Uploaded the dataset as a csv file to Azure ML (very small file)
-2.  Created a new experiment and used the [Select Columns in Dataset][select-columns] module to select the same data features used in Excel   
-3.  Used the [Split Data][split] module (with *Relative Expression* mode) to divide the data into exact same train sets as had been done in Excel  
-4.  Experimented with the [Linear Regression][linear-regression] module (default options only), documented, and compared the results to our Excel regression model
+我們計算*平均絕對 %錯誤*，並用它做為模型的效能量值。大約花費 3 個月來達成使用 Excel 的工作模型。我們將許多學習經驗帶到 Azure ML 實驗中，最終有助於了解需求。
 
-### <a name="review-initial-results"></a>Review initial results
-At first, the Excel model clearly outperformed the Azure ML model:  
+### 在 Azure Machine Learning 建立可比較的實驗  
+我們遵循下列步驟在 Azure ML 中建立我們的實驗：
 
-|   |Excel|Azure ML|
+1.	將資料集以 csv 檔案 (非常小的檔案) 的形式上傳到 Azure ML
+2.	建立新的實驗，並使用[選取資料集中的資料行][select-columns]模組來選取 Excel 中所使用的相同資料功能
+3.	使用[資料分割][split]模組 (與「相對運算式」模式)，將資料分成完全相同的訓練集，正如同在 Excel 中完成的動作
+4.	使用[線性迴歸][linear-regression]模組實驗 (只有使用預設選項)、記載，並將結果與我們 Excel 迴歸模型比較
+
+### 檢閱初步結果
+最初，Excel 模型效能明顯勝過 Azure ML 模型：
+
+| |Excel|Azure ML|
 |---|:---:|:---:|
-|Performance|   |  |
-|<ul style="list-style-type: none;"><li>Adjusted R Square</li></ul>| 0.96 |N/A|
-|<ul style="list-style-type: none;"><li>Coefficient of <br />Determination</li></ul>|N/A|   0.78<br />(low accuracy)|
-|Mean Absolute Error |  $9.5M|  $ 19.4M|
-|Mean Absolute Error (%)|   6.03%|  12.2%
+|效能| | |
+|<ul style="list-style-type: none;"><li>調整 R 平方</li></ul>| 0\.96 |N/A|
+|<ul style="list-style-type: none;"><li>決定<br />係數</li></ul>|N/A|	0\.78<br />(低度精確度)|
+|平均絕對誤差 |	$9.5M|	$ 19.4M|
+|平均絕對誤差 (%)|	6\.03%|	12\.2%
 
-When we ran our process and results by the developers and data scientists on the Azure ML team, they quickly provided some useful tips.  
+當我們向 Azure ML 小組的開發人員和資料科學家執行我們的程序和結果時，他們快速提供一些實用的秘訣。
 
-* When you use the [Linear Regression][linear-regression] module in Azure ML, two methods are provided:
-    *  Online Gradient Descent: May be more suitable for larger-scale problems
-    *  Ordinary Least Squares: This is the method most people think of when they hear linear regression. For small datasets, Ordinary Least Squares can be a more optimal choice.
-*  Consider tweaking the L2 Regularization Weight parameter to improve performance. It is set to 0.001 by default and for our small data set, we set it to 0.005 to improve performance.    
+* 當您在 Azure ML 中使用[線性迴歸][linear-regression]模組時，會提供兩種方法：
+	*  線上梯度下降：可能比較適合較大規模的問題
+	*  一般最小平方：這是大多數人聽到線性迴歸時會想到的方法。對於小型資料集，一般最小平方是較佳的選擇。
+*  考慮調整 L2 正規化加權參數，以改善效能。它預設設定為 0.001，而對我們的小型資料集，將它設定為 0.005 以改善效能。
 
-### <a name="mystery-solved!"></a>Mystery solved!
-When we applied the recommendations, we achieved the same baseline performance in Azure ML as with Excel:   
+### 謎題解開了！
+當我們套用建議時，我們在 Azure ML 中達成與 Excel 的相同基準效能：
 
-|| Excel|Azure ML (Initial)|Azure ML w/ Least Squares|
+|| Excel|Azure ML (初始)|Azure ML (最小平方法)|
 |---|:---:|:---:|:---:|
-|Labeled value  |Actuals (numeric)|same|same|
-|Learner  |Excel -> Data Analysis -> Regression|Linear Regression.|Linear Regression|
-|Learner options|N/A|Defaults|ordinary  least squares<br />L2 = 0.005|
-|Data Set|26 rows, 3 features, 1 label.   All numeric.|same|same|
-|Split: Train|Excel trained on the first 18 rows, tested on the last 8 rows.|same|same|
-|Split: Test|Excel regression formula applied to the last 8 rows|same|same|
-|**Performance**||||
-|Adjusted R Square|0.96|N/A||
-|Coefficient of Determination|N/A|0.78|0.952049|
-|Mean Absolute Error |$9.5M|$ 19.4M|$9.5M|
-|Mean Absolute Error (%)|<span style="background-color: 00FF00;"> 6.03%</span>|12.2%|<span style="background-color: 00FF00;"> 6.03%</span>|
+|加上標籤的值 |實際值 (數值)|相同|相同|
+|學習模組 |Excel -> 資料分析 -> 迴歸|線性迴歸。|線性迴歸|
+|學習模組選項|N/A|預設值|普通最小平方<br />L2 = 0.005|
+|資料集|26 個資料列，3 個功能，1 個標籤。全部數值。|相同|相同|
+|分割：訓練|Excel 會在前 18 個資料列上訓練，在最後 8 個資料列上測試。|相同|相同|
+|分割：測試|Excel 迴歸公式會套用至最後 8 個資料列|相同|相同|
+|**效能**||||
+|調整 R 平方|0\.96|N/A||
+|決定係數|N/A|0\.78|0\.952049|
+|平均絕對誤差 |$9.5M|$ 19.4M|$9.5M|
+|平均絕對誤差 (%)|<span style="background-color: 00FF00;"> 6.03%</span>|12\.2%|<span style="background-color: 00FF00;"> 6.03%</span>|
 
-In addition, the Excel coefficients compared well to the feature weights in the Azure trained model:
+此外，Excel 係數相較與 Azure 訓練模型中的功能加權不相上下：
 
-||Excel Coefficients|Azure Feature Weights|
+||Excel 係數|Azure 功能加權|
 |---|:---:|:---:|
-|Intercept/Bias|19470209.88|19328500|
-|Feature A|0.832653063|0.834156|
-|Feature B|11071967.08|11007300|
-|Feature C|25383318.09|25140800|
+|截距/偏差|19470209\.88|19328500|
+|功能 A|0\.832653063|0\.834156|
+|功能 B|11071967\.08|11007300|
+|功能 C|25383318\.09|25140800|
 
-## <a name="next-steps"></a>Next Steps
+## 後續步驟
 
-We wanted to consume Azure ML web service within Excel.  Our business analysts rely on Excel and we needed a way to call the Azure ML web service with a row of Excel data and have it return the predicted value to Excel.   
+我們想要在 Excel 內使用 Azure ML Web 服務。我們的商務分析師依賴 Excel，我們需要方法來呼叫 Azure ML Web 服務與一列 Excel 資料列，並讓它將預測值傳回 Excel。
 
-We also wanted to optimize our model, using the options and algorithms available in Azure ML.
+我們也想要使用 Azure ML 中可用的選項和演算法來最佳化我們的模型。
 
-### <a name="integration-with-excel"></a>Integration with Excel
-Our solution was to operationalize our Azure ML regression model by creating a web service from the trained model.  Within a few minutes, the web service was created and we could call it directly from Excel to return a predicted revenue value.    
+### 與 Excel 整合
+我們的解決方案要使我們的 Azure ML 迴歸模型作業化，方法是透過從訓練的模型建立 Web 服務。在幾分鐘內，Web 服務即已建立，我們可以直接從 Excel 呼叫它，以傳回預測的收入值。
 
-The *Web Services Dashboard* section includes a downloadable Excel workbook.  The workbook comes pre-formatted with the web service API and schema information embedded.   When you click on *Download Excel Workbook*, it opens and you can save it to your local computer.    
+*Web 服務儀表板*一節包含可下載的 Excel 活頁簿。活頁簿已使用 Web 服務 API 預先格式化並內嵌結構描述資訊。按一下 [*下載 Excel 活頁簿*] 時，它會開啟，您可以將它儲存到本機電腦。
 
 ![][1]
  
-With the workbook open, copy your predefined parameters into the blue Parameter section as shown below.  Once the parameters are entered, Excel calls out to the AzureML web service and the predicted scored labels will display in the green Predicted Values section.  The workbook will continue to create predictions for parameters based on your trained model for all row items entered under Parameters.   For more information on how to use this feature, see [Consuming an Azure Machine Learning Web Service from Excel](machine-learning-consuming-from-excel.md). 
+在活頁簿開啟時，請將預先定義的參數複製到藍色的 Parameter 區段，如下所示。一旦輸入參數，Excel 即會對外呼叫 Azure ML Web 服務，而會在綠色的預測值區段中顯示預測的計分標籤。活頁簿將會針對在 Parameters 下輸入參數下的所有資料列項目，繼續根據您的訓練模型建立預測。如需有關如何使用這項功能的詳細資訊，請參閱 [從 Excel 使用 Azure Machine Learning Web 服務](machine-learning-consuming-from-excel.md)。
 
 ![][2]
  
-### <a name="optimization-and-further-experiments"></a>Optimization and further experiments
-Now that we had a baseline with our Excel model, we moved ahead to optimize our Azure ML Linear Regression Model.  We used the module [Filter-Based Feature Selection][filter-based-feature-selection] to improve on our selection of initial data elements and it helped us achieve a performance improvement of 4.6% Mean Absolute Error.   For future projects we will use this feature which could save us weeks in iterating through data attributes to find the right set of features to use for modelling.  
+### 最佳化及進一步實驗
+現在我們已具備 Excel 模型的基準，我們可以進行最佳化 Azure ML 線性迴歸模型。我們使用模組[以篩選為基礎的功能選取][filter-based-feature-selection] 來改善我們的初始資料元素的選取，並且它幫助我們達到平均絕對誤差 4.6% 的效能提升。針對未來的專案，我們將使用這項功能，它可以為逐一查看資料屬性，以找出正確的功能，用於模型化組合上，可為我們節省數週的時間。
 
-Next we plan to include additional algorithms like [Bayesian][bayesian-linear-regression] or [Boosted Decision Trees][boosted-decision-tree-regression] in our experiment to compare performance.    
+接下來我們計劃要在我們的實驗中納入其他演算法 (例如 [Bayesian][bayesian-linear-regression]或[推進式決策樹][boosted-decision-tree-regression]) 來比較效能。
 
-If you want to experiment with regression, a good dataset to try is the Energy Efficiency Regression sample dataset, which has lots of numerical attributes. The dataset is provided as part of the sample datasets in ML Studio.  You can use a variety of learning modules to predict either Heating Load or Cooling Load.  The chart below is a performance comparison of different regression learns against the Energy Efficiency dataset predicting for the target variable Cooling Load: 
+如果您想要實驗迴歸，「能量效益迴歸」範例資料集即是可用來嘗試的良好的資料集，其中包含多個數值屬性。資料集是在 ML Studio 中的範例資料集的一部分提供。您可以使用各種不同的學習模組，來預測加熱負載或冷卻負載。下列圖表是針對目標變數冷卻負載預測的能源效率資料集所學習不同的迴歸的效能比較：
 
-|Model|Mean Absolute Error|Root Mean Squared Error|Relative Absolute Error|Relative Squared Error|Coefficient of Determination
+|模型|平均絕對誤差|均方根誤差|相對絕對誤差|相對平方誤差|決定係數
 |---|---|---|---|---|---
-|Boosted Decision Tree|0.930113|1.4239|0.106647|0.021662|0.978338
-|Linear Regression (Gradient Descent)|2.035693|2.98006|0.233414|0.094881|0.905119
-|Neural Network Regression|1.548195|2.114617|0.177517|0.047774|0.952226
-|Linear Regression (Ordinary Least Squares)|1.428273|1.984461|0.163767|0.042074|0.957926  
+|推進式決策樹|0\.930113|1\.4239|0\.106647|0\.021662|0\.978338
+|線性迴歸 (梯度下降)|2\.035693|2\.98006|0\.233414|0\.094881|0\.905119
+|類神經網路迴歸|1\.548195|2\.114617|0\.177517|0\.047774|0\.952226
+|線性迴歸 (一般最小平方)|1\.428273|1\.984461|0\.163767|0\.042074|0\.957926  
 
-## <a name="key-takeaways"></a>Key Takeaways 
+## 重要心得 
 
-We learned a lot by from running Excel regression and Azure Machine Learning experiments in parallel. Creating the baseline model in Excel and comparing it to models using  Azure ML [Linear Regression][linear-regression] helped us learn Azure ML, and we discovered opportunities to improve data selection and model performance.         
+我們從並行執行 Excel 迴歸和 Azure Machine Learning 實驗中學到很多。在 Excel 中建立基準模型並與使用 Azure ML [線性迴歸][linear-regression]的模型比較，幫助我們了解 Azure ML，並且我們探索了改善資料的選項和模型效能的機會。
 
-We also found that it is advisable to use [Filter-Based Feature Selection][filter-based-feature-selection] to accelerate future prediction projects.  By applying feature selection to your data, you can create an improved model in Azure ML with better overall performance. 
+我們也發現，最好使用[以篩選為基礎的功能選取][filter-based-feature-selection]來加速未來的預測專案。藉由將功能選取套用到您的資料，您可以在 Azure ML 中建立改良的模型，以獲得更好的整體效能。
 
-The ability to transfer the predictive analytic forecasting from Azure ML to Excel systemically allows a significant increase in the ability to successfully provide results to a broad business user audience.     
+能夠從 Azure ML 傳送預測性的分析預測至 Excel 可大幅增加成功將結果提供給廣泛的商業使用者對象的能力。
 
 
-## <a name="resources"></a>Resources
-Some resources are listed for helping you work with regression:  
+## 資源
+以下列出一些可幫助您處理迴歸的資源：
 
-* Regression in Excel.  If you’ve never tried regression in Excel, this tutorial makes it easy: [http://www.excel-easy.com/examples/regression.html](http://www.excel-easy.com/examples/regression.html)
-* Regression vs forecasting.  Tyler Chessman wrote a blog article explaining how to do time series forecasting in Excel, which contains a good beginner’s description of linear regression. [http://sqlmag.com/sql-server-analysis-services/understanding-time-series-forecasting-concepts](http://sqlmag.com/sql-server-analysis-services/understanding-time-series-forecasting-concepts)  
-*   Ordinary Least Squares Linear Regression: Flaws, Problems and Pitfalls.  For an introduction and discussion of Regression:   [http://www.clockbackward.com/2009/06/18/ordinary-least-squares-linear-regression-flaws-problems-and-pitfalls/ ](http://www.clockbackward.com/2009/06/18/ordinary-least-squares-linear-regression-flaws-problems-and-pitfalls/ )
+* Excel 中的迴歸。如果您未曾使用 Excel 中的迴歸，本教學課程可讓它變得容易：[http://www.excel-easy.com/examples/regression.html](http://www.excel-easy.com/examples/regression.html)
+* 迴歸與預測。Tyler Chessman 撰寫部落格文章，說明如何在 Excel 中執行時間序列預測，其中包含初學者適用的良好線性迴歸描述：[http://sqlmag.com/sql-server-analysis-services/understanding-time-series-forecasting-concepts](http://sqlmag.com/sql-server-analysis-services/understanding-time-series-forecasting-concepts)
+* 	一般最小平方線性迴歸：缺點、問題和陷阱。迴歸的簡介和討論：[http://www.clockbackward.com/2009/06/18/ordinary-least-squares-linear-regression-flaws-problems-and-pitfalls/ ](http://www.clockbackward.com/2009/06/18/ordinary-least-squares-linear-regression-flaws-problems-and-pitfalls/)
 
 [1]: ./media/machine-learning-linear-regression-in-azure/machine-learning-linear-regression-in-azure-1.png
 [2]: ./media/machine-learning-linear-regression-in-azure/machine-learning-linear-regression-in-azure-2.png
@@ -160,8 +159,4 @@ Some resources are listed for helping you work with regression:
 [split]: https://msdn.microsoft.com/library/azure/70530644-c97a-4ab6-85f7-88bf30a8be5f/
  
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

@@ -1,78 +1,73 @@
 <properties
-    pageTitle="View the monthly estimated lab cost trend in Azure DevTest Labs | Microsoft Azure"
-    description="Learn about the Azure DevTest Labs monthly estimated cost trend chart."
-    services="devtest-lab,virtual-machines"
-    documentationCenter="na"
-    authors="tomarcher"
-    manager="douge"
-    editor=""/>
+	pageTitle="檢視 Azure DevTest Labs 中的每月估計實驗室成本趨勢 | Microsoft Azure"
+	description="了解 Azure DevTest Labs 每月估計成本趨勢圖表。"
+	services="devtest-lab,virtual-machines"
+	documentationCenter="na"
+	authors="tomarcher"
+	manager="douge"
+	editor=""/>
 
 <tags
-    ms.service="devtest-lab"
-    ms.workload="na"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/06/2016"
-    ms.author="tarcher"/>
+	ms.service="devtest-lab"
+	ms.workload="na"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/06/2016"
+	ms.author="tarcher"/>
 
+# 檢視 Azure DevTest Labs 中的每月估計實驗室成本趨勢
 
-# <a name="view-the-monthly-estimated-lab-cost-trend-in-azure-devtest-labs"></a>View the monthly estimated lab cost trend in Azure DevTest Labs
+研測實驗室的成本管理功能可協助您追蹤實驗室成本。本文會示範如何使用「每月估計成本趨勢」圖表，來檢視目前日曆月份的到目前為止的估計成本，以及目前日曆月份的預計月底成本。在本文中，您將學習如何在 Azure 入口網站中檢視每月估計成本趨勢圖表。
 
-The Cost Management feature of DevTest Labs helps you track the cost of your lab. This article illustrates how to use the **Monthly Estimated Cost Trend** chart to view the current calendar month's estimated cost-to-date and the projected end-of-month cost for the current calendar month. In this article, you learn how to view the monthly estimated cost trend chart in the Azure portal.
+## 檢視每月估計成本趨勢圖表
 
-## <a name="viewing-the-monthly-estimated-cost-trend-chart"></a>Viewing the Monthly Estimated Cost Trend chart
+若要檢視「每月估計成本趨勢」圖表，請遵循下列步驟︰
 
-To view the Monthly Estimated Cost Trend chart, follow these steps: 
+1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
 
-1. Sign in to the [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+1. 選取 [更多服務]，然後從清單中選取 [DevTest Labs]。
 
-1. Select **More Services**, and then select **DevTest Labs** from the list.
+1. 從實驗室清單中，選取所需的實驗室。
 
-1. From the list of labs, select the desired lab.   
+1. 在實驗室的刀鋒視窗上，選取 [成本設定]。
 
-1. On the lab's blade, select **Cost settings**.
+1. 在實驗室的 [成本設定] 刀鋒視窗中，選取 [實驗室成本趨勢]。
 
-1. On the lab's **Cost settings** blade, select **Lab cost trend**.
+1. 下列螢幕擷取畫面顯示成本圖表範例。
 
-1. The following screen shot shows an example of a cost chart. 
+    ![成本圖表](./media/devtest-lab-configure-cost-management/graph.png)
 
-    ![Cost chart](./media/devtest-lab-configure-cost-management/graph.png)
-
-The **Estimated cost** value is the current calendar month's estimated cost-to-date. The **Projected cost** is the estimated cost for the entire current calendar month, calculated using the lab cost for the previous five days.
+**估計成本**值是到目前行事曆月份為止累計的預估成本。**預計成本**是目前行事曆月份整個月的估計成本，是以前五天的實驗室成本來計算。
  
-The cost amounts are rounded up to the next whole number. For example: 
+成本金額會無條件進位到下一個整數。例如：
 
-- 5.01 rounds up to 6 
-- 5.50 rounds up to 6
-- 5.99 rounds up to 6
+- 5\.01 會無條件進位到 6
+- 5\.50 會無條件進位到 6
+- 5\.99 會無條件進位到 6
 
-As it states above the chart, the costs you see in the chart are *estimated* costs using [Pay-As-You-Go](https://azure.microsoft.com/offers/ms-azr-0003p/) offer rates.
-Additionally, the following are *not* included in the cost calculation:
+如圖表上方所述，您在圖表中看到的成本是使用[隨用隨付](https://azure.microsoft.com/offers/ms-azr-0003p/)優惠費率的「估計」成本。此外，以下「未」併入成本計算︰
 
-- CSP and Dreamspark subscriptions are currently not supported as Azure DevTest Labs uses the [Azure billing APIs](../billing-usage-rate-card-overview.md) to calculate the lab cost, which does not support CSP or Dreamspark subscriptions.
-- Your offer rates. Currently, we are not able to use your offer rates (shown under your subscription) that you have negotiated with Microsoft or Microsoft partners. We are using Pay-As-You-Go rates.
-- Your taxes
-- Your discounts
-- Your billing currency. Currently, the lab cost is displayed only in USD currency.
+- 目前不支援 CSP 和 Dreamspark 訂用帳戶，因為 Azure DevTest Labs 使用 [Azure 計費 API](../billing-usage-rate-card-overview.md) 來計算實驗室成本，而 Azure 計費 API 並不支援 CSP 或 Dreamspark 訂用帳戶。
+- 您的優惠費率。目前，我們無法使用您與 Microsoft 或 Microsoft 合作夥伴協議的優惠費率 (顯示於您的訂用帳戶下方)。我們將使用隨用隨付費率。
+- 您的稅率
+- 您的折扣
+- 您的帳單貨幣。目前，實驗室成本只會以美元貨幣顯示。
 
 [AZURE.INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
-## <a name="related-blog-posts"></a>Related blog posts
+## 相關部落格文章
 
-- [Two more things to keep your cost on track in DevTest Labs](https://blogs.msdn.microsoft.com/devtestlab/2016/06/21/keep-your-cost-on-track/)
-- [Why Cost Thresholds?](https://blogs.msdn.microsoft.com/devtestlab/2016/04/11/why-cost-thresholds/)
+- [讓 DevTest Labs 成本不失控的另外兩項須知](https://blogs.msdn.microsoft.com/devtestlab/2016/06/21/keep-your-cost-on-track/)
+- [為何要設定成本臨界值？](https://blogs.msdn.microsoft.com/devtestlab/2016/04/11/why-cost-thresholds/)
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-Here are some things to try next:
+以下是接下來要嘗試的一些事項：
 
-- [Define lab policies](./devtest-lab-set-lab-policy.md) - Learn how to set the various policies used to govern how your lab and its VMs are used. 
-- [Create custom image](./devtest-lab-create-template.md) - When you create a VM, you specify a base, which can be either a custom image or a Marketplace image. This article illustrates how to create a custom image from a VHD file.
-- [Configure Marketplace images](./devtest-lab-configure-marketplace-images.md) - DevTest Labs supports creating VMs based on Azure Marketplace images. This article illustrates how to specify which, if any, Azure Marketplace images can be used when creating VMs in a lab.
-- [Create a VM in a lab](./devtest-lab-add-vm-with-artifacts.md) - Illustrates how to create a VM from a base image (either custom or Marketplace), and how to work with artifacts in your VM.
+- [定義實驗室原則](./devtest-lab-set-lab-policy.md) - 了解如何設定用來管理您實驗室及其 VM 使用方式的各種原則。
+- [建立自訂映像](./devtest-lab-create-template.md) - 當您建立 VM 時，您要指定一個基本映像，它可以是自訂映像或 Marketplace 映像。本文會示範如何從 VHD 檔案建立自訂的映像。
+- [設定 Marketplace 映像](./devtest-lab-configure-marketplace-images.md) - DevTest Labs 支援根據 Azure Marketplace 映像建立 VM。本文會示範在實驗室中建立 VM 時，如何指定可以使用哪些 Azure Marketplace 映像 (如果有的話)。
+- [在實驗室中建立 VM](./devtest-lab-add-vm-with-artifacts.md) - 示範如何從基本映像 (自訂或 Marketplace) 建立 VM，以及如何使用 VM 中的構件。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!----HONumber=AcomDC_0907_2016-->

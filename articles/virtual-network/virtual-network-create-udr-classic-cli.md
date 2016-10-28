@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="Control routing and use virtual appliances using the Azure CLI in the classic deployment model | Microsoft Azure"
-   description="Learn how to control routing in VNets using the Azure CLI in the classic deployment model"
+   pageTitle="在傳統部署模型中使用 Azure CLI 控制路由和使用虛擬應用裝置 | Microsoft Azure"
+   description="了解如何在傳統部署模型中使用 Azure CLI 來控制 VNet 中的路由"
    services="virtual-network"
    documentationCenter="na"
    authors="jimdial"
@@ -17,105 +17,99 @@
    ms.date="03/15/2016"
    ms.author="jdial" />
 
-
-#<a name="control-routing-and-use-virtual-appliances-(classic)-using-the-azure-cli"></a>Control routing and use virtual appliances (classic) using the Azure CLI
+#使用 Azure CLI 控制路由和使用虛擬應用裝置 (傳統)
 
 [AZURE.INCLUDE [virtual-network-create-udr-classic-selectors-include.md](../../includes/virtual-network-create-udr-classic-selectors-include.md)]
 
 [AZURE.INCLUDE [virtual-network-create-udr-intro-include.md](../../includes/virtual-network-create-udr-intro-include.md)]
 
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)] This article covers the classic deployment model. You can also [control routing and use virtual appliances in the Resource Manager deployment model](virtual-network-create-udr-arm-cli.md).
+[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)] 本文涵蓋之內容包括傳統部署模型。您也可以[在資源管理員部署模型中控制路由和使用虛擬應用裝置](virtual-network-create-udr-arm-cli.md)。
 
 [AZURE.INCLUDE [virtual-network-create-udr-scenario-include.md](../../includes/virtual-network-create-udr-scenario-include.md)]
 
-The sample Azure CLI commands below expect a simple environment already created based on the scenario above. If you want to run the commands as they are displayed in this document, create the environment shown in [create a VNet (classic) using the Azure CLI](virtual-networks-create-vnet-classic-cli.md).
+以下的範例 Azure CLI 命令是假設您已根據上述案例建立簡單的環境。如果您想要執行如本文件中所示的命令，請建立[使用 Azure CLI 建立 VNet (傳統)](virtual-networks-create-vnet-classic-cli.md) 中所示的環境。
 
 [AZURE.INCLUDE [azure-cli-prerequisites-include.md](../../includes/azure-cli-prerequisites-include.md)]
 
-## <a name="create-the-udr-for-the-front-end-subnet"></a>Create the UDR for the front end subnet
-To create the route table and route needed for the front end subnet based on the scenario above, follow the steps below.
+## 建立前端子網路的 UDR
+若要根據上述案例建立前端子網路所需的路由表和路徑，請依照下列步驟執行。
 
-1. Run the **`azure config mode`** to switch to classic mode.
+1. 執行 **`azure config mode`** 切換到傳統模式。
 
-        azure config mode asm
+		azure config mode asm
 
-    Output:
+	輸出：
 
-        info:    New mode is asm
+		info:    New mode is asm
 
-3. Run the **`azure network route-table create`** command to create a route table for the front end subnet.
+3. 執行 **`azure network route-table create`** 命令，建立前端子網路的路由表。
 
-        azure network route-table create -n UDR-FrontEnd -l uswest
+		azure network route-table create -n UDR-FrontEnd -l uswest
 
-    Output:
+	輸出：
 
-        info:    Executing command network route-table create
-        info:    Creating route table "UDR-FrontEnd"
-        info:    Getting route table "UDR-FrontEnd"
-        data:    Name                            : UDR-FrontEnd
-        data:    Location                        : West US
-        info:    network route-table create command OK
+		info:    Executing command network route-table create
+		info:    Creating route table "UDR-FrontEnd"
+		info:    Getting route table "UDR-FrontEnd"
+		data:    Name                            : UDR-FrontEnd
+		data:    Location                        : West US
+		info:    network route-table create command OK
 
-    Parameters:
-    - **-l (or --location)**. Azure region where the new NSG will be created. For our scenario, *westus*.
-    - **-n (or --name)**. Name for the new NSG. For our scenario, *NSG-FrontEnd*.
+	參數：
+	- **-l (或 --location)**。將要建立新 NSG 的 Azure 區域。在本文案例中為 *westus*。
+	- **-n (或 --name)**。新 NSG 的名稱。在本文案例中為 *NSG-FrontEnd*。
 
-4. Run the **`azure network route-table route set`** command to create a route in the route table created above to send all traffic destined to the back end subnet (192.168.2.0/24) to the **FW1** VM (192.168.0.4).
+4. 執行 **`azure network route-table route set`** 命令，在上方建立的路由表中建立路由，將目的地為後端子網路 (192.168.2.0/24) 的所有流量傳送到 **FW1** VM (192.168.0.4)。
 
-        azure network route-table route set -r UDR-FrontEnd -n RouteToBackEnd -a 192.168.2.0/24 -t VirtualAppliance -p 192.168.0.4
+		azure network route-table route set -r UDR-FrontEnd -n RouteToBackEnd -a 192.168.2.0/24 -t VirtualAppliance -p 192.168.0.4
 
-    Output:
+	輸出：
 
-        info:    Executing command network route-table route set
-        info:    Getting route table "UDR-FrontEnd"
-        info:    Setting route "RouteToBackEnd" in a route table "UDR-FrontEnd"
-        info:    network route-table route set command OK
+		info:    Executing command network route-table route set
+		info:    Getting route table "UDR-FrontEnd"
+		info:    Setting route "RouteToBackEnd" in a route table "UDR-FrontEnd"
+		info:    network route-table route set command OK
 
-    Parameters:
-    - **-r (or --route-table-name)**. Name of the route table where the route will be added. For our scenario, *UDR-FrontEnd*.
-    - **-a (or --address-prefix)**. Address prefix for the subnet where packets are destined to. For our scenario, *192.168.2.0/24*.
-    - **-t (or --next-hop-type)**. Type of object traffic will be sent to. Possible values are *VirtualAppliance*, *VirtualNetworkGateway*, *VNETLocal*, *Internet*, or *None*.
-    - **-p (or --next-hop-ip-address**). IP address for next hop. For our scenario, *192.168.0.4*.
+	參數：
+	- **-r (或 --route-table-name)**。將會加入路由的路由表的名稱。在本文案例中為 *UDR-FrontEnd*。
+	- **-a (或 --address-prefix)**。封包所指向位置的子網路的位址首碼。在本文案例中為 *192.168.2.0/24*。
+	- **-t (或 --next-hop-type)**。將傳送流量的目標物件類型。可能的值為 *VirtualAppliance*、*VirtualNetworkGateway*、*VNETLocal*、*Internet* 或 *None*。
+	- **-p (或 --next-hop-ip-address)**。下個躍點的 IP 位址。在本文案例中為 *192.168.0.4*。
 
-5. Run the **`azure network vnet subnet route-table add`** command to associate the route table created above with the **FrontEnd** subnet.
+5. 執行 **`azure network vnet subnet route-table add`** 命令，將上方建立的路由表關聯至 **FrontEnd** 子網路。
 
-        azure network vnet subnet route-table add -t TestVNet -n FrontEnd -r UDR-FrontEnd
+		azure network vnet subnet route-table add -t TestVNet -n FrontEnd -r UDR-FrontEnd
 
-    Output:
+	輸出：
 
-        info:    Executing command network vnet subnet route-table add
-        info:    Looking up the subnet "FrontEnd"
-        info:    Looking up network configuration
-        info:    Looking up network gateway route tables in virtual network "TestVNet" subnet "FrontEnd"
-        info:    Associating route table "UDR-FrontEnd" and subnet "FrontEnd"
-        info:    Looking up network gateway route tables in virtual network "TestVNet" subnet "FrontEnd"
-        data:    Route table name                : UDR-FrontEnd
-        data:      Location                      : West US
-        data:      Routes:
-        info:    network vnet subnet route-table add command OK 
+		info:    Executing command network vnet subnet route-table add
+		info:    Looking up the subnet "FrontEnd"
+		info:    Looking up network configuration
+		info:    Looking up network gateway route tables in virtual network "TestVNet" subnet "FrontEnd"
+		info:    Associating route table "UDR-FrontEnd" and subnet "FrontEnd"
+		info:    Looking up network gateway route tables in virtual network "TestVNet" subnet "FrontEnd"
+		data:    Route table name                : UDR-FrontEnd
+		data:      Location                      : West US
+		data:      Routes:
+		info:    network vnet subnet route-table add command OK	
 
-    Parameters:
-    - **-t (or --vnet-name)**. Name of the VNet where the subnet is located. For our scenario, *TestVNet*.
-    - **-n (or --subnet-name**. Name of the subnet the route table will be added to. For our scenario, *FrontEnd*.
+	參數：
+	- **-t (或 --vnet-name)**。子網路所在的 VNet 名稱。在本文案例中為 *TestVNet*。
+	- **-n (或 --subnet-name)**。路由表將加入的子網路的名稱。在本文案例中為 *FrontEnd*。
  
-## <a name="create-the-udr-for-the-back-end-subnet"></a>Create the UDR for the back end subnet
-To create the route table and route needed for the back end subnet based on the scenario above, follow the steps below.
+## 建立後端子網路的 UDR
+若要根據上述案例建立後端子網路所需的路由表和路徑，請依照下列步驟執行。
 
-3. Run the **`azure network route-table create`** command to create a route table for the back end subnet.
+3. 執行 **`azure network route-table create`** 命令，建立後端子網路的路由表。
 
-        azure network route-table create -n UDR-BackEnd -l uswest
+		azure network route-table create -n UDR-BackEnd -l uswest
 
-4. Run the **`azure network route-table route set`** command to create a route in the route table created above to send all traffic destined to the front end subnet (192.168.1.0/24) to the **FW1** VM (192.168.0.4).
+4. 執行 **`azure network route-table route set`** 命令，在上方建立的路由表中建立路由，將目的地為前端子網路 (192.168.1.0/24) 的所有流量傳送到 **FW1** VM (192.168.0.4)。
 
-        azure network route-table route set -r UDR-BackEnd -n RouteToFrontEnd -a 192.168.1.0/24 -t VirtualAppliance -p 192.168.0.4
+		azure network route-table route set -r UDR-BackEnd -n RouteToFrontEnd -a 192.168.1.0/24 -t VirtualAppliance -p 192.168.0.4
 
-5. Run the **`azure network vnet subnet route-table add`** command to associate the route table created above with the **BackEnd** subnet.
+5. 執行 **`azure network vnet subnet route-table add`** 命令，將上方建立的路由表關聯至 **BackEnd** 子網路。
 
-        azure network vnet subnet route-table add -t TestVNet -n BackEnd -r UDR-BackEnd
+		azure network vnet subnet route-table add -t TestVNet -n BackEnd -r UDR-BackEnd
 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

@@ -1,141 +1,134 @@
 <properties
-    pageTitle="High availability cross-geographic AD FS deployment in Azure with Azure Traffic Manager | Microsoft Azure"
-    description="In this document you will learn how to deploy AD FS in Azure for high availablity."
-    keywords="Ad fs with Azure traffic manager, adfs with Azure Traffic Manager,geographic, multi datacenter, geographic datacenters, multi geographic datacenters, deploy AD FS in azure, deploy azure adfs, azure adfs, azure ad fs,deploy adfs, deploy ad fs, adfs in azure, deploy adfs in azure, deploy AD FS in azure, adfs azure, introduction to AD FS, Azure, AD FS in Azure, iaas, ADFS, move adfs to azure"
-    services="active-directory"
-    documentationCenter=""
-    authors="anandyadavmsft"
-    manager="femila"
-    editor=""/>
+	pageTitle="使用 Azure 流量管理員在 Azure 中部署高可用性跨地區 AD FS | Microsoft Azure"
+	description="在本文件中，您將了解如何在 Azure 中部署 AD FS 以獲得高可用性。"
+    keywords="採用 Azure 流量管理員的 Ad fs, 採用 Azure 流量管理員的 adfs, 地理, 多重資料中心, 地理資料中心, 多重地理資料中心, 在 azure 中部署 AD FS, 部署 azure adfs, azure adfs, azure ad fs, 部署 adfs, 部署 ad fs, azure 中的 adfs, 在 azure 中部署 adfs, 在 azure 中部署 AD FS, adfs azure, AD FS 簡介, Azure, Azure 中的 AD FS, iaas, ADFS, 將 adfs 移至 azure"
+	services="active-directory"
+	documentationCenter=""
+	authors="anandyadavmsft"
+	manager="femila"
+	editor=""/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="get-started-article"
-    ms.date="09/01/2016"
-    ms.author="anandy;billmath"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="get-started-article"
+	ms.date="09/01/2016"
+	ms.author="anandy;billmath"/>
     
+#使用 Azure 流量管理員在 Azure 中部署高可用性跨地區 AD FS
 
-#<a name="high-availability-cross-geographic-ad-fs-deployment-in-azure-with-azure-traffic-manager"></a>High availability cross-geographic AD FS deployment in Azure with Azure Traffic Manager
+[Azure 中的 AD FS 部署](active-directory-aadconnect-azure-adfs.md)提供有關如何在 Azure 中為您的組織部署簡單 AD FS 基礎結構的逐步指導方針。本文會提供後續的步驟，以使用 [Azure 流量管理員](../traffic-manager/traffic-manager-overview.md)在 Azure 中建立跨地區的 AD FS 部署。Azure 流量管理員會使用各種可用的路由方法來順應基礎結構的不同需求，而有助於為您的組織建立分散各地的高可用性和高效能 AD FS 基礎結構。
 
-[AD FS deployment in Azure](active-directory-aadconnect-azure-adfs.md) provides step-by-step guideline as to how you can deploy a simple AD FS infrastructure for your organization in Azure. This article provides the next steps to create a cross-geographic deployment of AD FS in Azure using [Azure Traffic Manager](../traffic-manager/traffic-manager-overview.md). Azure Traffic Manager helps create a geographically spread high availability and high-performance AD FS infrastructure for your organization by making use of range of routing methods available to suit different needs from the infrastructure.
+高可用性的跨地區 AD FS基礎結構能夠︰
 
-A highly available cross-geographic AD FS infrastructure enables:
+* **消除單一失敗點︰**利用 Azure 流量管理員的容錯移轉功能，即使全球其中一個資料中心無法使用，您仍可達到高可用性的 AD FS 基礎結構
+* **的效能︰**您可以使用本文中建議的部署，以提供高效能的 AD FS 基礎結構來協助使用者更快驗證。
 
-* **Elimination of single point of failure:** With failover capabilities of Azure Traffic Manager, you can achieve a highly available AD FS infrastructure even when one of the data centers in a part of the globe goes down
-* **Improved performance:** You can use the suggested deployment in this article to provide a high-performance AD FS infrastructure that can help users authenticate faster. 
+##設計原則
 
-##<a name="design-principles"></a>Design principles
+![整體設計](./media/active-directory-adfs-in-azure-with-azure-traffic-manager/blockdiagram.png)
 
-![Overall design](./media/active-directory-adfs-in-azure-with-azure-traffic-manager/blockdiagram.png)
+基本設計原則會與＜Azure 中的 AD FS 部署＞一文中所列的設計原則相同。上圖顯示的是將基本部署擴充至另一個地理區域的簡易延伸模組。以下是將您的部署擴充到新地理區域時所要考量的一些重點
 
-The basic design principles will be same as listed in Design principles in the article AD FS deployment in Azure. The diagram above shows a simple extension of the basic deployment to another geographical region. Below are some points to consider when extending your deployment to new geographical region
+* **虛擬網路︰**您應該在您要部署其他 AD FS 基礎結構的地理區域中建立新的虛擬網路。在上圖中，您會看到 Geo1 VNET 和 Geo2 VNET 顯示為每個地理區中的兩個虛擬網路。
 
-* **Virtual network:** You should create a new virtual network in the geographical region you want to deploy additional AD FS infrastructure. In the diagram above you see Geo1 VNET and Geo2 VNET as the two virtual networks in each geographical region.
+* **新地區 VNET 中的網域控制站和 AD FS 伺服器︰**建議在新的地理區域中部署網域控制站，在新區域中的 AD FS 伺服器就不需要連絡另一個遙遠網路中的網域控制站來完成驗證，因而改善效能。
 
-* **Domain controllers and AD FS servers in new geographical VNET:** It is recommended to deploy domain controllers in the new geographical region so that the AD FS servers in the new region do not have to contact a domain controller in another far away network to complete an authentication and thereby improving the performance.
+* **儲存體帳戶︰**儲存體帳戶會與某個區域相關聯。因為您即將在新的地理區域中部署機器，所以您必須建立要在此區域中使用的新儲存體帳戶。
 
-* **Storage accounts:** Storage accounts are associated with a region. Since you will be deploying machines in a new geographic region, you will have to create new storage accounts to be used in the region.  
+* **網路安全性群組︰**如同儲存體帳戶，在區域中建立的網路安全性群組不能用於另一個地理區域。因此，您必須為新地理區域中的 INT 和 DMZ 子網路，建立類似於第一個地理區域中的新網路安全性群組。
 
-* **Network Security Groups:** As storage accounts, Network Security Groups created in a region cannot be used in another geographical region. Therefore, you will need to create new network security groups similar to those in the first geographical region for INT and DMZ subnet in the new geographical region.
+* **公用 IP 位址的 DNS 標籤︰**Azure 流量管理員只能透過 DNS 標籤參考端點。因此，您必須為外部負載平衡器的公用 IP 位址建立 DNS 標籤。
 
-* **DNS Labels for public IP addresses:** Azure Traffic Manager can refer to endpoints ONLY via DNS labels. Therefore, you are required to create DNS labels for the External Load Balancers’ public IP addresses.
+* **Azure 流量管理員**：Microsoft Azure 流量管理員可讓您控制使用者流量，將流量分散到您在世界各地的不同資料中心執行的服務端點。Azure 流量管理員是在 DNS 層級上運作。它會使用 DNS 回應，將使用者流量導向全域散佈的端點。接著用戶端會直接連接到這些端點。效能、加權和優先順序均有不同的路由選項，您可以輕鬆地選擇最符合貴組織需求的路由選項。
 
-* **Azure Traffic Manager:** Microsoft Azure Traffic Manager allows you to control the distribution of user traffic to your service endpoints running in different datacenters around the world. Azure Traffic Manager works at the DNS level. It uses DNS responses to direct end-user traffic to globally-distributed endpoints. Clients then connect to those endpoints directly. With different routing options of Performance, Weighted and Priority, you can easily choose the routing option best suited for your organization’s needs. 
+* **兩個區域之間的 VNet 對 VNet 連線︰**您不需要具備虛擬網路本身之間的連線。因為每個虛擬網路都可存取網域控制站，而且本身都有 AD FS 和 WAP 伺服器，所以不同區域中的虛擬網路之間不需要任何連線，即可運作。
 
-* **V-net to V-net connectivity between two regions:** You do not need to have connectivity between the virtual networks itself. Since each virtual network has access to domain controllers and has AD FS and WAP server in itself, they can work without any connectivity between the virtual networks in different regions. 
+##整合 Azure 流量管理員的步驟
 
-##<a name="steps-to-integrate-azure-traffic-manager"></a>Steps to integrate Azure Traffic Manager
+###在新的地理區域中部署 AD FS
+請依照 [Azure 中的 AD FS 部署](active-directory-aadconnect-azure-adfs.md)中的步驟和指導方針，在新的地理區域中部署相同的拓樸。
 
-###<a name="deploy-ad-fs-in-the-new-geographical-region"></a>Deploy AD FS in the new geographical region
-Follow the steps and guidelines in [AD FS deployment in Azure](active-directory-aadconnect-azure-adfs.md) to deploy the same topology in the new geographical region.
+###網際網路對向 (公用) 負載平衡器中公用 IP 位址的 DNS 標籤
+如上所述，Azure 流量管理員只可以將 DNS 標籤當作端點參考，因此務必為外部負載平衡器的公用 IP 位址建立 DNS 標籤。以下螢幕擷取畫面顯示如何設定公用 IP 位址的 DNS 標籤。
 
-###<a name="dns-labels-for-public-ip-addresses-of-the-internet-facing-(public)-load-balancers"></a>DNS labels for public IP addresses of the Internet Facing (public) Load Balancers
-As mentioned above, the Azure Traffic Manager can only refer to DNS labels as endpoints and therefore it is important to create DNS labels for the External Load Balancers’ public IP addresses. Below screenshot shows how you can configure your DNS label for the public IP address. 
+![DNS 標籤](./media/active-directory-adfs-in-azure-with-azure-traffic-manager/eastfabstsdnslabel.png)
 
-![DNS Label](./media/active-directory-adfs-in-azure-with-azure-traffic-manager/eastfabstsdnslabel.png)
+###部署 Azure 流量管理員
 
-###<a name="deploying-azure-traffic-manager"></a>Deploying Azure Traffic Manager
+依照以下步驟建立流量管理員設定檔。如需詳細資訊，您也可以參考[管理 Azure 流量管理員設定檔](../traffic-manager/traffic-manager-manage-profiles.md)。
 
-Follow the steps below to create a traffic manager profile. For more information, you can also refer to [Manage an Azure Traffic Manager profile](../traffic-manager/traffic-manager-manage-profiles.md).
+1. **建立流量管理員設定檔**：為您的流量管理員設定檔提供一個唯一的名稱。設定檔的這個名稱是 DNS 名稱的一部分，並可做為流量管理員網域名稱標籤的前置詞。系統會將此名稱 / 前置詞新增至 .trafficmanager.net，以建立流量管理員的 DNS 標籤。以下螢幕擷取畫面顯示設定為 mysts 的流量管理員 DNS 前置詞，而產生的 DNS 標籤會是 mysts.trafficmanager.net。
 
-1. **Create a Traffic Manager profile:** Give your traffic manager profile a unique name. This name of the profile is part of the DNS name and acts as a prefix for the Traffic Manager domain name label. The name / prefix is added to .trafficmanager.net to create a DNS label for your traffic manager. The screenshot below shows the traffic manager DNS prefix being set as mysts and resulting DNS label will be mysts.trafficmanager.net. 
-
-    ![Traffic Manager profile creation](./media/active-directory-adfs-in-azure-with-azure-traffic-manager/trafficmanager01.png)
+    ![流量管理員設定檔建立](./media/active-directory-adfs-in-azure-with-azure-traffic-manager/trafficmanager01.png)
  
-2. **Traffic routing method:** There are three routing options available in traffic manager:
+2. **流量路由方法：**流量管理員中有三個可用的路由選項：
 
-    * Priority 
-    * Performance
-    * Weighted
+    * 優先順序
+    * 效能
+    * 加權
     
-    **Performance** is the recommended option to achieve highly responsive AD FS infrastructure. However, you can choose any routing method best suited for your deployment needs. The AD FS functionality is not impacted by the routing option selected. See [Traffic Manager traffic routing methods](../traffic-manager/traffic-manager-routing-methods.md) for more information. In the sample screenshot above you can see the **Performance** method selected.
+    **效能**是達到高回應性 AD FS 基礎結構的建議選項。不過，您可以選擇任何最適合您的部署需求的路由方式。AD FS 功能不會受到所選取的路由選項影響。如需詳細資訊，請參閱[流量管理員流量路由方法](../traffic-manager/traffic-manager-routing-methods.md)。在上面的範例螢幕擷取畫面中，您可以看到已選取**效能**方法。
    
-3.  **Configure endpoints:** In the traffic manager page, click on endpoints and select Add. This will open an Add endpoint page similar to the screenshot below
+3.	**設定端點︰**在流量管理員頁面中，按一下端點並選取 [新增]。這會開啟類似以下螢幕擷取畫面的 [新增端點] 頁面
  
-    ![Configure endpoints](./media/active-directory-adfs-in-azure-with-azure-traffic-manager/eastfsendpoint.png)
+    ![設定端點](./media/active-directory-adfs-in-azure-with-azure-traffic-manager/eastfsendpoint.png)
  
-    For the different inputs, follow the guideline below:
+    對於不同的輸入，請遵循下列指導方針︰
 
-    **Type:** Select Azure endpoint as we will be pointing to an Azure public IP address.
+    **類型︰**選取 Azure 端點，因為我們即將指向 Azure 公用 IP 位址。
 
-    **Name:** Create a name that you want to associate with the endpoint. This is not the DNS name and has no bearing on DNS records.
+    **名稱︰**建立您想要與端點建立關聯的名稱。這不是 DNS 名稱，所以與 DNS 記錄沒有關聯。
 
-    **Target resource type:** Select Public IP address as the value to this property. 
+    **目標資源類型︰**選取公用 IP 位址做為這個屬性的值。
 
-    **Target resource:** This will give you an option to choose from the different DNS labels you have available under your subscription. Choose the DNS label for to.
+    **目標資源︰**這可讓您選擇不同於您訂用帳戶之下可用的 DNS 標籤。選擇 DNS 標籤。
 
-    Add endpoint for each geographical region you want the Azure Traffic Manager to route traffic to.
-    For more information and detailed steps on how to add / configure endpoints in traffic manager, refer to [Add, disable, enable or delete endpoints](../traffic-manager/traffic-manager-endpoints.md)
+    針對您希望 Azure 流量管理員路由傳送流量的每個地理區域，新增端點。如需有關如何在流量管理員中新增 / 設定端點的詳細資訊和詳細步驟，請參閱[新增、停用、啟用或刪除端點](../traffic-manager/traffic-manager-endpoints.md)
     
-4. **Configure probe:** In the traffic manager page, click on Configuration. In the configuration page, you need to change the monitor settings to probe at HTTP port 80 and relative path /adfs/probe
+4. **設定探查︰**在流量管理員頁面中，按一下 [組態]。在 [組態] 頁面中，您便需變更監視設定，以在 HTTP 連接埠 80 和相對路徑 /adfs/probe 探查
 
-    ![Configure probe](./media/active-directory-adfs-in-azure-with-azure-traffic-manager/mystsconfig.png) 
+    ![設定探查](./media/active-directory-adfs-in-azure-with-azure-traffic-manager/mystsconfig.png)
 
-    >[AZURE.NOTE] **Ensure that the status of the endpoints is ONLINE once the configuration is complete**. If all endpoints are in ‘degraded’ state, Azure Traffic Manager will do a best attempt to route the traffic assuming that the diagnostics is incorrect and all endpoints are reachable.
+    >[AZURE.NOTE] **確保在設定完成時，端點的狀態會處於線上狀態**。如果所有端點都處於「降級」狀態，則 Azure 流量管理員會盡力嘗試路由傳送流量，但前提是診斷不正確，而且所有端點均可觸達。
 
-5. **Modifying DNS records for Azure Traffic Manager:** Your federation service should be a CNAME to the Azure Traffic Manager DNS name. Create a CNAME in the public DNS records so that whoever is trying to reach the federation service actually reaches the Azure Traffic Manager.
+5. **修改 Azure 流量管理員的 DNS 記錄︰**您的同盟服務應該是 Azure 流量管理員 DNS 名稱的 CNAME。在公用 DNS 記錄中建立 CNAME，以便正嘗試觸達同盟服務的人員實際觸達 Azure 流量管理員。
 
-    For example, to point the federation service fs.fabidentity.com to the Traffic Manager, you would need to update your DNS resource record to be the following:
+    例如，若要將同盟服務 fs.fabidentity.com 指向流量管理員，您需要將 DNS 資源記錄更新如下：
 
     <code>fs.fabidentity.com IN CNAME mysts.trafficmanager.net</code>
 
-##<a name="test-the-routing-and-ad-fs-sign-in"></a>Test the routing and AD FS sign-in   
+##測試路由和 AD FS 登入   
 
-###<a name="routing-test"></a>Routing test
+###路由測試
 
-A very basic test for the routing would be to try ping the federation service DNS name from a machine in each geographic region. Depending on the routing method chosen, the endpoint it actually pings will be reflected in the ping display. For example, if you selected the performance routing, then the endpoint nearest to the region of the client will be reached. Below is the snapshot of two pings from two different region client machines, one in EastAsia region and one in West US. 
+路由的基本測試就是嘗試從每個地理區域中的機器 ping 同盟服務 DNS 名稱。視所選的路由方法而定，其實際 ping 的端點將會反映在 ping 顯示中。例如，如果您選取了效能路由，則會觸達最接近用戶端區域的端點。以下是兩個來自兩個不同區域用戶端電腦的 ping 快照，一個位於 EastAsia 區域，一個位於美國西部。
 
-![Routing test](./media/active-directory-adfs-in-azure-with-azure-traffic-manager/pingtest.png)
+![路由測試](./media/active-directory-adfs-in-azure-with-azure-traffic-manager/pingtest.png)
 
-###<a name="ad-fs-sign-in-test"></a>AD FS sign-in test
+###AD FS 登入測試
 
-The easiest way to test AD FS is by using the IdpInitiatedSignon.aspx page. In order to be able to do that, it is required to enable the IdpInitiatedSignOn on the AD FS properties. Follow the steps below to verify your AD FS setup
+若要測試 AD FS，最簡單的方法是使用 IdpInitiatedSignon.aspx 網頁。為了能夠執行此作業，必須在 AD FS 屬性上啟用 IdpInitiatedSignOn。請遵循下列步驟來確認 AD FS 設定
  
-1. Run the below cmdlet on the AD FS server, using PowerShell, to set it to enabled. Set-AdfsProperties -EnableIdPInitiatedSignonPage $true
-2. From any external machine access https://<yourfederationservicedns>/adfs/ls/IdpInitiatedSignon.aspx
-3. You should see the AD FS page like below:
+1. 使用 PowerShell 在 AD FS 伺服器上執行以下 Cmdlet，將它設定為啟用。Set-AdfsProperties -EnableIdPInitiatedSignonPage $true
+2. 從任何外部電腦存取 https://<yourfederationservicedns>/adfs/ls/IdpInitiatedSignon.aspx
+3. 您應該會看到如下圖的 AD FS 網頁︰
 
-    ![ADFS test - authentication challenge](./media/active-directory-adfs-in-azure-with-azure-traffic-manager/adfstest1.png)
+    ![ADFS 測試 - 驗證挑戰](./media/active-directory-adfs-in-azure-with-azure-traffic-manager/adfstest1.png)
 
-    and on successful sign-in, it will provide you with a success message as shown below:
+    而成功登入時，它會提供您如下所示的成功訊息︰
 
-    ![ADFS test - authentication success](./media/active-directory-adfs-in-azure-with-azure-traffic-manager/adfstest2.png)
+    ![ADFS 測試 - 驗證](./media/active-directory-adfs-in-azure-with-azure-traffic-manager/adfstest2.png)
  
-##<a name="related-links"></a>Related links
-* [Basic AD FS deployment in Azure](active-directory-aadconnect-azure-adfs.md)
-* [Microsoft Azure Traffic Manager](../traffic-manager/traffic-manager-overview.md)
-* [Traffic Manager traffic routing methods](../traffic-manager/traffic-manager-routing-methods.md)
+##相關連結
+* [Azure 中的基本 AD FS 部署](active-directory-aadconnect-azure-adfs.md)
+* [Microsoft Azure 流量管理員](../traffic-manager/traffic-manager-overview.md)
+* [流量管理員流量路由方法](../traffic-manager/traffic-manager-routing-methods.md)
 
-##<a name="next-steps"></a>Next steps
-* [Manage an Azure Traffic Manager profile](../traffic-manager/traffic-manager-manage-profiles.md)
-* [Add, disable, enable or delete endpoints](../traffic-manager/traffic-manager-endpoints.md) 
+##後續步驟
+* [管理 Azure 流量管理員設定檔](../traffic-manager/traffic-manager-manage-profiles.md)
+* [加入、停用、啟用或刪除端點](../traffic-manager/traffic-manager-endpoints.md)
 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

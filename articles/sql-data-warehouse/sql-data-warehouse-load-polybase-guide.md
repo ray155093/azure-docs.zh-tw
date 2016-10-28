@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Guide for using PolyBase in SQL Data Warehouse | Microsoft Azure"
-   description="Guidelines and recommendations for using PolyBase in SQL Data Warehouse scenarios."
+   pageTitle="在 SQL 資料倉儲中使用 PolyBase 的指南 | Microsoft Azure"
+   description="在 SQL 資料倉儲案例中使用 PolyBase 的指導方針和建議。"
    services="sql-data-warehouse"
    documentationCenter="NA"
    authors="ckarst"
@@ -17,34 +17,33 @@
    ms.author="cakarst;barbkess;sonyama"/>
 
 
+# 在 SQL 資料倉儲中使用 PolyBase 的指南
 
-# <a name="guide-for-using-polybase-in-sql-data-warehouse"></a>Guide for using PolyBase in SQL Data Warehouse
+本指南提供在 SQL 資料倉儲中使用 PolyBase 的實用資訊。
 
-This guide gives practical information for using PolyBase in SQL Data Warehouse.
-
-To get started, see the [Load data with PolyBase][] tutorial.
+如要開始使用，請參閱[使用 PolyBase 載入資料][]教學課程。
 
 
-## <a name="rotating-storage-keys"></a>Rotating storage keys
+## 替換儲存體金鑰
 
-From time to time you will want to change the access key to your blob storage for security reasons.
+有時您基於安全性考量，會想要變更存取金鑰至您的 blob 儲存體。
 
-The most elegant way to perform this task is to follow a process known as "rotating the keys". You may have noticed that you have two storage keys for your blob storage account. This is so that you can transition
+要執行這項工作的最佳方式是遵循稱為「替換金鑰」的程序。您可能已經注意到您在 blob 儲存體帳戶有兩個儲存體金鑰。如此一來您就可以轉換
 
-Rotating your Azure storage account keys is a simple three step process
+替換 Azure 儲存體帳戶金鑰的程序只需要簡單的三個步驟
 
-1. Create second database scoped credential based on the secondary storage access key
-2. Create second external data source based off this new credential
-3. Drop and create the external table(s) pointing to the new external data source
+1. 建立以次要儲存體存取金鑰為基礎的第二個資料庫範圍認證
+2. 建立以新的認證為基礎的第二個外部資料來源
+3. 卸除並建立指向新的外部資料來源的外部資料表
 
-When you have migrated all your external tables to the new external data source then you can perform the clean up tasks:
+當您移轉所有的外部資料表到新的外部資料來源時，您就可以執行清除工作：
 
-1. Drop first external data source
-2. Drop first database scoped credential based on the primary storage access key
-3. Log into Azure and regenerate the primary access key ready for the next time
+1. 卸除第一個外部資料來源
+2. 卸除以主要儲存體存取金鑰為基礎的第一個資料庫範圍認證
+3. 登入 Azure 並重新產生主要存取金鑰供下一次使用
 
-## <a name="query-azure-blob-storage-data"></a>Query Azure blob storage data
-Queries against external tables simply use the table name as though it was a relational table.
+## 查詢 Azure blob 儲存體資料
+針對外部資料表的查詢只使用資料表名稱，如同關聯式資料表一樣。
 
 ```sql
 -- Query Azure storage resident data via external table.
@@ -52,17 +51,17 @@ SELECT * FROM [ext].[CarSensor_Data]
 ;
 ```
 
-> [AZURE.NOTE] A query on an external table can fail with the error *"Query aborted-- the maximum reject threshold was reached while reading from an external source"*. This indicates that your external data contains *dirty* records. A data record is considered 'dirty' if the actual data types/number of columns do not match the column definitions of the external table or if the data doesn't conform to the specified external file format. To fix this, ensure that your external table and external file format definitions are correct and your external data conforms to these definitions. In case a subset of external data records are dirty, you can choose to reject these records for your queries by using the reject options in CREATE EXTERNAL TABLE DDL.
+> [AZURE.NOTE] 外部資料表上的查詢可能會失敗，並顯示「*查詢已中止 -- 從外部來源讀取時已達最大拒絕閾值*」錯誤。這表示您的外部資料包含「*錯誤*」記錄。如果實際的資料類型/資料行數目不符合外部資料表的資料行定義，或資料不符合指定的外部檔案格式，則會將資料記錄視為「錯誤」。若要修正此問題，請確定您的外部資料表及外部檔案格式定義皆正確，且這些定義與您的外部資料相符。萬一外部資料記錄的子集有錯誤，您可以使用 CREATE EXTERNAL TABLE DDL 中的拒絕選項，選擇拒絕這些查詢記錄。
 
 
-## <a name="load-data-from-azure-blob-storage"></a>Load data from Azure blob storage
-This example loads data from Azure blob storage to SQL Data Warehouse database.
+## 從 Azure blob 儲存體載入資料
+此範例將 Azure blob 儲存體中的資料載入至 SQL 資料倉儲資料庫。
 
-Storing data directly removes the data transfer time for queries. Storing data with a columnstore index improves query performance for analysis queries by up to 10x.
+直接儲存資料可免除查詢時的資料傳輸時間。搭配 columnstore 索引儲存資料可讓分析查詢的查詢效能提升 10 倍。
 
-This example uses the CREATE TABLE AS SELECT statement to load data. The new table inherits the columns named in the query. It inherits the data types of those columns from the external table definition.
+此範例使用 CREATE TABLE AS SELECT 陳述式來載入資料。新的資料表繼承查詢中指名的資料行。它會從外部資料表定義繼承這些資料行的資料型別。
 
-CREATE TABLE AS SELECT is a highly performant Transact-SQL statement that loads the data in parallel to all the compute nodes of your SQL Data Warehouse.  It was originally developed for  the massively parallel processing (MPP) engine in Analytics Platform System and is now in SQL Data Warehouse.
+CREATE TABLE AS SELECT 是高效能 TRANSACT-SQL 陳述式，可將資料平行載入到您的 SQL 資料倉儲的所有計算節點。它原本是針對分析平台系統中的大量平行處理 (MPP) 引擎所開發，現在已納入 SQL 資料倉儲中。
 
 ```sql
 -- Load data from Azure blob storage to SQL Data Warehouse
@@ -71,7 +70,7 @@ CREATE TABLE [dbo].[Customer_Speed]
 WITH
 (   
     CLUSTERED COLUMNSTORE INDEX
-,   DISTRIBUTION = HASH([CarSensor_Data].[CustomerKey])
+,	DISTRIBUTION = HASH([CarSensor_Data].[CustomerKey])
 )
 AS
 SELECT *
@@ -79,11 +78,11 @@ FROM   [ext].[CarSensor_Data]
 ;
 ```
 
-See [CREATE TABLE AS SELECT (Transact-SQL)][].
+請參閱 [CREATE TABLE AS SELECT (Transact-SQL)][]。
 
-## <a name="create-statistics-on-newly-loaded-data"></a>Create Statistics on newly loaded data
+## 建立新載入資料的統計資料
 
-Azure SQL Data Warehouse does not yet support auto create or auto update statistics.  In order to get the best performance from your queries, it's important that statistics be created on all columns of all tables after the first load or any substantial changes occur in the data.  For a detailed explanation of statistics, see the [Statistics][] topic in the Develop group of topics.  Below is a quick example of how to create statistics on the tabled loaded in this example.
+Azure 資料倉儲尚未支援自動建立或自動更新統計資料。為了獲得查詢的最佳效能，在首次載入資料，或是資料中發生重大變更之後，建立所有資料表的所有資料行統計資料非常重要。如需統計資料的詳細說明，請參閱「開發」主題群組中的[統計資料][]主題。以下是快速範例，說明如何在此範例中建立載入資料表的統計資料。
 
 ```sql
 create statistics [SensorKey] on [Customer_Speed] ([SensorKey]);
@@ -93,10 +92,10 @@ create statistics [Speed] on [Customer_Speed] ([Speed]);
 create statistics [YearMeasured] on [Customer_Speed] ([YearMeasured]);
 ```
 
-## <a name="export-data-to-azure-blob-storage"></a>Export data to Azure blob storage
-This section shows how to export data from SQL Data Warehouse to Azure blob storage. This example uses CREATE EXTERNAL TABLE AS SELECT which is a highly performant Transact-SQL statement to export the data in parallel from all the compute nodes.
+## 將資料匯出至 Azure Blob 儲存體
+這一節說明如何將資料從 SQL 資料倉儲匯出至 Azure Blob 儲存體。此範例使用 CREATE EXTERNAL TABLE AS SELECT (高效能 Transact-SQL 陳述式) 將資料從所有計算節點平行匯出。
 
-The following example creates an external table Weblogs2014 using column definitions and data from dbo.Weblogs table. The external table definition is stored in SQL Data Warehouse and the results of the SELECT statement are exported to the "/archive/log2014/" directory under the blob container specified by the data source. The data is exported in the specified text file format.
+下列範例會使用 dbo.Weblogs 資料表中的資料行定義和資料從 dbo 建立外部資料表 Weblogs2014。外部資料表定義會儲存在 SQL 資料倉儲中，而 SELECT 陳述式的結果會匯出至資料來源所指定的 blob 容器下的 "/archive/log2014/" 目錄。以指定的文字檔案格式匯出的資料。
 
 ```sql
 CREATE EXTERNAL TABLE Weblogs2014 WITH
@@ -118,26 +117,26 @@ WHERE
 ```
 
 
-## <a name="working-around-the-polybase-utf-8-requirement"></a>Working around the PolyBase UTF-8 requirement
-At present PolyBase supports loading data files that have been UTF-8 encoded. As UTF-8 uses the same character encoding as ASCII PolyBase will also support loading data that is ASCII encoded. However, PolyBase does not support other character encoding such as UTF-16 / Unicode or extended ASCII characters. Extended ASCII includes characters with accents such as the umlaut which is common in German.
+## 解決 PolyBase UTF-8 需求
+現在 PolyBase 支援載入以 UTF-8 編碼的資料檔案。因為 UTF-8 使用與 ASCII 相同的字元編碼，PolyBase 也支援載入 ASCII 編碼的資料。不過，PolyBase 不支援其他字元編碼，例如 UTF-16 / Unicode 或延伸的 ASCII 字元。延伸的 ASCII 包括具有重音符號的字元，例如德文常見的母音變化。
 
-To work around this requirement the best answer is to re-write to UTF-8 encoding.
+若要解決這項需求的最佳解答是重新撰寫為 UTF-8 編碼。
 
-There are several ways to do this. Below are two approaches using Powershell:
+有數種方法能完成這項操作：以下是使用 Powershell 的兩種方法：
 
-### <a name="simple-example-for-small-files"></a>Simple example for small files
+### 簡單的小檔案範例
 
-Below is a simple one line Powershell script that creates the file.
+以下是一行會建立檔案的簡單 Powershell 指令碼。
 
 ```PowerShell
 Get-Content <input_file_name> -Encoding Unicode | Set-Content <output_file_name> -Encoding utf8
 ```
 
-However, whilst this is a simple way to re-encode the data it is by no means the most efficient. The io streaming example below is much, much faster and achieves the same result.
+不過，儘管將資料重新編碼的方法非常簡單，但絕非最有效率的作法。下列的 io 資料流範例快得多很多，並可達到相同的結果。
 
-### <a name="io-streaming-example-for-larger-files"></a>IO Streaming example for larger files
+### 較大檔案的 IO 資料流處理範例
 
-The code sample below is more complex but as it streams the rows of data from source to target it is much more efficient. Use this approach for larger files.
+下列程式碼範例更為複雜，但在資料流處理來自來源的資料至目標的資料列時更具效率。應用此方法在較大的檔案上。
 
 ```PowerShell
 #Static variables
@@ -148,13 +147,13 @@ $ansi = [System.Text.Encoding]::Default
 $append = $False
 
 #Set source file path and file name
-$src = [System.IO.Path]::Combine("C:\input_file_path\","input_file_name.txt")
+$src = [System.IO.Path]::Combine("C:\input_file_path","input_file_name.txt")
 
 #Set source file encoding (using list above)
 $src_enc = $ansi
 
 #Set target file path and file name
-$tgt = [System.IO.Path]::Combine("C:\output_file_path\","output_file_name.txt")
+$tgt = [System.IO.Path]::Combine("C:\output_file_path","output_file_name.txt")
 
 #Set target file encoding (using list above)
 $tgt_enc = $utf8
@@ -173,16 +172,16 @@ $write.Close()
 $write.Dispose()
 ```
 
-## <a name="next-steps"></a>Next steps
-To learn more about moving data to SQL Data Warehouse, see the [data migration overview][].
+## 後續步驟
+若要瞭解將資料移到 SQL 資料倉儲的詳細資訊，請參閱[資料移轉概觀][]。
 
 <!--Image references-->
 
 <!--Article references-->
 [Load data with bcp]: ./sql-data-warehouse-load-with-bcp.md
-[Load data with PolyBase]: ./sql-data-warehouse-get-started-load-with-polybase.md
-[Statistics]: ./sql-data-warehouse-tables-statistics.md
-[data migration overview]: ./sql-data-warehouse-overview-migrate.md
+[使用 PolyBase 載入資料]: ./sql-data-warehouse-get-started-load-with-polybase.md
+[統計資料]: ./sql-data-warehouse-tables-statistics.md
+[資料移轉概觀]: ./sql-data-warehouse-overview-migrate.md
 
 <!--MSDN references-->
 [supported source/sink]: https://msdn.microsoft.com/library/dn894007.aspx
@@ -191,7 +190,8 @@ To learn more about moving data to SQL Data Warehouse, see the [data migration o
 [SSIS]: https://msdn.microsoft.com/library/ms141026.aspx
 
 [CREATE EXTERNAL DATA SOURCE (Transact-SQL)]: https://msdn.microsoft.com/library/dn935022.aspx
-[CREATE EXTERNAL FILE FORMAT (Transact-SQL)]: https://msdn.microsoft.com/library/dn935026).aspx [CREATE EXTERNAL TABLE (Transact-SQL)]: https://msdn.microsoft.com/library/dn935021.aspxx
+[CREATE EXTERNAL FILE FORMAT (Transact-SQL)]: https://msdn.microsoft.com/library/dn935026).aspx
+[CREATE EXTERNAL TABLE (Transact-SQL)]: https://msdn.microsoft.com/library/dn935021.aspx
 
 [DROP EXTERNAL DATA SOURCE (Transact-SQL)]: https://msdn.microsoft.com/library/mt146367.aspx
 [DROP EXTERNAL FILE FORMAT (Transact-SQL)]: https://msdn.microsoft.com/library/mt146379.aspx
@@ -206,8 +206,4 @@ To learn more about moving data to SQL Data Warehouse, see the [data migration o
 
 <!-- External Links -->
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!----HONumber=AcomDC_0907_2016-->

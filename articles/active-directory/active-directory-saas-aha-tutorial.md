@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="Tutorial: Azure Active Directory integration with Aha! | Microsoft Azure" 
-    description="Learn how to use Aha! with Azure Active Directory to enable single sign-on, automated provisioning, and more!" 
+    pageTitle="教學課程：Azure Active Directory 與 Aha! 整合 | Microsoft Azure" 
+    description="了解如何使用 Aha! 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -11,141 +11,133 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="09/29/2016" 
+    ms.date="07/11/2016" 
     ms.author="jeedes" />
 
+#教學課程：Azure Active Directory 與 Aha! 整合
 
-#<a name="tutorial:-azure-active-directory-integration-with-aha!"></a>Tutorial: Azure Active Directory integration with Aha!
+本教學課程的目的是要示範 Azure 與 Aha! 的整合。 本教學課程中說明的案例假設您已經具有下列項目：
 
-The objective of this tutorial is to show the integration of Azure and Aha!  
-The scenario outlined in this tutorial assumes that you already have the following items:
+-   有效的 Azure 訂閱
+-   啟用 Aha! 單一登入的訂用帳戶
 
--   A valid Azure subscription
--   An Aha! single sign-on enabled subscription
+完成本教學課程之後，您指派給 Aha! 的 Azure AD 使用者就能夠單一登入您 Aha! 公司網站 (服務提供者起始登入) 的應用程式，或是使用[存取面板簡介](active-directory-saas-access-panel-introduction.md)進行單一登入。
 
-After completing this tutorial, the Azure AD users you have assigned to Aha! will be able to single sign into the application at your Aha! company site (service provider initiated sign on), or using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+本教學課程中說明的案例由下列建置組塊組成：
 
-The scenario outlined in this tutorial consists of the following building blocks:
+1.  啟用 Aha! 的應用程式整合
+2.  設定單一登入
+3.  設定使用者佈建
+4.  指派使用者
 
-1.  Enabling the application integration for Aha!
-2.  Configuring single sign-on
-3.  Configuring user provisioning
-4.  Assigning users
+![案例](./media/active-directory-saas-aha-tutorial/IC798944.png "案例")
+##啟用 Aha! 的應用程式整合
 
-![Scenario](./media/active-directory-saas-aha-tutorial/IC798944.png "Scenario")
-##<a name="enabling-the-application-integration-for-aha!"></a>Enabling the application integration for Aha!
+本節的目的是概述如何啟用 Aha! 的應用程式整合。
 
-The objective of this section is to outline how to enable the application integration for Aha!.
+###若要啟用 Aha! 的應用程式整合，請執行下列步驟：
 
-###<a name="to-enable-the-application-integration-for-aha!,-perform-the-following-steps:"></a>To enable the application integration for Aha!, perform the following steps:
-
-1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-aha-tutorial/IC700993.png "Active Directory")
 
-2.  From the **Directory** list, select the directory for which you want to enable directory integration.
+2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3.  To open the applications view, in the directory view, click **Applications** in the top menu.
+3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
 
-    ![Applications](./media/active-directory-saas-aha-tutorial/IC700994.png "Applications")
+    ![應用程式](./media/active-directory-saas-aha-tutorial/IC700994.png "應用程式")
 
-4.  Click **Add** at the bottom of the page.
+4.  按一下頁面底部的 [新增]。
 
-    ![Add application](./media/active-directory-saas-aha-tutorial/IC749321.png "Add application")
+    ![新增應用程式](./media/active-directory-saas-aha-tutorial/IC749321.png "新增應用程式")
 
-5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
-    ![Add an application from gallerry](./media/active-directory-saas-aha-tutorial/IC749322.png "Add an application from gallerry")
+    ![從組件庫新增應用程式](./media/active-directory-saas-aha-tutorial/IC749322.png "從組件庫新增應用程式")
 
-6.  In the **search box**, type **Aha!**.
+6.  在**搜尋方塊**中，輸入 **Aha!**。
 
-    ![Application Gallery](./media/active-directory-saas-aha-tutorial/IC798945.png "Application Gallery")
+    ![應用程式庫](./media/active-directory-saas-aha-tutorial/IC798945.png "應用程式庫")
 
-7.  In the results pane, select **Aha!**, and then click **Complete** to add the application.
+7.  在結果窗格中，選取 [Aha!]，然後按一下 [完成] 加入應用程式。
 
     ![Aha!](./media/active-directory-saas-aha-tutorial/IC802746.png "Aha!")
-##<a name="configuring-single-sign-on"></a>Configuring single sign-on
+##設定單一登入
 
-The objective of this section is to outline how to enable users to authenticate to Aha! with their account in Azure AD using federation based on the SAML protocol.
+本節的目的是概述如何依據 SAML 通訊協定來使用同盟，讓使用者能夠以自己的 Azure AD 帳戶在 Aha! 中進行驗證。
 
-###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
+###若要設定單一登入，請執行下列步驟：
 
-1.  In the Azure classic portal, on the **Aha!** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
+1.  在 Azure 傳統入口網站的 [Aha!] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-aha-tutorial/IC798946.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-aha-tutorial/IC798946.png "設定單一登入")
 
-2.  On the **How would you like users to sign on to Aha!** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
+2.  在 [要如何讓使用者登入 Aha!] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-aha-tutorial/IC798947.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-aha-tutorial/IC798947.png "設定單一登入")
 
-3.  On the **Configure App URL** page, in the **Aha! Sign On URL** textbox, type the URL used by your users to sign-on to your Aha! Application (e.g.: "*https://company.aha.io/session/new*"), and then click **Next**.
+3.  在 [設定應用程式 URL] 頁面的 [Aha! 登入 URL] 文字方塊中，輸入使用者用來登入 Aha! 應用程式的 URL (例如："*https://company.aha.io/session/new*")，然後按 *[下一步]*。
 
-    ![Configure App URL](./media/active-directory-saas-aha-tutorial/IC798948.png "Configure App URL")
+    ![設定應用程式 URL](./media/active-directory-saas-aha-tutorial/IC798948.png "設定應用程式 URL")
 
-4.  On the **Configure single sign-on at Aha!** page, to download your metadata file, click **Download metadata**, and then save the metadata file locally on your computer.
+4.  在 [設定在 Aha! 單一登入] 頁面上，按一下 [下載中繼資料] 下載您的中繼資料檔，然後將中繼資料檔儲存在您的本機電腦中。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-aha-tutorial/IC798949.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-aha-tutorial/IC798949.png "設定單一登入")
 
-5.  In a different web browser window, log into your Aha! company site as an administrator.
+5.  在不同的 Web 瀏覽器視窗中，以系統管理員身分登入您的 Aha! 公司網站。
 
-6.  In the menu on the top, click **Settings**.
+6.  在頂端的功能表中，按一下 [設定]。
 
-    ![Settings](./media/active-directory-saas-aha-tutorial/IC798950.png "Settings")
+    ![設定](./media/active-directory-saas-aha-tutorial/IC798950.png "設定")
 
-7.  Click **Account**.
+7.  按一下 [帳戶]。
 
-    ![Profile](./media/active-directory-saas-aha-tutorial/IC798951.png "Profile")
+    ![設定檔](./media/active-directory-saas-aha-tutorial/IC798951.png "設定檔")
 
-8.  Click **Security and single sign-on**.
+8.  按一下 [安全性和單一登入]。
 
-    ![Security and single sign-on](./media/active-directory-saas-aha-tutorial/IC798952.png "Security and single sign-on")
+    ![安全性和單一登入](./media/active-directory-saas-aha-tutorial/IC798952.png "安全性和單一登入")
 
-9.  In **Single Sign-On** section, as **Identity Provider**, select **SAML2.0**.
+9.  在 [單一登入] 區段中，針對 [識別提供者] 選取 [SAML2.0]。
 
-    ![Security and single sign-on](./media/active-directory-saas-aha-tutorial/IC798953.png "Security and single sign-on")
+    ![安全性和單一登入](./media/active-directory-saas-aha-tutorial/IC798953.png "安全性和單一登入")
 
-10. On the **Single Sign-On** configuration page, perform the following steps:
+10. 在 [單一登入] 組態頁面上，執行下列步驟：
 
-    ![Single Sign-On](./media/active-directory-saas-aha-tutorial/IC798954.png "Single Sign-On")
+    ![單一登入](./media/active-directory-saas-aha-tutorial/IC798954.png "單一登入")
 
-    1.  In the **Name** textbox, type a name for your configuration.
-    2.  For **Configure using**, select **Metadata File**.
-    3.  To upload your downloaded metadata file, click **Browse**.
-    4.  Click **Update**.
+    1.  在 [名稱] 文字方塊中，輸入您的組態名稱。
+    2.  針對 [設定使用]，選取 [中繼資料檔]。
+    3.  若要上傳您下載的中繼資料檔，請按一下 [瀏覽]。
+    4.  按一下 [更新]。
 
-11. On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
+11. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-aha-tutorial/IC798955.png "Configure Single Sign-On")
-##<a name="configuring-user-provisioning"></a>Configuring user provisioning
+    ![設定單一登入](./media/active-directory-saas-aha-tutorial/IC798955.png "設定單一登入")
+##設定使用者佈建
 
-In order to enable Azure AD users to log into Aha!, they must be provisioned into Aha!.  
-In the case of Aha!, provisioning is an automated task.  
-There is no action item for you.
+若要讓 Azure AD 使用者能夠登入 Aha!，必須將他們佈建到 Aha!。Aha! 的佈建是自動化工作。沒有您適用的動作項目。
   
-Users are automatically created if necessary during the first single sign-on attempt.
+第一次嘗試單一登入時，會視需要自動建立使用者。
 
->[AZURE.NOTE] You can use any other Aha! user account creation tools or APIs provided by Aha! to provision AAD user accounts.
+>[AZURE.NOTE] 您可以使用任何其他的 Aha! 使用者帳戶建立工具或 Aha! 提供的 API 來佈建 AAD 使用者帳戶。
 
-##<a name="assigning-users"></a>Assigning users
+##指派使用者
 
-To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
+若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-###<a name="to-assign-users-to-aha!,-perform-the-following-steps:"></a>To assign users to Aha!, perform the following steps:
+###若要將使用者指派到 Aha!，請執行下列步驟：
 
-1.  In the Azure classic portal, create a test account.
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
-2.  On the **Aha! **application integration page, click **Assign users**.
+2.  在 [Aha!] 應用程式整合頁面上，按一下 [指派使用者]。
 
-    ![Assign Users](./media/active-directory-saas-aha-tutorial/IC798956.png "Assign Users")
+    ![指派使用者](./media/active-directory-saas-aha-tutorial/IC798956.png "指派使用者")
 
-3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
+3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
 
-    ![Yes](./media/active-directory-saas-aha-tutorial/IC767830.png "Yes")
+    ![是](./media/active-directory-saas-aha-tutorial/IC767830.png "是")
 
-If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0713_2016-->

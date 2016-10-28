@@ -1,136 +1,132 @@
 <properties
-    pageTitle="Feature engineering and selection in Azure Machine Learning | Microsoft Azure"
-    description="Explains the purposes of feature selection and feature engineering and provides examples of their role in the data-enhancement process of machine learning."
-    services="machine-learning"
-    documentationCenter=""
-    authors="bradsev"
-    manager="jhubbard"
-    editor="cgronlun"/>
+	pageTitle="Azure Machine Learning 中的特徵設計和選取 | Microsoft Azure"
+	description="說明機器學習的資料增強程序中特性選取和特性工程設計的目的，並提供其角色的範例。"
+	services="machine-learning"
+	documentationCenter=""
+	authors="bradsev"
+	manager="jhubbard"
+	editor="cgronlun"/>
 
 <tags
-    ms.service="machine-learning"
-    ms.workload="data-services"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/12/2016"
-    ms.author="zhangya;bradsev" />
+	ms.service="machine-learning"
+	ms.workload="data-services"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/12/2016"
+	ms.author="zhangya;bradsev" />
 
 
+# Azure 機器學習中的特性工程設計和選取
 
-# <a name="feature-engineering-and-selection-in-azure-machine-learning"></a>Feature engineering and selection in Azure Machine Learning
-
-This topic explains the purposes of feature engineering and feature selection in the data-enhancement process of machine learning. It illustrates what these processes involve by using examples provided by Azure Machine Learning Studio.
+本主題說明機器學習的資料增強程序中特徵工程設計和特徵選取的目的。其使用 Azure Machine Learning Studio 提供的範例來解釋這些程序的相關事項。
 
 [AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-The training data used in machine learning can often be enhanced by the selection or extraction of features from the raw data collected. An example of an engineered feature in the context of learning how to classify the images of handwritten characters is a bit-density map constructed from the raw bit distribution data. This map can help locate the edges of the characters more efficiently than the raw distribution.
+從收集的原始資料選取或擷取特性，通常可以增強機器學習中使用的定型資料。在了解如何將手寫字元影像分類的內容中，有一個工程設計的特徵範例是建立從原始位元分配資料建構的位元密度對應。相較於原始分配，此對應有助於更有效地找出字元的界限。
 
-Engineered and selected features increase the efficiency of the training process, which attempts to extract the key information contained in the data. They also improve the power of these models to classify the input data accurately and to predict outcomes of interest more robustly. Feature engineering and selection can also combine to make the learning more computationally tractable. It does so by enhancing and then reducing the number of features needed to calibrate or train a model. Mathematically speaking, the features selected to train the model are a minimal set of independent variables that explain the patterns in the data and then predict outcomes successfully.
+工程設計和選取的特徵可提高下列定型過程的效率：嘗試擷取資料中內含的重要資訊。此外，還可改善這些模型的功效，正確地分類輸入資料以及更精確地預測感興趣的結果。特性工程設計和選取也可結合起來，讓學習更易於以運算方式處理。其作法是提高而後減少校正或定型模型所需的特性數量。從數學的角度來看，選取用來定型模型的特性是極小的一組獨立變數，可供解釋資料中的模式，然後成功地預測結果。
 
-The engineering and selection of features is one part of a larger process, which typically consists of four steps:
+特性的工程設計和選取屬於較大型程序的一部分，該程序通常包含下列四個步驟：
 
-* Data collection
-* Data enhancement
-* Model construction
-* Post-processing
+* 資料收集
+* 資料增強
+* 模型建構
+* 後處理
 
-Engineering and selection make up the data enhancement step of machine learning. Three aspects of this process may be distinguished for our purposes:
+工程設計和選取是資料學習的**資料增強**步驟。此程序的三個層面主要有四個目的：
 
-* **Data pre-processing**: This process tries to ensure that the collected data is clean and consistent. It includes tasks such as integrating multiple data sets, handling missing data, handling inconsistent data, and converting data types.
-* **Feature engineering**: This process attempts to create additional relevant features from the existing raw features in the data and to increase predictive power to the learning algorithm.
-* **Feature selection**: This process selects the key subset of original data features to reduce the dimensionality of the training problem.
+* **資料前處理**：此程序嘗試確保收集的資料乾淨而一致。其中包含下列工作：例如整合多個資料集、處理不一致的資料，以及轉換資料類型。
+* **特性工程設計**：此程序嘗試從資料中的現有原始特性建立其他相關特性，以及增加學習演算法的預測功效。
+* **特性選取**：此程序嘗試選取主要的原始資料特性子集，以縮小定型問題的維度。
 
-This topic only covers the feature engineering and feature selection aspects of the data enhancement process. For more information on the data pre-processing step, see [Pre-processing data in Azure Machine Learning Studio](https://azure.microsoft.com/documentation/videos/preprocessing-data-in-azure-ml-studio/).
-
-
-## <a name="creating-features-from-your-data--feature-engineering"></a>Creating features from your data--feature engineering
-
-The training data consists of a matrix composed of examples (records or observations stored in rows), each of which has a set of features (variables or fields stored in columns). The features specified in the experimental design are expected to characterize the patterns in the data. Although many of the raw data fields can be directly included in the selected feature set used to train a model, additional engineered features often need to be constructed from the features in the raw data to generate an enhanced training data set.
-
-What kind of features should be created to enhance the data set when training a model? Engineered features that enhance the training provide information that better differentiates the patterns in the data. You expect the new features to provide additional information that is not clearly captured or easily apparent in the original or existing feature set, but this process is something of an art. Sound and productive decisions often require some domain expertise.
-
-When starting with Azure Machine Learning, it is easiest to grasp this process concretely by using samples provided in Machine Learning Studio. Two examples are presented here:
-
-* A regression example ([Prediction of the number of bike rentals](http://gallery.cortanaintelligence.com/Experiment/Regression-Demand-estimation-4)) in a supervised experiment where the target values are known
-* A text-mining classification example using [Feature Hashing][feature-hashing]
-
-### <a name="example-1:-adding-temporal-features-for-a-regression-model"></a>Example 1: Adding temporal features for a regression model ###
-
-To demonstrate how to engineer features for a regression task, let's use the experiment "Demand forecasting of bikes" in Azure Machine Learning Studio. The objective of this experiment is to predict the demand for the bikes, that is, the number of bike rentals within a specific month, day, or hour. The data set **Bike Rental UCI data set** is used as the raw input data.
-
-This data set is based on real data from the Capital Bikeshare company that maintains a bike rental network in Washington DC in the United States. The data set represents the number of bike rentals within a specific hour of a day, from 2011 to 2012, and it contains 17379 rows and 17 columns. The raw feature set contains weather conditions (temperature, humidity, wind speed) and the type of the day (holiday or weekday). The field to predict is **cnt**, a count that represents the bike rentals within a specific hour and that ranges from 1 to 977.
-
-To construct effective features in the training data, four regression models are built by using the same algorithm, but with four different training data sets. The four data sets represent the same raw input data, but with an increasing number of features set. These features are grouped into four categories:
-
-1. A = weather + holiday + weekday + weekend features for the predicted day
-2. B = number of bikes that were rented in each of the previous 12 hours
-3. C = number of bikes that were rented in each of the previous 12 days at the same hour
-4. D = number of bikes that were rented in each of the previous 12 weeks at the same hour and the same day
-
-Besides feature set A, which already exists in the original raw data, the other three sets of features are created through the feature engineering process. Feature set B captures the recent demand for the bikes. Feature set C captures the demand for bikes at a particular hour. Feature set D captures demand for bikes at particular hour and particular day of the week. Each of the four training data sets includes feature sets A, A+B, A+B+C, and A+B+C+D, respectively.
-
-In the Azure Machine Learning experiment, these four training data sets are formed via four branches from the pre-processed input data set. Except for the leftmost branch, each of these branches contains an [Execute R Script][execute-r-script] module in which a set of derived features (feature sets B, C, and D) is respectively constructed and appended to the imported data set. The following figure demonstrates the R script used to create feature set B in the second left branch.
-
-![Create a feature set](./media/machine-learning-feature-selection-and-engineering/addFeature-Rscripts.png)
-
-The following table summarizes the comparison of the performance results of the four models. The best results are shown by features A+B+C. Note that the error rate decreases when additional feature sets are included in the training data. This verifies our presumption that the feature sets B and C provide additional relevant information for the regression task. Adding the D feature set does not seem to provide any additional reduction in the error rate.
-
-![Compare performance results](./media/machine-learning-feature-selection-and-engineering/result1.png)
-
-### <a name="<a-name="example2"></a>-example-2:-creating-features-in-text-mining"></a><a name="example2"></a> Example 2: Creating features in text mining  
-
-Feature engineering is widely applied in tasks related to text mining, such as document classification and sentiment analysis. For example, when you want to classify documents into several categories, a typical assumption is that the words or phrases included in one document category are less likely to occur in another document category. In other words, the frequency of the word or phrase distribution is able to characterize different document categories. In text mining applications, the feature engineering process is needed to create the features involving word or phrase frequencies because individual pieces of text-contents usually serve as the input data.
-
-To achieve this task, a technique called *feature hashing* is applied to efficiently turn arbitrary text features into indices. Instead of associating each text feature (words or phrases) to a particular index, this method functions by applying a hash function to the features and by using their hash values as indices directly.
-
-In Azure Machine Learning, there is a [Feature Hashing][feature-hashing] module that creates these word or phrase features. The following figure shows an example of using this module. The input data set contains two columns: the book rating ranging from 1 to 5 and the actual review content. The goal of this [Feature Hashing][feature-hashing] module is to retrieve new features that show the occurrence frequency of the corresponding words or phrases within the particular book review. To use this module, you need to complete the following steps:
-
-1. Select the column that contains the input text (**Col2** in this example).
-2. Set *Hashing bitsize* to 8, which means 2^8=256 features are created. The word or phrase in the text is then hashed to 256 indices. The parameter *Hashing bitsize* ranges from 1 to 31. If the parameter is set to a larger number, the words or phrases are less likely to be hashed into the same index.
-3. Set the parameter *N-grams* to 2. This retrieves the occurrence frequency of unigrams (a feature for every single word) and bigrams (a feature for every pair of adjacent words) from the input text. The parameter *N-grams* ranges from 0 to 10, which indicates the maximum number of sequential words to be included in a feature.  
-
-![Feature hashing module](./media/machine-learning-feature-selection-and-engineering/feature-Hashing1.png)
-
-The following figure shows what these new features look like.
-
-![Feature hashing example](./media/machine-learning-feature-selection-and-engineering/feature-Hashing2.png)
-
-## <a name="filtering-features-from-your-data--feature-selection"></a>Filtering features from your data--feature selection  ##
-
-*Feature selection* is a process that is commonly applied to the construction of training data sets for predictive modeling tasks such as classification or regression tasks. The goal is to select a subset of the features from the original data set that reduces its dimensions by using a minimal set of features to represent the maximum amount of variance in the data. This subset of features contains the only features to be included to train the model. Feature selection serves two main purposes:
-
-* Feature selection often increases classification accuracy by eliminating irrelevant, redundant, or highly correlated features.
-* Feature selection decreases the number of features, which makes the model training process more efficient. This is particularly important for learners that are expensive to train such as support vector machines.
-
-Although feature selection seeks to reduce the number of features in the data set used to train the model, it is not usually referred to by the term *dimensionality reduction.* Feature selection methods extract a subset of original features in the data without changing them.  Dimensionality reduction methods employ engineered features that can transform the original features and thus modify them. Examples of dimensionality reduction methods include principal component analysis, canonical correlation analysis, and singular value decomposition.
-
-One widely applied category of feature selection methods in a supervised context is filter-based feature selection. By evaluating the correlation between each feature and the target attribute, these methods apply a statistical measure to assign a score to each feature. The features are then ranked by the score, which you can use to set the threshold for keeping or eliminating a specific feature. Examples of the statistical measures used in these methods include Pearson Correlation, mutual information, and the Chi-squared test.
-
-Azure Machine Learning Studio provides modules for feature selection. As shown in the following figure, these modules include [Filter-Based Feature Selection][filter-based-feature-selection] and [Fisher Linear Discriminant Analysis][fisher-linear-discriminant-analysis].
-
-![Feature selection example](./media/machine-learning-feature-selection-and-engineering/feature-Selection.png)
+本主題僅涵蓋資料增強程序的特徵工程設計和特徵選取層面。如需資料前處理步驟的其他資訊，請參閱[在 Azure ML Studio 中進行資料前處理](https://azure.microsoft.com/documentation/videos/preprocessing-data-in-azure-ml-studio/)影片。
 
 
-For example, use the [Filter-Based Feature Selection][filter-based-feature-selection] module with the text mining example outlined previously. Assume that you want to build a regression model after a set of 256 features is created through the [Feature Hashing][feature-hashing] module, and that the response variable is **Col1** and represents a book review rating ranging from 1 to 5. Set **Feature scoring method** to **Pearson Correlation**, **Target column** to **Col1**, and **Number of desired features** to **50**. The module [Filter-Based Feature Selection][filter-based-feature-selection] then produces a data set containing 50 features together with the target attribute **Col1**. The following figure shows the flow of this experiment and the input parameters.
+## 從您的資料建立特性 - 特性工程設計
 
-![Feature selection example](./media/machine-learning-feature-selection-and-engineering/feature-Selection1.png)
+定型資料包含由範例所組成的矩陣 (資料列中儲存的記錄或 觀察)，而每個範例都有一組特性 (資料行中儲存的變數或欄位)。在實驗設計中指定的特性預計會將資料中的模式特性化。儘管許多原始資料欄位都可以直接包含在選取用來將模型定型的特性集中，但通常還是需要從原始資料中的特性建構其他 (經過工程設計的) 特性，才能產生增強的定型資料集。
 
-The following figure shows the resulting data sets. Each feature is scored based on the Pearson Correlation between itself and the target attribute **Col1**. The features with top scores are kept.
+應建立何種特性，才能在模型定型時增強資料集？ 經過工程設計的特性可增強定型，還會提供用以區分資料中模式的資訊。我們期望新特性可提供原始或現有特性集中未清楚擷取或顯而易見的其他資訊。但此程序是一種藝術。健全且有建設性的決策通常需要一些網域.專業知識。
 
-![Filter-based feature selection data sets](./media/machine-learning-feature-selection-and-engineering/feature-Selection2.png)
+從 Azure 機器學習著手時，最簡單的方式是透過 Studio 中提供的範例具體地領會此程序。以下呈現兩個範例：
 
-The following figure shows the corresponding scores of the selected features.
+* 在已知目標值的監督實驗中的[單車租用數量預測](http://gallery.cortanaintelligence.com/Experiment/Regression-Demand-estimation-4)迴歸範例
+* 使用[特性雜湊][feature-hashing]的文字採礦分類範例
 
-![Selected feature scores](./media/machine-learning-feature-selection-and-engineering/feature-Selection3.png)
+### 範例 1：新增迴歸模型的暫時特性 ###
 
-By applying this [Filter-Based Feature Selection][filter-based-feature-selection] module, 50 out of 256 features are selected because they have the most features correlated with the target variable **Col1** based on the scoring method **Pearson Correlation**.
+為了示範如何為迴歸工作的特徵進行工程設計，讓我們在 Azure Machine Learning Studio 中使用「單車的需求預測」實驗。這項實驗的目標在於預測單車需求，也就是再特定月份/日期/小時內單車租用的數量。資料集「單車租用 UCI 資料集」作為原始輸入資料使用。此資料集是以在美國華盛頓特區維護單車出租網路的 Capital Bikeshare 公司所提供的實際資料為基礎。此資料集代表 2011 年到 2012 年間，一天中某個特定小時內的單車租用數量，總共包含 17379 個資料列和 17 個資料行。原始特性集包含天氣條件 (溫度/溼度/風速) 和當天的類型 (假日/工作日)。要預測的欄位為 "cnt"，代表特定小時內單位租用的計數，其範圍是 1 至 977。
 
-## <a name="conclusion"></a>Conclusion
-Feature engineering and feature selection are two steps commonly performed to prepare the training data when building a machine learning model. Normally, feature engineering is applied first to generate additional features, and then the feature selection step is performed to eliminate irrelevant, redundant, or highly correlated features.
+為了達到在定型資料中建構有效特性的目的，會使用相同的演算法建立四個各有不同定型資料集的迴歸模型，這四個資料集代表相同的原始輸入資料，但設定的特性數量增加。這些特性可分為四類：
 
-It is not always necessarily to perform feature engineering or feature selection. Whether it is needed depends on the data you have or collect, the algorithm you pick, and the objective of the experiment.
+1. A = 預測日的天氣 + 假日 + 工作日 + 週末特性
+2. B = 過去的 12 小時以來，每小時租出的單車數量
+3. C = 過去的 12 天以來，每天在同一個時間租出的單車數量
+4. D = 過去的 12 週以來，在同一天同一個時間租出的單車數量
 
+除了已存在於原先未經處理資料中的特徵集 A 以外，其他三個特徵集都是透過特徵工程設計程序來建立。特徵集 B 會擷取最近的單車需求。特性集 C 會擷取某一個小時的單車需求。特性集 D 會擷取一週當中某一天某一個小時的單車需求。四個定型資料集分別包含特性集 A、A+B、A+B+C 和 A+B+C+D。
+
+在 Azure 機器學習實驗中，這四個定型資料集是透過預先處理的輸入資料集中的分支形成。除了最左邊的分支以外，每個分支都包含[執行 R 指令碼][execute-r-script]模組，其中有一組衍生的特徵 (特徵集 B、C 和 D) 會分別建構並附加至匯入的資料集 。下圖示範左邊第二個分支中用來建立特性集 B 的 R 指令碼。
+
+![建立特性](./media/machine-learning-feature-selection-and-engineering/addFeature-Rscripts.png)
+
+下表彙總了四個模型的效能結果比較。特性 A+B+C 所呈現的結果最理想。請注意，當定型資料中包含其他特徵集時，錯誤率會降低。這證實了我們的推測：特性集 B、C 會針對迴歸工作提供其他相關資訊。但新增 D 特性似乎不會讓錯誤率降低。
+
+![結果比較](./media/machine-learning-feature-selection-and-engineering/result1.png)
+
+### <a name="example2"></a> 範例 2：在文字採礦中建立特性  
+
+特性工程設計廣泛運用於文字採礦的相關工作，例如文件分類和情感分析。例如，當我們想要將文件分為數個類別時，通常會假設包含在一個文件類別中的文字/片語比較不可能出現在其他文件類別中。換言之，文字/片語分配的次數能夠描述不同文件類別的特徵。在文字採礦應用程式中，因為個別的文字內容通常可作為輸入資料，所以建立文字/片語次數相關特性時需要特性工程設計程序。
+
+為了達成此工作，會套用名為**特性雜湊**的技術，有效地將任意文字特性變成索引。此方法不會將每個文字特性 (文字/片語) 關聯至特定索引，而是將雜湊函數套用至特性並直接使用其雜湊值作為索引。
+
+Azure 機器學習中有一個[特性雜湊][feature-hashing]模組，方便建立這些文字/片語特性。下圖顯示使用此模組的範例。輸入資料集包含兩個資料行：1 至 5 的書籍評比，以及實際評論內容。此[特性雜湊][feature-hashing]模組的目標在於擷取一些新特性，以顯示特定書籍評論中對應文字/片語的發生次數。若要使用此模組，我們必須完成下列步驟：
+
+* 第一步，選取包含輸入文字的資料行 (此例中的 "Col2")。
+* 第二步，將 "Hashing bitsize" 設定為 8，表示將建立 2^8=256 個特徵。所有文字中的文字/片語接著會雜湊至 256 個索引。"Hashing bitsize" 參數的範圍是 1 至 31。如果將此值設定為較大的數字，文字/片語比較不可能雜湊至相同的索引。
+* 第三步，將 "N-grams" 參數設定為 2。這麼做可從輸入文字中取得 unigrams (適用於每一個文字的特性) 和 bigrams (適用於每一對相鄰文字的特性) 的發生次數。"N-grams" 參數的範圍是 0 至 10，這表示要包含在一個特性中的循序文字數目上限。
+
+![「特性雜湊」模組](./media/machine-learning-feature-selection-and-engineering/feature-Hashing1.png)
+
+下圖顯示這些新特徵的外觀。
+
+![「特性雜湊」範例](./media/machine-learning-feature-selection-and-engineering/feature-Hashing2.png)
+
+## 從您的資料篩選特性 - 特性選取  ##
+
+特性選取程序通常適用於定型資料集的建構，以便進行預測性建模工作，例如分類或迴歸工作。其目的在於從原始資料集中選取一小組特性，使用極小一組的特性來代表資料中的最大變異量，藉此縮小其維度。這個特徵的子集只會包含要用於訓練模型的特徵。特性選取有兩個主要目的。
+
+* 第一，特性選取通常會排除不相關、多餘或高度相關的特性，進而提高分類正確性。
+* 第二，減少特徵數目，讓模型定型程序更有效率。對於定型代價昂貴的學習者 (例如支援向量機器) 而言，這格外重要。
+
+雖然特性選取設法要減少資料集中用於定型模型的特性數目 ，但通常不是指「維度縮減」。特性選取方法會擷取資料中的原始特性子集，但不會加以變更。維度縮減方法會運用經過工程設計的特性，轉換原始特性並加以修改。維度縮減方法的範例包含主成分分析、典型相關分析和奇異值分解。
+
+監督環境中有一個廣泛應用的特性選取方法類別，稱之為「以篩選為基礎的特性選取」。這些方法會評估每個特性與目標屬性之間的相關性，套用統計量值以將評分指派給每個特性。接著會依分數將特性排名，而分數可用來設定保留或排除特定特性的臨界值。這些方法中使用的統計量值範例包含皮耳森相關、相互資訊和卡方檢定。
+
+Azure Machine Learning Studio 中有針對特性選取而提供的模組。如下圖所示，這些模組包含[以篩選為基礎的特性選取][filter-based-feature-selection]和[費雪線性判別分析][fisher-linear-discriminant-analysis]。
+
+![特性選取範例](./media/machine-learning-feature-selection-and-engineering/feature-Selection.png)
+
+
+例如，請考慮使用[以篩選為基礎的特性選取][filter-based-feature-selection]模組。為了方便起見，我們會繼續使用上述的文字採礦範例。假設在透過[特徵雜湊][feature-hashing]模組建立一組 256 個特徵之後，我們想要建立一個迴歸模型，其應變數為 "Col1" 並代表 1 至 5 的書籍評論評比。將 [特性評分方法] 設定為 [皮耳森相關]，則 [目標欄] 會是 "Col1"，而 [所需的特性數] 會是 50。然後，[以篩選器為基礎的特徵選取][filter-based-feature-selection]模組會產生一個包含 50 個特徵且目標屬性為 "Col1" 的資料集。下圖顯示此實驗的流程以及我們剛才描述的輸入參數。
+
+![特性選取範例](./media/machine-learning-feature-selection-and-engineering/feature-Selection1.png)
+
+下圖顯示結果產生的資料集。每個特性都是根據本身與目標屬性 "Col1" 之間的皮耳森相關進行評分。系統會保留最高分的特性。
+
+![特性選取範例](./media/machine-learning-feature-selection-and-engineering/feature-Selection2.png)
+
+下圖顯示所選特性的對應評分。
+
+![特性選取範例](./media/machine-learning-feature-selection-and-engineering/feature-Selection3.png)
+
+套用[以篩選為基礎的特性選取][filter-based-feature-selection]模組，以選取 256 個特性中的 50 個特性，因為根據「皮耳森相關」評分方法，其具有目標變數 "Col1" 的最相關特性。
+
+## 結論
+建立機器學習模型時，常會執行特性工程設計和特性選取這兩個步驟來預備定型資料。通常會先套用特性工程設計以產生其他特定，然後執行特性選取步驟以排除不相關、多餘或高度相關的特性。
+
+您不一定要執行特徵工程設計或特徵選取。需要與否取決於我們所擁有或收集的資料、我們挑選的演算法，以及實驗的目標。
 
 <!-- Module References -->
 [execute-r-script]: https://msdn.microsoft.com/library/azure/30806023-392b-42e0-94d6-6b775a6e0fd5/
@@ -138,8 +134,4 @@ It is not always necessarily to perform feature engineering or feature selection
 [filter-based-feature-selection]: https://msdn.microsoft.com/library/azure/918b356b-045c-412b-aa12-94a1d2dad90f/
 [fisher-linear-discriminant-analysis]: https://msdn.microsoft.com/library/azure/dcaab0b2-59ca-4bec-bb66-79fd23540080/
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

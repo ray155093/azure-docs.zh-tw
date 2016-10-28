@@ -1,66 +1,65 @@
 <properties
-    pageTitle="Add Application Insights SDK to monitor your Node.js app | Microsoft Azure"
-    description="Analyze usage, availability and performance of your on-premises or Microsoft Azure web application with Application Insights."
-    services="application-insights"
+	pageTitle="新增 Application Insights SDK 以監視 Node.js 應用程式 | Microsoft Azure"
+	description="使用 Application Insights 分析內部部署或 Microsoft Azure Web 應用程式的使用情況、可用性和效能。"
+	services="application-insights"
     documentationCenter=""
-    authors="alancameronwills"
-    manager="douge"/>
+	authors="alancameronwills"
+	manager="douge"/>
 
 <tags
-    ms.service="application-insights"
-    ms.workload="tbd"
-    ms.tgt_pltfrm="ibiza"
-    ms.devlang="na"
-    ms.topic="get-started-article"
-    ms.date="08/30/2016"
-    ms.author="awills"/>
+	ms.service="application-insights"
+	ms.workload="tbd"
+	ms.tgt_pltfrm="ibiza"
+	ms.devlang="na"
+	ms.topic="get-started-article"
+	ms.date="08/30/2016"
+	ms.author="awills"/>
+
+
+# 新增 Application Insights SDK 以監視 Node.js 應用程式
+
+*Application Insights 目前僅供預覽。*
+
+[Visual Studio Application Insights](app-insights-overview.md) 監視您的即時應用程式，協助您[偵測並診斷效能問題和例外狀況](app-insights-detect-triage-diagnose.md)，同時[探索應用程式的使用情況](app-insights-overview-usage.md)。這適用於裝載在專屬內部部署 IIS 伺服器或 Azure VM 上的應用程式，以及 Azure Web 應用程式。
 
 
 
-# <a name="add-application-insights-sdk-to-monitor-your-node.js-app"></a>Add Application Insights SDK to monitor your Node.js app
+SDK 可自動收集內送 HTTP 要求率和回應、效能計數器 (CPU、記憶體、RPS) 和未處理的例外狀況。此外，您也可以新增自訂呼叫來追蹤相依性、度量或其他事件。
 
-*Application Insights is in preview.*
-
-[Visual Studio Application Insights](app-insights-overview.md) monitors your live application to help you [detect and diagnose performance issues and exceptions](app-insights-detect-triage-diagnose.md), and [discover how your app is used](app-insights-overview-usage.md). It works for apps that are hosted on your own on-premises IIS servers or on Azure VMs, as well as Azure web apps.
+![範例效能監視圖表](./media/app-insights-windows-services/10-perf.png)
 
 
+#### 開始之前
 
-The SDK provides automatic collection of incoming HTTP request rates and responses, performance counters (CPU, memory, RPS), and unhandled exceptions. In addition, you can add custom calls to track dependencies, metrics, or other events.
+您需要：
 
-![Example performance monitoring charts](./media/app-insights-nodejs/10-perf.png)
+* Visual Studio 2013 或更新版本。越新版越好。
+* [Microsoft Azure](http://azure.com) 訂用帳戶。如果您的小組或組織擁有 Azure 訂用帳戶，擁有者就可以使用您的 [Microsoft 帳戶](http://live.com)將您加入。
 
+## <a name="add"></a>建立 Application Insights 資源
 
-#### <a name="before-you-start"></a>Before you start
+登入 [Azure 入口網站][portal]，並建立新的 Application Insights 資源。Azure 中的[資源][roles]是服務的執行個體。此資源是來自您應用程式的遙測將經過分析並呈現的地方。
 
-You need:
+![按一下 [新增]，然後按一下 [Application Insights]](./media/app-insights-windows-services/01-new-asp.png)
 
-* Visual Studio 2013 or later. Later is better.
-* A subscription to [Microsoft Azure](http://azure.com). If your team or organization has an Azure subscription, the owner can add you to it, using your [Microsoft account](http://live.com).
+選擇 [其他] 做為應用程式類型。應用程式類型的選擇會設定[計量瀏覽器][metrics]中可見的資源刀鋒視窗和屬性的預設內容。
 
-## <a name="<a-name="add"></a>create-an-application-insights-resource"></a><a name="add"></a>Create an Application Insights resource
+#### 複製檢測金鑰
 
-Sign in to the [Azure portal][portal], and create a new Application Insights resource. A [resource][roles] in Azure is an instance of a service. This resource is where telemetry from your app will be analyzed and presented to you.
+該金鑰識別資源，您很快就會將它安裝在 SDK 中，以將資源導向資料。
 
-![Click New, Application Insights](./media/app-insights-nodejs/01-new-asp.png)
-
-Choose Other as the application type. The choice of application type sets the default content of the resource blades and the properties visible in [Metrics Explorer][metrics].
-
-#### <a name="copy-the-instrumentation-key"></a>Copy the Instrumentation Key
-
-The key identifies the resource, and you'll install it soon in the SDK to direct data to the resource.
-
-![Click Properties, select the key, and press ctrl+C](./media/app-insights-nodejs/02-props-asp.png)
+![按一下 [屬性]，選取金鑰，然後按下 CTRL+C](./media/app-insights-windows-services/02-props-asp.png)
 
 
-## <a name="<a-name="sdk"></a>-install-the-sdk-in-your-application"></a><a name="sdk"></a> Install the SDK in your application
+## <a name="sdk"></a> 在應用程式中安裝 SDK
 
 ```
 npm install applicationinsights --save
 ```
 
-## <a name="usage"></a>Usage
+## 使用量
 
-This will enable request monitoring, unhandled exception tracking, and system performance monitoring (CPU/Memory/RPS).
+這會啟用要求監視、未處理的例外狀況追蹤和系統效能監視 (CPU/記憶體/RPS)。
 
 ```javascript
 
@@ -68,56 +67,56 @@ var appInsights = require("applicationinsights");
 appInsights.setup("<instrumentation_key>").start();
 ```
 
-The instrumentation key can also be set in the environment variable APPINSIGHTS_INSTRUMENTATIONKEY. If this is done, no argument is required when calling `appInsights.setup()` or `appInsights.getClient()`.
+檢測金鑰也可設定於環境變數 APPINSIGHTS\_INSTRUMENTATIONKEY 中。如果這麼做，則在呼叫 `appInsights.setup()` 或 `appInsights.getClient()` 時就不需要引數。
 
-You can try the SDK without sending telemetry: set the instrumentation key to a non-empty string.
-
-
-## <a name="<a-name="run"></a>-run-your-project"></a><a name="run"></a> Run your project
-
-Run your application and try it out: open different pages to generate some telemetry.
+您可以在不傳送遙測的情況下嘗試 SDK︰將檢測金鑰設定為非空白字串。
 
 
-## <a name="<a-name="monitor"></a>-view-your-telemetry"></a><a name="monitor"></a> View your telemetry
+## <a name="run"></a>執行專案
 
-Return to the [Azure portal](https://portal.azure.com) and browse to your Application Insights resource.
-
-
-Look for data in the Overview page. At first, you'll just see one or two points. For example:
-
-![Click through to more data](./media/app-insights-nodejs/12-first-perf.png)
-
-Click through any chart to see more detailed metrics. [Learn more about metrics.][perf]
-
-#### <a name="no-data?"></a>No data?
-
-* Use the application, opening different pages so that it generates some telemetry.
-* Open the [Search](app-insights-diagnostic-search.md) tile, to see individual events. Sometimes it takes events a little while longer to get through the metrics pipeline.
-* Wait a few seconds and click **Refresh**. Charts refresh themselves periodically, but you can refresh manually if you're waiting for some data to show up.
-* See [Troubleshooting][qna].
-
-## <a name="publish-your-app"></a>Publish your app
-
-Now deploy your application to IIS or to Azure and watch the data accumulate.
+執行應用程式並立即試用：開啟不同的頁面來產生一些遙測。
 
 
-#### <a name="no-data-after-you-publish-to-your-server?"></a>No data after you publish to your server?
+## <a name="monitor"></a>檢視遙測
 
-Open these ports for outgoing traffic in your server's firewall:
+返回 [Azure 入口網站](https://portal.azure.com)，並且瀏覽至您的 Application Insights 資源。
+
+
+在 [概觀] 頁面中尋找資料。剛開始的時候，您只會看見一或兩個資料點。例如：
+
+![Click through to more data](./media/app-insights-windows-services/12-first-perf.png)
+
+按一下任何圖表以查看詳細度量。[深入了解度量。][perf]
+
+#### 沒有資料？
+
+* 使用應用程式、開啟不同頁面，以產生一些遙測。
+* 開啟 [[搜尋](app-insights-diagnostic-search.md)] 磚來查看個別事件。有時候，事件通過計量管線所需的時間較長。
+* 請稍等片刻，然後按一下 [重新整理]。圖表會定期自行重新整理，但是如果您在等待一些要顯示的資料，您可以手動重新整理。
+* 請參閱[疑難排解][qna]。
+
+## 發佈您的應用程式
+
+現在請將應用程式部署至 IIS 或 Azure，並觀看資料累積情形。
+
+
+#### 發佈資料到伺服器之後，卻沒有資料？
+
+請在您的伺服器防火牆中，開啟這些連出流量的連接埠：
 
 + `dc.services.visualstudio.com:443`
 + `f5.services.visualstudio.com:443`
 
 
-#### <a name="trouble-on-your-build-server?"></a>Trouble on your build server?
+#### 組建伺服器發生問題？
 
-Please see [this Troubleshooting item](app-insights-asp-net-troubleshoot-no-data.md#NuGetBuild).
+請參閱[此疑難排解項目](app-insights-asp-net-troubleshoot-no-data.md#NuGetBuild)。
 
 
 
-## <a name="customized-usage"></a>Customized Usage 
+## 自訂的使用量 
 
-### <a name="disabling-auto-collection"></a>Disabling auto-collection
+### 停用自動收集
 
 ```javascript
 import appInsights = require("applicationinsights");
@@ -129,7 +128,7 @@ appInsights.setup("<instrumentation_key>")
     .start();
 ```
 
-### <a name="custom-monitoring"></a>Custom monitoring
+### 自訂監視
 
 ```javascript
 import appInsights = require("applicationinsights");
@@ -141,9 +140,9 @@ client.trackMetric("custom metric", 3);
 client.trackTrace("trace message");
 ```
 
-[Learn more about the telemetry API](app-insights-api-custom-events-metrics.md).
+[深入了解遙測 API](app-insights-api-custom-events-metrics.md)。
 
-### <a name="using-multiple-instrumentation-keys"></a>Using multiple instrumentation keys
+### 使用多個檢測金鑰
 
 ```javascript
 import appInsights = require("applicationinsights");
@@ -156,9 +155,9 @@ var otherClient = appInsights.getClient("<other_instrumentation_key>");
 otherClient.trackEvent("custom event");
 ```
 
-## <a name="examples"></a>Examples
+## 範例
 
-### <a name="tracking-dependency"></a>Tracking dependency
+### 追蹤相依性
 
 ```javascript
 import appInsights = require("applicationinsights");
@@ -175,7 +174,7 @@ client.trackDependency("dependency name", "command name", elapsedTime, success);
 
 
 
-### <a name="manual-request-tracking-of-all-"get"-requests"></a>Manual request tracking of all "GET" requests
+### 所有 "GET" 要求的手動要求追蹤
 
 ```javascript
 var http = require("http");
@@ -213,10 +212,10 @@ server.on("listening", () => {
 });
 ```
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-* [Monitor your telemetry in the portal](app-insights-dashboards.md)
-* [Write Analytics queries over your telemetry](app-insights-analytics-tour.md)
+* [在入口網站中監視遙測](app-insights-dashboards.md)
+* [[寫您的遙測的分析查詢](app-insights-analytics-tour.md)
 
 
 
@@ -229,8 +228,4 @@ server.on("listening", () => {
 [qna]: app-insights-troubleshoot-faq.md
 [roles]: app-insights-resources-roles-access-control.md
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

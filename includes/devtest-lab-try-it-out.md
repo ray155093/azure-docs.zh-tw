@@ -1,10 +1,8 @@
-## <a name="get-started-with-azure-devtest-labs"></a>Get started with Azure DevTest Labs
-New to Azure? [Create a free Azure account](https://azure.microsoft.com/free)
+## 開始使用 Azure DevTest Labs
+不熟悉 Azure 嗎？ [建立 Azure 免費帳戶](https://azure.microsoft.com/free)
 
-Already on Azure? Click the following button to create a lab in DevTest Labs!
+已使用 Azure 嗎？ 按一下下面的按鈕在 DevTest Labs 中建立實驗室！
 
-[![Get started with Azure DevTest Labs in minutes](./media/devtest-lab-try-it-out/get-started.png)](http://go.microsoft.com/fwlink/?LinkID=627034&clcid=0x409)
+[![在數分鐘內開始使用 Azure DevTest Labs](./media/devtest-lab-try-it-out/get-started.png)](http://go.microsoft.com/fwlink/?LinkID=627034&clcid=0x409)
 
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0831_2016-->

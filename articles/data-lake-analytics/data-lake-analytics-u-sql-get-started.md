@@ -1,38 +1,36 @@
-<properties
-   pageTitle="Develop U-SQL scripts using Data Lake Tools for Visual Studio | Azure"
-   description="Learn how to install Data Lake Tools for Visual Studio, how to develop and test U-SQL scripts. "
-   services="data-lake-analytics"
-   documentationCenter=""
-   authors="edmacauley"
-   manager="jhubbard"
+<properties 
+   pageTitle="使用適用於 Visual Studio 的資料湖工具開發 U-SQL 指令碼 | Azure" 
+   description="了解如何安裝適用於 Visual Studio 的資料湖工具，如何開發和測試 U-SQL 指令碼。" 
+   services="data-lake-analytics" 
+   documentationCenter="" 
+   authors="edmacauley" 
+   manager="jhubbard" 
    editor="cgronlun"/>
-
+ 
 <tags
    ms.service="data-lake-analytics"
    ms.devlang="na"
    ms.topic="article"
    ms.tgt_pltfrm="na"
-   ms.workload="big-data"
+   ms.workload="big-data" 
    ms.date="05/16/2016"
    ms.author="edmaca"/>
 
+# 教學課程：開始使用 Azure 資料湖分析 U-SQL 語言
 
-# <a name="tutorial:-get-started-with-azure-data-lake-analytics-u-sql-language"></a>Tutorial: Get started with Azure Data Lake Analytics U-SQL language
+U-SQL 語言結合了 SQL 的所有優點，可運用您自有程式碼的運算式能力來處理任何規模的資料。U-SQL 的可調整分散式查詢功能可讓您有效率地分析存放區中的資料，以及跨 Azure SQL Database 等關聯式存放區分析資料。它可讓您藉由套用「讀取時的結構描述」(Schema-on-Read) 處理非結構化資料、插入自訂邏輯和 UDF，並可經由擴充功能來對如何大規模執行資料分析進行更細緻的掌控。若要深入了解 U-SQL 背後的設計原理，請參閱此 [Visual Studio 部落格文章](https://blogs.msdn.microsoft.com/visualstudio/2015/09/28/introducing-u-sql-a-language-that-makes-big-data-processing-easy/)。
 
-U-SQL is a language that unifies the benefits of SQL with the expressive power of your own code to process all data at any scale. U-SQL’s scalable distributed query capability enables you to efficiently analyze data in the store and across relational stores such as Azure SQL Database.  It enables you to process unstructured data by applying schema on read, insert custom logic and UDF's, and includes extensibility to enable fine grained control over how to execute at scale. To learn more about the design philosophy behind U-SQL, please refer to this [Visual Studio blog post](https://blogs.msdn.microsoft.com/visualstudio/2015/09/28/introducing-u-sql-a-language-that-makes-big-data-processing-easy/).
+U-SQL 與 ANSI SQL 或 T-SQL 有一些差異。例如，其關鍵字 (像是 SELECT) 一定要全是大寫字。
 
-There are some differences from ANSI SQL or T-SQL. For example, its keywords such as SELECT have to be in UPPERCASE.
+select 子句內部是型別系統和運算式語言，在這裡面述詞等項目是以 C# 來撰寫。這表示資料型別是屬於 C# 型別且資料型別使用 C# NULL 語意，而述詞內的比較作業會遵循 C# 語法 (例如 == "foo")。這也表示值全都是 .NET 物件，可讓您輕鬆地使用任何方法來操作物件 (例如 "f o o o".Split(' ') )。
 
-It’s type system and expression language inside select clauses, where predicates etc are in C#.
-This means the data types are the C# types and the data types use C# NULL semantics, and the comparison operations inside a predicate follow C# syntax (e.g., a == "foo").  This also means, that the values are full .NET objects, allowing you to easily use any method to operate on the object (eg "f o o o".Split(' ')  ).
+如需詳細資訊，請參閱 [U-SQL 參考](http://go.microsoft.com/fwlink/p/?LinkId=691348)。
 
-For more information, see [U-SQL Reference](http://go.microsoft.com/fwlink/p/?LinkId=691348).
+###必要條件
 
-###<a name="prerequisites"></a>Prerequisites
+您必須完成[教學課程：使用適用於 Visual Studio 的資料湖工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)。
 
-You must complete [Tutorial: develop U-SQL scripts using Data Lake Tools for Visual Studio](data-lake-analytics-data-lake-tools-get-started.md).
-
-In the tutorial, you ran a Data Lake Analytics job with the following U-SQL script:
+在此教學課程中，您使用下列 U-SQL 指令碼執行了資料湖分析作業：
 
     @searchlog =
         EXTRACT UserId          int,
@@ -44,38 +42,37 @@ In the tutorial, you ran a Data Lake Analytics job with the following U-SQL scri
                 ClickedUrls     string
         FROM "/Samples/Data/SearchLog.tsv"
         USING Extractors.Tsv();
-
+    
     OUTPUT @searchlog   
         TO "/output/SearchLog-first-u-sql.csv"
     USING Outputters.Csv();
 
-This script doesn't have any transformation steps. It reads from the source file called **SearchLog.tsv**, schematizes it, and outputs the rowset back into a file called **SearchLog-first-u-sql.csv**.
+此指令碼沒有任何轉換步驟。它會從原始程式檔 **SearchLog.tsv** 讀取資料，為其建立結構描述，並將資料列集輸出回 **SearchLog-first-u-sql.csv** 檔案。
 
-Notice the question mark next to the data type of the Duration field. That means the Duration field could be null.
+請注意 [持續時間] 欄位的資料類型旁邊的問號。該符號表示 [持續時間] 欄位可能是 null。
 
-Some concepts and keywords found in the script:
+以下是指令碼中的一些概念和關鍵字：
 
-- **Rowset variables**: Each query expression that produces a rowset can be assigned to a variable. U-SQL follows the T-SQL variable naming pattern, for example, **@searchlog** in the script.
-    Note the assignment does not force execution. It merely names the expression and gives you the ability to build-up more complex expressions.
-- **EXTRACT** gives you the ability to define a schema on read. The schema is specified by a column name and C# type name pair per column. It uses a so-called **Extractor**, for example, **Extractors.Tsv()** to extract tsv files. You can develop custom extractors.
-- **OUTPUT** takes a rowset and serializes it. The Outputters.Csv() output a comma-separated file into the specified location. You can also develop custom Outputters.
-- Notice the two paths are relative paths. You can also use absolute paths.  For example
-
+- **資料列集變數**：每個會產生資料列集的查詢運算式都可以指派給變數。U-SQL 遵循 T-SQL 的變數命名模式，例如指令碼中的 **@searchlog**。請注意，U-SQL 不會強制執行指派工作。它只是命名運算式，並讓您能夠建置更複雜的運算式。
+- **EXTRACT** 讓您能夠定義「讀取時的結構描述」。結構描述是透過每個資料行的資料行名稱和 C# 型別名稱配對來加以指定。它會使用所謂的**擷取器** (例如 **Extractors.Tsv()**) 來擷取 tsv 檔案。您可以開發自訂擷取器。
+- **OUTPUT** 會抓取資料列集並將其序列化。Outputters.Csv() 會將逗號分隔檔輸出到指定的位置。您也可以開發自訂輸出器。
+- 請注意，指令碼中的兩個路徑是相對路徑。您也可以使用絕對路徑。例如
+    
         adl://<ADLStorageAccountName>.azuredatalakestore.net:443/Samples/Data/SearchLog.tsv
-
-    You must use absolute path to access the files in the linked Storage accounts.  The syntax for files stored in linked Azure Storage account is:
-
+        
+    您必須使用絕對路徑，才能存取所連結儲存體帳戶中的檔案。儲存在連結 Azure 儲存體帳戶中之檔案的語法是：
+    
         wasb://<BlobContainerName>@<StorageAccountName>.blob.core.windows.net/Samples/Data/SearchLog.tsv
 
-    >[AZURE.NOTE] Azure Blob container with public blobs or public containers access permissions are not currently supported.
+    >[AZURE.NOTE] 目前不支援具有公用 Blob 或公用容器存取權限的 Azure Blob 容器。
 
-## <a name="use-scalar-variables"></a>Use scalar variables
+## 使用純量變數
 
-You can use scalar variables as well to make your script maintenance easier. The previous U-SQL script can also be written as the following:
+您也可以使用純量變數以方便維護指令碼。前述 U-SQL 指令碼也可以撰寫成下面這樣：
 
     DECLARE @in  string = "/Samples/Data/SearchLog.tsv";
     DECLARE @out string = "/output/SearchLog-scalar-variables.csv";
-
+    
     @searchlog =
         EXTRACT UserId          int,
                 Start           DateTime,
@@ -86,14 +83,14 @@ You can use scalar variables as well to make your script maintenance easier. The
                 ClickedUrls     string
         FROM @in
         USING Extractors.Tsv();
-
+    
     OUTPUT @searchlog   
         TO @out
         USING Outputters.Csv();
+      
+## 轉換資料列集
 
-## <a name="transform-rowsets"></a>Transform rowsets
-
-Use **SELECT** to transform rowsets:
+使用 **SELECT** 來轉換資料列集：
 
     @searchlog =
         EXTRACT UserId          int,
@@ -105,19 +102,19 @@ Use **SELECT** to transform rowsets:
                 ClickedUrls     string
         FROM "/Samples/Data/SearchLog.tsv"
         USING Extractors.Tsv();
-
+    
     @rs1 =
         SELECT Start, Region, Duration
         FROM @searchlog
     WHERE Region == "en-gb";
-
+    
     OUTPUT @rs1   
         TO "/output/SearchLog-transform-rowsets.csv"
         USING Outputters.Csv();
 
-The WHERE clause uses [C# boolean expression](https://msdn.microsoft.com/library/6a71f45d.aspx). You can use the C# expression language to do your own expressions and functions. You can even perform more complex filtering by combining them with logical conjunctions (ANDs) and disjunctions (ORs).
+WHERE 子句使用 [C# 布林運算式](https://msdn.microsoft.com/library/6a71f45d.aspx)。您可以使用 C# 運算式語言來建置自己的運算式和函式。您甚至可以將它們與邏輯結合 (AND) 和邏輯分離 (OR) 做結合，以執行更複雜的篩選。
 
-The following script uses the DateTime.Parse() method and a conjunction.
+下列指令碼使用 DateTime.Parse() 方法和邏輯結合。
 
     @searchlog =
         EXTRACT UserId          int,
@@ -129,35 +126,35 @@ The following script uses the DateTime.Parse() method and a conjunction.
                 ClickedUrls     string
         FROM "/Samples/Data/SearchLog.tsv"
         USING Extractors.Tsv();
-
+    
     @rs1 =
         SELECT Start, Region, Duration
         FROM @searchlog
     WHERE Region == "en-gb";
-
+    
     @rs1 =
         SELECT Start, Region, Duration
         FROM @rs1
         WHERE Start >= DateTime.Parse("2012/02/16") AND Start <= DateTime.Parse("2012/02/17");
-
+    
     OUTPUT @rs1   
         TO "/output/SearchLog-transform-datatime.csv"
         USING Outputters.Csv();
+        
+請注意，第二個查詢會對第一個資料列集的結果起作用，因此最終結果是兩個篩選條件的組合。您也可以重複使用變數名稱，因為它們是語彙範圍型名稱。
 
-Notice that the second query is operating on the result of the first rowset and thus the result is a composition of the two filters. You can also reuse a variable name and the names are scoped lexically.
+## 彙總資料列集
 
-## <a name="aggregate-rowsets"></a>Aggregate rowsets
+U-SQL 提供您已熟悉使用的 **ORDER BY**、**GROUP BY** 和各種彙總語法。
 
-U-SQL provides you with the familiar **ORDER BY**, **GROUP BY** and aggregations.
+下列查詢會尋找每個區域的總持續時間，然後按順序輸出前 5 大持續時間。
 
-The following query finds the total duration per region, and then outputs the top 5 durations in order.
-
-U-SQL rowsets do not preserve their order for the next query. Thus, to order an output, you need to add ORDER BY to the OUTPUT statement as shown below:
+U-SQL 資料列集不會保留它們的順序以供下一次查詢使用。因此，若要對輸出排序，您需要將 ORDER BY 加入 OUTPUT 陳述式，如下所示：
 
     DECLARE @outpref string = "/output/Searchlog-aggregation";
     DECLARE @out1    string = @outpref+"_agg.csv";
     DECLARE @out2    string = @outpref+"_top5agg.csv";
-
+    
     @searchlog =
         EXTRACT UserId          int,
                 Start           DateTime,
@@ -168,32 +165,32 @@ U-SQL rowsets do not preserve their order for the next query. Thus, to order an 
                 ClickedUrls     string
         FROM "/Samples/Data/SearchLog.tsv"
         USING Extractors.Tsv();
-
+    
     @rs1 =
         SELECT
             Region,
             SUM(Duration) AS TotalDuration
         FROM @searchlog
     GROUP BY Region;
-
+    
     @res =
     SELECT *
     FROM @rs1
     ORDER BY TotalDuration DESC
     FETCH 5 ROWS;
-
+    
     OUTPUT @rs1
         TO @out1
         ORDER BY TotalDuration DESC
         USING Outputters.Csv();
     OUTPUT @res
-        TO @out2
+        TO @out2 
         ORDER BY TotalDuration DESC
         USING Outputters.Csv();
+        
+U-SQL 的 ORDER BY 子句必須搭配 FETCH 子句一起用在 SELECT 運算式中。
 
-U-SQL ORDER BY clause has to be combined with the FETCH clause in a SELECT expression.
-
-U-SQL HAVING clause can be used to restrict the output to groups that satisfy the HAVING condition:
+U-SQL 的 HAVING 子句可以用來將輸出限制為符合 HAVING 條件的群組：
 
     @searchlog =
         EXTRACT UserId          int,
@@ -205,7 +202,7 @@ U-SQL HAVING clause can be used to restrict the output to groups that satisfy th
                 ClickedUrls     string
         FROM "/Samples/Data/SearchLog.tsv"
         USING Extractors.Tsv();
-
+    
     @res =
         SELECT
             Region,
@@ -213,17 +210,17 @@ U-SQL HAVING clause can be used to restrict the output to groups that satisfy th
         FROM @searchlog
     GROUP BY Region
     HAVING SUM(Duration) > 200;
-
+    
     OUTPUT @res
         TO "/output/Searchlog-having.csv"
         ORDER BY TotalDuration DESC
         USING Outputters.Csv();
 
-## <a name="join-data"></a>Join data
+## 聯結資料
 
-U-SQL provides common join operators such as INNER JOIN, LEFT/RIGHT/FULL OUTER JOIN, SEMI JOIN, to join not only tables but any rowsets (even those produced from files).
+U-SQL 提供常見的聯結運算子，例如 INNER JOIN、LEFT/RIGHT/FULL OUTER JOIN、SEMI JOIN，不僅可聯結資料表，還可以連結任何資料列集 (即使是由檔案所產生的資料列集)。
 
-The following script joins the searchlog with an advertisement impression log and gives us the advertisements for the query string for a given date.
+下列指令碼聯結了搜尋日誌與廣告印象日誌，並提供我們特定日期的查詢字串的廣告。
 
     @adlog =
         EXTRACT UserId int,
@@ -231,38 +228,37 @@ The following script joins the searchlog with an advertisement impression log an
                 Clicked int
         FROM "/Samples/Data/AdsLog.tsv"
         USING Extractors.Tsv();
-
+    
     @join =
         SELECT a.Ad, s.Query, s.Start AS Date
-        FROM @adlog AS a JOIN <insert your DB name>.dbo.SearchLog1 AS s
+        FROM @adlog AS a JOIN <insert your DB name>.dbo.SearchLog1 AS s 
                         ON a.UserId == s.UserId
         WHERE a.Clicked == 1;
-
+    
     OUTPUT @join   
         TO "/output/Searchlog-join.csv"
         USING Outputters.Csv();
 
 
-U-SQL only supports the ANSI compliant join syntax: Rowset1 JOIN Rowset2 ON predicate. The old syntax of FROM Rowset1, Rowset2 WHERE predicate is NOT supported.
-The predicate in a JOIN has to be an equality join and no expression. If you want to use an expression, add it to a previous rowset's select clause. If you want to do a different comparison, you can move it into the WHERE clause.
+U-SQL 只支援 ANSI 相容聯結語法：Rowset1 JOIN Rowset2 ON 述詞。不支援舊有的 FROM Rowset1, Rowset2 WHERE 述詞語法。JOIN 中的述詞必須是等號比較聯結且沒有運算式。如果您想要使用運算式，請將它加入前一個資料列集的 select 子句。如果您想要進行不同的比較，則可將它移至 WHERE 子句。
+
+        
+## 建立資料庫、資料表值函式、檢視和資料表
+
+U-SQL 可讓您在資料庫和結構描述的內容中使用資料。因此您不必一直對檔案進行讀取或寫入。
+
+每個 U-SQL 指令碼在執行時，都會有預設資料庫 (主要) 與預設結構描述 (DBO) 做為其預設內容。您可以建立自己的資料庫和 (或) 結構描述。若要變更內容，請使用 **USE** 陳述式來變更內容。
 
 
-## <a name="create-databases,-table-valued-functions,-views,-and-tables"></a>Create databases, table-valued functions, views, and tables
+### 建立資料表值函式 (TVF)
 
-U-SQL allows you to use data in the context of a database and schema. So you don't have to always read from or write to files.
+在先前的 U-SQL 指令碼中，您重複使用會從相同原始程式檔進行讀取的 EXTRACT。U-SQL 資料表值函式可讓您封裝資料以供日後重複使用。
 
-Every U-SQL script runs with a default database (master) and default schema (DBO) as its default context. You can create your own database and/or schema. To change the context, use the **USE** statement to change the context.
-
-
-### <a name="create-a-table-valued-function-(tvf)"></a>Create a table-valued function (TVF)
-
-In the previous U-SQL script, you repeated using EXTRACT reading from the same source file. U-SQL table-valued function enables you to encapsulate the data for future reuse.   
-
-The following script creates a TVF called *Searchlog()* in the default database and schema:
+下列指令碼會在預設資料庫和結構描述中建立名為 *Searchlog()* 的 TVF。
 
     DROP FUNCTION IF EXISTS Searchlog;
-
-    CREATE FUNCTION Searchlog()
+    
+    CREATE FUNCTION Searchlog() 
     RETURNS @searchlog TABLE
     (
                 UserId          int,
@@ -273,7 +269,7 @@ The following script creates a TVF called *Searchlog()* in the default database 
                 Urls            string,
                 ClickedUrls     string
     )
-    AS BEGIN
+    AS BEGIN 
     @searchlog =
         EXTRACT UserId          int,
                 Start           DateTime,
@@ -286,8 +282,8 @@ The following script creates a TVF called *Searchlog()* in the default database 
     USING Extractors.Tsv();
     RETURN;
     END;
-
-The following script shows you how to use the TVF defined in the previous script:
+    
+下列指令碼會示範如何使用先前的指令碼中定義的 TVF：
 
     @res =
         SELECT
@@ -296,20 +292,20 @@ The following script shows you how to use the TVF defined in the previous script
         FROM Searchlog() AS S
     GROUP BY Region
     HAVING SUM(Duration) > 200;
-
+    
     OUTPUT @res
         TO "/output/SerachLog-use-tvf.csv"
         ORDER BY TotalDuration DESC
         USING Outputters.Csv();
+        
+### 建立檢視
 
-### <a name="create-views"></a>Create views
+如果您只有一個想要抽取但不要予以參數化的查詢運算式，您可以建立檢視而不是資料表值函式。
 
-If you only have one query expression that you want to abstract and do not want to parameterize it, you can create a view instead of a table-valued function.
-
-The following script creates a view called *SearchlogView* in the default database and schema:
+下列指令碼會在預設資料庫和結構描述中建立名為 *SearchlogView* 的檢視：
 
     DROP VIEW IF EXISTS SearchlogView;
-
+    
     CREATE VIEW SearchlogView AS  
         EXTRACT UserId          int,
                 Start           DateTime,
@@ -320,8 +316,8 @@ The following script creates a view called *SearchlogView* in the default databa
                 ClickedUrls     string
         FROM "/Samples/Data/SearchLog.tsv"
     USING Extractors.Tsv();
-
-The following script demonstrates using the defined view:
+    
+下列指令碼示範使用定義的檢視：
 
     @res =
         SELECT
@@ -330,25 +326,25 @@ The following script demonstrates using the defined view:
         FROM SearchlogView
     GROUP BY Region
     HAVING SUM(Duration) > 200;
-
+    
     OUTPUT @res
         TO "/output/Searchlog-use-view.csv"
         ORDER BY TotalDuration DESC
         USING Outputters.Csv();
 
-### <a name="create-tables"></a>Create tables
+### 建立資料表 
 
-Similar to relational database table, U-SQL allows you to create a table with a predefined schema or create a table and infer the schema from the query that populates the table (also known as CREATE TABLE AS SELECT or CTAS).
+U-SQL 與關聯式資料庫資料表類似，可讓您使用預先定義的結構描述建立資料表，或建立資料表並從填入資料表的查詢推斷結構描述 (也就是 CREATE TABLE AS SELECT 或 CTAS)。
 
-The following script create a database and two tables:
+下列指令碼會建立一個資料庫和兩個資料表：
 
     DROP DATABASE IF EXISTS SearchLogDb;
     CREATE DATABASE SeachLogDb
     USE DATABASE SearchLogDb;
-
+    
     DROP TABLE IF EXISTS SearchLog1;
     DROP TABLE IF EXISTS SearchLog2;
-
+    
     CREATE TABLE SearchLog1 (
                 UserId          int,
                 Start           DateTime,
@@ -357,24 +353,24 @@ The following script create a database and two tables:
                 Duration        int?,
                 Urls            string,
                 ClickedUrls     string,
-
-                INDEX sl_idx CLUSTERED (UserId ASC)
+    
+                INDEX sl_idx CLUSTERED (UserId ASC) 
                     PARTITIONED BY HASH (UserId)
     );
-
+    
     INSERT INTO SearchLog1 SELECT * FROM master.dbo.Searchlog() AS s;
-
+    
     CREATE TABLE SearchLog2(
-        INDEX sl_idx CLUSTERED (UserId ASC)
+        INDEX sl_idx CLUSTERED (UserId ASC) 
                 PARTITIONED BY HASH (UserId)
     ) AS SELECT * FROM master.dbo.Searchlog() AS S; // You can use EXTRACT or SELECT here
 
 
-### <a name="query-tables"></a>Query tables
+### 查詢資料表
 
-You can query the tables (created in the previous script) in the same way as you query over the data files. Instead of creating a rowset using EXTRACT, you now can just refer to the table name.
+您可以運用和查詢資料檔案一樣的方式來查詢資料表 (上一個指令碼所建立的)。您現在可以直接參考資料表名稱，而不必使用 EXTRACT 建立資料列集。
 
-The transform script you used previously is modified to read from the tables:
+您先前使用的轉換指令碼會修改成從資料表進行讀取：
 
     @rs1 =
         SELECT
@@ -382,48 +378,45 @@ The transform script you used previously is modified to read from the tables:
             SUM(Duration) AS TotalDuration
         FROM SearchLogDb.dbo.SearchLog2
     GROUP BY Region;
-
+    
     @res =
         SELECT *
         FROM @rs1
         ORDER BY TotalDuration DESC
         FETCH 5 ROWS;
-
+    
     OUTPUT @res
         TO "/output/Searchlog-query-table.csv"
         ORDER BY TotalDuration DESC
         USING Outputters.Csv();
 
-Note that you currently cannot run a SELECT on a table in the same script as the script where you create that table.
+請注意，您目前無法在用來建立資料表的相同指令碼中，對該資料表執行 SELECT。
 
 
-##<a name="conclusion"></a>Conclusion
+##結論
 
-What is covered in the tutorial is only a small part of U-SQL. Because of the scope of this tutorial, it can't cover everything, such as:
+本教學課程所涵蓋的內容僅是 U-SQL 的一小部分。本教學課程的範圍有限，不可能囊括所有內容，例如：
 
-- Use CROSS APPLY to unpack parts of strings, arrays and maps into rows.
-- Operate partitioned sets of data (file sets and partitioned tables).
-- Develop user defined operators such as extractors, outputters, processors, user-defined aggregators in C#.
-- Use U-SQL windowing functions.
-- Manage U-SQL code with views, table-valued functions and stored procedures.
-- Run arbitrary custom code on your processing nodes.
-- Connect to Azure SQL Databases and federate queries across them and your U-SQL and Azure Data Lake data.
+- 使用 CROSS APPLY 將局部字串、陣列和對應解除封裝到資料列。
+- 操作經過分割的各組資料 (檔案集和經過分割的資料表)。
+- 以 C# 開發使用者定義的運算子，例如擷取器、輸出器、處理器、使用者定義的彙總器。
+- 使用 U-SQL 視窗函式。
+- 使用檢視、資料表值函式和預存程序管理 U-SQL 程式碼。
+- 在您的處理節點上執行任意的自訂程式碼。
+- 連接到 Azure SQL Database 並同盟這些資料庫和 U-SQL 與 Azure 資料湖資料的查詢。
 
-## <a name="see-also"></a>See also
+## 另請參閱 
 
-- [Overview of Microsoft Azure Data Lake Analytics](data-lake-analytics-overview.md)
-- [Develop U-SQL scripts using Data Lake Tools for Visual Studio](data-lake-analytics-data-lake-tools-get-started.md)
-- [Using U-SQL window functions for Azure Data Lake Analytics jobs](data-lake-analytics-use-window-functions.md)
-- [Monitor and troubleshoot Azure Data Lake Analytics jobs using Azure Portal](data-lake-analytics-monitor-and-troubleshoot-jobs-tutorial.md)
+- [Microsoft Azure 資料湖分析概觀](data-lake-analytics-overview.md)
+- [使用適用於 Visual Studio 的資料湖工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)
+- [針對 Azure 資料湖分析工作使用 U-SQL 視窗函式](data-lake-analytics-use-window-functions.md)
+- [使用 Azure 入口網站監視和疑難排解 Azure 資料湖分析作業](data-lake-analytics-monitor-and-troubleshoot-jobs-tutorial.md)
 
-## <a name="let-us-know-what-you-think"></a>Let us know what you think
+## 讓我們知道您的想法
 
-- [Submit a feature request](http://aka.ms/adlafeedback)
-- [Get help in the forums](http://aka.ms/adlaforums)
-- [Provide feedback on U-SQL](http://aka.ms/usqldiscuss)
+- [建議新的文件集待處理項目](data-lake-analytics-documentation-backlog.md)
+- [提交要求功能](http://aka.ms/adlafeedback)
+- [在論壇上取得協助](http://aka.ms/adlaforums)
+- [提供關於 U-SQL 的意見反應](http://aka.ms/usqldiscuss)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

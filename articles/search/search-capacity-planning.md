@@ -1,127 +1,121 @@
 <properties
-    pageTitle="Scale resource levels for query and indexing workloads in Azure Search | Microsoft Azure"
-    description="Capacity planning in Azure Search is based on combinations of partition and replica computer resources, where each resource is priced in billable search units."
-    services="search"
-    documentationCenter=""
-    authors="HeidiSteen"
-    manager="jhubbard"
-    editor=""
+	pageTitle="在 Azure 搜尋服務中調整適用於查詢和編製索引工作負載的資源等級 | Microsoft Azure"
+	description="「Azure 搜尋服務」中的容量規劃是以分割區和複本電腦資源的組合為基礎，其中每個資源都是以計費搜尋單位來計價。"
+	services="search"
+	documentationCenter=""
+	authors="HeidiSteen"
+	manager="jhubbard"
+	editor=""
     tags="azure-portal"/>
 
 <tags
-    ms.service="search"
-    ms.devlang="NA"
-    ms.workload="search"
-    ms.topic="article"
-    ms.tgt_pltfrm="na"
-    ms.date="08/29/2016"
-    ms.author="heidist"/>
+	ms.service="search"
+	ms.devlang="NA"
+	ms.workload="search"
+	ms.topic="article"
+	ms.tgt_pltfrm="na"
+	ms.date="08/29/2016"
+	ms.author="heidist"/>
 
+# 在 Azure 搜尋服務中調整適用於查詢和編製索引工作負載的資源等級
 
-# <a name="scale-resource-levels-for-query-and-indexing-workloads-in-azure-search"></a>Scale resource levels for query and indexing workloads in Azure Search
+在您[選擇 SKU](search-sku-tier.md) 並[佈建搜尋服務](search-create-service-portal.md)之後，下一步就是視需要設定服務資源。
 
-After you [choose a SKU](search-sku-tier.md) and [provision a search service](search-create-service-portal.md), the next step is to optionally configure service resources.
+在「Azure 搜尋服務」中，一開始會為服務配置由一個分割區和一個複本組成的最低層級資源。如果階層支援，您便可以增量調整運算資源，方法是在您需要較多的儲存體和 IO 時，增加分割區，或增加複本來因應較大的查詢磁碟區或提供較佳的效能。單一服務必須具有足夠的資源，才能處理所有工作負載 (編製索引和查詢)。您無法將多個服務之間的工作負載再加以細分。
 
-In Azure Search, a service is initially allocated a minimal level of resources consisting of one partition and one replica. For tiers that support it, you can incrementally adjust computational resources by increasing partitions if you need more storage and IO, or replicas for larger query volumes or better performance. A single service must have sufficient resources to handle all workloads (indexing and queries). You cannot subdivide workloads among multiple services.
+當您在[基本層](http://aka.ms/azuresearchbasic)或其中一個[標準層](search-limits-quotas-capacity.md)佈建計費服務時，可以使用調整規模設定。就計費 SKU 而言，購買容量時以「搜尋單位」(SU) 做為增量單位，其中每個分割區和複本會分別視為一個 SU。保持低於上限會使用較少的 SU，相應地帳單費用也較低。只要服務處於已佈建的狀態，就會持續計費。如果您暫時不使用某項服務，避免計費的唯一方法就是刪除該服務，然後當您需要該服務時再予以重建。
 
-Scale settings are available when you provision a billable service at either the [Basic tier](http://aka.ms/azuresearchbasic) or one of the [Standard tiers](search-limits-quotas-capacity.md). For billable SKUs, capacity is purchased in increments of *search units* (SU) where each partition and replica counts as one SU apiece. Staying below the maximum limits uses fewer SUs, with a proportionally lower bill. Billing is in effect for as long as the service is provisioned. If you are temporarily not using a service, the only way to avoid billing is by deleting the service, and then recreating it later when you need it.
+若要增加或變更複本和分割區的配置，建議使用入口網站。入口網站會對所允許組合的強制執行限制，使其低於上限：
 
-To increase or change the allocation of replicas and partitions, we recommend using the portal. The portal will enforce limits on allowable combinations that stay below maximum limits:
+1. 登入 [Azure 入口網站](https://portal.azure.com/)，然後選取搜尋服務。
+2. 在 [設定] 中，開啟 [級別] 刀鋒視窗，然後使用滑桿來增加或減少分割區和複本的數目。
 
-1. Sign in to the [Azure Portal](https://portal.azure.com/) and select the search service.
-2. In Settings, open the Scale blade and use the sliders to increase or decrease the number of partitions and replicas.
+就一般規則而言，搜尋應用程式需要的複本數量會多於分割區數量，特別是在服務作業偏向查詢工作負載的情況下。[高可用性](#HA)一節將會說明原因。
 
-As a general rule, search applications need more replicas than partitions, particularly when the service operations are biased towards query workloads. The section on [high availability](#HA) explains why.
+> [AZURE.NOTE] 服務在佈建之後，即無法就地升級到較高的 SKU。您將必須在新層中建立新的搜尋服務，然後重新載入您的索引。如需有關服務佈建的說明，請參閱[在入口網站中建立 Azure 搜尋服務](search-create-service-portal.md)。
 
-> [AZURE.NOTE] Once a service is provisioned, it cannot be upgraded in place to a higher SKU. You will need to create a new search service at the new tier and reload your indexes. See [Create an Azure Search service in the portal](search-create-service-portal.md) for help with service provisioning.
+## 術語：分割區和複本
 
-## <a name="terminology:-partitions-and-replicas"></a>Terminology: partitions and replicas
+分割區和複本是支撐搜尋服務的主要資源。
 
-Partitions and replicas are the primary resources that back a search service.
+「分割區」可為讀寫作業 (例如在重建或重新整理索引時) 提供索引儲存體和 IO。
 
-**Partitions** provide index storage and IO for read-write operations (for example when rebuilding or refreshing an index).
+「複本」是搜尋服務執行個體，主要用來讓查詢作業達到負載平衡。每個複本一律會裝載一份索引。如果您有 12 個複本，服務上就會分別載入 12 份索引。
 
-**Replicas** are instances of the search service, used primarily to load balance query operations. Each replica always hosts one copy of an index. If you have 12 replicas, you will have 12 copies of every index loaded on the service. 
-
-> [AZURE.NOTE] There is no way to directly manipulate or manage which indexes run on a replica. One copy of each index on every replica is part of the service architecture.
+> [AZURE.NOTE] 沒有任何方法可直接操作或管理哪些索引會在複本上執行。每個複本上各有一份索引是服務架構的一部分。
 
 <a id="HA"></a>
-## <a name="high-availability"></a>High availability
+## 高可用性
 
-Because it's easy and relatively fast to scale up, we generally recommend that you start with one partition and one or two replicas, and then scale up as query volumes build, up to the maximum replicas and partitions supported by the SKU. For many services at the Basic or S1 tiers, one partition provides sufficient storage and IO (at 15 million documents per partition).
+由於相應增加規模既容易又相對較為快速，因此通常建議您從一個分割區和一或兩個複本開始，然後隨著查詢磁碟區的增長相應增加規模，最大可達 SKU 所支援的複本和分割區數目上限。對於許多「基本」和 S1 層的服務來說，一個分割區即可提供足夠的儲存體和 IO (每個分割區 1500 萬個文件)。
 
-Query workloads execute primarily on replicas. You most likely require additional replicas if you need more throughput or high availability.
+查詢工作負載主要是在複本上執行。如果您需要更多的輸送量或高可用性，最可能需要的會是額外的複本。
 
-General recommendations for high availability are:
+針對高可用性的一般建議為：
 
-- 2 replicas for high availability of read-only workloads (queries)
-- 3 or more replicas for high availability of read-write workloads (queries plus indexing as individual documents are added, updated, or deleted)
+- 針對唯讀工作負載 (查詢)，需有 2 個複本才能達到高可用性
+- 針對讀寫工作負載 (查詢再加上新增、更新或刪除個別文件時的索引編製)，需有 3 個或更多個複本才能達到高可用性
 
-Service Level Agreements (SLA) for Azure Search are targeted at query operations and at index updates that consist of adding, updating, or deleting documents.
+「Azure 搜尋服務」的「服務等級協定」(SLA) 是針對查詢作業和由新增、更新或刪除文件所組成的索引更新。
 
-**Index availability during a rebuild**
+**索引在重建期間的可用性**
 
-High availability for Azure Search pertains to queries and index updates that don't involve rebuilding an index. If the index requires a rebuild, for example if you add or deleting a field, change a data type, or rename a field, you would need to rebuild the index by doing the following: delete the index, recreate the index, and reload the data. 
+「Azure 搜尋服務」的高可用性與查詢和不涉及重建索引的索引更新相關。如果索引需要重建，例如，如果您新增或刪除欄位、變更資料類型或將欄位重新命名，您就必須執行下列操作來重建索引︰刪除索引、重新建立索引，然後重新載入資料。
 
-To maintain index availability during a rebuild, you must have a second copy of the index already in production on the same service (with a different name) or a same-named index on a different service, and then provide redirection or fail over logic in your code.
+若要讓索引在重建期間保持可用，您必須在相同的服務上有已經處於生產環境中的第二份索引 (使用不同的名稱)，或在不同的服務上有相同名稱的索引，然後在您的程式碼中提供重新導向或容錯移轉邏輯。
 
-## <a name="disaster-recovery"></a>Disaster recovery
+## 災害復原
 
-Currently, there is no built-in mechanism for disaster recovery. Adding partitions or replicas would be the wrong strategy for meeting disaster recovery objectives. The most common approach is to add redundancy at the service level by provisioning a second search service in another region. As with availability during an index rebuild, the redirection or failover logic must come from your code.
+目前沒有任何內建的機制可進行災害復原。因此新增資料分割或複本並不是達成災害復原目標的正確選擇。最常見的方法是在其他區域中佈建第二個搜尋服務，來新增服務等級的備援。與索引重建期間的可用性一樣，重新導向或容錯移轉邏輯必須來自您的程式碼。
 
-## <a name="increase-query-performance-with-replicas"></a>Increase query performance with replicas
+## 利用複本提高查詢效能
 
-Query latency is an indicator that additional replicas are needed. Generally, a first step towards improving query performance is to add more of this resource. As you add replicas, additional copies of the index are brought online to support bigger query workloads and to load balance the requests over the multiple replicas. 
+查詢延遲是一項指標，代表需要額外的複本。一般而言，改善查詢效能的第一步是新增更多這項資源。當您新增複本時，額外的幾份索引會上線以支援較大的查詢工作負載，以及讓多個複本上的要求達到負載平衡。
 
-Note that we cannot provide hard estimates on queries per second (QPS): query performance depends on the complexity of the query and competing workloads. On average, a replica at Basic or S1 SKUs can service about 15 QPS, but your throughput will be somewhat higher or lower depending on query complexity (faceted queries are more complex) and network latency. Also, it's important to recognize that while adding replicas will definitely add scale and performance, the end result is not strictly linear: adding 3 replicas does not guarantee triple throughput. 
+請注意，我們無法提供固定的每秒查詢數目 (QPS) 預估值：查詢效能取決於查詢和競爭工作負載的複雜性。平均來說，一個「基本」或 S1 SKU 複本可以提供大約 15 QPS 的服務，但您的輸送量會因為查詢的複雜性 (多面向查詢較為複雜) 和網路延遲而略高或略低。此外，請務必了解雖然新增複本會明顯地增加規模和效能，但是最終結果並不會完全地呈線性關係：新增 3 個複本並不保證有 3 倍的輸送量。
 
-To learn about QPS, including approaches for estimating QPS for your workloads, see [Manage your Search service](search-manage.md).
+若要深入了解 QPS (包括預估您工作負載之 QPS 的方法)，請參閱[管理搜尋服務](search-manage.md)。
 
-## <a name="increase-indexing-performance-with-partitions"></a>Increase indexing performance with partitions
+## 使用資料分割提高編製索引的效能
 
-Search applications that require near real-time data refresh will need proportionally more partitions than replicas. Adding partitions spreads read-write operations across a larger number of compute resources. It also gives you more disk space for storing additional indexes and documents.
+要求近乎即時資料重新整理的搜尋應用程式，按比例需要比複本更多的資料分割數。新增資料分割可將讀取-寫入作業分配到更大量的計算資源。它也提供更多磁碟空間來儲存額外的索引和文件。
 
-Larger indexes take longer to query. As such, you might find that every incremental increase in partitions requires a smaller but proportional increase in replicas. As noted earlier, the complexity of your queries and query volume will factor into how quickly query execution is turned around.
+索引越大，查詢所需的時間就越長。這麼一來，您可能會發現每個資料分割中每個累加式的增加在複本中都需要有較小但按比例的增加。如先前所述，要將查詢執行速度提高到何種程度，需將您的查詢和查詢磁碟區複雜性納入考量。
 
-## <a name="basic-tier:-partition-and-replica-combinations"></a>Basic tier: Partition and replica combinations
+## 基本層：資料分割與複本組合
 
-A Basic service can have exactly 1 partition and up to 3 replicas, for a maximum limit of 3 SUs. The only adjustable resource is replicas. As noted earlier, you need a minimum of 2 replicas for high availability on queries.
+「基本」服務可以有不多不少 1 個分割區及最多 3 個複本，上限為 3 個 SU。唯一可調整的資源是複本。如先前所述，您至少需要 2 個複本，才能在查詢上達到高可用性。
 
 <a id="chart"></a>
-## <a name="standard-tiers:-partition-and-replica-combinations"></a>Standard tiers: Partition and replica combinations
+## 標準層：分割區和複本的組合
 
-This table shows the search units required to support combinations of replicas and partitions, subject to the 36 search unit (SU) limit (excludes Basic and S3 HD tiers). 
+下表說明支援複本和分割區之組合所需的搜尋單位數，這會受限於 36 個搜尋單位 (SU) 的限制 (不包括「基本」和 S3 HD 層)。
 
 - |- |- |- |- |- |- |
 ---|----|---|---|---|---|---|
-**12 replicas**|12 SU|24 SU|36 SU|N/A|N/A|N/A|
-**6 replicas**|6 SU|12 SU|18 SU|24 SU|36 SU|N/A|
-**5 replicas**|5 SU|10 SU|15 SU|20 SU|30 SU|N/A|
-**4 replicas**|4 SU|8 SU<|12 SU|16 SU|24 SU|N/|
-**3 replicas**|3 SU|6 SU|9 SU|12 SU|18 SU|36 SU|
-**2 replicas**|2 SU|4 SU|6 SU|8 SU|12 SU|24 SU|
-**1 replica**|1 SU|2 SU|3 SU|4 SU|6 SU|12 SU|
-N/A|**1 Partition**|**2 Partitions**|**3 Partitions**<|**4 Partitions**|**6 Partitions**|**12 Partitions**|
+**12 個複本**|12 SU|24 SU|36 SU|N/A|N/A|N/A|
+**6 個複本**|6 SU|12 SU|18 SU|24 SU|36 SU|N/A|
+**5 個複本**|5 SU|10 SU|15 SU|20 SU|30 SU|N/A|
+**4 個複本**|4 SU|8 SU<|12 SU|16 SU|24 SU|N/|
+**3 個複本**|3 SU|6 SU|9 SU|12 SU|18 SU|36 SU|
+**2 個複本**|2 SU|4 SU|6 SU|8 SU|12 SU|24 SU|
+**1 個複本**|1 SU|2 SU|3 SU|4 SU|6 SU|12 SU|
+N/A|**1 個資料分割**|**2 個資料分割**|**3 個分割區**<|**4 個資料分割**|**6 個資料分割**|**12 個資料分割**|
 
-Search units, pricing, and capacity are explained in detail on the Azure web site. See [Pricing Details](https://azure.microsoft.com/pricing/details/search/) for more information.
+搜尋單位數、定價和容量會在 Azure 網站上詳細說明。請參閱[定價詳細資料](https://azure.microsoft.com/pricing/details/search/)以獲得詳細資訊。
 
-> [AZURE.NOTE] The number of replicas and partitions must evenly divide into 12 (specifically, 1, 2, 3, 4, 6, 12). This is because Azure Search pre-divides each index into 12 shards so that it can be spread in equal portions across all partitions. For example, if your service has three partitions and you create a new index, each partition will contain 4 shards of the index. How Azure Search shards an index is an implementation detail, subject to change in future release. Although the number is 12 today, you shouldn't expect that number to always be 12 in the future.
+> [AZURE.NOTE] 複本數和資料分割數必須能整除 12 (明確來說就是 1、2、3、4、6、12)。這是因為「Azure 搜尋服務」會將每個索引預先劃分成 12 個分區，以便將其平均散佈到所有分割區。例如，如果您的服務有三個資料分割，而您建立了新的索引，則每個資料分割將會包含 4 個該索引的分區。Azure 搜尋將索引分區的方法是實作細節，有可能在未來版本中變更。雖然現在分區數為 12，但您不應預期未來該數字永遠都會是 12。
 
-## <a name="s3-high-density:-partition-and-replica-combinations"></a>S3 High Density: Partition and replica combinations
+## S3 高密度：分割區和複本的組合
 
-S3 HD has 1 partition and up to 12 replicas, for a maximum limit of 12 SUs. The only adjustable resource is replicas.
+S3 HD 有 1 個分割區及最多 12 個複本，上限為 12 個 SU。唯一可調整的資源是複本。
 
-## <a name="calculate-search-units-for-specific-resourcing-combinations:-r-x-p-=-su"></a>Calculate Search Units for Specific Resourcing Combinations: R X P = SU
+## 針對特定資源組合計算搜尋單位數：R X P = SU
 
-The formula for calculating how many SUs you need is replicas multiplied by partitions. For example, 3 replicas multiplied by 3 partitions is billed as 9 search units.
+計算您需要多少 SU 的公式為複本乘以資料分割。例如，3 個複本乘以 3 個資料分割，會以 9 個搜尋單位計費。
 
-Both tiers start with one replica and one partition, counted as one search unit (SU). This is the only instance where both a replica and a partition count as one search unit. Each additional  resource, whether it is a replica or a partition, is counted as its own SU.
+兩個層都以一個複本和一個資料分割開始，視為一個搜尋單位 (SU)。在複本與資料分割都算為一個搜尋單位時，這是唯一的執行個體。每個額外資源，無論是複本或資料分割，都會以其擁有的 SU 來計算。
 
-Cost per SU is determined by the tier. Cost per SU is lower for the Basic tier than it is for Standard. Rates for each tier can be found on [Pricing Details](https://azure.microsoft.com/pricing/details/search/).
+每個 SU 的成本取決於層。基本層的每個 SU 成本低於標準層。如需每一層的費率，請參閱[定價詳細資料](https://azure.microsoft.com/pricing/details/search/)。
 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

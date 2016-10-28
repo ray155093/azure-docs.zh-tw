@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Resource Manager template for key vault | Microsoft Azure"
-   description="Shows the Resource Manager schema for deploying key vaults through a template."
+   pageTitle="金鑰保存庫的資源管理員範本 | Microsoft Azure"
+   description="說明可透過範本部署金鑰保存庫的資源管理員結構描述。"
    services="azure-resource-manager,key-vault"
    documentationCenter="na"
    authors="tfitzmac"
@@ -16,14 +16,13 @@
    ms.date="06/23/2016"
    ms.author="tomfitz"/>
 
+# 金鑰保存庫範本結構描述
 
-# <a name="key-vault-template-schema"></a>Key vault template schema
+建立金鑰保存庫。
 
-Creates a key vault.
+## 結構描述格式
 
-## <a name="schema-format"></a>Schema format
-
-To create a key vault, add the following schema to the resources section of your template.
+若要建立金鑰保存庫，請將下列結構描述新增到範本的資源區段。
 
     {
         "type": "Microsoft.KeyVault/vaults",
@@ -55,60 +54,60 @@ To create a key vault, add the following schema to the resources section of your
         ]
     }
 
-## <a name="values"></a>Values
+## 值
 
-The following tables describe the values you need to set in the schema.
+下表描述您在結構描述中必須設定的值。
 
-| Name | Value |
+| 名稱 | 值 |
 | ---- | ---- | 
-| type | Enum<br />Required<br />**Microsoft.KeyVault/vaults**<br /><br />The resource type to create. |
-| apiVersion | Enum<br />Required<br />**2015-06-01** or **2014-12-19-preview**<br /><br />The API version to use for creating the resource. | 
-| name | String<br />Required<br />A name that is unique across Azure.<br /><br />The name of the key vault to create. Consider using the [uniqueString](resource-group-template-functions.md#uniquestring) function with your naming convention to create a unique name, as shown in the example below. |
-| location | String<br />Required<br />A valid region for key vaults. To determine valid regions, see [supported regions](resource-manager-supported-services.md#supported-regions).<br /><br />The region to host the key vault. |
-| properties | Object<br />Required<br />[properties object](#properties)<br /><br />An object that specifies the type of key vault to create. |
-| resources | Array<br />Optional<br />Permitted values: [Key vault secret resources](resource-manager-template-keyvault-secret.md)<br /><br />Child resources for the key vault. |
+| 類型 | 列舉<br />必要<br />**Microsoft.KeyVault/vaults**<br /><br />要建立的資源類型。 |
+| apiVersion | 列舉<br />必要<br />**2015-06-01** 或 **2014-12-19-preview**<br /><br />要用來建立資源的應用程式開發介面 (API) 版本。 | 
+| 名稱 | 字串<br />必要<br />Azure 中唯一的名稱。<br /><br />要建立的金鑰保存庫名稱。請考慮搭配使用 [uniqueString](resource-group-template-functions.md#uniquestring) 函式與您的命名慣例來建立唯一名稱 (如下面範例所示)。 |
+| location | 字串<br />必要<br />金鑰保存庫的有效區域。若要判斷有效的區域，請參閱[支援的區域](resource-manager-supported-services.md#supported-regions)。<br /><br />要裝載金鑰保存庫的區域。 |
+| 屬性 | 物件<br />必要<br />[屬性物件](#properties)<br /><br />指定要建立之金鑰保存庫類型的物件。 |
+| 資源 | 陣列<br />選用<br />允許值︰[金鑰保存庫密碼資源](resource-manager-template-keyvault-secret.md)<br /><br />金鑰保存庫的子資源。 |
 
 <a id="properties" />
-### <a name="properties-object"></a>properties object
+### 屬性物件
 
-| Name | Value |
+| 名稱 | 值 |
 | ---- | ---- | 
-| enabledForDeployment | Boolean<br />Optional<br />**true** or **false**<br /><br />Specifies if the vault is enabled for Virtual Machine or Service Fabric deployment. |
-| enabledForTemplateDeployment | Boolean<br />Optional<br />**true** or **false**<br /><br />Specifies if the vault is enabled for use in Resource Manager template deployments. For more information, see [Pass secure values during deployment](resource-manager-keyvault-parameter.md) |
-| enabledForVolumeEncryption | Boolean<br />Optional<br />**true** or **false**<br /><br />Specifies if the vault is enabled for volume encryption. |
-| tenantId | String<br />Required<br />**Globally-unique identifier**<br /><br />The tenant identifier for the subscription. You can retrieve it with the [Get-AzureRmSubscription](https://msdn.microsoft.com/library/azure/mt619284.aspx) PowerShell cmdlet or the **azure account show** Azure CLI command. |
-| accessPolicies | Array<br />Required<br />[accessPolicies object](#accesspolicies)<br /><br />An array of up to 16 objects that specify the permissions for the user or service principal. |
-| sku | Object<br />Required<br />[sku object](#sku)<br /><br />The SKU for the key vault. |
+| enabledForDeployment | 布林值<br />選用<br />**true** 或 **false**<br /><br />指定是否要針對虛擬機器或 Service Fabric 部署啟用保存庫。 |
+| enabledForTemplateDeployment | 布林值<br />選用<br />**true** 或 **false**<br /><br />指定是否要啟用保存庫，以便在 Resource Manager 範本部署中使用。如需詳細資訊，請參閱[在部署期間傳遞安全值](resource-manager-keyvault-parameter.md) |
+| enabledForVolumeEncryption | 布林值<br />選用<br />**true** 或 **false**<br /><br />指定是否要啟用保存庫來進行磁碟區加密。 |
+| tenantId | 字串<br />必要<br />**全域唯一識別碼**<br /><br />訂用帳戶的租用戶識別碼。您可以使用 [Get-AzureRmSubscription](https://msdn.microsoft.com/library/azure/mt619284.aspx) PowerShell Cmdlet 或 **azure account show** Azure CLI 命令來擷取此識別碼。 |
+| accessPolicies | 陣列<br />必要<br />[accessPolicies 物件](#accesspolicies)<br /><br />最多 16 個物件的陣列，可指定使用者或服務主體的權限。 |
+| sku | 物件<br />必要<br />[SKU 物件](#sku)<br /><br />金鑰保存庫的 SKU。 |
 
 <a id="accesspolicies" />
-### <a name="properties.accesspolicies-object"></a>properties.accessPolicies object
+### properties.accessPolicies 物件
 
-| Name | Value |
+| 名稱 | 值 |
 | ---- | ---- | 
-| tenantId | String<br />Required<br />**Globally-unique identifier**<br /><br />The tenant identifier of the Azure Active Directory tenant containing the **objectId** in this access policy |
-| objectId | String<br />Required<br />**Globally-unique identifier**<br /><br />The object identifier of the Azure Active Directory user or service principal that will have access to the vault. You can retrieve the value from either the [Get-AzureRmADUser](https://msdn.microsoft.com/library/azure/mt679001.aspx) or the [Get-AzureRmADServicePrincipal](https://msdn.microsoft.com/library/azure/mt678992.aspx) PowerShell cmdlets, or the **azure ad user** or **azure ad sp** Azure CLI commands. |
-| permissions | Object<br />Required<br />[permissions object](#permissions)<br /><br />The permissions granted on this vault to the Active Directory object. |
+| tenantId | 字串<br />必要<br />**全域唯一識別碼**<br /><br />此存取原則中包含 **objectId** 之 Azure Active Directory 租用戶的租用戶識別碼 |
+| objectId | 字串<br />必要<br />**全域唯一識別碼**<br /><br />Azure Active Directory 使用者或服務主體的物件識別碼，其將具備保存庫的存取權。您可以從 [Get-AzureRmADUser](https://msdn.microsoft.com/library/azure/mt679001.aspx) 或 [Get-AzureRmADServicePrincipal](https://msdn.microsoft.com/library/azure/mt678992.aspx) PowerShell Cmdlet，或者 **azure ad user** 或 **azure ad sp** Azure CLI 命令，來擷取此值。 |
+| 權限 | 物件<br />必要<br />[權限物件](#permissions)<br /><br />為 Active Directory 物件授與此保存庫相關的權限。 |
 
 <a id="permissions" />
-### <a name="properties.accesspolicies.permissions-object"></a>properties.accessPolicies.permissions object
+### properties.accessPolicies.permissions 物件
 
-| Name | Value |
+| 名稱 | 值 |
 | ---- | ---- | 
-| keys | Array<br />Required<br />**all**, **backup**, **create**, **decrypt**, **delete**, **encrypt**, **get**, **import**, **list**, **restore**, **sign**, **unwrapkey**, **update**, **verify**, **wrapkey**<br /><br />The permissions granted on keys in this vault to this Active Directory object. This value must be specified as an array of one or more permitted values. |
-| secrets | Array<br />Required<br />**all**, **delete**, **get**, **list**, **set**<br /><br />The permissions granted on secrets in this vault to this Active Directory object. This value must be specified as an array of one or more permitted values. |
+| 金鑰 | 陣列<br />必要<br />**all**、**backup**、**create**、**decrypt**、**delete**、**encrypt**、**get**、**import**、**list**、**restore**、**sign**、**unwrapkey**、**update**、**verify**、**wrapkey**<br /><br />為此 Active Directory 物件授與此保存庫中金鑰相關的權限。此值必須指定為一個或多個允許值的陣列。 |
+| 密碼 | 陣列<br />必要<br />**all**、**delete**、**get**、**list**、**set**<br /><br />為此 Active Directory 物件授與此保存庫中密碼相關的權限。此值必須指定為一個或多個允許值的陣列。 |
 
 <a id="sku" />
-### <a name="properties.sku-object"></a>properties.sku object
+### properties.sku 物件
 
-| Name | Value |
+| 名稱 | 值 |
 | ---- | ---- | 
-| name | Enum<br />Required<br />**standard**, or **premium** <br /><br />The service tier of KeyVault to use.  Standard supports secrets and software-protected keys.  Premium adds support for HSM-protected keys. |
-| family | Enum<br />Required<br />**A** <br /><br />The sku family to use. |
+| 名稱 | 列舉<br />必要<br />**standard** 或 **premium** <br /><br />要使用的 KeyVault 服務層。Standard 支援密碼和軟體保護的金鑰Premium 會新增對於 HSM 保護之金鑰的支援。 |
+| family | 列舉<br />必要<br />**A** <br /><br />要使用的 SKU 系列。 |
  
-    
-## <a name="examples"></a>Examples
+	
+## 範例
 
-The following example deploys a key vault and secret.
+下列範例會部署金鑰保存庫和密碼。
 
     {
         "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
@@ -234,21 +233,16 @@ The following example deploys a key vault and secret.
         }]
     }
 
-## <a name="quickstart-templates"></a>Quickstart templates
+## 快速入門範本
 
-The following quickstart template deploys a key vault.
+下列快速入門範本會部署金鑰保存庫。
 
-- [Create Key Vault](https://azure.microsoft.com/documentation/templates/101-key-vault-create/)
-
-
-## <a name="next-steps"></a>Next steps
-
-- For general information about key vaults, see [Get started with Azure Key Vault](./key-vault/key-vault-get-started.md).
-- For an example of referencing a key vault secret when deploying templates, see [Pass secure values during deployment](resource-manager-keyvault-parameter.md).
+- [建立金鑰保存庫](https://azure.microsoft.com/documentation/templates/101-key-vault-create/)
 
 
+## 後續步驟
 
+- 如需金鑰保存庫的一般資訊，請參閱[開始使用 Azure 金鑰保存庫](./key-vault/key-vault-get-started.md)。
+- 如需部署範本時參考金鑰保存庫密碼的範例，請參閱[在部署期間傳遞安全值](resource-manager-keyvault-parameter.md)。
 
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0629_2016-->

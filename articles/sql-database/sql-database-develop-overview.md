@@ -1,75 +1,70 @@
 <properties
-    pageTitle="SQL Database Develop Overview | Microsoft Azure"
-    description="Learn about available connectivity libraries and best practices for applications connecting to SQL Database."
-    services="sql-database"
-    documentationCenter=""
-    authors="annemill"
-    manager="jhubbard"
-    editor="genemi"/>
+	pageTitle="SQL Database 開發概觀 | Microsoft Azure"
+	description="深入了解連接至 SQL Database 的應用程式的可用連線庫和最佳作法。"
+	services="sql-database"
+	documentationCenter=""
+	authors="annemill"
+	manager="jhubbard"
+	editor="genemi"/>
 
 
 <tags
-    ms.service="sql-database"
-    ms.workload="data-management"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/17/2016"
-    ms.author="annemill"/>
+	ms.service="sql-database"
+	ms.workload="data-management"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/17/2016"
+	ms.author="annemill"/>
 
+# SQL Database 開發概觀
+本文將逐步解說開發人員在撰寫程式碼以連接到 Azure SQL Database 時應注意的基本考量事項。
 
-# <a name="sql-database-development-overview"></a>SQL Database Development Overview
-This article walks through the basic considerations that a developer should be aware of when writing code to connect to Azure SQL Database.
+## 語言和平台
+有一些程式碼範例可供各種程式設計語言和平台使用。您可以在下列位置找到程式碼範例的連結：
 
-## <a name="language-and-platform"></a>Language and platform
-There are code samples available for various programming languages and platforms. You can find links to the code samples at: 
+* 詳細資訊：[SQL Database 和 SQL Server 的連線庫](sql-database-libraries.md)
 
-* More Information: [Connection libraries for SQL Database and SQL Server](sql-database-libraries.md)
+## 資源限制
+Azure SQL Database 使用兩種不同機制來管理資料庫可使用的資源：資源管理和限制強制執行。
 
-## <a name="resource-limitations"></a>Resource limitations
-Azure SQL Database manages the resources available to a database using two different mechanisms: Resources Governance and Enforcement of Limits.
+* 詳細資訊：[Azure SQL Database 資源限制](sql-database-resource-limits.md)
 
-* More Information: [Azure SQL Database resource limits](sql-database-resource-limits.md)
+## 安全性
+Azure SQL Database 提供資源以在 SQL Database 上限制存取、保護資料，以及監視活動。
 
-## <a name="security"></a>Security
-Azure SQL Database provides resources for limiting access, protecting data, and monitoring activities on a SQL Database.
+* 詳細資訊：[保護您的 SQL Database](sql-database-security.md)
 
-* More Information: [Securing your SQL Database](sql-database-security.md)
+## 驗證
+* Azure SQL Database 支援 SQL Server 驗證使用者和登入，以及 [Azure Active Directory 驗證](sql-database-aad-authentication.md)使用者和登入。
+* 您必須指定特定的資料庫，而非預設為 master 資料庫。
+* 您無法在 SQL Database 上使用 **USE myDatabaseName;** 陳述式來切換到其他資料庫。
+* 詳細資訊：[SQL Database 安全性：管理資料庫存取與登入安全性](sql-database-manage-logins.md)
 
-## <a name="authentication"></a>Authentication
-* Azure SQL Database supports both SQL Server authentication users and logins, as well as [Azure Active Directory authentication](sql-database-aad-authentication.md) users and logins.
-* You need to specify a particular database, instead of defaulting to the *master* database.
-* You cannot use the Transact-SQL **USE myDatabaseName;** statement on SQL Database to switch to another database.
-* More information: [SQL Database security: Manage database access and login security](sql-database-manage-logins.md)
+## 復原功能
+當連接到 SQL Database 發生暫時性錯誤時，您的程式碼應該重試呼叫。我們建議重試邏輯使用輪詢邏輯，因此它不會同時重試多個用戶端而讓 SQL Database 超過負荷。
 
-## <a name="resiliency"></a>Resiliency
-When a transient error occurs while connecting to SQL Database, your code should retry the call.  We recommend that retry logic use backoff logic, so that it does not overwhelm the SQL Database with multiple clients retrying simultaneously.
+* 程式碼範例︰如需示範重試邏輯的程式碼範例，請在以下位置參閱您選擇語言的範例︰[SQL Database 和 SQL Server 的連線庫](sql-database-libraries.md)
+* 詳細資訊：[SQL Database 用戶端程式的錯誤訊息](sql-database-develop-error-messages.md)
 
-* Code samples:  For code samples that illustrate retry logic, see samples for the language of your choice at: [Connection libraries for SQL Database and SQL Server](sql-database-libraries.md)
-* More information: [Error messages for SQL Database client programs](sql-database-develop-error-messages.md)
+## 管理連接
+* 在您的用戶端連線邏輯中，將預設的逾時覆寫為 30 秒。預設 15 秒對於依賴網際網路的連線而言太短。
+* 如果您使用的是[連接集區](http://msdn.microsoft.com/library/8xx3tyca.aspx)，請確定在程式未主動使用時即時關閉連接，而不是準備重複使用連接。
 
-## <a name="managing-connections"></a>Managing Connections
-* In your client connection logic, override the default timeout to be 30 seconds.  The default of 15 seconds is too short for connections that depend on the internet.
-* If you are using a [connection pool](http://msdn.microsoft.com/library/8xx3tyca.aspx), be sure to close the connection the instant your program is not actively using it, and is not preparing to reuse it.
+## 網路考量事項
+* 在託管您的用戶端程式的電腦上，請確定防火牆允許連接埠 1433 上的傳出 TCP 通訊。詳細資訊：[設定 Azure SQL Database 防火牆](sql-database-configure-firewall-settings.md)
+* 如果您的用戶端是在 Azure 虛擬機器 (VM) 上執行，而用戶端程式會連接到 SQL Database V12，您就必須開啟該 VM 上特定的連接埠範圍。詳細資訊：[針對 ADO.NET 4.5 和 SQL Database V12 的 1433 以外的連接埠](sql-database-develop-direct-route-ports-adonet-v12.md)
+* 與 Azure SQL Database V12 的用戶端連線有時會略過 proxy 並直接與資料庫互動。1433 以外的連接埠變得重要。詳細資訊：[針對 ADO.NET 4.5 和 SQL Database V12 的 1433 以外的連接埠](sql-database-develop-direct-route-ports-adonet-v12.md)
 
-## <a name="network-considerations"></a>Network Considerations
-* On the computer that hosts your client program, ensure the firewall allows outgoing TCP communication on port 1433.  More information: [Configure an Azure SQL Database firewall](sql-database-configure-firewall-settings.md)
-* If your client program connects to SQL Database V12 while your client runs on an Azure virtual machine (VM), you must open certain port ranges on the VM. More information: [Ports beyond 1433 for ADO.NET 4.5 and SQL Database V12](sql-database-develop-direct-route-ports-adonet-v12.md)
-* Client connections to Azure SQL Database V12 sometimes bypass the proxy and interact directly with the database. Ports other than 1433 become important. More information:  [Ports beyond 1433 for ADO.NET 4.5 and SQL Database V12](sql-database-develop-direct-route-ports-adonet-v12.md)
+## 使用 Elastic Scale 的資料分區化
+Elastic Scale 會簡化相應放大 (和相應縮小) 的程序。
 
-## <a name="data-sharding-with-elastic-scale"></a>Data Sharding with Elastic Scale
-Elastic Scale simplifies the process of scaling out (and in). 
+* [多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)
+* [資料相依路由](sql-database-elastic-scale-data-dependent-routing.md)
+* [開始使用 Azure SQL Database Elastic Scale 預覽](sql-database-elastic-scale-get-started.md)
 
-* [Design Patterns for Multi-tenant SaaS Applications with Azure SQL Database](sql-database-design-patterns-multi-tenancy-saas-applications.md)
-* [Data dependent routing](sql-database-elastic-scale-data-dependent-routing.md)
-* [Get Started with Azure SQL Database Elastic Scale Preview](sql-database-elastic-scale-get-started.md)
+## 後續步驟
 
-## <a name="next-steps"></a>Next steps
+瀏覽 [SQL Database 的所有功能](https://azure.microsoft.com/services/sql-database/)。
 
-Explore all the [capabilities of SQL Database](https://azure.microsoft.com/services/sql-database/).
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

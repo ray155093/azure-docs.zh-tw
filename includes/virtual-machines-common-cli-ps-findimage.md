@@ -1,10 +1,10 @@
 
 
-## <a name="azure-cli"></a>Azure CLI
+## Azure CLI
 
-> [AZURE.NOTE] This article describes how to navigate and select virtual machine images, using a recent installation of either the Azure CLI or Azure PowerShell. As a prerequisite, you would need to change to the Resource Manager mode. With the Azure CLI, enter that mode by typing `azure config mode arm`. 
+> [AZURE.NOTE] 本文說明如何使用最近安裝的 Azure CLI 或 Azure PowerShell，來瀏覽並選取虛擬機器映像。有一個必要條件是您必須變更為資源管理員模式。搭配 Azure CLI 時，請輸入 `azure config mode arm` 來進入該模式。
 
-The easiest and quickest way to locate an image to use either with `azure vm quick-create` or to create a resource group template file is to call the `azure vm image list` command and pass the location, the publisher name (it's not case-sensitive!), and an offer -- if you know the offer. For example, the following list is only a short example -- many lists are quite long -- if you know that "Canonical" is a publisher for the "UbuntuServer" offer.
+尋找要與 `azure vm quick-create` 搭配使用之映像或建立資源群組範本檔案的最簡單且最快速方式是呼叫 `azure vm image list` 命令，並傳遞位置、發佈者名稱 (不區分大小寫！) 和提供項目 (如果您知道提供項目)。例如，如果您知道 "Canonical" 是 "UbuntuServer" 提供項目的發佈者，則下列清單只是簡短範例 (許多清單相當長)。
 
     azure vm image list westus canonical ubuntuserver
     info:    Executing command vm image list
@@ -22,9 +22,9 @@ The easiest and quickest way to locate an image to use either with `azure vm qui
     data:    canonical  ubuntuserver  16.10-DAILY        Linux  16.10.201607230  westus    canonical:ubuntuserver:16.10-DAILY:16.10.201607230
     data:    canonical  ubuntuserver  16.10-DAILY        Linux  16.10.201607240  westus    canonical:ubuntuserver:16.10-DAILY:16.10.201607240
 
-The **Urn** column will be the form you pass to `azure vm quick-create`.
+**Urn** 資料行將是您傳遞給 `azure vm quick-create` 的表單。
 
-Often, however, you don't yet know what is available. In this case, you can navigate images by discovering publishers first by using `azure vm image list-publishers` and responding to the location prompt with a data center location you expect to use for your resource group. For example, the following lists all image publishers in the West US location (pass the location argument by lowercasing and removing spaces from the standard locations)
+不過，您通常還不知道什麼可用。在這種情況下，您可以巡覽映像，方法是先使用 `azure vm image list-publishers` 探索發行者，並以您預期用於資源群組的資料中心位置來回應位置提示字元。例如，下列清單是美國西部位置的所有映像發佈者 (將位置設為小寫並移除標準位置中的空格，來傳遞 location 引數)。
 
     azure vm image list-publishers
     info:    Executing command vm image list-publishers
@@ -38,7 +38,7 @@ Often, however, you don't yet know what is available. In this case, you can navi
     data:    AlertLogic.Extension                            westus  
 
 
-These lists can be quite long, so the example list above is just a snippet. Let's say that I noticed that Canonical is, indeed, an image publisher in the West US location. You can now find their offers by calling `azure vm image list-offers` and pass the location and the publisher at the prompts, like the following example:
+這些清單可能相當長，因此上述範例清單只是程式碼片段。假設我注意到 Canonical 事實上是美國西部位置的映像發佈者。您現在可以呼叫 `azure vm image list-offers` 來尋找其提供項目，並在提示字元中傳遞位置和發行者，如下列範例所示：
 
     azure vm image list-offers
     info:    Executing command vm image list-offers
@@ -55,7 +55,7 @@ These lists can be quite long, so the example list above is just a snippet. Let'
     data:    canonical  Ubuntu_Snappy_Core_Docker  westus
     info:    vm image list-offers command OK
 
-Now we know that in the West US region, Canonical publishes the **UbuntuServer** offer on Azure. But what SKUs? To get those, you call `azure vm image list-skus` and respond to the prompt with the location, publisher, and offer that you have discovered.
+現在，我們知道在美國西部區域中，Canonical 在 Azure 上發佈 **UbuntuServer** 提供項目。但是，是什麼 SKU？ 若要取得那些項目，請呼叫 `azure vm image list-skus`，並使用您探索到的位置、發行者和提供項目來回應提示。
 
     azure vm image list-skus
     info:    Executing command vm image list-skus
@@ -97,7 +97,7 @@ Now we know that in the West US region, Canonical publishes the **UbuntuServer**
     data:    canonical  ubuntuserver  16.10-DAILY        westus
     info:    vm image list-skus command OK
 
-With this information, you can now find exactly the image you want by calling the original call at the top.
+現在使用這項資訊在頂端呼叫原始呼叫，即可找到您所要的映像。
 
     azure vm image list westus canonical ubuntuserver 16.04.0-LTS
     info:    Executing command vm image list
@@ -112,51 +112,51 @@ With this information, you can now find exactly the image you want by calling th
     data:    canonical  ubuntuserver  16.04.0-LTS  Linux  16.04.201608150  westus    canonical:ubuntuserver:16.04.0-LTS:16.04.201608150
     info:    vm image list command OK
 
-Now you can choose precisely the image you want to use. To create a virtual machine quickly by using the URN information, which you just found, or to use a template with that URN information, see [Using the Azure CLI for Mac, Linux, and Windows with Azure Resource Manager](../articles/xplat-cli-azure-resource-manager.md).
+現在，您可以精確地選擇想要使用的映像。若要使用您剛找到的 URN 資訊快速地建立虛擬機器，或使用具有該 URN 資訊的範本，請參閱[搭配使用適用於 Mac、Linux 和 Windows 的 Azure CLI 與 Azure 資源管理員](../articles/xplat-cli-azure-resource-manager.md)。
 
-## <a name="powershell"></a>PowerShell
+## PowerShell
 
-> [AZURE.NOTE] Install and configure the [latest Azure PowerShell](../articles/powershell-install-configure.md). If you are using Azure PowerShell modules below 1.0, you still use the following commands but you must first `Switch-AzureMode AzureResourceManager`. 
+> [AZURE.NOTE] 安裝及設定[最新的 Azure PowerShell](../articles/powershell-install-configure.md)。如果您使用 1.0 以下的 Azure PowerShell 模組，您仍可以使用下列命令，但您必須先 `Switch-AzureMode AzureResourceManager`。
 
-When creating a new virtual machine with Azure Resource Manager, in some cases you need to specify an image with the combination of the following image properties:
+使用 Azure 資源管理員建立新的虛擬機器時，在某些情況下，您需要使用下列映像屬性組合來指定映像：
 
-- Publisher
-- Offer
+- 發佈者
+- 提供項目
 - SKU
 
-For example, these values are needed for the `Set-AzureRMVMSourceImage` PowerShell cmdlet or with a resource group template file in which you must specify the type of virtual machine to be created.
+例如，`Set-AzureRMVMSourceImage` PowerShell Cmdlet 或資源群組範本檔案需要這些值，而在此檔案中，您必須指定要建立的虛擬機器類型。
 
-If you need to determine these values, you can navigate the images to determine these values:
+如果您需要決定這些值，則可以巡覽映像以決定這些值，方法是：
 
-1. List the image publishers.
-2. For a given publisher, list their offers.
-3. For a given offer, list their SKUs.
+1. 列出映像發行者。
+2. 針對指定的發行者，列出其提供項目。
+3. 針對指定的提供項目，列出其 SKU。
 
 
-First, list the publishers with the following commands:
+首先，使用以下命令列出發行者：
 
 ```powershell
 $locName="<Azure location, such as West US>"
 Get-AzureRMVMImagePublisher -Location $locName | Select PublisherName
 ```
 
-Fill in your chosen publisher name and run the following commands:
+填入您選擇的發行者名稱，然後執行以下命令：
 
 ```powershell
 $pubName="<publisher>"
 Get-AzureRMVMImageOffer -Location $locName -Publisher $pubName | Select Offer
 ```
 
-Fill in your chosen offer name and run the following commands:
+填入您選擇的提供項目名稱，然後執行以下命令：
 
 ```powershell
 $offerName="<offer>"
 Get-AzureRMVMImageSku -Location $locName -Publisher $pubName -Offer $offerName | Select Skus
 ```
 
-From the display of the `Get-AzureRMVMImageSku` command, you have all the information you need to specify the image for a new virtual machine.
+從 `Get-AzureRMVMImageSku` 命令的顯示中，您擁有指定新虛擬機器映像時所需的所有資訊。
 
-The following shows a full example:
+下圖顯示完整範例：
 
 ```powershell
 PS C:\> $locName="West US"
@@ -177,7 +177,7 @@ Canonical
 ...
 ```
 
-For the "MicrosoftWindowsServer" publisher:
+針對 "MicrosoftWindowsServer" 發佈者：
 
 ```powershell
 PS C:\> $pubName="MicrosoftWindowsServer"
@@ -188,7 +188,7 @@ Offer
 WindowsServer
 ```
 
-For the "WindowsServer" offer:
+針對 "WindowsServer" 提供項目：
 
 ```powershell
 PS C:\> $offerName="WindowsServer"
@@ -204,7 +204,7 @@ Skus
 Windows-Server-Technical-Preview
 ```
 
-From this list, copy the chosen SKU name, and you have all the information for the `Set-AzureRMVMSourceImage` PowerShell cmdlet or for a resource group template.
+從這個清單中，複製選擇的 SKU 名稱，您就可以取得 `Set-AzureRMVMSourceImage` PowerShell Cmdlet 或資源群組範本的所有資訊。
 
 
 <!--Image references-->
@@ -215,9 +215,7 @@ From this list, copy the chosen SKU name, and you have all the information for t
 
 <!--Reference style links - using these makes the source content way more readable than using inline links-->
 [gog]: http://google.com/
-[yah]: http://search.yahoo.com/  
+[yah]: http://search.yahoo.com/
 [msn]: http://search.msn.com/
 
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

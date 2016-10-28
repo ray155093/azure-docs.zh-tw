@@ -1,153 +1,149 @@
 <properties
-    pageTitle="How to create a custom template image for Azure RemoteApp | Microsoft Azure"
-    description="Learn how to create a custom template image for Azure RemoteApp. You can use this template with either a hybrid or cloud collection."
-    services="remoteapp"
-    documentationCenter=""
-    authors="lizap"
-    manager="mbaldwin"
-    editor=""/>
+	pageTitle="如何為 Azure RemoteApp 建立自訂範本映像 | Microsoft Azure"
+	description="了解如何為 Azure RemoteApp 建立自訂範本映像您可以使用此範本與混合式或雲端集合搭配。"
+	services="remoteapp"
+	documentationCenter=""
+	authors="lizap"
+	manager="mbaldwin"
+	editor=""/>
 
 <tags
-    ms.service="remoteapp"
-    ms.workload="compute"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/15/2016" 
-    ms.author="elizapo"/>
+	ms.service="remoteapp"
+	ms.workload="compute"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/15/2016" 
+	ms.author="elizapo"/>
 
-
-# <a name="how-to-create-a-custom-template-image-for-azure-remoteapp"></a>How to create a custom template image for Azure RemoteApp
+# 如何為 Azure RemoteApp 建立自訂範本映像
 
 > [AZURE.IMPORTANT]
-> Azure RemoteApp is being discontinued. Read the [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
-Azure RemoteApp uses a Windows Server 2012 R2 template image to host all the programs that you want to share with your users. To create a custom RemoteApp template image, you can start with an existing image or create a new one. 
-
-
-> [AZURE.TIP] Did you know you can create an image from an Azure VM? True story, and it cuts down on the amount of time it takes to import the image. Check out the steps [here](remoteapp-image-on-azurevm.md).
-
-The requirements for the image that can be uploaded for use with Azure RemoteApp are:
+Azure RemoteApp 會使用 Windows Server 2012 R2 範本映像來主控您要與使用者共用的所有程式。若要建立自訂 RemoteApp 範本映像，您可以從現有的映像建立，或是建立新映像。
 
 
-- The image size should be a multiple of MBs. If you try to upload an image that is not an exact multiple, the upload will fail.
-- The image size must be 127 GB or smaller.
-- It must be on a VHD file (VHDX files [Hyper-V virtual hard drives] are not currently supported).
-- The VHD must not be a generation 2 virtual machine.
-- The VHD can be either fixed-size or dynamically expanding. A dynamically expanding VHD is recommended because it takes less time to upload to Azure than a fixed-size VHD file.
-- The disk must be initialized using the Master Boot Record (MBR) partitioning style. The GUID partition table (GPT) partition style is not supported.
-- The VHD must contain a single installation of Windows Server 2012 R2. It can contain multiple volumes, but only one that contains an installation of Windows.
-- The Remote Desktop Session Host (RDSH) role and the Desktop Experience feature must be installed.
-- The Remote Desktop Connection Broker role must *not* be installed.
-- The Encrypting File System (EFS) must be disabled.
-- The image must be SYSPREPed using the parameters **/oobe /generalize /shutdown** (DO NOT use the **/mode:vm** parameter).
-- Uploading your VHD from a snapshot chain is not supported.
+> [AZURE.TIP] 您知道您可以從 Azure VM 建立映像嗎？ 這是真的，而且它可以減少匯入映像所花費的時間。請在[這裡](remoteapp-image-on-azurevm.md)查明步驟。
+
+可上傳用於 Azure RemoteApp 的映像有下列需求：
 
 
-**Before you begin**
+- 映像大小應為 MB 的倍數。如果您嘗試上傳的映像大小不是正確的倍數，上傳作業會失敗。
+- 映像大小必須為 127 GB 或更小。
+- 必須在 VHD 檔案上 (目前不支援 VHDX 檔案 [Hyper-V 虛擬硬碟])。
+- VHD 不能是第 2 代虛擬機器。
+- VHD 可以固定大小或動態擴充。建議採用動態擴充 VHD 的做法，因為這會比固定大小 VHD 檔案更快速地上傳至 Azure。
+- 磁碟必須使用主開機記錄 (MBR) 分割樣式進行初始化。GUID 磁碟分割資料表 (GPT) 磁碟分割樣式不受支援。
+- VHD 必須包含單一 Windows Server 2012 R2 安裝。它可包含多個磁碟區，但只有其中一個包含 Windows 安裝。
+- 必須安裝「遠端桌面工作階段主機 (RDSH)」角色和「桌面體驗」功能。
+- *請勿*安裝「遠端桌面連線代理人」角色。
+- 必須停用「加密檔案系統 (EFS)」。
+- 映像必須使用參數 **/oobe /generalize /shutdown** 進行 SYSPREP 處理 (請不要使用 **/mode:vm** 參數)。
+- 不支援從快照鏈結上傳您的 VHD。
 
-You need to do the following before creating the service:
 
-- [Sign up](https://azure.microsoft.com/services/remoteapp/) for RemoteApp.
-- Create a user account in Active Directory to use as the RemoteApp service account. Restrict the permissions for this account so that it can only join machines to the domain. See [Configure Azure Active Directory for RemoteApp](remoteapp-ad.md) for more information.
-- Gather information about your on-premises network: IP address information and VPN device details.
-- Install the [Azure PowerShell](../powershell-install-configure.md) module.
-- Gather information about the users that you want to grant access to. This can be either Microsoft account information or Active Directory work account information for users.
+**開始之前**
 
+在建立服務之前，您必須執行下列作業：
 
-
-## <a name="create-a-template-image"></a>Create a template image ##
-
-These are the high level steps to create a new template image from scratch:
-
-1.  Locate a Windows Server 2012 R2 Update DVD or ISO image.
-2.  Create a VHD file.
-4.  Install Windows Server 2012 R2.
-5.  Install the Remote Desktop Session Host (RDSH) role and the Desktop Experience feature.
-6.  Install additional features required by your applications.
-7.  Install and configure your applications. To make sharing apps easier, add any apps or programs that you want to share to the **Start** menu of the image, specifically in **%systemdrive%\ProgramData\Microsoft\Windows\Start Menu\Programs.
-8.  Perform any additional Windows configurations required by your applications.
-9.  Disable the Encrypting File System (EFS).
-10. **REQUIRED:** Go to Windows Update and install all important updates.
-9.  SYSPREP the image.
-
-The detailed steps for creating a new image are:
-
-1.  Locate a Windows Server 2012 R2 Update DVD or ISO image.
-2.  Create a VHD file by using Disk Management.
-    1.  Launch Disk Management (diskmgmt.msc).
-    2.  Create a dynamically expanding VHD of 40 GB or more in size. (Estimate the amount of space needed for Windows, your applications, and customizations. Windows Server with the RDSH role and Desktop Experience feature installed will require about 10 GB of space).
-        1.  Click **Action > Create VHD**.
-        2.  Specify the location, size, and VHD format. Select **Dynamically expanding**, and then click **OK**.
-
-            This will run for several seconds. When the VHD creation is complete, you should see a new disk without any drive letter and in “Not initialized" state in the Disk Management console.
-
-        - Right-click the disk (not the unallocated space), and then click **Initialize Disk**. Select **MBR** (Master Boot Record) as the partition style, and then click **OK**.
-        - Create a new volume: right-click the unallocated space, and then click **New Simple Volume**. You can accept the defaults in the wizard, but make sure you assign a drive letter to avoid potential problems when you upload the template image.
-        - Right-click the disk, and then click **Detach VHD**.
+- [註冊](https://azure.microsoft.com/services/remoteapp/) RemoteApp。
+- 在 Active Directory 中建立使用者帳戶，以做為 RemoteApp 服務帳戶。限制此帳戶的權限，使其只能將機器加入網域中。如需詳細資訊，請參閱[設定 RemoteApp 的 Azure Active Directory](remoteapp-ad.md)。
+- 收集內部部署網路的相關資訊：IP 位址資訊和 VPN 裝置詳細資料。
+- 安裝 [Azure PowerShell](../powershell-install-configure.md) 模組。
+- 收集您想授與存取權之使用者的相關資訊。這可以是使用者 Microsoft 帳戶資訊或 Active Directory 工作帳戶資訊。
 
 
 
+## 建立範本映像 ##
+
+以下是從頭建立新範本映像的高階步驟：
+
+1.	找出 Windows Server 2012 R2 Update DVD 或 ISO 映像。
+2.	建立 VHD 檔案。
+4.	安裝 Windows Server 2012 R2。
+5.	安裝「遠端桌面工作階段主機 (RDSH)」角色和「桌面體驗」功能。
+6.	安裝您的應用程式所需的其他功能。
+7.	安裝及設定您的應用程式。若要讓共用應用程式更加容易，請將任何您要共用的 App 或程式加入此映像的 [開始] 功能表，特別是在 **%systemdrive%\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs 中。
+8.	執行您的應用程式所需的任何其他 Windows 設定。
+9.	停用「加密檔案系統 (EFS)」。
+10.	**必要：**前往 Windows Update 並安裝所有重要的更新。
+9.	進行映像的 SYSPREP 處理。
+
+建立新映像的詳細步驟為：
+
+1.	找出 Windows Server 2012 R2 Update DVD 或 ISO 映像。
+2.	使用「磁碟管理」建立 VHD 檔案。
+	1.	啟動「磁碟管理」(diskmgmt.msc)。
+	2.	建立會動態擴充、大小 40 GB 或更大的 VHD。(請估計 Windows、您的應用程式和自訂所需的空間量。已安裝 RDSH 角色和「桌面體驗」功能的 Windows Server 將需要約 10 GB 的空間)。
+		1.	按一下 [動作 > 建立 VHD]。
+		2.	指定位置、大小和 VHD 格式。選取 [動態擴充]，然後按一下 [確定]。
+
+			此作業會執行數秒。VHD 建立完成後，您會在 [磁碟管理] 主控台中看見不具任何磁碟機代號、狀態為「未初始化」的新磁碟。
+
+		- 以滑鼠右鍵按一下磁碟 (不是未配置的空間)，然後按一下 [初始化磁碟]。選取 [MBR] \(主開機記錄) 做為磁碟分割樣式，然後按一下 [確定]。
+		- 建立新的磁碟區： 以滑鼠右鍵按一下未配置的空間，然後按一下 [新增簡單磁碟區]。您可以接受精靈中的預設值，但請務必指派磁碟機代號，以避免在上傳範本映像時發生問題。
+		- 以滑鼠右鍵按一下磁碟，然後按一下 [Detach VHD]。
 
 
-1. Install Windows Server 2012 R2:
-    1. Create a new virtual machine. Use the New Virtual Machine Wizard in Hyper-V Manager or Client Hyper-V.
-        1. On the Specify Generation page, choose  **Generation 1**.
-        2. On the Connect Virtual Hard Disk page, select **Use an existing virtual hard disk**, and browse to the VHD you created in the previous step.
-        2. On the Installation Options page, select **Install an operating system from a boot CD/DVD_ROM**, and then select the location of your Windows Server 2012 R2 installation media.
-        3. Choose other options in the wizard necessary to install Windows and your applications. Finish the wizard.
-    2.  After the wizard finishes, edit the settings of the virtual machine and make any other changes necessary to install Windows and your programs, such as the number of virtual processors, and then click **OK**.
-    4.  Connect to the virtual machine and install Windows Server 2012 R2.
-1. Install the Remote Desktop Session Host (RDSH) role and the Desktop Experience feature:
-    1. Launch Server Manager.
-    2. Click **Add Roles and features** on the Welcome screen or from the **Manage** menu.
-    3. Click **Next** on the Before You Begin page.
-    4. Select **Role-based or feature-based installation**, and then click **Next**.
-    5. Select the local machine from the list, and then click **Next**.
-    6. Select **Remote Desktop Services**, and then click **Next**.
-    7. Expand **User Interfaces and Infrastructure** and select **Desktop Experience**.
-    8. Click **Add Features**, and then click **Next**.
-    9. On the Remote Desktop Services page, click **Next**.
-    10. Click **Remote Desktop Session Host**.
-    11. Click **Add Features**, and then click **Next**.
-    12. On the Confirm installation selections page, select **Restart the destination server automatically if required**, and then click **Yes** on the restart warning.
-    13. Click **Install**. The computer will restart.
-1.  Install additional features required by your applications, such as the .NET Framework 3.5. To install the features, run the Add Roles and Features Wizard.
-7.  Install and configure the programs and applications you want to publish through RemoteApp.
+
+
+
+1. 安裝 Windows Server 2012 R2：
+	1. 建立新的虛擬機器。在 [Hyper-V 管理員] 或 [用戶端 Hyper-V] 中使用 [新增虛擬機器精靈]。
+		1. 在 [Specify Generation] 頁面上，選擇 [Generation 1]。
+		2. 在 [連接虛擬硬碟] 頁面上選取 [使用現有的虛擬硬碟]，然後瀏覽至您在上一個步驟中建立的 VHD。
+		2. 在 [安裝選項] 頁面上，選取 [從開機 CD/DVD\_ROM 安裝作業系統]，然後選取您的 Windows Server 2012 R2 安裝媒體的位置。
+		3. 在精靈中選擇其他安裝 Windows 和應用程式所需的選項。完成精靈。
+	2.  精靈完成後，請編輯虛擬機器設定並進行安裝 Windows 和程式所需的任何其他變更 (例如虛擬處理器數目)，然後按一下 [確定]。
+	4.  連接到虛擬機器，並安裝 Windows Server 2012 R2。
+1. 安裝「遠端桌面工作階段主機 (RDSH)」角色和「桌面體驗」功能：
+	1. 啟動伺服器管理員。
+	2. 在 [歡迎使用] 畫面或 [管理] 功能表上，按一下 [新增角色和功能]。
+	3. 在 [開始之前] 頁面上，按 [下一步]。
+	4. 選取 [角色型或功能型安裝]，然後按 [下一步]。
+	5. 從清單中選取本機機器，然後按 [下一步]。
+	6. 選取 [遠端桌面服務]，然後按 [下一步]。
+	7. 展開 [使用者介面與基礎結構]，然後選取 [桌面體驗]。
+	8. 按一下 [新增功能]，然後按 [下一步]。
+	9. 在 [遠端桌面服務] 頁面上，按 [下一步]。
+	10. 按一下 [遠端桌面工作階段主機]。
+	11. 按一下 [新增功能]，然後按 [下一步]。
+	12. 在 [確認安裝選項] 頁面上，選取 [必要時自動重新啟動目的地伺服器]，然後在出現重新啟動警告時按一下 [是]。
+	13. 按一下 [Install]。電腦會重新啟動。
+1.	安裝您的應用程式所需的其他功能，例如 .NET Framework 3.5。若要安裝這些功能，請執行 [新增角色和功能] 精靈。
+7.	安裝並設定您要透過 RemoteApp 發佈的程式和應用程式。
 
 >[AZURE.IMPORTANT]
 >
->Install the RDSH role before installing applications to ensure that any issues with application compatibility are discovered before the image is uploaded to RemoteApp.
+>請在安裝應用程式之前先安裝 RDSH 角色，以確保可在映像上傳至 RemoteApp 之前發現任何關於應用程式相容性的問題。
 >
->Make sure a shortcut to your application (**.lnk** file) appears in the **Start** menu for all users (%systemdrive%\ProgramData\Microsoft\Windows\Start Menu\Programs). Also ensure that the icon you see in the **Start** menu is what you want users to see. If not, change it. (You do not *have* to add the application to the Start menu, but it makes it much easier to publish the application in RemoteApp. Otherwise, you have to provide the installation path for the application when you publish the app.)
+>請確定應用程式的捷徑 (**.lnk** 檔案) 出現在所有使用者的 [開始] 功能表 (%systemdrive%\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs)。也請確定您在 [開始] 功能表中看到的圖示是您想讓使用者看到的。如果不是，請變更圖示。(您*不一定*要將應用程式新增至 [開始] 功能表，但這樣做的話在 RemoteApp 中發佈應用程式會更輕鬆。否則，當您發佈應用程式時，您必須提供應用程式的安裝路徑。)
 
 
-8.  Perform any additional Windows configurations required by your applications.
-9.  Disable the Encrypting File System (EFS). Run the following command at an elevated command window:
+8.	執行您的應用程式所需的任何其他 Windows 設定。
+9.	停用「加密檔案系統 (EFS)」。在提高權限的命令視窗上執行下列命令：
 
-        Fsutil behavior set disableencryption 1
+		Fsutil behavior set disableencryption 1
 
-    Alternatively, you can set or add the following DWORD value in the registry:
+	或者，您可以在登錄中設定或新增下列 DWORD 值：
 
-        HKLM\System\CurrentControlSet\Control\FileSystem\NtfsDisableEncryption = 1
-9.  If you are building your image inside an Azure virtual machine, rename the **\%windir%\Panther\Unattend.xml** file, as this will block the upload script used later from working. Change the name of this file to Unattend.old so that you will still have the file in case you need to revert your deployment.
-10. Go to Windows Update and install all important updates. You might need to run Windows Update multiple times to get all updates. (Sometimes you install an update, and that update itself requires an update.)
-10. SYSPREP the image. At an elevated command prompt, run the following command:
+		HKLM\System\CurrentControlSet\Control\FileSystem\NtfsDisableEncryption = 1
+9.	如果您是在 Azure 虛擬機器內建立映像，請重新命名 **\\%windir%\\Panther\\Unattend.xml** 檔案，以免上傳指令碼稍後無法正常運作。將此檔案名稱變更為 Unattend.old，以便當您需要回復部署時，仍舊保有這個檔案可用。
+10.	前往 Windows Update 並安裝所有重要的更新。您可能必須執行 Windows Update 很多次才能取得所有更新。(有時候您安裝更新，而該更新本身又需要另外的更新。)
+10.	進行映像的 SYSPREP 處理。在提高權限的命令提示字元上執行下列命令：
 
-    **C:\Windows\System32\sysprep\sysprep.exe /generalize /oobe /shutdown**
+	**C:\\Windows\\System32\\sysprep\\sysprep.exe /generalize /oobe /shutdown**
 
-    **Note:** Do not use the **/mode:vm** switch of the SYSPREP command even though this is a virtual machine.
-
-
-## <a name="next-steps"></a>Next steps ##
-Now that you have your custom template image, you need to upload that image to your RemoteApp collection. Use the information in the following articles to create your collection:
+	**注意：**請不要使用 SYSPREP 命令的 **/mode:vm** 參數，即使這是虛擬機器亦然。
 
 
-- [How to create a hybrid collection of RemoteApp](remoteapp-create-hybrid-deployment.md)
-- [How to create a cloud collection of RemoteApp](remoteapp-create-cloud-deployment.md)
+## 後續步驟 ##
+現在您的自訂範本映像已經就緒，您需要將該映像上傳至您的 RemoteApp 收藏。使用下列文章中的資訊建立您的收藏：
+
+
+- [如何建立 RemoteApp 的混合式收藏](remoteapp-create-hybrid-deployment.md)
+- [如何建立 RemoteApp 的雲端收藏](remoteapp-create-cloud-deployment.md)
  
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

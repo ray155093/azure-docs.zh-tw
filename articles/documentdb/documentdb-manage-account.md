@@ -1,95 +1,92 @@
 <properties
-    pageTitle="Manage a DocumentDB account via the Azure Portal | Microsoft Azure"
-    description="Learn how to manage your DocumentDB account via the Azure Portal. Find a guide on using the Azure Portal to view, copy, delete and access accounts."
-    keywords="Azure Portal, documentdb, azure, Microsoft azure"
-    services="documentdb"
-    documentationCenter=""
-    authors="kirillg"
-    manager="jhubbard"
-    editor="cgronlun"/>
+	pageTitle="透過 Azure 入口網站管理 DocumentDB 帳戶 | Microsoft Azure"
+	description="了解如何透過 Azure 入口網站管理 DocumentDB 帳戶。尋找使用 Azure 入口網站來檢視、複製、刪除和存取帳戶的指南。"
+	keywords="Azure 入口網站, documentdb, azure, Microsoft azure"
+	services="documentdb"
+	documentationCenter=""
+	authors="AndrewHoh"
+	manager="jhubbard"
+	editor="cgronlun"/>
 
 <tags
-    ms.service="documentdb"
-    ms.workload="data-services"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/24/2016"
-    ms.author="kirillg"/>
+	ms.service="documentdb"
+	ms.workload="data-services"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/24/2016"
+	ms.author="anhoh"/>
+
+# 如何管理 DocumentDB 帳戶
+
+了解如何在 Azure 入口網站中設定全域一致性、使用金鑰，以及刪除 DocumentDB 帳戶。
+
+## <a id="consistency"></a>管理 DocumentDB 一致性設定
+
+根據您應用程式的語意選取正確的一致性層級。您應該已藉由閱讀[使用一致性層級以最大化 DocumentDB 中的可用性和效能][consistency]，來熟悉 DocumentDB 中可用的一致性層級。DocumentDB 會在您資料庫帳戶可用的每個一致性層級提供一致性、可用性和效能保證。使用強式一致性層級設定您的資料庫帳戶，需要將您的資料限制為單一 Azure 區域且無法全域使用。另一方面，寬鬆的一致性層級 (限定過期、工作階段或最終) 讓您能夠將任意數目的 Azure 區域與您的資料庫帳戶產生關聯。下列簡單步驟示範如何針對您的資料庫帳戶選取預設一致性層級。
+
+### 指定 DocumentDB 帳戶的預設一致性
+
+1. 在 [Azure 入口網站](https://portal.azure.com/)中，存取 DocumentDB 帳戶。
+2. 在帳戶刀鋒視窗中，按一下 [預設一致性]。
+3. 在 [預設一致性] 刀鋒視窗中，選取新的一致性層級，然後按一下 [儲存]。![預設一致性工作階段][5]
+
+## <a id="keys"></a>檢視、複製和重新產生存取金鑰
+當您建立 DocumentDB 帳戶時，服務會產生兩個主要存取金鑰，用於存取 DocumentDB 帳戶時的驗證。透過提供這兩個存取金鑰，DocumentDB 讓您可以重新產生金鑰，同時又不需中斷 DocumentDB 帳戶。
+
+在 [Azure 入口網站](https://portal.azure.com/)中，從 [DocumentDB 帳戶] 刀鋒視窗上的資源功能表存取 [金鑰] 刀鋒視窗，即可檢視、複製和重新產生用來存取 DocumentDB 帳戶的存取金鑰。
+
+![Azure 入口網站 [金鑰] 刀鋒視窗的螢幕擷取畫面](./media/documentdb-manage-account/keys.png)
+
+> [AZURE.NOTE] [金鑰] 刀鋒視窗也包含主要和次要連接字串，可用來從[資料移轉工具](documentdb-import-data.md)連接到您的帳戶。
+
+此刀鋒視窗上也有唯讀金鑰。讀取和查詢為唯讀作業，建立、刪除和取代則並非唯讀作業。
+
+### 在 Azure 入口網站中複製存取金鑰
+
+在 [金鑰] 刀鋒視窗中，按一下要複製之金鑰旁的 [複製] 按鈕。
+
+![在 Azure 入口網站 [金鑰] 刀鋒視窗中檢視並複製存取金鑰](./media/documentdb-manage-account/copykeys.png)
+
+### 重新產生存取金鑰
+
+您應定期變更 DocumentDB 帳戶的存取金鑰，讓連線更加安全。指派的兩個存取金鑰可讓您在重新產生一個存取金鑰的同時，使用另一個存取金鑰維持 DocumentDB 帳戶連線。
+
+> [AZURE.WARNING] 重新產生存取金鑰會影響任何相依於目前金鑰的應用程式。所有使用存取金鑰來存取 DocumentDB 帳戶的用戶端，都必須更新為使用新的金鑰。
+
+如果您有應用程式或雲端服務正在使用 DocumentDB 帳戶，除非您變換金鑰，否則會在重新產生金鑰後失去連線。下列步驟概述變換金鑰所牽涉的程序。
+
+1. 更新應用程式程式碼中的存取金鑰，以參考 DocumentDB 帳戶的次要存取金鑰。
+2. 重新產生 DocumentDB 帳戶的主要存取金鑰。在 [Azure 入口網站](https://portal.azure.com/)中，存取 DocumentDB 帳戶。
+3. 在 [DocumentDB 帳戶] 刀鋒視窗中，按一下 [金鑰]。
+4. 在 [金鑰] 刀鋒視窗中按一下重新產生按鈕，然後按一下 [確定] 以確認要產生新的金鑰。![重新產生存取金鑰](./media/documentdb-manage-account/regenerate-keys.png)
+
+5. 一旦確認新的金鑰可供使用後 (重新產生後約 5 分鐘)，更新應用程式程式碼中的存取金鑰，以參考新的主要存取金鑰。
+6. 重新產生次要存取金鑰。
+
+    ![重新產生存取金鑰](./media/documentdb-manage-account/regenerate-secondary-key.png)
 
 
-# <a name="how-to-manage-a-documentdb-account"></a>How to manage a DocumentDB account
+> [AZURE.NOTE] 新產生的金鑰可能需要經過幾分鐘之後才能用來存取 DocumentDB 帳戶。
 
-Learn how to set global consistency, work with keys, and delete a DocumentDB account in the Azure portal.
+## <a id="delete"></a>刪除 DocumentDB 帳戶
+若要移除 Azure 入口網站中不再使用的 DocumentDB 帳戶，請使用 [DocumentDB 帳戶] 刀鋒視窗的 [刪除帳戶] 命令。
 
-## <a name="<a-id="consistency"></a>manage-documentdb-consistency-settings"></a><a id="consistency"></a>Manage DocumentDB consistency settings
-
-Selecting the right consistency level depends on the semantics of your application. You should familiarize yourself with the available consistency levels in DocumentDB by reading [Using consistency levels to maximize availability and performance in DocumentDB] [consistency]. DocumentDB provides consistency, availability, and performance guarantees, at every consistency level available for your database account. Configuring your database account with a consistency level of Strong requires that your data is confined to a single Azure region and not globally available. On the other hand, the relaxed consistency levels - bounded staleness, session or eventual enable you to associate any number of Azure regions with your database account. The following simple steps show you how to select the default consistency level for your database account. 
-
-### <a name="to-specify-the-default-consistency-for-a-documentdb-account"></a>To specify the default consistency for a DocumentDB account
-
-1. In the [Azure portal](https://portal.azure.com/), access your DocumentDB account.
-2. In the account blade, click **Default consistency**.
-3. In the **Default Consistency** blade, select the new consistency level and click **Save**.
-    ![Default consistency session][5]
-
-## <a name="<a-id="keys"></a>view,-copy,-and-regenerate-access-keys"></a><a id="keys"></a>View, copy, and regenerate access keys
-When you create a DocumentDB account, the service generates two master access keys that can be used for authentication when the DocumentDB account is accessed. By providing two access keys, DocumentDB enables you to regenerate the keys with no interruption to your DocumentDB account. 
-
-In the [Azure portal](https://portal.azure.com/), access the **Keys** blade from the resource menu on the **DocumentDB account** blade to view, copy, and regenerate the access keys that are used to access your DocumentDB account.
-
-![Azure Portal screenshot, Keys blade](./media/documentdb-manage-account/keys.png)
-
-> [AZURE.NOTE] The **Keys** blade also includes primary and secondary connection strings that can be used to connect to your account from the [Data Migration Tool](documentdb-import-data.md).
-
-Read-only keys are also available on this blade. Reads and queries are read-only operations, while creates, deletes, and replaces are not.
-
-### <a name="copy-an-access-key-in-the-azure-portal"></a>Copy an access key in the Azure Portal
-
-On the **Keys** blade, click the **Copy** button to the right of the key you wish to copy.
-
-![View and copy an access key in the Azure Portal, Keys blade](./media/documentdb-manage-account/copykeys.png)
-
-### <a name="regenerate-access-keys"></a>Regenerate access keys
-
-You should change the access keys to your DocumentDB account periodically to help keep your connections more secure. Two access keys are assigned to enable you to maintain connections to the DocumentDB account using one access key while you regenerate the other access key.
-
-> [AZURE.WARNING] Regenerating your access keys affects any applications that are dependent on the current key. All clients that use the access key to access the DocumentDB account must be updated to use the new key.
-
-If you have applications or cloud services using the DocumentDB account, you will lose the connections if you regenerate keys, unless you roll your keys. The following steps outline the process involved in rolling your keys.
-
-1. Update the access key in your application code to reference the secondary access key of the DocumentDB account.
-2. Regenerate the primary access key for your DocumentDB account. In the [Azure Portal](https://portal.azure.com/), access your DocumentDB account.
-3. In the **DocumentDB Account** blade, click **Keys**.
-4. On the **Keys** blade, click the regenerate button, then click **Ok** to confirm that you want to generate a new key.
-    ![Regenerate access keys](./media/documentdb-manage-account/regenerate-keys.png)
-
-5. Once you have verified that the new key is available for use (approximately 5 minutes after regeneration), update the access key in your application code to reference the new primary access key.
-6. Regenerate the secondary access key.
-
-    ![Regenerate access keys](./media/documentdb-manage-account/regenerate-secondary-key.png)
+![如何在 Azure 入口網站中刪除 DocumentDB 帳戶](./media/documentdb-manage-account/deleteaccount.png)
 
 
-> [AZURE.NOTE] It can take several minutes before a newly generated key can be used to access your DocumentDB account.
+1. 在 [Azure 入口網站](https://portal.azure.com/)中，存取要刪除的 DocumentDB 帳戶。
+2. 在 [DocumentDB 帳戶]刀鋒視窗中，依序按一下 [更多]、[刪除帳戶]。或者，以滑鼠右鍵按一下資料庫的名稱，然後按一下 [刪除帳戶]。
+3. 在後續的確認刀鋒視窗中輸入 DocumentDB 帳戶名稱，以確認您想要刪除該帳戶。
+4. 按一下 [刪除] 按鈕。
 
-## <a name="<a-id="delete"></a>-delete-a-documentdb-account"></a><a id="delete"></a> Delete a DocumentDB account
-To remove a DocumentDB account from the Azure Portal that you are no longer using, use the **Delete Account** command on the **DocumentDB account** blade.
+![如何在 Azure 入口網站中刪除 DocumentDB 帳戶](./media/documentdb-manage-account/delete-account-confirm.png)
 
-![How to delete a DocumentDB account in the Azure Portal](./media/documentdb-manage-account/deleteaccount.png)
+## <a id="next"></a>接續步驟
 
+了解如何[開始使用 DocumentDB 帳戶](http://go.microsoft.com/fwlink/p/?LinkId=402364)。
 
-1. In the [Azure portal](https://portal.azure.com/), access the DocumentDB account you wish to delete.
-2. On the **DocumentDB account** blade, click **More**, and then click **Delete Account**. Or, right-click the name of the database, and click **Delete Account**.
-3. On the resulting confirmation blade, type the DocumentDB account name to confirm that you want to delete the account.
-4. Click the **Delete** button.
-
-![How to delete a DocumentDB account in the Azure Portal](./media/documentdb-manage-account/delete-account-confirm.png)
-
-## <a name="<a-id="next"></a>next-steps"></a><a id="next"></a>Next steps
-
-Learn how to [get started with your DocumentDB account](http://go.microsoft.com/fwlink/p/?LinkId=402364).
-
-To learn more about DocumentDB, see the Azure DocumentDB documentation on [azure.com](http://go.microsoft.com/fwlink/?LinkID=402319&clcid=0x409).
+若要深入了解 DocumentDB，請參閱 [azure.com](http://go.microsoft.com/fwlink/?LinkID=402319&clcid=0x409) 上的 Azure DocumentDB 文件。
 
 
 <!--Image references-->
@@ -103,11 +100,7 @@ To learn more about DocumentDB, see the Azure DocumentDB documentation on [azure
 <!--Reference style links - using these makes the source content way more readable than using inline links-->
 [bcdr]: https://azure.microsoft.com/documentation/articles/best-practices-availability-paired-regions/
 [consistency]: https://azure.microsoft.com/documentation/articles/documentdb-consistency-levels/
-[azureregions]: https://azure.microsoft.com/en-us/regions/#services
-[offers]: https://azure.microsoft.com/en-us/pricing/details/documentdb/
+[azureregions]: https://azure.microsoft.com/regions/#services
+[offers]: https://azure.microsoft.com/pricing/details/documentdb/
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0831_2016-->

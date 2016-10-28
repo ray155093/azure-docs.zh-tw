@@ -1,68 +1,67 @@
 <properties
-    pageTitle="Optimizing your Linux VM on Azure | Microsoft Azure"
-    description="Learn some optimization tips to make sure you have set up your Linux VM for optimal performance on Azure"
-    keywords="linux virtual machine,virtual machine linux,ubuntu virtual machine" 
-    services="virtual-machines-linux"
-    documentationCenter=""
-    authors="rickstercdn"
-    manager="timlt"
-    editor="tysonn"
-    tags="azure-resource-manager" />
+	pageTitle="在 Azure 上最佳化 Linux VM | Microsoft Azure"
+	description="了解一些最佳化提示，確保 Azure 上的 Linux VM 設定可獲得最佳效能。"
+	keywords="linux 虛擬機器,虛擬機器 linux,ubuntu 虛擬機器" 
+	services="virtual-machines-linux"
+	documentationCenter=""
+	authors="rickstercdn"
+	manager="timlt"
+	editor="tysonn"
+	tags="azure-resource-manager" />
 
 <tags
-    ms.service="virtual-machines-linux"
-    ms.workload="infrastructure-services"
-    ms.tgt_pltfrm="vm-linux"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/06/2016"
-    ms.author="rclaus"/>
+	ms.service="virtual-machines-linux"
+	ms.workload="infrastructure-services"
+	ms.tgt_pltfrm="vm-linux"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/06/2016"
+	ms.author="rclaus"/>
 
+# 在 Azure 上最佳化 Linux VM
 
-# <a name="optimize-your-linux-vm-on-azure"></a>Optimize your Linux VM on Azure
+您可以從命令列或入口網站，輕鬆建立 Linux 虛擬機器 (VM)。本教學課程示範如何在 Microsoft Azure 平台上設定，以確保將其效能最佳化。本主題會使用 Ubuntu Server VM，但您也可以使用[自己的映像做為範本](virtual-machines-linux-create-upload-generic.md)來建立 Linux 虛擬機器。
 
-Creating a Linux virtual machine (VM) is easy to do from the command line or from the portal. This tutorial shows you how to ensure you have set it up to optimize its performance on the Microsoft Azure platform. This topic uses an Ubuntu Server VM, but you can also create Linux virtual machine using [your own images as templates](virtual-machines-linux-create-upload-generic.md).  
+## 必要條件
 
-## <a name="prerequisites"></a>Prerequisites
+本主題假設您已具備有效的 Azure 訂用帳戶 ([註冊免費試用版](https://azure.microsoft.com/pricing/free-trial/))、[已安裝 Azure CLI](../xplat-cli-install.md)，並且已在 Azure 訂用帳戶中佈建 VM。開始操作 Azure 之前，您必須驗證訂用帳戶。若要使用 Azure CLI 進行驗證，只要輸入 `azure login` 啟動互動式程序即可。
 
-This topic assumes you already have a working Azure Subscription ([free trial signup](https://azure.microsoft.com/pricing/free-trial/)), [installed the Azure CLI](../xplat-cli-install.md) and have already provisioned a VM into your Azure Subscription. Before doing anything with Azure - you have to authenticate to your subscription. To do this with Azure CLI, simply type `azure login` to start the interactive process. 
+## Azure 作業系統磁碟
 
-## <a name="azure-os-disk"></a>Azure OS Disk
+在 Azure 中建立 Linux VM 後，它有兩個相關聯的磁碟。/dev/sda 是作業系統磁碟，/dev/sdb 是暫存磁碟。請勿將主要作業系統磁碟 (/dev/sda) 用於作業系統以外的用途，因為它已針對快速開啟 VM 進行最佳化，無法為工作負載提供良好的效能。您會想要將一或多個磁碟連接至 VM，以取得具永續性且經過最佳化的資料儲存空間。
 
-Once you create a Linux Vm in Azure, it has two disks associated with it. /dev/sda is your OS disk, /dev/sdb is your temporary disk.  Do not use the main OS disk (/dev/sda) for anything except the operating system as it is optimized for fast VM boot time and does not provide good performance for your workloads. You want to attach one or more disks to your VM to get persistent and optimized storage for your data. 
+## 加入磁碟以達成大小和效能目標 
 
-## <a name="adding-disks-for-size-and-performance-targets"></a>Adding Disks for Size and Performance targets 
+根據 VM 大小，您可以在 A 系列機器上連接最多 16 個額外的磁碟、在 D 系列上連接 32 個、在 G 系列上連接 64 個，且每個磁碟的大小高達 1 TB。您可以根據空間和 IOps 需求加入額外的磁碟。標準儲存體每個磁碟的效能目標為 500 IOps，而進階儲存體每個磁碟的效能目標最高為 5000 IOps。如需進階儲存體磁碟的詳細資訊，請參閱[進階儲存體：Azure VM 的高效能儲存體](../storage/storage-premium-storage.md)。
 
-Based on the VM size, you can attach up to 16 additional disks on an A-Series, 32 disks on a D-Series and 64 disks on a G-Series machine - each up to 1 TB in size. You add extra disks as needed per your space and IOps requirements. Each disk has a performance target of 500 IOps for Standard Storage and up to 5000 IOps per disk for Premium Storage.  For more information about Premium Storage disks, refer to [Premium Storage: High-Performance Storage for Azure VMs](../storage/storage-premium-storage.md)
+對於快取設定為 "ReadOnly" 或 "None" 的進階儲存體磁碟，若要達到最高 IOps，您必須在 Linux 中掛接檔案系統時停用 "barrier" (阻礙)。您不需要阻礙，因為這些快取設定的進階儲存體磁碟寫入都是持久的。
 
-To achieve the highest IOps on Premium Storage disks where their cache settings have been set to either "ReadOnly" or "None", you must disable "barriers" while mounting the file system in Linux. You do not need barriers because the writes to Premium Storage backed disks are durable for these cache settings.
+- 如果您使用 **reiserFS**，請使用掛接選項 "barrier=none" 停用阻礙 (若要啟用阻礙，請使用 "barrier=flush")
+- 如果您使用 **ext3/ext4**，請使用掛接選項 "barrier=0" 停用阻礙 (若要啟用阻礙，請使用 "barrier=1")
+- 如果您使用 **XFS**，請使用掛接選項 "nobarrier" 停用阻礙 (若要啟用阻礙，請使用 "barrier" 選項)
 
-- If you use **reiserFS**, disable barriers using the mount option “barrier=none” (For enabling barriers, use “barrier=flush”)
-- If you use **ext3/ext4**, disable barriers using the mount option “barrier=0” (For enabling barriers, use “barrier=1”)
-- If you use **XFS**, disable barriers using the mount option “nobarrier” (For enabling barriers, use the option “barrier”)
+## 儲存體帳戶考量事項
 
-## <a name="storage-account-considerations"></a>Storage Account Considerations
+在 Azure 中建立 Linux VM 時，請務必從區域與 VM 相同的儲存體帳戶附加磁碟，以確保高度鄰近性及降低網路延遲。每個標準儲存體帳戶都有最高 20k 的 IOps 和 500 TB 大小的容量。這大約等同於 40 個頻繁使用的磁碟，包括 OS 磁碟和您建立的任何資料磁碟。進階儲存體帳戶沒有 IOps 上限，不過有 32 TB 的大小限制。
 
-When you create your Linux VM in Azure, you should make sure you attach disks from storage accounts residing in the same region as your VM to ensure close proximity and minimize network latency.  Each Standard storage account has a maximum of 20k IOps and a 500 TB size capacity.  This works out to approximately 40 heavily used disks including both the OS disk and any data disks you create. For Premium Storage accounts, there is no Maximum IOps limit but there is a 32 TB size limit. 
+在處理 IOps 極高的工作負載，且您已為磁碟選擇標準儲存體時，可能需要將磁碟分割到多個儲存體帳戶，才能避免達到標準儲存體帳戶 20,000 IOps 的限制。VM 可以混搭來自不同儲存體帳戶和不同儲存體帳戶類型的磁碟，以達到最佳組態。
 
-When dealing with high IOps workloads and you have chosen Standard Storage for your disks, you might need to split the disks across multiple storage accounts to make sure you have not hit the 20,000 IOps limit for Standard Storage accounts. Your VM can contain a mix of disks from across different storage accounts and storage account types to achieve your optimal configuration. 
+## VM 暫存磁碟機
 
-## <a name="your-vm-temporary-drive"></a>Your VM Temporary drive
+根據預設，當您建立 VM 時，Azure 會提供作業系統磁碟 (/dev/sda) 和暫存磁碟 (/dev/sdb)。您加入的所有額外磁碟會顯示為 /dev/sdc、/dev/sdd、/dev/sde，依此類推。暫存磁碟 (/dev/sdb) 上的所有資料均不具持久性，因此當 VM 調整大小、重新部署或維護等特定事件發生迫使 VM 重新啟動時，資料可能會遺失。暫存磁碟的類型和大小與您在部署時所選擇的 VM 大小相關。對於任何進階大小的 VM (DS、G 及 DS\_V2 系列)，暫存磁碟機均有本機 SSD 提供支援，因此可以產生最高 48k IOps 的額外效能。
 
-By default when you create a VM, Azure provides you with an OS disk (/dev/sda) and a temporary disk (/dev/sdb).  All additional disks you add show up as /dev/sdc, /dev/sdd, /dev/sde and so on. All data on your temporary disk (/dev/sdb) is not durable, and can be lost if specific events like VM Resizing, redeployment, or maintenance forces a restart of your VM.  The size and type of your temporary disk is related to the VM size you chose at deployment time. In the case of any of the premium size VMs (DS, G, and DS_V2 series) the temporary drive is backed by a local SSD for additional performance of up to 48k IOps. 
+## Linux 交換檔
 
-## <a name="linux-swap-file"></a>Linux Swap File
+從 Azure Marketplace 部署的 VM 映像，均在作業系統中整合了讓 VM 與各種 Azure 服務互動的 VM Linux 代理程式。假設您從 Azure Marketplace 部署標準映像，需要執行以下操作來正確配置 Linux 交換檔設定︰
 
-VM images deployed from the Azure Marketplace have a VM Linux Agent integrated with the OS, which allows the VM to interact with various Azure services. Assuming you have deployed a standard image from the Azure Marketplace, you would need to do the following to correctly configure your Linux swap file settings:
+找出並修改 **/etc/waagent.conf** 檔案中的兩個項目。它們控制專用交換檔案的存在和交換檔的大小。您要修改的參數是 `ResourceDisk.EnableSwap=N` 和 `ResourceDisk.SwapSizeMB=0`。
 
-Locate and modify two entries in the **/etc/waagent.conf** file. They control the existence of a dedicated swap file and size of the swap file. The parameters you are looking to modify are `ResourceDisk.EnableSwap=N` and `ResourceDisk.SwapSizeMB=0` 
-
-You need to change them to the following:
+您必須以如下方式變更它們：
 
 * ResourceDisk.EnableSwap=Y
-* ResourceDisk.SwapSizeMB={size in MB to meet your needs} 
+* ResourceDisk.SwapSizeMB={符合您需求的大小 (MB)}
 
-Once you have made the change, you will need to restart the waagent or restart your Linux VM to reflect those changes.  You know the changes have been implemented and a swap file has been created when you use the `free` command to view free space. The example below has a 512MB swap file created as a result of modifying the waagent.conf file.
+進行變更之後，需要重新啟動 waagent 或重新啟動 Linux VM，以反映這些變更。當您使用 `free` 命令來檢視可用空間時，可以知道已實作變更並已建立交換檔。以下範例在修改 waagent.conf 檔案後建立了 512 MB 的交換檔。
 
     admin@mylinuxvm:~$ free
                 total       used       free     shared    buffers     cached
@@ -71,64 +70,60 @@ Once you have made the change, you will need to restart the waagent or restart y
     Swap:       524284          0     524284
     admin@mylinuxvm:~$
  
-## <a name="i/o-scheduling-algorithm-for-premium-storage"></a>I/O scheduling algorithm for Premium Storage
+## 進階儲存體的 I/O 排程演算法
 
-With the 2.6.18 Linux kernel, the default I/O scheduling algorithm was changed from Deadline to CFQ (Completely fair queuing algorithm). For random access I/O patterns, there is negligible difference in performance differences between CFQ and Deadline.  For SSD-based disks where the disk I/O pattern is predominantly sequential, switching back to the NOOP or Deadline algorithm can achieve better I/O performance.
+隨著 2.6.18 Linux 核心問世，預設 I/O 排程演算法已從「期限」變更為 CFQ (完全公平佇列演算法)。對於隨機 I/O 模式，CFQ 與期限之間的效能差異並不明顯。對於磁碟 I/O 模式以循序為主的 SSD 式磁碟，切換回 NOOP 或期限演算法可以達到更高的 I/O 效能。
 
-### <a name="view-the-current-i/o-scheduler"></a>View the current I/O scheduler
+### 檢視目前的 I/O 排程器
 
-Use the following command:  
+使用下列命令：
 
-    admin@mylinuxvm:~# cat /sys/block/sda/queue/scheduler
+	admin@mylinuxvm:~# cat /sys/block/sda/queue/scheduler
 
-You will see following output, which indicates the current scheduler.  
+您會看到下列輸出，其表示目前的排程器。
 
-    noop [deadline] cfq
+	noop [deadline] cfq
 
-###<a name="change-the-current-device-(/dev/sda)-of-i/o-scheduling-algorithm"></a>Change the current device (/dev/sda) of I/O scheduling algorithm
+###變更 I/O 排程演算法的目前裝置 (/dev/sda)
 
-Use the following commands:  
+使用下列命令：
 
-    azureuser@mylinuxvm:~$ sudo su -
-    root@mylinuxvm:~# echo "noop" >/sys/block/sda/queue/scheduler
-    root@mylinuxvm:~# sed -i 's/GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash elevator=noop"/g' /etc/default/grub
-    root@mylinuxvm:~# update-grub
+	azureuser@mylinuxvm:~$ sudo su -
+	root@mylinuxvm:~# echo "noop" >/sys/block/sda/queue/scheduler
+	root@mylinuxvm:~# sed -i 's/GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash elevator=noop"/g' /etc/default/grub
+	root@mylinuxvm:~# update-grub
 
->[AZURE.NOTE] Setting this for /dev/sda alone is not useful. It needs to be set on all data disks where sequential I/O dominates the I/O pattern.  
+>[AZURE.NOTE] 單獨針對 /dev/sda 設定此項並不是很有用。所有 I/O 模式以循序 I/O 為主的資料磁碟都需要設定。
 
-You should see the following output, indicating that grub.cfg has been rebuilt successfully and that the default scheduler has been updated to NOOP.  
+您應會看到下列輸出，表示 grub.cfg 已成功重建且預設排程器已更新為 NOOP。
 
-    Generating grub configuration file ...
-    Found linux image: /boot/vmlinuz-3.13.0-34-generic
-    Found initrd image: /boot/initrd.img-3.13.0-34-generic
-    Found linux image: /boot/vmlinuz-3.13.0-32-generic
-    Found initrd image: /boot/initrd.img-3.13.0-32-generic
-    Found memtest86+ image: /memtest86+.elf
-    Found memtest86+ image: /memtest86+.bin
-    done
+	Generating grub configuration file ...
+	Found linux image: /boot/vmlinuz-3.13.0-34-generic
+	Found initrd image: /boot/initrd.img-3.13.0-34-generic
+	Found linux image: /boot/vmlinuz-3.13.0-32-generic
+	Found initrd image: /boot/initrd.img-3.13.0-32-generic
+	Found memtest86+ image: /memtest86+.elf
+	Found memtest86+ image: /memtest86+.bin
+	done
 
-For the Redhat distribution family, you only need the following command:   
+若為 Redhat 散發版本系列，您只需要使用下列命令：
 
-    echo 'echo noop >/sys/block/sda/queue/scheduler' >> /etc/rc.local
+	echo 'echo noop >/sys/block/sda/queue/scheduler' >> /etc/rc.local
 
-## <a name="using-software-raid-to-achieve-higher-i/ops"></a>Using Software RAID to achieve higher I/Ops
+## 使用軟體 RAID 來達到更高的 I/Ops
 
-If your workloads require more IOps than a single disk can provide, you need to use a software RAID configuration of multiple disks. Because Azure already performs disk resiliency at the local fabric layer, you achieve the highest level of performance from a RAID-0 striping configuration.  You need to provision and create new disks in the Azure environment and attach them to your Linux VM prior to partitioning, formatting and mounting the drives.  More details on configuring a software RAID setup on your Linux VM in azure can be found in the **[Configuring Software RAID on Linux](virtual-machines-linux-configure-raid.md)** document.
-
-
-## <a name="next-steps"></a>Next Steps
-
-Remember, as with all optimization discussions, you need to perform tests before and after each change to measure the impact the change will have.  Optimization is a step by step process that will have different results across different machines in your environment.  What works for one configuration may not work for others.
-
-Some useful links to additional resources: 
-
-- [Premium Storage: High-Performance Storage for Azure Virtual Machine Workloads](../storage/storage-premium-storage.md)
-- [Azure Linux Agent User Guide](virtual-machines-linux-agent-user-guide.md)
-- [Optimizing MySQL Performance on Azure Linux VMs](virtual-machines-linux-classic-optimize-mysql.md)
-- [Configure Software RAID on Linux](virtual-machines-linux-configure-raid.md)
+如果工作負載所需的 IOps 超過單一磁碟可提供的極限，您便需要使用由多個磁碟組成的軟體 RAID 組態。因為 Azure 已在本機網狀架構層級執行磁碟恢復功能，因此您可以從 RAID-0 等量組態獲得最高層級的效能。您需要在 Azure 環境中佈建及建立新磁碟、將它們連接至 Linux VM，然後進行分割、格式化及掛接磁碟機。如需在 Azure 中針對 Linux VM 配置軟體 RAID 設定的詳細資訊，請參閱**[在 Linux 上設定軟體 RAID](virtual-machines-linux-configure-raid.md)** 文件。
 
 
+## 後續步驟
 
-<!--HONumber=Oct16_HO2-->
+請記住，如同所有最佳化討論內容所述，您需要在變更前後執行測試，以測量變更所造成的影響。最佳化是需要逐步進行的程序，這些程序將會對環境中不同的機器產生不同的結果。對某項組態有用的做法不見得適用於其他組態。
 
+以下是一些連往其他資源的實用連結：
 
+- [Premium 儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../storage/storage-premium-storage.md)
+- [Azure Linux 代理程式使用者指南](virtual-machines-linux-agent-user-guide.md)
+- [在 Azure Linux VM 上最佳化 MySQL 效能](virtual-machines-linux-classic-optimize-mysql.md)
+- [在 Linux 上設定軟體 RAID](virtual-machines-linux-configure-raid.md)
+
+<!---HONumber=AcomDC_0914_2016-->

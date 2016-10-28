@@ -1,95 +1,94 @@
 <properties
-    pageTitle="Compatibility level, how to assess | Microsoft Azure"
-    description="Steps and tools for determining which compatibility level is best for your database on Azure SQL Database or Microsoft SQL Server"
-    services="sql-database"
-    documentationCenter=""
-    authors="alainlissoir"
-    manager="jhubbard"
-    editor=""/>
+	pageTitle="如何評估相容性層級 | Microsoft Azure"
+	description="步驟和工具，可供判斷哪個相容性層級最適合您在 Azure SQL Database 或 Microsoft SQL Server 上的資料庫"
+	services="sql-database"
+	documentationCenter=""
+	authors="alainlissoir"
+	manager="jhubbard"
+	editor=""/>
 
 <tags
-    ms.service="sql-database"
-    ms.workload="data-management"
-    ms.devlang="NA"
-    ms.tgt_pltfrm="NA"
-    ms.topic="article"
-    ms.date="08/08/2016"
-    ms.author="alainl"/>
+	ms.service="sql-database"
+	ms.workload="data-management"
+	ms.devlang="NA"
+	ms.tgt_pltfrm="NA"
+	ms.topic="article"
+	ms.date="08/08/2016"
+	ms.author="alainl"/>
 
 
-
-# <a name="improved-query-performance-with-compatibility-level-130-in-azure-sql-database"></a>Improved query performance with compatibility Level 130 in Azure SQL Database
-
-
-Azure SQL Database is running transparently hundreds of thousands of databases at many different compatibility levels, preserving and guaranteeing the backward compatibility to the corresponding version of Microsoft SQL Server for all its customers!
-
-Therefore, nothing prevents customers who alter any existing databases to the latest compatibility level from benefiting from the new query optimizer and query processor features. As a reminder of history, the alignment of SQL versions to default compatibility levels are as follows:
-
-- 100: in SQL Server 2008 and Azure SQL Database V11.
-- 110: in SQL Server 2012 and Azure SQL Database V11.
-- 120: in SQL Server 2014 and Azure SQL Database V12.
-- 130: in SQL Server 2016 and Azure SQL Database V12.
+# 改善 Azure SQL Database 中相容性層級 130 的查詢效能
 
 
-> [AZURE.IMPORTANT] Starting in **mid-June 2016**, in Azure SQL Database, the default compatibility level will be 130 instead of 120 for **newly created** databases.
+Azure SQL Database 會在許多不同的相容性層級上以透明方式執行數十萬個資料庫，對其所有客戶保留並保證對應 Microsoft SQL Server 版本的回溯相容性！
+
+因此，任何事物均無法阻止將任何現有資料庫更改為最新相容性層級的客戶，從新的查詢最佳化工具和查詢處理器功能獲益。當作歷程記錄的提醒，預設相容性層級的 SQL 版本比對如下︰
+
+- 100：在 SQL Server 2008 和 Azure SQL Database V11 中。
+- 110：在 SQL Server 2012 和 Azure SQL Database V11 中。
+- 120：在 SQL Server 2014 和 Azure SQL Database V12 中。
+- 130：在 SQL Server 2016 和 Azure SQL Database V12 中。
+
+
+> [AZURE.IMPORTANT] 從 **2016 年 6 月中旬**開始，在 Azure SQL Database 中，**新建**資料庫的預設相容性層級會是 130 (而不是 120)。
 > 
-> Databases created before mid-June 2016 will *not* be affected, and will maintain their current compatibility level (100, 110, or 120). Databases that migrate from Azure SQL Database version V11 to V12 will not have their compatibility level changed either.
+> 在 2016 年 6 月中旬前建立的資料庫將「不」受影響，而且會維持其目前的相容性層級 (100、110 或 120)。從 Azure SQL Database V12 升級至 V11 的資料庫不會變更其相容性層級。
 
 
-In this article we explore the benefits of compatibility level 130, and how to leverage those benefits. We address the possible side-effects on the query performance for the existing SQL applications.
+在這篇文章中，我們會探討相容性層級 130 的優點，以及如何運用這些優點。我們會解決對現有 SQL 應用程式的查詢效能可能造成的副作用。
 
 
-## <a name="about-compatibility-level-130"></a>About compatibility level 130
+## 關於相容性層級 130
 
 
-First, if you want to know the current compatibility level of your database, execute the following Transact-SQL statement.
+首先，如果想要知道資料庫目前的相容性層級，請執行下列 Transact-SQL 陳述式。
 
 
 ```
 SELECT compatibility_level
-    FROM sys.databases
-    WHERE name = '<YOUR DATABASE_NAME>’;
+	FROM sys.databases
+	WHERE name = '<YOUR DATABASE_NAME>’;
 ```
 
 
-Before this change to level 130 happens for **newly** created databases, let’s review what this change is all about through some very basic query examples, and see how anyone can benefit from it.
+在**新建**資料庫變更為層級 130 之前，讓我們透過一些非常基本的查詢範例來檢閱這項變更的相關資訊，並了解相關人員如何從中受益。
 
-Query processing in relational databases can be very complex and can lead to lots of computer science and mathematics to understand the inherent design choices and behaviors. In this document, the content has been intentionally simplified to ensure that anyone with some minimum technical background can understand the impact of the compatibility level change and determine how it can benefit applications.
+關聯式資料庫中的查詢處理可能非常複雜，以致大量的電算機科學和數學人員得以了解固有的設計選擇和行為。本文件的內容已刻意簡化，以確保具有一些最基本技術背景的人員可以了解相容性層級變更的影響，並判斷其對於應用程式有何好處。
 
-Let’s have a quick look at what the compatibility level 130 brings at the table.  You can find more details at [ALTER DATABASE Compatibility Level (Transact-SQL)](https://msdn.microsoft.com/library/bb510680.aspx), but here is a short summary:
+我們快速看一下相容性層級 130 對資料表有何好處。您可以在 [ALTER DATABASE 相容性層級 (Transact-SQL)](https://msdn.microsoft.com/library/bb510680.aspx) 找到更多詳細資料，但簡短摘要如下︰
 
-- The Insert operation of an Insert-select statement can be multi-threaded or can have a parallel plan, while before this operation was single-threaded.
-- Memory Optimized table and table variables queries can now have parallel plans, while before this operation was also single-threaded .
-- Statistics for Memory Optimized table can now be sampled and are auto-updated. See [What's New in Database Engine: In-Memory OLTP](https://msdn.microsoft.com/library/bb510411.aspx#InMemory) for more details.
-- Batch mode v/s Row Mode changes with Column Store indexes
-  - Sorts on a table with a Column Store index are now in batch mode.
-  - Windowing aggregates now operate in batch mode such as TSQL LAG/LEAD statements.
-  - Queries on Column Store tables with Multiple distinct clauses operate in Batch mode.
-  - Queries running under DOP=1 or with a serial plan also execute in Batch Mode.
-- Last, Cardinality Estimation improvements are actually coming with compatibility level 120, but for those of you running at a lower Compatibility level (i.e. 100, or 110), the move to compatibility level 130 will also bring these improvements, and these can also benefit the query performance of your applications.
-
-
-## <a name="practicing-compatibility-level-130"></a>Practicing compatibility level 130
+- Insert-select 陳述式的 Insert 作業可以是多執行緒作業或可以有平行計劃，而這項作業之前是單一執行緒作業。
+- 記憶體最佳化資料表和資料表變數查詢現在可以有平行計劃，而這項作業之前也是單一執行緒作業。
+- 記憶體最佳化資料表的統計資料現在可以取樣並會自動更新。如需詳細資訊，請參閱[Database Engine 新功能：In-Memory OLTP](https://msdn.microsoft.com/library/bb510411.aspx#InMemory)。
+- 資料行存放區索引的批次模式和資料列模式變更
+  - 具有資料行存放區索引的資料表現在會以批次模式排序。
+  - 時間範圍彙總現在以批次模式運作，例如 TSQL LAG/LEAD 陳述式。
+  - 具有多個不同子句的資料行存放區資料表會以批次模式進行查詢。
+  - 在 DOP = 1 之下執行或具有序列計劃的查詢也會以批次模式執行。
+- 最後，基數估計改進實際上隨著相容性層級 120 出現，但如何您是在較低的相容性層級 (也就是 100 或 110) 執行，移到相容性層級 130 也會帶來這些改進，而這些改進也有益於您應用程式的查詢效能。
 
 
-First let’s get some tables, indexes and random data created to practice some of these new capabilities. The TSQL script examples can be executed under SQL Server 2016, or under Azure SQL Database. However, when creating an Azure SQL database, make sure you choose at the minimum a P2 database because you need at least a couple of cores to allow multi-threading and therefore benefit from these features.
+## 演練相容性層級 130
+
+
+首先，我們要建立一些資料表、索引和隨機資料，以演練某些新功能。TSQL 指令碼範例可以在 SQL Server 2016 底下或在 Azure SQL Database 底下執行。不過，在建立 Azure SQL Database 時，務必至少選擇 P2 資料庫，因為您至少需要幾個核心才能允許多執行緒處理，並因而受益於這些功能。
 
 
 ```
 -- Create a Premium P2 Database in Azure SQL Database
 
 CREATE DATABASE MyTestDB
-    (EDITION=’Premium’, SERVICE_OBJECTIVE=’P2′);
+	(EDITION=’Premium’, SERVICE_OBJECTIVE=’P2′);
 GO
 
 -- Create 2 tables with a column store index on
 -- the second one (only available on Premium databases)
 
 CREATE TABLE T_source
-    (Color varchar(10), c1 bigint, c2 bigint);
+	(Color varchar(10), c1 bigint, c2 bigint);
 
 CREATE TABLE T_target
-    (c1 bigint, c2 bigint);
+	(c1 bigint, c2 bigint);
 
 CREATE CLUSTERED COLUMNSTORE INDEX CCI ON T_target;
 GO
@@ -97,11 +96,11 @@ GO
 -- Insert few rows.
 
 INSERT T_source VALUES
-    (‘Blue’, RAND() * 100000, RAND() * 100000),
-    (‘Yellow’, RAND() * 100000, RAND() * 100000),
-    (‘Red’, RAND() * 100000, RAND() * 100000),
-    (‘Green’, RAND() * 100000, RAND() * 100000),
-    (‘Black’, RAND() * 100000, RAND() * 100000);
+	(‘Blue’, RAND() * 100000, RAND() * 100000),
+	(‘Yellow’, RAND() * 100000, RAND() * 100000),
+	(‘Red’, RAND() * 100000, RAND() * 100000),
+	(‘Green’, RAND() * 100000, RAND() * 100000),
+	(‘Black’, RAND() * 100000, RAND() * 100000);
 
 GO 200
 
@@ -111,13 +110,13 @@ GO 10
 ```
 
 
-Now, let’s have a look to some of the Query Processing features coming with compatibility level 130.
+我們現在來看一下相容性層級 130 隨附的一些查詢處理功能。
 
 
-## <a name="parallel-insert"></a>Parallel INSERT
+## 平行 INSERT
 
 
-Executing the TSQL statements below executes the INSERT operation under compatibility level 120 and 130, which respectively executes the INSERT operation in a single threaded model (120), and in a multi-threaded model (130).
+執行下面的 TSQL 陳述式時會在相容性層級 120 和 130 之下執行 INSERT 作業，其分別在單一執行緒模型 (120) 和多執行緒模型 (130) 中執行 INSERT 作業。
 
 
 ```
@@ -127,46 +126,46 @@ Executing the TSQL statements below executes the INSERT operation under compatib
 SET STATISTICS XML ON;
 
 ALTER DATABASE MyTestDB
-    SET COMPATIBILITY_LEVEL = 120;
+	SET COMPATIBILITY_LEVEL = 120;
 GO 
 
 -- The INSERT part is in serial
 
 INSERT t_target WITH (tablock)
-    SELECT C1, COUNT(C2) * 10 * RAND()
-        FROM T_source
-        GROUP BY C1
-    OPTION (RECOMPILE);
+	SELECT C1, COUNT(C2) * 10 * RAND()
+		FROM T_source
+		GROUP BY C1
+	OPTION (RECOMPILE);
 
 ALTER DATABASE MyTestDB
-    SET COMPATIBILITY_LEVEL = 130
+	SET COMPATIBILITY_LEVEL = 130
 GO
 
 -- The INSERT part is in parallel
 
 INSERT t_target WITH (tablock)
-    SELECT C1, COUNT(C2) * 10 * RAND()
-        FROM T_source
-        GROUP BY C1
-    OPTION (RECOMPILE);
+	SELECT C1, COUNT(C2) * 10 * RAND()
+		FROM T_source
+		GROUP BY C1
+	OPTION (RECOMPILE);
 
 SET STATISTICS XML OFF;
 ```
 
 
-By requesting the actual the query plan, looking at its graphical representation or its XML content, you can determine which Cardinality Estimation function is at play. Looking at the plans side-by-side on figure 1, we can clearly see that the Column Store INSERT execution goes from serial in 120 to parallel in 130. Also, note that the change of the iterator icon in the 130 plan showing two parallel arrows, illustrating the fact that now the iterator execution is indeed parallel. If you have large INSERT operations to complete, the parallel execution, linked to the number of core you have at your disposal for the database, will perform better; up to a 100 times faster depending your situation!
+藉由要求實際查詢計劃、查看其圖形表示法或其 XML 內容，您即可判斷正在執行哪個基數估計函式。查看圖 1 的並排計劃，我們可以清楚地看到資料行存放區 INSERT 作業從 120 中的序列執行變成 130 中的平行執行。此外，請注意 130 計劃中的迭代器圖示變更顯示兩個平行箭號，這說明了迭代器現在的確是平行執行的這項事實。如果您有大量 INSERT 作業要完成，平行執行 (已連結至您可對資料庫支配的核心數目) 的效果會更佳；視您的情況而言，速度最高可快 100 倍！
 
 
-*Figure 1: INSERT operation changes from serial to parallel with compatibility level 130.*
+*圖 1︰INSERT 作業從序列執行變成在相容性層級 130 的平行執行。*
 
 
-![Figure 1](./media/sql-database-compatibility-level-query-performance-130/figure-1.jpg)
+![圖 1](./media/sql-database-compatibility-level-query-performance-130/figure-1.jpg)
 
 
-## <a name="serial-batch-mode"></a>SERIAL Batch Mode
+## 序列批次模式
 
 
-Similarly, moving to compatibility level 130 when processing rows of data enables batch mode processing. First, batch mode operations  are only available when you have a column store index in place. Second, a batch typically represents ~900 rows, and uses a code logic optimized for multicore CPU, higher memory throughput and directly leverages the compressed data of the Column Store whenever possible. Under these conditions, SQL Server 2016 can process ~900 rows at once, instead of 1 row at the time, and as a consequence, the overall overhead cost of the operation is now shared by the entire batch, reducing the overall cost by row. This shared amount of operations combined with the column store compression basically reduces the latency involved in a SELECT batch mode operation. You can find more details about the column store and batch mode at [Columnstore Indexes Guide](https://msdn.microsoft.com/library/gg492088.aspx).
+同樣地，在處理資料列時移到相容性層級 130 即可進行批次模式處理。第一，批次模式作業僅適用於您已備妥資料行存放區索引時。第二，一個批次通常代表 ~900 個資料列，並使用針對多核心 CPU、較高記憶體輸送量最佳化的程式碼邏輯，而且盡可能直接運用資料行存放區的壓縮資料。在這些條件之下，SQL Server 2016 一次可以處理 ~900 個資料列，而不是一次處理 1 個資料列，因此作業的整體額外成本現在是由整個批次分擔，進而降低各資料列的整體成本。與資料行存放區壓縮結合的這個共用作業數量基本上可減少 SELECT 批次模式作業中的延遲。您可以在[資料行存放區索引指南](https://msdn.microsoft.com/library/gg492088.aspx)找到有關資料行存放區和批次模式的詳細資訊。
 
 
 ```
@@ -175,19 +174,19 @@ Similarly, moving to compatibility level 130 when processing rows of data enable
 SET STATISTICS XML ON;
 
 ALTER DATABASE MyTestDB
-    SET COMPATIBILITY_LEVEL = 120;
+	SET COMPATIBILITY_LEVEL = 120;
 GO
 
 -- The scan and aggregate are in row mode
 
 SELECT C1, COUNT (C2)
-    FROM T_target
-    GROUP BY C1
-    OPTION (MAXDOP 1, RECOMPILE);
+	FROM T_target
+	GROUP BY C1
+	OPTION (MAXDOP 1, RECOMPILE);
 GO
 
 ALTER DATABASE MyTestDB
-    SET COMPATIBILITY_LEVEL = 130;
+	SET COMPATIBILITY_LEVEL = 130;
 GO 
 
 – The scan and aggregate are in batch mode,
@@ -195,28 +194,28 @@ GO
 -- also now works in serial mode.
 
 SELECT C1, COUNT(C2)
-    FROM T_target
-    GROUP BY C1
-    OPTION (MAXDOP 1, RECOMPILE);
+	FROM T_target
+	GROUP BY C1
+	OPTION (MAXDOP 1, RECOMPILE);
 GO
 
 SET STATISTICS XML OFF;
 ```
 
 
-As visible below, by observing the query plans side-by-side on figure 2, we can see that the processing mode has changed with the compatibility level, and as a consequence, when executing the queries in both compatibility level altogether, we can see that most of the processing time is spent in row mode (86%) compared to the batch mode (14%), where 2 batches have been processed. Increase the dataset, the benefit will increase.
+如下所見，觀察圖 2 的並排查詢計劃，我們可以看到處理模式已隨個相容性層級變更，因此，同時在兩個相容性層級執行查詢時，我們可以看到大部分的處理時間花費在資料列模式 (86%) (相較於已處理 2 個批次的批次模式 (14%))。增加資料集，優點也會增加。
 
 
-*Figure 2: SELECT operation changes from serial to batch mode with compatibility level 130.*
+*圖 2︰SELECT 作業從序列變成在相容性層級 130 的批次模式。*
 
 
-![Figure 2](./media/sql-database-compatibility-level-query-performance-130/figure-2.jpg)
+![圖 2](./media/sql-database-compatibility-level-query-performance-130/figure-2.jpg)
 
 
-## <a name="batch-mode-on-sort-execution"></a>Batch mode on Sort Execution
+## 排序執行的批次模式
 
 
-Similar to the above, but applied to a sort operation, the transition from row mode (compatibility level 120) to batch mode (compatibility level 130) improves the performance of the SORT operation for the same reasons.
+類似上述情況，但套用至排序作業後，從資料列模式 (相容性層級 120) 轉換為批次模式 (相容性層級 130) 可提升 SORT 作業的效能，其理由相同。
 
 
 ```
@@ -225,20 +224,20 @@ Similar to the above, but applied to a sort operation, the transition from row m
 SET STATISTICS XML ON;
 
 ALTER DATABASE MyTestDB
-    SET COMPATIBILITY_LEVEL = 120;
+	SET COMPATIBILITY_LEVEL = 120;
 GO
 
 -- The scan and aggregate are in row mode
 
 SELECT C1, COUNT(C2)
-    FROM T_target
-    GROUP BY C1
-    ORDER BY C1
-    OPTION (MAXDOP 1, RECOMPILE);
+	FROM T_target
+	GROUP BY C1
+	ORDER BY C1
+	OPTION (MAXDOP 1, RECOMPILE);
 GO
 
 ALTER DATABASE MyTestDB
-    SET COMPATIBILITY_LEVEL = 130;
+	SET COMPATIBILITY_LEVEL = 130;
 GO
 
 -- The scan and aggregate are in batch mode,
@@ -246,265 +245,265 @@ GO
 -- also now works in serial mode.
 
 SELECT C1, COUNT(C2)
-    FROM T_target
-    GROUP BY C1
-    ORDER BY C1
-    OPTION (MAXDOP 1, RECOMPILE);
+	FROM T_target
+	GROUP BY C1
+	ORDER BY C1
+	OPTION (MAXDOP 1, RECOMPILE);
 GO
 
 SET STATISTICS XML OFF;
 ```
 
 
-Visible side-by-side on figure 3, we can see that the sort operation in row mode represents 81% of the cost, while the batch mode only represents 19% of the cost (respectively 81% and 56% on the sort itself).
+如圖 3 並排顯示，我們可以看到資料列模式的排序作業代表 81%的成本，而批次模式只代表 19% 的成本 (排序本身分別佔 81% 和 56%)。
 
 
-*Figure 3: SORT operation changes from row to batch mode with compatibility level 130.*
+*圖 3︰SORT 作業從資料列模式變成在相容性層級 130 的批次模式。*
 
 
-![Figure 3](./media/sql-database-compatibility-level-query-performance-130/figure-3.png)
+![圖 3](./media/sql-database-compatibility-level-query-performance-130/figure-3.png)
 
 
-Obviously, these samples only contain tens of thousands of rows, which is nothing when looking at the data available in most SQL Servers these days. Just project these against millions of rows instead, and this can translate in several minutes of execution spared every day pending the nature of your workload.
+很明顯地，這些範例只包含成千上萬個資料列，而在查看近來大部分 SQL Server 中可用的資料時，這算不了什麼。只要針對數百萬個資料列進行預估，即可在執行的數分鐘內轉譯，而免除每天擱置您的工作負載本質。
 
 
-## <a name="cardinality-estimation-(ce)-improvements"></a>Cardinality Estimation (CE) improvements
+## 基數估計 (CE) 改進
 
 
-Introduced with SQL Server 2014, any database running at a compatibility level 120 or above will make use of the new Cardinality Estimation functionality. Essentially, cardinality estimation is the logic used to determine how SQL server will execute a query based on its estimated cost. The estimation is calculated using input from statistics associated with objects involved in that query. Practically, at a high-level, Cardinality Estimation functions are row count estimates along with information about the distribution of the values, distinct value counts, and duplicate counts contained in the tables and objects referenced in the query. Getting these estimates wrong, can lead to unnecessary disk I/O due to insufficient memory grants (i.e. TempDB spills), or to a selection of a serial plan execution over a parallel plan execution, to name a few. Conclusion, incorrect estimates can lead to an overall performance degradation of the query execution. On the other side, better estimates, more accurate estimates, leads to better query executions!
+任何執行相容性層級 120 或更高層級的資料庫，將使用隨著 SQL Server 2014 引進的新基數估計功能。基本上，基數估計用於根據估計的成本來判斷 SQL Server 將如何執行查詢的邏輯。這項估計是使用來自與該查詢所牽涉物件相關聯的統計資料的輸入來計算。實際上，概括來說，基數估計函式是資料列計數估計值，以及下列各項的相關資訊：值分佈、相異值計數，以及查詢中參考的資料表和物件內含的重複計數。如果這些估計值錯誤，可能會因為授與的記憶體不足 (也就是 TempDB 溢出)、選取序列計劃執行 (而非平行計劃執行) 等等，而導致不必要的磁碟 I/O。總而言之，不正確的估計值可能會導致查詢執行的整體效能降低。另一方面，更完善的估計值、更精確的估計值會導致更好的查詢執行！
 
-As mentioned before, query optimizations and estimates are a complex matter, but if you want to learn more about query plans and cardinality estimator, you can refer to the document at [Optimizing Your Query Plans with the SQL Server 2014 Cardinality Estimator](https://msdn.microsoft.com/library/dn673537.aspx) for a deeper dive.
-
-
-## <a name="which-cardinality-estimation-do-you-currently-use?"></a>Which Cardinality Estimation do you currently use?
+如之前所述，查詢最佳化和評估值是複雜的事物，但如果您想要深入了解查詢計劃和基數估算器，您可以參考[使用 SQL Server 2014 基數估計器來最佳化查詢計劃](https://msdn.microsoft.com/library/dn673537.aspx)文件，以獲得深入說明。
 
 
-To determine under which Cardinality Estimation your queries are running, let’s just use the query samples below. Note that this first example will run under compatibility level 110, implying the use of the old Cardinality Estimation functions.
+## 您目前使用哪個基數估計？
+
+
+若要判斷您查詢是在哪個基數估計之下執行，只要使用以下的查詢範例即可。請注意，第一個範例會在相容性層級 110 之下執行，暗示使用舊的基數估計函式。
 
 
 ```
 -- Old CE
 
 ALTER DATABASE MyTestDB
-    SET COMPATIBILITY_LEVEL = 110;
+	SET COMPATIBILITY_LEVEL = 110;
 GO
 
 SET STATISTICS XML ON;
 
 SELECT [c1]
-    FROM [dbo].[T_target]
-    WHERE [c1] > 20000;
+	FROM [dbo].[T_target]
+	WHERE [c1] > 20000;
 GO
 
 SET STATISTICS XML OFF;
 ```
 
 
-Once execution is complete, click on the XML link, and look at the properties of the first iterator as shown below. Note the property name called CardinalityEstimationModelVersion currently set on 70. It does not mean that the database compatibility level is set to the SQL Server 7.0 version (it is set on 110 as visible in the TSQL statements above), but the value 70 simply represents the legacy Cardinality Estimation functionality available since SQL Server 7.0, which had no major revisions until SQL Server 2014 (which comes with a compatibility level of 120).
+執行完成後，按一下 XML 連結，並查看第一個迭代器的屬性，如下所示。請注意，名為 CardinalityEstimationModelVersion 的屬性名稱目前設定為 70。這並不表示資料庫相容性層級設定為 SQL Server 7.0 版 (如上面的 TSQL 陳述式所示，其設定於 110)，但值 70 只代表自 SQL Server 7.0 起可用的舊版基數估計功能，而直到 SQL Server 2014 (隨附相容性層級 120) 以後才有主要版本。
 
 
-*Figure 4: The CardinalityEstimationModelVersion is set to 70 when using a compatibility level of 110 or below.*
+*圖 4：使用相容性層級 110 或更低層級時，CardinalityEstimationModelVersion 會設定為 70。*
 
 
-![Figure 4](./media/sql-database-compatibility-level-query-performance-130/figure-4.png)
+![圖 4](./media/sql-database-compatibility-level-query-performance-130/figure-4.png)
 
 
-Alternatively, you can change the compatibility level to 130, and disable the use of the new Cardinality Estimation function by using the LEGACY_CARDINALITY_ESTIMATION set to ON with [ALTER DATABASE SCOPED CONFIGURATION](https://msdn.microsoft.com/library/mt629158.aspx). This will be exactly the same as using 110 from a Cardinality Estimation function point of view, while using the latest query processing compatibility level. Doing so, you can benefit from the new query processing features coming with the latest compatibility level (i.e. batch mode), but still rely on the old Cardinality Estimation functionality if necessary.
+或者，您可以將相容性層級變更為 130，並使用設定為 NO 的 LEGACY\_CARDINALITY\_ESTIMATION 搭配[ALTER DATABASE SCOPED CONFIGURATION](https://msdn.microsoft.com/library/mt629158.aspx) 來停止使用新的基數估計函式。從基數估計函式的觀點來看，這與使用 110 完全相同，同時使用最新的查詢處理相容性層級。這麼做，您就可以受益於最新相容性層級隨附的新查詢處理功能 (也就是批次模式，但必要時仍會依賴舊的基數估計功能。
 
 
 ```
 -- Old CE
 
 ALTER DATABASE MyTestDB
-    SET COMPATIBILITY_LEVEL = 130;
+	SET COMPATIBILITY_LEVEL = 130;
 GO
 
 ALTER DATABASE
-    SCOPED CONFIGURATION
-    SET LEGACY_CARDINALITY_ESTIMATION = ON;
+	SCOPED CONFIGURATION
+	SET LEGACY_CARDINALITY_ESTIMATION = ON;
 GO
 
 SET STATISTICS XML ON;
 
 SELECT [c1]
-    FROM [dbo].[T_target]
-    WHERE [c1] > 20000;
+	FROM [dbo].[T_target]
+	WHERE [c1] > 20000;
 GO
 
 SET STATISTICS XML OFF;
 ```
 
 
-Simply moving to the compatibility level 120 or 130 enables the new Cardinality Estimation functionality. In such a case, the default CardinalityEstimationModelVersion will be set accordingly to 120 or 130 as visible below.
+只要移到相容性層級 120 或 130，即可啟用新的基數估計功能。在這種情況下，預設 CardinalityEstimationModelVersion 便會跟著設定為 120 或 130，如下所示。
 
 
 ```
 -- New CE
 
 ALTER DATABASE MyTestDB
-    SET COMPATIBILITY_LEVEL = 130;
+	SET COMPATIBILITY_LEVEL = 130;
 GO
 
 ALTER DATABASE
-    SCOPED CONFIGURATION
-    SET LEGACY_CARDINALITY_ESTIMATION = OFF;
+	SCOPED CONFIGURATION
+	SET LEGACY_CARDINALITY_ESTIMATION = OFF;
 GO
 
 SET STATISTICS XML ON;
 
 SELECT [c1]
-    FROM [dbo].[T_target]
-    WHERE [c1] > 20000;
+	FROM [dbo].[T_target]
+	WHERE [c1] > 20000;
 GO
 
 SET STATISTICS XML OFF;
 ```
 
 
-*Figure 5: The CardinalityEstimationModelVersion is set to 130 when using a compatibility level of 130.*
+*圖 5：使用相容性層級 130 時，CardinalityEstimationModelVersion 會設定為 130。*
 
 
-![Figure 5](./media/sql-database-compatibility-level-query-performance-130/figure-5.jpg)
+![圖 5](./media/sql-database-compatibility-level-query-performance-130/figure-5.jpg)
 
 
-## <a name="witnessing-the-cardinality-estimation-differences"></a>Witnessing the Cardinality Estimation differences
+## 見證基數估計差異
 
 
-Now, let’s run a slightly more complex query involving an INNER JOIN with a WHERE clause with some predicates, and let’s look at the row count estimate from the old Cardinality Estimation function first.
+現在，讓我們執行稍微複雜的查詢 (牽涉到包含一個 WHERE 子句及一些述詞的 INNER JOIN)，而且先查看舊基數估計函式的資料列計數估計值。
 
 
 ```
 -- Old CE row estimate with INNER JOIN and WHERE clause
 
 ALTER DATABASE MyTestDB
-    SET COMPATIBILITY_LEVEL = 130;
+	SET COMPATIBILITY_LEVEL = 130;
 GO
 
 ALTER DATABASE
-    SCOPED CONFIGURATION
-    SET LEGACY_CARDINALITY_ESTIMATION = ON;
+	SCOPED CONFIGURATION
+	SET LEGACY_CARDINALITY_ESTIMATION = ON;
 GO
 
 SET STATISTICS XML ON;
 
 SELECT T.[c2]
-    FROM
-                   [dbo].[T_source] S
-        INNER JOIN [dbo].[T_target] T  ON T.c1=S.c1
-    WHERE
-        S.[Color] = ‘Red’  AND
-        S.[c2] > 2000  AND
-        T.[c2] > 2000
-    OPTION (RECOMPILE);
+	FROM
+		           [dbo].[T_source] S
+		INNER JOIN [dbo].[T_target] T  ON T.c1=S.c1
+	WHERE
+		S.[Color] = ‘Red’  AND
+		S.[c2] > 2000  AND
+		T.[c2] > 2000
+	OPTION (RECOMPILE);
 GO
 
 SET STATISTICS XML OFF;
 ```
 
 
-Executing this query effectively returns 200,704 rows, while the row estimate with the old Cardinality Estimation functionality claims 194,284 rows. Obviously, as said before, these row count results will also depend how often you ran the previous samples, which populates the sample tables over and over again at each run. Obviously, the predicates in your query will also have an influence on the actual estimation aside from the table shape, data content, and how this data actually correlate with each other.
+有效地執行這項查詢會傳回 200,704 個資料列，而透過舊基數估計功能的資料列預估值宣告 194,284 個資料列。很明顯地，如之前所述，這些資料列計數結果還是會視您執行先前範例的頻率而定，在每次執行時一再填入範例資料表。顯然，除了資料表圖形、資料內容，以及此資料實際上彼此相互關聯的方式，查詢中的述詞也會影響的實際估計。
 
 
-*Figure 6: The row count estimate is 194,284 or 6,000 rows off from the 200,704 rows expected.*
+*圖 6︰資料列計數估計值為 194,284 或與預期的 200,704 個資料列相差 6,000 個資料列。*
 
 
-![Figure 6](./media/sql-database-compatibility-level-query-performance-130/figure-6.jpg)
+![圖 6](./media/sql-database-compatibility-level-query-performance-130/figure-6.jpg)
 
 
-In the same way, let’s now execute the same query with the new Cardinality Estimation functionality.
+同樣地，我們現在使用新的基數估計功能執行相同的查詢。
 
 
 ```
 -- New CE row estimate with INNER JOIN and WHERE clause
 
 ALTER DATABASE MyTestDB
-    SET COMPATIBILITY_LEVEL = 130;
+	SET COMPATIBILITY_LEVEL = 130;
 GO
 
 ALTER DATABASE
-    SCOPED CONFIGURATION
-    SET LEGACY_CARDINALITY_ESTIMATION = OFF;
+	SCOPED CONFIGURATION
+	SET LEGACY_CARDINALITY_ESTIMATION = OFF;
 GO
 
 SET STATISTICS XML ON;
 
 SELECT T.[c2]
-    FROM
-                   [dbo].[T_source] S
-        INNER JOIN [dbo].[T_target] T  ON T.c1=S.c1
-    WHERE
-        S.[Color] = ‘Red’  AND
-        S.[c2] > 2000  AND
-        T.[c2] > 2000
-    OPTION (RECOMPILE);
+	FROM
+		           [dbo].[T_source] S
+		INNER JOIN [dbo].[T_target] T  ON T.c1=S.c1
+	WHERE
+		S.[Color] = ‘Red’  AND
+		S.[c2] > 2000  AND
+		T.[c2] > 2000
+	OPTION (RECOMPILE);
 GO
 
 SET STATISTICS XML OFF;
 ```
 
 
-Looking at the below, we now see that the row estimate is 202,877, or much closer and higher than the old Cardinality Estimation.
+看看下面，我們現在看到資料列估計值為 202,877，或更加接近且高於舊的基數估計。
 
-*Figure 7: The row count estimate is now 202,877, instead of 194,284.*
-
-
-![Figure 7](./media/sql-database-compatibility-level-query-performance-130/figure-7.jpg)
+*圖 7︰資料列計數估計現在是 202,877，而不是 194,284。*
 
 
-In reality, the result set is 200,704 rows (but all of it depends how often you did run the queries of the previous samples, but more importantly, because the TSQL uses the RAND() statement, the actual values returned can vary from one run to the next). Therefore, in this particular example, the new Cardinality Estimation does a better job at estimating the number of rows because 202,877 is much closer to 200,704, than 194,284! Last, if you change the WHERE clause predicates to equality (rather than “>” for instance), this could make the estimates between the old and new Cardinality function even more different, depending on how many matches you can get.
-
-Obviously, in this case, being ~6000 rows off from actual count does not represent a lot of data in some situations. Now, transpose this to millions of rows across several tables and more complex queries, and at times the estimate can be off by millions of rows , and therefore, the risk of picking-up the wrong execution plan, or requesting insufficient memory grants leading to TempDB spills, and so more I/O, are much higher.
-
-If you have the opportunity, practice this comparison with your most typical queries and datasets, and see for yourself by how much some of the old and new estimates are affected, while some could just become more off from the reality, or some others just simply closer to the actual row counts actually returned in the result sets. All of it will depend of the shape of your queries, the Azure SQL database characteristics, the nature and the size of your datasets, and the statistics available about them. If you just created your Azure SQL Database instance, the query optimizer will have to build its knowledge from scratch instead of reusing statistics made of the previous query runs. So, the estimates are very contextual and almost specific to every server and application situation. It is an important aspect to keep in mind!
+![圖 7](./media/sql-database-compatibility-level-query-performance-130/figure-7.jpg)
 
 
-## <a name="some-considerations-to-take-into-account"></a>Some considerations to take into account
+事實上，結果集為 200,704 個資料列 (但全都取決於您執行先前範例查詢的頻率，而更重要的是，因為 TSQL 使用 RAND() 陳述式，所以每次執行傳回的實際值會有所不同)。因此，在此特殊範例中，新的基數估計在估計資料列數時的效果更好，因為 202,877 比 194,284 更接近 200,704！ 最後，如果您將 WHERE 子句變更為等號 (舉例來說，而非 “>”)，這可能會使新舊基數函式之間的估計值更加不同 (視您可以取得多少相符項目而定)。
+
+很明顯地，在此情況下，與實際計數相差 ~6000 個資料列，在某些情況下並不代表大量資料。現在，將此變換成跨數個資料表的數百萬個資料列和更複雜的查詢，而有時候估計值可能會相差數百萬個資料列，因此，挑選錯誤執行計畫，或要求授與的記憶體不足 (導致 TempDB 溢出和更多的 I/O) 的風險會高出許多。
+
+如果您有機會，請使用最典型的查詢和資料集來練習這項比較，並親自查看一些舊的和新的估計值受到多少影響，然而有些估計值可能只是變得與事實相差更遠，其他一些估計值可能只是更接近結果集中實際傳回的實際資料列計數。這全都取決於您的查詢圖形、Azure SQL Database 特性、資料集的本質和大小，以及其相關的可用統計資料。如果您剛建立 Azure SQL Database 執行個體，查詢最佳化工具必須從頭建立其知識，而不是重複使用先前查詢執行所構成的統計資料。因此，估計值非常情境式，而且幾乎是每個伺服器和應用程式情況所特有。這是要牢記在心的重要層面！
 
 
-Although most workloads would benefit from the compatibility level 130, before you adopting the compatibility level for your production environment, you basically have 3 options:
-
-1. You move to compatibility level 130, and see how things perform. In case you notice some regressions, you just simply set the compatibility level back to its original level, or keep 130, and only reverse the Cardinality Estimation back to the legacy mode (As explained above, this alone could address the issue).
-2. You thoroughly test your existing applications under similar production load, fine tune, and validate the performance before going to production. In case of issues, same as above, you can always go back to the original compatibility level, or simply reverse the Cardinality Estimation back to the legacy mode.
-3. As a final option, and the most recent way to address these questions, is to leverage the Query Store. That’s today’s recommended option! To assist the analysis of your queries under compatibility level 120 or below versus 130, we cannot encourage you enough to use Query Store. Query Store is available with the latest version of Azure SQL Database V12, and it’s designed to help you with query performance troubleshooting. Think of the Query Store as a flight data recorder for your database collecting and presenting detailed historic information about all queries. This greatly simplifies performance forensics by reducing the time to diagnose and resolve issues. You can find more information at [Query Store: A flight data recorder for your database](https://azure.microsoft.com/blog/query-store-a-flight-data-recorder-for-your-database/).
+## 需要考量的一些注意事項
 
 
-At the high-level, if you already have a set of databases running at compatibility level 120 or below, and plan to move some of them to 130, or because your workload automatically provision new databases that will be soon be set by default to 130, please consider the followings:
+雖然大部分的工作負載受益於相容性層級 130，但是在您對生產環境採用此相容性層級之前，基本上有 3 個選項︰
 
-- Before changing to the new compatibility level in production, enable Query Store. You can refer to [Change the Database Compatibility Mode and Use the Query Store](https://msdn.microsoft.com/library/bb895281.aspx) for more information.
-- Next, test all critical workloads using representative data and queries of a production-like environment, and compare the performance experienced and as reported by Query Store. If you experience some regressions, you can identify the regressed queries with the Query Store and use the plan forcing option from Query Store (aka plan pinning). In such a case, you definitively stay with the compatibility level 130, and use the former query plan as suggested by the Query Store.
-- If you want to leverage new features and capabilities of Azure SQL Database (which is running SQL Server 2016), but are sensitive to changes brought by the compatibility level 130, as a last resort, you could consider forcing the compatibility level back to the level that suits your workload by using an ALTER DATABASE statement. But first, be aware that the Query Store plan pinning option is your best option because not using 130 is basically staying at the functionality level of an older SQL Server version.
-- If you have multitenant applications spanning multiple databases, it may be necessary to update the provisioning logic of your databases to ensure a consistent compatibility level across all databases; old and newly provisioned ones. Your application workload performance could be sensitive to the fact that some databases are running at different compatibility levels, and therefore, compatibility level consistency across any database could be required in order to provide the same experience to your customers all across the board. Note that it is not a mandate, it really depends on how your application is affected by the compatibility level.
-- Last, regarding the Cardinality Estimation, and just like changing the compatibility level, before proceeding in production, it is recommended to test your production workload under the new conditions to determine if your application benefits from the Cardinality Estimation improvements.
+1. 請移到相容性層級 130，並查看如何執行動作。如果您發現一些效能衰退，只要將相容性層級設回其原始層級，或保留 130，而且只讓基數估計回復到舊版模式 (如前文所述，這可獨力處理此問題)。
+2. 您可在類似的生產負載之下徹底測試現有的應用程式、進行微調，以及在正式推出前驗證效能。若有任何問題，同上所述，您可以隨時回到原始的相容性層級，或只讓基數估計回復到舊版模式。
+3. 做為處理這些問題的最後一個選項，最新的方法是使用查詢存放區。這是現今的建議選項！ 為了協助分析在相容性層級 120 或更低層級與相容性層級 130 之下的查詢，我們完全鼓勵您使用查詢存放區。查詢存放區適用於最新版的 Azure SQL Database V12，而且其設計用來協助您進行查詢效能疑難排解。將查詢存放區視為您的資料庫的飛行資料記錄器，其可收集和呈現關於所有查詢的詳細歷程記錄資訊。這可減少診斷和解決問題所需的時間，進而大幅簡化效能鑑識。如需詳細資訊，請參閱[查詢存放區︰您的資料庫的飛行資料記錄器](https://azure.microsoft.com/blog/query-store-a-flight-data-recorder-for-your-database/)。
 
 
-## <a name="conclusion"></a>Conclusion
+概括而言，如果您已經有一組在相容性層級 120 或更低層級執行的資料庫，並規劃將其中一些資料庫移到 130，或因為您的工作負載自動佈建一些很快就會預設為 130 的新資料庫，請考慮下列各項︰
+
+- 在變更為生產環境中的新相容性層級之前，啟用查詢存放區。如需詳細資訊，您可以參考[變更資料庫相容性模式和使用查詢存放區](https://msdn.microsoft.com/library/bb895281.aspx)。
+- 接下來，使用具代表性的資料和類似生產環境的查詢來測試所有重要工作負載，並且比較所經歷的效能與存放區所報告的效能。如果您遇到一些效能衰退，您可以找出衰退的查詢存放區查詢，並使用查詢存放區提供的計畫強制選項 (也稱為計畫關聯)。在這種情況下，您肯定會保持相容性層級 130，並使用查詢存放區的建議的先前查詢計畫。
+- 如果您想要運用 Azure SQL Database (執行 SQL Server 2016) 的新特性與功能，但很容易相容性層級 130 所帶來的變更所影響，則最後的手段是使用 ALTER DATABASE 陳述式，考慮讓相容性層級強制回到符合您的工作負載的層級。但首先，請注意查詢存放區計畫關聯選項是最佳的選擇，因為不使用 130 基本上會保持在舊版 SQL Server 的功能層級。
+- 如果您有橫跨多個資料庫的多租用戶應用程式，則可能必須更新您的資料庫的佈建邏輯，以確保所有資料庫 (舊的和新佈建的) 的相容性層級都一致。應用程式工作負載效能可能很容易受某些資料庫在不同相容性層級執行的這個事實所影響，因此，所有資料庫的相容性層級都必須一致，以便為所有的客戶提供相同的經驗。請注意，這並非必要，實際上取決於您的應用程式受相容性層級影響的程度。
+- 最後，至於基數估計，就像變更相容性層級一樣，在投入生產之前，建議在新的條件之下測試您的生產工作負載，以判斷您的應用程式是否受益於基數估計的改進。
 
 
-Using Azure SQL Database to benefit from all SQL Server 2016 enhancements can clearly improve your query executions. Just as-is! Of course, like any new feature, a proper evaluation must be done to determine the exact conditions under which your database workload operates the best. Experience shows that most workload are expected to at least run transparently under compatibility level 130, while leveraging new query processing functions, and new Cardinality Estimation. That said, realistically, there are always some exceptions and doing proper due diligence is an important assessment to determine how much you can benefit from these enhancements. And again, the Query Store can be of a great help in doing this work!
-
-As SQL Azure evolves, you can expect a compatibility level 140 in the future. When time is appropriate, we will start talking about what this future compatibility level 140 will bring, just as we briefly discussed here what compatibility level 130 is bringing today.
-
-For now, let’s not forget, starting June 2016, Azure SQL Database will change the default compatibility level from 120 to 130 for newly created databases. Be aware!
+## 結論
 
 
-## <a name="references"></a>References
+使用 Azure SQL Database 以受益於所有的 SQL Server 2016 增強功能，可以明顯地改善查詢執行。現狀正是如此！ 當然，如同任何新功能，必須執行適當的評估，才能判斷您的資料庫工作負載運作最佳的確切條件。經驗顯示，大部分的工作負載至少應該在相容性層級 130 之下以透明的方式執行，同時利用新的查詢處理函式和新的基數估計。實際上，總有一些例外狀況，而進行適當的審慎調查是很重要的評估，用來判斷您可以從這些增強功能獲益多少。同樣地，查詢存放區對於執行這項工作很有幫助！
+
+隨著 SQL Azure 發展，您可以預見未來會有相容性層級 140。在適當時機，我們會開始談論未來相容性層級 140 的願景，就像我們在此簡短討論相容性層級 130 的願景一樣。
+
+我們現在別忘了，從 2016 年 6 月開始，Azure SQL Database 會將新建資料庫的預設相容性層級從 120 變更為 130。請留意！
 
 
-- [What’s New in Database Engine](https://msdn.microsoft.com/library/bb510411.aspx#InMemory)
+## 參考
 
-- [Blog: Query Store: A flight data recorder for your database, by Borko Novakovic, June 8 2016](https://azure.microsoft.com/blog/query-store-a-flight-data-recorder-for-your-database/)
 
-- [ALTER DATABASE Compatibility Level (Transact-SQL)](https://msdn.microsoft.com/library/bb510680.aspx)
+- [Database Engine 新功能](https://msdn.microsoft.com/library/bb510411.aspx#InMemory)
+
+- [部落格︰查詢存放區︰您的資料庫的飛行資料記錄器 (Borko Novakovic，2016 年 6 月 8 日)](https://azure.microsoft.com/blog/query-store-a-flight-data-recorder-for-your-database/)
+
+- [ALTER DATABASE 相容性層級 (Transact-SQL)](https://msdn.microsoft.com/library/bb510680.aspx)
 
 - [ALTER DATABASE SCOPED CONFIGURATION](https://msdn.microsoft.com/library/mt629158.aspx)
 
-- [Compatibility Level 130 for Azure SQL Database V12](https://azure.microsoft.com/updates/compatibility-level-130-for-azure-sql-database-v12/)
+- [Azure SQL Database V12 的相容性層級 130](https://azure.microsoft.com/updates/compatibility-level-130-for-azure-sql-database-v12/)
 
-- [Optimizing Your Query Plans with the SQL Server 2014 Cardinality Estimator](https://msdn.microsoft.com/library/dn673537.aspx)
+- [使用 SQL Server 2014 基數估計器 (CE) 來最佳化查詢計劃](https://msdn.microsoft.com/library/dn673537.aspx)
 
-- [Columnstore Indexes Guide](https://msdn.microsoft.com/library/gg492088.aspx)
+- [資料行存放區索引指南](https://msdn.microsoft.com/library/gg492088.aspx)
 
-- [Blog: Improved Query Performance with Compatibility Level 130 in Azure SQL Database, by Alain Lissoir, May 6 2016](https://blogs.msdn.microsoft.com/sqlserverstorageengine/2016/05/06/improved-query-performance-with-compatibility-level-130-in-azure-sql-database/)
+- [落格︰改善 Azure SQL Database 中相容性層級 130 的查詢效能 (Alain Lissoir，2016 年 5 月 6 日)](https://blogs.msdn.microsoft.com/sqlserverstorageengine/2016/05/06/improved-query-performance-with-compatibility-level-130-in-azure-sql-database/)
 
 
 
@@ -527,8 +526,4 @@ sql-database-compatibility-level-query-performance-130.md
 genemi = MightyPen , 2016-05-20  Friday  17:00pm
 -->
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

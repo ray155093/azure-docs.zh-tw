@@ -1,117 +1,112 @@
 <properties
-    pageTitle="Azure Active Directory B2C: Limitations and restrictions | Microsoft Azure"
-    description="A list of limitations and restrictions with Azure Active Directory B2C"
-    services="active-directory-b2c"
-    documentationCenter=""
-    authors="swkrish"
-    manager="mbaldwin"
-    editor="bryanla"/>
+	pageTitle="Azure Active Directory B2C：限制 | Microsoft Azure"
+	description="Azure Active Directory B2C 的限制清單"
+	services="active-directory-b2c"
+	documentationCenter=""
+	authors="swkrish"
+	manager="msmbaldwin"
+	editor="bryanla"/>
 
 <tags
-    ms.service="active-directory-b2c"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="07/24/2016"
-    ms.author="swkrish"/>
+	ms.service="active-directory-b2c"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/24/2016"
+	ms.author="swkrish"/>
 
+# Azure Active Directory B2C：限制
 
-# <a name="azure-active-directory-b2c:-limitations-and-restrictions"></a>Azure Active Directory B2C: Limitations and restrictions
+Azure Active Directory (Azure AD) B2C 有幾項目前還未支援的特性與功能。其中的諸多已知問題和限制將會在未來獲得解決，但如果您使用 Azure AD B2C 建置消費者導向的應用程式，則應該注意這些問題和限制。
 
-There are several features and functionalities of Azure Active Directory (Azure AD) B2C that are not yet supported. Many of these known issues & limitations will be addressed going forward, but you should be aware of them if you are building consumer-facing applications using Azure AD B2C.
+## 建立 Azure AD B2C 租用戶期間的問題
 
-## <a name="issues-during-the-creation-of-azure-ad-b2c-tenants"></a>Issues during the creation of Azure AD B2C tenants
+如果您在[建立 Azure AD B2C 租用戶](active-directory-b2c-get-started.md)期間遇到問題，請參閱[建立 Azure AD 租用戶或 Azure AD B2C 租用戶 - 問題與解決方法](active-directory-b2c-support-create-directory.md)以取得指導方針。
 
-If you encounter issues during the [creation of an Azure AD B2C tenant](active-directory-b2c-get-started.md), see [Create an Azure AD tenant or an Azure AD B2C tenant--issues and resolutions](active-directory-b2c-support-create-directory.md) for guidance.
+請注意，當您刪除現有的 B2C 租用戶並使用相同的網域名稱加以重建時，會發生已知的問題。您必須使用不同的網域名稱建立 B2C 租用戶。
 
-Note that there are known issues when you delete an existing B2C tenant and re-create it with the same domain name. You have to create a B2C tenant with a different domain name.
+## B2C 租用戶配額的注意事項
 
-## <a name="note-about-b2c-tenant-quotas"></a>Note about B2C tenant quotas
+根據預設，B2C 租用戶的使用者數目限制為 50,000 名使用者。如果您需要提高 B2C 租用戶的配額，請連絡支援服務。
 
-By default, the number of users in a B2C tenant is limited to 50,000 users. If you need to raise the quota of your B2C tenant, you should contact Support.
+## 驗證電子郵件上的商標問題
 
-## <a name="branding-issues-on-verification-email"></a>Branding issues on verification email
+預設的驗證電子郵件包含 Microsoft 商標。未來我們會將它移除。您目前可以使用[公司商標功能](../active-directory/active-directory-add-company-branding.md)來移除它。
 
-The default verification email contains Microsoft branding. We will remove it in the future. For now, you can remove it by using the [company branding feature](../active-directory/active-directory-add-company-branding.md).
+## 應用程式的限制
 
-## <a name="restrictions-on-applications"></a>Restrictions on applications
+Azure AD B2C 目前不支援下列類型的應用程式。如需受支援應用程式類型的描述，請參閱 [Azure AD B2C：應用程式類型](active-directory-b2c-apps.md)。
 
-The following types of applications are not currently supported in Azure AD B2C. For a description of the supported types of applications, refer to [Azure AD B2C: Types of applications](active-directory-b2c-apps.md).
+### 單一頁面應用程式 (JavaScript)
 
-### <a name="single-page-applications-(javascript)"></a>Single Page Applications (JavaScript)
+許多現代化應用程式都有單一頁面應用程式 (SPA) 前端，主要是以 JavaScript 撰寫，而且通常採用 AngularJS、Ember.js、Durandal 等 SPA 架構。Azure AD B2C 預覽中還未提供此流程。
 
-Many modern applications have a Single Page Application (SPA) front-end that is written primarily in JavaScript and often uses an SPA framework such as AngularJS, Ember.js, Durandal, etc. This flow is not yet available in Azure AD B2C.
+### 精靈 / 伺服器端應用程式
 
-### <a name="daemons-/-server-side-applications"></a>Daemons / server-side applications
+如果應用程式含有長時間執行的處理序或不需要使用者操作，也仍然需要方法來存取受保護的資源，例如 Web API。這些應用程式可以透過 [OAuth 2.0 用戶端認證流程](active-directory-b2c-reference-protocols.md#oauth2-client-credentials-grant-flow)，利用應用程式的身分識別 (而非取用者的委派身分識別) 來驗證及取得權杖。Azure AD B2C 中還未提供此流程，因此，目前只有在進行互動式取用者登入流程之後，應用程式才能取得權杖。
 
-Applications that contain long-running processes or that operate without the presence of a user also need a way to access secured resources, such as Web APIs. These applications can authenticate and get tokens by using the application's identity (rather than a consumer's delegated identity) in the [OAuth 2.0 client credentials flow](active-directory-b2c-reference-protocols.md#oauth2-client-credentials-grant-flow). This flow is not yet available in Azure AD B2C, so for now, applications can get tokens only after an interactive consumer sign-in flow has occurred.
+### 獨立的 Web API
 
-### <a name="standalone-web-apis"></a>Standalone Web APIs
+在 Azure AD B2C 中，您能夠[建置使用 OAuth 2.0 權杖保護的 Web API](active-directory-b2c-apps.md#web-apis)。不過，該 Web API 只能從共用相同應用程式識別碼的用戶端接收權杖。不支援建置從數個不同用戶端存取的 Web API。
 
-In the Azure AD B2C, you have the ability to [build a Web API that is secured by using OAuth 2.0 tokens](active-directory-b2c-apps.md#web-apis). However, that Web API will only be able to receive tokens from a client that shares the same Application ID. Building a Web API that is accessed from several different clients is not supported.
+### Web API 鏈結 (代理者)
 
-### <a name="web-api-chains-(on-behalf-of)"></a>Web API chains (On-Behalf-Of)
+許多架構中都有一個 Web API 需要呼叫另一個下游 Web API，而兩者都受 Azure AD B2C 保護。此情況常見於有 Web API 後端的原生用戶端，而後端會再呼叫 Azure AD 圖形 API 等 Microsoft 線上服務。
 
-Many architectures include a Web API that needs to call another downstream Web API, both secured by Azure AD B2C. This scenario is common in native clients that have a Web API back end, which in turn calls a Microsoft online service such as the Azure AD Graph API.
+使用 OAuth 2.0 Jwt 持有人認證授與可支援此鏈結的 Web API 案例，亦稱為「代理者流程」。不過，Azure AD B2C 目前未實作代理者流程。
 
-This chained Web API scenario can be supported by using the OAuth 2.0 Jwt Bearer Credential grant, otherwise known as the On-Behalf-Of flow. However, the On-Behalf-Of flow is not currently implemented in the Azure AD B2C.
+## 程式庫與 SDK 的限制
 
-## <a name="restriction-on-libraries-and-sdks"></a>Restriction on libraries and SDKs
+目前能讓 Azure AD B2C 運作的 Microsoft 支援程式庫集合很有限。我們支援 .NET 型 Web 應用程式和服務，以及 NodeJS Web 應用程式和服務。我們也有稱為 MSAL 的預覽 .NET 用戶端程式庫，其可在 Windows 和其他 .NET 應用程式中與 Azure AD B2C 搭配使用。
 
-The set of Microsoft supported libraries that work Azure AD B2C is very limited at this time. We have support for .NET based web apps and services, as well as NodeJS web apps and services.  We also have a preview .NET client library known as MSAL that can be used with Azure AD B2C in Windows & other .NET apps.
+我們目前並未讓程式庫支援任何其他語言或平台，包括 iOS 與 Android。如果您想要在上面未提到的不同平台上建置，建議您使用開放原始碼 SDK，如有需要請參閱 [OAuth 2.0 和 OpenID Connect 通訊協定參考](active-directory-b2c-reference-protocols.md)。Azure AD B2C 會實作 OAuth 和 OpenID Connect，因此能夠使用一般的 OAuth 或 OpenID Connect 程式庫來進行整合。
 
-We do not currently have library support any other languages or platforms, including iOS & Android.  If you wish to build on a different platform than those mentioned above, we recommend using an open-source SDK, referring to our [OAuth 2.0 and OpenID Connect Protocol Reference](active-directory-b2c-reference-protocols.md) as necessary.  Azure AD B2C implements OAuth & OpenID Connect, which makes it possible to use a generic OAuth or OpenID Connect library for integration.
+我們的 iOS 和 Android 快速入門教學課程所使用的開放原始碼程式庫已完成 Azure AD B2C 相容性測試。您可以在[開始使用](active-directory-b2c-overview.md#getting-started)一節找到我們所有的快速入門教學課程。
 
-Our iOS & Android quick start tutorials use open-source libraries that we have tested for compatibility with Azure AD B2C.  All of our quick-start tutorials are available in our [Getting started](active-directory-b2c-overview.md#getting-started) section.
+## 通訊協定的限制
 
-## <a name="restriction-on-protocols"></a>Restriction on protocols
+Azure AD B2C 支援 OpenID Connect 和 OAuth 2.0。不過，並非每個通訊協定的所有特性與功能都已實作。若要進一步了解 Azure AD B2C 所支援的通訊協定功能的範圍，請參閱 [OpenID Connect 和 OAuth 2.0 通訊協定參考](active-directory-b2c-reference-protocols.md)。不提供 SAML 和 WS-Fed 通訊協定支援。
 
-Azure AD B2C supports OpenID Connect and OAuth 2.0. However, not all features and capabilities of each protocol have been implemented. To better understand the scope of supported protocol functionality in Azure AD B2C, read through our [OpenID Connect and OAuth 2.0 protocol reference](active-directory-b2c-reference-protocols.md). SAML and WS-Fed protocol support is not available.
+## 權杖的限制
 
-## <a name="restriction-on-tokens"></a>Restriction on tokens
+許多由 Azure AD B2C 所簽發的權杖都會實作為 JSON Web 權杖或 JWT。不過，並非 JWT 中包含的所有資訊 (又稱為「宣告」) 都相當完備，不然就是有所疏漏。例如 "sub" 和 "preferred\_username" 宣告。宣告的值、格式或意義會隨著時間而改變，但現有原則的權杖則不會受到影響，因此您可以依賴它們在生產應用程式中的值。當值變更時，我們會提供機會讓您對每個原則設定這些變更。若要進一步了解目前 Azure AD B2C 服務所發出的權杖，請參閱[權杖參考](active-directory-b2c-reference-tokens.md)。
 
-Many of the tokens issued by Azure AD B2C are implemented as JSON Web Tokens, or JWTs. However, not all information contained in JWTs (known as "claims") is quite as it should be or is missing. Some examples include the "sub" and the "preferred_username" claims.  As the values, format, or meaning of claims change over time, tokens for your existing policies will remain unaffected - you can rely on their values in production apps.  As values change, we will give you the opportunity to configure those changes for each of your policies.  To better understand the tokens emitted currently by the Azure AD B2C service, read through our [token reference](active-directory-b2c-reference-tokens.md).
+## 巢狀群組的限制
 
-## <a name="restriction-on-nested-groups"></a>Restriction on nested groups
+Azure AD B2C 租用戶中不支援巢狀群組成員資格。我們不打算新增這項功能。
 
-Nested group memberships aren't supported in Azure AD B2C tenants. We don't plan to add this capability.
+## Azure AD 圖形 API 上的差異查詢功能限制
 
-## <a name="restriction-on-differential-query-feature-on-azure-ad-graph-api"></a>Restriction on differential query feature on Azure AD Graph API
+Azure AD B2C 租用戶不支援 [Azure AD 圖形 API 上的差異查詢功能](https://msdn.microsoft.com/library/azure/ad/graph/howto/azure-ad-graph-api-differential-query)。這是我們的長期發展規劃。
 
-The [differential query feature on Azure AD Graph API](https://msdn.microsoft.com/library/azure/ad/graph/howto/azure-ad-graph-api-differential-query) isn't supported in Azure AD B2C tenants. This is on our long-term roadmap.
+## Azure 傳統入口網站上的使用者管理問題
 
-## <a name="issues-with-user-management-on-the-azure-classic-portal"></a>Issues with user management on the Azure classic portal
+在 Azure 入口網站上可存取 B2C 功能。不過，您可以使用 Azure 傳統入口網站來存取其他的租用戶功能，包括使用者管理。目前，Azure 傳統入口網站上的使用者管理 ([使用者] 索引標籤) 有幾個已知問題：
 
-B2C features are accessible on the Azure portal. However, you can use the Azure classic portal to access other tenant features, including user management. Currently there are a couple of known issues with user management (the **Users** tab) on the Azure classic portal:
+- 以本機帳戶使用者而言 (亦即，以電子郵件地址和密碼或使用者名稱和密碼來註冊的取用者)，[使用者名稱] 欄位未對應至註冊期間使用的登入識別碼 (電子郵件地址或使用者名稱)。這是因為 Azure 傳統入口網站上顯示的欄位，實際上是使用者主體名稱 (UPN)，而這在 B2C 案例中沒有用到。若要檢視本機帳戶的登入識別項，請在 [Graph Explorer](https://graphexplorer.cloudapp.net/) 中尋找使用者物件。您將會遇到與社交帳戶使用者 (亦即，以 Facebook、Google+ 等註冊的取用者) 同樣的問題，但在此情況下，沒所謂的登入識別項。
 
-- For a local account user (i.e., a consumer who signs up with an email address and password, or a username and password), the **User Name** field doesn't correspond to the sign-in identifier (email address or username) that was used during sign-up. This is because the field displayed on the Azure classic portal is actually the User Principal Name (UPN), which is not used in B2C scenarios. To view the sign-in identifier of the local account, find the user object in [Graph Explorer](https://graphexplorer.cloudapp.net/). You will find the same issue with a social account user (i.e., a consumer who signs up with Facebook, Google+, etc.), but in that case, there is no sign-in identifier to speak of.
+    ![本機帳戶 - UPN](./media/active-directory-b2c-limitations/limitations-user-mgmt.png)
 
-    ![Local account - UPN](./media/active-directory-b2c-limitations/limitations-user-mgmt.png)
+- 以本機帳戶使用者而言，您將無法在 [設定檔] 索引標籤中編輯任何欄位和儲存變更。
 
-- For a local account user, you will not able to edit any of the fields and save changes on the **Profile** tab.
+## 在 Azure 傳統入口網站上的系統管理員起始密碼重設問題
 
-## <a name="issues-with-admin-initiated-password-reset-on-the-azure-classic-portal"></a>Issues with admin-initiated password reset on the Azure classic portal
+如果您在 Azure 傳統入口網站上重設本機帳戶取用者的密碼 ([使用者] 索引標籤上的 [重設密碼] 命令)，該取用者下次登入時將無法變更密碼；如果您使用「註冊或登入」原則，取用者還會被鎖定不得使用您的應用程式。解決方法是使用 [Azure AD Graph API](active-directory-b2c-devquickstarts-graph-dotnet.md) 重設取用者密碼 (不含密碼到期)，或使用「登入」原則，而不是「註冊或登入」原則。
 
-If you reset the password for a local account-based consumer on the Azure classic portal (the **Reset Password** command on the **Users** tab), that consumer will not be able to change his or her password on the next sign in, if you use a Sign up or Sign in policy, and will be locked out of your applications. As a workaround, use the [Azure AD Graph API](active-directory-b2c-devquickstarts-graph-dotnet.md) to reset the consumer's password (without password expiration) or use a Sign in policy instead of a Sign up or Sign in policy.
+## 建立自訂屬性時的問題
 
-## <a name="issues-with-creating-a-custom-attribute"></a>Issues with creating a custom attribute
+[在 Azure 入口網站上新增的自訂屬性](active-directory-b2c-reference-custom-attr.md)不會立即在 B2C 租用戶中建立。您必須至少在一個原則中使用自訂屬性，它才會在 B2C 租用戶中建立，也才可透過圖形 API 使用。
 
-A [custom attribute added on the Azure portal](active-directory-b2c-reference-custom-attr.md) is not immediately created in your B2C tenant. You'll have to use the custom attribute in at least one of your policies for it to get created in your B2C tenant and to become available via Graph API.
+## 在 Azure 傳統入口網站上驗證網域的問題
 
-## <a name="issues-with-verifying-a-domain-on-the-azure-classic-portal"></a>Issues with verifying a domain on the Azure classic portal
+您目前無法在 [Azure 傳統入口網站](https://manage.windowsazure.com/)上順利驗證網域。
 
-Currently you can't verify a domain successfully on the [Azure classic portal](https://manage.windowsazure.com/).
+## Safari 瀏覽器上的使用 MFA 原則來登入的問題
 
-## <a name="issues-with-sign-in-with-mfa-policy-on-safari-browsers"></a>Issues with Sign-in with MFA policy on Safari browsers
+在 Safari 瀏覽器上，登入原則的要求 (在開啟 MFA 時) 偶爾會失敗，並出現 HTTP 400 (不正確的要求) 錯誤。這是因為 Safari 的低 Cookie 大小限制所致。此問題有許多因應措施︰
 
-Requests to sign-in policies (with MFA turned ON) fail intermittently on Safari browsers with HTTP 400 (Bad Request) errors. This is due Safari's low cookie size limits. There are a couple of workarounds for this issue:
+- 使用「註冊或登入原則」而不是「登入原則」。
+- 減少原則中所要求的**應用程式宣告**數目。
 
-- Use the "Sign-up or sign-in policy" instead of the "sign-in policy".
-- Reduce the number of **Application claims** being requested in your policy.
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0831_2016-->

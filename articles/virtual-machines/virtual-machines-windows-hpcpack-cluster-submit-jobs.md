@@ -1,6 +1,6 @@
 <properties
- pageTitle="Submit jobs to an HPC Pack cluster in Azure | Microsoft Azure"
- description="Learn how to set up an on-premises computer to submit jobs to an HPC Pack cluster in Azure"
+ pageTitle="將工作提交至 Azure 中的 HPC Pack 叢集 | Microsoft Azure"
+ description="了解如何設定內部部署電腦，以將工作提交至 Azure 中的 HPC Pack 叢集"
  services="virtual-machines-windows"
  documentationCenter=""
  authors="dlepow"
@@ -16,117 +16,116 @@ ms.service="virtual-machines-windows"
  ms.date="07/15/2016"
  ms.author="danlep"/>
 
-
-# <a name="submit-hpc-jobs-from-an-on-premises-computer-to-an-hpc-pack-cluster-deployed-in-azure"></a>Submit HPC jobs from an on-premises computer to an HPC Pack cluster deployed in Azure
+# 將 HPC 工作從內部部署電腦提交至在 Azure 中部署的 HPC Pack 叢集
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
-Configure an on-premises client computer running Windows to run HPC Pack job submission tools that communicate over HTTPS with an HPC Pack cluster in Azure. This provides a straightforward, flexible way for a variety of cluster users to submit jobs to a cloud-based HPC Pack cluster without needing to connect directly to the head node VM or access an Azure subscription to run job submission tools.
+設定執行 Windows 的內部部署用戶端電腦，使其執行可透過 HTTPS 與 Azure 中 HPC Pack 叢集進行通訊的 HPC Pack 工作提交工具。這可讓各種叢集使用者以直接而有彈性的方式將工作提交至雲端架構 HPC Pack 叢集，而無需直接連接到前端節點 VM 或存取 Azure 訂用帳戶執行工作提交工具。
 
-![Submit a job to a cluster in Azure][jobsubmit]
+![將工作提交至 Azure 中的叢集][jobsubmit]
 
-## <a name="prerequisites"></a>Prerequisites
+## 必要條件
 
-* **HPC Pack head node deployed in an Azure VM** - We recommend that you use automated tools such as an [Azure quickstart template](https://azure.microsoft.com/documentation/templates/) or an [Azure PowerShell script](virtual-machines-windows-classic-hpcpack-cluster-powershell-script.md) to deploy the head node and cluster. You will need the DNS name of the head node and the credentials of a cluster administrator to complete the steps in this article.
+* **在 Azure VM 中部署的 HPC Pack 前端節點** - 建議您使用 [Azure quickstart template (Azure 快速入門範本)](https://azure.microsoft.com/documentation/templates/) 或 [Azure PowerShell 指令碼](virtual-machines-windows-classic-hpcpack-cluster-powershell-script.md)等自動化工具來部署前端節點和叢集。您必須要有前端節點的 DNS 名稱和叢集系統管理員的認證，才能完成本文中的步驟。
 
-* **Client computer** - You'll need a Windows or Windows Server client computer that can run HPC Pack client utilities (see [system requirements](https://technet.microsoft.com/library/dn535781.aspx)). If you only want to use the HPC Pack web portal or REST API to submit jobs, you can use any client computer of your choice.
+* **用戶端電腦** - 您必須要有可執行 HPC Pack 用戶端公用程式的 Windows 或 Windows Server 用戶端電腦 (請參閱[系統需求](https://technet.microsoft.com/library/dn535781.aspx))。如果您只想要使用 HPC Pack Web 入口網站或 REST API 來提交工作，您可以使用自行選擇的任何用戶端電腦。
 
-* **HPC Pack installation media** - To install the HPC Pack client utilities, the free installation package for the latest version of HPC Pack (HPC Pack 2012 R2) is available from the [Microsoft Download Center](http://go.microsoft.com/fwlink/?LinkId=328024). Make sure that you download the same version of HPC Pack that is installed on the head node VM.
+* **HPC Pack 安裝媒體** - 若要安裝 HPC Pack 用戶端公用程式，可從 [Microsoft 下載中心](http://go.microsoft.com/fwlink/?LinkId=328024)取得最新版 HPC Pack (HPC Pack 2012 R2) 的免費安裝套件。請確定您下載的是安裝在前端節點 VM 上的相同 HPC Pack 版本。
 
-## <a name="step-1:-install-and-configure-the-web-components-on-the-head-node"></a>Step 1: Install and configure the web components on the head node
+## 步驟 1：在前端節點上安裝及設定 Web 元件
 
-To enable a REST interface to submit jobs to the cluster over HTTPS, install and configure the HPC Pack web components on the HPC Pack head node, if they are not already configured. You first install the web components by running the HpcWebComponents.msi installation file. Then, configure the components by running the HPC PowerShell script **Set-HPCWebComponents.ps1**.
+若要啟用透過 HTTPS 以 REST 介面將工作提交至叢集的功能，請在 HPC Pack 前端節點上安裝及設定 HPC Pack Web 元件 (如果尚未設定)。您必須先執行 HpcWebComponents.msi 安裝檔案，以安裝 Web 元件。然後，請執行 HPC PowerShell 指令碼 **Set-HPCWebComponents.ps1**，以設定元件。
 
-For detailed procedures, see [Install the Microsoft HPC Pack Web Components](http://technet.microsoft.com/library/hh314627.aspx).
+如需詳細程序，請參閱[安裝 Microsoft HPC Pack Web 元件](http://technet.microsoft.com/library/hh314627.aspx)。
 
->[AZURE.TIP] Certain Azure quickstart templates for HPC Pack install and configure the web components automatically. If you use the [HPC Pack IaaS deployment script](virtual-machines-windows-classic-hpcpack-cluster-powershell-script.md) to create the cluster, you can optionally install and configure the web web components as part of the deployment.
+>[AZURE.TIP] HPC Pack 的某些 Azure 快速入門範本會自動安裝和設定 Web 元件。如果您使用 [HPC Pack IaaS 部署指令碼](virtual-machines-windows-classic-hpcpack-cluster-powershell-script.md)來建立叢集，您可以選擇性地安裝 Web 元件並將其設定為部署的一部分。
 
-**To install the web components**
+**安裝 Web 元件**
 
-1. Connect to the head node VM by using the credentials of a cluster administrator.
+1. 使用叢集系統管理員的認證連接到前端節點 VM。
 
-2. From the HPC Pack Setup folder, run HpcWebComponents.msi on the head node.
+2. 從 HPC Pack 安裝程式資料夾，在前端節點上執行 HpcWebComponents.msi。
 
-3. Follow the steps in the wizard to install the web components
+3. 依照精靈中的步驟安裝 Web 元件
 
-**To configure the web components**
+**設定 Web 元件**
 
-1. On the head node, start HPC PowerShell as an administrator.
+1. 在前端節點上，以系統管理員身分啟動 HPC PowerShell。
 
-2. To change directory to the location of the configuration script, type the following command:
+2. 若要將目錄切換至組態指令碼的位置，請輸入下列命令：
 
     ```
     cd $env:CCP_HOME\bin
     ```
-3. To configure the REST interface and start the HPC Web Service, type the following command:
+3. 若要設定 REST 介面並啟動 HPC Web 服務，輸入下列命令：
 
     ```
     .\Set-HPCWebComponents.ps1 –Service REST –enable
     ```
 
-4. When prompted to select a certificate, choose the certificate that corresponds to the public DNS name of the head node. For example, if you deploy the head node VM using the classic deployment model, the certificate name is of the form CN=&lt;*HeadNodeDnsName*&gt;.cloudapp.net. If you use the Resource Manager deployment model, the certificate name is of the form CN=&lt;*HeadNodeDnsName*&gt;.&lt;*region*&gt;.cloudapp.azure.com.
+4. 當系統提示您選取憑證時，請選擇與前端節點的公用 DNS 名稱相對應的憑證。例如，如果您使用傳統部署模型來部署前端節點 VM，憑證名稱的格式就會是 CN=&lt;*HeadNodeDnsName*&gt;.cloudapp.net。如果您使用 Resource Manager 部署模型，則憑證名稱的格式會是 CN=&lt;*HeadNodeDnsName*&gt;.&lt;*region*&gt;.cloudapp.azure.com。
 
-    >[AZURE.NOTE] You need to select this certificate to submit jobs later to the head node from an on-premises computer. Don't select or configure a certificate that corresponds to the computer name of the head node in the Active Directory domain (for example, CN=*MyHPCHeadNode.HpcAzure.local*).
+    >[AZURE.NOTE] 您必須選取此憑證，後續才能工作從內部部署電腦提交至前端節點。請勿選取或設定與 Active Directory 網域中前端節點的電腦名稱對應的憑證 (例如 CN=*MyHPCHeadNode.HpcAzure.local*)。
 
-5. To configure the web portal for job submission, type the following command:
+5. 若要設定 Web 入口網站以提交工作，請輸入下列命令：
 
     ```
     .\Set-HPCWebComponents.ps1 –Service Portal -enable
     ```
-6. After the script completes, stop and restart the HPC Job Scheduler Service by typing the following:
+6. 指令碼完成之後，請輸入下列命令，以停止並重新啟動 HPC 工作排程器服務：
 
     ```
     net stop hpcscheduler
     net start hpcscheduler
     ```
 
-## <a name="step-2:-install-the-hpc-pack-client-utilities-on-an-on-premises-computer"></a>Step 2: Install the HPC Pack client utilities on an on-premises computer
+## 步驟 2：在內部部署電腦上安裝 HPC Pack 用戶端公用程式
 
-If you want to install the HPC Pack client utilities, download the HPC Pack setup files (full installation) from the [Microsoft Download Center](http://go.microsoft.com/fwlink/?LinkId=328024) to the client computer. When you begin the installation, choose the setup option for the HPC Pack client utilities.
+如果您想要安裝 HPC Pack 用戶端公用程式，請從 [Microsoft 下載中心](http://go.microsoft.com/fwlink/?LinkId=328024)將 HPC Pack 安裝程式檔案 (完整安裝) 下載到用戶端電腦。當您開始安裝時，請選擇安裝 HPC Pack 用戶端公用程式。
 
-To use the HPC Pack client tools to submit jobs to the head node VM, you'll also need to export a certificate from the head node and install it on the client computer. You'll need the certificate to be in .CER format.
+若要使用 HPC Pack 用戶端工具將工作提交至前端節點 VM，您也必須從前端節點匯出憑證，並將它安裝在用戶端電腦上。憑證須採用 .CER 格式。
 
-**To export the certificate from the head node**
+**從前端節點匯出憑證**
 
-1. On the head node, add the Certificates snap-in to a Microsoft Management Console for the Local Computer account. For steps to add the snap-in, see [Add the Certificates Snap-in to an MMC](https://technet.microsoft.com/library/cc754431.aspx).
+1. 在前端節點上，將 [憑證] 嵌入式管理單元新增至本機電腦帳戶的 Microsoft 管理主控台。如需新增嵌入式管理單元的步驟，請參閱[將憑證嵌入式管理單元新增至 MMC](https://technet.microsoft.com/library/cc754431.aspx)。
 
-2. In the console tree, expand **Certificates – Local Computer** > **Personal**, and then click **Certificates**.
+2. 在主控台樹狀目錄中，展開 [憑證 - 本機電腦] > [個人]，然後按一下 [憑證]。
 
-3. Locate the certificate that you configured for the HPC Pack web components in [Step 1: Install and configure the web components on the head node](#step-1:-install-and-configure-the-web-components-on-the-head-node) (for example, CN=&lt;*HeadNodeDnsName*&gt;.cloudapp.net).
+3. 找出您在[步驟 1：在前端節點上安裝及設定 Web 元件](#step-1:-install-and-configure-the-web-components-on-the-head-node)中為 HPC Pack Web 元件設定的憑證 (例如 CN=&lt;*HeadNodeDnsName*&gt;.cloudapp.net)。
 
-4. Right-click the certificate, click **All Tasks**, and then click **Export**.
+4. 在憑證上按一下滑鼠右鍵，按一下 [所有工作]，然後按一下 [匯出]。
 
-5. In the Certificate Export Wizard, click **Next**, and ensure that **No, do not export the private key** is selected.
+5. 在 [憑證匯出精靈] 中按 [下一步]，然後確定已選取 [否，不要匯出私密金鑰]。
 
-6. Follow the remaining steps of the wizard to export the certificate in DER encoded binary X.509 (.CER) format.
-
-
-**To import the certificate on the client computer**
+6. 依照精靈中的其餘步驟，以 DER 編碼的二進位 X.509 (.CER) 格式匯出憑證。
 
 
-1. Copy the certificate that you exported from the head node to a folder on the client computer.
-
-2. On the client computer, run certmgr.msc.
-
-3. In Certificate Manager, expand **Certificates – Current user** > **Trusted Root Certification Authorities**, right-click **Certificates**, click **All Tasks**, and then click **Import**.
-
-4. In the Certificate Import Wizard, click **Next** and follow the steps to import the certificate that you exported from the head node to the Trusted Root Certification Authorities store.
+**在用戶端電腦上匯入憑證**
 
 
+1. 將您從前端節點中匯出的憑證複製到用戶端電腦上的資料夾。
 
->[AZURE.TIP] You might see a security warning, because the certification authority on the head node will not be recognized by the client computer. For testing purposes you can ignore this warning and complete the certificate import.
+2. 在用戶端電腦上執行 certmgr.msc。
 
-## <a name="step-3:-run-test-jobs-on-the-cluster"></a>Step 3: Run test jobs on the cluster
+3. 在 [憑證管理員] 中，展開 [憑證 - 目前的使用者] > [受信任的根憑證授權單位]，在 [憑證] 上按一下滑鼠右鍵，然後依序按一下 [所有工作] 及 [匯入]。
 
-To verify your configuration, try running jobs on the cluster in Azure from the on-premises computer. For example, you can use HPC Pack GUI tools or command-line commands to submit jobs to the cluster. You can also use a web-based portal to submit jobs.
-
-
-**To run job submission commands on the client computer**
+4. 在 [憑證匯入精靈] 中按 [下一步]，然後依照步驟，將您從前端節點匯出的憑證匯入到「受信任的根憑證授權單位」存放區。
 
 
-1. On a client computer where the HPC Pack client utilities are installed, start a Command Prompt.
 
-2. Type a sample command. For example, to list all jobs on the cluster, type a command similar to one of the following, depending on the full DNS name of the head node:
+>[AZURE.TIP] 您可能會看到安全性警告，因為用戶端電腦無法辨識前端節點上的憑證授權單位。基於測試目的，您可以忽略此警告並完成憑證匯入。
+
+## 步驟 3：在叢集上執行測試工作
+
+若要確認您的設定，請嘗試從內部部署的電腦在 Azure 中的叢集上執行工作。例如，您可以使用 HPC Pack GUI 工具或命令列命令，將工作提交至叢集。您也可以使用 Web 型入口網站來提交工作。
+
+
+**在用戶端電腦上執行工作提交命令**
+
+
+1. 在已安裝 HPC Pack 用戶端公用程式的用戶端電腦上，啟動「命令提示字元」。
+
+2. 輸入範例命令。例如，若要列出叢集上的所有工作，請根據前端節點的完整 DNS 名稱輸入類似下列其中一項的命令：
 
     ```
     job list /scheduler:https://<HeadNodeDnsName>.cloudapp.net /all
@@ -134,62 +133,58 @@ To verify your configuration, try running jobs on the cluster in Azure from the 
     job list /scheduler:https://<HeadNodeDnsName>.<region>.cloudapp.azure.com /all
     ```
 
-    >[AZURE.TIP] Use the full DNS name of the head node, not the IP address, in the scheduler URL. If you specify the IP address, you’ll see an error similar to "The server certificate needs to either have a valid chain of trust or to be placed in the trusted root store".
+    >[AZURE.TIP] 在排程器 URL 中請使用前端節點的完整 DNS 名稱，而不是 IP 位址。如果您指定 IP 位址，則會看到如下的錯誤：「伺服器憑證必須具有有效的信任鏈結，或放在受信任的根存放區」。
 
-3. When prompted, type the user name (in the form &lt;DomainName&gt;\\&lt;UserName&gt;) and password of the HPC cluster administrator or another cluster user that you configured. You can choose to store the credentials locally for more job operations.
+3. 出現提示時，請輸入使用者名稱 (格式為 &lt;DomainName&gt;&lt;UserName&gt;) 和 HPC 叢集系統管理員或您所設定之其他叢集使用者的密碼。您可以選擇將認證儲存在本機，以供更多工作運用。
 
-    A list of jobs appears.
+    工作清單隨即出現。
 
 
-**To use HPC Job Manager on the client computer**
+**在用戶端電腦上使用 HPC 工作管理員**
 
-1. If you didn't previously store domain credentials for a cluster user on the client computer when you submitted the job, you can add the credentials in Credential Manager.
+1. 如果您先前未將叢集使用者的網域認證儲存在用戶端電腦上，在提交工作時，您可能會在 [認證管理員] 中新增認證。
 
-    a. In Control Panel on the client computer, start Credential Manager.
+    a.在用戶端電腦的控制台中，啟動 [認證管理員]。
 
-    b. Click **Windows Credentials**, and then click **Add a generic credential**.
+    b.按一下 [Windows 認證]，然後按一下 [新增一般認證]。
 
-    c. Specify the Internet address (for example, https://&lt;HeadNodeDnsName&gt;.cloudapp.net/HpcScheduler or https://&lt;HeadNodeDnsName&gt;.&lt;region&gt;.cloudapp.azure.com/HpcScheduler), and provide the user name (in the form &lt;DomainName&gt;\\&lt;UserName&gt;) and password of the HPC cluster administrator or another cluster user that you configured.
+    c.指定網際網路位址 (例如 https://&lt;HeadNodeDnsName&gt;.cloudapp.net/HpcScheduler 或 https://&lt;HeadNodeDnsName&gt;.&lt;region&gt;.cloudapp.azure.com/HpcScheduler)，然後提供使用者名稱 (格式為 &lt;DomainName&gt;\\&lt;UserName&gt;)，以及 HPC 叢集系統管理員或您所設定之其他叢集使用者的密碼。
 
-2. On the client computer, start HPC Job Manager.
+2. 在用戶端電腦上，啟動 [HPC 工作管理員]。
 
-3. In the **Select Head Node** dialog box, type the URL to the head node in Azure (for example, https://&lt;HeadNodeDnsName&gt;.cloudapp.net or https://&lt;HeadNodeDnsName&gt;.&lt;region&gt;.cloudapp.azure.com).
+3. 在 [選取前端節點] 對話方塊中，輸入 Azure 中前端節點的 URL (例如 https://&lt;HeadNodeDnsName&gt;.cloudapp.net 或 https://&lt;HeadNodeDnsName&gt;.&lt;region&gt;.cloudapp.azure.com)。
 
-    HPC Job Manager opens and shows a list of jobs on the head node.
+    [HPC 工作管理員] 隨即開啟，並顯示前端節點上的工作清單。
 
-**To use the web portal running on the head node**
+**使用在前端節點上執行的 Web 入口網站**
 
-1. Start a web browser on the client computer, and type one of the following, depending on the full DNS name of the head node:
+1. 在用戶端電腦上啟動網頁瀏覽器，並根據前端節點的完整 DNS 名稱輸入下列其中一項命令：
 
     ```
     https://<HeadNodeDnsName>.cloudapp.net/HpcPortal
 
     https://<HeadNodeDnsName>.<region>.cloudapp.azure.com/HpcPortal
     ```
-2. In the security dialog box that appears, type the domain credentials of the HPC cluster administrator. (You can also add other cluster users in different roles. See [Managing Cluster Users](https://technet.microsoft.com/library/ff919335.aspx).)
+2. 在出現的安全性對話方塊中，輸入 HPC 叢集系統管理員的網域認證。(您也可以在不同的角色中新增其他叢集使用者。請參閱[管理叢集使用者](https://technet.microsoft.com/library/ff919335.aspx)。)
 
-    The web portal opens to the job list view.
+    Web 入口網站會開啟並顯示作業清單檢視。
 
-3. To submit a sample job that returns the string “Hello World” from the cluster, click **New job** in the left-hand navigation.
+3. 若要提交會從叢集傳回字串 "Hello World" 的範例工作，請按一下左側導覽列中的 [新增工作]。
 
-4. On the **New Job** page, under **From submission pages**, click **HelloWorld**. The job submission page appears.
+4. 在 [新增工作] 頁面的 [來源提交頁面] 下，按一下 **HelloWorld**。工作提交頁面隨即出現。
 
-5. Click **Submit**. If prompted, provide the domain credentials of the HPC cluster administrator. The job is submitted and the job ID appears on the **My Jobs** page.
+5. 按一下 [提交]。出現提示時，請提供 HPC 叢集系統管理員的網域認證。工作提交後，工作 ID 會出現在 [我的工作] 頁面上。
 
-6. To view the results of the job that you submitted, click the job ID, and then click **View Tasks** to view the command output (under **Output**).
+6. 若要檢視您所提交之工作的結果，請按一下工作 ID，然後按一下 [檢視工作] 以檢視命令輸出 (在 [輸出] 下)。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-* You can also submit jobs to the Azure cluster with the [HPC Pack REST API](http://social.technet.microsoft.com/wiki/contents/articles/7737.creating-and-submitting-jobs-by-using-the-rest-api-in-microsoft-hpc-pack-windows-hpc-server.aspx).
+* 您也可以使用 [HPC Pack REST API](http://social.technet.microsoft.com/wiki/contents/articles/7737.creating-and-submitting-jobs-by-using-the-rest-api-in-microsoft-hpc-pack-windows-hpc-server.aspx) 將工作提交至 Azure 叢集。
 
-* If you want to submit cluster jobs from a Linux client, see the Python sample in the [HPC Pack 2012 R2 SDK and Sample Code](https://www.microsoft.com/download/details.aspx?id=41633).
+* 如果您要從 Linux 用戶端提交叢集工作，請參閱 [HPC Pack 2012 R2 SDK and Sample Code (HPC Pack 2012 R2 SDK 和範例程式碼)](https://www.microsoft.com/download/details.aspx?id=41633) 中的 Python 範例。
 
 
 <!--Image references-->
 [jobsubmit]: ./media/virtual-machines-windows-hpcpack-cluster-submit-jobs/jobsubmit.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0720_2016-->

@@ -1,67 +1,60 @@
 <properties
-    pageTitle=" Upload files into a Media Services account using the Azure portal | Microsoft Azure"
-    description="This tutorial walks you through the steps of uploading files into a Media Services account using the Azure portal"
-    services="media-services"
-    documentationCenter=""
-    authors="Juliako"
-    manager="erikre"
-    editor=""/>
+	pageTitle=" 使用 Azure 入口網站將檔案上傳至媒體服務帳戶 | Microsoft Azure"
+	description="本教學課程逐步引導您完成使用 Azure 入口網站將檔案上傳至媒體服務帳戶的步驟。"
+	services="media-services"
+	documentationCenter=""
+	authors="Juliako"
+	manager="erikre"
+	editor=""/>
 
 <tags
-    ms.service="media-services"
-    ms.workload="media"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="get-started-article"
-    ms.date="08/29/2016"
-    ms.author="juliako"/>
+	ms.service="media-services"
+	ms.workload="media"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="get-started-article"
+	ms.date="08/29/2016"
+	ms.author="juliako"/>
 
 
-
-# <a name="upload-files-into-a-media-services-account-using-the-azure-portal"></a>Upload files into a Media Services account using the Azure portal 
+# 使用 Azure 入口網站將檔案上傳至媒體服務帳戶 
 
 > [AZURE.SELECTOR]
-- [Portal](media-services-portal-upload-files.md)
+- [入口網站](media-services-portal-upload-files.md)
 - [.NET](media-services-dotnet-upload-files.md)
 - [REST](media-services-rest-upload-files.md)
 
-> [AZURE.NOTE] To complete this tutorial, you need an Azure account. For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/). 
+> [AZURE.NOTE] 若要完成此教學課程，您需要 Azure 帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
-In Media Services, you upload your digital files into an asset. The Asset  can contain video, audio, images, thumbnail collections, text tracks and closed caption files (and the metadata about these files.) Once the files are uploaded, your content is stored securely in the cloud for further processing and streaming.
+在媒體服務中，您會將數位檔案上傳到到資產。「資產」可以包含視訊、音訊、影像、縮圖集合、文字播放軌及隱藏式輔助字幕檔案 (以及這些檔案的相關中繼資料)。 上傳檔案之後，您的內容會安全地儲存在雲端，以進一步進行處理和串流處理。
  
-1. In the **Setting** window, click **Assets**.
+1. 在 [設定] 視窗中，按一下 [資產]。
 
-    ![Upload files](./media/media-services-portal-vod-get-started/media-services-upload.png)
+	![上傳檔案](./media/media-services-portal-vod-get-started/media-services-upload.png)
 
-3. Click the **Upload** button.
+3. 按一下 [上傳] 按鈕。
 
-    The **Upload a video asset** window appears.
+	[上傳視訊資產] 視窗隨即出現。
 
-    >[AZURE.NOTE] There is no file size limitation.
-    
-4. Browse to the desired video on your computer, select it, and hit OK.  
+	>[AZURE.NOTE] 檔案大小不受限。
+	
+4. 瀏覽至您的電腦上想要的視訊，加以選取，然後點擊 [確定]。
 
-    The upload starts and you can see the progress under the file name.  
+	開始上傳，您可以在檔名底下看到進度。
 
-Once the upload completes, you will see the new asset listed in the **Assets** window. 
+上傳完成後，您將會看到新資產列在 [資產] 清單中。
 
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-You can now encode your uploaded assets. For more information, see [Encode assets](media-services-portal-encode.md).
+您現在可以將上傳的資產編碼。如需詳細資訊，請參閱[為資產編碼](media-services-portal-encode.md)。
 
-## <a name="media-services-learning-paths"></a>Media Services learning paths
+## 媒體服務學習路徑
 
 [AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-##<a name="provide-feedback"></a>Provide feedback
+##提供意見反應
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0831_2016-->

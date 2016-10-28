@@ -1,187 +1,185 @@
 <properties 
-    pageTitle="Installing elastic database jobs | Microsoft Azure" 
-    description="Walk through installation of the elastic job feature." 
-    services="sql-database" 
-    documentationCenter="" 
-    manager="jhubbard" 
-    authors="ddove" 
-    editor=""/>
+	pageTitle="安裝彈性資料庫工作 | Microsoft Azure" 
+	description="逐步解說如何安裝彈性工作功能。" 
+	services="sql-database" 
+	documentationCenter="" 
+	manager="jhubbard" 
+	authors="ddove" 
+	editor=""/>
 
 <tags 
-    ms.service="sql-database" 
-    ms.workload="sql-database" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="05/27/2016" 
-    ms.author="ddove"/>
+	ms.service="sql-database" 
+	ms.workload="sql-database" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="05/27/2016" 
+	ms.author="ddove"/>
 
+# 安裝彈性資料庫工作概觀
 
-# <a name="installing-elastic-database-jobs-overview"></a>Installing Elastic Database jobs overview
+[**彈性資料庫工作**](sql-database-elastic-jobs-overview.md)可以透過 PowerShell 或是透過 Azure 傳統入口網站安裝。只在安裝 PowerShell 封裝時，才會取得存取權，使用 PowerShell API 來建立和管理工作。此外，PowerShell API 目前比入口網站提供更多的功能。
 
-[**Elastic Database jobs**](sql-database-elastic-jobs-overview.md) can be installed via PowerShell or through the Azure Classic Portal.You can gain access to create and manage jobs using the PowerShell API only if you install the PowerShell package. Additionally, the PowerShell APIs provide significantly more functionality than the portal at this point in time.
+如果您已從現有的**彈性資料庫集區**透過入口網站安裝**彈性資料庫工作**，最新的 Powershell 預覽包括升級現有安裝的指令碼。強烈建議將安裝升級至最新的**彈性資料庫工作**元件，以利用透過 PowerShell API 公開的新功能。
 
-If you have already installed **Elastic Database jobs** through the Portal from an existing **Elastic Database pool**, the latest Powershell preview includes scripts to upgrade your existing installation. It is highly recommended to upgrade your installation to the latest **Elastic Database jobs** components in order to take advantage of new functionality exposed via the PowerShell APIs.
+## 必要條件
+* Azure 訂用帳戶。如需免費試用版，請參閱[免費試用版](https://azure.microsoft.com/pricing/free-trial/)。
+* Azure PowerShell。使用 [Web Platform Installer](http://go.microsoft.com/fwlink/p/?linkid=320376) 安裝最新版本。如需詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+* [NuGet 命令列公用程式](https://nuget.org/nuget.exe)可用來安裝彈性資料庫工作封裝。如需詳細資訊，請參閱 http://docs.nuget.org/docs/start-here/installing-nuget。
 
-## <a name="prerequisites"></a>Prerequisites
-* An Azure subscription. For a free trial, see [Free trial](https://azure.microsoft.com/pricing/free-trial/).
-* Azure PowerShell. Install the latest version using the [Web Platform Installer](http://go.microsoft.com/fwlink/p/?linkid=320376). For detailed information, see [How to install and configure Azure PowerShell](../powershell-install-configure.md).
-* [NuGet Command-line Utility](https://nuget.org/nuget.exe) is used to install the Elastic Database jobs package. For more information, see http://docs.nuget.org/docs/start-here/installing-nuget.
+## 下載並匯入彈性資料庫工作 PowerShell 封裝
+1. 啟動 Microsoft Azure PowerShell 命令視窗，並瀏覽至您下載 NuGet 命令列公用程式 (nuget.exe) 的目錄。
 
-## <a name="download-and-import-the-elastic-database-jobs-powershell-package"></a>Download and import the Elastic Database jobs PowerShell package
-1. Launch Microsoft Azure PowerShell command window and navigate to the directory where you downloaded NuGet Command-line Utility (nuget.exe).
+2. 利用下列命令，將**彈性資料庫工作**封裝下載並匯入到目前的目錄：
 
-2. Download and import **Elastic Database jobs** package into the current directory with the following command:
+		PS C:\>.\nuget install Microsoft.Azure.SqlDatabase.Jobs -prerelease
 
-        PS C:\>.\nuget install Microsoft.Azure.SqlDatabase.Jobs -prerelease
+    **彈性資料庫工作**檔案會放在名為 **Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x** (其中 *x.x.xxxx.x* 反映版本號碼) 的資料夾的本機目錄中。PowerShell Cmdlet (包括必要的用戶端 .dll 檔) 位於 **tools\\ElasticDatabaseJobs** 子目錄中，而要安裝、升級和解除安裝的 PowerShell 指令碼也位於 **tools** 子目錄中。
 
-    The **Elastic Database jobs** files are placed in the local directory in a folder named **Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x** where *x.x.xxxx.x* reflects the version number. The PowerShell cmdlets (including required client .dlls) are located in the **tools\ElasticDatabaseJobs** sub-directory and the PowerShell scripts to install, upgrade and uninstall also reside in the **tools** sub-directory.
+3. 例如，輸入 cd tools，瀏覽至 Microsoft.Azure.SqlDatabase.Jobs.x.x.xxx.x 資料夾下的 tools 子目錄：
 
-3. Navigate to the tools sub-directory under the Microsoft.Azure.SqlDatabase.Jobs.x.x.xxx.x folder by typing cd tools, for example:
+		PS C:*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*>cd tools
 
-        PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*>cd tools
+4.	執行 .\\InstallElasticDatabaseJobsCmdlets.ps1 script to copy the ElasticDatabaseJobs directory into $home\\Documents\\WindowsPowerShell\\Modules。這也會自動匯入模組，以供使用，例如：
 
-4.  Execute the .\InstallElasticDatabaseJobsCmdlets.ps1 script to copy the ElasticDatabaseJobs directory into $home\Documents\WindowsPowerShell\Modules. This will also automatically import the module for use, for example:
+		PS C:*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>Unblock-File .\InstallElasticDatabaseJobsCmdlets.ps1
+		PS C:*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>.\InstallElasticDatabaseJobsCmdlets.ps1
 
-        PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>Unblock-File .\InstallElasticDatabaseJobsCmdlets.ps1
-        PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>.\InstallElasticDatabaseJobsCmdlets.ps1
+## 使用 PowerShell 安裝彈性資料庫工作元件
+1.	啟動 Microsoft Azure PowerShell 命令視窗，並且瀏覽至 Microsoft.Azure.SqlDatabase.Jobs.x.x.xxx.x 資料夾底下的 \\tools 子目錄：輸入 cd \\tools
 
-## <a name="install-the-elastic-database-jobs-components-using-powershell"></a>Install the Elastic Database jobs components using PowerShell
-1.  Launch a Microsoft Azure PowerShell command window and navigate to the \tools sub-directory under the Microsoft.Azure.SqlDatabase.Jobs.x.x.xxx.x folder: Type cd \tools
+		PS C:*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*>cd tools
 
-        PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*>cd tools
+2.	執行.\\InstallElasticDatabaseJobs.ps1 PowerShell 指令碼，並提供其所要求之變數的值。此指令碼將依[彈性資料庫工作元件和定價](sql-database-elastic-jobs-overview.md#components-and-pricing)所述建立元件，以及將 Azure 雲端服務設定為適當地使用相依元件。
 
-2.  Execute the .\InstallElasticDatabaseJobs.ps1 PowerShell script and supply values for its requested variables. This script will create the components described in [Elastic Database jobs components and pricing](sql-database-elastic-jobs-overview.md#components-and-pricing) along with configuring the Azure Cloud Service to appropriately use the dependent components.
+		PS C:*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>Unblock-File .\InstallElasticDatabaseJobs.ps1
+		PS C:*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>.\InstallElasticDatabaseJobs.ps1
 
-        PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>Unblock-File .\InstallElasticDatabaseJobs.ps1
-        PS C:\*Microsoft.Azure.SqlDatabase.Jobs.x.x.xxxx.x*\tools>.\InstallElasticDatabaseJobs.ps1
+當您執行此命令時，會隨即開啟向您詢問 [使用者名稱] 和 [密碼] 的視窗。這不是您的 Azure 認證，請輸入要用於新伺服器之系統管理員認證的使用者名稱和密碼。
 
-When you run this command a window opens asking for a **user name** and **password**. This is not your Azure credentials, enter the user name and password that will be the administrator credentials you want to create for the new server.
-
-The parameters provided on this sample invocation can be modified for your desired settings. The following provides more information on the behavior of each parameter:
+在此範例引動過程上提供的參數可以進行修改，以適用於您所需的設定。下列提供每個參數行為的詳細資訊：
 
 <table style="width:100%">
   <tr>
-    <th>Parameter</th>
-    <th>Description</th>
+    <th>參數</th>
+    <th>說明</th>
   </tr>
 
 <tr>
-    <td>ResourceGroupName</td>
-    <td>Provides the Azure resource group name created to contain the newly created Azure components. This parameter defaults to “__ElasticDatabaseJob”. It is not recommended to change this value.</td>
-    </tr>
+	<td>resourceGroupName</td>
+	<td>提供建立的 Azure 資源群組名稱，以包含新建的 Azure 元件。此參數預設為 “__ElasticDatabaseJob”。不建議變更此值。</td>
+	</tr>
 
 </tr>
 
-    <tr>
-    <td>ResourceGroupLocation</td>
-    <td>Provides the Azure location to be used for the newly created Azure components. This parameter defaults to the Central US location.</td>
+	<tr>
+	<td>ResourceGroupLocation</td>
+	<td>提供要用於新建的 Azure 元件的 Azure 位置。此參數預設為美國中部位置。</td>
 </tr>
 
 <tr>
-    <td>ServiceWorkerCount</td>
-    <td>Provides the number of service workers to install. This parameter defaults to 1. A higher number of workers can be used to scale out the service and to provide high availability. It is recommended to use “2” for deployments that require high availability of the service.</td>
-    </tr>
+	<td>ServiceWorkerCount</td>
+	<td>提供要安裝的服務背景工作數目。此參數預設為 1。可以使用更多的背景工作來相應放大服務，並提供高可用性。建議針對需要服務的高可用性的部署使用 "2"。</td>
+	</tr>
 
 </tr>
-    <tr>
-    <td>ServiceVmSize</td>
-    <td>Provides the VM size for usage within the Cloud Service. This parameter defaults to A0. Parameters values of A0/A1/A2/A3 are accepted which cause the worker role to use an ExtraSmall/Small/Medium/Large size, respectively. Fo more information on worker role sizes, see [Elastic Database jobs components and pricing](sql-database-elastic-jobs-overview/#components-and-pricing).</td>
-</tr>
-
-</tr>
-    <tr>
-    <td>SqlServerDatabaseSlo</td>
-    <td>Provides the service level objective for a Standard edition. This parameter defaults to S0. Parameter values of S0/S1/S2/S3 are accepted which cause the Azure SQL Database to use the respective SLO. For more information on SQL Database SLOs, see [Elastic Database jobs components and pricing](sql-database-elastic-jobs-overview/#components-and-pricing).</td>
+	<tr>
+	<td>ServiceVmSize</td>
+	<td>提供在雲端服務內使用的 VM 大小。此參數預設為 A0。接受 A0/A1/A2/A3 的參數值，這會導致背景工作角色分別使用 ExtraSmall/Small/Medium/Large 大小。如需背景工作角色大小的詳細資訊，請參閱 [彈性資料庫工作元件和訂價] (sql-database-elastic-jobs-overview/#components-and-pricing)。</td>
 </tr>
 
 </tr>
-    <tr>
-    <td>SqlServerAdministratorUserName</td>
-    <td>Provides the admin user name for the newly created Azure SQL Database server. When not specified, a PowerShell credentials window will open to prompt for the credentials.</td>
+	<tr>
+	<td>SqlServerDatabaseSlo</td>
+	<td>提供 Standard Edition 的服務等級目標。此參數預設為 S0。接受 S0/S1/S2/S3 的參數值，這會導致 Azure SQL Database 使用各自的 SLO。如需 SQL Database SLO 的詳細資訊，請參閱 [彈性資料庫工作元件和訂價] (sql-database-elastic-jobs-overview/#components-and-pricing)。</td>
 </tr>
 
 </tr>
-    <tr>
-    <td>SqlServerAdministratorPassword</td>
-    <td>Provides the admin password for the newly created Azure SQL Database server. When not provided, a PowerShell credentials window will open to prompt for the credentials.</td>
+	<tr>
+	<td>SqlServerAdministratorUserName</td>
+	<td>提供新建的 Azure SQL Database 伺服器的系統管理員使用者名稱。未指定時，將開啟 PowerShell 認證視窗，提示輸入認證。</td>
+</tr>
+
+</tr>
+	<tr>
+	<td>SqlServerAdministratorPassword</td>
+	<td>提供新建的 Azure SQL Database 伺服器的系統管理員密碼。未提供時，將開啟 PowerShell 認證視窗，提示輸入認證。</td>
 </tr>
 </table>
 
-For systems that target having large numbers of jobs running in parallel against a large number of databases, it is recommended to specify parameters such as: -ServiceWorkerCount 2 -ServiceVmSize A2 -SqlServerDatabaseSlo S2.
+對於將對大量資料庫具有大量平行執行的工作設為目標的系統，建議指定如下參數：-ServiceWorkerCount 2 -ServiceVmSize A2 -SqlServerDatabaseSlo S2.
 
-    PS C:\*Microsoft.Azure.SqlDatabase.Jobs.dll.x.x.xxx.x*\tools>Unblock-File .\InstallElasticDatabaseJobs.ps1
-    PS C:\*Microsoft.Azure.SqlDatabase.Jobs.dll.x.x.xxx.x*\tools>.\InstallElasticDatabaseJobs.ps1 -ServiceWorkerCount 2 -ServiceVmSize A2 -SqlServerDatabaseSlo S2
+    PS C:*Microsoft.Azure.SqlDatabase.Jobs.dll.x.x.xxx.x*\tools>Unblock-File .\InstallElasticDatabaseJobs.ps1
+    PS C:*Microsoft.Azure.SqlDatabase.Jobs.dll.x.x.xxx.x*\tools>.\InstallElasticDatabaseJobs.ps1 -ServiceWorkerCount 2 -ServiceVmSize A2 -SqlServerDatabaseSlo S2
 
-## <a name="update-an-existing-elastic-database-jobs-components-installation-using-powershell"></a>Update an existing Elastic Database jobs components installation using PowerShell
+## 使用 PowerShell 更新現有的彈性資料庫工作元件安裝
 
-**Elastic Database jobs** can be updated within an existing installation for scale and high-availability. This process allows for future upgrades of service code without having to drop and recreate the control database. This process can also be used within the same version to modify the service VM size or the server worker count.
+**彈性資料庫工作**可以在現有的安裝中更新，以進行擴充和高可用性。此程序允許未來的服務程式碼升級，而不需捨棄並重新建立控制資料庫。此程序也可在相同版本內用來修改服務的 VM 大小或伺服器的背景工作計數。
 
-To update the VM size of an installation, run the following script with parameters updated to the values of your choice.
+若要更新安裝的 VM 大小，請執行下列指令碼，並將參數更新為您選擇的值。
 
-    PS C:\*Microsoft.Azure.SqlDatabase.Jobs.dll.x.x.xxx.x*\tools>Unblock-File .\UpdateElasticDatabaseJobs.ps1
-    PS C:\*Microsoft.Azure.SqlDatabase.Jobs.dll.x.x.xxx.x*\tools>.\UpdateElasticDatabaseJobs.ps1 -ServiceVmSize A1 -ServiceWorkerCount 2
+    PS C:*Microsoft.Azure.SqlDatabase.Jobs.dll.x.x.xxx.x*\tools>Unblock-File .\UpdateElasticDatabaseJobs.ps1
+    PS C:*Microsoft.Azure.SqlDatabase.Jobs.dll.x.x.xxx.x*\tools>.\UpdateElasticDatabaseJobs.ps1 -ServiceVmSize A1 -ServiceWorkerCount 2
 
 <table style="width:100%">
   <tr>
-  <th>Parameter</th>
-  <th>Description</th>
+  <th>參數</th>
+  <th>說明</th>
 </tr>
 
   <tr>
-    <td>ResourceGroupName</td>
-    <td>Identifies the Azure resource group name used when the Elastic Database job components were initially installed. This parameter defaults to “__ElasticDatabaseJob”. Since it is not recommended to change this value, you shouldn't have to specify this parameter.</td>
-    </tr>
+	<td>resourceGroupName</td>
+	<td>識別一開始安裝彈性資料庫工作元件時所使用的 Azure 資源群組名稱。此參數預設為 “__ElasticDatabaseJob”。不建議變更此值，因為您應該不必指定此參數。</td>
+	</tr>
 </tr>
 
 </tr>
 
   <tr>
-    <td>ServiceWorkerCount</td>
-    <td>Provides the number of service workers to install.  This parameter defaults to 1.  A higher number of workers can be used to scale out the service and to provide high availability.  It is recommended to use “2” for deployments that require high availability of the service.</td>
+	<td>ServiceWorkerCount</td>
+	<td>提供要安裝的服務背景工作數目。此參數預設為 1。可以使用更多的背景工作來相應放大服務，並提供高可用性。建議針對需要服務的高可用性的部署使用 "2"。</td>
 </tr>
 
 </tr>
 
-    <tr>
-    <td>ServiceVmSize</td>
-    <td>Provides the VM size for usage within the Cloud Service. This parameter defaults to A0. Parameters values of A0/A1/A2/A3 are accepted which cause the worker role to use an ExtraSmall/Small/Medium/Large size, respectively. Fo more information on worker role sizes, see [Elastic Database jobs components and pricing](sql-database-elastic-jobs-overview/#components-and-pricing).</td>
+	<tr>
+	<td>ServiceVmSize</td>
+	<td>提供在雲端服務內使用的 VM 大小。此參數預設為 A0。接受 A0/A1/A2/A3 的參數值，這會導致背景工作角色分別使用 ExtraSmall/Small/Medium/Large 大小。如需背景工作角色大小的詳細資訊，請參閱 [彈性資料庫工作元件和訂價](sql-database-elastic-jobs-overview/#components-and-pricing)。</td>
 </tr>
 
 </table>
 
-## <a name="install-the-elastic-database-jobs-components-using-the-portal"></a>Install the Elastic Database jobs components using the Portal
+## 使用入口網站安裝彈性資料庫工作元件
 
-Once you have [created an Elastic Database pool](sql-database-elastic-pool-create-portal.md), you can install **Elastic Database jobs** components to enable execution of administrative tasks against each database in the Elastic Database pool. Unlike when using the **Elastic Database jobs** PowerShell APIs, the portal interface is currently restricted to only executing against an existing pool.
+一旦[建立了彈性資料庫集區](sql-database-elastic-pool-create-portal.md)，您就可以安裝**彈性資料庫工作**元件，以對彈性資料庫集區中的每個資料庫啟用系統管理工作的執行。不同於使用**彈性資料庫工作** PowerShell API 時，入口網站介面目前限制為只針對現有的集區執行。
 
 
-**Estimated time to complete:** 10 minutes.
+**預估完成時間：**10 分鐘。
 
-1. From the dashboard view of the elastic database pool via the [Azure Portal](https://portal.azure.com/#) , click **Create job**.
-2. If you are creating a job for the first time, you must install **Elastic Database jobs** by clicking **PREVIEW TERMS**.
-3. Accept the terms by clicking the checkbox.
-4. In the "Install services" view, click **JOB CREDENTIALS**.
+1. 從彈性資料庫集區的儀表板檢視，透過 [Azure 入口網站](https://portal.azure.com/#)，按一下 [建立工作]。
+2. 如果您是第一次建立工作，則必須安裝**彈性資料庫工作**，方法是按一下 [預覽條款]，
+3. 然後按一下核取方塊接受條款。
+4. 在 [安裝服務] 檢視中，按一下 [工作認證]。
 
-    ![Installing the services][1]
+	![安裝服務][1]
 
-5. Type a user name and password for a database admin. As part of the installation, a new Azure SQL Database server is created. Within this new server, a new database, known as the control database, is created and used to contain the meta data for Elastic Database jobs. The user name and password created here are used for the purpose of logging in to the control database. A separate credential is used for script execution against the databases within the pool.
+5. 輸入資料庫管理員的使用者名稱和密碼。在安裝過程中，會建立新的 Azure SQL Database 伺服器。在這個新的伺服器內，會建立稱為控制資料庫的新資料庫，並用來包含彈性資料庫工作的中繼資料。這裡建立的使用者名稱和密碼用於登入控制資料庫。個別的認證用於對集區內的資料庫執行指令碼。
 
-    ![Create username and password][2]
+	![建立使用者名稱和密碼][2]
 
-6. Click the OK button. The components are created for you in a few minutes in a new [Resource group](../resource-group-overview.md). The new resource group is pinned to the start board, as shown below. Once created, elastic database jobs (Cloud Service, SQL Database, Service Bus, and Storage) are all created in the group.
+6. 按一下 [確定] 按鈕。幾分鐘後會在新的[資源群組](../resource-group-overview.md)中為您建立元件。新的資源群組已釘選到「開始面板」，如下所示。建立後，會在群組中建立所有彈性資料庫工作 (雲端服務、SQL Database、服務匯流排和儲存體)。
 
-    ![resource group in start board][3]
+	![「開始面板」中的資源群組][3]
 
-7. If you attempt to create or manage a job while elastic database jobs is installing, when providing **Credentials** you will see the following message.
+7. 如果您嘗試在安裝彈性資料庫工作時建立或管理工作，您會在提供**認證**時看到下列訊息。
 
-    ![Deployment still in progress][4]
+	![部署仍在進行中][4]
 
-If uninstallation is required, delete the resource group. See [How to uninstall the Elastic Database job components](sql-database-elastic-jobs-uninstall.md).
+如果需要解除安裝，請刪除資源群組。請參閱[如何解除安裝彈性資料庫工作元件](sql-database-elastic-jobs-uninstall.md)。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-Ensure a credential with the appropriate rights for script execution is created on each database in the group, for more information see [Securing your SQL Database](sql-database-security.md).
-See [Creating and managing an Elastic Database jobs](sql-database-elastic-jobs-create-and-manage.md) to get started.
+確保已在群組的每個資料庫上建立對指令碼執行具有適當權限的認證。如需詳細資訊，請參閱[保護您的 SQL Database](sql-database-security.md)。請參閱[建立及管理彈性資料庫工作](sql-database-elastic-jobs-create-and-manage.md)以開始進行。
 
 <!--Image references-->
 [1]: ./media/sql-database-elastic-jobs-service-installation/screen-1.png
@@ -189,8 +187,4 @@ See [Creating and managing an Elastic Database jobs](sql-database-elastic-jobs-c
 [3]: ./media/sql-database-elastic-jobs-service-installation/start-board.png
 [4]: ./media/sql-database-elastic-jobs-service-installation/not-done.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0720_2016-->

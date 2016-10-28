@@ -1,88 +1,82 @@
 <properties
-     pageTitle="How to Map Azure Content Delivery Network (CDN) Content to a Custom Domain | Microsoft Azure"
-     description="This topic demonstrate how to map a CDN content to a Custom Domain."
-     services="cdn"
-     documentationCenter=""
-     authors="camsoper"
-     manager="erikre"
-     editor=""/>
+	 pageTitle="如何將 Azure 內容傳遞網路 (CDN) 內容對應至自訂網域 | Microsoft Azure"
+	 description="本主題示範如何將 CDN 內容對應至自訂網域。"
+	 services="cdn"
+	 documentationCenter=""
+	 authors="camsoper"
+	 manager="erikre"
+	 editor=""/>
 <tags
-     ms.service="cdn"
-     ms.workload="media"
-     ms.tgt_pltfrm="na"
-     ms.devlang="na"
-     ms.topic="article"
-    ms.date="07/28/2016"
-     ms.author="casoper"/>
+	 ms.service="cdn"
+	 ms.workload="media"
+	 ms.tgt_pltfrm="na"
+	 ms.devlang="na"
+	 ms.topic="article"
+	ms.date="07/28/2016"
+	 ms.author="casoper"/>
 
+# 如何將自訂網域對應至內容傳遞網路 (CDN) 端點
+您可以將自訂網域對應至 CDN 端點，以在所快取內容的 URL 中使用您自己的網域名稱，而不是使用 azureedge.net 的子網域。
 
-# <a name="how-to-map-custom-domain-to-content-delivery-network-(cdn)-endpoint"></a>How to map Custom Domain to Content Delivery Network (CDN) endpoint
-You can map a custom domain to a CDN endpoint in order to use your own domain name in URLs to cached content rather than using a subdomain of azureedge.net.
+有兩種方式可將您的自訂網域對應至 CDN 端點：
 
-There are two ways to map your custom domain to a CDN endpoint:
+1. [向網域註冊機構建立 CNAME 記錄，並將您的自訂網域和子網域對應至 CDN 端點](#register-a-custom-domain-for-an-azure-cdn-endpoint)
 
-1. [Create a CNAME record with your domain registrar and map your custom domain and subdomain to the CDN endpoint](#register-a-custom-domain-for-an-azure-cdn-endpoint)
+	CNAME 記錄是將 `www.contosocdn.com` 或 `cdn.contoso.com` 等來源網域對應至目的地網域的 DNS 功能。在這種情況下，來源網域是您的自訂網域和子網域 (**www** 或 **cdn** 子網域一律是必要的項目)。目的地網域是 CDN 端點。
 
-    A CNAME record is a DNS feature that maps a source domain, like `www.contosocdn.com` or `cdn.contoso.com`, to a destination domain. In this case, the source domain is your custom domain and subdomain (a subdomain, like **www** or **cdn** is always required). The destination domain is your CDN endpoint.  
+	然而，在進行將自訂網域對應至 CDN 端點時，會由於您在 Azure 入口網站中註冊網域而導致網域短暫地停擺。
 
-    The process of mapping your custom domain to your CDN endpoint can, however, result in a brief period of downtime for the domain while you are registering the domain in the Azure  Portal.
+2. [使用 **cdnverify** 加入中繼註冊步驟](#register-a-custom-domain-for-an-azure-cdn-endpoint-using-the-intermediary-cdnverify-subdomain)
 
-2. [Add an intermediate registration step with **cdnverify**](#register-a-custom-domain-for-an-azure-cdn-endpoint-using-the-intermediary-cdnverify-subdomain)
+	如果自訂網域目前支援不得發生停機的服務等級協定 (SLA) 的應用程式，您可以使用 Azure **cdnverify** 子網域提供中繼註冊步驟，使用者就能在 DNS 對應發生時存取網域。
 
-    If your custom domain is currently supporting an application with a service-level agreement (SLA) that requires that there be no downtime, then you can use the Azure **cdnverify** subdomain to provide an intermediate registration step so that users will be able to access your domain while the DNS mapping takes place.  
+您使用上述其中一個程序註冊自訂網域之後，您會想要[確認自訂子網域參照您的 CDN 端點](#verify-that-the-custom-subdomain-references-your-cdn-endpoint)。
 
-After you register your custom domain using one of the above procedures, you will want to [verify that the custom subdomain references your CDN endpoint](#verify-that-the-custom-subdomain-references-your-cdn-endpoint).
-
-> [AZURE.NOTE] You must create a CNAME record with your domain registrar to map your domain to the CDN endpoint. CNAME records map specific subdomains such as `www.contoso.com` or `cdn.contoso.com`. It is not possible to map a CNAME record to a root domain, such as `contoso.com`.
+> [AZURE.NOTE] 您必須向網域註冊機構建立 CNAME 記錄，以將網域對應至 CDN 端點。CNAME 記錄會對應至特定子網域 (例如 `www.contoso.com` 或 `cdn.contoso.com`)。CNAME 記錄無法對應至根網域 (例如 `contoso.com`)。
 >    
-> A subdomain can only be associated with one CDN endpoint. The CNAME record that you create will route all traffic addressed to the subdomain to the specified endpoint.  For example, if you associate `www.contoso.com` with your CDN endpoint, then you cannot associate it with other Azure endpoints, such as a storage account endpoint or a cloud service endpoint. However, you can use different subdomains from the same domain for different service endpoints. You can also map different subdomains to the same CDN endpoint.
+> 一個子網域只能與一個 CDN 端點產生關聯。您所建立的 CNAME 記錄會將所有定址至子網域的流量路由傳送至指定的端點。例如，如果您將 `www.contoso.com` 與您的 CDN 端點產生關聯，則無法將它與其他 Azure 端點產生關聯 (例如，儲存體帳戶端點或雲端服務端點)。不過，針對不同的服務端點，您可以使用來自相同網域的不同子網域。您也可以將不同的子網域對應至相同的 CDN 端點。
 >
-> For **Azure CDN from Verizon** (Standard and Premium) endpoints, note that it takes up to **90 minutes** for custom domain changes to propagate to CDN edge nodes.
+> 若為**來自 Verizon 的 Azure CDN** (標準與進階) 端點，請注意，最多需要 **90 分鐘**的時間，自訂網域變更才能填入至 CDN 邊緣節點。
 
-## <a name="register-a-custom-domain-for-an-azure-cdn-endpoint"></a>Register a custom domain for an Azure CDN endpoint
+## 註冊 Azure CDN 端點的自訂網域
 
-1.  Log into the [Azure Portal](https://portal.azure.com/).
-2.  Click **Browse**, then **CDN Profiles**, then the CDN profile with the endpoint you want to map to a custom domain.  
-3.  In the **CDN Profile** blade, click the CDN endpoint with which you want to associate the subdomain.
-4.  At the top of the endpoint blade, click the **Add Custom Domain** button.  In the **Add a custom domain** blade, you'll see the endpoint host name, derived from your CDN endpoint, to use in creating a new CNAME record. The format of the host name address will appear as **&lt;EndpointName>.azureedge.net**.  You can copy this host name to use in creating the CNAME record.  
-5.  Navigate to your domain registrar's web site, and locate the section for creating DNS records. You might find this in a section such as **Domain Name**, **DNS**, or **Name Server Management**.
-6.  Find the section for managing CNAMEs. You may have to go to an advanced settings page and look for the words CNAME, Alias, or Subdomains.
-7.  Create a new CNAME record that maps your chosen subdomain (for example, **www** or **cdn**) to the host name provided in the **Add a custom domain** blade.
-8.  Return to the **Add a custom domain** blade, and enter your custom domain, including the subdomain, in the dialog box. For example, enter the domain name in the format `www.contoso.com` or `cdn.contoso.com`.   
+1.	登入 [Azure 入口網站](https://portal.azure.com/)。
+2.	按一下 [瀏覽] 和 [CDN 設定檔]，接著按一下包含要對應到自訂網域之端點的 CDN 設定檔。
+3.	在 [CDN 設定檔] 刀鋒視窗中，按一下要與子網域產生關聯的 CDN 端點。
+4.	在 [端點] 刀鋒視窗頂端，按一下 [新增自訂網域] 按鈕。在 [新增自訂網域] 刀鋒視窗中，您會看到衍生自 CDN 端點的端點主機名稱，其可用來建立新的 CNAME 記錄。主機名稱位址的格式會顯示為 **&lt;EndpointName>.azureedge.net**。您可以複製這個主機名稱，以用於建立 CNAME 記錄。
+5.	瀏覽至您網域註冊機構的網站，並找出用於建立 DNS 記錄的區段。您可能會在 **Domain Name**、**DNS** 或 **Name Server Management** 等區段中發現此頁面。
+6.	尋找管理 CNAME 的區段。您可能需要移至進階設定頁面，並尋找 CNAME、Alias 或 Subdomains 單字。
+7.	建立新的 CNAME 記錄，將您選擇的子網域 (例如 **www** 或 **cdn**) 對應到 [新增自訂網域] 刀鋒視窗中提供的主機名稱。
+8.	返回 [新增自訂網域] 刀鋒視窗，在對話方塊中輸入您的自訂網域 (包括子網域)。例如，以 `www.contoso.com` 或 `cdn.contoso.com` 格式輸入網域名稱。
 
-    Azure will verify that the CNAME record exists for the domain name you have entered. If the CNAME is correct, your custom domain is validated.  For **Azure CDN from Verizon** (Standard and Premium) endpoints, it may take up to 90 minutes for custom domain settings to propagate to all CDN edge nodes, however.  
+	Azure 會確認您所輸入的網域名稱存在 CNAME 記錄。如果 CNAME 正確，您的自訂網域就會驗證。然而，若為**來自 Verizon 的 Azure CDN** (標準與進階) 端點，最多可能需要 90 分鐘的時間，自訂網域設定才能傳播至 CDN 邊緣節點。
 
-    Note that in some cases it can take time for the CNAME record to propagate to name servers on the Internet. If your domain is not validated immediately, and you believe the CNAME record is correct, then wait a few minutes and try again.
-
-
-## <a name="register-a-custom-domain-for-an-azure-cdn-endpoint-using-the-intermediary-cdnverify-subdomain"></a>Register a custom domain for an Azure CDN endpoint using the intermediary cdnverify subdomain  
-
-1. Log into the [Azure Portal](https://portal.azure.com/).
-2. Click **Browse**, then **CDN Profiles**, then the CDN profile with the endpoint you want to map to a custom domain.  
-3. In the **CDN Profile** blade, click the CDN endpoint with which you want to associate the subdomain.
-4. At the top of the endpoint blade, click the **Add Custom Domain** button.  In the **Add a custom domain** blade, you'll see the endpoint host name, derived from your CDN endpoint, to use in creating a new CNAME record. The format of the host name address will appear as **&lt;EndpointName>.azureedge.net**.  You can copy this host name to use in creating the CNAME record.
-5. Navigate to your domain registrar's web site, and locate the section for creating DNS records. You might find this in a section such as **Domain Name**, **DNS**, or **Name Server Management**.
-6. Find the section for managing CNAMEs. You may have to go to an advanced settings page and look for the words **CNAME**, **Alias**, or **Subdomains**.
-7. Create a new CNAME record, and provide a subdomain alias that includes the **cdnverify** subdomain. For example, the subdomain that you specify will be in the format **cdnverify.www** or **cdnverify.cdn**. Then provide the host name, which is your CDN endpoint, in the format **cdnverify.&lt;EndpointName>.azureedge.net**.
-8. Return to the **Add a custom domain** blade, and enter your custom domain, including the subdomain, in the dialog box. For example, enter the domain name in the format `www.contoso.com` or `cdn.contoso.com`. Note that in this step, you do not need to preface the subdomain with **cdnverify**.  
-
-    Azure will verify that the CNAME record exists for the cdnverify domain name you have entered.
-9. At this point, your custom domain has been verified by Azure, but traffic to your domain is not yet being routed to your CDN endpoint. After waiting long enough to allow the custom domain settings to propagate to the CDN edge nodes (90 minutes for **Azure CDN from Verizon**, 1-2 minutes for **Azure CDN from Akamai**), return to your DNS registrar's web site and create another CNAME record that maps your subdomain to your CDN endpoint. For example, specify the subdomain as **www** or **cdn**, and the hostname as **&lt;EndpointName>.azureedge.net**. With this step, the registration of your custom domain is complete.
-10. Finally, you can delete the CNAME record you created using **cdnverify**, as it was necessary only as an intermediary step.  
+	請注意，在某些情況下，可能需要時間讓 CNAME 記錄傳播到網際網路上的名稱伺服器。如果未立即驗證您的網域，但您確信 CNAME 記錄正確，則請等待數分鐘的時間，然後再試一次。
 
 
-## <a name="verify-that-the-custom-subdomain-references-your-cdn-endpoint"></a>Verify that the custom subdomain references your CDN endpoint
+## 註冊使用中繼 cdnverify 子網域的 Azure CDN 端點的自訂網域  
 
-- After you have completed the registration of your custom domain, you can access content that is cached at your CDN endpoint using the custom domain.
-First, ensure that you have public content that is cached at the endpoint. For example, if your CDN endpoint is associated with a storage account, the CDN caches content in public blob containers. To test the custom domain, ensure that your container is set to allow public access and that it contains at least one blob.
-- In your browser, navigate to the address of the blob using the custom domain. For example, if your custom domain is `cdn.contoso.com`, the URL to a cached blob will be similar to the following URL: http://cdn.contoso.com/mypubliccontainer/acachedblob.jpg
+1. 登入 [Azure 入口網站](https://portal.azure.com/)。
+2. 按一下 [瀏覽] 和 [CDN 設定檔]，接著按一下包含要對應到自訂網域之端點的 CDN 設定檔。
+3. 在 [CDN 設定檔] 刀鋒視窗中，按一下要與子網域產生關聯的 CDN 端點。
+4. 在 [端點] 刀鋒視窗頂端，按一下 [新增自訂網域] 按鈕。在 [新增自訂網域] 刀鋒視窗中，您會看到衍生自 CDN 端點的端點主機名稱，其可用來建立新的 CNAME 記錄。主機名稱位址的格式會顯示為 **&lt;EndpointName>.azureedge.net**。您可以複製這個主機名稱，以用於建立 CNAME 記錄。
+5. 瀏覽至您網域註冊機構的網站，並找出用於建立 DNS 記錄的區段。您可能會在 **Domain Name**、**DNS** 或 **Name Server Management** 等區段中發現此頁面。
+6. 尋找管理 CNAME 的區段。您可能需要前往進階設定頁面並尋找 **CNAME**、**Alias** 或 **Subdomains** 之類的字。
+7. 建立新的 CNAME 記錄，並提供包含 **cdnverify** 子網域的子網域別名。例如，您指定的子網域格式會是 **cdnverify.www** 或 **cdnverify.cdn**。接著以格式 **cdnverify.&lt;EndpointName>.azureedge.net** 提供主機名稱，也就是您的 CDN 端點。
+8. 返回 [新增自訂網域] 刀鋒視窗，在對話方塊中輸入您的自訂網域 (包括子網域)。例如，以 `www.contoso.com` 或 `cdn.contoso.com` 格式輸入網域名稱。請注意，在此步驟中，您不需要在子網域的前方加上 **cdnverify**。
 
-## <a name="see-also"></a>See Also
-
-[How to Enable the Content Delivery Network (CDN)  for Azure](./cdn-create-new-endpoint.md)  
-
-
-
-<!--HONumber=Oct16_HO2-->
+	Azure 會確認您所輸入的 cdnverify 網域名稱存在 CNAME 記錄。
+9. 此時，自訂網域已通過 Azure 的驗證，不過前往網域的流量尚未路由傳送至 CDN 端點。等候的時間足以讓自訂網域設定傳播至 CDN 邊緣節點 (**來自 Verizon 的 Azure CDN** 為 90 分鐘，**來自 Akamai 的 Azure CDN** 為 1-2 分鐘) 之後，返回 DNS 註冊機構的網站，並建立另一個 CNAME 記錄，將子網域對應至 CDN 端點。例如，將子網域指定為 **www** 或 **cdn**，並將主機名稱指定為 **&lt;EndpointName>.azureedge.net**。待這個步驟完成後，自訂網域的註冊作業也宣告完成。
+10.	最後，您可以透過 **cdnverify** 刪除您建立的 CNAME 記錄，因為只有在中繼步驟才需要此記錄。
 
 
+## 確認自訂子網域參考 CDN 端點
+
+- 完成註冊您的自訂網域之後，即可使用自訂網域存取 CDN 端點所快取的內容。請先確定您有端點上所快取的公用內容。例如，如果您的 CDN 端點與儲存體帳戶相關聯，則 CDN 會快取公用 Blob 容器中的內容。若要測試自訂網域，請確定您的容器設定為允許公用存取，而且它包含至少一個 Blob。
+- 在瀏覽器中，使用自訂網域瀏覽至 Blob 位址。例如，如果您的自訂網域是 `cdn.contoso.com`，快取 Blob 的 URL 會和下列 URL 類似：http://cdn.contoso.com/mypubliccontainer/acachedblob.jpg
+
+## 另請參閱
+
+[如何啟用 Azure 內容傳遞網路 (CDN)](./cdn-create-new-endpoint.md)
+
+<!---HONumber=AcomDC_0803_2016-->

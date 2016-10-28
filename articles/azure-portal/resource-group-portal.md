@@ -1,165 +1,154 @@
 <properties 
-    pageTitle="Use Azure portal to manage Azure resources | Microsoft Azure" 
-    description="Use Azure portal and Azure Resource Manage to manage your resources. Shows how to work with dashboards to monitor resources." 
-    services="azure-resource-manager,azure-portal" 
-    documentationCenter="" 
-    authors="tfitzmac" 
-    manager="timlt" 
-    editor="tysonn"/>
+	pageTitle="使用 Azure 入口網站管理 Azure 資源 | Microsoft Azure" 
+	description="使用 Azure 入口網站和 Azure Resource Manager 來管理資源。示範如何使用儀表板來監視資源。" 
+	services="azure-resource-manager,azure-portal" 
+	documentationCenter="" 
+	authors="tfitzmac" 
+	manager="timlt" 
+	editor="tysonn"/>
 
 <tags 
-    ms.service="azure-resource-manager" 
-    ms.workload="multiple" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="09/12/2016" 
-    ms.author="tomfitz"/>
+	ms.service="azure-resource-manager" 
+	ms.workload="multiple" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="09/12/2016" 
+	ms.author="tomfitz"/>
 
-
-# <a name="manage-azure-resources-through-portal"></a>Manage Azure resources through portal
+# 透過入口網站管理 Azure 資源
 
 > [AZURE.SELECTOR]
 - [Azure PowerShell](../powershell-azure-resource-manager.md)
 - [Azure CLI](../xplat-cli-azure-resource-manager.md)
-- [Portal](resource-group-portal.md) 
+- [入口網站](resource-group-portal.md)
 - [REST API](../resource-manager-rest-api.md)
 
-This topic shows how to use the [Azure portal](https://portal.azure.com) with [Azure Resource Manager](../resource-group-overview.md) to manage your Azure resources. To learn about deploying resources through the portal, see [Deploy resources with Resource Manager templates and Azure portal](../resource-group-template-deploy-portal.md).
+本主題示範如何使用 [Azure 入口網站](https://portal.azure.com)搭配 [Azure Resource Manager](../resource-group-overview.md) 來管理您的 Azure 資源。若要了解如何透過入口網站部署資源，請參閱[使用 Resource Manager 範本與 Azure 入口網站來部署資源](../resource-group-template-deploy-portal.md)。
 
-Currently, not every service supports the portal or Resource Manager. For those services, you need to use the [classic portal](https://manage.windowsazure.com). For the status of each service, see [Azure portal availability chart](https://azure.microsoft.com/features/azure-portal/availability/).
+目前並非所有服務都支援入口網站或資源管理員。針對這些服務，您必須使用[傳統入口網站](https://manage.windowsazure.com)。如需每個服務的狀態，請參閱 [Azure 入口網站可用性圖表](https://azure.microsoft.com/features/azure-portal/availability/)。
 
-## <a name="manage-resource-groups"></a>Manage resource groups
+## 管理資源群組
 
-1. To see all the resource groups in your subscription, select **Resource groups**.
+1. 若要查看訂用帳戶中的所有資源群組，請選取 [資源群組]。
 
-    ![browse resource groups](./media/resource-group-portal/browse-groups.png)
+    ![瀏覽資源群組](./media/resource-group-portal/browse-groups.png)
 
-1. To create an empty resource group, select **Add**.
+1. 若要建立空的資源群組，請選取 [新增]。
 
-    ![add resource group](./media/resource-group-portal/add-resource-group.png)
+    ![新增資源群組](./media/resource-group-portal/add-resource-group.png)
 
-1. Provide a name and location for the new resource group. Select **Create**.
+1. 提供新資源群組的名稱和位置。選取 [**建立**]。
 
-    ![create resource group](./media/resource-group-portal/create-empty-group.png)
+    ![建立資源群組](./media/resource-group-portal/create-empty-group.png)
 
-1. You may need to select **Refresh** to see the recently created resource group.
+1. 您可能必須選取 [重新整理] 才能查看最近建立的資源群組。
 
-    ![refresh resource group](./media/resource-group-portal/refresh-resource-groups.png)
+    ![重新整理資源群組](./media/resource-group-portal/refresh-resource-groups.png)
 
-1. To customize the information displayed for your resource groups, select **Columns**.
+1. 若要自訂針對資源群組顯示的資訊，請選取 [資料行]。
 
-    ![customize columns](./media/resource-group-portal/select-columns.png)
+    ![自訂資料行](./media/resource-group-portal/select-columns.png)
 
-1. Select the columns to add, and then select **Update**.
+1. 選取要新增的資料行，然後選取 [更新]。
 
-    ![add columns](./media/resource-group-portal/add-columns.png)
+    ![新增資料行](./media/resource-group-portal/add-columns.png)
 
-1. To learn about deploying resources to your new resource group, see [Deploy resources with Resource Manager templates and Azure portal](../resource-group-template-deploy-portal.md).
+1. 若要了解如何將資源部署至新的資源群組，請參閱[使用 Resource Manager 範本與 Azure 入口網站來部署資源](../resource-group-template-deploy-portal.md)。
 
-1. For quick access to a resource group, you can pin the blade to your dashboard.
+1. 若要快速存取資源群組，您可以將此刀鋒視窗釘選到您的儀表板。
 
-    ![pin resource group](./media/resource-group-portal/pin-group.png)
+    ![釘選資源群組](./media/resource-group-portal/pin-group.png)
 
-1. The dashboard displays the resource group and its resources. You can select either the resource groups or any of its resources to navigate to the item.
+1. 儀表板會顯示資源群組及其資源。您可以選取資源群組或其任意資源，以瀏覽至這些項目。
 
-    ![pin resource group](./media/resource-group-portal/show-resource-group-dashboard.png)
+    ![釘選資源群組](./media/resource-group-portal/show-resource-group-dashboard.png)
 
-## <a name="tag-resources"></a>Tag resources
+## 標記資源
 
-You can apply tags to resource groups and resources to logically organize your assets. For information about working with tags, see [Using tags to organize your Azure resources](../resource-group-using-tags.md).
+您可以將標籤套用至資源群組和資源，以便以邏輯方式組織您的資產。如需使用標籤的相關資訊，請參閱[使用標籤來組織您的 Azure 資源](../resource-group-using-tags.md)。
 
 [AZURE.INCLUDE [resource-manager-tag-resource](../../includes/resource-manager-tag-resources.md)]
 
-## <a name="monitor-resources"></a>Monitor resources
+## 監視資源
 
-When you select a resource, the resource blade presents default graphs and tables for monitoring that resource type.
+當您選取資源時，資源刀鋒視窗會顯示預設圖形和資料表，以便監視該資源類型。
 
-1. Select a resource and notice the **Monitoring** section. It includes graphs that are relevant to the resource type. The following image shows the default monitoring data for a storage account.
+1. 選取資源並注意 [監視] 區段。它包含與該資源類型相關的圖形。下圖顯示儲存體帳戶的預設監視資料。
 
-    ![show monitoring](./media/resource-group-portal/show-monitoring.png)
+    ![顯示監視](./media/resource-group-portal/show-monitoring.png)
 
-1. You can pin a section of the blade to your dashboard by selecting the ellipsis (...) above the section. You can also customize the size the section in the blade or remove it completely. The following image shows how to pin, customize, or remove the CPU and Memory section.
+1. 您可以選取區段上方的省略符號 (...)，將此刀鋒視窗的區段釘選到您的儀表板。您也可以自訂刀鋒視窗中的區段大小或完全予以移除。下圖顯示如何釘選、自訂或移除 [CPU 和記憶體] 區段。
 
-    ![pin section](./media/resource-group-portal/pin-cpu-section.png)
+    ![釘選區段](./media/resource-group-portal/pin-cpu-section.png)
 
-1. After pinning the section to the dashboard, you will see the summary on the dashboard. And, selecting it immediately takes you to more details about the data.
+1. 將此區段釘選到儀表板之後，您會在儀表板上看見摘要。而且，立即加以選取，您即可看到更多有關資料的詳細資訊。
 
-    ![view dashboard](./media/resource-group-portal/view-startboard.png)
+    ![檢視儀表板](./media/resource-group-portal/view-startboard.png)
 
-1. To completely customize the data you monitor through the portal, navigate to your default dashboard, and select **New dashboard**.
+1. 若要完全自訂透過入口網站監視的資料，瀏覽至預設儀表板，然後選取 [新增儀表板]。
 
-    ![dashboard](./media/resource-group-portal/dashboard.png)
+    ![儀表板](./media/resource-group-portal/dashboard.png)
 
-1. Give your new dashboard a name and drag tiles onto the dashboard. The tiles are filtered by different options.
+1. 為新儀表板命名，並將圖格拖曳到儀表板。圖格會由不同選項篩選。
 
-    ![dashboard](./media/resource-group-portal/create-dashboard.png)
+    ![儀表板](./media/resource-group-portal/create-dashboard.png)
 
-     To learn about working with dashboards, see [Creating and sharing dashboards in the Azure portal](azure-portal-dashboards.md).
+     若要了解如何使用儀表板，請參閱 [Creating and sharing dashboards in the Azure portal (在 Azure 入口網站建立和共用儀表板)](azure-portal-dashboards.md)。
 
-## <a name="manage-resources"></a>Manage resources
+## 管理資源
 
-In the blade for a resource, you see the options for managing the resource. The portal presents management options for that particular resource type. You see the management commands across the top of the resource blade and on the left side.
+在資源的刀鋒視窗中，您會看到管理資源的選項。入口網站會顯示該特定資源類型的管理選項。您可以在資源刀鋒視窗的上方和左邊看到管理命令。
 
-![manage resources](./media/resource-group-portal/manage-resources.png)
+![管理資源](./media/resource-group-portal/manage-resources.png)
 
-From these options, you can perform operations such as starting and stopping a virtual machine, or reconfiguring the properties of the virtual machine.
+您可以使用這些選項執行作業，例如啟動和停止虛擬機器，或重新設定虛擬機器的屬性。
 
-## <a name="move-resources"></a>Move resources
+## 移動資源
 
-If you need to move resources to another resource group or another subscription, see [Move resources to new resource group or subscription](../resource-group-move-resources.md).
+如果您需要將資源移至其他資源群組或其他訂用帳戶，請參閱[將資源移到新的資源群組或訂用帳戶](../resource-group-move-resources.md)。
 
-## <a name="lock-resources"></a>Lock resources
+## 鎖定資源
 
-You can lock a subscription, resource group, or resource to prevent other users in your organization from accidentally deleting or modifying critical resources. For more information, see [Lock resources with Azure Resource Manager](../resource-group-lock-resources.md).
+您可以鎖定訂用帳戶、資源群組或資源，以防止組織中的其他使用者不小心刪除或修改重要資源。如需詳細資訊，請參閱[使用 Azure 資源管理員來鎖定資源](../resource-group-lock-resources.md)。
 
 [AZURE.INCLUDE [resource-manager-lock-resources](../../includes/resource-manager-lock-resources.md)]
 
-## <a name="view-your-subscription-and-costs"></a>View your subscription and costs
+## 檢視訂用帳戶和成本
 
-You can view information about your subscription and the rolled-up costs for all your resources. Select **Subscriptions** and the subscription you want to see. You might only have one subscription to select.
+您可以檢視訂用帳戶的相關資訊和所有資源的彙總成本。選取 [訂用帳戶] 及您想要查看的訂用帳戶。您可能只有一個訂用帳戶可選取。
 
-![subscription](./media/resource-group-portal/select-subscription.png)
+![訂用帳戶](./media/resource-group-portal/select-subscription.png)
 
-Within the subscription blade, you see a burn rate.
+在訂用帳戶刀鋒視窗內，您會看到完工速率。
 
-![burn rate](./media/resource-group-portal/burn-rate.png)
+![完工速率](./media/resource-group-portal/burn-rate.png)
 
-And, a breakdown of costs by resource type.
+還有依資源類型的成本分析。
 
-![resource cost](./media/resource-group-portal/cost-by-resource.png)
+![資源成本](./media/resource-group-portal/cost-by-resource.png)
 
-## <a name="export-template"></a>Export template
+## 匯出範本
 
-After setting up your resource group, you may want to view the Resource Manager template for the resource group. Exporting the template offers two benefits:
+設定資源群組之後，您可以檢視此資源群組的資源管理員範本。匯出此範本有兩個優點︰
 
-1. You can easily automate future deployments of the solution because the template contains all the complete infrastructure.
+1. 因為此範本包含所有完整的基礎結構，所以您可以輕鬆地自動進行解決方案的未來部署。
 
-2. You can become familiar with template syntax by looking at the JavaScript Object Notation (JSON) that represents your solution.
+2. 您可以查看代表您的解決方案的 JavaScript 物件標記法 (JSON)，藉此熟悉範本語法。
 
-For step-by-step guidance, see [Export Azure Resource Manager template from existing resources](../resource-manager-export-template.md).
+如需逐步指引，請參閱[從現有資源匯出 Azure Resource Manager 範本](../resource-manager-export-template.md)。
 
-## <a name="delete-resource-group-or-resources"></a>Delete resource group or resources
+## 刪除資源群組或資源
 
-Deleting a resource group deletes all the resources contained within it. You can also delete individual resources within a resource group. You want to exercise caution when you delete a resource group because there might be resources in other resource groups that are linked to it. Resource Manager does not delete linked resources, but they may not operate correctly without the expected resources.
+刪除資源群組會刪除其內含的所有資源。您也可以刪除資源群組內的個別資源。在刪除資源群組時應多加留意，因為可能會有其他資源群組中的資源連結至該群組。Resource Manager 不會刪除連結的資源，但是若沒有預期的資源則可能無法正常運作。
 
-![delete group](./media/resource-group-portal/delete-group.png)
+![刪除群組](./media/resource-group-portal/delete-group.png)
 
-## <a name="next-steps"></a>Next Steps
+## 後續步驟
 
-- To view audit logs, see [Audit operations with Resource Manager](../resource-group-audit.md).
-- To troubleshoot deployment errors, see [Troubleshooting resource group deployments with Azure portal](../resource-manager-troubleshoot-deployments-portal.md).
-- To deploy resources through the portal, see [Deploy resources with Resource Manager templates and Azure portal](../resource-group-template-deploy-portal.md).
-- To manage access to resources, see [Use role assignments to manage access to your Azure subscription resources](../active-directory/role-based-access-control-configure.md).
+- 若要檢視稽核記錄檔，請參閱[使用 Resource Manager 來稽核作業](../resource-group-audit.md)。
+- 若要針對部署錯誤進行疑難排解，請參閱[使用 Azure 入口網站對資源群組部署進行疑難排解](../resource-manager-troubleshoot-deployments-portal.md)。
+- 若要透過入口網站部署資源，請參閱 [使用 Resource Manager 範本與 Azure 入口網站來部署資源](../resource-group-template-deploy-portal.md)。
+- 若要管理資源的存取權，請參閱[使用角色指派來管理 Azure 訂用帳戶資源的存取權](../active-directory/role-based-access-control-configure.md)。
 
-
-
-
-
-
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

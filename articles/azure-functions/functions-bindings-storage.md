@@ -1,45 +1,44 @@
 <properties
-    pageTitle="Azure Functions triggers and bindings for Azure Storage | Microsoft Azure"
-    description="Understand how to use Azure Storage triggers and bindings in Azure Functions."
-    services="functions"
-    documentationCenter="na"
-    authors="christopheranderson"
-    manager="erikre"
-    editor=""
-    tags=""
-    keywords="azure functions, functions, event processing, dynamic compute, serverless architecture"/>
+	pageTitle="Azure 儲存體的 Azure Functions 觸發程序和繫結 | Microsoft Azure"
+	description="瞭解如何在 Azure Functions 中使用「Azure 儲存體」觸發程序和繫結。"
+	services="functions"
+	documentationCenter="na"
+	authors="christopheranderson"
+	manager="erikre"
+	editor=""
+	tags=""
+	keywords="azure functions, 函數, 事件處理, 動態運算, 無伺服器架構"/>
 
 <tags
-    ms.service="functions"
-    ms.devlang="multiple"
-    ms.topic="reference"
-    ms.tgt_pltfrm="multiple"
-    ms.workload="na"
-    ms.date="08/22/2016"
-    ms.author="chrande"/>
+	ms.service="functions"
+	ms.devlang="multiple"
+	ms.topic="reference"
+	ms.tgt_pltfrm="multiple"
+	ms.workload="na"
+	ms.date="08/22/2016"
+	ms.author="chrande"/>
 
-
-# <a name="azure-functions-triggers-and-bindings-for-azure-storage"></a>Azure Functions triggers and bindings for Azure Storage
+# Azure 儲存體的 Azure Functions 觸發程序和繫結
 
 [AZURE.INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-This article explains how to configure and code Azure Storage triggers and bindings in Azure Functions. 
+這篇文章說明如何在 Azure Functions 中為「Azure 儲存體」觸發程序和繫結進行設定及撰寫程式碼。
 
-[AZURE.INCLUDE [intro](../../includes/functions-bindings-intro.md)] 
+[AZURE.INCLUDE [簡介](../../includes/functions-bindings-intro.md)]
 
-## <a name="<a-id="storagequeuetrigger"></a>-azure-storage-queue-trigger"></a><a id="storagequeuetrigger"></a> Azure Storage queue trigger
+## <a id="storagequeuetrigger"></a>Azure 儲存體佇列觸發程序
 
-#### <a name="function.json-for-storage-queue-trigger"></a>function.json for storage queue trigger
+#### 儲存體佇列觸發程序的 function.json
 
-The *function.json* file specifies the following properties.
+「function.json」檔案指定了下列屬性。
 
-- `name` : The variable name used in function code for the queue or the queue message. 
-- `queueName` : The name of the queue to poll. For queue naming rules, see [Naming Queues and Metadata](https://msdn.microsoft.com/library/dd179349.aspx).
-- `connection` : The name of an app setting that contains a storage connection string. If you leave `connection` empty, the trigger will work with the default storage connection string for the function app, which is specified by the AzureWebJobsStorage app setting.
-- `type` : Must be set to *queueTrigger*.
-- `direction` : Must be set to *in*. 
+- `name`︰函式程式碼中用於佇列或佇列訊息的變數名稱。
+- `queueName`：要輪詢的佇列名稱。若要了解佇列命名規則，請參閱[為佇列和中繼資料命名](https://msdn.microsoft.com/library/dd179349.aspx)。
+- `connection`︰包含儲存體連接字串的應用程式設定名稱。如果將 `connection` 留白，觸發程序將會使用函式應用程式的預設儲存體連接字串，此預設值是由 AzureWebJobsStorage 應用程式設定所指定。
+- `type`︰必須設為「queueTrigger」。
+- `direction`：必須設為「in」。
 
-Example *function.json* for a storage queue trigger:
+儲存體佇列觸發程序的範例「function.json」：
 
 ```json
 {
@@ -56,18 +55,18 @@ Example *function.json* for a storage queue trigger:
 }
 ```
 
-#### <a name="queue-trigger-supported-types"></a>Queue trigger supported types
+#### 佇列觸發程序支援的類型
 
-The queue message can be deserialized to any of the following types:
+佇列訊息可以還原序列化為下列任何一種類型︰
 
-* Object (from JSON)
+* 物件 (來自 JSON)
 * String
-* Byte array 
-* `CloudQueueMessage` (C#) 
+* 位元組陣列
+* `CloudQueueMessage` (C#)
 
-#### <a name="queue-trigger-metadata"></a>Queue trigger metadata
+#### 佇列觸發程序中繼資料
 
-You can get queue metadata in your function by using these variable names:
+您可以使用這些變數名稱，在函式中取得佇列中繼資料︰
 
 * expirationTime
 * insertionTime
@@ -75,9 +74,9 @@ You can get queue metadata in your function by using these variable names:
 * id
 * popReceipt
 * dequeueCount
-* queueTrigger (another way to retrieve the queue message text as a string)
+* queueTrigger (將佇列訊息文字做為字串擷取的另一種方式)
 
-This C# code example retrieves and logs queue metadata:
+這個 C# 程式碼範例會擷取和記錄佇列中繼資料︰
 
 ```csharp
 public static void Run(string myQueueItem, 
@@ -101,29 +100,29 @@ public static void Run(string myQueueItem,
 }
 ```
 
-#### <a name="handling-poison-queue-messages"></a>Handling poison queue messages
+#### 處理有害的佇列訊息
 
-Messages whose content causes a function to fail are called *poison messages*. When the function fails, the queue message is not deleted and eventually is picked up again, causing the cycle to be repeated. The SDK can automatically interrupt the cycle after a limited number of iterations, or you can do it manually.
+內容會導致函數失敗的訊息稱為「有害訊息」。當函數失敗時不會刪除佇列訊息，最後會再度挑選到該訊息，造成重複循環。SDK 可在有限的反覆次數之後自動中斷循環，或者您可以手動中斷循環。
 
-The SDK will call a function up to 5 times to process a queue message. If the fifth try fails, the message is moved to a poison queue.
+SDK 將會呼叫函數最多 5 次以處理佇列訊息。如果第五次嘗試失敗，訊息便會移到有害佇列中。
 
-The poison queue is named *{originalqueuename}*-poison. You can write a function to process messages from the poison queue by logging them or sending a notification that manual attention is needed. 
+有害佇列名為 *{originalqueuename}*-poison。您可以撰寫函數，透過記錄或傳送通知表示需要手動處理，來處理有害佇列中的訊息。
 
-If you want to handle poison messages manually, you can get the number of times a message has been picked up for processing by checking `dequeueCount`.
+如果您想要手動處理有害訊息，您可以藉由檢查 `dequeueCount` 來取得訊息已被挑選來處理的次數。
 
-## <a name="<a-id="storagequeueoutput"></a>-azure-storage-queue-output-binding"></a><a id="storagequeueoutput"></a> Azure Storage queue output binding
+## <a id="storagequeueoutput"></a>Azure 儲存體佇列輸出繫結
 
-#### <a name="function.json-for-storage-queue-output-binding"></a>function.json for storage queue output binding
+#### 儲存體佇列輸出繫結的 function.json
 
-The *function.json* file specifies the following properties.
+「function.json」檔案指定了下列屬性。
 
-- `name` : The variable name used in function code for the queue or the queue message. 
-- `queueName` : The name of the queue. For queue naming rules, see [Naming Queues and Metadata](https://msdn.microsoft.com/library/dd179349.aspx).
-- `connection` : The name of an app setting that contains a storage connection string. If you leave `connection` empty, the trigger will work with the default storage connection string for the function app, which is specified by the AzureWebJobsStorage app setting.
-- `type` : Must be set to *queue*.
-- `direction` : Must be set to *out*. 
+- `name`︰函式程式碼中用於佇列或佇列訊息的變數名稱。
+- `queueName`：佇列的名稱。若要了解佇列命名規則，請參閱[為佇列和中繼資料命名](https://msdn.microsoft.com/library/dd179349.aspx)。
+- `connection`︰包含儲存體連接字串的應用程式設定名稱。如果將 `connection` 留白，觸發程序將會使用函式應用程式的預設儲存體連接字串，此預設值是由 AzureWebJobsStorage 應用程式設定所指定。
+- `type`：必須設為「queue」。
+- `direction`：必須設為「out」。
 
-Example *function.json* for a storage queue output binding that uses a queue trigger and writes a queue message:
+儲存體佇列輸出繫結的範例「function.json」，此繫結會使用佇列觸發程序並寫入佇列訊息︰
 
 ```json
 {
@@ -147,20 +146,20 @@ Example *function.json* for a storage queue output binding that uses a queue tri
 }
 ``` 
 
-#### <a name="queue-output-binding-supported-types"></a>Queue output binding supported types
+#### 佇列輸出繫結支援的類型
 
-The `queue` binding can serialize the following types to a queue message:
+`queue` 繫結可將下列類型序列化到佇列訊息︰
 
-* Object (`out T` in C#, creates a message with a null object if the parameter is null when the function ends)
-* String (`out string` in C#, creates queue message if parameter value is non-null when the function ends)
-* Byte array (`out byte[]` in C#, works like string) 
-* `out CloudQueueMessage` (C#, works like string) 
+* 物件 (在 C# 中為 `out T`，如果函式結束時，參數為 Null，就會使用 Null 物件來建立訊息)
+* 字串 (在 C# 中為 `out string`，如果函式結束時，參數值不是 Null，就會建立佇列訊息)
+* 位元組陣列 (在 C# 中為 `out byte[]`，運作方式與字串相同)
+* `out CloudQueueMessage`(C#，運作方式與字串相同)
 
-In C# you can also bind to `ICollector<T>` or `IAsyncCollector<T>` where `T` is one of the supported types.
+在 C# 中，您也可以繫結至 `ICollector<T>` 或 `IAsyncCollector<T>`，其中 `T` 是其中一個支援的類型。
 
-#### <a name="queue-output-binding-code-examples"></a>Queue output binding code examples
+#### 佇列輸出繫結程式碼範例
 
-This C# code example writes a single output queue message for each input queue message.
+這個 C# 程式碼範例將為每個輸入佇列訊息，撰寫單一輸出佇列訊息。
 
 ```csharp
 public static void Run(string myQueueItem, out string myOutputQueueItem, TraceWriter log)
@@ -169,7 +168,7 @@ public static void Run(string myQueueItem, out string myOutputQueueItem, TraceWr
 }
 ```
 
-This C# code example writes multiple messages by using  `ICollector<T>` (use `IAsyncCollector<T>` in an async function):
+這個 C# 程式碼範例會使用 `ICollector<T>` (在非同步函式中會使用 `IAsyncCollector<T>`) 來撰寫多個訊息：
 
 ```csharp
 public static void Run(string myQueueItem, ICollector<string> myQueue, TraceWriter log)
@@ -179,19 +178,19 @@ public static void Run(string myQueueItem, ICollector<string> myQueue, TraceWrit
 }
 ```
 
-## <a name="<a-id="storageblobtrigger"></a>-azure-storage-blob-trigger"></a><a id="storageblobtrigger"></a> Azure Storage blob trigger
+## <a id="storageblobtrigger"></a>Azure 儲存體 Blob 觸發程序
 
-#### <a name="function.json-for-storage-blob-trigger"></a>function.json for storage blob trigger
+#### 儲存體 Blob 觸發程序的 function.json
 
-The *function.json* file specifies the following properties.
+「function.json」檔案指定了下列屬性。
 
-- `name` : The variable name used in function code for the blob. 
-- `path` : A path that specifies the container to monitor, and optionally a blob name pattern.
-- `connection` : The name of an app setting that contains a storage connection string. If you leave `connection` empty, the trigger will work with the default storage connection string for the function app, which is specified by the AzureWebJobsStorage app setting.
-- `type` : Must be set to *blobTrigger*.
-- `direction` : Must be set to *in*.
+- `name`︰函式程式碼中用於 Blob 的變數名稱。
+- `path`：指定要監視之容器的路徑，此路徑也可以依選擇指定 Blob 名稱模式。
+- `connection`︰包含儲存體連接字串的應用程式設定名稱。如果將 `connection` 留白，觸發程序將會使用函式應用程式的預設儲存體連接字串，此預設值是由 AzureWebJobsStorage 應用程式設定所指定。
+- `type`︰必須設為「blobTrigger」。
+- `direction`：必須設為「in」。
 
-Example *function.json* for a storage blob trigger that watches for blobs that are added to the samples-workitems container:
+儲存體 Blob 觸發程序的範例「function.json」，此觸發程序會監看新增至 samples-workitems 容器的 Blob：
 
 ```json
 {
@@ -208,14 +207,14 @@ Example *function.json* for a storage blob trigger that watches for blobs that a
 }
 ```
 
-#### <a name="blob-trigger-supported-types"></a>Blob trigger supported types
+#### Blob 觸發程序支援的類型
 
-The blob can be deserialized to any of the following types in Node or C# functions:
+在 Node 或 C# 函式中，Blob 可以還原序列化為下列任何類型︰
 
-* Object (from JSON)
+* 物件 (來自 JSON)
 * String
 
-In C# functions you can also bind to any of the following types:
+在 C# 函式中，您也可以繫結至下列任何類型︰
 
 * `TextReader`
 * `Stream`
@@ -226,11 +225,11 @@ In C# functions you can also bind to any of the following types:
 * `CloudBlobDirectory`
 * `IEnumerable<CloudBlockBlob>`
 * `IEnumerable<CloudPageBlob>`
-* Other types deserialized by [ICloudBlobStreamBinder](../app-service-web/websites-dotnet-webjobs-sdk-storage-blobs-how-to.md#icbsb) 
+* 透過 [ICloudBlobStreamBinder](../app-service-web/websites-dotnet-webjobs-sdk-storage-blobs-how-to.md#icbsb) 還原序列化的其他型別
 
-#### <a name="blob-trigger-c#-code-example"></a>Blob trigger C# code example
+#### Blob 觸發程序 C# 程式碼範例
 
-This C# code example logs the contents of each blob that is added to the monitored container.
+這個 C# 程式碼範例會將每個新增的 Blob 內容記錄到受監視的容器。
 
 ```csharp
 public static void Run(string myBlob, TraceWriter log)
@@ -239,79 +238,79 @@ public static void Run(string myBlob, TraceWriter log)
 }
 ```
 
-#### <a name="blob-trigger-name-patterns"></a>Blob trigger name patterns
+#### Blob 觸發程序名稱模式
 
-You can specify a blob name pattern in the `path` property. For example:
+您可以在 `path` 屬性中指定 Blob 名稱模式。例如：
 
 ```json
 "path": "input/original-{name}",
 ```
 
-This path would find a blob named *original-Blob1.txt* in the *input* container, and the value of the `name` variable in function code would be `Blob1`.
+此路徑會在「input」容器中尋找名為「original-Blob1.txt」的 Blob，且函式程式碼中的 `name` 變數值會是 `Blob1`。
 
-Another example:
+另一個範例：
 
 ```json
 "path": "input/{blobname}.{blobextension}",
 ```
 
-This path would also find a blob named *original-Blob1.txt*, and the value of the `blobname` and `blobextension` variables in function code would be *original-Blob1* and *txt*.
+此路徑也會尋找名為「original-Blob1.txt」的 Blob，而函式程式碼中的 `blobname` 和 `blobextension` 變數值會是「original-Blob1」和「txt」。
 
-You can restrict the types of blobs that trigger the function by specifying a pattern with a fixed value for the file extension. If you set the `path` to  *samples/{name}.png*, only *.png* blobs in the *samples* container will trigger the function.
+您可以使用固定值來為副檔名指定模式，從而限制觸發函式的 blob 類型。如果您將 `path` 設為「samples/{name}.png」，只有「samples」容器中的「.png」Blob 會觸發函式。
 
-If you need to specify a name pattern for blob names that have curly braces in the name, double the curly braces. For example, if you want to find blobs in the *images* container that have names like this:
+如果您需要針對名稱中包含大括號的 Blob 名稱指定名稱模式，請按兩下大括號。例如，如果您想要在 *images* 容器中尋找具備如下名稱的 Blob：
 
-        {20140101}-soundfile.mp3
+		{20140101}-soundfile.mp3
 
-use this for the `path` property:
+將以下內容用於 `path` 屬性︰
 
-        images/{{20140101}}-{name}
+		images/{{20140101}}-{name}
 
-In the example, the `name` variable value would be *soundfile.mp3*. 
+在此範例中，`name` 變數值會是「soundfile.mp3」。
 
-#### <a name="blob-receipts"></a>Blob receipts
+#### Blob 回條
 
-The Azure Functions runtime makes sure that no blob trigger function gets called more than once for the same new or updated blob. It does this by maintaining *blob receipts* in order to determine if a given blob version has been processed.
+Azure Functions 執行階段可確保不會針對一樣新或版本相同的 blob 多次呼叫 blob 觸發程序函式。它的運作方式是藉由維護 *Blob 回條*來判斷指定的 Blob 版本是否已處理過。
 
-Blob receipts are stored in a container named *azure-webjobs-hosts* in the Azure storage account specified by the AzureWebJobsStorage connection string. A blob receipt has the following  information:
+Blob 回條儲存於 AzureWebJobsStorage 連接字串所指定之 Azure 儲存體帳戶中名為 *azure-webjobs-hosts* 的容器中。Blob 回條具有下列資訊：
 
-* The function that was called for the blob ("*{function app name}*.Functions.*{function name}*", for example: "functionsf74b96f7.Functions.CopyBlob")
-* The container name
-* The blob type ("BlockBlob" or "PageBlob")
-* The blob name
-* The ETag (a blob version identifier, for example: "0x8D1DC6E70A277EF")
+* 已為 Blob 呼叫的函式 ("{function app name}.Functions.{function name}"，例如："functionsf74b96f7.Functions.CopyBlob")
+* 容器名稱
+* Blob 類型 ("BlockBlob" 或 "PageBlob")
+* Blob 名稱
+* ETag (Blob 版本識別碼，例如："0x8D1DC6E70A277EF")
 
-If you want to force reprocessing of a blob, you can manually delete the blob receipt for that blob from the *azure-webjobs-hosts* container.
+如果您想要強制重新處理某個 Blob，可以從 *azure-webjobs-hosts* 容器中手動刪除該 Blob 的 Blob 回條。
 
-#### <a name="handling-poison-blobs"></a>Handling poison blobs
+#### 處理有害的 blob
 
-When a blob trigger function fails, the SDK calls it again, in case the failure was caused by a transient error. If the failure is caused by the content of the blob, the function fails every time it tries to process the blob. By default, the SDK calls a function up to 5 times for a given blob. If the fifth try fails, the SDK adds a message to a queue named *webjobs-blobtrigger-poison*.
+當 blob 觸發程序函式失敗時，SDK 會再次加以呼叫，以防失敗是因暫時性錯誤而造成。如果失敗是因為 Blob 的內容所造成，則此函數會在其每次嘗試處理該 Blob 時失敗。根據預設，SDK 最多會針對指定的 Blob 呼叫函數 5 次。如果第五次嘗試失敗，則 SDK 會在名為 *webjobs-blobtrigger-poison* 的佇列中新增一則訊息。
 
-The queue message for poison blobs is a JSON object that contains the following properties:
+適用於有害 Blob 的佇列訊息是一個 JSON 物件，其中包含下列屬性：
 
-* FunctionId (in the format *{function app name}*.Functions.*{function name}*)
-* BlobType ("BlockBlob" or "PageBlob")
+* FunctionId (格式為 {function app name}.Functions.{function name})
+* BlobType ("BlockBlob" 或 "PageBlob")
 * ContainerName
 * BlobName
-* ETag (a blob version identifier, for example: "0x8D1DC6E70A277EF")
+* ETag (Blob 版本識別碼，例如："0x8D1DC6E70A277EF")
 
-#### <a name="blob-polling-for-large-containers"></a>Blob polling for large containers
+#### 大型容器的 Blob 輪詢
 
-If the blob container that the trigger is monitoring contains more than 10,000 blobs, the Functions runtime scans log files to watch for new or changed blobs. This process is not real-time; a function might not get triggered until several minutes or longer after the blob is created. In addition, [storage logs are created on a "best efforts"](https://msdn.microsoft.com/library/azure/hh343262.aspx) basis; there is no guarantee that all events will be captured. Under some conditions, logs might be missed. If the speed and reliability limitations of blob triggers for large containers are not acceptable for your application, the recommended method is to create a queue message when you create the blob, and use a queue trigger instead of a blob trigger to process the blob.
+如果觸發程序正在監視的 blob 容器包含超過 10,000 個 blob，Functions 執行階段會掃描記錄檔以監看新增或變更的 blob。此程序的速度很慢；可能直到建立 Blob 之後數分鐘或更久，才會觸發函數。此外，[儲存體記錄檔建立在「竭盡所能」](https://msdn.microsoft.com/library/azure/hh343262.aspx)的基礎上；並不保證會擷取所有事件。在某些情況下可能會遺失記錄檔。如果您的應用程式無法接受大容器 blob 觸發程序的速度和可靠性限制，建議的方法是當您建立 blob 時建立佇列訊息，並使用佇列觸發程序而非 blob 觸發程序來處理 blob。
  
-## <a name="<a-id="storageblobbindings"></a>-azure-storage-blob-input-and-output-bindings"></a><a id="storageblobbindings"></a> Azure Storage blob input and output bindings
+## <a id="storageblobbindings"></a>Azure 儲存體 Blob 輸入和輸出繫結
 
-#### <a name="function.json-for-a-storage-blob-input-or-output-binding"></a>function.json for a storage blob input or output binding
+#### 儲存體 Blob 輸入或輸出繫結的 function.json
 
-The *function.json* file specifies the following properties.
+「function.json」檔案指定了下列屬性。
 
-- `name` : The variable name used in function code for the blob . 
-- `path` : A path that specifies the container to read the blob from or write the blob to, and optionally a blob name pattern.
-- `connection` : The name of an app setting that contains a storage connection string. If you leave `connection` empty, the binding will work with the default storage connection string for the function app, which is specified by the AzureWebJobsStorage app setting.
-- `type` : Must be set to *blob*.
-- `direction` : Set to *in* or *out*. 
+- `name`︰函式程式碼中用於 Blob 的變數名稱。
+- `path`：指定要從中讀取 Blob 或將 Blob 寫入到其中的容器路徑，此路徑也可以依選擇指定 Blob 名稱模式。
+- `connection`︰包含儲存體連接字串的應用程式設定名稱。如果將 `connection` 留白，繫結將會使用函式應用程式的預設儲存體連接字串，此預設值是由 AzureWebJobsStorage 應用程式設定所指定。
+- `type`：必須設為「blob」。
+- `direction`︰設定為「in」或「out」。
 
-Example *function.json* for a storage blob input or output binding, using a queue trigger to copy a blob:
+儲存體 Blob 輸入或輸出繫結的範例「function.json」，其中使用佇列觸發程序來複製 Blob：
 
 ```json
 {
@@ -342,26 +341,26 @@ Example *function.json* for a storage blob input or output binding, using a queu
 }
 ``` 
 
-#### <a name="blob-input-and-output-supported-types"></a>Blob input and output supported types
+#### Blob 輸入和輸出支援的類型
 
-The `blob` binding can serialize or deserialize the following types in Node.js or C# functions:
+在 Node.js 或 C# 函式中，`blob` 繫結可將下列類型序列化或還原序列化︰
 
-* Object (`out T` in C# for output blob: creates a blob as null object if parameter value is null when the function ends)
-* String (`out string` in C# for output blob: creates a blob only if the string parameter is non-null when the function returns)
+* 物件 (在 C# 中為 `out T`，適用於輸出 Blob︰如果函式結束時，參數值為 Null，就會將 Blob 建立成 Null 物件)
+* 字串 (在 C# 中為 `out string`，適用於輸出 Blob：如果函式傳回時，字串參數不是 Null，則只會建立 Blob)
 
-In C# functions, you can also bind to the following types:
+在 C# 函式中，您也可以繫結至下列類型︰
 
-* `TextReader` (input only)
-* `TextWriter` (output only)
+* `TextReader` (僅限輸入)
+* `TextWriter` (僅限輸出)
 * `Stream`
-* `CloudBlobStream` (output only)
+* `CloudBlobStream` (僅限輸出)
 * `ICloudBlob`
-* `CloudBlockBlob` 
-* `CloudPageBlob` 
+* `CloudBlockBlob`
+* `CloudPageBlob`
 
-#### <a name="blob-output-c#-code-example"></a>Blob output C# code example
+#### Blob 輸出 C# 程式碼範例
 
-This C# code example copies a blob whose name is received in a queue message.
+這個 C# 程式碼範例會複製名稱在佇列訊息中接收的 blob。
 
 ```csharp
 public static void Run(string myQueueItem, string myInputBlob, out string myOutputBlob, TraceWriter log)
@@ -371,22 +370,22 @@ public static void Run(string myQueueItem, string myInputBlob, out string myOutp
 }
 ```
 
-## <a name="<a-id="storagetablesbindings"></a>-azure-storage-tables-input-and-output-bindings"></a><a id="storagetablesbindings"></a> Azure Storage tables input and output bindings
+## <a id="storagetablesbindings"></a>Azure 儲存體資料表輸入和輸出繫結
 
-#### <a name="function.json-for-storage-tables"></a>function.json for storage tables
+#### 儲存體資料表的 function.json
 
-The *function.json* specifies the following properties.
+「function.json」指定了下列屬性。
 
-- `name` : The variable name used in function code for the table binding. 
-- `tableName` : The name of the table.
-- `partitionKey` and `rowKey` : Used together to read a single entity in a C# or Node function, or to write a single entity in a Node function.
-- `take` : The maximum number of rows to read for table input in a Node function.
-- `filter` : OData filter expression for table input in a Node function.
-- `connection` : The name of an app setting that contains a storage connection string. If you leave `connection` empty, the binding will work with the default storage connection string for the function app, which is specified by the AzureWebJobsStorage app setting.
-- `type` : Must be set to *table*.
-- `direction` : Set to *in* or *out*. 
+- `name`︰函式程式碼中用於資料表繫結的變數名稱。
+- `tableName`：資料表的名稱。
+- `partitionKey` 和 `rowKey`：搭配使用可讀取 C# 或 Node 函式中的單一實體，或在 Node 函式中寫入單一實體。
+- `take`：針對 Node 函式中資料表輸入所讀取的資料列數目上限。
+- `filter`：適用於 Node 函式中資料表輸入的 OData 篩選運算式。
+- `connection`︰包含儲存體連接字串的應用程式設定名稱。如果將 `connection` 留白，繫結將會使用函式應用程式的預設儲存體連接字串，此預設值是由 AzureWebJobsStorage 應用程式設定所指定。
+- `type`：必須設為「table」。
+- `direction`︰設定為「in」或「out」。
 
-The following example *function.json* uses a queue trigger to read a single table row. The JSON provides a hard-coded partition key value and specifies that the row key comes from the queue message.
+以下的範例「function.json」會使用佇列觸發程序來讀取單一資料表列。JSON 提供硬式編碼的資料分割索引鍵值，並指定資料列索引鍵來自佇列訊息。
 
 ```json
 {
@@ -412,40 +411,40 @@ The following example *function.json* uses a queue trigger to read a single tabl
 }
 ```
 
-#### <a name="storage-tables-input-and-output-supported-types"></a>Storage tables input and output supported types
+#### 儲存體資料表輸入和輸出支援的類型
 
-The `table` binding can serialize or deserialize objects in Node.js or C# functions. The objects will have RowKey and PartitionKey properties. 
+在 Node.js 或 C# 函式中，`table` 繫結可將物件序列化或還原序列化。物件會有 RowKey 和 PartitionKey 屬性。
 
-In C# functions, you can also bind to the following types:
+在 C# 函式中，您也可以繫結至下列類型︰
 
-* `T` where `T` implements `ITableEntity`
-* `IQueryable<T>` (input only)
-* `ICollector<T>` (output only)
-* `IAsyncCollector<T>` (output only)
+* `T`，其中 `T` 會實作 `ITableEntity`
+* `IQueryable<T>` (僅限輸入)
+* `ICollector<T>` (僅限輸出)
+* `IAsyncCollector<T>` (僅限輸出)
 
-#### <a name="storage-tables-binding-scenarios"></a>Storage tables binding scenarios
+#### 儲存體資料表繫結案例
 
-The table binding supports the following scenarios:
+資料表繫結支援下列案例：
 
-* Read a single row in a C# or Node function.
+* 讀取 C# 或 Node 函式中的單一資料列。
 
-    Set `partitionKey` and `rowKey`. The `filter` and `take` properties are not used in this scenario.
+	請設定 `partitionKey` 和 `rowKey`。此案例中不使用 `filter` 和 `take` 屬性。
 
-* Read multiple rows in a C# function.
+* 讀取 C# 函式中的多個資料列。
 
-    The Functions runtime provides an `IQueryable<T>` object bound to the table. Type `T` must derive from `TableEntity` or implement `ITableEntity`. The `partitionKey`, `rowKey`, `filter`, and `take` properties are not used in this scenario; you can use the `IQueryable` object to do any filtering required. 
+	Functions 執行階段會提供一個繫結至資料表的 `IQueryable<T>` 物件。類型 `T` 必須衍生自 `TableEntity` 或實作 `ITableEntity`。此案例中不使用 `partitionKey`、`rowKey`、`filter` 和 `take`屬性；您可以使用 `IQueryable` 物件來執行任何所需的篩選。
 
-* Read multiple rows in a Node function.
+* 讀取 Node 函式中的多個資料列。
 
-    Set the `filter` and `take` properties. Don't set `partitionKey` or `rowKey`.
+	請設定 `filter` 和 `take` 屬性。請勿設定 `partitionKey` 或 `rowKey`。
 
-* Write one or more rows in a C# function.
+* 在 C# 函式中寫入一或多個資料列。
 
-    The Functions runtime provides an `ICollector<T>` or `IAsyncCollector<T>` bound to the table, where `T` specifies the schema of the entities you want to add. Typically, type `T` derives from `TableEntity` or implements `ITableEntity`, but it doesn't have to. The `partitionKey`, `rowKey`, `filter`, and `take` properties are not used in this scenario.
+	Functions 執行階段會提供一個繫結至資料表的 `ICollector<T>` 或 `IAsyncCollector<T>`，其中 `T` 指定您想要新增之實體的結構描述。一般而言，類型 `T` 會衍生自 `TableEntity` 或實作 `ITableEntity`，但不一定如此。此案例中不使用 `partitionKey`、`rowKey`、`filter` 和 `take` 屬性。
 
-#### <a name="storage-tables-example:-read-a-single-table-entity-in-c#-or-node"></a>Storage tables example: Read a single table entity in C# or Node
+#### 儲存體資料表範例︰讀取 C# 或 Node 中的單一資料表實體
 
-The following C# code example works with the preceding *function.json* file shown earlier to read a single table entity. The queue message has the row key value and the table entity is read into a type that is defined in the *run.csx* file. The type includes `PartitionKey` and `RowKey` properties and does not derive from `TableEntity`. 
+下列 C# 程式碼範例可與前述稍早所示的「function.json」檔案搭配運作，以讀取單一資料表實體。佇列訊息具有資料列金鑰值，並將資料表實體讀入「run.csx」檔案中定義的類型。類型包括 `PartitionKey` 和 `RowKey` 屬性，且不是衍生自 `TableEntity`。
 
 ```csharp
 public static void Run(string myQueueItem, Person personEntity, TraceWriter log)
@@ -462,7 +461,7 @@ public class Person
 }
 ```
 
-The following F# code example also works with the preceding *function.json* file to read a single table entity.
+下列 F# 程式碼範例也使用上述「function.json」檔案以讀取單一資料表實體。
 
 ```fsharp
 [<CLIMutable>]
@@ -477,7 +476,7 @@ let Run(myQueueItem: string, personEntity: Person) =
     log.Info(sprintf "Name in Person entity: %s" personEntity.Name)
 ```
 
-The following Node code example also works with the preceding *function.json* file to read a single table entity.
+下列 Node 程式碼範例也使用上述「function.json」檔案以讀取單一資料表實體。
 
 ```javascript
 module.exports = function (context, myQueueItem) {
@@ -487,9 +486,9 @@ module.exports = function (context, myQueueItem) {
 };
 ```
 
-#### <a name="storage-tables-example:-read-multiple-table-entities-in-c#"></a>Storage tables example: Read multiple table entities in C# 
+#### 儲存體資料表範例︰讀取 C 中的多個資料表實體# 
 
-The following *function.json* and C# code example reads entities for a partition key that is specified in the queue message.
+下列「function.json」和 C# 程式碼範例會讀取佇列訊息中指定的資料分割金鑰的實體。
 
 ```json
 {
@@ -513,7 +512,7 @@ The following *function.json* and C# code example reads entities for a partition
 }
 ```
 
-The C# code adds a reference to the Azure Storage SDK so that the entity type can derive from `TableEntity`.
+C# 程式碼會新增對「Azure 儲存體 SDK」的參考，讓實體類型可以衍生自 `TableEntity`。
 
 ```csharp
 #r "Microsoft.WindowsAzure.Storage"
@@ -534,9 +533,9 @@ public class Person : TableEntity
 }
 ``` 
 
-#### <a name="storage-tables-example:-create-table-entities-in-c#"></a>Storage tables example: Create table entities in C# 
+#### 儲存體資料表範例︰在 C 中建立資料表實體# 
 
-The following *function.json* and *run.csx* example shows how to write table entities in C#.
+下列「function.json」和「run.csx」範例示範如何在 C# 中撰寫資料表實體。
 
 ```json
 {
@@ -583,9 +582,9 @@ public class Person
 
 ```
 
-#### <a name="storage-tables-example:-create-table-entities-in-f#"></a>Storage tables example: Create table entities in F#
+#### 儲存體資料表範例︰在 F 中建立資料表實體#
 
-The following *function.json* and *run.fsx* example shows how to write table entities in F#.
+下列「function.json」和「run.fsx」範例示範如何在 F# 中撰寫資料表實體。
 
 ```json
 {
@@ -624,9 +623,9 @@ let Run(input: string, tableBinding: ICollector<Person>, log: TraceWriter) =
               Name = "Name" + i.ToString() })
 ```
 
-#### <a name="storage-tables-example:-create-a-table-entity-in-node"></a>Storage tables example: Create a table entity in Node
+#### 儲存體資料表範例︰在 Node 中建立資料表實體
 
-The following *function.json* and *run.csx* example shows how to write a table entity in Node.
+下列「function.json」和「run.csx」範例示範如何在 Node 中撰寫資料表實體。
 
 ```json
 {
@@ -660,12 +659,8 @@ module.exports = function (context, myQueueItem) {
 };
 ```
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-[AZURE.INCLUDE [next steps](../../includes/functions-bindings-next-steps.md)] 
+[AZURE.INCLUDE [後續步驟](../../includes/functions-bindings-next-steps.md)]
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

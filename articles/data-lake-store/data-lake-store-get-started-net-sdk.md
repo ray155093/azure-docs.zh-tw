@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Use Data Lake Store .NET SDK to develop applications | Microsoft Azure"
-   description="Use Azure Data Lake Store .NET SDK to develop applications"
+   pageTitle="使用 Data Lake Store .NET SDK 來開發應用程式 | Microsoft Azure"
+   description="使用 Azure 資料湖存放區 .NET SDK 來開發應用程式"
    services="data-lake-store"
    documentationCenter=""
    authors="nitinme"
@@ -16,11 +16,10 @@
    ms.date="09/27/2016"
    ms.author="nitinme"/>
 
-
-# <a name="get-started-with-azure-data-lake-store-using-.net-sdk"></a>Get started with Azure Data Lake Store using .NET SDK
+# 使用 .NET SDK 開始使用 Azure 資料湖存放區
 
 > [AZURE.SELECTOR]
-- [Portal](data-lake-store-get-started-portal.md)
+- [入口網站](data-lake-store-get-started-portal.md)
 - [PowerShell](data-lake-store-get-started-powershell.md)
 - [.NET SDK](data-lake-store-get-started-net-sdk.md)
 - [Java SDK](data-lake-store-get-started-java-sdk.md)
@@ -28,49 +27,49 @@
 - [Azure CLI](data-lake-store-get-started-cli.md)
 - [Node.js](data-lake-store-manage-use-nodejs.md)
 
-Learn how to use the [Azure Data Lake Store .NET SDK](https://msdn.microsoft.com/library/mt581387.aspx) to perform basic operations such as create folders, upload and download data files, etc. For more information about Data Lake, see [Azure Data Lake Store](data-lake-store-overview.md).
+了解如何使用 [Azure Data Lake Store .NET SDK](https://msdn.microsoft.com/library/mt581387.aspx) 來執行基本作業，例如建立資料夾、上傳和下載資料檔案等等。如需有關資料湖的詳細資訊，請參閱 [Azure Data Lake Store](data-lake-store-overview.md)。
 
-## <a name="prerequisites"></a>Prerequisites
+## 必要條件
 
-* **Visual Studio 2013 or 2015**. The instructions below use Visual Studio 2015.
+* **Visual Studio 2013 或 2015**。以下指示使用 Visual Studio 2015。
 
-* **An Azure subscription**. See [Get Azure free trial](https://azure.microsoft.com/pricing/free-trial/).
+* **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
-* **Azure Data Lake Store account**. For instructions on how to create an account, see [Get started with Azure Data Lake Store](data-lake-store-get-started-portal.md)
+* **Azure Data Lake Store 帳戶**。如需有關如何建立帳戶的指示，請參閱[開始使用 Azure Data Lake Store](data-lake-store-get-started-portal.md)
 
-* **Create an Azure Active Directory Application**. You use the Azure AD application to authenticate the Data Lake Store application with Azure AD. There are different approaches to authenticate with Azure AD, which are **end-user authentication** or **service-to-service authentication**. For instructions and more information on how to authenticate, see [Authenticate with Data Lake Store using Azure Active Directory](data-lake-store-authenticate-using-active-directory.md).
+* **建立 Azure Active Directory 應用程式**。您必須使用 Azure AD 應用程式來向 Azure AD 驗證 Data Lake Store 應用程式。有不同的方法可向 Azure AD 進行驗證：**使用者驗證**或**服務對服務驗證**。如需如何驗證的指示和詳細資訊，請參閱[使用 Azure Active Directory 向 Data Lake Store 進行驗證](data-lake-store-authenticate-using-active-directory.md)。
 
-## <a name="create-a-.net-application"></a>Create a .NET application
+## 建立 .NET 應用程式
 
-1. Open Visual Studio and create a console application.
+1. 開啟 Visual Studio，建立主控台應用程式。
 
-2. From the **File** menu, click **New**, and then click **Project**.
+2. 從 [檔案] 功能表中，按一下 [新增]，再按 [專案]。
 
-3. From **New Project**, type or select the following values:
+3. 在 [**新增專案**] 中，輸入或選取下列值：
 
-  	| Property | Value                       |
-  	|----------|-----------------------------|
-  	| Category | Templates/Visual C#/Windows |
-  	| Template | Console Application         |
-  	| Name     | CreateADLApplication        |
+	| 屬性 | 值 |
+	|----------|-----------------------------|
+	| 類別 | 範本/Visual C#/Windows |
+	| 範本 | 主控台應用程式 |
+	| 名稱 | CreateADLApplication |
 
-4. Click **OK** to create the project.
+4. 按一下 [確定] 以建立專案。
 
-5. Add the Nuget packages to your project.
+5. 將 Nuget 封裝新增至您的專案。
 
-    1. Right-click the project name in the Solution Explorer and click **Manage NuGet Packages**.
-    2. In the **Nuget Package Manager** tab, make sure that **Package source** is set to **nuget.org** and that **Include prerelease** check box is selected.
-    3. Search for and install the following NuGet packages:
+	1. 在方案總管中以滑鼠右鍵按一下專案名稱，然後按一下 [**管理 NuGet 封裝**]。
+	2. 在 [Nuget 封裝管理員] 索引標籤中，確定 [封裝來源] 設為 [nuget.org]，且已選取 [包含發行前版本] 核取方塊。
+	3. 搜尋並安裝下列 NuGet 封裝：
 
-        * `Microsoft.Azure.Management.DataLake.Store` - This tutorial uses v0.12.5-preview.
-        * `Microsoft.Azure.Management.DataLake.StoreUploader` - This tutorial uses v0.10.6-preview.
-        * `Microsoft.Rest.ClientRuntime.Azure.Authentication` - This tutorial uses v2.2.8-preview.
+		* `Microsoft.Azure.Management.DataLake.Store` - 本教學課程使用 v0.12.5-preview。
+		* `Microsoft.Azure.Management.DataLake.StoreUploader` - 本教學課程使用 v0.10.6-preview。
+		* `Microsoft.Rest.ClientRuntime.Azure.Authentication` - 本教學課程使用 v2.2.8-preview。
 
-        ![Add a Nuget source](./media/data-lake-store-get-started-net-sdk/ADL.Install.Nuget.Package.png "Create a new Azure Data Lake account")
+		![新增 Nuget 來源](./media/data-lake-store-get-started-net-sdk/ADL.Install.Nuget.Package.png "建立新的 Azure 資料湖帳戶")
 
-    4. Close the **Nuget Package Manager**.
+	4. 關閉 [**Nuget 封裝管理員**]。
 
-6. Open **Program.cs**, delete the existing code, and then include the following statements to add references to namespaces.
+6. 開啟 **Program.cs**，刪除現有的程式碼，然後納入下列陳述式以新增命名空間的參考。
 
         using System;
         using System.Threading;
@@ -79,7 +78,7 @@ Learn how to use the [Azure Data Lake Store .NET SDK](https://msdn.microsoft.com
         using Microsoft.Azure.Management.DataLake.Store;
         using Microsoft.Azure.Management.DataLake.StoreUploader;
 
-7. Declare the variables as shown below, and provide the values for Data Lake Store name and the resource group name that already exist. Also, make sure the local path and file name you provide here must exist on the computer. Add the following code snippet after the namespace declarations.
+7. 宣告如下所示的變數，並提供已存在的 Data Lake Store 名稱和資源群組名稱的值。此外，請確定您在此處提供的本機路徑和檔案名稱必須存在於電腦。將下列程式碼片段加在命名空間宣告之後。
 
         namespace SdkSample
         {
@@ -91,7 +90,7 @@ Learn how to use the [Azure Data Lake Store .NET SDK](https://msdn.microsoft.com
                 private static string _adlsAccountName;
                 private static string _resourceGroupName;
                 private static string _location;
-                private static string _subId;
+				private static string _subId;
 
                 
                 private static void Main(string[] args)
@@ -99,9 +98,9 @@ Learn how to use the [Azure Data Lake Store .NET SDK](https://msdn.microsoft.com
                     _adlsAccountName = "<DATA-LAKE-STORE-NAME>"; // TODO: Replace this value with the name of your existing Data Lake Store account.
                     _resourceGroupName = "<RESOURCE-GROUP-NAME>"; // TODO: Replace this value with the name of the resource group containing your Data Lake Store account.
                     _location = "East US 2";
-                    _subId = "<SUBSCRIPTION-ID>";
+					_subId = "<SUBSCRIPTION-ID>";
                     
-                    string localFolderPath = @"C:\local_path\"; // TODO: Make sure this exists and can be overwritten.
+                    string localFolderPath = @"C:\local_path"; // TODO: Make sure this exists and can be overwritten.
                     string localFilePath = localFolderPath + "file.txt"; // TODO: Make sure this exists and can be overwritten.
                     string remoteFolderPath = "/data_lake_path/";
                     string remoteFilePath = remoteFolderPath + "file.txt";
@@ -109,13 +108,13 @@ Learn how to use the [Azure Data Lake Store .NET SDK](https://msdn.microsoft.com
             }
         }
 
-In the remaining sections of the article, you can see how to use the available .NET methods to perform operations such as authentication, file upload, etc.
+在本文的其餘章節中，您可以了解如何使用可用的 .NET 方法來執行一些作業，例如驗證、檔案上載等。
 
-## <a name="authentication"></a>Authentication
+## 驗證
 
-### <a name="if-you-are-using-end-user-authentication-(recommended-for-this-tutorial)"></a>If you are using end-user authentication (recommended for this tutorial)
+### 如果您要使用使用者驗證 (本教學課程建議的驗證方式)
 
-Use this with an existing Azure AD "Native Client" Application; one is provided for you below. To help you complete this tutorial faster, we recommend you use this approach.
+請將此方法用於現有的 Azure AD「原生用戶端」應用程式；下面會提供一個範例應用程式。為了協助您更快完成本教學課程，建議您使用此方法。
 
     // User login via interactive popup
     // Use the client ID of an existing AAD "Native Client" application.
@@ -125,16 +124,16 @@ Use this with an existing Azure AD "Native Client" Application; one is provided 
     var activeDirectoryClientSettings = ActiveDirectoryClientSettings.UsePromptOnly(nativeClientApp_clientId, new Uri("urn:ietf:wg:oauth:2.0:oob"));
     var creds = UserTokenProvider.LoginWithPromptAsync(domain, activeDirectoryClientSettings).Result;
 
-Couple of things to know about this snippet above.
+上面這個程式碼片段有幾項須知。
 
-* To help you complete the tutorial faster, this snippet uses an an Azure AD domain and client ID that is available by default for all Azure subscriptions. So, you can **use this snippet as-is in your application**.
-* However, if you do want to use your own Azure AD domain and application client ID, you must create an Azure AD native application and then use the Azure AD domain, client ID, and redirect URI for the application you created. See [Create an Active Directory Application](../resource-group-create-service-principal-portal.md#create-an-active-directory-application) for instructions.
+* 為了協助您更快完成本教學課程，此程式碼片段使用所有 Azure 訂用帳戶預設可用的 Azure AD 網域和用戶端識別碼。因此，您可以**在應用程式中原封不動地使用此程式碼片段**。
+* 但是，如果您想要使用自己的 Azure AD 網域和應用程式用戶端識別碼，您必須建立 Azure AD 原生應用程式，然後使用您所建立之應用程式的 Azure AD 網域、用戶端識別碼和重新導向 URI。如需相關指示，請參閱[建立 Active Directory 應用程式](../resource-group-create-service-principal-portal.md#create-an-active-directory-application)。
 
->[AZURE.NOTE] The instructions in the above links are for an Azure AD web application. However, the steps are exactly the same even if you chose to create a native client application instead. 
+>[AZURE.NOTE] 上述連結中的指示適用於 Azure AD Web 應用程式。不過，即使您選擇改為建立原生用戶端應用程式，步驟也完全相同。
 
-### <a name="if-you-are-using-service-to-service-authentication-with-client-secret"></a>If you are using service-to-service authentication with client secret 
+### 如果您要使用服務對服務驗證與用戶端密碼 
 
-The following snippet can be used to authenticate your application non-interactively, using the client secret / key for an application / service principal. Use this with an existing [Azure AD "Web App" Application](../resource-group-create-service-principal-portal.md).
+下列程式碼片段可供使用應用程式/服務主體的用戶端密碼/金鑰，以非互動方式驗證您的應用程式。請將此方法用於現有的 [Azure AD「Web 應用程式」應用程式](../resource-group-create-service-principal-portal.md)。
 
     // Service principal / appplication authentication with client secret / key
     // Use the client ID and certificate of an existing AAD "Web App" application.
@@ -145,9 +144,9 @@ The following snippet can be used to authenticate your application non-interacti
     var clientCredential = new ClientCredential(webApp_clientId, clientSecret);
     var creds = ApplicationTokenProvider.LoginSilentAsync(domain, clientCredential).Result;
 
-### <a name="if-you-are-using-service-to-service-authentication-with-certificate"></a>If you are using service-to-service authentication with certificate
+### 如果您要使用服務對服務驗證與憑證
 
-As a third option, the following snippet can be used to authenticate your application non-interactively, using the certificate for an application / service principal. Use this with an existing [Azure AD "Web App" Application](../resource-group-create-service-principal-portal.md).
+第三個選項，下列程式碼片段可供使用應用程式 / 服務主體的憑證，以非互動方式驗證您的應用程式。請將此方法用於現有的 [Azure AD「Web 應用程式」應用程式](../resource-group-create-service-principal-portal.md)。
 
     // Service principal / application authentication with certificate
     // Use the client ID and certificate of an existing AAD "Web App" application.
@@ -158,19 +157,19 @@ As a third option, the following snippet can be used to authenticate your applic
     var clientAssertionCertificate = new ClientAssertionCertificate(webApp_clientId, clientCert);
     var creds = ApplicationTokenProvider.LoginSilentWithCertificateAsync(domain, clientAssertionCertificate).Result;
 
-## <a name="create-client-objects"></a>Create client objects
+## 建立用戶端物件
 
-The following snippet creates the Data Lake Store account and filesystem client objects, which are used to issue requests to the service.
+下列程式碼片段會建立 Data Lake Store 帳戶和檔案系統用戶端物件，以便對服務發出要求。
 
     // Create client objects and set the subscription ID
     _adlsClient = new DataLakeStoreAccountManagementClient(creds);
     _adlsFileSystemClient = new DataLakeStoreFileSystemManagementClient(creds);
 
-    _adlsClient.SubscriptionId = _subId;
+	_adlsClient.SubscriptionId = _subId;
 
-## <a name="list-all-data-lake-store-accounts-within-a-subscription"></a>List all Data Lake Store accounts within a subscription
+## 列出訂用帳戶內的所有 Data Lake Store 帳戶
 
-The following snippet lists all Data Lake Store accounts within a given Azure subscription.
+下列程式碼片段列出指定的 Azure 訂用帳戶中的所有 Data Lake Store 帳戶。
 
     // List all ADLS accounts within the subscription
     public static List<DataLakeStoreAccount> ListAdlStoreAccounts()
@@ -187,9 +186,9 @@ The following snippet lists all Data Lake Store accounts within a given Azure su
         return accounts;
     }
 
-## <a name="create-a-directory"></a>Create a directory
+## 建立目錄
 
-The following snippet shows a `CreateDirectory` method that you can use to create a directory within a Data Lake Store account.
+下列程式碼片段顯示的 `CreateDirectory` 方法可用於在 Data Lake Store 帳戶中建立目錄。
 
     // Create a directory
     public static void CreateDirectory(string path)
@@ -197,9 +196,9 @@ The following snippet shows a `CreateDirectory` method that you can use to creat
         _adlsFileSystemClient.FileSystem.Mkdirs(_adlsAccountName, path);
     }
 
-## <a name="upload-a-file"></a>Upload a file
+## 上傳檔案
 
-The following snippet shows an `UploadFile` method that you can use to upload files to a Data Lake Store account.
+下列程式碼片段顯示的 `UploadFile` 方法可用於將檔案上傳到 Data Lake Store 帳戶。
 
     // Upload a file
     public static void UploadFile(string srcFilePath, string destFilePath, bool force = true)
@@ -210,11 +209,11 @@ The following snippet shows an `UploadFile` method that you can use to upload fi
         uploader.Execute();
     }
 
-`DataLakeStoreUploader` supports recursive upload and download between a local file path and a Data Lake Store file path.    
+`DataLakeStoreUploader` 支援在本機檔案路徑與 Data Lake Store 檔案路徑之間進行遞迴上傳和下載。
 
-## <a name="get-file-or-directory-info"></a>Get file or directory info
+## 取得檔案或目錄資訊
 
-The following snippet shows a `GetItemInfo` method that you can use to retrieve information about a file or directory available in Data Lake Store. 
+下列程式碼片段顯示的 `GetItemInfo` 方法可用於擷取 Data Lake Store 中可用檔案或目錄的相關資訊。
 
     // Get file or directory info
     public static FileStatusProperties GetItemInfo(string path)
@@ -222,9 +221,9 @@ The following snippet shows a `GetItemInfo` method that you can use to retrieve 
         return _adlsFileSystemClient.FileSystem.GetFileStatus(_adlsAccountName, path).FileStatus;
     }
 
-## <a name="list-file-or-directories"></a>List file or directories
+## 列出檔案或目錄
 
-The following snippet shows a `ListItem` method that can use to list the file and directories in a Data Lake Store account.
+下列程式碼片段顯示的 `ListItem` 方法可用於列出 Data Lake Store 帳戶中的檔案和目錄。
 
     // List files and directories
     public static List<FileStatusProperties> ListItems(string directoryPath)
@@ -232,9 +231,9 @@ The following snippet shows a `ListItem` method that can use to list the file an
         return _adlsFileSystemClient.FileSystem.ListFileStatus(_adlsAccountName, directoryPath).FileStatuses.FileStatus.ToList();
     }
 
-## <a name="concatenate-files"></a>Concatenate files
+## 串連檔案
 
-The following snippet shows a `ConcatenateFiles` method that you use to concatenate files. 
+下列程式碼片段顯示的 `ConcatenateFiles` 方法可用於串連檔案。
 
     // Concatenate files
     public static void ConcatenateFiles(string[] srcFilePaths, string destFilePath)
@@ -242,9 +241,9 @@ The following snippet shows a `ConcatenateFiles` method that you use to concaten
         _adlsFileSystemClient.FileSystem.Concat(_adlsAccountName, destFilePath, srcFilePaths);
     }
 
-## <a name="append-to-a-file"></a>Append to a file
+## 附加到檔案
 
-The following snippet shows a `AppendToFile` method that you use append data to a file already stored in a Data Lake Store account.
+下列程式碼片段顯示的 `AppendToFile` 方法可用於將資料附加到 Data Lake Store 帳戶中已儲存的檔案。
 
     // Append to file
     public static void AppendToFile(string path, string content)
@@ -254,9 +253,9 @@ The following snippet shows a `AppendToFile` method that you use append data to 
         _adlsFileSystemClient.FileSystem.Append(_adlsAccountName, path, stream);
     }
 
-## <a name="download-a-file"></a>Download a file
+## 下載檔案
 
-The following snippet shows a `DownloadFile` method that you use to download a file from a Data Lake Store account.
+下列程式碼片段顯示的 `DownloadFile` 方法可用於從 Data Lake Store 帳戶下載檔案。
 
     // Download file
     public static void DownloadFile(string srcPath, string destPath)
@@ -269,16 +268,12 @@ The following snippet shows a `DownloadFile` method that you use to download a f
         stream.Close();
     }
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-- [Secure data in Data Lake Store](data-lake-store-secure-data.md)
-- [Use Azure Data Lake Analytics with Data Lake Store](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
-- [Use Azure HDInsight with Data Lake Store](data-lake-store-hdinsight-hadoop-use-portal.md)
-- [Data Lake Store .NET SDK Reference](https://msdn.microsoft.com/library/mt581387.aspx)
-- [Data Lake Store REST Reference](https://msdn.microsoft.com/library/mt693424.aspx)
+- [保護 Data Lake Store 中的資料](data-lake-store-secure-data.md)
+- [搭配 Data Lake Store 使用 Azure Data Lake Analytics](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
+- [搭配 Data Lake Store 使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
+- [Data Lake Store .NET SDK 參考](https://msdn.microsoft.com/library/mt581387.aspx)
+- [Data Lake Store REST 參考](https://msdn.microsoft.com/library/mt693424.aspx)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_1005_2016-->

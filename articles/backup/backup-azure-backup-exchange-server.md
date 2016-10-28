@@ -1,141 +1,135 @@
 <properties
-    pageTitle="Back up an Exchange server to Azure Backup with System Center 2012 R2 DPM | Microsoft Azure"
-    description="Learn how to back up an Exchange server to Azure Backup using System Center 2012 R2 DPM"
-    services="backup"
-    documentationCenter=""
-    authors="MaanasSaran"
-    manager="NKolli1"
-    editor=""/>
+	pageTitle="使用 System Center 2012 R2 DPM 將 Exchange Server 備份至 Azure 備份 | Microsoft Azure"
+	description="了解如何使用 System Center 2012 R2 DPM 將 Exchange Server 備份至 Azure 備份"
+	services="backup"
+	documentationCenter=""
+	authors="MaanasSaran"
+	manager="NKolli1"
+	editor=""/>
 
 <tags
-    ms.service="backup"
-    ms.workload="storage-backup-recovery"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/15/2016"
-    ms.author="anuragm;jimpark;delhan;trinadhk;markgal"/>
+	ms.service="backup"
+	ms.workload="storage-backup-recovery"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/15/2016"
+	ms.author="anuragm;jimpark;delhan;trinadhk;markgal"/>
 
 
+# 使用 System Center 2012 R2 DPM 將 Exchange Server 備份至 Azure 備份
+本文說明如何設定 System Center 2012 R2 Data Protection Manager (DPM) 伺服器以將 Microsoft Exchange Server 備份至 Azure 備份。
 
-# <a name="back-up-an-exchange-server-to-azure-backup-with-system-center-2012-r2-dpm"></a>Back up an Exchange server to Azure Backup with System Center 2012 R2 DPM
-This article describes how to configure a System Center 2012 R2 Data Protection Manager (DPM) server to back up a Microsoft Exchange server to  Azure Backup.  
+## 更新
+若要在 Azure 備份中成功註冊 DPM 伺服器，您必須安裝 System Center 2012 R2 DPM 的最新更新彙總套件和 Azure 備份代理程式的最新版本。從 [Microsoft Catalog](http://catalog.update.microsoft.com/v7/site/Search.aspx?q=System%20Center%202012%20R2%20Data%20protection%20manager) 取得最新的更新彙總套件。
 
-## <a name="updates"></a>Updates
-To successfully register the DPM server with Azure Backup, you must install the latest update rollup for System Center 2012 R2 DPM and the latest version of the Azure Backup Agent. Get the latest update rollup from the [Microsoft Catalog](http://catalog.update.microsoft.com/v7/site/Search.aspx?q=System%20Center%202012%20R2%20Data%20protection%20manager).
+>[AZURE.NOTE] 對於本文中的範例，會安裝 Azure 備份代理程式的 2.0.8719.0 版，而更新彙總套件 6 會安裝於 System Center 2012 R2 DPM。
 
->[AZURE.NOTE] For the examples in this article, version 2.0.8719.0 of the Azure Backup Agent is installed, and Update Rollup 6 is installed on System Center 2012 R2 DPM.
+## 必要條件
+繼續之前，請確定符合使用 Microsoft Azure 備份保護工作負載的所有[必要條件](backup-azure-dpm-introduction.md#prerequisites)。這些先決條件包含下列各項：
 
-## <a name="prerequisites"></a>Prerequisites
-Before you continue, make sure that all the [prerequisites](backup-azure-dpm-introduction.md#prerequisites) for using Microsoft Azure Backup to protect workloads have been met. These prerequisites include the following:
+- 已在 Azure 網站上建立備份保存庫。
+- 代理程式和保存庫認證已下載至 DPM 伺服器。
+- 代理程式已安裝於 DPM 伺服器。
+- 保存庫認證已用來註冊 DPM 伺服器。
+- 如果您要保護 Exchange 2016，請升級為 DPM 2012 R2 UR9 或更新版本
 
-- A backup vault on the Azure site has been created.
-- Agent and vault credentials have been downloaded to the DPM server.
-- The agent is installed on the DPM server.
-- The vault credentials were used to register the DPM server.
-- If you are protecting Exchange 2016, please upgrade to DPM 2012 R2 UR9 or later
+## DPM 保護代理程式  
+若要在 Exchange Server 上安裝 DPM 保護代理程式，請遵循下列步驟：
 
-## <a name="dpm-protection-agent"></a>DPM protection agent  
-To install the DPM protection agent on the Exchange server, follow these steps:
+1. 請確定已正確設定防火牆。請參閱[設定代理程式的防火牆例外狀況](https://technet.microsoft.com/library/Hh758204.aspx)。
 
-1. Make sure that the firewalls are correctly configured. See [Configure firewall exceptions for the agent](https://technet.microsoft.com/library/Hh758204.aspx).
+2. 按一下 DPM 系統管理員主控台中的 [管理] > [代理程式] > [安裝]，在 Exchange Server 上安裝代理程式。如需詳細步驟，請參閱[安裝 DPM 保護代理程式](https://technet.microsoft.com/library/hh758186.aspx?f=255&MSPPError=-2147217396)。
 
-2. Install the agent on the Exchange server by clicking **Management > Agents > Install** in DPM Administrator Console. See [Install the DPM protection agent](https://technet.microsoft.com/library/hh758186.aspx?f=255&MSPPError=-2147217396) for detailed steps.
+## 建立 Exchange Server 的保護群組
 
-## <a name="create-a-protection-group-for-the-exchange-server"></a>Create a protection group for the Exchange server
+1. 在 DPM 系統管理員主控台中，按一下 [保護]，然後按一下工具功能區上的 [新增]，以開啟 [建立新保護群組] 精靈。
 
-1. In the DPM Administrator Console, click **Protection**, and then click **New** on the tool ribbon to open the **Create New Protection Group** wizard.
+2. 在精靈的 [歡迎使用] 畫面上按 [下一步]。
 
-2. On the **Welcome** screen of the wizard click **Next**.
+3. 在 [選取保護群組類型] 畫面上，選取 [伺服器] 並按 [下一步]。
 
-3. On the **Select protection group type** screen, select **Servers** and click **Next**.
+4. 選取您想要保護的 Exchange Server 資料庫，然後按 [下一步]。
 
-4. Select the Exchange server database that you want to protect and click **Next**.
+    >[AZURE.NOTE] 如果您要保護 Exchange 2013，請檢查 [Exchange 2013 先決條件](https://technet.microsoft.com/library/dn751029.aspx)。
 
-    >[AZURE.NOTE] If you are protecting Exchange 2013, check the [Exchange 2013 prerequisites](https://technet.microsoft.com/library/dn751029.aspx).
+    下例中選取了Exchange 2010 資料庫。
 
-    In the following example, the Exchange 2010 database is selected.
+    ![選擇群組成員](./media/backup-azure-backup-exchange-server/select-group-members.png)
 
-    ![Select group members](./media/backup-azure-backup-exchange-server/select-group-members.png)
+5. 選取資料保護方式。
 
-5. Select the data protection method.
+    替保護群組命名，然後選取下列兩個選項：
 
-    Name the protection group, and then select both of the following options:
+    - 我想要使用磁碟進行短期保護。
+    - 我想要線上保護。
 
-    - I want short-term protection using Disk.
-    - I want online protection.
+6. 按 [下一步]。
 
-6. Click **Next**.
+7. 如果您想要檢查 Exchange Server 資料庫的完整性，請選取 [執行 Eseutil 以檢查資料完整性] 選項。
 
-7. Select the **Run Eseutil to check data integrity** option if you want to check the integrity of the Exchange Server databases.
+    選取此選項之後，將會在 DPM 伺服器上執行備份一致性檢查，以避免在 Exchange Server 上執行 **eseutil** 命令所產生的 I/O 流量。
 
-    After you select this option, backup consistency checking will be run on the DPM server to avoid the I/O traffic that’s generated by running the **eseutil** command on the Exchange server.
+    >[AZURE.NOTE] 若要使用此選項，您必須將 Ese.dll 和 Eseutil.exe 檔案複製到 DPM 伺服器上的 C:\\Program Files\\Microsoft System Center 2012 R2\\DPM\\DPM\\bin 目錄。否則會觸發下列錯誤：![eseutil 錯誤](./media/backup-azure-backup-exchange-server/eseutil-error.png)
 
-    >[AZURE.NOTE] To use this option, you must copy the Ese.dll and Eseutil.exe files to the C:\Program Files\Microsoft System Center 2012 R2\DPM\DPM\bin directory on the DPM server. Otherwise, the following error is triggered:  
-    ![eseutil error](./media/backup-azure-backup-exchange-server/eseutil-error.png)
+8. 按 [下一步]。
 
-8. Click **Next**.
+9. 選取要 [複製備份] 的資料庫，然後按 [下一步]。
 
-9. Select the database for **Copy Backup**, and then click **Next**.
+    >[AZURE.NOTE] 如果您未對資料庫的至少一個 DAG 複本選取「完整備份」，則不會截斷記錄檔。
 
-    >[AZURE.NOTE] If you do not select “Full backup” for at least one DAG copy of a database, logs will not be truncated.
+10. 設定 [短期備份] 的目標，然後按 [下一步]。
 
-10. Configure the goals for **Short-Term backup**, and then click **Next**.
+11. 檢閱可用的磁碟空間，然後按 [下一步]。
 
-11. Review the available disk space, and then click **Next**.
+12. 選取 DPM 伺服器將建立初始複寫的時間，然後按 [下一步]。
 
-12. Select the time at which the DPM server will create the initial replication, and then click **Next**.
+13. 選取一致性檢查選項，然後按 [下一步]。
 
-13. Select the consistency check options, and then click **Next**.
+14. 選擇您要備份至 Azure 資料庫，然後按 [下一步]。例如：
 
-14. Choose the database that you want to back up to Azure, and then click **Next**. For example:
+    ![指定線上保護資料](./media/backup-azure-backup-exchange-server/specify-online-protection-data.png)
 
-    ![Specify online protection data](./media/backup-azure-backup-exchange-server/specify-online-protection-data.png)
+15. 定義 [Azure 備份] 的排程，然後按 [下一步]。例如：
 
-15. Define the schedule for **Azure Backup**, and then click **Next**. For example:
+    ![指定線上備份排程](./media/backup-azure-backup-exchange-server/specify-online-backup-schedule.png)
 
-    ![Specify online backup schedule](./media/backup-azure-backup-exchange-server/specify-online-backup-schedule.png)
+    >[AZURE.NOTE] 請注意，線上復原點是以快速完整復原點為基礎。因此，您必須將線上復原點排程在針對快速完整復原點指定的時間之後。
 
-    >[AZURE.NOTE] Note Online recovery points are based on express full recovery points. Therefore, you must schedule the online recovery point after the time that’s specified for the express full recovery point.
+16. 設定 [Azure 備份] 的保留期原則，然後按 [下一步]。
 
-16. Configure the retention policy for **Azure Backup**, and then click **Next**.
+17. 選擇線上複寫選項並按 [下一步]。
 
-17. Choose an online replication option and click **Next**.
+    如果您有大型資料庫，則透過網路建立初始備份所需的時間很長。若要避免這個問題，您可以建立離線備份。
 
-    If you have a large database, it could take a long time for the initial backup to be created over the network. To avoid this issue, you can create an offline backup.  
+    ![指定線上保留期原則](./media/backup-azure-backup-exchange-server/specify-online-retention-policy.png)
 
-    ![Specify online retention policy](./media/backup-azure-backup-exchange-server/specify-online-retention-policy.png)
+18. 確認設定，然後按一下 [建立群組]。
 
-18. Confirm the settings, and then click **Create Group**.
+19. 按一下 [關閉]。
 
-19. Click **Close**.
+## 復原 Exchange 資料庫
 
-## <a name="recover-the-exchange-database"></a>Recover the Exchange database
+1. 若要復原 Exchange 資料庫，請按一下 DPM 系統管理員主控台中的 [復原]。
 
-1. To recover an Exchange database, click **Recovery** in the DPM Administrator Console.
+2. 找出您要復原的 Exchange 資料庫。
 
-2. Locate the Exchange database that you want to recover.
+3. 從「復原時間」下拉式清單選取線上復原點。
 
-3. Select an online recovery point from the *recovery time* drop-down list.
+4. 按一下 [復原] 啟動 [復原精靈]。
 
-4. Click **Recover** to start the **Recovery Wizard**.
+線上復原點有五種復原類型：
 
-For online recovery points, there are five recovery types:
+- **復原到原始 Exchange Server 位置：**資料將會還原到原始 Exchange Server。
+- **復原到 Exchange Server 上的其他資料庫：**資料將會還原到其他 Exchange Server 上的其他資料庫。
+- **復原到復原資料庫：**資料將會復原到 Exchange 復原資料庫 (RDB)。
+- **複製到網路資料夾：**資料將會還原到網路資料夾。
+- **複製到磁帶：**如果您有磁帶媒體櫃或獨立磁帶機連接並設定於 DPM 伺服器，則復原點將會複製到可用的磁帶。
 
-- **Recover to original Exchange Server location:** The data will be recovered to the original Exchange server.
-- **Recover to another database on an Exchange Server:** The data will be recovered to another database on another Exchange server.
-- **Recover to a Recovery Database:** The data will be recovered to an Exchange Recovery Database (RDB).
-- **Copy to a network folder:** The data will be recovered to a network folder.
-- **Copy to tape:** If you have a tape library or a stand-alone tape drive attached and configured on the DPM server, the recovery point will be copied to a free tape.
+    ![選擇線上複寫](./media/backup-azure-backup-exchange-server/choose-online-replication.png)
 
-    ![Choose online replication](./media/backup-azure-backup-exchange-server/choose-online-replication.png)
+## 後續步驟
 
-## <a name="next-steps"></a>Next steps
+- [Azure 備份常見問題集](backup-azure-backup-faq.md)
 
-- [Azure Backup FAQ](backup-azure-backup-faq.md)
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

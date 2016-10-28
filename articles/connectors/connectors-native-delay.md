@@ -1,12 +1,12 @@
 <properties
-    pageTitle="Add a delay in logic apps | Microsoft Azure"
-    description="Overview of the delay and delay-until actions, and how to use them with an Azure logic app."
-    services=""
-    documentationCenter=""
-    authors="jeffhollan"
-    manager="erikre"
-    editor=""
-    tags="connectors"/>
+	pageTitle="在邏輯應用程式中新增延遲 | Microsoft Azure"
+	description="延遲和延遲直到動作的概觀，以及如何搭配 Azure 邏輯應用程式使用它們。"
+	services=""
+	documentationCenter=""
+	authors="jeffhollan"
+	manager="erikre"
+	editor=""
+	tags="connectors"/>
 
 <tags
    ms.service="logic-apps"
@@ -17,70 +17,63 @@
    ms.date="07/18/2016"
    ms.author="jehollan"/>
 
+# 開始使用延遲和延遲直到動作
 
-# <a name="get-started-with-the-delay-and-delay-until-actions"></a>Get started with the delay and delay-until actions
+透過延遲和「延遲直到」動作，您可以完成工作流程案例。
 
-By using the delay and "delay-until" actions, you can complete workflow scenarios.
+例如，您可以：
 
-For example, you can:
+- 等到工作日再透過電子郵件傳送狀態更新。
+- 延遲工作流程，直到 HTTP 呼叫有時間來完成，才繼續進行並擷取結果。
 
-- Wait until a weekday to send a status update over email.
-- Delay the workflow until an HTTP call has time to finish before resuming and retrieving the result.
+若要開始在邏輯應用程式中使用延遲動作，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
-To get started using the delay action in a logic app, see [Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md).
+## 使用延遲動作
 
-## <a name="use-the-delay-actions"></a>Use the delay actions
+動作是由邏輯應用程式中定義的工作流程所執行的作業。[深入了解動作](connectors-overview.md)。
 
-An action is an operation that is carried out by the workflow that is defined in a logic app. [Learn more about actions](connectors-overview.md).
+以下是如何在邏輯應用程式中使用延遲步驟的範例順序︰
 
-Here’s an example sequence of how to use a delay step in a logic app:
+1. 在新增觸發程序之後，按一下 [新增步驟] 以新增動作。
+2. 搜尋「延遲」以顯示延遲動作。在此範例中，我們將會選取 [延遲]。
 
-1. After adding a trigger, click **New Step** to add an action.
-2. Search for **delay** to bring up the delay actions. In this example, we will select **Delay**.
+	![延遲動作](./media/connectors-native-delay/using-action-1.png)
 
-    ![Delay actions](./media/connectors-native-delay/using-action-1.png)
+3. 完成任何動作屬性以設定延遲。
 
-3. Complete any of the action properties to configure the delay.
+	![延遲設定](./media/connectors-native-delay/using-action-2.png)
 
-    ![Delay config](./media/connectors-native-delay/using-action-2.png)
-
-4. Click **Save** to publish and activate the logic app.
+4. 按一下 [儲存] 來發佈及啟動邏輯應用程式。
 
 
-## <a name="action-details"></a>Action details
+## 動作詳細資料
 
-The recurrence trigger has the following properties that can be configured.
+循環觸發程序具有下列可設定的屬性。
 
-### <a name="delay-action"></a>Delay action
+### 延遲動作
 
-This action delays the run for a certain time interval.
-A * means that it is a required field.
+此動作會讓執行延遲一段時間間隔。標示 * 代表必要欄位。
 
-|Display name|Property name|Description|
+|顯示名稱|屬性名稱|說明|
 |---|---|---|
-|Count*|count|The number of time units to delay|
-|Unit*|unit|The unit of time: `Second`, `Minute`, `Hour`, or `Day`|
+|計數 *|count|要延遲的時間單位數|
+|單位 *|unit|時間單位：`Second`、`Minute`、`Hour` 或 `Day`|
 <br>
 
-### <a name="delay-until-action"></a>Delay-until action
+### 延遲直到動作
 
-This action delays the run until a specified date/time.
-A * means that it is a required field.
+此動作會讓執行延遲到指定的日期/時間。標示 * 代表必要欄位。
 
-|Display name|Property name|Description|
+|顯示名稱|屬性名稱|說明|
 |---|---|---|
-|Year*|timestamp|The year to delay until (GMT)|
-|Month*|timestamp|The month to delay until (GMT)|
-|Day*|timestamp|The day to delay until (GMT)|
+|年 *|timestamp|要延遲到的年度 (GMT)|
+|月 *|timestamp|要延遲到的月份 (GMT)|
+|日 *|timestamp|要延遲到的日期 (GMT)|
 <br>
 
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-Now, try out the platform and [create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md). You can explore the other available connectors in logic apps by looking at our [APIs list](apis-list.md).
+立即試用平台和[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。您可以查看我們的 [API 清單](apis-list.md)，以探索邏輯應用程式中其他可用的連接器。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

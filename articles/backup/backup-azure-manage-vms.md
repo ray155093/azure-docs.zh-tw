@@ -1,230 +1,225 @@
 
 <properties
-    pageTitle="Manage Resource Manager-deployed virtual machine backups | Microsoft Azure"
-    description="Learn how to manage and monitor Resource Manager-deployed virtual machine backups"
-    services="backup"
-    documentationCenter=""
-    authors="trinadhk"
-    manager="shreeshd"
-    editor=""/>
+	pageTitle="管理 Resource Manager 部署的虛擬機器備份 | Microsoft Azure"
+	description="了解如何管理和監視 Resource Manager 部署的虛擬機器備份"
+	services="backup"
+	documentationCenter=""
+	authors="trinadhk"
+	manager="shreeshd"
+	editor=""/>
 
 <tags
-    ms.service="backup"
-    ms.workload="storage-backup-recovery"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/11/2016"
-    ms.author="jimpark; markgal; trinadhk"/>
+	ms.service="backup"
+	ms.workload="storage-backup-recovery"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/11/2016"
+	ms.author="jimpark; markgal; trinadhk"/>
 
-
-# <a name="manage-azure-virtual-machine-backups"></a>Manage Azure virtual machine backups
+# 管理 Azure 虛擬機器備份
 
 > [AZURE.SELECTOR]
-- [Manage Azure VM backups](backup-azure-manage-vms.md)
-- [Manage Classic VM backups](backup-azure-manage-vms-classic.md)
+- [管理 Azure VM 備份](backup-azure-manage-vms.md)
+- [管理傳統 VM 備份](backup-azure-manage-vms-classic.md)
 
-This article provides guidance on managing VM backups, and explains the backup alerts information available in the portal dashboard. The guidance in this article applies to using VMs with Recovery Services vaults. This article does not cover the creation of virtual machines, nor does it explain how to protect virtual machines. For a primer on protecting Azure Resource Manager-deployed VMs in Azure with a Recovery Services vault, see [First look: Back up VMs to a Recovery Services vault](backup-azure-vms-first-look-arm.md).
+本文提供如何管理 VM 備份的指引，並說明入口網站儀表板中提供的備份警示資訊。本文中的指引適用於 VM 與復原服務保存庫搭配使用。本文並未涵蓋建立虛擬機器，也不說明如何保護虛擬機器。有關在 Azure 中以復原服務保存庫來保護 Azure Resource Manager 部署的 VM 的初步解說，請參閱[搶先目睹︰將 VM 備份至復原服務保存庫](backup-azure-vms-first-look-arm.md)。
 
-## <a name="manage-vaults-and-protected-virtual-machines"></a>Manage vaults and protected virtual machines
+## 管理保存庫與受保護的虛擬機器
 
-In the Azure portal, the Recovery Services vault dashboard provides access to information about the vault including:
+在 Azure 入口網站中，復原服務保存庫儀表板可讓您存取保存庫的相關資訊，包括︰
 
-- the most recent backup snapshot, which is also the latest restore point <br\>
-- the backup policy <br\>
-- total size of all backup snapshots <br\>
-- number of virtual machines that are protected with the vault <br\>
+- 最近的備份快照，也就是最新的還原點 <br>
+- 備份原則 <br>
+- 所有備份快照的大小總計 <br>
+- 使用保存庫保護的虛擬機器數目 <br>
 
-Many management tasks with a virtual machine backup begin with opening the vault in the dashboard. However, because vaults can be used to protect multiple items (or multiple VMs), to view details about a particular VM, open the vault item dashboard. The following procedure shows you how to open the *vault dashboard* and then continue to the *vault item dashboard*. There are "tips" in both procedures that point out how to add the vault and vault item to the Azure dashboard by using the Pin to dashboard command. Pin to dashboard is a way of creating a shortcut to the vault or item. You can also execute common commands from the shortcut.
+虛擬機器備份的許多管理工作都是從儀表板中開啟保存庫開始。不過，因為保存庫可以用來保護多個項目 (或多個 VM)，若要檢視特定 VM 的詳細資料，請開啟保存庫項目儀表板。下列程序示範如何開啟保存庫儀表板，然後繼續開啟保存庫項目儀表板。兩個程序都有「提示」，指出如何使用「釘選到儀表板」命令，將保存庫和保存庫項目新增至 Azure 儀表板。「釘選到儀表板」是建立保存庫捷徑或項目捷徑的方法。您也可以從捷徑執行常用的命令。
 
->[AZURE.TIP] If you have multiple dashboards and blades open, use the dark-blue slider at the bottom of the window to slide the Azure dashboard back and forth.
+>[AZURE.TIP] 如果您開啟了多個儀表板和刀鋒視窗，請使用視窗底部的深藍色滑桿，來左右滑動 Azure 儀表板。
 
-![Full view with slider](./media/backup-azure-manage-vms/bottom-slider.png)
+![使用滑桿以完整檢視](./media/backup-azure-manage-vms/bottom-slider.png)
 
-### <a name="open-a-recovery-services-vault-in-the-dashboard:"></a>Open a Recovery Services vault in the dashboard:
+### 在儀表板中開啟復原服務保存庫︰
 
-1. Sign in to the [Azure portal](https://portal.azure.com/).
+1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 
-2. On the Hub menu, click **Browse** and in the list of resources, type **Recovery Services**. As you begin typing, the list filters based on your input. Click **Recovery Services vault**.
+2. 在 [中樞] 功能表上按一下 [瀏覽]，然後在資源清單中輸入**復原服務**。當您開始輸入時，清單會根據您輸入的文字進行篩選。按一下 [復原服務保存庫]。
 
-    ![Create Recovery Services Vault step 1](./media/backup-azure-manage-vms/browse-to-rs-vaults.png) <br/>
+    ![建立復原服務保存庫的步驟 1](./media/backup-azure-manage-vms/browse-to-rs-vaults.png) <br/>
 
-    The list of Recovery Services vaults are displayed.
+    隨即會顯示 [復原服務保存庫] 清單。
 
-    ![List of Recovery Services vaults ](./media/backup-azure-manage-vms/list-o-vaults.png) <br/>
+    ![復原服務保存庫清單](./media/backup-azure-manage-vms/list-o-vaults.png) <br/>
 
-    >[AZURE.TIP] If you pin a vault to the Azure Dashboard, that vault is immediately accessible when you open the Azure portal. To pin a vault to the dashboard, in the vault list, right-click the vault, and select **Pin to dashboard**.
+    >[AZURE.TIP] 如果您將保存庫釘選到 Azure 儀表板，則一開啟 Azure 入口網站就可立即存取該保存庫。若要將保存庫釘選到儀表板，請在保存庫清單中以滑鼠右鍵按一下保存庫，然後選取 [釘選到儀表板]。
 
-3. From the list of vaults, select the vault to open its dashboard. When you select the vault, the vault dashboard and the **Settings** blade open. In the following image, the **Contoso-vault** dashboard is highlighted.
+3. 從保存庫清單中，選取保存庫以開啟其儀表板。選取保存庫時，保存庫儀表板和 [設定] 刀鋒視窗將會開啟。下圖中反白顯示 **Contoso-vault** 儀表板。
 
-    ![Open vault dashboard and Settings blade](./media/backup-azure-manage-vms/full-view-rs-vault.png)
+    ![開啟保存庫儀表板和設定刀鋒視窗](./media/backup-azure-manage-vms/full-view-rs-vault.png)
 
-### <a name="open-a-vault-item-dashboard"></a>Open a vault item dashboard
+### 開啟保存庫項目儀表板
 
-In the previous procedure you opened the vault dashboard. To open the vault item dashboard:
+上一個程序中，您開啟保存庫儀表板。若要開啟保存庫項目儀表板︰
 
-1. In the vault dashboard, on the **Backup Items** tile, click **Azure Virtual Machines**.
+1. 在保存庫儀表板的 [備份項目] 圖格上，按一下 [Azure 虛擬機器]。
 
-    ![Open backup items tile](./media/backup-azure-manage-vms/contoso-vault-1606.png)
+    ![開啟備份項目備份圖格](./media/backup-azure-manage-vms/contoso-vault-1606.png)
 
-    The **Backup Items** blade lists the last backup job for each item. In this example, there is one virtual machine, demovm-markgal, protected by this vault.  
+    [備份項目] 刀鋒視窗會列出每個項目的最後一個備份作業。在此範例中，有一個受此保存庫保護的虛擬機器：demovm markgal。
 
-    ![Backup items tile](./media/backup-azure-manage-vms/backup-items-blade.png)
+    ![備份項目圖格](./media/backup-azure-manage-vms/backup-items-blade.png)
 
-    >[AZURE.TIP] For ease of access, you can pin a vault item to the Azure Dashboard. To pin a vault item, in the vault item list, right-click the item and select **Pin to dashboard**.
+    >[AZURE.TIP] 為了方便存取，您可以將保存庫項目釘選到 Azure 儀表板。若要釘選保存庫項目，請以滑鼠右鍵按一下項目，然後選取 [釘選到儀表板]。
 
-2. In the **Backup Items** blade, click the item to open the vault item dashboard.
+2. 在 [備份項目] 刀鋒視窗中，按一下項目以開啟保存庫項目儀表板。
 
-    ![Backup items tile](./media/backup-azure-manage-vms/backup-items-blade-select-item.png)
+    ![備份項目圖格](./media/backup-azure-manage-vms/backup-items-blade-select-item.png)
 
-    The vault item dashboard and its **Settings** blade open.
+    保存庫項目儀表板及其 [設定] 刀鋒視窗隨即開啟。
 
-    ![Backup items dashboard with Settings blade](./media/backup-azure-manage-vms/item-dashboard-settings.png)
+    ![搭配設定刀鋒視窗的備份項目儀表板](./media/backup-azure-manage-vms/item-dashboard-settings.png)
 
-    From the vault item dashboard, you can accomplish many key management tasks, such as:
+    從保存庫項目儀表板，您可以完成許多重要的管理工作，例如︰
 
-    - change policies or create a new backup policy<br\>
-    - view restore points, and see their consistency state <br\>
-    - on-demand backup of a virtual machine <br\>
-    - stop protecting virtual machines <br\>
-    - resume protection of a virtual machine <br\>
-    - delete a backup data (or recovery point) <br\>
-    - [restore a backup (or recovery point)](./backup-azure-arm-restore-vms.md#restore-a-recovery-point)  <br\>
+    - 變更原則或建立新的備份原則 <br>
+	- 檢視還原點並查看其一致性狀態 <br>
+	- 虛擬機器的隨選備份 <br>
+	- 停止保護虛擬機器 <br>
+	- 繼續保護虛擬機器 <br>
+	- 刪除備份資料 (或復原點) <br>
+	- [還原備份 (或復原點)](./backup-azure-arm-restore-vms.md#restore-a-recovery-point) <br>
 
-For the following procedures, the starting point is the vault item dashboard.
+在以下的程序中，起始點是保存庫項目儀表板。
 
-## <a name="manage-backup-policies"></a>Manage backup policies
+## 管理備份原則
 
-1. On the [vault item dashboard](backup-azure-manage-vms.md#open-a-vault-item-dashboard), click **All Settings** to open the **Settings** blade.
+1. 在[保存庫項目儀表板](backup-azure-manage-vms.md#open-a-vault-item-dashboard)中，按一下 [所有設定] 以開啟 [設定] 刀鋒視窗。
 
-    ![Backup policy blade](./media/backup-azure-manage-vms/all-settings-button.png)
+    ![備份原則刀鋒視窗](./media/backup-azure-manage-vms/all-settings-button.png)
 
-2. On the **Settings** blade, click **Backup policy** to open that blade.
+2. 在 [設定] 刀鋒視窗上，按一下 [備份原則] 以開啟該刀鋒視窗。
 
-    On the blade, the backup frequency and retention range details are shown.
+    刀鋒視窗上會顯示備份頻率和保留範圍詳細資料。
 
-    ![Backup policy blade](./media/backup-azure-manage-vms/backup-policy-blade.png)
+    ![備份原則刀鋒視窗](./media/backup-azure-manage-vms/backup-policy-blade.png)
 
-3. From the **Choose backup policy** menu:
-    - To change policies, select a different policy and click **Save**. The new policy is immediately applied to the vault. <br\>
-    - To create a policy, select **Create New**.
+3. 從 [選擇備份原則] 功能表︰
+    - 若要變更原則，請選取不同的原則，然後按一下 [儲存]。新原則時會立即套用至保存庫。<br>
+    - 若要建立原則，請選取 [建立新項目]。
 
-    ![Virtual machine backup](./media/backup-azure-manage-vms/backup-policy-create-new.png)
+    ![虛擬機器備份](./media/backup-azure-manage-vms/backup-policy-create-new.png)
 
-    For instructions on creating a backup policy, see [Defining a backup policy](backup-azure-manage-vms.md#defining-a-backup-policy).
+    如需建立備份原則的指示，請參閱[定義備份原則](backup-azure-manage-vms.md#defining-a-backup-policy)。
 
 [AZURE.INCLUDE [backup-create-backup-policy-for-vm](../../includes/backup-create-backup-policy-for-vm.md)]
 
 
-## <a name="on-demand-backup-of-a-virtual-machine"></a>On-demand backup of a virtual machine
-You can take an on-demand backup of a virtual machine once it is configured for protection. If the initial backup is pending, on-demand backup creates a full copy of the virtual machine in the Recovery Services vault. If the initial backup is completed, an on-demand backup will only send changes from the previous snapshot, to the Recovery Services vault. That is, subsequent backups are always incremental.
+## 虛擬機器的隨選備份
+設定保護後，您可以執行虛擬機器的隨選備份。如果初始備份已暫止，則隨選備份會在復原服務保存庫中建立虛擬機器的完整複本。如果已完成初始備份，隨選備份只會將前一個備份快照的變更傳送到復原服務保存庫。亦即，後續備份一律是增量備份。
 
->[AZURE.NOTE] The retention range for an on-demand backup is the retention value specified for the Daily backup point in the policy. If no Daily backup point is selected, then the weekly backup point is used.
+>[AZURE.NOTE] 隨選備份的保留範圍是原則中為「每日」備份點所指定的保留值。如果未選取任何「每日」備份點，則會使用每週備份點。
 
-To trigger an on-demand backup of a virtual machine:
+若要觸發虛擬機器的隨選備份：
 
-- On the [vault item dashboard](backup-azure-manage-vms.md#open-a-vault-item-dashboard), click **Backup now**.
+- 在[保存庫項目儀表板](backup-azure-manage-vms.md#open-a-vault-item-dashboard)上，按一下 [立即備份]。
 
-    ![Backup now button](./media/backup-azure-manage-vms/backup-now-button.png)
+    ![立即備份按鈕](./media/backup-azure-manage-vms/backup-now-button.png)
 
-    The portal makes sure that you want to start an on-demand backup job. Click **Yes** to start the backup job.
+    入口網站會確認您想要啟動隨選備份作業。按一下 [是] 啟動備份作業。
 
-    ![Backup now button](./media/backup-azure-manage-vms/backup-now-check.png)
+    ![立即備份按鈕](./media/backup-azure-manage-vms/backup-now-check.png)
 
-    The backup job creates a recovery point. The retention range of the recovery point is the same as retention range specified in the policy associated with the virtual machine. To track the progress for the job, in the vault dashboard, click the **Backup Jobs** tile.  
-
-
-## <a name="stop-protecting-virtual-machines"></a>Stop protecting virtual machines
-If you choose to stop protecting a virtual machine, you are asked if you want to retain the recovery points. There are two ways to stop protecting virtual machines:
-- stop all future backup jobs and delete all recovery points, or
-- stop all future backup jobs but leave the recovery points <br/>
-
-There is a cost associated with leaving the recovery points in storage. However, the benefit of leaving the recovery points is you can restore the virtual machine later, if desired. For information about the cost of leaving the recovery points, see the  [pricing details](https://azure.microsoft.com/pricing/details/backup/). If you choose to delete all recovery points, you cannot restore the virtual machine.
-
-To stop protection for a virtual machine:
-
-1. On the [vault item dashboard](backup-azure-manage-vms.md#open-a-vault-item-dashboard), click **Stop backup**.
-
-    ![Stop backup button](./media/backup-azure-manage-vms/stop-backup-button.png)
-
-    The Stop Backup blade opens.
-
-    ![Stop backup blade](./media/backup-azure-manage-vms/stop-backup-blade.png)
-
-2. On the **Stop Backup** blade, choose whether to retain or delete the backup data. The information box provides details about your choice.
-
-    ![Stop protection](./media/backup-azure-manage-vms/retain-or-delete-option.png)
-
-3. If you chose to retain the backup data, skip to step 4. If you chose to delete backup data, confirm that you want to stop the backup jobs and delete the recovery points - type the name of the item.
-
-    ![Stop verification](./media/backup-azure-manage-vms/item-verification-box.png)
-
-    If you aren't sure of the item name, hover over the exclamation mark to view the name. Also, the name of the item is under **Stop Backup** at the top of the blade.
-
-4. Optionally provide a **Reason** or **Comment**.
-
-5. To stop the backup job for the current item, click  ![Stop backup button](./media/backup-azure-manage-vms/stop-backup-button-blue.png)
-
-    A notification message lets you know the backup jobs have been stopped.
-
-    ![Confirm stop protection](./media/backup-azure-manage-vms/stop-message.png)
+    備份作業會建立復原點。復原點的保留範圍與在虛擬機器相關的原則中指定的保留範圍相同。若要追蹤作業的進度，請在保存庫儀表板中按一下 [備份作業] 圖格。
 
 
-## <a name="resume-protection-of-a-virtual-machine"></a>Resume protection of a virtual machine
-If the **Retain Backup Data** option was chosen when protection for the virtual machine was stopped, then it is possible to resume protection. If the **Delete Backup Data** option was chosen, then protection for the virtual machine cannot resume.
+## 停止保護虛擬機器
+如果您選擇停止保護虛擬機器，系統會詢問您是否要保留復原點。有兩種方式可停止保護虛擬機器︰
+- 停止所有未來的備份作業並刪除所有復原點，或
+- 停止所有未來的備份作業但保留復原點 <br/>
 
-To resume protection for the virtual machine
+在儲存體中保留復原點需要付出相關的成本。不過，保留復原點的好處是以後可以在需要時還原虛擬機器。如需復原點保留成本的相關資訊，請參閱[定價詳細資料](https://azure.microsoft.com/pricing/details/backup/)。如果您選擇刪除所有復原點，則無法還原虛擬機器。
 
-1. On the [vault item dashboard](backup-azure-manage-vms.md#open-a-vault-item-dashboard), click **Resume backup**.
+若要停止保護虛擬機器：
 
-    ![Resume protection](./media/backup-azure-manage-vms/resume-backup-button.png)
+1. 在[保存庫項目儀表板](backup-azure-manage-vms.md#open-a-vault-item-dashboard)上，按一下 [停止備份]。
 
-    The Backup Policy blade opens.
+    ![停止備份按鈕](./media/backup-azure-manage-vms/stop-backup-button.png)
 
-    >[AZURE.NOTE] When re-protecting the virtual machine, you can choose a different policy than the policy with which virtual machine was protected initially.
+    [停止備份] 刀鋒視窗隨即開啟。
 
-2. Follow the steps in [Change policies or Create a new backup policy](backup-azure-manage-vms.md#change-policies-or-create-a-new-backup-policy), to assign the policy for the virtual machine.
+    ![停止備份刀鋒視窗](./media/backup-azure-manage-vms/stop-backup-blade.png)
 
-    Once the backup policy is applied to the virtual machine, you see the following message.
+2. 在 [停止備份] 刀鋒視窗上，選擇要保留還是刪除備份資料。資訊方塊會針對您的選擇提供詳細資料。
 
-    ![Successfully protected VM](./media/backup-azure-manage-vms/success-message.png)
+    ![停止保護](./media/backup-azure-manage-vms/retain-or-delete-option.png)
 
-## <a name="delete-backup-data"></a>Delete Backup data
-You can delete the backup data associated with a virtual machine during the **Stop backup** job, or anytime after the backup job has completed. It may even be beneficial to wait days or weeks before deleting the recovery points. Unlike restoring recovery points, when deleting backup data, you cannot choose specific recovery points to delete. If you choose to delete your backup data, you delete all recovery points associated with the item.
+3. 如果您選擇要保留備份資料，請跳至步驟 4。如果您選擇要刪除備份資料，請確認您想要停止備份作業，並刪除復原點 - 輸入項目的名稱。
 
-The following procedure assumes the Backup job for the virtual machine has been stopped or disabled. Once the Backup job is disabled, the **Resume backup** and **Delete backup** options are available in the vault item dashboard.
+    ![停止驗證](./media/backup-azure-manage-vms/item-verification-box.png)
 
-![Resume and delete buttons](./media/backup-azure-manage-vms/resume-delete-buttons.png)
+    如果您不確定項目名稱，請以滑鼠暫留在驚嘆號來檢視名稱。項目的名稱也會出現在刀鋒視窗頂端的 [停止備份] 下。
 
-To delete backup data on a virtual machine with the *Backup disabled*:
+4. 選擇性地提供 [原因] 或 [註解]。
 
-1. On the [vault item dashboard](backup-azure-manage-vms.md#open-a-vault-item-dashboard), click **Delete backup**.
+5. 若要停止目前項目的備份作業，請按一下 ![停止備份按鈕](./media/backup-azure-manage-vms/stop-backup-button-blue.png)
 
-    ![VM Type](./media/backup-azure-manage-vms/delete-backup-buttom.png)
+    通知訊息可讓您知道備份作業已停止。
 
-    The **Delete Backup Data** blade opens.
-
-    ![VM Type](./media/backup-azure-manage-vms/delete-backup-blade.png)
-
-2. Type the name of the item to confirm you want to delete the recovery points.
-
-    ![Stop verification](./media/backup-azure-manage-vms/item-verification-box.png)
-
-    If you aren't sure of the item name, hover over the exclamation mark to view the name. Also, the name of the item is under **Delete Backup Data** at the top of the blade.
-
-3. Optionally provide a **Reason** or **Comment**.
-
-4. To delete the backup data for the current item, click  ![Stop backup button](./media/backup-azure-manage-vms/delete-button.png)
-
-    A notification message lets you know the backup data has been deleted.
+    ![確認停止保護](./media/backup-azure-manage-vms/stop-message.png)
 
 
-## <a name="next-steps"></a>Next steps
+## 繼續保護虛擬機器
+如果在停止保護虛擬機器時已選擇 [保留備份資料] 選項，則可以繼續保護。如果已選擇 [刪除備份資料] 選項，則無法繼續保護虛擬機器。
 
-For information on re-creating a virtual machine from a recovery point, check out [Restore Azure VMs](backup-azure-restore-vms.md). If you need information on protecting your virtual machines, see [First look: Back up VMs to a Recovery Services vault](backup-azure-vms-first-look-arm.md). For information on monitoring events, see [Monitor alerts for Azure virtual machine backups](backup-azure-monitor-vms.md).
+繼續保護虛擬機器
+
+1. 在[保存庫項目儀表板](backup-azure-manage-vms.md#open-a-vault-item-dashboard)上，按一下 [繼續備份]。
+
+    ![繼續保護](./media/backup-azure-manage-vms/resume-backup-button.png)
+
+    [備份原則] 刀鋒視窗隨即開啟。
+
+    >[AZURE.NOTE] 重新保護虛擬機器時，您可以選擇與最初用於保護虛擬機器不同的原則。
+
+2. 請依照[變更原則或建立新的備份原則](backup-azure-manage-vms.md#change-policies-or-create-a-new-backup-policy)中的步驟，指派虛擬機器的原則。
+
+    備份原則套用至虛擬機器後，您會看到下列訊息。
+
+    ![已成功保護 VM](./media/backup-azure-manage-vms/success-message.png)
+
+## 刪除備份資料
+您可以在**停止備份**作業期間，或在備份作業完成之後的任何時間，刪除與虛擬機器相關聯的備份資料。先等候幾天或幾週再刪除復原點甚至可能會讓您受益。不同於還原復原點，當您刪除備份資料時，您無法選擇刪除特定的復原點。如果您選擇刪除備份資料，則會刪除與項目相關聯的所有復原點。
+
+下列程序假設虛擬機器的備份作業已停止或停用。一旦備份作業停用，保存庫項目儀表板便會提供 [繼續備份] 和 [刪除備份] 選項。
+
+![繼續和刪除按鈕](./media/backup-azure-manage-vms/resume-delete-buttons.png)
+
+若要在「備份已停用」的情況下刪除虛擬機器上的備份資料：
+
+1. 在[保存庫項目儀表板](backup-azure-manage-vms.md#open-a-vault-item-dashboard)上，按一下 [刪除備份]。
+
+    ![VM 類型](./media/backup-azure-manage-vms/delete-backup-buttom.png)
+
+    [刪除備份資料] 刀鋒視窗隨即開啟。
+
+    ![VM 類型](./media/backup-azure-manage-vms/delete-backup-blade.png)
+
+2. 輸入項目的名稱，以確認您想要刪除復原點。
+
+    ![停止驗證](./media/backup-azure-manage-vms/item-verification-box.png)
+
+    如果您不確定項目名稱，請以滑鼠暫留在驚嘆號來檢視名稱。項目的名稱也出現刀鋒視窗頂端的 [刪除備份資料] 下。
+
+3. 選擇性地提供 [原因] 或 [註解]。
+
+4. 若要刪除目前項目的備份資料，請按一下 ![停止備份按鈕](./media/backup-azure-manage-vms/delete-button.png)
+
+    通知訊息可讓您知道備份資料已刪除。
 
 
+## 後續步驟
 
-<!--HONumber=Oct16_HO2-->
+如需從復原點重新建立虛擬機器的詳細資訊，請參閱[還原 Azure VM](backup-azure-restore-vms.md)。如需保護虛擬機器的詳細資訊，請參閱[搶先目睹︰將 VM 備份至復原服務保存庫](backup-azure-vms-first-look-arm.md)。如需監視事件的相關資訊，請參閱[監視 Azure 虛擬機器備份的警示](backup-azure-monitor-vms.md)。
 
-
+<!---HONumber=AcomDC_0817_2016-->

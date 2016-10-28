@@ -1,94 +1,89 @@
 <properties
-    pageTitle="How to provide secure remote access to on-premises apps"
-    description="Covers how to use Azure AD Application Proxy to provide secure remote access to your on-premises apps."
-    services="active-directory"
-    documentationCenter=""
-    authors="kgremban"
-    manager="femila"
-    editor=""/>
+	pageTitle="如何為內部部署應用程式提供安全的遠端存取"
+	description="涵蓋如何使用 Azure AD 應用程式 Proxy 為您的內部部署應用程式提供安全的遠端存取。"
+	services="active-directory"
+	documentationCenter=""
+	authors="kgremban"
+	manager="femila"
+	editor=""/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/25/2016"
-    ms.author="kgremban"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/25/2016"
+	ms.author="kgremban"/>
 
+# 如何為內部部署應用程式提供安全的遠端存取
 
-# <a name="how-to-provide-secure-remote-access-to-on-premises-applications"></a>How to provide secure remote access to on-premises applications
+> [AZURE.NOTE] 應用程式 Proxy 是您升級至 Premium 或 Basic 版本的 Azure Active Directory 時才能使用的功能。如需詳細資訊，請參閱 [Azure Active Directory 版本](active-directory-editions.md)。
 
-> [AZURE.NOTE] Application Proxy is a feature that is available only if you upgraded to the Premium or Basic edition of Azure Active Directory. For more information, see [Azure Active Directory editions](active-directory-editions.md).
+現今的員工想要隨時隨地都能在任何裝置發揮生產力。他們想要在自己的裝置上工作，不論這些裝置是平板電腦、手機或膝上型電腦。而且他們期望能夠存取其所有的應用程式︰雲端中的 SaaS 應用程式以及內部部署的公司應用程式。傳統上，提供內部部署應用程式的存取權會涉及虛擬私人網路 (VPN)、非軍事區 (DMZ)，或內部部署的反向 Proxy。這些解決方案不僅複雜且難以確保安全，而且設定及管理成本也很高。
 
-Employees today want to be productive at any place, at any time, and from any device. They want to work on their own devices, whether they be tablets, phones, or laptops. And they expect to be able to access all their applications, both SaaS apps in the cloud and corporate apps on-premises. Providing access to on-premises applications has traditionally involved virtual private networks (VPNs), demilitarized zones (DMZs), or on-premises reverse proxies. Not only are these solutions complex and hard to make secure, but they are costly to set up and manage.
+還有更好的辦法！
 
-There is a better way!
+在行動至上、雲端至上的世界裡，現代化的員工需要現代化的遠端存取解決方案。Azure AD 應用程式 Proxy 是 Azure Active Directory Premium 產品的一項功能，並提供遠端存取做為服務。這表示它很容易部署、使用和管理。
 
-A modern workforce in the mobile-first, cloud-first world needs a modern remote access solution. Azure AD Application Proxy is a feature of the Azure Active Directory Premium offering, and offers remote access as a service. That means it's easy to deploy, use, and manage.
+## 什麼是 Azure Active Directory 應用程式 Proxy？
+Azure AD 應用程式 Proxy 針對 Web 應用程式託管的內部部署，提供單一登入 (SSO) 及安全的遠端存取。這可能包括 SharePoint 網站、Outlook Web Access 或其他任何您擁有的 LOB Web 應用程式。這些內部部署 Web 應用程式會與 Azure AD (O365 所使用的相同身分識別和控制平台) 整合。使用者接著可以使用和 O365 以及其他與 Azure AD 整合的 SaaS 應用程式相同的存取方式，來存取內部部署應用程式。您不需要變更網路基礎結構，或需要 VPN 才能為使用者提供此解決方案。
 
-## <a name="what-is-azure-active-directory-application-proxy?"></a>What is Azure Active Directory Application Proxy?
-Azure AD Application Proxy provides single sign-on (SSO) and secure remote access for web applications hosted on-premises. This can include SharePoint sites, Outlook Web Access, or any other LOB web applications you have. These on-premises web applications are integrated with Azure AD, the same identity and control platform that is used by O365. End users can then access your on-premises applications the same way they access O365 and other SaaS apps integrated with Azure AD. You don't need to change the network infrastructure or require VPN to provide this solution for your users.
+## 為什麼這是更好的解決方案？
+Azure AD 應用程式 Proxy 可對所有內部部署應用程式提供簡單、安全且符合成本效益的遠端存取解決方案。
 
-## <a name="why-is-this-a-better-solution?"></a>Why is this a better solution?
-Azure AD Application Proxy provides a simple, secure, and cost-effective remote access solution to all your on-premises applications.
+Azure AD 應用程式 Proxy：
 
-Azure AD Application Proxy:  
+- 在雲端中運作，因此可以節省時間和金錢。內部部署解決方案則需要您設定及維護 DMZ、Edge Server 或其他複雜的基礎結構。
 
-- Works in the cloud, so you can save time and money. On-premises solutions require you to set up and maintain DMZs, edge servers, or other complex infrastructures.  
+- 比內部部署解決方案更容易設定和保護，因為您不必開放讓任何輸入連線穿過防火牆。
 
-- Is easier to set up and secure than on-premises solutions because you don't have to open any inbound connections through your firewall.  
+- 提供絕佳的安全性。當您使用 Azure AD 應用程式 Proxy 發佈應用程式時，您可以利用 Azure 中豐富的授權控制項和安全性分析。這表示您不需要變更任何應用程式，就能為所有現有應用程式取得進階的安全性功能。
 
-- Offers great security. When you publish your apps using Azure AD Application Proxy, you can take advantage of the rich authorization controls and security analytics in Azure. This means that you get advanced security capabilities for all your existing apps without having to change any app.  
+- 讓使用者享有一致的驗證體驗。單一登入可讓使用者使用一個密碼，就能方便且簡單地存取所需的所有應用程式來發揮生產力。
 
-- Gives your users a consistent authentication experience. Single sign-on gives your end users the ease and simplicity of access to all the apps they need to be productive with one password.  
+## 哪種應用程式可與 Azure AD 應用程式 Proxy 搭配運作？
+透過 Azure AD 應用程式 Proxy，您可以存取不同類型的內部應用程式︰
 
-## <a name="what-kind-of-applications-work-with-azure-ad-application-proxy?"></a>What kind of applications work with Azure AD Application Proxy?
-With Azure AD Application Proxy you can access different types of internal applications:
+- 使用整合式 Windows 驗證來進行驗證的 Web 應用程式
+- 使用表單架構存取的 Web 應用程式
+- 您想要公開給不同裝置上豐富應用程式的 Web API
+- 裝載在遠端桌面閘道之後的應用程式
 
-- Web applications that use Integrated Windows Authentication for authentication  
-- Web applications that use form-based access  
-- Web APIs that you want to expose to rich applications on different devices  
-- Applications hosted behind a Remote Desktop Gateway  
+## 運作方式
+應用程式 Proxy 的運作方式是透過在網路內部安裝一個稱為連接器的精簡型 Windows Server 服務。透過此連接器，您就不需要開放任何輸入連接埠，或在 DMZ 中放置任何物件。如果您的應用程式有大量的流量，您可以新增更多連接器，而且該服務會負責負載平衡。連接器是無狀態的，而且必要時，會從雲端提取所有內容。
 
-## <a name="how-does-it-work?"></a>How does it work?
-Application Proxy works by installing a slim Windows Server service called a connector inside your network. With the connector, you don't have to open any inbound ports or put anything in the DMZ. If you have high traffic in your apps you can add more connectors, and the service takes care of the load balancing. The connectors are stateless and pull everything from the cloud as necessary.
+當使用者從遠端存取應用程式時，他們會連線到已發佈的端點。使用者在 Azure AD 中進行驗證，然後透過連接器路由至內部部署應用程式。
 
-When users access applications remotely, they connect to the published endpoint. Users authenticate in Azure AD and then are routed through the connector to the on-premises application.
+ ![Azure AD 應用程式 Proxy 圖表](./media/active-directory-appssoaccess-whatis/azureappproxxy.png)
 
- ![AzureAD Application Proxy diagram](./media/active-directory-appssoaccess-whatis/azureappproxxy.png)
+1. 使用者會透過應用程式 Proxy 存取應用程式，然後被導向 Azure AD 登入頁面進行驗證。
+2. 成功登入之後，會產生權杖並傳送給使用者。
+3. 使用者會將權杖傳送至應用程式 Proxy，而該應用程式 Proxy 會擷取權杖的使用者主體名稱 (UPN) 和安全性主體名稱 (SPN)，然後將要求導向至連接器。
+4. 連接器會代表模擬使用者要求可用於內部 (Windows) 驗證的 Kerberos 票證。這就是所謂的 Kerberos 限制委派。
+5. Active Directory 擷取 Kerberos 票證。
+6. 票證會傳送到應用程式伺服器和加以驗證。
+7. 回應會透過應用程式 Proxy 傳送給使用者。
 
-1. The user accesses the application through the Application Proxy and is directed to the Azure AD sign-in page to authenticate.
-2. After a successful sign-in, a token is generated and sent to the user.
-3. The user sends the token to Application Proxy, which retrieves the user principal name (UPN) and security principal name (SPN) from the token, then directs the request to the connector.
-4. On behalf of the user, the connector requests a Kerberos ticket that can be used for internal (Windows) authentication. This is known as Kerberos Constrained Delegation.
-5. Active Directory retrieves the Kerberos ticket.
-6. The ticket is sent to the application server and verified.
-7. The response is sent through Application Proxy to the user.
+### 單一登入
+Azure AD 應用程式 Proxy 會針對使用整合式 Windows 驗證 (IWA) 的應用程式或宣告感知應用程式提供單一登入 (SSO)。如果您的應用程式使用 IWA，應用程式 Proxy 會模擬使用 Kerberos 限制委派的使用者來提供 SSO。如果您有信任 Azure Active Directory 的宣告感知應用程式，則可以使用 SSO，因為使用者已經由 Azure AD 驗證。
 
-### <a name="single-sign-on"></a>Single sign-on
-Azure AD Application Proxy provides single sign-on (SSO) to applications that use Integrated Windows Authentication (IWA), or claims-aware applications. If your application uses IWA, Application Proxy impersonates the user using Kerberos Constrained Delegation to provide SSO. If you have a claims-aware application that trusts Azure Active Directory, SSO is achieved because the user was already authenticated by Azure AD.
+## 如何開始使用
+請確定您有 Azure AD 基本或進階的訂用帳戶，以及您是全域管理員的 Azure AD 目錄。您也需要 Azure AD 基本或進階的授權，目錄系統管理員和使用者才能存取應用程式。如需詳細資訊，請參閱 [Azure Active Directory 版本](active-directory-editions.md)。
 
-## <a name="how-to-get-started"></a>How to get started
-Make sure you have an Azure AD basic or premium subscription and an Azure AD directory for which you are a global administrator. You also need Azure AD basic or premium licenses for the directory administrator and users accessing the apps. See [Azure Active Directory editions](active-directory-editions.md) for more information.
+設定應用程式 Proxy 是以兩個步驟完成：
 
-Setting up Application Proxy is accomplished in two steps:
+1. [啟用應用程式 Proxy 並設定連接器](active-directory-application-proxy-enable.md)
+2. [發佈應用程式](active-directory-application-proxy-publish.md)：使用快速且簡單的精靈發佈內部部署應用程式並提供遠端存取。
 
-1. [Enable Application Proxy and configure the connector](active-directory-application-proxy-enable.md)    
-2. [Publish applications](active-directory-application-proxy-publish.md) - use the quick and easy wizard to get your on-premises apps published and accessible remotely.
+## 後續步驟
+應用程式 Proxy 還有其他更多用途：
 
-## <a name="what's-next?"></a>What's next?
-There's a lot more you can do with Application Proxy:
+- [使用您自己的網域名稱發行應用程式](active-directory-application-proxy-custom-domains.md)
+- [啟用單一登入](active-directory-application-proxy-sso-using-kcd.md)
+- [使用宣告感知應用程式](active-directory-application-proxy-claims-aware-apps.md)
+- [啟用條件式存取](active-directory-application-proxy-conditional-access.md)
 
-- [Publish applications using your own domain name](active-directory-application-proxy-custom-domains.md)
-- [Enable single-sign on](active-directory-application-proxy-sso-using-kcd.md)
-- [Working with claims aware applications](active-directory-application-proxy-claims-aware-apps.md)
-- [Enable conditional access](active-directory-application-proxy-conditional-access.md)
+如需最新消息，請查閱[應用程式 Proxy 部落格](http://blogs.technet.com/b/applicationproxyblog/)
 
-For the latest news and updates, check out the [Application Proxy blog](http://blogs.technet.com/b/applicationproxyblog/)
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

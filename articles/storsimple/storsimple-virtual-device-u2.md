@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="StorSimple virtual device Update 2| Microsoft Azure"
-   description="Learn how to create, deploy, and manage a StorSimple virtual device in a Microsoft Azure virtual network. (Applies to StorSimple Update 2)."
+   pageTitle="StorSimple 虛擬裝置 Update 2 | Microsoft Azure"
+   description="了解如何建立、部署和管理 Microsoft Azure 虛擬網路中的 StorSimple 虛擬裝置。(適用於 StorSimple Update 2)。"
    services="storsimple"
    documentationCenter=""
    authors="alkohli"
@@ -15,290 +15,283 @@
    ms.date="09/23/2016"
    ms.author="alkohli" />
 
-
-# <a name="deploy-and-manage-a-storsimple-virtual-device-in-azure"></a>Deploy and manage a StorSimple virtual device in Azure
-
-
-##<a name="overview"></a>Overview
-The StorSimple 8000 series virtual device is an additional capability that comes with your Microsoft Azure StorSimple solution. The StorSimple virtual device runs on a virtual machine in a Microsoft Azure virtual network, and you can use it to back up and clone data from your hosts. This tutorial describes how to deploy and manage a virtual device in Azure and is applicable to all the virtual devices running software version Update 2 and lower.
+# 部署和管理 Azure 中的 StorSimple 虛擬裝置
 
 
-#### <a name="virtual-device-model-comparison"></a>Virtual device model comparison
+##Overview
+StorSimple 8000 系列虛擬裝置是 Microsoft Azure StorSimple 解決方案提供的另一項功能。StorSimple 虛擬裝置會在 Microsoft Azure 虛擬網路中的虛擬機器上執行，而您可以使用它來備份和複製主機上的資料。本教學課程說明如何在 Azure 中部署和管理虛擬裝置，適用於所有執行軟體版本 Update 2 和更低版本的虛擬裝置。
 
-The StorSimple virtual device is available in two models, a standard 8010 (formerly known as the 1100) and a premium 8020 (introduced in Update 2). A comparison of the two models is tabulated below.
+
+#### 虛擬裝置模型比較
+
+StorSimple 虛擬裝置可以在兩種模型中使用，標準 8010 (前身為 1100) 和進階 8020 (於 Update 2 引進)。下表顯示兩個模型的比較。
 
 
-| Device model          | 8010<sup>1</sup>                                                                     | 8020                                                                                                                               |
+| 裝置型號 | 8010<sup>1</sup> | 8020 |
 |-----------------------|---------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------|
-| **Maximum capacity**      | 30 TB                                                                     | 64 TB                                                                                                                                |
-| **Azure VM**              | Standard_A3 (4 cores, 7 GB memory)                                                                      | Standard_DS3 (4 cores, 14 GB memory)                                                                                                                          |
-| **Version compatibility** | Versions running pre-Update 2 or later                                             | Versions running Update 2 or later                                                                                                  |
-| **Region availability**   | All Azure regions                                                         | Azure regions that support Premium Storage<br></br>For a list of regions, see [supported regions for 8020](#supported-regions-for-8020) |
-| **Storage type**          | Uses Azure Standard Storage for local disks<br></br> Learn how to [create a Standard Storage account]() | Uses Azure Premium Storage for local disks<sup>2</sup> <br></br>Learn how to [create a Premium Storage account](storage-premium-storage.md#create-and-use-a-premium-storage-account-for-a-virtual-machine-data-disk)                                                               |
-| **Workload guidance**     | Item level retrieval of files from backups                                              | Cloud dev and test scenarios, low latency, higher performance workloads <br></br>Secondary device for disaster recovery                                                                                            |
+| **最大容量** | 30 TB | 64 TB |
+| **Azure VM** | Standard\_A3 (4 核心、7 GB 記憶體) | Standard\_DS3 (4 核心、14 GB 記憶體) |
+| **版本相容性** | 執行 Update 2 之前或更新版本的版本 | 執行 Update 2 或更新版本的版本 |
+| **區域可用性** | 所有 Azure 區域 | 支援進階儲存體的 Azure 區域<br></br>如需區域的清單，請參閱 [8020 的支援區域](#supported-regions-for-8020) |
+| **儲存體類型** | 將 Azure 標準儲存體使用於本機磁碟<br></br> 了解如何[建立標準儲存體帳戶]() | 將 Azure 進階儲存體使用於本機磁碟<sup>2</sup> <br></br>了解如何[建立進階儲存體帳戶](storage-premium-storage.md#create-and-use-a-premium-storage-account-for-a-virtual-machine-data-disk) |
+| **工作負載指引** | 從備份的檔案的項目層級擷取 | 雲端開發和測試案例、低延遲、較高效能工作負載<br></br>災害復原的次要裝置 |
  
-<sup>1</sup> *Formerly known as the 1100*.
+<sup>1</sup> *前身為 1100*。
 
-<sup>2</sup> *Both the 8010 and 8020 use Azure Standard Storage for the cloud tier. The difference only exists in the local tier within the device*.
+<sup>2</sup> *8010 和 8020 會將 Azure 標準儲存體使用於雲端層。差異僅存在於裝置內的本機層*。
 
-#### <a name="supported-regions-for-8020"></a>Supported regions for 8020
+#### 8020 的支援區域
 
-The Premium Storage regions that are currently supported for 8020 are tabulated below. This list will be continuously updated as Premium Storage becomes available in more regions. 
+下表顯示目前支援 8020 的進階儲存體區域。當進階儲存體在更多區域可供使用時，這份清單將持續更新。
 
-| S. no.                                                  | Currently supported in regions |
+| S. 編號 | 目前支援的區域 |
 |---------------------------------------------------------|--------------------------------|
-| 1                                                       | Central US                     |
-| 2                                                       |  East US                       |
-| 3                                                       |  East US 2                     |
-| 4                                                       | West US                        |
-| 5                                                       | North Europe                   |
-| 6                                                       | West Europe                    |
-| 7                                                       | Southeast Asia                 |
-| 8                                                       | Japan East                     |
-| 9                                                       | Japan West                     |
-| 10                                                      | Australia East                 |
-| 11                                                      | Australia Southeast*           |
-| 12                                                      | East Asia*                     |
-| 13                                                      | South Central US*              |
+| 1 | 美國中部 |
+| 2 | 美國東部 |
+| 3 | 美國東部 2 |
+| 4 | 美國西部 |
+| 5 | 北歐 |
+| 6 | 西歐 |
+| 7 | 東南亞 |
+| 8 | 日本東部 |
+| 9 | 日本西部 |
+| 10 | 澳洲東部 |
+| 11 | 澳大利亞東南部* |
+| 12 | 東亞* |
+| 13 | 美國中南部* |
 
-*Premium Storage was launched recently in these geos.
+*進階儲存體最近在這些地區啟動。
 
-This article describes the step-by-step process of deploying a StorSimple virtual device in Azure. After reading this article, you will:
+本文說明在 Azure 中部署 StorSimple 虛擬裝置的逐步程序。閱讀本文之後，您將能夠：
 
-- Understand how the virtual device differs from the physical device.
+- 了解虛擬裝置與實體裝置的差異。
 
-- Be able to create and configure the virtual device.
+- 建立和設定虛擬裝置。
 
-- Connect to the virtual device.
+- 連接至虛擬裝置。
 
-- Learn how to work with the virtual device.
+- 了解如何使用虛擬裝置。
 
-This tutorial applies to all the StorSimple virtual devices running Update 2 and higher. 
+本教學課程適用於所有執行 Update 2 和更新版本的 StorSimple 虛擬裝置。
 
-## <a name="how-the-virtual-device-differs-from-the-physical-device"></a>How the virtual device differs from the physical device
+## 虛擬裝置與實體裝置的差異
 
-The StorSimple virtual device is a software-only version of StorSimple that runs on a single node in a Microsoft Azure Virtual Machine. The virtual device supports disaster recovery scenarios in which your physical device is not available, and is appropriate for use in item-level retrieval from backups, on-premises disaster recovery, and cloud dev and test scenarios.
+StorSimple 虛擬裝置是軟體形式的 StorSimple，在 Microsoft Azure 虛擬機器中的單一節點上執行。虛擬裝置支援無法使用實體裝置時的災害復原案例，並且適合用於從備份擷取的項目層級、內部部署嚴重損壞修復和雲端開發和測試案例。
 
-#### <a name="differences-from-the-physical-device"></a>Differences from the physical device
+#### 與實體裝置的差異
 
-The following table shows some key differences between the StorSimple virtual device and the StorSimple physical device.
+下表顯示 StorSimple 虛擬裝置和 StorSimple 實體裝置之間的一些主要差異。
 
-|                             | Physical device                                          | Virtual device                                                                            |
+| | 實體裝置 | 虛擬裝置 |
 |-----------------------------|----------------------------------------------------------|-------------------------------------------------------------------------------------------|
-| **Location**                    | Resides in the datacenter.                               | Runs in Azure.                                                                            |
-| **Network interfaces**          | Has six network interfaces: DATA 0 through DATA 5.                  | Has only one network interface: DATA 0.                                        |
-| **Registration**                | Registered during the configuration step.                | Registration is a separate task.                                                          |
-| **Service data encryption key** | Regenerate on the physical device and then update the virtual device with the new key.           | Cannot regenerate from the virtual device. |
+| **位置** | 位於資料中心。 | 在 Azure 中執行。 |
+| **網路介面** | 有六個網路介面：DATA 0 到 DATA 5。 | 只有一個網路介面：DATA 0。 |
+| **註冊** | 在組態步驟中註冊。 | 註冊是個別的工作。 |
+| **服務資料加密金鑰** | 在實體裝置上重新產生金鑰，然後以新的金鑰更新虛擬裝置。 | 無法從虛擬裝置重新產生。 |
 
 
-## <a name="prerequisites-for-the-virtual-device"></a>Prerequisites for the virtual device
+## 虛擬裝置的必要條件
 
-The following sections explain the configuration prerequisites for your StorSimple virtual device. Prior to deploying a virtual device, review the [security considerations for using a virtual device](storsimple-security.md#storsimple-virtual-device-security).
+下列各節說明 StorSimple 虛擬裝置的設定必要條件。在部署虛擬裝置之前，請檢閱[使用虛擬裝置的安全性考量](storsimple-security.md#storsimple-virtual-device-security)。
 
-#### <a name="azure-requirements"></a>Azure requirements
+#### Azure 需求
 
-Before you provision the virtual device, you need to make the following preparations in your Azure environment:
+佈建虛擬裝置之前，您需要在 Azure 環境中做好下列準備：
 
-- For the virtual device, [configure a virtual network on Azure](../virtual-network/virtual-networks-create-vnet-classic-portal.md). If using Premium Storage, you must create a virtual network in an Azure region that supports Premium Storage. More information on [regions that are currently supported for 8020](#supported-regions-for-8020).
-- It is advisable to use the default DNS server provided by Azure instead of specifying your own DNS server name. If your DNS server name is not valid or if the DNS server is not able to resolve IP addresses correctly, the creation of the virtual device will fail.
-- Point-to-site and site-to-site are optional, but not required. If you wish, you can configure these options for more advanced scenarios. 
-- You can create [Azure Virtual Machines](../virtual-machines/virtual-machines-linux-about.md) (host servers) in the virtual network that can use the volumes exposed by the virtual device. These servers must meet the following requirements:                            
-    - Be Windows or Linux VMs with iSCSI Initiator software installed.
-    - Be running in the same virtual network as the virtual device.
-    - Be able to connect to the iSCSI target of the virtual device through the internal IP address of the virtual device.
+- 針對虛擬裝置，[在 Azure 中設定虛擬網路](../virtual-network/virtual-networks-create-vnet-classic-portal.md)。如果使用進階儲存體，您必須在支援進階儲存體的 Azure 區域中建立虛擬網路。如需詳細資訊，請參閱[目前支援 8020 的區域](#supported-regions-for-8020)。
+- 建議您使用 Azure 提供的預設 DNS 伺服器，而非指定您自己的 DNS 伺服器名稱。如果您的 DNS 伺服器名稱無效，或者如果 DNS 伺服器無法正確解析 IP 位址，則建立虛擬裝置將會失敗。
+- 點對站及站對站都是選用的，但並非必要。如有需要，您可以針對更進階的案例設定這些選項。
+- 您可以將 [Azure 虛擬機器](../virtual-machines/virtual-machines-linux-about.md) (主機伺服器) 建立在可使用由虛擬裝置公開之磁碟區的虛擬網路中。這些伺服器必須符合下列需求：
+	- 是已安裝 iSCSI 啟動器軟體的 Windows 或 Linux VM。
+	- 正在虛擬裝置所在的相同虛擬網路中執行。
+	- 能夠透過虛擬裝置的內部 IP 位址連接到虛擬裝置的 iSCSI 目標。
 
-- Make sure you have configured support for iSCSI and cloud traffic on the same virtual network.
+- 確定您已在相同虛擬網路上設定 iSCSI 和雲端流量的支援。
 
 
-#### <a name="storsimple-requirements"></a>StorSimple requirements
+#### StorSimple 需求
 
-Make the following updates to your Azure StorSimple service before you create a virtual device:
+建立虛擬裝置之前，對 Azure StorSimple 服務進行下列更新：
 
 
-- Add [access control records](storsimple-manage-acrs.md) for the VMs that are going to be host servers for your virtual device.
+- 針對要做為虛擬裝置之主機伺服器的 VM，新增[存取控制記錄](storsimple-manage-acrs.md)。
 
-- Use a [storage account](storsimple-manage-storage-accounts.md#add-a-storage-account) in the same region as the virtual device. Storage accounts in different regions may result in poor performance. You can use a Standard or Premium Storage account with the virtual device. More information on how to create a [Standard Storage account]() or a [Premium Storage account](storage-premium-storage.md#create-and-use-a-premium-storage-account-for-a-virtual-machine-data-disk)
+- 使用位於與虛擬裝置相同區域的[儲存體帳戶](storsimple-manage-storage-accounts.md#add-a-storage-account)。若儲存體帳戶位於不同區域，可能導致效能不佳。您可以搭配虛擬裝置使用標準或進階儲存體帳戶。如何建立[標準儲存體帳戶]()或[進階儲存體帳戶](storage-premium-storage.md#create-and-use-a-premium-storage-account-for-a-virtual-machine-data-disk)的詳細資訊
 
-- Use a different storage account for virtual device creation from the one used for your data. Using the same storage account may result in poor performance.
+- 針對建立虛擬裝置使用與用於資料的儲存體帳戶不同的儲存體帳戶。使用相同的儲存體帳戶可能導致效能不佳。
 
-Make sure that you have the following information before you begin:
+開始之前，請確定您擁有下列資訊：
 
-- Your Azure classic portal account with access credentials.
+- 您的 Azure 傳統入口網站帳戶具有存取認證。
 
-- A copy of the service data encryption key from your physical device.
+- 實體裝置中服務資料加密金鑰的複本。
 
 
-## <a name="create-and-configure-the-virtual-device"></a>Create and configure the virtual device
+## 建立和設定虛擬裝置
 
-Before performing these procedures, make sure that you have met the [Prerequisites for the virtual device](#prerequisites-for-the-virtual-device). 
+執行這些程序之前，請確定您符合[虛擬裝置的必要條件](#prerequisites-for-the-virtual-device)。
 
-After you have created a virtual network, configured a StorSimple Manager service, and registered your physical StorSimple device with the service, you can use the following steps to create and configure a StorSimple virtual device. 
+當您建立虛擬網路、設定 StorSimple Manager 服務，以及向該服務註冊實體 StorSimple 裝置之後，就可以使用下列步驟來建立和設定 StorSimple 虛擬裝置。
 
-### <a name="step-1:-create-a-virtual-device"></a>Step 1: Create a virtual device
+### 步驟 1：建立虛擬裝置
 
-Perform the following steps to create the StorSimple virtual device.
+執行下列步驟來建立 StorSimple 虛擬裝置。
 
-[AZURE.INCLUDE [Create a virtual device](../../includes/storsimple-create-virtual-device-u2.md)]
+[AZURE.INCLUDE [建立虛擬裝置](../../includes/storsimple-create-virtual-device-u2.md)]
 
-If the creation of the virtual device fails in this step, you may not have connectivity to the Internet. For more information, go to [troubleshoot Internet connectivity failures](#troubleshoot-internet-connectivity-errors) when creatig a virtual device.
+如果此步驟中的虛擬裝置建立失敗，您可能沒有網際網路的連線能力。如需詳細資訊，請在建立虛擬裝置時移至[針對網際網路連線失敗進行疑難排解](#troubleshoot-internet-connectivity-errors)。
 
 
-### <a name="step-2:-configure-and-register-the-virtual-device"></a>Step 2: Configure and register the virtual device
+### 步驟 2：設定和註冊虛擬裝置
 
-Before starting this procedure, make sure that you have a copy of the service data encryption key. The service data encryption key was created when you configured your first StorSimple device and you were instructed to save it in a secure location. If you do not have a copy of the service data encryption key, you must contact Microsoft Support for assistance.
+開始此程序之前，請確定您擁有服務資料加密金鑰的複本。服務資料加密金鑰已在您設定第一個 StorSimple 裝置時建立，且系統已指示您將它儲存在安全的位置。如果您沒有服務資料加密金鑰的複本，就必須連絡 Microsoft 支援服務以尋求協助。
 
-Perform the following steps to configure and register your StorSimple virtual device.
-[AZURE.INCLUDE [Configure and register a virtual device](../../includes/storsimple-configure-register-virtual-device.md)]
+執行下列步驟來設定和註冊 StorSimple 虛擬裝置。[AZURE.INCLUDE [設定和註冊虛擬裝置](../../includes/storsimple-configure-register-virtual-device.md)]
 
-### <a name="step-3:-(optional)-modify-the-device-configuration-settings"></a>Step 3: (Optional) Modify the device configuration settings
+### 步驟 3：(選擇性) 修改裝置組態設定
 
-The following section describes the device configuration settings needed for the StorSimple virtual device if you want to use CHAP, StorSimple Snapshot Manager or change the Device Administrator password.
+下一節說明如果您想要使用 CHAP、StorSimple Snapshot Manager 或變更裝置系統管理員密碼，StorSimple 虛擬裝置所需的裝置組態設定。
 
-#### <a name="configure-the-chap-initiator"></a>Configure the CHAP initiator
+#### 設定 CHAP 起始端
 
-This parameter contains the credentials that your virtual device (target) expects from the initiators (servers) that are attempting to access the volumes. The initiators will provide a CHAP user name and a CHAP password to identify themselves to your device during this authentication. For detailed steps, go to [Configure CHAP for your device](storsimple-configure-chap.md#unidirectional-or-one-way-authentication).
+此參數包含您的虛擬裝置 (目標) 預期從嘗試存取磁碟區的起始端 (伺服器) 收到的認證。在這個驗證過程中，起始端將提供 CHAP 使用者名稱和 CHAP 密碼，以便向您的裝置識別其身分。如需詳細步驟，請移至[設定裝置的 CHAP](storsimple-configure-chap.md#unidirectional-or-one-way-authentication)。
 
-#### <a name="configure-the-chap-target"></a>Configure the CHAP target
+#### 設定 CHAP 目標
 
-This parameter contains the credentials that your virtual device uses when a CHAP-enabled initiator requests mutual or bi-directional authentication. Your virtual device will use a Reverse CHAP user name and Reverse CHAP password to identify itself to the initiator during this authentication process. Note that CHAP target settings are global settings. When these are applied, all the volumes connected to the storage virtual device will use CHAP authentication. For detailed steps, go to [Configure CHAP for your device](storsimple-configure-chap.md#bidirectional-or-mutual-authentication).
+此參數包含具有 CHAP 功能的起始端要求相互或雙向驗證時，您的虛擬裝置所使用的認證。在這個驗證程序中，您的虛擬裝置將使用反向 CHAP 使用者名稱和反向 CHAP 密碼，向起始端識別其身分。請注意，CHAP 目標設定為全域設定。套用這些項目時，與虛擬裝置連接的所有磁碟區都將使用 CHAP 驗證。如需詳細步驟，請移至[設定裝置的 CHAP](storsimple-configure-chap.md#bidirectional-or-mutual-authentication)。
 
-#### <a name="configure-the-storsimple-snapshot-manager-password"></a>Configure the StorSimple Snapshot Manager password
+#### 設定 StorSimple Snapshot Manager 密碼
 
-StorSimple Snapshot Manager software resides on your Windows host and allows administrators to manage backups of your StorSimple device in the form of local and cloud snapshots.
+StorSimple Snapshot Manager 軟體位於您的 Windows 主機上，而且可讓系統管理員以本機和雲端快照的形式管理 StorSimple 裝置的備份。
 
->[AZURE.NOTE] For the virtual device, your Windows host is an Azure virtual machine.
+>[AZURE.NOTE] 對虛擬裝置而言，您的 Windows 主機就是 Azure 虛擬機器。
 
-When configuring a device in the StorSimple Snapshot Manager, you will be prompted to provide the StorSimple device IP address and password to authenticate your storage device. For detailed steps, go to [Configure StorSimple Snapshot Manager password](storsimple-change-passwords.md#change-the-storsimple-snapshot-manager-password).
+當您在 StorSimple Snapshot Manager 中設定裝置時，系統將提示您提供 StorSimple 裝置 IP 位址和密碼來驗證您的儲存裝置。如需詳細步驟，請移至[設定 StorSimple Snapshot Manager 密碼](storsimple-change-passwords.md#change-the-storsimple-snapshot-manager-password)。
 
-#### <a name="change-the-device-administrator-password"></a>Change the device administrator password 
+#### 變更裝置系統管理員密碼 
 
-When you use the Windows PowerShell interface to access the virtual device, you will be required to enter a device administrator password. For the security of your data, you are required to change this password before the virtual device can be used. For detailed steps, go to [Configure device administrator password](storsimple-change-passwords.md#change-the-device-administrator-password).
+當您使用 Windows PowerShell 介面來存取虛擬裝置時，需要輸入裝置系統管理員密碼。為了確保資料的安全性，您必須變更此密碼，才能使用虛擬裝置。如需詳細步驟，請移至[設定裝置系統管理員密碼](storsimple-change-passwords.md#change-the-device-administrator-password)。
 
-## <a name="connect-remotely-to-the-virtual-device"></a>Connect remotely to the virtual device
-Remote access to your virtual device via the Windows PowerShell interface is not enabled by default. You need to enable remote management on the virtual device first, and then enable it on the client that will be used to access your virtual device.
+## 遠端連接至虛擬裝置
+預設不會啟用透過 Windows PowerShell 介面遠端存取您的虛擬裝置。您需要先在虛擬裝置上啟用遠端管理，然後在將用來存取虛擬裝置的用戶端上啟用它。
 
-The two-step process to connect remotely is detailed below.
+遠端連接的兩個步驟程序詳述如下。
 
-### <a name="step-1:-configure-remote-management"></a>Step 1: Configure remote management
+### 步驟 1：設定遠端管理
 
-Perform the following steps to configure remote management for your StorSimple virtual device.
+執行下列步驟來設定 StorSimple 虛擬裝置的遠端管理。
 
-[AZURE.INCLUDE [Configure remote management via HTTP for virtual device](../../includes/storsimple-configure-remote-management-http-device.md)]
+[AZURE.INCLUDE [透過 HTTP 設定虛擬裝置的遠端管理](../../includes/storsimple-configure-remote-management-http-device.md)]
 
-### <a name="step-2:-remotely-access-the-virtual-device"></a>Step 2: Remotely access the virtual device
+### 步驟 2：遠端存取虛擬裝置
 
-After you have enabled remote management on the StorSimple device configuration page, you can use Windows PowerShell remoting to connect to the virtual device from another virtual machine inside the same virtual network; for example, you can connect from the host VM that you configured and used to connect iSCSI. In most deployments, you will have already opened a public endpoint to access your host VM that you can use for accessing the virtual device.
+當您在 StorSimple 裝置設定頁面上啟用遠端管理之後，就可以使用 Windows PowerShell 遠端處理功能，從相同虛擬網路內部的另一部虛擬機器連接到虛擬裝置；例如，您可以從已設定且用來連接 iSCSI 的主機 VM 進行連接。在大部分的部署中，您應該都已開啟公用端點來存取您可用來存取虛擬裝置的主機 VM。
 
->[AZURE.WARNING] **For enhanced security, we strongly recommend that you use HTTPS when connecting to the endpoints and then delete the endpoints after you have completed your PowerShell remote session.**
+>[AZURE.WARNING] **為了加強安全性，強烈建議您在連接到端點時應使用 HTTPS，並且在完成 PowerShell 遠端工作階段之後刪除端點。**
 
-You should follow the procedures in [Connecting remotely to your StorSimple device](storsimple-remote-connect.md) to set up remoting for your virtual device.
+您應遵循[遠端連接至 StorSimple 裝置](storsimple-remote-connect.md)中的程序，來設定虛擬裝置的遠端處理功能。
 
-## <a name="connect-directly-to-the-virtual-device"></a>Connect directly to the virtual device
+## 直接連接至虛擬裝置
 
-You can also connect directly to the virtual device. If you want to connect directly to the virtual device from another computer outside the virtual network or outside the Microsoft Azure environment, you need to create additional endpoints as described in the following procedure. 
+您也可以直接連接至虛擬裝置。如果您要從虛擬網路或 Microsoft Azure 環境以外的另一部電腦直接連接到虛擬裝置，就必須依照下列程序中的說明來建立其他端點。
 
-Perform the following steps to create a public endpoint on the virtual device.
+執行下列步驟，在虛擬裝置上建立公用端點。
 
-[AZURE.INCLUDE [Create public endpoints on a virtual device](../../includes/storsimple-create-public-endpoints-virtual-device.md)]
+[AZURE.INCLUDE [在虛擬裝置上建立公用端點](../../includes/storsimple-create-public-endpoints-virtual-device.md)]
 
-We recommend that you connect from another virtual machine inside the same virtual network because this practice minimizes the number of public endpoints on your virtual network. When you use this method, you simply connect to the virtual machine through a Remote Desktop session and then configure that virtual machine for use as you would any other Windows client on a local network. You do not need to append the public port number because the port will already be known.
+建議您從相同虛擬網路內部的另一部虛擬機器進行連接，因為此做法可將虛擬網路上的公用端點數降到最低。使用此方法時，您只需透過遠端桌面工作階段連接到虛擬機器，然後依照您在區域網路上設定任何其他 Windows 用戶端的方式來設定該虛擬機器即可。您不需附加公用連接埠號碼，因為該連接埠將會是已知的。
 
-## <a name="work-with-the-storsimple-virtual-device"></a>Work with the StorSimple virtual device
+## 使用 StorSimple 虛擬裝置
 
-Now that you have created and configured the StorSimple virtual device, you are ready to start working with it. You can work with volume containers, volumes, and backup policies on a virtual device just as you would on a physical StorSimple device; the only difference is that you need to make sure that you select the virtual device from your device list. Refer to [use the StorSimple Manager service to manage a virtual device](storsimple-manager-service-administration.md) for step-by-step procedures of the various management tasks for the virtual device.
+現在您已建立並設定 StorSimple 虛擬裝置，就已準備好開始使用它。您可以在虛擬裝置上使用磁碟區容器、磁碟區及備份原則，正如同您在實體 StorSimple 裝置 上所做的一樣。唯一的差異在於，您必須確定會從裝置清單中選取虛擬裝置。請參閱[使用 StorSimple Manager 服務來管理虛擬裝置](storsimple-manager-service-administration.md)，以取得虛擬裝置的各種管理工作的逐步程序。
 
-The following sections discuss some of the differences you will encounter when working with the virtual device.
+下列各節將討論您在使用虛擬裝置時將遇到的一些差異。
 
-### <a name="maintain-a-storsimple-virtual-device"></a>Maintain a StorSimple virtual device
+### 維護 StorSimple 虛擬裝置
 
-Because it is a software-only device, maintenance for the virtual device is minimal when compared to maintenance for the physical device. You have the following options:
+由於它是純軟體裝置，相較於實體裝置的維護，虛擬裝置的維護可說是最基本的。您有下列選擇：
 
-- **Software updates** – You can view the date that the software was last updated, together with any update status messages. You can use the **Scan updates** button at the bottom of the page to perform a manual scan if you want to check for new updates. If updates are available, click **Install Updates** to install. Because there is only a single interface on the virtual device, this means that there will be a slight service interruption when updates are applied. The virtual device will shut down and restart (if necessary) to apply any updates that have been released. For a step-by-step procedure, go to [update your device](storsimple-update-device.md#install-regular-updates-via-the-azure-classic-portal).
-- **Support package** – You can create and upload a support package to help Microsoft Support troubleshoot issues with your virtual device. For a step-by-step procedure, go to [create and manage a support package](storsimple-create-manage-support-package.md).
+- **軟體更新** - 您可以檢視上次更新軟體的日期，以及任何更新狀態訊息。如果想要檢查是否有新的更新，可以使用頁面底部的 [**掃描更新**] 按鈕來執行手動掃描。如果有可用更新，請按一下 [**安裝更新**] 加以安裝。因為虛擬裝置上只有單一介面，這表示在套用更新時將造成服務些微中斷。虛擬裝置將關閉並重新啟動 (如有必要)，以套用任何已發行的更新。如需逐步程序，請移至[更新您的裝置](storsimple-update-device.md#install-regular-updates-via-the-azure-classic-portal)。
+- **支援套件** - 您可以建立並上傳支援套件，以協助 Microsoft 支援服務針對您的虛擬裝置問題進行疑難排解。如需逐步程序，請移至[建立和管理支援套件](storsimple-create-manage-support-package.md)。
 
-### <a name="storage-accounts-for-a-virtual-device"></a>Storage accounts for a virtual device
+### 虛擬裝置的儲存體帳戶
 
-Storage accounts are created for use by the StorSimple Manager service, by the virtual device, and by the physical device. When you create your storage accounts, we recommend that you use a region identifier in the friendly name to help ensure that the region is consistent throughout all of the system components. For a virtual device, it is important that all of the components be in the same region to prevent performance issues.
+儲存體帳戶是建立來供 StorSimple Manager 服務、虛擬裝置和實體裝置使用。當您建立儲存體帳戶時，建議您在易記名稱中使用區域識別碼，有助於確保所有系統元件的區域都是一致的。在虛擬裝置中，所有元件都必須位於相同區域中，以防止發生效能問題。
 
-For a step-by-step procedure, go to [add a storage account](storsimple-manage-storage-accounts.md#add-a-storage-account).
+如需逐步程序，請移至[新增儲存體帳戶](storsimple-manage-storage-accounts.md#add-a-storage-account)。
 
-### <a name="deactivate-a-storsimple-virtual-device"></a>Deactivate a StorSimple virtual device
+### 停用 StorSimple 虛擬裝置
 
-Deactivating a virtual device deletes the VM and the resources created when it was provisioned. After the virtual device is deactivated, it cannot be restored to its previous state. Before you deactivate the virtual device, make sure to stop or delete clients and hosts that depend on it.
+停用虛擬裝置，將刪除佈建它時所建立的 VM 和資源。停用虛擬裝置之後，就無法將它還原為先前的狀態。停用虛擬裝置之前，請確實停止或刪除其依存的用戶端和主機。
 
-Deactivating a virtual device results in the following actions:
+停用虛擬裝置會導致下列動作：
 
-- The virtual device is removed.
+- 移除虛擬裝置。
 
-- The OS disk and data disks created for the virtual device are removed.
+- 移除為虛擬裝置建立的 OS Disk 和資料磁碟。
 
-- The hosted service and virtual network created during provisioning are retained. If you are not using them, you should delete them manually.
+- 保留在佈建期間建立的託管服務和虛擬網路。如果您不使用它們，就應該手動加以刪除。
 
-- Cloud snapshots created for the virtual device are retained.
+- 保留為虛擬裝置建立的雲端快照。
 
-For a step-by-step procedure, go to [Deactivate and delete your StorSimple device](storsimple-deactivate-and-delete-device.md).
+如需逐步程序，請移至[停用及刪除 StorSimple 裝置](storsimple-deactivate-and-delete-device.md)。
 
-As soon as the virtual device is shown as deactivated on the StorSimple Manager service page, you can delete the virtual device from device list on the **Devices** page.
+只要虛擬裝置在 StorSimple Manager 服務頁面上顯示為已停用，您就能從 [裝置] 頁面的裝置清單中刪除該虛擬裝置。
 
 
-### <a name="start,-stop-and-restart-a-virtual-device"></a>Start, stop and restart a virtual device
-Unlike the StorSimple physical device, there is no power on or power off button to push on a StorSimple virtual device. However, there may be occasions where you need to stop and restart the virtual device. For example, some updates might require that the VM be restarted to finish the update process. The easiest way for you to start, stop, and restart a virtual device is to use the Virtual Machines Management Console.
+### 啟動、停止和重新啟動虛擬裝置
+不同於 StorSimple 實體裝置，在 StorSimple 虛擬裝置上並沒有開啟電源或關閉電源按鈕可供使用。但是，有時您可能需要停止並重新啟動虛擬裝置。例如，有些更新可能必須在 VM 重新啟動後才能完成更新程序。若要啟動、停止和重新啟動虛擬裝置，最簡單的方式是使用虛擬機器管理主控台。
 
-When you look at the Management Console, the virtual device status is **Running** because it is started by default after it is created. You can start, stop, and restart a virtual machine at any time.
+當您檢視管理主控台時，虛擬裝置狀態是 [執行中]，因為它在建立之後會預設為啟動狀態。您隨時都能啟動、停止及重新啟動虛擬機器。
 
-[AZURE.INCLUDE [Stop and restart virtual device](../../includes/storsimple-stop-restart-virtual-device.md)]
+[AZURE.INCLUDE [停止和重新啟動虛擬裝置](../../includes/storsimple-stop-restart-virtual-device.md)]
 
-### <a name="reset-to-factory-defaults"></a>Reset to factory defaults
+### 重設為原廠預設值
 
-If you decide that you just want to start over with your virtual device, simply deactivate and delete it and then create a new one. Just like when your physical device is reset, your new virtual device will not have any updates installed; therefore, make sure to check for updates before using it.
+如果您決定要重新設定全新的虛擬裝置，請直接停用並加以刪除，然後建立新的虛擬裝置。和重設實體裝置的情況一樣，新的虛擬裝置將不會安裝任何更新，因此，請確實檢查有無更新，然後再開始使用它。
 
 
-## <a name="fail-over-to-the-virtual-device"></a>Fail over to the virtual device
+## 容錯移轉至虛擬裝置
 
-Disaster recovery (DR) is one of the key scenarios that the StorSimple virtual device was designed for. In this scenario, the physical StorSimple device or entire datacenter might not be available. Fortunately, you can use a virtual device to restore operations in an alternate location. During DR, the volume containers from the source device change ownership and are transferred to the virtual device. The prerequisites for DR are that the virtual device has been created and configured, all the volumes within the volume container have been taken offline, and the volume container has an associated cloud snapshot.
+災害復原 (DR) 是針對其設計 StorSimple 虛擬裝置的重要案例之一。在此案例中，實體 StorSimple 裝置或整個資料中心可能無法使用。幸運的是，您可以使用虛擬裝置，在替代位置中還原作業。在 DR 期間，來源裝置的磁碟區容器會變更擁有權，並移轉到虛擬裝置。DR 的必要條件是必須已建立並設定虛擬裝置、磁碟區容器內的所有磁碟區都要離線，以及磁碟區容器應該具有相關聯的雲端快照。
 
 >[AZURE.NOTE] 
 >
-> - When using a virtual device as the secondary device for DR, keep in mind that the 8010 has 30 TB of Standard Storage and 8020 has 64 TB of Premium Storage. The higher capacity 8020 virtual device may be more suited for a DR scenario.
-> - You cannot failover or clone from a device running Update 2 to a device running pre-Update 1 software. You can however fail over a device running Update 2 to a device running Update 1 (1.1 or 1.2)
+> - 當使用虛擬裝置作為 DR 的次要裝置時，請記住，8010 有 30 TB 的標準儲存體，8020 有 64 TB 的進階儲存體。較高容量的 8020 虛擬裝置可能比較適合 DR 案例。
+> - 您無法從執行 Update 2 的裝置容錯移轉或複製到執行 Update 1 之前版本軟體的裝置。但是，您可以將執行 Update 2 的裝置容錯移轉至執行 Update 1 (1.1 或 1.2) 的裝置。
 
-For a step-by-step procedure, go to [failover to a virtual device](storsimple-device-failover-disaster-recovery.md#fail-over-to-a-storsimple-virtual-device).
+如需逐步程序，請移至[容錯移轉至虛擬裝置](storsimple-device-failover-disaster-recovery.md#fail-over-to-a-storsimple-virtual-device)。
  
 
-## <a name="shut-down-or-delete-the-virtual-device"></a>Shut down or delete the virtual device
+## 關閉或刪除虛擬裝置
 
-If you previously configured and used a StorSimple virtual device but now want to stop accruing compute charges for its use, you can shut down the virtual device. Shutting down the virtual device doesn’t delete its operating system or data disks in storage. It does stop charges accruing on your subscription, but storage charges for the OS and data disks will continue.
+如果您先前已設定並使用 StorSimple 虛擬裝置，但現在不想再因為使用而產生計算費用，您可以關閉虛擬裝置。關閉虛擬裝置，並不會刪除其作業系統或儲存體中的資料磁碟。這只會停止您的訂用帳戶所產生的費用，但作業系統和資料磁碟的儲存體費用仍會繼續計算。
 
-If you delete or shut down the virtual device, it will appear as **Offline** on the Devices page of the StorSimple Manager service. You can choose to deactivate or delete the device if you also wish to delete the backups created by the virtual device. For more information, see [Deactivate and delete a StorSimple device](storsimple-deactivate-and-delete-device.md).
+如果您刪除或關閉虛擬裝置，StorSimple Manager 服務的 [裝置] 頁面上會將其顯示為 [離線]。如果您也想要刪除虛擬裝置所建立的備份，可以選擇停用或刪除裝置。如需詳細資訊，請參閱[停用及刪除 StorSimple 裝置](storsimple-deactivate-and-delete-device.md)。
 
-[AZURE.INCLUDE [Shut down a virtual device](../../includes/storsimple-shutdown-virtual-device.md)]
+[AZURE.INCLUDE [關閉虛擬裝置](../../includes/storsimple-shutdown-virtual-device.md)]
 
-[AZURE.INCLUDE [Delete a virtual device](../../includes/storsimple-delete-virtual-device.md)]
+[AZURE.INCLUDE [刪除虛擬裝置](../../includes/storsimple-delete-virtual-device.md)]
 
    
-## <a name="troubleshoot-internet-connectivity-errors"></a>Troubleshoot Internet connectivity errors 
+## 針對網際網路連線錯誤進行疑難排解 
 
-During the creation of a virtual device, if there is no connectivity to the Internet, the creation step will fail. To troubleshoot if the failure is because of Internet connectivity, perform the following steps in the Azure classic portal:
+在虛擬裝置建立期間，如果沒無法連線到網際網路，則建立步驟將會失敗。若要針對是否因為網際網路連線而失敗進行疑難排解，請在 Azure 傳統入口網站中執行下列步驟︰
 
-1. Create a Windows server 2012 virtual machine in Azure. This virtual machine should use the same storage account, VNet and subnet as used by your virtual device. If you already have an existing Windows Server host in Azure using the same storage account, Vnet and subnet, you can also use it to troubleshoot the Internet connectivity.
-2. Remote log into the virtual machine created in the preceding step. 
-3. Open a command window inside the virtual machine (Win + R and then type `cmd`).
-4. Run the following cmd at the prompt.
+1. 在 Azure 中建立 Windows server 2012 虛擬機器。此虛擬機器應該使用與虛擬裝置使用的相同儲存體帳戶、VNet 和子網路。如果您在 Azure 中已經有使用相同儲存體帳戶、Vnet 和子網路的現有 Windows Server 主機，您也可以使用它來針對網際網路連線進行疑難排解。
+2. 遠端登入在先前步驟中建立的虛擬機器。
+3. 在虛擬機器內開啟命令視窗 (Win + R，然後輸入 `cmd`)。
+4. 在出現提示時執行下列命令。
 
-    `nslookup windows.net`
+	`nslookup windows.net`
 
-5. If `nslookup` fails, then Internet connectivity failure is preventing the virtual device from registering to the StorSimple Manager service. 
-6. Make the required changes to your virtual network to ensure that the virtual device is able to access Azure sites such as “windows.net”.
+5. 如果 `nslookup` 失敗，則網際網路連線失敗會導致虛擬裝置無法註冊到 StorSimple Manager 服務。
+6. 對虛擬網路進行必要的變更，確保虛擬裝置能夠存取 Azure 網站，例如 "windows.net"。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-- Learn how to [use the StorSimple Manager service to manage a virtual device](storsimple-manager-service-administration.md).
+- 了解如何[使用 StorSimple Manager 服務管理虛擬裝置](storsimple-manager-service-administration.md)。
  
-- Understand how to [restore a StorSimple volume from a backup set](storsimple-restore-from-backup-set.md). 
+- 了解如何[從備份組還原 StorSimple 磁碟區](storsimple-restore-from-backup-set.md)。
 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0928_2016-->

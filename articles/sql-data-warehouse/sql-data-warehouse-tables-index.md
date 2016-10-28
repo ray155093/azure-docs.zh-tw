@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Indexing tables in SQL Data Warehouse | Microsoft Azure"
-   description="Getting started with table indexing in Azure SQL Data Warehouse."
+   pageTitle="在 SQL 資料倉儲中編製資料表的索引 | Microsoft Azure"
+   description="開始在 Azure SQL 資料倉儲中編製資料表的索引"
    services="sql-data-warehouse"
    documentationCenter="NA"
    authors="jrowlandjones"
@@ -16,25 +16,24 @@
    ms.date="07/12/2016"
    ms.author="jrj;barbkess;sonyama"/>
 
-
-# <a name="indexing-tables-in-sql-data-warehouse"></a>Indexing tables in SQL Data Warehouse
+# 在 SQL 資料倉儲中編製資料表的索引
 
 > [AZURE.SELECTOR]
-- [Overview][]
-- [Data Types][]
-- [Distribute][]
+- [概觀][]
+- [資料類型][]
+- [散發][]
 - [Index][]
-- [Partition][]
-- [Statistics][]
-- [Temporary][]
+- [資料分割][]
+- [統計資料][]
+- [暫存][]
 
-SQL Data Warehouse offers several indexing options including [clustered columnstore indexes][], [clustered indexes and nonclustered indexes][].  In addition, it also offers a no index option also known as [heap][].  This article covers the benefits of each index type as well as tips to getting the most performance out of your indexes. See [create table syntax][] for more detail on how to create a table in SQL Data Warehouse.
+SQL 資料倉儲提供數個索引選項，包括[叢集資料行存放區索引][]、[叢集索引和非叢集索引][]。此外，它也提供一個索引選項，也稱為[堆積][]。本文涵蓋每種索引類型的優點，以及取得索引的最大效能的祕訣。如需有關如何在 SQL 資料倉儲中建立資料表的詳細資訊，請參閱[建立資料表語法][]。
 
-## <a name="clustered-columnstore-indexes"></a>Clustered columnstore indexes
+## 叢集資料行存放區索引
 
-By default, SQL Data Warehouse creates a clustered columnstore index when no index options are specified on a table. Clustered columnstore tables offer both the highest level of data compression as well as the best overall query performance.  Clustered columnstore tables will generally outperform clustered index or heap tables and are usually the best choice for large tables.  For these reasons, clustered columnstore is the best place to start when you are unsure of how to index your table.  
+根據預設，若未在資料表上指定任何索引選項，則 SQL 資料倉儲會建立叢集資料行存放區索引。叢集資料行存放區資料表提供最高層級的資料壓縮，以及最佳的整體查詢效能。叢集資料行存放區資料表通常勝過叢集索引或堆積資料表，而且通常是大型資料表的最佳選擇。基於這些理由，叢集資料行存放區是您不確定如何編製資料表索引時的最佳起點。
 
-To create a clustered columnstore table, simply specify CLUSTERED COLUMNSTORE INDEX in the WITH clause, or leave the WITH clause off:
+若要建立叢集資料行存放區資料表，只要在 WITH 子句中指定 CLUSTERED COLUMNSTORE INDEX，或省略 WITH 子句︰
 
 ```SQL
 CREATE TABLE myTable   
@@ -46,20 +45,20 @@ CREATE TABLE myTable
 WITH ( CLUSTERED COLUMNSTORE INDEX );
 ```
 
-There are a few scenarios where clustered columnstore may not be a good option:
+在有些情況下，叢集資料行存放區可能不是很好的選擇︰
 
-- Columnstore tables do not support secondary non-clustered indexes.  Consider heap or clustered index tables instead.
-- Columnstore tables do not support varchar(max), nvarchar(max) and varbinary(max).  Consider heap or clustered index instead.
-- Columnstore tables may be less efficient for transient data.  Consider heap and perhaps even temporary tables.
-- Small tables with less than 100 million rows.  Consider heap tables.
+- 資料行存放區資料表不支援次要非叢集索引。請改為考慮堆積或叢集索引資料表。
+- 資料行存放區資料表不支援 varchar(max)、nvarchar(max) 和 varbinary(max)。請改為考慮堆積或叢集索引。
+- 資料行存放區資料表可能比暫時性資料沒有效率。請考慮堆積，甚至是暫時性資料表。
+- 具有少於 1 億個資料列的小型資料表。請考慮堆積資料表。
 
-## <a name="heap-tables"></a>Heap tables
+## 堆積資料表
 
-When you are temporarily landing data on SQL Data Warehouse, you may find that using a heap table will make the overall process faster.  This is because loads to heaps are faster than to index tables and in some cases the subsequent read can be done from cache.  If you are loading data only to stage it before running more transformations, loading the table to heap table will be much faster than loading the data to a clustered columnstore table. In addition, loading data to a [temporary table][Temporary] will also load much faster than loading a table to permanent storage.  
+當您在 SQL 資料倉儲上暫時登陸資料時，可能會發現使用堆積資料表會讓整個程序更快速。這是因為堆積的載入速度比索引資料表還要快，而在某些情況下，可以從快取進行後續的讀取。如果您載入資料只是在做執行更多轉換之前的預備，將資料表載入堆積資料表將會遠快於將資料載入叢集資料行存放區資料表。此外，將資料載入[暫存資料表][Temporary]也會比將資料表載入永久儲存體更快速。
 
-For small lookup tables, less than 100 million rows, often heap tables make sense.  Cluster columnstore tables begin to achieve optimal compression once there is more than 100 million rows.
+若為小於 1 億個資料列的小型查閱資料表，堆積資料表通常比較適合。一旦超過 1 億個資料列，叢集資料行存放區資料表就會開始達到最佳的壓縮。
 
-To create a heap table, simply specify HEAP in the WITH clause:
+若要建立堆積資料表，只需在 WITH 子句中指定 HEAP︰
 
 ```SQL
 CREATE TABLE myTable   
@@ -71,11 +70,11 @@ CREATE TABLE myTable
 WITH ( HEAP );
 ```
 
-## <a name="clustered-and-nonclustered-indexes"></a>Clustered and nonclustered indexes
+## 叢集與非叢集索引
 
-Clustered indexes may outperform clustered columnstore tables when a single row needs to be quickly retrieved.  For queries where a single or very few row lookup is required to performance with extreme speed, consider a cluster index or nonclustered secondary index.  The disadvantage to using a clustered index is that only queries which use a highly selective filter on the clustered index column will benefit.  To improve filter on other columns a nonclustered index can be added to other columns.  However, each index which is added to a table will add both space and processing time to loads.
+需要快速擷取單一資料列時，叢集索引可能會優於叢集資料行存放區資料表。對於需要單一或極少數資料列查閱才能疾速執行的查詢，請考慮使用叢集索引或非叢集次要索引。使用叢集索引的缺點是只有在叢集索引資料行上使用高度選擇性篩選的查詢才可受益。若要改善其他資料行的篩選，可以將非叢集索引加入至其他資料行。不過，每個加入至資料表的索引將會新增載入的空間和處理時間。
 
-To create a clustered index table, simply specify CLUSTERED INDEX in the WITH clause:
+若要建立叢集索引資料表，只要在 WITH 子句中指定 CLUSTERED INDEX︰
 
 ```SQL
 CREATE TABLE myTable   
@@ -87,20 +86,20 @@ CREATE TABLE myTable
 WITH ( CLUSTERED INDEX (id) );
 ```
 
-To add a non-clustered index on a table, simply use the following syntax:
+若要在資料表上新增非叢集索引，只要使用下列語法：
 
 ```SQL
 CREATE INDEX zipCodeIndex ON t1 (zipCode);
 ```
 
-> [AZURE.NOTE] A non-clustered index is created by default when CREATE INDEX is used. Furthermore, a non-clustered index is only permitted on a row storage table (HEAP or CLUSTERED INDEX). Non clustered indexes on top of a CLUSTERED COLUMNSTORE INDEX is not permitted at this time.
+> [AZURE.NOTE] 使用 CREATE INDEX 時，預設會建立非叢集索引。此外，資料列儲存體資料表僅允許非叢集索引 (HEAP 或 CLUSTERED INDEX)。目前不允許在 CLUSTERED COLUMNSTORE INDEX 最上方使用非叢集索引。
 
 
-## <a name="optimizing-clustered-columnstore-indexes"></a>Optimizing clustered columnstore indexes
+## 最佳化叢集資料行存放區索引
 
-Clustered columnstore tables are organized in data into segments.  Having high segment quality is critical to achieving optimal query performance on a columnstore table.  Segment quality can be measured by the number of rows in a compressed row group.  Segment quality is most optimal where there are at least 100K rows per compressed row group and gain in performance as the number of rows per row group approach 1,048,576 rows, which is the most rows a row group can contain.
+叢集資料行存放區資料表會將資料組織成不同區段。擁有高區段品質是在資料行存放區資料表上達到最佳查詢效能的關鍵。壓縮的資料列群組中的資料列數目可以測量區段品質。每個壓縮的資料列群組至少有 10 萬個資料列時的區段品質最佳，而隨著每個資料列群組的資料列數趨近 1,048,576 個資料列 (這是資料列群組可以包含的最大資料列數)，效能會跟著提升。
 
-The below view can be created and used on your system to compute the average rows per row group and identify any sub-optimal cluster columnstore indexes.  The last column on this view will generate as SQL statement which can be used to rebuild your indexes.
+以下檢視可以建立於您的系統上並用來計算每個資料列群組的平均資料列數，以及識別任何次佳的叢集資料行存放區索引。此檢視上的最後一個資料行會產生為 SQL 陳述式，以便用來重建索引。
 
 ```sql
 CREATE VIEW dbo.vColumnstoreDensity
@@ -110,10 +109,10 @@ SELECT
 ,       DB_Name()                                                               AS [database_name]
 ,       s.name                                                                  AS [schema_name]
 ,       t.name                                                                  AS [table_name]
-,   COUNT(DISTINCT rg.[partition_number])                   AS [table_partition_count]
+,	COUNT(DISTINCT rg.[partition_number])					AS [table_partition_count]
 ,       SUM(rg.[total_rows])                                                    AS [row_count_total]
 ,       SUM(rg.[total_rows])/COUNT(DISTINCT rg.[distribution_id])               AS [row_count_per_distribution_MAX]
-,   CEILING ((SUM(rg.[total_rows])*1.0/COUNT(DISTINCT rg.[distribution_id]))/1048576) AS [rowgroup_per_distribution_MAX]
+,	CEILING	((SUM(rg.[total_rows])*1.0/COUNT(DISTINCT rg.[distribution_id]))/1048576) AS [rowgroup_per_distribution_MAX]
 ,       SUM(CASE WHEN rg.[State] = 0 THEN 1                   ELSE 0    END)    AS [INVISIBLE_rowgroup_count]
 ,       SUM(CASE WHEN rg.[State] = 0 THEN rg.[total_rows]     ELSE 0    END)    AS [INVISIBLE_rowgroup_rows]
 ,       MIN(CASE WHEN rg.[State] = 0 THEN rg.[total_rows]     ELSE NULL END)    AS [INVISIBLE_rowgroup_rows_MIN]
@@ -149,94 +148,94 @@ GROUP BY
 ;
 ```
 
-Now that you have created the view, run this query to identify tables with row groups with less than 100K rows.  Of course, you may want to increase the threshold of 100K if you are looking for more optimal segment quality. 
+現在您已建立檢視，請執行此查詢來識別哪些資料表的資料列群組中的資料列少於 10 萬個。當然，如果您要尋求更理想的區段品質，您可能想要提高 10 萬的臨界值。
 
 ```sql
-SELECT  *
-FROM    [dbo].[vColumnstoreDensity]
-WHERE   COMPRESSED_rowgroup_rows_AVG < 100000
+SELECT	*
+FROM	[dbo].[vColumnstoreDensity]
+WHERE	COMPRESSED_rowgroup_rows_AVG < 100000
         OR INVISIBLE_rowgroup_rows_AVG < 100000
 ```
 
-Once you have run the query you can begin to look at the data and analyze your results. This table explains what to look for in your row group analysis.
+一旦您執行查詢，就可以開始查看資料，並分析您的結果。此表格會說明在您的資料列群組分析中要尋找的項目。
 
 
-| Column                             | How to use this data                                                                                                                                                                      |
+| 資料欄 | 如何使用這項資料 |
 | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [table_partition_count]            | If the table is partitioned, then you may expect to see higher Open row group counts. Each partition in the distribution could in theory have an open row group associated with it. Factor this into your analysis. A small table that has been partitioned could be optimized by removing the partitioning altogether as this would improve compression.                                                                        |
-| [row_count_total]                  | Total row count for the table. For example, you can use this value to calculate percentage of rows in the compressed state.                                                                      |
-| [row_count_per_distribution_MAX]   | If all rows are evenly distributed this value would be the target number of rows per distribution. Compare this value with the compressed_rowgroup_count.                                 |
-| [COMPRESSED_rowgroup_rows]         | Total number of rows in columnstore format for the table.                                                                                                                                 |
-| [COMPRESSED_rowgroup_rows_AVG]     | If the average number of rows is significantly less than the maximum # of rows for a row group, then consider using CTAS or ALTER INDEX REBUILD to recompress the data                     |
-| [COMPRESSED_rowgroup_count]        | Number of row groups in columnstore format. If this number is very high in relation to the table it is an indicator that the columnstore density is low.                                  |
-| [COMPRESSED_rowgroup_rows_DELETED] | Rows are logically deleted in columnstore format. If the number is high relative to table size, consider recreating the partition or rebuilding the index as this removes them physically. |
-| [COMPRESSED_rowgroup_rows_MIN]     | Use this in conjunction with the AVG and MAX columns to understand the range of values for the row groups in your columnstore. A low number over the load threshold (102,400 per partition aligned distribution) suggests that optimizations are available in the data load                                                                                                                                                 |
-| [COMPRESSED_rowgroup_rows_MAX]     | As above                                                                                                                                                                                  |
-| [OPEN_rowgroup_count]              | Open row groups are normal. One would reasonably expect one OPEN row group per table distribution (60). Excessive numbers suggest data loading across partitions. Double check the partitioning strategy to make sure it is sound                                                                                                                                                                                                |
-| [OPEN_rowgroup_rows]               | Each row group can have 1,048,576 rows in it as a maximum. Use this value to see how full the open row groups are currently                                                                 |
-| [OPEN_rowgroup_rows_MIN]           | Open groups indicate that data is either being trickle loaded into the table or that the previous load spilled over remaining rows into this row group. Use the MIN, MAX, AVG columns to see how much data is sat in OPEN row groups. For small tables it could be 100% of all the data! In which case ALTER INDEX REBUILD to force the data to columnstore.                                                                       |
-| [OPEN_rowgroup_rows_MAX]           | As above                                                                                                                                                                                  |
-| [OPEN_rowgroup_rows_AVG]           | As above                                                                                                                                                                                  |
-| [CLOSED_rowgroup_rows]             | Look at the closed row group rows as a sanity check.                                                                                                                                       |
-| [CLOSED_rowgroup_count]            | The number of closed row groups should be low if any are seen at all. Closed row groups can be converted to compressed rowg roups using the ALTER INDEX ... REORGANISE command. However, this is not normally required. Closed groups are automatically converted to columnstore row groups by the background "tuple mover" process.                                                                                               |
-| [CLOSED_rowgroup_rows_MIN]         | Closed row groups should have a very high fill rate. If the fill rate for a closed row group is low, then further analysis of the columnstore is required.                                   |
-| [CLOSED_rowgroup_rows_MAX]         | As above                                                                                                                                                                                  |
-| [CLOSED_rowgroup_rows_AVG]         | As above                                                                                                                                                                                  |
-| [Rebuild_Index_SQL]         | SQL to rebuild columnstore index for a table                                                                                                                                                     |
+| [table\_partition\_count] | 如果資料表已分割，您可能會預期看到較高的開放資料列群組計數。散發套件中的每個分割在理論上有與其相關聯的開放資料列群組。將這個因素納入您的分析。已分割的小型資料表可以藉由移除分割進行最佳化，因為這樣會改善壓縮。 |
+| [row\_count\_total] | 資料表的資料列計數。例如，您可以使用此值來計算資料列的百分比 (壓縮的狀態)。 |
+| [row\_count\_per\_distribution\_MAX] | 如果所有資料列平均分配，這個值會是每個散發的目標資料列數目。比較此值與 compressed\_rowgroup\_count。 |
+| [COMPRESSED\_rowgroup\_rows] | 資料表的資料行存放區格式中的資料列總數。 |
+| [COMPRESSED\_rowgroup\_rows\_AVG] | 如果平均資料列數目遠小於資料群組最大的資料列數目，則可考慮使用 CTAS 或 ALTER INDEX REBUILD 重新壓縮資料 |
+| [COMPRESSED\_rowgroup\_count] | 資料行存放區格式中的資料列群組數目。如果相對於資料表的這個數目很高，表示資料行存放區密度很低。 |
+| [COMPRESSED\_rowgroup\_rows\_DELETED] | 資料行存放區格式中的資料列會以邏輯方式刪除。如果相對於資料表大小的這個數目很高，請考慮重新建立分割或重建索引，因為這樣會將其實際移除。 |
+| [COMPRESSED\_rowgroup\_rows\_MIN] | 將它與 AVG 和 MAX 資料行搭配使用，以了解資料行存放區中資料列群組的值範圍。載入臨界值上較低的數目 (每個分割對齊散發套件 102,400) 表示資料載入可進行最佳化 |
+| [COMPRESSED\_rowgroup\_rows\_MAX] | 同上。 |
+| [OPEN\_rowgroup\_count] | 開放資料列群組都正常。每個資料表散發都應該有一個開放資料列群組 (60)。過多的數目表示資料跨分割載入。重複檢查分割策略並確定它是正確的 |
+| [OPEN\_rowgroup\_rows] | 每個資料列群組可以有最多 1,048,576 個資料列。使用這個值查看開放資料列群組目前的飽和度 |
+| [OPEN\_rowgroup\_rows\_MIN] | 開放群組會指出資料是緩慢移動載入資料表，或是先前的載入將剩餘的資料列溢出到此資料列群組。使用 MIN、MAX、AVG 欄位查看多少資料位於開放資料列群組。對於小型資料表，可能是所有資料的 100%！ 在此情況下，ALTER INDEX REBUILD 來強制資料進入資料行存放區。 |
+| [OPEN\_rowgroup\_rows\_MAX] | 同上。 |
+| [OPEN\_rowgroup\_rows\_AVG] | 同上。 |
+| [CLOSED\_rowgroup\_rows] | 查看關閉的資料列群組資料列做為例行性檢查。 |
+| [CLOSED\_rowgroup\_count] | 如果發現任何關閉資料列群組，其數目應該很小。關閉資料列群組可以使用 ALTER INDEX 轉換成壓縮資料列群組...REORGANISE 命令。不過，通常並不需要。關閉群組會透過背景 "tuple mover" 程序自動轉換成資料行存放區的資料列群組。 |
+| [CLOSED\_rowgroup\_rows\_MIN] | 關閉資料列群組應該具有極高的填滿率。如果關閉資料列群組的填滿率很低，就需要進一步分析資料行存放區。 |
+| [CLOSED\_rowgroup\_rows\_MAX] | 同上。 |
+| [CLOSED\_rowgroup\_rows\_AVG] | 同上。 |
+| [Rebuild\_Index\_SQL] | 用來重建資料表的資料行存放區索引的 SQL |
 
-## <a name="causes-of-poor-columnstore-index-quality"></a>Causes of poor columnstore index quality
+## 資料行存放區索引品質不佳的原因
 
-If you have identified tables with poor segment quality, you will want to identify the root cause.  Below are some other common causes of poor segment quaility:
+如果您已識別區段品質不佳的資料表，您會想要找出根本原因。以下是區段品質不佳的一些其他常見原因︰
 
-1. Memory pressure when index was built
-2. High volume of DML operations
-3. Small or trickle load operations
-4. Too many partitions
+1. 建立索引時的記憶體壓力
+2. 大量的 DML 作業
+3. 小型或緩慢移動的載入作業
+4. 太多資料分割
 
-These factors can cause a columnstore index to have significantly less than the optimal 1 million rows per row group.  They can also cause rows to go to the delta row group instead of a compressed row group. 
+這些因素可能會導致資料行存放區索引在每個資料列群組中的資料列大幅少於最佳的 100 萬個。它們也會造成資料列移至差異資料列群組，而不是壓縮的資料列群組。
 
-### <a name="memory-pressure-when-index-was-built"></a>Memory pressure when index was built
+### 建立索引時的記憶體壓力
 
-The number of rows per compressed row group are directly related to the width of the row and the amount of memory available to process the row group.  When rows are written to columnstore tables under memory pressure, columnstore segment quality may suffer.  Therefore, the best practice is to give the session which is writing to your columnstore index tables access to as much memory as possible.  Since there is a trade-off between memory and concurrency, the guidance on the right memory allocation depends on the data in each row of your table, the amount of DWU you've allocated to your system, and the amount of concurrency slots you can give to the session which is writing data to your table.  As a best practice, we recommend starting with xlargerc if you are using DW300 or less, largerc if you are using DW400 to DW600, and mediumrc if you are using DW1000 and above.
+每個壓縮資料列群組的資料列數目，直接與資料列寬度以及可用來處理資料列群組的記憶體數量相關。當資料列在記憶體不足的狀態下寫入資料行存放區資料表時，資料行存放區區段品質可能會降低。因此，最佳做法是盡可能讓寫入至您的資料行存放區索引資料表的工作階段能存取較多的記憶體。因為記憶體與並行存取之間有所取捨，正確的記憶體配置指引取決於您的資料表的每個資料列中的資料、您已配置給您的系統的 DWU 數量，以及您可以提供給將資料寫入至資料表的工作階段的並行存取插槽數量。最佳做法：如果您使用 DW300 或更少，我們建議從 xlargerc 開始，如果您使用 DW400 至 DW600，則從 largerc 開始，而如果您使用 DW1000 和更高，則從 mediumrc 開始。
 
-### <a name="high-volume-of-dml-operations"></a>High volume of DML operations
+### 大量的 DML 作業
 
-A high volume of DML operations that update and delete rows can introduce inefficiency into the columnstore. This is especially true when the majority of the rows in a row group are modified.
+更新和刪除資料列的大量 DML 作業，會造成資料行存放區沒有效率。這在資料列群組中大部分的資料列都已修改時，更是如此。
 
-- Deleting a row from a compressed row group only logically marks the row as deleted. The row remains in the compressed row group until the partition or table is rebuilt.
-- Inserting a row adds the row to to an internal rowstore table called a delta row group. The inserted row is not converted to columnstore until the delta row group is full and is marked as closed. Row groups are closed once they reach the maximum capacity of 1,048,576 rows. 
-- Updating a row in columnstore format is processed as a logical delete and then an insert. The inserted row may be stored in the delta store.
+- 從壓縮的資料列群組刪除資料列僅會以邏輯方式將資料列標示為已刪除。資料列會保留在壓縮的資料列群組中，直到重建資料分割或資料表為止。
+- 插入資料列會將資料列新增至名為差異資料列群組的內部資料列存放區資料表。在差異資料列群組已滿且標示為已關閉之前，插入的資料列不會轉換成資料行存放區。一旦達到 1,048,576 個資料列的容量上限，資料列群組就會關閉。
+- 更新資料行存放區格式的資料列會做為邏輯刪除和插入來處理。插入的資料列可儲存在差異存放區。
 
-Batched update and insert operations that exceed the bulk threshold of 102,400 rows per partition aligned distribution will be written directly to the columnstore format. However, assuming an even distribution, you would need to be modifying more than 6.144 million rows in a single operation for this to occur. If the number of rows for a given partition aligned distribution is less than 102,400 then the rows will go to the delta store and will stay there until sufficient rows have been inserted or modified to close the row group or the index has been rebuilt.
+超出已對齊分佈之每個資料分割 102,400 個資料列大量臨界值的批次更新和插入作業，將會直接寫入資料行存放區格式。不過，假設在平均分佈情況下，您將需要在單一作業中修改超過 6.144 百萬個資料列才會發生這種情況。如果對齊分佈之資料分割的給定資料列數目少於 102,400 個，資料列將會移至差異存放區，且在插入足夠的資料列、修改資料列以關閉資料列群組或已建立索引之前，都會存放於差異存放區。
 
-### <a name="small-or-trickle-load-operations"></a>Small or trickle load operations
+### 小型或緩慢移動的載入作業
 
-Small loads that flow into SQL Data Warehouse are also sometimes known as trickle loads. They typically represent a near constant stream of data being ingested by the system. However, as this stream is near continuous the volume of rows is not particularly large. More often than not the data is significantly under the threshold required for a direct load to columnstore format.
+流入 SQL 資料倉儲的小型負載，有時也稱為緩慢移動的負載。它們通常代表系統接近連續擷取的串流。不過，因為這個串流已接近連續狀態，所以資料列的容量並沒有特別大。通常資料遠低於直接載入資料行存放區格式所需的閾值。
 
-In these situations, it is often better to land the data first in Azure blob storage and let it accumulate prior to loading. This technique is often known as *micro-batching*.
+在這些情況下，最好先將資料登陸到 Azure Blob 儲存體中，並讓它在載入之前累積。這項技術通常稱為*微批次處理*。
 
-### <a name="too-many-partitions"></a>Too many partitions
+### 太多資料分割
 
-Another thing to consider is the impact of partitioning on your clustered columnstore tables.  Before partitioning, SQL Data Warehouse already divides your data into 60 databases.  Partitioning further divides your data.  If you partition your data, then you will want to consider that **each** partition will need to have at least 1 million rows to benefit from a clustered columnstore index.  If you partition your table into 100 partitions, then your table will need to have at least 6 billion rows to benefit from a clustered columnstore index (60 distributions * 100 partitions * 1 million rows). If your 100 partition table does not have 6 billion rows, either reduce the number of partitions or consider using a heap table instead.
+另一個考慮事項是資料分割對於叢集資料行存放區資料表的影響。資料分割之前，SQL 資料倉儲已將您的資料分成 60 個資料庫。進一步分割會分割您的資料。如果您將資料分割，則您要考慮的是**每個**資料分割必須有至少 1 百萬個資料列，使用叢集資料行存放區索引才有益。如果將您的資料表分割成 100 個分割區，則您的資料表需要至少有 60 億個資料列，才會受益於叢集資料行存放區索引 (60 個散發 * 100 個分割 * 1 百萬個資料列)。如果您的 100 個分割資料表沒有 60 億個資料列，請減少資料分割數目，或考慮改用堆積資料表。
 
-Once your tables have been loaded with some data, follow the below steps to identify and rebuild tables with sub-optimal cluster columnstore indexes.
+您的資料表載入一些資料之後，請依照下列步驟來識別並重建具有次佳叢集資料行存放區索引的資料表。
 
-## <a name="rebuilding-indexes-to-improve-segment-quality"></a>Rebuilding indexes to improve segment quality
+## 重建索引以提升區段品質
 
-### <a name="step-1:-identify-or-create-user-which-uses-the-right-resource-class"></a>Step 1: Identify or create user which uses the right resource class
+### 步驟 1︰識別或建立會使用適當資源類別的使用者
 
-One quick way to immediately improve segment quality is to rebuild the index.  The SQL returned by the above view will return an ALTER INDEX REBUILD statement which can be used to rebuild your indexes.  When rebuilding your indexes, be sure that you allocate enough memory to the session which will rebuild your index.  To do this, increase the resource class of a user which has permissions to rebuild the index on this table to the recommended minimum.  The resource class of the database owner user cannot be changed, so if you have not created a user on the system, you will need to do so first.  The minimum we recommend is xlargerc if you are using DW300 or less, largerc if you are using DW400 to DW600, and mediumrc if you are using DW1000 and above.
+立即提升區段品質的快速方法就是重建索引。上述檢視所傳回的 SQL 會傳回可用來重建索引的 ALTER INDEX REBUILD 陳述式。重建索引時，請確定配置足夠的記憶體給將會重建索引的工作階段。若要這樣做，請增加使用者的資源類別，該使用者有權將此資料表上的索引重建為建議的最小值。無法變更資料庫擁有者使用者的資源類別，所以如果您尚未在系統上建立使用者，您必須先這麼做。如果您使用 DW300 或更少，我們建議的最小值為 xlargerc，如果您使用 DW400 至 DW600，則為 largerc，而如果您使用 DW1000 和更高，則為 mediumrc。
 
-Below is an example of how to allocate more memory to a user by increasing their resource class.  For more information about resource classes and how to create a new user can be found in the [concurrency and workload management][Concurrency] article.
+以下範例示範如何藉由增加資源類別，配置更多記憶體給使用者。如需資源類別以及如何建立新使用者的詳細資訊，請參閱[並行存取和工作負載管理][Concurrency]一文。
 
 ```sql
 EXEC sp_addrolemember 'xlargerc', 'LoadUser'
 ```
 
-### <a name="step-2:-rebuild-clustered-columnstore-indexes-with-higher-resource-class-user"></a>Step 2: Rebuild clustered columnstore indexes with higher resource class user
-Logon as the user from step 1 (e.g. LoadUser), which is now using a higher resource class, and execute the ALTER INDEX statements.  Be sure that this user has ALTER permission to the tables where the index is being rebuilt.  These examples show how to rebuild the entire columnstore index or how to rebuild a single partition. On large tables, it is more practical to rebuild indexes a single partition at a time.
+### 步驟 2︰使用較高的資源類別使用者重建叢集資料行存放區索引
+以步驟 1 的使用者身分登入 (例如 LoadUser)，他現在使用較高的資源類別，執行 ALTER INDEX 陳述式。請確定這個使用者對於重建索引的資料表擁有 ALTER 權限。這些範例示範如何重建整個資料行存放區索引或如何重建單一資料分割。在大型資料表上，比較適合一次重建單一資料分割的索引。
 
-Alternatively, instead of rebuilding the index, you could copy the table to a new table using [CTAS][].  Which way is best? For large volumes of data, [CTAS][] is usually faster than [ALTER INDEX][]. For smaller volumes of data, [ALTER INDEX][] is easier to use and won't require you to swap out the table.  See **Rebuilding indexes with CTAS and partition switching** below for more details on how to rebuild indexes with CTAS.
+或者，您可以使用 [CTAS][] 將資料表複製到新的資料表，而非重建索引。哪一種方式最好？ 針對大量的資料，[CTAS][] 的速度通常比 [ALTER INDEX][] 來得快。針對較小量的資料，[ALTER INDEX][] 較為容易使用，您不需要交換出資料表。如需有關如何使用 CTAS 重建索引的詳細資訊，請參閱**使用 CTAS 和分割切換重建索引**。
 
 ```sql
 -- Rebuild the entire clustered index
@@ -258,15 +257,15 @@ ALTER INDEX ALL ON [dbo].[FactInternetSales] REBUILD Partition = 5 WITH (DATA_CO
 ALTER INDEX ALL ON [dbo].[FactInternetSales] REBUILD Partition = 5 WITH (DATA_COMPRESSION = COLUMNSTORE)
 ```
 
-Rebuilding an index in SQL Data Warehouse is an offline operation.  For more information about rebuilding indexes, see the ALTER INDEX REBUILD section in [Columnstore Indexes Defragmentation][] and the syntax topic [ALTER INDEX][].
+在 SQL 資料倉儲中重建索引是一項離線作業。如需重建索引的詳細資訊，請參閱[資料行存放區索引重組][]中的＜ALTER INDEX REBUILD＞一節和語法主題 [ALTER INDEX][]。
  
-### <a name="step-3:-verify-clustered-columnstore-segment-quality-has-improved"></a>Step 3: Verify clustered columnstore segment quality has improved
-Rerun the query which identified table with poor segment quality and verify segment quality has improved.  If segment quality did not improve, it could be that the rows in your table are extra wide.  Consider using a higher resource class or DWU when rebuilding your indexes.
+### 步驟 3︰確認已改善叢集資料行存放區區段品質
+請重新執行已識別區段品質不佳之資料表的查詢，並驗證區段品質是否已改善。如果區段品質並未改善，可能是您的資料表中的資料列過寬。請考慮在重建索引時使用較高的資源類別或 DWU。
 
  
-## <a name="rebuilding-indexes-with-ctas-and-partition-switching"></a>Rebuilding indexes with CTAS and partition switching
+## 使用 CTAS 和分割切換重建索引
 
-This example uses [CTAS][] and partition switching to rebuild a table partition. 
+這個範例會使用 [CTAS][] 和分割切換來重建資料表分割區。
 
 ```sql
 -- Step 1: Select the partition of data and write it out to a new table using CTAS
@@ -306,38 +305,41 @@ ALTER TABLE [dbo].[FactInternetSales] SWITCH PARTITION 2 TO  [dbo].[FactInternet
 ALTER TABLE [dbo].[FactInternetSales_20000101_20010101] SWITCH PARTITION 2 TO  [dbo].[FactInternetSales] PARTITION 2;
 ```
 
-For more details about re-creating partitions using `CTAS`, see the [Partition][] article.
+如需使用 `CTAS` 重新建立資料分割的更多詳細資料，請參閱[分割區][]一文。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-To learn more, see the articles on [Table Overview][Overview], [Table Data Types][Data Types], [Distributing a Table][Distribute],  [Partitioning a Table][Partition], [Maintaining Table Statistics][Statistics] and [Temporary Tables][Temporary].  To learn more about best practices, see [SQL Data Warehouse Best Practices][].
+若要深入了解，請參閱[資料表概觀][Overview]、[資料表資料類型][Data Types]、[散發資料表][Distribute]、[分割資料][Partition]表、[維護資料表統計資料][Statistics]及[暫存資料表][Temporary]等文章。若要深入了解最佳做法，請參閱 [SQL Data 資料倉儲最佳做法][]。
 
 <!--Image references-->
 
 <!--Article references-->
 [Overview]: ./sql-data-warehouse-tables-overview.md
+[概觀]: ./sql-data-warehouse-tables-overview.md
 [Data Types]: ./sql-data-warehouse-tables-data-types.md
+[資料類型]: ./sql-data-warehouse-tables-data-types.md
 [Distribute]: ./sql-data-warehouse-tables-distribute.md
+[散發]: ./sql-data-warehouse-tables-distribute.md
 [Index]: ./sql-data-warehouse-tables-index.md
 [Partition]: ./sql-data-warehouse-tables-partition.md
+[分割區]: ./sql-data-warehouse-tables-partition.md
+[資料分割]: ./sql-data-warehouse-tables-partition.md
 [Statistics]: ./sql-data-warehouse-tables-statistics.md
+[統計資料]: ./sql-data-warehouse-tables-statistics.md
 [Temporary]: ./sql-data-warehouse-tables-temporary.md
+[暫存]: ./sql-data-warehouse-tables-temporary.md
 [Concurrency]: ./sql-data-warehouse-develop-concurrency.md
 [CTAS]: ./sql-data-warehouse-develop-ctas.md
-[SQL Data Warehouse Best Practices]: ./sql-data-warehouse-best-practices.md
+[SQL Data 資料倉儲最佳做法]: ./sql-data-warehouse-best-practices.md
 
 <!--MSDN references-->
 [ALTER INDEX]: https://msdn.microsoft.com/library/ms188388.aspx
-[heap]: https://msdn.microsoft.com/library/hh213609.aspx
-[clustered indexes and nonclustered indexes]: https://msdn.microsoft.com/library/ms190457.aspx
-[create table syntax]: https://msdn.microsoft.com/library/mt203953.aspx
-[Columnstore Indexes Defragmentation]: https://msdn.microsoft.com/library/dn935013.aspx#Anchor_1
-[clustered columnstore indexes]: https://msdn.microsoft.com/library/gg492088.aspx
+[堆積]: https://msdn.microsoft.com/library/hh213609.aspx
+[叢集索引和非叢集索引]: https://msdn.microsoft.com/library/ms190457.aspx
+[建立資料表語法]: https://msdn.microsoft.com/library/mt203953.aspx
+[資料行存放區索引重組]: https://msdn.microsoft.com/library/dn935013.aspx#Anchor_1
+[叢集資料行存放區索引]: https://msdn.microsoft.com/library/gg492088.aspx
 
 <!--Other Web references-->
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

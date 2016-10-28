@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Resource Manager template for storage | Microsoft Azure"
-   description="Shows the Resource Manager schema for deploying storage accounts through a template."
+   pageTitle="儲存體的資源管理員範本 | Microsoft Azure"
+   description="說明可透過範本部署儲存體帳戶的資源管理員結構描述。"
    services="azure-resource-manager,storage"
    documentationCenter="na"
    authors="tfitzmac"
@@ -16,14 +16,13 @@
    ms.date="04/05/2016"
    ms.author="tomfitz"/>
 
+# 儲存體帳戶範本結構描述
 
-# <a name="storage-account-template-schema"></a>Storage account template schema
+建立儲存體帳戶。
 
-Creates a storage account.
+## 結構描述格式
 
-## <a name="schema-format"></a>Schema format
-
-To create a storage account, add the following schema to the resources section of your template.
+若要建立儲存體帳戶，在範本的資源區段中新增下列結構描述。
 
     {
         "type": "Microsoft.Storage/storageAccounts",
@@ -32,33 +31,33 @@ To create a storage account, add the following schema to the resources section o
         "location": string,
         "properties": 
         {
-            "accountType": string
+        	"accountType": string
         }
     }
 
-## <a name="values"></a>Values
+## 值
 
-The following tables describe the values you need to set in the schema.
+下表描述您在結構描述中必須設定的值。
 
-| Name | Value |
+| 名稱 | 值 |
 | ---- | ---- |
-| type | Enum<br />Required<br />**Microsoft.Storage/storageAccounts**<br /><br />The resource type to create. |
-| apiVersion | Enum<br />Required<br />**2015-06-15** or **2015-05-01-preview**<br /><br />The API version to use for creating the resource. | 
-| name | String<br />Required<br />Between 3 and 24 characters, only numbers and lower-case letters.<br /><br />The name of the storage account to create. The name must be unique across all of Azure. Consider using the [uniqueString](resource-group-template-functions.md#uniquestring) function with your naming convention as shown in the example below. |
-| location | String<br />Required<br />A region that supports storage accounts. To determine valid regions, see [supported regions](resource-manager-supported-services.md#supported-regions).<br /><br />The region to host the storage account. |
-| properties | Object<br />Required<br />[properties object](#properties)<br /><br />An object that specifies the type of storage account to create. |
+| 類型 | 例舉<br />必要<br />**Microsoft.Storage/storageAccounts**<br /><br />要建立的資源類型。 |
+| apiVersion | 例舉<br />必要<br />**2015-06-15** 或 **2015-05-01-preview**<br /><br />要用來建立資源的應用程式開發介面 (API) 版本。 | 
+| 名稱 | 字串<br />必要<br />介於 3 到 24 個字元，而且只能使用數字和小寫字母。<br /><br />要建立的儲存體帳戶名稱。此名稱在整個 Azure 中必須是唯一的。請考慮使用 [uniqueString](resource-group-template-functions.md#uniquestring) 函式搭配您的命名慣例，如以面範例所示。 |
+| location | 字串<br />必要<br />支援儲存體帳戶的區域。若要判斷有效的區域，請參閱[支援的區域](resource-manager-supported-services.md#supported-regions)。<br /><br />要裝載儲存體帳戶的區域。 |
+| 屬性 | 物件<br />必要<br />[properties 物件](#properties)<br /><br />指定要建立之儲存體帳戶類型的物件。 |
 
 <a id="properties" />
-### <a name="properties-object"></a>properties object
+### 屬性物件
 
-| Name | Value |
+| 名稱 | 值 |
 | ---- | ---- | 
-| accountType | String<br />Required<br />**Standard_LRS**, **Standard_ZRS**, **Standard_GRS**, **Standard_RAGRS**, or **Premium_LRS**<br /><br />The type of storage account. The permitted values correspond to Standard Locally Redundant, Standard Zone Redundant, Standard Geo-Redundant, Standard Read-Access Geo-Redundant, and Premium Locally Redundant. For information about these account types, see [Azure Storage replication](./storage/storage-redundancy.md ). |
+| accountType | 字串<br />必要<br />**Standard\_LRS**、**Standard\_ZRS**、**Standard\_GRS**、**Standard\_RAGRS** 或 **Premium\_LRS**<br /><br />儲存體帳戶的類型。允許的值分別對應至標準本地備援、標準區域備援、標準異地備援、標準讀取存取異地備援、高階本地備援。如需這些帳戶類型的詳細資訊，請參閱 [Azure 儲存體複寫](./storage/storage-redundancy.md)。 |
 
-    
-## <a name="examples"></a>Examples
+	
+## 範例
 
-The following example deploys a Standard Locally Redundant storage account with a unique name based on the resource group id.
+下列範例使用依據資源群組識別碼而命名的唯一名稱來部署標準本機備援儲存體帳戶。
 
     {
         "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
@@ -72,34 +71,30 @@ The following example deploys a Standard Locally Redundant storage account with 
                 "name": "[concat('storage', uniqueString(resourceGroup().id))]",
                 "location": "[resourceGroup().location]",
                 "properties": 
-            {
+        	{
                     "accountType": "Standard_LRS"
-            }
+        	}
             }
         ],
         "outputs": {}
     }
 
-## <a name="quickstart-templates"></a>Quickstart templates
+## 快速入門範本
 
-There are many quickstart templates that include a storage account. The following templates illustrate some common scenarios:
+有許多包含儲存體帳戶的快速入門範本。下列範本說明一些常見案例：
 
-- [Create a Standard Storage Account](https://azure.microsoft.com/documentation/templates/101-storage-account-create)
-- [Simple deployment of an Windows VM](https://azure.microsoft.com/documentation/templates/101-vm-simple-windows)
-- [Simple deployment of an Linux VM](https://azure.microsoft.com/documentation/templates/101-vm-simple-linux)
-- [Create a CDN Profile, a CDN Endpoint with a Storage Account as origin](https://azure.microsoft.com/documentation/templates/201-cdn-with-storage-account)
-- [Create a High Availabilty SharePoint Farm with 9 VMs using the Powershell DSC Extension](https://azure.microsoft.com/documentation/templates/sharepoint-server-farm-ha)
-- [Simple deployment of a 5 Node secure Service Fabric Cluster with WAD enabled](https://azure.microsoft.com/documentation/templates/service-fabric-secure-cluster-5-node-1-nodetype-wad)
-- [Create a Virtual Machine from a Windows Image with 4 Empty Data Disks](https://azure.microsoft.com/documentation/templates/101-vm-multiple-data-disk)
-
-
-## <a name="next-steps"></a>Next steps
-
-- For general information about storage, see [Introduction to Microsoft Azure Storage](./storage/storage-introduction.md).
-- For example templates that use a new storage account with a Virtual Machine, see [Deploy a simple Linux VM](https://azure.microsoft.com/documentation/templates/101-simple-linux-vm/) or [Deploy a simple Windows VM](https://azure.microsoft.com/documentation/templates/101-simple-windows-vm/).
+- [建立標準儲存體帳戶](https://azure.microsoft.com/documentation/templates/101-storage-account-create)
+- [簡單部署 Windows VM](https://azure.microsoft.com/documentation/templates/101-vm-simple-windows)
+- [簡單部署 Linux VM](https://azure.microsoft.com/documentation/templates/101-vm-simple-linux)
+- [以儲存體帳戶做為原點建立 CDN 設定檔和 CDN 端點](https://azure.microsoft.com/documentation/templates/201-cdn-with-storage-account)
+- [使用 Powershell DSC 延伸模組建立具有 9 個 VM 的高可用性 SharePoint 伺服器陣列](https://azure.microsoft.com/documentation/templates/sharepoint-server-farm-ha)
+- [簡單部署 5 節點安全 Service Fabric 叢集 (已啟用 WAD)](https://azure.microsoft.com/documentation/templates/service-fabric-secure-cluster-5-node-1-nodetype-wad)
+- [從具有 4 個空資料磁碟的 Windows 映像建立虛擬機器](https://azure.microsoft.com/documentation/templates/101-vm-multiple-data-disk)
 
 
+## 後續步驟
 
-<!--HONumber=Oct16_HO2-->
+- 如需儲存體的詳細資訊，請參閱 [Microsoft Azure 儲存體簡介](./storage/storage-introduction.md)。
+- 如需搭配使用新儲存體帳戶與虛擬機器的範例範本，請參閱[部署簡單的 Linux VM](https://azure.microsoft.com/documentation/templates/101-simple-linux-vm/) 或 [部署簡單的 Windows VM](https://azure.microsoft.com/documentation/templates/101-simple-windows-vm/)。
 
-
+<!---HONumber=AcomDC_0406_2016-->

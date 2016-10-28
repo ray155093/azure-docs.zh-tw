@@ -1,75 +1,46 @@
 <properties
-    pageTitle="Azure Governmenmt documentation | Microsoft Azure"
-    description="This provides a comparison of features and guidance for private connectivity to e Government"
-    services="Azure-Government"
-    cloud="gov" 
-    documentationCenter=""
-    authors="ryansoc"
-    manager="zakramer"
-    editor=""/>
+	pageTitle="Azure Government 文件 | Microsoft Azure"
+	description="這會提供與 Azure Government 之私人連線的功能比較和指引"
+	services="Azure-Government"
+	cloud="gov" 
+	documentationCenter=""
+	authors="ryansoc"
+	manager="zakramer"
+	editor=""/>
 
 <tags
-    ms.service="multiple"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.tgt_pltfrm="na"
-    ms.workload="azure-government"
-    ms.date="09/28/2016"
-    ms.author="ryansoc"/>
+	ms.service="multiple"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.tgt_pltfrm="na"
+	ms.workload="azure-government"
+	ms.date="08/25/2016"
+	ms.author="ryansoc"/>
 
+#  Azure Government 網路
 
-#  <a name="azure-government-networking"></a>Azure Government Networking
+##  ExpressRoute (私人連線)
 
-##  <a name="expressroute-(private-connectivity)"></a>ExpressRoute (Private Connectivity)
+有兩個基本服務會提供連往 Azure Government 的私人網路連線：VPN (一般組織為網站間) 和 ExpressRoute。
 
-ExpressRoute is generally available in Azure Government. For more information (including partners and peering locations), see the <a href="https://azure.microsoft.com/en-us/documentation/services/expressroute/"> ExpressRoute public documentation </a>.
+Azure ExpressRoute 可用來在 Azure Government 資料中心之間、內部部署基礎結構或共置環境中建立私人連線。ExpressRoute 連線不經過公用網際網路，相較於一般網際網路連線更為可靠、速度更快且延遲更低。在某些情況下，使用 ExpressRoute 連線在內部部署系統與 Azure 之間傳輸資料，可以發揮巨大的成本效益。
 
-###  <a name="variations"></a>Variations
+透過 ExpressRoute，您在 ExpressRoute 位置上就能連線到 Azure (例如 Exchange 提供者設備)，或可以從現有的 WAN 網路直接連線到 Azure (例如網路服務提供者所提供的多協定標號交換 (MPLS) VPN)。
 
-ExpressRoute is generally available (GA) in Azure Government. 
+![替代文字](./media/azure-government-capability-private-connectivity-options.PNG) ![替代文字](./media/government-capability-expressroute.PNG)
 
-- Government customers connect to a physically isolated capacity over a dedicated Azure Government (Gov)  ExpressRoute (ER) connection
+若要讓網絡服務支援 Azure Government 客戶應用程式和解決方案，強烈建議實作 ExpressRoute (私人連線) 以連線到 Azure Government。如果使用 VPN 連線，請考量下列事項︰
 
-- Azure Gov provides Increased availability & durability by leveraging multiple region pairs located a minimum of 500 miles apart 
+• 客戶應連絡其授權官員/機構以判斷是否需要私人連線或其他安全連線機制，以及找出任何要考慮的額外限制。
 
-- By default all Azure Gov ER connectivity is configured active-active redundant with support for bursting and delivers up to 10G circuit capacity (smallest is 50MB)
+• 客戶應決定是否要強制讓網站間 VPN 路由經過私人連線區域。
 
-- Azure Gov ER locations provide optimized pathways (shortest hops, low latency, high performance, etc.) for customers and Azure Gov geo-redundant regions
+• 客戶應透過授權的私人連線存取提供者取得 MPLS 線路或 VPN。
 
-- The Azure Gov ER private connection does not utilize, traverse, or depend on the Internet
+所有使用私人連線架構的客戶都應該驗證是否已針對客戶與 Azure Government 之閘道網路/網際網路 (GN/I) 邊緣路由器分界點的連線建立並維護適當實作。同樣地，您的組織必須在內部部署環境與 Azure Government 的閘道網路/客戶 (GN/C) 邊緣路由器分界點之間建立網路連線。
 
-- Azure Gov physical and logical infrastructure is physically dedicated and separated, and access is restricted to U.S. persons
+ExpressRoute 已在 Azure Government 中正式推出。如需詳細資訊 (包括合作夥伴和對等互連位置)，請參閱 <a href="https://azure.microsoft.com/documentation/services/expressroute/">ExpressRoute 公開文件</a>。
 
-- Microsoft owns and operates all fiber infrastructure between Azure Gov Regions and Azure Gov ER Meet-Me locations
+如需補充資訊和更新，請訂閱 <a href="https://blogs.msdn.microsoft.com/azuregov/">Microsoft Azure Government 部落格。</a>
 
-- Azure Gov ER provides connectivity to Microsoft Azure, O365, and CRM cloud services
-
-### <a name="considerations"></a>Considerations
-
-There are two basic services that provide private network connectivity into Azure Government: VPN (site-to-site for a typical organization) and ExpressRoute.
-
-Azure ExpressRoute is used to create private connections between Azure Government datacenters, and your on-premise infrastructure, or in a colocation environment. ExpressRoute connections do not go over the public Internet—they offer more reliability, faster speeds, and lower latencies than typical Internet connections. In some cases, using ExpressRoute connections to transfer data between on premise systems and Azure yields significant cost benefits.   
-
-With ExpressRoute, you establish connections to Azure at an ExpressRoute location (such as an Exchange provider facility), or you directly connect to Azure from your existing WAN network (such as a multiprotocol label switching (MPLS) VPN, supplied by a network service provider).
-
-![alt text](./media/azure-government-capability-private-connectivity-options.PNG)  ![alt text](./media/government-capability-expressroute.PNG)  
-
-For network services to support Azure Government customer applications and solutions, it is strongly recommended that ExpressRoute (private connectivity) is implemented to connect to Azure Government. If VPN connections are used, the following should be considered:
-
-- Customers should contact their authorizing official/agency to determine whether private connectivity or other secure connection mechanism is required and to identify any additional restrictions to consider.
-
-- Customers should decide whether to mandate that the site-to-site VPN is routed through a private connectivity zone.
-
-- Customers should obtain either an MPLS circuit or VPN with a licensed private connectivity access provider.
-
-All customers who utilize a private connectivity architecture should validate that an appropriate implementation is established and maintained for the customer connection to the Gateway Network/Internet (GN/I) edge router demarcation point for Azure Government. Similarly, your organization must establish network connectivity between your on-premise environment and Gateway Network/Customer (GN/C) edge router demarcation point for Azure Government.
-
-## <a name="next-steps"></a>Next Steps
-
-For supplemental information and updates please subscribe to the <a href="https://blogs.msdn.microsoft.com/azuregov/">Microsoft Azure Government Blog. </a>
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0831_2016-->

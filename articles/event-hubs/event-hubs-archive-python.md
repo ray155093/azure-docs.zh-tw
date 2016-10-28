@@ -1,201 +1,196 @@
 <properties
-    pageTitle="Azure Event Hubs Archive walkthrough| Microsoft Azure"
-    description="Sample that uses the Azure Python SDK to demonstrate using the Event Hubs Archive feature."
-    services="event-hubs"
-    documentationCenter=""
-    authors="djrosanova"
-    manager="timlt"
-    editor=""/>
+	pageTitle="Azure 事件中樞封存逐步解說 | Microsoft Azure"
+	description="此範例使用 Azure Python SDK 來示範如何使用事件中樞封存功能。"
+	services="event-hubs"
+	documentationCenter=""
+	authors="djrosanova"
+	manager="timlt"
+	editor=""/>
 
 <tags
-    ms.service="event-hubs"
-    ms.workload="na"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/13/2016"
-    ms.author="darosa;sethm"/>
+	ms.service="event-hubs"
+	ms.workload="na"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/13/2016"
+	ms.author="darosa;sethm"/>
 
+# 事件中樞封存逐步解說︰Python
 
-# <a name="event-hubs-archive-walkthrough:-python"></a>Event Hubs Archive walkthrough: Python
+事件中樞封存是事件中樞的新功能，可讓您自動將事件中樞內的串流資料傳遞到您所選擇的 Azure Blob 儲存體帳戶。這可讓您輕鬆地對即時串流資料執行批次處理。本文說明如何搭配使用事件中樞封存與 Python。如需事件中樞封存的詳細資訊，請參閱[概觀文章](event-hubs-archive-overview.md)。
 
-Event Hubs Archive is a new feature of Event Hubs that allows you to automatically deliver the stream data in your Event Hub to an Azure Blob Storage account of your choice. This makes it easy to perform batch processing on real-time streaming data. This article describes how to use Event Hubs Archive with Python. For more information about Event Hubs Archive, see the [overview article](event-hubs-archive-overview.md).
+此範例使用 Azure Python SDK 來示範如何使用封存功能。sender.py 會以 JSON 格式將模擬的環境遙測傳送至事件中樞。事件中樞會設定為使用封存功能將此資料批次寫入至 Blob 儲存體。archivereader.py 接著會讀取這些 Blob、為每個裝置建立附加檔案，並將資料寫入至 .csv 檔案。
 
-This sample uses the Azure Python SDK to demonstrate using the Archive feature. The sender.py sends simulated environmental telemetry to Event Hubs in JSON format. The Event Hub is configured to use the Archive feature to write this data to blob storage in batches. The archivereader.py then reads these blobs and creates an append file per device and writes the data into .csv files.
+將會完成的工作
 
-What will be accomplished
+1.  使用 Azure 入口網站建立 Azure Blob 儲存體帳戶和其中所含的 Blob 容器
 
-1.  Create an Azure Blob Storage account and a blob container within it, using the Azure portal
+2.  使用 Azure 入口網站建立事件中樞命名空間
 
-2.  Create an Event Hub namespace, using the Azure portal
+3.  使用 Azure 入口網站建立啟用了封存功能的事件中樞
 
-3.  Create an Event Hub with the Archive feature enabled, using the Azure portal
+4.  使用 Python 指令碼將資料傳送至事件中樞
 
-4.  Send data to the Event Hub with a Python script
+5.  使用另一個 Python 指令碼讀取封存的檔案並加以處理
 
-5.  Read the files from the archive and process them with another Python script
-
-Prerequisites
+必要條件
 
 1.  Python 2.7.x
 
-2.  An Azure subscription
+2.  Azure 訂用帳戶
 
 [AZURE.INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
-## <a name="create-an-azure-storage-account"></a>Create an Azure Storage account
+## 建立 Azure 儲存體帳戶
 
-1.  Log on to the [Azure portal][].
+1.  登入 [Azure 入口網站][]。
 
-2.  In the left navigation pane of the portal, click New, then click Data + Storage, and then click Storage Account.
+2.  在入口網站的左方瀏覽窗格中，依序按一下 [新增]、[資料 + 儲存體] 及 [儲存體帳戶]。
 
-3.  Complete the fields in the storage account blade and click **Create**.
+3.  完成儲存體帳戶刀鋒視窗中的欄位，然後按一下 [建立]。
 
     ![][1]
 
-4.  After you see the **Deployments Succeeded** message, click on the new storage account and in the **Essentials** blade click **Blobs**. When the **Blob service** blade opens, click **+ Container** at the top. Name the container **archive**, then close the **Blob service** blade.
+4.  在看到**部署成功**訊息之後，按一下新的儲存體帳戶，並在 [基本功能] 刀鋒視窗中按一下 [Blob]。當 [Blob 服務] 刀鋒視窗開啟時，按一下頂端的 [+ 容器]。將容器命名為**封存**，然後關閉 [Blob 服務] 刀鋒視窗。
 
-5.  Click **Access keys** in the left blade and copy the name of the storage account and the value of **key1**. Save these values to Notepad or some other temporary location.
+5.  按一下左側刀鋒視窗的 [存取金鑰]，然後複製儲存體帳戶名稱和 **key1** 的值。將這些值儲存到記事本或一些其他暫存位置。
 
 [AZURE.INCLUDE [event-hubs-create-event-hub](../../includes/event-hubs-create-event-hub.md)]
 
-## <a name="create-a-python-script-to-send-events-to-your-event-hub"></a>Create a Python script to send events to your Event Hub
+## 建立 Python 指令碼以將事件傳送至事件中樞
 
-1.  Open your favorite Python editor, such as [Visual Studio Code][].
+1.  開啟您慣用的 Python 編輯器，例如 [Visual Studio 程式碼][]。
 
-2.  Create a script called **sender.py**. This script will send 200 events to your Event Hub. They are simple environmental readings sent in JSON.
+2.  建立稱為 **sender.py** 的指令碼。此指令碼會傳送 200 個事件至事件中樞。這些事件是以 JSON 格式傳送的簡單環境數據。
 
-3.  Paste the following code into sender.py:
+3.  將下列程式碼貼到 sender.py：
 
-    ```
-    import uuid
-    import datetime
-    import random
-    import json
-    from azure.servicebus import ServiceBusService
-    
-    sbs = ServiceBusService(service_namespace='INSERT YOUR NAMESPACE NAME', shared_access_key_name='RootManageSharedAccessKey', shared_access_key_value='INSERT YOUR KEY')
-    devices = []
-    for x in range(0, 10):
-        devices.append(str(uuid.uuid4()))
-    
-    for y in range(0,20):
-        for dev in devices:
-            reading = {'id': dev, 'timestamp': str(datetime.datetime.utcnow()), 'uv': random.random(), 'temperature': random.randint(70, 100), 'humidity': random.randint(70, 100)}
-            s = json.dumps(reading)
-            sbs.send\_event('myhub', s)
-        print y
-    ```
-4.  Update the preceding code to use your namespace name and key values that you obtained when you created the Event Hubs namespace.
+	```
+	import uuid
+	import datetime
+	import random
+	import json
+	from azure.servicebus import ServiceBusService
+	
+	sbs = ServiceBusService(service_namespace='INSERT YOUR NAMESPACE NAME', shared_access_key_name='RootManageSharedAccessKey', shared_access_key_value='INSERT YOUR KEY')
+	devices = []
+	for x in range(0, 10):
+	    devices.append(str(uuid.uuid4()))
+	
+	for y in range(0,20):
+	    for dev in devices:
+	        reading = {'id': dev, 'timestamp': str(datetime.datetime.utcnow()), 'uv': random.random(), 'temperature': random.randint(70, 100), 'humidity': random.randint(70, 100)}
+	        s = json.dumps(reading)
+	        sbs.send\_event('myhub', s)
+	    print y
+	```
+4.  更新上述程式碼，以使用您在建立事件中樞命名空間時取得的命名空間名稱和金鑰值。
 
-## <a name="create-a-python-script-to-read-your-archive-files"></a>Create a Python script to read your archive files
+## 建立 Python 指令碼來讀取封存檔案
 
-1.  Fill out the blade and click **Create**.
+1.  填寫刀鋒視窗，然後按一下 [建立]。
 
-2.  Create a script called **archivereader.py**. This script will read the archive files and create a file per device to write the data only for that device.
+2.  建立稱為 **archivereader.py** 的指令碼。此指令碼會讀取封存檔案，並為每個裝置建立檔案以便只寫入該裝置的資料。
 
-3.  Paste the following code into archivereader.py:
+3.  將下列程式碼貼到 archivereader.py：
 
-    ```
+	```
     import os
-    import string
-    import json
-    import avro.schema
-    from avro.datafile import DataFileReader, DataFileWriter
-    from avro.io import DatumReader, DatumWriter
-    from azure.storage.blob import BlockBlobService
-    
-    def processBlob(filename):
-        reader = DataFileReader(open(filename, 'rb'), DatumReader())
-        dict = {}
-        for reading in reader:
-            parsed\_json = json.loads(reading["Body"])
-            if not 'id' in parsed\_json:
-                return
-            if not dict.has\_key(parsed\_json['id']):
-            list = []
-            dict[parsed\_json['id']] = list
-        else:
-            list = dict[parsed\_json['id']]
-            list.append(parsed\_json)
-        reader.close()
-        for device in dict.keys():
-            deviceFile = open(device + '.csv', "a")
-            for r in dict[device]:
-                deviceFile.write(", ".join([str(r[x]) for x in r.keys()])+'\\n')
+	import string
+	import json
+	import avro.schema
+	from avro.datafile import DataFileReader, DataFileWriter
+	from avro.io import DatumReader, DatumWriter
+	from azure.storage.blob import BlockBlobService
+	
+	def processBlob(filename):
+	    reader = DataFileReader(open(filename, 'rb'), DatumReader())
+	    dict = {}
+	    for reading in reader:
+	        parsed\_json = json.loads(reading["Body"])
+	        if not 'id' in parsed\_json:
+	            return
+	        if not dict.has\_key(parsed\_json['id']):
+	        list = []
+	        dict[parsed\_json['id']] = list
+	    else:
+	        list = dict[parsed\_json['id']]
+	        list.append(parsed\_json)
+	    reader.close()
+	    for device in dict.keys():
+	        deviceFile = open(device + '.csv', "a")
+	        for r in dict[device]:
+	            deviceFile.write(", ".join([str(r[x]) for x in r.keys()])+'\\n')
 
-    def startProcessing(accountName, key, container):
-        print 'Processor started using path: ' + os.getcwd()
-        block\_blob\_service = BlockBlobService(account\_name=accountName, account\_key=key)
-        generator = block\_blob\_service.list\_blobs(container)
-        for blob in generator:
-            if blob.properties.content\_length != 0:
-                print('Downloaded a non empty blob: ' + blob.name)
-                cleanName = string.replace(blob.name, '/', '\_')
-                block\_blob\_service.get\_blob\_to\_path(container, blob.name, cleanName)
-                processBlob(cleanName)
-                os.remove(cleanName)
-            block\_blob\_service.delete\_blob(container, blob.name)
-    startProcessing('YOUR STORAGE ACCOUNT NAME', 'YOUR KEY', 'archive')
+	def startProcessing(accountName, key, container):
+	    print 'Processor started using path: ' + os.getcwd()
+	    block\_blob\_service = BlockBlobService(account\_name=accountName, account\_key=key)
+	    generator = block\_blob\_service.list\_blobs(container)
+	    for blob in generator:
+	        if blob.properties.content\_length != 0:
+	            print('Downloaded a non empty blob: ' + blob.name)
+	            cleanName = string.replace(blob.name, '/', '\_')
+	            block\_blob\_service.get\_blob\_to\_path(container, blob.name, cleanName)
+	            processBlob(cleanName)
+	            os.remove(cleanName)
+	        block\_blob\_service.delete\_blob(container, blob.name)
+	startProcessing('YOUR STORAGE ACCOUNT NAME', 'YOUR KEY', 'archive')
     ```
 
-4.  Be sure to paste the appropriate values for your storage account name and key in the call to `startProcessing`.
+4.  請務必在 `startProcessing` 的呼叫中貼上儲存體帳戶名稱和金鑰的適當值。
 
-## <a name="run-the-scripts"></a>Run the scripts
+## 執行指令碼
 
-1.  Open a command prompt that has Python in its path, and then run these commands to install Python prerequisite packages:
+1.  開啟在其路徑中具有 Python 的命令提示字元，並執行下列命令來安裝 Python 必要條件封裝︰
 
-    ```
+	```
     pip install azure-storage
-    pip install azure-servicebus
-    pip install avro
+	pip install azure-servicebus
+	pip install avro
     ```
   
-    If you have an earlier version of either azure-storage or azure you may need to use the **--upgrade** option
+    如果您有舊版的 Azure 儲存體或 Azure，您可能需要使用 **--upgrade** 選項
 
-    You might also need to run the following (not necessary on most systems):
+    您可能也需要執行下列命令 (在大部分系統上並不需要)︰
 
     ```
     pip install cryptography
     ```
 
-2.  Change your directory to wherever you saved sender.py and archivereader.py, and run this command:
+2.  將目錄變更為儲存了 sender.py 和 archivereader.py 的任何位置，並執行此命令︰
 
     ```
     start python sender.py
     ```
     
-    This starts a new Python process to run the sender.
+    這會啟動新的 Python 程序來執行傳送器。
 
-3. Now wait a few minutes for the archive to run. Then type the following command into your original command window:
+3. 現在等候封存執行幾分鐘的時間。然後在原始命令視窗中輸入下列命令︰
 
     ```
     python archivereader.py
     ```
 
-This archive processor uses the local directory to download all the blobs from the storage account/container. It will process any that are not empty and write the results as .csv files into the local directory.
+此封存處理器會使用本機目錄從儲存體帳戶/容器下載所有 Blob。它會處理任何非空白的 Blob，並將結果以 .csv 檔案的形式寫入到本機目錄。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-You can learn more about Event Hubs by visiting the following links:
+您可以造訪下列連結以深入了解事件中樞︰
 
-- [Overview of Event Hubs Archive][]
-- A complete [sample application that uses Event Hubs][].
-- The [Scale out Event Processing with Event Hubs][] sample.
-- [Event Hubs overview][]
+- [事件中樞封存概觀][]
+- [使用事件中樞的完整範例應用程式][]。
+- [使用「事件中樞」相應放大事件處理][]範例。
+- [事件中心概觀][]
  
 
-[Azure portal]: https://portal.azure.com/
-[Overview of Event Hubs Archive]: event-hubs-archive-overview.md
+[Azure 入口網站]: https://portal.azure.com/
+[事件中樞封存概觀]: event-hubs-archive-overview.md
 [1]: ./media/event-hubs-archive-python/event-hubs-python1.png
-[About Azure storage accounts]: https://azure.microsoft.com/en-us/documentation/articles/storage-create-storage-account/
-[Visual Studio Code]: https://code.visualstudio.com/
-[Event Hubs overview]: event-hubs-overview.md
-[sample application that uses Event Hubs]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-286fd097
-[Scale out Event Processing with Event Hubs]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-45f43fc3
+[About Azure storage accounts]: https://azure.microsoft.com/documentation/articles/storage-create-storage-account/
+[Visual Studio 程式碼]: https://code.visualstudio.com/
+[事件中心概觀]: event-hubs-overview.md
+[使用事件中樞的完整範例應用程式]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-286fd097
+[使用「事件中樞」相應放大事件處理]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-45f43fc3
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

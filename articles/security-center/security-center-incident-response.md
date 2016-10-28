@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Leveraging Azure Security Center for Incident Response | Microsoft Azure"
-   description="This document explains how to leverage Azure Security Center for an Incident Response scenario."
+   pageTitle="善用 Azure 資訊安全中心進行事件回應 | Microsoft Azure"
+   description="本文件說明如何運用 Azure 資訊安全中心執行事件回應案例。"
    services="security-center"
    documentationCenter="na"
    authors="YuriDio"
@@ -16,97 +16,89 @@
    ms.date="09/20/2016"
    ms.author="yurid"/>
 
+# 善用 Azure 資訊安全中心進行事件回應
+許多組織都了解如何只在遭受攻擊之後回應安全性事件。為了降低成本和損害，一定要在攻擊發生前備妥事件回應計劃。Azure 資訊安全中心可用於不同階段的事件回應。
 
-# <a name="leveraging-azure-security-center-for-incident-response"></a>Leveraging Azure Security Center for Incident Response
-Many organizations learn how to respond to security incidents only after suffering an attack. In order to reduce costs and damage, it’s important to have an incident response plan in place before an attack takes place. Azure Security Center can be leveraged in different stages of an incident response.
+## 事件回應
 
-## <a name="incident-response"></a>Incident response
+有效的計劃取決於三項核心功能：保護、偵測及回應威脅的功能。保護是有關防止事件、偵測是有關及早識別威脅，而回應是有關遏止攻擊者及還原系統以緩和缺口的影響。
 
-An effective plan depends on three core capabilities: the abilities to protect, detect and respond to threats. Protection is about preventing incidents, detection is about identifying threats early and response is about evicting the attacker and restoring systems to mitigate the impacts of a breach. 
+本文將使用[雲端中的 Microsoft Azure 安全性回應](https://gallery.technet.microsoft.com/Azure-Security-Response-in-dd18c678)一文中的安全性事件回應階段，如下圖所示︰
 
-This article will use the security incident response stages from the  [Microsoft Azure Security Response in the Cloud](https://gallery.technet.microsoft.com/Azure-Security-Response-in-dd18c678) article as shown in the following diagram:
+![事件回應生命週期](./media/security-center-incident-response/security-center-incident-response-fig1.png)
 
-![Incident response lifecycle](./media/security-center-incident-response/security-center-incident-response-fig1.png)
+可在偵測、評估和診斷階段利用資訊安全中心。若要深入了解每個階段。以下是如何在三個初始事件回應階段善用資訊安全中心的範例︰
 
-Security Center can be leveraged during the Detection, Assessment and Diagnose stages. To learn more about each of these stages. Here an example of how Security Center can be useful during the three initial incident response stages:
+- **偵測**︰事件調查的首次指示
+	- 範例：在 [資訊安全中心] 儀表板中引發高優先順序安全性警示的初始驗證。
+- **評估**︰執行初始評估，以取得可疑活動的詳細資訊。
+	- 範例︰取得有關安全性警示的詳細資訊。
+- **診斷**︰進行技術性調查，找出圍堵、緩和及因應策略
+	- 範例︰遵循資訊安全中心在該特定安全性警示中所描述的補救步驟。
 
-- **Detect**: first indication of an event investigation
-    - Example: initial verification that a high priority security alert was raised in the Security Center dashboard.
-- **Assess**: perform the initial assessment to obtain more information about the suspicious activity.
-    - Example: obtaining more information about the security alert.
-- **Diagnose**: conduct a technical investigation, identify containment, mitigation, and workaround strategies
-    - Example: follow the remediation steps described by Security Center in that particular security alert.
+接下來的案例示範如何在安全性事件的偵測、評估和回應階段善用資訊安全中心。在資訊安全中心內，[安全性事件](security-center-incident.md)是符合[狙殺鏈](https://blogs.technet.microsoft.com/office365security/addressing-your-cxos-top-five-cloud-security-concerns/)模式之資源的所有警示彙總。事件會出現在 [[安全性警示](security-center-managing-and-responding-alerts.md)] 圖格和刀鋒視窗中。事件會顯示相關警示的清單，以讓您取得所引發的每個警示的詳細資訊。資訊安全中心也會呈現獨立安全性警示，這類警示也可用來追蹤可疑的活動。
 
-The scenario that follows shows you how to leverage Security Center during the detection, assessment, and diagnose/respond stages of a security incident.  In Security Center, a [security incident](security-center-incident.md) is an aggregation of all alerts for a resource that align with [kill chain](https://blogs.technet.microsoft.com/office365security/addressing-your-cxos-top-five-cloud-security-concerns/) patterns. Incidents appear in the [Security Alerts](security-center-managing-and-responding-alerts.md) tile and blade. An Incident will reveal the list of related alerts, which enables you to obtain more information about each occurrence. Security Center also present standalone security alerts that can also be used to track down a suspicious activity.
+## 案例
 
-## <a name="scenario"></a>Scenario
+Contoso 最近將一些內部部署資源移轉至 Azure，包括一些以虛擬機器為基礎的商務營運工作負載和 SQL Database。Contoso 的核心電腦安全性事件回應小組 (CSIRT) 目前因為欠缺與其目前事件回應工具整合的安全性情報，而無法順利調查安全性問題。缺乏此種整合會在偵測期間帶來問題 (太多誤判)，也會在評估和診斷階段造成問題。在此移轉過程中，他們決定選擇加入資訊安全中心，以協助他們解決這個問題。
 
-Contoso recently migrated some of their on-premises resources to Azure, including some virtual machine-based line of business workloads and SQL databases. Currently Contoso's Core Computer Security Incident Response Team (CSIRT) has a problem to investigate security issues, due the lack of security intelligence integrated with their current incident response tools. This lack of integration introduces a problem during the detection (too many false positives) and during the assessment and diagnose stages. As part of this migration, they decided to opt in for Security Center to help them address this problem. 
+此移轉的第一個階段會在所有資源上架並解決資訊安全中心的所有安全性建議後完成。Contoso CSIRT 是處理電腦安全性事件的焦點。該小組是由一群負責處理任何安全性事件的人員所組成。小組成員已清楚定義職責，以確保涵蓋所有的回應區域。
 
-The first phase of this migration finished after onboarding all resources, and addressing all security recommendations from Security Center. Contoso CSIRT is the focal point for dealing with computer security incidents. The team consists of a group of people with responsibilities for dealing with any security incident. The team members have clearly defined duties to ensure that no area of response is left uncovered. 
+基於此案例的目的，我們會將重點放在屬於 Contoso CSIRT 的下列人物的角色︰
 
-For the purpose of this scenario, we are going to focus on the roles of the following personas that are part of Contoso CSIRT:
+![事件回應生命週期](./media/security-center-incident-response/security-center-incident-response-fig2.png)
 
-![Incident response lifecycle](./media/security-center-incident-response/security-center-incident-response-fig2.png)
+Judy 隸屬安全維運單位，她的職責包括︰
+- 隨時監視及回應安全性威脅
+- 視需要提升至雲端工作負載擁有者或安全性分析師
 
-Judy is in security operations and her responsibilities include:
-- Monitoring and responding to security threats around-the-clock
-- Escalating to the cloud workloads owner or security analyst as needed
+Sam 是安全性分析師，他的職責包括︰
+- 調查攻擊
+- 修復警示
+- 與工作負載擁有者一起來判斷和套用緩和措施
 
-Sam is a security analyst and his responsibilities include:
-- Investigating attacks
-- Remediating alerts 
-- Working with workload owners to determine and apply mitigations
+如您所見，Judy 和 Sam 的責任不同，而他們必須一起共用從資訊安全中心取得的資訊。
 
-As you can see, Judy and Sam have different responsibilities, and they must work together sharing information obtained from Security Center. 
+## 建議的解決方案
 
-## <a name="recommended-solution"></a>Recommended solution
+由於 Judy 和 Sam 有不同的角色，他們將會使用資訊安全中心的不同區域來取得日常活動的相關資訊。Judy 會在其日常監視中使用 [安全性警示]。
 
-Since Judy and Sam have different roles, they will be using different areas of Security Center to obtain relevant information for their daily activities. Judy will use Security Alerts as part of her daily monitoring. 
+![安全性警示](./media/security-center-incident-response/security-center-incident-response-fig3.png)
 
-![Security Alert](./media/security-center-incident-response/security-center-incident-response-fig3.png)
-
-Judy will use Security Alerts during the Detection and Assessment stages. Once Judy finishes the initial assessment she may escalate the issue to Sam if additional investigation is required. At this point Sam will have use the information provided by Security Center, sometimes in conjunction with other data sources, to move on to the Diagnose stage.
-
-
-## <a name="how-to-implement-this-solution"></a>How to implement this solution 
-
-To see how you would use Azure Security Center in an incident response scenario, we’ll follow Judy’s steps in the Detect and Assess stages, and then see what Sam does to diagnose the issue. 
-
-### <a name="detection-and-assessment-incident-response-stages"></a>Detection and assessment incident response stages 
-
-Judy signed in to Azure portal and is in the Security Center console. As part of her daily monitoring activities she started reviewing high priority security alerts by performing the following steps:
-
-1. Click the **Security Alerts** tile and access **Security Alerts** blade.
-    ![Security Alert blade](./media/security-center-incident-response/security-center-incident-response-fig4.png)
-
-    > [AZURE.NOTE] For the purpose of this scenario, Judy is going to perform an assessment on the Malicious SQL activity alert, as seen in the figure above. 
-2. Click **Malicious SQL activity** alert and review the attacked resources in the **Malicious SQL Activity** blade:  ![Incident details](./media/security-center-incident-response/security-center-incident-response-fig5.png)
-    
-    In this blade Judy can take notes regarding the attacked resources, how many times did this attack happen and when it was detected.
-3. Click the **attacked resource** to obtain more information about this attack. 
-
-After reading the description, Judy is convinced that this is not a false positive and that she should escalate this case to Sam.
-
-### <a name="diagnose-incident-response-stage"></a>Diagnose incident response stage 
-
-Sam receives the case from Judy and started reviewing the remediation steps suggested by Security Center.
-
-![Incident response lifecycle](./media/security-center-incident-response/security-center-incident-response-fig6.png)
-
-### <a name="additional-resources"></a>Additional resources
-
-The incident response team can also take advantage of [Security Center Power BI](security-center-powerbi.md) capability to see different types of reports that can help them during further investigation to visualize, analyze, and filter recommendations and security alerts. For companies that use their Security Information and Event Management (SIEM) solution during the investigation process, they can also [integrate Security Center with their solution](security-center-integrating-alerts-with-log-integration.md). Azure audit logs and VM security events can also be integrated using the [Azure log integration tool](https://blogs.msdn.microsoft.com/azuresecurity/2016/07/21/microsoft-azure-log-integration-preview/). This info can be used in conjunction with the information provided by Security Center to investigate an attack.
+Judy 會在偵測和評估階段使用 [安全性警示]。Judy 完成初步評估後，如果需要進一步調查，她可能會向 Sam 呈報問題。此時 Sam 會使用資訊安全中心所提供的資訊，有時搭配其他資料來源，以移至診斷階段。
 
 
-## <a name="conclusion"></a>Conclusion
+## 如何實作此解決方案 
 
-Assembling a team before an incident occurs is very important to your organization and will positively influence how incidents are handle. Having the right tools to monitor resources can help this team to take accurate steps to remediate a security incident. Security Center [detection capabilities](security-center-detection-capabilities.md) will assist IT to quickly respond to security incidents and remediate security issues.
+為了查看您如何在事件回應案例中使用 Azure 資訊安全中心，我們將遵循 Judy 在偵測和評估階段中的步驟，並查看 Sam 如何診斷問題。
+
+### 偵測和評估事件回應階段 
+
+Judy 登入了 Azure 入口網站，目前位於資訊安全中心主控台。在她的日常監視活動中，她會執行下列步驟，以便開始檢閱高優先順序的安全性警示︰
+
+1. 按一下 [安全性警示] 圖格，然後存取 [安全性警示] 刀鋒視窗。![安全性警示刀鋒視窗](./media/security-center-incident-response/security-center-incident-response-fig4.png)
+
+	> [AZURE.NOTE] 基於此案例的目的，Judy 即將對 [惡意 SQL 活動] 警示執行評估，如上圖所示。
+2. 按一下 [惡意 SQL 活動] 警示並在 [惡意 SQL 活動] 刀鋒視窗中檢閱受攻擊的資源︰![事件詳細資料](./media/security-center-incident-response/security-center-incident-response-fig5.png)
+	
+	在此刀鋒視窗中，Judy 可以做一些筆記：受攻擊資源的相關資訊、此攻擊的發生次數，以及其偵測時間。
+3. 按一下 [受到攻擊的資源] 以取得有關此攻擊的詳細資訊。
+
+讀取說明之後，Judy 確信這不是誤判，她就應該向 Sam 呈報此案例。
+
+### 診斷事件回應階段 
+
+Sam 會收到來自 Judy 的案例，開始檢閱資訊安全中心所建議的修復步驟。
+
+![事件回應生命週期](./media/security-center-incident-response/security-center-incident-response-fig6.png)
+
+### 其他資源
+
+事件回應小組也可以利用[資訊安全中心 Power BI](security-center-powerbi.md) 功能來查看不同類型的報告，而這些報告可在進一步調查期間協助他們視覺化、分析和篩選相關建議和安全性警示。對於在調查過程中使用其安全性資訊和事件管理 (SIEM) 解決方案的公司而言，他們也可以[整合資訊安全中心與其解決方案](security-center-integrating-alerts-with-log-integration.md)。也可以使用 [Azure 記錄整合工具](https://blogs.msdn.microsoft.com/azuresecurity/2016/07/21/microsoft-azure-log-integration-preview/)來整合 Azure 稽核記錄檔和 VM 安全性事件。這項資訊可搭配資訊安全中心提供的資訊來調查攻擊。
 
 
+## 結論
 
+事件發生前召集小組對組織而言非常重要，可正面影響事件的處理方式。擁有可監視資源的適當工具，有助於這個小組採取正確的步驟來修復安全性事件。資訊安全中心[偵測功能](security-center-detection-capabilities.md)將協助 IT 部門快速地回應安全性事件並修復安全性問題。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

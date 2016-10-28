@@ -1,306 +1,305 @@
 <properties
-    pageTitle="HBase tutorial: Get started with Linux-based HBase clusters in Hadoop | Microsoft Azure"
-    description="Follow this HBase tutorial to get started using Apache HBase with Hadoop in HDInsight. Create tables from the HBase shell and query them using Hive."
-    keywords="apache hbase,hbase,hbase shell,hbase tutorial"
-    services="hdinsight"
-    documentationCenter=""
-    authors="mumian"
-    manager="jhubbard"
-    editor="cgronlun"/>
+	pageTitle="HBase 教學課程：開始在 Hadoop 中使用以 Linux 為基礎的 HBase 叢集 | Microsoft Azure"
+	description="遵循本 HBase 教學課程，開始在 HDInsight 中搭配 Hadoop 使用 Apache HBase。使用 Hive 從 HBase Shell 建立資料表並加以查詢。"
+	keywords="apache hbase,hbase,hbase shell,hbase 教學課程"
+	services="hdinsight"
+	documentationCenter=""
+	authors="mumian"
+	manager="jhubbard"
+	editor="cgronlun"/>
 
 <tags
-    ms.service="hdinsight"
-    ms.workload="big-data"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="get-started-article"
-    ms.date="07/25/2016"
-    ms.author="jgao"/>
+	ms.service="hdinsight"
+	ms.workload="big-data"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="get-started-article"
+	ms.date="07/25/2016"
+	ms.author="jgao"/>
 
 
 
+# HBase 教學課程：開始在 HDInsight 中搭配以 Linux 為基礎的 Hadoop 使用 Apache HBase 
 
-# <a name="hbase-tutorial:-get-started-using-apache-hbase-with-linux-based-hadoop-in-hdinsight"></a>HBase tutorial: Get started using Apache HBase with Linux-based Hadoop in HDInsight 
+[AZURE.INCLUDE [HBase 選取器](../../includes/hdinsight-hbase-selector.md)]
 
-[AZURE.INCLUDE [hbase-selector](../../includes/hdinsight-hbase-selector.md)]
+了解如何使用 Hive 在 HDInsight 中建立 HBase 叢集、建立 HBase 資料表，以及查詢資料表。如需一般 HBase 資訊，請參閱 [HDInsight HBase 概觀][hdinsight-hbase-overview]。
 
-Learn how to create an HBase cluster in HDInsight, create HBase tables, and query tables by using Hive. For general HBase information, see [HDInsight HBase overview][hdinsight-hbase-overview].
-
-The information in this document is specific to Linux-based HDInsight clusters. For information on Windows-based clusters, use the tab selector on the top of the page to switch.
+本文件的資訊是以 Linux 為基礎的 HDInsight 叢集的特定資訊。如需 windows 叢集相關資訊，請使用頁面頂端的索引標籤選取器進行切換。
 
 [AZURE.INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
-##<a name="prerequisites"></a>Prerequisites
+##必要條件
 
-Before you begin this HBase tutorial, you must have the following:
+開始進行本 HBase 教學課程之前，您必須具備下列條件：
 
-- **An Azure subscription**. See [Get Azure free trial](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).
-- [Secure Shell(SSH)](hdinsight-hadoop-linux-use-ssh-unix.md). 
-- [curl](http://curl.haxx.se/download.html).
+- **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
+- [安全殼層 (SSH)](hdinsight-hadoop-linux-use-ssh-unix.md)。
+- [cURL](http://curl.haxx.se/download.html)。
 
-### <a name="access-control-requirements"></a>Access control requirements
+### 存取控制需求
 
 [AZURE.INCLUDE [access-control](../../includes/hdinsight-access-control-requirements.md)]
 
-## <a name="create-hbase-cluster"></a>Create HBase cluster
+## 建立 HBase 叢集
 
-The following procedure use an Azure Resource Manager template to create an HBase cluster. To understand the parameters used in the procedure and other cluster creation methods, see [Create Linux-based Hadoop clusters in HDInsight](hdinsight-hadoop-provision-linux-clusters.md).
+下列程序使用 Azure Resource Manager 範本來建立 HBase 叢集。若要了解此程序與其他叢集建立方法中使用的參數，請參閱[在 HDInsight 中建立以 Linux 為基礎的 Hadoop 叢集](hdinsight-hadoop-provision-linux-clusters.md)。
 
-1. Click the following image to open the template in the Azure Portal. The template is located in a public blob container. 
+1. 按一下以下影像，在 Azure 入口網站中開啟範本。此範本位於公用 Blob 容器中。
 
     <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-hbase-cluster-in-hdinsight.json" target="_blank"><img src="https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/en-us/documentation/articles/hdinsight-hbase-tutorial-get-started-linux/20160201111850/deploy-to-azure.png" alt="Deploy to Azure"></a>
 
-2. From the **Parameters** blade, enter the following:
+2. 從 [參數] 刀鋒視窗，輸入下列項目：
 
-    - **ClusterName**: Enter a name for the HBase cluster that you will create.
-    - **Cluster login name and password**: The default login name is **admin**.
-    - **SSH username and password**: The default username is **sshuser**.  You can rename it.
+    - **ClusterName**：輸入您將建立的 HBase 叢集名稱。
+    - **叢集登入名稱和密碼**：預設登入名稱是 **admin**。
+    - **SSH 使用者名稱和密碼**：預設使用者名稱是 **sshuser**。您可以將它重新命名。
      
-    Other parameters are optional.  
+    其他參數都是選擇性的。
     
-    Each cluster has an Azure Blob storage account dependency. After you delete a cluster, the data retains in the storage account. The cluster default storage account name is the cluster name with "store" appended. It is hardcoded in the template variables section.
+    每個叢集都具備 Azure Blob 儲存體帳戶相依性。刪除叢集之後，資料會保留在儲存體帳戶中。叢集預設儲存體帳戶名稱是附加 "store" 的叢集名稱。它會硬式編碼在範本變數區段中。
         
-3. Click **OK** to save the parameters.
-4. From the **Custom deployment** blade, click **Resource group** dropdown box, and then click **New** to create a new resource group.  The resource group is a container that groups the cluster, the dependent storage account and other linked resource.
-5. Click **Legal terms**, and then click **Create**.
-6. Click **Create**. It takes about around 20 minutes to create a cluster.
+3. 按一下 [確定] 儲存參數。
+4. 在 [自訂部署] 刀鋒視窗中，按一下 [資源群組] 下拉式方塊，然後按一下 [新增] 來建立新的資源群組。資源群組是聚集叢集、相依儲存體帳戶和其他已連結資源的容器。
+5. 按一下 [法律條款]，然後按一下 [建立]。
+6. 按一下 [建立]。大約需要 20 分鐘的時間來建立叢集。
 
 
->[AZURE.NOTE] After an HBase cluster is deleted, you can create another HBase cluster by using the same default blob container. The new cluster will pick up the HBase tables you created in the original cluster. To avoid inconsistencies, we recommend that you disable the HBase tables before you delete the cluster.
+>[AZURE.NOTE] 刪除 HBase 叢集之後，您可以使用相同的預設 Blob 容器建立另一個 HBase 叢集。這個新叢集將選取您在原始叢集中建立的 HBase 資料表。為了避免不一致，建議您在刪除叢集之前，先停用 HBase 資料表。
 
-## <a name="create-tables-and-insert-data"></a>Create tables and insert data
+## 建立資料表和插入資料
 
-You can use SSH to connect to HBase clusters and use HBase Shell to create HBase tables, insert data and query data. For information on using SSH from Linux, Unix, OS X and Windows, see [Use SSH with Linux-based Hadoop on HDInsight from Linux, Unix, or OS X](hdinsight-hadoop-linux-use-ssh-unix.md) and [Use SSH with Linux-based Hadoop on HDInsight from Windows](hdinsight-hadoop-linux-use-ssh-windows.md).
+您可以使用 SSH 來連接到 HBase 叢集，並使用 HBase Shell 來建立 HBase 資料表、插入及查詢資料。如需從 Linux、Unix、OS X 和 Windows 使用 SSH 的詳細資訊，請參閱[從 Linux、Unix 或 OS X 在 HDInsight 上搭配以 Linux 為基礎的 Hadoop 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md) 和[從 Windows 在 HDInsight 上搭配以 Linux 為基礎的 Hadoop 使用 SSH](hdinsight-hadoop-linux-use-ssh-windows.md)。
  
 
-For most people, data appears in the tabular format:
+對大多數人而言，資料會以表格形式出現：
 
-![hdinsight hbase tabular data][img-hbase-sample-data-tabular]
+![hdinsight hbase 表格式資料][img-hbase-sample-data-tabular]
 
-In HBase which is an implementation of BigTable, the same data looks like:
+在實作 BigTable 的 HBase 中，相同的資料看起來像：
 
-![hdinsight hbase bigtable data][img-hbase-sample-data-bigtable]
+![hdinsight hbase bigtable 資料][img-hbase-sample-data-bigtable]
 
-It will make more sense after you finish the next procedure.  
-
-
-**To use the HBase shell**
-
-1. From SSH, run the following command:
-
-        hbase shell
-
-4. Create an HBase with two column families:
-
-        create 'Contacts', 'Personal', 'Office'
-        list
-5. Insert some data:
-
-        put 'Contacts', '1000', 'Personal:Name', 'John Dole'
-        put 'Contacts', '1000', 'Personal:Phone', '1-425-000-0001'
-        put 'Contacts', '1000', 'Office:Phone', '1-425-000-0002'
-        put 'Contacts', '1000', 'Office:Address', '1111 San Gabriel Dr.'
-        scan 'Contacts'
-
-    ![hdinsight hadoop hbase shell][img-hbase-shell]
-
-6. Get a single row
-
-        get 'Contacts', '1000'
-
-    You will see the same results as using the scan command because there is only one row.
-
-    For more information about the HBase table schema, see [Introduction to HBase Schema Design][hbase-schema]. For more HBase commands, see [Apache HBase reference guide][hbase-quick-start].
-
-6. Exit the shell
-
-        exit
+下一個程序完成後，您對此會有更深的理解。
 
 
+**使用 HBase Shell**
 
-**To bulk load data into the contacts HBase table**
+1. 從 SSH，執行下列命令：
 
-HBase includes several methods of loading data into tables.  For more information, see [Bulk loading](http://hbase.apache.org/book.html#arch.bulk.load).
+		hbase shell
 
+4. 使用兩個資料行系列建立 HBase：
 
-A sample data file has been uploaded to a public blob container, *wasbs://hbasecontacts@hditutorialdata.blob.core.windows.net/contacts.txt*.  The content of the data file is:
+		create 'Contacts', 'Personal', 'Office'
+		list
+5. 插入一些資料：
 
-    8396    Calvin Raji     230-555-0191    230-555-0191    5415 San Gabriel Dr.
-    16600   Karen Wu        646-555-0113    230-555-0192    9265 La Paz
-    4324    Karl Xie        508-555-0163    230-555-0193    4912 La Vuelta
-    16891   Jonn Jackson    674-555-0110    230-555-0194    40 Ellis St.
-    3273    Miguel Miller   397-555-0155    230-555-0195    6696 Anchor Drive
-    3588    Osa Agbonile    592-555-0152    230-555-0196    1873 Lion Circle
-    10272   Julia Lee       870-555-0110    230-555-0197    3148 Rose Street
-    4868    Jose Hayes      599-555-0171    230-555-0198    793 Crawford Street
-    4761    Caleb Alexander 670-555-0141    230-555-0199    4775 Kentucky Dr.
-    16443   Terry Chander   998-555-0171    230-555-0200    771 Northridge Drive
+		put 'Contacts', '1000', 'Personal:Name', 'John Dole'
+		put 'Contacts', '1000', 'Personal:Phone', '1-425-000-0001'
+		put 'Contacts', '1000', 'Office:Phone', '1-425-000-0002'
+		put 'Contacts', '1000', 'Office:Address', '1111 San Gabriel Dr.'
+		scan 'Contacts'
 
-You can create a text file and upload the file to your own storage account if you want. For the instructions, see [Upload data for Hadoop jobs in HDInsight][hdinsight-upload-data].
+	![hdinsight hadoop hbase shell][img-hbase-shell]
 
-> [AZURE.NOTE] This procedure uses the Contacts HBase table you have created in the last procedure.
+6. 取得單一資料列
 
-1. From SSH, run the following command to transform the data file to StoreFiles and store at a relative path specified by Dimporttsv.bulk.output:.  If you are in HBase Shell, use the exit command to exit.
+		get 'Contacts', '1000'
 
-        hbase org.apache.hadoop.hbase.mapreduce.ImportTsv -Dimporttsv.columns="HBASE_ROW_KEY,Personal:Name, Personal:Phone, Office:Phone, Office:Address" -Dimporttsv.bulk.output="/example/data/storeDataFileOutput" Contacts wasbs://hbasecontacts@hditutorialdata.blob.core.windows.net/contacts.txt
+	您會看到與使用掃描命令相同的結果，因為只有一個資料列。
 
-4. Run the following command to upload the data from  /example/data/storeDataFileOutput to the HBase table:
+	如需 HBase 資料表結構描述的詳細資訊，請參閱 [HBase 結構描述設計簡介][hbase-schema]。如需其他 HBase 命令，請參閱 [Apache HBase 參考指南][hbase-quick-start]。
 
-        hbase org.apache.hadoop.hbase.mapreduce.LoadIncrementalHFiles /example/data/storeDataFileOutput Contacts
+6. 結束 Shell
 
-5. You can open the HBase shell, and use the scan command to list the table content.
+		exit
 
 
 
-## <a name="use-hive-to-query-hbase"></a>Use Hive to query HBase
+**將資料大量載入連絡人 HBase 資料表中**
 
-You can query data in HBase tables by using Hive. This section creates a Hive table that maps to the HBase table and uses it to query the data in your HBase table.
+HBase 包含數個將資料載入資料表的方法。如需詳細資訊，請參閱[大量載入](http://hbase.apache.org/book.html#arch.bulk.load)。
 
-1. Open **PuTTY**, and connect to the cluster.  See the instructions in the previous procedure.
-2. Open the Hive shell.
 
-       hive
-3. Run the following HiveQL script  to create an Hive Table that maps to the HBase table. Make sure that you have created the sample table referenced earlier in this tutorial by using the HBase shell before you run this statement.
+範例資料檔案已上傳到公用 Blob 容器：*wasbs://hbasecontacts@hditutorialdata.blob.core.windows.net/contacts.txt*。資料檔案的內容：
 
-        CREATE EXTERNAL TABLE hbasecontacts(rowkey STRING, name STRING, homephone STRING, officephone STRING, officeaddress STRING)
-        STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
-        WITH SERDEPROPERTIES ('hbase.columns.mapping' = ':key,Personal:Name,Personal:Phone,Office:Phone,Office:Address')
-        TBLPROPERTIES ('hbase.table.name' = 'Contacts');
+	8396	Calvin Raji		230-555-0191	230-555-0191	5415 San Gabriel Dr.
+	16600	Karen Wu		646-555-0113	230-555-0192	9265 La Paz
+	4324	Karl Xie		508-555-0163	230-555-0193	4912 La Vuelta
+	16891	Jonn Jackson	674-555-0110	230-555-0194	40 Ellis St.
+	3273	Miguel Miller	397-555-0155	230-555-0195	6696 Anchor Drive
+	3588	Osa Agbonile	592-555-0152	230-555-0196	1873 Lion Circle
+	10272	Julia Lee		870-555-0110	230-555-0197	3148 Rose Street
+	4868	Jose Hayes		599-555-0171	230-555-0198	793 Crawford Street
+	4761	Caleb Alexander	670-555-0141	230-555-0199	4775 Kentucky Dr.
+	16443	Terry Chander	998-555-0171	230-555-0200	771 Northridge Drive
 
-2. Run the following HiveQL script . The Hive query queries the data in the HBase table:
+您可以建立文字檔，並將檔案上載至自己的儲存體帳戶 (如果您要的話)。如需指示，請參閱[在 HDInsight 中將 Hadoop 工作的資料上傳][hdinsight-upload-data]。
 
-        SELECT count(*) FROM hbasecontacts;
+> [AZURE.NOTE] 此程序會使用您在上一個程序中建立的連絡人 HBase 資料表。
 
-## <a name="use-hbase-rest-apis-using-curl"></a>Use HBase REST APIs using Curl
+1. 從 SSH，執行下列命令，將資料檔案轉換成 StoreFiles 並存放在 Dimporttsv.bulk.output 所指定的相對路徑：如果您在 HBase Shell 中，請使用 exit 命令來結束。
 
-> [AZURE.NOTE] When using Curl or any other REST communication with WebHCat, you must authenticate the requests by providing the user name and password for the HDInsight cluster administrator. You must also use the cluster name as part of the Uniform Resource Identifier (URI) used to send the requests to the server.
+		hbase org.apache.hadoop.hbase.mapreduce.ImportTsv -Dimporttsv.columns="HBASE_ROW_KEY,Personal:Name, Personal:Phone, Office:Phone, Office:Address" -Dimporttsv.bulk.output="/example/data/storeDataFileOutput" Contacts wasbs://hbasecontacts@hditutorialdata.blob.core.windows.net/contacts.txt
+
+4. 執行下列命令，將資料從 /example/data/storeDataFileOutput 上傳至 HBase 資料表：
+
+		hbase org.apache.hadoop.hbase.mapreduce.LoadIncrementalHFiles /example/data/storeDataFileOutput Contacts
+
+5. 您可以開啟 HBase Shell，並使用掃描命令來列出資料表內容。
+
+
+
+## 使用 Hive 查詢 HBase
+
+您可以使用 Hive 查詢 HBase 資料表中的資料。本節將建立對應至 HBase 資料表的 Hive 資料表，並用以查詢您 HBase 資料表中的資料。
+
+1. 開啟 **PuTTY**，然後連線到叢集。請參閱先前程序中的指示。
+2. 開啟 Hive 殼層。
+
+	   hive
+3. 執行下列 HiveQL 指令碼，建立對應到 HBase 資料表的 Hive 資料表。在執行此陳述式前，請確定您已使用 HBase Shell 建立參考先前本教學課程的範例資料表。
+
+		CREATE EXTERNAL TABLE hbasecontacts(rowkey STRING, name STRING, homephone STRING, officephone STRING, officeaddress STRING)
+		STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
+		WITH SERDEPROPERTIES ('hbase.columns.mapping' = ':key,Personal:Name,Personal:Phone,Office:Phone,Office:Address')
+		TBLPROPERTIES ('hbase.table.name' = 'Contacts');
+
+2. 執行下列 HiveQL 指令碼。Hive 查詢會查詢 HBase 資料表中的資料：
+
+     	SELECT count(*) FROM hbasecontacts;
+
+## 使用 Curl 來使用 HBase REST API
+
+> [AZURE.NOTE] 在使用 Curl 或與 WebHCat 進行任何其他 REST 通訊時，您必須提供 HDInsight 叢集系統管理員的使用者名稱和密碼來驗證要求。您也必須在用來將要求傳送至伺服器的統一資源識別項 (URI) 中使用叢集名稱。
 >
-> For the commands in this section, replace **USERNAME** with the user to authenticate to the cluster, and replace **PASSWORD** with the password for the user account. Replace **CLUSTERNAME** with the name of your cluster.
+> 在本節的所有命令中，將 **USERNAME** 取代為用來驗證叢集的使用者，並將 **PASSWORD** 取代為使用者帳戶的密碼。將 **CLUSTERNAME** 取代為您叢集的名稱。
 >
-> The REST API is secured via [basic authentication](http://en.wikipedia.org/wiki/Basic_access_authentication). You should always make requests by using Secure HTTP (HTTPS) to help ensure that your credentials are securely sent to the server.
+> 透過[基本驗證](http://en.wikipedia.org/wiki/Basic_access_authentication)來保護 REST API 的安全。您應該一律使用安全 HTTP (HTTPS) 提出要求，確保認證安全地傳送至伺服器。
 
-1. From a command line, use the following command to verify that you can connect to your HDInsight cluster:
+1. 從命令列中，使用下列命令來確認您可以連線到 HDInsight 叢集：
 
-        curl -u <UserName>:<Password> \
-        -G https://<ClusterName>.azurehdinsight.net/templeton/v1/status
+		curl -u <UserName>:<Password> \
+		-G https://<ClusterName>.azurehdinsight.net/templeton/v1/status
 
-    You should receive a response similar to the following:
+	您應該會收到如下所示的回應：
 
-        {"status":"ok","version":"v1"}
+		{"status":"ok","version":"v1"}
 
-    The parameters used in this command are as follows:
+	此命令中使用的參數如下：
 
-    * **-u** - The user name and password used to authenticate the request.
-    * **-G** - Indicates that this is a GET request.
+	* **-u** - 用來驗證要求的使用者名稱和密碼。
+	* **-G** - 指出這是 GET 要求。
 
-2. Use the following command to list the existing HBase tables:
+2. 使用下列命令列出現有的 HBase 資料表：
 
-        curl -u <UserName>:<Password> \
-        -G https://<ClusterName>.azurehdinsight.net/hbaserest/
+		curl -u <UserName>:<Password> \
+		-G https://<ClusterName>.azurehdinsight.net/hbaserest/
 
-3. Use the following command to create a new HBase table wit two column families:
+3. 使用下列命令建立含兩個資料欄系列的新 HBase 資料表：
 
-        curl -u <UserName>:<Password> \
-        -X PUT "https://<ClusterName>.azurehdinsight.net/hbaserest/Contacts1/schema" \
-        -H "Accept: application/json" \
-        -H "Content-Type: application/json" \
-        -d "{\"@name\":\"Contact1\",\"ColumnSchema\":[{\"name\":\"Personal\"},{\"name\":\"Office\"}]}" \
-        -v
+		curl -u <UserName>:<Password> \
+		-X PUT "https://<ClusterName>.azurehdinsight.net/hbaserest/Contacts1/schema" \
+		-H "Accept: application/json" \
+		-H "Content-Type: application/json" \
+		-d "{"@name":"Contact1","ColumnSchema":[{"name":"Personal"},{"name":"Office"}]}" \
+		-v
 
-    The schema is provided in the JSon format.
+	結構描述是以 JSON 格式提供。
 
-4. Use the following command to insert some data:
+4. 使用下列命令插入一些資料：
 
-        curl -u <UserName>:<Password> \
-        -X PUT "https://<ClusterName>.azurehdinsight.net/hbaserest/Contacts1/false-row-key" \
-        -H "Accept: application/json" \
-        -H "Content-Type: application/json" \
-        -d "{\"Row\":{\"key\":\"MTAwMA==\",\"Cell\":{\"column\":\"UGVyc29uYWw6TmFtZQ==\", \"$\":\"Sm9obiBEb2xl\"}}}" \
-        -v
+		curl -u <UserName>:<Password> \
+		-X PUT "https://<ClusterName>.azurehdinsight.net/hbaserest/Contacts1/false-row-key" \
+		-H "Accept: application/json" \
+		-H "Content-Type: application/json" \
+		-d "{"Row":{"key":"MTAwMA==","Cell":{"column":"UGVyc29uYWw6TmFtZQ==", "$":"Sm9obiBEb2xl"}}}" \
+		-v
 
-    You must base64 encode the values specified in the -d switch.  In the exmaple:
+	您必須使用 base64 編碼 -d 參數中指定的值。在此範例中︰
 
-    - MTAwMA==: 1000
-    - UGVyc29uYWw6TmFtZQ==: Personal:Name
-    - Sm9obiBEb2xl: John Dole
+	- MTAwMA==: 1000
+	- UGVyc29uYWw6TmFtZQ==: Personal:Name
+	- Sm9obiBEb2xl: John Dole
 
-    [false-row-key](https://hbase.apache.org/apidocs/org/apache/hadoop/hbase/rest/package-summary.html#operation_cell_store_single) allows you to insert multiple (batched) value.
+	[false-row-key](https://hbase.apache.org/apidocs/org/apache/hadoop/hbase/rest/package-summary.html#operation_cell_store_single) 可讓您插入多個 (批次) 值。
 
-5. Use the following command to get a row:
+5. 使用下列命令取得資料列：
 
-        curl -u <UserName>:<Password> \
-        -X GET "https://<ClusterName>.azurehdinsight.net/hbaserest/Contacts1/1000" \
-        -H "Accept: application/json" \
-        -v
+		curl -u <UserName>:<Password> \
+		-X GET "https://<ClusterName>.azurehdinsight.net/hbaserest/Contacts1/1000" \
+		-H "Accept: application/json" \
+		-v
 
-For more information about HBase Rest, see [Apache HBase Reference Guide](https://hbase.apache.org/book.html#_rest).
+如需 HBase Rest 的詳細資訊，請參閱 [Apache HBase 參考指南](https://hbase.apache.org/book.html#_rest)。
 
-## <a name="check-cluster-status"></a>Check cluster status
+## 檢查叢集狀態
 
-HBase in HDInsight ships with a Web UI for monitoring clusters. Using the Web UI, you can request statistics or information about regions.
+HDInsight 中的 HBase 隨附於 Web UI，以供監視叢集。使用 Web UI，您可要求關於區域的統計資料或資訊。
 
-SSH can also be used to tunnel local requests, such as web requests, to the HDInsight cluster. The request will then be routed to the requested resource as if it had originated on the HDInsight cluster head node. For more information, see [Use SSH with Linux-based Hadoop on HDInsight from Windows](hdinsight-hadoop-linux-use-ssh-windows.md#tunnel).
+SSH 也可用來建立通道以將本機要求 (例如 Web 要求) 傳送到 HDInsight 叢集。要求便會路由至要求的資源，彷彿要求是在 HDInsight 叢集前端節點上產生。如需詳細資訊，請參閱[從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md#tunnel)。
 
-**To establish an SSH tunneling session**
+**建立 SSH 通道工作階段**
 
-1. Open **PuTTY**.  
-2. If you provided an SSH key when you created your user account during the creation process, you must perform the following step to select the private key to use when authenticating to the cluster:
+1. 開啟 **PuTTY**。
+2. 如果您在建立期間，於建立使用者帳戶時提供 SSH 金鑰，您就必須執行下列步驟來選取要在驗證叢集時使用的私密金鑰：
 
-    In **Category**, expand **Connection**, expand **SSH**, and select **Auth**. Finally, click **Browse** and select the .ppk file that contains your private key.
+	在 [**類別**] 中，依序展開 [**連接**] 和 [**SSH**]，然後選取 [**驗證**]。最後，按一下 [**瀏覽**]，然後選取內含私密金鑰的 .ppk 檔案。
 
-3. In **Category**, click **Session**.
-4. From the Basic options for your PuTTY session screen, enter the following values:
+3. 在 [**類別**] 中，按一下 [**工作階段**]。
+4. 從您 PuTTY 工作階段螢幕的基本選項，輸入下列值：
 
-    - **Host Name**: the SSH address of your HDInsight server in the Host name (or IP address) field. The SSH address is your cluster name, then **-ssh.azurehdinsight.net**. For example, *mycluster-ssh.azurehdinsight.net*.
-    - **Port**: 22. The ssh port on the primary headnode is 22.  
-5. In the **Category** section to the left of the dialog, expand **Connection**, expand **SSH**, and then click **Tunnels**.
-6. Provide the following information on the Options controlling SSH port forwarding form:
+	- **主機名稱**：請在 [主機名稱] \(或 [IP 位址]) 欄位中，輸入您 HDInsight 伺服器的 SSH 位址。SSH 位址是叢集名稱加上 **-ssh.azurehdinsight.net**。例如，*mycluster-ssh.azurehdinsight.net*。
+	- **連接埠**：22。主要前端節點上的 SSH 連接埠為 22。
+5. 在對話方塊左側的 [類別] 區段中，依序展開 [連線] 和 [SSH]，最後按一下 [通道]。
+6. 在 [控制 SSH 連接埠轉送的選項] 表單中提供下列資訊：
 
-    - **Source port** - The port on the client that you wish to forward. For example, 9876.
-    - **Dynamic** - Enables dynamic SOCKS proxy routing.
-7. Click **Add** to add the settings.
-8. Click **Open** at the bottom of the dialog to open an SSH connection.
-9. When prompted, log in to the server using a SSH account. This will establish an SSH session and enable the tunnel.
+	- **來源連接埠** - 您想要轉送之用戶端上的連接埠。例如 9876。
+	- **動態** - 啟用動態 SOCKS Proxy 路由。
+7. 按一下 [新增] 來新增設定。
+8. 按一下對話方塊底部的 [開啟] 來開啟 SSH 連線。
+9. 出現提示時，使用 SSH 帳戶登入伺服器。這會建立 SSH 工作階段，並啟用通道。
 
-**To find the FQDN of the zookeepers using Ambari**
+**使用 Ambari 尋找 zookeeper 的 FQDN**
 
-1. Browse to https://<ClusterName>.azurehdinsight.net/.
-2. Enter your cluster user account credentials twice.
-3. From the left menu, click **zookeeper**.
-4. Click one of the three **ZooKeeper Server** links from the Summary list.
-5. Copy **Hostname**. For example, zk0-CLUSTERNAME.xxxxxxxxxxxxxxxxxxxx.cx.internal.cloudapp.net.
+1. 瀏覽至 https://<ClusterName>.azurehdinsight.net/。
+2. 輸入您的叢集使用者帳戶認證兩次。
+3. 從左側功能表中，按一下 [zookeeper]。
+4. 從 [摘要] 清單中，按一下三個 **ZooKeeper 伺服器**連結中的一個。
+5. 複製**主機名稱**。例如，zk0-CLUSTERNAME.xxxxxxxxxxxxxxxxxxxx.cx.internal.cloudapp.net。
 
-**To configure a client program (Firefox) and check cluster status**
+**設定用戶端程式 (Firefox) 並檢查叢集狀態**
 
-1. Open Firefox.
-2. Click the **Open Menu** button.
-3. Click **Options**.
-4. Click **Advanced**, click **Network**, and then click **Settings**.
-5. Select **Manual proxy configuration**.
-6. Enter the following values:
+1. 開啟 Firefox。
+2. 按一下 [開啟功能表] 按鈕。
+3. 按一下 [選項]。
+4. 依序按一下 [進階]、[網路] 及 [設定]。
+5. 選取 [手動 Proxy 組態]。
+6. 輸入下列值：
 
-    - **Socks Host**: localhost
-    - **Port**: Use the same port you configured in the Putty SSH tunnelling.  For example, 9876.
-    - **SOCKS v5**: (selected)
-    - **Remote DNS**: (selected)
-7. Click **OK** to save the changes.
-8. Browse to http://&lt;The FQDN of a ZooKeeper>:60010/master-status.
+	- **Socks 主機**：localhost
+	- **Port**：請使用您在 Putty SSH 通道中所設定的連接埠。例如 9876。
+	- **SOCKS v5**：(已選取)
+	- **遠端 DNS**：(已選取)
+7. 按一下 [確定] 儲存變更。
+8. 瀏覽至 ZooKeeper>:60010/master-status 的 http://&lt;The FQDN。
 
-In a high availability cluster, you will find a link to the current active HBase master node that is hosting the Web UI.
+在高可用性叢集中，您會找到目前使用中之 HBase 主要節點 (其正在主控 WebUI) 的連結。
 
-##<a name="delete-the-cluster"></a>Delete the cluster
+##刪除叢集
 
-To avoid inconsistencies, we recommend that you disable the HBase tables before you delete the cluster.
+為了避免不一致，建議您在刪除叢集之前，先停用 HBase 資料表。
 
 [AZURE.INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-In this HBase tutorial for HDInsight, you learned how to create an HBase cluster and how to create tables and view the data in those tables from the HBase shell. You also learned how use a Hive query on data in HBase tables and how to use the HBase C# REST APIs to create an HBase table and retrieve data from the table.
+在 HDInsight 的本 HBase 教學課程中，您已了解如何建立 HBase 叢集，以及如何建立資料表，並從 HBase Shell 檢視這些資料表中的資料。您同時也了解到如何使用 Hive 查詢 HBase 資料表中的資料，以及如何使用 HBase C# REST API 建立 HBase 資料表，並擷取其資料表中的資料。
 
-To learn more, see:
+若要深入了解，請參閱：
 
-- [HDInsight HBase overview][hdinsight-hbase-overview]: HBase is an Apache, open-source, NoSQL database built on Hadoop that provides random access and strong consistency for large amounts of unstructured and semistructured data.
+- [HDInsight HBase 概觀][hdinsight-hbase-overview]：HBase 是建置於 Hadoop 上的 Apache 開放原始碼 NoSQL 資料庫，可針對大量非結構化及半結構化資料，提供隨機存取功能和強大一致性。
 
 
 [hdinsight-manage-portal]: hdinsight-administer-use-management-portal.md
@@ -330,8 +329,4 @@ To learn more, see:
 [img-hbase-sample-data-tabular]: ./media/hdinsight-hbase-tutorial-get-started-linux/hdinsight-hbase-contacts-tabular.png
 [img-hbase-sample-data-bigtable]: ./media/hdinsight-hbase-tutorial-get-started-linux/hdinsight-hbase-contacts-bigtable.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_1005_2016-->

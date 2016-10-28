@@ -1,28 +1,26 @@
 <properties
-    pageTitle="What happened to my ASP.NET 5 project (Visual Studio connected services) | Microsoft Azure Storage"
-    description="Describes what happens after connecting to an Azure storage account in a Visual Studio ASP.NET 5 project using Visual Studio connected services"
-    services="storage"
-    documentationCenter=""
-    authors="TomArcher"
-    manager="douge"
-    editor=""/>
+	pageTitle="我的 ASP.NET 5 專案 (Visual Studio Azure 儲存體連接的服務) 發生什麼狀況 | Microsoft Azure 儲存體"
+	description="說明使用 Visual Studio 已連接服務連接到 Visual Studio ASP.NET 5 專案中的 Azure 儲存體帳戶後，會發生什麼事"
+	services="storage"
+	documentationCenter=""
+	authors="TomArcher"
+	manager="douge"
+	editor=""/>
 
 <tags
-    ms.service="storage"
-    ms.workload="web"
-    ms.tgt_pltfrm="vs-what-happened"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/15/2016"
-    ms.author="tarcher"/>
+	ms.service="storage"
+	ms.workload="web"
+	ms.tgt_pltfrm="vs-what-happened"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/15/2016"
+	ms.author="tarcher"/>
 
+# 我的 ASP.NET 5 專案 (Visual Studio Azure 儲存體連接的服務) 發生什麼狀況？
 
-# <a name="what-happened-to-my-asp.net-5-project-(visual-studio-azure-storage-connected-services)?"></a>What happened to my ASP.NET 5 project (Visual Studio Azure Storage connected services)?
+## 加入參考
 
-## <a name="references-added"></a>References added
-
-The Azure Storage NuGet package was added to your Visual Studio project.  
-This package adds the following .NET references:
+Azure 儲存體 NuGet 封裝已加入至 Visual Studio 專案。這個封裝會加入下列 .NET 參考：
 
 - **Microsoft.Data.Edm**
 - **Microsoft.Data.OData**
@@ -33,15 +31,11 @@ This package adds the following .NET references:
 - **System.Data**
 - **System.Spatial**
 
-Also, the NuGet package **Microsoft.Framework.Configuration.Json** was added.
+另外也加入了 NuGet 封裝 **Microsoft.Framework.Configuration.Json**。
 
-## <a name="connection-string-for-azure-storage-added"></a>Connection string for Azure Storage added
-In the config.json file of your project, an element was created with the selected storage account's connection string and key.
+## 加入 Azure 儲存體的連接字串
+在專案的 config.json 檔案中，已使用所選儲存體帳戶的連接字串和金鑰建立一個元素。
 
-For more information, see [ASP.NET 5](http://www.asp.net/vnext).
+如需詳細資訊，請參閱 [ASP.NET 5](http://www.asp.net/vnext)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

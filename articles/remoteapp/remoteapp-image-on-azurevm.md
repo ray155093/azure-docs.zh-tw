@@ -1,6 +1,6 @@
 <properties
-    pageTitle="Create an Azure RemoteApp image based on an Azure VM | Microsoft Azure"
-    description="Learn how to create an image for Azure RemoteApp by starting with an Azure virtual machine."
+    pageTitle="建立以 Azure VM 為基礎的 Azure RemoteApp 映像 | Microsoft Azure"
+    description="了解如何開始使用 Azure 虛擬機器來建立 Azure RemoteApp 映像。"
     services="remoteapp"
     documentationCenter=""
     authors="lizap"
@@ -17,53 +17,48 @@
 
 
 
-
-# <a name="create-a-azure-remoteapp-image-based-on-an-azure-virtual-machine"></a>Create a Azure RemoteApp image based on an Azure virtual machine
+# 建立以 Azure 虛擬機器為基礎的 Azure RemoteApp 映像
 
 > [AZURE.IMPORTANT]
-> Azure RemoteApp is being discontinued. Read the [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
-You can create Azure RemoteApp images (which hold the apps you share in your collection) from an Azure virtual machine. You could also choose to use a virtual machine image we added to the Azure VM image gallery that meets all the Azure RemoteApp image requirements - you can use that VM image as a starting point for your own VM, if you want. Just look for the "Windows Server Remote Desktop Session Host" image in the library.
+您可以從 Azure 虛擬機器建立 Azure RemoteApp 映像 (其中保存您在集合中共用的應用程式)。您也可以使用我們已新增至 Azure VM 映像資源庫的虛擬機器映像，其符合所有 Azure RemoteApp 映像需求。如果您想要的話，您可以將該 VM 映像做為您自己 VM 的起點使用。只需在映像庫中尋找「Windows Server 遠端桌面工作階段主機」。
 
-There are two steps to create your own image based on an Azure VM - create the image and then upload it from the Azure VM library to Azure RemoteApp.
+根據 Azure VM 建立您的專屬映像共有兩個步驟：建立映像，然後將它從 Azure VM 映像庫上傳至 Azure RemoteApp。
 
-## <a name="create-a-custom-image-based-on-an-azure-vm"></a>Create a custom image based on an Azure VM
+## 建立以 Azure VM 為基礎的自訂映像
 
-Use these steps to create an image based on an Azure VM.
+使用這些步驟來建立以 Azure VM 為基礎的映像。
 
-1. Create an Azure virtual machine. You can use the “Windows Server Remote Desktop Session Host” or the "Windows Server Remote Desktop Session Host with Microsoft Office 365 ProPlus" image from the Azure virtual machine image gallery. This image meets all the Azure RemoteApp template image requirements.
+1. 建立 Azure 虛擬機器。您可以使用「Windows Server 遠端桌面工作階段主機」或來自 Azure 虛擬機器映像庫的「Windows Server 遠端桌面工作階段主機與 Microsoft Office 365 ProPlus」映像。此映像符合所有的 Azure RemoteApp 範本映像需求。
 
-    For details, see [Create a VM running Windows](../virtual-machines/virtual-machines-windows-hero-tutorial.md).
+	如需詳細資訊，請參閱[建立執行 Windows 的 VM](../virtual-machines/virtual-machines-windows-hero-tutorial.md)。
 
-2. Connect to the VM and install and configure the apps that you want to share through RemoteApp. Make sure to perform any additional Windows configurations required by your apps.
+2. 連接至 VM，並安裝和設定您想要透過 RemoteApp 共用的應用程式。請務必執行您應用程式所需的任何其他 Windows 設定。
 
-    For details, see [How to Log on to a Virtual Machine Running Windows Server](../virtual-machines/virtual-machines-windows-classic-connect-logon.md).
+	如需詳細資訊，請參閱[如何登入執行 Windows Server 的虛擬機器](../virtual-machines/virtual-machines-windows-classic-connect-logon.md)。
 
-3. If you are using one of the Windows Server Remote Desktop Session Host images, there is an included validation script that will ensure your VM meets the RemoteApp pre-reqs. To run script, double-click **ValidateRemoteAppImage** on the desktop. Ensure that all errors reported by the script are fixed before proceeding to the next step.
+3. 如果您打算使用 Windows Server 遠端桌面工作階段主機映像之一，它包含了可確保您的 VM 符合 RemoteApp 先決條件的驗證指令碼。若要執行指令碼，請按兩下桌面上的 **ValidateRemoteAppImage**。在繼續進行下一個步驟之前，請確定已修正指令碼所報告的所有錯誤。
 
-4. SYSPREP generalize and capture the image. See [How to Capture a Windows Virtual Machine to Use as a Template](../virtual-machines/virtual-machines-windows-classic-capture-image.md) for instructions.
-
-
-
-## <a name="import-the-image-into-the-azure-remoteapp-image-library"></a>Import the image into the Azure RemoteApp image library
-
-Use these steps to import the new image into Azure RemoteApp:
-
-1. In the **Template Images** tab:
-    - If you have no existing images, click **Upload or Import a Template Image**.
-    - If you have at least one image already, click **+** to add a new image.
-
-2. Select **Import an image from your Virtual Machines** library, and then click **Next**.
-
-3. On the next page, select your custom image from the list and confirm that you followed the steps listed when you created your image. Click **Next**.
-4. Enter a name for the new RemoteApp image and pick the location, then click the checkmark to start the import process.
-
-> [AZURE.NOTE] You can import images from any Azure location supported by Azure Virtual Machines to any Azure location supported by Azure RemoteApp. Depending on the locations the import can take up to 25 minutes.
-
-Now you are ready to create your new collection, either a [cloud](remoteapp-create-cloud-deployment.md) collection or [hybrid](remoteapp-create-hybrid-deployment.md), depending on your needs.
+4. SYSPREP 一般化和擷取映像。如需相關指示，請參閱[如何擷取 Windows 虛擬機器作為範本使用](../virtual-machines/virtual-machines-windows-classic-capture-image.md)。
 
 
 
-<!--HONumber=Oct16_HO2-->
+## 將映像匯入 Azure RemoteApp 映像庫
 
+使用下列步驟將新的映像匯入 Azure RemoteApp：
 
+1. 在 [**範本映像**] 索引標籤中：
+	- 如果您沒有現有的映像，請按一下 [**上傳或匯入範本映像**]。
+	- 如果您已經有一個以上的映像，請按一下 [**+**] 以新增映像。
+
+2. 選取 [**從您的虛擬機器映像庫匯入映像**]，然後按 [**下一步**]。
+
+3. 在下一個頁面上，從清單中選取自訂映像，並確認您已遵循建立映像時的所列步驟進行。按 [下一步]。
+4. 輸入新 RemoteApp 映像的名稱，並挑選一個位置，然後按一下核取記號以開始匯入程序。
+
+> [AZURE.NOTE] 您可以將映像從 Azure 虛擬機器支援的任何 Azure 位置，匯入到 Azure RemoteApp 支援的任何 Azure 位置。視位置而定，匯入可能需要多達 25 分鐘的時間。
+
+現在您已經準備好開始建立新的收藏 ([雲端](remoteapp-create-cloud-deployment.md)收藏或[混合式](remoteapp-create-hybrid-deployment.md))，視您的需求而定。
+
+<!---HONumber=AcomDC_0817_2016-->

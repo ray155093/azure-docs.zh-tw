@@ -1,302 +1,297 @@
 <properties
-    pageTitle="Tutorial: Azure Active Directory integration with Questetra BPM Suite | Microsoft Aure"
-    description="Learn how to configure single sign-on between Azure Active Directory and Questetra BPM Suite."
-    services="active-directory"
-    documentationCenter=""
-    authors="jeevansd"
-    manager="femila"
-    editor=""/>
+	pageTitle="教學課程：Azure Active Directory 與 Questetra BPM Suite 整合 | Microsoft Aure"
+	description="了解如何設定 Azure Active Directory 與 Questetra BPM Suite 之間的單一登入。"
+	services="active-directory"
+	documentationCenter=""
+	authors="jeevansd"
+	manager="femila"
+	editor=""/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/12/2016"
-    ms.author="jeedes"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/12/2016"
+	ms.author="jeedes"/>
 
 
+# 教學課程：Azure Active Directory 與 Questetra BPM Suite 整合
 
-# <a name="tutorial:-azure-active-directory-integration-with-questetra-bpm-suite"></a>Tutorial: Azure Active Directory integration with Questetra BPM Suite
+本教學課程旨在說明如何整合 Questetra BPM Suite 與 Azure Active Directory (Azure AD)。Questetra BPM Suite 與 Azure AD 整合提供下列優點：
 
-The objective of this tutorial is to show you how to integrate Questetra BPM Suite with Azure Active Directory (Azure AD).  
-Integrating Questetra BPM Suite with Azure AD provides you with the following benefits: 
+- 您可以在 Azure AD 中控制可存取 Questetra BPM Suite 的人員。
+- 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Questetra BPM Suite (單一登入)
+- 您可以在 Azure 傳統入口網站中集中管理您的帳戶
 
-- You can control in Azure AD who has access to Questetra BPM Suite 
-- You can enable your users to automatically get signed-on to Questetra BPM Suite (Single Sign-On) with their Azure AD accounts
-- You can manage your accounts in one central location - the Azure classic portal
+若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
 
-If you want to know more details about SaaS app integration with Azure AD, see [What is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).
+## 必要條件 
 
-## <a name="prerequisites"></a>Prerequisites 
+若要設定 Azure AD 與 Questetra BPM Suite 整合，您需要以下項目：
 
-To configure Azure AD integration with Questetra BPM Suite, you need the following items:
-
-- An Azure AD subscription
-- An [Questetra BPM Suite](https://senbon-imadegawa-988.questetra.net/) single-sign on enabled subscription
+- Azure AD 訂用帳戶
+- 已啟用 [Questetra BPM Suite](https://senbon-imadegawa-988.questetra.net/) 單一登入的訂用帳戶
 
 
-> [AZURE.NOTE] To test the steps in this tutorial, we do not recommend using a production environment.
+> [AZURE.NOTE] 若要測試本教學課程中的步驟，我們不建議使用生產環境。
 
 
-To test the steps in this tutorial, you should follow these recommendations:
+若要測試本教學課程中的步驟，您應該遵循這些建議：
 
-- You should not use your production environment, unless this is necessary.
-- If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/). 
+- 除非必要，否則您不應使用生產環境，。
+- 如果您沒有 Azure AD 試用環境，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
 
  
-## <a name="scenario-description"></a>Scenario Description
-The objective of this tutorial is to enable you to test Azure AD single sign-on in a test environment.  
-The scenario outlined in this tutorial consists of three main building blocks:
+## 案例描述
+此教學課程的目標是讓您在測試環境中測試 Azure AD 單一登入。本教學課程中說明的案例由三個主要建置組塊組成：
 
-1. Adding Questetra BPM Suite from the gallery 
-2. Configuring and testing Azure AD single sign-on
-
-
-## <a name="adding-questetra-bpm-suite-from-the-gallery"></a>Adding Questetra BPM Suite from the gallery
-To configure the integration of Questetra BPM Suite into Azure AD, you need to add Questetra BPM Suite from the gallery to your list of managed SaaS apps.
-
-**To add Questetra BPM Suite from the gallery, perform the following steps:**
-
-1. In the **Azure classic portal**, on the left navigation pane, click **Active Directory**. 
-
-    ![Active Directory][1]
-
-2. From the **Directory** list, select the directory for which you want to enable directory integration.
-
-3. To open the applications view, in the directory view, click **Applications** in the top menu.
-
-    ![Applications][2]
-
-4. Click **Add** at the bottom of the page.
-
-    ![Applications][3]
-
-5. On the **What do you want to do** dialog, click **Add an application from the gallery**.
-
-    ![Applications][4]
-
-6. In the search box, type **Questetra BPM Suite**.
-
-    ![Applications][5]
-
-7. In the results pane, select **Questetra BPM Suite**, and then click **Complete** to add the application.
+1. 從資源庫加入 Questetra BPM Suite
+2. 設定並測試 Azure AD 單一登入
 
 
+## 從資源庫加入 Questetra BPM Suite
+若要設定 Questetra BPM Suite 與 Azure AD 整合，您需要從資源庫將 Questetra BPM Suite 加入至受管理 SaaS 應用程式的清單。
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuring and testing Azure AD single sign-on
-The objective of this section is to show you how to configure and test Azure AD single sign-on with Questetra BPM Suite based on a test user called "Britta Simon".
+**若要從資源庫新增 Questetra BPM Suite，請執行下列步驟：**
 
-For single sign-on to work, Azure AD needs to know what the counterpart user in Questetra BPM Suite to an user in Azure AD is. In other words, a link relationship between an Azure AD user and the related user in Questetra BPM Suite needs to be established.  
-This link relationship is established by assigning the value of the **user name** in Azure AD as the value of the **Username** in Questetra BPM Suite.
+1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
+
+	![Active Directory][1]
+
+2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+
+3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+
+	![應用程式][2]
+
+4. 按一下頁面底部的 [新增]。
+
+	![應用程式][3]
+
+5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+
+	![應用程式][4]
+
+6. 在搜尋方塊中，輸入 **Questetra BPM Suite**。
+
+	![應用程式][5]
+
+7. 在結果窗格中，選取 [Questetra BPM Suite]，然後按一下 [完成] 以新增應用程式。
+
+
+
+##  設定並測試 Azure AD 單一登入
+本節的目標是說明如何以名為 "Britta Simon" 的測試使用者為基礎，使用 Questetra BPM Suite 來設定及測試 Azure AD 單一登入。
+
+單一登入若要運作，Azure AD 必須知道 Questetra BPM Suite 與 Azure AD 中互相對應的使用者。換句話說，必須在 Azure AD 使用者和 Questetra BPM Suite 中的相關使用者之間建立連結關聯性。建立此連結關聯性的方法是將 Azure AD 中的 **user name** 的值指定為 Questetra BPM Suite 中 **Username** 的值。
  
-To configure and test Azure AD single sign-on with Questetra BPM Suite, you need to complete the following building blocks:
+若要使用 Questetra BPM Suite 設定並測試 Azure AD 單一登入，您需要完成下列建置組塊：
 
-1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-single-sign-on)** - to enable your users to use this feature.
-2. **[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.
-4. **[Creating a Questetra BPM Suite test user](#creating-a-questetra-bpm-suite-test-user)** - to have a counterpart of Britta Simon in Questetra BPM Suite that is linked to the Azure AD representation of her.
-5. **[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.
-5. **[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.
+1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-single-sign-on)** - 讓您的使用者能夠使用此功能。
+2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
+4. **[建立 Questetra BPM Suite 測試使用者](#creating-a-questetra-bpm-suite-test-user)** - 使 Questetra BPM Suite 中對應的 Britta Simon 連結到她在 Azure AD 中的代表項目。
+5. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
+5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
 
-### <a name="configuring-azure-ad-single-sign-on"></a>Configuring Azure AD Single Sign-On
+### 設定 Azure AD 單一登入
 
-The objective of this section is to enable Azure AD single sign-on in the Azure classic portal and to configure single sign-on in your Questetra BPM Suite application.
+本節目標是在 Azure 傳統入口網站中啟用 Azure AD 單一登入功能，以及在您的 Questetra BPM Suite 應用程式中設定單一登入功能。
 
-**To configure Azure AD single sign-on with Questetra BPM Suite, perform the following steps:**
+**若要使用 Questetra BPM Suite 設定 Azure AD 單一登入，請執行下列步驟：**
 
-1. In the Azure classic portal, on the **Questetra BPM Suite** application integration page, click **Configure single sign-on** to open the **Configure Single Sign-On**  dialog.
+1. 在 Azure 傳統入口網站的 [Questetra BPM Suite] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
-    ![Configure Single Sign-On][8]
+	![設定單一登入][8]
 
-2. On the **How would you like users to sign on to Questetra BPM Suite** page, select **Azure AD Single Sign-On**, and then click **Next**.
+2. 在 [要如何讓使用者登入 Questetra BPM Suite] 頁面上，選取 [Azure AD 單一登入]，然後按 [下一步]。
 
-    ![Azure AD Single Sign-On][9]
-
-
-3. In a different web browser window, log into your **Questetra BPM Suite** company site as an administrator.
-
-4. In the menu on the top, click **System Settings**. 
-
-    ![Azure AD Single Sign-On][10]
-
-5. To open the **SingleSignOnSAML** page, click **SSO (SAML)**. 
-
-    ![Azure AD Single Sign-On][11]
+	![Azure AD 單一登入][9]
 
 
-6. In the Azure classic portal, on the **Configure App Settings** dialog page, perform the following steps: 
+3. 在不同的 Web 瀏覽器視窗中，以系統管理員身分登入您的 **Questetra BPM Suite** 公司網站。
 
-    ![Configure App Settings][13]
+4. 在頂端的功能表中，按一下 [系統設定]。
+
+	![Azure AD 單一登入][10]
+
+5. 若要開啟 [SingleSignOnSAML] 頁面，按一下 [SSO (SAML)]。
+
+	![Azure AD 單一登入][11]
+
+
+6. 在 Azure 傳統入口網站的 [設定應用程式設定] 對話方塊頁面中，執行下列步驟：
+
+	![設定 App 設定][13]
  
-    a. On you **Questetra BPM Suite** company site, in the SP Information section, copy the **ACS URL**, and then paste it into the **Sign On URL** textbox.
+    a.在 **Questetra BPM Suite** 公司網站的 [SP 資訊] 區段中，複製 [ACS URL]，然後將它貼入 [登入 URL] 文字方塊中。
 
-    b. On you **Questetra BPM Suite** company site, in the SP Information section, copy the **Entity ID**, and then paste it into the **Issuer URL** textbox.
+    b.在 **Questetra BPM Suite** 公司網站的 [SP 資訊] 區段中，複製 [實體識別碼]，然後將它貼入 [簽發者 URL] 文字方塊中。
 
-    c. On you **Questetra BPM Suite** company site, in the SP Information section, copy the **ACS URL**, and then paste it into the **Reply URL** textbox.
+    c.在 **Questetra BPM Suite** 公司網站的 [SP 資訊] 區段中，複製 [ACS URL]，然後將它貼入 [回覆 URL] 文字方塊中。
 
-    d. Click **Next**.
+    d.按 [下一步]。
 
  
-7. On the **Configure single sign-on at Questetra BPM Suite** page, click **Download certificate**, and then save the certificate file locally on your computer.
+7. 在 [設定在 Questetra BPM Suite 單一登入] 頁面上，按一下 [下載憑證]，然後在本機電腦上儲存憑證檔案。
 
-    ![Configure Single Sign-On][14]
+	![設定單一登入][14]
 
 
-8. On you **Questetra BPM Suite** company site, perform the following steps: 
+8. 在您的 **Questetra BPM Suite** 公司網站上，執行下列步驟：
 
-    ![Configure Single Sign-On][15]
+	![設定單一登入][15]
 
-    a. Select **Enable Single Sign-On**.
+    a.選取 [啟用單一登入]。
      
-    b. On the Azure classic portal, copy the **Issuer URL** value, and then paste it into the **Entity ID** textbox.
+    b.在 Azure 傳統入口網站上，複製 [簽發者 URL] 值，然後將它貼到 [實體識別碼] 文字方塊中。
 
-    c. On the Azure classic portal, copy the **Single Sign-On Service URL** value, and then paste it into the **Sign-in page URL** textbox.
+    c.在 Azure 傳統入口網站上，複製 [單一登入服務 URL] 值，然後將它貼到 [登入頁面 URL] 文字方塊中。
 
-    d. On the Azure classic portal, copy the **Single Sign-Out Service URL** value, and then paste it into the **Sign-out page URL** textbox.
+    d.在 Azure 傳統入口網站上，複製 [單一登出服務 URL] 值，然後將它貼到 [登出頁面 URL] 文字方塊中。
 
-    e. In the **NameID format** textbox, type **urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress**.
-
-
-    f. Create a base-64 encoded file from your downloaded certificate. 
-
-    >[AZURE.TIP] For more details, see [How to convert a binary certificate into a text file](http://youtu.be/PlgrzUZ-Y1o).
-
-    g. Open your base-64 encoded certificate in notepad, copy the content of it into your clipboard, and then paste it into the **Validation certificate** textbox. 
-
-    h. Click **Save**.
+    e.在 [名稱識別碼格式] 文字方塊中，輸入 **urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress**。
 
 
-9. On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Next**. 
+    f.從您下載的憑證建立 Base-64 編碼檔案。
 
-    ![What is Azure AD Connect][17]
+    >[AZURE.TIP] 如需詳細資訊，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
 
+    g.在記事本中開啟 Base-64 編碼的憑證、將其內容複製到剪貼簿，然後將它貼到 [驗證憑證] 文字方塊中。
 
-10. On the **Single sign-on confirmation** page, click **Complete**.  
-
-    ![What is Azure AD Connect][18]
-
+    h.按一下 [儲存]。
 
 
+9. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按 [下一步]。
 
-### <a name="creating-an-azure-ad-test-user"></a>Creating an Azure AD test user
-The objective of this section is to create a test user in the Azure classic portal called Britta Simon.
+	![何謂 Azure AD Connect][17]
 
-**To create a test user in Azure AD, perform the following steps:**
 
-1. In the **Azure classic portal**, on the left navigation pane, click **Active Directory**.
+10. 在 [單一登入確認] 頁面上，按一下 [完成]。
 
-    ![Create Azure AD test user][100] 
+	![何謂 Azure AD Connect][18]
 
-2. From the **Directory** list, select the directory for which you want to enable directory integration.
 
-3. To display the list of users, in the menu on the top, click **Users**.
 
-    ![Create Azure AD test user][101] 
 
-4. To open the **Add User** dialog, in the toolbar on the bottom, click **Add User**. 
+### 建立 Azure AD 測試使用者
+本節的目標是要在 Azure 傳統入口網站中建立一個名為 Britta Simon 的測試使用者。
 
-    ![Create Azure AD test user][102] 
+**若要在 Azure AD 中建立測試使用者，請執行下列步驟：**
 
-5. On the **Tell us about this user** dialog page, perform the following steps:
+1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
 
-    ![Create Azure AD test user][103]
+	![建立 Azure AD 測試使用者][100]
+
+2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+
+3. 若要顯示使用者清單，請按一下頂端功能表中的 [使用者]。
+
+	![建立 Azure AD 測試使用者][101]
+
+4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列中的 [加入使用者]。
+
+	![建立 Azure AD 測試使用者][102]
+
+5. 在 [告訴我們這位使用者] 對話方塊頁面上，執行下列步驟：
+
+	![建立 Azure AD 測試使用者][103]
  
-    a. As **Type Of User**, select **New user in your organization**.
+    a.針對 [使用者類型]，選取 [您組織中的新使用者]。
   
-    b. In the User Name **textbox**, type **BrittaSimon**.
+    b.在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
 
-    c. Click Next.
+    c.按 [下一步]。
 
-6.  On the **User Profile** dialog page, perform the following steps: 
+6.  在 [使用者設定檔]對話方塊頁面上，執行下列步驟：
 
-    ![Create Azure AD test user][104] 
+	![建立 Azure AD 測試使用者][104]
   
-    a. In the **First Name** textbox, type **Britta**. 
+    a.在 [名字] 文字方塊中，輸入 **Britta**。
  
-    b. In the **Last Name** textbox, type, **Simon**.
+    b.在 [姓氏] 文字方塊中，輸入 **Simon**。
 
-    c. In the **Display Name** textbox, type **Britta Simon**.
+    c.在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
 
-    d. In the **Role** list, select **User**.
+    d.在 [角色] 清單中選取 [使用者]。
 
-    e. Click **Next**.
+    e.按 [下一步]。
 
-7. On the **Get temporary password** dialog page, click **create**.
+7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
 
-    ![Create Azure AD test user][105]  
+	![建立 Azure AD 測試使用者][105]
 
-8. On the **Get temporary password** dialog page, perform the following steps:
+8. 在 [取得暫時密碼] 對話方塊頁面上，執行下列步驟：
 
-    ![Create Azure AD test user][106]   
+	![建立 Azure AD 測試使用者][106]
   
-    a. Write down the value of the **New Password**.
+    a.記下 [新密碼] 的值。
   
-    b. Click **Complete**.   
+    b.按一下 [完成]。
   
  
-### <a name="creating-a-questetra-bpm-suite-test-user"></a>Creating a Questetra BPM Suite test user
+### 建立 Questetra BPM Suite 測試使用者
 
-The objective of this section is to create a user called Britta Simon in Questetra BPM Suite.
+本節目標是在 Halogen Software 中建立名為 Questetra BPM Suite 的使用者。
 
-**To create a user called Britta Simon in Questetra BPM Suite, perform the following steps:**
+**若要在 Questetra BPM Suite 中建立名為 Britta Simon 的使用者，請執行以下步驟：**
 
-1.  Sign-on to your Questetra BPM Suite company site as an administrator.
-2.  Go to **System Settings > User List > New User**. 
-3.  On the New User dialog, perform the following steps: 
+1.	以系統管理員身分登入您的 Questetra BPM Suite 公司網站。
+2.	移至 [系統設定] > [使用者清單] > [新增使用者]。
+3.	在 [新增使用者] 對話方塊上，執行下列步驟：
 
-    ![Create test user][300] 
+	![建立測試使用者][300]
 
-    a. In the **Name** textbox, type Britta's user name in Azure AD.
+    a.在 [名稱] 文字方塊中，輸入 Azure AD 中 Britta 的使用者名稱。
 
-    b. In the **Email** textbox, type Britta's user name in Azure AD.
+    b.在 [電子郵件] 文字方塊中，輸入 Azure AD 中 Britta 的使用者名稱。
 
-    c. In the **Password** textbox, type a password.
+    c.在 [密碼] 文字方塊中輸入密碼。
 
-4.  Click **Add new user**.
-
-
-
-### <a name="assigning-the-azure-ad-test-user"></a>Assigning the Azure AD test user
-
-The objective of this section is to enabling Britta Simon to use Azure single sign-on by granting her access to Questetra BPM Suite.
-
-![What is Azure AD Connect][200]
-
-**To assign Britta Simon to Questetra BPM Suite, perform the following steps:**
-
-1. On the Azure classic portal, to open the applications view, in the directory view, click **Applications** in the top menu.
-
-    ![What is Azure AD Connect][201]
-
-2. In the applications list, select **Questetra BPM Suite**.
-
-    ![What is Azure AD Connect][205]
-
-1. In the menu on the top, click **Users**.
-
-    ![What is Azure AD Connect][202]
-
-1. In the Users list, select **Britta Simon**.
-
-    ![What is Azure AD Connect][203]
-
-2. In the toolbar on the bottom, click **Assign**.
-
-    ![What is Azure AD Connect][204]
+4.	按一下 [新增使用者]。
 
 
 
-### <a name="testing-single-sign-on"></a>Testing Single Sign-On
+### 指派 Azure AD 測試使用者
 
-The objective of this section is to test your Azure AD single sign-on configuration using the Access Panel.  
-When you click the Questetra BPM Suite tile in the Access Panel, you should get automatically signed-on to your Questetra BPM Suite application.
+本節目標是授與 Britta Simon 對 Questetra BPM Suite 的存取權，讓她能夠使用 Azure 單一登入。
+
+![何謂 Azure AD Connect][200]
+
+**若要將 Britta Simon 指派到 Questetra BPM Suite，請執行以下步驟：**
+
+1. 在 Azure 傳統入口網站中，若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+
+	![何謂 Azure AD Connect][201]
+
+2. 在應用程式清單中，選取 [Questetra BPM Suite]。
+
+	![何謂 Azure AD Connect][205]
+
+1. 在頂端的功能表中，按一下 [使用者]。
+
+	![何謂 Azure AD Connect][202]
+
+1. 在 [使用者] 清單中，選取 [Britta Simon]。
+
+	![何謂 Azure AD Connect][203]
+
+2. 在底部的工具列中，按一下 [指派]。
+
+	![何謂 Azure AD Connect][204]
 
 
-## <a name="additional-resources"></a>Additional Resources
 
-* [List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory](active-directory-saas-tutorial-list.md)
-* [What is application access and single sign-on with Azure Active Directory?](active-directory-appssoaccess-whatis.md)
+### 測試單一登入
+
+本節的目標是要使用「存取面板」來測試您的 Azure AD 單一登入組態。當您在 [存取面板] 中按一下 [Questetra BPM Suite] 磚時，您應該會自動登入您的 Questetra BPM Suite 應用程式。
+
+
+## 其他資源
+
+* [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
+* [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->
 [1]: ./media/active-directory-saas-questetra-bpm-suite/tutorial_general_01.png
@@ -319,25 +314,22 @@ When you click the Questetra BPM Suite tile in the Access Panel, you should get 
 [18]: ./media/active-directory-saas-questetra-bpm-suite/tutorial_general_08.png
 
 
-[100]: ./media/active-directory-saas-questetra-bpm-suite/tutorial_general_09.png 
-[101]: ./media/active-directory-saas-questetra-bpm-suite/tutorial_general_10.png 
-[102]: ./media/active-directory-saas-questetra-bpm-suite/tutorial_general_11.png 
-[103]: ./media/active-directory-saas-questetra-bpm-suite/tutorial_general_12.png 
-[104]: ./media/active-directory-saas-questetra-bpm-suite/tutorial_general_13.png 
-[105]: ./media/active-directory-saas-questetra-bpm-suite/tutorial_general_14.png 
-[106]: ./media/active-directory-saas-questetra-bpm-suite/tutorial_general_15.png 
+[100]: ./media/active-directory-saas-questetra-bpm-suite/tutorial_general_09.png
+[101]: ./media/active-directory-saas-questetra-bpm-suite/tutorial_general_10.png
+[102]: ./media/active-directory-saas-questetra-bpm-suite/tutorial_general_11.png
+[103]: ./media/active-directory-saas-questetra-bpm-suite/tutorial_general_12.png
+[104]: ./media/active-directory-saas-questetra-bpm-suite/tutorial_general_13.png
+[105]: ./media/active-directory-saas-questetra-bpm-suite/tutorial_general_14.png
+[106]: ./media/active-directory-saas-questetra-bpm-suite/tutorial_general_15.png
 
 
-[200]: ./media/active-directory-saas-questetra-bpm-suite/tutorial_general_16.png 
-[201]: ./media/active-directory-saas-questetra-bpm-suite/tutorial_general_17.png 
+[200]: ./media/active-directory-saas-questetra-bpm-suite/tutorial_general_16.png
+[201]: ./media/active-directory-saas-questetra-bpm-suite/tutorial_general_17.png
 [202]: ./media/active-directory-saas-questetra-bpm-suite/tutorial_general_18.png
 [203]: ./media/active-directory-saas-questetra-bpm-suite/tutorial_general_19.png
 [204]: ./media/active-directory-saas-questetra-bpm-suite/tutorial_general_20.png
 [205]: ./media/active-directory-saas-questetra-bpm-suite/questera_bpm_suite_12.png
 
-[300]: ./media/active-directory-saas-questetra-bpm-suite/questera_bpm_suite_11.png 
+[300]: ./media/active-directory-saas-questetra-bpm-suite/questera_bpm_suite_11.png
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

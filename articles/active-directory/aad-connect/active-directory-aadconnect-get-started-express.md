@@ -1,77 +1,66 @@
 <properties
-    pageTitle="Azure AD Connect: Getting Started using express settings | Microsoft Azure"
-    description="Learn how to download, install and run the setup wizard for Azure AD Connect."
-    services="active-directory"
-    documentationCenter=""
-    authors="andkjell"
-    manager="femila"
-    editor="curtand"/>
+	pageTitle="Azure AD Connect：開始使用快速設定 | Microsoft Azure"
+	description="了解如何下載、安裝和執行 Azure AD Connect 的安裝精靈。"
+	services="active-directory"
+	documentationCenter=""
+	authors="andkjell"
+	manager="femila"
+	editor="curtand"/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="get-started-article"
-    ms.date="09/13/2016"
-    ms.author="billmath"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="get-started-article"
+	ms.date="09/13/2016"
+	ms.author="billmath;andkjell"/>
 
+# 使用快速設定開始使用 Azure AD Connect
+當您有單一樹系拓撲和用於驗證的[密碼同步處理](../active-directory-aadconnectsync-implement-password-synchronization.md)時，便可使用 Azure AD Connect **快速設定**。**快速設定**是預設選項，並且會用在最常部署的案例。只要簡短地按幾下即可將內部部署目錄擴充至雲端。
 
-# <a name="getting-started-with-azure-ad-connect-using-express-settings"></a>Getting started with Azure AD Connect using express settings
-Azure AD Connect **Express Settings** is used when you have a single-forest topology and [password synchronization](../active-directory-aadconnectsync-implement-password-synchronization.md) for authentication. **Express Settings** is the default option and is used for the most commonly deployed scenario. You are only a few short clicks away to extend your on-premises directory to the cloud.
+在開始安裝 Azure AD Connect 之前，請務必要[下載 Azure AD Connect](http://go.microsoft.com/fwlink/?LinkId=615771) 並完成 [Azure AD Connect：硬體和必要條件](../active-directory-aadconnect-prerequisites.md)中的必要條件步驟。
 
-Before you start installing Azure AD Connect, make sure to [download Azure AD Connect](http://go.microsoft.com/fwlink/?LinkId=615771) and complete the pre-requisite steps in [Azure AD Connect: Hardware and prerequisites](../active-directory-aadconnect-prerequisites.md).
+如果快速設定不符合拓撲，請參閱[相關文件](#related-documentation)中的其他案例。
 
-If express settings does not match your topology, see [related documentation](#related-documentation) for other scenarios.
+## 快速安裝 Azure AD Connect
+您可以在[影片](#videos)一節看到這些步驟的執行示範。
 
-## <a name="express-installation-of-azure-ad-connect"></a>Express installation of Azure AD Connect
-You can see these steps in action in the [videos](#videos) section.
+1. 以本機系統管理員身分登入您想要安裝 Azure AD Connect 的伺服器。請在您想要做為同步處理伺服器的伺服器上進行此步驟。
+2. 瀏覽並按兩下 **AzureADConnect.msi**。
+3. 在 [歡迎] 畫面上，選取同意授權條款的方塊，然後按一下 [繼續]。
+4. 在 [快速設定] 畫面上，按一下 [**使用快速設定**]。![歡迎使用 Azure AD Connect](./media/active-directory-aadconnect-get-started-express/express.png)
+5. 在 [連接到 Azure AD] 畫面上，輸入您的 Azure AD 的全域系統管理員使用者名稱和密碼。按 [下一步]。![連接至 Azure AD](./media/active-directory-aadconnect-get-started-express/connectaad.png) 如果您收到錯誤訊息，而且有連線問題，請參閱[針對連線問題進行疑難排解](../active-directory-aadconnect-troubleshoot-connectivity.md)。
+6. 在 [連接到 AD DS] 畫面上輸入企業系統管理員帳戶的使用者名稱和密碼。您可以用 NetBios 或 FQDN 格式輸入網域部分，也就是 FABRIKAM\\administrator 或 fabrikam.com\\administrator。按 [下一步]。![連線到 AD DS](./media/active-directory-aadconnect-get-started-express/connectad.png)
+7. 只有在未完成[必要條件](../active-directory-aadconnect-prerequisites.md)中的[驗證網域](../active-directory-add-domain.md)時，才會顯示 [[Azure AD 登入組態](../active-directory-aadconnect-user-signin.md#azure-ad-sign-in-configuration)] 頁面。![未驗證的網域](./media/active-directory-aadconnect-get-started-express/unverifieddomain.png) 如果您看到此頁面，請檢閱每一個標示為**未新增**和**未驗證**的網域。確定您所使用的網域皆已在 Azure AD 中完成驗證。驗證好網域時，按一下 [重新整理] 符號。
+8. 在 [準備好設定] 畫面中，按一下 [安裝]。
+	- 在 [準備設定] 頁面上，您可以取消選取 [設定一完成，即開始同步處理程序] 核取方塊。如果您想要進行其他設定 (例如[篩選](../active-directory-aadconnectsync-configure-filtering.md))，應該取消選取此核取方塊。若您取消選取此選項，精靈會設定同步處理，但是會讓排程器保持停用。直到您[重新執行安裝精靈](../active-directory-aadconnectsync-installation-wizard.md)以手動方式加以啟用時，才會執行排程器。
+	- 如果您的內部部署 Active Directory 中有 Exchange，則您也可以選擇啟用 [**Exchange 混合式部署**](https://technet.microsoft.com/library/jj200581.aspx)。如果您打算在雲端和內部部署均設置 Exchange 信箱，請啟用此選項。![準備設定 Azure AD Connect](./media/active-directory-aadconnect-get-started-express/readytoconfigure.png)
+9. 當安裝完成時，按一下 [結束]。
+10. 安裝完成之後，請先登出再重新登入，才能使用 Synchronization Service Manager 或同步處理規則編輯器。
 
-1. Sign in as a local administrator to the server you wish to install Azure AD Connect on. You should do this on the server you wish to be the sync server.
-2. Navigate to and double-click **AzureADConnect.msi**.
-3. On the Welcome screen, select the box agreeing to the licensing terms and click **Continue**.  
-4. On the Express settings screen, click **Use express settings**.  
-![Welcome to Azure AD Connect](./media/active-directory-aadconnect-get-started-express/express.png)
-5. On the Connect to Azure AD screen, enter the username and password of a global administrator for your Azure AD. Click **Next**.  
-![Connect to Azure AD](./media/active-directory-aadconnect-get-started-express/connectaad.png) If you receive an error and have problems with connectivity, then see [Troubleshoot connectivity problems](../active-directory-aadconnect-troubleshoot-connectivity.md).
-6. On the Connect to AD DS screen, enter the username and password for an enterprise admin account. You can enter the domain part in either NetBios or FQDN format, that is, FABRIKAM\administrator or fabrikam.com\administrator. Click **Next**.  
-![Connect to AD DS](./media/active-directory-aadconnect-get-started-express/connectad.png)
-7. The [**Azure AD sign-in configuration**](../active-directory-aadconnect-user-signin.md#azure-ad-sign-in-configuration) page only shows if you did not complete [verify your domains](../active-directory-add-domain.md) in the [prerequisites](../active-directory-aadconnect-prerequisites.md).
-![Unverified domains](./media/active-directory-aadconnect-get-started-express/unverifieddomain.png)  
-If you see this page, then review every domain marked **Not Added** and **Not Verified**. Make sure those domains you use have been verified in Azure AD. Click the Refresh symbol when you have verified your domains.
-8. On the Ready to configure screen, click **Install**.
-    - Optionally on the Ready to configure page, you can unselect the **Start the synchronization process as soon as configuration completes** checkbox. You should unselect this checkbox if you want to do additional configuration, such as [filtering](../active-directory-aadconnectsync-configure-filtering.md). If you unselect this option, the wizard configures sync but leaves the scheduler disabled. It does not run until you enable it manually by [rerunning the installation wizard](../active-directory-aadconnectsync-installation-wizard.md).
-    - If you have Exchange in your on-premises Active Directory, then you also have an option to enable [**Exchange Hybrid deployment**](https://technet.microsoft.com/library/jj200581.aspx). Enable this option if you plan to have Exchange mailboxes both in the cloud and on-premises at the same time.
-![Ready to configure Azure AD Connect](./media/active-directory-aadconnect-get-started-express/readytoconfigure.png)
-9. When the installation completes, click **Exit**.
-10. After the installation has completed, sign off and sign in again before you use Synchronization Service Manager or Synchronization Rule Editor.
+## 影片
 
-## <a name="videos"></a>Videos
-
-For a video on using the express installation, see:
+如需使用快速安裝的影片，請參閱：
 
 >[AZURE.VIDEO azure-active-directory-connect-express-settings]
 
-## <a name="next-steps"></a>Next steps
-Now that you have Azure AD Connect installed you can [verify the installation and assign licenses](../active-directory-aadconnect-whats-next.md).
+## 後續步驟
+安裝了 Azure AD Connect 之後，您可以[驗證安裝和指派授權](../active-directory-aadconnect-whats-next.md)。
 
-Learn more about these features, which were enabled with the installation: [Automatic upgrade](../active-directory-aadconnect-feature-automatic-upgrade.md), [Prevent accidental deletes](../active-directory-aadconnectsync-feature-prevent-accidental-deletes.md), and [Azure AD Connect Health](../active-directory-aadconnect-health-sync.md).
+深入了解這些在安裝時啟用的功能︰[自動升級](../active-directory-aadconnect-feature-automatic-upgrade.md)、[防止意外刪除](../active-directory-aadconnectsync-feature-prevent-accidental-deletes.md)和 [Azure AD Connect Health](../active-directory-aadconnect-health-sync.md)。
 
-Learn more about these common topics: [scheduler and how to trigger sync](../active-directory-aadconnectsync-feature-scheduler.md).
+深入了解這些常見主題︰[排程器和如何觸發同步處理](../active-directory-aadconnectsync-feature-scheduler.md)。
 
-Learn more about [Integrating your on-premises identities with Azure Active Directory](../active-directory-aadconnect.md).
+深入了解[整合內部部署身分識別與 Azure Active Directory](../active-directory-aadconnect.md)。
 
-## <a name="related-documentation"></a>Related documentation
+## 相關文件
 
-Topic |  
+主題 |  
 --------- | ---------
-Azure AD Connect overview | [Integrating your on-premises identities with Azure Active Directory](../active-directory-aadconnect.md)
-Install using customized settings | [Custom installation of Azure AD Connect](active-directory-aadconnect-get-started-custom.md)
-Upgrade from DirSync | [Upgrade from Azure AD sync tool (DirSync)](active-directory-aadconnect-dirsync-upgrade-get-started.md)
-Accounts used for installation | [More about Azure AD Connect accounts and permissions](active-directory-aadconnect-accounts-permissions.md)
+Azure AD Connect 概觀 | [整合內部部署身分識別與 Azure Active Directory](../active-directory-aadconnect.md)
+使用自訂設定進行安裝 | [自訂 Azure AD Connect 安裝](active-directory-aadconnect-get-started-custom.md)
+從 DirSync 升級 | [從 Azure AD 同步作業工具 (DirSync) 升級](active-directory-aadconnect-dirsync-upgrade-get-started.md)
+用於安裝的帳戶 | [Azure AD Connect 帳戶與權限的詳細資訊](active-directory-aadconnect-accounts-permissions.md)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_1005_2016-->

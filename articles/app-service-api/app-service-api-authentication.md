@@ -1,120 +1,115 @@
 <properties
-    pageTitle="Authentication and authorization for API Apps in Azure App Service | Microsoft Azure"
-    description="Learn about the authentication and authorization services that Azure App Service provides for API Apps."
-    services="app-service\api"
-    documentationCenter=".net"
-    authors="tdykstra"
-    manager="wpickett"
-    editor=""/>
+	pageTitle="Azure App Service 中的 API Apps 驗證與授權 | Microsoft Azure"
+	description="了解 Azure App Service 針對 API Apps 所提供的驗證和授權服務。"
+	services="app-service\api"
+	documentationCenter=".net"
+	authors="tdykstra"
+	manager="wpickett"
+	editor=""/>
 
 <tags
-    ms.service="app-service-api"
-    ms.workload="na"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="05/23/2016"
-    ms.author="rachelap"/>
+	ms.service="app-service-api"
+	ms.workload="na"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="05/23/2016"
+	ms.author="rachelap"/>
 
+# Azure App Service 中的 API Apps 驗證與授權
 
-# <a name="authentication-and-authorization-for-api-apps-in-azure-app-service"></a>Authentication and authorization for API Apps in Azure App Service
+## 概觀 
 
-## <a name="overview"></a>Overview 
+> [AZURE.NOTE] 本主題將移轉至合併的 [App Service 驗證/授權](../app-service/app-service-authentication-overview.md)主題，其中涵蓋 Web、Mobile 和 API Apps。
 
-> [AZURE.NOTE] This topic will be migrated to a consolidated [App Service Authentication / Authorization](../app-service/app-service-authentication-overview.md) topic, which covers Web, Mobile, and API Apps.
+Azure App Service 提供內建的驗證與授權服務，可實作 [OAuth 2.0](#oauth) 和 [OpenID Connect](#oauth)。本文描述 Azure App Service 中的 API Apps 可用的服務和選項。
 
-Azure App Service offers built-in authentication and authorization services that implement [OAuth 2.0](#oauth) and [OpenID Connect](#oauth). This article describes the services and options that are available for API Apps in Azure App Service.
+下圖說明 App Service 驗證的幾個重要特性：
 
-The following diagram illustrates some key characteristics of App Service authentication:
-
-* It preprocesses incoming API requests, which means it works with any language or framework supported by App Service.
-* It gives you several options for how much authentication work you want to do in your own code.
-* It works for both end user and service account authentication. 
-* It supports five identity providers: Azure Active Directory, Facebook, Google, Twitter, and Microsoft Account.
-* It works the same for API Apps, Web Apps, and Mobile Apps.
+* 它會前置處理傳入的 API 要求，這表示它能使用 App Service 所支援的任何語言或架構。
+* 它會提供您幾個選項讓您決定要在自有程式碼中進行多少驗證工作。
+* 它適用於使用者與服務帳戶驗證。
+* 它支援五個識別提供者：Azure Active Directory、Facebook、Google、Twitter 和 Microsoft 帳戶。
+* 它在 API Apps、Web Apps 和 Mobile Apps 的作用都相同。
 
 ![](./media/app-service-api-authentication/api-apps-overview.png)
 
-## <a name="language-agnostic"></a>Language agnostic
+## 不限語言
 
-App Service authentication processing happens before requests reach your API app, which means that the authentication features work for API apps written in any language or framework.  Your API can be based on ASP.NET, Java, Node.js, or any framework that App Service supports.
+App Service 驗證處理程序是在要求進入 API 應用程式之前進行，這表示不管 API 應用程式是以任何語言或架構所撰寫，都能適用驗證功能。您可以根據 ASP.NET、Java、Node.js 或任何 App Service 所支援的架構建立 API。
 
-App Service passes on the JSON web token (JWT) in the Authorization header of an HTTP request, and code written in any language or framework can get the information it needs from the token. In addition, App Service gives you easier access to the most commonly used claims by setting some special headers, such as the following:
+App Service 會在 HTTP 要求的授權標頭中傳遞 JSON Web 權杖 (JWT)，以任何語言或架構撰寫的程式碼都可以從權杖中取得所需的資訊。此外，App Service 會透過設定某些特殊標頭 (如下所示)，讓您更容易地存取最常使用的宣告：
 
 * X-MS-CLIENT-PRINCIPAL-NAME
 * X-MS-CLIENT-PRINCIPAL-ID
 * X-MS-TOKEN-FACEBOOK-ACCESS-TOKEN
 * X-MS-TOKEN-FACEBOOK-EXPIRES-ON
  
-In a .NET API, you can use the `Authorize` attribute, and for fine-grained authorization you can easily write code based on claims because claims information is populated for you in .NET classes.
+在 .NET API 中，您可以使用 `Authorize` 屬性，而且如果您需要更精細的授權，也能輕易地根據宣告來撰寫程式碼，因為它已為您在 .NET 類別中填入宣告資訊。
 
-## <a name="multiple-protection-options"></a>Multiple protection options
+## 多個保護選項
 
-App Service can prevent anonymous HTTP requests from reaching your API app, it can pass on all requests and validate tokens for requests that include them, or it can let through all requests without taking any action on them:
+App Service 可以防止匿名 HTTP 要求進入您的 API 應用程式、傳遞所有要求並驗證要求中所包含的權杖，或是不採取任何動作就放行所有要求：
 
-1. Allow only authenticated requests to reach your API app.
+1. 只允許通過驗證的要求進入 API 應用程式。
 
-    If an anonymous request is received from a browser, App Service will redirect to a logon page for the authentication provider (Azure AD, Google, Twitter, etc.) that you choose. 
+	如果 App Service 收到來自瀏覽器的匿名要求，便會將其重新導向至您所選驗證提供者 (Azure AD、Google、Twitter 等) 的登入頁面。
 
-    With this option, you don't need to write any authentication code at all in your app, and authorization code is simplified because the most important claims are provided in the HTTP headers.
+	使用此選項時，您不需要在應用程式中撰寫任何驗證程式碼，並且因為 HTTP 標頭中已提供最重要的宣告，所以授權碼會變得相當簡單。
 
-2. Allow all requests to reach your API app, but validate authenticated requests and pass along authentication information in the HTTP headers.
+2. 允許所有要求進入 API 應用程式，但只讓通過驗證的要求生效，並在 HTTP 標頭中傳遞驗證資訊。
 
-    This option gives you more flexibility in handling anonymous requests, but you have to write code if you want to prevent anonymous users from using your API. Since the most popular claims are passed in the headers of HTTP requests, authorization code is relatively simple.
-    
-3. Allow all requests to reach your API, take no action on authentication information in the requests.
+	此選項可讓您更彈性地處理匿名要求，但如果想要防止匿名使用者使用您的 API，則必須撰寫程式碼。因為最受歡迎的宣告會在 HTTP 要求的標頭中傳遞，所以授權碼相對簡單。
+	
+3. 允許所有要求進入 API，不對要求中的驗證資訊採取任何動作。
 
-    This option leaves the tasks of authentication and authorization entirely up to your application code.
+	這個選項會將驗證和授權工作全部交由應用程式程式碼來處理。
 
-In the [Azure portal](https://portal.azure.com/), you select the option you want on the **Authentication / Authorization** blade.
+在 [Azure 入口網站](https://portal.azure.com/)中，請在 [驗證/授權] 刀鋒視窗中選取您要的選項。
 
 ![](./media/app-service-api-authentication/authblade.png)
 
-For options 1 and 2, turn on **App Service Authentication**, and in the **Action to take when request is not authenticated** drop-down list choose **Log in** or **Allow request (no action)**.  If you choose **Log in**, you have to choose an authentication provider and configure that provider.
+如果使用選項 1 和 2，請開啟 [App Service 驗證]，然後在 [要求未通過驗證時所要採取的動作] 下拉式清單中，選擇 [登入] 或 [允許要求 (無動作)]。如果您選擇 [登入]，就必須選擇驗證提供者，並設定該提供者。
 
 ![](./media/app-service-api-authentication/actiontotake.png)
 
-For detailed information about how to configure authentication, see [How to configure your App Service application to use Azure Active Directory login](../app-service-mobile/app-service-mobile-how-to-configure-active-directory-authentication.md). The article applies to API apps as well as mobile apps, and it links to other articles for the other authentication providers.
+如需如何設定驗證的詳細資訊，請參閱[如何設定 App Service 應用程式使用 Azure Active Directory 登入](../app-service-mobile/app-service-mobile-how-to-configure-active-directory-authentication.md)。本文適用於 API 應用程式和行動應用程式，而且會連結到關於其他驗證提供者的其他文章。
  
-## <a name="<a-id="internal"></a>-service-account-authentication"></a><a id="internal"></a> Service account authentication
+## <a id="internal"></a> 服務帳戶驗證
 
-App Service authentication works for internal scenarios such as for calling from one API app to another API app. In this scenario you get a token by using credentials for a service account instead of end user credentials. A service account is also known as a *service principal* in Azure Active Directory, and authentication using such an account is also known as a service-to-service scenario. 
+App Service 驗證適用於從某個 API 應用程式呼叫另一個 API 應用程式之類的內部案例。在此案例中，您可以使用服務帳戶認證 (而非使用者認證) 來取得權杖。服務帳戶在 Azure Active Directory 中也稱為*服務主體*，使用這類帳戶的驗證也稱為服務對服務案例。
 
-For service-to-service scenarios, protect the called API app by using Azure Active Directory, and provide an AAD service principal authorization token when you call the API app. You get a token by providing the client ID and client secret from the AAD application. No special Azure-only code is required, such as used to be true for handling the Mobile Services Zumo token. An example of this scenario using ASP.NET API apps is covered by the tutorial [Service principal authentication for API Apps](app-service-api-dotnet-service-principal-auth.md).
+若為服務對服務案例，則請使用 Azure Active Directory 保護所呼叫的 API 應用程式，並在呼叫 API 應用程式時提供 AAD 服務主體授權權杖。透過提供用戶端識別碼和用戶端密碼，您就可以從 AAD 應用程式取得此權杖。不需要特殊的僅 Azure 適用的程式碼，例如在處理行動服務 Zumo 權杖時為 true。[API Apps 的服務主體驗證](app-service-api-dotnet-service-principal-auth.md)教學課程中有講述這個使用 ASP.NET API 應用程式之案例的範例。
 
-If you want to handle a service-to-service scenario without using App Service authentication, you can use client certificates or basic authentication. For information about client certificates in Azure, see [How To Configure TLS Mutual Authentication for Web Apps](../app-service-web/app-service-web-configure-tls-mutual-auth.md). For information about basic authentication in ASP.NET, see [Authentication Filters in ASP.NET Web API 2](http://www.asp.net/web-api/overview/security/authentication-filters).
+如果您想要處理服務對服務案例，但不要使用 App Service 驗證，請使用用戶端憑證或基本驗證。如需 Azure 中用戶端憑證的詳細資訊，請參閱[如何設定 Web Apps 的 TLS 相互驗證](../app-service-web/app-service-web-configure-tls-mutual-auth.md)。如需 ASP.NET 中的基本驗證相關資訊，請參閱 [ASP.NET Web API 2 中的驗證篩選](http://www.asp.net/web-api/overview/security/authentication-filters)。
 
-Service account authentication from an App Service logic app to an API app is a special case that is explained in [Using your custom API hosted on App Service with Logic apps](../app-service-logic/app-service-logic-custom-hosted-api.md).
+App Service 邏輯應用程式至 API 應用程式的服務帳戶驗證屬於特殊案例，[將您裝載在 App Service 上的自訂 API 與邏輯應用程式一起使用](../app-service-logic/app-service-logic-custom-hosted-api.md)中有關於此案例的說明。
 
-## <a name="mobile-client-authentication"></a>Mobile client authentication
+## 行動用戶端驗證
 
-For information about how to handle authentication from mobile clients, see the [documentation on authentication for mobile apps](../app-service-mobile/app-service-mobile-ios-get-started-users.md). App Service authentication works the same way for mobile apps and API apps.
+如需如何處理來自行動用戶端之驗證的相關資訊，請參閱[關於行動應用程式驗證的說明文件](../app-service-mobile/app-service-mobile-ios-get-started-users.md)。行動應用程式和 API 應用程式的 App Service 驗證具有相同的運作方式。
   
-## <a name="more-information"></a>More information
+## 詳細資訊
 
-For more information about authentication and authorization in Azure App Service, see the following resources:
+如需 Azure App Service 中的驗證與授權的詳細資訊，請參閱下列資源：
 
-* [Expanding App Service authentication / authorization](/blog/announcing-app-service-authentication-authorization/)
-* [How to configure your App Service application to use Azure Active Directory login](../app-service-mobile/app-service-mobile-how-to-configure-active-directory-authentication.md) (Includes links for other authentication providers at the top of the page.) 
+* [擴充 App Service 驗證/授權](/blog/announcing-app-service-authentication-authorization/)
+* [如何設定 App Service 應用程式使用 Azure Active Directory 登入](../app-service-mobile/app-service-mobile-how-to-configure-active-directory-authentication.md) (頁面頂端有其他驗證提供者的連結)。
 
-For more information about OAuth 2.0, OpenID Connect, and JSON Web Tokens (JWT), see the following resources.
+如需 OAuth 2.0、OpenID Connect 和 JSON Web 權杖 (JWT) 的詳細資訊，請參閱下列資源。
 
-* [Getting started with OAuth 2.0](http://shop.oreilly.com/product/0636920021810.do "Getting Started with OAuth 2.0") 
-* [Introduction to OAuth2, OpenID Connect and JSON Web Tokens (JWT) - PluralSight Course](http://www.pluralsight.com/courses/oauth2-json-web-tokens-openid-connect-introduction) 
-* [Building and Securing a RESTful API for Multiple Clients in ASP.NET - PluralSight course](http://www.pluralsight.com/courses/building-securing-restful-api-aspdotnet)
+* [開始使用 OAuth 2.0](http://shop.oreilly.com/product/0636920021810.do "開始使用 OAuth 2.0")
+* [OAuth2、OpenID Connect 和 JSON Web 權杖 (JWT) 簡介 - PluralSight 課程](http://www.pluralsight.com/courses/oauth2-json-web-tokens-openid-connect-introduction)
+* [在 ASP.NET 中建置和保護多個用戶端的 RESTful API - PluralSight 課程](http://www.pluralsight.com/courses/building-securing-restful-api-aspdotnet)
 
-For more information about Azure Active Directory, see the following resources.
+如需 Azure Active Directory 的詳細資訊，請參閱下列資源。
 
-* [Azure AD scenarios](http://aka.ms/aadscenarios)
-* [Azure AD developers' guide](http://aka.ms/aaddev)
-* [Azure AD samples](http://aka.ms/aadsamples)
+* [Azure AD 案例](http://aka.ms/aadscenarios)
+* [Azure AD 開發人員指南](http://aka.ms/aaddev)
+* [Azure AD 範例](http://aka.ms/aadsamples)
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-This article has explained authentication and authorization features of App Service that you can use for API apps. The next tutorial in the getting started series shows how to implement [user authentication in App Service API Apps](app-service-api-dotnet-user-principal-auth.md).
+本文說明了可用於 API 應用程式之 App Service 的驗證和授權功能。在下一個快速入門系列教學課程中，會說明如何實作 [App Service API Apps 中的使用者驗證](app-service-api-dotnet-user-principal-auth.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0713_2016-->

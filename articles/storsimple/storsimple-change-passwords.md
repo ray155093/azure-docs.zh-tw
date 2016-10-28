@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="Change your StorSimple passwords | Microsoft Azure" 
-   description="Describes how to use the StorSimple Manager service to change your StorSimple Snapshot Manager and device administrator passwords." 
+   pageTitle="變更 StorSimple 密碼 | Microsoft Azure" 
+   description="描述如何使用 StorSimple Manager 服務變更 StorSimple Snapshot Manager 與裝置系統管理員密碼。" 
    services="storsimple" 
    documentationCenter="NA" 
    authors="alkohli" 
@@ -16,62 +16,57 @@
    ms.date="08/17/2016"
    ms.author="alkohli"/>
 
+# 使用 StorSimple Manager 服務變更 StorSimple 密碼
 
-# <a name="use-the-storsimple-manager-service-to-change-your-storsimple-passwords"></a>Use the StorSimple Manager service to change your StorSimple passwords
+## Overview 
 
-## <a name="overview"></a>Overview 
+Azure 傳統入口網站 [設定]頁面包含所有裝置參數，可讓您重新設定 StorSimple Manager 服務所管理的 StorSimple 裝置。本教學課程說明如何使用 [設定] 頁面，變更您的裝置系統管理員或 StorSimple Snapshot Manager 密碼。
 
-The Azure classic portal **Configure** page contains all the device parameters that you can reconfigure on a StorSimple device that is managed by a StorSimple Manager service. This tutorial explains how you can use the **Configure** page to change your device administrator or StorSimple Snapshot Manager password.
+## 變更裝置系統管理員密碼
 
-## <a name="change-the-device-administrator-password"></a>Change the device administrator password
+當您使用 Windows PowerShell 介面來存取 StorSimple 裝置時，需要輸入裝置系統管理員密碼。向服務註冊第一個 StorSimple 裝置時，此介面的預設密碼為 *Password1*。為了確保資料的安全性，您必須在註冊程序結束時變更此密碼。若未變更此密碼，您就無法結束註冊程序。如需詳細資訊，請參閱[步驟 3：透過 Windows PowerShell for StorSimple 設定和註冊裝置](storsimple-deployment-walkthrough-u2.md#step-3-configure-and-register-the-device-through-windows-powershell-for-storsimple)。
 
-When you use Windows PowerShell interface to access the StorSimple device, you are required to enter a device administrator password. When the first StorSimple device is registered with a service, the default password for this interface is *Password1*. For the security of your data, you are required to change this password at the end of the registration process. You cannot exit from the registration process without changing this password. For more information, see [Step 3: Configure and register the device through Windows PowerShell for StorSimple](storsimple-deployment-walkthrough-u2.md#step-3-configure-and-register-the-device-through-windows-powershell-for-storsimple).
+然後可以透過 Azure 傳統入口網站，變更在註冊期間先透過 Windows PowerShell 介面設定的密碼。執行下列步驟來變更裝置系統管理員密碼。
 
-The password that was first set through the Windows PowerShell interface during registration can then be changed via the Azure classic portal. Perform the following steps to change the device administrator password.
+#### 若要變更裝置系統管理員密碼：
 
-#### <a name="to-change-the-device-administrator-password"></a>To change the device administrator password
+1. 在傳統入口網站中，對您的裝置按一下 [裝置] > [設定]。
 
-1. In the classic portal, click **Devices** > **Configure** for your device.
+2. 向下捲動至 [**裝置系統管理員密碼**] 區段。提供含有 8 到 15 個字元的系統管理員密碼。密碼必須是 3 個以上大寫、小寫、數字和特殊字元的組合。
 
-2. Scroll down to the **Device Administrator Password** section. Provide an administrator password that contains from 8 to 15 characters. The password must be a combination of 3 or more of uppercase, lowercase, numeric, and special characters.
+3. 確認密碼。
 
-3. Confirm the password.
+4. 按一下頁面底部的 [儲存]。
 
-4. Click **Save** at the bottom of the page.
+現在應該已更新裝置系統管理員密碼。您可以使用此修改過的密碼來存取 Windows PowerShell 介面。
 
-The device administrator password should now be updated. You can use this modified password to access the Windows PowerShell interface.
+## 變更 StorSimple Snapshot Manager 密碼
 
-## <a name="change-the-storsimple-snapshot-manager-password"></a>Change the StorSimple Snapshot Manager password
+StorSimple Snapshot Manager 軟體位於您的 Windows 主機上，而且可讓系統管理員以本機和雲端快照的形式管理 StorSimple 裝置的備份。
 
-StorSimple Snapshot Manager software resides on your Windows host and allows administrators to manage backups of your StorSimple device in the form of local and cloud snapshots.
+當您在 StorSimple Snapshot Manager 中設定裝置時，系統將提示您提供裝置 IP 位址和密碼來驗證您的儲存裝置。此密碼最初是透過 Windows PowerShell 介面來設定。如需詳細資訊，請參閱[步驟 3：透過 Windows PowerShell for StorSimple 設定和註冊裝置](storsimple-deployment-walkthrough-u2.md#step-3-configure-and-register-the-device-through-windows-powershell-for-storsimple)。
 
-When configuring a device in StorSimple Snapshot Manager, you will be prompted to provide the device IP address and password to authenticate your storage device. This password is first configured through the Windows PowerShell interface. For more information, see [Step 3: Configure and register the device through Windows PowerShell for StorSimple](storsimple-deployment-walkthrough-u2.md#step-3-configure-and-register-the-device-through-windows-powershell-for-storsimple).
+然後可以透過傳統入口網站，變更在註冊期間先透過 Windows PowerShell 介面設定的密碼。執行下列步驟來變更 StorSimple Snapshot Manager 密碼。
 
-The password that was first set through the Windows PowerShell interface during registration can then be changed via the classic portal. Perform the following steps to change the StorSimple Snapshot Manager password.
+#### 若要變更 StorSimple Snapshot Manager 密碼：
 
-#### <a name="to-change-the-storsimple-snapshot-manager-password"></a>To change the StorSimple Snapshot Manager password
+1. 在傳統入口網站中，對您的裝置按一下 [裝置] > [設定]。
 
-1. In the classic portal, click **Devices** > **Configure** for your device.
+2. 向下捲動到 [**StorSimple Snapshot Manager**] 區段。輸入 14 或 15 個字元的密碼。請確定密碼包含 3 個以上大寫、小寫、數字和特殊字元的組合。
 
-2. Scroll down to the **StorSimple Snapshot Manager** section. Enter a password that is 14 or 15 characters. Make sure that the password contains a combination of 3 or more of uppercase, lowercase, numeric, and special characters.
+3. 確認密碼。
 
-3. Confirm the password.
+4. 按一下頁面底部的 [儲存]。
 
-4. Click **Save** at the bottom of the page.
-
-The StorSimple Snapshot Manager password should now be updated.
+StorSimple Snapshot Manager 密碼現在應該已更新。
  
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-- Learn more about [StorSimple security](storsimple-security.md).
+- 深入了解 [StorSimple 安全性](storsimple-security.md)。
 
-- Learn more about [modifying your device configuration](storsimple-modify-device-config.md).
+- [深入了解修改您的裝置組態](storsimple-modify-device-config.md)。
 
-- Learn more about [using the StorSimple Manager service to administer your StorSimple device](storsimple-manager-service-administration.md).
+- 深入了解[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

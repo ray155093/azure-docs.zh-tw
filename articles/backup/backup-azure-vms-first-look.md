@@ -1,231 +1,216 @@
 <properties
-    pageTitle="First Look: Protect Azure VMs with a backup vault | Microsoft Azure"
-    description="Protect Azure VMs with Backup vault. Tutorial explains create vault, register VMs, create policy, and protect VMs in Azure."
-    services="backup"
-    documentationCenter=""
-    authors="markgalioto"
-    manager="cfreeman"
-    editor=""/>
+	pageTitle="初步了解：使用備份保存庫保護 Azure VM | Microsoft Azure"
+	description="使用備份保存庫保護 Azure VM。教學課程會說明如何在 Azure 中建立保存庫、註冊 VM、建立原則和保護 VM。"
+	services="backup"
+	documentationCenter=""
+	authors="markgalioto"
+	manager="cfreeman"
+	editor=""/>
 
 <tags
-    ms.service="backup"
-    ms.workload="storage-backup-recovery"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="hero-article"
-    ms.date="09/15/2016"
-    ms.author="markgal; jimpark"/>
+	ms.service="backup"
+	ms.workload="storage-backup-recovery"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="hero-article"
+	ms.date="09/15/2016"
+	ms.author="markgal; jimpark"/>
 
 
-
-# <a name="first-look:-backing-up-azure-virtual-machines"></a>First look: Backing up Azure virtual machines
+# 先睹為快：備份 Azure 虛擬機器
 
 > [AZURE.SELECTOR]
-- [Protect VMs with a recovery services vault](backup-azure-vms-first-look-arm.md)
-- [Protect Azure VMs with a backup vault](backup-azure-vms-first-look.md)
+- [使用復原服務保存庫保護 VM](backup-azure-vms-first-look-arm.md)
+- [使用備份保存庫保護 Azure VM](backup-azure-vms-first-look.md)
 
-This tutorial takes you through the steps for backing up an Azure virtual machine (VM) to a backup vault in Azure. This article describes the Classic model or Service Manager deployment model, for backing up VMs. If you are interested in backing up a VM to a Recovery Services vault that belongs to a Resource Group, see [First look: Protect VMs with a recovery services vault](backup-azure-vms-first-look-arm.md). To successfully complete this tutorial, these prerequisites must exist:
+本教學課程會帶領您逐步完成將 Azure 虛擬機器 (VM) 備份至 Azure 備份保存庫的步驟。這篇文章說明用來備份 VM 的傳統模型或 Service Manager 部署模型。如果您有興趣將 VM 備份至屬於資源群組的復原服務保存庫，請參閱[初步了解：使用復原服務保存庫保護 VM](backup-azure-vms-first-look-arm.md)。若要成功完成本教學課程，必須先滿足下列先決條件︰
 
-- You have created a VM in your Azure subscription.
-- The VM has connectivity to Azure public IP addresses. For additional information, see [Network connectivity](./backup-azure-vms-prepare.md#network-connectivity).
+- 您已在 Azure 訂用帳戶中建立 VM。
+- VM 可連線到 Azure 公用 IP 位址。如需其他資訊，請參閱[網路連線](./backup-azure-vms-prepare.md#network-connectivity)。
 
-To back up a VM, there are five main steps:  
+若要備份 VM，共有五個主要步驟︰
 
-![step-one](./media/backup-azure-vms-first-look/step-one.png) Create a backup vault or identify an existing backup vault. <br/>
-![step-two](./media/backup-azure-vms-first-look/step-two.png) Use the Azure Classic portal to discover and register the virtual machines. <br/>
-![step-three](./media/backup-azure-vms-first-look/step-three.png) Install the VM Agent. <br/>
-![step-four](./media/backup-azure-vms-first-look/step-four.png) Create the policy for protecting the virtual machines. <br/>
-![step-five](./media/backup-azure-vms-first-look/step-five.png) Run the backup.
+![步驟一](./media/backup-azure-vms-first-look/step-one.png) 建立備份保存庫，或識別現有的備份保存庫。<br/> ![步驟二](./media/backup-azure-vms-first-look/step-two.png) 使用 Azure 傳統入口網站來探索和註冊虛擬機器。<br/> ![步驟三](./media/backup-azure-vms-first-look/step-three.png) 安裝 VM 代理程式。<br/> ![步驟四](./media/backup-azure-vms-first-look/step-four.png) 建立用來保護虛擬機器的原則。<br/> ![步驟五](./media/backup-azure-vms-first-look/step-five.png) 執行備份。
 
-![High-level view of VM backup process](./media/backup-azure-vms-first-look/backupazurevm-classic.png)
+![VM 備份程序的高階檢視](./media/backup-azure-vms-first-look/backupazurevm-classic.png)
 
->[AZURE.NOTE] Azure has two deployment models for creating and working with resources: [Resource Manager and Classic](../resource-manager-deployment-model.md). This tutorial is for use with the VMs that can be created in the Azure Classic portal. The Azure Backup service supports Resource Manager-based VMs. For details on backing up VMs to a recovery services vault, see [First Look: Protect VMs with a recovery services vault](backup-azure-vms-first-look-arm.md).
+>[AZURE.NOTE] Azure 有兩種用來建立和使用資源的部署模型：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。本教學課程適用於可以在 Azure 傳統入口網站中建立的 VM。Azure 備份服務支援以 Resource Manager 為基礎的 VM。如需將 VM 備份至復原服務保存庫的詳細資訊，請參閱[初步了解：使用復原服務保存庫保護 VM](backup-azure-vms-first-look-arm.md)。
 
 
 
-## <a name="step-1---create-a-backup-vault-for-a-vm"></a>Step 1 - Create a backup vault for a VM
+## 步驟 1 - 為 VM 建立備份保存庫
 
-A backup vault is an entity that stores all the backups and recovery points that have been created over time. The backup vault also contains the backup policies that are applied to the virtual machines being backed up.
+備份保存庫是一個實體，會儲存歷來建立的所有備份和復原點。備份保存庫也包含備份虛擬機器時將套用的備份原則。
 
-1. Sign in to the [Azure Classic portal](http://manage.windowsazure.com/).
+1. 登入 [Azure 傳統入口網站](http://manage.windowsazure.com/)。
 
-2. In the lower left corner of the Azure portal, click **New**
+2. 在 Azure 入口網站的左下角，按一下 [新增]
 
-    ![Click New menu](./media/backup-azure-vms-first-look/new-button.png)
+    ![按一下 [新增] 功能表](./media/backup-azure-vms-first-look/new-button.png)
 
-3. In the Quick Create wizard, click **Data Services** > **Recovery Services** > **Backup Vault** > **Quick Create**.
+3. 在 [快速建立] 精靈中，按一下 [資料服務] > [復原服務] > [備份保存庫] > [快速建立]。
 
-    ![Create backup vault](./media/backup-azure-vms-first-look/new-vault-wizard-one-subscription.png)
+    ![建立備份保存庫](./media/backup-azure-vms-first-look/new-vault-wizard-one-subscription.png)
 
-    The wizard prompts you for the **Name** and **Region**. If you administer more than one subscription, a dialog for choosing the subscription appears.
+    精靈會提示您輸入 [名稱] 和 [區域]。如果您管理多個訂用帳戶，將會出現對話方塊供您選擇訂用帳戶。
 
-4. For **Name**, enter a friendly name to identify the vault. The name needs to be unique for the Azure subscription.
+4. 在 [名稱] 中，輸入易記名稱來識別保存庫。必須是 Azure 訂用帳戶中唯一的名稱。
 
-5. In **Region**, select the geographic region for the vault. The vault **must** be in the same region as the virtual machines it protects.
+5. 在 [**區域**] 中，選取保存庫的地理區域。保存庫**必須**與其保護的虛擬機器位於相同區域。
 
-    If you don't know the region in which your VM exists, close this wizard and click **Virtual Machines** in the list of Azure services. The Location column provides the name of the region. If you have virtual machines in multiple regions, create a backup vault in each region.
+    如果您不知道 VM 的所在區域，請關閉此精靈，並按一下 Azure 服務清單中的**虛擬機器**。[位置] 欄會提供區域的名稱。如果您在多個區域中有虛擬機器，請在每個區域中建立備份保存庫。
 
-6. If there is no **Subscription** dialog in the wizard, skip to the next step. If you work with multiple subscriptions, select a subscription to associate with the new backup vault.
+6. 如果精靈中沒有 [訂用帳戶] 對話方塊，請跳至下一個步驟。如果您使用多個訂用帳戶，請選取要與新備份保存庫關聯的訂用帳戶。
 
-    ![Create vault toast notification](./media/backup-azure-vms-first-look/backup-vaultcreate.png)
+    ![建立保存庫快顯通知](./media/backup-azure-vms-first-look/backup-vaultcreate.png)
 
-7. Click **Create Vault**. It can take a while for the backup vault to be created. Monitor the status notifications at the bottom of the portal.
+7. 按一下 [建立保存庫]。要等備份保存庫建立好，可能需要一些時間。監視位於入口網站底部的狀態通知。
 
-    ![Create vault toast notification](./media/backup-azure-vms-first-look/create-vault-demo.png)
+    ![建立保存庫快顯通知](./media/backup-azure-vms-first-look/create-vault-demo.png)
 
-    A message confirms the vault has been successfully created. It is listed on the **Recovery services** page as **Active**.
+    將會顯示一則確認已順利建立保存庫的訊息。該保存庫會在 [復原服務] 頁面中以 [使用中] 狀態列出。
 
-    ![Create vault toast notification](./media/backup-azure-vms-first-look/create-vault-demo-success.png)
+    ![建立保存庫快顯通知](./media/backup-azure-vms-first-look/create-vault-demo-success.png)
 
-8. In the list of vaults on **Recovery Services** page, select the vault you created to launch the **Quick Start** page.
+8. 在 [復原服務] 頁面的保存庫清單中，選取您建立的保存庫以啟動 [快速啟動] 頁面。
 
-    ![List of backup vaults](./media/backup-azure-vms-first-look/active-vault-demo.png)
+    ![備份保存庫的清單](./media/backup-azure-vms-first-look/active-vault-demo.png)
 
-9. On the **Quick Start** page, click **Configure** to open the storage replication option.
-    ![List of backup vaults](./media/backup-azure-vms-first-look/configure-storage.png)
+9. 在 [快速啟動] 頁面上，按一下 [設定] 以開啟儲存體複寫選項。![備份保存庫的清單](./media/backup-azure-vms-first-look/configure-storage.png)
 
-10. On the **storage replication** option, choose the replication option for your vault.
+10. 在 [儲存體複寫] 選項上，選擇保存庫的複寫選項。
 
-    ![List of backup vaults](./media/backup-azure-vms-first-look/backup-vault-storage-options-border.png)
+    ![備份保存庫的清單](./media/backup-azure-vms-first-look/backup-vault-storage-options-border.png)
 
-    By default, your vault has geo-redundant storage. Choose geo-redundant storage if this is your primary backup. Choose locally redundant storage if you want a cheaper option that isn't quite as durable. Read more about geo-redundant and locally redundant storage options in the [Azure Storage replication overview](../storage/storage-redundancy.md).
+    根據預設，保存庫具有異地備援儲存體。如果這是您的主要備份，請選擇異地備援儲存體。如果您想要更便宜但不持久的選項，請選擇本地備援儲存體。在 [Azure 儲存體複寫概觀](../storage/storage-redundancy.md)中，深入了解異地備援和本地備援儲存體選項。
 
-After choosing the storage option for your vault, you are ready to associate the VM with the vault. To begin the association, discover and register the Azure virtual machines.
+選擇好保存庫的儲存體選項後，就可以開始建立 VM 與保存庫的關聯。若要開始關聯，請探索及註冊 Azure 虛擬機器。
 
-## <a name="step-2---discover-and-register-azure-virtual-machines"></a>Step 2 - Discover and Register Azure virtual machines
-Before registering the VM with a vault, run the discovery process to identify any new VMs. This returns a list of virtual machines in the subscription, along with additional information like the cloud service name and the region.
+## 步驟 2 - 探索及註冊 Azure 虛擬機器
+向保存庫註冊 VM 前，請執行探索程序以識別任何新的 VM。這會傳回訂用帳戶中的虛擬機器清單以及其他資訊，例如雲端服務名稱和區域。
 
-1. Sign in to the [Azure Classic portal](http://manage.windowsazure.com/)
+1. 登入 [Azure 傳統入口網站](http://manage.windowsazure.com/)
 
-2. In the Azure classic portal, click **Recovery Services** to open the list of Recovery Services vaults.
-    ![Select workload](./media/backup-azure-vms-first-look/recovery-services-icon.png)
+2. 在 Azure 傳統入口網站中，按一下 [復原服務] 以開啟復原服務保存庫清單。![選取工作負載](./media/backup-azure-vms-first-look/recovery-services-icon.png)
 
-3. From the list of vaults, select the vault to back up a VM.
+3. 在保存庫清單中，選取要備份 VM 的保存庫。
 
-    When you select your vault, it opens in the **Quick Start** page
+    當您選取保存庫時，它會開啟在 [快速啟動] 頁面中
 
-4. From the vault menu, click **Registered Items**.
+4. 在保存庫功能表中，按一下 [已註冊的項目]。
 
-    ![Select workload](./media/backup-azure-vms-first-look/configure-registered-items.png)
+    ![選取工作負載](./media/backup-azure-vms-first-look/configure-registered-items.png)
 
-5. From the **Type** menu, select **Azure Virtual Machine**.
+5. 在 [類型] 功能表中選取 [Azure 虛擬機器]。
 
-    ![Select workload](./media/backup-azure-vms/discovery-select-workload.png)
+    ![選取工作負載](./media/backup-azure-vms/discovery-select-workload.png)
 
-6. Click **DISCOVER** at the bottom of the page.
-    ![Discover button](./media/backup-azure-vms/discover-button-only.png)
+6. 按一下頁面底部的 [**探索**]。![探索按鈕](./media/backup-azure-vms/discover-button-only.png)
 
-    The discovery process may take a few minutes while the virtual machines are being tabulated. There is a notification at the bottom of the screen that lets you know that the process is running.
+    在列表顯示虛擬機器時，探索程序可能需花費幾分鐘的時間。畫面底部會有通知讓您知道程序正在執行中。
 
-    ![Discover VMs](./media/backup-azure-vms/discovering-vms.png)
+    ![探索 VM](./media/backup-azure-vms/discovering-vms.png)
 
-    The notification changes when the process is complete.
+    程序完成時，通知隨即變更。
 
-    ![Discovery done](./media/backup-azure-vms-first-look/discovery-complete.png)
+    ![探索完成](./media/backup-azure-vms-first-look/discovery-complete.png)
 
-7. Click **REGISTER** at the bottom of the page.
-    ![Register button](./media/backup-azure-vms-first-look/register-icon.png)
+7. 按一下頁面底部的 [註冊]。![註冊按鈕](./media/backup-azure-vms-first-look/register-icon.png)
 
-8. In the **Register Items** shortcut menu, select the virtual machines that you want to register.
+8. 在 [註冊項目] 捷徑功能表中，選取您想要註冊的虛擬機器。
 
-    >[AZURE.TIP] Multiple virtual machines can be registered at one time.
+    >[AZURE.TIP] 您可以同時註冊多個虛擬機器。
 
-    A job is created for each virtual machine that you've selected.
+    系統會為您所選取的每個虛擬機器建立一個工作。
 
-9. Click **View Job** in the notification to go to the **Jobs** page.
+9. 按一下通知中的 [檢視工作]，以移至 [工作] 頁面。
 
-    ![Register job](./media/backup-azure-vms/register-create-job.png)
+    ![註冊作業](./media/backup-azure-vms/register-create-job.png)
 
-    The virtual machine also appears in the list of registered items, along with the status of the registration operation.
+    虛擬機器也會連同註冊作業的狀態，出現在已註冊的項目清單中。
 
-    ![Registering status 1](./media/backup-azure-vms/register-status01.png)
+    ![註冊狀態 1](./media/backup-azure-vms/register-status01.png)
 
-    When the operation completes, the status changes to reflect the *registered* state.
+    作業完成時，狀態會改變以反映「已註冊」狀態。
 
-    ![Registration status 2](./media/backup-azure-vms/register-status02.png)
+    ![註冊狀態 2](./media/backup-azure-vms/register-status02.png)
 
-## <a name="step-3---install-the-vm-agent-on-the-virtual-machine"></a>Step 3 - Install the VM Agent on the virtual machine
+## 步驟 3 - 在虛擬機器中安裝 VM 代理程式
 
-The Azure VM Agent must be installed on the Azure virtual machine for the Backup extension to work. If your VM was created from the Azure gallery, the VM Agent is already present on the VM. You can skip to [protecting your VMs](backup-azure-vms-first-look.md#step-4-protect-azure-virtual-machines).
+Azure VM 代理程式必須安裝在 Azure 虛擬機器上，備份擴充功能才能運作。如果 VM 是建立自 Azure 資源庫，則 VM 代理程式已存在於 VM 上。您可以跳到[保護您的 VM](backup-azure-vms-first-look.md#step-4-protect-azure-virtual-machines)。
 
-If your VM migrated from an on-premises datacenter, the VM probably does not have the VM Agent installed. You must install the VM Agent on the virtual machine before proceeding to protect the VM. For detailed steps on installing the VM Agent, see the [VM Agent section of the Backup VMs article](backup-azure-vms-prepare.md#vm-agent).
+如果您的 VM 是從內部部署資料中心進行移轉，VM 可能還未安裝 VM 代理程式。您必須先在虛擬機器上安裝 VM 代理程式，再繼續進行保護 VM。如需安裝 VM 代理程式的詳細步驟，請參閱[《備份 VM》文章的＜VM 代理程式＞一節](backup-azure-vms-prepare.md#vm-agent)。
 
 
-## <a name="step-4---create-the-backup-policy"></a>Step 4 - Create the backup policy
-Before you trigger the initial backup job, set the schedule when backup snapshots are taken. The schedule when backup snapshots are taken, and the length of time those snapshots are retained, is the backup policy. The retention information is based on Grandfather-father-son backup rotation scheme.
+## 步驟 4 - 建立備份原則
+觸發初始備份作業之前，請先設定備份快照擷取時間排程。備份快照擷取時間排程以及快照保留時間長度是備份原則。保留資訊是以 Grandfather-father-son 備份輪替配置為基礎。
 
-1. Navigate to the backup vault under **Recovery Services** in the Azure Classic portal, and  click **Registered Items**.
-2. Select **Azure Virtual Machine** from the drop-down menu.
+1. 在 Azure 傳統入口網站中，瀏覽至 [復原服務] 下的備份保存庫，然後按一下 [註冊的項目]。
+2. 從下拉式選單中選取 [Azure 虛擬機器]。
 
-    ![Select workload in portal](./media/backup-azure-vms/select-workload.png)
+    ![在入口網站中選取工作負載](./media/backup-azure-vms/select-workload.png)
 
-3. Click **PROTECT** at the bottom of the page.
-    ![Click Protect](./media/backup-azure-vms-first-look/protect-icon.png)
+3. 按一下頁面底部的 [保護]。![按一下 [保護]](./media/backup-azure-vms-first-look/protect-icon.png)
 
-    The **Protect Items wizard** appears and lists *only* virtual machines that are registered and not protected.
+    [保護項目精靈] 隨即出現，並「只」列出已註冊但未受保護的虛擬機器。
 
-    ![Configure protection at scale](./media/backup-azure-vms/protect-at-scale.png)
+    ![設定大規模保護](./media/backup-azure-vms/protect-at-scale.png)
 
-4. Select the virtual machines that you want to protect.
+4. 選取您要保護的虛擬機器。
 
-    If there are two or more virtual machines with the same name, use the Cloud Service to distinguish between the virtual machines.
+    如果有兩個以上同名的虛擬機器，請使用雲端服務來區別虛擬機器。
 
-5. On the **Configure protection** menu select an existing policy or create a new policy to protect the virtual machines that you identified.
+5. 在 [設定保護] 功能表上，選取現有原則或建立新原則，以保護您所識別的虛擬機器。
 
-    New Backup vaults have a default policy associated with the vault. This policy takes a daily snapshot each evening, and the daily snapshot is retained for 30 days. Each backup policy can have multiple virtual machines associated with it. However, the virtual machine can only be associated with one policy at a time.
+    新的備份保存庫擁有與保存庫相關聯的預設原則。這項原則會在每晚擷取每日快照，並將每日快照保留 30 天。每一個備份原則可以有多個相關聯的虛擬機器。但虛擬機器一次只能與一個原則相關聯。
 
-    ![Protect with new policy](./media/backup-azure-vms/policy-schedule.png)
+    ![使用新的原則來保護](./media/backup-azure-vms/policy-schedule.png)
 
-    >[AZURE.NOTE] A backup policy includes a retention scheme for the scheduled backups. If you select an existing backup policy, you will be unable to modify the retention options in the next step.
+    >[AZURE.NOTE] 備份原則中包含排定備份的保留配置。如果您選取現有的備份原則，將無法在下一個步驟中修改保留選項。
 
-6. On **Retention Range** define the daily, weekly, monthly, and yearly scope for the specific backup points.
+6. 在 [保留範圍] 上，定義特定備份點的每日、每週、每月和每年範圍。
 
-    ![Virtual machine is backed up with recovery point](./media/backup-azure-vms/long-term-retention.png)
+    ![搭配復原點備份虛擬機器](./media/backup-azure-vms/long-term-retention.png)
 
-    Retention policy specifies the length of time for storing a backup. You can specify different retention policies based on when the backup is taken.
+    保留期原則會指定儲存備份的時間長度。您可以根據進行備份的時間指定不同的保留原則。
 
-7. Click **Jobs** to view the list of **Configure Protection** jobs.
+7. 按一下 [作業] 以檢視 [設定保護] 作業的清單。
 
-    ![Configure protection job](./media/backup-azure-vms/protect-configureprotection.png)
+    ![設定保護工作](./media/backup-azure-vms/protect-configureprotection.png)
 
-    Now that you've established the policy, go to the next step and run the initial backup.
+    現在您已建立原則，接下來請移至下一個步驟，並執行初始備份。
 
-## <a name="step-5---initial-backup"></a>Step 5 - Initial backup
+## 步驟 5 - 初始備份
 
-Once a virtual machine has been protected with a policy, you can view that relationship on the **Protected Items** tab. Until the initial backup occurs, the **Protection Status** shows as **Protected - (pending initial backup)**. By default, the first scheduled backup is the *initial backup*.
+在虛擬機器受到原則保護後，您可以在 [受保護項目] 索引標籤上檢視該關聯性。在執行初始備份前，[保護狀態] 會顯示為 [受保護 - (待執行初始備份)]。根據預設，第一個排定的備份是*初始備份*。
 
-![Backup pending](./media/backup-azure-vms-first-look/protection-pending-border.png)
+![待備份](./media/backup-azure-vms-first-look/protection-pending-border.png)
 
-To start the initial backup now:
+若要立即啟動初始備份︰
 
-1. On the **Protected Items** page, click **Backup Now** at the bottom of the page.
-    ![Backup Now icon](./media/backup-azure-vms-first-look/backup-now-icon.png)
+1. 在 [受保護的項目] 頁面上，按一下頁面底部的 [立即備份]。![[立即備份] 圖示](./media/backup-azure-vms-first-look/backup-now-icon.png)
 
-    The Azure Backup service creates a backup job for the initial backup operation.
+    Azure 備份服務會初始備份作業建立備份工作。
 
-2. Click the **Jobs** tab to view the list of jobs.
+2. 按一下 [工作] 索引標籤來檢視工作清單。
 
-    ![Backup in progress](./media/backup-azure-vms-first-look/protect-inprogress.png)
+    ![備份進行中](./media/backup-azure-vms-first-look/protect-inprogress.png)
 
-    When initial backup is complete, the status of the virtual machine in the **Protected Items** tab is *Protected*.
+    初始備份完成後，[受保護的項目] 索引標籤中的虛擬機器狀態為 [受保護]。
 
-    ![Virtual machine is backed up with recovery point](./media/backup-azure-vms/protect-backedupvm.png)
+    ![搭配復原點備份虛擬機器](./media/backup-azure-vms/protect-backedupvm.png)
 
-    >[AZURE.NOTE] Backing up virtual machines is a local process. You cannot back up virtual machines from one region to a backup vault in another region. So, for every Azure region that has VMs that need to be backed up, at least one backup vault must be created in that region.
+    >[AZURE.NOTE] 備份虛擬機器是本機的程序。您無法將虛擬機器從一個區域備份到另一個區域中的備份保存庫。因此，對於每一個有 VM 需要備份的 Azure 區域，必須在該區域中至少建立一個備份保存庫。
 
-## <a name="next-steps"></a>Next steps
-Now that you have successfully backed up a VM, there are several next steps that could be of interest. The most logical step is to familiarize yourself with restoring data to a VM. However, there are management tasks that will help you understand how to keep your data safe and minimize costs.
+## 後續步驟
+現在您已成功備份 VM，接下來有幾個可能相關的步驟。最合乎邏輯的步驟是讓自己熟悉如何將資料還原到 VM。不過，也有能夠幫助您了解如何確保資料安全無虞以及將成本降至最低的管理工作。
 
-- [Manage and monitor your virtual machines](backup-azure-manage-vms.md)
-- [Restore virtual machines](backup-azure-restore-vms.md)
-- [Troubleshooting guidance](backup-azure-vms-troubleshoot.md)
+- [管理和監視虛擬機器](backup-azure-manage-vms.md)
+- [還原虛擬機器](backup-azure-restore-vms.md)
+- [疑難排解指引](backup-azure-vms-troubleshoot.md)
 
 
-## <a name="questions?"></a>Questions?
-If you have questions, or if there is any feature that you would like to see included, [send us feedback](http://aka.ms/azurebackup_feedback).
+## 有疑問嗎？
+如果您有問題，或希望我們加入任何功能，請[傳送意見反應給我們](http://aka.ms/azurebackup_feedback)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

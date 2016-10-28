@@ -1,95 +1,94 @@
 <properties 
-    pageTitle="Using elastic database client library with Entity Framework | Microsoft Azure" 
-    description="Use Elastic Database client library and Entity Framework for coding databases" 
-    services="sql-database" 
-    documentationCenter="" 
-    manager="jhubbard" 
-    authors="torsteng" 
-    editor=""/>
+	pageTitle="搭配使用彈性資料庫用戶端程式庫與 Entity Framework | Microsoft Azure" 
+	description="使用彈性資料庫用戶端程式庫與和 Entity Framework 來編寫資料庫" 
+	services="sql-database" 
+	documentationCenter="" 
+	manager="jhubbard" 
+	authors="torsteng" 
+	editor=""/>
 
 <tags 
-    ms.service="sql-database" 
-    ms.workload="sql-database" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="05/27/2016" 
-    ms.author="torsteng"/>
+	ms.service="sql-database" 
+	ms.workload="sql-database" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="05/27/2016" 
+	ms.author="torsteng"/>
 
-
-# <a name="elastic-database-client-library-with-entity-framework"></a>Elastic Database client library with Entity Framework 
+# 搭配使用彈性資料庫用戶端程式庫與 Entity Framework 
  
-This document shows the changes in an Entity Framework application that are needed to integrate with the [Elastic Database tools](sql-database-elastic-scale-introduction.md). The focus is on composing [shard map management](sql-database-elastic-scale-shard-map-management.md) and [data-dependent routing](sql-database-elastic-scale-data-dependent-routing.md) with the Entity Framework **Code First** approach. The [Code First – New Database](http://msdn.microsoft.com/data/jj193542.aspx) tutorial for EF serves as our running example throughout this document. The sample code accompanying this document is part of elastic database tools' set of samples in the Visual Studio Code Samples.
+這份文件說明 Entity Framework 應用程式為了要與[彈性資料庫工具](sql-database-elastic-scale-introduction.md)整合所需做的變更。重點在於使用 Entity Framework **Code First** 方法來編寫[分區對應管理](sql-database-elastic-scale-shard-map-management.md)和[資料相依路由](sql-database-elastic-scale-data-dependent-routing.md)。整份文件中以 EF 的 [Code First – 新的資料庫](http://msdn.microsoft.com/data/jj193542.aspx)教學課程作為執行範例。本文所附的範例程式碼取自於 Visual Studio 程式碼範例中的彈性資料庫工具範例集。
   
-## <a name="downloading-and-running-the-sample-code"></a>Downloading and Running the Sample Code
-To download the code for this article:
+## 下載並執行範例程式碼
+若要下載本文的程式碼：
 
-* Visual Studio 2012 or later is required. 
-* Start Visual Studio. 
-* In Visual Studio, select File -> New Project. 
-* In the ‘New Project’ dialog, navigate to the **Online Samples** for **Visual C#** and type "elastic db" into the search box in the upper right.
+* 需要 visual Studio 2012 或更新版本。 
+* 啟動 Visual Studio。 
+* 在 Visual Studio 中，選取 [檔案] -> [新增專案]。 
+* 在 [新增專案] 對話方塊中，瀏覽至 [**Visual C#**] 的 [**線上範例**]，然後在右上方的搜尋方塊中輸入 "elastic db"。
     
-    ![Entity Framework and elastic database sample app][1] 
+    ![Entity Framework 和彈性資料庫範例應用程式][1]
 
-    Select the sample called **Elastic DB Tools for Azure SQL – Entity Framework Integration**. After accepting the license, the sample loads. 
+    選取範例 [**Elastic DB Tools for Azure SQL – Entity Framework Integration**]。接受授權之後，就會載入範例。
 
-To run the sample, you need to create three empty databases in Azure SQL Database:
+若要執行範例，您在 Azure SQL Database 中需要建立三個空的資料庫：
 
-* Shard Map Manager database
-* Shard 1 database
-* Shard 2 database
+* 分區對應管理員資料庫
+* 分區 1 資料庫
+* 分區 2 資料庫
 
-Once you have created these databases, fill in the place holders in **Program.cs** with your Azure SQL DB server name, the database names and your credentials to connect to the databases. Build the solution in Visual Studio. Visual Studio will download the required NuGet packages for the elastic database client library, Entity Framework, and Transient Fault handling as part of the build process. Make sure that restoring NuGet packages is enabled for your solution. You can enable this setting by right-clicking on the solution file in the Visual Studio Solution Explorer. 
+建立這些資料庫後，在 **Program.cs** 的預留位置中，填入您的 Azure SQL DB 伺服器名稱、資料庫名稱及用來連接到資料庫的認證。在 Visual Studio 中建置方案。在建置過程中，Visual Studio 會下載彈性資料庫用戶端程式庫、Entity Framework 和暫時性錯誤處理所需的 NuGet 封裝。請確定您的解決方案已啟用還原 NuGet 封裝。您可以用滑鼠右鍵按一下 Visual Studio [方案總管] 中的方案檔來啟用這個設定。
 
-## <a name="entity-framework-workflows"></a>Entity Framework workflows 
+## Entity Framework 工作流程 
 
-Entity Framework developers rely on one of the following four workflows to build applications and to ensure persistence for application objects: 
+Entity Framework 開發人員依賴下列四種工作流程來建置應用程式，以及確保應用程式物件的持續性：
 
-* **Code First (New Database)**: The EF developer creates the model in the application code and then EF generates the database from it. 
-* **Code First (Existing Database)**: The developer lets EF generate the application code for the model from an existing database.
-* **Model First**: The developer creates the model in the EF designer and then EF creates the database from the model.
-* **Database First**: The developer uses EF tooling to infer the model from an existing database. 
+* **Code First (新的資料庫)**：EF 開發人員在應用程式碼中建立模型，然後 EF 從它產生資料庫。 
+* **Code First (現有的資料庫)**：開發人員可讓 EF 從現有資料庫產生模型的應用程式碼。
+* **Model First**：開發人員在 EF 設計工具中建立模型，然後 EF 從模型建立資料庫。
+* **Database First**：開發人員使用 EF 工具從現有的資料庫推斷模型。 
 
-All these approaches rely on the DbContext class to transparently manage database connections and database schema for an application. As we will discuss in more detail later in the document, different constructors on the DbContext base class allow for different levels of control over connection creation, database bootstrapping and schema creation. Challenges arise primarily from the fact that the database connection management provided by EF intersects with the connection management capabilities of the data dependent routing interfaces provided by the elastic database client library. 
+這些方法都依賴 DbContext 類別來自動管理應用程式的資料庫連接和資料庫結構描述。我們將在本文稍後詳細討論，DbContext 基底類別的不同建構函式允許在不同程度上控制連接建立、資料庫啟動載入和結構描述建立。問題主要起因於 EF 所提供的資料庫連接管理，與彈性資料庫用戶端程式庫所提供的資料相依路由介面的連接管理功能，兩者交錯。
 
-## <a name="elastic-database-tools-assumptions"></a>Elastic database tools assumptions 
+## 彈性資料庫工具假設 
 
-For term definitions, see [Elastic Database tools glossary](sql-database-elastic-scale-glossary.md).
+關於詞彙定義，請參閱[彈性資料庫工具字彙](sql-database-elastic-scale-glossary.md)。
 
-With elastic database client library, you define partitions of your application data called shardlets. Shardlets are identified by a sharding key and are mapped to specific databases. An application may have as many databases as needed and distribute the shardlets to provide enough capacity or performance given current business requirements. The mapping of sharding key values to the databases is stored by a shard map provided by the elastic database client APIs. We call this capability **Shard Map Management**, or SMM for short. The shard map also serves as the broker of database connections for requests that carry a sharding key. We refer to this capability as **data-dependent routing**. 
+在彈性資料庫用戶端程式庫中，您會定義應用程式資料的資料分割，稱為 Shardlet。Shardlet 以分區化索引鍵來識別，而且會對應到特定的資料庫。根據目前的商務需求，應用程式可依需要而有無數個資料庫，並散發 Shardlet 來提供足夠的容量或效能。分區化索引鍵值到資料庫的對應，由彈性資料庫用戶端 API 所提供的分區對應來儲存。我們將這項功能稱為**分區對應管理**，簡稱為 SMM。對於攜帶分區化索引鍵的要求，分區對應也充當資料庫連接的代理人。我們將這項功能稱為**資料相依路由**。
  
-The shard map manager protects users from inconsistent views into shardlet data that can occur when concurrent shardlet management operations (such as relocating data from one shard to another) are happening. To do so, the shard maps managed by the client library broker the database connections for an application. This allows the shard map functionality to automatically kill a database connection when shard management operations could impact the shardlet that the connection has been created for. This approach needs to integrate with some of EF’s functionality, such as creating new connections from an existing one to check for database existence. In general, our observation has been that the standard DbContext constructors only work reliably for closed database connections that can safely be cloned for EF work. The design principle of elastic database instead is to only broker opened connections. One might think that closing a connection brokered by the client library before handing it over to the EF DbContext may solve this issue. However, by closing the connection and relying on EF to re-open it, one foregoes the validation and consistency checks performed by the library. The migrations functionality in EF, however, uses these connections to manage the underlying database schema in a way that is transparent to the application. Ideally, we would like to retain and combine all these capabilities from both the elastic database client library and EF in the same application. The following section discusses these properties and requirements in more detail. 
+分區對應管理員可防止使用者檢視 Shardlet 資料時出現不一致，這種情況發生在並行 Shardlet 管理作業中 (例如將資料從一個分區重新放置到另一個分區)。在作法上，用戶端程式庫所管理的分區對應會代理應用程式的資料庫連接。這可讓分區對應功能在分區管理作業可能影響已建立連接的 Shardlet 時，自動終止資料庫連接。這種方法需要與一些 EF 功能整合，例如從現有連接建立新的連接以檢查資料庫是否存在。一般而言，我們觀察是只有在已關閉的資料庫連接上 (EF 工作可安心複製)，標準 DbContext 建構函式才能可靠地運作。彈性資料庫的設計原則只是代理已開啟的連接。有人可能會認為先關閉用戶端程式庫所代理的連接，再交給 EF DbContext，就可以解決這個問題。不過，若關閉連接並依賴 EF 來重新開啟它，就等於放棄程式庫所執行的驗證和一致性檢查。不過，EF 的移轉功能會使用這些連接，在應用程式不知情的情況下管理基礎資料庫結構描述。在理想的情況下，我們希望在相同的應用程式中保留並結合彈性資料庫用戶端程式庫和 EF 提供的所有這些功能。下一節詳細討論這些屬性和需求。
 
 
-## <a name="requirements"></a>Requirements 
+## 需求 
 
-When working with both the elastic database client library and Entity Framework APIs, we want to retain the following properties: 
+當使用彈性資料庫用戶端程式庫和 Entity Framework API 時，我們希望保留下列屬性：
 
-* **Scale-out**: To add or remove databases from the data tier of the sharded application as necessary for the capacity demands of the application. This means control over the the creation and deletion of databases and using the elastic database shard map manager APIs to manage databases, and mappings of shardlets. 
+* **相應放大**：我們想要依需要在分區化應用程式資料層中新增或移除資料庫，以滿足應用程式的容量需求。這表示控制資料庫的建立和刪除，以及使用彈性資料庫分區對應管理員 API 來管理資料庫，還有 Shardlet 的對應。 
 
-* **Consistency**: The application employs sharding, and uses the data dependent routing capabilities of the client library. To avoid corruption or wrong query results, connections are brokered through the shard map manager. This also retains validation and consistency.
+* **一致性**：應用程式採用分區化，並且使用用戶端程式庫的資料相依路由功能。為了避免查詢結果損毀或錯誤，由分區對應管理員來代理連接。這也會保留驗證和一致性。
  
-* **Code First**: To retain the convenience of EF’s code first paradigm. In Code First, classes in the application are mapped transparently to the underlying database structures. The application code interacts with DbSets that mask most aspects involved in the underlying database processing.
+* **Code First**：保留 EF code first 典範的便利性。在 Code First 中，應用程式中的類別直接對應至基礎資料庫結構。應用程式碼與 DbSets 互動，DbSets 將基礎資料庫處理所需的大部分工作隱藏起來。
  
-* **Schema**: Entity Framework handles initial database schema creation and subsequent schema evolution through migrations. By retaining these capabilities, adapting your app is easy as the data evolves. 
+* **結構描述**：Entity Framework 會處理建立初始資料庫結構描述，以及結構描述後續透過移轉的演進。只要保留這些功能，就可輕鬆隨著資料演進來調整您的應用程式。
 
-The following guidance instructs how to satisfy these requirements for Code First applications using elastic database tools. 
+下列指導方針指示如何使用彈性資料庫工具，以滿足 Code First 應用程式的這些需求。
 
-## <a name="data-dependent-routing-using-ef-dbcontext"></a>Data dependent routing using EF DbContext 
+## 使用 EF DbContext 的資料相依路由 
 
-Database connections with Entity Framework are typically managed through subclasses of **DbContext**. Create these subclasses by deriving from **DbContext**. This is where you define your **DbSets** that implement the database-backed collections of CLR objects for your application. In the context of data dependent routing, we can identify several helpful properties that do not necessarily hold for other EF code first application scenarios: 
+資料庫與 Entity Framework 的連接通常是透過 **DbContext** 的子類別管理。從 **DbContext** 衍生來建立這些子類別。您在此定義 **DbSets**，為您的應用程式實作 CLR 物件的資料庫支援集合。就資料相依路由來說，我們可以識別其他 EF Code First 應用程式案例中不一定支援的幾個實用的屬性：
 
-* The database already exists and has been registered in the elastic database shard map. 
-* The schema of the application has already been deployed to the database (explained below). 
-* Data-dependent routing connections to the database are brokered by the shard map. 
+* 資料庫已經存在，而且已在彈性資料庫分區對應中註冊。 
+* 應用程式的結構描述已經部署到資料庫 (如下所述)。 
+* 由分區對應代理資料庫的資料相依路由連接。 
 
-To integrate **DbContexts** with data-dependent routing for scale-out:
+整合 **DbContexts** 與資料相依路由以相應放大：
 
-1. Create physical database connections through the elastic database client interfaces of the shard map manager, 
-2. Wrap the connection with the **DbContext** subclass
-3. Pass the connection down into the **DbContext** base classes to ensure all the processing on the EF side happens as well. 
+1. 透過分區對應管理員的彈性資料庫用戶端介面，建立實體資料庫連接， 
+2. 使用 **DbContext** 子類別來包裝連接
+3. 將連接向下傳入 **DbContext** 基底類別，以確保也在 EF 端進行所有處理。 
 
-The following code example illustrates this approach. (This code is also in the accompanying Visual Studio project)
+下列程式碼範例說明此方法。(此程式碼也在隨附的 Visual Studio 專案中)
 
     public class ElasticScaleContext<T> : DbContext
     {
@@ -122,20 +121,20 @@ The following code example illustrates this approach. (This code is also in the 
             return conn;
         }    
 
-## <a name="main-points"></a>Main points
-* A new constructor replaces the default constructor in the DbContext subclass 
-* The new constructor takes the arguments that are required for data dependent routing through elastic database client library:
-    * the shard map to access the data-dependent routing interfaces,
-    * the sharding key to identify the shardlet,
-    * a connection string with the credentials for the data-dependent routing connection to the shard. 
+## 重點
+* 新的建構函式取代 DbContext 子類別的預設建構函式 
+* 新的建構函式接受透過彈性資料庫用戶端程式庫的資料相依路由所需的引數：
+    * 用來存取資料相依路由介面的分區對應，
+    * 用來識別 Shardlet 的分區化索引鍵，
+    * 分區的資料相依路由連接所需的連接字串和認證。 
  
-* The call to the base class constructor takes a detour into a static method that performs all the steps necessary for data-dependent routing. 
-   * It uses the OpenConnectionForKey call of the elastic database client interfaces on the shard map to establish an open connection.
-   * The shard map creates the open connection to the shard that holds the shardlet for the given sharding key.
-   * This open connection is passed back to the base class constructor of DbContext to indicate that this connection is to be used by EF instead of letting EF create a new connection automatically. This way the connection has been tagged by the elastic database client API so that it can guarantee consistency under shard map management operations.
+* 基底類別建構函式的呼叫會繞道至靜態方法，以執行資料相依路由所需的所有步驟。
+   * 它會在分區對應上使用彈性資料庫用戶端介面的 OpenConnectionForKey 呼叫，以建立開啟的連接。
+   * 分區對應會對分區建立開啟的連接，此分區保留給定分區化索引鍵的 Shardlet。
+   * 這個開啟的連接會傳回給 DbContext 的基底類別建構函式，以指出此連接要給 EF 使用，而不要讓 EF 自動建立新的連接。如此一來，連接已具有彈性資料庫用戶端 API 的性質，將可以保證分區對應管理作業時的一致性。
  
   
-Use the new constructor for your DbContext subclass instead of the default constructor in your code. Here is an example: 
+在您的程式碼中使用 DbContext 子類別的新建構函式，而不是預設建構函式。下列是一個範例：
 
     // Create and save a new blog.
 
@@ -158,12 +157,12 @@ Use the new constructor for your DbContext subclass instead of the default const
      … 
     }
 
-The new constructor opens the connection to the shard that holds the data for the shardlet identified by the value of **tenantid1**. The code in the **using** block stays unchanged to access the **DbSet** for blogs using EF on the shard for **tenantid1**. This changes semantics for the code in the using block such that all database operations are now scoped to the one shard where **tenantid1** is kept. For instance, a LINQ query over the blogs **DbSet** would only return blogs stored on the current shard, but not the ones stored on other shards.  
+新的建構函式會對分區開啟連接，此分區保留 **tenantid1** 值所識別的分區的資料。**using** 區塊中的程式碼維持不變，可在 **tenantid1** 的分區上使用 EF 存取部落格的 **DbSet**。這會變更 using 區塊中的程式碼語意，使得所有資料庫作業現在以一個保留 **tenantid1** 的分區為範圍。例如，在部落格 **DbSet** 上的 LINQ 查詢只傳回目前分區上儲存的部落格，而不是儲存在其他分區的部落格。
 
-#### <a name="transient-faults-handling"></a>Transient faults handling
-The Microsoft Patterns & Practices team published the [The Transient Fault Handling Application Block](https://msdn.microsoft.com/library/dn440719.aspx). The library is used with elastic scale client library in combination with EF. However, ensure that any transient exception returns to a place where we can ensure that the new constructor is being used after a transient fault so that any new connection attempt is made using the constructors we have tweaked. Otherwise, a connection to the correct shard is not guaranteed, and there are no assurances the connection is maintained as changes to the shard map occur. 
+#### 暫時性錯誤處理
+Microsoft 模式和作法小組已發佈[暫時性錯誤處理應用程式區塊](https://msdn.microsoft.com/library/dn440719.aspx)。此程式庫搭配 Elastic Scale 用戶端程式庫並結合 EF 一起使用。不過，請確定任何暫時性例外狀況都傳回至某處，讓我們可以確定暫時性失敗後會使用新的建構函式，以便使用我們已調整的建構函式來進行任何新的連接嘗試。否則，無法保證連接至正確的分區，也不能確保分區對應變更發生時會保持連接。
 
-The following code sample illustrates how a SQL retry policy can be used around the new **DbContext** subclass constructors: 
+下列程式碼範例說明如何在新的 **DbContext** 子類別建構函式周圍使用 SQL 重試原則：
 
     SqlDatabaseUtils.SqlRetryPolicy.ExecuteAction(() => 
     { 
@@ -179,37 +178,37 @@ The following code sample illustrates how a SQL retry policy can be used around 
             } 
         }); 
 
-**SqlDatabaseUtils.SqlRetryPolicy** in the code above is defined as a **SqlDatabaseTransientErrorDetectionStrategy** with a retry count of 10, and 5 seconds wait time between retries. This approach is similar to the guidance for EF and user-initiated transactions (see [Limitations with Retrying Execution Strategies (EF6 onwards)](http://msdn.microsoft.com/data/dn307226). Both situations require that the application program controls the scope to which the transient exception returns: to either reopen the transaction, or (as shown) recreate the context from the proper constructor that uses the elastic database client library.
+上述程式碼中的 **SqlDatabaseUtils.SqlRetryPolicy** 定義為 **SqlDatabaseTransientErrorDetectionStrategy**，並指定重試計數 10，重試之間等待時間為 5 秒。這種方式類似於 EF 和使用者起始交易的指引 (請參閱[重試執行策略的限制 (從 EF6 開始)](http://msdn.microsoft.com/data/dn307226))。這兩種情況都需要應用程式控制暫時性例外狀況傳回的範圍：重新開啟交易，或 (如下所示) 從使用彈性資料庫用戶端程式庫的適當建構函式重新建立內容。
 
-The need to control where transient exceptions take us back in scope also precludes the use of the built-in **SqlAzureExecutionStrategy** that comes with EF. **SqlAzureExecutionStrategy** would reopen a connection but not use **OpenConnectionForKey** and therefore bypass all the validation that is performed as part of the **OpenConnectionForKey** call. Instead, the code sample uses the built-in **DefaultExecutionStrategy** that also comes with EF. As opposed to **SqlAzureExecutionStrategy**, it works correctly in combination with the retry policy from Transient Fault Handling. The execution policy is set in the **ElasticScaleDbConfiguration** class. Note that we decided not to use **DefaultSqlExecutionStrategy** since it suggests to use **SqlAzureExecutionStrategy** if transient exceptions occur - which would lead to wrong behavior as discussed. For more information on the different retry policies and EF, see [Connection Resiliency in EF](http://msdn.microsoft.com/data/dn456835.aspx).     
+控制暫時性例外狀況把我們帶回範圍中何處的需求，也會妨礙使用 EF 隨附的內建 **SqlAzureExecutionStrategy**。**SqlAzureExecutionStrategy** 會重新開啟連接，但不使用 **OpenConnectionForKey**，因此會略過 **OpenConnectionForKey** 呼叫過程中執行的所有驗證。然而，此程式碼範例會使用同樣是 EF 隨附的內建 **DefaultExecutionStrategy**。相對於 **SqlAzureExecutionStrategy**，它會結合暫時性錯誤處理的重試原則一起正確運作。執行原則設定於 **ElasticScaleDbConfiguration** 類別中。請注意，我們決定不使用 **DefaultSqlExecutionStrategy**，因為它會在發生暫時性例外狀況時建議使用 **SqlAzureExecutionStrategy**，而這會導致所述的錯誤行為。如需不同重試原則與 EF 的詳細資訊，請參閱 [EF 的連線恢復功能](http://msdn.microsoft.com/data/dn456835.aspx)。
 
-#### <a name="constructor-rewrites"></a>Constructor rewrites
-The code examples above illustrate the default constructor re-writes required for your application in order to use  data dependent routing with the Entity Framework. The following table generalizes this approach to other constructors. 
+#### 建構函式重寫
+上述程式碼範例說明應用程式所需的預設建構函式重寫，以便使用資料相依路由與 Entity Framework。下表將這個方法擴及其他建構函式。
 
 
-Current Constructor  | Rewritten Constructor for data | Base Constructor | Notes
+目前的建構函式 | 重寫的資料建構函式 | 基底建構函式 | 注意事項
 ---------- | ----------- | ------------|----------
-MyContext() |ElasticScaleContext(ShardMap, TKey) |DbContext(DbConnection, bool) |The connection needs to be a function of the shard map and the data-dependent routing key. You need to by-pass automatic connection creation by EF and instead use the shard map to broker the connection. 
-MyContext(string)|ElasticScaleContext(ShardMap, TKey) |DbContext(DbConnection, bool) |The connection is a function of the shard map and the data-dependent routing key. A fixed database name or connection string will not work as they by-pass validation by the shard map. 
-MyContext(DbCompiledModel) |ElasticScaleContext(ShardMap, TKey, DbCompiledModel) |DbContext(DbConnection, DbCompiledModel, bool) |The connection will get created for the given shard map and sharding key with the model provided. The compiled model will be passed on to the base c’tor.
-MyContext(DbConnection, bool) |ElasticScaleContext(ShardMap, TKey, bool) |DbContext(DbConnection, bool) |The connection needs to be inferred from the shard map and the key. It cannot be provided as an input (unless that input was already using the shard map and the key). The Boolean will be passed on. 
-MyContext(string, DbCompiledModel) |ElasticScaleContext(ShardMap, TKey, DbCompiledModel) |DbContext(DbConnection, DbCompiledModel, bool) |The connection needs to be inferred from the shard map and the key. It cannot be provided as an input (unless that input was using the shard map and the key). The compiled model will be passed on. 
-MyContext(ObjectContext, bool) |ElasticScaleContext(ShardMap, TKey, ObjectContext, bool) |DbContext(ObjectContext, bool) |The new constructor needs to ensure that any connection in the ObjectContext passed as an input is re-routed to a connection managed by Elastic Scale. A detailed discussion of ObjectContexts is beyond the scope of this document.
-MyContext(DbConnection, DbCompiledModel,bool) |ElasticScaleContext(ShardMap, TKey, DbCompiledModel, bool)| DbContext(DbConnection, DbCompiledModel, bool); |The connection needs to be inferred from the shard map and the key. The connection cannot be provided as an input (unless that input was already using the shard map and the key). Model and Boolean are passed on to the base class constructor. 
+MyContext() |ElasticScaleContext(ShardMap, TKey) |DbContext(DbConnection, bool) |連接必須是分區對應和資料相依路由索引鍵的函數。您需要略過由 EF 自動建立連接，改用分區對應來代理連接。 
+MyContext(string)|ElasticScaleContext(ShardMap, TKey) |DbContext(DbConnection, bool) |連接是分區對應和資料相依路由索引鍵的函數。固定的資料庫名稱或連接字串無法運作，因為它們會略過分區對應所執行的驗證。 
+MyContext(DbCompiledModel) |ElasticScaleContext(ShardMap, TKey, DbCompiledModel) |DbContext(DbConnection, DbCompiledModel, bool) |將使用提供的模型建立給定分區對應和分區化索引鍵的連接。編譯的模型將會傳遞給基底 c'tor。
+MyContext(DbConnection, bool) |ElasticScaleContext(ShardMap, TKey, bool) |DbContext(DbConnection, bool) |連接必須是從分區對應和索引鍵推斷的函數。無法提供它做為輸入 (除非該輸入已經使用分區對應和索引鍵)。將傳遞布林值。 
+MyContext(string, DbCompiledModel) |ElasticScaleContext(ShardMap, TKey, DbCompiledModel) |DbContext(DbConnection, DbCompiledModel, bool) |連接必須是從分區對應和索引鍵推斷的函數。無法提供它做為輸入 (除非該輸入使用分區對應和索引鍵)。將傳遞編譯的模型。 
+MyContext(ObjectContext, bool) |ElasticScaleContext(ShardMap, TKey, ObjectContext, bool) |DbContext(ObjectContext, bool) |新的建構函式必須確定在 ObjectContext 中做為輸入傳遞的任何連接，都會重新路由至 Elastic Scale 所管理的連接。ObjectContexts 類別的詳細討論已超出本文的範圍。
+MyContext(DbConnection, DbCompiledModel,bool) |ElasticScaleContext(ShardMap, TKey, DbCompiledModel, bool)| DbContext(DbConnection, DbCompiledModel, bool); |連接必須是從分區對應和索引鍵推斷的函數。無法提供連接做為輸入 (除非該輸入已經使用分區對應和索引鍵)。模型和布林值會傳遞至基底類別建構函式。 
 
-## <a name="shard-schema-deployment-through-ef-migrations"></a>Shard schema deployment through EF migrations 
+## 透過 EF 移轉的分區結構描述部署 
 
-Automatic schema management is a convenience provided by the Entity Framework. In the context of applications using elastic database tools, we want to retain this capability to automatically provision the schema to newly created shards when databases are added to the sharded application. The primary use case is to increase capacity at the data tier for sharded applications using EF. Relying on EF’s capabilities for schema management reduces the database administration effort with a sharded application built on EF. 
+自動結構描述管理是 Entity Framework 所提供的便利性。就使用彈性資料庫工具的應用程式來說，我們希望保留這項功能，以便資料庫加入至分區化應用程式時，自動將結構描述佈建至新建立的分區。主要使用案例是針對使用 EF 的分區化應用程式，在資料層增加容量。依賴 EF 的功能來管理結構描述，可減輕以 EF 建置的分區化應用程式所需的資料庫管理工作。
 
-Schema deployment through EF migrations works best on **unopened connections**. This is in contrast to the scenario for data dependent routing that relies on the opened connection provided by the elastic database client API. Another difference is the consistency requirement: While desirable to ensure consistency for all data-dependent routing connections to protect against concurrent shard map manipulation, it is not a concern with initial schema deployment to a new database that has not yet been registered in the shard map, and not yet been allocated to hold shardlets. We can therefore rely on regular database connections for this scenarios, as opposed to data-dependent routing.  
+透過 EF 移轉的結構描述部署在**未開啟的連接**上表現最好。這與資料相依路由的情況相反，它依賴彈性資料庫用戶端 API 所提供的已開啟連接。另一個差異是一致性需求：雖然希望確保所有資料相依路由連接的一致性，以防止並行分區對應操作，但這無關於最初將結構描述部署到尚未在分區對應中註冊且尚未配置來保留 Shardlet 的新資料庫。因此，我們在此案例中可依賴一般資料庫連接，而不是資料相依路由。
 
-This leads to an approach where schema deployment through EF migrations is tightly coupled with the registration of the new database as a shard in the application’s shard map. This relies on the following prerequisites: 
+這會形成一種方法，使得透過 EF 移轉的結構描述部署，與新的資料庫在應用程式的分區對應中註冊為分區緊密相關。這依賴下列必要條件：
 
-* The database has already been created. 
-* The database is empty – it holds no user schema and no user data.
-* The database cannot yet be accessed through the elastic database client APIs for data-dependent routing. 
+* 已建立資料庫。 
+* 資料庫是空 - 不含任何使用者結構描述與任何使用者資料。
+* 還不能透過資料相依路由的彈性資料庫用戶端 API 存取資料庫。 
 
-With these prerequisites in place, we can create a regular un-opened **SqlConnection** to kick off EF migrations for schema deployment. The following code sample illustrates this approach. 
+符合這些必要條件後，我們就可以建立一般未開啟的 **SqlConnection**，以開始進行結構描述部署的 EF 移轉。下列程式碼範例說明此方法。
 
         // Enter a new shard - i.e. an empty database - to the shard map, allocate a first tenant to it  
         // and kick off EF intialization of the database to deploy schema 
@@ -239,7 +238,7 @@ With these prerequisites in place, we can create a regular un-opened **SqlConnec
         } 
  
 
-This sample shows the method **RegisterNewShard** that registers the shard in the shard map, deploys the schema through EF migrations, and stores a mapping of a sharding key to the shard. It relies on a constructor of the **DbContext** subclass (**ElasticScaleContext** in the sample) that takes a SQL connection string as input. The code of this constructor is straight-forward, as the following example shows: 
+這個範例示範 **RegisterNewShard** 方法，此方法會在分區對應中註冊分區、透過 EF 移轉部署結構描述，並將分區化索引鍵的對應儲存至分區。它依賴 **DbContext** 子類別 (範例中的 **ElasticScaleContext**) 的建構函式 (接受 SQL 連接字串做為輸入)。這個建構函式的程式碼簡單易懂，如下列範例所示：
 
 
         // C'tor to deploy schema and migrations to a new shard 
@@ -258,22 +257,22 @@ This sample shows the method **RegisterNewShard** that registers the shard in th
             return connnectionString; 
         } 
  
-One might have used the version of the constructor inherited from the base class. But the code needs to ensure that the default initializer for EF is used when connecting. Hence the short detour into the static method before calling into the base class constructor with the connection string. Note that the registration of shards should run in a different app domain or process to ensure that the initializer settings for EF do not conflict. 
+您可能使用繼承自基底類別的建構函式版本。但是，程式碼必須確定連接時使用 EF 的預設初始設定式。因此，在以連接字串呼叫基底類別建構函式之前，先稍微繞道至靜態方法。請注意，分區的註冊應該在不同的應用程式定義域或程序中執行，以確保 EF 的初始設定式設定不會發生衝突。
 
 
-## <a name="limitations"></a>Limitations 
+## 限制 
 
-The approaches outlined in this document entail a couple of limitations: 
+這份文件中所述的方法有幾個限制：
 
-* EF applications that use **LocalDb** first need to migrate to a regular SQL Server database before using elastic database client library. Scaling out an application through sharding with Elastic Scale is not possible with **LocalDb**. Note that development can still use **LocalDb**. 
+* 使用 **LocalDb** 的 EF 應用程式必須先移轉至一般 SQL Server 資料庫，才能使用彈性資料庫用戶端程式庫。使用 **LocalDb** 時，無法透過分區化與 Elastic Scale 來相應放大應用程式。請注意，仍可使用 **LocalDb** 來開發。 
 
-* Any changes to the application that imply database schema changes need to go through EF migrations on all shards. The sample code for this document does not demonstrate how to do this. Consider using Update-Database with a ConnectionString parameter to iterate over all shards; or extract the T-SQL script for the pending migration using Update-Database with the –Script option and apply the T-SQL script to your shards.  
+* 應用程式中涉及資料庫結構描述變更的任何變更，都必須在所有分區上經過 EF 移轉。這份文件的範例程式碼不示範此作法。請考慮使用 Update-Database 搭配 ConnectionString 參數，以逐一查看所有分區，或使用 Update-Database 搭配 –Script 選項，以擷取暫止移轉的 T-SQL 指令碼，並將 T-SQL 指令碼套用至您的分區。
 
-* Given a request, it is assumed that all of its database processing is contained within a single shard as identified by the sharding key provided by the request. However, this assumption does not always hold true. For example, when it is not possible to make a sharding key available. To address this, the client library provides the **MultiShardQuery** class that implements a connection abstraction for querying over several shards. Learning to use the **MultiShardQuery** in combination with EF is beyond the scope of this document
+* 提出要求時，將會假定所有資料庫處理都包含在要求所提供的分區化索引鍵所識別的單一分區內。不過，這項假設不一定永遠成立。例如，有時無法提供分區化索引鍵。為了解決這個問題，用戶端程式庫提供 **MultiShardQuery** 類別，此類別實作連接抽象來查詢數個分區。學習搭配 EF 來使用 **MultiShardQuery** 已超出本文的範圍
 
-## <a name="conclusion"></a>Conclusion
+## 結論
 
-Through the steps outlined in this document, EF applications can use the elastic database client library's capability for data dependent routing by refactoring constructors of the **DbContext** subclasses used in the EF application. This limits the  changes required to those places where **DbContext** classes already exist. In addition, EF applications can continue to benefit from automatic schema deployment by combining the steps that invoke the necessary EF migrations with the registration of new shards and mappings in the shard map. 
+透過本文件中所述的步驟，EF 應用程式可以使用彈性資料庫用戶端程式庫的資料相依路由功能，重構 EF 應用程式中使用的 **DbContext** 子類別的建構函式。已存在 **DbContext** 類別的地方不需要做太多變更。此外，EF 應用程式可以結合叫用必要 EF 移轉的步驟，以及將新的分區和對應註冊在分區對應中的步驟，以繼續受益於自動結構描述部署。
 
 
 [AZURE.INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
@@ -282,7 +281,4 @@ Through the steps outlined in this document, EF applications can use the elastic
 [1]: ./media/sql-database-elastic-scale-use-entity-framework-applications-visual-studio/sample.png
  
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0601_2016-->

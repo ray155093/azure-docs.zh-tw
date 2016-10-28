@@ -1,12 +1,12 @@
 <properties
-    pageTitle="Add the OneDrive connector in your Logic Apps | Microsoft Azure"
-    description="Overview of the OneDrive connector with REST API parameters"
-    services="logic-apps"    
-    documentationCenter=""     
-    authors="MandiOhlinger"    
-    manager="anneta"    
-    editor=""
-    tags="connectors"/>
+	pageTitle="在您的 Logic Apps 中新增 OneDrive 連接器 | Microsoft Azure"
+	description="搭配 REST API 參數來使用 OneDrive 連接器的概觀"
+	services="logic-apps"    
+	documentationCenter=""     
+	authors="MandiOhlinger"    
+	manager="erikre"    
+	editor=""
+	tags="connectors"/>
 
 <tags
    ms.service="logic-apps"
@@ -14,409 +14,404 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="integration"
-   ms.date="10/18/2016"
+   ms.date="07/26/2016"
    ms.author="mandia"/>
 
+# 開始使用 OneDrive 連接器
 
-# <a name="get-started-with-the-onedrive-connector"></a>Get started with the OneDrive connector
+連線到 OneDrive 來管理您的檔案，包括上傳檔案、取得、刪除檔案等等。
 
-Connect to OneDrive to manage your files, including upload, get, delete files, and more. 
+使用 OneDrive，您會︰
 
-With OneDrive, you: 
+- 將檔案儲存在 OneDrive 中或更新 OneDrive 中的現有檔案以建置您的工作流程。
+- 使用觸發程序，在 OneDrive 內有檔案建立或更新時，啟動工作流程。
+- 使用動作來建立檔案、刪除檔案等等。例如，當收到有附件的新 Office 365 電子郵件時 (觸發程序)，在 OneDrive 建立新的檔案 (動作)。
 
-- Build your workflow by storing files in OneDrive, or update existing files in OneDrive. 
-- Use triggers to start your workflow when a file is created or updated within your OneDrive.
-- Use actions to create a file, delete a file, and more. For example, when a new Office 365 email is received with an attachment (a trigger), create a new file in OneDrive (an action).
+本主題說明如何在邏輯應用程式中使用 OneDrive 連接器，並且也列出觸發程序和動作。
 
-This topic shows you how to use the OneDrive connector in a logic app, and also lists the triggers and actions.
+>[AZURE.NOTE] 這個版本的文章適用於 Logic Apps 公開上市版本 (GA)。
 
->[AZURE.NOTE] This version of the article applies to Logic Apps general availability (GA). 
+若要深入瞭解 Logic Apps，請參閱[什麼是邏輯應用程式](../app-service-logic/app-service-logic-what-are-logic-apps.md)以及[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
-To learn more about Logic Apps, see [What are logic apps](../app-service-logic/app-service-logic-what-are-logic-apps.md) and [create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md).
+## 連線到 OneDrive
 
-## <a name="connect-to-onedrive"></a>Connect to OneDrive
+您必須先建立與服務的「連線」，才能透過邏輯應用程式存取任何服務。連線可讓邏輯應用程式與另一個服務連線。例如，若要連線到 OneDrive，您必須先有 OneDrive「連線」。若要建立連線，請輸入平常用來存取所要連線之服務的認證。因此，在 OneDrive 中，請在 OneDrive 帳戶輸入認證以建立連線。
 
-Before your logic app can access any service, you first create a *connection* to the service. A connection provides connectivity between a logic app and another service. For example, to connect to OneDrive, you first need a OneDrive *connection*. To create a connection, enter the credentials you normally use to access the service you wish to connect to. So, with OneDrive, enter the credentials to your OneDrive account  to create the connection.
+### 建立連線
 
-### <a name="create-the-connection"></a>Create the connection
+>[AZURE.INCLUDE [建立 OneDrive 連線的步驟](../../includes/connectors-create-api-onedrive.md)]
 
->[AZURE.INCLUDE [Steps to create a connection to OneDrive](../../includes/connectors-create-api-onedrive.md)]
+## 使用觸發程序
 
-## <a name="use-a-trigger"></a>Use a trigger
+觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。觸發程序會以您想要的間隔和頻率「輪詢」服務。[深入了解觸發程序](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
 
-A trigger is an event that can be used to start the workflow defined in a logic app. Triggers "poll" the service at an interval and frequency that you want. [Learn more about triggers](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts).
+1. 在邏輯應用程式中，輸入「onedrive」以取得觸發程序的清單︰
 
-1. In the logic app, type "onedrive" to get a list of the triggers:  
+	![](./media/connectors-create-api-onedrive/onedrive-1.png)
 
-    ![](./media/connectors-create-api-onedrive/onedrive-1.png)
+2. 選取 [當檔案遭到修改時]。如果連線已存在，則選取 [顯示選擇器] 按鈕以選取資料夾。
 
-2. Select **When a file is modified**. If a connection already exists, then select the Show Picker button to select a folder.
+	![](./media/connectors-create-api-onedrive/sample-folder.png)
 
-    ![](./media/connectors-create-api-onedrive/sample-folder.png)
+	如果系統提示您登入，則輸入登入詳細資料來建立連線。本主題中的[建立連線](connectors-create-api-onedrive.md#create-the-connection)一節會列出步驟。
 
-    If you are prompted to sign in, then enter the sign in details to create the connection. [Create the connection](connectors-create-api-onedrive.md#create-the-connection) in this topic lists the steps. 
+	> [AZURE.NOTE] 在此範例中，當所選資料夾中的檔案更新時，邏輯應用程式便會執行。若要查看此觸發程序的結果，請新增另一個動作，以傳送電子郵件給您。例如，新增 Office 365 Outlook「傳送電子郵件」動作，以在檔案更新時傳送電子郵件給您。
 
-    > [AZURE.NOTE] In this example, the logic app runs when a file in the folder you choose is updated. To see the results of this trigger, add another action that sends you an email. For example, add the Office 365 Outlook *Send an email* action that emails you when a file is updated. 
+3. 選取 [編輯] 按鈕，然後設定 [頻率] 和 [間隔] 值。例如，如果您希望觸發程序每隔 15 分鐘輪詢一次，則將 [頻率] 設定為 [分鐘] 並將 [**間隔]** 設定為 [15]。
 
-3. Select the **Edit** button and set the **Frequency** and **Interval** values. For example, if you want the trigger to poll every 15 minutes, then set the **Frequency** to **Minute**, and set the **Interval** to **15**. 
+	![](./media/connectors-create-api-onedrive/trigger-properties.png)
 
-    ![](./media/connectors-create-api-onedrive/trigger-properties.png)
-
-4. **Save** your changes (top left corner of the toolbar). Your logic app is saved and may be automatically enabled.
-
-
-## <a name="use-an-action"></a>Use an action
-
-An action is an operation carried out by the workflow defined in a logic app. [Learn more about actions](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts).
-
-1. Select the plus sign. You see several choices: **Add an action**, **Add a condition**, or one of the **More** options.
-
-    ![](./media/connectors-create-api-onedrive/add-action.png)
-
-2. Choose **Add an action**.
-
-3. In the text box, type “onedrive” to get a list of all the available actions.
-
-    ![](./media/connectors-create-api-onedrive/onedrive-actions.png) 
-
-4. In our example, choose **OneDrive - Create file**. If a connection already exists, then select the **Folder Path** to put the file, enter the **File Name**, and choose the **File Content** you want:  
-
-    ![](./media/connectors-create-api-onedrive/sample-action.png)
-
-    If you are prompted for the connection information, then enter the details to create the connection. [Create the connection](connectors-create-api-onedrive.md#create-the-connection) in this topic describes these properties. 
-
-    > [AZURE.NOTE] In this example, we create a new file in a OneDrive folder. You can use output from another trigger to create the OneDrive file. For example, add the Office 365 Outlook *When a new email arrives* trigger. Then add the OneDrive *Create file* action that uses the Attachments and Content-Type fields within a ForEach to create the new file in OneDrive. 
-    > 
-    > ![](./media/connectors-create-api-onedrive/foreach-action.png)
-
-5. **Save** your changes (top left corner of the toolbar). Your logic app is saved and may be automatically enabled.
+4. **儲存**您的變更 (工具列的左上角)。邏輯應用程式將會儲存，而且可能會自動啟用。
 
 
-## <a name="technical-details"></a>Technical Details
+## 使用動作
 
-## <a name="triggers"></a>Triggers
+動作是由邏輯應用程式中定義的工作流程所執行的作業。[深入了解動作](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
 
-|Trigger | Description|
+1. 選取加號。您會看到幾個選擇︰[新增動作]、[新增條件] 或其中一個 [其他] 選項。
+
+	![](./media/connectors-create-api-onedrive/add-action.png)
+
+2. 選擇 [新增動作]。
+
+3. 在文字方塊中，輸入「onedrive」以取得所有可用動作的清單。
+
+	![](./media/connectors-create-api-onedrive/onedrive-actions.png)
+
+4. 在我們的範例中，選擇 [OneDrive - 建立檔案]。如果連線已存在，則選取 [資料夾路徑] 以供放置檔案、輸入 [檔案名稱]，然後選擇想要的 [檔案內容]︰
+
+	![](./media/connectors-create-api-onedrive/sample-action.png)
+
+	如果系統提示您輸入連線資訊，請輸入詳細資料以建立連線。本主題的[建立連線](connectors-create-api-onedrive.md#create-the-connection)一節會說明這些屬性。
+
+	> [AZURE.NOTE] 在此範例中，我們會在 OneDrive 資料夾建立新檔案。您可以使用另一個觸發程序的輸出以建立 OneDrive 檔案。例如，新增 Office 365 Outlook「新的電子郵件送達時」觸發程序。然後新增 OneDrive「建立檔案」動作，使用 ForEach 內的 [附件] 和 [內容類型] 欄位在 OneDrive 中建立新檔案。
+	> 
+	> ![](./media/connectors-create-api-onedrive/foreach-action.png)
+
+5. **儲存**您的變更 (工具列的左上角)。邏輯應用程式將會儲存，而且可能會自動啟用。
+
+
+## 技術詳細資料
+
+## 觸發程序
+
+|觸發程序 | 說明|
 |--- | ---|
-|[When a file is created](connectors-create-api-onedrive.md#when-a-file-is-created)|This operation triggers a flow when a new file is created in a folder.|
-|[When a file is modified](connectors-create-api-onedrive.md#when-a-file-is-modified)|This operation triggers a flow when a file is modified in a folder.|
+|[當檔案建立時](connectors-create-api-onedrive.md#when-a-file-is-created)|當資料夾中有新檔案建立時，此作業就會觸發流程。|
+|[當檔案遭到修改時](connectors-create-api-onedrive.md#when-a-file-is-modified)|當資料夾中有檔案遭到修改時，此作業就會觸發流程。|
 
 
-## <a name="actions"></a>Actions
+## 動作
 
-|Action|Description|
+|動作|說明|
 |--- | ---|
-|[Get file metadata](connectors-create-api-onedrive.md#get-file-metadata)|This operation gets the metadata for a file.|
-|[Update file](connectors-create-api-onedrive.md#update-file)|This operation updates a file.|
-|[Delete file](connectors-create-api-onedrive.md#delete-file)|This operation deletes a file.|
-|[Get file metadata using path](connectors-create-api-onedrive.md#get-file-metadata-using-path)|This operation gets the metadata of a file using the path.|
-|[Get file content using path](connectors-create-api-onedrive.md#get-file-content-using-path)|This operation gets the content of a file using the path.|
-|[Get file content](connectors-create-api-onedrive.md#get-file-content)|This operation gets the content of a file.|
-|[Create file](connectors-create-api-onedrive.md#create-file)|This operation creates a file.|
-|[Copy file](connectors-create-api-onedrive.md#copy-file)|This operation copies a file to OneDrive.|
-|[List files in folder](connectors-create-api-onedrive.md#list-files-in-folder)|This operation gets the list of files and subfolders in a folder.|
-|[List files in root folder](connectors-create-api-onedrive.md#list-files-in-root-folder)|This operation gets the list of files and subfolders in the root folder.|
-|[Extract archive to folder](connectors-create-api-onedrive.md#extract-archive-to-folder)|This operation extracts an archive file into a folder (example: .zip).|
+|[取得檔案中繼資料](connectors-create-api-onedrive.md#get-file-metadata)|這項作業會取得檔案的中繼資料。|
+|[更新檔案](connectors-create-api-onedrive.md#update-file)|這項作業會更新檔案。|
+|[刪除檔案](connectors-create-api-onedrive.md#delete-file)|這項作業會刪除檔案。|
+|[使用路徑來取得檔案中繼資料](connectors-create-api-onedrive.md#get-file-metadata-using-path)|這項作業會使用路徑取得檔案的中繼資料。|
+|[使用路徑來取得檔案內容](connectors-create-api-onedrive.md#get-file-content-using-path)|這項作業會使用路徑取得檔案的內容。|
+|[取得檔案內容](connectors-create-api-onedrive.md#get-file-content)|這項作業會取得檔案的內容。|
+|[建立檔案](connectors-create-api-onedrive.md#create-file)|這項作業會建立檔案。|
+|[複製檔案](connectors-create-api-onedrive.md#copy-file)|這項作業會將檔案複製到 OneDrive。|
+|[列出資料夾中的檔案](connectors-create-api-onedrive.md#list-files-in-folder)|這項作業會取得資料夾中的檔案和子資料夾清單。|
+|[列出根資料夾中的檔案](connectors-create-api-onedrive.md#list-files-in-root-folder)|這項作業會取得根資料夾中的檔案和子資料夾清單。|
+|[將封存檔案解壓縮到資料夾](connectors-create-api-onedrive.md#extract-archive-to-folder)|這項作業會將封存檔案解壓縮到資料夾 (範例︰.zip)。|
 
-### <a name="action-details"></a>Action details
+### 動作詳細資料
 
-In this section, see the specific details about each action, including any required or optional input properties, and any corresponding output associated with the connector.
+在本節中，請查看每個動作的特定詳細資料，包括任何必要或選擇性的輸入屬性，以及任何與連接器相關聯的對應輸出。
 
 
-#### <a name="get-file-metadata"></a>Get file metadata
-This operation gets the metadata for a file. 
+#### 取得檔案中繼資料
+這項作業會取得檔案的中繼資料。
 
-|Property Name| Display Name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|id*|File|Select a file|
+|識別碼*|檔案|選取檔案|
 
-An asterisk (*) means the property is required.
+星號 (*) 代表必要屬性。
 
-##### <a name="output-details"></a>Output Details
+##### 輸出詳細資料
 BlobMetadata
 
-| Property Name | Data Type |
+| 屬性名稱 | 資料類型 |
 |---|---|
-|Id|string|
-|Name|string|
-|DisplayName|string|
-|Path|string|
-|LastModified|string|
-|Size|integer|
-|MediaType|string|
-|IsFolder|boolean|
-|ETag|string|
-|FileLocator|string|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
 
 
-#### <a name="update-file"></a>Update file
-This operation updates a file. 
+#### 更新檔案
+這項作業會更新檔案。
 
-|Property Name| Display Name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|id*|File|Select a file|
-|body*|File content|Content of the file|
+|識別碼*|檔案|選取檔案|
+|body*|檔案內容|檔案的內容|
 
-An asterisk (*) means the property is required.
+星號 (*) 代表必要屬性。
 
-##### <a name="output-details"></a>Output Details
+##### 輸出詳細資料
 BlobMetadata
 
-| Property Name | Data Type |
+| 屬性名稱 | 資料類型 |
 |---|---|
-|Id|string|
-|Name|string|
-|DisplayName|string|
-|Path|string|
-|LastModified|string|
-|Size|integer|
-|MediaType|string|
-|IsFolder|boolean|
-|ETag|string|
-|FileLocator|string|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
 
 
-#### <a name="delete-file"></a>Delete file
-This operation deletes a file. 
+#### 刪除檔案
+這項作業會刪除檔案。
 
-|Property Name| Display Name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|id*|File|Select a file|
+|識別碼*|檔案|選取檔案|
 
-An asterisk (*) means the property is required.
+星號 (*) 代表必要屬性。
 
-##### <a name="output-details"></a>Output Details
-None.
+##### 輸出詳細資料
+無。
 
-#### <a name="get-file-metadata-using-path"></a>Get file metadata using path
-This operation gets the metadata of a file using the path. 
+#### 使用路徑來取得檔案中繼資料
+這項作業會使用路徑取得檔案的中繼資料。
 
-|Property Name| Display Name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|path*|File path|Select a file|
+|path*|檔案路徑|選取檔案|
 
-An asterisk (*) means the property is required.
+星號 (*) 代表必要屬性。
 
-##### <a name="output-details"></a>Output Details
+##### 輸出詳細資料
 BlobMetadata
 
-| Property Name | Data Type |
+| 屬性名稱 | 資料類型 |
 |---|---|
-|Id|string|
-|Name|string|
-|DisplayName|string|
-|Path|string|
-|LastModified|string|
-|Size|integer|
-|MediaType|string|
-|IsFolder|boolean|
-|ETag|string|
-|FileLocator|string|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
 
 
-#### <a name="get-file-content-using-path"></a>Get file content using path
-This operation gets the content of a file using the path. 
+#### 使用路徑來取得檔案內容
+這項作業會使用路徑取得檔案的內容。
 
-|Property Name| Display Name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|path*|File path|Select a file|
+|path*|檔案路徑|選取檔案|
 
-An asterisk (*) means the property is required.
+星號 (*) 代表必要屬性。
 
-##### <a name="output-details"></a>Output Details
-None.
+##### 輸出詳細資料
+無。
 
 
-#### <a name="get-file-content"></a>Get file content
-This operation gets the content of a file. 
+#### 取得檔案內容
+這項作業會取得檔案的內容。
 
-|Property Name| Display Name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|id*|File|Select a file|
+|識別碼*|檔案|選取檔案|
 
-An asterisk (*) means the property is required.
+星號 (*) 代表必要屬性。
 
-##### <a name="output-details"></a>Output Details
-None.
+##### 輸出詳細資料
+無。
 
-#### <a name="create-file"></a>Create file
-This operation creates a file. 
+#### 建立檔案
+這項作業會建立檔案。
 
-|Property Name| Display Name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|folderPath*|Folder path|Select a folder|
-|name*|File name|Name of the file|
-|body*|File content|Content of the file|
+|folderPath*|資料夾路徑|選取資料夾|
+|name*|檔案名稱|檔案名稱|
+|body*|檔案內容|檔案的內容|
 
-An asterisk (*) means the property is required.
+星號 (*) 代表必要屬性。
 
-##### <a name="output-details"></a>Output Details
+##### 輸出詳細資料
 BlobMetadata
 
-| Property Name | Data Type |
+| 屬性名稱 | 資料類型 |
 |---|---|
-|Id|string|
-|Name|string|
-|DisplayName|string|
-|Path|string|
-|LastModified|string|
-|Size|integer|
-|MediaType|string|
-|IsFolder|boolean|
-|ETag|string|
-|FileLocator|string|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
 
 
-#### <a name="copy-file"></a>Copy file
-This operation copies a file to OneDrive. 
+#### 複製檔案
+這項作業會將檔案複製到 OneDrive。
 
-|Property Name| Display Name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|source*|Source url|Url to source file|
-|destination*|Destination file path|Destination file path, including target filename|
-|overwrite|Overwrite?|Overwrites the destination file if set to 'true'|
+|source*|來源 URL|來源檔案的 URL|
+|destination*|目的地檔案路徑|目的地檔案路徑，包括目標檔案名稱|
+|overwrite|覆寫？|如果設定為「True」，則會覆寫目的檔案|
 
-An asterisk (*) means the property is required.
+星號 (*) 代表必要屬性。
 
-##### <a name="output-details"></a>Output Details
+##### 輸出詳細資料
 BlobMetadata
 
-| Property Name | Data Type |
+| 屬性名稱 | 資料類型 |
 |---|---|
-|Id|string|
-|Name|string|
-|DisplayName|string|
-|Path|string|
-|LastModified|string|
-|Size|integer|
-|MediaType|string|
-|IsFolder|boolean|
-|ETag|string|
-|FileLocator|string|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
 
 
-#### <a name="when-a-file-is-created"></a>When a file is created
-This operation triggers a flow when a new file is created in a folder. 
+#### 當檔案建立時
+當資料夾中有新檔案建立時，此作業就會觸發流程。
 
-|Property Name| Display Name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|folderId*|Folder|Select a folder|
+|folderId*|資料夾|選取資料夾|
 
-An asterisk (*) means the property is required.
+星號 (*) 代表必要屬性。
 
-##### <a name="output-details"></a>Output Details
-None.
+##### 輸出詳細資料
+無。
 
-#### <a name="when-a-file-is-modified"></a>When a file is modified
-This operation triggers a flow when a file is modified in a folder. 
+#### 當檔案遭到修改時
+當資料夾中有檔案遭到修改時，此作業就會觸發流程。
 
-|Property Name| Display Name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|folderId*|Folder|Select a folder|
+|folderId*|資料夾|選取資料夾|
 
-An asterisk (*) means the property is required.
+星號 (*) 代表必要屬性。
 
-##### <a name="output-details"></a>Output Details
-None.
+##### 輸出詳細資料
+無。
 
-#### <a name="list-files-in-folder"></a>List files in folder
-This operation gets the list of files and subfolders in a folder.
+#### 列出資料夾中的檔案
+這項作業會取得資料夾中的檔案和子資料夾清單。
 
-|Property Name| Display Name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|id*|Folder|Select a folder|
+|識別碼*|資料夾|選取資料夾|
 
-An asterisk (*) means the property is required.
+星號 (*) 代表必要屬性。
 
-##### <a name="output-details"></a>Output Details
+##### 輸出詳細資料
 BlobMetadata
 
-| Property Name | Data Type |
+| 屬性名稱 | 資料類型 |
 |---|---|
-|Id|string|
-|Name|string|
-|DisplayName|string|
-|Path|string|
-|LastModified|string|
-|Size|integer|
-|MediaType|string||
-|IsFolder|boolean|
-|ETag|string|
-|FileLocator|string|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串||
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
 
 
-#### <a name="list-files-in-root-folder"></a>List files in root folder
-This operation gets the list of files and subfolders in the root folder. 
+#### 列出根資料夾中的檔案
+這項作業會取得根資料夾中的檔案和子資料夾清單。
 
-There are no parameters for this call.
+這個呼叫沒有參數。
 
 
-##### <a name="output-details"></a>Output Details
+##### 輸出詳細資料
 BlobMetadata
 
-| Property Name | Data Type |
+| 屬性名稱 | 資料類型 |
 |---|---|
-|Id|string|
-|Name|string|
-|DisplayName|string|
-|Path|string|
-|LastModified|string|
-|Size|integer|
-|MediaType|string|
-|IsFolder|boolean|
-|ETag|string|
-|FileLocator|string|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
 
-#### <a name="extract-archive-to-folder"></a>Extract archive to folder
-This operation extracts an archive file into a folder (example: .zip). 
+#### 將封存檔案解壓縮到資料夾
+這項作業會將封存檔案解壓縮到資料夾 (範例︰.zip)。
 
-|Property Name| Display Name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|source*|Source archive file path|Path to the archive file|
-|destination*|Destination folder path|Path to extract the archive contents|
-|overwrite|Overwrite?|Overwrites the destination files if set to 'true'|
+|source*|來源封存檔案路徑|封存檔案的路徑|
+|destination*|目的地資料夾路徑|用來解壓縮封存檔案內容的路徑|
+|overwrite|覆寫？|如果設定為「True」，則會覆寫目的檔案|
 
-An asterisk (*) means the property is required.
+星號 (*) 代表必要屬性。
 
-##### <a name="output-details"></a>Output Details
+##### 輸出詳細資料
 BlobMetadata
 
-| Property Name | Data Type |
+| 屬性名稱 | 資料類型 |
 |---|---|
-|Id|string|
-|Name|string|
-|DisplayName|string|
-|Path|string|
-|LastModified|string|
-|Size|integer|
-|MediaType|string|
-|IsFolder|boolean|
-|ETag|string|
-|FileLocator|string|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
 
 
-## <a name="http-responses"></a>HTTP responses
+## HTTP 回應
 
-The following table outlines the responses to the actions and triggers, and the response descriptions:  
+下表概述動作和觸發程序的回應以及回應說明︰
 
-|Name|Description|
+|名稱|說明|
 |---|---|
 |200|OK|
-|202|Accepted|
-|400|Bad Request|
-|401|Unauthorized|
-|403|Forbidden|
-|404|Not Found|
-|500|Internal Server Error. Unknown error occurred|
-|default|Operation Failed.|
+|202|已接受|
+|400|不正確的要求|
+|401|未經授權|
+|403|禁止|
+|404|找不到|
+|500|內部伺服器錯誤。發生未知錯誤|
+|預設值|作業失敗。|
 
 
-## <a name="next-steps"></a>Next Steps
+## 後續步驟
 
-[Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md). Explore the other available connectors in Logic Apps at our [APIs list](apis-list.md).
+[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。請到我們的 [API 清單](apis-list.md)探索 Logic Apps 中其他可用的連接器。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

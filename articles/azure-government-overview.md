@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="Azure Government Overview | Microsoft Azure" 
-   description="This article provides an overview of the Azure Government Cloud capabilities and the trustworthy design and security used to support compliance applicable to federal, state, and local government organizations and their partners. " 
+   pageTitle="Azure Government 概觀 | Microsoft Azure" 
+   description="本文提供 Azure Government 雲端功能，以及支援聯邦政府、州政府與當地政府組織及其合作夥伴之適用法務遵循，值得信賴的設計與安全性概觀。" 
    services="Azure-Government"
    cloud="gov" 
    documentationCenter="" 
@@ -17,90 +17,89 @@
    ms.date="10/28/2015"
    ms.author="jharve"/>
 
+# Microsoft Azure Government 概觀 
 
-# <a name="microsoft-azure-government-overview"></a>Microsoft Azure Government Overview 
-
-<p> Microsoft Azure Government is a physically and network isolated instance of Microsoft Azure.  This overview will provide an introduction to the environment and services as well as links to additional information.
+<p> Microsoft Azure Government 是 Microsoft Azure 的實體及網路隔離執行個體。本概觀將提供環境和服務的簡介以及其他資訊的連結。
 
 
-## <a name="<a-name="overview"></a>overview"></a><a name="Overview"></a>Overview
+## <a name="Overview"></a>概觀
 
-Azure Government is a government-community cloud (GCC) designed to support strategic government scenarios that require speed, scale, security, compliance and economics for U.S. government organizations.   It was developed based on Microsoft’s extensive experience delivering software, security, compliance, and controls in other Microsoft cloud offerings such as Azure public, Office 365, O365 GCC, Microsoft CRM Online etc. 
+Azure Government 是一個政府社群雲端 (GCC)，設計來支援美國政府機構需要速度、大規模、安全性、法務遵循與高經濟效益的策略性政府狀況。它是根據 Microsoft 在其他 Microsoft 雲端產品中 (例如 Azure Public、Office 365、O365 GCC，Microsoft CRM Online 等) 提供軟體、安全性、法務遵循與控制項方面豐富的經驗所開發。
 
-In addition, Azure Government is designed to meet the higher level security and compliance needs for sensitive, dedicated, U.S. Public Sector workloads found in regulations such as United States Federal Risk and Authorization Management Program (FedRAMP), Department of Defense Enterprise Cloud Service Broker (ECSB), Criminal Justice Information Services (CJIS) Security Policy and Health Insurance Portability and Accountability Act (HIPAA).     
+此外，Azure Government 的設計符合法規(例如，聯邦政府風險與授權管理計畫 (FedRAMP)、國防部企業雲端服務仲介 (ECSB)、刑事犯罪資料 (CJIS) 安全性政策與健康保險可攜與責任法 (HIPAA)) 中機密專用之美國公共部門工作量，更高層級的安全性與法務遵循需求。
 
-Below is a summary view of the Azure Government infrastructure, fabric, services and frameworks that are available to help government organizations build hybrid cloud solutions to meet their goals.  Please see the [regions page](https://azure.microsoft.com/regions/#services) as the most up to date services that are generally available are listed there.
+以下是可用來協助政府組織建置混合式雲端解決方案，以滿足其目標的 Azure Government 基礎結構、網狀架構、服務和架構的摘要檢視。請參閱[區域頁面](https://azure.microsoft.com/regions/#services)中所列出之正式運作的最新服務。
 
 ![][2]
 
-Azure Government includes the core components of Infrastructure-as-a-Service (IaaS) and Platform-as-a-Service (PaaS).  This includes infrastructure, network, storage, data management, identity management and many other services.  Azure Government supports the same great features that public Azure customers have leveraged like Geo-Synchronous data replication and auto scaling. Microsoft has been identified as the leader in both <a href="https://www.gartner.com/doc/2575715/magic-quadrant-cloud-infrastructure-service" target="_new">IaaS</a> and <a href="https://www.gartner.com/doc/2645317/magic-quadrant-enterprise-application-platform" target="_new">PaaS<a/> by leading industry analysts.
+Azure Government 包括基礎設施即服務 (IaaS) 和平台即服務 (PaaS) 的核心元件。這包括基礎結構、網路、儲存體、資料管理、身分識別管理和許多其他服務。Azure Government 支援公用 Azure 客戶所運用的相同絕佳功能，例如同步通信資料複寫和自動調整。Microsoft 藉由領導業界的分析師，已經視為是 <a href="https://www.gartner.com/doc/2575715/magic-quadrant-cloud-infrastructure-service" target="_new">IaaS</a> 和 <a href="https://www.gartner.com/doc/2645317/magic-quadrant-enterprise-application-platform" target="_new">PaaS<a/> 兩者的領導者。
 
-In addition to providing the robust services and features of public Azure, Azure Government provides a number of features to assure US government entities that their data is secure by providing:
+除了提供公用 Azure 的強固服務和功能，Azure Government 為了確保美國政府實體及其資料的安全性，還提供了許多功能：
 
-- **Physical and network-isolated instance** – The Azure Government environment is a completely separate instance from Microsoft Azure public and only used by qualified U.S. government organizations and solution providers.
+- **實體和網路隔離的執行個體** – Azure Government 環境是一個完全獨立於公用 Microsoft Azure 的執行個體，只由限定的美國政府機構和解決方案提供者所使用。
 
-- **Security, Privacy & Compliance** - Microsoft has implemented its robust security, privacy, and compliance controls framework plus additional stringent controls to meet the higher level requirements found in ECSB Impact Levels and CJIS. 
+- **安全性、隱私權和法務遵循** - Microsoft 已實作其強固的安全性、隱私權和法務遵循控制項架構，再加上其他嚴苛的控制項，以符合 ECSB 影響等級和 CJIS 中的高層級要求。
 
-- **Data Storage** – The Azure Government environment maintains 2 datacenters over 800 miles apart. All customer managed data is stored within the Continental United States (CONUS) datacenters
+- **資料儲存體** – Azure Government 環境維護 2 個距離超過 800 英哩遠的資料中心。所有客戶管理資料都存放於美國本土 (CONUS) 的資料中心
 
-- **U.S. Personnel** – All Azure Government operators and administrators are screened U.S. citizens.
+- **美國人員** – 所有 Azure Government 操作員和系統管理員都是經過篩選的美國公民。
 
-- **Identity Management** – Identity Management within the Azure Government environment is a separate instance of Azure Active Directory.
+- **身分識別管理** – Azure Government 環境內的「身分識別管理」是 Azure Active Directory 的個別執行個體。
 
-- **Compliance** – Microsoft is continuously investing to meet and maintain rigorous and changing federal, state, and local compliance requirements such as FedRAMP, CJIS, ECSB, HIPAA and IRS 1075 for U.S. government cloud solutions. 
+- **法務遵循** – Microsoft 持續致力於符合與維持嚴格與持續變更的聯邦、州與當地法務遵循要求，例如適用於美國政府雲端解決方案的 FedRAMP、CJIS、ECSB、HIPAA 與 IRS 1075。
 
-- **Cloud Integration** – Azure Government provides an integrated environment with O365 Government allowing for a single sign-on across cloud services and enhanced services such as 1TB of OneDrive storage space.
+- **雲端整合** – Azure Government 提供了一個與 O365 Government 整合的環境，允許跨雲端服務與增強服務的單一登入，例如 1TB 的 OneDrive 儲存空間。
 
-Azure Government also enables organizations to maintain their existing technology investments and realize the benefits of cloud services.  Since Azure Government is an interoperable cloud platform, with products and technologies organizations can build applications that are more open from the ground up.  Agencies can choose the tools, services, operating system, architecture, and frameworks including Windows, Linux, Oracle, SharePoint, .NET, Java, PHP and Node.js, for their cloud solutions. The flexibility of the Azure Government platform allows for new forms of cross-agency collaboration, application development, and integration.  
+Azure Government 也讓組織維持其現有的技術投資，並實現雲端服務的優點。因為 Azure Government 是互通的雲端平台，具有組織可從頭開始建置更開放的應用程式的產品與技術。機構可以選擇適用於其解決方案的工具、服務、作業系統、結構與架構，包括 Windows、Linux、Oracle、SharePoint、.NET、Java、PHP 與 Node.js。Azure Government 平台的彈性允許跨機構的共同作業、應用程式開發與整合。
 
-U.S. government organizations interested in cloud services can be confident that Azure Government provides enormous scale and rigorous security practices to meet their evolving needs. 
-
-
+對雲端服務有興趣的美國政府組織，可以信賴 Azure Government 能提供大規模與嚴格的安全性作法，以滿足其不斷成長的需求。
 
 
 
 
 
-## <a name="<a-name="features"></a>-features-currently-available-in-microsoft-azure-government"></a><a name="Features"></a> Features currently available in Microsoft Azure Government
-Azure Government services available in both US GOV IOWA and US GOV VIRGINIA regions:
 
-- Virtual Machines
-- Cloud Services
-- Storage
+
+## <a name="Features"></a> Microsoft Azure Government 中目前可用的功能
+「美國愛荷華州政府」及「美國維吉尼亞州政府」區域提供的 Azure Government 服務包括：
+
+- 虛擬機器
+- 雲端服務
+- 儲存體
 - Active Directory
-- Scheduler
-- Virtual Networking
+- 排程器
+- 虛擬網路
 - SQL Database
-- Azure Files
-- Media Services
-- Traffic Manager
-- Service Bus
+- Azure 檔案
+- 媒體服務
+- 流量管理員
+- 服務匯流排
 - StorSimple
-- Redis Cache
-- Azure Backup
-- Automation
+- Redis 快取
+- Azure 備份
+- 自動化
 - ExpressRoute
-- etc.
+- 等
 
-Other services are available, and more services will be added on a continuous basis.  For the most current list of services, please see the [regions page](https://azure.microsoft.com/regions/#services) which will highlight each available region and their services.  
+有其他服務可用，並且會持續新增更多服務。如需最新的服務清單，請參閱[區域頁面](https://azure.microsoft.com/regions/#services)，當中將醒目提示每個可用的區域及其服務。
 
-Currently, US GOV Iowa and US GOV Virginia are the data centers supporting Azure Government.  Please refer to the regions page above for current data centers and services available.
+目前，「美國政府愛荷華州」和「美國政府維吉尼亞州」是支援 Azure Government 的資料中心。如需目前的資料中心及可用的服務，請參閱上述區域頁面。
 
 <!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged -->
 
-## <a name="<a-name="next"></a>next-steps"></a><a name="next"></a>Next steps
+## <a name="next"></a>接續步驟
 
-If you are interested in learning more and about Azure Government please leverage some of the links below.
+如果您有興趣深入了解 Azure Government，請利用下面的連結。
 
-- **[Sign up for a trial](https://azuregov.microsoft.com/trial/azuregovtrial)**
+- **[註冊試用版](https://azuregov.microsoft.com/trial/azuregovtrial)**
 
-- **[Acquiring and accessing Azure Government](http://azure.com/gov)**
+- **[取得和存取 Azure Government](http://azure.com/gov)**
 
-- **[Azure Government Developer Guide](/azureazure-government-developer-guide)**
+- **[Azure Government 開發人員指南](/azureazure-government-developer-guide)**
 
-- **[Azure Government Blog](http://blogs.msdn.com/b/azuregov/)**
+- **[Azure Government 部落格](http://blogs.msdn.com/b/azuregov/)**
 
-- **[Azure Compliance](https://azure.microsoft.com/support/trust-center/compliance/)**
+- **[Azure 法規遵循](https://azure.microsoft.com/support/trust-center/compliance/)**
 
 
 
@@ -119,8 +118,4 @@ If you are interested in learning more and about Azure Government please leverag
 [Link 2 to another azure.microsoft.com documentation topic]: app-service-web/web-sites-custom-domain-name.md
 [Link 3 to another azure.microsoft.com documentation topic]: storage-whatis-account.md
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

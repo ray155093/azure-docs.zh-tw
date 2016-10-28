@@ -1,9 +1,9 @@
 <properties
-   pageTitle="Listing your application in the Azure Active Directory application gallery"
-   description="How to list an application that supports single sign-on in the Azure Active Directory gallery | Microsoft Azure"
+   pageTitle="在 Azure Active Directory 應用程式庫中列出您的應用程式"
+   description="如何列出 Azure Active Directory 組件庫中支援單一登入的應用程式 | Microsoft Azure"
    services="active-directory"
    documentationCenter="dev-center-name"
-   authors="bryanla"
+   authors="msmbaldwin"
    manager="mbaldwin"
    editor=""/>
 
@@ -17,89 +17,84 @@
    ms.author="mbaldwin"/>
 
 
+# 在 Azure Active Directory 應用程式庫中列出您的應用程式
 
-# <a name="listing-your-application-in-the-azure-active-directory-application-gallery"></a>Listing your application in the Azure Active Directory application gallery
+若要在 [Azure AD 資源庫](https://azure.microsoft.com/marketplace/active-directory/all/)中列出某個支援單一登入搭配 Azure Active Directory 的應用程式 ，該應用程式首先必須實作下列其中一項整合模式：
 
-To list an application that supports single sign-on with Azure Active Directory in the [Azure AD gallery](https://azure.microsoft.com/marketplace/active-directory/all/), the application first needs to implement one of the following integration modes:
+* **OpenID Connect** - 直接整合 Azure AD，使用 OpenID Connect 進行驗證，使用 Azure AD 同意 API 進行設定。如果您是剛開始整合，而您的應用程式不支援 SAML，這是建議的模式。
 
-* **OpenID Connect** - Direct integration with Azure AD using OpenID Connect for authentication and the Azure AD consent API for configuration. If you are just starting an integration and your application does not support SAML, then this is the recommend mode.
+* **SAML** – 您的應用程式已能夠使用 SAML 通訊協定設定協力廠商識別提供者。
 
-* **SAML** – Your application already has the ability to configure third-party identity providers using the SAML protocol.
+每個模式的列出需求如下。
 
-Listing requirements for each mode are below.
+##OpenID Connect 整合
 
-##<a name="openid-connect-integration"></a>OpenID Connect Integration
+若要整合您的應用程式與 Azure AD，請遵循[開發人員指示](active-directory-authentication-scenarios.md)。接著完成下面問題，並傳送至 waadpartners@microsoft.com。
 
-To integrate your application with Azure AD, following the [developer instructions](active-directory-authentication-scenarios.md). Then complete the questions below and send to waadpartners@microsoft.com.
+* 提供可由 Azure AD 小組搭配您的應用程式來測試整合的測試租用戶或帳戶的認證。
 
-* Provide credentials for a test tenant or account with your application that can be used by the Azure AD team to test the integration.  
+* 提供有關 Azure AD 小組如何使用 [Azure AD 同意架構](active-directory-integrating-applications.md#overview-of-the-consent-framework)登入並連接 Azure AD 執行個體到您的應用程式的指示。
 
-* Provide instructions on how the Azure AD team can sign in and connect an instance of Azure AD to your application using the [Azure AD consent framework](active-directory-integrating-applications.md#overview-of-the-consent-framework). 
+* 提供 Azure AD 小組搭配您的應用程式測試單一登入所需的任何進一步指示。
 
-* Provide any further instructions required for the Azure AD team to test single sign-on with your application. 
+* 提供下列資訊：
 
-* Provide the info below:
-
-> Company Name:
+> 公司名稱：
 > 
-> Company Website:
+> 公司網站：
 > 
-> Application Name:
+> 應用程式名稱：
 > 
-> Application Description (256 character limit):
+> 應用程式描述 (256 個字元的限制)：
 > 
-> Application Website (informational):
+> 應用程式網站 (資訊)：
 > 
-> Application Technical Support Website or Contact Info:
+> 應用程式技術支援網站或連絡資訊：
 > 
-> Client ID of the application, as shown in the application details at https://manage.windowsazure.com:
+> 應用程式的用戶端識別碼 (如 https://manage.windowsazure.com 中的應用程式詳細資料所示)：
 > 
-> Application Sign-Up URL where customers go to sign up for and /or purchase the application:
+> 客戶前往註冊和 (或) 購買應用程式的應用程式註冊 URL：
 > 
-> Choose up to three categories for your application to be listed under (for available categories see the Azure Active Directory Marketplace):
+> 選擇要為您的應用程式列出的最多三個類別 (如需可用的類別，請參閱 Azure Active Directory Marketplace)：
 > 
-> Attach Application Small Icon (PNG file, 45px by 45px, solid background color):
+> 附加應用程式小型圖示 (PNG 檔案、45px x 45px、背景純色)：
 > 
-> Attach Application Large Icon (PNG file, 215px by 215px, solid background color):
+> 附加應用程式大型圖示 (PNG 檔案、215px x 215px、背景純色)：
 > 
-> Attach Application Logo (PNG file, 150px by 122px, transparent background color):
+> 附加應用程式標誌 (PNG 檔案、150px x 122px、透明背景色彩)：
 
-##<a name="saml-integration"></a>SAML Integration
+##SAML 整合
 
-Any app that supports SAML 2.0 can be integrated directly with an Azure AD tenant using [these instructions to add a custom application](active-directory-saas-custom-apps.md). Once you have tested that your application integration works with Azure AD, send the following information to <waadpartners@microsoft.com>.
+使用[這些指示來新增自訂應用程式](active-directory-saas-custom-apps.md)，支援 SAML 2.0 的任何應用程式都可直接與 Azure AD 租用戶整合。一旦您測試過應用程式可與 Azure AD 整合後，請將下列資訊傳送至 <waadpartners@microsoft.com>。
 
-* Provide credentials for a test tenant or account with your application that can be used by the Azure AD team to test the integration.  
+* 提供可由 Azure AD 小組搭配您的應用程式來測試整合的測試租用戶或帳戶的認證。
 
-* Provide the SAML Sign-On URL, Issuer URL (entity ID), and Reply URL (assertion consumer service) values for your application, as described [here](active-directory-saas-custom-apps.md). If you typically provide these values as part of a SAML metadata file, then please send that as well.
+* 提供您的應用程式的 SAML 登入 URL、簽發者 URL (實體 ID) 和回覆 URL (判斷提示取用者服務) 的值，如[此處](active-directory-saas-custom-apps.md)所述。如果您通常會提供這些值做為一個 SAML 中繼資料檔的一部分，也請一併傳送該檔案。
 
-* Provide a brief description of how to configure Azure AD as an identity provider in your application using SAML 2.0. If your application supports configuring Azure AD as an identity provider through a self-service administrative portal, then please ensure the credentials provided above include the ability to set this up.
+* 提供如何在使用 SAML 2.0 的應用程式中設定 Azure AD 做為身分識別提供者的簡短描述。如果您的應用程式支援透過自助系統管理入口網站來設定 Azure AD 做為身分識別提供者，請確認以上提供的認證包含執行這項設定所需的能力。
 
-* Provide the info below:
+* 提供下列資訊：
 
-> Company Name:
+> 公司名稱：
 > 
-> Company Website:
+> 公司網站：
 > 
-> Application Name:
+> 應用程式名稱：
 > 
-> Application Description (256 character limit):
+> 應用程式描述 (256 個字元的限制)：
 > 
-> Application Website (informational):
+> 應用程式網站 (資訊)：
 > 
-> Application Technical Support Website or Contact Info:
+> 應用程式技術支援網站或連絡資訊：
 > 
-> Application Sign-Up URL where customers go to sign up for and /or purchase the application:
+> 客戶前往註冊和 (或) 購買應用程式的應用程式註冊 URL：
 > 
-> Choose up to three categories for your application to be listed under (for available categories see the [Azure Active Directory Marketplace](https://azure.microsoft.com/marketplace/active-directory/))):
+> 選擇要為您的應用程式列出的最多三個類別 (如需可用的類別，請參閱 [Azure Active Directory Marketplace](https://azure.microsoft.com/marketplace/active-directory/))：
 > 
-> Attach Application Small Icon (PNG file, 45px by 45px, solid background color):
+> 附加應用程式小型圖示 (PNG 檔案、45px x 45px、背景純色)：
 > 
-> Attach Application Large Icon (PNG file, 215px by 215px, solid background color):
+> 附加應用程式大型圖示 (PNG 檔案、215px x 215px、背景純色)：
 > 
-> Attach Application Logo (PNG file, 150px by 122px, transparent background color):
+> 附加應用程式標誌 (PNG 檔案、150px x 122px、透明背景色彩)：
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

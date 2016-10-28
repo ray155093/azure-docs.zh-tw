@@ -1,26 +1,20 @@
-#### <a name="prerequisites"></a>Prerequisites
-- An Azure account; you can create a [free account](https://azure.microsoft.com/free)
-- An [Office 365](https://office365.com) account  
+#### 必要條件
+- Azure 帳戶；您可以建立一個[免費帳戶](https://azure.microsoft.com/free)
+- [Office 365](https://office365.com) 帳戶
 
-Before using your Office 365 account in a logic app, authorize the logic app to connect to your Office 365 account. You can do this easily within your logic app on the Azure portal.  
+在於邏輯應用程式中使用您的 Office 365 帳戶之前，請先授權該邏輯應用程式連線到您的 Office 365 帳戶。您可以在 Azure 入口網站上，從邏輯應用程式內輕鬆完成此操作。
 
-Authorize your logic app to connect to your Office 365 account using the following steps:
+請使用下列步驟來授權邏輯應用程式連線到您的 Office 365 帳戶：
 
-1. Create a logic app. In the Logic Apps designer, select **Show Microsoft managed APIs** in the drop down list, and then enter "office 365" in the search box. Select one of the triggers or actions:  
-    ![Office 365 connection creation step](./media/connectors-create-api-office365-outlook/office365-sendemail.png)  
+1. 建立邏輯應用程式。在 Logic Apps 設計工具中，從下拉式清單中選取 [顯示 Microsoft Managed API]，然後在搜尋方塊中輸入 "office 365"。選取其中一個觸發程序或動作︰![Office 365 連線建立步驟](./media/connectors-create-api-office365-outlook/office365-sendemail.png)
 
-2. If you haven't previously created any connections to Office 365, you are prompted to sign in using your Office 365 credentials:  
-    ![Office 365 connection creation step](./media/connectors-create-api-office365-outlook/office365-signin.png)  
+2. 如果您之前尚未建立與 Office 365 的任何連線，系統將會提示您使用 Office 365 認證來進行登入：![Office 365 連線建立步驟](./media/connectors-create-api-office365-outlook/office365-signin.png)
 
-3. Select **Sign in**, and enter your user name and password. Select **Sign in**:  
-    ![Office 365 connection creation step](./media/connectors-create-api-office365-outlook/office365-usernamepassword.png)
+3. 選取 [登入]，然後輸入您的使用者名稱和密碼。選取 [登入]：![Office 365 連線建立步驟](./media/connectors-create-api-office365-outlook/office365-usernamepassword.png)
 
-    These credentials are used to authorize your logic app to connect to, and access your Office 365 account. 
+	這些認證會用來授權邏輯應用程式連線及存取您的 Office 365 帳戶。
 
-4. Notice the connection has been created. Now, proceed with the other steps in your logic app:   
-    ![Office 365 connection creation step](./media/connectors-create-api-office365-outlook/office365-sendemailproperties.png)  
+4. 請注意，已建立連線。現在，請繼續進行您邏輯應用程式中的其他步驟：![Office 365 連線建立步驟](./media/connectors-create-api-office365-outlook/office365-sendemailproperties.png)
   
 
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0727_2016-->

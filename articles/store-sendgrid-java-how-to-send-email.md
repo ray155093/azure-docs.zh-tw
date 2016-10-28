@@ -1,47 +1,46 @@
 <properties 
-    pageTitle="How to use the SendGrid email service (Java) | Microsoft Azure" 
-    description="Learn how send email with the SendGrid email service on Azure. Code samples written in Java." 
-    services="" 
-    documentationCenter="java" 
-    authors="thinkingserious" 
-    manager="sendgrid" 
-    editor="mollybos"/>
+	pageTitle="如何使用 SendGrid 電子郵件服務 (Java) | Microsoft Azure" 
+	description="了解如何在 Azure 使用 SendGrid 電子郵件服務傳送電子郵件。程式碼範例以 Java 撰寫。" 
+	services="" 
+	documentationCenter="java" 
+	authors="thinkingserious" 
+	manager="sendgrid" 
+	editor="mollybos"/>
 
 <tags 
-    ms.service="multiple" 
-    ms.workload="na" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="Java" 
-    ms.topic="article" 
-    ms.date="10/30/2014" 
-    ms.author="elmer.thomas@sendgrid.com; erika.berkland@sendgrid.com; vibhork"/>
+	ms.service="multiple" 
+	ms.workload="na" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="Java" 
+	ms.topic="article" 
+	ms.date="10/30/2014" 
+	ms.author="elmer.thomas@sendgrid.com; erika.berkland@sendgrid.com; vibhork"/>
+# 如何使用 SendGrid 透過 Java 傳送電子郵件
 
-# <a name="how-to-send-email-using-sendgrid-from-java"></a>How to Send Email Using SendGrid from Java
+本指南示範如何在 Azure 上透過 SendGrid 電子郵件服務執行常見程式設計工作。相關範例是以 Java 撰寫的。涵蓋的案例包括**建構電子郵件**、**傳送電子郵件**、**新增附件**、**使用篩選器**及**更新屬性**。如需有關 SendGrid 及傳送電子郵件的詳細資訊，請參閱[後續步驟](#next-steps)一節。
 
-This guide demonstrates how to perform common programming tasks with the SendGrid email service on Azure. The samples are written in Java. The scenarios covered include **constructing email**, **sending email**, **adding attachments**, **using filters**, and **updating properties**. For more information on SendGrid and sending email, see the [Next steps](#next-steps) section.
+## 什麼是 SendGrid 電子郵件服務？
 
-## <a name="what-is-the-sendgrid-email-service?"></a>What is the SendGrid Email Service?
+SendGrid 是[雲端架構電子郵件服務] \(英文)，能提供可靠的[交易式電子郵件傳遞] \(英文)，擴充性和即時分析，以及有彈性的 API 來輕鬆進行自訂整合。常見的 SendGrid 使用案例包括：
 
-SendGrid is a [cloud-based email service] that provides reliable [transactional email delivery], scalability, and real-time analytics along with flexible APIs that make custom integration easy. Common SendGrid usage scenarios include:
+-   自動傳送回條給客戶
+-   管理通訊群組清單，以便將每月電子傳單和特別優惠傳送給客戶
+-   收集封鎖的電子郵件、客戶的回應情形等項目的即時度量
+-   產生報表，協助找出趨勢
+-   轉寄客戶查詢
+- 透過電子郵件從您的應用程式傳送通知
 
--   Automatically sending receipts to customers
--   Administering distribution lists for sending customers monthly e-fliers and special offers
--   Collecting real-time metrics for things like blocked e-mail, and customer responsiveness
--   Generating reports to help identify trends
--   Forwarding customer inquiries
-- Email notifications from your application
+如需詳細資訊，請參閱 <http://sendgrid.com>。
 
-For more information, see <http://sendgrid.com>.
-
-## <a name="create-a-sendgrid-account"></a>Create a SendGrid account
+## 建立 SendGrid 帳戶
 
 [AZURE.INCLUDE [sendgrid-sign-up](../includes/sendgrid-sign-up.md)]
 
-## <a name="how-to:-use-the-javax.mail-libraries"></a>How to: Use the javax.mail libraries
+## 如何：使用 javax.mail 程式庫
 
-Obtain the javax.mail libraries, for example from <http://www.oracle.com/technetwork/java/javamail> and import them into your code. At a high-level, the process for using the javax.mail library to send email using SMTP is to do the following:
+取得 javax.mail 程式庫，例如從 <http://www.oracle.com/technetwork/java/javamail> 並將其匯入您的程式碼中。使用 javax.mail 程式庫來傳送採用 SMTP 之電子郵件的高層級程序就是執行下列動作：
 
-1.  Specify the SMTP values, including the SMTP server, which for SendGrid is smtp.sendgrid.net.
+1.  指定 SMTP 值 (包括 SMTP 伺服器)，對 SendGrid 而言是 smtp.sendgrid.net。
     
 ```
         import java.util.Properties;
@@ -50,25 +49,25 @@ Obtain the javax.mail libraries, for example from <http://www.oracle.com/technet
         import javax.mail.internet.*;
 
         public class MyEmailer {
-           private static final String SMTP_HOST_NAME = "smtp.sendgrid.net";
-           private static final String SMTP_AUTH_USER = "your_sendgrid_username";
+	       private static final String SMTP_HOST_NAME = "smtp.sendgrid.net";
+	       private static final String SMTP_AUTH_USER = "your_sendgrid_username";
            private static final String SMTP_AUTH_PWD = "your_sendgrid_password";
         
-           public static void main(String[] args) throws Exception{
-              new MyEmailer().SendMail();
+		   public static void main(String[] args) throws Exception{
+         	  new MyEmailer().SendMail();
            }
         
-           public void SendMail() throws Exception
+		   public void SendMail() throws Exception
            {
               Properties properties = new Properties();
-              properties.put("mail.transport.protocol", "smtp");
-              properties.put("mail.smtp.host", SMTP_HOST_NAME);
-              properties.put("mail.smtp.port", 587);
-              properties.put("mail.smtp.auth", "true");
-              // …
+           	  properties.put("mail.transport.protocol", "smtp");
+           	  properties.put("mail.smtp.host", SMTP_HOST_NAME);
+           	  properties.put("mail.smtp.port", 587);
+           	  properties.put("mail.smtp.auth", "true");
+           	  // …
 ```
 
-2.  Extend the *javax.mail.Authenticator* class, and in your implementation of the *getPasswordAuthentication* method, return your SendGrid user name and password.  
+2.  擴充 *javax.mail.Authenticator* 類別，以及在 *getPasswordAuthentication* 方法的實作中，傳回 SendGrid 使用者名稱和密碼。  
 
         private class SMTPAuthenticator extends javax.mail.Authenticator {
         public PasswordAuthentication getPasswordAuthentication() {
@@ -77,17 +76,18 @@ Obtain the javax.mail libraries, for example from <http://www.oracle.com/technet
            return new PasswordAuthentication(username, password);
         }
 
-3.  Create an authenticated email session through a *javax.mail.Session* object.  
+3.  透過 *javax.mail.Session* 物件建立經過驗證的電子郵件工作階段。
 
         Authenticator auth = new SMTPAuthenticator();
         Session mailSession = Session.getDefaultInstance(properties, auth);
 
-4.  Create your message and assign **To**, **From**, **Subject** and content values. This is shown in the [How To: Create an Email](#bkmk_HowToCreateEmail) section.
-5.  Send the message through a *javax.mail.Transport* object. This is shown in the [How To: Send an Email][How to: Send an Email] section.
+4.  建立郵件並指派 [收件者]、[寄件者]、[主旨] 
+和內容值。這顯示在[如何：建立電子郵件](#bkmk_HowToCreateEmail)一節中。
+5.  透過 *javax.mail.Transport* 物件傳送郵件。這顯示在 [如何：傳送電子郵件](如何：傳送電子郵件)一節中。
 
-## <a name="how-to:-create-an-email"></a>How to: Create an email
+## 如何：建立電子郵件
 
-The following shows how to specify values for an email.
+下列程式碼顯示如何指定電子郵件的值。
 
     MimeMessage message = new MimeMessage(mailSession);
     Multipart multipart = new MimeMultipart("alternative");
@@ -95,10 +95,10 @@ The following shows how to specify values for an email.
     part1.setText("Hello, Your Contoso order has shipped. Thank you, John");
     BodyPart part2 = new MimeBodyPart();
     part2.setContent(
-        "<p>Hello,</p>
-        <p>Your Contoso order has <b>shipped</b>.</p>
-        <p>Thank you,<br>John</br></p>",
-        "text/html");
+		"<p>Hello,</p>
+		<p>Your Contoso order has <b>shipped</b>.</p>
+		<p>Thank you,<br>John</br></p>",
+		"text/html");
     multipart.addBodyPart(part1);
     multipart.addBodyPart(part2);
     message.setFrom(new InternetAddress("john@contoso.com"));
@@ -107,9 +107,9 @@ The following shows how to specify values for an email.
     message.setSubject("Your recent order");
     message.setContent(multipart);
 
-## <a name="how-to:-send-an-email"></a>How to: Send an email
+## 如何：傳送電子郵件
 
-The following shows how to send an email.
+下列程式碼顯示如何傳送電子郵件。
 
     Transport transport = mailSession.getTransport();
     // Connect the transport object.
@@ -119,13 +119,13 @@ The following shows how to send an email.
     // Close the connection.
     transport.close();
 
-## <a name="how-to:-add-an-attachment"></a>How to: Add an attachment
+## 如何：新增附件
 
-The following code shows you how to add an attachment.
+下列程式碼顯示如何新增附件。
 
     // Local file name and path.
     String attachmentName = "myfile.zip";
-    String attachmentPath = "c:\\myfiles\\"; 
+    String attachmentPath = "c:\\myfiles\"; 
     MimeBodyPart attachmentPart = new MimeBodyPart();
     // Specify the local file to attach.
     DataSource source = new FileDataSource(attachmentPath + attachmentName);
@@ -135,79 +135,75 @@ The following code shows you how to add an attachment.
     attachmentPart.setFileName(attachmentName);
     multipart.addBodyPart(attachmentPart);
 
-## <a name="how-to:-use-filters-to-enable-footers,-tracking,-and-analytics"></a>How to: Use filters to enable footers, tracking, and analytics
+## 如何：使用篩選器來啟用頁尾、追蹤和分析
 
-SendGrid provides additional email functionality through the use of *filters*. These are settings that can be added to an email message to enable specific functionality such as enabling click tracking, Google analytics, subscription tracking, and so on. For a full list of filters, see [Filter Settings][].
+SendGrid 運用篩選器提供其他電子郵件功能。這些設定可新增到電子郵件以啟用特定功能，例如啟用點擊追蹤、Google 分析、訂閱追蹤等。如需完整的篩選器清單，請參閱[篩選器設定][] \(英文)。
 
--   The following shows how to insert a footer filter that results in HTML text appearing at the bottom of the email being sent.
+-   下列程式碼顯示如何插入頁尾篩選器，以使 HTML 文字出現在傳送之電子郵件的底部。
 
         message.addHeader("X-SMTPAPI", 
-            "{\"filters\": 
-            {\"footer\": 
-            {\"settings\": 
-            {\"enable\":1,\"text/html\": 
-            \"<html><b>Thank you</b> for your business.</html>\"}}}}");
+			"{"filters": 
+			{"footer": 
+			{"settings": 
+        	{"enable":1,"text/html": 
+			"<html><b>Thank you</b> for your business.</html>"}}}}");
 
--   Another example of a filter is click tracking. Let’s say that your email text contains a hyperlink, such as the following, and you want to track the click rate:
+-   另一個篩選器範例就是點擊追蹤。假設您的電子郵件文字包含超連結 (如下所示)，而您想要追蹤點擊率：
 
         messagePart.setContent(
-            "Hello,
-            <p>This is the body of the message. Visit 
-            <a href='http://www.contoso.com'>http://www.contoso.com</a>.</p>
-            Thank you.", 
-            "text/html");
+			"Hello,
+			<p>This is the body of the message. Visit 
+			<a href='http://www.contoso.com'>http://www.contoso.com</a>.</p>
+			Thank you.", 
+        	"text/html");
 
--   To enable the click tracking, use the following code:
+-   若要啟用點擊追蹤，請使用下列程式碼：
 
         message.addHeader("X-SMTPAPI", 
-            "{\"filters\": 
-            {\"clicktrack\": 
-            {\"settings\": 
-            {\"enable\":1}}}}");
+			"{"filters": 
+			{"clicktrack": 
+			{"settings": 
+        	{"enable":1}}}}");
 
-## <a name="how-to:-update-email-properties"></a>How to: Update email properties
+## 如何：更新電子郵件屬性
 
-Some email properties can be overwritten using **set*Property*** or appended using **add*Property***.
+某些電子郵件屬性可使用 **set*Property*** 覆寫，或可使用 **add*Property*** 附加。
 
-For example, to specify **ReplyTo** addresses, use the following:
+例如，若要指定 **ReplyTo** 地址，請使用下列程式碼：
 
     InternetAddress addresses[] = 
-        { new InternetAddress("john@contoso.com"),
+		{ new InternetAddress("john@contoso.com"),
           new InternetAddress("wendy@contoso.com") };
     
-    message.setReplyTo(addresses);
+	message.setReplyTo(addresses);
 
-To add a **Cc** recipient, use the following:
+若要增加副本 收件者，請使用下列程式碼：
 
     message.addRecipient(Message.RecipientType.CC, new 
     InternetAddress("john@contoso.com"));
 
-## <a name="how-to:-use-additional-sendgrid-services"></a>How to: Use additional SendGrid services
+## 如何：使用其他 SendGrid 服務
 
-SendGrid offers web-based APIs that you can use to leverage additional SendGrid functionality from your Azure application. For full details, see the [SendGrid API documentation][].
+SendGrid 提供的網頁式 API 可供從 Azure 應用程式運用其他 SendGrid 功能。如需完整詳細資料，請參閱 [SendGrid API 文件][] \(英文)。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-Now that you’ve learned the basics of the SendGrid Email service, follow these links to learn more.
+了解 SendGrid 電子郵件服務的基本概念後，請參考下列連結以取得更多資訊。
 
-* Sample that demonstrates using SendGrid in an Azure deployment: [How to send email using SendGrid from Java in an Azure deployment](store-sendgrid-java-how-to-send-email-example.md)
-* SendGrid Java SDK: <https://sendgrid.com/docs/Code_Examples/java.html>
-* SendGrid API documentation: <https://sendgrid.com/docs/API_Reference/index.html>
-* SendGrid special offer for Azure customers: <https://sendgrid.com/windowsazure.html>
+* 示範在 Azure 部署中使用 SendGrid 的範例：[如何在 Azure 部署中使用 SendGrid 透過 Java 傳送電子郵件](store-sendgrid-java-how-to-send-email-example.md)
+* SendGrid Java SDK：<https://sendgrid.com/docs/Code_Examples/java.html>
+* SendGrid API 文件：<https://sendgrid.com/docs/API_Reference/index.html>
+* Azure 客戶的 SendGrid 特別優惠：<https://sendgrid.com/windowsazure.html>
 
   [http://sendgrid.com]: https://sendgrid.com
   [http://sendgrid.com/pricing.html]: http://sendgrid.com/pricing.html
   [http://www.sendgrid.com/azure.html]: https://www.sendgrid.com/windowsazure.html
   [http://sendgrid.com/features]: https://sendgrid.com/features
   [http://www.oracle.com/technetwork/java/javamail]: http://www.oracle.com/technetwork/java/javamail/index.html
-  [Filter Settings]: https://sendgrid.com/docs/API_Reference/Web_API/filter_settings.html
-  [SendGrid API documentation]: https://sendgrid.com/docs/API_Reference/index.html
+  [篩選器設定]: https://sendgrid.com/docs/API_Reference/Web_API/filter_settings.html
+  [SendGrid API 文件]: https://sendgrid.com/docs/API_Reference/index.html
   [http://sendgrid.com/azure.html]: https://sendgrid.com/windowsazure.html
-  [cloud-based email service]: https://sendgrid.com/email-solutions
-  [transactional email delivery]: https://sendgrid.com/transactional-email
+  [雲端架構電子郵件服務]: https://sendgrid.com/email-solutions
+  [交易式電子郵件傳遞]: https://sendgrid.com/transactional-email
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!----HONumber=Oct15_HO3-->

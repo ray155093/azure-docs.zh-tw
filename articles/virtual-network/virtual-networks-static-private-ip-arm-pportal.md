@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="How to set a static private IP in ARM mode using the Azure portal| Microsoft Azure"
-   description="Understanding private IPs (DIPs) and how to manage them in ARM mode using the Azure portal"
+   pageTitle="如何在 ARM 模式中使用 Azure 入口網站設定靜態私人 IP| Microsoft Azure"
+   description="了解私人 IP (DIP) 及如何在 ARM 模式中使用 Azure 入口網站管理它們"
    services="virtual-network"
    documentationCenter="na"
    authors="jimdial"
@@ -17,88 +17,84 @@
    ms.date="02/04/2016"
    ms.author="jdial" />
 
-
-# <a name="how-to-set-a-static-private-ip-address-in-the-azure-portal"></a>How to set a static private IP address in the Azure portal
+# 如何在 Azure 入口網站中設定靜態私人 IP 位址
 
 [AZURE.INCLUDE [virtual-networks-static-private-ip-selectors-arm-include](../../includes/virtual-networks-static-private-ip-selectors-arm-include.md)]
 
 [AZURE.INCLUDE [virtual-networks-static-private-ip-intro-include](../../includes/virtual-networks-static-private-ip-intro-include.md)]
 
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)] This article covers the Resource Manager deployment model. You can also [manage static private IP address in the classic deployment model](virtual-networks-static-private-ip-classic-pportal.md).
+[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)] 本文涵蓋之內容包括資源管理員部署模型。您也可以[管理傳統部署模型中的靜態私人 IP 位址](virtual-networks-static-private-ip-classic-pportal.md)。
 
 [AZURE.INCLUDE [virtual-networks-static-ip-scenario-include](../../includes/virtual-networks-static-ip-scenario-include.md)]
 
-The sample steps below expect a simple environment already created. If you want to run the steps as they are displayed in this document, first build the test environment described in [create a vnet](virtual-networks-create-vnet-arm-pportal.md).
+以下的範例步驟會預期已經建立簡單的環境。如果您想要執行如本文件中所顯示的步驟，請先建置[建立 vnet](virtual-networks-create-vnet-arm-pportal.md) 中所說明的測試環境。
 
-## <a name="how-to-create-a-vm-for-testing-static-private-ip-addresses"></a>How to create a VM for testing static private IP addresses
+## 如何建立用來測試靜態私人 IP 位址的 VM
 
-You cannot set a static private IP address during the creation of a VM in the Resource Manager deployment mode by using the Azure portal. You must create the VM first, tehn set its private IP to be static.
+您無法在資源管理員部署模式中建立 VM 期間，使用 Azure 入口網站設定靜態私人 IP 位址。您必須先建立 VM，才能將其私人 IP 設定為靜態。
 
-To create a VM named *DNS01* in the *FrontEnd* subnet of a VNet named *TestVNet*, follow the steps below.
+若要在名為 *TestVNet* 之 VNet 的*前端*子網路中建立名為 *DNS01* 的 VM，請遵循下列步驟。
 
-1. From a browser, navigate to http://portal.azure.com and, if necessary, sign in with your Azure account.
-2. Click **NEW** > **Compute** > **Windows Server 2012 R2 Datacenter**, notice that the **Select a deployment model** list already shows **Resource Manager**, and then click **Create**, as seen in the figure below.
+1. 透過瀏覽器瀏覽至 http://portal.azure.com，並視需要使用您的 Azure 帳戶登入。
+2. 按一下 [新增] > [計算] > [Windows Server 2012 R2 Datacenter]，注意 [選取部署模型] 清單已經顯示 [資源管理員]，然後按一下 [建立]，如下圖所示。
 
-    ![Create VM in Azure portal](./media/virtual-networks-static-ip-arm-pportal/figure01.png)
+	![在 Azure 入口網站中建立 VM](./media/virtual-networks-static-ip-arm-pportal/figure01.png)
 
-3. In the **Basics** blade, enter the name of the VM to be created (*DNS01* in our scenario), the local administrator account, and password, as seen in the figure below.
+3. 在 [基本概念] 刀鋒視窗中，輸入要建立之 VM 的名稱 (我們的案例中為 *DNS01*)、本機系統管理員帳戶和密碼，如下圖所示。
 
-    ![Basics blade](./media/virtual-networks-static-ip-arm-pportal/figure02.png)
+	![基本概念刀鋒視窗](./media/virtual-networks-static-ip-arm-pportal/figure02.png)
 
-4. Make sure the **Location** selected is *Central US*, then click **Select existing** under **Resource group**, then click **Resource group** again, then click *TestRG*, and then click **OK**.
+4. 請確定選取的 [位置] 為*美國中部*，按一下 [資源群組] 底下的 [選取現有項目]，然後再按一次 [資源群組]，按一下 [TestRG]，再按一下 [確定]。
 
-    ![Basics blade](./media/virtual-networks-static-ip-arm-pportal/figure03.png)
+	![基本概念刀鋒視窗](./media/virtual-networks-static-ip-arm-pportal/figure03.png)
 
-5. In the **Choose a size** blade, select **A1 Standard**, and then click **Select**.
+5. 在 [大小選擇] 刀鋒視窗中，選取 [A1 標準]，再按一下 [選取]。
 
-    ![Choose a size blade](./media/virtual-networks-static-ip-arm-pportal/figure04.png) 
+	![選擇尺寸刀鋒視窗](./media/virtual-networks-static-ip-arm-pportal/figure04.png)
 
-6. In teh **Settings** blade, make sure the following properties are set are set with the values below, and then click **OK**.
+6. 在 [設定] 刀鋒視窗中，確定下列屬性都已設定為下列的值，然後按一下 [確定]。
 
-    -**Storage account**: *vnetstorage*
-    - **Network**: *TestVNet*
-    - **Subnet**: *FrontEnd*
+	-**儲存體帳戶**：vnetstorage
+	- **網路**：TestVNet
+	- **子網路**：FrontEnd
 
-    ![Choose a size blade](./media/virtual-networks-static-ip-arm-pportal/figure05.png)  
+	![選擇尺寸刀鋒視窗](./media/virtual-networks-static-ip-arm-pportal/figure05.png)
 
-7. In the **Summary** blade, click **OK**. Notice the tile below displayed in your dashboard.
+7. 在 [摘要] 刀鋒視窗中，按一下 [確定]。請注意您儀表板中下方顯示的磚。
 
-    ![Create VM in Azure portal](./media/virtual-networks-static-ip-arm-pportal/figure06.png)
+	![在 Azure 入口網站中建立 VM](./media/virtual-networks-static-ip-arm-pportal/figure06.png)
 
-## <a name="how-to-retrieve-static-private-ip-address-information-for-a-vm"></a>How to retrieve static private IP address information for a VM
+## 如何擷取 VM 的靜態私人 IP 位址資訊
 
-To view the static private IP address information for the VM created with the steps above, execute the steps below.
+若要檢視使用上述步驟建立之 VM 的靜態私人 IP 位址資訊，請執行下列步驟。
 
-1. From the Azure Azure portal, click **BROWSE ALL** > **Virtual machines** > **DNS01** > **All settings** > **Network interfaces** and then click on the only network interface listed.
+1. 從 Azure 入口網站按一下 [瀏覽全部] > [虛擬機器] > [DNS01] > [所有設定] > [網路介面]，然後按一下所列出的唯一網路介面。
 
-    ![Deploying VM tile](./media/virtual-networks-static-ip-arm-pportal/figure07.png)
+	![部署 VM 磚](./media/virtual-networks-static-ip-arm-pportal/figure07.png)
 
-2. In the **Network interface** blade, click **All settings** > **IP addresses** and notice the **Assignment** and **IP address** values.
+2. 在 [網路介面] 刀鋒視窗中，按一下 [所有設定] > [IP 位址] 並注意 [指派] 與 [IP 位址] 的值。
 
-    ![Deploying VM tile](./media/virtual-networks-static-ip-arm-pportal/figure08.png)
+	![部署 VM 磚](./media/virtual-networks-static-ip-arm-pportal/figure08.png)
 
-## <a name="how-to-add-a-static-private-ip-address-to-an-existing-vm"></a>How to add a static private IP address to an existing VM
-To add a static private IP address to the VM created using the steps above, follow the steps below:
+## 如何將靜態私人 IP 位址新增至現有的 VM
+若要將靜態私人 IP 位址新增至使用上述步驟建立之 VM，請遵循下列步驟：
 
-1. From the **IP addresses** blade shown above, click **Static** under **Assignment**.
-2. Type *192.168.1.101* for **IP address**, and then click **Save**.
+1. 從上方顯示的 [IP 位址] 刀鋒視窗中，按一下 [指派] 底下的[靜態]。
+2. [IP 位址] 輸入 *192.168.1.101*，然後按一下 [儲存]。
 
-    ![Create VM in Azure portal](./media/virtual-networks-static-ip-arm-pportal/figure09.png)
+	![在 Azure 入口網站中建立 VM](./media/virtual-networks-static-ip-arm-pportal/figure09.png)
 
->[AZURE.NOTE] If after clicking **Save** you notice that the assignment is still set to **Dynamic**, it means that the IP address you typed is already in use. Try a different IP address.
+>[AZURE.NOTE] 如果按一下 [儲存] 之後您注意到指派仍然設定為 [動態]，這表示您輸入的 IP 位址已在使用。請嘗試不同的 IP 位址。
 
-## <a name="how-to-remove-a-static-private-ip-address-from-a-vm"></a>How to remove a static private IP address from a VM
-To remove the static private IP address from the VM created above, follow the step below.
-    
-1. From the **IP addresses** blade shown above, click **Dynamic** under **Assignment**, and then click **Save**.
+## 如何移除 VM 的靜態私人 IP 位址
+若要移除上方建立之 VM 的靜態私人 IP 位址，請遵循下列步驟。
+	
+1. 從上方顯示的 [IP 位址] 刀鋒視窗中，按一下 [指派] 底下的[動態]，然後按一下 [儲存]。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-- Learn about [reserved public IP](virtual-networks-reserved-public-ip.md) addresses.
-- Learn about [instance-level public IP (ILPIP)](virtual-networks-instance-level-public-ip.md) addresses.
-- Consult the [Reserved IP REST APIs](https://msdn.microsoft.com/library/azure/dn722420.aspx).
+- 深入了解[保留的公用 IP](virtual-networks-reserved-public-ip.md) 位址。
+- 深入了解[執行個體層級公用 IP (ILPIP)](virtual-networks-instance-level-public-ip.md) 位址。
+- 請參閱[保留 IP REST API](https://msdn.microsoft.com/library/azure/dn722420.aspx)。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

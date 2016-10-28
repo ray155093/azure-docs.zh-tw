@@ -1,59 +1,58 @@
 <properties
-    pageTitle="Add authentication on Android with Mobile Apps | Azure App Service"
-    description="Learn how to use Mobile Apps in Azure App Service to authenticate users of your Android app through a variety of identity providers, including Google, Facebook, Twitter, and Microsoft."
-    services="app-service\mobile"
-    documentationCenter="android"
-    authors="yuaxu"
-    manager="erikre"
-    editor=""/>
+	pageTitle="在具有行動應用程式的 Android 上加入驗證 | Azure App Service"
+	description="了解如何在 Azure App Service 中使用行動應用程式透過眾多識別提供者驗證 Android 應用程式使用者，包括 Google、Facebook、Twitter 和 Microsoft。"
+	services="app-service\mobile"
+	documentationCenter="android"
+	authors="RickSaling"
+	manager="erikre"
+	editor=""/>
 
 <tags
-    ms.service="app-service-mobile"
-    ms.workload="mobile"
-    ms.tgt_pltfrm="mobile-android"
-    ms.devlang="java"
-    ms.topic="article"
-    ms.date="10/01/2016"
-    ms.author="yuaxu"/>
+	ms.service="app-service-mobile"
+	ms.workload="mobile"
+	ms.tgt_pltfrm="mobile-android"
+	ms.devlang="java"
+	ms.topic="article"
+	ms.date="07/18/2016"
+	ms.author="ricksal"/>
 
-
-# <a name="add-authentication-to-your-android-app"></a>Add authentication to your Android app
+# 將驗證加入 Android 應用程式中
 
 [AZURE.INCLUDE [app-service-mobile-selector-get-started-users](../../includes/app-service-mobile-selector-get-started-users.md)]
 
-## <a name="summary"></a>Summary
+## 摘要
 
-In this tutorial, you add authentication to the todolist quickstart project on Android using a supported identity provider. This tutorial is based on the [Get started with Mobile Apps] tutorial, which you must complete first.
+在本教學課程中，您可以使用支援的身分識別提供者，將驗證加入 Android 上的 TodoList 快速入門專案。本教學課程以[開始使用行動應用程式]為基礎，您必須先完成該教學課程。
 
-##<a name="<a-name="register"></a>register-your-app-for-authentication-and-configure-the-app-service"></a><a name="register"></a>Register your app for authentication and configure the App Service
+##<a name="register"></a>註冊應用程式進行驗證，並設定應用程式服務
 
 [AZURE.INCLUDE [app-service-mobile-register-authentication](../../includes/app-service-mobile-register-authentication.md)]
 
-##<a name="<a-name="permissions"></a>restrict-permissions-to-authenticated-users"></a><a name="permissions"></a>Restrict permissions to authenticated users
+##<a name="permissions"></a>限制只有通過驗證的使用者具有權限
 
 [AZURE.INCLUDE [app-service-mobile-restrict-permissions-dotnet-backend](../../includes/app-service-mobile-restrict-permissions-dotnet-backend.md)]
 
-+ In Android Studio, open the project that you created when you completed the tutorial [Get started with Mobile Apps], then from the **Run** menu click **Run app** and verify that an unhandled exception with a status code of 401 (Unauthorized) is raised after the app starts.
++ 在 Android Studio 中，開啟您完成教學課程[開始使用行動應用程式]時所建立的專案，然後從 [執行] 功能表上，按一下 [執行應用程式]，並確認在應用程式啟動後，發生狀態代碼 401 (未經授權) 的未處理例外狀況。
 
-     This happens because the app attempts to access the backend as an unauthenticated user, but the _TodoItem_ table now requires authentication.
+	 這是因為應用程式嘗試以未驗證的使用者身分來存取後端，但 _TodoItem_ 資料表現在需要驗證。
 
-Next, you will update the app to authenticate users before requesting resources from the Mobile App backend.
+接下來，您要將應用程式更新為在要求行動應用程式後端的資源之前必須驗證使用者。
 
-## <a name="add-authentication-to-the-app"></a>Add authentication to the app
+## 將驗證新增至應用程式
 
 [AZURE.INCLUDE [mobile-android-authenticate-app](../../includes/mobile-android-authenticate-app.md)]
 
-## <a name="<a-name="cache-tokens"></a>cache-authentication-tokens-on-the-client"></a><a name="cache-tokens"></a>Cache authentication tokens on the client
+## <a name="cache-tokens"></a>在用戶端快取驗證權杖
 
 [AZURE.INCLUDE [mobile-android-authenticate-app-with-token](../../includes/mobile-android-authenticate-app-with-token.md)]
 
-##<a name="next-steps"></a>Next steps
+##後續步驟
 
-Now that you completed this basic authentication tutorial, consider continuing on to one of the following tutorials:
+現在您已經完成了這個基本驗證的教學課程，可以考慮繼續進行下列其中一個教學課程：
 
-+ [Add push notifications to your Android app](app-service-mobile-android-get-started-push.md) Learn how to add push notifications support to your app and configure your Mobile App backend to use Azure Notification Hubs to send push notifications.
++ [將推播通知加入至 Android 應用程式](app-service-mobile-android-get-started-push.md)：了解如何將推播通知支援加入至應用程式，並設定行動應用程式後端以使用 Azure 通知中樞傳送推播通知。
 
-+ [Enable offline sync for your Android app](app-service-mobile-android-get-started-offline-data.md) Learn how to add offline support your app using an Mobile App backend. Offline sync allows end-users to interact with a mobile app&mdash;viewing, adding, or modifying data&mdash;even when there is no network connection.
++ [啟用 Android 應用程式的離線同步處理](app-service-mobile-android-get-started-offline-data.md)：了解如何使用行動應用程式後端，將離線支援加入至應用程式。離線同步處理可讓使用者與行動應用程式進行互動 - 檢視、新增或修改資料 - 即使沒有網路連線也可行。
 
 
 
@@ -63,14 +62,10 @@ Now that you completed this basic authentication tutorial, consider continuing o
 [Add authentication to the app]: #add-authentication
 [Store authentication tokens on the client]: #cache-tokens
 [Refresh expired tokens]: #refresh-tokens
-[Next Steps]:#next-steps
+[Next Steps]: #next-steps
 
 
 <!-- URLs. -->
-[Get started with Mobile Apps]: app-service-mobile-android-get-started.md
+[開始使用行動應用程式]: app-service-mobile-android-get-started.md
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0720_2016-->

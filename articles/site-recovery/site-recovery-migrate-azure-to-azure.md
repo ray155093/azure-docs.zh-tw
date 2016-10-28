@@ -1,61 +1,56 @@
 <properties
-    pageTitle="Migrate Azure IaaS virtual machines from one Azure region to another with Site Recovery | Microsoft Azure"
-    description="Use Azure Site Recovery to migrate Azure IaaS virtual machines from one Azure region to another."
-    services="site-recovery"
-    documentationCenter=""
-    authors="rayne-wiselman"
-    manager="jwhit"
-    editor="tysonn"/>
+	pageTitle="使用 Site Recovery，將 Azure IaaS 虛擬機器從一個 Azure 區域移轉到另一個區域 | Microsoft Azure"
+	description="使用 Azure Site Recovery，將 Azure IaaS 虛擬機器從一個 Azure 區域移轉到另一個區域。"
+	services="site-recovery"
+	documentationCenter=""
+	authors="rayne-wiselman"
+	manager="jwhit"
+	editor="tysonn"/>
 
 <tags
-    ms.service="site-recovery"
-    ms.workload="backup-recovery"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/21/2016"
-    ms.author="raynew"/>
+	ms.service="site-recovery"
+	ms.workload="backup-recovery"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/21/2016"
+	ms.author="raynew"/>
+
+#  使用 Azure Site Recovery 在 Azure 區域之間移轉 Azure IaaS 虛擬機器
+
+## Overview
+
+歡迎使用 Azure Site Recovery！ 如果您想要在 Azure 區域之間移轉 Azure VM，請使用本文。開始之前，請注意：
+
+- Azure 建立和處理資源的部署模型有二種：Azure Resource Manager 和傳統。Azure 也有兩個入口網站 – 支援傳統部署模型的 Azure 傳統入口網站，以及支援兩種部署模型的 Azure 入口網站。無論您是在 Resource Manager 還是傳統中設定 Site Recovery，基本的移轉步驟都是相同的。不過本文中的 UI 指示和螢幕擷取畫面都是和 Azure 入口網站相關。
+- **目前您只能從一個區域移轉到另一個區域。您可以將 VM 從一個 Azure 區域容錯移轉至另一個，但是無法將它們容錯移轉回來。**
+- 本文中的移轉指示是以將實體機器複寫到 Azure 的指示為基礎。它包含了[將 VMware VM 或實體伺服器複寫至 Azure](site-recovery-vmware-to-azure.md) 中步驟的連結，其內容描述如何在 Azure 入口網站中複寫實體伺服器。
+- 如果您是在傳統入口網站中設定 Site Recovery，請遵循[這篇文章](site-recovery-vmware-to-azure-classic.md)中的詳細指示。您不應該再使用此[舊版文件](site-recovery-vmware-to-azure-classic-legacy.md)中的指示。
+
+在這篇文章下方或 [Azure Recovery Services Forum (Azure 復原服務論壇)](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr) 中張貼意見或問題。
 
 
-#  <a name="migrate-azure-iaas-virtual-machines-between-azure-regions-with-azure-site-recovery"></a>Migrate Azure IaaS virtual machines between Azure regions with Azure Site Recovery
+## 必要條件
 
-## <a name="overview"></a>Overview
+以下是您針對此部署所需要的項目︰
 
-Welcome to Azure Site Recovery! Use this article if you want to migrate Azure VMs between Azure regions. Before you start, note that:
+- **組態伺服器**︰執行 Windows Server 2012 R2 並做為組態伺服器的內部部署 VM。您也可在此 VM 上安裝其他 Site Recovery 元件 (包括處理序伺服器和主要目標伺服器)。請參閱[案例架構](site-recovery-vmware-to-azure.md#scenario-architecture)和[組態伺服器必要條件](site-recovery-vmware-to-azure.md#configuration-server-prerequisites)以深入了解。
+- **IaaS 虛擬機器**：您想要移轉的 VM。您可以將那些 VM 視為實體機器來移轉它們。
 
-- Azure has two different deployment models for creating and working with resources: Azure Resource Manager and classic. Azure also has two portals – the Azure classic portal that supports the classic deployment model, and the Azure portal with support for both deployment models. The basic steps for migration are the same whether you're configuring Site Recovery in Resource Manager or in classic. However the UI instructions and screenshots in this article are relevant for the Azure portal.
-- **Currently you can only migrate from one region to another. You can fail over VMs from one Azure region to another, but you can't fail them back again.**
-- The migration instructions in this article are based on the instructions for replicating a physical machine to Azure. It includes links to the steps in [Replicate VMware VMs or physical servers to Azure](site-recovery-vmware-to-azure.md), which describes how to replicate a physical server in the Azure portal.
-- If you're setting up Site Recovery in the classic portal, follow the detailed instructions in [this article](site-recovery-vmware-to-azure-classic.md). **You should no longer use** the instructions in this [legacy article](site-recovery-vmware-to-azure-classic-legacy.md).
+## 部署步驟
 
-Post any comments or questions at the bottom of this article, or on the [Azure Recovery Services Forum](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+本節描述新 Azure 入口網站中的部署步驟。如果您需要傳統入口網站中的 Site Recovery 部署步驟，請參閱[這篇文章](site-recovery-vmware-to-azure-classic.md)。
 
+1. [建立保存庫](site-recovery-vmware-to-azure.md#create-a-recovery-services-vault)。
+2. [部署組態伺服器](site-recovery-vmware-to-azure.md#step-2-set-up-the-source-environment)。
+3. 部署組態伺服器之後，請檢查該伺服器是否能夠與您要移轉的 VM 通訊。
+4. [設定複寫設定](site-recovery-vmware-to-azure.md#step-4-set-up-replication-settings)。建立複寫原則並將它指派到組態伺服器。
+5. [安裝行動服務](site-recovery-vmware-to-azure.md#step-6-replication-application)。所有要保護的 VM 都需要安裝行動服務。這項服務會將資料傳送至處理序伺服器。行動服務可以手動方式安裝，或在為 VM 啟用保護時由處理序伺服器自動推入安裝。您所要移轉 VM 上的防火牆規則應該設定為允許推入安裝這項服務。
+6. [啟用複寫](site-recovery-vmware-to-azure.md#enable-replication)。針對您想要移轉的 VM 啟用複寫。您可以使用虛擬機器的私人 IP 位址，探索要移轉至 Azure 的 IaaS 虛擬機器。這個位址可在 Azure 的虛擬機器儀表板上找到。當您啟用複寫時，您會將 VM 的機器類型設定為實體機器。
+7. [執行非計劃性容錯移轉](site-recovery-failover.md#run-an-unplanned-failover)。初始複寫完成之後，您可以執行從一個 Azure 區域到另一個區域的非計劃性容錯移轉。(選擇性) 您可以建立復原計劃並執行非計劃性容錯移轉，在區域與區域之間移轉多部虛擬機器。[深入了解](site-recovery-create-recovery-plans.md)復原計劃。
 
-## <a name="prerequisites"></a>Prerequisites
+## 後續步驟
 
-Here's what you need for this deployment:
+在[什麼是 Azure Site Recovery？](site-recovery-overview.md)中深入了解其他複寫案例
 
-- **Configuration server**: An on-premises VM running Windows Server 2012 R2 that acts as the configuration server. You install the other Site Recovery components (including the process server and master target server) on this VM too. Read more in [scenario architecture](site-recovery-vmware-to-azure.md#scenario-architecture) and [configuration server prerequisites](site-recovery-vmware-to-azure.md#configuration-server-prerequisites).
-- **IaaS virtual machines**: The VMs you want to migrate. You migrate these VMs by treating them as physical machines.
-
-## <a name="deployment-steps"></a>Deployment steps
-
-This section describes the deployment steps in the new Azure portal. If you need these deployment steps for Site Recovery in the classic portal, refer to [this article](site-recovery-vmware-to-azure-classic.md).
-
-1. [Create a vault](site-recovery-vmware-to-azure.md#create-a-recovery-services-vault).
-2. [Deploy a configuration server](site-recovery-vmware-to-azure.md#step-2-set-up-the-source-environment).
-3. After you've deployed the configuration server, check that it can communicate with the VMs that you want to migrate.
-4. [Set up replication settings](site-recovery-vmware-to-azure.md#step-4-set-up-replication-settings). Create a replication policy and assign to the configuration server.
-5. [Install the Mobility service](site-recovery-vmware-to-azure.md#step-6-replication-application). Each VM you want to protect needs the Mobility service installed. This service sends data to the process server. The Mobility service can be installed manually or pushed and installed automatically by the process server when protection for the VM is enabled. Firewall rules on the VMs that you want to migrate should be configured to allow push installation of this service.
-6. [Enable replication](site-recovery-vmware-to-azure.md#enable-replication). Enable replication for the VMs you want to migrate. You can discover the IaaS virtual machines that you want to migrate to Azure using the private IP address of the virtual machines. Find this address on the virtual machine dashboard in Azure. When you enable replication, you set the machine type for the VMs as physical machines.
-7. [ Run an unplanned failover](site-recovery-failover.md#run-an-unplanned-failover). After initial replication is complete, you can run an unplanned failover from one Azure region to another. Optionally, you can create a recovery plan and run an unplanned failover, to migrate multiple virtual machines between regions. [Learn more](site-recovery-create-recovery-plans.md) about recovery plans.
-
-## <a name="next-steps"></a>Next steps
-
-Learn more about other replication scenarios in [What is Azure Site Recovery?](site-recovery-overview.md)
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

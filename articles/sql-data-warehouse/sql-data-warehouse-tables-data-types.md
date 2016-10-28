@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Data types for tables in SQL Data Warehouse | Microsoft Azure"
-   description="Getting started with data types for Azure SQL Data Warehouse tables."
+   pageTitle="SQL 資料倉儲中的資料表的資料類型 | Microsoft Azure"
+   description="開始使用 Azure SQL 資料倉儲資料表的資料類型。"
    services="sql-data-warehouse"
    documentationCenter="NA"
    authors="jrowlandjones"
@@ -16,21 +16,20 @@
    ms.date="06/29/2016"
    ms.author="jrj;barbkess;sonyama"/>
 
-
-# <a name="data-types-for-tables-in-sql-data-warehouse"></a>Data types for tables in SQL Data Warehouse
+# SQL 資料倉儲中的資料表的資料類型
 
 > [AZURE.SELECTOR]
-- [Overview][]
-- [Data Types][]
-- [Distribute][]
+- [概觀][]
+- [資料類型][]
+- [散發][]
 - [Index][]
-- [Partition][]
-- [Statistics][]
-- [Temporary][]
+- [資料分割][]
+- [統計資料][]
+- [暫存][]
 
-SQL Data Warehouse supports the most commonly used data types.  Below is a list of the data types supported by SQL Data Warehouse.  For additional details on data type support, see [create table][].
+SQL 資料倉儲支援最常用的資料類型。以下是 SQL 資料倉儲支援的資料類型清單。如需有關資料類型支援的詳細資訊，請參閱[建立資料表][]。
 
-|**Supported Data Types**|||
+|**支援的資料類型**|||
 |---|---|---|
 [bigint][]|[decimal][]|[smallint][]|
 [binary][]|[float][]|[smallmoney][]|
@@ -42,34 +41,34 @@ SQL Data Warehouse supports the most commonly used data types.  Below is a list 
 [datetimeoffset][]|[smalldatetime][]|[varchar][]|
 
 
-## <a name="data-type-best-practices"></a>Data type best practices
+## 資料類型的最佳作法
 
- When defining your column types, using the smallest data type which will support your data will improve query performance. This is especially important for CHAR and VARCHAR columns. If the longest value in a column is 25 characters, then define your column as VARCHAR(25). Avoid defining all character columns to a large default length. In addition, define columns as VARCHAR when that is all that is needed rather than use [NVARCHAR][].  Use NVARCHAR(4000) or VARCHAR(8000) when possible instead of NVARCHAR(MAX) or VARCHAR(MAX).
+ 在定義資料行類型時，使用可支援您的資料的最小資料類型，將能夠改善查詢效能。這對 CHAR 和 VARCHAR 資料行尤其重要。如果資料行中最長的值是 25 個字元，請將您的資料行定義為 VARCHAR(25)。避免將所有字元資料行定義為較大的預設長度。此外，將資料行定義為 VARCHAR (當它只需要這樣的大小時) 而非使用 [NVARCHAR][]。儘可能使用 NVARCHAR(4000) 或 VARCHAR(8000)，而非 NVARCHAR(MAX) 或 VARCHAR(MAX)。
 
-## <a name="polybase-limitation"></a>Polybase limitation
+## Polybase 限制
 
-If you are using Polybase to load your tables, define your tables so that the maximum possible row size, including the full length of variable length columns, does not exceed 32,767 bytes.  While you can define a row with variable length data that can exceed this width and load rows with BCP, you will not be able to use Polybase to load this data.  Polybase support for wide rows will be added soon.
+如果您正在使用 PolyBase 以載入您的資料表，請定義您的資料表，使最大可能的資料列大小 (包括可變長度資料行的完整長度) 不超過 32,767 個位元組。雖然您定義的資料列可以有超過此寬度的可變長度資料，並透過 BCP 載入資料列，您將無法使用 PolyBase 載入此資料。PolyBase 針對廣泛資料列的支援將會於近期內新增。
 
-## <a name="unsupported-data-types"></a>Unsupported data types
+## 不支援的資料類型
 
-If you are migrating your database from another SQL platform like Azure SQL Database, as you migrate, you may encounter some data types that are not supported on SQL Data Warehouse.  Below are unsupported data types as well as some alternatives you can use in place of unsupported data types.
+如果您從另一個 SQL 平台 (例如 Azure SQL Database) 移轉您的資料庫，在移轉時，您可能會遇到 SQL 資料倉儲不支援的某些資料類型。以下是不支援的資料類型，以及一些您可以用來取代不支援的資料類型的替代方案。
 
-|Data Type|Workaround|
+|資料類型|因應措施|
 |---|---|
 |[geometry][]|[varbinary][]|
 |[geography][]|[varbinary][]|
 |[hierarchyid][]|[nvarchar][](4000)|
 |[image][ntext,text,image]|[varbinary][]|
-|[text][ntext,text,image]|[varchar][]|
+|[文字][ntext,text,image]|[varchar][]|
 |[ntext][ntext,text,image]|[nvarchar][]|
-|[sql_variant][]|Split column into several strongly typed columns.|
-|[table][]|Convert to temporary tables.|
-|[timestamp][]|Rework code to use [datetime2][] and `CURRENT_TIMESTAMP` function.  Only constants are supported as defaults, therefore current_timestamp cannot be defined as a default constraint. If you need to migrate row version values from a timestamp typed column then use [BINARY][](8) or [VARBINARY][BINARY](8) for NOT NULL or NULL row version values.|
+|[sql\_variant][]|將資料行分割成數個強型別資料行。|
+|[資料表][]|轉換成暫存資料表。|
+|[timestamp][]|修改程式碼來使用 [datetime2][] 和 `CURRENT_TIMESTAMP` 函式。僅支援常數做為預設值，因此 current\_timestamp 不可定義為預設條件約束。如果您需要從 timestamp 類型資料行移轉資料列版本值，請對 NOT NULL 或 NULL 資料列版本值使用 [BINARY][] \(8) 或 [VARBINARY][BINARY](8)。|
 |[xml][]|[varchar][]|
-|[user defined types][]|convert back to their native types where possible|
-|default values|default values support literals and constants only.  Non-deterministic expressions or functions, such as `GETDATE()` or `CURRENT_TIMESTAMP`, are not supported.|
+|[使用者定義型別][]|可能的話，轉換回原生型別|
+|預設值|預設值僅支援常值和常數。不支援不具決定性的運算式或函式，例如 `GETDATE()` 或 `CURRENT_TIMESTAMP`。|
 
-The below SQL can be run on your current SQL database to identify columns which are not be supported by Azure SQL Data Warehouse:
+在您目前的 SQL 資料庫上，可執行以下 SQL 來識別 Azure SQL 資料倉儲不支援的資料行︰
 
 ```sql
 SELECT  t.[name], c.[name], c.[system_type_id], c.[user_type_id], y.[is_user_defined], y.[name]
@@ -80,26 +79,31 @@ WHERE y.[name] IN ('geography','geometry','hierarchyid','image','text','ntext','
  AND  y.[is_user_defined] = 1;
 ```
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-To learn more, see the articles on [Table Overview][Overview], [Distributing a Table][Distribute], [Indexing a Table][Index],  [Partitioning a Table][Partition], [Maintaining Table Statistics][Statistics] and [Temporary Tables][Temporary].  For more about best practices, see [SQL Data Warehouse Best Practices][].
+若要深入了解，請參閱[資料表概觀][Overview]、[散發資料表][Distribute]、[編製資料表的索引][Index]、[分割資料表][Partition]、[維護資料表統計資料][Statistics]和[暫存資料表][Temporary]等文章。若要深入了解最佳做法，請參閱 [SQL Data 資料倉儲最佳做法][]。
 
 <!--Image references-->
 
 <!--Article references-->
 [Overview]: ./sql-data-warehouse-tables-overview.md
-[Data Types]: ./sql-data-warehouse-tables-data-types.md
+[概觀]: ./sql-data-warehouse-tables-overview.md
+[資料類型]: ./sql-data-warehouse-tables-data-types.md
 [Distribute]: ./sql-data-warehouse-tables-distribute.md
+[散發]: ./sql-data-warehouse-tables-distribute.md
 [Index]: ./sql-data-warehouse-tables-index.md
 [Partition]: ./sql-data-warehouse-tables-partition.md
+[資料分割]: ./sql-data-warehouse-tables-partition.md
 [Statistics]: ./sql-data-warehouse-tables-statistics.md
+[統計資料]: ./sql-data-warehouse-tables-statistics.md
 [Temporary]: ./sql-data-warehouse-tables-temporary.md
-[SQL Data Warehouse Best Practices]: ./sql-data-warehouse-best-practices.md
+[暫存]: ./sql-data-warehouse-tables-temporary.md
+[SQL Data 資料倉儲最佳做法]: ./sql-data-warehouse-best-practices.md
 
 <!--MSDN references-->
 
 <!--Other Web references-->
-[create table]: https://msdn.microsoft.com/library/mt203953.aspx
+[建立資料表]: https://msdn.microsoft.com/library/mt203953.aspx
 [bigint]: https://msdn.microsoft.com/library/ms187745.aspx
 [binary]: https://msdn.microsoft.com/library/ms188362.aspx
 [bit]: https://msdn.microsoft.com/library/ms177603.aspx
@@ -122,9 +126,9 @@ To learn more, see the articles on [Table Overview][Overview], [Distributing a T
 [smalldatetime]: https://msdn.microsoft.com/library/ms182418.aspx
 [smallint]: https://msdn.microsoft.com/library/ms187745.aspx
 [smallmoney]: https://msdn.microsoft.com/library/ms179882.aspx
-[sql_variant]: https://msdn.microsoft.com/library/ms173829.aspx
+[sql\_variant]: https://msdn.microsoft.com/library/ms173829.aspx
 [sysname]: https://msdn.microsoft.com/library/ms186939.aspx
-[table]: https://msdn.microsoft.com/library/ms175010.aspx
+[資料表]: https://msdn.microsoft.com/library/ms175010.aspx
 [time]: https://msdn.microsoft.com/library/bb677243.aspx
 [timestamp]: https://msdn.microsoft.com/library/ms182776.aspx
 [tinyint]: https://msdn.microsoft.com/library/ms187745.aspx
@@ -132,10 +136,6 @@ To learn more, see the articles on [Table Overview][Overview], [Distributing a T
 [varbinary]: https://msdn.microsoft.com/library/ms188362.aspx
 [varchar]: https://msdn.microsoft.com/library/ms186939.aspx
 [xml]: https://msdn.microsoft.com/library/ms187339.aspx
-[user defined types]: https://msdn.microsoft.com/library/ms131694.aspx
+[使用者定義型別]: https://msdn.microsoft.com/library/ms131694.aspx
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0706_2016-->

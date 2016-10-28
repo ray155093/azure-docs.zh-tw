@@ -1,23 +1,22 @@
 <properties
-   pageTitle="How to use Azure Redis Cache with Java | Microsoft Azure"
-    description="Get started with Azure Redis Cache using Java"
-    services="redis-cache"
-    documentationCenter=""
-    authors="steved0x"
-    manager="douge"
-    editor=""/>
+   pageTitle="如何搭配使用 Azure Redis 快取與 Java | Microsoft Azure"
+	description="開始搭配使用 Azure Redis 快取與 Java"
+	services="redis-cache"
+	documentationCenter=""
+	authors="steved0x"
+	manager="douge"
+	editor=""/>
 
 <tags
-    ms.service="cache"
-    ms.devlang="java"
-    ms.topic="hero-article"
-    ms.tgt_pltfrm="cache-redis"
-    ms.workload="tbd"
-    ms.date="08/24/2016"
-    ms.author="sdanie"/>
+	ms.service="cache"
+	ms.devlang="java"
+	ms.topic="hero-article"
+	ms.tgt_pltfrm="cache-redis"
+	ms.workload="tbd"
+	ms.date="08/24/2016"
+	ms.author="sdanie"/>
 
-
-# <a name="how-to-use-azure-redis-cache-with-java"></a>How to use Azure Redis Cache with Java
+# 如何搭配使用 Azure Redis 快取與 Java
 
 > [AZURE.SELECTOR]
 - [.NET](cache-dotnet-how-to-use-azure-redis-cache.md)
@@ -26,63 +25,58 @@
 - [Java](cache-java-get-started.md)
 - [Python](cache-python-get-started.md)
 
-Azure Redis Cache gives you access to a dedicated Redis cache, managed by Microsoft. Your cache is accessible from any application within Microsoft Azure.
+Azure Redis 快取可讓您存取 Microsoft 所管理的專用 Redis 快取。從 Microsoft Azure 內的任何應用程式都可以存取您的快取。
 
-This topic shows you how to get started with Azure Redis Cache using Java.
+本主題說明如何搭配使用 Azure Redis 快取與 Java。
 
-## <a name="prerequisites"></a>Prerequisites
+## 必要條件
 
-[Jedis](https://github.com/xetorthio/jedis) - Java client for Redis
+[Jedis](https://github.com/xetorthio/jedis) - Redis 的 Java 用戶端
 
-This tutorial uses Jedis, but you can use any Java client listed at [http://redis.io/clients](http://redis.io/clients).
+本教學課程使用 Jedis，但是您可以使用列在 [http://redis.io/clients](http://redis.io/clients) 的任何 Java 用戶端。
 
-## <a name="create-a-redis-cache-on-azure"></a>Create a Redis cache on Azure
+## 在 Azure 上建立 Redis 快取
 
 [AZURE.INCLUDE [redis-cache-create](../../includes/redis-cache-create.md)]
 
-## <a name="retrieve-the-host-name-and-access-keys"></a>Retrieve the host name and access keys
+## 擷取主機名稱和存取金鑰
 
 [AZURE.INCLUDE [redis-cache-create](../../includes/redis-cache-access-keys.md)]
 
 
-## <a name="enable-the-non-ssl-endpoint"></a>Enable the non-SSL endpoint
+## 啟用非 SSL 端點
 
-Some Redis clients don't support SSL, and by default the [non-SSL port is disabled for new Azure Redis Cache instances](cache-configure.md#access-ports). At the time of this writing, the [Jedis](https://github.com/xetorthio/jedis) client doesn't support SSL. 
+有些 Redis 用戶端不支援 SSL，且預設會[停用新的 Azure Redis 快取執行個體的非 SSL 連接埠](cache-configure.md#access-ports)。在本文撰寫當下，[Jedis](https://github.com/xetorthio/jedis) 用戶端不支援 SSL。
 
 [AZURE.INCLUDE [redis-cache-create](../../includes/redis-cache-non-ssl-port.md)]
 
 
 
 
-## <a name="add-something-to-the-cache-and-retrieve-it"></a>Add something to the cache and retrieve it
+## 在快取中加入項目並擷取該項目
 
-    package com.mycompany.app;
-    import redis.clients.jedis.Jedis;
-    import redis.clients.jedis.JedisShardInfo;
+	package com.mycompany.app;
+	import redis.clients.jedis.Jedis;
+	import redis.clients.jedis.JedisShardInfo;
 
-    /* Make sure you turn on non-SSL port in Azure Redis using the Configuration section in the Azure Portal */
-    public class App
-    {
-      public static void main( String[] args )
-      {
+	/* Make sure you turn on non-SSL port in Azure Redis using the Configuration section in the Azure Portal */
+	public class App
+	{
+	  public static void main( String[] args )
+	  {
         /* In this line, replace <name> with your cache name: */
-        JedisShardInfo shardInfo = new JedisShardInfo("<name>.redis.cache.windows.net", 6379);
-        shardInfo.setPassword("<key>"); /* Use your access key. */
-        Jedis jedis = new Jedis(shardInfo);
-        jedis.set("foo", "bar");
-        String value = jedis.get("foo");
-      }
-    }
+	    JedisShardInfo shardInfo = new JedisShardInfo("<name>.redis.cache.windows.net", 6379);
+	    shardInfo.setPassword("<key>"); /* Use your access key. */
+	    Jedis jedis = new Jedis(shardInfo);
+     	jedis.set("foo", "bar");
+     	String value = jedis.get("foo");
+	  }
+	}
 
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-- [Enable cache diagnostics](https://msdn.microsoft.com/library/azure/dn763945.aspx#EnableDiagnostics) so you can [monitor](https://msdn.microsoft.com/library/azure/dn763945.aspx) the health of your cache.
-- Read the official [Redis documentation](http://redis.io/documentation).
+- [啟用快取診斷](https://msdn.microsoft.com/library/azure/dn763945.aspx#EnableDiagnostics)，以[監視](https://msdn.microsoft.com/library/azure/dn763945.aspx)您快取的健全狀況。
+- 閱讀官方 [Redis 文件](http://redis.io/documentation)。
 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

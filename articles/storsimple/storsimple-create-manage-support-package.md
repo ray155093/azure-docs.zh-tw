@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Create a StorSimple support package | Microsoft Azure"
-   description="Learn how to create, decrypt, and edit a support package for your StorSimple device."
+   pageTitle="建立 StorSimple 支援封裝 | Microsoft Azure"
+   description="了解如何建立、解密和編輯 StorSimple 裝置的支援封裝。"
    services="storsimple"
    documentationCenter=""
    authors="alkohli"
@@ -16,183 +16,178 @@
    ms.author="alkohli" />
 
 
+# 建立及管理 StorSimple 支援封裝
 
-# <a name="create-and-manage-a-storsimple-support-package"></a>Create and manage a StorSimple support package
+## Overview
 
-## <a name="overview"></a>Overview
+StorSimple 支援封裝是一種簡便的機制，可收集所有相關的記錄以協助 Microsoft 支援服務針對任何 StorSimple 裝置問題進行疑難排解。收集的記錄都會經過加密並壓縮。
 
-A StorSimple support package is an easy-to-use mechanism that collects all relevant logs to assist Microsoft Support with troubleshooting any StorSimple device issues. The collected logs are encrypted and compressed.
+本教學課程包含建立和管理支援封裝的逐步指示：
 
-This tutorial includes step-by-step instructions to create and manage the support package.
+## 在 Azure 傳統入口網站中建立與上傳支援封裝
 
-## <a name="create-and-upload-a-support-package-in-the-azure-classic-portal"></a>Create and upload a support package in the Azure classic portal
+您可以在 Azure 傳統入口網站中透過此服務的 [維護] 頁面，建立支援封裝並上傳至 Microsoft 支援服務網站。
 
-You can create and upload a support package to the Microsoft Support site through the **Maintenance** page of the service in the Azure classic portal.
+> [AZURE.NOTE] 上傳需要支援密碼。支援工程師應在電子郵件中提供此密碼給您。
 
-> [AZURE.NOTE] The upload requires a support passkey. Your support engineer should provide this to you in an email.
+建立加密和壓縮的支援封裝 (.cab 檔案) 並上傳至「支援服務」網站。支援工程師就能從支援服務網站擷取此封裝以針對此問題進行疑難排解。
 
-An encrypted and compressed support package (.cab file) is created and uploaded to the Support site. The support engineer can then retrieve this package from the Support site for troubleshooting the issue.
+在 Azure 傳統入口網站中執行下列步驟，以建立支援封裝。
 
-Perform the following steps in the classic portal to create a support package.
+#### 在 Azure 傳統入口網站中建立支援封裝
 
-#### <a name="to-create-a-support-package-in-the-azure-classic-portal"></a>To create a support package in the Azure classic portal
+1. 選取 [裝置] > [維護]。
 
-1. Select **Devices** > **Maintenance**.
+2. 在 [支援封裝] 區段中，選取 [建立及上傳支援封裝]。
 
-2. In the **Support package** section, select **Create and upload support package**.
+3. 在 [**建立及上傳支援封裝**] 對話方塊中，執行下列動作：
 
-3. In the **Create and upload support package** dialog box, do the following:
+	![建立支援封裝](./media/storsimple-create-manage-support-package/IC740923.png)
 
-    ![Create support package](./media/storsimple-create-manage-support-package/IC740923.png)
+	- 在 [支援密碼] 文字方塊中，輸入密碼。Microsoft 支援工程師應在電子郵件中將此密碼傳送給您。
 
-    - In the **Support Passkey** text box, enter the passkey. Your Microsoft support engineer should send this passkey to you in email.
+	- 選取此核取方塊以同意自動上傳支援封裝至 Microsoft 支援服務網站。
 
-    - Select the check box to provide consent to automatically upload the support package to the Microsoft Support site.
-
-    - Click the check icon ![Check icon](./media/storsimple-create-manage-support-package/IC740895.png).
-
-
-## <a name="manually-create-a-support-package"></a>Manually create a support package
-
-In some cases, you'll need to manually create the support package through Windows PowerShell for StorSimple. For example:
-
-- If you need to remove sensitive information from your log files prior to sharing with Microsoft Support.
-
-- If you are having difficulty uploading the package due to connectivity issues.
-
-You can share your manually generated support package with Microsoft Support over email. Perform the following steps to create a support package in Windows PowerShell for StorSimple.
-
-#### <a name="to-create-a-support-package-in-windows-powershell-for-storsimple"></a>To create a support package in Windows PowerShell for StorSimple
-
-1. To start a Windows PowerShell session as an administrator on the remote computer that's used to connect to your StorSimple device, enter the following command:
-
-    `Start PowerShell`
-
-2. In the Windows PowerShell session, connect to the SSAdmin Console of your device:
-
-    - At the command prompt, enter:
-
-        `$MS = New-PSSession -ComputerName <IP address for DATA 0> -Credential SSAdmin -ConfigurationName "SSAdminConsole"`
-
-    1. In the dialog box that opens, enter your device administrator password. The default password is:
-
-        `Password1`
-
-        ![PowerShell credential dialog box](./media/storsimple-create-manage-support-package/IC740962.png)
-
-    2. Select **OK**.
-    1. At the command prompt, enter:
-
-        `Enter-PSSession $MS`
-
-3. In the session that opens, enter the appropriate command.
-
-    - For network shares that are password protected, enter:
-
-        `Export-HcsSupportPackage –PackageTag "MySupportPackage" –Credential "Username" -Force`
-
-        You'll be prompted for a password, a path to the network shared folder, and an encryption passphrase (because the support package is encrypted). A support package is then created in the specified folder.
-
-    - For shares that are not password protected, you do not need the `-Credential` parameter. Enter the following:
-
-        `Export-HcsSupportPackage –PackageTag "MySupportPackage" -Force`
-
-        The support package is created for both controllers in the specified network shared folder. It's an encrypted, compressed file that can be sent to Microsoft Support for troubleshooting. For more information, see [Contact Microsoft Support](storsimple-contact-microsoft-support.md).
+	- 按一下核取圖示 ![核取圖示](./media/storsimple-create-manage-support-package/IC740895.png)。
 
 
-### <a name="the-export-hcssupportpackage-cmdlet-parameters"></a>The Export-HcsSupportPackage cmdlet parameters
-You can use the following parameters with the Export-HcsSupportPackage cmdlet.
+## 手動建立支援封裝
 
-| Parameter            | Required/Optional | Description                                                                                                                                                             |
+在某些情況下，您必須透過 Windows PowerShell for StorSimple 手動建立支援封裝。例如：
+
+- 如果您在與 Microsoft 支援服務共用您的記錄檔之前，必須從其中移除機密資訊。
+
+- 如果您在上傳封裝時，因為連線能力問題而遇到困難。
+
+您可以透過電子郵件與 Microsoft 支援服務共用手動產生的支援封裝。執行下列步驟在 Windows PowerShell for StorSimple 中建立支援封裝。
+
+#### 在 Windows PowerShell for StorSimple 中建立支援封裝
+
+1. 若要在用來連接至 StorSimple 裝置的遠端電腦上，以系統管理員身分啟動 Windows PowerShell 工作階段，請輸入下列命令：
+
+	`Start PowerShell`
+
+2. 在 Windows PowerShell 工作階段中，連接到裝置的 SSAdmin 主控台：
+
+	- 在命令提示字元中，輸入：
+
+		`$MS = New-PSSession -ComputerName <IP address for DATA 0> -Credential SSAdmin -ConfigurationName "SSAdminConsole"`
+
+	1. 在開啟的對話方塊中，輸入您的裝置系統管理員密碼。預設密碼為：
+
+		`Password1`
+
+		![[PowerShell 認證] 對話方塊](./media/storsimple-create-manage-support-package/IC740962.png)
+
+	2. 選取 [確定]。
+	1. 在命令提示字元中，輸入：
+
+		`Enter-PSSession $MS`
+
+3. 在開啟的工作階段中，輸入適當的命令。
+
+	- 對於受密碼保護的網路共用，請輸入：
+
+		`Export-HcsSupportPackage –PackageTag "MySupportPackage" –Credential "Username" -Force`
+
+		系統會提示您輸入密碼、網路共用的資料夾路徑及加密複雜密碼 (因為支援封裝已加密)。然後會在指定的資料夾中建立支援封裝。
+
+	- 對於不受密碼保護的共用內容，您不需要 `-Credential` 參數。輸入以下資訊：
+
+		`Export-HcsSupportPackage –PackageTag "MySupportPackage" -Force`
+
+		在指定的網路共用資料夾中，同時為兩個控制器建立支援封裝。這是加密的壓縮檔案，可傳送給 Microsoft 支援服務進行疑難排解。如需詳細資訊，請參閱[連絡 Microsoft 支援服務](storsimple-contact-microsoft-support.md)。
+
+
+### The Export-HcsSupportPackage cmdlet 參數
+您可以使用下列參數搭配 Export-HcsSupportPackage cmdlet。
+
+| 參數 | 必要/選用 | 說明 |
 |----------------------|-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `-Path`                 | Required          | Use to provide the location of the network shared folder in which the support package is placed.                                                                 |
-| `-EncryptionPassphrase` | Required          | Use to provide a passphrase to help encrypt the support package.                                                                                                        |
-| `-Credential`           | Optional          | Use to supply access credentials for the network shared folder.                                                                                        |
-| `-Force`                | Optional          | Use to skip the encryption passphrase confirmation step.                                                                                                                |
-| `-PackageTag`           | Optional          | Use to specify a directory under *Path* in which the support package is placed. The default is [device name]-[current date and time:yyyy-MM-dd-HH-mm-ss].       |
-| `-Scope`                | Optional          | Specify as **Cluster** (default) to create a support package for both controllers. If you want to create a package only for the current controller, specify **Controller**. |
+| `-Path` | 必要 | 用來提供存放支援封裝的網路共用資料夾位置。 |
+| `-EncryptionPassphrase` | 必要 | 用來提供複雜密碼，以協助加密支援封裝。 |
+| `-Credential` | 選用 | 用來提供網路共用資料夾的存取認證。 |
+| `-Force` | 選用 | 用來略過加密複雜密碼確認步驟。 |
+| `-PackageTag` | 選用 | 用來指定 *Path* 下存放支援封裝的目錄。預設值是 [裝置名稱]-[目前日期和時間：yyyy-MM-dd-HH-mm-ss]。 |
+| `-Scope` | 選用 | 指定為 **Cluster** (預設值) 可以為兩個控制器建立支援封裝。如果您只想針對目前的控制器建立封裝，請指定 **Controller**。 |
 
 
-## <a name="edit-a-support-package"></a>Edit a support package
+## 編輯支援封裝
 
-After you have generated a support package, you might need to edit the package to remove sensitive information. This can include volume names, device IP addresses, and backup names from the log files.
+在您產生支援封裝之後，可能需要編輯封裝以移除機密資訊。這可能包括磁碟區名稱、裝置 IP 位址，以及記錄檔中的備份名稱。
 
-> [AZURE.IMPORTANT] You can only edit a support package that was generated through Windows PowerShell for StorSimple. You can't edit a package created in the Azure classic portal with StorSimple Manager service.
+> [AZURE.IMPORTANT] 您只能編輯透過 Windows PowerShell for StorSimple 產生的支援封裝。您無法編輯在 Azure 傳統入口網站中以 StorSimple Manager 服務建立的封裝。
 
-To edit a support package before uploading it on the Microsoft Support site, first decrypt the support package, edit the files, and then re-encrypt it. Perform the following steps.
+在 Microsoft 支援網站上傳支援封裝之前，若要編輯支援封裝，請先解密支援封裝、編輯檔案，然後重新加密。請執行下列步驟：
 
-#### <a name="to-edit-a-support-package-in-windows-powershell-for-storsimple"></a>To edit a support package in Windows PowerShell for StorSimple
+#### 在 Windows PowerShell for StorSimple 中編輯支援封裝
 
-1. Generate a support package as described earlier, in [To create a support package in Windows PowerShell for StorSimple](#to-create-a-support-package-in-windows-powershell-for-storsimple).
+1. 產生支援封裝，如稍早的[在 Windows PowerShell for StorSimple 中建立支援封裝](#to-create-a-support-package-in-windows-powershell-for-storsimple)中所述。
 
-2. [Download the script](http://gallery.technet.microsoft.com/scriptcenter/Script-to-decrypt-a-a8d1ed65) locally on your client.
+2. 在用戶端本機[下載指令碼](http://gallery.technet.microsoft.com/scriptcenter/Script-to-decrypt-a-a8d1ed65)。
 
-3. Import the Windows PowerShell module. Specify the path to the local folder in which you downloaded the script. To import the module, enter:
+3. 匯入 Windows PowerShell 模組。指定下載指令碼時的本機資料夾的路徑。若要匯入模組，請輸入：
 
-    `Import-module <Path to the folder that contains the Windows PowerShell script>`
+	`Import-module <Path to the folder that contains the Windows PowerShell script>`
 
-4. All the files are *.aes* files that are compressed and encrypted. To decompress and decrypt files, enter:
+4. 所有檔案都是已壓縮和加密的 *.aes* 檔案。若要解壓縮並解密檔案，請輸入︰
 
-    `Open-HcsSupportPackage <Path to the folder that contains support package files>`
+	`Open-HcsSupportPackage <Path to the folder that contains support package files>`
 
-    Note that the actual file extensions are now displayed for all the files.
+	請注意，所有檔案現在顯示實際的副檔名。
 
-    ![Edit support package](./media/storsimple-create-manage-support-package/IC750706.png)
+	![編輯支援封裝](./media/storsimple-create-manage-support-package/IC750706.png)
 
-5. When you're prompted for the encryption passphrase, enter the passphrase that you used when the support package was created.
+5. 當系統提示您輸入加密複雜密碼時，請輸入您在建立支援封裝時使用的複雜密碼。
 
-        cmdlet Open-HcsSupportPackage at command pipeline position 1
+    	cmdlet Open-HcsSupportPackage at command pipeline position 1
 
-        Supply values for the following parameters:EncryptionPassphrase: ****
+    	Supply values for the following parameters:EncryptionPassphrase: ****
 
-6. Browse to the folder that contains the log files. Because the log files are now decompressed and decrypted, these will have original file extensions. Modify these files to remove any customer-specific information, such as volume names and device IP addresses, and save the files.
+6. 瀏覽至包含記錄檔的資料夾。因為記錄檔現在已解壓縮並解密，所以會顯示原始的副檔名。修改這些檔案來移除客戶特定資訊，例如磁碟區名稱和裝置 IP 位址，然後儲存檔案。
 
-7. Close the files to compress them with gzip and encrypt them with AES-256. This is for speed and security in transferring the support package over a network. To compress and encrypt files, enter the following:
+7. 關閉檔案會使用 Gzip 壓縮檔案，並使用 AES-256 加密。這是為了透過網路傳輸支援封裝時提高速度和安全性。若要壓縮及加密檔案，請輸入下列內容︰
 
-    `Close-HcsSupportPackage <Path to the folder that contains support package files>`
+	`Close-HcsSupportPackage <Path to the folder that contains support package files>`
 
-    ![Edit support package](./media/storsimple-create-manage-support-package/IC750707.png)
+	![編輯支援封裝](./media/storsimple-create-manage-support-package/IC750707.png)
 
-8. When prompted, provide an encryption passphrase for the modified support package.
+8. 出現提示時，提供加密複雜密碼給修改過的支援封裝。
 
-        cmdlet Close-HcsSupportPackage at command pipeline position 1
-        Supply values for the following parameters:EncryptionPassphrase: ****
+	    cmdlet Close-HcsSupportPackage at command pipeline position 1
+    	Supply values for the following parameters:EncryptionPassphrase: ****
 
-9. Write down the new passphrase, so that you can share it with Microsoft Support when requested.
-
-
-### <a name="example:-editing-files-in-a-support-package-on-a-password-protected-share"></a>Example: Editing files in a support package on a password-protected share
-
-The following example shows how to decrypt, edit, and re-encrypt a support package.
-
-        PS C:\WINDOWS\system32> Import-module C:\Users\Default\StorSimple\SupportPackage\HCSSupportPackageTools.psm1
-
-        PS C:\WINDOWS\system32> Open-HcsSupportPackage \\hcsfs\Logs\TD48\TD48Logs\C0-A\etw
-
-        cmdlet Open-HcsSupportPackage at command pipeline position 1
-
-        Supply values for the following parameters:
-
-        EncryptionPassphrase: ****
-
-        PS C:\WINDOWS\system32> Close-HcsSupportPackage \\hcsfs\Logs\TD48\TD48Logs\C0-A\etw
-
-        cmdlet Close-HcsSupportPackage at command pipeline position 1
-
-        Supply values for the following parameters:
-
-        EncryptionPassphrase: ****
-
-        PS C:\WINDOWS\system32>
-
-## <a name="next-steps"></a>Next steps
-
-- Learn how to [use support packages and device logs to troubleshoot your device deployment](storsimple-troubleshoot-deployment.md#support-packages-and-device-logs-available-for-troubleshooting).
-
-- Learn how to [use the StorSimple Manager service to administer your StorSimple device](storsimple-manager-service-administration.md).
+9. 記下新的複雜密碼，當接到要求時就能提供給 Microsoft 支援服務。
 
 
+### 範例：在受密碼保護的共用中編輯支援封裝中的檔案
 
-<!--HONumber=Oct16_HO2-->
+下列範例將示範如何解密、編輯和重新加密支援封裝。
 
+    	PS C:\WINDOWS\system32> Import-module C:\Users\Default\StorSimple\SupportPackage\HCSSupportPackageTools.psm1
 
+    	PS C:\WINDOWS\system32> Open-HcsSupportPackage \\hcsfs\Logs\TD48\TD48Logs\C0-A\etw
+
+    	cmdlet Open-HcsSupportPackage at command pipeline position 1
+
+    	Supply values for the following parameters:
+
+    	EncryptionPassphrase: ****
+
+    	PS C:\WINDOWS\system32> Close-HcsSupportPackage \\hcsfs\Logs\TD48\TD48Logs\C0-A\etw
+
+    	cmdlet Close-HcsSupportPackage at command pipeline position 1
+
+    	Supply values for the following parameters:
+
+    	EncryptionPassphrase: ****
+
+    	PS C:\WINDOWS\system32>
+
+## 後續步驟
+
+- 了解如何[使用支援封裝和裝置記錄對裝置部署進行疑難排解](storsimple-troubleshoot-deployment.md#support-packages-and-device-logs-available-for-troubleshooting)。
+
+- 了解如何[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
+
+<!---HONumber=AcomDC_0817_2016-->

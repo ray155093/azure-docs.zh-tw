@@ -1,215 +1,210 @@
 <properties 
-    pageTitle="LOB application test environment | Microsoft Azure" 
-    description="Learn how to create a web-based, line of business application in a hybrid cloud environment for IT pro or development testing." 
-    services="virtual-machines-windows" 
-    documentationCenter="" 
-    authors="JoeDavies-MSFT" 
-    manager="timlt" 
-    editor=""
-    tags="azure-resource-manager"/>
+	pageTitle="LOB 應用程式測試環境 | Microsoft Azure" 
+	description="了解如何在混合式雲端環境中建立 IT 專業或開發測試的 Web 型企業營運應用程式。" 
+	services="virtual-machines-windows" 
+	documentationCenter="" 
+	authors="JoeDavies-MSFT" 
+	manager="timlt" 
+	editor=""
+	tags="azure-resource-manager"/>
 
 <tags 
-    ms.service="virtual-machines-windows" 
-    ms.workload="infrastructure-services" 
-    ms.tgt_pltfrm="vm-windows" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="09/30/2016" 
-    ms.author="josephd"/>
+	ms.service="virtual-machines-windows" 
+	ms.workload="infrastructure-services" 
+	ms.tgt_pltfrm="vm-windows" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="08/08/2016" 
+	ms.author="josephd"/>
 
+# 在混合式雲端中設定 Web 型 LOB 應用程式進行測試
 
-# <a name="set-up-a-web-based-lob-application-in-a-hybrid-cloud-for-testing"></a>Set up a web-based LOB application in a hybrid cloud for testing
-
-This topic steps you through creating a simulated hybrid cloud environment for testing a web-based line of business (LOB) application hosted in Microsoft Azure. Here is the resulting configuration.
+本主題將逐步引導您建立模擬混合式雲端環境測試 Microsoft Azure 代管的 Web 型企業營運 (LOB) 應用程式。以下是產生的組態。
 
 ![](./media/virtual-machines-windows-ps-hybrid-cloud-test-env-lob/virtual-machines-windows-ps-hybrid-cloud-test-env-lob-ph3.png)
 
-This configuration consists of:
+此組態包含下列各項：
 
-- A simulated on-premises network hosted in Azure (the TestLab VNet).
-- A cross-premises virtual network hosted in Azure (TestVNET).
-- A VNet-to-VNet VPN connection.
-- A web-based LOB server, SQL server, and secondary domain controller in the TestVNET virtual network.
+- Azure (TestLab VNet) 代管的模擬內部部署網路。
+- Azure (TestVNET) 代管的跨單位部署虛擬網路。
+- VNet 對 VNet VPN 連線。
+- Web 型 LOB 伺服器、SQL 伺服器，以及 TestVNET 虛擬網路中的第二個網域控制站。
 
-This configuration provides a basis and common starting point from which you can:
+這個組態一般可供您開始：
 
-- Develop and test LOB applications hosted on Internet Information Services (IIS) with a SQL Server 2014 database backend in Azure.
-- Perform testing of this simulated hybrid cloud-based IT workload.
+- 針對 Azure 中的 SQL Server 2014 資料庫後端開發和測試網際網路資訊服務 (IIS) 代管的 LOB 應用程式。
+- 執行此模擬混合式雲端型 IT 工作負載的測試。
 
-There are three major phases to setting up this hybrid cloud test environment:
+設定此混合式雲端測試環境分為三個主要階段：
 
-1.  Set up the simulated hybrid cloud environment.
-2.  Configure the SQL server computer (SQL1).
-3.  Configure the LOB server (LOB1).
+1.	設定模擬混合式雲端環境。
+2.	設定 SQL 伺服器電腦 (SQL1)。
+3.	設定 LOB 伺服器 (LOB1)。
 
-This workload requires an Azure subscription. If you have an MSDN or Visual Studio subscription, see [Monthly Azure credit for Visual Studio subscribers](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/).
+此工作負載需要 Azure 訂用帳戶。如果您有 MSDN 或 Visual Studio 訂用帳戶，請參閱 [Visual Studio 訂閱者的每月 Azure 點數](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)。
 
-For an example of a production LOB application hosted in Azure, see the **Line of business applications** architecture blueprint at [Microsoft Software Architecture Diagrams and Blueprints](http://msdn.microsoft.com/dn630664).
+如需 Azure 代管生產 LOB 應用程式的範例，請參閱 [Microsoft 軟體架構圖表和藍圖](http://msdn.microsoft.com/dn630664)的**企業營運應用程式**架構藍圖。
 
-## <a name="phase-1:-set-up-the-simulated-hybrid-cloud-environment"></a>Phase 1: Set up the simulated hybrid cloud environment
+## 步驟 1：設定模擬混合式雲端環境
 
-Create the [simulated hybrid cloud test environment](virtual-machines-windows-ps-hybrid-cloud-test-env-sim.md). Because this test environment does not require the presence of the APP1 server on the Corpnet subnet, you can shut it down for now.
+建立[模擬混合式雲端測試環境](virtual-machines-windows-ps-hybrid-cloud-test-env-sim.md)。由於這個測試環境不需要公司網路子網路上的 APP1 伺服器，您可以暫時將它關閉。
 
-This is your current configuration.
+這是您目前的組態。
 
 ![](./media/virtual-machines-windows-ps-hybrid-cloud-test-env-lob/virtual-machines-windows-ps-hybrid-cloud-test-env-lob-ph1.png)
  
-## <a name="phase-2:-configure-the-sql-server-computer-(sql1)"></a>Phase 2: Configure the SQL server computer (SQL1)
+## 第 2 階段：設定 SQL 伺服器電腦 (SQL1)
 
-From the Azure portal, start the DC2 computer if needed.
+從 Azure 入口網站，視需要啟動 DC2 電腦。
 
-Next, create a virtual machine for SQL1 with these commands at an Azure PowerShell command prompt on your local computer. Prior to running these commands, fill in the variable values and remove the < and > characters.
+然後，在本機電腦的 Azure PowerShell 命令提示字元下，使用下列命令建立 SQL1 的虛擬機器。執行這些命令之前，請先填入變數值並移除 < 和 > 字元。
 
-    $rgName="<your resource group name>"
-    $locName="<the Azure location of your resource group>"
-    $saName="<your storage account name>"
-    
-    $vnet=Get-AzureRMVirtualNetwork -Name "TestVNET" -ResourceGroupName $rgName
-    $subnet=Get-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet -Name "TestSubnet"
-    $pip=New-AzureRMPublicIpAddress -Name SQL1-NIC -ResourceGroupName $rgName -Location $locName -AllocationMethod Dynamic
-    $nic=New-AzureRMNetworkInterface -Name SQL1-NIC -ResourceGroupName $rgName -Location $locName -Subnet $subnet -PublicIpAddress $pip
-    $vm=New-AzureRMVMConfig -VMName SQL1 -VMSize Standard_A4
-    $storageAcc=Get-AzureRMStorageAccount -ResourceGroupName $rgName -Name $saName
-    $vhdURI=$storageAcc.PrimaryEndpoints.Blob.ToString() + "vhds/SQL1-SQLDataDisk.vhd"
-    Add-AzureRMVMDataDisk -VM $vm -Name "Data" -DiskSizeInGB 100 -VhdUri $vhdURI  -CreateOption empty
-    
-    $cred=Get-Credential -Message "Type the name and password of the local administrator account for the SQL Server computer." 
-    $vm=Set-AzureRMVMOperatingSystem -VM $vm -Windows -ComputerName SQL1 -Credential $cred -ProvisionVMAgent -EnableAutoUpdate
-    $vm=Set-AzureRMVMSourceImage -VM $vm -PublisherName MicrosoftSQLServer -Offer SQL2014-WS2012R2 -Skus Standard -Version "latest"
-    $vm=Add-AzureRMVMNetworkInterface -VM $vm -Id $nic.Id
-    $storageAcc=Get-AzureRMStorageAccount -ResourceGroupName $rgName -Name $saName
-    $osDiskUri=$storageAcc.PrimaryEndpoints.Blob.ToString() + "vhds/SQL1-OSDisk.vhd"
-    $vm=Set-AzureRMVMOSDisk -VM $vm -Name "OSDisk" -VhdUri $osDiskUri -CreateOption fromImage
-    New-AzureRMVM -ResourceGroupName $rgName -Location $locName -VM $vm
+	$rgName="<your resource group name>"
+	$locName="<the Azure location of your resource group>"
+	$saName="<your storage account name>"
+	
+	$vnet=Get-AzureRMVirtualNetwork -Name "TestVNET" -ResourceGroupName $rgName
+	$subnet=Get-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet -Name "TestSubnet"
+	$pip=New-AzureRMPublicIpAddress -Name SQL1-NIC -ResourceGroupName $rgName -Location $locName -AllocationMethod Dynamic
+	$nic=New-AzureRMNetworkInterface -Name SQL1-NIC -ResourceGroupName $rgName -Location $locName -Subnet $subnet -PublicIpAddress $pip
+	$vm=New-AzureRMVMConfig -VMName SQL1 -VMSize Standard_A4
+	$storageAcc=Get-AzureRMStorageAccount -ResourceGroupName $rgName -Name $saName
+	$vhdURI=$storageAcc.PrimaryEndpoints.Blob.ToString() + "vhds/SQL1-SQLDataDisk.vhd"
+	Add-AzureRMVMDataDisk -VM $vm -Name "Data" -DiskSizeInGB 100 -VhdUri $vhdURI  -CreateOption empty
+	
+	$cred=Get-Credential -Message "Type the name and password of the local administrator account for the SQL Server computer." 
+	$vm=Set-AzureRMVMOperatingSystem -VM $vm -Windows -ComputerName SQL1 -Credential $cred -ProvisionVMAgent -EnableAutoUpdate
+	$vm=Set-AzureRMVMSourceImage -VM $vm -PublisherName MicrosoftSQLServer -Offer SQL2014-WS2012R2 -Skus Standard -Version "latest"
+	$vm=Add-AzureRMVMNetworkInterface -VM $vm -Id $nic.Id
+	$storageAcc=Get-AzureRMStorageAccount -ResourceGroupName $rgName -Name $saName
+	$osDiskUri=$storageAcc.PrimaryEndpoints.Blob.ToString() + "vhds/SQL1-OSDisk.vhd"
+	$vm=Set-AzureRMVMOSDisk -VM $vm -Name "OSDisk" -VhdUri $osDiskUri -CreateOption fromImage
+	New-AzureRMVM -ResourceGroupName $rgName -Location $locName -VM $vm
 
-Use the Azure portal to connect to SQL1 using the local administrator account of SQL1.
+使用 Azure 入口網站，利用 SQL1 的本機系統管理員帳戶連線到 SQL1。
 
-Next, configure Windows Firewall rules to allow basic connectivity testing and SQL Server traffic. From an administrator-level Windows PowerShell command prompt on SQL1, run these commands.
+接著，設定 Windows 防火牆規則，允許基本連線測試和 SQL Server 流量。從 SQL1 的系統管理員層級 Windows PowerShell 命令提示字元下，執行這些命令。
 
-    New-NetFirewallRule -DisplayName "SQL Server" -Direction Inbound -Protocol TCP -LocalPort 1433,1434,5022 -Action allow 
-    Set-NetFirewallRule -DisplayName "File and Printer Sharing (Echo Request - ICMPv4-In)" -enabled True
-    ping dc2.corp.contoso.com
+	New-NetFirewallRule -DisplayName "SQL Server" -Direction Inbound -Protocol TCP -LocalPort 1433,1434,5022 -Action allow 
+	Set-NetFirewallRule -DisplayName "File and Printer Sharing (Echo Request - ICMPv4-In)" -enabled True
+	ping dc2.corp.contoso.com
 
-The ping command should result in four successful replies from IP address 192.168.0.4.
+Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 
-Next, add the extra data disk on SQL1 as a new volume with the drive letter F:.
+接著，將 SQL1 上額外的資料磁碟新增為磁碟機代號 F: 的新磁碟區。
 
-1.  In the left pane of Server Manager, click **File and Storage Services**, and then click **Disks**.
-2.  In the contents pane, in the **Disks** group, click **disk 2** (with the **Partition** set to **Unknown**).
-3.  Click **Tasks**, and then click **New Volume**.
-4.  On the Before you begin page of the New Volume Wizard, click **Next**.
-5.  On the Select the server and disk page, click **Disk 2**, and then click **Next**. When prompted, click **OK**.
-6.  On the Specify the size of the volume page, click **Next**.
-7.  On the Assign to a drive letter or folder page, click **Next**.
-8.  On the Select file system settings page, click **Next**.
-9.  On the Confirm selections page, click **Create**.
-10. When complete, click **Close**.
+1.	在 [伺服器管理員] 的左窗格中，按一下 [檔案和存放服務]，然後按一下 [磁碟]。
+2.	在 [內容] 窗格的 [磁碟] 群組中，按一下 [磁碟 2]\([磁碟分割] 設為 [不明])。
+3.	按一下 [工作]，然後按一下 [新增磁碟區]。
+4.	在 [新增磁碟區精靈] 的 [在您開始前] 頁面上，按 [下一步]。
+5.	在 [選取伺服器和磁碟] 頁面上，按一下 [磁碟 2]，然後按 [下一步]。出現提示時，按一下 **[確定]**。
+6.	在 [指定磁碟區大小] 頁面上，按 [下一步]。
+7.	在 [指派成磁碟機代號或資料夾] 頁面上，按 [下一步]。
+8.	在 [選取檔案系統設定] 頁面上，按 [下一步]。
+9.	在 [確認選取項目] 頁面上，按一下 [建立]。
+10.	完成時，按一下 [關閉]。
 
-Run these commands at the Windows PowerShell command prompt on SQL1:
+在 SQL1 的 Windows PowerShell 命令提示字元下執行下列命令：
 
-    md f:\Data
-    md f:\Log
-    md f:\Backup
+	md f:\Data
+	md f:\Log
+	md f:\Backup
 
-Next, join SQL1 to the CORP Windows Server Active Directory domain with these commands at the Windows PowerShell prompt on SQL1.
+接下來，在 SQL1 上的 Windows PowerShell 提示字元中使用下列命令將 SQL1 加入 CORP Windows Server Active Directory 網域中。
 
-    Add-Computer -DomainName corp.contoso.com
-    Restart-Computer
+	Add-Computer -DomainName corp.contoso.com
+	Restart-Computer
 
-Use the CORP\User1 account when prompted to supply domain account credentials for the **Add-Computer** command.
+當系統提示您為 **Add-Computer** 命令提供網域帳戶認證時，請使用 CORP\\User1 帳戶。
 
-After restarting, use the Azure portal to connect to SQL1 *with the local administrator account of SQL1*.
+重新啟動之後，請使用 Azure 入口網站，利用 SQL1 的本機系統管理員帳戶連線到 SQL1。
 
-Next, configure SQL Server 2014 to use the F: drive for new databases and for user account permissions.
+接著，對於新資料庫和使用者帳戶權限設定 SQL Server 2014 使用 F: 磁碟機。
 
-1.  From the Start screen, type **SQL Server Management**, and then click **SQL Server 2014 Management Studio**.
-2.  In **Connect to Server**, click **Connect**.
-3.  In the Object Explorer tree pane, right-click **SQL1**, and then click **Properties**.
-4.  In the **Server Properties** window, click **Database Settings**.
-5.  Locate the **Database default locations** and set these values: 
-    - For **Data**, type the path **f:\Data**.
-    - For **Log**, type the path **f:\Log**.
-    - For **Backup**, type the path **f:\Backup**.
-    - Note: Only new databases use these locations.
-6.  Click the **OK** to close the window.
-7.  In the **Object Explorer** tree pane, open **Security**.
-8.  Right-click **Logins** and then click **New Login**.
-9.  In **Login name**, type **CORP\User1**.
-10. On the **Server Roles** page, click **sysadmin**, and then click **OK**.
-11. Close Microsoft SQL Server Management Studio.
+1.	從 [開始] 畫面中，輸入 **SQL Server 管理**，然後按一下 [SQL Server 2014 Management Studio]。
+2.	在 [**連線到伺服器**] 中按一下 [**連線**]。
+3.	在 [物件總管] 樹狀結構窗格中，以滑鼠右鍵按一下 [SQL1]，然後按一下 [內容]。
+4.	在 [伺服器內容] 視窗中，按一下 [資料庫設定]。
+5.	找出 [資料庫預設位置] 並設定下列值：
+	- 對於 [資料]，輸入路徑 **f:\\Data**。
+	- 對於 [記錄]，輸入路徑 **f:\\Log**。
+	- 對於 [備份]，輸入路徑 **f:\\Backup**。
+	- 注意：只有新的資料庫才會使用這些位置。
+6.	按一下 [確定] 關閉視窗。
+7.	在 [物件總管] 樹狀結構窗格中，開啟 [安全性]。
+8.	以滑鼠右鍵按一下 [登入]，然後按一下 [新增登入]。
+9.	在 [登入名稱] 中，輸入 **CORP\\User1**。
+10.	在 [伺服器角色] 頁面上，按一下 [sysadmin]，然後按一下 [確定]。
+11.	關閉 Microsoft SQL Server Management Studio。
 
-This is your current configuration.
+這是您目前的組態。
 
 ![](./media/virtual-machines-windows-ps-hybrid-cloud-test-env-lob/virtual-machines-windows-ps-hybrid-cloud-test-env-lob-ph2.png)
  
-## <a name="phase-3:-configure-the-lob-server-(lob1)"></a>Phase 3: Configure the LOB server (LOB1)
+## 第 3 階段：設定 LOB 伺服器 (LOB1)。
 
-First, create a virtual machine for LOB1 with these commands at the Azure PowerShell command prompt on your local computer.
+首先，在本機電腦的 Azure PowerShell 命令提示字元下，使用下列命令建立 LOB1 的虛擬機器。
 
-    $rgName="<your resource group name>"
-    $locName="<your Azure location, such as West US>"
-    $saName="<your storage account name>"
-    
-    $vnet=Get-AzureRMVirtualNetwork -Name "TestVNET" -ResourceGroupName $rgName
-    $subnet=Get-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet -Name "TestSubnet"
-    $pip=New-AzureRMPublicIpAddress -Name LOB1-NIC -ResourceGroupName $rgName -Location $locName -AllocationMethod Dynamic
-    $nic=New-AzureRMNetworkInterface -Name LOB1-NIC -ResourceGroupName $rgName -Location $locName -Subnet $subnet -PublicIpAddress $pip
-    $vm=New-AzureRMVMConfig -VMName LOB1 -VMSize Standard_A2
-    $storageAcc=Get-AzureRMStorageAccount -ResourceGroupName $rgName -Name $saName
-    $cred=Get-Credential -Message "Type the name and password of the local administrator account for LOB1."
-    $vm=Set-AzureRMVMOperatingSystem -VM $vm -Windows -ComputerName LOB1 -Credential $cred -ProvisionVMAgent -EnableAutoUpdate
-    $vm=Set-AzureRMVMSourceImage -VM $vm -PublisherName MicrosoftWindowsServer -Offer WindowsServer -Skus 2012-R2-Datacenter -Version "latest"
-    $vm=Add-AzureRMVMNetworkInterface -VM $vm -Id $nic.Id
-    $osDiskUri=$storageAcc.PrimaryEndpoints.Blob.ToString() + "vhds/LOB1-TestLab-OSDisk.vhd"
-    $vm=Set-AzureRMVMOSDisk -VM $vm -Name LOB1-TestVNET-OSDisk -VhdUri $osDiskUri -CreateOption fromImage
-    New-AzureRMVM -ResourceGroupName $rgName -Location $locName -VM $vm
+	$rgName="<your resource group name>"
+	$locName="<your Azure location, such as West US>"
+	$saName="<your storage account name>"
+	
+	$vnet=Get-AzureRMVirtualNetwork -Name "TestVNET" -ResourceGroupName $rgName
+	$subnet=Get-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet -Name "TestSubnet"
+	$pip=New-AzureRMPublicIpAddress -Name LOB1-NIC -ResourceGroupName $rgName -Location $locName -AllocationMethod Dynamic
+	$nic=New-AzureRMNetworkInterface -Name LOB1-NIC -ResourceGroupName $rgName -Location $locName -Subnet $subnet -PublicIpAddress $pip
+	$vm=New-AzureRMVMConfig -VMName LOB1 -VMSize Standard_A2
+	$storageAcc=Get-AzureRMStorageAccount -ResourceGroupName $rgName -Name $saName
+	$cred=Get-Credential -Message "Type the name and password of the local administrator account for LOB1."
+	$vm=Set-AzureRMVMOperatingSystem -VM $vm -Windows -ComputerName LOB1 -Credential $cred -ProvisionVMAgent -EnableAutoUpdate
+	$vm=Set-AzureRMVMSourceImage -VM $vm -PublisherName MicrosoftWindowsServer -Offer WindowsServer -Skus 2012-R2-Datacenter -Version "latest"
+	$vm=Add-AzureRMVMNetworkInterface -VM $vm -Id $nic.Id
+	$osDiskUri=$storageAcc.PrimaryEndpoints.Blob.ToString() + "vhds/LOB1-TestLab-OSDisk.vhd"
+	$vm=Set-AzureRMVMOSDisk -VM $vm -Name LOB1-TestVNET-OSDisk -VhdUri $osDiskUri -CreateOption fromImage
+	New-AzureRMVM -ResourceGroupName $rgName -Location $locName -VM $vm
 
-Next, use the Azure portal to connect to LOB1 with the credentials of the local administrator account of LOB1.
+接下來，使用 Azure 入口網站，利用 LOB1 的本機系統管理員帳戶的認證連線到 LOB1。
 
-Next, configure a Windows Firewall rule to allow traffic for basic connectivity testing. From an administrator-level Windows PowerShell command prompt on LOB1, run these commands.
+接著，設定 Windows 防火牆規則，允許基本連線測試的流量。從 LOB1 的系統管理員層級 Windows PowerShell 命令提示字元下，執行這些命令。
 
-    Set-NetFirewallRule -DisplayName "File and Printer Sharing (Echo Request - ICMPv4-In)" -enabled True
-    ping dc2.corp.contoso.com
+	Set-NetFirewallRule -DisplayName "File and Printer Sharing (Echo Request - ICMPv4-In)" -enabled True
+	ping dc2.corp.contoso.com
 
-The ping command should result in four successful replies from IP address 192.168.0.4.
+Ping 命令應該會收到來自 IP 位址 192.168.0.4 的四次成功回覆。
 
-Next, join LOB1 to the CORP Active Directory domain with these commands at the Windows PowerShell prompt.
+接下來，在 Windows PowerShell 提示字元中使用下列命令將 LOB1 加入 CORP Active Directory 網域中。
 
-    Add-Computer -DomainName corp.contoso.com
-    Restart-Computer
+	Add-Computer -DomainName corp.contoso.com
+	Restart-Computer
 
-Use the CORP\User1 account when prompted to supply domain account credentials for the **Add-Computer** command.
+當系統提示您為 **Add-Computer** 命令提供網域帳戶認證時，請使用 CORP\\User1 帳戶。
 
-After restarting, use the Azure portal to connect to LOB1 with the CORP\User1 account and password.
+重新啟動之後，請使用 Azure 入口網站，利用 CORP\\User1 帳戶和密碼連線到 LOB1。
 
-Next, configure LOB1 for IIS and test access from CLIENT1.
+接著，為 IIS 設定 LOB1，並且測試從 CLIENT1 進行的存取。
 
-1.  From Server Manager, click **Add roles and features**.
-2.  On the **Before you begin** page, click **Next**.
-3.  On the **Select installation type** page, click **Next**.
-4.  On the **Select destination server** page, click **Next**.
-5.  On the **Server roles** page, click **Web Server (IIS)** in the list of **Roles**.
-6.  When prompted, click **Add Features**, and then click **Next**.
-7.  On the **Select features** page, click **Next**.
-8.  On the **Web Server (IIS)** page, click **Next**.
-9.  On the **Select role services** page, select or clear the check boxes for the services you need for testing your LOB application, and then click **Next**.
-10. On the **Confirm installation selections** page, click **Install**.
-11. Wait until the installation of components has completed and then click **Close**.
-12. From the Azure portal, connect to the CLIENT1 computer with the CORP\User1 account credentials, and then start Internet Explorer.
-13. In the Address bar, type **http://lob1/** and then press ENTER. You should see the default IIS 8 web page.
+1.	在 [伺服器管理員] 中，按一下 [新增角色及功能]。
+2.	在 [在您開始前] 頁面上，按 [下一步]。
+3.	在 [選取安裝類型] 頁面上，按 [下一步]。
+4.	在 [選取目的地伺服器] 頁面上，按 [下一步]。
+5.	在 [伺服器角色] 頁面上，按一下 [角色] 清單中的 [網頁伺服器 (IIS)]。
+6.	出現提示時，按一下 [新增功能]，然後按 [下一步]。
+7.	在 [選取功能] 頁面上，按 [下一步]。
+8.	在 [網頁伺服器 (IIS)] 頁面上，按一下 [下一步]。
+9.	在 [選取角色服務] 頁面上，選取或清除測試 LOB 應用程式所需服務的核取方塊，然後按 [下一步]。
+10.	在 [確認安裝選項] 頁面上，按一下 [安裝]。
+11.	等候元件安裝完成，然後按一下 [關閉]。
+12.	從 Azure 入口網站，以 CORP\\User1 帳戶認證登入 CLIENT1 電腦，然後啟動 Internet Explorer。
+13.	在網址列中，鍵入 **http://lob1/**，然後按 ENTER。您應該會看見預設的 IIS 8 網頁。
 
-This is your current configuration.
+這是您目前的組態。
 
 ![](./media/virtual-machines-windows-ps-hybrid-cloud-test-env-lob/virtual-machines-windows-ps-hybrid-cloud-test-env-lob-ph3.png)
  
-This environment is now ready for you to deploy your web-based application on LOB1 and test functionality from CLIENT1 on the Corpnet subnet.
+這個環境此時即可供您在 LOB1 部署 Web 型應用程式，並且從公司網路子網路上的 CLIENT1 測試功能。
 
-## <a name="next-step"></a>Next step
+## 後續步驟
 
-- Add a new virtual machine using the [Azure portal](virtual-machines-windows-hero-tutorial.md).
+- 使用 [Azure 入口網站](virtual-machines-windows-hero-tutorial.md)來新增虛擬機器。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

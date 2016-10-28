@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Public and private IP addressing in Azure Resource Manager | Microsoft Azure"
-   description="Learn about public and private IP addressing in Azure Resource Manager"
+   pageTitle="Azure 資源管理員中的公用和私人 IP 位址 |Microsoft Azure"
+   description="了解 Azure 資源管理員中的公用和私人 IP 位址"
    services="virtual-network"
    documentationCenter="na"
    authors="jimdial"
@@ -16,129 +16,124 @@
    ms.date="04/27/2016"
    ms.author="jdial" />
 
+# Azure 中的 IP 位址
+您可以將 IP 位址指派給 Azure 資源，來與其他 Azure 資源、內部部署網路和網際網路進行通訊。您可以在 Azure 中使用兩種類型的 IP 位址：
 
-# <a name="ip-addresses-in-azure"></a>IP addresses in Azure
-You can assign IP addresses to Azure resources to communicate with other Azure resources, your on-premises network, and the Internet. There are two types of IP addresses you can use in Azure:
-
-- **Public IP addresses**: Used for communication with the Internet, including Azure public-facing services
-- **Private IP addresses**: Used for communication within an Azure virtual network (VNet), and your on-premises network when you use a VPN gateway or ExpressRoute circuit to extend your network to Azure.
+- **公用 IP 位址**：用於與網際網路通訊，包括 Azure 公眾對應服務
+- **私人 IP 位址**：用於 Azure 虛擬網路 (VNet) 內的通訊，而當您使用 VPN 閘道或 ExpressRoute 電路將網路擴充至 Azure 時，則使用於內部部署網路內的通訊。
 
 [AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-rm-include.md)] [classic deployment model](virtual-network-ip-addresses-overview-classic.md).
 
-If you are familiar with the classic deployment model, check the [differences in IP addressing between classic and Resource Manager](virtual-network-ip-addresses-overview-classic.md#Differences-between-Resource-Manager-and-classic-deployments).
+如果您熟悉傳統部署模型，請參閱[傳統與 Resource Manager 之間的 IP 定址差異](virtual-network-ip-addresses-overview-classic.md#Differences-between-Resource-Manager-and-classic-deployments)。
 
-## <a name="public-ip-addresses"></a>Public IP addresses
-Public IP addresses allow Azure resources to communicate with Internet and Azure public-facing services such as [Azure Redis Cache](https://azure.microsoft.com/services/cache/), [Azure Event Hubs](https://azure.microsoft.com/services/event-hubs/), [SQL databases](../sql-database/sql-database-technical-overview.md), and [Azure storage](../storage/storage-introduction.md).
+## 公用 IP 位址
+Azure 資源可透過公用 IP 位址來與網際網路和 Azure 公眾對應服務 (例如 [Azure Redis Cache](https://azure.microsoft.com/services/cache/)、[Azure 事件中樞](https://azure.microsoft.com/services/event-hubs/)、[SQL Database](../sql-database/sql-database-technical-overview.md) 和 [Azure 儲存體](../storage/storage-introduction.md)) 進行通訊。
 
-In Azure Resource Manager, a [public IP](resource-groups-networking.md#public-ip-address) address is a resource that has its own properties. You can associate a public IP address resource with any of the following resources:
+在 Azure 資源管理員中，[公用 IP](resource-groups-networking.md#public-ip-address) 位址是有自己的屬性的資源。您可以將公用 IP 位址資源與下列任何資源建立關聯：
 
-- Virtual machines (VM)
-- Internet-facing load balancers
-- VPN gateways
-- Application gateways
+- 虛擬機器 (VM)
+- 網際網路對應負載平衡器
+- VPN 閘道
+- 應用程式閘道
 
-### <a name="allocation-method"></a>Allocation method
-There are two methods in which an IP address is allocated to a *public* IP resource - *dynamic* or *static*. The default allocation method is *dynamic*, where an IP address is **not** allocated at the time of its creation. Instead, the public IP address is allocated when you start (or create) the associated resource (like a VM or load balancer). The IP address is released when you stop (or delete) the resource. This causes the IP address to change when you stop and start a resource.
+### 配置方法
+有兩種方法可將 IP 位址配置給公用 IP 資源：「動態」或「靜態」。預設配置方法是「動態」，此方法**不會**在建立 IP 位址時進行配置。相反地，公用 IP 位址會在您啟動 (或建立) 相關聯的資源 (例如 VM 或負載平衡器) 時進行配置。此 IP 位址會在您停止 (或刪除) 資源時釋出 。這會導致 IP 位址在您停止並啟動資源時變更。
 
-To ensure the IP address for the associated resource remains the same, you can set the allocation method explicitly to *static*. In this case an IP address is assigned immediately. It is released only when you delete the resource or change its allocation method to *dynamic*.
+若要確保相關聯資源的 IP 位址維持不變，您可以明確地將配置方法設定為「靜態」。在此情況下會立即指派 IP 位址。只有在您刪除資源或將其配置方法變更為「動態」時，才會釋出 IP 位址。
 
->[AZURE.NOTE] Even when you set the allocation method to *static*, you cannot specify the actual IP address assigned to the *public IP resource*. Instead, it gets allocated from a pool of available IP addresses in the Azure location the resource is created in.
+>[AZURE.NOTE] 即使將配置方法設定為「靜態」，您也無法指定已指派給「公用 IP 資源」的實際 IP 位址。相反地，它是從建立資源的 Azure 位置中可用的 IP 位址集區進行配置。
 
-Static public IP addresses are commonly used in the following scenarios:
+靜態公用 IP 位址通常用於下列案例：
 
-- End-users need to update firewall rules to communicate with your Azure resources.
-- DNS name resolution, where a change in IP address would require updating A records.
-- Your Azure resources communicate with other apps or services that use an IP address-based security model.
-- You use SSL certificates linked to an IP address.
+- 使用者必須更新防火牆規則才能與您的 Azure 資源進行通訊。
+- DNS 名稱解析，其中當 IP 位址發生變更時將需要更新 A 記錄。
+- 您的 Azure 資源與其他使用 IP 位址型安全性模型的應用程式或服務進行通訊。
+- 您使用已連結到 IP 位址的 SSL 憑證。
 
->[AZURE.NOTE] The list of IP ranges from which public IP addresses (dynamic/static) are allocated to Azure resources is published at [Azure Datacenter IP ranges](https://www.microsoft.com/download/details.aspx?id=41653).
+>[AZURE.NOTE] 將公用 IP 位址 (動態/靜態) 配置給 Azure 資源的 IP 範圍清單已發佈於 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/details.aspx?id=41653)。
 
-### <a name="dns-hostname-resolution"></a>DNS hostname resolution
-You can specify a DNS domain name label for a public IP resource, which creates a mapping for *domainnamelabel*.*location*.cloudapp.azure.com to the public IP address in the Azure-managed DNS servers. For instance, if you create a public IP resource with **contoso** as a *domainnamelabel* in the **West US** Azure *location*, the fully-qualified domain name (FQDN) **contoso.westus.cloudapp.azure.com** will resolve to the public IP address of the resource. You can use this FQDN to create a custom domain CNAME record pointing to the public IP address in Azure.
+### DNS 主機名稱解析
+您可以指定公用 IP 資源的 DNS 網域名稱標籤，以建立 *domainnamelabel*.*location*.cloudapp.azure.com 與 Azure 受管理 DNS 伺服器中的公用 IP 位址的對應。比方說，如果您建立公用 IP 資源並以 **contoso** 作為**美國西部** Azure *位置*中的*domainnamelabel*，則完整網域名稱 (FQDN) **contoso.westus.cloudapp.azure.com** 會解析為資源的公用 IP 位址。您可以使用此 FQDN 來建立自訂網域 CNAME 記錄，其指向 Azure 中的公用 IP 位址。
 
->[AZURE.IMPORTANT] Each domain name label created must be unique within its Azure location.  
+>[AZURE.IMPORTANT] 所建立的每個網域名稱標籤必須是 Azure 位置中唯一的。
 
-### <a name="virtual-machines"></a>Virtual machines
-You can associate a public IP address with a [Windows](../virtual-machines/virtual-machines-windows-about.md) or [Linux](../virtual-machines/virtual-machines-linux-about.md) VM by assigning it to its **network interface**. In the case of a multi-network interface VM, you can assign it to the *primary* network interface only. You can assign either a dynamic or a static public IP address to a VM.
+### 虛擬機器
+您可以藉由將公用 IP 位址指派給其**網路介面**，以建立其與 [Windows](../virtual-machines/virtual-machines-windows-about.md) or [Linux](../virtual-machines/virtual-machines-linux-about.md) VM 的關聯。如果是多重網路介面 VM，您可以只將它指派給「主要」網路介面。您可以將動態或靜態公用 IP 位址指派給 VM。
 
-### <a name="internet-facing-load-balancers"></a>Internet-facing load balancers
-You can associate a public IP address with an [Azure Load Balancer](../load-balancer/load-balancer-overview.md), by assigning it to the load balancer **frontend** configuration. This public IP address serves as a load-balanced virtual IP address (VIP). You can assign either a dynamic or a static public IP address to a load balancer front-end. You can also assign multiple public IP addresses to a load balancer front-end, which enables [multi-VIP](../load-balancer/load-balancer-multivip.md) scenarios like a multi-tenant environment with SSL-based websites.
+### 網際網路對應負載平衡器
+您可以將公用 IP 位址指派給負載平衡器**前端**組態，以建立其與 [Azure Load Balancer](../load-balancer/load-balancer-overview.md) 的關聯。此公用 IP 位址可做為負載平衡的虛擬 IP 位址 (VIP)。您可以將動態或靜態公用 IP 位址指派給負載平衡器前端。您也可以將多個公用 IP 位址指派給一個負載平衡器前端，以實現[多重 VIP](../load-balancer/load-balancer-multivip.md) 案例 (例如具有多個 SSL 架構網站的多租用戶環境)。
 
-### <a name="vpn-gateways"></a>VPN gateways
-[Azure VPN Gateway](../vpn-gateway/vpn-gateway-about-vpngateways.md) is used to connect an Azure virtual network (VNet) to other Azure VNets or to an on-premises network. You need to assign a public IP address to its **IP configuration** to enable it to communicate with the remote network. Currently, you can only assign a *dynamic* public IP address to a VPN gateway.
+### VPN 閘道
+[Azure VPN 閘道](../vpn-gateway/vpn-gateway-about-vpngateways.md)用來將 Azure 虛擬網路 (VNet) 連接到其他 Azure Vnet 或內部部署網路。您需要將公用 IP 位址指派給其 **IP 設定**，以便啟用與遠端網路的通訊。您目前只可以將*動態*公用 IP 位址指派給 VPN 閘道。
 
-### <a name="application-gateways"></a>Application gateways
-You can associate a public IP address with an Azure [Application Gateway](../application-gateway/application-gateway-introduction.md), by assigning it to the gateway's **frontend** configuration. This public IP address serves as a load-balanced VIP. Currently, you can only assign a *dynamic* public IP address to an application gateway frontend configuration.
+### 應用程式閘道
+您可以將公用 IP 位址指派給閘道的**前端**組態，以建立其與 Azure [應用程式閘道](../application-gateway/application-gateway-introduction.md)的關聯。此公用 IP 位址可做為負載平衡的 VIP。您目前只可以將「動態」公用 IP 位址指派給應用程式閘道前端組態。
 
-### <a name="at-a-glance"></a>At-a-glance
-The table below shows the specific property through which a public IP address can be associated to a top-level resource, and the possible allocation methods (dynamic or static) that can be used.
+### 快速總覽
+下表顯示特定的屬性，公用 IP 位址可透過它關聯到最上層資源，以及顯示可以使用的可能配置方法 (動態或靜態)。
 
-|Top-level resource|IP Address association|Dynamic|Static|
+|最上層資源|IP 位址關聯|動態|靜態|
 |---|---|---|---|
-|Virtual machine|Network interface|Yes|Yes|
-|Load balancer|Front end configuration|Yes|Yes|
-|VPN gateway|Gateway IP configuration|Yes|No|
-|Application gateway|Front end configuration|Yes|No|
+|虛擬機器|網路介面|是|是|
+|負載平衡器|前端組態|是|是|
+|VPN 閘道|閘道 IP 組態|是|否|
+|應用程式閘道|前端組態|是|否|
 
-## <a name="private-ip-addresses"></a>Private IP addresses
-Private IP addresses allow Azure resources to communicate with other resources in a [virtual network](virtual-networks-overview.md) or an on-premises network through a VPN gateway or ExpressRoute circuit, without using an Internet-reachable IP address.
+## 私人 IP 位址
+私人 IP 位址可讓 Azure 資源透過 VPN 閘道或 ExpressRoute 電路，與[虛擬網路](virtual-networks-overview.md)中或內部部署網路中的其他資源進行通訊，而不必使用可網際網路連線的 IP 位址。
 
-In the Azure Resource Manager deployment model, a private IP address is associated to the following types of Azure resources:
+在 Azure Resource Manager 部署模型中，私人 IP 位址會與下列 Azure 資源類型相關聯。
 
-- VMs
-- Internal load balancers (ILBs)
-- Application gateways
+- VM
+- 內部負載平衡器 (ILB)
+- 應用程式閘道
 
-### <a name="allocation-method"></a>Allocation method
-A private IP address is allocated from the address range of the subnet to which the resource is attached. The address range of the subnet itself is a part of the VNet's address range.
+### 配置方法
+私人 IP 位址是從附加資源的子網路位址範圍進行配置。子網路本身的位址範圍是 VNet 位址範圍的一部分。
 
-There are two methods in which a private IP address is allocated: *dynamic* or *static*. The default allocation method is *dynamic*, where the IP address is automatically allocated from the resource's subnet (using DHCP). This IP address can change when you stop and start the resource.
+私人 IP 位址有兩種配置方法：「動態」或「靜態」。預設配置方法是「動態」，此方法會從資源的子網路自動配置 IP 位址 (使用 DHCP)。此 IP 位址可在您停止並啟動資源時變更。
 
-You can set the allocation method to *static* to ensure the IP address remains the same. In this case, you also need to provide a valid IP address that is part of the resource's subnet.
+您可以將配置方法設定為「靜態」以確保 IP 位址維持不變。在此情況下，您也需要提供屬於資源子網路的有效 IP 位址。
 
-Static private IP addresses are commonly used for:
+靜態私人 IP 位址通常用於：
 
-- VMs that act as domain controllers or DNS servers.
-- Resources that require firewall rules using IP addresses.
-- Resources accessed by other apps/resources through an IP address.
+- 做為網域控制站或 DNS 伺服器的 VM。
+- 需要使用 IP 位址的防火牆規則的資源。
+- 其他應用程式/資源透過 IP 位址存取的資源。
 
-### <a name="virtual-machines"></a>Virtual machines
-A private IP address is assigned to the **network interface** of a [Windows](../virtual-machines/virtual-machines-windows-about.md) or [Linux](../virtual-machines/virtual-machines-linux-about.md) VM. In case of a multi-network interface VM, each interface gets a private IP address assigned. You can specify the allocation method as either dynamic or static for a network interface.
+### 虛擬機器
+私人 IP 位址會指派給 [Windows](../virtual-machines/virtual-machines-windows-about.md) 或 [Linux](../virtual-machines/virtual-machines-linux-about.md) VM 的**網路介面**。如果是多重網路介面 VM，每個介面都會取得指派的私人 IP 位址。您可以將網路介面的配置方法指定為動態或靜態。
 
-#### <a name="internal-dns-hostname-resolution-(for-vms)"></a>Internal DNS hostname resolution (for VMs)
-All Azure VMs are configured with [Azure-managed DNS servers](virtual-networks-name-resolution-for-vms-and-role-instances.md#azure-provided-name-resolution) by default, unless you explicitly configure custom DNS servers. These DNS servers provide internal name resolution for VMs that reside within the same VNet.
+#### 內部 DNS 主機名稱解析 (適用於 VM)
+除非明確設定自訂 DNS 伺服器，否則所有 Azure VM 預設都會設定 [Azure 受管理 DNS 伺服器](virtual-networks-name-resolution-for-vms-and-role-instances.md#azure-provided-name-resolution)。這些 DNS 伺服器會針對位於相同 VNet 的 VM 提供內部名稱解析。
 
-When you create a VM, a mapping for the hostname to its private IP address is added to the Azure-managed DNS servers. In case of a multi-network interface VM, the hostname is mapped to the private IP address of the primary network interface.
+當您建立 VM 時，會將主機名稱與其私人 IP 位址的對應加入至 Azure 受管理 DNS 伺服器。如果是多重網路介面 VM，主機名稱會對應至主要網路介面的私人 IP 位址。
 
-VMs configured with Azure-managed DNS servers will be able to resolve the hostnames of all VMs within their VNet to their private IP addresses.
+使用 Azure 受管理 DNS 伺服器設定的 VM，能夠將其 VNet 內所有 VM 的主機名稱解析為其私人 IP 位址。
 
-### <a name="internal-load-balancers-(ilb)-&-application-gateways"></a>Internal load balancers (ILB) & Application gateways
-You can assign a private IP address to the **front end** configuration of an [Azure Internal Load Balancer](../load-balancer/load-balancer-internal-overview.md) (ILB) or an [Azure Application Gateway](../application-gateway/application-gateway-introduction.md). This private IP address serves as an internal endpoint, accessible only to the resources within its virtual network (VNet) and the remote networks connected to the VNet. You can assign either a dynamic or static private IP address to the front end configuration.
+### 內部負載平衡器 (ILB) 與應用程式閘道
+您可以將私人 IP 位址指派給 [Azure 內部負載平衡器](../load-balancer/load-balancer-internal-overview.md) (ILB) 或 [Azure 應用程式閘道](../application-gateway/application-gateway-introduction.md)的**前端**組態。此私人 IP 位址可做為內部端點，只能存取其虛擬網路 (VNet) 內的資源與連線到 VNet 的遠端網路。您可以將動態或靜態私人 IP 位址指派給前端組態。
 
-### <a name="at-a-glance"></a>At-a-glance
-The table below shows the specific property through which a private IP address can be associated to a top-level resource, and the possible allocation methods (dynamic or static) that can be used.
+### 快速總覽
+下表顯示特定的屬性，私人 IP 位址可透過它關聯到最上層資源，以及顯示可以使用的可能配置方法 (動態或靜態)。
 
-|Top-level resource|IP address association|Dynamic|Static|
+|最上層資源|IP 位址關聯|動態|靜態|
 |---|---|---|---|
-|Virtual machine|Network interface|Yes|Yes|
-|Load balancer|Front end configuration|Yes|Yes|
-|Application gateway|Front end configuration|Yes|Yes|
+|虛擬機器|網路介面|是|是|
+|負載平衡器|前端組態|是|是|
+|應用程式閘道|前端組態|是|是|
 
-## <a name="limits"></a>Limits
+## 限制
 
-The limits imposed on IP addressing are indicated in the full set of [limits for networking](azure-subscription-service-limits.md#networking-limits) in Azure. These limits are per region and per subscription. You can [contact support](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade) to increase the default limits up to the maximum limits based on your business needs.
+加諸於 IP 位址上的限制，如在 Azure 中的完整[網路限制](azure-subscription-service-limits.md#networking-limits)所示。這些限制是針對每一區域和每一訂用帳戶。您可以[連絡支援人員](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade)，以根據您的業務需求將預設上限調升到最高上限。
 
-## <a name="pricing"></a>Pricing
+## 價格
 
-Public IP addresses may have a nominal charge. To learn more about IP address pricing in Azure, review the [IP address pricing](https://azure.microsoft.com/pricing/details/ip-addresses) page.
+在大多數情況下，公用 IP 位址是免費的。使用額外和 (或) 靜態公用 IP 位址則會有少許費用。請務必了解[公用 IP 的定價結構](https://azure.microsoft.com/pricing/details/ip-addresses/)。
 
-## <a name="next-steps"></a>Next steps
-- [Deploy a VM with a static public IP using the Azure portal](virtual-network-deploy-static-pip-arm-portal.md)
-- [Deploy a VM with a static public IP using a template](virtual-network-deploy-static-pip-arm-template.md)
-- [Deploy a VM with a static private IP address using the Azure portal](virtual-networks-static-private-ip-arm-pportal.md)
+## 後續步驟
+- [使用 Azure 入口網站部署使用靜態公用 IP 的 VM](virtual-network-deploy-static-pip-arm-portal.md)
+- [使用範本部署使用靜態公用 IP 的 VM](virtual-network-deploy-static-pip-arm-template.md)
+- 使用 Azure 入口網站[部署使用靜態私人 IP 位址的 VM](virtual-networks-static-private-ip-arm-pportal.md)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

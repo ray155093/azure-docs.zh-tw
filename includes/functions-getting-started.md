@@ -1,7 +1,5 @@
-Azure Functions is an event-driven, compute-on-demand experience that extends the existing Azure application platform with capabilities to implement code triggered by events occurring in other Azure services, SaaS products, and on-premises systems. With Azure Functions, your applications scale based on demand and you pay only for the resources you consume. Azure Functions provides an intuitive, browser-based user interface allowing you to create scheduled or triggered pieces of code implemented in a variety of programming languages. 
+Azure Functions 是事件取向的隨選計算體驗並擴充了現有的 Azure 應用程式平台，使其可實作其他 Azure 服務、SaaS 產品和內部部署系統內事件所觸發的程式碼。透過 Azure Functions，您的應用程式會根據需求調整，而您只需要支付所用資源的費用。Azure Functions 提供直覺式瀏覽器架構的使用者介面，讓您建立以各種程式設計語言實作的已排程或觸發的程式碼片段。
 
-This getting started video shows how to create a function app, modify the code, as well as how to interact with the triggers and bindings.
+此快速入門影片示範如何建立函式應用程式、修改程式碼，以及如何與觸發程序和繫結互動。
 
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0406_2016-->

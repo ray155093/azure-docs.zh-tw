@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Using JSON-formatted tags to create a schedule for Azure VM startup and shutdown | Microsoft Azure"
-   description="This article demonstrates how to use JSON strings on tags to automate the scheduling of VM startup and shutdown."
+   pageTitle="使用 JSON 格式化標籤來建立 Azure VM 啟動和關閉的排程 | Microsoft Azure"
+   description="本文示範如何在標籤上使用 JSON 字串，自動排定 VM 的啟動和關閉。"
    services="automation"
    documentationCenter=""
    authors="MGoedtel"
@@ -15,72 +15,71 @@
    ms.date="07/18/2016"
    ms.author="magoedte;paulomarquesc" />
 
+# Azure 自動化案例：使用 JSON 格式化標籤來建立 Azure VM 啟動和關閉的排程
 
-# <a name="azure-automation-scenario:-using-json-formatted-tags-to-create-a-schedule-for-azure-vm-startup-and-shutdown"></a>Azure Automation scenario: Using JSON-formatted tags to create a schedule for Azure VM startup and shutdown
+客戶通常會想要排程虛擬機器的啟動與關閉，以協助減少訂用帳戶成本或支援業務和技術需求。
 
-Customers often want to schedule the startup and shutdown of virtual machines to help reduce subscription costs or support business and technical requirements.  
+下列案例可讓您在 Azure 中的資源群組層級或虛擬機器層級，使用稱為「排程」的標籤，設定自動啟動和關閉您的 VM。您可以設定從星期日至星期六具有啟動時間和關閉時間的排程。
 
-The following scenario enables you to set up automated startup and shutdown of your VMs by using a tag called Schedule at a resource group level or virtual machine level in Azure. This schedule can be configured from Sunday to Saturday with a startup time and shutdown time.  
+我們的確有一些現成可用的選項。其中包含：
+-  [虛擬機器擴展集](../virtual-machine-scale-sets/virtual-machine-scale-sets-overview.md)，具有自動調整設定以讓您相應縮小或相應放大。
+- [DevTest Labs](../devtest-lab/devtest-lab-overview.md) 服務，具有內建的啟動及關閉作業排程功能。
 
-We do have some out-of-the-box options. These include:
--  [Virtual machine scale sets](../virtual-machine-scale-sets/virtual-machine-scale-sets-overview.md) with autoscale settings that enable you to scale in or out.
-- [DevTest Labs](../devtest-lab/devtest-lab-overview.md) service, which has the built-in capability of scheduling startup and shutdown operations.
+不過，這些選項只支援特定案例，不適用於基礎結構即服務 (IaaS) VM。
 
-However, these options only support specific scenarios and cannot be applied to infrastructure-as-a-service (IaaS) VMs.   
+當 [排程] 標籤套用至資源群組時，也會套用到該資源群組內的所有虛擬機器。如果排程也直接套用至 VM，則最後一個排程優先，其順序如下︰
 
-When the Schedule tag is applied to a resource group, it's also applied to all virtual machines inside that resource group. If a schedule is also directly applied to a VM, the last schedule takes precedence in the following order:
+1.  套用至資源群組的排程
+2.  套用至資源群組和資源群組中虛擬機器的排程
+3.  套用至虛擬機器的排程
 
-1.  Schedule applied to a resource group
-2.  Schedule applied to a resource group and virtual machine in the resource group
-3.  Schedule applied to a virtual machine
+此案例基本上會採用具有指定格式的 JSON 字串，並將它加入為「排程」標籤的值。然後，Runbook 會列出所有資源群組和虛擬機器，並根據稍早所列的案例識別每個 VM 的排程。接下來，它會循環執行已附加排程的 VM，並評估應採取什麼動作。例如，它會判斷哪個 VM 需要停止、關閉或忽略。
 
-This scenario essentially takes a JSON string with a specified format and adds it as the value for a tag called Schedule. Then a runbook lists all resource groups and virtual machines and identifies the schedules for each VM based on the scenarios listed earlier. Next it loops through the VMs that have schedules attached and evaluates what action should be taken. For example, it determines which VMs need to be stopped, shut down, or ignored.
+這些 Runbook 會使用 [Azure 執行身分帳戶](../automation/automation-sec-configure-azure-runas-account.md)進行驗證。
 
-These runbooks authenticate by using the [Azure Run As account](../automation/automation-sec-configure-azure-runas-account.md).
+## 下載案例的 Runbook
 
-## <a name="download-the-runbooks-for-the-scenario"></a>Download the runbooks for the scenario
+此案例包含四個 PowerShell 工作流程 Runbook，您可以從 [TechNet 資源庫](https://gallery.technet.microsoft.com/Azure-Automation-Runbooks-84f0efc7)或此專案的 [GitHub](https://github.com/paulomarquesdacosta/azure-automation-scheduled-shutdown-and-startup) 儲存機器下載這些 Runbook。
 
-This scenario consists of four PowerShell Workflow runbooks that you can download from the [TechNet Gallery](https://gallery.technet.microsoft.com/Azure-Automation-Runbooks-84f0efc7) or the [GitHub](https://github.com/paulomarquesdacosta/azure-automation-scheduled-shutdown-and-startup) repository for this project.
-
-Runbook | Description
+Runbook | 說明
 ----------|----------
-Test-ResourceSchedule | Checks each virtual machine schedule and performs shutdown or startup depending on the schedule.
-Add-ResourceSchedule | Adds the Schedule tag to a VM or resource group.
-Update-ResourceSchedule | Modifies the existing Schedule tag by replacing it with a new one.
-Remove-ResourceSchedule | Removes the Schedule tag from a VM or resource group.
+Test-ResourceSchedule | 檢查每部虛擬機器的排程，並根據排程執行關閉或啟動。
+Add-ResourceSchedule | 將排程標籤加入至 VM 或資源群組。
+Update-ResourceSchedule | 以新的排程標籤取代現有的排程標籤以進行修改。
+Remove-ResourceSchedule | 從 VM 或資源群組移除排程標籤。
 
 
-## <a name="install-and-configure-this-scenario"></a>Install and configure this scenario
+## 安裝和設定此案例
 
-### <a name="install-and-publish-the-runbooks"></a>Install and publish the runbooks
+### 安裝並發佈 Runbook
 
-After downloading the runbooks, you can import them by using the procedure in [Creating or importing a runbook in Azure Automation](automation-creating-importing-runbook.md#importing-a-runbook-from-a-file-into-Azure-Automation).  Publish each runbook after it has been successfully imported into your Automation account.
-
-
-### <a name="add-a-schedule-to-the-test-resourceschedule-runbook"></a>Add a schedule to the Test-ResourceSchedule runbook
-
-Follow these steps to enable the schedule for the Test-ResourceSchedule runbook. This is the runbook that verifies which virtual machines should be started, shut down, or left as is.
-
-1. From the Azure portal, open your Automation account, and then click the **Runbooks** tile.
-2. On the **Test-ResourceSchedule** blade, click the **Schedules** tile.
-3. On the **Schedules** blade, click **Add a schedule**.
-4. On the **Schedules** blade, select **Link a schedule to your runbook**. Then select **Create a new schedule**.
-5.  On the **New schedule** blade, type in the name of this schedule, for example: *HourlyExecution*.
-6. For the schedule **Start**, set the start time to an hour increment.
-7. Select **Recurrence**, and then for **Recur every interval**, select **1 hour**.
-8. Verify that **Set expiration** is set to **No**, and then click **Create** to save your new schedule.
-9. On the **Schedule Runbook** options blade, select **Parameters and run settings**. In the Test-ResourceSchedule **Parameters** blade, enter the name of your subscription in the **SubscriptionName** field.  This is the only parameter that's required for the runbook.  When you're finished, click **OK**.  
+下載 Runbook 之後，您可以使用[在 Azure 自動化中建立或匯入 Runbook](automation-creating-importing-runbook.md#importing-a-runbook-from-a-file-into-Azure-Automation) 中的程序匯入它們。在每個 Runbook 成功匯入到您的自動化帳戶之後予以發佈。
 
 
-The runbook schedule should look like the following when it's completed:
+### 將排程加入至 Test-ResourceSchedule Runbook
 
-![Configured Test-ResourceSchedule runbook](./media/automation-scenario-start-stop-vm-wjson-tags/automation-schedule-config.png)<br>
+請遵循以下步驟以對 Test-ResourceSchedule Runbook 啟用排程。這個 Runbook 會確認哪些虛擬機器應該啟動、關閉或保持原狀。
 
-## <a name="format-the-json-string"></a>Format the JSON string
+1. 從 Azure 入口網站中，開啟您的自動化帳戶，然後按一下 [Runbook] 圖格。
+2. 在 [Test-ResourceSchedule] 刀鋒視窗中，按一下 [排程] 圖格。
+3. 在 [排程] 刀鋒視窗上，按一下 [加入排程]。
+4. 在 [排程] 刀鋒視窗中，選取 [將排程連結至您的 Runbook]。然後選取 [建立新的排程]。
+5.  在 [新增排程] 刀鋒視窗中，輸入此排程的名稱，例如：「HourlyExecution」。
+6. 若為 [啟動] 排程，請將開始時間設為小時遞增值。
+7. 選取 [週期]，然後針對 [重複出現間隔] 選取 [1 小時]。
+8. 確認 [設定到期] 已設為 [否]，然後按一下 [建立] 以儲存新排程。
+9. 在 [排程 Runbook] 選項刀鋒視窗中，選取 [參數和回合設定]。在 Test-ResourceSchedule 的 [參數] 刀鋒視窗中，於 [SubscriptionName] 欄位輸入訂用帳戶的名稱。這是 Runbook 所需的唯一參數。完成時，請按一下 [確定]。
 
-This solution basically takes a JSON string with a specified format and adds it as the value for a tag called Schedule. Then a runbook lists all resource groups and virtual machines and identifies the schedules for each virtual machine.
 
-The runbook loops over the virtual machines that have schedules attached and checks what actions should be taken. The following is an example of how the solutions should be formatted:
+完成時的 Runbook 排程應如下所示︰
+
+![已設定的 Test-ResourceSchedule Runbook](./media/automation-scenario-start-stop-vm-wjson-tags/automation-schedule-config.png)<br>
+
+## 格式化 JSON 字串
+
+此解決方案基本上會採用具有指定格式的 JSON 字串，並將它加入為「排程」標籤的值。然後，Runbook 會列出所有資源群組和虛擬機器，並識別每個虛擬機器的排程。
+
+Runbook 會循環執行已附加排程的虛擬機器，並檢查應採取什麼動作。以下是解決方案格式化方式的範例：
 
     {
        "TzId": "Eastern Standard Time",
@@ -98,21 +97,21 @@ The runbook loops over the virtual machines that have schedules attached and che
         },
     }
 
-Here is some detailed information about this structure:
+以下是此結構的部分詳細資訊︰
 
-1. The format of this JSON structure is optimized to work around the 256-character limitation of a single tag value in Azure.
+1. 此 JSON 結構的格式已經過最佳化，可解決 Azure 中單一標籤值 256 個字元的限制。
 
-2. *TzId* represents the time zone of the virtual machine. This ID can be obtained by using the TimeZoneInfo .NET class in a PowerShell session--**[System.TimeZoneInfo]::GetSystemTimeZones()**.
+2. 「TzId」代表虛擬機器的時區。此識別碼可以在 PowerShell 工作階段中使用 TimeZoneInfo .NET 類別來取得--**[System.TimeZoneInfo]::GetSystemTimeZones()**。
 
-    ![GetSystemTimeZones in PowerShell](./media/automation-scenario-start-stop-vm-wjson-tags/automation-get-timzone-powershell.png)
+    ![PowerShell 中的 GetSystemTimeZones](./media/automation-scenario-start-stop-vm-wjson-tags/automation-get-timzone-powershell.png)
 
-    - Weekdays are represented with a numeric value of zero to six. The value zero equals Sunday.
-    - The start time is represented with the **S** attribute, and its value is in a 24-hour format.
-    - The end or shutdown time is represented with the **E** attribute, and its value is in a 24-hour format.
+    - 一週日期是以零到六的數字值來表示。值為零等於星期日。
+    - 開始時間以 **S** 屬性表示，其值採用 24 小時制的格式。
+    - 結束或關閉時間以 **E** 屬性表示，其值採用 24 小時制的格式。
 
-    If the **S** and **E** attributes each have a value of zero (0), the virtual machine will be left in its present state at the time of evaluation.   
+    如果 **S** 和 **E** 屬性的值各為零 (0)，則虛擬機器會在評估時留在其目前的狀態。
 
-3. If you want to skip evaluation for a specific day of the week, don’t add a section for that day of the week. In the following example, only Monday is evaluated, and the other days of the week are ignored:
+3. 如果您想要跳過一週特定一天的評估，請勿加入該週當天的區段。在下列範例中，只會評估星期一，而會忽略一周的其他天數：
 
         {
           "TzId": "Eastern Standard Time",
@@ -122,115 +121,111 @@ Here is some detailed information about this structure:
            }
         }
 
-## <a name="tag-resource-groups-or-vms"></a>Tag resource groups or VMs
+## 標記資源群組或 VM
 
-To shut down VMs, you need to tag either the VMs or the resource groups in which they're located. Virtual machines that don't have a Schedule tag are not evaluated. Therefore, they aren't started or shut down.
+若要關閉 VM，您需要標記 VM 或其所在的資源群組。沒有「排程」標籤的虛擬機器不會進行評估。因此，不會加以啟動或關閉。
 
-There are two ways to tag resource groups or VMs with this solution. You can do it directly from the portal. Or you can use the Add-ResourceSchedule, Update-ResourceSchedule, and Remove-ResourceSchedule runbooks.
+此解決方案有兩種方式可標記資源群組或 VM。您可以直接從入口網站進行。或者，您可以使用 Add-ResourceSchedule、Update-ResourceSchedule 和 Remove-ResourceSchedule Runbook。
 
-### <a name="tag-through-the-portal"></a>Tag through the portal
+### 透過入口網站進行標記
 
-Follow these steps to tag a virtual machine or resource group in the portal:
+請依照下列步驟，在入口網站中標記虛擬機器或資源群組：
 
-1. Flatten the JSON string and verify that there aren't any spaces.  Your JSON string should look like this:
+1. 壓平合併 JSON 字串，並確認沒有任何空格。您的 JSON 字串應該如下所示︰
 
         {"TzId":"Eastern Standard Time","0":{"S":"11","E":"17"},"1":{"S":"9","E":"19"},"2": {"S":"9","E":"19"},"3":{"S":"9","E":"19"},"4":{"S":"9","E":"19"},"5":{"S":"9","E":"19"},"6":{"S":"11","E":"17"}}
 
 
-2. Select the **Tag** icon for a VM or resource group to apply this schedule.
+2. 針對要套用此排程的 VM 或資源群組選取 [標籤] 圖示。
 
-![VM tag option](./media/automation-scenario-start-stop-vm-wjson-tags/automation-vm-tag-option.png)    
-3. Tags are defined following a key/value pair. Type **Schedule** in the **Key** field, and then paste the JSON string into the **Value** field. Click **Save**. Your new tag should now appear in the list of tags for your resource.
+![VM 標籤選項](./media/automation-scenario-start-stop-vm-wjson-tags/automation-vm-tag-option.png)
+3. 標籤會定義於金鑰/值組之後。在 [金鑰] 欄位中輸入 [排程]，然後將 JSON 字串貼到 [值] 欄位中。按一下 [儲存]。新標籤現在應出現在您的資源的標記清單中。
 
-![VM schedule tag](./media/automation-scenario-start-stop-vm-wjson-tags/automation-vm-schedule-tag.png)
+![VM 排程標籤](./media/automation-scenario-start-stop-vm-wjson-tags/automation-vm-schedule-tag.png)
 
 
-### <a name="tag-from-powershell"></a>Tag from PowerShell
+### 從 PowerShell 進行標記
 
-All imported runbooks contain help information at the beginning of the script that describes how to execute the runbooks directly from PowerShell. You can call the Add-ScheduleResource and Update-ScheduleResource runbooks from PowerShell. You do this by passing required parameters that enable you to create or update the Schedule tag on a VM or resource group outside of the portal.  
+所有匯入的 Runbook 都在指令碼的開頭包含說明資訊，以描述如何直接從 PowerShell 執行 Runbook。您可以從 PowerShell 呼叫 Add-ScheduleResource 和 Update-ScheduleResource Runbook。若要這麼做，您可以傳遞必要的參數，以讓您能夠在入口網站外部的 VM 或資源群組上建立或更新排程標籤。
 
-To create, add, and delete tags through PowerShell, you first need to [set up your PowerShell environment for Azure](../powershell-install-configure.md). After you complete the setup, you can proceed with the following steps.
+若要透過 PowerShell 建立、新增和刪除標籤，您必須先[設定 Azure 的 PowerShell 環境](../powershell-install-configure.md)。在完成安裝後，您可以繼續進行下列步驟。
 
-### <a name="create-a-schedule-tag-with-powershell"></a>Create a schedule tag with PowerShell
+### 使用 PowerShell 建立排程標籤
 
-1. Open a PowerShell session. Then use the following example to authenticate with your Run As account and to specify a subscription:   
+1. 開啟 PowerShell 工作階段。然後使用下列範例，以使用您的「執行身分」帳戶進行驗證並指定訂用帳戶︰
 
         Conn = Get-AutomationConnection -Name AzureRunAsConnection
         Add-AzureRMAccount -ServicePrincipal -Tenant $Conn.TenantID `
         -ApplicationId $Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint
         Select-AzureRmSubscription -SubscriptionName "MySubscription"
 
-2. Define a schedule hash table. Here is an example of how it should be constructed:
+2. 定義排程雜湊表。以下是其建構方式的範例：
 
         $schedule= @{ "TzId"="Eastern Standard Time"; "0"= @{"S"="11";"E"="17"};"1"= @{"S"="9";"E"="19"};"2"= @{"S"="9";"E"="19"};"3"= @{"S"="9";"E"="19"};"4"= @{"S"="9";"E"="19"};"5"= @{"S"="9";"E"="19"};"6"= @{"S"="11";"E"="17"}}
 
-3. Define the parameters that are required by the runbook. In the following example, we are targeting a VM:
+3. 定義 Runbook 所需的參數。在下列範例中，我們會以 VM 為目標。
 
         $params = @{"SubscriptionName"="MySubscription";"ResourceGroupName"="ResourceGroup01"; `
         "VmName"="VM01";"Schedule"=$schedule}
 
-    If you’re tagging a resource group, remove the *VMName* parameter from the $params hash table as follows:
+    如果您要標記資源群組，請從 $params 雜湊表移除「VMName」參數，如下所示︰
 
         $params = @{"SubscriptionName"="MySubscription";"ResourceGroupName"="ResourceGroup01"; `
         "Schedule"=$schedule}
 
-4. Run the Add-ResourceSchedule runbook with the following parameters to create the Schedule tag:
+4. 使用下列參數執行 Add-ResourceSchedule Runbook，以建立 [排程] 標籤︰
 
         Start-AzureRmAutomationRunbook -Name "Add-ResourceSchedule" -Parameters $params `
         -AutomationAccountName "AutomationAccount" -ResourceGroupName "ResourceGroup01"
 
-5. To update a resource group or virtual machine tag, execute the **Update-ResourceSchedule** runbook with the following parameters:
+5. 若要更新資源群組或虛擬機器的標籤，請使用下列參數執行 **Update-ResourceSchedule** Runbook︰
 
         Start-AzureRmAutomationRunbook -Name "Update-ResourceSchedule" -Parameters $params `
         -AutomationAccountName "AutomationAccount" -ResourceGroupName "ResourceGroup01"
 
-### <a name="remove-a-schedule-tag-with-powershell"></a>Remove a schedule tag with PowerShell
+### 使用 PowerShell 移除排程標籤
 
-1. Open a PowerShell session and run the following to authenticate with your Run As account and to select and specify a subscription:
+1. 開啟 PowerShell 工作階段並執行下列命令，以使用您的「執行身分」帳戶進行驗證並選取和指定訂用帳戶︰
 
         Conn = Get-AutomationConnection -Name AzureRunAsConnection
         Add-AzureRMAccount -ServicePrincipal -Tenant $Conn.TenantID `
         -ApplicationId $Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint
         Select-AzureRmSubscription -SubscriptionName "MySubscription"
 
-2. Define the parameters that are required by the runbook. In the following example, we are targeting a VM:
+2. 定義 Runbook 所需的參數。在下列範例中，我們會以 VM 為目標。
 
         $params = @{"SubscriptionName"="MySubscription";"ResourceGroupName"="ResourceGroup01" `
         ;"VmName"="VM01"}
 
-    If you’re removing a tag from a resource group, remove the *VMName* parameter from the $params hash table as follows:
+    如果您要從資源群組移除標籤，請從 $params 雜湊表移除「VMName」參數，如下所示︰
 
         $params = @{"SubscriptionName"="MySubscription";"ResourceGroupName"="ResourceGroup01"}
 
-3. Execute the Remove-ResourceSchedule runbook to remove the Schedule tag:
+3. 執行 Remove-ResourceSchedule Runbook 以移除 [排程] 標籤︰
 
         Start-AzureRmAutomationRunbook -Name "Remove-ResourceSchedule" -Parameters $params `
         -AutomationAccountName "AutomationAccount" -ResourceGroupName "ResourceGroup01"
 
-4. To update a resource group or virtual machine tag, execute the Remove-ResourceSchedule runbook with the following parameters:
+4. 若要更新資源群組或虛擬機器標籤，請使用下列參數執行 Remove-ResourceSchedule Runbook︰
 
         Start-AzureRmAutomationRunbook -Name "Remove-ResourceSchedule" -Parameters $params `
         -AutomationAccountName "AutomationAccount" -ResourceGroupName "ResourceGroup01"
 
 
->[AZURE.NOTE] We recommend that you proactively monitor these runbooks (and the virtual machine states) to verify that your virtual machines are being shut down and started accordingly.  
+>[AZURE.NOTE] 建議您主動監視這些 Runbook (和虛擬機器狀態)，以確認您的虛擬機器相應地進行關機並啟動。
 
-To view the details of the Test-ResourceSchedule runbook job in the Azure portal, select the **Jobs** tile of the runbook. The job summary displays the input parameters and the output stream, in addition to general information about the job and any exceptions if they occurred.  
+若要在 Azure 入口網站中檢視 Test-ResourceSchedule Runbook 作業的詳細資料，請選取 Runbook 的 [作業] 圖格。除了作業和任何例外狀況 (如果發生) 的一般資訊以外，作業摘要也會顯示輸入參數和輸出串流。
 
-The **Job Summary** includes messages from the output, warning, and error streams. Select the **Output** tile to view detailed results from the runbook execution.
+[作業摘要] 包括來自輸出、警告和錯誤串流的訊息。選取 [輸出] 圖格以檢視 Runbook 執行的詳細結果。
 
-![Test-ResourceSchedule Output](./media/automation-scenario-start-stop-vm-wjson-tags/automation-job-output.png)  
+![Test-ResourceSchedule 輸出](./media/automation-scenario-start-stop-vm-wjson-tags/automation-job-output.png)
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
--  To get started with PowerShell workflow runbooks, see [My first PowerShell workflow runbook](automation-first-runbook-textual.md).
--  To learn more about runbook types, and their advantages and limitations, see [Azure Automation runbook types](automation-runbook-types.md).
--  For more information about PowerShell script support features, see [Native PowerShell script support in Azure Automation](https://azure.microsoft.com/blog/announcing-powershell-script-support-azure-automation-2/).
--  To learn more about runbook logging and output, see [Runbook output and messages in Azure Automation](automation-runbook-output-and-messages.md).
--  To learn more about an Azure Run As account and how to authenticate your runbooks by using it, see [Authenticate runbooks with Azure Run As account](../automation/automation-sec-configure-azure-runas-account.md).
+-  若要開始使用 PowerShell 工作流程 Runbook，請參閱[我的第一個 PowerShell 工作流程 Runbook](automation-first-runbook-textual.md)。
+-  若要深入了解 Runbook 類型以及其優點和限制，請參閱 [Azure 自動化 Runbook 類型](automation-runbook-types.md)。
+-  如需 PowerShell 指令碼支援功能的詳細資訊，請參閱 [Azure 自動化中的原生 PowerShell 指令碼支援](https://azure.microsoft.com/blog/announcing-powershell-script-support-azure-automation-2/)。
+-  若要深入了解 Runbook 記錄和輸出，請參閱 [Azure 自動化中的 Runbook 輸出和訊息](automation-runbook-output-and-messages.md)。
+-  若要深入了解 Azure 執行身分帳戶以及如何使用它來驗證 Runbook，請參閱[使用 Azure 執行身分帳戶驗證 Runbook](../automation/automation-sec-configure-azure-runas-account.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Sample configuration for Windows VM extensions | Microsoft Azure"
-   description="Sample configuration for authoring templates with extensions"
+   pageTitle="Windows VM 延伸模組的範例組態 | Microsoft Azure"
+   description="編寫延伸模組與範本的範例組態"
    services="virtual-machines-windows"
    documentationCenter=""
    authors="kundanap"
@@ -17,25 +17,24 @@
    ms.date="03/29/2016"
    ms.author="kundanap"/>
 
-
-# <a name="azure-windows-vm-extension-configuration-samples"></a>Azure Windows VM Extension Configuration Samples
+# Azure Windows VM 延伸模組組態範例
 
 > [AZURE.SELECTOR]
-- [PowerShell - Template](virtual-machines-windows-extensions-configuration-samples.md)
-- [CLI - Template](virtual-machines-linux-extensions-configuration-samples.md)
+- [PowerShell - 範本](virtual-machines-windows-extensions-configuration-samples.md)
+- [CLI - 範本](virtual-machines-linux-extensions-configuration-samples.md)
 
 <br>
 
-This article provides sample configuration for configuring Azure VM Extensions for Windows VMs.
+本文提供範例組態，可用來設定 Windows VM 的 Azure VM 延伸模組。
 
-To learn more about these extensions, see [Azure VM Extensions Overview.](virtual-machines-windows-extensions-features.md)
+若要深入了解這些延伸模組，請參閱 [Azure VM 延伸模組概觀](virtual-machines-windows-extensions-features.md)。
 
-To learn more about authoring extension templates, see [Authoring Extension Templates.](virtual-machines-windows-extensions-authoring-templates.md)
+若要深入了解如何撰寫延伸模組範本，請參閱[撰寫延伸模組範本](virtual-machines-windows-extensions-authoring-templates.md)。
 
-This article lists expected configuration values for some of the Windows Extensions.
+本文列出部分 Windows 延伸模組所需的組態值。
 
-## <a name="sample-template-snippet-for-vm-extensions-with-iaas-vms."></a>Sample template snippet for VM Extensions with IaaS VMs.
-The template snippet for Deploying extensions looks as following:
+## VM 擴充功能與 IaaS VM 的範例範本程式碼片段。
+用於部署延伸模組的範本程式碼片段如下所示：
 
       {
       "type": "Microsoft.Compute/virtualMachines/extensions",
@@ -55,7 +54,7 @@ The template snippet for Deploying extensions looks as following:
       }
       }
 
-## <a name="sample-template-snippet-for-vm-extensions-with-vm-scale-sets."></a>Sample template snippet for VM Extensions with VM Scale Sets.
+## VM 擴充功能與 VM 調整集的範例範本程式碼片段。
 
     {
      "type":"Microsoft.Compute/virtualMachineScaleSets",
@@ -77,13 +76,13 @@ The template snippet for Deploying extensions looks as following:
             }
           }
 
-Before deploying the extension please check the latest extension version and replace the "typeHandlerVersion" with the current latest version.
+部署延伸模組之前，請檢查最新的延伸模組版本，並以目前最新版本取代 "typeHandlerVersion"。
 
-Rest of the article provides sample configurations for Windows VM Extensions.
+本文其餘部分提供 Windows VM 延伸模組的範例組態。
 
-Before deploying the extension please check the latest extension version and replace the "typeHandlerVersion" with the current latest version.
+部署延伸模組之前，請檢查最新的延伸模組版本，並以目前最新版本取代 "typeHandlerVersion"。
 
-### <a name="customscript-extension-1.4."></a>CustomScript Extension 1.4.
+### CustomScript 擴充功能 1.4。
       {
           "publisher": "Microsoft.Compute",
           "type": "CustomScriptExtension",
@@ -100,16 +99,16 @@ Before deploying the extension please check the latest extension version and rep
           }
       }
 
-#### <a name="parameter-description:"></a>Parameter description:
+#### 參數說明︰
 
-- fileUris : Comma seperated list of urls of the files that will be downloaded on the VM by the Extension. No files are downloaded if nothing is specified. If the files are in Azure Storage, the fileURLs can be marked private and the correspoding storageAccountName and storageAccountKey can be passed as private parameters to access these files.
-- commandToExecute : [Mandatory Parameter] : This is the command that will be executed by the Extension.
-- storageAccountName : [Optional Parameter] : Storage Account Name for accessing the fileURLs, if they are marked as private.
-- storageAccountKey : [Optional Parameter] : Storage Account Key for accessing the fileURLs, if they are marked as private.
+- fileUris︰擴充功能將在 VM 上下載之檔案的 URL 清單 (以逗號分隔)。如果未指定，則不會下載任何檔案。如果檔案是在 Azure 儲存體中，則可以將 fileURLs 標示為私用，而且對應的 storageAccountName 和 storageAccountKey 可以傳遞為私用參數來存取這些檔案。
+- commandToExecute：[必要參數]：這是擴充功能將執行的命令。
+- storageAccountName：[選用參數]：用於存取 fileURLs (如果標示為私用) 的儲存體帳戶名稱。
+- storageAccountKey：[選用參數]：用於存取 fileURLs (如果標示為私用) 的儲存體帳戶金鑰。
 
-### <a name="customscript-extension-1.7."></a>CustomScript Extension 1.7.
+### CustomScript 擴充功能 1.7。
 
-Please refer to CustomScript version 1.4 for parameter description. Version 1.7 introduces support for sending script parameters(commandToExecute) as protectedSettings, in which case they will be encrypted before sending. 'commandToExecute' parameter can be specified either in settings or protectedSettings but not in both.
+請參閱 CustomScript 1.4 版的參數說明。1.7 版支援將指令碼參數 (commandToExecute) 傳送為 protectedSettings，在此情況下，它們會在傳送之前進行加密。'commandToExecute' 參數可以指定於 settings 或 protectedSettings，但不能同時指定於兩者。
 
         {
             "publisher": "Microsoft.Compute",
@@ -128,7 +127,7 @@ Please refer to CustomScript version 1.4 for parameter description. Version 1.7 
             }
         }
 
-### <a name="vmaccess-extension."></a>VMAccess Extension.
+### VMAccess 延伸模組。
 
       {
           "publisher": "Microsoft.Compute",
@@ -142,7 +141,7 @@ Please refer to CustomScript version 1.4 for parameter description. Version 1.7 
           }
       }
 
-### <a name="dsc-extension."></a>DSC Extension.
+### DSC 延伸模組。
       {
           "publisher": "Microsoft.Powershell",
           "type": "DSC",
@@ -174,7 +173,7 @@ Please refer to CustomScript version 1.4 for parameter description. Version 1.7 
       }
 
 
-### <a name="symantec-endpoint-protection."></a>Symantec Endpoint Protection.
+### Symantec Endpoint Protection。
       {
         "publisher": "SymantecEndpointProtection",
         "type": "Symantec",
@@ -182,13 +181,13 @@ Please refer to CustomScript version 1.4 for parameter description. Version 1.7 
         "settings": {}
       }
 
-### <a name="trend-micro-deep-security-agent."></a>Trend Micro Deep Security Agent.
+### Trend Micro Deep Security Agent。
       {
         "publisher": "TrendMicro.DeepSecurity",
         "type": "TrendMicroDSA",
         "typeHandlerVersion": "9.6",
         "settings": {
-          "ManagerAddress" : "Enter the externally accessible DNS name or IP address of the Deep Security Manager. Please enter \"agents.deepsecurity.trendmicro.com\" if using Deep Security as a Service",
+          "ManagerAddress" : "Enter the externally accessible DNS name or IP address of the Deep Security Manager. Please enter "agents.deepsecurity.trendmicro.com" if using Deep Security as a Service",
 
           "ActivationPort" : "Enter the port number of the Deep Security Manager, default value - 443",
 
@@ -200,7 +199,7 @@ Please refer to CustomScript version 1.4 for parameter description. Version 1.7 
         }
       }
 
-### <a name="vormertric-transparent-encryption-agent."></a>Vormertric Transparent Encryption Agent.
+### Vormertric Transparent Encryption Agent。
             {
               "publisher": "Vormetric",
               "type": "VormetricTransparentEncryptionAgent",
@@ -209,7 +208,7 @@ Please refer to CustomScript version 1.4 for parameter description. Version 1.7 
               }
             }
 
-### <a name="puppet-enterprise-agent."></a>Puppet Enterprise Agent.
+### Puppet Enterprise Agent。
             {
               "publisher": "PuppetLabs",
               "type": "PuppetEnterpriseAgent",
@@ -219,7 +218,7 @@ Please refer to CustomScript version 1.4 for parameter description. Version 1.7 
               }
             }  
 
-### <a name="microsoft-monitoring-agent-for-azure-operational-insights"></a>Microsoft Monitoring Agent for Azure Operational Insights
+### Microsoft Monitoring Agent for Azure Operational Insights
             {
               "publisher": "Microsoft.EnterpriseCloud.Monitoring",
               "type": "MicrosoftMonitoringAgent",
@@ -233,7 +232,7 @@ Please refer to CustomScript version 1.4 for parameter description. Version 1.7 
               }
             }
 
-### <a name="mcafee-endpointsecurity"></a>McAfee EndpointSecurity
+### McAfee EndpointSecurity
             {
               "publisher": "McAfee.EndpointSecurity",
               "type": "McAfeeEndpointSecurity",
@@ -247,7 +246,7 @@ Please refer to CustomScript version 1.4 for parameter description. Version 1.7 
               }
             }
 
-### <a name="azure-iaas-antimalware"></a>Azure IaaS Antimalware
+### Azure IaaS Antimalware
           {
             "publisher": "Microsoft.Azure.Security",
             "type": "IaaSAntimalware",
@@ -265,7 +264,7 @@ Please refer to CustomScript version 1.4 for parameter description. Version 1.7 
             }
           }
 
-### <a name="eset-file-security"></a>ESET File Security
+### ESET File Security
           {
             "publisher": "ESET",
             "type": "FileSecurity",
@@ -274,7 +273,7 @@ Please refer to CustomScript version 1.4 for parameter description. Version 1.7 
             }
           }
 
-### <a name="datadog-agent"></a>Datadog Agent
+### Datadog Agent
           {
             "publisher": "Datadog.Agent",
             "type": "DatadogWindowsAgent",
@@ -284,7 +283,7 @@ Please refer to CustomScript version 1.4 for parameter description. Version 1.7 
             }
           }
 
-### <a name="confer-advanced-threat-prevention-and-incident-response-for-azure"></a>Confer Advanced Threat Prevention and Incident Response for Azure
+### Azure 適用的 Confer 進階威脅防禦及事件回應
           {
             "publisher": "Confer",
             "type": "ConferForAzure",
@@ -295,7 +294,7 @@ Please refer to CustomScript version 1.4 for parameter description. Version 1.7 
             }
           }
 
-### <a name="cloudlink-securevm-agent"></a>CloudLink SecureVM Agent
+### CloudLink SecureVM Agent
           {
             "publisher": "CloudLinkEMC.SecureVM",
             "type": "CloudLinkSecureVMWindowsAgent",
@@ -305,7 +304,7 @@ Please refer to CustomScript version 1.4 for parameter description. Version 1.7 
             }
           }
 
-### <a name="barracuda-vpn-connectivity-agent-for-microsoft-azure"></a>Barracuda VPN Connectivity Agent for Microsoft Azure
+### Microsoft Azure 的 Barracuda VPN 連線代理程式
           {
             "publisher": "Barracuda.Azure.ConnectivityAgent",
             "type": "BarracudaConnectivityAgent",
@@ -318,7 +317,7 @@ Please refer to CustomScript version 1.4 for parameter description. Version 1.7 
             }
           }
 
-### <a name="alert-logic-log-manager"></a>Alert Logic Log Manager
+### Alert Logic Log Manager
           {
             "publisher": "AlertLogic.Extension",
             "type": "AlertLogicLM",
@@ -328,7 +327,7 @@ Please refer to CustomScript version 1.4 for parameter description. Version 1.7 
             }
           }
 
-### <a name="chef-agent"></a>Chef Agent
+### Chef Agent
           {
             "publisher": "Chef.Bootstrap.WindowsAzure",
             "type": "ChefClient",
@@ -340,15 +339,15 @@ Please refer to CustomScript version 1.4 for parameter description. Version 1.7 
             }
           }
 
-### <a name="azure-diagnostics"></a>Azure Diagnostics
+### Azure 診斷
 
-For more details about how to configure diagnostics, see [Azure Diagnostics Extension](virtual-machines-windows-extensions-diagnostics-template.md)
+如需有關如何設定診斷功能的詳細資訊，請參閱 [Azure 診斷延伸模組](virtual-machines-windows-extensions-diagnostics-template.md)
 
           {
             "publisher": "Microsoft.Azure.Diagnostics",
             "type": "IaaSDiagnostics",
             "typeHandlerVersion": "1.5",
-            "autoUpgradeMinorVersion": true,
+			"autoUpgradeMinorVersion": true,
             "settings": {
               "xmlCfg": "[base64(variables('wadcfgx'))]",
               "storageAccount": "[parameters('diagnosticsStorageAccount')]"
@@ -360,14 +359,10 @@ For more details about how to configure diagnostics, see [Azure Diagnostics Exte
           }
           }
 
-In the examples above, replace the version number with the latest version number.
+在上述範例中，請將版本號碼取代成最新的版本號碼。
 
-Here is an example of a full VM template with Custom Script Extension.
+以下是使用自訂指令碼延伸模組的完整 VM 範本範例。
 
-[Custom Script Extension on a Windows VM](https://github.com/Azure/azure-quickstart-templates/blob/b1908e74259da56a92800cace97350af1f1fc32b/201-list-storage-keys-windows-vm/azuredeploy.json/)
+[Windows VM 上的自訂指令碼延伸模組](https://github.com/Azure/azure-quickstart-templates/blob/b1908e74259da56a92800cace97350af1f1fc32b/201-list-storage-keys-windows-vm/azuredeploy.json/)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0629_2016-->

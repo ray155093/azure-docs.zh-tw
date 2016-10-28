@@ -1,15 +1,11 @@
-## <a name="service-chaining---transit-through-peered-vnet"></a>Service Chaining - Transit through peered VNet
+## 服務鏈結 - 透過已對等互連的 VNet 進行傳輸
 
-Although the use of system routes facilitates traffic automatically for your deployment, there are cases in which you want to control the routing of packets through a virtual appliance.
-In this scenario, there are two VNets in a subscription, HubVNet and VNet1 as described in the diagram below. You deploy Network Virtual Appliance(NVA) in VNet HubVNet. After establishing VNet peering between HubVNet and VNet1, you can set up User Defined Routes and specify the next hop to NVA in the HubVNet.
+雖然使用系統路由可自動加速您部署的流量，但是也有一些您希望透過虛擬設備控制封包路由的情況。在此案例中，訂用帳戶中有兩個 VNet，分別是 HubVNet 和 VNet1，如下圖所示。在 VNet HubVNet 中部署網路虛擬設備 (NVA)。在 HubVNet 和 VNet1 之間建立 VNet 對等互連後，您可以設定使用者定義路徑並在 HubVNet 中將 NVA 指定為下一個躍點。
 
-![NVA Transit](./media/virtual-networks-create-vnetpeering-scenario-transit-include/figure01.PNG)
+![NVA 傳輸](./media/virtual-networks-create-vnetpeering-scenario-transit-include/figure01.PNG)
 
-> [AZURE.NOTE] For the simplicity, assume all VNets here are in the same subscription. But it also works for cross-subscription scenario.
+> [AZURE.NOTE] 為了簡單起見，假設此處所有 Vnet 都位於同一訂用帳戶中。但跨訂用帳戶的案例也適用。
 
-The key property to enable Transit routing is the "Allow Forwarded Traffic" parameter. This allows accepting and sending traffic from/to the NVA in the peered VNet.  
+啟用傳輸路由的關鍵屬性是「允許轉送流量」參數。可在對等互連 VNet 中允許接收來自 NVA 和傳送至 NVA 的流量。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0928_2016-->

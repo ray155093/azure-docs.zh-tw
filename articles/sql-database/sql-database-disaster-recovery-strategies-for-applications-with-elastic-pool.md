@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="Designing Cloud Solutions for Disaster Recovery Using SQL Database Geo-Replication | Microsoft Azure"
-   description="Learn how to design your cloud solution for disaster recovery by choosing the right failover pattern."
+   pageTitle="使用 SQL Database 異地複寫來設計災害復原的雲端解決方案 | Microsoft Azure"
+   description="了解如何選擇正確的容錯移轉模式來設計災害復原的雲端解決方案。"
    services="sql-database"
    documentationCenter="" 
    authors="anosov1960" 
@@ -16,163 +16,158 @@
    ms.date="07/16/2016"
    ms.author="sashan"/>
 
+# 使用 SQL Database 彈性集區之應用程式的災害復原策略 
 
-# <a name="disaster-recovery-strategies-for-applications-using-sql-database-elastic-pool"></a>Disaster recovery strategies for applications using SQL Database Elastic Pool 
+多年來，我們已了解雲端服務不是萬無一失的做法，可能會發生災難性事件。SQL Database 提供許多功能，以在這些事件發生時提供應用程式的商務持續性。[彈性集區](sql-database-elastic-pool.md)和獨立資料庫支援相同類型的災害復原功能。本文說明利用這些 SQL Database 商務持續性功能之彈性集區的數種 DR 策略。
 
-Over the years we have learned that cloud services are not foolproof and catastrophic incidents can and will happen. SQL Database provides a number of capabilities to provide for the business continuity of your application when these incidents occur. [Elastic pools](sql-database-elastic-pool.md) and standalone databases support the same kind of disaster recovery capabilities. This article describes several DR strategies for elastic pools that leverage these SQL Database business continuity features.
+基於本文的目的，我們將使用 Canonical SaaS ISV 應用程式模式︰
 
-For the purposes of this article we will use the canonical SaaS ISV application pattern:
+<i>現代化雲端型 Web 應用程式會為每位使用者佈建一個 SQL Database。ISV 有大量的客戶，因此會使用多個資料庫 (稱為租用戶資料庫)。因為租用戶資料庫通常會有無法預測的活動模式，所以 ISV 會使用彈性集區，在一段時間之後，讓資料庫成本預測性變高。彈性集區也可在使用者活動尖峰時簡化效能管理。除了租用戶資料庫之外，應用程式也會使用數個資料庫來管理使用者設定檔、安全性、收集使用模式等。個別租用戶的可用性不會影響整個應用程式的可用性。不過，管理資料庫的可用性和效能對應用程式函數而言十分重要，而且，如果管理資料庫離線，整個應用程式也會離線。</i>
 
-<i>A modern cloud based web application provisions one SQL database for each end user. The ISV has a large number of customers and therefore uses many databases, known as tenant databases. Because the tenant databases typically have unpredictable activity patterns, the ISV uses an elastic pool to make the database cost very predictable over extended periods of time. The elastic pool also simplifies the performance management when the user activity spikes. In addition to the tenant databases the application also uses several databases to manage user profiles, security, collect usage patterns etc. Availability of the individual tenants does not impact the application’s availability as whole. However, the availability and performance of management databases is critical for the application’s function and if the management databases are offline the entire application is offline.</i>  
+在本文的其餘部分中，我們將討論涵蓋各種案例 (從成本導向創業應用程式以至具有嚴格可用性需求的應用程式) 的 DR 策略。
 
-In the rest of the paper we will discuss the DR strategies covering a range of scenarios from the cost sensitive startup applications to the ones with stringent availability requirements.  
+## 案例 1.成本導向創業
 
-## <a name="scenario-1.-cost-sensitive-startup"></a>Scenario 1. Cost sensitive startup
+<i>我想要創業，而且成本極為有限。我想要簡化應用程式的部署和管理，並且願意讓個別客戶具有有限的 SLA。但是我想要確保整個應用程式絕不會離線。</i>
 
-<i>I am a startup business and am extremely cost sensitive.  I want to simplify deployment and management of the application and I am willing to have a limited SLA for individual customers. But I want to ensure the application as a whole is never offline.</i>
+若要滿足簡單性需求，您應該將所有租用戶資料庫部署到您所選擇 Azure 區域中的一個彈性集區，並將管理資料庫部署為異地複寫的獨立資料庫。對於租用戶的災害復原，請使用異地還原，這不需要額外成本。若要確保管理資料庫的可用性，應該將它們異地複寫到另一個區域 (步驟 1)。此案例中災害復原組態的持續成本等於次要資料庫的總成本。下圖說明此組態。
 
-To satisfy the simplicity requirement, you should deploy all tenant databases into one elastic pool in the Azure region of your choice and deploy the management database(s) as geo-replicated standalone database(s). For the disaster recovery of tenants, use geo-restore, which comes at no additional cost. To ensure the availability of the management databases, they should be geo-replicated to another region (step 1). The ongoing cost of the disaster recovery configuration in this scenario is equal to the total cost of the secondary database(s). This configuration is illustrated on the next diagram.
+![圖 1](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-1.png)
 
-![Figure 1](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-1.png)
+如果主要區域中斷，下圖說明讓您的應用程式上線的復原步驟。
 
-In case of an outage in the primary region, the recovery steps to bring your application online are illustrated by the next diagram.
+- 將管理資料庫 (2) 立即容錯移轉到 DR 區域。
+- 變更應用程式的連接字串，使其指向 DR 區域。將會在 DR 區域中建立所有新的帳戶和租用戶資料庫。現有的客戶會看到其資料暫時無法使用。
+- 使用與原始集區 (3) 相同的組態來建立彈性集區。
+- 使用異地還原來建立租用戶資料庫 (4) 的複本。您可以考慮透過使用者連接來觸發個別還原，或使用某個其他應用程式特有的優先順序配置。
 
-- Immediately failover the management databases (2) to the DR region. 
-- Change the the application's connection string to point to the DR region. All new accounts and tenant databases will be created in the DR region. The existing customers will see their data temporarily unavailable.
-- Create the elastic pool with the same configuration as the original pool (3). 
-- Use geo-restore to create copies of the tenant databases (4). You can consider triggering the individual restores by the end-user connections or use some other application specific priority scheme.
+您的應用程式目前在 DR 區域中已重新上線，但有些客戶在存取其資料時會經歷到延遲。
 
-At this point your application is back online in the DR region, but some customers will experience delay when accessing their data.
+![圖 2](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-2.png)
 
-![Figure 2](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-2.png)
-
-If the outage was temporary, it is possible that the primary region will be recovered by Azure before all the restores are complete in the DR region. In this case, you should orchestrate moving the application back to the primary region. The process will take the steps illustrated on the next diagram.
+如果暫時中斷，則在 DR 區域中完成所有還原之前，Azure 可能會復原主要區域。在此情況下，您應該安排將應用程式移回主要區域。此程序會採取下圖上所說明的步驟。
  
-- Cancel all outstanding geo-restore requests.   
-- Failover the management database(s) to the primary region (5). Note: After the region’s recovery the old primaries have automatically become secondaries. Now they will switch roles again. 
-- Change the the application's connection string to point back to the primary region. Now all new accounts and tenant databases will be created in the primary region. Some existing customers will see their data temporarily unavailable.   
-- Set all databases in the DR pool to read-only to ensure they cannot be modified in the DR region (6). 
-- For each database in the DR pool that has changed since the recovery, rename or delete the corresponding databases in the primary pool (7). 
-- Copy the updated databases from the DR pool to the primary pool (8). 
-- Delete the DR pool (9)
+- 取消所有未處理的異地還原要求。
+- 將管理資料庫容錯移轉到主要區域 (5)。注意︰復原區域之後，舊的主要已自動成為次要。現在，它們將會再次切換角色。
+- 變更應用程式的連接字串，使其重新指向主要區域。現在，將會在主要區域中建立所有新的帳戶和租用戶資料庫。一些現有的客戶會看到其資料暫時無法使用。
+- 請將 DR 集區中的所有資料庫都設定為唯讀，確保在 DR 區域 (6) 中無法修改它們。
+- 對於已在復原後變更之 DR 集區中的每個資料庫，重新命名或刪除主要集區 (7) 中的對應資料庫。
+- 將更新的資料庫從 DR 集區複製到主要集區 (8)。
+- 刪除 DR 集區 (9)
 
-At this point your application will be online in the primary region with all tenant databases available in the primary pool.
+您的應用程式目前在具有主要集區中所有可用租用戶資料庫的主要區域中已上線。
 
-![Figure 3](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-3.png)
+![圖 3](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-3.png)
 
-The key **benefit** of this strategy is low ongoing cost for data tier redundancy. Backups are taken automatically by the SQL Database service with no application rewrite and at no additional cost.  The cost is incurred only when the elastic databases are restored. The **trade-off** is that the complete recovery of all tenant databases will take significant time. It will depend on the total number of restores you will initiate in the DR region and overall size of the tenant databases. Even if you prioritize some tenants' restores over others, you will be competing with all the other restores that are initiated in the same region as the service will arbitrate and throttle to minimize the overall impact on the existing customers' databases. In addition, the recovery of the tenant databases cannot start until the new elastic pool in the DR region is created.
+這項策略的重要**優點**是資料層備援的持續成本很低。SQL Database 服務會自動執行備份，而且不需要進行任何應用程式重寫，也不需要額外的成本。只有在還原彈性資料庫時，才會產生成本。**取捨**在於所有租用戶資料庫的完整復原需要很長的時間。它取決於您將在 DR 區域中起始的總還原次數，和租用戶資料庫的整體大小。即使您將某些租用戶還原的優先順序設地高於其他還原，還是會與在相同區域中起始的所有其他還原競爭，因為服務將會進行仲裁和節流，以將對現有客戶資料庫的整體影響降到最低。此外，除非在 DR 區域中建立新的彈性集區，否則無法啟動租用戶資料庫的復原。
 
-## <a name="scenario-2.-mature-application-with-tiered-service"></a>Scenario 2. Mature application with tiered service 
+## 案例 2.具有分層服務的成熟應用程式 
 
-<i>I am a mature SaaS application with tiered service offers and different SLAs for trial customers and for paying customers. For the trial customers, I have to reduce the cost as much as possible. Trial customers can take downtime but I want to reduce its likelihood. For the paying customers, any downtime is a flight risk. So I want to make sure that paying customers are always able to access their data.</i> 
+<i>我已熟悉試用版客戶和付費客戶具有分層服務提供項目和不同 SLA 的 SaaS 應用程式。對於試用版客戶，我必須盡可能降低成本。試用版客戶可能需要停機時間，但我想要減少其可能性。對於付費客戶，任何停機時間都是風險。因此，我想要確定付費客戶一律可以存取其資料。</i>
 
-To support this scenario, you should separate the trial tenants from paid tenants by putting them into separate elastic pools. The trial customers would have lower eDTU per tenant and lower SLA with a longer recovery time. The paying customers would be in a pool with higher eDTU per tenant and a higher SLA. To guarantee the lowest recovery time, the paying customers' tenant databases should be geo-replicated. This configuration is illustrated on the next diagram. 
+若要支援此案例，您應該分開試用版租用戶與付費租用戶，方法是將它們放入個別的彈性集區中。試用版客戶的每個租用戶的 eDTU 較低，SLA 也因復原時間較長而較低。付費客戶所在集區中每個租用戶的 eDTU 和 SLA 都較高。為了保證最低的復原時間，應該異地複寫付費客戶的租用戶資料庫。下圖說明此組態。
 
-![Figure 4](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-4.png)
+![圖 4](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-4.png)
 
-As in the first scenario, the management database(s) will be quite active so you use a standalone geo-replicated database for it (1). This will ensure the predictable performance for new customer subscriptions, profile updates and other management operations. The region in which the primaries of the management database(s) reside will be the primary region and the region in which the secondaries of the management database(s) reside will be the DR region.
+與第一個案例相同，管理資料庫將會相當活躍，以讓您使用其獨立異地複寫的資料庫 (1)。這將確保新客戶訂用帳戶、設定檔更新和其他管理作業的可預測效能。主要管理資料庫複本所在區域將是主要區域，而次要管理資料庫複本所在區域將是 DR 區域。
 
-The paying customers’ tenant databases will have active databases in the “paid” pool provisioned in the primary region. You should provision a secondary pool with the same name in the DR region. Each tenant would be geo-replicated to the secondary pool (2). This will enable a quick recovery of all tenant databases using failover. 
+在主要區域中所佈建的「付費」集區中，付費客戶的租用戶資料庫會有使用中資料庫。您應該在 DR 區域中佈建同名的次要集區。每個租用戶都會異地複寫到次要集區 (2)。這將使用容錯移轉來快速復原所有租用戶資料庫。
 
-If an outage occurs in the primary region, the recovery steps to bring your application online are illustrated in the next diagram:
+如果主要區域中斷，下圖說明讓您的應用程式上線的復原步驟：
 
-![Figure 5](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-5.png)
+![圖 5](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-5.png)
 
-- Immediately fail over the management database(s) to the DR region (3).
-- Change the application’s connection string to point to the DR region. Now all new accounts and tenant databases will be created in the DR region. The existing trial customers will see their data temporarily unavailable.
-- Failover the paid tenant's databases to the pool in the DR region to immediately restore their availability (4). Since the failover is a quick metadata level change you may consider an optimization where the individual failovers are triggered on demand by the end user connections. 
-- If your secondary pool eDTU size was lower than the primary because the secondary databases only required the capacity to process the change logs while they were secondaries, you should immediately increase the pool capacity now to accommodate the full workload of all tenants (5). 
-- Create the new elastic pool with the same name and the same configuration in the DR region for the trial customers' databases (6). 
-- Once the trial customers’ pool is created, use geo-restore to restore the individual trial tenant databases into the new pool (7). You can consider triggering the individual restores by the end-user connections or use some other application specific priority scheme.
+- 將管理資料庫立即容錯移轉到 DR 區域 (3)。
+- 變更應用程式的連接字串，使其指向 DR 區域。現在，將會在 DR 區域中建立所有新的帳戶和租用戶資料庫。現有試用版客戶會看到其資料暫時無法使用。
+- 將付費租用戶的資料庫容錯移轉到 DR 區域中的集區，以立即還原其可用性 (4)。因為容錯移轉是快速中繼資料層級變更，所以您可以考慮透過使用者連接來依需要觸發個別容錯移轉的最佳化。
+- 因為次要資料庫在它們是次要複本時只需要處理變更記錄檔的容量，所以您的次要集區 eDTU 大小會低於主要集區，因此現在應該立即增加集區容量來容納所有租用戶 (5) 的完整工作負載。
+- 使用試用版客戶資料庫 (6) 之 DR 區域中的相同名稱和組態，建立新的彈性集區。
+- 建立試用版客戶的集區之後，請使用異地還原，將個別試用版租用戶資料庫還原到新的集區 (7)。您可以考慮透過使用者連接來觸發個別還原，或使用某個其他應用程式特有的優先順序配置。
 
-At this point your application is back online in the DR region. All paying customers have access to their data while the trial customers will experience delay when accessing their data.
+您的應用程式目前在 DR 區域中重新上線。所有付費客戶都可以存取其資料，而試用版客戶在存取其資料時會經歷到延遲。
 
-When the primary region is recovered by Azure *after* you have restored the application in the DR region you can continue running the application in that region or you can decide to fail back to the primary region. If the primary region is recovered *before* the failover process is completed, you should consider failing back right away. The failback will take the steps illustrated in the next diagram: 
+當 Azure 在您於 DR 區域中還原應用程式「之後」復原主要區域時，您可以繼續在該區域中執行應用程式，也可以決定容錯回復到主要區域。如果在完成容錯移轉程序「之前」復原主要區域，則應該考慮立即容錯回復。此容錯回復會採取下圖中所說明的步驟：
  
-![Figure 6](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-6.png)
+![圖 6](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-6.png)
 
-- Cancel all outstanding geo-restore requests.   
-- Failover the management database(s) (8). After the region’s recovery the old primary had automatically become the secondary. Now it becomes the primary again.  
-- Failover the paid tenant databases (9). Similarly, after the region’s recovery the old primaries automatically become the secondaries. Now they will become the primaries again. 
-- Set the restored trial databases that have changed in the DR region to read-only (10).
-- For each database in the trial customers DR pool that changed since the recovery, rename or delete the corresponding database in the trial customers primary pool (11). 
-- Copy the updated databases from the DR pool to the primary pool (12). 
-- Delete the DR pool (13) 
+- 取消所有未處理的異地還原要求。
+- 容錯移轉管理資料庫 (8)。復原區域之後，舊的主要已自動成為次要。現在，它再次變成主要。
+- 容錯移轉付費租用戶資料庫 (9)。同樣地，復原區域之後，舊的主要會自動成為次要。現在，它們將再次變成主要。
+- 將 DR 區域中變更的已還原試用版資料庫設定為唯讀 (10)。
+- 對於已在復原後變更之試用版客戶 DR 集區中的每個資料庫，重新命名或刪除試用版客戶主要集區 (11) 中的對應資料庫。
+- 將更新的資料庫從 DR 集區複製到主要集區 (12)。
+- 刪除 DR 集區 (13)
 
-> [AZURE.NOTE] The failover operation is asynchronous. To minimize the recovery time it is important that you execute the tenant databases' failover command in batches of at least 20 databases. 
+> [AZURE.NOTE] 容錯移轉作業是非同步的。若要將復原時間降到最低，請務必以至少 20 個資料庫的批次執行租用戶資料庫的容錯移轉命令。
 
-The key **benefit** of this strategy is that it provides the highest SLA for the paying customers. It also guarantees that the new trials are unblocked as soon as the trial DR pool is created. The **trade-off** is that this setup will increase the total cost of the tenant databases by the cost of the secondary DR pool for paid customers. In addition, if the secondary pool has a different size, the paying customers will experience lower performance after failover until the pool upgrade in the DR region is completed. 
+這項策略的重要**優點**在於它可為付費客戶提供最高的 SLA。它也保證會在建立試用版 DR 集區時，立即將新的試用版解除封鎖。**取捨**在於因付費客戶的次要 DR 集區的成本，此設定將增加租用戶資料庫的總成本。此外，如果次要集區的大小不同，則除非完成 DR 區域中的集區升級，否則付費客戶的效能在容錯移轉之後會較低。
 
-## <a name="scenario-3.-geographically-distributed-application-with-tiered-service"></a>Scenario 3. Geographically distributed application with tiered service
+## 案例 3.具有分層服務的分散式應用程式
 
-<i>I have a mature SaaS application with tiered service offers. I want to offer a very aggressive SLA to my paid customers and minimize the risk of impact when outages occur because even brief interruption can cause customer dissatisfaction. It is critical that the paying customers can always access their data. The trials are free and an SLA is not offered during the trial period. </i> 
+<i>我已有完善且提供分層服務的 SaaS 應用程式。我想要將非常積極的 SLA 提供給付費客戶，並在中斷時將影響風險降到最低，因為即使是短暫中斷也可能造成客戶不滿。付費客戶務必一律可以存取其資料。試用版是免費的，而且在試用期間未提供 SLA。</i>
 
-To support this scenario, you should have three separate elastic pools. Two equal size pools with high eDTUs per database should be provisioned in two different regions to contain the paid customers' tenant databases. The third pool containing the trial tenants would have a lower eDTUs per database and be provisioned in one of the two region.
+若要支援這種情況，您應該有三個不同的彈性集區。大小相同且每個資料庫都具有高 eDTU 的兩個集區應該佈建到兩個不同的區域，以包含付費客戶的租用戶資料庫。包含試用版租用戶的第三個集區具有每個資料庫的較低 eDTU，並佈建到兩個區域中的其中一個。
 
-To guarantee the lowest recovery time during outages the paying customers' tenant databases should be geo-replicated with 50% of the primary databases in each of the two regions. Similarly, each region would have 50% of the secondary databases. This way if a region is offline only 50% of the paid customers' databases would be impacted and would have to failover. The other databases would remain intact. This configuration is illustrated in the following diagram:
+為了保證中斷期間的最低復原時間，應該使用這兩個區域的 50% 主要資料庫來異地複寫付費客戶的租用戶資料庫。同樣地，每個區域都會有 50% 的次要資料庫。因此，如果區域離線，則只會影響 50% 的付費客戶資料庫，而且必須對其進行容錯移轉。其他資料庫會保持不變。下圖說明此組態：
 
-![Figure 4](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-7.png)
+![圖 4](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-7.png)
 
-As in the previous scenarios, the management database(s) will be quite active so you should configure them as standalone geo-replicated database(s) (1). This will ensure the predictable performance of the new customer subscriptions, profile updates and other management operations. Region A would be the primary region for the management database(s) and the region B will be used for recovery of the management database(s).
+與先前的案例相同，管理資料庫將會相當活躍，因此應該將它們設定為獨立異地複寫的資料庫 (1)。這將確保新客戶訂用帳戶、設定檔更新和其他管理作業的可預測效能。區域 A 是管理資料庫的主要區域，而區域 B 將用於復原管理資料庫。
 
-The paying customers’ tenant databases will be also geo-replicated but with primaries and secondaries split between region A and region B (2). This way the tenant primary databases impacted by the outage can failover to the other region and become available. The other half of the tenant databases will not be impacted at all. 
+付費客戶的租用戶資料庫會也會一併異地複寫，但在區域 A 與區域 B (2) 之間有分割的主要複本和次要複本。因此，中斷所影響的租用戶主要資料庫可以容錯移轉到其他區域，並變成可用。完全不會影響另一半的租用戶資料庫。
 
-The next diagram illustrates the recovery steps to take if  an outage occurs in region A.
+下圖說明在區域 A 中斷時要採取的復原步驟。
 
-![Figure 5](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-8.png)
+![圖 5](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-8.png)
 
-- Immediately fail over the management databases to region B (3).
-- Change the application’s connection string to point to the management database(s) in region B. Modify the management database(s) to make sure the new accounts and tenant databases will be created in region B and the existing tenant databases will be found there as well. The existing trial customers will see their data temporarily unavailable.
-- Failover the paid tenant's databases to pool 2 in region B to immediately restore their availability (4). Since the failover is a quick metadata level change you may consider an optimization where the individual failovers are triggered on demand by the end user connections. 
-- Since now pool 2 contains only primary  databases the total workload in the pool will increase so you should immediately increase its eDTU size (5). 
-- Create the new elastic pool with the same name and the same configuration in the region B for the trial customers' databases (6). 
-- Once the pool is created use geo-restore to restore the individual trial tenant database into the pool (7). You can consider triggering the individual restores by the end-user connections or use some other application specific priority scheme.
+- 將管理資料庫立即容錯移轉到區域 B (3)。
+- 變更應用程式的連接字串以指向區域 B 中的管理資料庫。修改管理資料庫，確定將在區域 B 中建立新的帳戶和租用戶資料庫，在這裡也會發現現有的租用戶資料庫。現有試用版客戶會看到其資料暫時無法使用。
+- 將付費租用戶的資料庫容錯移轉到區域 B 中的集區 2，以立即還原其可用性 (4)。因為容錯移轉是快速中繼資料層級變更，所以您可以考慮透過使用者連接來依需要觸發個別容錯移轉的最佳化。
+- 現在，因為集區 2 只包含主要資料庫，所以集區中的總工作負載將增加，因此您應該立即增加其 eDTU 大小 (5)。
+- 使用試用版客戶資料庫 (6) 之區域 B 中的相同名稱和組態，建立新的彈性集區。
+- 建立集區之後，請使用異地還原，將個別試用版租用戶資料庫還原到集區 (7)。您可以考慮透過使用者連接來觸發個別還原，或使用某個其他應用程式特有的優先順序配置。
 
 
-> [AZURE.NOTE] The failover operation is asynchronous. To minimize the recovery time it is important that you execute the tenant databases' failover command in batches of at least 20 databases. 
+> [AZURE.NOTE] 容錯移轉作業是非同步的。若要將復原時間降到最低，請務必以至少 20 個資料庫的批次執行租用戶資料庫的容錯移轉命令。
 
-At this point your application is back online in region B. All paying customers have access to their data while the trial customers will experience delay when accessing their data.
+您的應用程式目前在區域 B 中已重新上線。所有付費客戶都可以存取其資料，而試用版客戶在存取其資料時會經歷到延遲。
 
-When region A is recovered you need to decide if you want to use region B for trial customers or failback to using the trial customers pool in region A. One criteria could be the % of trial tenant databases modified since the recovery. Regardless of that decision you will need to re-balance the paid tenants between two pools. the next diagram illustrates the process when the trial tenant databases fail back to region A.  
+復原區域 A 時，您需要決定是否要將區域 B 用於試用版客戶或容錯回復到使用區域 A 中的試用版客戶集區。其中一個準則可能是在復原後修改多少百分比的試用版租用戶資料庫。不論該決策為何，您都必須重新平衡兩個集區之間的付費租用戶。下圖說明試用版租用戶資料庫容錯回復到區域 A 時的程序。
  
-![Figure 6](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-9.png)
+![圖 6](./media/sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool/diagram-9.png)
 
-- Cancel all outstanding geo-restore requests to trial DR pool.   
-- Failover the management database (8). After the region’s recovery, the old primary had automatically became the secondary. Now it becomes the primary again.  
-- Select which paid tenant databases will fail back to pool 1 and initiate failover to their secondaries (9). After the region’s recovery all databases in pool 1 automatically became secondaries. Now 50% of them will become primaries again. 
-- Reduce the size of pool 2 to the original eDTU (10).
-- Set all restored trial databases in the region B to read-only (11).
-- For each database in the trial DR pool that has changed since the recovery rename or delete the corresponding database in the trial primary pool (12). 
-- Copy the updated databases from the DR pool to the primary pool (13). 
-- Delete the DR pool (14) 
+- 取消試用版 DR 集區的所有未處理異地還原要求。
+- 容錯移轉管理資料庫 (8)。復原區域之後，舊的主要已自動成為次要。現在，它再次變成主要。
+- 選取哪些付費租用戶資料庫將容錯回復到集區 1，以及起始容錯移轉到其次要 (9)。復原區域之後，集區 1 中的所有資料庫都已自動成為次要。現在，其中的 50% 將再次變成主要。
+- 將集區 2 的大小減少為原始 eDTU (10)。
+- 將區域 B 中的所有已還原試用版資料庫設定為唯讀 (11)。
+- 對於已在復原後變更之試用版 DR 集區中的每個資料庫，重新命名或刪除試用版主要集區 (12) 中的對應資料庫。
+- 將更新的資料庫從 DR 集區複製到主要集區 (13)。
+- 刪除 DR 集區 (14)
 
-The key **benefits** of this strategy are:
+這項策略的重要**優點**如下：
 
-- It supports the most aggressive SLA for the paying customers because it ensures that an outage cannot impact more than 50% of the tenant databases. 
-- It guarantees that the new trials are unblocked as soon as the trail DR pool is created during the recovery. 
-- It allows more efficient use of the pool capacity as 50% of secondary databases in pool 1 and pool 2 are guaranteed to be less active then the primary databases.
+- 它支援付費客戶的最積極 SLA，因為這樣可確保中斷不會影響 50% 以上的租用戶資料庫。
+- 它保證在復原期間建立試用版 DR 集區時，立即將新的試用版解除封鎖。
+- 它允許更有效率地使用集區容量，因為集區 1 和集區 2 中 50% 的次要資料庫比主要資料庫還不活躍。
 
-The main **trade-offs** are:
+主要**取捨**如下：
 
-- The CRUD operations against the management database(s) will have lower latency for the end users connected to region A than for the end users connected to region B as they will be executed against the primary of the management database(s).
-- It requires more complex design of the management database. For example, each tenant record would have to have a location tag that needs to be changed during failover and failback.  
-- The paying customers may experience lower performance than usual until the pool upgrade in region B is completed. 
+- 對於連接到區域 A 的使用者，其管理資料庫的 CRUD 作業的延遲低於連接到區域 B 的使用者，因為它們是針對管理資料庫的主要來執行。
+- 需要更複雜的管理資料庫設計。例如，每個租用戶記錄都必須具有要在容錯移轉和容錯回復期間變更所需的位置標記。
+- 除非完成區域 B 中的集區升級，否則付費客戶的效能可能會低於正常情況。
 
-## <a name="summary"></a>Summary
+## 摘要
 
-This article focuses on the disaster recovery strategies for the database tier used by a SaaS ISV multi-tenant application. The strategy you choose should be based on the needs of the application, such as the business model, the SLA you want to offer to your customers, budget constraint etc.. Each described strategy outlines the benefits and trade-off so you could make an informed decision. Also, your specific application will likely include other Azure components. So you should review their business continuity guidance and orchestrate the recovery of the database tier with them. To learn more about managing recovery of database applications in Azure, refer to [Designing cloud solutions for disaster recovery](./sql-database-designing-cloud-solutions-for-disaster-recovery.md) .  
-
-
-## <a name="next-steps"></a>Next steps
-
-- To learn about Azure SQL Database automated backups, see [SQL Database automated backups](sql-database-automated-backups.md)
-- For a business continuity overview and scenarios, see [Business continuity overview](sql-database-business-continuity.md)
-- To learn about using automated backups for recovery, see [restore a database from the service-initiated backups](sql-database-recovery-using-backups.md)
-- To learn about faster recovery options, see [Active-Geo-Replication](sql-database-geo-replication-overview.md)  
-- To learn about using automated backups for archiving, see [database copy](sql-database-copy.md)
+本文著重於SaaS ISV 多租用戶應用程式所使用之資料庫層的災害復原策略。您選擇的策略應該根據應用程式的需求 (例如商務模型、您想提供給客戶的 SLA、預算限制等等)。每個所述的策略都會概述優缺點，因此您可以做出明智的決定。此外，特定應用程式可能包含其他 Azure 元件。所以您應該檢閱其商務持續性指引，並安排使用元件來復原資料庫層。若要深入了解如何管理 Azure 中資料庫應用程式的復原，請參閱[設計災害復原的雲端解決方案](./sql-database-designing-cloud-solutions-for-disaster-recovery.md)。
 
 
+## 後續步驟
 
-<!--HONumber=Oct16_HO2-->
+- 若要了解 Azure SQL Database 自動備份，請參閱 [SQL Database 自動備份](sql-database-automated-backups.md)
+- 如需商務持續性概觀和案例，請參閱[商務持續性概觀](sql-database-business-continuity.md)
+- 若要了解如何使用自動備份進行復原，請參閱[從服務起始的備份還原資料庫](sql-database-recovery-using-backups.md)
+- 若要了解更快速的復原選項，請參閱[主動式異地複寫](sql-database-geo-replication-overview.md)
+- 若要了解如何使用自動備份進行封存，請參閱[資料庫複製](sql-database-copy.md)
 
-
+<!---HONumber=AcomDC_0727_2016-->

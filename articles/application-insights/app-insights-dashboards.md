@@ -1,169 +1,158 @@
 <properties
-    pageTitle="Using the Application Insights portal"
-    description="Metrics, search, dashboards and settings in the Application Insights portal."
-    services="application-insights"
+	pageTitle="使用 Application Insights 入口網站"
+	description="Application Insights 入口網站中的計量、搜尋、儀表板與設定。"
+	services="application-insights"
     documentationCenter=""
-    authors="alancameronwills"
-    manager="douge"/>
+	authors="alancameronwills"
+	manager="douge"/>
 
 <tags
-    ms.service="application-insights"
-    ms.workload="tbd"
-    ms.tgt_pltfrm="ibiza"
-    ms.devlang="multiple"
-    ms.topic="article" 
-    ms.date="07/30/2016"
-    ms.author="awills"/>
+	ms.service="application-insights"
+	ms.workload="tbd"
+	ms.tgt_pltfrm="ibiza"
+	ms.devlang="multiple"
+	ms.topic="article" 
+	ms.date="07/30/2016"
+	ms.author="awills"/>
+
+# Application Insights 入口網站中的導覽與儀表板
+
+[在您的專案上設定 Application Insights](app-insights-overview.md) 之後，有關應用程式效能和使用情況的遙測資料會出現在 [Azure 入口網站](https://portal.azure.com)之專案的 Application Insights 資源中。
+
+## 尋找遙測
+
+登入 [Azure 入口網站](https://portal.azure.com)，並瀏覽至您為應用程式建立的 Application Insights 資源。
+
+![按一下 [瀏覽]，選取 [Application Insights]，然後選取您的應用程式。](./media/app-insights-dashboards/00-start.png)
+
+[概觀] 頁面可提供您一些基本的遙測以及連結等。內容取決於您的應用程式類型，並且可以自訂。
 
 
-# <a name="navigation-and-dashboards-in-the-application-insights-portal"></a>Navigation and Dashboards in the Application Insights portal
+## 應用程式概觀刀鋒視窗
 
-After you have [set up Application Insights on your project](app-insights-overview.md), telemetry data about your app's performance and usage will appear in your project's Application Insights resource in the [Azure portal](https://portal.azure.com).
+應用程式的 [概觀] 刀鋒視窗 (頁面) 會顯示您應用程式的關鍵診斷資料，且為入口網站其他功能的閘道。
 
-## <a name="find-your-telemetry"></a>Find your telemetry
+按一下：
 
-Sign in to the [Azure portal](https://portal.azure.com) and browse to the Application Insights resource that you created for your app.
-
-![Click Browse, select Application Insights, then your app.](./media/app-insights-dashboards/00-start.png)
-
-The overview page gives you some basic telemetry, plus links to more.
-The contents depend on the type of your app, and can be customized.
-
-
-## <a name="the-app-overview-blade"></a>The app overview blade
-
-The overview blade (page) for your app shows a summary of the key diagnostic metrics of your app, and is a gateway to the other features of the portal.
-
-Click:
-
-* **Any chart or tile** to see more detail about what's displayed on the chart.
-* **Settings** to get to predefined blades of other metrics, as well as configuration pages.
-* [**Metrics Explorer**](app-insights-metrics-explorer.md) to create metrics pages of your own choice.
-* [**Search**](app-insights-diagnostic-search.md) to investigate specific instances of events such as requests, exceptions, or log traces.
-* [**Analytics**](app-insights-analytics.md) for powerful queries over your telemetry.
-* [**Live Stream**](app-insights-metrics-explorer.md#live-stream) for a fixed set of near-instant metrics, useful when deploying a new build or debugging.
+* **任何圖表或圖格**，以查看更多關於圖表上所顯示內容的詳細資訊。
+* **設定**，以取得其他計量預先定義的刀鋒視窗以及組態頁面。
+* [計量瀏覽器](app-insights-metrics-explorer.md) 來建立您自己選擇的計量頁面。
+* [搜尋](app-insights-diagnostic-search.md) 調查特定事件的執行個體，例如要求、例外狀況或紀錄追蹤。
+* [分析](app-insights-analytics.md) 來取得針對遙測的強大查詢。
+* [**即時資料流**](app-insights-metrics-explorer.md#live-stream)，適用於一組固定且幾近即時的計量，在部署新組建或偵錯時非常實用。
 
 
-![Major routes to view your telemetry](./media/app-insights-dashboards/010-oview.png)
+![檢視您的遙測的主要路由](./media/app-insights-dashboards/010-oview.png)
 
 
-### <a name="customize-the-overview-blade"></a>Customize the overview blade 
+### 自訂 [概觀] 刀鋒視窗 
 
-Choose what you want to see on the overview. In Customize, you can insert section titles, drag tiles and charts around, remove items, and add new tiles and charts from the gallery.
+選擇您要在 [概觀] 上查看的內容。您可以在 [自訂] 中插入區段標題、拖曳磚和圖表、移除項目以及從組件庫中加入新的磚和圖表。
 
-![Click Edit. Drag tiles and charts. Add tiles from the gallery. Then click Done.](./media/app-insights-dashboards/020-customize.png)
+![按一下 [編輯]。拖曳磚和圖表。從組件庫加入磚。然後按一下 [完成]。](./media/app-insights-dashboards/020-customize.png)
 
-## <a name="dashboards"></a>Dashboards
+## 儀表板
 
-The first thing you see after you sign in to the [Microsoft Azure portal](https://portal.azure.com) is a dashboard. Here you can bring together the charts that are most important to you across all your Azure resources, including telemetry from [Visual Studio Application Insights](app-insights-overview.md).
+您登入 [Microsoft Azure 入口網站](https://portal.azure.com)之後最先看到的是儀表板。您可以在這裡結合對您而言最重要的所有 Azure 資源的圖表，包括來自 [Visual Studio Application Insights](app-insights-overview.md) 的遙測。
  
 
-![A customized dashboard.](./media/app-insights-dashboards/31.png)
+![自訂的儀表板。](./media/app-insights-dashboards/31.png)
 
 
-1. Edit, create, and share dashboards using the dashboard toolbar.
-2. Return to the current dashboard, or switch to other recent views.
-3. Switch dashboards.
-4. Create, edit, and share dashboards.
-5. Hover over a tile and then use its top bar to move, customize, or remove it.
+1. 使用儀表板工具列來編輯、建立和共用儀表板。
+2. 回到目前的儀表板，或切換至其他最近的檢視。
+3. 切換儀表板。
+4. 建立、編輯和共用儀表板。
+5. 將滑鼠停留在圖格上，然後使用其頂端列加以移動、自訂或移除。
 
-## <a name="add-to-a-dashboard"></a>Add to a dashboard
+## 加入儀表板中
 
-When you're looking at a blade or set of charts that's particularly interesting, you can pin a copy of it to the dashboard. You'll see it next time you return there.
+當您尋找特別感興趣的刀鋒視窗或一組圖表時，您可將其釘選一份到儀表板。您將會在下次返回該處時見到它。
 
-![To pin a chart, hover over it and then click "..." in the header.](./media/app-insights-dashboards/33.png)
+![若要釘選圖表，可將滑鼠停留在其上方，然後按一下標頭中的 [...]。](./media/app-insights-dashboards/33.png)
 
-1. Pin chart to dashboard. A copy of the chart appears on the dashboard.
-2. Pin the whole blade to the dashboard - it appears on the dashboard as a tile that you can click through.
-3. Click the top left corner to return to the current dashboard. Then you can use the drop-down menu to return to the current view.
+1. 將圖表釘選到儀表板。圖表的複本會出現在儀表板上。
+2. 將整個刀鋒視窗釘選到儀表板 - 它會在儀表板上顯示為圖格以供您點選。
+3. 按一下左上角以返回目前的儀表板。然後您可以使用下拉式功能表，返回目前的檢視。
 
-Notice that charts are grouped into tiles: a tile can contain more than one chart. You pin the whole tile to the dashboard.
+請注意，圖表會分組為圖格︰一個圖格中可包含多個圖表。您將整個圖格釘選至儀表板。
 
-### <a name="analytics-charts"></a>Analytics charts
+### 分析圖表
 
-You can also [pin Analytics](app-insights-analytics-using.md#pin-to-dashboard) charts to a [shared](#share-dashboards-with-your-team) dashboard. This allows you to add charts of any arbitrary query alongside the standard metrics.
+您也可以[釘選分析](app-insights-analytics-using.md#pin-to-dashboard)圖表到[共用](#share-dashboards-with-your-team)儀表板。這可讓您新增任意查詢以及標準度量的圖表。
 
-## <a name="adjust-a-tile-on-the-dashboard"></a>Adjust a tile on the dashboard
+## 調整儀表板上的圖格
 
-Once a tile is on the dashboard, you can adjust it.
+圖格在儀表板上之後，您就可以進行調整。
 
-![Hover over a chart in order to edit it.](./media/app-insights-dashboards/36.png)
+![暫留在一個圖表，以進行編輯。](./media/app-insights-dashboards/36.png)
 
-1. Add a chart to the tile. 
-2. Set the metric, group-by dimension and style (table, graph) of a chart.
-3. Set the timespan and filter properties for the charts on the tile. You can set the chart's own timespan, or inherit from the timespan of the dashboard.
-4. Set tile title.
+1. 將圖表加入圖格中。
+2. 設定度量、分組依據的維度，和圖表的樣式 (資料表、圖形)。
+3. 針對圖格上的圖表設定時間範圍和篩選屬性。您可以設定圖表自己的時間範圍，或繼承自儀表板的時間範圍。
+4. 設定圖格的標題。
 
-Tiles pinned from metric explorer blades have more editing options than tiles pinned from an Overview blade.
+從計量瀏覽器刀鋒釘選的圖格，編輯選項會比從 [概觀] 刀鋒視窗釘選的圖格多。
 
-The original tile that you pinned isn't affected by your edits.
-
-
-## <a name="switch-between-dashboards"></a>Switch between dashboards
-
-You can save more than one dashboard and switch between them. When you pin a chart or blade, they're added to the current dashboard.
-
-![To switch between dashboards, click Dashboard and select a saved dashboard. To create and save a new dashboard, click New. To rearrange, click Edit.](./media/app-insights-dashboards/32.png)
-
-For example, you might have one dashboard for displaying full screen in the team room, and another for general development.
+您釘選的原始圖格不會受到您的編輯影響。
 
 
-On the dashboard, a blade appears as a tile: click it to go to the blade. A chart replicates the chart in its original location.
+## 切換儀表板
 
-![Click a tile to open the blade it represents](./media/app-insights-dashboards/35.png)
+您可以儲存多個儀表板並在之間進行切換。當您釘選圖表或刀鋒視窗時，即會將它們加入目前的儀表板。
+
+![若要在儀表板間進行切換，按一下 [儀表板]，然後選取已儲存的儀表板。若要建立並儲存新的儀表板，按一下 [新增]。若要重新排列，按一下 [編輯]。](./media/app-insights-dashboards/32.png)
+
+例如，您可能必須使用一個儀表板，在小組室中以全螢幕顯示，並使用另一個儀表板進行一般開發。
 
 
-## <a name="share-dashboards-with-your-team"></a>Share dashboards with your team
+在儀表板上，刀鋒視窗會顯示為磚：按一下即可移至刀鋒視窗。圖表會複製其原始位置中的圖表。
 
-When you've created a dashboard, you can share it with other users.
+![按一下圖格以開啟它所代表的刀鋒視窗](./media/app-insights-dashboards/35.png)
 
-![In the dashboard header, click Share](./media/app-insights-dashboards/41.png)
 
-Learn about [Roles and access control](app-insights-resources-roles-access-control.md).
+## 與小組共用儀表板
 
-## <a name="settings"></a>Settings
+建立儀表板之後，您可以與其他使用者共用它。
 
-The Settings button on the overview blade is not only about configuration, but also provides a way into several types of chart.
+![在儀表板標題中按一下 [共用]](./media/app-insights-dashboards/41.png)
 
-* **Audit logs** - Review alerts and actions that have been performed on your app resource.
-* [New support request](app-insights-get-dev-support.md) - Options for help with any aspect of Azure. For Application Insights, you can also get help by using the smiley button at top right of the window.
-* [Application map](app-insights-dependencies.md#application-map) - Active map showing the components of your application, derived from the dependency information.
-* [Live Metrics Stream](app-insights-metrics-explorer.md#live-metrics-stream) - Key metrics with a latency of about 1s, for monitoring a new release.
-* **Failures** - Failed requests, failed dependency calls, and exceptions. [Editable metrics blade](app-insights-metrics-explorer.md).
-* **Performance** - Response time, dependency response times. [Editable metrics blade](app-insights-metrics-explorer.md).
-* [Servers](app-insights-web-monitor-performance.md) - Performance counters. Available if you [install Status Monitor](app-insights-monitor-performance-live-website-now.md).
-* **Browser** - Page view and AJAX performance. Available if you [instrument your web pages](app-insights-javascript.md).
-* **Usage** - Page view, user, and session counts. Available if you [instrument your web pages](app-insights-javascript.md).
-* **Getting started** - inline tutorial.
-* **Properties** - instrumentation key, subscription and resource id.
-* [Availability](app-insights-monitor-web-app-availability.md) - web test configuration and results.
-* [Alerts](app-insights-alerts.md) - metric alert configuration.
-* [Continuous export](app-insights-export-telemetry.md) - configure export of telemetry to Azure storage.
-* [Performance testing](app-insights-monitor-web-app-availability.md#performance-tests) - set up a synthetic load on your website.
-* [Quota and pricing](app-insights-pricing.md) and [ingestion sampling](app-insights-sampling.md).
-* **API Access** - currently used to create [release annotations](app-insights-annotations.md) and for the Data Access API.
-* [**Work Items**](app-insights-diagnostic-search.md#create-work-item) - connect to a work tracking system so that you can create bugs while inspecting telemetry.
-* [**Users**](app-insights-resources-roles-access-control.md) - Manage who has access to your app resource.
-* [**Roles**](app-insights-resources-roles-access-control.md) - manage what users can do.
-* [**Tags**](..\resource-group-using-tags.md) - organize Azure resources.
-* [**Locks**](..\resource-group-lock-resources.md) - lock Azure resources
-* [**Export template**](app-insights-powershell.md) - export a definition of the Azure resource so that you can use it as a template to create new resources.
+深入了解[角色和存取控制](app-insights-resources-roles-access-control.md)。
 
-## <a name="what's-next?"></a>What's next?
+## Settings
+
+[概觀] 刀鋒視窗上的 [設定] 按鈕不只與組態有關，也提供一種方式來轉換為數種圖表類型。
+
+* **稽核記錄檔** - 檢閱已在您的應用程式資源上執行的警示和動作。
+* [新增支援要求](app-insights-get-dev-support.md) - 適用於 Azure 各方面的協助選項。針對 Application Insights，您也可以使用視窗右上方的笑臉按鈕來取得說明。
+* [應用程式對應](app-insights-dependencies.md#application-map) - 顯示應用程式元件的使用中對應，其衍生自相依性資訊。
+* [即時計量串流](app-insights-metrics-explorer.md#live-metrics-stream) - 約有 1 秒延遲的關鍵計量，可用來監視新版本。
+* **失敗** - 失敗的要求、失敗的相依性呼叫和例外狀況。[可編輯的計量刀鋒視窗](app-insights-metrics-explorer.md)。
+* **效能** - 回應時間、相依性回應時間。[可編輯的計量刀鋒視窗](app-insights-metrics-explorer.md)。
+* [伺服器](app-insights-web-monitor-performance.md) - 效能計數器。當您[安裝狀態監視器](app-insights-monitor-performance-live-website-now.md)時適用。
+* **瀏覽器** - 頁面檢視和 AJAX 效能。當您[檢測網頁](app-insights-javascript.md)時適用。
+* **使用量** - 頁面檢視、使用者和工作階段計數。當您[檢測網頁](app-insights-javascript.md)時適用。
+* **開始使用** - 內嵌教學課程。
+* **屬性** - 檢測金鑰、訂用帳戶和資源識別碼。
+* [可用性](app-insights-monitor-web-app-availability.md) - Web 測試組態和結果。
+* [警示](app-insights-alerts.md) - 計量警示組態。
+* [連續匯出](app-insights-export-telemetry.md) - 設定將遙測匯出至 Azure 儲存體。
+* [效能測試](app-insights-monitor-web-app-availability.md#performance-tests) - 設定您的網站上的模擬負載。
+* [配額和定價](app-insights-pricing.md)和[擷取取樣](app-insights-sampling.md)。
+* **API 存取** - 目前用來建立 [版本註解](app-insights-annotations.md)以及資料存取 API。
+* [**工作項目**](app-insights-diagnostic-search.md#create-work-item) - 連線到工作追蹤系統，讓您可以在檢查遙測時建立 Bug。
+* [**使用者**](app-insights-resources-roles-access-control.md) - 管理可存取您應用程式資源的人員。
+* [**角色**](app-insights-resources-roles-access-control.md) - 管理使用者可以執行的動作。
+* [**標記**](..\resource-group-using-tags.md) - 組織 Azure 資源。
+* [**鎖定**](..\resource-group-lock-resources.md) - 鎖定 Azure 資源
+* [**匯出範本**](app-insights-powershell.md) - 匯出 Azure 資源的定義，如此您就能用其做為範本來建立新資源。
+
+## 後續步驟
 
 ||
 |---|---
-|[Metrics explorer](app-insights-metrics-explorer.md)<br/>Filter and segment metrics|![Search example](./media/app-insights-dashboards/64.png)
-|[Diagnostic search](app-insights-diagnostic-search.md)<br/>Find and inspect events, related events, and create bugs |![Search example](./media/app-insights-dashboards/61.png)
-|[Analytics](app-insights-analytics.md)<br/>Powerful query language| ![Search example](./media/app-insights-dashboards/63.png)
+|[計量瀏覽器](app-insights-metrics-explorer.md)<br/>篩選與分割計量|![搜尋範例](./media/app-insights-dashboards/64.png)
+|[診斷搜尋](app-insights-diagnostic-search.md)<br/>尋找和檢查事件、相關的事件，並建立 Bug |![搜尋範例](./media/app-insights-dashboards/61.png)
+|[分析](app-insights-analytics.md)<br/>功能強大的查詢語言| ![搜尋範例](./media/app-insights-dashboards/63.png)
 
-
-
-
-
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

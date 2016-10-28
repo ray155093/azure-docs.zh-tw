@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="StorSimple Snapshot Manager backup jobs | Microsoft Azure"
-   description="Describes how to use the StorSimple Snapshot Manager MMC snap-in to view and manage scheduled, currently running, and completed backup jobs."
+   pageTitle="StorSimple Snapshot Manager 備份工作 | Microsoft Azure"
+   description="描述如何使用 StorSimple Snapshot Manager MMC 嵌入式管理單元來檢視和管理已排程、目前執行中和已完成的備份作業。"
    services="storsimple"
    documentationCenter="NA"
    authors="SharS"
@@ -16,101 +16,100 @@
    ms.author="v-sharos" />
 
 
+# 使用 StorSimple Snapshot Manager 來檢視和管理備份作業
 
-# <a name="use-storsimple-snapshot-manager-to-view-and-manage-backup-jobs"></a>Use StorSimple Snapshot Manager to view and manage backup jobs
+## 概觀
 
-## <a name="overview"></a>Overview
+[**範圍**] 窗格中的 [**作業**] 節點會顯示您以互動方式或透過已設定之原則起始的 [**已排程**]、[**過去 24 小時**] 和 [**執行中**] 備份工作。
 
-The **Jobs** node in the **Scope** pane shows the **Scheduled**, **Last 24 hours**, and **Running** backup tasks that you initiated interactively or by a configured policy. 
+本教學課程說明如何使用 [**作業**] 節點，以顯示已排程、最近和目前執行中之備份作業的相關資訊。(作業清單和對應資訊會出現在 [**結果**] 窗格中)。 此外，您也可以以滑鼠右鍵按一下列出的作業，並查看內容功能表，其中列出可用的動作。
 
-This tutorial explains how you can use the **Jobs** node to display information about scheduled, recent, and currently running backup jobs. (The list of jobs and corresponding information appears in the **Results** pane.) Additionally, you can right-click a listed job and see a context menu that lists available actions.
+## 檢視已排程的作業
 
-## <a name="view-scheduled-jobs"></a>View scheduled jobs
+請使用下列程序來檢視已排程的備份作業。
 
-Use the following procedure to view scheduled backup jobs.
+#### 若要檢視已排程的作業
 
-#### <a name="to-view-scheduled-jobs"></a>To view scheduled jobs
+1. 按一下桌面圖示，以啟動 StorSimple Snapshot Manager。 
 
-1. Click the desktop icon to start StorSimple Snapshot Manager. 
+2. 在 [**範圍**] 窗格中，展開 [**作業**] 節點，然後按一下 [**已排程**]。下列資訊會出現在 [**結果**] 窗格中：
 
-2. In the **Scope** pane, expand the **Jobs** node, and click **Scheduled**. The following information appears in the **Results** pane:
+    - [**名稱**] – 已排定之快照的名稱
 
-    - **Name** – the name of the scheduled snapshot
+    - [**下次執行**] – 下次排定之快照的日期和時間
 
-    - **Next Run** – the date and time of the next scheduled snapshot
+    - [**上次執行**] – 最新排定之快照的日期和時間
 
-    - **Last Run** – the date and time of the most recent scheduled snapshot
-
-    >[AZURE.NOTE] For one-time only snapshots, the **Next Run** and **Last Run** will be the same. 
+    >[AZURE.NOTE] 若為僅一次快照，[**下次執行**] 和 [**上次執行**] 將相同。
  
-    ![Scheduled backup jobs](./media/storsimple-snapshot-manager-manage-backup-jobs/HCS_SSM_Jobs_scheduled.png) 
+    ![排定的備份工作](./media/storsimple-snapshot-manager-manage-backup-jobs/HCS_SSM_Jobs_scheduled.png)
  
-3. To perform additional actions on a specific job, right-click the job name in the **Results** pane and select from the menu options.
+3. 若要在特定工作上執行其他動作，請以滑鼠右鍵按一下 [**結果**] 窗格中的作業名稱，然後選取功能表選項。
 
-## <a name="view-recent-jobs"></a>View recent jobs
+## 檢視最近的作業
 
-Use the following procedure to view backup and restore jobs that were completed in the last 24 hours.
+請使用下列程序，來檢視過去 24 小時內完成的備份和還原作業。
 
-#### <a name="to-view-recent-jobs"></a>To view recent jobs
+#### 若要檢視最近的作業
 
-1. Click the desktop icon to start StorSimple Snapshot Manager.
+1. 按一下桌面圖示，以啟動 StorSimple Snapshot Manager。
 
-2. In the **Scope** pane, expand the **Jobs** node, and click **Last 24 hours**. The **Results** pane shows backup jobs for the last 24 hours (to a maximum of 64 jobs). The following information appears in the **Results** pane, depending on the **View** options you specify:
+2. 在 [**範圍**] 窗格中，展開 [**作業**] 節點，然後按一下 [**過去 24 小時**]。[**結果**] 窗格會顯示過去 24 小時的備份作業 (最多可顯示 64 個作業)。下列資訊會出現在 [**結果**] 窗格中，視您指定的 [**檢視**] 選項而定：
 
-    - **Name** – the name of the scheduled snapshot.
+    - [**名稱**] – 已排定之快照的名稱。
  
-    - **Started** – the date and time when the snapshot began.
+    - [**已啟動**] – 快照開始的日期和時間。
 
-    - **Stopped** – the date and time when the snapshot finished or was terminated.
+    - [**已停止**] – 快照完成或已終止的日期和時間。
 
-    - **Elapsed** – the amount of time between the **Started** and **Stopped** times.
+    - [**經過時間**] – [**已啟動**] 時間與 [**已停止**] 時間之間的時間量。
 
-    - **Status** – the state of the recently completed job. **Success** indicates that the backup was created successfully. **Failed** indicates that the job did not run successfully.
+    - [**狀態**] – 最近完成之工作的狀態。[**成功**] 指出已順利建立備份。[**失敗**] 指出作業並未成功執行。
 
-    - **Information** – the reason for the failure.
+    - [**資訊**] – 失敗的原因。
 
-    - **Bytes processed (MB)** – the amount of data from the volume group that was processed (in MBs). 
+    - [**已處理的位元組數 (MB)**] – 來自磁碟區群組已處理的資料量 (以 MB 為單位)。
 
-    ![Jobs that ran in the last 24 hours](./media/storsimple-snapshot-manager-manage-backup-jobs/HCS_SSM_Jobs_Last_24_hours.png) 
+    ![過去 24 小時內執行的工作](./media/storsimple-snapshot-manager-manage-backup-jobs/HCS_SSM_Jobs_Last_24_hours.png)
 
-3. To perform additional actions on a specific job, right-click the job name in the **Results** pane and select from the menu options.
+3. 若要在特定工作上執行其他動作，請以滑鼠右鍵按一下 [**結果**] 窗格中的作業名稱，然後選取功能表選項。
 
-    ![Delete a job](./media/storsimple-snapshot-manager-manage-backup-catalog/HCS_SSM_Delete_backup.png) 
+    ![刪除工作](./media/storsimple-snapshot-manager-manage-backup-catalog/HCS_SSM_Delete_backup.png)
      
-## <a name="view-currently-running-jobs"></a>View currently running jobs
+## 檢視目前執行中的作業
 
-Use the following procedure to view jobs that are currently running.
+請使用下列程序來檢視目前執行中的作業。
 
-#### <a name="to-view-currently-running-jobs"></a>To view currently running jobs
+#### 若要檢視目前執行中的工作
 
-1. Click the desktop icon to start StorSimple Snapshot Manager.
+1. 按一下桌面圖示，以啟動 StorSimple Snapshot Manager。
 
-2. In the **Scope** pane, expand the **Jobs** node, and click **Running**. Depending on the **View** options you specify, the following information appears in the **Results** pane: 
+2. 在 [**範圍**] 窗格中，展開 [**作業**] 節點，然後按一下 [**執行中**]。視您指定的 [**檢視**] 選項而定，下列資訊會出現在 [**結果**] 窗格中：
 
-    - **Name** – the name of the scheduled snapshot.
+    - [**名稱**] – 已排定之快照的名稱。
 
-    - **Started** – the date and time when the snapshot began.
+    - [**已啟動**] – 快照開始的日期和時間。
 
-    - **Checkpoint** – the current action of the backup.
+    - [**檢查點**] – 備份的目前動作。
 
-    - **Status** – the percentage of completion.
+    - [**狀態**] – 完成百分比。
     
-    - **Elapsed** – the amount of time that has passed since the backup began. 
+    - [**經過時間**] – 從備份開始後所經過的時間量。
 
-    - **Average throughput (MB)** – ratio of total bytes of data processed to that of total time taken for processing (MBs).
+    - **平均輸送量 (MB)** – 處理的總資料位元組與處理所花時間的比率 (以 MB 為單位)。
 
-    - **Bytes processed (MB)** – total bytes of data processed (in MBs).
+    - **處理的位元組 (MB)** – 處理的總資料位元組 (以 MB 為單位)。
 
-    - **Bytes written (MB)** – total bytes of data written (in MBs). It includes the data as well as the metadata and hence is typically greater than the Bytes Processed.
+    - **寫入的位元組 (MB)** – 寫入的總資料位元組 (以 MB 為單位)。它包含資料以及中繼資料，因此通常大於處理的位元組。
 
-    ![Jobs currently running](./media/storsimple-snapshot-manager-manage-backup-jobs/HCS_SSM_Jobs_running.png)
+    ![目前執行中的工作](./media/storsimple-snapshot-manager-manage-backup-jobs/HCS_SSM_Jobs_running.png)
 
-3. To perform additional actions on a specific job, right-click the job name in the **Results** pane and select from the menu options.
+3. 若要在特定工作上執行其他動作，請以滑鼠右鍵按一下 [**結果**] 窗格中的作業名稱，然後選取功能表選項。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-- Learn how to [use StorSimple Snapshot Manager to administer your StorSimple solution](storsimple-snapshot-manager-admin.md).
-- Learn how to [use StorSimple Snapshot Manager to manage the backup catalog](storsimple-snapshot-manager-manage-backup-catalog.md).
+- 了解如何[使用 StorSimple Snapshot Manager 來管理您的 StorSimple 解決方案](storsimple-snapshot-manager-admin.md)。
+- 了解如何[使用 StorSimple Snapshot Manager 管理備份目錄](storsimple-snapshot-manager-manage-backup-catalog.md)。
 
 
 
@@ -131,9 +130,4 @@ Use the following procedure to view jobs that are currently running.
 
  
 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0511_2016-->

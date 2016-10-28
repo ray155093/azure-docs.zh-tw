@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Guide to creating a solution template for the  Marketplace | Microsoft Azure"
-   description="Detailed instructions of how to create, certify and deploy a Multi-VM Image Solution Template for purchase on the Azure Marketplace."
+   pageTitle="建立 Marketplace 解決方案範本的指南 | Microsoft Azure"
+   description="如何建立、認證和部署一個多 VM 映像解決方案範本供他人在 Azure Marketplace 上購買的詳細指示。"
    services="marketplace-publishing"
    documentationCenter=""
    authors="HannibalSII"
@@ -16,57 +16,52 @@
       ms.date="07/27/2016"
       ms.author="hascipio; v-divte" />
 
+# 建立 Azure Marketplace 解決方案範本的指南
+完成步驟 1 [帳戶建立和註冊][link-acct-creation]之後，我們引導您依照[建立解決方案範本的技術性必要條件](marketplace-publishing-solution-template-creation-prerequisites.md)建立與 Azure 相容的解決方案範本。現在，我們將逐步引導您在 Azure Marketplace 的[發佈入口網站][link-pubportal]上建立一個多 VM 的解決方案範本。
 
-# <a name="guide-to-create-a-solution-template-for-azure-marketplace"></a>Guide to create a solution template for Azure Marketplace
-After completing step 1, [Account creation and registration][link-acct-creation], we guided you on the creation of an Azure-compatible solution template at [Technical prerequisites for creating a solution template](marketplace-publishing-solution-template-creation-prerequisites.md). Now we will walk you through the steps for creating a solution template for multiple VMs on the [Publishing Portal][link-pubportal] for the Azure Marketplace.
+## 在發佈入口網站中建立解決方案範本供應項目
+移至 [https://publish.windowsazure.com](http://publish.windowsazure.com)。當第一次登入[發佈入口網站](https://publish.windowsazure.com/)時，請使用與您公司的賣方設定檔註冊時相同的帳戶。稍後您可以在發佈入口網站中將您公司的任何員工新增為共同管理員。
 
-## <a name="create-your-solution-template-offer-in-the-publishing-portal"></a>Create your solution template offer in the Publishing Portal
-Go to  [https://publish.windowsazure.com](http://publish.windowsazure.com). When signing in for the first time to the [Publishing Portal](https://publish.windowsazure.com/), use the same account with which your company’s seller profile was registered. Later, you can add any employee of your company as a co-admin in the Publishing Portal.
+### 1\.選取 [解決方案範本]
 
-### <a name="1.-select-"solution-templates""></a>1. Select "Solution templates"
+  ![繪圖][img-pubportal-menu-sol-templ]
 
-  ![drawing][img-pubportal-menu-sol-templ]
+### 2\.建立新的解決方案範本
 
-### <a name="2.-create-a-new-solution-template"></a>2. Create a new solution template
+  ![繪圖][img-pubportal-sol-templ-new]
 
-  ![drawing][img-pubportal-sol-templ-new]
+### 3\.開始使用拓樸
+解決方案範本是所有其拓撲的「父項」。您可以在一個供應項目/解決方案範本中定義多個拓撲。當供應項目進入預備環境時，它的所有拓撲也會一起進入。請遵循下列步驟來定義您的供應項目：
 
-### <a name="3.-start-with-topologies"></a>3. Start with topologies
-A solution template is a "parent" to all of its topologies. You can define multiple topologies in one offer/solution template. When an offer is pushed to staging, it is pushed with all of its topologies. Follow the steps below to define your offer:     
+- 建立拓撲：「拓樸識別項」通常是解決方案範本的拓撲名稱。拓撲識別項用於 URL，如下所示：
 
-- Create a Topology: “Topology Identifier” is typically the name of the topology for the solution template. The topology identifier is used in the URL as shown below:
+  Azure Marketplace：http://azure.microsoft.com/marketplace/partners/{PublisherNamespace}/{OfferIdentifier}{TopologyIdentifier}
 
-  Azure Marketplace: http://azure.microsoft.com/marketplace/partners/{PublisherNamespace}/{OfferIdentifier}{TopologyIdentifier}
+  Azure 入口網站︰https://portal.azure.com/#gallery/{PublisherNamespace}.{OfferIdentifier}{TopologyIdentifier}
 
-  Azure Portal: https://portal.azure.com/#gallery/{PublisherNamespace}.{OfferIdentifier}{TopologyIdentifier}
+- 加入新的版本。
 
-- Add a new version.
+### 4\.讓您的拓撲版本取得認證
+上傳一個 zip 檔案，其包含佈建該特定拓撲版本所需的所有檔案。此 zip 檔案必須包含下列項目：
 
-### <a name="4.-get-your-topology-versions-certified"></a>4. Get your topology versions certified
-Upload a zip file that contains all required files to provision that particular version of the topology. This zip file must contain the following:
+- *mainTemplate.json* 和 *createUiDefinition.json* 檔案在其根目錄上。
+- 任何連結的範本和所有必要的指令碼。
 
-- *mainTemplate.json* and *createUiDefinition.json* file at its root directory.
-- Any linked templates and all required scripts.
+  > [AZURE.TIP] 在您的開發人員建立解決方案範本拓撲和取得認證的同時，貴公司的業務、行銷，和/或法律部門就可以處理行銷和法律內容。
 
-  > [AZURE.TIP] While your developers work on creating the solution template topologies and getting them certified, the business, marketing, and/or legal departments of your company can work on the marketing and legal content.
+## 後續步驟
+在建立方案範本並上傳 ZIP 檔案後，請先遵循 [Marketplace 行銷內容指南](marketplace-publishing-push-to-staging.md)中的指引進行，然後再將供應項目推送至預備環境。或者，若要查看完整的 Marketplace 發佈文章集合，請瀏覽[快速入門：如何將供應項目發佈至 Azure Marketplace](marketplace-publishing-getting-started.md)。
 
-## <a name="next-steps"></a>Next steps
-Now that you created your solution template and uploaded the zip file, please follow the instructions in the [Marketplace marketing content guide](marketplace-publishing-push-to-staging.md) before pushing the offer to staging. To see the full set of marketplace publishing articles, visit [Getting started: How to publish an offer to the Azure Marketplace](marketplace-publishing-getting-started.md).
+您也可能對以下相關文章有興趣：
 
-You might also be interested in these related articles:
+- VM 映像：[關於 Azure 中的虛擬機器映像](https://msdn.microsoft.com/library/azure/dn790290.aspx)
+- VM 延伸模組：[VM 代理程式與 VM 延伸模組概觀](https://msdn.microsoft.com/library/azure/dn832621.aspx)及 [Azure VM 延伸模組與功能](https://msdn.microsoft.com/library/azure/dn606311.aspx)
+- Azure 資源管理員：[撰寫 Azure ARM 範本](../resource-group-authoring-templates.md)和[簡單 ARM 範本範例](https://github.com/rjmax/ArmExamples)
+- 儲存體帳戶節流：[如何監視儲存體帳戶節流](http://blogs.msdn.com/b/mast/archive/2014/08/02/how-to-monitor-for-storage-account-throttling.aspx)和[進階儲存體](../storage/storage-premium-storage.md#scalability-and-performance-targets-whzh-TWing-premium-storage)
 
-- VM images: [About Virtual Machine Images in Azure](https://msdn.microsoft.com/library/azure/dn790290.aspx)
-- VM extensions: [VM Agent and VM Extensions Overview](https://msdn.microsoft.com/library/azure/dn832621.aspx) and [Azure VM Extensions and Features](https://msdn.microsoft.com/library/azure/dn606311.aspx)
-- Azure Resource Manager: [Authoring Azure ARM Templates](../resource-group-authoring-templates.md) and [Simple ARM Template Examples](https://github.com/rjmax/ArmExamples)
-- Storage account throttles: [How to Monitor for Storage Account Throttling](http://blogs.msdn.com/b/mast/archive/2014/08/02/how-to-monitor-for-storage-account-throttling.aspx) and [Premium storage](../storage/storage-premium-storage.md#scalability-and-performance-targets-when-using-premium-storage)
+[img-pubportal-menu-sol-templ]: media/marketplace-publishing-solution-template-creation/pubportal-menu-solution-templates.png
+[img-pubportal-sol-templ-new]: media/marketplace-publishing-solution-template-creation/pubportal-solution-template-new.png
+[link-acct-creation]: marketplace-publishing-accounts-creation-registration.md
+[link-pubportal]: https://publish.windowsazure.com
 
-[img-pubportal-menu-sol-templ]:media/marketplace-publishing-solution-template-creation/pubportal-menu-solution-templates.png
-[img-pubportal-sol-templ-new]:media/marketplace-publishing-solution-template-creation/pubportal-solution-template-new.png
-[link-acct-creation]:marketplace-publishing-accounts-creation-registration.md
-[link-pubportal]:https://publish.windowsazure.com
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

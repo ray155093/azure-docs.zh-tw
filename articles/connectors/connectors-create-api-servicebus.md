@@ -1,8 +1,8 @@
 <properties
-pageTitle="Learn to use the Azure Service Bus connector in your logic apps | Microsoft Azure"
-description="Create logic apps with Azure App service. Connect to Azure Service Bus to send and receive messages. You can perform actions such as send to queue, send to topic, receive from queue, and receive from subscription."
+pageTitle="了解在您的邏輯應用程式中使用 Azure 服務匯流排連接器 | Microsoft Azure"
+description="使用 Azure App Service 建立邏輯應用程式。連線到 Azure 服務匯流排來傳送及接收訊息。您可以執行動作，例如傳送至佇列、傳送至主題、從佇列接收和從訂用帳戶接收。"
 services="logic-apps"
-documentationCenter=".net,nodejs,java"  
+documentationCenter=".net,nodejs,java" 	
 authors="msftman"
 manager="erikre"
 editor=""
@@ -17,173 +17,168 @@ ms.workload="integration"
 ms.date="08/02/2016"
 ms.author="deonhe"/>
 
+# 開始使用 Azure 服務匯流排連接器
 
-# <a name="get-started-with-the-azure-service-bus-connector"></a>Get started with the Azure Service Bus connector
+連線到 Azure 服務匯流排來傳送及接收訊息。您可以執行動作，例如傳送至佇列、傳送至主題、從佇列接收和從訂用帳戶接收。
 
-Connect to Azure Service Bus to send and receive messages. You can perform actions such as send to queue, send to topic, receive from queue, and receive from subscription.
+若要使用[任何連接器](./apis-list.md)，您必須先建立邏輯應用程式。您可以從[立即建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)來開始。
 
-To use [any connector](./apis-list.md), you first need to create a logic app. You can get started by [creating a logic app now](../app-service-logic/app-service-logic-create-a-logic-app.md).
+## 連接到服務匯流排
 
-## <a name="connect-to-service-bus"></a>Connect to Service Bus
+您必須先建立與服務的連線，才能透過邏輯應用程式存取任何服務。[連接](./connectors-overview.md)可讓邏輯應用程式與另一個服務連線。
 
-Before your logic app can access any service, you first need to create a connection to the service. A [connection](./connectors-overview.md) provides connectivity between a logic app and another service.  
+>[AZURE.INCLUDE [建立至 Azure 服務匯流排連線的步驟](../../includes/connectors-create-api-servicebus.md)]
 
->[AZURE.INCLUDE [Steps to create a connection to Azure Service Bus](../../includes/connectors-create-api-servicebus.md)]
+## 使用服務匯流排觸發程序
 
-## <a name="use-a-service-bus-trigger"></a>Use a Service Bus trigger
+觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。[深入了解觸發程序](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
 
-A trigger is an event that can be used to start the workflow defined in a logic app. [Learn more about triggers](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts).  
+>[AZURE.INCLUDE [建立服務匯流排觸發程序的步驟](../../includes/connectors-create-api-servicebus-trigger.md)]
 
->[AZURE.INCLUDE [Steps to create a Service Bus trigger](../../includes/connectors-create-api-servicebus-trigger.md)]  
+## 使用服務匯流排動作
 
-## <a name="use-a-service-bus-action"></a>Use a Service Bus action
+動作是由邏輯應用程式中定義的工作流程所執行的作業。[深入了解動作](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
 
-An action is an operation carried out by the workflow defined in a logic app. [Learn more about actions](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts).
+[AZURE.INCLUDE [建立服務匯流排動作的步驟](../../includes/connectors-create-api-servicebus-action.md)]
 
-[AZURE.INCLUDE [Steps to create a Service Bus action](../../includes/connectors-create-api-servicebus-action.md)]  
+## 技術詳細資訊
 
-## <a name="technical-details"></a>Technical details
+以下是有關這個連接支援的觸發程序、動作和回應的詳細資料。
 
-Here are the details about the triggers, actions, and responses that this connection supports.
+### 服務匯流排觸發程序
 
-### <a name="service-bus-triggers"></a>Service Bus triggers
+服務匯流排具有下列觸發程序：
 
-Service Bus has the following triggers:  
-
-|Trigger | Description|
+|觸發程序 | 說明|
 |--- | ---|
-|[When a message is received in a queue](connectors-create-api-servicebus.md#when-a-message-is-received-in-a-queue)|This operation triggers a flow when a message is received in a queue.|
-|[When a message is received in a topic subscription](connectors-create-api-servicebus.md#when-a-message-is-received-in-a-topic-subscription)|This operation triggers a flow when a message is received in a topic subscription.|
+|[在佇列中收到訊息時](connectors-create-api-servicebus.md#when-a-message-is-received-in-a-queue)|當在佇列中收到訊息時，此作業就會觸發流程。|
+|[在主題訂用帳戶中收到訊息時](connectors-create-api-servicebus.md#when-a-message-is-received-in-a-topic-subscription)|當在主題訂用帳戶中收到訊息時，此作業就會觸發流程。|
 
 
-### <a name="service-bus-actions"></a>Service Bus actions
+### 服務匯流排動作
 
-Service Bus has the following actions:
+服務匯流排具有下列動作︰
 
 
-|Action|Description|
+|動作|說明|
 |--- | ---|
-|[Send message](connectors-create-api-servicebus.md#send-message)|This operation sends a message to a queue or topic.|
-### <a name="action-and-trigger-details"></a>Action and trigger details
+|[傳送訊息](connectors-create-api-servicebus.md#send-message)|這項作業會傳送訊息至佇列或主題。|
+### 動作和觸發程序的詳細資料
 
-Here are the details for the actions and triggers for this connector, along with their responses.
+以下是此連接器動作和觸發程序以及其回應的詳細資料。
 
 
 
-#### <a name="send-message"></a>Send message
+#### 傳送訊息
 
-|Property name| Display name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|ContentData*|Content|Content of the message.|
-|ContentType|Content Type|Content type of the message content.|
-|Properties|Properties|Key-value pairs for each brokered property.|
-|entityName*|Queue/Topic name|Name of the queue or topic.|
+|ContentData*|內容|訊息的內容。|
+|ContentType|內容類型|訊息內容的內容類型。|
+|屬性|屬性|每個訊息代理程式屬性的索引鍵-值配對。|
+|entityName*|佇列/主題名稱|佇列或主題的名稱。|
 
-These advanced parameters are also available:
+這些進階參數也可供使用︰
 
-|Property name| Display name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|MessageId|Message Id|A user-defined value that Service Bus can use to identify duplicate messages, if enabled.|
-|To|To|Address to send to.|
-|ReplyTo|Reply To|Address of the queue to reply to.|
-|ReplyToSessionId|Reply To Session Id|Identifier of the session to reply to.|
-|Label|Label|Application-specific label.|
-|ScheduledEnqueueTimeUtc|ScheduledEnqueueTimeUtc|Date and time, in UTC, when the message will be added to the queue.|
-|SessionId|Session Id|Identifier of the session.|
-|CorrelationId|Correlation Id|Identifier of the correlation.|
-|TimeToLive|Time To Live|The duration, in ticks, that a message is valid. The duration starts from when the message is sent to Service Bus.|
+|MessageId|訊息識別碼|服務匯流排可用來識別重複訊息的使用者定義值 (如果已啟用)。|
+|To|收件人|要傳送的地址。|
+|ReplyTo|回覆地址|要回覆的佇列地址。|
+|ReplyToSessionId|回覆至工作階段識別碼|要回覆的工作階段識別碼。|
+|Label|標籤|應用程式特定的標籤。|
+|ScheduledEnqueueTimeUtc|ScheduledEnqueueTimeUtc|訊息將加入佇列的日期和時間 (UTC 格式)。|
+|SessionId|工作階段識別碼|工作階段的識別碼。|
+|CorrelationId|相互關連識別碼|相互關聯的識別碼。|
+|TimeToLive|存留時間|訊息有效的持續時間 (以刻度為單位)。持續時間從訊息傳送至服務匯流排開始計算。|
 
 
 
-An * indicates that a property is required.
+標示 * 代表必要屬性。
 
 
-#### <a name="when-a-message-is-received-in-a-queue"></a>When a message is received in a queue
+#### 在佇列中收到訊息時
 
-|Property name| Display name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|queueName*|Queue name|Name of the queue.|
+|queueName*|Queue name|佇列的名稱。|
 
 
-An * indicates that a property is required.
+標示 * 代表必要屬性。
 
 
-##### <a name="output-details"></a>Output details
+##### 輸出詳細資料
 
-ServiceBusMessage: This object has the content and properties of a Service Bus message.
+ServiceBusMessage︰此物件具有服務匯流排訊息的內容和屬性。
 
 
-| Property name | Data type | Description |
+| 屬性名稱 | 資料類型 | 說明 |
 |---|---|---|
-|ContentData|string|Content of the message.|
-|ContentType|string|Content type of the message content.|
-|Properties|object|Key-value pairs for each brokered property.|
-|MessageId|string|A user-defined value that Service Bus can use to identify duplicate messages, if enabled.|
-|To|string|Send to address.|
-|ReplyTo|string|Address of the queue to reply to.|
-|ReplyToSessionId|string|Identifier of the session to reply to.|
-|Label|string|Application-specific label.|
-|ScheduledEnqueueTimeUtc|string|Date and time, in UTC, when the message will be added to the queue.|
-|SessionId|string|Identifier of the session.|
-|CorrelationId|string|Identifier of the correlation.|
-|TimeToLive|string|The duration, in ticks, that a message is valid. The duration starts from when the message is sent to Service Bus.|
+|ContentData|string|訊息的內容。|
+|ContentType|string|訊息內容的內容類型。|
+|Properties|物件|每個訊息代理程式屬性的索引鍵-值配對。|
+|MessageId|string|服務匯流排可用來識別重複訊息的使用者定義值 (如果已啟用)。|
+|To|string|傳送至地址。|
+|ReplyTo|string|要回覆的佇列地址。|
+|ReplyToSessionId|string|要回覆的工作階段識別碼。|
+|Label|string|應用程式特定的標籤。|
+|ScheduledEnqueueTimeUtc|string|訊息將加入佇列的日期和時間 (UTC 格式)。|
+|SessionId|string|工作階段的識別碼。|
+|CorrelationId|string|相互關聯的識別碼。|
+|TimeToLive|string|訊息有效的持續時間 (以刻度為單位)。持續時間從訊息傳送至服務匯流排開始計算。|
 
 
 
 
-#### <a name="when-a-message-is-received-in-a-topic-subscription"></a>When a message is received in a topic subscription
+#### 在主題訂用帳戶中收到訊息時
 
-|Property name| Display name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|topicName*|Topic name|Name of the topic.|
-|subscriptionName*|Topic subscription name|Name of the topic subscription.|
+|topicName*|主題名稱|主題的名稱。|
+|subscriptionName*|主題訂用帳戶名稱|主題訂用帳戶的名稱。|
 
 
-An * indicates that a property is required.
+標示 * 代表必要屬性。
 
 
-##### <a name="output-details"></a>Output details
+##### 輸出詳細資料
 
-ServiceBusMessage: This object has the content and properties of a Service Bus message.
+ServiceBusMessage︰此物件具有服務匯流排訊息的內容和屬性。
 
 
-| Property name | Data type | Description |
+| 屬性名稱 | 資料類型 | 說明 |
 |---|---|---|
-|ContentData|string|Content of the message.|
-|ContentType|string|Content type of the message content.|
-|Properties|object|Key-value pairs for each brokered property.|
-|MessageId|string|A user-defined value that Service Bus can use to identify duplicate messages, if enabled.|
-|To|string|Send to address.|
-|ReplyTo|string|Address of the queue to reply to.|
-|ReplyToSessionId|string|Identifier of the session to reply to.|
-|Label|string|Application-specific label.|
-|ScheduledEnqueueTimeUtc|string|Date and time, in UTC, when the message will be added to the queue.|
-|SessionId|string|Identifier of the session.|
-|CorrelationId|string|Identifier of the correlation.|
-|TimeToLive|string|The duration, in ticks, that a message is valid. The duration starts from when the message is sent to Service Bus.|
+|ContentData|string|訊息的內容。|
+|ContentType|string|訊息內容的內容類型。|
+|Properties|物件|每個訊息代理程式屬性的索引鍵-值配對。|
+|MessageId|string|服務匯流排可用來識別重複訊息的使用者定義值 (如果已啟用)。|
+|To|string|傳送至地址。|
+|ReplyTo|string|要回覆的佇列地址。|
+|ReplyToSessionId|string|要回覆的工作階段識別碼。|
+|Label|string|應用程式特定的標籤。|
+|ScheduledEnqueueTimeUtc|string|訊息將加入佇列的日期和時間 (UTC 格式)。|
+|SessionId|string|工作階段的識別碼。|
+|CorrelationId|string|相互關聯的識別碼。|
+|TimeToLive|string|訊息有效的持續時間 (以刻度為單位)。持續時間從訊息傳送至服務匯流排開始計算。|
 
 
 
-### <a name="http-responses"></a>HTTP responses
+### HTTP 回應
 
-The preceding actions and triggers can return one or more of the following HTTP status codes:
+上述動作和觸發程序可以傳回一或多個下列的 HTTP 狀態碼︰
 
-|Name|Description|
+|名稱|說明|
 |---|---|
 |200|OK|
-|202|Accepted|
-|400|Bad request|
-|401|Unauthorized|
-|403|Forbidden|
-|404|Not found|
-|500|Internal server error. Unknown error occurred.|
-|default|Operation failed.|
+|202|已接受|
+|400|不正確的要求|
+|401|未經授權|
+|403|禁止|
+|404|找不到|
+|500|內部伺服器錯誤。發生未知錯誤。|
+|預設值|作業失敗。|
 
-## <a name="next-steps"></a>Next steps
-[Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md).
+## 後續步驟
+[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!----HONumber=AcomDC_0810_2016------>

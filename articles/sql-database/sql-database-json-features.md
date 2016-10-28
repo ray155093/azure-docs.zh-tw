@@ -1,44 +1,43 @@
 <properties
-    pageTitle="Azure SQL Database JSON features | Microsoft Azure"
-    description="Azure SQL Database enables you to parse, query, and format data in JavaScript Object Notation (JSON) notation."
-    services="sql-database"
-    documentationCenter=""
-    authors="jovanpop-msft"
-    manager="jhubbard"
-    editor=""/>
+	pageTitle="Azure SQL Database JSON 功能 | Microsoft Azure"
+	description="Azure SQL Database 可讓您剖析、查詢及格式化採用「JavaScript 物件標記法」(JSON) 的資料。"
+	services="sql-database"
+	documentationCenter=""
+	authors="jovanpop-msft"
+	manager="jhubbard"
+	editor=""/>
 
 <tags
-    ms.service="sql-database"
-    ms.devlang="NA"
-    ms.date="08/17/2016"
-    ms.author="jovanpop"
+	ms.service="sql-database"
+	ms.devlang="NA"
+	ms.date="08/17/2016"
+	ms.author="jovanpop"
    ms.workload="NA"
-    ms.topic="article"
-    ms.tgt_pltfrm="NA"/>
+	ms.topic="article"
+	ms.tgt_pltfrm="NA"/>
 
 
 
+# 開始使用 Azure SQL Database 中的 JSON 功能
 
-# <a name="getting-started-with-json-features-in-azure-sql-database"></a>Getting started with JSON features in Azure SQL Database
+Azure SQL Database 可讓您剖析及查詢以「JavaScript 物件標記法」[(JSON)](http://www.json.org/) 格式表示的資料，然後將您的關聯式資料匯出成 JSON 文字。
 
-Azure SQL Database lets you parse and query data represented in JavaScript Object Notation [(JSON)](http://www.json.org/) format, and export your relational data as JSON text.
+JSON 是一種用於在新式的 Web 與行動應用程式中交換資料的常用資料格式。JSON 也用於將半結構化的資料儲存在記錄檔或 NoSQL 資料庫 (例如 [Azure DocumentDB](https://azure.microsoft.com/services/documentdb/)) 中。許多 REST Web 服務都會傳回採用 JSON 文字格式的結果，或是接受採用 JSON 格式的資料。大多數 Azure 服務 (例如 [Azure 搜尋服務](https://azure.microsoft.com/services/search/)、[Azure 儲存體](https://azure.microsoft.com/services/storage/)及 [Azure DocumentDB](https://azure.microsoft.com/services/documentdb/)) 都有會傳回或取用 JSON 的 REST 端點。
 
-JSON is a popular data format used for exchanging data in modern web and mobile applications. JSON is also used for storing semi-structured data in log files or in NoSQL databases like [Azure DocumentDB](https://azure.microsoft.com/services/documentdb/). Many REST web services return results formatted as JSON text or accept data formatted as JSON. Most Azure services such as [Azure Search](https://azure.microsoft.com/services/search/), [Azure Storage](https://azure.microsoft.com/services/storage/), and [Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) have REST endpoints that return or consume JSON.
+Azure SQL Database 可讓您輕鬆使用 JSON 資料，並將資料庫與新式服務整合。
 
-Azure SQL Database lets you work with JSON data easily and integrate your database with modern services.
+## 概觀
 
-## <a name="overview"></a>Overview
+Azure SQL Database 提供下列可與 JSON 資料搭配使用的函數：
 
-Azure SQL Database provides the following functions for working with JSON data:
+![JSON 函數](./media/sql-database-json-features/image_1.png)
 
-![JSON Functions](./media/sql-database-json-features/image_1.png)
+如果您有 JSON 文字，您可以透過使用內建的函數 [JSON\_VALUE](https://msdn.microsoft.com/library/dn921898.aspx)、[JSON\_QUERY](https://msdn.microsoft.com/library/dn921884.aspx) 及 [ISJSON](https://msdn.microsoft.com/library/dn921896.aspx)，從 JSON 擷取資料或確認 JSON 的格式是否正確。[JSON\_MODIFY](https://msdn.microsoft.com/library/dn921892.aspx) 函數可讓您更新 JSON 文字內的值。針對更進階的查詢和分析，[OPENJSON](https://msdn.microsoft.com/library/dn921885.aspx) 函數可以將 JSON 物件陣列轉換成一組資料列。您可以在傳回的結果集上執行任何 SQL 查詢。最後，還有 [FOR JSON](https://msdn.microsoft.com/library/dn921882.aspx) 子句，此子句可讓您將儲存在關聯式資料表中的資料格式化為 JSON 文字。
 
-If you have JSON text, you can extract data from JSON or verify that JSON is properly formatted by using the built-in functions [JSON_VALUE](https://msdn.microsoft.com/library/dn921898.aspx), [JSON_QUERY](https://msdn.microsoft.com/library/dn921884.aspx), and [ISJSON](https://msdn.microsoft.com/library/dn921896.aspx). The [JSON_MODIFY](https://msdn.microsoft.com/library/dn921892.aspx) function lets you update value inside JSON text. For more advanced querying and analysis, [OPENJSON](https://msdn.microsoft.com/library/dn921885.aspx) function can transform an array of JSON objects into a set of rows. Any SQL query can be executed on the returned result set. Finally, there is a [FOR JSON](https://msdn.microsoft.com/library/dn921882.aspx) clause that lets you format data stored in your relational tables as JSON text.
+## 以 JSON 格式將關聯式資料格式化
+如果您有會從資料庫層擷取資料並以 JSON 格式提供回應的 Web 服務，或是有會接受以 JSON 格式化之資料的用戶端 JavaScript 架構或程式庫，您就可以直接在 SQL 查詢中將資料庫內容格式化為 JSON。您不再需要撰寫應用程式程式碼以將來自 Azure SQL Database 的結果格式化為 JSON，或包含一些 JSON 序列化程式庫來轉換表格式查詢結果，然後將物件序列化為 JSON 格式。取得代之的是，您可以在 Azure SQL Database 中使用 FOR JSON 子句將 SQL 查詢結果格式化為 JSON，然後直接在您的應用程式中使用它。
 
-## <a name="formatting-relational-data-in-json-format"></a>Formatting relational data in JSON format
-If you have a web service that takes data from the database layer and provides a response in JSON format, or client-side JavaScript frameworks or libraries that accept data formatted as JSON, you can format your database content as JSON directly in a SQL query. You no longer have to write application code that formats results from Azure SQL Database as JSON, or include some JSON serialization library to convert tabular query results and then serialize objects to JSON format. Instead, you can use the FOR JSON clause to format SQL query results as JSON in Azure SQL Database and use it directly in your application.
-
-In the following example, rows from the Sales.Customer table are formatted as JSON by using the FOR JSON clause:
+在下列範例中，會透過使用 FOR JSON 子句，將來自 Sales.Customer 資料表的資料列格式化為 JSON：
 
 ```
 select CustomerName, PhoneNumber, FaxNumber
@@ -46,7 +45,7 @@ from Sales.Customers
 FOR JSON PATH
 ```
 
-The FOR JSON PATH clause formats the results of the query as JSON text. Column names are used as keys, while the cell values are generated as JSON values:
+FOR JSON PATH 子句會將查詢的結果格式化為 JSON 文字。資料行名稱會作為索引鍵，而儲存格值則會以 JSON 值的形式產生︰
 
 ```
 [
@@ -56,9 +55,9 @@ The FOR JSON PATH clause formats the results of the query as JSON text. Column n
 ]
 ```
 
-The result set is formatted as a JSON array where each row is formatted as a separate JSON object.
+結果集會格式化為 JSON 陣列，其中每個資料列皆格式化為個別的 JSON 物件。
 
-PATH indicates that you can customize the output format of your JSON result by using dot notation in column aliases. The following query changes the name of the "CustomerName" key in the output JSON format, and puts phone and fax numbers in the "Contact" sub-object:
+PATH 表示您可以在資料行別名中使用點標記法來自訂 JSON 結果的輸出格式。下列查詢會變更輸出 JSON 格式中 "CustomerName" 索引鍵的名稱 ，並將電話及傳真號碼放入 "Contact" 子物件中︰
 
 ```
 select CustomerName as Name, PhoneNumber as [Contact.Phone], FaxNumber as [Contact.Fax]
@@ -67,7 +66,7 @@ where CustomerID = 931
 FOR JSON PATH, WITHOUT_ARRAY_WRAPPER
 ```
 
-The output of this query looks like this:
+此查詢的輸出看起來會像這樣：
 
 ```
 {
@@ -79,22 +78,22 @@ The output of this query looks like this:
 }
 ```
 
-In this example we returned a single JSON object instead of an array by specifying the [WITHOUT_ARRAY_WRAPPER](https://msdn.microsoft.com/library/mt631354.aspx) option. You can use this option if you know that you are returning a single object as a result of query.
+在此範例中，我們透過指定 [WITHOUT\_ARRAY\_WRAPPER](https://msdn.microsoft.com/library/mt631354.aspx) 選項，傳回了單一 JSON 物件而不是陣列。如果您知道您要傳回單一物件來作為查詢結果，就可以使用此選項。
 
-The main value of the FOR JSON clause is that it lets you return complex hierarchical data from your database formatted as nested JSON objects or arrays. The following example shows how to include Orders that belong to the Customer as a nested array of Orders:
+FOR JSON 子句的主要價值在於，它可讓您從資料庫傳回格式化為巢狀 JSON 物件或陣列的複雜階層式資料。下列範例說明如何將屬於 Customer 的 Orders 納入成為巢狀 Orders 陣列：
 
 ```
 select CustomerName as Name, PhoneNumber as Phone, FaxNumber as Fax,
-        Orders.OrderID, Orders.OrderDate, Orders.ExpectedDeliveryDate
+		Orders.OrderID, Orders.OrderDate, Orders.ExpectedDeliveryDate
 from Sales.Customers Customer
-    join Sales.Orders Orders
-        on Customer.CustomerID = Orders.CustomerID
+	join Sales.Orders Orders
+		on Customer.CustomerID = Orders.CustomerID
 where Customer.CustomerID = 931
 FOR JSON AUTO, WITHOUT_ARRAY_WRAPPER
 
 ```
 
-Instead of sending separate queries to get Customer data and then to fetch a list of related Orders, you can get all the necessary data with a single query, as shown in the following sample output:
+您可以不傳送個別查詢來取得 Customer 資料，然後再擷取相關 Orders 清單，而是透過單一查詢來取得所有必要的資料，如下列範例輸出所示：
 
 ```
 {
@@ -109,11 +108,11 @@ Instead of sending separate queries to get Customer data and then to fetch a lis
 }
 ```
 
-## <a name="working-with-json-data"></a>Working with JSON data
+## 使用 JSON 資料
 
-If you don’t have strictly structured data, if you have complex sub-objects, arrays, or hierarchical data, or if your data structures evolve over time, the JSON format can help you to represent any complex data structure.
+如果您沒有嚴格結構化的資料，如果您有複雜的子物件、陣列或階層式資料，或如果您的資料結構會隨時間演變，則 JSON 格式可協助您表現任何複雜的資料結構。
 
-JSON is a textual format that can be used like any other string type in Azure SQL Database. You can send or store JSON data as a standard NVARCHAR:
+JSON 是一種文字格式，您可以在 Azure SQL Database 中使用它，就像使用任何其他字串類型一樣。您可以用標準 NVARCHAR 形式來傳送或儲存 JSON 資料：
 
 ```
 CREATE TABLE Products (
@@ -124,24 +123,24 @@ CREATE TABLE Products (
 go
 CREATE PROCEDURE InsertProduct(@title nvarchar(200), @json nvarchar(max))
 AS BEGIN
-    insert into Products(Title, Data)
-    values(@title, @json)
+	insert into Products(Title, Data)
+	values(@title, @json)
 END
 ```
 
-The JSON data used in this example is represented by using the NVARCHAR(MAX) type. JSON can be inserted into this table or provided as an argument of the stored procedure using standard Transact-SQL syntax as shown in the following example:
+在此範例中，是透過使用 NVARCHAR(MAX) 類型來表現所使用的 JSON 資料。您可以使用標準 Transact-SQL 語法，將 JSON 插入此資料表中或提供來作為預存程序的引數，如下列範例所示：
 
 ```
 EXEC InsertProduct 'Toy car', '{"Price":50,"Color":"White","tags":["toy","children","games"]}'
 ```
 
-Any client-side language or library that works with string data in Azure SQL Database will also work with JSON data. JSON can be stored in any table that supports the NVARCHAR type, such as a Memory-optimized table or a System-versioned table. JSON does not introduce any constraint either in the client-side code or in the database layer.
+任何可以與 Azure SQL Database 中的字串資料搭配運作的用戶端語言或程式庫，也將可以與 JSON 資料搭配運作。JSON 可以儲存在任何支援 NVARCHAR 類型的資料表中，例如記憶體最佳化資料表或由系統控制版本的資料表。JSON 不會導入任何條件約束，不論是用戶端程式碼中還是在資料庫層中的條件約束。
 
-## <a name="querying-json-data"></a>Querying JSON data
+## 查詢 JSON 資料
 
-If you have data formatted as JSON stored in Azure SQL tables, JSON functions let you use this data in any SQL query.
+如果您有格式化為 JSON 的資料儲存在 Azure SQL 資料表中，JSON 函數可讓您在任何 SQL 查詢中使用此資料。
 
-JSON functions that are available in Azure SQL database let you treat data formatted as JSON as any other SQL data type. You can easily extract values from the JSON text, and use JSON data in any query:
+Azure SQL Database 中可用的 JSON 函數可讓您將格式化為 JSON 的資料視為任何其他 SQL 資料類型。您可以輕鬆地從 JSON 文字中擷取值，然後在任何查詢中使用 JSON 資料︰
 
 ```
 select Id, Title, JSON_VALUE(Data, '$.Color'), JSON_QUERY(Data, '$.tags')
@@ -153,64 +152,60 @@ set Data = JSON_MODIFY(Data, '$.Price', 60)
 where Id = 1
 ```
 
-The JSON_VALUE function extracts a value from JSON text stored in the Data column. This function uses a JavaScript-like path to reference a value in JSON text to extract. The extracted value can be used in any part of SQL query.
+JSON\_VALUE 函數會從儲存在 Data 資料行的 JSON 文字中擷取值。此函數會使用類似 JavaScript 的路徑來參考所要擷取的 JSON 文字中的值。所擷取的值可以在 SQL 查詢的任何部分中使用。
 
-The JSON_QUERY function is similar to JSON_VALUE. Unlike JSON_VALUE, this function extracts complex sub-object such as arrays or objects that are placed in JSON text.
+JSON\_QUERY 函數類似於 JSON\_VALUE。與 JSON\_VALUE 不同，此函數會擷取複雜的子物件，例如置於 JSON 文字中的陣列或物件。
 
-The JSON_MODIFY function lets you specify the path of the value in the JSON text that should be updated, as well as a new value that will overwrite the old one. This way you can easily update JSON text without reparsing the entire structure.
+JSON\_MODIFY 函數可讓您指定 JSON 文字中應更新的值路徑，以及將覆寫舊值的新值。如此一來，您便可以輕鬆更新 JSON 文字，而不需重新剖析整個結構。
 
-Since JSON is stored in a standard text, there are no guarantees that the values stored in text columns are properly formatted. You can verify that text stored in JSON column is properly formatted by using standard Azure SQL Database check constraints and the ISJSON function:
+由於 JSON 是以標準文字儲存，因此無法保證儲存在文字資料行中的值格式會正確。您可以使用標準的 Azure SQL Database 檢查條件約束和 ISJSON 函數，來確認儲存在 JSON 資料行中的文字是否格式正確︰
 
 ```
 ALTER TABLE Products
     ADD CONSTRAINT [Data should be formatted as JSON]
-        CHECK (ISJSON(Data) > 0)
+		CHECK (ISJSON(Data) > 0)
 ```
 
-If the input text is properly formatted JSON, the ISJSON function returns the value 1. On every insert or update of JSON column, this constraint will verify that new text value is not malformed JSON.
+如果輸入的文字是格式正確的 JSON，ISJSON 函數就會傳回值 1。在每次插入或更新 JSON 資料行時，這個條件約束都會確認新的文字值不是格式錯誤的 JSON。
 
-## <a name="transforming-json-into-tabular-format"></a>Transforming JSON into tabular format
+## 將 JSON 轉換成表格式格式
 
-Azure SQL Database also lets you transform JSON collections into tabular format and load or query JSON data.
+Azure SQL Database 也可讓您將 JSON 集合轉換成表格式格式，然後再載入或查詢 JSON 資料。
 
-OPENJSON is a table-value function that parses JSON text, locates an array of JSON objects, iterates through the elements of the array, and returns one row in the output result for each element of the array.
+OPENJSON 是一個資料表值函數，可剖析 JSON 文字、找出 JSON 物件陣列、逐一查看陣列的元素，然後在輸出結果中為每個陣列元素傳回一個資料列。
 
-![JSON tabular](./media/sql-database-json-features/image_2.png)
+![JSON 表格式](./media/sql-database-json-features/image_2.png)
 
-In the example above, we can specify where to locate the JSON array that should be opened (in the $.Orders path), what columns should be returned as result, and where to find the JSON values that will be returned as cells.
+在上述範例中，我們可以指定要在哪裡尋找應該開啟的 JSON 陣列 (在 $.Orders 路徑中)、應該傳回哪些資料行作為結果，以及要在哪裡尋找將以資料格形式傳回的 JSON 值。
 
-We can transform a JSON array in the @orders variable into a set of rows, analyze this result set, or insert rows into a standard table:
+我們可以將 @orders 變數中的 JSON 陣列轉換成一組資料列、分析此結果集，或將資料列插入標準資料表中︰
 
 ```
 CREATE PROCEDURE InsertOrders(@orders nvarchar(max))
 AS BEGIN
 
-    insert into Orders(Number, Date, Customer, Quantity)
-    select Number, Date, Customer, Quantity
-    OPENJSON (@orders)
-     WITH (
-            Number varchar(200),
-            Date datetime,
-            Customer varchar(200),
-            Quantity int
-     )
+	insert into Orders(Number, Date, Customer, Quantity)
+	select Number, Date, Customer, Quantity
+	OPENJSON (@orders)
+	 WITH (
+			Number varchar(200),
+			Date datetime,
+			Customer varchar(200),
+			Quantity int
+	 )
 
 END
 ```
-The collection of orders formatted as a JSON array and provided as a parameter to the stored procedure can be parsed and inserted into the Orders table.
+我們可以剖析採用 JSON 陣列格式並作為參數提供給預存程序的訂單集合，然後將它插入 Orders 資料表中。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-To learn how to integrate JSON into your application, check out these resources:
+若要了解如何將 JSON 整合到您的應用程式中，請參閱下列資源︰
 
-- [TechNet Blog](https://blogs.technet.microsoft.com/dataplatforminsider/2016/01/05/json-in-sql-server-2016-part-1-of-4/)
-- [MSDN documentation](https://msdn.microsoft.com/library/dn921897.aspx)
-- [Channel 9 video](https://channel9.msdn.com/Shows/Data-Exposed/SQL-Server-2016-and-JSON-Support)
+- [TechNet 部落格](https://blogs.technet.microsoft.com/dataplatforminsider/2016/01/05/json-in-sql-server-2016-part-1-of-4/)
+- [MSDN 文件](https://msdn.microsoft.com/library/dn921897.aspx)
+- [Channel 9 影片](https://channel9.msdn.com/Shows/Data-Exposed/SQL-Server-2016-and-JSON-Support)
 
-To learn about various scenarios for integrating JSON into your application, see the demos in this [Channel 9 video](https://channel9.msdn.com/Events/DataDriven/SQLServer2016/JSON-as-a-bridge-betwen-NoSQL-and-relational-worlds) or find a scenario that matches your use case in [JSON Blog posts](http://blogs.msdn.com/b/sqlserverstorageengine/archive/tags/json/).
+若要了解將 JSON 整合到您應用程式中的各種案例，請參閱這個 [Channel 9 影片](https://channel9.msdn.com/Events/DataDriven/SQLServer2016/JSON-as-a-bridge-betwen-NoSQL-and-relational-worlds)中的示範，或從 [JSON 部落格文章](http://blogs.msdn.com/b/sqlserverstorageengine/archive/tags/json/)中尋找符合您使用案例的情況。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0831_2016-->

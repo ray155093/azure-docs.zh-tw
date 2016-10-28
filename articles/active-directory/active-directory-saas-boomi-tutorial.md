@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="Tutorial: Azure Active Directory integration with Boomi | Microsoft Azure" 
-    description="Learn how to use Boomi with Azure Active Directory to enable single sign-on, automated provisioning, and more!" 
+    pageTitle="教學課程：Azure Active Directory 與 Boomi 整合 | Microsoft Azure" 
+    description="了解如何使用 Boomi 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -11,150 +11,143 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="09/29/2016" 
+    ms.date="07/11/2016" 
     ms.author="jeedes" />
 
+#教學課程：Azure Active Directory 與 Boomi 整合
 
-#<a name="tutorial:-azure-active-directory-integration-with-boomi"></a>Tutorial: Azure Active Directory integration with Boomi
+本教學課程的目的是要示範 Azure 與 Boomi 的整合。本教學課程中說明的案例假設您已經具有下列項目：
 
-The objective of this tutorial is to show the integration of Azure and Boomi.  
-The scenario outlined in this tutorial assumes that you already have the following items:
+-   有效的 Azure 訂閱
+-   啟用 Boomi 單一登入的訂用帳戶
 
--   A valid Azure subscription
--   A Boomi single sign-on enabled subscription
+完成本教學課程之後，您指派給 Boomi 的 Azure AD 使用者就能夠單一登入您 Boomi 公司網站 (服務提供者起始登入) 的應用程式，或是使用[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-After completing this tutorial, the Azure AD users you have assigned to Boomi will be able to single sign into the application at your Boomi company site (service provider initiated sign on), or using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+本教學課程中說明的案例由下列建置組塊組成：
 
-The scenario outlined in this tutorial consists of the following building blocks:
+1.  啟用 Boomi 的應用程式整合
+2.  設定單一登入
+3.  設定使用者佈建
+4.  指派使用者
 
-1.  Enabling the application integration for Boomi
-2.  Configuring single sign-on
-3.  Configuring user provisioning
-4.  Assigning users
+![案例](./media/active-directory-saas-boomi-tutorial/IC791134.png "案例")
+##啟用 Boomi 的應用程式整合
 
-![Scenario](./media/active-directory-saas-boomi-tutorial/IC791134.png "Scenario")
-##<a name="enabling-the-application-integration-for-boomi"></a>Enabling the application integration for Boomi
+本節的目的是要說明如何啟用 Boomi 的應用程式整合。
 
-The objective of this section is to outline how to enable the application integration for Boomi.
+###若要啟用 Boomi 的應用程式整合，請執行下列步驟：
 
-###<a name="to-enable-the-application-integration-for-boomi,-perform-the-following-steps:"></a>To enable the application integration for Boomi, perform the following steps:
-
-1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-boomi-tutorial/IC700993.png "Active Directory")
 
-2.  From the **Directory** list, select the directory for which you want to enable directory integration.
+2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3.  To open the applications view, in the directory view, click **Applications** in the top menu.
+3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
 
-    ![Applications](./media/active-directory-saas-boomi-tutorial/IC700994.png "Applications")
+    ![應用程式](./media/active-directory-saas-boomi-tutorial/IC700994.png "應用程式")
 
-4.  Click **Add** at the bottom of the page.
+4.  按一下頁面底部的 [新增]。
 
-    ![Add application](./media/active-directory-saas-boomi-tutorial/IC749321.png "Add application")
+    ![新增應用程式](./media/active-directory-saas-boomi-tutorial/IC749321.png "新增應用程式")
 
-5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
-    ![Add an application from gallerry](./media/active-directory-saas-boomi-tutorial/IC749322.png "Add an application from gallerry")
+    ![從組件庫新增應用程式](./media/active-directory-saas-boomi-tutorial/IC749322.png "從組件庫新增應用程式")
 
-6.  In the **search box**, type **Boomi**.
+6.  在**搜尋方塊**中，輸入 **Boomi**。
 
-    ![Application Gallery](./media/active-directory-saas-boomi-tutorial/IC790822.png "Application Gallery")
+    ![應用程式庫](./media/active-directory-saas-boomi-tutorial/IC790822.png "應用程式庫")
 
-7.  In the results pane, select **Boomi**, and then click **Complete** to add the application.
+7.  在結果窗格中，選取 [Boomi]，然後按一下 [完成] 以加入應用程式。
 
     ![Boomi](./media/active-directory-saas-boomi-tutorial/IC790823.png "Boomi")
-##<a name="configuring-single-sign-on"></a>Configuring single sign-on
+##設定單一登入
 
-The objective of this section is to outline how to enable users to authenticate to Boomi with their account in Azure AD using federation based on the SAML protocol.
+本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶驗證至 Boomi。
 
-###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
+###若要設定單一登入，請執行下列步驟：
 
-1.  In the Azure classic portal, on the **Boomi** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
+1.  在 Azure 傳統入口網站的 [Boomi] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-boomi-tutorial/IC790824.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-boomi-tutorial/IC790824.png "設定單一登入")
 
-2.  On the **How would you like users to sign on to Boomi** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
+2.  在 [要如何讓使用者登入 Boomi] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-boomi-tutorial/IC790825.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-boomi-tutorial/IC790825.png "設定單一登入")
 
-3.  On the **Configure App URL** page, in the **Boomi Reply URL** textbox, type your **Boomi AtomSphere Login URL** (e.g.: “*https://platform.boomi.com/sso/AccountName/saml*”), and then click **Next**.
+3.  在 [設定應用程式 URL] 頁面的 [Boomi 回覆 URL] 文字方塊中，輸入您的 [Boomi AtomSphere 登入 URL] \(例如：“*https://platform.boomi.com/sso/AccountName/saml*”)，然後按一下 *[下一步]*。
 
-    ![Configure App URL](./media/active-directory-saas-boomi-tutorial/IC790826.png "Configure App URL")
+    ![設定應用程式 URL](./media/active-directory-saas-boomi-tutorial/IC790826.png "設定應用程式 URL")
 
-4.  On the **Configure single sign-on at Boomi** page, to download your certificate, click **Download certificate**, and then save the certificate file locally on your computer.
+4.  在 [設定在 Boomi 單一登入] 頁面上，按 [下載憑證] 以下載您的憑證，然後在本機電腦上儲存憑證檔案。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-boomi-tutorial/IC790827.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-boomi-tutorial/IC790827.png "設定單一登入")
 
-5.  In a different web browser window, log into your Boomi company site as an administrator.
+5.  在不同的網頁瀏覽器視窗中，以系統管理員身分登入您的 Boomi 公司網站。
 
-6.  In the toolbar on the top, click your company name, and then **Setup**.
+6.  在頂端工具列中，依序按一下您的公司名稱和 [設定]。
 
-    ![Setup](./media/active-directory-saas-boomi-tutorial/IC790828.png "Setup")
+    ![設定](./media/active-directory-saas-boomi-tutorial/IC790828.png "設定")
 
-7.  Click **SSO Options**.
+7.  按一下 [SSO 選項]。
 
-    ![SSO Options](./media/active-directory-saas-boomi-tutorial/IC790829.png "SSO Options")
+    ![SSO 選項](./media/active-directory-saas-boomi-tutorial/IC790829.png "SSO 選項")
 
-8.  In the **Single Sign-On Options** section, perform the following steps:
+8.  在 [單一登入選項] 區段中，執行下列步驟：
 
-    ![Single Sign-On Options](./media/active-directory-saas-boomi-tutorial/IC790830.png "Single Sign-On Options")
+    ![單一登入選項](./media/active-directory-saas-boomi-tutorial/IC790830.png "單一登入選項")
 
-    1.  Select **Enable SAML Single Sign-On**.
-    2.  Click **Import**, to upload the downloaded certificate.
-    3.  In the Azure classic portal, on the **Configure single sign-on at Boomi** dialog page, copy the **Remote Login URL** value, and then paste it into the **Identity Provider Login URL** textbox.
-    4.  As **Federation Id Location**, select **Federation Id is in NameID element of the Subject**.
-    5.  Click **Save**.
+    1.  選取 [啟用 SAML 單一登入]。
+    2.  按一下 [匯入] 來上傳已下載的憑證。
+    3.  在 Azure 傳統入口網站的 [在 Boomi 設定單一登入] 對話頁面上，複製 [遠端登入 URL] 值，然後將它貼至 [識別提供者登入 URL] 文字方塊中。
+    4.  針對 [同盟識別碼位置]，選取 [同盟識別碼位於主旨的 NameID 項目中]。
+    5.  按一下 [儲存]。
 
-9.  On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
+9.  在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-boomi-tutorial/IC775560.png "Configure Single Sign-On")
-##<a name="configuring-user-provisioning"></a>Configuring user provisioning
+    ![設定單一登入](./media/active-directory-saas-boomi-tutorial/IC775560.png "設定單一登入")
+##設定使用者佈建
 
-In order to enable Azure AD users to log into Boomi, they must be provisioned into Boomi.  
-In the case of Boomi, provisioning is a manual task.
+若要讓 Azure AD 使用者可以登入 Boomi，必須將他們佈建到 Boomi。Boomi 需以手動方式佈建。
 
-###<a name="to-configure-user-provisioning,-perform-the-following-steps:"></a>To configure user provisioning, perform the following steps:
+###若要設定使用者佈建，請執行下列步驟：
 
-1.  Log in to your **Boomi** company site as administrator.
+1.  以系統管理員身分登入您的 **Boomi** 公司網站。
 
-2.  Go to **User Management \> Users**.
+2.  移至 [使用者管理] > [使用者]。
 
-    ![Users](./media/active-directory-saas-boomi-tutorial/IC790831.png "Users")
+    ![使用者](./media/active-directory-saas-boomi-tutorial/IC790831.png "使用者")
 
-3.  Click **Add User**.
+3.  按一下 [新增使用者]。
 
-    ![Add User](./media/active-directory-saas-boomi-tutorial/IC790832.png "Add User")
+    ![新增使用者](./media/active-directory-saas-boomi-tutorial/IC790832.png "新增使用者")
 
-4.  On the **Add User Roles** dialog page, perform the following steps:
+4.  在 [加入使用者角色] 對話頁面上，執行下列步驟：
 
-    ![Add User](./media/active-directory-saas-boomi-tutorial/IC790833.png "Add User")
+    ![新增使用者](./media/active-directory-saas-boomi-tutorial/IC790833.png "新增使用者")
 
-    1.  Type the **First Name**, **Last Name** and **Email** of a valid AAD account you want to provision into the related textboxes.
-    2.  Click OK.
+    1.  在相關的文字方塊中，輸入您想要佈建之有效 ADD 帳戶的 [名字]、[姓氏] 和 [電子郵件]。
+    2.  按一下 [確定]。
 
->[AZURE.NOTE] You can use any other Boomi user account creation tools or APIs provided by Boomi to provision AAD user accounts.
+>[AZURE.NOTE] 您可以使用任何其他的 Boomi 使用者帳戶建立工具或 Boomi 提供的 API 來佈建 AAD 使用者帳戶。
 
-##<a name="assigning-users"></a>Assigning users
+##指派使用者
 
-To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
+若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-###<a name="to-assign-users-to-boomi,-perform-the-following-steps:"></a>To assign users to Boomi, perform the following steps:
+###若要指派使用者給 Boomi，請執行下列步驟：
 
-1.  In the Azure classic portal, create a test account.
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
-2.  On the **Boomi **application integration page, click **Assign users**.
+2.  在 [Boomi] 應用程式整合頁面上，按一下 [指派使用者]。
 
-    ![Assign Users](./media/active-directory-saas-boomi-tutorial/IC790834.png "Assign Users")
+    ![指派使用者](./media/active-directory-saas-boomi-tutorial/IC790834.png "指派使用者")
 
-3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
+3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
 
-    ![Yes](./media/active-directory-saas-boomi-tutorial/IC767830.png "Yes")
+    ![是](./media/active-directory-saas-boomi-tutorial/IC767830.png "是")
 
-If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0713_2016-->

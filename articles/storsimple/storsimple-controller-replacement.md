@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="Replace a StorSimple device controller | Microsoft Azure"
-   description="Explains how to remove and replace one or both controller modules on your StorSimple device."
+   pageTitle="更換 StorSimple 裝置控制器 | Microsoft Azure"
+   description="說明如何取下並更換 StorSimple 裝置上的一個或兩個控制器模組。"
    services="storsimple"
    documentationCenter=""
    authors="alkohli"
@@ -15,260 +15,255 @@
    ms.date="08/17/2016"
    ms.author="alkohli" />
 
+# 更換 StorSimple 裝置上的控制器模組
 
-# <a name="replace-a-controller-module-on-your-storsimple-device"></a>Replace a controller module on your StorSimple device
+## 概觀
 
-## <a name="overview"></a>Overview
+本教學課程說明如何取下並更換 StorSimple 裝置中的一個或兩個控制器模組。它也會討論單一和雙重控制器更換案例的基礎邏輯。
 
-This tutorial explains how to remove and replace one or both controller modules in a StorSimple device. It also discusses the underlying logic for the single and dual controller replacement scenarios.
-
->[AZURE.NOTE] Prior to performing a controller replacement, we recommend that you always update your controller firmware to the latest version.
+>[AZURE.NOTE] 在執行控制器更換之前，我們建議您一律將控制器韌體更新至最新版本。
 >
->To prevent damage to your StorSimple device, do not eject the controller until the LEDs are showing as one of the following:
+>若要避免損害您的 StorSimple 裝置，請勿退出控制器，直到 LED 顯示成下列其中一個：
 >
->- All lights are OFF.
->- LED 3, ![Green check icon](./media/storsimple-controller-replacement/HCS_GreenCheckIcon.png), and ![Red cross icon](./media/storsimple-controller-replacement/HCS_RedCrossIcon.png) are flashing, and LED 0 and LED 7 are **ON**.
+>- 所有燈都已關閉。
+>- LED 3、![綠色勾號圖示](./media/storsimple-controller-replacement/HCS_GreenCheckIcon.png) 和 ![紅色叉號圖示](./media/storsimple-controller-replacement/HCS_RedCrossIcon.png) 閃爍，而 LED 0 和 LED 7 為 [**開啟**]。
 
-The following table shows the supported controller replacement scenarios.
+下表顯示支援的控制器更換案例。
 
-|Case|Replacement scenario|Applicable procedure|
+|案例|更換案例|適用程序|
 |:---|:-------------------|:-------------------|
-|1|One controller is in a failed state, the other controller is healthy and active.|[Single controller replacement](#replace-a-single-controller), which describes the [logic behind a single controller replacement](#single-controller-replacement-logic), as well as the [replacement steps](#single-controller-replacement-steps).|
-|2|Both the controllers have failed and require replacement. The chassis, disks, and.disk enclosure are healthy.|[Dual controller replacement](#replace-both-controllers), which describes the [logic behind a dual controller replacement](#dual-controller-replacement-logic), as well as the [replacement steps](#dual-controller-replacement-steps). |
-|3|Controllers from the same device or from different devices are swapped. The chassis, disks, and disk enclosures are healthy.|A slot mismatch alert message will appear.|
-|4|One controller is missing and the other controller fails.|[Dual controller replacement](#replace-both-controllers), which describes the [logic behind a dual controller replacement](#dual-controller-replacement-logic), as well as the [replacement steps](#dual-controller-replacement-steps).|
-|5|One or both controllers have failed. You cannot access the device through the serial console or Windows PowerShell remoting.|[Contact Microsoft Support](storsimple-contact-microsoft-support.md) for a manual controller replacement procedure.|
-|6|The controllers have a different build version, which may be due to:<ul><li>Controllers have a different software version.</li><li>Controllers have a different firmware version.</li></ul>|If the controller software versions are different, the replacement logic detects that and updates the software version on the replacement controller.<br><br>If the controller firmware versions are different and the old firmware version is **not** automatically upgradeable, an alert message will appear in the Azure classic portal. You should scan for updates and install the firmware updates.</br></br>If the controller firmware versions are different and the old firmware version is automatically upgradeable, the controller replacement logic will detect this, and after the controller starts, the firmware will be automatically updated.|
+|1|一個控制器處於故障狀態，而另一個控制器為狀況良好並作用中。|[單一控制器更換](#replace-a-single-controller)，其中描述[單一控制器更換背後的邏輯](#single-controller-replacement-logic)，以及[更換步驟](#single-controller-replacement-steps)。|
+|2|兩個控制器都故障，而且需要更換。底座、磁碟和磁碟機箱的狀況良好。|[雙重控制器更換](#replace-both-controllers)，其中描述[雙重控制器更換背後的邏輯](#dual-controller-replacement-logic)，以及[更換步驟](#dual-controller-replacement-steps)。 |
+|3|交換來自相同裝置或來自不同裝置的控制器。底座、磁碟和磁碟機箱的狀況良好。|插槽不符警示訊息將出現。|
+|4|遺漏一個控制器，而另一個控制器故障。|[雙重控制器更換](#replace-both-controllers)，其中描述[雙重控制器更換背後的邏輯](#dual-controller-replacement-logic)，以及[更換步驟](#dual-controller-replacement-steps)。|
+|5|一個或兩個控制器故障。您無法透過序列主控台或 Windows PowerShell 遠端存取裝置。|如需手動控制器更換程序，請[連絡 Microsoft 支援服務](storsimple-contact-microsoft-support.md)。|
+|6|控制器具有不同的組建版本，原因可能如下：<ul><li>控制器具有不同的軟體版本。</li><li>控制器具有不同的韌體版本。</li></ul>|如果控制器軟體版本不同，更換邏輯會偵測到該情況，並更新更換控制器上的軟體版本。<br><br>如果控制器軔體版本不同，而且舊的韌體版本**無法**自動升級，警示訊息將出現在 Azure 傳統入口網站中。您應掃描更新並安裝韌體更新。</br></br>如果控制器軔體版本不同，而且舊的韌體版本可以自動升級，控制器更換邏輯會偵測到此情況，並且在控制器啟動之後，軔體將會自動更新。|
 
-You need to remove a controller module if it has failed. One or both the controller modules can fail, which can result in a single controller replacement or dual controller replacement. For replacement procedures and the logic behind them, see the following:
+您需要取下故障的控制器模組。一或兩個控制器模組可能故障，這會導致單一控制器更換或雙重控制器更換。如需更換程序和其背後邏輯的資訊，請參閱以下各項：
 
-- [Replace a single controller](#replace-a-single-controller)
-- [Replace both controllers](#replace-both-controllers)
-- [Remove a controller](#remove-a-controller)
-- [Insert a controller](#insert-a-controller)
-- [Identify the active controller on your device](#identify-the-active-controller-on-your-device)
+- [更換單一控制器](#replace-a-single-controller)
+- [更換兩個控制器](#replace-both-controllers)
+- [取下控制器](#remove-a-controller)
+- [插入控制器](#insert-a-controller)
+- [識別您裝置上的作用中控制器](#identify-the-active-controller-on-your-device)
 
->[AZURE.IMPORTANT] Before removing and replacing a controller, review the safety information in [StorSimple hardware component replacement](storsimple-hardware-component-replacement.md).
+>[AZURE.IMPORTANT] 取下及更換控制器之前，請閱讀 [StorSimple 硬體元件更換](storsimple-hardware-component-replacement.md)中的安全資訊。
 
-## <a name="replace-a-single-controller"></a>Replace a single controller
+## 更換單一控制器
 
-When one of the two controllers on the Microsoft Azure StorSimple device has failed, is malfunctioning, or is missing, you need to replace a single controller. 
+當 Microsoft Azure StorSimple 裝置上的兩個控制器之一故障、無法運作或遺漏時，您必須更換單一控制器。
 
-### <a name="single-controller-replacement-logic"></a>Single controller replacement logic
+### 單一控制器更換邏輯
 
-In a single controller replacement, you should first remove the failed controller. (The remaining controller in the device is the active controller.) When you insert the replacement controller, the following actions occur:
+在單一控制器更換中，您應該先取下故障的控制器。(裝置中剩餘的控制器是作用中控制器)。 當插入更換控制器時，會發生下列動作：
 
-1. The replacement controller immediately starts communicating with the StorSimple device.
+1. 更換控制器立即開始與 StorSimple 裝置進行通訊。
 
-2. A snapshot of the virtual hard disk (VHD) for the active controller is copied on the replacement controller.
+2. 作用中控制器的虛擬硬碟 (VHD) 快照會複製在更換控制器上。
 
-3. The snapshot is modified so that when the replacement controller starts from this VHD, it will be recognized as a standby controller.
+3. 會修改快照，以便當更換控制器從這個 VHD 啟動時，系統會將它會辨識為待命控制器。
 
-4. When the modifications are complete, the replacement controller will start as the standby controller.
+4. 完成修改後，更換控制器將啟動為待命控制器。
 
-5. When both the controllers are running, the cluster comes online.
+5. 兩個控制器同時執行時，叢集就會恢復上線。
 
-### <a name="single-controller-replacement-steps"></a>Single controller replacement steps
+### 單一控制器更換步驟
 
-Complete the following steps if one of the controllers in your Microsoft Azure StorSimple device fails. (The other controller must be active and running. If both controllers fail or malfunction, go to [dual controller replacement steps](#dual-controller-replacement-steps).)
+如果 Microsoft Azure StorSimple 裝置的其中一個控制器故障，請完成下列步驟。(另一個控制器必須作用中並執行中。如果兩個控制器都故障或無法運作，請移至[雙重控制器更換步驟](#dual-controller-replacement-steps))。
 
->[AZURE.NOTE] It can take 30 – 45 minutes for the controller to restart and completely recover from the single controller replacement procedure. The total time for the entire procedure, including attaching the cables, is approximately 2 hours.
+>[AZURE.NOTE] 可能需要 30 – 45 分鐘，控制器才會重新啟動，並從單一控制器更換程序完全復原。整個程序的時間總計 (包括接上纜線) 大約 2 小時。
 
-#### <a name="to-remove-a-single-failed-controller-module"></a>To remove a single failed controller module
+#### 若要取下單一故障的控制器模組
 
-1. In the Azure classic portal, go to the StorSimple Manager service, click the **Devices** tab, and then click the name of the device that you want to monitor.
+1. 在 Azure 傳統入口網站中，移至 StorSimple Manager 服務，按一下 [裝置] 索引標籤，然後按一下您想要監視的裝置名稱。
 
-2. Go to **Maintenance > Hardware Status**. The status of either Controller 0 or Controller 1 should be red, which indicates a failure.
+2. 移至 [維護] > [硬體狀態]。控制器 0 或控制器 1 的狀態應該是紅色，表示故障。
 
-    >[AZURE.NOTE] The failed controller in a single controller replacement is always a standby controller.
+    >[AZURE.NOTE] 單一控制器更換中的故障控制器一律為待命控制器。
 
-3. Use Figure 1 and the following table to locate the failed controller module.  
+3. 使用圖 1 和下表來找出故障的控制器模組。
 
-    ![Backplane of device primary enclosure modules](./media/storsimple-controller-replacement/IC740994.png)
+    ![裝置主要機箱模組的後擋板](./media/storsimple-controller-replacement/IC740994.png)
 
-    **Figure 1** Back of StorSimple device
+    **圖 1** StorSimple 裝置的背面
 
-  	|Label|Description|
-  	|:----|:----------|
-  	|1|PCM 0|
-  	|2|PCM 1|
-  	|3|Controller 0|
-  	|4|Controller 1|
+    |標籤|說明|
+    |:----|:----------|
+    |1|PCM 0|
+    |2|PCM 1|
+    |3|控制器 0|
+    |4|控制器 1|
 
-4. On the failed controller, remove all the connected network cables from the data ports. If you are using an 8600 model, also remove the SAS cables that connect the controller to the EBOD controller.
+4. 在故障的控制器上，從資料連接埠取下所有已連接的網路纜線。如果您是使用 8600 機型，也請取下將控制器連接至 EBOD 控制器的SAS 纜線。
 
-5. Follow the steps in [remove a controller](#remove-a-controller) to remove the failed controller. 
+5. 依照[取下控制器](#remove-a-controller)中的步驟，取下故障的控制器。
 
-6. Install the factory replacement in the same slot from which the failed controller was removed. This triggers the single controller replacement logic. For more information, see [single controller replacement logic](#single-controller-replacement-logic).
+6. 在取下故障控制器的同一插槽中安裝原廠更換品。這樣會觸發單一控制器更換邏輯。如需詳細資訊，請參閱[單一控制器更換邏輯](#single-controller-replacement-logic)。
 
-7. While the single controller replacement logic progresses in the background, reconnect the cables. Take care to connect all the cables exactly the same way that they were connected before the replacement.
+7. 當單一控制器更換邏輯在背景中進行時，請重新連接纜線。請完全依照更換之前連接纜線的相同方式，小心地連接所有纜線。
 
-8. After the controller restarts, check the **Controller status** and the **Cluster status** in the Azure classic portal to verify that the controller is back to a healthy state and is in standby mode.
+8. 在控制器重新啟動之後，請檢查 Azure 傳統入口網站中的 [**控制器狀態**] 和 [**叢集狀態**]，以確認控制器回到狀況良好的狀態且處於待命模式。
 
->[AZURE.NOTE] If you are monitoring the device through the serial console, you may see multiple restarts while the controller is recovering from the replacement procedure. When the serial console menu is presented, then you know that the replacement is complete. If the menu does not appear within two hours of starting the controller replacement, please [contact Microsoft Support](storsimple-contact-microsoft-support.md).
+>[AZURE.NOTE] 如果您是透過序列主控台監視裝置，則可能會在控制器從更換程序中復原時看到多次重新啟動。當序列主控台功能表呈現時，您便知道更換已完成。如果功能表未在啟動控制器更換的兩個小時內出現，請[連絡 Microsoft 支援服務](storsimple-contact-microsoft-support.md)。
 
-## <a name="replace-both-controllers"></a>Replace both controllers
+## 更換兩個控制器
 
-When both controllers on the Microsoft Azure StorSimple device have failed, are malfunctioning, or are missing, you need to replace both controllers. 
+當 Microsoft Azure StorSimple 裝置上的兩個控制器故障、無法運作或遺漏時，您必須更換兩個控制器。
 
-### <a name="dual-controller-replacement-logic"></a>Dual controller replacement logic
+### 雙重控制器更換
 
-In a dual controller replacement, you first remove both failed controllers and then insert replacements. When the two replacement controllers are inserted, the following actions occur:
+在雙重控制器更換中，先移除兩個故障的控制器，再插入更換控制器。當插入兩個更換控制器時，會發生下列動作：
 
-1. The replacement controller in slot 0 checks the following:
+1. 插槽 0 中的更換控制器會檢查下列情況：
  
-   1. Is it using current versions of the firmware and software?
+   1. 它是否使用目前版本的韌體和軟體？
 
-   2. Is it a part of the cluster?
+   2. 它是否為叢集的一部分？
 
-   3. Is the peer controller running and is it clustered?
-                            
-    If none of these conditions are true, the controller looks for the latest daily backup (located in the **nonDOMstorage** on drive S). The controller copies the latest snapshot of the VHD from the backup.
+   3. 對等控制器是否執行中並構成叢集？
+							
+    如果上述狀況無一成立，則控制器會尋找最新的每日備份 (位於磁碟機 S 上的 **nonDOMstorage**)。控制器會從備份複製 VHD 的最新快照。
 
-2. The controller in slot 0 uses the snapshot to image itself.
+2. 在位置 0 的控制站會使用快照集映像本身。
 
-3. Meanwhile, the controller in slot 1 waits for controller 0 to complete the imaging and start.
+3. 同時，插槽 1 中的控制器會等到控制器 0 完成映像和啟動。
 
-4. After controller 0 starts, controller 1 detects the cluster created by controller 0, which triggers the single controller replacement logic. For more information, see [single controller replacement logic](#single-controller-replacement-logic).
+4. 在控制器 0 啟動之後，控制器 1 會偵測到控制器 0 所建立的叢集，這會觸發單一控制器更換邏輯。如需詳細資訊，請參閱[單一控制器更換邏輯](#single-controller-replacement-logic)。
 
-5. Afterwards, both controllers will be running and the cluster will come online.
+5. 之後，兩個兩個控制器將執行中，而且叢集將恢復上線。
 
->[AZURE.IMPORTANT] Following a dual controller replacement, after the StorSimple device is configured, it is essential that you take a manual backup of the device. Daily device configuration backups are not triggered until after 24 hours have elapsed. Work with [Microsoft Support](storsimple-contact-microsoft-support.md) to make a manual backup of your device.
+>[AZURE.IMPORTANT] 在雙重控制器更換後，於設定 StorSimple 裝置之後，務必進行裝置的手動備份。直到過了 24 小時之後，才會觸發每日裝置組態備份。與 [Microsoft 支援服務](storsimple-contact-microsoft-support.md)合作，進行裝置的手動備份。
 
-### <a name="dual-controller-replacement-steps"></a>Dual controller replacement steps
+### 雙重控制器更換步驟
 
-This workflow is required when both of the controllers in your Microsoft Azure StorSimple device have failed. This could happen in a datacenter in which the cooling system stops working, and as a result, both the controllers fail within a short period of time. Depending on whether the StorSimple device is turned off or on, and whether you are using an 8600 or an 8100 model, a different set of steps is required.
+當 Microsoft Azure StorSimple 裝置中的兩個控制器都故障時，需要這個工作流程。這可能會發生在冷卻系統停止運作的資料中心，因此兩個控制器會在短時間內故障。視 StorSimple 裝置是關閉還是開啟，以及您使用的是 8600 還是 8100 機型而定，會需要一組不同的步驟。
 
->[AZURE.IMPORTANT] It can take 45 minutes to 1 hour for the controller to restart and completely recover from a dual controller replacement procedure. The total time for the entire procedure, including attaching the cables, is approximately 2.5 hours.
+>[AZURE.IMPORTANT] 可能需要 45 分鐘到 1 小時，控制器才會重新啟動，並從雙重控制器更換程序完全復原。整個程序的時間總計 (包括接上纜線) 大約 2.5 小時。
 
-#### <a name="to-replace-both-controller-modules"></a>To replace both controller modules
+#### 若要取下兩個控制器模組
 
-1. If the device is turned off, skip this step and proceed to the next step. If the device is turned on, turn off the device.
-                                        
-    1. If you are using an 8600 model, turn off the primary enclosure first, and then turn off the EBOD enclosure.
+1. 如果裝置已關閉，請略過此步驟並繼續進行下一個步驟。如果裝置已開啟，請關閉裝置。
+										
+    1. 如果您使用的是 8600 機型，請先關閉主要機箱，然後再關閉 EBOD 機箱。
 
-    2. Wait until the device has shut down completely. All the LEDs in the back of the device will be off.
+    2. 等到裝置完全關閉。裝置背面的所有 LED 都將關閉。
 
-2. Remove all the network cables that are connected to the data ports. If you are using an 8600 model, also remove the SAS cables that connect the primary enclosure to the EBOD enclosure.
+2. 取下所有已連接至資料連接埠的網路纜線。如果您使用的是 8600 機型，請一併取下將主要機箱連接至 EBOD 機箱的 SAS 纜線。
 
-3. Remove both controllers from the StorSimple device. For more information, see [remove a controller](#remove-a-controller).
+3. 從 StorSimple 裝置取下兩個控制器。如需詳細資訊，請參閱[取下控制器](#remove-a-controller)。
 
-4. Insert the factory replacement for Controller 0 first, and then insert Controller 1. For more information, see [insert a controller](#insert-a-controller). This triggers the dual controller replacement logic. For more information, see [dual controller replacement logic](#dual-controller-replacement-logic).
+4. 首先插入控制器 0 的原廠更換品，再插入控制器 1。如需詳細資訊，請參閱[插入控制器](#insert-a-controller)。這樣會觸發雙重控制器更換邏輯。如需詳細資訊，請參閱[雙重控制器更換邏輯](#dual-controller-replacement-logic)。
 
-5. While the controller replacement logic progresses in the background, reconnect the cables. Take care to connect all the cables exactly the same way that they were connected before the replacement. See the detailed instructions for your model in the Cable your device section of [install your StorSimple 8100 device](storsimple-8100-hardware-installation.md) or [install your StorSimple 8600 device](storsimple-8600-hardware-installation.md).
+5. 當雙重控制器更換邏輯在背景中進行時，請重新連接纜線。請完全依照更換之前連接纜線的相同方式，小心地連接所有纜線。請參閱[安裝 StorSimple 8100 裝置](storsimple-8100-hardware-installation.md)或[安裝 StorSimple 8600 裝置](storsimple-8600-hardware-installation.md)的＜佈線您的裝置＞一節中，您機型適用的詳細指示。
 
-6. Turn on the StorSimple device. If you are using an 8600 model:
+6. 開啟 StorSimple 裝置。如果您使用的是 8600 機型：
 
-    1. Make sure that the EBOD enclosure is turned on first.
+    1. 確定首先開啟 EBOD 機箱。
 
-    2. Wait until the EBOD enclosure is running.
+    2. 等到 EBOD 機箱執行。
 
-    3. Turn on the primary enclosure.
+    3. 開啟主要機箱。
 
-    4. After the first controller restarts and is in a healthy state, the system will be running.
+    4. 在第一個控制器重新啟動並處於狀況良好的狀態之後，系統就會執行。
 
-    >[AZURE.NOTE] If you are monitoring the device through the serial console, you may see multiple restarts while the controller is recovering from the replacement procedure. When the serial console menu appears, then you know that the replacement is complete. If the menu does not appear within 2.5 hours of starting the controller replacement, please [contact Microsoft Support](storsimple-contact-microsoft-support.md).
+    >[AZURE.NOTE] 如果您是透過序列主控台監視裝置，則可能會在控制器從更換程序中復原時看到多次重新啟動。當序列主控台功能表出現時，您便知道更換已完成。如果功能表未在啟動控制器更換的 2.5 個小時內出現，請[連絡 Microsoft 支援服務](storsimple-contact-microsoft-support.md)。
 
-## <a name="remove-a-controller"></a>Remove a controller
+## 取下控制器
 
-Use the following procedure to remove a faulty controller module from your StorSimple device.
+請使用下列程序，從 StorSimple 裝置中取下故障的控制器模組。
 
->[AZURE.NOTE] The following illustrations are for controller 0. For controller 1, these would be reversed.
+>[AZURE.NOTE] 下圖適用於控制器 0。若為控制器 1，這些將相反。
 
-#### <a name="to-remove-a-controller-module"></a>To remove a controller module
+#### 若要取下控制器模組
 
-1. Grasp the module latch between your thumb and forefinger.
+1. 以姆指與食指抓住模組閂鎖。
 
-2. Gently squeeze your thumb and forefinger together to release the controller latch.
+2. 輕輕擠壓姆指與食指，以鬆開控制器閂鎖。
 
-    ![Releasing controller latch](./media/storsimple-controller-replacement/IC741047.png)
+    ![鬆開控制器閂鎖](./media/storsimple-controller-replacement/IC741047.png)
 
-    **Figure 2** Releasing controller latch
+    **圖 2**鬆開控制器閂鎖
 
-2. Use the latch as a handle to slide the controller out of the chassis.
+2. 請使用閂鎖做為把手，將控制器滑出底座。
 
-    ![Sliding controller out of chassis](./media/storsimple-controller-replacement/IC741048.png)
+    ![將控制器滑出底座](./media/storsimple-controller-replacement/IC741048.png)
 
-    **Figure 3** Sliding the controller out of the chassis
+    **圖 3** 將控制器滑出底座
 
-## <a name="insert-a-controller"></a>Insert a controller
+## 插入控制器
 
-Use the following procedure to install a factory-supplied controller module after you remove a faulty module from your StorSimple device.
+在您從 StorSimple 裝置取下故障模組之後，請使用下列程序來安裝原廠提供的控制器模組。
 
-#### <a name="to-install-a-controller-module"></a>To install a controller module
+#### 若要安裝控制器模組
 
-1. Check to see if there is any damage to the interface connectors. Do not install the module if any of the connector pins are damaged or bent.
+1. 查看介面連接器是否有任何損毀。如果有任一連接器接腳壞掉或彎曲，請勿安裝該模組。
 
-2. Slide the controller module into the chassis while the latch is fully released. 
+2. 當閂鎖完全鬆開時，請將控制器模組滑入底座。
 
-    ![Sliding controller into chassis](./media/storsimple-controller-replacement/IC741053.png)
+    ![將控制器滑入底座](./media/storsimple-controller-replacement/IC741053.png)
 
-    **Figure 4** Sliding controller into the chassis
+    **圖 4** 將控制器滑入底座
 
-3. With the controller module inserted, begin closing the latch while continuing to push the controller module into the chassis. The latch will engage to guide the controller into place.
+3. 一旦插入控制器模組，請馬上關閉閂鎖，同時繼續將控制器模組推入底座。閂鎖將扣上，以將控制器固定位。
 
-    ![Closing controller latch](./media/storsimple-controller-replacement/IC741054.png)
+    ![關閉控制器閂鎖](./media/storsimple-controller-replacement/IC741054.png)
 
-    **Figure 5** Closing the controller latch
+    **圖 5** 關閉控制器閂鎖
 
-4. You're done when the latch snaps into place. The **OK** LED should now be on.  
+4. 當閂鎖卡入定位時，即表示完成。[**正常**] LED 現在應該開啟。
 
-    >[AZURE.NOTE] It can take up to 5 minutes for the controller and the LED to activate.
+    >[AZURE.NOTE] 最多可能需要 5 分鐘，控制器和 LED 即會啟動。
 
-5. To verify that the replacement is successful, in the Azure classic portal, go to **Devices** > **Maintenance** > **Hardware Status**, and make sure that both controller 0 and controller 1 are healthy (status is green).
+5. 若要確認更換成功，請在 Azure 傳統入口網站中，瀏覽至 [裝置] > [維護] > [硬體狀態]，並確定控制器 0 及控制器 1 兩者都狀況良好 (狀態為綠色)。
 
-## <a name="identify-the-active-controller-on-your-device"></a>Identify the active controller on your device
+## 識別您裝置上的作用中控制器
 
-There are many situations, such as first-time device registration or controller replacement, that require you to locate the active controller on a StorSimple device. The active controller processes all the disk firmware and networking operations. You can use any of the following methods to identify the active controller:
+有許多情況，例如第一次裝置註冊或控制器更換，會要求您在 StorSimple 裝置上找出作用中控制器。作用中控制器會處理所有磁碟韌體和網路作業。您可以使用下列任一方法來識別作用中控制器：
 
-- [Use the Azure classic portal to identify the active controller](#use-the-azure-classic-portal-to-identify-the-active-controller)
+- [使用 Azure 傳統入口網站來識別作用中控制器](#use-the-azure-classic-portal-to-identify-the-active-controller)
 
-- [Use Windows PowerShell for StorSimple to identify the active controller](#use-windows-powershell-for-storsimple-to-identify-the-active-controller)
+- [使用 Windows PowerShell for StorSimple 來識別作用中控制器](#use-windows-powershell-for-storsimple-to-identify-the-active-controller)
 
-- [Check the physical device to identify the active controller](#check-the-physical-device-to-identify-the-active-controller)
+- [檢查實體裝置來識別作用中控制器](#check-the-physical-device-to-identify-the-active-controller)
 
-Each of these procedures is described next.
+接著說明上述各程序。
 
-### <a name="use-the-azure-classic-portal-to-identify-the-active-controller"></a>Use the Azure classic portal to identify the active controller
+### 使用 Azure 傳統入口網站來識別作用中控制器
 
-In the Azure classic portal, navigate to **Devices** > **Maintenance**, and scroll to the **Controllers** section. Here you can verify which controller is active.
+在 Azure 傳統入口網站中，瀏覽至 [裝置] > [維護]，然後捲動至 [控制器] 區段。在這裡您可以確認哪一個控制站作用中。
 
-![Identify active controller in Azure classic portal](./media/storsimple-controller-replacement/IC752072.png)
+![識別 Azure 傳統入口網站中的作用中控制器](./media/storsimple-controller-replacement/IC752072.png)
 
-**Figure 6** Azure classic portal showing the active controller
+**圖 6** 顯示作用中控制器 Azure 傳統入口網站
 
-### <a name="use-windows-powershell-for-storsimple-to-identify-the-active-controller"></a>Use Windows PowerShell for StorSimple to identify the active controller
+### 使用 Windows PowerShell for StorSimple 來識別作用中控制器
 
-When you access your device through the serial console, a banner message is presented. The banner message contains basic device information such as the model, name, installed software version, and status of the controller you are accessing. The following image shows an example of a banner message:
+透過序列主控台存取您的裝置時，會呈現橫幅訊息。橫幅訊息包含基本裝置資訊，例如：型號、名稱、已安裝的軟體版本、您要存取的控制器的狀態等。下圖顯示橫幅訊息的範例：
 
-![Serial banner message](./media/storsimple-controller-replacement/IC741098.png)
+![序列橫幅訊息](./media/storsimple-controller-replacement/IC741098.png)
 
-**Figure 7** Banner message showing controller 0 as Active
+**圖 7** 橫幅訊息將控制器 0 顯示為作用中
 
-You can use the banner message to determine whether the controller you are connected to is active or passive.
+您可以使用橫幅訊息，來判定您所連接的控制器是主動還是被動。
 
-### <a name="check-the-physical-device-to-identify-the-active-controller"></a>Check the physical device to identify the active controller
+### 檢查實體裝置來識別作用中控制器
 
-To identify the active controller on your device, locate the blue LED above the DATA 5 port on the back of the primary enclosure.
+若要識別裝置上的作用中控制器，請在主要機箱背面找出 DATA 5 連接埠上的藍色 LED。
 
-If this LED is blinking, the controller is active and the other controller is in standby mode. Use the following diagram and table as an aid.
+如果此 LED 閃爍，控制器是作用中，而且另一個控制器處於待命模式。使用下圖和下表來提供協助。
 
-![Device primary enclosure backplane with dataports](./media/storsimple-controller-replacement/IC741055.png)
+![包含資料連接埠的裝置主要機箱後擋板](./media/storsimple-controller-replacement/IC741055.png)
 
-**Figure 8** Back of primary enclosure with data ports and monitoring LEDs
+**圖 8** 具有資料連接埠和監視 LED 的主要機箱背面
 
-|Label|Description|
+|標籤|說明|
 |:----|:----------|
-|1-6|DATA 0 – 5 network ports|
-|7|Blue LED|
+|1-6|DATA 0 – 5 個網路連接埠|
+|7|藍色 LED|
 
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-Learn more about [StorSimple hardware component replacement](storsimple-hardware-component-replacement.md).
+深入了解 [StorSimple 硬體元件更換](storsimple-hardware-component-replacement.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

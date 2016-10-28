@@ -1,55 +1,50 @@
 <properties
-    pageTitle="Monitoring database performance in Azure SQL Database | Microsoft Azure"
-    description="Learn about the options for monitoring your database with Azure tools and dynamic management views."
-    keywords="database monitoring, cloud database performance"
-    services="sql-database"
-    documentationCenter=""
-    authors="CarlRabeler"
-    manager="jhubbard"
-    editor=""/>
+	pageTitle="監視 Azure SQL Database 中的資料庫效能 | Microsoft Azure"
+	description="了解使用 Azure 工具和動態管理檢視來監視您的資料庫的選項。"
+	keywords="資料庫監視, 雲端資料庫效能"
+	services="sql-database"
+	documentationCenter=""
+	authors="CarlRabeler"
+	manager="jhubbard"
+	editor=""/>
 
 <tags
-    ms.service="sql-database"
-    ms.devlang="na"
-    ms.topic="get-started-article"
-    ms.tgt_pltfrm="na"
-    ms.workload="data-management"
-    ms.date="09/27/2016"
-    ms.author="carlrab"/>
+	ms.service="sql-database"
+	ms.devlang="na"
+	ms.topic="get-started-article"
+	ms.tgt_pltfrm="na"
+	ms.workload="data-management"
+	ms.date="09/27/2016"
+	ms.author="carlrab"/>
 
+# 監視 Azure SQL Database 中的資料庫效能
+在 Azure 中監視 SQL Database 的效能，必須從監視您選擇之資料庫效能等級相關的資源使用率開始。監視可協助您判斷您的資料庫是否有超量的容量或因為資源超量而發生問題，然後判斷是否開始調整您資料庫的效能等級和[服務層](sql-database-service-tiers.md)。您可以使用 [Azure 入口網站](https://portal.azure.com)中的圖形化工具或使用 SQL [動態管理檢視](https://msdn.microsoft.com/library/ms188754.aspx)，監視您的資料庫。
 
-# <a name="monitoring-database-performance-in-azure-sql-database"></a>Monitoring database performance in Azure SQL Database
-Monitoring the performance of a SQL database in Azure starts with monitoring the resource utilization relative to the level of database performance you choose. Monitoring helps you  determine whether your database has excess capacity or is having trouble because resources are maxed out, and then decide whether it's time to adjust the performance level and [service tier](sql-database-service-tiers.md) of your database. You can monitor your database using graphical tools in the [Azure portal](https://portal.azure.com) or using SQL [dynamic management views](https://msdn.microsoft.com/library/ms188754.aspx).
+## 使用 Azure 入口網站監視資料庫
 
-## <a name="monitor-databases-using-the-azure-portal"></a>Monitor databases using the Azure portal
+在 [Azure 入口網站](https://portal.azure.com/)中，您可以透過選取資料庫，並按一下 [監視] 圖表，監視單一資料庫的使用率。如此會帶出您可變更的 [度量] 視窗，只要按一下 [編輯圖表] 按鈕即可。新增下列度量：
 
-In the [Azure portal](https://portal.azure.com/), you can monitor a single database’s utilization by selecting your database and clicking the **Monitoring** chart. This brings up a **Metric** window that you can change by clicking the **Edit chart** button. Add the following metrics:
+- CPU 百分比
+- DTU 百分比
+- 資料 IO 百分比
+- 資料庫大小百分比
 
-- CPU percentage
-- DTU percentage
-- Data IO percentage
-- Database size percentage
+新增這些度量之後，您可以在 [**度量**] 視窗中，在含有詳細資料的 [**監視**] 圖表中繼續檢視它們。這四個度量都會顯示與資料庫 **DTU** 相對的平均使用率百分比。如需 DTU 的詳細資訊，請參閱[服務層](sql-database-service-tiers.md)文章。
 
-Once you’ve added these metrics, you can continue to view them in the **Monitoring** chart with more details on the **Metric** window. All four metrics show the average utilization percentage relative to the **DTU** of your database. See the [service tiers](sql-database-service-tiers.md) article for details about DTUs.
+![資料庫效能的服務層監視。](./media/sql-database-service-tiers/sqldb_service_tier_monitoring.png)
 
-![Service tier monitoring of database performance.](./media/sql-database-service-tiers/sqldb_service_tier_monitoring.png)
+您也可以在效能度量中設定警示。按一下 [**度量**] 視窗中的 [**新增警示**] 按鈕。遵循精靈的指示以設定警示。您可以選擇在度量超出或低於特定臨界值時發出警示。
 
-You can also configure alerts on the performance metrics. Click the **Add alert** button in the **Metric** window. Follow the wizard to configure your alert. You have the option to alert if the metrics exceed a certain threshold or if the metric falls below a certain threshold.
+例如，如果您預期資料庫中的工作負載會成長，可以選擇設定電子郵件警示，以便在資料庫的任何效能度量達到 80% 時收到警示。您可以使用此警示做為早期警告，協助您判斷何時需要切換至更高的效能層級。
 
-For example, if you expect the workload on your database to grow, you can choose to configure an email alert whenever your database reaches 80% on any of the performance metrics. You can use this as an early warning to figure out when you might have to switch to the next higher performance level.
+效能度量也可協助您判斷您是否能夠降級至較低的效能層級。假設您使用標準 S2 資料庫，且所有效能度量皆顯示在指定時間內，資料庫平均使用率沒有超過 10%。則該資料庫可能在標準 S1 中會運作得不錯。不過，在您決定將資料庫移至較低效能層級前，請先注意暴增或大幅變動的工作負載。
 
-The performance metrics can also help you determine if you are able to downgrade to a lower performance level. Assume you are using a Standard S2 database and all performance metrics show that the database on average does not use more than 10% at any given time. It is likely that the database will work well in Standard S1. However, be aware of workloads that spike or fluctuate before making the decision to move to a lower performance level.
+## 使用 DMV 監視資料庫
 
-## <a name="monitor-databases-using-dmvs"></a>Monitor databases using DMVs
+您也可以透過下列系統檢視取得公開在入口網站中的相同度量：伺服器的邏輯**主**資料庫中的 [sys.resource\_stats](https://msdn.microsoft.com/library/dn269979.aspx)，以及使用者資料庫中的 [sys.dm\_db\_resource\_stats](https://msdn.microsoft.com/library/dn800981.aspx)。如果您需要在一段長時間內監視較不細微的資料，請使用 **sys.resource\_stats**。如果您需要在較小的時間範圍內監視較細微的資料，請使用 **sys.dm\_db\_resource\_stats**。如需詳細資訊，請參閱 [Azure SQL Database 效能指引](sql-database-performance-guidance.md#monitoring-resource-use-with-sysresourcestats)。
 
-The same metrics that are exposed in the portal are also available through system views: [sys.resource_stats](https://msdn.microsoft.com/library/dn269979.aspx) in the logical **master** database of your server, and [sys.dm_db_resource_stats](https://msdn.microsoft.com/library/dn800981.aspx) in the user database. Use **sys.resource_stats** if you need to monitor less granular data across a longer period of time. Use **sys.dm_db_resource_stats** if you need to monitor more granular data within a smaller time frame. For more information, see [Azure SQL Database Performance Guidance](sql-database-performance-guidance.md#monitoring-resource-use-with-sysresourcestats).
+>[AZURE.NOTE] 使用於 Web 和 Business Edition 資料庫 (已淘汰) 時，**sys.dm\_db\_resource\_stats** 會傳回空的結果集。
 
->[AZURE.NOTE] **sys.dm_db_resource_stats** returns an empty result set when used in Web and Business edition databases, which are retired.
+若為彈性資料庫集區，您可以監視其中的個別資料庫，技巧如本節所述。但您也可以監視集區整體。如需詳細資訊，請參閱[監視和管理彈性資料庫集區](sql-database-elastic-pool-manage-portal.md)。
 
-For elastic database pools, you can monitor individual databases in the pool with the techniques described in this section. But you can also monitor the pool as a whole. For information, see [Monitor and manage an elastic database pool](sql-database-elastic-pool-manage-portal.md).
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0928_2016-->

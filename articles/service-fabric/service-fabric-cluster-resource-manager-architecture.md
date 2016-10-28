@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Resource Manager Architecture | Microsoft Azure"
-   description="An architectural overview of Service Fabric Cluster Resource Manager."
+   pageTitle="資源管理員架構 | Microsoft Azure"
+   description="Service Fabric 叢集資源管理員的架構概觀。"
    services="service-fabric"
    documentationCenter=".net"
    authors="masnider"
@@ -16,32 +16,27 @@
    ms.date="08/19/2016"
    ms.author="masnider"/>
 
+# 叢集資源管理員架構概觀
+若要管理叢集中的資源，Service Fabric 叢集資源管理員必須具備幾個部分的資訊。它必須了解目前存在哪些服務，以及那些服務正在取用的資源目前 (預設) 的數量。同時必須了解叢集中節點的實際容量，以及可整體用於叢集中和特定節點中剩餘可用的資源數量。指定服務的資源耗用量可隨時間變更，以及服務實際上通常需要一個以上的資源。在許多不同的服務中，可能會有實際資源被測量並報告像是記憶體與磁碟耗用量等等的度量，以及 (實際上更常見的) 邏輯度量 - 例如 WorkQueueDepth 或 TotalRequests 等項目。邏輯和實際度量可能會跨許多不同類型的服務使用，或可能僅特定對幾項服務使用。
 
-# <a name="cluster-resource-manager-architecture-overview"></a>Cluster resource manager architecture overview
-In order to manage the resources in your cluster, the Service Fabric Cluster Resource Manager must have several pieces of information. It has to know which services currently exist and the current (or default) amount of resources that those services are consuming. It has to know the actual capacity of the nodes in the cluster, and thus the amount of resources available both in the cluster as a whole and remaining on a particular node. The resource consumption of a given service can change over time, as well as the fact that services, in reality, usually care about more than one resource. Across many different services there may be both real physical resources being measured and reported as metrics like memory and disk consumption, as well as (and actually more commonly) logical metrics - things like "WorkQueueDepth" or "TotalRequests". Both logical and physical metrics may be used across many different types of services or maybe specific to only a couple services.
+## 其他考量
+叢集的擁有者與操作者偶爾會與服務作者不同，或者，至少是帶著不同帽子的同一組人，例如，在開發您的服務時，您會了解一些與資源相關的必要事項，以及部署不同元件的理想方式，但是身為要在生產環境中為該服務處理即時網站事件的人員，您有其他要執行的工作且需要不同的工具。此外，叢集和服務本身都不是以靜態方式設定的︰叢集中的節點數目可以增加和減少、不同大小的節點可以進出，而且可以迅速建立及移除服務，以及變更它們想要的資源配置。升級或其他管理作業可以在整個叢集中運作，當然事情可能隨時會失敗。
 
-## <a name="other-considerations"></a>Other considerations
-The owners and operators of the cluster are occasionally different from the service authors, or at a minimum are the same people wearing different hats; for example when developing your service you know a few things about what it requires in terms of resources and how the different components should ideally be deployed, but as the person handling a live-site incident for that service in production you have a different job to do, and require different tools. In addition, neither the cluster nor the services themselves are a statically configured: the number of nodes in the cluster can grow and shrink, nodes of different sizes can come and go, and services can be created, removed, and change their desired resource allocations on the fly. Upgrades or other management operations can roll through the cluster, and of course things can fail at any time.
+## 叢集資源管理員元件和資料流程
+叢集資源管理員將必須知道和整體叢集有關的許多事項，以及獨立服務的需求和組成服務的無狀態執行個體或具狀態複本的需求。為達成此目的，我們擁有叢集資源管理員的代理程式，它們會在個別節點上執行以彙總本機資源耗用資訊，而集中式容錯叢集資源管理員服務會彙總關於服務和叢集的所有資訊，並依據其目前組態來反應。叢集資源管理員服務 (和所有其他系統服務) 的容錯是透過和我們用於您的服務時完全相同的機制來達成，也就是使用服務狀態的複寫來仲裁叢集中某些數目的複本 (通常為 7)。
 
-## <a name="cluster-resource-manager-components-and-data-flow"></a>Cluster resource manager components and data flow
-The Cluster Resource Manager will have to know many things about the overall cluster, as well as the requirements of individual services and the stateless instances or stateful replicas that make it up. To accomplish this, we have agents of the Cluster Resource Manager that run on individual nodes in order to aggregate local resource consumption information, and a centralized, fault-tolerant Cluster Resource Manager service that aggregates all of the information about the services and the cluster and reacts based on its current configuration. The fault tolerance for the Cluster Resource Manager service (and all other system services) is achieved via exactly the same mechanisms that we use for your services, namely replication of the service’s state to quorums of some number of replicas in the cluster (usually 7).
+![資源平衡器架構][Image1]
 
-![Resource Balancer Architecture][Image1]
+讓我們看一下以上這個圖表做為範例。在執行階段期間，有一大堆可能發生的變更︰例如，假設服務耗用的資源數量中有一些變更、有些服務失敗、有些節點會加入或離開叢集等變更。特定節點上的所有變更會加以彙總，並定期傳送到叢集資源管理員服務 (1，2)，它們會在其中再次彙總、分析及儲存。每隔幾秒鐘，服務就會查看所有變更，並判斷是否需要採取任何動作 (3)。例如，它可能會注意到節點已加入至叢集且是空的，並決定要將某些服務移至這些節點。它可能也會注意到特定節點是超載的，或者某些服務已失敗 (或刪除)，在其他節點上釋放資源。
 
-Let’s take a look at this diagram above as an example. During runtime there are a whole bunch of changes which could happen: For example, let’s say there are some changes in the amount of resources services consume, some service failures, some nodes join and leave the cluster, etc. All the changes on a specific node are aggregated and periodically sent to the Cluster Resource Manager service (1,2) where they are aggregated again, analyzed, and stored. Every few seconds that service looks at all of the changes, and determines if there are any actions necessary (3). For example, it could notice that nodes have been added to the cluster and are empty, and decide to move some services to those nodes. It could also notice that a particular node is overloaded, or that certain services have failed (or been deleted), freeing up resources on other nodes.
+讓我們看看以下圖表，並看看接下來會發生什麼情況。假設叢集資源管理員判斷需要變更。它會與其他系統服務 (尤其是容錯移轉管理員) 進行協調，以進行必要的變更。接著將變更要求傳送至適當的節點 (4)。在此案例中，我們假設資源管理員注意到節點 5 已超載，因此決定要將服務 B 從 N5 移至 N4。重新設定 (5) 結束時，叢集看起來像這樣︰
 
-Let’s take a look at the following diagram and see what happens next. Let’s say that the Cluster Resource Manager determines that changes are necessary. It coordinates with other system services (in particular the Failover Manager) to make the necessary changes. Then the change requests are sent to the appropriate nodes (4). In this case, we presume that the Resource Manager noticed that Node 5 was overloaded, and so decided to move service B from N5 to N4. At the end of the reconfiguration (5), the cluster looks like this:
+![資源平衡器架構][Image2]
 
-![Resource Balancer Architecture][Image2]
+## 後續步驟
+- 叢集資源管理員有許多描述叢集的選項。若要深入了解這些選項，請查看關於[描述 Service Fabric 叢集](service-fabric-cluster-resource-manager-cluster-description.md)的這篇文章
 
-## <a name="next-steps"></a>Next steps
-- The Cluster Resource Manager has a lot of options for describing the cluster. To find out more about them check out this article on [describing a Service Fabric cluster](service-fabric-cluster-resource-manager-cluster-description.md)
+[Image1]: ./media/service-fabric-cluster-resource-manager-architecture/Service-Fabric-Resource-Manager-Architecture-Activity-1.png
+[Image2]: ./media/service-fabric-cluster-resource-manager-architecture/Service-Fabric-Resource-Manager-Architecture-Activity-2.png
 
-[Image1]:./media/service-fabric-cluster-resource-manager-architecture/Service-Fabric-Resource-Manager-Architecture-Activity-1.png
-[Image2]:./media/service-fabric-cluster-resource-manager-architecture/Service-Fabric-Resource-Manager-Architecture-Activity-2.png
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

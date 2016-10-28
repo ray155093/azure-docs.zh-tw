@@ -1,45 +1,40 @@
-## <a name="connect-to-azure-sql-database-as-a-user"></a>Connect to Azure SQL Database as a user
+## 以使用者身分連接到 Azure SQL Database
 
-Use the following steps to connect to Azure SQL Database with SSMS as a user.
+使用下列步驟，以使用者身分連接到採用 SSMS 的 Azure SQL Database。
 
-1. Type "Microsoft SQL Server Management Studio" in the Windows search box, and then click the desktop app to start SSMS.
+1. 在 Windows 搜尋方塊中輸入 "Microsoft SQL Server Management Studio"，然後按一下桌面應用程式來啟動 SSMS。
 
-2. In the Connect to Server window, enter the following information:
+2. 在 [連接到伺服器] 視窗中，輸入下列資訊：
 
-- **Server type**: The default is database engine; do not change this value.
- - **Server name**: Enter the name of the server that hosts your SQL database in the followinbg format: *&lt;servername>*.**database.windows.net**
- - **Authentication type**: If you are just getting started, select SQL Authentication. If you have enabled Active Directory for your SQL Database logical server, you can select either Active Directory Password Authentication or Active Directory Integrated Authentication.
- - **User name**: If you selected either SQL Authentication or Active Directory Password Authentication, enter the name of a user with access to a database on the server.
- - **Password**: If you selected either SQL Authentication or Active Directory Password Authentication, enter the password for the specified user.
+- **伺服器類型**︰預設為資料庫引擎；請勿變更此值。
+ - **伺服器名稱**：以下列格式輸入裝載 SQL Database 的伺服器名稱：&lt;servername>.**database.windows.net**
+ - **驗證類型**︰如果您剛開始使用，請選取 [SQL 驗證]。如果您已對 SQL Database 邏輯伺服器啟用 Active Directory，您可以選取 [Active Directory 密碼驗證] 或 [Active Directory 整合式驗證]。
+ - **使用者名稱**︰如果您選取 [SQL 驗證] 或 [Active Directory 密碼驗證]，請輸入有權存取伺服器上資料庫的使用者名稱。
+ - **密碼**︰如果您選取 [SQL 驗證] 或 [Active Directory 密碼驗證]，請輸入指定使用者的密碼。
    
-       ![SQL Server Management Studio: Connect to SQL Database server](./media/sql-database-sql-server-management-studio-connect-user/connect-user-1.png)
+       ![SQL Server Management Studio：連接到 SQL Database 伺服器](./media/sql-database-sql-server-management-studio-connect-user/connect-user-1.png)
 
-3. Click **Options** to specify the database to which you want to connect.
+3. 按一下 [選項] 來指定您要連接的資料庫。
 
-      ![SQL Server Management Studio: Connect to SQL Database server](./media/sql-database-sql-server-management-studio-connect-user/connect-user-2.png)
+      ![SQL Server Management Studio：連接到 SQL Database 伺服器](./media/sql-database-sql-server-management-studio-connect-user/connect-user-2.png)
  
-4. In the **Connect to Database**, select the database to which you wish to connect.
+4. 在 [連接到資料庫] 中，選取您要連接的資料庫。
 
-     ![SQL Server Management Studio: Connect to SQL Database server](./media/sql-database-sql-server-management-studio-connect-user/connect-user-3.png)
+     ![SQL Server Management Studio：連接到 SQL Database 伺服器](./media/sql-database-sql-server-management-studio-connect-user/connect-user-3.png)
 
-5. Click **Connect**.
+5. 按一下 [連接]。
  
-6. If your client's IP address does not have access to the SQL Database logical server, you will be prompted to sign in to an Azure account and create a server-level firewall rule. If you are an Azure subscription administrator, Click **Sign in** to create a server-level firewall rule. If not, have an administrator create either a server-level firewall rule or a database-level firewall rule in the database to which you are trying to connect.
+6. 如果您的用戶端 IP 位址沒有 SQL Database 邏輯伺服器的存取權，系統會提示您登入 Azure 帳戶並建立伺服器層級的防火牆規則。如果您是 Azure 訂用帳戶管理員，請按一下 [登入] 以建立伺服器層級的防火牆規則。如果不是，請管理員在您嘗試連接的資料庫中建立伺服器層級的防火牆規則或資料庫層級的防火牆規則。
  
-      ![SQL Server Management Studio: Connect to SQL Database server](./media/sql-database-sql-server-management-studio-connect-user/connect-user-4.png)
+      ![SQL Server Management Studio：連接到 SQL Database 伺服器](./media/sql-database-sql-server-management-studio-connect-user/connect-user-4.png)
  
-7. If your credentials grant you access to the specified database, Object Explorer opens and you can now perform administrative tasks or query data, depending upon the user permissions.
+7. 如果您的認證授與您存取指定的資料庫，[物件總管] 會隨即開啟，而您現在可以執行管理工作或查詢資料 (視使用者權限而定)。
   
-      ![SQL Server Management Studio: Connect to SQL Database server](./media/sql-database-sql-server-management-studio-connect-user/connect-user-5.png)
+      ![SQL Server Management Studio：連接到 SQL Database 伺服器](./media/sql-database-sql-server-management-studio-connect-user/connect-user-5.png)
       
  
-## <a name="troubleshoot-connection-failures"></a>Troubleshoot connection failures
+## 針對連接失敗進行疑難排解
 
-The most common reason for connection failures are mistakes in the server name (remember, <*servername*> is the name of the logical server, not the database), the user name, or the password, as well as the server not allowing connections for security reasons. 
+最常見的連接失敗原因是伺服器名稱 (請記得，<servername> 是邏輯伺服器而非資料庫的名稱)、使用者名稱或密碼錯誤，以及基於安全性理由不允許連接伺服器。
 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0629_2016-->

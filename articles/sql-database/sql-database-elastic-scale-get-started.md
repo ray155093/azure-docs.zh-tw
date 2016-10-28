@@ -1,93 +1,92 @@
 <properties 
-    pageTitle="Get started with elastic database tools" 
-    description="Basic explanation of elastic database tools feature of Azure SQL Database, including easy to run sample app." 
-    services="sql-database" 
-    documentationCenter="" 
-    manager="jhubbard" 
-    authors="ddove" 
-    editor="CarlRabeler"/>
+	pageTitle="開始使用彈性資料庫工具" 
+	description="Azure SQL Database 彈性資料庫工具功能的基本解說，包括易於執行的範例應用程式。" 
+	services="sql-database" 
+	documentationCenter="" 
+	manager="jhubbard" 
+	authors="ddove" 
+	editor="CarlRabeler"/>
 
 <tags 
-    ms.service="sql-database" 
-    ms.workload="sql-database" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="05/27/2016" 
-    ms.author="ddove"/>
+	ms.service="sql-database" 
+	ms.workload="sql-database" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="05/27/2016" 
+	ms.author="ddove"/>
 
+# 開始使用彈性資料庫工具
 
-# <a name="get-started-with-elastic-database-tools"></a>Get started with Elastic Database tools
+本文件將執行範例應用程式介紹開發人員使用經驗。範例會建立簡易的分區化應用程式，並探討彈性資料庫工具的主要功能。此範例會示範[彈性資料庫用戶端程式庫](sql-database-elastic-database-client-library.md)的功能
 
-This document introduces you to the developer experience by running the sample app. The sample creates a simple sharded application and explores key capabilities of elastic database tools. The sample demonstrates functions of the [elastic database client library](sql-database-elastic-database-client-library.md)
+若要安裝程式庫，請移至 [Microsoft.Azure.SqlDatabase.ElasticScale.Client](https://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/)。請注意，安裝的程式庫隨附如下所述的範例應用程式。
 
-To install the library, go to [Microsoft.Azure.SqlDatabase.ElasticScale.Client](https://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/). Note that the library is installed with the sample app described below.
+## 必要條件
 
-## <a name="prerequisites"></a>Prerequisites
+1. 需要具有 C# 的 Visual Studio 2012 或更新版本。請在 [Visual Studio 下載](http://www.visualstudio.com/downloads/download-visual-studio-vs.aspx)上下載免費版本。
+2. Nuget 2.7 或更新版本。若要取得最新版本，請參閱[安裝 NuGet](http://docs.nuget.org/docs/start-here/installing-nuget)
 
-1. Visual Studio 2012 or higher with C# is required. Download a free version at [Visual Studio Downloads](http://www.visualstudio.com/downloads/download-visual-studio-vs.aspx).
-2. Nuget 2.7 or higher. To get the latest version, see [Installing NuGet](http://docs.nuget.org/docs/start-here/installing-nuget)
+## 下載及執行範例應用程式
 
-## <a name="download-and-run-the-sample-app"></a>Download and run the sample app
+[**Azure SQL 與彈性資料庫 - 開始使用**] 範例應用程式會解說使用 Azure SQL 彈性資料庫工具開發分區化應用程式時最重要的開發經驗層面。範例應用程式著重在[分區對應管理](sql-database-elastic-scale-shard-map-management.md)、[資料相依路由](sql-database-elastic-scale-data-dependent-routing.md)和[多分區查詢](sql-database-elastic-scale-multishard-querying.md)的主要使用案例。若要下載及執行範例，請遵循下列步驟：
 
-The **Elastic Database with Azure SQL— Getting Started** sample application illustrates the most important aspects of the development experience for sharded applications using Azure SQL elastic database tools. It focuses on key use cases for [shard map management](sql-database-elastic-scale-shard-map-management.md), [data dependent routing](sql-database-elastic-scale-data-dependent-routing.md) and [multi-shard querying](sql-database-elastic-scale-multishard-querying.md). To download and run the sample, follow these steps: 
-
-1. Open Visual Studio and select **File -> New -> Project**.
-2. In the dialog, click **Online**.
+1. 開啟 Visual Studio，然後選取 [檔案] -> [新增] -> [專案]。
+2. 在對話方塊中，按一下 [線上]。
 
     ![New Project>Online][2]
-3. Then click **Visual C#** under **Samples**.
+3. 然後，按一下 [範例] 下的 [Visual C#]。
 
     ![Click Visual C#][3]
-4. In the search box, type **elastic db** to search for the sample.The title **Elastic DB Tools for Azure SQL - Getting Started** appears.
+4. 在搜尋方塊中，輸入 **elastic db** 尋找範例。此時會出現標題 [Azure SQL 的彈性資料庫工具 - 開始使用]。
 
     ![Search Box][1]
  
-5. Select the sample, choose a name and a location for the new project and press **OK** to create the project.
-6. Open the **app.config** file in the solution for the sample project and follow the instructions in the file to add your Azure SQL database server name and your login information (user name and password).
-7. Build and run the application. When asked, please allow Visual Studio to restore the NuGet packages of the solution. This will download the latest version of the elastic database client library from NuGet.
-8. Play with the different options to learn more about the client library capabilities. Note the steps the application takes in the console output and feel free to explore the code behind the scenes.
+5. 選取範例、選擇新專案的名稱和位置，然後按 [確定] 以建立專案。
+6. 在範例專案的解決方案中開啟 **app.config** 檔案，然後依照檔案中的指示新增您的 Azure SQL 資料庫伺服器名稱和您的登入資訊 (使用者名稱和密碼)。
+7. 建置並執行應用程式。當系統要求時，請允許 Visual Studio 還原解決方案的 NuGet 套件。這將會從 NuGet 下載最新版的彈性資料庫用戶端程式庫。
+8. 以不同的選項執行，以深入了解用戶端程式庫功能。請記下應用程式在主控台輸出中採用的步驟，並盡情探索其後的程式碼。
 
     ![progress][4]
 
-Congratulations – you have successfully built and run your first sharded application using elastic database tools on Azure SQL Database. Take a quick look at the shards that the sample created by connecting with Visual Studio or SQL Server Management Studio to your Azure DB Server. You will notice new sample shard databases and a shard map manager database that the sample has created.
+恭喜您 – 您已在 Azure SQL Database 上成功建置並執行第一個使用彈性資料庫工具的分區化應用程式。請使用 Visual Studio 或 SQL Server Management Studio 連接到您的 Azure DB Server，以快速瀏覽範例所建立的分區。您會看見範例所建立的新範例分區資料庫和分區對應管理員資料庫。
 
-> [AZURE.IMPORTANT] It is recommended that you always use the latest version of Management Studio to remain synchronized with updates to Microsoft Azure and SQL Database. [Update SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx).
-
-
-### <a name="key-pieces-of-the-code-sample"></a>Key pieces of the code sample
-
-1. **Managing Shards and Shard Maps**: The code illustrates how to work with shards, ranges, and mappings in file **ShardMapManagerSample.cs**. You can find more information about this topic here: [Shard Map Management](http://go.microsoft.com/?linkid=9862595).  
-2. **Data Dependent Routing**: Routing of transactions to the right shard is shown in **DataDependentRoutingSample.cs**. For more details, see [Data Dependent Routing](http://go.microsoft.com/?linkid=9862596). 
-3. **Querying over Multiple Shards**: Querying across shards is illustrated in the file **MultiShardQuerySample.cs**. For more details, see [Multi-Shard Querying](http://go.microsoft.com/?linkid=9862597).
-4. **Adding empty shards**: The iterative adding of new empty shards is performed by the code in file **AddNewShardsSample.cs**. Details of this topic are covered here: [Shard Map Management](http://go.microsoft.com/?linkid=9862595).
-
-### <a name="other-elastic-scale-operations"></a>Other elastic scale operations
-
-1. **Splitting an existing shard**: The capability to split shards is provided through the **split-merge tool**. You can find more information on this tool here: [split-merge tool overview](sql-database-elastic-scale-overview-split-and-merge.md).
-2. **Merging existing shards**: Shard merges are also performed using the **split-merge tool**. For more information, refer to: [split-merge tool overview](sql-database-elastic-scale-overview-split-and-merge.md).   
+> [AZURE.IMPORTANT] 建議您一律使用最新版本的 Management Studio 保持與 Microsoft Azure 及 SQL Database 更新同步。[更新 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)。
 
 
-## <a name="cost"></a>Cost
+### 程式碼範例的主要部分
 
-The elastic database tools are free of charge. Elastic database tools does not impose additional charges on top of the cost for your Azure usage. 
+1. **管理分區和分區對應**：此程式碼會解說如何使用 **ShardMapManagerSample.cs** 檔案中的分區、範圍和對應。您可以在下列連結中找到更多關於此主題的資訊：[分區對應管理](http://go.microsoft.com/?linkid=9862595)。
+2. **資料相依路由**：**DataDependentRoutingSample.cs** 中說明如何將交易路由至正確的分區。如需詳細資訊，請參閱[資料相依路由](http://go.microsoft.com/?linkid=9862596)。
+3. **查詢多個分區**：**MultiShardQuerySample.cs** 檔案中說明如何在各個分區間進行查詢。如需詳細資訊，請參閱[多分區查詢](http://go.microsoft.com/?linkid=9862597)。
+4. **新增空的分區**：反覆新增空分區的作業，由 **AddNewShardsSample.cs** 檔案中的程式碼所執行。此主題的詳細資料請見：[分區對應管理](http://go.microsoft.com/?linkid=9862595)。
 
-For example, the sample application creates new databases. The cost depends on the Azure SQL DB database edition you choose and the Azure usage of your application.
+### 其他 Elastic Scale 作業
 
-For pricing information see [SQL Database Pricing Details](https://azure.microsoft.com/pricing/details/sql-database/).
+1. **分割現有的分區**：分割分區的功能是透過 [分割合併工具] 來提供。您可以在這裡找到有關此工具的詳細資訊：[分割合併工具概觀](sql-database-elastic-scale-overview-split-and-merge.md)。
+2. **合併現有的分區**：分區合併也可使用 [分割合併工具] 來執行。如需詳細資訊，請參閱：[分割合併工具概觀](sql-database-elastic-scale-overview-split-and-merge.md)。
 
-## <a name="next-steps"></a>Next steps
-For more information about the elastic database tools, see:
 
-* [Elastic database tools documentation map](https://azure.microsoft.com/documentation/learning-paths/sql-database-elastic-scale/) 
--    Code Samples: 
-    -    [Elastic DB with Azure SQL - Getting Started](http://code.msdn.microsoft.com/Elastic-Scale-with-Azure-a80d8dc6?SRC=VSIDE)
-    -    [Elastic DB with Azure SQL - Integrating with Entity Framework](http://code.msdn.microsoft.com/Elastic-Scale-with-Azure-bae904ba?SRC=VSIDE)
-    -    [Shard Elasticity on Script Center](https://gallery.technet.microsoft.com/scriptcenter/Elastic-Scale-Shard-c9530cbe)
--    Blog: [Elastic Scale Announcement](https://azure.microsoft.com/blog/2014/10/02/introducing-elastic-scale-preview-for-azure-sql-database/)
--    Channel 9: [Elastic Scale Overview Video](http://channel9.msdn.com/Shows/Data-Exposed/Azure-SQL-Database-Elastic-Scale)
--    Discussion Forum: [Azure SQL Database forum](http://social.msdn.microsoft.com/forums/azure/home?forum=ssdsgetstarted)
--    To measure performance: [Performance counters for shard map manager](sql-database-elastic-database-client-library.md)
+## 成本
+
+彈性資料庫工具是免費的。彈性資料庫工具不會在您的 Azure 使用成本以外收取其他費用。
+
+例如，範例應用程式會建立新資料庫。其費用將取決於您所選擇的 Azure SQL DB 資料庫版本，以及您的應用程式的 Azure 使用量。
+
+如需價格資訊，請參閱 [SQL Database 價格詳細資料](https://azure.microsoft.com/pricing/details/sql-database/)。
+
+## 後續步驟
+如需有關彈性資料庫工具的詳細資訊，請參閱：
+
+* [彈性資料庫工具文件地圖](https://azure.microsoft.com/documentation/learning-paths/sql-database-elastic-scale/)
+-    程式碼範例：
+    -    [彈性資料庫與 Azure SQL - 開始使用](http://code.msdn.microsoft.com/Elastic-Scale-with-Azure-a80d8dc6?SRC=VSIDE)
+    -    [彈性資料庫與 Azure SQL - 與 Entity Framework 整合](http://code.msdn.microsoft.com/Elastic-Scale-with-Azure-bae904ba?SRC=VSIDE)
+    -    [指令碼中心的分區彈性](https://gallery.technet.microsoft.com/scriptcenter/Elastic-Scale-Shard-c9530cbe)
+-    部落格：[Elastic Scale 公告](https://azure.microsoft.com/blog/2014/10/02/introducing-elastic-scale-preview-for-azure-sql-database/)
+-    第 9 頻道：[Elastic Scale 概觀影片](http://channel9.msdn.com/Shows/Data-Exposed/Azure-SQL-Database-Elastic-Scale)
+-    論壇：[Azure SQL Database 論壇](http://social.msdn.microsoft.com/forums/azure/home?forum=ssdsgetstarted)
+-    若要測量效能︰[分區對應管理員的效能計數器](sql-database-elastic-database-client-library.md)
 
 
 <!--Anchors-->
@@ -103,8 +102,4 @@ For more information about the elastic database tools, see:
 [4]: ./media/sql-database-elastic-scale-get-started/output2.png
  
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

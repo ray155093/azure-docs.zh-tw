@@ -1,6 +1,6 @@
 <properties
-    pageTitle="Add the Bing Search connector logic apps | Microsoft Azure"
-    description="Overview of the Bing Search connector with REST API parameters"
+    pageTitle="新增 Bing 搜尋連接器邏輯應用程式 | Microsoft Azure"
+    description="搭配 REST API 參數來使用 Bing 搜尋連接器的概觀"
     services=""
     suite=""
     documentationCenter="" 
@@ -18,262 +18,254 @@
    ms.date="08/18/2016"
    ms.author="mandia"/>
 
+# 開始使用 Bing 搜尋連接器 
+連線到 Bing 搜尋來搜尋新聞、搜尋影片等等。您可以利用 Bing 搜尋來：
 
-# <a name="get-started-with-the-bing-search-connector"></a>Get started with the Bing Search connector 
-Connect to Bing Search to search news, search videos, and more. With Bing Search, you can: 
+- 根據您透過搜尋所取得的資料，來建置您的商務流程。
+- 使用動作來搜尋圖像、搜尋新聞等等。這些動作會收到回應，然後輸出能讓其他動作使用的資料。舉例來說，您可以搜尋某支影片，然後利用 Twitter 把該影片張貼在某個 Twitter 摘要上。
 
-- Build your business flow based on the data you get from your search. 
-- Use actions to search images, search the news, and more. These actions get a response, and then make the output available for other actions. For example, you can search for a video, and then use Twitter to post that video to a Twitter feed.
+如要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
-To add an operation in logic apps, see [Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md).
+## 觸發程序及動作
+Bing 搜尋包含下列動作，但不包含觸發程序。
 
-## <a name="triggers-and-actions"></a>Triggers and actions
-Bing Search includes the following actions. There are no triggers. 
-
-Triggers | Actions
+觸發程序 | 動作
 --- | ---
-None | <ul><li>Search web</li><li>Search videos</li><li>Search images</li><li>Search news</li><li>Search related</li><li>Search spellings</li><li>Search all</li></ul>
+None | <ul><li>搜尋網站</li><li>搜尋影片</li><li>搜尋圖像</li><li>搜尋新聞</li><li>搜尋相關結果</li><li>搜尋拼字</li><li>搜尋所有結果</li></ul>
 
-All connectors support data in JSON and XML formats.
+所有連接器都支援 JSON 和 XML 格式的資料。
 
 
-## <a name="swagger-rest-api-reference"></a>Swagger REST API reference
-Applies to version: 1.0.
+## Swagger REST API 參考
+適用的版本：1.0。
 
-### <a name="search-web"></a>Search web 
-Retrieves web sites from a Bing search.  
-```GET: /Web```
+### 搜尋網站 
+擷取某次 Bing 搜尋結果中的網站。```GET: /Web```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|query|string|yes|query|none |Text to search for (example: 'xbox')|
-|maxResult|integer|no|query|none |Maximum number of results to return|
-|startOffset|integer|no|query| none|Number of results to skip|
-|adultContent|string|no|query|none |Adult content filter. Valid values: <ul><li>Off</li><li>Moderate</li><li>Strict</li></ul>|
-|market|string|no|query|none |Market or region to narrow the search (example: en-US)|
-|longitude|number|no|query| none|Longitude (east/west coordinate) to narrow the search (example: 47.603450)|
-|latitude|number|no|query| none|Latitude (north/south coordinate) to narrow the search (example: -122.329696)|
-|webFileType|string|no|query|none |File type to narrow the search (example: 'DOC')|
+|query|字串|yes|query|無 |要搜尋的文字 (例如「xbox」)|
+|maxResult|integer|no|query|無 |要傳回的結果數目上限|
+|startOffset|integer|no|query| 無|要略過的結果數目|
+|adultContent|string|no|query|無 |成人內容篩選器。有效值：<ul><li>Off</li><li>Moderate</li><li>Strict</li></ul>|
+|market|string|no|query|無 |用來縮小搜尋範圍的市場或區域 (例如：zh-TW)|
+|經度|number|no|query| 無|用來縮小搜尋範圍的經度 (東/西向座標) (例如：47.603450)|
+|緯度|number|no|query| 無|用來縮小搜尋範圍的緯度 (南/北向座標) (例如：-122.329696)|
+|webFileType|string|no|query|無 |用來縮小搜尋範圍的檔案類型 (例如：「DOC」)|
 
-#### <a name="response"></a>Response
-|Name|Description|
+#### Response
+|名稱|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-### <a name="search-videos"></a>Search videos 
-Retrieves videos from a Bing search.  
-```GET: /Video```
+### 搜尋影片 
+擷取某次 Bing 搜尋結果中的影片。```GET: /Video```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|query|string|yes|query|none |Text to search for (example: 'xbox')|
-|maxResult|integer|no|query| none|Maximum number of results to return|
-|startOffset|integer|no|query|none |Number of results to skip|
-|adultContent|string|no|query|none |Adult content filter. Valid values: <ul><li>Off</li><li>Moderate</li><li>Strict</li></ul>|
-|market|string|no|query|none |Market or region to narrow the search (example: en-US)|
-|longitude|number|no|query|none |Longitude (east/west coordinate) to narrow the search (example: 47.603450)|
-|latitude|number|no|query|none |Latitude (north/south coordinate) to narrow the search (example: -122.329696)|
-|videoFilters|string|no|query|none |Filter search based on size, aspect, color, style, face or any combination thereof.  Valid values: <ul><li>Duration:Short</li><li>Duration:Medium</li><li>Duration:Long</li><li>Aspect:Standard</li><li>Aspect:Widescreen</li><li>Resolution:Low</li><li>Resolution:Medium</li><li>Resolution:High</li></ul> <br/><br/>For example: 'Duration:Short+Resolution:High'|
-|videoSortBy|string|no|query|none |Sort order for results. Valid values: <ul><li>Date</li><li>Relevance</li></ul> <p>Date sort order implies descending.</p>|
+|query|字串|yes|query|無 |要搜尋的文字 (例如「xbox」)|
+|maxResult|integer|no|query| 無|要傳回的結果數目上限|
+|startOffset|integer|no|query|無 |要略過的結果數目|
+|adultContent|string|no|query|無 |成人內容篩選器。有效值：<ul><li>Off</li><li>Moderate</li><li>Strict</li></ul>|
+|market|string|no|query|無 |用來縮小搜尋範圍的市場或區域 (例如：zh-TW)|
+|經度|number|no|query|無 |用來縮小搜尋範圍的經度 (東/西向座標) (例如：47.603450)|
+|緯度|number|no|query|無 |用來縮小搜尋範圍的緯度 (南/北向座標) (例如：-122.329696)|
+|videoFilters|string|no|query|無 |根據影片的大小、外觀比例、色彩、樣式、方向，或上述條件的任何組合來篩選搜尋。有效值：<ul><li>Duration:Short</li><li>Duration:Medium</li><li>Duration:Long</li><li>Aspect:Standard</li><li>Aspect:Widescreen</li><li>Resolution:Low</li><li>Resolution:Medium</li><li>Resolution:High</li></ul> <br/><br/>例如：'Duration:Short+Resolution:High'|
+|videoSortBy|string|no|query|無 |搜尋結果的排序次序。有效值：<ul><li>Date</li><li>Relevance</li></ul> <p>日期的排序次序必須為遞減。</p>|
 
-#### <a name="response"></a>Response
-|Name|Description|
+#### Response
+|名稱|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-### <a name="search-images"></a>Search images    
-Retrieves images from a Bing search.  
-```GET: /Image```
+### 搜尋圖像    
+擷取某次 Bing 搜尋結果中的圖像。```GET: /Image```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|query|string|yes|query|none |Text to search for (example: 'xbox')|
-|maxResult|integer|no|query|none |Maximum number of results to return|
-|startOffset|integer|no|query|none |Number of results to skip|
-|adultContent|string|no|query|none |Adult content filter. Valid values: <ul><li>Off</li><li>Moderate</li><li>Strict</li></ul>|
-|market|string|no|query|none |Market or region to narrow the search (example: en-US)|
-|longitude|number|no|query| none|Longitude (east/west coordinate) to narrow the search (example: 47.603450)|
-|latitude|number|no|query|none |Latitude (north/south coordinate) to narrow the search (example: -122.329696)|
-|imageFilters|string|no|query|none |Filter search based on size, aspect, color, style, face or any combination thereof. Valid values: <ul><li>Size:Small</li><li>Size:Medium</li><li>Size:Large</li><li>Size:Width:[Width]</li><li>Size:Height:[Height]</li><li>Aspect:Square</li><li>Aspect:Wide</li><li>Aspect:Tall</li><li>Color:Color</li><li>Color:Monochrome</li><li>Style:Photo</li><li>Style:Graphics</li><li>Face:Face</li><li>Face:Portrait</li><li>Face:Other</li></ul><br/><br/>For example: 'Size:Small+Aspect:Square'|
+|query|字串|yes|query|無 |要搜尋的文字 (例如「xbox」)|
+|maxResult|integer|no|query|無 |要傳回的結果數目上限|
+|startOffset|integer|no|query|無 |要略過的結果數目|
+|adultContent|string|no|query|無 |成人內容篩選器。有效值：<ul><li>Off</li><li>Moderate</li><li>Strict</li></ul>|
+|market|string|no|query|無 |用來縮小搜尋範圍的市場或區域 (例如：zh-TW)|
+|經度|number|no|query| 無|用來縮小搜尋範圍的經度 (東/西向座標) (例如：47.603450)|
+|緯度|number|no|query|無 |用來縮小搜尋範圍的緯度 (南/北向座標) (例如：-122.329696)|
+|imageFilters|string|no|query|無 |根據影片的大小、外觀比例、色彩、樣式、方向，或上述條件的任何組合來篩選搜尋。有效值：<ul><li>Size:Small</li><li>Size:Medium</li><li>Size:Large</li><li>Size:Width:[寬度]</li><li>Size:Height:[高度]</li><li>Aspect:Square</li><li>Aspect:Wide</li><li>Aspect:Tall</li><li>Color:Color</li><li>Color:Monochrome</li><li>Style:Photo</li><li>Style:Graphics</li><li>Face:Face</li><li>Face:Portrait</li><li>Face:Other</li></ul><br/><br/>例如：'Size:Small+Aspect:Square'|
 
-#### <a name="response"></a>Response
-|Name|Description|
+#### Response
+|名稱|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-### <a name="search-news"></a>Search news    
-Retrieves news results from a Bing search.  
-```GET: /News```
+### 搜尋新聞    
+擷取某次 Bing 搜尋結果中的新聞。```GET: /News```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|query|string|yes|query|none |Text to search for (example: 'xbox')|
-|maxResult|integer|no|query|none |Maximum number of results to return|
-|startOffset|integer|no|query| none|Number of results to skip|
-|adultContent|string|no|query|none |Adult content filter. Valid values: <ul><li>Off</li><li>Moderate</li><li>Strict</li></ul>|
-|market|string|no|query|none |Market or region to narrow the search (example: en-US)|
-|longitude|number|no|query|none |Longitude (east/west coordinate) to narrow the search (example: 47.603450)|
-|latitude|number|no|query|none |Latitude (north/south coordinate) to narrow the search (example: -122.329696)|
-|newsSortBy|string|no|query| none|Sort order for results. Valid values: <ul><li>Date</li><li>Relevance</li></ul> <p>Date sort order implies descending.</p>|
-|newsCategory|string|no|query| |Category of news to narrow the search (example: 'rt_Business')|
-|newsLocationOverride|string|no|query|none |Override for Bing location detection. This parameter is only applicable in en-US market. The format for input is US./<state /> (example: 'US.WA')|
+|query|字串|yes|query|無 |要搜尋的文字 (例如「xbox」)|
+|maxResult|integer|no|query|無 |要傳回的結果數目上限|
+|startOffset|integer|no|query| 無|要略過的結果數目|
+|adultContent|string|no|query|無 |成人內容篩選器。有效值：<ul><li>Off</li><li>Moderate</li><li>Strict</li></ul>|
+|market|string|no|query|無 |用來縮小搜尋範圍的市場或區域 (例如：zh-TW)|
+|經度|number|no|query|無 |用來縮小搜尋範圍的經度 (東/西向座標) (例如：47.603450)|
+|緯度|number|no|query|無 |用來縮小搜尋範圍的緯度 (南/北向座標) (例如：-122.329696)|
+|newsSortBy|string|no|query| 無|搜尋結果的排序次序。有效值：<ul><li>Date</li><li>Relevance</li></ul> <p>日期的排序次序必須為遞減。</p>|
+|newsCategory|string|no|query| |用來縮小搜尋範圍的新聞類別 (例如：「rt\_Business」)|
+|newsLocationOverride|string|no|query|無 |覆寫 Bing 位置偵測的結果。此參數僅適用於 zh-TW 市場。輸入的格式為 US./<state /> (例如：'US.WA')|
 
-#### <a name="response"></a>Response
-|Name|Description|
+#### Response
+|Name|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-### <a name="search-spellings"></a>Search spellings    
-Retrieves spelling suggestions.  
-```GET: /SpellingSuggestions```
+### 搜尋拼字    
+擷取拼字建議。```GET: /SpellingSuggestions```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|query|string|yes|query| none|Text to search for (example: 'xbox')|
-|maxResult|integer|no|query|none |Maximum number of results to return|
-|startOffset|integer|no|query| none|Number of results to skip|
-|adultContent|string|no|query|none |Adult content filter. Valid values: <ul><li>Off</li><li>Moderate</li><li>Strict</li></ul>|
-|market|string|no|query| none|Market or region to narrow the search (example: en-US)|
-|longitude|number|no|query|none |Longitude (east/west coordinate) to narrow the search (example: 47.603450)|
-|latitude|number|no|query|none |Latitude (north/south coordinate) to narrow the search (example: -122.329696)|
+|query|字串|yes|query| 無|要搜尋的文字 (例如「xbox」)|
+|maxResult|integer|no|query|無 |要傳回的結果數目上限|
+|startOffset|integer|no|query| 無|要略過的結果數目|
+|adultContent|string|no|query|無 |成人內容篩選器。有效值：<ul><li>Off</li><li>Moderate</li><li>Strict</li></ul>|
+|market|string|no|query| 無|用來縮小搜尋範圍的市場或區域 (例如：zh-TW)|
+|經度|number|no|query|無 |用來縮小搜尋範圍的經度 (東/西向座標) (例如：47.603450)|
+|緯度|number|no|query|無 |用來縮小搜尋範圍的緯度 (南/北向座標) (例如：-122.329696)|
 
-#### <a name="response"></a>Response
-|Name|Description|
+#### Response
+|Name|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-### <a name="search-related"></a>Search related    
-Retrieves related search results from a Bing search.  
-```GET: /RelatedSearch```
+### 搜尋相關結果    
+擷取某次 Bing 搜尋結果中的相關搜尋結果。```GET: /RelatedSearch```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|query|string|yes|query|none |Text to search for (example: 'xbox')|
-|maxResult|integer|no|query|none |Maximum number of results to return|
-|startOffset|integer|no|query| none|Number of results to skip|
-|adultContent|string|no|query|none |Adult content filter. Valid values: <ul><li>Off</li><li>Moderate</li><li>Strict</li></ul>|
-|market|string|no|query|none |Market or region to narrow the search (example: en-US)|
-|longitude|number|no|query|none |Longitude (east/west coordinate) to narrow the search (example: 47.603450)|
-|latitude|number|no|query| none|Latitude (north/south coordinate) to narrow the search (example: -122.329696)|
+|query|字串|yes|query|無 |要搜尋的文字 (例如「xbox」)|
+|maxResult|integer|no|query|無 |要傳回的結果數目上限|
+|startOffset|integer|no|query| 無|要略過的結果數目|
+|adultContent|string|no|query|無 |成人內容篩選器。有效值：<ul><li>Off</li><li>Moderate</li><li>Strict</li></ul>|
+|market|string|no|query|無 |用來縮小搜尋範圍的市場或區域 (例如：zh-TW)|
+|經度|number|no|query|無 |用來縮小搜尋範圍的經度 (東/西向座標) (例如：47.603450)|
+|緯度|number|no|query| 無|用來縮小搜尋範圍的緯度 (南/北向座標) (例如：-122.329696)|
 
-#### <a name="response"></a>Response
-|Name|Description|
+#### Response
+|名稱|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-### <a name="search-all"></a>Search all    
-Retrieves all web sites, videos, images, etc. from a Bing search.  
-```GET: /CompositeSearch```
+### 搜尋所有項目    
+擷取某次 Bing 搜尋結果中的所有網站、視訊、圖像等等。```GET: /CompositeSearch```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|query|string|yes|query|none |Text to search for (example: 'xbox')|
-|maxResult|integer|no|query|none |Maximum number of results to return|
-|startOffset|integer|no|query|none |Number of results to skip|
-|adultContent|string|no|query|none |Adult content filter. Valid values: <ul><li>Off</li><li>Moderate</li><li>Strict</li></ul>|
-|market|string|no|query|none |Market or region to narrow the search (example: en-US)|
-|longitude|number|no|query|none |Longitude (east/west coordinate) to narrow the search (example: 47.603450)|
-|latitude|number|no|query|none |Latitude (north/south coordinate) to narrow the search (example: -122.329696)|
-|webFileType|string|no|query|none |File type to narrow the search (example: 'DOC')|
-|videoFilters|string|no|query|none |Filter search based on size, aspect, color, style, face or any combination thereof.  Valid values: <ul><li>Duration:Short</li><li>Duration:Medium</li><li>Duration:Long</li><li>Aspect:Standard</li><li>Aspect:Widescreen</li><li>Resolution:Low</li><li>Resolution:Medium</li><li>Resolution:High</li></ul> <br/><br/>For example: 'Duration:Short+Resolution:High'|
-|videoSortBy|string|no|query|none |Sort order for results. Valid values: <ul><li>Date</li><li>Relevance</li></ul> <p>Date sort order implies descending.</p>|
-|imageFilters|string|no|query|none |Filter search based on size, aspect, color, style, face or any combination thereof. Valid values: <ul><li>Size:Small</li><li>Size:Medium</li><li>Size:Large</li><li>Size:Width:[Width]</li><li>Size:Height:[Height]</li><li>Aspect:Square</li><li>Aspect:Wide</li><li>Aspect:Tall</li><li>Color:Color</li><li>Color:Monochrome</li><li>Style:Photo</li><li>Style:Graphics</li><li>Face:Face</li><li>Face:Portrait</li><li>Face:Other</li></ul><br/><br/>For example: 'Size:Small+Aspect:Square'|
-|newsSortBy|string|no|query|none |Sort order for results. Valid values: <ul><li>Date</li><li>Relevance</li></ul> <p>Date sort order implies descending.</p>|
-|newsCategory|string|no|query|none |Category of news to narrow the search (example: 'rt_Business')|
-|newsLocationOverride|string|no|query|none |Override for Bing location detection. This parameter is only applicable in en-US market. The format for input is US./<state /> (example: 'US.WA')|
+|query|字串|yes|query|無 |要搜尋的文字 (例如「xbox」)|
+|maxResult|integer|no|query|無 |要傳回的結果數目上限|
+|startOffset|integer|no|query|無 |要略過的結果數目|
+|adultContent|string|no|query|無 |成人內容篩選器。有效值：<ul><li>Off</li><li>Moderate</li><li>Strict</li></ul>|
+|market|string|no|query|無 |用來縮小搜尋範圍的市場或區域 (例如：zh-TW)|
+|經度|number|no|query|無 |用來縮小搜尋範圍的經度 (東/西向座標) (例如：47.603450)|
+|緯度|number|no|query|無 |用來縮小搜尋範圍的緯度 (南/北向座標) (例如：-122.329696)|
+|webFileType|string|no|query|無 |用來縮小搜尋範圍的檔案類型 (例如：「DOC」)|
+|videoFilters|string|no|query|無 |根據影片的大小、外觀比例、色彩、樣式、方向，或上述條件的任何組合來篩選搜尋。有效值：<ul><li>Duration:Short</li><li>Duration:Medium</li><li>Duration:Long</li><li>Aspect:Standard</li><li>Aspect:Widescreen</li><li>Resolution:Low</li><li>Resolution:Medium</li><li>Resolution:High</li></ul> <br/><br/>例如：'Duration:Short+Resolution:High'|
+|videoSortBy|string|no|query|無 |搜尋結果的排序次序。有效值：<ul><li>Date</li><li>Relevance</li></ul> <p>日期的排序次序必須為遞減。</p>|
+|imageFilters|string|no|query|無 |根據影片的大小、外觀比例、色彩、樣式、方向，或上述條件的任何組合來篩選搜尋。有效值：<ul><li>Size:Small</li><li>Size:Medium</li><li>Size:Large</li><li>Size:Width:[寬度]</li><li>Size:Height:[高度]</li><li>Aspect:Square</li><li>Aspect:Wide</li><li>Aspect:Tall</li><li>Color:Color</li><li>Color:Monochrome</li><li>Style:Photo</li><li>Style:Graphics</li><li>Face:Face</li><li>Face:Portrait</li><li>Face:Other</li></ul><br/><br/>例如：'Size:Small+Aspect:Square'|
+|newsSortBy|string|no|query|無 |搜尋結果的排序次序。有效值：<ul><li>Date</li><li>Relevance</li></ul> <p>日期的排序次序必須為遞減。</p>|
+|newsCategory|string|no|query|無 |用來縮小搜尋範圍的新聞類別 (例如：「rt\_Business」)|
+|newsLocationOverride|string|no|query|無 |覆寫 Bing 位置偵測的結果。此參數僅適用於 zh-TW 市場。輸入的格式為 US./<state /> (例如：'US.WA')|
 
-#### <a name="response"></a>Response
-|Name|Description|
+#### Response
+|名稱|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-## <a name="object-definitions"></a>Object definitions
+## 物件定義
 
-#### <a name="webresultmodel:-bing-web-search-results"></a>WebResultModel: Bing web search results
+#### WebResultModel：Bing 的網頁搜尋結果
 
-|Property Name | Data Type | Required |
+|屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|Title|string|no|
-|Description|string|no|
+|課程名稱|string|no|
+|說明|string|no|
 |DisplayUrl|string|no|
-|Id|string|no|
+|識別碼|string|no|
 |FullUrl|string|no|
 
-#### <a name="videoresultmodel:-bing-video-search-results"></a>VideoResultModel: Bing video search results
+#### VideoResultModel：Bing 的影片搜尋結果
 
-|Property Name | Data Type |Required |
+|屬性名稱 | 資料類型 |必要 |
 |---|---|---|
-|Title|string|no|
+|課程名稱|string|no|
 |DisplayUrl|string|no|
-|Id|string|no|
+|識別碼|string|no|
 |MediaUrl|string|no|
-|Runtime|integer|no|
-|Thumbnail|not defined|no|
+|執行階段|integer|no|
+|縮圖|沒有定義|no|
 
-#### <a name="thumbnailmodel:-thumbnail-properties-of-the-multimedia-element"></a>ThumbnailModel: Thumbnail properties of the multimedia element
+#### ThumbnailModel：多媒體元素的縮圖屬性
 
-|Property Name | Data Type |Required |
+|屬性名稱 | 資料類型 |必要 |
 |---|---|---|
 |MediaUrl|string|no|
 |ContentType|string|no|
-|Width|integer|no|
-|Height|integer|no|
+|寬度|integer|no|
+|高度|integer|no|
 |FileSize|integer|no|
 
-#### <a name="imageresultmodel:-bing-image-search-results"></a>ImageResultModel: Bing image search results
+#### ImageResultModel：Bing 的圖像搜尋結果
 
-|Property Name | Data Type |Required |
+|屬性名稱 | 資料類型 |必要 |
 |---|---|---|
-|Title|string|no|
+|課程名稱|string|no|
 |DisplayUrl|string|no|
-|Id|string|no|
+|識別碼|string|no|
 |MediaUrl|string|no|
 |SourceUrl|string|no|
-|Thumbnail|not defined|no|
+|縮圖|沒有定義|no|
 
-#### <a name="newsresultmodel:-bing-news-search-results"></a>NewsResultModel: Bing news search results
+#### NewsResultModel：Bing 的新聞搜尋結果
 
-|Property Name | Data Type |Required |
+|屬性名稱 | 資料類型 |必要 |
 |---|---|---|
-|Title|string|no|
-|Description|string|no|
+|課程名稱|string|no|
+|說明|string|no|
 |DisplayUrl|string|no|
-|Id|string|no|
-|Source|string|no|
+|識別碼|string|no|
+|來源|string|no|
 |Date|string|no|
 
-#### <a name="spellresultmodel:-bing-spelling-suggestions-results"></a>SpellResultModel: Bing spelling suggestions results
+#### SpellResultModel：Bing 的拼字建議結果
 
-|Property Name | Data Type |Required |
+|屬性名稱 | 資料類型 |必要 |
 |---|---|---|
-|Id|string|no|
-|Value|string|no|
+|識別碼|string|no|
+|值|string|no|
 
-#### <a name="relatedsearchresultmodel:-bing-related-search-results"></a>RelatedSearchResultModel: Bing related search results
+#### RelatedSearchResultModel：Bing 的相關搜尋結果
 
-|Property Name | Data Type |Required |
+|屬性名稱 | 資料類型 |必要 |
 |---|---|---|
-|Title|string|no|
-|Id|string|no|
+|課程名稱|string|no|
+|識別碼|string|no|
 |BingUrl|string|no|
 
-#### <a name="compositesearchresultmodel:-bing-composite-search-results"></a>CompositeSearchResultModel: Bing composite search results
+#### CompositeSearchResultModel：Bing 的綜合搜尋結果
 
-|Property Name | Data Type |Required |
+|屬性名稱 | 資料類型 |必要 |
 |---|---|---|
 |WebResultsTotal|integer|no|
 |ImageResultsTotal|integer|no|
@@ -287,14 +279,10 @@ Retrieves all web sites, videos, images, etc. from a Bing search.
 |SpellSuggestionResults|array|no|
 |RelatedSearchResults|array|no|
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-[Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md).
+[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
-Go back to the [APIs list](apis-list.md).
+返回 [API 清單](apis-list.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

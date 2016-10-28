@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Technical guidance: Recovery from on-premises to Azure | Microsoft Azure"
-   description="Article on understanding and designing recovery systems from on-premises infrastructure to Azure"
+   pageTitle="技術指導：從內部部署復原至 Azure | Microsoft Azure"
+   description="了解和設計從內部部署基礎結構復原至 Azure 的復原系統的文章"
    services=""
    documentationCenter="na"
    authors="adamglick"
@@ -16,98 +16,94 @@
    ms.date="08/18/2016"
    ms.author="aglick"/>
 
+#Azure 復原技術指導：從內部部署復原至 Azure
 
-#<a name="azure-resiliency-technical-guidance:-recovery-from-on-premises-to-azure"></a>Azure resiliency technical guidance: Recovery from on-premises to Azure
+Azure 提供一組完整的服務，可針對高可用性和災害復原用途，啟用從內部部署資料中心至 Azure 的擴充︰
 
-Azure provides a comprehensive set of services for enabling the extension of an on-premises datacenter to Azure for high availability and disaster recovery purposes:
+* __網路__︰您可以使用虛擬私人網路，將內部部署網路安全地擴充至雲端。
+* __計算__︰使用 Hyper-V 內部部署的客戶可以將現有虛擬機器 (VM)「提升並移轉」至 Azure。
+* __儲存體__：StorSimple 會將您的檔案系統擴充至 Azure 儲存體。Azure 備份服務會將檔案和 SQL Database 備份至 Azure 儲存體。
+* __資料庫複寫__︰您可以使用 SQL Server 2014 (或更新版本) 可用性群組，為您的內部部署資料實作高可用性和災害復原。
 
-* __Networking__: With a virtual private network, you securely extend your on-premises network to the cloud.
-* __Compute__: Customers using Hyper-V on-premises can “lift and shift” existing virtual machines (VMs) to Azure.
-* __Storage__: StorSimple extends your file system to Azure Storage. The Azure Backup service provides backup for files and SQL databases to Azure Storage.
-* __Database replication__: With SQL Server 2014 (or later) Availability Groups, you can implement high availability and disaster recovery for your on-premises data.
+##網路
 
-##<a name="networking"></a>Networking
+您可以使用 Azure 虛擬網路在 Azure 中建立邏輯隔離區段，並透過 IPsec 連線，安全地將其連接到內部部署資料中心或單一用戶端機器。透過虛擬網路，您可以運用 Azure 的可調整的隨選基礎結構，同時提供連線至內部部署資料和應用程式的能力，包括 Windows Server、大型主機及 UNIX 上執行的系統。如需詳細資訊，請參閱 [Azure 網路文件](../virtual-network/virtual-networks-overview.md)。
 
-You can use Azure Virtual Network to create a logically isolated section in Azure and securely connect it to your on-premises datacenter or a single client machine by using an IPsec connection. With Virtual Network, you can take advantage of the scalable, on-demand infrastructure in Azure while providing connectivity to data and applications on-premises, including systems running on Windows Server, mainframes, and UNIX. See [Azure networking documentation](../virtual-network/virtual-networks-overview.md) for more information.
+##計算
 
-##<a name="compute"></a>Compute
+如果您在內部部署使用 Hyper-V，則可以將現有的虛擬機器「提升並移轉」至執行 Windows Server 2012 (或更新版本) 的 Azure 和服務提供者，而不用變更 VM 或轉換 VM 格式。如需詳細資訊，請參閱[關於 Azure 虛擬機器的磁碟與 VHD](../virtual-machines/virtual-machines-linux-about-disks-vhds.md)。
 
-If you're using Hyper-V on-premises, you can “lift and shift” existing virtual machines to Azure and service providers running Windows Server 2012 (or later), without making changes to the VM or converting VM formats. For more information, see [About disks and VHDs for Azure virtual machines](../virtual-machines/virtual-machines-linux-about-disks-vhds.md).
+##Azure Site Recovery
 
-##<a name="azure-site-recovery"></a>Azure Site Recovery
+如果您想要災害復原即服務 (DRaaS)，Azure 提供 [Azure Site Recovery](https://azure.microsoft.com/services/site-recovery/)。Azure Site Recovery 為 VMware、Hyper-V 與實體伺服器提供全面性的保護。透過 Azure Site Recovery，您可以使用另一部內部部署伺服器或 Azure 做為復原網站。如需 Azure Site Recovery 的詳細資訊，請參閱 [Azure Site Recovery 文件](https://azure.microsoft.com/documentation/services/site-recovery/)。
 
-If you want disaster recovery as a service (DRaaS), Azure provides [Azure Site Recovery](https://azure.microsoft.com/services/site-recovery/). Azure Site Recovery offers comprehensive protection for VMware, Hyper-V, and physical servers. With Azure Site Recovery, you can use another on-premises server or Azure as your recovery site. For more information on Azure Site Recovery, see the [Azure Site Recovery documentation](https://azure.microsoft.com/documentation/services/site-recovery/).
+##儲存體
 
-##<a name="storage"></a>Storage
+有數個選項可以使用 Azure 做為內部部署資料的備份網站。
 
-There are several options for using Azure as a backup site for on-premises data.
+###StorSimple
 
-###<a name="storsimple"></a>StorSimple
+StorSimple 安全而明確地整合內部部署應用程式的雲端儲存體。它也提供單一的應用裝置，提供高效能分層式的本機和雲端儲存體、即時封存、雲端型資料保護和災害復原。如需詳細資訊，請參閱 [StorSimple 產品頁面](https://azure.microsoft.com/services/storsimple/)。
 
-StorSimple securely and transparently integrates cloud storage for on-premises applications. It also offers a single appliance that delivers high-performance tiered local and cloud storage, live archiving, cloud-based data protection, and disaster recovery. For more information, see the [StorSimple product page](https://azure.microsoft.com/services/storsimple/).
+###Azure 備份
 
-###<a name="azure-backup"></a>Azure Backup
+Azure 備份可以在 Windows Server 2012 (或更新版本)、Windows Server 2012 Essentials (或更新版本) 和System Center 2012 Data Protection Manager (或更新版本) 中利用熟悉的備份工具啟用雲端備份。這些工具提供備份管理的工作流程，不受備份的儲存體位置的影響，無論是本機磁碟或 Azure 儲存體。在將資料備份到雲端之後，授權使用者可以輕易地將備份復原至任何伺服器。
 
-Azure Backup enables cloud backups by using the familiar backup tools in Windows Server 2012 (or later), Windows Server 2012 Essentials (or later), and System Center 2012 Data Protection Manager (or later). These tools provide a workflow for backup management that is independent of the storage location of the backups, whether a local disk or Azure Storage. After data is backed up to the cloud, authorized users can easily recover backups to any server.
+之後進行增量備份時，只有變更的檔案才會傳輸到雲端，如此可協助有效使用儲存體空間、降低頻寬耗用，並且支援對多個版本的資料執行時間點復原。您也可以選擇使用其他功能，例如資料保留原則、資料壓縮和資料傳輸節流。使用 Azure 做為備份位置有明顯的優點，備份會自動在「異地」處理。這樣就能排除保護本地備份媒體的額外需求。
 
-With incremental backups, only changes to files are transferred to the cloud. This helps to efficiently use storage space, reduce bandwidth consumption, and support point-in-time recovery of multiple versions of the data. You can also choose to use additional features, such as data retention policies, data compression, and data transfer throttling. Using Azure as the backup location has the obvious advantage that the backups are automatically “offsite”. This eliminates the extra requirements to secure and protect on-site backup media.
+如需詳細資訊，請參閱[何謂 Azure 備份？](../backup/backup-introduction-to-azure-backup.md)和[設定 DPM 資料的 Azure 備份](https://technet.microsoft.com/library/jj728752.aspx)。
 
-For more information, see [What is Azure Backup?](../backup/backup-introduction-to-azure-backup.md) and [Configure Azure Backup for DPM data](https://technet.microsoft.com/library/jj728752.aspx).
+##資料庫
 
-##<a name="database"></a>Database
+您可以使用 AlwaysOn 可用性群組、資料庫鏡像及記錄傳送，為混合式 IT 環境中的 SQL Server 資料庫提供災害復原解決方案，以及使用 Azure Blob 儲存體進行備份和還原。這些解決方案都使用在 Azure 虛擬機器上執行的 SQL Server。
 
-You can have a disaster recovery solution for your SQL Server databases in a hybrid-IT environment by using AlwaysOn Availability Groups, database mirroring, log shipping, and backup and restore with Azure Blob storage. All of these solutions use SQL Server running on Azure Virtual Machines.
+AlwaysOn 可用性群組可以在混合式 IT 環境中使用，在該環境中資料庫複本同時存在於內部部署和雲端中。如下圖所示。
 
-AlwaysOn Availability Groups can be used in a hybrid-IT environment where database replicas exist both on-premises and in the cloud. This is shown in the following diagram.
+![混合式雲端架構中的 SQL Server AlwaysOn 可用性群組](./media/resiliency-technical-guidance-recovery-on-premises-azure/SQL_Server_Disaster_Recovery-3.png)
 
-![SQL Server AlwaysOn Availability Groups in a hybrid cloud architecture](./media/resiliency-technical-guidance-recovery-on-premises-azure/SQL_Server_Disaster_Recovery-3.png)
+資料庫鏡像也能橫跨憑證式安裝中的內部部署伺服器和雲端。下圖說明此概念。
 
-Database mirroring can also span on-premises servers and the cloud in a certificate-based setup. The following diagram illustrates this concept.
+![混合式雲端架構中的 SQL Server Database 鏡像](./media/resiliency-technical-guidance-recovery-on-premises-azure/SQL_Server_Disaster_Recovery-4.png)
 
-![SQL Server database mirroring in a hybrid cloud architecture](./media/resiliency-technical-guidance-recovery-on-premises-azure/SQL_Server_Disaster_Recovery-4.png)
+記錄傳送可以用來同步處理內部部署資料庫與 Azure 虛擬機器中的 SQL Server 資料庫。
 
-Log shipping can be used to synchronize an on-premises database with a SQL Server database in an Azure virtual machine.
+![混合式雲端架構中的 SQL Server 記錄傳送](./media/resiliency-technical-guidance-recovery-on-premises-azure/SQL_Server_Disaster_Recovery-5.png)
 
-![SQL Server log shipping in a hybrid cloud architecture](./media/resiliency-technical-guidance-recovery-on-premises-azure/SQL_Server_Disaster_Recovery-5.png)
+最後，您可以直接將內部部署資料庫備份至 Azure Blob 儲存體。
 
-Finally, you can back up an on-premises database directly to Azure Blob storage.
+![在混合式雲端架構中將 SQL Server 備份至 Azure Blob 儲存體](./media/resiliency-technical-guidance-recovery-on-premises-azure/SQL_Server_Disaster_Recovery-6.png)
 
-![Back up SQL Server to Azure Blob storage in a hybrid cloud architecture](./media/resiliency-technical-guidance-recovery-on-premises-azure/SQL_Server_Disaster_Recovery-6.png)
+如需詳細資訊，請參閱 [Azure 虛擬機器中的 SQL Server 高可用性和災害復原](../virtual-machines/virtual-machines-windows-sql-high-availability-dr.md)和 [Azure 虛擬機器中的 SQL Server 備份和還原](../virtual-machines/virtual-machines-windows-sql-backup-recovery.md)。
 
-For more information, see [High availability and disaster recovery for SQL Server in Azure virtual machines](../virtual-machines/virtual-machines-windows-sql-high-availability-dr.md) and [Backup and restore for SQL Server in Azure virtual machines](../virtual-machines/virtual-machines-windows-sql-backup-recovery.md).
+##Microsoft Azure 中的內部部署復原的檢查清單
 
-##<a name="checklists-for-on-premises-recovery-in-microsoft-azure"></a>Checklists for on-premises recovery in Microsoft Azure
+###網路
 
-###<a name="networking"></a>Networking
+  1. 檢閱此文件的＜網路＞一節。
+  2. 使用虛擬網路將內部部署安全地連接至雲端。
 
-  1. Review the Networking section of this document.
-  2. Use Virtual Network to securely connect on-premises to the cloud.
+###計算
 
-###<a name="compute"></a>Compute
+  1. 檢閱此文件的＜計算＞一節。
+  2. 在 Hyper-V 與 Azure 之間重新放置 VM。
 
-  1. Review the Compute section of this document.
-  2. Relocate VMs between Hyper-V and Azure.
+###儲存體
 
-###<a name="storage"></a>Storage
+  1. 檢閱此文件的＜儲存體＞一節。
+  2. 利用 StorSimple 服務以使用雲端儲存體。
+  3. 使用 Azure 備份服務。
 
-  1. Review the Storage section of this document.
-  2. Take advantage of StorSimple services for using cloud storage.
-  3. Use the Azure Backup service.
+###資料庫
 
-###<a name="database"></a>Database
+  1. 檢閱此文件的＜資料庫＞一節。
+  2. 考量使用 Azure VM 上的 SQL Server 做為備份。
+  3. 設定 AlwaysOn 可用性群組。
+  4. 設定憑證式資料庫鏡像。
+  5. 使用記錄傳送。
+  6. 將內部部署資料庫備份至 Azure Blob 儲存體。
 
-  1. Review the Database section of this document.
-  2. Consider using SQL Server on Azure VMs as the backup.
-  3. Set up AlwaysOn Availability Groups.
-  4. Configure certificate-based database mirroring.
-  5. Use log shipping.
-  6. Back up on-premises databases to Azure Blob storage.
+##後續步驟
 
-##<a name="next-steps"></a>Next steps
+這篇文章是一系列文章的一部分，著重在 [Azure 復原技術指導](./resiliency-technical-guidance.md)。這一系列文章的下一篇是[從資料損毀或意外刪除復原](./resiliency-technical-guidance-recovery-data-corruption.md)。
 
-This article is part of a series focused on [Azure resiliency technical guidance](./resiliency-technical-guidance.md). The next article in this series is [Recovery from data corruption or accidental deletion](./resiliency-technical-guidance-recovery-data-corruption.md).
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

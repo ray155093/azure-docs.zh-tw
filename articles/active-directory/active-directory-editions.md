@@ -1,512 +1,507 @@
 <properties
-    pageTitle="Azure Active Directory editions | Microsoft Azure"
-    description="A topic that explains choices for free and paid editions of Azure Active Directory. Azure Active Directory Basic, Azure Active Directory Premium P1, and Azure Active Directory Premium P2 are the paid editions."
-    services="active-directory"
-    documentationCenter=""
-    authors="curtand"
-    manager="femila"
-    editor=""/>
+	pageTitle="Azure Active Directory 版本 | Microsoft Azure"
+	description="說明 Azure Active Directory 免費和付費版本選項的主題。Azure Active Directory Basic、Azure Active Directory Premium P1 及 Azure Active Directory Premium P2 為付費版本。"
+	services="active-directory"
+	documentationCenter=""
+	authors="curtand"
+	manager="femila"
+	editor=""/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/09/2016"
-    ms.author="curtand"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/09/2016"
+	ms.author="curtand"/>
+
+# Azure Active Directory 版本
+
+所有 Microsoft Online 商務服務都依賴 Azure Active Directory (Azure AD) 來進行登入和其他身分識別需求。如果您訂閱任何 Microsoft Online 商務服務 (例如 Office 365、Microsoft Azure)，您就會取得 Azure AD 並可存取所有免費的功能，如下所述。
+
+Azure Active Directory 是一項可在雲端中為您的員工、合作夥伴和客戶提供完整身分識別和存取管理功能的服務。它結合了開發人員適用的目錄服務、進階身分識別控管、豐富標準架構平台，以及您自己的和數以千計的任何預先整合的應用程式的應用程式存取管理。利用 Azure Active Directory 免費版，您可以管理使用者和群組、與內部部署目錄同步處理、取得 Azure、Office 365 和數千個熱門 SaaS 應用程式 (像是 Salesforce、Workday、Concur、DocuSign、Google Apps、Box、ServiceNow、Dropbox 等) 之間的單一登入。若要深入了解 Azure Active Directory，請閱讀[什麼是 Azure AD](active-directory-whatis.md)。
+
+若要增強您的 Azure Active Directory，您可以使用 Azure Active Directory Basic、Premium P1 及 Premium P2 版本來新增付費功能。付費版本的 Azure Active Directory 是建立在您現有的免費目錄上，提供的企業級功能跨越自助、增強的監視、安全性報告、Multi-Factor Authentication (MFA) 及您的行動工作力的安全存取。
+
+Office 365 訂用帳戶包含的其他 Azure Active Directory 功能在以下比較表中說明。
 
 
-# <a name="azure-active-directory-editions"></a>Azure Active Directory editions
-
-All Microsoft Online business services rely on Azure Active Directory (Azure AD) for sign-in and other identity needs. If you subscribe to any of Microsoft Online business services (for example, Office 365 or Microsoft Azure), you get Azure AD with access to all of the Free features, described below.  
-
-Azure Active Directory is a service that provides comprehensive identity and access management capabilities in the cloud for your employees, partners and customers. It combines directory services, advanced identity governance, a rich standards-based platform for developers, and application access management for your own or any of thousands of pre-integrated applications. With the Azure Active Directory Free edition, you can manage users and groups, synchronize with on-premises directories, get single sign-on across Azure, Office 365, and thousands of popular SaaS applications like Salesforce, Workday, Concur, DocuSign, Google Apps, Box, ServiceNow, Dropbox, and more. To learn more about Azure Active Directory, read [What is Azure AD](active-directory-whatis.md).
-
-To enhance your Azure Active Directory, you can add paid capabilities using the Azure Active Directory Basic, Premium P1, and Premium P2 editions. Azure Active Directory paid editions are built on top of your existing free directory, providing enterprise class capabilities spanning self-service, enhanced monitoring, security reporting, Multi-Factor Authentication (MFA), and secure access for your mobile workforce.
-
-Office 365 subscriptions include additional Azure Active Directory features described in the comparison table below.
+> [AZURE.NOTE] 這兩種版本的詳細價格請參閱 [Azure Active Directory 價格](https://azure.microsoft.com/pricing/details/active-directory/)。目前在中國不支援 Premium P1、Premium P2 及 Azure Active Directory Basic。如需詳細資訊，請透過 Azure Active Directory 論壇與我們連絡。
 
 
-> [AZURE.NOTE] For the pricing options of these editions, see [Azure Active Directory Pricing](https://azure.microsoft.com/pricing/details/active-directory/). Azure Active Directory Premium P1, Premium P2, and Azure Active Directory Basic are not currently supported in China. Please contact us at the Azure Active Directory Forum for more information.
+- **Azure Active Directory Basic** - 針對具有雲端優先需求的任務背景工作角色設計，此版本提供以雲端為中心的應用程式存取和自助身分識別管理解決方案。有了 Azure Active Directory 的 Basic 版本，您可獲得生產力增強和成本節約功能，例如：群組式存取管理、雲端應用程式的自助式密碼重設、Azure Active Directory 應用程式 Proxy (以使用 Azure Active Directory 發佈內部部署 Web 應用程式)，全都由可獲得 99.9% 運作時間的企業級 SLA 支援。
 
+- **Azure Active Directory Premium P1** - Azure Active Directory Premium 版本的設計目的是要協助在身分識別及存取管理需求上有更嚴格要求的組織，此版本除了新增功能豐富的企業級身分識別管理功能之外，也可讓混合式使用者順暢地存取內部部署和雲端功能。此版本包含資訊背景工作角色和混合環境中身分識別管理員對於應用程式存取、自助身分識別和存取管理 (IAM)、雲端中的身分識別保護和安全性所需的一切。它支援進階管理和委派資源，例如：動態群組和自助群組管理。它包含 Microsoft Identity Manager (一項內部部署及身分識別和存取管理套件)，並提供可為您的內部部署使用者啟用自助密碼重設之類解決方案的雲端回寫功能。
 
-- **Azure Active Directory Basic** - Designed for task workers with cloud-first needs, this edition provides cloud centric application access and self-service identity management solutions. With the Basic edition of Azure Active Directory, you get productivity enhancing and cost reducing features like group-based access management, self-service password reset for cloud applications, and Azure Active Directory Application Proxy (to publish on-premises web applications using Azure Active Directory), all backed by an enterprise-level SLA of 99.9 percent uptime.
+- **Azure Active Directory Premium P2** - 這個新方案採用了為所有使用者和系統管理員提供進階保護的設計，此方案不僅包括 Azure AD Premium P1 中的所有功能，也包括新的 Identity Protection 與 Privileged Identity Management。Azure Active Directory Identity Protection 利用數十億個訊號，針對應用程式及重要公司資料提供以風險為基礎的條件式存取。此外，我們還使用 Azure Active Directory Privileged Identity Management 來協助您管理及保護授權帳戶，讓您能夠探索、限制和監視系統管理員及他們對資源的存取，並在需要時，提供及時的存取權。
 
-- **Azure Active Directory Premium P1** - Designed to empower organizations with more demanding identity and access management needs, Azure Active Directory Premium edition adds feature-rich enterprise-level identity management capabilities and enables hybrid users to seamlessly access on-premises and cloud capabilities. This edition includes everything you need for information worker and identity administrators in hybrid environments across application access, self-service identity and access management (IAM), identity protection and security in the cloud. It supports advanced administration and delegation resources like dynamic groups and self-service group management. It includes Microsoft Identity Manager (an on-premises identity and access management suite) and provides cloud write-back capabilities enabling solutions like self-service password reset for your on-premises users.
-
-- **Azure Active Directory Premium P2** - Designed with advanced protection for all your users and administrators, this new offering includes all the capabilities in Azure AD Premium P1 as well as our new Identity Protection and Privileged Identity Management. Azure Active Directory Identity Protection leverages billions of signals to provide risk-based conditional access to your applications and critical company data. We also help you manage and protect privileged accounts with Azure Active Directory Privileged Identity Management so you can discover, restrict and monitor administrators and their access to resources and provide just-in-time access when needed.  
-
-To sign up and start using Active Directory Premium today, see [Getting started with Azure Active Directory Premium](active-directory-get-started-premium.md).
+若要註冊並立即開始使用 Active Directory Premium，請參閱[開始使用 Azure Active Directory Premium](active-directory-get-started-premium.md)。
 
 
 > [AZURE.NOTE]
->A number of Azure Active Directory capabilities are available through "pay as you go" editions:
+許多 Azure Active Directory 功能是透過「隨用隨付」版本提供：
 >
->- Active Directory B2C is the identity and access management solution for your consumer-facing applications. For more details, see [Azure Active Directory B2C](https://azure.microsoft.com/documentation/services/active-directory-b2c/)
+>- Active Directory B2C 是面向消費者應用程式適用的身分識別和存取管理解決方案。如需詳細資料，請參閱：[Azure Active Directory B2C](https://azure.microsoft.com/documentation/services/active-directory-b2c/)
 
->-  Azure Multi-Factor Authentication can be used through per user or per authentication providers. For more details, see [What is Azure Multi-Factor Authentication?](../multi-factor-authentication/multi-factor-authentication.md)
-
-
-##<a name="comparing-generally-available-features"></a>Comparing generally available features
-
-> [AZURE.NOTE] For a different view of this data, see the [Azure Active Directory Capabilities](https://www.microsoft.com/en/server-cloud/products/azure-active-directory/features.aspx).
+>-	Azure Multi-Factor Authentication 可透過每一使用者或每一驗證提供者方式使用。如需詳細資訊，請參閱[什麼是 Azure Multi-Factor Authentication？](../multi-factor-authentication/multi-factor-authentication.md)
 
 
+##比較正式推出的功能
 
-
-**Common Features**
-
-- [Directory Objects](#directory-objects)
-
-- [User/Group Management (add/update/delete)/ User-based provisioning, Device  registration](#usergroup-management-addupdatedelete-user-based-provisioning-device-registration)
-
-- [Single Sign-On (SSO)](#single-sign-on-sso)
-
-- [Self-Service Password Change for cloud users](#self-service-password-change-for-cloud-users)
-
-- [Connect  (Sync engine that extends on-premises directories to Azure Active Directory)](#connect-sync-engine-that-extends-on-premises-directories-to-azure-active-directory)
-
-- [Security / Usage Reports](#securityusage-reports)
+> [AZURE.NOTE] 如需這項資料的不同檢視，請參閱 [Azure Active Directory 功能](https://www.microsoft.com/en/server-cloud/products/azure-active-directory/features.aspx)。
 
 
 
-**Basic Features**
 
-- [Group-based access management / provisioning](#group-based-access-managementprovisioning)
+**常用功能**
 
-- [Self-Service Password Reset for cloud users](#self-service-password-reset-for-cloud-users)
+- [目錄物件](#directory-objects)
 
-- [Company Branding (Logon Pages/Access Panel customization)](#company-branding-logon-pagesaccess-panel-customization)
+- [使用者與群組管理 (新增/更新/刪除)/以使用者為基礎的佈建、裝置註冊](#usergroup-management-addupdatedelete-user-based-provisioning-device-registration)
 
-- [Application Proxy](#application-proxy)
+- [單一登入 (SSO)](#single-sign-on-sso)
+
+- [雲端使用者的自助式密碼變更](#self-service-password-change-for-cloud-users)
+
+- [Connect (可將內部部署目錄延伸至 Azure Active Directory 的同步處理引擎)](#connect-sync-engine-that-extends-on-premises-directories-to-azure-active-directory)
+
+- [安全性/使用量報告](#securityusage-reports)
+
+
+
+**基本功能**
+
+- [以群組為基礎的存取管理/佈建](#group-based-access-managementprovisioning)
+
+- [雲端使用者的自助式密碼重設](#self-service-password-reset-for-cloud-users)
+
+- [創建公司品牌 (登入頁面/存取面板自訂)](#company-branding-logon-pagesaccess-panel-customization)
+
+- [應用程式 Proxy](#application-proxy)
 
 - [SLA 99.9%](#sla-999)
 
 
-**Premium P1 Features**
+**Premium P1 功能**
 
-- [Self-Service Group and app Management/Self-Service application additions/ Dynamic Groups](#self-service-group-and-app-managementself-service-application-additions-dynamic-groups)
+- [自助式群組和應用程式管理/自助式應用程式新增/動態群組](#self-service-group-and-app-managementself-service-application-additions-dynamic-groups)
 
-- [Self-Service Password Reset/Change/Unlock  with on-premises write-back](#self-service-password-resetchangeunlock-with-on-premises-write-back)
+- [使用內部部署回寫來進行的自助式密碼重設/變更/解除鎖定](#self-service-password-resetchangeunlock-with-on-premises-write-back)
 
-- [Multi-Factor Authentication (Cloud and On-premises (MFA Server))](#multi-factor-authentication-cloud-and-on-premises-mfa-server)
+- [Multi-Factor Authentication (雲端與內部部署 (MFA Server))](#multi-factor-authentication-cloud-and-on-premises-mfa-server)
 
-- [MIM CAL + MIM Server](#mim-cal-mim-server)
+- [MIM CAL + MIM 伺服器](#mim-cal-mim-server)
 
-- [Cloud App Discovery](#cloud-app-discovery)
+- [雲端應用程式探索](#cloud-app-discovery)
 
 - [Connect Health](#connect-health)
 
-- [Automatic password rollover for group accounts](#automatic-password-rollover-for-group-accounts)
+- [群組帳戶的自動密碼變換](#automatic-password-rollover-for-group-accounts)
 
-**Premium P2 Features**
+**Premium P2 功能**
 
-- [Identity Protection](active-directory-identityprotection.md)
+- [身分識別保護](active-directory-identityprotection.md)
 
 - [Privileged Identity Management](active-directory-privileged-identity-management-configure.md)
 
-**Azure Active Directory Join – Windows 10 only related features**
+**Azure Active Directory Join – 僅適用於 Windows 10 的相關功能**
 
-- [Join a device to Azure AD, Desktop SSO, Microsoft Passport for Azure AD, Administrator Bitlocker recovery](#join-a-device-to-azure-ad-desktop-sso-microsoft-passport-for-azure-ad-administrator-bitlocker-recovery)
+- [將裝置加入 Azure AD、Desktop SSO、適用於 Azure AD 的 Microsoft Passport、系統管理員 Bitlocker 復原](#join-a-device-to-azure-ad-desktop-sso-microsoft-passport-for-azure-ad-administrator-bitlocker-recovery)
 
-- [MDM auto-enrolment,  Self-Service Bitlocker recovery, Additional  local administrators to Windows 10 devices via Azure AD Join](#mdm-auto-enrolment-self-service-bitlocker-recovery-additional-local-administrators-to-windows-10-devices-via-azure-ad-join)
-
-
-## <a name="common-features"></a>Common Features
-#### <a name="directory-objects"></a>Directory Objects
-
-**Type:** Common Features
-
-The default usage quota is 150,000 objects. An object is an entry in the directory service, represented by its unique distinguished name. An example of an object is a user entry used for authentication purposes. If you need to exceed this default quota, please contact support. The 500K object limit does not apply for Office 365, Microsoft Intune or any other Microsoft paid online service that relies on Azure Active Directory for directory services.
+- [MDM 自動註冊、自助式 Bitlocker 復原、Windows 10 裝置透過 Azure AD Join 取得的其他本機系統管理員](#mdm-auto-enrolment-self-service-bitlocker-recovery-additional-local-administrators-to-windows-10-devices-via-azure-ad-join)
 
 
-**Availability:**
+## 常用功能
+#### 目錄物件
 
-| Free Edition| Basic Edition| Premium (P1 and P2) Editions | Office 365 Apps Only |
+**類型：**常用功能
+
+預設使用量配額為 150,000 個物件。物件是指目錄服務中由其各自的唯一辨別名稱所表示項目。供驗證之用的使用者項目即為物件的一個例子。如果您的需求將超出此預設配額，請連絡支援服務。50 萬個物件的數目限制不適用於 Office 365、Microsoft Intune 或任何其他依賴 Azure Active Directory 提供目錄服務的付費 Microsoft 線上服務。
+
+
+**可用性：**
+
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
-| Up to 500,000 objects| No object limit| No object limit| No object limit for Office 365 user accounts|
+| 最多 500,000 個物件| 沒有物件數目限制| 沒有物件數目限制| Office 365 使用者帳戶沒有物件數目限制|
 
 
 
-#### <a name="user/group-management-(add/update/delete)/-user-based-provisioning,-device-registration"></a>User/Group Management (add/update/delete)/ User-based provisioning, Device  registration
+#### 使用者與群組管理 (新增/更新/刪除)/以使用者為基礎的佈建、裝置註冊
 
-**Type:** Common Features
+**類型：**常用功能
 
-**Availability:**
+**可用性：**
 
 
-| Free Edition| Basic Edition| Premium (P1 and P2) Editions | Office 365 Apps Only |
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
-| ![Check][12]| ![Check][12]| ![Check][12]| ![Check][12]|
+| ![勾選][12]| ![勾選][12]| ![勾選][12]| ![勾選][12]|
 
-**More details:**
+**其他詳細資訊：**
 
-- [Administer your Azure AD directory](active-directory-administer.md)
-- [Azure Active Directory Device Registration overview](active-directory-conditional-access-device-registration-overview.md)
-
-
+- [管理 Azure AD 目錄](active-directory-administer.md)
+- [Azure Active Directory 裝置註冊概觀](active-directory-conditional-access-device-registration-overview.md)
 
 
-#### <a name="single-sign-on-(sso)"></a>Single Sign-On (SSO)
-
-**Type:** Common Features
 
 
-**Availability:**
+#### 單一登入 (SSO)
 
-| Free Edition| Basic Edition| Premium (P1 and P2) Editions | Office 365 Apps Only |
+**類型：**常用功能
+
+
+**可用性：**
+
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
-| 10 apps per user (1) | 10 apps per user (1) | No Limit (2) | 10 apps per user (1)|
+| 每位使用者 10 個應用程式 (1) | 每位使用者 10 個應用程式 (1) | 沒有限制 (2) | 每位使用者 10 個應用程式 (1)|
 
-1. With Azure AD Free and Azure AD Basic, end users who have been assigned access to SaaS apps, can see up to 10 apps in their Access Panel and get SSO access to them. Admins can configure SSO and assign user access to as many SaaS apps as they want with Free and Basic however end users will only see 10 apps in their Access Panel at a time.
+1. 使用 Azure AD Free 和 Azure AD Basic 時，使用者如果已獲指派 SaaS 應用程式的存取權，便可在其「存取面板」中最多看見 10 個應用程式，並取得這些應用程式的 SSO 存取權。使用 Free 和 Basic 版本時，系統管理員可以設定 SSO 並指派任意數量的 SaaS 應用程式存取權給使用者，不過使用者在其 [存取面板] 中一次只能看到 10 個應用程式。
 
-2. Self-service integration of any application supporting SAML, SCIM, or forms-based authentication by using templates provided in the application gallery menu. For more details, see [Configuring single sign-on to applications that are not in the Azure Active Directory application gallery](active-directory-saas-custom-apps.md).
+2. 藉由使用應用程式庫功能表中提供的範本，自助整合任何支援 SAML、SCIM 或表單型驗證的應用程式。如需詳細資訊，請參閱[設定對不在 Azure Active Directory 應用程式庫中的應用程式的單一登入](active-directory-saas-custom-apps.md)。
 
-**More details:**
+**其他詳細資訊：**
 
-- [Managing Applications with Azure Active Directory (AD)](active-directory-enable-sso-scenario.md)
+- [使用 Azure Active Directory (AD) 管理應用程式](active-directory-enable-sso-scenario.md)
 
 
 
-#### <a name="self-service-password-change-for-cloud-users"></a>Self-Service Password Change for cloud users
+#### 雲端使用者的自助式密碼變更
 
-**Type:** Common Features
+**類型：**常用功能
 
-**Availability:**
+**可用性：**
 
-| Free Edition| Basic Edition| Premium (P1 and P2) Editions | Office 365 Apps Only |
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
-| ![Check][12]| ![Check][12]| ![Check][12]| ![Check][12]|
+| ![勾選][12]| ![勾選][12]| ![勾選][12]| ![勾選][12]|
 
-**More details:**
+**其他詳細資訊：**
 
-- [How to update your own password](active-directory-passwords-update-your-own-password.md)
-
-
+- [如何更新自己的密碼](active-directory-passwords-update-your-own-password.md)
 
 
-#### <a name="connect-(sync-engine-that-extends-on-premises-directories-to-azure-active-directory)"></a>Connect  (Sync engine that extends on-premises directories to Azure Active Directory)
-
-**Type:** Common Features
 
 
-**Availability:**
+#### Connect (可將內部部署目錄延伸至 Azure Active Directory 的同步處理引擎)
 
-| Free Edition| Basic Edition| Premium (P1 and P2) Editions | Office 365 Apps Only |
+**類型：**常用功能
+
+
+**可用性：**
+
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
-| ![Check][12]| ![Check][12]| ![Check][12]| ![Check][12]|
+| ![勾選][12]| ![勾選][12]| ![勾選][12]| ![勾選][12]|
 
-**More details:**
+**其他詳細資訊：**
 
-- [Integrating your on-premises identities with Azure Active Directory](active-directory-aadconnect.md)
-
-
-
-#### <a name="security/usage-reports"></a>Security/Usage Reports
-
-**Type:** Common Features
+- [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
 
-**Availability:**
 
-| Free Edition| Basic Edition| Premium (P1 and P2) Editions | Office 365 Apps Only |
+#### 安全性/使用量報告
+
+**類型：**常用功能
+
+
+**可用性：**
+
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
-| 3 Basic reports| 3 Basic reports| Advanced reports| 3 Basic reports|
+| 3 個基本報告| 3 個基本報告| 進階報告| 3 個基本報告|
 
-**More details:**
+**其他詳細資訊：**
 
-- [View your access and usage reports](active-directory-view-access-usage-reports.md)
-
-
+- [檢視存取和使用情況報告](active-directory-view-access-usage-reports.md)
 
 
-## <a name="premium-and-basic-features"></a>Premium and Basic Features
-#### <a name="group-based-access-management/provisioning"></a>Group-based access management/provisioning
-
-**Type:** Basic Features
 
 
-**Availability:**
+## 進階和基本功能
+#### 以群組為基礎的存取管理/佈建
 
-| Free Edition| Basic Edition| Premium (P1 and P2) Editions | Office 365 Apps Only |
+**類型：**基本功能
+
+
+**可用性：**
+
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
-|  | ![Check][12]| ![Check][12]|  |
+| | ![勾選][12]| ![勾選][12]| |
 
-**More details:**
+**其他詳細資訊：**
 
-- [Using a group to manage access to SaaS applications](active-directory-accessmanagement-group-saasapps.md)
-
-
-
-#### <a name="self-service-password-reset-for-cloud-users"></a>Self-Service Password Reset for cloud users
-
-**Type:** Basic Features
+- [使用群組來管理 SaaS 應用程式的存取權](active-directory-accessmanagement-group-saasapps.md)
 
 
-**Availability:**
 
-| Free Edition| Basic Edition| Premium (P1 and P2) Editions | Office 365 Apps Only |
+#### 雲端使用者的自助式密碼重設
+
+**類型：**基本功能
+
+
+**可用性：**
+
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
-|  | ![Check][12]| ![Check][12]| ![Check][12]|
+| | ![勾選][12]| ![勾選][12]| ![勾選][12]|
 
-**More details:**
+**其他詳細資訊：**
 
-- [Azure AD Password Reset for Users and Admins](active-directory-passwords.md)
-
-
-
-#### <a name="company-branding-(logon-pages/access-panel-customization)"></a>Company Branding (Logon Pages/Access Panel customization)
-
-**Type:** Basic Features
+- [使用者和系統管理員的 Azure AD 密碼重設](active-directory-passwords.md)
 
 
-**Availability:**
 
-| Free Edition| Basic Edition| Premium (P1 and P2) Editions | Office 365 Apps Only |
+#### 創建公司品牌 (登入頁面/存取面板自訂)
+
+**類型：**基本功能
+
+
+**可用性：**
+
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
-|  | ![Check][12]| ![Check][12]| ![Check][12]|
+| | ![勾選][12]| ![勾選][12]| ![勾選][12]|
 
-**More details:**
+**其他詳細資訊：**
 
-- [Add company branding to your Sign In and Access Panel pages](active-directory-add-company-branding.md)
-
-
-
-#### <a name="application-proxy"></a>Application Proxy
-
-**Type:** Basic Features
+- [在登入和存取面板頁面加上公司商標](active-directory-add-company-branding.md)
 
 
-**Availability:**
 
-| Free Edition| Basic Edition| Premium (P1 and P2) Editions | Office 365 Apps Only |
+#### 應用程式 Proxy
+
+**類型：**基本功能
+
+
+**可用性：**
+
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
-|  | ![Check][12]| ![Check][12]|  |
+| | ![勾選][12]| ![勾選][12]| |
 
-**More details:**
+**其他詳細資訊：**
 
-- [How to provide secure remote access to on-premises applications](active-directory-application-proxy-get-started.md)
-
-
-
-#### <a name="sla-99.9%"></a>SLA 99.9%
-
-**Type:** Basic Features
+- [如何為內部部署應用程式提供安全的遠端存取](active-directory-application-proxy-get-started.md)
 
 
-**Availability:**
 
-| Free Edition| Basic Edition| Premium (P1 and P2) Editions | Office 365 Apps Only |
+#### SLA 99.9%
+
+**類型：**基本功能
+
+
+**可用性：**
+
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
-|  | ![Check][12]| ![Check][12]| ![Check][12]|
+| | ![勾選][12]| ![勾選][12]| ![勾選][12]|
 
-**More details:**
+**其他詳細資訊：**
 
-- [Service Level Agreements](https://azure.microsoft.com/support/legal/sla/)
-
-
+- [服務等級協定](https://azure.microsoft.com/support/legal/sla/)
 
 
-## <a name="premium-features"></a>Premium Features
-#### <a name="self-service-group-and-app-management/self-service-application-additions/dynamic-groups"></a>Self-Service Group and app Management/Self-Service application additions/Dynamic Groups
-
-**Type:** Premium Features
 
 
-**Availability:**
+## 進階功能
+#### 自助式群組和應用程式管理/自助式應用程式新增/動態群組
 
-| Free Edition| Basic Edition| Premium (P1 and P2) Editions | Office 365 Apps Only |
+**類型：**進階功能
+
+
+**可用性：**
+
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
-|  |  | ![Check][12]|  |
+| | | ![勾選][12]| |
 
 
 
 
 
-#### <a name="self-service-password-reset/change/unlock-with-on-premises-write-back"></a>Self-Service Password Reset/Change/Unlock with on-premises write-back
+#### 使用內部部署回寫來進行的自助式密碼重設/變更/解除鎖定
 
-**Type:** Premium Features
+**類型：**進階功能
 
 
-**Availability:**
+**可用性：**
 
-| Free Edition| Basic Edition| Premium (P1 and P2) Editions | Office 365 Apps Only |
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
-|  |  | ![Check][12]|  |
+| | | ![勾選][12]| |
 
 
 
 
 
-#### <a name="multi-factor-authentication-(cloud-and-on-premises-(mfa-server))"></a>Multi-Factor Authentication (Cloud and On-premises (MFA Server))
+#### Multi-Factor Authentication (雲端與內部部署 (MFA Server))
 
-**Type:** Premium Features
+**類型：**進階功能
 
 
-**Availability:**
+**可用性：**
 
-| Free Edition| Basic Edition| Premium (P1 and P2) Editions | Office 365 Apps Only |
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
-|  |  | ![Check][12]| Limited to cloud only for Office 365 Apps|
+| | | ![勾選][12]| 針對 Office 365 應用程式限定於雲端|
 
-**More details:**
+**其他詳細資訊：**
 
-- [What is Azure Multi-Factor Authentication?](../multi-factor-authentication/multi-factor-authentication.md)
-
-
-
-#### <a name="mim-cal-+-mim-server"></a>MIM CAL + MIM Server
-
-Microsoft Identity Manager Server software rights are granted with Windows Server licenses (any edition). Since Microsoft Identity Manager runs on Windows Server OS, as long as the server is running a valid, licensed copy of Windows Server, then Microsoft Identity Manager can be installed and used on that server. No other separate license is required for Microsoft Identity Manager Server.
-
-**Type:** Premium Features
+- [什麼是 Azure Multi-Factor Authentication？](../multi-factor-authentication/multi-factor-authentication.md)
 
 
-**Availability:**
 
-| Free Edition| Basic Edition| Premium (P1 and P2) Editions | Office 365 Apps Only |
+#### MIM CAL + MIM 伺服器
+
+Microsoft Identity Manager 伺服器軟體的權限會隨 Windows Server 授權 (任何版本) 一起授與。由於 Microsoft Identity Manager 在 Windows Server OS 上執行，只要該伺服器正在執行有效且已授權的 Windows Server 複本，Microsoft Identity Manager 便可以在該伺服器上安裝並使用。Microsoft Identity Manager Server 不需要其他個別授權。
+
+**類型：**進階功能
+
+
+**可用性：**
+
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
-|  |  | ![Check][12]|  |
+| | | ![勾選][12]| |
 
 
 
 
 
-#### <a name="cloud-app-discovery"></a>Cloud App Discovery
+#### Cloud App Discovery
 
-**Type:** Premium Features
+**類型：**進階功能
 
 
-**Availability:**
+**可用性：**
 
-| Free Edition| Basic Edition| Premium (P1 and P2) Editions | Office 365 Apps Only |
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
-|  |  | ![Check][12]|  |
+| | | ![勾選][12]| |
 
-**More details:**
+**其他詳細資訊：**
 
-- [Finding unmanaged cloud applications with Cloud App Discovery](active-directory-cloudappdiscovery-whatis.md)
-
-
-
-#### <a name="azure-ad-connect-health"></a>Azure AD Connect Health
-
-**Type:** Premium Features
+- [使用 Cloud App Discovery 尋找未受管理的雲端應用程式](active-directory-cloudappdiscovery-whatis.md)
 
 
-**Availability:**
 
-| Free Edition| Basic Edition| Premium (P1 and P2) Editions | Office 365 Apps Only |
+#### Azure AD Connect Health
+
+**類型：**進階功能
+
+
+**可用性：**
+
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
-|  |  | ![Check][12]|  |
+| | | ![勾選][12]| |
 
-**More details:**
+**其他詳細資訊：**
 
-- [Monitor your on-premises identity infrastructure and synchronization services in the cloud](active-directory-aadconnect-health.md)
-
-
-
-#### <a name="automatic-password-rollover-for-group-accounts"></a>Automatic password rollover for group accounts
-
-**Type:** Premium Features
+- [在雲端中監視內部部署身分識別基礎結構和同步處理服務。](active-directory-aadconnect-health.md)
 
 
-**Availability:**
 
-| Free Edition| Basic Edition| Premium (P1 and P2) Editions | Office 365 Apps Only |
+#### 群組帳戶的自動密碼變換
+
+**類型：**進階功能
+
+
+**可用性：**
+
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
-|  |  | ![Check][12]|  |
+| | | ![勾選][12]| |
 
 
-#### <a name="identity-protection"></a>Identity Protection
+#### 身分識別保護
 
-**Type:** Premium Features
+**類型：**進階功能
 
-| Free Edition| Basic Edition| Premium P2 Edition | Office 365 Apps Only |
+| 免費版| 基本版| Premium P2 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
-|  |  | ![Check][12]|  |
+| | | ![勾選][12]| |
 
 
-#### <a name="privileged-identity-management"></a>Privileged Identity Management
+#### Privileged Identity Management
 
-**Type:** Premium Features
+**類型：**進階功能
 
-| Free Edition| Basic Edition| Premium P2 Edition | Office 365 Apps Only |
+| 免費版| 基本版| Premium P2 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
-|  |  | ![Check][12]|  |
+| | | ![勾選][12]| |
 
 
-## <a name="azure-active-directory-join-–-windows-10-only-related-features"></a>Azure Active Directory Join – Windows 10 only  related features
-#### <a name="join-a-device-to-azure-ad,-desktop-sso,-microsoft-passport-for-azure-ad,-administrator-bitlocker-recovery"></a>Join a device to Azure AD, Desktop SSO, Microsoft Passport for Azure AD, Administrator Bitlocker recovery
+## Azure Active Directory Join – 僅適用於 Windows 10 的相關功能
+#### 將裝置加入 Azure AD、Desktop SSO、適用於 Azure AD 的 Microsoft Passport、系統管理員 Bitlocker 復原
 
-**Type:** Azure Active Directory Join – Windows 10 only  related features
+**類型：**Azure Active Directory Join – 僅適用於 Windows 10 的相關功能
 
 
-**Availability:**
+**可用性：**
 
-| Free Edition| Basic Edition| Premium (P1 and P2) Editions | Office 365 Apps Only |
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
-| ![Check][12]| ![Check][12]| ![Check][12]| ![Check][12]|
+| ![勾選][12]| ![勾選][12]| ![勾選][12]| ![勾選][12]|
 
 
 
 
-#### <a name="mdm-auto-enrollment,-self-service-bitlocker-recovery,-additional-local-administrators-to-windows-10-devices-via-azure-ad-join"></a>MDM auto-enrollment,  Self-Service Bitlocker recovery, Additional local administrators to Windows 10 devices via Azure AD Join
+#### MDM 自動註冊、自助式 Bitlocker 復原、Windows 10 裝置透過 Azure AD Join 取得的其他本機系統管理員
 
-**Type:** Azure Active Directory Join – Windows 10 only  related features
+**類型：**Azure Active Directory Join – 僅適用於 Windows 10 的相關功能
 
 
-**Availability:**
+**可用性：**
 
-| Free Edition| Basic Edition| Premium (P1 and P2) Editions | Office 365 Apps Only |
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
-|  |  | ![Check][12]|  |
+| | | ![勾選][12]| |
 
 
-#### <a name="enterprise-state-roaming"></a>Enterprise State Roaming
+#### 企業狀態漫遊
 
-**Type:** Azure Active Directory Join – Windows 10 only  related features
+**類型：**Azure Active Directory Join – 僅適用於 Windows 10 的相關功能
 
 
-**Availability:**
+**可用性：**
 
-| Free Edition| Basic Edition| Premium (P1 and P2) Editions | Office 365 Apps Only |
+| 免費版| 基本版| Premium (P1 和 P2) 版 | 僅 Office 365 應用程式 |
 | :-: | :-: | :-: | :-: |
-| | | ![Check][12]| |
+| | | ![勾選][12]| |
 
-**More details:**
+**其他詳細資訊：**
 
-- [Enterprise State Roaming](active-directory-windows-enterprise-state-roaming-overview.md)
-
-
-## <a name="azure-ad-preview-features"></a>Azure AD preview features
-In addition to the generally available features of the Free, Basic, and Premium (P1 and P2) editions, Azure AD also provides you with a collection of preview features. You can use the preview features to get an impression of what is coming in the near future and to determine whether these features can help improving your environment.
-
-**Available preview features:**
-
-- [B2B collaboration](active-directory-b2b-collaboration-overview.md)
-- [Administrative Units](active-directory-administrative-units-management.md)
-- [HR application Integration](active-directory-saas-workday-inbound-tutorial.md)
-- [Certificate-based authentication on iOS](active-directory-certificate-based-authentication-ios.md)
-- [Certificate-based authentication on Android](active-directory-certificate-based-authentication-android.md)
+- [企業狀態漫遊](active-directory-windows-enterprise-state-roaming-overview.md)
 
 
+## Azure AD 預覽功能
+除了 Free、Basic 及 Premium (P1 和 P2) 版的正式運作功能之外，Azure AD 也提供您一組預覽功能。您可以使用預覽功能獲得不久的將來可用的功能的印象，並判斷這些功能是否可協助改善您的環境。
+
+**可用的預覽功能：**
+
+- [B2B 共同作業](active-directory-b2b-collaboration-overview.md)
+- [管理單位](active-directory-administrative-units-management.md)
+- [HR 應用程式整合](active-directory-saas-workday-inbound-tutorial.md)
+- [iOS 上的憑證式驗證](active-directory-certificate-based-authentication-ios.md)
+- [Android 上的憑證式驗證](active-directory-certificate-based-authentication-android.md)
 
 
 
 
-## <a name="what's-next"></a>What's next
 
-- [Getting started with Azure Active Directory Premium](active-directory-get-started-premium.md)
-- [Add company branding to your Sign In and Access Panel pages](active-directory-add-company-branding.md)
-- [View your access and usage reports](active-directory-view-access-usage-reports.md)
+
+## 後續步驟
+
+- [開始使用 Azure Active Directory Premium](active-directory-get-started-premium.md)
+- [在登入和存取面板頁面加上公司商標](active-directory-add-company-branding.md)
+- [檢視存取和使用情況報告](active-directory-view-access-usage-reports.md)
 
 <!--Image references-->
 [12]: ./media/active-directory-editions/ic195031.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

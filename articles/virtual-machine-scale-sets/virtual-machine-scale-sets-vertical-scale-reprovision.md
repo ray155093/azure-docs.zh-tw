@@ -1,85 +1,84 @@
 <properties
-    pageTitle="Vertically scale Azure virtual machine scale sets | Microsoft Azure"
-    description="How to vertically scale a Virtual Machine in response to monitoring alerts with Azure Automation"
-    services="virtual-machine-scale-sets"
-    documentationCenter=""
-    authors="gbowerman"
-    manager="madhana"
-    editor=""
-    tags="azure-resource-manager"/>
+	pageTitle="垂直調整 Azure 虛擬機器擴展集 | Microsoft Azure"
+	description="如何垂直調整虛擬機器大小以回應 Azure 自動化的監視警示"
+	services="virtual-machine-scale-sets"
+	documentationCenter=""
+	authors="gbowerman"
+	manager="madhana"
+	editor=""
+	tags="azure-resource-manager"/>
 
 <tags
-    ms.service="virtual-machine-scale-sets"
-    ms.workload="infrastructure-services"
-    ms.tgt_pltfrm="vm-multiple"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/03/2016"
-    ms.author="guybo"/>
+	ms.service="virtual-machine-scale-sets"
+	ms.workload="infrastructure-services"
+	ms.tgt_pltfrm="vm-multiple"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/03/2016"
+	ms.author="guybo"/>
 
+# 使用虛擬機器擴展集垂直自動調整
 
-# <a name="vertical-autoscale-with-virtual-machine-scale-sets"></a>Vertical autoscale with Virtual Machine Scale sets
+這篇文章描述如何使用或不使用重新佈建以垂直調整 Azure [虛擬機器擴充集](https://azure.microsoft.com/services/virtual-machine-scale-sets/)。若為垂直調整不在擴展集中的 VM，請參閱[使用 Azure 自動化垂直調整 Azure 虛擬機器](../virtual-machines/virtual-machines-windows-vertical-scaling-automation.md)。
 
-This article describes how to vertically scale Azure [Virtual Machine Scale Sets](https://azure.microsoft.com/services/virtual-machine-scale-sets/) with or without reprovisioning. For vertical scaling of VMs which are not in scale sets, refer to [Vertically scale Azure virtual machine with Azure Automation](../virtual-machines/virtual-machines-windows-vertical-scaling-automation.md).
+垂直調整也稱為向相應增加和相應減少，意味增加或減少虛擬機器 (VM) 大小以回應工作負載。將其與[水平調整](./virtual-machine-scale-sets-autoscale-overview.md) (也稱為相應放大和相應縮小) 做比較，會根據工作負載改變 VM 數目。
 
-Vertical scaling, also known as _scale up_ and _scale down_, means increasing or decreasing virtual machine (VM) sizes in response to a workload. Compare this with [horizontal scaling](./virtual-machine-scale-sets-autoscale-overview.md), also referred to as _scale out_ and _scale in_, where the number of VMs is altered depending on the workload.
+重新佈建表示移除現有的 VM，並以新的 VM 取代它。當您增加或減少 VM 擴展集中的 VM 大小時，在某些情況下您想要調整現有 VM 的大小並保留資料，而在其他情況下您需要部署具有新大小的新 VM。本文件涵蓋這兩種情況。
 
-Reprovisioning means removing an existing VM and replacing it with a new one. When you increase or decrease the size of VMs in a VM Scale Set, in some cases you want to resize existing VMs and retain your data, while in other cases you need to deploy new VMs of the new size. This document covers both cases.
+在下列情況下，垂直調整可能十分有用︰
 
-Vertical scaling can be useful when:
+- 內建在虛擬機器上的服務使用量過低 (例如在週末)。減少 VM 大小可以降低每月成本。
+- 增加 VM 大小以應付更大的需求，而不需要建立額外的 VM。
 
-- A service built on virtual machines is under-utilized (for example at weekends). Reducing the VM size can reduce monthly costs.
-- Increasing VM size to cope with larger demand without creating additional VMs.
+您可以根據 VM 擴展集的度量型警示來設定要觸發的垂直調整。啟動警示時它就會引發 Webhook 來觸發 Runbook，可讓您調整相應增加和相應減少設定。您可以依照下列步驟來設定垂直調整︰
 
-You can set up vertical scaling to be triggered based on metric based alerts from your VM Scale Set. When the alert is activated it fires a webhook that triggers a runbook which can scale your scale set up or down. Vertical scaling can be configured by following these steps:
+1. 使用執行身分功能來建立 Azure 自動化帳戶。
+2. 將 VM 擴展集的 Azure 自動化垂直調整大小 Runbook 匯入訂用帳戶
+3. 將 Webhook 加入您的 Runbook 中。
+4. 使用 Webhook 通知將警示加入至您的 VM 擴展集。
 
-1. Create an Azure Automation account with run-as capability.
-2. Import Azure Automation Vertical Scale runbooks for VM Scale Sets into your subscription.
-3. Add a webhook to your runbook.
-4. Add an alert to your VM Scale Set using a webhook notification.
+> [AZURE.NOTE] 垂直自動調整只能在特定範圍的 VM 大小內進行。先比較各種大小的規格，然後再決定從一種大小調整成另一種大小 (數字較大並不一定代表 VM 大小較大)。您可以在以下大小配對之間選擇調整︰
 
-> [AZURE.NOTE] Vertical autoscaling can only take place within certain ranges of VM sizes. Compare the specifications of each size before deciding to scale from one to another (higher number does not always indicate bigger VM size). You can choose to scale between the following pairs of sizes:
-
->| VM sizes scaling pair |   |
+>| 成對的調整 VM 大小 | |
 |---|---|
-|  Standard_A0 | Standard_A11 |
-|  Standard_D1 |  Standard_D14 |
-|  Standard_DS1 |  Standard_DS14 |
-|  Standard_D1v2 |  Standard_D15v2 |
-|  Standard_G1 |  Standard_G5 |
-|  Standard_GS1 |  Standard_GS5 |
+| Standard\_A0 | Standard\_A11 |
+| 標準\_D1 | 標準\_D14 |
+| Standard\_DS1 | Standard\_DS14 |
+| Standard\_D1v2 | Standard\_D15v2 |
+| Standard\_G1 | Standard\_G5 |
+| Standard\_GS1 | Standard\_GS5 |
 
-## <a name="create-an-azure-automation-account-with-run-as-capability"></a>Create an Azure Automation Account with run-as capability
+## 使用執行身分功能來建立 Azure 自動化帳戶
 
-The first thing you need to do is create an Azure Automation account that will host the runbooks used to scale the VM Scale Set instances. Recently [Azure Automation](https://azure.microsoft.com/services/automation/) introduced the "Run As account" feature which makes setting up the Service Principal for automatically running the runbooks on a user's behalf very easy. You can read more about this in the article below:
+您需要做的第一件事是建立將裝載 Runbook 的 Azure 自動化帳戶，而 Runbook 用來調整 VM 調整集執行個體。最近，[Azure 自動化](https://azure.microsoft.com/services/automation/)引進「執行身分帳戶」功能，極輕鬆即可代表使用者設定服務主體自動執行 Runbook。您可以在下文中閱讀更多相關資訊：
 
-* [Authenticate Runbooks with Azure Run As account](../automation/automation-sec-configure-azure-runas-account.md)
+* [使用 Azure 執行身分帳戶驗證 Runbook](../automation/automation-sec-configure-azure-runas-account.md)
 
-## <a name="import-azure-automation-vertical-scale-runbooks-into-your-subscription"></a>Import Azure Automation Vertical Scale runbooks into your subscription
+## 將 Azure 自動化垂直調整大小 Runbook 匯入訂用帳戶
 
-The runbooks needed to vertically scale your VM Scale Sets are already published in the Azure Automation Runbook Gallery. To import them into your subscription follow the steps in this article:
+Azure 自動化 Runbook 資源庫已發佈垂直調整 VM 擴展集所需之 Runbook。若要將其匯入到您的訂用帳戶，請依照這篇文章的步驟︰
 
-* [Runbook and module galleries for Azure Automation](../automation/automation-runbook-gallery.md)
+* [Azure 自動化的 Runbook 和模組資源庫](../automation/automation-runbook-gallery.md)
 
-Choose the Browse Gallery option from the Runbooks menu:
+從 \[Runbooks] 功能表選擇 [瀏覽資源庫] 選項︰
 
-![Runbooks to be imported][runbooks]
+![要匯入的 Runbook][runbooks]
 
-The runbooks that need to be imported are shown. Select the runbook based on whether you want vertical scaling with or without reprovisioning:
+需要如下所示匯入 Runbook。根據您要使用重新佈建來垂直調整，以選取 Runbook：
 
-![Runbooks gallery][gallery]
+![Runbook 資源庫][gallery]
 
-## <a name="add-a-webhook-to-your-runbook"></a>Add a webhook to your runbook
+## 將 Webhook 加入您的 Runbook 中
 
-Once you've imported the runbooks you'll need to add a webhook to the runbook so it can be triggered by an alert from a VM Scale Set. The details of creating a webhook for your Runbook are described in this article:
+匯入 Runbook 之後，需要將 Webhook 加入 Runbook 中，如此即可從 VM 擴展集發出的警示加以觸發。本文說明如何為 Runbook 建立 Webhook 的詳細資訊：
 
-* [Azure Automation webhooks](../automation/automation-webhooks.md)
+* [Azure 自動化 Webhook](../automation/automation-webhooks.md)
 
-> [AZURE.NOTE] Make sure you copy the webhook URI before closing the webhook dialog as you will need this in the next section.
+> [AZURE.NOTE] 關閉 Webhook 對話方塊之前，請務必複製 Webhook URI，因為在下一節中將需要此 Webhook。
 
-## <a name="add-an-alert-to-your-vm-scale-set"></a>Add an alert to your VM Scale Set
+## 將警示加入至 VM 擴展集
 
-Below is a PowerShell script which shows how to add an alert to a VM Scale Set. Refer to the following article to get the name of the metric to fire the alert on: [Azure Insights autoscaling common metrics](../azure-portal/insights-autoscale-common-metrics.md).
+下面是顯示如何將警示新增至 VM 擴展集的 PowerShell 指令碼。請參閱下列文章，取得度量名稱以引發警示︰[Azure Insights 自動調整的常用度量](../azure-portal/insights-autoscale-common-metrics.md)。
 
 ```
 $actionEmail = New-AzureRmAlertRuleEmail -CustomEmail user@contoso.com
@@ -107,22 +106,18 @@ Add-AzureRmMetricAlertRule  -Name  $alertName `
                             -Description $description
 ```
 
-> [AZURE.NOTE] It is recommended to configure a reasonable time window for the alert in order to avoid triggering vertical scaling, and any associated service interruption, too often. Consider a window of least 20-30 minutes or more. Consider horizontal scaling if you need to avoid any interruption.
+> [AZURE.NOTE] 建議您設定合理的警示時間範圍以避免頻繁觸發垂直調整，及任何相關聯的服務中斷。請考慮至少 20-30 分鐘以上的時段。如果需要避免任何中斷，請考慮水平調整。
 
-For more information on how to create alerts refer to the following articles:
+如需如何建立警示的詳細資訊，請參閱下列文章：
 
-* [Azure Insights PowerShell quick start samples](../azure-portal/insights-powershell-samples.md)
-* [Azure Insights Cross-platform CLI quick start samples](../azure-portal/insights-cli-samples.md)
+* [Azure Insights PowerShell 快速入門範例](../azure-portal/insights-powershell-samples.md)
+* [Azure Insights 跨平台 CLI 快速入門範例](../azure-portal/insights-cli-samples.md)
 
-## <a name="summary"></a>Summary
+## Summary
 
-This article showed simple vertical scaling examples. With these building blocks - Automation account, runbooks, webhooks, alerts - you can connect a rich variety of events with a customized set of actions.
+這篇文章示範簡單的垂直調整範例。藉助這些建置組塊 (自動化帳戶、Runbook、Webhook、警示)，您可以連接各式各樣的事件與一組自訂的動作。
 
 [runbooks]: ./media/virtual-machine-scale-sets-vertical-scale-reprovision/runbooks.png
 [gallery]: ./media/virtual-machine-scale-sets-vertical-scale-reprovision/runbooks-gallery.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

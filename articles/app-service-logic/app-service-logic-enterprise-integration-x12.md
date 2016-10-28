@@ -1,206 +1,192 @@
 <properties 
-    pageTitle="Overview of X12 and the Enterprise Integration Pack | Microsoft Azure App Service | Microsoft Azure" 
-    description="Learn how to use X12 agreements to create Logic apps" 
-    services="logic-apps" 
-    documentationCenter=".net,nodejs,java"
-    authors="msftman" 
-    manager="erikre" 
-    editor="cgronlun"/>
+	pageTitle="X12 與企業整合套件的概觀 | Microsoft Azure App Service | Microsoft Azure" 
+	description="了解如何使用 X12 合約來建立 Logic Apps" 
+	services="logic-apps" 
+	documentationCenter=".net,nodejs,java"
+	authors="msftman" 
+	manager="erikre" 
+	editor="cgronlun"/>
 
 <tags 
-    ms.service="app-service-logic" 
-    ms.workload="integration" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="07/08/2016" 
-    ms.author="deonhe"/>
+	ms.service="app-service-logic" 
+	ms.workload="integration" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="07/08/2016" 
+	ms.author="deonhe"/>
+
+# 具備 X12 的企業整合 
+
+>[AZURE.NOTE]本頁涵蓋 Logic Apps 的 X12 功能。如需 EDIFACT 的詳細資訊，請按一下[這裡](app-service-logic-enterprise-integration-edifact.md)。
+
+## 建立 X12 合約 
+在您可以交換 X12 訊息之前，您必須先建立 X12 合約，並將它儲存在您的整合帳戶中。下列步驟將逐步引導您完成建立 X12 合約的程序。
+
+### 以下是您在開始之前的必要條件
+- 在 Azure 訂用帳戶中定義一個[整合帳戶](./app-service-logic-enterprise-integration-accounts.md)
+- 至少已經在整合帳戶中定義兩個[夥伴](./app-service-logic-enterprise-integration-partners.md)
+
+>[AZURE.NOTE]建立合約時，合約檔案中的內容必須與合約類型相符。
 
 
-# <a name="enterprise-integration-with-x12"></a>Enterprise integration with X12 
+當您[建立整合帳戶](./app-service-logic-enterprise-integration-accounts.md)並[新增夥伴](./app-service-logic-enterprise-integration-partners.md)之後，您可以依照下列步驟來建立 X12 合約：
 
->[AZURE.NOTE]This page covers the X12 features of Logic Apps. For information on EDIFACT click [here](app-service-logic-enterprise-integration-edifact.md).
+### 從 Azure 入口網站首頁
 
-## <a name="create-an-x12-agreement"></a>Create an X12 agreement 
-Before you can exchange X12 messages, you need to create an X12 agreement and store it in your integration account. The following steps will walk you through the process of creating an X12 agreement.
+在您登入 [Azure 入口網站](http://portal.azure.com "Azure 入口網站")之後：
+1. 從左邊功能表選取 [瀏覽]。
 
-### <a name="here's-what-you-need-before-you-get-started"></a>Here's what you need before you get started
-- An [integration account](./app-service-logic-enterprise-integration-accounts.md) defined in your Azure subscription  
-- At least two [partners](./app-service-logic-enterprise-integration-partners.md) already defined in your integration account  
+>[AZURE.TIP]如果您沒有看到 [瀏覽] 連結，可能需要先展開功能表。選取摺疊功能表左上方的 [顯示功能表] 連結，來執行此動作。
 
->[AZURE.NOTE]When creating an agreement, the content in the agreement file must match the agreement type.    
+![](./media/app-service-logic-enterprise-integration-overview/overview-1.png)
+2. 在篩選搜尋方塊中輸入「整合」，然後從結果清單中選取 [整合帳戶]。![](./media/app-service-logic-enterprise-integration-x12/x12-1-3.png)
+3. 在開啟的 [整合帳戶] 刀鋒視窗中，選取您要在其中建立合約的整合帳戶。如果您沒有看到任何整合帳戶清單，請[先建立一個](./app-service-logic-enterprise-integration-accounts.md "所有與整合帳戶相關的資訊")。![](./media/app-service-logic-enterprise-integration-x12/x12-1-4.png)
+4.  選取 [合約] 圖格。如果您沒有看到 [合約] 圖格，請先進行新增。![](./media/app-service-logic-enterprise-integration-x12/x12-1-5.png)
+5. 在開啟的 [合約] 刀鋒視窗中選取 [新增] 按鈕。![](./media/app-service-logic-enterprise-integration-agreements/agreement-2.png)
+6. 在開啟的 [合約] 刀鋒視窗中，輸入合約的**名稱**，然後選取 [合約類型]、[主控夥伴]、[主控身分識別]、[來賓夥伴]、[來賓身分識別]。![](./media/app-service-logic-enterprise-integration-x12/x12-1.png)
+7. 設定接收設定屬性之後，請選取 [確定] 按鈕讓我們繼續︰
+8. 選取 [接收設定]，來設定處理透過此合約所接收訊息的方式。
+9. [接收設定] 控制項分成下列各區段，包括識別項、通知、結構描述、信封、控制編號、驗證和內部設定。根據您的合約，以及您將交換訊息的夥伴，設定這些屬性。以下將檢視這些控制項，請根據您希望此合約如何識別並處理內送訊息進行設定︰![](./media/app-service-logic-enterprise-integration-x12/x12-2.png)
 
+![](./media/app-service-logic-enterprise-integration-x12/x12-3.png)
+10. 選取 [確定] 按鈕以儲存您的設定。
 
-After you've [created an integration account](./app-service-logic-enterprise-integration-accounts.md) and [added partners](./app-service-logic-enterprise-integration-partners.md), you can create an X12 agreement by following these steps:  
+### 識別項
 
-### <a name="from-the-azure-portal-home-page"></a>From the Azure portal home page
-
-After you log into the [Azure portal](http://portal.azure.com "Azure portal"):  
-1. Select **Browse** from the menu on the left.  
-
->[AZURE.TIP]If you don't see the **Browse** link, you may need to expand the menu first. Do this by selecting the **Show menu** link that's located at the top left of the collapsed menu.  
-
-![](./media/app-service-logic-enterprise-integration-overview/overview-1.png)    
-2. Type *integration* into the filter search box then select **Integration Accounts** from the list of results.       
-![](./media/app-service-logic-enterprise-integration-x12/x12-1-3.png)    
-3. In the **Integration Accounts** blade that opens up, select the integration account in which you will create the agreement. If you don't see any integration accounts lists, [create one first](./app-service-logic-enterprise-integration-accounts.md "All about integration accounts").  
-![](./media/app-service-logic-enterprise-integration-x12/x12-1-4.png)  
-4.  Select the **Agreements** tile. If you don't see the agreements tile, add it first.   
-![](./media/app-service-logic-enterprise-integration-x12/x12-1-5.png)     
-5. Select the **Add** button in the Agreements blade that opens.  
-![](./media/app-service-logic-enterprise-integration-agreements/agreement-2.png)  
-6. Enter a **Name** for your agreement then select the **Agreement type**, **Host Partner**, **Host Identity**,  **Guest Partner**, **Guest Identity**, in the Agreements blade that opens.  
-![](./media/app-service-logic-enterprise-integration-x12/x12-1.png)  
-7. After you have set the receive settings properties, select the **OK** button  
-Let's continue:  
-8. Select **Receive Settings** to configure how messages received via this agreement are to be handled.  
-9. The Receive Settings control is divided into the following sections, including Identifiers, Acknowledgment, Schemas, Envelopes, Control Numbers, Validations and Internal Settings. Configure these properties based on your agreement with the partner you will be exchanging messages with. Here is a view of these controls, configure them based on how you want this agreement to identify and handle incoming messages:  
-![](./media/app-service-logic-enterprise-integration-x12/x12-2.png)  
-
-![](./media/app-service-logic-enterprise-integration-x12/x12-3.png)  
-10. Select the **OK** button to save your settings.  
-
-### <a name="identifiers"></a>Identifiers
-
-|Property|Description |
+|屬性|說明 |
 |---|---|
-|ISA1 (Authorization Qualifier)|Select the Authorization qualifier value from the drop-down list.|
-|ISA2|Optional. Enter Authorization information value. If the value you entered for ISA1 is other than 00, enter a minimum of one alphanumeric character and a maximum of 10.|
-|ISA3 (Security Qualifier)|Select the Security qualifier value from the drop-down list.|
-|ISA4|Optional. Enter the Security information value. If the value you entered for ISA3 is other than 00, enter a minimum of one alphanumeric character and a maximum of 10.|
+|ISA1 (授權辨識符號)|從下拉式清單中選取授權辨識符號值。|
+|ISA2|選用。輸入授權資訊值。如果您為 ISA1 輸入的值是 00 以外的值，請最少輸入 1 個，最多 10 個英數字元。|
+|ISA3 (安全性辨識符號)|從下拉式清單中選取安全性辨識符號值。|
+|ISA4|選用。輸入安全性資訊值。如果您為 ISA3 輸入的值是 00 以外的值，請最少輸入 1 個，最多 10 個英數字元。|
 
-### <a name="acknowledgments"></a>Acknowledgments 
+### 通知 
 
-|Property|Description |
+|屬性|說明 |
 |----|----|
-|TA1 expected|Select this checkbox to return a technical (TA1) acknowledgment to the interchange sender. These acknowledgments are sent to the interchange sender based on the Send Settings for the agreement.|
-|FA expected|Select this checkbox to return a functional (FA) acknowledgment to the interchange sender. Then select whether you want the 997 or 999 acknowledgements, based on the schema versions you are working with. These acknowledgments are sent to the interchange sender based on the Send Settings for the agreement.|
-|Include AK2/IK2 Loop|Select this checkbox to enable generation of AK2 loops in functional acknowledgments for accepted transaction sets.Note: This checkbox is enabled only if you selected the FA expected checkbox.|
+|預期 TA1|選取此核取方塊，將技術 (TA1) 通知傳回給交換傳送者。這些通知會根據合約的傳送設定傳送給交換傳送者。|
+|預期 FA|選取此核取方塊，將功能 (FA) 通知傳回給交換傳送者。然後根據您正在使用的結構描述版本，選取您想要 997 或 999 通知。這些通知會根據合約的傳送設定傳送給交換傳送者。|
+|包含 AK2/IK2 迴圈|選取此核取方塊，在功能通知中為接受的交易集產生 AK2 迴圈。附註︰只有當您選取 [預期 FA] 核取方塊，才會啟用此核取方塊。|
 
-### <a name="schemas"></a>Schemas
+### 結構描述
 
-Choose a schema for each transaction type (ST1) and Sender Application (GS2). The receive pipeline disassembles the incoming message by matching the values for ST1 and GS2 in the incoming message with the values you set here, and the schema of the incoming message with the schema you set here.
+選擇每個交易類型 (ST1) 和傳送者應用程式 (GS2) 的結構描述。接收管線會比對內送訊息中 ST1 和 GS2 的值與您在此處設定的值，以及比對內送訊息的結構描述與您在此處設定的結構描述，來解譯內送訊息。
 
-|Property|Description |
+|屬性|說明 |
 |----|----|
-|Version|Select the X12 version|
-|Transaction Type (ST01)|Select the transaction type|
-|Sender Application (GS02)|Select the sender application|
-|Schema|Select the schema file you want to us. Schema files are located in your integration account.|
+|版本|選取 X12 版本|
+|交易類型 (ST01)|選取交易類型|
+|傳送者應用程式 (GS02)|選取傳送者應用程式|
+|結構描述|選取您要使用的結構描述檔案。結構描述檔案位於您的整合帳戶中。|
 
-### <a name="envelopes"></a>Envelopes
+### 信封
 
-|Property|Description |
+|屬性|說明 |
 |----|----|
-|ISA11 Usage|Use this field to specify the separator in a transaction set:</br></br>Select the Standard identifier to use the decimal notation of “.” instead of the decimal notation of the incoming document in the EDI receive pipeline.</br></br>Select Repetition separator to specify the separator for repeated occurrences of a simple data element or a repeated data structure. For example, (^) is usually used as repetition separator. For HIPAA schemas, you can only use (^).|
+|ISA11 使用方法|使用此欄位來指定交易集中的分隔符號︰</br></br>選取 [標準識別項]，以使用小數點標記 “.” 而不是 EDI 接收管線中內送文件的小數點標記。</br></br>選取 [重複分隔符號]，以指定重複出現簡單資料元素或重複資料結構的分隔符號。例如，(^) 通常會用來做為重複分隔符號。針對 HIPAA 結構描述，您只能使用 (^)。|
 
-### <a name="control-numbers"></a>Control Numbers
+### 控制編號
 
-|Property|Description |
+|屬性|說明 |
 |----|----|
-|Disallow Interchange Control Number duplicates|Check this option to block duplicate interchanges. If selected, the BizTalk Services Portal checks that the interchange control number (ISA13) for the received interchange does not match the interchange control number. If a match is detected, the receive pipeline does not process the interchange.<br/>If you opted to disallow duplicate interchange control numbers, then you can specify the number of days at which the check is performed by giving the appropriate value for Check for duplicate ISA13 every x days.|
-|Disallow Group control number duplicates|Check this option to block interchanges with duplicate group control numbers.|
-|Disallow Transaction set control number duplicates|Check this option to block interchanges with duplicate transaction set control numbers.|
+|不允許交換控制編號重複|核取此選項可封鎖重複的交換。如果選取，BizTalk 服務入口網站會檢查所接收交換的交換控制編號 (ISA13) 是否不符合交換控制編號。如果偵測到相符項目，接收管線不會處理交換。<br/>如果您選擇不允許重複的交換控制編號，則您可以在 [每 x 天檢查重複的 ISA13] 提供適當的值，指定執行檢查的天數。|
+|不允許群組控制編號重複|核取此選項可封鎖有重複群組控制編號的交換。|
+|不允許交易集控制編號重複|核取此選項可封鎖有重複交易集控制編號的交換。|
 
-### <a name="validations"></a>Validations
+### 驗證
 
-|Property|Description |
+|屬性|說明 |
 |----|----|
-|Message Type|EDI Message type, like 850-Purchase Order or 999-Implementation Acknowledgement.|
-|EDI Validation|Performs EDI validation on data types as defined by the EDI properties of the schema, length restrictions, empty data elements, and trailing separators.|
-|Extended Validation|If the data type is not EDI, validation is on the data element requirement and allowed repetition, enumerations, and data element length validation (min/max).|
-|Allow Leading/Trailing Zeroes|Any additional space and zero characters that are leading or trailing are retained. They are not removed.|
-|Trailing Separator Policy|Generates trailing separators on the interchange received. Options include NotAllowed, Optional, and Mandatory.|
+|訊息類型|EDI 訊息類型，如 850 採購單或 999 實作通知。|
+|EDI 驗證|依照結構描述、長度限制、空白資料元素和尾端分隔符號的 EDI 屬性定義在資料類型上執行 EDI 驗證。|
+|擴充驗證|如果資料類型不是 EDI，則在資料元素要求時才進行驗證，且允許重複、列舉和資料元素長度驗證 (最小/最大)。|
+|允許前置/尾端零|保留任何前置或尾端的額外空格和零字元，不會將它們移除。|
+|尾端分隔符號原則|接收交換時產生尾端分隔符號。選項包括 [不允許]、[選擇性] 以及 [強制]。|
 
-### <a name="internal-settings"></a>Internal Settings
+### 內部設定
 
-|Property|Description |
+|屬性|說明 |
 |----|----|
-|Convert implied decimal format Nn to base 10 numeric value|Converts an EDI number that is specified with the format Nn into a base-10 numeric value in the intermediate XML in the BizTalk Services Portal.|
-|Create empty XML tags if trailing separators are allowed|Select this check box to have the interchange sender include empty XML tags for trailing separators.|
-|Inbound batching processing|Split Interchange as transaction sets - suspend transaction sets on error: Parses each transaction set in an interchange into a separate XML document by applying the appropriate envelope to the transaction set. With this option, if one or more transaction sets in the interchange fail validation, then BizTalk Services suspends only those transaction sets. </br></br>Split Interchange as transaction sets - suspend interchange on error: Parses each transaction set in an interchange into a separate XML document by applying the appropriate envelope. With this option, if one or more transaction sets in the interchange fail validation, then BizTalk Services suspends the entire interchange.</br></br>Preserve Interchange - suspend transaction sets on error: Leaves the interchange intact, creating an XML document for the entire batched interchange. With this option, if onAe or more transaction sets in the interchange fail validation, then BizTalk Services suspends only those transaction sets, while continuing to process all other transaction sets.</br></br>Preserve Interchange - suspend interchange on error: Leaves the interchange intact, creating an XML document for the entire batched interchange. With this option, if one or more transaction sets in the interchange fail validation, then BizTalk Services suspends the entire interchange.</br></br>|
+|將隱含的小數格式 Nn 轉換為 10 進制數值|在 BizTalk 服務入口網站中的中繼 XML，將使用 Nn 格式指定的 EDI 數字轉換為 10 進制數值。|
+|如果允許尾端分隔符號，則建立空的 XML 標籤|選取此核取方塊，讓交換傳送者在尾端分隔符號包含空的 XML 標籤。|
+|輸入批次處理|將交換分割為交易集 - 暫停發生錯誤的交易集︰將適當的信封套用至交易集，將交換中每個交易集剖析為個別的 XML 文件。使用此選項時，如果交換中有一或多個交易集無法通過驗證，則 BizTalk 服務只會暫停那些交易集。</br></br>將交換分割為交易集 - 暫停發生錯誤的交換︰套用適當的信封，將交換中每個交易集剖析為個別的 XML 文件。使用此選項時，如果交換中有一或多個交易集無法通過驗證，則 BizTalk 服務會暫停整個交換。</br></br>保留交換 - 暫停發生錯誤的交易集︰讓交換保持完整，建立整個批次交換的 XML 文件。使用此選項時，如果交換中有一或多個交易集無法通過驗證，則 BizTalk 服務只會暫停那些交易集，同時繼續處理其他所有交易集。</br></br>保留交換 - 暫停發生錯誤的交換︰讓交換保持完整，建立整個批次交換的 XML 文件。使用此選項時，如果交換中有一或多個交易集無法通過驗證，則 BizTalk 服務會暫停整個交換。</br></br>|
 
-Your agreement is ready to handle incoming messages that conform to the schema you selected.
+您的合約已經準備好處理符合您所選取結構描述的內送訊息。
 
-To configure the settings that handle messages you send to partners:  
-11. Select **Send Settings** to configure how messages sent via this agreement are to be handled.  
+設定如何處理傳送給夥伴的訊息︰
+11. 選取 [傳送設定]，以設定如何處理透過此合約傳送的訊息。
 
-The Send Settings control is divided into the following sections, including Identifiers, Acknowledgment, Schemas, Envelopes, Control Numbers, Character Sets and Separators and  Validation. 
+[傳送設定] 控制項分成下列各區段，包括識別項、通知、結構描述、信封、控制編號、字元集和分隔符號，以及驗證。
 
-Here is a view of these controls. Make the selections based on how you want to handle messages you send to partners via this agreement:   
-![](./media/app-service-logic-enterprise-integration-x12/x12-4.png)  
+以下將檢視這些控制項。請根據您要如何處理透過此合約傳送給夥伴的訊息來選取︰![](./media/app-service-logic-enterprise-integration-x12/x12-4.png)
 
-![](./media/app-service-logic-enterprise-integration-x12/x12-5.png)  
+![](./media/app-service-logic-enterprise-integration-x12/x12-5.png)
 
-![](./media/app-service-logic-enterprise-integration-x12/x12-6.png)  
-12. Select the **OK** button to save your settings.  
+![](./media/app-service-logic-enterprise-integration-x12/x12-6.png)
+12. 選取 [確定] 按鈕以儲存您的設定。
 
-### <a name="identifiers"></a>Identifiers
-|Property|Description |
+### 識別項
+|屬性|說明 |
 |----|----|
-|Authorization qualifier (ISA1)|Select the Authorization qualifier value from the drop-down list.|
-|ISA2|Enter Authorization information value. If this value is other than 00, then enter a minimum of one alphanumeric character and a maximum of 10.|
-|Security qualifier (ISA3)|Select the Security qualifier value from the drop-down list.|
-|ISA4|Enter the Security information value. If this value is other than 00, for the Value (ISA4) text box, then enter a minimum of one alphanumeric value and a maximum of 10.|
+|授權辨識符號 (ISA1)|從下拉式清單中選取授權辨識符號值。|
+|ISA2|輸入授權資訊值。如果此值不是 00，則請最少輸入 1 個，最多 10 個英數字元。|
+|安全性辨識符號 (ISA3)|從下拉式清單中選取安全性辨識符號值。|
+|ISA4|輸入安全性資訊值。如果此值不是 00，則在 [值 (ISA4)] 文字方塊中，請最少輸入 1 個，最多 10 個英數字元值。|
 
-### <a name="acknowledgment"></a>Acknowledgment
-|Property|Description |
+### 通知
+|屬性|說明 |
 |----|----|
-|TA1 expected|Select this checkbox to return a technical (TA1) acknowledgment to the interchange sender. This setting specifies that the host partner who is sending the message requests an acknowledgement from the guest partner in the agreement. These acknowledgments are expected by the host partner based on the Receive Settings of the agreement.|
-|FA expected|Select this checkbox to return a functional (FA) acknowledgment to the interchange sender, and then select whether you want the 997 or 999 acknowledgements, based on the schema versions you are working with. These acknowledgments are expected by the host partner based on the Receive Settings of the agreement.|
-|FA Version|Select the FA version|
+|預期 TA1|選取此核取方塊，將技術 (TA1) 通知傳回給交換傳送者。此設定指定傳送訊息的主控夥伴向合約中的來賓夥伴要求通知。主控夥伴根據合約的「接收設定」，預期有這些通知。|
+|預期 FA|選取此核取方塊，將功能 (FA) 通知傳回給交換傳送者，然後根據您正在使用的結構描述版本，選取您想要 997 或 999 通知。主控夥伴根據合約的「接收設定」，預期有這些通知。|
+|FA 版本|選取 FA 版本|
 
-### <a name="schemas"></a>Schemas
-|Property|Description |
+### 結構描述
+|屬性|說明 |
 |----|----|
-|Version|Select the X12 version|
-|Transaction Type (ST01)|Select the transaction type|
-|SCHEMA|Select the schema to use. Schemas are located in your integration account. To access your schemas, first link your integration account to your Logic app.|
+|版本|選取 X12 版本|
+|交易類型 (ST01)|選取交易類型|
+|結構描述|選取要使用的結構描述。結構描述位於您的整合帳戶中。若要存取結構描述，請先將整合帳戶連結至邏輯應用程式。|
 
-### <a name="envelopes"></a>Envelopes
-|Property|Description |
+### 信封
+|屬性|說明 |
 |----|----|
-|ISA11 Usage|Use this field to specify the separator in a transaction set:</br></br>Select the Standard identifier to use the decimal notation of “.” instead of the decimal notation of the incoming document in the EDI receive pipeline.</br></br>Select Repetition separator to specify the separator for repeated occurrences of a simple data element or a repeated data structure. For example, (^) is usually used as repetition separator. For HIPAA schemas, you can only use (^).</br>|
-|Repetition separator|Enter the repetition separator|
-|Control Version Number (ISA12)|Select the version of the X12 standard that is used by the BizTalk Services Portal for generating an outgoing interchange.|
-|Usage Indicator (ISA15)|Enter whether the context of an interchange is information (I), production data (P), or test data (T). The EDI receive pipeline promotes this property to the context.|
-|Schema|You can enter how the BizTalk Services Portal generates the GS and ST segments for an X12-encoded interchange that it sends to the Send Pipeline.</br></br>You can associate values of the GS1, GS2, GS3, GS4, GS5, GS7, and GS8 data elements with values of the Transaction Type, and Version/Release data elements. When the BizTalk Services Portal determines that an XML message has the values set for the Transaction Type, and Version/Release elements in a row of the grid, then it populates the GS1, GS2, GS3, GS4, GS5, GS7, and GS8 data elements in the envelope of the outgoing interchange with the values from the same row of the grid. The values of the Transaction Type, and Version/Release elements must be unique.</br></br>Optional. For GS1, select a value for the functional code from the drop-down list.</br></br>Required. For GS2, enter an alphanumeric value for the application sender with a minimum of two characters and a maximum of 15 characters.</br></br>Required. For GS3, enter an alphanumeric value for the application receiver with a minimum of two characters and a maximum of 15 characters.</br></br>Optional. For GS4, select CCYYMMDD or YYMMDD.</br></br>Optional. For GS5, select HHMM, HHMMSS, or HHMMSSdd.</br></br>Optional. For GS7, select a value for the responsible agency from the drop-down list.</br></br>Optional. For GS8, enter an alphanumeric value for the document identified with a minimum of one character and a maximum of 12 characters.</br></br>**Note**:These are the values that the BizTalk Services Portal enters in the GS fields of the interchange it is building if the Transaction Type, and Version/Release elements in the same row are a match for those associated with the interchange.|
+|ISA11 使用方法|使用此欄位來指定交易集中的分隔符號︰</br></br>選取 [標準識別項]，以使用小數點標記 “.” 而不是 EDI 接收管線中內送文件的小數點標記。</br></br>選取 [重複分隔符號]，以指定重複出現簡單資料元素或重複資料結構的分隔符號。例如，(^) 通常會用來做為重複分隔符號。針對 HIPAA 結構描述，您只能使用 (^)。</br>|
+|重複分隔符號|輸入重複分隔符號|
+|控制版本編號 (ISA12)|選取 BizTalk 服務入口網站用來產生外送交換的 X12 標準版本。|
+|使用狀況指示符號 (ISA15)|輸入交換的內容為資訊 (I)、產品資料 (P)，或測試資料 (T)。EDI 接收管線會將此屬性升級為內容。|
+|結構描述|您可以輸入 BizTalk 服務入口網站如何產生 X12 編碼交換傳送至傳送管線的 GS 和 ST 區段。</br></br>您可以將 GS1、GS2、GS3、GS4、GS5、GS7 和 GS8 資料元素的值與交易類型和版本/版次資料元素的值產生關聯。當 BizTalk 服務入口網站判斷 XML 訊息中在某列格線中有設定交易類型與版本/版次的值，則會在外送交換信封中的 GS1、GS2、GS3、GS4、GS5、GS7 和 GS8 資料元素填入相同格線列的值。交易類型與版本/版次元素的值必須是唯一。</br></br>選擇性。針對 GS1，請從下拉式清單中選取功能代碼的值。</br></br>必要。針對 GS2，請輸入應用程式傳送者的英數字元值，最少 2 個字元，最多 15 個字元。</br></br>必要。針對 GS3，請輸入應用程式接收者的英數字元值，最少 2 個字元，最多 15 個字元。</br></br>選擇性。針對 GS4，請選取 CCYYMMDD 或 YYMMDD。</br></br>選擇性。針對 GS5，請選取 HHMM、HHMMSS 或 HHMMSSdd。</br></br>選擇性。針對 GS7，請從下拉式清單中選取負責機構的值。</br></br>選擇性。針對 GS8，請輸入識別文件的英數字元值，最少 1 個字元，最多 12 個字元。</br></br>**注意**︰如果相同資料列中的交易類型和版本/版次元素符合與交換相關聯的值，BizTalk 服務入口網站就會在所建立交換的 GS 欄位中輸入這些值。|
 
-### <a name="control-numbers"></a>Control Numbers
-|Property|Description |
+### 控制編號
+|屬性|說明 |
 |----|----|
-|Interchange Control Number (ISA13)|Required. Enter a range of values for the interchange control number used by the BizTalk Services Portal in generating an outgoing interchange. Enter a numeric value with a minimum of 1 and a maximum of 999999999.|
-|Group Control Number (GS06)|Required. Enter the range of numbers that the BizTalk Services Portal should use for the group control number. Enter a numeric value with a minimum of one character and a maximum of nine characters.|
-|Transaction Set Control Number (ST02)|For Transaction Set Control number (ST02), enter a range of numeric values for the required middle fields, and alphanumeric values for the optional prefix and suffix. The maximum length of all four fields is nine characters.|
-|Prefix|To designate the range of transaction set control numbers used in an acknowledgment, enter values in the ACK Control number (ST02) fields. Enter a numeric value for the middle two fields, and an alphanumeric value (if desired) for the prefix and suffix fields. The middle fields are required and contain the minimum and maximum values for the control number; the prefix and suffix are optional. The maximum length for all three fields is nine characters.|
-|Suffix|To designate the range of transaction set control numbers used in an acknowledgment, enter values in the ACK Control number (ST02) fields. Enter a numeric value for the middle two fields, and an alphanumeric value (if desired) for the prefix and suffix fields. The middle fields are required and contain the minimum and maximum values for the control number; the prefix and suffix are optional. The maximum length for all three fields is nine characters.|
+|交換控制編號 (ISA13)|必要。輸入 BizTalk 服務入口網站產生外送交換時所使用的交換控制編號值範圍。請輸入最少為 1，最大為 999999999 的數值。|
+|群組控制編號 (GS06)|必要。輸入 BizTalk 服務入口網站應用於群組控制編號的數字範圍。請輸入最少 1 個字元，最多 9 個字元的數值。|
+|交易集控制編號 (ST02)|針對交易集控制編號 (ST02)，在必要的中間欄位輸入一個範圍的數值，在選擇性的前置詞和尾碼輸入英數字元值。所有四個欄位的長度上限都是 9 個字元。|
+|前置詞|若要指定通知中使用的交易集控制編號範圍，請在 [ACK 控制編號 (ST02)] 欄位中輸入值。在中間的兩個欄位輸入數值，在前置詞和尾碼欄位輸入英數字元值 (如有需要)。中間欄位是必要欄位，而且包含控制編號的最小值和最大值，前置詞和尾碼則是選擇性的欄位。所有三個欄位的長度上限都是 9 個字元。|
+|尾碼|若要指定通知中使用的交易集控制編號範圍，請在 [ACK 控制編號 (ST02)] 欄位中輸入值。在中間的兩個欄位輸入數值，在前置詞和尾碼欄位輸入英數字元值 (如有需要)。中間欄位是必要欄位，而且包含控制編號的最小值和最大值，前置詞和尾碼則是選擇性的欄位。所有三個欄位的長度上限都是 9 個字元。|
 
-### <a name="character-sets-and-separators"></a>Character Sets and Separators
-Other than the character set, you can enter a different set of delimiters to be used for each message type. If a character set is not specified for a given message schema, then the default character set is used.
+### 字元集和分隔符號
+除了字元集，您還可以為每個訊息類型輸入一組不同的分隔符號。如果指定的訊息結構描述未指定字元集，則會使用預設字元集。
 
-|Property|Description |
+|屬性|說明 |
 |----|----|
-|Character Set to be used|Select the X12 character set to validate the properties that you enter for the agreement.</br></br>**Note**: The BizTalk Services Portal only uses this setting to validate the values entered for the related agreement properties. The receive pipeline or send pipeline ignores this character-set property when performing run-time processing.|
-|Schema|Select the (+) symbol and select a schema from the drop-down list. For the selected schema, select the separators set to be used:</br></br>Component element separator – Enter a single character to separate composite data elements.</br></br>Data Element Separator – Enter a single character to separate simple data elements within composite data elements.</br></br></br></br>Replacement Character – Select this check box if the payload data contains characters that are also used as data, segment, or component separators. You can then enter a replacement character. When generating the outbound X12 message, all instances of separator characters in the payload data are replaced with the specified character.</br></br>Segment Terminator – Enter a single character to indicate the end of an EDI segment.</br></br>Suffix – Select the character that is used with the segment identifier. If you designate a suffix, then the segment terminator data element can be empty. If the segment terminator is left empty, then you must designate a suffix.|
+|要使用的字元集|選取 X12 字元集來驗證您為合約輸入的屬性。</br></br>**注意**：BizTalk 服務入口網站只會使用此設定來驗證為相關合約屬性所輸入的值。接收管線或傳送管線在進行執行階段處理時會忽略此字元集屬性。|
+|結構描述|選取 (+) 符號，然後從下拉式清單中選取結構描述。針對選取的結構描述，選取要使用的分隔符號集︰</br></br>元件元素分隔符號 – 輸入單一字元來分隔複合資料元素。</br></br>資料元素分隔符號 – 輸入單一字元來分隔複合資料元素內的簡單資料元素。</br></br></br></br>取代字元 – 如果承載資料包含也用於資料、區段或元件分隔符號的字元，請選取此核取方塊。然後，您可以輸入取代字元。產生輸出 X12 訊息時，承載資料中的所有分隔字元執行個體會取代為指定的字元。</br></br>區段結束字元 – 輸入單一字元來指出 EDI 區段的結尾。</br></br>尾碼 – 選取要搭配區段識別項使用的字元。如果指定尾碼，則區段結束字元資料元素可以空白。如果區段結束字元留空，則必須指定尾碼。|
 
-### <a name="validation"></a>Validation
-|Property|Description |
+### 驗證
+|屬性|說明 |
 |----|----|
-|Message Type|Selecting this option enables validation on the interchange receiver. This validation performs EDI validation on transaction-set data elements, validating data types, length restrictions, and empty data elements and trailing separators.|
-|EDI Validation||
-|Extended Validation|Selecting this option enables extended validation of interchanges received from the interchange sender. This includes validation of field length, optionality, and repeat count in addition to XSD data type validation. You can enable extension validation without enabling EDI validation, or vice versa.|
-|Allow leading/ trailing zeroes|Selecting this option specifies that an EDI interchange received from the party does not fail validation if a data element in an EDI interchange does not conform to its length requirement because of or trailing spaces, but does conform to its length requirement when they are removed.|
-|Trailing separator|Selecting this option specifies an EDI interchange received from the party does not fail validation if a data element in an EDI interchange does not conform to its length requirement because of leading (or trailing) zeroes or trailing spaces, but does conform to its length requirement when they are removed.</br></br>Select Not Allowed if you do not want to allow trailing delimiters and separators in an interchange received from the interchange sender. If the interchange contains trailing delimiters and separators, it is declared invalid.</br></br>Select Optional to accept interchanges with or without trailing delimiters and separators.</br></br>Select Mandatory if the received interchange must contain trailing delimiters and separators.|
+|訊息類型|選取此選項可對交換接收者進行驗證。這項驗證會對交易集資料元素、驗證資料類型、長度限制、空白資料元素和尾端分隔符號執行 EDI 驗證。|
+|EDI 驗證||
+|擴充驗證|選取此選項可讓交換傳送者接收交換的擴充驗證。除了 XSD 資料類型驗證，還包括驗證欄位長度、選擇性和重複計數。您可以啟用擴充驗證而不啟用 EDI 驗證，反之亦然。|
+|允許前置/尾端零|選取此選項指定，如果 EDI 交換中的資料元素因為有尾端空格而不符合其長度要求，但移除後就符合長度要求，則從合作對象接收的 EDI 交換會通過驗證。|
+|尾端分隔符號|選取此選項指定，如果 EDI 交換中的資料元素因為有前置 (或尾端) 零或尾端空格而不符合其長度要求，但移除後就符合長度要求，則從合作對象接收的 EDI 交換會通過驗證。</br></br>如果您不想要在交換傳送者接收的交換中允許尾端分隔符號，請選取 [不允許]。如果交換包含尾端分隔符號，會被宣告為無效。</br></br>選取 [選擇性] 接受交換可以有或沒有尾端分隔符號。</br></br>如果收到的交換必須包含尾端分隔符號，請選取 [必要]。|
 
-After you select **OK** on the open blades:  
-13. Select the **Agreements** tile on the Integration Account blade and you will see the newly added agreement listed.  
-![](./media/app-service-logic-enterprise-integration-x12/x12-7.png)   
+在開啟的刀鋒視窗上選取 [確定] 之後︰
+13. 在 [整合帳戶] 刀鋒視窗上選取 [合約] 圖格，而您將會看到已列出新加入的合約。![](./media/app-service-logic-enterprise-integration-x12/x12-7.png)
 
-## <a name="learn-more"></a>Learn more
-- [Learn more about the Enterprise Integration Pack](./app-service-logic-enterprise-integration-overview.md "Learn about Enterprise Integration Pack")  
+## 詳細資訊
+- [深入了解企業整合套件](./app-service-logic-enterprise-integration-overview.md "了解企業整合套件")
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

@@ -1,6 +1,6 @@
 <properties 
-pageTitle="Enable Remote Desktop Connection for a Role in Azure Cloud Services" 
-description="How to configure your azure cloud service application to allow remote desktop connections" 
+pageTitle="啟用 Azure 雲端服務中角色的遠端桌面連線" 
+description="如何設定的 Azure 雲端服務應用程式以允許遠端桌面連線" 
 services="cloud-services" 
 documentationCenter="" 
 authors="sbtron" 
@@ -15,8 +15,7 @@ ms.topic="article"
 ms.date="02/17/2016" 
 ms.author="saurabh"/>
 
-
-# <a name="enable-remote-desktop-connection-for-a-role-in-azure-cloud-services"></a>Enable Remote Desktop Connection for a Role in Azure Cloud Services
+# 啟用 Azure 雲端服務中角色的遠端桌面連線
 
 >[AZURE.SELECTOR]
 - [Azure classic portal](cloud-services-role-enable-remote-desktop.md)
@@ -24,83 +23,82 @@ ms.author="saurabh"/>
 - [Visual Studio](../vs-azure-tools-remote-desktop-roles.md)
 
 
-Remote Desktop enables you to access the desktop of a role running in Azure. You can use a Remote Desktop connection to troubleshoot and diagnose problems with your application while it is running. 
+遠端桌面可讓您存取 Azure 內執行中角色的桌面。您可以使用遠端桌面連線來疑難排解和診斷執行中應用程式的問題。
 
-You can enable a Remote Desktop connection in your role during development by including the Remote Desktop modules in your service definition or you can choose to enable Remote Desktop through the Remote Desktop Extension. The preferred approach is to use the Remote Desktop extension as you can enable Remote Desktop even after the application is deployed without having to redeploy your application. 
-
-
-## <a name="configure-remote-desktop-from-the-azure-classic-portal"></a>Configure Remote Desktop from the Azure classic portal
-The Azure classic portal uses the Remote Desktop Extension approach so you can enable Remote Desktop even after the application is deployed. The **Configure** page for your cloud service allows you to enable Remote Desktop, change the local Administrator account used to connect to the virtual machines, the certificate used in authentication and set the expiration date. 
+您可以在開發期間藉由在服務定義中包含遠端桌面模組啟用遠端桌面連線，也可以選擇透過遠端桌面延伸模組啟用遠端桌面。慣用的方法是使用遠端桌面延伸模組，因為即使在部署應用程式之後，您仍然可以啟用遠端桌面，無需重新部署您的應用程式。
 
 
-1. Click **Cloud Services**, click the name of the cloud service, and then click **Configure**.
+## 從 Azure 傳統入口網站設定遠端桌面
+Azure 傳統入口網站會使用遠端桌面延伸模組方法，因此即使在應用程式部署之後，您也可以啟用遠端桌面。雲端服務的 [設定] 頁面可讓您啟用遠端桌面，變更用來與虛擬機器連線的本機系統管理員帳戶、驗證中使用的憑證，並設定到期日。
 
-2. Click **Remote**.
+
+1. 依序按一下 [雲端服務]、雲端服務的名稱及 [設定]。
+
+2. 按一下 [遠端]。
     
     ![Cloud services remote](./media/cloud-services-role-enable-remote-desktop/CloudServices_Remote.png)
     
-    > [AZURE.WARNING] All role instances will be restarted when you first enable Remote Desktop and click OK (checkmark). To prevent a reboot, the certificate used to encrypt the password must be installed on the role. To prevent a restart, [upload a certificate for the cloud service](cloud-services-how-to-create-deploy/#how-to-upload-a-certificate-for-a-cloud-service) and then return to this dialog.
+    > [AZURE.WARNING] 當您首次啟用遠端桌面並按一下 [確定] \(打勾記號) 時，所有角色執行個體都會重新啟動。若要防止重新啟動，角色上必須安裝用來將密碼加密的憑證。若要防止重新啟動，請[上傳雲端服務的憑證](cloud-services-how-to-create-deploy/#how-to-upload-a-certificate-for-a-cloud-service)，然後再回到這個對話方塊。
     
 
-3. In **Roles**, select the role you want to update or select **All** for all roles.
+3. 在 [角色] 中，選取想要更新的角色，或選取 [全部] 以更新所有角色。
 
-4. Make any of the following changes:
+4. 進行下列任一變更：
     
-    - To enable Remote Desktop, select the **Enable Remote Desktop** check box. To disable Remote Desktop, clear the check box.
+    - 若要啟用遠端桌面，請選取 [啟用遠端桌面] 核取方塊。若要停用遠端桌面，請清除此核取方塊。
     
-    - Create an account to use in Remote Desktop connections to the role instances.
+    - 建立用來對角色執行個體進行遠端桌面連線的帳戶。
     
-    - Update the password for the existing account.
+    - 更新現有帳戶的密碼。
     
-    - Select an uploaded certificate to use for authentication (upload the certificate using **Upload** on the **Certificates** page) or create a new certificate. 
+    - 選取要用於驗證的已上傳憑證 (使用 [憑證] 頁面上的 [上傳] 來上傳憑證)，或建立新的憑證。
     
-    - Change the expiration date for the Remote Desktop configuration.
+    - 變更遠端桌面組態的到期日。
 
-5. When you finish your configuration updates, click **OK** (checkmark).
+5. 完成組態更新時，按一下 [確定] \(勾選記號)。
 
 
-## <a name="remote-into-role-instances"></a>Remote into role instances
-Once Remote Desktop is enabled on the roles you can remote into a role instance through various tools.
+## 角色執行個體的遠端存取
+一旦在角色上啟用遠端桌面，您可以透過各種工具遠端存取角色執行個體。
 
-To connect to a role instance from the Azure classic portal:
+若要從 Azure 傳統入口網站連線到角色執行個體：
     
-  1.   Click **Instances** to open the **Instances** page.
-  2.   Select a role instance that has Remote Desktop configured.
-  3.   Click **Connect**, and follow the instructions to open the desktop. 
-  4.   Click **Open** and then **Connect** to start the Remote Desktop connection. 
+  1.   按一下 [**執行個體**] 以開啟 [**執行個體**] 頁面。
+  2.   選取已設定「遠端桌面」的角色執行個體。
+  3.   按一下 [**連接**]，然後依照指示開啟桌面。 
+  4.   按一下 [**開啟**]，然後按一下 [**連接**] 以啟動遠端桌面連線。 
 
 
-### <a name="use-visual-studio-to-remote-into-a-role-instance"></a>Use Visual Studio to remote into a role instance
+### 使用 Visual Studio 遠端存取角色執行個體
 
-In Visual Studio, Server Explorer:
+在 Visual Studio 中，伺服器總管：
 
-1. Expand the **Azure\\Cloud Services\\[cloud service name]** node.
-2. Expand either **Staging** or **Production**.
-3. Expand the individual role.
-4. Right-click one of the role instances, click **Connect using Remote Desktop...**, and then enter the user name and password. 
+1. 展開 **Azure\\Cloud Services\\[cloud service name]** 節點。
+2. 展開**預備**或**生產**。
+3. 展開個別角色。
+4. 以滑鼠右鍵按一下其中一個角色執行個體，按一下 [使用遠端桌面連線...]，然後輸入使用者名稱和密碼。 
 
-![Server explorer remote desktop](./media/cloud-services-role-enable-remote-desktop/ServerExplorer_RemoteDesktop.png)
-
-
-### <a name="use-powershell-to-get-the-rdp-file"></a>Use PowerShell to get the RDP file
-You can use the [Get-AzureRemoteDesktopFile](https://msdn.microsoft.com/library/azure/dn495261.aspx) cmdlet to retrieve the RDP file. You can then use the RDP file with Remote Desktop Connection to access the cloud service.
-
-### <a name="programmatically-download-the-rdp-file-through-the-service-management-rest-api"></a>Programmatically download the RDP file through the Service Management REST API
-You can use the [Download RDP File](https://msdn.microsoft.com/library/jj157183.aspx) REST operation to download the RDP file. 
+![伺服器總管遠端桌面](./media/cloud-services-role-enable-remote-desktop/ServerExplorer_RemoteDesktop.png)
 
 
+### 使用 PowerShell 取得 RDP 檔案
+您可以使用 [Get-AzureRemoteDesktopFile](https://msdn.microsoft.com/library/azure/dn495261.aspx) cmdlet 擷取 RDP 檔案。然後，您可以使用 RDP 檔案及遠端桌面連線存取雲端服務。
 
-## <a name="to-configure-remote-desktop-in-the-service-definition-file"></a>To configure Remote Desktop in the service definition file
+### 以程式設計的方式透過服務管理 REST API 下載 RDP 檔案
+您可以使用[下載 RDP 檔案](https://msdn.microsoft.com/library/jj157183.aspx) REST 作業下載 RDP 檔案。
 
-This method allows you to enable Remote Desktop for the application during development. This approach requires encrypted passwords be stored in your service configuration file and any updates to the remote desktop configuration would require a redeployment of the application. If you want to avoid these downsides you should use the remote desktop extension based approach described above.  
 
-You can use Visual Studio to [enable a remote desktop connection](../vs-azure-tools-remote-desktop-roles.md) using the service definition file approach.  
-The steps below describe the changes needed to the service model files to enable remote desktop. Visual Studio will automatically makes these changes when publishing.
 
-### <a name="set-up-the-connection-in-the-service-model"></a>Set up the connection in the service model 
-Use the **Imports** element to import the **RemoteAccess** module and the **RemoteForwarder** module to the [ServiceDefinition.csdef](cloud-services-model-and-package.md#csdef) file.
+## 在服務定義檔中設定遠端桌面
 
-The service definition file should be similar to the following example with the `<Imports>` element added.
+這個方法可讓您在開發期間啟用應用程式的遠端桌面。此方法需要加密的密碼儲存在您的服務組態檔中，且遠端桌面組態的任何更新都需要重新部署應用程式。如果您想要避免這些缺點，您應該使用以上所述之以遠端桌面延伸模組為基礎的方法。
+
+您可以使用 Visual Studio [啟用遠端桌面連線](../vs-azure-tools-remote-desktop-roles.md)以使用服務定義檔方法。下列步驟說明服務模型檔案啟用遠端桌面所需的變更。Visual Studio 將會在發佈時自動產生這些變更。
+
+### 設定服務模型中的連線 
+使用**匯入**元素將 **RemoteAccess** 模組和 **RemoteForwarder** 模組匯入至 [ServiceDefinition.csdef](cloud-services-model-and-package.md#csdef) 檔案。
+
+服務定義檔應類似下列已加入 `<Imports>` 元素的範例。
 
 ```xml
 <ServiceDefinition name="<name-of-cloud-service>" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2013-03.2.0">
@@ -123,7 +121,7 @@ The service definition file should be similar to the following example with the 
     </WebRole>
 </ServiceDefinition>
 ```
-The [ServiceConfiguration.cscfg](cloud-services-model-and-package.md#cscfg) file should be similar to the following example, note the `<ConfigurationSettings>` and `<Certificates>` elements. The Certificate specified must be [uploaded to the cloud service](../cloud-services-how-to-create-deploy.md#how-to-upload-a-certificate-for-a-cloud-service).
+[ServiceConfiguration.cscfg](cloud-services-model-and-package.md#cscfg) 檔案應類似下列範例，請注意 `<ConfigurationSettings>` 和 `<Certificates>` 元素。指定的憑證必須已[上傳至雲端服務](../cloud-services-how-to-create-deploy.md#how-to-upload-a-certificate-for-a-cloud-service)。
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -145,11 +143,8 @@ The [ServiceConfiguration.cscfg](cloud-services-model-and-package.md#cscfg) file
 ```
 
 
-## <a name="additional-resources"></a>Additional Resources
+## 其他資源
 
-[How to Configure Cloud Services](cloud-services-how-to-configure.md)
+[如何設定雲端服務](cloud-services-how-to-configure.md)
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0218_2016-->

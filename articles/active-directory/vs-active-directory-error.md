@@ -1,102 +1,99 @@
 <properties 
-    pageTitle="Error During Authentication Detection" 
-    description="The active directory connection wizard detected an incompatible authentication type" 
-    services="active-directory" 
-    documentationCenter="" 
-    authors="TomArcher" 
-    manager="douge" 
-    editor=""/>
+	pageTitle="驗證偵測期間發生錯誤" 
+	description="Active directory 連線精靈偵測到不相容的驗證類型" 
+	services="active-directory" 
+	documentationCenter="" 
+	authors="TomArcher" 
+	manager="douge" 
+	editor=""/>
   
 <tags 
-    ms.service="active-directory" 
-    ms.workload="web" 
-    ms.tgt_pltfrm="vs-getting-started" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="08/15/2016" 
-    ms.author="tarcher"/>
+	ms.service="active-directory" 
+	ms.workload="web" 
+	ms.tgt_pltfrm="vs-getting-started" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="08/15/2016" 
+	ms.author="tarcher"/>
 
+# 驗證偵測期間發生錯誤
 
-# <a name="error-during-authentication-detection"></a>Error During Authentication Detection
+偵測先前的驗證程式碼時，精靈偵測到不相容的驗證類型。
 
-While detecting previous authentication code, the wizard detected an incompatible authentication type.   
+##檢查什麼？
 
-##<a name="what-is-being-checked?"></a>What is being checked?
+**注意：**必須建置專案，才能正確偵測專案中先前的認證程式碼。如果遇到這個錯誤，且您的專案中沒有先前的驗證碼，請重建並再試一次。
 
-**Note:** In order to correctly detect previous authentication code in a project, the project must be built.  If you encountered this error and you don't have a previous authentication code in your project, rebuild and try again.
+###專案類型
 
-###<a name="project-types"></a>Project Types
+精靈會檢查您正在開發的專案類型，以便可以將正確的驗證邏輯插入專案。如果專案中有衍生自 `ApiController` 的任何控制器，則該專案將被視為 WebAPI 專案。如果專案中只有衍生自 `MVC.Controller` 的控制器，則該專案將被視為 MVC 專案。精靈不支援其他類型的專案。目前不支援 WebForms 專案。
 
-The wizard checks which type of project you’re developing so it can inject the right authentication logic into the project.  If there is any controller that derives from `ApiController` in the project, the project will be considered a WebAPI project.  If there are only controllers that derive from `MVC.Controller` in the project, the project will be considered an MVC project.  Anything else is not supported by the wizard.  WebForms projects are not currently supported.
+###相容的驗證碼
 
-###<a name="compatible-authentication-code"></a>Compatible Authentication Code
+精靈也會檢查先前對精靈設定或與精靈相容的驗證設定。如果所有設定皆存在，則會將它視為可重新進入的情況，而精靈將會開啟並顯示設定。如果只有部分設定存在，則會將它視為錯誤情況。
 
-The wizard also checks for authentication settings that have been previously configured with the wizard or are compatible with the wizard.  If all of the settings are present, it is considered a re-entrant case and the wizard will open and display the settings.  If only some of the settings are present, it is considered an error case.
+在 MVC 專案中，精靈會檢查先前使用此精靈所產生的以下任何設定：
 
-In an MVC project, the wizard checks for any of the following settings, which result from previous use of the wizard:
+	<add key="ida:ClientId" value="" />
+	<add key="ida:Tenant" value="" />
+	<add key="ida:AADInstance" value="" />
+	<add key="ida:PostLogoutRedirectUri" value="" />
 
-    <add key="ida:ClientId" value="" />
-    <add key="ida:Tenant" value="" />
-    <add key="ida:AADInstance" value="" />
-    <add key="ida:PostLogoutRedirectUri" value="" />
+此外，精靈會檢查先前使用此精靈所產生 Web API 專案中的以下任何設定：
 
-In addition, the wizard checks for any of the following settings in a Web API project, which result from previous use of the wizard:
+	<add key="ida:ClientId" value="" />
+	<add key="ida:Tenant" value="" />
+	<add key="ida:Audience" value="" />
 
-    <add key="ida:ClientId" value="" />
-    <add key="ida:Tenant" value="" />
-    <add key="ida:Audience" value="" />
+###不相容的驗證碼
 
-###<a name="incompatible-authentication-code"></a>Incompatible Authentication Code
+最後，精靈會嘗試偵測舊版 Visual Studio 所設定的驗證碼版本。如果收到此錯誤，表示您的專案包含不相容的驗證類型。精靈會從舊版 Visual Studio 中偵測下列驗證類型：
 
-Finally, the wizard attempts to detect versions of authentication code that have been configured with previous versions of Visual Studio. If you received this error, it means your project contains an incompatible authentication type. The wizard detects the following types of authentication from previous versions of Visual Studio:
-
-* Windows Authentication 
-* Individual User Accounts 
-* Organizational Accounts 
+* Windows 驗證
+* 個別使用者帳戶
+* 組織帳戶
  
 
-To detect Windows Authentication in an MVC project, the wizard looks for the `authentication` element from your **web.config** file.
+為偵測 MVC 專案中的「Windows 驗證」，精靈會在您的 **web.config** 檔案中尋找 `authentication` 元素。
 
 <pre>
-    &lt;configuration&gt;
-        &lt;system.web&gt;
-            <span style="background-color: yellow">&lt;authentication mode="Windows" /&gt;</span>
-        &lt;/system.web&gt;
-    &lt;/configuration&gt;
+	&lt;configuration>
+	    &lt;system.web>
+	        <span style="background-color: yellow">&lt;authentication mode="Windows" /></span>
+	    &lt;/system.web>
+	&lt;/configuration>
 </pre>
 
-To detect Windows Authentication in a Web API project, the wizard looks for the `IISExpressWindowsAuthentication` element from your project's **.csproj** file:
+為偵測 Web API 專案中的「Windows 驗證」，精靈會在您專案的 **.csproj** 檔案中尋找 `IISExpressWindowsAuthentication` 元素：
 
 <pre>
-    &lt;Project&gt;
-        &lt;PropertyGroup&gt;
-            <span style="background-color: yellow">&lt;IISExpressWindowsAuthentication&gt;enabled&lt;/IISExpressWindowsAuthentication&gt;</span>
-        &lt;/PropertyGroup> &lt;/Project&gt;
+	&lt;Project>
+	    &lt;PropertyGroup>
+	        <span style="background-color: yellow">&lt;IISExpressWindowsAuthentication>enabled&lt;/IISExpressWindowsAuthentication></span>
+	    &lt;/PropertyGroup>
+	&lt;/Project>
 </pre>
 
-To detect Individual User Accounts authentication, the wizard looks for the package element from your **Packages.config** file.
+為偵測「個別使用者帳戶」驗證，精靈會在您的 **Packages.config** 檔案中尋找 package 元素。
 
 <pre>
-    &lt;packages&gt;
-        <span style="background-color: yellow">&lt;package id="Microsoft.AspNet.Identity.EntityFramework" version="2.1.0" targetFramework="net45" /&gt;</span>
-    &lt;/packages&gt;
+	&lt;packages>
+	    <span style="background-color: yellow">&lt;package id="Microsoft.AspNet.Identity.EntityFramework" version="2.1.0" targetFramework="net45" /></span>
+	&lt;/packages>
 </pre>
 
-To detect an old form of Organizational Account authentication, the wizard looks for the following element from **web.config**:
+為偵測舊式「組織帳戶」驗證，精靈會在 **web.config** 中尋找下列元素：
 
 <pre>
-    &lt;configuration&gt;
-        &lt;appSettings&gt;
-            <span style="background-color: yellow">&lt;add key="ida:Realm" value="***" /&gt;</span>
-        &lt;/appSettings&gt;
-    &lt;/configuration&gt;
+	&lt;configuration>
+	    &lt;appSettings>
+	        <span style="background-color: yellow">&lt;add key="ida:Realm" value="***" /></span>
+	    &lt;/appSettings>
+	&lt;/configuration>
 </pre>
 
-To change the authentication type, remove the incompatible authentication type and run the wizard again.
+若要變更驗證類型，請移除不相容的驗證類型，然後重新執行精靈。
 
-For more information, see [Authentication Scenarios for Azure AD](active-directory-authentication-scenarios.md).
+如需詳細資訊，請參閱 [Azure AD 的驗證案例](active-directory-authentication-scenarios.md)。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

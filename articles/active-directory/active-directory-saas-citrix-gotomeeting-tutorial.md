@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="Tutorial: Azure Active Directory integration with Citrix GoToMeeting | Microsoft Azure" 
-    description="Learn how to use Citrix GoToMeeting with Azure Active Directory to enable single sign-on, automated provisioning, and more!." 
+    pageTitle="教學課程：Azure Active Directory 與 Citrix GoToMeeting 整合 | Microsoft Azure" 
+    description="了解如何使用 Citrix GoToMeeting 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -15,179 +15,172 @@
     ms.date="08/16/2016" 
     ms.author="jeedes" />
 
+#教學課程：Azure Active Directory 與 Citrix GoToMeeting 整合  
+適用對象：Azure
 
-#<a name="tutorial:-azure-active-directory-integration-with-citrix-gotomeeting"></a>Tutorial: Azure Active Directory integration with Citrix GoToMeeting  
-Applies To: Azure
+>[AZURE.TIP]如需意見反應，請按一下[這裡](http://go.microsoft.com/fwlink/?LinkId=522412)。
 
->[AZURE.TIP]For feedback, click [here](http://go.microsoft.com/fwlink/?LinkId=522412).
+本教學課程的目的是要示範 Azure 與 Citrix GoToMeeting 的整合。本教學課程中說明的案例假設您已經具有下列項目：
 
-The objective of this tutorial is to show the integration of Azure and Citrix GoToMeeting. The scenario outlined in this tutorial assumes that you already have the following items:
+-   有效的 Azure 訂閱
+-   Citrix GoToMeeting 租用戶
 
--   A valid Azure subscription
--   A tenant in Citrix GoToMeeting
+本教學課程中說明的案例由下列建置組塊組成：
 
-The scenario outlined in this tutorial consists of the following building blocks:
+1.  啟用 Citrix GoToMeeting 的應用程式整合
+2.  設定單一登入
+3.  設定使用者佈建
+4.  指派使用者
 
-1.  Enabling the application integration for Citrix GoToMeeting
-2.  Configuring single sign-on
-3.  Configuring user provisioning
-4.  Assigning users
-
-![Configuration](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC768996.png "Configuration")
-
+![組態](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC768996.png "組態")
 
 
-##<a name="enabling-the-application-integration-for-citrix-gotomeeting"></a>Enabling the application integration for Citrix GoToMeeting
 
-The objective of this section is to outline how to enable the application integration for Citrix GoToMeeting.
+##啟用 Citrix GoToMeeting 的應用程式整合
 
-###<a name="to-enable-the-application-integration-for-citrix-gotomeeting,-perform-the-following-steps:"></a>To enable the application integration for Citrix GoToMeeting, perform the following steps:
+本節的目的是要說明如何啟用 Citrix GoToMeeting 的應用程式整合。
 
-1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
+###若要啟用 Citrix GoToMeeting 的應用程式整合，請執行下列步驟：
+
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC700993.png "Active Directory")
 
-2.  From the **Directory** list, select the directory for which you want to enable directory integration.
+2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3.  To open the applications view, in the directory view, click **Applications** in the top menu.
+3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
 
-    ![Applications](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC700994.png "Applications")
+    ![應用程式](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC700994.png "應用程式")
 
-4.  Click **Add** at the bottom of the page.
+4.  按一下頁面底部的 [新增]。
 
-    ![Add application](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC749321.png "Add application")
+    ![新增應用程式](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC749321.png "新增應用程式")
 
-5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
-    ![Add an application from gallery](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC749322.png "Add an application from gallery")
+    ![從組件庫新增應用程式](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC749322.png "從組件庫新增應用程式")
 
-6.  In the **search box**, type **Citrix GoToMeeting**.
+6.  在**搜尋方塊**中，輸入 **Citrix GoToMeeting**。
 
     ![Citrix GoToMeeting](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC701006.png "Citrix GoToMeeting")
 
-7.  In the results pane, select **Citrix GoToMeeting**, and then click **Complete** to add the application.
+7.  在結果窗格中，選取 [Citrix GoToMeeting]，然後按一下 [完成] 以加入應用程式。
 
     ![Citrix GoToMeeting](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC701012.png "Citrix GoToMeeting")
-##<a name="configuring-single-sign-on"></a>Configuring single sign-on
+##設定單一登入
 
-The objective of this section is to outline how to enable users to authenticate to Citrix GoToMeeting with their account in Azure AD using federation based on the SAML protocol.  
-As part of this procedure, you are required to upload a base-64 encoded certificate to your Citrix GoToMeeting tenant.  
-If you are not familiar with this procedure, see [How to convert a binary certificate into a text file](http://youtu.be/PlgrzUZ-Y1o).
+本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶驗證至 Citrix GoToMeeting。在這個程序中，您需要上傳 base-64 編碼憑證到您的 Citrix GoToMeeting 租用戶。如果您不熟悉這個程序，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
 
-###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
+###若要設定單一登入，請執行下列步驟：
 
-1.  On the **Citrix GoToMeeting** application integration page, click **Configure single sign-on** to open the **CONFIGURE SINGLE SIGN ON** dialog.
+1.  在 [Citrix GoToMeeting] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
-    ![Enable single sign-on](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC768997.png "Enable single sign-on")
+    ![啟用單一登入](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC768997.png "啟用單一登入")
 
-2.  On the **How would you like users to sign on to Citrix GoToMeeting** page, select **Microsoft Azure AD Single Sign-On**.
+2.  在 [要如何讓使用者登入 Citrix GoToMeeting] 頁面上，選取 [Microsoft Azure AD 單一登入]。
 
-    ![Configure single sign-on](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC768998.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC768998.png "設定單一登入")
 
 
-3. On the **Configure App Settings** page, click **Next**. 
+3. 在 [設定應用程式設定] 頁面上，按 [下一步]。
 
-    ![Enable single sign-on](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC7689981.png "Enable single sign-on")
+	![啟用單一登入](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC7689981.png "啟用單一登入")
 
-4.  On the **Configure single sign-on at Citrix GoToMeeting** page, click **Download certificate**, and then save the certificate file on your computer.
+4.  於 [在 Citrix GoToMeeting 設定單一登入] 頁面上，按一下 [下載憑證]，然後將憑證檔案儲存在您的電腦中。
 
-    ![Configure single sign-on](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC768999.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC768999.png "設定單一登入")
 
-5.  In a different browser window, log into your Citrix Organization Center ([https://account.citrixonline.com/organization/administration/](https://account.citrixonline.com/organization/administration/)).
+5.  在另一個瀏覽器視窗中，登入您的 Citrix 組織中心 ([https://account.citrixonline.com/organization/administration/](https://account.citrixonline.com/organization/administration/))。
 
-6. Click the **Identity Provider** tab, and then perform the following steps:  
+6. 按一下 [識別提供者] 索引標籤，然後執行下列步驟：
 
-    ![SAML setup](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC6892321.png "SAML setup")
+	![SAML 設定](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC6892321.png "SAML 設定")
 
-    a. Select **Manual**
+	a.選取 [手動]
 
     
-    b. In the Azure classic portal, on the **Configure single sign-on at Citrix GoToMeeting** dialog page, copy the **Sign-In Page URL** value, and then paste it into the **Sign-in page URL** textbox. 
+	b.在 Azure 傳統入口網站的 [設定在 Citrix GoToMeeting 單一登入] 對話方塊頁面上，複製 [登入頁面 URL] 值，然後貼至 [登入頁面 URL] 文字方塊中。
 
     
-    c. In the Azure classic portal, on the **Configure single sign-on at Citrix GoToMeeting** dialog page, copy the **Sign-Out Page URL** value, and then paste it into the **Sign-out page URL** textbox.
+	c.在 Azure 傳統入口網站的 [設定在 Citrix GoToMeeting 單一登入] 對話方塊頁面上，複製 [登出頁面 URL] 值，然後貼至 [登出頁面 URL] 文字方塊中。
 
     
-    d. In the Azure classic portal, on the **Configure single sign-on at Citrix GoToMeeting** dialog page, copy the **Entity ID** value, and then paste it into the **Identity Provider Entity ID** textbox.
+	d.在 Azure 傳統入口網站的 [設定在 Citrix GoToMeeting 單一登入] 對話方塊頁面上，複製 [實體 ID] 值，然後貼至 [識別提供者實體 ID] 文字方塊中。
 
    
-    e. To upload your downloaded certificate, click **Upload Certificate**.
+	e.如果要上傳您下載的憑證，請按一下 [上傳憑證]。
 
     
-    f. Click **Save**.
+	f.按一下 [儲存]。
 
-6.  On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Next**.
+6.  在 Azure 傳統入口網站上，選取單一登入設定確認，然後按 [下一步]。
 
-    ![Configure single sign-on](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC769000.png "Configure single sign-on")
-
-
-7. On the **Single sign-on confirmation** page, click **Complete**.
-
-    ![SAML setup](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC7689982.png "SAML setup")
+    ![設定單一登入](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC769000.png "設定單一登入")
 
 
+7. 在 [單一登入確認] 頁面上，按一下 [完成]。
+
+	![SAML 設定](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC7689982.png "SAML 設定")
 
 
 
-##<a name="configuring-user-provisioning"></a>Configuring user provisioning
 
-The objective of this section is to outline how to enable provisioning of Active Directory user accounts to Citrix GoToMeeting.
 
-###<a name="to-configure-user-provisioning,-perform-the-following-steps:"></a>To configure user provisioning, perform the following steps:
+##設定使用者佈建
 
-1.  In the Azure classic portal, on the **Citrix GoToMeeting** application integration page, click **Configure user provisioning** to open the **Configure User Provisioning** dialog.
+本節的目的是要說明如何對 Citrix GoToMeeting 啟用 Active Directory 使用者帳戶的佈建。
 
-    ![Configure user provisioning](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC769001.png "Configure user provisioning")
+###若要設定使用者佈建，請執行下列步驟：
 
-2.  On the **Settings and admin credentials** page, perform the following steps:
+1.  在 Azure 傳統入口網站的 **Citrix GoToMeeting** 應用程式整合頁面上，按一下 [設定使用者佈建] 以開啟 [設定使用者佈建] 對話方塊。
 
-    ![Configure user provisioning](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC769002.png "Configure user provisioning")
+    ![設定使用者佈建](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC769001.png "設定使用者佈建")
 
-    a. In the **Citrix GoToMeeting Admin User Name** textbox, type the user name of an administrator.
+2.  在 [設定及管理員認證] 頁面上，執行以下步驟：
 
-    
-    b. In the **Citrix GoToMeeting Admin Password** textbox, the administrator's password.
+    ![設定使用者佈建](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC769002.png "設定使用者佈建")
+
+	a.在 [Citrix GoToMeeting 管理員使用者名稱] 文字方塊中，輸入管理員的使用者名稱。
 
     
-    c. Click **Next**.
+	b.在 [Citrix GoToMeeting 管理員密碼] 文字方塊中，輸入管理員的密碼。
 
-3.  On the **Confirmation** page, click the checkmark to save your configuration.
+    
+	c.按 [下一步]。
 
-4.  Click the **validate** button, to verify your configuration.
+3.  在 [確認] 頁面上，按一下核取記號以儲存您的組態。
 
-
-##<a name="assigning-users"></a>Assigning users
-
-To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
-
-###<a name="to-assign-users-to-citrix-gotomeeting,-perform-the-following-steps:"></a>To assign users to Citrix GoToMeeting, perform the following steps:
-
-1.  In the Azure classic portal, create a test account.
-
-2.  On the **Citrix GoToMeeting** application integration page, click **Assign users**.
-
-    ![Assign users](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC769003.png "Assign users")
-
-3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
-
-    ![Yes](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC767830.png "Yes")
-
-You should now wait for 10 minutes and verify that the account has been synchronized to Dropbox for Business.
-
-As a first verification step, you can check the provisioning status, by clicking Dashboard in the D on the **Citrix GoToMeeting** application integration page on the Azure classic portal.
-
-![Dashboard](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC769004.png "Dashboard")
-
-A successfully completed user provisioning cycle is indicated by a related status:
-
-![Integration status](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC769005.png "Integration status")
-
-If you want to test your single sign-on settings, open the Access Panel.
-
-For more details about the Access Panel, see [Introduction to the Access Panel](https://msdn.microsoft.com/library/dn308586).
+4.  按一下 [驗證] 按鈕來驗證您的組態。
 
 
+##指派使用者
 
-<!--HONumber=Oct16_HO2-->
+若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
+###若要指派使用者給 Citrix GoToMeeting，請執行下列步驟：
 
+1.  在 Azure 傳統入口網站中建立測試帳戶。
+
+2.  在 [Citrix GoToMeeting] 應用程式整合頁面上，按一下 [指派使用者]。
+
+    ![指派使用者](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC769003.png "指派使用者")
+
+3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
+
+    ![是](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC767830.png "是")
+
+請等候 10 分鐘並確認帳戶已同步至企業適用的 Dropbox。
+
+在第一個驗證步驟中，您可以在 Azure 傳統入口網站的 **Citrix GoToMeeting** 應用程式整合頁面上，按一下 D 的儀表板來檢查佈建狀態。
+
+![儀表板](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC769004.png "儀表板")
+
+成功完成的使用者佈建週期會以相關狀態表示：
+
+![整合狀態](./media/active-directory-saas-citrix-gotomeeting-tutorial/IC769005.png "整合狀態")
+
+如果要測試您的單一登入設定，請開啟存取面板。
+
+如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](https://msdn.microsoft.com/library/dn308586)。
+
+<!---HONumber=AcomDC_0817_2016-->

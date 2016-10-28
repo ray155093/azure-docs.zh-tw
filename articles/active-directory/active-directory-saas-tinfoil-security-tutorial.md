@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="Tutorial: Azure Active Directory integration with Tinfoil Security | Microsoft Azure"
-    description="Learn how to use Tinfoil Security with Azure Active Directory to enable single sign-on, automated provisioning, and more!." 
+    pageTitle="教學課程：Azure Active Directory 與 Tinfoil Security 整合 | Microsoft Azure"
+    description="了解如何使用 Tinfoil Security 搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -14,159 +14,151 @@
     ms.date="09/11/2016" 
     ms.author="jeedes" />
 
-
-#<a name="tutorial:-azure-active-directory-integration-with-tinfoil-security"></a>Tutorial: Azure Active Directory integration with Tinfoil Security
+#教學課程：Azure Active Directory 與 Tinfoil Security 整合
   
-The objective of this tutorial is to show the integration of Azure and Tinfoil Security.  
-The scenario outlined in this tutorial assumes that you already have the following items:
+本教學課程的目的是要示範 Azure 與 Tinfoil Security 的整合。本教學課程中說明的案例假設您已經具有下列項目：
 
--   A valid Azure subscription
--   A Tinfoil Security single sign-on enabled subscription
+-   有效的 Azure 訂用帳戶
+-   已啟用 Tinfoil Security 單一登入功能的訂用帳戶
   
-After completing this tutorial, the Azure AD users you have assigned to Tinfoil Security will be able to single sign into the application at your Tinfoil Security company site (identity provider initiated sign on), or using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+完成本教學課程之後，您指派給 Tinfoil Security 的 Azure AD 使用者就能夠從您的 Tinfoil Security 公司網站 (識別提供者起始登入)，或使用[存取面板](active-directory-saas-access-panel-introduction.md)來單一登入應用程式。
   
-The scenario outlined in this tutorial consists of the following building blocks:
+本教學課程中說明的案例由下列建置組塊組成：
 
-1.  Enabling the application integration for Tinfoil Security
-2.  Configuring single sign-on
-3.  Configuring user provisioning
-4.  Assigning users
+1.  啟用 Tinfoil Security 的應用程式整合
+2.  設定單一登入
+3.  設定使用者佈建
+4.  指派使用者
 
-![Configure Single Sign-On](./media/active-directory-saas-tinfoil-security-tutorial/IC798965.png "Configure Single Sign-On")
+![設定單一登入](./media/active-directory-saas-tinfoil-security-tutorial/IC798965.png "設定單一登入")
 
-##<a name="enabling-the-application-integration-for-tinfoil-security"></a>Enabling the application integration for Tinfoil Security
+##啟用 Tinfoil Security 的應用程式整合
   
-The objective of this section is to outline how to enable the application integration for Tinfoil Security.
+本節的目的是要說明如何啟用 Tinfoil Security 的應用程式整合。
 
-###<a name="to-enable-the-application-integration-for-tinfoil-security,-perform-the-following-steps:"></a>To enable the application integration for Tinfoil Security, perform the following steps:
+###若要啟用 Tinfoil Security 的應用程式整合，請執行下列步驟：
 
-1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-tinfoil-security-tutorial/IC700993.png "Active Directory")
 
-2.  From the **Directory** list, select the directory for which you want to enable directory integration.
+2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3.  To open the applications view, in the directory view, click **Applications** in the top menu.
+3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
 
-    ![Applications](./media/active-directory-saas-tinfoil-security-tutorial/IC700994.png "Applications")
+    ![應用程式](./media/active-directory-saas-tinfoil-security-tutorial/IC700994.png "應用程式")
 
-4.  Click **Add** at the bottom of the page.
+4.  按一下頁面底部的 [新增]。
 
-    ![Add application](./media/active-directory-saas-tinfoil-security-tutorial/IC749321.png "Add application")
+    ![新增應用程式](./media/active-directory-saas-tinfoil-security-tutorial/IC749321.png "新增應用程式")
 
-5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
-    ![Add an application from gallerry](./media/active-directory-saas-tinfoil-security-tutorial/IC749322.png "Add an application from gallerry")
+    ![從資源庫新增應用程式](./media/active-directory-saas-tinfoil-security-tutorial/IC749322.png "從資源庫新增應用程式")
 
-6.  In the **search box**, type **Tinfoil Security**.
+6.  在 [搜尋方塊] 中，輸入 **Tinfoil Security**。
 
-    ![Application Gallery](./media/active-directory-saas-tinfoil-security-tutorial/IC798966.png "Application Gallery")
+    ![應用程式庫](./media/active-directory-saas-tinfoil-security-tutorial/IC798966.png "應用程式庫")
 
-7.  In the results pane, select **Tinfoil Security**, and then click **Complete** to add the application.
+7.  在結果窗格中，選取 [Tinfoil Security]，然後按一下 [完成] 以新增應用程式。
 
     ![Tinfoil Security](./media/active-directory-saas-tinfoil-security-tutorial/IC802771.png "Tinfoil Security")
 
-##<a name="configuring-single-sign-on"></a>Configuring single sign-on
+##設定單一登入
   
-The objective of this section is to outline how to enable users to authenticate to Tinfoil Security with their account in Azure AD using federation based on the SAML protocol.  
-Configuring single sign-on for Tinfoil Security requires you to retrieve a thumbprint value from a certificate.  
-If you are not familiar with this procedure, see [How to retrieve a certificate's thumbprint value](http://youtu.be/YKQF266SAxI).
+本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶驗證至 Tinfoil Security。設定 Tinfoil Security 的單一登入需要您從憑證擷取指紋值。如果您不熟悉這個程序，請參閱[如何抓取憑證的指紋值](http://youtu.be/YKQF266SAxI)。
 
-###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
+###若要設定單一登入，請執行下列步驟：
 
-1.  In the Azure classic portal, on the **Tinfoil Security** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
+1.  在 Azure 傳統入口網站的 [Tinfoil Security] 應用程式整合頁面上，按一下 [設定單一登入] 以開啟 [設定單一登入] 對話方塊。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-tinfoil-security-tutorial/IC798967.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-tinfoil-security-tutorial/IC798967.png "設定單一登入")
 
-2.  On the **How would you like users to sign on to Tinfoil Security** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
+2.  在 [您希望使用者如何登入 Tinfoil Security] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-tinfoil-security-tutorial/IC798968.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-tinfoil-security-tutorial/IC798968.png "設定單一登入")
 
-3.  On the **Configure App URL** page, in the **Tinfoil Security Reply URL** textbox, type your Tinfoil Security Assertion Consumer Service (ACS) URL (e.g.: "*https://www.tinfoilsecurity.com/saml/consume*", and then click **Next**.
+3.  在 [設定應用程式 URL] 頁面的 [Tinfoil Security 回覆 URL] 文字方塊中，輸入您的「Tinfoil Security 判斷提示取用者服務 (ACS) URL」(例如："https://www.tinfoilsecurity.com/saml/consume*")，然後按 [下一步]*。
 
-    >[AZURE.NOTE] You should be able to get the ACS URL from Tinfoil Security Metadata (https://www.tinfoilsecurity.com/saml/metadata).
+    >[AZURE.NOTE] 您應該能夠從 Tinfoil Security 中繼資料 (https://www.tinfoilsecurity.com/saml/metadata) 取得 ACS URL。
 
-    ![Configure App URL](./media/active-directory-saas-tinfoil-security-tutorial/IC798969.png "Configure App URL")
+    ![設定應用程式 URL](./media/active-directory-saas-tinfoil-security-tutorial/IC798969.png "設定應用程式 URL")
 
-4.  On the **Configure single sign-on at Tinfoil Security** page, to download your certificate, click **Download certificate**, and then save the certificate file locally as **c:\\Tinfoil Security.cer**.
+4.  在 [設定在 Tinfoil Security 單一登入] 頁面上，若要下載您的憑證，請按一下 [下載憑證]，然後將憑證檔案以 **c:\\Tinfoil Security.cer** 方式儲存在本機。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-tinfoil-security-tutorial/IC798970.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-tinfoil-security-tutorial/IC798970.png "設定單一登入")
 
-5.  In a different web browser window, log into your Tinfoil Security company site as an administrator.
+5.  在不同的網頁瀏覽器視窗中，以系統管理員身分登入您的 Tinfoil Security 公司網站。
 
-6.  In the toolbar on the top, click **My Account**.
+6.  在頂端工具列中，按一下 [我的帳戶]。
 
-    ![Dashboard](./media/active-directory-saas-tinfoil-security-tutorial/IC798971.png "Dashboard")
+    ![儀表板](./media/active-directory-saas-tinfoil-security-tutorial/IC798971.png "儀表板")
 
-7.  Click **Security**.
+7.  按一下 [安全性]。
 
-    ![Security](./media/active-directory-saas-tinfoil-security-tutorial/IC798972.png "Security")
+    ![安全性](./media/active-directory-saas-tinfoil-security-tutorial/IC798972.png "安全性")
 
-8.  On the **Single Sign-On** configuration page, perform the following steps:
+8.  在 [單一登入] 組態頁面上，執行下列步驟：
 
-    ![Single Sign-On](./media/active-directory-saas-tinfoil-security-tutorial/IC798973.png "Single Sign-On")
+    ![單一登入](./media/active-directory-saas-tinfoil-security-tutorial/IC798973.png "單一登入")
 
-    1.  Select **Enable SAML**.
-    2.  Click **Manual Configuration**.
-    3.  In the Azure classic portal, on the **Configure single sign-on at Tinfoil Security** dialog page, copy the **SAML SSO URL** value, and then paste it into the **SAML Post URL** textbox.
-    4.  Copy the **Thumbprint** value from the exported certificate, and then paste it into the **SAML Certificate Fingerprint** textbox.  
+    1.  選取 [啟用 SAML]。
+    2.  按一下 [手動設定]。
+    3.  在 Azure 傳統入口網站的 [設定在 Tinfoil Security 單一登入] 對話方塊頁面上，複製 [SAML SSO URL] 值，然後將它貼到 [SAML Post URL] 文字方塊中。
+    4.  從匯出的憑證複製**指紋**值，然後將它貼入 [SAML 憑證指紋] 文字方塊。
 
-        >[AZURE.TIP] For more details, see [How to retrieve a certificate's thumbprint value](http://youtu.be/YKQF266SAxI)
+        >[AZURE.TIP] 如需詳細資訊，請參閱[如何擷取憑證的指紋值](http://youtu.be/YKQF266SAxI)。
 
-    5.  Copy **Your Account ID**.
-    6.  Click **Save**.
+    5.  複製 [您的帳戶識別碼]。
+    6.  按一下 [儲存]。
 
-9.  On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
+9.  在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-tinfoil-security-tutorial/IC798974.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-tinfoil-security-tutorial/IC798974.png "設定單一登入")
 
-10. In the menu on the top, click **Attributes** to open the **SAML Token Attributes** dialog.
+10. 在頂端的功能表中，按一下 [屬性] 以開啟 [SAML Token 屬性] 對話方塊。
 
-    ![Attributes](./media/active-directory-saas-tinfoil-security-tutorial/IC795920.png "Attributes")
+    ![屬性](./media/active-directory-saas-tinfoil-security-tutorial/IC795920.png "屬性")
 
-11. To add the required attribute mappings, perform the following steps:
+11. 若要加入必要的屬性對應，請執行下列步驟：
 
-    ![Attributes](./media/active-directory-saas-tinfoil-security-tutorial/IC798975.png "Attributes")
+    ![屬性](./media/active-directory-saas-tinfoil-security-tutorial/IC798975.png "屬性")
 
-    1.  Click **add user attribute**.
-    2.  In the **Attribute Name** textbox, type **accountid**.
-    3.  In the **Attribute Value** textbox, paste the account ID value you have copied in the previous section.
-    4.  Click **Complete**.
+    1.  按一下 [加入使用者屬性]。
+    2.  在 [屬性名稱] 文字方塊中，輸入 **accountid**。
+    3.  在 [屬性值] 文字方塊中，貼上前一節已複製的帳戶識別碼值。
+    4.  按一下 [完成]。
 
-12. Click **Apply Changes**.
+12. 按一下 [套用變更]。
 
-##<a name="configuring-user-provisioning"></a>Configuring user provisioning
+##設定使用者佈建
   
-In order to enable Azure AD users to log into Tinfoil Security, they must be provisioned into Tinfoil Security.  
-In the case of Tinfoil Security, provisioning is a manual task.
+若要讓 Azure AD 使用者可以登入 Tinfoil Security，則必須將他們佈建到 Tinfoil Security。Tinfoil Security 需以手動的方式佈建。
 
-###<a name="to-get-a-user-provisioned,-perform-the-following-steps:"></a>To get a user provisioned, perform the following steps:
+###若要佈建使用者，請執行下列步驟：
 
-1.  If the user is a part of an Enterprise account, you need to contact the Tinfoil Security support team to get the user account created.
+1.  如果該使用者屬於企業帳戶，您需要連絡 Tinfoil Security 支援小組以建立使用者帳戶。
 
-2.  If the user is a regular Tinfoil Security SaaS user, then the user can add a collaborator to any of the user’s sites. This triggers a process to send an invitation to the specified email to create a new Tinfoil Security user account.
+2.  如果該使用者是一般的 Tinfoil Security SaaS 使用者，則可以將合作者加入該使用者的任何網站。這樣會觸發傳送邀請到指定電子郵件的程序，以建立新的 Tinfoil Security 使用者帳戶。
 
->[AZURE.NOTE] You can use any other Tinfoil Security user account creation tools or APIs provided by Tinfoil Security to provision AAD user accounts.
+>[AZURE.NOTE] 您可以使用任何其他的 Tinfoil Security 使用者帳戶建立工具或 Tinfoil Security 提供的 API 來佈建 AAD 使用者帳戶。
 
-##<a name="assigning-users"></a>Assigning users
+##指派使用者
   
-To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
+若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-###<a name="to-assign-users-to-tinfoil-security,-perform-the-following-steps:"></a>To assign users to Tinfoil Security, perform the following steps:
+###若要將使用者指派給 Tinfoil Security，請執行下列步驟：
 
-1.  In the Azure classic portal, create a test account.
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
-2.  On the **Tinfoil Security **application integration page, click **Assign users**.
+2.  在 [Tinfoil Security] 應用程式整合頁面上，按一下 [指派使用者]。
 
-    ![Assign Users](./media/active-directory-saas-tinfoil-security-tutorial/IC798976.png "Assign Users")
+    ![指派使用者](./media/active-directory-saas-tinfoil-security-tutorial/IC798976.png "指派使用者")
 
-3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
+3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
 
-    ![Yes](./media/active-directory-saas-tinfoil-security-tutorial/IC767830.png "Yes")
+    ![是](./media/active-directory-saas-tinfoil-security-tutorial/IC767830.png "是")
   
-If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

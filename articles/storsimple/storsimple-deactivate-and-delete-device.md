@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="Deactivate and delete a StorSimple device | Microsoft Azure"
-   description="Describes how to remove StorSimple device from service by  first deactivating it and then deleting it."
+   pageTitle="停用及刪除 StorSimple 裝置 | Microsoft Azure"
+   description="描述如何停用然後刪除 StorSimple 裝置，將其從服務中移除。"
    services="storsimple"
    documentationCenter=""
    authors="SharS"
@@ -12,102 +12,97 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="10/18/2016"
+   ms.date="06/01/2016"
    ms.author="anoobbacker" />
 
+# 停用及刪除 StorSimple 裝置
 
-# <a name="deactivate-and-delete-a-storsimple-device"></a>Deactivate and delete a StorSimple device
+## 概觀
 
-## <a name="overview"></a>Overview
+您可能會想讓某個 StorSimple 裝置停止提供服務 (舉例來說，當您在替換或升級裝置時，或是當您不再使用 StorSimple 時)。如果是如此，您將必須在刪除該裝置之前，先停用該裝置。停用會切斷裝置與相對應 StorSimple Manager 服務之間的連接。本教學課程說明如何藉由停用並刪除 StorSimple 裝置，來將該裝置從服務中移除。
 
-You may wish to take a StorSimple device out of service (for example, if you are replacing or upgrading your device or if you are no longer using StorSimple). If this is the case, you will need to deactivate the device before you can delete it. Deactivating severs the connection between the device and the corresponding StorSimple Manager service. This tutorial explains how to remove a StorSimple device from service by first deactivating it and then deleting it. 
+當您停用裝置時，將無法再存取以本機方式儲存在裝置上的任何資料。只有儲存於雲端之裝置的相關聯資料可以復原。
 
-When you deactivate a device, any data that was stored locally on the device will no longer be accessible. Only the data associated with the device that was stored in the cloud can be recovered.  
-
->[AZURE.WARNING] Deactivation is a PERMANENT operation and cannot be undone. A deactivated device cannot be registered with the StorSimple Manager service unless it is first reset by the factory. 
+>[AZURE.WARNING] 停用是永久性的作業，而且無法復原。停用的服務無法向 StorSimple Manager 服務登錄，除非由原廠預先重設。
 >
->The factory reset process deletes all the data that was stored locally on your device. Therefore, it is essential that you take a cloud snapshot of all your data before you deactivate a device. This will allow you to recover all the data at a later stage.
+>原廠重設程序會刪除以本機方式儲存在裝置上的所有資料。因此，在您停用裝置之前，您必須擷取所有資料的雲端快照集。這樣可讓您在稍後的階段中復原所有的資料。
 
-This tutorial explains how to:
+本教學課程說明如何：
 
-- Deactivate a device and delete the data
-- Deactivate a device and retain the data
+- 停用裝置並刪除資料
+- 停用裝置並保留資料
 
-It also explains how deactivation and deletion works on a StorSimple virtual device.
+它也會說明如何針對 StorSimple 虛擬裝置來進行停用及刪除作業。
 
->[AZURE.NOTE] Before you deactivate a StorSimple physical or virtual device, make sure to stop or delete clients and hosts that depend on that device.
+>[AZURE.NOTE] 在您停用 StorSimple 實體或虛擬裝置之前，請務必停止或刪除相依於該裝置的用戶端和主機。
 
-## <a name="deactivate-and-delete-data"></a>Deactivate and delete data
+## 停用及刪除資料
 
-If you are interested in deleting the device completely and do not want to retain the data on the device, then complete the following steps.
+如果您想要完全刪除裝置，且不要保留裝置中的資料，請完成下列步驟。
 
-#### <a name="to-deactivate-the-device-and-delete-the-data"></a>To deactivate the device and delete the data  
+#### 如何停用裝置並刪除資料  
 
-1. Prior to deactivating a device, you must delete all the volume containers (and the volumes) associated with the device. You can delete volume containers only after you have deleted the associated backups.
+1. 在停用裝置之前，您必須刪除和裝置相關聯的所有磁碟區容器 (和磁碟區)。但您在刪除磁碟區容器之前，必須先刪除相關聯的備份。
 
-2. Deactivate the device as follows:
+2. 請依照下列步驟來停用裝置：
 
-    1. On the StorSimple Manager service **Devices** page, select the device that you wish to deactivate and, at the bottom of the page, click **Deactivate**.
+    1. 在 StorSimple Manager 服務**裝置**頁面上，選取您想要停用的裝置，並在頁面底部按一下 [**停用**]。
 
-    2. A confirmation message will appear. Click **Yes** to continue. The deactivate process will start and take a few minutes to complete.
+    2. 確認訊息隨即出現。按一下 [是] 以繼續。停用程序將會啟動，並需要幾分鐘才能完成。
 
-3. After deactivation, you can delete the device completely. Deleting a device removes it from the list of devices connected to the service. The service can then no longer manage the deleted device. Use the following steps to delete the device:
+3. 停用之後，您就可以完全刪除裝置。刪除裝置會將其從與服務連接的裝置清單移除。服務將不再管理已刪除的裝置。請使用下列步驟來刪除裝置：
 
-    1. On the StorSimple Manager service **Devices** page, select a deactivated device that you wish to delete.
+    1. 在 StorSimple Manager 服務上**裝置**頁面上，選取您想要刪除的已停用裝置。
 
-    2. On the bottom on the page, click **Delete**.
+    2. 按一下頁面底部的 [**刪除**]。
 
-    3. You will be prompted for confirmation. Click **Yes** to continue.
+    3. 系統將提示您進行確認。按一下 [是] 以繼續。
 
-    It may take a few minutes for the device to be deleted.
+    刪除裝置可能需要數分鐘的時間。
 
-## <a name="deactivate-and-retain-data"></a>Deactivate and retain data
+## 停用並保留資料
 
-If you are interested in deleting the device but want to retain the data, then complete the following steps.
+如果您想要刪除裝置，但要保留資料，請完成下列步驟。
 
-####<a name="to-deactivate-a-device-and-retain-the-data"></a>To deactivate a device and retain the data 
+####如何停用裝置並保留資料 
 
-1. Deactivate the device. All the volume containers and the snapshots of the device will remain.
+1. 停用裝置。裝置的所有磁碟區容器及快照集都會保留。
 
-    1. On the StorSimple Manager service **Devices** page, select the device that you wish to deactivate and, at the bottom of the page, click **Deactivate**.
+    1. 在 StorSimple Manager 服務**裝置**頁面上，選取您想要停用的裝置，並在頁面底部按一下 [**停用**]。
 
-    2. A confirmation message will appear. Click **Yes** to continue. The deactivate process will start and take a few minutes to complete.
+    2. 確認訊息隨即出現。按一下 [是] 以繼續。停用程序將會啟動，並需要幾分鐘才能完成。
 
-2. You can now fail over the volume containers and the associated snapshots. For procedures, go to [Failover and disaster recovery for your StorSimple device](storsimple-device-failover-disaster-recovery.md).
+2. 您現在可以容錯移轉磁碟區容器和相關聯的快照集。關於程序，請移至[StorSimple 裝置的容錯移轉和災害復原](storsimple-device-failover-disaster-recovery.md)。
 
-3. After deactivation and failover, you can delete the device completely. Deleting a device removes it from the list of devices connected to the service. The service can then no longer manage the deleted device. Complete the following steps to delete the device:
+3. 停用和容錯移轉之後，您就可以完全刪除裝置。刪除裝置會將其從與服務連接的裝置清單移除。服務將不再管理已刪除的裝置。請完成下列步驟來刪除裝置：
  
-    1. On the StorSimple Manager service **Devices** page, select a deactivated device that you wish to delete.
+    1. 在 StorSimple Manager 服務上**裝置**頁面上，選取您想要刪除的已停用裝置。
 
-    2. On the bottom on the page, click **Delete**.
+    2. 按一下頁面底部的 [**刪除**]。
 
-    3. You will be prompted for confirmation. Click **Yes** to continue.
+    3. 系統將提示您進行確認。按一下 [是] 以繼續。
 
-    It may take a few minutes for the device to be deleted.
+    刪除裝置可能需要數分鐘的時間。
 
-## <a name="deactivate-and-delete-a-virtual-device"></a>Deactivate and delete a virtual device
+## 停用並刪除虛擬裝置
 
-For a StorSimple virtual device, deactivation deallocates the virtual machine. You can then delete the virtual machine and the resources created when it was provisioned. After the virtual device is deactivated, it cannot be restored to its previous state. 
+對於 StorSimple 虛擬裝置來說，停用將會讓虛擬機器取消配置。然後您就可以刪除虛擬機器，以及刪除在佈建該虛擬機器時所建立的資源。停用虛擬裝置之後，就無法將它還原為先前的狀態。
 
-Deactivation results in the following actions:
+停用會導致下列動作發生：
 
-- The StorSimple virtual device is removed.
+- StorSimple 虛擬裝置會移除。
 
-- The OSDisk and Data Disks created for the StorSimple virtual device are removed.
+- 為虛擬裝置建立的 OSDisk 和資料磁碟會移除。
 
-- The Hosted Service and Virtual Network that were created during provisioning are retained. If you are not using these entities, you should delete them manually.
+- 在佈建期間建立的託管服務和虛擬網路會保留。如果您不使用這些項目，就應該手動加以刪除。
 
-- Cloud snapshots created by the StorSimple virtual device are retained.
+- StorSimple 虛擬裝置所建立的雲端快照集會保留。
 
-## <a name="next-steps"></a>Next steps
-- To restore the deactivated device to factory defaults, go to [Reset the device to factory default settings](storsimple-manage-device-controller.md#reset-the-device-to-factory-default-settings).
+## 後續步驟
+- 若要將已停用的裝置還原為原廠預設值，請移至[將裝置重設為原廠預設設定](storsimple-manage-device-controller.md#reset-the-device-to-factory-default-settings)。
 
-- For technical assistance, [contact Microsoft Support](storsimple-contact-microsoft-support.md).
+- 如需技術協助，[請連絡 Microsoft 支援服務](storsimple-contact-microsoft-support.md)。
 
-- To learn more about how to use the StorSimple Manager service, go to [Use the StorSimple Manager service to administer your StorSimple device](storsimple-manager-service-administration.md). 
+- 若要了解如何使用 StorSimple Manager，請移至[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0608_2016-->

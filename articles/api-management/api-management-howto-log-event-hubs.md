@@ -1,70 +1,69 @@
 <properties 
-    pageTitle="How to log events to Azure Event Hubs in Azure API Management | Microsoft Azure" 
-    description="Learn how to log events to Azure Event Hubs in Azure API Management." 
-    services="api-management" 
-    documentationCenter="" 
-    authors="steved0x" 
-    manager="erikre" 
-    editor=""/>
+	pageTitle="如何將事件記錄到 Azure API 管理中的 Azure 事件中樞 | Microsoft Azure" 
+	description="了解如何將事件記錄到 Azure API 管理中的 Azure 事件中樞。" 
+	services="api-management" 
+	documentationCenter="" 
+	authors="steved0x" 
+	manager="erikre" 
+	editor=""/>
 
 <tags 
-    ms.service="api-management" 
-    ms.workload="mobile" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="10/25/2016" 
-    ms.author="sdanie"/>
+	ms.service="api-management" 
+	ms.workload="mobile" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="08/09/2016" 
+	ms.author="sdanie"/>
 
+# 如何將事件記錄到 Azure API 管理中的 Azure 事件中樞
 
-# <a name="how-to-log-events-to-azure-event-hubs-in-azure-api-management"></a>How to log events to Azure Event Hubs in Azure API Management
+事件中樞是可高度調整的資料輸入服務，每秒可擷取數百萬個事件，可讓您處理和分析連接的裝置和應用程式所產生的大量資料。事件中樞能做為事件管線的「大門」，一旦收集的資料進入事件中樞，它可以使用任何即時分析提供者或批次/儲存配接器轉換及儲存資料。事件中樞能分隔事件串流的生產與這些事件的使用，讓事件消費者依照自己的排程存取事件。
 
-Azure Event Hubs is a highly scalable data ingress service that can ingest millions of events per second so that you can process and analyze the massive amounts of data produced by your connected devices and applications. Event Hubs acts as the "front door" for an event pipeline, and once data is collected into an event hub, it can be transformed and stored using any real-time analytics provider or batching/storage adapters. Event Hubs decouples the production of a stream of events from the consumption of those events, so that event consumers can access the events on their own schedule.
+這篇文章附隨於[整合 Azure API 管理與事件中樞](https://azure.microsoft.com/documentation/videos/integrate-azure-api-management-with-event-hubs/)視訊並說明如何使用 Azure 事件中樞記錄 API 管理事件。
 
-This article is a companion to the [Integrate Azure API Management with Event Hubs](https://azure.microsoft.com/documentation/videos/integrate-azure-api-management-with-event-hubs/) video and describes how to log API Management events using Azure Event Hubs.
+## 建立 Azure 事件中樞
 
-## <a name="create-an-azure-event-hub"></a>Create an Azure Event Hub
+若要建立新的事件中樞，請登入 [Azure 傳統入口網站](https://manage.windowsazure.com)，按一下 [新增] -> [應用程式服務] -> [服務匯流排] -> [事件中樞] -> [快速建立]。輸入事件中樞名稱、區域，選取訂用帳戶，然後選取命名空間。如果您先前尚未建立命名空間，可以在 [命名空間] 文字方塊中輸入名稱加以建立。設定好所有屬性後，按一下 [建立新的事件中樞] 建立事件中樞。
 
-To create a new Event Hub, sign-in to the [Azure classic portal](https://manage.windowsazure.com) and click **New**->**App Services**->**Service Bus**->**Event Hub**->**Quick Create**. Enter an Event Hub name, region, select a subscription, and select a namespace. If you haven't previously created a namespace you can create one by typing a name in the **Namespace** textbox. Once all properties are configured, click **Create a new Event Hub** to create the Event Hub.
+![建立事件中樞][create-event-hub]
 
-![Create event hub][create-event-hub]
+接下來，瀏覽至新事件中樞的 [設定] 索引標籤，建立兩個 [共用存取原則]。將第一個原則命名為 **Sending**，並授與 [傳送] 權限。
 
-Next, navigate to the **Configure** tab for your new Event Hub and create two **shared access policies**. Name the first one **Sending** and give it **Send** permissions.
+![Sending 原則][sending-policy]
 
-![Sending policy][sending-policy]
+將第二個原則命名為 **Receiving**，並授與 [接聽] 權限，然後按一下 [儲存]。
 
-Name the second one **Receiving**, give it **Listen** permissions, and click **Save**.
+![Receiving 原則][receiving-policy]
 
-![Receiving policy][receiving-policy]
-
-Each shared access policy allows applications to send and receive events to and from the Event Hub. To access the connection strings for these policies, navigate to the **Dashboard** tab of the Event Hub and click **Connection information**.
+每個共用存取原則都可讓應用程式傳送事件至事件中樞和接收來自事件中樞的事件。若要存取這些原則的連接字串，請瀏覽至事件中樞的 [儀表板] 索引標籤，然後按一下 [連接資訊]。
 
 ![Connection string][event-hub-dashboard]
 
-The **Sending** connection string is used when logging events, and the **Receiving** connection string is used when downloading events from the Event Hub.
+**Sending** 連接字串用於記錄事件，**Receiving** 連接字串則用於從事件中樞下載事件時。
 
 ![Connection string][event-hub-connection-string]
 
-## <a name="create-an-api-management-logger"></a>Create an API Management logger
+## 建立 API 管理記錄器
 
-Now that you have an Event Hub, the next step is to configure a [Logger](https://msdn.microsoft.com/library/azure/mt592020.aspx) in your API Management service so that it can log events to the Event Hub.
+現在您已經有事件中樞，下一步是在 API 管理服務中設定[記錄器](https://msdn.microsoft.com/library/azure/mt592020.aspx)，以將事件記錄至事件中樞。
 
-API Management loggers are configured using the [API Management REST API](http://aka.ms/smapi). Before using the REST API for the first time, review the [prerequisites](https://msdn.microsoft.com/library/azure/dn776326.aspx#Prerequisites) and ensure that you have [enabled access to the REST API](https://msdn.microsoft.com/library/azure/dn776326.aspx#EnableRESTAPI).
+可使用 [API 管理 REST API](http://aka.ms/smapi) 來設定 API 管理記錄器。在第一次使用 REST API 之前，請先檢閱[必要條件](https://msdn.microsoft.com/library/azure/dn776326.aspx#Prerequisites)，確定您已[啟用 REST API 的存取](https://msdn.microsoft.com/library/azure/dn776326.aspx#EnableRESTAPI)。
 
-To create a logger, make an HTTP PUT request using the following URL template.
+若要建立記錄器，請使用下列 URL 範本提出 HTTP PUT 要求。
 
     https://{your service}.management.azure-api.net/loggers/{new logger name}?api-version=2014-02-14-preview
 
--   Replace `{your service}` with the name of your API Management service instance.
--   Replace `{new logger name}` with the desired name for your new logger. You will reference this name when you configure the [log-to-eventhub](https://msdn.microsoft.com/library/azure/dn894085.aspx#log-to-eventhub) policy
+-	以 API 管理服務執行個體的名稱取代 `{your service}`。
+-	以您想要的新記錄器名稱取代 `{new logger name}`。當您設定 [log-to-eventhub](https://msdn.microsoft.com/library/azure/dn894085.aspx#log-to-eventhub) 原則時，將會參考此名稱。
 
-Add the following headers to the request.
+將下列標頭加到要求中。
 
--   Content-Type : application/json
--   Authorization : SharedAccessSignature uid=...
-    -   For instructions on generating the `SharedAccessSignature` see [Azure API Management REST API Authentication](https://msdn.microsoft.com/library/azure/dn798668.aspx).
+-	Content-Type : application/json
+-	Authorization : SharedAccessSignature uid=...
+	-	如需產生 `SharedAccessSignature` 的相關指示，請參閱 [Azure API 管理 REST API 驗證](https://msdn.microsoft.com/library/azure/dn798668.aspx)。
 
-Specify the request body using the following template.
+使用下列範本指定要求本文。
 
     {
       "type" : "AzureEventHub",
@@ -75,27 +74,27 @@ Specify the request body using the following template.
         }
     }
 
--   `type` must be set to `AzureEventHub`.
--   `description` provides an optional description of the logger and can be a zero length string if desired.
--   `credentials` contains the `name` and `connectionString` of your Azure Event Hub.
+-	`type` 必須設為 `AzureEventHub`。
+-	`description` 提供記錄器的選擇性描述，如有需要，可以是零長度字串。
+-	`credentials` 包含 Azure 事件中樞的 `name` 和 `connectionString`。
 
-When you make the request, if the logger is created a status code of `201 Created` is returned. 
+當您提出要求時，如果記錄器已建立，會傳回狀態碼 `201 Created`。
 
->[AZURE.NOTE] For other possible return codes and their reasons, see [Create a Logger](https://msdn.microsoft.com/library/azure/mt592020.aspx#PUT). To see how perform other operations such as list, update, and delete, see the [Logger](https://msdn.microsoft.com/library/azure/mt592020.aspx) entity documentation.
+>[AZURE.NOTE] 如需其他可能的傳回碼和其原因，請參閱[建立記錄器](https://msdn.microsoft.com/library/azure/mt592020.aspx#PUT)。若要查看如何執行其他作業，例如列出、更新和刪除，請參閱[記錄器](https://msdn.microsoft.com/library/azure/mt592020.aspx)實體文件。
 
-## <a name="configure-log-to-eventhubs-policies"></a>Configure log-to-eventhubs policies
+## 設定 log-to-eventhubs 原則
 
-Once your logger is configured in API Management, you can configure your log-to-eventhubs policies to log the desired events. The log-to-eventhubs policy can be used in either the inbound policy section or the outbound policy section.
+您在 API 管理中設定好記錄器後，便可設定 log-to-eventhubs 原則來記錄所需的事件。log-to-eventhubs 原則可用於輸入原則區段或輸出原則區段。
 
-To configure policies, sign-in to the [Azure classic portal](https://manage.windowsazure.com), navigate your API Management service, and click either **publisher portal** or **Manage** to access the publisher portal.
+若要設定原則，請登入 [Azure 傳統入口網站](https://manage.windowsazure.com)，瀏覽您的 API 管理服務，然後按一下 [發佈者入口網站] 或 [管理]，以存取發佈者入口網站。
 
-![Publisher portal][publisher-portal]
+![發行者入口網站][publisher-portal]
 
-Click **Policies** in the API Management menu on the left, select the desired product and API, and click **Add policy**. In this example we're adding a policy to the **Echo API** in the **Unlimited** product.
+按一下左側 [API 管理] 功能表中的 [原則]，選取所需產品和 API，然後按一下 [新增原則]。在此範例中，我們將原則加入 **Unlimited** 產品中的 **Echo API**。
 
 ![Add policy][add-policy]
 
-Position your cursor in the `inbound` policy section and click the **Log to EventHub** policy to insert the `log-to-eventhub` policy statement template.
+請將游標放置在 `inbound` 原則區段中，按一下 [Log to EventHub] 原則，插入 `log-to-eventhub` 原則陳述式範本。
 
 ![Policy editor][event-hub-policy]
 
@@ -103,24 +102,24 @@ Position your cursor in the `inbound` policy section and click the **Log to Even
       @( string.Join(",", DateTime.UtcNow, context.Deployment.ServiceName, context.RequestId, context.Request.IpAddress, context.Operation.Name))
     </log-to-eventhub>
 
-Replace `logger-id` with the name of the API Management logger you configured in the previous step.
+以您在上一個步驟中所設定的 API 管理記錄器名稱取代 `logger-id`。
 
-You can use any expression that returns a string as the value for the `log-to-eventhub` element. In this example a string containing the date and time, service name, request id, request ip address, and operation name is logged.
+您可以使用任何能傳回字串做為 `log-to-eventhub` 項目之值的運算式。在此範例中，將記錄包含日期和時間、服務名稱、要求 ID、 要求的 IP 位址和作業名稱的字串。
 
-Click **Save** to save the updated policy configuration. As soon as it is saved the policy is active and events are logged to the designated Event Hub.
+按一下 [儲存]，儲存更新的原則組態。儲存完成後，原則便會啟用，事件會記錄至指定的事件中樞。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
--   Learn more about Azure Event Hubs
-    -   [Get started with Azure Event Hubs](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)
-    -   [Receive messages with EventProcessorHost](../event-hubs/event-hubs-csharp-ephcs-getstarted.md#receive-messages-with-eventprocessorhost)
-    -   [Event Hubs programming guide](../event-hubs/event-hubs-programming-guide.md)
--   Learn more about API Management and Event Hubs integration
-    -   [Logger entity reference](https://msdn.microsoft.com/library/azure/mt592020.aspx)
-    -   [log-to-eventhub policy reference](https://msdn.microsoft.com/library/azure/dn894085.aspx#log-to-eventhub)
-    -   [Monitor your APIs with Azure API Management, Event Hubs and Runscope](api-management-log-to-eventhub-sample.md)    
+-	深入了解 Azure 事件中樞
+	-	[開始使用 Azure 事件中樞](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)
+	-	[使用 EventProcessorHost 接收訊息](../event-hubs/event-hubs-csharp-ephcs-getstarted.md#receive-messages-with-eventprocessorhost)
+	-	[事件中樞程式設計指南](../event-hubs/event-hubs-programming-guide.md)
+-	深入了解 API 管理和事件中樞的整合
+	-	[記錄器實體參考](https://msdn.microsoft.com/library/azure/mt592020.aspx)
+	-	[log-to-eventhub 原則參考](https://msdn.microsoft.com/library/azure/dn894085.aspx#log-to-eventhub)
+	-	[利用 Azure API 管理、事件中樞及 Runscope 監視您的 API](api-management-log-to-eventhub-sample.md)
 
-## <a name="watch-a-video-walkthrough"></a>Watch a video walkthrough
+## 觀看影片逐步解說
 
 > [AZURE.VIDEO integrate-azure-api-management-with-event-hubs]
 
@@ -134,14 +133,4 @@ Click **Save** to save the updated policy configuration. As soon as it is saved 
 [event-hub-policy]: ./media/api-management-howto-log-event-hubs/event-hub-policy.png
 [add-policy]: ./media/api-management-howto-log-event-hubs/add-policy.png
 
-
-
-
-
-
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

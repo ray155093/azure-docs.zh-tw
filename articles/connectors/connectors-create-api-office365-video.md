@@ -1,6 +1,6 @@
 <properties
-pageTitle="Use the Office 365 Video connector in your Logic apps | Microsoft Azure"
-description="Get started using the Office 365 Video connector in your Microsoft Azure App service Logic apps"
+pageTitle="在您的邏輯應用程式中新增 Office 365 影片連接器 | Microsoft Azure"
+description="開始在您的 Microsoft Azure App Service Logic Apps 中使用 Office 365 影片連接器"
 services=""    
 documentationCenter=""     
 authors="msftman"    
@@ -17,218 +17,207 @@ ms.workload="na"
 ms.date="05/18/2016"
 ms.author="deonhe"/>
 
+# 開始使用 Office 365 影片連接器
+連接至 Office 365 影片，以取得 Office 365 影片的相關資訊、影片清單等。您可以從下列應用程式使用 Office 365 影片連接器︰
 
-# <a name="get-started-with-the-office365-video-connector"></a>Get started with the Office365 Video connector
-Connect to Office 365 Video to get information about an Office 365 video, get a list of videos, and more. The Office 365 Video connector can be used from:
+- 邏輯應用程式 
 
-- Logic apps 
+>[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。所有的舊版結構描述均不支援此連接器。
 
->[AZURE.NOTE] This version of the article applies to logic apps 2015-08-01-preview schema version. This connector is not supported on any previous schema versions.
+有了 Office 365 影片，您可以：
 
-With Office 365 Video, you can:
+- 根據您從 Office 365 影片所取得的資料，來建置您的商務流程。 
+- 檢查影片入口網站狀態、取得頻道影片清單等動作。這些動作會收到回應，然後輸出能讓其他動作使用的資料。例如，您可以使用 Bing 搜尋連接器來搜尋 Office 365 影片，然後使用 Office 365 影片連接器取得該影片的相關資訊。如果影片符合您的需求，您可以將該影片張貼在 Facebook 上。 
 
-- Build your business flow based on the data you get from Office 365 Video. 
-- Use actions that check the video portal status, get a list of all video in a channel, and more. These actions get a response, and then make the output available for other actions. For example, you can use the Bing Search connector to search for Office 365 videos, and then use the Office 365 video connector to get information about that video. If the video meets your requirements, you can post this video on Facebook. 
+如要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
-To add an operation in logic apps, see [Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md).
+## 觸發程序及動作
 
-## <a name="triggers-and-actions"></a>Triggers and actions
+Office 365 影片連接器提供下列動作。但不包含觸發程序。
 
-The Office 365 Video connector has the following actions available. There are no triggers.
-
-| Triggers | Actions|
+| 觸發程序 | 動作|
 | --- | --- |
-| None | <ul><li>Checks video portal status</li><li>Get all viewable Channels</li><li>Get playback url of the Azure Media Services manifest for a video</li><li>Get the bearer token to get access to decrypt the video</li><li>Gets information about a particular office365 video</li><li>Lists all the office365 videos present in a channel</li></ul>
+| None | <ul><li>檢查影片入口網站狀態</li><li>取得所有可檢視的頻道</li><li>取得某支影片之 Azure 媒體服務資訊清單的播放 URL</li><li>取得權限為影片解密的持有人權杖</li><li>取得特定 office365 影片的相關資訊</li><li>列出某個頻道中的所有 office365 影片</li></ul>
 
-All connectors support data in JSON and XML formats. 
+所有連接器都支援 JSON 和 XML 格式的資料。
 
-## <a name="create-a-connection-to-office365-video-connector"></a>Create a connection to Office365 Video connector
-When you add this connector to your logic apps, you must sign-in to your Office 365 Video account and allow logic apps to connect to your account.
+## 建立至 Office365 影片連接器的連線
+當您將這個連接器新增到邏輯應用程式時，您必須登入您的 Office 365 影片帳戶，並允許邏輯應用程式連線到您的帳戶。
 
->[AZURE.INCLUDE [Steps to create a connection to Office 365 Video](../../includes/connectors-create-api-office365video.md)]
+>[AZURE.INCLUDE [建立至 Office 365 影片連線的步驟](../../includes/connectors-create-api-office365video.md)]
 
-After you create the connection, you enter the Office 365 video properties, like the tenant name or channel ID. The **REST API reference** in this topic describes these properties.
+當您建立連線之後，請輸入 Office 365 影片的屬性，例租用戶名稱或頻道識別碼。本主題的＜REST API 參考＞一節會說明這些屬性。
 
->[AZURE.TIP] You can use this same Office 365 Video connection in other logic apps.
+>[AZURE.TIP] 您可以在其他邏輯應用程式中，使用這個相同的 Office 365 影片連線。
 
-## <a name="swagger-rest-api-reference"></a>Swagger REST API reference
-Applies to version: 1.0.
+## Swagger REST API 參考
+適用的版本：1.0。
 
-### <a name="checks-video-portal-status"></a>Checks video portal status 
-Checks the video portal status to see if video services are enabled.  
-```GET: /{tenant}/IsEnabled``` 
+### 檢查視訊入口網站狀態 
+查看影片入口網站的狀態，來確認影片服務是否已啟用。```GET: /{tenant}/IsEnabled```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|tenant|string|yes|path|none|The tenant name for the directory the user is part of|
+|tenant|字串|yes|路徑|無|使用者所屬目錄的租用戶名稱|
 
 
-#### <a name="response"></a>Response
+#### Response
 
-|Name|Description|
+|名稱|說明|
 |---|---|
-|200|Operation was successful|
+|200|作業已順利完成|
 |400|BadRequest|
-|401|Unauthorized|
-|404|Not Found|
-|500|Internal Server Error|
-|default|Operation Failed.|
+|401|未經授權|
+|404|找不到|
+|500|內部伺服器錯誤|
+|預設值|作業失敗。|
 
 
 
-### <a name="get-all-viewable-channels"></a>Get all viewable Channels 
-Gets all the channels the user has viewing access to.  
-```GET: /{tenant}/Channels``` 
+### 取得所有可檢視的頻道 
+取得使用者可檢視的所有頻道。```GET: /{tenant}/Channels```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|tenant|string|yes|path|none|The tenant name for the directory the user is part of|
+|tenant|字串|yes|路徑|無|使用者所屬目錄的租用戶名稱|
 
 
-#### <a name="response"></a>Response
+#### Response
 
-|Name|Description|
+|名稱|說明|
 |---|---|
-|200|Operation was successful|
+|200|作業已順利完成|
 |400|BadRequest|
-|401|Unauthorized|
-|404|Not Found|
-|500|Internal Server Error|
-|default|Operation Failed.|
+|401|未經授權|
+|404|找不到|
+|500|內部伺服器錯誤|
+|預設值|作業失敗。|
 
 
 
 
-### <a name="lists-all-the-office365-videos-present-in-a-channel"></a>Lists all the office365 videos present in a channel 
-Lists all the office365 videos present in a channel.  
-```GET: /{tenant}/Channels/{channelId}/Videos``` 
+### 列出某個頻道中的所有 Office 365 影片 
+列出某個頻道中的所有 office365 影片。```GET: /{tenant}/Channels/{channelId}/Videos```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|tenant|string|yes|path|none|The tenant name for the directory the user is part of|
-|channelId|string|yes|path|none|The channel id from which videos need to be fetched|
+|tenant|字串|yes|路徑|無|使用者所屬目錄的租用戶名稱|
+|channelId|字串|yes|路徑|無|需要擷取之影片所屬的頻道識別碼|
 
 
-#### <a name="response"></a>Response
+#### Response
 
-|Name|Description|
+|名稱|說明|
 |---|---|
-|200|Operation was successful|
+|200|作業已順利完成|
 |400|BadRequest|
-|401|Unauthorized|
-|404|Not Found|
-|500|Internal Server Error|
-|default|Operation Failed.|
+|401|未經授權|
+|404|找不到|
+|500|內部伺服器錯誤|
+|預設值|作業失敗。|
 
 
 
 
-### <a name="gets-information-about-a-particular-office365-video"></a>Gets information about a particular office365 video 
-Gets information about a particular office365 video.  
-```GET: /{tenant}/Channels/{channelId}/Videos/{videoId}``` 
+### 取得特定 Office 365 影片的相關資訊 
+取得特定 office365 影片的相關資訊。```GET: /{tenant}/Channels/{channelId}/Videos/{videoId}```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|tenant|string|yes|path|none|The tenant name for the directory the user is part of|
-|channelId|string|yes|path|none|The channel id|
-|videoId|string|yes|path|none|The video id|
+|tenant|字串|yes|路徑|無|使用者所屬目錄的租用戶名稱|
+|channelId|字串|yes|路徑|無|頻道識別碼|
+|videoId|字串|yes|路徑|無|視訊的識別碼|
 
 
-#### <a name="response"></a>Response
+#### Response
 
-|Name|Description|
+|名稱|說明|
 |---|---|
-|200|Operation was successful|
+|200|作業已順利完成|
 |400|BadRequest|
-|401|Unauthorized|
-|404|Not Found|
-|500|Internal Server Error|
-|default|Operation Failed.|
+|401|未經授權|
+|404|找不到|
+|500|內部伺服器錯誤|
+|預設值|作業失敗。|
 
 
 
 
-### <a name="get-playback-url-of-the-azure-media-services-manifest-for-a-video"></a>Get playback url of the Azure Media Services manifest for a video 
-Get playback url of the Azure Media Services manifest for a video.  
-```GET: /{tenant}/Channels/{channelId}/Videos/{videoId}/playbackurl``` 
+### 取得某個影片之 Azure 媒體服務資訊清單的播放 URL 
+取得某個影片之 Azure 媒體服務資訊清單的播放 URL。```GET: /{tenant}/Channels/{channelId}/Videos/{videoId}/playbackurl```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|tenant|string|yes|path|none|The tenant name for the directory the user is part of|
-|channelId|string|yes|path|none|The channel id|
-|videoId|string|yes|path|none|The video id|
-|streamingFormatType|string|yes|query|none|Streaming format type. 1 - Smooth Streaming or MPEG-DASH. 0 - HLS Streaming|
+|tenant|字串|yes|路徑|無|使用者所屬目錄的租用戶名稱|
+|channelId|字串|yes|路徑|無|頻道識別碼|
+|videoId|字串|yes|路徑|無|視訊的識別碼|
+|streamingFormatType|字串|yes|query|無|串流格式類型。1：Smooth Streaming 或 MPEG-DASH。0：HLS Streaming|
 
 
-#### <a name="response"></a>Response
+#### Response
 
-|Name|Description|
+|名稱|說明|
 |---|---|
-|200|Operation was successful|
+|200|作業已順利完成|
 |400|BadRequest|
-|401|Unauthorized|
-|404|Not Found|
-|500|Internal Server Error|
-|default|Operation Failed.|
+|401|未經授權|
+|404|找不到|
+|500|內部伺服器錯誤|
+|預設值|作業失敗。|
 
 
 
 
-### <a name="get-the-bearer-token-to-get-access-to-decrypt-the-video"></a>Get the bearer token to get access to decrypt the video 
-Get the bearer token to get access to decrypt the video.  
-```GET: /{tenant}/Channels/{channelId}/Videos/{videoId}/token```
+### 取得有權限來為影片解密的持有人權杖 
+取得權限為影片解密的持有人權杖。```GET: /{tenant}/Channels/{channelId}/Videos/{videoId}/token```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|tenant|string|yes|path|none|The tenant name for the directory the user is part of|
-|channelId|string|yes|path|none|The channel id|
-|videoId|string|yes|path|none|The video id|
+|tenant|字串|yes|路徑|無|使用者所屬目錄的租用戶名稱|
+|channelId|字串|yes|路徑|無|頻道識別碼|
+|videoId|字串|yes|路徑|無|視訊的識別碼|
 
 
-#### <a name="response"></a>Response
+#### Response
 
-|Name|Description|
+|名稱|說明|
 |---|---|
-|200|Operation was successful|
+|200|作業已順利完成|
 |400|BadRequest|
-|401|Unauthorized|
-|404|Not Found|
-|500|Internal Server Error|
-|default|Operation Failed.|
+|401|未經授權|
+|404|找不到|
+|500|內部伺服器錯誤|
+|預設值|作業失敗。|
 
 
-## <a name="object-definitions"></a>Object definitions
+## 物件定義
 
-#### <a name="channel:-channel-class"></a>Channel: Channel class
+#### 頻道：頻道類別
 
-| Name | Data Type | Required|
+| 名稱 | 資料類型 | 必要|
 |---|---|---|
-|Id|string|no|
-|Title|string|no|
-|Description|string|no|
+|識別碼|字串|no|
+|課程名稱|字串|no|
+|說明|字串|no|
 
 
-#### <a name="video"></a>Video 
+#### 影片 
 
-| Name | Data Type |Required|
+| 名稱 | 資料類型 |必要|
 |---|---|---|
-|Id|string|no|
-|Title|string|no|
-|Description|string|no|
-|CreationDate|string|no|
-|Owner|string|no|
-|ThumbnailUrl|string|no|
-|VideoUrl|string|no|
+|識別碼|字串|no|
+|課程名稱|字串|no|
+|說明|字串|no|
+|CreationDate|字串|no|
+|擁有者|字串|no|
+|ThumbnailUrl|字串|no|
+|VideoUrl|字串|no|
 |VideoDuration|integer|no|
 |VideoProcessingStatus|integer|no|
 |ViewCount|integer|no|
 
 
-## <a name="next-steps"></a>Next Steps
-[Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md).
+## 後續步驟
+[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0525_2016-->

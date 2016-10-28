@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Run any Windows app on any device with Azure RemoteApp | Microsoft Azure"
-   description="Learn how to share any Windows app with your users by using Azure RemoteApp."
+   pageTitle="使用 Azure RemoteApp 在任何裝置上執行任何 Windows 應用程式 | Microsoft Azure"
+   description="了解如何使用 Azure RemoteApp 與使用者共用任何 Windows 應用程式。"
    services="remoteapp"
    documentationCenter=""
    authors="lizap"
@@ -16,116 +16,112 @@
    ms.date="08/15/2016"
    ms.author="elizapo"/>
 
-
-# <a name="run-any-windows-app-on-any-device-with-azure-remoteapp"></a>Run any Windows app on any device with Azure RemoteApp
+# 使用 Azure RemoteApp 在任何裝置上執行任何 Windows 應用程式
 
 > [AZURE.IMPORTANT]
-> Azure RemoteApp is being discontinued. Read the [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
-You can run a Windows application anywhere on any device, right now, seriously - just by using Azure RemoteApp. Whether it's a custom application written 10 years ago, or an Office app, your users no longer have to be tied to a specific operating system (like Windows XP) for those few applications.
+只要使用 Azure RemoteApp，您可以在任何裝置的任何位置立即執行 Windows 應用程式。不論是 10 年前撰寫的自訂應用程式還是 Office 應用程式，您的使用者不再需要繫結至數個應用程式的特定作業系統 (如 Windows XP)。
 
-With Azure RemoteApp, your users can also use their own Android or Apple devices and get the same experience they got on Windows (or on Windows Phones). This is accomplished by hosting your Windows application in a collection of Windows virtual machines on Azure - your users can access them from anywhere they have an internet connection. 
+有了 Azure RemoteApp，您的使用者也可以使用專屬 Android 或 Apple 裝置，以及取得與 Windows (或 Windows Phone) 上的相同經驗。完成方式是在 Azure 的 Windows 虛擬機器集合中裝載 Windows 應用程式，而您的使用者可以從具有網際網路連線的任何地方進行存取。
 
-Read on for an example of exactly how to do this.
+請繼續往下看，可找到如何執行這項操作的範例。
 
-In this article, we're going to share Access with all of our users. However, you can use ANY app. As long as you can install your app on a Windows Server 2012 R2 computer, you can share it using the steps below. You can review the [app requirements](remoteapp-appreqs.md) to make sure your app will work.
+在本文中，我們會與所有使用者共用 Access。不過，您可以使用任何應用程式。只要您可以在 Windows Server 2012 R2 電腦上安裝您的應用程式，就可以使用下列步驟進行共用。您可以檢閱[應用程式需求](remoteapp-appreqs.md)，確認應用程式可以運作。
 
-Please note that because Access is a database, and we want that database to be useful, we will be doing a few extra steps to let users access the Access data share. If your app isn't a database, or you don't need your users to be able to access a file share, you can skip those steps in this tutorial
+請注意：因為 Access 是一個資料庫，而且我們想要使用該資料庫，所以我們會進行一些額外的步驟，讓使用者存取 Access 資料共用。如果您的應用程式不是資料庫，或不需要使用者能夠存取檔案共用，您可以略過本教學課程中的這些步驟
 
-> [AZURE.NOTE] <a name="note"></a>You need an Azure account to complete this tutorial:
-> - You can [open an Azure account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F): You get credits you can use to try out paid Azure services, and even after they're used up you can keep the account and use free Azure services, such as Websites. Your credit card will never be charged, unless you explicitly change your settings and ask to be charged.
-> - You can [activate MSDN subscriber benefits](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F): Your MSDN subscription gives you credits every month that you can use for paid Azure services.
-
-
-## <a name="create-a-collection-in-remoteapp"></a>Create a collection in RemoteApp
-
-Start by creating a collection. The collection serves as a container for your apps and users. Each collection is based on an image - you can create your own or use one provided with your subscription. For this tutorial, we're using the Office 2013 trial image - it contains the app that we want to share.
-
-1. In the Azure portal, scroll down in the left hand nav tree until you see RemoteApp. Open that page.
-2. Click **Create a RemoteApp collection**.
-3. Click **Quick create** and enter a name for your collection.
-4. Select the region you want to use to create your collection. For the best experience, select the region that is closest geographically to the location where your users will access the app. For example, in this tutorial, the users will be located in Redmond, Washington. The closest Azure region is **West US**.
-5. Select the billing plan you want to use. The basic billing plan puts 16 users on a large Azure VM, while the standard billing plan has 10 users on a large Azure VM. As a general example, the basic plan works great for data entry-type workflow. For a productivity app, like Office, you'd want the standard plan.
-6. Finally, select the  Office 2013 Professional image. This image contains Office 2013 apps. Just a reminder - this image is only good for trial collections and POCs. You' can't use this image in a production collection.
-7. Now, click **Create RemoteApp collection**.
-
-![Create a cloud collection in RemoteApp](./media/remoteapp-anyapp/ra-anyappcreatecollection.png)
-
-This starts creating your collection, but it can take up to an hour.
-
-Now you're ready to add your users.
-
-## <a name="share-the-app-with-users"></a>Share the app with users
-
-Once your collection has been created successfully, it’s time to publish Access to users and add the users who should have access to it.
-
-If you have navigated away from the Azure RemoteApp node while the collection was being created, start by making your way back to it from the Azure home page.
-
-2. Click the collection you created earlier to access additional options and configure the collection.
-![A new RemoteApp cloud collection](./media/remoteapp-anyapp/ra-anyappcollection.png)
-3. On the **Publishing** tab, click **Publish** at the bottom of the screen, and then click **Publish Start menu programs**.
-![Publish a RemoteApp program](./media/remoteapp-anyapp/ra-anyapppublish.png)
-4. Select the apps you want to publish from the list. For our purpose, we chose Access. Click **Complete**. Wait for the apps to finish publishing.
-![Publishing Access in RemoteApp](./media/remoteapp-anyapp/ra-anyapppublishaccess.png)
+> [AZURE.NOTE] <a name="note"></a>您必須有 Azure 帳戶，才能完成本教學課程：
+> - 您可以[免費申請 Azure 帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) - 您將取得可試用付費 Azure 服務的額度，且即使在額度用完後，您仍可保留帳戶，並使用免費的 Azure 服務，例如「網站」。除非您明確變更您的設定且同意付費，否則我們將不會從您的信用卡收取任何費用。
+> - 您可以[啟用 MSDN 訂戶權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F) - 您的 MSDN 訂用帳戶每月會提供您額度，您可以用在 Azure 付費服務。
 
 
-1. Once the app has finished publishing, head over to the **User Access** tab to add all the users that need access to your apps. Enter user names (email address) for your users and then click **Save**.
+## 在 RemoteApp 中建立集合
 
-![Add users to RemoteApp](./media/remoteapp-anyapp/ra-anyappaddusers.png)
+由建立集合開始。集合是做為您應用程式和使用者的容器。每個集合都是根據映像，而您可以建立專屬映像或使用訂用帳戶所提供的映像。在本教學課程中，我們使用 Office 2013 試用版映像，而此映像包含我們想要共用的應用程式。
+
+1. 在 Azure 入口網站中，在左側導覽樹中向下捲動，直到看到 RemoteApp。開啟該頁面。
+2. 按一下 [**建立 RemoteApp 集合**]。
+3. 按一下 [**快速建立**]，然後輸入集合的名稱。
+4. 選取您想要用來建立集合的區域。最佳的體驗是選取地理上最接近您使用者存取應用程式之位置的區域。例如，在本教學課程中，使用者將位在華盛頓州的雷德蒙德。最接近的 Azure 區域是**美國西部**。
+5. 選取您想要使用的計費方案。基本計費方案是大型 Azure VM 上有 16 位使用者，而標準計費方案是大型 Azure VM 上有 10 位使用者。基本方案一般最適用於資料項目類型工作流程。在生產力應用程式 (如 Office) 中，您想要使用標準方案。
+6. 最後，選取 Office 2013 Professional 映像。此映像包含 Office 2013 應用程式。提醒您，此映像僅適合試用版的集合和 POC。您無法在生產集合中使用此映像。
+7. 現在，按一下 [**建立 RemoteApp 集合**]。
+
+![在 RemoteApp 中建立雲端集合](./media/remoteapp-anyapp/ra-anyappcreatecollection.png)
+
+這會開始建立您的集合，但是它可能需要一個小時的時間。
+
+現在，您可以開始新增使用者。
+
+## 與使用者共用應用程式
+
+成功建立集合之後，即可開始將 Access 發佈給使用者，並新增應該具有其存取權的使用者。
+
+如果您在建立集合時離開 Azure RemoteApp 節點，請從 Azure 首頁回到該節點開始。
+
+2. 按一下您先前建立的集合來存取其他選項和設定集合。
+![新的 RemoteApp 雲端集合](./media/remoteapp-anyapp/ra-anyappcollection.png)
+3. 在 [**發佈**] 索引標籤上，按一下畫面底部的 [**發佈**]，然後按一下 [**發佈開始功能表程式**]。
+![發佈 RemoteApp 程式](./media/remoteapp-anyapp/ra-anyapppublish.png)
+4. 從清單中，選取您想要發佈的應用程式。基於我們的目的，我們已選擇 [Access]。按一下 [完成]。等候應用程式完成發佈。
+![在 RemoteApp 中發佈 Access](./media/remoteapp-anyapp/ra-anyapppublishaccess.png)
 
 
-1. Now, it’s time to tell your users about these new apps and how to access them. To do this, send your users an email pointing them to the Remote Desktop client download URL.
-![The client download URL for RemoteApp](./media/remoteapp-anyapp/ra-anyappurl.png)
+1. 應用程式完成發佈之後，請前往 [**使用者存取**] 索引標籤，新增所有需要存取您應用程式的使用者。輸入您使用者的使用者名稱 (電子郵件地址)，然後按一下 [儲存]。
 
-## <a name="configure-access-to-access"></a>Configure access to Access
+![將使用者新增至 RemoteApp](./media/remoteapp-anyapp/ra-anyappaddusers.png)
 
-Some apps need extra configuration after you deploy them through RemoteApp. In particular, for Access, we're going to create a file share on Azure that any user can access. (If you don't want to do that, you can create a [hybrid collection](remoteapp-create-hybrid-deployment.md) [instead of our cloud collection] that lets your users access files and information on your local network.) Then, we'll need to tell our users to map a local drive on their computer to the Azure file system.
 
-The first part you as the admin do. Then, we have some steps for your users.
+1. 現在，就可以開始告訴您的使用者有關這些新應用程式及其存取方式。若要這樣做，請將使用者指向遠端桌面用戶端下載 URL 的電子郵件傳送給您的使用者。
+![RemoteApp 的用戶端下載 URL](./media/remoteapp-anyapp/ra-anyappurl.png)
 
-1. Start by publishing the command line interface (cmd.exe). In the **Publishing** tab, select **cmd**, and then click **Publish > Publish program using path**.
-2. Enter the name of the app and the path. For our purpose, use "File Explorer" as the name and "%SYSTEMDRIVE%\windows\explorer.exe" as the path.
-![Publish the cmd.exe file.](./media/remoteapp-anyapp/ra-publishcmd.png)
-3. Now you need to create an Azure [storage account](../storage/storage-create-storage-account.md). We named ours "accessstorage," so pick a name that's meaningful to you. (To misquote Highlander, there can be only one "accessstorage.") ![Our Azure storage account](./media/remoteapp-anyapp/ra-anyappazurestorage.png)
-4. Now go back to your dashboard so you can get the path to your storage (endpoint location). You'll use this in a bit, so make sure you copy it somewhere.
-![The storage account path](./media/remoteapp-anyapp/ra-anyappstoragelocation.png)
-5. Next, once the storage account has been created, you need the primary access key. Click **Manage access keys**, and then copy the primary access key.
-6. Now, set the context of the storage account and create a new file share for Access. Run the following cmdlets in an elevated Windows PowerShell window:
+## 設定 Access 的存取權
+
+部分應用程式在透過 RemoteApp 部署之後，需要進行額外的設定。尤其，針對 Access，我們要在 Azure 上建立任何使用者都能存取的檔案共用 (如果您不想這麼做，您可以建立[混合式集合](remoteapp-create-hybrid-deployment.md) [而不是我們的雲端集合]，可讓您的使用者存取本機網路上的檔案和資訊。) 然後，我們需要告訴使用者將其電腦上的本機磁碟機對應至 Azure 檔案系統。
+
+第一部分是您以系統管理員身分執行的作業。然後，是您的使用者執行的一些步驟。
+
+1. 請從發佈命令列介面 (cmd.exe) 開始。在 [**發佈**] 索引標籤中，選取 [**cmd**]，然後按一下 [**發佈 > 使用路徑發佈程式**]。
+2. 輸入應用程式和路徑的名稱。基於我們的目的，使用 "File Explorer" 做為名稱並使用 "%SYSTEMDRIVE%\\windows\\explorer.exe" 做為路徑。
+![發佈 cmd.exe 檔案。](./media/remoteapp-anyapp/ra-publishcmd.png)
+3. 現在，您需要建立 Azure [儲存體帳戶](../storage/storage-create-storage-account.md)。我們的命名為 "accessstorage"，因此請選擇對您有意義的名稱。(若要誤引 Highlander，則只能有一個 "accessstorage"。)
+![Azure 儲存體帳戶](./media/remoteapp-anyapp/ra-anyappazurestorage.png)
+4. 現在，回到您的儀表板，以取得您儲存體的路徑 (端點位置)。您將經常用到它，因此請確定在某個位置複製它。
+![儲存體帳戶路徑](./media/remoteapp-anyapp/ra-anyappstoragelocation.png)
+5. 接著，建立儲存體帳戶之後，您需要有主要存取金鑰。按一下 [**管理存取金鑰**]，然後複製主要存取金鑰。
+6. 現在，設定儲存體帳戶的內容，並建立 Access 的新檔案共用。在提升權限的 Windows PowerShell 視窗中，執行下列 Cmdlet：
 
         $ctx=New-AzureStorageContext <account name> <account key>
-        $s = New-AzureStorageShare <share name> -Context $ctx
+    	$s = New-AzureStorageShare <share name> -Context $ctx
 
-    So for our share, these are the cmdlets we run:
+	因此，針對我們的共用，這些就是我們所執行的 Cmdlet：
 
-        $ctx=New-AzureStorageContext accessstorage <key>
-        $s = New-AzureStorageShare <share name> -Context $ctx
+	    $ctx=New-AzureStorageContext accessstorage <key>
+    	$s = New-AzureStorageShare <share name> -Context $ctx
 
 
-Now, it's the user's turn. First, have your users install a [RemoteApp client](remoteapp-clients.md). Next, the users need to map a drive from their account to that Azure file share you created and add their Access files. This is how they do that:
+現在是使用者的部分。首先，讓您的使用者安裝 [RemoteApp 用戶端](remoteapp-clients.md)。接下來，使用者必須將磁碟機從其帳戶對應至您建立的 Azure 檔案共用，並新增其 Access 檔案。這是他們執行的作業：
 
-1. In the RemoteApp client, access the published apps. Start the cmd.exe program.
-2. Run the following command to map a drive from your computer to the file share:
+1. 在 RemoteApp 用戶端中，存取已發佈的應用程式。啟動 cmd.exe 程式。
+2. 執行下列命令，以將電腦中的磁碟機對應至檔案共用：
 
-        net use z: \\<accountname>.file.core.windows.net\<share name> /u:<user name> <account key>
+		net use z: \<accountname>.file.core.windows.net<share name> /u:<user name> <account key>
 
-    If you set the **/persistent** parameter to yes, the mapped drive will persist across sessions.
-1. Now, launch the File Explorer app from RemoteApp. Copy any Access files you want to use in the shared app to the file share.
-![Putting Access files in an Azure share](./media/remoteapp-anyapp/ra-anyappuseraccess.png)
-1. Finally, open Access, and then open the database that you just shared. You should see your data in Access running from the cloud.
-![A real Access database running from the cloud](./media/remoteapp-anyapp/ra-anyapprunningaccess.png)
+	如果您將 **/persistent** 參數設定為 yes，對應的磁碟機將在工作階段之間持續保存。
+1. 現在，從 RemoteApp 啟動 File Explorer 應用程式。將您要在共用的應用程式中使用的任何 Access 檔案複製至檔案共用。
+![將 Access 檔案放在 Azure 共用中](./media/remoteapp-anyapp/ra-anyappuseraccess.png)
+1. 最後，開啟 Access，然後開啟您剛共用的資料庫。您應該會看到從雲端執行的 Access 中的資料。
+![從雲端執行的實際 Access 資料庫](./media/remoteapp-anyapp/ra-anyapprunningaccess.png)
 
-Now you can use Access on any of your devices - just make sure you install a RemoteApp client.
+現在，您可以在任何裝置上使用 Access - 只要確定您安裝 RemoteApp 用戶端。
 
 <!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-Now that you've mastered creating a collection, try creating a [collection that uses Office 365](remoteapp-tutorial-o365anywhere.md). Or you can create a [hybrid collection ](remoteapp-create-hybrid-deployment.md)that can access your local network.
+現在，您已經熟悉如何建立集合，請嘗試建立[使用 Office 365 的集合](remoteapp-tutorial-o365anywhere.md)。或者，您可以建立可存取區域網路的[混合式集合](remoteapp-create-hybrid-deployment.md)。
 
 <!--Image references-->
  
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

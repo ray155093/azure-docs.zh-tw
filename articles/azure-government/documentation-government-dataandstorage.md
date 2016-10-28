@@ -1,94 +1,49 @@
 <properties
-    pageTitle="Azure Government documentation | Microsoft Azure"
-    description="This provides a comparision of features and guidance on developing applications for Azure Government"
-    services="Azure-Government"
-    cloud="gov" 
-    documentationCenter=""
-    authors="ryansoc"
-    manager="zakramer"
-    editor=""/>
+	pageTitle="Azure Government 文件 | Microsoft Azure"
+	description="這為 Azure Government 的開發應用程式提供功能和指引的比較"
+	services="Azure-Government"
+	cloud="gov" 
+	documentationCenter=""
+	authors="ryansoc"
+	manager="zakramer"
+	editor=""/>
 
 <tags
-    ms.service="multiple"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.tgt_pltfrm="na"
-    ms.workload="azure-government"
-    ms.date="09/30/2016"
-    ms.author="ryansoc"/>
+	ms.service="multiple"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.tgt_pltfrm="na"
+	ms.workload="azure-government"
+	ms.date="08/25/2016"
+	ms.author="ryansoc"/>
 
 
+#  Azure Government 的資料和儲存體
 
-#  <a name="azure-government-data-and-storage"></a>Azure Government Data and Storage
+##  儲存體
 
-##  <a name="azure-storage"></a>Azure Storage
+下列資訊可識別 Azure 儲存體的 Azure Government 界限︰
 
-For details on this service and how to use it, see [Azure Storage public documentation](https://azure.microsoft.com/documentation/services/storage/).
-
-### <a name="variations"></a>Variations
-
-The URLs for storage accounts in Azure Government are different:
-
-Service Type|Azure Public|Azure Government
----|---|---
-Blob Storage|*.blob.core.windows.net|*.blob.core.usgovcloudapi.net
-Queue Storage|*.queue.core.windows.net|*.queue.core.usgovcloudapi.net
-Table Storage|*.table.core.windows.net| *.table.core.usgovcloudapi.net
-
->[AZURE.NOTE] All of your scripts and code needs to account for the appropriate endpoints.  See [Configure Azure Storage Connection Strings](../storage-configure-connection-string.md#creating-a-connection-string-to-the-explicit-storage-endpoint). 
-
-For more information on APIs see the <a href="https://msdn.microsoft.com/en-us/library/azure/mt616540.aspx"> Cloud Storage Account Constructor</a>.
-
-The endpoint suffix to use in these overloads is core.usgovcloudapi.net 
-
-### <a name="considerations"></a>Considerations
-
-The following information identifies the Azure Government boundary for Azure Storage:
-
-| Regulated/controlled data permitted | Regulated/controlled data not permitted |
+| 允許受管制/受控制資料 | 不允許受管制/受控制資料 |
 |--------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Data entered, stored, and processed within an Azure Storage product can contain export controlled data. Static authenticators, such as passwords and smartcard PINs for access to Azure platform components. Private keys of certificates used to manage Azure platform components. Other security information/secrets, such as certificates, encryption keys, master keys, and storage keys stored in Azure services. | Azure Storage metadata is not permitted to contain export controlled data. This metadata includes all configuration data entered when creating and maintaining your storage product.  Do not enter Regulated/controlled data into the following fields:  Resource groups, Deployment names, Resource names, Resource tags  
+| 在 Azure 儲存體產品內輸入、儲存及處理的資料可以包含受到匯出管制的資料。靜態驗證器，例如用來存取 Azure 平台元件的密碼和智慧卡 PIN。用來管理 Azure 平台元件之憑證的私密金鑰。其他安全性資訊/機密資料，例如儲存在 Azure 服務的憑證、加密金鑰、主要金鑰和儲存體金鑰。 | Azure 儲存體中繼資料不可以包含受到匯出管制的資料。此中繼資料包括建立和維護儲存體產品時所輸入的所有組態資料。請勿輸入受管制/受控制資料到下列欄位︰資源群組、部署名稱、資源名稱、資源標籤  
 
-##  <a name="premium-storage"></a>Premium Storage
+如需詳細資訊，請參閱 <a href=https://azure.microsoft.com/documentation/services/storage/>Azure 儲存體公開文件</a>。
 
-For details on this service and how to use it, see [Premium Storage: High-Performance Storage for Azure Virtual Machine Workloads](../storage/storage-premium-storage.md).
+如需補充資訊和更新，請訂閱 <a href="https://blogs.msdn.microsoft.com/azuregov/">Microsoft Azure Government 部落格。</a>
 
-###  <a name="variations"></a>Variations
+##  SQL Database
 
-Premium Storage is generally available in the USGov Virginia. This includes DS-series Virtual Machines. 
+下列資訊可識別 Azure 儲存體的 Azure Government 界限︰
 
-### <a name="considerations"></a>Considerations
-
-The same storage data considerations listed above apply to premium storage accounts. 
-
-##  <a name="sql-database"></a>SQL Database
-
-Refer to the<a href="https://msdn.microsoft.com/en-us/library/bb510589.aspx"> Microsoft Security Center for SQL Database Engine </a> and [Azure SQL Database Public Documentation](https://azure.microsoft.com/documentation/services/sql-database/) for additional guidance on metadata visibility configuration, and protection best practices.
-
-### <a name="variations"></a>Variations
-
-SQL V12 Database is generally available in Azure Government.
-
-The Address for SQL Azure Servers in Azure Government is different:
-
-Service Type|Azure Public|Azure Government
----|---|---
-SQL Database|*.database.windows.net|*.database.usgovcloudapi.net
-
-### <a name="considerations"></a>Considerations
-
-The following information identifies the Azure Government boundary for Azure Storage:
-
-| Regulated/controlled data permitted | Regulated/controlled data not permitted |
+| 允許受管制/受控制資料 | 不允許受管制/受控制資料 |
 |--------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| All data stored and processed in Microsoft Azure SQL can contain Azure Government-regulated data. You must use database tools for data transfer of Azure Government-regulated data. | Azure SQL metadata is not permitted to contain export controlled data. This metadata includes all configuration data entered when creating and maintaining your storage product.  Do not enter regulated/controlled data into the following fields: Database name, Subscription name, Resource groups, Server name, Server admin login, Deployment names, Resource names, Resource tags
+| 所有在 Microsoft Azure SQL 中儲存及處理的資料都可以包含受 Azure Government 管制的資料。您必須使用資料庫工具來傳輸受 Azure Government 管制的資料。 | Azure SQL 中繼資料不可以包含受到匯出管制的資料。此中繼資料包括建立和維護儲存體產品時所輸入的所有組態資料。請勿輸入受管制/受控制資料到下列欄位︰資料庫名稱、訂用帳戶名稱、資源群組、伺服器名稱、伺服器管理員登入、部署名稱、資源名稱、資源標籤
 
-##  <a name="next-steps"></a>Next Steps
+SQL Database v11 已在 Azure Government 中正式推出。
 
-For supplemental information and updates subscribe to the <a href="https://blogs.msdn.microsoft.com/azuregov/">Microsoft Azure Government Blog. </a>
+請參閱 <a href="https://msdn.microsoft.com/zh-TW/library/bb510589.aspx">SQL Database 引擎的 Microsoft 資訊安全中心</a>和 <a href="https://azure.microsoft.com/documentation/services/sql-database/">Azure SQL Database 公開文件</a>，以取得關於中繼資料可見性組態和保護最佳作法的其他指引。
 
+如需補充資訊和更新，請訂閱 <a href="https://blogs.msdn.microsoft.com/azuregov/">Microsoft Azure Government 部落格。</a>
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0831_2016-->

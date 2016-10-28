@@ -1,17 +1,15 @@
-Type | Service | Trigger | Input | Output 
+類型 | 服務 | 觸發程序 | 輸入 | 輸出 
 -----|---------|---------|-------|--------
-Schedule | Azure Functions | &#10004; |  | 
-HTTP (REST or webhook) | Azure Functions | &#10004; |  | &#10004;\*
-Blob Storage | Azure Storage | &#10004; | &#10004; | &#10004; 
-Events | Azure Event Hubs | &#10004; | | &#10004;
-Queues | Azure Storage | &#10004; |  | &#10004;
-Tables | Azure Storage |  | &#10004; | &#10004;
-Tables | Azure Mobile Apps |  | &#10004; | &#10004;
-No-SQL DB | Azure DocumentDB |  | &#10004; | &#10004;
-Push Notifications | Azure Notification Hubs | | | &#10004;
+排程 | Azure Functions | &#10004; | | 
+HTTP (REST 或 webhook) | Azure Functions | &#10004; | | &#10004;*
+Blob 儲存體 | Azure 儲存體 | &#10004; | &#10004; | &#10004; 
+事件 | Azure 事件中心 | &#10004; | | &#10004;
+佇列 | Azure 儲存體 | &#10004; | | &#10004;
+資料表 | Azure 儲存體 | | &#10004; | &#10004;
+資料表 | Azure Mobile Apps | | &#10004; | &#10004;
+No-SQL DB | Azure DocumentDB | | &#10004; | &#10004;
+推播通知 | Azure 通知中心 | | | &#10004;
 
-(\* - The http out binding requires an http trigger)
+(* - http 對外繫結需要 http 觸發器)
 
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0608_2016-->

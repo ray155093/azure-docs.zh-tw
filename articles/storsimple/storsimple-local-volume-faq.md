@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="StorSimple locally pinned volumes FAQ|Microsoft Azure"
-   description="Provides answers to frequently asked questions about StorSimple locally pinned volumes."
+   pageTitle="StorSimple 本機固定磁碟區常見問題集 | Microsoft Azure"
+   description="提供 StorSimple 本機固定磁碟區相關常見問題的解答。"
    services="storsimple"
    documentationCenter="NA"
    authors="manuaery"
@@ -15,209 +15,202 @@
    ms.date="08/16/2016"
    ms.author="manuaery" />
 
+# StorSimple 本機固定磁碟區︰常見問題集 (FAQ)
 
-# <a name="storsimple-locally-pinned-volumes:-frequently-asked-questions-(faq)"></a>StorSimple locally pinned volumes: frequently asked questions (FAQ)
+## 概觀
 
-## <a name="overview"></a>Overview
+以下是在建立 StorSimple 本機固定磁碟區、將階層式磁碟區轉換成本機固定磁碟區 (反之亦然)，或備份及還原本機固定磁碟區時，您可能會有的問題和解答。
 
-The following are questions and answers that you might have when you create a StorSimple locally pinned volume, convert a tiered volume to a locally pinned volume (and vice versa), or back up and restore a locally pinned volume.
+問題和解答可分為下列幾個類別：
 
-Questions and answers are arranged into the following categories
+- 建立本機固定磁碟區
+- 備份本機固定磁碟區
+- 將階層式磁碟區轉換成本機固定磁碟區
+- 還原本機固定磁碟區
+- 容錯移轉本機固定磁碟區
 
-- Creating a locally pinned volume
-- Backing up a locally pinned
-- Converting a tiered volume to a locally pinned volume
-- Restoring a locally pinned volume
-- Failing over a locally pinned volume
+## 有關建立本機固定磁碟區的問題
 
-## <a name="questions-about-creating-a-locally-pinned-volume"></a>Questions about creating a locally pinned volume
+**問：** 在 8000 系列裝置上可以建立之本機固定磁碟區的大小上限為何？
 
-**Q.** What is the maximum size of a locally pinned volume that I can create on the 8000 series devices?
+**答：**您可以在 8100 裝置上佈建最多 8.5 TB 的固定在本機的磁碟區，或最多 200 TB 的分層磁碟區。在較大的 8600 裝置上，您可以佈建最多 22.5 TB 的固定在本機的磁碟區，或最多 500 TB 的分層磁碟區。
 
-**A** You can provision locally pinned volumes up to 8.5 TB or tiered volumes up to 200 TB on the 8100 device. On the larger 8600 device, you can provision locally pinned volumes up to 22.5 TB or tiered volumes up to 500 TB.
+**問：** 我最近將 8100 裝置升級至 Update 2，而當我嘗試建立固定在本機的磁碟區時，可用的大小上限只有 6 TB，而不是 8.5 TB。為什麼我無法建立 8.5 TB 的磁碟區？
 
-**Q.** I recently upgraded my 8100 device to Update 2 and when I try to create a locally pinned volume, the maximum available size is only 6 TB and not 8.5 TB. Why can’t I create an 8.5 TB volume?
+**答：**您可以在 8100 裝置上佈建最多 8.5 TB 的固定在本機的磁碟區，或最多 200 TB 的分層磁碟區。如果您的裝置已經有階層式磁碟區，則可用於建立本機固定磁碟區的空間將會相應地低於此最大限制。舉例來說，如果已在 8100 裝置上佈建 100 TB 的分層磁碟區 (這是分層容量的一半)，則您可以在 8100 裝置上建立的本機磁碟區大小上限會相應縮小為 4 TB (大約是固定在本機之磁碟區容量上限的一半)。
 
-**A** You can provision locally pinned volumes up to 8.5 TB OR tiered volumes up to 200 TB on the 8100 device. If your device already has tiered volumes, then the space available for creating a locally pinned volume will be proportionally lower than this maximum limit. For example, if 100 TB of tiered volumes have already been provisioned on your 8100 device (which is half of the tiered capacity), then the maximum size of a local volume that you can create on the 8100 device will be correspondingly reduced to 4 TB (roughly half of the maximum locally pinned volume capacity).
+由於裝置上的某些本機空間會用來裝載分層磁碟區的工作集，因此如果裝置有分層磁碟區，可用於建立固定在本機之磁碟區的空間就會減少。相對地，建立固定在本機的磁碟區也會相應地減少分層磁碟區可用的空間。下表摘要說明建立本機固定磁碟區時，8100 和 8600 裝置上可用的階層式容量。
 
-Because some local space on the device is used to host the working set of tiered volumes, the available space for creating a locally pinned volume is reduced if the device has tiered volumes. Conversely, creating a locally pinned volume proportionally reduces the available space for tiered volumes. The following table summarizes the available tiered capacity on the 8100 and 8600 devices when locally pinned volumes are created.
-
-|Locally pinned volumes provisioned capacity|Available capacity to be provisioned for tiered volumes - 8100|Available capacity to be provisioned for tiered volumes - 8600|
+|本機固定磁碟區佈建的容量|要對階層式磁碟區佈建的可用容量 - 8100|要對階層式磁碟區佈建的可用容量 - 8600|
 |-----|------|------|
 |0 | 200 TB | 500 TB |
-|1 TB | 176.5 TB | 477.8 TB|
-|4 TB | 105.9 TB | 411.1 TB |
-|8.5 TB | 0 TB | 311.1 TB|
-|10 TB | NA | 277.8 TB |
-|15 TB | NA | 166.7 TB |
-|22.5 TB | NA | 0 TB |
+|1 TB | 176\.5 TB | 477\.8 TB|
+|4 TB | 105\.9 TB | 411\.1 TB |
+|8\.5 TB | 0 TB | 311\.1 TB|
+|10 TB | NA | 277\.8 TB |
+|15 TB | NA | 166\.7 TB |
+|22\.5 TB | NA | 0 TB |
 
 
-**Q.** Why is locally pinned volume creation a long running operation? 
+**問：** 為什麼建立本機固定磁碟區是長時間執行的作業？
 
-**A.** Locally pinned volumes are thickly provisioned. To create space on the local tiers of the device, some data from existing tiered volumes might be pushed to the cloud during the provisioning process. And since this depends upon the size of the volume being provisioned, the existing data on your device and the available bandwidth to the cloud, the time taken to create a local volume may be several hours.
+**答：** 已密集佈建本機固定磁碟區。為了在裝置的本機層上產生空間，現有階層式磁碟區中的某些資料可能會在佈建過程中被推送至雲端。而且因為這取決於正在佈建的磁碟區大小、您裝置上的現有資料及雲端可用的頻寬，建立本機磁碟區所需的時間可能要好幾個小時。
 
-**Q.** How long does it take to create a locally pinned volume?
+**問：** 建立本機固定磁碟區需要多久的時間？
 
-**A.** Because locally pinned volumes are thickly provisioned, some existing data from tiered volumes might be pushed to the cloud during the provisioning process. Therefore, the time taken to create a locally pinned volume depends upon multiple factors, including the size of the volume, the data on your device and the available bandwidth. On a freshly installed device that has no volumes, the time to create a locally pinned volume is about 10 minutes per terabyte of data. However, creation of local volumes may take several hours based on the factors explained above on a device that is in use.
+**答：** 因為已密集佈建本機固定磁碟區，所以階層式磁碟區中的某些現有資料可能會在佈建過程中被推送至雲端。因此，建立本機磁碟區所需的時間取決於多個因素，包括磁碟區的大小、您裝置上的資料及可用的頻寬。在沒有磁碟區的全新安裝的裝置上，建立本機固定磁碟區的時間大約是每 TB 的資料需要 10 分鐘。不過，根據所述的因素，在使用中的裝置上建立本機磁碟區可能需要數小時的時間。
 
-**Q.** I want to create a locally pinned volume. Are there any best practices I need to be aware of?
+**問：** 我想要建立本機固定磁碟區。是否有任何需要留意的最佳作法？
 
-**A.** Locally pinned volumes are suitable for workloads that require local guarantees of data at all times and are sensitive to cloud latencies. While considering usage of local volumes for any of your workloads, please be aware of the following:
+**答：** 本機固定磁碟區適合於隨時需要資料的本機保證且對雲端延遲很敏感的工作負載。在考慮您的工作負載的本機磁碟區使用方式，請特別注意下列幾點︰
 
-- Locally pinned volumes are thickly provisioned, and creating local volumes impacts the available space for tiered volumes. Therefore, we suggest you start with smaller-sized volumes and scale up as your storage requirement increases.
+- 固定在本機的磁碟區是以密集方式佈建，而建立本機磁碟區會影響分層磁碟區可用的空間。因此，我們建議您一開始使用較小的磁碟區，並隨著您的儲存體需求增加來相應增加。
 
-- Provisioning of local volumes is a long running operation that might involve pushing existing data from tiered volumes to the cloud. As a result, you may experience reduced performance on these volumes.
+- 佈建本機磁碟區是長時間執行的作業，可能涉及將現有的資料從階層式磁碟區推送至雲端。因此，您可能會遇到這些磁碟區的效能降低。
 
-- Provisioning of local volumes is a time consuming operation. The actual time involved depends on multiple factors: the size of the volume being provisioned, data on your device, and available bandwidth. If you have not backed up your existing volumes to the cloud, then volume creation is slower. We suggest you take cloud snapshots of your existing volumes before you provision a local volume.
+- 佈建本機磁碟區是耗時的作業。實際所需的時間取決於多個因素︰正在佈建的磁碟區大小、裝置上的資料，以及可用的頻寬。如果您尚未將現有的磁碟區備份到雲端，則建立磁碟區時速度會較慢。我們建議您在佈建本機磁碟區之前，製作現有磁碟區的雲端快照。
  
-- You can convert existing tiered volumes to locally pinned volumes, and this conversion involves provisioning of space on the device for the resulting locally pinned volume (in addition to bringing down tiered data [if any] from the cloud). Again, this is a long running operation that depends on factors we’ve discussed above. We suggest that you back up your existing volumes prior to conversion as the process will be even slower if existing volumes are not backed up. Your device might also experience reduced performance during this process.
-    
-More information on how to [create a locally pinned volume](storsimple-manage-volumes-u2.md#add-a-volume)
+- 您可以將現有的階層式磁碟區轉換成本機固定磁碟區，而此轉換涉及在裝置上為所產生的本機固定磁碟區佈建空間 (除了從雲端關閉階層式資料 [如果有])。這同樣是取決於上述因素的長時間執行作業。我們建議您在轉換前備份現有的磁碟區，因為如果未備份現有的磁碟區，此程序將會變得更慢。您的裝置也可能在此程序中遇到效能降低。
+	
+有關如何[建立本機固定磁碟區](storsimple-manage-volumes-u2.md#add-a-volume)的詳細資訊
 
-**Q.** Can I create multiple locally pinned volumes at the same time?
+**問：** 可以同時建立多個本機固定磁碟區嗎？
 
-**A.** Yes, but any locally pinned volume creation and expansion jobs are processed sequentially.
+**答：** 可以，但會循序處理所有固定在本機之磁碟區的建立和擴充作業。
 
-Locally pinned volumes are thickly provisioned and this requires creation of local space on the device (which might result in existing data from tiered volumes to be pushed to the cloud during the provisioning process). Therefore, if a provisioning job is in progress, other local volume creation jobs will be queued until that job is finished.
+已密集佈建本機固定磁碟區，而這需要在裝置上建立本機空間 (可能會導致階層式磁碟區中的現有資料在佈建過程中被推送至雲端)。因此，如果佈建作業正在進行中，其他本機磁碟區建立作業就會排入佇列，直到該作業完成為止。
 
-Similarly, if an existing local volume is being expanded or a tiered volume is being converted to a locally pinned volume, then the creation of a new locally pinned volume is queued until the previous job is completed. Expanding the size of a locally pinned volume involves the expansion of the existing local space for that volume. Conversion from a tiered to locally pinned volume also involves the creation of local space for the resulting locally pinned volume. In both of these operations, creation or expansion of local space is a long running job.
+同樣地，如果正在擴充現有的本機磁碟區或將分層磁碟區轉換成固定在本機的磁碟區，則建立新固定在本機之磁碟區的作業會排入佇列，直到上一個作業完成為止。擴充本機固定磁碟區的大小，涉及擴充該磁碟區的現有本機空間。從階層式轉換成本機固定磁碟區也涉及為所產生的本機固定磁碟區建立本機空間。在這兩項作業中，建立或擴充本機空間都是長時間執行的作業。
 
-You can view these jobs in the **Jobs** page of the Azure StorSimple Manager service. The job that is actively being processed is continually updated to reflect the progress of space provisioning. The remaining locally pinned volume jobs is marked as running, but their progress is stalled and they are picked in the order they were queued.
+您可以在 Azure StorSimple Manager 服務的 [作業] 頁面中檢視這些作業。系統會持續更新目前積極處理中的作業，以反映空間佈建的進度。其餘的固定在本機之磁碟區作業會被標示為執行中，但其進度會停止，系統會依其佇列順序來挑選它們。
 
-**Q.** I deleted a locally pinned volume. Why don't I see the reclaimed space reflected in the available space when I try to create a new volume? 
+**問：** 我刪除了本機固定磁碟區。當我嘗試建立新的磁碟區時，為什麼看不到回收的空間反映於可用的空間？
 
-**A.** If you delete a locally pinned volume, the space available for new volumes may not be updated immediately. The StorSimple Manager Service updates the local space available approximately every hour. We suggest you wait for an hour before you try to create the new volume.
+**答：** 如果您刪除固定在本機的磁碟區，新的磁碟區的可用空間可能不會立即更新。StorSimple Manager 服務會每小時更新大致的本機可用空間。建議您等候 1 小時，然後再嘗試建立新的磁碟區。
 
-**Q.** Are locally pinned volumes supported on the cloud appliance?
+**問：** 雲端應用裝置是否支援本機固定磁碟區？
 
-**A.** Locally pinned volumes are not supported on the cloud appliance (8010 and 8020 devices formerly referred to as the StorSimple virtual device).
+**答：** 雲端應用裝置 (8010 和 8020 裝置之前稱為 StorSimple 虛擬裝置) 不支援本機固定磁碟區。
 
-**Q.** Can I use the Azure PowerShell cmdlets to create and manage locally pinned volumes? 
+**問：** 可以使用 Azure PowerShell Cmdlet 建立及管理本機固定磁碟區嗎？
 
-**A.** No, you cannot create locally pinned volumes via Azure PowerShell cmdlets (any volume you create via Azure PowerShell is tiered). We also suggest that you do not use the Azure PowerShell cmdlets to modify any properties of a locally pinned volume, as it will have the undesired effect of modifying the volume type to tiered.
+**答：** 不可以，您無法透過 Azure PowerShell Cmdlet 建立固定在本機的磁碟區 (任何透過 Azure PowerShell 建立的磁碟區都是分層磁碟區)。我們也建議您不要使用 Azure PowerShell Cmdlet 來修改本機固定磁碟區的任何屬性，因為這對於將磁碟區類型修改為階層式會造成不良影響。
 
-## <a name="questions-about-backing-up-a-locally-pinned-volume"></a>Questions about backing up a locally pinned volume
+## 有關備份本機固定磁碟區的問題
 
-**Q.** Are local snapshots of locally pinned volumes supported?
+**問：** 是否支援本機固定磁碟區的本機快照？
 
-**A.** Yes, you can take local snapshots of your locally pinned volumes. However, we strongly suggest that you regularly back up your locally pinned volumes with cloud snapshots to ensure that your data is protected in the eventuality of a disaster.
+**答：** 是，您可以製作本機固定磁碟區的本機快照。不過，強烈建議您以雲端快照定期備份本機固定磁碟區，確保您的資料在偶發災害中受到保護。
 
-**Q.** Are there any guidelines for managing local snapshots for locally pinned volumes?
+**問：** 是否有任何指導方針可管理本機固定磁碟區的本機快照？
 
-**A.** Frequent local snapshots alongside a high rate of data churn in the locally pinned volume might cause local space on the device to be consumed quickly and result in data from tiered volumes being pushed to the cloud. We therefore suggest you minimize the number of local snapshots.
+**答：** 在本機固定磁碟區中隨著高度資料變換率頻繁地製作本機快照，可能會導致裝置上的本機空間快速地耗用，並導致階層式磁碟區中的資料被推送至雲端。因此建議您盡可能減少本機快照數目。
 
-**Q.** I received an alert stating that my local snapshots of locally pinned volumes might be invalidated. When can this happen?
+**問：** 我收到警示指出本機固定磁碟區的本機快照可能失效。何時會發生這種情形？
 
-**A.** Frequent local snapshots alongside a high rate of data churn in the locally pinned volume might cause local space on the device to be consumed quickly. If the local tiers of the device are heavily used, an extended cloud outage might result in the device becoming full, and incoming writes to the volume might result in invalidation of the snapshots (as no space exists to update the snapshots to refer to the older blocks of data that have been overwritten). In such a situation the writes to the volume will continue to be served, but the local snapshots might be invalid. There is no impact to your existing cloud snapshots.
+**答：** 在本機固定磁碟區中隨著高度資料變換率頻繁地製作本機快照，可能會導致裝置上的本機空間快速地耗用。如果重度使用裝置的本機層，則延長的雲端服務中斷可能會導致裝置變滿，而對磁碟區的新近寫入可能會導致快照失效 (因為沒有空間可更新快照，以參照已覆寫的較舊資料區塊)。在這種情況中，將繼續提供對磁碟區的寫入，但本機快照可能無效。對現有的雲端快照沒有影響。
 
-The alert warning is to notify you that such a situation can arise and ensure you address the same in a timely manner by either reviewing your local snapshots schedules to take less frequent local snapshots or deleting older local snapshots that are no longer required.
+此警示警告會通知您可能發生這種情況，並確保您透過下列方式及時加以處理：檢閱您的本機快照排程以改為較不常製作本機快照，或刪除不再需要的較舊本機快照。
 
-If the local snapshots are invalidated, you will receive an information alert notifying you that the local snapshots for the specific backup policy have been invalidated alongside the list of timestamps of the local snapshots that were invalidated. These snapshots will be auto-deleted and you will no longer be able to view them in the **Backup Catalogs** page in the Azure classic portal.
+如果本機快照失效，您會收到資訊警示，伴隨著已失效本機快照的時間戳記清單，通知您特定備份原則的本機快照已經失效。這些快照會自動遭到刪除，您無法再於 Azure 傳統入口網站的 [備份目錄] 頁面中進行檢視。
 
-## <a name="questions-about-converting-a-tiered-volume-to-a-locally-pinned-volume"></a>Questions about converting a tiered volume to a locally pinned volume
+## 有關將階層式磁碟區轉換成本機固定磁碟區的問題
 
-**Q.** I’m observing some slowness on the device while converting a tiered volume to a locally pinned volume. Why is this happening? 
+**問：** 將階層式磁碟區轉換成本機固定磁碟區時，我發現裝置的速度很慢。為什麼會發生這種情形？
 
-**A.** The conversion process involves two steps: 
+**答：** 轉換程序包含兩個步驟 ︰
 
-  1. Provisioning of space on the device for the soon-to-be-converted locally pinned volume.
-  2. Downloading any tiered data from the cloud to ensure local guarantees.
+  1. 在裝置上為即將轉換的本機固定磁碟區佈建空間。
+  2. 從雲端下載任何階層式資料以確保本機保證。
 
-Both of these steps are long running operations that are dependent on the size of the volume being converted, data on the device, and available bandwidth. As some data from existing tiered volumes might spill to the cloud as part of the provisioning process, your device might experience reduced performance during this time. In addition, the conversion process can be slower if:
+這兩個步驟都是長時間執行的作業，相依於要轉換的磁碟區大小、裝置上的資料，以及可用的頻寬。因為現有階層式磁碟區的某些資料可能會在佈建過程中溢出至雲端，您的裝置可能會在這段期間降低效能。此外，在下列情況下，轉換程序會變慢︰
 
-- Existing volumes have not been backed up to the cloud; so we suggest you backup your volumes prior to initiating a conversion.
+- 現有磁碟區尚未備份至雲端；因此建議您在開始轉換之前，先備份您的磁碟區。
 
-- Bandwidth throttling policies have been applied, which might constrain the available bandwidth to the cloud; we therefore recommend you have a dedicated 40 Mbps or more connection to the cloud.
+- 已套用頻寬節流原則，這可能會限制雲端可用的頻寬；因此，建議您有專用的 40 Mbps 或更多的雲端連線。
 
-- The conversion process can take several hours due to the multiple factors explained above; therefore, we suggest that you perform this operation during non-peaks times or on a weekend to avoid the impact on end consumers.
+- 由於上述多個因素，轉換程序可能需要數小時的時間；因此，建議您在非尖峰時間或在週末執行此作業，以免影響一般取用者。
 
-More information on how to [convert a tiered volume to a locally pinned volume](storsimple-manage-volumes-u2.md#change-the-volume-type)
+有關如何[將階層式磁碟區轉換成本機固定磁碟區](storsimple-manage-volumes-u2.md#change-the-volume-type)的詳細資訊
 
-**Q.** Can I cancel the volume conversion operation?
+**問：** 可以取消磁碟區轉換作業嗎？
 
-**A.** No, you cannot the cancel the conversion operation once initiated. As discussed in the previous question, please be aware of the potential performance issues that you might encounter during the process, and follow the best practices listed above when you plan your conversion.
+**答：** 不可以，您無法取消已開始進行的轉換作業。如前一個問題所討論，請留意在過程中可能遇到的潛在效能問題，並在規劃轉換時遵循上面所列的最佳作法。
 
-**Q.** What happens to my volume if the conversion operation fails?
+**問：** 如果轉換作業失敗，我的磁碟區會發生什麼狀況？
 
-**A.** Volume conversion can fail due to cloud connectivity issues. The device may eventually stop the conversion process after a series of unsuccessful attempts to bring down tiered data from the cloud. In such a scenario, the volume type will continue to be the source volume type prior to conversion, and:
+**答：** 磁碟區轉換可能會因為雲端連線問題而失敗。裝置最後可能會在一連串失敗嘗試之後停止轉換程序，從雲端關閉階層式資料。在這種情況下，此磁碟區類型仍持續為轉換前的來源磁碟區，而且︰
 
-- A critical alert will be raised to notify you of the volume conversion failure. More information on [alerts related to locally pinned volumes](storsimple-manage-alerts.md#locally-pinned-volume-alerts)
+- 將會引發重大警示，以通知您磁碟區轉換失敗。[本機固定磁碟區相關警示](storsimple-manage-alerts.md#locally-pinned-volume-alerts)的詳細資訊
 
-- If you are converting a tiered to a locally pinned volume, the volume will continue to exhibit properties of a tiered volume as data might still reside on the cloud. We suggest that you resolve the connectivity issues and then retry the conversion operation.
+- 如果您要將階層式磁碟區轉換成本機固定磁碟區，此磁碟區會繼續展現階層式磁碟區的屬性，因為資料可能仍然位於雲端。建議您解決連線問題，然後重試轉換作業。
  
-- Similarly, when conversion from a locally pinned to a tiered volume fails, although the volume will be marked as a locally pinned volume, it will function as a tiered volume (because data could have spilled to the cloud). However, it will continue to occupy space on the local tiers of the device. This space will not be available for other locally pinned volumes. We suggest that you retry this operation to ensure that the volume conversion is complete and the local space on the device can be reclaimed.
+- 同樣地，從本機固定磁碟區轉換成階層式磁碟區失敗時，雖然磁碟區會標示為本機固定磁碟區，但其作用為階層式磁碟區 (因為資料可能已溢出到雲端)。不過，它會繼續佔用裝置的本機層上的空間。此空間無法用於其他本機固定磁碟區。建議您重試此作業，以確保磁碟區轉換已完成，而且可以回收裝置上的本機空間。
 
-## <a name="questions-about-restoring-a-locally-pinned-volume"></a>Questions about restoring a locally pinned volume
+## 有關還原本機固定磁碟區的問題
 
-**Q.** Are locally pinned volumes restored instantly?
+**問：** 是否會立即還原本機固定磁碟區？
 
-**A.** Yes, locally pinned volumes are restored instantly. As soon as the metadata information for the volume is pulled from the cloud as part of the restore operation, the volume is brought online and can be accessed by the host. However, local guarantees for the volume data will not be present until all the data has been downloaded from the cloud, and you may experience reduced performance on these volumes for the duration of the restore.
+**答：** 是，會立即還原本機固定磁碟區。一但在還原作業中從雲端提取磁碟區的中繼資料資訊，磁碟區就會上線並可由主機存取。不過，直到從雲端下載了所有資料，才會存在磁碟區資料的本機保證，而這些磁碟區的效能可能會在還原期間降低。
 
-**Q.** How long does it take to restore a locally pinned volume?
+**問：** 還原本機固定磁碟區需要多久的時間？
 
-**A.** Locally pinned volumes are restored instantly and brought online as soon as the volume metadata information is retrieved from the cloud, while the volume data continues to be downloaded in the background. This latter part of the restore operation--getting back the local guarantees for the volume data--is a long running operation and might take several hours for all the data to be made local again. The time taken to complete the same depends on multiple factors, such as the size of the volume being restored and the available bandwidth. If the original volume that is being restored has been deleted, additional time will be taken to create the local space on the device as part of the restore operation.
+**答：** 從雲端擷取磁碟區中繼資料資訊後，本機固定磁碟區就會立即還原並上線，而磁碟區資料會繼續在背景下載。還原作業的後半部 (取回磁碟區資料的本機保證) 是長時間執行的作業，所有資料可能需要幾個小時的時間才能再度回到本機。完成作業所需的時間同樣取決於多個因素，例如正在還原的磁碟區大小和可用的頻寬。如果正在還原的原始磁碟區已遭刪除，則在還原作業期間將花費額外的時間在裝置上建立本機空間。
 
-**Q.** I need to restore my existing locally pinned volume to an older snapshot (taken when the volume was tiered). Will the volume be restored as tiered in this case?
+**問：** 我需要將現有的本機固定磁碟區還原至較舊的快照 (磁碟區分層時所製作的快照）。在此情況下，磁碟區是否會還原成階層式？
 
-**A.** No, the volume will be restored as a locally pinned volume. Although the snapshot dates to the time when the volume was tiered, while restoring existing volumes, StorSimple always uses the type of volume on the disk as it exists currently.
+**答：** 否，磁碟區將會還原成本機固定磁碟區。雖然快照的日期可溯及磁碟區分層時，但是在還原現有的磁碟區時，StorSimple 一律會使用磁碟上目前存在的磁碟區類型。
 
-**Q.** I extended my locally pinned volume recently, but I now need to restore the data to a time when the volume was smaller in size. Will restore resize the current volume and will I need to extend the size of the volume once the restore is completed?
+**問：** 我最近擴充了本機固定磁碟區，但現在需要將資料還原到磁碟區大小較小時的時間。還原是否會調整目前磁碟區的大小，而我需要在還原完成後擴充磁碟區的大小嗎？
 
-**A.** Yes, the restore will resize the volume, and you will need to extend the size of the volume after the restore is completed.
+**答：** 是，還原會調整磁碟區的大小，而您需要在還原完成後擴充磁碟區的大小。
 
-**Q.** Can I change the type of a volume during restore?
+**問：** 可以在還原期間變更磁碟區的類型嗎？
 
-**A.**No, you cannot change the volume type during restore.
+**答：**否，您無法在還原期間變更磁碟區類型。
 
-- Volumes that have been deleted are restored as the type stored in the snapshot.
+- 已刪除的磁碟區會還原為快照中儲存的類型。
 
-- Existing volumes are restored based on their current type, irrespective of the type stored in the snapshot (refer to the previous two questions).
+- 無論快照中儲存的類型為何，磁碟區都會根據其目前的類型還原 (請參考前兩個問題)。
  
-**Q.** I need to restore my locally pinned volume, but I picked an incorrect point in time snapshot. Can I cancel the current restore operation?
+**問：** 我需要還原本機固定磁碟區，但我挑選了時間點不正確的快照。是否可以取消目前的還原作業？
 
-**A.** Yes, you can cancel an on-going restore operation. The state of the volume will be rolled back to the state at the start of the restore. However, any writes that were made to the volume while the restore was in progress will be lost.
+**答：** 是，您可以取消進行中的還原作業。磁碟區的狀態將會回復為開始還原時的狀態。不過，將會遺失在還原過程中對磁碟區所做的任何寫入。
 
-**Q.** I started a restore operation on one of my locally pinned volumes, and now I see a snapshot in my backlog catalog that I don't recollect creating. What is this used for?
+**問：** 我已開始在其中一個本機固定磁碟區上進行還原作業，而目前在待處理項目目錄中看到我未重新建立的快照。這有何用途？
 
-**A.** This is the temporary snapshot that is created prior to the restore operation and is used for rollback in case the restore is canceled or fails. Do not delete this snapshot; it will be automatically deleted when the restore is complete. This behavior can occur if your restore job has only locally pinned volumes or a mix of locally pinned and tiered volumes. If the restore job includes only tiered volumes, then this behavior will not occur.
+**答：** 這是在還原作業前建立的暫時快照，在還原遭到取消或失敗時可用於回復。請勿刪除此快照；它會在還原完成時自動刪除。如果還原作業僅有固定在本機的磁碟區或是混合了固定在本機的磁碟區與分層磁碟區，就可能就會發生此問題。如果還原作業僅包含分層磁碟區，將不會發生此問題。
 
-**Q.** Can I clone a locally pinned volume?
+**問：** 是否可以複製本機固定磁碟區？
 
-**A.** Yes, you can. However, the locally pinned volume will be cloned as a tiered volume by default. More information on how to [clone a  locally pinned volume](storsimple-clone-volume-u2.md)
+**答：** 是，您可以這麼做。不過，本機固定磁碟區預設會複製為階層式磁碟區。有關如何[複製本機固定磁碟區](storsimple-clone-volume-u2.md)的詳細資訊
 
-## <a name="questions-about-failing-over-a-locally-pinned-volume"></a>Questions about failing over a locally pinned volume
+## 有關容錯移轉本機固定磁碟區的問題
 
-**Q.** I need to fail over my device to another physical device. Will my locally pinned volumes be failed over as locally pinned or tiered?
+**問：** 我需要將裝置容錯移轉到另一個實體裝置。我的本機固定磁碟區將會容錯移轉為本機固定或階層式磁碟區？
 
-**A.** Depending on the software version of the target device, locally pinned volumes will be failed over as:
+**答：** 根據目標裝置的軟體版本而定，本機固定磁碟區會容錯移轉為︰
 
-- Locally pinned if the target device is running StorSimple 8000 series update 2
-- Tiered if the target device is running StorSimple 8000 series update 1.x
-- Tiered if the target device is the cloud appliance (software version update 2 or update 1.x)
+- 本機固定磁碟機 (如果目標裝置正在執行 StorSimle 8000 系列 Update 2)
+- 階層式磁碟機 (如果目標裝置正在執行 StorSimle 8000 系列 Update 1.x)
+- 階層式磁碟機 (如果目標裝置為雲端應用裝置且軟體版本為 Update 2 或 Update 1.x)
 
-More information on [failover and DR of locally pinned volumes across versions](storsimple-device-failover-disaster-recovery.md#device-failover-across-software-versions)
+有關[跨越版本的本機固定磁碟區容錯移轉和 DR](storsimple-device-failover-disaster-recovery.md#device-failover-across-software-versions) 的詳細資訊
 
-**Q.** Are locally pinned volumes instantly restored during disaster recovery (DR)?
+**問：** 本機固定磁碟區是否會在災害復原 (DR) 期間立即還原？
 
-**A.** Yes, locally pinned volumes are restored instantly during failover. As soon as the metadata information for the volume is pulled from the cloud as part of the failover operation, the volume is brought online on the target device and can be accessed by the host. Meanwhile, the volume data will continue to download in the background, and you may experience reduced performance on these volumes for the duration of the failover.
+**答：** 是，在容錯移轉會立即還原本機固定磁碟區。一但在容錯移轉作業中從雲端提取磁碟區的中繼資料資訊，磁碟區就會在目標裝置上線並可由主機存取。同時，磁碟區資料會繼續在背景下載，而這些磁碟區的效能可能會在容錯移轉期間降低。
 
-**Q.** I see the failover job completed, how can I track the progress of locally pinned volume that is being restored on the target device?
+**問：** 我看到容錯移轉作業完成，如何才能追蹤正在目標裝置上還原的本機固定磁碟區的進度？
 
-**A.** During a failover operation, the failover job is marked as complete once all the volumes in the failover set have been instantly restored and brought online on the target device. This includes any locally pinned volumes that might have been failed over; however, local guarantees of the data will only be available when all the data for the volume has been downloaded. You can track this progress for each locally pinned volume that was failed over by monitoring the corresponding restore jobs that are created as part of the failover. These individual restore jobs will only be created for locally pinned volumes.
+**答：** 在容錯移轉期間，一旦容錯移轉集中的所有磁碟區都已立即還原並於目標裝置上線，容錯移轉作業就會標示為完成。這包括可能已容錯移轉的本機固定磁碟區；不過，只有在下載磁碟區的所有資料後，才可取得資料的本機保證。您可以監視在容錯移轉過程中建立的對應還原作業，以追蹤每個已容錯移轉之本機固定磁碟區的進度。這些個別的還原作業只會針對本機固定磁碟區建立。
 
-**Q.** Can I change the type of a volume during failover?
+**問：** 可以在容錯移轉期間變更磁碟區的類型嗎？
 
-**A.** No, you cannot change the volume type during a failover. If you are failing over to another physical device that is running StorSimple 8000 series update 2, the volumes will be failed over based on the volume type stored in the snapshot. When failing over to any other device version, refer to the question above on the volume type after a failover.
+**答：** 不可以，您無法在容錯移轉期間變更磁碟區類型。如果您容錯移轉到另一個正在執行 StorSimple 8000 系列 Update 2 的實體裝置，磁碟區將會根據快照中儲存的磁碟區類型進行容錯移轉。在容錯移轉至其他裝置版本時，請參閱上面有關容錯移轉後磁碟區類型的問題。
 
-**Q.** Can I fail over a volume container with locally pinned volumes to the cloud appliance?
+**問：** 是否可以將具有本機固定磁碟區的磁碟區容器容錯移轉到雲端應用裝置？
 
-**A.** Yes, you can. The locally pinned volumes will be failed over as tiered volumes. More information on [failover and DR of locally pinned volumes across versions](storsimple-device-failover-disaster-recovery.md#considerations-for-device-failover)
+**答：** 是，您可以這麼做。本機固定磁碟區會容錯移轉為階層式磁碟區。有關[跨越版本的本機固定磁碟區容錯移轉和 DR](storsimple-device-failover-disaster-recovery.md#considerations-for-device-failover) 的詳細資訊
 
-
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

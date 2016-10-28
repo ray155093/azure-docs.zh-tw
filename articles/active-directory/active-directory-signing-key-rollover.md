@@ -1,164 +1,163 @@
 <properties
-    pageTitle="Signing Key Rollover in Azure AD | Microsoft Azure"
-    description="This article discusses the signing key rollover best practices for Azure Active Directory"
-    services="active-directory"
-    documentationCenter=".net"
-    authors="gsacavdm"
-    manager="krassk"
-    editor=""/>
+	pageTitle="Azure AD 中的簽署金鑰變換 | Microsoft Azure"
+	description="本文討論 Azure Active directory 的簽署金鑰變換最佳做法"
+	services="active-directory"
+	documentationCenter=".net"
+	authors="gsacavdm"
+	manager="krassk"
+	editor=""/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="07/18/2016"
-    ms.author="gsacavdm"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/18/2016"
+	ms.author="gsacavdm"/>
 
+# Azure Active Directory 中的簽署金鑰變換
 
-# <a name="signing-key-rollover-in-azure-active-directory"></a>Signing key rollover in Azure Active Directory
+本主題討論 Azure Active Directory (Azure AD) 中用來簽署安全性權杖的公開金鑰須知事項。請務必注意這些金鑰會定期變換，且在緊急狀況下可以立即變換。所有使用 Azure AD 的應用程式都應該能夠以程式設計方式處理金鑰變換程序或建立定期手動變換程序。請繼續閱讀以了解金鑰的運作方式、如何評估變換對應用程式的影響，以及必要時如何更新應用程式或建立定期手動變換程序來處理金鑰變換。
 
-This topic discusses what you need to know about the public keys that are used in Azure Active Directory (Azure AD) to sign security tokens. It is important to note that these keys rollover on a periodic basis and, in an emergency, could be rolled over immediately. All applications that use Azure AD should be able to programmatically handle the key rollover process or establish a periodic manual rollover process. Continue reading to understand how the keys work, how to assess the impact of the rollover to your application and how to update your application or establish a periodic manual rollover process to handle key rollover if necessary.
+## Azure AD 中簽署金鑰的概觀
 
-## <a name="overview-of-signing-keys-in-azure-ad"></a>Overview of signing keys in Azure AD
+Azure AD 會使用根據業界標準所建置的公開金鑰加密技術，建立 Azure AD 本身和使用 Azure AD 的應用程式之間的信任。實際上，其運作方式如下：Azure AD 使用由公開和私密金鑰組所組成的簽署金鑰。當使用者登入使用 Azure AD 來進行驗證的應用程式時，Azure AD 會建立包含使用者相關資訊的安全性權杖。此權杖會先由 Azure AD 使用其私密金鑰進行簽署，再傳送回到應用程式。若要確認該權杖有效且確實來自 Azure AD，應用程式必須使用由 Azure AD 公開，且包含在租用戶的 [OpenID Connect 探索文件](http://openid.net/specs/openid-connect-discovery-1_0.html)或 SAML/WS-Fed [同盟中繼資料文件](active-directory-federation-metadata.md)中的公開金鑰來驗證權杖的簽章。
 
-Azure AD uses public-key cryptography built on industry standards to establish trust between itself and the applications that use it. In practical terms, this works in the following way: Azure AD uses a signing key that consists of a public and private key pair. When a user signs in to an application that uses Azure AD for authentication, Azure AD creates a security token that contains information about the user. This token is signed by Azure AD using its private key before it is sent back to the application. To verify that the token is valid and actually originated from Azure AD, the application must validate the token’s signature using the public key exposed by Azure AD that is contained in the tenant’s [OpenID Connect discovery document](http://openid.net/specs/openid-connect-discovery-1_0.html) or SAML/WS-Fed [federation metadata document](active-directory-federation-metadata.md).
+基於安全考量，Azure AD 的簽署金鑰會定期變換，且在緊急情況下可以立即變換。任何與 Azure AD 整合的應用程式均應準備好處理金鑰變換事件，不論其可能發生頻率為何。如果沒有，應用程式又嘗試使用過期的金鑰來驗證權杖上的簽章，登入要求便會失敗。
 
-For security purposes, Azure AD’s signing key rolls on a periodic basis and, in the case of an emergency, could be rolled over immediately. Any application that integrates with Azure AD should be prepared to handle a key rollover event no matter how frequently it may occur. If it doesn’t, and your application attempts to use an expired key to verify the signature on a token, the sign-in request will fail.
+OpenID Connect 探索文件和同盟中繼資料文件中永遠有一個以上的有效金鑰可用。應用程式應該要已準備好使用文件中指定的任何金鑰，因為某個金鑰可能很快就得要替換，而另一個可能會取代它，依此類推。
 
-There is always more than one valid key available in the OpenID Connect discovery document and the federation metadata document. Your application should be prepared to use any of the keys specified in the document, since one key may be rolled soon, another may be its replacement, and so forth.
+## 如何評估您的應用程式是否會受到影響，以及如何因應
 
-## <a name="how-to-assess-if-your-application-will-be-affected-and-what-to-do-about-it"></a>How to assess if your application will be affected and what to do about it
+應用程式處理金鑰變換的方式取決於各種變數，例如應用程式類型或使用的身分識別通訊協定和程式庫。下列各節會評估最常見的應用程式類型是否會受到金鑰變換所影響，並提供如何更新應用程式以支援自動變換或手動更新金鑰的指引。
 
-How your application handles key rollover depends on variables such as the type of application or what identity protocol and library was used. The sections below assess whether the most common types of applications are impacted by the key rollover and provide guidance on how to update the application to support automatic rollover or manually update the key.
+* [存取資源的原生用戶端應用程式](#nativeclient)
+* [存取資源的 Web 應用程式 / API](#webclient)
+* [保護資源且使用 Azure App Service 建置的 Web 應用程式 / API](#appservices)
+* [使用 .NET OWIN OpenID Connect、WS-Fed 或 WindowsAzureActiveDirectoryBearerAuthentication 中介軟體保護資源的 Web 應用程式 / API](#owin)
+* [使用 .NET Core OpenID Connect 或 JwtBearerAuthentication 中介軟體保護資源的 Web 應用程式 / API](#owincore)
+* [使用 Node.js passport-azure-ad 模組保護資源的 Web 應用程式 / API](#passport)
+* [保護資源且使用 Visual Studio 2015 建立的 Web 應用程式 / API](#vs2015)
+* [保護資源且使用 Visual Studio 2013 建立的 Web 應用程式](#vs2013)
+* [保護資源且使用 Visual Studio 2013 建立的 Web API](#vs2013_webapi)
+* [保護資源且使用 Visual Studio 2012 建立的 Web 應用程式](#vs2012)
+* [保護資源且使用 Visual Studio 2010、2008 或使用 Windows Identity Foundation 建立的 Web 應用程式](#vs2010)
+* [保護資源且使用任何其他程式庫或手動實作任何支援的通訊協定的 Web 應用程式 / API](#other)
 
-* [Native client applications accessing resources](#nativeclient)
-* [Web applications / APIs accessing resources](#webclient)
-* [Web applications / APIs protecting resources and built using Azure App Services](#appservices)
-* [Web applications / APIs protecting resources using .NET OWIN OpenID Connect, WS-Fed or WindowsAzureActiveDirectoryBearerAuthentication middleware](#owin)
-* [Web applications / APIs protecting resources using .NET Core OpenID Connect or  JwtBearerAuthentication middleware](#owincore)
-* [Web applications / APIs protecting resources using Node.js passport-azure-ad module](#passport)
-* [Web applications / APIs protecting resources and created with Visual Studio 2015](#vs2015)
-* [Web applications protecting resources and created with Visual Studio 2013](#vs2013)
-* [Web APIs protecting resources and created with Visual Studio 2013](#vs2013_webapi)
-* [Web applications protecting resources and created with Visual Studio 2012](#vs2012)
-* [Web applications protecting resources and created with Visual Studio 2010, 2008 o using Windows Identity Foundation](#vs2010)
-* [Web applications / APIs protecting resources using any other libraries or manually implementing any of the supported protocols](#other)
+本指南**不**適用於︰
 
-This guidance is **not** applicable for:
+* 從 Azure AD 應用程式資源庫 (包括自訂) 新增的應用程式有個別的簽署金鑰指引。[相關資訊。](active-directory-sso-certs.md)
+* 透過應用程式 proxy 發佈的內部部署應用程式不需要擔心簽署金鑰。
 
-* Applications added from Azure AD Application Gallery (including Custom) have separate guidance with regards to signing keys. [More information.](active-directory-sso-certs.md)
-* On-premises applications published via application proxy don't have to worry about signing keys.
+### <a name="nativeclient"></a>存取資源的原生用戶端應用程式
 
-### <a name="<a-name="nativeclient"></a>native-client-applications-accessing-resources"></a><a name="nativeclient"></a>Native client applications accessing resources
+只存取資源 (也就是 Microsoft Graph、KeyVault、Outlook API 和其他 Microsoft API) 的應用程式通常只能取得權杖並將它傳遞給資源擁有者。假設它們並未保護任何資源，它們就不會檢查權杖，因此不需要確定已正確簽署。
 
-Applications that are only accessing resources (i.e Microsoft Graph, KeyVault, Outlook API and other Microsoft APIs) generally only obtain a token and pass it along to the resource owner. Given that they are not protecting any resources, they do not inspect the token and therefore do not need to ensure it is properly signed.
+原生用戶端應用程式 (不論是桌上型或行動) 屬於此分類，因此不受變換影響。
 
-Native client applications, whether desktop or mobile, fall into this category and are thus not impacted by the rollover.
+### <a name="webclient"></a>存取資源的 Web 應用程式 / API
 
-### <a name="<a-name="webclient"></a>web-applications-/-apis-accessing-resources"></a><a name="webclient"></a>Web applications / APIs accessing resources
+只存取資源 (也就是 Microsoft Graph、KeyVault、Outlook API 和其他 Microsoft API) 的應用程式通常只能取得權杖並將它傳遞給資源擁有者。假設它們並未保護任何資源，它們就不會檢查權杖，因此不需要確定已正確簽署。
 
-Applications that are only accessing resources (i.e Microsoft Graph, KeyVault, Outlook API and other Microsoft APIs) generally only obtain a token and pass it along to the resource owner. Given that they are not protecting any resources, they do not inspect the token and therefore do not need to ensure it is properly signed.
+使用應用程式專用流程 (用戶端認證 / 用戶端憑證) 的 Web 應用程式和 web API 屬於此類型，因此不受變換影響。
 
-Web applications and web APIs that are using the app-only flow (client credentials / client certificate), fall into this category and are thus not impacted by the rollover.
+### <a name="appservices"></a>保護資源且使用 Azure App Service 建置的 Web 應用程式 / API
 
-### <a name="<a-name="appservices"></a>web-applications-/-apis-protecting-resources-and-built-using-azure-app-services"></a><a name="appservices"></a>Web applications / APIs protecting resources and built using Azure App Services
+Azure App Service 的驗證/授權 (EasyAuth) 功能已經具有必要的邏輯可自動處理金鑰變換。
 
-Azure App Services' Authentication / Authorization (EasyAuth) functionality already has the necessary logic to handle key rollover automatically.
+### <a name="owin"></a>使用 .NET OWIN OpenID Connect、WS-Fed 或 WindowsAzureActiveDirectoryBearerAuthentication 中介軟體保護資源的 Web 應用程式 / API
 
-### <a name="<a-name="owin"></a>web-applications-/-apis-protecting-resources-using-.net-owin-openid-connect,-ws-fed-or-windowsazureactivedirectorybearerauthentication-middleware"></a><a name="owin"></a>Web applications / APIs protecting resources using .NET OWIN OpenID Connect, WS-Fed or WindowsAzureActiveDirectoryBearerAuthentication middleware
+如果您的應用程式使用 .NET OWIN OpenID Connect、WS-Fed 或 WindowsAzureActiveDirectoryBearerAuthentication 中介軟體，則它已經具有必要的邏輯可自動處理金鑰變換。
 
-If your application is using the .NET OWIN OpenID Connect, WS-Fed or WindowsAzureActiveDirectoryBearerAuthentication middleware, it already has the necessary logic to handle key rollover automatically.
-
-You can confirm that your application is using any of these by looking for any of the following snippets in your application's Startup.cs or Startup.Auth.cs
+您可以應用程式的 Startup.cs 或 Startup.Auth.cs 中尋找下列任何程式碼片段，以確認您的應用程式使用任何這些項目
 
 ```
 app.UseOpenIdConnectAuthentication(
-     new OpenIdConnectAuthenticationOptions
-     {
-         // ...
-     });
+	 new OpenIdConnectAuthenticationOptions
+	 {
+		 // ...
+	 });
 ```
 ```
 app.UseWsFederationAuthentication(
     new WsFederationAuthenticationOptions
     {
-     // ...
-    });
+	 // ...
+ 	});
 ```
 ```
  app.UseWindowsAzureActiveDirectoryBearerAuthentication(
-     new WindowsAzureActiveDirectoryBearerAuthenticationOptions
-     {
-     // ...
-     });
+	 new WindowsAzureActiveDirectoryBearerAuthenticationOptions
+	 {
+	 // ...
+	 });
 ```
 
-### <a name="<a-name="owincore"></a>web-applications-/-apis-protecting-resources-using-.net-core-openid-connect-or-jwtbearerauthentication-middleware"></a><a name="owincore"></a>Web applications / APIs protecting resources using .NET Core OpenID Connect or  JwtBearerAuthentication middleware
+### <a name="owincore"></a>使用 .NET Core OpenID Connect 或 JwtBearerAuthentication 中介軟體保護資源的 Web 應用程式 / API
 
-If your application is using the .NET Core OWIN OpenID Connect  or JwtBearerAuthentication middleware, it already has the necessary logic to handle key rollover automatically.
+如果您的應用程式使用 .NET Core OpenID Connect 或 JwtBearerAuthentication 中介軟體，則它已經具有必要的邏輯可自動處理金鑰變換。
 
-You can confirm that your application is using any of these by looking for any of the following snippets in your application's Startup.cs or Startup.Auth.cs
+您可以應用程式的 Startup.cs 或 Startup.Auth.cs 中尋找下列任何程式碼片段，以確認您的應用程式使用任何這些項目
 
 ```
 app.UseOpenIdConnectAuthentication(
-     new OpenIdConnectAuthenticationOptions
-     {
-         // ...
-     });
+	 new OpenIdConnectAuthenticationOptions
+	 {
+		 // ...
+	 });
 ```
 ```
 app.UseJwtBearerAuthentication(
     new JwtBearerAuthenticationOptions
     {
-     // ...
-    });
+	 // ...
+ 	});
 ```
 
-### <a name="<a-name="passport"></a>web-applications-/-apis-protecting-resources-using-node.js-passport-azure-ad-module"></a><a name="passport"></a>Web applications / APIs protecting resources using Node.js passport-azure-ad module
+### <a name="passport"></a>使用 Node.js passport-azure-ad 模組保護資源的 Web 應用程式 / API
 
-If your application is using the Node.js passport-ad module, it already has the necessary logic to handle key rollover automatically.
+如果您的應用程式使用 Node.js passport-ad 模組，則它已經具有必要的邏輯可自動處理金鑰變換。
 
-You can confirm that your application passport-ad by searching for the following snippet in your application's app.js
+您可以在應用程式的 app.js 中搜尋下列程式碼片段，以確認您的應用程式使用 passport-ad
 
 ```
 var OIDCStrategy = require('passport-azure-ad').OIDCStrategy;
 
 passport.use(new OIDCStrategy({
-    //...
+	//...
 ));
 ```
 
-### <a name="<a-name="vs2015"></a>web-applications-/-apis-protecting-resources-and-created-with-visual-studio-2015"></a><a name="vs2015"></a>Web applications / APIs protecting resources and created with Visual Studio 2015
+### <a name="vs2015"></a>保護資源且使用 Visual Studio 2015 建立的 Web 應用程式 / API
 
-If your application was built using a web application template in Visual Studio 2015 and you selected **Work And School Accounts** from the **Change Authentication** menu, it already has the necessary logic to handle key rollover automatically. This logic, embedded in the OWIN OpenID Connect middleware, retrieves and caches the keys from the OpenID Connect discovery document and periodically refreshes them.
+如果應用程式是使用 Visual Studio 2015 中的 Web 應用程式範本所建置，而且您選取了 [變更驗證] 功能表中的 [工作和學校帳戶]，則它已經具有必要的邏輯可自動處理金鑰變換。這個內嵌在 OWIN OpenID Connect 中介軟體中的邏輯會從 OpenID Connect 探索文件擷取並快取金鑰，還會定期重新整理金鑰。
 
-If you added authentication to your solution manually, your application might not have the necessary key rollover logic. You will need to write it yourself, or follow the steps in [Web applications / APIs using any other libraries or manually implementing any of the supported protocols.](#other).
+如果您是以手動方式在方案中加入驗證，應用程式可能不會有所需的金鑰變換邏輯。您必須自行撰寫，或依照[使用任何其他程式庫或手動實作任何支援的通訊協定的 Web 應用程式 / API](#other) 中的步驟進行。
 
-### <a name="<a-name="vs2013"></a>web-applications-protecting-resources-and-created-with-visual-studio-2013"></a><a name="vs2013"></a>Web applications protecting resources and created with Visual Studio 2013
+### <a name="vs2013"></a>保護資源且使用 Visual Studio 2013 建立的 Web 應用程式
 
-If your application was built using a web application template in Visual Studio 2013 and you selected **Organizational Accounts** from the **Change Authentication** menu, it already has the necessary logic to handle key rollover automatically. This logic stores your organization’s unique identifier and the signing key information in two database tables associated with the project. You can find the connection string for the database in the project’s Web.config file.
+如果應用程式是使用 Visual Studio 2013 中的 Web 應用程式範本所建置，而且您選取了 [變更驗證] 功能表中的 [組織帳戶]，則它已具有必要的邏輯可自動處理金鑰變換。此邏輯會將組織的唯一識別碼和簽署金鑰資訊儲存在兩個與專案相關聯的資料庫資料表中。您可以在專案的 Web.config 檔案中找到資料庫的連接字串。
 
-If you added authentication to your solution manually, your application might not have the necessary key rollover logic. You will need to write it yourself, or follow the steps in [Web applications / APIs using any other libraries or manually implementing any of the supported protocols.](#other).
+如果您是以手動方式在方案中加入驗證，應用程式可能不會有所需的金鑰變換邏輯。您必須自行撰寫，或依照[使用任何其他程式庫或手動實作任何支援的通訊協定的 Web 應用程式 / API](#other) 中的步驟進行。
 
-The following steps will help you verify that the logic is working properly in your application.
+下列步驟將協助您確認應用程式中的邏輯能正常運作。
 
-1. In Visual Studio 2013, open the solution, and then click on the **Server Explorer** tab on the right window.
-2. Expand **Data Connections**, **DefaultConnection**, and then **Tables**. Locate the **IssuingAuthorityKeys** table, right-click it, and then click **Show Table Data**.
-3. In the **IssuingAuthorityKeys** table, there will be at least one row, which corresponds to the thumbprint value for the key. Delete any rows in the table.
-4. Right-click the **Tenants** table, and then click **Show Table Data**.
-5. In the **Tenants** table, there will be at least one row, which corresponds to a unique directory tenant identifier. Delete any rows in the table. If you don't delete the rows in both the **Tenants** table and **IssuingAuthorityKeys** table, you will get an error at runtime.
-6. Build and run the application. After you have logged in to your account, you can stop the application.
-7. Return to the **Server Explorer** and look at the values in the **IssuingAuthorityKeys** and **Tenants** table. You’ll notice that they have been automatically repopulated with the appropriate information from the federation metadata document.
+1. 在 Visual Studio 2013 中開啟方案，然後按一下右側視窗上的 [伺服器 Explorer] 索引標籤。
+2. 依序展開 [資料連線]、[DefaultConnection] 和 [資料表]。找出 [IssuingAuthorityKeys] 資料表並以滑鼠右鍵按一下，然後按一下 [顯示資料表資料]。
+3. [IssuingAuthorityKeys] 資料表中會有至少一個對應至金鑰指紋值的資料列。刪除資料表中的任何資料列。
+4. 以滑鼠右鍵按一下 [租用戶] 資料表，然後按一下 [顯示資料表資料]。
+5. [租用戶] 資料表中會有至少一個對應至唯一目錄租用戶識別碼的資料列。刪除資料表中的任何資料列。如果您未刪除 [租用戶] 資料表和 [IssuingAuthorityKeys] 資料表中的資料列，您會在執行階段收到錯誤。
+6. 建置並執行應用程式。在登入帳戶之後，即可停止應用程式。
+7. 返回 [伺服器 Explorer]，並查看 [IssuingAuthorityKeys] 和 [租用戶] 資料表中的值。您將會發現，它們已自動重新填入同盟中繼資料文件中的適當資訊。
 
-### <a name="<a-name="vs2013"></a>web-apis-protecting-resources-and-created-with-visual-studio-2013"></a><a name="vs2013"></a>Web APIs protecting resources and created with Visual Studio 2013
+### <a name="vs2013"></a>保護資源且使用 Visual Studio 2013 建立的 Web API
 
-If you created a web API application in Visual Studio 2013 using the Web API template, and then selected **Organizational Accounts** from the **Change Authentication** menu, you already have the necessary logic in your application.
+如果您使用 Web API 範本在 Visual Studio 2013 中建置了 Web API 應用程式，然後選取了 [變更驗證] 功能表中的 [組織帳戶]，則應用程式已擁有所需的邏輯。
 
-If you manually configured authentication, follow the instructions below to learn how to configure your Web API to automatically update its key information.
+如果您以手動方式設定了驗證，請依照下列指示來了解如何設定 Web API 以自動更新其金鑰資訊。
 
-The following code snippet demonstrates how to get the latest keys from the federation metadata document, and then use the [JWT Token Handler](https://msdn.microsoft.com/library/dn205065.aspx) to validate the token. The code snippet assumes that you will use your own caching mechanism for persisting the key to validate future tokens from Azure AD, whether it be in a database, configuration file, or elsewhere.
+下列程式碼片段示範如何從同盟中繼資料文件取得最新的金鑰，然後使用 [JWT 權杖處理常式](https://msdn.microsoft.com/library/dn205065.aspx)來驗證權杖。此程式碼片段假設您將會使用自己的快取機制來保留金鑰，以驗證日後來自 Azure AD 的權杖，不論它位於資料庫、組態檔或其他位置。
 
 ```
 using System;
@@ -248,29 +247,29 @@ namespace JWTValidation
 }
 ```
 
-### <a name="<a-name="vs2012"></a>web-applications-protecting-resources-and-created-with-visual-studio-2012"></a><a name="vs2012"></a>Web applications protecting resources and created with Visual Studio 2012
+### <a name="vs2012"></a>保護資源且使用 Visual Studio 2012 建立的 Web 應用程式
 
-If your application was built in Visual Studio 2012, you probably used the Identity and Access Tool to configure your application. It’s also likely that you are using the [Validating Issuer Name Registry (VINR)](https://msdn.microsoft.com/library/dn205067.aspx). The VINR is responsible for maintaining information about trusted identity providers (Azure AD) and the keys used to validate tokens issued by them. The VINR also makes it easy to automatically update the key information stored in a Web.config file by downloading the latest federation metadata document associated with your directory, checking if the configuration is out of date with the latest document, and updating the application to use the new key as necessary.
+如果應用程式是在 Visual Studio 2012 中建置的，您大概是使用身分識別與存取工具來設定應用程式。您也可能是使用[驗證簽發者名稱登錄 (VINR)](https://msdn.microsoft.com/library/dn205067.aspx)。VINR 負責維護信任的識別提供者 (Azure AD) 的相關資訊以及用來驗證其所簽發之權杖的金鑰。VINR 也可透過下載與目錄相關聯的最新同盟中繼資料文件、使用最新文件檢查組態是否過期，以及視需要讓應用程式更新為使用新金鑰，讓您輕鬆地自動更新 Web.config 檔案中儲存的金鑰資訊。
 
-If you created your application using any of the code samples or walkthrough documentation provided by Microsoft, the key rollover logic is already included in your project. You will notice that the code below already exists in your project. If your application does not already have this logic, follow the steps below to add it and to verify that it’s working correctly.
+如果您是使用 Microsoft 所提供的任何程式碼範例或逐步解說文件建立應用程式，則專案中已含有金鑰變換邏輯。您會發現專案中已存在下列程式碼。如果應用程式還沒有此邏輯，請遵循下列步驟，以新增此邏輯並確認它能正常運作。
 
-1. In **Solution Explorer**, add a reference to the **System.IdentityModel** assembly for the appropriate project.
-2. Open the **Global.asax.cs** file and add the following using directives:
+1. 在 [方案 Explorer] 中，新增適當專案的 **System.IdentityModel** 組件參考。
+2. 開啟 **Global.asax.cs** 檔案，並新增下列 using 指示詞：
 ```
 using System.Configuration;
 using System.IdentityModel.Tokens;
 ```
-3. Add the following method to the **Global.asax.cs** file:
+3. 在 **Global.asax.cs** 檔案中新增下列方法：
 ```
 protected void RefreshValidationSettings()
 {
-    string configPath = AppDomain.CurrentDomain.BaseDirectory + "\\" + "Web.config";
+    string configPath = AppDomain.CurrentDomain.BaseDirectory + "\" + "Web.config";
     string metadataAddress =
                   ConfigurationManager.AppSettings["ida:FederationMetadataLocation"];
     ValidatingIssuerNameRegistry.WriteToConfig(metadataAddress, configPath);
 }
 ```
-4. Invoke the **RefreshValidationSettings()** method in the **Application_Start()** method in **Global.asax.cs** as shown:
+4. 在 **Global.asax.cs** 的 **Application\_Start()** 方法中，叫用 **RefreshValidationSettings()** 方法，如下所示︰
 ```
 protected void Application_Start()
 {
@@ -280,11 +279,11 @@ protected void Application_Start()
 }
 ```
 
-Once you have followed these steps, your application’s Web.config will be updated with the latest information from the federation metadata document, including the latest keys. This update will occur every time your application pool recycles in IIS; by default IIS is set to recycle applications every 29 hours.
+在遵循這些步驟之後，應用程式的 Web.config 將會以同盟中繼資料文件中的最新資訊進行更新，其中也包括最新的金鑰。此更新會在每次 IIS 回收應用程式集區時進行；依預設，IIS 設定為每隔 29 小時回收應用程式一次。
 
-Follow the steps below to verify that the key rollover logic is working.
+請遵循下列步驟來確認金鑰變換邏輯是否能運作。
 
-1. After you have verified that your application is using the code above, open the **Web.config** file and navigate to the **<issuerNameRegistry>** block, specifically looking for the following few lines:
+1. 在確認應用程式是使用上述程式碼之後，開啟 **Web.config** 檔案並瀏覽至 **<issuerNameRegistry>** 區塊，具體而言請尋找下列幾行︰
 ```
 <issuerNameRegistry type="System.IdentityModel.Tokens.ValidatingIssuerNameRegistry, System.IdentityModel.Tokens.ValidatingIssuerNameRegistry">
         <authority name="https://sts.windows.net/ec4187af-07da-4f01-b18f-64c2f5abecea/">
@@ -292,42 +291,38 @@ Follow the steps below to verify that the key rollover logic is working.
             <add thumbprint="3A38FA984E8560F19AADC9F86FE9594BB6AD049B" />
           </keys>
 ```
-2. In the **<add thumbprint=””>** setting, change the thumbprint value by replacing any character with a different one. Save the **Web.config** file.
+2. 在 **<add thumbprint=””>** 設定中，將任何字元替換為其他字元以變更指紋值。儲存 **Web.config** 檔案。
 
-3. Build the application, and then run it. If you can complete the sign-in process, your application is successfully updating the key by downloading the required information from your directory’s federation metadata document. If you are having issues signing in, ensure the changes in your application are correct by reading the [Adding Sign-On to Your Web Application Using Azure AD](https://github.com/Azure-Samples/active-directory-dotnet-webapp-openidconnect) topic, or downloading and inspecting the following code sample: [Multi-Tenant Cloud Application for Azure Active Directory](https://code.msdn.microsoft.com/multi-tenant-cloud-8015b84b).
-
-
-### <a name="<a-name="vs2010"></a>web-applications-protecting-resources-and-created-with-visual-studio-2008-or-2010-and-windows-identity-foundation-(wif)-v1.0-for-.net-3.5"></a><a name="vs2010"></a>Web applications protecting resources and created with Visual Studio 2008 or 2010 and Windows Identity Foundation (WIF) v1.0 for .NET 3.5
-
-If you built an application on WIF v1.0, there is no provided mechanism to automatically refresh your application’s configuration to use a new key.
-
-- *Easiest way* Use the FedUtil tooling included in the WIF SDK, which can retrieve the latest metadata document and update your configuration.
-- Update your application to .NET 4.5, which includes the newest version of WIF located in the System namespace. You can then use the [Validating Issuer Name Registry (VINR)](https://msdn.microsoft.com/library/dn205067.aspx) to perform automatic updates of the application’s configuration.
-- Perform a manual rollover as per the instructions at the end of this guidance document.
-
-Instructions to use the FedUtil to update your configuration:
-
-1. Verify that you have the WIF v1.0 SDK installed on your development machine for Visual Studio 2008 or 2010. You can [download it from here](https://www.microsoft.com/en-us/download/details.aspx?id=4451) if you have not yet installed it.
-2. In Visual Studio, open the solution, and then right-click the applicable project and select **Update federation metadata**. If this option is not available, FedUtil and/or the WIF v1.0 SDK has not been installed.
-3. From the prompt, select **Update** to begin updating your federation metadata. If you have access to the server environment where the application is hosted, you can optionally use FedUtil’s [automatic metadata update scheduler](https://msdn.microsoft.com/library/ee517272.aspx).
-4. Click **Finish** to complete the update process.
-
-### <a name="<a-name="other"></a>web-applications-/-apis-protecting-resources-using-any-other-libraries-or-manually-implementing-any-of-the-supported-protocols"></a><a name="other"></a>Web applications / APIs protecting resources using any other libraries or manually implementing any of the supported protocols
-
-If you are using some other library or manually implemented any of the supported protocols, you'll need to review the library or your implementation to ensure that the key is being retrieved from either the OpenID Connect discovery document or the federation metadata document. One way to check for this is to do a search in your code or the library's code for any calls out to either the OpenID discovery document or the federation metadata document.
-
-If they key is being stored somewhere or hardcoded in your application, you can manually retrieve the key and update it accordingly by perform a manual rollover as per the instructions at the end of this guidance document. **It is strongly encouraged that you enhance your application to support automatic rollover** using any of the approaches outline in this article to avoid future disruptions and overhead if Azure AD increases it's rollover cadence or has an emergency out-of-band rollover.
-
-## <a name="how-to-test-your-application-to-determine-if-it-will-be-affected"></a>How to test your application to determine if it will be affected
-
-You can validate whether your application supports automatic key rollover by downloading the scripts and following the instructions in [this GitHub repository.](https://github.com/AzureAD/azure-activedirectory-powershell-tokenkey)
-
-## <a name="how-to-perform-a-manual-rollover-if-you-application-does-not-support-automatic-rollover"></a>How to perform a manual rollover if you application does not support automatic rollover
-
-If your application does **not** support automatic rollover, you will need to establish a process that periodically monitors Azure AD's signing keys and performs a manual rollover accordingly. [This GitHub repository](https://github.com/AzureAD/azure-activedirectory-powershell-tokenkey) contains scripts and instructions on how to do this.
+3. 建置應用程式，然後加以執行。如果您可以完成登入程序，則應用程式已從目錄的同盟中繼資料文件下載所需資訊，而成功地更新金鑰。如果您在登入時發生問題，請確定應用程式的變更是否正確，方法是閱讀[使用 Azure AD 為 Web 應用程式新增登入](https://github.com/Azure-Samples/active-directory-dotnet-webapp-openidconnect)主題，或是下載並檢查下列程式碼範例︰[Azure Active Directory 的多租用戶雲端應用程式](https://code.msdn.microsoft.com/multi-tenant-cloud-8015b84b)。
 
 
+### <a name="vs2010"></a>保護資源且使用 Visual Studio 2008 或 2010 和 Windows Identity Foundation (WIF) v1.0 for .NET 3.5 建立的 Web 應用程式
 
-<!--HONumber=Oct16_HO2-->
+如果您在 WIF v1.0 上建置應用程式，則沒有提供相關機制來將應用程式的組態自動重新整理為使用新的金鑰。
 
+- 「最簡單的方法」使用 WIF SDK 中內含的 FedUtil 工具，它可以擷取最新的中繼資料文件並更新組態。
+- 將應用程式更新至 .NET 4.5，其包含位於「系統」命名空間中的 WIF 的最新版本。然後，您可以使用[驗證簽發者名稱登錄 (VINR)](https://msdn.microsoft.com/library/dn205067.aspx) 來執行應用程式組態的自動更新。
+- 根據本指導文件結尾的指示執行手動變換。
 
+使用 FedUtil 來更新組態的指示︰
+
+1. 確認 Visual Studio 2008 或 2010 的開發電腦上已安裝 WIF v1.0 SDK。如果您還未安裝，則可以[從這裡下載](https://www.microsoft.com/zh-TW/download/details.aspx?id=4451)。
+2. 在 Visual Studio 中開啟方案，然後以滑鼠右鍵按一下適用的專案，並選取 [更新同盟中繼資料]。如果無法使用此選項，則表示尚未安裝 FedUtil 和/或 WIF v1.0 SDK。
+3. 在提示中選取 [更新]，開始更新同盟中繼資料。如果您可以存取裝載應用程式的伺服器環境，則可以選擇性地使用 FedUtil 的[自動中繼資料更新排程器](https://msdn.microsoft.com/library/ee517272.aspx)。
+4. 按一下 [完成] 以完成更新程序。
+
+### <a name="other"></a>保護資源且使用任何其他程式庫或手動實作任何支援的通訊協定的 Web 應用程式 / API
+
+如果您使用其他程式庫，或手動實作任何支援的通訊協定，您必須檢閱文件庫或您的實作，以確保從 OpenID Connect 探索文件或同盟中繼資料文件擷取金鑰。檢查的方法之一是在您的程式碼或程式庫的程式碼中，搜尋是否有任何呼叫 OpenID 探索文件或同盟中繼資料文件的情況。
+
+如果金鑰儲存在某處或硬式編碼在您的應用程式中，您可以手動擷取金鑰並根據本指導文件結尾的指示執行手動變換來更新金鑰。**強烈建議您增強應用程式來支援自動變換**時使用本文描述的任何方法，以免未來如果 Azure AD 提高變換頻率或臨時需要緊急變換時，造成運作中斷和超出負荷。
+
+## 如何測試您的應用程式，以判斷其是否會受影響
+
+下載指令碼並依照[此 GitHub 儲存機制](https://github.com/AzureAD/azure-activedirectory-powershell-tokenkey)中的指示執行，即可驗證您的應用程式是否支援支援自動金鑰變換。
+
+## 如果應用程式不支援自動變換，如何執行手動變換
+
+如果您的應用程式**不**支援自動變換，您必須先建立程序，該程序會定期監視 Azure AD 的簽署金鑰，並據此執行手動變換。[此 GitHub 儲存機制](https://github.com/AzureAD/azure-activedirectory-powershell-tokenkey)包含指令碼和如何執行這項操作的指示。
+
+<!---HONumber=AcomDC_0921_2016-->

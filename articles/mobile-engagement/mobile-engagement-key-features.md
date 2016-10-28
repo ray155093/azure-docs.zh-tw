@@ -1,139 +1,138 @@
 <properties
-    pageTitle="Azure Mobile Engagement - Key features"
-    description="Describes the key features of Azure Mobile Engagement"
-    services="mobile-engagement"
-    documentationCenter="mobile" 
-    authors="piyushjo" 
-    manager="erikre" 
-    editor="" />
+	pageTitle="Azure Mobile Engagement - 重要功能"
+	description="說明 Azure Mobile Engagement 的重要功能"
+	services="mobile-engagement"
+	documentationCenter="mobile" 
+	authors="piyushjo" 
+	manager="erikre" 
+	editor="" />
 
 <tags
-    ms.service="mobile-engagement"
-    ms.workload="mobile"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/19/2016"
-    ms.author="piyushjo" />
+	ms.service="mobile-engagement"
+	ms.workload="mobile"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/19/2016"
+	ms.author="piyushjo" />
 
+# Azure Mobile Engagement - 重要功能
 
-# <a name="azure-mobile-engagement---key-features"></a>Azure Mobile Engagement - Key features
+本文章提供與 Mobile Engagement 平台重要功能有關的高等級概觀。
 
-This article gives a high level overview about the key features of the Mobile Engagement platform. 
+## **一般**
 
-## <a name="**general**"></a>**General**
+- **尋找適用於所有主要平台的 SDK** SDK 可供所有主要平台使用 - iOS、Android、通用 Windows、Windows Phone Silverlight、Kindle、Cordova。我們提供簡單的 SDK 整合方式及實用的說明文件，協助您在所選擇的任何平台上開始整合。
 
-- **Find SDKs for all major platforms** SDKs available for all major platforms - iOS, Android, Universal Windows, Windows Phone Silverlight, Kindle, Cordova. We provide easy to integrate SDKs and helpful documentation to get you started on any platform of your choice. 
+- **個別 SaaS 入口網站** 可讓您輕鬆存取行銷團隊，不需要透過 Azure 管理入口網站。
 
-- **Separate SaaS portal** Allows easy access to the marketing team without the need to go through the Azure management portal. 
+- **開放式 REST API 的可用性** 利用開放式平台 API 達到與 CRM/CMS/IT 系統整合及自動化的目的，我們提供開放式 REST API 和 .NET SDK 來使用這些可以讓您輕鬆整合及自動化 Mobile Engagement 的 API。如需詳細資訊，請參閱[本文](mobile-engagement-api-authentication.md)。
 
-- **Availability of open REST APIs** To integrate and automate with CRM/CMS/IT systems using open-platform APIs, we provide open REST APIs and .NET SDK to consume these APIs that can allow you to easily integrate and automate with Mobile Engagement. See [this](mobile-engagement-api-authentication.md) for details. 
+- **Power BI 連接器可供使用** 您也可以將重要分析圖表拉出到 Power BI 儀表板中。請參閱本[指南](https://powerbi.microsoft.com/zh-TW/documentation/powerbi-content-pack-azure-mobile/)
 
-- **Power BI connector available** You can also pull out the key analytics charts into a Power BI dashboard. See this [guide](https://powerbi.microsoft.com/en-us/documentation/powerbi-content-pack-azure-mobile/)
+- **安全性和隱私權保證** Azure Mobile Engagement 是 Azure 系列產品的一部份，遵循雲端服務在安全性和隱私權上預期遵循的所有標準最佳做法。
 
-- **Assurance of Security & Privacy** Azure Mobile Engagement being part of the Azure family follows all the standard best practices around security & privacy expected for a cloud service.
+## **可操作的分析**
 
-## <a name="**actionable-analytics**"></a>**Actionable Analytics**
+- **即時監視資料** 您可以使用我們可即時顯示詳細資料 (例如工作階段、事件、錯誤及當機) 的監視模組追蹤即時分析。請看一下此[文章](mobile-engagement-concepts.md)以了解基本概念。
 
-- **Monitor data in real time** You can track real time analytics using our Monitor module which shows details like sessions, events, errors & crashes all in real-time. Take a look at this [article](mobile-engagement-concepts.md) to get an understanding of the basic concepts. 
+	![][1]
 
-    ![][1]
+	![][2]
 
-    ![][2]      
+- **檢視彙總資料** 您也可以使用我們可讓您依據應用程式版本與時間週期輕鬆篩選資料的分析模組，來獲得更豐富的彙總分析資料檢視。
 
-- **View aggregated data** You also get a richer view of your aggregated analytics data using our Analytics module which allows you to easily filter your data based on your app version and time periods.
+	![][3]
 
-    ![][3]      
+- **深入解析您的使用者與忠誠度模式**
 
-- **Get insights into your users and retention pattern**
+	![][4]
 
-    ![][4]      
+- **深入解析您的使用者來自何處，以及他們在畫面上花費多少時間**
 
-- **Get insights into where your users are coming from and how much time are they spending in the screen**
+	![][5]
+	
+	![][6]
 
-    ![][5]      
-    
-    ![][6]      
+- **找出您的應用程式使用者正在造訪哪些畫面，以及您可以如何最佳化使用者路徑** 這可以幫助他們找到您想要他們造訪及使用的畫面與功能。
 
-- **Find out which screens are your app users visiting and how can you optimize the user path** This helps them to discover screens and features that you want them to.
+	![][7]
+	
+	![][8]
 
-    ![][7]      
-    
-    ![][8]      
+- **深入解析您的應用程式中最常發生的事件，以及依據這些事件了解您的商務程序**
 
-- **Get insights into which are the most frequent events in your app and get an understanding of your business process based on these events** 
+	![][9]
 
-    ![][9]  
+- **追蹤常見錯誤和當機，以及為您的開發團隊取得深入解析**
 
-- **Track common errors and crashes and get insights for your developer team**
+	![][10]
+	
+	![][11]
 
-    ![][10]     
-    
-    ![][11] 
+- **了解您的應用程式使用者從哪些裝置與網路存取您的應用程式，據以將應用程式最佳化**
 
-- **Understand which devices and networks are your app users accessing your app from, to optimize the app** 
+	![][12]
+	
+## **目標性和個人化推播通知**
 
-    ![][12] 
-    
-## <a name="**targeted-&-personalized-push-notifications**"></a>**Targeted & Personalized Push Notifications**
+- **依據任何收集的資料建立區段** 您可以使用任何事件/工作階段/活動/工作/當機/錯誤/標記資料執行此作業。
 
-- **Create a segment based on any of the collected data** You can use any of the Event/Session/Activity/Job/Crash/Error/Tags data for this.
+	![][13]
 
-    ![][13]
+	![][14]
 
-    ![][14]     
+- **每天追蹤您建立之區段的歷程記錄**
 
-- **Track the history of your created segments day over day**
+	![][15]
 
-    ![][15] 
+- 針對常用的區段 (例如舊/新使用者等等) 或針對您自訂建立的區段**傳送目標通知**
 
-- **Send targeted notifications** targeting commonly used like old/new users etc. or to your custom created segment
+	![][16]
 
-    ![][16] 
+- **在您的案例適用時傳送應用程式外/系統外和豐富的 HTML 型應用程式內推播通知**
 
-- **Send both out-of-app/system & rich HTML based in-app push notifications as appropriate for your scenario**
+	![][17]
 
-    ![][17] 
+	![][18]
 
-    ![][18] 
+- **將應用程式內通知目標化，以在應用程式中顯示特定畫面/活動**
 
-- **Target in-app notifications to show up on a specific screen/activity in the app**
+	![][19]
 
-    ![][19] 
+- **指定使用者按一下通知時的動作** 可以是在按一下通知時簡單的開啟網頁動作，或在應用程式內瀏覽至特定畫面的動作。
 
-- **Specify an "action" when the user clicks on a notification** It could be as simple as opening up a webpage or navigating within the app to a specific screen at the click of the notification. 
+	![][20]
+	
+- **傳送當地語系化通知**，讓通知以應用程式使用者最熟悉的語言顯示。
 
-    ![][20]
-    
-- **Send localized notifications** so that it appeals to the app users in the language they are most comfortable in. 
+	![][21]
 
-    ![][21] 
+- **指定活動的開始與結束時間**
 
-- **Specify a start and end time for your campaigns** 
+	![][22]
 
-    ![][22] 
+- 註冊測試裝置並只對該裝置傳送測試通知來**簡單測試通知**。
 
-- **Easily test your notifications** by registering a test device and sending the test notification to only this device.
+	![][23]
 
-    ![][23] 
+- **簡單設定應用程式內通知，來以快速投票/問卷調查的方式顯示**
 
-- **Easily set up an in-app notification to show up as a quick poll/survey**  
+	![][24]
+	
+- 針對您的通知**取得推播活動統計資料**，讓您能夠概略了解通知成功度。
 
-    ![][24]
-    
-- **Get push campaign statistics** for your notifications to give you an idea about how successful were your notifications.
+	![][25]
 
-    ![][25] 
+- **使用應用程式資訊/標記和 Emojis 輕鬆地將通知個人化並讓通知具有特色**
 
-- **Easily personalize and give character to your notifications using app-info/tags and emojis** 
+	![][26]
 
-    ![][26] 
+	![][27]
 
-    ![][27] 
+- **設定推播限制以防止濫發垃圾通知給使用者** 您可以藉此避免向您的應用程式使用者傳送大量推播通知，因為這可能會變成向使用者濫發垃圾通知。這是我們的推播限制功能好用的地方，可讓您針對區段規模設定推播限制。
 
-- **Set Push Limits to prevent spamming users** You don’t want to send a lot of pushes to your app users and come across as spamming them. This is where our Push limits feature is useful which allows you to configure push limits at the granularity of a segment. 
-
-    ![][28]         
+	![][28]
 
 <!-- Images -->
 [1]: ./media/mobile-engagement-key-features/monitor1.png
@@ -165,17 +164,4 @@ This article gives a high level overview about the key features of the Mobile En
 [27]: ./media/mobile-engagement-key-features/push_emoji.png
 [28]: ./media/mobile-engagement-key-features/push_limits.png
 
-
-
-
-
-
-
-
-
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

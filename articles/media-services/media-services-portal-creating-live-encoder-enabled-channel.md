@@ -1,248 +1,243 @@
 <properties 
-    pageTitle="How to perform live streaming using Azure Media Services to create multi-bitrate streams with the Azure portal | Microsoft Azure" 
-    description="This tutorial walks you through the steps of creating a Channel that receives a single-bitrate live stream and encodes it to multi-bitrate stream using the Azure portal." 
-    services="media-services" 
-    documentationCenter="" 
-    authors="anilmur" 
-    manager="erikre" 
-    editor=""/>
+	pageTitle="如何使用 Azure 媒體服務執行即時串流，以使用 Azure 入口網站建立多位元速率串流 | Microsoft Azure" 
+	description="本教學課程將逐步引導您使用 Azure 入口網站建立通道，以接收單一位元速率即時串流，並將其編碼為多位元速率串流。" 
+	services="media-services" 
+	documentationCenter="" 
+	authors="anilmur" 
+	manager="erikre" 
+	editor=""/>
 
 <tags 
-    ms.service="media-services" 
-    ms.workload="media" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="get-started-article"
-    ms.date="09/06/2016"
-    ms.author="juliako;juliako"/>
+	ms.service="media-services" 
+	ms.workload="media" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="get-started-article"
+	ms.date="09/06/2016"
+	ms.author="juliako;juliako"/>
 
 
-
-#<a name="how-to-perform-live-streaming-using-azure-media-services-to-create-multi-bitrate-streams-with-the-azure-portal"></a>How to perform live streaming using Azure Media Services to create multi-bitrate streams with the Azure portal
+#如何使用 Azure 媒體服務執行即時串流，以使用 Azure 入口網站建立多位元速率串流
 
 > [AZURE.SELECTOR]
-- [Portal](media-services-portal-creating-live-encoder-enabled-channel.md)
+- [入口網站](media-services-portal-creating-live-encoder-enabled-channel.md)
 - [.NET](media-services-dotnet-creating-live-encoder-enabled-channel.md)
 - [REST API](https://msdn.microsoft.com/library/azure/dn783458.aspx)
 
-This tutorial walks you through the steps of creating a **Channel** that receives a single-bitrate live stream and encodes it to multi-bitrate stream.
+本教學課程將逐步引導您建立**通道**，可接收單一位元速率的即時串流，並將其編碼為多位元速率串流。
 
->[AZURE.NOTE]For more conceptual information related to Channels that are enabled for live encoding, see [Live streaming using Azure Media Services to create multi-bitrate streams](media-services-manage-live-encoder-enabled-channels.md).
+>[AZURE.NOTE]如需為即時編碼啟用之通道相關的詳細概念資訊，請參閱[使用 Azure 媒體服務的即時串流，以建立多位元速率串流](media-services-manage-live-encoder-enabled-channels.md)。
 
-##<a name="common-live-streaming-scenario"></a>Common Live Streaming Scenario
+##常見即時串流案例
 
-The following are general steps involved in creating common live streaming applications.
+下列是建立常見即時串流應用程式所含的一般步驟。
 
->[AZURE.NOTE] Currently, the max recommended duration of a live event is 8 hours. Please contact  amslived at Microsoft.com if you need to run a Channel for longer periods of time.
+>[AZURE.NOTE] 目前，即時事件的最大建議持續時間是 8 小時。如果您需要較長的時間來執行通道，請連絡 amslived@Microsoft.com。
 
-1. Connect a video camera to a computer. Launch and configure an on-premises live encoder that can output a single bitrate stream in one of the following protocols: RTMP, Smooth Streaming, or RTP (MPEG-TS). For more information, see [Azure Media Services RTMP Support and Live Encoders](http://go.microsoft.com/fwlink/?LinkId=532824).
-    
-    This step could also be performed after you create your Channel.
+1. 將攝影機連接到電腦。啟動和設定可使用下列其中一種通訊協定輸出單一位元速率串流的內部部署即時編碼器：RTMP、Smooth Streaming 或 RTP (MPEG-TS)。如需詳細資訊，請參閱 [Azure 媒體服務 RTMP 支援和即時編碼器](http://go.microsoft.com/fwlink/?LinkId=532824)。
+	
+	此步驟也可以在您建立通道之後執行。
 
-1. Create and start a Channel. 
+1. 建立並啟動通道。
 
-1. Retrieve the Channel ingest URL. 
+1. 擷取通道內嵌 URL。
 
-    The ingest URL is used by the live encoder to send the stream to the Channel.
-1. Retrieve the Channel preview URL. 
+	內嵌 URL 可供即時編碼器用來傳送串流到通道。
+1. 擷取通道預覽 URL。
 
-    Use this URL to verify that your channel is properly receiving the live stream.
+	使用此 URL 來確認您的通道會正確接收即時串流。
 
-3. Create an event/program (that will also create an asset). 
-1. Publish the event (that will create an  OnDemand locator for the associated asset).  
+3. 建立事件/程式，此程式也會建立資產。
+1. 發佈事件，以建立相關聯資產的 OnDemand 定位器。
 
-    Make sure to have at least one streaming reserved unit on the streaming endpoint from which you want to stream content.
-1. Start the event when you are ready to start streaming and archiving.
-2. Optionally, the live encoder can be signaled to start an advertisement. The advertisement is inserted in the output stream.
-1. Stop the event whenever you want to stop streaming and archiving the event.
-1. Delete the event (and optionally delete the asset).   
+	確定負責傳送內容的串流端點上，至少有一個串流保留單位。
+1. 當您準備好開始串流和封存時，請啟動事件。
+2. 即時編碼器會收到啟動公告的信號 (選擇性)。公告會插入輸出串流中。
+1. 每當您想要停止串流處理和封存事件時，請停止事件。
+1. 刪除事件 (並選擇性地刪除資產)。
 
-##<a name="in-this-tutorial"></a>In this tutorial
+##本教學課程內容
 
-In this tutorial, the Azure portal is used to accomplish the following tasks: 
+在本教學課程中，Azure 入口網站用來完成下列工作：
 
-2.  Configure streaming endpoints.
-3.  Create a channel that is enabled to perform live encoding.
-1.  Get the Ingest URL in order to supply it to live encoder. The live encoder will use this URL to ingest the stream into the Channel. .
-1.  Create an event/program (and an asset)
-1.  Publish the asset and get streaming URLs  
-1.  Play your content 
-2.  Cleaning up
+2.  設定串流端點。
+3.  建立啟用即可執行即時編碼的通道。
+1.  取得內嵌 URL，以將其提供給即時編碼器。即時編碼器將使用此 URL 將串流內嵌到通道。
+1.  建立事件/程式 (和資產)
+1.  發佈資產並取得串流 URL
+1.  播放您的內容
+2.  清除
 
-##<a name="prerequisites"></a>Prerequisites
-The following are required to complete the tutorial.
+##必要條件
+需要有下列項目，才能完成教學課程。
 
-- To complete this tutorial, you need an Azure account. If you don't have an account, you can create a free trial account in just a couple of minutes. For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/).
-- A Media Services account. To create a Media Services account, see [Create Account](media-services-portal-create-account.md).
-- A webcam and an encoder that can send a single bitrate live stream.
+- 若要完成此教學課程，您需要 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
+- 媒體服務帳戶。若要建立媒體服務帳戶，請參閱[建立帳戶](media-services-create-account.md)。
+- 網路攝影機以及可以傳送單一位元速率即時串流的編碼器。
 
-##<a name="configure-streaming-endpoints"></a>Configure streaming endpoints 
+##設定串流端點 
 
-Media Services provides dynamic packaging which allows you to deliver your multi-bitrate MP4s in the following streaming formats: MPEG DASH, HLS, Smooth Streaming, or HDS, without you having to re-package into these streaming formats. With dynamic packaging you only need to store and pay for the files in single storage format and Media Services will build and serve the appropriate response based on requests from a client.
+媒體服務提供動態封裝，這讓您以下列串流格式 (MPEG DASH、HLS、Smooth Streaming 或 HDS) 提供多位元速率 MP4，而不必重新封裝成這些串流格式。使用動態封裝，您只需要以單一儲存格式儲存及播放檔案，媒體服務會根據來自用戶端的要求建置及傳遞適當的回應。
 
-To take advantage of dynamic packaging, you need to get at least one streaming unit for the streaming endpoint from which you plan to delivery your content.  
+若要利用動態封裝，您需要為想要從該處傳遞內容的串流端點取得至少一個串流單位。
 
-To create and change the number of streaming reserved units, do the following:
+若要建立和變更串流保留單位數目，請執行下列動作：
 
-1. Log in at the [Azure portal](https://portal.azure.com/).
-1. In the **Settings** window, click **Streaming endpoints**. 
+1. 登入 [Azure 入口網站](https://portal.azure.com/)。
+1. 在 [設定] 視窗中，按一下 [串流端點]。
 
-2. Click on the default streaming endpoint. 
+2. 按一下預設串流端點。
 
-    The **DEFAULT STREAMING ENDPOINT DETAILS** window appears.
+	[預設串流端點詳細資料] 視窗隨即出現。
 
-3. To specify the number of streaming units, slide the **Streaming units** slider.
+3. 若要指定串流單位數目，請滑動 [串流單位] 滑桿。
 
-    ![Streaming units](./media/media-services-portal-creating-live-encoder-enabled-channel/media-services-streaming-units.png)
+	![串流單位](./media/media-services-portal-creating-live-encoder-enabled-channel/media-services-streaming-units.png)
 
-4. Click the **Save** button to save your changes.
+4. 按一下 [儲存] 按鈕以儲存您的變更。
 
-    >[AZURE.NOTE]The allocation of any new units can take up to 20 minutes to complete.
+	>[AZURE.NOTE]配置任何新的單位最多需要 20 分鐘的時間才能完成。
 
-##<a name="create-a-channel"></a>Create a CHANNEL
+##建立通道
 
-1. In the [Azure portal](https://portal.azure.com/), click Media Services and then click on the Media Services account name.
-2. Select **Live Streaming**.
-3. Select **Custom create**. This option will let you create a channel that is enabled for live encoding.
+1. 在 [Azure 入口網站](https://portal.azure.com/)中，按一下 [媒體服務]，然後按一下媒體服務帳戶名稱。
+2. 選取 [即時串流]。
+3. 選取 [自訂建立]。此選項可讓您建立通道，而啟用通道即可進行即時編碼。
 
-    ![Create a channel](./media/media-services-portal-creating-live-encoder-enabled-channel/media-services-create-channel.png)
-    
-4. Click on **Settings**.
-    
-    1.  Choose the **Live Encoding** channel type. This type specifies that you want to create a Channel that is enabled for live encoding. That means the incoming single bitrate stream is sent to the Channel and encoded into a multi-bitrate stream using specified live encoder settings. For more information, see [Live streaming using Azure Media Services to create multi-bitrate streams](media-services-manage-live-encoder-enabled-channels.md). Click OK.
-    2. Specify a channel's name.
-    3. Click OK at the bottom of the screen.
-    
-5. Select the **Ingest** tab.
+	![建立通道](./media/media-services-portal-creating-live-encoder-enabled-channel/media-services-create-channel.png)
+	
+4. 按一下 [設定]。
+	
+	1.  選擇 [即時編碼] 通道類型。此類型指定您想要建立通道，而啟用通道即可進行即時編碼。這表示內送單一位元速率串流會傳送至通道，並編碼為使用所指定即時編碼器設定的多位元速率串流。如需詳細資訊，請參閱[使用 Azure 媒體服務的即時串流，以建立多位元速率串流](media-services-manage-live-encoder-enabled-channels.md)。按一下 [確定]。
+	2. 指定通道的名稱。
+	3. 按一下畫面底部的 [確定]。
+	
+5. 選取 [內嵌] 索引標籤。
 
-    1. On this page, you can select a streaming protocol. For the **Live Encoding** channel type, valid protocol options are:
-        
-        - Single bitrate Fragmented MP4 (Smooth Streaming)
-        - Single bitrate RTMP
-        - RTP (MPEG-TS): MPEG-2 Transport Stream over RTP.
-        
-        For detailed explanation about each protocol, see [Live streaming using Azure Media Services to create multi-bitrate streams](media-services-manage-live-encoder-enabled-channels.md).
-    
-        You cannot change the protocol option while the Channel or its associated events/programs are running. If you require different protocols, you should create separate channels for each streaming protocol.  
+	1. 在這個頁面上，您可以選取串流通訊協定。適用於 [即時編碼] 通道類型的有效通訊協定選項如下：
+		
+		- 單一位元速率的分散 MP4 (Smooth Streaming)
+		- 單一位元速率 RTMP
+		- RTP (MPEG-TS)：透過 RTP 的 MPEG-2 傳輸串流。
+		
+		如需每個通訊協定的詳細說明，請參閱[使用 Azure 媒體服務的即時串流，以建立多位元速率串流](media-services-manage-live-encoder-enabled-channels.md)。
+	
+		通道或其相關聯事件/程式正在執行時，您無法變更通訊協定選項。如果您需要不同的通訊協定，則應該為每個串流通訊協定建立個別的通道。
 
-    2. You can apply IP restriction on the ingest. 
-    
-        You can define the IP addresses that are allowed to ingest a video to this channel. Allowed IP addresses can be specified as either a single IP address (e.g. '10.0.0.1'), an IP range using an IP address and a CIDR subnet mask (e.g. '10.0.0.1/22'), or an IP range using an IP address and a dotted decimal subnet mask (e.g. '10.0.0.1(255.255.252.0)').
+	2. 您可以在內嵌上套用 IP 限制。
+	
+		您可以定義允許將視訊內嵌到這個通道的 IP 位址。允許的 IP 位址可以指定為單一 IP 位址 (例如'10.0.0.1')、使用 IP 位址和 CIDR 子網路遮罩的 IP 範圍 (例如'10.0.0.1/22’)，或使用 IP 位址和以點分隔十進位子網路遮罩的 IP 範圍 (例如'10.0.0.1(255.255.252.0)')。
 
-        If no IP addresses are specified and there is no rule definition then no IP address will be allowed. To allow any IP address, create a rule and set 0.0.0.0/0.
+		如果未指定 IP 位址，而且沒有任何規則定義，則不允許任何 IP 位址。若要允許任何 IP 位址，請建立規則，並設定 0.0.0.0/0。
 
-6. On the **Preview** tab, apply IP restriction on the preview.
-7. On the **Encoding** tab, specify the encoding preset. 
+6. 在 [預覽] 索引標籤上，套用預覽上的 IP 限制。
+7. 在 [編碼] 索引標籤上，指定編碼預設值。
 
-    Currently, the only system preset you can select is **Default 720p**. To specify a custom preset, open a Microsoft support ticket. Then, enter the name of the preset created for you. 
+	目前，您唯一可選取的系統預設是 [**預設 720p**]。若要指定自訂預設值，請開啟 Microsoft 支援票證。接著，輸入為您建立的預設值名稱。
 
->[AZURE.NOTE] Currently, the Channel start can take up to 30 minutes. Channel reset can take up to 5 minutes.
+>[AZURE.NOTE] 目前，通道啟動可能需要最多 30 分鐘。重設通道可能需要最多 5 分鐘。
 
-Once you created the Channel, you can click on the channel and select **Settings** where you can view your channels configurations. 
+建立通道後，您可按一下通道並選取 [設定]，以在其中檢視您的通道組態。
 
-For more information, see [Live streaming using Azure Media Services to create multi-bitrate streams](media-services-manage-live-encoder-enabled-channels.md).
+如需詳細資訊，請參閱[使用 Azure 媒體服務的即時串流，以建立多位元速率串流](media-services-manage-live-encoder-enabled-channels.md)。
 
 
-##<a name="get-ingest-urls"></a>Get ingest URLs
+##取得內嵌 URL
 
-Once the channel is created, you can get ingest URLs that you will provide to the live encoder. The encoder uses these URLs to input a live stream.
+建立通道之後，即可取得您提供給即時編碼器的內嵌 URL。編碼器會使用這些 URL 來輸入即時串流。
 
 ![ingesturls](./media/media-services-portal-creating-live-encoder-enabled-channel/media-services-ingest-urls.png)
 
 
-##<a name="create-and-manage-events"></a>Create and manage events
+##建立和管理事件
 
-###<a name="overview"></a>Overview
+###Overview
 
-A channel is associated with events/programs that enable you to control the publishing and storage of segments in a live stream. Channels manage events/programs. The Channel and Program relationship is very similar to traditional media where a channel has a constant stream of content and a program is scoped to some timed event on that channel.
+通道是與事件/程式相關聯，而程式可讓您控制即時串流中區段的發佈和儲存。通道會管理事件/程式。通道和程式的關聯性非常類似於傳統媒體，此處的通道有常數內容資料流，而程式的範圍是該通道上的某些計時事件。
 
-You can specify the number of hours you want to retain the recorded content for the event by setting the **Archive Window** length. This value can be set from a minimum of 5 minutes to a maximum of 25 hours. Archive window length also dictates the maximum amount of time clients can seek back in time from the current live position. Events can run over the specified amount of time, but content that falls behind the window length is continuously discarded. This value of this property also determines how long the client manifests can grow.
+設定 [封存時間範圍] 長度，即可指定您想要保留事件之錄製內容的時數。此值可以設為最少 5 分鐘到最多 25 個小時。封存時間範圍長度也會指出用戶端可以從目前即時位置及時往回搜尋的最大時間量。事件在超過指定的時間量後還是可以執行，但是會持續捨棄落後時間範圍長度的內容。此屬性的這個值也會決定用戶端資訊清單可以成長多長的時間。
 
-Each event is associated with an Asset. To publish the event you must create an OnDemand locator for the associated asset. Having this locator will enable you to build a streaming URL that you can provide to your clients.
+每個事件都是與資產相關聯。若要發佈事件，您必須建立相關聯資產的 OnDemand 定位器。擁有此定位器，可讓您建置可提供給用戶端的串流 URL。
 
-A channel supports up to three concurrently running events so you can create multiple archives of the same incoming stream. This allows you to publish and archive different parts of an event as needed. For example, your business requirement is to archive 6 hours of an event, but to broadcast only last 10 minutes. To accomplish this, you need to create two concurrently running event. One event is set to archive 6 hours of the event but the program is not published. The other event is set to archive for 10 minutes and this program is published.
+通道支援最多三個同時執行的事件，因此您可以建立相同內送串流的多個封存。這可讓您視需要發行和封存事件的不同部分。例如，您的商務需求是封存 6 小時的事件，但只廣播最後 10 分鐘。為了達成此目的，您必須建立兩個同時執行的事件。其中一個事件設定為封存 6 小時的事件，但是未發行該程式。另一個事件則設定為封存 10 分鐘，並發行程式。
 
-You should not reuse existing programs for new events. Instead, create and start a new program for each event.
+您不應該將現有程式重複用於新的事件。而是針對每個事件建立並啟動新的程式。
 
-Start an event/program when you are ready to start streaming and archiving. Stop the event whenever you want to stop streaming and archiving the event. 
+當您準備好開始串流和封存時，請啟動事件/程式。每當您想要停止串流處理和封存事件時，請停止事件。
 
-To delete archived content, stop and delete the event and then delete the associated asset. An asset cannot be deleted if it is used by the event; the event must be deleted first. 
+若要刪除封存的內容，請停止並刪除事件，然後刪除相關聯的資產。如果事件使用資產，則無法刪除資產，必須先刪除事件。
 
-Even after you stop and delete the event, the users would be able to stream your archived content as a video on demand, for as long as you do not delete the asset.
+只要您未刪除資產，即使在停止並刪除事件之後，使用者還是可以視需求將封存的內容串流為視訊。
 
-If you do want to retain the archived content, but not have it available for streaming, delete the streaming locator.
+如果想要保留封存的內容，但不要讓它可進行串流，請刪除串流定位器。
 
-###<a name="create/start/stop-events"></a>Create/start/stop events
+###建立/啟動/停止事件
 
-Once you have the stream flowing into the Channel you can begin the streaming event by creating an Asset, Program, and Streaming Locator. This will archive the stream and make it available to viewers through the Streaming Endpoint. 
+讓串流流入通道之後，您可以建立「資產」、「程式」和「串流定位器」來開始串流事件。這將封存串流，並透過「串流端點」將它提供給檢視器。
 
-There are two ways to start event: 
+有兩種方式可以啟動事件：
 
-1. From the **Channel** page, press **Live Event** to add a new event.
+1. 從 [**通道**] 頁面，按 [即時事件] 以新增事件。
 
-    Specify: event name, asset name, archive window, and encryption option.
-    
-    ![createprogram](./media/media-services-portal-creating-live-encoder-enabled-channel/media-services-create-program.png)
-    
-    If you left **Publish this live event now** checked, the event the PUBLISHING URLs will get created.
-    
-    You can press **Start**, whenever you are ready to stream the event.
+	指定：事件名稱、資產名稱、封存時間範圍和加密選項。
+	
+	![createprogram](./media/media-services-portal-creating-live-encoder-enabled-channel/media-services-create-program.png)
+	
+	如果您保留 [立即發佈此即時事件] 的核取狀態，則事件會建立發佈 URL。
+	
+	只要準備好串流處理事件，即可按 [啟動]。
 
-    Once you start the event, you can press **Watch** to start playing the content.
+	啟動事件後，即可按 [監看] 來開始播放內容。
 
-2. Alternatively, you can use a shortcut and press **Go Live** button on the **Channel** page. This will create a default Asset, Program, and Streaming Locator.
+2. 或者，您可以使用捷徑並按 [通道] 頁面上的 [啟用] 按鈕。這樣會建立預設「資產」、「程式」和「串流定位器」。
 
-    The event is named **default** and the archive window is set to 8 hours.
+	事件的名稱為 **default**，而封存時間範圍設定為 8 小時。
 
-You can watch the published event from the **Live event** page. 
+您可以從 [即時事件] 頁面監看已發佈的事件。
 
-If you click **Off Air**, it will stop all live events. 
+如果您按一下 [停止播放]，則會停止所有的即時事件。
 
 
-##<a name="watch-the-event"></a>Watch the event
+##監看事件
 
-To watch the event, click **Watch** in the Azure portal or copy the streaming URL and use a player of your choice. 
+若要監看事件，請按一下 Azure 入口網站中的 [監看]，或複製串流 URL 並使用您選擇的播放程式。
  
-![Created](./media/media-services-portal-creating-live-encoder-enabled-channel/media-services-play-event.png)
+![建立時間](./media/media-services-portal-creating-live-encoder-enabled-channel/media-services-play-event.png)
 
-Live event automatically converts events to on-demand content when stopped.
+即時事件會在停止時將事件自動轉換為點播內容。
 
-##<a name="clean-up"></a>Clean up
+##清除
 
-If you are done streaming events and want to clean up the resources provisioned earlier, follow the following procedure.
+如果您完成串流處理事件，而且想要清除先前佈建的資源，請遵循下列程序。
 
-- Stop pushing the stream from the encoder.
-- Stop the channel. Once the Channel is stopped, it will not incur any charges. When you need to start it again, it will have the same ingest URL so you won't need to reconfigure your encoder.
-- You can stop your Streaming Endpoint, unless you want to continue to provide the archive of your live event as an on-demand stream. If the channel is in stopped state, it will not incur any charges.
+- 停止從編碼器發送串流。
+- 停止通道。停止通道之後，就不會產生任何費用。當您需要重新啟動它時，它會具有相同的內嵌 URL，因此您不需要重新設定編碼器。
+- 除非您想要繼續將即時事件封存為隨選串流，否則您可以停止「串流端點」。如果通道處於已停止狀態，就不會產生任何費用。
   
-##<a name="view-archived-content"></a>View archived content
+##檢視封存的內容
 
-Even after you stop and delete the event, the users would be able to stream your archived content as a video on demand, for as long as you do not delete the asset. An asset cannot be deleted if it is used by an event; the event must be deleted first. 
+只要您未刪除資產，即使在停止並刪除事件之後，使用者還是可以視需求將封存的內容串流為視訊。如果事件使用資產，則無法刪除資產；必須先刪除事件。
 
-To manage your assets select **Setting** and click **Assets**.
+若要管理您的資產，請選取 [設定]，然後按一下 [資產]。
 
 ![Assets](./media/media-services-portal-creating-live-encoder-enabled-channel/media-services-assets.png)
 
-##<a name="considerations"></a>Considerations
+##考量
 
-- Currently, the max recommended duration of a live event is 8 hours. Please contact amslived at Microsoft.com if you need to run a Channel for longer periods of time.
-- Make sure to have at least one streaming reserved unit on the streaming endpoint from which you want to stream content.
+- 目前，即時事件的最大建議持續時間是 8 小時。如果您需要較長的時間來執行通道，請連絡 amslived@Microsoft.com。
+- 確定負責傳送內容的串流端點上，至少有一個串流保留單位。
 
 
-##<a name="next-step"></a>Next step
+##後續步驟
 
-Review Media Services learning paths.
+檢閱媒體服務學習路徑。
 
 [AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-##<a name="provide-feedback"></a>Provide feedback
+##提供意見反應
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
  
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

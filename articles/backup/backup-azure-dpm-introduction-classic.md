@@ -1,64 +1,63 @@
 <properties
-    pageTitle="Introduction to Azure DPM backup | Microsoft Azure"
-    description="An introduction to backing up DPM servers using the Azure Backup service"
-    services="backup"
-    documentationCenter=""
-    authors="Nkolli1"
-    manager="shreeshd"
-    editor=""
-    keywords="System Center Data Protection Manager, data protection manager, dpm backup"/>
+	pageTitle="Azure DPM 備份簡介 | Microsoft Azure"
+	description="使用 Azure 備份服務來備份 DPM 伺服器的簡介"
+	services="backup"
+	documentationCenter=""
+	authors="Nkolli1"
+	manager="shreeshd"
+	editor=""
+	keywords="System Center Data Protection Manager, Data Protection Manager, DPM 備份"/>
 
 <tags
-    ms.service="backup"
-    ms.workload="storage-backup-recovery"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/21/2016"
-    ms.author="trinadhk;giridham;jimpark;markgal"/>
+	ms.service="backup"
+	ms.workload="storage-backup-recovery"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/21/2016"
+	ms.author="trinadhk;giridham;jimpark;markgal"/>
 
-
-# <a name="preparing-to-back-up-workloads-to-azure-with-dpm"></a>Preparing to back up workloads to Azure with DPM
+# 準備使用 DPM 將工作負載備份到 Azure
 
 > [AZURE.SELECTOR]
-- [Azure Backup Server](backup-azure-microsoft-azure-backup.md)
+- [Azure 備份伺服器](backup-azure-microsoft-azure-backup.md)
 - [SCDPM](backup-azure-dpm-introduction.md)
-- [Azure Backup Server (Classic)](backup-azure-microsoft-azure-backup-classic.md)
-- [SCDPM (Classic)](backup-azure-dpm-introduction-classic.md)
+- [Azure 備份伺服器 (傳統)](backup-azure-microsoft-azure-backup-classic.md)
+- [SCDPM (傳統)](backup-azure-dpm-introduction-classic.md)
 
 
-This article provides an introduction to using Microsoft Azure Backup to protect your System Center Data Protection Manager (DPM) servers and workloads. By reading it, you’ll understand:
+本文簡介如何使用 Microsoft Azure 備份來保護 System Center Data Protection Manager (DPM) 伺服器和工作負載。在閱讀本文後，您將了解：
 
-- How Azure DPM server backup works
-- The prerequisites to achieve a smooth backup experience
-- The typical errors encountered and how to deal with them
-- Supported scenarios
+- Azure DPM 伺服器備份的運作方式
+- 使備份流暢的必要條件
+- 遇到的一般錯誤以及如何排除
+- 支援的案例
 
-System Center DPM backs up file and application data. Data backed up to DPM can be stored on tape, on disk, or backed up to Azure with Microsoft Azure Backup. DPM interacts with Azure Backup as follows:
+System Center DPM 會備份檔案和應用程式資料。備份到 DPM 的資料可以儲存在磁帶、磁碟上，或使用 Microsoft Azure 備份來備份到 Azure。DPM 與 Azure 備份的互動方式如下：
 
-- **DPM deployed as a physical server or on-premises virtual machine** — If DPM is deployed as a physical server or as an on-premises Hyper-V virtual machine you can back up data to an Azure Backup vault in addition to disk and tape backup.
-- **DPM deployed as an Azure virtual machine** — From System Center 2012 R2 with Update 3, DPM can be deployed as an Azure virtual machine. If DPM is deployed as an Azure virtual machine you can back up data to Azure disks attached to the DPM Azure virtual machine, or you can offload the data storage by backing it up to an Azure Backup vault.
+- **DPM 部署為實體伺服器或內部部署虛擬機器** — 如果 DPM 部署為實體伺服器或內部部署 HYPER-V 虛擬機器，除了備份到磁碟和磁帶上，您還可以將資料備份到 Azure 備份保存庫。
+- **DPM 部署為 Azure 虛擬機器** — 從 System Center 2012 R2 Update 3 開始，DPM 可以部署為 Azure 虛擬機器。如果 DPM 部署為 Azure 虛擬機器，您可以將資料備份到連接至 DPM Azure 虛擬機器的 Azure 磁碟，或者您也可以將資料備份到 Azure 備份保存庫以卸載資料儲存體。
 
-## <a name="why-backup-your-dpm-servers?"></a>Why backup your DPM servers?
+## 為何要備份 DPM 伺服器？
 
-The business benefits of using Azure Backup for backing up DPM servers include:
+使用 Azure 備份來備份 DPM 伺服器的商業利益包括：
 
-- For on-premises DPM deployment, you can use Azure backup as an alternative to long-term deployment to tape.
-- For DPM deployments in Azure, Azure Backup allows you to offload storage from the Azure disk, allowing you to scale up by storing older data in Azure Backup and new data on disk.
+- 在內部部署 DPM 部署中，您可以使用 Azure 備份來替代長期的磁帶部署。
+- 在 Azure 的 DPM 部署中，Azure 備份可讓您卸載 Azure 磁碟中的儲存體，進而透過將較舊的資料儲存在 Azure 備份上而將較新的資料儲存在磁碟上來進行擴充。
 
-## <a name="how-does-dpm-server-backup-work?"></a>How does DPM server backup work?
-To back up a virtual machine, first a point-in-time snapshot of the data is needed. The Azure Backup service initiates the backup job at the scheduled time, and triggers the backup extension to take a snapshot. The backup extension coordinates with the in-guest VSS service to achieve consistency, and invokes the blob snapshot API of the Azure Storage service once consistency has been reached. This is done to get a consistent snapshot of the disks of the virtual machine, without having to shut it down.
+## DPM 伺服器備份的運作方式
+若要備份虛擬機器，首先需要資料的時間點快照集。Azure 備份服務在排定的時間初始備份作業，並觸發備份延伸模組以建立快照集。備份延伸模組與客體的 VSS 服務進行協調以達到一致性，達到一致性後將叫用 Azure 儲存體服務的 blob 快照集 API。這可以讓虛擬機器不需關機即可獲取一致性的磁碟快照集。
 
-After the snapshot has been taken, the data is transferred by the Azure Backup service to the backup vault. The service takes care of identifying and transferring only the blocks that have changed from the last backup making the backups storage and network efficient. When the data transfer is completed, the snapshot is removed and a recovery point is created. This recovery point can be seen in the  Azure classic portal.
+在擷取快照集之後，Azure 備份服務會將資料傳送到備份保存庫。服務會負責識別上次備份後有所變更的區塊並只傳送這些區塊，讓備份儲存體和網路更有效率。資料傳送完畢時將移除快照集，並建立復原點。Azure 傳統入口網站中可以查看此復原點。
 
->[AZURE.NOTE] For Linux virtual machines, only file-consistent backup is possible.
+>[AZURE.NOTE] Linux 虛擬機器只能進行檔案一致性的備份。
 
-## <a name="prerequisites"></a>Prerequisites
-Prepare Azure Backup to back up DPM data as follows:
+## 必要條件
+如下所示讓 Azure 備份做好備份 DPM 資料的準備：
 
-1. **Create a Backup vault** — Create a vault in the Azure Backup console.
-2. **Download vault credentials** — In Azure Backup, upload the management certificate you created to the vault.
-3. **Install the Azure Backup Agent and register the server** — From Azure Backup, install the agent on each DPM server and register the DPM server in the backup vault.
+1. **建立備份保存庫** — 在 Azure 備份主控台中建立保存庫。
+2. **下載保存庫認證** — 在 Azure 備份中，將您建立的管理憑證上傳到保存庫。
+3. **安裝 Azure 備份代理程式並註冊伺服器** — 從 Azure 備份，在每一部 DPM 伺服器上安裝代理程式，並在備份保存庫中註冊 DPM 伺服器。
 
 [AZURE.INCLUDE [backup-create-vault](../../includes/backup-create-vault.md)]
 
@@ -67,38 +66,34 @@ Prepare Azure Backup to back up DPM data as follows:
 [AZURE.INCLUDE [backup-install-agent](../../includes/backup-install-agent.md)]
 
 
-## <a name="requirements-(and-limitations)"></a>Requirements (and limitations)
+## 需求 (和限制)
 
-- DPM can be running as a physical server or a Hyper-V virtual machine installed on System Center 2012 SP1 or System Center 2012 R2. It can also be running as an Azure virtual machine running on System Center 2012 R2 with at least DPM 2012 R2 Update Rollup 3 or a Windows virtual machine in VMWare running on System Center 2012 R2 with at least Update Rollup 5.
-- If you’re running DPM with System Center 2012 SP1, you should install Update Rollup 2 for System Center Data Protection Manager SP1. This is required before you can install the Azure Backup Agent.
-- The DPM server should have Windows PowerShell and .Net Framework 4.5 installed.
-- DPM can back up most workloads to Azure Backup. For a full list of what’s supported see the Azure Backup support items below.
-- Data stored in Azure Backup can’t be recovered with the “copy to tape” option.
-- You’ll need an Azure account with the Azure Backup feature enabled. If you don't have an account, you can create a free trial account in just a couple of minutes. Read about [Azure Backup pricing](https://azure.microsoft.com/pricing/details/backup/).
-- Using Azure Backup requires the Azure Backup Agent to be installed on the servers you want to back up. Each server must have at least 10% of the size of the data that is being backed up, available as local free storage. For example, backing up 100 GB of data requires a minimum of 10 GB of free space in the scratch location. While the minimum is 10%, 15% of free local storage space to be used for the cache location is recommended.
-- Data will be stored in the Azure vault storage. There’s no limit to the amount of data you can back up to an Azure Backup vault but the size of a data source (for example a virtual machine or database) shouldn’t exceed 54,400 GB.
+- DPM 可以做為實體伺服器或 System Center 2012 SP1 或 System Center 2012 R2 上安裝的 HYPER-V 虛擬機器來執行。它也可以做為 System Center 2012 R2 (至少含 DPM 2012 R2 更新彙總套件 3) 上執行的 Azure 虛擬機器，或 System Center 2012 R2 (至少含更新彙總套件 5) 上執行之 VMWare 中的 Windows 虛擬機器來執行。
+- 如果您使用 System Center 2012 SP1 來執行 DPM，則應該安裝 System Center Data Protection Manager SP1 的更新彙總套件 2。要有此軟體才能安裝 Azure 備份代理程式。
+- DPM 伺服器應該已安裝 Windows PowerShell 和 .Net Framework 4.5。
+- DPM 可以將大部分的工作負載備份至 Azure 備份。如需所支援項目的完整清單，請參閱下面的 Azure 備份支援項目。
+- 使用 [複製到磁帶] 選項無法復原 Azure 備份中儲存的資料。
+- 您需要已啟用 Azure 備份功能的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。請閱讀 [Azure 備份定價](https://azure.microsoft.com/pricing/details/backup/)。
+- 要使用 Azure 備份，就必須在您想要備份的伺服器上安裝 Azure 備份代理程式。每個伺服器必須至少具有所要備份之資料大小的 10 % 做為本機可用儲存空間。例如，備份 100GB 的資料時，在臨時位置中至少需要 10 GB 的可用空間。雖然最小值是 10%，但是建議使用 15% 的可用本機儲存空間來做為快取位置。
+- 資料會儲存在 Azure 保存庫儲存體中。可以備份至 Azure 備份保存庫的資料數量沒有限制，但是資料來源 (例如虛擬機器或資料庫) 的大小不應超過 54400 GB。
 
-These file types are supported for back up to Azure:
+下列檔案類型可支援備份至 Azure：
 
-- Encrypted (Full backups only)
-- Compressed (Incremental backups supported)
-- Sparse (Incremental backups supported)
-- Compressed and sparse (Treated as Sparse)
+- 加密 (僅限完整備份)
+- 壓縮 (支援增量備份)
+- 疏鬆 (支援增量備份)
+- 壓縮和疏鬆 (視為疏鬆來處理)
 
-And these are unsupported:
+下列為不支援的類型：
 
-- Servers on case-sensitive file systems aren’t supported.
-- Hard links (Skipped)
-- Reparse points (Skipped)
-- Encrypted and compressed (Skipped)
-- Encrypted and sparse (Skipped)
-- Compressed stream
-- Sparse stream
+- 不支援區分大小寫的檔案系統上的伺服器。
+- 硬式連結 (略過)
+- 重新分析點 (略過)
+- 加密和壓縮 (略過)
+- 加密和疏鬆 (略過)
+- 壓縮資料流
+- 疏鬆資料流
 
->[AZURE.NOTE] From in System Center 2012 DPM with SP1 onwards, you can backup up workloads protected by DPM to Azure using Microsoft Azure Backup.
+>[AZURE.NOTE] 從 System Center 2012 DPM SP1 開始，您可以使用 Microsoft Azure 備份將受到 DPM 保護的工作負載備份至 Azure。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

@@ -1,334 +1,329 @@
 <properties
-    pageTitle="SQL Server Application Patterns on VMs | Microsoft Azure"
-    description="This article covers application patterns for SQL Server on Azure VMs. It provides solution architects and developers a foundation for good application architecture and design."
-    services="virtual-machines-windows"
-    documentationCenter="na"
-    authors="luisherring"
-    manager="jhubbard"
-    editor=""
-    tags="azure-service-management,azure-resource-manager" />
+	pageTitle="在 VM 上的 SQL Server 應用程式模式 | Microsoft Azure"
+	description="這篇文章涵蓋適用於 Azure VM 上的 SQL Server 應用程式模式。它們可為解決方案架構師和開發人員提供基礎良好的應用程式架構和設計。"
+	services="virtual-machines-windows"
+	documentationCenter="na"
+	authors="luisherring"
+	manager="jhubbard"
+	editor=""
+	tags="azure-service-management,azure-resource-manager" />
 <tags
-    ms.service="virtual-machines-windows"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.tgt_pltfrm="vm-windows-sql-server"
-    ms.workload="infrastructure-services"
-    ms.date="08/19/2016"
-    ms.author="lvargas" />
+	ms.service="virtual-machines-windows"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.tgt_pltfrm="vm-windows-sql-server"
+	ms.workload="infrastructure-services"
+	ms.date="08/19/2016"
+	ms.author="lvargas" />
 
-
-# <a name="application-patterns-and-development-strategies-for-sql-server-in-azure-virtual-machines"></a>Application Patterns and Development Strategies for SQL Server in Azure Virtual Machines
+# Azure 虛擬機器中的 SQL Server 應用程式模式和開發策略
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
 
-## <a name="summary:"></a>Summary:
-Determining which application pattern or patterns to use for your SQL-Server-based applications in Azure environment is an important design decision and it requires a solid understanding of how SQL Server and each infrastructure component of Azure work together. With SQL Server in Azure Infrastructure Services, you can easily migrate, maintain, and monitor your existing SQL Server applications built-on Windows Server to virtual machines in Azure.
+## 摘要：
+判斷要針對 Azure 環境中以 SQL Server 為基礎應用程式使用哪種或哪些應用程式模式，是相當重要的設計決策，這需要深入了解 SQL Server 與 Azure 的每個基礎結構元件是如何搭配運作。您可以透過 Azure 基礎結構服務中的 SQL Server，輕鬆地維護和監視建置於 Windows Server 上的現有 SQL Server 應用程式，或移轉至 Azure 的虛擬機器中。
 
-The goal of this article is to provide solution architects and developers a foundation for good application architecture and design, which they can follow when migrating existing applications to Azure as well as developing new applications in Azure.
+本文的目的在於為解決方案架構師和開發人員提供基礎良好的應用程式架構和設計，讓他們將現有應用程式移轉至 Azure，以及在 Azure 中開發新應用程式時可以採用。
 
-For each application pattern, you will find an on-premises scenario, its respective cloud-enabled solution, and the related technical recommendations. In addition, the article discusses Azure-specific development strategies so that you can design your applications correctly. Due to the many possible application patterns, it’s recommended that architects and developers should choose the most appropriate pattern for their applications and users.
+每個應用程式模式都有提供內部部署案例、啟用雲端功能的個別解決方案，以及相關的技術建議。此外，本文還討論 Azure 特定的開發策略，讓您可以正確地設計應用程式。由於存在許多可能的應用程式模式，因此建議架構師和開發人員應該針對其應用程式和使用者，選擇最適合的應用程式模式。
 
-**Technical Contributors:** Luis Carlos Vargas Herring, Madhan Arumugam Ramakrishnan
+**技術參與者：**Luis Carlos Vargas Herring、Madhan Arumugam Ramakrishnan
 
-**Technical Reviewers:** Corey Sanders, Drew McDaniel, Narayan Annamalai, Nir Mashkowski, Sanjay Mishra, Silvano Coriani, Stefan Schackow, Tim Hickey, Tim Wieman, Xin Jin
+**技術審稿人員：**Corey Sanders、Drew McDaniel、Narayan Annamalai、Nir Mashkowski、Sanjay Mishra、Silvano Coriani、Stefan Schackow、Tim Hickey、Tim Wieman、Xin Jin
 
-## <a name="introduction"></a>Introduction
+## 簡介
 
-You can develop many types of n-tier applications by separating the components of the different application layers on different machines as well as in separate components. For example, you can place the client application and business rules components in one machine, front-end web tier and data access tier components in another machine, and a back-end database tier in another machine. This kind of structuring helps isolate each tier from each other. If you change where data comes from, you don’t need to change the client or web application but only the data access tier components.
+您可以藉由分隔出不同機器上的不同應用程式層元件，以及個別元件，開發各種類型的多層式架構應用程式。例如，您可以將用戶端應用程式和商務規則元件放在一部機器中，前端 Web 層和資料存取層元件放在另一部機器，然後再將後端資料庫層放在另一部機器。這種結構有助於分離各個層。如果您變更資料來源，則您不需要變更用戶端或 Web 應用程式，只要變更資料存取層元件即可。
 
-A typical *n-tier* application includes the presentation tier, the business tier, and the data tier:
+典型的*多層式架構*應用程式包含展示層、商務層和資料層：
 
 
-| Tier              | Description                                                                                                                                                                     |
+| 層 | 說明 |
 |-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Presentation** | The *presentation tier* (web tier, front-end tier) is the layer in which users interact with an application.                                                                      |
-| **Business**     | The *business tier* (middle tier) is the layer that the presentation tier and the data tier use to communicate with each other and includes the core functionality of the system. |
-| **Data**         | The *data tier* is basically the server that stores an application's data (for example, a server running SQL Server).                                                             |
+| **展示** | *展示層* (Web 層、前端層) 是使用者與應用程式互動的層。 |
+| **商務** | *商務層* (中間層) 是讓展示層和資料層彼此通訊的層，並含有系統的核心功能。 |
+| **資料** | *資料層*基本上是儲存應用程式資料的伺服器 (例如，執行 SQL Server 的伺服器)。 |
 
-Application layers describe the logical groupings of the functionality and components in an application; whereas tiers describe the physical distribution of the functionality and components on separate physical servers, computers, networks, or remote locations. The layers of an application may reside on the same physical computer (the same tier) or may be distributed over separate computers (n-tier), and the components in each layer communicate with components in other layers through well-defined interfaces. You can think of the term tier as referring to physical distribution patterns such as two-tier, three-tier, and n-tier. A **2-tier application pattern** contains two application tiers: application server and database server. The direct communication happens between the application server and the database server. The application server contains both web-tier and business-tier components. In **3-tier application pattern**, there are three application tiers: web server, application server, which contains the business logic tier and/or business tier data access components, and the database server. The communication between the web server and the database server happens over the application server. For detailed information on application layers and tiers, see [Microsoft Application Architecture Guide](https://msdn.microsoft.com/library/ff650706.aspx).
+應用程式層描述應用程式中功能與元件的邏輯群組；而層則描述個別實體伺服器、電腦、網路或遠端位置上功能與元件的實體分佈。應用程式層可位於同一部實體電腦 (同一層)，或分散在不同電腦 (多層式架構)，而每個層中的元件可透過定義明確的介面，與其他層中的元件進行通訊。您可以將「層」這個詞彙視為實體分佈模式，例如兩層、三層和多層式架構。**2 層應用程式模式**包含兩個應用程式層：應用程式伺服器和資料庫伺服器。應用程式伺服器和資料庫伺服器之間會進行直接通訊。應用程式伺服器包含 Web 層和商務層元件。在 **3 層應用程式模式**中，有三個應用程式層：Web 伺服器、應用程式伺服器 (其中包含商務邏輯層和/或商務層資料存取元件)，以及資料庫伺服器。Web 伺服器和資料庫伺服器之間會透過應用程式伺服器進行通訊。如需應用程式層和各層的詳細資訊，請參閱 [Microsoft 應用程式架構指南](https://msdn.microsoft.com/library/ff650706.aspx)。
 
-Before you start reading this article, you should have knowledge on the fundamental concepts of SQL Server and Azure. For information, see [SQL Server Books Online](https://msdn.microsoft.com/library/bb545450.aspx), [SQL Server in Azure Virtual Machines](virtual-machines-windows-sql-server-iaas-overview.md) and [Azure.com](https://azure.microsoft.com/).
+開始閱讀本文之前，您應該先了解 SQL Server 和 Azure 的基本概念。如需相關資訊，請參閱 [SQL Server 線上叢書](https://msdn.microsoft.com/library/bb545450.aspx)、[Azure 虛擬機器中的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md) 以及 [Azure.com](https://azure.microsoft.com/)。
 
-This article describes several application patterns that can be suitable for your simple applications as well as the highly complex enterprise applications. Before detailing each pattern, we recommend that you should familiarize yourself with the available data storage services in Azure, such as [Azure Storage](../storage/storage-introduction.md), [Azure SQL Database](../sql-database/sql-database-technical-overview.md), and [SQL Server in an Azure Virtual Machine](virtual-machines-windows-sql-server-iaas-overview.md). To make the best design decisions for your applications, understand when to use which data storage service clearly.
+本文會說明一些應用程式模式，它們適用於簡單的應用程式以及複雜度高的企業應用程式。在詳述每個模式之前，我們建議您應該先熟悉 Azure 中可用的資料儲存體服務，例如 [Azure 儲存體](../storage/storage-introduction.md)、[Azure SQL Database](../sql-database/sql-database-technical-overview.md) 和 [Azure 虛擬機器中的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)。若要為應用程式做出最佳設計決策，您必須清楚地了解何時要使用哪一種資料儲存體服務。
 
-### <a name="choose-sql-server-in-an-azure-virtual-machine,-when:"></a>Choose SQL Server in an Azure Virtual Machine, when:
+### 若有下列情況，請選擇使用 Azure 虛擬機器中的 SQL Server：
 
-- You need control on SQL Server and Windows. For example, this might include the SQL Server version, special hotfixes, performance configuration, etc.
+- 您需要控制 SQL Server 和 Windows。例如，這可能包括 SQL Server 版本、特殊的 Hotfix、效能組態等等。
 
-- You need a full compatibility with SQL Server on-premises and want to move existing applications to Azure as-is.
+- 您需要與 SQL Server 內部部署完全相容，且想要將現有應用程式按原狀移至 Azure。
 
-- You want to leverage the capabilities of the Azure environment but Azure SQL Database does not support all the features that your application requires. This could include the following areas:
+- 您想要利用 Azure 環境的功能，但 Azure SQL Database 不支援您應用程式需要的所有功能。這可能包括下列部分：
 
-    - **Database size**: At the time this article was updated, SQL Database supports a database of up to 1 TB of data. If your application requires more than 1 TB of data and you don’t want to implement custom sharding solutions, it’s recommended that you use SQL Server in an Azure Virtual Machine. For the latest information, see [Scaling Out Azure SQL Databases](https://msdn.microsoft.com/library/azure/dn495641.aspx) and [Azure SQL Database Service Tiers and Performance Levels](../sql-database/sql-database-service-tiers.md).
-    - **HIPAA compliance**: Healthcare customers and Independent Software Vendors (ISVs) might choose [SQL Server in Azure Virtual Machines](virtual-machines-windows-sql-server-iaas-overview.md) instead of [Azure SQL Database](../sql-database/sql-database-technical-overview.md) because SQL Server in an Azure Virtual Machine is covered by HIPAA Business Associate Agreement (BAA). For information on compliance, see [Microsoft Azure Trust Center: Compliance](https://azure.microsoft.com/support/trust-center/compliance/).
-    - **Instance-level features**: At this time, SQL Database doesn’t support features that live outside of the database (such as Linked Servers, Agent jobs, FileStream, Service Broker, etc.). For more information, see [Azure SQL Database Guidelines and Limitations](https://msdn.microsoft.com/library/azure/ff394102.aspx).
+	- **資料庫大小**：本文更新時，SQL Database 支援的資料庫最多可有 1 TB 的資料。如果應用程式需要的資料超過 1 TB，而您不想要實作自訂分區化解決方案，則建議您使用「Azure 虛擬機器」中的 SQL Server。如需最新資訊，請參閱[向外延展 Azure SQL Database](https://msdn.microsoft.com/library/azure/dn495641.aspx) 和 [Azure SQL Database 服務層和效能等級](../sql-database/sql-database-service-tiers.md)。
+	- **HIPAA 法規遵循**：醫療保健產業的客戶和獨立軟體廠商 (ISV) 可以選擇使用 [Azure 虛擬機器中 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md) 而不是 [Azure SQL Database](../sql-database/sql-database-technical-overview.md)，因為 HIPAA 業務合作協議 (BAA) 已涵蓋 Azure 虛擬機器中的 SQL Server。如需法規遵循的資訊，請參閱 [Microsoft Azure 信任中心：法規遵循](https://azure.microsoft.com/support/trust-center/compliance/)。
+	- **執行個體層級功能**：目前 SQL Database 不支援存在於資料庫外的功能 (例如連結的伺服器、代理程式作業、FileStream、Service Broker 等等)。如需詳細資訊，請參閱 [Azure SQL Database 方針和限制](https://msdn.microsoft.com/library/azure/ff394102.aspx)。
 
-## <a name="1-tier-(simple):-single-virtual-machine"></a>1-tier (simple): single virtual machine
+## 1 層 (簡單)：單一虛擬機器
 
-In this application pattern, you deploy your SQL Server application and database to a standalone virtual machine in Azure. The same virtual machine contains your client/web application, business components, data access layer, and the database server. The presentation, business, and data access code are logically separated but are physically located in a single-server machine. Most customers start with this application pattern and then, they scale out by adding more web roles or virtual machines to their system.
+在此應用程式模式中，您會將 SQL Server 應用程式和資料庫部署到 Azure 中的獨立虛擬機器。同一個虛擬機器會包含您的用戶端/Web 應用程式、商務元件、資料存取層和資料庫伺服器。展示、商務及資料存取程式碼會以邏輯方式分隔，但實際上位於同一部伺服器機器中。大部分客戶會從此應用程式模式開始，然後將更多 Web 角色或虛擬機器加入系統，以向外延展。
 
-This application pattern is useful when:
+若有下列情況，此應用程式模式會很適用：
 
-- You want to perform a simple migration to Azure platform to evaluate whether the platform answers your application’s requirements or not.
+- 您想要執行簡單的移轉到 Azure 平台，以評估該平台是否會回應應用程式的需求。
 
-- You want to keep all the application tiers hosted in the same virtual machine in the same Azure data center to reduce the latency between tiers.
+- 您想要將所有應用程式層裝載在同一 Azure 資料中心的同一個虛擬機器中，以降低各層之間的延遲。
 
-- You want to quickly provision development and test environments for short periods of time.
+- 您想要在短時間內快速佈建開發和測試環境。
 
-- You want to perform stress testing for varying workload levels but at the same time you do not want to own and maintain many physical machines all the time.
+- 您想要針對各種工作負載層級執行壓力測試，但同時又不想一直擁有及維護許多實體機器。
 
-The following diagram demonstrates a simple on-premises scenario and how you can deploy its cloud enabled solution in a single virtual machine in Azure.
+下圖說明簡單的內部部署案例，以及您如何能夠在 Azure 的單一虛擬機器內，部署其啟用雲端功能的解決方案。
 
-![1-tier application pattern](./media/virtual-machines-windows-sql-server-app-patterns-dev-strategies/IC728008.png)
+![1 層應用程式模式](./media/virtual-machines-windows-sql-server-app-patterns-dev-strategies/IC728008.png)
 
-Deploying the business layer (business logic and data access components) on the same physical tier as the presentation layer can maximize application performance, unless you must use a separate tier due to scalability or security concerns.
+在與展示層相同的實體層上部署商務層 (商務邏輯和資料存取元件) 可以將應用程式效能最大化，除非您因為延展性或安全性問題，必須使用不同的層。
 
-Since this is a very common pattern to start with, you might find the following article on migration useful for moving your data to your SQL Server VM: [Migrating a Database to SQL Server on an Azure VM](virtual-machines-windows-migrate-sql.md).
+由於這是很常見的模式，因此以下移轉文章可能會很實用，可讓您將資料移到 SQL Server VM：[將資料庫移轉至 Azure VM 上的 SQL Server](virtual-machines-windows-migrate-sql.md)。
 
-## <a name="3-tier-(simple):-multiple-virtual-machines"></a>3-tier (simple): multiple virtual machines
+## 3 層 (簡單)：多個虛擬機器
 
-In this application pattern, you deploy a 3-tier application in Azure by placing each application tier in a different virtual machine. This provides a flexible environment for an easy scale-up and scale-out scenarios. When one virtual machine contains your client/web application, the other one hosts your business components, and the other one hosts the database server.
+在此應用程式模式中，您會將每個應用程式層放在不同的虛擬機器中，以在 Azure 中部署 3 層應用程式。這麼做可提供彈性的環境，以便輕鬆地向上和向外延展案例。當一個虛擬機器包含您的用戶端/Web 應用程式時，另一個可裝載您的商務元件，而另一個則可裝載資料庫伺服器。
 
-This application pattern is useful when:
+若有下列情況，此應用程式模式會很適用：
 
-- You want to perform a migration of complex database applications to Azure Virtual Machines.
+- 您想要將複雜的資料庫應用程式移轉至 Azure 虛擬機器。
 
-- You want different application tiers to be hosted in different regions. For example, you might have shared databases that are deployed to multiple regions for reporting purposes.
+- 您想要在不同的區域裝載不同的應用程式層。例如，您可能會為了報告用途，而有部署到多個區域的共用資料庫。
 
-- You want to move enterprise applications from on-premises virtualized platforms to Azure Virtual Machines. For a detailed discussion on enterprise applications, see [What is an Enterprise Application](https://msdn.microsoft.com/library/aa267045.aspx).
+- 您想要將企業應用程式，從內部部署虛擬化平台移動到 Azure 虛擬機器。如需企業應用程式的詳細討論，請參閱[企業應用程式是什麼](https://msdn.microsoft.com/library/aa267045.aspx)。
 
-- You want to quickly provision development and test environments for short periods of time.
+- 您想要在短時間內快速佈建開發和測試環境。
 
-- You want to perform stress testing for varying workload levels but at the same time you do not want to own and maintain many physical machines all the time.
+- 您想要針對各種工作負載層級執行壓力測試，但同時又不想一直擁有及維護許多實體機器。
 
-The following diagram demonstrates how you can place a simple 3-tier application in Azure by placing each application tier in a different virtual machine.
+下圖說明如何將每個應用程式層放在不同的虛擬機器中，以在 Azure 內設置簡單的 3 層應用程式。
 
-![3-tier application pattern](./media/virtual-machines-windows-sql-server-app-patterns-dev-strategies/IC728009.png)
+![3 層應用程式模式](./media/virtual-machines-windows-sql-server-app-patterns-dev-strategies/IC728009.png)
 
-In this application pattern, there is only one virtual machine (VM) in each tier. If you have multiple VMs in Azure, we recommend that you set up a virtual network. [Azure Virtual Network](../virtual-network/virtual-networks-overview.md) creates a trusted security boundary and also allows VMs to communicate among themselves over the private IP address. In addition, always make sure that all Internet connections only go to the presentation tier. When following this application pattern, manage the network security group rules to control access. For more information, see [Allow external access to your VM using the Azure portal](virtual-machines-windows-nsg-quickstart-portal.md).
+在此應用程式模式中，每一層只有一個虛擬機器 (VM)。如果您在 Azure 中有多個 VM，我們建議您設定虛擬網路。[Azure 虛擬網路](../virtual-network/virtual-networks-overview.md)會建立信任的安全性界限，並讓 VM 透過私人 IP 位址彼此通訊。此外，請務必確認所有網際網路連線只會進入展示層。遵循此應用程式模式時，請管理網路安全性群組規則以控制存取。如需詳細資訊，請參閱[允許使用 Azure 入口網站從外部存取您的 VM](virtual-machines-windows-nsg-quickstart-portal.md)。
 
-In the diagram, Internet Protocols can be TCP, UDP, HTTP, or HTTPS.
+在圖表中，網際網路通訊協定可以是 TCP、UDP、HTTP 或 HTTPS。
 
->[AZURE.NOTE] Setting up a virtual network in Azure is free of charge. However, you are charged for the VPN gateway that connects to on-premises. This charge is based on the amount of time that connection is provisioned and available.
+>[AZURE.NOTE] 在 Azure 中設定虛擬網路是免費的。不過，您必須為連接到內部部署的 VPN 閘道付費。此費用取決於佈建和可用的連接時間量。
 
-## <a name="2-tier-and-3-tier-with-presentation-tier-scale-out"></a>2-tier and 3-tier with presentation tier scale-out
+## 展示層向外延展的 2 層和 3 層
 
-In this application pattern, you deploy 2-tier or 3-tier database application to Azure Virtual Machines by placing each application tier in a different virtual machine. In addition, you scale out the presentation tier due to increased volume of incoming client requests.
+在此應用程式模式中，您會將每個應用程式層放在不同的虛擬機器中，以便將 2 層或 3 層資料庫應用程式部署到 Azure 虛擬機器。此外，因為傳入的用戶端要求數量增加，所以您必須向外延展展示層。
 
-This application pattern is useful when:
+若有下列情況，此應用程式模式會很適用：
 
-- You want to move enterprise applications from on-premises virtualized platforms to Azure Virtual Machines.
+- 您想要將企業應用程式，從內部部署虛擬化平台移動到 Azure 虛擬機器。
 
-- You want to scale out the presentation tier due to increased volume of incoming client requests.
+- 因為傳入的用戶端要求數量增加，所以想要向外延展展示層。
 
-- You want to quickly provision development and test environments for short periods of time.
+- 您想要在短時間內快速佈建開發和測試環境。
 
-- You want to perform stress testing for varying workload levels but at the same time you do not want to own and maintain many physical machines all the time.
+- 您想要針對各種工作負載層級執行壓力測試，但同時又不想一直擁有及維護許多實體機器。
 
-- You want to own an infrastructure environment that can scale up and down on demand.
+- 您想要擁有可依需求相應增加和降低規模的基礎結構環境。
 
-The following diagram demonstrates how you can place the application tiers in multiple virtual machines in Azure by scaling out the presentation tier due to increased volume of incoming client requests. As seen in the diagram, Azure Load Balancer is responsible for distributing traffic across multiple virtual machines and also determining which web server to connect to. Having multiple instances of the web servers behind a load balancer ensures the high availability of the presentation tier.
+下圖說明為了因應傳入的用戶端要求數量增加，如何向外延展展示層，以在 Azure 的多個虛擬機器中設置應用程式層。如圖所示，Azure Load Balancer 會負責將流量分配到多個虛擬機器，也會決定要連接到哪部 Web 伺服器。在負載平衡器後方有多個 Web 伺服器執行個體，可確保展示層的高可用性。
 
-![Application pattern - presentation tier scale out](./media/virtual-machines-windows-sql-server-app-patterns-dev-strategies/IC728010.png)
+![應用程式模式 - 展示層向外延展](./media/virtual-machines-windows-sql-server-app-patterns-dev-strategies/IC728010.png)
 
-### <a name="best-practices-for-2-tier,-3-tier,-or-n-tier-patterns-that-have-multiple-vms-in-one-tier"></a>Best practices for 2-tier, 3-tier, or n-tier patterns that have multiple VMs in one tier
+### 一層內有多個 VM 之 2 層、3 層或多層式架構模式的最佳作法
 
-It’s recommended that you place the virtual machines that belong to the same tier in the same cloud service and in the same the availability set. For example, place a set of web servers in **CloudService1** and **AvailabilitySet1** and a set of database servers in **CloudService2** and **AvailabilitySet2**. An availability set in Azure enables you to place the high availability nodes into separate fault domains and upgrade domains.
+建議您將屬於同一層的虛擬機器放在相同雲端服務中，並使用相同的可用性設定組。例如，將一組 Web 伺服器放在 **CloudService1** 和 **AvailabilitySet1**，然後將一組資料庫伺服器放在 **CloudService2** 和 **AvailabilitySet2**。Azure 中的可用性設定組可讓您將高可用性節點放入分隔的容錯網域和升級網域。
 
-To leverage multiple VM instances of a tier, you need to configure Azure Load Balancer between application tiers. To configure Load Balancer in each tier, create a load-balanced endpoint on each tier’s VMs separately. For a specific tier, first create VMs in the same cloud service. This ensures that they have the same public Virtual IP address. Next, create an endpoint on one of the virtual machines on that tier. Then, assign the same endpoint to the other virtual machines on that tier for load balancing. By creating a load-balanced set, you distribute traffic across multiple virtual machines and also allow the Load Balancer to determine which node to connect when a backend VM node fails. For example, having multiple instances of the web servers behind a load balancer ensures the high availability of the presentation tier.
+若要利用某一層中的多個 VM 執行個體，您必須在應用程式層之間設定 Azure Load Balancer。若要設定每一層的負載平衡器，請分別在每一層的 VM 上建立負載平衡的端點。若為特定的某一層，請先在相同雲端服務中建立 VM。這可確保它們具有相同的公用「虛擬 IP」位址。接下來，在該層的其中一個虛擬機器上建立端點。然後將同一個端點指派到該層上的其他虛擬機器，以進行負載平衡。您可以藉由建立負載平衡集，將流量分配到多個虛擬機器，並在後端 VM 節點失敗時，讓負載平衡器決定要連接的節點。例如，在負載平衡器後方有多個 Web 伺服器執行個體，可確保展示層的高可用性。
 
-As a best practice, always make sure that all internet connections first go to the presentation tier. The presentation layer accesses the business tier, and then the business tier accesses the data tier. For more information on how to allow access to the presentation layer, see [Allow external access to your VM using the Azure portal](virtual-machines-windows-nsg-quickstart-portal.md).
+就最佳作法而言，請務必使所有網際網路連線先進入展示層。展示層會存取商務層，而商務層會存取資料層。如需有關如何允許存取展示層的詳細資訊，請參閱[允許使用 Azure 入口網站從外部存取您的 VM](virtual-machines-windows-nsg-quickstart-portal.md)。
 
-Note that the Load Balancer in Azure works similar to load balancers in an on-premises environment. For more information, see [Load balancing for Azure infrastructure services](virtual-machines-windows-load-balance.md).
+請注意，Azure 中的負載平衡器運作方式類似內部部署環境中的負載平衡器。如需詳細資訊，請參閱 [Azure 基礎結構服務的負載平衡](virtual-machines-windows-load-balance.md)。
 
-In addition, we recommend that you set up a private network for your virtual machines by using Azure Virtual Network. This allows them to communicate among themselves over the private IP address. For more information, see [Azure Virtual Network](../virtual-network/virtual-networks-overview.md).
+此外，我們建議您使用 Azure 虛擬網路，為虛擬機器設定私人網路。這可讓虛擬機器透過私人 IP 位址彼此通訊。如需詳細資訊，請參閱 [Azure 虛擬網路](../virtual-network/virtual-networks-overview.md)。
 
-## <a name="2-tier-and-3-tier-with-business-tier-scale-out"></a>2-tier and 3-tier with business tier scale-out
+## 商務層向外延展的 2 層和 3 層
 
-In this application pattern, you deploy 2-tier or 3-tier database application to Azure Virtual Machines by placing each application tier in a different virtual machine. In addition, you might want to distribute the application server components to multiple virtual machines due to the complexity of your application.
+在此應用程式模式中，您會將每個應用程式層放在不同的虛擬機器中，以便將 2 層或 3 層資料庫應用程式部署到 Azure 虛擬機器。此外，您可能因為應用程式的複雜性，而想要將應用程式伺服器元件分配到多個虛擬機器。
 
-This application pattern is useful when:
+若有下列情況，此應用程式模式會很適用：
 
-- You want to move enterprise applications from on-premises virtualized platforms to Azure Virtual Machines.
+- 您想要將企業應用程式，從內部部署虛擬化平台移動到 Azure 虛擬機器。
 
-- You want to distribute the application server components to multiple virtual machines due to the complexity of your application.
+- 您因為應用程式的複雜性，而想要將應用程式伺服器元件分配到多個虛擬機器。
 
-- You want to move business logic heavy on-premises LOB (line-of-business) applications to Azure Virtual Machines. LOB applications are a set of critical computer applications that are vital to running an enterprise, such as accounting, human resources (HR), payroll, supply chain management, and resource planning applications.
+- 您想要將商務邏輯大型內部部署 LOB (企業營運) 應用程式移動到 Azure 虛擬機器。LOB 應用程式是一套對企業營運而言十分重要的電腦應用程式，例如會計、人力資源 (HR)、薪資、供應鏈管理和資源規劃應用。
 
-- You want to quickly provision development and test environments for short periods of time.
+- 您想要在短時間內快速佈建開發和測試環境。
 
-- You want to perform stress testing for varying workload levels but at the same time you do not want to own and maintain many physical machines all the time.
+- 您想要針對各種工作負載層級執行壓力測試，但同時又不想一直擁有及維護許多實體機器。
 
-- You want to own an infrastructure environment that can scale up and down on demand.
+- 您想要擁有可依需求相應增加和降低的基礎結構環境。
 
-The following diagram demonstrates an on-premises scenario and its cloud enabled solution. In this scenario, you place the application tiers in multiple virtual machines in Azure by scaling out the business tier, which contains the business logic tier and data access components. As seen in the diagram, Azure Load Balancer is responsible for distributing traffic across multiple virtual machines and also determining which web server to connect to. Having multiple instances of the application servers behind a load balancer ensures the high availability of the business tier. For more information, see [Best practices for 2-tier, 3-tier, or n-tier application patterns that have multiple virtual machines in one tier](#best-practices-for-2-tier-3-tier-or-n-tier-patterns-that-have-multiple-vms-in-one-tier).
+下圖說明某個內部部署案例以及其啟用雲端功能的解決方案。在此案例中，您會藉由向外延展商務層 (其中包含商務邏輯層和資料存取元件)，在 Azure 的多個虛擬機器中放置應用程式層。如圖所示，Azure Load Balancer 會負責將流量分配到多個虛擬機器，也會決定要連接到哪部 Web 伺服器。在負載平衡器後方有多個應用程式伺服器執行個體，可確保商務層的高可用性。如需詳細資訊，請參閱[一層內有多個虛擬機器之 2 層、3 層或多層式架構模式的最佳作法](#best-practices-for-2-tier-3-tier-or-n-tier-patterns-that-have-multiple-vms-in-one-tier)。
 
-![Application pattern with business tier scale out](./media/virtual-machines-windows-sql-server-app-patterns-dev-strategies/IC728011.png)
+![商務層向外延展的應用程式模式](./media/virtual-machines-windows-sql-server-app-patterns-dev-strategies/IC728011.png)
 
-## <a name="2-tier-and-3-tier-with-presentation-and-business-tiers-scale-out-and-hadr"></a>2-tier and 3-tier with presentation and business tiers scale-out and HADR
+## 展示層和商務層向外延展的 2 層和 3 層以及 HADR
 
-In this application pattern, you deploy 2-tier or 3-tier database application to Azure Virtual Machines by distributing the presentation tier (web server) and the business tier (application server) components to multiple virtual machines. In addition, you implement high-availability and disaster recovery solutions for your databases in Azure virtual machines.
+在此應用程式模式中，您會藉由將展示層 (Web 伺服器) 和商務層 (應用程式伺服器) 元件分散到多個虛擬機器，在 Azure 虛擬機器中部署 2 層或 3 層資料庫應用程式。此外，您會針對 Azure 虛擬機器中的資料庫，實作高可用性和災害復原解決方案。
 
-This application pattern is useful when:
+若有下列情況，此應用程式模式會很適用：
 
-- You want to move enterprise applications from virtualized platforms on-premises to Azure by implementing SQL Server high availability and disaster recovery capabilities.
+- 您想要藉由實作 SQL Server 高可用性和災害復原功能，將企業應用程式從虛擬化平台的內部部署移至 Azure。
 
-- You want to scale out the presentation tier and the business tier due to increased volume of incoming client requests and the complexity of your application.
+- 由於傳入的用戶端要求數量增加和應用程式的複雜性，您想要向外延展展示層和商務層。
 
-- You want to quickly provision development and test environments for short periods of time.
+- 您想要在短時間內快速佈建開發和測試環境。
 
-- You want to perform stress testing for varying workload levels but at the same time you do not want to own and maintain many physical machines all the time.
+- 您想要針對各種工作負載層級執行壓力測試，但同時又不想一直擁有及維護許多實體機器。
 
-- You want to own an infrastructure environment that can scale up and down on demand.
+- 您想要擁有可依需求相應增加和降低的基礎結構環境。
 
-The following diagram demonstrates an on-premises scenario and its cloud enabled solution. In this scenario, you scale out the presentation tier and the business tier components in multiple virtual machines in Azure. In addition, you implement high availability and disaster recovery (HADR) techniques for SQL Server databases in Azure.
+下圖說明某個內部部署案例以及其啟用雲端功能的解決方案。在此案例中，您會在 Azure 的多個虛擬機器中，向外延展展示層和商務層元件。此外，您會針對 Azure 中的 SQL Server 資料庫，實作高可用性和災害復原 (HADR) 技術。
 
-Running multiple copies of an application in different VMs make sure that you are load balancing requests across them. When you have multiple virtual machines, you need to make sure that all your VMs are accessible and running at one point in time. If you configure load balancing, Azure Load Balancer tracks the health of VMs and directs incoming calls to the healthy functioning VM nodes properly. For information on how to set up load balancing of the virtual machines, see [Load balancing for Azure infrastructure services](virtual-machines-windows-load-balance.md). Having multiple instances of web and application servers behind a load balancer ensures the high availability of the presentation and business tiers.
+請在不同的 VM 中執行應用程式的多個複本，確認可以負載平衡它們的要求。當您有多個虛擬機器時，必須確定可以存取所有 VM，且 VM 均能在某個時間點同時執行。如果設定負載平衡，Azure Load Balancer 就會追蹤 VM 的健全狀況，然後將傳入的呼叫正確引導至運作狀況良好的 VM 節點。如需如何設定虛擬機器負載平衡的資訊，請參閱 [Azure 基礎結構服務的負載平衡](virtual-machines-windows-load-balance.md)。在負載平衡器後方有多個 Web 和應用程式伺服器執行個體，可確保展示層和商務層的高可用性。
 
-![Scale-out and high availability](./media/virtual-machines-windows-sql-server-app-patterns-dev-strategies/IC728012.png)
+![向外延展和高可用性](./media/virtual-machines-windows-sql-server-app-patterns-dev-strategies/IC728012.png)
 
-### <a name="best-practices-for-application-patterns-requiring-sql-hadr"></a>Best practices for application patterns requiring SQL HADR
+### 需要 SQL HADR 之應用程式模式的最佳作法
 
-When you set up SQL Server high availability and disaster recovery solutions in Azure Virtual Machines, setting up a virtual network for your virtual machines using [Azure Virtual Network](../virtual-network/virtual-networks-overview.md) is mandatory.  Virtual machines within a Virtual Network will have a stable private IP address even after a service downtime, thus you can avoid the update time required for DNS name resolution. In addition, the virtual network allows you to extend your on-premises network to Azure and creates a trusted security boundary. For example, if your application has corporate domain restrictions (such as, Windows authentication, Active Directory), setting up [Azure Virtual Network](../virtual-network/virtual-networks-overview.md) is necessary.
+當您在 Azure 虛擬機器中設定 SQL Server 高可用性和災害復原解決方案時，必須使用 [Azure 虛擬網路](../virtual-network/virtual-networks-overview.md)為您的虛擬機器設定虛擬網路。即使在服務停機期間，虛擬網路內的虛擬機器也會有一個穩定的私人 IP 位址，讓您可以避免 DNS 名稱解析所需的更新時間。此外，虛擬網路可讓您將內部部署網路延伸至 Azure，並建立信任的安全性界限。例如，如果您的應用程式具有公司網域限制 (如 Windows 驗證、Active Directory)，則必須設定 [Azure 虛擬網路](../virtual-network/virtual-networks-overview.md)。
 
-Most of customers, who are running production code on Azure, are keeping both primary and secondary replicas in Azure.
+大部分在 Azure 上執行實際程式碼的客戶，都會在 Azure 中保留主要和次要複本。
 
-For comprehensive information and tutorials on high availability and disaster recovery techniques, see [High Availability and Disaster Recovery for SQL Server in Azure Virtual Machines](virtual-machines-windows-sql-high-availability-dr.md).
+如需高可用性和災害復原技術的完整資訊及教學課程，請參閱 [Azure 虛擬機器中的 SQL Server 高可用性和嚴重損壞修復](virtual-machines-windows-sql-high-availability-dr.md)。
 
-## <a name="2-tier-and-3-tier-using-azure-vms-and-cloud-services"></a>2-tier and 3-tier using Azure VMs and Cloud Services
+## 使用 Azure VM 和雲端服務的 2 層和 3 層
 
-In this application pattern, you deploy 2-tier or 3-tier application to Azure by using both [Azure Cloud Services](../cloud-services/cloud-services-choose-me.md#tellmecs) (web and worker roles - Platform as a Service (PaaS)) and [Azure Virtual Machines](virtual-machines-windows-about.md) (Infrastructure as a Service (IaaS)). Using [Azure Cloud Services](https://azure.microsoft.com/documentation/services/cloud-services/) for the presentation tier/business tier and SQL Server in [Azure Virtual Machines](virtual-machines-windows-about.md) for the data tier is beneficial for most applications running on Azure. The reason is that having a compute instance running on Cloud Services provides an easy management, deployment, monitoring, and scale-out.
+在此應用程式模式中，您會使用 [Azure 雲端服務](../cloud-services/cloud-services-choose-me.md#tellmecs) (Web 和背景工作角色 - 平台即服務 (PaaS)) 和 [Azure 虛擬機器](virtual-machines-windows-about.md) (基礎結構即服務 (IaaS))，將 2 層或 3 層應用程式部署至 Azure。針對展示層/商務層使用 [Azure 雲端服務](https://azure.microsoft.com/documentation/services/cloud-services/)，以及針對資料層使用 [Azure 虛擬機器](virtual-machines-windows-about.md)中的 SQL Server，對於大多數在 Azure 上執行的應用程式會較有幫助。原因是在雲端服務上執行的計算執行個體，可讓您輕鬆管理、部署、監視和向外延展。
 
-With Cloud Services, Azure maintains the infrastructure for you, performs routine maintenance, patches the operating systems, and attempts to recover from service and hardware failures. When your application needs scale-out, automatic, and manual scale-out options are available for your cloud service project by increasing or decreasing the number of instances or virtual machines that are used by your application. In addition, you can use on-premises Visual Studio to deploy your application to a cloud service project in Azure.
+有了雲端服務，Azure 就能為您維護基礎結構、執行例行性維護、修補作業系統，以及嘗試從服務和硬體故障中復原。當您的應用程式需要向外延展時，有自動和手動向外延展選項可供您的雲端服務專案使用，方法是增加或減少應用程式所使用的執行個體或虛擬機器數目。此外，您還可以使用內部部署 Visual Studio，將應用程式部署至 Azure 中的雲端服務專案。
 
-In summary, if you don’t want to own extensive administrative tasks for the presentation/business tier and your application does not require any complex configuration of software or the operating system, use Azure Cloud Services. If Azure SQL Database does not support all the features you are looking for, use SQL Server in an Azure Virtual Machine for the data tier. Running an application on Azure Cloud Services and storing data in Azure Virtual Machines combines the benefits of both services. For a detailed comparison, see the section in this topic on [Comparing development strategies in Azure](#comparing-web-development-strategies-in-azure).
+簡而言之，如果您不想要產生大量的展示層/商業層管理工作，且應用程式不需要對軟體或作業系統做任何複雜的設定，請使用 Azure 雲端服務。如果 Azure SQL Database 不支援您需要的所有功能，請針對資料層使用 Azure 虛擬機器中的 SQL Server。在 Azure 雲端服務上執行應用程式，並將資料儲存在 Azure 虛擬機器中，可結合這兩個服務的優點。如需詳細的比較，請參閱本主題的章節：[比較 Azure 中的開發策略](#comparing-web-development-strategies-in-azure)。
 
-In this application pattern, the presentation tier includes a web role, which is a Cloud Services component running in the Azure execution environment and it is customized for web application programming as supported by IIS and ASP.NET. The business or backend tier includes a worker role, which is a Cloud Services component running in the Azure execution environment and it is useful for generalized development, and may perform background processing for a web role. The database tier resides in a SQL Server virtual machine in Azure. The communication between the presentation tier and the database tier happens directly or over the business tier – worker role components.
+在此應用程式模式中，展示層包含 Web 角色，這是在 Azure 執行環境中執行的雲端服務元件，且是針對 Web 應用程式的程式設計而自訂，並受 IIS 和 ASP.NET 的支援。商務層或後端層包含背景工作角色，這是在 Azure 執行環境中執行的雲端服務元件，對於通用開發而言很實用，此外也可針對 Web 角色執行背景處理。資料庫層位於 Azure 中的 SQL Server 虛擬機器內。展示層和資料庫層之間會透過商務層 (背景工作角色元件)，直接進行通訊。
 
-This application pattern is useful when:
+若有下列情況，此應用程式模式會很適用：
 
-- You want to move enterprise applications from virtualized platforms on-premises to Azure by implementing SQL Server high availability and disaster recovery capabilities.
+- 您想要藉由實作 SQL Server 高可用性和災害復原功能，將企業應用程式從虛擬化平台的內部部署移至 Azure。
 
-- You want to own an infrastructure environment that can scale up and down on demand.
+- 您想要擁有可依需求相應增加和降低的基礎結構環境。
 
-- Azure SQL Database does not support all the features that your application or database needs.
+- Azure SQL Database 不支援您應用程式或資料庫所需的所有功能。
 
-- You want to perform stress testing for varying workload levels but at the same time you do not want to own and maintain many physical machines all the time.
+- 您想要針對各種工作負載層級執行壓力測試，但同時又不想一直擁有及維護許多實體機器。
 
-The following diagram demonstrates an on-premises scenario and its cloud enabled solution. In this scenario, you place the presentation tier in web roles, the business tier in worker roles but the data tier in virtual machines in Azure. Running multiple copies of the presentation tier in different web roles ensures to load balance requests across them. When you combine Azure Cloud Services with Azure Virtual Machines, we recommend that you set up [Azure Virtual Network](../virtual-network/virtual-networks-overview.md) as well. With [Azure Virtual Network](../virtual-network/virtual-networks-overview.md), you can have stable and persistent private IP addresses within the same cloud service in the cloud. Once you define a virtual network for your virtual machines and cloud services, they can start communicating among themselves over the private IP address. In addition, having virtual machines and Azure web/worker roles in the same [Azure Virtual Network](../virtual-network/virtual-networks-overview.md) provides low latency and more secure connectivity. For more information, see [What is a cloud service](../cloud-services/cloud-services-choose-me.md).
+下圖說明某個內部部署案例以及其啟用雲端功能的解決方案。在此案例中，您會在 Web 角色中放置展示層、在背景工作角色中放置商務層，但在 Azure 虛擬機器中放置資料層。在不同的 Web 角色中執行多個展示層的複本，可確保能負載平衡它們的要求。當您將「Azure 雲端服務」與「Azure 虛擬機器」結合時，建議您一併設定 [Azure 虛擬網路](../virtual-network/virtual-networks-overview.md)。有了 [Azure 虛擬網路](../virtual-network/virtual-networks-overview.md)，就能在雲端內的相同雲端服務中擁有穩定且持續不變的私人 IP 位址。當您定義虛擬機器和雲端服務的虛擬網路後，它們就可以開始透過私人 IP 位址彼此通訊。此外，讓虛擬機器和 Azure Web 角色/背景工作角色位於同一個 [Azure 虛擬網路](../virtual-network/virtual-networks-overview.md)中，可提供低延遲且更安全的連線。如需詳細資訊，請參閱[什麼是雲端服務](../cloud-services/cloud-services-choose-me.md)。
 
-As seen in the diagram, Azure Load Balancer distributes traffic across multiple virtual machines and also determines which web server or application server to connect to. Having multiple instances of the web and application servers behind a load balancer ensures the high availability of the presentation tier and the business tier. For more information, see [Best practices for application patterns requiring SQL HADR](#best-practices-for-application-patterns-requiring-sql-hadr).
+如圖所示，Azure Load Balancer 會將流量分配到多個虛擬機器，也會決定要連接到哪部 Web 伺服器或應用程式伺服器。在負載平衡器後方有多個 Web 和應用程式伺服器執行個體，可確保展示層和商務層的高可用性。如需詳細資訊，請參閱[需要 SQL HADR 之應用程式模式的最佳作法](#best-practices-for-application-patterns-requiring-sql-hadr)。
 
-![Application patterns with Cloud Services](./media/virtual-machines-windows-sql-server-app-patterns-dev-strategies/IC728013.png)
+![應用程式模式搭配雲端服務](./media/virtual-machines-windows-sql-server-app-patterns-dev-strategies/IC728013.png)
 
-Another approach to implement this application pattern is to use a consolidated web role that contains both presentation tier and business tier components as shown in the following diagram. This application pattern is useful for applications that require stateful design. Since Azure provides stateless compute nodes on web and worker roles, we recommend that you implement a logic to store session state using one of the following technologies: [Azure Caching](https://azure.microsoft.com/documentation/services/redis-cache/), [Azure Table Storage](../storage/storage-dotnet-how-to-use-tables.md) or [Azure SQL Database](../sql-database/sql-database-technical-overview.md).
+實作此應用程式模式的另一種方法是使用合併的 Web 角色 (包含展示層和商務層元件)，如下圖所示。如果應用程式需要可設定狀態的設計，此應用程式模式就很實用。由於 Azure 在 Web 和背景工作角色上提供無狀態的計算節點，因此建議您實作邏輯，以使用下列其中一種技術來儲存工作階段狀態：[Azure 快取](https://azure.microsoft.com/documentation/services/redis-cache/)、[Azure 資料表儲存體](../storage/storage-dotnet-how-to-use-tables.md)或 [Azure SQL Database](../sql-database/sql-database-technical-overview.md)。
 
-![Application patterns with Cloud Services](./media/virtual-machines-windows-sql-server-app-patterns-dev-strategies/IC728014.png)
+![應用程式模式搭配雲端服務](./media/virtual-machines-windows-sql-server-app-patterns-dev-strategies/IC728014.png)
 
-## <a name="pattern-with-azure-vms,-azure-sql-database,-and-azure-app-service-(web-apps)"></a>Pattern with Azure VMs, Azure SQL Database, and Azure App Service (Web Apps)
+## Azure VM、Azure SQL Database 和 Azure App Service (Web Apps) 的模式
 
-The primary goal of this application pattern is to show you how to combine Azure infrastructure as a service (IaaS) components with Azure platform-as-a-service components (PaaS) in your solution. This pattern is focused on Azure SQL Database for relational data storage. It does not include SQL Server in an Azure virtual machine, which is part of the Azure infrastructure as a service offering.
+此應用程式模式的主要目標是示範如何在解決方案中，將 Azure 基礎結構即服務 (IaaS) 元件與 Azure 平台即服務元件 (PaaS) 加以結合。此模式著重於關聯式資料存放區的 Azure SQL Database。這不包括 Azure 虛擬機器中的 SQL Server，因為其已包含在 Azure 基礎結構即服務的供應項目中。
 
-In this application pattern, you deploy a database application to Azure by placing the presentation and business tiers in the same virtual machine and accessing a database in Azure SQL Database (SQL Database) servers. You can implement the presentation tier by using traditional IIS-based web solutions. Or, you can implement a combined presentation and business tier by using [Azure Web Apps](https://azure.microsoft.com/documentation/services/app-service/web/).
+在此應用程式模式中，您會將展示層和商務層放在同一個虛擬機器中，並存取 Azure SQL Database (SQL Database) 伺服器中的資料庫，藉此將資料庫應用程式部署到 Azure。您可以使用傳統的 IIS 型 Web 解決方案來實作展示層。或者，您可以使用 [Azure Web Apps](https://azure.microsoft.com/documentation/services/app-service/web/)，實作結合的展示層和商業層。
 
-This application pattern is useful when:
+若有下列情況，此應用程式模式會很適用：
 
-- You already have an existing SQL Database server configured in Azure and you want to test your application quickly.
+- 您在 Azure 中已設定了現有的 SQL Database 伺服器，且想要快速測試應用程式。
 
-- You want to test the capabilities of Azure environment.
+- 您想要測試 Azure 環境的功能。
 
-- You want to quickly provision development and test environments for short periods of time.
+- 您想要在短時間內快速佈建開發和測試環境。
 
-- Your business logic and data access components can be self-contained within a web application.
+- 您的商務邏輯和資料存取元件可以獨立在 Web 應用程式內。
 
-The following diagram demonstrates an on-premises scenario and its cloud enabled solution. In this scenario, you place the application tiers in a single virtual machine in Azure and access data in Azure SQL Database.
+下圖說明某個內部部署案例以及其啟用雲端功能的解決方案。在此案例中，您會將應用程式層放在 Azure 的單一虛擬機器內，並存取 Azure SQL Database 中的資料。
 
-![Mixed application pattern](./media/virtual-machines-windows-sql-server-app-patterns-dev-strategies/IC728015.png)
+![混合應用程式模式](./media/virtual-machines-windows-sql-server-app-patterns-dev-strategies/IC728015.png)
 
-If you choose to implement a combined web and application tier by using Azure Web Apps, we recommend that you keep the middle-tier or application tier as dynamic-link libraries (DLLs) in the context of a web application.
+如果您選擇使用 Azure Web 應用程式實作結合的 Web 和應用程式層，則建議您在 Web Apps 的內容中，將中間層或應用程式層保留為動態連結程式庫 (DLL)。
 
-In addition, review the recommendations given in the [Comparing web development strategies in Azure](#comparing-web-development-strategies-in-azure) section at the end of this article to learn more about programming techniques.
+此外，請查看本文結尾[比較 Azure 中的 Web 開發策略](#comparing-web-development-strategies-in-azure)一節中提供的建議，以深入了解程式設計技術。
 
-## <a name="n-tier-hybrid-application-pattern"></a>N-tier hybrid application pattern
+## 多層式架構混合式應用程式模式
 
-In n-tier hybrid application pattern, you implement your application in multiple tiers distributed between on-premises and Azure. Therefore, you create a flexible and reusable hybrid system, which you can modify or add a specific tier without changing the other tiers. To extend your corporate network to the cloud, you use [Azure Virtual Network](../virtual-network/virtual-networks-overview.md) service.
+在多層式架構混合式應用程式模式中，您會在分散於內部部署和 Azure 間的多個層中，實作應用程式。因此，您會建立有彈性且可重複使用的混合式系統，藉此修改或新增特定的層，而不必變更其他層。若要將公司網路延伸至雲端，請使用 [Azure 虛擬網路](../virtual-network/virtual-networks-overview.md)服務。
 
-This hybrid application pattern is useful when:
+若有下列情況，此混合式應用程式模式會很適用：
 
-- You want to build applications that run partly in the cloud and partly on-premises.
+- 您想要建置部分在雲端中執行，而部分在內部部署中執行的應用程式。
 
-- You want to migrate some or all elements of an existing on-premises application to the cloud.
+- 您想要將現有內部部署應用程式的部分或所有項目移轉至雲端。
 
-- You want to move enterprise applications from on-premises virtualized platforms to Azure.
+- 您想要將企業應用程式，從內部部署虛擬化平台移動到 Azure。
 
-- You want to own an infrastructure environment that can scale up and down on demand.
+- 您想要擁有可依需求相應增加和降低的基礎結構環境。
 
-- You want to quickly provision development and test environments for short periods of time.
+- 您想要在短時間內快速佈建開發和測試環境。
 
-- You want a cost effective way to take backups for enterprise database applications.
+- 您想要以符合成本效益的方式，取得企業資料庫應用程式的備份。
 
-The following diagram demonstrates an n-tier hybrid application pattern that spans across on-premises and Azure. As shown in the diagram, on-premises infrastructure includes [Active Directory Domain Services](https://technet.microsoft.com/library/hh831484.aspx) domain controller to support user authentication and authorization. Note that the diagram demonstrates a scenario, where some parts of the data tier live in an on-premises data center whereas some parts of the data tier live in Azure. Depending on your application’s needs, you can implement several other hybrid scenarios. For example, you might keep the presentation tier and the business tier in an on-premises environment but the data tier in Azure.
+下圖示範橫跨內部部署和 Azure 的多層式架構混合式應用程式模式。如圖所示，內部部署基礎結構包含 [Active Directory 網域服務](https://technet.microsoft.com/library/hh831484.aspx)網域控制站，以支援使用者驗證和授權。請注意圖示說明的案例，其中資料層的某些部分位於內部部署資料中心，而某些部分則位於 Azure。您可以根據應用程式的需求，實作數個其他混合式案例。例如，您可能需要在內部部署環境中保留展示層和商務層，但在 Azure 中保留資料層。
 
-![N-tier application pattern](./media/virtual-machines-windows-sql-server-app-patterns-dev-strategies/IC728016.png)
+![多層式架構的應用程式模式](./media/virtual-machines-windows-sql-server-app-patterns-dev-strategies/IC728016.png)
 
-In Azure, you can use Active Directory as a standalone cloud directory for your organization, or you can also integrate existing on-premises Active Directory with [Azure Active Directory](https://azure.microsoft.com/documentation/services/active-directory/). As seen in the diagram, the business tier components can access to multiple data sources, such as to [SQL Server in Azure](virtual-machines-windows-sql-server-iaas-overview.md) via a private internal IP address, to on-premises SQL Server via [Azure Virtual Network](../virtual-network/virtual-networks-overview.md), or to [SQL Database](../sql-database/sql-database-technical-overview.md) using the .NET Framework data provider technologies. In this diagram, Azure SQL Database is an optional data storage service.
+在 Azure 中，您可以使用 Active Directory 做為貴組織的獨立雲端目錄，或者您也可以將現有的內部部署 Active Directory 與 [Azure Active Directory](https://azure.microsoft.com/documentation/services/active-directory/) 整合。如圖所示，商務層元件可以存取多個資料來源，例如透過私人內部 IP 位址存取 [Azure 中的 SQL Server](virtual-machines-windows-sql-server-iaas-overview.md)，或透過 [Azure 虛擬網路](../virtual-network/virtual-networks-overview.md)存取內部部署 SQL Server，或是使用 .NET Framework 資料提供者技術存取 [SQL Database](../sql-database/sql-database-technical-overview.md)。在此圖中，Azure SQL Database 是選用的資料儲存體服務。
 
-In n-tier hybrid application pattern, you can implement the following workflow in the order specified:
+在多層式架構混合式應用程式模式中，您可以依指定的順序，實作下列工作流程：
 
-1. Identify enterprise database applications that need to be moved up to cloud by using the [Microsoft Assessment and Planning (MAP) Toolkit](http://microsoft.com/map). The MAP Toolkit gathers inventory and performance data from computers you are considering for virtualization and provides recommendations on capacity and assessment planning.
+1. 使用 [Microsoft Assessment and Planning (MAP) Toolkit](http://microsoft.com/map)，識別需要移至雲端的企業資料庫應用程式。MAP Toolkit 會從您考慮虛擬化的電腦上，收集詳細目錄和效能資料，並提供容量和評估規劃的建議。
 
-1. Plan the resources and configuration needed in the Azure platform, such as storage accounts and virtual machines.
+1. Azure 平台中需要規劃資源和組態，例如儲存體帳戶和虛擬機器。
 
-1. Set up network connectivity between the corporate network on-premises and [Azure Virtual Network](../virtual-network/virtual-networks-overview.md). To set up the connection between the corporate network on-premises and a virtual machine in Azure, use one of the following two methods:
+1. 設定公司網路內部部署和 [Azure 虛擬網路](../virtual-network/virtual-networks-overview.md)之間的網路連線。若要設定公司網路內部部署與 Azure 虛擬機器之間的連線，請使用下列兩種方法之一：
 
-    1. Establish a connection between on-premises and Azure via public end points on a virtual machine in Azure. This method provides an easy setup and enables you to use SQL Server authentication in your virtual machine. In addition, set up your network security group rules to control public traffic to the VM. For more information, see [Allow external access to your VM using the Azure portal](virtual-machines-windows-nsg-quickstart-portal.md).
+	1. 透過 Azure 虛擬機器上的公用端點，建立內部部署與 Azure 之間的連線。此方法提供簡單的設定，並可讓您在虛擬機器中使用 SQL Server 驗證。此外，請設定您的網路安全性群組規則以控制連到 VM 的公用流量。如需詳細資訊，請參閱[允許使用 Azure 入口網站從外部存取您的 VM](virtual-machines-windows-nsg-quickstart-portal.md)。
 
-    1. Establish a connection between on-premises and Azure via Azure Virtual Private network (VPN) tunnel. This method allows you to extend domain policies to a virtual machine in Azure. In addition, you can set up firewall rules and use Windows authentication in your virtual machine. Currently, Azure supports secure site-to-site VPN and point-to-site VPN connections:
+	1. 透過 Azure 虛擬私人網路 (VPN) 通道，在內部部署與 Azure 之間建立連線。此方法可讓您將網域原則延伸至 Azure 中的虛擬機器。此外，您可以設定防火牆規則，並在虛擬機器中使用 Windows 驗證。Azure 目前支援安全的網站間 VPN 和點對站 VPN 連線：
 
-        - With secure site-to-site connection, you can establish network connectivity between your on-premises network and your virtual network in Azure. It is recommended for connecting your on-premises data center environment to Azure.
+		- 您可以透過安全的網站間連線，在內部部署網路與 Azure 虛擬網路之間建立網路連線。建議您將內部部署資料中心環境連接到 Azure。
 
-        - With secure point-to-site connection, you can establish network connectivity between your virtual network in Azure and your individual computers running anywhere. It is mostly recommended for development and test purposes.
+		- 您可以透過安全的點對站連線，在 Azure 虛擬網路與在任何一處執行的電腦之間，建立網路連線。此方法多半建議用於開發和測試。
 
-    For information on how to connect to SQL Server in Azure, see [Connect to a SQL Server Virtual Machine on Azure](virtual-machines-windows-classic-sql-connect.md).
+	如需如何連接至 Azure 中 SQL Server 的資訊，請參閱[連接 Azure 上的 SQL Server 虛擬機器](virtual-machines-windows-classic-sql-connect.md)。
 
-1. Set up scheduled jobs and alerts that back up on-premises data in a virtual machine disk in Azure. For more information, see [SQL Server Backup and Restore with Azure Blob Storage Service](https://msdn.microsoft.com/library/jj919148.aspx) and [Backup and Restore for SQL Server in Azure Virtual Machines](virtual-machines-windows-sql-backup-recovery.md).
+1. 設定排定的工作和警示，以在 Azure 的虛擬機器磁碟中備份內部部署資料。如需詳細資訊，請參閱 [SQL Server 備份及還原與 Azure Blob 儲存體服務](https://msdn.microsoft.com/library/jj919148.aspx)和 [Azure 虛擬機器中的 SQL Server 備份和還原](virtual-machines-windows-sql-backup-recovery.md)。
 
-1. Depending on your application’s needs, you can implement one of the following three common scenarios:
+1. 您可以依據應用程式的需求，實作下列三種常見案例之一：
 
-    1. You can keep your web server, application server, and insensitive data in a database server in Azure whereas you keep the sensitive data on-premises.
+	1. 您可以在 Azure 中保留 Web 伺服器、應用程式伺服器及資料庫伺服器內的非機密資料，然後將機密資料保留在內部部署。
 
-    1. You can keep your web server and application server on-premises whereas the database server in a virtual machine in Azure.
+	1. 您可以將 Web 伺服器和應用程式伺服器保留在內部部署，而在 Azure 虛擬機器中保留資料庫伺服器。
 
-    1. You can keep your database server, web server, and application server on-premises whereas you keep the database replicas in virtual machines in Azure. This setting allows the on-premises web servers or reporting applications to access the database replicas in Azure. Therefore, you can achieve to lower the workload in an on-premises database. We recommend that you implement this scenario for heavy read workloads and developmental purposes. For information on creating database replicas in Azure, see AlwaysOn Availability Groups at [High Availability and Disaster Recovery for SQL Server in Azure Virtual Machines](virtual-machines-windows-sql-high-availability-dr.md).
+	1. 您可以將資料庫伺服器、Web 伺服器和應用程式伺服器保留在內部部署，而在 Azure 虛擬機器中保留資料庫複本。此設定可讓內部部署 Web 伺服器或報告應用程式存取 Azure 中的資料庫複本。因此，您可以在內部部署資料庫中達到較低的工作負載。我們建議您針對讀取密集的工作負載和開發用途，實作此案例。如需在 Azure 中建立資料庫複本的資訊，請參閱 [Azure 虛擬機器中的 SQL Server 高可用性和災害復原](virtual-machines-windows-sql-high-availability-dr.md)中的「AlwaysOn 可用性群組」。
 
-## <a name="comparing-web-development-strategies-in-azure"></a>Comparing web development strategies in Azure
+## 比較 Azure 中的 Web 開發策略
 
-To implement and deploy a multi-tier SQL Server-based application in Azure, you can use one of the following two programming methods:
+若要在 Azure 中實作和部署以多層式 SQL Server 為基礎的應用程式，您可以使用下列兩種程式設計方法其中之一：
 
-- Set up a traditional web server (IIS - Internet Information Services) in Azure and access databases in SQL Server in Azure Virtual Machines.
+- 在 Azure 中設定傳統 Web 伺服器 (IIS - 網際網路資訊服務)，並存取位於 Azure 虛擬機器中 SQL Server 內的資料庫。
 
-- Implement and deploy a cloud service to Azure. Then, make sure that this cloud service can access databases in SQL Server in Azure Virtual machines. A cloud service can include multiple web and worker roles.
+- 實作雲端服務並將其部署至 Azure。然後請確定此雲端服務可以存取 Azure 虛擬機器中 SQL Server 內的資料庫。雲端服務可以包含多個 Web 角色和背景工作角色。
 
-The following table provides a comparison of traditional web development with Azure Cloud Services and Azure Web Apps with respect to SQL Server in Azure Virtual Machines. The table includes Azure Web Apps as it is possible to use SQL Server in Azure VM as a data source for Azure Web Apps via its public virtual IP address or DNS name.
+關於 Azure 虛擬機器中的 SQL Server，下表提供傳統 Web 開發與 Azure 雲端服務和 Azure Web Apps 的比較。表格中包含 Azure Web Apps，因為它可以透過其公用虛擬 IP 位址或 DNS 名稱，使用 Azure VM 中的 SQL Server 當做 Azure Web Apps 的資料來源。
 
-||Traditional web development in Azure Virtual Machines|Cloud Services in Azure|Web Hosting with Azure Web Apps|
+||Azure 虛擬機器中的傳統 Web 開發|Azure 中的雲端服務|虛擬主機與 Azure Web Apps|
 |---|---|---|---|
-|**Application Migration from on-premises**|Existing applications as-is.|Applications need web and worker roles.|Existing applications as-is but suited for self-contained web applications and web services that require quick scalability.|
-|**Development and Deployment**|Visual Studio, WebMatrix, Visual Web Developer, WebDeploy, FTP, TFS, IIS Manager, PowerShell.|Visual Studio, Azure SDK, TFS, PowerShell. Each cloud service has two environments to which you can deploy your service package and configuration: staging and production. You can deploy a cloud service to the staging environment to test it before you promote it to production.|Visual Studio, WebMatrix, Visual Web Developer, FTP, GIT, BitBucket, CodePlex, DropBox, GitHub, Mercurial, TFS, Web Deploy, PowerShell.|
-|**Administration and Setup**|You are responsible for administrative tasks on the application, data, firewall rules, virtual network, and operating system.|You are responsible for administrative tasks on the application, data, firewall rules, and virtual network.|You are responsible for administrative tasks on the application and data only.|
-|**High Availability and Disaster Recovery (HADR)**|We recommend that you place virtual machines in the same availability set and in the same cloud service. Keeping your VMs in the same availability set allows Azure to place the high availability nodes into separate fault domains and upgrade domains. Similarly, keeping your VMs in the same cloud service enables load balancing and VMs can communicate directly with one another over the local network within an Azure data center.<br/><br/>You are responsible for implementing a high availability and disaster recovery solution for SQL Server in Azure Virtual Machines to avoid any downtime. For supported HADR technologies, see [High Availability and Disaster Recovery for SQL Server in Azure Virtual Machines](virtual-machines-windows-sql-high-availability-dr.md).<br/><br/>You are responsible for backing up your own data and application.<br/><br/>Azure can move your virtual machines if the host machine in the data center fails due to hardware issues. In addition, there could be planned downtime of your VM when the host machine is updated for security or software updates. Therefore, we recommend that you maintain at least two VMs in each application tier to ensure the continuous availability. Azure does not provide SLA for a single virtual machine. For more information, see [Azure resiliency technical guidance](../resiliency/resiliency-technical-guidance.md).|Azure manages the failures resulting from the underlying hardware or operating system software. We recommend that you implement multiple instances of a web or worker role to ensure the high availability of your application. For information, see [Cloud Services, Virtual Machines, and Virtual Network Service Level Agreement](http://www.microsoft.com/download/details.aspx?id=38427) and [Disaster recovery and high availability for Azure applications](../resiliency/resiliency-disaster-recovery-high-availability-azure-applications.md)<br/><br/>You are responsible for backing up your own data and application.<br/><br/>For databases residing in a SQL Server database in an Azure VM, you are responsible for implementing a high availability and disaster recovery solution to avoid any downtime. For supported HDAR technologies, see High Availability and Disaster Recovery for SQL Server in Azure Virtual Machines.<br/><br/>**SQL Server Database Mirroring**: Use with Azure Cloud Services (web/worker roles). SQL Server VMs and a cloud service project can be in the same Azure Virtual Network. If SQL Server VM is not in the same Virtual Network, you need to create a SQL Server Alias to route communication to the instance of SQL Server. In addition, the alias name must match the SQL Server name.|High Availability is inherited from Azure worker roles, Azure blob storage, and Azure SQL Database. For example, Azure Storage maintains three replicas of all blob, table, and queue data. At any one time, Azure SQL Database keeps three replicas of data running—one primary replica and two secondary replicas. For more information, see [Azure Storage](https://azure.microsoft.com/documentation/services/storage/) and [Azure SQL Database](../sql-database/sql-database-technical-overview.md).<br/><br/>When using SQL Server in Azure VM as a data source for Azure Web Apps, keep in mind that Azure Web Apps does not support Azure Virtual Network. In other words, all connections from Azure Web Apps to SQL Server VMs in Azure must go through public end points of virtual machines. This might cause some limitations for high availability and disaster recovery scenarios. For example, the client application on Azure Web Apps connecting to SQL Server VM with database mirroring would not be able to connect to the new primary server as database mirroring requires that you set up Azure Virtual Network between SQL Server host VMs in Azure. Therefore, using **SQL Server Database Mirroring** with Azure Web Apps is not supported currently.<br/><br/>**SQL Server AlwaysOn Availability Groups**: You can set up AlwaysOn Availability Groups when using Azure Web Apps with SQL Server VMs in Azure. But you need to configure AlwaysOn Availability Group Listener to route the communication to the primary replica via public load-balanced endpoints.|
-|**Cross-premise Connectivity**|You can use Azure Virtual Network to connect to on-premises.|You can use Azure Virtual Network to connect to on-premises.|Azure Virtual Network is supported. For more information, see [Web Apps Virtual Network Integration](https://azure.microsoft.com/blog/2014/09/15/azure-websites-virtual-network-integration/).|
-|**Scalability**|Scale-up is available by increasing the virtual machine sizes or adding more disks. For more information about virtual machine sizes, see [Virtual Machine Sizes for Azure](virtual-machines-windows-sizes.md).<br/><br/>**For Database Server**: Scale-out is available via database partitioning techniques and SQL Server AlwaysOn Availability groups.<br/><br/>For heavy read workloads, you can use [AlwaysOn Availability Groups](https://msdn.microsoft.com/library/hh510230.aspx) on multiple secondary nodes as well as SQL Server Replication.<br/><br/>For heavy write workloads, you can implement horizontal partitioning data across multiple physical servers to provide application scale-out.<br/><br/>In addition, you can implement a scale-out by using [SQL Server with Data Dependent Routing](https://technet.microsoft.com/library/cc966448.aspx). With Data Dependent Routing (DDR), you need to implement the partitioning mechanism in the client application, typically in the business tier layer, to route the database requests to multiple SQL Server nodes. The business tier contains mappings to how the data is partitioned and which node contains the data.<br/><br/>You can scale applications that are running virtual machines. For more information, see [How to Scale an Application](../cloud-services/cloud-services-how-to-scale.md).<br/><br/>**Important Note**: The **AutoScale** feature in Azure allows you to automatically increase or decrease the Virtual Machines that are used by your application. This feature guarantees that the end-user experience is not affected negatively during peak periods, and VMs are shut down when the demand is low. It’s recommended that you do not set the AutoScale option for your cloud service if it includes SQL Server VMs. The reason is that the AutoScale feature lets Azure to turn on a virtual machine when the CPU usage in that VM is higher than some threshold, and to turn off a virtual machine when the CPU usage goes lower than it. The AutoScale feature is useful for stateless applications, such as web servers, where any VM can manage the workload without any references to any previous state. However, the AutoScale feature is not useful for stateful applications, such as SQL Server, where only one instance allows writing to the database.|Scale-up is available by using multiple web and worker roles. For more information about virtual machine sizes for web roles and worker roles, see [Configure Sizes for Cloud Services](../cloud-services/cloud-services-sizes-specs.md).<br/><br/>When using **Cloud Services**, you can define multiple roles to distribute processing and also achieve flexible scaling of your application. Each cloud service includes one or more web roles and/or worker roles, each with its own application files and configuration. You can scale-up a cloud service by increasing the number of role instances (virtual machines) deployed for a role and scale-down a cloud service by decreasing the number of role instances. For detailed information, see [Azure Execution Models](../cloud-services/cloud-services-choose-me.md).<br/><br/>Scale-out is available via built-in Azure high availability support through [Cloud Services, Virtual Machines, and Virtual Network Service Level Agreement](http://www.microsoft.com/download/details.aspx?id=38427) and Load Balancer.<br/><br/>For a multi-tier application, we recommend that you connect web/worker roles application to database server VMs via Azure Virtual Network. In addition, Azure provides load balancing for VMs in the same cloud service, spreading user requests across them. Virtual machines connected in this way can communicate directly with one another over the local network within an Azure data center.<br/><br/>You can set up **AutoScale** on the Azure classic portal as well as the schedule times. For more information, see [How to Scale an Application](../cloud-services/cloud-services-how-to-scale.md).|**Scale up and down**: You can increase/decrease the size of the instance (VM) reserved for your web site.<br/><br/>Scale out: You can add more reserved instances (VMs) for your web site.<br/><br/>You can set up **AutoScale** on the portal as well as the schedule times. For more information, see [How to Scale Web Apps](../app-service-web/web-sites-scale.md).|
+|**從內部部署進行應用程式移轉**|現有的應用程式維持不變。|應用程式需要 Web 角色和背景工作角色。|現有的應用程式維持不變，但仍適用於需要快速擴充的獨立式 Web 應用程式和 Web 服務。|
+|**開發和部署**|Visual Studio、WebMatrix、Visual Web Developer、WebDeploy、FTP、TFS、IIS Manager，PowerShell。|Visual Studio、Azure SDK、TFS，PowerShell。每一個雲端服務都有兩個環境，可供您部署服務封裝和組態：預備環境和生產環境。在將雲端服務升級到生產環境之前，您可以先在預備環境中測試雲端服務。|Visual Studio、WebMatrix、Visual Web Developer、FTP、GIT、BitBucket、CodePlex、DropBox、GitHub、Mercurial、TFS、Web Deploy、PowerShell。|
+|**系統管理和設定**|您必須負責應用程式、資料、防火牆規則、虛擬網路，和作業系統上的系統管理工作。|您必須負責應用程式、資料、防火牆規則，和虛擬網路上的系統管理工作。|您只需負責應用程式和資料的系統管理工作。|
+|**高可用性和災害復原 (HADR)**|建議您將虛擬機器放置於相同的可用性設定組和相同的雲端服務中。將 VM 置於相同的可用性設定組中，可讓 Azure 將高可用性節點放入分隔的容錯網域和升級網域。同樣地，將 VM 放在相同雲端服務中，可實現負載平衡，而 VM 之間可以透過 Azure 資料中心內的本機網路直接與彼此通訊。<br/><br/>您負責針對 Azure 虛擬機器中的 SQL Server，實作高可用性和災害復原解決方案，以免遇到任何停機狀況。如需支援的 HADR 技術，請參閱 [Azure 虛擬機器中的 SQL Server 高可用性和災害復原](virtual-machines-windows-sql-high-availability-dr.md)。<br/><br/>您負責備份自己的資料和應用程式。<br/><br/>如果資料中心內的主機電腦因為硬體問題而故障，Azure 可以移動虛擬機器。此外，當主機電腦因安全性或軟體更新而有更新時，VM 可能會按計劃停機。因此，建議您在每個應用程式層中至少維護兩個 VM，以確保持續可用性。Azure 沒有為單一虛擬機器提供 SLA。如需詳細資訊，請參閱 [Azure 復原技術指導](../resiliency/resiliency-technical-guidance.md)。|Azure 會管理從基礎硬體或作業系統軟體導致的失敗。我們建議您實作多個 Web 角色或背景工作角色執行個體，以確保應用程式的高可用性。如需詳細資訊，請參閱[雲端服務、虛擬機器和虛擬網路服務等級協定](http://www.microsoft.com/download/details.aspx?id=38427)和 [Azure 應用程式的災害復原與高可用性](../resiliency/resiliency-disaster-recovery-high-availability-azure-applications.md)<br/><br/>您必須負責備份自己的資料和應用程式。<br/><br/>針對位於 Azure VM 中 SQL Server 資料庫內的資料庫，您必須負責實作高可用性和災害復原解決方案，以免遇到任何停機情況。如需支援的 HADR 技術，請參閱＜Azure 虛擬機器中的 SQL Server 高可用性和災害復原＞。<br/><br/>**SQL Server 資料庫鏡像**：搭配 Azure 雲端服務 (Web 角色/背景工作角色) 使用。SQL Server VM 和雲端服務專案可位於相同的 Azure 虛擬網路。如果 SQL Server VM 不在相同的虛擬網路中，您便必須建立 SQL Server 別名，以將通訊路由傳送至 SQL Server 執行個體。此外，別名必須與 SQL Server 名稱相符。|高可用性是繼承自 Azure 背景工作角色、Azure Blob 儲存體和 Azure SQL Database。例如，Azure 儲存體會維護所有 Blob、資料表和佇列資料的三個複本。不論何時，Azure SQL Database 都會保留三個執行中的資料複本—一個主要複本和兩個次要複本。如需詳細資訊，請參閱 [Azure 儲存體](https://azure.microsoft.com/documentation/services/storage/)和 [Azure SQL Database](../sql-database/sql-database-technical-overview.md)。<br/><br/>使用 Azure VM 中的 SQL Server 當做 Azure Web Apps 的資料來源時，請記住，Azure Web 應用程式不支援 Azure 虛擬網路。換言之，從 Azure Web Apps 到 Azure 中 SQL Server VM 的所有連線，都必須透過虛擬機器的公用端點。這可能會對高可用性和災害復原案例造成一些限制。例如，在 Azure Web Apps 上使用資料庫鏡像連接到 SQL Server VM 的用戶端應用程式，會無法連接至新的主要伺服器，因為您必須在 Azure 中的 SQL Server 主機 VM 之間設定 Azure 虛擬網路才能使用資料庫鏡像。因此，目前不支援搭配 Azure Web Apps 使用「SQL Server 資料庫鏡像」。<br/><br/>**SQL Server AlwaysOn 可用性群組**：搭配 Azure 中的 SQL Server VM 使用 Azure Web Apps 時，可以設定「AlwaysOn 可用性群組」。但您必須設定 AlwaysOn 可用性群組接聽程式，將通訊透過公用負載平衡的端點路由至主要複本。|
+|**跨單位連線**|您可以使用 Azure 虛擬網路連線到內部部署。|您可以使用 Azure 虛擬網路連線到內部部署。|支援 Azure 虛擬網路。如需詳細資訊，請參閱 [Web Apps Virtual Network Integration (Web Apps 虛擬網路整合)](https://azure.microsoft.com/blog/2014/09/15/azure-websites-virtual-network-integration/)。|
+|**延展性**|可透過增加虛擬機器大小或新增更多硬碟來相應增加。如需有關虛擬機器大小的詳細資訊，請參閱 [Azure 的虛擬機器大小](virtual-machines-windows-sizes.md)。<br/><br/>**針對資料庫伺服器**：向外延展可透過資料庫資料分割技術和「SQL Server AlwaysOn 可用性群組」來進行。<br/><br/>針對需要大量讀取的工作負載，您可以在多個次要節點及「SQL Server 複寫」上使用 [AlwaysOn 可用性群組](https://msdn.microsoft.com/library/hh510230.aspx)。<br/><br/>針對需要大量寫入的工作負載，您可以在多個實體伺服器上實作水平分割資料，以向外延展應用程式。<br/><br/>此外，您還可以使用 [SQL Server 搭配資料依存路由](https://technet.microsoft.com/library/cc966448.aspx)來實作向外延展。使用資料依存路由 (DDR) 時，您必須在用戶端應用程式 (通常是在商務層) 中，實作資料分割機制，以將資料庫要求路由傳送至多個 SQL Server 節點。商務層中包含如何分割資料，以及哪個節點包含資料的對應。<br/><br/>您可以為執行虛擬機器的應用程式調整規模。如需詳細資訊，請參閱[如何調整應用程式](../cloud-services/cloud-services-how-to-scale.md)。<br/><br/>**重要注意事項**：Azure 中的「自動調整規模」功能可讓您自動增加或減少應用程式所使用的虛擬機器數量。這項功能可保證使用者的體驗不會在尖峰期間受到影響，且 VM 不會在需求降低時關機。如果雲端服務含有 SQL Server VM，建議您不要為雲端服務設定「自動調整規模」選項。原因是「自動調整規模」功能會讓 Azure 在該 VM 中的 CPU 使用率高於某個臨界值時，開啟虛擬機器；以及在 CPU 使用率低於該臨界值時，關閉虛擬機器。「自動調整規模」功能對於無狀態的應用很實用，例如 Web 伺服器，其中所有 VM 均可管理工作負載，且不用參考任何先前的狀態。但「自動調整規模」功能不適用於可設定狀態的應用程式，例如 SQL Server，其中只有一個執行個體允許寫入資料庫。|透過使用多個 Web 角色和背景工作角色來相應增加。如需 Web 角色和背景工作角色的虛擬機器大小的詳細資訊，請參閱[設定雲端服務大小](../cloud-services/cloud-services-sizes-specs.md)。<br/><br/>使用 **雲端服務**時，您可以定義多個角色來分散處理，也能彈性調整應用程式。每個雲端服務包含一或多個 Web 角色和/或背景工作角色，且各有自己的應用程式檔案和組態。您可以增加針對某個角色而部署的角色執行個體 (虛擬機器) 數目，藉此調升雲端服務的規模；或是減少角色執行個體數目，以調降雲端服務的規模。如需詳細資訊，請參閱 [Azure 執行模型](../cloud-services/cloud-services-choose-me.md)。<br/><br/>若要向外延展，可透過[雲端服務、虛擬機器和虛擬網路服務等級協定](http://www.microsoft.com/download/details.aspx?id=38427)以及負載平衡器，利用內建的 Azure 高可用性支援進行。<br/><br/>針對多層式應用程式，建議您透過「Azure 虛擬網路」，將 Web 角色/背景工作角色應用程式連接至資料庫伺服器 VM。此外，Azure 會為相同雲端服務中的 VM 提供負載平衡，以平均分配使用者要求。虛擬機器之間可用這種方式，透過 Azure 資料中心內的本機網路彼此連接並直接通訊。<br/><br/>您可以在 Azure 傳統入口網站中設定**自動調整規模**，以及排程時間。如需詳細資訊，請參閱[如何調整應用程式](../cloud-services/cloud-services-how-to-scale.md)。|**相應增加與相應減少**：您可以增加/減少為網站保留的執行個體 (VM) 大小。<br/><br/>相應放大：您可以為網站新增更多保留的執行個體 (VM)。<br/><br/>您可以在入口網站中設定「自動調整規模」以及排程時間。如需詳細資訊，請參閱[何調整 Web Apps](../app-service-web/web-sites-scale.md)。|
 
-For more information on choosing between these programming methods, see [Azure Web Apps, Cloud Services, and VMs: When to use which](../app-service-web/choose-web-site-cloud-service-vm.md).
+如需有關如何在這些程式設計方法之間做選擇的詳細資訊，請參閱 [Azure Web Apps、雲端服務和 VM：每一項的使用時機](../app-service-web/choose-web-site-cloud-service-vm.md)。
 
-## <a name="next-steps"></a>Next Steps
+## 後續步驟
 
-For more information on running SQL Server in Azure Virtual machines, see [SQL Server on Azure Virtual Machines Overview](virtual-machines-windows-sql-server-iaas-overview.md).
+如需在 Azure 虛擬機器中執行 SQL Server 的詳細資訊，請參閱 [Azure 虛擬機器上的 SQL Server 概觀](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

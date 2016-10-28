@@ -1,138 +1,137 @@
 <properties 
-    pageTitle="How to delegate user registration and product subscription" 
-    description="Learn how to delegate user registration and product subscription to a third party in Azure API Management." 
-    services="api-management" 
-    documentationCenter="" 
-    authors="antonba" 
-    manager="erikre" 
-    editor=""/>
+	pageTitle="如何委派使用者註冊和產品訂閱" 
+	description="了解如何在 Azure API Management 中將使用者註冊和產品訂閱委派給第三方。" 
+	services="api-management" 
+	documentationCenter="" 
+	authors="antonba" 
+	manager="erikre" 
+	editor=""/>
 
 <tags 
-    ms.service="api-management" 
-    ms.workload="mobile" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="10/25/2016" 
-    ms.author="antonba"/>
+	ms.service="api-management" 
+	ms.workload="mobile" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="08/09/2016" 
+	ms.author="antonba"/>
+
+# 如何委派使用者註冊和產品訂閱
+
+委派可讓您使用現有的網站來處理開發人員登入/註冊和產品訂閱，而非使用開發人員入口網站中的內建功能。這樣可讓您的網站擁有使用者資料，並以自訂方式來執行這些步驟的驗證。
+
+## <a name="delegate-signin-up"> </a>委派開發人員登入和註冊
+
+若要將開發人員登入和註冊委派給您現有的網站，您必須在網站上建立特殊的委派端點，作為從 API 管理開發人員入口網站起始的任何這類要求的進入點。
+
+最終工作流程如下所示：
+
+1. 開發人員在 API 管理開發人員入口網站按一下登入或註冊連結
+2. 瀏覽器重新導向至委派端點
+3. 委派端點再轉而重新導向至或呈現 UI，要求使用者登入或註冊
+4. 成功時，將使用者重新導向回到他們所來自的 API 管理開發人員入口網站頁面
 
 
-# <a name="how-to-delegate-user-registration-and-product-subscription"></a>How to delegate user registration and product subscription
-
-Delegation allows you to use your existing website for handling developer sign-in/sign-up and subscription to products as opposed to using the built-in functionality in the developer portal. This enables your website to own the user data and perform the validation of these steps in a custom way.
-
-## <a name="<a-name="delegate-signin-up">-</a>delegating-developer-sign-in-and-sign-up"></a><a name="delegate-signin-up"> </a>Delegating developer sign-in and sign-up
-
-To delegate developer sign-in and sign-up to your existing website you will need to create a special delegation endpoint on your site that acts as the entry-point for any such request initiated from the API Management developer portal.
-
-The final workflow will be as follows:
-
-1. Developer clicks on the sign-in or sign-up link at the API Management developer portal
-2. Browser is redirected to the delegation endpoint
-3. Delegation endpoint in return redirects to or presents UI asking user to sign-in or sign-up
-4. On success, the user is redirected back to the API Management developer portal page they started from
-
-
-To begin, let's first set-up API Management to route requests via your delegation endpoint. In the API Management publisher portal, click on **Security** and then click the **Delegation** tab. Click the checkbox to enable 'Delegate sign-in & sign-up'.
+首先，請設定 API 管理透過委派端點來傳遞要求。在 API 管理發行者入口網站中，按一下 [**安全性**]，然後按一下 [**委派**] 索引標籤。按一下核取方塊以啟用 [Delegate sign-in & sign-up]。
 
 ![Delegation page][api-management-delegation-signin-up]
 
-* Decide what the URL of your special delegation endpoint will be and enter it in the **Delegation endpoint URL** field. 
+* 決定特殊委派端點的 URL，並在 [**Delegation endpoint URL**] 欄位中輸入。
 
-* Within the **Delegation authentication key** field enter a secret that will be used to compute a signature provided to you for verification to ensure that the request is indeed coming from Azure API Management. You can click the **generate** button to have API Managemnet randomly generate a key for you.
+* 在 [**Delegation authentication key**] 欄位中輸入密碼，用來計算提供給您驗證的簽章，以確定要求確實來自 Azure API 管理。您可以按一下 [**產生**] 按鈕，讓 API 管理為您隨機產生金鑰。
 
-Now you need to create the **delegation endpoint**. It has to perform a number of actions:
+現在您需要建立「**委派端點**」。必須執行一些動作：
 
-1. Receive a request in the following form:
+1. 接收下列形式的要求：
 
-    > *http://www.yourwebsite.com/apimdelegation?operation=SignIn&returnUrl={URL of source page}&salt={string}&sig={string}*
+	> *http://www.yourwebsite.com/apimdelegation?operation=SignIn&returnUrl={URL of source page}&salt={string}&sig={string}*
 
-    Query parameters for the sign-in / sign-up case:
-    - **operation**: identifies what type of delegation request it is - it can only be **SignIn** in this case
-    - **returnUrl**: the URL of the page where the user clicked on a sign-in or sign-up link
-    - **salt**: a special salt string used for computing a security hash
-    - **sig**: a computed security hash to be used for comparison to your own computed hash
+	登入/註冊案例的查詢參數：
+	- **operation**：識別委派要求的類型 - 在此案例中只能是 **SignIn**
+	- **returnUrl**：使用者按一下登入或註冊連結之頁面的 URL
+	- **salt**：特殊 salt 字串，用於計算安全性雜湊
+	- **sig**：已經過計算的安全性雜湊，用於和您已計算的雜湊進行比較
 
-2. Verify that the request is coming from Azure API Management (optional, but highly recommended for security)
+2. 確認要求來自 Azure API 管理 (選擇性，但基於安全性理由，強烈建議這麼做)
 
-    * Compute an HMAC-SHA512 hash of a string based on the **returnUrl** and **salt** query parameters ([example code provided below]):
-        > HMAC(**salt** + '\n' + **returnUrl**)
-         
-    * Compare the above-computed hash to the value of the **sig** query parameter. If the two hashes match, move on to the next step, otherwise deny the request.
+	* 根據 **returnUrl** 和 **salt** 查詢參數，計算字串的 HMAC-SHA512 雜湊 ([以下提供範例程式碼])：
+        > HMAC(**salt** + '\\n' + **returnUrl**)
+		 
+	* 比較以上計算的雜湊和 **sig** 查詢參數的值。如果兩個雜湊相符，則繼續下一步，否則拒絕要求。
 
-2. Verify that you are receiving a request for sign-in/sign-up: the **operation** query parameter will be set to "**SignIn**".
+2. 確認您收到的是登入/註冊要求：**operation** 查詢參數會設為 "**SignIn**"。
 
-3. Present the user with UI to sign-in or sign-up
+3. 顯示 UI 讓使用者登入或註冊
 
-4. If the user is signing-up you have to create a corresponding account for them in API Management. [Create a user] with the API Management REST API. When doing so, ensure that you set the user ID to the same it is in your user store or to an ID that you can keep track of.
+4. 如果使用者要註冊，您必須在 API 管理中為他們建立對應的帳戶。使用 API Management REST API [建立使用者]。這樣做時，請確定您所設定的使用者識別碼與使用者存放區中的識別碼相同，或與您可追蹤的識別碼相同。
 
-5. When the user is successfully authenticated:
+5. 成功驗證使用者之後：
 
-    * [request a single-sign-on (SSO) token] via the API Management REST API
+	* 透過 API Management REST API [要求單一登入 (SSO) 權杖]
 
-    * append a returnUrl query parameter to the SSO URL you have received from the API call above:
-        > e.g. https://customer.portal.azure-api.net/signin-sso?token&returnUrl=/return/url 
+	* 將 returnUrl 查詢參數附加至您從上述 API 呼叫收到的 SSO URL：
+		> 例如 https://customer.portal.azure-api.net/signin-sso?token&returnUrl=/return/url
 
-    * redirect the user to the above produced URL
+	* 將使用者重新導向至以上產生的 URL
 
-In addition to the **SignIn** operation, you can also perform account management by following the previous steps and using one of the following operations.
+除了 **SignIn** 作業之外，您也可以遵循上述步驟來執行帳戶管理，並使用以下其中一項作業。
 
--   **ChangePassword**
--   **ChangeProfile**
--   **CloseAccount**
+-	**ChangePassword**
+-	**ChangeProfile**
+-	**CloseAccount**
 
-You must pass the following query parameters for account management operations.
+您必須傳遞下列查詢參數，供帳戶管理作業使用。
 
--   **operation**: identifies what type of delegation request it is (ChangePassword, ChangeProfile, or CloseAccount)
--   **userId**: the user id of the account to manage
--   **salt**: a special salt string used for computing a security hash
--   **sig**: a computed security hash to be used for comparison to your own computed hash
+-	**operation**：識別委派要求的類型 (ChangePassword、ChangeProfile 或 CloseAccount)
+-	**userId**：要管理之帳戶的使用者 ID
+-	**salt**：特殊 salt 字串，用於計算安全性雜湊
+-	**sig**：已經過計算的安全性雜湊，用於和您已計算的雜湊進行比較
 
-## <a name="<a-name="delegate-product-subscription">-</a>delegating-product-subscription"></a><a name="delegate-product-subscription"> </a>Delegating product subscription
+## <a name="delegate-product-subscription"> </a>委派產品訂閱
 
-Delegating product subscription works similarly to delegating user sign-in/-up. The final workflow would be as follows:
+委派產品訂閱的作法類似於委派使用者登入/註冊。最終工作流程如下所示：
 
-1. Developer selects a product in the API Management developer portal and clicks on the Subscribe button
-2. Browser is redirected to the delegation endpoint
-3. Delegation endpoint performs required product subscription steps - this is up to you and may entail redirecting to another page to request billing information, asking additional questions, or simply storing the information and not requiring any user action
-
-
-To enable the functionality, on the **Delegation** page click **Delegate product subscription**.
-
-Then ensure the delegation endpoint performs the following actions:
+1. 開發人員在 API 管理開發人員入口網站中選取產品，然後按一下 [訂閱] 按鈕
+2. 瀏覽器重新導向至委派端點
+3. 委派端點執行必要的產品訂閱步驟 - 這由您決定，可能需要重新導向至另一個頁面來要求帳單資訊、詢問其他問題，或只是儲存資訊而不要求任何使用者動作
 
 
-1. Receive a request in the following form:
+若要啟用此功能，請在 [委派] 頁面按一下 [Delegate product subscription]。
 
-    > *http://www.yourwebsite.com/apimdelegation?operation={operation}&productId={product to subscribe to}&userId={user making request}&salt={string}&sig={string}*
-
-    Query parameters for the product subscription case:
-    - **operation**: identifies what type of delegation request it is. For product subscription requests the valid options are:
-        - "Subscribe": a request to subscribe the user to a given product with provided ID (see below)
-        - "Unsubscribe": a request to unsubscribe a user from a product
-        - "Renew": a requst to renew a subscription (e.g. that may be expiring)
-    - **productId**: the ID of the product the user requested to subscribe to
-    - **userId**: the ID of the user for whom the request is made
-    - **salt**: a special salt string used for computing a security hash
-    - **sig**: a computed security hash to be used for comparison to your own computed hash
+然後，確定委派端點會執行下列動作：
 
 
-2. Verify that the request is coming from Azure API Management (optional, but highly recommended for security)
+1. 接收下列形式的要求：
 
-    * Compute an HMAC-SHA512 of a string based on the **productId**, **userId** and **salt** query parameters:
-        > HMAC(**salt** + '\n' + **productId** + '\n' + **userId**)
-         
-    * Compare the above-computed hash to the value of the **sig** query parameter. If the two hashes match, move on to the next step, otherwise deny the request.
-    
-3. Perform any product subscription processing based on the type of operation requested in **operation** - e.g. billing, further questions, etc.
+	> *http://www.yourwebsite.com/apimdelegation?operation={operation}&productId={product to subscribe to}&userId={user making request}&salt={string}&sig={string}*
 
-4. On successfully subscribing the user to the product on your side, subscribe the user to the API Management product by [calling the REST API for product subscription].
+	產品訂閱案例的查詢參數：
+	- **operation**：識別委派要求的類型。對於產品訂閱要求，有效的選項包括：
+		- "Subscribe"：為使用者訂閱具有提供之識別碼的 (請參閱下面) 指定產品的要求
+		- "Unsubscribe"：將為使用者取消訂閱產品的要求
+		- "Renew"：續約訂閱的要求 (例如，可能過期)
+	- **productId**：使用者要求訂閱之產品的識別碼
+	- **userId**：提出要求之使用者的識別碼
+	- **salt**：特殊 salt 字串，用於計算安全性雜湊
+	- **sig**：已經過計算的安全性雜湊，用於和您已計算的雜湊進行比較
 
-## <a name="<a-name="delegate-example-code">-</a>-example-code"></a><a name="delegate-example-code"> </a> Example Code ##
 
-These code samples show how to take the *delegation validation key*, which is set in the Delegation screen of the publisher portal, to create a HMAC which is then used to validate the signature, proving the validity of the passed returnUrl. The same code works for the productId and userId with slight modification.
+2. 確認要求來自 Azure API 管理 (選擇性，但基於安全性理由，強烈建議這麼做)
 
-**C# code to generate hash of returnUrl**
+	* 根據 **productId**、**userId** 和 **salt** 查詢字串，計算字串的 HMAC-SHA512：
+		> HMAC(**salt** + '\\n' + **productId** + '\\n' + **userId**)
+		 
+	* 比較以上計算的雜湊和 **sig** 查詢參數的值。如果兩個雜湊相符，則繼續下一步，否則拒絕要求。
+	
+3. 根據 **operation** 中要求的操作類型 (例如帳單、進一步的問題等)，執行任何產品訂閱處理
+
+4. 當使用者在您這邊成功訂閱產品時，[呼叫 REST API 來訂閱產品]，讓使用者訂閱 API 管理產品。
+
+## <a name="delegate-example-code"> </a> 範例程式碼 ##
+
+這些程式碼範例示範如何取得「委派驗證金鑰」 (在發行者入口網站的 [委派] 畫面中設定)，以建立隨後用於驗證簽章的 HMAC，藉此證明所傳遞之 returnUrl 的有效性。相同的程式碼稍微修改一下後，也適用於 productId 和 userId。
+
+**產生 returnUrl 雜湊的 C# 程式碼**
 
     using System.Security.Cryptography;
 
@@ -148,38 +147,35 @@ These code samples show how to take the *delegation validation key*, which is se
     }
 
 
-**NodeJS code to generate hash of returnUrl**
+**產生 returnUrl 雜湊的 NodeJS 程式碼**
 
-    var crypto = require('crypto');
-    
-    var key = 'delegation validation key'; 
-    var returnUrl = 'returnUrl query parameter';
-    var salt = 'salt query parameter';
-    
-    var hmac = crypto.createHmac('sha512', new Buffer(key, 'base64'));
-    var digest = hmac.update(salt + '\n' + returnUrl).digest();
+	var crypto = require('crypto');
+	
+	var key = 'delegation validation key'; 
+	var returnUrl = 'returnUrl query parameter';
+	var salt = 'salt query parameter';
+	
+	var hmac = crypto.createHmac('sha512', new Buffer(key, 'base64'));
+	var digest = hmac.update(salt + '\n' + returnUrl).digest();
     // change to (salt + "\n" + productId + "\n" + userId) when delegating product subscription
     // compare signature to sig query parameter
-    
-    var signature = digest.toString('base64');
+	
+	var signature = digest.toString('base64');
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-For more information on delegation, see the following video.
+如需委派的詳細資訊，請觀看以下影片。
 
 > [AZURE.VIDEO delegating-user-authentication-and-product-subscription-to-a-3rd-party-site]
 
 [Delegating developer sign-in and sign-up]: #delegate-signin-up
 [Delegating product subscription]: #delegate-product-subscription
-[request a single-sign-on (SSO) token]: http://go.microsoft.com/fwlink/?LinkId=507409
-[create a user]: http://go.microsoft.com/fwlink/?LinkId=507655#CreateUser
-[calling the REST API for product subscription]: http://go.microsoft.com/fwlink/?LinkId=507655#SSO
+[要求單一登入 (SSO) 權杖]: http://go.microsoft.com/fwlink/?LinkId=507409
+[建立使用者]: http://go.microsoft.com/fwlink/?LinkId=507655#CreateUser
+[呼叫 REST API 來訂閱產品]: http://go.microsoft.com/fwlink/?LinkId=507655#SSO
 [Next steps]: #next-steps
-[example code provided below]: #delegate-example-code
+[以下提供範例程式碼]: #delegate-example-code
 
-[api-management-delegation-signin-up]: ./media/api-management-howto-setup-delegation/api-management-delegation-signin-up.png 
+[api-management-delegation-signin-up]: ./media/api-management-howto-setup-delegation/api-management-delegation-signin-up.png
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

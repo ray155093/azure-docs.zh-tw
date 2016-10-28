@@ -1,208 +1,203 @@
 <properties
-    pageTitle="Azure Notification Hubs - Frequently Asked Questions (FAQs)"
-    description="FAQs on designing/implementing solutions on Notification Hubs"
-    services="notification-hubs"
-    documentationCenter="mobile"
-    authors="wesmc7777"
-    manager="erikre"
-    keywords="push notification, push notifications, iOS push notifications, android push notifications, ios push, android push"
-    editor="" />
+	pageTitle="Azure 通知中樞 - 常見問題集 (FAQ)"
+	description="在通知中樞上設計/實作解決方案的常見問題集"
+	services="notification-hubs"
+	documentationCenter="mobile"
+	authors="wesmc7777"
+	manager="erikre"
+    keywords="推播通知, 推播通知, iOS 推播通知, android 推播通知, ios 推播, android 推播"
+	editor="" />
 
 <tags
-    ms.service="notification-hubs"
-    ms.workload="mobile"
-    ms.tgt_pltfrm="mobile-multiple"
-    ms.devlang="multiple"
-    ms.topic="article"
-    ms.date="10/03/2016"
-    ms.author="wesmc" />
+	ms.service="notification-hubs"
+	ms.workload="mobile"
+	ms.tgt_pltfrm="mobile-multiple"
+	ms.devlang="multiple"
+	ms.topic="article"
+	ms.date="06/29/2016"
+	ms.author="wesmc" />
 
+#使用 Azure 通知中樞推播通知 - 常見問題集 (FAQ)
 
-#<a name="push-notifications-with-azure-notification-hubs---frequently-asked-questions"></a>Push Notifications with Azure Notification Hubs - Frequently Asked Questions
+##一般
+###1\.「通知中樞」的價格模式為何？
+通知中樞提供以下三種層次：
 
-##<a name="general"></a>General
-###<a name="1.-what-is-the-price-model-for-notification-hubs?"></a>1.   What is the price model for Notification Hubs?
-Notification Hubs is offered in three tiers:
+* 免費 - 每個訂用帳戶一個月可取得最多 100 萬次推播。
+* 基本 - 每個訂用帳戶一個月可取得 1000 萬次推播做為基準，具有配額成長選項。
+* 標準 - 每個訂用帳戶一個月可取得 1000 萬次推播做為基準，具有配額成長選項，再加上豐富的遙測功能。
 
-* **Free** - get up to 1 million pushes per subscription a month.
-* **Basic** - get 10 million pushes per subscription a month as a baseline, with quota growth options.
-* **Standard** - get 10 million pushes per subscription a month as a baseline, with quota increase options, plus rich telemetry capabilties.
+如需最新的詳細資訊，請參閱[通知中樞價格]頁面。價格依訂用帳戶層級制定，而且是以推播通知起始次數為基礎，因此您在 Azure 訂用帳戶中建立多少命名空間或通知中樞並不重要。
 
-The latest details can be found on the [Notification Hubs Pricing] page. The pricing is established at the subscription level and is based on the number of push notification initiations so it doesn't matter how many namespaces or notification hubs you have created in your Azure subscription.
+「免費」層次是針對開發用途所提供，而且不提供 SLA 保證。對於那些想要透過 Azure 通知中樞探索推播通知功能的使用者，雖然這一層可能是個不錯的起點，但可能不是中型到大型應用程式的最佳選擇。
 
-**Free** tier is offered for development purpose with no SLA guarantee. While this tier might be a good starting point for those that want to explore the capabilities of push notifications through Azure Notification Hubs, it might not be the best choice for medium to large scale applications.
+「基本」與「標準」層次是針對生產用途提供，而且下列主要功能僅針對「標準」層次啟用：
 
-**Basic** & **Standard** tiers are offered for production usage with the following key features enabled *only for the Standard tier*:
+- 豐富的遙測 - 通知中樞提供許多功能，可匯出遙測資料以及推播通知註冊資訊，以供離線檢視和分析。
+- 多重租用 - 如果您目前使用通知中樞建立行動應用程式來支援多租用戶，則適合使用此功能。這樣可讓您針對應用程式在「通知中樞」命名空間層級設定推播通知服務 (PNS) 認證，而且您可以接著將租用戶隔離，在此通用命名空間下為其提供個別中樞。這樣可以簡化維護程序，同時保留 SAS 金鑰以從針對每個租用戶隔離的通知中樞傳送及接收推播通知，確保不會發生跨租用戶重疊的情況。
+- 排程的推播 - 可讓您排程推播通知，而推播通知會接著排入佇列並加以傳送。
+- 大量匯入 - 可讓您匯入大量的註冊。
 
-- *Rich telemetry* - Notification Hubs offer a number of capabilities to export your telemetry data as well as push notification registration information for offline viewing and analysis.
-- *Multi-tenancy* - Ideal if you are creating a mobile app using Notification Hubs to support multiple tenants. This allows you to set Push Notification Services (PNS) credentials at the Notification Hub namespace level for the app and then you can segregate the tenants providing them individual hubs under this common namespace. This enables ease of maintenance while keeping the SAS keys to send & receive push notifications from the notification hubs segregated for each tenant ensuring non cross-tenant overlap.
-- *Scheduled Push* - Allows you to schedule push notifications, that will be subsequently queued up and sent out.
-- *Bulk import* - Allows you to import registrations in bulk.
+###2\.什麼是通知中樞 SLA？
+對於「基本」與「標準」通知中樞層次，我們保證已正確設定的應用程式至少有 99.9% 的時間可以傳送推播通知或執行註冊管理作業 (對於部署在支援的層次內的通知中樞)。若要深入了解我們的 SLA，請瀏覽[通知中樞 SLA]頁面。
 
-###<a name="2.-what-is-the-notification-hubs-sla?"></a>2.   What is the Notification Hubs SLA?
-For **Basic** and **Standard** Notification Hubs tiers, we guarantee that at least 99.9% of the time, properly configured applications will be able to send push notifications or perform registration management operations with respect to a Notification Hub deployed within a supported tier. To learn more about our SLA, please visit the [Notification Hubs SLA] page.
+> [AZURE.NOTE] 沒有任何 SLA 保證「平台通知服務」與裝置之間不會發生延遲，因為「通知中樞」依賴外部平台提供者將推播通知傳送至裝置。
 
-> [AZURE.NOTE] There are no SLA guarantees for the leg between the Platform Notification Service and the device since Notification Hubs depend on external platform providers to deliver the push notification to the device.
+###3\.客戶如何使用通知中樞？
+我們有大量使用「通知中樞」的客戶，其中比較著名的有：
 
-###<a name="3.-which-customers-are-using-notification-hubs?"></a>3.   Which customers are using Notification Hubs?
-We have a large number of customers using Notification Hubs with a few notable ones below:
+* 索契 2014 – 100 個以上的興趣群組、3 百萬部以上的裝置、1.5 億則以上的通知 (在 2 週內傳送)。[案例研究 - 索契]
+* Skanska - [案例研究 - Skanska]
+* Seattle Times - [案例研究 - Seattle Times]
+* Mural.ly - [案例研究 - Mural.ly]
+* 7Digital - [案例研究 - 7Digital]
+* Bing 應用程式 – 1 千萬部以上的裝置、每日傳送 3 百萬則通知。
 
-* Sochi 2014 – 100s of interest groups, 3+ million devices, 150+ million notification dispatched in 2 weeks. [CaseStudy - Sochi]
-* Skanska - [CaseStudy - Skanska]
-* Seattle Times - [CaseStudy - Seattle Times]
-* Mural.ly - [CaseStudy - Mural.ly]
-* 7Digital - [CaseStudy - 7Digital]
-* Bing Apps – 10s of millions of devices, sending 3 million notifications/day.
-
-###<a name="4.-how-do-i-upgrade-or-downgrade-my-notification-hubs-to-change-my-service-tier?"></a>4. How do I upgrade or downgrade my Notification Hubs to change my service tier?
-Go to the [Azure Classic Portal], click Service Bus, and click on your namespace then your notification hub. Under the Scale tab, you will be able to change your Notification Hubs service tier.
+###4\.如何升級或降級我的通知中樞來變更服務層級？
+前往 [Azure 傳統入口網站]，按一下 [服務匯流排]，然後依序按一下您的命名空間與通知中樞。在 [調整] 索引標籤下，您可以變更通知中樞服務層級。
 
 ![](./media/notification-hubs-faq/notification-hubs-classic-portal-scale.png)
 
-##<a name="design-&-development"></a>Design & Development
-###<a name="1.-which-server-side-platforms-do-you-support?"></a>1.   Which server-side platforms do you support?
-We provide SDKs and [complete samples] for .NET, Java, PHP, Python, Node.js so that an app backend can be setup to communicate to Notification Hubs using any of these platforms. Notification Hubs APIs are based on REST interfaces so you can choose to directly talk to those instead if you don't want to add an extra dependency. More details can be found on the [NH - REST APIs] page.
+##設計與開發
+###1\.支援哪些伺服器端平台？
+我們提供 .NET、Java、PHP、Python、Node.js 的 SDK 與[完整範例]，因此您可以使用上述任一平台設定應用程式後端以便與「通知中樞」通訊。通知中樞 API 是以 REST 介面為基礎，如果您不想新增額外的相依性，可以選擇直接與其通訊。您可以在 [NH - REST APIs] 頁面找到更多詳細資料。
 
-###<a name="2.-which-client-platforms-do-you-support?"></a>2.   Which client platforms do you support?
-We support sending push notifications to [Apple iOS](notification-hubs-ios-apple-push-notification-apns-get-started.md), [Android](notification-hubs-android-push-notification-google-gcm-get-started.md), [Windows Universal](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md), [Windows Phone](notification-hubs-windows-mobile-push-notifications-mpns.md), [Kindle](notification-hubs-kindle-amazon-adm-push-notification.md), [Android China (via Baidu)](notification-hubs-baidu-china-android-notifications-get-started.md), Xamarin ([iOS](xamarin-notification-hubs-ios-push-notification-apns-get-started.md) & [Android](xamarin-notification-hubs-push-notifications-android-gcm.md)), [Chrome Apps](notification-hubs-chrome-push-notifications-get-started.md) and [Safari](https://github.com/Azure/azure-notificationhubs-samples/tree/master/PushToSafari) platforms. For a complete list of getting started tutorials tackling sending push notifications on these platforms, visit our [NH - Getting Started Tutorials] page.
+###2\.支援哪些用戶端平台？
+我們支援將推播通知傳送到 [Apple iOS](notification-hubs-ios-apple-push-notification-apns-get-started.md)、[Android](notification-hubs-android-push-notification-google-gcm-get-started.md)、[Windows Universal](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md)、[Windows Phone](notification-hubs-windows-mobile-push-notifications-mpns.md)、[Kindle](notification-hubs-kindle-amazon-adm-push-notification.md)、[Android China (透過百度開發)](notification-hubs-baidu-china-android-notifications-get-started.md)、Xamarin ([iOS](xamarin-notification-hubs-ios-push notification-apns-get-started.md) 與 [Android](xamarin-notification-hubs-push-notifications-android-gcm.md))、[Chrome Apps](notification-hubs-chrome-push-notifications-get-started.md) 和 [Safari](https://github.com/Azure/azure-notificationhubs-samples/tree/master/PushToSafari) 平台。如需在這些平台上傳送推播通知的開始使用教學課程完整清單，請瀏覽 [NH - 開始使用教學課程]頁面。
 
-###<a name="3.-do-you-support-sms/email/web-notifications?"></a>3.   Do you support SMS/Email/web notifications?
-Notification Hubs is primarily designed to send notifications to mobile apps using the platforms listed above. We do not yet provide the capability to send email or SMS alerts; however third party platforms which provide these capabilities can be integrated along with Notification Hubs to send native push notifications by using [Azure Mobile Apps].
+###3\.是否支援簡訊/電子郵件/Web 通知？
+「通知中樞」主要設計來傳送通知給使用上述平台的行動裝置應用程式。我們尚未提供傳送電子郵件或簡訊警示的功能，但是您可以將提供這些功能的協力廠商平台與「通知中樞」整合，以使用 [Azure Mobile Apps] 來傳送原生推播通知。
 
-Notification Hubs also do not provide an in-browser push notification delivery service out-of-the-box. Customers may choose to implement this using SignalR on top of the supported server-side platforms. If you are looking to send notifications to browser apps in the Chrome sandbox, check out the [Chrome Apps tutorial].
+通知中樞也不提供現成可用的瀏覽器中推播通知傳送服務。客戶可以在支援的伺服器端平台上，選擇使用 SignalR 來實作此功能。如果您想要在 Chrome 沙箱中將通知傳送至瀏覽器應用程式，請參閱 [Chrome 應用程式教學課程]。
 
-###<a name="4.-what-is-the-relation-between-azure-mobile-apps-and-azure-notification-hubs-and-when-do-i-use-what?"></a>4.   What is the relation between Azure Mobile Apps and Azure Notification Hubs and when do I use what?
-If you have an existing mobile app backend and you only want to add the capability to send push notifications then you can use Azure Notification Hubs. If you want to setup your mobile app backend from scratch then you should consider using Azure Mobile Apps. An Azure Mobile App automatically provisions a Notification Hub for you to be able to send push notifications easily from the mobile app backend. Pricing for Azure Mobile Apps includes the base charges for a Notification Hub and you only pay when you go beyond the included pushes. More details on the costs are available on the [App Service Pricing] page.
+###4\.Azure Mobile Apps 與 Azure 通知中樞之間的關係為何以及何時使用？
+如果您有現有的行動裝置應用程式後端，而且您只想要新增傳送推播通知的功能，則您可以使用 Azure 通知中樞。如果您想要從頭開始設定您的行動裝置應用程式後端，則應該考慮使用 Azure Mobile Apps。Azure Mobile Apps 會自動為您佈建「通知中樞」，讓您能夠輕鬆地從行動裝置應用程式後端傳送推播通知。Azure Mobile Apps 的價格包括「通知中樞」的基本費率，因此您只需要在超過包含的推播數時才需要付費。您可以在 [App Service 價格]上取得成本的詳細資料。
 
-###<a name="5.-how-many-devices-can-i-support-if-i-send-push-notifications-via-notification-hubs?"></a>5.   How many devices can I support if I send push notifications via Notification Hubs?
-Please refer to the [Notification Hubs Pricing] page for details on the number of supported devices.
+###5\.如果透過通知中樞傳送推播通知，可以支援多少個裝置？
+如需支援的裝置數目詳細資訊，請參閱[通知中樞價格]頁面。
 
-For certain scenarios, if you need support for more than 10,000,000 registered devices, please [contact us](https://azure.microsoft.com/overview/contact-us/) directly and we will help you scale your solution.
+在特定案例中，如果您需要支援超過 10,000,000 個已註冊的裝置，請直接[與我們連絡](https://azure.microsoft.com/overview/contact-us/)，我們將協助您調整您的解決方案。
 
-###<a name="6.-how-many-push-notifications-can-i-send-out?"></a>6.   How many push notifications can I send out?
-Depending on the selected tier, Azure will automatically scale up based on the number of notifications flowing through the system.
+###6\.我可以傳送多少推播通知？
+端視選取的層次而定，Azure 會自動根據通知數目相應增加透過系統傳送的通知數目。
 
->[AZURE.NOTE] The overall usage cost can go up based on the number of push notifications being served. Make sure that you are aware of existing tier limits outlined on the [Notification Hubs Pricing] page.
+>[AZURE.NOTE] 整體使用成本可能會根據目前提供的推播通知數目而增加。請務必留意[通知中樞價格]頁面上概述的現有層次限制。
 
-Our existing customers are using Notification Hubs to send millions of push notifications daily. You do not have to do anything special to scale your push notifications reach as long as you are using Azure Notification Hubs.
+我們現有的客戶每天使用通知中樞來傳送數百萬則推播通知。只要使用 Azure 通知中樞，您就不需要採取任何特別動作來調整推播通知可及範圍。
 
-###<a name="7.-how-long-does-it-take-for-sent-push-notifications-to-reach-my-device?"></a>7.   How long does it take for sent push notifications to reach my device?
-Azure Notification Hubs is able to process at least **1 million push notification sends a minute** in a normal use scenario where the incoming load is pretty consistent and isn't spikey in nature. This rate may vary depending on the number of tags, nature of incoming sends and other external factors.
+###7\.送出的推播通知多久才會到達我的裝置？
+在一般使用案例中，「Azure 通知中樞」能在 1 分鐘處理至少 1 百萬個推播通知傳送作業，能處理的連入負載數目大致上差不多，而且在本質上並不難處理。此速率可能視標記數目、連入傳送作業本質和其他外部因子而異。
 
-During the estimated delivery time, the service is able calculate the targets per platform and route messages to the respective push notification delivery services based on the registered tags/tag expressions. From here on, it is the responsibility of the Push Notifications services (PNS) to send the notification to the device.
+在預估的傳遞時間內，服務能計算每個平台的目標數，並根據已註冊的標記/標記運算式將訊息路由傳送到對應的推播通知傳送服務。從這裡開始，傳送通知到裝置是推播通知服務 (PNS) 的責任。
 
-A PNS does not guarantee any SLA for delivering notifications; however, typically a vast majority of push notifications are delivered to target devices within a few minutes (usually within the limits of 10 minutes) from the time they are sent to our platform. There may be a few outliers which may take more time.
+PNS 不會為傳送通知提供任何 SLA 保證；不過一般而言，絕大部分的推播通知會在傳送到我們平台之後的數分鐘 (通常在 10 分鐘的限制內) 內傳送到目標裝置。可能有少數異常情況會花比較多的時間。
 
->[AZURE.NOTE] Azure Notification Hubs has a policy in place to drop any push notifications which aren't able to be delivered to the PNS in 30 minutes. This delay can happen for a number of reasons, most commonly because the PNS is throttling your application.
+>[AZURE.NOTE] 「Azure 通知中樞」有一個原則，可捨棄無法在 30 分鐘內傳送到 PNS 的任何推播通知。發生此延遲的原因有數種，最常見的原因是 PNS 正在為您的應用程式進行節流處理。
 
-###<a name="8.-is-there-any-latency-guarantee?"></a>8.   Is there any latency guarantee?
-Because of the nature of push notifications (they are delivered by an external, platform-specific Push Notification Service), there is no latency guarantee. Typically, the majority of push notifications get delivered within a couple of minutes.
+###8\.是否有任何延遲保證？
+因為推播通知的本質 (由外部平台特定「推播通知服務」所傳送)，我們不提供延遲保證。一般而言，大部分的推播通知會在數分鐘內傳送到目標裝置。
 
-###<a name="9.-what-are-the-considerations-i-need-to-take-into-account-when-designing-a-solution-with-namespaces-and-notification-hubs?"></a>9.   What are the considerations I need to take into account when designing a solution with namespaces and Notification Hubs?
+###9\.設計具有命名空間與「通知中樞」的解決方案時，必須考量哪些事項？
 
-####<a name="mobile-app/environment"></a>Mobile App/Environment
+####行動裝置應用程式/環境
 
-* There should be one Notification Hub per mobile app, per environment.
-* In a multi-tenant scenario, each tenant should have a separate hub.
-* You must never share the same Notification Hub between test and production environments as this may cause problems down the line while sending notifications. e.g. Apple offers Sandbox and Production Push endpoints with each having separate credentials.
-* By default, you can send test notifications to your registered devices through the Azure Portal or the Azure integrated component in Visual Studio. The threshold is set to 10 devices that are selected at random from the registration pool.
+* 每個環境的每個行動裝置應用程式都應該有一個「通知中樞」。
+* 在多租用戶案例中，每個租用戶都應該有個別的中樞。
+* 您永遠不應該在測試與生產環境之間共用相同的「通知中樞」，因為這可能導致傳送通知時發生問題，例如 Apple 提供「沙箱」與「實際執行推播」端點，而這兩者有個別的認證。
+* 根據預設，您可以透過 Azure 入口網站或 Visual Studio 中的 Azure 整合式元件，傳送測試通知到已註冊的裝置。臨界值會設定為從註冊集區中隨機選取的 10 個裝置。
 
->[AZURE.NOTE] If the hub was configured originally with an Apple sandbox certificate and then reconfigured to use an Apple production certificate, the old device tokens would become invalid with the new certificate and cause pushes to fail. It is best to separate your production and test environments and use different hubs for different environments.
+>[AZURE.NOTE] 如果一開始使用 Apple 沙箱憑證設定中樞，接著重新設定為使用 Apple 實際執行憑證，則舊的裝置權杖會成為無效且無法搭配新的憑證使用，並導致推播失敗。建議您最好將實際執行與測試環境分開，並針對不同的環境使用不同的中樞。
 
-####<a name="pns-credentials"></a>PNS credentials
+####PNS 認證
 
-When a mobile app is registered with a platform's developer portal (e.g. Apple or Google etc) then you get an app identifier and security tokens which an app backend needs to provide to the Platform's Push Notification services to be able to send push notifications to the devices. These security tokens which can be in the form of certificates (e.g. for Apple iOS or Windows Phone) or security keys (Google Android, Windows etc) need to be configured in Notification Hubs. This is done typically at the notification hub level but can also be done at the namespace level in a multi-tenant scenario.
+當行動裝置應用程式向平台的開發人員入口網站 (例如 Apple 或 Google 等) 註冊時，您會取得應用程式識別碼與安全性權杖，應用程式後端必須將其提供給平台的「推播通知」服務，才能傳送推播通知給裝置。您必須在「通知中樞」中設定這些安全性權杖，其形式可以是憑證 (例如，對於 Apple iOS 或 Windows Phone) 或安全性金鑰 (Google Android、Windows 等)。此動作通常是在通知中樞層級完成，但在多組織用戶共享情節中，這也可以在命名空間層級完成。
 
-####<a name="namespaces"></a>Namespaces
+####命名空間
 
-Namespaces can be used for deployment grouping.  It can also be used to represent all Notification Hubs for all tenants of the same app in the multi-tenant scenario.
+命名空間可以用於部署分組。在多租用戶案例中，它也可以用來代表相同應用程式之所有租用戶的所有通知中樞。
 
-####<a name="geo-distribution"></a>Geo-distribution
+####地理分散
 
-Geo-distribution is not always critical in push notification scenarios. It is to be noted that various Push Notification Services (e.g. APNS, GCM etc), which ultimately deliver the push notifications to the devices, aren't evenly distributed either.
+在推播通知案例中，地理分散不一定是關鍵。請注意，最終會將推播通知傳送到裝置的各種推播通知服務 (例如 APNS 與 GCM 等) 也不會平均分散。
 
-If you have an application which is used across the world, you can create several hubs in different namespaces taking advantage of the availability of Notification Hubs service in different Azure regions around the globe.
+如果您的應用程式是提供給全球各地的使用者使用，您可以在不同的命名空間中建立數個中樞，以利用全球不同 Azure 區域中「通知中樞」服務的可用性優點。
 
->[AZURE.NOTE] This will increase the management cost - particularly around registrations, so this isn't really recommended and must only be done if there is an explicit need.
+>[AZURE.NOTE] 這樣會增加管理成本 (特別是有關註冊方面)，因此建議您只有在有明確需求時才這樣做。
 
-###<a name="10.-should-i-do-registrations-from-the-app-backend-or-directly-through-client-devices?"></a>10.  Should I do registrations from the app backend or directly through client devices?
-Registrations from the app backend are useful when you have to do client authentication before creating the registration or when you have tags which must be created or modified by the app backend based on some app logic. For details, you can read more in the [Backend Registration guidance] and [Backend Registration guidance - 2] pages.
+###10\.應該從應用程式後端註冊或直接透過用戶端裝置註冊？
+當您必須在建立註冊之前執行用戶端驗證，或您有必須由應用程式後端根據某些應用程式邏輯建立或修改的標記時，從應用程式後端註冊非常實用。如需詳細資訊，您可以進一步了解[後端註冊指導方針]與[後端註冊指導方針 - 2] 頁面。
 
-###<a name="11.-what-is-the-push-notification-delivery-security-model?"></a>11.  What is the push notification delivery security model?
-Azure Notification Hubs use a [Shared Access Signature (SAS)](../storage/storage-dotnet-shared-access-signature-part-1.md)-based security model. You can use the SAS tokens at the root namespace level or at the granular Notification Hubs level. These SAS tokens can be set with different authorization rules e.g. send message permissions, listen notification permissions etc. More details are available in the [NH Security model] document.
+###11\.什麼是推播通知傳送資訊安全模型？
+Azure 通知中樞使用[共用存取簽章 (SAS)](../storage/storage-dotnet-shared-access-signature-part-1.md) 型資訊安全模型。您可以在根命名空間層級或更細微的通知中樞層級使用 SAS 權杖。您可以使用不同的授權規則設定這些 SAS 權杖，例如傳送訊息權限與接聽通知權限等。如需詳細資料，請參閱 [NH 資源安全模型]文件。
 
-###<a name="12.-how-should-i-handle-sensitive-payload-in-the-push-notifications?"></a>12.  How should I handle sensitive payload in the push notifications?
-All notifications are delivered to target devices by the platform's Push Notification Services (PNS). When a sender sends a notification to Azure Notification Hubs then we process and pass the notification to the respective PNS.
+###12\.應如何處理推播通知中的機密承載？
+通知是由平台的推播通知服務 (PNS) 傳送至目標裝置。當傳送者將通知傳送給「Azure 通知中樞」時，我們會接著處理通知並將它傳送給個別的 PNS。
 
-All connections from the sender to the Azure Notifications Hubs and then to the PNS use HTTPS.
+傳送者與「Azure 通知中樞」之間的連線以及「Azure 通知中樞」與 PNS 之間的連線都使用 HTTPS。
 
->[AZURE.NOTE] Azure Notifications Hubs does not log the payload of the message in any way.
+>[AZURE.NOTE] 「Azure 通知中樞」不會以任何方式記錄訊息的承載。
 
-For sending sensitive payloads however we recommend a Secure Push pattern where the sender delivers a 'ping' notification with a message identifier to the device without the sensitive payload and when the app on the device receives this payload, it is able to call a secure API directly to fetch the message details. A guide on how to implement the pattern described above is available on the [NH - Secure Push tutorial] page.
+若要傳送機密承載，建議您使用「安全推播」模式，其中傳送者會傳送 'ping' 通知與訊息識別碼給裝置 (不含機密承載)，而當裝置上的應用程式收到此承載時，它就能夠直接呼叫安全 API 以擷取訊息詳細資料。您可以在 [NH - 安全推播教學課程]頁面上取得如何實作上述模式的指南。
 
-##<a name="operations"></a>Operations
-###<a name="1.-what-is-the-disaster-recovery-(dr)-story?"></a>1.   What is the Disaster Recovery (DR) story?
-We provide metadata Disaster Recovery coverage on our end (Notification Hub name, connection string and other critical information). When a DR scenario is triggered, the registrations data is the **only segment** of the Notification Hubs infrastructure which will be lost. You will need to implement a solution to re-populate this data into your new hub post-recovery.
+##Operations
+###1\.災害復原 (DR) 是什麼？
+我們在我們這邊提供中繼資料災害復原範圍 (通知中樞名稱、連接字串和其他重要資訊)。觸發 DR 案例後，註冊資料是通知中樞基礎結構中唯一會遺失的區段。您必須實作解決方案，將此資料重新填入到復原後的新中樞。
 
-- *Step1* - Create a secondary Notification Hub in a different datacenter. You can create this on the fly at the time of the DR event or you can create one from the get go. It doesn't make much of a difference which option you choose because Notification Hub provisioning is a relatively fast process in the order of a few seconds. Having one from the beginning will shield you from the DR event impacting your management capabilities, so it is the highly-recommended option.
+- 步驟 1 - 在不同的資料中心建立次要通知中樞。您可以在發生 DR 事件時建立此通知中樞，或一開始就建立。您選擇哪一個選項並沒有很大的差別。因為通知中樞佈建是相當快速的程序，大約只需要數秒的時間。一開始就建立通知中樞將能避免 DR 事件影響我們的管理功能，因此強烈建議您這樣做。
 
-- *Step2* - Hydrate the secondary Notification Hub with the registrations from the primary Notification Hub. It is not recommended to try to maintain registrations on both hubs and try to keep them in sync on the fly as registrations are coming in - typically that hasn’t worked well because of inherent tendency of registrations to expire on the PNS side. Notification Hubs clean them up as we receive PNS feedback about expired or invalid registrations.  
+- 步驟 2 - 將來自主要通知中樞的註冊移往次要通知中樞。建議您不要嘗試在兩個中樞上維護註冊，而應該在收到註冊時進行同步，因為註冊會在 PNS 端到期的固有傾向，第一種方式通常無法正確運作。當我們收到有關已到期或無效註冊的 PNS 回應時，「通知中樞」會將它們清除。
 
-Recommendation is to use an app backend which either:
+建議您使用會執行下列任一動作的應用程式後端：
 
-- Maintains a given set of registrations at its end so that it can do a bulk insert into the secondary notification hub in case of DR
+- 在本身維護一組指定的註冊，以便它可以在發生 DR 時執行大量插入作業以將資料插入到次要通知中樞
 
-**OR**
+OR
 
-- Gets a regular dump of registrations from the primary hub as a backup and then does a bulk insert into the secondary NH.
+- 定期從主要中樞傾印註冊做為備份，然後執行大量插入作業以將資料插入到次要 NH。
 
->[AZURE.NOTE] Registrations Export/Import functionality available in Standard Tier is described in the [Registrations Export/Import] document.
+>[AZURE.NOTE] [註冊匯出/匯入]文件說明標準層中提供的註冊匯出/匯入功能。
 
-If you don’t have a backend, then when the app starts up on any of the target devices, they will perform a new registration in the secondary Notification Hub, and eventually the secondary Notification Hub will have all the active devices registered.
+若您沒有後端，則當應用程式在任何目標裝置上啟動時，它們將會在次要通知中樞中執行新註冊，而最後次要通知中樞將會有所有已註冊的使用中裝置。
 
-The downside is that there will be a time period when devices where apps haven't opened up will not receive notifications.
+缺點是裝置上的應用程式未開啟期間將不會收到通知。
 
-###<a name="2.-is-there-any-audit-log-capability?"></a>2.   Is there any audit log capability?
-All Notification Hubs Management operations go to Operation Logs which are exposed in the [Azure Classic Portal].
+###2\.是否有任何稽核記錄功能？
+所有通知中樞管理作業移至作業記錄，其公開於 [Azure 傳統入口網站]中。
 
-##<a name="monitoring-&-troubleshooting"></a>Monitoring & Troubleshooting
-###<a name="1.-what-troubleshooting-capabilities-are-available?"></a>1.   What troubleshooting capabilities are available?
-Azure Notification Hubs provide several features to do common troubleshooting, particularly in the most common scenario around dropped notifications. See details in our [NH - troubleshooting] whitepaper.
+##監視和疑難排解
+###1\.可用的疑難排解功能有哪些？
+Azure 通知中樞提供數個功能，可進行常見的疑難排解，特別是在已捨棄通知的最常見案例中。請參閱 [NH - 疑難排解]白皮書中的詳細資料。
 
-###<a name="2.-what-telemetry-features-are-available?"></a>2.   What telemetry features are available?
-Azure Notification Hubs enables viewing telemetry data in the [Azure Classic Portal]. Details of the available metrics are available on the [NH - Metrics] page.
+###2\.可用的遙測功能有哪些？
+您可透過 Azure 通知中樞，在 [Azure 傳統入口網站]中檢視遙測資料。您可以在 [NH - 計量]頁面上可取得計量的詳細資料。
 
->[AZURE.NOTE] Successful notifications only mean that the push notifications have been delivered to the external Push Notification Service (e.g. APNS for Apple, GCM for Google etc). It is up to the PNS to deliver the notification to target devices. Typically, the PNS does not expose delivery metrics to third-parties.  
+>[AZURE.NOTE] 成功的通知只表示推播通知已傳送到外部推播通知服務 (例如 Apple 的 APNS 與 Google 的 GCM 等)。由 PNS 負責將通知傳送至目標裝置。PNS 通常不會向第三方公開計量。
 
-We also provide the capability to export the telemetry data programmatically (in **Standard** tier). See the [NH - Metrics sample] for details.
+我們還提供以程式設計方式匯出遙測資料的功能 (在「標準」層次中)。如需詳細資料，請參閱 [NH - 計量範例]。
 
-[Azure Classic Portal]: https://manage.windowsazure.com
-[Notification Hubs Pricing]: http://azure.microsoft.com/pricing/details/notification-hubs/
-[Notification Hubs SLA]: http://azure.microsoft.com/support/legal/sla/
-[CaseStudy - Sochi]: https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=7942
-[CaseStudy - Skanska]: https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=5847
-[CaseStudy - Seattle Times]: https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=8354
-[CaseStudy - Mural.ly]: https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=11592
-[CaseStudy - 7Digital]: https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=3684
+[Azure 傳統入口網站]: https://manage.windowsazure.com
+[通知中樞價格]: http://azure.microsoft.com/pricing/details/notification-hubs/
+[通知中樞 SLA]: http://azure.microsoft.com/support/legal/sla/
+[案例研究 - 索契]: https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=7942
+[案例研究 - Skanska]: https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=5847
+[案例研究 - Seattle Times]: https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=8354
+[案例研究 - Mural.ly]: https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=11592
+[案例研究 - 7Digital]: https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=3684
 [NH - REST APIs]: https://msdn.microsoft.com/library/azure/dn530746.aspx
-[NH - Getting Started Tutorials]: http://azure.microsoft.com/documentation/articles/notification-hubs-ios-get-started/
-[Chrome Apps tutorial]: http://azure.microsoft.com/documentation/articles/notification-hubs-chrome-get-started/
+[NH - 開始使用教學課程]: http://azure.microsoft.com/documentation/articles/notification-hubs-ios-get-started/
+[Chrome 應用程式教學課程]: http://azure.microsoft.com/documentation/articles/notification-hubs-chrome-get-started/
 [Mobile Services Pricing]: http://azure.microsoft.com/pricing/details/mobile-services/
-[Backend Registration guidance]: https://msdn.microsoft.com/library/azure/dn743807.aspx
-[Backend Registration guidance - 2]: https://msdn.microsoft.com/library/azure/dn530747.aspx
-[NH Security model]: https://msdn.microsoft.com/library/azure/dn495373.aspx
-[NH - Secure Push tutorial]: http://azure.microsoft.com/documentation/articles/notification-hubs-aspnet-backend-ios-secure-push/
-[NH - troubleshooting]: http://azure.microsoft.com/documentation/articles/notification-hubs-diagnosing/
-[NH - Metrics]: https://msdn.microsoft.com/library/dn458822.aspx
-[NH - Metrics sample]: https://github.com/Azure/azure-notificationhubs-samples/tree/master/FetchNHTelemetryInExcel
-[Registrations Export/Import]: https://msdn.microsoft.com/library/dn790624.aspx
+[後端註冊指導方針]: https://msdn.microsoft.com/library/azure/dn743807.aspx
+[後端註冊指導方針 - 2]: https://msdn.microsoft.com/library/azure/dn530747.aspx
+[NH 資源安全模型]: https://msdn.microsoft.com/library/azure/dn495373.aspx
+[NH - 安全推播教學課程]: http://azure.microsoft.com/documentation/articles/notification-hubs-aspnet-backend-ios-secure-push/
+[NH - 疑難排解]: http://azure.microsoft.com/documentation/articles/notification-hubs-diagnosing/
+[NH - 計量]: https://msdn.microsoft.com/library/dn458822.aspx
+[NH - 計量範例]: https://github.com/Azure/azure-notificationhubs-samples/tree/master/FetchNHTelemetryInExcel
+[註冊匯出/匯入]: https://msdn.microsoft.com/library/dn790624.aspx
 [Azure Portal]: https://portal.azure.com
-[complete samples]: https://github.com/Azure/azure-notificationhubs-samples
-[Azure Mobile Apps]: https://azure.microsoft.com/en-us/services/app-service/mobile/
-[App Service Pricing]: https://azure.microsoft.com/en-us/pricing/details/app-service/
+[完整範例]: https://github.com/Azure/azure-notificationhubs-samples
+[Azure Mobile Apps]: https://azure.microsoft.com/services/app-service/mobile/
+[App Service 價格]: https://azure.microsoft.com/pricing/details/app-service/
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0706_2016-->

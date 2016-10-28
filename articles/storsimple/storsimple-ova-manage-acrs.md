@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="Manage access control records for the StorSimple Virtual Array | Microsoft Azure"
-   description="Describes how to manage access control records (ACRs) to determine which hosts can connect to a volume on the StorSimple Virtual Array."
+   pageTitle="管理 StorSimple Virtual Array 的存取控制記錄 | Microsoft Azure"
+   description="說明如何使用存取控制記錄 (ACR) 以判斷哪些主機可以連接至 StorSimple Virtual Array 上的磁碟區。"
    services="storsimple"
    documentationCenter=""
    authors="alkohli"
@@ -15,108 +15,103 @@
    ms.date="05/03/2016"
    ms.author="alkohli" />
 
+# 針對 StorSimple Virtual Array 使用 StorSimple Manager 服務管理存取控制記錄 
 
-# <a name="use-the-storsimple-manager-service-to-manage-access-control-records-for-the-storsimple-virtual-array"></a>Use the StorSimple Manager service to manage access control records for the StorSimple Virtual Array 
+## 概觀
 
-## <a name="overview"></a>Overview
+存取控制記錄 (ACR) 可讓您指定哪些主機可連接至 StorSimple Virtual Array (也稱為 StorSimple 內部部署虛擬裝置) 上的磁碟區。ACR 設為特定的磁碟區，並且包含主機的 iSCSI 限定名稱 (IQN)。當主機嘗試連線到磁碟區時，裝置會檢查與該磁碟區相關聯的 ACR 的 IQN 名稱，如果相符，則會建立連接。[設定] 頁面上的 [存取控制記錄] 區段會顯示具有主機對應 IQN 的所有存取控制記錄。
 
-Access control records (ACRs) allow you to specify which hosts can connect to a volume on the StorSimple Virtual Array (also known as the StorSimple on-premises virtual device). ACRs are set to a specific volume and contain the iSCSI Qualified Names (IQNs) of the hosts. When a host tries to connect to a volume, the device checks the ACR associated with that volume for the IQN name, and if there is a match, then the connection is established. The **access control records** section on the **Configure** page displays all the access control records with the corresponding IQNs of the hosts.
+本教學課程將說明下列常見 ACR 相關工作：
 
-This tutorial explains the following common ACR-related tasks:
-
-- Get the IQN
-- Add an access control record 
-- Edit an access control record 
-- Delete an access control record 
+- 取得 IQN
+- 加入存取控制記錄 
+- 編輯存取控制記錄 
+- 刪除存取控制記錄 
 
 > [AZURE.IMPORTANT] 
 > 
-> - When assigning an ACR to a volume, take care that the volume is not concurrently accessed by more than one non-clustered host because this could corrupt the volume. 
-> - When deleting an ACR from a volume, make sure that the corresponding host is not accessing the volume because the deletion could result in a read-write disruption.
+> - 將 ACR 指派到磁碟區時，請注意磁碟區並未被多個非叢集主機並行存取，因為這可能會損毀磁碟區。 
+> - 從磁碟區刪除 ACR 時，請確定對應的主機未存取磁碟區，因為刪除作業可能會導致讀寫中斷。
 
-## <a name="get-the-iqn"></a>Get the IQN
+## 取得 IQN
 
-Perform the following steps to get the IQN of a Windows host that is running Windows Server 2012.
+請執行下列步驟，以取得正在執行 Windows Server 2012 之 Windows 主機的 IQN。
 
 [AZURE.INCLUDE [storsimple-get-iqn](../../includes/storsimple-get-iqn.md)]
 
-## <a name="add-an-acr"></a>Add an ACR
+## 加入 ACR
 
-You use the StorSimple Manager service **Configuration** page to add ACRs. Typically, you will associate one ACR with one volume.
+使用 StorSimple Manager 服務的 [組態] 頁面加入 ACR。一般而言，您會讓一個 ACR 與一個磁碟區產生關聯。
 
-For information about associating an ACR with a volume, go to [add a volume](storsimple-ova-deploy3-iscsi-setup.md#step-3-add-a-volume).
+如需建立 ACR 與磁碟區之關聯的資訊，請移至[新增磁碟區](storsimple-ova-deploy3-iscsi-setup.md#step-3-add-a-volume)。
 
 >[AZURE.IMPORTANT] 
 > 
->When assigning an ACR to a volume, take care that the volume is not concurrently accessed by more than one non-clustered host because this could corrupt the volume.
+>將 ACR 指派到磁碟區時，請注意磁碟區並未被多個非叢集主機並行存取，因為這可能會損毀磁碟區。
  
-Perform the following steps to add an ACR.
+執行下列步驟以加入 ACR。
 
-#### <a name="to-add-an-acr"></a>To add an ACR
+#### 加入 ACR
 
-1. On the service landing page, select your service, double-click the service name, and then click the **Configuration** tab.
+1. 在服務登陸頁面上，選取您的服務，連按兩下該服務名稱，然後按一下 [組態] 索引標籤。
 
-    ![configuration tab](./media/storsimple-ova-manage-acrs/acr1.png)
+    ![組態索引標籤](./media/storsimple-ova-manage-acrs/acr1.png)
 
-2. In the tabular listing under **Access control records**, supply a **Name** for your ACR.
+2. 在 [**存取控制記錄**] 底下的表格式清單中，提供 ACR 的 [**名稱**]。
 
-3. Under **iSCSI Initiator Name**, provide the IQN name of your Windows host. 
+3. 在 [iSCSI 啟動器名稱] 下方，提供 Windows 主機的 IQN 名稱。
 
-4. Click **Save** at the bottom of the page to save the newly created ACR. You will see the following confirmation message.
+4. 按一下頁面底部的 [儲存] 以儲存新建立的 ACR。您會看到下列確認訊息。
 
-    ![confirmation message](./media/storsimple-ova-manage-acrs/acr2.png)
+    ![確認訊息](./media/storsimple-ova-manage-acrs/acr2.png)
 
-5. Click the check icon ![check icon](./media/storsimple-ova-manage-acrs/check-icon.png). The tabular listing will be updated to reflect this addition.
+5. 按一下核取圖示 ![核取圖示](./media/storsimple-ova-manage-acrs/check-icon.png)。表格式清單會更新以反映此新增。
 
-## <a name="edit-an-acr"></a>Edit an ACR
+## 編輯 ACR
 
-You use the **Configuration** page in the Azure classic portal to edit ACRs. 
+您可以使用 Azure 傳統入口網站中的 [組態] 頁面編輯 ACR。
 
-> [AZURE.NOTE] You should modify only those ACRs that are currently not in use. To edit an ACR associated with a volume that is currently in use, you should first take the volume offline.
+> [AZURE.NOTE] 您應該只修改目前未在使用中的 ACR。若要編輯與目前正在使用中的磁碟區相關聯的 ACR，您應該先讓磁碟區離線。
 
-Perform the following steps to edit an ACR.
+執行下列步驟以編輯 ACR。
 
-#### <a name="to-edit-an-acr"></a>To edit an ACR
+#### 編輯 ACR
 
-1. On the service landing page, select your service, double-click the service name, and then click the **Configuration** tab.
+1. 在服務登陸頁面上，選取您的服務，連按兩下該服務名稱，然後按一下 [組態] 索引標籤。
 
-2. In the tabular listing of the access control records, hover over the ACR that you wish to modify.
+2. 在存取控制記錄的表格式清單中，將滑鼠停留在您想要修改的 ACR 上。
 
-3. Supply a new name and/or IQN for the ACR.
+3. 為 ACR 提供新的名稱和/或 IQN。
 
-4. Click **Save** at the bottom of the page to save the modified ACR. You will see a confirmation message. 
+4. 按一下頁面底部的 [儲存] 以儲存修改過的 ACR。您將會看見確認訊息。
 
-5. Click the check icon ![check icon](./media/storsimple-ova-manage-acrs/check-icon.png). The tabular listing will be updated to reflect this change.
+5. 按一下核取圖示 ![核取圖示](./media/storsimple-ova-manage-acrs/check-icon.png)。表格式清單會更新以反映此變更。
 
-## <a name="delete-an-access-control-record"></a>Delete an access control record
+## 刪除存取控制記錄
 
-You use the **Configuration** page in the Azure classic portal to delete ACRs. 
+您可以使用 Azure 傳統入口網站中的 [組態] 頁面刪除 ACR。
 
 > [AZURE.NOTE] 
 > 
-> - You should delete only those ACRs that are currently not in use. To delete an ACR associated with a volume that is currently in use, you should first take the volume offline.
-> - When deleting an ACR from a volume, make sure that the corresponding host is not accessing the volume because the deletion could result in a read-write disruption.
+> - 您應該只刪除目前未在使用中的 ACR。若要刪除與目前正在使用中的磁碟區相關聯的 ACR，您應該先讓磁碟區離線。
+> - 從磁碟區刪除 ACR 時，請確定對應的主機未存取磁碟區，因為刪除作業可能會導致讀寫中斷。
 
-Perform the following steps to delete an access control record.
+執行下列步驟來刪除存取控制記錄。
 
-#### <a name="to-delete-an-access-control-record"></a>To delete an access control record
+#### 刪除存取控制記錄
 
-1. On the service landing page, select your service, double-click the service name, and then click the **Configuration** tab.
+1. 在服務登陸頁面上，選取您的服務，連按兩下該服務名稱，然後按一下 [組態] 索引標籤。
 
-2. In the tabular listing of the access control records (ACRs), hover over the ACR that you wish to delete.
+2. 在存取控制記錄 (ACR) 的表格式清單中，將滑鼠停留在您想要刪除的 ACR 上。
 
-3. A delete icon (**x**) will appear in the extreme right column for the ACR that you select. Click the **x** icon to delete the ACR. You will see the following confirmation message.
+3. 刪除圖示 (**x**) 會出現在您選取之 ACR 資料行的最右邊。按一下 [**x**] 圖示，以刪除 ACR。您會看到下列確認訊息。
 
-    ![confirmation message](./media/storsimple-ova-manage-acrs/acr3.png)
+    ![確認訊息](./media/storsimple-ova-manage-acrs/acr3.png)
 
-5. Click the check icon ![check icon](./media/storsimple-ova-manage-acrs/check-icon.png). The tabular listing will be updated to reflect the deletion.
+5. 按一下核取圖示 ![核取圖示](./media/storsimple-ova-manage-acrs/check-icon.png)。表格式清單會更新以反映刪除。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-- Learn more about [adding volumes and configuring ACRs](storsimple-ova-deploy3-iscsi-setup.md#step-3-add-a-volume).
+- 深入了解[加入磁碟區和設定 ACR](storsimple-ova-deploy3-iscsi-setup.md#step-3-add-a-volume)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0511_2016-->

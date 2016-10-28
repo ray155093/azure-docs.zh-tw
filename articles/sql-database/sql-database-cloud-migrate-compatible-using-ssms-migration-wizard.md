@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Migrate SQL Server database to SQL Database using Deploy Database to Microsoft Azure Database Wizard | Microsoft Azure"
-   description="Microsoft Azure SQL Database, database migration, Microsoft Azure Database Wizard"
+   pageTitle="使用「將資料庫部署到 Microsoft Azure Database 精靈」將 SQL Server 資料庫移轉到 SQL Database | Microsoft Azure"
+   description="Microsoft Azure SQL Database, 資料庫移轉, Microsoft Azure 資料庫精靈"
    services="sql-database"
    documentationCenter=""
    authors="CarlRabeler"
@@ -16,67 +16,62 @@
    ms.date="08/24/2016"
    ms.author="carlrab"/>
 
-
-# <a name="migrate-sql-server-database-to-sql-database-using-deploy-database-to-microsoft-azure-database-wizard"></a>Migrate SQL Server database to SQL Database using Deploy Database to Microsoft Azure Database Wizard
+# 使用「將資料庫部署到 Microsoft Azure Database 精靈」將 SQL Database 移轉到 SQL Database
 
 
 > [AZURE.SELECTOR]
-- [SSMS Migration Wizard](sql-database-cloud-migrate-compatible-using-ssms-migration-wizard.md)
-- [Export to BACPAC File](sql-database-cloud-migrate-compatible-export-bacpac-ssms.md)
-- [Import from BACPAC File](sql-database-cloud-migrate-compatible-import-bacpac-ssms.md)
-- [Transactional Replication](sql-database-cloud-migrate-compatible-using-transactional-replication.md)
+- [SSMS 移轉精靈](sql-database-cloud-migrate-compatible-using-ssms-migration-wizard.md)
+- [匯出至 BACPAC 檔案](sql-database-cloud-migrate-compatible-export-bacpac-ssms.md)
+- [從 BACPAC 檔案匯入](sql-database-cloud-migrate-compatible-import-bacpac-ssms.md)
+- [異動複寫](sql-database-cloud-migrate-compatible-using-transactional-replication.md)
 
-The Deploy Database to Microsoft Azure Database wizard in SQL Server Management Studio migrates a [compatible SQL Server database](sql-database-cloud-migrate.md) directly into your Azure SQL Database server.
+SQL Server Management Studio 中的「將資料庫部署至 Microsoft Azure Database 精靈」會直接將[相容](sql-database-cloud-migrate.md) SQL Server 移轉到 Azure SQL Database 伺服器。
 
-## <a name="use-the-deploy-database-to-microsoft-azure-database-wizard"></a>Use the Deploy Database to Microsoft Azure Database Wizard
+## 使用「將資料庫部署到 Microsoft Azure Database 精靈」
 
-> [AZURE.NOTE] The following steps assume that you have a [provisioned SQL Database server](https://azure.microsoft.com/documentation/learning-paths/sql-database-training-learn-sql-database/).
+> [AZURE.NOTE] 下列步驟假設您已[佈建 SQL Database 伺服器](https://azure.microsoft.com/documentation/learning-paths/sql-database-training-learn-sql-database/)。
 
-1. Verify that you have the latest version of SQL Server Management Studio. New versions of Management Studio are updated monthly to remain in sync with updates to the Azure portal.
+1. 請確認您有最新版本的 SQL Server Management Studio。新版的 Management Studio 會每月更新以維持與 Azure 入口網站的更新同步。
 
-    > [AZURE.IMPORTANT] It is recommended that you always use the latest version of Management Studio to remain synchronized with updates to Microsoft Azure and SQL Database. [Update SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx).
+    > [AZURE.IMPORTANT] 建議您一律使用最新版本的 Management Studio 保持與 Microsoft Azure 及 SQL Database 更新同步。[更新 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)。
 
-2. Open Management Studio and connect to your SQL Server database to be migrated in Object Explorer.
-3. Right-click the database in the Object Explorer, point to **Tasks**, and click **Deploy Database to Microsoft Azure SQL Database…**
+2. 開啟 Management Studio 並連接到您在 [物件總管] 中要管理的 SQL Server 資料庫。
+3. 以滑鼠右鍵按一下 [物件總管] 中的來源資料庫，指向 [工作]，並按一下 [將資料庫部署至 Microsoft Azure SQL Database]。
 
-    ![Deploy to Azure from Tasks menu](./media/sql-database-cloud-migrate/MigrateUsingDeploymentWizard01.png)
+	![從 [工作] 功能表部署至 Azure](./media/sql-database-cloud-migrate/MigrateUsingDeploymentWizard01.png)
 
-4.  In the deployment wizard, click **Next**, and then click **Connect** to configure the connection to your SQL Database server.
+4.	在部署精靈中，按一下 [下一步]，然後按一下 [連接] 以設定與 SQL Database 伺服器的連接。
 
-    ![Deploy to Azure from Tasks menu](./media/sql-database-cloud-migrate/MigrateUsingDeploymentWizard002.png)
+	![從 [工作] 功能表部署至 Azure](./media/sql-database-cloud-migrate/MigrateUsingDeploymentWizard002.png)
 
-5. In the Connect to Server dialog box, enter your connection information to connect to your SQL Database server.
+5. 在 [連接到伺服器] 對話方塊中，輸入連接到 SQL Database 伺服器的連接資訊。
 
-    ![Deploy to Azure from Tasks menu](./media/sql-database-cloud-migrate/MigrateUsingDeploymentWizard00.png)
+	![從 [工作] 功能表部署至 Azure](./media/sql-database-cloud-migrate/MigrateUsingDeploymentWizard00.png)
 
-5.  Provide the following for the [BACPAC](https://msdn.microsoft.com/library/ee210546.aspx#Anchor_4) file that this wizard creates during the migration process:
+5.	針對此精靈在移轉程序期間建立的 [BACPAC](https://msdn.microsoft.com/library/ee210546.aspx#Anchor_4) 檔案提供下列資訊：
 
- - The **New database name** 
- - The **Edition of Microsoft Azure SQL Database** ([service tier](sql-database-service-tiers.md))
- - The **Maximum database size**
- - The **Service Objective** (performance level)
- - The **Temporary file name**  
+ - **新的資料庫名稱**
+ - **Microsoft Azure SQL Database 的版本** ([服務層](sql-database-service-tiers.md))
+ - **資料庫大小上限**
+ - **服務目標** (效能層級)
+ - **暫存檔名稱**
 
-    ![Export settings](./media/sql-database-cloud-migrate/MigrateUsingDeploymentWizard02.png)
+    ![匯出設定](./media/sql-database-cloud-migrate/MigrateUsingDeploymentWizard02.png)
 
-6.  Complete the wizard. Depending on the size and complexity of the database, deployment may take from a few minutes to many hours. If this wizard detects compatibility issues, errors are displayed to the screen and the migration does not continue. For guidance on how to fix database compatibility issues, go to [fix database compatibility issues](sql-database-cloud-migrate-fix-compatibility-issues.md).
+6.	完成精靈。移轉時間取決資料庫部署的大小及複雜性，可能需要數分鐘到數小時。如果此精靈偵測到相容性問題，螢幕會顯示錯誤，且不會繼續移轉。如需如何修正資料庫相容性問題的指引，請移至[修正資料庫相容性問題](sql-database-cloud-migrate-fix-compatibility-issues.md)。
 
-7.  Using Object Explorer, connect to your migrated database in your Azure SQL Database server.
-8.  Using the Azure portal, view your database and its properties.
+7.	使用「物件總管」，連接到 Azure SQL Database 伺服器中已移轉的資料庫。
+8.	使用 Azure 入口網站，檢視您的資料庫及其屬性。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-- [Newest version of SSDT](https://msdn.microsoft.com/library/mt204009.aspx)
-- [Newest version of SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)
+- [最新版本的 SSDT](https://msdn.microsoft.com/library/mt204009.aspx)
+- [最新版本的 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)
 
-## <a name="additional-resources"></a>Additional resources
+## 其他資源
 
 - [SQL Database V12](sql-database-v12-whats-new.md)
-- [Transact-SQL partially or unsupported functions](sql-database-transact-sql-information.md)
-- [Migrate non-SQL Server databases using SQL Server Migration Assistant](http://blogs.msdn.com/b/ssma/)
+- [Transact-SQL 部分支援或不支援的函數](sql-database-transact-sql-information.md)
+- [使用 SQL Server 移轉小幫手來移轉非 SQL Server 資料庫](http://blogs.msdn.com/b/ssma/)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0831_2016-->

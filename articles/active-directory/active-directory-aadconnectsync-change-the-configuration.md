@@ -1,168 +1,137 @@
 <properties
-    pageTitle="Azure AD Connect sync: How to make a change to the default configuration | Microsoft Azure"
-    description="Walks you through how to make a change to the configuration in Azure AD Connect sync."
-    services="active-directory"
-    documentationCenter=""
-    authors="andkjell"
-    manager="femila"
-    editor=""/>
+	pageTitle="Azure AD Connect 同步處理：如何變更預設組態 | Microsoft Azure"
+	description="逐步解說如何對 Azure AD Connect 同步處理中的組態進行變更。"
+	services="active-directory"
+	documentationCenter=""
+	authors="andkjell"
+	manager="femila"
+	editor=""/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/31/2016"
-    ms.author="billmath"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/31/2016"
+	ms.author="andkjell"/>
 
 
+# Azure AD Connect 同步處理：如何變更預設組態
+本主題的目的在於逐步解說如何對 Azure AD Connect 同步處理中的預設組態進行變更。其中提供一些常見案例的步驟。具備此知識，您應該能夠根據自己的商務規則對自己的組態進行一些簡單的變更。
 
-# <a name="azure-ad-connect-sync:-how-to-make-a-change-to-the-default-configuration"></a>Azure AD Connect sync: How to make a change to the default configuration
-The purpose of this topic is to walk you through how to make changes to the default configuration in Azure AD Connect sync. It provides steps for some common scenarios. With this knowledge, you should be able to make some simple changes to your own configuration based on your own business rules.
+## 同步處理規則編輯器
+同步處理規則編輯器用於查看和變更預設組態。您可以在 [開始] 功能表的 [Azure AD Connect] 群組之下找到它。![內含同步處理規則編輯器的開始功能表](./media/active-directory-aadconnectsync-change-the-configuration/startmenu2.png)
 
-## <a name="synchronization-rules-editor"></a>Synchronization Rules Editor
-The Synchronization Rules Editor is used to see and change the default configuration. You can find it in the Start Menu under the **Azure AD Connect** group.  
-![Start Menu with Sync Rule Editor](./media/active-directory-aadconnectsync-change-the-configuration/startmenu2.png)
+當您開啟它時，您會看到預設的現成可用規則。
 
-When you open it, you see the default out-of-box rules.
+![同步處理規則編輯器](./media/active-directory-aadconnectsync-change-the-configuration/sre2.png)
 
-![Sync Rule Editor](./media/active-directory-aadconnectsync-change-the-configuration/sre2.png)
+### 在編輯器中瀏覽
+編輯器頂端的下拉式清單可讓您快速找到特定規則。例如，如果您想要查看已納入屬性 proxyAddresses 的規則，您可將下拉式清單變更如下︰![SRE 篩選](./media/active-directory-aadconnectsync-change-the-configuration/filtering.png) 若要重設篩選並載入全新的組態，請按鍵盤上的 **F5**。
 
-### <a name="navigating-in-the-editor"></a>Navigating in the editor
-The drop-downs at the top of the editor allow you to quickly find a particular rule. For example, if you want to see the rules where the attribute proxyAddresses is included, you would change the drop-downs to the following:  
-![SRE filtering](./media/active-directory-aadconnectsync-change-the-configuration/filtering.png)  
-To reset filtering and load a fresh configuration, press **F5** on the keyboard.
+右上方有 [新增規則] 按鈕。此按鈕用於建立您自己的自訂規則。
 
-To the top right, you have a button **Add new rule**. This button is used to create your own custom rule.
+底部有可供您處理選取的同步處理規則的按鈕。[編輯] 和 [刪除] 會如您預期般執行。[匯出] 會產生 PowerShell 指令碼以便重新建立同步處理規則。此程序可讓您將同步處理規則從一部伺服器移到另一部伺服器。
 
-At the bottom, you have buttons for acting on a selected sync rule. **Edit** and **Delete** do what you expect them to. **Export** produces a PowerShell script for recreating the sync rule. This procedure allows you to move a sync rule from one server to another.
+## 建立您的第一個自訂規則
+最常見的變更是屬性流程的變更。您來源目錄中的資料可能不會與 Azure AD 中的一樣。在本節的範例中，您要確保使用者的名稱一律為**適當的大小寫**。
 
-## <a name="create-your-first-custom-rule"></a>Create your first custom rule
-The most common change is changes to the attribute flows. The data in your source directory might not be as in Azure AD. In the example in this section, you want to make sure the given name of a user is always in **Proper case**.
+### 停用排程器
+[排程器](active-directory-aadconnectsync-feature-scheduler.md)預設會每隔 30 分鐘執行一次。您要確保在您進行變更時，排程器未啟動，並疑難排解您的新規則。若要暫時停用排程器，請啟動 PowerShell，然後執行 `Set-ADSyncScheduler -SyncCycleEnabled $false`
 
-### <a name="disable-the-scheduler"></a>Disable the scheduler
-The [scheduler](active-directory-aadconnectsync-feature-scheduler.md) runs every 30 minutes by default. You want to make sure it is not starting while you are making changes and troubleshoot your new rules. To temporarily disable the scheduler, start PowerShell, and run `Set-ADSyncScheduler -SyncCycleEnabled $false`
+![停用排程器](./media/active-directory-aadconnectsync-change-the-configuration/schedulerdisable.png)
 
-![Disable the scheduler](./media/active-directory-aadconnectsync-change-the-configuration/schedulerdisable.png)  
+### 建立規則
 
-### <a name="create-the-rule"></a>Create the rule
+1. 按一下 [新增規則]。
+2. 在 [說明] 頁面上輸入下列各項：![輸入規則篩選](./media/active-directory-aadconnectsync-change-the-configuration/description2.png)
+	- 名稱：賦予規則描述性名稱。
+	- 描述︰讓其他人可以了解規則用途的一些說明。
+	- 連接的系統︰可在其中找到物件的系統。在此情況下，我們會選取 Active Directory 連接器。
+	- 已連線的系統/Metaverse 物件類型︰分別選取 [使用者] 和 [人員]。
+	- 連結類型︰將此值變更為 [聯結]。
+	- 優先順序︰提供在系統中是唯一的值。較低的數值表示優先順序較高。
+	- 標籤︰保留空白。只有 Microsoft 提供的現成可用規則應該在此方塊中填入值。
+3. 在 [範圍篩選器] 頁面上，輸入 **givenName ISNOTNULL**。![輸入規則範圍篩選器](./media/active-directory-aadconnectsync-change-the-configuration/scopingfilter.png) 此區段用來定義應套用規則的物件。如果保留空白，規則會套用到所有的使用者物件。但會包括會議室、服務帳戶，以及其他非人員的使用者物件。
+4. 在 [聯結規則] 上，將它保留空白。
+5. 在 [轉換] 頁面上，將 FlowType 變更為 [運算式]。選取目標屬性 **givenName**，並在 [來源] 中輸入 `PCase([givenName])`。![輸入規則轉換](./media/active-directory-aadconnectsync-change-the-configuration/transformations.png) 同步處理引擎會區分函式名稱和屬性名稱的大小寫。如果您輸入錯誤，您會在新增規則時看到警告。編輯器可讓您儲存並繼續進行，因此您必須重新開啟規則並予以更正。
+6. 按一下 [新增] 以儲存規則。
 
-1. Click **Add new rule**.
-2. On the **Description** page enter the following:  
-![Inbound rule filtering](./media/active-directory-aadconnectsync-change-the-configuration/description2.png)  
-    - Name: Give the rule a descriptive name.
-    - Description: Some clarification so someone else can understand what the rule is for.
-    - Connected system: The system the object can be found in. In this case, we select the Active Directory Connector.
-    - Connected System/Metaverse Object Type: Select **User** and **Person** respectively.
-    - Link Type: Change this value to **Join**.
-    - Precedence: Provide a value that is unique in the system. A lower numeric value indicates higher precedence.
-    - Tag: Leave empty. Only out-of-box rules from Microsoft should have this box populated with a value.
-3. On the **Scoping filter** page, enter **givenName ISNOTNULL**.  
-![Inbound rule scoping filter](./media/active-directory-aadconnectsync-change-the-configuration/scopingfilter.png)  
-This section is used to define which objects the rule should apply to. If left empty, the rule would apply to all user objects. But that would include conference rooms, service accounts, and other non-people user objects.
-4. On the **Join rules**, leave it empty.
-5. On the **Transformations** page, change the FlowType to **Expression**. Select the Target Attribute **givenName**, and in Source enter `PCase([givenName])`.
-![Inbound rule transformations](./media/active-directory-aadconnectsync-change-the-configuration/transformations.png)  
-The sync engine is case-sensitive both on the function name and the name of the attribute. If you type something wrong, you see a warning when you add the rule. The editor allows you to save and continue, so you would have to reopen the rule and correct the rule.
-6. Click **Add** to save the rule.
+新的自訂規則應與其他同步處理規則一起顯示在系統中。
 
-Your new custom rule should be visible with the other sync rules in the system.
+### 驗證變更
+利用這項新變更，您可確保其如預期般運作，而且不會擲回任何錯誤。視您擁有的物件數目而言，有兩種不同的方式可執行此步驟。
 
-### <a name="verify-the-change"></a>Verify the change
-With this new change, you want to make sure it is working as expected and is not throwing any errors. Depending on the number of objects you have, there are two different ways to do this step.
+1. 在所有物件上執行完整同步處理
+2. 在單一物件上執行預覽和完整同步處理
 
-1. Run a full sync on all objects
-2. Run a preview and full sync on a single object
+從 [開始] 功能表啟動 [同步處理服務]。本節中的步驟全都在此工具中執行。
 
-Start **Synchronization Service** from the start menu. The steps in this section are all in this tool.
+1. **在所有物件上執行完整同步處理** 選取位於頂端的 [連接器]。識別您在前一節中進行變更的連接器，在此例中為 Active Directory 網域服務，並加以選取。從 [動作] 中選取 [執行]，然後選取 [完整同步處理] 和 [確定]。![完整同步處理](./media/active-directory-aadconnectsync-change-the-configuration/fullsync.png)物件現已在 Metaverse 中更新。您現在想要查看 Metaverse 中的物件。
 
-1. **Full sync on all objects**  
-Select **Connectors** at the top. Identify the Connector you made a change to in the previous section, in this case the Active Directory Domain Services, and select it. Select **Run** from Actions and select **Full Synchronization** and **OK**.
-![Full sync](./media/active-directory-aadconnectsync-change-the-configuration/fullsync.png)  
-The objects are now updated in the metaverse. You now want to look at the object in the metaverse.
+2. **在單一物件上執行預覽和完整同步處理** 選取位於頂端的 [連接器]。識別您在前一節中進行變更的連接器，在此例中為 Active Directory 網域服務，並加以選取。選取 [搜尋連接器空間]。使用範圍來尋找您要用來測試變更的物件。選取物件，然後按一下 [預覽]。在新的畫面中，選取 [認可預覽]。![認可預覽](./media/active-directory-aadconnectsync-change-the-configuration/commitpreview.png) 變更現已認可至 Metaverse。
 
-2. **Preview and full sync on a single object**  
-Select **Connectors** at the top. Identify the Connector you made a change to in the previous section, in this case the Active Directory Domain Services, and select it. Select **Search Connector Space**. Use scope to find an object you want to use to test the change. Select the object and click **Preview**. In the new screen, select **Commit Preview**.
-![Commit preview](./media/active-directory-aadconnectsync-change-the-configuration/commitpreview.png)  
-The change is now committed to the metaverse.
+**查看 Metaverse 中的物件** 您現在可挑選幾個範例物件，確定這是預期的值並已套用規則。從頂端選取 [Metaverse 搜尋]。新增您需要的任何篩選，以尋找相關的物件。從搜尋結果中，開啟物件。查看屬性值，同時在 [同步處理規則] 資料行中確認已如預期套用規則。![Metaverse 搜尋](./media/active-directory-aadconnectsync-change-the-configuration/mvsearch.png)
+### 停用排程器
+如果一切如同預期，您可以再次啟用排程器。從 PowerShell，執行 `Set-ADSyncScheduler -SyncCycleEnabled $true`。
 
-**Look at the object in the metaverse**  
-You now want to pick a few sample objects to make sure the value is expected and that the rule applied. Select **Metaverse Search** from the top. Add any filter you need to find the relevant objects. From the search result, open an object. Look at the attribute values and also verify in the **Sync Rules** column that the rule applied as expected.  
-![Metaverse search](./media/active-directory-aadconnectsync-change-the-configuration/mvsearch.png)  
-### <a name="enable-the-scheduler"></a>Enable the scheduler
-If everything is as expected, you can enable the scheduler again. From PowerShell, run `Set-ADSyncScheduler -SyncCycleEnabled $true`.
+## 其他常見屬性流程變更
+上一節說明如何變更屬性流程。本節提供了一些其他的範例。如何建立同步處理規則的步驟已縮減，但您可以在上一節中找到完整的步驟。
 
-## <a name="other-common-attribute-flow-changes"></a>Other common attribute flow changes
-The previous section described how to make changes to an attribute flow. In this section, some additional examples are provided. The steps for how to create the sync rule is abbreviated, but you can find the full steps in the previous section.
+### 使用預設以外的其他屬性
+Fabrikam 中有對名字、姓氏和顯示名稱使用當地字母的樹系。在擴充屬性中可以找到以拉丁字母表示的這些屬性。在 Azure AD 和 Office 365 中建立全域通訊清單時，組織反而想要使用這些屬性。
 
-### <a name="use-another-attribute-than-the-default"></a>Use another attribute than the default
-At Fabrikam, there is a forest where the local alphabet is used for given name, surname, and display name. The Latin character representation of these attributes can be found in the extension attributes. When building the global address list in Azure AD and Office 365, the organization wants these attributes to be used instead.
+在使用預設組態時，當地樹系中的物件看起來像這樣：![屬性流程 1](./media/active-directory-aadconnectsync-change-the-configuration/attributeflowjp1.png)
 
-With a default configuration, an object from the local forest looks like this:  
-![Attribute flow 1](./media/active-directory-aadconnectsync-change-the-configuration/attributeflowjp1.png)
+若要建立具有其他屬性流程的規則，請執行下列作業：
 
-To create a rule with other attribute flows, do the following:
+- 從 [開始] 功能表啟動 [同步處理規則編輯器]。
+- 在左側依然選取 [輸入] 的情況下，按一下 [新增規則] 按鈕。
+- 賦予規則名稱和描述。選取內部部署 Active Directory 和相關的物件類型。在 [連結類型] 中，選取 [聯結]。為優先順序挑選一個其他規則還沒使用的數字。現成可用的規則是從 100 開始，因此此範例可以使用 50 這個值。![屬性流程 2](./media/active-directory-aadconnectsync-change-the-configuration/attributeflowjp2.png)
+- 將範圍留空 (也就是，應該套用到樹系中的所有使用者物件)。
+- 將聯結規則留空 (也就是，讓現成可用的規則處理任何聯結)。
+- 在 [轉換] 中，建立下列流程：![屬性流程 3](./media/active-directory-aadconnectsync-change-the-configuration/attributeflowjp3.png)
+- 按一下 [新增] 以儲存規則。
+- 移至 [同步處理服務管理員]。在 [連接器] 上，選取我們已在其中新增規則的連接器。依序選取 [執行] 和 [完整同步處理]。完整同步處理會使用目前的規則重新計算所有物件。
 
-- Start **Synchronization Rule Editor** from the start menu.
-- With **Inbound** still selected to the left, click the button **Add new rule**.
-- Give the rule a name and description. Select the on-premises Active Directory and the relevant object types.  In **Link Type**, select **Join**. For precedence, pick a number that is not used by another rule. The out-of-box rules start with 100, so the value 50 can be used in this example.
-![Attribute flow 2](./media/active-directory-aadconnectsync-change-the-configuration/attributeflowjp2.png)
-- Leave scope empty (that is, should apply to all user objects in the forest).
-- Leave join rules empty (that is, let the out-of-box rule handle any joins).
-- In Transformations, create the following flows:  
-![Attribute flow 3](./media/active-directory-aadconnectsync-change-the-configuration/attributeflowjp3.png)
-- Click **Add** to save the rule.
-- Go to **Synchronization Service Manager**. On **Connectors**, select the Connector where we added the rule. Select **Run**, and **Full Synchronization**. A Full Synchronization recalculates all objects using the current rules.
+這是具有此自訂規則之相同物件的結果：![屬性流程 4](./media/active-directory-aadconnectsync-change-the-configuration/attributeflowjp4.png)
 
-This is the result for the same object with this custom rule:  
-![Attribute flow 4](./media/active-directory-aadconnectsync-change-the-configuration/attributeflowjp4.png)
+### 屬性的長度
+字串屬性預設會設定為可索引，且最大長度為 448 個字元。如果您使用的字串屬性可能包含更多字元，則確定在屬性流程中包含下列項目：`attributeName` <- `Left([attributeName],448)`
 
-### <a name="length-of-attributes"></a>Length of attributes
-String attributes are by default set to be indexable and the maximum length is 448 characters. If you are working with string attributes that might contain more, then make sure to include the following in the attribute flow:  
-`attributeName` <- `Left([attributeName],448)`
+### 變更 userPrincipalSuffix
+由於使用者未必會知道 Active Directory 中的 userPrincipalName 屬性，因此這個屬性可能不適合做為登入識別碼。Azure AD Connect 同步處理安裝精靈允許挑選不同的屬性，例如 mail。但是在某些情況下必須計算屬性。例如，Contoso 公司有兩個 Azure AD 目錄，一個用於生產環境，一個用於測試。他們想讓其測試租用戶中的使用者在登入識別碼中使用其他後置詞。`userPrincipalName` <- `Word([userPrincipalName],1,"@") & "@contosotest.com"`
 
-### <a name="changing-the-userprincipalsuffix"></a>Changing the userPrincipalSuffix
-The userPrincipalName attribute in Active Directory is not always known by the users and might not be suitable as the sign-in ID. The Azure AD Connect sync installation wizard allows picking a different attribute, for example mail. But in some cases the attribute must be calculated. For example, the company Contoso has two Azure AD directories, one for production and one for testing. They want the users in their test tenant to use another suffix in the sign-in ID.  
-`userPrincipalName` <- `Word([userPrincipalName],1,"@") & "@contosotest.com"`
+在此運算式中，取出第一個 @ 符號左邊的所有內容 (Word)，然後使用固定的字串串連。
 
-In this expression, take everything left of the first @-sign (Word) and concatenate with a fixed string.
+### 將多重值轉換成單一值
+Active Directory 中的某些屬性在結構描述中是多重值，但是在 [Active Directory 使用者和電腦] 中看起來是單一值。描述屬性是其中一個範例。`description` <- `IIF(IsNullOrEmpty([description]),NULL,Left(Trim(Item([description],1)),448))`
 
-### <a name="convert-a-multi-value-to-a-single-value"></a>Convert a multi-value to a single-value
-Some attributes in Active Directory are multi-valued in the schema even though they look single valued in Active Directory Users and Computers. An example is the description attribute.  
-`description` <- `IIF(IsNullOrEmpty([description]),NULL,Left(Trim(Item([description],1)),448))`
+在此運算式中，如果屬性有值，我們就取出屬性中的第一個項目 (Item)、移除開頭和結尾的空格 (Trim)，然後保留字串中的前 448 個字元 (Left)。
 
-In this expression in case the attribute has a value, we take the first item (Item) in the attribute, remove leading and trailing spaces (Trim), and then keep the first 448 characters (Left) in the string.
+### 請勿傳送屬性
+如需本節案例的背景，請參閱[控制屬性流程程序](active-directory-aadconnectsync-understanding-declarative-provisioning.md#control-the-attribute-flow-process)。
 
-### <a name="do-not-flow-an-attribute"></a>Do not flow an attribute
-For background on the scenario for this section, see [Control the attribute flow process](active-directory-aadconnectsync-understanding-declarative-provisioning.md#control-the-attribute-flow-process).
+有兩種方式可防止傳送屬性。第一個可在安裝精靈中使用，而且可讓您[移除選取的屬性](active-directory-aadconnect-get-started-custom.md#azure-ad-app-and-attribute-filtering)。如果您先前不曾同步處理該屬性，則適用這個選項。不過，如果您已開始同步處理這個屬性，且稍後利用這個功能來移除它，則同步處理引擎會停止管理屬性，而現有的值會留在 Azure AD 中。
 
-There are two ways to not flow an attribute. The first is available in the installation wizard and allows you to [remove selected attributes](active-directory-aadconnect-get-started-custom.md#azure-ad-app-and-attribute-filtering). This option works if you have never synchronized the attribute before. However, if you have started to synchronize this attribute and later remove it with this feature, then the sync engine stops managing the attribute and the existing values are left in Azure AD.
+如果您想要移除屬性的值並確定未來不會傳送它，就需要改為建立自訂規則。
 
-If you want to remove the value of an attribute and make sure it does not flow in the future, you need create a custom rule instead.
+在 Fabrikam，我們在同步處理到雲端的屬性中發現了一些不應該存在的屬性。我們想要確定這些屬性會從 Azure AD 中移除。![不正確的擴充屬性](./media/active-directory-aadconnectsync-change-the-configuration/badextensionattribute.png)
 
-At Fabrikam, we have realized that some of the attributes we synchronize to the cloud should not be there. We want to make sure these attributes are removed from Azure AD.  
-![Bad Extension Attributes](./media/active-directory-aadconnectsync-change-the-configuration/badextensionattribute.png)
+- 建立新的輸入同步處理規則並填入說明 ![說明](./media/active-directory-aadconnectsync-change-the-configuration/syncruledescription.png)
+- 建立類型為 **Expression** 且來源為 **AuthoritativeNull** 的屬性流程。即使優先順序較低的同步處理規則會嘗試填入值，常值 **AuthoritativeNull** 還是會指出 MV 中的值應該是空的。 ![擴充屬性的轉換](./media/active-directory-aadconnectsync-change-the-configuration/syncruletransformations.png)
+- 儲存同步處理規則。啟動 [同步處理服務]、尋找連接器、選取 [執行] 和 [完整同步處理]。此步驟會重新計算所有屬性流程。
+- 藉由搜尋連接器空間，來確認即將匯出所需的變更。![分段刪除](./media/active-directory-aadconnectsync-change-the-configuration/deletetobeexported.png)
 
-- Create a new inbound Synchronization Rule and populate the description ![Descriptions](./media/active-directory-aadconnectsync-change-the-configuration/syncruledescription.png)
-- Create attribute flows of type **Expression** and with the source **AuthoritativeNull**. The literal **AuthoritativeNull** indicates that the value should be empty in the MV even if a lower precedence sync rule tries to populate the value.
-![Transformation for Extension Attributes](./media/active-directory-aadconnectsync-change-the-configuration/syncruletransformations.png)
-- Save the Sync Rule. Start **Synchronization Service**, find the Connector, select **Run**, and **Full Synchronization**. This step recalculates all attribute flows.
-- Verify that the intended changes are about to be exported by searching the connector space.
-![Staged delete](./media/active-directory-aadconnectsync-change-the-configuration/deletetobeexported.png)
+## 後續步驟
 
-## <a name="next-steps"></a>Next steps
+- 如需組態模型的詳細資訊，請參閱[了解宣告式佈建](active-directory-aadconnectsync-understanding-declarative-provisioning.md)。
+- 如需運算式語言的詳細資訊，請參閱[了解宣告式佈建運算式](active-directory-aadconnectsync-understanding-declarative-provisioning-expressions.md)。
 
-- Read more about the configuration model in [Understanding Declarative Provisioning](active-directory-aadconnectsync-understanding-declarative-provisioning.md).
-- Read more about the expression language in [Understanding Declarative Provisioning Expressions](active-directory-aadconnectsync-understanding-declarative-provisioning-expressions.md).
+**概觀主題**
 
-**Overview topics**
+- [Azure AD Connect 同步處理：了解及自訂同步處理](active-directory-aadconnectsync-whatis.md)
+- [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
-- [Azure AD Connect sync: Understand and customize synchronization](active-directory-aadconnectsync-whatis.md)
-- [Integrating your on-premises identities with Azure Active Directory](active-directory-aadconnect.md)
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

@@ -1,56 +1,54 @@
 <properties
-    pageTitle="Tutorial - Get started with the Azure Batch Python client | Microsoft Azure"
-    description="Learn the basic concepts of Azure Batch and how to develop the Batch service with a simple scenario"
-    services="batch"
-    documentationCenter="python"
-    authors="mmacy"
-    manager="timlt"
-    editor=""/>
+	pageTitle="教學課程 - 開始使用 Azure Batch Python 用戶端 | Microsoft Azure"
+	description="了解 Azure Batch 的基本概念，以及利用簡單的案例了解如何開發 Batch 服務"
+	services="batch"
+	documentationCenter="python"
+	authors="mmacy"
+	manager="timlt"
+	editor=""/>
 
 <tags
-    ms.service="batch"
-    ms.devlang="python"
-    ms.topic="hero-article"
-    ms.tgt_pltfrm="na"
-    ms.workload="big-compute"
-    ms.date="09/27/2016"
-    ms.author="marsma"/>
+	ms.service="batch"
+	ms.devlang="python"
+	ms.topic="hero-article"
+	ms.tgt_pltfrm="na"
+	ms.workload="big-compute"
+	ms.date="09/27/2016"
+	ms.author="marsma"/>
 
-
-# <a name="get-started-with-the-azure-batch-python-client"></a>Get started with the Azure Batch Python client
+# 開始使用 Azure Batch Python 用戶端
 
 > [AZURE.SELECTOR]
 - [.NET](batch-dotnet-get-started.md)
 - [Python](batch-python-tutorial.md)
 
-Learn the basics of [Azure Batch][azure_batch] and the [Batch Python][py_azure_sdk] client as we discuss a small Batch application written in Python. We look at how two sample scripts use the Batch service to process a parallel workload on Linux virtual machines in the cloud, and how they interact with [Azure Storage](./../storage/storage-introduction.md) for file staging and retrieval. You'll learn a common Batch application workflow and gain a base understanding of the major components of Batch such as jobs, tasks, pools, and compute nodes.
+在我們討論以 Python 撰寫的小型 Batch 應用程式時，了解 [Azure Batch][azure_batch] 和 [Batch Python][py_azure_sdk] 用戶端的基本概念。我們看看這兩個範例指令碼如何使用 Batch 服務來處理雲端中 Linux 虛擬機器上的平行工作負載，以及如何與 [Azure 儲存體](./../storage/storage-introduction.md)互動來預備和擷取檔案。您將了解常見的 Batch 應用程式工作流程，並取得 Batch 的主要元件，例如作業、工作、集區和計算節點。
 
-![Batch solution workflow (basic)][11]<br/>
+![Batch 方案工作流程 (基本)][11]<br/>
 
-## <a name="prerequisites"></a>Prerequisites
+## 必要條件
 
-This article assumes that you have a working knowledge of Python and familiarity with Linux. It also assumes that you're able to satisfy the account creation requirements that are specified below for Azure and the Batch and Storage services.
+本文假設您已具備 Python 的使用知識並熟悉 Linux。而且假設您可以滿足針對 Azure Batch 和儲存體服務所指定的帳戶建立需求。
 
-### <a name="accounts"></a>Accounts
+### 帳戶
 
-- **Azure account**: If you don't already have an Azure subscription, [create a free Azure account][azure_free_account].
-- **Batch account**: Once you have an Azure subscription, [create an Azure Batch account](batch-account-create-portal.md).
-- **Storage account**: See [Create a storage account](../storage/storage-create-storage-account.md#create-a-storage-account) in [About Azure storage accounts](../storage/storage-create-storage-account.md).
+- **Azure 帳戶**：如果您沒有 Azure 訂用帳戶，請[建立免費的 Azure 帳戶][azure_free_account]。
+- **Batch 帳戶**：擁有 Azure 訂用帳戶後，請[建立 Azure Batch 帳戶](batch-account-create-portal.md)。
+- **儲存體帳戶**：請參閱[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)中的[建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)。
 
-### <a name="code-sample"></a>Code sample
+### 程式碼範例
 
-The Python tutorial [code sample][github_article_samples] is one of the many Batch code samples found in the [azure-batch-samples][github_samples] repository on GitHub. You can download all the samples by clicking  **Clone or download > Download ZIP** on the repository home page, or by clicking the [azure-batch-samples-master.zip][github_samples_zip] direct download link. Once you've extracted the contents of the ZIP file, the two scripts for this tutorial are found in the `article_samples` directory:
+Python 教學課程[程式碼範例][github_article_samples]是在 GitHub 上 [azure-batch-samples][github_samples] 儲存機制中找到的許多 Batch 程式碼範例之一。按一下儲存機制首頁上的 [複製或下載] > [下載 ZIP]，或按一下 [azure-batch-samples-master.zip][github_samples_zip] 直接下載連結，即可下載所有範例。解壓縮 ZIP 檔案的內容後，在 `article_samples` 目錄中可找到本教學課程的兩個指令碼︰
 
-`/azure-batch-samples/Python/Batch/article_samples/python_tutorial_client.py`<br/>
-`/azure-batch-samples/Python/Batch/article_samples/python_tutorial_task.py`
+`/azure-batch-samples/Python/Batch/article_samples/python_tutorial_client.py`<br/> `/azure-batch-samples/Python/Batch/article_samples/python_tutorial_task.py`
 
-### <a name="python-environment"></a>Python environment
+### Python 環境
 
-To run the *python_tutorial_client.py* sample script on your local workstation, you need a **Python interpreter** compatible with version **2.7** or **3.3+**. The script has been tested on both Linux and Windows.
+若要在本機工作站上執行「python\_tutorial\_client.py」範例指令碼，您需要與版本 **2.7** 或 **3.3+** 相容的 **Python 解譯器**。此指令碼已在 Linux 和 Windows 上測試。
 
-### <a name="cryptography-dependencies"></a>cryptography dependencies
+### 密碼編譯相依項目
 
-You must install the dependencies for the [cryptography][crypto] library, required by the `azure-batch` and `azure-storage` Python packages. Perform one of the following operations appropriate for your platform, or refer to the [cryptography installation][crypto_install] details for more information:
+您必須為[密碼編譯][crypto]程式庫安裝 `azure-batch` 和 `azure-storage` Python 套件所需的相依項目。針對您的平台執行下列其中一個適用作業，或參閱[密碼編譯安裝][crypto_install]詳細資料以取得詳細資訊︰
 
 * Ubuntu
 
@@ -68,56 +66,45 @@ You must install the dependencies for the [cryptography][crypto] library, requir
 
     `pip install cryptography`
 
->[AZURE.NOTE] If installing for Python 3.3+ on Linux, use the python3 equivalents for the Python dependencies. For example, on Ubuntu: `apt-get update && apt-get install -y build-essential libssl-dev libffi-dev libpython3-dev python3-dev`
+>[AZURE.NOTE] 如果要在 Linux 上安裝 Python 3.3+，請使用適用於 Python 相依項目的 python3 對等項目。例如，在 Ubuntu 上︰`apt-get update && apt-get install -y build-essential libssl-dev libffi-dev libpython3-dev python3-dev`
 
-### <a name="azure-packages"></a>Azure packages
+### Azure 套件
 
-Next, install the **Azure Batch** and **Azure Storage** Python packages. You can do this with **pip** and the *requirements.txt* found here:
+接下來請安裝 **Azure Batch** 和 **Azure 儲存體** Python 套件。使用此處找到的 **pip** 和 requirements.txt 即可完成此作業：
 
 `/azure-batch-samples/Python/Batch/requirements.txt`
 
-Issue following **pip** command to install the Batch and Storage packages:
+發出下列 **pip** 命令以安裝 Batch 和儲存體封裝：
 
 `pip install -r requirements.txt`
 
-Or, you can install the [azure-batch][pypi_batch] and [azure-storage][pypi_storage] Python packages manually:
+或者，您可以手動方式安裝 [azure-batch][pypi_batch] 和 [azure-storage][pypi_storage] Python 封裝：
 
-`pip install azure-batch`<br/>
-`pip install azure-storage`
+`pip install azure-batch`<br/> `pip install azure-storage`
 
-> [AZURE.TIP] You may need to prefix your commands with `sudo` if you are using an unprivileged account. For example, `sudo pip install -r requirements.txt`. For more information on installing Python packages, see [Installing Packages][pypi_install] on readthedocs.io.
+> [AZURE.TIP] 如果您使用無特殊權限的帳戶，則可能需要在您的命令前面加上 `sudo`。例如，`sudo pip install -r requirements.txt`。如需有關如何安裝 Python 封裝的詳細資訊，請參閱 readthedocs.io 上的[安裝封裝][pypi_install]。
 
-## <a name="batch-python-tutorial-code-sample"></a>Batch Python tutorial code sample
+## Batch Python 教學課程程式碼範例
 
-The Batch Python tutorial code sample consists of two Python scripts and a few data files.
+Batch Python 教學課程程式碼範例是由兩個 Python 指令碼和幾個資料檔案所組成。
 
-- **python_tutorial_client.py**: Interacts with the Batch and Storage services to execute a parallel workload on compute nodes (virtual machines). The *python_tutorial_client.py* script runs on your local workstation.
+- **python\_tutorial\_client.py**：與 Batch 和儲存體服務進行互動，以在計算節點 (虛擬機器) 上執行平行工作負載的用戶端應用程式。python\_tutorial\_client.py 指令碼會在本機工作站上執行。
 
-- **python_tutorial_task.py**: The script that runs on compute nodes in Azure to perform the actual work. In the sample, *python_tutorial_task.py* parses the text in a file downloaded from Azure Storage (the input file). Then it produces a text file (the output file) that contains a list of the top three words that appear in the input file. After it creates the output file, *python_tutorial_task.py* uploads the file to Azure Storage. This makes it available for download to the client script running on your workstation. The *python_tutorial_task.py* script runs in parallel on multiple compute nodes in the Batch service.
+- **python\_tutorial\_task.py**：在 Azure 中的計算節點上執行進而執行實際工作的指令碼。在範例中，python\_tutorial\_task.py 會剖析從 Azure 儲存體下載的檔案 (輸入檔) 中的文字。然後產生文字檔 (輸出檔)，其中包含出現在輸入檔中的前三個單字清單。在它建立輸出檔之後，python\_tutorial\_task.py 會將此檔案上傳至 Azure 儲存體。這讓檔案可供下載至您的工作站上執行的用戶端指令碼。python\_tutorial\_task.py 指令碼會在 Batch 服務中的多個計算節點上平行執行。
 
-- **./data/taskdata\*.txt**: These three text files provide the input for the tasks that run on the compute nodes.
+- **./data/taskdata*.txt**︰這三個文字檔會對在計算節點上執行的工作提供輸入。
 
-The following diagram illustrates the primary operations that are performed by the client and task scripts. This basic workflow is typical of many compute solutions that are created with Batch. While it does not demonstrate every feature available in the Batch service, nearly every Batch scenario includes portions of this workflow.
+下圖說明用戶端和工作指令碼所執行的主要作業。此基本工作流程通常由使用 Batch 建立的許多計算方案所組成。雖然不會示範 Batch 服務中可用的每項功能，但幾乎每個 Batch 案例都包含此工作流程的某些部分。
 
-![Batch example workflow][8]<br/>
+![Batch 範例工作流程][8]<br/>
 
-[**Step 1.**](#step-1-create-storage-containers) Create **containers** in Azure Blob Storage.<br/>
-[**Step 2.**](#step-2-upload-task-script-and-data-files) Upload task script and input files to containers.<br/>
-[**Step 3.**](#step-3-create-batch-pool) Create a Batch **pool**.<br/>
-  &nbsp;&nbsp;&nbsp;&nbsp;**3a.** The pool **StartTask** downloads the task script (python_tutorial_task.py) to nodes as they join the pool.<br/>
-[**Step 4.**](#step-4-create-batch-job) Create a Batch **job**.<br/>
-[**Step 5.**](#step-5-add-tasks-to-job) Add **tasks** to the job.<br/>
-  &nbsp;&nbsp;&nbsp;&nbsp;**5a.** The tasks are scheduled to execute on nodes.<br/>
-    &nbsp;&nbsp;&nbsp;&nbsp;**5b.** Each task downloads its input data from Azure Storage, then begins execution.<br/>
-[**Step 6.**](#step-6-monitor-tasks) Monitor tasks.<br/>
-  &nbsp;&nbsp;&nbsp;&nbsp;**6a.** As tasks are completed, they upload their output data to Azure Storage.<br/>
-[**Step 7.**](#step-7-download-task-output) Download task output from Storage.
+[**步驟 1.**](#step-1-create-storage-containers) 在 Azure Blob 儲存體中建立**容器**。<br/> [**步驟 2.**](#step-2-upload-task-script-and-data-files) 將工作指令碼和輸入檔案上傳至容器。<br/> [**步驟 3.**](#step-3-create-batch-pool) 建立 Batch **集區**。<br/> &nbsp;&nbsp;&nbsp;&nbsp;**3a.** 集區 **StartTask** 會在節點加入集區時將工作指令碼 (python\_tutorial\_task.py) 下載至這些節點。<br/> [**步驟 4.**](#step-4-create-batch-job) 建立 Batch **作業**。<br/> [**步驟 5.**](#step-5-add-tasks-to-job) 將**工作**新增至作業。<br/> &nbsp;&nbsp;&nbsp;&nbsp;**5a.** 工作會排程在節點上執行。<br/> &nbsp;&nbsp;&nbsp;&nbsp;**5b.** 每項工作會從 Azure 儲存體下載其輸入資料，然後開始執行。<br/> [**步驟 6.**](#step-6-monitor-tasks) 監視工作。<br/> &nbsp;&nbsp;&nbsp;&nbsp;**6a.** 當工作完成時，它們會將其輸出資料上傳至 Azure 儲存體。<br/> [**步驟 7.**](#step-7-download-task-output) 從儲存體下載工作輸出。
 
-As mentioned, not every Batch solution performs these exact steps, and may include many more, but this sample demonstrates common processes found in a Batch solution.
+如上所述，並非每個 Batch 方案都會執行這些確切步驟，並且可能包含更多步驟，但此範例會示範在 Batch 方案中找到的一般程序。
 
-## <a name="prepare-client-script"></a>Prepare client script
+## 準備用戶端指令碼
 
-Before you run the sample, add your Batch and Storage account credentials to *python_tutorial_client.py*. If you have not done so already, open the file in your favorite editor and update the following lines with your credentials.
+執行範例之前，將您的 Batch 和儲存體帳戶認證加入至 python\_tutorial\_client.py。如果您尚未這麼做，請在您喜愛的編輯器中開啟此檔案，並使用您的認證更新下列程式碼行。
 
 ```python
 # Update the Batch and Storage account credential strings below with the values
@@ -134,31 +121,29 @@ storage_account_name = "";
 storage_account_key  = "";
 ```
 
-You can find your Batch and Storage account credentials within the account blade of each service in the [Azure portal][azure_portal]:
+您可以在 [Azure 入口網站][azure_portal]中每項服務的帳戶刀鋒視窗中尋找您的 Batch 和儲存體帳戶認證：
 
-![Batch credentials in the portal][9]
-![Storage credentials in the portal][10]<br/>
+![入口網站中的 Batch 認證][9] ![入口網站中的 Storage 認證][10]<br/>
 
-In the following sections, we analyze the steps used by the scripts to process a workload in the Batch service. We encourage you to refer regularly to the scripts in your editor while you work your way through the rest of the article.
+在下列各節中，我們會分析指令碼用來處理 Batch 服務中工作負載的步驟。鼓勵您在進行本文的其餘部分時，定期在編輯器中參考指令碼。
 
-Navigate to the following line in **python_tutorial_client.py** to start with Step 1:
+瀏覽至 **python\_tutorial\_client.py** 中的下列一行以開始進行步驟 1：
 
 ```python
 if __name__ == '__main__':
 ```
 
-## <a name="step-1:-create-storage-containers"></a>Step 1: Create Storage containers
+## 步驟 1：建立儲存體容器
 
-![Create containers in Azure Storage][1]
-<br/>
+![在 Azure 儲存體中建立容器][1] <br/>
 
-Batch includes built-in support for interacting with Azure Storage. Containers in your Storage account will provide the files needed by the tasks that run in your Batch account. The containers also provide a place to store the output data that the tasks produce. The first thing the *python_tutorial_client.py* script does is create three containers in [Azure Blob Storage](../storage/storage-introduction.md#blob-storage):
+Batch 包含與 Azure 儲存體進行互動的內建支援。儲存體帳戶內的容器會提供在您的 Batch 帳戶中執行的工作所需的檔案。容器也會提供一個位置來儲存工作所產生的輸出資料。python\_tutorial\_client.py 首先會在 [Azure Blob 儲存體](../storage/storage-introduction.md#blob-storage)中建立三個容器：
 
-- **application**: This container will store the Python script run by the tasks, *python_tutorial_task.py*.
-- **input**: Tasks will download the data files to process from the *input* container.
-- **output**: When tasks complete input file processing, they will upload the results to the *output* container.
+- **應用程式**︰此容器會儲存工作所執行的 Python 指令碼 python\_tutorial\_task.py。
+- **輸入**：工作會從「輸入」容器下載所要處理的資料檔案。
+- **輸出**：當工作完成輸入檔案的處理時，它們會將結果上傳至「輸出」容器。
 
-In order to interact with a Storage account and create containers, we use the [azure-storage][pypi_storage] package to create a [BlockBlobService][py_blockblobservice] object--the "blob client." We then create three containers in the Storage account using the blob client.
+為了與儲存體帳戶進行互動並建立容器，我們使用 [azure-storage][pypi_storage] 封裝來建立 [BlockBlobService][py_blockblobservice] 物件 (Blob 用戶端)。 然後，我們使用 Blob 用戶端在儲存體帳戶中建立三個容器。
 
 ```python
  # Create the blob client, for use in obtaining references to
@@ -177,16 +162,15 @@ In order to interact with a Storage account and create containers, we use the [a
  blob_client.create_container(output_container_name, fail_on_exist=False)
 ```
 
-Once the containers have been created, the application can now upload the files that will be used by the tasks.
+建立容器之後，應用程式現在即可上傳工作所要使用的檔案。
 
-> [AZURE.TIP] [How to use Azure Blob storage from Python](../storage/storage-python-how-to-use-blob-storage.md) provides a good overview of working with Azure Storage containers and blobs. It should be near the top of your reading list as you start working with Batch.
+> [AZURE.TIP] [How to use Azure Blob storage from Python](../storage/storage-python-how-to-use-blob-storage.md) 提供使用 Azure 儲存體容器和 Blob 的概觀。當您開始使用 Batch 時，此概觀應在您的閱讀清單的頂端附近。
 
-## <a name="step-2:-upload-task-script-and-data-files"></a>Step 2: Upload task script and data files
+## 步驟 2：上傳工作指令碼和資料檔案
 
-![Upload task application and input (data) files to containers][2]
-<br/>
+![將工作應用程式和輸入 (資料) 檔案上傳至容器][2] <br/>
 
-In the file upload operation, *python_tutorial_client.py* first defines collections of **application** and **input** file paths as they exist on the local machine. Then it uploads these files to the containers that you created in the previous step.
+在檔案上傳作業中，python\_tutorial\_client.py 會先定義**應用程式**和**輸入**檔案路徑的集合 (因為其存在於本機電腦上)。然後將這些檔案上傳到在上一個步驟中建立的容器。
 
 ```python
  # Paths to the task script. This script will be executed by the tasks that
@@ -212,7 +196,7 @@ In the file upload operation, *python_tutorial_client.py* first defines collecti
      for file_path in input_file_paths]
 ```
 
-Using list comprehension, the `upload_file_to_container` function is called for each file in the collections, and two [ResourceFile][py_resource_file] collections are populated. The `upload_file_to_container` function appears below:
+使用清單理解功能，針對集合中的每個檔案呼叫 `upload_file_to_container` 函式並填入兩個 [ResourceFile][py_resource_file] 集合。`upload_file_to_container` 函式會如下所示：
 
 ```
 def upload_file_to_container(block_blob_client, container_name, file_path):
@@ -250,35 +234,34 @@ def upload_file_to_container(block_blob_client, container_name, file_path):
                                     blob_source=sas_url)
 ```
 
-### <a name="resourcefiles"></a>ResourceFiles
+### ResourceFiles
 
-A [ResourceFile][py_resource_file] provides tasks in Batch with the URL to a file in Azure Storage that is downloaded to a compute node before that task is run. The [ResourceFile][py_resource_file].**blob_source** property specifies the full URL of the file as it exists in Azure Storage. The URL may also include a shared access signature (SAS) that provides secure access to the file. Most task types in Batch include a *ResourceFiles* property, including:
+[ResourceFile][py_resource_file] 提供 Batch 中的工作，以及 Azure 儲存體中會在工作執行前下載到計算節點之檔案的 URL。[ResourceFile][py_resource_file].**blob\_source** 屬性會指定 Azure 儲存體中現有檔案的完整 URL。此 URL 也可能包含可供安全存取檔案的共用存取簽章 (SAS)。Batch 中的大部分工作類型都包含 ResourceFiles 屬性，包括：
 
 - [CloudTask][py_task]
 - [StartTask][py_starttask]
 - [JobPreparationTask][py_jobpreptask]
 - [JobReleaseTask][py_jobreltask]
 
-This sample does not use the JobPreparationTask or JobReleaseTask task types, but you can read more about them in [Run job preparation and completion tasks on Azure Batch compute nodes](batch-job-prep-release.md).
+此範例不會使用 JobPreparationTask 或 JobReleaseTask 工作類型，但您可以在[在 Azure Batch 計算節點上執行作業準備和完成工作](batch-job-prep-release.md)中深入了解。
 
-### <a name="shared-access-signature-(sas)"></a>Shared access signature (SAS)
+### 共用存取簽章 (SAS)
 
-Shared access signatures are strings that provide secure access to containers and blobs in Azure Storage. The *python_tutorial_client.py* script uses both blob and container shared access signatures, and demonstrates how to obtain these shared access signature strings from the Storage service.
+共用存取簽章是可供安全存取 Azure 儲存體中容器和 Blob 的字串。python\_tutorial\_client.py 指令碼會使用 Blob 和容器共用存取簽章，並示範如何從儲存體服務取得這些共用存取簽章字串。
 
-- **Blob shared access signatures**: The pool's StartTask uses blob shared access signatures when it downloads the task script and input data files from Storage (see [Step #3](#step-3-create-batch-pool) below). The `upload_file_to_container` function in *python_tutorial_client.py* contains the code that obtains each blob's shared access signature. It does so by calling [BlockBlobService.make_blob_url][py_make_blob_url] in the Storage module.
+- **Blob 共用存取簽章**：集區的 StartTask 會在從儲存體下載工作指令碼和輸入資料檔案時，使用 Blob 共用存取簽章 (請參閱下面[步驟 3](#step-3-create-batch-pool))。python\_tutorial\_client.py 中的 `upload_file_to_container` 函式包含可取得各 Blob 共用存取簽章的程式碼。在儲存體模組中呼叫 [BlockBlobService.make\_blob\_url][py_make_blob_url] 即可完成。
 
-- **Container shared access signature**: As each task finishes its work on the compute node, it uploads its output file to the *output* container in Azure Storage. To do so, *python_tutorial_task.py* uses a container shared access signature that provides write access to the container. The `get_container_sas_token` function in *python_tutorial_client.py* obtains the container's shared access signature, which is then passed as a command-line argument to the tasks. Step #5, [Add tasks to a job](#step-5-add-tasks-to-job), discusses the usage of the container SAS.
+- **容器共用存取簽章**：每個工作在計算節點上完成其工作時，便會將其輸出檔案上傳至 Azure 儲存體中的「輸出」容器。若要這樣做，python\_tutorial\_task.py 會使用容器共用存取簽章，其可提供容器的寫入存取權。python\_tutorial\_client.py 中的 `get_container_sas_token` 函式會取得容器的共用存取簽章，然後該簽章會以命令列引數的形式傳遞至工作。步驟 5 [將工作新增至作業](#step-5-add-tasks-to-job)討論容器 SAS 的使用方式。
 
-> [AZURE.TIP] Check out the two-part series on shared access signatures, [Part 1: Understanding the SAS model](../storage/storage-dotnet-shared-access-signature-part-1.md) and [Part 2: Create and use a SAS with the Blob service](../storage/storage-dotnet-shared-access-signature-part-2.md), to learn more about providing secure access to data in your Storage account.
+> [AZURE.TIP] 查看有關共用存取簽章的兩部分系列[第 1 部分：了解 SAS 模型](../storage/storage-dotnet-shared-access-signature-part-1.md)和[第 2 部分：建立和使用 SAS 與 Blob 服務](../storage/storage-dotnet-shared-access-signature-part-2.md)，進一步了解如何提供您儲存體帳戶中資料的安全存取。
 
-## <a name="step-3:-create-batch-pool"></a>Step 3: Create Batch pool
+## 步驟 3：建立 Batch 集區
 
-![Create a Batch pool][3]
-<br/>
+![建立 Batch 集區][3] <br/>
 
-A Batch **pool** is a collection of compute nodes (virtual machines) on which Batch executes a job's tasks.
+Batch **集區** 是 Batch 執行作業工作所在的計算節點 (虛擬機器) 集合。
 
-After it uploads the task script and data files to the Storage account, *python_tutorial_client.py* starts its interaction with the Batch service by using the Batch Python module. To do so, a [BatchServiceClient][py_batchserviceclient] is created:
+將工作指令碼和資料檔案上傳至儲存體帳戶之後，python\_tutorial\_client.py 會使用 Batch Python 模組開始與 Batch 服務互動。為了這麼做，會建立 [BatchServiceClient][py_batchserviceclient]：
 
 ```python
  # Create a Batch service client. We'll now be interacting with the Batch
@@ -291,7 +274,7 @@ After it uploads the task script and data files to the Storage account, *python_
      base_url=_BATCH_ACCOUNT_URL)
 ```
 
-Next, a pool of compute nodes is created in the Batch account with a call to `create_pool`.
+接下來，呼叫 `create_pool` 以在 Batch 帳戶中建立計算節點的集區。
 
 ```python
 def create_pool(batch_service_client, pool_id,
@@ -360,33 +343,33 @@ def create_pool(batch_service_client, pool_id,
         raise
 ```
 
-When you create a pool, you define a [PoolAddParameter][py_pooladdparam] that specifies several properties for the pool:
+當您建立集區時，您會定義 [PoolAddParameter][py_pooladdparam] 以指定集區的數個屬性：
 
-- **ID** of the pool (*id* - required)<p/>As with most entities in Batch, your new pool must have a unique ID within your Batch account. Your code refers to this pool using its ID, and it's how you identify the pool in the Azure [portal][azure_portal].
+- 集區的 [識別碼]\(id - 必要)<p/>如同 Batch 中的大部分實體，新的集區必須具有 Batch 帳戶內的唯一識別碼。您的程式碼會使用其識別碼參考此集區，而這就是您在 Azure [入口網站][azure_portal]中識別集區的方式。
 
-- **Number of compute nodes** (*target_dedicated* - required)<p/>This property specifies how many VMs should be deployed in the pool. It is important to note that all Batch accounts have a default **quota** that limits the number of **cores** (and thus, compute nodes) in a Batch account. You can find the default quotas and instructions on how to [increase a quota](batch-quota-limit.md#increase-a-quota) (such as the maximum number of cores in your Batch account) in [Quotas and limits for the Azure Batch service](batch-quota-limit.md). If you find yourself asking "Why won't my pool reach more than X nodes?" this core quota may be the cause.
+- **計算節點數目** (*target\_dedicated* - 必要)<p/>會指定應在集區中部署多少 VM。請務必注意，所有的 Batch 帳戶都具有預設**配額**，以限制 Batch 帳戶中的**核心** (因而限制計算節點) 數目。您可在 [Azure Batch 服務的配額和限制](batch-quota-limit.md)中發現預設配額以及如何[增加配額](batch-quota-limit.md#increase-a-quota) (例如 Batch 帳戶中的核心數目上限) 的說明。如果您發現自問「為什麼我的集區不會觸達 X 個以上的節點？」，此核心配額可能是原因。
 
-- **Operating system** for nodes (*virtual_machine_configuration* **or** *cloud_service_configuration* - required)<p/>In *python_tutorial_client.py*, we create a pool of Linux nodes using a [VirtualMachineConfiguration][py_vm_config]. The `select_latest_verified_vm_image_with_node_agent_sku` function in `common.helpers` simplifies working with [Azure Virtual Machines Marketplace][vm_marketplace] images. See [Provision Linux compute nodes in Azure Batch pools](batch-linux-nodes.md) for more information about using Marketplace images.
+- 節點的**作業系統** (virtual\_machine\_configuration **或** cloud\_service\_configuration - 必要)<p/>在 python\_tutorial\_client.py 中，我們會使用 [VirtualMachineConfiguration][py_vm_config] 來建立 Linux 節點的集區。`common.helpers`中的 `select_latest_verified_vm_image_with_node_agent_sku` 函式可簡化 [Azure 虛擬機器 Marketplace][vm_marketplace] 映像的使用方式。如需使用 Marketplace 映像的詳細資訊，請參閱[在 Azure Batch 集區中佈建 Linux 計算節點](batch-linux-nodes.md)。
 
-- **Size of compute nodes** (*vm_size* - required)<p/>Since we're specifying Linux nodes for our [VirtualMachineConfiguration][py_vm_config], we specify a VM size (`STANDARD_A1` in this sample) from [Sizes for virtual machines in Azure](../virtual-machines/virtual-machines-linux-sizes.md). Again, see [Provision Linux compute nodes in Azure Batch pools](batch-linux-nodes.md) for more information.
+- **計算節點的大小** (vm\_size - 必要)<p/>因為我們要針對 [VirtualMachineConfiguration][py_vm_config] 指定 Linux 節點，所以我們會從 [Azure 中的虛擬機器大小](../virtual-machines/virtual-machines-linux-sizes.md)指定 VM 大小 (在此範例中為 `STANDARD_A1`)。同樣地，如需詳細資訊，請參閱[在 Azure Batch 集區中佈建 Linux 計算節點](batch-linux-nodes.md)。
 
-- **Start task** (*start_task* - not required)<p/>Along with the above physical node properties, you may also specify a [StartTask][py_starttask] for the pool (it is not required). The StartTask executes on each node as that node joins the pool, and each time a node is restarted. The StartTask is especially useful for preparing compute nodes for the execution of tasks, such as installing the applications that your tasks run.<p/>In this sample application, the StartTask copies the files that it downloads from Storage (which are specified by using the StartTask's **resource_files** property) from the StartTask *working directory* to the *shared* directory that all tasks running on the node can access. Essentially, this copies `python_tutorial_task.py` to the shared directory on each node as the node joins the pool, so that any tasks that run on the node can access it.
+- **啟動工作** (start\_task - 非必要)<p/>透過上述實體節點屬性，您也可以指定集區的 [StartTask][py_starttask]\(非必要)。StartTask 會在每個節點加入集區以及每次重新啟動節點時，於該節點上執行。StartTask 特別適合用於準備計算節點以便執行工作，例如安裝您的工作會執行的應用程式。<p/>在此範例應用程式中，StartTask 會將它從儲存體下載的檔案 (使用 StartTask 的 **resource\_files** 屬性所指定)，從 StartTask「工作目錄」複製到在節點上執行的所有工作可以存取的「共用」目錄。基本上，這會在節點加入集區時將 `python_tutorial_task.py` 複製到每個節點上的共用目錄，以便在節點上執行的任何工作都能存取它。
 
-You may notice the call to the `wrap_commands_in_shell` helper function. This function takes a collection of separate commands and creates a single command line appropriate for a task's command line property.
+您可能會注意到對 `wrap_commands_in_shell` 協助程式函式的呼叫。此函式會採用不同命令的集合，並針對工作的命令列屬性建立合適的單一命令列。
 
-Also notable in the code snippet above is the use of two environment variables in the **command_line** property of the StartTask: `AZ_BATCH_TASK_WORKING_DIR` and `AZ_BATCH_NODE_SHARED_DIR`. Each compute node within a Batch pool is automatically configured with several environment variables that are specific to Batch. Any process that is executed by a task has access to these environment variables.
+此外，在上述程式碼片段中值得注意的是在 StartTask 的 **command\_line** 屬性中使用的兩個環境變數：`AZ_BATCH_TASK_WORKING_DIR` 和 `AZ_BATCH_NODE_SHARED_DIR`。Batch 集區中的每個計算節點都會自動以 Batch 特有的數個環境變數進行設定。工作所執行的任何程序都可以存取這些環境變數。
 
-> [AZURE.TIP] To find out more about the environment variables that are available on compute nodes in a Batch pool, as well as information on task working directories, see **Environment settings for tasks** and **Files and directories** in the [overview of Azure Batch features](batch-api-basics.md).
+> [AZURE.TIP] 若要深入了解 Batch 集區中計算節點上可用的環境變數，以及有關工作的工作目錄資訊，請參閱 [Azure Batch 功能概觀](batch-api-basics.md)中的**工作的環境設定**和**檔案和目錄**。
 
-## <a name="step-4:-create-batch-job"></a>Step 4: Create Batch job
+## 步驟 4：建立 Batch 作業
 
-![Create Batch job][4]<br/>
+![建立 Batch 作業][4]<br/>
 
-A Batch **job** is a collection of tasks, and is associated with a pool of compute nodes. The tasks in a job execute on the associated pool's compute nodes.
+Batch **作業**是與計算節點集區相關聯的工作集合。作業中的工作會在相關聯集區的計算節點上執行。
 
-You can use a job not only for organizing and tracking tasks in related workloads, but also for imposing certain constraints--such as the maximum runtime for the job (and by extension, its tasks) and job priority in relation to other jobs in the Batch account. In this example, however, the job is associated only with the pool that was created in step #3. No additional properties are configured.
+您不僅可使用作業來組織及追蹤相關工作負載中的工作，也可以強加特定條件約束，例如作業 (並延伸至其工作) 的最大執行階段，以及相對於 Batch 帳戶中其他作業的作業優先順序。不過，在此範例中，作業只與在步驟 3 建立的集區相關聯。不會設定任何其他屬性。
 
-All Batch jobs are associated with a specific pool. This association indicates which nodes the job's tasks execute on. You specify the pool by using the [PoolInformation][py_poolinfo] property, as shown in the code snippet below.
+所有 Batch 作業都會與特定集區相關聯。此關聯表示會在哪些節點上執行作業的工作。您可使用 [PoolInformation][py_poolinfo] 屬性來指定此集區，如下列程式碼片段所示。
 
 ```python
 def create_job(batch_service_client, job_id, pool_id):
@@ -411,16 +394,15 @@ def create_job(batch_service_client, job_id, pool_id):
         raise
 ```
 
-Now that a job has been created, tasks are added to perform the work.
+現已建立一個作業，便會加入工作來進行工作。
 
-## <a name="step-5:-add-tasks-to-job"></a>Step 5: Add tasks to job
+## 步驟 5：將工作加入至作業
 
-![Add tasks to job][5]<br/>
-*(1) Tasks are added to the job, (2) the tasks are scheduled to run on nodes, and (3) the tasks download the data files to process*
+![將工作加入至作業][5]<br/> (1) 工作已加入至作業，(2) 工作已排定在節點上執行，以及 (3) 工作會下載要處理的資料檔案
 
-Batch **tasks** are the individual units of work that execute on the compute nodes. A task has a command line and runs the scripts or executables that you specify in that command line.
+Batch **工作**是在計算節點上執行的個別工作單位。工作有一個命令列，可執行您在該命令列中指定的指令碼或可執行檔。
 
-To actually perform work, tasks must be added to a job. Each [CloudTask][py_task] is configured with a command line property and [ResourceFiles][py_resource_file] (as with the pool's StartTask) that the task downloads to the node before its command line is automatically executed. In the sample, each task processes only one file. Thus, its ResourceFiles collection contains a single element.
+若要實際進行工作，必須將工作加入至作業。每個 [CloudTask][py_task] 都是透過命令列屬性以及工作在其命令列自動執行前下載至節點的 [ResourceFiles][py_resource_file]\(如同集區的 StartTask) 進行設定。在此範例中，每個工作只會處理一個檔案。因此其 ResourceFiles 集合只包含單一元素。
 
 ```python
 def add_tasks(batch_service_client, job_id, input_files,
@@ -464,19 +446,19 @@ def add_tasks(batch_service_client, job_id, input_files,
     batch_service_client.task.add_collection(job_id, tasks)
 ```
 
-> [AZURE.IMPORTANT] When they access environment variables such as `$AZ_BATCH_NODE_SHARED_DIR` or execute an application not found in the node's `PATH`, task command lines must invoke the shell explicitly, such as with `/bin/sh -c MyTaskApplication $MY_ENV_VAR`. This requirement is unnecessary if your tasks execute an application in the node's `PATH` and do not reference any environment variables.
+> [AZURE.IMPORTANT] 當工作存取環境變數 (例如 `$AZ_BATCH_NODE_SHARED_DIR`) 或執行在節點的 `PATH` 中找不到的應用程式時，工作命令列必須明確地叫用 Shell，例如透過 `/bin/sh -c MyTaskApplication $MY_ENV_VAR`。如果您的工作在節點的 `PATH` 中執行應用程式且未參考任何環境變數，這就不是必要條件。
 
-Within the `for` loop in the code snippet above, you can see that the command line for the task is constructed with five command-line arguments that are passed to *python_tutorial_task.py*:
+在上述程式碼片段中的 `for` 迴圈內，您可以看到已建構工作的命令列，其中有五個命令列引數傳遞至 python\_tutorial\_task.py：
 
-1. **filepath**: This is the local path to the file as it exists on the node. When the ResourceFile object in `upload_file_to_container` was created in Step 2 above, the file name was used for this property (the `file_path` parameter in the ResourceFile constructor). This indicates that the file can be found in the same directory on the node as *python_tutorial_task.py*.
+1. **filepath**：這是節點上現有檔案的本機路徑。在上述步驟 2 的 `upload_file_to_container` 中建立 ResourceFile 物件時，檔案名稱會用於此屬性 (ResourceFile 建構函式中的 `file_path` 參數)。這表示可以在節點上與 python\_tutorial\_task.py 相同的目錄中找到檔案。
 
-2. **numwords**: The top *N* words should be written to the output file.
+2. **numwords**：最前面 N 個單字應該寫入輸出檔案。
 
-3. **storageaccount**: The name of the Storage account that owns the container to which the task output should be uploaded.
+3. **storageaccount**︰儲存體帳戶的名稱，其擁有工作輸出應上傳至的容器。
 
-4. **storagecontainer**: The name of the Storage container to which the output files should be uploaded.
+4. **storagecontainer**︰輸出檔應上傳至的儲存體容器名稱。
 
-5. **sastoken**: The shared access signature (SAS) that provides write access to the **output** container in Azure Storage. The *python_tutorial_task.py* script uses this shared access signature when creates its BlockBlobService reference. This provides write access to the container without requiring an access key for the storage account.
+5. **sastoken**：共用存取簽章 (SAS)，可提供 Azure 儲存體中**輸出**容器的寫入存取權。Python\_tutorial\_task.py 指令碼會在建立其 BlockBlobService 參考時使用此共用存取簽章。這可提供容器的寫入存取權，而不需要儲存體帳戶的存取金鑰。
 
 ```python
 # NOTE: Taken from python_tutorial_task.py
@@ -488,14 +470,13 @@ blob_client = azureblob.BlockBlobService(account_name=args.storageaccount,
                                          sas_token=args.sastoken)
 ```
 
-## <a name="step-6:-monitor-tasks"></a>Step 6: Monitor tasks
+## 步驟 6：監視工作
 
-![Monitor tasks][6]<br/>
-*The script (1) monitors the tasks for completion status, and (2) the tasks upload result data to Azure Storage*
+![監視工作][6]<br/> *指令碼 (1) 會監視工作的完成狀態，以及 (2) 將結果資料上傳至 Azure 儲存體的工作*
 
-When tasks are added to a job, they are automatically queued and scheduled for execution on compute nodes within the pool associated with the job. Based on the settings you specify, Batch handles all task queuing, scheduling, retrying, and other task administration duties for you.
+工作新增至作業時，會自動排入佇列及排程，以便在與作業相關聯的集區中的計算節點上執行。根據您指定的設定，Batch 會為您處理所有工作佇列、排程、重試和其他工作管理責任。
 
-There are many approaches to monitoring task execution. The `wait_for_tasks_to_complete` function in *python_tutorial_client.py* provides a simple example of monitoring tasks for a certain state, in this case, the [completed][py_taskstate] state.
+監視工作執行的方法有許多種。python\_tutorial\_client.py 中的 `wait_for_tasks_to_complete` 函式會提供監視特定工作狀態的簡單範例，在此例中為[已完成][py_taskstate]狀態。
 
 ```python
 def wait_for_tasks_to_complete(batch_service_client, job_id, timeout):
@@ -532,11 +513,11 @@ def wait_for_tasks_to_complete(batch_service_client, job_id, timeout):
                        "timeout period of " + str(timeout))
 ```
 
-## <a name="step-7:-download-task-output"></a>Step 7: Download task output
+## 步驟 7：下載工作輸出
 
-![Download task output from Storage][7]<br/>
+![從儲存體下載工作輸出][7]<br/>
 
-Now that the job is completed, the output from the tasks can be downloaded from Azure Storage. This is done with a call to `download_blobs_from_container` in *python_tutorial_client.py*:
+現已完成作業，可以從 Azure 儲存體下載工作的輸出。在 python\_tutorial\_client.py 中呼叫 `download_blobs_from_container` 即可完成此操作：
 
 ```python
 def download_blobs_from_container(block_blob_client,
@@ -570,11 +551,11 @@ def download_blobs_from_container(block_blob_client,
     print('  Download complete!')
 ```
 
-> [AZURE.NOTE] The call to `download_blobs_from_container` in *python_tutorial_client.py* specifies that the files should be downloaded to your home directory. Feel free to modify this output location.
+> [AZURE.NOTE] 在 python\_tutorial\_client.py 中呼叫 `download_blobs_from_container`可指定檔案應下載到您的主目錄。您可隨意修改此輸出位置。
 
-## <a name="step-8:-delete-containers"></a>Step 8: Delete containers
+## 步驟 8：刪除容器
 
-Because you are charged for data that resides in Azure Storage, it is always a good idea to remove any blobs that are no longer needed for your Batch jobs. In *python_tutorial_client.py*, this is done with three calls to [BlockBlobService.delete_container][py_delete_container]:
+因為您需對位於 Azure 儲存體中的資料付費，所以建議您移除您的 Batch 作業不再需要的所有 Blob。在 python\_tutorial\_client.py 中，做法對 [BlockBlobService.delete\_container][py_delete_container] 進行三次呼叫：
 
 ```
 # Clean up storage resources
@@ -584,11 +565,11 @@ blob_client.delete_container(input_container_name)
 blob_client.delete_container(output_container_name)
 ```
 
-## <a name="step-9:-delete-the-job-and-the-pool"></a>Step 9: Delete the job and the pool
+## 步驟 9：刪除作業和集區
 
-In the final step, you are prompted to delete the job and the pool that were created by the *python_tutorial_client.py* script. Although you are not charged for jobs and tasks themselves, you *are* charged for compute nodes. Thus, we recommend that you allocate nodes only as needed. Deleting unused pools can be part of your maintenance process.
+在最後一個步驟中，系統會提示您刪除 python\_tutorial\_client.py 指令碼所建立的作業和集區。雖然您不需支付作業和工作的費用，但您「需」支付計算節點的費用。因此，我們建議您只在必要時配置節點。刪除未使用的集區可成為您維護程序的一部分。
 
-The BatchServiceClient's [JobOperations][py_job] and [PoolOperations][py_pool] both have corresponding deletion methods, which are called if you confirm deletion:
+BatchServiceClient 的 [JobOperations][py_job] 和 [PoolOperations][py_pool] 兩者都有對應的刪除方法 (在您確認刪除時呼叫)：
 
 ```python
 # Clean up Batch resources (if the user so chooses).
@@ -599,15 +580,15 @@ if query_yes_no('Delete pool?') == 'yes':
     batch_client.pool.delete(_POOL_ID)
 ```
 
-> [AZURE.IMPORTANT] Keep in mind that you are charged for compute resources--deleting unused pools will minimize cost. Also, be aware that deleting a pool deletes all compute nodes within that pool, and that any data on the nodes will be unrecoverable after the pool is deleted.
+> [AZURE.IMPORTANT] 請記住，您需支付計算資源的費用，而刪除未使用的集區會將成本降到最低。另外請注意，刪除集區也會刪除該集區內的所有計算節點，而刪除集區後，將無法復原節點上的任何資料。
 
-## <a name="run-the-sample-script"></a>Run the sample script
+## 執行範例指令碼
 
-When you run the *python_tutorial_client.py* script from the tutorial [code sample][github_article_samples], the console output is similar to the following. There is a pause at `Monitoring all tasks for 'Completed' state, timeout in 0:20:00...` while the pool's compute nodes are created, started, and the commands in the pool's start task are executed. Use the [Azure portal][azure_portal] to monitor your pool, compute nodes, job, and tasks during and after execution. Use the [Azure portal][azure_portal] or the [Microsoft Azure Storage Explorer][storage_explorer] to view the Storage resources (containers and blobs) that are created by the application.
+當您執行教學課程[程式碼範例][github_article_samples]中的 python\_tutorial\_client.py 指令碼時，主控台輸出大致如下。在 `Monitoring all tasks for 'Completed' state, timeout in 0:20:00...` 會暫停執行，然而會建立、啟動集區的計算節點，以及執行集區的啟動工作中的命令。在執行期間和之後，使用 [Azure 入口網站][azure_portal]來監視集區、計算節點、作業和工作。使用 [Azure 入口網站][azure_portal]或 [Microsoft Azure 儲存體總管][storage_explorer]來檢視應用程式所建立的儲存體資源 (容器和 Blob)。
 
->[AZURE.TIP] Run the *python_tutorial_client.py*  script from within the `azure-batch-samples/Python/Batch/article_samples` directory. It uses a relative path for the `common.helpers` module import, so you might see `ImportError: No module named 'common'` if you don't run the the script from within this directory.
+>[AZURE.TIP] 從 `azure-batch-samples/Python/Batch/article_samples` 目錄內執行 *python\_tutorial\_client.py* 指令碼。它會使用相對路徑來匯入 `common.helpers` 模組，因此如果您沒有從此目錄內執行指令碼，您可能會看到 `ImportError: No module named 'common'`。
 
-Typical execution time is **approximately 5-7 minutes** when you run the sample in its default configuration.
+以預設組態執行範例時，一般的執行時間**大約 5-7 分鐘**。
 
 ```
 Sample start: 2016-05-20 22:47:10
@@ -637,15 +618,15 @@ Delete pool? [Y/n]
 Press ENTER to exit...
 ```
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-Feel free to make changes to *python_tutorial_client.py* and *python_tutorial_task.py* to experiment with different compute scenarios. For example, try adding an execution delay to *python_tutorial_task.py* to simulate long-running tasks and monitor them in the portal. Try adding more tasks or adjusting the number of compute nodes. Add logic to check for and allow the use of an existing pool to speed execution time.
+您可隨意變更 python\_tutorial\_client.py 和 python\_tutorial\_task.py，以試驗不同的計算案例。例如，嘗試將執行延遲新增至 python\_tutorial\_task.py，以模擬長時間執行的工作並在入口網站中監視這些工作。嘗試新增更多工作，或調整計算節點的數目。新增邏輯來檢查並允許使用現有的集區，以加速執行時間。
 
-Now that you're familiar with the basic workflow of a Batch solution, it's time to dig in to the additional features of the Batch service.
+既然您已熟悉 Batch 方案的基本工作流程，現在可以深入了解 Batch 服務的其他功能。
 
-- Review the [Overview of Azure Batch features](batch-api-basics.md) article, which we recommend if you're new to the service.
-- Start on the other Batch development articles under **Development in-depth** in the [Batch learning path][batch_learning_path].
-- Check out a different implementation of processing the "top N words" workload with Batch in the [TopNWords][github_topnwords] sample.
+- 如果您不熟悉這項服務，我們建議檢閱 [Azure Batch 功能概觀](batch-api-basics.md)一文。
+- 從 [Batch 學習路徑][batch_learning_path]中的**深入開發**之下的其他 Batch 開發文章著手。
+- 在 [TopNWords][github_topnwords] 範例中，查看利用 Batch 處理「前 N 個單字」工作負載的不同實作方式。
 
 [azure_batch]: https://azure.microsoft.com/services/batch/
 [azure_free_account]: https://azure.microsoft.com/free/
@@ -699,20 +680,16 @@ Now that you're familiar with the basic workflow of a Batch solution, it's time 
 [visual_studio]: https://www.visualstudio.com/products/vs-2015-product-editions
 [vm_marketplace]: https://azure.microsoft.com/marketplace/virtual-machines/
 
-[1]: ./media/batch-python-tutorial/batch_workflow_01_sm.png "Create containers in Azure Storage"
-[2]: ./media/batch-python-tutorial/batch_workflow_02_sm.png "Upload task application and input (data) files to containers"
-[3]: ./media/batch-python-tutorial/batch_workflow_03_sm.png "Create Batch pool"
-[4]: ./media/batch-python-tutorial/batch_workflow_04_sm.png "Create Batch job"
-[5]: ./media/batch-python-tutorial/batch_workflow_05_sm.png "Add tasks to job"
-[6]: ./media/batch-python-tutorial/batch_workflow_06_sm.png "Monitor tasks"
-[7]: ./media/batch-python-tutorial/batch_workflow_07_sm.png "Download task output from Storage"
-[8]: ./media/batch-python-tutorial/batch_workflow_sm.png "Batch solution workflow (full diagram)"
-[9]: ./media/batch-python-tutorial/credentials_batch_sm.png "Batch credentials in Portal"
-[10]: ./media/batch-python-tutorial/credentials_storage_sm.png "Storage credentials in Portal"
-[11]: ./media/batch-python-tutorial/batch_workflow_minimal_sm.png "Batch solution workflow (minimal diagram)"
+[1]: ./media/batch-python-tutorial/batch_workflow_01_sm.png "在 Azure 儲存體中建立容器"
+[2]: ./media/batch-python-tutorial/batch_workflow_02_sm.png "將工作應用程式和輸入 (資料) 檔案上傳至容器"
+[3]: ./media/batch-python-tutorial/batch_workflow_03_sm.png "建立 Batch 集區"
+[4]: ./media/batch-python-tutorial/batch_workflow_04_sm.png "建立 Batch 作業"
+[5]: ./media/batch-python-tutorial/batch_workflow_05_sm.png "將工作加入至作業"
+[6]: ./media/batch-python-tutorial/batch_workflow_06_sm.png "監視工作"
+[7]: ./media/batch-python-tutorial/batch_workflow_07_sm.png "從儲存體下載工作輸出"
+[8]: ./media/batch-python-tutorial/batch_workflow_sm.png "Batch 方案工作流程 (完整圖表)"
+[9]: ./media/batch-python-tutorial/credentials_batch_sm.png "入口網站中的 Batch 認證"
+[10]: ./media/batch-python-tutorial/credentials_storage_sm.png "入口網站中的儲存體認證"
+[11]: ./media/batch-python-tutorial/batch_workflow_minimal_sm.png "Batch 方案工作流程 (最小圖表)"
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0928_2016-->

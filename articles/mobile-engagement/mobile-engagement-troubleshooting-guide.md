@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="Azure Mobile Engagement Troubleshooting Guides" 
-   description="Troubleshooting Guide for Azure Mobile Engagement" 
+   pageTitle="Azure Mobile Engagement 疑難排解指南" 
+   description="Azure Mobile Engagement 的疑難排解指南" 
    services="mobile-engagement" 
    documentationCenter="" 
    authors="piyushjo" 
@@ -16,115 +16,109 @@
    ms.date="08/19/2016"
    ms.author="piyushjo"/>
 
+# Azure Mobile Engagement - 疑難排解指南
 
-# <a name="azure-mobile-engagement---troubleshooting-guide"></a>Azure Mobile Engagement - Troubleshooting Guide
+## 簡介
+下列疑難排解指南將協助您了解一些常見問題的根本原因，並可讓您自行疑難排解。
 
-## <a name="introduction"></a>Introduction
-The following troubleshooting guide will help you understand root causes of some commonly seen issues and will enable you to troubleshoot on your own. 
+## 一般
 
-## <a name="general"></a>General
+一般而言，請務必確定下列事項：
 
-In general, you should always ensure the following:
+1. 確定您已經如[使用者入門教學課程](mobile-engagement-windows-store-dotnet-get-started.md)中所述完成整合作業所需的所有步驟
+2. 您使用的是最新版的平台 SDK。
+3. 同時在實際裝置和模擬器上進行測試，因為有些問題是只有模擬器才有的。
+4. 您並未達到 Mobile Engagement 的任何限制/節流，其相關內容記載在[這裡](../azure-subscription-service-limits.md)。
+5. 如果您無法連接到 Mobile Engagement 服務後端，或發現未能持續載入資料，則請檢查[這裡](https://azure.microsoft.com/status/)，確定目前沒有發生服務事件
 
-1. Ensure that you have gone through all the steps required for integration as described in our [Getting Started tutorials](mobile-engagement-windows-store-dotnet-get-started.md)
-2. You are using the latest version of the platform SDKs. 
-3. Test on both an actual device and an emulator because some issues are specific to emulator only. 
-4. You are not hitting any limits/throttles from Mobile Engagement which are documented [here](../azure-subscription-service-limits.md)
-5. If you are not able to connect to the Mobile Engagement service backend or seeing data not being loaded continuously then ensure that there are no ongoing service incidents by checking [here](https://azure.microsoft.com/status/)
+## 「監視」問題
 
-## <a name="'monitor'-issues"></a>'Monitor' issues
+### 我沒有在 [監視] 索引標籤上看到我的裝置
+[監視] 索引標籤會即時顯示與您的 Mobile Engagement 平台連接的裝置。如果您正在模擬器和裝置上進行偵錯，您應該會在這裡看到至少一個工作階段。如果已散發應用程式，您會看到 [使用中工作階段] 量測計即時反映出與平台連接的裝置。
 
-### <a name="i-am-not-seeing-my-device-showing-up-on-the-monitor-tab"></a>I am not seeing my device showing up on the Monitor tab
-Monitor tab shows the devices connected to your Mobile Engagement platform in real-time. If you are debugging on an emulator and device, then you should see at least one session here. If the app has been distributed, then you will see the Active Sessions gauge reflect the devices which are connected to the platform in real-time. 
+如果您沒有在 [監視] 索引標籤上看見您的裝置，表示可能有 SDK 整合問題。您可以採取的某些常見疑難排解步驟如下：
 
-If you are not seeing your device on the Monitor tab then it is likely an SDK integration issue. Some common steps to take to troubleshoot are as follows:
+1. 確定您有在行動應用程式中使用正確的連接字串，且其來自 [SDK 金鑰] 區段而非 [API 金鑰] 區段。連接字串會將您的行動應用程式連接到 Mobile Engagement 應用程式的執行個體，您會在其中的 [監視] 索引標籤上看到您的裝置。
+2. 針對 Windows 平台 - 如果您的頁面會覆寫 `OnNavigatedTo` 方法，請確定會呼叫 `base.OnNavigatedTo(e)`。
+3. 如果您要將 Mobile Engagement 整合到現有的行動應用程式，則您也可以查看[這裡](mobile-engagement-windows-store-integrate-engagement.md)的進階整合步驟，確保您沒有遺漏任何步驟
+4. 視您正在使用的平台而定，透過以 EngagementActivity 覆寫頁面來確定您正在傳送至少一個畫面/活動，詳細內容如[使用者入門教學課程](mobile-engagement-windows-store-dotnet-get-started.md)所述。
 
-1. Ensure that you are using the correct connection string in the mobile app and it is from the SDK keys section and not the API keys section. The connection string connects your mobile app to the instance of the Mobile Engagement app in which you will see your device on the Monitor tab. 
-2. For Windows platform - if your page overrides the `OnNavigatedTo` method, make sure to call `base.OnNavigatedTo(e)`.
-3. If you are integrating Mobile Engagement into an existing mobile app then you can also ensure that you are not missing any steps by looking at the advanced integration steps [here](mobile-engagement-windows-store-integrate-engagement.md)
-4. Ensure you are sending at least one screen/activity by overriding the page with EngagementActivity depending on the platform you are working as described in the [Getting Started tutorials](mobile-engagement-windows-store-dotnet-get-started.md).
+### 我已經中斷連接或關閉我的應用程式/模擬器，但仍看到 [監視] 索引標籤中顯示工作階段。 
+如果您是目前連接到平台的唯一使用者，且您正使用模擬器來開啟應用程式，原因可能是模擬器的問題。一般而言，您必須確實回到模擬器上的 [首頁] 畫面，應用程式工作階段才會成功中斷連接。此外，在 Windows 平台上，當您使用 Visual Studio 進行偵錯時，您可能需要確定您有在 Visual Studio 中移至 [生命週期事件] 功能表列，然後按一下 [暫停] 來真正關閉工作階段。如需詳細資訊，請參閱 [Windows 教學課程](mobile-engagement-windows-store-dotnet-get-started.md)。
 
-### <a name="i-am-seeing-the-monitor-tab-showing-a-session-even-when-i-have-disconnected-or-closed-my-app/-emulator."></a>I am seeing the Monitor tab showing a session even when I have disconnected or closed my app/ emulator. 
-If you are the only one connected to the platform at this point and you are using an emulator to open the app then this is likely due to emulator quirks. In general, you need to ensure that you come back to the Home screen on the emulator for the app session to disconnect successfully. Additionally, on Windows platform, while debugging with Visual Studio, you may need to ensure that in Visual Studio, you go to the **Lifecycle Events** menu bar and click on **Suspend** to really close the session. See [Windows tutorial](mobile-engagement-windows-store-dotnet-get-started.md) for details. 
+## 「分析」問題
 
-## <a name="'analytics'-issues"></a>'Analytics' issues
+### 我在 [分析] 索引標籤上看不到任何資料/重新整理的資料 
+[分析] 資料會定期重新計算，最多可能需要 24 小時才能完成此重新整理作業。這並非即時資料，您會在 24 小時的期間內看到它進行重新整理。不過，請務必明確以 `EngagementActivity` 覆寫至少一頁或呼叫 `SendActivity`確定您會傳送至少一個畫面或活動到平台後端。
 
-### <a name="i-am-not-seeing-any-data/-refreshed-data-on-analytics-tab"></a>I am not seeing any data/ refreshed data on Analytics tab 
-Analytics data is recalculated on a regular basis and it could take upto 24 hours for this refresh. This data isn't realtime and you will see it refreshed within this 24 hour time period.
-Please do ensure however that you are sending atleast one screen or Activity to the platform backend by either overriding atleast one page with `EngagementActivity` or calling `SendActivity` explcitly. 
+### 我在 [分析] 索引標籤上看到不正確的裝置擷取日期/時間
+[分析] 的時間週期是根據使用者的裝置設定的日期。因此請確定裝置已正確設定日期。
 
-### <a name="i-am-seeing-incorrectly-captured-date/time-for-a-device-on-the-analytics-tab"></a>I am seeing incorrectly captured date/time for a device on the Analytics tab
-The time period for Analytics is based on the date from the users' device settings. So ensure that the device has the date correctly set. 
+## 「區段」問題
 
-## <a name="'segment'-issues"></a>'Segment' issues
+### 我建立了一個區段，但它呈現灰色或未顯示任何資料
+目前不會即時建立區段。在彙總分析資料時會同時計算區段，因此最多可能需要 24 小時的時間。請稍後再回來查看，但在此同時，您也應該確定您的行動應用程式確實有傳送您據以形成區段的資料。例如，如果有事件指出並沒有行動裝置傳送 'foo'，則以 EventName = foo 作為準則所建立的區段不會有任何區段資料。您也應該檢查您的 SDK 整合情形，確定您的行動應用程式會正確地傳送資料。
 
-### <a name="i-created-a-segment-and-it-is-showing-up-as-greyed-out-or-not-showing-any-data"></a>I created a segment and it is showing up as greyed out or not showing any data
-Segment creation isn't real-time at the moment. It is calculated at the same time as the analytics data is aggregated and so it could take upto 24 hours. You should check back later but meanwhile you should also ensure that your mobile apps are indeed sending the data on the basis of which you are forming the segments. E.g. if an event say 'foo' isn't being sent by any mobile device then there wouldn't be any segment data for a segment created with EventName = foo as the criterion. You should also check your SDK integration to ensure your mobile app is sending the data correctly. 
+## 「送達」或推播通知問題
 
-## <a name="'reach'-or-push-notifications-issues"></a>'Reach' or Push Notifications issues
+### 我的推播訊息未傳遞 
 
-### <a name="my-push-messages-are-not-being-delivered"></a>My push messages are not being delivered 
+1. 請先嘗試將通知傳送至測試裝置，確定所有元件 (行動應用程式、SDK 和服務) 都已正確連接且能夠傳送推播通知。
+2. 請一律先透過既未排程也未指定任何對象準則的活動來傳送最簡單的「應用程式外通知」。同樣地，這也是為了證明通知連線有正常運作。
+3. 如果您無法傳送應用程式內通知，則先嘗試傳送應用程式外通知也是不錯的第一步。
+4. 確定您的行動應用程式已正確設定「原生推播」。視平台而定，它會涉及金鑰 (Android、Windows) 或憑證 (iOS)。請參閱[使用者介面設定](mobile-engagement-user-interface-settings.md)
+5. 使用者也可能透過行動作業系統封鎖了應用程式外通知，因此請確定不是這種情況。
+6. 確定您未在 [送達] 活動的 [活動] 區段中設定 [忽略對象，將透過 API 傳送推播給使用者] 選項，因為這將確保只可以透過 API 傳送推播通知。
+7. 確定您在測試推播活動時有同時使用透過 WIFI 與電信商網路連線的裝置，以排除網路連線是問題根源的可能性。
+8. 確定裝置/模擬器上的系統日期/時間是否正確，因為裝置未同步也會干擾推播通知服務傳遞通知的能力。
 
-1. Try sending notifications to a test device first to ensure that all the components - mobile app, SDK and the service are connected correctly and able to deliver push notifications. 
-2. Always send the simplest 'out-of-app notification' first via a campaign which is not scheduled and nor it has any audience criterion specified. This is again to prove that notification connectivity is working correctly. 
-3. If you are having problems in delivering in-app notifications then also it is a good first step to try sending an out-of-app notification first. 
-4. Ensure that the 'Native Push' is correctly configured for your mobile app. Depending on the platform it will either involve keys (Android, Windows) or certificates (iOS). See [User Interface - Settings](mobile-engagement-user-interface-settings.md)
-5. Out of app notifications could also be blocked by the user via the mobile OS so ensure this is not the case. 
-6. Ensure that you are not setting the *Ignore Audience, push will be sent to users via the API* option in the **Campaign** section of a Reach campaign because this will ensure that push notifications could only be sent via APIs. 
-7. Ensure that you are testing your push campaign with both a device connected via WIFI and phone operator network to eliminate the network connection as a possible source of problems.
-8. Ensure that the system date/time on your device/emulator is correct because any out of sync device will also interfere with the Push Notification Service's ability to deliver notifications. 
+以下有更多平台特有的疑難排解指示：
 
-More platform specific troubleshooting instructions below:
+1. **iOS**
 
-1. **iOS** 
-
-    - Ensure that the certificates are valid and unexpired for iOS Push Notifications. 
-    - Ensure that you are correctly configuring a *Production* certificate in your Mobile Engagement app. 
-    - Ensure that you are testing on a *real, physical device.* The iOS simulator cannot process push messages.
-    - Ensure that the Bundle Identifier is correctly configured in the mobile app. See the instructions [here](https://developer.apple.com/library/prerelease/ios/documentation/IDEs/Conceptual/AppDistributionGuide/AddingCapabilities/AddingCapabilities.html#//apple_ref/doc/uid/TP40012582-CH26-SW6)
-    - When testing, use "Ad Hoc" distribution in your mobile provisioning profile. You will not be able to receive notification if your app is compiled using "Debug"
+	- 確定憑證有效且未到期，仍可用於 iOS 推播通知。
+	- 確定您有在 Mobile Engagement 應用程式中正確設定 [生產] 憑證。
+	- 請確定您要測試的是*真正的實體裝置。* iOS 模擬器無法處理推播訊息。
+	- 確定已在行動應用程式中正確設定 [Bundle Identifier]。請參閱[這裡](https://developer.apple.com/library/prerelease/ios/documentation/IDEs/Conceptual/AppDistributionGuide/AddingCapabilities/AddingCapabilities.html#//apple_ref/doc/uid/TP40012582-CH26-SW6)的指示
+	- 測試時，請使用行動佈建設定檔中的「臨機」發佈。若您的應用程式使用「偵錯」進行編譯，您將無法收到通知
 
 2. **Android**
 
-    - Ensure that you have specified the correct Project number in your mobile app's AndroidManifest.xml file which is followed by \n character. 
-    
-            <meta-data android:name="engagement:gcm:sender" android:value="************\n" />
-        
-    - Ensure that you are not missing or mis-configured any permissions in the Android Manifest file 
-    - Ensure that the Project number you are adding to your client app is from the same account where you got the GCM Server Key. Any mismatch between the two will prevent your pushes from going out. 
-    - If you are receiving system notifications but not in-app then review the [Specify an icon for notifications section](mobile-engagement-android-get-started.md) as likely you are not specifying the correct icon in the Android Manifest file. 
-    - If you are sending a BigPicture notification, then ensure that if you have external image servers then they need to be able to support HTTP "GET" and "HEAD".
+	- 確定您已在行動應用程式的 AndroidManifest.xml 檔案中指定正確的專案編號，且後面接著 \\n 字元。
+	
+	    	<meta-data android:name="engagement:gcm:sender" android:value="************\n" />
+	    
+	- 請確定您在 Android 資訊清單檔中沒有遺失或錯誤設定任何權限
+	- 請確定您要新增至用戶端應用程式的專案編號是來自於您取得 GCM 伺服器金鑰的相同帳戶。兩者只要有任何不相符，就無法送出您的推播。
+	- 如果有收到系統通知，但未收到應用程式內通知，請檢閱[指定通知區段的圖示](mobile-engagement-android-get-started.md)，因為您可能未在 Android 資訊清單檔案中指定正確的圖示。
+	- 如果您要傳送 BigPicture 通知，則請確定如果您有外部影像伺服器，這些伺服器需要能夠支援 HTTP "GET" 和 "HEAD"。
 
 3. **Windows**
-    
-    - Ensure that you have associated the app with a valid Windows Store app. In Visual Studio - you will have to right click the project and select "Associate App with Store" option and select the app you created in the Windows Store. This Windows Store app should be the same one from where you got the native push credentials to configure in the Mobile Engagement portal.
-    - If you are receiving out-of-app push notifications but not in-app notifications with `EngagementOverlay` integration then ensure there is a root grid element in your page. EngagementOverlay uses the first “Grid” element it finds in your xaml file to add two web views on your page. If you want to locate where web views will be set, you can define a grid named “EngagementGrid” like this however you will have to ensure there is sufficient height and width for the two subsequent web views which will show the notification and the following announcement as in-app notification:
-        
-            <Grid x:Name="EngagementGrid"></Grid>
+	
+	- 確定您已將應用程式關聯到有效的 Windows 市集應用程式。在 Visual Studio 中 - 您必須以滑鼠右鍵按一下專案並選取 [將應用程式與市集建立關聯] 選項，然後選取您在 Windows 市集中建立的應用程式。這個 Windows 市集應用程式，應該與您用來取得原生推播認證以在 Mobile Engagement 入口網站中進行設定的是同一個。
+	- 如果有透過 `EngagementOverlay` 整合收到應用程式以外的推播通知，但未收到應用程式內通知，則請確定您的頁面中有根 Grid 元素。EngagementOverlay 會使用它在 xaml 檔案中找到的第一個 “Grid” 元素，在您的頁面上新增兩個 Web 檢視。如果您想要找出 Web 檢視的設定位置，您可以定義如下名為 "EngagementGrid" 的 Grid，不過，您必須確保高度和寬度足以容納兩個後續的 Web 檢視，這兩個檢視會將通知和下列公告顯示為應用程式內通知：
+		
+			<Grid x:Name="EngagementGrid"></Grid>
 
-### <a name="i-created-a-push-notification/announcement/-campaign-and-even-after-it-sent-me-the-notification,-it-is-showing-as-'active'.-what-does-it-mean?"></a>I created a push notification/announcement/ campaign and even after it sent me the notification, it is showing as 'Active'. What does it mean? 
-The **campaign** that you created in Mobile Engagement is called so because it is a long running push notification meaning as new devices connect to your mobile engagement platform, they will be automatically sent the notification you configure here, as long as they satisfy the criterion you set in the campaign. This is not a one shot single notification setup. You will have to manually click on the **Finish** button to terminate the campaign so that it doesn't send further notifications. 
+### 我建立了推播通知/公告/活動，但在它們已傳送通知給我之後，仍會顯示為「使用中」。這代表什麼意思？ 
+您在 Mobile Engagement 中建立的 [活動] 之所以如此稱呼，是因為它是長時間執行的推播通知，意味著當有新裝置連線到行動參與平台，而只要裝置符合您在活動中設定的準則，就會自動對其傳送您在此處設定的通知。這不是一次性的單一通知設定。您必須手動按一下 [完成] 按鈕來終止行銷活動，才不會再繼續傳送通知。
 
-### <a name="i-created-a-push-campaign-and-i-am-receiving-notifications-successfully-however-whenever-i-open-up-the-app,-i-get-the-same-notification-even-when-i-had-actioned-it-before?"></a>I created a push campaign and I am receiving notifications successfully however whenever I open up the app, I get the same notification even when I had actioned it before? 
-This is likely to happen during testing and if you are using emulators or some test framework like TestFlight. What is happening here is that at every app run instance, it is acquiring a new DeviceID and sending it to our backend which is causing the Mobile Engagement platform to treat it as a new device and sending the notification. 
+### 我建立了推播活動，我也有成功收到通知，不過每當我開啟應用程式，總是得到相同的通知，即使我以前就已經對該通知採取過動作？ 
+如果您在測試期間使用模擬器或某些測試架構 (像是 TestFlight)，就可能發生這個情況。其背後的原因是在每一個應用程式執行個體上，它會取得新的 DeviceID 並將它傳送給我們的後端，導致 Mobile Engagement 平台將它視為新裝置並傳送通知。
 
-## <a name="getting-support"></a>Getting Support
+## 取得支援
 
-If you are unable to resolve the issue yourself then you can:
+如果您無法自行解決問題，您可以：
 
-1. Search for your issue in the existing threads on StackOverflow forum and [MSDN forum](https://social.msdn.microsoft.com/Forums/windows/en-US/home?forum=azuremobileengagement) and if not then ask a question there. 
-2. If you find a feature missing then add/vote for the request on our [UserVoice forum](https://feedback.azure.com/forums/285737-mobile-engagement/)
-3. If you have Microsoft Support Open a support incident by providing the following details: 
-    - Azure Subscription ID
-    - Platform (e.g. iOS, Android etc)
-    - App ID
-    - Campaign ID (For push notification issues)
-    - Device ID
-    - Mobile Engagement SDK version (e.g. Android SDK v2.1.0)
-    - Error details with exact error message and scenario
+1. 在 StackOverflow 論壇與 [MSDN 論壇](https://social.msdn.microsoft.com/Forums/windows/zh-TW/home?forum=azuremobileengagement)的現有討論對話中，搜尋是否有您的問題，如果沒有，即在論壇中發問。
+2. 如果您發現缺少什麼功能，則請到我們的 [UserVoice 論壇](https://feedback.azure.com/forums/285737-mobile-engagement/)新增申請或進行投票
+3. 如果您有 Microsoft 支援，則請提供下列詳細資料來開立支援事件：
+	- Azure 訂用帳戶識別碼
+	- 平台 (例如 iOS、Android 等)
+	- 應用程式識別碼
+	- 活動識別碼 (若為推播通知方面的問題)
+	- 裝置識別碼
+	- Mobile Engagement SDK 版本 (例如 Android SDK v2.1.0)
+	- 附有確切錯誤訊息與狀況的錯誤詳細資料
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

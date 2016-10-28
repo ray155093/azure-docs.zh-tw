@@ -1,9 +1,9 @@
 <properties 
-    pageTitle="Get help from Machine Learning Live Chat Support | Microsoft Azure" 
-    description="Get real-time help for Machine Learning in the cloud with the Live Chat Support feature." 
+    pageTitle="取得來自機器學習服務即時聊天支援的協助 | Microsoft Azure" 
+    description="在雲端中使用即時聊天支援功能取得機器學習的即時協助。" 
     services="machine-learning" 
     documentationCenter="" 
-    authors="garyericson" 
+    authors="olgali" 
     manager="opapel" 
     editor="cgronlun"/>
 <tags 
@@ -12,28 +12,23 @@
     ms.tgt_pltfrm="na" 
     ms.devlang="na" 
     ms.topic="article" 
-    ms.date="09/29/2016" 
-    ms.author="garye"/>
+    ms.date="05/16/2016" 
+    ms.author="olgali"/>
+#取得來自機器學習即時聊天支援的說明
 
-#<a name="get-help-from-machine-learning-live-chat-support"></a>Get help from Machine Learning Live Chat Support
+[Azure Machine Learning Studio](machine-learning-what-is-ml-studio.md) 提供用於建立機器學習模型的直覺式介面。有[資源庫](machine-learning-gallery-how-to-use-contribute-publish.md)和[論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=MachineLearning)可以一路指引您。
 
-[Azure Machine Learning Studio](machine-learning-what-is-ml-studio.md) provides an intuitive interface for building machine learning models. There is a [Gallery](machine-learning-gallery-how-to-use-contribute-publish.md) and [Forums](https://social.msdn.microsoft.com/forums/azure/home?forum=MachineLearning) to guide you along that way. 
+但是有時候您只是需要對於疑問快速提出問題。在 [Studio](machine-learning-what-is-ml-studio.md) 中尋找最上層導覽的聊天圖示。如果您看到此圖示，就表示產品團隊的成員目前正在線上，可以即時協助您。
 
-But sometimes you just need to ask a quick question to unblock you. In [Studio](machine-learning-what-is-ml-studio.md) look for the chat icon in the top navigation.  If you see this icon, that means a member of the product team is online to help you in real time.
+![Azure ML 聊天](./media/machine-learning-live-chat/AzureMLChatNavBar.png)
 
-![Azure ML Chat](./media/machine-learning-live-chat/AzureMLChatNavBar.png)
+輸入您的問題並且獲得解答！
 
-Type in your question and get your answers!
+![Azure ML 聊天對話方塊](./media/machine-learning-live-chat/AzureMLChat.png)
 
-![Azure ML Chat Dialog](./media/machine-learning-live-chat/AzureMLChat.png)
+## 看不到即時聊天圖示嗎？
+小組成員實際上在回答您的問題。如果您看不到即時聊天圖示，這是因為該圖示不會在工作時間以外的時間顯示。
 
-## <a name="don't-see-the-live-chat-icon?"></a>Don't see the Live Chat Icon?
-Members of the team are actually answering your question. If you don't see the live chat icon it is because it is not visible outside of working hours. 
+[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
 
-[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)] 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0525_2016-->

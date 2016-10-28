@@ -1,102 +1,97 @@
 <properties
-    pageTitle="Store and View Diagnostic Data in Azure Storage | Microsoft Azure"
-    description="Get Azure diagnostics data into Azure Storage and view it"
-    services="cloud-services"
-    documentationCenter=".net"
-    authors="rboucher"
-    manager="jwhit"
-    editor="tysonn" />
+	pageTitle="在 Azure 儲存體中儲存和檢視診斷資料 | Microsoft Azure"
+	description="將 Azure 診斷資料放入 Azure 儲存體並加以檢視"
+	services="cloud-services"
+	documentationCenter=".net"
+	authors="rboucher"
+	manager="jwhit"
+	editor="tysonn" />
 <tags
-    ms.service="cloud-services"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.tgt_pltfrm="na"
-    ms.workload="na"
-    ms.date="08/01/2016"
-    ms.author="robb" />
+	ms.service="cloud-services"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.tgt_pltfrm="na"
+	ms.workload="na"
+	ms.date="08/01/2016"
+	ms.author="robb" />
 
+# 在 Azure 儲存體中儲存和檢視診斷資料
 
-# <a name="store-and-view-diagnostic-data-in-azure-storage"></a>Store and view diagnostic data in Azure Storage
+除非您將診斷資料傳輸至 Microsoft Azure 儲存體模擬器或 Azure 儲存體，否則不會永久儲存診斷資料。一旦位於儲存體，即可利用其中一個可用的工具進行檢視。
 
-Diagnostic data is not permanently stored unless you transfer it to the Microsoft Azure storage emulator or to Azure storage. Once in storage, it can be viewed with one of several available tools.
+## 指定儲存體帳戶
 
-## <a name="specify-a-storage-account"></a>Specify a storage account
-
-You specify the storage account that you want to use in the ServiceConfiguration.cscfg file. The account information is defined as a connection string in a configuration setting. The following example shows the default connection string created for a new Cloud Service project in  Visual Studio:
+您可指定您要在 ServiceConfiguration.cscfg 檔案中使用的儲存體帳戶。帳戶資訊會定義為組態設定中的連接字串。下列範例顯示在 Visual Studio 中為新的雲端服務專案建立的預設連接字串：
 
 
 ```
-    <ConfigurationSettings>
-       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
-    </ConfigurationSettings>
+	<ConfigurationSettings>
+	   <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+	</ConfigurationSettings>
 ```
 
-You can change this connection string to provide account information for an Azure storage account.
+您可以變更此連接字串，以提供 Azure 儲存體帳戶的帳戶資訊。
 
-Depending on the type of diagnostic data that is being collected, Azure Diagnostics uses either the Blob service or the Table service. The following table shows the data sources that are persisted and their format.
+視所收集的診斷資料類型而定，Azure 診斷會使用 Blob 服務或資料表服務。下表顯示保存的資料來源以及其格式。
 
-|Data source|Storage format|
+|資料來源|儲存體格式|
 |---|---|
-|Azure logs|Table|
-|IIS 7.0 logs|Blob|
-|Azure Diagnostics infrastructure logs|Table|
-|Failed Request Trace logs|Blob|
-|Windows Event logs|Table|
-|Performance counters|Table|
-|Crash dumps|Blob|
-|Custom error logs|Blob|
+|Azure 記錄檔|資料表|
+|IIS 7.0 記錄檔|Blob|
+|Azure 診斷基礎結構記錄檔|資料表|
+|失敗要求追蹤記錄檔|Blob|
+|Windows 事件記錄檔|資料表|
+|效能計數器|資料表|
+|損毀傾印|Blob|
+|自訂錯誤記錄檔|Blob|
 
-## <a name="transfer-diagnostic-data"></a>Transfer diagnostic data
+## 傳輸診斷資料
 
-For SDK 2.5 and later, the request to transfer diagnostic data can occur through the configuration file. You can transfer diagnostic data at scheduled intervals as specified in the configuration.
+若為 SDK 2.5 和更新版本，可以透過組態檔進行傳輸診斷資料的要求。您可以依照組態中指定的排程間隔來傳輸診斷資料。
 
-For SDK 2.4 and previous you can request to transfer the diagnostic data through the configuration file as well as programmatically. The programmatic approach also allows you to do on-demand transfers.
-
-
->[AZURE.IMPORTANT] When you transfer diagnostic data to an Azure storage account, you incur costs for the storage resources that your diagnostic data uses.
-
-## <a name="store-diagnostic-data"></a>Store diagnostic data
-
-Log data is stored in either Blob or Table storage with the following names:
-
-**Tables**
-
-- **WadLogsTable** - Logs written in code using the trace listener.
-
-- **WADDiagnosticInfrastructureLogsTable** - Diagnostic monitor and configuration changes.
-
-- **WADDirectoriesTable** – Directories that the diagnostic monitor is monitoring.  This includes IIS logs, IIS failed request logs, and custom directories.  The location of the blob log file is specified in the Container field and the name of the blob is in the RelativePath field.  The AbsolutePath field indicates the location and name of the file as it existed on the Azure virtual machine.
-
-- **WADPerformanceCountersTable** – Performance counters.
-
-- **WADWindowsEventLogsTable** – Windows Event logs.
-
-**Blobs**
-
-- **wad-control-container** – (Only for SDK 2.4 and previous) Contains the XML configuration files that controls the Azure diagnostics .
-
-- **wad-iis-failedreqlogfiles** – Contains information from IIS Failed Request logs.
-
-- **wad-iis-logfiles** – Contains information about IIS logs.
-
-- **"custom"** – A custom container based on configuring directories that are monitored by the diagnostic monitor.  The name of this blob container will be specified in WADDirectoriesTable.
-
-## <a name="tools-to-view-diagnostic-data"></a>Tools to view diagnostic data
-Several tools are available to view the data after it is transferred to storage. For example:
-
-- Server Explorer in Visual Studio - If you have installed the Azure Tools for Microsoft Visual Studio, you can use the Azure Storage node in Server Explorer to view read-only blob and table data from your Azure storage accounts. You can display data from your local storage emulator account and also from storage accounts you have created for Azure. For more information, see [Browsing and Managing Storage Resources with Server Explorer](../vs-azure-tools-storage-resources-server-explorer-browse-manage.md).
-
-- [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md) is a standalone app that enables you to easily work with Azure Storage data on Windows, OSX, and Linux.
-
-- [Azure Management Studio](http://www.cerebrata.com/products/azure-management-studio/introduction) includes Azure Diagnostics Manager which allows you to view, download and manage the diagnostics data collected by the applications running on Azure.
+若為 SDK 2.4 和更舊版本，您可以透過組態檔以及程式設計方式要求傳輸診斷資料。程式設計的方式也可讓您進行隨選傳輸。
 
 
-## <a name="next-steps"></a>Next Steps
+>[AZURE.IMPORTANT] 當您將診斷資料傳輸至 Azure 儲存體帳戶時，您的診斷資料所用的儲存體資源就會發生成本。
 
-[Trace the flow in a Cloud Services application with Azure Diagnostics](cloud-services-dotnet-diagnostics-trace-flow.md)
+## 儲存診斷資料
+
+記錄檔資料會以下列名稱儲存在 Blob 或資料表儲存體中：
+
+**資料表 (英文)**
+
+- **WadLogsTable** - 使用追蹤接聽程式在程式碼中寫入的記錄檔。
+
+- **WADDiagnosticInfrastructureLogsTable** - 診斷監視器和組態變更。
+
+- **WADDirectoriesTable** – 診斷監視器所監視的目錄。這包括 IIS 記錄檔、IIS 失敗要求記錄檔和自訂目錄。Blob 記錄檔的位置是在 [容器] 欄位中指定，而 Blob 的名稱則是在 RelativePath 欄位中指定。AbsolutePath 欄位會指出檔案存在於 Azure 虛擬機器上的位置和名稱。
+
+- **WADPerformanceCountersTable** - 效能計數器。
+
+- **WADWindowsEventLogsTable** – Windows 事件記錄檔。
+
+**Blobs (英文)**
+
+- **wad-control-container** – (僅適用於 SDK 2.4 和前一版) 包含可控制 Azure 診斷的 XML 組態檔。
+
+- **wad-iis-failedreqlogfiles** – 包含 IIS 失敗要求記錄檔中的資訊。
+
+- **wad-iis-logfiles** – 包含 IIS 記錄檔的相關資訊。
+
+- **"custom"** – 自訂容器，該容器是以設定診斷監視器所監視的目錄為基礎。將會在 WADDirectoriesTable 中指定此 Blob 容器的名稱。
+
+## 用來檢視診斷資料的工具
+有數個工具可用來檢視傳輸至儲存體後的資料。例如：
+
+- Visual Studio 中的伺服器總管 - 如果您已安裝 Azure Tools for Microsoft Visual Studio，您可以在伺服器總管中使用 Azure 儲存體節點，從您的 Azure 儲存體帳戶檢視唯讀的 Blob 和資料表資料。您可以從您的本機儲存體模擬器帳戶顯示資料，也可以從您為 Azure 建立的儲存體帳戶顯示資料。如需詳細資訊，請參閱[使用伺服器總管瀏覽和管理儲存體資源](../vs-azure-tools-storage-resources-server-explorer-browse-manage.md)。
+
+- [Microsoft Azure 儲存體 Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md) 是一個獨立應用程式，可讓您在 Windows、OSX 和 Linux 上輕鬆使用 Azure 儲存體資料。
+
+- [Azure Management Studio](http://www.cerebrata.com/products/azure-management-studio/introduction) 包含 Azure 診斷管理員，可讓您檢視、下載及管理在 Azure 上執行的應用程式所收集的診斷資料。
 
 
+## 後續步驟
 
-<!--HONumber=Oct16_HO2-->
+[使用 Azure 診斷追蹤雲端服務應用程式中的流程](cloud-services-dotnet-diagnostics-trace-flow.md)
 
-
+<!---HONumber=AcomDC_0803_2016-->

@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Best practices for Azure SQL Data Warehouse | Microsoft Azure"
-   description="Recommendations and best practices you should know as you develop solutions for Azure SQL Data Warehouse. These will help you be successful."
+   pageTitle="Azure SQL 資料倉儲最佳作法 | Microsoft Azure"
+   description="開發 Azure SQL 資料倉儲的解決方案時應該知道的建議和最佳作法。這些可協助您成功。"
    services="sql-data-warehouse"
    documentationCenter="NA"
    authors="sonyam"
@@ -10,151 +10,151 @@
 <tags
    ms.service="sql-data-warehouse"
    ms.devlang="NA"
-   ms.topic="get-started-article"
+   ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
    ms.date="09/04/2016"
    ms.author="sonyama;barbkess"/>
 
+# Azure SQL 資料倉儲最佳做法
 
-# <a name="best-practices-for-azure-sql-data-warehouse"></a>Best practices for Azure SQL Data Warehouse
+這篇文章集合許多讓您從 Azure SQL 資料倉儲獲得最佳效能的最佳做法。文章中有些基本概念很容易說明，有些概念則更進階，我們在文中只做概述。這篇文章的目的是要提供您一些基本指引，以及讓您對建立資料倉儲時需注意的重要領域有所認知。每一節都會介紹一個概念，並提供您哪裡可以閱讀深度討論的詳細文章。
 
-This article is a collection of many best practices that will help you to achieve optimal performance from your Azure SQL Data Warehouse.  Some of the concepts in this article are basic and easy to explain, other concepts are more advanced and we just scratch the surface in this article.  The purpose of this article is to give you some basic guidance and to raise awareness of important areas to focus as you build your data warehouse.  Each section introduces you to a concept and then point you to more detailed articles which cover the concept in more depth.
+如果您剛開始使用 Azure SQL 資料倉儲，千萬別讓這篇文章嚇到您。主題的順序是大部分是按照重要性排列。如果您從前幾項概念開始，您的進展會很順利。當您更熟悉 SQL 資料倉儲且能運用自如，再回來看看其他概念。融會貫通不需要很長時間。
 
-If you are just getting started with Azure SQL Data Warehouse, do not let this article overwhelm you.  The sequence of the topics is mostly in the order of importance.  If you start by focusing on the first few concepts, you'll be in good shape.  As you get more familiar and comfortable with using SQL Date Warehouse, come back and look at a few more concepts.  It won't take long for everything to make sense.
+## 利用暫停和調整來降低成本
 
-## <a name="reduce-cost-with-pause-and-scale"></a>Reduce cost with pause and scale
+SQL 資料倉儲的一個重要功能，是能夠在您不使用它時予以暫停，這會停止計算資源的計費。另一個重要功能是能夠調整資源。暫停和調整可以透過 Azure 入口網站或透過 PowerShell 命令執行。請熟悉這些功能，因為這些功能可以在資料倉儲不使用時大幅降低成本。如果您希望隨時可存取資料倉儲，建議您將其調整到最小的大小 (DW100)，而不是暫停。
 
-A key feature of SQL Data Warehouse is the ability to pause when you are not using it, which stops the billing of compute resources.  Another key feature is the ability to scale resources.  Pausing and Scaling can be done via the Azure portal or through PowerShell commands.  Become familiar with these features as they can greatly reduce the cost of your data warehouse when it is not in use.  If you always want your data warehouse accessible, you may want to consider scaling it down to the smallest size, a DW100 rather than pausing.
-
-See also [Pause compute resources][], [Resume compute resources][], [Scale compute resources][]
+另請參閱[暫停計算資源][]、[繼續計算資源][]、[調整計算資源][]
 
 
-## <a name="drain-transactions-before-pausing-or-scaling"></a>Drain transactions before pausing or scaling 
+## 暫停或調整之前先清空交易 
 
-When you pause or scale your SQL Data Warehouse, behind the scenes your queries are canceled when you initiate the pause or scale request.  Canceling a simple SELECT query is a quick operation and has almost no impact to the time it takes to pause or scale your instance.  However, transactional queries, which modify your data or the structure of the data, may not be able to stop quickly.  **Transactional queries, by definition, must either complete in their entirety or rollback their changes.**  Rolling back the work completed by a transactional query can take as long, or even longer, than the original change the query was applying.  For example, if you cancel a query which was deleting rows and has already been running for an hour, it could take the system an hour to insert back the rows which were deleted.  If you run pause or scaling while transactions are in flight, your pause or scaling may seem to take a long time because pausing and scaling has to wait for the rollback to complete before it can proceed.
+當您暫停或調整您的 SQL 資料倉儲時，您的查詢在您起始暫停或調整要求時會於幕後取消。取消簡單的 SELECT 查詢是很快的作業，對於暫停或調整執行個體所花費的時間幾乎沒有什麼影響。不過，交易性查詢 (會修改您的資料或結構) 可能無法快速地停止。**顧名思義，交易性查詢必須完全完成或回復變更。** 回復交易性查詢已完成的工作可能需要很長時間，甚至比查詢套用原始變更更久。例如，如果您取消的刪除資料列查詢已經執行一小時，系統可能需要一個小時將已刪除的資料列回復插入。如果您在交易執行中執行暫停或調整，暫停或調整作業可能需要一些時間，因為暫停和調整必須等回復完成才能繼續。
 
-See also [Understanding transactions][], [Optimizing transactions][]
+另請參閱[了解交易][]、[最佳化交易][]
 
-## <a name="maintain-statistics"></a>Maintain statistics
+## 維護統計資料
 
-Unlike SQL Server, which automatically detects and creates or updates statistics on columns, SQL Data Warehouse requires manual maintenance of statistics.  While we do plan to change this in the future, for now you will want to maintain your statistics to ensure that the SQL Data Warehouse plans are optimized.  The plans created by the optimizer are only as good as the available statistics.  **Creating sampled statistics on every column is an easy way to get started with statistics.**  It's equally important to update statistics as significant changes happen to your data.  A conservative approach may be to update your statistics daily or after each load.  There are always trade-offs between performance and the cost to create and update statistics. If you find it is taking too long to maintain all of your statistics, you may want to try to be more selective about which columns have statistics or which columns need frequent updating.  For example, you might want to update date columns, where new values may be added, daily. **You will gain the most benefit by having statistics on columns involved in joins, columns used in the WHERE clause and columns found in GROUP BY.**
+不同於 SQL Server (會自動偵測資料行並建立或更新資料行上的統計資料)，SQL 資料倉儲需要手動維護統計資料。我們計劃在未來改進這一點，但現在您仍需要維護您的統計資料，以確保 SQL 資料倉儲的計劃最佳化。最佳化工具建立的計劃只能利用可用的統計資料。**建立每個資料行的範本統計資料是開始使用統計資料的簡單方式。** 更新統計資料和對您的資料做重大變更一樣重要。保守的作法是每天或每次載入之後更新統計資料。建立和更新統計資料的效能與成本之間總有一些取捨。如果您發現維護所有統計資料所需時間太長，可能要更謹慎選擇哪些資料行要加以統計資料、哪些資料行需要頻繁更新。例如，您可能想要更新您每天都要加入新值的日期資料行。**對牽涉聯結的資料行、WHERE 子句中使用的資料行、在 GROUP BY 中找到的資料行加以統計資料，可以獲得最大效益。**
 
-See also [Manage table statistics][], [CREATE STATISTICS][], [UPDATE STATISTICS][]
+另請參閱[管理資料表的統計資料][]、[CREATE STATISTICS][]、[UPDATE STATISTICS][]
 
-## <a name="group-insert-statements-into-batches"></a>Group INSERT statements into batches
+## 將 INSERT 陳述式群組為批次
 
-A one-time load to a small table with an INSERT statement or even a periodic reload of a look-up may perform just fine for your needs with a statement like `INSERT INTO MyLookup VALUES (1, 'Type 1')`.  However, if you need to load thousands or millions of rows throughout the day, you might find that singleton INSERTS just can't keep up.  Instead, develop your processes so that they write to a file and another process periodically comes along and loads this file.
+使用 INSERT 陳述式單次載入小型資料表、或甚至定期重新載入查閱，可能會和使用像 `INSERT INTO MyLookup VALUES (1, 'Type 1')` 這樣的陳述式一樣正常執行。不過，如果您一整天都得載入數千或數百萬個資料列，您可能會發現單一 INSERT 跟不上您的需求。所以，請開發您自己的程序將它們寫入檔案，以及另一個程序定期執行並載入此檔案。
 
-See also [INSERT][]
+另請參閱 [INSERT][]
  
-## <a name="use-polybase-to-load-and-export-data-quickly"></a>Use PolyBase to load and export data quickly
+## 使用 PolyBase 將資料快速載入及匯出
 
-SQL Data Warehouse supports loading and exporting data through several tools including Azure Data Factory, PolyBase, and BCP.  For small amounts of data where performance isn't critical, any tool may be sufficient for your needs.  However, when you are loading or exporting large volumes of data or fast performance is needed, PolyBase is the best choice.  PolyBase is designed to leverage the MPP (Massively Parallel Processing) architecture of SQL Data Warehouse and will therefore load and export data magnitudes faster than any other tool.  PolyBase loads can be run using CTAS or INSERT INTO.  **Using CTAS will minimize transaction logging and the fastest way to load your data.**  Azure Data Factory also supports PolyBase loads.  PolyBase supports a variety of file formats including Gzip files.  **To maximize throughput when using gzip text files, break files up into 60 or more files to maximize parallelism of your load.**  For faster total throughput, consider loading data concurrently.
+SQL 資料倉儲支援透過數種工具 (包括 Azure Data Factory、PolyBase、BCP) 來載入及匯出資料。若是小量的資料，效能不是那麼重要，任何工具都可以滿足您的需求。不過，當您要載入或匯出大量資料，或者需要快速的效能時，PolyBase 是最佳選擇。PolyBase 利用 SQL 資料倉儲的 MPP (大量平行處理) 架構，因此載入及匯出巨量資料的速度比其他任何工具更快。您可使用 CTAS 或 INSERT INTO 來執行 PolyBase 載入。**使用 CTAS 可以減少交易記錄，是載入資料最快的方法。** Azure Data Factory 也支援 PolyBase 載入。PolyBase 支援各種不同的檔案格式，包括 Gzip 檔案。**若要在使用 gzip 文字檔案時獲得最大的輸送量，將檔案分成 60 個以上的檔案讓載入有最大化的平行處理。** 如需更快的總輸送量，請考慮同時載入資料。
 
-See also [Load data][], [Guide for using PolyBase][], [Azure SQL Data Warehouse loading patterns and strategies][], [Load Data with Azure Data Factory][], [Move data with Azure Data Factory][], [CREATE EXTERNAL FILE FORMAT][], [Create table as select (CTAS)][]
+另請參閱[載入資料][]、[PolyBase 使用指南][]、[Azure SQL 資料倉儲載入模式和策略][]、[使用 Azure Data Factory 載入資料][]、[使用 Azure Data Factory 移動資料][]、[CREATE EXTERNAL FILE FORMAT][]、[Create table as select (CTAS)][]
 
-## <a name="load-then-query-external-tables"></a>Load then query external tables
+## 載入並查詢外部資料表
 
-While Polybase, also known as external tables, can be the fastest way to load data, it is not optimal for queries. SQL Data Warehouse Polybase tables currently only support Azure blob files. These files do not have any compute resources backing them.  As a result, SQL Data Warehouse cannot offload this work and therefore must read the entire file by loading it to tempdb in order to read the data.  Therefore, if you have several queries that will be querying this data, it is better to load this data once and have queries use the local table.
+雖然 Polybase (也稱為外部資料表) 可能是載入資料最快的方法，卻並非最適合查詢。SQL 資料倉儲 Polybase 資料表目前僅支援 Azure blob 檔案。這些檔案沒有任何支援的計算資源。因此，SQL 資料倉儲無法卸載此工作，因而必須將整個檔案載入 tempdb 以讀取資料。所以，如果您有數個將會查詢此資料的查詢，最好能一次載入此資料，並讓查詢使用本機資料表。
 
-See also [Guide for using PolyBase][]
+另請參閱 [使用 PolyBase 的指南][]
 
 
-## <a name="hash-distribute-large-tables"></a>Hash distribute large tables
+## 雜湊分散大型資料表
 
-By default, tables are Round Robin distributed.  This makes it easy for users to get started creating tables without having to decide how their tables should be distributed.  Round Robin tables may perform sufficiently for some workloads, but in most cases selecting a distribution column will perform much better.  The most common example of when a table distributed by a column will far outperform a Round Robin table is when two large fact tables are joined.  For example, if you have an orders table, which is distributed by order_id, and a transactions table, which is also distributed by order_id, when you join your orders table to your transactions table on order_id, this query becomes a pass-through query, which means we eliminate data movement operations.  Fewer steps mean a faster query.  Less data movement also makes for faster queries.  This explanation just scratches the surface. When loading a distributed table, be sure that your incoming data is not sorted on the distribution key as this will slow down your loads.  See the below links for much more details on how selecting a distribution column can improve performance as well as how to define a distributed table in the WITH clause of your CREATE TABLES statement.
+根據預設，資料表是以「循環配置資源」方式分散。這可讓使用者更容易開始建立資料表，而不必決定應該如何分散其資料表。循環配置資源的資料表在某些工作負載中執行良好，但某些狀況下選取分散資料行的執行效能會更好。依資料行分散資料表的效能遠勝於循環配置資源資料表的最常見例子，是聯結兩個大型事實資料表。例如，如果您有一個依 order\_id 分散的訂單資料表，以及一個也是依 order\_id 分散的交易資料表，當您將訂單資料聯結至交易資料表上的 order\_id，此查詢會變成傳遞查詢，也就是資料移動作業會被消除。較少的步驟代表較快的查詢。較少的資料移動也會讓查詢更快。這樣的解釋只是大致的梗概。載入分散的資料表時，請確定您的內送資料的分散式索引鍵沒有排序，因為這會拖慢載入。關於選取分散資料行如何能提升效能，以及如何在 CREATE TABLE 陳述式的 WITH 子句中定義分散的資料表，如需詳細資訊請參閱以下的連結。
 
-See also [Table overview][], [Table distribution][], [Selecting table distribution][], [CREATE TABLE][], [CREATE TABLE AS SELECT][]
+另請參閱[資料表概觀][]、[資料表散發][]、[選取資料表散發][]、[CREATE TABLE][]、[CREATE TABLE AS SELECT][]
 
-## <a name="do-not-over-partition"></a>Do not over-partition
+## 不要過度執行資料分割
 
-While partitioning data can be very effective for maintaining your data through partition switching or optimizing scans by with partition elimination, having too many partitions can slow down your queries.  Often a high granularity partitioning strategy which may work well on SQL Server may not work well on SQL Data Warehouse.  Having too many partitions can also reduce the effectiveness of clustered columnstore indexes if each partition has fewer than 1 million rows.  Keep in mind that behind the scenes, SQL Data Warehouse partitions your data for you into 60 databases, so if you create a table with 100 partitions, this actually results in 6000 partitions.  Each workload is different so the best advice is to experiment with partitioning to see what works best for your workload.  Consider lower granularity than what may have worked for you in SQL Server.  For example, consider using weekly or monthly partitions rather than daily partitions.
+雖然資料分割可以讓資料維護變得有效率 (透過分割切換或最佳化掃描將分割消除)，太多的資料分割會讓查詢變慢。通常在 SQL Server 上運作良好的高資料粒度分割策略，可能無法在 SQL 資料倉儲上運作良好。如果每個資料分割的資料列少於 1 百萬，太多個資料分割也會減少叢集資料行存放區索引的效率。請記住，SQL 資料倉儲資料在幕後為您將資料分割成 60 的資料庫，因此如果您建立有 100 個分割的資料表，實際上會導致 6000 個分割。每個工作負載都不同，因此最佳建議是嘗試不同的分割，找出最適合您工作負載的分割。請考慮比您的 SQL Server 上運作良好的資料粒度更低的粒度。例如，考慮使用每週或每月資料分割，而不是每日資料分割。
 
-See also [Table partitioning][]
+另請參閱[資料表分割][]
 
-## <a name="minimize-transaction-sizes"></a>Minimize transaction sizes
+## 將交易大小最小化
 
-INSERT, UPDATE, and DELETE statements run in a transaction and when they fail they must be rolled back.  To minimize the potential for a long rollback, minimize transaction sizes whenever possible.  This can be done by dividing INSERT, UPDATE, and DELETE statements into parts.  For example, if you have an INSERT which you expect to take 1 hour, if possible, break the INSERT up into 4 parts, which will each run in 15 minutes.  Leverage special Minimal Logging cases, like CTAS, TRUNCATE, DROP TABLE or INSERT to empty tables, to reduce rollback risk.  Another way to eliminate rollbacks is to use Metadata Only operations like partition switching for data management.  For example, rather than execute a DELETE statement to delete all rows in a table where the order_date was in October of 2001, you could partition your data monthly and then switch out the partition with data for an empty partition from another table (see ALTER TABLE examples).  For unpartitioned tables consider using a CTAS to write the data you want to keep in a table rather than using DELETE.  If a CTAS takes the same amount of time, it is a much safer operation to run as it has very minimal transaction logging and can be canceled quickly if needed.
+在交易中執行的 INSERT、UPDATE、DELETE 陳述式，失敗時必須回復。為了將長時間回復的可能性降到最低，請盡可能將交易大小最小化。這可以透過將 INSERT、UPDATE、DELETE 陳述式分成小部分來達成。例如，如果您預期您的 INSERT 需要 1 小時，可能的話，將 INSERT 分成 4 個部分，每個執行 15 分鐘。利用特殊的最低限度記錄案例，像是 CTAS、TRUNCATE、DROP TABLE 或 INSERT 空資料表，來降低回復的風險。另一個消除回復的作法是使用「僅中繼資料」作業 (像是資料分割切換) 進行資料管理。例如，不要執行 DELETE 陳述式來刪除資料表中所有 order\_date 為 2001 年 10 月的資料列，而是將資料每月分割後，再從另一個資料表將有空分割之資料的分割調動出來 (請參閱 ALTER TABLE 範例)。針對未分割的資料表，請考慮使用 CTAS 將您想要保留的資料寫入資料表中，而不是使用 DELETE。如果 CTAS 需要的時間一樣長，則較安全的作業，是在它具有極小交易記錄的條件下執行它，且必要時可以快速地取消。
 
-See also [Understanding transactions][], [Optimizing transactions][], [Table partitioning][], [TRUNCATE TABLE][], [ALTER TABLE][], [Create table as select (CTAS)][]
+另請參閱[了解交易][]、[最佳化交易][]、[資料表分割][]、[TRUNCATE TABLE][]、[ALTER TABLE][]、[Create table as select (CTAS)][]
 
-## <a name="use-the-smallest-possible-column-size"></a>Use the smallest possible column size
+## 使用最小的可能資料行大小
 
-When defining your DDL, using the smallest data type which will support your data will improve query performance.  This is especially important for CHAR and VARCHAR columns.  If the longest value in a column is 25 characters, then define your column as VARCHAR(25).  Avoid defining all character columns to a large default length.  In addition, define columns as VARCHAR when that is all that is needed rather than use NVARCHAR.
+在定義 DDL 時，使用可支援您的資料的最小資料類型，將能夠改善查詢效能。這對 CHAR 和 VARCHAR 資料行尤其重要。如果資料行中最長的值是 25 個字元，請將您的資料行定義為 VARCHAR(25)。避免將所有字元資料行定義為較大的預設長度。此外，將資料行定義為 VARCHAR (當它只需要這樣的大小時) 而非 NVARCHAR。
 
-See also [Table overview][], [Table data types][], [CREATE TABLE][]
+另請參閱[資料表概觀][]、[資料表的資料類型][]、[CREATE TABLE][]
 
-## <a name="use-temporary-heap-tables-for-transient-data"></a>Use temporary heap tables for transient data
+## 針對暫時性資料使用暫存堆積資料表
 
-When you are temporarily landing data on SQL Data Warehouse, you may find that using a heap table will make the overall process faster.  If you are loading data only to stage it before running more transformations, loading the table to heap table will be much faster than loading the data to a clustered columnstore table.  In addition, loading data to a temp table will also load much faster than loading a table to permanent storage.  Temporary tables start with a "#" and are only accessible by the session which created it, so they may only work in limited scenarios.   Heap tables are defined in the WITH clause of a CREATE TABLE.  If you do use a temporary table, remember to create statistics on that temporary table too.
+當您在 SQL 資料倉儲上暫時登陸資料時，可能會發現使用堆積資料表會讓整個程序更快速。如果您載入資料只是在做執行更多轉換之前的預備，將資料表載入堆積資料表將會遠快於將資料載入叢集資料行存放區資料表。此外，將資料載入暫存資料表也會比將資料表載入永久儲存體更快速。暫存資料表會以 "#" 開頭，且只有建立它的工作階段才能夠存取它，因此只能在有限的情況下運作。堆積資料表是在 CREATE TABLE 的 WITH 子句中定義。如果您使用暫存資料表，請記得也在該暫存資料表上建立統計資料。
 
-See also [Temporary tables][], [CREATE TABLE][], [CREATE TABLE AS SELECT][]
+另請參閱[暫存資料表][]、[CREATE TABLE][]、[CREATE TABLE AS SELECT][]
 
-## <a name="optimize-clustered-columnstore-tables"></a>Optimize clustered columnstore tables
+## 將叢集資料行存放區資料表最佳化
 
-Clustered columnstore indexes are one of the most efficient ways you can store your data in Azure SQL Data Warehouse.  By default, tables in SQL Data Warehouse are created as Clustered ColumnStore.  To get the best performance for queries on columnstore tables, having good segment quality is important.  When rows are written to columnstore tables under memory pressure, columnstore segment quality may suffer.  Segment quality can be measured by number of rows in a compressed Row Group.  See the [Causes of poor columnstore index quality][] in the [Table indexes][] article for step by step instructions on detecting and improving segment quality for clustered columnstore tables.  Because high quality columnstore segments is important, it's a good idea to use users ids which are in the medium or large resource class for loading data.  The fewer DWUs you use, the larger the resource class you will want to assign to your loading user. 
+叢集資料行存放區索引是將資料儲存在 Azure SQL 資料倉儲中最有效率的方式之一。根據預設，SQL 資料倉儲中的資料表會建立為「叢集資料行存放區」。為了讓資料行存放區資料表的查詢獲得最佳效能，良好的區段品質很重要。當資料列在記憶體不足的狀態下寫入資料行存放區資料表時，資料行存放區區段品質可能會降低。壓縮的資料列群組中的資料列數目可以測量區段品質。如需偵測和改善叢集資料行存放區資料表區段品質的逐步指示，請參閱[資料表索引][]一文中的[資料行存放區索引品質不佳的原因][]。由於高品質資料行存放區區段很重要，最好使用中型或大型資源類別中的使用者識別碼來載入資料。使用的 DWU 愈少，要指派給載入使用者的資源類別愈大。
 
-Since columnstore tables generally won't push data into a compressed columnstore segment until there are more than 1 million rows per table and each SQL Data Warehouse table is partitioned into 60 tables, as a rule of thumb, columnstore tables won't benefit a query unless the table has more than 60 million rows.  For table with less than 60 million rows, it may not make any sense to have a columnstore index.  It also may not hurt.  Furthermore, if you partition your data, then you will want to consider that each partition will need to have 1 million rows to benefit from a clustered columnstore index.  If a table has 100 partitions, then it will need to have at least 6 billion rows to benefit from a clustered columns store (60 distributions * 100 partitions * 1 million rows).  If your table does not have 6 billion rows in this example, either reduce the number of partitions or consider using a heap table instead.  It also may be worth experimenting to see if better performance can be gained with a heap table with secondary indexes rather than a columnstore table.  Columnstore tables do not yet support secondary indexes.
+由於資料行存放區資料表通常要等到每個資料表有超過 1 百萬個資料列之後才會將資料推送到壓縮的資料行存放區區段，而且每個 SQL 資料倉儲資料表分割成 60 個資料表，根據經驗法則，資料行存放區資料表對於查詢沒有好處，除非資料表有超過 6 千萬個資料列。小於 6 千萬列的資料表使用資料行存放區索引似乎不太合理，但也無傷大雅。此外，如果您將資料分割，則您要考慮的是每個資料分割必須有 1 百萬個資料列，使用叢集資料行存放區索引才有益。如果資料表有 100 個分割，則它至少必須擁有 60 億個資料列才會受益於叢集資料行存放區 (60 個散發「100 個資料分割」1 百萬個資料列)。如果在此範例中，您的資料表並沒有 60 億個資料列，請減少資料分割數目，或考慮改用堆積資料表。使用次要索引搭配堆積資料表而不是資料行存放區資料表，也可能是值得進行的實驗，看看是否可以獲得較佳的效能。資料行存放區資料表尚不支援次要索引。
 
-When querying a columnstore table, queries will run faster if you select only the columns you need.  
+查詢資料行存放區資料表時，如果您只選取您需要的資料行，查詢執行會更快速。
 
-See also [Table indexes][], [Columnstore indexes guide][], [Rebuilding columnstore indexes][]
+另請參閱[資料表索引][]、[資料行存放區索引指南][]、[重建資料行存放區索引][]
 
-## <a name="use-larger-resource-class-to-improve-query-performance"></a>Use larger resource class to improve query performance
+## 使用較大的資源類別來改善查詢效能
 
-SQL Data Warehouse uses resource groups as a way to allocate memory to queries.  Out of the box, all users are assigned to the small resource class which grants 100 MB of memory per distribution.  Since there are always 60 distributions and each distribution is given a minimum of 100 MB, system wide the total memory allocation is 6,000 MB, or just under 6 GB.  Certain queries, like large joins or loads to clustered columnstore tables, will benefit from larger memory allocations.  Some queries, like pure scans, will see no benefit.  On the flip side, utilizing larger resource classes impacts concurrency, so you will want to take this into consideration before moving all of your users to a large resource class.
+SQL 資料倉儲會使用資源群組，做為將記憶體配置給查詢的一種方式。根據預設，所有使用者都會被指派小型資源類別，此類別授予每個散發 100 MB 的記憶體。因為永遠會有 60 個散發，每個散發有至少 100 MB，整個系統的總記憶體配置為 6000 MB 或是剛好接近 6 GB。有些查詢，像是大型聯結或載入叢集資料行存放區資料表，將受益於較大的記憶體配置。有些查詢，像是純掃描，則沒有任何好處。另一方面，使用較大的資源類別會影響並行存取，因此您將所有的使用者移到大型資源類別之前，要先將這一點列入考慮。
  
-See also [Concurrency and workload management][]
+另請參閱[並行存取和工作負載管理][]
 
-## <a name="use-smaller-resource-class-to-increase-concurrency"></a>Use Smaller Resource Class to Increase Concurrency
+## 使用較小的資源類別來增加並行存取
 
-If you are noticing that user queries seem to have a long delay, it could be that your users are running in larger resource classes and are consuming a lot of concurrency slots causing other queries to queue up.  To see if users queries are queued, run `SELECT * FROM sys.dm_pdw_waits` to see if any rows are returned.
+如果您注意到使用者查詢似乎長時間延遲，可能是您的使用者在較大資源類別中執行，佔用大量的並行存取位置，而導致其他查詢排入佇列。若要確認使用者的查詢是否被排入佇列，請執行 `SELECT * FROM sys.dm_pdw_waits` 看看是否會傳回任何資料列。
 
-See also [Concurrency and workload management][], [sys.dm_pdw_waits][]
+另請參閱[並行存取和工作負載管理][]、[sys.dm\_pdw\_waits][]
 
-## <a name="use-dmvs-to-monitor-and-optimize-your-queries"></a>Use DMVs to monitor and optimize your queries
+## 使用 DMV 對查詢進行監視和最佳化
 
-SQL Data Warehouse has several DMVs which can be used to monitor query execution.  The monitoring article below walks through step-by-step instructions on how to look at the details of an executing query.  To quickly find queries in these DMVs, using the LABEL option with your queries can help.
+SQL 資料倉儲有數個 DMV 可用來監視查詢的執行。下列的監視相關文章會逐步解說如何查看執行中查詢的詳細資料。若要在這些 DMV 中快速找到查詢，可在您的查詢中使用 LABEL 選項。
 
-See also [Monitor your workload using DMVs][], [LABEL][], [OPTION][], [sys.dm_exec_sessions][], [sys.dm_pdw_exec_requests][], [sys.dm_pdw_request_steps][], [sys.dm_pdw_sql_requests][], [sys.dm_pdw_dms_workers], [DBCC PDW_SHOWEXECUTIONPLAN][], [sys.dm_pdw_waits][]
+另請參閱[使用 DMV 監視工作負載][]、[LABEL][]、[OPTION][]、[sys.dm\_exec\_sessions][]、[sys.dm\_pdw\_exec\_requests][]、[sys.dm\_pdw\_request\_steps][]、[sys.dm\_pdw\_sql\_requests][]、[sys.dm\_pdw\_dms\_workers]、[DBCC PDW\_SHOWEXECUTIONPLAN][]、[sys.dm\_pdw\_waits][]
 
-## <a name="other-resources"></a>Other resources
+## 其他資源
 
-Also see our [Troubleshooting][] article for common issues and solutions.
+另請參閱[疑難排解][]一文中的常見問題和解決方案。
 
-If you didn't find what you were looking for in this article, try using the "Search for docs" on the left side of this page to search all of the Azure SQL Data Warehouse documents.  The [Azure SQL Data Warehouse MSDN Forum][] was create as a place for you to ask questions to other users and to the SQL Data Warehouse Product Group.  We actively monitor this forum to ensure that your questions are answered either by another user or one of us.  If you prefer to ask your questions on Stack Overflow, we also have an [Azure SQL Data Warehouse Stack Overflow Forum][].
+如果您在此文件中找不到想要尋找的內容，請嘗試使用此頁面左邊的 [搜尋文件] 來搜尋所有 Azure SQL 資料倉儲文件。我們也建立了 [Azure SQL 資料倉儲 MSDN 論壇][]，讓您可以向其他使用者和 SQL 資料倉儲產品群組提出問題。我們會主動監看這個論壇，以確保您的問題有其他使用者或是我們回答。如果您比較想在 Stack Overflow上詢問您的問題，我們也有 [Azure SQL 資料倉儲 Stack Overflow 論壇][]。
 
-Finally, please do use the [Azure SQL Data Warehouse Feedback][] page to make feature requests.  Adding your requests or up-voting other requests really helps us prioritize features.
+最後，請使用 [Azure SQL 資料倉儲意見反應][]頁面來提出功能要求。加入您的要求或票選其他要求確實可協助我們決定功能的優先順序。
 
 <!--Image references-->
 
 <!--Article references-->
 [Create a support ticket]: ./sql-data-warehouse-get-started-create-support-ticket.md
-[Concurrency and workload management]: ./sql-data-warehouse-develop-concurrency.md
+[並行存取和工作負載管理]: ./sql-data-warehouse-develop-concurrency.md
 [Create table as select (CTAS)]: ./sql-data-warehouse-develop-ctas.md
-[Table overview]: ./sql-data-warehouse-tables-overview.md
-[Table data types]: ./sql-data-warehouse-tables-data-types.md
-[Table distribution]: ./sql-data-warehouse-tables-distribute.md
-[Table indexes]: ./sql-data-warehouse-tables-index.md
-[Causes of poor columnstore index quality]: ./sql-data-warehouse-tables-index.md#causes-of-poor-columnstore-index-quality
-[Rebuilding columnstore indexes]: ./sql-data-warehouse-tables-index.md#rebuilding-indexes-to-improve-segment-quality
-[Table partitioning]: ./sql-data-warehouse-tables-partition.md
-[Manage table statistics]: ./sql-data-warehouse-tables-statistics.md
-[Temporary tables]: ./sql-data-warehouse-tables-temporary.md
-[Guide for using PolyBase]: ./sql-data-warehouse-load-polybase-guide.md
-[Load data]: ./sql-data-warehouse-overview-load.md
-[Move data with Azure Data Factory]: ../data-factory/data-factory-azure-sql-data-warehouse-connector.md
-[Load data with Azure Data Factory]: ./sql-data-warehouse-get-started-load-with-azure-data-factory.md
+[資料表概觀]: ./sql-data-warehouse-tables-overview.md
+[資料表的資料類型]: ./sql-data-warehouse-tables-data-types.md
+[資料表散發]: ./sql-data-warehouse-tables-distribute.md
+[資料表索引]: ./sql-data-warehouse-tables-index.md
+[資料行存放區索引品質不佳的原因]: ./sql-data-warehouse-tables-index.md#causes-of-poor-columnstore-index-quality
+[重建資料行存放區索引]: ./sql-data-warehouse-tables-index.md#rebuilding-indexes-to-improve-segment-quality
+[資料表分割]: ./sql-data-warehouse-tables-partition.md
+[管理資料表的統計資料]: ./sql-data-warehouse-tables-statistics.md
+[暫存資料表]: ./sql-data-warehouse-tables-temporary.md
+[PolyBase 使用指南]: ./sql-data-warehouse-load-polybase-guide.md
+[使用 PolyBase 的指南]: ./sql-data-warehouse-load-polybase-guide.md
+[載入資料]: ./sql-data-warehouse-overview-load.md
+[使用 Azure Data Factory 移動資料]: ../data-factory/data-factory-azure-sql-data-warehouse-connector.md
+[使用 Azure Data Factory 載入資料]: ./sql-data-warehouse-get-started-load-with-azure-data-factory.md
 [Load data with bcp]: ./sql-data-warehouse-load-with-bcp.md
 [Load data with PolyBase]: ./sql-data-warehouse-get-started-load-with-polybase.md
-[Monitor your workload using DMVs]: ./sql-data-warehouse-manage-monitor.md
-[Pause compute resources]: ./sql-data-warehouse-manage-compute-overview.md#pause-compute-bk
-[Resume compute resources]: ./sql-data-warehouse-manage-compute-overview.md#resume-compute-bk
-[Scale compute resources]: ./sql-data-warehouse-manage-compute-overview.md#scale-performance-bk
-[Understanding transactions]: ./sql-data-warehouse-develop-transactions.md
-[Optimizing transactions]: ./sql-data-warehouse-develop-best-practices-transactions.md
-[Troubleshooting]: ./sql-data-warehouse-troubleshoot.md
+[使用 DMV 監視工作負載]: ./sql-data-warehouse-manage-monitor.md
+[暫停計算資源]: ./sql-data-warehouse-manage-compute-overview.md#pause-compute-bk
+[繼續計算資源]: ./sql-data-warehouse-manage-compute-overview.md#resume-compute-bk
+[調整計算資源]: ./sql-data-warehouse-manage-compute-overview.md#scale-performance-bk
+[了解交易]: ./sql-data-warehouse-develop-transactions.md
+[最佳化交易]: ./sql-data-warehouse-develop-best-practices-transactions.md
+[疑難排解]: ./sql-data-warehouse-troubleshoot.md
 [LABEL]: ./sql-data-warehouse-develop-label.md
 
 <!--MSDN references-->
@@ -163,28 +163,24 @@ Finally, please do use the [Azure SQL Data Warehouse Feedback][] page to make fe
 [CREATE STATISTICS]: https://msdn.microsoft.com/library/ms188038.aspx
 [CREATE TABLE]: https://msdn.microsoft.com/library/mt203953.aspx
 [CREATE TABLE AS SELECT]: https://msdn.microsoft.com/library/mt204041.aspx
-[DBCC PDW_SHOWEXECUTIONPLAN]: https://msdn.microsoft.com/library/mt204017.aspx
+[DBCC PDW\_SHOWEXECUTIONPLAN]: https://msdn.microsoft.com/library/mt204017.aspx
 [INSERT]: https://msdn.microsoft.com/library/ms174335.aspx
 [OPTION]: https://msdn.microsoft.com/library/ms190322.aspx
 [TRUNCATE TABLE]: https://msdn.microsoft.com/library/ms177570.aspx
 [UPDATE STATISTICS]: https://msdn.microsoft.com/library/ms187348.aspx
-[sys.dm_exec_sessions]: https://msdn.microsoft.com/library/ms176013.aspx
-[sys.dm_pdw_exec_requests]: https://msdn.microsoft.com/library/mt203887.aspx
-[sys.dm_pdw_request_steps]: https://msdn.microsoft.com/library/mt203913.aspx
-[sys.dm_pdw_sql_requests]: https://msdn.microsoft.com/library/mt203889.aspx
-[sys.dm_pdw_dms_workers]: https://msdn.microsoft.com/library/mt203878.aspx
-[sys.dm_pdw_waits]: https://msdn.microsoft.com/library/mt203893.aspx
-[Columnstore indexes guide]: https://msdn.microsoft.com/library/gg492088.aspx
+[sys.dm\_exec\_sessions]: https://msdn.microsoft.com/library/ms176013.aspx
+[sys.dm\_pdw\_exec\_requests]: https://msdn.microsoft.com/library/mt203887.aspx
+[sys.dm\_pdw\_request\_steps]: https://msdn.microsoft.com/library/mt203913.aspx
+[sys.dm\_pdw\_sql\_requests]: https://msdn.microsoft.com/library/mt203889.aspx
+[sys.dm\_pdw\_dms\_workers]: https://msdn.microsoft.com/library/mt203878.aspx
+[sys.dm\_pdw\_waits]: https://msdn.microsoft.com/library/mt203893.aspx
+[資料行存放區索引指南]: https://msdn.microsoft.com/library/gg492088.aspx
 
 <!--Other Web references-->
-[Selecting table distribution]: https://blogs.msdn.microsoft.com/sqlcat/2015/08/11/choosing-hash-distributed-table-vs-round-robin-distributed-table-in-azure-sql-dw-service/
-[Azure SQL Data Warehouse Feedback]: https://feedback.azure.com/forums/307516-sql-data-warehouse
-[Azure SQL Data Warehouse MSDN Forum]: https://social.msdn.microsoft.com/Forums/sqlserver/home?forum=AzureSQLDataWarehouse
-[Azure SQL Data Warehouse Stack Overflow Forum]:  http://stackoverflow.com/questions/tagged/azure-sqldw
-[Azure SQL Data Warehouse loading patterns and strategies]: https://blogs.msdn.microsoft.com/sqlcat/2016/02/06/azure-sql-data-warehouse-loading-patterns-and-strategies
+[選取資料表散發]: https://blogs.msdn.microsoft.com/sqlcat/2015/08/11/choosing-hash-distributed-table-vs-round-robin-distributed-table-in-azure-sql-dw-service/
+[Azure SQL 資料倉儲意見反應]: https://feedback.azure.com/forums/307516-sql-data-warehouse
+[Azure SQL 資料倉儲 MSDN 論壇]: https://social.msdn.microsoft.com/Forums/sqlserver/home?forum=AzureSQLDataWarehouse
+[Azure SQL 資料倉儲 Stack Overflow 論壇]: http://stackoverflow.com/questions/tagged/azure-sqldw
+[Azure SQL 資料倉儲載入模式和策略]: https://blogs.msdn.microsoft.com/sqlcat/2016/02/06/azure-sql-data-warehouse-loading-patterns-and-strategies
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!----HONumber=AcomDC_0907_2016-->

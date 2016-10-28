@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Guide to creating a Data Service for the  Marketplace | Microsoft Azure"
-   description="Detailed instructions of how to create, certify and deploy a Data Service for purchase on the Azure Marketplace."
+   pageTitle="建立 Marketplace 資料服務的指南 | Microsoft Azure"
+   description="如何建立、認證和部署資料服務供他人在 Azure Marketplace 上購買的詳細指示。"
    services="marketplace-publishing"
    documentationCenter=""
    authors="HannibalSII"
@@ -16,13 +16,12 @@
       ms.date="08/26/2016"
       ms.author="hascipio; avikova" />
 
+# 透過 CSDL 將現有的 Web 服務對應至 OData 的範例
 
-# <a name="examples-of-mapping-an-existing-web-service-to-odata-through-csdls"></a>Examples of mapping an existing web service to OData through CSDLs
+>[AZURE.IMPORTANT] 目前我們已不再針對任何新的資料服務發行者進行上架。新的 Dataservice 將不會獲得核准以列出於清單上。 如果您有想要在 AppSource 上發佈的 SaaS 商務應用程式，您可以在[這裡](https://appsource.microsoft.com/partners)找到詳細資訊。如果您有想要在 Azure Marketplace 發佈的 IaaS 應用程式或開發人員服務，您可以在[這裡](https://azure.microsoft.com/marketplace/programs/certified/)找到詳細資訊。
 
->[AZURE.IMPORTANT] **At this time we are no longer onboarding any new Data Service publishers. New dataservices will not get approved for listing.** If you have a SaaS business application you would like to publish on AppSource you can find more information [here](https://appsource.microsoft.com/partners). If you have an IaaS applications or developer service you would like to publish on Azure Marketplace you can find more information [here](https://azure.microsoft.com/marketplace/programs/certified/).
-
-## <a name="example:-functionimport-for-"raw"-data-returned-using-"post""></a>Example: FunctionImport for "Raw" data returned using "POST"
-Use POST Raw data to create a new subordinate and return its server defined URL(location) or to update part of the subordinate at the server defined URL.  Where the subordinate is a stream, i.e. unstructured, ex. a text file.  Beware POST in not idempotent without a location.
+## 範例：使用 "POST" 傳回 "Raw" 資料的 FunctionImport
+使用 POST Raw 資料建立新的部屬並傳回其伺服器定義的 URL(location)，或更新伺服器所定義 URL 處的部分部屬。其中的部屬是串流，即非結構化，例如文字檔。請注意，POST 若沒有位置則不具等冪性。
 
         <!--  No EntitySet or EntityType nodes required for Raw output-->
         <FunctionImport Name="AddUsageEvent" ReturnType="Raw(text/plain)" d:EncodeParameterValues="true" d:AllowedHttpMethods="POST" d:BaseUri="http://services.organization.net/MyServicePath?name={name}&amp;AccountKey=22AC643">
@@ -39,8 +38,8 @@ Use POST Raw data to create a new subordinate and return its server defined URL(
         </d:Namespaces>
         </FunctionImport>
 
-## <a name="example:-functionimport-using-"delete""></a>Example: FunctionImport using "DELETE"
-Use DELETE to remove a specified URI.
+## 範例：使用 "DELETE" 的 FunctionImport
+使用 DELETE 移除指定的 URI。
 
         <EntitySet Name="DeleteUsageFileEntitySet" EntityType="MyOffer.DeleteUsageFileEntity" />
         <FunctionImport Name="DeleteUsageFile" EntitySet="DeleteUsageFileEntitySet" ReturnType="Collection(MyOffer.DeleteUsageFileEntity)"  d:AllowedHttpMethods="DELETE" d:EncodeParameterValues="true” d:BaseUri=”http://services.organization.net/MyServicePath?name={name}&amp;AccountKey=22AC643" >
@@ -60,8 +59,8 @@ Use DELETE to remove a specified URI.
         <Property Name="boolean" Type="String" Nullable="true" d:Map="./boolean" />
         </EntityType>
 
-## <a name="example:-functionimport-using-"post""></a>Example: FunctionImport using "POST"
-Use POST Raw data to create a new subordinate and return its server defined URL(location) or to update part of the subordinate at the server defined URL.  Where the subordinate is a structure. Beware POST is not idempotent without a location.
+## 範例：使用 "POST" 的 FunctionImport
+使用 POST Raw 資料建立新的部屬並傳回其伺服器定義的 URL(location)，或更新伺服器所定義 URL 處的部分部屬。其中的部屬是結構。請注意，POST 若沒有位置則不具等冪性。
 
         <EntitySet Name="CreateANewModelEntitySet2" EntityType=" MyOffer.CreateANewModelEntity2" />
         <FunctionImport Name="CreateModel" EntitySet="CreateANewModelEntitySet2" ReturnType="Collection(MyOffer.CreateANewModelEntity2)" d:EncodeParameterValues="true" d:AllowedHttpMethods="POST" d:BaseUri=”http://services.organization.net/MyServicePath?name={name}&amp;AccountKey=22AC643">
@@ -78,8 +77,8 @@ Use POST Raw data to create a new subordinate and return its server defined URL(
         </d:Namespaces>
         </FunctionImport>
 
-## <a name="example:-functionimport-using-"put""></a>Example: FunctionImport using "PUT"
-Use PUT to create a new subordinate or to update the entire subordinate at a server defined URL.  Where the subordinate is a structure, PUT is idempotent so multiple occurrences will result in the same state, i.e x=5.  Put should be used with the full content of the specified resource.
+## 範例：使用 "PUT" 的 FunctionImport
+使用 PUT 建立新的部屬，或更新伺服器所定義 URL 處的整個部屬。其中的部屬是結構，PUT 具有等冪性，因此即使出現多次也將產生相同的狀態，即 x=5。Put 應與指定資源的完整內容搭配使用。
 
         <EntitySet Name="UpdateAnExistingModelEntitySet" EntityType="MyOffer.UpdateAnExistingModelEntity" />
         <FunctionImport Name="UpdateModel" EntitySet="UpdateAnExistingModelEntitySet" ReturnType="Collection(MyOffer.UpdateAnExistingModelEntity)" d:EncodeParameterValues="true" d:AllowedHttpMethods="PUT" d:BaseUri=”http://services.organization.net/MyServicePath?name={name}&amp;AccountKey=22AC643">
@@ -96,12 +95,12 @@ Use PUT to create a new subordinate or to update the entire subordinate at a ser
         </d:Namespaces>
         </FunctionImport>
         <EntityType Name="UpdateAnExistingModelEntity" d:Map="//string">
-        <Property Name="string"     Type="String" Nullable="true" d:Map="./string" />
+        <Property Name="string" 	Type="String" Nullable="true" d:Map="./string" />
         </EntityType>
 
 
-## <a name="example:-functionimport-for-"raw"-data-returned-using-"put""></a>Example: FunctionImport for "Raw" data returned using "PUT"
-Use PUT Raw data to create a new subordinate or to update the entire subordinate at a server defined URL.  Where the subordinate is a stream, i.e. unstructured, ex. a text file.  PUT is idempotent so multiple occurrences will result in the same state, i.e x=5.  Put should be used with the full content of the specified resource.
+## 範例：使用 "PUT" 傳回 "Raw" 資料的 FunctionImport
+使用 PUT Raw 資料建立新的部屬，或更新伺服器所定義 URL 處的整個部屬。其中的部屬是串流，即非結構化，例如文字檔。PUT 具有等冪性，因此即使出現多次也將產生相同的狀態，即 x=5。Put 應與指定資源的完整內容搭配使用。
 
         <!--  No EntitySet or EntityType nodes required for Raw output-->
         <FunctionImport Name="CancelBuild” ReturnType="Raw(text/plain)" d:AllowedHttpMethods="PUT" d:EncodeParameterValues="true" d:BaseUri=” http://services.organization.net/MyServicePath?name={name}&amp;AccountKey=22AC643">
@@ -119,8 +118,8 @@ Use PUT Raw data to create a new subordinate or to update the entire subordinate
         </FunctionImport>
 
 
-## <a name="example:-functionimport-for-"raw"-data-returned-using-"get""></a>Example: FunctionImport for "Raw" data returned using "GET"
-Use GET Raw data to return a subordinate that is unstructured, i.e. text.
+## 範例：使用 "GET" 傳回 "Raw" 資料的 FunctionImport
+使用 GET Raw 資料傳回非結構化的部屬，即文字。
 
         <!--  No EntitySet or EntityType nodes required for Raw output-->
         <FunctionImport Name="GetModelUsageFile" ReturnType="Raw(text/plain)" d:EncodeParameterValues="true" d:AllowedHttpMethods="GET" d:BaseUri="https://cmla.cloudapp.net/api2/model/builder/build?buildId={buildId}&amp;apiVersion={apiVersion}">
@@ -138,13 +137,13 @@ Use GET Raw data to return a subordinate that is unstructured, i.e. text.
         </d:Namespaces>
         </FunctionImport>
 
-## <a name="example:-functionimport-for-"paging"-through-returned-data"></a>Example: FunctionImport for "Paging" through returned data
-Use implement RESTful paging through your data with GET.  Default paging is set to 100 row per page of data.
+## 範例：「逐頁查看」所傳回資料的 FunctionImport
+透過 GET 以符合 REST 限制的方式實作「逐頁查看」您的資料。預設的分頁設為每頁 100 列的資料。
 
         <EntitySet Name=”CropEntitySet" EntityType="MyOffer.CropEntity" />
-        <FunctionImport Name="GetCropReport" EntitySet="CropEntitySet” ReturnType="Collection(MyOffer.CropEntity)" d:EmitSelfLink="false" d:EncodeParameterValues="true" d:Paging="SkipTake" d:MaxPageSize="100" d:BaseUri="http://api.mydata.org/Crop? report={report}&amp;series={series}&amp;start={$skip}&amp;size=100">
+        <FunctionImport	Name="GetCropReport" EntitySet="CropEntitySet” ReturnType="Collection(MyOffer.CropEntity)" d:EmitSelfLink="false" d:EncodeParameterValues="true" d:Paging="SkipTake" d:MaxPageSize="100" d:BaseUri="http://api.mydata.org/Crop? report={report}&amp;series={series}&amp;start={$skip}&amp;size=100">
         <Parameter Name="report" Type="Int32" Mode="In" Nullable="false" d:SampleValues="4"  d:enum="1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19"  />
-        <Parameter Name="series"    Type="String"   Mode="In" Nullable="false" d:SampleValues="FARM" />
+        <Parameter Name="series"	Type="String"	Mode="In" Nullable="false" d:SampleValues="FARM" />
         <d:Headers>
         <d:Header d:Name="Content-Type" d:Value="text/xml;charset=UTF-8" />
         </d:Headers>
@@ -153,13 +152,9 @@ Use implement RESTful paging through your data with GET.  Default paging is set 
         </d:Namespaces>
         </FunctionImport>
 
-## <a name="see-also"></a>See Also
-- If you are interested in understanding the overall OData mapping process and purpose, read this article [Data Service OData Mapping](marketplace-publishing-data-service-creation-odata-mapping.md) to review definitions, structures, and instructions.
-- If you are interested in learning and understanding the specific nodes and their parameters, read this article [Data Service OData Mapping Nodes](marketplace-publishing-data-service-creation-odata-mapping-nodes.md) for definitions and explanations, examples, and use case context.
-- To return to the prescribed path for publishing a Data Service to the Azure Marketplace, read this article [Data Service Publishing Guide](marketplace-publishing-data-service-creation.md).
+## 另請參閱
+- 如果您有興趣全面了解 OData 對應程序和用途，請閱讀[資料服務 OData 對應](marketplace-publishing-data-service-creation-odata-mapping.md)一文來檢閱定義、結構和指示。
+- 如果您有興趣學習和了解特定節點及其參數，請閱讀[資料服務 OData 對應節點](marketplace-publishing-data-service-creation-odata-mapping-nodes.md)一文，來了解定義和說明、範例，以及使用案例內容。
+- 若要返回用於將資料服務發佈至 Azure Marketplace 的指定路徑，請閱讀[資料服務發佈指南](marketplace-publishing-data-service-creation.md)一文。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0831_2016-->

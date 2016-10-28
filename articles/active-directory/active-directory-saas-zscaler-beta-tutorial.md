@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="Tutorial: Azure Active Directory Integration with Zscaler Beta | Microsoft Azure" 
-    description="Learn how to use Zscaler Beta with Azure Active Directory to enable single sign-on, automated provisioning, and more!." 
+    pageTitle="教學課程：Azure Active Directory 與 Zscaler Beta 整合 | Microsoft Azure" 
+    description="了解如何使用 Zscaler Beta 搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -14,199 +14,191 @@
     ms.date="08/16/2016" 
     ms.author="jeedes" />
 
-
-#<a name="tutorial:-azure-active-directory-integration-with-zscaler-beta"></a>Tutorial: Azure Active Directory Integration with Zscaler Beta
+#教學課程：Azure Active Directory 與 Zscaler Beta 整合
   
-The objective of this tutorial is to show the integration of Azure and ZScaler Beta.  
-The scenario outlined in this tutorial assumes that you already have the following items:
+本教學課程的目的是要示範 Azure 與 ZScaler Beta 的整合。本教學課程中說明的案例假設您已經具有下列項目：
 
--   A valid Azure subscription
--   A ZScaler Beta single sign-on enabled subscription
+-   有效的 Azure 訂閱
+-   啟用 ZScaler Beta 單一登入的訂用帳戶
   
-After completing this tutorial, the Azure AD users you have assigned to ZScaler Beta will be able to single sign into the application at your ZScaler Beta company site (service provider initiated sign on), or using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+完成本教學課程之後，您指派給 ZScaler Beta 的 Azure AD 使用者就能夠從您的 ZScaler Beta 公司網站 (服務提供者起始登入)，或使用[存取面板](active-directory-saas-access-panel-introduction.md)來單一登入應用程式。
   
-The scenario outlined in this tutorial consists of the following building blocks:
+本教學課程中說明的案例由下列建置組塊組成：
 
-1.  Enabling the application integration for ZScaler Beta
-2.  Configuring single sign-on
-3.  Configuring proxy settings
-4.  Configuring user provisioning
-5.  Assigning users
+1.  啟用 ZScaler Beta 的應用程式整合
+2.  設定單一登入
+3.  進行 Proxy 設定
+4.  設定使用者佈建
+5.  指派使用者
 
-![Scenario](./media/active-directory-saas-zscaler-beta-tutorial/IC800223.png "Scenario")
+![案例](./media/active-directory-saas-zscaler-beta-tutorial/IC800223.png "案例")
 
-##<a name="enabling-the-application-integration-for-zscaler-beta"></a>Enabling the application integration for ZScaler Beta
+##啟用 ZScaler Beta 的應用程式整合
   
-The objective of this section is to outline how to enable the application integration for ZScaler Beta.
+本節的目的是要說明如何啟用 ZScaler Beta 的應用程式整合。
 
-###<a name="to-enable-the-application-integration-for-zscaler-beta,-perform-the-following-steps:"></a>To enable the application integration for ZScaler Beta, perform the following steps:
+###若要啟用 ZScaler Beta 的應用程式整合，請執行下列步驟：
 
-1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-zscaler-beta-tutorial/IC700993.png "Active Directory")
 
-2.  From the **Directory** list, select the directory for which you want to enable directory integration.
+2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3.  To open the applications view, in the directory view, click **Applications** in the top menu.
+3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
 
-    ![Applications](./media/active-directory-saas-zscaler-beta-tutorial/IC700994.png "Applications")
+    ![應用程式](./media/active-directory-saas-zscaler-beta-tutorial/IC700994.png "應用程式")
 
-4.  Click **Add** at the bottom of the page.
+4.  按一下頁面底部的 [新增]。
 
-    ![Add application](./media/active-directory-saas-zscaler-beta-tutorial/IC749321.png "Add application")
+    ![新增應用程式](./media/active-directory-saas-zscaler-beta-tutorial/IC749321.png "新增應用程式")
 
-5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
-    ![Add an application from gallerry](./media/active-directory-saas-zscaler-beta-tutorial/IC749322.png "Add an application from gallerry")
+    ![從組件庫新增應用程式](./media/active-directory-saas-zscaler-beta-tutorial/IC749322.png "從組件庫新增應用程式")
 
-6.  In the **search box**, type **ZScaler Beta**.
+6.  在**搜尋方塊**中，輸入 **ZScaler Beta**。
 
-    ![Application Gallery](./media/active-directory-saas-zscaler-beta-tutorial/IC800224.png "Application Gallery")
+    ![應用程式庫](./media/active-directory-saas-zscaler-beta-tutorial/IC800224.png "應用程式庫")
 
-7.  In the results pane, select **ZScaler Beta**, and then click **Complete** to add the application.
+7.  在結果窗格中，選取 ZScaler Beta，然後按一下 [完成] 以新增應用程式。
 
     ![ZScaler One](./media/active-directory-saas-zscaler-beta-tutorial/IC800216.png "ZScaler One")
 
-##<a name="configuring-single-sign-on"></a>Configuring single sign-on
+##設定單一登入
   
-The objective of this section is to outline how to enable users to authenticate to ZScaler Beta with their account in Azure AD using federation based on the SAML protocol.  
-As part of this procedure, you are required to upload a base-64 encoded certificate to your ZScaler Beta tenant.  
-If you are not familiar with this procedure, see [How to convert a binary certificate into a text file](http://youtu.be/PlgrzUZ-Y1o)
+本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶在 ZScaler Beta 中進行驗證。在此程序中，您需要上傳 base-64 編碼憑證到您的 ZScaler Beta 租用戶。如果您不熟悉這個程序，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
 
-###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
+###若要設定單一登入，請執行下列步驟：
 
-1.  In the Azure classic portal, on the **ZScaler Beta** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
+1.  在 Azure 傳統入口網站的 [ZScaler Beta] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-zscaler-beta-tutorial/IC800225.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-zscaler-beta-tutorial/IC800225.png "設定單一登入")
 
-2.  On the **How would you like users to sign on to ZScaler Beta** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
+2.  在 [您希望使用者如何登入 ZScaler Beta] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-zscaler-beta-tutorial/IC800226.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-zscaler-beta-tutorial/IC800226.png "設定單一登入")
 
-3.  On the **Configure App URL** page, in the **ZScaler Beta Sign On URL** textbox, type the URL used by your users to sign-on to your ZScaler Beta application, and then click **Next**.
+3.  在 [設定應用程式 URL] 頁面的 [ZScaler Beta 單一登入 URL] 文字方塊中，輸入使用者登入 ZScaler Beta 應用程式所使用的 URL，然後按 [下一步]。
 
-    ![Configure App URL](./media/active-directory-saas-zscaler-beta-tutorial/IC800227.png "Configure App URL")
+    ![設定應用程式 URL](./media/active-directory-saas-zscaler-beta-tutorial/IC800227.png "設定應用程式 URL")
 
-    >[AZURE.NOTE] You can get the actual value for your environment from your ZScaler Beta support team if you need it.
+    >[AZURE.NOTE] 如有需要，您可以向 ZScaler Beta 支援小組取得您的環境的實際值。
 
-4.  On the **Configure single sign-on at ZScaler Beta** page, to download your certificate, click **Download certificate**, and then save the certificate file on your computer.
+4.  在 [設定在 ZScaler Beta 單一登入] 頁面上，按一下 [下載憑證] 以下載您的憑證，然後將憑證檔案儲存在您的電腦上。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-zscaler-beta-tutorial/IC800228.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-zscaler-beta-tutorial/IC800228.png "設定單一登入")
 
-5.  In a different web browser window, log into your ZScaler Beta company site as an administrator.
+5.  在不同的 Web 瀏覽器視窗中，以系統管理員身分登入您的 ZScaler Beta 公司網站。
 
-6.  In the menu on the top, click **Administration**.
+6.  在頂端的功能表中，按一下 [系統管理]。
 
-    ![Administration](./media/active-directory-saas-zscaler-beta-tutorial/IC800206.png "Administration")
+    ![系統管理](./media/active-directory-saas-zscaler-beta-tutorial/IC800206.png "系統管理")
 
-7.  Under **Manage Administrators & Roles**, click **Manage Users & Authentication**.
+7.  在 [管理系統管理員和角色] 下按一下 [管理使用者和驗證]。
 
-    ![Manage Users & Authentication](./media/active-directory-saas-zscaler-beta-tutorial/IC800207.png "Manage Users & Authentication")
+    ![管理使用者和驗證](./media/active-directory-saas-zscaler-beta-tutorial/IC800207.png "管理使用者和驗證")
 
-8.  In the **Choose Authentication Options for your Organization** section, perform the following steps:
+8.  在 [選擇您的組織的驗證選項] 區段中，執行下列步驟：
 
-    ![Authentication](./media/active-directory-saas-zscaler-beta-tutorial/IC800208.png "Authentication")
+    ![驗證](./media/active-directory-saas-zscaler-beta-tutorial/IC800208.png "驗證")
 
-    1.  Select **Authenticate using SAML Single Sign-On**.
-    2.  Click **Configure SAML Single Sign-On Parameters**.
+    1.  選取 [使用 SAML 單一登入進行驗證]。
+    2.  按一下 [設定 SAML 單一登入參數]。
 
-9.  On the **Configure SAML Single Sign-On Parameters** dialog page, perform the following steps, and then click **Done**:
+9.  在 [設定 SAML 單一登入參數] 對話方塊頁面上，執行下列步驟，然後按一下 [完成]：
 
-    ![Single Sign-On](./media/active-directory-saas-zscaler-beta-tutorial/IC800209.png "Single Sign-On")
+    ![單一登入](./media/active-directory-saas-zscaler-beta-tutorial/IC800209.png "單一登入")
 
-    1.  In the Azure classic portal, on the **Configure single sign-on at ZScaler Beta** dialog page, copy the **Authentication Request URL** value, and then paste it into the **URL of the SAML Portal to which users are sent for authentication** textbox.
-    2.  In the **Attribute containing Login Name** textbox, type **NameID**.
-    3.  To upload your downloaded certificate, click **Zscaler pem**.
-    4.  Select **Enable SAML Auto-Provisioning**.
+    1.  在 Azure 傳統入口網站的 [設定在 ZScaler Beta 單一登入] 對話方塊頁面上，複製 [驗證要求 URL] 值，然後貼至 [傳送使用者以供驗證的 SAML 入口網站 URL] 文字方塊中。
+    2.  在 [包含登入名稱的屬性] 文字方塊中，輸入 NameID。
+    3.  若要上傳您下載的憑證，請按一下 Zscaler pem。
+    4.  選取 [啟用 SAML 自動佈建]。
 
-10. On the **Configure User Authentication** dialog page, perform the following steps:
+10. 在 [設定使用者驗證] 對話方塊頁面上執行下列步驟：
 
-    ![Administration](./media/active-directory-saas-zscaler-beta-tutorial/IC800210.png "Administration")
+    ![系統管理](./media/active-directory-saas-zscaler-beta-tutorial/IC800210.png "系統管理")
 
-    1.  Click **Save**.
-    2.  Click **Activate Now**.
+    1.  按一下 [儲存]。
+    2.  按一下 [立即啟用]。
 
-11. In the Azure classic portal, on the **Configure single sign-on at ZScaler Beta** dialog page, select the single sign-on configuration confirmation, and then click **Complete**.
+11. 在 Azure 傳統入口網站的 [設定在 ZScaler Beta 單一登入] 對話方塊上，選取單一登入組態確認，然後按一下 [完成]。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-zscaler-beta-tutorial/IC800229.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-zscaler-beta-tutorial/IC800229.png "設定單一登入")
 
-##<a name="configuring-proxy-settings"></a>Configuring proxy settings
+##進行 Proxy 設定
 
-###<a name="to-configure-the-proxy-settings-in-internet-explorer"></a>To configure the proxy settings in Internet Explorer
+###在 Internet Explorer 中進行 Proxy 設定
 
-1.  Start **Internet Explorer**.
+1.  啟動 **Internet Explorer**。
 
-2.  Select **Internet options** from the **Tools** menu to open the **Internet Options** dialog.
+2.  從 [工具] 功能表選取 [網際網路選項] 可開啟 [網際網路選項] 對話方塊。
 
-    ![Internet Options](./media/active-directory-saas-zscaler-beta-tutorial/IC769492.png "Internet Options")
+    ![，](./media/active-directory-saas-zscaler-beta-tutorial/IC769492.png "，")
 
-3.  Click the **Connections** tab.
+3.  按一下 [連線] 索引標籤。
 
-    ![Connections](./media/active-directory-saas-zscaler-beta-tutorial/IC769493.png "Connections")
+    ![連線](./media/active-directory-saas-zscaler-beta-tutorial/IC769493.png "連線")
 
-4.  Click **LAN settings** to open the **LAN Settings** dialog.
+4.  按一下 [區域網路設定] 可開啟 [區域網路設定] 對話方塊。
 
-5.  In the Proxy server section, perform the following steps:
+5.  在 [Proxy 伺服器] 區段中，執行下列步驟：
 
-    ![Proxy server](./media/active-directory-saas-zscaler-beta-tutorial/IC769494.png "Proxy server")
+    ![Proxy 伺服器](./media/active-directory-saas-zscaler-beta-tutorial/IC769494.png "Proxy 伺服器")
 
-    1.  Select Use a proxy server for your LAN.
-    2.  In the Address textbox, type **gateway.zscalerBeta.net**.
-    3.  In the Port textbox, type **80**.
-    4.  Select **Bypass proxy server for local addresses**.
-    5.  Click **OK** to close the **Local Area Network (LAN) Settings** dialog.
+    1.  選取 [在您的區域網路使用 Proxy 伺服器]。
+    2.  在 [位址] 文字方塊中輸入 **gateway.zscalerBeta.net**。
+    3.  在 [連接埠] 文字方塊中輸入 **80**。
+    4.  選取 [近端網址不使用 Proxy 伺服器]。
+    5.  按一下 [確定] 關閉 [區域網路 (LAN) 設定] 對話方塊。
 
-6.  Click **OK** to close the **Internet Options** dialog.
+6.  按一下 [確定] 關閉 [網際網路選項] 對話方塊。
 
-##<a name="configuring-user-provisioning"></a>Configuring user provisioning
+##設定使用者佈建
   
-In order to enable Azure AD users to log into ZScaler Beta, they must be provisioned to ZScaler Beta.  
-In the case of ZScaler Beta, provisioning is a manual task.
+為了讓 Azure AD 使用者登入 ZScaler Beta，他們必須佈建到 ZScaler Beta。ZScaler Beta 需以手動的方式佈建。
 
-###<a name="to-configure-user-provisioning,-perform-the-following-steps:"></a>To configure user provisioning, perform the following steps:
+###若要設定使用者佈建，請執行下列步驟：
 
-1.  Log in to your **Zscaler** tenant.
+1.  登入 **Zscaler** 租用戶。
 
-2.  Click **Administration**.
+2.  按一下 [系統管理]。
 
-    ![Administration](./media/active-directory-saas-zscaler-beta-tutorial/IC781035.png "Administration")
+    ![系統管理](./media/active-directory-saas-zscaler-beta-tutorial/IC781035.png "系統管理")
 
-3.  Click **User Management**.
+3.  按一下 [使用者管理]。
 
-    ![Add](./media/active-directory-saas-zscaler-beta-tutorial/IC781037.png "Add")
+    ![加](./media/active-directory-saas-zscaler-beta-tutorial/IC781037.png "加")
 
-4.  In the **Users** tab, click **Add**.
+4.  在 [使用者] 索引標籤中，按一下 [新增]。
 
-    ![Add](./media/active-directory-saas-zscaler-beta-tutorial/IC781037.png "Add")
+    ![加](./media/active-directory-saas-zscaler-beta-tutorial/IC781037.png "新增")
 
-5.  In the Add User section, perform the following steps:
+5.  在 [新增使用者] 區段中，執行下列步驟：
 
-    ![Add User](./media/active-directory-saas-zscaler-beta-tutorial/IC781038.png "Add User")
+    ![新增使用者](./media/active-directory-saas-zscaler-beta-tutorial/IC781038.png "新增使用者")
 
-    1.  Type the **UserID**, **User Display Name**, **Password**, **Confirm Password**, and then select **Groups** and the **Department** of a valid AAD account you want to provision.
-    2.  Click **Save**.
+    1.  輸入 [使用者識別碼]、[使用者顯示名稱]、[密碼]、[確認密碼]，然後選取您要佈建之有效 AAD 帳戶的 [群組] 和 [部門]。
+    2.  按一下 [儲存]。
 
->[AZURE.NOTE] You can use any other ZScaler Beta user account creation tools or APIs provided by ZScaler Beta to provision AAD user accounts.
+>[AZURE.NOTE] 您可以使用任何其他的 ZScaler Beta 使用者帳戶建立工具或 ZScaler Beta 提供的 API 來佈建 AAD 使用者帳戶。
 
-##<a name="assigning-users"></a>Assigning users
+##指派使用者
   
-To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
+若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-###<a name="to-assign-users-to-zscaler-beta,-perform-the-following-steps:"></a>To assign users to ZScaler Beta, perform the following steps:
+###若要指派使用者給 ZScaler Beta，請執行下列步驟：
 
-1.  In the Azure classic portal, create a test account.
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
-2.  On the **ZScaler Beta** application integration page, click **Assign users**.
+2.  在 ZScaler Beta 應用程式整合頁面中，按一下 [指派使用者]。
 
-    ![Assign Users](./media/active-directory-saas-zscaler-beta-tutorial/IC800230.png "Assign Users")
+    ![指派使用者](./media/active-directory-saas-zscaler-beta-tutorial/IC800230.png "指派使用者")
 
-3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
+3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
 
-    ![Yes](./media/active-directory-saas-zscaler-beta-tutorial/IC767830.png "Yes")
+    ![是](./media/active-directory-saas-zscaler-beta-tutorial/IC767830.png "是")
   
-If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

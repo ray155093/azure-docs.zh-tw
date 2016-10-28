@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Custom test scenarios | Microsoft Azure"
-   description="How to harden your services against graceful and ungraceful failures."
+   pageTitle="自訂測試案例 | Microsoft Azure"
+   description="如何針對非失誤性和失誤性失敗強化服務。"
    services="service-fabric"
    documentationCenter=".net"
    authors="anmolah"
@@ -16,19 +16,18 @@
    ms.date="05/17/2016"
    ms.author="anmola"/>
 
+# 模擬服務工作負載期間的失敗案例
 
-# <a name="simulate-failures-during-service-workloads"></a>Simulate failures during service workloads
+Azure Service Fabric 中的可測試性案例讓開發人員在處理個別錯誤時無需擔心。不過還是有些案例，可能會需要明確的用戶端工作負載和失敗交錯。用戶端工作負載和錯誤的交錯，可確保服務在發生失敗時確實執行某些動作。假設可測試性提供的控制層級，可能是工作負載執行的精確時間點。此應用程式中不同狀態的錯誤引發可以找到錯誤，並提升品質。
 
-The testability scenarios in Azure Service Fabric enable developers to not worry about dealing with individual faults. There are scenarios, however, where an explicit interleaving of client workload and failures might be needed. The interleaving of client workload and faults ensures that the service is actually performing some action when failure happens. Given the level of control that testability provides, these could be at precise points of the workload execution. This induction of faults at different states in the application can find bugs and improve quality.
+## 範例自訂案例
+此測試說明了使用[非失誤性和失誤性失敗](service-fabric-testability-actions.md#graceful-vs-ungraceful-fault-actions)商務工作負載交錯的案例。為了獲得最佳結果，應該在服務作業或計算過程中引發錯誤。
 
-## <a name="sample-custom-scenario"></a>Sample custom scenario
-This test shows a scenario that interleaves the business workload with [graceful and ungraceful failures](service-fabric-testability-actions.md#graceful-vs-ungraceful-fault-actions). The faults should be induced in the middle of service operations or compute for best results.
-
-Let's walk through an example of a service that exposes four workloads: A, B, C, and D. Each corresponds to a set of workflows and could be compute, storage, or a mix. For the sake of simplicity, we will abstract out the workloads in our example. The different faults executed in this example are:
-  + RestartNode: Ungraceful fault to simulate a machine restart.
-  + RestartDeployedCodePackage: Ungraceful fault to simulate service host process crashes.
-  + RemoveReplica: Graceful fault to simulate replica removal.
-  + MovePrimary: Graceful fault to simulate replica moves triggered by the Service Fabric load balancer.
+我們來逐一解說某個服務範例，此範例公開四個工作負載：A、B、C 和 D。每個均對應至一組工作流程，且可能是計算、儲存體或混合。為了簡單起見，我們會在範例中擷取出工作負載。在此範例中執行的不同錯誤如下︰
+  + RestartNode︰模擬機器重新啟動的失誤性錯誤。
+  + RestartDeployedCodePackage︰模擬服務主機處理序當機。
+  + RemoveReplica︰模擬複本移除的非失誤性錯誤。
+  + MovePrimary︰模擬由 Service Fabric 負載平衡器所觸發的複本移動非失誤性錯誤。
 
 ```csharp
 // Add a reference to System.Fabric.Testability.dll and System.Fabric.dll.
@@ -156,8 +155,4 @@ class Test
 }
 ```
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0518_2016-->

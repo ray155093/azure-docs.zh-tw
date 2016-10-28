@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Add a web application firewall in Azure Security Center | Microsoft Azure"
-   description="This document shows you how to implement the Azure Security Center recommendations **Add a web application firewall** and **Finalize application protection**."
+   pageTitle="在 Azure 資訊安全中心新增 Web 應用程式防火牆 | Microsoft Azure"
+   description="本文件說明如何實作 Azure 資訊安全中心建議的「新增 Web 應用程式防火牆」和「完成應用程式保護」。"
    services="security-center"
    documentationCenter="na"
    authors="TerryLanfear"
@@ -16,70 +16,59 @@
    ms.date="07/29/2016"
    ms.author="terrylan"/>
 
+# 在 Azure 資訊安全中心新增 Web 應用程式防火牆
 
-# <a name="add-a-web-application-firewall-in-azure-security-center"></a>Add a web application firewall in Azure Security Center
+Azure 資訊安全中心可能會建議您從 Microsoft 合作夥伴新增 Web 應用程式防火牆 (WAF)，以保護您 Web 應用程式的安全。本文件逐步解說如何進行這項操作的範例。
 
-Azure Security Center may recommend that you add a web application firewall (WAF) from a Microsoft partner in order to secure your web applications. This document walks you through an example of how to do this.
+> [AZURE.NOTE] 本文件將使用範例部署來介紹服務。這不是逐步指南。
 
-> [AZURE.NOTE] This document introduces the service by using an example deployment.  This is not a step-by-step guide.
+## 實作建議
 
-## <a name="implement-the-recommendation"></a>Implement the recommendation
+1. 在 [建議] 刀鋒視窗中，選取 [使用 Web 應用程式防火牆保護 Web 應用程式]。![保護 Web 應用程式][1]
 
-1. In the **Recommendations** blade, select **Secure web application using web application firewall**.
-![Secure web Application][1]
+2. 在 [使用 Web 應用程式防火牆保護 Web 應用程式] 刀鋒視窗中，選取 Web 應用程式。[新增 Web 應用程式防火牆] 刀鋒視窗隨即開啟。![新增 Web 應用程式防火牆][2]
+3. 您可以選擇使用現有的 Web 應用程式防火牆 (如果有的話)，或者您可以建立一個新的 Web 應用程式防火牆。此範例中沒有任何可用的現有 WAF，因此我們將建立一個新的 WAF。
 
-2. In the **Secure your web applications using web application firewall** blade, select a web application. The **Add a Web Application Firewall** blade opens.
-![Add a web application firewall][2]
-3. You can choose to use an existing web application firewall if available or you can create a new one. In this example there are no existing WAFs available so we'll create a new WAF.
+4. 若要建立新的 WAF，請從整合式合作夥伴的清單中選取一個解決方案。在此範例中，我們將選取 [Barracuda Web 應用程式防火牆]。
+5. [Barracuda Web 應用程式防火牆] 刀鋒視窗隨即開啟，為您提供合作夥伴解決方案的相關資訊。選取資訊刀鋒視窗中的 [建立]。![防火牆資訊刀鋒視窗][3]
 
-4. To create a new WAF, select a solution from the list of integrated partners. In this example we will select **Barracuda Web Application Firewall**.
-5. The **Barracuda Web Application Firewall** blade opens providing you information about the partner solution. Select **Create** in the information blade.
-![Firewall information blade][3]
+6. 即會開啟 [新增 Web 應用程式防火牆] 刀鋒視窗，您可以在此視窗中執行 [VM 組態] 步驟並提供 [WAF 資訊]。選取 [VM 組態]。
 
-6. The **New Web Application Firewall** blade opens, where you can perform **VM Configuration** steps and provide **WAF Information**. Select **VM Configuration**.
+7. 在 [VM 組態] 刀鋒視窗中，輸入啟動將執行 WAF 的虛擬機器所需的資訊。![VM 組態][4]
+8. 返回 [新增 Web 應用程式防火牆] 刀鋒視窗，然後選取 [WAF 資訊]。在 [WAF 資訊] 刀鋒視窗中，設定 WAF 本身。步驟 7 可讓您設定將執行 WAF 的虛擬機器，而步驟 8 則可讓您佈建 WAF 本身。
 
-7. In the **VM Configuration** blade you enter information required to spin up the virtual machine that will run the WAF.
-![VM configuration][4]
-8. Return to the **New Web Application Firewall** blade and select **WAF Information**. In the **WAF Information** blade you configure the WAF itself. Step 7 allows you to configure the virtual machine on which the WAF will run and step 8 enables you to provision the WAF itself.
+## 完成應用程式保護
 
-## <a name="finalize-application-protection"></a>Finalize application protection
+1. 返回 [建議] 刀鋒視窗。在您建立 WAF 之後會產生一個新項目，稱為 [完成應用程式保護]。此項目可讓您知道您需要完成實際串聯起 Azure 虛擬網路內 WAF 的程序，讓它可以保護應用程式。![完成應用程式保護][5]
 
-1. Return to the **Recommendations** blade. A new entry was generated after you created the WAF, called **Finalize application protection**. This entry lets you know that you need to complete the process of actually wiring up the WAF within the Azure Virtual Network so that it can protect the application.
-![Finalize application protection][5]
+2. 選取 [完成應用程式保護]。此時會開啟新的分頁。您會看到有一個需要重新路由流量的 Web 應用程式。
+3. 選取 Web 應用程式。將會開啟一個刀鋒視窗，其中提供完成 Web 應用程式防火牆設定的步驟。完成這些步驟，然後選取 [限制流量]。接著，資訊安全中心會為您進行串聯。![限制流量][6]
 
-2. Select **Finalize application protection**. A new blade opens. You can see that there is a web application that needs to have its traffic rerouted.
-3. Select the web application. A blade opens that gives you steps for finalizing the web application firewall setup. Complete the steps, and then select **Restrict traffic**. Security Center will then do the wiring-up for you.
-![Restrict traffic][6]
+> [AZURE.NOTE] 您可以將這些應用程式加入現有的 WAF 部署，以保護資訊安全中心的多個 Web 應用程式。WAF 應用裝置 (使用 Resource Manager 部署模型建立) 需要部署至不同的虛擬網路。WAF 應用裝置 (使用傳統部署模型所建立) 受限於只能使用網路安全性群組。這項支援在未來將會延伸至 WAF 應用裝置 (傳統) 的完全自訂部署。深入了解 Azure 資源的[傳統和 Resource Manager 部署模型](../azure-classic-rm.md)。
 
-> [AZURE.NOTE] You can protect multiple web applications in Security Center by adding these applications to your existing WAF deployments. WAF appliances (created using the Resource Manager deployment model) need to be deployed to a separate virtual network. WAF appliances (created using the classic deployment model) are restricted to using a network security group. This support will be extended to a fully customized deployment of a WAF appliance (classic) in the future. Learn more about the [classic and Resource Manager deployment models](../azure-classic-rm.md) for Azure resources.
+現在已將來自該 WAF 的記錄完全整合。「資訊安全中心」可以開始自動收集並分析記錄，以便對您顯示重要的安全性警示。
 
-The logs from that WAF are now fully integrated. Security Center can start automatically gathering and analyzing the logs so that it can surface important security alerts to you.
+## 另請參閱
 
-## <a name="see-also"></a>See also
+本文件說明如何實作資訊安全中心建議的「新增 Web 應用程式」。 若要深入了解如何設定 Web 應用程式防火牆，請參閱下列各項：
 
-This document showed you how to implement the Security Center recommendation "Add a web application." To learn more about configuring a web application firewall, see the following:
+- [設定 App Service 環境的 Web 應用程式防火牆 (WAF)](../app-service-web/app-service-app-service-environment-web-application-firewall.md)
 
-- [Configuring a Web Application Firewall (WAF) for App Service Environment](../app-service-web/app-service-app-service-environment-web-application-firewall.md)
+如要深入了解資訊安全中心，請參閱下列主題：
 
-To learn more about Security Center, see the following:
-
-- [Setting security policies in Azure Security Center](security-center-policies.md) -- Learn how to configure security policies for your Azure subscriptions and resource groups.
-- [Security health monitoring in Azure Security Center](security-center-monitoring.md) -- Learn how to monitor the health of your Azure resources.
-- [Managing and responding to security alerts in Azure Security Center](security-center-managing-and-responding-alerts.md) -- Learn how to manage and respond to security alerts.
-- [Managing security recommendations in Azure Security Center](security-center-recommendations.md) -- Learn how recommendations help you protect your Azure resources.
-- [Azure Security Center FAQ](security-center-faq.md) -- Find frequently asked questions about using the service.
-- [Azure Security blog](http://blogs.msdn.com/b/azuresecurity/) -- Find blog posts about Azure security and compliance.
+- [在 Azure 資訊安全中心設定安全性原則](security-center-policies.md) --了解如何為您的 Azure 訂用帳戶及資源群組設定安全性原則。
+- [Azure 資訊安全中心的安全性健全狀況監視](security-center-monitoring.md) -- 了解如何監視 Azure 資源的健全狀況。
+- [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) -- 了解如何管理與回應安全性警示。
+- [管理 Azure 資訊安全中心的安全性建議](security-center-recommendations.md) -- 了解建議如何協助保護您的 Azure 資源。
+- [Azure 資訊安全中心常見問題集](security-center-faq.md) -- 尋找有關使用服務的常見問題。
+- [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) -- 尋找有關 Azure 安全性與相容性的部落格文章。
 
 <!--Image references-->
 [1]: ./media/security-center-add-web-application-firewall/secure-web-application.png
-[2]:./media/security-center-add-web-application-firewall/add-a-waf.png
+[2]: ./media/security-center-add-web-application-firewall/add-a-waf.png
 [3]: ./media/security-center-add-web-application-firewall/info-blade.png
 [4]: ./media/security-center-add-web-application-firewall/select-vm-config.png
 [5]: ./media/security-center-add-web-application-firewall/finalize-waf.png
 [6]: ./media/security-center-add-web-application-firewall/restrict-traffic.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

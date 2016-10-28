@@ -1,18 +1,16 @@
-Let's add a trigger.
+讓我們新增一個觸發程序。
 
-1. Enter *sftp* in the search box on the logic apps designer then select the **SFTP - When a file is added or modified**  trigger   
-![SFTP trigger image 1](./media/connectors-create-api-sftp/trigger-1.png)  
-- The **When a file is added or modified** control opens up  
-![SFTP trigger image 2](./media/connectors-create-api-sftp/trigger-2.png)  
-- Select the **...** located on the right side of the control. This opens the folder picker control  
-![SFTP trigger image 3](./media/connectors-create-api-sftp/action-1.png)  
-- Select the **SFTP** to select the root folder as the folder to monitor for new or modified files. Notice the root folder is now displayed in the **Folder** control.  
-![SFTP trigger image 4](./media/connectors-create-api-sftp/action-2.png)   
+1. 在邏輯應用程式設計工具的搜尋方塊中輸入 *sftp*，然後選取 [SFTP - 當新增或修改檔案時] 觸發程序  
+![SFTP 觸發程序圖像 1](./media/connectors-create-api-sftp/trigger-1.png)  
+- [當新增或修改檔案時] 控制項隨即開啟  
+![SFTP 觸發程序圖像 2](./media/connectors-create-api-sftp/trigger-2.png)  
+- 選取位於控制項右側的 [...]。這會開啟資料夾選擇器控制項  
+![SFTP 觸發程序圖像 3](./media/connectors-create-api-sftp/action-1.png)  
+- 選取 [SFTP] 以選取根資料夾，做為要監視是否有新的或已修改之檔案的資料夾。請注意，根資料夾現在已顯示在 [資料夾] 控制項中。  
+![SFTP 觸發程序圖像 4](./media/connectors-create-api-sftp/action-2.png)  
 
-At this point, your logic app has been configured with a trigger that will begin a run of the other triggers and actions in the workflow when a file is either modified or created in the specific SFTP folder. 
+此時，邏輯應用程式已設有觸發程序，該觸發程序會在特定 SFTP 資料夾中有修改或建立資料夾的情況時，開始執行工作流程中的其他觸發程序和動作。
 
->[AZURE.NOTE]For a logic app to be functional, it must contain at least one trigger and one action. Follow the steps in the next section to add an action.  
+>[AZURE.NOTE]若要讓邏輯應用程式能夠運作，它必須至少包含一個觸發程序和一個動作。請依照下一節中的步驟來新增動作。
 
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0727_2016-->

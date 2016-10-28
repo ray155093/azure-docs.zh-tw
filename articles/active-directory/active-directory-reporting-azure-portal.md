@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Azure Active Directory reporting - preview | Microsoft Azure"
-   description="Lists the various available reports for Azure Active Directory preview"
+   pageTitle="Azure Active Directory 報告 - 預覽版 | Microsoft Azure"
+   description="列出 Azure Active Directory 預覽版的各種可用報告"
    services="active-directory"
    documentationCenter=""
    authors="markusvi"
@@ -16,214 +16,208 @@
    ms.date="09/30/2016"
    ms.author="markvi"/>
 
-
-# <a name="azure-active-directory-reporting---preview"></a>Azure Active Directory reporting - preview
+# Azure Active Directory 報告 - 預覽版
 
 > [AZURE.SELECTOR]
-- [Azure portal](active-directory-reporting-azure-portal.md)
-- [Azure classic portal](active-directory-reporting-guide.md)
+- [Azure 入口網站](active-directory-reporting-azure-portal.md)
+- [Azure 傳統入口網站](active-directory-reporting-guide.md)
 
-*This documentation is part of the [Azure Active Directory Reporting Guide](active-directory-reporting-guide.md).*
+*這份文件是 [Azure Active Directory 報告指南](active-directory-reporting-guide.md)的一部分。*
 
-With reporting in the Azure Active Directory preview, you get all the information you need to determine how your environment is doing. [What's in the preview?](active-directory-preview-explainer.md)
+透過 Azure Active Directory 預覽版中的報告，您可取得判斷您的環境執行狀況所需的所有資訊。[預覽版有何功能？](active-directory-preview-explainer.md)
 
-There are two main areas of reporting:
+其中有兩個主要報告區域：
 
-- **Sign-in activities** – Information about the usage of managed applications and user sign-in activities
+- **登入活動** – 受管理應用程式和使用者登入活動的使用情況相關資訊
 
-- **Audit logs** - System activity information about users and group management, your managed applications and directory activities
+- **稽核記錄檔** - 使用者和群組管理、受管理應用程式和目錄活動的相關系統活動資訊
 
-Depending on the scope of the data you are looking for, you can access these reports either by clicking **Users and groups** or **Enterprise applications** in the services list in the [Azure portal](https://portal.azure.com).
+視您所尋找的資料範圍而定，按一下 [Azure 入口網站](https://portal.azure.com)的服務清單中的 [使用者和群組] 或 [企業應用程式]，即可存取這些報告。
 
-## <a name="sign-in-activities"></a>Sign-in activities
+## 登入活動
 
-### <a name="user-sign-in-activities"></a>User sign-in activities
+### 使用者登入活動
 
-With the information provided by the user sign-in report, you find answers to questions such as:
+利用使用者登入報告所提供的資訊，您可以找到下列問題的解答︰
 
-- What is the sign-in pattern of a user?
-- How many users have users signed in over a week?
-- What’s the status of these sign-ins?
+- 使用者的登入模式為何？
+- 一週內有多少使用者登入？
+- 這些登入的狀態為何？
 
-Your entry point to this data is the user sign-in graph in the **Overview** section under **Users and groups**.
+此資料的進入點是 [使用者和群組] 之下 [概觀] 區段中的使用者登入圖。
 
- ![Reporting](./media/active-directory-reporting-azure-portal/05.png "Reporting")
+ ![報告](./media/active-directory-reporting-azure-portal/05.png "報告")
 
-The user sign-in graph shows weekly aggregations of sign ins for all users in a given time period. The default for the time period is 30 days.
+使用者登入圖會顯示在指定的時間週期中所有使用者的每週登入彙總。時間週期的預設值是 30 天。
 
-![Reporting](./media/active-directory-reporting-azure-portal/02.png "Reporting")
+![報告](./media/active-directory-reporting-azure-portal/02.png "報告")
 
-When you click on a day in the sign-in graph, you get a detailed list of the sign-in activities.
+當您按一下登入圖中的某一天時，您會取得登入活動的詳細清單。
 
-![Reporting](./media/active-directory-reporting-azure-portal/03.png "Reporting")
+![報告](./media/active-directory-reporting-azure-portal/03.png "報告")
 
-Each row in the sign-in activities list gives you the detailed information about the selected sign-in such as:
+登入活動清單中的每一列會提供有關所選登入的詳細資訊，例如︰
 
-- Who has signed in?
+- 誰已登入？
 
-- What was the related UPN?
+- 相關的 UPN 是什麼？
 
-- What application was the target of the sign-in?
+- 哪個應用程式是登入的目標？
 
-- What is the IP address of the sign-in?
+- 登入的 IP 位址為何？
 
-- What was the status of the sign-in?
+- 登入的狀態為何？
 
-### <a name="usage-of-managed-applications"></a>Usage of managed applications
+### 受管理應用程式的使用情況
 
-With an application-centric view of your sign-in data, you can answer questions such as:
+利用登入資料以應用程式為主的檢視，您可以回答下列問題︰
 
-- Who is using my applications?
+- 誰在使用我的應用程式？
 
-- What are the top 3 applications in your organization?
+- 您的組織中排名前 3 個應用程式為何？
 
-- I have recently rolled out an application. How is it doing?
+- 我最近已推出一個應用程式。它的情況為何？
 
 
-Your entry point to this data is the top 3 applications in your organization within the last 30 days report in the **Overview** section under **Enterprise applications**.
+此資料的進入點是在 [企業應用程式] 之下 [概觀] 區段中的最近 30 天報告內您的組織中排名前 3 個應用程式。
 
- ![Reporting](./media/active-directory-reporting-azure-portal/06.png "Reporting")
+ ![報告](./media/active-directory-reporting-azure-portal/06.png "報告")
 
 
-The app usage graph weekly aggregations of sign ins for your top 3 applications in a given time period. The default for the time period is 30 days.
+應用程式使用圖會顯示在指定的時間週期中排名前 3 個應用程式的每週登入彙總。時間週期的預設值是 30 天。
 
-![Reporting](./media/active-directory-reporting-azure-portal/78.png "Reporting")
+![報告](./media/active-directory-reporting-azure-portal/78.png "報告")
 
-If you want to, you can set the focus on a specific application.
+如果您想要，您可以將焦點設在特定的應用程式。
 
-![Reporting](./media/active-directory-reporting-azure-portal/single_spp_usage_graph.png "Reporting")
+![報告](./media/active-directory-reporting-azure-portal/single_spp_usage_graph.png "報告")
 
 
-When you click on a day in the app usage graph, you get a detailed list of the sign-in activities.
+當您按一下應用程式使用圖中的某一天時，您會取得登入活動的詳細清單。
 
 
-![Reporting](./media/active-directory-reporting-azure-portal/top_app_sign_ins.png "Reporting")
+![報告](./media/active-directory-reporting-azure-portal/top_app_sign_ins.png "報告")
 
 
 
-The **Sign-ins** option gives you a complete overview of all sign-in events to your applications.
+[登入] 選項會提供您的應用程式的所有登入事件的完整概觀。
 
-![Reporting](./media/active-directory-reporting-azure-portal/85.png "Reporting")
+![報告](./media/active-directory-reporting-azure-portal/85.png "報告")
 
-By using the column chooser, you can select the data fields you want to display.
+使用欄位選擇器，可以選取您想要顯示的資料欄位。
 
-![Reporting](./media/active-directory-reporting-azure-portal/column_chooser.png "Reporting")
+![報告](./media/active-directory-reporting-azure-portal/column_chooser.png "報告")
 
 
 
-### <a name="filtering-sign-ins"></a>Filtering sign-ins
+### 篩選登入
 
-You can filter sign-ins by a time interval to limit the amount of displayed data.
+您可以依照時間間隔篩選登入，以限制顯示的資料量。
 
-![Reporting](./media/active-directory-reporting-azure-portal/927.png "Reporting")
+![報告](./media/active-directory-reporting-azure-portal/927.png "報告")
 
 
-Another method to filter the entries of the sign-in activities is to search for specific entries.
-The search method enables you to scope your sign-ins around specific **users**, **groups** or **applications**.
+篩選登入活動項目的另一種方法是搜尋特定項目。此搜尋方法可讓您將範圍設定為特定**使用者**、**群組**或**應用程式**的登入。
 
 
-![Reporting](./media/active-directory-reporting-azure-portal/84.png "Reporting")
+![報告](./media/active-directory-reporting-azure-portal/84.png "報告")
 
-## <a name="audit-logs"></a>Audit logs
+## 稽核記錄檔
 
-The auditing logs in Azure Active Directory provide records of system activities for compliance.
+Azure Active Directory 中的稽核記錄檔會提供系統活動的記錄以符合法規。
 
-There are three main categories for auditing related activities in the Azure portal:
+Azure 入口網站中有三個主要類別可稽核相關活動︰
 
-- Users and groups   
+- 使用者和群組
 
-- Applications
+- 應用程式
 
-- Directory   
+- 目錄
 
 
-For a complete list of audit report activities, see the [list of audit report events](active-directory-reporting-audit-events.md#list-of-audit-report-events).
+如需稽核報告活動的完整清單，請參閱[稽核報告事件清單](active-directory-reporting-audit-events.md#list-of-audit-report-events)。
 
 
-Your entry point to all auditing data is **Audit logs** in the **Activity** section of **Azure Active Directory**.
+所有稽核資料的進入點是 [Azure Active Directory] 的 [活動] 區段中的 [稽核記錄檔]。
 
 
-![Auditing](./media/active-directory-reporting-azure-portal/61.png "Auditing")
+![稽核](./media/active-directory-reporting-azure-portal/61.png "稽核")
 
 
-An audit log has a list view that shows the actors (who), the activities (what) and the targets.
+稽核記錄檔的清單檢視可顯示動作項目 (何者)、活動 (何事) 和目標。
 
 
-![Auditing](./media/active-directory-reporting-azure-portal/345.png "Auditing")
+![稽核](./media/active-directory-reporting-azure-portal/345.png "稽核")
 
 
-By clicking an item in the list view, you can get more details about it.
+按一下清單檢視中的項目，即可取得更多詳細資料。
 
-![Auditing](./media/active-directory-reporting-azure-portal/873.png "Auditing")
+![稽核](./media/active-directory-reporting-azure-portal/873.png "稽核")
 
 
 
 
-### <a name="users-and-groups-audit-logs"></a>Users and groups audit logs
+### 使用者和群組稽核記錄檔
 
 
-With user and group-based audit reports, you can get answers to questions such as:
+透過以使用者和群組為基礎的稽核報告，可以取得下列問題的解答︰
 
-- What types of updates have been applied the users?
+- 使用者已套用哪些類型的更新？
 
-- How many users were changed?
+- 有多少使用者已變更？
 
-- How many passwords were changed?
+- 有多少密碼已變更？
 
-- What has an administrator done in a directory?
+- 系統管理員已在目錄中執行哪些作業？
 
-- What are the groups that have been added?
+- 已新增的群組為何？
 
-- Are there groups with membership changes?
+- 群組有成員資格變更嗎？
 
-- Have the owners of group been changed?
+- 群組的擁有者已變更嗎？
 
-- What licenses have been assigned to a group or a user?
+- 指派給群組或使用者的授權為何？
 
 
-If you just want to review auditing data that is related to users and groups, you can find a filtered view under **Audit logs** in the **Activity** section of **Users and Groups**.
+如果您只想檢閱使用者和群組相關的稽核資料，您可以在 [使用者和群組] 的 [活動] 區段中的 [稽核記錄檔] 之下找到篩選過的檢視。
 
 
-![Auditing](./media/active-directory-reporting-azure-portal/93.png "Auditing")
+![稽核](./media/active-directory-reporting-azure-portal/93.png "稽核")
 
 
-### <a name="application-audit-logs"></a>Application audit logs
+### 應用程式稽核記錄檔
 
-With application-based audit reports, you can get answers to questions such as:
+透過以應用程式為基礎的稽核報告，可以取得下列問題的解答︰
 
-- What are the applications that have been added or updated?
+- 已新增或更新的應用程式為何？
 
-- What are the applications that have been removed?
+- 已移除的應用程式為何？
 
-- Has a service principle for an application changed?
+- 應用程式的服務原則已變更嗎？
 
-- Have the names of applications been changed?
+- 應用程式的名稱已變更嗎？
 
-- Who gave consent to an application?
+- 誰已同意應用程式？
 
 
-If you just want to review auditing data that is related to applications, you can find a filtered view under **Audit logs** in the **Activity** section of **Enterprise applications**.
+如果您只想檢閱應用程式相關的稽核資料，您可以在 [企業應用程式] 的 [活動] 區段中的 [稽核記錄檔] 之下找到篩選過的檢視。
 
 
-![Auditing](./media/active-directory-reporting-azure-portal/134.png "Auditing")
+![稽核](./media/active-directory-reporting-azure-portal/134.png "稽核")
 
 
-### <a name="filtering-audit-logs"></a>Filtering audit logs
+### 篩選稽核記錄檔
 
-You can filter an audit report by a time interval to limit the amount of displayed data.
+您可以依照時間週期篩選稽核報告，以限制顯示的資料量。
 
-![Auditing](./media/active-directory-reporting-azure-portal/324.png "Auditing")
+![稽核](./media/active-directory-reporting-azure-portal/324.png "稽核")
 
-Another method to filter the entries of a audit log is to search for specific entries.
+篩選稽核記錄檔項目的另一種方法是搜尋特定項目。
 
-![Auditing](./media/active-directory-reporting-azure-portal/237.png "Auditing")
+![稽核](./media/active-directory-reporting-azure-portal/237.png "稽核")
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-See the [Azure Active Directory Reporting Guide](active-directory-reporting-guide.md).
+請參閱 [Azure Active Directory 報告指南](active-directory-reporting-guide.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_1005_2016-->

@@ -1,74 +1,69 @@
 <properties
-    pageTitle="Overriding default HTTP behavior in Azure CDN using the rules engine | Microsoft Azure"
-    description="The rules engine allows you to customize how HTTP requests are handled by Azure CDN, such as blocking the delivery of certain types of content, define a caching policy, and modify HTTP headers."
-    services="cdn"
-    documentationCenter=""
-    authors="camsoper"
-    manager="erikre"
-    editor=""/>
+	pageTitle="在 Azure CDN 使用規則引擎覆寫預設的 HTTP 行為 | Microsoft Azure"
+	description="規則引擎可讓您自訂 Azure CDN 處理 HTTP 要求的方式，例如封鎖傳遞特定類型的內容、定義快取原則及修改 HTTP 標頭。"
+	services="cdn"
+	documentationCenter=""
+	authors="camsoper"
+	manager="erikre"
+	editor=""/>
 
 <tags
-    ms.service="cdn"
-    ms.workload="tbd"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="07/28/2016"
-    ms.author="casoper"/>
+	ms.service="cdn"
+	ms.workload="tbd"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/28/2016"
+	ms.author="casoper"/>
 
-
-# <a name="override-default-http-behavior-using-the-rules-engine"></a>Override default HTTP behavior using the rules engine
+# 使用規則引擎覆寫預設的 HTTP 行為
 
 [AZURE.INCLUDE [cdn-premium-feature](../../includes/cdn-premium-feature.md)]
 
-## <a name="overview"></a>Overview
+## 概觀
 
-The rules engine allows you to customize how HTTP requests are handled, such as blocking the delivery of certain types of content, defining a caching policy, and modifying HTTP headers.  This tutorial will demonstrate creating a rule that will change the caching behavior of CDN assets.  There's also video content available in the "[See also](#see-also)" section.
+規則引擎可讓您自訂 HTTP 要求的處理方式，例如封鎖傳遞特定類型的內容、定義快取原則及修改 HTTP 標頭。本教學課程將示範如何建立用以變更 CDN 資產之快取行為的規則。「[另請參閱](#see-also)」一節中還有視訊內容。
 
-## <a name="tutorial"></a>Tutorial
+## 教學課程
 
-1. From the CDN profile blade, click the **Manage** button.
+1. 在 [CDN 設定檔] 刀鋒視窗中，按一下 [管理] 按鈕。
 
-    ![CDN profile blade manage button](./media/cdn-rules-engine/cdn-manage-btn.png)
+	![[CDN 設定檔] 刀鋒視窗的 [管理] 按鈕](./media/cdn-rules-engine/cdn-manage-btn.png)
 
-    The CDN management portal opens.
+	隨即開啟 CDN 管理入口網站。
 
-2. Click on the **HTTP Large** tab, followed by **Rules Engine**.
+2. 依序按一下 [HTTP 大型] 索引標籤和 [規則引擎]。
 
-    Options for a new rule are displayed.
+	隨即顯示新規則的選項。
 
-    ![CDN new rule options](./media/cdn-rules-engine/cdn-new-rule.png)
+	![CDN 新規則選項](./media/cdn-rules-engine/cdn-new-rule.png)
 
-    >[AZURE.IMPORTANT] The order in which multiple rules are listed affects how they are handled. A subsequent rule may override the actions specified by a previous rule.
-    
-3. Enter a name in the **Name / Description** textbox.
+	>[AZURE.IMPORTANT] 多項規則的列出順序會影響規則的處理方式。後一項規則可能會覆寫前一項規則所指定的動作。
+	
+3. 在 [名稱/描述] 文字方塊中輸入名稱。
 
-4. Identify the type of requests the rule will apply to.  By default, the **Always** match condition is selected.  You'll use **Always** for this tutorial, so leave that selected.
+4. 識別將套用此規則的要求類型。預設會選取 [永遠] 相符條件。本教學課程將使用 [永遠]，因此請維持選取。
 
-    ![CDN match condition](./media/cdn-rules-engine/cdn-request-type.png)
+	![CDN 相符條件](./media/cdn-rules-engine/cdn-request-type.png)
 
-    >[AZURE.TIP] There are many types of match conditions available in the dropdown.  Clicking on the blue informational icon to the left of the match condition will explain the currently selected condition in detail.
-    >
-    >For the full list of match conditions in detail, see [Rules Engine Match Condition and Feature Details](https://msdn.microsoft.com/library/mt757336.aspx#Anchor_0).
+	>[AZURE.TIP] 下拉式清單中提供許多類型的相符條件。按一下相符條件左側的藍色資訊圖示，即會詳細說明目前選取的條件。
+	>
+	>如需完整相符條件清單的詳細資訊，請參閱[規則引擎相符條件和功能詳細資訊](https://msdn.microsoft.com/library/mt757336.aspx#Anchor_0)。
 
-5.  Click the **+** button next to **Features** to add a new feature.  In the dropdown on the left, select **Force Internal Max-Age**.  In the textbox that appears, enter **300**.  Leave the remaining default values.
+5.  按一下 [功能] 旁的 **+** 按鈕，以新增功能。在左側下拉式清單中，選取 [強制內部最大壽命]。在出現的文字方塊中，輸入 **300**。保留其餘預設值。
 
-    ![CDN feature](./media/cdn-rules-engine/cdn-new-feature.png)
+	![CDN 功能](./media/cdn-rules-engine/cdn-new-feature.png)
 
-    >[AZURE.NOTE] As with match conditions, clicking the blue informational icon to the left of the new feature will display details about this feature.  In the case of **Force Internal Max-Age**, we are overriding the asset's **Cache-Control** and **Expires** headers to control when the CDN edge node will refresh the asset from the origin.  Our example of 300 seconds means the CDN edge node will cache the asset for 5 minutes before refreshing the asset from its origin.
-    >
-    >For the full list of features in detail, see [Rules Engine Match Condition and Feature Details](https://msdn.microsoft.com/library/mt757336.aspx#Anchor_1).
+	>[AZURE.NOTE] 如同相符條件，按一下新功能左側的藍色資訊圖示會顯示這項功能的詳細資訊。在 [強制內部最大壽命] 中，我們將覆寫資產的 **Cache-Control** 和 **Expires** 標頭，以控制 CDN 邊緣節點何時要從原始來源重新整理資產。我們的範例為 300 秒，表示 CDN 邊緣節點會快取資產 5 分鐘，再從其原始來源重新整理資產。
+	>
+	>如需完整功能清單的詳細資訊，請參閱[規則引擎相符條件和功能詳細資訊](https://msdn.microsoft.com/library/mt757336.aspx#Anchor_1)。
 
-6.  Click the **Add** button to save the new rule.  The new rule is now awaiting approval. Once it has been approved, the status will change from **Pending XML** to **Active XML**.
+6.  按一下 [加入] 按鈕，以儲存新規則。新規則現在正在等待核准。核准後，狀態會從 [暫止 XML] 變更為 [使用中 XML]。
 
-    >[AZURE.IMPORTANT] Rules changes may take up to 90 minutes to propagate through the CDN.
+	>[AZURE.IMPORTANT] 規則變更可能需要最多 90 分鐘才能傳遍 CDN。
 
-## <a name="see-also"></a>See also
-* [Azure Fridays: Azure CDN's powerful new Premium Features](https://azure.microsoft.com/documentation/videos/azure-cdns-powerful-new-premium-features/) (video)
-* [Rules Engine Match Condition and Feature Details](https://msdn.microsoft.com/library/mt757336.aspx)
+## 另請參閱
+* [Azure Fridays: Azure CDN's powerful new Premium Features (影片：Azure 星期五：Azure CDN 強大的新高階功能)](https://azure.microsoft.com/documentation/videos/azure-cdns-powerful-new-premium-features/)
+* [規則引擎相符條件和功能詳細資料](https://msdn.microsoft.com/library/mt757336.aspx)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

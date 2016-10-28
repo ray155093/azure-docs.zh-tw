@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Disaster recovery and device failover for your StorSimple Virtual Array"
-   description="Learn more about how to failover your StorSimple Virtual Array."
+   pageTitle="StorSimple Virtual Array 的災害復原和裝置容錯移轉"
+   description="深入了解如何容錯移轉 StorSimple Virtual Array。"
    services="storsimple"
    documentationCenter="NA"
    authors="alkohli"
@@ -16,169 +16,163 @@
    ms.date="06/07/2016"
    ms.author="alkohli"/>
 
+# StorSimple Virtual Array 的災害復原和裝置容錯移轉
 
-# <a name="disaster-recovery-and-device-failover-for-your-storsimple-virtual-array"></a>Disaster recovery and device failover for your StorSimple Virtual Array
 
+## 概觀
 
-## <a name="overview"></a>Overview
+本文說明 Microsoft Azure StorSimple Virtual Array (也稱為 StorSimple 內部部署虛擬裝置) 的災害復原 (包括發生災害時容錯移轉至另一個虛擬裝置所需的詳細步驟)。容錯移轉可讓您將資料中心的「來源」裝置資料移轉至位於相同或不同地理位置的另一個「目標」裝置。裝置容錯移轉適用於整個裝置。在容錯移轉期間，來源裝置的雲端資料會將擁有權變更為目標裝置雲端資料。
 
-This article describes the disaster recovery for your Microsoft Azure StorSimple Virtual Array (also known as the StorSimple on-premises virtual device) including the detailed steps required to fail over to another virtual device in the event of a disaster. A failover allows you to migrate your data from a *source* device in the datacenter to another *target* device located in the same or a different geographical location. The device failover is for the entire device. During failover, the cloud data for the source device changes ownership to that of the target device.
-
-Device failover is orchestrated via the disaster recovery (DR) feature and is initiated from the **Devices** page. This page tabulates all the StorSimple devices connected to your StorSimple Manager service. For each device, the friendly name, status, provisioned and maximum capacity, type, and model are displayed.
+裝置容錯移轉是透過災害復原 (DR) 功能協調，並從 [裝置] 頁面起始。此頁面會以表格列出與 StorSimple Manager 服務連接的所有 StorSimple 裝置。顯示每個裝置的易記名稱、狀態、佈建與最大容量、類型及模型。
 
 ![](./media/storsimple-ova-failover-dr/image15.png)
 
-This article is applicable to StorSimple Virtual Arrays only. To fail over an 8000 series device, go to [Failover and Disaster Recovery of your StorSimple device](storsimple-device-failover-disaster-recovery.md).
+本文僅適用於 StorSimple Virtual Array。若要容錯移轉 8000 系列裝置，請移至 [StorSimple 裝置的容錯移轉和災害復原](storsimple-device-failover-disaster-recovery.md)。
 
 
-## <a name="what-is-disaster-recovery?"></a>What is disaster recovery?
+## 何謂災害復原？
 
-In a disaster recovery (DR) scenario, the primary device stops functioning. In this situation, you can move the cloud data associated with the failed device to another device by using the primary device as the *source* and specifying another device as the *target*. This process is referred to as the *failover*. During failover, all the volumes or the shares from the source device change ownership and are transferred to the target device. No filtering of the data is allowed.
+在災害復原 (DR) 案例中，主要裝置會停止運作。在此情況下，您可以使用主要裝置當做「來源」，並將另一個裝置指定為「目標」，將與失敗裝置相關聯的雲端資料移至另一個裝置。這個程序就稱為「容錯移轉」。在容錯移轉期間，來源裝置的所有磁碟區或共用都會變更擁有權，並移轉到目標裝置。不允許篩選資料。
 
-DR is modeled as a full device restore using the heat map–based tiering and tracking. A heat map is defined by assigning a heat value to the data based on read and write patterns. This heat map then tiers the lowest heat data chunks to the cloud first while keeping the high heat (most used) data chunks in the local tier. During a DR, the heat map is used to restore and rehydrate the data from the cloud. The device fetches all the volumes/shares in the last recent backup (as determined internally) and performs a restore from that backup. The entire DR process is orchestrated by the device.
-
-
-## <a name="prerequisites-for-device-failover"></a>Prerequisites for device failover
+使用熱度圖分層和追蹤，可將 DR 模型化為完整裝置還原。熱度圖的定義方式，是根據讀取和寫入模式，將熱度值指派給資料。這個熱度圖接著先將最低熱度資料區塊分層至雲端，同時將高熱 (最常用) 資料區塊保留在本機層中。在 DR 期間，熱度圖用來還原和解除凍結雲端中的資料。裝置會擷取最新備份 (如內部決定) 中的所有磁碟區/共用，並從該備份執行還原。整個 DR 程序是由裝置進行協調。
 
 
-### <a name="prerequisites"></a>Prerequisites
+## 裝置容錯移轉需求
 
-For any device failover, the following prerequisites should be satisfied:
 
-- The source device needs to be in a **Deactivated** state.
+### 先決條件
 
-- The target device needs to show up as **Active** in the Azure classic portal. You will need to provision a target virtual device of the same or higher capacity. You should then use the local web UI to configure and successfully register the virtual device.
+所有裝置容錯移轉都必須滿足下列必要條件：
 
-    > [AZURE.IMPORTANT] Do not attempt to configure the registered virtual device through the service by clicking **complete device setup**. No device configuration should be performed through the service.
+- 來源裝置需要處於 [已停用] 狀態。
 
-- The source and target device have to be the same type. You can only fail over a virtual device configured as a file server to another file server. The same is true for an iSCSI server.
+- 在 Azure 傳統入口網站中，目標裝置需要顯示為 [使用中]。您需要佈建容量相同或更高的目標虛擬裝置。接著，您應該使用本機 Web UI 來設定並成功註冊虛擬裝置。
 
-- For a file server DR, we recommend that you join the target device to the same domain as that of the source so that the share permissions are automatically resolved. Only the failover to a target device in the same domain is supported in this release.
+	> [AZURE.IMPORTANT] 請不要嘗試按一下 [完成裝置設定]，透過服務來設定已註冊的虛擬裝置。您不應該透過服務執行任何裝置設定。
 
-### <a name="other-considerations"></a>Other considerations
+- 來源和目標裝置的類型必須相同。您只能將設定為檔案伺服器的虛擬裝置容錯移轉到另一部檔案伺服器。這適用於 iSCSI 伺服器。
 
-- We recommend that you take all the volumes or shares on the source device offline.
+- 針對檔案伺服器 DR，建議您將目標裝置加入與來源網域相同的網域，以自動解析共用權限。只有這個版本才支援容錯移轉至相同網域中的目標裝置。
 
-- If it is a planned failover, we recommend that you take a backup of the device and then proceed with the failover to minimize data loss. If it is an unplanned failover, the most recent backup will be used to restore the device.
+### 其他考量
 
-- The available target devices for DR are devices that have the same or larger capacity compared to the source device. The devices that are connected to your service but do not meet the criteria of sufficient space will not be available as target devices.
+- 建議您將來源裝置上的所有磁碟區或共用離線。
 
-### <a name="dr-prechecks"></a>DR prechecks
+- 如果是規劃的容錯移轉，建議您備份裝置，然後繼續進行容錯移轉，以將資料遺失降到最低。如果是未規劃的容錯移轉，將會使用最新備份來還原裝置。
 
-Before the DR begins, prechecks are performed on the device. These checks help ensure that no errors will occur when DR commences. The prechecks include:
+- DR 的可用目標裝置是容量與來源裝置相同或更高的裝置。與服務連接但空間不足而不符合條件的裝置，無法當成目標裝置使用。
 
-- Validating the storage account
+### DR 前置檢查
 
-- Checking the cloud connectivity to Azure
+DR 開始之前，會對裝置執行前置檢查。這些檢查有助於確保 DR 開始時不會發生任何錯誤。前置檢查包括：
 
-- Checking available space on the target device
+- 驗證儲存體帳戶
 
-- Checking if an iSCSI server source device has valid ACR names, IQN (not exceeding 220 characters in length), and CHAP password (12 and 16 characters in length) associated with the volumes
+- 檢查與 Azure 的雲端連線
 
-If any of the above prechecks fail, you cannot proceed with the DR. You need to resolve those issues and then retry DR.
+- 檢查目標裝置上的可用空間
 
-After the DR is successfully completed, the ownership of the cloud data on the source device is transferred to the target device. The source device is then no longer available in the portal. Access to all the volumes/shares on the source device is blocked and the target device becomes active.
+- 確認 iSCSI 伺服器來源裝置具有有效的 ACR 名稱、IQN (長度不超過 220 個字元) 以及與磁碟區相關聯的 CHAP 密碼 (長度為 12 和 16 個字元)
 
-> [AZURE.IMPORTANT]
-> 
-> Though the device is no longer available, the virtual machine that you provisioned on the host system is still consuming resources. Once the DR is successfully complete, you can delete this virtual machine from your host system.
+如果上述任何前置檢查失敗，則無法繼續進行 DR。您需要解決這些問題，然後重試 DR。
 
-## <a name="fail-over-to-a-virtual-array"></a>Fail over to a virtual array
-
-We recommend that you have another StorSimple Virtual Array provisioned, configured via the local web UI, and registered with the StorSimple Manager service prior to running this procedure.
-
+DR 順利完成之後，來源裝置上雲端資料的擁有權會移轉給目標裝置。來源裝置就無法再於入口網站中使用。會封鎖對來源裝置上所有磁碟區/共用的存取，而目標裝置會變成使用中。
 
 > [AZURE.IMPORTANT]
 > 
-> - You are not allowed to fail over from a StorSimple 8000 series device to a 1200 virtual device.
-> - You can fail over from a Federal Information Processing Standard (FIPS) enabled virtual device deployed in Government portal to a virtual device in Azure classic portal. The reverse is also true.
+> 雖然裝置無法再使用，但是您在主機系統上佈建的虛擬機器仍然會耗用資源。DR 順利完成之後，您就可以從主機系統中刪除此虛擬機器。
 
-Perform the following steps to restore the device to a target StorSimple virtual device.
+## 容錯移轉至虛擬陣列
 
-1. Take volumes/shares offline on the host. Refer to the operating system–specific instructions on the host to take the volumes/shares offline. If not already offline, you will need to take all the volumes/shares offline on the device by going to **Devices > Shares** (or **Device > Volumes**). Select a share/volume and click **Take offline** on the bottom of the page. When prompted for confirmation, click **Yes**. Repeat this process for all the shares/volumes on the device.
-
-2. On the **Devices** page, select the source device for failover and click **Deactivate**. 
-    ![](./media/storsimple-ova-failover-dr/image16.png)
-
-3. You will be prompted for confirmation. Device deactivation is a permanent process that cannot be undone. You will also be reminded to take your shares/volumes offline on the host.
-
-    ![](./media/storsimple-ova-failover-dr/image18.png)
-
-3. Upon confirmation, the deactivation will start. After the deactivation is successfully completed, you will be notified.
-
-    ![](./media/storsimple-ova-failover-dr/image19.png)
-
-4. On the **Devices** page, the device state will now change to **Deactivated**.
-
-    ![](./media/storsimple-ova-failover-dr/image20.png)
-
-5. Select the deactivated device and at the bottom of the page, click **Failover**.
-
-6. In the Confirm failover wizard that opens up, do the following:
-
-    1. From the dropdown list of available devices, choose a **Target device.** Only the devices that have sufficient capacity are displayed in the dropdown list.
-
-    2. Review the details associated with the source device such as device name, total capacity, and the names of the shares that will be failed over.
-
-        ![](./media/storsimple-ova-failover-dr/image21.png)
-
-7. Check **I agree that failover is a permanent operation and once the failover is successfully completed, the source device will be deleted**.
-
-8. Click the check icon ![](./media/storsimple-ova-failover-dr/image1.png).
+建議您先佈建另一個 StorSimple Virtual Array、透過本機 Web UI 進行設定，以及向 StorSimple Manager 服務進行註冊，然後再執行這個程序。
 
 
-9. A failover job will be initiated and you will be notified. Click **View job** to monitor the failover.
+> [AZURE.IMPORTANT]
+> 
+> - 不允許您從 StorSimple 8000 系列裝置容錯移轉到 1200 虛擬裝置。
+> - 您可以從在政府機構入口網站中部署，啟用美國聯邦資訊處理標準 (FIPS) 的虛擬裝置容錯移轉到 Azure 傳統入口網站中的虛擬裝置。反之亦然。
 
-    ![](./media/storsimple-ova-failover-dr/image22.png)
+請執行下列步驟以將裝置還原至目標 StorSimple 虛擬裝置。
 
-10. In the **Jobs** page, you will see a failover job created for the source device. This job performs the DR prechecks.
+1. 將主機上的磁碟區/共用離線。請參閱主機上有關將磁碟區/共用離線的作業系統特定指示。如果還未離線，則需要移至 [裝置] > [共用] \ (或 [裝置] > [磁碟區])，將裝置上的所有磁碟區/共用離線。選取共用/磁碟區，然後按一下頁面底部的 [離線]。系統提示您進行確認時，按一下 [是]。針對裝置上的所有共用/磁碟區，重複執行這個程序。
 
-    ![](./media/storsimple-ova-failover-dr/image23.png)
+2. 在 [裝置] 頁面上，選取進行容錯移轉的來源裝置，然後按一下 [停用]。![](./media/storsimple-ova-failover-dr/image16.png)
 
-    After the DR prechecks are successful, the failover job will spawn restore jobs for each share/volume that exists on your source device.
+3. 系統將提示您進行確認。裝置停用是無法復原的永久性程序。系統也會提醒您將主機上的共用/磁碟區離線。
 
-    ![](./media/storsimple-ova-failover-dr/image24.png)
+	![](./media/storsimple-ova-failover-dr/image18.png)
 
-11. After the failover is completed, go to the **Devices** page.
+3. 確認之後，將會開始停用。停用順利完成之後，您將會收到通知。
 
-    a. Select the StorSimple virtual device that was used as the target device for the failover process.
+	![](./media/storsimple-ova-failover-dr/image19.png)
 
-    b. Go to **Shares** page (or **Volumes** if iSCSI server). All the shares (volumes) from the old device should now be listed.
-    
-    ![](./media/storsimple-ova-failover-dr/image25.png)
+4. 在 [裝置] 頁面上，裝置狀態現在將會變更為 [已停用]。
 
-![](./media/storsimple-ova-failover-dr/video_icon.png) **Video available**
+	![](./media/storsimple-ova-failover-dr/image20.png)
 
-This video demonstrates how you can fail over a StorSimple on-premises virtual device to another virtual device.
+5. 選取已停用的裝置，然後按一下頁面底部的 [容錯移轉]。
+
+6. 在開啟的 [確認容錯移轉精靈] 中，執行下列動作：
+
+    1. 從可用裝置的下拉式清單中，選擇 [目標裝置]。 下拉式清單中只會顯示具有足夠容量的裝置。
+
+    2. 檢閱與來源裝置相關聯的詳細資料 (例如，裝置名稱、總容量，以及將進行容錯移轉之共用的名稱)。
+
+		![](./media/storsimple-ova-failover-dr/image21.png)
+
+7. 核取 [我同意容錯移轉是永久性作業，一旦成功完成容錯移轉，便會刪除來源裝置]。
+
+8. 按一下核取圖示 ![](./media/storsimple-ova-failover-dr/image1.png)。
+
+
+9. 容錯移轉工作隨即起始，並通知您。按一下 [檢視工作] 監視容錯移轉。
+
+	![](./media/storsimple-ova-failover-dr/image22.png)
+
+10. 在 [工作] 頁面中，您會看到針對來源裝置所建立的容錯移轉工作。此工作會執行 DR 前置檢查。
+
+	![](./media/storsimple-ova-failover-dr/image23.png)
+
+ 	DR 前置檢查成功之後，容錯移轉工作會產生來源裝置上每個共用/磁碟區的還原作業。
+
+	![](./media/storsimple-ova-failover-dr/image24.png)
+
+11. 完成容錯移轉後，移至 [裝置] 頁面。
+
+	a.為容錯移轉程序選取要用來做為目標裝置的 StorSimple 虛擬裝置。
+
+	b.移至 [共用] 頁面 (如果是 iSCSI 伺服器，則為 [磁碟區])。現在應該會列出舊裝置中的所有共用 (磁碟區)。
+ 	
+	![](./media/storsimple-ova-failover-dr/image25.png)
+
+![](./media/storsimple-ova-failover-dr/video_icon.png)**提供的影片**
+
+這段影片示範如何將 StorSimple 內部部署虛擬裝置容錯移轉至另一個虛擬裝置。
 
 > [AZURE.VIDEO storsimple-virtual-array-disaster-recovery]
 
-## <a name="business-continuity-disaster-recovery-(bcdr)"></a>Business continuity disaster recovery (BCDR)
+## 業務持續性災害復原 (BCDR)
 
-A business continuity disaster recovery (BCDR) scenario occurs when the entire Azure datacenter stops functioning. This can affect your StorSimple Manager service and the associated StorSimple devices.
+當整個 Azure 資料中心停止運作時，就構成業務持續性災害復原 (BCDR) 狀況。這會影響您的 StorSimple Manager 服務和相關聯的 StorSimple 裝置。
 
-If there are StorSimple devices that were registered just before a disaster occurred, then these StorSimple devices may need to be deleted. After the disaster, you can recreate and configure those devices.
+如果 StorSimple 裝置在發生災害的前一刻才剛註冊，則可能需要刪除這些 StorSimple 裝置。災害之後，您可以重建並設定這些裝置。
 
-## <a name="errors-during-dr"></a>Errors during DR
+## DR 期間發生錯誤
 
-**Cloud connectivity outage during DR**
+**DR 期間雲端連線能力中斷**
 
-If the cloud connectivity is disrupted after DR has started and before the device restore is complete, the DR will fail and you will be notified. The target device that was used for DR is then marked as *unusable.* The same target device cannot be then used for future DRs.
+如果在啟動 DR 之後並在裝置還原完成之前中斷雲端連線能力，則 DR 會失敗並通知您。用於 DR 的目標裝置則會標記為 [無法使用]。 相同的目標裝置不能再用於之後的 DR。
 
-**No compatible target devices**
+**沒有相容的目標裝置**
 
-If the available target devices do not have sufficient space, you will see an error to the effect that there are no compatible target devices.
+如果可用目標裝置的空間不足，則會看到錯誤，指出沒有相容的目標裝置。
 
-**Precheck failures**
+**前置檢查失敗**
 
-If one of the prechecks is not satisfied, then you will see precheck failures.
+如果未滿足其中一個前置檢查，則會看到前置檢查失敗。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-Learn more about how to [administer your StorSimple Virtual Array using the local web UI](storsimple-ova-web-ui-admin.md).
+深入了解如何[使用本機 Web UI 管理 StorSimple Virtual Array](storsimple-ova-web-ui-admin.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0622_2016-->

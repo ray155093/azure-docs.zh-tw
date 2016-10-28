@@ -1,84 +1,83 @@
 <properties
-    pageTitle="Upgrading to Version 2 of the Text Analytics API | Microsoft Azure"
-    description="Azure Machine Learning Text Analytics - Upgrade to Version 2"
-    services="cognitive-services"
-    documentationCenter=""
-    authors="onewth"
-    manager="jhubbard"
-    editor="cgronlun"/>
+	pageTitle="升級到第 2 版文字分析 API | Microsoft Azure"
+	description="Azure Machine Learning 文字分析 - 升級到第 2 版"
+	services="cognitive-services"
+	documentationCenter=""
+	authors="onewth"
+	manager="jhubbard"
+	editor="cgronlun"/>
 
 <tags
-    ms.service="cognitive-services"
-    ms.workload="data-services"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="10/04/2016"
-    ms.author="onewth"/>
+	ms.service="cognitive-services"
+	ms.workload="data-services"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/05/2016"
+	ms.author="onewth"/>
 
+# 升級到第 2 版文字分析 API #
 
-# <a name="upgrading-to-version-2-of-the-text-analytics-api"></a>Upgrading to Version 2 of the Text Analytics API #
+本指南將引導您從使用[第一版的 API](../machine-learning/machine-learning-apps-text-analytics.md) 改為使用第二版，來更新您的程式碼。
 
-This guide will take you through the process of upgrading your code from using the [first version of the API](../machine-learning/machine-learning-apps-text-analytics.md) to using the second version. 
+如果您未曾使用過 API，並且想要進一步了解，您可以**[在這裡深入了解 API](//go.microsoft.com/fwlink/?LinkID=759711)**，或**[遵循快速啟動指南](//go.microsoft.com/fwlink/?LinkID=760860)**。如需技術參考，請參閱 **[API 定義](//go.microsoft.com/fwlink/?LinkID=759346)**。
 
-If you have not used the API and would like to learn more, you can **[learn more about the API here](//go.microsoft.com/fwlink/?LinkID=759711)** or **[follow the Quick Start Guide](//go.microsoft.com/fwlink/?LinkID=760860)**. For technical reference, refer to the **[API Definition](//go.microsoft.com/fwlink/?LinkID=759346)**.
+### 第 1 部分。取得新的金鑰 ###
 
-### <a name="part-1.-get-a-new-key"></a>Part 1. Get a new key ###
+首先，您必須從 **Azure 入口網站**取得新的 API 金鑰：
 
-First, you will need to get a new API key from the **Azure Portal**:
+1. 透過 [Cortana Intelligence 資源庫](//gallery.cortanaintelligence.com/MachineLearningAPI/Text-Analytics-2)瀏覽至文字分析服務。您也會在這裡找到文件和程式碼範例的連結。
 
-1. Navigate to the Text Analytics service through the [Cortana Intelligence Gallery](//gallery.cortanaintelligence.com/MachineLearningAPI/Text-Analytics-2). Here, you will also find links to the documentation and code samples.
+1. 按一下 [登入]。此連結會帶您前往 Azure 管理入口網站，您可以在其中註冊服務。
 
-1. Click **Sign Up**. This link will take you to the Azure management portal, where you can sign up for the service.
+1. 選取方案。您可以選取 **5000 次交易/月的免費層**。因為這是免費方案，您不需要為使用服務支付費用。您必須登入您的 Azure 訂用帳戶。
 
-1. Select a plan. You may select the **free tier for 5,000 transactions/month**. As is a free plan, you will not be charged for using the service. You will need to login to your Azure subscription. 
+1. 註冊文字分析後，就會提供 **API 金鑰**給您。複製這個金鑰，您在使用 API 服務時需要它。
 
-1. After you sign up for Text Analytics, you'll be given an **API Key**. Copy this key, as you'll need it when using the API services.
+### 第 2 部分。更新標頭 ###
 
-### <a name="part-2.-update-the-headers"></a>Part 2. Update the headers ###
+更新已提交的標頭值，如下所示。請注意，已不再編碼帳戶金鑰。
 
-Update the submitted header values as shown below. Note that the account key is no longer encoded.
-
-**Version 1**
+**第 1 版**
 
     Authorization: Basic base64encode(<your Data Market account key>)
     Accept: application/json
 
-**Version 2**
+**第 2 版**
 
     Content-Type: application/json
     Accept: application/json
     Ocp-Apim-Subscription-Key: <your Azure Portal account key>
 
 
-### <a name="part-3.-update-the-base-url"></a>Part 3. Update the base URL ###
+### 第 3 部分。更新基底 URL ###
 
-**Version 1**
+**第 1 版**
 
     https://api.datamarket.azure.com/data.ashx/amla/text-analytics/v1/
 
-**Version 2**
+**第 2 版**
 
     https://westus.api.cognitive.microsoft.com/text/analytics/v2.0/
 
-### <a name="part-4a.-update-the-formats-for-sentiment,-key-phrases-and-languages"></a>Part 4a. Update the formats for sentiment, key phrases and languages ###
+### 第 4a 部分。更新的情感、主要片語和語言的格式 ###
 
-#### <a name="endpoints"></a>Endpoints ####
+#### 端點 ####
 
-GET endpoints have now been deprecated, so all input should be submitted as a POST request. Update the endpoints to the ones shown below.
+GET 端點現在已被取代，所以所有輸入應該提交為 POST 要求。將端點更新為如下所示的端點。
 
-| |Version 1 single endpoint|Version 1 batch endpoint|Version 2 endpoint|
+| |第 1 版單一端點|第 1 版批次端點|第 2 版端點|
 |---|---|---|---|
-|Call type|GET|POST|POST|
-|Sentiment|```GetSentiment```|```GetSentimentBatch```|```sentiment```|
-|Key phrases|```GetKeyPhrases```|```GetKeyPhrasesBatch```|```keyPhrases```|
-|Languages|```GetLanguage```|```GetLanguageBatch```|```languages```|
+|呼叫類型|GET|POST|POST|
+|情感|```GetSentiment```|```GetSentimentBatch```|```sentiment```|
+|主要片語|```GetKeyPhrases```|```GetKeyPhrasesBatch```|```keyPhrases```|
+|語言|```GetLanguage```|```GetLanguageBatch```|```languages```|
 
-#### <a name="input-formats"></a>Input formats ####
+#### 輸入格式 ####
 
-Note that only POST format is now accepted, so you should reformat any input which previously used the single document endpoints accordingly. Inputs are not case sensitive.
+請注意，現在僅接受 POST 格式，因此您應該重新格式化先前使用單一文件端點的任何輸入。輸入不區分大小寫。
 
-**Version 1 (batch)**
+**第 1 版 (批次)**
 
     {
       "Inputs": [
@@ -89,7 +88,7 @@ Note that only POST format is now accepted, so you should reformat any input whi
       ]
     }
 
-**Version 2**
+**第 2 版**
 
     {
       "documents": [
@@ -100,9 +99,9 @@ Note that only POST format is now accepted, so you should reformat any input whi
       ]
     }
 
-#### <a name="output-from-sentiment"></a>Output from sentiment ####
+#### 情感的輸出 ####
 
-**Version 1**
+**第 1 版**
 
     {
       "SentimentBatch":[{
@@ -115,7 +114,7 @@ Note that only POST format is now accepted, so you should reformat any input whi
       }]
     }
 
-**Version 2**
+**第 2 版**
 
     {
       "documents":[{
@@ -128,9 +127,9 @@ Note that only POST format is now accepted, so you should reformat any input whi
       }]
     }
 
-#### <a name="output-from-key-phrases"></a>Output from key phrases ####
+#### 主要片語的輸出 ####
 
-**Version 1**
+**第 1 版**
 
     {
       "KeyPhrasesBatch":[{
@@ -143,7 +142,7 @@ Note that only POST format is now accepted, so you should reformat any input whi
       }]
     }
 
-**Version 2**
+**第 2 版**
 
     {
       "documents":[{
@@ -156,10 +155,10 @@ Note that only POST format is now accepted, so you should reformat any input whi
       }]
     }
 
-#### <a name="output-from-languages"></a>Output from languages ####
+#### 語言的輸出 ####
 
 
-**Version 1**
+**第 1 版**
 
     {
       "LanguageBatch":[{
@@ -176,7 +175,7 @@ Note that only POST format is now accepted, so you should reformat any input whi
       }]
     }
 
-**Version 2**
+**第 2 版**
 
     {
       "documents":[{
@@ -194,18 +193,18 @@ Note that only POST format is now accepted, so you should reformat any input whi
     }
 
 
-### <a name="part-4b.-update-the-formats-for-topics"></a>Part 4b. Update the formats for topics ###
+### 第 4b 部分。更新主題的格式 ###
 
-#### <a name="endpoints"></a>Endpoints ####
+#### 端點 ####
 
-| |Version 1 endpoint | Version 2 endpoint|
+| |第 1 版端點 | 第 2 版端點|
 |---|---|---|
-|Submit for topic detection (POST)|```StartTopicDetection```|```topics```|
-|Fetch topic results (GET)|```GetTopicDetectionResult?JobId=<jobId>```|```operations/<operationId>```|
+|提交主題偵測 (POST)|```StartTopicDetection```|```topics```|
+|擷取主題結果 (GET)|```GetTopicDetectionResult?JobId=<jobId>```|```operations/<operationId>```|
 
-#### <a name="input-formats"></a>Input formats ####
+#### 輸入格式 ####
 
-**Version 1**
+**第 1 版**
 
     {
       "StopWords": [
@@ -222,7 +221,7 @@ Note that only POST format is now accepted, so you should reformat any input whi
       ]
     }
 
-**Version 2**
+**第 2 版**
 
     {
       "stopWords": [
@@ -239,26 +238,26 @@ Note that only POST format is now accepted, so you should reformat any input whi
       ]
     }
 
-#### <a name="submission-results"></a>Submission results ####
+#### 提交結果 ####
 
-**Version 1 (POST)**
+**第 1 版 (POST)**
 
-Previously, when the job finished, you would receive the following JSON output, where the jobId would be appended to a URL to fetch the output.
+先前，當作業完成時，您會收到下列 JSON 輸出，其中 jobId 會附加至 URL，以擷取輸出。
 
     {
         "odata.metadata":"<url>",
         "JobId":"<JobId>"
     }
 
-**Version 2 (POST)**
+**第 2 版 (POST)**
 
-The response will now include a header value as follows, where `operation-location` is used as the endpoint to poll for the results:
+回應現在包含標頭值，如下所示，其中 `operation-location` 做為端點以輪詢結果︰
 
     'operation-location': 'https://westus.api.cognitive.microsoft.com/text/analytics/v2.0/operations/<operationId>'
 
-#### <a name="operation-results"></a>Operation results ####
+#### Operation results ####
 
-**Version 1 (GET)**
+**第 1 版 (GET)**
 
     {
       "TopicInfo" : [{
@@ -277,11 +276,11 @@ The response will now include a header value as follows, where `operation-locati
       }]
     }
 
-**Version 2 (GET)**
+**第 2 版 (GET)**
 
-As before, **periodically poll the output** (the suggested period is every minute) until the output is returned. 
+同樣地，**定期輪詢輸出** (建議的週期是每分鐘)，直到傳回輸出。
 
-When the topics API has finished, a status reading `succeeded` will be returned. This will then include the output results in the format shown below:
+主題 API 完成時，會傳回 `succeeded` 狀態。然後以如下所示的格式包含輸出結果︰
 
     {
         "status": "succeeded",
@@ -305,12 +304,8 @@ When the topics API has finished, a status reading `succeeded` will be returned.
         }
     }
 
-### <a name="part-5.-test-it!"></a>Part 5. Test it! ###
+### 第 5 部分。測試它！ ###
 
-You should now be good to go! Test your code with a small sample to ensure that you can successfully process your data.
+您現在應已準備就緒！ 使用小型範例測試您的程式碼，以確保您可以成功處理資料。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

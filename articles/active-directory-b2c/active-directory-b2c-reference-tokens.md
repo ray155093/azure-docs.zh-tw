@@ -1,46 +1,45 @@
 <properties
-    pageTitle="Azure Active Directory B2C | Microsoft Azure"
-    description="The types of tokens issued in the Azure Active Directory B2C."
-    services="active-directory-b2c"
-    documentationCenter=""
-    authors="dstrockis"
-    manager="mbaldwin"
-    editor=""/>
+	pageTitle="Azure Active Directory B2C | Microsoft Azure"
+	description="在 Azure Active Directory B2C 中簽發的權杖類型。"
+	services="active-directory-b2c"
+	documentationCenter=""
+	authors="dstrockis"
+	manager="msmbaldwin"
+	editor=""/>
 
 <tags
-    ms.service="active-directory-b2c"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="07/22/2016"
-    ms.author="dastrock"/>
+	ms.service="active-directory-b2c"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/22/2016"
+	ms.author="dastrock"/>
 
 
+# Azure AD B2C：權杖參考
 
-# <a name="azure-ad-b2c:-token-reference"></a>Azure AD B2C: Token reference
+Azure Active Directory (Azure AD) B2C 會在處理每個[驗證流程](active-directory-b2c-apps.md)時發出數種安全性權杖。本文件說明每種權杖的格式、安全性特性和內容。
 
-Azure Active Directory (Azure AD) B2C emits several types of security tokens as it processes each [authentication flow](active-directory-b2c-apps.md). This document describes the format, security characteristics, and contents of each type of token.
+## 權杖的類型
 
-## <a name="types-of-tokens"></a>Types of tokens
+Azure AD B2C 支援 [OAuth 2.0 授權通訊協定](active-directory-b2c-reference-protocols.md)，該通訊協定會使用存取權杖與重新整理權杖。它也支援透過 [OpenID Connect](active-directory-b2c-reference-protocols.md) 進行驗證和登入，這引進第三種類型的權杖：ID 權杖。每個權杖都是以持有人權杖表示。
 
-Azure AD B2C supports the [OAuth 2.0 authorization protocol](active-directory-b2c-reference-protocols.md), which makes use of both access tokens and refresh tokens. It also supports authentication and sign-in via [OpenID Connect](active-directory-b2c-reference-protocols.md), which introduces a third type of token: the ID token. Each of these tokens is represented as a bearer token.
+持有人權杖是輕巧型的安全性權杖，授權「持有人」存取受保護的資源。持有人是可出示權杖的任何一方。Azure AD 必須先驗證合作對象，才能接收持有人權杖。但若傳輸和儲存時未採取必要的步驟來保護權杖，它可能會被非預期的一方攔截和使用。某些安全性權杖有內建的機制，可防止未授權的合作對象使用它們，但持有人權杖沒有這項機制。它們必須在安全的通道 (例如傳輸層安全性 (HTTPS)) 中傳輸。
 
-A bearer token is a lightweight security token that grants the "bearer" access to a protected resource. The bearer is any party that can present the token. Azure AD must first authenticate a party before it can receive a bearer token. But if the required steps are not taken to secure the token in transmission and storage, it can be intercepted and used by an unintended party. Some security tokens have a built-in mechanism for preventing unauthorized parties from using them, but bearer tokens do not have this mechanism. They must be transported in a secure channel, such as transport layer security (HTTPS).
+如果持有人權杖是在安全通道外部進行傳輸，則惡意人士就能使用攔截式攻擊來取得權杖，未經授權地使用該權杖來存取受保護的資源。儲存或快取持有人權杖供以後使用時，也適用相同的安全性原則。務必確定您的應用程式以安全的方式傳輸和儲存持有人權杖。
 
-If a bearer token is transmitted outside a secure channel, a malicious party can use a man-in-the-middle attack to acquire the token and use it to gain unauthorized access to a protected resource. The same security principles apply when bearer tokens are stored or cached for later use. Always ensure that your app transmits and stores bearer tokens in a secure manner.
+如需持有人權杖的其他安全性考量，請參閱 [RFC 6750 第 5 節](http://tools.ietf.org/html/rfc6750)。
 
-For additional security considerations on bearer tokens, see [RFC 6750 Section 5](http://tools.ietf.org/html/rfc6750).
+許多由 Azure AD B2C 所簽發的權杖都實作為 JSON Web 權杖 (JWT)。JWT 是一種精簡的 URL 安全方法，可在兩方之間傳輸資訊。JWT 包含稱為宣告的資訊。這些是權杖持有人及主體相關資訊的判斷提示。JWT 中的宣告是為了傳輸而編碼和序列化的 JSON 物件。因為 Azure AD B2C 所簽發的 JWT 已簽署但未加密，所以您可以輕鬆地檢查 JWT 的內容以便偵錯。有一些工具可以這樣做，包括 [calebb.net](http://calebb.net)。如需 JWT 的詳細資訊，請參閱 [JWT 規格](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html)。
 
-Many of the tokens that Azure AD B2C issues are implemented as JSON web tokens (JWTs). A JWT is a compact, URL-safe means of transferring information between two parties. JWTs contain information known as claims. These are assertions of information about the bearer and the subject of the token. The claims in JWTs are JSON objects that are encoded and serialized for transmission. Because the JWTs issued by Azure AD B2C are signed but not encrypted, you can easily inspect the contents of a JWT to debug it. Several tools are available that can do this, including [calebb.net](http://calebb.net). For more information about JWTs, refer to [JWT specifications](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html).
+### ID 權杖
 
-### <a name="id-tokens"></a>ID tokens
+ID 權杖是您的應用程式從 Azure AD B2C `authorize` 和 `token` 端點接收的一種安全性權杖。ID 權杖以 [JWT](#types-of-tokens) 表示，而且包含宣告讓您用來識別應用程式中的使用者。從 `authorize` 端點取得 ID 權杖時，通常會用來讓使用者登入 Web 應用程式。從 `token` 端點取得 ID 權杖時，可在相同應用程式或服務的兩個元件之間進行通訊時在 HTTP 要求中傳送。您可以依需要在 ID 權杖中使用宣告。它們通常用來顯示帳戶資訊，或決定應用程式中的存取控制。
 
-An ID token is a form of security token that your app receives from the Azure AD B2C `authorize` and `token` endpoints. ID tokens are represented as [JWTs](#types-of-tokens), and they contain claims that you can use to identify users in your app. When ID tokens are acquired from the `authorize` endpoint, they are often used to sign in users to web applications. When ID tokens are acquired from the `token` endpoint, they can be sent in HTTP requests during communication between two components of the same application or service. You can use the claims in an ID token as you see fit. They are commonly used to display account information or to make access control decisions in an app.  
+ID 權杖已簽署，但這次不加密。當您的應用程式或 API 收到 ID 權杖時，它必須[驗證簽章](#token-validation)以證明權杖的真實性。您的應用程式或 API 也必須驗證權杖中的幾個宣告，以證明它有效。應用程式所驗證的宣告會視案例需求而有所不同，但您的應用程式必須在每一種案例中執行一些[常見的宣告驗證](#token-validation)。
 
-ID tokens are signed, but they are not encrypted at this time. When your app or API receives an ID token, it must [validate the signature](#token-validation) to prove that the token is authentic. Your app or API must also validate a few claims in the token to prove that it is valid. Depending on the scenario requirements, the claims validated by an app can vary, but your app must perform some [common claim validations](#token-validation) in every scenario.
-
-#### <a name="sample-id-token"></a>Sample ID token
+#### 範例 ID 權杖
 ```
 // Line breaks for display purposes only
 
@@ -58,109 +57,105 @@ CQhoFA
 
 ```
 
-### <a name="access-tokens"></a>Access tokens
+### 存取權杖
 
-An access token is also a form of security token that your app receives from the Azure AD B2C `authorize` and `token` endpoints. Access tokens are also represented as [JWTs](#types-of-tokens), and they contain claims that you can use to identify users in your web services & APIs.
+存取權杖也是您的應用程式從 Azure AD B2C `authorize` 和 `token` 端點接收的一種安全性權杖。存取權杖也會以 [JWT](#types-of-tokens) 表示，而且其中包含宣告以供您識別 Web 服務和 API 中的使用者。
 
-Access tokens are signed, but they are not encrypted at this time - and very similar to id tokens.  Access tokens should be used to provide access to web services & APIs and to identify & authenticate the user in those services.  However, they do not provide any assertion of authorization at those services.  That is to say that the `scp` claim in access tokens does not limit or otherwise represent the access that the subject of the token has been granted.
+存取權杖已簽署，但這次不加密 - 非常類似 ID 權杖。存取權杖應該用來提供 Web 服務和 API 的存取權，以及識別和驗證這些服務中的使用者。不過，它們不會提供這些服務之授權的任何判斷提示。也就是說，存取權杖中的 `scp` 宣告不會限制或代表已授與權杖主體的存取權。
 
-When your API receives an access token, it must [validate the signature](#token-validation) to prove that the token is authentic. Your API must also validate a few claims in the token to prove that it is valid. Depending on the scenario requirements, the claims validated by an app can vary, but your app must perform some [common claim validations](#token-validation) in every scenario.
+當您的 API 收到存取權杖時，它必須[驗證簽章](#token-validation)以證明權杖的真實性。您的 API 也必須驗證權杖中的幾個宣告，以證明它有效。應用程式所驗證的宣告會視案例需求而有所不同，但您的應用程式必須在每一種案例中執行一些[常見的宣告驗證](#token-validation)。
 
-### <a name="claims-in-id-&-access-tokens"></a>Claims in ID & Access Tokens
+### ID 權杖和存取權杖中的宣告
 
-When you use Azure AD B2C, you have fine-grained control over the content of your tokens. You can configure [policies](active-directory-b2c-reference-policies.md) to send certain sets of user data in claims that your app requires for its operations. These claims can include standard properties such as the user's `displayName` and `emailAddress`. They can also include [custom user attributes](active-directory-b2c-reference-custom-attr.md) that you can define in your B2C directory. Every ID & access token that you receive will contain a certain set of security-related claims. Your applications can use these claims to securely authenticate users and requests.
+當您使用 Azure AD B2C 時，您可以精確控制權杖的內容。您可以設定[原則](active-directory-b2c-reference-policies.md)，以在宣告中傳送您的應用程式運作時所需的幾組特定的使用者資料。這些宣告可以包含標準的屬性，例如使用者的 `displayName` 和 `emailAddress`。其中也可以包含您在 B2C 目錄中可定義的[自訂使用者屬性](active-directory-b2c-reference-custom-attr.md)。您收到的每個 ID 權杖和存取權杖都會包含一組特定的安全性相關宣告。您的應用程式可以使用這些宣告來安全地驗證使用者和要求。
 
-Note that the claims in ID tokens are not returned in any particular order. In addition, new claims can be introduced in ID tokens at any time. Your app should not break as new claims are introduced. Here are the claims that you expect to exist in ID & access tokens issued by Azure AD B2C. Any additional claims will be determined by policies. For practice, try inspecting the claims in the sample ID token by pasting it into [calebb.net](http://calebb.net). Further details can be found in the [OpenID Connect specification](http://openid.net/specs/openid-connect-core-1_0.html).
+請注意，ID 權杖中的宣告不依任何特定順序傳回。此外，隨時都可以在 ID 權杖中加入新的宣告。加入新的宣告時，您的應用程式不會損壞。以下是 Azure AD B2C 所簽發的 ID 權杖和存取權杖中應該會有的宣告。其他任何宣告由原則決定。練習時，請試著將範例 ID 權杖中的宣告貼入 [calebb.net](http://calebb.net) 中進行檢查。在 [OpenID Connect 規格](http://openid.net/specs/openid-connect-core-1_0.html)中可找到進一步的詳細資料。
 
-| Name | Claim | Example value | Description |
+| 名稱 | 宣告 | 範例值 | 說明 |
 | ----------------------- | ------------------------------- | ------------ | --------------------------------- |
-| Audience | `aud` | `90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6` | An audience claim identifies the intended recipient of the token. For Azure AD B2C, the audience is your app's Application ID, as assigned to your app in the app registration portal. Your app should validate this value and reject the token if it does not match. |
-| Issuer | `iss` | `https://login.microsoftonline.com/775527ff-9a37-4307-8b3d-cc311f58d925/v2.0/` | This claim identifies the security token service (STS) that constructs and returns the token. It also identifies the Azure AD directory in which the user was authenticated. Your app should validate the issuer claim to ensure that the token came from the v2.0 endpoint. |
-| Issued at | `iat` | `1438535543` | This claim is the time at which the token was issued, represented in epoch time. |
-| Expiration time | `exp` | `1438539443` | The expiration time claim is the time at which the token becomes invalid, represented in epoch time. Your app should use this claim to verify the validity of the token lifetime.  |
-| Not before | `nbf` | `1438535543` | This claim is the time at which the token becomes valid, represented in epoch time. This is usually the same as the time the token was issued. Your app should use this claim to verify the validity of the token lifetime.  |
-| Version | `ver` | `1.0` | This is the version of the ID token, as defined by Azure AD. |
-| Code hash | `c_hash` | `SGCPtt01wxwfgnYZy2VJtQ` | A code hash is included in an ID token only when the token is issued together with an OAuth 2.0 authorization code. A code hash can be used to validate the authenticity of an authorization code. See the [OpenID Connect specification](http://openid.net/specs/openid-connect-core-1_0.html) for more details on how to perform this validation. |
-| Access token hash | `at_hash` | `SGCPtt01wxwfgnYZy2VJtQ` | An access token hash is included in an ID token only when the token is issued together with an OAuth 2.0 access token. An access token hash can be used to validate the authenticity of an access token. See the [OpenID Connect specification](http://openid.net/specs/openid-connect-core-1_0.html) for more details on how to perform this validation. |
-| Nonce | `nonce` | `12345` | A nonce is a strategy used to mitigate token replay attacks. Your app can specify a nonce in an authorization request by using the `nonce` query parameter. The value you provide in the request will be emitted unmodified in the `nonce` claim of an ID token only. This allows your app to verify the value against the value it specified on the request, which associates the app's session with a given ID token. Your app should perform this validation during the ID token validation process. |
-| Subject | `sub` | `Not supported currently. Use oid claim.` | This is a principal about which the token asserts information, such as the user of an app. This value is immutable and cannot be reassigned or reused. It can be used to perform authorization checks safely, such as when the token is used to access a resource. However, the subject claim is not yet implemented in the Azure AD B2C. You should configure your policies to include the object ID `oid` claim and use its value to identify users, rather than use the subject claim for authorization. |
-| Authentication context class reference | `acr` | `b2c_1_sign_in` | This is the name of the policy that was used to acquire the ID token.  |
-| Authentication time | `auth_time` | `1438535543` | This claim is the time at which a user last entered credentials, represented in epoch time. |
+| 對象 | `aud` | `90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6` | 對象宣告識別權杖的預定接收者。在 Azure AD B2C 中，對象是在應用程式註冊入口網站中指派給應用程式的應用程式識別碼。您的應用程式應驗證此值並拒絕不相符的權杖。 |
+| Issuer | `iss` | `https://login.microsoftonline.com/775527ff-9a37-4307-8b3d-cc311f58d925/v2.0/` | 此宣告會識別負責建構並傳回權杖的 Security Token Service (STS)。它也會識別用於驗證使用者的 Azure AD 目錄。您的應用程式應驗證簽發者宣告，以確保權杖來自 v2.0 端點。 |
+| 發出時間 | `iat` | `1438535543` | 此宣告是簽發權杖的時間，以新紀元時間表示。 |
+| 到期時間 | `exp` | `1438539443` | 此到期時間宣告是權杖失效的時間，以新紀元時間表示。您的應用程式應使用此宣告來驗證權杖存留期的有效性。 |
+| 生效時間 | `nbf` | `1438535543` | 此宣告是權杖生效的時間，以新紀元時間表示。這通常與權杖的簽發時間相同。您的應用程式應使用此宣告來驗證權杖存留期的有效性。 |
+| 版本 | `ver` | `1.0` | 這是 Azure AD 所定義的 ID 權杖版本。 |
+| 代碼雜湊 | `c_hash` | `SGCPtt01wxwfgnYZy2VJtQ` | 只有當 ID 權杖與 OAuth 2.0 授權碼一起簽發時，權杖才會包含代碼雜湊。代碼雜湊可用來驗證授權碼的真實性。如需有關如何執行此驗證的詳細資訊，請參閱 [OpenID Connect 規格](http://openid.net/specs/openid-connect-core-1_0.html)。 |
+| 存取權杖雜湊 | `at_hash` | `SGCPtt01wxwfgnYZy2VJtQ` | 只有當 ID 權杖與 OAuth 2.0 存取權杖一起簽發時，權杖才會包含存取權杖雜湊。存取權杖雜湊可用來驗證存取權杖的真實性。如需有關如何執行此驗證的詳細資訊，請參閱 [OpenID Connect 規格](http://openid.net/specs/openid-connect-core-1_0.html)。 |
+| Nonce | `nonce` | `12345` | Nonce 是用來緩和權杖重新執行攻擊的策略。您的應用程式可以使用 `nonce` 查詢參數，在授權要求中指定 Nonce。您在要求中提供的值將只會在 ID 權杖的 `nonce` 宣告中發出 (未經修改)。這可讓您的應用程式根據在要求上指定的值驗證此值，使應用程式的工作階段與給定的 ID 權杖產生關聯。您的應用程式應在 ID 權杖驗證程序中執行這項驗證。 |
+| 主旨 | `sub` | `Not supported currently. Use oid claim.` | 這是權杖聲稱資訊時所針對的主體，例如應用程式的使用者。這個值不可變，而且無法重新指派或重複使用。它可用來安全地執行授權檢查，例如當權杖用於存取資源時。不過，尚未在 Azure AD B2C 中實作主體宣告。您應該設定原則以包含物件識別碼 `oid` 宣告及使用其值來識別使用者，而不是使用主體宣告進行授權。 |
+| 驗證內容類別參考 | `acr` | `b2c_1_sign_in` | 這是用來取得 ID 權杖的原則名稱。 |
+| 驗證期間 | `auth_time` | `1438535543` | 此宣告是使用者上次輸入認證的時間，以新紀元時間表示。 |
 
 
-### <a name="refresh-tokens"></a>Refresh tokens
+### 重新整理權杖
 
-Refresh tokens are security tokens that your app can use to acquire new ID tokens and access tokens in an OAuth 2.0 flow. They provide your app with long-term access to resources on behalf of users without requiring interaction with those users.
+重新整理權杖是可供您的應用程式在 OAuth 2.0 流程中取得新的 ID 權杖和存取權杖的安全性權杖。它們可讓您的應用程式代表使用者來長期存取資源，而不需與使用者互動。
 
-To receive a refresh token in a token response, your app must request the `offline_acesss` scope. To learn more about the `offline_access` scope, refer to the [Azure AD B2C protocol reference](active-directory-b2c-reference-protocols.md).
+若要在權杖回應中接收重新整理權杖，您的應用程式必須要求 `offline_acesss` 範圍。若要深入了解 `offline_access` 範圍，請參閱 [Azure AD B2C 通訊協定參考](active-directory-b2c-reference-protocols.md)。
 
-Refresh tokens are, and will always be, completely opaque to your app. They are issued by Azure AD and can be inspected and interpreted only by Azure AD. They are long-lived, but your app should not be written with the expectation that a refresh token will last for a specific period of time. Refresh tokens can be invalidated at any moment for a variety of reasons. The only way for your app to know if a refresh token is valid is to attempt to redeem it by making a token request to Azure AD.
+重新整理權杖永遠對您的應用程式完全不透明。它們是由 Azure AD 所簽發，只能由 Azure AD 檢查和解譯。它們屬於長效權杖，但在撰寫您的應用程式時，不應該期待重新整理權杖會持續一段特定時間。重新整理權杖可能會因為各種原因而隨時失效。讓您的應用程式知道重新整理權杖是否有效的唯一方式，就是對 Azure AD 提出權杖要求以嘗試兌換。
 
-When you redeem a refresh token for a new token (and if your app has been granted the `offline_access` scope), you will receive a new refresh token in the token response. You should save the newly issued refresh token. It should replace the refresh token you previously used in the request. This helps guarantee that your refresh tokens remain valid for as long as possible.
+當您以重新整理權杖來兌換新的權杖時 (而且如果您的應用程式已獲得 `offline_access` 範圍)，您會在權杖回應中收到新的重新整理權杖。您應儲存新簽發的重新整理權杖。它應該取代您先前使用於要求中的重新整理權杖。這有助於保證您的重新整理權杖盡可能長期保持有效。
 
-## <a name="token-validation"></a>Token validation
+## 權杖驗證
 
-To validate a token, your app should check both the signature and claims of the token.
+若要驗證權杖，您的應用程式應該檢查權杖的簽章和宣告。
 
-Many open source libraries are available for validating JWTs, depending on your preferred language. We recommend that you explore those options rather than implement your own validation logic. The information in this guide can help you learn how to properly use those libraries.
+視您偏好的語言而定，有許多開放原始碼程式庫可用來驗證 JWT。我們建議您探索這些選項，而不是實作您自己的驗證邏輯。本指南中的資訊有助於您了解如何適當使用這些程式庫。
 
-### <a name="validate-the-signature"></a>Validate the signature
-A JWT contains three segments, separated by the `.` character. The first segment is the **header**, the second is the **body**, and the third is the **signature**. The signature segment can be used to validate the authenticity of the token so that it can be trusted by your app.
+### 驗證簽章
+JWT 包含三個區段 (以 `.` 字元分隔)。第一個區段是**標頭**，第二個是**主體**，而第三個是**簽章**。簽章區段可用來驗證權杖的真實性，您的應用程式才得以信任。
 
-Azure AD B2C tokens are signed by using industry-standard asymmetric encryption algorithms, such as RSA 256. The header of the token contains information about the key and encryption method used to sign the token:
+Azure AD B2C 權杖是經由業界標準非對稱式加密演算法 (例如 RSA 256) 進行簽署。權杖標頭包含用來簽署權杖的金鑰和加密方法相關資訊：
 
 ```
 {
-        "typ": "JWT",
-        "alg": "RS256",
-        "kid": "GvnPApfWMdLRi8PDmisFn7bprKg"
+		"typ": "JWT",
+		"alg": "RS256",
+		"kid": "GvnPApfWMdLRi8PDmisFn7bprKg"
 }
 ```
 
-The `alg` claim indicates the algorithm that was used to sign the token. The `kid` claim indicates the particular public key that was used to sign the token.
+`alg` 宣告指出用來簽署權杖的演算法。`kid` 宣告指出用來簽署權杖的特定公開金鑰。
 
-At any given time, Azure AD may sign a token by using any one of a certain set of public-private key pairs. Azure AD rotates the possible set of keys periodically, so your app should be written to handle those key changes automatically. A reasonable frequency to check for updates to the public keys used by Azure AD is every 24 hours.
+無論何時，Azure AD 可能會使用任何一組特定的公開-私密金鑰組來簽署權杖。Azure AD 會定期替換一組可能的金鑰，所以應將您的應用程式撰寫成自動處理這些金鑰變更。檢查 Azure AD 所用公開金鑰的更新的合理頻率為每 24 小時。
 
-Azure AD B2C has an OpenID Connect metadata endpoint. This allows apps to fetch information about Azure AD B2C at runtime. This information includes endpoints, token contents, and token signing keys. Your B2C directory contains a JSON metadata document for each policy. For example, the metadata document for the `b2c_1_sign_in` policy in the `fabrikamb2c.onmicrosoft.com` is located at:
+Azure AD B2C 具有 OpenID Connect 中繼資料端點。這可讓應用程式在執行階段擷取 Azure AD B2C 的相關資訊。這項資訊包括端點、權杖內容和權杖簽署金鑰。您的 B2C 目錄包含每個原則的 JSON 中繼資料文件。例如，`fabrikamb2c.onmicrosoft.com` 中適用於 `b2c_1_sign_in` 原則的中繼資料文件位於：
 
 ```
 https://login.microsoftonline.com/fabrikamb2c.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=b2c_1_sign_in
 ```
 
-`fabrikamb2c.onmicrosoft.com` is the B2C directory used to authenticate the user, and `b2c_1_sign_in` is the policy used to acquire the token. To determine which policy was used to sign a token (and where to go to fetch the metadata), you have two options. First, the policy name is included in the `acr` claim in the token. You can parse claims out of the body of the JWT by base-64 decoding the body and deserializing the JSON string that results. The `acr` claim will be the name of the policy that was used to issue the token.  Your other option is to encode the policy in the value of the `state` parameter when you issue the request, and then decode it to determine which policy was used. Either method is valid.
+`fabrikamb2c.onmicrosoft.com` 是用來驗證使用者的 B2C 目錄，而 `b2c_1_sign_in` 是用來取得權杖的原則。若要判斷哪個原則用來簽署權杖 (以及何處可擷取中繼資料)，您有兩個選項。首先，原則名稱包含在權杖的 `acr` 宣告中。您可以將 JWT 主體進行 base 64 解碼，並將產生的 JSON 字串還原序列化，以剖析 JWT 主體中的宣告。`acr` 宣告會是用來簽發權杖的原則名稱。另一個選項是當您發出要求時在 `state` 參數的值中將原則編碼，然後將它解碼以判斷使用了哪個原則。任一種方法都有效。
 
-The metadata document is a JSON object that contains several useful pieces of information. These include the location of the endpoints required to perform OpenID Connect authentication. They also include `jwks_uri`, which gives the location of the set of public keys that are used to sign tokens. That location is provided here, but it is best to fetch the location dynamically by using the metadata document and parsing out `jwks_uri`:
+中繼資料文件是包含幾項實用資訊的 JSON 物件。其中包括執行 OpenID Connect 驗證時所需端點的位置。它們還包含 `jwks_uri`，指出用來簽署權杖的公用金鑰組的位置。這裡提供該位置，但最好使用中繼資料文件並剖析 `jwks_uri` 來動態擷取該位置：
 
 ```
 https://login.microsoftonline.com/fabrikamb2c.onmicrosoft.com/discovery/v2.0/keys?p=b2c_1_sign_in
 ```
 
-The JSON document located at this URL contains all of the public key information in use at a particular moment. Your app can use the `kid` claim in the JWT header to select the public key in the JSON document that is used to sign a particular token. It can then perform signature validation by using the correct public key and the indicated algorithm.
+位於此 URL 的 JSON 文件包含特定時刻使用的所有公開金鑰資訊。您的應用程式可以使用 JWT 標頭中的 `kid` 宣告，以選取 JSON 文件中用來簽署特定權杖的公開金鑰。接著可以使用正確的公開金鑰和指定的演算法來執行簽章驗證。
 
-A description of how to perform signature validation is outside the scope of this document. Many open source libraries are available to help you with this if you need it.
+描述如何執行簽章驗證已超出本文的範圍。如果需要的話，有許多開放原始碼程式庫可協助您處理這方面。
 
-### <a name="validate-the-claims"></a>Validate the claims
-When your app or API receives an ID token, it should also perform several checks against the claims in the ID token. These include, but are not limited to:
+### 驗證宣告
+當您的應用程式或 API 收到 ID 權杖時，還應該對 ID 權杖中的宣告執行幾項檢查。包含但不限於：
 
-- The **audience** claim: This verifies that the ID token was intended to be given to your app.
-- The **not before** and **expiration time** claims: These verify that the ID token has not expired.
-- The **issuer** claim: This verifies that the token was issued to your app by Azure AD.
-- The **nonce**: This is a strategy for token replay attack mitigation.
+- **對象**宣告：這會確認 ID 權杖預定要提供給您的應用程式。
+- **生效時間**和**到期時間**宣告：這些會確認 ID 權杖尚未過期。
+- **簽發者**宣告：這會確認權杖已由 Azure AD 簽發給您的應用程式。
+- **Nonce**：這是用來緩和權杖重新執行攻擊的策略。
 
-For a full list of validations your app should perform, please refer to the [OpenID Connect specification](https://openid.net). Details of the expected values for these claims are included in the preceding [token section](#types-of-tokens).  
+如需您的應用程式應執行之驗證的完整清單，請參閱 [OpenID Connect 規格](https://openid.net)。先前的[權杖一節](#types-of-tokens)包含這些宣告的預期值的詳細資料。
 
-## <a name="token-lifetimes"></a>Token lifetimes
+## 權杖存留期
 
-The following token lifetimes are provided to further your knowledge. They can help you when you develop and debug apps. Note that your apps should not be written to expect any of these lifetimes to remain constant. They can and will change.  You can read more about the customization of token lifetimes in Azure AD B2C [here](active-directory-b2c-token-session-sso.md).
+下列權杖存留期讓您了解更透徹。當您開發及偵錯應用程式時，它們可以協助您。請注意，撰寫您的應用程式時，請不要認為任何存留期會維持不變。它們會變更。您可以在[這裡](active-directory-b2c-token-session-sso.md)閱讀更多有關在 Azure AD B2C 中自訂權杖存留期的資訊。
 
-| Token | Lifetime | Description |
+| 權杖 | 存留期 | 說明 |
 | ----------------------- | ------------------------------- | ------------ |
-| ID tokens | One hour | ID tokens are typically valid for an hour. Your web app can use this lifetime to maintain its own sessions with users (recommended). You can also choose a different session lifetime. If your app needs to get a new ID token, it simply needs to make a new sign-in request to Azure AD. If a user has a valid browser session with Azure AD, that user may not be required to enter credentials again. |
-| Refresh tokens | Up to 14 days | A single refresh token is valid for a maximum of 14 days. However, a refresh token may become invalid at any time for any number of reasons. Your app should continue to try to use a refresh token until the request fails, or until your app replaces the refresh token with a new one.  A refresh token also can become invalid if 90 days has passed since the user last entered credentials. |
-| Authorization codes | Five minutes | Authorization codes are intentionally short-lived. They should be redeemed immediately for access tokens, ID tokens, or refresh tokens when they are received. |
+| ID 權杖 | 一小時 | ID 權杖的有效期通常為 1 小時。Web 應用程式可以使用此存留期來維持它自己與使用者之間的工作階段 (建議選項)。您也可以選擇不同的工作階段存留期。如果您的應用程式需要取得新的 ID 權杖，它只需要對 Azure AD 提出新的登入要求。如果使用者與 Azure AD 之間存在有效的瀏覽器工作階段，該使用者可能不需要再次輸入認證。 |
+| 重新整理權杖 | 最多 14 天 | 單一重新整理權杖的有效期最多 14 天。不過，重新整理權杖可能由於許多原因而隨時失效。您的應用程式應繼續嘗試使用重新整理權杖，直到要求失敗，或您的應用程式更換新的重新整理權杖為止。在使用者上次輸入認證之後經過 90 天，重新整理權杖也會失效。 |
+| 授權碼 | 五分鐘 | 授權碼是刻意設計成短期。它們應在收到時立即兌換成存取權杖、ID 權杖或重新整理權杖。 |
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0727_2016-->

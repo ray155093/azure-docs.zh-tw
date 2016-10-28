@@ -1,66 +1,65 @@
 <properties 
-    pageTitle="Cloud Services and management certificates | Microsoft Azure" 
-    description="Learn how to create and use certificates with Microsoft Azure" 
-    services="cloud-services" 
-    documentationCenter=".net" 
-    authors="Thraka" 
-    manager="timlt" 
-    editor=""/>
+	pageTitle="雲端服務和管理憑證 | Microsoft Azure" 
+	description="了解如何建立憑證並搭配 Microsoft Azure 使用" 
+	services="cloud-services" 
+	documentationCenter=".net" 
+	authors="Thraka" 
+	manager="timlt" 
+	editor=""/>
 
 <tags 
-    ms.service="cloud-services" 
-    ms.workload="tbd" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="10/11/2016"
-    ms.author="adegeo"/>
+	ms.service="cloud-services" 
+	ms.workload="tbd" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="07/05/2016"
+	ms.author="adegeo"/>
 
+# Azure 雲端服務的憑證概觀
+Azure 中的憑證用於雲端服務 ([服務憑證](#what-are-service-certificates)) 及用於向管理 API 進行驗證 (使用 Azure 傳統入口網站而非 ARM 時[管理憑證](#what-are-management-certificates))。本主題提供兩種憑證類型的一般概觀、如何[建立](#create)這些憑證類型，以及如何將其[部署](#deploy)到 Azure。
 
-# <a name="certificates-overview-for-azure-cloud-services"></a>Certificates overview for Azure Cloud Services
-Certificates are used in Azure for cloud services ([service certificates](#what-are-service-certificates)) and for authenticating with the management API ([management certificates](#what-are-management-certificates) when using the Azure classic portal and not ARM). This topic gives a general overview of both certificate types, how to [create](#create) and [deploy](#deploy) them to Azure.
+在 Azure 中使用的憑證是 x.509 v3 憑證，而且可以由其他受信任的憑證簽署，或者可以自我簽署。自我簽署的憑證是由自己的建立者簽署，因此，預設不受到信任。大部分的瀏覽器都可以忽略這個憑證。自我簽署的憑證應該僅由您自己在開發和測試雲端服務時使用。
 
-Certificates used in Azure are x.509 v3 certificates and can be signed by another trusted certificate or they can be self-signed. A self-signed certificate is signed by its own creator, and because of this, are not trusted by default. Most browsers can ignore this. Self-signed certificates should only be used by yourself when developing and testing your cloud services. 
+Azure 所使用的憑證可以包含私密或公開金鑰。憑證具有指紋，可以明確的方式提供識別它們的方法。這個指紋用於 Azure [組態檔](cloud-services-configure-ssl-certificate.md)中，以識別雲端服務應該使用哪個憑證。
 
-Certificates used by Azure can contain a private or a public key. Certificates have a thumbprint that provides a means to identify them in an unambiguous way. This thumbprint is used in the Azure [configuration file](cloud-services-configure-ssl-certificate.md) to identify which certificate a cloud service should use. 
+## 什麼是服務憑證？
+服務憑證會附加至雲端服務，並啟用進出服務的安全通訊。例如，如果您部署了一個 Web 角色，您會想要提供可以驗證公開的 HTTPS 端點的憑證。在服務定義中定義的服務憑證會自動部署至執行您角色的執行個體的虛擬機器。
 
-## <a name="what-are-service-certificates?"></a>What are service certificates?
-Service certificates are attached to cloud services and enable secure communication to and from the service. For example, if you deployed a web role, you would want to supply a certificate that can authenticate an exposed HTTPS endpoint. Service certificates, defined in your service definition, are automatically deployed to the virtual machine that is running an instance of your role. 
+您可以使用 Azure 傳統入口網站或使用服務管理 API，將服務憑證上傳到 Azure 傳統入口網站。服務憑證會與特定的雲端服務相關聯，並指派給服務定義檔中的部署。
 
-You can upload service certificates to Azure classic portal either using the Azure classic portal or by using the Service Management API. Service certificates are associated with a specific cloud service and assigned to a deployment in the service definition file.
+服務憑證可以與您的服務分開管理，而且可以由不同的人員管理。例如，開發人員所上傳的服務封裝，指的可能是 IT 管理員先前上傳至 Azure 的憑證。IT 管理員可以變更服務的組態來管理和更新該憑證，而不需要上傳新的服務封裝。這可能是因為憑證的邏輯名稱及其存放區名稱和位置是在服務定義檔中指定，而憑證指紋是在服務組態檔中指定。若要更新憑證，只需要上傳新憑證，並變更服務組態檔中的憑證指紋值即可。
 
-Service certificates can be managed separately from your services, and may be managed by different individuals. For example, a developer may upload a service package that refers to a certificate that an IT manager has previously uploaded to Azure. An IT manager can manage and renew that certificate changing the configuration of the service without needing to upload a new service package. This is possible because the logical name for the certificate and its store name and location are specified in the service definition file, while the certificate thumbprint is specified in the service configuration file. To update the certificate, it's only necessary to upload a new certificate and change the thumbprint value in the service configuration file.
+## 什麼是管理憑證？
+管理憑證可讓您使用 Azure 傳統所提供的服務管理 API 進行驗證。許多程式和工具 (例如 Visual Studio 或 Azure SDK) 會使用這些憑證，將各種 Azure 服務的設定與部署自動化。這些並不是真的與雲端服務相關。
 
-## <a name="what-are-management-certificates?"></a>What are management certificates?
-Management certificates allow you to authenticate with the Service Management API provided by Azure classic. Many programs and tools (such as Visual Studio or the Azure SDK) will use these certificates to automate configuration and deployment of various Azure services. These are not really related to cloud services. 
+>[AZURE.WARNING] 請務必小心！ 這些憑證類型允許使用它們進行驗證的任何人管理與他們相關聯的訂用帳戶。
 
->[AZURE.WARNING] Be careful! These types of certificates allow anyone who authenticates with them to manage the subscription they are associated with. 
+### 限制
+每個訂用帳戶有 100 個管理憑證的限制。此外，在特定服務管理員的使用者識別碼底下的所有訂用帳戶也有 100 個管理憑證的限制。如果帳戶系統管理員的使用者識別碼已經用來加入 100 個管理憑證，而且還需要有更多憑證，您可以新增共同管理員來加入其他憑證。
 
-### <a name="limitations"></a>Limitations
-There is a limit of 100 management certificates per subscription. There is also a limit of 100 management certificates for all subscriptions under a specific service administrator’s user ID. If the user ID for the account administrator has already been used to add 100 management certificates and there is a need for more certificates, you can add a co-administrator to add the additional certificates. 
-
-Before adding more than 100 certificates, see if you can reuse an existing certificate. Using co-administrators adds potentially unneeded complexity to your certificate management process.
+加入超過 100 個憑證之前，請查看您是否可以重複使用現有的憑證。使用共同管理員會對您的憑證管理程序增加可能不必要的複雜性。
 
 
 <a name="create"></a>
-## <a name="create-a-new-self-signed-certificate"></a>Create a new self-signed certificate
-You can use any tool available to create a self-signed certificate as long as they adhere to these settings:
+## 建立新的自我簽署憑證
+您可以使用任何可用的工具建立自我簽署的憑證，前提是，這些憑證遵守以下設定：
 
-* An X.509 certificate.
-* Contains a private key.
-* Created for key exchange (.pfx file).
-* Subject name must match the domain used to access the cloud service. 
-    > You cannot acquire an SSL certificate for the cloudapp.net (or for any Azure related) domain; the certificate's subject name must match the custom domain name used to access your application. For example, **contoso.net**, not **contoso.cloudapp.net**.
-* Minimum of 2048-bit encryption.
-* **Service Certificate Only**: Client-side certificate must reside in the *Personal* certificate store.
+* X.509 憑證。
+* 包含一個私密金鑰。
+* 針對金鑰交換 (.pfx 檔案) 而建立。
+* 主體名稱必須符合用來存取雲端服務的網域。
+    > 您無法取得 cloudapp.net 網域 (或針對任何 Azure 相關網域) 的 SSL 憑證；憑證的主體名稱必須符合用來存取應用程式的自訂網域名稱。例如，**contoso.net**，而非**contoso.cloudapp.net**。
+* 至少為 2048 位元加密。
+* **僅限服務憑證**：用戶端憑證必須位於*個人*憑證存放區。
 
-There are two easy ways to create a certificate on Windows, with the `makecert.exe` utility, or IIS.
+在 Windows 上建立憑證有兩個簡單的方法：使用 `makecert.exe` 公用程式或 IIS。
 
-### <a name="makecert.exe"></a>Makecert.exe
+### Makecert.exe
 
-This utility has been deprecated and is no longer documented here. Please see [this MSDN article](https://msdn.microsoft.com/library/windows/desktop/aa386968) for more information.
+此公用程式已被取代，此處不再說明。如需詳細資訊，請參閱[這篇 MSDN 文章](https://msdn.microsoft.com/library/windows/desktop/aa386968)。
 
-### <a name="powershell"></a>PowerShell
+### PowerShell
 
 ```powershell
 $cert = New-SelfSignedCertificate -DnsName yourdomain.cloudapp.net -CertStoreLocation "cert:\LocalMachine\My"
@@ -68,35 +67,31 @@ $password = ConvertTo-SecureString -String "your-password" -Force -AsPlainText
 Export-PfxCertificate -Cert $cert -FilePath ".\my-cert-file.pfx" -Password $password
 ```
 
->[AZURE.NOTE] If you want to use the certificate with an IP address instead of a domain, use the IP address in the -DnsName parameter.
+>[AZURE.NOTE] 如果您想要搭配 IP 位址 (而不是網域) 來使用憑證，請在 -DnsName 參數中使用 IP 位址。
 
 
-If you want to use this [certificate with the management portal](../azure-api-management-certs.md), export it to a **.cer** file:
+如果您想要使用這個[憑證搭配管理入口網站](../azure-api-management-certs.md)，請將它匯出至 **.cer** 檔案：
 
 ```powershell
 Export-Certificate -Type CERT -Cert $cert -FilePath .\my-cert-file.cer
 ```
 
-### <a name="internet-information-services-(iis)"></a>Internet Information Services (IIS)
+### 網際網路資訊服務 (IIS)
 
-There are many pages on the internet that cover how to do this with IIS. [Here](https://www.sslshopper.com/article-how-to-create-a-self-signed-certificate-in-iis-7.html) is a great one I found that I think explains it well. 
+在網際網路上有許多涵蓋如何使用 IIS 執行這項操作的網頁。[這裡](https://www.sslshopper.com/article-how-to-create-a-self-signed-certificate-in-iis-7.html)是我找到的其中一個我認為說明得很好的網頁。
 
-### <a name="java"></a>Java
-You can use Java to [create a certificate](../app-service-web/java-create-azure-website-using-java-sdk.md#create-a-certificate).
+### Java
+您可以使用 Java [建立憑證](../app-service-web/java-create-azure-website-using-java-sdk.md#create-a-certificate)。
 
-### <a name="linux"></a>Linux
-[This](../virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md) article describes how to create certificates with SSH.
+### Linux
+[本文](../virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md)說明如何使用 SSH 建立憑證。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-[Upload your service certificate to the Azure classic portal](cloud-services-configure-ssl-certificate.md) (or the [Azure portal](cloud-services-configure-ssl-certificate-portal.md)).
+[將服務憑證上傳至 Azure 傳統入口網站](cloud-services-configure-ssl-certificate.md) (或 [Azure 入口網站](cloud-services-configure-ssl-certificate-portal.md))。
 
-Upload a [management API certificate](../azure-api-management-certs.md) to the Azure classic portal.
+將[管理 API 憑證](../azure-api-management-certs.md)上傳至 Azure 傳統入口網站。
 
->[AZURE.NOTE] The Azure portal does not use management certificates to access the API but instead uses user accounts.
+>[AZURE.NOTE] Azure 入口網站不會使用管理憑證存取 API，但是會使用使用者帳戶。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

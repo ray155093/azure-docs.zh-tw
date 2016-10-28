@@ -1,139 +1,134 @@
 <properties
-    pageTitle="Modeling Multitenancy in Azure Search | Microsoft Azure | Hosted cloud search service"
-    description="Learn about common design patterns for multitenant SaaS applications while using Azure Search."
-    services="search"
-    authors="ashmaka"
-    documentationCenter=""/>
+	pageTitle="在 Azure 搜尋服務中建立多租用戶模型 | Microsoft Azure | 雲端託管搜尋服務"
+	description="了解使用「Azure 搜尋服務」時常見的多租用戶 SaaS 應用程式設計模式。"
+	services="search"
+	authors="ashmaka"
+	documentationCenter=""/>
 
 <tags
-    ms.service="search"
-    ms.devlang="NA"
-    ms.workload="search"
-    ms.topic="article"
-    ms.tgt_pltfrm="na"
-    ms.date="09/20/2016"
-    ms.author="ashmaka"/>
+	ms.service="search"
+	ms.devlang="NA"
+	ms.workload="search"
+	ms.topic="article"
+	ms.tgt_pltfrm="na"
+	ms.date="09/20/2016"
+	ms.author="ashmaka"/>
+
+# 多租用戶 SaaS 應用程式與 Azure 搜尋服務的設計模式
+
+多租用戶應用程式是為不能查看或共用任何其他租用戶之資料的租用戶提供相同服務和功能的應用程式，其中租用戶的數目並無限制。本文件將討論以「Azure 搜尋服務」建置的多租用戶應用程式的租用戶隔離策略。
+
+## Azure 搜尋服務概念
+「Azure 搜尋服務」是一個搜尋即服務解決方案，可讓開發人員不需管理任何基礎結構或成為搜尋專家，就能夠將豐富的搜尋體驗新增到應用程式中。資料會上傳至服務，然後儲存在雲端。使用對「Azure 搜尋服務」API 的簡單要求，接著便可修改及搜尋資料。如需此服務的概觀，請參閱[這篇文章](http://aka.ms/whatisazsearch)。在討論設計模式之前，請務必了解「Azure 搜尋服務」的一些概念。
+
+### 搜尋服務、索引、欄位及文件
+使用「Azure 搜尋服務」時，使用者需訂閱「搜尋服務」。由於資料是上傳到「Azure 搜尋服務」，因此它會儲存在該搜尋服務內的「索引」中。單一服務內可能會有好幾個索引。若要使用熟悉的資料庫概念，搜尋服務可以比喻為資料庫，而服務內的索引則可比喻為資料庫內的資料表。
+
+搜尋服務內的每個索引都有自己的結構描述，此結構描述是由一些可自訂的「欄位」所定義。資料會以個別「文件」的形式新增到「Azure 搜尋服務」索引中。每個文件都必須上傳至特定的索引，並且必須符合該索引的結構描述。使用「Azure 搜尋服務」來搜尋資料時，會針對特定索引發出全文檢索搜尋查詢。若要將這些概念比喻成資料庫的概念，則欄位可以比喻為資料表中的資料行，而文件則可以比喻為資料列。
+
+### 延展性
+「標準」[定價層](https://azure.microsoft.com/pricing/details/search/)中的任何「Azure 搜尋服務」服務都可以調整成兩個維度︰儲存體和可用性。
+* 您可以新增「資料分割」來增加搜尋服務的儲存體。
+* 「複本」可被新增到服務中，以增加搜尋服務所能處理的要求輸送量。
+
+新增及移除資料分割和複本將可讓搜尋服務的容量，隨著應用程式要求的資料量和流量成長。為了讓搜尋服務達到讀取 [SLA](https://azure.microsoft.com/support/legal/sla/search/v1_0/)，它將需要兩個複本。為了讓服務達到讀寫 [SLA](https://azure.microsoft.com/support/legal/sla/search/v1_0/)，它將需要三個複本。
 
 
-# <a name="design-patterns-for-multitenant-saas-applications-and-azure-search"></a>Design patterns for multitenant SaaS applications and Azure Search
-
-A multitenant application is one that provides the same services and capabilities to any number of tenants who cannot see or share the data of any other tenant. This document discusses tenant isolation strategies for multitenant applications built with Azure Search.
-
-## <a name="azure-search-concepts"></a>Azure Search concepts
-As a search-as-a-service solution, Azure Search allows developers to add rich search experiences to applications without managing any infrastructure or becoming an expert in search. Data is uploaded to the service and then stored in the cloud. Using simple requests to the Azure Search API, the data can then be modified and searched. An overview of the service can be found in [this article](http://aka.ms/whatisazsearch). Before discussing design patterns, it is important to understand some concepts in Azure Search.
-
-### <a name="search-services,-indexes,-fields,-and-documents"></a>Search services, indexes, fields, and documents
-When using Azure Search, one subscribes to a _search service_. As data is uploaded to Azure Search, it is stored in an _index_ within the search service. There can be a number of indexes within a single service. To use the familiar concepts of databases, the search service can be likened to a database while the indexes within a service can be likened to tables within a database.
-
-Each index within a search service has its own schema, which is defined by a number of customizable _fields_. Data is added to an Azure Search index in the form of individual _documents_. Each document must be uploaded to a particular index and must fit that index's schema. When searching data using Azure Search, the full-text search queries are issued against a particular index.  To compare these concepts to those of a database, fields can be likened to columns in a table and documents can be likened to rows.
-
-### <a name="scalability"></a>Scalability
-Any Azure Search service in the Standard [pricing tier](https://azure.microsoft.com/pricing/details/search/) can scale in two dimensions: storage and availability.
-* _Partitions_ can be added to increase the storage of a search service.
-* _Replicas_ can be added to a service to increase the throughput of requests that a search service can handle.
-
-Adding and removing partitions and replicas at will allow the capacity of the search service to grow with the amount of data and traffic the application demands. In order for a search service to achieve a read [SLA](https://azure.microsoft.com/support/legal/sla/search/v1_0/), it requires two replicas. In order for a service to achieve a read-write [SLA](https://azure.microsoft.com/support/legal/sla/search/v1_0/), it requires three replicas.
+### Azure 搜尋服務中的服務和索引限制
+「Azure 搜尋服務」有幾個不同的[定價層](https://azure.microsoft.com/pricing/details/search/)，每個層都有不同的[限制和配額](search-limits-quotas-capacity.md)。這些限制當中有些在服務層級，有些在索引層級，有些則是在資料分割層級。
 
 
-### <a name="service-and-index-limits-in-azure-search"></a>Service and index limits in Azure Search
-There are a few different [pricing tiers](https://azure.microsoft.com/pricing/details/search/) in Azure Search, each of the tiers has different [limits and quotas](search-limits-quotas-capacity.md). Some of these limits are at the service-level, some are at the index-level, and some are at the partition-level.
-
-
-|                                  | Basic     | Standard1   | Standard2   | Standard3   | Standard3 HD  |
+| | 基本 | Standard1 | Standard2 | Standard3 | Standard3 HD |
 |----------------------------------|-----------|-------------|-------------|-------------|---------------|
-| Maximum Replicas per Service     | 3         | 12          | 12          | 12          | 12            |
-| Maximum Partitions per Service   | 1         | 12          | 12          | 12          | 1             |
-| Maximum Search Units (Replicas*Partitions) per Service | 3         | 36          | 36          | 36          | 12            |
-| Maximum Documents per Service    | 1 million | 180 million | 720 million | 1.4 billion | 200 million   |
-| Maximum Storage per Service      | 2 GB      | 300 GB      | 1.2 TB      | 2.4 TB      | 200 GB        |
-| Maximum Documents per Partition  | 1 million | 15 million  | 60 million  | 120 million | 200 million   |
-| Maximum Storage per Partition    | 2 GB      | 25 GB       | 100 GB      | 200 GB      | 200 GB        |
-| Maximum Indexes per Service      | 5         | 50          | 200         | 200         | 1000          |
+| 每項服務的複本數目上限 | 3 | 12 | 12 | 12 | 12 |
+| 每項服務的資料分割數目上限 | 1 | 12 | 12 | 12 | 1 |
+| 每項服務的搜尋單位數目上限 (複本數*資料分割數) | 3 | 36 | 36 | 36 | 12 |
+| 每項服務的文件數目上限 | 100 萬 | 1 億 8000 萬 | 7 億 2000 萬 | 140 億 | 2 億 |
+| 每項服務的儲存體上限 | 2 GB | 300 GB | 1\.2 TB | 2\.4 TB | 200 GB |
+| 每個資料分割的文件數目上限 | 100 萬 | 1500 萬 | 6000 萬 | 1 億 2000 萬 | 2 億 |
+| 每個資料分割的儲存體上限 | 2 GB | 25 GB | 100 GB | 200 GB | 200 GB |
+| 每項服務的索引數目上限 | 5 | 50 | 200 | 200 | 1000 |
 
 
-#### <a name="s3-high-density"></a>S3 High Density
-In Azure Search’s S3 pricing tier, there is an option for the High Density (HD) mode designed specifically for multitenant scenarios. When in High Density mode, the S3 SKU has some different limits than the standard S3 configuration:
-* There can be up to 1000 indexes per service, instead of 200
-* There can be up to 200 GB of data per service, instead of 2.4 TB
-* There can be only 1 partition per service, instead of 12
+#### S3 高密度
+在「Azure 搜尋服務」的 S3 定價層中，有一個專門針對多租用戶案例設計的「高密度」(HD) 模式選項。處於「高密度」模式時，S3 SKU 會有一些與標準 S3 組態不同的限制：
+* 每項服務的索引數目上限為 1000，而不是 200
+* 每項服務的資料大小上限為 200 GB，而不是 2.4 TB
+* 每項服務只有能 1 個資料分割，而不是 12 個
 
-The S3 HD tier is ideally suited for SaaS enabled applications which implement the index-per-tenant model described below.
-
-
-## <a name="considerations-for-multitenant-applications"></a>Considerations for multitenant applications
-Multitenant applications must effectively distribute resources among the tenants while preserving some level of privacy between the various tenants. There are a few considerations when designing the architecture for such an application:
-
-* _Tenant isolation:_ Application developers need to take appropriate measures to ensure that no tenants have unauthorized or unwanted access to the data of other tenants. Beyond the perspective of data privacy, tenant isolation strategies require effective management of shared resources and protection from noisy neighbors.
-* _Cloud resource cost:_ As with any other application, software solutions must remain cost competitive as a component of a multitenant application.
-* _Ease of Operations:_ When developing a multitenant architecture, the impact on the application's operations and complexity is an important consideration. Azure Search has a [99.9% SLA](https://azure.microsoft.com/support/legal/sla/search/v1_0/).
-* _Global footprint:_ Multitenant applications may need to effectively serve tenants which are distributed across the globe.
-* _Scalability:_ Application developers need to consider how they reconcile between maintaining a sufficiently low level of application complexity and designing the application to scale with number of tenants and the size of tenants' data and workload.
-
-Azure Search offers a few boundaries that can be used to isolate tenants’ data and workload.
-
-## <a name="modeling-multitenancy-with-azure-search"></a>Modeling multitenancy with Azure Search
-In the case of a multitenant scenario, the application developer consumes one or more search services and divide their tenants among services, indexes, or both. Azure Search has a few common patterns when modeling a multitenant scenario:
-
-1. _Index per tenant:_ Each tenant has its own index within a search service that is shared with other tenants.
-1. _Service per tenant:_ Each tenant has its own dedicated Azure Search service, offering highest level of data and workload separation.
-1. _Mix of both:_ Larger, more-active tenants are assigned dedicated services while smaller tenants are assigned individual indexes within shared services.
-
-## <a name="1.-index-per-tenant"></a>1. Index per tenant
-![A portrayal of the index-per-tenant model](./media/search-modeling-multitenant-saas-applications/azure-search-index-per-tenant.png)
-
-In an index-per-tenant model, multiple tenants occupy a single Azure Search service where each tenant has their own index.
-
-Tenants achieve data isolation because all search requests and document operations are issued at an index level in Azure Search. In the application layer, there is the need awareness to direct the various tenants’ traffic to the proper indexes while also managing resources at the service level across all tenants.
-
-A key attribute of the index-per-tenant model is the ability for the application developer to oversubscribe the capacity of a search service among the application’s tenants. If the tenants have an uneven distribution of workload, the optimal combination of tenants can be distributed across a search service’s indexes to accommodate a number of highly active, resource-intensive tenants while simultaneously serving a long tail of less active tenants. The trade-off is the inability of the model to handle situations where each tenant is concurrently highly active.
-
-The index-per-tenant model provides the basis for a variable cost model, where an entire Azure Search service is bought up-front and then subsequently filled with tenants. This allows for unused capacity to be designated for trials and free accounts.
-
-For applications with a global footprint, the index-per-tenant model may not be the most efficient. If an application's tenants are distributed across the globe, a separate service may be necessary for each region which may duplicate costs across each of them.
-
-Azure Search allows for the scale of both the individual indexes and the total number of indexes to grow. If an appropriate pricing tier is chosen, partitions and replicas can be added to the entire search service when an individual index within the service grows too large in terms of storage or traffic.
-
-If the total number of indexes grows too large for a single service, another service has to be provisioned to accommodate the new tenants. If indexes have to be moved between search services as new services are added, the data from the index has to be manually copied from one index to the other as Azure Search does not allow for an index to be moved.
+S3 HD 層相當適用於支援 SaaS 的應用程式，這些應用程式實作下述的「每個租用戶都使用專屬索引」模型。
 
 
-## <a name="2.-service-per-tenant"></a>2. Service per tenant
-![A portrayal of the service-per-tenant model](./media/search-modeling-multitenant-saas-applications/azure-search-service-per-tenant.png)
+## 多租用戶應用程式的考量
+多租用戶應用程式必須有效地將資源分散到各個租用戶中，同時又在各個租用戶之間保留某種程度的隱私性。設計這類應用程式的架構時，有幾個考量︰
 
-In a service-per-tenant architecture, each tenant has its own search service.
+* _租用戶隔離︰_應用程式開發人員需要採取適當措施，以確保沒有任何租用戶能夠在未經授權或不需要的情況下存取其他租用戶的資料。除了資料隱私性的觀點以外，租用戶隔離策略還需要有效的共用資源管理，以及對吵雜鄰居的防範。
+* _雲端資源成本︰_與任何其他應用程式一樣，軟體解決方案作為多租用戶應用程式的元件，必須保有成本競爭力。
+* _操作輕鬆︰_開發多租用戶架構時，對應用程式的作業與複雜性的影響是很重要的考量。「Azure 搜尋服務」具有 [99\.9% 的 SLA](https://azure.microsoft.com/support/legal/sla/search/v1_0/)。
+* _遍佈全球︰_多租用戶應用程式可能需要有效地為分散在全球各地的租用戶提供服務。
+* _延展性︰_應用程式開發人員需要考慮到要如何讓應用程式不要太複雜，而又要能設計應用程式來依租用戶數目及租用戶資料和工作負載大小做調整。
 
-In this model, the application achieves the maximum level of isolation for its tenants. Each service has dedicated storage and throughput for handling search request as well as separate API keys.
+「Azure 搜尋服務」提供一些可用來隔離租用戶資料和工作負載的界限。
 
-For applications where each tenant has a large footprint or the workload has little variability from tenant to tenant, the service-per-tenant model is an effective choice as resources are not shared across various tenants’ workloads.
+## 使用 Azure 搜尋服務來建立多租用戶模型
+在多租用戶案例的情況中，應用程式開發人員會使用一或多個搜尋服務，然後將其租用戶劃分到服務、索引或兩者。建立多租用戶案例模型時，「Azure 搜尋服務」有幾個常見的模式︰
 
-A service per tenant model also offers the benefit of a predictable, fixed cost model. There is no up-front investment in an entire search service until there is a tenant to fill it, however the cost-per-tenant is higher than an index-per-tenant model.
+1. _每個租用戶都使用專屬索引︰_每個租用戶在與其他租用戶共用的搜尋服務內都有自己的索引。
+1. _每個租用戶都使用專屬服務︰_每個租用戶都有自己的專用「Azure 搜尋服務」服務，可提供最高層級的資料和工作負載分隔。
+1. _兩者混合︰_針對較大且較活躍的租用戶會指派專用服務，而針對較小的租用戶則會在共用服務內指派個別的索引。
 
-The service-per-tenant model is an efficient choice for applications with a global footprint. With geographically-distributed tenants, it is easy to have each tenant's service in the appropriate region.
+## 1\.每個租用戶都使用專屬索引
+![「每個租用戶都使用專屬索引」模型的圖解](./media/search-modeling-multitenant-saas-applications/azure-search-index-per-tenant.png)
 
-The challenges in scaling this pattern arise when individual tenants outgrow their service. Azure Search does not currently support upgrading the pricing tier of a search service, so all data would have to be manually copied to a new service.
+在「每個租用戶都使用專屬索引」模型中，多個租用戶會佔用單一的「Azure 搜尋服務」，其中每個租用戶都有自己的索引。
 
-## <a name="3.-mixing-both-models"></a>3. Mixing both models
-Another pattern for modeling multitenancy is mixing both index-per-tenant and service-per-tenant strategies.
+租用戶可達到資料隔離的目的，因為所有搜尋要求和文件作業都是在「Azure 搜尋服務」的索引層級發出。在應用程式層中，有需求感知，可將各個租用戶的流量導向到適當的索引，同時也管理所有租用戶的服務層級資源。
 
-By mixing the two patterns, an application's largest tenants can occupy dedicated services while the long tail of less active, smaller tenants can occupy indexes in a shared service. This model ensures that the largest tenants have consistently high performance from the service while helping to protect the smaller tenants from any noisy neighbors.
+「每個租用戶都使用專屬索引」模型有一個關鍵屬性，就是能夠讓應用程式開發人員在應用程式的租用戶之間過度訂閱搜尋服務的容量。如果租用戶的工作負載分配不平均，系統可以將最佳的租用戶組合分散到搜尋服務的各個索引，以因應一些非常活躍、耗用大量資源的租用戶需求，而同時仍為為數眾多但較不活躍的租用戶提供服務。取捨的結果是如果每個租用戶同時都非常活躍，此模型便無法處理。
 
-However, implementing this strategy relies foresight in predicting which tenants will require a dedicated service versus an index in a shared service. Application complexity increases with the need to manage both of these multitenancy models.
+「每個租用戶都使用專屬索引」模型提供了可變成本模型的基礎，其中需預先購置整個「Azure 搜尋服務」，然後再接著填入租用戶。這可讓您將未使用的容量指定給試用版和免費帳戶。
 
-## <a name="achieving-even-finer-granularity"></a>Achieving even finer granularity
-The above design patterns to model multitenant scenarios in Azure Search assume a uniform scope where each tenant is a whole instance of an application. However, applications can sometimes handle many smaller scopes.
+對遍佈全球的應用程式來說，「每個租用戶都使用專屬索引」模型可能不是最有效率的模型。如果應用程式的租用戶遍佈全球，每個區域可能就都需要個別的服務，而可能導致在各個區域產生重複的成本。
 
-If service-per-tenant and index-per-tenant models are not sufficiently small scopes, it is possible to model an index to achieve an even finer degree of granularity.
+「Azure 搜尋服務」同時考量到了個別索引規模的擴大和索引總數的增加。如果選擇了適當的定價層，當服務內的個別索引在儲存體或流量方面成長得太大時，將可為整個搜尋服務新增資料分割和複本。
 
-To have a single index behave differently for different client endpoints, a field can be added to an index which designates a certain value for each possible client. Each time a client calls Azure Search to query or modify an index, the code from the client application specifies the appropriate value for that field using Azure Search's [filter](https://msdn.microsoft.com/library/azure/dn798921.aspx) capability at query time.
-
-This method can be used to achieve functionality of separate user accounts, separate permission levels, and even completely separate applications.
-
-## <a name="next-steps"></a>Next steps
-Azure Search is a compelling choice for many applications, [read more about the service's robust capabilities](http://aka.ms/whatisazsearch). When evaluating the various design patterns for multitenant applications, consider the [various pricing tiers](https://azure.microsoft.com/pricing/details/search/) and the respective [service limits](search-limits-quotas-capacity.md) to best tailor Azure Search to fit application workloads and architectures of all sizes.
-
-Any questions about Azure Search and multitenant scenarios can be directed to azuresearch_contact@microsoft.com.
-
+如果單一服務的索引總數成長得太大，則必須佈建另一個服務來容納新的租用戶。如果在新增新的服務時，必須在搜尋服務之間移動索引，您將必須手動將來自索引的資料從一個索引複製到另一個索引，因為「Azure 搜尋服務」並未考量到索引移動。
 
 
-<!--HONumber=Oct16_HO2-->
+## 2\.每個租用戶都使用專屬服務
+![「每個租用戶都使用專屬服務」模型的圖解](./media/search-modeling-multitenant-saas-applications/azure-search-service-per-tenant.png)
 
+在「每個租用戶都使用專屬服務」架構中，每個租用戶都有自己的搜尋服務。
 
+在此模型中，應用程式可針對其租用戶達到最大程度的隔離。每項服務除了有個別的 API 金鑰之外，還有專用的儲存體和輸送量來處理搜尋要求。
+
+如果應用程式的每個租用戶具有較大的使用量，或是租用戶之間的工作負載變化小，「每個租用戶都使用專屬服務」模型就是相當適當的選擇，因為資源不會在各個租用戶的工作負載之間共用。
+
+每個租用戶都使用專屬服務模型也提供可預測、固定成本模型的優點。整個搜尋服務在有租用戶填入之前，並不需要預先做任何投資，不過，每一租用戶的成本會高於「每個租用戶都使用專屬索引」模型。
+
+對遍佈全球的應用程式來說，「每個租用戶都使用專屬服務」模型是一個有效率的選擇。當租用戶的地理位置相當分散時，讓每個租用戶的服務在適當的區域中相當簡單。
+
+當個別租用戶的成長速度超出其服務所能處理的範圍時，調整此模式的挑戰便隨之產生。「Azure 搜尋服務」目前不支援升級搜尋服務的定價層，因此所有資料都將必須手動複製到新的服務。
+
+## 3\.混合兩種模型
+建立多租用戶模型的另一種模式是將「每個租用戶都使用專屬索引」與「每個租用戶都使用專屬服務」策略混合。
+
+透過混合這兩種模式，應用程式的最大租用戶便可以佔用專用服務，而為數眾多的較不活躍且較小的租用戶則可以在共用服務中佔用索引。此模型可確保最大租用戶可以從服務一直享有高效能，同時又可協助保護較小的租用戶不受任何吵雜的鄰居干擾。
+
+不過，實作此策略需要有遠見來預測哪些租用戶需要的是專用服務，而哪些租用戶需要的是共用服務中的索引。當產生管理這兩個多租用戶模型的需求時，應用程式複雜性也隨之增加。
+
+## 達到更精細的細微度
+上述用來在「Azure 搜尋服務」中建立多租用戶案例模型的設計模式是假設一個一致的範圍，其中每個租用戶都是一個完整的應用程式執行個體。不過，應用程式有時可能是處理許多較小的範圍。
+
+如果「每個租用戶都使用專屬服務」和「每個租用戶都使用專屬索引」模型的範圍不夠小，您可以建立索引模型來達到更精細的細微程度。
+
+若要讓單一索引針對不同的用戶端端點有不同的行為，您可以在索引中新增欄位來為每個可能的用戶端指定特定的值。每次用戶端呼叫「Azure 搜尋服務」來查詢或修改索引時，來自用戶端應用程式的程式碼都會在查詢階段使用「Azure 搜尋服務」的[篩選](https://msdn.microsoft.com/library/azure/dn798921.aspx)功能，為該欄位指定適當的值。
+
+此方法可用來實現個別使用者帳戶的功能、分隔權限等級，甚至是完全分隔應用程式。
+
+## 後續步驟
+「Azure 搜尋服務」對許多應用程式而言是相當具吸引力的選擇，請[深入了解此服務的強大功能](http://aka.ms/whatisazsearch)。評估多租用戶應用程式的各種設計模式時，請考量[各種定價層](https://azure.microsoft.com/pricing/details/search/)和個別的[服務限制](search-limits-quotas-capacity.md)，以便量身打造「Azure 搜尋服務」來配合各種規模的應用程式工作負載和架構。
+
+如果您有任何關於「Azure 搜尋服務」和多租用戶案例的問題，都可以寄送郵件給 azuresearch_contact@microsoft.com。
+
+<!---HONumber=AcomDC_0921_2016-->

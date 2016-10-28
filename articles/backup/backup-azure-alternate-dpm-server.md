@@ -1,111 +1,106 @@
 <properties
-    pageTitle="Recovering data from another DPM server in the backup vault | Microsoft Azure"
-    description="Recover the data you've protected to an Azure Backup vault from any DPM server registered to that vault."
-    services="backup"
-    documentationCenter=""
-    authors="nkolli1"
-    manager="shreeshd"
-    editor=""/>
+	pageTitle="從備份保存庫的另一部 DPM 伺服器復原資料 | Microsoft Azure"
+	description="從登錄至 Azure 備份保存庫的任何 DPM 伺服器，復原該保存庫中保護的資料。"
+	services="backup"
+	documentationCenter=""
+	authors="nkolli1"
+	manager="shreeshd"
+	editor=""/>
 
 <tags
-    ms.service="backup"
-    ms.workload="storage-backup-recovery"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/08/2016"
-    ms.author="giridham;jimpark;trinadhk;markgal"/>
+	ms.service="backup"
+	ms.workload="storage-backup-recovery"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/08/2016"
+	ms.author="giridham;jimpark;trinadhk;markgal"/>
 
+# 從備份保存庫的另一部 DPM 伺服器復原資料
+您現在可以從登錄至 Azure 備份保存庫的任何 DPM 伺服器，復原該保存庫中保護的資料。執行此工作的流程已完全整合至 DPM 管理主控台，且與其他復原工作流程類似。
 
-# <a name="recovering-data-from-another-dpm-server-in-the-backup-vault"></a>Recovering data from another DPM server in the backup vault
-You can now recover the data you've protected to an Azure Backup vault from any DPM server registered to that vault. The process for doing so is completely integrated into the DPM management console and is similar to the other recovery workflows.
+若要從備份保存庫中的另一部 DPM 伺服器復原資料，您將需要 [System Center Data Protection Manager UR7](https://support.microsoft.com/zh-TW/kb/3065246) 和[最新的 Azure Backup Agent](http://aka.ms/azurebackup_agent)。
 
-To recover data from another DPM server inthe backup vault you'll need [System Center Data Protection Manager UR7](https://support.microsoft.com/en-us/kb/3065246) and the [latest Azure Backup agent](http://aka.ms/azurebackup_agent).
+## 從另一部 DPM 伺服器復原資料
+從另一部 DPM 伺服器復原資料：
 
-## <a name="recover-data-from-another-dpm-server"></a>Recover data from another DPM Server
-To recover data from another DPM server:
+1. 在 DPM 管理主控台的 [復原] 索引標籤中，按一下 [新增外部 DPM] \(在畫面左上方)。
 
-1. From the **Recovery** tab of the DPM management console, click **'Add External DPM'** (at the top left of the screen).
+    ![新增外部 DPM](./media/backup-azure-alternate-dpm-server/add-external-dpm.png)
 
-    ![Ad External DPM](./media/backup-azure-alternate-dpm-server/add-external-dpm.png)
+2. 從與要復原資料的「DPM 伺服器」關聯的保存庫下載新的「保存庫認證」、從已向備份保存庫登錄的 DPM 伺服器清單中選擇 DPM 伺服器，並提供與要復原資料的 DPM 伺服器關聯的「加密複雜密碼」。
 
-2. Download new **vault credentials** from the vault associated with the **DPM server** where the data is being recovered, choose the DPM server from the list of DPM servers registered with the backup vault, and provide the **encryption passphrase** associated with the DPM server whose data is being recovered.
+    ![外部 DPM 認證](./media/backup-azure-alternate-dpm-server/external-dpm-credentials.png)
 
-    ![External DPM Credentials](./media/backup-azure-alternate-dpm-server/external-dpm-credentials.png)
+    >[AZURE.NOTE] 只有與相同登錄保存庫相關聯的 DPM 伺服器，才可以復原彼此的資料。
 
-    >[AZURE.NOTE] Only DPM servers associated with the same registration vault can recover each other’s data.
+    順利新增外部 DPM 伺服器之後，您就可以從 [復原] 索引標籤瀏覽外部 DPM 伺服器和本機 DPM 伺服器的資料。
 
-    Once the External DPM server is successfully added, you can browse the data of external DPM server and local DPM server from the **Recovery** tab.
+3. 瀏覽由外部 DPM 伺服器保護的實際執行伺服器可用清單，並選取適當的資料來源。
 
-3. Browse the available list of production servers protected by the external DPM server and select the appropriate data source.
+    ![瀏覽外部 DPM 伺服器](./media/backup-azure-alternate-dpm-server/browse-external-dpm.png)
 
-    ![Browse External DPM Server](./media/backup-azure-alternate-dpm-server/browse-external-dpm.png)
+4. 從 [復原點] 下拉式清單中選取「月份和年份」，選取代表復原點何時建立的必要「復原日期」，並選取「復原時間」。
 
-4. Select **the month and year** from the **Recovery points** drop down, select the required **Recovery date** for when the recovery point was created, and select the **Recovery time**.
+    檔案和資料夾清單會出現在底部窗格中，方便您瀏覽並復原到任何位置。
 
-    A list of files and folders will appear in the bottom pane which can be browsed and recovered to any location.
+    ![外部 DPM 伺服器復原點](./media/backup-azure-alternate-dpm-server/external-dpm-recoverypoint.png)
 
-    ![External DPM Server Recovery Points](./media/backup-azure-alternate-dpm-server/external-dpm-recoverypoint.png)
+5. 在適當的項目上按一下滑鼠右鍵，然後按一下 [復原]。
 
-5. Right click the appropriate item and click **Recover**.
+    ![外部 DPM 復原](./media/backup-azure-alternate-dpm-server/recover.png)
 
-    ![External DPM recovery](./media/backup-azure-alternate-dpm-server/recover.png)
+6. 檢閱「復原選取項目」。請確認要復原之備份複本的資料和時間，以及建立備份複本的來源。如果選取項目不正確，請按一下 [取消]，往回瀏覽至 [復原] 索引標籤，以選取適當的復原點。如果選取項目正確，請按 [下一步]。
 
-6. Review the **Recover Selection**. Verify the data and time of the backup copy being recovered, as well as the source from which the backup copy was created. If the selection is incorrect, click **Cancel** to navigate back to recovery tab to select appropriate recovery point. If the selection is correct, click **Next**.
+    ![外部 DPM 復原摘要](./media/backup-azure-alternate-dpm-server/external-dpm-recovery-summary.png)
 
-    ![External DPM recovery summary](./media/backup-azure-alternate-dpm-server/external-dpm-recovery-summary.png)
+7. 選取 [復原到替代位置]。「瀏覽」到正確的復原位置。
 
-7. Select **Recover to an alternate location**. **Browse** to the correct location for the recovery.
+    ![外部 DPM 復原替代位置](./media/backup-azure-alternate-dpm-server/external-dpm-recovery-alternate-location.png)
 
-    ![External DPM recovery alternate location](./media/backup-azure-alternate-dpm-server/external-dpm-recovery-alternate-location.png)
+8. 選擇與 [建立複本]、[略過] 或 [覆寫] 相關的選項。
+    - [建立複本] 會在名稱有衝突時，建立一份檔案的複本。
+    - [略過] 會在名稱有衝突時，略過復原檔案。
+    - [覆寫] 會在名稱有衝突時，覆寫指定位置中的現有複製。
 
-8. Choose the option related to **create copy**, **Skip**, or **Overwrite**.
-    - **Create copy** will create a copy of the file in the event there is a name collision.
-    - **Skip** will skip recovering the file in the event there is a name collision.
-    - **Overwrite** will overwrite the existing copying in the location specified in the event of a name collision.
+    請選擇適當的選項來「還原安全性」。您可以在建立復原點時，針對將資料復原至其中的目的地電腦，套用其安全性設定，或是套用適用於產品的安全性設定。
 
-    Choose the appropriate option to **Restore security**. You can apply the security settings of the destination computer where the data is being recovered or the security settings that were applicable to product at the time the recovery point was created.
+    確認是否要在復原成功完成後傳送「通知」。
 
-    Identify whether a **Notification** will be sent once the recovery completes successfully.
+    ![外部 DPM 復原通知](./media/backup-azure-alternate-dpm-server/external-dpm-recovery-notifications.png)
 
-    ![External DPM Recovery Notifications](./media/backup-azure-alternate-dpm-server/external-dpm-recovery-notifications.png)
+9. [摘要] 畫面會列出到目前為止已選擇的選項。按一下 [復原] 之後，資料就會復原到適當的內部部署位置。
 
-9. The **Summary** screen lists the options chosen so far. Once you click **‘Recover’**, the data will be recovered to the appropriate on-premises location.
+    ![外部 DPM 復原選項摘要](./media/backup-azure-alternate-dpm-server/external-dpm-recovery-options-summary.png)
 
-    ![External DPM Recovery Options Summary](./media/backup-azure-alternate-dpm-server/external-dpm-recovery-options-summary.png)
+    >[AZURE.NOTE] 您可以在 DPM 伺服器的 [監視] 索引標籤中監視復原工作。
 
-    >[AZURE.NOTE] The recovery job can be monitored in the **Monitoring** tab of the DPM server.
+    ![監視復原](./media/backup-azure-alternate-dpm-server/monitoring-recovery.png)
 
-    ![Monitoring Recovery](./media/backup-azure-alternate-dpm-server/monitoring-recovery.png)
+10. 您可以在 DPM 伺服器的 [復原] 索引標籤上，按一下 [清除外部 DPM]，以移除外部 DPM 伺服器的檢視。
 
-10. You can click **Clear External DPM** on the **Recovery** tab of the DPM server to remove the view of the external DPM server.
+    ![清除外部 DPM](./media/backup-azure-alternate-dpm-server/clear-external-dpm.png)
 
-    ![Clear External DPM](./media/backup-azure-alternate-dpm-server/clear-external-dpm.png)
-
-## <a name="troubleshooting-error-messages"></a>Troubleshooting Error Messages
-|No. |  Error Message | Troubleshooting steps |
+## 疑難排解錯誤訊息
+|否。 |	錯誤訊息 |	疑難排解步驟 |
 | :-------------: |:-------------| :-----|
-|1.|        This server is not registered to the vault specified by the vault credential.|  **Cause:** This error appears when the vault credential file selected does not belong to the backup vault associated with DPM server on which the recovery is attempted. <br> **Resolution:** Download the vault credential file from the backup vault to which the DPM server is registered.|
-|2.|        Either the recoverable data is not available or the selected server is not a DPM server.|   **Cause:** There are no other DPM servers with DPM 2012 R2 UR7 registered to the backup vault, or the DPM servers with DPM 2012 R2 UR7 have not yet uploaded the metadata, or the selected server is not DPM server (aka Windows Server or Windows Client). <br> **Resolution:** If there are other DPM servers registered to the backup vault, ensure SCDPM 2012 R2 UR7 and latest Azure Backup agent are installed. <br>If there are other DPM servers registered to the backup vault with DPM 2012 R2 UR7, wait for a day after installation of UR7 to start the recovery process. The nightly job will upload the metadata for all the previously protected backups to cloud. The data will be available for recovery.|
-|3.|        No other DPM server is registered to this vault.|   **Cause:** There are no other DPM servers with DPM 2012 R2 UR7 or above that are registered to the vault from which the recovery is being attempted.<br>**Resolution:** If there are other DPM servers registered to the backup vault, ensure SCDPM 2012 R2 UR7 and latest Azure Backup agent are installed.<br>If there are other DPM servers registered to the backup vault with DPM 2012 R2 UR7, wait for a day after installation of UR7 to start the recovery process. The nightly job will upload the metadata for all the previously protected backups to cloud. The data will be available for recovery.|
-|4.|        The encryption passphrase provided does not match with passphrase associated with the following server: **<server name>**|  **Cause:** The encryption passphrase used in the process of encrypting the data from the DPM server’s data that is being recovered does not match the encryption passphrase provided. The agent is unable to decrypt the data. Hence the recovery fails.<br>**Resolution:** Please provide the exact same encryption passphrase associated with the DPM server whose data is being recovered.|
+|1\.|		保存庫認證所指定的保存庫中未登錄此伺服器。|	**原因：**選取的保存庫認證檔案如果不屬於與所嘗試復原的 DPM 伺服器關聯的備份保存庫，就會出現此錯誤。<br> **解決方法：**從已登錄 DPM 伺服器的備份保存庫下載保存庫認證檔。|
+|2\.|		可復原資料無法使用，或選取的伺服器不是 DPM 伺服器。|	**原因：**沒有任何其他具有 DPM 2012 R2 UR7 的 DPM 伺服器已向備份保存庫登錄，或具有 DPM 2012 R2 UR7 的 DPM 伺服器尚未上傳中繼資料，或選取的伺服器不是 DPM 伺服器 (也稱為 Windows Server 或 Windows 用戶端)。<br> **解決方法：**如果有其他已向備份保存庫登錄的 DPM 伺服器，請確認已安裝 SCDPM 2012 R2 UR7 和最新的 Azure Backup Agent。<br>如果有其他具有 DPM 2012 R2 UR7 的 DPM 伺服器已向備份保存庫登錄，請在安裝 UR7 後等候一天，再開始復原程序。夜間工作會針對先前所有受保護的備份，將中繼資料上傳至雲端。資料將可供復原。|
+|3\.|		此保存庫未登錄其他 DPM 伺服器。|	**原因：**沒有任何其他具有 DPM 2012 R2 UR7 或更新版本的 DPM 伺服器已向要嘗試復原的保存庫登錄。<br>**解決方法：**如果有其他已向備份保存庫登錄的 DPM 伺服器，請確定已安裝 SCDPM 2012 R2 UR7 和最新的 Azure Backup Agent。<br>如果有其他具有 DPM 2012 R2 UR7 的 DPM 伺服器已向備份保存庫登錄，請在安裝 UR7 後等候一天，再開始復原程序。夜間工作會針對先前所有受保護的備份，將中繼資料上傳至雲端。資料將可供復原。|
+|4\.|		提供的加密複雜密碼與下列伺服器關聯的複雜密碼不相符：**<伺服器名稱>**|	**原因：**在加密來自要復原之 DPM 伺服器資料的資料過程中使用的加密複雜密碼，與所提供的加密複雜密碼不符。代理程式無法解密資料。因此復原失敗。<br>**解決方法：**請提供與要復原資料的 DPM 伺服器關聯且完全相同的加密複雜密碼。|
 
-## <a name="frequently-asked-questions:"></a>Frequently asked questions:
-1. **Why can’t I add an external DPM server from another DPM server after installing the UR7 and latest Azure Backup agent?**
+## 常見問題集：
+1. **為什麼不能在安裝 UR7 和最新的 Azure Backup Agent 之後，從另一部 DPM 伺服器新增外部 DPM 伺服器？**
 
-    A) For the existing DPM servers with data sources that are protected to the cloud (by using an update rollup earlier than Update Rollup 7), you have to wait at least one day after installing the UR7 and latest Azure Backup agent to start *Add External DPM server*. This is needed to upload the metadata of the DPM protection groups to Azure. This occurs the first time through a nightly job.
+    答) 針對資料來源已在雲端受保護 (藉由使用比「更新彙總套件 7」舊的更新彙總套件進行保護) 的現有 DPM 伺服器，您必須在安裝 UR7 和最新的 Azure Backup Agent 之後至少等候一天，再開始「新增外部 DPM 伺服器」。這需要將 DPM 保護群組的中繼資料上傳至 Azure。這項作業會在第一次夜間工作時進行。
 
-2. **What is the minimum version of Azure Backup agent needed?**
+2. **Azure Backup Agent 所需的最低版本為何？**
 
-    A) The Azure Backup agent minimum version to enable this feature is 2.0.8719.0.  Azure Backup agent version can be verified by navigating to Control Panel **>** All Control Panel items **>** Programs and features **>** Microsoft Azure Recovery Services Agent. If the version is less than 2.0.8719.0, download the [latest Azure Backup agent](https://go.microsoft.com/fwLink/?LinkID=288905) and install.
+    答) 啟用這項功能的 Azure Backup Agent 最低版本為 2.0.8719.0。您可以瀏覽至 [控制台] **>** [所有控制台項目] **>** [程式和功能] **>** [Microsoft Azure 復原服務代理程式]，來確認 Azure Backup Agent 版本。如果版本低於 2.0.8719.0，請下載[最新的 Azure Backup Agent](https://go.microsoft.com/fwLink/?LinkID=288905) 並進行安裝。
 
-    ![Clear External DPM](./media/backup-azure-alternate-dpm-server/external-dpm-azurebackupagentversion.png)
+    ![清除外部 DPM](./media/backup-azure-alternate-dpm-server/external-dpm-azurebackupagentversion.png)
 
-## <a name="next-steps:"></a>Next Steps:
-•   [Azure Backup FAQ](backup-azure-backup-faq.md)
+## 後續步驟：
+• [Azure 備份常見問題集](backup-azure-backup-faq.md)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

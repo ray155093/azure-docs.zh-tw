@@ -1,36 +1,35 @@
 <properties
-    pageTitle="Manage Azure SQL Database with PowerShell | Microsoft Azure"
-    description="Azure SQL Database management with PowerShell."
-    services="sql-database"
-    documentationCenter=""
-    authors="stevestein"
-    manager="jhubbard"
-    editor="monicar"/>
+	pageTitle="使用 PowerShell 管理 Azure SQL Database | Microsoft Azure"
+	description="使用 PowerShell 管理 Azure SQL Database。"
+	services="sql-database"
+	documentationCenter=""
+	authors="stevestein"
+	manager="jhubbard"
+	editor="monicar"/>
 
 <tags
-    ms.service="sql-database"
-    ms.workload="data-management"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/13/2016"
-    ms.author="sstein"/>
+	ms.service="sql-database"
+	ms.workload="data-management"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/13/2016"
+	ms.author="sstein"/>
 
-
-# <a name="manage-azure-sql-database-with-powershell"></a>Manage Azure SQL Database with PowerShell
+# 使用 PowerShell 管理 Azure SQL Database
 
 
 > [AZURE.SELECTOR]
-- [Azure portal](sql-database-manage-portal.md)
+- [Azure 入口網站](sql-database-manage-portal.md)
 - [Transact-SQL (SSMS)](sql-database-manage-azure-ssms.md)
-- [PowerShell](sql-database-manage-powershell.md)
+- [PowerShell](sql-database-command-line-tools.md)
 
-This topic shows the PowerShell cmdlets that are used to perform many Azure SQL Database tasks. For a complete list, see [Azure SQL Database Cmdlets](https://msdn.microsoft.com/library/mt574084.aspx).
+本主題說明用來執行許多 Azure SQL Database 工作的 PowerShell Cmdlet。如需完整的清單，請參閱 [Azure SQL Database Cmdlet](https://msdn.microsoft.com/library/mt574084.aspx)。
 
 
-## <a name="create-a-resource-group"></a>Create a resource group
+## 建立資源群組
 
-Create a resource group for our SQL Database and related Azure resources with the [New-AzureRmResourceGroup](https://msdn.microsoft.com/library/azure/mt759837.aspx) cmdlet.
+使用 [New-AzureRmResourceGroup](https://msdn.microsoft.com/library/azure/mt759837.aspx) Cmdlet 來為 SQL Database 及相關的 Azure 資源建立資源群組。
 
 ```
 $resourceGroupName = "resourcegroup1"
@@ -38,12 +37,11 @@ $resourceGroupLocation = "northcentralus"
 New-AzureRmResourceGroup -Name $resourceGroupName -Location $resourceGroupLocation
 ```
 
-For more information, see [Using Azure PowerShell with Azure Resource Manager](../powershell-azure-resource-manager.md).
-For a sample script, see [Create a SQL database PowerShell script](sql-database-get-started-powershell.md#create-a-sql-database-powershell-script).
+如需詳細資訊，請參閱[將 Azure PowerShell 與 Azure 資源管理員搭配使用](../powershell-azure-resource-manager.md)。如需範例指令碼，請參閱[建立 SQL Database PowerShell 指令碼](sql-database-get-started-powershell.md#create-a-sql-database-powershell-script)。
 
-## <a name="create-a-sql-database-server"></a>Create a SQL Database server
+## 建立 SQL Database 伺服器
 
-Create a SQL Database server with the [New-AzureRmSqlServer](https://msdn.microsoft.com/library/azure/mt603715.aspx) cmdlet. Replace *server1* with the name for your server. Server names must be unique across all Azure SQL Database servers. If the server name is already taken, you get an error. This command may take several minutes to complete. The resource group must already exist in your subscription.
+使用 [New-AzureRmSqlServer](https://msdn.microsoft.com/library/azure/mt603715.aspx) Cmdlet 來建立 SQL Database 伺服器。將 *server1* 取代為您伺服器的名稱。伺服器名稱在所有 Azure SQL Database 伺服器必須是唯一的。如果該伺服器名稱已被使用，您會收到錯誤訊息。此命令可能需要幾分鐘的時間才能完成。資源群組必須已經存在於您的訂用帳戶中。
 
 ```
 $resourceGroupName = "resourcegroup1"
@@ -62,12 +60,12 @@ $sqlServer = New-AzureRmSqlServer -ServerName $sqlServerName `
  -ResourceGroupName $resourceGroupName -ServerVersion $sqlServerVersion
 ```
 
-For more information, see [What is SQL Database](sql-database-technical-overview.md). For a sample script, see [Create a SQL database PowerShell script](sql-database-get-started-powershell.md#create-a-sql-database-powershell-script).
+如需詳細資訊，請參閱 [什麼是 SQL Database](sql-database-technical-overview.md)。如需範例指令碼，請參閱[建立 SQL Database PowerShell 指令碼](sql-database-get-started-powershell.md#create-a-sql-database-powershell-script)。
 
 
-## <a name="create-a-sql-database-server-firewall-rule"></a>Create a SQL Database server firewall rule
+## 建立 SQL Database 伺服器防火牆規則
 
-Create a firewall rule to access the server with the [New-AzureRmSqlServerFirewallRule](https://msdn.microsoft.com/library/azure/mt603860.aspx) cmdlet. Run the following command, replacing the start and end IP addresses with valid values for your client. The resource group, and server must already exist in your subscription.
+使用 [New-AzureRmSqlServerFirewallRule](https://msdn.microsoft.com/library/azure/mt603860.aspx) Cmdlet 來建立防火牆規則以存取伺服器。執行以下命令，以您用戶端的有效值取代開頭和結尾 IP 位址。資源群組和伺服器必須已經存在於您的訂用帳戶中。
 
 ```
 $resourceGroupName = "resourcegroup1"
@@ -82,14 +80,14 @@ New-AzureRmSqlServerFirewallRule -ResourceGroupName $resourceGroupName `
  -StartIpAddress $firewallStartIp -EndIpAddress $firewallEndIp
 ```
 
-To allow other Azure services access to your server, create a firewall rule and set both the `-StartIpAddress` and `-EndIpAddress` to **0.0.0.0**. This special firewall rule allows all Azure traffic to access the server.
+若要允許其他 Azure 服務存取您的伺服器，請建立防火牆規則，並將 `-StartIpAddress` 和 `-EndIpAddress` 都設定為 **0.0.0.0**。這個特殊的防火牆規則會允許所有 Azure 流量存取伺服器。
 
-For more information, see [Azure SQL Database Firewall](https://msdn.microsoft.com/library/azure/ee621782.aspx). For a sample script, see [Create a SQL database PowerShell script](sql-database-get-started-powershell.md#create-a-sql-database-powershell-script).
+如需詳細資訊，請參閱 [Azure SQL Database 防火牆](https://msdn.microsoft.com/library/azure/ee621782.aspx)。如需範例指令碼，請參閱[建立 SQL Database PowerShell 指令碼](sql-database-get-started-powershell.md#create-a-sql-database-powershell-script)。
 
 
-## <a name="create-a-sql-database-(blank)"></a>Create a SQL database (blank)
+## 建立 SQL Database (空白)
 
-Create a database with the [New-AzureRmSqlDatabase](https://msdn.microsoft.com/library/azure/mt619339.aspx) cmdlet. The resource group, and server must already exist in your subscription. 
+使用 [New-AzureRmSqlDatabase](https://msdn.microsoft.com/library/azure/mt619339.aspx) Cmdlet 來建立資料庫。資源群組和伺服器必須已經存在於您的訂用帳戶中。
 
 ```
 $resourceGroupName = "resourcegroup1"
@@ -104,12 +102,12 @@ $currentDatabase = New-AzureRmSqlDatabase -ResourceGroupName $resourceGroupName 
  -Edition $databaseEdition -RequestedServiceObjectiveName $databaseServiceLevel
 ```
 
-For more information, see [What is SQL Database](sql-database-technical-overview.md). For a sample script, see [Create a SQL database PowerShell script](sql-database-get-started-powershell.md#create-a-sql-database-powershell-script).
+如需詳細資訊，請參閱 [什麼是 SQL Database](sql-database-technical-overview.md)。如需範例指令碼，請參閱[建立 SQL Database PowerShell 指令碼](sql-database-get-started-powershell.md#create-a-sql-database-powershell-script)。
 
 
-## <a name="change-the-performance-level-of-a-sql-database"></a>Change the performance level of a SQL database
+## 變更 SQL 資料庫的效能層級
 
-Scale your database up or down with the [Set-AzureRmSqlDatabase](https://msdn.microsoft.com/library/azure/mt619433.aspx) cmdlet. The resource group, server, and database must already exist in your subscription. Set the `-RequestedServiceObjectiveName` to a single space (like the following snippet) for Basic tier. Set it to *S0*, *S1*, *P1*, *P6*, etc., like the preceding example for other tiers.
+使用 [Set-AzureRmSqlDatabase](https://msdn.microsoft.com/library/azure/mt619433.aspx) Cmdlet 以相應增加或減少的方式調整您的資料庫。資源群組、伺服器及資料庫必須已經存在於您的訂用帳戶中。針對「基本層」，將 `-RequestedServiceObjectiveName` 設定為單一空間 (如以下程式碼片段)。像先前其他層的範例一樣，將它設定為 *S0*、*S1*、*P1*、*P6* 等。
 
 ```
 $resourceGroupName = "resourcegroup1"
@@ -124,11 +122,11 @@ Set-AzureRmSqlDatabase -ResourceGroupName $resourceGroupName `
  -Edition $databaseEdition -RequestedServiceObjectiveName $databaseServiceLevel
 ```
 
-For more information, see [SQL Database options and performance: Understand what's available in each service tier](sql-database-service-tiers.md). For a sample script, see [Sample PowerShell script to change the service tier and performance level of your SQL database](sql-database-scale-up-powershell.md#sample-powershell-script-to-change-the-service-tier-and-performance-level-of-your-sql-database).
+如需詳細資訊，請參閱 [SQL Database 選項和效能：了解每個服務層中可用的項目](sql-database-service-tiers.md)。如需範例指令碼，請參閱[變更您的 SQL Database 之服務層級和效能等級的範例 PowerShell 指令碼](sql-database-scale-up-powershell.md#sample-powershell-script-to-change-the-service-tier-and-performance-level-of-your-sql-database)。
 
-## <a name="copy-a-sql-database-to-the-same-server"></a>Copy a SQL database to the same server
+## 將 SQL Database 複製到相同伺服器
 
-Copy a SQL database to the same server with the [New-AzureRmSqlDatabaseCopy](https://msdn.microsoft.com/library/azure/mt603644.aspx) cmdlet. Set the `-CopyServerName` and `-CopyResourceGroupName` to the same values as your source database server and resource group.
+使用 [New-AzureRmSqlDatabaseCopy](https://msdn.microsoft.com/library/azure/mt603644.aspx) Cmdlet 將 SQL Database 複製到相同的伺服器。將 `-CopyServerName` 和 `-CopyResourceGroupName` 設定為與來源資料庫伺服器及資源群組相同的值。
 
 ```
 $resourceGroupName = "resourcegroup1"
@@ -145,12 +143,12 @@ New-AzureRmSqlDatabaseCopy -DatabaseName $databaseName `
  -CopyResourceGroupName $copyResourceGroupName
 ```
 
-For more information, see [Copy an Azure SQL Database](sql-database-copy.md). For a sample script, see [Copy a SQL database PowerShell script](sql-database-copy-powershell.md#example-powershell-script).
+如需詳細資訊，請參閱[複製 Azure SQL Database](sql-database-copy.md)。如需範例指令碼，請參閱[複製 SQL Database PowerShell 指令碼](sql-database-copy-powershell.md#example-powershell-script)。
 
 
-## <a name="delete-a-sql-database"></a>Delete a SQL database
+## 刪除 SQL 資料庫
 
-Delete a SQL database with the [Remove-AzureRmSqlDatabase](https://msdn.microsoft.com/library/azure/mt619368.aspx) cmdlet. The resource group, server, and database must already exist in your subscription.
+使用 [Remove-AzureRmSqlDatabase](https://msdn.microsoft.com/library/azure/mt619368.aspx) Cmdlet 來刪除 SQL Database。資源群組、伺服器及資料庫必須已經存在於您的訂用帳戶中。
 
 ```
 $resourceGroupName = "resourcegroup1"
@@ -161,9 +159,9 @@ Remove-AzureRmSqlDatabase -DatabaseName $databaseName `
  -ServerName $sqlServerName -ResourceGroupName $resourceGroupName
 ```
 
-## <a name="delete-a-sql-database-server"></a>Delete a SQL Database server
+## 刪除 SQL Database 伺服器
 
-Delete a server with the [Remove-AzureRmSqlServer](https://msdn.microsoft.com/library/azure/mt603488.aspx) cmdlet.
+使用 [Remove-AzureRmSqlServer](https://msdn.microsoft.com/library/azure/mt603488.aspx) Cmdlet 來刪除伺服器。
 
 ```
 $resourceGroupName = "resourcegroup1"
@@ -172,21 +170,17 @@ $sqlServerName = "server1"
 Remove-AzureRmSqlServer -ServerName $sqlServerName -ResourceGroupName $resourceGroupName
 ```
 
-## <a name="create-and-manage-elastic-database-pools-using-powershell"></a>Create and manage elastic database pools using PowerShell
+## 使用 PowerShell 來建立及管理彈性資料庫集區
 
-For details about creating elastic database pools using PowerShell, see [Create a new elastic database pool with PowerShell](sql-database-elastic-pool-create-powershell.md).
+如需有關使用 PowerShell 來建立彈性資料庫集區的詳細資料，請參閱[使用 PowerShell 建立新的彈性資料庫集區](sql-database-elastic-pool-create-powershell.md)。
 
-For details about managing elastic database pools using PowerShell, see [Monitor and manage an elastic database pool with PowerShell](sql-database-elastic-pool-manage-powershell.md).
-
-
-
-## <a name="related-information"></a>Related information
-
-- [Azure SQL Database Cmdlets](https://msdn.microsoft.com/library/azure/mt574084.aspx)
-- [Azure Cmdlet Reference](https://msdn.microsoft.com/library/azure/dn708514.aspx)
+如需有關使用 PowerShell 來管理彈性資料庫集區的詳細資料，請參閱[透過 PowerShell 監視和管理彈性資料庫集區](sql-database-elastic-pool-manage-powershell.md)。
 
 
 
-<!--HONumber=Oct16_HO2-->
+## 相關資訊
 
+- [Azure SQL Database Cmdlet](https://msdn.microsoft.com/library/azure/mt574084.aspx)
+- [Azure Cmdlet 參考](https://msdn.microsoft.com/library/azure/dn708514.aspx)
 
+<!---HONumber=AcomDC_0914_2016-->

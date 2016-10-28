@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Analyze and Process JSON documents with Hive in HDInsight | Microsoft Azure"
-   description="Learn how to use JSON documents and analyze them using Hive in HDInsight."
+   pageTitle="利用 HDInsight 中的 Hive 分析和處理 JSON 文件 |Microsoft Azure"
+   description="了解如何使用 JSON 文件，以集使用 HDInsight 中的 Hive 分析它們。"
    services="hdinsight"
    documentationCenter=""
    authors="rashimg"
@@ -17,171 +17,170 @@
    ms.author="rashimg"/>
 
 
+# 使用 HDInsight 中的 Hive 處理並分析 JSON 文件
 
-# <a name="process-and-analyze-json-documents-using-hive-in-hdinsight"></a>Process and analyze JSON documents using Hive in HDInsight
+了解如何使用 HDInsight 中的 Hive 處理並分析 JSON 文件。本教學課程中將使用下列 JSON 文件
 
-Learn how to process and analyze JSON files using Hive in HDInsight. The following JSON document will be used in the tutorial
+	{
+	    "StudentId": "trgfg-5454-fdfdg-4346",
+	    "Grade": 7,
+	    "StudentDetails": [
+	        {
+	            "FirstName": "Peggy",
+	            "LastName": "Williams",
+	            "YearJoined": 2012
+	        }
+	    ],
+	    "StudentClassCollection": [
+	        {
+	            "ClassId": "89084343",
+	            "ClassParticipation": "Satisfied",
+	            "ClassParticipationRank": "High",
+	            "Score": 93,
+	            "PerformedActivity": false
+	        },
+	        {
+	            "ClassId": "78547522",
+	            "ClassParticipation": "NotSatisfied",
+	            "ClassParticipationRank": "None",
+	            "Score": 74,
+	            "PerformedActivity": false
+	        },
+	        {
+	            "ClassId": "78675563",
+	            "ClassParticipation": "Satisfied",
+	            "ClassParticipationRank": "Low",
+	            "Score": 83,
+	            "PerformedActivity": true
+	        }
+	    ]
+	}
 
-    {
-        "StudentId": "trgfg-5454-fdfdg-4346",
-        "Grade": 7,
-        "StudentDetails": [
-            {
-                "FirstName": "Peggy",
-                "LastName": "Williams",
-                "YearJoined": 2012
-            }
-        ],
-        "StudentClassCollection": [
-            {
-                "ClassId": "89084343",
-                "ClassParticipation": "Satisfied",
-                "ClassParticipationRank": "High",
-                "Score": 93,
-                "PerformedActivity": false
-            },
-            {
-                "ClassId": "78547522",
-                "ClassParticipation": "NotSatisfied",
-                "ClassParticipationRank": "None",
-                "Score": 74,
-                "PerformedActivity": false
-            },
-            {
-                "ClassId": "78675563",
-                "ClassParticipation": "Satisfied",
-                "ClassParticipationRank": "Low",
-                "Score": 83,
-                "PerformedActivity": true
-            }
-        ]
-    }
+檔案位於 wasbs://processjson@hditutorialdata.blob.core.windows.net/。如需關於搭配 HDInsight 使用 Azure Blob 儲存體的詳細資訊，請參閱[在 HDInsight 上搭配 Hadoop 使用 HDFS 相容的 Azure Blob 儲存體](hdinsight-hadoop-use-blob-storage.md)。如果您想要的話，可以將檔案複製到叢集的預設容器。
 
-The file can be found at wasbs://processjson@hditutorialdata.blob.core.windows.net/. For more information on using Azure Blob storage with HDInsight, see [Use HDFS-compatible Azure Blob storage with Hadoop in HDInsight](hdinsight-hadoop-use-blob-storage.md). You can copy the file to the default container of your cluster if you want.
+在本教學課程中，您將使用 Hive 主控台。如需開啟 Hive 主控台的指示，請參閱[利用遠端桌面搭配使用 Hive 與 HDInsight 上的 Hadoop](hdinsight-hadoop-use-hive-remote-desktop.md)。
 
-In this tutorial, you will use the Hive console.  For instructions of opening the Hive console, see [Use Hive with Hadoop on HDInsight with Remote Desktop](hdinsight-hadoop-use-hive-remote-desktop.md).
+##簡維 JSON 文件
 
-##<a name="flatten-json-documents"></a>Flatten JSON documents
+下一節所列的方法需要 JSON 文件在單一資料列中。因此，您必須將 JSON 文件簡維成一個字串。如果已簡維 JSON 文件，您就可以略過此步驟，直接進入與分析 JSON 資料相關的下一節。
 
-The methods listed in the next section require the JSON document in a single row. So you must flatten the JSON document to a string. If your JSON document is already flattened, you can skip this step and go straight to the next section on Analyzing JSON data.
+	DROP TABLE IF EXISTS StudentsRaw;
+	CREATE EXTERNAL TABLE StudentsRaw (textcol string) STORED AS TEXTFILE LOCATION "wasb://processjson@hditutorialdata.blob.core.windows.net/";
 
-    DROP TABLE IF EXISTS StudentsRaw;
-    CREATE EXTERNAL TABLE StudentsRaw (textcol string) STORED AS TEXTFILE LOCATION "wasb://processjson@hditutorialdata.blob.core.windows.net/";
+	DROP TABLE IF EXISTS StudentsOneLine;
+	CREATE EXTERNAL TABLE StudentsOneLine
+	(
+	  json_body string
+	)
+	STORED AS TEXTFILE LOCATION '/json/students';
 
-    DROP TABLE IF EXISTS StudentsOneLine;
-    CREATE EXTERNAL TABLE StudentsOneLine
-    (
-      json_body string
-    )
-    STORED AS TEXTFILE LOCATION '/json/students';
+	INSERT OVERWRITE TABLE StudentsOneLine
+	SELECT CONCAT_WS(' ',COLLECT_LIST(textcol)) AS singlelineJSON
+	      FROM (SELECT INPUT__FILE__NAME,BLOCK__OFFSET__INSIDE__FILE, textcol FROM StudentsRaw DISTRIBUTE BY INPUT__FILE__NAME SORT BY BLOCK__OFFSET__INSIDE__FILE) x
+	      GROUP BY INPUT__FILE__NAME;
 
-    INSERT OVERWRITE TABLE StudentsOneLine
-    SELECT CONCAT_WS(' ',COLLECT_LIST(textcol)) AS singlelineJSON
-          FROM (SELECT INPUT__FILE__NAME,BLOCK__OFFSET__INSIDE__FILE, textcol FROM StudentsRaw DISTRIBUTE BY INPUT__FILE__NAME SORT BY BLOCK__OFFSET__INSIDE__FILE) x
-          GROUP BY INPUT__FILE__NAME;
+	SELECT * FROM StudentsOneLine
 
-    SELECT * FROM StudentsOneLine
+原始 JSON 檔案位於 **wasbs://processjson@hditutorialdata.blob.core.windows.net/**。*StudentsRaw Hive* 資料表指向原始未簡維的 JSON 文件。
 
-The raw JSON file is located at **wasbs://processjson@hditutorialdata.blob.core.windows.net/**. The *StudentsRaw* Hive table points to the raw un-flattened JSON document.
+*StudentsOneLine* Hive 資料表會將資料儲存在 HDInsight 預設檔案系統的 */json/students/* 路徑下。
 
-The *StudentsOneLine* Hive table will store the data in the HDInsight default file system under the */json/students/* path.
+INSERT 陳述式會簡維後的 JSON 資料填入 StudentOneLine 資料表。
 
-The INSERT statement populate the StudentOneLine table with the flattened JSON data.
+SELECT 陳述式應該只會傳回 1 個資料列。
 
-The SELECT statement shall only return 1 row.
+以下是 SELECT 陳述式的輸出：
 
-Here is the output of the SELECT statement:
+![JSON 文件簡維。][image-hdi-hivejson-flatten]
 
-![Flattening of the JSON document.][image-hdi-hivejson-flatten]
+##在 Hive 中分析 JSON 文件
 
-##<a name="analyze-json-documents-in-hive"></a>Analyze JSON documents in Hive
+Hive 提供三種不同的機制，可在 JSON 文件上執行查詢：
 
-Hive provides three different mechanisms to run queries on JSON documents:
+- 使用 GET\_JSON\_OBJECT UDF (使用者定義函數)
+- 使用 JSON\_TUPLE UDF
+- 使用自訂 SerDe
+- 使用 Python 或其他語言撰寫您自己的 UDF。請參閱[這篇文章][hdinsight-python]，了解如何使用 Hive 執行您自己的 Python 程式碼。
 
-- use the GET\_JSON\_OBJECT UDF (User Defined Function)
-- use the JSON_TUPLE UDF
-- use custom SerDe
-- write you own UDF using Python or other languages. See [this article][hdinsight-python] on running your own Python code with Hive.
+### 使用 GET\_JSON\_OBJECT UDF
+Hive 提供內建的 UDF，稱為 [get json objec](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF#LanguageManualUDF-get_json_object)，可在執行階段期間執行 JSON 查詢。此方法採用兩個引數 – 資料表名稱和方法名稱，後者具有簡維 JSON 文件和必須剖析的 JSON 欄位。讓我們看看此 UDF 如何運作的範例。
 
-### <a name="use-the-get\_json_object-udf"></a>Use the GET\_JSON_OBJECT UDF
-Hive provides a built-in UDF called [get json object](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF#LanguageManualUDF-get_json_object) which can perform JSON querying during run time. This method takes two arguments – the table name and method name which has the flattened JSON document and the JSON field that needs to be parsed. Let’s look at an example to see how this UDF works.
+取得每個學生的姓氏與名字
 
-Get the first name and last name for each student
+	SELECT
+	  GET_JSON_OBJECT(StudentsOneLine.json_body,'$.StudentDetails.FirstName'),
+	  GET_JSON_OBJECT(StudentsOneLine.json_body,'$.StudentDetails.LastName')
+	FROM StudentsOneLine;
 
-    SELECT
-      GET_JSON_OBJECT(StudentsOneLine.json_body,'$.StudentDetails.FirstName'),
-      GET_JSON_OBJECT(StudentsOneLine.json_body,'$.StudentDetails.LastName')
-    FROM StudentsOneLine;
+以下是在主控台視窗中執行此查詢時的輸出。
 
-Here is the output when running this query in console window.
+![get\_json\_object UDF][image-hdi-hivejson-getjsonobject]
 
-![get_json_object UDF][image-hdi-hivejson-getjsonobject]
+get-json\_object UDF 有幾項限制。
 
-There are a few limitations of the get-json_object UDF.
-
-- Because each field in the query requires re-parsing the query, it affects the performance.
-- GET\_JSON_OBJECT() returns the string representation of an array. To convert this to a Hive array, you will have to use regular expressions to replace the square brackets ‘[‘ and ‘]’ and then also call split to get the array.
+- 因為查詢中的每個欄位都需要重新剖析查詢，所以它會影響效能。
+- GET\_JSON\_OBJECT() 會傳回陣列的字串表示法。若要將其轉換成 Hive 陣列，您必須使用規則運算式來取代方括號 ‘[‘ 和 ‘]’，然後呼叫分割以取得陣列。
 
 
-This is why the Hive wiki recommends using json_tuple.  
+這就是 Hive wiki 建議使用 json\_tuple 的原因。
 
-### <a name="use-the-json_tuple-udf"></a>Use the JSON_TUPLE UDF
+### 使用 JSON\_TUPLE UDF
 
-Another UDF provided by Hive is called [json_tuple](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF#LanguageManualUDF-json_tuple) which performs better than [get_ json _object](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF#LanguageManualUDF-get_json_object). This method takes a set of keys and a JSON string, and returns a tuple of values using one function. The following query returns the student id and the grade from the JSON document:
+Hive 所提供的另一個 UDF 稱為 [json\_tuple](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF#LanguageManualUDF-json_tuple)，其效能比 [get\_ json \_object](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF#LanguageManualUDF-get_json_object) 更高。這個方法會採用一組索引鍵和 JSON 字串，並使用一個函式傳回值的 tuple。下列查詢會從 JSON 文件傳回學生識別碼以及年級：
 
     SELECT q1.StudentId, q1.Grade
       FROM StudentsOneLine jt
       LATERAL VIEW JSON_TUPLE(jt.json_body, 'StudentId', 'Grade') q1
         AS StudentId, Grade;
 
-The output of this script in the Hive console:
+這個指令碼在 Hive 主控台的輸出：
 
-![json_tuple UDF][image-hdi-hivejson-jsontuple]
+![json\_tuple UDF][image-hdi-hivejson-jsontuple]
 
-JSON\_TUPLE uses the [lateral view](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+LateralView) syntax in Hive which allows json\_tuple to create a virtual table by applying the UDT function to each row of the original table.  Complex JSONs become too unwieldy because of the repeated use of LATERAL VIEW. Furthermore, JSON_TUPLE cannot handle nested JSONs.
+JSON\_TUPLE 使用 Hive 中的[橫向檢視](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+LateralView)語法，可讓 json\_tuple 將 UDT 函數套用到原始資料表的每個資料列，以建立一個虛擬資料表。複雜 JSON 會重複使用橫向檢視，因此變得難以使用。此外，JSON\_TUPLE 無法處理巢狀 JSON。
 
 
-###<a name="use-custom-serde"></a>Use custom SerDe
+###使用自訂 SerDe
 
-SerDe is the best choice for parsing nested JSON documents, it allows you to define the JSON schema, and use the schema to parse the documents. In this tutorial, you will use one of the more popular SerDe that has been developed by [rcongiu](https://github.com/rcongiu).
+SerDe 是用來剖析巢狀 JSON 文件的最佳選擇，它可讓您定義 JSON 結構描述，並使用該結構描述來剖析文件。在本教學課程中，您將使用其中一個已由 [rcongiu](https://github.com/rcongiu) 開發的熱門 SerDe。
 
-**To use the custom SerDe:**
+**使用自訂 SerDe：**
 
-1. Install [Java SE Development Kit 7u55 JDK 1.7.0_55](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html#jdk-7u55-oth-JPR). Choose the Windows X64 version of the JDK if you are going to be using the Windows deployment of HDInsight
+1. 安裝 [Java SE 開發套件 7u55 JDK 1.7.0\_55](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html#jdk-7u55-oth-JPR)。如果您要使用 HDInsight 的 Windows 部署，請選擇 Windows x64 版本的 JDK。
 
-    >[AZURE.WARNING] JDK 1.8 doesn't work with this SerDe.
+	>[AZURE.WARNING] JDK 1.8 不適用於此 SerDe。
 
-    After the installation is completed, add a new user environment variable:
+	安裝完成之後，請加入新的使用者環境變數：
 
-    1. Open **View advanced system settings** from the Windows screen.
-    2. Click **Environment Variables**.  
-    3. Add a new **JAVA_HOME** environment variable is pointing to **C:\Program Files\Java\jdk1.7.0_55** or wherever your JDK is installed.
+	1. 從 Windows 畫面開啟 [**檢視進階系統設定**]。
+	2. 按一下 [**環境變數**]。
+	3. 加入新的 **JAVA\_HOME** 環境變數，其指向 **C:\\Program Files\\Java\\jdk1.7.0\_55** 或任何安裝 JDK 的位置。
 
-    ![Setting up correct config values for JDK][image-hdi-hivejson-jdk]
+	![為 JDK 設定正確的組態值][image-hdi-hivejson-jdk]
 
-2. Install [Maven 3.3.1](http://mirror.olnevhost.net/pub/apache/maven/maven-3/3.3.1/binaries/apache-maven-3.3.1-bin.zip)
+2. 安裝 [Maven 3.3.1](http://mirror.olnevhost.net/pub/apache/maven/maven-3/3.3.1/binaries/apache-maven-3.3.1-bin.zip)
 
-    Add the bin folder to your path by going to Control Panel-->Edit the System Variables for your account Environment variables. The screenshot below shows you how to do this.
+	移至 [控制台] --> [編輯帳戶的系統變數]  環境變數，即可新增 bin 資料夾至您的路徑。以下螢幕擷取畫面顯示如何執行此動作。
 
-    ![Setting up Maven][image-hdi-hivejson-maven]
+	![設定 Maven][image-hdi-hivejson-maven]
 
-3. Clone the project from [Hive-JSON-SerDe](https://github.com/sheetaldolas/Hive-JSON-Serde/tree/master) github site. You can do this by clicking on the “Download Zip” button as shown in the screenshot below.
+3. 從 [Hive-JSON-SerDe](https://github.com/sheetaldolas/Hive-JSON-Serde/tree/master) github 網站複製專案。您可以按一下 [下載 Zip] 按鈕即可完成，如以下螢幕擷取畫面所示。
 
-    ![Cloning the project][image-hdi-hivejson-serde]
+	![複製專案][image-hdi-hivejson-serde]
 
-4: Go to the folder where you have downloaded this package and  type “mvn package”. This should create the necessary jar files that you can then copy over to the cluster.
+4：移至您已將此封裝下載至其中的資料夾，並輸入 “mvn package”。這樣應該會建立您稍後會複製到叢集的必要 jar 檔案。
 
-5: Go to the target folder under the root folder where you downloaded the package. Upload the json-serde-1.1.9.9-Hive13-jar-with-dependencies.jar file to head-node of your cluster. I usually put it under the hive binary folder: C:\apps\dist\hive-0.13.0.2.1.11.0-2316\bin or something similar.
+5：移至根資料夾 (您已將封裝下載至其中) 下的目標資料夾。上傳 json-serde-1.1.9.9-Hive13-jar-with-dependencies.jar 檔案到叢集的前端節點。我通常會將它放在 hive 二進位資料夾底下：C:\\apps\\dist\\hive-0.13.0.2.1.11.0-2316\\bin 或類似位置。
 
-6: In the hive prompt, type “add jar /path/to/json-serde-1.1.9.9-Hive13-jar-with-dependencies.jar”. Since in my case, the jar is in the C:\apps\dist\hive-0.13.x\bin folder, I can directly add the jar with the name as shown below:
+6：在 hive 提示字元中，輸入 “add jar /path/to/json-serde-1.1.9.9-Hive13-jar-with-dependencies.jar”。因為在我的案例中，jar 位於 C:\\apps\\dist\\hive-0.13.x\\bin 資料夾中，所以我可以直接以此名稱新增 jar，如下所示：
 
     add jar json-serde-1.1.9.9-Hive13-jar-with-dependencies.jar;
 
-    ![Adding JAR to your project][image-hdi-hivejson-addjar]
+	![Adding JAR to your project][image-hdi-hivejson-addjar]
 
-Now, you are ready to use the SerDe to run queries against the JSON document.
+現在，您已準備好使用 SerDe 對 JSON 文件執行查詢。
 
-The following statement create a table with a defined schema
+下列陳述式會利用已定義的結構描述建立資料表
 
     DROP TABLE json_table;
     CREATE EXTERNAL TABLE json_table (
@@ -204,49 +203,48 @@ The following statement create a table with a defined schema
     ) ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'
     LOCATION '/json/students';
 
-To list the first name and last name of the student
+列出學生的姓氏與名字
 
     SELECT StudentDetails.FirstName, StudentDetails.LastName FROM json_table;
 
-Here is the result from the Hive console.
+以下是 Hive 主控台的結果。
 
-![SerDe Query 1][image-hdi-hivejson-serde_query1]
+![SerDe 查詢 1][image-hdi-hivejson-serde_query1]
 
-To calculate the sum of scores of the JSON document
+計算 JSON 文件的分數總和
 
     SELECT SUM(scores)
     FROM json_table jt
       lateral view explode(jt.StudentClassCollection.Score) collection as scores;
 
-The query above uses [lateral view explode](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+LateralView) UDF to expand the array of scores so that they can be summed.
+上述查詢會使用[橫向檢視切割](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+LateralView) UDF 展開分數的陣列，讓它們可以加總。
 
-Here is the output from the Hive console.
+以下是 Hive 主控台的輸出。
 
-![SerDe Query 2][image-hdi-hivejson-serde_query2]
+![SerDe 查詢 2][image-hdi-hivejson-serde_query2]
 
-To find which subjects a given student has scored more than 80 points SELECT  
-      jt.StudentClassCollection.ClassId FROM json_table jt lateral view explode(jt.StudentClassCollection.Score) collection as score  where score > 80;
+若要尋找特定學生分數超過 80 分的科目，請使用 SELECT jt.StudentClassCollection.ClassId FROM json\_table jt lateral view explode(jt.StudentClassCollection.Score) collection as score where score > 80;
 
-The query above returns a Hive array unlike get\_json\_object which returns a string.
+上述查詢傳回的 Hive 陣列與傳回字串的 get\_json\_object 不同。
 
-![SerDe Query 3][image-hdi-hivejson-serde_query3]
+![SerDe 查詢 3][image-hdi-hivejson-serde_query3]
 
-If you want to skil malformed JSON, then as explained in the [wiki page](https://github.com/sheetaldolas/Hive-JSON-Serde/tree/master) of this SerDe you can achieve that by typing the code below:  
+如果您想要刪除格式不正確的 JSON，然後依照此 SerDe 之 [wiki 頁面](https://github.com/sheetaldolas/Hive-JSON-Serde/tree/master) 的說明內容，您可以輸入下列程式碼即可達成：
 
     ALTER TABLE json_table SET SERDEPROPERTIES ( "ignore.malformed.json" = "true");
 
 
 
 
-##<a name="summary"></a>Summary
-In conclusion, the type of JSON operator in Hive that you choose depends on your scenario. If you have a simple JSON document and you only have one field to look up on – you can choose to use the Hive UDF get\_json\_object. If you have more than one keys to look up on then you can use json_tuple. If you have a nested document, then you should use the JSON SerDe.
+##摘要
+總而言之，您在 Hive 中選擇的 JSON 運算子類型取決於您的案例。如果您有一個簡單的 JSON 文件，且您只需要查閱一個欄位 – 您就可以選擇使用 Hive UDF get\_json\_object。如果您有多個索引鍵需要查閱，則您可以使用 json\_tuple。如果您有巢狀文件，您應該使用 JSON SerDe。
 
-For other related articles, see
+如需其他相關文章，請參閱
 
-- [Use Hive and HiveQL with Hadoop in HDInsight to analyze a sample Apache log4j file](hdinsight-use-hive.md)
-- [Analyze flight delay data by using Hive in HDInsight](hdinsight-analyze-flight-delay-data.md)
-- [Analyze Twitter data using Hive in HDInsight](hdinsight-analyze-twitter-data.md)
-- [Run a Hadoop job using DocumentDB and HDInsight](../documentdb/documentdb-run-hadoop-with-hdinsight.md)
+- [搭配 HDInsight 中的 Hadoop 使用 Hive 和 HiveQL 來分析範例 Apache Log4j 檔案](hdinsight-use-hive.md)
+- [在 HDInsight 中使用 Hive 分析航班延誤資料](hdinsight-analyze-flight-delay-data.md)
+- [在 HDInsight 中使用 Hive 分析 Twitter 資料](hdinsight-analyze-twitter-data.md)
+- [使用 DocumentDB 和 HDInsight 執行 Hadoop 工作](../documentdb/documentdb-run-hadoop-with-hdinsight.md)
 
 [hdinsight-python]: hdinsight-python.md
 
@@ -262,8 +260,4 @@ For other related articles, see
 [image-hdi-hivejson-serde_query3]: ./media/hdinsight-using-json-in-hive/serde_query3.png
 [image-hdi-hivejson-serde_result]: ./media/hdinsight-using-json-in-hive/serde_result.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0727_2016-->

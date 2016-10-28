@@ -1,68 +1,60 @@
 <properties
-    pageTitle="Azure AD Connect sync: Synchronization Service Manager UI | Microsoft Azure"
-    description="Understand the Operations tab in the Synchronization Service Manager for Azure AD Connect."
-    services="active-directory"
-    documentationCenter=""
-    authors="andkjell"
-    manager="femila"
-    editor=""/>
+	pageTitle="Azure AD Connect 同步處理︰Synchronization Service Manager UI | Microsoft Azure"
+	description="了解 Azure AD Connect 的 Synchronization Service Manager 中的 [作業] 索引標籤。"
+	services="active-directory"
+	documentationCenter=""
+	authors="andkjell"
+	manager="femila"
+	editor=""/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/07/2016"
-    ms.author="billmath"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/07/2016"
+	ms.author="andkjell"/>
 
 
+# Azure AD Connect 同步處理︰Synchronization Service Manager
 
-# <a name="azure-ad-connect-sync:-synchronization-service-manager"></a>Azure AD Connect sync: Synchronization Service Manager
-
-[Operations](active-directory-aadconnectsync-service-manager-ui-operations.md) | [Connectors](active-directory-aadconnectsync-service-manager-ui-connectors.md) | [Metaverse Designer](active-directory-aadconnectsync-service-manager-ui-mvdesigner.md) | [Metaverse Search](active-directory-aadconnectsync-service-manager-ui-mvsearch.md)
+[作業](active-directory-aadconnectsync-service-manager-ui-operations.md) | [連接器](active-directory-aadconnectsync-service-manager-ui-connectors.md) | [Metaverse 設計工具](active-directory-aadconnectsync-service-manager-ui-mvdesigner.md) | [Metaverse 搜尋](active-directory-aadconnectsync-service-manager-ui-mvsearch.md)
 --- | --- | --- | ---
 
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/operations.png)
 
-The operations tab shows the results from the most recent operations. This tab is key to understand and troubleshoot issues.
+[作業] 索引標籤顯示最新作業的結果。此索引標籤主要是用來了解及疑難排解問題。
 
-## <a name="understand-the-information-visible-in-the-operations-tab"></a>Understand the information visible in the operations tab
-The top half shows all runs in chronic order. By default, the operations log keeps information about the last seven days, but this setting can be changed with the [scheduler](active-directory-aadconnectsync-feature-scheduler.md). You want to look for any run that does not show a success status. You can change the sorting by clicking the headers.
+## 了解 [作業] 索引標籤中顯示的資訊
+上半部會以紀事輯順序來顯示所有執行。根據預設，作業記錄會保留最後 7 天的相關資訊，但是您可以利用[排程器](active-directory-aadconnectsync-feature-scheduler.md)來變更此設定。若您想要尋找任何未顯示成功狀態的執行。您可以按一下標頭來變更排序。
 
-The **Status** column is the most important information and shows the most severe problem for a run. Here is a quick summary of the most common statuses in order of priority to investigate (where * indicate several possible error strings).
+[狀態] 欄位是最重要的資訊，並顯示最嚴重的執行問題。以下快速摘要依照優先順序來調查的最常見狀態 (其中 * 表示數個可能的錯誤字串)。
 
-Status | Comment
+狀態 | 註解
 --- | ---
-stopped-* | The run could not complete. For example, if the remote system is down and cannot be contacted.
-stopped-error-limit | There are more than 5,000 errors. The run was automatically stopped due to the large number of errors.
-completed-\*-errors | The run completed, but there are errors (fewer than 5,000) that should be investigated.
-completed-\*-warnings | The run completed, but some data is not in the expected state. If you have errors, then this message is usually only a symptom. Until you have addressed errors, you should not investigate warnings.
-success | No issues.
+stopped-* | 執行無法完成。例如，如果遠端系統已關閉且無法聯繫。
+stopped-error-limit | 有 5,000 個以上的錯誤。執行因錯誤數量過多而自動停止。
+completed-*-errors | 執行已完成，但發生應調查的錯誤 (數量少於 5,000 個)。
+completed-*-warnings | 執行完成，但某些資料並未處於預期的狀態。如果您遇到錯誤，則此訊息通常只是一個徵狀。在您解決錯誤之前，不應該調查警告。
+成功 | 沒有問題。
 
-When you select a row, the bottom updates to show the details of that run. To the far left of the bottom, you might have a list saying **Step #**. This list only appears if you have multiple domains in your forest where each domain is represented by a step. The domain name can be found under the heading **Partition**. Under **Synchronization Statistics**, you can find more information about the number of changes that were processed. You can click the links to get a list of the changed objects. If you have objects with errors, those errors show up under **Synchronization Errors**.
+當您選取某個資料列時，底部會更新以顯示該執行的詳細資料。在底部的最左邊，可能會有一份顯示 [步驟 #] 的清單。如果您的樹系中有多個網域，而每個網域都以一個步驟來代表，則只會顯示此清單。您可以在 [分割區] 標題下方找到網域名稱。在 [同步處理統計資料] 下方，您可以找到關於已處理的變更次數詳細資訊。您可以按一下連結，以取得變更的物件清單。如果您有物件發生錯誤，這些會顯示於 [同步處理錯誤] 下方。
 
-## <a name="troubleshoot-errors-in-operations-tab"></a>Troubleshoot errors in operations tab
-![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/errorsync.png)  
-When you have errors, both the object in error and the error itself are links that provides more information.
+## 疑難排解 [作業] 索引標籤中的錯誤
+![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/errorsync.png) 當您遇到錯誤時，錯誤中的物件與錯誤本身都是連結，可提供更多資訊。
 
-Start by clicking the error string (**sync-rule-error-function-triggered** in the picture). You are first presented with an overview of the object. To see the actual error, click the button **Stack Trace**. This trace provides debug level information for the error.
+首先按一下錯誤字串 (圖片中的 **sync-rule-error-function-triggered**)。您會先看到物件的概觀。若要查看實際的錯誤，可按一下 [堆疊追蹤] 按鈕。此追蹤會提供錯誤的偵錯層級資訊。
 
-**TIP:** You can right-click in the **call stack information** box, choose **select all**, and **copy**. You can then copy the stack and look at the error in your favorite editor, such as Notepad.
+**秘訣︰**您可以使用滑鼠右鍵按一下 [呼叫堆疊資訊] 方塊、選擇 [全選]，然後按一下 [複製]。您接著可以複製堆疊，並在您喜好的編輯器 (例如 [記事本]) 中查看此錯誤。
 
-- If the error is from **SyncRulesEngine**, then the call stack information first has a list of all attributes on the object. Scroll down until you see the heading **InnerException =>**.  
-![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/errorinnerexception.png)  
-The line after shows the error. In the picture above, the error is from a custom Sync Rule Fabrikam created.
+- 如果錯誤來自 **SyncRulesEngine**，則呼叫堆疊資訊首先具備物件上所有屬性的清單。向下捲動，直到您看到 **InnerException =>** 標題為止。![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/errorinnerexception.png) 下一行會顯示錯誤。在上圖中，錯誤是來自所建立的自訂同步處理規則 Fabrikam。
 
-If the error itself does not give enough information, then it is time to look at the data itself. You can click the link with the object identifier and [Follow an object and its data through the system](active-directory-aadconnectsync-service-manager-ui-connectors.md#follow-an-object-and-its-data-through-the-system).
+如果錯誤本身未提供足夠的資訊，則請查看資料本身。您可以按一下物件識別碼的連結，然後[在整個系統中追蹤物件及其資料](active-directory-aadconnectsync-service-manager-ui-connectors.md#follow-an-object-and-its-data-through-the-system)。
 
-## <a name="next-steps"></a>Next steps
-Learn more about the [Azure AD Connect sync](active-directory-aadconnectsync-whatis.md) configuration.
+## 後續步驟
+深入了解 [Azure AD Connect 同步](active-directory-aadconnectsync-whatis.md)組態。
 
-Learn more about [Integrating your on-premises identities with Azure Active Directory](active-directory-aadconnect.md).
+深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!----HONumber=AcomDC_0907_2016-->

@@ -1,7 +1,7 @@
 
 <properties
-    pageTitle="Try Azure RemoteApp on your device in 3 minutes or less | Microsoft Azure"
-    description="Test drive Azure RemoteApp functionality without installing the service."
+    pageTitle="只需 3 分鐘或以下的時間便可在您的裝置上嘗試 Azure RemoteApp | Microsoft Azure"
+    description="在無需安裝服務的情況下測試磁碟機 Azure RemoteApp 功能。"
     services="remoteapp"
     documentationCenter=""
     authors="lizap"
@@ -18,29 +18,24 @@
 
 
 
-
-# <a name="try-azure-remoteapp-on-your-device-in-3-minutes-or-less"></a>Try Azure RemoteApp on your device in 3 minutes or less
+# 只需 3 分鐘或以下的時間便可在您的裝置上嘗試 Azure RemoteApp
 
 > [AZURE.IMPORTANT]
-> Azure RemoteApp is being discontinued. Read the [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
-Want to see Azure RemoteApp on your device? You can access our demo deployment for 10 minutes, as long as you have a Microsoft account. We have Office and a few other applications available. This is a great way to test drive the user experience for Azure RemoteApp in less than 3 minutes.
+想要在您的裝置上看到 Azure RemoteApp 嗎？ 只要您有 Microsoft 帳戶，您便有 10 分鐘的時間可以存取我們的示範部署。我們有 Office 和一些其他可用的應用程式。若要在 3 分鐘內測試與體驗 Azure RemoteApp 的使用者經驗，這會是一個很好的方法。
 
-Interested?
+有興趣嗎？
 
-1. Go to to [http://remoteapp.azure.com](http://remoteapp.azure.com).
-2. Click **Install Client** in the upper right corner.  
-3. The system automatically detects your device and will take you to the client for your device. Install the client.
-4. Go back [http://remoteapp.azure.com](http://remoteapp.azure.com) and  sign in with your Microsoft account.
+1. 請移至 [http://remoteapp.azure.com](http://remoteapp.azure.com)。
+2. 按一下右上角的 [**安裝用戶端**]。
+3. 系統便會自動偵測您的裝置，並帶領您到裝置的用戶端。安裝用戶端。
+4. 返回 [http://remoteapp.azure.com](http://remoteapp.azure.com) 並使用您的 Microsoft 帳戶登入。
 
-You can now access applications running in real time on Azure RemoteApp.
+您現在便可以存取 Azure RemoteApp 上即時執行的應用程式。
 
-Your opinion matters. At the end of each session, you will see a dialog box for your feedback. If you have a minute, tell us your thoughts and let us know whether you would like Microsoft to contact you for additional information.
+我們非常重視您的意見。在每個工作階段結束時，您會看到一個可填寫您寶貴意見的對話方塊。如果您有空的話，請告訴我們您的想法，並讓我們知道 Microsoft 是否可以與您連絡以取得額外資訊。
 
->[AZURE.NOTE] Because this is a controlled environment for demo use, we have not enabled external internet access from the published demo applications. Because of this, services like OneDrive are not accessible. Also, clipboard sharing (Copy & Paste) and USB and printer redirection are disabled.  
+>[AZURE.NOTE] 因為這是個可供示範使用的受控制環境，我們尚未提供從已發佈的示範應用程式的外部網際網路存取。因此，您無法存取如 OneDrive 的服務。此外，我們還將剪貼簿共用 (複製和貼上) 及 USB 和印表機重新導向停用。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

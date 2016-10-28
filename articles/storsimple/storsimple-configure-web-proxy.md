@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="Set up web proxy for a StorSimple device | Microsoft Azure"
-   description="Learn how to use Windows PowerShell for StorSimple to configure web proxy settings for your StorSimple device."
+   pageTitle="設定 StorSimple 裝置的 Web Proxy | Microsoft Azure"
+   description="了解如何使用 Windows PowerShell for StorSimple 來設定 StorSimple 裝置的 Web Proxy。"
    services="storsimple"
    documentationCenter=""
    authors="alkohli"
@@ -15,145 +15,140 @@
    ms.date="08/17/2016"
    ms.author="alkohli" />
 
+# 為 StorSimple 裝置設定 Web Proxy
 
-# <a name="configure-web-proxy-for-your-storsimple-device"></a>Configure web proxy for your StorSimple device
+## Overview
 
-## <a name="overview"></a>Overview
+本教學課程描述如何使用 Windows PowerShell for StorSimple 來設定和檢視 StorSimple 裝置的 Web Proxy 設定。Web Proxy 設定供 StorSimple 裝置與雲端通訊時使用。Web Proxy 伺服器用來多增加一層安全性、篩選內容、快取以緩解頻寬需求，甚至是協助分析。
 
-This tutorial describes how to use Windows PowerShell for StorSimple to configure and view web proxy settings for your StorSimple device. The web proxy settings are used by the StorSimple device when communicating with the cloud. A web proxy server is used to add another layer of security, filter content, cache to ease bandwidth requirements or even help with analytics.
+Web Proxy 是 StorSimple 裝置的選用設定。您只能透過 Windows PowerShell for StorSimple 來設定 Web Proxy。設定分成兩步驟，如下所示：
 
-Web proxy is an optional configuration for your StorSimple device. You can configure web proxy only via Windows PowerShell for StorSimple. The configuration is a two-step process as follows:
+1. 首先，透過安裝精靈或 Windows PowerShell for StorSimple 指令程式來設定 Web Proxy 設定。
 
-1. You first configure web proxy settings through the setup wizard or Windows PowerShell for StorSimple cmdlets.
+2. 然後，透過 Windows PowerShell for StorSimple 指令程式，啟用已設定的 Web Proxy 設定。
 
-2. You then enable the configured web proxy settings via Windows PowerShell for StorSimple cmdlets.
+Web Proxy 設定完成之後，您可以在 Microsoft Azure StorSimple Manager 服務和 Windows PowerShell for StorSimple 中檢視已設定的 Web Proxy 設定。
 
-After the web proxy configuration is complete, you can view the configured web proxy settings in both the Microsoft Azure StorSimple Manager service and the Windows PowerShell for StorSimple. 
+閱讀本教學課程之後，您將能夠：
 
-After reading this tutorial, you will be able to:
-
-- Configure web proxy by using setup wizard and cmdlets
-- Enable web proxy by using cmdlets
-- View web proxy settings in the Azure classic portal
-- Troubleshoot errors during web proxy configuration
+- 使用安裝精靈和 Cmdlet 來設定 Web Proxy
+- 使用 Cmdlet 來啟用 Web Proxy
+- 在 Azure 傳統入口網站中檢視 Web Proxy 設定
+- 對 Web Proxy 設定期間的錯誤進行疑難排解
 
 
-## <a name="configure-web-proxy-via-windows-powershell-for-storsimple"></a>Configure web proxy via Windows PowerShell for StorSimple
+## 透過 Windows PowerShell for StorSimple 來設定 Web Proxy
 
-You use either of the following to configure web proxy settings:
+您可以使用下列其中一項來設定 Web Proxy 設定：
 
-- Setup wizard to guide you through the configuration steps.
+- 安裝精靈來引導您完成設定步驟。
 
-- Cmdlets in Windows PowerShell for StorSimple.
+- Windows PowerShell for StorSimple 中的 Cmdlet。
 
-Each of these methods is discussed in the following sections.
+下列各節討論上述每一種方法。
 
-## <a name="configure-web-proxy-via-the-setup-wizard"></a>Configure web proxy via the setup wizard
+## 透過安裝精靈來設定 Web Proxy
 
-You can use the setup wizard to guide you through the steps for web proxy configuration. Perform the following steps to configure web proxy on your device.
+您可以使用安裝精靈引導您完成 Web Proxy 設定的步驟。執行下列步驟在裝置上設定 Web Proxy。
 
-#### <a name="to-configure-web-proxy-via-the-setup-wizard"></a>To configure web proxy via the setup wizard
+#### 透過安裝精靈來設定 Web Proxy
 
-1. In the serial console menu, choose option 1, **Log in with full access** and provide the **device administrator password**. Type the following command to start a setup wizard session:
+1. 在序列主控台功能表中，選擇選項 1 [**使用完整存取權登入**]，並提供 [**裝置系統管理員密碼**]。輸入下列命令以啟動安裝精靈工作階段：
 
     `Invoke-HcsSetupWizard`
 
-2. If this is the first time that you have used the setup wizard for device registration, you will need to configure all the required network settings until you reach the web proxy configuration. If your device is already registered, you can accept all the configured network settings until you reach the web proxy configuration. In the setup wizard, when prompted to configure web proxy settings, type **Yes**.
+2. 如果這是第一次使用安裝精靈來註冊裝置，您必須設定所有必要的網路設定，最後才會進入 Web Proxy 設定。如果您尚未註冊您的裝置，您可以接受所有已設定的網路設定，直到您到達 Web Proxy 組態。在安裝精靈中，當系統提示您設定 Web Proxy 組態時，請輸入**是**。
 
-3. For the **Web Proxy URL**, specify the IP address or the fully qualified domain name (FQDN) of your web proxy server and the TCP port number that you would like your device to use when communicating with the cloud. Use the following format:
+3. 在 [**Web Proxy URL**] 中，指定 Web Proxy 伺服器的 IP 位址或完整網域名稱 (FQDN)，以及裝置與雲端通訊時使用的 TCP 連接埠號碼。請使用下列格式：
 
-    `http://<IP address or FQDN of the web proxy server>:<TCP port number>`
+	`http://<IP address or FQDN of the web proxy server>:<TCP port number>`
 
-    By default, TCP port number 8080 is specified.
+	預設會指定 TCP 連接埠號碼 8080。
 
-4. Choose the authentication type as **NTLM**, **Basic**, or **None**. Basic is the least secure authentication for the proxy server configuration. NT LAN Manager (NTLM) is a highly secure and complex authentication protocol that uses a three-way messaging system (sometimes four if additional integrity is required) to authenticate a user. The default authentication is NTLM. For more information, see [Basic](http://hc.apache.org/httpclient-3.x/authentication.html) and [NTLM authentication](http://hc.apache.org/httpclient-3.x/authentication.html). 
+4. 選擇驗證類型為 [**NTLM**]、[**基本**] 或 [**無**]。[基本] 是 Proxy 伺服器設定最不安全的驗證。NT LAN Manager (NTLM) 是非常安全和複雜的驗證通訊協定，使用三向傳訊系統 (需要更高完整性時，則是四向) 來驗證使用者。預設驗證為 NTLM。如需詳細資訊，請參閱[基本](http://hc.apache.org/httpclient-3.x/authentication.html)和 [NTLM 驗證](http://hc.apache.org/httpclient-3.x/authentication.html)。
 
-    > [AZURE.IMPORTANT] **In the StorSimple Manager service, the device monitoring charts do not work when Basic or NTLM authentication is enabled in the proxy server configuration for the device. For the monitoring charts to work, you will need to ensure that authentication is set to NONE.**
+	> [AZURE.IMPORTANT] **在 StorSimple Manager 服務中，當裝置的 Proxy 伺服器設定中已啟用基本或 NTLM 驗證時，裝置監控圖表沒有作用。為了讓監控圖表發揮作用，您必須確保驗證設定為 [無]。**
 
-5. If you are using authentication, supply a **Web Proxy Username** and a **Web Proxy Password**. You will also need to confirm the password.
+5. 如果您使用驗證，請提供 [**Web Proxy 使用者名稱**] 和 [**Web Proxy 密碼**]。您也必須確認密碼。
 
-    ![Configure Web Proxy On StorSimple Device1](./media/storsimple-configure-web-proxy/IC751830.png)
+	![在 StorSimple 裝置 1 設定 Web Proxy](./media/storsimple-configure-web-proxy/IC751830.png)
 
-If you are registering your device for the first time, continue with the registration. If your device was already registered, the wizard will exit. The configured settings will be saved.
+如果是第一次註冊您的裝置，請繼續註冊。如果您的裝置已註冊，就會結束精靈。將會儲存已設定的設定。
 
-Web proxy will now also be enabled. You can skip the [Enable web proxy](#enable-web-proxy) step and go directly to [View web proxy settings in the Azure classic portal](#view-web-proxy-settings-in-the-azure-classic-portal).
+現在也會啟用 Web Proxy。您可以略過[啟用 Web Proxy](#enable-web-proxy) 步驟，直接移至[在 Azure 傳統入口網站中檢視 Web Proxy 設定](#view-web-proxy-settings-in-the-azure-classic-portal)。
 
 
-## <a name="configure-web-proxy-via-windows-powershell-for-storsimple-cmdlets"></a>Configure web proxy via Windows PowerShell for StorSimple cmdlets
+## 透過 Windows PowerShell for StorSimple Cmdlet 來設定 Web Proxy
 
-An alternate way to configure web proxy settings is via the Windows PowerShell for StorSimple cmdlets. Perform the following steps to configure web proxy.
+設定 Web Proxy 設定的另一種方法是透過 Windows PowerShell for StorSimple Cmdlet。執行下列步驟來設定 Web Proxy。
 
-#### <a name="to-configure-web-proxy-via-cmdlets"></a>To configure web proxy via cmdlets
+#### 透過 Cmdlet 來設定 Web Proxy
 
-1. In the serial console menu, choose option 1, **Log in with full access**. When prompted, provide the **device administrator password**. The default password is `Password1`.
+1. 在序列主控台功能表中，選擇選項 1 [使用完整存取權登入]。出現提示時，提供**裝置系統管理員密碼**。預設密碼為 `Password1`。
 
-2. At the command prompt, type:
+2. 在命令提示字元中，輸入：
 
-    `Set-HcsWebProxy -Authentication NTLM -ConnectionURI "<http://<IP address or FQDN of web proxy server>:<TCP port number>" -Username "<Username for web proxy server>"`
+	`Set-HcsWebProxy -Authentication NTLM -ConnectionURI "<http://<IP address or FQDN of web proxy server>:<TCP port number>" -Username "<Username for web proxy server>"`
 
-    Provide and confirm the password when prompted, as shown below.
+	出現提示時，提供並確認密碼，如下所示。
 
-    ![Configure Web Proxy On StorSimple Device3](./media/storsimple-configure-web-proxy/IC751831.png)
+	![在 StorSimple 裝置 3 設定 Web Proxy](./media/storsimple-configure-web-proxy/IC751831.png)
 
-The web proxy is now configured and needs to be enabled.
+Web Proxy 現在已設定，必須啟用。
 
-## <a name="enable-web-proxy"></a>Enable web proxy
+## 啟用 Web Proxy
 
-Web proxy is disabled by default. After you configure the web proxy settings on your StorSimple device, you need to use the Windows PowerShell for StorSimple to enable the web proxy settings.
+預設會停用 Web Proxy。在 StorSimple 裝置上設定 Web Proxy 設定之後，您需要使用 Windows PowerShell for StorSimple 來啟用 Web Proxy 設定。
 
-> [AZURE.NOTE] **This step will not be required if you used the setup wizard to configure web proxy. Web proxy is automatically enabled by default after a setup wizard session.**
+> [AZURE.NOTE] **如果您使用安裝精靈來設定 Web Proxy，則不需要此步驟。依預設，安裝精靈工作階段之後會自動啟用 Web Proxy。**
 
-Perform the following steps in Windows PowerShell for StorSimple to enable web proxy on your device:
+在 Windows PowerShell for StorSimple 中執行下列步驟，在您的裝置上啟用 Web Proxy：
 
-#### <a name="to-enable-web-proxy"></a>To enable web proxy
+#### 啟用 Web Proxy
 
-1. In the serial console menu, choose option 1, **Log in with full access**. When prompted, provide the **device administrator password**. The default password is `Password1`.
+1. 在序列主控台功能表中，選擇選項 1 [使用完整存取權登入]。出現提示時，提供**裝置系統管理員密碼**。預設密碼為 `Password1`。
 
-2. At the command prompt, type:
+2. 在命令提示字元中，輸入：
 
-    `Enable-HcsWebProxy`
+	`Enable-HcsWebProxy`
 
-    You have now enabled the web proxy configuration on your StorSimple device.
+	您現在已在 StorSimple 裝置上啟用 Web Proxy 設定。
 
-    ![Configure Web Proxy On StorSimple Device4](./media/storsimple-configure-web-proxy/IC751832.png)
+	![在 StorSimple 裝置 4 設定 Web Proxy](./media/storsimple-configure-web-proxy/IC751832.png)
 
-## <a name="view-web-proxy-settings-in-the-azure-classic-portal"></a>View web proxy settings in the Azure classic portal
+## 在 Azure 傳統入口網站中檢視 Web Proxy 設定
 
-The web proxy settings are configured through the Windows PowerShell interface and cannot be changed from within the classic portal. You can, however, view these configured settings in the classic portal. Perform the following steps to view web proxy.
+Web Proxy 設定已透過 Windows PowerShell 介面設定，無法從傳統入口網站內變更。不過，您可以在傳統入口網站中檢視這些已設定的設定。執行下列步驟來檢視 Web Proxy。
 
-#### <a name="to-view-web-proxy-settings"></a>To view web proxy settings
-1. Navigate to **StorSimple Manager service > Devices**. Select and click a device and then go to **Configure**.
-1. Scroll down on the **Configure** page to **Web proxy settings** section. You can view the configured web proxy settings on your StorSimple device as shown below.
+#### 檢視 Web Proxy 設定
+1. 瀏覽至 [StorSimple Manager 服務] > [裝置]。選取並按一下裝置，然後移至 [設定]。
+1. 在 [設定] 頁面向下捲動到 [Web Proxy 設定] 區段。您可以檢視 StorSimple 裝置上已設定的 Web Proxy 設定，如下所示。
 
-    ![View Web Proxy in Management Portal](./media/storsimple-configure-web-proxy/ViewWebProxyPortal_M.png)
+	![在管理入口網站中檢視 Web Proxy](./media/storsimple-configure-web-proxy/ViewWebProxyPortal_M.png)
  
-## <a name="errors-during-web-proxy-configuration"></a>Errors during web proxy configuration
+## 在 Web Proxy 設定期間發生錯誤
 
-If the web proxy settings have been configured incorrectly, error messages will be displayed to the user in Windows PowerShell for StorSimple. The following table explains some of these error messages, their probable causes, and recommended actions.
+如果已正確設定 Web Proxy 設定，Windows PowerShell for StorSimple 中會顯示錯誤訊息給使用者。下表說明其中部分錯誤訊息、可能原因和建議的動作。
 
-|Serial no.|HRESULT error Code|Possible root cause|Recommended action|
+|序號|HRESULT 錯誤碼|可能的根本原因|建議的動作|
 |:---|:---|:---|:---|
-|1.|0x80070001|Command is run from the passive controller and it is not able to communicate with the active controller.|Run the command on the active controller. To run the command from the passive controller, you will need to fix the connectivity from passive to active controller. You will need to engage Microsoft Support if this connectivity is broken.|
-|2.|0x800710dd - The operation identifier is not valid|Proxy settings are not supported on StorSimple virtual device.|Proxy settings are not supported on StorSimple virtual device. These can only be configured on a StorSimple physical device.|
-|3.|0x80070057 - Invalid parameter|One of the parameters provided for the proxy settings is not valid.|The URI is not provided in correct format. Use the following format: `http://<IP address or FQDN of the web proxy server>:<TCP port number>`|
-|4.|0x800706ba - RPC server not available|The root cause is one of the following:</br></br>Cluster is not up.</br></br>Datapath service is not running.</br></br>The command is run from passive controller and it is not able to communicate with the active controller.|Please engage Microsoft Support to ensure that the cluster is up and datapath service is running.</br></br>Run the command from the active controller. If you want to run the command from the passive controller, you will need to ensure the passive controller can communicate with the active controller. You will need to engage Microsoft Support if this connectivity is broken.|
-|5.|0x800706be - RPC call failed|Cluster is down.|Please engage Microsoft Support to ensure that the cluster is up.|
-|6.|0x8007138f - Cluster resource not found|Platform service cluster resource is not found. This can happen when the installation was not proper.|You may need to perform a factory reset on your device. You may need to create a platform resource. Please contact Microsoft Support for next steps.|
-|7.|0x8007138c - Cluster resource not online|Platform or datapath cluster resources are not online.|Please contact Microsoft Support to help ensure that the datapath and platform service resource are online.|
+|1\.|0x80070001|命令是從被動控制器執行，無法與主動控制器通訊。|在主動控制器上執行命令。若要從被動控制器執行命令，您必須將連線從被動控制器修正為主動控制器。如果此連線已中斷，您必須連絡 Microsoft 支援服務。|
+|2\.|0x800710dd - 作業識別碼無效|StorSimple 虛擬裝置不支援 Proxy 設定。|StorSimple 虛擬裝置不支援 Proxy 設定。這些設定只能在 StorSimple 實體裝置上設定。|
+|3\.|0x80070057 - 無效的參數|針對 Proxy 設定提供的其中一個參數無效。|提供的 URI 不是正確格式。使用下列格式：`http://<IP address or FQDN of the web proxy server>:<TCP port number>`|
+|4\.|0x800706ba - RPC 伺服器無法使用|根本原因是下列其中之一：</br></br>叢集尚未啟動。</br></br>資料路徑服務未執行。</br></br>命令是從被動控制器執行，無法與主動控制器通訊。|請連線 Microsoft 支援服務，以確保叢集已啟動且資料路徑服務正在執行。</br></br>從主動控制器執行命令。如果您想要從被動控制器執行命令，就必須確保被動控制器能與主動控制器通訊。如果此連線已中斷，您必須連絡 Microsoft 支援服務。|
+|5\.|0x800706be - RPC 呼叫失敗|叢集已關閉。|連絡 Microsoft 支援服務以確定叢集已啟動。|
+|6\.|0x8007138f - 找不到叢集資源|找不到平台服務叢集資源。若未正確安裝，即會發生此情況。|您可能需要在您的裝置上執行原廠重設。您可能需要建立平台資源。請連絡 Microsoft 支援服務來請示後續步驟。|
+|7\.|0x8007138c - 叢集資源不在線上|平台或資料路徑叢集資源不在線上。|請連絡 Microsoft 支援服務，以確定資料路徑和平台服務資源都在線上。|
 
 > [AZURE.NOTE] 
 > 
-> -  The above list of error messages is not exhaustive. 
-> - Errors related to web proxy settings will not be displayed in the Azure classic portal in your StorSimple Manager service. If there is an issue with web proxy after the configuration is completed, the device status will change to **Offline** in the classic portal.|
+> -  上述的錯誤訊息清單不完整。
+> - Web Proxy 設定相關的錯誤不會顯示在 StorSimple Manager 服務的 Azure 傳統入口網站中。完成設定之後，如果 Web Proxy 有問題，傳統入口網站中的裝置狀態會變更為 [離線]。|
 
-## <a name="next-steps"></a>Next Steps
+## 後續步驟
 
-- If you experience any issues while deploying your device or configuring web proxy settings, refer to [Troubleshoot your StorSimple device deployment](storsimple-troubleshoot-deployment.md).
+- 如果您在部署裝置或設定 Web Proxy 設定時遇到任何問題，請參閱 [疑難排解 StorSimple 裝置部署](storsimple-troubleshoot-deployment.md)。
 
-- To learn how to use the StorSimple Manager service, go to [Use the StorSimple Manager service to administer your StorSimple device](storsimple-manager-service-administration.md).
+- 若要了解如何使用 StorSimple Manager，請移至[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

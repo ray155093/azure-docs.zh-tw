@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="Deactivate and delete a StorSimple Virtual Array | Microsoft Azure"
-   description="Describes how to remove StorSimple device from service by  first deactivating it and then deleting it."
+   pageTitle="停用及刪除 StorSimple Virtual Array | Microsoft Azure"
+   description="描述如何停用然後刪除 StorSimple 裝置，將其從服務中移除。"
    services="storsimple"
    documentationCenter=""
    authors="alkohli"
@@ -15,94 +15,90 @@
    ms.date="06/20/2016"
    ms.author="alkohli" />
 
+# 停用及刪除 StorSimple Virtual Array
 
-# <a name="deactivate-and-delete-a-storsimple-virtual-array"></a>Deactivate and delete a StorSimple Virtual Array
+## 概觀
 
-## <a name="overview"></a>Overview
+當您停用 StorSimple Virtual Array 時，會切斷裝置與相對應 StorSimple Manager 服務之間的連接。停用是永久性的作業，而且無法復原。停用的裝置無法再次向 StorSimple Manager 服務登錄。
 
-When you deactivate a StorSimple Virtual Array, you sever the connection between the device and the corresponding StorSimple Manager service. Deactivation is a PERMANENT operation and cannot be undone. A deactivated device cannot be registered with the StorSimple Manager service again.
-
-You may need to deactivate and delete a StorSimple virtual device in the following scenarios:
+您可能需要在下列情況停用及刪除 StorSimple 虛擬裝置：
 
 
-- Your device is online and you plan to fail over this device. You may need to do this if you are planning  to upgrade to a larger device. After the device data is transferred and the failover is complete, you can then delete the device.
+- 您的裝置已上線，而且您打算容錯移轉這個裝置。如果您打算升級至較大的裝置，您可能需要執行這項操作。裝置資料傳輸且容錯移轉完成之後，您就可以刪除裝置。
 
-- Your device is offline and you plan to fail over this device. This may happen in the event of a disaster where due to an outage in the datacenter, your primary device is down. You plan to fail over the device to a secondary device. After the device data is transferred and the failover is complete, you can delete the device.
+- 您的裝置已離線，而且您打算容錯移轉這個裝置。這可能會在有災害時發生，災害的原因是資料中心中斷，您的主要裝置已關閉。您計劃將裝置容錯移轉至次要裝置。裝置資料傳輸且容錯移轉完成之後，您可以刪除裝置。
 
-- You want to decommission the device and then delete it. 
+- 您想要解除委任裝置，然後再刪除它。
  
 
-When you deactivate a device, any data that was stored locally will no longer be accessible. Only the data stored in the cloud can be recovered. If you plan to keep the device data after deactivation, then you should take a cloud snapshot of all your data before you deactivate a device. This will allow you to recover all the data at a later stage.
+當您停用裝置時，將無法再存取儲存在本機的任何資料。只有儲存在雲端的資料可以復原。如果您計劃在停用之後保留裝置資料，則您應該在停用裝置之前擷取所有資料的雲端快照集。這樣可讓您在稍後的階段中復原所有的資料。
 
 
-This tutorial explains how to:
+本教學課程說明如何：
 
-- Deactivate a device 
-- Delete a deactivated device
+- 停用裝置 
+- 刪除或停用裝置
 
 
-## <a name="deactivate-a-device"></a>Deactivate a device
+## 停用裝置
 
-Perform the following steps to deactivate your device.
+請執行下列步驟，以停用您的裝置。
 
-#### <a name="to-deactivate-the-device"></a>To deactivate the device   
+#### 停用裝置   
 
-1. Go to **Devices** page. Select the device that you wish to deactivate.
+1. 移至 [裝置] 頁面。選取您想要停用的裝置。
 
-    ![Select device to deactivate](./media/storsimple-ova-deactivate-and-delete-device/deactivate1m.png)
+	![選取要停用的裝置](./media/storsimple-ova-deactivate-and-delete-device/deactivate1m.png)
 
-3. At the bottom of the page, click **Deactivate**.
+3. 按一下頁面底部的 [停用]。
 
-    ![Click deactivate](./media/storsimple-ova-deactivate-and-delete-device/deactivate2m.png)
+	![按一下停用](./media/storsimple-ova-deactivate-and-delete-device/deactivate2m.png)
 
-4. A confirmation message will appear. Click **Yes** to continue. 
+4. 確認訊息隨即出現。按一下 [是] 以繼續。
 
-    ![Confirm deactivate](./media/storsimple-ova-deactivate-and-delete-device/deactivate3m.png)
+	![確認停用](./media/storsimple-ova-deactivate-and-delete-device/deactivate3m.png)
 
-    The deactivate process will start and take a few minutes to complete.
+	停用程序將會啟動，並需要幾分鐘才能完成。
 
-    ![Deactivate in progress](./media/storsimple-ova-deactivate-and-delete-device/deactivate4m.png)
+	![停用進行中](./media/storsimple-ova-deactivate-and-delete-device/deactivate4m.png)
 
-3. After deactivation, the list of the devices will be refreshed. 
+3. 停用之後，會重新整理裝置清單。
 
-    ![Deactivate complete](./media/storsimple-ova-deactivate-and-delete-device/deactivate5m.png)
+	![停用完成](./media/storsimple-ova-deactivate-and-delete-device/deactivate5m.png)
 
-    You can now delete this device. 
+	您現在可以刪除此裝置。
 
-## <a name="delete-the-device"></a>Delete the device
+## 刪除裝置
 
-A device has to be first deactivated in order to delete it. Deleting a device removes it from the list of devices connected to the service. The service can then no longer manage the deleted device. The data associated with the device will however remain in the cloud. Be aware that this data will then accrue charges. 
+裝置必須先停用才能刪除。刪除裝置會將其從與服務連接的裝置清單移除。服務將不再管理已刪除的裝置。但是，與裝置相關聯的資料仍然會在雲端中。請注意，此資料還是會產生費用。
 
-Complete the following steps to delete the device:
+請完成下列步驟來刪除裝置：
 
-#### <a name="to-delete-the-device"></a>To delete the device 
+#### 刪除裝置 
 
- 1. On the StorSimple Manager service **Devices** page, select a deactivated device that you wish to delete.
+ 1. 在 StorSimple Manager 服務上**裝置**頁面上，選取您想要刪除的已停用裝置。
 
-    ![Select device to delete](./media/storsimple-ova-deactivate-and-delete-device/deactivate5m.png)
+	![選取要刪除的裝置](./media/storsimple-ova-deactivate-and-delete-device/deactivate5m.png)
 
- 2. On the bottom on the page, click **Delete**.
+ 2. 按一下頁面底部的 [**刪除**]。
  
-    ![Click delete](./media/storsimple-ova-deactivate-and-delete-device/deactivate6m.png)
+	![按一下刪除](./media/storsimple-ova-deactivate-and-delete-device/deactivate6m.png)
 
- 3. You will be prompted for confirmation. Type the device name to confirm device deletion. Note that deleting the device will not delete the cloud data associated with the device. Click the check icon to continue.
+ 3. 系統將提示您進行確認。輸入裝置名稱，以確認裝置刪除。請注意，刪除裝置並不會刪除與裝置相關聯的雲端資料。按一下核取圖示以繼續。
  
-    ![Confirm delete](./media/storsimple-ova-deactivate-and-delete-device/deactivate7m.png) 
+	![Confirm delete](./media/storsimple-ova-deactivate-and-delete-device/deactivate7m.png)
 
- 5. It may take a few minutes for the device to be deleted. 
+ 5. 刪除裝置可能需要數分鐘的時間。
 
-    ![Delete in progress](./media/storsimple-ova-deactivate-and-delete-device/deactivate8m.png)
+	![刪除進行中](./media/storsimple-ova-deactivate-and-delete-device/deactivate8m.png)
 
-    After the device is deleted, the list of devices will be refreshed.
+ 	刪除裝置之後，會重新整理裝置清單。
 
-    ![Delete complete](./media/storsimple-ova-deactivate-and-delete-device/deactivate9m.png)
-
-
-## <a name="next-steps"></a>Next steps
-
-- To learn more about how to use the StorSimple Manager service, go to [Use the StorSimple Manager service to administer your StorSimple Virtual Array](storsimple-ova-manager-service-administration.md). 
+	![刪除完成](./media/storsimple-ova-deactivate-and-delete-device/deactivate9m.png)
 
 
-<!--HONumber=Oct16_HO2-->
+## 後續步驟
 
+- 若要了解如何使用 StorSimple Manager 服務，請移至[使用 StorSimple Manager 服務管理 StorSimple Virtual Array](storsimple-ova-manager-service-administration.md)。 
 
+<!---HONumber=AcomDC_0622_2016-->

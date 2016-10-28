@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Fix SQL Server database compatibility issues before migration to SQL Database | Microsoft Azure"
-   description="Microsoft Azure SQL Database, database migration, compatibility, SQL Azure Migration Wizard"
+   pageTitle="在移轉至 SQL Database 之前修正 SQL Server 資料庫相容性問題 | Microsoft Azure"
+   description="Microsoft Azure SQL Database, 資料庫移轉, 資料庫相容性, SQL Azure 移轉精靈"
    services="sql-database"
    documentationCenter=""
    authors="CarlRabeler"
@@ -16,38 +16,33 @@
    ms.date="08/24/2016"
    ms.author="carlrab"/>
 
-
-# <a name="use-sql-azure-migration-wizard-to-fix-sql-server-database-compatibility-issues-before-migration-to-azure-sql-database"></a>Use SQL Azure Migration Wizard to Fix SQL Server database compatibility issues before migration to Azure SQL Database
+# 在移轉至 Azure SQL Database 之前，先使用「SQL Azure 移轉精靈」來修正 SQL Server 資料庫相容性問題
 
 > [AZURE.SELECTOR]
-- Use [SQL Azure Migration Wizard](sql-database-cloud-migrate-fix-compatibility-issues.md)
-- Use [SSDT](sql-database-cloud-migrate-fix-compatibility-issues-ssdt.md)
-- Use [SSMS](sql-database-cloud-migrate-fix-compatibility-issues-ssms.md)
+- 使用 [SQL Azure 移轉精靈](sql-database-cloud-migrate-fix-compatibility-issues.md)
+- 使用 [SSDT](sql-database-cloud-migrate-fix-compatibility-issues-ssdt.md)
+- 使用 [SSMS](sql-database-cloud-migrate-fix-compatibility-issues-ssms.md)
 
-In this article, you learn to detect and fix SQL Server database compatibility issues using the SQL Azure Migration Wizard before migration to Azure SQL Database.
+在這篇文章中，您將了解如何在移轉至 Azure SQL Database 之前，先使用「SQL Azure 移轉精靈」來偵測並修正 SQL Server 資料庫相容性問題。
 
-## <a name="using-sql-azure-migration-wizard"></a>Using SQL Azure Migration wizard
+## 使用 SQL Azure 移轉精靈
 
-Use the [SQL Azure Migration wizard](http://sqlazuremw.codeplex.com/) CodePlex tool to generate a T-SQL script from an incompatible source database. This script is then transformed by the wizard to make it compatible with the SQL Database. You then connect to Azure SQL Database to execute the script. This tool also analyzes trace files to determine compatibility issues. The script can be generated with schema only or can include data in BCP format. Additional documentation, including step-by-step guidance is available on CodePlex at [SQL Azure Migration wizard](http://sqlazuremw.codeplex.com/).  
+您可以使用 [SQL Azure 移轉精靈](http://sqlazuremw.codeplex.com/) CodePlex 工具，從不相容的來源資料庫產生 T-SQL 指令碼。精靈會接著轉換此指令碼，讓它與 SQL Database 相容。然後您便可以連接到 Azure SQL Database 來執行此指令碼。此工具也會分析追蹤檔案來判斷相容性問題。只能使用結構描述產生指令碼，或者指令碼可以 BCP 格式包含資料。CodePlex 的 [SQL Azure 移轉精靈](http://sqlazuremw.codeplex.com/)提供其他文件，包括逐步指引。
 
- ![SAMW migration diagram](./media/sql-database-cloud-migrate/02SAMWDiagram.png)
+ ![SAMW 移轉圖表](./media/sql-database-cloud-migrate/02SAMWDiagram.png)
 
-  > [AZURE.NOTE] Not all incompatible schema that are detected by the wizard can be fixed by its built-in transformations. Incompatible script that cannot be addressed are reported as errors, with comments injected into the generated script. If many errors are detected, use either Visual Studio or SQL Server Management Studio to step through and fix each error that could not be fixed using the SQL Server Migration Wizard.
+  > [AZURE.NOTE] 精靈內建的轉換並不一定能夠修正精靈偵測到的所有不相容結構描述。系統會將無法處理的不相容指令碼回報為錯誤，並在產生的指令碼中插入註解。如果偵測到許多錯誤，請使用 Visual Studio 或 SQL Server Management Studio 來逐步執行和修正無法使用 SQL Server 移轉精靈修正的每個錯誤。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-- [Newest version of SSDT](https://msdn.microsoft.com/library/mt204009.aspx)
-- [Newest version of SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)
-- [Migrate a compatible SQL Server database to SQL Database](sql-database-cloud-migrate.md#migrate-a-compatible-sql-server-database-to-sql-database)
+- [最新版本的 SSDT](https://msdn.microsoft.com/library/mt204009.aspx)
+- [最新版本的 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)
+- [將相容 SQL Server 資料庫移轉到 SQL Database](sql-database-cloud-migrate.md#migrate-a-compatible-sql-server-database-to-sql-database)
 
-## <a name="additional-resources"></a>Additional resources
+## 其他資源
 
 - [SQL Database V12](sql-database-v12-whats-new.md)
-- [Transact-SQL partially or unsupported functions](sql-database-transact-sql-information.md)
-- [Migrate non-SQL Server databases using SQL Server Migration Assistant](http://blogs.msdn.com/b/ssma/)
+- [Transact-SQL 部分支援或不支援的函數](sql-database-transact-sql-information.md)
+- [使用 SQL Server 移轉小幫手來移轉非 SQL Server 資料庫](http://blogs.msdn.com/b/ssma/)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

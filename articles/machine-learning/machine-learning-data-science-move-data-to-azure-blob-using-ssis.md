@@ -1,96 +1,91 @@
 <properties
-    pageTitle="Move Data to or from Azure Blob Storage using SSIS connectors | Microsoft Azure"
-    description="Move Data to or from Azure Blob Storage using SSIS connectors."
-    services="machine-learning,storage"
-    documentationCenter=""
-    authors="bradsev"
-    manager="jhubbard"
-    editor="cgronlun" />
+	pageTitle="使用 SSIS 連接器從 Azure Blob 儲存體來回移動資料 | Microsoft Azure"
+	description="使用 SSIS 連接器從 Azure Blob 儲存體來回移動資料。"
+	services="machine-learning,storage"
+	documentationCenter=""
+	authors="bradsev"
+	manager="jhubbard"
+	editor="cgronlun" />
 
 <tags
-    ms.service="machine-learning"
-    ms.workload="data-services"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/14/2016"
-    ms.author="bradsev" />
+	ms.service="machine-learning"
+	ms.workload="data-services"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/14/2016"
+	ms.author="bradsev" />
 
+# 使用 SSIS 連接器從 Azure Blob 儲存體來回移動資料
 
-# <a name="move-data-to-or-from-azure-blob-storage-using-ssis-connectors"></a>Move Data to or from Azure Blob Storage using SSIS connectors
+[SQL Server Integration Services Feature Pack for Azure](https://msdn.microsoft.com/library/mt146770.aspx) 中的元件可供連線至 Azure、在 Azure 與內部部署資源來源之間傳輸資料，以及處理儲存在 Azure 中的資料。
 
-The [SQL Server Integration Services Feature Pack for Azure](https://msdn.microsoft.com/library/mt146770.aspx) provides components to connect to Azure, transfer data between Azure and on-premises data sources, and process data stored in Azure.
-
-Guidance on technologies used to move data to and/or from Azure Blob storage are linked here:
+以下是有關從 Azure Blob 儲存體來回移動資料所使用之技術的指引連結：
 
 [AZURE.INCLUDE [blob-storage-tool-selector](../../includes/machine-learning-blob-storage-tool-selector.md)]
 
 
-Once customers have moved on-premises data into the cloud, they can access it from any Azure service to leverage the full power of the suite of Azure technologies. It may be used, for example, in Azure Machine Learning or on an HDInsight cluster.
+客戶將內部部署資料移至雲端後，便能從任何 Azure 服務存取該資料，以利用 Azure 技術套件的完整功能。例如，可用在 Azure 機器學習服務或 HDInsight 叢集中。
 
-This is typically be the first step for the [SQL](machine-learning-data-science-process-sql-walkthrough.md) and [HDInsight](machine-learning-data-science-process-hive-walkthrough.md) walkthroughs.
+這通常是 [SQL](machine-learning-data-science-process-sql-walkthrough.md) 與 [HDInsight](machine-learning-data-science-process-hive-walkthrough.md) 逐步解說的第一步。
 
-For a discussion of canonical scenarios that use SSIS to accomplish business needs common in hybrid data integration scenarios, see [Doing more with SQL Server Integration Services Feature Pack for Azure](http://blogs.msdn.com/b/ssis/archive/2015/06/25/doing-more-with-sql-server-integration-services-feature-pack-for-azure.aspx) blog.
+有關使用 SSIS 完成混合式資料整合案例中常見業務需求的典型案例討論，請參閱[使用 Azure 適用的 SQL Server 整合服務功能套件事半功倍](http://blogs.msdn.com/b/ssis/archive/2015/06/25/doing-more-with-sql-server-integration-services-feature-pack-for-azure.aspx)部落格。
 
-> [AZURE.NOTE] For a complete introduction to Azure blob storage, refer to [Azure Blob Basics](../storage/storage-dotnet-how-to-use-blobs.md) and to [Azure Blob Service](https://msdn.microsoft.com/library/azure/dd179376.aspx).
+> [AZURE.NOTE] 如需 Azure Blob 儲存體的完整介紹，請參閱 [Azure Blob 基本概念](../storage/storage-dotnet-how-to-use-blobs.md)和 [Azure Blob 服務](https://msdn.microsoft.com/library/azure/dd179376.aspx)。
 
-## <a name="prerequisites"></a>Prerequisites
+## 必要條件
 
-To perform the tasks described in this article, you must have an Azure subscription and an Azure storage account set up. You must know your Azure storage account name and account key to upload or download data.
+若要執行本文所述的工作，您必須有設好的 Azure 訂用帳戶與 Azure 儲存體帳戶。您必須知道您的 Azure 儲存體帳戶名稱與帳戶金鑰，才能上傳或下載資料。
 
-- To set up an **Azure subscription**, see [Free one-month trial](https://azure.microsoft.com/pricing/free-trial/).
+- 若要設定 **Azure 訂用帳戶**，請參閱[免費試用一個月](https://azure.microsoft.com/pricing/free-trial/)。
 
-- For instructions on creating a **storage account** and for getting account and key information, see [About Azure storage accounts](../storage/storage-create-storage-account.md).
-
-
-To use the **SSIS connectors**, you must download:
-
-- **SQL Server 2014 or 2016 Standard (or above)**: Install includes SQL Server Integration Services.
-- **Microsoft SQL Server 2014 or 2016 Integration Services Feature Pack for Azure**: These can be downloaded, respectively, from the [SQL Server 2014 Integration Services](http://www.microsoft.com/download/details.aspx?id=47366) and [SQL Server 2016 Integration Services](https://www.microsoft.com/download/details.aspx?id=49492) pages.
-
-> [AZURE.NOTE] SSIS is installed with SQL Server, but is not included in the Express version. For information on what applications are included in various editions of SQL Server, see [SQL Server Editions](http://www.microsoft.com/en-us/server-cloud/products/sql-server-editions/)
-
-For training materials on SSIS, see [Hands On Training for SSIS](http://www.microsoft.com/download/details.aspx?id=20766)
-
-For information on how to get up-and-running using SISS to build simple extraction, transformation, and load (ETL) packages, see [SSIS Tutorial: Creating a Simple ETL Package](https://msdn.microsoft.com/library/ms169917.aspx).
-
-## <a name="download-nyc-taxi-dataset"></a>Download NYC Taxi dataset  
-The example described here use a publicly available dataset -- the [NYC Taxi Trips](http://www.andresmh.com/nyctaxitrips/) dataset. The dataset consists of about 173 million taxi rides in NYC in the year 2013. There are two types of data: trip details data and fare data. As there is a file for each month, we have 24 files in all, each of which is approximately 2GB uncompressed.
+- 如需建立**儲存體帳戶**以及取得帳戶和金鑰資訊的指示，請參閱[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)。
 
 
-## <a name="upload-data-to-azure-blob-storage"></a>Upload data to Azure blob storage
-To move data using the SSIS feature pack from on-premises to Azure blob storage, we use an instance of the [**Azure Blob Upload Task**](https://msdn.microsoft.com/library/mt146776.aspx), shown here:
+若要使用 **SSIS 連接器**，您必須下載:
+
+- **SQL Server 2014 或 2016 標準版 (或更新版本)**：安裝包含 SQL Server 整合服務。
+- **適用於 Azure 的 Microsoft SQL Server 2014 或 2016 整合服務 Feature Pack**：您可以個別從 [SQL Server 2014 整合服務](http://www.microsoft.com/download/details.aspx?id=47366)和 [SQL Server 2016 整合服務](https://www.microsoft.com/download/details.aspx?id=49492)頁面下載。
+
+> [AZURE.NOTE] SSIS 會隨同 SQL Server 安裝，但未包含在 Express 版本中。如需 SQL Server 各種版本中包含哪些應用程式的相關資訊，請參閱 [SQL Server 版本](http://www.microsoft.com/zh-TW/server-cloud/products/sql-server-editions/)
+
+如需 SSIS 的訓練教材，請參閱 [SSIS 實務訓練](http://www.microsoft.com/download/details.aspx?id=20766)
+
+如需如何使用 SISS 啟動與執行，以建置簡單擷取、轉換與載入 (ETL) 封裝的相關資訊，請參閱 [SSIS 教學課程：建立簡易 ETL 封裝](https://msdn.microsoft.com/library/ms169917.aspx)。
+
+## 下載紐約計程車資料集  
+此處描述的範例使用供大眾使用的資料集 -- [紐約計程車路線](http://www.andresmh.com/nyctaxitrips/)資料集。此資料集收集了 2013 年紐約 1 億 7 千 3 百萬筆計程車行程資料。資料有兩種：路線詳細資料及車費資料。由於每個月都有一個檔案，因此總共有 24 個檔案，每個檔案未壓縮的大小約 2GB。
+
+
+## 將資料上傳至 Azure Blob 儲存體
+為了使用 SSIS 功能封裝將資料從內部部署移至 Azure Blob 儲存體，我們使用 [**Azure Blob 上傳工作**](https://msdn.microsoft.com/library/mt146776.aspx)執行個體，如這裡所示：
 
 ![configure-data-science-vm](./media/machine-learning-data-science-move-data-to-azure-blob-using-ssis/ssis-azure-blob-upload-task.png)
 
 
-The parameters that the task uses are described here:
+此工作使用的參數如下所述：
 
 
-Field|Description|
+欄位|說明|
 ----------------------|----------------|
-**AzureStorageConnection**|Specifies an existing Azure Storage Connection Manager or creates a new one that refers to an Azure storage account that points to where the blob files are hosted.|
-**BlobContainer**|Specifies the name of the blob container that hold the uploaded files as blobs.|
-**BlobDirectory**|Specifies the blob directory where the uploaded file is stored as a block blob. The blob directory is a virtual hierarchical structure. If the blob already exists, it ia replaced.|
-**LocalDirectory**|Specifies the local directory that contains the files to be uploaded.|
-**FileName**|Specifies a name filter to select files with the specified name pattern. For example, MySheet\*.xls\* includes files such as MySheet001.xls and MySheetABC.xlsx|
-**TimeRangeFrom/TimeRangeTo**|Specifies a time range filter. Files modified after *TimeRangeFrom* and before *TimeRangeTo* are included.|
+**AzureStorageConnection**|指定現有的或建立新的 Azure 儲存體連線管理員，以參照 Azure 儲存體帳戶；該帳戶指向託管 Blob 檔案的位置。|
+**BlobContainer**|指定會將上傳的檔案保存為 Blob 的 Blob 容器名稱。|
+**BlobDirectory**|指定上傳的檔案會儲存在哪一個 Blob 目錄中以儲存成區塊 Blob。Blob 目錄是虛擬的階層式結構。如果 Blob 已經存在，則會被取代。|
+**LocalDirectory**|指定包含要上傳的檔案的本機目錄。|
+**FileName**|指定名稱篩選器以選取採用指定名稱模式的檔案。例如，MySheet*.xls* 包括如 MySheet001.xls 與 MySheetABC.xlsx 等檔案|
+**TimeRangeFrom/TimeRangeTo**|指定時間範圍篩選器。會包含在 TimeRangeFrom 後和 TimeRangeTo 前修改的檔案。|
 
 
-> [AZURE.NOTE] The **AzureStorageConnection** credentials need to be correct and the **BlobContainer** must exist before the transfer is attempted.
+> [AZURE.NOTE] **AzureStorageConnection** 認證必須更正且 **BlobContainer** 必須存在，才能嘗試傳輸。
 
-## <a name="download-data-from-azure-blob-storage"></a>Download data from Azure blob storage
+## 從 Azure Blob 儲存體下載資料
 
-To download data from Azure blob storage to on-premise storage with SSIS, use an instance of the [Azure Blob Upload Task](https://msdn.microsoft.com/library/mt146779.aspx).
+若要透過 SSIS 將資料從 Azure Blob 儲存體下載到內部部署儲存體，請使用 [Azure Blob 上傳工作](https://msdn.microsoft.com/library/mt146779.aspx)的執行個體。
 
-##<a name="more-advanced-ssis-azure-scenarios"></a>More advanced SSIS-Azure scenarios
-We note here that the SSIS feature pack allows for more complex flows to be handled by packaging tasks together. For example, the blob data could feed directly into an HDInsight cluster, whose output could be downloaded back to a blob and then to on-premise storage. SSIS can run Hive and Pig jobs on an HDInsight cluster using additional SSIS connectors:
+##較進階的 SSIS-Azure 案例
+我們注意到 SSIS 功能封裝允許封裝工作一起處理更複雜的流程。例如，Blob 資料可直接饋送到 HDInsight 叢集，其輸出可以回頭下載到 Blob，然後下載到內部部署儲存體。SSIS 可使用其他 SSIS 連接器在 HDInsight 叢集上執行 Hive 與 Pig 工作：
 
-- To run a Hive script on an Azure HDInsight cluster with SSIS, use [Azure HDInsight Hive Task](https://msdn.microsoft.com/library/mt146771.aspx).
-- To run a Pig script on an Azure HDInsight cluster with SSIS, use [Azure HDInsight Pig Task](https://msdn.microsoft.com/library/mt146781.aspx).
+- 若要使用 SSIS 在 Azure HDInsight 叢集上執行 Hive 指令碼，請使用 [Azure HDInsight Hive 工作](https://msdn.microsoft.com/library/mt146771.aspx)。
+- 若要使用 SSIS 在 Azure HDInsight 叢集上執行 Pig 指令碼，請使用 [Azure HDInsight Pig 工作](https://msdn.microsoft.com/library/mt146781.aspx)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

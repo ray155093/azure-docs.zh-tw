@@ -1,210 +1,209 @@
 <properties
-    pageTitle="Patterns for Resource Manager templates | Microsoft Azure"
-    description="Show design patterns for Azure Resource Manager templates"
-    services="azure-resource-manager"
-    documentationCenter=""
-    authors="tfitzmac"
-    manager="timlt"
-    editor="tysonn"/>
+	pageTitle="Resource Manager 範本的模式 | Microsoft Azure"
+	description="顯示 Azure 資源管理員範本的設計模式"
+	services="azure-resource-manager"
+	documentationCenter=""
+	authors="tfitzmac"
+	manager="timlt"
+	editor="tysonn"/>
 
 <tags
-    ms.service="azure-resource-manager"
-    ms.workload="multiple"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/12/2016"
-    ms.author="tomfitz"/>
+	ms.service="azure-resource-manager"
+	ms.workload="multiple"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/12/2016"
+	ms.author="tomfitz"/>
 
+# 設計 Azure Resource Manager 範本的模式
 
-# <a name="patterns-for-designing-azure-resource-manager-templates"></a>Patterns for designing Azure Resource Manager templates
+在與企業、系統整合者 (SI)、雲端服務廠商 (CSV) 和開放原始碼軟體 (OSS) 專案小組合作時，經常需要快速部署環境、工作負載或縮放單位。這些部署需要受到支援、依照經過實證的做法執行，並遵循所識別的原則。在 Azure Resource Manager 範本上使用彈性的做法，您可以快速且一致地部署複雜的拓撲。您可以輕鬆調整這些部署，以因應核心供應項目的發展或是適應極端案例或客戶的變化。
 
-In our work with enterprises, system integrator (SIs), cloud service vendor (CSVs), and open source software (OSS) project teams, it's often necessary to quickly deploy environments, workloads, or scale units. These deployments need to be supported, follow proven practices, and adhere to identified policies. Using a flexible approach based on Azure Resource Manager templates, you can deploy complex topologies quickly and consistently. You can adapt these deployments easily as core offerings evolve or to accommodate variants for outlier scenarios or customers.
+本主題是較大本白皮書的一部分。若要閱讀完整的文件，請下載「世界級 [Azure Resource Manager 範本注意事項和證明可行的作法」](http://download.microsoft.com/download/8/E/1/8E1DBEFA-CECE-4DC9-A813-93520A5D7CFE/WorldClass ARM Templates - Considerations and Proven Practices.pdf)。
 
-This topic is part of a larger whitepaper. To read the full paper, download [World Class Azure Resource Manager Templates Considerations and Proven Practices](http://download.microsoft.com/download/8/E/1/8E1DBEFA-CECE-4DC9-A813-93520A5D7CFE/World Class ARM Templates - Considerations and Proven Practices.pdf).
+範本會結合基礎 Azure 資源管理員的優點，以及 JavaScript 物件標記法 (JSON) 的適應性和可讀性。使用範本，您可以：
 
-Templates combine the benefits of the underlying Azure Resource Manager with the adaptability and readability of JavaScript Object Notation (JSON). Using templates, you can:
+- 以一致的方式部署拓撲及其工作負載。
+- 使用資源群組，一併管理應用程式中的所有資源。
+- 套用角色型存取控制 (RBAC)，以授與使用者、群組和服務適當的存取權限。
+- 使用標記關聯來簡化工作，例如計費彙總套件。
 
-- Deploy topologies and their workloads consistently.
-- Manage all your resources in an application together using resource groups.
-- Apply role-based access control (RBAC) to grant appropriate access to users, groups, and services.
-- Use tagging associations to streamline tasks such as billing rollups.
+本文提供在我們的設計工作階段以及真實世界中與 Azure 客戶諮詢小組 (AzureCAT) 客戶進行範本實作過程中所識別的取用案例、架構及實作模式的詳細資訊。姑且不論學術理論為何，這些作法都是透過針對 12 個以 Linux 為基礎的頂尖 OSS 技術開發之範本所通知且經過實證的最佳做法，包括： Apache Kafka、Apache Spark、Cloudera、Couchbase、Hortonworks HDP、Apache Cassandra 提供的 DataStax Enterprise、Elasticsearch、Jenkins、MongoDB、Nagios、PostgreSQL、Redis 及 Nagios。這些範本多是由知名廠商按指定散發套件所開發，並在最近的專案期間受到 Microsoft 企業和 SI 客戶需求的影響。
 
-This article provides details on consumption scenarios, architecture, and implementation patterns identified during our design sessions and real-world template implementations with Azure Customer Advisory Team (AzureCAT) customers. Far from academic, these approaches are proven practices informed by the development of templates for 12 of the top Linux-based OSS technologies, including: Apache Kafka, Apache Spark, Cloudera, Couchbase, Hortonworks HDP, DataStax Enterprise powered by Apache Cassandra, Elasticsearch, Jenkins, MongoDB, Nagios, PostgreSQL, Redis, and Nagios. Most these templates were developed with a well-known vendor of a given distribution and influenced by the requirements of Microsoft’s enterprise and SI customers during recent projects.
+本文將分享這些經過實證的最佳做法，以協助您設計世界級 Azure 資源管理員範本。
 
-This article shares these proven practices to help you architect world class Azure Resource Manager templates.  
+透過與客戶合作，我們已在企業、系統整合者和 CSV 之間識別出數個 Resource Manager 範本取用體驗。下列各節提供不同客戶類型的常見案例和模式的高階概觀。
 
-In our work with customers, we have identified several Resource Manager template consumption experiences across enterprises, System Integrators (SI)s, and CSVs. The following sections provide a high-level overview of common scenarios and patterns for different customer types.
+## 企業和系統整合者
 
-## <a name="enterprises-and-system-integrators"></a>Enterprises and system integrators
+在大型組織中，我們常看到兩種 Resource Manager 範本取用取用者︰內部軟體開發團隊和公司 IT。我們發現，SI 的案例可對應至企業的案例，因此可套用相同的考量。
 
-Within large organizations, we commonly see two consumers of Resource Manager templates: internal software development teams and corporate IT. We've found that the scenarios for the SIs map to the scenarios for Enterprises, so the same considerations apply.
+### 內部軟體開發團隊
 
-### <a name="internal-software-development-teams"></a>Internal software development teams
+如果您的團隊會開發軟體來支援企業，則範本讓您能夠輕鬆快速地部署可用於企業特定解決方案的技術。您也可以使用範本快速建立訓練環境，讓團隊成員能夠取得所需的技巧。
 
-If your team develops software to support your business, templates provide an easy way to quickly deploy technologies for use in business-specific solutions. You can also use templates to rapidly create training environments that enable team members to gain necessary skills.
+您可以依原樣使用範本，或者擴充或撰寫它們來符合您的需求。在範本內使用標記，您可以利用各種不同的檢視 (例如，團隊、專案、個人及教育) 來提供帳單摘要。
 
-You can use templates as-is or extend or compose them to accommodate your needs. Using tagging within templates, you can provide a billing summary with various views such as team, project, individual, and education.
+企業通常希望軟體開發團隊能夠建立範本來部署一致性解決方案，同時還能提供限制，使得該環境中的特定項目會維持固定不變且無法覆寫。例如，銀行可能需要包含 RBAC 的範本，讓程式設計師無法修訂銀行解決方案來將資料傳送到個人的儲存體帳戶。
 
-Businesses often want software development teams to create a template for consistent deployment of a solution while also offering constraints so certain items within that environment remain fixed and can’t be overridden. For example, a bank might require a template to include RBAC so a programmer can’t revise a banking solution to send data to a personal storage account.
+### 公司 IT
 
-### <a name="corporate-it"></a>Corporate IT
+公司 IT 組織通常會使用範本來傳遞雲端容量和雲端裝載功能。
 
-Corporate IT organizations typically use templates for delivering cloud capacity and cloud-hosted capabilities.
+#### 雲端容量
 
-#### <a name="cloud-capacity"></a>Cloud capacity
+公司 IT 群組常用來為團隊提供雲端容量的方式是使用「T 恤尺寸」，也就是標準供應項目的大小 (例如，小型、中型、大型)。T 恤尺寸的供應項目可以混合不同的資源類型和數量，同時提供標準化層級，讓您能夠使用範本。範本會利用一致性方式來提供容量，強制執行公司原則，並使用標記來為取用組織提供帳單。
 
-A common way for corporate IT groups to provide cloud capacity for teams is with "t-shirt sizes", which are standard offering sizes such as small, medium, and large. The t-shirt sized offerings can mix different resource types and quantities while providing a level of standardization that makes it possible to use templates. The templates deliver capacity in a consistent way that enforces corporate policies and uses tagging to provide chargeback to consuming organizations.
+例如，您可能需要提供開發、測試或實際執行環境，讓軟體開發團隊可以在其中部署他們的解決方案。環境具有軟體開發團隊無法變更的預先定義網路拓樸和項目，例如，用來管理公用網際網路的存取以及封包檢查的規則。您也可以針對這些環境，使用不同的環境存取權限來設定組織特定的角色。
 
-For example, you may need to provide development, test, or production environments within which the software development teams can deploy their solutions. The environment has a predefined network topology and elements that the software development teams cannot change, such as rules governing access to the public internet and packet inspection. You may also have organization-specific roles for these environments with distinct access rights for the environment.
+#### 雲端裝載功能
 
-#### <a name="cloud-hosted-capabilities"></a>Cloud-hosted capabilities
+您可以使用範本來支援雲端裝載功能，包括個別的軟體套件，或是提供給內部特定業務的複合供應項目。複合供應項目的一個範例是，在預先定義的網路拓撲上，利用最佳化且已連接的組態來提供的「分析即為服務」(分析、視覺化和其他技術)。
 
-You can use templates to support cloud-hosted capabilities, including individual software packages or composite offerings that are offered to internal lines of business. An example of a composite offering would be analytics-as-a-service—analytics, visualization, and other technologies—delivered in an optimized, connected configuration on a predefined network topology.
+雲端裝載功能會受到建置它們的雲端容量供應項目所建立的安全性和角色考量所影響，如上所述。這些功能會依原樣提供，或提供來做為受管理的服務。針對後者，需要具備受到存取限制的角色，才能基於管理目的啟用環境的存取。
 
-Cloud-hosted capabilities are affected by the security and role considerations established by the cloud capacity offering on which they’re built as described above. These capabilities are offered as is or as a managed service. For the latter, access-constrained roles are required to enable access into the environment for management purposes.
+## 雲端服務廠商
 
-## <a name="cloud-service-vendors"></a>Cloud service vendors
+在討論許多 CSV 之後，我們找出了多個方法，讓您能夠用來針對客戶及相關聯需求部署服務。
 
-After talking to many CSVs, we identified multiple approaches you can take to deploy services for your customers and associated requirements.
+### CSV 裝載的供應項目
 
-### <a name="csv-hosted-offering"></a>CSV-hosted offering
+如果您在自己的 Azure 訂用帳戶中裝載您供應項目，則有兩種常見的裝載方法：針對每位客戶部署不同的部署，或部署縮放單位來支持針對所有客戶使用的共用基礎結構。
 
-If you host your offering in your own Azure subscription, two hosting approaches are common: deploying a distinct deployment for every customer or deploying scale units that underpin a shared infrastructure used for all customers.
+- **針對每位客戶進行不同的部署。** 針對每位客戶進行不同的部署，需要具備不同已知組態的固定拓撲。這些部署可能會有不同的虛擬機器 (VM) 大小、各種不同的節點數目，以及不同的相關聯儲存體數量。部署的標記可用來彙總每位客戶的帳單。系統可能會啟用 RBAC，以允許客戶存取其雲端環境的各個層面。
+- **共用多租用戶環境中的縮放單位。** 範本可以代表多租用戶環境的縮放單位。在此情況下，相同的基礎結構可用來支援所有客戶。部署代表一組可針對所裝載供應項目提供容量層級的資源，例如，使用者人數和交易數目。這些縮放單位會隨著需求增加或減少。
 
-- **Distinct deployments for each customer.** Distinct deployments per customer require fixed topologies of different known configurations. These deployments may have different virtual machine (VM) sizes, varying numbers of nodes, and different amounts of associated storage. Tagging of deployments is used for roll-up billing of each customer. RBAC may be enabled to allow customers access to aspects of their cloud environment.
-- **Scale units in shared multi-tenant environments.** A template can represent a scale unit for multi-tenant environments. In this case, the same infrastructure is used to support all customers. The deployments represent a group of resources that deliver a level of capacity for the hosted offering, such as number of users and number of transactions. These scale units are increased or decreased as demand requires.
+### 插入客戶訂用帳戶的 CSV 供應項目
 
-### <a name="csv-offering-injected-into-customer-subscription"></a>CSV offering injected into customer subscription
+您可能想要將軟體部署到客戶所擁有的訂用帳戶。您可以使用範本，部署不同的部署到客戶的 Azure 訂用帳戶。
 
-You may want to deploy your software into subscriptions owned by end customers. You can use templates to deploy distinct deployments into a customer’s Azure account.
+這些部署會使用 RBAC，因此，您可以在客戶的帳戶內更新和管理部署。
 
-These deployments use RBAC so you can update and manage the deployment within the customer’s account.
+### Azure Marketplace
 
-### <a name="azure-marketplace"></a>Azure Marketplace
+若要透過 Marketplace (例如 Azure Marketplace) 廣告和銷售您的供應項目，您可以開發範本，以提供不同類型且將在客戶的 Azure 帳戶中執行的部署。這些不同的部署通常可以用 T 恤尺寸 (小型、中型、大型)、產品/對象類型 (社群、開發人員、企業) 或功能類型 (基本、高可用性) 來描述。在某些情況下，這些類型將允許您指定某些部署屬性，例如 VM 類型或磁碟數目。
 
-To advertise and sell your offerings through a marketplace, such as Azure Marketplace, you can develop templates to deliver distinct types of deployments that run in a customer’s Azure account. These distinct deployments can be typically described as a t-shirt size (small, medium, large), product/audience type (community, developer, enterprise), or feature type (basic, high availability).  In some cases, these types allow you to specify certain attributes of the deployment, such as VM type or number of disks.
+## OSS 專案
 
-## <a name="oss-projects"></a>OSS projects
+在開放原始碼專案中，資源管理員範本讓社群能夠使用經過證實的做法，快速部署解決方案。您可以在 GitHub 儲存機制中儲存範本，讓社群可在經過一段時間之後修改它們。使用者可在自己的 Azure 訂用帳戶中部署這些範本。
 
-Within open source projects, Resource Manager templates enable a community to deploy a solution quickly using proven practices. You can store templates in a GitHub repository so the community can revise them over time. Users deploy these templates in their own Azure subscriptions.
+下列各節將識別您在設計解決方案之前需考慮的事項。
 
-The following sections identify the things you need to consider before designing your solution.
+## 識別 VM 內部和外部的功能
 
-## <a name="identifying-what-is-outside-and-inside-of-a-vm"></a>Identifying what is outside and inside of a VM
+設計範本時，最好考量虛擬機器 (VM) 內部與外部的相關功能需求：
 
-As you design your template, it’s helpful to look at the requirements in terms of what's outside and inside the virtual machines (VMs):
+- 外部表示您部署的 VM 和其他資源，例如，網路拓樸、標記、憑證/密碼的參考，以及角色型存取控制。這些資源全都是您範本的一部分。
+- 內部表示已安裝的軟體和整體的期望狀態組態。其他機制 (例如 VM 延伸模組或指令碼) 可完整使用或部分使用。範本或許能夠識別和執行這些機制，但這些機制並不存在於範本中。
 
-- Outside means the VMs and other resources of your deployment, such as the network topology, tagging, references to the certs/secrets, and role-based access control. All these resources are part of your template.
-- Inside means the installed software and overall desired state configuration. Other mechanisms, such as VM extensions or scripts, are used in whole or in part. These mechanisms may be identified and executed by the template but aren’t in it.
+您可以在「箱子內部」進行的常見活動範例包括如下：
 
-Common examples of activities you would do “inside the box” include -  
+- 安裝或移除伺服器角色和功能
+- 在節點或叢集層級安裝和設定軟體
+- 在 Web 伺服器上部署網站
+- 部署資料庫結構描述
+- 管理登錄或其他類型的組態設定
+- 管理檔案和目錄
+- 啟動、停止及管理處理程序和服務
+- 管理本機群組和使用者帳戶
+- 安裝和管理封裝 (.msi、.exe、yum 等等)
+- 管理環境變數
+- 執行原生指令碼 (Windows PowerShell、bash 等)
 
-- Install or remove server roles and features
-- Install and configure software at the node or cluster level
-- Deploy websites on a web server
-- Deploy database schemas
-- Manage registry or other types of configuration settings
-- Manage files and directories
-- Start, stop, and manage processes and services
-- Manage local groups and user accounts
-- Install and manage packages (.msi, .exe, yum, etc.)
-- Manage environment variables
-- Run native scripts (Windows PowerShell, bash, etc.)
+### 期望狀態組態 (DSC)
 
-### <a name="desired-state-configuration-(dsc)"></a>Desired state configuration (DSC)
+考慮部署以外的 VM 內部狀態，您想要確定這個部署不會從已定義並簽入原始檔控制的組態中「漂移」。這個做法可確保您的開發人員或操作人員不會對未在原始檔控制中驗證、測試或記錄的環境進行臨機操作變更。這項控制很重要，因為手動變更不是在原始檔控制中進行的，它們也不是標準部署的一部分，而且將影響軟體未來的自動化部署。
 
-Thinking about the internal state of your VMs beyond deployment, you want to make sure this deployment doesn’t "drift" from the configuration that you have defined and checked into source control. This approach ensures your developers or operations staff don’t make ad-hoc changes to an environment that are not vetted, tested, or recorded in source control. This control is important, because the manual changes are not in source control, they are also not part of the standard deployment and will impact future automated deployments of the software.
+從安全性觀點來看，除了您的內部員工，期望狀態組態也很重要。駭客會定期嘗試洩漏和惡意探索軟體系統。如果成功，通常就會安裝檔案，否則會變更遭入侵的系統狀態。您可以利用期望狀態組態，來識別期望與實際狀態之間的差異，並還原已知的組態。
 
-Beyond your internal employees, desired state configuration is also important from a security perspective. Hackers are regularly trying to compromise and exploit software systems. When successful, it's common to install files and otherwise change the state of a compromised system. Using desired state configuration, you can identify deltas between the desired and actual state and restore a known configuration.
+針對適用於 DSC 的最熱門機制有一些資源擴充功能可供使用 - PowerShell DSC、Chef 及 Puppet。這些擴充功能每一個都能部署 VM 的初始狀態，也可以用來確定會維持期望狀態。
 
-There are resource extensions for the most popular mechanisms for DSC - PowerShell DSC, Chef, and Puppet. Each of these extensions can deploy the initial state of your VM and also be used to make sure the desired state is maintained.
+## 通用範本範圍
 
-## <a name="common-template-scopes"></a>Common template scopes
+在我們的經驗中，我們看到了範圍所浮現的三個主要解決方案範本。以下各節將說明這三個範圍：容量、功能和端對端解決方案。
 
-In our experience, we’ve seen three key solution templates scopes emerge. These three scopes – capacity, capability, and end-to-end solution – are described in the following sections.
+### 容量範圍
 
-### <a name="capacity-scope"></a>Capacity scope
+容量範圍可在標準拓樸中提供一組預先設定來遵循法規和原則的資源。最常見的範例是在企業 IT 或 SI 案例中部署標準開發環境。
 
-A capacity scope delivers a set of resources in a standard topology that is pre-configured to be in compliance with regulations and policies. The most common example is deploying a standard development environment in an Enterprise IT or SI scenario.
+### 功能範圍
 
-### <a name="capability-scope"></a>Capability scope
+功能範圍著重於部署和設定特定技術的拓撲。常見案例包括像是 SQL Server、Cassandra、Hadoop 等技術。
 
-A capability scope is focused on deploying and configuring a topology for a given technology. Common scenarios including technologies such as SQL Server, Cassandra, Hadoop.
+### 端對端解決方案範圍
 
-### <a name="end-to-end-solution-scope"></a>End-to-end solution scope
+端對端解決方案範圍的目標已超越單一功能，並改為將重點放在提供由多個功能所組成的端對端解決方案。
 
-An End-to-End Solution Scope is targeted beyond a single capability, and instead focused on delivering an end to end solution comprised of multiple capabilities.  
+已設定解決方案範圍的範本範圍會將其本身顯示為一組具有一或多個已設定功能範圍的範本，其中含有解決方案特定的資源、邏輯和期望狀態。已設定解決方案範圍的範本範例之一，是端對端資料管線解決方案範本。此範本可能會將解決方案特定的拓撲和狀態與多個已設定功能範圍的解決方案範本混合在一起，例如 Kafka、Storm 及 Hadoop。
 
-A solution-scoped template scope manifests itself as a set of one or more capability-scoped templates with solution-specific resources, logic, and desired state. An example of a solution-scoped template is an end to end data pipeline solution template. The template might mix solution-specific topology and state with multiple capability scoped solution templates such as Kafka, Storm, and Hadoop.
+## 選擇自由格式與已知的組態
 
-## <a name="choosing-free-form-vs.-known-configurations"></a>Choosing free-form vs. known configurations
+您一開始可能認為範本應該為取用者提供最大的彈性，但有許多考量會影響是否使用自由格式組態與已知組態的選擇。本節將識別主要的客戶需求，以及形成本文分享之處理方式的技術考量。
 
-You might initially think a template should give consumers the utmost flexibility, but many considerations affect the choice of whether to use free-form configurations vs. known configurations. This section identifies the key customer requirements and technical considerations that shaped the approach shared in this document.
+### 自由格式組態
 
-### <a name="free-form-configurations"></a>Free-form configurations
+表面上，自由格式組態聽起來很實用。它們讓您能夠選取 VM 類型，且提供任意數目的節點以及這些節點的連接磁碟，並做為範本的參數來執行此動作。不過，這個做法不適用於某些案例。
 
-On the surface, free-form configurations sound ideal. They allow you to select a VM type and provide an arbitrary number of nodes and attached disks for those nodes — and do so as parameters to a template. However, this approach is not ideal for some scenarios.
+在[虛擬機器的大小](./virtual-machines/virtual-machines-windows-sizes.md)文章中，已識別出不同的 VM 類型和可用大小，以及每個可連接且持久的磁碟數目 (2、4、8、16 或 32)。每個連接的磁碟可提供 500 個 IOPS，而您可以利用這個 IOPS 數目做為乘數來共用這些磁碟數目的倍數。例如，共用 16 個磁碟，即可提供 8,000 個 IOPS。您可以使用 Microsoft Windows 儲存空間或 Linux 中價格便宜的獨立磁碟容錯陣列 (RAID)，利用作業系統中的組態來完成共用。
 
-In [Sizes for virtual machines](./virtual-machines/virtual-machines-windows-sizes.md), the different VM types and available sizes are identified, and each of the number of durable disks (2, 4, 8, 16, or 32) that can be attached. Each attached disk provides 500 IOPS and multiples of these disks can be pooled for a multiplier of that number of IOPS. For example, 16 disks can be pooled to provide 8,000 IOPS. Pooling is done with configuration in the operating system, using Microsoft Windows Storage Spaces or redundant array of inexpensive disks (RAID) in Linux.
+自由格式組態能夠選取一些 VM 執行個體、一些適用於這些執行個體的不同 VM 類型和大小、一些可根據 VM 類型而有所不同的磁碟，以及一或多個指令碼來設定 VM 內容。
 
-A free-form configuration enables the selection of a number of VM instances, a number of different VM types and sizes for those instances, a number of disks that can vary based on the VM type, and one or more scripts to configure the VM contents.
+通常，部署可能會有多種類型的節點 (例如主要和資料節點)，因此，經常會針對每個節點類型提供此彈性。
 
-It is common that a deployment may have multiple types of nodes, such as master and data nodes, so this flexibility is often provided for every node type.
+當您開始部署具有任何重要性的叢集時，就會開始使用這所有數目的倍數。例如，如果您正在部署 Hadoop 叢集，其中有 8 個主要節點和 200 個資料節點，而且每個主要節點上會共用 4 個連接的磁碟，以及每個資料節點上會共用 16 個連接的磁碟，則您會有 208 個 VM 和 3,232 個磁碟需要管理。
 
-As you start to deploy clusters of any significance, you begin to work with multiples of all of these. If you were deploying a Hadoop cluster, for example, with 8 master nodes and 200 data nodes, and pooled 4 attached disks on each master node and pooled 16 attached disks per data node, you would have 208 VMs and 3,232 disks to manage.
+儲存體帳戶將根據它所識別出的每秒 20,000 個交易限制上調節要求，因此，您應該查看儲存體帳戶的資料分割，並使用計算來判斷適當數目的儲存體帳戶以配合此拓撲。假設自由格式的方法支援多種組合，則需要動態計算來判斷適當的資料分割。Azure 資源管理員範本語言目前不提供數學函式，所以您必須在程式碼中執行這些計算，產生唯一的硬式編碼範本以及適當的詳細資料。
 
-A storage account will throttle requests above its identified 20,000 transactions/second limit, so you should look at storage account partitioning and use calculations to determine the appropriate number of storage accounts to accommodate this topology. Given the multitude of combinations supported by the free-form approach, dynamic calculations are required to determine the appropriate partitioning. The Azure Resource Manager Template Language does not presently provide mathematical functions, so you must perform these calculations in code, generating a unique, hard-coded template with the appropriate details.
+在企業 IT 和 SI 案例中，有人必須維護範本，並提供已針對一或多個組織部署之拓撲的支援。這個額外負擔 (每位客戶都有不同的組態和範本) 並不盡理想。
 
-In enterprise IT and SI scenarios, someone must maintain the templates and provide support for the deployed topologies for one or more organizations. This additional overhead — different configurations and templates for each customer — is far from desirable.
+您可以使用這些範本，在客戶的 Azure 訂用帳戶中部署環境，但是企業 IT 團隊和 CSV 通常會將它們部署到他們自己的訂用帳戶，使用退款函式來向客戶收費。在這些情況下，目標是要跨訂用帳戶集區部署適用於多位客戶的容量，並讓部署密集聚集在訂用帳戶中，以便將訂用帳戶的擴展最小化，也就是能夠管理更多訂用帳戶。透過真正的動態部署大小，達到這種類型的密度需要仔細規劃，以及其他針對代表組織之樣版工作的部署。
 
-You can use these templates to deploy environments in your customer’s Azure subscription, but both corporate IT teams and CSVs typically deploy them into their own subscriptions, using a chargeback function to bill their customers. In these scenarios, the goal is to deploy capacity for multiple customers across a pool of subscriptions and keep deployments densely populated into the subscriptions to minimize subscription sprawl—that is, more subscriptions to manage. With truly dynamic deployment sizes, achieving this type of density requires careful planning and additional development for scaffolding work on behalf of the organization.
+此外，您無法透過 API 呼叫來建立訂用帳戶，但必須透過入口網站手動執行此動作。隨著訂用帳戶數目增加，任何產生的訂用帳戶擴展都必須人為介入，根本無法自動化。由於部署的大小如此多變，因此您必須手動預先佈建一些訂用帳戶，以確保有訂用帳戶可供使用。
 
-In addition, you can’t create subscriptions via an API call but must do so manually through the portal. As the number of subscriptions increases, any resulting subscription sprawl requires human intervention—it can’t be automated. With so much variability in the sizes of deployments, you would have to pre-provision a number of subscriptions manually to ensure subscriptions are available.
+考慮這所有因素，真正的自由格式組態乍看之下比較不具吸引力。
 
-Considering all these factors, a truly free-form configuration is less appealing than at first blush.
+### 已知組態 - T 恤尺寸調整法
 
-### <a name="known-configurations-—-the-t-shirt-sizing-approach"></a>Known configurations — the t-shirt sizing approach
+在我們的經驗中，與其給予範本來提供總彈性和無數個變化，常見模式是提供選取已知組態的功能 - 實際上，是諸如沙箱、小型、中型和大型等標準 T 恤尺寸。T 恤尺寸的其他範例包括產品供應項目，例如社群版本或企業版本。在其他情況下，這可能是某種技術的工作負載特定組態，例如，對應減少或沒有 SQL。
 
-Rather than offer a template that provides total flexibility and countless variations, in our experience a common pattern is to provide the ability to select known configurations — in effect, standard t-shirt sizes such as sandbox, small, medium, and large. Other examples of t-shirt sizes are product offerings, such as community edition or enterprise edition.  In other cases, it may be workload-specific configurations of a technology – such as map reduce or no sql.
+許多企業 IT 組織、OSS 廠商和 SI 目前都能在內部部署且虛擬化的環境 (企業) 中或做為「軟體即為服務」(SaaS) 供應項目 (CSV 和 OSV)，使用這種方式來使他們的供應項目可供使用。
 
-Many enterprise IT organizations, OSS vendors, and SIs make their offerings available today in this way in on-premises, virtualized environments (enterprises) or as software-as-a-service (SaaS) offerings (CSVs and OSVs).
+這種方法可針對預先為客戶設定好的各種大小提供良好且已知的組態。如果沒有已知組態，客戶就必須自行判斷叢集大小、納入平台資源限制，以及進行數學運算來識別儲存體帳戶所產生的資料分割和其他資源 (因叢集大小和資源限制而導致) 。已知組態讓客戶能夠輕鬆選取正確的 T 恤尺寸，也就是指定的部署。除了為客戶提供更好的經驗，少量的已知組態可讓您更輕鬆地提供支援，並協助您提供較高的密度等級。
 
-This approach provides good, known configurations of varying sizes that are preconfigured for customers. Without known configurations, end customers must determine cluster sizing on their own, factor in platform resource constraints, and do math to identify the resulting partitioning of storage accounts and other resources (due to cluster size and resource constraints). Known configurations enable customers to easily select the right t-shirt size—that is, a given deployment. In addition to making a better experience for the customer, a small number of known configurations is easier to support and can help you deliver a higher level of density.
+著重於 T 恤尺寸的已知組態方法在某個尺寸內可能也會擁有各種節點數目。例如，小型 T 恤尺寸可能介於 3 到 10 個節點之間。T 恤尺寸是設計來最多容納 10 個節點，並讓取用者能夠進行任意形式的選擇 (最多可達已識別出的大小上限)。
 
-A known configuration approach focused on t-shirt sizes may also have varying number of nodes within a size. For example, a small t-shirt size may be between 3 and 10 nodes.  The t-shirt size would be designed to accommodate up to 10 nodes and provide the consumer the ability to make free form selections up to the maximum size identified.  
+以工作負載類型為基礎的 T 恤尺寸在可部署的節點數目方面本質上的形式可能更自由，但是會對節點上的軟體產生工作負載完全不同的節點大小與組態。
 
-A t-shirt size based on workload type, may be more free form in nature in terms of the number of nodes that can be deployed but will have workload distinct node size and configuration of the software on the node.
+以產品供應項目為依據的 T 恤尺寸 (例如社群或企業) 可能會有不同的資源類型和可部署的節點數目上限，通常會受到不同供應項目上的授權考量或功能可用性所影響。
 
-T-shirt sizes based on product offerings, such as community or Enterprise, may have distinct resource types and maximum number of nodes that can be deployed, typically tied to licensing considerations or feature availability across the different offerings.
+您也可以使用以 JSON 為基礎的範本，利用獨特的變體來配合客戶。處理極端值時，您可以併入開發、支援和成本的適當規劃與考量。
 
-You can also accommodate customers with unique variants using the JSON-based templates. When dealing with outliers, you can incorporate the appropriate planning and considerations for development, support, and costing.
+根據客戶範本取用案例、本文件開頭所識別的要求，以及我們所建立的許多範本實際操作經驗，我們找到了一個適合用來進行範本分解的模式。
 
-Based on the customer template consumption scenarios, requirements identified at the start of this document, and our hands-on experience creating numerous templates, we identified a pattern for template decomposition.
+## 已設定容量和功能範圍的解決方案範本
 
-## <a name="capacity-and-capability-scoped-solution-templates"></a>Capacity and capability-scoped solution templates
+分解可提供範本開發的模組化方法，以支援重複使用、擴充性、測試和工具設定。本節提供如何將分解方法套用到具有容量或功能範圍的範本詳細資料。
 
-Decomposition provides a modular approach to template development that supports reuse, extensibility, testing, and tooling. This section provides detail on how a decomposition approach can be applied to templates with a Capacity or Capability scope.
+在這種方法中，主要的範本會接收到來自範本取用者的參數值，然後是下游的數種類型範本和指令碼的連結，如下所示。參數、靜態變數和產生的變數可用來提供進出連結範本的值。
 
-In this approach, a main template receives parameter values from a template consumer, then links to several types of templates and scripts downstream as shown below. Parameters, static variables, and generated variables are used to provide values in and out of the linked templates.
+![範本參數](./media/best-practices-resource-manager-design-templates/template-parameters.png)
 
-![Template parameters](./media/best-practices-resource-manager-design-templates/template-parameters.png)
+**參數會傳遞到主要的範本，然後傳遞到連結的範本**
 
-**Parameters are passed to a main template then to linked templates**
+以下各節將焦點放在範本類型以及單一範本分解出來的指令碼。各節並提供用來在範本之間傳遞狀態資訊的方法。此圖中的每個範本和指令碼類型都會使用範例來說明。如需內容相關範例，請參閱本文件稍後的＜整合在一起：範例實作＞。
 
-The following sections focus on the types of templates and scripts that a single template is decomposed into. The sections present approaches for passing state information among the templates. Each template and the script types in the image are described along with examples. For a contextual example, see "Putting it together: a sample implementation" later in this document.
+### 範本中繼資料
 
-### <a name="template-metadata"></a>Template metadata
+範本中繼資料 (metadata.json 檔案) 包含使用 JSON 說明範本的機碼/值組，讓人類和軟體系統都能讀取該範本。
 
-Template metadata (the metadata.json file) contains key/value pairs that describe a template in JSON, which can be read by humans and software systems.
+![範本中繼資料](./media/best-practices-resource-manager-design-templates/template-metadata.png)
 
-![Template metadata](./media/best-practices-resource-manager-design-templates/template-metadata.png)
+**範本中繼資料的說明位於 metadata.json 檔案中**
 
-**Template metadata is described in the metadata.json file**
+軟體代理程式可以擷取 metadata.json 檔案，並將資訊和連結發佈到網頁或目錄中的範本。項目包括 *itemDisplayName*、*description*、*summary*、*githubUsername* 及 *dateUpdated*。
 
-Software agents can retrieve the metadata.json file and publish the information and a link to the template in a web page or directory. Elements include *itemDisplayName*, *description*, *summary*, *githubUsername*, and *dateUpdated*.
-
-An example file is shown below in its entirety.
+以下顯示完整的範例檔案。
 
     {
         "itemDisplayName": "PostgreSQL 9.3 on Ubuntu VMs",
@@ -214,175 +213,171 @@ An example file is shown below in its entirety.
         "dateUpdated": "2015-04-24"
     }
 
-### <a name="main-template"></a>Main template
+### 主要的範本
 
-The main template receives parameters from a user, uses that information to populate complex object variables, and executes the linked templates.
+主要範本接收來自使用者的參數、使用該資訊來填入複雜物件變數，然後執行連結的範本。
 
-![Main template](./media/best-practices-resource-manager-design-templates/main-template.png)
+![主要的範本](./media/best-practices-resource-manager-design-templates/main-template.png)
 
-**The main template receives parameters from a user**
+**主要的範本會接收來自使用者的參數**
 
-One parameter that is provided is a known configuration type also known as the t-shirt size parameter because of its standardized values such as small, medium, or large. In practice, you can use this parameter in multiple ways. For details, see "Known configuration resources template" later in this document.
+提供的其中一個參數是已知組態類型，因為其標準化的值 (例如，小型、中型或大型)，所以也稱為 T 恤尺寸參數。實際上，您可以用多種方式使用此參數。如需詳細資訊，請參閱本文件稍後的＜已知組態資源範本＞。
 
-Some resources are deployed regardless of the known configuration specified by a user parameter. These resources are provisioned using a single shared resource template and are shared by other templates, so the shared resource template is run first.
+無論使用者參數所指定的已知組態為何，都會部署某些資源。這些資源會使用單一共用資源範本來佈建，並與其他範本共用，如此便能先執行共用的資源範本。
 
-Some resources are deployed optionally regardless of the specified known configuration.
+不論指定的已知組態為何，都會選擇性地部署某些資源。
 
-### <a name="shared-resources-template"></a>Shared resources template
+### 共用的資源範本
 
-This template delivers resources that are common across all known configurations. It contains the virtual network, availability sets, and other resources that are required regardless of the known configuration template that is deployed.
+此範本會提供所有已知組態上通用的資源。其中包含不論部署的已知組態範本為何都是必要項目的虛擬網路、可用性設定組和其他資源。
 
-![Template resources](./media/best-practices-resource-manager-design-templates/template-resources.png)
+![範本資源](./media/best-practices-resource-manager-design-templates/template-resources.png)
 
-**Shared resources template**
+**共用的資源範本**
 
-Resource names, such as the virtual network name, are based on the main template. You can specify them as a variable within that template or receive them as a parameter from the user, as required by your organization.
+資源名稱 (例如虛擬網路名稱) 會以主要的範本為根據。您可以視組織需求而定，將它們指定為該範本內的變數，或從使用者處接收它們做為參數。
 
-### <a name="optional-resources-template"></a>Optional resources template
+### 選擇性資源範本
 
-The optional resources template contains resources that are programmatically deployed based on the value of a parameter or variable.
+選擇性資源範本包含以參數或變數的值為根據且利用程式設計方式部署的資源。
 
-![Optional resources](./media/best-practices-resource-manager-design-templates/optional-resources.png)
+![選擇性資源](./media/best-practices-resource-manager-design-templates/optional-resources.png)
 
-**Optional resources template**
+**選擇性資源範本**
 
-For example, you can use an optional resources template to configure a jumpbox that enables indirect access to a deployed environment from the public Internet. You would use a parameter or variable to identify whether the jumpbox should be enabled and the *concat* function to build the target name for the template, such as *jumpbox_enabled.json*. Template linking would use the resulting variable to install the jumpbox.
+例如，您可以使用選擇性資源範本來設定 Jumpbox，以便從公用網際網路間接存取部署的環境。您會使用參數或變數來識別是否應啟用 Jumpbox，並使用 *concat* 函式來建置範本的目標名稱，例如 *jumpbox\_enabled.json*。範本連結會使用產生的變數來安裝 Jumpbox。
 
-You can link the optional resources template from multiple places:
+您可以從多個位置連結選擇性資源範本：
 
--   When applicable to every deployment, create a parameter-driven link from the shared resources template.
--   When applicable to select known configurations—for example, only install on large deployments—create a parameter-driven or variable-driven link from the known configuration template.
+-	若適用於每個部署，即可從共用的資源範本建立參數導向的連結。
+-	適用於選取已知組態時 (例如，安裝於大型部署上)，即可從已知組態範本建立參數導向或變數導向的連結。
 
-Whether a given resource is optional may not be driven by the template consumer but instead by the template provider. For example, you may need to satisfy a particular product requirement or product add-on (common for CSVs) or to enforce policies (common for SIs and enterprise IT groups). In these cases, you can use a variable to identify whether the resource should be deployed.
+指定的資源是否為選擇性，可能不是由範本取用者所驅動，而是由範本提供者所驅動。例如，您可能需要滿足特定的產品需求或產品附加元件 (通常適用於 CSV) 或強制執行原則 (通常適用於 SI 與企業 IT 群組)。在這些情況下，您可以使用變數來判斷是否應該部署資源。
 
-### <a name="known-configuration-resources-template"></a>Known configuration resources template
+### 已知組態資源範本
 
-In the main template, a parameter can be exposed to allow the template consumer to specify a desired known configuration to deploy. Often, this known configuration uses a t-shirt size approach with a set of fixed configuration sizes such as sandbox, small, medium, and large.
+在主要的範本中，參數會公開，讓範本取用者能夠指定要部署的期望已知組態。通常，這個已知組態會使用具有一組固定組態大小 (例如，沙箱、小型、中型和大型) 的 T 恤尺寸方法。
 
-![Known configuration resources](./media/best-practices-resource-manager-design-templates/known-config.png)
+![已知組態資源](./media/best-practices-resource-manager-design-templates/known-config.png)
 
-**Known configuration resources template**
+**已知組態資源範本**
 
-The t-shirt size approach is commonly used, but the parameters can represent any set of known configurations. For example, you can specify a set of environments for an enterprise application such as Development, Test, and Product. Or you could use it for a cloud service to represent different scale units, product versions, or product configurations such as Community, Developer, or Enterprise.
+通常會使用 T 恤尺寸方法，但參數可代表任何已知組態的組合。例如，您可以為企業應用程式指定一組環境，例如，開發、測試和產品。或者，您可以針對雲端服務使用它來代表不同的縮放單位、產品版本或產品組態，例如，社群、開發人員或企業。
 
-As with the shared resource template, variables are passed to the known configurations template from either:
+如同共用的資源範本，變數會從下列任一處傳遞到已知組態範本：
 
--   An end user—that is, the parameters sent to the main template.
--   An organization—that is, the variables in the main template that represent internal requirements or policies.
+-	使用者 - 也就是傳送到主要範本的參數。
+-	組織 - 也就是主要範本中代表內部需求或原則的變數。
 
-### <a name="member-resources-template"></a>Member resources template
+### 成員資源範本
 
-Within a known configuration, one or more member node types are often included. For example, with Hadoop you have master nodes and data nodes. If you are installing MongoDB, you have data nodes and an arbiter. If you are deploying DataStax, you have data nodes and a VM with OpsCenter installed.
+在已知組態中，通常會包含一或多個成員節點類型。例如，使用 Hadoop，您會有主要節點和資料節點。如果正在安裝 MongoDB，則會有資料節點和仲裁程式。如果正在部署 DataStax，就必須擁有資料節點，以及已安裝 OpsCenter 的 VM。
 
-![Members resources](./media/best-practices-resource-manager-design-templates/member-resources.png)
+![成員資源](./media/best-practices-resource-manager-design-templates/member-resources.png)
 
-**Member resources template**
+**成員資源範本**
 
-Each type of nodes can have different sizes of VMs, numbers of attached disks, scripts to install and set up the nodes, port configurations for the VMs, number of instances, and other details. So each node type gets its own member resource template, which contains the details for deploying and configuring an infrastructure as well as executing scripts to deploy and configure software within the VM.
+每種類型的節點可具有不同大小的 VM、連接的磁碟數目、安裝和設定節點的指令碼、適用於 VM 的連接埠組態、執行個體數目，以及其他詳細資料。因此，每個節點類型都會取得自己的成員資源範本，其中包含部署和設定基礎結構，以及執行指令碼在 VM 內部署和設定軟體的詳細資料。
 
-For VMs, typically two types of scripts are used, widely reusable and custom scripts.
+針對 VM，通常會使用兩種類型的指令碼：廣泛可重複使用和自訂的指令碼。
 
-### <a name="widely-reusable-scripts"></a>Widely reusable scripts
+### 廣泛可重複使用的指令碼
 
-Widely reusable scripts can be used across multiple types of templates. One of the better examples of these widely reusable scripts sets up RAID on Linux to pool disks and gain a greater number of IOPS. Regardless of the software being installed in the VM, this script provides reuse of proven practices for common scenarios.
+廣泛可重複使用的指令碼可以在多種類型的範本上使用。在這些廣泛可重複使用的指令碼中，有一個較好的範例是在 Linux 上設定 RAID 來共用磁碟，並取得更多的 IOPS 數量。不論 VM 中安裝了哪種軟體，此指令碼都會針對常見案例重複使用經過證實的做法。
 
-![Reusable scripts](./media/best-practices-resource-manager-design-templates/reusable-scripts.png)
+![可重複使用的指令碼](./media/best-practices-resource-manager-design-templates/reusable-scripts.png)
 
-**Member resources templates can call widely reusable scripts**
+**成員資源範本能夠呼叫廣泛可重複使用的指令碼**
 
-### <a name="custom-scripts"></a>Custom scripts
+### 自訂指令碼
 
-Templates commonly call one or more scripts that install and configure software within VMs. A common pattern is seen with large topologies where multiple instances of one or more member types are deployed. An installation script is initiated for every VM that can be run in parallel, followed by a setup script that is called after all VMs (or all VMs of a given member type) are deployed.
+範本通常會呼叫一或多個指令碼，在 VM 內安裝和設定軟體。常見的模式會出現在大型拓撲中，其中部署了一或多個成員類型的多個執行個體。安裝指令碼會針對每個可平行執行的 VM 加以啟動，後面接著要在部署所有 VM (或指定成員類型的所有 VM) 之後呼叫的安裝指令碼。
 
-![Custom scripts](./media/best-practices-resource-manager-design-templates/custom-scripts.png)
+![自訂指令碼](./media/best-practices-resource-manager-design-templates/custom-scripts.png)
 
-**Member resources templates can call scripts for a specific purpose such as VM configuration**
+**成員資源範本可基於特定目的呼叫指定碼，例如 VM 組態**
 
-## <a name="capability-scoped-solution-template-example---redis"></a>Capability-scoped solution template example - Redis
+## 已設定功能範圍的解決方案範本範例 - Redis
 
-To show how an implementation might work, let's look at a practical example of building a template that facilitates the deployment and configuration of Redis in standard t-shirt sizes.  
+為了顯示實作可能的運作方式，讓我們來看一個建置範本的實用範例，該範例將以標準的 T 恤尺寸來簡化 Redis 的部署和組態。
 
-For the deployment, there are a set of shared resources (virtual network, storage account, availability sets) and an optional resource (jumpbox). There are multiple known configurations represented as t-shirt sizes (small, medium, large) but each with a single node type. There are also two purpose-specific scripts (installation, configuration).
+針對部署，將會有一組共用資源 (虛擬網路、儲存體帳戶、可用性設定組) 和一個選擇性資源 (Jumpbox)。有多個以 T 恤尺寸 (小型、中型、大型) 來表示的已知組態，但每一個都具有單一節點類型。此外，還有兩個具備特定目的的指令碼 (安裝、組態)。
 
-### <a name="creating-the-template-files"></a>Creating the template files
+### 建立範本檔案
 
-You would create a Main Template named azuredeploy.json.
+您會建立名為 azuredeploy.json 的主要範本。
 
-You create Shared Resources Template named shared-resources.json
+您會建立名為 shared-resources.json 的共用資源範本
 
-You create an Optional Resource Template to enable the deployment of a jumpbox, named jumpbox_enabled.json
+您會建立選擇性資源範本來啟用 Jumpbox 的部署 (名為 jumpbox\_enabled.json)
 
-Redis uses just a single node type, so you create a single Member Resource Template named node-resources.json.
+Redis 只會使用單一節點類型，因此您將建立名為 node-resources.json 的單一成員資源範本。
 
-With Redis, you want to install each individual node, and then set up the cluster.  You have scripts to accommodate the installation and set up, redis-cluster-install.sh and redis-cluster-setup.sh.
+使用 Redis，您要安裝每個個別的節點，然後設定叢集。您必須有可配合安裝和設定的指令碼：redis-cluster-install.sh 和 redis-cluster-setup.sh。
 
-### <a name="linking-the-templates"></a>Linking the templates
+### 連結範本
 
-Using template linking, the main template links out to the shared resources template, which establishes the virtual network.
+使用範本連結時，主要的範本會向外連結到共用的資源範本，以建立虛擬網路。
 
-Logic is added within the main template to enable consumers of the template to specify whether a jumpbox should be deployed. An *enabled* value for the *EnableJumpbox* parameter indicates that the customer wants to deploy a jumpbox. When this value is provided, the template concatenates *_enabled* as a suffix to a base template name for the jumpbox capability.
+邏輯會新增到主要的範本內，讓範本的取用者能夠指定是否應該部署 Jumpbox。*EnableJumpbox* 參數的 *enabled* 值表示客戶想要部署 Jumpbox。提供此值時，範本會串連「\_enabled」做為 Jumpbox 功能之基底範本名稱的尾碼。
 
-The main template applies the *large* parameter value as a suffix to a base template name for t-shirt sizes, and then uses that value in a template link out to *technology_on_os_large.json*.
+主要的範本會套用 *large* 參數值做為 T 恤尺寸之基底範本名稱的尾碼，然後在向外連到 *technology\_on\_os\_large.json* 的範本連結中使用該值。
 
-The topology would resemble this illustration.
+拓撲會類似下圖。
 
-![Redis template](./media/best-practices-resource-manager-design-templates/redis-template.png)
+![Redis 範本](./media/best-practices-resource-manager-design-templates/redis-template.png)
 
-**Template structure for a Redis template**
+**Redis 範本的範本結構**
 
-### <a name="configuring-state"></a>Configuring state
+### 設定狀態
 
-For the nodes in the cluster, there are two steps to configuring the state, both represented by Purpose Specific Scripts.  "redis-cluster-install.sh" installs Redis and "redis-cluster-setup.sh" sets up the cluster.
+針對叢集中的節點設定狀態有兩個步驟，這兩個都是透過具有特定目的的指令碼來表示。“redis-cluster-install.sh” 將執行 Redis 的安裝，而 “redis-cluster-setup.sh” 將設定叢集。
 
-### <a name="supporting-different-size-deployments"></a>Supporting Different Size Deployments
+### 支援不同大小的部署
 
-Inside variables, the t-shirt size template specifies the number of nodes of each type to deploy for the specified size (*large*). It then deploys that number of VM instances using resource loops, providing unique names to resources by appending a node name with a numeric sequence number from *copyIndex()*. It does these steps for both hot and warm zone VMs, as defined in the t-shirt name template
+在變數內部，T 恤尺寸的範本會針對特定大小 (*large*) 指定每個要部署類型的節點數目。接著，使用資源迴圈來部署該數目的 VM 執行個體，藉由從 *copyIndex()* 附加具有數字序號的節點名稱，為資源提供唯一的名稱。它會針對作用區和暖區的 VM 執行這些步驟，如同 T 恤名稱範本中所定義。
 
-## <a name="decomposition-and-end-to-end-solution-scoped-templates"></a>Decomposition and end-to-end solution scoped templates
+## 分解和已設定端對端解決方案範圍的範本
 
-A solution template with an end-to-end solution scope is focused on delivering an end-to-end solution.  This approach is typically a composition of multiple capability scoped templates with additional resources, logic, and state.
+具有端對端解決方案範圍的解決方案範本會將重點放在提供端對端解決方案。這個做法通常是多個已設定功能範圍的範本以及其他資源、邏輯和狀態的組合。
 
-As highlighted in the image below, the same model used for capability scoped templates is extended for templates with an End-to-End Solution Scope.
+如下圖中反白顯示的，同樣適用於已設定功能範圍之範本的模型，會針對具有端對端解決方案範圍的範本加以擴充。
 
-A Shared Resources Template and Optional Resources Templates serve the same function as in the capacity and capability scoped template approaches, but are scoped for the end to end solution.
+共用的資源範本和選擇性資源範本可提供和已設定容量與功能範圍的範本方法一樣的函式，但會針對端對端解決方案設定範圍。
 
-As end to end solution scoped templates also can typically have t-shirt sizes, the Known Configuration Resources template reflects what is required for a given known configuration of the solution.
+由於已設定端對端解決方案範圍的範本通常也會有 T 恤尺寸，因此，已知組態資源範本會反映解決方案中指定已知組態所需的功能。
 
-The Known Configuration Resources Template links to one or more capability scoped solution templates that are relevant to the end to end solution as well as the Member Resource Templates that are required for the end to end solution.
+已知組態資源範本會連結到一或多個與端對端解決方案相關且已設定功能範圍的解決方案範本，以及端對端解決方案所需的成員資源範本。
 
-As the t-shirt size of the solution may be different than that of individual capability scoped template, variables within the Known Configuration Resources Template are used to provide the appropriate values for downstream capability scoped solution templates to deploy the appropriate t-shirt size.
+當解決方案的 T 恤尺寸可能與已設定功能範圍的個別範本不同時，已知組態資源範本內的變數就能用來針對下游已設定功能範圍的解決方案範本提供適當的值，以部署適當的 T 恤尺寸。
 
-![End-to-end](./media/best-practices-resource-manager-design-templates/end-to-end.png)
+![端對端](./media/best-practices-resource-manager-design-templates/end-to-end.png)
 
-**The model used for capacity or capability scoped solution templates can be readily extended for end to end solution template scopes**
+**適用於已設定容量或功能範圍之解決方案範本的模型可針對端對端解決方案範本範圍輕易地進行擴充**
 
-## <a name="preparing-templates-for-the-marketplace"></a>Preparing templates for the Marketplace
+## 準備適用於 Marketplace 的範本
 
-The preceding approach readily accommodates scenarios where Enterprises, SIs, and CSVs want to either deploy the templates themselves or enable their customers to deploy on their own.
+前述做法可輕易地配合企業、SI 和 CSV 想要自行部署範本，或讓客戶自行部署的案例。
 
-Another desired scenario is deploying a template via the marketplace.  This decomposition approach works for the marketplace as well, with some minor changes.
+另一個所需的案例是透過 Marketplace 來部署範本。這個分解做法也適用於 Marketplace，但會有些微變更。
 
-As mentioned previously, templates can be used to offer distinct deployment types for sale in the marketplace. Distinct deployment types may be t-shirt sizes (small, medium, large), product/audience type (community, developer, enterprise), or feature type (basic, high availability).
+如先前所述，範本可用來提供不同的部署類型，以便在 Marketplace 中進行銷售。不同的部署類型可能是 T 恤尺寸 (小型、中型、大型)、產品/對象類型 (社群、開發人員、企業) 或功能類型 (基本、高可用性)。
 
-As shown below, the existing end to end solution or capability scoped templates can be readily utilized to list the different known configurations in the marketplace.
+如下所示，您可以輕鬆地利用現有的端對端解決方案或已設定功能範圍的範本，在 Marketplace 中列出不同的已知組態。
 
-The parameters to the main template are first modified to remove the inbound parameter named tshirtSize.
+主要範本的參數會先加以修改，以移除名為 tshirtSize 的輸入參數。
 
-While the distinct deployment types map to the Known Configuration Resources Template, they also need the common resources and configuration found in the Shared Resources Template and potentially those in Optional Resource Templates.
+將不同的部署類型對應到已知組態資源範本時，它們也需要可在共用資源範本中找到的通用資源和組態，而且可能會在選擇性資源範本中使用它們。
 
-If you want to publish your template to the marketplace, you simply establish distinct copies of your Main template that replaces the previously available inbound parameter of tshirtSize to a variable embedded within the template.
+如果您想要將範本發佈到 Marketplace，只需建立不同的主要範本複本，將先前可用的 tshirtSize 輸入參數取代為內嵌在範本內的變數。
 
 ![Marketplace](./media/best-practices-resource-manager-design-templates/marketplace.png)
 
-**Adapting a solution scoped template for the marketplace**
+**針對 Marketplace 調整已設定解決方案範圍的範本**
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-- For recommendations about how to handle security in Azure Resource Manager, see [Security considerations for Azure Resource Manager](best-practices-resource-manager-security.md)
-- To learn about sharing state into and out of templates, see [Sharing state in Azure Resource Manager templates](best-practices-resource-manager-state.md).
+- 如需如何在 Azure 資源管理員中處理安全性的建議，請參閱 [Azure 資源管理員的安全性考量](best-practices-resource-manager-security.md)。
+- 若要了解進出範本的共用狀態，請參閱〈[Azure 資源管理員範本中的共用狀態](best-practices-resource-manager-state.md)〉。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!----HONumber=AcomDC_0914_2016-->

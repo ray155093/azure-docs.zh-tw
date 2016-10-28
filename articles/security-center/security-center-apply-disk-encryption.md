@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Apply disk encryption in Azure Security Center | Microsoft Azure"
-   description="This document shows you how to implement the Azure Security Center recommendation **Apply disk encryption**."
+   pageTitle="在 Azure 資訊安全中心中套用磁碟加密 | Microsoft Azure"
+   description="本文件說明如何實作 Azure 資訊安全中心建議的「套用磁碟加密」。"
    services="security-center"
    documentationCenter="na"
    authors="TerryLanfear"
@@ -16,60 +16,55 @@
    ms.date="07/29/2016"
    ms.author="terrylan"/>
 
+# 在 Azure 資訊安全中心中套用磁碟加密
 
-# <a name="apply-disk-encryption-in-azure-security-center"></a>Apply disk encryption in Azure Security Center
-
-Azure Security Center will recommend that you apply disk encryption if you have Windows or Linux VM disks that are not encrypted using Azure Disk Encryption. Disk Encryption lets you encrypt your Windows and Linux IaaS VM disks.  Encryption is recommended for both the OS and data volumes on your VM.
+如果您有未使用 Azure 磁碟加密進行加密的 Windows 或 Linux VM 磁碟，Azure 資訊安全中心會建議您套用磁碟加密。磁碟加密可讓您替 Windows 和 Linux IaaS VM 磁碟加密。建議您的 VM 上的作業系統和資料磁碟區都進行加密。
 
 
-Disk Encryption leverages the industry standard [BitLocker](https://technet.microsoft.com/library/cc732774.aspx) feature of Windows and the [DM-Crypt](https://en.wikipedia.org/wiki/Dm-crypt) feature of Linux to provide OS and data encryption to help protect and safeguard your data and meet your organizational security and compliance commitments. Disk Encryption is integrated with [Azure Key Vault](https://azure.microsoft.com/documentation/services/key-vault/) to help you control and manage the disk encryption keys and secrets in your Key Vault subscription, while ensuring that all data in the VM disks are encrypted at rest in your [Azure Storage](https://azure.microsoft.com/documentation/services/storage/).
+磁碟加密利用 Windows 的業界標準 [BitLocker](https://technet.microsoft.com/library/cc732774.aspx) 功能和 Linux 的 [DM-Crypt](https://en.wikipedia.org/wiki/Dm-crypt) 功能以及資料加密功能，協助保護您的資料並滿足您組織的安全性和法規遵循承諾。磁碟加密與 [Azure 金鑰保存庫](https://azure.microsoft.com/documentation/services/key-vault/)整合，可幫助您控制和管理您的金鑰保存庫訂用帳戶中的磁碟加密金鑰和密碼，同時確保 VM 磁碟中的所有資料會在您的 [Azure 儲存體](https://azure.microsoft.com/documentation/services/storage/)中輕鬆加密。
 
-> [AZURE.NOTE] Azure Disk Encryption is supported on the following Windows server operating systems - Windows Server 2008 R2, Windows Server 2012, and Windows Server 2012 R2. Disk encryption is supported on the following Linux server operating systems - Ubuntu, CentOS, SUSE and SUSE Linux Enterprise Server (SLES).
+> [AZURE.NOTE] 下列 Windows 伺服器作業系統支援 Azure 磁碟加密 - Windows Server 2008 R2、Windows Server 2012 和 Windows Server 2012 R2。下列 Linux 伺服器作業系統支援磁碟加密 - Ubuntu、CentOS、SUSE 和 SUSE Linux Enterprise Server (SLES)。
 
-## <a name="implement-the-recommendation"></a>Implement the recommendation
+## 實作建議
 
-1. In the **Recommendations** blade, select **Apply disk encryption**.
-2. In the **Apply disk encryption** blade, you will see a list of VMs for which Disk Encryption is recommended.
-3. Follow the instructions to apply encryption to these VMs.
+1. 在 [建議] 刀鋒視窗中，選取 [套用磁碟加密]。
+2. 在 [套用磁碟加密] 刀鋒視窗中，您會看到建議進行磁碟加密的 VM 清單。
+3. 依照指示將加密套用至這些 VM。
 
 ![][1]
 
-To encrypt Azure Virtual Machines that have been identified by Security Center as needing encryption, we recommend the following steps:
+若要加密已由資訊安全中心識別為需要加密的 Azure 虛擬機器，建議您執行下列步驟︰
 
-- Install and configure Azure PowerShell. This will enable you to run the PowerShell commands required to set up the prerequisites required to encrypt Azure Virtual Machines.
-- Obtain and run the Azure Disk Encryption Prerequisites Azure PowerShell script.
-- Encrypt your virtual machines.
+- 安裝並設定 Azure PowerShell。這可讓您執行必要的 PowerShell 命令，以便設定用來加密 Azure 虛擬機器的必要先決條件。
+- 取得並執行 Azure 磁碟加密先決條件 Azure PowerShell 指令碼。
+- 加密虛擬機器。
 
-[Encrypt an Azure Virtual Machine](security-center-disk-encryption.md) will walk you through these steps.  This topic assumes you are using Windows 10 as the client machine from which you will configure disk encryption.
+[加密 Azure 虛擬機器](security-center-disk-encryption.md)將逐步引導您完成這些步驟。本主題假設您使用 Windows 10 做為用戶端電腦，並從中設定磁碟加密。
 
-There are many approaches that can be used to setup the prerequisites and to configure encryption for Azure Virtual Machines. If you are already well-versed in Azure PowerShell or Azure CLI, then you may prefer to use alternate approaches. To learn about these other approaches see [Azure disk encryption](../security/azure-security-disk-encryption.md).
+若要設定先決條件以及設定 Azure 虛擬機器的加密功能，可以使用的方法很多。如果您已經很熟悉 Azure PowerShell 或 Azure CLI，可能會想要使用其他方法。若要深入了解其他這些方法，請參閱 [Azure 磁碟加密](../security/azure-security-disk-encryption.md)。
 
 
 
-## <a name="see-also"></a>See also
+## 另請參閱
 
-This document showed you how to implement the Security Center recommendation "Apply disk encryption." To learn more about disk encryption, see the following:
+本文件說明如何實作 Azure 資訊安全中心建議的「套用磁碟加密」。 若要深入了解磁碟加密，請參閱下列主題：
 
-- [Encryption and key management with Azure Key Vault](https://azure.microsoft.com/documentation/videos/azurecon-2015-encryption-and-key-management-with-azure-key-vault/) (video, 36 min 39 sec) -- Learn how to use disk encryption management for IaaS VMs and Azure Key Vault to help protect and safeguard your data.
-- [Encrypt an Azure Virtual Machine](security-center-disk-encryption.md) (document) -- Learn how to encrypt Azure Virtual Machines.
-- [Azure disk encryption](../security/azure-security-disk-encryption.md) (document) -- Learn how to enable disk encryption for Windows and Linux VMs.
+- [Azure 金鑰保存庫的加密和金鑰管理](https://azure.microsoft.com/documentation/videos/azurecon-2015-encryption-and-key-management-with-azure-key-vault/) (影片，36 分 39 秒) -- 了解如何使用 IaaS VM 和 Azure 金鑰保存庫的磁碟加密管理功能，協助保護您的資料。
+- [加密 Azure 虛擬機器](security-center-disk-encryption.md) (文件) - 了解如何加密 Azure 虛擬機器。
+- [Azure 磁碟加密](../security/azure-security-disk-encryption.md) (文件) -- 了解如何為 Windows 和 Linux VM 啟用磁碟加密。
 
-To learn more about Security Center, see the following:
+如要深入了解資訊安全中心，請參閱下列主題：
 
-- [Setting security policies in Azure Security Center](security-center-policies.md) -- Learn how to configure security policies.
-- [Security health monitoring in Azure Security Center](security-center-monitoring.md) -- Learn how to monitor the health of your Azure resources.
-- [Managing and responding to security alerts in Azure Security Center](security-center-managing-and-responding-alerts.md) -- Learn how to manage and respond to security alerts.
-- [Managing security recommendations in Azure Security Center](security-center-recommendations.md) -- Learn how recommendations help you protect your Azure resources.
-- [Azure Security Center FAQ](security-center-faq.md) -- Find frequently asked questions about using the service.
-- [Azure Security blog](http://blogs.msdn.com/b/azuresecurity/) -- Find blog posts about Azure security and compliance.
+- [設定 Azure 資訊安全中心的安全性原則](security-center-policies.md) -- 了解如何設定安全性原則。
+- [Azure 資訊安全中心的安全性健全狀況監視](security-center-monitoring.md) -- 了解如何監視 Azure 資源的健全狀況。
+- [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) -- 了解如何管理與回應安全性警示。
+- [管理 Azure 資訊安全中心的安全性建議](security-center-recommendations.md) -- 了解建議如何協助您保護您的 Azure 資源。
+- [Azure 資訊安全中心常見問題集](security-center-faq.md) -- 尋找在使用服務時經常會遇到的問題。
+- [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) -- 尋找有關 Azure 安全性與相容性的部落格文章。
 
 
 
 <!--Image references-->
 [1]: ./media/security-center-apply-disk-encryption/apply-disk-encryption.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

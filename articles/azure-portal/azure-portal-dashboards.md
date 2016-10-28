@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Azure portal dashboards | Microsoft Azure"
-   description="This article explains how to create and edit dashboards in the Azure portal."
+   pageTitle="Azure 入口網站儀表板 | Microsoft Azure"
+   description="本文說明如何在 Azure 入口網站建立和編輯儀表板。"
    services="azure-portal"
    documentationCenter=""
    authors="sewatson"
@@ -16,94 +16,90 @@
    ms.date="09/06/2016"
    ms.author="sewatson"/>
 
+# 在 Azure 入口網站建立和共用儀表板
 
-# <a name="creating-and-sharing-dashboards-in-the-azure-portal"></a>Creating and sharing dashboards in the Azure portal
+您可以建立多個儀表板，並與可存取您 Azure 訂用帳戶的其他人共用。本文會講述建立/編輯、發佈和管理儀表板存取權的基本概念。
 
-You can create multiple dashboards and share them with others who have access to your Azure subscriptions.  This post goes through the basics of creating/editing, publishing, and managing access to dashboards.
+## 自訂儀表板與刀鋒視窗
 
-## <a name="customizing-dashboards-versus-blades"></a>Customizing dashboards versus blades
+自從幾個月前啟動儀表板後，自訂刀鋒視窗的數量便穩定下滑，自訂儀表板的數量則快速增加。此一強烈的使用趨勢顯示，使用者對於自訂儀表板的偏好勝過刀鋒視窗。為了支持該趨勢，我們將會移除自訂刀鋒視窗的功能，並致力於強化儀表板功能。如果您先前自訂了刀鋒視窗，該項自訂很快就會遭到移除。若要保留該項自訂，請將自訂的圖格釘選到儀表板。只要以滑鼠右鍵按一下該圖格，然後選取 [釘選到儀表板] 即可，如下圖所示。
 
-Since launching dashboards a few months ago, there has been a steady decline in blade customizations and a rapid increase in dashboard customizations. This strong usage trend shows that you prefer customizing dashboards over blades. To support that trend, we will remove the ability to customize blades and dedicate our efforts to enhancing dashboard functionality. If you customized a blade, your customization will soon be removed. To preserve that customization, pin the customized tiles to a dashboard. Simply right-click the tile and select **Pin to dashboard** as shown in the following image.
+![儲存自訂圖格](./media/azure-portal-dashboards/save-customization.png)
 
-![save customized tile](./media/azure-portal-dashboards/save-customization.png)
+## 建立儀表板
 
-## <a name="create-a-dashboard"></a>Create a dashboard
+若要建立儀表板，請選取目前的儀表板名稱旁的 [新增儀表板] 按鈕。
 
-To create a dashboard, select the **New dashboard** button next to the current dashboard's name.  
+![建立儀表板](./media/azure-portal-dashboards/new-dashboard.png)
 
-![create dashboard](./media/azure-portal-dashboards/new-dashboard.png)
+這個動作會建立全新的空白私人儀表板並讓您進入自訂模式，供您為儀表板命名並新增或重新排列圖格。處於此模式時，可摺疊的圖格庫會接管左側導覽功能表。圖格庫可讓您以各種方式尋找 Azure 資源的圖格︰您可以依[資源群組](../resource-group-overview.md#resource-groups)、資源類型、[標籤](../resource-group-using-tags.md)進行瀏覽，或依名稱搜尋資源。
 
-This action creates a new, empty, private dashboard and puts you into customization mode where you can name your dashboard and add or rearrange tiles.  When in this mode, the collapsible tile gallery takes over the left navigation menu.  The tile gallery lets you find tiles for your Azure resources in various ways: you can browse by [resource group](../resource-group-overview.md#resource-groups), by resource type, by [tag](../resource-group-using-tags.md), or by searching for your resource by name.  
+![自訂儀表板](./media/azure-portal-dashboards/customize-dashboard.png)
 
-![customize dashboard](./media/azure-portal-dashboards/customize-dashboard.png)
+拖放圖格到儀表板介面上想要的位置來加以新增。
 
-Add tiles by dragging and dropping them onto the dashboard surface wherever you want.
+未與特定資源相關聯的圖格有新的類別，其名稱為**一般**。在此範例中，我們釘選 [Markdown] 圖格。您可以使用此圖格將自訂內容新增至儀表板。圖格支援純文字、[Markdown 語法](https://daringfireball.net/projects/markdown/syntax)和一組有限的 HTML (基於安全考量，您無法執行插入 `<script>` 標籤或使用可能會干擾入口網站的特定 CSS 樣式元素等動作)。
 
-There's a new category called **General** for tiles that are not associated with a particular resource.  In this example, we pin the Markdown tile.  You use this tile to add custom content to your dashboard.  The tile supports plain text, [Markdown syntax](https://daringfireball.net/projects/markdown/syntax), and a limited set of HTML.  (For safety, you can't do things like inject `<script>` tags or use certain styling element of CSS that might interfere with the portal.) 
+![新增 Markdown](./media/azure-portal-dashboards/add-markdown.png)
 
-![add markdown](./media/azure-portal-dashboards/add-markdown.png)
+## 編輯儀表板
 
-## <a name="edit-a-dashboard"></a>Edit a dashboard
+建立儀表板之後，您可以從圖格庫或以圖格表示的刀鋒視窗釘選圖格。釘選資源群組表示方法。您可以在瀏覽項目時釘選，或從資源群組刀鋒視窗釘選。這兩種方法都會釘選以圖格表示的資源群組。
 
-After creating your dashboard, you can pin tiles from the tile gallery or the tile representation of blades. Let's pin the representation of our resource group. You can either pin when browsing the item, or from the resource group blade. Both approaches result in pinning the tile representation of the resource group.
+![釘選到儀表板](./media/azure-portal-dashboards/pin-to-dashboard.png)
 
-![pin to dashboard](./media/azure-portal-dashboards/pin-to-dashboard.png)
+釘選項目之後，它就會出現在儀表板上。
 
-After pinning the item, it appears on your dashboard.
+![檢視儀表板](./media/azure-portal-dashboards/view-dashboard.png)
 
-![view dashboard](./media/azure-portal-dashboards/view-dashboard.png)
+現在我們已將 Markdown 圖格和資源群組釘選到儀表板，接下來，我們可以將圖格調整大小並重新排列為適合的版面配置。
 
-Now that we have a Markdown tile and a resource group pinned to the dashboard, we can resize and rearrange the tiles into a suitable layout.
+藉由將滑鼠游標停留在 "..." 並加以選取或是對圖格按一下滑鼠右鍵，您就可以看到該圖格的所有關聯式命令。預設會有兩個項目：
 
-By hovering and selecting "…" or right-clicking on a tile you can see all the contextual commands for that tile. By default, there are two items:
+1. **從儀表板取消釘選** – 從儀表板移除圖格
+2.	**自訂** – 進入自訂模式
 
-1. **Unpin from dashboard** – removes the tile from the dashboard
-2.  **Customize** – enters customize mode
+![自訂圖格](./media/azure-portal-dashboards/customize-tile.png)
 
-![customize tile](./media/azure-portal-dashboards/customize-tile.png)
+藉由選取自訂，您可以將圖格調整大小並重新排列。若要為圖格調整大小，請從關聯式功能表選取新的大小，如下圖所示。
 
-By selecting customize, you can resize and reorder tiles. To resize a tile, select the new size from the contextual menu, as shown in the following image.
+![對圖格調整大小](./media/azure-portal-dashboards/resize-tile.png)
 
-![resize tile](./media/azure-portal-dashboards/resize-tile.png)
+或者，如果圖格支援任何大小，您可以將右下角拖曳到所需大小。
 
-Or, if the tile supports any size, you can drag the bottom right-hand corner to the desired size.
+![對圖格調整大小](./media/azure-portal-dashboards/resize-corner.png)
 
-![resize tile](./media/azure-portal-dashboards/resize-corner.png)
+將圖格調整大小之後，檢視儀表板。
 
-After resizing tiles, view the dashboard.
+![檢視圖格](./media/azure-portal-dashboards/view-tile.png)
 
-![view tile](./media/azure-portal-dashboards/view-tile.png)
+在儀表板完成自訂後，只需選取 [完成自訂] 來結束自訂模式，或按一下滑鼠右鍵並從關聯式功能表選取 [完成自訂]。
 
-Once you are finished customizing a dashboard, simply select the **Done customizing** to exit customize mode or right-click and select **Done customizing** from the context menu.
+## 發佈儀表板和管理存取控制
 
-## <a name="publish-a-dashboard-and-manage-access-control"></a>Publish a dashboard and manage access control
+當您建立儀表板時，它預設是私人用途，這表示只有您會看得到。若要讓其他人也能看見，請使用與其他儀表板命令一同出現的 [共用] 按鈕。
 
-When you create a dashboard, it is private by default, which means you are the only person who can see it.  To make it visible to others, use the **Share** button that appears alongside the other dashboard commands.
+![共用儀表板](./media/azure-portal-dashboards/share-dashboard.png)
 
-![share dashboard](./media/azure-portal-dashboards/share-dashboard.png)
+系統會要求您選擇可將儀表板發佈至的訂用帳戶和資源群組。為了將儀表板完美整合到生態系統，我們已將共用儀表板實作為 Azure 資源 (因此，您無法透過輸入電子郵件地址來共用)。入口網站中大多數圖格所顯示資訊的存取權是由 Azure [角色型存取控制](../active-directory/role-based-access-control-configure.md)所控管。從存取控制觀點來看，共用儀表板與虛擬機器或儲存體帳戶並無不同。
 
-You are asked to choose a subscription and resource group for your dashboard to be published to. To seamlessly integrate dashboards into the ecosystem, we've implemented shared dashboards as Azure resources (so you can't share by typing an email address).  Access to the information displayed by most of the tiles in the portal are governed by [Azure Role Based Access Control](../active-directory/role-based-access-control-configure.md ). From an access control perspective, shared dashboards are no different from a virtual machine or a storage account.  
+假設您有 Azure 訂用帳戶，而且已為小組成員指派訂用帳戶的**擁有者**、**參與者**或**讀取者**角色。身為擁有者或參與者的使用者能夠列出、檢視、建立、修改或刪除該訂用帳戶內的儀表板。身為讀取者的使用者能夠列出和檢視儀表板，但無法進行修改或刪除。具有讀取者存取權的使用者能夠對共用的儀表板進行本機編輯，但無法將這些變更發佈回伺服器。不過，他們可以製作儀表板的私人複本供自己使用。一如往常，儀表板上的個別圖格會根據其對應的資源，強制執行自己的存取控制規則。
 
-Let's say you have an Azure subscription and members of your team have been assigned the roles of **owner**, **contributor**, or **reader** of the subscription.  Users who are owners or contributors are able to list, view, create, modify, or delete dashboards within that subscription.  Users who are readers are able to list and view dashboards, but cannot modify or delete them.  Users with reader access are able to make local edits to a shared dashboard, but are not able to publish those changes back to the server.  However, they can make a private copy of the dashboard for their own use.  As always, individual tiles on the dashboard enforce their own access control rules based on the resources they correspond to.  
+為了方便起見，入口網站的發佈體驗會引導您朝向將儀表板放在稱為**儀表板**的資源群組中的模式。
 
-For convenience, the portal's publishing experience guides you towards a pattern where you place dashboards in a resource group called **dashboards**.  
+![發佈儀表板](./media/azure-portal-dashboards/publish-dashboard.png)
 
-![publish dashboard](./media/azure-portal-dashboards/publish-dashboard.png)
+您也可以選擇將儀表板發佈到特定資源群組。該儀表板的存取控制與資源群組的存取控制相符。可以管理該資源群組中資源的使用者也可以存取儀表板。
 
-You can also choose to publish a dashboard to a particular resource group.  The access control for that dashboard matches the access control for the resource group.  Users that can manage the resources in that resource group also have access to the dashboards.
+![將儀表板發佈至資源群組](./media/azure-portal-dashboards/publish-to-resource-group.png)
 
-![publish dashboard to resource group](./media/azure-portal-dashboards/publish-to-resource-group.png)
+儀表板發佈之後，[共用 + 存取控制] 窗格便會重新整理，並顯示所發佈儀表板的相關資訊，包括用以管理儀表板使用者存取權的連結。此連結會啟動用來管理任何 Azure 資源存取權的標準角色型存取控制刀鋒視窗。您隨時都可以透過選取 [共用] 來回到此檢視。
 
-After your dashboard is published, the **Sharing + access** control pane will refresh and show you information about the published dashboard, including a link to manage user access to the dashboard.  This link launches the standard Role Based Access Control blade used to manage access for any Azure resource.  You can always get back to this view by selecting **Share**.
+![管理存取控制](./media/azure-portal-dashboards/manage-access.png)
 
-![manage access control](./media/azure-portal-dashboards/manage-access.png)
+## 後續步驟
 
-## <a name="next-steps"></a>Next steps
+- 若要管理資源，請參閱[透過入口網站管理 Azure 資源](resource-group-portal.md)。
+- 若要部署資源，請參閱[使用 Resource Manager 範本與 Azure 入口網站來部署資源](../resource-group-template-deploy-portal.md)。
 
-- To manage resources, see [Manage Azure resources through portal](resource-group-portal.md).
-- To deploy resources, see [Deploy resources with Resource Manager templates and Azure portal](../resource-group-template-deploy-portal.md).
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!----HONumber=AcomDC_0907_2016-->

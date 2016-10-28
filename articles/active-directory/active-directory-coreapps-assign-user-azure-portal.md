@@ -1,65 +1,60 @@
 <properties
-    pageTitle="Assign a user or group to an enterprise app in Azure Active Directory preview | Microsoft Azure"
-    description="How to select an enterprise app to assign a user or group to it in Azure Active Directory"
-    services="active-directory"
-    documentationCenter=""
-    authors="curtand"
-    manager="femila"
-    editor=""/>
+	pageTitle="在 Azure Active Directory 預覽版中將使用者或群組指派給企業應用程式 | Microsoft Azure"
+	description="如何在 Azure Active Directory 中選取企業應用程式以將使用者或群組指派給它"
+	services="active-directory"
+	documentationCenter=""
+	authors="curtand"
+	manager="femila"
+	editor=""/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="10/03/2016"
-    ms.author="curtand"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/12/2016"
+	ms.author="curtand"/>
 
+# 在 Azure Active Directory 預覽版中將使用者或群組指派給企業應用程式
 
-# <a name="assign-a-user-or-group-to-an-enterprise-app-in-azure-active-directory-preview"></a>Assign a user or group to an enterprise app in Azure Active Directory preview
+在 Azure Active Directory (Azure AD) 預覽版中，您可以輕鬆將使用者或群組指派給您的企業應用程式。[預覽版有何功能？](active-directory-preview-explainer.md) 您必須具備適當的權限，才能管理企業應用程式。在目前的預覽版中，您必須是目錄的全域管理員。
 
-It's easy to assign a user or a group to your enterprise applications in Azure Active Directory (Azure AD) preview. [What's in the preview?](active-directory-preview-explainer.md) You must have the appropriate permissions to manage the enterprise app. In the current preview, you must be global admin for the directory.
+## 如何將企業應用程式的存取權指派給使用者？
 
-## <a name="how-do-i-assign-user-access-to-an-enterprise-app?"></a>How do I assign user access to an enterprise app?
+1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com)。
 
-1. Sign in to the [Azure portal](https://portal.azure.com) with an account that's a global admin for the directory.
+2. 選取 [更多服務]，在文字方塊中輸入 Azure Active Directory，然後選取 **Enter**。
 
-2. Select **More services**, enter Azure Active Directory in the text box, and then select **Enter**.
+3. 在 [Azure Active Directory- *directoryname*] 刀鋒視窗 (也就是您所管理目錄的 Azure AD 刀鋒視窗) 上，選取 [企業應用程式]。
 
-3. On the **Azure Active Directory - *directoryname*** blade (that is, the Azure AD blade for the directory you are managing), select **Enterprise applications**.
+  ![開啟企業應用程式](./media/active-directory-coreapps-assign-user-azure-portal/open-enterprise-apps.png)
 
-    ![Opening Enterprise apps](./media/active-directory-coreapps-assign-user-azure-portal/open-enterprise-apps.png)
+4. 在 [企業應用程式] 刀鋒視窗上，選取 [所有應用程式]。您將會看到一份您可以管理的應用程式清單。
 
-4. On the **Enterprise applications** blade, select **All applications**. You'll see a list of the apps you can manage.
+5. 在 [企業應用程式 - 所有應用程式] 刀鋒視窗上，選取一個應用程式。
 
-5. On the **Enterprise applications - All applications** blade, select an app.
+6. 在 [***appname***] 刀鋒視窗 (亦即標題中含有所選應用程式名稱的刀鋒視窗) 上，選取 [使用者和群組]。
 
-6. On the ***appname*** blade (that is, the blade with the name of the selected app in the title), select **Users & Groups**.
+  ![選取所有應用程式命令](./media/active-directory-coreapps-assign-user-azure-portal/select-app-users.png)
 
-    ![Selecting the all applications command](./media/active-directory-coreapps-assign-user-azure-portal/select-app-users.png)
+7. 在 [***appname*** - 使用者和群組指派] 刀鋒視窗上，選取 [新增] 命令。
 
-7. On the ***appname*** **- User & Group Assignment** blade, select the **Add** command.
+8. 在 [新增指派] 刀鋒視窗上，選取 [使用者和群組]。
 
-8. On the **Add Assignment** blade, select **Users and groups**.
+  ![將使用者或群組指派給應用程式](./media/active-directory-coreapps-assign-user-azure-portal/assign-users.png)
 
-    ![Assign a user or group to the app](./media/active-directory-coreapps-assign-user-azure-portal/assign-users.png)
+9. 在 [使用者和群組] 刀鋒視窗上，從清單中選取一或多個使用者或群組，然後選取刀鋒視窗底部的 [選取] 按鈕。
 
-9. On the **Users and groups** blade, select one or more users or groups from the list and then select the **Select** button at the bottom of the blade.
+10. 在 [新增指派] 刀鋒視窗上，選取 [角色]。然後，在 [選取角色] 刀鋒視窗上，選取要套用到所選使用者或群組的角色，然後選取刀鋒視窗底部的 [確定] 按鈕。
 
-10. On the **Add Assignment** blade, select **Role**. Then, on the **Select Role** blade, select a role to apply to the selected users or groups, and then select the **OK** button at the bottom of the blade.
+11. 在 [新增指派] 刀鋒視窗上，選取刀鋒視窗底部的 [指派] 按鈕。受指派的使用者或群組將會具備此企業應用程式的所選角色所定義的權限。
 
-11. On the **Add Assignment** blade, select the **Assign** button at the bottom of the blade. The assigned users or groups will have the permissions defined by the selected role for this enterprise app.
+## 後續步驟
 
-## <a name="next-steps"></a>Next steps
+- [查看我的所有群組](active-directory-groups-view-azure-portal.md)
+- [從企業應用程式中移除使用者或群組指派](active-directory-coreapps-remove-assignment-user-azure-portal.md)
+- [停用企業應用程式的使用者登入](active-directory-coreapps-disable-app-azure-portal.md)
+- [變更企業應用程式的名稱或標誌](active-directory-coreapps-change-app-logo-azure-portal.md)
 
-- [See all of my groups](active-directory-groups-view-azure-portal.md)
-- [Remove a user or group assignment from an enterprise app](active-directory-coreapps-remove-assignment-azure-portal.md)
-- [Disable user sign-ins for an enterprise app](active-directory-coreapps-disable-app-azure-portal.md)
-- [Change the name or logo of an enterprise app](active-directory-coreapps-change-app-logo-user-azure-portal.md)
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

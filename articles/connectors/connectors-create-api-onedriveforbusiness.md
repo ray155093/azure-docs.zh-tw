@@ -1,10 +1,10 @@
 <properties
 pageTitle="OneDrive for Business | Microsoft Azure"
-description="Create Logic apps with Azure App service. Connect to OneDrive for Business to manage your files. You can perform various actions such as upload, update, get, and delete on files."
-services="logic-apps"   
-documentationCenter=".net,nodejs,java"  
-authors="msftman"   
-manager="erikre"    
+description="使用 Azure App Service 建立邏輯應用程式。連接到 OneDrive for Business 來管理您的檔案。您可以對檔案執行各種動作，例如上傳、更新、取得及刪除。"
+services="logic-apps"	
+documentationCenter=".net,nodejs,java" 	
+authors="msftman"	
+manager="erikre"	
 editor=""
 tags="connectors" />
 
@@ -17,351 +17,347 @@ ms.workload="integration"
 ms.date="08/18/2016"
 ms.author="deonhe"/>
 
+# 開始使用 OneDrive for Business 連接器
 
-# <a name="get-started-with-the-onedrive-for-business-connector"></a>Get started with the OneDrive for Business connector
+連接到 OneDrive for Business 來管理您的檔案。您可以對檔案執行各種動作，例如上傳、更新、取得及刪除。
 
-Connect to OneDrive for Business to manage your files. You can perform various actions such as upload, update, get, and delete on files.
+>[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
 
->[AZURE.NOTE] This version of the article applies to logic apps 2015-08-01-preview schema version. 
+您可以從建立邏輯應用程式立即開始，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
-You can get started by creating a Logic app now, see [Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md).
+## 觸發程序及動作
 
-## <a name="triggers-and-actions"></a>Triggers and actions
+OneDrive for Business 連接器可當成動作使用，它有觸發程序。所有連接器都支援 JSON 和 XML 格式的資料。
 
-The OneDrive for Business connector can be used as an action; it has trigger(s). All connectors support data in JSON and XML formats. 
+ OneDrive for Business 連接器提供下列動作及/或觸發程序：
 
- The OneDrive for Business connector has the following action(s) and/or trigger(s) available:
+### OneDrive for Business 動作
+您可以採取下列動作：
 
-### <a name="onedrive-for-business-actions"></a>OneDrive for Business actions
-You can take these action(s):
-
-|Action|Description|
+|動作|說明|
 |--- | ---|
-|[GetFileMetadata](connectors-create-api-onedriveforbusiness.md#getfilemetadata)|Retrieves metadata of a file in OneDrive for Business using id|
-|[UpdateFile](connectors-create-api-onedriveforbusiness.md#updatefile)|Updates a file in OneDrive for Business|
-|[DeleteFile](connectors-create-api-onedriveforbusiness.md#deletefile)|Deletes a file from OneDrive for Business|
-|[GetFileMetadataByPath](connectors-create-api-onedriveforbusiness.md#getfilemetadatabypath)|Retrieves metadata of a file in OneDrive for Business using path|
-|[GetFileContentByPath](connectors-create-api-onedriveforbusiness.md#getfilecontentbypath)|Retrieves contents of a file in OneDrive for Business using path|
-|[GetFileContent](connectors-create-api-onedriveforbusiness.md#getfilecontent)|Retrieves contents of a file in OneDrive for Business using id|
-|[CreateFile](connectors-create-api-onedriveforbusiness.md#createfile)|Uploads a file to OneDrive for Business|
-|[CopyFile](connectors-create-api-onedriveforbusiness.md#copyfile)|Copies a file to OneDrive for Business|
-|[ListFolder](connectors-create-api-onedriveforbusiness.md#listfolder)|Lists files in a OneDrive for Business folder|
-|[ListRootFolder](connectors-create-api-onedriveforbusiness.md#listrootfolder)|Lists files in the OneDrive for Business root folder|
-|[ExtractFolderV2](connectors-create-api-onedriveforbusiness.md#extractfolderv2)|Extracts a folder to OneDrive for Business|
-### <a name="onedrive-for-business-triggers"></a>OneDrive for Business triggers
-You can listen for these event(s):
+|[GetFileMetadata](connectors-create-api-onedriveforbusiness.md#getfilemetadata)|使用識別碼來擷取 OneDrive for Business 中的檔案中繼資料|
+|[UpdateFile](connectors-create-api-onedriveforbusiness.md#updatefile)|更新 OneDrive for Business 中的檔案|
+|[DeleteFile](connectors-create-api-onedriveforbusiness.md#deletefile)|刪除 OneDrive for Business 中的檔案|
+|[GetFileMetadataByPath](connectors-create-api-onedriveforbusiness.md#getfilemetadatabypath)|使用路徑來擷取 OneDrive for Business 中的檔案中繼資料|
+|[GetFileContentByPath](connectors-create-api-onedriveforbusiness.md#getfilecontentbypath)|使用路徑來擷取 OneDrive for Business 中的檔案內容|
+|[GetFileContent](connectors-create-api-onedriveforbusiness.md#getfilecontent)|使用識別碼來擷取 OneDrive for Business 中的檔案內容|
+|[CreateFile](connectors-create-api-onedriveforbusiness.md#createfile)|把檔案上傳到 OneDrive for Business|
+|[CopyFile](connectors-create-api-onedriveforbusiness.md#copyfile)|將檔案複製到 OneDrive for Business|
+|[ListFolder](connectors-create-api-onedriveforbusiness.md#listfolder)|列出 OneDrive for Business 資料夾中的檔案|
+|[ListRootFolder](connectors-create-api-onedriveforbusiness.md#listrootfolder)|列出 OneDrive for Business 根資料夾中的檔案|
+|[ExtractFolderV2](connectors-create-api-onedriveforbusiness.md#extractfolderv2)|將資料夾解壓縮到 OneDrive for Business|
+### OneDrive for Business 觸發程序
+您可以接聽下列事件：
 
-|Trigger | Description|
+|觸發程序 | 說明|
 |--- | ---|
-|When a file is created|Triggers a flow when a new file is created in a OneDrive for Business folder|
-|When a file is modified|Triggers a flow when a file is modified in a OneDrive for Business folder|
+|當檔案建立時|在 OneDrive for Business 資料夾中建立新檔案時，就會觸發流程。|
+|當檔案遭到修改時|在 OneDrive for Business 資料夾中修改檔案時，就會觸發流程。|
 
 
-## <a name="create-a-connection-to-onedrive-for-business"></a>Create a connection to OneDrive for Business
-To create Logic apps with OneDrive for Business, you must first create a **connection** then provide the details for the following properties: 
+## 建立 OneDrive for Business 的連線
+若要使用 OneDrive for Business 建立邏輯應用程式，您必須先建立**連接**，然後提供下列屬性的詳細資料︰
 
-|Property| Required|Description|
+|屬性| 必要|說明|
 | ---|---|---|
-|Token|Yes|Provide OneDrive for Business Credentials|
-After you create the connection, you can use it to execute the actions and listen for the triggers described in this article. 
+|權杖|是|提供 OneDrive for Business 認證|
+建立連線後，您就可以用它執行動作，並接聽本文所述的觸發程序。
 
->[AZURE.INCLUDE [Steps to create a connection to OneDrive for Business](../../includes/connectors-create-api-onedriveforbusiness.md)]
+>[AZURE.INCLUDE [建立至 OneDrive for Business 連線的步驟](../../includes/connectors-create-api-onedriveforbusiness.md)]
 
->[AZURE.TIP] You can use this connection in other logic apps.
+>[AZURE.TIP] 您可以在其他邏輯應用程式中使用這個連接。
 
-## <a name="reference-for-onedrive-for-business"></a>Reference for OneDrive for Business
-Applies to version: 1.0
+## OneDrive for Business 的參考
+適用的版本：1.0
 
-## <a name="getfilemetadata"></a>GetFileMetadata
-Get file metadata using id: Retrieves metadata of a file in OneDrive for Business using id 
+## GetFileMetadata
+使用識別碼取得檔案中繼資料：使用識別碼來擷取 OneDrive for Business 中的檔案中繼資料
 
-```GET: /datasets/default/files/{id}``` 
+```GET: /datasets/default/files/{id}```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|id|string|yes|path|none|Specify the file|
+|id|string|yes|路徑|無|指定檔案|
 
-#### <a name="response"></a>Response
+#### Response
 
-|Name|Description|
+|Name|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-## <a name="updatefile"></a>UpdateFile
-Update file: Updates a file in OneDrive for Business 
+## UpdateFile
+更新檔案：更新 OneDrive for Business 中的檔案
 
-```PUT: /datasets/default/files/{id}``` 
+```PUT: /datasets/default/files/{id}```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|id|string|yes|path|none|Specify the file to update|
-|body| |yes|body|none|Content of the file to update in OneDrive for Business|
+|id|string|yes|路徑|無|指定要更新的檔案|
+|body| |yes|body|無|OneDrive for Business 中要更新的檔案內容|
 
-#### <a name="response"></a>Response
+#### Response
 
-|Name|Description|
+|名稱|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-## <a name="deletefile"></a>DeleteFile
-Delete file: Deletes a file from OneDrive for Business 
+## DeleteFile
+刪除檔案：刪除 OneDrive for Business 中的檔案
 
-```DELETE: /datasets/default/files/{id}``` 
+```DELETE: /datasets/default/files/{id}```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|id|string|yes|path|none|Specify the file to delete|
+|id|string|yes|路徑|無|指定要刪除的檔案|
 
-#### <a name="response"></a>Response
+#### Response
 
-|Name|Description|
+|名稱|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-## <a name="getfilemetadatabypath"></a>GetFileMetadataByPath
-Get file metadata using path: Retrieves metadata of a file in OneDrive for Business using path 
+## GetFileMetadataByPath
+使用路徑取得檔案中繼資料：使用路徑來擷取 OneDrive for Business 中的檔案中繼資料
 
-```GET: /datasets/default/GetFileByPath``` 
+```GET: /datasets/default/GetFileByPath```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|path|string|yes|query|none|Unique path to the file in OneDrive for Business|
+|路徑|string|yes|query|無|OneDrive for Business 中檔案的唯一路徑|
 
-#### <a name="response"></a>Response
+#### Response
 
-|Name|Description|
+|名稱|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-## <a name="getfilecontentbypath"></a>GetFileContentByPath
-Get file content using path: Retrieves contents of a file in OneDrive for Business using path 
+## GetFileContentByPath
+使用路徑取得檔案內容：使用路徑來擷取 OneDrive for Business 中的檔案內容
 
-```GET: /datasets/default/GetFileContentByPath``` 
+```GET: /datasets/default/GetFileContentByPath```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|path|string|yes|query|none|Unique path to the file in OneDrive for Business|
+|路徑|string|yes|query|無|OneDrive for Business 中檔案的唯一路徑|
 
-#### <a name="response"></a>Response
+#### Response
 
-|Name|Description|
+|Name|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-## <a name="getfilecontent"></a>GetFileContent
-Get file content using id: Retrieves contents of a file in OneDrive for Business using id 
+## GetFileContent
+使用識別碼取得檔案內容：使用識別碼來擷取 OneDrive for Business 中的檔案內容
 
-```GET: /datasets/default/files/{id}/content``` 
+```GET: /datasets/default/files/{id}/content```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|id|string|yes|path|none|Specify the file|
+|id|string|yes|路徑|無|指定檔案|
 
-#### <a name="response"></a>Response
+#### Response
 
-|Name|Description|
+|Name|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-## <a name="createfile"></a>CreateFile
-Create file: Uploads a file to OneDrive for Business 
+## CreateFile
+建立檔案：把檔案上傳到 OneDrive for Business
 
-```POST: /datasets/default/files``` 
+```POST: /datasets/default/files```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|folderPath|string|yes|query|none|Folder path to upload the file to OneDrive for Business|
-|name|string|yes|query|none|Name of the file to create in OneDrive for Business|
-|body| |yes|body|none|Content of the file to upload to OneDrive for Business|
+|folderPath|string|yes|query|無|把檔案上傳到 OneDrive for Business 的資料夾路徑|
+|名稱|string|yes|query|無|要在 OneDrive for Business 中建立的檔案名稱|
+|body| |yes|body|無|要上傳到 OneDrive for Business 的檔案內容|
 
-#### <a name="response"></a>Response
+#### Response
 
-|Name|Description|
+|Name|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-## <a name="copyfile"></a>CopyFile
-Copy file: Copies a file to OneDrive for Business 
+## CopyFile
+複製檔案：將檔案複製到 OneDrive for Business
 
-```POST: /datasets/default/copyFile``` 
+```POST: /datasets/default/copyFile```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|source|string|yes|query|none|Url to source file|
-|destination|string|yes|query|none|Destination file path in OneDrive for Business, including target filename|
-|overwrite|boolean|no|query|false|Overwrites the destination file if set to 'true'|
+|來源|string|yes|query|無|來源檔案的 URL|
+|目的地|string|yes|query|無|OneDrive for Business 中的目的檔案路徑，包括目標檔案名稱|
+|overwrite|布林值|no|query|false|如果設定為「True」，則會覆寫目的檔案|
 
-#### <a name="response"></a>Response
+#### Response
 
-|Name|Description|
+|Name|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-## <a name="onnewfile"></a>OnNewFile
-When a file is created: Triggers a flow when a new file is created in a OneDrive for Business folder 
+## OnNewFile
+建立檔案時：在 OneDrive for Business 資料夾中建立新檔案時，就會觸發流程。
 
-```GET: /datasets/default/triggers/onnewfile``` 
+```GET: /datasets/default/triggers/onnewfile```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|folderId|string|yes|query|none|Specify a folder|
+|folderId|string|yes|query|無|指定資料夾|
 
-#### <a name="response"></a>Response
+#### Response
 
-|Name|Description|
+|Name|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-## <a name="onupdatedfile"></a>OnUpdatedFile
-When a file is modified: Triggers a flow when a file is modified in a OneDrive for Business folder 
+## OnUpdatedFile
+修改檔案時：在 OneDrive for Business 資料夾中修改檔案時，就會觸發流程。
 
-```GET: /datasets/default/triggers/onupdatedfile``` 
+```GET: /datasets/default/triggers/onupdatedfile```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|folderId|string|yes|query|none|Specify a folder|
+|folderId|string|yes|query|無|指定資料夾|
 
-#### <a name="response"></a>Response
+#### Response
 
-|Name|Description|
+|Name|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-## <a name="listfolder"></a>ListFolder
-List files in folder: Lists files in a OneDrive for Business folder 
+## ListFolder
+列出資料夾中的檔案：列出 OneDrive for Business 資料夾中的檔案
 
-```GET: /datasets/default/folders/{id}``` 
+```GET: /datasets/default/folders/{id}```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|id|string|yes|path|none|Specify the folder|
+|id|string|yes|路徑|無|指定資料夾|
 
-#### <a name="response"></a>Response
+#### Response
 
-|Name|Description|
+|名稱|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-## <a name="listrootfolder"></a>ListRootFolder
-List root folder: Lists files in the OneDrive for Business root folder 
+## ListRootFolder
+列出根資料夾：列出 OneDrive for Business 根資料夾中的檔案
 
-```GET: /datasets/default/folders``` 
+```GET: /datasets/default/folders```
 
-There are no parameters for this call
-#### <a name="response"></a>Response
+這個呼叫沒有參數
+#### Response
 
-|Name|Description|
+|名稱|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-## <a name="extractfolderv2"></a>ExtractFolderV2
-Extract folder: Extracts a folder to OneDrive for Business 
+## ExtractFolderV2
+解壓縮資料夾：將資料夾解壓縮到 OneDrive for Business
 
-```POST: /datasets/default/extractFolderV2``` 
+```POST: /datasets/default/extractFolderV2```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|source|string|yes|query|none|Path to the archive file|
-|destination|string|yes|query|none|Path in OneDrive for Business to extract the archive contents|
-|overwrite|boolean|no|query|false|Overwrites the destination files if set to 'true'|
+|來源|string|yes|query|無|封存檔案的路徑|
+|目的地|string|yes|query|無|解壓縮封存內容的 OneDrive for Business 路徑|
+|overwrite|布林值|no|query|false|如果設定為「True」，則會覆寫目的檔案|
 
-#### <a name="response"></a>Response
+#### Response
 
-|Name|Description|
+|Name|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-## <a name="object-definitions"></a>Object definitions 
+## 物件定義 
 
-### <a name="datasetsmetadata"></a>DataSetsMetadata
+### DataSetsMetadata
 
 
-| Property Name | Data Type | Required |
+| 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|tabular|not defined|No |
-|blob|not defined|No |
+|表格式|沒有定義|否 |
+|blob|沒有定義|否 |
 
 
 
-### <a name="tabulardatasetsmetadata"></a>TabularDataSetsMetadata
+### TabularDataSetsMetadata
 
 
-| Property Name | Data Type | Required |
+| 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|source|string|No |
-|displayName|string|No |
-|urlEncoding|string|No |
-|tableDisplayName|string|No |
-|tablePluralName|string|No |
+|來源|string|否 |
+|displayName|string|否 |
+|urlEncoding|string|否 |
+|tableDisplayName|string|否 |
+|tablePluralName|string|否 |
 
 
 
-### <a name="blobdatasetsmetadata"></a>BlobDataSetsMetadata
+### BlobDataSetsMetadata
 
 
-| Property Name | Data Type | Required |
+| 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|source|string|No |
-|displayName|string|No |
-|urlEncoding|string|No |
+|來源|string|否 |
+|displayName|string|否 |
+|urlEncoding|string|否 |
 
 
 
-### <a name="blobmetadata"></a>BlobMetadata
+### BlobMetadata
 
 
-| Property Name | Data Type | Required |
+| 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
-|Id|string|No |
-|Name|string|No |
-|DisplayName|string|No |
-|Path|string|No |
-|LastModified|string|No |
-|Size|integer|No |
-|MediaType|string|No |
-|IsFolder|boolean|No |
-|ETag|string|No |
-|FileLocator|string|No |
+|識別碼|string|否 |
+|名稱|string|否 |
+|DisplayName|string|否 |
+|Path|string|否 |
+|LastModified|string|否 |
+|大小|integer|否 |
+|MediaType|string|否 |
+|IsFolder|布林值|否 |
+|ETag|string|否 |
+|FileLocator|string|否 |
 
 
 
-### <a name="object"></a>Object
+### Object
 
 
-| Property Name | Data Type | Required |
+| 屬性名稱 | 資料類型 | 必要 |
 |---|---|---|
 
 
-## <a name="next-steps"></a>Next Steps
-[Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md)
+## 後續步驟
+[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

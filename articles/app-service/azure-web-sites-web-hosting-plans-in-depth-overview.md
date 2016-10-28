@@ -1,115 +1,106 @@
 <properties
-    pageTitle="Azure App Service plans in-depth overview | Microsoft Azure"
-    description="Learn how App Service plans for Azure App Service work, and how they benefit your management experience."
-    keywords="app service, azure app service, scale, scalable, app service plan, app service cost"
-    services="app-service"
-    documentationCenter=""
-    authors="btardif"
-    manager="wpickett"
-    editor=""/>
+	pageTitle="Azure App Service 方案深入概觀 | Microsoft Azure"
+	description="了解 Azure App Service 之應用程式服務方案的運作方式，以及在管理經驗上帶來的效益。"
+	keywords="App Service, Azure App Service, 級別, 可調整, App Service方案, App Service 成本"
+	services="app-service"
+	documentationCenter=""
+	authors="btardif"
+	manager="wpickett"
+	editor=""/>
 
 <tags
-    ms.service="app-service"
-    ms.workload="na"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="10/13/2016"
-    ms.author="byvinyal"/>
+	ms.service="app-service"
+	ms.workload="na"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/07/2016"
+	ms.author="byvinyal"/>
 
+# Azure App Service 方案深入概觀#
 
-# <a name="azure-app-service-plans-in-depth-overview#"></a>Azure App Service plans in-depth overview#
+App Service 方案代表一組功能和容量，您可以在 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 中跨多個應用程式 (包括 Web Apps、Mobile Apps、Logic Apps 或 API Apps) 進行共用。這些方案支援 5 個定價層︰免費、共用、基本、標準和進階。每一層都有自己的功能和容量。相同訂閱和地理位置中的應用程式都能共用方案。共用一個方案的所有應用程式，都可以使用方案層所定義的所有功能和特性。與方案相關聯的所有應用程式，可在方案所定義的資源上執行。
 
-An App Service plan represents a set of features and capacity that you can share across multiple apps. Web Apps, Mobile Apps, Function Apps, or API Apps, in [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) all run in an App Service plan. These plans support five pricing tiers: *Free*, *Shared*, *Basic*, *Standard*, and *Premium*. Each tier has its own capabilities and capacity. Apps in the same subscription and geographic location can share a plan. All the apps that share a plan can use all the capabilities and features that are defined by the plan's tier. All apps that are associated with a plan run on the resources that the plan defines.
+例如，如果您的方案設定為使用標準服務層中的兩個「小型」執行個體，與該方案相關聯的所有應用程式會在兩個執行個體上執行，而且可以存取標準服務層功能。應用程式在其上執行的方案執行個體完全受管理且高度可用。
 
-For example, if your plan is configured to use two "small" instances in the standard service tier, all apps that are associated with that plan run on both instances and have access to the standard service tier functionality. Plan instances on which apps are running are fully managed and highly available.
+在本文中，我們將探討重要的特性，例如 App Service 方案的層級與規模，以及這些特性如何在管理您的應用程式時發揮效用。
 
-This article explores the key characteristics, such as tier and scale, of an App Service plan and how they come into play while managing your apps.
+## 應用程式和 App Service 方案
 
-## <a name="apps-and-app-service-plans"></a>Apps and App Service plans
+在任何指定時間，應用程式服務方案中的一個應用程式只能與一個應用程式服務方案產生關聯。
 
-An app in App Service can be associated with only one App Service plan at any given time.
+應用程式和方案都包含在資源群組中。資源群組可做為其內各項資源的生命週期界限。您可以使用資源群組集中管理應用程式的一切層面。
 
-Both apps and plans are contained in a resource group. A resource group serves as the lifecycle boundary for every resource that's within it. You can use resource groups to manage all the pieces of an application together.
+單一資源群組可擁有多個 App Service 方案，因此您可以將不同的應用程式配置到不同的實際資源。例如，您可以將資源分隔為開發、測試和生產環境。此狀況的案例是您想要配置一個具有生產應用程式之一組專屬資源的方案，以及針對開發和測試環境配置第二個方案。如此一來，對您應用程式的新版本進行負載測試並不會與您的生產應用程式競爭相同的資源，而您的生產應用程式服務真實的客戶。
 
-Because a single resource group can have multiple App Service plans, you can allocate different apps to different physical resources. For example, you can separate resources among dev, test, and production environments. Having separate environments for production and dev/test lets you isolate resources. In this way, load testing against a new version of your apps does not compete for the same resources as your production apps, which are serving real customers.
+當您在單一資源群組中有多個方案時，您也可以定義一個跨越地理區域的應用程式。例如，在兩個區域中執行的高度可用應用程式將包括兩個方案，每個區域一個方案，而一個應用程式則與每個方案相關聯。在這種情況下，應用程式的所有複本都會與單一資源群組相關聯。具有多個方案和多個應用程式的單一資源群組檢視，使得要管理、控制和檢視應用程式的健康情況極為容易。
 
-When you have multiple plans in a single resource group, you can also define an application that spans geographical regions. For example, a highly available app running in two regions includes at least two plans, one for each region, and one app associated with each plan. In such a situation, all the copies of the app are then contained in a single resource group. Having a resource group with multiple plans and multiple apps makes it easy to manage, control, and view the health of the application.
+## 建立新的應用程式服務方案與使用現有方案
 
-## <a name="create-an-app-service-plan-or-use-existing-one"></a>Create an App Service plan or use existing one
+在建立新的應用程式時，請考慮建立新的資源群組。另一方面，如果您即將建立的應用程式是較大應用程式的元件，就應該在配置給該較大應用程式的資源群組內建立此應用程式。
 
-When you create an  app, you should consider creating a resource group. On the other hand, if the app that you are about to create is a component for a larger application, this app should be created within the resource group that's allocated for that larger application.
+不論新的應用程式是全新的應用程式還是較大應用程式的一部分，您都可以選擇使用現有 App Service 方案來裝載它，或建立一個新的 App Service 方案。這是容量和預期負載的問題。
 
-Whether the new app is an altogether new application or part of a larger one, you can choose to use an existing App Service plan to host it or create a new one. This decision is more a question of capacity and expected load.
+如果這個新的應用程式會使用大量資源，而且縮放係數與現有方案中所裝載的其他應用程式不同，則建議將它隔離在其專屬方案。
 
-If this new app is going to use many resources and have different scaling factors from the other apps hosted in an existing plan, we recommend that you isolate it in its own plan.
+在建立新的方案時，可以為應用程式配置一組新的資源，進而更有效地控制資源配置，因為每個方案都有其專屬的一組執行個體。
 
-When you create a plan, you can allocate a new set of resources for your app and gain greater control over resource allocation because each plan gets its own set of instances.
+您可以跨方案移動應用程式，因此可以變更跨更大型應用程式配置資源的方式。
 
-Because you can move apps across plans, you can change the way that resources are allocated across the bigger application.
+最後，如果您想要在不同區域中建立新的應用程式，而該區域目前沒有方案，則需要在該區域中建立新的方案，才能在該處裝載應用程式。
 
-Finally, if you want to create an app in a different region, and that region doesn't have an existing plan, create a plan in that region to be able to host your app there.
+## 建立應用程式服務方案
 
-## <a name="create-an-app-service-plan"></a>Create an App Service plan
+您可以從 App Service 方案瀏覽體驗或在應用程式建立期間，建立空白的 App Service 方案。
 
->[AZURE.TIP] If you have an App Service Environment you can review the documentation specific to App Service Environments here: [Create an App Service Plan in an App Service Environment](../app-service-web/app-service-web-how-to-create-a-web-app-in-an-ase.md#createplan)
+在 [Azure 入口網站](https://portal.azure.com)中，依序按一下 [新增]、[Web + 行動] 以及 [Web 應用程式]、[行動應用程式]、[API 應用程式] 或 [邏輯應用程式]。![在 Azure 入口網站中建立應用程式。][createWebApp]
 
-You can create an empty App Service plan from the App Service plan browse experience or as part of app creation.
+接著，您可以選取或建立新應用程式的應用程式服務方案。
 
-In the [Azure portal](https://portal.azure.com), click **New** > **Web + mobile**, and then select **Web App** or other App Service app kind.
-![Create an app in the Azure portal.][createWebApp]
+ ![建立 App Service 方案。][createASP]
 
-You can then select or create the App Service plan for the new app.
+若要建立新的 App Service 方案，請按一下 [[+] 新建]，輸入 **App Service 方案**名稱，然後選取適當**位置**。按一下 [定價層]，然後為服務選取適當的定價層。選取 [檢視全部] 檢視其他價格選項，例如 [免費] 和 [共用]。選取定價層後，請按一下 [選取] 按鈕。
 
- ![Create an App Service plan.][createASP]
+## 將應用程式移到不同的應用程式服務方案
 
-To create a new App Service plan, click **[+] Create New**, type the **App Service plan** name, and then select an appropriate **Location**. Click **Pricing tier**, and then select an appropriate pricing tier for the service. Select **View all** to view more pricing options, such as **Free** and **Shared**. After you have selected the pricing tier, click the **Select** button.
+您可以在 [Azure 入口網站](https://portal.azure.com)中將應用程式移到不同的 App Service 方案。只要方案都位於相同的資源群組與地理區域中，您就可以在這些方案之間移動應用程式。
 
-## <a name="move-an-app-to-a-different-app-service-plan"></a>Move an app to a different App Service plan
+若要將應用程式移到其他方案，請前往您想要移動的應用程式。在 [設定] 功能表上尋找 [變更 App Service 方案]。
 
-You can move an app to a different app service plan in the [Azure portal](https://portal.azure.com). You can move apps between plans as long as the plans are in the same resource group and geographical region.
+這會開啟 [App Service 方案] 選取器。此時，您可以挑選現有的方案，或建立新的方案。只會顯示有效的方案 (位於相同的資源群組和地理位置)。
 
-To move an app to another plan, go to the app that you want to move. On the **Settings** menu, look for **Change App Service Plan**.
+![App Service 方案選取器。][change]
 
-**Change App Service Plan** opens the **App Service plan** selector. At this point, you can either pick an existing plan or create a new one. Only valid plans (in the same resource group and geographical location) are shown.
+請注意，每個方案都有其專屬定價層。例如，當您將網站從免費層移到標準層時，您的應用程式將能使用 [標準] 層的所有功能和資源。
 
-![App Service plan selector.][change]
+## 將應用程式移到不同的 App Service 方案
+如果您想要將應用程式移至不同的區域，有一個替代方法是複製應用程式。複製會將您的應用程式複製到任何區域中新的或現有的 App Service 方案或 App Service 環境。
 
-Each plan has its own pricing tier. For example, when you move a site from a Free tier to a Standard tier, your app now can use all the features and resources of the Standard tier.
+ ![複製應用程式。][appclone]
 
-## <a name="clone-an-app-to-a-different-app-service-plan"></a>Clone an app to a different App Service plan
-If you want to move the app to a different region, one alternative is app cloning. Cloning makes a copy of your app in a new or existing App Service plan or App Service environment in any region.
+您可以在 [工具] 功能表上找到 [複製應用程式]。
 
- ![Clone an app.][appclone]
+複製具有某些限制，若要深入了解，請閱讀[使用 Azure 入口網站的 Azure App Service 應用程式複製](../app-service-web/app-service-web-app-cloning-portal.md)。
 
-You can find **Clone App** on the **Tools** menu.
+## 調整 App Service 方案
 
-Cloning has some limitations that you can read about at [Azure App Service App cloning using Azure portal](../app-service-web/app-service-web-app-cloning-portal.md).
+有三種方式可以調整方案：
 
-## <a name="scale-an-app-service-plan"></a>Scale an App Service plan
+- **變更方案的定價層**。例如，基本層中的方案可以轉換成標準層或進階層，而且與該方案相關聯的所有應用程式都將可以使用新服務層所提供的功能。
+- **變更方案的執行個體大小**。例如，基本層中使用小型執行個體的方案可以變更為使用大型執行個體。與該方案相關聯的所有應用程式都可以使用較大執行個體大小所提供的額外記憶體和 CPU 資源。
+- **變更方案的執行個體計數**。例如，已相應放大為 3 個執行個體的標準方案可調整為 10 個執行個體。進階方案可以相應放大為 20 個執行個體 (視實際情況而定)。與該方案相關聯的所有應用程式都可以使用較大執行個體計數所提供的額外記憶體和 CPU 資源。
 
-There are three ways to scale a plan:
+您可以按一下應用程式或 App Service 方案設定下方的 [相應增加] 項目，來變更定價層和執行個體大小。變更將會套用到 App Service 方案，並影響它裝載的所有應用程式。
 
-- **Change the plan’s pricing tier**. For example, a plan in the Basic tier can be converted to a Standard or Premium tier, and all apps that are associated with that plan now can use the features that the new service tier offers.
-- **Change the plan’s instance size**. As an example, a plan in the Basic tier that uses small instances can be changed to use large instances. All apps that are associated with that plan now can use the additional memory and CPU resources that the larger instance size offers.
-- **Change the plan’s instance count**. For example, a Standard plan that's scaled out to three instances can be scaled to 10 instances. A Premium plan can be scaled out to 20 instances (subject to availability). All apps that are associated with that plan now can use the additional memory and CPU resources that the larger instance count offers.
+ ![設定值以相應增加應用程式。][pricingtier]
 
-You can change the pricing tier and instance size by clicking the **Scale Up** item under settings for either the app or the App Service plan. Changes apply to the App Service plan and affect all apps that it hosts.
+## Summary
 
- ![Set values to scale up an app.][pricingtier]
+應用程式服務方案代表可跨應用程式共用的一組特性和功能。App Service 方案可讓您將特定應用程式彈性地配置給一組資源，並進一步最佳化 Azure 資源使用率。如此一來，如果您想要節省測試環境的成本，則可以跨多個應用程式共用方案。透過延展到多個區域和方案，也可以最大化生產環境的輸送量。
 
-## <a name="app-service-plan-cleanup"></a>App Service Plan cleanup
-**App Service plans** that have no apps associated to them still incur charges since they continue to reserve the compute capacity configured in the App Service plan scale properties.
-To avoid unexpected charges, when the last app hosted in an App Service plan is deleted, the resulting empty App Service plan is also deleted.
+## 變更的項目
 
-
-## <a name="summary"></a>Summary
-
-App Service plans represent a set of features and capacity that you can share across your apps. App Service plans give you the flexibility to allocate specific apps to a set of resources and further optimize your Azure resource utilization. This way, if you want to save money on your testing environment, you can share a plan across multiple apps. You can also maximize throughput for your production environment by scaling it across multiple regions and plans.
-
-## <a name="what's-changed"></a>What's changed
-
-* For a guide to the change from Websites to App Service, see: [Azure App Service and Its Impact on Existing Azure Services](http://go.microsoft.com/fwlink/?LinkId=529714)
+* 如需從網站變更為 App Service 的指南，請參閱：[Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 [pricingtier]: ./media/azure-web-sites-web-hosting-plans-in-depth-overview/appserviceplan-pricingtier.png
 [assign]: ./media/azure-web-sites-web-hosting-plans-in-depth-overview/assing-appserviceplan.png
@@ -118,8 +109,4 @@ App Service plans represent a set of features and capacity that you can share ac
 [createWebApp]: ./media/azure-web-sites-web-hosting-plans-in-depth-overview/create-web-app.png
 [appclone]: ./media/azure-web-sites-web-hosting-plans-in-depth-overview/app-clone.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

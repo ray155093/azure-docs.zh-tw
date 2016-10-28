@@ -1,67 +1,64 @@
 
-# <a name="azure-and-internet-of-things"></a>Azure and Internet of Things
+# Azure 和物聯網
 
-Welcome to Microsoft Azure and the Internet of Things (IoT). This article introduces an IoT solution architecture that describes the common characteristics of an IoT solution you might deploy using Azure services. IoT solutions require secure, bidirectional communication between devices, possibly numbering in the millions, and a solution back end. For example, a solution back end might use automated, predictive analytics to uncover insights from your device-to-cloud event stream.
+歡迎使用 Microsoft Azure 與物聯網 (IoT)。本文將介紹 IoT 解決方案架構，其描述您可能會使用 Azure 服務來部署之 IoT 解決方案的一般特性。IoT 解決方案需要裝置 (可能數以百萬計) 與解決方案後端之間有安全、雙向的通訊。例如，解決方案後端可能會使用自動化的預測性分析，以從裝置到雲端的事件串流中發掘出有用見解。
 
-Azure IoT Hub is a key building block when you implement this IoT solution architecture using Azure services. IoT Suite provides complete, end-to-end, implementations of this architecture for specific IoT scenarios. For example: 
+當您使用 Azure 服務實作此 IoT 解決方案架構時，Azure IoT 中樞是其中的重要建置組塊。IoT 套件可針對特定的 IoT 案例端對端地完整實作這個架構。例如：
 
-- The *remote monitoring* solution enables you to monitor the status of devices such as vending machines. 
-- The *predictive maintenance* solution helps you to anticipate maintenance needs of devices such as pumps in remote pumping stations and to avoid unscheduled downtime.
+- 「遠端監視」解決方案可讓您監視裝置 (例如自動販賣機) 的狀態。
+- 「預測性維護」解決方案可協助您預料到裝置 (例如遠端抽水站的抽水機) 的維護需求，並避免發生意外停機。
 
-## <a name="iot-solution-architecture"></a>IoT solution architecture
+## IoT 解決方案架構
 
-The following diagram shows a typical IoT solution architecture. The diagram does not include the names of any specific Azure services, but describes the key elements in a generic IoT solution architecture. In this architecture, IoT devices collect data that they send to a cloud gateway. The cloud gateway makes the data available for processing by other back-end services from where data is delivered to other line-of-business applications or to human operators through a dashboard or other presentation device.
+下圖顯示典型的 IoT 解決方案架構。此圖不會包含任何特定 Azure 服務的名稱，但會說明一般 IoT 解決方案架構中的重要元素。在此架構中，IoT 裝置會收集其傳送到雲端閘道的資料。雲端閘道讓其它後端服務可透過儀表板或其他簡報裝置，從資料傳遞到其他企業營運應用程式或操作員的位置處理資料。
 
-![IoT solution architecture][img-solution-architecture]
+![IoT 解決方案架構][img-solution-architecture]
 
-> [AZURE.NOTE] For an in-depth discussion of IoT architecture, see the [Microsoft Azure IoT Reference Architecture][lnk-refarch].
+> [AZURE.NOTE] 如需 IoT 架構的深入討論，請參閱 [Microsoft Azure IoT 參考架構][lnk-refarch]。
 
-### <a name="device-connectivity"></a>Device connectivity
+### 裝置連線能力
 
-In this IoT solution architecture, devices send telemetry, such as sensor readings from a pumping station, to a cloud endpoint for storage and processing. In a predictive maintenance scenario, the back end might use the stream of sensor data to determine when a specific pump requires maintenance. Devices can also receive and respond to cloud-to-device commands by reading messages from a cloud endpoint. For example, in the predictive maintenance scenario the solution back end might send commands to other pumps in the pumping station to begin rerouting flows just before maintenance is due to start to make sure the maintenance engineer can get started when she arrives.
+在此 IoT 解決方案架構中，裝置會將遙測 (例如幫浦站的感應器讀數) 傳送給雲端端點，以進行儲存和處理。在預測性維護案例中，後端可能會使用感應器資料流，來判斷特定幫浦何時需要維護。裝置也可以透過讀取來自雲端端點的訊息，以接收和回應雲端到裝置命令。比方說，在預測性維護案例中，解決方案後端可能會傳送命令到幫浦站的其他幫浦，以在維護應開始之前先重新路由流量，這樣一來維護工程師到場時即可開始工作。
 
-One of the biggest challenges facing IoT projects is how to reliably and securely connect devices to the solution back end. IoT devices have different characteristics as compared to other clients such as browsers and mobile apps. IoT devices:
+IoT 專案所面臨的其中一個最大挑戰，就是如何可靠且安全地將裝置連線至解決方案後端。相較於其他用戶端 (例如瀏覽器和行動應用程式)，IoT 裝置有不同的特性。IoT 裝置：
 
-- Are often embedded systems with no human operator.
-- Can be deployed in remote locations, where physical access is expensive.
-- May only be reachable through the solution back end. There is no other way to interact with the device.
-- May have limited power and processing resources.
-- May have intermittent, slow, or expensive network connectivity.
-- May need to use proprietary, custom, or industry-specific application protocols.
-- Can be created using a large set of popular hardware and software platforms.
+- 通常是無人操作的嵌入式系統。
+- 可以部署於實體存取成本昂貴的遠端位置。
+- 可能只能透過解決方案後端來存取。沒有其他方式可與裝置互動。
+- 能力和/或處理資源可能都有限。
+- 網路連線能力可能不穩定、緩慢或昂貴。
+- 可能需要使用專屬、自訂或業界特定的應用程式通訊協定。
+- 可以使用一組大型常見的硬體和軟體平台來建立。
 
-In addition to the requirements above, any IoT solution must also deliver scale, security, and reliability. The resulting set of connectivity requirements is hard and time-consuming to implement using traditional technologies such as web containers and messaging brokers. Azure IoT Hub and the IoT Device SDKs make it easier to implement solutions that meet these requirements.
+除了上述需求之外，任何 IoT 解決方案也必須提供調整、安全性和可靠性。使用傳統技術 (例如 Web 容器和傳訊代理程式) 實作連線需求的結果是困難且耗時的。Azure IoT 中樞和 IoT 裝置 SDK 讓您更輕鬆地實作符合其需求的解決方案。
 
-A device can communicate directly with a cloud gateway endpoint, or if the device cannot use any of the communications protocols that the cloud gateway supports, it can connect through an intermediate gateway. For example, the [IoT Hub protocol gateway][lnk-protocol-gateway] can perform protocol translation if devices cannot use any of the protocols that IoT Hub supports.
+裝置可以直接與雲端閘道端點通訊，或如果裝置無法使用任何雲端閘道支援的通訊協定，則可以透過中繼閘道連線。例如，[IoT 中樞的通訊協定閘道][lnk-protocol-gateway]可以在裝置不能使用 IoT 中樞支援的任何通訊協定時，執行通訊協定轉譯。
 
-### <a name="data-processing-and-analytics"></a>Data processing and analytics
+### 資料處理和分析
 
-In the cloud, an IoT solution back end is where most of the data processing occurs, such as filtering and aggregating telemetry and routing it to other services. The IoT solution back end:
+在雲端中，IoT 解決方案後端是進行資料處理的位置，例如篩選及彙總遙測，以及將其路由到其他服務。IoT 解決方案後端：
 
-- Receives telemetry at scale from your devices and determines how to process and store that data. 
-- May enable you to send commands from the cloud to specific device.
-- Provides device registration capabilities that enable you to provision devices and to control which devices are permitted to connect to your infrastructure.
-- Enables you to track the state of your devices and monitor their activities.
+- 接收大規模來自裝置的遙測資料，並判斷如何處理與儲存該資料。
+- 可能讓您由雲端將命令傳送到特定裝置。
+- 提供可讓您佈建裝置並且控制哪些裝置能夠連線到您基礎結構的裝置註冊功能。
+- 可讓您追蹤您的裝置狀態並監視其活動。
 
-In the predictive maintenance scenario, the solution back end stores historical telemetry data. The back end can use this data to use to identify patterns that indicate maintenance is due on a specific pump.
+在預測性維護案例中，解決方案後端會儲存歷史遙測資料。後端可以使用這項資料來識別可指出特定抽水機已達維護時間的模式。
 
-IoT solutions can include automatic feedback loops. For example, an analytics module in the back end can identify from telemetry that the temperature of a specific device is above normal operating levels. The solution can then send a command to the device, instructing it to take corrective action.
+IoT 解決方案可以包含自動意見反應迴圈。例如，後端中的分析模組可以從遙測資料中識別出特定裝置的溫度超出一般作業水準。接著，解決方案可以傳送命令給該裝置，指示它採取矯正動作。
 
-### <a name="presentation-and-business-connectivity"></a>Presentation and business connectivity
+### 簡報及商務連線
 
-The presentation and business connectivity layer allows end users to interact with the IoT solution and the devices. It enables users to view and analyze the data collected from their devices. These views can take the form of dashboards or BI reports that can display both historical data or near real-time data. For example, an operator can check on the status of particular pumping station and see any alerts raised by the system. This layer also allows integration of the IoT solution back end with existing line-of-business applications to tie into enterprise business processes or workflows. For example, the predictive maintenance solution can integrate with a scheduling system that books an engineer to visit a pumping station when the solution identifies a pump in need of maintenance.
+簡報及商務連線層可讓終端使用者與 IoT 解決方案及裝置互動。其讓使用者能夠檢視和分析從他們的裝置所收集的資料。這些檢視可以採用儀表板或 BI 報表的格式，以顯示歷程記錄資料及/或接近即時的資料。例如，操作員可確認特定幫浦站的狀態，並查看系統產生的任何警示。此層也可整合 IoT 解決方案與現有企業營運應用程式，以連結企業商務程序或工作流程。比方說，預測性維護解決方案可整合排程系統，以在解決方案識別出需要維護的幫浦時，預約工程師到幫浦站檢查。
 
-![IoT solution dashboard][img-dashboard]
+![IoT 解決方案儀表板][img-dashboard]
 
 [img-solution-architecture]: ./media/iot-azure-and-iot/iot-reference-architecture.png
 [img-dashboard]: ./media/iot-azure-and-iot/iot-suite.png
 
 [lnk-machinelearning]: http://azure.microsoft.com/documentation/services/machine-learning/
 [Azure IoT Suite]: http://azure.microsoft.com/solutions/iot
-[lnk-protocol-gateway]:  ../articles/iot-hub/iot-hub-protocol-gateway.md
+[lnk-protocol-gateway]: ../articles/iot-hub/iot-hub-protocol-gateway.md
 [lnk-refarch]: http://download.microsoft.com/download/A/4/D/A4DAD253-BC21-41D3-B9D9-87D2AE6F0719/Microsoft_Azure_IoT_Reference_Architecture.pdf
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_1005_2016-->

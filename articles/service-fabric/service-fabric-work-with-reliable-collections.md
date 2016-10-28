@@ -1,6 +1,6 @@
 <properties
-    pageTitle="Working with Reliable Collections | Microsoft Azure"
-    description="Learn the best practices for working with Reliable Collections."
+    pageTitle="使用可靠的集合 | Microsoft Azure"
+    description="了解使用可靠的集合的最佳做法。"
     services="service-fabric"
     documentationCenter=".net"
     authors="JeffreyRichter"
@@ -16,10 +16,9 @@
     ms.date="03/28/2016"
     ms.author="jeffreyr" />
 
+# 使用可靠的集合
 
-# <a name="working-with-reliable-collections"></a>Working with Reliable Collections
-
-Service Fabric offers a stateful programming model available to .NET developers via Reliable Collections. Specifically, Service Fabric provides reliable dictionary and reliable queue classes. When you use these classes, your state is partitioned (for scalability), replicated (for availability), and transacted within a partition (for ACID semantics). Let’s look at a typical usage of a reliable dictionary object and see what its actually doing.
+Service Fabric 透過可靠的集合向 .NET 開發人員提供具狀態的程式設計模型。具體來說，Service Fabric 提供了可靠的字典和可靠的佇列類別。當您使用這些類別時，您的狀態是分割的 (延展性)、複寫的 (可用性)，且在分割區內交易 (ACID 語意)。讓我們看看可靠字典物件的一般用法，並看看它究竟做些什麼。
 
 ~~~
 retry:
@@ -44,20 +43,20 @@ catch (TimeoutException) {
 }
 ~~~
 
-All operations on reliable dictionary objects (except for ClearAsync which is not undoable), require an ITransaction object. This object has associated with it any and all changes you’re attempting to make to any reliable dictionary and/or reliable queue objects within a single partition. You acquire an ITransaction object by calling the partition’s StateManager’s CreateTransaction method.
+可靠的字典物件上的所有作業 (除了無法復原的 ClearAsync)，都需要一個 ITransaction 物件。這個物件和您在單一分割區內對任何可靠的字典和/或可靠的佇列物件嘗試進行的任何及所有變更具有關聯性。您是透過呼叫分割區的 StateManager 的 CreateTransaction 方法，取得 ITransaction 物件。
  
-In the code above, the ITransaction object is passed to a reliable dictionary’s AddAsync method. Internally, dictionary methods that accepts a key take a reader/writer lock associated with the key. If the method modifies the key’s value, the method takes a write lock on the key and if the method only reads from the key’s value, then a read lock is taken on the key. Since AddAsync modifies the key’s value to the new, passed-in value, the key’s write lock is taken. So, if 2 (or more) threads attempt to add values with the same key at the same time, one thread will acquire the write lock and the other threads will block. By default, methods block for up to 4 seconds to acquire the lock; after 4 seconds, the methods throw a TimeoutException. Method overloads exist allowing you to pass an explicit timeout value if you’d prefer.
+在上面的程式碼中，ITransaction 物件會傳遞至可靠的字典的 AddAsync 方法。就內部而言，接受索引鍵的字典方法會採用與索引鍵相關聯的讀取器/寫入器鎖定。如果此方法修改索引鍵的值，這個方法就會在索引鍵上使用寫入鎖定；如果方法只讀取索引鍵的值，就會在索引鍵上使用讀取鎖定。因為 AddAsync 會將索引鍵值修改成新的傳入值，所以使用索引鍵的寫入鎖定。所以，如果有 2 (或多個) 執行緒嘗試在同一時間加入相同的索引鍵值，一個執行緒就會取得寫入鎖定，而另一個執行緒就會封鎖。方法預設最多封鎖 4 秒以取得鎖定，4 秒後方法就會擲回 TimeoutException。如果喜歡的話，方法多載的存在可讓您傳遞明確的逾時值。
  
-Usually, you write your code to react to a TimeoutException by catching it and retrying the entire operation (as shown in the code above). In my simple code, I’m just calling Task.Delay passing 100 milliseconds each time. But, in reality, you might be better off using some kind of exponential back-off delay instead.
+通常，您撰寫程式碼回應 TimeoutException 的方式是攔截它，然後重試整個作業 (如上面的程式碼所示)。在我的簡單程式碼中，只呼叫 Task.Delay 每次傳遞 100 毫秒。但在實際狀況裡，最好還是改用某種指數型的撤退延遲。
  
-Once the lock is acquired, AddAsync adds the key and value object references to an internal temporary dictionary associated with the ITransaction object. This is done to provide you with read-your-own-writes semantics. That is, after you call AddAsync, a later call to TryGetValueAsync (using the same ITransaction object) will return the value even if you have not yet committed the transaction. Next, AddAsync serializes your key and value objects to byte arrays and appends these byte arrays to a log file on the local node. Finally, AddAsync sends the byte arrays to all the secondary replicas so they have the same key/value information. Even though the key/value information has been written to a log file, the information is not considered part of the dictionary until the transaction that they are associated with has been committed. 
+一旦取得鎖定，AddAsync 就會在與 ITransaction 物件相關聯的內部暫存字典中加入索引鍵和值物件參考。這就完成了讀取自己撰寫的語意。也就是說，在您呼叫 AddAsync 之後，稍後對 TryGetValueAsync 的呼叫 (使用相同的 ITransaction 物件) 會傳回值，即使您尚未認可交易。接下來，AddAsync 會將索引鍵和值物件序列化為位元組陣列，並將這些位元組陣列附加至本機節點的記錄檔。最後，AddAsync 會將位元組陣列傳送給所有次要複本，讓它們有相同的索引鍵/值資訊。即使索引鍵/值資訊已寫入記錄檔，在相關交易獲認可之前，資訊都不會被視為字典的一部分。
 
-In the code above, the call to CommitAsync commits all of the transaction’s operations. Specifically, it appends commit information to the log file on the local node and also sends the commit record to all the secondary replicas. Once a quorum (majority) of the replicas has replied, all data changes are considered permanent and any locks associated with keys that were manipulated via the ITransaction object are released so other threads/transactions can manipulate the same keys and their values.
+在上述的程式碼中，呼叫 CommitAsync 即認可所有的交易作業。具體來說，它會將認可資訊附加到本機節點的記錄檔，也會將認可記錄傳送給所有的次要複本。一旦回覆了複本的仲裁 (多數)，則所有資料變更就會視為永久性，並且會釋出透過 ITransaction 物件所操作的任何索引鍵相關聯鎖定，讓其他執行緒/交易可以操作相同的索引鍵及其值。
 
-If CommitAsync is not called (usually due to an exception being thrown), then the ITransaction object gets disposed. When disposing an uncommitted ITransaction object, Service Fabric appends abort information to the local node’s log file and nothing needs to be sent to any of the secondary replicas. And then, any locks associated with keys that were manipulated via the transaction are released.
+如未呼叫 CommitAsync (通常是因為擲回例外狀況)，則會處置 ITransaction 物件。在處置未認可的 ITransaction 物件時，Service Fabric 會中止將資訊附加到本機節點的記錄檔，且不需要傳送任何資訊至任何次要複本。然後會釋出透過交易操作的任何與索引鍵相關聯的鎖定。
 
-## <a name="common-pitfalls-and-how-to-avoid-them"></a>Common pitfalls and how to avoid them
-Now that you understand how the reliable collections work internally, let’s take a look at some common misuses of them. See the code below:
+## 常見陷阱以及如何避免
+現在您已了解可靠的集合在內部的運作方式，讓我們看看其中一些常見的誤用。參閱下列程式碼：
 
 ~~~
 using (ITransaction tx = StateManager.CreateTransaction()) {
@@ -73,9 +72,9 @@ using (ITransaction tx = StateManager.CreateTransaction()) {
 }
 ~~~
 
-When working with a regular .NET dictionary, you can add a key/value to the dictionary and then change the value of a property (such as LastLogin). However, this code will not work correctly with a reliable dictionary. Remember from the earlier discussion, the call to AddAsync serializes the key/value objects to byte arrays and then saves the arrays to a local file and also sends them to the secondary replicas. If you later change a property, this changes the property’s value in memory only; it does not impact the local file or the data sent to the replicas. If the process crashes, what’s in memory is thrown away. When a new process starts or if another replica becomes primary, then the old property value is what is available. 
+使用一般的 .NET 字典時，您可以在字典中加入索引鍵/值，然後變更屬性的值 (例如 LastLogin)。不過，這段程式碼和可靠的字典不會合作無間。我們稍早討論過：呼叫 AddAsync 會將索引鍵/值物件序列化成位元組陣列，然後將陣列儲存到本機檔案，並將它們傳送到次要複本。稍後如果變更屬性，只會變更記憶體中的屬性值，不會影響本機檔案或傳送到複本的資料。如果處理序損毀，記憶體中內容將全部遺失。啟動新的處理序，或另一個複本變成主要複本時，使用的就是舊的屬性值。
 
-I cannot stress enough how easy it is to make the kind of mistake shown above. And, you will only learn about the mistake if/when the process goes down. The correct way to write the code is simply to reverse the two lines:
+我一再強調上面這種錯誤是很容易發生的。而且您只有在處理序當機時才會發現錯誤。撰寫程式碼的正確方式其實只要反轉兩行即可︰
 
 ~~~
 using (ITransaction tx = StateManager.CreateTransaction()) {
@@ -85,7 +84,7 @@ using (ITransaction tx = StateManager.CreateTransaction()) {
 }
 ~~~
 
-Here is another example showing a common mistake:
+這是另一個常見的錯誤︰
 
 ~~~
 using (ITransaction tx = StateManager.CreateTransaction()) {
@@ -103,11 +102,11 @@ using (ITransaction tx = StateManager.CreateTransaction()) {
 }
 ~~~
 
-Again, with regular .NET dictionaries, the code above works fine and is a common pattern: the developer uses a key to look up a value. If the value exists, the developer changes a property’s value. However, with reliable collections, this code exhibits the same problem as already discussed: __you MUST not modify an object once you have given it to a reliable collection.__
+同樣地，使用一般的 .NET 字典時，上面的程式碼以常見的模式正常運作：開發人員使用索引鍵查詢值。如果值存在，開發人員就變更屬性的值。不過，使用可靠的集合，這段程式碼會出現前面討論過的同樣問題：__物件一旦給了可靠的集合，就「無法」修改。__
  
-The correct way to update a value in a reliable collection, is to get a reference to the existing value and consider the object referred to by this reference immutable. Then, create a new object which is an exact copy of the original object. Now, you can modify the state of this new object and write the new object into the collection so that it gets serialized to byte arrays, appended to the local file and sent to the replicas. After committing the change(s), the in-memory objects, the local file, and all the replicas have the same exact state. All is good!
+在可靠的集合中更新值的正確方式，是取得現有值的參考，並考慮這個參考所參考的物件為不可變。接著，建立新的物件，這是原始物件的完全相同複本。現在，您可以修改這個新物件的狀態，將新物件寫入集合，讓它序列化為位元組陣列，附加至本機檔案並傳送到複本。認可變更之後，記憶體中的物件、本機檔案及所有複本都會有完全一致的狀態。大功告成！
 
-The code below shows the correct way to update a value in a reliable collection:
+下列程式碼會示範在可靠的集合中更新值的正確方式︰
 
 ~~~
 using (ITransaction tx = StateManager.CreateTransaction()) {
@@ -133,11 +132,11 @@ using (ITransaction tx = StateManager.CreateTransaction()) {
 }
 ~~~
 
-## <a name="define-immutable-data-types-to-prevent-programmer-error"></a>Define immutable data types to prevent programmer error
+## 定義不可變的資料類型，以防止程式設計人員犯錯。
 
-Ideally, we’d like the compiler to report errors when you accidentally produce code that mutates state of an object that you are supposed to consider immutable. But, the C# compiler does not have the ability to do this. So, to avoid potential programmer bugs, we highly recommend that you define the types you use with reliable collections to be immutable types. Specifically, this means that you stick to core value types (such as numbers [Int32, UInt64, etc.], DateTime, Guid, TimeSpan, and the like). And, of course, you can also use String. It is best to avoid collection properties as serializing and deserializing them can frequently can hurt performance. However, if you want to use collection properties, we highly recommend the use of .NET’s immutable collections library (System.Collections.Immutable). This library is available for download from http://nuget.org. We also recommend sealing your classes and making fields read-only whenever possible.
+理想情況下，我們希望編譯器能在您不小心產生改變物件狀態的程式碼，而這個物件又不該改變時報告錯誤。但是 C# 編譯器做不到這一點。所以，為避免潛在的程式設計人員錯誤，我們強烈建議您將可靠集合所使用的類型定義為不可變的類型。具體來說，這表示您要堅持核心值類型 (例如數字 [Int32、UInt64 等等]、DateTime、Guid、TimeSpan 等等)。當然，您也可以使用字串。最好是避免集合屬性，因為將其序列化和還原序列化經常會降低效能。不過，如果您想要使用集合屬性，我們強烈建議您使用 .NET 的不可變集合程式庫 (System.Collections.Immutable)。這個程式庫可以從 http://nuget.org 下載。另外，也建議您盡可能密封類別，並將欄位變成唯讀。
 
-The UserInfo type below demonstrates how to define an immutable type taking advantage of aforementioned recommendations.
+以下的 UserInfo 類型會示範如何利用上述建議定義不可變的類型。
 
 ~~~
 [DataContract]
@@ -172,7 +171,7 @@ public sealed class UserInfo {
 }
 ~~~
 
-The ItemId type is also an immutable type as shown here:
+ItemId 類型也是不可變的類型，如下所示︰
 
 ~~~
 [DataContract]
@@ -187,27 +186,23 @@ public struct ItemId {
 }
 ~~~
 
-## <a name="schema-versioning-(upgrades)"></a>Schema versioning (upgrades)
+## 結構描述版本控制 (升級)
 
-Internally, Reliable Collections serialize your objects using .NET’s DataContractSerializer. The serialized objects are persisted to the primary replica’s local disk and are also transmitted to the secondary replicas. As your service matures, it’s likely you’ll want to change the kind of data (schema) your service requires. You must approach versioning of your data with great care. First and foremost, you must always be able to deserialize old data. Specifically, this means your deserialization code must be infinitely backward compatible: Version 333 of your service code must be able to operate on data placed in a reliable collection by version 1 of your service code 5 years ago.
+就內部而言，可靠的集合會使用 .NET 的 DataContractSerializer 序列化物件。序列化的物件會保存在主要複本的本機磁碟中，並傳送至次要複本。隨著您的服務日趨成熟，您可能會想要變更服務需要的資料種類 (結構描述)。您必須十二萬分地謹慎對待資料的版本控制方法。首先也是最重要的，您必須永遠有能力還原序列化舊的資料。具體來說，這表示您的還原序列化程式碼必須具有無限回溯相容性︰服務程式碼的版本 333 必須能夠操作 5 年前放在可靠的集合中，第 1 版的服務程式碼資料。
 
-Furthermore, service code is upgraded one upgrade domain at a time. So, during an upgrade, you have two different versions of your service code running simultaneously. You must avoid having the new version of your service code use the new schema as old versions of your service code might not be able to handle the new schema. When possible, you should design each version of your service to be forward compatible by 1 version. Specifically, this means that V1 of your service code should be able to simply ignore any schema elements it does not explicitly handle. However, it must be able to save any data it doesn’t explicitly know about and simply write it back out when updating a dictionary key or value. 
+而且，服務程式碼一次只能升級一個網域。所以，在升級期間，您會同時執行兩個不同版本的服務程式碼。您必須避免新版本的服務程式碼使用新的結構描述，因為舊版的服務程式碼可能無法處理新的結構描述。您應該盡可能將每個版本的服務都設計成向前相容 1 個版本。具體來說，這表示 V1 的服務程式碼只要能夠略過它不會明確處理的任何結構描述元素即可。不過，它必須能夠儲存它不明確了解的任何資料，在更新字典索引鍵或值時只需將它寫回即可。
 
->[AZURE.WARNING] While you can modify the schema of a key, you must ensure that your key’s hash code and equals algorithms are stable. If you change how either of these algorithms operate, you will not be able to look up the key within the reliable dictionary ever again.
+>[AZURE.WARNING] 雖然您可以修改索引鍵的結構描述，但您必須確保索引鍵雜湊程式碼和 equals 演算法是穩定的。如果您變更這些演算法其中一個的運作方式，您就再也無法在可靠的字典內查詢索引鍵。
   
-Alternatively, you can perform what is typically referred to as a 2-phase upgrade. With a 2-phase upgrade, you upgrade your service from V1 to V2: V2 contains the code that knows how to deal with the new schema change but this code doesn’t execute. When the V2 code reads V1 data, it operates on it and writes V1 data. Then, after the upgrade is complete across all upgrade domains, you can somehow signal to the running V2 instances that the upgrade is complete. (One way to signal this is to roll out a configuration upgrade; this is what makes this a 2-phase upgrade.) Now, the V2 instances can read V1 data, convert it to V2 data, operate on it, and write it out as V2 data. When other instances read V2 data, they do not need to convert it, they just operate on it, and write out V2 data.
+或者，您也可以執行通稱為 2 階段升級的功能。使用 2 階段升級，服務可從 V1 升級成 V2：V2 包含知道如何處理新結構描述變更的程式碼，但這段程式碼不會執行。當 V2 程式碼讀取 V1 資料時，它會在其上操作並寫入 V1 資料。然後，在跨所有升級網域的升級都完成之後，您就可以通知執行中的 V2 執行個體，升級已完成。(通知方式之一是推出組態升級，這就是 2 階段升級)。 現在，V2 執行個體可以讀取 V1 資料，將它轉換成 V2 資料、操作它，然後寫出為 V2 資料。當其他執行個體讀取 V2 資料時，不需要轉換它，只要操作並寫出 V2 資料即可。
 
-## <a name="next-steps"></a>Next Steps
-To learn about creating forward compatible data contracts, see [Forward-Compatible Data Contracts](https://msdn.microsoft.com/library/ms731083.aspx).
+## 後續步驟
+若要了解建立向前相容的資料合約，請參閱[向前相容資料合約](https://msdn.microsoft.com/library/ms731083.aspx)。
 
-To learn best practices on versioning data contracts, see [Data Contract Versioning](https://msdn.microsoft.com/library/ms731138.aspx). 
+若要了解版本控制資料合約的最佳做法，請參閱[資料合約版本控制](https://msdn.microsoft.com/library/ms731138.aspx)。
 
-To learn how to implement version tolerant data contracts, see [Version-Tolerant Serialization Callbacks](https://msdn.microsoft.com/library/ms733734.aspx). 
+若要了解如何實作版本容錯的資料合約，請參閱[版本相容序列化回呼](https://msdn.microsoft.com/library/ms733734.aspx)。
 
-To learn how to provide a data structure that can interoperate across multiple versions, see [IExtensibleDataObject](https://msdn.microsoft.com/library/system.runtime.serialization.iextensibledataobject.aspx).
+若要了解如何提供可跨多個版本相互操作的資料結構，請參閱 [IExtensibleDataObject](https://msdn.microsoft.com/library/system.runtime.serialization.iextensibledataobject.aspx)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0406_2016-->

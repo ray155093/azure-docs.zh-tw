@@ -1,9 +1,9 @@
 <properties
-   pageTitle="Azure Key Vault Service Limits | Microsoft Azure"
-   description="Learn about the service limits for Azure Key Vault."
+   pageTitle="Azure 金鑰保存庫服務限制 | Microsoft Azure"
+   description="了解 Azure 金鑰保存庫的服務限制。"
    documentationCenter="dev-center-name"
    services="key-vault"  
-   authors="cabailey"
+   authors="msmbaldwin"
    manager="mbaldwin"
    editor=""/>
 
@@ -16,15 +16,10 @@
    ms.date="09/16/2016"
    ms.author="mbaldwin"/>
 
+# Azure 金鑰保存庫服務限制
 
-# <a name="azure-key-vault-service-limits"></a>Azure Key Vault Service Limits
-
-These are the service limits for Azure Key Vault.
+這些是 Azure 金鑰保存庫的服務限制。
 
 [AZURE.INCLUDE [key-vault-limits](../../includes/key-vault-limits.md)]
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

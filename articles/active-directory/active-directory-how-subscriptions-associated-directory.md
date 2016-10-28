@@ -1,138 +1,137 @@
 <properties
-    pageTitle="How Azure subscriptions are associated with Azure Active Directory | Microsoft Azure"
-    description="Signing in to Microsoft Azure and related issues, such as the relationship between an Azure subscription and Azure Active Directory."
-    services="active-directory"
-    documentationCenter=""
-    authors="curtand"
-    manager="femila"
-    editor=""/>
+	pageTitle="Azure 訂用帳戶如何與 Azure Active Directory 產生關聯 | Microsoft Azure"
+	description="登入 Microsoft Azure 及相關問題，例如 Azure 訂用帳戶與 Azure Active Directory 之間的關係。"
+	services="active-directory"
+	documentationCenter=""
+	authors="curtand"
+	manager="femila"
+	editor=""/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="get-started-article"
-    ms.date="08/15/2016"
-    ms.author="curtand"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="get-started-article"
+	ms.date="08/15/2016"
+	ms.author="curtand"/>
 
+# Azure 訂用帳戶如何與 Azure Active Directory 產生關聯
 
-# <a name="how-azure-subscriptions-are-associated-with-azure-active-directory"></a>How Azure subscriptions are associated with Azure Active Directory
+本主題涵蓋有關登入 Microsoft Azure 及相關問題的資訊，例如 Azure 訂用帳戶與 Azure Active Directory (Azure AD) 之間的關係。
 
-This topic covers information about signing in to Microsoft Azure and related issues, such as the relationship between an Azure subscription and Azure Active Directory (Azure AD).
+## 您可以用來登入的帳戶
+讓我們先著手處理可以用來登入的帳戶。共有兩種類型：Microsoft 帳戶 (先前稱為 Microsoft Live ID) 和工作或學校帳戶，也就是儲存在 Azure AD 的帳戶。
 
-## <a name="accounts-that-you-can-use-to-sign-in"></a>Accounts that you can use to sign in
-Let’s start with the accounts that you can use to sign in. There are two types: a Microsoft account (formerly known as Microsoft Live ID) and a work or school account, which is an account stored in Azure AD.
+ Microsoft 帳戶 | Azure AD 帳戶
+	------------- | -------------
+由 Microsoft 執行的消費者識別系統 | 由 Microsoft 執行的商務識別系統
+消費者導向 (例如 Hotmail 和 MSN) 的服務驗證 | 商務導向 (例如 Office 365) 的服務驗證
+消費者會建立他們自己的 Microsoft 帳戶，例如當他們註冊電子郵件時 | 公司和組織會建立與管理他們自己的工作或學校帳戶
+系統會建立識別並將它們儲存在 Microsoft 帳戶系統 | 系統會使用 Azure 或其他服務 (例如 Office 365) 來建立識別，並將它們儲存在指派給組織的 Azure AD 執行個體
 
- Microsoft account  | Azure AD account
-    ------------- | -------------
-The consumer identity system run by Microsoft | The business identity system run by Microsoft
-Authentication to services that are consumer-oriented, such as Hotmail and MSN | Authentication to services that are business-oriented, such as Office 365
-Consumers create their own Microsoft accounts, such when they sign up for email | Companies and organizations create and manage their own work or school accounts
-Identities are created and stored in the Microsoft account system | Identities are created by using Azure or another service such as Office 365, and they are stored in an Azure AD instance assigned to the organization
+雖然 Azure 原先只允許 Microsoft 帳戶使用者進行存取，但它現在可讓*這兩個*系統的使用者進行存取。此乃透過讓所有 Azure 屬性信任 Azure AD 進行驗證、讓 Azure AD 驗證組織使用者，以及透過建立同盟關係，讓 Azure AD 信任 Microsoft 帳戶消費者識別系統進行消費者驗證等方式達成。如此一來，Azure AD 便能驗證「來賓」Microsoft 帳戶，以及「原生」Azure AD 帳戶。
 
-Although Azure originally allowed access only by Microsoft account users, it now allows access by users from *both* systems. This was done by having all the Azure properties trust Azure AD for authentication, having Azure AD authenticate organizational users, and by creating a federation relationship where Azure AD trusts the Microsoft account consumer identity system to authenticate consumer users. As a result, Azure AD is able to authenticate “guest” Microsoft accounts as well as “native” Azure AD accounts.
-
-For example, here a user with a Microsoft account signs in to the Azure classic portal.
+比方說，一位具有 Microsoft 帳戶的使用者登入 Azure 傳統入口網站。
 
 > [AZURE.NOTE]
-> To sign in to the Azure classic portal, msmith@hotmail.com must have a subscription to Azure. The account must be either a Service administrator or a co-administrator of the subscription.
+若要登入 Azure 傳統入口網站，msmith@hotmail.com 必須具有 Azure 訂用帳戶。帳戶必須是服務管理員或訂用帳戶的共同管理員。
 
 ![][1]
 
-Because this Hotmail address is a consumer account, the sign in is authenticated by the Microsoft account consumer identity system. The Azure AD identity system trusts the authentication done by the Microsoft account system and will issue a token to access Azure services.
+因為這個 Hotmail 地址是消費者帳戶，而登入是透過 Microsoft 帳戶消費者識別系統進行驗證。Azure AD 識別系統信任 Microsoft 帳戶系統所執行的驗證，並將發行可存取 Azure 服務的權杖。
 
-## <a name="how-an-azure-subscription-is-related-to-azure-ad"></a>How an Azure subscription is related to Azure AD
+## Azure 訂用帳戶如何與 Azure AD 有關
 
-Every Azure subscription has a trust relationship with an Azure AD instance. This means that it trusts that directory to authenticate users, services, and devices. Multiple subscriptions can trust the same directory, but a subscription trusts only one directory. You can see which directory is trusted by your subscription under the Settings tab. You can [edit the subscription settings](active-directory-understanding-resource-access.md) to change which directory it trusts.
+每個 Azure 訂用帳戶都會與 Azure AD 執行個體有信任關係。這表示它信任該目錄來驗證使用者、服務和裝置。多個訂用帳戶可以信任相同的目錄，但是一個訂用帳戶只能信任一個目錄。您可以在 [設定] 索引標籤下看到訂用帳戶所信任的目錄。您可以[編輯訂用帳戶設定](active-directory-understanding-resource-access.md)以變更其信任的目錄。
 
-This trust relationship that a subscription has with a directory is unlike the relationship that a subscription has with all other resources in Azure (websites, databases, and so on), which are more like child resources of a subscription. If a subscription expires, then access to those other resources associated with the subscription also stops. But the directory remains in Azure, and you can associate another subscription with that directory and continue to manage the directory users.
+這個訂用帳戶與目錄之間存在的信任關係不同於訂用帳戶與所有其他 Azure 資源 (網站、資料庫等) 之間的關係，後者比較像是訂用帳戶的子資源。如果訂用帳戶已過期，則也會停止存取與該訂用帳戶相關聯的其他資源。但目錄會保留在 Azure 中，而且您可以將其他訂用帳戶與該目錄產生關聯，並繼續管理目錄使用者。
 
-Similarly, the Azure AD extension you see in your subscription doesn’t work like the other extensions in the Azure classic portal. Other extensions in the Azure classic portal are scoped to the Azure subscription. What you see in the Azure AD extension does not vary based on subscription – it shows only directories based on the signed-in user.
+同樣地，在您的訂用帳戶中看到的 Azure AD 延伸模組，與在 Azure 傳統入口網站中的其他延伸模組有不同的運作方式。在 Azure 傳統入口網站中的其他延伸模組的範圍是 Azure 訂用帳戶。您在 Azure AD 延伸模組中看到的內容，不會因為訂用帳戶不同而異，因為它只會根據已登入使用者顯示目錄。
 
-All users have a single home directory which authenticates them, but they can also be guests in other directories. In the Azure AD extension, you will see every directory your user account is a member of. Any directory that your account is not a member of will not appear. A directory can issue tokens for work or school accounts in Azure AD or for Microsoft account users (because Azure AD is federated with the Microsoft account system).
+所有使用者都有會對他們進行驗證的單一主目錄，但是他它們也可以是其他目錄中的來賓。在 Azure AD 延伸模組中，您會看到您使用者帳戶所屬的每個目錄。您的帳戶不是其成員的任何目錄將不會出現。目錄可以為 Azure AD 中的工作或學校帳戶或 Microsoft 帳戶使用者發出權杖 (因為 Azure AD 已與 Microsoft 帳戶系統建立同盟)。
 
-This diagram shows a subscription for Michael Smith after he signed up by using a work account for Contoso.
+下圖顯示 Michael smith 在使用 Contoso 的工作帳戶註冊之後的訂用帳戶。
 
 ![][2]
 
-## <a name="how-to-manage-a-subscription-and-a-directory"></a>How to manage a subscription and a directory
-The administrative roles for an Azure subscription manage resources tied to the Azure subscription. These roles and the best practices for managing your subscription are covered at [Assigning administrator roles in Azure Active Directory](active-directory-assign-admin-roles.md).
+## 如何管理訂用帳戶和目錄
+Azure 訂用帳戶的系統管理角色會管理繫結至 Azure 訂用帳戶的資源。這些角色和管理訂用帳戶的最佳作法，均涵蓋於[在 Azure Active Directory 中指派系統管理員角色](active-directory-assign-admin-roles.md)。
 
-By default, you are assigned the Service Administrator role when you sign up. If others need to sign in and access services using the same subscription, you can add them as co-administrators. The Service Administrator and co-administrators can be either Microsoft accounts or work or school accounts from the directory that the Azure subscription is associated with.
+根據預設，當您註冊時，您會被指派服務管理員角色。如果其他人必須使用相同的訂用帳戶來登入和存取服務，您可以將他們新增為共同管理員。服務管理員和共同管理員可以是來自 Azure 訂用帳戶相關聯目錄的 Microsoft 帳戶或工作或學校帳戶。
 
-Azure AD has a different set of administrative roles to manage the directory and identity-related features. For example, the global administrator of a directory can add users and groups to the directory, or require multifactor authentication for users. A user who creates a directory is assigned to the global administrator role and they can assign administrator roles to other users.
+Azure AD 有一組不同的系統管理角色，可用來管理目錄和識別相關功能。例如，目錄的全域管理員可以將使用者和群組加入至目錄，或要求使用者的多因素驗證。建立目錄的使用者會被指派全域管理員角色，而且他們可以將系統管理員角色指派給其他使用者。
 
-As with subscription administrators, the Azure AD administrative roles can be either Microsoft accounts or work or school accounts. Azure AD administrative roles are also used by other services such as Office 365 and Microsoft Intune. For more information, see [Assigning administrator roles](active-directory-assign-admin-roles.md).
+和訂用帳戶管理員一樣，Azure AD 系統管理角色可以是 Microsoft 帳戶或工作或學校帳戶。其他服務 (例如 Office 365 和 Microsoft Intune) 也會使用 Azure AD 系統管理角色。如需詳細資訊，請參閱[指派系統管理員角色](active-directory-assign-admin-roles.md)。
 
-But the important point here is that Azure subscription admins and Azure AD directory admins are two separate concepts. Azure subscription admins can manage resources in Azure and can view the Active Directory extension in the Azure classic portal (because the Azure classic portal is an Azure resource). Directory admins can manage properties in the directory.
+但這裡的重點是，Azure 訂用帳戶管理員和 Azure AD 目錄管理員是兩個不同的概念。Azure 訂用帳戶管理員可以管理 Azure 中的資源，而且可以在 Azure 傳統入口網站中檢視 Active Directory 延伸模組 (因為 Azure 傳統入口網站是 Azure 的資源)。目錄管理員可以管理目錄中的屬性。
 
-A person can be in both roles but this isn’t required. A user can be assigned to the directory global administrator role but not be assigned as Service administrator or co-administrator of an Azure subscription. Without being an administrator of the subscription, this user cannot sign in to the Azure classic portal. But the user could perform directory administration tasks using other tools such as Azure AD PowerShell or Office 365 Admin Center.
+使用者可以同時擔任這兩個角色，但這並非必要。使用者可以被指派目錄全域管理員角色，但不可被指派為 Azure 訂用帳戶的服務管理員或共同管理員。如果這位使用者不是訂用帳戶的管理員，就無法登入 Azure 傳統入口網站。但是使用者可以使用其他工具 (例如 Azure AD PowerShell 或 Office 365 系統管理中心) 來執行目錄管理工作。
 
-## <a name="why-can't-i-manage-the-directory-with-my-current-user-account?"></a>Why can't I manage the directory with my current user account?
+## 為什麼我無法使用目前的使用者帳戶來管理目錄？
 
-Sometimes a user may try to sign in to the Azure classic portal using a work or school account prior to signing up for an Azure subscription. In this case, the user will receive a message that there is no subscription for that account. The message will include a link to start a free trial subscription.
+有時候，使用者可能會在註冊 Azure 訂用帳戶之前，嘗試使用工作或學校帳戶來登入 Azure 傳統入口網站。在此情況下，使用者會收到該帳戶沒有訂用帳戶的訊息。此訊息將包含可開始免費試用訂用帳戶的連結。
 
-After signing up for the free trial, the user will see the directory for the organization in the Azure classic portal but be unable to manage it (that is, be unable to add users, or edit any existing user properties) because the user is not a directory global administrator. The subscription allows the user to use the Azure classic portal and see the Azure Active Directory extension, but the additional permissions of a global administrator are needed to manage the directory.
+使用者在註冊免費試用之後，就會在 Azure 傳統入口網站中看到組織的目錄，但因為使用者不是目錄全域管理員，所以無法管理目錄 (亦即，無法新增使用者，或編輯任何現有的使用者屬性)。訂用帳戶能讓使用者使用 Azure 傳統入口網站，並查看 Azure Active Directory 延伸模組，但使用者必須擁有其他全域系統管理員的權限才能管理目錄。
 
-## <a name="using-your-work-or-school-account-to-manage-an-azure-subscription-that-was-created-by-using-a-microsoft-account"></a>Using your work or school account to manage an Azure subscription that was created by using a Microsoft account
+## 使用您的工作或學校帳戶來管理使用 Microsoft 帳戶建立的 Azure 訂用帳戶
 
-As a best practice, you should [sign up for Azure as an organization](sign-up-organization.md) and use a work or school account to manage resources in Azure. Work or school accounts are preferred because they can be centrally managed by the organization that issued them, they have more features than Microsoft accounts, and they are directly authenticated by Azure AD. The same account provides access to other Microsoft online services that are offered to businesses and organizations, such as Office 365 or Microsoft Intune. If you already have an account that you use with those other properties, you likely want to use that same account with Azure. You will also already have an Active Directory instance backing those properties that you will want your Azure subscription to trust.
+最佳做法是，您應該 [以組織身分註冊 Azure](sign-up-organization.md)，並使用工作或學校帳戶來管理 Azure 中的資源。因為發佈工作或學校帳戶的組織可以集中管理這些帳戶，所以優先採用工作或學校帳戶，它們提供比 Microsoft 帳戶還要多的功能，而且它們可直接由 Azure AD 進行驗證。相同的帳戶提供供企業和組織使用之其他 Microsoft 線上服務 (例如 Office 365 或 Microsoft Intune) 的存取權限。如果您已經有用來與其他屬性搭配的帳戶，您可能會想要使用該相同帳戶來與 Azure 搭配。您也已經有支援且要 Azure 訂用帳戶信任這些屬性的 Active Directory 執行個體。
 
-Work or school accounts can also be managed in more ways than a Microsoft account. For example, an administrator can reset the password of an a work or school account, or require multifactor authentication for it.
+管理工作或學校帳戶的方式也比管理 Microsoft 帳戶的方式還要多。例如，系統管理員可以重設工作或學校帳戶的密碼，或要求帳戶的多因素驗證。
 
-In some cases, you may want a user from your organization to be able to manage resources that are associated with an Azure subscription for a consumer Microsoft account. For more information about how to transition to have different accounts manage subscriptions or directories, see [Manage the directory for your Office 365 subscription in Azure](#manage-the-directory-for-your-office-365-subscription-in-azure).
+在某些情況下，您可能需要一位組織使用者，能夠管理消費者 Microsoft 帳戶且與 Azure 訂用帳戶相關聯的資源。如需有關如何轉換成不同帳戶管理訂用帳戶或目錄的詳細資訊，請參閱[在 Azure 中管理 Office 365 訂用帳戶的目錄](#manage-the-directory-for-your-office-365-subscription-in-azure)。
 
 
-## <a name="signing-in-when-you-used-your-work-email-for-your-microsoft-account"></a>Signing in when you used your work email for your Microsoft account
+## 當您使用公司電子郵件作為 Microsoft 帳戶時登入
 
-If at some point of time in the past you created a consumer Microsoft account using your work email as a user identifier, you may see a page asking you to select from either the Microsoft Azure Account system or the Microsoft Account system.
+如果在過去的某個時間點，您使用公司電子郵件作為使用者識別碼來建立消費者 Microsoft 帳戶，則您可能會看到一個頁面，要求您選取 Microsoft Azure 帳戶系統或 Microsoft 帳戶系統。
 
 ![][3]
 
-You have user accounts with the same name, one in Azure AD and the other in the consumer Microsoft account system. You should pick the account that is associated with the Azure subscription you want to use. If you get an error saying a subscription does not exist for this user, you likely just chose the wrong option. Sign out and try again. For more information about errors that can prevent sign in, see [Troubleshooting "We were unable to find any subscriptions associated with your account" errors](https://social.msdn.microsoft.com/Forums/en-US/f952f398-f700-41a1-8729-be49599dd7e2/troubleshooting-we-were-unable-to-find-any-subscriptions-associated-with-your-account-errors-in?forum=windowsazuremanagement).
+您會有相同名稱的使用者帳戶，一個在 Azure AD 中，另一個在消費者 Microsoft 帳戶系統中。您應該挑選您要使用且與 Azure 訂用帳戶相關聯的帳戶。如果您收到錯誤訊息指出此使用者的訂用帳戶不存在，您很有可能只是選錯選項。登出然後再試一次。如需有關可能阻止登入的錯誤詳細資訊，請參閱[針對「我們找不到與您帳戶相關聯的任何訂用帳戶」錯誤進行疑難排解](https://social.msdn.microsoft.com/Forums/en-US/f952f398-f700-41a1-8729-be49599dd7e2/troubleshooting-we-were-unable-to-find-any-subscriptions-associated-with-your-account-errors-in?forum=windowsazuremanagement)。
 
-## <a name="manage-the-directory-for-your-office-365-subscription-in-azure"></a>Manage the directory for your Office 365 subscription in Azure
+## 在 Azure 中管理 Office 365 訂用帳戶的目錄
 
-Let's say you signed up for Office 365 before you sign up for Azure. Now you want to manage the directory for the Office 365 subscription in the Azure classic portal. There are two ways to do this, depending on whether you have signed up for Azure or you have not.
+假設您在註冊 Azure 之前已先註冊 Office 365。現在，您想要在 Azure 傳統入口網站中管理 Office 365 訂用帳戶的目錄。若要這樣做有兩種方式，視您是否已註冊 Azure 而定。
 
-### <a name="i-do-not-have-a-subscription-for-azure"></a>I do not have a subscription for Azure
+### 我沒有 Azure 訂用帳戶
 
-In this case, just [sign up for Azure](sign-up-organization.md) using the same work or school account that you use to sign in to Office 365. Relevant information from the Office 365 account will be prepopulated in the Azure sign-up form. Your account will be assigned to the Service Administrator role of the subscription.  
+在此案例中，您只需要使用您用來登入 Office 365 的相同工作或學校帳戶來[註冊 Azure](sign-up-organization.md) 即可。Office 365 帳戶的相關資訊便會填入 Azure 註冊表單。您的帳戶將會被指派訂用帳戶的服務管理員角色。
 
-### <a name="i-do-have-a-subscription-for-azure-using-my-microsoft-account"></a>I do have a subscription for Azure using my Microsoft account
+### 我沒有使用 Microsoft 帳戶的 Azure 訂用帳戶
 
-If you signed up for Office 365 using a work or school account and then signed up for Azure using a Microsoft account, then you have two directories: one for your work or school and a Default directory that was created when you signed up for Azure.
+如果您已使用工作或學校帳戶註冊 Office 365，然後使用 Microsoft 帳戶註冊 Azure，則您會有兩個目錄：一個可供工作或學校使用，一個可供註冊 Azure 時所建立的預設目錄使用。
 
-To manage both of the directories in the Azure classic portal, complete these steps.
+若要在 Azure 傳統入口網站中管理這兩個目錄，請完成下列步驟。
 
 > [AZURE.NOTE]
-> These steps can only be completed while a user is signed in with a Microsoft account. If the user is signed in with a work or school account, the option **Use existing directory** is not available because a work or school account can be authenticated only by its home directory (that is, the directory where the work or school account is stored, and which is owned by the work or school).
+只有當使用者使用 Microsoft 帳戶登入時，才可以完成下列步驟。如果使用者使用工作或學校帳戶登入，則 [**使用現有的目錄**] 選項無法使用，因為工作或學校帳戶只能透過其主目錄 (也就是儲存工作或學校帳戶，且由工作或學校所擁有的目錄) 進行驗證。
 
-1. Sign in to the Azure classic portal using your Microsoft account.
+1. 使用您的 Microsoft 帳戶登入 Azure 傳統入口網站。
 
-2. Click **New** > **App services** > **Active Directory** > **Directory** > **Custom Create**.
+2. 依序按一下 [**新增**] > [**應用程式服務**] > [**Active Directory**] > [**目錄**] > [**自訂建立**]。
 
-3. Click **Use existing directory** and check **I am ready to be signed out now** and click the check mark to complete the action.
+3. 按一下 [**使用現有的目錄**] 並核取 [**我已經準備好立即登出**]，然後按一下核取記號以完成動作。
 
-4. Sign in to the Azure classic portal using an account that has global admin rights for the work or school directory.
+4. 使用擁有工作或學校目錄全域系統管理員權限的帳戶登入 Azure 傳統入口網站。
 
-5. When prompted to **Use the Contoso directory with Azure?**, and click **continue**.
+5. 當系統出現 [**搭配 Azure 使用 Contoso 目錄？**] 提示時，請按一下 [**繼續**]。
 
-6. Click **Sign out now**.
+6. 按一下 [**立即登出**]。
 
-7. Sign back in to the Azure classic portal using your Microsoft account. Both directories will appear in the Active Directory extension.
+7. 使用您的 Microsoft 帳戶再次登入 Azure 傳統入口網站。這兩個目錄都會出現在 Active Directory 延伸模組中。
 
 
-## <a name="next-steps"></a>Next Steps
+## 後續步驟
 
-- To learn more about how to change administrators for an Azure subscription, see [How to add or change Azure administrator roles](../billing-add-change-azure-subscription-administrator.md)
+- 若要深入了解如何變更 Azure 訂用帳戶的系統管理員，請參閱[如何新增或變更 Azure 系統管理員角色](../billing-add-change-azure-subscription-administrator.md)
 
-- To learn more about how resource access is controlled in Microsoft Azure, see [Understanding resource access in Azure](active-directory-understanding-resource-access.md)
+- 若要深入了解如何在 Microsoft Azure 中控制資源存取，請參閱[了解 Azure 中的資源存取](active-directory-understanding-resource-access.md)
 
-- For more information on how to assign roles in Azure AD, see [Assigning administrator roles in Azure Active Directory](active-directory-assign-admin-roles.md)
+- 如需有關如何在 Azure AD 中指派角色的詳細資訊，請參閱[在 Azure Active Directory 中指派系統管理員角色](active-directory-assign-admin-roles.md)。
 
-- [Sign up for Azure as an organization](sign-up-organization.md)
+- [以組織方式註冊 Azure](sign-up-organization.md)
 
 
 <!--Image references-->
@@ -140,8 +139,4 @@ To manage both of the directories in the Azure classic portal, complete these st
 [2]: ./media/active-directory-how-subscriptions-associated-directory/WAAD_OrgAccountSubscription.png
 [3]: ./media/active-directory-how-subscriptions-associated-directory/WAAD_SignInDisambiguation.PNG
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

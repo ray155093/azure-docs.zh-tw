@@ -1,10 +1,10 @@
 <properties
-pageTitle="Learn how to use the FTP connector in logic apps| Microsoft Azure"
-description="Create logic apps with Azure App service. Connect to FTP server to manage your files. You can perform various actions such as upload, update, get, and delete files in FTP server."
-services="logic-apps"   
-documentationCenter=".net,nodejs,java"  
-authors="msftman"   
-manager="erikre"    
+pageTitle="了解如何在邏輯應用程式中使用 FTP 連接器 | Microsoft Azure"
+description="使用 Azure App Service 建立邏輯應用程式。連線到 FTP 伺服器來管理您的檔案。您可以執行各種動作，例如上傳、更新、取得及刪除 FTP 伺服器中的檔案。"
+services="logic-apps"	
+documentationCenter=".net,nodejs,java" 	
+authors="msftman"	
+manager="erikre"	
 editor=""
 tags="connectors" />
 
@@ -17,429 +17,428 @@ ms.workload="integration"
 ms.date="07/22/2016"
 ms.author="deonhe"/>
 
+# 開始使用 FTP 連接器
 
-# <a name="get-started-with-the-ftp-connector"></a>Get started with the FTP connector
+使用 FTP 連接器在 FTP 伺服器上監視、管理和建立檔案。
 
-Use the FTP connector to monitor, manage and create files on an  FTP server. 
+若要使用[任何連接器](./apis-list.md)，您必須先建立邏輯應用程式。您可以從[立即建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)來開始。
 
-To use [any connector](./apis-list.md), you first need to create a logic app. You can get started by [creating a logic app now](../app-service-logic/app-service-logic-create-a-logic-app.md).
+## 連接至 FTP
 
-## <a name="connect-to-ftp"></a>Connect to FTP
+您必須先建立與服務的「連線」，才能透過邏輯應用程式存取任何服務。[連線](./connectors-overview.md)可讓邏輯應用程式與另一個服務連線。
 
-Before your logic app can access any service, you first need to create a *connection* to the service. A [connection](./connectors-overview.md) provides connectivity between a logic app and another service.  
+### 建立 FTP 連線
 
-### <a name="create-a-connection-to-ftp"></a>Create a connection to FTP
+>[AZURE.INCLUDE [建立 FTP 連線的步驟](../../includes/connectors-create-api-ftp.md)]
 
->[AZURE.INCLUDE [Steps to create a connection to FTP](../../includes/connectors-create-api-ftp.md)]
+## 使用 FTP 觸發程序
 
-## <a name="use-a-ftp-trigger"></a>Use a FTP trigger
+觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。[深入了解觸發程序](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
 
-A trigger is an event that can be used to start the workflow defined in a logic app. [Learn more about triggers](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts).  
+>[AZURE.IMPORTANT]FTP 連接器需要可從網際網路存取且設定為以「被動」模式運作的 FTP 伺服器。此外，FTP 連接器**與隱含 FTPS (FTP over SSL) 不相容**。FTP 連接器只支援明確 FTPS (FTP over SSL)。
 
->[AZURE.IMPORTANT]The FTP connector requires an FTP server that  is accessible from the Internet and is configured to operate with PASSIVE mode. Also, the FTP connector is **not compatible with implicit FTPS (FTP over SSL)**. The FTP connector only supports explicit FTPS (FTP over SSL).  
+在此範例中，我將告訴您如何使用 **FTP - 新增或修改檔案時**觸發程序，在檔案新增或修改於 FTP 伺服器時起始邏輯應用程式工作流程。在企業範例中，您可以使用此觸發程序來監視代表客戶訂單的新檔案 FTP 資料夾。然後，您可以使用 FTP 連接器動作 (例如**取得檔案內容**) 取得訂單的內容以進一步處理並儲存在訂單資料庫中。
 
-In this example, I will show you how to use the **FTP - When a file is added or modified** trigger to initiate a logic app workflow when a file is added to, or modified on, an FTP server. In an enterprise example, you could use this trigger to monitor an FTP folder for new files that represent orders from customers.  You could then use an FTP connector action such as **Get file content** to get the contents of the order for further processing and storage in your orders database.
-
-1. Enter *ftp* in the search box on the logic apps designer then select the **FTP - When a file is added or modified**  trigger   
-![FTP trigger image 1](./media/connectors-create-api-ftp/ftp-trigger-1.png)  
-The **When a file is added or modified** control opens up  
-![FTP trigger image 2](./media/connectors-create-api-ftp/ftp-trigger-2.png)  
-- Select the **...** located on the right side of the control. This opens the folder picker control  
-![FTP trigger image 3](./media/connectors-create-api-ftp/ftp-trigger-3.png)  
-- Select the **>** (right arrow) and browse to find the folder that you want to monitor for new or modified files. Select the folder and notice the folder is now displayed in the **Folder** control.  
-![FTP trigger image 4](./media/connectors-create-api-ftp/ftp-trigger-4.png)   
-
-
-At this point, your logic app has been configured with a trigger that will begin a run of the other triggers and actions in the workflow when a file is either modified or created in the specific FTP folder. 
-
->[AZURE.NOTE]For a logic app to be functional, it must contain at least one trigger and one action. Follow the steps in the next section to add an action.  
+1. 在邏輯應用程式設計工具的搜尋方塊中輸入 ftp，然後選取 [FTP - 當新增或修改檔案時] 觸發程序  
+![FTP 觸發程序影像 1](./media/connectors-create-api-ftp/ftp-trigger-1.png)  
+[當新增或修改檔案時] 控制項隨即開啟  
+![FTP 觸發程序影像 2](./media/connectors-create-api-ftp/ftp-trigger-2.png)  
+- 選取位於控制項右側的 [...]。這會開啟資料夾選擇器控制項  
+![FTP 觸發程序影像 3](./media/connectors-create-api-ftp/ftp-trigger-3.png)  
+- 選取 **>** (向右箭號)，並瀏覽尋找您要對新的或修改過檔案監視的資料夾。選取資料夾，請注意資料夾現已顯示在 [資料夾] 控制項中。  
+![FTP 觸發程序影像 4](./media/connectors-create-api-ftp/ftp-trigger-4.png)  
 
 
+此時，邏輯應用程式已設有觸發程序，該觸發程序會在檔案於特定 FTP 資料夾中修改或建立時，開始執行工作流程中的其他觸發程序和動作。
 
-## <a name="use-a-ftp-action"></a>Use a FTP action
+>[AZURE.NOTE]為了讓邏輯應用程式能正常運作，它必須包含至少一個觸發程序和一個動作。請依照下一節中的步驟新增動作。
 
-An action is an operation carried out by the workflow defined in a logic app. [Learn more about actions](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts).  
 
-Now that you have added a trigger, follow these steps to add an action that will get the contents of the new or modified file found by the trigger.    
 
-1. Select **+ New step** to add the the action to get the contents of the file on the FTP server  
-- Select the **Add an action** link.  
-![FTP action image 1](./media/connectors-create-api-ftp/ftp-action-1.png)  
-- Enter *FTP* to search for all actions related to FTP.
-- Select **FTP - Get file content**  as the action to take when a new or modified file is found in the FTP folder.      
-![FTP action image 2](./media/connectors-create-api-ftp/ftp-action-2.png)  
-The **Get file content** control opens. **Note**: you will be prompted to authorize your logic app to access your FTP server account if you have not done so previously.  
-![FTP action image 3](./media/connectors-create-api-ftp/ftp-action-3.png)   
-- Select the **File** control (the white space located below **FILE***). Here, you can use any of the various properties from the new or modified file found on the FTP server.  
-- Select the **File content** option.  
-![FTP action image 4](./media/connectors-create-api-ftp/ftp-action-4.png)   
--  The control is updated, indicating that the **FTP - Get file content** action will get the *file content* of the new or modified file on the FTP server.      
-![FTP action image 5](./media/connectors-create-api-ftp/ftp-action-5.png)     
-- Save your work then add a file to the FTP folder to test your workflow.    
+## 使用 FTP 動作
 
-At this point, the logic app has been configured with a trigger to monitor a folder on an FTP server and initiate the workflow when it finds either a new file or a modified file on the FTP server. 
+動作是由邏輯應用程式中定義的工作流程所執行的作業。[深入了解動作](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
 
-The logic app also has been configured with an action to get the contents of the new or modified file.
+您現已新增觸發程序，請遵循下列步驟來新增動作，該動作將會取得觸發程序所找到之新的或修改過檔案的內容。
 
-You can now add another action such as the [SQL Server - insert row](./connectors-create-api-sqlazure.md#insert-row) action to insert the contents of the new or modified file into a SQL database table.  
+1. 選取 [+ 新增步驟] 來新增動作，以取得 FTP 伺服器上檔案的內容
+- 選取 [新增動作] 連結。  
+![FTP 動作影像 1](./media/connectors-create-api-ftp/ftp-action-1.png)  
+- 輸入 FTP 以搜尋與 FTP 相關的所有動作。
+- 選取 [FTP-取得檔案內容]，做為在 FTP 資料夾中找到新的或修改過檔案時所要採取的動作。  
+![FTP 動作影像 2](./media/connectors-create-api-ftp/ftp-action-2.png)  
+[取得檔案內容] 控制項隨即開啟。**Note**：如果您未曾授權邏輯應用程式存取您的 FTP 伺服器帳戶，系統會提示您這麼做。  
+![FTP 動作影像 3](./media/connectors-create-api-ftp/ftp-action-3.png)  
+- 選取 [檔案] 控制項 (位於 [檔案]* 下方的空白處)。在這裡，您可以使用 FTP 伺服器上找到之新的或修改過檔案中的各種屬性。
+- 選取 [檔案內容] 選項。  
+![FTP 動作影像 4](./media/connectors-create-api-ftp/ftp-action-4.png)  
+-  控制項已更新，這表示 [FTP - 取得檔案內容] 動作會取得 FTP 伺服器上新的或修改過檔案的「檔案內容」。  
+![FTP 動作影像 5](./media/connectors-create-api-ftp/ftp-action-5.png)  
+- 儲存您的工作，然後將檔案加入至 FTP 資料夾，以測試您的工作流程。
 
-## <a name="technical-details"></a>Technical Details
+此時，邏輯應用程式已設有觸發程序來監視 FTP 伺服器上的資料夾，而當它在 FTP 伺服器上找到新的檔案或修改過的檔案時會起始工作流程。
 
-Here are the details about the triggers, actions and responses that this connection supports:
+邏輯應用程式也已設有一個動作，以取得新的或修改過檔案的內容。
 
-## <a name="ftp-triggers"></a>FTP triggers
+您現在可以加入另一個動作，例如 [SQL Server - 插入資料列](./connectors-create-api-sqlazure.md#insert-row)動作，已在 SQL Database 資料表中插入新的或修改過檔案的內容。
 
-FTP has the following trigger(s):  
+## 技術詳細資料
 
-|Trigger | Description|
+以下是有關這個連接支援的觸發程序、動作和回應的詳細資料︰
+
+## FTP 觸發程序
+
+FTP 具有下列觸發程序︰
+
+|觸發程序 | 說明|
 |--- | ---|
-|[When a file is added or modified](connectors-create-api-ftp.md#when-a-file-is-added-or-modified)|This operation triggers a flow when a file is added or modified in a folder.|
+|[當新增或修改檔案時](connectors-create-api-ftp.md#when-a-file-is-added-or-modified)|當資料夾中新增或修改檔案時，此作業就會觸發流程。|
 
 
-## <a name="ftp-actions"></a>FTP actions
+## FTP 動作
 
-FTP has the following actions:
+FTP 具有下列動作︰
 
 
-|Action|Description|
+|動作|說明|
 |--- | ---|
-|[Get file metadata](connectors-create-api-ftp.md#get-file-metadata)|This operation gets the metadata for a file.|
-|[Update file](connectors-create-api-ftp.md#update-file)|This operation updates a file.|
-|[Delete file](connectors-create-api-ftp.md#delete-file)|This operation deletes a file.|
-|[Get file metadata using path](connectors-create-api-ftp.md#get-file-metadata-using-path)|This operation gets the metadata of a file using the path.|
-|[Get file content using path](connectors-create-api-ftp.md#get-file-content-using-path)|This operation gets the content of a file using the path.|
-|[Get file content](connectors-create-api-ftp.md#get-file-content)|This operation gets the content of a file.|
-|[Create file](connectors-create-api-ftp.md#create-file)|This operation creates a file.|
-|[Copy file](connectors-create-api-ftp.md#copy-file)|This operation copies a file to an FTP server.|
-|[List files in folder](connectors-create-api-ftp.md#list-files-in-folder)|This operation gets the list of files and subfolders in a folder.|
-|[List files in root folder](connectors-create-api-ftp.md#list-files-in-root-folder)|This operation gets the list of files and subfolders in the root folder.|
-|[Extract folder](connectors-create-api-ftp.md#extract-folder)|This operation extracts an archive file into a folder (example: .zip).|
-### <a name="action-details"></a>Action details
+|[取得檔案中繼資料](connectors-create-api-ftp.md#get-file-metadata)|這項作業會取得檔案的中繼資料。|
+|[更新檔案](connectors-create-api-ftp.md#update-file)|這項作業會更新檔案。|
+|[刪除檔案](connectors-create-api-ftp.md#delete-file)|這項作業會刪除檔案。|
+|[使用路徑來取得檔案中繼資料](connectors-create-api-ftp.md#get-file-metadata-using-path)|這項作業會使用路徑取得檔案的中繼資料。|
+|[使用路徑來取得檔案內容](connectors-create-api-ftp.md#get-file-content-using-path)|這項作業會使用路徑取得檔案的內容。|
+|[取得檔案內容](connectors-create-api-ftp.md#get-file-content)|這項作業會取得檔案的內容。|
+|[建立檔案](connectors-create-api-ftp.md#create-file)|這項作業會建立檔案。|
+|[複製檔案](connectors-create-api-ftp.md#copy-file)|這項作業會將檔案複製至 FTP 伺服器。|
+|[列出資料夾中的檔案](connectors-create-api-ftp.md#list-files-in-folder)|這項作業會取得資料夾中的檔案和子資料夾清單。|
+|[列出根資料夾中的檔案](connectors-create-api-ftp.md#list-files-in-root-folder)|這項作業會取得根資料夾中的檔案和子資料夾清單。|
+|[解壓縮到資料夾](connectors-create-api-ftp.md#extract-folder)|這項作業會將封存檔案解壓縮到資料夾 (範例︰.zip)。|
+### 動作詳細資料
 
-Here are the details for the actions and triggers for this connector, along with their responses:
-
-
-
-### <a name="get-file-metadata"></a>Get file metadata
-This operation gets the metadata for a file. 
+以下是此連接器動作和觸發程序以及其回應的詳細資料︰
 
 
-|Property Name| Display Name|Description|
+
+### 取得檔案中繼資料
+這項作業會取得檔案的中繼資料。
+
+
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|id*|File|Select a file|
+|識別碼*|檔案|選取檔案|
 
-An * indicates that a property is required
+* 表示這是必要屬性
 
-#### <a name="output-details"></a>Output Details
+#### 輸出詳細資料
 
 BlobMetadata
 
 
-| Property Name | Data Type |
+| 屬性名稱 | 資料類型 |
 |---|---|---|
-|Id|string|
-|Name|string|
-|DisplayName|string|
-|Path|string|
-|LastModified|string|
-|Size|integer|
-|MediaType|string|
-|IsFolder|boolean|
-|ETag|string|
-|FileLocator|string|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
 
 
 
 
-### <a name="update-file"></a>Update file
-This operation updates a file. 
+### 更新檔案
+這項作業會更新檔案。
 
 
-|Property Name| Display Name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|id*|File|Select a file|
-|body*|File content|Content of the file|
+|識別碼*|檔案|選取檔案|
+|body*|檔案內容|檔案的內容|
 
-An * indicates that a property is required
+* 表示這是必要屬性
 
-#### <a name="output-details"></a>Output Details
+#### 輸出詳細資料
 
 BlobMetadata
 
 
-| Property Name | Data Type |
+| 屬性名稱 | 資料類型 |
 |---|---|---|
-|Id|string|
-|Name|string|
-|DisplayName|string|
-|Path|string|
-|LastModified|string|
-|Size|integer|
-|MediaType|string|
-|IsFolder|boolean|
-|ETag|string|
-|FileLocator|string|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
 
 
 
 
-### <a name="delete-file"></a>Delete file
-This operation deletes a file. 
+### 刪除檔案
+這項作業會刪除檔案。
 
 
-|Property Name| Display Name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|id*|File|Select a file|
+|識別碼*|檔案|選取檔案|
 
-An * indicates that a property is required
-
-
+* 表示這是必要屬性
 
 
-### <a name="get-file-metadata-using-path"></a>Get file metadata using path
-This operation gets the metadata of a file using the path. 
 
 
-|Property Name| Display Name|Description|
+### 使用路徑來取得檔案中繼資料
+這項作業會使用路徑取得檔案的中繼資料。
+
+
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|path*|File path|Select a file|
+|path*|檔案路徑|選取檔案|
 
-An * indicates that a property is required
+* 表示這是必要屬性
 
-#### <a name="output-details"></a>Output Details
+#### 輸出詳細資料
 
 BlobMetadata
 
 
-| Property Name | Data Type |
+| 屬性名稱 | 資料類型 |
 |---|---|---|
-|Id|string|
-|Name|string|
-|DisplayName|string|
-|Path|string|
-|LastModified|string|
-|Size|integer|
-|MediaType|string|
-|IsFolder|boolean|
-|ETag|string|
-|FileLocator|string|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
 
 
 
 
-### <a name="get-file-content-using-path"></a>Get file content using path
-This operation gets the content of a file using the path. 
+### 使用路徑來取得檔案內容
+這項作業會使用路徑取得檔案的內容。
 
 
-|Property Name| Display Name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|path*|File path|Select a file|
+|path*|檔案路徑|選取檔案|
 
-An * indicates that a property is required
-
-
+* 表示這是必要屬性
 
 
-### <a name="get-file-content"></a>Get file content
-This operation gets the content of a file. 
 
 
-|Property Name| Display Name|Description|
+### 取得檔案內容
+這項作業會取得檔案的內容。
+
+
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|id*|File|Select a file|
+|識別碼*|檔案|選取檔案|
 
-An * indicates that a property is required
-
-
+* 表示這是必要屬性
 
 
-### <a name="create-file"></a>Create file
-This operation creates a file. 
 
 
-|Property Name| Display Name|Description|
+### 建立檔案
+這項作業會建立檔案。
+
+
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|folderPath*|Folder path|Select a folder|
-|name*|File name|Name of the file|
-|body*|File content|Content of the file|
+|folderPath*|資料夾路徑|選取資料夾|
+|name*|檔案名稱|檔案名稱|
+|body*|檔案內容|檔案的內容|
 
-An * indicates that a property is required
+* 表示這是必要屬性
 
-#### <a name="output-details"></a>Output Details
+#### 輸出詳細資料
 
 BlobMetadata
 
 
-| Property Name | Data Type |
+| 屬性名稱 | 資料類型 |
 |---|---|---|
-|Id|string|
-|Name|string|
-|DisplayName|string|
-|Path|string|
-|LastModified|string|
-|Size|integer|
-|MediaType|string|
-|IsFolder|boolean|
-|ETag|string|
-|FileLocator|string|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
 
 
 
 
-### <a name="copy-file"></a>Copy file
-This operation copies a file to an FTP server. 
+### 複製檔案
+這項作業會將檔案複製至 FTP 伺服器。
 
 
-|Property Name| Display Name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|source*|Source url|Url to source file|
-|destination*|Destination file path|Destination file path, including target filename|
-|overwrite|Overwrite?|Overwrites the destination file if set to 'true'|
+|source*|來源 URL|來源檔案的 URL|
+|destination*|目的地檔案路徑|目的地檔案路徑，包括目標檔案名稱|
+|overwrite|覆寫？|如果設定為「True」，則會覆寫目的檔案|
 
-An * indicates that a property is required
+* 表示這是必要屬性
 
-#### <a name="output-details"></a>Output Details
+#### 輸出詳細資料
 
 BlobMetadata
 
 
-| Property Name | Data Type |
+| 屬性名稱 | 資料類型 |
 |---|---|---|
-|Id|string|
-|Name|string|
-|DisplayName|string|
-|Path|string|
-|LastModified|string|
-|Size|integer|
-|MediaType|string|
-|IsFolder|boolean|
-|ETag|string|
-|FileLocator|string|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
 
 
 
 
-### <a name="when-a-file-is-added-or-modified"></a>When a file is added or modified
-This operation triggers a flow when a file is added or modified in a folder. 
+### 當新增或修改檔案時
+當資料夾中新增或修改檔案時，此作業就會觸發流程。
 
 
-|Property Name| Display Name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|folderId*|Folder|Select a folder|
+|folderId*|資料夾|選取資料夾|
 
-An * indicates that a property is required
-
-
+* 表示這是必要屬性
 
 
-### <a name="list-files-in-folder"></a>List files in folder
-This operation gets the list of files and subfolders in a folder. 
 
 
-|Property Name| Display Name|Description|
+### 列出資料夾中的檔案
+這項作業會取得資料夾中的檔案和子資料夾清單。
+
+
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|id*|Folder|Select a folder|
+|識別碼*|資料夾|選取資料夾|
 
-An * indicates that a property is required
+* 表示這是必要屬性
 
 
 
-#### <a name="output-details"></a>Output Details
+#### 輸出詳細資料
 
 BlobMetadata
 
 
-| Property Name | Data Type |
+| 屬性名稱 | 資料類型 |
 |---|---|---|
-|Id|string|
-|Name|string|
-|DisplayName|string|
-|Path|string|
-|LastModified|string|
-|Size|integer|
-|MediaType|string|
-|IsFolder|boolean|
-|ETag|string|
-|FileLocator|string|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
 
 
 
 
-### <a name="list-files-in-root-folder"></a>List files in root folder
-This operation gets the list of files and subfolders in the root folder. 
+### 列出根資料夾中的檔案
+這項作業會取得根資料夾中的檔案和子資料夾清單。
 
 
-There are no parameters for this call
+這個呼叫沒有參數
 
-#### <a name="output-details"></a>Output Details
+#### 輸出詳細資料
 
 BlobMetadata
 
 
-| Property Name | Data Type |
+| 屬性名稱 | 資料類型 |
 |---|---|---|
-|Id|string|
-|Name|string|
-|DisplayName|string|
-|Path|string|
-|LastModified|string|
-|Size|integer|
-|MediaType|string|
-|IsFolder|boolean|
-|ETag|string|
-|FileLocator|string|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
 
 
 
 
-### <a name="extract-folder"></a>Extract folder
-This operation extracts an archive file into a folder (example: .zip). 
+### 解壓縮到資料夾
+這項作業會將封存檔案解壓縮到資料夾 (範例︰.zip)。
 
 
-|Property Name| Display Name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|source*|Source archive file path|Path to the archive file|
-|destination*|Destination folder path|Path to the destination folder|
-|overwrite|Overwrite?|Overwrites the destination files if set to 'true'|
+|source*|來源封存檔案路徑|封存檔案的路徑|
+|destination*|目的地資料夾路徑|目的資料夾的路徑|
+|overwrite|覆寫？|如果設定為「True」，則會覆寫目的檔案|
 
-An * indicates that a property is required
+* 表示這是必要屬性
 
 
 
-#### <a name="output-details"></a>Output Details
+#### 輸出詳細資料
 
 BlobMetadata
 
 
-| Property Name | Data Type |
+| 屬性名稱 | 資料類型 |
 |---|---|---|
-|Id|string|
-|Name|string|
-|DisplayName|string|
-|Path|string|
-|LastModified|string|
-|Size|integer|
-|MediaType|string|
-|IsFolder|boolean|
-|ETag|string|
-|FileLocator|string|
+|識別碼|字串|
+|名稱|字串|
+|DisplayName|字串|
+|Path|字串|
+|LastModified|字串|
+|大小|integer|
+|MediaType|字串|
+|IsFolder|布林值|
+|ETag|字串|
+|FileLocator|字串|
 
 
 
-## <a name="http-responses"></a>HTTP responses
+## HTTP 回應
 
-The actions and triggers above can return one or more of the following HTTP status codes: 
+上述動作和觸發程序可以傳回一或多個下列的 HTTP 狀態碼︰
 
-|Name|Description|
+|名稱|說明|
 |---|---|
 |200|OK|
-|202|Accepted|
-|400|Bad Request|
-|401|Unauthorized|
-|403|Forbidden|
-|404|Not Found|
-|500|Internal Server Error. Unknown error occurred.|
-|default|Operation Failed.|
+|202|已接受|
+|400|不正確的要求|
+|401|未經授權|
+|403|禁止|
+|404|找不到|
+|500|內部伺服器錯誤。發生未知錯誤。|
+|預設值|作業失敗。|
 
 
 
@@ -447,10 +446,7 @@ The actions and triggers above can return one or more of the following HTTP stat
 
 
 
-## <a name="next-steps"></a>Next Steps
-[Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md)
+## 後續步驟
+[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!----HONumber=AcomDC_0803_2016-->

@@ -1,200 +1,195 @@
 <properties
-    pageTitle="Analyze Edge Performance in Azure CDN | Microsoft Azure"
-    description="Analyze edge node performance in Microsoft Azure CDN. Edge Performance Analytics provides granular information traffic and bandwidth usage for the CDN."
-    services="cdn"
-    documentationCenter=""
-    authors="camsoper"
-    manager="erikre"
-    editor=""/>
+	pageTitle="在 Azure CDN 中分析邊緣效能 | Microsoft Azure"
+	description="在 Microsoft Azure CDN 中分析邊緣節點效能。邊緣效能分析詳細提供 CDN 的資訊流量和頻寬使用量。"
+	services="cdn"
+	documentationCenter=""
+	authors="camsoper"
+	manager="erikre"
+	editor=""/>
 
 <tags
-    ms.service="cdn"
-    ms.workload="tbd"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="07/28/2016"
-    ms.author="casoper"/>
+	ms.service="cdn"
+	ms.workload="tbd"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/28/2016"
+	ms.author="casoper"/>
 
-
-# <a name="analyze-edge-node-performance-in-microsoft-azure-cdn"></a>Analyze edge node performance in Microsoft Azure CDN
+# 在 Microsoft Azure CDN 中分析邊緣節點效能
 
 [AZURE.INCLUDE [cdn-premium-feature](../../includes/cdn-premium-feature.md)]
 
-## <a name="overview"></a>Overview
-Edge performance analytics provides granular information traffic and bandwidth usage for the CDN. This information can then be used to generate trending statistics, which allow you to gain insight on how your assets are being cached and delivered to your clients. In turn, this allows you to form a strategy on how to optimize the delivery of your content and to determine what issues should be tackled to better leverage the CDN. As a result, not only will you be able to improve data delivery performance, but you will also be able to reduce your CDN costs.
+## 概觀
+邊緣效能分析詳細提供 CDN 的資訊流量和頻寬使用量。這項資訊可用來產生趨勢統計資料，讓您深入了解您的資產如何放入快取中和傳遞到您的用戶端。這進而可讓您產生策略來設法最佳化內容傳遞，以及決定應該解決什麼問題以充分利用 CDN。如此一來，不僅能夠改善資料傳遞的效能，還能夠減少 CDN 成本。
 
-> [AZURE.NOTE] All reports use UTC/GMT notation when specifying a date/time.
+> [AZURE.NOTE] 所有報告都採用 UTC/GMT 標記法來指定日期/時間。
 
-## <a name="reports-and-log-collection"></a>Reports and log collection
+## 報告和記錄收集
 
-CDN activity data must be collected by the Edge Performance Analytics module before it can generate reports on it. This collection process occurs once a day and it covers the activity that took place during the previous day. This means that a report's statistics represent a sample of the day's statistics at the time it was processed, and do not necessarily contain the complete set of data for the current day. The primary function of these reports is to assess performance. They should not be used for billing purposes or exact numeric statistics.
+邊緣效能分析模組必須收集 CDN 活動資料，才能產生報告。此收集處理程序一天執行一次，涵蓋前一天發生的活動。這表示報告的統計資料代表它處理時的那一天的統計資料樣本，不一定包含當天的完整資料集。這些報告的主要功能在於評估效能。它們不應該用於計費用途或確切的數值統計資料。
 
-> [AZURE.NOTE] The raw data from which Edge Performance Analytic reports are generated is available for at least 90 days.
+> [AZURE.NOTE] 至少有 90 天的原始資料可用來產生邊緣效能分析報告。
 
-## <a name="dashboard"></a>Dashboard
+## 儀表板
 
-The Edge Performance Analytics dashboard tracks current and historical CDN traffic through a chart and statistics. Use this dashboard to detect recent and long-term trends on the performance of CDN traffic for your account.
+[邊緣效能分析] 儀表板會透過圖表和統計資料，追蹤目前和歷史 CDN 流量。使用此儀表板來偵測您帳戶上的 CDN 流量效能的近期和長期趨勢。
 
-This dashboard consists of:
+此儀表板由下列元件組成：
 
-* An interactive chart that allows the visualization of key metrics and trends.
-* A timeline that provides a sense of long term patterns for key metrics and trends.
-* Key metrics and statistical information on how our CDN network improves site traffic as measured by overall performance, usage, and efficiency.
+* 互動式圖表，可呈現關鍵度量和趨勢。
+* 時間表，可看出關鍵度量和趨勢的長期模式。
+* 關鍵度量和統計資訊，依整體效能、使用量和效率來測量，指出 CDN 網路如何改善網站流量。
 
-### <a name="accessing-the-edge-performance-dashboard"></a>Accessing the edge performance dashboard
+### 存取邊緣效能儀表板
 
-1. From the CDN profile blade, click the **Manage** button.
+1. 在 CDN 設定檔刀鋒視窗中，按一下 [管理] 按鈕。
 
-    ![CDN profile blade manage button](./media/cdn-edge-performance/cdn-manage-btn.png)
+	![CDN 設定檔刀鋒視窗管理按鈕](./media/cdn-edge-performance/cdn-manage-btn.png)
 
-    The CDN management portal opens.
+	CDN 管理入口網站隨即開啟。
 
-2. Hover over the **Analytics** tab, then hover over the **Edge Perfomance Analytics** flyout.  Click on **Dashboard**.
+2. 將滑鼠暫留在 [分析] 索引標籤上，然後暫留在 [邊緣效能分析] 彈出式視窗上。按一下 [儀表板]。
 
-    The edge node analytics dashboard is displayed.
+	邊緣節點分析儀表板隨即顯示。
 
-### <a name="chart"></a>Chart
+### 圖表
 
-The dashboard contains a chart that tracks a metric over the time period selected in the timeline that appears directly below it.  A timeline that graphs up to the last two years of CDN activity is displayed directly below the chart.
+儀表板包含的圖表會根據正下方的時間表中選取的期間，追蹤這段期間內的度量。圖表正下方顯示的時間表可繪製最多去過兩年的 CDN 活動。
 
-#### <a name="using-the-chart"></a>Using the chart
+#### 使用圖表
 
-* By default, the cache efficiency rate for the last 30 days will be charted.
-* This chart is generated from data collated on a daily basis.
-* Hovering over a day on the line graph will indicate a date and the value of the metric on that date.
-* Click Highlight Weekends to toggle an overlay of light gray vertical bars that represent weekends onto the chart. This type of overlay is useful for identifying traffic patterns over weekends.
-* Click View One Year Ago to toggle an overlay of the previous year's activity over the same time period onto the chart. This type of comparison provides insight into long-term CDN usage patterns. The upper-right hand corner of the chart contains a legend that indicates the color code for each line graph.
+* 依預設會繪製過去 30 天的快取效率。
+* 此圖表是根據每天整理的資料產生。
+* 將滑鼠暫留在線條圖上的某一天，將指出日期和那一天的度量值。
+* 按一下 [反白顯示週末] 可在圖表上覆疊一個代表週末的淺灰色垂直長條。這種覆疊有助於識別週末的流量模式。
+* 按一下 [檢視 1 年前] 可在圖表上覆疊前一年同期間的活動。這種比較可讓您深入了解長期的 CDN 使用模式。圖表右上角的圖例指出每個線條圖的色彩代碼。
 
-#### <a name="updating-the-chart"></a>Updating the chart
+#### 更新圖表
 
-* Time Range: Perform one of the following:
-    * Select the desired region in the timeline. The chart will be updated with data that corresponds to the selected time period.
-    * Double-click the chart to display all available historical data up to a maximum of two years.
-* Metric: Click the chart icon that appears next to the desired metric. The chart and the timeline will be refreshed with data for the corresponding metric.
+* 時間範圍：執行下列其中一項：
+	* 在時間表中選取需要的區域。將會以對應至所選期間的資料來更新圖表。
+	* 按兩下圖表以顯示所有可用的歷史資料，最多為兩年。
+* 度量：按一下所需度量旁邊顯示的圖表圖示。將會以相對應度量的資料來重新整理圖表和時間表。
 
 
-### <a name="key-metrics-and-statistics"></a>Key metrics and statistics
+### 關鍵度量和統計資料
 
-#### <a name="efficiency-metrics"></a>Efficiency metrics
+#### 效能度量
 
-The purpose of these metrics is to see whether cache efficiency can be improved. The main benefits derived from cache efficiency are:
+這些度量的用途在於了解是否可以改善快取效率。快取效率帶來的主要優點如下：
 
-* Reduced load on the origin server which may lead to:
-    * Better web server performance.
-    * Reduced operational costs.
-* Improved data delivery acceleration since more requests will be served directly from the CDN.
+* 降低原始伺服器的負載，進而提供：
+	* 更好的 Web 伺服器效能。
+	* 降低營運成本。
+* 加速資料傳遞，因為將直接從 CDN 提供更多要求。
 
-Field | Description
+欄位 | 說明
 ------|------------
-Cache Efficiency | Indicates the percentage of data transferred that was served from cache. This metric measures when a cached version of the requested content was served directly from the CDN (edge servers) to requesters (e.g., web browser)
-Hit Rate | Indicates the percentage of requests that were served from cache. This metric measures when a cached version of the requested content was served directly from the CDN (edge servers) to requesters (e.g., web browser).
-% of Remote Bytes - No Cache Config | Indicates the percentage of traffic that was served from origin servers to the CDN (edge servers) that will not be cached as a result of the Bypass Cache feature (HTTP Rules Engine).
-% of Remote Bytes - Expired Cache | Indicates the percentage of traffic that was served from origin servers to the CDN (edge servers) as a result of stale content revalidation.
+快取效率 | 表示從快取提供傳輸的資料百分比。這個度量會測量所要求內容的快取版本何時直接從 CDN (邊緣伺服器) 提供給要求者 (例如網頁瀏覽器)
+命中率 | 表示從快取提供的要求百分比。這個度量會測量所要求內容的快取版本何時直接從 CDN (邊緣伺服器) 提供給要求者 (例如網頁瀏覽器)。
+遠端位元組 % - 無快取組態 | 表示從原始伺服器提供給 CDN (邊緣伺服器) 的流量百分比，這些流量不會由於「略過快取」功能 (HTTP 規則引擎) 而快取。
+遠端位元組 % - 過期的快取 | 指出由於重新驗證過時內容，而從原始伺服器提供給 CDN (邊緣伺服器) 的流量百分比。
 
-#### <a name="usage-metrics"></a>Usage metrics
+#### 用量度量
 
-The purpose of these metrics is to provide insight into the following cost-cutting measures:
+這些度量的用途在於讓您深入了解下列成本削減措施：
 
-* Minimizing operational costs through the CDN.
-* Reducing CDN expenditures through cache efficiency and compression.
+* 透過 CDN 將營運成本降至最低。
+* 透過快取效率和壓縮減少 CDN 支出。
 
-> [AZURE.NOTE] Traffic volume numbers represent traffic that was used in calculations of ratios and percentages, and may only show a portion of the total traffic for high-volume customers.
+> [AZURE.NOTE] 流量數字代表用於計算比率和百分比的流量，對於流量較大的客戶，可能只會顯示總流量的一部分。
 
-Field | Description
+欄位 | 說明
 ------|------------
-Ave Bytes Out | Indicates the average number of bytes transferred for each request served from the CDN (edge servers) to the requester (e.g., web browser).
-No Cache Config Byte Rate | Indicates the percentage of traffic served from the CDN (edge servers) to the requester (e.g., web browser) that will not be cached due to the Bypass Cache feature.
-Compressed Byte Rate | Indicates the percentage of traffic sent from the CDN (edge servers) to requesters (e.g., web browser) in a compressed format.
-Bytes Out | Indicates the amount of data, in bytes, that were delivered from the CDN (edge servers) to the requester (e.g., web browser).  
-Bytes In | Indicates the amount of data, in bytes, sent from requesters (e.g., web browser) to the CDN (edge servers).
-Bytes Remote | Indicates the amount of data, in bytes, sent from CDN and customer origin servers to the CDN (edge servers).
+平均輸出位元組 | 表示從 CDN (邊緣伺服器) 提供給要求者 (例如網頁瀏覽器) 的每個要求所平均傳輸的位元組數。
+無快取組態位元組速率 | 表示從 CDN (邊緣伺服器) 提供給的要求者 (例如網頁瀏覽器) 的流量百分比，這些流量不會由於「略過快取」功能而快取。
+壓縮的位元組速率 | 表示以壓縮格式從 CDN (邊緣伺服器) 傳送至要求者 (例如網頁瀏覽器) 的流量百分比。
+輸出位元組 | 表示從 CDN (邊緣伺服器) 傳遞至要求者 (例如網頁瀏覽器) 的資料量 (位元組)。  
+輸入位元組 | 表示從要求者 (例如網頁瀏覽器) 傳送至 CDN (邊緣伺服器) 的資料量 (位元組)。
+遠端位元組 | 表示從 CDN 和客戶原始伺服器傳送至 CDN (邊緣伺服器) 的資料量 (位元組)。
 
-#### <a name="performance-metrics"></a>Performance Metrics
+#### 效能度量
 
-The purpose of these metrics is to track overall CDN performance for your traffic.
+這些度量的用途在於追蹤您的流量的整體 CDN 效能。
 
-Field | Description
+欄位 | 說明
 ------|------------
-Transfer Rate | Indicates the average rate at which content was transferred from the CDN to a requester.
-Duration | Indicates the average time, in milliseconds, it took to deliver an asset to a requester (e.g., web browser).
-Compressed Request Rate | Indicates the percentage of hits that were delivered from the CDN (edge servers) to the requester (e.g., web browser) in a compressed format.
-4xx Error Rate | Indicates the percentage of hits that generated a 4xx status code.
-5xx Error Rate | Indicates the percentage of hits that generated a 5xx status code.
-Hits | Indicates the number of requests for CDN content.
+傳輸速率 | 表示內容從 CDN 傳輸至要求者的平均速率。
+持續時間 | 表示將資產傳遞至要求者 (例如網頁瀏覽器) 所花費的平均時間 (毫秒)。
+壓縮的要求速率 | 表示以壓縮格式從 CDN (邊緣伺服器) 傳遞至要求者 (例如網頁瀏覽器) 的點擊百分比。
+4xx 錯誤率 | 表示產生 4xx 狀態碼的點擊百分比。
+5xx 錯誤率 | 表示產生 5xx 狀態碼的點擊百分比。
+點擊 | 表示對 CDN 內容的要求次數。
 
-#### <a name="secure-traffic-metrics"></a>Secure Traffic Metrics
+#### 安全流量度量
 
-The purpose of these metrics is to track CDN performance for HTTPS traffic.
+這些度量的用途在於追蹤 HTTPS 流量的 CDN 效能。
 
-Field | Description
+欄位 | 說明
 ------|------------
-Secure Cache Efficiency | Indicates the percentage of data transferred for HTTPS requests that were served from cache. This metric measures when a cached version of the requested content was served directly from the CDN (edge servers) to requesters (e.g., web browser) over HTTPS.
-Secure Transfer Rate | Indicates the average rate at which content was transferred from the CDN (edge servers) to requesters (e.g., web servers) over HTTPS.
-Average Secure Duration | Indicates the average time, in milliseconds, it took to deliver an asset to a requester (e.g., web browser) over HTTPS.
-Secure Hits | Indicates the number of HTTPS requests for CDN content.
-Secure Bytes Out | Indicates the amount of HTTPS traffic, in bytes, that were delivered from the CDN (edge servers) to the requester (e.g., web browser).
+安全快取效率 | 表示從快取提供的 HTTPS 要求所傳輸的資料百分比。這個度量會測量所要求內容的快取版本何時直接從 CDN (邊緣伺服器) 透過 HTTPS 提供給要求者 (例如網頁瀏覽器)。
+安全傳輸速率 | 表示內容從 CDN (邊緣伺服器) 透過 HTTPS 傳輸至要求者 (例如網頁瀏覽器) 的平均速率。
+平均安全持續期間 | 表示將資產透過 HTTPS 傳遞至要求者 (例如網頁瀏覽器) 所花費的平均時間 (毫秒)。
+安全點擊 | 表示對 CDN 內容的 HTTPS 要求次數。
+安全輸出位元組 | 表示從 CDN (邊緣伺服器) 傳遞至要求者 (例如網頁瀏覽器) 的 HTTPS 流量 (位元組)。
 
-## <a name="reports"></a>Reports
+## 報告
 
-Each report in this module contains a chart and statistics on bandwidth and traffic usage for different types of metrics (e.g., HTTP status codes, cache status codes, request URL, etc.). This information may be used to delve deeper into how content is being served to your clients and to fine-tune CDN behavior to improve data delivery performance.
+此模組中的每一份報告包含圖表和統計資料，指出各種不同度量 (例如，HTTP 狀態碼、快取狀態碼、要求 URL 等) 的頻寬和流量用量。這項資訊可用來深入探究內容如何提供給用戶端，並微調 CDN 行為，以改善資料傳遞效能。
 
-### <a name="accessing-the-edge-performance-reports"></a>Accessing the edge performance reports
+### 存取邊緣效能報告
 
-1. From the CDN profile blade, click the **Manage** button.
+1. 在 CDN 設定檔刀鋒視窗中，按一下 [管理] 按鈕。
 
-    ![CDN profile blade manage button](./media/cdn-edge-performance/cdn-manage-btn.png)
+	![CDN 設定檔刀鋒視窗管理按鈕](./media/cdn-edge-performance/cdn-manage-btn.png)
 
-    The CDN management portal opens.
+	CDN 管理入口網站隨即開啟。
 
-2. Hover over the **Analytics** tab, then hover over the **Edge Perfomance Analytics** flyout.  Click on **HTTP Large Object**.
+2. 將滑鼠暫留在 [分析] 索引標籤上，然後暫留在 [邊緣效能分析] 彈出式視窗上。按一下 [HTTP 大型物件]。
 
-    The edge node analytics reports screen is displayed.
+	邊緣節點分析報告畫面隨即顯示。
 
-Report | Description
+報告 | 說明
 -------|------------
-Daily Summary | Allows you to view daily traffic trends over a specified time period. Each bar on this graph represents a particular date. The size of the bar indicates the total number of hits that occurred on that date.
-Hourly Summary | Allows you to view hourly traffic trends over a specified time period. Each bar on this graph represents a single hour on a particular date. The size of the bar indicates the total number of hits that occurred during that hour.
-Protocols | Displays the breakdown of traffic between the HTTP and HTTPS protocols. A donut chart indicates the percentage of hits that occurred for each type of protocol.
-HTTP Methods | Allows you to get a quick sense of which HTTP methods are being used to request your data. Typically, the most common HTTP request methods are GET, HEAD, and POST. A donut chart indicates the percentage of hits that occurred for each type of HTTP request method.
-URLs | Contains a graph that displays the top 10 requested URLs. A bar is displayed for each URL. The height of the bar indicates how many hits that particular URL has generated over the time span covered by the report. Statistics for the top 100 requested URLs are displayed directly below this graph.
-CNAMEs | Contains a graph that displays the top 10 CNAMEs used to request assets over the time span of a report. Statistics for the top 100 requested CNAMEs are displayed directly below this graph.
-Origins | Contains a graph that displays the top 10 CDN or customer origin servers from which assets were requested over a specified period of time. Statistics for the top 100 requested CDN or customer origin servers are displayed directly below this graph. Customer origin servers are identified by the name defined in the Directory Name option.
-Geo POPs | Shows how much of your traffic is being routed through a particular point-of-presence (POP). The three-letter abbreviation represents a POP in our CDN network.
-Clients | Contains a graph that displays the top 10 clients that requested assets over a specified period of time. For the purposes of this report, all requests that originate from the same IP address are considered to be from the same client. Statistics for the top 100 clients are displayed directly below this graph. This report is useful for determining download activity patterns for your top clients.
-Cache Statuses | Gives a detailed breakdown of cache behavior, which may reveal approaches for improving the overall end-user experience. Since the fastest performance comes from cache hits, you can optimize data delivery speeds by minimizing cache misses and expired cache hits.
-NONE Details | Contains a graph that displays the top 10 URLs for assets for which cache content freshness was not checked over a specified period of time. Statistics for the top 100 URLs for these types of assets are displayed directly below this graph.
-CONFIG_NOCACHE Details | Contains a graph that displays the top 10 URLs for assets that were not cached due to the customer's CDN configuration. These types of assets were served directly from the origin server. Statistics for the top 100 URLs for these types of assets are displayed directly below this graph.
-UNCACHEABLE Details | Contains a graph that displays the top 10 URLs for assets that could not be cached due to request header data. Statistics for the top 100 URLs for these types of assets are displayed directly below this graph.
-TCP_HIT Details | Contains a graph that displays the top 10 URLs for assets that are served immediately from cache. Statistics for the top 100 URLs for these types of assets are displayed directly below this graph.
-TCP_MISS Details | Contains a graph that displays the top 10 URLs for assets that have a cache status of TCP_MISS. Statistics for the top 100 URLs for these types of assets are displayed directly below this graph.
-TCP_EXPIRED_HIT Details | Contains a graph that displays the top 10 URLs for stale assets that were served directly from the POP. Statistics for the top 100 URLs for these types of assets are displayed directly below this graph.
-TCP_EXPIRED_MISS Details | Contains a graph that displays the top 10 URLs for stale assets for which a new version had to be retrieved from the origin server. Statistics for the top 100 URLs for these types of assets are displayed directly below this graph.
-TCP_CLIENT_REFRESH_MISS Details | Contains a bar chart that displays the top 10 URLs for assets were retrieved from an origin server due to a no-cache request from the client. Statistics for the top 100 URLs for these types of requests are displayed directly below this chart.
-Client Request Types | Indicates the type of requests that were made by HTTP clients (e.g., browsers). This report includes a donut chart that provides a sense as to how requests are being handled. Bandwidth and traffic information for each request type is displayed below the chart.
-User Agent | Contains a bar graph displaying the top 10 user agents to request your content through our CDN. Typically, a user agent is a web browser, media player, or a mobile phone browser. Statistics for the top 100 user agents are displayed directly below this chart.
-Referrers | Contains a bar graph displaying the top 10 referrers to content accessed through our CDN. Typically, a referrer is the URL of the web page or resource that links to your content. Detailed information is provided below the graph for the top 100 referrers.
-Compression Types | Contains a donut chart that breaks down requested assets by whether they were compressed by our edge servers. The percentage of compressed assets is broken down by the type of compression used. Detailed information is provided below the graph for each compression type and status.
-File Types | Contains a bar graph that displays the top 10 file types that have been requested through our CDN for your account. For the purposes of this report, a file type is defined by the asset's file name extension and Internet media type (e.g., .html \[text/html\], .htm \[text/html\], .aspx \[text/html\], etc.). Detailed information is provided below the graph for the top 100 file types.
-Unique Files | Contains a graph that plots the total number of unique assets that were requested on a particular day over a specified period of time.
-Token Auth Summary | Contains a pie chart that provides a quick overview on whether requested assets were protected by Token-Based Authentication. Protected assets are displayed in the chart according to the results of their attempted authentication.
-Token Auth Deny Details | Contains a bar graph that allows you to view the top 10 requests that were denied due to Token-Based Authentication.
-HTTP Response Codes | Provides a breakdown of the HTTP status codes (e.g., 200 OK, 403 Forbidden, 404 Not Found, etc.) that were delivered to your HTTP clients by our edge servers. A pie chart allows you to quickly assess how your assets were served. Detailed statistical data is provided for each response code below the graph.
-404 Errors | Contains a bar graph that allows you to view the top 10 requests that resulted in a 404 Not Found response code.
-403 Errors | Contains a bar graph that allows you to view the top 10 requests that resulted in a 403 Forbidden response code. A 403 Forbidden response code occurs when a request is denied by a customer origin server or an edge server on our POP.
-4xx Errors | Contains a bar graph that allows you to view the top 10 requests that resulted in a response code in the 400 range. Excluded from this report are 403 Not Found and 404 Forbidden response codes. Typically, a 4xx response code occurs when a request is denied as a result of a client error.
-504 Errors | Contains a bar graph that allows you to view the top 10 requests that resulted in a 504 Gateway Timeout response code. A 504 Gateway Timeout response code occurs when a timeout occurs when an HTTP proxy is trying to communicate with another server. In the case of our CDN, a 504 Gateway Timeout response code typically occurs when an edge server is unable to establish communication with a customer origin server.
-502 Errors | Contains a bar graph that allows you to view the top 10 requests that resulted in a 502 Bad Gateway response code. A 502 Bad Gateway response code occurs when an HTTP protocol failure occurs between a server and an HTTP proxy. In the case of our CDN, a 502 Bad Gateway response code typically occurs when a customer origin server returns an invalid response to an edge server. A response is invalid if it cannot be parsed or if it is incomplete.
-5xx Errors | Contains a bar graph that allows you to view the top 10 requests that resulted in a response code in the 500 range.  Excluded from this report are 502 Bad Gateway and 504 Gateway Timeout response codes.
+每日摘要 | 可讓您檢視一段指定期間內的每日流量趨勢。此圖形上的每個橫條都代表特定日期。橫條大小表示那一天發生的點擊總數。
+每小時摘要 | 可讓您檢視一段指定期間內的每小時流量趨勢。此圖形上的每個橫條都代表特定日期的單一小時。橫條大小表示那一小時發生的點擊總數。
+通訊協定 | 顯示 HTTP 和 HTTPS 通訊協定之間的流量分解。環圈圖指出每一種通訊協定發生的點擊百分比。
+HTTP 方法 | 可讓您快速了解用於要求您的資料的 HTTP 方法。一般而言，最常見的 HTTP 要求方法是 GET、HEAD 和POST。環圈圖指出每一種 HTTP 要求方法發生的點擊百分比。
+URL | 包含的圖形顯示前 10 名要求的 URL。每個 URL 會顯示一個橫條。橫條高度指出在報告所涵蓋的時間範圍內，特定 URL 已產生的點擊次數。此圖形正下方顯示前 100 名要求的 URL 的統計資料。
+CNAME | 包含的圖形顯示在報告的時間範圍內，用來要求資產的前 10 名 CNAME。此圖形正下方顯示前 100 名要求的 CNAME 的統計資料。
+原始來源 | 包含的圖形顯示在指定的期間內，要求資產的前 10 名 CDN 或客戶原始伺服器。此圖形正下方顯示前 100 名要求的 CDN 或客戶原始伺服器的統計資料。客戶原始伺服器由 [目錄名稱] 選項中所定義的名稱來識別。
+地區 POP | 顯示透過特定存在點 (POP) 路由傳送的流量。三個字母的縮寫代表 CDN 網路中的 POP。
+用戶端 | 包含的圖形顯示在指定的期間內要求資產的前 10 名用戶端。就此報告而言，來自相同 IP 位址的所有要求都視為來自相同用戶端。此圖形正下方顯示前 100 名用戶端的統計資料。此報告有助於判斷前幾名用戶端的下載活動模式。
+快取狀態 | 提供快取行為的詳細分解，有助於找出改善整體使用者經驗的方法。由於最快的效能來自快取點擊，您可以將快取遺漏及過期快取點擊的情況降至最低，以最佳化資料傳送速度。
+NONE 詳細資料 | 包含的圖形針對未檢查快取內容新鮮度的資產，顯示在指定期間內的前 10 名 URL。此圖形正下方顯示這幾種資產的前 100 名 URL 的統計資料。
+CONFIG\_NOCACHE 詳細資料 | 包含的圖形顯示由於客戶的 CDN 組態而未快取的資產的前 10 名 URL。這幾種資產直接從原始伺服器提供。此圖形正下方顯示這幾種資產的前 100 名 URL 的統計資料。
+UNCACHEABLE 詳細資料 | 包含的圖形顯示由於要求標頭資料而無法快取的資產的前 10 名 URL。此圖形正下方顯示這幾種資產的前 100 名 URL 的統計資料。
+TCP\_HIT 詳細資料 | 包含的圖形顯示立即從快取提供的資產的前 10 名 URL。此圖形正下方顯示這幾種資產的前 100 名 URL 的統計資料。
+TCP\_MISS 詳細資料 | 包含的圖形顯示快取狀態為 TCP\_MISS 的資產的前 10 名 URL。此圖形正下方顯示這幾種資產的前 100 名 URL 的統計資料。
+TCP\_EXPIRED\_HIT 詳細資料 | 包含的圖形顯示直接從 POP 提供的過時資產的前 10 名 URL。此圖形正下方顯示這幾種資產的前 100 名 URL 的統計資料。
+TCP\_EXPIRED\_MISS 詳細資料 | 包含的圖形顯示必須從原始伺服器擷取新版本的過時資產的前 10 名 URL。此圖形正下方顯示這幾種資產的前 100 名 URL 的統計資料。
+TCP\_CLIENT\_REFRESH\_MISS 詳細資料 | 包含的橫條圖顯示由於用戶端發出無快取要求，而從原始伺服器擷取的資產的前 10 名 URL。此圖表正下方顯示這幾種要求的前 100 名 URL 的統計資料。
+用戶端要求類型 | 表示 HTTP 用戶端 (例如瀏覽器) 發出的要求類型。此報告包含的環圈圖可讓您了解要求的處理方式。圖表下方顯示每個要求類型的頻寬和流量資訊。
+使用者代理程式 | 包含的橫條圖顯示透過我們的 CDN 來要求內容的前 10 名使用者代理程式。一般而言，使用者代理程式是網頁瀏覽器、媒體播放器或行動電話瀏覽器。此圖表正下方顯示前 100 名使用者代理程式的統計資料。
+訪客來源 | 包含的橫條圖顯示透過我們的 CDN 所存取的內容的前 10 名訪客來源。一般而言，訪客來源是連結到內容的網頁或資源的 URL。圖形下方提供前 100 名訪客來源的詳細資訊。
+壓縮類型 | 包含的環圈圖詳細分解所要求的資產是否由我們的邊緣伺服器壓縮。壓縮的資產百分比依使用的壓縮類型進行分解。圖形下方提供每個壓縮類型和狀態的詳細資訊。
+檔案類型 | 包含的橫條圖顯示您的帳戶中已透過我們的 CDN 來要求的前 10 名檔案類型。就此報告而言，檔案類型是由資產的副檔名和網際網路媒體類型 (例如 .html [text/html]、.html [text/html]、.aspx [text/html] 等) 所定義。圖形下方提供前 100 名檔案類型的詳細資訊。
+唯一的檔案 | 包含的圖形繪製在指定期間內的特定一天所要求的唯一資產總數。
+權杖驗證摘要 | 包含的圓形圖提供所要求的資產是否受權杖型驗證保護的快速概觀。圖表中根據嘗試的驗證結果來顯示受保護的資產。
+權杖驗證拒絕詳細資料 | 包含的橫條圖可讓您檢視由於權杖型驗證而被拒絕的前 10 名要求。
+HTTP 回應碼 | 分解由我們的邊緣伺服器傳遞至 HTTP 用戶端的 HTTP 狀態碼 (例如，200 確定、403 禁止、404 找不到 404 等等)。圓形圖可讓您快速評估資產的提供方式。圖表下方提供每個回應碼的詳細統計資料。
+404 錯誤 | 包含的橫條圖可讓您檢視導致「404 找不到」回應碼的前 10 名要求。
+403 錯誤 | 包含的橫條圖可讓您檢視導致「403 禁止」回應碼的前 10 名要求。當客戶原始伺服器或我們 POP 的邊緣伺服器拒絕要求時，就會發生「403 禁止」回應碼。
+4xx 錯誤 | 包含的橫條圖可讓您檢視導致 400 系列回應碼的前 10 名要求。這份報告中排除「403 找不到」和「404 禁止」回應碼。通常，由於用戶端錯誤而拒絕要求時，就會發生 4xx 回應碼。
+504 錯誤 | 包含的橫條圖可讓您檢視導致「504 閘道逾時」回應碼的前 10 名要求。當 HTTP Proxy 嘗試與其他伺服器通訊而發生逾時，就會發生「504 閘道逾時」回應碼。就我們的 CDN 而言，「504 閘道逾時」回應碼通常發生於邊緣伺服器無法與客戶原始伺服器建立通訊的情況。
+502 錯誤 | 包含的橫條圖可讓您檢視導致「502 錯誤的閘道」回應碼的前 10 名要求。當伺服器和 HTTP Proxy 之間發生 HTTP 通訊協定失敗時，就會發生「502 錯誤的閘道」回應碼。就我們的 CDN 而言，「502 錯誤的閘道」回應碼通常發生於客戶原始伺服器傳回無效回應給邊緣伺服器的情況。無法剖析或不完整的回應就是無效。
+5xx 錯誤 | 包含的橫條圖可讓您檢視導致 500 系列回應碼的前 10 名要求。這份報告中排除「502 錯誤的閘道」和「504 閘道逾時」回應碼。
 
-## <a name="see-also"></a>See also
-* [Azure CDN Overview](cdn-overview.md)
-* [Real-time stats in Microsoft Azure CDN](cdn-real-time-stats.md)
-* [Overriding default HTTP behavior using the rules engine](cdn-rules-engine.md)
-* [Advanced HTTP Reports](cdn-advanced-http-reports.md)
+## 另請參閱
+* [Azure CDN 概觀](cdn-overview.md)
+* [Microsoft Azure CDN 中的即時統計資料](cdn-real-time-stats.md)
+* [使用規則引擎覆寫預設的 HTTP 行為](cdn-rules-engine.md)
+* [進階的 HTTP 報表](cdn-advanced-http-reports.md)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

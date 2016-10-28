@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Modify local network gateway IP address prefixes and gateway IP | Microsoft Azure"
-   description="This article walks you through changing IP address prefixes for your local network gateway"
+   pageTitle="修改區域網路閘道 IP 位址首碼和閘道 IP | Microsoft Azure"
+   description="本文逐步解說如何變更區域網路閘道的 IP 位址首碼。"
    services="vpn-gateway"
    documentationCenter="na"
    authors="cherylmc"
@@ -17,30 +17,24 @@
    ms.date="08/08/2016"
    ms.author="cherylmc"/>
 
+# 使用 PowerShell 修改區域網路閘道設定
 
-# <a name="modify-local-network-gateway-settings-using-powershell"></a>Modify local network gateway settings using PowerShell
+有時候區域網路閘道 AddressPrefix 或 GatewayIPAddress 的設定會變更。下方指示將協助您修改區域網路閘道設定。您也可以在 Azure 入口網站中修改下列設定。
 
-Sometimes the settings for your local network gateway AddressPrefix or GatewayIPAddress change. The instructions below will help you modify your local network gateway settings. You can also modify these settings in the Azure portal.
+## 開始之前
+	
+您必須安裝最新版的 Azure 資源管理員 PowerShell Cmdlet。如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 
-## <a name="before-you-begin"></a>Before you begin
-    
-You'll need to install the latest version of the Azure Resource Manager PowerShell cmdlets. See [How to install and configure Azure PowerShell](../powershell-install-configure.md) for more information about installing the PowerShell cmdlets.
-
-## <a name="to-modify-ip-address-prefixes"></a>To modify IP address prefixes
+## 修改 IP 位址首碼
 
 [AZURE.INCLUDE [vpn-gateway-modify-ip-prefix-rm](../../includes/vpn-gateway-modify-ip-prefix-rm-include.md)]
 
-## <a name="to-modify-the-gateway-ip-address"></a>To modify the gateway IP address
+## 修改閘道 IP 位址
 
 [AZURE.INCLUDE [vpn-gateway-modify-lng-gateway-ip-rm](../../includes/vpn-gateway-modify-lng-gateway-ip-rm-include.md)]
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-You can verify your gateway connection. See [Verify a gateway connection](vpn-gateway-verify-connection-resource-manager.md).
+您可以驗證閘道連線。請參閱[驗證閘道連線](vpn-gateway-verify-connection-resource-manager.md)。
 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

@@ -1,64 +1,59 @@
 <properties
-    pageTitle="Azure Active Directory B2C: Multi-Factor Authentication | Microsoft Azure"
-    description="How to enable Multi-Factor Authentication in consumer-facing applications secured by Azure Active Directory B2C"
-    services="active-directory-b2c"
-    documentationCenter=""
-    authors="swkrish"
-    manager="msmbaldwin"
-    editor="bryanla"/>
+	pageTitle="Azure Active Directory B2C：Multi-Factor Authentication | Microsoft Azure"
+	description="如何在受 Azure Active Directory B2C 保護的取用者導向應用程式中啟用 Multi-Factor Authentication"
+	services="active-directory-b2c"
+	documentationCenter=""
+	authors="swkrish"
+	manager="msmbaldwin"
+	editor="bryanla"/>
 
 <tags
-    ms.service="active-directory-b2c"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="07/24/2016"
-    ms.author="swkrish"/>
+	ms.service="active-directory-b2c"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/24/2016"
+	ms.author="swkrish"/>
 
+# Azure Active Directory B2C：在取用者導向應用程式中啟用 Multi-Factor Authentication
 
-# <a name="azure-active-directory-b2c:-enable-multi-factor-authentication-in-your-consumer-facing-applications"></a>Azure Active Directory B2C: Enable Multi-Factor Authentication in your consumer-facing applications
-
-Azure Active Directory (Azure AD) B2C integrates directly with [Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md) so that you can add a second layer of security to sign-up and sign-in experiences in your consumer-facing applications. And you can do this without writing a single line of code. Currently we support phone call and text message verification. If you already created sign-up and sign-in policies, you can still enable Multi-Factor Authentication.
+Azure Active Directory (Azure AD) B2C 直接整合 [Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md)，讓您能夠針對取用者導向應用程式的註冊與登入使用體驗，增添第二層安全性。您連一行程式碼都不用寫，即可達成此目標。目前我們支援撥打電話與簡訊驗證。如果您已經建立註冊和登入原則，您仍然可以啟用 Multi-Factor Authentication。
 
 > [AZURE.NOTE]
-Multi-Factor Authentication can also be enabled when you create sign-up and sign-in policies, not just by editing existing policies.
+Multi-Factor Authentication 也可以在建立註冊和登入原則時啟用，而非單靠編輯現有原則來啟用。
 
-This feature helps applications handle scenarios such as the following:
+此功能可協助應用程式處理諸如下列的各種案例：
 
-- You don't require Multi-Factor Authentication to access one application, but you do require it to access another one. For example, the consumer can sign into an auto insurance application with a social or local account, but must verify the phone number before accessing the home insurance application registered in the same directory.
-- You don't require Multi-Factor Authentication to access an application in general, but you do require it to access the sensitive portions within it. For example, the consumer can sign in to a banking application with a social or local account and check account balance, but must verify the phone number before attempting a wire transfer.
+- 您在存取某一個應用程式時不需要 Multi-Factor Authentication，但在存取另一應用程式時需要它。例如，取用者可以使用社交或本機帳戶登入汽車保險應用程式，但必須先驗證電話號碼，才能存取同個目錄中註冊的家庭保險應用程式。
+- 一般而言，您在存取應用程式時不需要 Multi-Factor Authentication，但在存取其中的敏感部分資訊時則需要它。例如，取用者可使用社交或本機帳戶登入銀行應用程式來檢查帳戶餘額，但必須先完成電話號碼驗證，才能嘗試進行轉帳匯款作業。
 
-## <a name="modify-your-sign-up-policy-to-enable-multi-factor-authentication"></a>Modify your sign-up policy to enable Multi-Factor Authentication
+## 修改註冊原則以啟用 Multi-Factor Authentication
 
-1. [Follow these steps to navigate to the B2C features blade on the Azure portal](active-directory-b2c-app-registration.md#navigate-to-the-b2c-features-blade).
-2. Click **Sign-up policies**.
-3. Click your sign-up policy (for example, "B2C_1_SiUp") to open it.
-4. Click **Multi-factor authentication** and turn the **State** to **ON**. Click **OK**.
-5. Click **Save** at the top of the blade.
+1. 遵循下列步驟以[瀏覽至 B2C 功能刀鋒視窗](active-directory-b2c-app-registration.md#navigate-to-the-b2c-features-blade) (位於 Azure 入口網站上)。
+2. 按一下 [註冊原則]。
+3. 按一下以開啟註冊原則 (例如 "B2C\_1\_SiUp")。
+4. 按一下 [Multi-Factor Authentication]，並將 [狀態] 設為 [開啟]。按一下 [確定]。
+5. 按一下刀鋒視窗頂端的 [儲存]。
 
-You can use the "Run now" feature on the policy to verify the consumer experience. Confirm the following:
+您可以使用原則上的「立即執行」功能來驗證取用者體驗。確認下列項目：
 
-A consumer account gets created in your directory before the Multi-Factor Authentication step occurs. During the step, the consumer is asked to provide his or her phone number and verify it. If verification is successful, the phone number is attached to the consumer account for later use. Even if the consumer cancels or drops out, he or she can be asked to verify a phone number again during the next sign-in (with Multi-Factor Authentication enabled).
+在進行 Multi-Factor Authentication 步驟之前，會在目錄中建立取用者帳戶。在步驟執行過程中，系統會要求取用者提供電話號碼進行驗證。若驗證成功，會將電話號碼附加至取用者帳戶以供之後使用。即使取用者取消或卸除，下次登入時系統仍會要求其再度驗證電話號碼 (已啟用 Multi-Factor Authentication)。
 
-## <a name="modify-your-sign-in-policy-to-enable-multi-factor-authentication"></a>Modify your sign-in policy to enable Multi-Factor Authentication
+## 修改登入原則以啟用 Multi-Factor Authentication
 
-1. [Follow these steps to navigate to the B2C features blade on the Azure portal](active-directory-b2c-app-registration.md#navigate-to-the-b2c-features-blade).
-2. Click **Sign-in policies**.
-3. Click your sign-in policy (for example, "B2C_1_SiIn") to open it. Click **Edit** at the top of the blade.
-4. Click **Multi-factor authentication** and turn the **State** to **ON**. Click **OK**.
-5. Click **Save** at the top of the blade.
+1. 遵循下列步驟以[瀏覽至 B2C 功能刀鋒視窗](active-directory-b2c-app-registration.md#navigate-to-the-b2c-features-blade) (位於 Azure 入口網站上)。
+2. 按一下 [登入原則]。
+3. 按一下以開啟登入原則 (例如 "B2C\_1\_SiIn")。按一下刀鋒視窗頂端的 [編輯]。
+4. 按一下 [Multi-Factor Authentication]，並將 [狀態] 設為 [開啟]。按一下 [確定]。
+5. 按一下刀鋒視窗頂端的 [儲存]。
 
-You can use the "Run now" feature on the policy to verify the consumer experience. Confirm the following:
+您可以使用原則上的「立即執行」功能來驗證取用者體驗。確認下列項目：
 
-When the consumer signs in (using a social or local account), if a verified phone number is attached to the consumer account, he or she is asked to verify it. If no phone number is attached, the consumer is asked to provide one and verify it. On successful verification, the phone number is attached to the consumer account for later use.
+取用者登入 (使用社交或本機帳戶) 時，若已將通過驗證的電話號碼附加至取用者帳戶，系統會要求其進行驗證。如果未附加電話號碼，系統會要求取用者提供電話號碼以進行驗證。驗證成功之後，即會將電話號碼附加至取用者帳戶以供之後使用。
 
-## <a name="multi-factor-authentication-on-other-policies"></a>Multi-Factor Authentication on other policies
+## 其他原則上的 Multi-Factor Authentication
 
-As described for sign-up & sign-in policies above, it is also possible to enable multi-factor authentication on sign-up or sign-in policies and password reset policies. It will be available soon on profile editing policies.
+如同對上面的註冊和登入原則所述，也可以對註冊或登入原則和密碼重設原則啟用 Multi-Factor Authentication。很快即可用於設定檔編輯原則。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0727_2016-->

@@ -1,107 +1,105 @@
 
 <properties
-    pageTitle="Using attributes to create advanced rules for group membership in Azure Active Directory preview | Microsoft Azure"
-    description="How to create advanced rules for dynamic group membership including supported expression rule operators and parameters."
-    services="active-directory"
-    documentationCenter=""
-    authors="curtand"
-    manager="femila"
-    editor=""/>
+	pageTitle="在 Azure Active Directory 預覽版中使用屬性來建立群組成員資格的進階規則 | Microsoft Azure"
+	description="如何建立動態群組成員資格的進階規則，包括支援的運算式規則運算子和參數。"
+	services="active-directory"
+	documentationCenter=""
+	authors="curtand"
+	manager="femila"
+	editor=""/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/12/2016"
-    ms.author="curtand"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/12/2016"
+	ms.author="curtand"/>
 
 
+# 在 Azure Active Directory 預覽版中使用屬性來建立群組成員資格的進階規則
 
-# <a name="using-attributes-to-create-advanced-rules-for-group-membership-in-azure-active-directory-preview"></a>Using attributes to create advanced rules for group membership in Azure Active Directory preview
+Azure 入口網站可讓您建立進階規則，來為 Azure Active Directory (Azure AD) 預覽版群組啟用更複雜的屬性型動態成員資格。[預覽版有何功能？](active-directory-preview-explainer.md) 本文將詳細說明用以建立這些進階規則的規則屬性和語法。
 
-The Azure portal provides you with the ability to create advanced rules to enable more complex attribute-based dynamic memberships for Azure Active Directory (Azure AD) preview groups. [What's in the preview?](active-directory-preview-explainer.md) This article details the rule attributes and syntax to create these advanced rules.
+## 建立進階規則
 
-## <a name="to-create-the-advanced-rule"></a>To create the advanced rule
+1.  使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com)。
 
-1.  Sign in to the [Azure portal](https://portal.azure.com) with an account that's a global admin for the directory.
+2.  選取 [更多服務]，在文字方塊中輸入「使用者和群組」，然後選取 **Enter**。
 
-2.  Select **More services**, enter **Users and groups** in the text box, and then select **Enter**.
+  ![開啟使用者管理](./media/active-directory-groups-dynamic-membership-azure-portal/search-user-management.png)
 
-  ![Opening user management](./media/active-directory-groups-dynamic-membership-azure-portal/search-user-management.png)
+3.  在 [使用者和群組] 刀鋒視窗上，選取 [所有群組]。
 
-3.  On the **Users and groups** blade, select **All groups**.
+  ![開啟群組刀鋒視窗](./media/active-directory-groups-dynamic-membership-azure-portal/view-groups-blade.png)
 
-  ![Opening the groups blade](./media/active-directory-groups-dynamic-membership-azure-portal/view-groups-blade.png)
-
-4. On the **Users and groups - All groups** blade, select the **Add** command.
+4. 在 [使用者和群組 - 所有群組] 刀鋒視窗上，選取 [新增]。
 
   ![Add new group](./media/active-directory-groups-dynamic-membership-azure-portal/add-group-type.png)
 
-5. On the **Group** blade, enter a name and description for the new group. Select a **Membership type** of either **Dynamic User** or **Dynamic Device**, depending on whether you want to create a rule for users or devices, and then select **Add dynamic query**. For the attributes used for device rules, see [Using attributes to create rules for device objects](#using-attributes-to-create-rules-for-device-objects).
+5. 在 [群組] 刀鋒視窗上，輸入新群組的名稱和描述。依據您是要為使用者還是裝置建立規則，在 [成員資格類型] 選取 [動態使用者] 或 [動態裝置]，然後選取 [新增動態查詢]。如需了解有哪些用於裝置規則的屬性，請參閱[使用屬性來建立裝置物件的規則](#using-attributes-to-create-rules-for-device-objects)。
 
-  ![Add dynamic membership rule](./media/active-directory-groups-dynamic-membership-azure-portal/add-dynamic-group-rule.png)
+  ![新增動態成員資格規則](./media/active-directory-groups-dynamic-membership-azure-portal/add-dynamic-group-rule.png)
 
-6. On the **Dynamic membership rules** blade, enter your rule into the **Add dynamic membership advanced rule** box, press Enter, and then select **Create** at the bottom of the blade.
+6. 在 [動態成員資格規則] 刀鋒視窗上，於 [新增動態成員資格進階規則] 方塊中輸入您的規則，然後選取刀鋒視窗底部的 [建立]。
 
-7. Select **Create** on the **Group** blade to create the group.
+7. 在 [群組] 刀鋒視窗上，選取 [建立] 來建立群組。
 
-## <a name="constructing-the-body-of-an-advanced-rule"></a>Constructing the body of an advanced rule
+## 建構進階規則的主體
 
-The advanced rule that you can create for the dynamic memberships for groups is essentially a binary expression that consists of three parts and results in a true or false outcome. The three parts are:
+您可以為群組的動態成員資格建立的進階規則基本上是一個二進位運算式，其中包含三個部分，且會產生 true 或 false 的結果。這三個部分包括：
 
-- Left parameter
-- Binary operator
-- Right constant
+- 左側的參數
+- 二進位運算子
+- 右側的常數
 
-A complete advanced rule looks similar to this: (leftParameter binaryOperator "RightConstant"), where the opening and closing parenthesis are required for the entire binary expression, double quotes are required for the right constant, and the syntax for the left parameter is user.property. An advanced rule can consist of more than one binary expressions separated by the -and, -or, and -not logical operators.
+完整的進階規則外觀如下：(leftParameter binaryOperator "RightConstant")，其中需要左右括號括住整個二進位運算式、需要雙引號括住右側的常數，且左側參數的語法是 user.property。進階規則可以包含多個二進位運算式，並以 -and、 -or 和 -not 邏輯運算子分隔。
 
-The following are examples of a properly constructed advanced rule:
+以下是正確建構的進階規則的範例：
 
 - (user.department -eq "Sales") -or (user.department -eq "Marketing")
 - (user.department -eq "Sales") -and -not (user.jobTitle -contains "SDE")
 
-For the complete list of supported parameters and expression rule operators, see sections below. For the attributes used for device rules, see [Using attributes to create rules for device objects](#using-attributes-to-create-rules-for-device-objects).
+如需支援的參數和運算式規則運算子的完整清單，請參閱下列各節。如需了解有哪些用於裝置規則的屬性，請參閱[使用屬性來建立裝置物件的規則](#using-attributes-to-create-rules-for-device-objects)。
 
-The total length of the body of your advanced rule cannot exceed 2048 characters.
+進階規則主體的總長度不得超過 2048 個字元。
 
 > [AZURE.NOTE]
->String and regex operations are case insensitive. You can also perform Null checks, using $null as a constant, for example, user.department -eq $null.
-Strings containing quotes " should be escaped using 'character, for example, user.department -eq \`"Sales".
+字串和 regex 運算都不區分大小寫。您也可以使用 $null 做為常數，執行 Null 檢查，例如，user.department-eq $null。包含引號 " 的字串應該使用 ' 字元逸出，例如 user.department -eq `"Sales"。
 
-## <a name="supported-expression-rule-operators"></a>Supported expression rule operators
-The following table lists all the supported expression rule operators and their syntax to be used in the body of the advanced rule:
+## 支援的運算式規則運算子
+下表列出所有支援的運算式規則運算子及其用於進階規則主體中的語法：
 
-| Operator        | Syntax         |
+| 運算子 | 語法 |
 |-----------------|----------------|
-| Not Equals      | -ne            |
-| Equals          | -eq            |
+| Not Equals | -ne |
+| Equals | -eq |
 | Not Starts With | -notStartsWith |
-| Starts With     | -startsWith    |
-| Not Contains    | -notContains   |
-| Contains        | -contains      |
-| Not Match       | -notMatch      |
-| Match           | -match         |
+| 開頭為 | -startsWith |
+| Not Contains | -notContains |
+| Contains | -contains |
+| Not Match | -notMatch |
+| Match | -match |
 
 
-## <a name="query-error-remediation"></a>Query error remediation
-The following table lists potential errors and how to correct them if they occur
+## 查詢錯誤補救
+下表列出可能的錯誤以及其更正方式
 
-| Query Parse Error     | Error Usage       | Corrected Usage             |
+| 查詢剖析錯誤 | 錯誤的使用方式 | 更正的使用方式 |
 |-----------------------|-------------------|-----------------------------|
-| Error: Attribute not supported.                                      | (user.invalidProperty -eq "Value")       | (user.department -eq "value")<br/>Property should match one from the [supported properties list](#supported-properties).                          |
-| Error: Operator is not supported on attribute.                       | (user.accountEnabled -contains true)                                                                               | (user.accountEnabled -eq true)<br/>Property is of type boolean. Use the supported operators (-eq or -ne) on boolean type from the above list.                                                                                                                                   |
-| Error: Query compilation error.                                      | (user.department -eq "Sales") -and (user.department -eq "Marketing")(user.userPrincipalName -match "*@domain.ext") | (user.department -eq "Sales") -and (user.department -eq "Marketing")<br/>Logical operator should match one from the supported properties list above.(user.userPrincipalName -match ".*@domain.ext")or(user.userPrincipalName -match "@domain.ext$")Error in regular expression. |
-| Error: Binary expression is not in right format.                     | (user.department –eq “Sales”) (user.department -eq "Sales")(user.department-eq"Sales")                             | (user.accountEnabled -eq true) -and (user.userPrincipalName -contains "alias@domain")<br/>Query has multiple errors. Parenthesis not in right place.                                                                                                                            |
-| Error: Unknown error occurred during setting up dynamic memberships. | (user.accountEnabled -eq "True" AND user.userPrincipalName -contains "alias@domain")                               | (user.accountEnabled -eq true) -and (user.userPrincipalName -contains "alias@domain")<br/>Query has multiple errors. Parenthesis not in right place.                                                                                                                            |
+| 錯誤：不支援屬性。 | (user.invalidProperty -eq "Value") | (user.department -eq "value")<br/> 屬性應該符合[支援的屬性清單](#supported-properties)中的一個屬性。 |
+| 錯誤：屬性不支援運算子。 | (user.accountEnabled -contains true) | (user.accountEnabled -eq true)<br/> 屬性屬於布林類型。使用上述清單中的布林型別支援的運算子 (-eq 或-ne)。 |
+| 錯誤：查詢編譯錯誤。 | (user.department -eq "Sales") -and (user.department -eq "Marketing")(user.userPrincipalName -match "*@domain.ext") | (user.department -eq "Sales") -and (user.department -eq "Marketing")<br/>邏輯運算子應該符合上述支援的屬性清單中的一個屬性。(user.userPrincipalName -match ".*@domain.ext")or(user.userPrincipalName -match "@domain.ext$") 規則運算式中發生錯誤。 |
+| 錯誤：二進位運算式不是正確的格式。 | (user.department –eq “Sales”) (user.department -eq "Sales")(user.department-eq"Sales") | (user.accountEnabled -eq true) -and (user.userPrincipalName -contains "alias@domain")<br/>查詢有多個錯誤。括號不在正確的位置。 |
+| 錯誤：設定動態成員資格時發生未知的錯誤。 | (user.accountEnabled -eq "True" AND user.userPrincipalName -contains "alias@domain") | (user.accountEnabled -eq true) -and (user.userPrincipalName -contains "alias@domain")<br/>查詢有多個錯誤。括號不在正確的位置。 |
 
-## <a name="supported-properties"></a>Supported properties
-The following are all the user properties that you can use in your advanced rule:
+## 支援的屬性
+以下是您可以在進階規則中使用的所有使用者屬性：
 
-### <a name="properties-of-type-boolean"></a>Properties of type boolean
+### 布林型別的屬性
 
-Allowed operators
+允許的運算子
 
 * -eq
 
@@ -109,14 +107,14 @@ Allowed operators
 * -ne
 
 
-| Properties     | Allowed values  | Usage                          |
+| 屬性 | 允許的值 | 使用量 |
 |----------------|-----------------|--------------------------------|
-| accountEnabled | true false      | user.accountEnabled -eq true)  |
+| accountEnabled | true false | user.accountEnabled -eq true) |
 | dirSyncEnabled | true false null | (user.dirSyncEnabled -eq true) |
 
-### <a name="properties-of-type-string"></a>Properties of type string
+### 字串類型的屬性
 
-Allowed operators
+允許的運算子
 
 * -eq
 
@@ -141,104 +139,98 @@ Allowed operators
 
 * -notMatch
 
-| Properties                 | Allowed values                                                                                        | Usage                                                     |
+| 屬性 | 允許的值 | 使用量 |
 |----------------------------|-------------------------------------------------------------------------------------------------------|-----------------------------------------------------------|
-| city                       | Any string value or $null                                                                           | (user.city -eq "value")                                   |
-| country                    | Any string value or $null                                                                            | (user.country -eq "value")                                |
-| department                 | Any string value or $null                                                                          | (user.department -eq "value")                             |
-| displayName                | Any string value                                                                                 | (user.displayName -eq "value")                            |
-| facsimileTelephoneNumber   | Any string value or $null                                                                           | (user.facsimileTelephoneNumber -eq "value")               |
-| givenName                  | Any string value or $null                                                                           | (user.givenName -eq "value")                              |
-| jobTitle                   | Any string value or $null                                                                           | (user.jobTitle -eq "value")                               |
-| mail                       | Any string value or $null (SMTP address of the user)                                                  | (user.mail -eq "value")                                   |
-| mailNickName               | Any string value (mail alias of the user)                                                            | (user.mailNickName -eq "value")                           |
-| mobile                     | Any string value or $null                                                                           | (user.mobile -eq "value")                                 |
-| objectId                   | GUID of the user object                                                                            | (user.objectId -eq "1111111-1111-1111-1111-111111111111") |
-| passwordPolicies           | None DisableStrongPassword DisablePasswordExpiration DisablePasswordExpiration, DisableStrongPassword |   (user.passwordPolicies -eq "DisableStrongPassword")                                                      |
-| physicalDeliveryOfficeName | Any string value or $null                                                                            | (user.physicalDeliveryOfficeName -eq "value")             |
-| postalCode                 | Any string value or $null                                                                            | (user.postalCode -eq "value")                             |
-| preferredLanguage          | ISO 639-1 code                                                                                        | (user.preferredLanguage -eq "en-US")                      |
-| sipProxyAddress            | Any string value or $null                                                                            | (user.sipProxyAddress -eq "value")                        |
-| state                      | Any string value or $null                                                                            | (user.state -eq "value")                                  |
-| streetAddress              | Any string value or $null                                                                            | (user.streetAddress -eq "value")                          |
-| surname                    | Any string value or $null                                                                            | (user.surname -eq "value")                                |
-| telephoneNumber            | Any string value or $null                                                                            | (user.telephoneNumber -eq "value")                        |
-| usageLocation              | Two lettered country code                                                                           | (user.usageLocation -eq "US")                             |
-| userPrincipalName          | Any string value                                                                                     | (user.userPrincipalName -eq "alias@domain")               |
-| userType                   | member guest $null                                                                                    | (user.userType -eq "Member")                              |
+| city | 任何字串值或 $null | (user.city -eq "value") |
+| country | 任何字串值或 $null | (user.country -eq "value") |
+| department | 任何字串值或 $null | (user.department -eq "value") |
+| displayName | 任何字串值 | (user.displayName -eq "value") |
+| facsimileTelephoneNumber | 任何字串值或 $null | (user.facsimileTelephoneNumber -eq "value") |
+| givenName | 任何字串值或 $null | (user.givenName -eq "value") |
+| jobTitle | 任何字串值或 $null | (user.jobTitle -eq "value") |
+| mail | 任何字串值或 $null (使用者的 SMTP 位址) | (user.mail -eq "value") |
+| mailNickName | 任何字串值 (使用者的郵件別名) | (user.mailNickName -eq "value") |
+| mobile | 任何字串值或 $null | (user.mobile -eq "value") |
+| objectId | 使用者物件的 GUID | (user.objectId -eq "1111111-1111-1111-1111-111111111111") |
+| passwordPolicies | None DisableStrongPassword DisablePasswordExpiration DisablePasswordExpiration, DisableStrongPassword | (user.passwordPolicies -eq "DisableStrongPassword") |
+| physicalDeliveryOfficeName | 任何字串值或 $null | (user.physicalDeliveryOfficeName -eq "value") |
+| postalCode | 任何字串值或 $null | (user.postalCode -eq "value") |
+| preferredLanguage | ISO 639-1 code | (user.preferredLanguage -eq "zh-TW") |
+| sipProxyAddress | 任何字串值或 $null | (user.sipProxyAddress -eq "value") |
+| state | 任何字串值或 $null | (user.state -eq "value") |
+| streetAddress | 任何字串值或 $null | (user.streetAddress -eq "value") |
+| surname | 任何字串值或 $null | (user.surname -eq "value") |
+| telephoneNumber | 任何字串值或 $null | (user.telephoneNumber -eq "value") |
+| usageLocation | 兩個字母的國家 (地區) 代碼 | (user.usageLocation -eq "US") |
+| userPrincipalName | 任何字串值 | (user.userPrincipalName -eq "alias@domain") |
+| userType | member guest $null | (user.userType -eq "Member") |
 
-### <a name="properties-of-type-string-collection"></a>Properties of type string collection
+### 字串集合類型的屬性
 
-Allowed operators
+允許的運算子
 
 * -contains
 
 
 * -notContains
 
-| Poperties      | Allowed values                        | Usage                                                |
+| 屬性 | 允許的值 | 使用量 |
 |----------------|---------------------------------------|------------------------------------------------------|
-| otherMails     | Any string value                      | (user.otherMails -contains "alias@domain")           |
+| otherMails | 任何字串值 | (user.otherMails -contains "alias@domain") |
 | proxyAddresses | SMTP: alias@domain smtp: alias@domain | (user.proxyAddresses -contains "SMTP: alias@domain") |
 
-## <a name="extension-attributes-and-custom-attributes"></a>Extension attributes and custom attributes
-Extension attributes and custom attributes are supported in dynamic membership rules.
+## 擴充屬性和自訂屬性
+動態成員資格規則支援擴充屬性和自訂屬性。
 
-Extension attributes are synced from on premise Window Server AD and take the format of "ExtensionAttributeX", where X equals 1 - 15.
-An example of a rule that uses an extension attribute would be
+擴充屬性會從內部部署 Windows Server AD 進行同步處理，並採用 "ExtensionAttributeX" 格式，其中 X 等於 1-15。以下是使用擴充屬性的規則範例：
 
 (user.extensionAttribute15 -eq "Marketing")
 
-Custom Attributes are synced from on premise Windows Server AD or from a connected SaaS application and the the format of "user.extension_[GUID]\__[Attribute]", where [GUID] is the unique identifier in AAD for the application that created the attribute in AAD and [Attribute] is the name of the attribute as it was created.
-An example of a rule that uses a custom attribute is
+自訂屬性會從內部部署 Windows Server AD 或從連接的 SaaS 應用程式進行同步處理，並採用 "user.extension[GUID]\_[Attribute]" 格式，其中 [GUID] 是 AAD 中的唯一識別碼 (適用於在 AAD 中建立屬性的應用程式)，而 [Attribute] 是其建立的屬性名稱。以下是使用自訂屬性的規則範例：
 
-user.extension_c272a57b722d4eb29bfe327874ae79cb__OfficeNumber  
+user.extension\_c272a57b722d4eb29bfe327874ae79cb\_\_OfficeNumber
 
-The custom attribute name can be found in the directory by querying a user's attribute using Graph Explorer and searching for the attribute name.
+使用 [圖表總管] 查詢使用者的屬性並搜尋屬性名稱，即可在目錄中找到自訂屬性名稱。
 
-## <a name="direct-reports-rule"></a>Direct Reports Rule
-You can now populate members in a group based on the manager attribute of a user.
+## 屬下規則
+您現在可以根據使用者的經理屬性在群組中填入成員。
 
-**To configure a group as a “Manager” group**
+**設定群組為「經理」群組**
 
-1. Follow steps 1-5 in [To create the advanced rule](#to-create-the-advanced-rule), and select a **Membership type** of **Dynamic User**.
+1. 依照[建立進階規則](#to-create-the-advanced-rule)中的步驟 1-5 操作，然後在 [成員資格類型] 選取 [動態使用者]。
 
-2. On the **Dynamic membership rules** blade, enter the rule with the following syntax:
+2. 在 [動態成員資格規則] 刀鋒視窗上，使用下列語法來輸入規則：
 
-    Direct Reports for *Direct Reports for {obectID_of_manager}*. An example of a valid rule for Direct Reports is
+	Direct Reports for {obectID\_of\_manager} 的 Direct Reports。以下是 Direct Reports 的有效規則範例：
 
-                    Direct Reports for "62e19b97-8b3d-4d4a-a106-4ce66896a863”
+					Direct Reports for "62e19b97-8b3d-4d4a-a106-4ce66896a863”
 
-    where “62e19b97-8b3d-4d4a-a106-4ce66896a863” is the objectID of the manager. The object ID can be found in the Azure AD on the **Profile tab** of the user page for the user who is the manager.
+	其中 “62e19b97-8b3d-4d4a-a106-4ce66896a863” 為管理員的 objectID。您可以在 Azure AD 中，身為管理員之使用者的使用者頁面的 [設定檔] 索引標籤上找到物件識別碼。
 
-3. When saving this rule, all users that satisfy the rule will be joined as members of the group. It can take some minutes for the group to initially populate.
+3. 儲存這項規則時，符合規則的所有使用者都會加入成為群組的成員。一開始填入群組可能需要幾分鐘的時間。
 
 
-## <a name="using-attributes-to-create-rules-for-device-objects"></a>Using attributes to create rules for device objects
+## 使用屬性來建立裝置物件的規則
 
-You can also create a rule that selects device objects for membership in a group. The following device attributes can be used:
+您也可以建立規則以在群組中選取成員資格的裝置物件。可以使用下列裝置屬性︰
 
-| Properties           | Allowed values                  | Usage                                                |
+| 屬性 | 允許的值 | 使用量 |
 |----------------------|---------------------------------|------------------------------------------------------|
-| displayName          | any string value                | (device.displayName -eq "Rob Iphone”)                 |
-| deviceOSType         | any string value                | (device.deviceOSType -eq "IOS")                      |
-| deviceOSVersion      | any string value                | (device.OSVersion -eq "9.1")                         |
-| isDirSynced          | true false null                 | (device.isDirSynced -eq "true")                      |
-| isManaged            | true false null                 | (device.isManaged -eq "false")                       |
-| isCompliant          | true false null                 | (device.isCompliant -eq "true")                      |
+| displayName | 任何字串值 | (device.displayName -eq "Rob Iphone”) |
+| deviceOSType | 任何字串值 | (device.deviceOSType -eq "IOS") |
+| deviceOSVersion | 任何字串值 | (device.OSVersion -eq "9.1") |
+| isDirSynced | true false null | (device.isDirSynced -eq "true") |
+| isManaged | true false null | (device.isManaged -eq "false") |
+| isCompliant | true false null | (device.isCompliant -eq "true") |
 
 
-## <a name="additional-information"></a>Additional information
-These articles provide additional information on groups in Azure Active Directory.
+## 其他資訊
+這些文章提供有關 Azure Active Directory 中群組的其他資訊。
 
-* [See existing groups](active-directory-groups-view-azure-portal.md)
-* [Create a new group and adding members](active-directory-groups-create-azure-portal.md)
-* [Manage settings of a group](active-directory-groups-settings-azure-portal.md)
-* [Manage memberships of a group](active-directory-groups-membership-azure-portal.md)
-* [Manage dynamic rules for users in a group](active-directory-groups-dynamic-membership-azure-portal.md)
+* [查看現有的群組](active-directory-groups-view-azure-portal.md)
+* [建立新群組並新增成員](active-directory-groups-create-azure-portal.md)
+* [管理群組的設定](active-directory-groups-settings-azure-portal.md)
+* [管理群組的成員資格](active-directory-groups-membership-azure-portal.md)
+* [管理群組中使用者的動態規則](active-directory-groups-dynamic-membership-azure-portal.md)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

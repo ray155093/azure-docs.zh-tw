@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Test your Azure web app's performance | Microsoft Azure"
-   description="Run Azure web app performance tests to check how your app handles user load. Measure response time and find failures that might indicate problems."
+   pageTitle="測試 Azure Web 應用程式的效能 |Microsoft Azure"
+   description="執行 Azure Web 應用程式效能測試，檢查您的應用程式如何處理使用者負載。測量回應時間及尋找可能表示問題的失敗狀況。"
    services="app-service\web"
    documentationCenter=""
    authors="ecfan"
@@ -16,147 +16,136 @@
    ms.date="05/25/2016"
    ms.author="estfan; manasma; ahomer"/>
 
+# 測試 Azure Web 應用程式在低負載下的效能
 
-# <a name="performance-test-your-azure-web-app-under-load"></a>Performance test your Azure web app under load
+在您啟動 Web 應用程式或將更新部署至生產環境之前，請先檢查該應用程式的效能。如此一來，您即可更妥善地評估您的應用程式是否已準備好發行。對您的應用程式更具信心，其可在尖峰使用期間或在您下一波推式行銷時處理流量。
 
-Check your web app's performance before you launch it or deploy updates to production. That way, you can better assess whether your app is ready for release. Feel more confident that your app can handle the traffic during peak use or at your next marketing push.
+在公開預覽期間，您可以在 Azure 入口網站中免費測試您的應用程式的效能。這些測試會模擬您的應用程式在特定期間內的使用者負載並測量您的應用程式的回應。例如，您的測試結果會顯示您的應用程式對指定數量的使用者的回應速度。也會顯示多少要求失敗，這可能表示您的應用程式有問題。
 
-During public preview, you can performance test your app for free in the Azure Portal.
-These tests simulate user load on your app over a specific time period and measure your app's response. For example, your test results show how fast your app responds to a specific number of users. They also show how many requests failed, which might indicate problems with your app.      
+![尋找您的 Web 應用程式中的效能問題](./media/app-service-web-app-performance-test/azure-np-perf-test-overview.png)
 
-![Find performance problems in your web app](./media/app-service-web-app-performance-test/azure-np-perf-test-overview.png)
+## 開始之前
 
-## <a name="before-you-start"></a>Before you start
+* 您將需要 [Azure 訂用帳戶](https://account.windowsazure.com/subscriptions) (如果您還沒有的話)。了解如何[免費申請 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)。
 
-* You'll need an [Azure subscription](https://account.windowsazure.com/subscriptions), if you don't have one already. Learn how you can [open an Azure account for free](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F).
+* 您需要 [Visual Studio Team Services](https://www.visualstudio.com/products/what-is-visual-studio-online-vs) 帳戶才能保留您的效能測試記錄。當您設定效能測試時，會自動建立適當的帳戶。或者，如果您是帳戶擁有者，可以建立新的帳戶，或使用現有的帳戶。
 
-* You'll need a [Visual Studio Team Services](https://www.visualstudio.com/products/what-is-visual-studio-online-vs) account to keep your performance test history. A suitable account will be created automatically when you set up your performance test. Or you can create a new account or use an existing account if you're the account owner. 
+* 部署您的應用程式以便在非生產環境中進行測試。讓您的應用程式使用生產環境中所用方案以外的 App Service 方案。這樣一來，您不會影響任何現有的客戶或讓您的應用程式在生產環境中變慢。
 
-* Deploy your app for testing in a non-production environment. Have your app use an App Service plan other than the plan used in production. That way, you don't affect any existing customers or slow down your app in production. 
+## 設定和執行效能測試
 
-## <a name="set-up-and-run-your-performance-test"></a>Set up and run your performance test
+0.  登入 [Azure 入口網站](https://portal.azure.com)。若要使用您所擁有的 Visual Studio Team Services 帳戶，請以帳戶擁有者的身分登入。
 
-0.  Sign in to the [Azure Portal](https://portal.azure.com). To use a Visual Studio Team Services account that you own, sign in as the account owner.
+0.  移至您的 Web 應用程式。
 
-0.  Go to your web app.
+    ![請移至 [全部瀏覽]、[Web Apps]、您的 Web 應用程式](./media/app-service-web-app-performance-test/azure-np-web-apps.png)
 
-    ![Go to Browse All, Web Apps, your web app](./media/app-service-web-app-performance-test/azure-np-web-apps.png)
+0.  移至 [效能測試]。
 
-0.  Go to **Performance Test**.
-
-    ![Go to Tools, Performance Test](./media/app-service-web-app-performance-test/azure-np-web-app-details-tools-expanded.png)
+    ![移至 [工具]、[效能測試]](./media/app-service-web-app-performance-test/azure-np-web-app-details-tools-expanded.png)
  
-0. Now you'll link a [Visual Studio Team Services](https://www.visualstudio.com/products/what-is-visual-studio-online-vs) account to keep your performance test history.
+0. 現在您將連結 [Visual Studio Team Services](https://www.visualstudio.com/products/what-is-visual-studio-online-vs) 帳戶來保留您的效能測試記錄。
 
-    If you have a Team Services account to use, select that account. If you don't, create a new account.
+    如果您已經有 Team Services 帳戶，請選取該帳戶。如果沒有，請建立新帳戶。
 
-    ![Select existing Team Services account, or create a new account](./media/app-service-web-app-performance-test/azure-np-no-vso-account.png)
+    ![選取現有的 Team Services 帳戶，或建立新的帳戶](./media/app-service-web-app-performance-test/azure-np-no-vso-account.png)
 
-0.  Create your performance test. Set the details and run the test. 
+0.  建立您的效能測試。設定詳細資料並執行測試。
 
-You can watch the results in real time while the test runs.
+您可以在測試執行時即時觀看結果。
 
-For example, suppose we have an app that gave out coupons at last year's holiday sale. This event lasted 15 minutes with a peak load of 100 concurrent customers. We want to double the number of customers this year. We also want to improve customer satisfaction by reducing the page load time from 5 seconds to 2 seconds. So, we'll test our updated app's performance with 250 users for 15 minutes.
+例如，假設我們有在去年節日特賣時發放優待券的應用程式。這個活動持續了 15 分鐘，尖峰負載為 100 位並行客戶。我們希望今年的客戶數變成兩倍。我們還想讓頁面載入時間從 5 秒降低為 2 秒，以改善客戶滿意度。因此，我們將以 250 名使用者測試更新後應用程式的效能達 15 分鐘之久。
 
-We'll simulate load on our app by generating virtual users (customers) who visit our web site at the same time. This will show us how many requests are failing or responding slowly.
+我們會產生同時造訪我們的網站的虛擬使用者 (客戶)，藉此模擬應用程式的負載。這會顯示有多少個要求失敗或回應速度較慢。
 
-  ![Create, set up, and run your performance test](./media/app-service-web-app-performance-test/azure-np-new-performance-test.png)
+  ![設定、設定和執行效能測試](./media/app-service-web-app-performance-test/azure-np-new-performance-test.png)
 
-   *  Your web app's default URL is added automatically. 
-   You can change the URL to test other pages (HTTP GET requests only).
+   *  系統會自動加入您的 Web 應用程式的預設 URL。您可以變更此 URL 以測試其他頁面 (僅限 HTTP GET 要求)。
 
-   *  To simulate local conditions and reduce latency, select a location closest to your users for generating load.
+   *  若要模擬本機情況並降低延遲，請選取最靠近使用者的位置來產生負載。
 
-  Here's the test in progress. During the first minute, our page loads slower than we want.
+  以下是進行中的測試。在第一分鐘內，我們的頁面載入速度低於預期。
 
-  ![Performance test in progress with real-time data](./media/app-service-web-app-performance-test/azure-np-running-perf-test.png)
+  ![使用即時資料的進行中效能測試](./media/app-service-web-app-performance-test/azure-np-running-perf-test.png)
 
-  After the test is done, we learn that the page loads much faster after the first minute. This helps identify where we might want to start troubleshooting the problem.
+  測試完成後，我們了解頁面載入速度在第一分鐘後變快許多。這有助於找出我們要開始排解疑難問題的位置。
 
-  ![Completed performance test shows results, including failed requests](./media/app-service-web-app-performance-test/azure-np-perf-test-done.png)
+  ![完成的效能測試會顯示結果，包括失敗的要求](./media/app-service-web-app-performance-test/azure-np-perf-test-done.png)
 
-## <a name="test-multiple-urls"></a>Test multiple URLs
+## 測試多個 URL
 
-You can also run performance tests incorporating multiple URLs that represent an end-to-end user scenario by uploading a Visual Studio Web Test file. Some of the ways you can create a Visual Studio Web Test file are:
+您也可以藉由上傳 Visual Studio Web 測試檔案，來執行合併多個代表端對端使用者案例之 URL 的效能測試。您可以使用下列數種方式來建立 Visual Studio Web 測試檔案：
 
-* [Capture traffic using Fiddler and export as a Visual Studio Web Test file](http://docs.telerik.com/fiddler/Save-And-Load-Traffic/Tasks/VSWebTest)
-* [Create a load test file in Visual Studio](https://www.visualstudio.com/docs/test/performance-testing/run-performance-tests-app-before-release)
+* [使用 Fiddler 擷取流量，並匯出為 Visual Studio Web 測試檔案](http://docs.telerik.com/fiddler/Save-And-Load-Traffic/Tasks/VSWebTest)
+* [在 Visual Studio 中建立負載測試檔案](https://www.visualstudio.com/docs/test/performance-testing/run-performance-tests-app-before-release)
 
-To upload and run a Visual Studio Web Test file:
+上傳並執行 Visual Studio Web 測試檔案︰
  
-0. Follow the steps above to open the **New performance test** blade.
-   In this blade, choose the CONFIGFURE TEST USING option to open the **Configure test using** blade.  
+0. 請遵循上述步驟來開啟 [新增效能測試] 刀鋒視窗。在此刀鋒視窗中，選擇 [設定測試使用條件] 選項來開啟 [設定測試使用條件] 刀鋒視窗。  
 
-    ![Opening the Configure load testing blade](./media/app-service-web-app-performance-test/multiple-01-authoring-blade.png)
+    ![開啟 [設定負載測試] 刀鋒視窗](./media/app-service-web-app-performance-test/multiple-01-authoring-blade.png)
 
-0. Check that the TEST TYPE is set to **Visual Studio Web Test** and select your HTTP Archive file.
-    Use the "folder" icon to open the file selector dialog.
+0. 檢查測試類型是否已設為 [Visual Studio Web 測試]，然後選取 HTTP 封存檔案。使用 [資料夾] 圖示來開啟檔案選擇器對話方塊。
 
-    ![Uploading a multiple URL Visual Studio Web Test file](./media/app-service-web-app-performance-test/multiple-01-authoring-blade2.png)
+    ![上傳多個 URL Visual Studio Web 測試檔案](./media/app-service-web-app-performance-test/multiple-01-authoring-blade2.png)
 
-    After the file has been uploaded, you see the list of URLs to be tested in the URL DETAILS section.
+    上傳檔案之後，您會在 [URL 詳細資料] 區段中看見要測試的 URL 清單。
  
-0. Specify the user load and test duration, then choose **Run test**.
+0. 指定使用者負載和測試持續期間，然後選擇 [執行測試]。
 
-    ![Selecting the user load and duration](./media/app-service-web-app-performance-test/multiple-01-authoring-blade3.png)
+    ![選取使用者負載和持續時間](./media/app-service-web-app-performance-test/multiple-01-authoring-blade3.png)
 
-    After the test has finished, you see the results in two panes. The left pane shows the performnace information as a series of charts.
+    測試完成之後，您會在兩個窗格中看見結果。左窗格會以一系列圖表顯示效能資訊。
 
-    ![The performance results pane](./media/app-service-web-app-performance-test/multiple-01a-results.png)
+    ![效能結果窗格](./media/app-service-web-app-performance-test/multiple-01a-results.png)
 
-    The right pane shows a list of failed requests, with the type of error and the number of times it occurred.
+    右窗格會顯示失敗的要求清單，以及錯誤類型和其發生的次數。
 
-    ![The request failures pane](./media/app-service-web-app-performance-test/multiple-01b-results.png)
+    ![要求失敗窗格](./media/app-service-web-app-performance-test/multiple-01b-results.png)
 
-0. Rerun the test by choosing the **Rerun** icon at the top of the right pane.
+0. 藉由選擇右窗格頂端的 [重新執行] 圖示來重新執行測試。
 
-    ![Rerunning the test](./media/app-service-web-app-performance-test/multiple-rerun-test.png)
+    ![重新執行測試](./media/app-service-web-app-performance-test/multiple-rerun-test.png)
 
-##  <a name="q-&-a"></a>Q & A
+##  問答集
 
-#### <a name="q:-is-there-a-limit-on-how-long-i-can-run-a-test?"></a>Q: Is there a limit on how long I can run a test? 
+#### 問：我可持續執行測試的時間是否有所限制？ 
 
-**A**: Yes, you can run your test up to an hour in the Azure Portal.
+**答**：是，您最多可以在 Azure 入口網站中執行一小時的測試。
 
-#### <a name="q:-how-much-time-do-i-get-to-run-performance-tests?"></a>Q: How much time do I get to run performance tests? 
+#### 問：我可執行效能測試的時間有多少？ 
 
-**A**: After public preview, you get 20,000 virtual user minutes (VUMs) free each month with your Visual Studio Team Services account. A VUM is the number of virtual users multipled by the number of minutes in your test. If your needs exceed the free limit, you can purchase more time and pay only for what you use.
+**答**：公開預覽後，透過您的 Visual Studio Team Services 帳戶，您每個月可免費取得 20,000 虛擬使用者分鐘數 (VUM)。VUM 是虛擬使用者數目乘以您測試中的分鐘數。如果您的需求超過免費限制，您可以購買更多時間，而且僅支付您所用的時間。
 
-#### <a name="q:-where-can-i-check-how-many-vums-i've-used-so-far?"></a>Q: Where can I check how many VUMs I've used so far?
+#### 問：哪裡可以檢查到目前為止我已使用多少 VUM？
 
-**A**: You can check this amount in the Azure Portal.
+**答**：您可以在 Azure 入口網站中檢查此數量。
 
-![Go to your Team Services account](./media/app-service-web-app-performance-test/azure-np-vso-accounts.png)
+![移至您的 Team Services 帳戶](./media/app-service-web-app-performance-test/azure-np-vso-accounts.png)
 
-![Check VUMs used](./media/app-service-web-app-performance-test/azure-np-vso-accounts-vum-summary.png)
+![檢查已使用的 VUM](./media/app-service-web-app-performance-test/azure-np-vso-accounts-vum-summary.png)
 
-#### <a name="q:-what-is-the-default-option-and-are-my-existing-tests-impacted?"></a>Q: What is the default option and are my existing tests impacted?
+#### 問︰什麼是預設選項，我現有的測試是否會受到影響？
 
-**A**: The default option for performance load tests is a manual test - the same as before the multiple URL test option was added to the portal.
-Your existing tests continue to use the configured URL and will work as before.
+**答**︰效能負載測試的預設選項是手動測試 - 與在將多個 URL 測試選項新增至入口網站之前相同。您現有的測試會繼續使用已設定的 URL，並如往常般運作。
 
-#### <a name="q:-what-features-not-supported-in-the-visual-studio-web-test-file?"></a>Q: What features not supported in the Visual Studio Web Test file?
+#### 問︰Visual Studio Web 測試檔案中不支援哪些功能？
 
-**A**: At present this feature does not support Web Test plug-ins, data sources, and extraction rules. You must edit your Web Test file to remove these. We hope to add support for these features in future updates.
+**答**︰此功能目前不支援 Web 測試外掛程式、資料來源和擷取規則。您必須編輯 Web 測試檔案來移除這些功能。我們希望在未來更新中加入對這些功能的支援。
 
-#### <a name="q:-does-it-support-any-other-web-test-file-formats?"></a>Q: Does it support any other Web Test file formats?
+#### 問︰它是否支援任何其他 Web 測試檔案格式？
   
-**A**: At present only Visual Studio Web Test format files are supported.
-We'd be pleased to hear from you if you need support for other file formats. Email us at [vsoloadtest@microsoft.com](mailto:vsoloadtest@microsoft.com).
+**答**︰目前只支援 Visual Studio Web 測試格式檔案。如果您需要其他檔案格式的支援，我們很樂意聆聽您的意見反應。請透過下列電子郵件地址連絡我們：[vsoloadtest@microsoft.com](mailto:vsoloadtest@microsoft.com)。
 
-#### <a name="q:-what-else-can-i-do-with-a-visual-studio-team-services-account?"></a>Q: What else can I do with a Visual Studio Team Services account?
+#### 問：Visual Studio Team Services 帳戶還有什麼用途？
 
-**A**: To find your new account, go to ```https://{accountname}.visualstudio.com```. Share your code, build, test, track work, and ship software – all in the cloud using any tool or language. Learn more about how [Visual Studio Team Services](https://www.visualstudio.com/products/what-is-visual-studio-online-vs) features and services help your team collaborate more easily and deploy continuously.
+**答**：若要尋找您的新帳戶，請移至 ```https://{accountname}.visualstudio.com```。使用任何工具或語言來共用您的程式碼、建置、測試、追蹤工作及軟體出貨 – 一切盡在雲端。深入了解 [Visual Studio Team Services](https://www.visualstudio.com/products/what-is-visual-studio-online-vs) 功能及服務如何協助您的小組更輕鬆地共同作業及持續進行部署。
 
-## <a name="see-also"></a>See also
+## 另請參閱
 
-* [Run simple cloud performance tests](https://www.visualstudio.com/docs/test/performance-testing/getting-started/get-started-simple-cloud-load-test)
-* [Run Apache Jmeter performance tests](https://www.visualstudio.com/docs/test/performance-testing/getting-started/get-started-jmeter-test)
-* [Record and replay cloud-based load tests](https://www.visualstudio.com/docs/test/performance-testing/getting-started/record-and-replay-cloud-load-tests)
-* [Performance test your app in the cloud](https://www.visualstudio.com/docs/test/performance-testing/getting-started/getting-started-with-performance-testing)
+* [執行簡單的雲端效能測試](https://www.visualstudio.com/docs/test/performance-testing/getting-started/get-started-simple-cloud-load-test)
+* [執行 Apache Jmeter 效能測試](https://www.visualstudio.com/docs/test/performance-testing/getting-started/get-started-jmeter-test)
+* [Record and replay cloud-based load tests (記錄並重新執行雲端架構負載測試)](https://www.visualstudio.com/docs/test/performance-testing/getting-started/record-and-replay-cloud-load-tests)
+* [在雲端中進行 App 效能測試](https://www.visualstudio.com/docs/test/performance-testing/getting-started/getting-started-with-performance-testing)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0525_2016-->

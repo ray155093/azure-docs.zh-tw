@@ -1,6 +1,6 @@
 <properties
- pageTitle="Import export of IoT Hub device identities | Microsoft Azure"
- description="Concepts and .NET code snippets for bulk management of IoT Hub device identities"
+ pageTitle="IoT 中樞裝置身分識別的匯入匯出 | Microsoft Azure"
+ description="大量管理 IoT 中樞裝置身分識別的概念與 .NET 程式碼片段"
  services="iot-hub"
  documentationCenter=".net"
  authors="dominicbetts"
@@ -13,37 +13,36 @@
  ms.topic="article"
  ms.tgt_pltfrm="na"
  ms.workload="na"
- ms.date="10/05/2016"
+ ms.date="07/19/2016"
  ms.author="dobett"/>
 
+# 大量管理 IoT 中樞的裝置身分識別
 
-# <a name="bulk-management-of-iot-hub-device-identities"></a>Bulk management of IoT Hub device identities
+每個 IoT 中樞都有一個裝置身分識別登錄，您可用來在服務中建立各裝置的資源 (例如含有傳送中雲端到裝置訊息的佇列)，以及允許存取裝置面向端點。本文說明如何在裝置身分識別登錄中大量匯入和匯出裝置身分識別。
 
-Each IoT hub has a device identity registry you can use to create per-device resources in the service, such as a queue that contains in-flight cloud-to-device messages. The device identity registry also enables you to control access to the device-facing endpoints. This article describes how to import and export device identities in bulk to and from a device identity registry.
+匯入和匯出操作會在*作業*的內容中進行，其可讓使用者對 IoT 中樞執行大量服務操作。
 
-Import and export operations take place in the context of *Jobs* that enable you to execute bulk service operations against an IoT hub.
+**RegistryManager** 類別包含使用**作業**架構的 **ExportDevicesAsync** 和 **ImportDevicesAsync** 方法。這些方法可讓您匯出、匯入和同步處理整個 IoT 中樞裝置登錄。
 
-The **RegistryManager** class includes the **ExportDevicesAsync** and **ImportDevicesAsync** methods that use the **Job** framework. These methods enable you to export, import, and synchronize the entirety of an IoT hub device registry.
+## 什麼是作業？
 
-## <a name="what-are-jobs?"></a>What are Jobs?
+裝置身分識別登錄操作會使用**作業**系統的前提是操作符合下列條件時：
 
-Device identity registry operations use the **Job** system when the operation:
+*  相較於標準執行階段操作，其執行時間可能很長，或是，
+*  會傳回大量資料給使用者。
 
-*  Has a potentially long execution time compared to standard runtime operations, or
-*  Returns a large amount of data to the user.
+在這些情況下，與其讓單一 API 呼叫等候或封鎖操作的結果，操作會以非同步方式建立該 IoT 中樞的**作業**，然後操作會立即傳回 **JobProperties** 物件。
 
-In these cases, instead of a single API call waiting or blocking on the result of the operation, the operation asynchronously creates a **Job** for that IoT hub. The operation then immediately returns a **JobProperties** object.
-
-The following C# code snippet shows how to create an export job:
+下列 C# 程式碼片段示範如何建立匯出作業：
 
 ```
 // Call an export job on the IoT Hub to retrieve all devices
 JobProperties exportJob = await registryManager.ExportDevicesAsync(containerSasUri, false);
 ```
 
-Then you can use the **RegistryManager** class to query the state of the **Job** using the returned **JobProperties** metadata.
+然後您可以使用 **RegistryManager** 類別來查詢使用所傳回 **JobProperties** 中繼資料之**作業**的狀態。
 
-The following C# code snippet shows how to poll every five seconds to see if the job has finished executing:
+下列 C# 程式碼片段示範如何每五秒輪詢一次以查看作業是否已執行完成：
 
 ```
 // Wait until job is finished
@@ -62,23 +61,23 @@ while(true)
 }
 ```
 
-## <a name="export-devices"></a>Export devices
+## 匯出裝置
 
-Use the **ExportDevicesAsync** method to export the entirety of an IoT hub device registry to an [Azure storage](https://azure.microsoft.com/documentation/services/storage/) blob container using a [Shared Access Signature](https://msdn.microsoft.com/library/ee395415.aspx).
+使用 **ExportDevicesAsync** 方法將整個 IoT 中樞裝置登錄匯出到使用[共用存取簽章](https://msdn.microsoft.com/library/ee395415.aspx)的 [Azure 儲存體](https://azure.microsoft.com/documentation/services/storage/) Blob 容器。
 
-This method enables you to create reliable backups of your device information in a blob container that you control.
+這個方法可讓您在所控制的 Blob 容器中建立可靠的裝置資訊備份。
 
-The **ExportDevicesAsync** method requires two parameters:
+**ExportDevicesAsync** 方法需要兩個參數：
 
-*  A *string* that contains a URI of a blob container. This URI must contain a SAS token that grants write access to the container. The job creates a block blob in this container to store the serialized export device data. The SAS token must include these permissions:
+*  包含 Blob 容器 URI 的*字串*。此 URI 必須包含可授與容器寫入權限的 SAS 權杖。作業會在這個容器中建立用來儲存序列化匯出裝置資料的區塊 Blob。SAS 權杖必須包含這些權限：
     
     ```
     SharedAccessBlobPermissions.Write | SharedAccessBlobPermissions.Read | SharedAccessBlobPermissions.Delete
     ```
 
-*  A *boolean* that indicates if you want to exclude authentication keys from your export data. If **false**, authentication keys are included in export output; otherwise, keys are exported as **null**.
+*  指出是否要在匯出資料中排除驗證金鑰的*布林值*。若為 **false**，驗證金鑰會包含在匯出輸出中；否則會將金鑰匯出為 **null**。
 
-The following C# code snippet shows how to initiate an export job that includes device authentication keys in the export data and then poll for completion:
+下列 C# 程式碼片段示範如何啟動在匯出資料中包含裝置驗證金鑰的匯出作業，然後執行輪詢以完成作業：
 
 ```
 // Call an export job on the IoT Hub to retrieve all devices
@@ -100,9 +99,9 @@ while(true)
 }
 ```
 
-The job stores its output in the provided blob container as a block blob with the name **devices.txt**. The output data consists of JSON serialized device data, with one device per line.
+作業會在所提供的 Blob 容器中將其輸出儲存為名稱是 **devices.txt** 的區塊 Blob。輸出資料包含 JSON 序列化裝置資料，每行代表一個裝置。
 
-The following example shows the output data:
+以下是輸出資料的範例：
 
 ```
 {"id":"Device1","eTag":"MA==","status":"enabled","authentication":{"symmetricKey":{"primaryKey":"abc=","secondaryKey":"def="}}}
@@ -112,7 +111,7 @@ The following example shows the output data:
 {"id":"Device5","eTag":"MA==","status":"enabled","authentication":{"symmetricKey":{"primaryKey":"abc=","secondaryKey":"def="}}}
 ```
 
-If you need access to this data in code, you can easily deserialize this data using the **ExportImportDevice** class. The following C# code snippet shows how to read device information that was previously exported to a block blob:
+如果您需要存取程式碼中的這項資料，可以使用 **ExportImportDevice** 類別輕鬆地將此資料還原序列化。下列 C# 程式碼片段示範如何讀取先前匯出至區塊 Blob 的裝置資訊：
 
 ```
 var exportedDevices = new List<ExportImportDevice>();
@@ -128,71 +127,67 @@ using (var streamReader = new StreamReader(await blob.OpenReadAsync(AccessCondit
 }
 ```
 
-> [AZURE.NOTE]  You can also use the **GetDevicesAsync** method of the **RegistryManager** class to fetch a list of your devices. However, this approach has a hard cap of 1000 on the number of device objects that are returned. The expected use case for the **GetDevicesAsync** method is for development scenarios to aid debugging and is not recommended for production workloads.
+> [AZURE.NOTE]  您也可以使用 **RegistryManager** 類別的 **GetDevicesAsync** 方法，來擷取裝置清單。不過，這個方法有所傳回的裝置物件數目最多只能有 1000 個的上限。**GetDevicesAsync** 方法的預期使用案例適用於開發案例，其目的是要協助偵錯，因此不建議用於生產工作負載。
 
-## <a name="import-devices"></a>Import devices
+## 匯入裝置
 
-The **ImportDevicesAsync** method in the **RegistryManager** class enables you to perform bulk import and synchronization operations in an IoT hub device registry. Like the **ExportDevicesAsync** method, the **ImportDevicesAsync** method uses the **Job** framework.
+**RegistryManager** 類別中的 **ImportDevicesAsync** 方法可讓您在 IoT 中樞裝置登錄中執行大量匯入和同步處理操作。與 **ExportDevicesAsync** 方法相同，**ImportDevicesAsync** 方法會使用**作業**架構。
 
-Take care using the **ImportDevicesAsync** method because in addition to provisioning new devices in your device identity registry, it can also update and delete existing devices.
+請謹慎使用 **ImportDevicesAsync** 方法，因為除了會在裝置身分識別登錄中佈建新裝置外，此方法也會更新和刪除現有裝置。
 
-> [AZURE.WARNING]  An import operation cannot be undone. Always back up your existing data using the **ExportDevicesAsync** method to another blob container before you make bulk changes to your device identity registry.
+> [AZURE.WARNING]  匯入操作是無法復原的。請一律先使用 **ExportDevicesAsync** 方法將現有資料備份到另一個 Blob 容器，再對裝置身分識別登錄進行大量變更。
 
-The **ImportDevicesAsync** method takes two parameters:
+**ImportDevicesAsync** 方法會採用兩個參數：
 
-*  A *string* that contains a URI of an [Azure storage](https://azure.microsoft.com/documentation/services/storage/) blob container to as *input* to the job. This URI must contain a SAS token that grants read access to the container. This container must contain a blob with the name **devices.txt** that contains the serialized device data to import into your device identity registry. The import data must contain device information in the same JSON format that the **ExportImportDevice** job uses when it creates a **devices.txt** blob. The SAS token must include these permissions:
+*  包含 [Azure 儲存體](https://azure.microsoft.com/documentation/services/storage/) Blob 容器 URI 以作為作業之*輸入* 的*字串*。此 URI 必須包含可授與容器讀取權限的 SAS 權杖。此容器必須包含名稱為 **devices.txt** 的 Blob，而此 Blob 包含要匯入到裝置身分識別登錄的序列化裝置資料。匯入資料必須包含 **ExportImportDevice** 作業建立 **devices.txt** Blob 時所使用之相同 JSON 格式的裝置資訊。SAS 權杖必須包含這些權限：
 
     ```
     SharedAccessBlobPermissions.Read
     ```
 
-*  A *string* that contains a URI of an [Azure storage](https://azure.microsoft.com/documentation/services/storage/) blob container to as *output* from the job. The job creates a block blob in this container to store any error information from the completed import **Job**. The SAS token must include these permissions:
+*  包含 [Azure 儲存體](https://azure.microsoft.com/documentation/services/storage/) Blob 容器 URI 以作為作業之*輸出*的*字串*。作業會在此容器中建立區塊 Blob，以儲存來自已完成之匯入**作業**的任何錯誤資訊。SAS 權杖必須包含這些權限：
     
     ```
     SharedAccessBlobPermissions.Write | SharedAccessBlobPermissions.Read | SharedAccessBlobPermissions.Delete
     ```
 
-> [AZURE.NOTE]  The two parameters can point to the same blob container. The separate parameters simply enable more control over your data as the output container requires additional permissions.
+> [AZURE.NOTE]  這兩個參數可以指向相同的 Blob 容器。參數不同只會讓您更能掌控資料，因為輸出容器需要其他權限。
 
-The following C# code snippet shows how to initiate an import job:
+下列 C# 程式碼片段示範如何啟動匯入作業：
 
 ```
 JobProperties importJob = await registryManager.ImportDevicesAsync(containerSasUri, containerSasUri);
 ```
 
-## <a name="import-behavior"></a>Import behavior
+## 匯入行為
 
-You can use the **ImportDevicesAsync** method to perform the following bulk operations in your device identity registry:
+您可以使用 **ImportDevicesAsync** 方法，在您的裝置身分識別登錄中執行下列大量作業：
 
--   Bulk registration of new devices
--   Bulk deletions of existing devices
--   Bulk status changes (enable or disable devices)
--   Bulk assignment of new device authentication keys
--   Bulk auto-regeneration of device authentication keys
+-   大量註冊新裝置
+-   大量刪除現有裝置
+-   大量變更狀態 (啟用或停用裝置)
+-   大量指派新的裝置驗證金鑰
+-   大量自動重新產生裝置驗證金鑰
 
-You can perform any combination of the preceding operations within a single **ImportDevicesAsync** call. For example, you can register new devices and delete or update existing devices at the same time. When used along with the **ExportDevicesAsync** method, you can completely migrate all your devices from one IoT hub to another.
+您可以在單一 **ImportDevicesAsync** 呼叫中執行上述作業的任意組合。比方說，您可以同時間註冊新裝置並刪除或更新現有裝置。搭配 **ExportDevicesAsync** 方法一起使用時，您可以將某個 IoT 中樞內的所有裝置移轉到另一個 IoT 中樞。
 
-Use the optional **importMode** property in the import serialization data for each device to control the import process per-device. The **importMode** property has the following options:
+您可以在每個裝置的匯入序列化資料中使用選擇性的 **importMode** 屬性控制每個裝置的匯入程序。**ImportMode** 屬性具有下列選項：
 
-| importMode |  Description |
+| importMode | 說明 |
 | -------- | ----------- |
-| **createOrUpdate** | If a device does not exist with the specified **id**, it is newly registered. <br/>If the device already exists, existing information is overwritten with the provided input data without regard to the **ETag** value. |
-| **create** | If a device does not exist with the specified **id**, it is newly registered. <br/>If the device already exists, an error is written to the log file. |
-| **update** | If a device already exists with the specified **id**, existing information is overwritten with the provided input data without regard to the **ETag** value. <br/>If the device does not exist, an error is written to the log file. |
-| **updateIfMatchETag** | If a device already exists with the specified **id**, existing information is overwritten with the provided input data only if there is an **ETag** match. <br/>If the device does not exist, an error is written to the log file. <br/>If there is an **ETag** mismatch, an error is written to the log file. |
-| **createOrUpdateIfMatchETag** | If a device does not exist with the specified **id**, it is newly registered. <br/>If the device already exists, existing information is overwritten with the provided input data only if there is an **ETag** match. <br/>If there is an **ETag** mismatch, an error is written to the log file. |
-| **delete** | If a device already exists with the specified **id**, it is deleted without regard to the **ETag** value. <br/>If the device does not exist, an error is written to the log file. |
-| **deleteIfMatchETag** | If a device already exists with the specified **id**, it is deleted only if there is an **ETag** match. If the device does not exist, an error is written to the log file. <br/>If there is an ETag mismatch, an error is written to the log file. |
+| **createOrUpdate** | 如果不存在具有指定**識別碼**的裝置，則表示是新註冊的裝置。<br/>如果裝置已存在，則會以所提供的輸入資料覆寫現有資訊，而不管 **ETag** 值為何。 |
+| **create** | 如果不存在具有指定**識別碼**的裝置，則表示是新註冊的裝置。<br/>如果裝置已存在，則會在記錄檔中寫入錯誤。 |
+| **update** | 如果已存在具有指定**識別碼**的裝置，則會以所提供的輸入資料覆寫現有資訊，而不管 **ETag** 值為何。<br/>如果裝置不存在，則會在記錄檔中寫入錯誤。 |
+| **pdateIfMatchETagu** | 如果已存在具有指定**識別碼**的裝置，則當 **ETag** 相符時，才會以所提供的輸入資料覆寫現有資訊。<br/>如果裝置不存在，則會在記錄檔中寫入錯誤。<br/>如果 **ETag** 不相符，則會在記錄檔中寫入錯誤。 |
+| **createOrUpdateIfMatchETag** | 如果不存在具有指定**識別碼**的裝置，則表示是新註冊的裝置。<br/>如果裝置已存在，則當 **ETag** 相符時，才會以所提供的輸入資料覆寫現有資訊。<br/>如果 **ETag** 不相符，則會在記錄檔中寫入錯誤。 |
+| **delete** | 如果已存在具有指定**識別碼**的裝置，則會遭到刪除，而不管 **ETag** 值為何。<br/>如果裝置不存在，則會在記錄檔中寫入錯誤。 |
+| **deleteIfMatchETag** | 如果已存在具有指定**識別碼**的裝置，則只會在 **ETag** 相符時予以刪除。如果裝置不存在，則會在記錄檔中寫入錯誤。<br/>如果 ETag 不相符，則會在記錄檔中寫入錯誤。 |
 
-> [AZURE.NOTE] If the serialization data does not explicitly define an **importMode** flag for a device, it defaults to **createOrUpdate** during the import operation.
+> [AZURE.NOTE] 如果序列化資料未明確定義裝置的 **importMode** 旗標，則會在匯入作業期間預設為 **createOrUpdate**。
 
-## <a name="import-devices-example-–-bulk-device-provisioning"></a>Import devices example – bulk device provisioning 
+## 匯入裝置範例 - 大量裝置佈建 
 
-The following C# code sample illustrates how to generate multiple device identities that:
-
-- Include authentication keys.
-- Write that device information to an Azure storage block blob.
-- Import the devices into the device identity registry.
+下列 C# 程式碼範例說明如何產生多個包含驗證金鑰的裝置身分識別，將該裝置資訊寫入至 Azure 儲存體區塊 Blob，然後再將裝置匯入到裝置身分識別登錄：
 
 ```
 // Provision 1,000 more devices
@@ -255,9 +250,9 @@ while(true)
 }
 ```
 
-## <a name="import-devices-example-–-bulk-deletion"></a>Import devices example – bulk deletion
+## 匯入裝置範例 - 大量刪除
 
-The following code sample shows you how to delete the devices you added using the previous code sample:
+下列程式碼範例示範如何刪除使用前一個程式碼範例所新增的裝置：
 
 ```
 // Step 1: Update each device's ImportMode to be Delete
@@ -306,10 +301,10 @@ while(true)
 
 ```
 
-## <a name="getting-the-container-sas-uri"></a>Getting the container SAS URI
+## 取得容器 SAS URI
 
 
-The following code sample shows you how to generate a [SAS URI](../storage/storage-dotnet-shared-access-signature-part-2.md) with read, write, and delete permissions for a blob container:
+下列程式碼範例示範如何產生具有 Blob 容器之讀取、寫入和刪除權限的 [SAS URI](../storage/storage-dotnet-shared-access-signature-part-2.md)：
 
 ```
 static string GetContainerSasUri(CloudBlobContainer container)
@@ -335,25 +330,28 @@ static string GetContainerSasUri(CloudBlobContainer container)
 
 ```
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-In this article, you learned how to perform bulk operations against the device identity registry in an IoT hub. Follow these links to learn more about managing Azure IoT Hub:
+在本文中，您已了解如何對 IoT 中樞內的裝置身分識別登錄執行大量操作。遵循下列連結以深入了解如何管理 Azure IoT 中樞：
 
-- [Usage metrics][lnk-metrics]
-- [Operations monitoring][lnk-monitor]
+- [用量度量][lnk-metrics]
+- [作業監視][lnk-monitor]
+- [管理 IoT 中樞的存取權][lnk-itpro]
 
-To further explore the capabilities of IoT Hub, see:
+若要進一步探索 IoT 中樞的功能，請參閱︰
 
-- [Developer guide][lnk-devguide]
-- [Simulating a device with the Gateway SDK][lnk-gateway]
+- [設計您的解決方案][lnk-design]
+- [開發人員指南][lnk-devguide]
+- [使用範例 UI 探索裝置管理][lnk-dmui]
+- [使用閘道 SDK 模擬裝置][lnk-gateway]
 
 [lnk-metrics]: iot-hub-metrics.md
 [lnk-monitor]: iot-hub-operations-monitoring.md
+[lnk-itpro]: iot-hub-itpro-info.md
 
+[lnk-design]: iot-hub-guidance.md
 [lnk-devguide]: iot-hub-devguide.md
+[lnk-dmui]: iot-hub-device-management-ui-sample.md
 [lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0720_2016-->

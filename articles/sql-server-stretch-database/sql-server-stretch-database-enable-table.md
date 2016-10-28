@@ -1,83 +1,82 @@
 <properties
-    pageTitle="Enable Stretch Database for a table | Microsoft Azure"
-    description="Learn how to configure a table for Stretch Database."
-    services="sql-server-stretch-database"
-    documentationCenter=""
-    authors="douglaslMS"
-    manager=""
-    editor=""/>
+	pageTitle="為資料表啟用 Stretch Database | Microsoft Azure"
+	description="了解如何為資料表設定 Stretch Database。"
+	services="sql-server-stretch-database"
+	documentationCenter=""
+	authors="douglaslMS"
+	manager=""
+	editor=""/>
 
 <tags
-    ms.service="sql-server-stretch-database"
-    ms.workload="data-management"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/05/2016"
-    ms.author="douglasl"/>
+	ms.service="sql-server-stretch-database"
+	ms.workload="data-management"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/05/2016"
+	ms.author="douglasl"/>
 
+# 為資料表啟用 Stretch Database
 
-# <a name="enable-stretch-database-for-a-table"></a>Enable Stretch Database for a table
+若要為資料表設定 Stretch Database，請在 SQL Server Management Studio 中選取資料表的 [Stretch | 啟用]，以開啟 [為資料表啟用 Stretch] 精靈。您也可以使用 Transact-SQL，在現有的資料表上啟用 Stretch Database，或者建立新資料表並啟用 Stretch Database。
 
-To configure a table for Stretch Database, select **Stretch | Enable** for a table in SQL Server Management Studio to open the **Enable Table for Stretch** wizard. You can also use Transact\-SQL to enable Stretch Database on an existing table, or to create a new table with Stretch Database enabled.
+-   如果您將冷資料儲存在個別的資料表上，您可以移轉整個資料表。
 
--   If you store cold data in a separate table, you can migrate the entire table.
+-   如果您的資料表同時包含熱資料和冷資料，您可以指定篩選函數以選取要移轉的資料列。
 
--   If your table contains both hot and cold data, you can specify a filter function to select the rows to migrate.
+**必要條件**。如果您選取資料表的 [Stretch | 啟用]，且沒有為資料庫啟用 Stretch Database，精靈將會先為資料庫設定 Stretch Database。請依照[開始執行為資料庫啟用 Stretch 精靈](sql-server-stretch-database-wizard.md)中的步驟操作，而非本主題中的步驟。
 
-**Prerequisites**. If you select **Stretch | Enable** for a table, and you have not yet enabled Stretch Database for the database, the wizard first configures the database for Stretch Database. Follow the steps in [Get started by running the Enable Database for Stretch Wizard](sql-server-stretch-database-wizard.md) instead of the steps in this topic.
+**權限**。在資料庫或資料表上啟用 Stretch Database 需要 db\_owner 權限。在資料表上啟用 Stretch Database 也需要資料表上的 ALTER 權限。
 
-**Permissions**. Enabling Stretch Database on a database or a table requires db\_owner permissions. Enabling Stretch Database on  a table also requires ALTER permissions on the table.
-
- >   [AZURE.NOTE] Later, if you disable Stretch Database, remember that disabling Stretch Database for a table or for a database does not delete the remote object. If you want to delete the remote table or the remote database, you have to drop it by using the Azure management portal. The remote objects continue to incur Azure costs until you delete them manually.
+ >   [AZURE.NOTE] 之後，如果您停用 Stretch Database，請記得停用資料表或資料庫的 Stretch Database 並不會刪除遠端物件。如果您想要刪除遠端資料表或遠端資料庫，您必須使用 Azure 管理入口網站加以卸除。遠端物件會繼續產生 Azure 成本，直到您手動刪除它們為止。
  
-## <a name="<a-name="enablewizardtable"></a>use-the-wizard-to-enable-stretch-database-on-a-table"></a><a name="EnableWizardTable"></a>Use the wizard to enable Stretch Database on a table
-**Launch the wizard**
+## <a name="EnableWizardTable"></a>使用精靈以在資料表上啟用 Stretch Database
+**啟動精靈**
 
-1.  In SQL Server Management Studio, in Object Explorer, select the table on which you want to enable Stretch.
+1.  在 SQL Server Management Studio 中，於 [物件總管] 中選取想要啟用 Stretch 的資料表。
 
-2.  Right\-click and select **Stretch**, and then select **Enable** to launch the wizard.
+2.  以滑鼠右鍵按一下並選取 [Stretch]，然後選取 [啟用] 以啟動精靈。
 
-**Introduction**
+**簡介**
 
-Review the purpose of the wizard and the prerequisites.
+檢閱精靈的用途及必要條件。
 
-**Select database tables**
+**選取資料庫資料表**
 
-Confirm that the table you want to enable is displayed and selected.
+確認您想要啟用的資料表皆已顯示且選取。
 
-You can migrate an entire table or you can specify a simple filter function in the wizard. If you want to use a different type of filter function to select rows to migrate, do one of the following things.
+您可以移轉整個資料表，也可以在精靈中指定簡單的篩選函數。如果您想要使用不同類型的篩選函式來選取要移轉的資料列，請執行下列其中一項操作。
 
--   Exit the wizard and run the ALTER TABLE statement to enable Stretch for the table and to specify a filter function.
+-   結束精靈，然後執行 ALTER TABLE 陳述式來啟用資料表的 Stretch 以及指定函數。
 
--   Run the ALTER TABLE statement to specify a filter function after you exit the wizard. For the required steps, see [Add a filter function after running the Wizard](sql-server-stretch-database-predicate-function.md#addafterwiz).
+-   結束精靈之後，請執行 ALTER TABLE 陳述式來指定篩選函數。如需必要步驟，請參閱[在執行精靈後新增篩選函式](sql-server-stretch-database-predicate-function.md#addafterwiz)。
 
-The ALTER TABLE syntax is described later in this topic.
+本主題後面會說明 ALTER TABLE 語法。
 
-**Summary**
+**摘要**
 
-Review the values that you entered and the options that you selected in the wizard. Then select **Finish** to enable Stretch.
+檢閱您輸入的值，以及您在精靈中選取的選項。然後選取 [完成] 以啟用 Stretch。
 
-**Results**
+**結果**
 
-Review the results.
+檢閱結果。
 
-## <a name="<a-name="enabletsqltable"></a>use-transact\-sql-to-enable-stretch-database-on-a-table"></a><a name="EnableTSQLTable"></a>Use Transact\-SQL to enable Stretch Database on a table
-You can enable Stretch Database for an existing table or create a new table with Stretch Database enabled by using Transact-SQL.
+## <a name="EnableTSQLTable"></a>使用 Transact-SQL 以在資料表上啟用 Stretch Database
+您可以使用 Transact-SQL，為現有的資料表啟用 Stretch Database，或者建立新資料表並啟用 Stretch Database。
 
-### <a name="options"></a>Options
-Use the following options when you run CREATE TABLE or ALTER TABLE to enable Stretch Database on a table.
+### 選項
+當您執行 CREATE TABLE 或 ALTER TABLE 以在資料表上啟用 Stretch Database 時，請使用下列選項。
 
--   Optionally, use the `FILTER_PREDICATE = <function>` clause to specify a function to select rows to migrate if the table contains both hot and cold data. The predicate must call an inline table\-valued function. For more info, see [Select rows to migrate by using a filter function](sql-server-stretch-database-predicate-function.md). If you don't specify a filter function, the entire table is migrated.
+-   (選擇性) 如果資料表同時包含熱資料和冷資料，請使用 `FILTER_PREDICATE = <function>` 子句來指定函式以選取要移轉的資料列。述詞必須呼叫嵌入資料表值函式。如需詳細資訊，請參閱[使用篩選函式來選取要移轉的資料列](sql-server-stretch-database-predicate-function.md)。如果您未指定篩選函數，便會移轉整個資料表。
 
-    >   [AZURE.NOTE] If you provide a filter function that performs poorly, data migration also performs poorly. Stretch Database applies the filter function to the table by using the CROSS APPLY operator.
+    >   [AZURE.NOTE] 如果您提供執行不良的篩選函數，則資料移轉也會執行不良。Stretch Database 使用 CROSS APPLY 運算子，將篩選函數套用至資料表。
 
--   Specify `MIGRATION_STATE = OUTBOUND` to start data migration immediately or  `MIGRATION_STATE = PAUSED` to postpone the start of data migration.
+-   指定 `MIGRATION_STATE = OUTBOUND` 以立即開始資料移轉，或指定 `MIGRATION_STATE = PAUSED` 以延後資料移轉的開始時間。
 
-### <a name="enable-stretch-database-for-an-existing-table"></a>Enable Stretch Database for an existing table
-To configure an existing table for Stretch Database, run the ALTER TABLE command.
+### 為現有的資料表啟用 Stretch Database
+若要針對 Stretch Database 設定現有的資料表，請執行 ALTER TABLE 命令。
 
-Here's an example that migrates the entire table and begins data migration immediately.
+以下是移轉整個資料表並立即開始資料移轉的範例。
 
 ```tsql
 USE <Stretch-enabled database name>;
@@ -86,7 +85,7 @@ ALTER TABLE <table name>
     SET ( REMOTE_DATA_ARCHIVE = ON ( MIGRATION_STATE = OUTBOUND ) ) ;  
 GO
 ```
-Here's an example that migrates only the rows identified by the `dbo.fn_stretchpredicate` inline table\-valued function and postpones data migration. For more info about the filter function, see [Select rows to migrate by using a filter function](sql-server-stretch-database-predicate-function.md).
+以下範例只會移轉 `dbo.fn_stretchpredicate` 內嵌資料表值函式所識別的資料列，並且會延後資料移轉。如需有關篩選函式的詳細資訊，請參閱[使用篩選函式來選取要移轉的資料列](sql-server-stretch-database-predicate-function.md)。
 
 ```tsql
 USE <Stretch-enabled database name>;
@@ -98,12 +97,12 @@ ALTER TABLE <table name>
  GO
 ```
 
-For more info, see [ALTER TABLE (Transact-SQL)](https://msdn.microsoft.com/library/ms190273.aspx).
+如需詳細資訊，請參閱 [ALTER TABLE (Transact-SQL)](https://msdn.microsoft.com/library/ms190273.aspx)。
 
-### <a name="create-a-new-table-with-stretch-database-enabled"></a>Create a new table with Stretch Database enabled
-To create a new table with Stretch Database enabled, run the CREATE TABLE command.
+### 建立新資料表並啟用 Stretch Database
+若要建立新資料表並啟用 Stretch Database，請執行 CREATE TABLE 命令。
 
-Here's an example that migrates the entire table and begins data migration immediately.
+以下是移轉整個資料表並立即開始資料移轉的範例。
 
 ```tsql
 USE <Stretch-enabled database name>;
@@ -114,7 +113,7 @@ CREATE TABLE <table name>
 GO
 ```
 
-Here's an example that migrates only the rows identified by the `dbo.fn_stretchpredicate` inline table\-valued function and postpones data migration. For more info about the filter function, see [Select rows to migrate by using a filter function](sql-server-stretch-database-predicate-function.md).
+以下範例只會移轉 `dbo.fn_stretchpredicate` 內嵌資料表值函式所識別的資料列，並且會延後資料移轉。如需有關篩選函式的詳細資訊，請參閱[使用篩選函式來選取要移轉的資料列](sql-server-stretch-database-predicate-function.md)。
 
 ```tsql
 USE <Stretch-enabled database name>;
@@ -127,17 +126,13 @@ CREATE TABLE <table name>
 GO  
 ```
 
-For more info, see [CREATE TABLE (Transact-SQL)](https://msdn.microsoft.com/library/ms174979.aspx).
+如需詳細資訊，請參閱 [CREATE TABLE (Transact-SQL)](https://msdn.microsoft.com/library/ms174979.aspx)。
 
 
-## <a name="see-also"></a>See also
+## 另請參閱
 
-[ALTER TABLE (Transact-SQL)](https://msdn.microsoft.com/library/ms190273.aspx)
+[ALTER TABLE (TRANSACT-SQL)](https://msdn.microsoft.com/library/ms190273.aspx)
 
 [CREATE TABLE (Transact-SQL)](https://msdn.microsoft.com/library/ms174979.aspx)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

@@ -1,6 +1,6 @@
 <properties
- pageTitle="Predictive maintenance walkthrough | Microsoft Azure"
- description="A walkthrough of the Azure IoT predictive maintenance preconfigured solution."
+ pageTitle="預測性維護逐步解說 |Microsoft Azure"
+ description="預先設定之 Azure IoT 預測性維護解決方案的逐步解說。"
  services=""
  suite="iot-suite"
  documentationCenter=""
@@ -17,105 +17,104 @@
  ms.date="08/17/2016"
  ms.author="araguila"/>
 
+# 預先設定的預測性維護解決方案逐步解說
 
-# <a name="predictive-maintenance-preconfigured-solution-walkthrough"></a>Predictive maintenance preconfigured solution walkthrough
+## 簡介
 
-## <a name="introduction"></a>Introduction
+IoT Suite 預先設定的預測性維護解決方案是一個端對端解決方案，適用於可預測可能發生失敗時間點的商務案例。您可以針對最佳化維護等活動，主動使用此預先設定的解決方案。解決方案結合了主要的 Azure IoT 套件服務，包括 [Azure Machine Learning][lnk_machine_learning] 工作區。此工作區包含以公開的範例資料集為基礎的實驗，用來預測飛機引擎的剩餘使用年限 (RUL)。此解決方案完整提供 IoT 商務案例的實作做為起點，讓您規劃和實作能滿足特定商務需求的解決方案。
 
-The IoT Suite predictive maintenance preconfigured solution is an end-to-end solution for a business scenario that predicts the point when failure is likely to occur. You can use this preconfigured solution proactively for activities such as optimizing maintenance. The solution combines key Azure IoT Suite services, including an [Azure Machine Learning][lnk_machine_learning] workspace. This workspace contains experiments, based on a public sample data set, to predict the Remaining Useful Life (RUL) of an aircraft engine. The solution fully implements the IoT business scenario as a starting point for you to plan and implement a solution that meets your own specific business requirements.
+## 邏輯架構
 
-## <a name="logical-architecture"></a>Logical architecture
-
-The following diagram outlines the logical components of the preconfigured solution:
+下圖概述預先設定解決方案的邏輯元件：
 
 ![][img-architecture]
 
-The blue items are Azure services that are provisioned in the location you select when you provision the preconfigured solution. You can provision the preconfigured solution in either the East US, North Europe, or East Asia region.
+藍色項目是您在佈建預先設定的解決方案時選取的位置中佈建的 Azure 服務。您可以在美國東部、北歐或東亞區域中佈建預先設定的解決方案。
 
-Some resources are not available in the regions where you provision the preconfigured solution. The orange items in the diagram represent the Azure services provisioned in the closest available region (South Central US, Europe West, or SouthEast Asia) given the selected region.
+某些資源不適用於您佈建預先設定之解決方案的區域。圖表中的橘色項目代表在最接近的可用區域 (中南美洲、西歐或東南亞) 中佈建的 Azure 服務。
 
-The green item is a simulated device that represents an aircraft engine. You can learn more about these simulated devices in the following section.
+綠色項目是表示飛機引擎的模擬裝置。您可以在下一節中進一步了解這些模擬裝置。
 
-The gray items represent components that implement *device administration* capabilities. The current release of the predictive maintenance preconfigured solution does not provision these resources. To learn more about device administration, refer to the [remote monitoring pre-configured solution][lnk-remote-monitoring].
+灰色項目代表實作裝置管理功能的元件。目前預先設定的預測性維護解決方案版本不會佈建這些資源。若要深入了解裝置管理，請參閱[遠端監視預先設定的解決方案][lnk-remote-monitoring]。
 
-## <a name="simulated-devices"></a>Simulated devices
+## 模擬的裝置
 
-In the preconfigured solution, a simulated device represents an aircraft engine. The solution is provisioned with two engines that map to a single aircraft. Each engine emits four types of telemetry: Sensor 9, Sensor 11, Sensor 14, and Sensor 15 provide the data necessary for the Machine Learning model to calculate the Remaining Useful Life (RUL) for the engine. Each simulated device sends the following telemetry messages to IoT Hub:
+在預先設定的解決方案中，模擬裝置代表飛機引擎。此解決方案已佈建兩個對應至單一飛機的引擎。每個引擎會發出四種類型的遙測：感應器 9、感應器 11、感應器 14 和感應器 15 會提供機器學習服務模型計算該引擎的剩餘使用年限 (RUL) 所需的資料。每個模擬的裝置會將下列遙測訊息傳送至 IoT 中樞：
 
-*Cycle count*. A cycle represents a completed flight of variable length between 2-10 hours in which telemetry data is captured every half hour during the flight.
+*週期計數*。一個週期表示 2 至 10 小時不等的已完成飛行，而在飛行時間內會每半小時擷取一次遙測資料。
 
-*Telemetry*. There are four sensors that represent engine attributes. The sensors are generically labeled Sensor 9, Sensor 11, Sensor 14, and Sensor 15. These 4 sensors represent telemetry sufficient to get useful results from the Machine Learning model for RUL. This model is created from a public data set that includes real engine sensor data. For more information on how the model was created from the original data set, see the [Cortana Intelligence Gallery Predictive Maintenance Template][lnk-cortana-analytics].
+*遙測*。有四個代表引擎屬性的感應器。這些感應器會一般會標示為感應器 9、感應器 11、感應器 14 和感應器 15。這 4 個感應器代表足以從 RUL 的機器學習服務模型取得有用結果的遙測。此模型是根據包含實際引擎感應器資料的公用資料集建立而來。如需有關如何從原始資料集建立模型的詳細資訊，請參閱 [Cortana Intelligence Gallery 預測性維護範本][lnk-cortana-analytics]。
 
-The simulated devices can handle the following commands sent from an IoT hub:
+模擬的裝置可以處理從 IoT 中樞傳送的下列命令：
 
-| Command | Description |
+| 命令 | 說明 |
 |---------|-------------|
-| StartTelemetry | Controls the state of the simulation.<br/>Starts the device sending telemetry     |
-| StopTelemetry  | Controls the state of the simulation.<br/>Stops the device sending telemetry |
+| StartTelemetry | 控制模擬的狀態。<br/>啟動裝置傳送遙測 |
+| StopTelemetry | 控制模擬的狀態。<br/>停止裝置傳送遙測 |
 
-IoT Hub provides device command acknowledgment.
+IoT 中樞會提供裝置命令通知。
 
-## <a name="azure-stream-analytics-job"></a>Azure Stream Analytics job
+## Azure 串流分析作業
 
-**Job: Telemetry** operates on the incoming device telemetry stream using two statements. The first selects all telemetry from the devices and sends this data to blob storage from where it is visualized in the web app. The second statement computes average sensor values over a two-minute sliding window and sends this data through the Event hub to an **event processor**.
+**工作：遙測**會使用兩個陳述式操作傳入裝置遙測串流。第一個陳述式會從裝置選取所有遙測，然後將此資料從在 Web 應用程式中視覺化的位置傳送至 Blob 儲存體。第二個陳述式會透過兩分鐘的滑動視窗計算平均感應器值，然後透過事件中樞將此資料傳送至**事件處理器**。
 
-## <a name="event-processor"></a>Event processor
+## 事件處理器
 
-The **event processor** takes the average sensor values for a completed cycle. It the passes those values to an API that exposes the Machine Learning trained model to calculate the RUL for an engine.
+**事件處理器**需要一個完整的週期來處理平均感應器值。接著將這些值傳送到 API，API 會公開機器學習服務定型模型來計算引擎的 RUL。
 
-## <a name="azure-machine-learning"></a>Azure Machine Learning
+## Azure Machine Learning
 
-For more information on how the model was created from the original data set, see the [Cortana Intelligence Gallery Predictive Maintenance Template][lnk-cortana-analytics].
+如需有關如何從原始資料集建立模型的詳細資訊，請參閱 [Cortana Intelligence Gallery 預測性維護範本][lnk-cortana-analytics]。
 
-## <a name="let's-start-walking"></a>Let's start walking
+## 讓我們開始
 
-This section walks you through the components of the solution, describes the intended use case, and provides examples.
+本章節將逐步解說解決方案的元件、說明預定的使用情況，並提供範例。
 
-### <a name="predictive-maintenance-dashboard"></a>Predictive Maintenance Dashboard
+### 預測性維護儀表板
 
-This page in the web application uses PowerBI JavaScript controls (see the [PowerBI-visuals repository][lnk-powerbi]) to visualize:
+Web 應用程式中的此頁面會使用 PowerBI JavaScript 控制項 (請參閱 [PowerBI 視覺效果儲存機制][lnk-powerbi]) 以視覺化方式呈現：
 
-- The output data from the Stream Analytics jobs in blob storage.
-- The RUL and cycle count per aircraft engine.
+- Blob 儲存體中串流分析作業的輸出資料。
+- 每個飛機引擎的 RUL 和週期計數。
 
-### <a name="observing-the-behavior-of-the-cloud-solution"></a>Observing the behavior of the cloud solution
+### 觀察雲端解決方案的行為
 
-In the Azure portal, navigate to the resource group with the solution name you chose to view your provisioned resources.
+在 Azure 入口網站中，瀏覽至具有您所選之解決方案名稱的資源群組以檢視已佈建的資源。
 
 ![][img-resource-group]
 
-When you provision the preconfigured solution, you receive an email with a link to the Machine Learning workspace. You can also navigate to the Machine Learning workspace from the [azureiotsuite.com][lnk-azureiotsuite] page for your provisioned solution when it’s in the **Ready** state.
+當您佈建預先設定的解決方案，您會收到一封電子郵件，其中包含機器學習服務工作區的連結。當已佈建的解決方案處於**就緒**狀態時，您也可以從 [azureiotsuite.com][lnk-azureiotsuite] 頁面瀏覽至 Machine Learning 工作區。
 
 ![][img-machine-learning]
 
-In the solution portal, you can see that the sample is provisioned with four simulated devices to represent two aircraft with two engines per aircraft, each with four sensors. When you first navigate to the solution portal, the simulation is stopped.
+在解決方案入口網站中，您可以看到範例已佈建四個模擬裝置，代表各有兩個引擎的兩架飛機，而每個引擎有四個感應器。當您第一次瀏覽至解決方案入口網站時，模擬便會停止。
 
 ![][img-simulation-stopped]
 
-Click **Start simulation** to begin the simulation in which you see the sensor history, RUL, Cycles, and RUL history populate the dashboard.
+按一下 [開始模擬] 即可開始模擬，而您會看到儀表板中填入感應器歷程記錄、RUL、週期和 RUL 模擬記錄。
 
 ![][img-simulation-running]
 
-When RUL is less than 160 (an arbitrary threshold chosen for demonstration purposes), the solution portal displays a warning symbol next to the RUL display and highlights the aircraft engine in yellow. Notice how the RUL values have a general downward trend overall, but tend to bounce up and down. This behavior results from the varying cycle lengths and the model accuracy.
+當 RUL 小於 160 時 (為了示範目的而選擇的任意臨界值)，解決方案入口網站會在 RUL 旁邊顯示警告符號，並將飛機引擎醒目標示成黃色。請注意 RUL 值有整體向下的趨勢，但傾向於上下波動。此行為起因於變動的週期長度和模型精確度。
 
 ![][img-simulation-warning]
 
-The full simulation takes around 35 minutes to complete 148 cycles. The 160 RUL threshold is met for the first time at around 5 minutes and both engines hit the threshold at around 8 minutes.
+完整模擬需要約 35 分鐘的時間才能完成 148 個週期。160 RUL 臨界值第一次在大約 5 分鐘的時候達到，而這兩個引擎在大約 8 分鐘的時候同時達到臨界值。
 
-The simulation runs through the complete dataset for 148 cycles and settles on final RUL and cycle values.
+模擬會徹底執行 148 個週期的完整資料集並確定最終的 RUL 和週期值。
 
-You can stop the simulation at any point, but clicking **Start Simulation** replays the simulation from the start of the dataset.
+您可以隨時停止模擬，但按一下 [開始模擬] 會從資料集的開頭重新執行模擬。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-Now you've run the predictive maintenance preconfigured solution you may want to modify it, see [Guidance on customizing preconfigured solutions][lnk-customize].
+您現在已執行預先設定的預測性維護解決方案，您可加以修改，請參閱[自訂預先設定的解決方案指引][lnk-customize]。
 
-The [IoT Suite - Under The Hood - Predictive Maintenance](http://social.technet.microsoft.com/wiki/contents/articles/33527.iot-suite-under-the-hood-predictive-maintenance.aspx) TechNet blog post provides additional detail about the predictive maintenance preconfigured solution.
+[IoT 套件 - 幕後 -預測性維護](http://social.technet.microsoft.com/wiki/contents/articles/33527.iot-suite-under-the-hood-predictive-maintenance.aspx) TechNet 部落格文章提供預先設定之預測性維護解決方案的其他詳細資料。
 
-You can also explore some of the other features and capabilities of the IoT Suite preconfigured solutions:
+您也可以瀏覽一些其他功能和預先設定的 IoT 套件解決方案的功能︰
 
-- [Frequently asked questions for IoT Suite][lnk-faq]
-- [IoT security from the ground up][lnk-security-groundup]
+- [IoT 套件的常見問題集][lnk-faq]
+- [從頭建立 IoT 安全性][lnk-security-groundup]
 
 
 [img-architecture]: media/iot-suite-predictive-walkthrough/architecture.png
@@ -134,8 +133,4 @@ You can also explore some of the other features and capabilities of the IoT Suit
 [lnk-faq]: iot-suite-faq.md
 [lnk-security-groundup]: securing-iot-ground-up.md
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

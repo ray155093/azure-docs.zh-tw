@@ -1,22 +1,22 @@
-Please ensure that you have already created a Service Bus namespace, as shown [here][namespace-how-to].
+請確定您已建立服務匯流排命名空間，如[這裡][namespace-how-to]所示。
 
-1. Log on to the [Azure portal][azure-portal].
+1. 登入 [Azure 入口網站][azure-portal]。
 
-2. In the left navigation pane of the portal, click **Service Bus**.
+2. 在入口網站的左方瀏覽窗格中，按一下 [服務匯流排]。
 
-3. Select the namespace that you would like to create the queue in. In this case, it is **nstest1**.
+3. 選取要在其中建立佇列的命名空間。在本例中是 **nstest1**。
 
-    ![Create a queue][createqueue1]
+    ![建立佇列][createqueue1]
 
-4. In the **Service Bus namespace** blade, select **Queues**, then click **Add queue**.
+4. 在 [服務匯流排命名空間] 刀鋒視窗中，選取 [佇列]，然後按一下 [新增佇列]。
 
-    ![Select Queues][createqueue2]
+    ![選取佇列][createqueue2]
 
-5. Enter the **Queue Name** and leave the other values with their defaults.
+5. 輸入 [佇列名稱] 並且讓其他值保留其預設值。
 
-    ![Select New][createqueue3]
+    ![選取新增][createqueue3]
 
-7. At the bottom of the blade, click **Create**.
+7. 按一下刀鋒視窗底部的 [建立]。
 
 [createqueue1]: ./media/service-bus-create-queue-portal/create-queue1.png
 [createqueue2]: ./media/service-bus-create-queue-portal/create-queue2.png
@@ -25,6 +25,4 @@ Please ensure that you have already created a Service Bus namespace, as shown [h
 [namespace-how-to]: ../articles/service-bus/service-bus-create-namespace-portal.md
 [azure-portal]: https://portal.azure.com
 
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

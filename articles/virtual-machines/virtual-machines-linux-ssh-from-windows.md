@@ -1,105 +1,102 @@
 <properties 
-    pageTitle="Use SSH on Windows to connect to Linux virtual machines | Microsoft Azure" 
-description="Learn how to generate and use SSH keys on a Windows computer to connect to a Linux virtual machine on Azure." 
-    services="virtual-machines-linux" 
-    documentationCenter="" 
-    authors="squillace" 
-    manager="timlt" 
-    editor=""
-    tags="azure-service-management,azure-resource-manager" />
+	pageTitle="在 Windows 上使用 SSH 來連線到 Linux 虛擬機器 | Microsoft Azure" 
+description="了解如何在 Windows 電腦上產生並使用 SSH 金鑰來連線到 Azure 上的 Linux 虛擬機器。" 
+	services="virtual-machines-linux" 
+	documentationCenter="" 
+	authors="squillace" 
+	manager="timlt" 
+	editor=""
+	tags="azure-service-management,azure-resource-manager" />
 
 <tags 
-    ms.service="virtual-machines-linux" 
-    ms.workload="infrastructure-services" 
-    ms.tgt_pltfrm="vm-linux" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="08/29/2016" 
-    ms.author="rasquill"/>
+	ms.service="virtual-machines-linux" 
+	ms.workload="infrastructure-services" 
+	ms.tgt_pltfrm="vm-linux" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="08/29/2016" 
+	ms.author="rasquill"/>
 
-
-#<a name="how-to-use-ssh-with-windows-on-azure"></a>How to Use SSH with Windows on Azure
+#如何在 Azure 上搭配 Windows 使用 SSH
 
 > [AZURE.SELECTOR]
 - [Windows](virtual-machines-linux-ssh-from-windows.md)
 - [Linux/Mac](virtual-machines-linux-mac-create-ssh-keys.md)
 
 
-This topic describes how to create and use **ssh-rsa** and **.pem** format public and private key files on Windows that you can use to connect to your Linux VMs on Azure with the **ssh** command. If you already have **.pem** files created, you can use those to create Linux VMs to which you can connect using **ssh**. Several other commands use the **SSH** protocol and key files to perform work securely, notably **scp** or [Secure Copy](https://en.wikipedia.org/wiki/Secure_copy), which can securely copy files to and from computers that support **SSH** connections. 
+本主題描述如何在 Windows 上建立和使用 **ssh-rsa** 和 **.pem** 格式的公用和私密金鑰檔案，您可以使用這些檔案，在 Azure 上以 **ssh** 命令連接至 Linux VM。如果您已經建立 **.pem** 檔案，您可以使用這些檔案來建立 Linux VM (可以使用 **ssh** 來連接)。其他數個命令使用 **SSH** 通訊協定和金鑰檔案安全地執行工作，值得注意的是 **scp** 或[安全複製](https://en.wikipedia.org/wiki/Secure_copy)，可以安全地將檔案複製到支援 **SSH** 連線的電腦，或從中複製。
 
-> [AZURE.NOTE] If you have a few moments, please help us to improve the Azure Linux VM documentation by taking this [quick survey](https://aka.ms/linuxdocsurvey) of your experiences. Every answer helps us help you get your work done.
+> [AZURE.NOTE] 若能耽擱您一些時間，請透過回答這個針對您經驗的[簡短問卷](https://aka.ms/linuxdocsurvey)，來協助我們改善 Azure Linux VM 文件。每個答案都有助於我們協助您完成工作。
 
-## <a name="what-ssh-and-key-creation-programs-do-you-need?"></a>What SSH and key-creation programs do you need?
+## 您需要哪些 SSH 和金鑰建立程式？
 
-**SSH** &#8212; or [secure shell](https://en.wikipedia.org/wiki/Secure_Shell) &#8212; is an encrypted connection protocol that allows secure logins over unsecured connections. It is the default connection protocol for Linux VMs hosted in Azure unless you configure your Linux VMs to enable some other connection mechanism. Windows users can also connect to and manage Linux VMs in Azure using an **ssh** client implementation, but Windows computers do not typically come with an **ssh** client, so you will need to choose one. 
+**SSH** &#8212; 或 [安全殼層](https://en.wikipedia.org/wiki/Secure_Shell) &#8212; 是允許透過不安全的連接安全登入的加密連接通訊協定。它是適用於 Azure 中裝載的 Linux VM 的預設連接通訊協定，除非您設定您的 Linux VM 以啟用其他連接機制。Windows 使用者也可以使用 **ssh** 用戶端實作，連接及管理在 Azure 中的 Linux VM，但是 Windows 電腦通常並未隨附 **ssh** 用戶端，因此您必須選擇一個。
 
-Common clients you can install include:
+您可以安裝的一般用戶端包括：
 
 - [puTTY and puTTYgen](http://www.chiark.greenend.org.uk/~sgtatham/putty/)
 - [MobaXterm](http://mobaxterm.mobatek.net/)
 - [Cygwin](https://cygwin.com/)
-- [Git For Windows](https://git-for-windows.github.io/), which comes with the environment and tools
+- [Git For Windows](https://git-for-windows.github.io/)，隨附於環境和工具
 
-If you're feeling especially geeky, you can also try out the [new port of the **OpenSSH** toolset to Windows](http://blogs.msdn.com/b/powershell/archive/2015/10/19/openssh-for-windows-update.aspx). Be aware, however, that this is code that is currently in development, and you should review the codebase before you use it for production systems.
+如果您覺得非常奇怪，您也可以嘗試 [**OpenSSH** 工具組至 Windows 的新連接埠](http://blogs.msdn.com/b/powershell/archive/2015/10/19/openssh-for-windows-update.aspx)。但是請注意，這是目前正在開發中的程式碼，您應該在用於實際執行系統之前檢閱程式碼基底。
 
 > [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
-## <a name="which-key-files-do-you-need-to-create?"></a>Which key files do you need to create?
+## 您需要建立哪些金鑰檔案？
 
-A basic SSH setup for Azure includes an **ssh-rsa** public and private key pair of 2048 bits (by default, **ssh-keygen** stores these files as **~/.ssh/id_rsa** and **~/.ssh/id-rsa.pub** unless you change the defaults) as well as a `.pem` file generated from the **id_rsa** private key file for use with the classic deployment model of the classic portal. 
+Azure 的基本 SSH 安裝程式包含 2048 位元的 **ssh-rsa** 公用和私密金鑰組 (根據預設，**ssh-keygen** 會將這些檔案儲存為 **~/.ssh/id\_rsa** 和 **~/.ssh/id-rsa.pub**，除非變更預設值) 以及從 **id\_rsa** 私密金鑰檔案產生的 `.pem` 檔案，以搭配傳統入口網站的傳統部署模型使用。
 
-Here are the deployment scenarios, and the types of files you use in each:
+以下是部署案例，以及您在每個案例中使用的檔案類型：
 
-1. **ssh-rsa** keys are required for any deployment using the [Azure portal](https://portal.azure.com), regardless of the deployment model.
-2. .pem file are required to create VMs using the [classic portal](https://manage.windowsazure.com). .pem files are also supported in classic deployments that use the [Azure CLI](../xplat-cli-install.md).
+1. 無論部署模型為何，任何使用 [Azure 入口網站](https://portal.azure.com)的部署都需要 **ssh-rsa** 金鑰。
+2. 需要 .pem 檔案才能使用[傳統入口網站](https://manage.windowsazure.com)來建立 VM。使用 [Azure CLI](../xplat-cli-install.md) 的傳統部署也支援 .pem 檔案。
 
-> [AZURE.NOTE] If you plan to manage service deployed with the classic deployment model, you may also want to create a **.cer** format file to upload to the portal -- although this doesn't involve **ssh** or connecting to Linux VMS, which is the subject of this article. To create those files on Windows, type:
-<br />
-openssl.exe x509 -outform der -in myCert.pem -out myCert.cer
+> [AZURE.NOTE] 如果您打算管理使用傳統部署模型部署的服務，您可能也想要建立 **.cer** 格式檔案以上傳至入口網站 - 雖然這不牽涉到 **ssh** 或連接到 Linux VM，這是本文的主題。若要在 Windows 上建立這些檔案，請輸入：<br /> openssl.exe x509 -outform der -in myCert.pem -out myCert.cer
 
-## <a name="get-ssh-keygen-and-openssl-on-windows"></a>Get ssh-keygen and openssl on Windows ##
+## 取得 Windows 相關的 ssh-keygen 和 openssl ##
 
-[This section](#What-SSH-and-key-creation-programs-do-you-need) above listed several utilities that include an `ssh-keygen` and `openssl` for Windows. A couple of examples are listed below:
+[本節](#What-SSH-and-key-creation-programs-do-you-need)上方列出數個公用程式，它們包含適用於 Windows 的 `ssh-keygen` 和 `openssl`。以下列出一些範例：
 
-###<a name="use-git-for-windows###"></a>Use Git for Windows###
+###使用 Git for Windows###
 
-1.  Download and install Git for Windows from the following location: [https://git-for-windows.github.io/](https://git-for-windows.github.io/)
-2.  Run Git Bash from the Start Menu > All Apps > Git Shell
+1.	從下列位置下載並安裝 Git for Windows：[https://git-for-windows.github.io/](https://git-for-windows.github.io/)
+2.	從 [開始] 功能表 > [所有應用程式] > [Git Shell] 執行 Git Bash
 
-> [AZURE.NOTE] You may encounter the following error when running the `openssl` commands above:
+> [AZURE.NOTE] 當您執行上述的 `openssl` 命令時，可能會遇到下列錯誤：
 
         Unable to load config info from /usr/local/ssl/openssl.cnf
 
-The easiest way to resolve this is to set the `OPENSSL_CONF` environment variable. The process for setting this variable will vary depending on the shell that you have configured in Github:
+解決此問題最簡單的方法是設定 `OPENSSL_CONF` 環境變數。設定這個變數的程序會因您已在 Github 中設定的殼層而有所不同：
 
-**Powershell:**
+**Powershell：**
 
         $Env:OPENSSL_CONF="$Env:GITHUB_GIT\ssl\openssl.cnf"
 
-**CMD:**
+**CMD：**
 
         set OPENSSL_CONF=%GITHUB_GIT%\ssl\openssl.cnf
 
-**Git Bash:**
+**Git Bash：**
 
         export OPENSSL_CONF=$GITHUB_GIT/ssl/openssl.cnf
-    
+	
 
-###<a name="use-cygwin###"></a>Use Cygwin###
+###使用 Cygwin###
 
-1.  Download and install Cygwin from the following location: [http://cygwin.com/](http://cygwin.com/)
-2.  Ensure that the OpenSSL package and all of its dependencies are installed.
-3.  Run `cygwin`
+1.	從下列位置下載並安裝 Cygwin：[http://cygwin.com/](http://cygwin.com/)
+2.	確定已安裝 OpenSSL 封裝及其所有的相依性。
+3.	執行 `cygwin`
 
-## <a name="create-a-private-key##"></a>Create a Private Key##
+## 建立私密金鑰##
 
-1.  Follow one of the set of instructions above to be able to run `openssl.exe`
-2.  Type in the following command:
+1.	遵循以上的其中一組指示，以便執行 `openssl.exe`
+2.	輸入以下命令：
 
   ```
   openssl.exe req -x509 -nodes -days 365 -newkey rsa:2048 -keyout myPrivateKey.key -out myCert.pem
   ```
-3.  Your screen should look like the following:
+3.	畫面應該如下所示：
 
   ```
   $ openssl.exe req -x509 -nodes -days 365 -newkey rsa:2048 -keyout myPrivateKey.key -out myCert.pem
@@ -118,61 +115,57 @@ The easiest way to resolve this is to set the `OPENSSL_CONF` environment variabl
   Country Name (2 letter code) [AU]:
   ```
 
-4.  Answer the questions that are asked.
-5.  It would have created two files: `myPrivateKey.key` and `myCert.pem`.
-6.  If you are going to use the API directly, and not use the Management Portal, convert the `myCert.pem` to `myCert.cer` (DER encoded X509 certificate) using the following command:
+4.	回答提出的問題。
+5.	它會建立兩個檔案：`myPrivateKey.key` 和 `myCert.pem`。
+6.	如果您將直接使用 API，而不使用管理入口網站，請使用下列命令，將 `myCert.pem` 轉換為 `myCert.cer` (DER 編碼的 X509 憑證)：
 
   ```
   openssl.exe  x509 -outform der -in myCert.pem -out myCert.cer
   ```
 
-## <a name="create-a-ppk-for-putty"></a>Create a PPK for Putty ##
+## 建立 Putty 的 PPK ##
 
-1. Download and install Puttygen from the following location: [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
+1. 從下列位置下載並安裝 Puttygen： [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
 
-2. Puttygen may not be able to read the private key that was created earlier (`myPrivateKey.key`). Run the following command to translate it into an RSA private key that Puttygen can understand:
+2. Puttygen 可能無法讀取稍早建立的私密金鑰 (`myPrivateKey.key`)。執行下列命令以將它轉譯成 Puttygen 可認得的 RSA 私密金鑰：
 
-        # openssl rsa -in ./myPrivateKey.key -out myPrivateKey_rsa
-        # chmod 600 ./myPrivateKey_rsa
+		# openssl rsa -in ./myPrivateKey.key -out myPrivateKey_rsa
+		# chmod 600 ./myPrivateKey_rsa
 
-    The command above should produce a new private key called myPrivateKey_rsa.
+	上述命令應會產生一個名為 myPrivateKey\_rsa 的新私密金鑰。
 
-3. Run `puttygen.exe`
+3. 執行 `puttygen.exe`
 
-4. Click the menu: File > Load a Private Key
+4. 按一下功能表：[檔案] > [載入私密金鑰]
 
-5. Find your private key, which we named `myPrivateKey_rsa` above. You will need to change the file filter to show **All Files (\*.\*)**
+5. 找出您的私密金鑰，也就是上述命名為 `myPrivateKey_rsa` 的金鑰。您將需要變更檔案篩選，顯示**所有檔案 (*.*)**
 
-6. Click **Open**. You will receive a prompt which should look like this:
+6. 按一下 [開啟]。您將看見提示，看起來如下所示：
 
-    ![linuxgoodforeignkey](./media/virtual-machines-linux-ssh-from-windows/linuxgoodforeignkey.png)
+	![linuxgoodforeignkey](./media/virtual-machines-linux-ssh-from-windows/linuxgoodforeignkey.png)
 
-7. Click **OK**
+7. 按一下 [確定]。
 
-8. Click **Save Private Key**, which is highlighted in the screenshot below:
+8. 按一下以下螢幕擷取畫面強調顯示的 [Save Private Key]：
 
-    ![linuxputtyprivatekey](./media/virtual-machines-linux-ssh-from-windows/linuxputtygenprivatekey.png)
+	![linuxputtyprivatekey](./media/virtual-machines-linux-ssh-from-windows/linuxputtygenprivatekey.png)
 
-9. Save the file as a PPK
+9. 將檔案儲存為 PPK。
 
 
-## <a name="use-putty-to-connect-to-a-linux-machine"></a>Use Putty to Connect to a Linux Machine ##
+## 使用 Putty 連線到 Linux 機器 ##
 
-1.  Download and install putty from the following location: [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
-2.  Run putty.exe
-3.  Fill in the host name using the IP from the Management Portal:
+1.	從下列位置下載並安裝 putty： [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
+2.	執行 putty.exe
+3.	使用管理入口網站的 IP 來填入主機名稱：
 
-    ![linuxputtyconfig](./media/virtual-machines-linux-ssh-from-windows/linuxputtyconfig.png)
+	![linuxputtyconfig](./media/virtual-machines-linux-ssh-from-windows/linuxputtyconfig.png)
 
-4.  Before selecting **Open**, click the Connection > SSH > Auth tab to choose your private key. See the screenshot below for the field to fill in:
+4.	選取 [Open] 之前，請按一下 [Connection] > [SSH] > [Auth] 索引標籤來選擇您的私密金鑰。請參閱以下螢幕擷取畫面，以了解要填入的欄位：
 
-    ![linuxputtyprivatekey](./media/virtual-machines-linux-ssh-from-windows/linuxputtyprivatekey.png)
+	![linuxputtyprivatekey](./media/virtual-machines-linux-ssh-from-windows/linuxputtyprivatekey.png)
 
-5.  Click **Open** to connect to your virtual machine
+5.	按一下 [開啟] 以連線到虛擬機器。
  
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

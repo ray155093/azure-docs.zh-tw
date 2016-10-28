@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Configure Azure Diagnostics to send data to Application Insights | Microsoft Azure"
-   description="Update the Azure Diagnostics public configuration to send data to Application Insights."
+   pageTitle="設定 Azure 診斷以將資料傳送至 Application Insights | Microsoft Azure"
+   description="更新 Azure 診斷公用組態以傳送資料至 Application Insights。"
    services="multiple"
    documentationCenter=".net"
    authors="sbtron"
@@ -15,19 +15,17 @@
    ms.date="12/15/2015"
    ms.author="saurabh" />
 
+# 設定 Azure 診斷以將資料傳送至 Application Insights
 
-# <a name="configure-azure-diagnostics-to-send-data-to-application-insights"></a>Configure Azure Diagnostics to send data to Application Insights
+Azure 診斷會將資料儲存至 Azure 儲存體資料表。不過，您也可以在使用 Azure 診斷擴充 1.5 或更新版本時，藉由在組態中設定「接收器」和「通道」，將全部資料或資料的子集管線處理到 Application Insights。
 
-Azure diagnostics stores data to Azure Storage tables.  However, you can also pipe all or a subset of the data to Application Insights by configuring “sinks” and “channels” in your configuration when using Azure Diagnostics extension 1.5 or later.
+這篇文章說明如何為 Azure 診斷擴充建立公用組態，以便將組態設定為傳送資料至 Application Insights。
 
-This article describes how to create the public configuration for the Azure Diagnostics extension so that its configured to send data to Application Insights.
+## 將 Application Insights 設定為接收器
 
-## <a name="configuring-application-insights-as-a-sink"></a>Configuring Application Insights as a Sink
+Azure 診斷擴充 1.5 在公用組態中推出 **<SinksConfig>** 元素。這會定義可以傳送 Azure 診斷資料的其他*接收器*位置。您可以指定 Application Insights 資源的詳細資料，要在其中隨著此 **<SinksConfig>** 傳送 Azure 診斷資料。**SinksConfig** 的範例看起來像這樣 -
 
-The Azure diagnostics extension 1.5 introduces the **<SinksConfig>** element in the public configuration. This defines the additional *sink* where the Azure diagnostics data can be sent. You can specify the details of the Application Insights resource where you want to send the Azure diagnostics data as part of this **<SinksConfig>**.
-An example **SinksConfig** looks like this -  
-
-    <SinksConfig>
+	<SinksConfig>
         <Sink name="ApplicationInsights">
           <ApplicationInsights>{Insert InstrumentationKey}</ApplicationInsights>
           <Channels>
@@ -37,38 +35,35 @@ An example **SinksConfig** looks like this -
         </Sink>
       </SinksConfig>
 
-For the **Sink** element the *name* attribute specifies a string value that will be used to uniquely refer to the sink.
-The **ApplicationInsights** element specifies instrumentation key of the Application insights resource where the Azure diagnostics data will be sent. If you don't have an existing Application Insights resource, see [Create a new Application Insights resource](./application-insights/app-insights-create-new-resource.md) for more information on creating a resource and getting the instrumentation key.
+針對 **Sink** 元素，*name* 屬性指定將用來唯一參考接收器的字串值。**ApplicationInsights** 元素指定 Application Insights 資源的檢測金鑰，在其中將會傳送 Azure 診斷資料。如果您沒有現有的 Application Insights 資源，請參閱[建立新的 Application Insights 資源](./application-insights/app-insights-create-new-resource.md)，以取得建立資源及取得檢測金鑰的詳細資訊。
 
-If you are developing a Cloud Service project with Azure SDK 2.8 this instrumentation key is automatically populated in the public configuration based on the **APPINSIGHTS_INSTRUMENTATIONKEY** service configuration setting when packaging the cloud service project. See [Use Application Insights with Azure Diagnostics to troubleshoot Cloud Service issues](./cloud-services/cloud-services-dotnet-diagnostics-applicationinsights.md).
+如果您正在開發使用 Azure SDK 2.8 的雲端服務專案，封裝雲端服務專案時將會根據 **APPINSIGHTS\_INSTRUMENTATIONKEY** 服務組態設定，在公用組態中自動填入此檢測金鑰。請參閱[使用 Application Insights 搭配 Azure 診斷疑難排解雲端服務問題](./cloud-services/cloud-services-dotnet-diagnostics-applicationinsights.md)。
 
-The **Channels** element lets you define one or more **Channel** elements for the data that will be sent to the sink. The channel acts like a filter and allows you to select specific log levels that you would want to send to the sink. For example you could collect verbose logs and send them to storage but you could choose to define a channel with a log level of Error and when you send logs through that channel only error logs will be sent to that sink.
-For a **Channel** the *name* attribute is used to uniquely refer to that channel.
-The *loglevel* attribute lets you specify the log level that the channel will allow. The available log levels in order of most least information are
- - Verbose
- - Information
- - Warning
- - Error
- - Critical
+**Channels** 元素可讓您針對將傳送到接收器的資料，定義一或多個 **Channels** 元素。通道可用作篩選器，並可讓您選取想要傳送給接收器的特定記錄層級。比方說，您可以收集詳細資訊記錄檔並將它們傳送至儲存體，但您可以選擇定義具有「錯誤」的記錄層級，並且當您透過該通道傳送記錄檔時，只會傳送錯誤記錄檔到該接收器。針對 **Channel**，*name* 屬性用來唯一參考該通道。*loglevel* 屬性可讓您指定通道將允許的記錄層級。最小資訊的依序可用記錄層級
+ - 詳細資訊
+ - 資訊
+ - 警告
+ - 錯誤
+ - 重要
 
-## <a name="send-data-to-the-application-insights-sink"></a>Send data to the Application Insights sink
-Once the Application Insights sink has been defined you can send data to that sink by adding the *sink* attribute to the elements under the **DiagnosticMonitorConfiguration** node. Adding the *sinks* element to each node specifies that you want data collected from that node and any node under it to be sent to the sink specified.
+## 將資料傳送至 Application Insights 接收器
+定義 Application Insights 接收器之後，您可以藉由加入 *sink* 屬性到 **DiagnosticMonitorConfiguration** 節點下的元素來傳送資料到該接收器。加入 *sinks* 元素到每個節點會指定您想要從該節點及其下的任何節點收集資料，並傳送到指定的接收器。
 
-For example, if you want to send all the data that is being collected by Azure diagnostics then you can add the *sink* attribute directly to the **DiagnosticMonitorConfiguration** node. Set the value of the *sinks* to the Sink name that was specified in the **SinkConfig**.
+例如，如果您想要傳送 Azure 診斷所要收集的所有資料，您可以將 *sink* 屬性直接加入 **DiagnosticMonitorConfiguration** 節點。將 *sinks* 的值設定為 **SinkConfig** 中所指定的接收器名稱。
 
-    <DiagnosticMonitorConfiguration overallQuotaInMB="4096" sinks="ApplicationInsights">
+	<DiagnosticMonitorConfiguration overallQuotaInMB="4096" sinks="ApplicationInsights">
 
-If you wanted to send only error logs to the Application Insights sink then you can set the *sinks* value to be the Sink name followed by the channel name separated by a period ("."). For example to send only error logs to the Application Insights sink use the MyTopDiagdata channel which was defined in the SinksConfig above.  
+如果只想要傳送錯誤記錄檔到 Application Insights 接收器，則可以將 *sinks* 的值設定為接收器名稱後面加上通道名稱，以句點隔開 (".")。例如，若只要將錯誤記錄檔傳送至 Application Insights 接收器，請使用上述 SinksConfig 中定義的 MyTopDiagdata 通道。
 
-    <DiagnosticMonitorConfiguration overallQuotaInMB="4096" sinks="ApplicationInsights.MyTopDiagdata">
+	<DiagnosticMonitorConfiguration overallQuotaInMB="4096" sinks="ApplicationInsights.MyTopDiagdata">
 
-If you only wanted to send Verbose application logs to Application Insights then you would add the *sinks* attribute to the **Logs** node.
+如果只想要傳送「詳細資訊」應用程式記錄檔至 Application Insights，則會加入 *sinks* 屬性至 **Logs** 節點。
 
-    <Logs scheduledTransferPeriod="PT1M" scheduledTransferLogLevelFilter="Verbose" sinks="ApplicationInsights.MyLogData"/>
+	<Logs scheduledTransferPeriod="PT1M" scheduledTransferLogLevelFilter="Verbose" sinks="ApplicationInsights.MyLogData"/>
 
-You can also include multiple sinks in the configuration at different levels in the hierarchy. In that case the sink specified at the top level of the hierarchy acts as a global setting and the one specified at the individual element element acts like an override to that global setting.    
+您也可以在階層的不同層級的組態中包含多個接收器。在此情況下，在階層最上層指定的接收器會做為全域設定，而在個別元素指定的接收器則做為該全域設定的覆寫。
 
-Here is a complete example of the public configuration file that sends all errors to Application Insights (specified at the **DiagnosticMonitorConfiguration** node) and in addition Verbose level logs for the Application Logs (specified at the **Logs** node).
+以下的公用組態檔完整範例會將所有錯誤傳送至 Application Insights (在 **DiagnosticMonitorConfiguration** 節點指定)，此外還有應用程式記錄檔的「詳細資訊」層級記錄 (在**記錄**節點指定)。
 
     <WadCfg>
       <DiagnosticMonitorConfiguration overallQuotaInMB="4096"
@@ -97,22 +92,18 @@ Here is a complete example of the public configuration file that sends all error
       </SinksConfig>
     </WadCfg>
 
-![Diagnostics Public Configuration](./media/azure-diagnostics-configure-applicationinsights/diagnostics-publicconfig.png)
+![診斷公用組態](./media/azure-diagnostics-configure-applicationinsights/diagnostics-publicconfig.png)
 
-There are some limitations to be aware of with this functionality
+對於這項功能有一些要注意的限制
 
-- Channels are only meant to work with log type and not performance counters. If you specify a channel with a performance counter element it will be ignored.
-- The log level for a channel cannot exceed the log level for what is being collected by Azure diagnostics. For example: you cannot collect Application Log errors in the Logs element and try to send Verbose logs to the Application Insight sink. The *scheduledTransferLogLevelFilter* attribute must always collect equal or more logs than the logs you are trying to send to a sink.
-- You cannot send any blob data collected by Azure diagnostics extension to Application Insights. For example anything specified under the *Directories* node. For Crash Dumps the actual crash dump will still be sent to blob storage and only a notification that the crash dump was generated will be sent to Application Insights.
-
-
-## <a name="next-steps"></a>Next Steps
-
-- Use [PowerShell](./cloud-services/cloud-services-diagnostics-powershell.md) to enable the Azure diagnostics extension for your application. 
-- Use [Visual Studio](vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines.md) to enable the Azure diagnostics extension for your application
+- 通道只是為了配合記錄類型 (而不是效能計數器) 使用。如果您對效能計數器元素指定通道，將會忽略它。
+- 通道的記錄層級不能超過 Azure 診斷所要收集的記錄層級。例如：您不能在「記錄」元素中收集「應用程式記錄」錯誤，並且嘗試傳送「詳細資訊」記錄至 Application Insight 接收器。*ScheduledTransferLogLevelFilter* 屬性一律必須收集與您正嘗試傳送到接收器的記錄相等或更多個記錄。
+- 您無法將 Azure 診斷擴充收集的任何 blob 資料傳送至 Application Insights。例如，*目錄*節點下指定的任何項目。針對損毀傾印，實際損毀傾印將仍可傳送至 blob 儲存體，並只會將損毀傾印所產生的通知傳送至 Application Insights。
 
 
+## 後續步驟
 
-<!--HONumber=Oct16_HO2-->
+- 使用 [PowerShell](./cloud-services/cloud-services-diagnostics-powershell.md) 來為您的應用程式啟用 Azure 診斷擴充。 
+- 使用 [Visual Studio](vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines.md) 來為您的應用程式啟用 Azure 診斷擴充
 
-
+<!---HONumber=AcomDC_0413_2016-->

@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="Managing Azure resources with Cloud Explorer | Microsoft Azure"
-   description="Learn how to use Cloud Explorer to browse and manage Azure resources within Visual Studio."
+   pageTitle="使用雲端總管管理 Azure 資源 | Microsoft Azure"
+   description="了解如何在 Visual Studio 內使用 [雲端總管] 瀏覽和管理 Azure 資源。"
    services="visual-studio-online"
    documentationCenter="na"
    authors="TomArcher"
@@ -15,90 +15,84 @@
    ms.date="08/15/2016"
    ms.author="tarcher" />
 
+# 使用雲端總管管理 Azure 資源
 
-# <a name="managing-azure-resources-with-cloud-explorer"></a>Managing Azure resources with Cloud Explorer
+##Overview
 
-##<a name="overview"></a>Overview
+[雲端總管] 是為了讓您更輕鬆快速地在 Visual Studio IDE 內瀏覽和管理 Azure 資源。比方說，它可讓您在 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)或瀏覽器中開啟 Web 應用程式，或將偵錯工具附加給它，或者，您可以檢視 blob 容器的屬性並在 [Blob 容器編輯器] 中開啟它。
 
-Cloud Explorer is designed to let you more easily and quickly browse and manage your Azure resources within the Visual Studio IDE. You can, for example, use it to open a Web app in the [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040) or in a browser, or attach a debugger to it, or you can view the properties of a blob container and open it in the Blob Container Editor.
+[雲端總管] 以 Azure Resource Manager 堆疊為基礎，就像 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。它了解 Azure 資源群組等資源及邏輯應用程式和 API 應用程式等 Azure 服務，且支援[角色型存取控制](./active-directory/role-based-access-control-configure.md) (RBAC)。若要查看已加入或變更的 Azure 資源，請選擇 [雲端總管] 工具列的 [重新整理] 按鈕。
 
-Cloud Explorer is built on the Azure resource manager stack, just like the [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040). It understands resources such as Azure resource groups and Azure services such as Logic apps and API apps, and it supports [role-based access control](./active-directory/role-based-access-control-configure.md) (RBAC). To see Azure resources that have been added or changed, choose the **Refresh** button on the Cloud Explorer toolbar.
+[雲端總管] 安裝為 Visual Studio Tools for Azure SDK 2.7 的一部分。
 
-Cloud Explorer is installed as part of the Visual Studio Tools for Azure SDK 2.7. 
+## 必要條件
 
-## <a name="prerequisites"></a>Prerequisites
+- Visual Studio 2015 RTM。
 
-- Visual Studio 2015 RTM.
+- Visual Studio Tools for Azure SDK。
+- 您也必須擁有 Azure 帳戶並登入，才能在 [雲端總管] 中檢視 Azure 資源。如果沒有的話，只需要幾分鐘的時間就可以建立帳戶。如果您有 MSDN 訂用帳戶，請參閱 [MSDN 訂戶的 Azure 權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)。否則，請參閱[建立免費試用帳戶](https://azure.microsoft.com/pricing/free-trial/)。
 
-- The Visual Studio Tools for Azure SDK. 
-- You must also have an Azure account and be logged into it to view Azure resources in Cloud Explorer. If you don't have one, you can create an account in just a couple of minutes. If you have an MSDN subscription, see [Azure Benefit for MSDN Subscribers](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/). Otherwise, see [create a free trial account](https://azure.microsoft.com/pricing/free-trial/).
+- 如果看不到 [雲端總管]，您可以在功能表列上選擇 [檢視]、[其他視窗]、[雲端總管] ，就能看到。
 
-- If Cloud Explorer isn't visible, you can view it by choosing **View**, **Other Windows,** **Cloud Explorer** on the menu bar.
+## 管理 Azure 帳戶和訂用帳戶
 
-## <a name="manage-azure-accounts-and-subscriptions"></a>Manage Azure accounts and subscriptions
+若要在 [雲端總管] 中查看您的 Azure 資源，您需要登入具有一或多個作用中訂用帳戶的 Azure 帳戶。如果您有一個以上的 Azure 帳戶，您可以將它們新增至 [雲端總管] 中，然後選擇您想要包含在 [雲端總管] 資源檢視中的訂用帳戶。
 
-To see your Azure resources in Cloud Explorer, you need to log in to an Azure account with one or more active subscriptions. If you have more than one Azure account, you can add them in Cloud Explorer and then choose the subscriptions you want to include in the Cloud Explorer resource view.
+如果您未曾使用過 Azure，或尚未將必要的帳戶加入至 Visual Studio，將會提示您這樣做。
 
-If you haven't used Azure before, or you haven't added the necessary accounts to Visual Studio, you'll be prompted to do so.
+## 將 Azure 帳戶加入至雲端總管
 
-## <a name="to-add-azure-accounts-to-cloud-explorer"></a>To add Azure accounts to Cloud Explorer
+1. 在 [雲端總管] 工具列上選擇 [設定] 圖示。
 
-1. Choose the Settings icon on the Cloud Explorer toolbar.
+1. 選擇 [新增帳戶] 連結。登入您想要瀏覽資源的 Azure 帳戶。帳戶選擇器下拉式清單中應該已選取您剛才加入的帳戶。該帳戶的訂用帳戶會出現在帳戶項目下。
 
-1. Choose the **Add an account** link. Log into the Azure account whose resources you want to browse. The account you just added should be selected in the account picker dropdown list. The subscriptions for that account appear under the account entry.
+    ![新增 Azure 訂用帳戶](./media/vs-azure-tools-resources-managing-with-cloud-explorer/IC819514.png)
 
-    ![Adding Azure subscriptions](./media/vs-azure-tools-resources-managing-with-cloud-explorer/IC819514.png)
+    ![選擇 Azure 訂用帳戶](./media/vs-azure-tools-resources-managing-with-cloud-explorer/IC819515.png)
 
-    ![Choosing Azure subscriptions](./media/vs-azure-tools-resources-managing-with-cloud-explorer/IC819515.png)
+1. 選取您想要瀏覽之訂用帳戶的核取方塊，然後選擇 [套用] 按鈕。
 
-1. Select the check boxes for the account subscriptions you want to browse and then choose the **Apply** button.
+    所選訂用帳戶的 Azure 資源會出現在 [雲端總管] 中。
 
-    The Azure resources for the selected subscriptions appear in Cloud Explorer.
+## 移除 Azure 帳戶
 
-## <a name="to-remove-an-azure-account"></a>To remove an Azure account
+1. 在功能表列上選擇 [檔案]、[帳戶設定]。
 
-1. Choose **File**, **Account Settings** on the menu bar.
+1. 在 [帳戶設定] 對話方塊的 [所有帳戶] 區段中，選擇您想要移除之帳戶旁的 [移除] 命令。請注意，此命令只從 Visual Studio 中移除帳戶，並不會影響 Azure 帳戶本身。
 
-1. In the **All Accounts** section of the **Account Settings** dialog box, choose the **Remove** command next to the account you want to remove. Note that this command only removes the account from Visual Studio–it doesn't affect the Azure account itself.
+## 檢視資源類型或群組
 
-## <a name="view-resource-types-or-groups"></a>View resource types or groups
+若要檢視您的 Azure 資源，您可以選擇 [資源類型] 或 [資源群組] 檢視。
 
-To view your Azure resources, you can choose either **Resource Types** or **Resource Groups** view.
+![資源檢視下拉式清單](./media/vs-azure-tools-resources-managing-with-cloud-explorer/IC819516.png)
 
-![Resource view dropdown](./media/vs-azure-tools-resources-managing-with-cloud-explorer/IC819516.png)
+- [資源類型] 檢視 (也是用在 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)上的一般檢視) 會依類型分類來顯示 Azure 資源，例如 Web 應用程式、儲存體帳戶和虛擬機器。這類似 Azure 資源在 [伺服器總管] 中出現的方式。
 
-- **Resource Types** view, which is also the common view used on the [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040), shows your Azure resources categorized by their type, such as web apps, storage accounts and virtual machines. This is similar to how Azure resources appear in Server Explorer.
-
-- Resource Groups view categorizes Azure resources by the Azure resource group they're associated with.
+- [資源群組] 檢視會依相關聯的 Azure 資源群組將 Azure 資源分類。
 
  
-    A resource group is a bundle of Azure resources, typically used by a specific application. To learn more about Azure resource groups, see [Azure Resource Manager Overview](./resource-group-overview.md).
+	資源群組是通常由特定應用程式使用的 Azure 資源組合。若要深入了解 Azure 資源群組，請參閱 [Azure Resource Manager 概觀](./resource-group-overview.md)。
 
-## <a name="view-and-navigate-resources"></a>View and navigate resources
+## 檢視和瀏覽資源
 
-To navigate to an Azure resource and view its information in Cloud Explorer, expand the item's type or associated resource group and then choose the resource. When you choose a resource, information appears in the two tabs at the bottom of Cloud Explorer.
+若要在 [雲端總管] 中瀏覽至 Azure 資源並檢視其資訊，請展開項目的類型或相關聯的資源群組，然後選擇資源。當您選擇資源時，資訊會出現在 [雲端總管] 底部的兩個索引標籤中。
 
-![Choose a resource view](./media/vs-azure-tools-resources-managing-with-cloud-explorer/IC819517.png)
+![選擇資源檢視](./media/vs-azure-tools-resources-managing-with-cloud-explorer/IC819517.png)
 
-- The **Actions** tab shows the actions you can take in Cloud Explorer for the selected resource. You can also see available actions on the shortcut menu of the resource.
+- [動作] 索引標籤會顯示您在 [雲端總管] 中可針對選取的資源採取的動作。您也可以在資源的捷徑功能表上看到可用的動作。
 
-- The **Properties** tab shows the properties of the resource, such as its type, locale and resource group it's associated with.
+- [屬性] 索引標籤會顯示資源的屬性，例如其類型、地區設定和相關聯的資源群組。
 
-Every resource has the action **Open in portal**. When you choose this action, Cloud Explorer displays the selected resource in the [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040). This feature is particularly handy for navigating to deeply-nested resources.
+每個資源都有 [在入口網站中開啟] 這個動作。當您選擇此動作時，[雲端總管] 會在 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)中顯示選取的資源。這項功能是特別方便瀏覽至深度巢狀的資源。
 
-Additional actions and property values may also appear based on the Azure resource. For example, web apps and logic apps also have the actions **Open in browser** and **Attach debugger** in addition to **Open in portal**. Actions to open editors appear when you choose a storage account blob, queue, or table. Azure apps have **URL** and **Status** properties, while storage resources have key and connection string properties.
+根據 Azure 資源而定，也可能出現其他動作和屬性值。例如，除了 [在入口網站中開啟]，Web 應用程式和邏輯應用程式也有 [在瀏覽器中開啟] 和 [附加偵錯工具] 動作。當您選擇儲存體帳戶 blob、佇列或資料表時，將會出現開啟編輯器的動作。Azure 應用程式具有 **URL** 和 **狀態**屬性，而儲存體資源具有索引鍵和連接字串屬性。
 
-## <a name="search-resources"></a>Search resources
+## 搜尋資源
 
-To locate resources with a specific name in your Azure account subscriptions, enter the name in the Search box in Cloud Explorer.
+若要在 Azure 訂用帳戶中尋找具有特定名稱的資源，請在 [雲端總管] 的 [搜尋] 方塊中輸入名稱。
 
-![Finding resources in Cloud Explorer](./media/vs-azure-tools-resources-managing-with-cloud-explorer/IC820394.png)
+![在 [雲端總管] 中尋找資源](./media/vs-azure-tools-resources-managing-with-cloud-explorer/IC820394.png)
 
-As you enter characters in the Search box, only resources that match those characters appear in the resource tree.
+當您在 [搜尋] 方塊中輸入字元時，只有符合這些字元的資源才會出現在資源樹狀目錄中。
 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

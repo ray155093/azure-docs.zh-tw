@@ -1,98 +1,91 @@
 <properties 
-    pageTitle="Learn about Enterprise Integration Pack Decode X12 Message Connctor | Microsoft Azure App Service | Microsoft Azure" 
-    description="Learn how to use partners with the Enterprise Integration Pack and Logic apps" 
-    services="logic-apps" 
-    documentationCenter=".net,nodejs,java"
-    authors="padmavc" 
-    manager="erikre" 
-    editor=""/>
+	pageTitle="了解企業整合套件解碼 X12 訊息連接器 | Microsoft Azure App Service | Microsoft Azure" 
+	description="了解如何使用夥伴搭配企業整合套件與 Logic Apps" 
+	services="logic-apps" 
+	documentationCenter=".net,nodejs,java"
+	authors="padmavc" 
+	manager="erikre" 
+	editor=""/>
 
 <tags 
-    ms.service="logic-apps" 
-    ms.workload="integration" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="08/15/2016" 
-    ms.author="padmavc"/>
+	ms.service="logic-apps" 
+	ms.workload="integration" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="08/15/2016" 
+	ms.author="padmavc"/>
 
+# 開始使用解碼 X12 訊息
 
-# <a name="get-started-with-decode-x12-message"></a>Get started with Decode X12 Message
+驗證 EDI 和夥伴特定屬性，產生每個交易集的 XML 文件以及已處理交易的確認。
 
-Validates EDI and partner-specific properties, generates XML document for each transaction set and generates acknowledgment for processed transaction.
+## 建立連線
 
-## <a name="create-the-connection"></a>Create the connection
+### 必要條件
 
-### <a name="prerequisites"></a>Prerequisites
+* Azure 帳戶；您可以建立一個[免費帳戶](https://azure.microsoft.com/free)
 
-* An Azure account; you can create a [free account](https://azure.microsoft.com/free)
+* 需要有整合帳戶才能使用解碼 X12 訊息連接器。詳細資料請參閱如何建立[整合帳戶](./app-service-logic-enterprise-integration-create-integration-account.md)、[合作夥伴](./app-service-logic-enterprise-integration-partners.md)和 [X12 合約](./app-service-logic-enterprise-integration-x12.md)
 
-* An Integration Account is required to use Decode X12 message connector. See details on how to create an [Integration Account](./app-service-logic-enterprise-integration-create-integration-account.md), [partners](./app-service-logic-enterprise-integration-partners.md) and [X12 agreement](./app-service-logic-enterprise-integration-x12.md)
+### 使用下列步驟連線至解碼 X12 訊息︰
 
-### <a name="connect-to-decode-x12-message-using-the-following-steps:"></a>Connect to Decode X12 Message using the following steps:
+1. [建立邏輯應用程式](./app-service-logic-create-a-logic-app.md)可提供範例
 
-1. [Create a Logic App](./app-service-logic-create-a-logic-app.md) provides an example
+2. 此連接器並沒有任何觸發程序。您可以使用其他觸發程序來啟動邏輯應用程式，例如 [要求] 觸發程序。在邏輯應用程式設計工具中，新增一個觸發程序，然後新增一個動作。從下拉式清單中選取 [顯示 Microsoft Managed API]，然後在搜尋方塊中輸入 "x12"。選取 X12 – 解碼 X12 訊息
 
-2. This connector does not have any triggers. Use other triggers to start the Logic App, such as a Request trigger.  In the Logic App designer, add a trigger and add an action.  Select Show Microsoft managed APIs in the drop-down list and then enter “x12” in the search box.  Select X12 – Decode X12 Message
+	![搜尋 x12](./media/app-service-logic-enterprise-integration-x12connector/x12decodeimage1.png)
 
-    ![search x12](./media/app-service-logic-enterprise-integration-x12connector/x12decodeimage1.png)  
+3. 如果您之前尚未建立與整合帳戶的任何連線，系統將會提示您輸入連線詳細資料
 
-3. If you haven’t previously created any connections to Integration Account, you are prompted for the connection details
+	![整合帳戶連線](./media/app-service-logic-enterprise-integration-x12connector/x12decodeimage4.png)
 
-    ![integration account connection](./media/app-service-logic-enterprise-integration-x12connector/x12decodeimage4.png)    
+4. 輸入整合帳戶詳細資料。具有星號的屬性為必要項目
 
-4. Enter the Integration Account details.  Properties with an asterisk are required
+	| 屬性 | 詳細資料 |
+	| -------- | ------- |
+	| 連線名稱 * | 為連線輸入任何名稱 |
+	| 整合帳戶 * | 輸入整合帳戶名稱。請確定您的整合帳戶和邏輯應用程式位於相同的 Azure 位置 |
 
-  	| Property | Details |
-  	| -------- | ------- |
-  	| Connection Name * | Enter any name for your connection |
-  	| Integration Account * | Enter the Integration Account name. Be sure your Integration Account and Logic app are in the same Azure location |
+	完成後，連線詳細資料看起來類似下圖
+	
+	![整合帳戶連線已建立](./media/app-service-logic-enterprise-integration-x12connector/x12decodeimage5.png)
 
-    Once complete, your connection details look similar to the following
-    
-    ![integration account connection created](./media/app-service-logic-enterprise-integration-x12connector/x12decodeimage5.png) 
+5. 選取 [建立]
+	
+6. 請注意，已建立連線。
 
-5. Select **Create**
-    
-6. Notice the connection has been created.
+	![整合帳戶連線詳細資料](./media/app-service-logic-enterprise-integration-x12connector/x12decodeimage6.png)
 
-    ![integration account connection details](./media/app-service-logic-enterprise-integration-x12connector/x12decodeimage6.png) 
+7. 選取要解碼的 X12 一般檔案訊息
 
-7. Select X12 flat file message to decode
+	![提供必要欄位](./media/app-service-logic-enterprise-integration-x12connector/x12decodeimage7.png)
 
-    ![provide mandatory fields](./media/app-service-logic-enterprise-integration-x12connector/x12decodeimage7.png) 
+## X12 解碼處理以下項目
 
-## <a name="x12-decode-does-following"></a>X12 Decode does following
+* 針對交易夥伴合約驗證信封
+* 產生每個交易集的 XML 文件。
+* 驗證 EDI 和夥伴特定屬性
+	* EDI 結構驗證，以及擴充的結構描述驗證
+	* 驗證交換信封的結構。
+	* 針對控制結構描述進行信封的結構描述驗證。
+	* 針對訊息結構描述進行交易集資料元素的結構描述驗證。
+	* 對交易集資料元素執行 EDI 驗證
+* 驗證交換、群組和交易集控制編號並未重複
+	* 針對先前已接收的交換檢查交換控制編號。
+	* 針對交換中的其他群組控制編號檢查群組控制編號。
+	* 針對該群組中其他交易集控制編號檢查交易集控制編號。
+* 將整個交換轉換為 XML
+	* 將交換分割為交易集 - 暫停發生錯誤的交易集︰將交換中每個交易集剖析為個別的 XML 文件。如果交換中有一或多個交易集無法通過驗證，X12 解碼只會暫停那些交易集。
+	* 將交換分割為交易集 - 暫停發生錯誤的交換︰將交換中每個交易集剖析為個別的 XML 文件。如果交換中有一或多個交易集無法通過驗證，X12 解碼會暫停整個交換。
+	* 保留交換 - 暫停發生錯誤的交易集︰建立整個批次交換的 XML 文件。X12 解碼只會暫停未通過驗證的交易集，而繼續處理所有其他的交易集
+	* 保留交換 - 暫停發生錯誤的交換︰建立整個批次交換的 XML 文件。如果交換中有一或多個交易集無法通過驗證，X12 解碼會暫停整個交換。
+* 產生技術和/或功能確認 (若已設定)。
+	* 標頭驗證後會產生技術確認。技術確認會報告位址接收者處理交換標頭和結尾的狀態。
+	* 內文驗證後會產生功能確認。功能確認會報告處理接收的文件時遇到的每個錯誤
 
-* Validates the envelope against trading partner agreement
-* Generates an XML document for each transaction set.
-* Validates EDI and partner-specific properties
-    * EDI structural validation, and extended schema validation
-    * Validation of the structure of the interchange envelope.
-    * Schema validation of the envelope against the control schema.
-    * Schema validation of the transaction-set data elements against the message schema.
-    * EDI validation performed on transaction-set data elements 
-* Verifies that the interchange, group, and transaction set control numbers are not duplicates
-    * Checks the interchange control number against previously received interchanges.
-    * Checks the group control number against other group control numbers in the interchange.
-    * Checks the transaction set control number against other transaction set control numbers in that group.
-* Converts the entire interchange to XML 
-    * Split Interchange as transaction sets - suspend transaction sets on error: Parses each transaction set in an interchange into a separate XML document. If one or more transaction sets in the interchange fail validation, X12 Decode suspends only those transaction sets.
-    * Split Interchange as transaction sets - suspend interchange on error: Parses each transaction set in an interchange into a separate XML document.  If one or more transaction sets in the interchange fail validation, X12 Decode suspends the entire interchange.
-    * Preserve Interchange - suspend transaction sets on error: Creates an XML document for the entire batched interchange. X12 Decode suspends only those transaction sets that fail validation, while continuing to process all other transaction sets
-    * Preserve Interchange - suspend interchange on error: Creates an XML document for the entire batched interchange. If one or more transaction sets in the interchange fail validation, X12 Decode suspends the entire interchange, 
-* Generates a Technical and/or Functional acknowledgment (if configured).
-    * A Technical Acknowledgment generates as a result of header validation. The technical acknowledgment reports the status of the processing of an interchange header and trailer by the address receiver.
-    * A Functional Acknowledgment generates as a result of body validation. The functional acknowledgment reports each error encountered while processing the received document
+## 後續步驟
 
-## <a name="next-steps"></a>Next steps
+[深入了解企業整合套件](./app-service-logic-enterprise-integration-overview.md "了解企業整合套件")
 
-[Learn more about the Enterprise Integration Pack](./app-service-logic-enterprise-integration-overview.md "Learn about Enterprise Integration Pack") 
-
-
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

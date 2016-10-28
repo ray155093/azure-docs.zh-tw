@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Get started with Data Lake Store | Azure"
-   description="Use Azure PowerShell to create a Data Lake Store account and perform basic operations"
+   pageTitle="開始使用資料湖存放區 | Azure"
+   description="使用 Azure PowerShell 建立資料湖存放區帳戶，並執行基本作業"
    services="data-lake-store"
    documentationCenter=""
    authors="nitinme"
@@ -16,11 +16,10 @@
    ms.date="10/04/2016"
    ms.author="nitinme"/>
 
-
-# <a name="get-started-with-azure-data-lake-store-using-azure-powershell"></a>Get started with Azure Data Lake Store using Azure PowerShell
+# 使用 Azure PowerShell 開始使用 Azure 資料湖分析存放區
 
 > [AZURE.SELECTOR]
-- [Portal](data-lake-store-get-started-portal.md)
+- [入口網站](data-lake-store-get-started-portal.md)
 - [PowerShell](data-lake-store-get-started-powershell.md)
 - [.NET SDK](data-lake-store-get-started-net-sdk.md)
 - [Java SDK](data-lake-store-get-started-java-sdk.md)
@@ -28,122 +27,118 @@
 - [Azure CLI](data-lake-store-get-started-cli.md)
 - [Node.js](data-lake-store-manage-use-nodejs.md)
 
-Learn how to use Azure PowerShell to create an Azure Data Lake Store account and perform basic operations such as create folders, upload and download data files, delete your account, etc. For more information about Data Lake Store, see [Overview of Data Lake Store](data-lake-store-overview.md).
+了解如何使用 Azure PowerShell 建立 Azure 資料湖存放區帳戶並執行基本作業，例如建立資料夾、上傳和下載資料檔案、刪除您的帳戶等等。如需有關資料湖存放區的詳細資訊，請參閱[資料湖存放區概觀](data-lake-store-overview.md)。
 
-## <a name="prerequisites"></a>Prerequisites
+## 必要條件
 
-Before you begin this tutorial, you must have the following:
+開始進行本教學課程之前，您必須具備下列條件：
 
-* **An Azure subscription**. See [Get Azure free trial](https://azure.microsoft.com/pricing/free-trial/).
+* **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
-* **Azure PowerShell 1.0 or greater**. See [How to install and configure Azure PowerShell](../powershell-install-configure.md).
+* **Azure PowerShell 1.0 或更新版本**。請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 
-## <a name="authentication"></a>Authentication
+## 驗證
 
-This article uses a simpler authentication approach with Data Lake Store where you are prompted to enter your Azure account credentials. The access level to Data Lake Store account and file system is then governed by the access level of the logged in user. However, there are other approaches as well to authenticate with Data Lake Store, which are **end-user authentication** or **service-to-service authentication**. For instructions and more information on how to authenticate, see [Authenticate with Data Lake Store using Azure Active Directory](data-lake-store-authenticate-using-active-directory.md).
+本文搭配使用較簡單的驗證方法與 Data Lake Store，系統會提示您輸入 Azure 帳號認證。Data Lake Store 帳戶和檔案系統的存取層級則由已登入使用者的存取層級所控管。不過，還有其他方法可向 Data Lake Store 進行驗證：**使用者驗證**或**服務對服務驗證**。如需如何驗證的指示和詳細資訊，請參閱[使用 Azure Active Directory 向 Data Lake Store 進行驗證](data-lake-store-authenticate-using-active-directory.md)。
 
-## <a name="create-an-azure-data-lake-store-account"></a>Create an Azure Data Lake Store account
+## 建立 Azure 資料湖存放區帳戶
 
-1. From your desktop, open a new Windows PowerShell window, and enter the following snippet to log in to your Azure account, set the subscription, and register the Data Lake Store provider. When prompted to log in, make sure you log in as one of the subscription admininistrators/owner:
+1. 從您的桌面上開啟新的 Windows PowerShell 視窗，輸入下列程式碼片段登入 Azure 帳戶、設定訂用帳戶，然後註冊 Data Lake Store 提供者。系統提示您登入時，請使用其中一個訂用帳戶管理員/擁有者身分登入：
 
         # Log in to your Azure account
-        Login-AzureRmAccount
+		Login-AzureRmAccount
 
-        # List all the subscriptions associated to your account
-        Get-AzureRmSubscription
+		# List all the subscriptions associated to your account
+		Get-AzureRmSubscription
 
-        # Select a subscription
-        Set-AzureRmContext -SubscriptionId <subscription ID>
+		# Select a subscription
+		Set-AzureRmContext -SubscriptionId <subscription ID>
 
-        # Register for Azure Data Lake Store
-        Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.DataLakeStore"
-
-
-2. An Azure Data Lake Store account is associated with an Azure Resource Group. Start by creating an Azure Resource Group.
-
-        $resourceGroupName = "<your new resource group name>"
-        New-AzureRmResourceGroup -Name $resourceGroupName -Location "East US 2"
-
-    ![Create an Azure Resource Group](./media/data-lake-store-get-started-powershell/ADL.PS.CreateResourceGroup.png "Create an Azure Resource Group")
-
-2. Create an Azure Data Lake Store account. The name you specify must only contain lowercase letters and numbers.
-
-        $dataLakeStoreName = "<your new Data Lake Store name>"
-        New-AzureRmDataLakeStoreAccount -ResourceGroupName $resourceGroupName -Name $dataLakeStoreName -Location "East US 2"
-
-    ![Create an Azure Data Lake Store account](./media/data-lake-store-get-started-powershell/ADL.PS.CreateADLAcc.png "Create an Azure Data Lake Store account")
-
-3. Verify that the account is successfully created.
-
-        Test-AzureRmDataLakeStoreAccount -Name $dataLakeStoreName
-
-    The output for this should be **True**.
-
-## <a name="create-directory-structures-in-your-azure-data-lake-store"></a>Create directory structures in your Azure Data Lake Store
-
-You can create directories under your Azure Data Lake Store account to manage and store data.
-
-1. Specify a root directory.
-
-        $myrootdir = "/"
-
-2. Create a new directory called **mynewdirectory** under the specified root.
-
-        New-AzureRmDataLakeStoreItem -Folder -AccountName $dataLakeStoreName -Path $myrootdir/mynewdirectory
-
-3. Verify that the new directory is successfully created.
-
-        Get-AzureRmDataLakeStoreChildItem -AccountName $dataLakeStoreName -Path $myrootdir
-
-    It should show an output like the following:
-
-    ![Verify Directory](./media/data-lake-store-get-started-powershell/ADL.PS.Verify.Dir.Creation.png "Verify Directory")
+		# Register for Azure Data Lake Store
+		Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.DataLakeStore"
 
 
-## <a name="upload-data-to-your-azure-data-lake-store"></a>Upload data to your Azure Data Lake Store
+2. Azure 資料湖存放區帳戶與 Azure 資源群組相關聯。從建立 Azure 資源群組開始。
 
-You can upload your data to Data Lake Store directly at the root level or to a directory that you created within the account. The snippets below demonstrate how to upload some sample data to the directory (**mynewdirectory**) you created in the previous section.
+		$resourceGroupName = "<your new resource group name>"
+    	New-AzureRmResourceGroup -Name $resourceGroupName -Location "East US 2"
 
-If you are looking for some sample data to upload, you can get the **Ambulance Data** folder from the [Azure Data Lake Git Repository](https://github.com/MicrosoftBigData/usql/tree/master/Examples/Samples/Data/AmbulanceData). Download the file and store it in a local directory on your computer, such as  C:\sampledata\.
+	![建立 Azure 資源群組](./media/data-lake-store-get-started-powershell/ADL.PS.CreateResourceGroup.png "建立 Azure 資源群組")
 
-    Import-AzureRmDataLakeStoreItem -AccountName $dataLakeStoreName -Path "C:\sampledata\vehicle1_09142014.csv" -Destination $myrootdir\mynewdirectory\vehicle1_09142014.csv
+2. 建立 Azure 資料湖存放區帳戶。您指定的名稱必須只包含小寫字母和數字。
+
+		$dataLakeStoreName = "<your new Data Lake Store name>"
+    	New-AzureRmDataLakeStoreAccount -ResourceGroupName $resourceGroupName -Name $dataLakeStoreName -Location "East US 2"
+
+	![建立 Azure 資料湖存放區帳戶](./media/data-lake-store-get-started-powershell/ADL.PS.CreateADLAcc.png "建立 Azure 資料湖存放區帳戶")
+
+3. 確認已成功建立帳戶。
+
+		Test-AzureRmDataLakeStoreAccount -Name $dataLakeStoreName
+
+	輸出應為 **True**。
+
+## 在您的 Azure 資料湖存放區中建立目錄結構
+
+您可以在您的 Azure 資料湖存放區帳戶下建立用於管理與儲存資料的目錄。
+
+1. 指定根目錄。
+
+		$myrootdir = "/"
+
+2. 在指定的根目錄下建立名為 **mynewdirectory** 的新目錄。
+
+		New-AzureRmDataLakeStoreItem -Folder -AccountName $dataLakeStoreName -Path $myrootdir/mynewdirectory
+
+3. 確認已成功建立新目錄。
+
+		Get-AzureRmDataLakeStoreChildItem -AccountName $dataLakeStoreName -Path $myrootdir
+
+	應該會顯示類似下面的輸出畫面：
+
+	![確認目錄](./media/data-lake-store-get-started-powershell/ADL.PS.Verify.Dir.Creation.png "確認目錄")
 
 
-## <a name="rename,-download,-and-delete-data-from-your-data-lake-store"></a>Rename, download, and delete data from your Data Lake Store
+## 將資料上傳至 Azure 資料湖存放區
 
-To rename a file, use the following command:
+您可以在根層級直接將資料上傳至資料湖存放區，或上傳至您在帳戶內建立的目錄。下列程式碼範例說明如何將一些範例資料上傳至您在上一節中建立的目錄 (**mynewdirectory**)。
+
+如果您正在尋找一些可上傳的範例資料，您可以從 [Azure 資料湖 Git 儲存機制](https://github.com/MicrosoftBigData/usql/tree/master/Examples/Samples/Data/AmbulanceData)取得 **Ambulance Data** 資料夾。下載檔案並將它儲存在電腦的本機目錄上，例如 C:\\sampledata。
+
+	Import-AzureRmDataLakeStoreItem -AccountName $dataLakeStoreName -Path "C:\sampledata\vehicle1_09142014.csv" -Destination $myrootdir\mynewdirectory\vehicle1_09142014.csv
+
+
+## 重新命名、下載與刪除資料湖存放區中的資料
+
+若要重新命名檔案，請使用下列命令：
 
     Move-AzureRmDataLakeStoreItem -AccountName $dataLakeStoreName -Path $myrootdir\mynewdirectory\vehicle1_09142014.csv -Destination $myrootdir\mynewdirectory\vehicle1_09142014_Copy.csv
 
-To download a file, use the following command:
+若要下載檔案，請使用下列命令：
 
-    Export-AzureRmDataLakeStoreItem -AccountName $dataLakeStoreName -Path $myrootdir\mynewdirectory\vehicle1_09142014_Copy.csv -Destination "C:\sampledata\vehicle1_09142014_Copy.csv"
+	Export-AzureRmDataLakeStoreItem -AccountName $dataLakeStoreName -Path $myrootdir\mynewdirectory\vehicle1_09142014_Copy.csv -Destination "C:\sampledata\vehicle1_09142014_Copy.csv"
 
-To delete a file, use the following command:
+若要刪除檔案，請使用下列命令：
 
-    Remove-AzureRmDataLakeStoreItem -AccountName $dataLakeStoreName -Paths $myrootdir\mynewdirectory\vehicle1_09142014_Copy.csv
+	Remove-AzureRmDataLakeStoreItem -AccountName $dataLakeStoreName -Paths $myrootdir\mynewdirectory\vehicle1_09142014_Copy.csv
 
-When prompted, enter **Y** to delete the item. If you have more than one file to delete, you can provide all the paths separated by comma.
+出現提示時，請輸入 **Y** 刪除項目。如果您要刪除多個檔案，可以提供所有的路徑並以逗號分隔。
 
-    Remove-AzureRmDataLakeStoreItem -AccountName $dataLakeStoreName -Paths $myrootdir\mynewdirectory\vehicle1_09142014.csv, $myrootdir\mynewdirectoryvehicle1_09142014_Copy.csv
+	Remove-AzureRmDataLakeStoreItem -AccountName $dataLakeStoreName -Paths $myrootdir\mynewdirectory\vehicle1_09142014.csv, $myrootdir\mynewdirectoryvehicle1_09142014_Copy.csv
 
-## <a name="delete-your-azure-data-lake-store-account"></a>Delete your Azure Data Lake Store account
+## 刪除 Azure 資料湖存放區帳戶
 
-Use the following command to delete your Data Lake Store account.
+使用下列命令刪除資料湖存放區帳戶。
 
-    Remove-AzureRmDataLakeStoreAccount -Name $dataLakeStoreName
+	Remove-AzureRmDataLakeStoreAccount -Name $dataLakeStoreName
 
-When prompted, enter **Y** to delete the account.
-
-
-## <a name="next-steps"></a>Next steps
-
-- [Secure data in Data Lake Store](data-lake-store-secure-data.md)
-- [Use Azure Data Lake Analytics with Data Lake Store](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
-- [Use Azure HDInsight with Data Lake Store](data-lake-store-hdinsight-hadoop-use-portal.md)
+出現提示時，請輸入 **Y** 刪除帳戶。
 
 
+## 後續步驟
 
-<!--HONumber=Oct16_HO2-->
+- [保護 Data Lake Store 中的資料](data-lake-store-secure-data.md)
+- [搭配 Data Lake Store 使用 Azure Data Lake Analytics](../data-lake-analytics/data-lake-analytics-get-started-portal.md)
+- [搭配資料湖存放區使用 Azure HDInsight](data-lake-store-hdinsight-hadoop-use-portal.md)
 
-
+<!---HONumber=AcomDC_1005_2016-->

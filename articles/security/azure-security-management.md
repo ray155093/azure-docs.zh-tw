@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Security Management in Azure | Microsoft Azure"
-   description=" This article discusses steps for enhancing remote management security while administering Microsoft Azure environments, including cloud services, Virtual Machines and custom applications."
+   pageTitle="Azure 的安全性管理 | Microsoft Azure"
+   description=" 本文探討管理 Microsoft Azure 環境時提升遠端管理安全性的步驟，這些環境包括雲端服務、虛擬機器及自訂應用程式。"
    services="security"
    documentationCenter="na"
    authors="TerryLanfear"
@@ -16,231 +16,230 @@
    ms.date="08/25/2016"
    ms.author="terrylan"/>
 
+# Azure 的安全性管理
 
-# <a name="security-management-in-azure"></a>Security management in Azure
+Azure 訂閱者可從多種裝置管理其雲端環境，這些裝置包括管理工作站、開發人員的電腦，甚至是具有工作專用權限的特殊權限使用者裝置。有時候，管理功能是透過 Web 式主控台來執行，例如 [Azure 入口網站](https://azure.microsoft.com/features/azure-portal/)。至於其他時候，則可能會從內部部署系統，透過虛擬私人網路 (VPN)、終端機服務、用戶端應用程式通訊協定或 Azure 服務管理 API (SMAPI) (以程式設計方式) 直接連線至 Azure。此外，用戶端端點也可以加入網域或是遭到隔離且不受管理，例如平板電腦或智慧型手機。
 
-Azure subscribers may manage their cloud environments from multiple devices, including management workstations, developer PCs, and even privileged end-user devices that have task-specific permissions. In some cases, administrative functions are performed through web-based consoles such as the [Azure portal](https://azure.microsoft.com/features/azure-portal/). In other cases, there may be direct connections to Azure from on-premises systems over Virtual Private Networks (VPNs), Terminal Services, client application protocols, or (programmatically) the Azure Service Management API (SMAPI). Additionally, client endpoints can be either domain joined or isolated and unmanaged, such as tablets or smartphones.
-
-Although multiple access and management capabilities provide a rich set of options, this variability can add significant risk to a cloud deployment. It can be difficult to manage, track, and audit administrative actions. This variability may also introduce security threats through unregulated access to client endpoints that are used for managing cloud services. Using general or personal workstations for developing and managing infrastructure opens unpredictable threat vectors such as web browsing (for example, watering hole attacks) or email (for example, social engineering and phishing).
+雖然多項存取和管理功能可提供一組豐富的選項，但選項太多也可能會讓雲端部署承受巨大風險。因而難以管理、追蹤和稽核管理動作。選項太多也可能會因為用來管理雲端服務之用戶端端點所進行的存取不受管制而招致安全性威脅。使用一般工作站或私人工作站來開發和管理基礎結構將會打開無法預期的威脅媒介，例如網頁瀏覽 (例如水坑攻擊) 或電子郵件 (例如社交工程和網路釣魚)。
 
 ![][1]
 
-The potential for attacks increases in this type of environment because it is challenging to construct security policies and mechanisms to appropriately manage access to Azure interfaces (such as SMAPI) from widely varied endpoints.
+在這類環境中，發生攻擊的可能性會增加，因為其難以建構安全性原則和機制來適當管理各式各樣的端點對 Azure 介面 (例如 SMAPI) 的存取。
 
-### <a name="remote-management-threats"></a>Remote management threats
+### 遠端管理威脅
 
-Attackers often attempt to gain privileged access by compromising account credentials (for example, through password brute forcing, phishing, and credential harvesting), or by tricking users into running harmful code (for example, from harmful websites with drive-by downloads or from harmful email attachments). In a remotely managed cloud environment, account breaches can lead to an increased risk due to anywhere, anytime access.
+攻擊者通常會嘗試透過入侵帳戶認證 (例如，透過暴力破解密碼、網路釣魚和蒐集認證) 或誘騙使用者執行有害程式碼 (例如，從具有偷渡式下載的有害網站或從有害電子郵件的附件) 來取得特殊權限存取權。遠端管理的雲端環境由於具有能隨時隨地存取的特性，因此若帳戶遭到入侵，風險將會大增。
 
-Even with tight controls on primary administrator accounts, lower-level user accounts can be used to exploit weaknesses in one’s security strategy. Lack of appropriate security training can also lead to breaches through accidental disclosure or exposure of account information.
+即使主要的系統管理員帳戶受到嚴密控管，攻擊者仍可使用較低層級的使用者帳戶來利用安全性策略中的弱點。因為缺乏適當的安全性訓練而讓帳戶資訊意外洩漏或曝光也可能會導致入侵事件發生。
 
-When a user workstation is also used for administrative tasks, it can be compromised at many different points. Whether a user is browsing the web, using 3rd-party and open-source tools, or opening a harmful document file that contains a trojan.
+若使用者工作站也用來執行系統管理工作，便可能會在許多不同的地方遭到入侵。無論使用者是在瀏覽網頁、使用第三方工具和開放原始碼工具，還是開啟含有特洛伊木馬程式的有害文件，都會面臨入侵風險。
 
-In general, most targeted attacks that result in data breaches can be traced to browser exploits, plug-ins (such as Flash, PDF, Java), and spear phishing (email) on desktop machines. These machines may have administrative-level or service-level permissions to access live servers or network devices for operations when used for development or management of other assets.
+一般情況下，大多數會導致資料外洩的鎖定式攻擊，追根究底都是桌上型電腦上的瀏覽器入侵、外掛程式 (例如 Flash、PDF、Java) 和魚叉式網路釣魚 (電子郵件) 所造成。這些電腦在用來開發或管理其他資產時，可能會具有可供存取運作中伺服器或網路裝置以執行作業的系統管理層級權限或服務層級權限。
 
-### <a name="operational-security-fundamentals"></a>Operational security fundamentals
+### 作業安全性基本概念
 
-For more secure management and operations, you can minimize a client’s attack surface by reducing the number of possible entry points. This can be done through security principles: “separation of duties” and “segregation of environments.”
+如需提升管理和作業時的安全性，您可以減少可能的進入點數目以盡可能縮減用戶端的受攻擊面。這可以透過下列安全性原則來達成：「區分職責」和「隔離環境」。
 
-Isolate sensitive functions from one another to decrease the likelihood that a mistake at one level will lead to a breach in another. Examples:
+讓敏感功能彼此隔離可減少某個層級的錯誤導致另一個層級出現漏洞的可能性。範例：
 
-- Administrative tasks should not be combined with activities that might lead to a compromise (for example, malware in an administrator’s email that then infects an infrastructure server).
-- A workstation used for high-sensitivity operations should not be the same system used for high-risk purposes such as browsing the Internet.
+- 系統管理工作也不應該與可能會造成入侵的活動合併 (例如，系統管理員的電子郵件中有惡意程式碼，進而感染基礎結構伺服器)。
+- 用於高敏感性作業的工作站也不應該是用於高風險用途 (例如瀏覽網際網路) 的相同系統。
 
-Reduce the system’s attack surface by removing unnecessary software. Example:
+藉由移除不必要的軟體來減少系統的受攻擊面。範例：
 
-- Standard administrative, support, or development workstation should not require installation of an email client or other productivity applications if the device’s main purpose is to manage cloud services.
+- 如果裝置的主要目的是要管理雲端服務，則標準的系統管理、支援或開發工作站皆不應該要求安裝電子郵件用戶端或其他生產力應用程式。
 
-Client systems that have administrator access to infrastructure components should be subjected to the strictest possible policy to reduce security risks. Examples:
+具有基礎結構元件系統管理員存取權的用戶端系統，應該受到最嚴格的原則所約束，以降低安全性風險。範例：
 
-- Security policies can include Group Policy settings that deny open Internet access from the device and use of a restrictive firewall configuration.
-- Use Internet Protocol security (IPsec) VPNs if direct access is needed.
-- Configure separate management and development Active Directory domains.
-- Isolate and filter management workstation network traffic.
-- Use antimalware software.
-- Implement multi-factor authentication to reduce the risk of stolen credentials.
+- 安全性原則可以加入會拒絕裝置開放存取網際網路和使用嚴格防火牆組態的群組原則設定。
+- 如果需要直接存取，請使用網際網路通訊協定安全性 (IPsec) VPN。
+- 針對管理和開發設定不同的 Active Directory 網域。
+- 隔離和篩選管理工作站的網路流量。
+- 使用反惡意程式碼軟體。
+- 實作 Multi-Factor Authentication 以降低遭竊認證的風險。
 
-Consolidating access resources and eliminating unmanaged endpoints also simplifies management tasks.
+合併存取資源和避免使用未受管理的端點也可簡化管理工作。
 
 
-### <a name="providing-security-for-azure-remote-management"></a>Providing security for Azure remote management
+### 為 Azure 的遠端管理提供安全性
 
-Azure provides security mechanisms to aid administrators who manage Azure cloud services and virtual machines. These mechanisms include:
+Azure 提供了安全性機制來協助系統管理員管理 Azure 雲端服務和虛擬機器。這些機制包括︰
 
-- Authentication and [role-based access control](../active-directory/role-based-access-control-configure.md).
-- Monitoring, logging, and auditing.
-- Certificates and encrypted communications.
-- A web management portal.
-- Network packet filtering.
+- 驗證和[角色型存取控制](../active-directory/role-based-access-control-configure.md)。
+- 監視、記錄和稽核。
+- 憑證和加密通訊。
+- Web 管理入口網站。
+- 網路封包篩選。
 
-In combination with client-side security configuration and datacenter deployment of a management gateway, it is possible to restrict and monitor administrator access to cloud applications and data.
+結合用戶端安全性組態和管理閘道的資料中心部署，就可以限制並監視系統管理員對於雲端應用程式和資料的存取。
 
-> [AZURE.NOTE] Certain recommendations in this article may result in increased data, network, or compute resource usage, and may increase your license or subscription costs.
+> [AZURE.NOTE] 本文的某些建議可能會導致資料、網路或計算資源使用量增加，並可能增加授權或訂用帳戶成本。
 
-## <a name="hardened-workstation-for-management"></a>Hardened workstation for management
+## 強化管理工作站
 
-The goal of hardening a workstation is to eliminate all but the most critical functions required for it to operate, making the potential attack surface as small as possible. System hardening includes minimizing the number of installed services and applications, limiting application execution, restricting network access to only what is needed, and always keeping the system up to date. Furthermore, using a hardened workstation for management segregates administrative tools and activities from other end-user tasks.
+強化工作站的目標是要去除其他所有功能，只留下其運作所需的最重要功能，盡可能縮小潛在的受攻擊面。系統強化包括安裝最少量的服務和應用程式、限制應用程式執行、限制網路只能存取所需資源，以及讓系統隨時保持最新狀態。此外，使用經過強化的管理工作站能夠將系統管理工具和活動與其他使用者工作隔離開來。
 
-Within an on-premises enterprise environment, you can limit the attack surface of your physical infrastructure through dedicated management networks, server rooms that have card access, and workstations that run on protected areas of the network. In a cloud or hybrid IT model, being diligent about secure management services can be more complex because of the lack of physical access to IT resources. Implementing protection solutions requires careful software configuration, security-focused processes, and comprehensive policies.
+在內部部署企業環境中，您可以透過專用管理網路、必須用身分卡片才能進入的伺服器機房以及在受保護的網路區域上執行的工作站，限制實體基礎結構的受攻擊面。在雲端或混合式 IT 模型中，由於無法實際接觸到 IT 資源，因此想要努力讓管理服務保持安全會是更複雜的工作。實作保護解決方案需要小心軟體設定、安全性為主的處理程序及完善的原則。
 
-Using a least-privilege minimized software footprint in a locked-down workstation for cloud management—as well as for application development—can reduce the risk of security incidents by standardizing the remote management and development environments. A hardened workstation configuration can help prevent the compromise of accounts that are used to manage critical cloud resources by closing many common avenues used by malware and exploits. Specifically, you can use [Windows AppLocker](http://technet.microsoft.com/library/dd759117.aspx) and Hyper-V technology to control and isolate client system behavior and mitigate threats, including email or Internet browsing.
+在封鎖起來的工作站中使用僅需最低特殊權限的最少軟體使用量來管理員端 (以及開發應用程式)，可以藉由將遠端管理和開發環境標準化來降低引發安全性事件的風險。強化後的工作站組態可透過關閉惡意程式碼和入侵程式使用的許多常見手段，來協助避免用來管理重要雲端資源的帳戶遭到入侵。具體而言，您可以使用 [Windows AppLocker](http://technet.microsoft.com/library/dd759117.aspx) 和 Hyper-V 技術來控制和隔離用戶端系統行為並減輕威脅，包括電子郵件或網際網路瀏覽。
 
-On a hardened workstation, the administrator runs a standard user account (which blocks administrative-level execution) and associated applications are controlled by an allow list. The basic elements of a hardened workstation are as follows:
+在強化後的工作站上，系統管理員會執行標準使用者帳戶 (它會封鎖執行系統管理層級)，且相關聯的應用程式會由允許清單進行控制。強化後之工作站的基本要素如下︰
 
-- Active scanning and patching. Deploy antimalware software, perform regular vulnerability scans, and update all workstations by using the latest security update in a timely fashion.
-- Limited functionality. Uninstall any applications that are not needed and disable unnecessary (startup) services.
-- Network hardening. Use Windows Firewall rules to allow only valid IP addresses, ports, and URLs related to Azure management. Ensure that inbound remote connections to the workstation are also blocked.
-- Execution restriction. Allow only a set of predefined executable files that are needed for management to run (referred to as “default-deny”). By default, users should be denied permission to run any program unless it is explicitly defined in the allow list.
-- Least privilege. Management workstation users should not have any administrative privileges on the local machine itself. This way, they cannot change the system configuration or the system files, either intentionally or unintentionally.
+- 作用中的掃描和修補。部署反惡意程式碼軟體、定期執行弱點掃描，以及及時使用最新的安全性更新來更新所有工作站。
+- 有限的功能。解除安裝任何不需要的應用程式，並停用不必要的 (啟動) 服務。
+- 強化網路。使用 Windows 防火牆規則，僅允許與 Azure 管理相關的有效 IP 位址、連接埠和 URL。確定也已封鎖工作站的輸入遠端連線。
+- 執行限制。僅允許執行一組管理所需的預先定義可執行檔 (稱為「預設拒絕」)。根據預設，除非程式明確定義於允許清單中，否則應該拒絕使用者執行程式的權限。
+- 最小特殊權限。管理工作站的使用者不應該擁有本機電腦本身的任何系統管理特殊權限。如此一來，他們才無法變更系統組態或系統檔案，不論是有意或無意。
 
-You can enforce all of this by using [Group Policy Objects](https://www.microsoft.com/download/details.aspx?id=2612) (GPOs) in Active Directory Domain Services (AD DS) and applying them through your (local) management domain to all management accounts.
+透過在 Active Directory 網域服務 (AD DS) 中使用[群組原則物件](https://www.microsoft.com/download/details.aspx?id=2612) (GPO)，並透過 (本機) 管理網域將其套用到所有管理帳戶，您即可強制執行上述所有要素。
 
-### <a name="managing-services,-applications,-and-data"></a>Managing services, applications, and data
+### 管理服務、應用程式和資料
 
-Azure cloud services configuration is performed through either the Azure portal or SMAPI, via the Windows PowerShell command-line interface or a custom-built application that takes advantage of these RESTful interfaces. Services using these mechanisms include Azure Active Directory (Azure AD), Azure Storage, Azure Websites, and Azure Virtual Network, and others.
+Azure 雲端服務組態是透過 Azure 入口網站或 SMAPI，經由 Windows PowerShell 命令列介面或利用這些符合 REST 限制之介面的自建應用程式來執行。使用這些機制的服務包括 Azure Active Directory (Azure AD)、Azure 儲存體、Azure 網站和 Azure 虛擬網路等。
 
-Virtual Machine–deployed applications provide their own client tools and interfaces as needed, such as the Microsoft Management Console (MMC), an enterprise management console (such as Microsoft System Center or Windows Intune), or another management application—Microsoft SQL Server Management Studio, for example. These tools typically reside in an enterprise environment or client network. They may depend on specific network protocols, such as Remote Desktop Protocol (RDP), that require direct, stateful connections. Some may have web-enabled interfaces that should not be openly published or accessible via the Internet.
+虛擬機器部署的應用程式會視需要提供自己的用戶端工具和介面 (例如 Microsoft Management Console (MMC))、企業管理主控台 (例如 Microsoft System Center 或 Windows Intune) 或其他管理應用程式 (例如 Microsoft SQL Server Management Studio)。這些工具通常位在企業環境或用戶端網路中。它們可能仰賴需要直接、具狀態之連線的特定網路通訊協定，例如遠端桌面通訊協定 (RDP)。有些則可能會有不應該透過網際網路公開發佈或存取的具有 Web 功能的介面。
 
-You can restrict access to infrastructure and platform services management in Azure by using [multi-factor authentication](../multi-factor-authentication/multi-factor-authentication.md), [X.509 management certificates](https://blogs.msdn.microsoft.com/azuresecurity/2015/07/13/certificate-management-in-azure-dos-and-donts/), and firewall rules. The Azure portal and SMAPI require Transport Layer Security (TLS). However, services and applications that you deploy into Azure require you to take protection measures that are appropriate based on your application. These mechanisms can frequently be enabled more easily through a standardized hardened workstation configuration.
+您可以使用 [Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md)、[X.509 管理憑證](https://blogs.msdn.microsoft.com/azuresecurity/2015/07/13/certificate-management-in-azure-dos-and-donts/)和防火牆規則來限制存取 Azure 中的基礎結構和平台服務管理。Azure 入口網站和 SMAPI 需要傳輸層安全性 (TLS)。不過，您部署至 Azure 的服務和應用程式需要您根據應用程式採取合適的保護措施。這些機制可以透過標準化的強化後工作站組態更容易地經常啟用。
 
-### <a name="management-gateway"></a>Management gateway
+### 管理閘道
 
-To centralize all administrative access and simplify monitoring and logging, you can deploy a dedicated [Remote Desktop Gateway](https://technet.microsoft.com/library/dd560672) (RD Gateway) server in your on-premises network, connected to your Azure environment.
+若要集中管理所有系統管理存取權並簡化監視與記錄，您可以在內部部署網路中部署連線到 Azure 環境的專用[遠端桌面閘道](https://technet.microsoft.com/library/dd560672) (RD 閘道) 伺服器。
 
-A Remote Desktop Gateway is a policy-based RDP proxy service that enforces security requirements. Implementing RD Gateway together with Windows Server Network Access Protection (NAP) helps ensure that only clients that meet specific security health criteria established by Active Directory Domain Services (AD DS) Group Policy objects (GPOs) can connect. In addition:
+遠端桌面閘道是以原則為基礎 RDP Proxy 服務，會強制執行安全性需求。同時實作 RD 閘道與 Windows Server 網路存取保護 (NAP)，可協助確保只有符合 Active Directory 網域服務 (AD DS) 群組原則物件 (GPO) 所建立之特定安全性健全狀況準則的用戶端可以連線。此外：
 
-- Provision an [Azure management certificate](http://msdn.microsoft.com/library/azure/gg551722.aspx) on the RD Gateway so that it is the only host allowed to access the Azure management portal.
-- Join the RD Gateway to the same [management domain](http://technet.microsoft.com/library/bb727085.aspx) as the administrator workstations. This is necessary when you are using a site-to-site IPsec VPN or ExpressRoute within a domain that has a one-way trust to Azure AD, or if you are federating credentials between your on-premises AD DS instance and Azure AD.
-- Configure a [client connection authorization policy](http://technet.microsoft.com/library/cc753324.aspx) to let the RD Gateway verify that the client machine name is valid (domain joined) and allowed to access the Azure management portal.
-- Use IPsec for [Azure VPN](https://azure.microsoft.com/documentation/services/vpn-gateway/) to further protect management traffic from eavesdropping and token theft, or consider an isolated Internet link via [Azure ExpressRoute](https://azure.microsoft.com/documentation/services/expressroute/).
-- Enable multi-factor authentication (via [Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md)) or smart-card authentication for administrators who log on through RD Gateway.
-- Configure source [IP address restrictions](http://azure.microsoft.com/blog/2013/08/27/confirming-dynamic-ip-address-restrictions-in-windows-azure-web-sites/) or [Network Security Groups](../virtual-network/virtual-networks-nsg.md) in Azure to minimize the number of permitted management endpoints.
+- 在 RD 閘道上佈建 [Azure 管理憑證](http://msdn.microsoft.com/library/azure/gg551722.aspx)使它成為可以存取 Azure 管理入口網站的唯一主機。
+- 將 RD 閘道加入至相同的[管理網域](http://technet.microsoft.com/library/bb727085.aspx)以做為系統管理員的工作站。當您在具有對 Azure AD 之單向信任的網域內使用網站間 IPsec VPN 或 ExpressRoute 時，或是如果您要同盟內部部署 AD DS 執行個體與 Azure AD 之間的認證，就必須這麼做。
+- 設定[用戶端連線授權原則](http://technet.microsoft.com/library/cc753324.aspx)，讓 RD 閘道驗證用戶端電腦名稱是否有效 (已加入網域) 並可以存取 Azure 管理入口網站。
+- 針對 [Azure VPN](https://azure.microsoft.com/documentation/services/vpn-gateway/) 使用 IPsec 以進一步防止管理流量遭到竊聽以及權杖遭竊，或考慮使用透過 [Azure ExpressRoute](https://azure.microsoft.com/documentation/services/expressroute/) 的隔離網際網路連結。
+- 針對透過 RD 閘道登入的系統管理員啟用 Multi-Factor Authentication (透過 [Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md)) 或智慧卡驗證。
+- 在 Azure 中設定來源 [IP 位址限制](http://azure.microsoft.com/blog/2013/08/27/confirming-dynamic-ip-address-restrictions-in-windows-azure-web-sites/)或[網路安全性群組](../virtual-network/virtual-networks-nsg.md)以將允許的管理端點數目降到最低。
 
-## <a name="security-guidelines"></a>Security guidelines
+## 安全性方針
 
-In general, helping to secure administrator workstations for use with the cloud is very similar to the practices used for any workstation on-premises—for example, minimized build and restrictive permissions. Some unique aspects of cloud management are more akin to remote or out-of-band enterprise management. These include the use and auditing of credentials, security-enhanced remote access, and threat detection and response.
+一般情況下，協助保護用於雲端之系統管理員工作站的作法，與用於任何內部部署工作站的作法非常類似，比方說，最小化的組建和嚴格的權限。雲端管理的幾項特點則更類似於遠端或頻外企業管理。這些特點包括使用和稽核認證、增強安全性的遠端存取以及威脅偵測和回應。
 
-### <a name="authentication"></a>Authentication
+### 驗證
 
-You can use Azure logon restrictions to constrain source IP addresses for accessing administrative tools and audit access requests. To help Azure identify management clients (workstations and/or applications), you can configure both SMAPI (via customer-developed tools such as Windows PowerShell cmdlets) and the Azure management portal to require client-side management certificates to be installed, in addition to SSL certificates. We also recommend that administrator access require multi-factor authentication.
+您可以使用 Azure 登入限制來限制用於存取系統管理工具的來源 IP 位址和稽核存取要求。若要協助 Azure 識別管理用戶端 (工作站及/或應用程式)，您可以同時設定 SMAPI (透過客戶開發的工具，例如 Windows PowerShell Cmdlet) 和 Azure 管理入口網站，來要求除了 SSL 憑證外，還必須安裝用戶端管理憑證。我們也建議系統管理員存取需要 Multi-Factor Authentication。
 
-Some applications or services that you deploy into Azure may have their own authentication mechanisms for both end-user and administrator access, whereas others take full advantage of Azure AD. Depending on whether you are federating credentials via Active Directory Federation Services (AD FS), using directory synchronization or maintaining user accounts solely in the cloud, using [Microsoft Identity Manager](https://technet.microsoft.com/library/mt218776.aspx) (part of Azure AD Premium) helps you manage identity lifecycles between the resources.
+您部署至 Azure 的某些應用程式或服務可能會針對使用者和系統管理員存取擁有自己的驗證機制，而其他應用程式或服務則會充分利用 Azure AD。根據您是透過 Active Directory Federation Services (AD FS)、使用目錄同步作業或僅在雲端中維護使用者帳戶來同盟認證，使用 [Microsoft Identity Manager](https://technet.microsoft.com/library/mt218776.aspx) (Azure AD Premium 的一部分) 可協助您管理資源之間的身分識別生命週期。
 
-### <a name="connectivity"></a>Connectivity
+### 連線能力
 
-Several mechanisms are available to help secure client connections to your Azure virtual networks. Two of these mechanisms, [site-to-site VPN](https://channel9.msdn.com/series/Azure-Site-to-Site-VPN) (S2S) and [point-to-site VPN](../vpn-gateway/vpn-gateway-point-to-site-create.md) (P2S), enable the use of industry standard IPsec (S2S) or the [Secure Socket Tunneling Protocol](https://technet.microsoft.com/magazine/2007.06.cableguy.aspx) (SSTP) (P2S) for encryption and tunneling. When Azure is connecting to public-facing Azure services management such as the Azure management portal, Azure requires Hypertext Transfer Protocol Secure (HTTPS).
+有數種機制可供協助保護用戶端與 Azure 虛擬網路的連線。這些機制的其中兩個 ([網站間 VPN](https://channel9.msdn.com/series/Azure-Site-to-Site-VPN) (S2S) 和[點對站 VPN](../vpn-gateway/vpn-gateway-point-to-site-create.md) (P2S)) 可使用業界標準 IPsec (S2S) 或[安全通訊端通道通訊協定](https://technet.microsoft.com/magazine/2007.06.cableguy.aspx) (SSTP) (P2S) 來進行加密和通道傳輸。當 Azure 連線至公開的 Azure 服務管理 (例如 Azure 管理入口網站) 時，Azure 需要超文字安全傳輸通訊協定 (HTTPS)。
 
-A stand-alone hardened workstation that does not connect to Azure through an RD Gateway should use the SSTP-based point-to-site VPN to create the initial connection to the Azure Virtual Network, and then establish RDP connection to individual virtual machines from with the VPN tunnel.
+未透過 RD 閘道連線至 Azure 的獨立強化後工作站應該使用 SSTP 架構的點對站 VPN 來建立與 Azure 虛擬網路的初始連線，然後再從 VPN 通道建立與個別虛擬機器的 RDP 連線。
 
-### <a name="management-auditing-vs.-policy-enforcement"></a>Management auditing vs. policy enforcement
+### 管理稽核與原則強制執行
 
-Typically, there are two approaches for helping to secure management processes: auditing and policy enforcement. Doing both will provide comprehensive controls, but may not be possible in all situations. In addition, each approach has different levels of risk, cost, and effort associated with managing security, particularly as it relates to the level of trust placed in both individuals and system architectures.
+一般而言，有兩種方法可用來協助保護管理程序︰稽核和原則強制執行。同時採用這兩種方法可進行全面控制，但並非所有情況下都能這麼做。此外，每一種方法在管理安全性時都需要不同程度的風險、成本和心力，特別是當它涉及對個人和系統架構所給予的信任程度時。
 
-Monitoring, logging, and auditing provide a basis for tracking and understanding administrative activities, but it may not always be feasible to audit all actions in complete detail due to the amount of data generated. Auditing the effectiveness of the management policies is a best practice, however.
+監視、記錄和稽核可為追蹤和了解系統管理活動提供基礎，但受限於所產生的資料量，它不一定都能鉅細靡遺地稽核所有動作。不過，稽核管理原則的效果是最佳作法。
 
-Policy enforcement that includes strict access controls puts programmatic mechanisms in place that can govern administrator actions, and it helps ensure that all possible protection measures are being used. Logging provides proof of enforcement, in addition to a record of who did what, from where, and when. Logging also enables you to audit and crosscheck information about how administrators follow policies, and it provides evidence of activities
+包含嚴格存取控制的原則強制執行具有可控制系統管理員動作的程式設計機制，並可協助確保使用所有可能的保護措施。記錄可提供強制執行的證明，以及什麼人在何時從什麼地方做了什麼動作的記錄。記錄也可讓您稽核和交叉核對系統管理員如何遵循原則的相關資訊，而且它也能提供活動的證據。
 
-## <a name="client-configuration"></a>Client configuration
+## 用戶端組態
 
-We recommend three primary configurations for a hardened workstation. The biggest differentiators between them are cost, usability, and accessibility, while maintaining a similar security profile across all options. The following table provides a short analysis of the benefits and risks to each. (Note that “corporate PC” refers to a standard desktop PC configuration that would be deployed for all domain users, regardless of roles.)
+針對強化後的工作站，我們有三種主要組態建議。這三者之間最大的差異在於成本、可用性和存取性，但它們提供的所有選項都有類似的安全性設定檔。下表扼要分析其各自的優點與風險。(請注意，「公司電腦」指的是將為所有網域使用者 (不論角色為何) 部署的標準桌面電腦組態)。
 
-| Configuration | Benefits | Cons |
+| 組態 | 優點 | 缺點 |
 | ----- | ----- | ----- |
-| Stand-alone hardened workstation | Tightly controlled workstation | higher cost for dedicated desktops
-| | Reduced risk of application exploits | Increased management effort |
-| | Clear separation of duties | |
-| Corporate PC as virtual machine | Reduced hardware costs | |
-| | Segregation of role and applications | |
-| Windows to go with BitLocker drive encryption | Compatibility with most PCs | Asset tracking |
-| | Cost-effectiveness and portability | |
-| | Isolated management environment | |
+| 獨立的強化後工作站 | 受到嚴格控制的工作站 | 專用桌上型電腦的成本較高
+| | 降低應用程式入侵風險 | 增加管理工作 |
+| | 清楚區分職責 | |
+| 以公司電腦做為虛擬機器 | 降低硬體成本 | |
+| | 隔離角色和應用程式 | |
+| Windows To Go 與 BitLocker 磁碟機加密 | 與大部分電腦相容 | 資產追蹤 |
+| | 符合成本效益且具有可攜性 | |
+| | 隔離的管理環境 | |
 
-It is important that the hardened workstation is the host and not the guest, with nothing between the host operating system and the hardware. Following the “clean source principle” (also known as “secure origin”) means that the host should be the most hardened. Otherwise, the hardened workstation (guest) is subject to attacks on the system on which it is hosted.
+請務必讓強化後的工作站做為主機而非客體，且主機作業系統和硬體之間沒有任何東西。遵循「乾淨來源原則」(也稱為「安全來源」) 表示主機應該是最安全的。否則，強化後的工作站 (客體) 在其裝載所在的系統上將容易受到攻擊。
 
-You can further segregate administrative functions through dedicated system images for each hardened workstation that have only the tools and permissions needed for managing select Azure and cloud applications, with specific local AD DS GPOs for the necessary tasks.
+您可以透過專用系統映像為每一部強化後的工作站進一步隔離系統管理功能，使其只具有管理選定的 Azure 和雲端應用程式所需的工具和權限，以及用於必要工作的特定本機 AD DS GPO。
 
-For IT environments that have no on-premises infrastructure (for example, no access to a local AD DS instance for GPOs because all servers are in the cloud), a service such as [Microsoft Intune](https://technet.microsoft.com/library/jj676587.aspx) can simplify deploying and maintaining workstation configurations.
+對於沒有任何內部部署基礎結構的 IT 環境 (例如，因為所有伺服器都在雲端而不能存取 GPO 的本機 AD DS 執行個體)，[Microsoft Intune](https://technet.microsoft.com/library/jj676587.aspx) 之類的服務可以簡化工作站組態的部署和維護工作。
 
-### <a name="stand-alone-hardened-workstation-for-management"></a>Stand-alone hardened workstation for management
+### 用於管理的獨立強化後工作站
 
-With a stand-alone hardened workstation, administrators have a PC or laptop that they use for administrative tasks and another, separate PC or laptop for non-administrative tasks. A workstation dedicated to managing your Azure services does not need other applications installed. Additionally, using workstations that support a [Trusted Platform Module](https://technet.microsoft.com/library/cc766159) (TPM) or similar hardware-level cryptography technology aids in device authentication and prevention of certain attacks. TPM can also support full volume protection of the system drive by using [BitLocker Drive Encryption](https://technet.microsoft.com/library/cc732774.aspx).
+使用獨立的強化後工作站時，系統管理員會使用一部電腦或膝上型電腦來進行系統管理工作，並使用另一個不同的電腦或膝上型電腦來進行非系統管理工作。專門負責管理 Azure 服務的工作站不需要安裝其他應用程式。此外，使用的工作站若支援[信賴平台模組](https://technet.microsoft.com/library/cc766159) (TPM) 或類似的硬體層級密碼編譯技術，將有助於進行裝置驗證和預防特定攻擊。TPM 也可以使用 [BitLocker 磁碟機加密](https://technet.microsoft.com/library/cc732774.aspx)來支援系統磁碟機的完整磁碟區保護。
 
-In the stand-alone hardened workstation scenario (shown below), the local instance of Windows Firewall (or a non-Microsoft client firewall) is configured to block inbound connections, such as RDP. The administrator can log on to the hardened workstation and start an RDP session that connects to Azure after establishing a VPN connect with an Azure Virtual Network, but cannot log on to a corporate PC and use RDP to connect to the hardened workstation itself.
+在獨立的強化後工作站案例中 (如下所示)，Windows 防火牆 (或非 Microsoft 用戶端防火牆) 的本機執行個體會設定為封鎖輸入連線，例如 RDP。系統管理員可以登入強化後的工作站，並在與 Azure 虛擬網路建立 VPN 連線之後啟動連線至 Azure 的 RDP 工作階段，但無法登入公司電腦並使用 RDP 連線至強化後的工作站本身。
 
 ![][2]
 
-### <a name="corporate-pc-as-virtual-machine"></a>Corporate PC as virtual machine
+### 以公司電腦做為虛擬機器
 
-In cases where a separate stand-alone hardened workstation is cost prohibitive or inconvenient, the hardened workstation can host a virtual machine to perform non-administrative tasks.
+在部署個別的獨立強化後工作站需要高昂成本或無法撥出此預算的情況下，強化後的工作站可以裝載用來執行非系統管理工作的虛擬機器。
 
 ![][3]
 
-To avoid several security risks that can arise from using one workstation for systems management and other daily work tasks, you can deploy a Windows Hyper-V virtual machine to the hardened workstation. This virtual machine can be used as the corporate PC. The corporate PC environment can remain isolated from the Host, which reduces its attack surface and removes the user’s daily activities (such as email) from coexisting with sensitive administrative tasks.
+若要避免使用單一工作站來進行系統管理和其他日常工作所可能引發的諸多安全性風險，您可以在強化後的工作站部署 Windows Hyper-V 虛擬機器。此虛擬機器可以做為公司電腦來使用。公司電腦環境可以與主機保持區隔，以減少其受攻擊面，並讓使用者的日常活動 (例如電子郵件) 不會與敏感的系統管理工作共存。
 
-The corporate PC virtual machine runs in a protected space and provides user applications. The host remains a “clean source” and enforces strict network policies in the root operating system (for example, blocking RDP access from the virtual machine).
+公司電腦虛擬機器會在受保護的空間內執行，並提供使用者應用程式。主機仍是「乾淨來源」，並且會在根作業系統中強制執行嚴格的網路原則 (例如，封鎖來自虛擬機器的 RDP 存取)。
 
-### <a name="windows-to-go"></a>Windows To Go
+### Windows To Go
 
-Another alternative to requiring a stand-alone hardened workstation is to use a [Windows To Go](https://technet.microsoft.com/library/hh831833.aspx) drive, a feature that supports a client-side USB-boot capability. Windows To Go enables users to boot a compatible PC to an isolated system image running from an encrypted USB flash drive. It provides additional controls for remote-administration endpoints because the image can be fully managed by a corporate IT group, with strict security policies, a minimal OS build, and TPM support.
+需要獨立的強化後工作站的另一個替代方式是使用 [Windows To Go](https://technet.microsoft.com/library/hh831833.aspx) 磁碟機，這個功能可支援用戶端 USB 開機功能。Windows To Go 可讓使用者將相容的電腦開機到從加密 USB 快閃磁碟機執行的隔離系統映像。因為映像可以完全由公司的 IT 團隊負責管理、有嚴格的安全性原則、最小的作業系統組建和 TPM 支援，因此Windows To Go 可以提升對遠端系統管理端點的控制能力。
 
-In the figure below, the portable image is a domain-joined system that is preconfigured to connect only to Azure, requires multi-factor authentication, and blocks all non-management traffic. If a user boots the same PC to the standard corporate image and tries accessing RD Gateway for Azure management tools, the session will be blocked. Windows To Go becomes the root-level operating system, and no additional layers are required (host operating system, hypervisor, virtual machine) that may be more vulnerable to outside attacks.
+在下圖中，可攜式映像是已加入網域的系統，其已預先設定為僅連線至 Azure、需要 Multi-Factor Authentication，並且會封鎖所有非管理流量。如果使用者將同一部電腦開機到標準公司映像，並嘗試存取 Azure 管理工具的 RD 閘道，工作階段將會遭到封鎖。Windows To Go 會成為根層級作業系統，而且不需要可能更容易遭受外部攻擊的其他層 (主機作業系統、Hypervisor、虛擬機器)。
 
 ![][4]
 
-It is important to note that USB flash drives are more easily lost than an average desktop PC. Use of BitLocker to encrypt the entire volume, together with a strong password, will make it less likely that an attacker can use the drive image for harmful purposes. Additionally, if the USB flash drive is lost, revoking and [issuing a new management certificate](https://technet.microsoft.com/library/hh831574.aspx) along with a quick password reset can reduce exposure. Administrative audit logs reside within Azure, not on the client, further reducing potential data loss.
+請務必注意，比起一般的桌上型電腦，USB 快閃磁碟機更容易遺失。在使用 BitLocker 來加密整個磁碟區時若能搭配強式密碼，攻擊者就更不可能使用磁碟機映像來進行有害活動。此外，如果遺失 USB 快閃磁碟機，則撤銷和[發出新的管理憑證](https://technet.microsoft.com/library/hh831574.aspx)以及快速重設密碼可以降低風險。系統管理稽核記錄存放在 Azure 而非用戶端，將可進一步減少遺失資料的可能性。
 
-## <a name="best-practices"></a>Best practices
+## 最佳作法
 
-Consider the following additional guidelines when you are managing applications and data in Azure.
+當您管理 Azure 中的應用程式和資料時，請考慮下列額外的方針。
 
-### <a name="dos-and-don'ts"></a>Dos and don'ts
+### 建議事項和避免事項
 
-Don't assume that because a workstation has been locked down that other common security requirements do not need to be met. The potential risk is higher because of elevated access levels that administrator accounts generally possess. Examples of risks and their alternate safe practices are shown in the table below.
+請勿因為工作站已封鎖起來，就認為不需要滿足其他常見的安全性需求。因為系統管理員帳戶通常擁有提高權限的存取層級，因此潛在風險會提高。下表顯示風險和其替代安全作法的範例。
 
-| Don't | Do |
+| 避免事項 | 建議事項 |
 | ----- | ----- |
-| Don't email credentials for administrator access or other secrets (for example, SSL or management certificates) | Maintain confidentiality by delivering account names and passwords by voice (but not storing them in voice mail), perform a remote installation of client/server certificates (via an encrypted session), download from a protected network share, or distribute by hand via removable media. |
-| | Proactively manage your management certificate life cycles. |
-| Don't store account passwords unencrypted or un-hashed in application storage (such as in spreadsheets, SharePoint sites, or file shares). | Establish security management principles and system hardening policies, and apply them to your development environment. |
-| | Use [Enhanced Mitigation Experience Toolkit 5.5](https://technet.microsoft.com/security/jj653751) certificate pinning rules to ensure proper access to Azure SSL/TLS sites. |
-| Don't share accounts and passwords between administrators, or reuse passwords across multiple user accounts or services, particularly those for social media or other nonadministrative activities. | Create a dedicated Microsoft account to manage your Azure subscription—an account that is not used for personal email. |
-| Don't email configuration files. | Configuration files and profiles should be installed from a trusted source (for example, an encrypted USB flash drive), not from a mechanism that can be easily compromised, such as email. |
-| Don't use weak or simple logon passwords. | Enforce strong password policies, expiration cycles (changeon-first-use), console timeouts, and automatic account lockouts. Use a client password management system with multi-factor authentication for password vault access. |
-| Don't expose management ports to the Internet. | Lock down Azure ports and IP addresses to restrict management access. For more information, see the [Azure Network Security] (http://download.microsoft.com/download/4/3/9/43902EC9-410E-4875-8800-0788BE146A3D/Windows%20Azure%20Network%20Security%20Whitepaper%20-%20FINAL.docx) white paper. |
-| | Use firewalls, VPNs, and NAP for all management connections. |
+| 請勿以電子郵件寄送用於系統管理員存取權或其他機密資料的認證 (例如 SSL 或管理憑證) | 用聲音提供帳戶名稱和密碼 (但不要將它們儲存在語音郵件中) 以維持機密性、遠端安裝用戶端/伺服器憑證 (透過加密工作階段)、從受保護的網路共用下載，或透過卸除式媒體手動發佈。 |
+| | 主動管理您的管理憑證生命週期。 |
+| 請勿在應用程式儲存體中儲存未加密或未雜湊的帳戶密碼 (例如在試算表、SharePoint 網站或檔案共用中)。 | 建立安全性管理原則和系統強化原則，並將它們套用至您的開發環境。 |
+| | 使用 [Enhanced Mitigation Experience Toolkit 5.5](https://technet.microsoft.com/security/jj653751) 憑證釘選規則，以確保能正確存取 Azure SSL/TLS 網站。 |
+| 請勿讓系統管理員共用帳戶和密碼，或在多個使用者帳戶或服務重複使用密碼，特別是用於社交媒體或其他非系統管理活動的帳戶或服務。 | 建立專用的 Microsoft 帳戶來管理您的 Azure 訂用帳戶，此帳戶不會用於個人電子郵件。 |
+| 請勿以電子郵件寄送組態檔。 | 應該從信任的來源 (例如，加密的 USB 快閃磁碟機) 而非從可輕易入侵的機制 (例如電子郵件) 安裝組態檔和設定檔。 |
+| 請勿使用弱式或簡單的登入密碼。 | 強制使用強式密碼原則、到期循環 (首次使用時變更)、主控台逾時和自動帳戶鎖定。使用用戶端密碼管理系統搭配 Multi-Factor Authentication 來存取密碼保存庫。 |
+| 請勿對網際網路公開管理連接埠。 | 鎖定 Azure 連接埠和 IP 位址來限制管理存取。如需詳細資訊，請參閱 [Azure 網路安全性](http://download.microsoft.com/download/4/3/9/43902EC9-410E-4875-8800-0788BE146A3D/Windows%20Azure%20Network%20Security%20Whitepaper%20-%20FINAL.docx)白皮書。 |
+| | 針對所有管理連線使用防火牆、VPN 和 NAP。 |
 
-## <a name="azure-operations"></a>Azure operations
+## Azure 作業
 
-Within Microsoft’s operation of Azure, operations engineers and support personnel who access Azure’s production systems use [hardened workstation PCs with VMs](#stand-alone-hardened-workstation-for-management) provisioned on them for internal corporate network access and applications (such as e-mail, intranet, etc.). All management workstation computers have TPMs, the host boot drive is encrypted with BitLocker, and they are joined to a special organizational unit (OU) in Microsoft’s primary corporate domain.
+在 Microsoft 的 Azure 作業內，存取 Azure 之生產系統的作業工程師和支援人員，會使用[強化後的工作站電腦與其中所佈建的 VM](#stand-alone-hardened-workstation-for-management)來進行內部的公司網路存取和執行應用程式 (例如電子郵件、內部網路等)。所有管理工作站電腦都有 TPM、主機開機磁碟機已使用 BitLocker 加密，而且它們已加入 Microsoft 主要公司網域中的特殊組織單位 (OU)。
 
-System hardening is enforced through Group Policy, with centralized software updating. For auditing and analysis, event logs (such as security and AppLocker) are collected from management workstations and saved to a central location.
+系統強化是透過群組原則以集中式的軟體更新來強制執行。為了進行稽核和分析，會從管理工作站收集事件記錄 (例如安全性和 AppLocker) 並儲存到中央位置。
 
-In addition, dedicated jump-boxes on Microsoft’s network that require two-factor authentication are used to connect to Azure’s production network.
+此外，會使用 Microsoft 網路上需要雙因素驗證的專用 Jumpbox 來連線到 Azure 的生產網路。
 
-## <a name="azure-security-checklist"></a>Azure security checklist
+## Azure 安全性檢查清單
 
-Minimizing the number of tasks that administrators can perform on a hardened workstation will help minimize the attack surface in your development and management environment. Use the following technologies to help protect your hardened workstation:
+將系統管理員在強化後的工作站上可以執行的工作數目降至最低，將有助於盡量降低開發和管理環境中的受攻擊面。請使用下列技術來協助保護強化後的工作站︰
 
-- IE hardening. The Internet Explorer browser (or any web browser, for that matter) is a key entry point for harmful code due to its extensive interactions with external servers. Review your client policies and enforce running in protected mode, disabling add-ons, disabling file downloads, and using [Microsoft SmartScreen](https://technet.microsoft.com/library/jj618329.aspx) filtering. Ensure that security warnings are displayed. Take advantage of Internet zones and create a list of trusted sites for which you have configured reasonable hardening. Block all other sites and in-browser code, such as ActiveX and Java.
-- Standard user. Running as a standard user brings a number of benefits, the biggest of which is that stealing administrator credentials via malware becomes more difficult. In addition, a standard user account does not have elevated privileges on the root operating system, and many configuration options and APIs are locked out by default.
-- AppLocker. You can use [AppLocker](http://technet.microsoft.com/library/ee619725.aspx) to restrict the programs and scripts that users can run. You can run AppLocker in audit or enforcement mode. By default, AppLocker has an allow rule that enables users who have an admin token to run all code on the client. This rule exists to prevent administrators from locking themselves out, and it applies only to elevated tokens. See also Code Integrity as part of Windows Server [core security](http://technet.microsoft.com/library/dd348705.aspx).
-- Code signing. Code signing all tools and scripts used by administrators provides a manageable mechanism for deploying application lockdown policies. Hashes do not scale with rapid changes to the code, and file paths do not provide a high level of security. You should combine AppLocker rules with a PowerShell [execution policy](http://technet.microsoft.com/library/ee176961.aspx) that only allows specific signed code and scripts to be [executed](http://technet.microsoft.com/library/hh849812.aspx).
-- Group Policy. Create a global administrative policy that is applied to any domain workstation that is used for management (and block access from all others), as well as to user accounts authenticated on those workstations.
-- Security-enhanced provisioning. Safeguard your baseline hardened workstation image to help protect against tampering. Use security measures like encryption and isolation to store images, virtual machines, and scripts, and restrict access (perhaps use an auditable check-in/check-out process).
-- Patching. Maintain a consistent build (or have separate images for development, operations, and other administrative tasks), scan for changes and malware routinely, keep the build up to date, and only activate machines when they are needed.
-- Encryption. Make sure that management workstations have a TPM to more securely enable [Encrypting File System](https://technet.microsoft.com/library/cc700811.aspx) (EFS) and BitLocker. If you are using Windows To Go, use only encrypted USB keys together with BitLocker.
-- Governance. Use AD DS GPOs to control all of the administrators’ Windows interfaces, such as file sharing. Include management workstations in auditing, monitoring, and logging processes. Track all administrator and developer access and usage.
+- IE 強化。Internet Explorer 瀏覽器 (或任何類似用途的網頁瀏覽器) 因為會與外部伺服器廣泛互動，所以是有害程式碼的主要進入點。請檢閱您的用戶端原則並強制要求在受保護模式中執行、停用附加元件、停用檔案下載，以及使用 [Microsoft SmartScreen](https://technet.microsoft.com/library/jj618329.aspx) 篩選。確定會顯示安全性警告。利用網際網路區域，並建立已為其設定合理強化的信任網站清單。封鎖其他所有網站和瀏覽器中的程式碼，例如 ActiveX 和 Java。
+- 標準使用者。以標準使用者的身分執行有許多好處，最重要的好處是透過惡意程式碼竊取系統管理員認證會變得更困難。此外，標準使用者帳戶沒有根作業系統的提高的權限，而且許多組態選項和 API 已依預設鎖定起來。
+- AppLocker。您可以使用 [AppLocker](http://technet.microsoft.com/library/ee619725.aspx) 來限制使用者可以執行的程式和指令碼。您可以在稽核或強制模式中執行 AppLocker。根據預設，AppLocker 的允許規則可讓具有系統管理員權杖的使用者執行用戶端上的所有程式碼。此規則的存在是為了避免系統管理員將自己鎖定，而且只適用於提高權限的權杖。另請參閱做為 Windows Server [核心安全性](http://technet.microsoft.com/library/dd348705.aspx)一部分的「程式碼完整性」。
+- 程式碼簽署。為系統管理員使用的所有工具和指令碼進行程式碼簽署，可提供方便管理的機制來部署應用程式鎖定原則。雜湊不會隨著程式碼的快速變更而做調整，而且檔案路徑不會提供高度安全性。您應該將 AppLocker 規則結合 PowerShell [執行原則](http://technet.microsoft.com/library/ee176961.aspx)，此原則只允許[執行](http://technet.microsoft.com/library/hh849812.aspx)特定已簽署的程式碼和指令碼。
+- 群組原則。建立全域系統管理原則以套用至任何用於管理的網域工作站 (以及封鎖來自其他所有用途的存取)，以及套用至在這些工作站上進行驗證的使用者帳戶。
+- 已增強安全性的佈建。保護您的基準強化後工作站映像以防遭到竄改。使用加密和隔離等安全性措施來儲存映像、虛擬機器和指令碼，並限制存取 (或許是使用可稽核的簽入/簽出程序)。
+- 修補。維護一致的組建 (或針對開發、作業和其他系統管理工作使用不同的映像)、定期掃描變更和惡意程式碼、讓組建保持最新狀態，並且只在需要時才啟用機器。
+- 加密。確定管理工作站有 TPM 以便能夠更安全地啟用[加密檔案系統](https://technet.microsoft.com/library/cc700811.aspx) (EFS) 和 BitLocker。如果您使用 Windows To Go，請只搭配 BitLocker 使用加密的 USB 金鑰。
+- 控管。使用 AD DS GPO 來控制所有系統管理員的 Windows 介面，例如檔案共用。將管理工作站納入稽核、監視和記錄程序內。追蹤所有系統管理員和開發人員的存取和使用活動。
 
-## <a name="summary"></a>Summary
+## 摘要
 
-Using a hardened workstation configuration for administering your Azure cloud services, Virtual Machines, and applications can help you avoid numerous risks and threats that can come from remotely managing critical IT infrastructure. Both Azure and Windows provide mechanisms that you can employ to help protect and control communications, authentication, and client behavior.
+使用強化後的工作站組態來管理 Azure 雲端服務、虛擬機器和應用程式，可協助您避免遠端管理重要 IT 基礎結構所產生的眾多風險和威脅。Azure 和 Windows 皆可提供相關機制供您保護和控制通訊、驗證和用戶端行為。
 
-## <a name="next-steps"></a>Next steps
-The following resources are available to provide more general information about Azure and related Microsoft services, in addition to specific items referenced in this paper:
+## 後續步驟
+除了本白皮書所提到的特定項目外，下列資源還可提供更多有關 Azure 和相關 Microsoft 服務的一般資訊：
 
-- [Securing Privileged Access](https://technet.microsoft.com/library/mt631194.aspx) – get the technical details for designing and building a secure administrative workstation for Azure management
-- [Microsoft Trust Center](https://www.microsoft.com/TrustCenter/Security/AzureSecurity) - learn about Azure platform capabilities that protect the Azure fabric and the workloads that run on Azure
-- [Microsoft Security Response Center](http://www.microsoft.com/security/msrc/default.aspx) -- where Microsoft security vulnerabilities, including issues with Azure, can be reported or via email to [secure@microsoft.com](mailto:secure@microsoft.com)
-- [Azure Security Blog](http://blogs.msdn.com/b/azuresecurity/) – keep up to date on the latest in Azure Security
+- [保護特殊權限存取](https://technet.microsoft.com/library/mt631194.aspx) – 取得設計和建置安全的系統管理工作站以管理 Azure 的技術詳細資料
+- [Microsoft 信任中心](https://www.microsoft.com/TrustCenter/Security/AzureSecurity) - 了解可保護 Azure 網狀架構和在 Azure 上執行之工作負載的 Azure 平台功能
+- [Microsoft 安全性回應中心](http://www.microsoft.com/security/msrc/default.aspx) -- 可在其中回報 Microsoft 安全性弱點 (包括 Azure 的問題) 或透過電子郵件傳送給 [secure@microsoft.com](mailto:secure@microsoft.com)
+- [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) – 隨時掌握 Azure 安全性的最新消息
 
 <!--Image references-->
 [1]: ./media/azure-security-management/typical-management-network-topology.png
@@ -248,8 +247,4 @@ The following resources are available to provide more general information about 
 [3]: ./media/azure-security-management/hardened-workstation-enabled-with-hyper-v.png
 [4]: ./media/azure-security-management/hardened-workstation-using-windows-to-go-on-a-usb-flash-drive.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0831_2016-->

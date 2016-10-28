@@ -1,65 +1,60 @@
 <properties
-    pageTitle="Deploy an App on Virtual Machine Scale Sets| Microsoft Azure"
-    description="Deploy an app on Virtual Machine Scale Sets"
-    services="virtual-machine-scale-sets"
-    documentationCenter=""
-    authors="gbowerman"
-    manager="timlt"
-    editor=""
-    tags="azure-resource-manager"/>
+	pageTitle="在虛擬機器擴展集上部署應用程式 | Microsoft Azure"
+	description="在虛擬機器擴展集上部署應用程式"
+	services="virtual-machine-scale-sets"
+	documentationCenter=""
+	authors="gbowerman"
+	manager="timlt"
+	editor=""
+	tags="azure-resource-manager"/>
 
 <tags
-    ms.service="virtual-machine-scale-sets"
-    ms.workload="na"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/26/2016"
-    ms.author="guybo"/>
+	ms.service="virtual-machine-scale-sets"
+	ms.workload="na"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/26/2016"
+	ms.author="guybo"/>
 
+# 在虛擬機器擴展集上部署應用程式
 
-# <a name="deploy-an-app-on-virtual-machine-scale-sets"></a>Deploy an App on Virtual Machine Scale Sets
+在「VM 擴展集」上執行的應用程式通常是以三種方式的其中一種來進行部署︰
 
-An application running on a VM Scale Set is typically deployed in one of three ways:
+- 在部署階段，於平台映像上安裝新軟體。此內容中的平台映像是來自 Azure Marketplace 的作業系統映像，例如 Ubuntu 16.04、Windows Server 2012 R2 等。
 
-- Installing new software on a platform image at deployment time. A platform image in this context is an operating system image from the Azure Marketplace, like Ubuntu 16.04, Windows Server 2012 R2, etc.
+您可以使用 [VM 擴充功能](../virtual-machines/virtual-machines-windows-extensions-features.md)在平台映像上安裝新軟體。VM 擴充功能是在部署 VM 時執行的軟體。您可以使用自訂指令碼擴充功能，在部署階段執行您想要的任何程式碼。[這裡](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-lapstack-autoscale)提供一個含有下列兩個 VM 擴充功能的「Azure Resource Manager 範本」範例︰一個是「Linux 自訂指令碼擴充功能」，用來安裝 Apache 和 PHP，一個是「診斷擴充功能」，用來發出「Azure 自動調整」所使用的效能資料。
 
-You can install new software on a platform image using a [VM Extension](../virtual-machines/virtual-machines-windows-extensions-features.md). A VM extension is software that runs when a VM is deployed. You can run any code you like at deployment time using a custom script extension. [Here](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-lapstack-autoscale) is an example Azure Resource Manager Template with two VM extensions: a Linux Custom Script Extension to install Apache and PHP, and a Diagnostic Extension to emit performance data used by Azure Autoscale.
+此方法的優點是在您應用程式程式碼與 OS 之間有某種程度的分隔，而可以個別維護您的應用程式。當然，這也意謂著有較多的移動組件，而且如果指令碼需要下載和設定的項目有很多，VM 部署時間也可能較長。
 
-An advantage of this approach is you have a level of separation between your application code and the OS, and can maintain your application separately. Of course that means there are also more moving parts, and VM deployment time could be longer if there is a lot for the script to download and configure.
+**如果您在「自訂指令碼擴充功能」命令中傳遞機密資訊 (例如密碼)，請務必在「自訂指令碼擴充功能」的 `protectedSettings` 屬性 (而不是 `settings` 屬性) 中指定 `commandToExecute`。**
 
-**If you pass sensitive information in your Custom Script Extension command (such as a password), be sure to specify the `commandToExecute` in the `protectedSettings` attribute of the Custom Script Extension instead of the `settings` attribute.**
+- 建立在單一 VHD 中包含 OS 和應用程式的自訂 VM 映像。這裡的擴展集是由一組 VM 所組成，這些 VM 是從您建立的映像複製且您必須維護的 VM。此方法不需要在 VM 部署階段進行任何額外的設定。不過，在 `2016-03-30` 版 (及更舊版本) 的「VM 擴展集」中，擴展集內 VM 的 OS 磁碟受限於單一儲存體帳戶。因此，一個擴展集內最多可以有 40 個 VM，而不像平台映像的每個擴展集限制為 100 個 VM。如需詳細資訊，請參閱[擴展集設計概觀](./virtual-machine-scale-sets-design-overview.md) 。
 
-- Create a custom VM image that includes both the OS and the application in a single VHD. Here the scale set consists of a set of VMs copied from an image created by you, which you have to maintain. This approach requires no extra configuration at VM deployment time. However, in the `2016-03-30` version of VM Scale Sets (and earlier versions), the OS disks for the VMs in the scale set are limited to a single storage account. Thus, you can have a maximum of 40 VMs in a scale set, as opposed to the 100 VM per scale set limit with platform images. See [Scale Set Design Overview](./virtual-machine-scale-sets-design-overview.md) for more details.
+- 部署一個基本上作為容器主機的平台或自訂映像，然後將應用程式安裝成一或多個您使用 Orchestrator 或組態管理工具來管理的容器。此方法的好處在於您已將雲端基礎結構從應用程式層抽離出來，而可以個別維護它們。
 
-- Deploy a platform or a custom image which is basically a container host, and install your application as one or more containers that you manage with an orchestrator or configuration management tool. The nice thing about this approach is that you have abstracted your cloud infrastructure from the application layer and can maintain them separately.
+## 當 VM 擴展集相應放大時，會發生什麼情況？
 
-## <a name="what-happens-when-a-vm-scale-set-scales-out?"></a>What happens when a VM Scale Set scales out?
+當您透過增加容量將一或多個 VM 新增到擴展集時 (不論是以手動方式還是透過自動調整)，都會自動安裝應用程式。例如，如果擴展集已有定義的擴充功能，則每次建立新 VM 時，這些擴充功能都會在新 VM 上執行。如果擴展集是以自訂映像為基礎，則所有新 VM 都是來源自訂映像的複本。如果擴展集 VM 是容器主機，則您可以讓啟動程式碼載入「自訂指令碼擴充功能」中的容器，或是擴充功能可以安裝會向叢集 Orchestrator (例如 Azure Container Service) 註冊的代理程式。
 
-When you add one or more VMs to a scale set by increasing the capacity – whether manually or through autoscale – the application is automatically installed. For example if the scale set has extensions defined, they run on a new VM each time it is created. If the scale set is based on a custom image, any new VM is a copy of the source custom image. If the scale set VMs are container hosts, then you might have startup code to load the containers in a Custom Script Extension, or an extension might install an agent that registers with a cluster orchestrator (such as Azure Container Service).
+## 要如何管理 VM 擴展集內的應用程式更新？
 
-## <a name="how-do-you-manage-application-updates-in-vm-scale-sets?"></a>How do you manage application updates in VM Scale Sets?
+針對「VM 擴展集」內的應用程式更新，有三個衍生自前述三種應用程式部署方法的主要方法：
 
-For application updates in VM Scale Sets, three main approaches follow from the three preceding application deployment methods:
+* 使用 VM 擴充功能來進行更新。每次建立新 VM、重新安裝現有 VM 的映像，或更新 VM 擴充功能時，都會執行為「VM 擴展集」定義的所有 VM 擴充功能。如果您需要更新應用程式，透過擴充功能直接更新應用程式是可行的方法，您只要更新擴充功能定義即可。若要這麼做，有一個簡單的方式，就是將 fileUris 變更為指向新的軟體。
 
-* Updating with VM extensions. Any VM extensions that are defined for a VM Scale Set are executed each time a new VM is deployed, an existing VM is reimaged, or a VM extension is updated. If you need to update your application, directly updating an application through extensions is a viable approach – you simply update the extension definition. One simple way to do so is by changing the fileUris to point to the new software.
+* 不可變的自訂映像方法。當您將應用程式 (或應用程式元件) 製作成 VM 映像時，您可以將焦點放在建置可靠的管線來將映像的建置、測試及部署自動化。您可以設計架構來協助將分段擴展集快速切換到生產環境。此方法的其中一個好例子就是 [Azure Spinnaker 驅動程式工作](https://github.com/spinnaker/deck/tree/master/app/scripts/modules/azure) - [http://www.spinnaker.io/](http://www.spinnaker.io/)。
 
-* The immutable custom image approach. When you bake the application (or app components) into a VM image you can focus on building a reliable pipeline to automate build, test, and deployment of the images. You can design your architecture to facilitate rapid swapping of a staged scale set into production. A good example of this approach is the [Azure Spinnaker driver work](https://github.com/spinnaker/deck/tree/master/app/scripts/modules/azure) - [http://www.spinnaker.io/](http://www.spinnaker.io/).
+Packer 和 Terraform 也支援 Azure Resource Manager，因此您也可以「以程式碼方式」定義您的映像並在 Azure 中建置它們，然後在您的擴展集內使用 VHD。不過，這麼做對 Marketplace 映像會造成問題，其中擴充功能/自訂指令碼會變得更加重要，因為您不是直接從 Marketplace 操縱位元。
 
-Packer and Terraform also support Azure Resource Manager, so you can also define your images “as code” and build them in Azure, then use the VHD in your scale set. However, doing so would become problematic for Marketplace images, where extensions/custom scripts become more important since you don’t directly manipulate bits from Marketplace.
+* 更新容器。將應用程式生命週期管理提取至高於雲端基礎結構的層級 (例如透過封裝應用程式的方式)，以及將應用程式元件提取至容器中，並透過容器 Orchestrator 和組態管理員 (例如 Chef/Puppet) 管理這些容器。
 
-* Update containers. Abstract the application lifecycle management to a level above the cloud infrastructure, for example by encapsulating applications, and app components into containers and manage these containers through container orchestrators and configuration managers like Chef/Puppet.
+然後，擴展集 VM 就會變成容器的穩定基底，而只需要偶爾進行安全性和 OS 相關的更新。如前所述，Azure Container Service 即是一個採用此方法並以其為中心建置服務的好例子。
 
-The scale set VMs then become a stable substrate for the containers and only require occasional security and OS-related updates. As mentioned, the Azure Container Service is a good example of taking this approach and building a service around it.
+## 如何在各個更新網域推出 OS 更新？
 
-## <a name="how-do-you-roll-out-an-os-update-across-update-domains?"></a>How do you roll out an OS update across update domains?
+假設您想要在更新 OS 映像的同時，又讓「VM 擴展集」持續執行。若要這麼做，有一個方法，就是一次更新一個 VM 的 VM 映像。您可以使用 PowerShell 或 Azure CLI 來達到此目的。有個別的命令可在個別 VM 上更新「VM 擴展集」模型 (其組態的定義方式)，以及發出「手動升級」呼叫。
 
-Suppose you want to update your OS image while keeping the VM Scale Set running. One way to do so is to update the VM images one VM at a time. You can do so with PowerShell or Azure CLI. There are separate commands to update the VM Scale Set model (how its configuration is defined), and to issue “manual upgrade” calls on individual VMs.
+[這裡](https://github.com/gbowerman/vmsstools)提供一個 Python 指令碼範例，可一次自動更新一個更新網域的「VM 擴展集」。(注意︰與其說是已準備好用於生產環境的確定解決方案，倒不如說是一種概念證明 – 您可以新增一些錯誤檢查等)。
 
-[Here](https://github.com/gbowerman/vmsstools) is an example Python script that automates the process of updating a VM Scale Set one update domain at a time. (Caveat: it’s more of a proof of concept than a hardened production-ready solution – you might want to add some error checking etc.).
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!----HONumber=AcomDC_0907_2016-->

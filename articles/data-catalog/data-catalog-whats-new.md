@@ -1,6 +1,6 @@
 <properties
-   pageTitle="What's New in Azure Data Catalog | Microsoft Azure"
-   description="This article provides an overview of new capabilities added to Azure Data Catalog."
+   pageTitle="Azure 資料目錄的新功能 | Microsoft Azure"
+   description="本文提供新增至 Azure 資料目錄之新功能的概觀。"
    services="data-catalog"
    documentationCenter=""
    authors="steelanddata"
@@ -16,284 +16,279 @@
    ms.date="09/21/2016"
    ms.author="maroche"/>
 
+# Azure 資料目錄的新功能
 
-# <a name="what's-new-in-azure-data-catalog"></a>What's new in Azure Data Catalog
+**Azure 資料目錄**的更新會定期發行。並非所有發行版本都會包含供使用者使用的新功能，某些版本著重在後端服務功能。本頁將特別強調已加入 Azure 資料目錄服務的新使用者功能。
 
-Updates to **Azure Data Catalog** are released on a regular basis. Not every release will include new user-facing features, as some releases are focused on back-end service capabilities. This page will highlight new user-facing capabilities added to the Azure Data Catalog service.
 
 
+## 2016 年 9 月 16 日當週版本的新功能
 
-## <a name="what's-new-for-the-week-of-september-16,-2016-release"></a>What's new for the week of September 16, 2016 release
+自 2016 年 9 月 16 日當週起，Azure 資料目錄已新增下列功能：
 
-As of the week of September 16, 2016, the following capabilities have been added to Azure Data Catalog:
+- 支援 IBM DB2 資料來源。使用者現在可以註冊並探索 DB2 資料庫、資料表和檢視。
+- 支援 Azure DocumentDB 資料來源。使用者現在可以註冊並探索 DocumentDB 資料庫和集合。
+- 支援在資料目錄入口網站中自訂目錄名稱。目錄管理員現在可以提供將會顯示在入口網站標題的文字，例如組織名稱。
 
-- Support for IBM DB2 data sources. Users can now register and discover DB2 databases, tables, and views.
-- Support for Azure DocumentDB data sources. Users can now register and discover DocumentDB databases and collections.
-- Support for customizing the catalog name in the Data Catalog portal. Catalog administrators can now provide text that will be displayed in the portal title, such as the organization name.
+## 2016 年 8 月 26 日當週版本的新功能
 
-## <a name="what's-new-for-the-week-of-august-26,-2016-release"></a>What's new for the week of August 26, 2016 release
+自 2016 年 8 月 26 日當週起，Azure 資料目錄已新增下列功能：
 
-As of the week of August 26, 2016, the following capabilities have been added to Azure Data Catalog:
+- 增強 SQL Server Master Data Services (MDS) 資料來源的註冊功能。使用者現在可以在使用資料目錄的資料來源註冊工具註冊 MDS 實體時，包含預覽及資料設定檔。
+- 支援管理員定義的組織已儲存的搜尋。在資料目錄入口網站中儲存搜尋時，資料目錄管理員現在可以選擇儲存搜尋以供個人使用或所有目錄使用者使用。組織已儲存的搜尋會與所有目錄使用者共用，而且可以提供標準化的起點來探索資料來源。
 
-- Enhancements for registration of SQL Server Master Data Services (MDS) data sources. Users can now include previews and data profiles when registering MDS entities using the Data Catalog data source registration tool.
-- Support for admin-defined organizational saved searches. When saving a search in the Data Catalog portal, Data Catalog administrators can now choose to save searches for personal use or for all catalog users. Organizational saved searches are shared with all catalog users, and can provide standardized starting points for data source discovery.
+## 2016 年 8 月 5 日當週版本的新功能
 
-## <a name="what's-new-for-the-week-of-august-5,-2016-release"></a>What's new for the week of August 5, 2016 release
+自 2016 年 8 月 5 日當週起，Azure 資料目錄已新增下列功能：
 
-As of the week of August 5, 2016, the following capabilities have been added to Azure Data Catalog:
+- 更新資料目錄入口網站中的屬性檢視。所有的資料資產屬性現在可在單一、可調整大小的窗格中顯示和管理，以提供更一致且可探索的體驗。
 
-- Updates to the properties view in the Data Catalog portal. All data asset properties are now displayed and managed in a single, resizable pane to provide a more consistent and discoverable experience.
+## 2016 年 7 月 29 日當週版本的新功能
 
-## <a name="what's-new-for-the-week-of-july-29,-2016-release"></a>What's new for the week of July 29, 2016 release
+自 2016 年 7 月 29 日當週起，Azure 資料目錄已新增下列功能：
 
-As of the week of July 29, 2016, the following capabilities have been added to Azure Data Catalog:
+- 支援 SQL Server Master Data Services (MDS) 資料來源。使用者現在可以註冊並探索 MDS 模型和實體。
 
-- Support for SQL Server Master Data Services (MDS) data sources. Users can now register and discover MDS models and entities.
+## 2016 年 7 月 22 日當週版本的新功能
 
-## <a name="what's-new-for-the-week-of-july-22,-2016-release"></a>What's new for the week of July 22, 2016 release
+自 2016 年 7 月 22 日當週起，Azure 資料目錄已新增下列功能：
 
-As of the week of July 22, 2016, the following capabilities have been added to Azure Data Catalog:
+- 支援 SQL Server 預存程序。使用者現在可以註冊並探索 SQL Server 資料來源中的預存程序物件。
+- Azure 資料目錄入口網站及資料來源註冊工具支援其他語言，總共支援 18 種語言。Azure 資料目錄會根據您在 Windows 中，或在使用者網頁瀏覽器中設定的語言喜好設定，提供您當地語系化的使用者體驗。
 
-- Support for SQL Server stored procedures. Users can now register and discover stored procedure objects in SQL Server data sources.
-- Support for additional languages in the Azure Data Catalog portal and the data source registration tool, for a total of 18 supported languages. The Azure Data Catalog user experience will be localized based on the language preferences set in Windows or in the user’s web browser.
+## 2016 年 7 月 8 日當週版本的新功能
 
-## <a name="what's-new-for-the-week-of-july-8,-2016-release"></a>What's new for the week of July 8, 2016 release
+自 2016 年 7 月 8 日當週起，Azure 資料目錄已新增下列功能：
 
-As of the week of July 8, 2016, the following capabilities have been added to Azure Data Catalog:
+- 更新和細分資料目錄入口網站首頁，包括效能改進和簡化的使用者體驗。
 
-- Updates and refinement for the Data Catalog portal home page, including performance improvements and a streamlined user experience.
+## 2016 年 6 月 24 日當週版本的新功能
 
-## <a name="what's-new-for-the-week-of-june-24,-2016-release"></a>What's new for the week of June 24, 2016 release
+自 2016 年 6 月 24 日當週起，Azure 資料目錄已新增下列功能：
 
-As of the week of June 24, 2016, the following capabilities have been added to Azure Data Catalog:
+- 在探索資料目錄入口網站中的資料資產時，支援在清單檢視中將資料行重新調整大小。使用者現在可以將個別資料行的大小調整為更容易閱讀的冗長資產中繼資料，例如標籤和描述。
+- 資料目錄入口網站的 [開啟於] 功能表中已新增 Power Query for Excel。使用者現在可以在安裝了 [Power Query for Excel](https://support.office.com/article/Introduction-to-Microsoft-Power-Query-for-Excel-6E92E2F4-2079-4E1F-BAD5-89F6269CD605) 增益集的 Excel 2016 或 Excel 2010 和 Excel 2013 中開啟支援的資料來源。
 
-- Support for resizing columns in the list view when discovering data assets in the Data Catalog portal. Users can now resize individual columns to more easily read lengthy asset metadata such as tags and descriptions.
-- Power Query for Excel has been added to the "Open in" menu in the Data Catalog portal. Users can now open supported data sources in Excel 2016 or in Excel 2010 and Excel 2013 with the [Power Query for Excel](https://support.office.com/article/Introduction-to-Microsoft-Power-Query-for-Excel-6E92E2F4-2079-4E1F-BAD5-89F6269CD605) add-in installed.
 
+## 2016 年 6 月 17 日當週版本的新功能
 
-## <a name="what's-new-for-the-week-of-june-17,-2016-release"></a>What's new for the week of June 17, 2016 release
+自 2016 年 6 月 17 日當週起，Azure 資料目錄已新增下列功能：
 
-As of the week of June 17, 2016, the following capabilities have been added to Azure Data Catalog:
+- 支援 Azure 表格儲存體的資料來源。使用者現在可以註冊並探索 Azure 儲存體資料來源中的資料表物件。
 
-- Support for Azure Table Storage data sources. Users can now register and discover Table objects in Azure Storage data sources.
+## 2016 年 5 月 20 日當週版本的新功能
 
-## <a name="what's-new-for-the-week-of-may-20,-2016-release"></a>What's new for the week of May 20, 2016 release
+自 2016 年 5 月 20 日當週起，「Azure 資料目錄」已新增下列功能：
 
-As of the week of May 20, 2016, the following capabilities have been added to Azure Data Catalog:
+- 「資料目錄商務字彙」增強功能，可讓使用者以單一作業更新多個字彙字詞。使用者可以選取多個字詞來編輯下列欄位︰
+    - 父系字詞︰使用者可以選取新的父系字詞，而所有選取的字詞都會更新為所選父系字詞的子系。如果選取的字詞都具有相同的父系，該父系就會顯示在文字方塊中，否則父系字詞欄位將會空白。
+    - 標記和專案關係人︰使用者可以使用與標記多個資料資產相同的體驗，來新增和移除多個字彙字詞的標記和專案關係人。
 
-- Enhancements to the Data Catalog Business Glossary that allows users to update multiple glossary terms in a single operation. Users can select multiple terms to edit the following fields:
-    - Parent Term: The user can select a new parent term, and all selected terms will be updated to be children of the selected parent term. If the selected terms all have the same parent, then that parent is shown in the textbox, otherwise the parent term field will be blank.   
-    - Tags and Stakeholders: Users can add and remove tags and stakeholders for multiple glossary terms using the same experience as tagging multiple data assets.
+如需有關商務字彙的詳細資訊，請參閱[如何設定控管標記的商務詞彙](data-catalog-how-to-business-glossary.md)
 
-For more information on the business glossary, see [How to set up the Business Glossary for Governed Tagging](data-catalog-how-to-business-glossary.md)  
+## 2016 年 5 月 6 日當週版本的新功能
 
-## <a name="what's-new-for-the-week-of-may-6,-2016-release"></a>What's new for the week of May 6, 2016 release
+自 2016 年 5 月 6 日當週起，Azure 資料目錄已新增下列功能：
 
-As of the week of May 6, 2016, the following capabilities have been added to Azure Data Catalog:
+- 允許目錄系統管理員定義商務詞彙與階層以建立常用商務詞彙的商務詞彙。使用者可以標記包含詞彙的已註冊資料資產，讓您更輕鬆地探索和了解目錄的內容。如需詳細資訊，請參閱[如何設定控管標籤的商務詞彙](data-catalog-how-to-business-glossary.md)
 
-- A Business Glossary that allows catalog administrators to define business terms and hierarchies to create a common business vocabulary. Users can tag registered data assets with glossary terms to make it easier to discover and understand the contents of the catalog. For more information see  [How to set up the Business Glossary for Governed Tagging](data-catalog-how-to-business-glossary.md)  
+> [AZURE.NOTE] 商務詞彙只能在標準版 Azure 資料目錄中使用。免費版不提供控管標記或商務詞彙的功能。
 
-> [AZURE.NOTE] The business glossary is available only in the Standard Edition of Azure Data Catalog. The Free Edition does not provide capabilities for governed tagging or a business glossary.
 
+## 2016 年 3 月 11 日當週版本的新功能
 
-## <a name="what's-new-for-the-week-of-march-11,-2016-release"></a>What's new for the week of March 11, 2016 release
+自 2016 年 3 月 11 日當週起，Azure 資料目錄已新增下列功能：
 
-As of the week of March 11, 2016, the following capabilities have been added to Azure Data Catalog:
+- 合併的 REST API 端點，以程式設計方式存取 Azure 資料目錄服務的搜尋功能和目錄資產管理功能。現有的搜尋 API 端點和目錄 API 端點會被取代，並會在 2016 年 3 月 21 日終止。未對 API 的語意進行任何變更；僅變更端點 URI。如需詳細資訊，請參閱 [Azure 資料目錄 REST API 參考](https://msdn.microsoft.com/library/azure/mt267595.aspx)。如需 API 範例，請參閱 [Azure 資料目錄開發人員範例](data-catalog-samples.md)。
 
-- A consolidated REST API endpoint for programmatically accessing the search capabilities and catalog asset management capabilities of the Azure Data Catalog service. The existing search API endpoint and catalog API endpoint are being deprecated and will be discontinued on March 21, 2016. There are no changes to the semantics of the API; only the endpoint URI is changing. For additional information, see the [Azure Data Catalog REST API Reference](https://msdn.microsoft.com/library/azure/mt267595.aspx). For API samples, see [Azure Data Catalog developer samples](data-catalog-samples.md).
+## 2016 年 2 月 19 日當週版本的新功能
 
-## <a name="what's-new-for-the-week-of-february-19,-2016-release"></a>What's new for the week of February 19, 2016 release
+自 2016 年 2 月 19 日當週起，Azure 資料目錄已新增下列功能：
 
-As of the week of February 19, 2016, the following capabilities have been added to Azure Data Catalog:
+- Azure 資料目錄的資料來源註冊工具會提供您最近重新設計過的資料來源選取體驗。資料來源註冊工具已更新，讓使用者能更輕鬆地找到並選取 Azure 資料目錄支援的資料來源。
+- Azure 資料目錄入口網站及資料來源註冊工具支援其他 10 種語言。除了英文之外，Azure 資料目錄現已支援德文、西班牙文、法文、義大利文、日文、韓文、巴西葡萄牙文、俄文、簡體中文及繁體中文。Azure 資料目錄會根據您在 Windows 中，或在使用者網頁瀏覽器中設定的語言喜好設定，提供您當地語系化的使用者體驗。
+- 針對商務持續性及災害復原，支援 Azure 資料目錄資料的異地複寫功能。現在所有 Azure 資料目錄的內容 (包括資料來源元資料及群眾外包註解)，會在兩個 Azure 區域之間複寫，且客戶不需支付額外的成本。Azure 區域是預先配對的，兩個區域至少相隔 500 英哩，且遵循[業務持續性和災害復原 (BCDR)：Azure 配對的區域](../best-practices-availability-paired-regions.md)一文中所述的對應。
 
-- A newly redesigned data source selection experience in the Azure Data Catalog data source registration tool. The data source registration tool has been updated to make it easier for users to locate and select from the data sources supported by Azure Data Catalog.
-- Support for ten additional languages in the Azure Data Catalog portal and the data source registration tool. In addition to English, the Azure Data Catalog experience is now available in German, Spanish, French, Italian, Japanese, Korean, Brazilian Portuguese, Russian, Simplified Chinese, and Traditional Chinese. The Azure Data Catalog user experience will be localized based on the language preferences set in Windows or in the user’s web browser.
-- Support for geo-replication of Azure Data Catalog data for business continuity and disaster recovery. All Azure Data Catalog contents, including data source metadata and crowdsourced annotations, are now replicated between two Azure regions at no additional cost to customers. The Azure regions are pre-paired, at least 500 miles apart, and follow the mapping as described in [Business continuity and disaster recovery (BCDR): Azure Paired Regions](../best-practices-availability-paired-regions.md).
 
+## 2016 年 2 月 5 日當週版本的新功能
 
-## <a name="what's-new-for-the-week-of-february-5,-2016-release"></a>What's new for the week of February 5, 2016 release
+自 2016 年 2 月 5 日當週起，Azure 資料目錄已新增下列功能：
 
-As of the week of February 5, 2016, the following capabilities have been added to Azure Data Catalog:
+- 支援變更 Azure 資料目錄所使用的 Azure 訂用帳戶。Azure 資料目錄的系統管理員可以使用 Azure 資料目錄入口網站中的 [設定] 頁面，針對計費功能選取不同的 Azure 訂用帳戶。
 
-- Support for changing the Azure subscription used by Azure Data Catalog. Azure Data Catalog administrators can use the Settings page in the Azure Data Catalog portal to select a different Azure subscription for billing purposes.
+## 2016 年 1 月 29 日當週版本的新功能
 
-## <a name="what's-new-for-the-week-of-january-29,-2016-release"></a>What's new for the week of January 29, 2016 release
+自 2016 年 1 月 29 日當週起，Azure 資料目錄已新增下列功能：
 
-As of the week of January 29, 2016, the following capabilities have been added to Azure Data Catalog:
+- 支援手動註冊其他資料來源。使用者現在可以使用 Azure 資料目錄入口網站中的 [建立手動輸入]，或使用 Azure 資料目錄 REST API 來為下列資料來源註冊：
+   + OData - 函式、實體集和實體容器
+   + HTTP - 檔案、端點、報告和網站
+   + 檔案系統 - 檔案
+   + SharePoint - 清單
+   + FTP - 檔案和目錄
+   + Salesforce.com - 物件
+   + DB2 - 資料表、檢視和資料庫
+   + PostgreSQL - 資料表、檢視和資料庫
+- 針對 SQL Server (包含 Azure SQL DB 和 Azure SQL 資料倉儲) 資料來源支援「在 SQL Server Data Tools 中開啟」。
 
-- Support for manually registering additional data sources. Users can now use "Create Manual Entry" in the Azure Data Catalog portal, or use the Azure Data Catalog REST API to register the following data sources:
-   + OData - Function, Entity Set, and Entity Container
-   + HTTP - File, Endpoint, Report, and Site
-   + File System - File
-   + SharePoint - List
-   + FTP - File and Directory
-   + Salesforce.com - Object
-   + DB2 - Table, View, and Database
-   + PostgreSQL - Table, View, and Database
-- Support for "Open in SQL Server Data Tools" for SQL Server (including Azure SQL DB and Azure SQL Data Warehouse) data sources.  
+> [AZURE.NOTE] 「在 SQL Server Data Tools 中開啟」需要安裝 Visual Studio 2013 (含 Update 4) 與 SQL Server 工具。若要安裝最新版的 SQL Server Data Tools，請瀏覽[下載 SQL Server Data Tools (SSDT)](https://msdn.microsoft.com/library/mt204009.aspx)。
 
-> [AZURE.NOTE] "Open in SQL Server Data Tools" requires Visual Studio 2013 with Update 4 and SQL Server Tooling to be installed. To install the latest version of SQL Server Data Tools, visit [Download SQL Server Data Tools (SSDT)](https://msdn.microsoft.com/library/mt204009.aspx).
+## 2016 年 1 月 22 日當週版本的新功能
 
-## <a name="what's-new-for-the-week-of-january-22,-2016-release"></a>What's new for the week of January 22, 2016 release
+自 2016 年 1 月 22 日當週起，Azure 資料目錄已新增下列功能：
 
-As of the week of January 22, 2016, the following capabilities have been added to Azure Data Catalog:
+- 支援註冊與探索 SAP HANA 檢視和封裝。使用者可以利用 Azure 資料目錄資料來源註冊工具，為 SAP HANA 資料來源註冊，並且可以利用 Azure 資料目錄入口網站，對已註冊的 SAP HANA 資料來源加上註解及進行探索。
 
-- Support for registering and discovering SAP HANA views and packages. Users can register SAP HANA data sources using the Azure Data Catalog data source registration tool, and can annotate and discover registered SAP HANA data sources using the Azure Data Catalog portal.
+## 2016 年 1 月 8 日當週版本的新功能
 
-## <a name="what's-new-for-the-week-of-january-8,-2016-release"></a>What's new for the week of January 8, 2016 release
+自 2016 年 1 月 8 日當週起，Azure 資料目錄已新增下列功能：
 
-As of the week of January 8, 2016, the following capabilities have been added to Azure Data Catalog:
+- 在 Azure 資料目錄入口網站中，釘選及取消釘選資料資產的能力。使用者可以選擇釘選資料資產，方便更輕鬆地重新探索及重複使用。
+- Azure 資料目錄入口網站的首頁已經過重新設計。新的首頁包含目前使用者活動的深入了解 - 包含最近發佈的資產、釘選的資產和已儲存的搜尋 - 以及資料目錄中的活動。
+- 支援 Azure 資料目錄入口網站中永續性的使用者設定。使用者體驗設定 - 包括方格檢視或並排顯示檢視、每個頁面上的結果數，以及開啟或關閉搜尋結果醒目提示 - 會在使用者工作階段之間保存。
+- Azure 資料目錄目前已在兩個新的 Azure 區域中提供。可讓客戶佈建 Azure 資料目錄的區域除了美國東部、美國西部、西歐及澳大利亞東部之外，還增加了北歐及東南亞區域。如需詳細資訊，請參閱 [Azure 地區](https://azure.microsoft.com/regions/)。
 
-- The ability to pin and unpin data assets in the Azure Data Catalog portal. Users can choose to pin data assets to make them easier to re-discover and re-use.
-- A newly redesigned home page in the Azure Data Catalog portal. The new home page includes insight into the current users activity - including recently published assets, pinned assets, and saved searches - as well as insight into the activity in the Catalog as a whole.
-- Support for persistent user settings in the Azure Data Catalog portal. User experience settings - including grid or tile view, the number of results per page, and hit highlighting on or off - are persisted between user sessions.
-- Azure Data Catalog is now available in two new Azure regions. Customers can provision the Azure Data Catalog in the North Europe and Southeast Asia regions, in addition to East US, West US, West Europe, and Australia East. For more information, see [Azure Regions](https://azure.microsoft.com/regions/).
+## 2015 年 12 月 18 日當週版本的新功能
 
-## <a name="what's-new-for-the-week-of-december-18,-2015-release"></a>What's new for the week of December 18, 2015 release
+自 2015 年 12 月 18 日當週起，Azure 資料目錄已新增下列功能：
 
-As of the week of December 18, 2015, the following capabilities have been added to Azure Data Catalog:
+- 「Azure SQL 資料倉儲」資料來源支援資料設定檔。註冊 Azure SQL 資料倉儲資料表和檢視時，使用者可以選擇包含資料設定檔度量和從資料來源擷取的中繼資料。
+- 支援註冊與探索 MySQL 物件和資料庫。使用者可以使用 Azure 資料目錄資料來源註冊工具來註冊 MySQL 資料來源，並且可以使用 Azure 資料目錄入口網站對已註冊的 MySQL 資料來源加上註解及進行探索。
 
-- Support for data profiles for Azure SQL Data Warehouse data sources. When registering Azure SQL Data Warehouse tables and views, users can choose to include data profile metrics with the metadata extracted from the data source.
-- Support for registering and discovering MySQL objects and databases. Users can register MySQL data sources using the Azure Data Catalog data source registration tool, and can annotate and discover registered MySQL data sources using the Azure Data Catalog portal.
+## 2015 年 12 月 4 日當週版本的新功能
 
-## <a name="what's-new-for-the-week-of-december-4,-2015-release"></a>What's new for the week of December 4, 2015 release
+自 2015 年 12 月 4 日當週起，Azure 資料目錄已新增下列功能：
 
-As of the week of December 4, 2015, the following capabilities have been added to Azure Data Catalog:
+- 支援針對 Teradata 資料來源進行 SPNEGO 和 Windows 驗證。註冊 Teradata 資料表和檢視時，使用者可以選擇使用 SPNEGO 和 Windows 以及 LDAP 和 TD2 驗證連接到 Teradata。
+- 支援 Azure 資料湖存放區資料來源。使用者現在可以使用 Azure 資料目錄來註冊及探索 Azure 資料湖存放區資料來源。
+- 支援以手動方式在 Azure 資料目錄的資料來源註冊工具中指定網路 Proxy 設定。使用者可以從工具的 [歡迎使用] 頁面上選取 [修改 Proxy 設定]，而且可以指定該工具所使用的 Proxy 位址和連接埠。
 
-- Support for SPNEGO and Windows authentication for Teradata data sources. When registering Teradata tables and views, users can choose to connect to Teradata using SPNEGO and Windows as well as LDAP and TD2 authentication.
-- Support for Azure Data Lake Store data sources. Users can now register and discover Azure Data Lake Store data sources using Azure Data Catalog.
-- Support for manually specifying network proxy settings in the Azure Data Catalog data source registration tool. Users can select "Modify proxy settings" from the tool's welcome page, and can specify the proxy address and port to be used by the tool.
 
+## 2015 年 11 月 20 日當週版本的新功能
 
-## <a name="what's-new-for-the-week-of-november-20,-2015-release"></a>What's new for the week of November 20, 2015 release
+自 2015 年 11 月 20 日當週起，Azure 資料目錄已新增下列功能：
 
-As of the week of November 20, 2015, the following capabilities have been added to Azure Data Catalog:
+- 能夠在 Azure 資料目錄入口網站中檢視和複製適用於 SQL Server (包括 Azure SQL Database) 和 Oracle 資料來源的連接字串。使用者可以在適用於 SQL Server 或 Oracle 資料表、檢視或資料庫的連接資訊中按一下 [檢視連接字串] 連結，查看用來連接到資料來源的連接字串。已針對 SQL Server 資料來源提供 ADO.NET、ODBC、OLEDB 及 JDBC 連接字串。已針對 Oracle 資料來源提供 ODBC 與 OLEDB 連接字串。
+- 支援在註冊 Teradata 資料表和檢視時納入資料設定檔。
+- 針對 SQL Server (包含 Azure SQL DB 和 Azure SQL 資料倉儲)、SQL Server Analysis Services、Azure 儲存體，以及 HDFS 來源支援「在 Power BI Desktop 中開啟」。
 
-- The ability to view and copy connection strings from within the Azure Data Catalog portal for SQL Server (including Azure SQL Database) and Oracle data sources. Users can click on the "View Connection Strings" link in the connection information for a SQL Server or Oracle table, view, or database, to see the connection strings used to connect to the data source. ADO.NET, ODBC, OLEDB and JDBC connection strings are provided for SQL Server data sources. ODBC and OLEDB connection strings are provided for Oracle data sources.
-- Support for including data profiles when registering Teradata tables and views.
-- Support for "Open in Power BI Desktop" for SQL Server (including Azure SQL DB and Azure SQL Data Warehouse), SQL Server Analysis Services, Azure Storage, and HDFS sources.  
+> [AZURE.NOTE] 「在 Power BI Desktop 中開啟」需要安裝目前的 Power BI Desktop 應用程式版本。如果您在使用此功能時遇到問題或發生錯誤，請確定您已從 [PowerBI.com](https://powerbi.com) 取得最新的 Power BI Desktop 版本。
 
-> [AZURE.NOTE] "Open in Power BI Desktop" requires a current version of the Power BI Desktop application to be installed. If you encounter problems or errors using this feature, please ensure that you have the latest version of Power BI Desktop from [PowerBI.com](https://powerbi.com).
+## 2015 年 11 月 13 日當週版本的新功能
 
-## <a name="what's-new-for-the-week-of-november-13,-2015-release"></a>What's new for the week of November 13, 2015 release
+自 2015 年 11 月 13 日當週起，Azure 資料目錄已新增下列功能：
 
-As of the week of November 13, 2015, the following capabilities have been added to Azure Data Catalog:
+- 支援針對 Teradata 資料來源進行 LDAP 驗證。註冊 Teradata 資料表和檢視時，使用者可以選擇使用 LDAP 以及 TD2 驗證連接到 Teradata。
+- 針對 Teradata 資料來源支援「在 Excel 中開啟」。
+- 在 Azure 資料目錄入口網站中支援最近搜尋的字詞。在入口網站中搜尋時，使用者可以從最近使用的搜尋字詞中進行選擇以加速探索體驗。
 
-- Support for LDAP authentication for Teradata data sources. When registering Teradata tables and views, users can choose to connect to Teradata using LDAP as well as TD2 authentication.
-- Support for "Open in Excel" for Teradata data sources.
-- Support for recent search terms in the Azure Data Catalog portal. When searching in the portal, users can select from recently used search terms to accelerate the discovery experience.
+## 2015 年 11 月 6 日當週版本的新功能
 
-## <a name="what's-new-for-the-week-of-november-6,-2015-release"></a>What's new for the week of November 6, 2015 release
+自 2015 年 11 月 6 日當週起，Azure 資料目錄已新增下列功能：
 
-As of the week of November 6, 2015, the following capabilities have been added to Azure Data Catalog:
+- 支援預覽 Teradata 資料來源。註冊 Teradata 資料表和檢視時，使用者可以選擇包含快照記錄和從資料來源擷取的中繼資料。
+- 「Azure SQL 資料倉儲」資料來源支援「在 Excel 中開啟」。
+- 手動註冊的資料資產支援定義和編輯資料行層級的結構描述。使用 Azure 資料目錄入口網站手動建立資料資產之後，使用者可以在資料資產屬性中新增資料行定義。
+- 搜尋 Azure 資料目錄時支援 "has" 查詢，以便能探索擁有特定元資料的已註冊資料資產。Azure 資料目錄查詢語法現在包含下列項目：
 
-- Support for preview for Teradata data sources. When registering Teradata tables and views, users can choose to include snapshot records with the metadata extracted from the data source.
-- Support for "Open in Excel" for Azure SQL Data Warehouse data sources.
-- Support for defining and editing column-level schemas for manually registered data assets. After manually creating a data asset using the Azure Data Catalog portal, users can add column definitions in the data asset properties.
-- Support for "has" queries when searching Azure Data Catalog, to enable the discovery of registered data assets that possess specific metadata. Azure Data Catalog query syntax now includes:
-
-| Query syntax            | Purpose |
+| 查詢語法 | 目的 |
 |-------------------------|---------|
-| has:previews             | Finds data assets that include a preview  |
-| has:documentation       | Finds data assets for which documentation has been provided |
-| has:tableDataProfiles   | Finds data assets with table-level data profile information |
-| has:columnsDataProfiles | Finds data assets with column-level data profile information |
+| has:previews | 尋找包含預覽的資料資產 |
+| has:documentation | 尋找已提供文件的資料資產 |
+| has:tableDataProfiles | 尋找具有資料表層級之資料設定檔資訊的資料資產 |
+| has:columnsDataProfiles | 尋找具有資料行層級之資料設定檔資訊的資料資產 |
 
 
-## <a name="what's-new-for-the-week-of-october-30,-2015-release"></a>What's new for the week of October 30, 2015 release
+## 2015 年 10 月 30 日當週版本的新功能
 
-As of the week of October 30, 2015, the following capabilities have been added to Azure Data Catalog:
+自 2015 年 10 月 30 日當週起，Azure 資料目錄已新增下列功能：
 
-- Support for encryption at rest of data previews and data profiles for registered data sources. Azure Data Catalog will transparently encrypt any preview records and data profiles data sources registered with the service, without any need for key management by Catalog administrators.
+- 支援已註冊資料來源的資料預覽和資料設定檔的靜止狀態加密。Azure Data Catalog 會通透地加密已向服務註冊的資料來源的任何預覽記錄和資料設定檔，不需要目錄系統管理員管理金鑰。
 
-## <a name="what's-new-for-the-week-of-october-23,-2015-release"></a>What's new for the week of October 23, 2015 release
+## 2015 年 10 月 23 日當週版本的新功能
 
-As of the week of October 23, 2015, the following capabilities have been added to Azure Data Catalog:
+自 2015 年 10 月 23 日當週起，Azure 資料目錄已新增下列功能：
 
-- Support for Teradata data sources. Users can now register and discover Teradata tables and views.
+- 支援 Teradata 資料來源。使用者現在可以註冊並探索 Teradata 資料表和檢視。
 
-> [AZURE.NOTE] For the current release, only Teradata TD2 authentication is supported. Additional authentication mechanisms will be supported in future releases.
+> [AZURE.NOTE] 目前版本中，僅支援 Teradata TD2 驗證。在未來發行的版本中將支援更多驗證機制。
 
-## <a name="what's-new-for-the-week-of-october-16,-2015-release"></a>What's new for the week of October 16, 2015 release
+## 2015 年 10 月 16 日當週版本的新功能
 
-As of the week of October 16, 2015, the following capabilities have been added to Azure Data Catalog:
+自 2015 年 10 月 16 日當週起，Azure 資料目錄已新增下列功能：
 
-- Support for on-premises Hive data sources. Users can now register and discover Hive tables for Apache Hive in Hadoop on-premises data sources.
-- Support for saved searches in the Azure Data Catalog portal. Users can save search terms and filter selections to easily repeat previous searches and define useful views of the Catalog's contents. User can also mark a saved search as their default search. When a user clicks the "magnifying glass" search icon from the Azure Data Catalog portal home page or from the "getting started" page, the user will be taken directly to the saved search flagged as default.
-
-
-## <a name="what's-new-for-the-week-of-october-9,-2015-release"></a>What's new for the week of October 9, 2015 release
-
-As of the week of October 9, 2015, the following capabilities have been added to Azure Data Catalog:
-
-- Support for rich text documentation for registered data assets and containers in the Azure Data Catalog portal. Users can now provide documentation for data assets such as tables, views, and reports, and for containers such as databases and models, for scenarios where tags and descriptions are not sufficient.
-
-## <a name="what's-new-for-the-week-of-october-2,-2015-release"></a>What's new for the week of October 2, 2015 release
-
-As of the week of October 2, 2015, the following capabilities have been added to Azure Data Catalog:
-
-- Support for manually registering known data source types. Users can manually enter data source information using the Azure Data Catalog portal for all data source types supported by Azure Data Catalog.
-- Support for authorizing Azure Active Directory security groups. Catalog administrators can enable catalog access to security groups as well as to user accounts, making it easier to manage access to Azure Data Catalog.
-- Support for opening Hive data sources in Excel from the Azure Data Catalog portal.
-
-> [AZURE.NOTE] To use the "Open in Excel" feature for Hive data sources, users must have installed the ODBC driver for Hive.
-
-## <a name="what's-new-for-the-week-of-september-25,-2015-release"></a>What's new for the week of September 25, 2015 release
-
-As of the week of September 25, 2015, the following capabilities have been added to Azure Data Catalog:
-
-- Support for including data profiles when registering Hive data sources.
-- Support for programmatically discovering the Catalog API, making it easier for applications to integrate with Azure Data Catalog.
-
-## <a name="what's-new-for-the-week-of-september-18,-2015-release"></a>What's new for the week of September 18, 2015 release
-
-As of the week of September 18, 2015, the following capabilities have been added to Azure Data Catalog:
-
-- A new "getting started" data source discovery experience in the Azure Data Catalog portal. When users enter the "discover" page of the  Azure Data Catalog portal without entering a search term, they will be presented with an overview of the catalog contents including the most frequently used tags, as well as experts, data source types and object types.
-- Support for registering and discovering Azure SQL Data Warehouse objects and databases. For additional information on Azure SQL Data Warehouse, see [SQL Data Warehouse](https://azure.microsoft.com/services/sql-data-warehouse/).
-- Support for registering and discovering SQL Server Analysis Services models and SQL Server Reporting Services servers as containers. When registering SSAS and SSRS objects, Azure Data Catalog will create an entry for the SSAS model and SSRS server as well as for the reports and other objects. The containers can be discovered and annotated using the Azure Data Catalog portal. Users can also search and filter the contents of a model or server in addition to searching and filtering the contents of the catalog.
-
-> [AZURE.NOTE] SSAS and SSRS objects that have been registered prior to the September 18 release must be re-registered using the data source registration tool before the model or server entry will be added to the catalog. Re-registering a data source does not affect any annotations that have been added by users in the Azure Data Catalog portal.
-
-## <a name="what's-new-for-the-week-of-september-11,-2015-release"></a>What's new for the week of September 11, 2015 release
-
-As of the week of September 11, 2015, the following capabilities have been added to Azure Data Catalog:
-
-- Support for registering and discovering SQL Server Analysis Services objects via HTTP/HTTPS. Users can now connect to SSAS servers using a URL (such as https://servername/olap/msmdpump.dll) rather than a server name, and can use Basic authentication and Anonymous connections in addition to Windows authentication. For additional information on HTTP/HTTPS connections to SSAS, see [Configure HTTP Access to Analysis Services](https://msdn.microsoft.com/library/gg492140.aspx).
-- Support for Hive data sources on HDInsight. Users can now register and discover Hive tables for Apache Hive in Hadoop on HDInsight data sources. For additional information on Hive on HDInsight, see the [HDInsight documentation center](../hdinsight/hdinsight-use-hive.md).
-- Support for registering and discovering Oracle databases and HDFS clusters as containers. When registering Oracle tables and views or HDFS , Azure Data Catalog will create an entry for the database as well as for the tables and views. The database can be discovered and annotated using the Azure Data Catalog portal. Users can also search and filter the contents of a database or cluster in addition to searching and filtering the contents of the catalog.
+- 支援內部部署 Hive 資料來源。使用者現可在內部部署資料來源的 Hadoop 中，註冊並探索適用於 Apache Hive 的 Hive 資料表。
+- 支援 Azure 資料目錄入口網站中已儲存的搜尋。使用者可以儲存的搜尋詞彙和篩選器選取項目，而輕鬆地重複先前的搜尋，及定義目錄內容的實用檢視。使用者也可以將已儲存的搜尋標示為其預設搜尋。當使用者從 Azure 資料目錄入口網站首頁或從「入門」頁面中按一下「放大鏡」搜尋圖示時，該使用者將直接進入標示為預設值的已儲存搜尋。
 
 
-> [AZURE.NOTE] Oracle tables and views and HDFS files and directories that have been registered prior to the September 11 release must be re-registered using the data source registration tool before the database or cluster entry will be added to the catalog. Re-registering a data source does not affect any annotations that have been added by users in the Azure Data Catalog portal.
+## 2015 年 10 月 9 日當週版本的新功能
 
-## <a name="what's-new-for-the-week-of-september-4,-2015-release"></a>What's new for the week of September 4, 2015 release
+自 2015 年 10 月 9 日當週起，Azure 資料目錄已新增下列功能：
 
-As of the week of September 4, 2015, the following capabilities have been added to Azure Data Catalog:
+- 支援 Azure Data Catalog 入口網站中已註冊之資料資產和容器的 RTF 文件。對於標籤和描述不足的案例，使用者現在可以提供資料資產的文件，例如資料表、檢視和報告，以及提供容器的文件，例如資料庫和模型。
 
-- Support for manually registering unknown data source types. Users can manually enter data source information using the Azure Data Catalog portal, so that data sources not explicitly supported by the data source registration tool can be annotated and discovered.
-- Support for registering and discovering SQL Server databases as containers. When registering SQL Server tables and views, Azure Data Catalog will create an entry for the database as well as for the tables and views. The database can be discovered and annotated using the Azure Data Catalog portal. Users can also search and filter the contents of a database in addition to searching and filtering the contents of the catalog.
+## 2015 年 10 月 2 日當週版本的新功能
 
-> [AZURE.NOTE] SQL Server tables and views that have been registered prior to the September 4 release must be re-registered using the data source registration tool before the database entry will be added to the catalog. Re-registering a data source does not affect any annotations that have been added by users in the Azure Data Catalog portal.
+自 2015 年 10 月 2 日當週起，Azure 資料目錄已新增下列功能：
 
-## <a name="what's-new-for-the-week-of-august-28,-2015-release"></a>What's new for the week of August 28, 2015 release
+- 支援手動註冊已知的資料來源類型。對於 Azure資料目錄支援的所有資料來源類型，使用者可以使用 Azure 資料目錄入口網站手動輸入資料來源資訊。
+- 支援授權 Azure Active Directory 安全性群組。目錄系統管理員可以讓您存取安全性群組以及使用者帳戶的目錄，使得您易於管理 Azure 資料目錄的存取。
+- 支援透過 Azure 資料目錄入口網站在 Excel 中開啟 Hive 資料來源。
 
-As of the week of August 28, 2015, the following capabilities have been added to Azure Data Catalog:
+> [AZURE.NOTE] 若要對 Hive 資料來源使用「在 Excel 中開啟」功能，使用者必須已安裝 Hive 適用的 ODBC 驅動程式。
 
-- Support for data profiling of SQL Server and Oracle data sources. When registering SQL Server and Oracle tables and views, users can choose to include data profile information for the objects being registered. The data profile includes object-level and column-level statistics.
-- Support for Hadoop HDFS data sources. Users can now register and discover HDFS files and directories.
+## 2015 年 9 月 25 日當週版本的新功能
 
-## <a name="what's-new-for-the-week-of-august-21,-2015-release"></a>What's new for the week of August 21, 2015 release
+自 2015 年 9 月 25 日當週起，Azure 資料目錄已新增下列功能：
 
-As of the week of August 21, 2015, the following capabilities have been added to Azure Data Catalog:
+- 在登錄 Hive 資料來源時納入資料設定檔的支援。
+- 支援以程式設計方式探索目錄 API，更輕易地整合應用程式與 Azure 資料目錄。
 
-- Support for providing access request information for registered data sources. For any registered data asset, users can now provide instructions for requesting access, including email links or URLs, to easily integrate with existing tools and processes.
-- Tool tips for tags and experts, to make it easier to discover what users have provided what metadata for registered data assets.
-- We’ve added a new “User” button and menu to our top navigation bar. This menu lets the user see the account used to log on to Azure Data Catalog, and to sign out if desired. This menu also displays the catalog name, which is valuable to developers using the Azure Data Catalog REST API.
-- Standard Edition Only: When adding owners to data assets, Azure Data Catalog now supports both user accounts and security groups as owners. To add a security group as an owner for selected data assets, you can enter either the group’s display name or the group’s UPN email address, if it has one.
-- Support for Azure Blob Storage data sources. Users can now register and discover Azure Storage blobs and directories.
+## 2015 年 9 月 18 日當週版本的新功能
+
+自 2015 年 9 月 18 日當週起，Azure 資料目錄已新增下列功能：
+
+- 在 Azure 資料目錄入口網站中新的「入門」資料來源探索體驗。當使用者進入 Azure 資料目錄入口網站的「探索」頁面而未輸入搜尋字詞時，它們將會使用目錄內容的概觀來呈現，包括最常使用的標記，以及專家、資料來源類型及物件類型。
+- 支援註冊與探索 Azure SQL 資料倉儲物件和資料庫。如需 Azure SQL 資料倉儲的詳細資訊，請參閱 [SQL 資料倉儲](https://azure.microsoft.com/services/sql-data-warehouse/)。
+- 支援將 SQL Server Analysis Services 模型和 SQL Server Reporting Services 伺服器做為容器來進行註冊與探索。註冊 SSAS 和 SSRS 物件時，Azure 資料目錄將針對 SSAS 模型和 SSRS 伺服器以及報告和其他物件來建立項目。您可以使用 Azure 資料目錄入口網站來探索容器，並為其加上註解。除了搜尋和篩選目錄的內容之外，使用者也可以搜尋和篩選模型或伺服器的內容。
+
+> [AZURE.NOTE] 針對已在 9 月 18 日前註冊的 SSAS 和 SSRS 物件，必須在模型或伺服器項目加入目錄之前，使用資料來源註冊工具重新加以註冊。重新註冊資料來源並不會影響使用者在 Azure 資料目錄入口網站中所加入的任何註解。
+
+## 2015 年 9 月 11 日當週版本的新功能
+
+自 2015 年 9 月 11 日當週起，Azure 資料目錄已新增下列功能：
+
+- 支援透過 HTTP/HTTPS 註冊和探索 SQL Server Analysis Servics 物件。使用者現在可以使用 URL (例如 https://servername/olap/msmdpump.dll) 連線至 SSAS 伺服器，而無需使用伺服器名稱，且可使用 Windows 驗證以外的基本驗證與匿名連線。如需 HTTP/HTTPS 連線至 SSAS 的其他資訊，請參閱[設定 Analysis Services 的 HTTP 存取](https://msdn.microsoft.com/library/gg492140.aspx)。
+- 針對 HDInsight 提供 Hive 資料來源支援。使用者現可在 HDInsight 資料來源的 Hadoop 中，註冊並探索適用於 Apache Hive 的 Hive 資料表。如需 HDInsight 上 Hive 的其他資訊，請參閱 [HDInsight 文件中心](../hdinsight/hdinsight-use-hive.md)。
+- 支援註冊與探索 Oracle 資料庫及 HDFS 叢集以做為容器。註冊 Oracle 資料表和檢視或 HDFS 時，Azure 資料目錄將會建立資料庫以及資料表和檢視的項目。您可以使用 Azure 資料目錄入口網站來探索資料庫，並為其加上註解。除了搜尋和篩選目錄內容之外，使用者亦可搜尋和篩選資料庫或叢集的內容。
 
 
+> [AZURE.NOTE] 針對 9 月 11 日前註冊的 Oracle 資料表和檢視以及 HDFS 檔案和目錄，必須在資料庫或叢集項目加入目錄之前，使用資料來源註冊工具重新加以註冊。重新註冊資料來源並不會影響使用者在 Azure 資料目錄入口網站中所加入的任何註解。
 
-<!--HONumber=Oct16_HO2-->
+## 2015 年 9 月 4 日當週版本的新功能
 
+自 2015 年 9 月 4 日當週起，Azure 資料目錄已新增下列功能：
 
+- 支援手動註冊未知的資料來源類型。使用者可透過 Azure 資料目錄入口網站手動輸入資料來源資訊，如此即可為資料來源註冊工具未明確支援的資料來源加上註解並加以探索。
+- 支援註冊與探索 SQL Server 資料庫以做為容器。註冊 SQL Server 資料表和檢視時，Azure 資料目錄會針對資料庫以及資料表和檢視建立項目。您可以使用 Azure 資料目錄入口網站來探索資料庫，並為其加上註解。除了搜尋和篩選目錄的內容之外，使用者也可以搜尋和篩選資料庫的內容。
+
+> [AZURE.NOTE] 針對 9 月 4 日前註冊的 SQL Server 資料表和檢視，必須在資料庫項目加入目錄之前，使用資料來源註冊工具重新加以註冊。重新註冊資料來源並不會影響使用者在 Azure 資料目錄入口網站中所加入的任何註解。
+
+## 2015 年 8 月 28 日當週版本的新功能
+
+自 2015 年 8 月 28 日當週起，Azure 資料目錄已新增下列功能：
+
+- 支援 SQL Server 和 Oracle 資料來源的資料分析。在註冊 SQL Server 和 Oracle 資料表和檢視時，使用者可以選擇要包含正在註冊之物件的資料設定檔資訊。資料設定檔包含物件層級與資料行層級的統計資料。
+- 支援 Hadoop HDFS 資料來源。使用者現在可以註冊並探索 HDFS 檔案和目錄。
+
+## 2015 年 8 月 21 日當週版本的新功能
+
+自 2015 年 8 月 21 日當週起，Azure 資料目錄已新增下列功能：
+
+- 支援針對註冊的資料來源提供存取要求資訊。使用者現在可以針對任何已註冊的資料資產，提供要求存取權的指令 (包括電子郵件連結或 URL)，以輕鬆整合現有工具和程序。
+- 標籤和專家的工具提示，讓您可以更輕鬆探索哪些使用者已為註冊的資料資產提供何種中繼資料。
+- 我們已將新的「使用者」按鈕和功能表加入我們的上方導覽列中。此功能表可讓使用者查看用來登入 Azure 資料目錄的帳戶，以及在必要時登出。此功能表也會顯示目錄名稱，這可為使用 Azure 資料目錄 REST API 的開發人員提供實用資訊。
+- 僅限標準版：將擁有者新增至資料資產時，Azure 資料目錄現在可同時支援將使用者帳戶和安全性群組做為擁有者。若要將安全性群組加入並使其成為所選資料資產的擁有者，您可以輸入群組的顯示名稱或群組的 UPN 電子郵件地址 (如果有的話)。
+- 支援 Azure Blob 儲存體的資料來源。使用者現在可以註冊並探索 Azure 儲存體 Blob 和目錄。
+
+<!---HONumber=AcomDC_0921_2016-->

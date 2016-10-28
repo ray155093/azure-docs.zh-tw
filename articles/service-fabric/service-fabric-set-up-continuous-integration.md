@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Continuous integration for Service Fabric | Microsoft Azure"
-   description="Get an overview of how to set up continuous integration for a Service Fabric application by using Visual Studio Team Services (VSTS)."
+   pageTitle="Service Fabric 的連續整合 |Microsoft Azure"
+   description="取得如何使用 Visual Studio Team Services (VSTS) 設定 Service Fabric 應用程式之持續整合的概觀。"
    services="service-fabric"
    documentationCenter="na"
    authors="mthalman-msft"
@@ -15,127 +15,122 @@
    ms.date="08/01/2016"
    ms.author="mthalman" />
 
+# 使用 Visual Studio Team Services 為 Service Fabric 應用程式設定持續整合
 
-# <a name="set-up-continuous-integration-for-a-service-fabric-application-by-using-visual-studio-team-services"></a>Set up continuous integration for a Service Fabric application by using Visual Studio Team Services
+本文說明使用 Visual Studio Team Services (VSTS) 為 Azure Service Fabric 應用程式設定持續整合的步驟，以確保能夠自動建置、封裝及部署您的應用程式。
 
-This article describes the steps to set up continuous integration for an Azure Service Fabric application by using Visual Studio Team Services (VSTS), to ensure that your application is built, packaged, and deployed in an automated fashion.
+這份文件反映目前的程序，而且應該隨著時間而改變。
 
-This document reflects the current procedure and is expected to change over time.
+## 必要條件
 
-## <a name="prerequisites"></a>Prerequisites
+若要開始，請遵循下列步驟︰
 
-To get started, follow these steps:
+1. 確定您有 Team Services 帳戶的存取權或[建立一個](https://www.visualstudio.com/docs/setup-admin/team-services/sign-up-for-visual-studio-team-services)。
 
-1. Ensure that you have access to a Team Services account or [create one](https://www.visualstudio.com/docs/setup-admin/team-services/sign-up-for-visual-studio-team-services) yourself.
+2. 確定您有 Team Services 小組專案的存取權或[建立一個](https://www.visualstudio.com/docs/setup-admin/create-team-project)。
 
-2. Ensure that you have access to a Team Services team project or [create one](https://www.visualstudio.com/docs/setup-admin/create-team-project) yourself.
+3. 確定您擁有可部署應用程式的 Service Fabric 叢集，或使用 [Azure 入口網站](service-fabric-cluster-creation-via-portal.md)、[Azure Resource Manager 範本](service-fabric-cluster-creation-via-arm.md)或 [Visual Studio](service-fabric-cluster-creation-via-visual-studio.md) 建立一個。
 
-3. Ensure that you have a Service Fabric cluster to which you can deploy your application or create one using the [Azure Portal](service-fabric-cluster-creation-via-portal.md), an [Azure Resource Manager template](service-fabric-cluster-creation-via-arm.md), or [Visual Studio](service-fabric-cluster-creation-via-visual-studio.md).
+4. 確定您已經建立 Service Fabric 應用程式 (.sfproj) 專案。您必須具有使用 Service Fabric SDK 2.1 或更新版本建立或升級的專案 (.sfproj 檔案須包含 1.1 或更高的 ProjectVersion 屬性值)。
 
-4. Ensure that you have already created a Service Fabric Application (.sfproj) project. You must have a project that was created or upgraded with Service Fabric SDK 2.1 or higher (the .sfproj file should contain a ProjectVersion property value of 1.1 or higher).
+>[AZURE.NOTE] 自訂組建代理程式已不再需要。Team Services 裝載的代理程式現在都預先安裝 Service Fabric 叢集管理軟體，可讓您直接從這些代理程式部署應用程式。
 
->[AZURE.NOTE] Custom build agents are no longer required. Team Services hosted agents now come pre-installed with Service Fabric cluster management software, allowing for deployment of your applications directly from those agents.
+## 設定和共用來源檔案
 
-## <a name="configure-and-share-your-source-files"></a>Configure and share your source files
+您會想要執行的第一步是準備部署程序使用的發行設定檔 (將於 Team Services 內執行)。發行設定檔應設定為以先前準備的叢集為目標。
 
-The first thing you'll want to do is prepare a publish profile for use by the deployment process that will execute within Team Services.  The publish profile should be configured to target the cluster that you've previously prepared:
+1.	在您的應用程式專案內選擇一個想要使用於持續整合工作流程中的發行設定檔，並遵循如何將應用程式發行至遠端叢集的[發行指示](service-fabric-publish-app-remote-cluster.md)。但是，實際上您不需要發佈應用程式。一旦您適當地設定項目後，只要按一下 [發行] 對話方塊中的 [儲存] 超連結。
+2.	如果您想針對 Team Services 中的每個部署升級應用程式，您會想要設定發行設定檔以啟用升級。在步驟 1 使用的同一個 [發行] 對話方塊中，確認已核取 [升級應用程式] 核取方塊。深入了解[設定其他升級設定](service-fabric-visualstudio-configure-upgrade.md)。按一下 [儲存] 超連結，將設定儲存至發行設定檔。
+3.	確定您已將變更儲存至發行設定檔，並取消 [發行] 對話方塊。
+4.	現在是時候與 Team Services [共用應用程式專案來源檔案](https://www.visualstudio.com/docs/setup-admin/team-services/connect-to-visual-studio-team-services#vs)。當您的來源檔案可以在 Team Services 中存取之後，就可以繼續產生組建的下一個步驟。
 
-1.  Choose a publish profile within your Application project that you want to use for your continuous integration workflow and follow the [publish instructions](service-fabric-publish-app-remote-cluster.md) on how to publish an application to a remote cluster. You don't actually need to publish your application though. You can simply click the **Save** hyperlink in the publish dialog once you've configured things appropriately.
-2.  If you want your application to be upgraded for each deployment that occurs within Team Services, you'll want to configure the publish profile to enable upgrade. In the same publish dialog used in step 1, ensure that the **Upgrade the Application** checkbox is checked.  Learn more about [configuring additional upgrade settings](service-fabric-visualstudio-configure-upgrade.md). Click the **Save** hyperlink to save the settings to the publish profile.
-3.  Ensure that you've saved your changes to the publish profile and cancel the publish dialog.
-4.  Now it's time to [share your Application project source files](https://www.visualstudio.com/docs/setup-admin/team-services/connect-to-visual-studio-team-services#vs) with Team Services. Once your source files are accessible in Team Services, you can now move on to the next step of generating builds. 
+## 建立組建定義
 
-## <a name="create-a-build-definition"></a>Create a build definition
+Team Services 組建定義描述由一組循序執行的組建步驟所組成的工作流程。建立組建定義的目的是要產生 Service Fabric 應用程式封裝，以及包括最終可用於部署應用程式至叢集的一些其他附加檔案。深入了解 Team Services [組建定義](https://www.visualstudio.com/docs/build/define/create)。
 
-A Team Services build definition describes a workflow that is composed of a set of build steps that are executed sequentially. The goal of the build definition that you'll be creating is to produce a Service Fabric application package, as well as including some other supplemental files, that can be used to eventually deploy the application to a cluster. Learn more about Team Services [build definitions](https://www.visualstudio.com/docs/build/define/create).
+### 從組建範本建立定義
 
-### <a name="create-a-definition-from-the-build-template"></a>Create a definition from the build template
+1.	在 Visual Studio Team Services 中開啟您的小組專案。
+2.	選取 [組建] 索引標籤。
+3.	選取綠色 **+** 符號以建立新的組建定義。
+4.	在開啟的對話方塊中，選取 [組建] 範本類別中的 [Azure Service Fabric 應用程式]。
+5.	選取 [下一步]。
+6.	選取和您的 Service Fabric 應用程式關聯的儲存機制和分支 。
+7.	選取您想要使用的代理程式佇列。支援裝載的代理程式。
+8.	選取 [**建立**]。
+9. 儲存組建定義並提供名稱。
+10. 以下是範本所產生的組建步驟的說明︰
 
-1.  Open your team project in Visual Studio Team Services.
-2.  Select the **Build** tab.
-3.  Select the green **+** sign to create a new build definition.
-4.  In the dialog that opens, select **Azure Service Fabric Application** within the **Build** template category.
-5.  Select **Next**.
-6.  Select the repository and branch associated with your Service Fabric application.
-7.  Select the agent queue you wish to use. Hosted agents are supported.
-8.  Select **Create**.
-9. Save the build definition and provide a name.
-10. The following is a description of the build steps generated by the template:
-
-| Build step | Description |
+| 組建步驟 | 說明 |
 | --- | --- |
-| Nuget restore | Restores the NuGet packages for the solution. |
-| Build solution \*.sln | Builds the entire solution. |
-| Build solution \*.sfproj | Generates the Service Fabric application package that will be used to deploy the application. Note that the application package location is specified to be within the build's artifact directory. |
-| Update Service Fabric App Versions | Updates the version values contained in the application package's manifest files to allow for upgrade support. See the [task documentation page](https://go.microsoft.com/fwlink/?LinkId=820529) for more information. |
-| Copy Files | Copies the publish profile and application parameters files to the build's artifacts in order to be consumed for deployment. |
-| Publish Artifact | Publishes the build's artifacts. This allows a release definition to consume the build's artifacts. |
+| Nuget 還原 | 還原方案的 NuGet 封裝。 |
+| 組建方案 *.sln | 組建整個方案。 |
+| 組建方案 *.sfproj | 產生將用來部署應用程式的 Service Fabric 應用程式封裝。請注意，應用程式封裝位置會指定於組建的構件目錄內。 |
+| 更新 Service Fabric 應用程式版本 | 更新應用程式封裝資訊清單檔案中包含的版本值以提供升級支援。如需詳細資訊，請參閱[工作文件頁面](https://go.microsoft.com/fwlink/?LinkId=820529)。 |
+| 複製檔案 | 將發行設定檔和應用程式參數檔案複製到組建的構件，以便供部署取用。 |
+| 發行構件 | 發行組建的構件。這可讓發行定義取用組建的構件。 |
 
-### <a name="verify-the-default-set-of-tasks"></a>Verify the default set of tasks
+### 確認預設工作集
 
-1.  Verify the **Solution** input field for the **NuGet restore** and **Build solution** build steps.  By default, these build steps will execute upon all solution files that are contained in the associated repository.  If you only want the build definition to operate on one of those solution files, you need to explicitly update the path to that file.
-2.  Verify the **Solution** input field for the **Package application** build step.  By default, this build step assumes only one Service Fabric Application project (.sfproj) exists in the repository.  If you have multiple such files in your repository and want to target only one of them for this build definition, you need to explicitly update the path to that file.  If you want to package multiple Application projects in your repository, you need to create additional **Visual Studio Build** steps in the build definition that each target an Application project.  You would then also need to update the **MSBuild Arguments** field for each of those build steps so that the package location is unique for each of them.
-3.  Verify the versioning behavior defined in the **Update Service Fabric App Versions** build step.  By default, this build step appends the build number to all version values in the application package's manifest files. See the [task documentation page](https://go.microsoft.com/fwlink/?LinkId=820529) for more information. This is useful for supporting upgrade of your application since each upgrade deployment requires different version values from the previous deployment. If you're not intending to use application upgrade in your workflow, you may consider disabling this build step. In fact, it must be disabled if your intention is to produce a build that can be used to overwrite an existing Service Fabric application because deployment will fail if the version of the application produced by the build does not match the version of the application in the cluster.
-4.  If your solution contains a .NET Core project, you must ensure that your build definition contains a build step that restores the dependencies defined by any project.json files.  To do this, follow these steps:
-   1. Select **Add build step...**.
-   2. Locate the **Command Line** task within the Utility tab and click its Add button.
-   3. For the task's input fields, use the following values:
-      1. Tool: dotnet
-      2. Arguments: restore
-   4. Drag the task so that it is immediately after the **NuGet restore** step.
-5.  Save any changes you've made to the build definition.
+1.	確認 [NuGet 還原] 的 [方案] 輸入欄位和 [組建方案] 組建步驟。根據預設，這些組建步驟將針對相關儲存機制中包含的所有方案檔案執行。如果您只想在這些方案檔案的其中之一執行組建定義，您需要明確地更新該檔案的路徑。
+2.	確認 [封裝應用程式] 組建步驟的 [方案] 輸入欄位。根據預設，這個組建步驟會假設儲存機制中只有一個 Service Fabric 應用程式專案 (.sfproj)。如果您的儲存機制中有多個這類檔案，並只想以其中之一作為此組建定義的目標，您需要明確地更新該檔案的路徑。如果您想將多個應用程式專案封裝在您的儲存機制中，您需要在組建定義中建立分別以一個應用程式專案為目標的額外 **Visual Studio 組建**步驟。您也需要更新這些組建步驟的 [MSBuild 引數] 欄位，讓它們各自擁有唯一的封裝位置。
+3.	確認**更新 Service Fabric 應用程式版本**組建步驟中定義的版本控制行為。根據預設，這個組建步驟會將組建編號附加至應用程式封裝資訊清單檔案中的所有版本值。如需詳細資訊，請參閱[工作文件頁面](https://go.microsoft.com/fwlink/?LinkId=820529)。這有助於支援您的應用程式的升級，因為每個升級部署需要的版本值不同於先前的部署。如果您不想在工作流程中使用應用程式升級，您可以考慮停用這個組建步驟。事實上，如果您想要產生可用來覆寫現有 Service Fabric 應用程式的組建，就必須停用，因為如果組建所產生的應用程式版本與叢集中的應用程式版本不符，部署將會失敗。
+4.	如果您的方案包含 .NET Core 專案，必須確定您的組建定義包含還原任何 project.json 檔案所定義的相依性的組建步驟。若要這樣做，請遵循下列步驟：
+   1. 選取 [新增組件步驟...]。
+   2. 找出 [公用程式] 索引標籤內的 [命令列] 工作，並按一下其 [新增] 按鈕。
+   3. 對於工作的輸入欄位，請使用下列值︰
+      1. 工具︰dotnet
+      2. 引數︰restore
+   4. 拖曳工作，將它就放在 [NuGet 還原] 步驟之後。
+5.	儲存對組建定義所做的任何變更。
 
-### <a name="try-it"></a>Try it
+### 試試看
 
-Select **Queue Build** to manually start a build. Builds will also be triggered upon push or check-in. Once you've verified that the build is executing successfully, you can now move on to defining a release definition that will deploy your application to a cluster.
+選取 [佇列組建] 以手動啟動組建。推送或簽入時也會觸發組建。一旦您確認組建順利執行後，就可以繼續定義會將應用程式部署至叢集的發行定義。
 
-## <a name="create-a-release-definition"></a>Create a release definition
+## 建立發行定義
 
-A Team Services release definition describes a workflow that is composed of a set of tasks that are executed sequentially. The goal of the release definition that you'll be creating is to take an application package and deploy it to a cluster. When used together, the build definition and release definition can execute the entire workflow from starting with source files to ending with a running application in your cluster. Learn more about Team Services [release definitions](https://www.visualstudio.com/docs/release/author-release-definition/more-release-definition).
+Team Services 發行定義描述由一組循序執行的工作所組成的工作流程。建立發行定義的目的是取得應用程式封裝，並將它部署至叢集。一起使用時，組建定義和發行定義可以執行整個工作流程，從來源檔案開始，並以叢集中的執行中應用程式結束。深入了解 Team Services [發行定義](https://www.visualstudio.com/docs/release/author-release-definition/more-release-definition)。
 
-### <a name="create-a-definition-from-the-release-template"></a>Create a definition from the release template
+### 從發行範本建立定義
 
-1.  Open your project in Visual Studio Team Services.
-2.  Select the **Release** tab.
-3.  Select the green **+** sign to create a new release definition and select **Create release definition** in the menu.
-4.  In the dialog that opens, select **Azure Service Fabric Deployment** within the **Deployment** template category.
-5.  Select **Next**.
-6.  Select the build definition you want to use as the source of this release definition.  The release definition will reference the artifacts that were produced by the selected build definition.
-7.  Check the **Continuous deployment** check box if you wish to have Team Services automatically create a new release and deploy the Service Fabric application whenever a build completes.
-8.  Select the agent queue you wish to use. Hosted agents are supported.
-9.  Select **Create**.
-10. Edit the definition name by clicking the pencil icon at the top of the page.
-11. Select the cluster to which your application should be deployed from the **Cluster Connection** input field of the task. The cluster connection provides the necessary information that allows the deployment task to connect to the cluster. If you do not yet have a cluster connection for your cluster, select the **Manage** hyperlink next to the field to add one. On the page that opens, perform the following steps:
-    1. Select **New Service Endpoint** and then select **Azure Service Fabric** from the menu.
-    2. Select the type of authentication being used by the cluster targeted by this endpoint.
-    2. Define a name for your connection in the **Connection Name** field.  Typically, you would use the name of your cluster.
-    3. Define the client connection endpoint URL in the **Cluster Endpoint** field.  Example: https://contoso.westus.cloudapp.azure.com:19000.
-    4. For Azure Active Directory credentials, define the credentials you want to use to connect to the cluster in the **Username** and **Password** fields.
-    5. For Certificate Based authentication, define the Base64 encoding of the client certificate file in the **Client Certificate** field.  See the help pop-up on that field for info on how to get that value.  If your certificate is password-protected, define the password in the **Password** field.
-    6. Confirm your changes by clicking **OK**. After navigating back to your release definition, click the refresh icon on the **Cluster Connection** field to see the endpoint you just added.
-12. Save the release definition.
+1.	在 Visual Studio Team Services 中開啟您的專案。
+2.	選取 [發行] 索引標籤。
+3.	選取綠色 **+** 符號以建立新的發行定義，並選取功能表中的 [建立發行定義]。
+4.	在開啟的對話方塊中，選取 [部署] 範本類別中的 [Azure Service Fabric 部署]。
+5.	選取 [下一步]。
+6.	選取做為這個發行定義的來源的組建定義。發行定義會參考所選組建定義所產生的構件。
+7.	如果您想要讓 Team Services 在每次組建完成時自動建立新的發行並部署 Service Fabric 應用程式，請核取 [連續部署] 核取方塊。
+8.	選取您想要使用的代理程式佇列。支援裝載的代理程式。
+9.	選取 [**建立**]。
+10.	按一下頁面頂端的鉛筆圖示以編輯定義名稱。
+11.	從工作的 [叢集連線] 輸入欄位中，選取您的應用程式應部署到哪個叢集。叢集連線提供讓部署工作連線到叢集所需的資訊。如果您的叢集還沒有叢集連線，請選取欄位旁的 [管理] 超連結新增一個。在開啟的頁面上執行下列步驟：
+    1. 選取 [新增服務端點]，然後從功能表中選取 [Azure Service Fabric]。
+    2. 選取此端點的目標叢集所使用的驗證類型。
+    2. 在 [連線名稱] 欄位中定義連線的名稱。一般而言，您可使用您的叢集名稱。
+    3. 在 [叢集端點] 欄位中，定義用戶端連線端點 URL。範例：https://contoso.westus.cloudapp.azure.com:19000.
+    4. 對於 Azure Active Directory 認證，請在 [使用者名稱] 和 [密碼] 欄位中定義連線到叢集所需的認證。
+    5. 對於憑證式驗證，請在 [用戶端憑證] 欄位中定義用戶端憑證檔案的 Base64 編碼。如需如何取得該值的資訊，請參閱該欄位的說明快顯。如果您的憑證受密碼保護，請在 [密碼] 欄位中定義密碼。
+    6. 按一下 [確定] 確認變更。回到發行定義後，按一下 [叢集連線] 欄位上的重新整理圖示以查看您剛才新增的端點。
+12.	儲存發行定義。
 
-The definition that is created consists of one task of type **Service Fabric Application Deployment**. See the [task documentation page](https://go.microsoft.com/fwlink/?LinkId=820528) for more information about this task.
+建立的定義包含一項工作類型 **Service Fabric 應用程式部署**。如需此工作的詳細資訊，請參閱[工作文件頁面](https://go.microsoft.com/fwlink/?LinkId=820528)。
 
-### <a name="verify-the-template-defaults"></a>Verify the template defaults
+### 確認範本預設值
 
-1.  Verify the **Publish Profile** input field for the **Deploy Service Fabric Application** task. By default, this field references a publish profile named Cloud.xml contained in the build's artifacts. If you want to reference a different publish profile or if the build contains multiple application packages in its artifacts, you need to update the path appropriately.
-2.  Verify the **Application Package** input field for the **Deploy Service Fabric Application** task. By default, this references the default application package path used in the build definition template.  If you've modified the default application package path in the build definition, you need to update the path appropriately here as well.
+1.	確認**部署 Service Fabric 應用程式**工作的 [發行設定檔] 輸入欄位。根據預設，此欄位會參考組建的構件中包含的發行設定檔 (名為 Cloud.xml)。如果您想要參考不同的發行設定檔，或如果組建的構件中包含多個應用程式封裝，您必須適當地更新路徑。
+2.	確認**部署 Service Fabric 應用程式**工作的 [應用程式封裝] 輸入欄位。根據預設，這會參考組建定義範本中使用的預設應用程式封裝路徑。如果您已經修改組建定義中的預設應用程式封裝路徑，您也必須在此適當地更新路徑。
 
-### <a name="try-it"></a>Try it
+### 試試看
 
-Select **Create Release** from the **Release** button menu to manually create a release. In the dialog that opens, select the build that you want to base the release on and then click **Create**. If you enabled continuous deployment, releases will also be created automatically when the associated build definition completes a build.
+從 [發行] 按鈕功能表上選取 [建立發行] 以手動建立發行。在開啟的對話方塊中，選取做為發行基準的組建，然後按一下 [建立]。如果您啟用連續部署，當關聯的組建定義完成組建後，發行也會自動建立。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-To learn more about continuous integration with Service Fabric applications, read the following articles:
+若要深入了解與 Service Fabric 應用程式的連續整合，請閱讀下列文章：
 
- - [Team Services documentation home](https://www.visualstudio.com/docs/overview)
- - [Build management in Team Services](https://www.visualstudio.com/docs/build/overview)
- - [Release management in Team Services](https://www.visualstudio.com/docs/release/overview)
+ - [Team Services 文件首頁](https://www.visualstudio.com/docs/overview)
+ - [Team Services 中的組建管理](https://www.visualstudio.com/docs/build/overview)
+ - [Team Services 中的發行管理](https://www.visualstudio.com/docs/release/overview)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

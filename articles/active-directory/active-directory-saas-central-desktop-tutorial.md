@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="Tutorial: Azure Active Directory integration with Central Desktop | Microsoft Azure" 
-    description="Learn how to use Central Desktop with Azure Active Directory to enable single sign-on, automated provisioning, and more!" 
+    pageTitle="教學課程：Azure Active Directory 與 Central Desktop 整合 | Microsoft Azure" 
+    description="了解如何使用 Central Desktop 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -11,165 +11,160 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="09/29/2016" 
+    ms.date="07/11/2016" 
     ms.author="jeedes" />
 
+#教學課程：Azure Active Directory 與 Central Desktop 整合
 
-#<a name="tutorial:-azure-active-directory-integration-with-central-desktop"></a>Tutorial: Azure Active Directory integration with Central Desktop
+本教學課程的目的是要示範 Azure 與 Central Desktop 的整合。本教學課程中說明的案例假設您已經具有下列項目：
 
-The objective of this tutorial is to show the integration of Azure and Central Desktop. The scenario outlined in this tutorial assumes that you already have the following items:
+-   有效的 Azure 訂閱
+-   啟用 Central Desktop 單一登入的訂用帳戶/Central Desktop 租用戶
 
--   A valid Azure subscription
--   A Central desktop single sign on enabled subscription / Central desktop tenant
+本教學課程中說明的案例由下列建置組塊組成：
 
-The scenario outlined in this tutorial consists of the following building blocks:
+1.  啟用 Central Desktop 的應用程式整合
+2.  設定單一登入
+3.  設定使用者佈建
+4.  指派使用者
 
-1.  Enabling the application integration for Central Desktop
-2.  Configuring single sign-on
-3.  Configuring user provisioning
-4.  Assigning users
+![案例](./media/active-directory-saas-central-desktop-tutorial/IC769558.png "案例")
+##啟用 Central Desktop 的應用程式整合
 
-![Scenario](./media/active-directory-saas-central-desktop-tutorial/IC769558.png "Scenario")
-##<a name="enabling-the-application-integration-for-central-desktop"></a>Enabling the application integration for Central Desktop
+本節的目的是要說明如何啟用 Central Desktop 的應用程式整合。
 
-The objective of this section is to outline how to enable the application integration for Central Desktop.
+###若要啟用 Central Desktop 的應用程式整合，請執行下列步驟：
 
-###<a name="to-enable-the-application-integration-for-central-desktop,-perform-the-following-steps:"></a>To enable the application integration for Central Desktop, perform the following steps:
-
-1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-central-desktop-tutorial/IC700993.png "Active Directory")
 
-2.  From the **Directory** list, select the directory for which you want to enable directory integration.
+2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3.  To open the applications view, in the directory view, click **Applications** in the top menu.
+3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
 
-    ![Applications](./media/active-directory-saas-central-desktop-tutorial/IC700994.png "Applications")
+    ![應用程式](./media/active-directory-saas-central-desktop-tutorial/IC700994.png "應用程式")
 
-4.  Click **Add** at the bottom of the page.
+4.  按一下頁面底部的 [新增]。
 
-    ![Add application](./media/active-directory-saas-central-desktop-tutorial/IC749321.png "Add application")
+    ![新增應用程式](./media/active-directory-saas-central-desktop-tutorial/IC749321.png "新增應用程式")
 
-5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫中新增應用程式]。
 
-    ![Add an application from gallerry](./media/active-directory-saas-central-desktop-tutorial/IC749322.png "Add an application from gallerry")
+    ![從組件庫新增應用程式](./media/active-directory-saas-central-desktop-tutorial/IC749322.png "從組件庫新增應用程式")
 
-6.  In the **search box**, type **Central Desktop**.
+6.  在**搜尋方塊**中，輸入 **Central Desktop**。
 
-    ![Application gallery](./media/active-directory-saas-central-desktop-tutorial/IC769559.png "Application gallery")
+    ![應用程式庫](./media/active-directory-saas-central-desktop-tutorial/IC769559.png "應用程式庫")
 
-7.  In the results pane, select **Central Desktop**, and then click **Complete** to add the application.
+7.  在結果窗格中，選取 [Central Desktop]，然後按一下 [完成] 以加入應用程式。
 
     ![Central Desktop](./media/active-directory-saas-central-desktop-tutorial/IC769560.png "Central Desktop")
-##<a name="configuring-single-sign-on"></a>Configuring single sign-on
+##設定單一登入
 
-The objective of this section is to outline how to enable users to authenticate to Central Desktop with their account in Azure AD using federation based on the SAML protocol.  
-As part of this procedure, you are required to upload a base-64 encoded certificate to your Central Desktop tenant.  
-If you are not familiar with this procedure, see [How to convert a binary certificate into a text file](http://youtu.be/PlgrzUZ-Y1o).
-
-
-
-###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
-
-1.  In the Azure classic portal, on the **Central Desktop** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
-
-    ![Configure single sign-on](./media/active-directory-saas-central-desktop-tutorial/IC749323.png "Configure single sign-on")
-
-2.  On the **How would you like users to sign on to Central Desktop** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
-
-    ![Configure single sign-on](./media/active-directory-saas-central-desktop-tutorial/IC777628.png "Configure single sign-on")
-
-3.  On the **Configure App URL** page, perform the following steps, and then click **Next**: 
-
-    -   In the **Central Desktop Sign In URL** textbox, type the URL of your Central Desktop tenant (e.g.: *http://contoso.centraldesktop.com*).
-    -   In the Central  Desktop Reply URL textbox, type your Central Desktop AssertionConsumerService URL (e.g.:  https://contoso.centraldesktop.com/saml2-assertion.php).
-
-    >[AZURE.NOTE] You can get the value from the central desktop metadata (e.g.: *http://contoso.centraldesktop.com*).
-
-    ![Configure app URL](./media/active-directory-saas-central-desktop-tutorial/IC769561.png "Configure app URL")
-
-4.  On the **Configure single sign-on at Central Desktop** page, to download your certificate, click **Download certificate**, and then save the certificate file on your computer.
-
-    ![Configure single sign-on](./media/active-directory-saas-central-desktop-tutorial/IC769562.png "Configure single sign-on")
-
-5.  Log in to your **Central Desktop** tenant.
-
-6.  Go to **Settings**, click **Advanced**, and then click **Single Sign On**.
-
-    ![Setup - Advanced](./media/active-directory-saas-central-desktop-tutorial/IC769563.png "Setup - Advanced")
-
-7.  On the **Single Sign On Settings** page, perform the following steps:
-
-    ![Single Sign On Settings](./media/active-directory-saas-central-desktop-tutorial/IC769564.png "Single Sign On Settings")
-
-    1.  Select **Enable SAML v2 Single Sign On**.
-    2.  In the Azure classic portal, on the **Configure single sign-on at Central Desktop** page, copy the **Issuer URL** value, and then paste it into the **SSO URL** textbox.
-    3.  In the Azure classic portal, on the **Configure single sign-on at Central Desktop** page, copy the **Remote Login URL** value, and then paste it into the **SSO Login URL** textbox.
-    4.  In the Azure classic portal, on the **Configure single sign-on at Central Desktop** page, copy the **Single Sign-Out Service URL** value, and then paste it into the **SSO Logout URL** textbox.
-
-8.  In the **Message Signature Verification Method** section, perform the following steps:
-
-    ![Message Signature Verification Method](./media/active-directory-saas-central-desktop-tutorial/IC769565.png "Message Signature Verification Method")
-
-    1.  Select **Certificate**.
-    2.  From the **SSO Certificate** list, select **RSH SHA256**.
-    3.  Create a text file from the downloaded certificate, copy the content of the text file, and then paste it into the **SSO Certificate** field.  
-
-        >[AZURE.TIP] For more details, see [How to convert a binary certificate into a text file](http://youtu.be/PlgrzUZ-Y1o)
-
-    4.  Select **Display a link to your SAMLv2 login page**.
-
-9.  Click **Update**.
-
-10. On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
-
-    ![Configure single sign-on](./media/active-directory-saas-central-desktop-tutorial/IC769566.png "Configure single sign-on")
-##<a name="configuring-user-provisioning"></a>Configuring user provisioning
-
-For AAD users to be able to sign in, they must be provisioned to the Central Desktop application. This section describes how to create AAD user accounts in Central Desktop.
-
-###<a name="to-provision-user-accounts-to-central-desktop:"></a>To provision user accounts to Central Desktop:
-
-1.  Log in to your Central Desktop tenant.
-
-2.  Go to **People \> Internal Members**.
-
-3.  Click **Add Internal Members**.
-
-    ![People](./media/active-directory-saas-central-desktop-tutorial/IC781051.png "People")
-
-4.  In the **Email Address of New Members** textbox, type an AAD account you want to provision, and then click **Next**.
-
-    ![Email Addresses of New Members](./media/active-directory-saas-central-desktop-tutorial/IC781052.png "Email Addresses of New Members")
-
-5.  Click **Add Internal member(s)**.
-
-    ![Add Internal Member](./media/active-directory-saas-central-desktop-tutorial/IC781053.png "Add Internal Member")
-
-    >[AZURE.NOTE] The users you have added will receive an email that includes a confirmation link they need to click to activate the account.
-
->[AZURE.NOTE] You can use any other Central Desktop user account creation tools or APIs provided by Central Desktop to provision AAD user accounts
-
-##<a name="assigning-users"></a>Assigning users
-
-To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
-
-###<a name="to-assign-users-to-central-desktop,-perform-the-following-steps:"></a>To assign users to Central Desktop, perform the following steps:
-
-1.  In the Azure classic portal, create a test account.
-
-2.  On the **Central Desktop** application integration page, click **Assign users**.
-
-    ![Assign users](./media/active-directory-saas-central-desktop-tutorial/IC769567.png "Assign users")
-
-3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
-
-    ![Yes](./media/active-directory-saas-central-desktop-tutorial/IC767830.png "Yes")
-
-If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶驗證至 Central Desktop。  
+在這個程序中，您需要上傳 base-64 編碼憑證到您的 Central Desktop 租用戶。  
+如果您不熟悉這個程序，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
 
 
 
-<!--HONumber=Oct16_HO2-->
+###若要設定單一登入，請執行下列步驟：
 
+1.  在 Azure 傳統入口網站的 [Central Desktop] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
+    ![設定單一登入](./media/active-directory-saas-central-desktop-tutorial/IC749323.png "設定單一登入")
+
+2.  在 [要如何讓使用者登入 Central Desktop] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
+
+    ![設定單一登入](./media/active-directory-saas-central-desktop-tutorial/IC777628.png "設定單一登入")
+
+3.  在 [設定應用程式 URL] 頁面上，執行下列步驟，然後按 [下一步]。
+
+    -   在 [Central Desktop 登入 URL] 文字方塊中，輸入您的 Central Desktop 租用戶 URL (例如：*http://contoso.centraldesktop.com*)。
+    -   在 [Central Desktop 回覆 URL] 文字方塊中，輸入您的 Central Desktop AssertionConsumerService URL (例如：https://contoso.centraldesktop.com/saml2-assertion.php)。
+
+    >[AZURE.NOTE] 您可以從 Central Desktop 中繼資料取得這個值 (例如：*http://contoso.centraldesktop.com*)。
+
+    ![設定應用程式 URL](./media/active-directory-saas-central-desktop-tutorial/IC769561.png "設定應用程式 URL")
+
+4.  於 [在 Central Desktop 設定單一登入] 頁面上，按 [下載憑證] 以下載您的憑證，然後將憑證檔案儲存在您的電腦中。
+
+    ![設定單一登入](./media/active-directory-saas-central-desktop-tutorial/IC769562.png "設定單一登入")
+
+5.  登入您的 **Central Desktop** 租用戶。
+
+6.  移至 [設定]，按一下 [進階]，然後按一下 [單一登入]。
+
+    ![設定 - 進階](./media/active-directory-saas-central-desktop-tutorial/IC769563.png "設定 - 進階")
+
+7.  在 [單一登入設定] 頁面上，執行下列步驟：
+
+    ![單一登入設定](./media/active-directory-saas-central-desktop-tutorial/IC769564.png "單一登入設定")
+
+    1.  選取 [啟用 SAML v2 單一登入]。
+    2.  在 Azure 傳統入口網站的 [在 Central Desktop 設定單一登入] 頁面上，複製 [簽發者 URL] 的值，然後將它貼到 [SSO URL] 文字方塊中。
+    3.  在 Azure 傳統入口網站的 [在 Central Desktop 設定單一登入] 頁面上，複製 [遠端登入 URL] 值，然後將它貼到 [SSO 登入 URL] 文字方塊中。
+    4.  在 Azure 傳統入口網站的 [在 Central Desktop 設定單一登入] 頁面上，複製 [單一登出服務 URL] 值，然後將它貼到 [SSO 登出 URL] 文字方塊中。
+
+8.  在 [訊息簽章驗證方法] 區段中，執行下列步驟：
+
+    ![訊息簽章驗證方法](./media/active-directory-saas-central-desktop-tutorial/IC769565.png "訊息簽章驗證方法")
+
+    1.  選取 [憑證]。
+    2.  從 [SSO 憑證] 清單中選取 [RSH SHA256]。
+    3.  從下載的憑證建立文字檔，複製文字檔的內容，然後將內容貼到 [SSO 憑證] 欄位中。
+
+        >[AZURE.TIP] 如需詳細資訊，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)
+
+    4.  選取 [顯示 SAMLv2 登入頁面的連結]。
+
+9.  按一下 [更新]。
+
+10. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
+
+    ![設定單一登入](./media/active-directory-saas-central-desktop-tutorial/IC769566.png "設定單一登入")
+##設定使用者佈建
+
+AAD 使用者必須先佈建到 Central Desktop 應用程式，才可以登入。本節說明如何在 Central Desktop 中建立 AAD 使用者帳戶。
+
+###若要將使用者帳戶佈建到 Central Desktop：
+
+1.  登入您的 Central Desktop 租用戶。
+
+2.  移至 [人員] > [內部成員]。
+
+3.  按一下 [加入內部成員]。
+
+    ![人員](./media/active-directory-saas-central-desktop-tutorial/IC781051.png "人員")
+
+4.  在 [新成員的電子郵件地址] 文字方塊中，輸入您想要佈建的 AAD 帳戶，然後按 [下一步]。
+
+    ![新成員的電子郵件地址](./media/active-directory-saas-central-desktop-tutorial/IC781052.png "新成員的電子郵件地址")
+
+5.  按一下 [加入內部成員]。
+
+    ![加入內部成員](./media/active-directory-saas-central-desktop-tutorial/IC781053.png "加入內部成員")
+
+    >[AZURE.NOTE] 您加入的使用者會收到一封包含確認連結的電子郵件，使用者必須按一下才能啟用帳戶。
+
+>[AZURE.NOTE] 您可以使用任何其他的 Central Desktop 使用者帳戶建立工具或 Central Desktop 提供的 API 來佈建 AAD 使用者帳戶。
+
+##指派使用者
+
+若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
+
+###若要將使用者指派給 Central Desktop，請執行下列步驟：
+
+1.  在 Azure 傳統入口網站中建立測試帳戶。
+
+2.  在 [Central Desktop] 應用程式整合頁面上，按一下 [指派使用者]。
+
+    ![指派使用者](./media/active-directory-saas-central-desktop-tutorial/IC769567.png "指派使用者")
+
+3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
+
+    ![是](./media/active-directory-saas-central-desktop-tutorial/IC767830.png "是")
+
+如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+
+<!---HONumber=AcomDC_0713_2016-->

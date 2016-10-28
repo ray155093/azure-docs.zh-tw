@@ -1,6 +1,6 @@
 <properties
-pageTitle="Ports used by HDInsight | Azure"
-description="A list of ports used by Hadoop services running on HDInsight."
+pageTitle="HDInsight 所使用的連接埠 | Azure"
+description="在 HDInsight 上執行的 Hadoop 服務所使用的連接埠清單。"
 services="hdinsight"
 documentationCenter=""
 authors="Blackmist"
@@ -13,139 +13,134 @@ ms.devlang="na"
 ms.topic="article"
 ms.tgt_pltfrm="na"
 ms.workload="big-data"
-ms.date="10/03/2016"
+ms.date="09/13/2016"
 ms.author="larryfr"/>
 
+# HDInsight 所使用的連接埠和 URI
 
-# <a name="ports-and-uris-used-by-hdinsight"></a>Ports and URIs used by HDInsight
+本文件提供在以 Linux 為基礎的 HDInsight 叢集上執行的 Hadoop 服務所使用的連接埠清單。此外，也提供用來連線到使用 SSH 之叢集的連接埠相關資訊。
 
-This document provides a list of the ports used by Hadoop services running on Linux-based HDInsight clusters. It also provides information on ports used to connect to the cluster using SSH.
+## 公用連接埠與非公用連接埠
 
-## <a name="public-ports-vs.-non-public-ports"></a>Public ports vs. non-public ports
+以 Linux 為基礎的 HDInsight 叢集只會公開網際網路上的三個公開連接埠：22、23 和 443。這些用來安全地存取使用 SSH 的叢集以及透過安全 HTTPS 通訊協定公開的服務。
 
-Linux-based HDInsight clusters only exposes three ports publicly on the internet; 22, 23, and 443. These are used to securely access the cluster using SSH and services exposed over the secure HTTPS protocol.
+在內部，HDInsight 由數個在 Azure 虛擬網路上執行的 Azure 虛擬機器 (叢集內的節點) 實作。您可以從虛擬網路存取不是透過網際網路公開的連接埠。例如，如果您使用 SSH 連接到其中一個前端節點，您可以從此前端節點直接存取在叢集節點上執行的服務。
 
-Internally, HDInsight is implemented by several Azure Virtual Machines (the nodes within the cluster,) running on an Azure Virtual Network. From within the virtual network, you can access ports not exposed over the internet. For example, if you connect to one of the head nodes using SSH, from the head node you can then directly access services running on the cluster nodes.
+> [AZURE.IMPORTANT] 當您建立 HDInsight 叢集時，如果您沒有將 Azure 虛擬網路指定為設定選項，則會建立一個虛擬網路；不過，您無法將其他電腦 (例如其他 Azure 虛擬機器或用戶端開發電腦) 加入至這個自動建立的虛擬網路。
 
-> [AZURE.IMPORTANT] When you create an HDInsight cluster, if you do not specify an Azure Virtual Network as a configuration option, one is created; however, you cannot join other machines (such as other Azure Virtual Machines or your client development machine,) to this automatically created virtual network. 
+若要將其他電腦加入至虛擬網路，您必須先建立虛擬網路，然後在建立 HDInsight 叢集時進行指定。如需詳細資訊，請參閱[使用 Azure 虛擬網路延伸 HDInsight 功能](hdinsight-extend-hadoop-virtual-network.md)
 
-To join additional machines to the virtual network, you must create the virtual network first, and then specify it when creating your HDInsight cluster. For more information, see [Extend HDInsight capabilities by using an Azure Virtual Network](hdinsight-extend-hadoop-virtual-network.md)
+## 公用連接埠
 
-## <a name="public-ports"></a>Public ports
+HDInsight 叢集中的所有節點都位於 Azure 虛擬網路中，無法直接從網際網路存取。公用閘道提供下列連接埠 (常見於所有的 HDInsight 叢集類型) 的網際網路存取。
 
-All the nodes in an HDInsight cluster are located in an Azure Virtual Network, and cannot be directly accessed from the internet. A public gateway provides internet access to the following ports, which are common across all HDInsight cluster types.
-
-| Service | Port | Protocol | Description |
+| 服務 | 連接埠 | 通訊協定 | 說明 |
 | ---- | ---------- | -------- | ----------- | ----------- |
-| sshd | 22 | SSH | Connects clients to sshd on the primary headnode. See [Use SSH with Linux-based HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md) |
-| sshd | 22 | SSH | Connects clients to sshd on the edge node (HDInsight Premium only). See [Get started using R Server on HDInsight](hdinsight-hadoop-r-server-get-started.md) |
-| sshd | 23 | SSH | Connects clients to sshd on the secondary headnode. See [Use SSH with Linux-based HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md) |
-| Ambari | 443 | HTTPS | Ambari web UI. See [Manage HDInsight using the Ambari Web UI](hdinsight-hadoop-manage-ambari.md) |
-| Ambari | 443 | HTTPS | Ambari REST API. See [Manage HDInsight using the Ambari REST API](hdinsight-hadoop-manage-ambari-rest-api.md) |
-| WebHCat | 443 | HTTPS | HCatalog REST API. See [Use Hive with Curl](hdinsight-hadoop-use-pig-curl.md), [Use Pig with Curl](hdinsight-hadoop-use-pig-curl.md), [Use MapReduce with Curl](hdinsight-hadoop-use-mapreduce-curl.md) |
-| HiveServer2 | 443 | ODBC | Connects to Hive using ODBC. See [Connect Excel to HDInsight with the Microsoft ODBC driver](hdinsight-connect-excel-hive-odbc-driver.md). |
-| HiveServer2 | 443 | JDBC | Connects to Hive using JDBC. See [Connect to Hive on HDInsight using the Hive JDBC driver](hdinsight-connect-hive-jdbc-driver.md) |
+| sshd | 22 | SSH | 將用戶端連接到主要前端節點上的 sshd。請參閱[搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md) |
+| sshd | 22 | SSH | 將用戶端連接到邊緣節點上的 sshd (僅限 HDInsight Premium)。請參閱[開始使用 HDInsight 中的 R 伺服器](hdinsight-hadoop-r-server-get-started.md) |
+| sshd | 23 | SSH | 將用戶端連接到次要前端節點上的 sshd。請參閱[搭配使用 SSH 與以 Linux 為基礎的 HDInsight](hdinsight-hadoop-linux-use-ssh-windows.md) |
+| Ambari | 443 | HTTPS | Ambari Web UI。請參閱[使用 Ambari Web UI 管理 HDInsight](hdinsight-hadoop-manage-ambari.md) |
+| Ambari | 443 | HTTPS | Ambari REST API。請參閱[使用 Ambari REST API 管理 HDInsight](hdinsight-hadoop-manage-ambari-rest-api.md) |
+| WebHCat | 443 | HTTPS | HCatalog REST API。請參閱[搭配使用 Hive 與 Curl](hdinsight-hadoop-use-Pig-curl.md)、[搭配使用 Pig 與 Curl](hdinsight-hadoop-use-Pig-curl.md)、[搭配使用 MapReduce 與 Curl](hdinsight-hadoop-use-mapreduce-curl.md) |
+| HiveServer2 | 443 | ODBC | 使用 ODBC 連接至 Hive。請參閱[使用 Microsoft ODBC 驅動程式將 Excel 連接到 HDInsight](hdinsight-connect-excel-hive-odbc-driver.md)。 |
+| HiveServer2 | 443 | JDBC | 使用 JDBC 連接至 Hive。請參閱[使用 Hive JDBC 驅動程式連接到 HDInsight 上的 Hive](hdinsight-connect-hive-jdbc-driver.md) |
 
-The following are available for specific cluster types:
+下列各項適用於特定叢集類型︰
 
-| Service | Port | Protocol |Cluster type | Description |
+| 服務 | 連接埠 | 通訊協定 |叢集類型 | 說明 |
 | ------------ | ---- |  ----------- | --- | ----------- |
-| Stargate | 443 | HTTPS | HBase | HBase REST API. See [Get started using HBase](hdinsight-hbase-tutorial-get-started-linux.md) |
-| Livy | 443 | HTTPS |  Spark | Spark REST API. See [Submit Spark jobs remotely using Livy](hdinsight-apache-spark-livy-rest-interface.md) |
-| Storm | 443 | HTTPS | Storm | Storm web UI. See [Deploy and manage Storm topologies on HDInsight](hdinsight-storm-deploy-monitor-topology-linux.md)
+| Stargate | 443 | HTTPS | HBase | HBase REST API。請參閱[開始使用 HBase](hdinsight-hbase-tutorial-get-started-linux.md) |
+| Livy | 443 | HTTPS | Spark | Spark REST API。請參閱[使用 Livy 從遠端提交 Spark 作業](hdinsight-apache-spark-livy-rest-interface.md) |
+| Storm | 443 | HTTPS | Storm | Storm Web UI。請參閱[部署和管理 HDInsight 上的 Storm 拓撲](hdinsight-storm-deploy-monitor-topology-linux.md)
 
-### <a name="authentication"></a>Authentication
+### 驗證
 
-All services publicly exposed on the internet must be authenticated:
+在網際網路上公開的所有服務都必須經過驗證︰
 
-| Port | Credentials |
+| 連接埠 | 認證 |
 | ---- | ----------- |
-| 22 or 23 | The SSH user credentials specified during cluster creation |
-| 443 | The login name (default: admin,) and password that were set during cluster creation |
+| 22 或 23 | 在叢集建立期間指定的 SSH 使用者認證 |
+| 443 | 在叢集建立期間設定的登入名稱 (預設值：admin) 和密碼 |
 
-## <a name="non-public-ports"></a>Non-public ports
+## 非公用連接埠
 
-> [AZURE.NOTE] Some services are only available on specific cluster types. For example, HBase is only available on HBase cluster types.
+> [AZURE.NOTE] 部分服務只能在特定叢集類型上使用。例如，HBase 只能在 HBase 叢集類型上使用。
 
-### <a name="hdfs-ports"></a>HDFS ports
+### HDFS 連接埠
 
-| Service | Node(s) | Port | Protocol | Description |
+| 服務 | 節點 | 連接埠 | 通訊協定 | 說明 |
 | ------- | ------- | ---- | -------- | ----------- | 
-| NameNode web UI | Head nodes | 30070 | HTTPS | Web UI to view current status |
-| NameNode metadata service | head nodes | 8020 | IPC | File system metadata 
-| DataNode | All worker nodes | 30075 | HTTPS | Web UI to view status, logs, etc. |
-| DataNode | All worker nodes | 30010 | &nbsp; | Data transfer |
-| DataNode | All worker nodes | 30020 | IPC | Metadata operations |
-| Secondary NameNode | Head nodes | 50090 | HTTP | Checkpoint for NameNode metadata |
+| NameNode Web UI | 前端節點 | 30070 | HTTPS | 用以檢視目前狀態的 Web UI |
+| NameNode 中繼資料服務 | 前端節點 | 8020 | IPC | 檔案系統中繼資料 
+| DataNode | 所有背景工作節點 | 30075 | HTTPS | 用以檢視狀態、記錄檔等的 Web UI |
+| DataNode | 所有背景工作節點 | 30010 | &nbsp; | 資料傳輸 |
+| DataNode | 所有背景工作節點 | 30020 | IPC | 中繼資料作業 |
+| 次要 NameNode | 前端節點 | 50090 | HTTP | NameNode 中繼資料的檢查點 |
 
-### <a name="yarn-ports"></a>YARN ports
+### YARN 連接埠
 
-| Service | Node(s) | Port | Protocol | Description |
+| 服務 | 節點 | 連接埠 | 通訊協定 | 說明 |
 | ------- | ------- | ---- | -------- | ----------- |
-| Resource Manager web UI | Head nodes | 8088 | HTTP | Web UI for Resource Manager |
-| Resource Manager web UI | Head nodes | 8090 | HTTPS | Web UI for Resource Manager |
-| Resource Manager admin interface | head nodes | 8141 | IPC | For application submissions (Hive, Hive server, Pig, etc.) |
-| Resource Manager scheduler | head nodes | 8030 | HTTP | Administrative interface |
-| Resource Manager application interface | head nodes | 8050 | HTTP |Address of the applications manager interface |
-| NodeManager | All worker nodes | 30050 | &nbsp; | The address of the container manager |
-| NodeManager web UI | All worker nodes | 30060 | HTTP | Resource manager interface |
-| Timeline address | Head nodes | 10200 | RPC | The Timeline service RPC service. |
-| Timeline web UI | Head nodes | 8181 | HTTP | The Timeline service web UI |
+| Resource Manager | 前端節點 | 8088 | HTTP | 適用於 Resource Manager 的 Web UI |
+| Resource Manager | 前端節點 | 8090 | HTTPS | 適用於 Resource Manager 的 Web UI |
+| Resource Manager 系統管理介面 | 前端節點 | 8141 | IPC | 適用於應用程式提交 (Hive、Hive 伺服器、Pig 等) |
+| Resource Manager 排程器 | 前端節點 | 8030 | HTTP | 系統管理介面 |
+| Resource Manager 應用程式介面 | 前端節點 | 8050 | HTTP |應用程式管理員介面的位址 |
+| NodeManager | 所有背景工作節點 | 30050 | &nbsp; | 容器管理員的位址 |
+| NodeManager Web UI | 所有背景工作節點 | 30060 | HTTP | Resource Manager 介面 |
+| Timeline 位址 | 前端節點 | 10200 | RPC | Timeline 服務 RPC 服務。 |
+| Timeline Web UI | 前端節點 | 8181 | HTTP | Timeline 服務 Web UI |
 
-### <a name="hive-ports"></a>Hive ports
+### Hive 連接埠
 
-| Service | Node(s) | Port | Protocol | Description |
+| 服務 | 節點 | 連接埠 | 通訊協定 | 說明 |
 | ------- | ------- | ---- | -------- | ----------- |
-| HiveServer2 | Head nodes | 10001 | Thrift | Service for programmatically connecting to Hive (Thrift/JDBC) |
-| HiveServer | Head nodes | 10000 | Thrift | Service for programmatically connecting to Hive (Thrift/JDBC) |
-| Hive Metastore | Head nodes | 9083 | Thrift | Service for programmatically connecting to Hive metadata (Thrift/JDBC) |
+| HiveServer2 | 前端節點 | 10001 | Thrift | 可以程式設計方式連接到 Hive 的服務 (Thrift/JDBC) |
+| HiveServer | 前端節點 | 10000 | Thrift | 可以程式設計方式連接到 Hive 的服務 (Thrift/JDBC) |
+| Hive 中繼存放區 | 前端節點 | 9083 | Thrift | 可以程式設計方式連接到 Hive 中繼資料的服務 (Thrift/JDBC) |
 
-### <a name="webhcat-ports"></a>WebHCat ports
+### WebHCat 連接埠
 
-| Service | Node(s) | Port | Protocol | Description |
+| 服務 | 節點 | 連接埠 | 通訊協定 | 說明 |
 | ------- | ------- | ---- | -------- | ----------- |
-| WebHCat server | Head nodes | 30111 | HTTP | Web API on top of HCatalog and other Hadoop services |
+| WebHCat 伺服器 | 前端節點 | 30111 | HTTP | 以 HCatalog 和其他 Hadoop 服務為基礎的 Web API |
 
-### <a name="mapreduce-ports"></a>MapReduce ports
+### MapReduce 連接埠
 
-| Service | Node(s) | Port | Protocol | Description |
+| 服務 | 節點 | 連接埠 | 通訊協定 | 說明 |
 | ------- | ------- | ---- | -------- | ----------- |
-| JobHistory | Head nodes | 19888 | HTTP | MapReduce JobHistory web UI |
-| JobHistory | Head nodes | 10020 | &nbsp; | MapReduce JobHistory server |
-| ShuffleHandler | &nbsp; | 13562 | &nbsp; | Transfers intermediate Map outputs to requesting Reducers |
+| JobHistory | 前端節點 | 19888 | HTTP | MapReduce JobHistory Web UI |
+| JobHistory | 前端節點 | 10020 | &nbsp; | MapReduce JobHistory 伺服器 |
+| ShuffleHandler | &nbsp; | 13562 | &nbsp; | 將中繼對應輸出傳輸至要求的歸納器 |
 
-### <a name="oozie"></a>Oozie
+### Oozie
 
-| Service | Node(s) | Port | Protocol | Description |
+| 服務 | 節點 | 連接埠 | 通訊協定 | 說明 |
 | ------- | ------- | ---- | -------- | ----------- |
-| Oozie server | Head nodes | 11000 | HTTP | URL for Oozie service |
-| Oozie server | Head nodes | 11001 | HTTP | Port for Oozie admin |
+| Oozie 伺服器 | 前端節點 | 11000 | HTTP | Oozie 服務的 URL |
+| Oozie 伺服器 | 前端節點 | 11001 | HTTP | Oozie 系統管理的連接埠 |
 
-### <a name="ambari-metrics"></a>Ambari Metrics
+### Ambari 度量
 
-| Service | Node(s) | Port | Protocol | Description |
+| 服務 | 節點 | 連接埠 | 通訊協定 | 說明 |
 | ------- | ------- | ---- | -------- | ----------- |
-| TimeLine (Application history) | Head nodes | 6188 | HTTP | The TimeLine service web UI |
-| TimeLine (Application history) | Head nodes | 30200 | RPC | The TimeLine service web UI |
+| TimeLine (應用程式歷程記錄) | 前端節點 | 6188 | HTTP | TimeLine 服務 Web UI |
+| TimeLine (應用程式歷程記錄) | 前端節點 | 30200 | RPC | TimeLine 服務 Web UI |
 
-### <a name="hbase-ports"></a>HBase ports
+### HBase 連接埠
 
-| Service | Node(s) | Port | Protocol | Description |
+| 服務 | 節點 | 連接埠 | 通訊協定 | 說明 |
 | ------- | ------- | ---- | -------- | ----------- |
-| HMaster | Head nodes | 16000 | &nbsp; | &nbsp; |
-| HMaster info Web UI | Head nodes | 16010 | HTTP | The port for the HBase Master web UI |
-| Region server | All worker nodes | 16020 | &nbsp; | &nbsp; |
-| &nbsp; | &nbsp; | 2181 | &nbsp; | The port that clients use to connect to ZooKeeper |
+| HMaster | 前端節點 | 16000 | &nbsp; | &nbsp; |
+| HMaster 資訊 Web UI | 前端節點 | 16010 | HTTP | HBase 主要 Web UI 的連接埠 |
+| 區域伺服器 | 所有背景工作節點 | 16020 | &nbsp; | &nbsp; |
+| &nbsp; | &nbsp; | 2181 | &nbsp; | 用戶端用於連接至 ZooKeeper 的連接埠 |
 
-### <a name="kafka-ports"></a>Kafka ports
+### Kafka 連接埠
 
-| Service | Node(s) | Port | Protocol | Description |
+| 服務 | 節點 | 連接埠 | 通訊協定 | 說明 |
 | ------- | ------- | ---- | -------- | ----------- |
-| Broker  | Worker nodes | 9092 | [Kafka Wire Protocol](http://kafka.apache.org/protocol.html) | Used for client communication |
-| &nbsp; | Zookeeper nodes | 2181 | &nbsp; | The port that clients use to connect to Zookeeper |
+| Broker | 背景工作節點 | 9092 | [Kafka Wire Protocol (Kafka 有線通訊協定)](http://kafka.apache.org/protocol.html) | 用於用戶端通訊 |
+| &nbsp; | Zookeeper 節點 | 2181 | &nbsp; | 用戶端用於連接至 ZooKeeper 的連接埠 |
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

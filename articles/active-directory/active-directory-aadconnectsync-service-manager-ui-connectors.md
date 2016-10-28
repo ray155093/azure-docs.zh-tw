@@ -1,116 +1,118 @@
 <properties
-    pageTitle="Azure AD Connect sync: Synchronization Service Manager UI | Microsoft Azure"
-    description="Understand the Connectors tab in the Synchronization Service Manager for Azure AD Connect."
-    services="active-directory"
-    documentationCenter=""
-    authors="andkjell"
-    manager="femila"
-    editor=""/>
+	pageTitle="Azure AD Connect 同步處理︰Synchronization Service Manager UI | Microsoft Azure"
+	description="了解 Azure AD Connect 的 Synchronization Service Manager 中的 [連接器] 索引標籤。"
+	services="active-directory"
+	documentationCenter=""
+	authors="andkjell"
+	manager="femila"
+	editor=""/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/07/2016"
-    ms.author="billmath"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/07/2016"
+	ms.author="andkjell"/>
 
 
+# Azure AD Connect 同步處理︰Synchronization Service Manager
 
-# <a name="azure-ad-connect-sync:-synchronization-service-manager"></a>Azure AD Connect sync: Synchronization Service Manager
-
-[Operations](active-directory-aadconnectsync-service-manager-ui-operations.md) | [Connectors](active-directory-aadconnectsync-service-manager-ui-connectors.md) | [Metaverse Designer](active-directory-aadconnectsync-service-manager-ui-mvdesigner.md) | [Metaverse Search](active-directory-aadconnectsync-service-manager-ui-mvsearch.md)
+[作業](active-directory-aadconnectsync-service-manager-ui-operations.md) | [連接器](active-directory-aadconnectsync-service-manager-ui-connectors.md) | [Metaverse 設計工具](active-directory-aadconnectsync-service-manager-ui-mvdesigner.md) | [Metaverse 搜尋](active-directory-aadconnectsync-service-manager-ui-mvsearch.md)
 --- | --- | --- | ---
 
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/connectors.png)
 
-The Connectors tab is used to manage all systems the sync engine is connected to.
+[連接器] 索引標籤可用來管理同步處理引擎連接的所有系統。
 
-## <a name="connector-actions"></a>Connector actions
+## 連接器動作
 
-Action | Comment
+動作 | 註解
 --- | ---
-Create | Do not use. For connecting to additional AD forests, use the installation wizard.
-Properties | Used for domain and OU filtering.
-[Delete](#delete) | Used to either delete the data in the connector space or to delete connection to a forest.
-[Configure Run Profiles](#configure-run-profiles) | Except for domain filtering, nothing to configure here. You can use this action to see already configured run profiles.
-Run | Used to start a one-off run of a profile.
-Stop | Stops a Connector currently running a profile.
-Export Connector | Do not use.
-Import Connector | Do not use.
-Update Connector | Do not use.
-Refresh Schema | Refreshes the cached schema. It is preferred to use the option in the installation wizard instead, since that also updates sync rules.
-[Search Connector Space](#search-connector-space) | Used to find objects and to [Follow an object and its data through the system](#follow-an-object-and-its-data-through-the-system).
+建立 | 請勿使用。若要連接到其他的 AD 樹系，請使用安裝精靈。
+屬性 | 用於網域和 OU 篩選。
+[刪除](#delete) | 用來刪除連接器空間中的資料或刪除與樹系的連接。
+[更新執行設定檔](#configure-run-profiles) | 除了網域篩選以外，不會在此處進行任何設定。您可以使用此動作來查看已設定的執行設定檔。
+執行 | 用來啟動設定檔的一次性執行。
+停止 | 停止目前執行設定檔的連接器。
+匯出連接器 | 請勿使用。
+匯入連接器 | 請勿使用。
+更新連接器 | 請勿使用。
+重新整理結構描述 | 重新整理快取的結構描述。最好是改為在安裝精靈中使用此選項，因為其也會更新同步處理規則。
+[搜尋連接器空間](#search-connector-space) | 用來尋找物件，以及[在整個系統中追隨物件及其資料](#follow-an-object-and-its-data-through-the-system)。
 
-### <a name="delete"></a>Delete
-The delete action is used for two different things.
+### 刪除
+刪除動作適用於兩個不同的用途。
+
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/connectordelete.png)
 
-The option **Delete connector space only** removes all data, but keep the configuration.
+[僅刪除連接器空間] 選項會移除所有資料，但保留組態。
 
-The option **Delete Connector and connector space** removes the data and the configuration. This option is used when you do not want to connect to a forest anymore.
+[刪除連接器和連接器空間] 選項會移除資料及組態。當您不想再連接到樹系時，可使用此選項。
 
-Both options sync all objects and update the metaverse objects. This action is a long running operation.
+這兩個選項會同步處理所有物件，並更新 metaverse 物件。此動作是長時間執行的作業。
 
-### <a name="configure-run-profiles"></a>Configure Run Profiles
-This option allows you to see the run profiles configured for a Connector.
+### 更新執行設定檔
+此選項可讓您查看連接器所設定的執行設定檔。
 
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/configurerunprofiles.png)
 
-### <a name="search-connector-space"></a>Search Connector Space
-The search connector space action is useful to find objects and troubleshoot data issues.
+### 搜尋連接器空間
+尋找物件和疑難排解資料問題時，搜尋連接器空間動作非常有用。
 
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/cssearch.png)
 
-Start by selecting a **scope**. You can search based on data (RDN, DN, Anchor, Sub-Tree), or state of the object (all other options).  
+先選取一個 [範圍]。您可以依據資料 (RDN、DN、錨點、子樹狀目錄) 或物件狀態 (所有其他選項) 進行搜尋。  
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/cssearchscope.png)  
-If you for example do a Sub-Tree search, you get all objects in one OU.
-![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/cssearchsubtree.png) From this grid you can select an object, select **properties**, and [follow it](#follow-an-object-and-its-data-through-the-system) from the source connector space, through the metaverse, and to the target connector space.
+例如，如果您進行樹狀子目錄的搜尋，將會取得某一個 OU 中的所有物件。
+![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/cssearchsubtree.png)  
+您可以從此格線選取物件、選取 [屬性]，並[追隨物件](#follow-an-object-and-its-data-through-the-system)從來源連接器空間，通過 Metaverse，然後到目標連接器空間的過程。
 
-## <a name="follow-an-object-and-its-data-through-the-system"></a>Follow an object and its data through the system
-When you are troubleshooting a problem with data, follow an object from the source connector space, to the metaverse, and to the target connector space is a key procedure to understand why data does not have the expected values.
+## 在整個系統中追蹤物件及其資料
+當您疑難排解資料的問題時，追蹤物件從來源連接器空間到 metaverse 以及到目標連接器空間是一個關鍵程序，以了解為什麼資料沒有預期的值。
 
-### <a name="connector-space-object-properties"></a>Connector Space Object Properties
-**Import**  
-When you open a cs object, there are several tabs at the top. The **Import** tab shows the data that is staged after an import.
-![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/csimport.png) The **Old Value** shows what currently is stored in the system and the **New Value** what has been received from the source system and has not been applied yet. In this case, since there is a synchronization error, the change cannot be applied.
+### 連接器空間物件屬性
+[匯入]：
+當您開啟 cs 物件時，頂端會出現數個索引標籤。[匯入] 索引標籤會顯示匯入後暫存的資料。
+![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/csimport.png)  
+[舊值] 顯示目前儲存在系統中的資料，而 [新值] 代表從來源系統接收到但尚未套用的資料。在此案例中，由於發生同步處理錯誤，因此無法套用變更。
 
-**Error**  
-The error page is only visible if there is a problem with the object. See the details on the operations page for more information on how to [troubleshoot synchronization errors](active-directory-aadconnectsync-service-manager-ui-operations.md#troubleshoot-errors-in-operations-tab).
+[錯誤]：  
+出現有問題的物件時才會顯示 [錯誤] 頁面。如需如何[對同步處理錯誤進行疑難排解](active-directory-aadconnectsync-service-manager-ui-operations.md#troubleshoot-errors-in-operations-tab)的詳細資訊，請參閱 [作業] 頁面上的詳細資訊。
 
-**Lineage**  
-The lineage tab shows how the connector space object is related to the metaverse object. You can see when the Connector last imported a change from the connected system and which rules applied to populate data in the metaverse.
-![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/cslineage.png) In the **Action** column, you can see there is one **Inbound** sync rule with the action **Provision**. That indicates that as long as this connector space object is present, the metaverse object remains. If the list of sync rules instead shows a sync rule with direction **Outbound** and **Provision**, it indicates that this object is deleted when the metaverse object is deleted.
-![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/cslineageout.png) You can also see in the **PasswordSync** column that the inbound connector space can contribute changes to the password since one sync rule has the value **True**. This password is then sent to Azure AD through the outbound rule.
+[歷程]：  
+[歷程] 索引標籤會顯示連接器空間物件與 Metaverse 物件關聯的方式。您可以看到連接器上次從連接的系統匯入變更的時間，以及套用哪些規則以便在 metaverse 中填入資料。
+![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/cslineage.png)  
+在 [動作]資料行中，您可以看到有一個動作為 [佈建] 的 [輸入] 同步處理規則。這表示，只要此連接器空間物件存在，就會保留 metaverse 物件。如果同步處理規則清單顯示的同步處理規則方向為 [輸出] 和 [佈建]，這表示刪除 Metaverse 物件時會刪除此物件。
+![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/cslineageout.png)  
+在 [PasswordSync] 欄位中，您也會發現輸入連接器空間可進行密碼變更，因為有一個同步處理規則的值為 **True**。此密碼接著會透過輸出規則傳送至 Azure AD。
 
-From the lineage tab, you can get to the metaverse by clicking [Metaverse Object Properties](#metaverse-object-properties).
+從 [歷程] 索引標籤，您可以按一下 [Metaverse 物件屬性](#metaverse-object-properties)，以移至 Metaverse。
 
-At the bottom of all tabs are two buttons: **Preview** and **Log**.
+所有索引標籤的底部都有兩個按鈕︰[預覽] 和 [記錄]。
 
-**Preview**  
-The preview page is used to synchronize one single object. It is useful if you are troubleshooting some customer sync rules and want to see the effect of a change on a single object. You can select between **Full Sync** and **Delta sync**. You can also select between **Generate Preview**, which only keeps the change in memory, and **Commit Preview**, which stages all changes to target connector spaces.
-![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/preview1.png) You can inspect the object and which rule applied for a particular attribute flow.
-![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/preview2.png)
+[預覽]：
+[預覽] 頁面可用來同步處理某一個單一物件。如果您正在疑難排解某些客戶的同步處理規則，並且想要在單一物件上查看變更的影響，則此頁面非常有用。您可以在 [完整同步處理] 和 [差異同步處理] 之間選擇。您也可以在 [產生預覽] \(這只會在記憶體中保留變更) 和 [認可預覽] \(這會暫存目標連接器空間的所有變更) 之間進行選擇。
+![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/preview1.png)  
+您可以檢查物件，以及哪一個規則適用於特定的屬性流程。
+![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/preview2.png)  
 
-**Log**  
-The Log page is used to see the password sync status and history, see [Troubleshoot password synchronization](active-directory-aadconnectsync-implement-password-synchronization.md#troubleshoot-password-synchronization) for more information.
+[記錄]：
+[記錄] 頁面可用來查看密碼同步處理狀態和歷程記錄，如需詳細資訊，請參閱[對密碼同步處理進行疑難排解](active-directory-aadconnectsync-implement-password-synchronization.md#troubleshoot-password-synchronization)。
 
-### <a name="metaverse-object-properties"></a>Metaverse Object Properties
-**Attributes**  
-On the attributes tab, you can see the values and which Connector contributed it.
-![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/mvattributes.png)
-**Connectors**  
-The Connectors tab shows all connector spaces that have a representation of the object.
-![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/mvconnectors.png) This tab also allows you to navigate to the [connector space object](#connector-space-object-properties).
+### Metaverse 物件屬性
+**屬性**：
+在 [屬性] 索引標籤中，您可以看到值，以及是由哪一個連接器提供它。
+![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/mvattributes.png)  
+[連接器]：
+[連接器] 索引標籤會顯示所有具有物件表示法的連接器空間。
+![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/mvconnectors.png)  
+此索引標籤也可讓您瀏覽至[連接器空間物件](#connector-space-object-properties)。
 
-## <a name="next-steps"></a>Next steps
-Learn more about the [Azure AD Connect sync](active-directory-aadconnectsync-whatis.md) configuration.
+## 後續步驟
+深入了解 [Azure AD Connect 同步](active-directory-aadconnectsync-whatis.md)組態。
 
-Learn more about [Integrating your on-premises identities with Azure Active Directory](active-directory-aadconnect.md).
+深入了解[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!----HONumber=AcomDC_0907_2016-->

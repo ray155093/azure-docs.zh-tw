@@ -1,191 +1,189 @@
 <properties 
-    pageTitle="Get started with Azure Search Management REST API | Microsoft Azure | Hosted cloud search service" 
-    description="Administer your hosted cloud Azure Search service using a Management REST API" 
-    services="search" 
-    documentationCenter="" 
-    authors="HeidiSteen" 
-    manager="jhubbard" 
-    editor=""/>
+	pageTitle="開始使用 Azure 搜尋服務管理 REST API | Microsoft Azure | 雲端託管搜尋服務" 
+	description="使用管理 REST API 管理託管的雲端 Azure 搜尋服務" 
+	services="search" 
+	documentationCenter="" 
+	authors="HeidiSteen" 
+	manager="jhubbard" 
+	editor=""/>
 
 <tags 
-    ms.service="search" 
-    ms.devlang="rest-api" 
-    ms.workload="search" 
-    ms.topic="article" 
-    ms.tgt_pltfrm="na" 
-    ms.date="08/08/2016" 
-    ms.author="heidist"/>
+	ms.service="search" 
+	ms.devlang="rest-api" 
+	ms.workload="search" 
+	ms.topic="article" 
+	ms.tgt_pltfrm="na" 
+	ms.date="08/08/2016" 
+	ms.author="heidist"/>
 
-
-# <a name="get-started-with-azure-search-management-rest-api"></a>Get started with Azure Search Management REST API
+# 開始使用 Azure 搜尋管理 REST API
 > [AZURE.SELECTOR]
-- [Portal](search-manage.md)
+- [入口網站](search-manage.md)
 - [PowerShell](search-manage-powershell.md)
 - [REST API](search-get-started-management-api.md)
 
-The Azure Search REST management API is a programmatic alternative to performing administrative tasks in the portal. Service management operations include creating or deleting the service, scaling the service, and managing keys. This tutorial comes with a sample client application that demonstrates the service management API. It also includes configuration steps required to run the sample in your local development environment.
+Azure Search REST 管理 API 是在入口網站中執行管理工作的程式設計替代方式。服務管理作業包括建立或刪除服務、調整服務及管理金鑰。本教學課程隨附的範例用戶端應用程式用以展示服務管理 API。其中也包括在本機開發環境中執行範例所需的設定步驟。
 
-To complete this tutorial, you will need:
+若要完成本教學課程，您需要：
 
-- Visual Studio 2012 or 2013
-- the sample  client application download
+- Visual Studio 2012 或 2013
+- 下載範例用戶端應用程式
 
-In the course of completing the tutorial, two services will be provisioned: Azure Search and Azure Active Directory (AD). Additionally, you will create an AD application that establishes trust between your client application and the resource manager endpoint in Azure.
+在完成本教學課程的過程中，將會佈建兩項服務：Azure 搜尋服務和 Azure Active Directory (AD)此外，您會建立 AD 應用程式，以建立起 Azure 中用戶端應用程式與資源管理員端點之間的信任 。
 
-You will need an Azure account to complete this tutorial.
-
-
-##<a name="download-the-sample-application"></a>Download the sample application
-
-This tutorial is based on a Windows console application written in C#, which you can edit and run in either Visual Studio 2012 or 2013
-
-You can find the client application on Github at [Azure Search .NET Management API Demo](https://github.com/Azure-Samples/search-dotnet-management-api/).
+您需有 Azure 帳戶，才能完成本教學課程。
 
 
-##<a name="configure-the-application"></a>Configure the application
+##下載範例應用程式
 
-Before you can run the sample application, you must enable authentication so that requests sent from the client application to the resource manager endpoint can be accepted. The authentication requirement originates with the [Azure Resource Manager](https://msdn.microsoft.com/library/azure/dn790568.aspx), which is the basis for all portal-related operations requested via an API, including those related to Search service management. The service management API for Azure Search is simply an extension of the Azure Resource Manager, and thus inherits its dependencies.  
+本教學課程是以 C# 撰寫的 Windows 主控台應用程式為基礎，您可以在 Visual Studio 2012 或 2013年中進行編輯和執行
 
-Azure Resource Manager requires Azure Active Directory service as its identity provider. 
+您可以在 Github 上的 [Azure Search .NET Management API Demo (Azure 搜尋服務管理 API 示範)](https://github.com/Azure-Samples/search-dotnet-management-api/) 找到此用戶端應用程式。
 
-To obtain an access token that will allow requests to reach the resource manager, the client application includes a code segment that calls Active Directory. The code segment, plus the prerequisite steps to using the code segment, were borrowed from this article: [Authenticating Azure Resource Manager requests](http://msdn.microsoft.com/library/azure/dn790557.aspx).
 
-You can follow the instructions in the above link, or use the steps in this document if you prefer to go through the tutorial step by step.
+##設定應用程式
 
-In this section, you will perform the following tasks:
+在執行範例應用程式之前，您必須先啟用驗證，才能接受從用戶端應用程式傳送至資源管理員端點的要求。驗證需求源自 [Azure 資源管理員](https://msdn.microsoft.com/library/azure/dn790568.aspx)，這是透過 API 要求的所有入口網站相關作業的基礎，包括搜尋服務管理的相關要求。Azure Search 的服務管理 API 只是 Azure 資源管理員的延伸模組，因此會繼承其相依性。
 
-1. Create an AD service
-1. Create an AD application
-1. Configure the AD application by registering details about the sample client application you downloaded
-1. Load the sample client application with values it will use to gain authorization for its requests
+Azure 資源管理員需要 Azure Active Directory 服務做為其身分識別提供者。
 
-> [AZURE.NOTE] These links provide background on using Azure Active Directory for authenticating client requests to the resource manager: [Azure Resource Manager](http://msdn.microsoft.com/library/azure/dn790568.aspx), [Authenticating Azure Resource Manager requests](http://msdn.microsoft.com/library/azure/dn790557.aspx), and [Azure Active Directory](http://msdn.microsoft.com/library/azure/jj673460.aspx).
+為了取得存取權杖，讓要求到達資源管理員，用戶端應用程式包含了可呼叫 Active Directory 的程式碼片段。此程式碼區段以及使用程式碼片段的先決步驟出自這篇文章：[驗證 Azure 資源管理員要求](http://msdn.microsoft.com/library/azure/dn790557.aspx)。
 
-###<a name="create-an-active-directory-service"></a>Create an Active Directory Service
+您可以依照上面連結中的指示，或使用本文件中的步驟 (如果您想要逐步完成本教學課程的話)。
 
-1. Sign in to the [Azure Portal](https://manage.windowsazure.com).
+本節中，您將執行下列工作：
 
-2. Scroll down the left navigation pane and click **Active Directory**.
+1. 建立 AD 服務
+1. 建立 AD 應用程式
+1. 註冊您所下載之範例用戶端應用程式的相關詳細資料，進而設定 AD 應用程式
+1. 載入範例用戶端應用程式以及它將用於取得其要求授權的值
 
-4. Click **NEW** to open **App Services** | **Active Directory**. In this step, you are creating a new Active Directory service. This service will host the AD application that you'll define a few steps from now. Creating a new service helps isolate the tutorial from other applications you might already be hosting in Azure.
+> [AZURE.NOTE] 這些連結提供有關使用 Azure Active Directory 驗證對資源管理員之用戶端要求的背景：[Azure 資源管理員](http://msdn.microsoft.com/library/azure/dn790568.aspx)、[驗證 Azure 資源管理員要求](http://msdn.microsoft.com/library/azure/dn790557.aspx)和 [Azure Active Directory](http://msdn.microsoft.com/library/azure/jj673460.aspx)。
 
-5. Click **Directory** | **Custom Create**.
+###建立 Active Directory 服務
 
-6. Enter a service name, domain, and  geo-location. The domain must be unique. Click the check mark to create the service.
+1. 登入 [Azure 入口網站](https://manage.windowsazure.com)。
+
+2. 向下捲動左側導覽窗格，然後按一下 [**Active Directory**]。
+
+4. 按一下 [**新增**]，開啟 [**應用程式服務**] | [**Active Directory**]。在此步驟中，您會建立新的 Active Directory 服務。這項服務會裝載您從現在起要定義一些步驟的 AD 應用程式。建立新的服務有助於從您可能已在 Azure 中裝載的其他應用程式區隔本教學課程。
+
+5. 按一下 [**目錄**] | [**自訂建立**]。
+
+6. 輸入服務名稱、網域及地理位置。網域必須是唯一的。按一下核取記號以建立服務。
 
      ![][5]
 
-###<a name="create-a-new-ad-application-for-this-service"></a>Create a new AD application for this service
+###為此服務建立新的 AD 應用程式
 
-1. Select the "SearchTutorial" Active Directory service you just created.
+1. 選取您剛才建立的 "SearchTutorial" Active Directory 服務。
 
-2. On the top menu, click **Applications**. 
+2. 在頂端功能表上，按一下 [**應用程式**]。
  
-3. Click **Add an Application**. An AD application stores information about the client applications that will be using it as an identity provider.  
+3. 按一下 [**新增應用程式**]。AD 應用程式會儲存將以其作為身分識別提供者之用戶端應用程式的相關資訊。
  
-4. Choose **Add an application my organization is developing**. This option provides registration settings for applications that are not published to the application gallery. Since the client application is not part of the application gallery, this is the right choice for this tutorial.
+4. 按一下 [**新增我的組織正在開發的應用程式**]。此選項會對未發佈至應用程式資源庫的應用程式提供註冊設定。由於用戶端應用程式不是應用程式資源庫的一部分，所以這是此教學課程的正確選擇。
 
      ![][6]
  
-5. Enter a name, such as "Azure-Search-Manager".
+5. 輸入名稱，例如 "Azure-Search-Manager"。
 
-6. Choose **Native client application** for application type. This is correct for the sample application; it happens to be a Windows client (console) application, not a web application.
+6. 選擇 [**原生用戶端應用程式**] 作為應用程式類型。這適用於範例應用程式；它正好是 Windows 用戶端 (主控台) 應用程式，而不是 Web 應用程式。
 
      ![][7]
  
-7. In Redirect URI, enter "http://localhost/Azure-Search-Manager-App". This a URI to which Azure Active Directory will redirect the user-agent in response to an OAuth 2.0 authorization request. The value does not need to be a physical endpoint, but must be a valid URI. 
+7. 在 [重新導向 URI] 中，輸入 "http://localhost/Azure-Search-Manager-App"。Azure Active Directory 會將使用者代理程式重新導向至此 URI，以回應 OAuth 2.0 授權要求。此值不必是實體端點，但必須是有效的 URI。
 
-    For the purposes of this tutorial, the value can be anything, but whatever you enter becomes a required input for the administrative connection in the sample application. 
+    基於本教學課程的目的，此值可以是任何值，但您所輸入的一切都會變成範例應用程式中管理連線的必要輸入。
  
-7. Click the check mark to create the Active Directory application. You should see "Azure-Search-Manager-App" in the left navigation pane.
+7. 按一下核取記號以建立 Active Directory 應用程式。您應該會在左側導覽窗格中看到 "Azure-Search-Manager-App"。
 
-###<a name="configure-the-ad-application"></a>Configure the AD application
+###設定 AD 應用程式
  
-9. Click the AD application, "Azure-Search-Manager-App", that you just created. You should see it listed in the left navigation pane.
+9. 按一下您剛建立的 AD 應用程式，即 "Azure-Search-Manager-App"。您應該會看到該應用程式列在左側導覽窗格中。
 
-10. Click **Configure** in the top menu.
+10. 按一下頂端功能表中的 [**設定**]。
  
-11. Scroll down to Permissions and select **Azure Management API**. In this step, you specify the API (in this case, the Azure Resource Manager API) that the client application needs access to, along with the level of access it needs.
+11. 向下捲動至 [權限] 並選取 [**Azure 管理 API**]。在此步驟中，您會指定用戶端應用程式需要存取的 API (在此例中為 Azure 資源管理員 API)，以及所需的存取層級。
 
-12. In Delegated Permissions, click the drop down list and select **Access Azure Service Management (Preview**).
+12. 在 [委派權限] 中，按一下下拉式清單並選取 [**存取 Azure 服務管理 (預覽)**]。
  
      ![][8]
  
-13. Save the changes. 
+13. 儲存變更。
 
-Keep the application configuration page open. In the next step, you will copy values from this page and enter them into the sample application.
+讓應用程式設定頁面保持開啟。在下一個步驟中，您將複製這個頁面的值並將其輸入範例應用程式中。
 
-###<a name="load-the-sample-application-program-with-registration-and-subscription-values"></a>Load the sample application program with registration and subscription values
+###使用註冊和訂用帳戶值載入範例應用程式
 
-In this section, you'll edit the solution in Visual Studio, substituting valid values obtained from the portal.
-The values that you will be adding appear near the top of Program.cs:
+在本節中，您將在 Visual Studio 中編輯此解決方案，並取代從入口網站取得的有效值。您要新增的值會顯示在 Program.cs 的頂端附近：
 
         private const string TenantId = "<your tenant id>";
         private const string ClientId = "<your client id>";
         private const string SubscriptionId = "<your subscription id>";
         private static readonly Uri RedirectUrl = new Uri("<your redirect url>");
 
-If you have not yet [downloaded the sample application from Github](https://github.com/Azure-Samples/search-dotnet-management-api/), you will need it for this step.
+如果您尚未[從 Github 下載範例應用程式](https://github.com/Azure-Samples/search-dotnet-management-api/)，您在此步驟中會需要它。
 
-1. Open the **ManagementAPI.sln** in Visual Studio.
+1. 在 Visual Studio 中開啟 **ManagementAPI.sln**。
 
-2. Open Program.cs.
+2. 開啟 Program.cs。
 
-3. Provide `ClientId`. From the AD application configuration page left open from the previous step, copy the Client ID from the AD application configuration page in the portal and paste it into Program.cs.
+3. 提供 `ClientId`。從上一個步驟保持開啟的 AD 應用程式設定頁面，在入口網站中從 AD 應用程式設定頁面複製用戶端識別碼，並將它貼到 Program.cs 中。
 
-4. Provide `RedirectUrl`. Copy Redirect URI from the same portal page, and paste it into Program.cs.
+4. 提供 `RedirectUrl`。複製相同入口網站頁面中的 [重新導向 URI]，並將它貼到 Program.cs 中。
 
-    ![][9]
+	![][9]
 
-5. Provide `TenantID.` 
-    - Go back to Active Directory | SearchTutorial (service). 
-    - Click **Applications** from the top bar. 
-    - Click **View Endpoints** at the bottom of the page. 
-    - Copy the OAUTH 2.0 Authorization Endpoint at the bottom of the list. 
-    - Paste the endpoint into TenantID, trimming the value of all URI parameters except the tenant ID.
+5. 提供 `TenantID.`。
+	- 返回 Active Directory |SearchTutorial (服務)。
+	- 按一下頂端列中的 [**應用程式**]。
+	- 按一下頁面底部的 [**檢視端點**]。
+	- 複製清單底部的 OAUTH 2.0 授權端點。
+	- 將此端點貼到 TenantID 中，並修剪租用戶識別碼以外所有 URI 參數的值。
 
-    Given "https://login.windows.net/55e324c7-1656-4afe-8dc3-43efcd4ffa50/oauth2/authorize?api-version=1.0", delete everything except "55e324c7-1656-4afe-8dc3-43efcd4ffa50".
+    假設 "https://login.windows.net/55e324c7-1656-4afe-8dc3-43efcd4ffa50/oauth2/authorize?api-version=1.0"，請刪除 "55e324c7-1656-4afe-8dc3-43efcd4ffa50" 以外的項目。
 
-    ![][10]
+	![][10]
 
-6. Provide `SubscriptionID`.
-    - Go to the main portal page.
-    - Click **Settings** at the bottom of the left navigation pane.
-    - From the Subscriptions tab, copy the subscription ID and paste it into Program.cs.
+6. 提供 `SubscriptionID`。
+	- 移至主要入口網站頁面。
+	- 按一下左側導覽窗格底部的 [**設定**]。
+	- 從 [訂用帳戶] 索引標籤，複製訂用帳戶 ID 並將它貼到 Program.cs 中。
 
-7. Save and then build the solution.
+7. 儲存，然後建置解決方案。
 
 
-##<a name="explore-the-application"></a>Explore the application
+##探索應用程式
 
-Add a breakpoint at the first method call so that you can step through the program. Press **F5** to run the application, and then press **F11** to step through the code.
+在第一個方法呼叫加入中斷點，以便逐步執行程式。按 **F5** 執行應用程式，然後按 **F11** 逐步執行程式碼。
 
-The sample application creates a free Azure Search service for an existing Azure subscription. If a free service already exists for your subscription, the sample application will fail. Only one free Search service per subscription is allowed.
+範例應用程式會為現有的 Azure 訂閱建立免費的 Azure Search 服務。如果您的訂閱已經有免費服務，則範例應用程式將會失敗。每個訂閱只能有一項免費 Search 服務。
 
-1. Open Program.cs from the Solution Explorer and go to the Main(string[] void) function. 
+1. 在 [方案總管] 中開啟 Program.cs ，然後移至 Main(string void) 函數。
  
-3. Notice that **ExecuteArmRequest** is used to execute requests against the Azure Resource Manager endpoint, `https://management.azure.com/subscriptions` for a specified `subscriptionID`. This method is used throughout the program to perform operations using the Azure Resource Manager API or Search management API.
+3. 請注意，**ExecuteArmRequest** 用來執行對 Azure 資源管理員端點 (指定之 `subscriptionID` 的 `https://management.azure.com/subscriptions`) 的要求。此方法在整個程式中使用，利用 Azure 資源管理員 API 或 Search 管理 API 來執行作業。
 
-3. Requests to Azure Resource Manager must be authenticated and authorized. This is accomplished using the **GetAuthorizationHeader** method, called by the **ExecuteArmRequest**  method, borrowed from [Authenticating Azure Resource Manager requests](http://msdn.microsoft.com/library/azure/dn790557.aspx). Notice that **GetAuthorizationHeader** calls `https://management.core.windows.net` to get an access token.
+3. 對 Azure 資源管理員的要求必須經過驗證和授權。使用出自[驗證 Azure 資源管理員要求](http://msdn.microsoft.com/library/azure/dn790557.aspx)的 **GetAuthorizationHeader** 方法 (由 **ExecuteArmRequest** 方法呼叫)，即可達到此目的。請注意，**GetAuthorizationHeader** 會呼叫 `https://management.core.windows.net` 以取得存取權杖。
 
-4. You are prompted to sign in with a user name and password that is valid for your subscription.
+4. 系統會提示您以適用於您訂閱的使用者名稱和密碼進行登入。
 
-5. Next, a new Azure Search service is registered with the Azure Resource Manager provider. Again, this is the **ExecuteArmRequest** method, used this time to create the Search service on Azure for your subscription via `providers/Microsoft.Search/register`. 
+5. 接著，會向 Azure 資源管理員提供者註冊新的 Azure Search 服務。再次使用 **ExecuteArmRequest** 方法，透過 `providers/Microsoft.Search/register` 在 Azure 上為您的訂用帳戶建立搜尋服務。
 
-6. The remainder of the program uses the [Azure Search Management REST API](http://msdn.microsoft.com/library/dn832684.aspx). Notice that the `api-version` for this API is different from the Azure Resource Manager api-version. For example, `/listAdminKeys?api-version=2014-07-31-Preview` shows the `api-version` of the Azure Search Management REST API.
+6. 程式的其餘部分會使用 [Azure 搜尋服務管理 REST API](http://msdn.microsoft.com/library/dn832684.aspx)。請注意，此 API 的 `api-version` 與 Azure 資源管理員 api-version 有所不同。例如，`/listAdminKeys?api-version=2014-07-31-Preview` 顯示 Azure 搜尋服務管理 REST API 的 `api-version`。
 
-    The next series of operations retrieve the service definition you just created, the admin api-keys, regenerates and retrieves keys, changes the replica and parition, and finally deletes the service.
+	下一系列的作業會擷取您剛建立的服務定義，管理 api-key、重新產生及擷取金鑰、變更複本和分割，以及最後會刪除此服務。
 
-    When changing the service replica or partition count, it is expected that this action will fail if you are using the free edition. Only the standard edition can make use of additional partitions and replicas.
+	變更服務複本或資料分割計數時，如果您使用免費版本，則預計這個動作會失敗。只有標準版本可使用額外的資料分割和複本。
 
-    Deleting the service is the last operation.
+	刪除此服務是最後一個作業。
 
-##<a name="next-steps"></a>Next steps
+##後續步驟
 
-After having completed this tutorial, you might want to learn more about service management or authentication with Active Directory service:
+完成本教學課程之後，您可能想要深入了解 Active Directory 服務的服務管理或驗證：
 
-- Learn more about integrating a client application with Active Directory. See [Integrating Applications in Azure Active Directory](http://msdn.microsoft.com/library/azure/dn151122.aspx).
-- Learn about other service management operations in Azure. See [Managing Your Services](http://msdn.microsoft.com/library/azure/dn578292.aspx).
+- 深入了解整合用戶端應用程式與 Active Directory。請參閱[整合 Azure Active Directory 中的應用程式](http://msdn.microsoft.com/library/azure/dn151122.aspx)。
+- 深入了解 Azure 中的其他服務管理作業。請參閱[管理您的服務](http://msdn.microsoft.com/library/azure/dn578292.aspx)。
 
 <!--Anchors-->
 [Download the sample application]: #Download
@@ -210,8 +208,4 @@ After having completed this tutorial, you might want to learn more about service
 
  
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

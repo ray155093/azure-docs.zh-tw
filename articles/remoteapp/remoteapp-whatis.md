@@ -1,90 +1,86 @@
 <properties 
-    pageTitle="What is Azure RemoteApp? | Microsoft Azure" 
-    description="Learn how to share apps and resources to any device through Azure RemoteApp." 
-    services="remoteapp" 
-    documentationCenter="" 
-    authors="lizap" 
-    manager="mbaldwin" 
-    editor=""/>
+	pageTitle="什麼是 Azure RemoteApp？ | Microsoft Azure" 
+	description="了解如何透過 Azure RemoteApp 與任何裝置共用應用程式和資源。" 
+	services="remoteapp" 
+	documentationCenter="" 
+	authors="lizap" 
+	manager="mbaldwin" 
+	editor=""/>
 
 <tags 
-    ms.service="remoteapp" 
-    ms.workload="compute" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="get-started-article" 
-    ms.date="08/15/2016" 
-    ms.author="elizapo"/>
+	ms.service="remoteapp" 
+	ms.workload="compute" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="get-started-article" 
+	ms.date="08/15/2016" 
+	ms.author="elizapo"/>
 
-
-# <a name="what-is-azure-remoteapp?"></a>What is Azure RemoteApp?
+# 什麼是 Azure RemoteApp？
 
 > [AZURE.IMPORTANT]
-> Azure RemoteApp is being discontinued. Read the [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
-Azure RemoteApp brings the functionality of the on-premises Microsoft RemoteApp program, backed by Remote Desktop Services, to Azure. Azure RemoteApp helps you provide secure, remote access to applications from many different user devices. Azure RemoteApp basically hosts non-persistent Terminal Server sessions in the cloud, and you get to use them and share them with your users.
+Azure RemoteApp 可將遠端桌面服務所支援的內部部署 Microsoft RemoteApp 程式功能提供給 Azure。Azure RemoteApp 可協助您提供安全的遠端存取方式，讓許多不同的使用者裝置可以存取應用程式。Azure RemoteApp 基本上會在雲端裝載非持續性的終端機伺服器工作階段，而您可使用這些工作階段並與您的使用者共用。
 
-With Azure RemoteApp you can share apps and resources with users on almost any device. We host your apps in the cloud, meaning we take care of the hardware and scaling to meet user demands. All you have to do is upload the apps you want to share, and then get your users to use those apps. [Users get to keep their own devices](remoteapp-clients.md), while you manage everything through the Azure portal. You even have the option of using your corporate credentials, letting you ensure the security of apps and data.
+Azure RemoteApp 幾乎可讓您在任何裝置上與使用者共用應用程式和資源。我們將您的 App 裝載在雲端中，這表示我們會負責處理硬體和調整以符合使用者需求。您只需要上傳要共用的 App 即可，並讓您的使用者使用這些 App。[使用者將保有自己的裝置](remoteapp-clients.md)，同時您可透過 Azure 入口網站管理所有項目。您甚至可以使用公司認證，可讓您確保 App 和資料的安全性。
 
-Read on for more information about Azure RemoteApp, or, if we have already convinced you, [try it out now](https://azure.microsoft.com/services/remoteapp/).
+請閱讀更多有關 Azure RemoteApp 的詳細資訊，或者如果我們已經說服您，請[立即試用](https://azure.microsoft.com/services/remoteapp/)。
 
-Have questions about Azure RemoteApp? Check out our [FAQ](remoteapp-faq.md).
+有關於 Azure RemoteApp 的問題嗎？ 請查看我們的[常見問題集](remoteapp-faq.md)。
 
-Azure RemoteApp is part of the [Microsoft Virtual Desktop Infrastructure](http://www.microsoft.com/server-cloud/products/virtual-desktop-infrastructure/explore.aspx).
+Azure RemoteApp 屬於 [Microsoft 虛擬桌面基礎結構](http://www.microsoft.com/server-cloud/products/virtual-desktop-infrastructure/explore.aspx)。
 
-**New!** Want to learn more about Azure RemoteApp? Or ready to validate Azure RemoteApp at scale? Join our weekly [ask the experts webinar](https://azureinfo.microsoft.com/AzureRemoteAppAskTheExperts-Registration-Page.html?ls=Website).
+**新功能！** 想要深入了解 Azure RemoteApp 嗎？ 或準備要驗證 Azure RemoteApp？ 請加入我們每週的[專家請益網路研討會](https://azureinfo.microsoft.com/AzureRemoteAppAskTheExperts-Registration-Page.html?ls=Website)。
 
-## <a name="azure-remoteapp-collections"></a>Azure RemoteApp collections
-There are two kinds of [Azure RemoteApp collections](remoteapp-collections.md):
-
-
-- A **cloud collection** is hosted in and stores data for programs in the cloud. Users can access apps by logging in with their Microsoft account or corporate credentials synchronized or federated with Azure Active Directory.
-
-    Choose a cloud collection when the application you want to share does not require a connection to any resource your company's private network (for example, through a VPN device). If the application uses resources on the Internet, OneDrive, or Azure, a cloud collection will work for you. It's also the quickest to create.
-
-- A **hybrid collection** is hosted in and stores data in the Azure cloud but also lets users access data and resources stored on your local network. Users can access apps by logging in with their corporate credentials synchronized or federated with Azure Active Directory.
-
-    Choose a hybrid collection if you require a connection to resources on your company's private network. For example, if the application needs access to one of the following:
-
-    - File servers located on your intranet
-    - Quicken
-    - Databases behind a firewall
-
-    This is generally more useful for large companies with lots of resources on their private networks that can't be moved to the cloud.
-
-The different collections have different options, including networks, so figure out [which collection](remoteapp-collections.md) works best for you. 
+## Azure RemoteApp 收藏
+[Azure RemoteApp 收藏](remoteapp-collections.md)分成兩種：
 
 
-### <a name="updating-your-collection"></a>Updating your collection
-One of the key differences between the hybrid and cloud collections is how software updates are handled. With a cloud collection that uses the preinstalled Office 365 ProPlus or Office 2013 image, you do not have to worry about any updates. The service maintains itself and rolls out updates on an ongoing basis, to both apps and the operating system.
+- **雲端收藏**由此雲端託管，並將程式資料儲存在此雲端。使用者可以使用其 Microsoft 帳戶或與 Azure Active Directory 同步處理或同盟的公司認證進行登入，以存取應用程式。
 
-For hybrid collections, as well as cloud collections that use a custom template image, you are in charge of maintaining the image and apps. For domain-joined images, you can control updates by using tools such as Windows Update, Group Policy, or System Center.
+	當您想要共用的應用程式不需要連接至貴公司私人網路上的任何資源時 (例如，透過 VPN 裝置)，請選擇雲端收藏。如果應用程式使用網際網路、OneDrive 或 Azure 上的資源，則雲端收藏將適用於您。它也是最快建立的。
 
-After you update your custom template image, you upload the new image to the Azure cloud and then update the collection to use the new image. (You can do this from the Azure RemoteApp **Quick Start** page or the Dashboard.)
+- **混合式收藏**由 Azure 雲端代管，並在其中儲存資料，但也會讓使用者存取儲存在您區域網路上的資料和資源。使用者可以使用與 Azure Active Directory 同步處理或同盟的公司認證進行登入，以存取應用程式。
 
-See [Update your collection](remoteapp-update.md) for more information.
+	如果您需要連接至貴公司私人網路上的資源，請選擇混合式收藏。比方說，如果應用程式需要存取下列其中一項：
 
-## <a name="supported-remoteapp-clients"></a>Supported RemoteApp clients
-Azure RemoteApp is supported on the RemoteApp client apps for Windows and Windows RT, as well as the Microsoft Remote Desktop apps for Mac, iOS and Android. Your users can use these apps on their mobile or compute devices to access the new Azure RemoteApp programs.
+	- 位於內部網路上的檔案伺服器
+	- Quicken
+	- 防火牆後面的資料庫
 
-See [Accessing your apps in Azure RemoteApp](remoteapp-clients.md) for more information about the clients.
+	這通常對私人網路上有大量資源無法移至雲端的大型公司很有用。
 
-## <a name="next-steps"></a>Next steps
-Go! Try it out! These articles help get you started with Azure RemoteApp:
+不同集合有不同的選項，包括網路，因此請找出[哪一個集合](remoteapp-collections.md)最適合您。
 
-- [What kind of collection do you need for Azure RemoteApp?](remoteapp-collections.md)
-- [Create an Azure RemoteApp image](remoteapp-imageoptions.md)
-- [How to create a cloud collection of Azure RemoteApp](remoteapp-create-cloud-deployment.md)
-- [How to create a hybrid collection of Azure RemoteApp](remoteapp-create-hybrid-deployment.md)
-- [How does licensing work in Azure RemoteApp?](remoteapp-licensing.md)
-- [Best practices for using Azure RemoteApp](remoteapp-bestpractices.md)
-- [Azure RemoteApp FAQ](remoteapp-faq.md)
+
+### 升級收藏
+混合式與雲端收藏之間的一個主要差異，在於軟體更新的處理方式。對於使用預先安裝之 Office 365 ProPlus 或 Office 2013 映像的雲端收藏，您不需擔心任何更新。此服務會自行維護並持續推出應用程式和作業系統的更新。
+
+對於混合式收藏以及使用自訂範本映像的雲端收藏，您必須負責維護映像和應用程式。對於已加入網域的映像，您可以使用 Windows Update、群組原則或 System Center 等工具控制更新。
+
+升級自訂的範本映像後，必須將新映像上傳至 Azure 雲端，然後更新收藏以使用新映像。(您可以從 Azure RemoteApp [快速入門] 頁面或 [儀表板] 執行此作業。)
+
+如需詳細資訊，請參閱[更新您的收藏](remoteapp-update.md)。
+
+## 支援的 RemoteApp 用戶端
+Windows 和 Windows RT 的 RemoteApp 用戶端應用程式以及 Mac、iOS 和 Android 適用的 Microsoft 遠端桌面應用程式均可支援 Azure RemoteApp。您的使用者可以在其行動或計算裝置上使用這些應用程式，以存取新的 Azure RemoteApp 程式。
+
+如需用戶端的詳細資訊，請參閱[在 Azure RemoteApp 存取您的應用程式](remoteapp-clients.md)。
+
+## 後續步驟
+快！ 立即試用！ 這些文章可幫助您開始使用 Azure RemoteApp：
+
+- [Azure RemoteApp 需要何種集合？](remoteapp-collections.md)
+- [建立 Azure RemoteApp 映像](remoteapp-imageoptions.md)
+- [如何建立 Azure RemoteApp 的雲端收藏](remoteapp-create-cloud-deployment.md)
+- [如何建立 Azure RemoteApp 的混合式收藏](remoteapp-create-hybrid-deployment.md)
+- [Azure RemoteApp 中的授權如何運作？](remoteapp-licensing.md)
+- [使用 Azure RemoteApp 的最佳作法](remoteapp-bestpractices.md)
+- [Azure RemoteApp 常見問題集](remoteapp-faq.md)
  
 
-### <a name="help-us-help-you"></a>Help us help you 
-Did you know that in addition to rating this article and making comments down below, you can make changes to the article itself? Something missing? Something wrong? Did I write something that's just confusing? Scroll up and click **Edit on GitHub** or **Edit** to make changes - those will come to us for review, and then, once we sign off on them, you'll see your changes and improvements right here.
+### 幫我們來協助您 
+您知道除了評比這篇文章以及在下面留言以外，您可以變更文件本身嗎？ 有所遺漏？ 有所錯誤？ 我是否撰寫了令人混淆的內容？ 向上捲動並按一下 [在 GitHub 上編輯] 或 [編輯] 以進行變更 - 系統會顯示這些變更以供我們檢閱，而我們簽核後，您就會在這裡看到您所進行的變更和改良。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

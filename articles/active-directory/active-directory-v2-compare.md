@@ -1,67 +1,66 @@
 <properties
-    pageTitle="The Azure AD v2.0 endpoint | Microsoft Azure"
-    description="An comparison between the original Azure AD and the v2.0 endpoints."
-    services="active-directory"
-    documentationCenter=""
-    authors="dstrockis"
-    manager="mbaldwin"
-    editor=""/>
+	pageTitle="Azure AD v2.0 端點 |Microsoft Azure"
+	description="原始的 Azure AD 和 v2.0 端點之間的比較。"
+	services="active-directory"
+	documentationCenter=""
+	authors="dstrockis"
+	manager="mbaldwin"
+	editor=""/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/16/2016"
-    ms.author="dastrock"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/16/2016"
+	ms.author="dastrock"/>
 
+# V2.0 端點有哪些差異？
 
-# <a name="what's-different-about-the-v2.0-endpoint?"></a>What's different about the v2.0 endpoint?
-
-If you're familiar with Azure Active Directory or have integrated apps with Azure AD in the past, there may be some differences in the v2.0 endpoint that you would not expect.  This document calls out those differences for your understanding.
+如果您熟悉 Azure Active Directory 或過去已整合 app 與 Azure AD，v2.0 端點中可能會有一些您預期不到的差異。本文件集結了這些差異，讓您得以瞭解。
 
 > [AZURE.NOTE]
-    Not all Azure Active Directory scenarios & features are supported by the v2.0 endpoint.  To determine if you should use the v2.0 endpoint, read about [v2.0 limitations](active-directory-v2-limitations.md).
+	v2.0 端點並非支援每個 Azure Active Directory 案例和功能。若要判斷是否應該使用 v2.0 端點，請閱讀相關的 [v2.0 限制](active-directory-v2-limitations.md)。
 
 
-## <a name="microsoft-accounts-and-azure-ad-accounts"></a>Microsoft accounts and Azure AD accounts
-the v2.0 endpoint allow developers to write apps that accept sign-in from both Microsoft Accounts and Azure AD accounts, using a single auth endpoint.  This gives you the ability to write your app completely account-agnostic; it can be ignorant of the type of account that the user signs in with.  Of course, you *can* make your app aware of the type of account being used in a particular session, but you don't have to.
+## Microsoft 帳戶和 Azure AD 帳戶
+v2.0 端點讓開發人員能夠撰寫可接受使用單一驗證端點同時從 Microsoft 帳戶和 Azure AD 帳戶登入的 app。這可讓您撰寫您的應用程式且帳戶完全無從驗證；可以忽略使用者登入時所用的帳戶類型。當然，您*可以*讓您的應用程式知道特定工作階段中所使用的帳戶類型，但您不必這麼做。
 
-For instance, if your app calls the [Microsoft Graph](https://graph.microsoft.io), some additional functionality and data will be available to enterprise users, such as their SharePoint sites or Directory data.  But for many actions, such as [Reading a user's mail](https://graph.microsoft.io/docs/api-reference/v1.0/resources/message), the code can be written exactly the same for both Microsoft Accounts and Azure AD accounts.  
+例如，如果您的 app 呼叫 [Microsoft Graph](https://graph.microsoft.io)，則有一些額外的功能和資料可供企業使用者使用，例如他們的 SharePoint 網站或目錄資料。但在許多動作 (例如[讀取使用者的郵件](https://graph.microsoft.io/docs/api-reference/v1.0/resources/message)) 中，針對 Microsoft 帳戶和 Azure AD 帳戶撰寫的程式碼可以完全相同。
 
-Integrating your app with Microsoft Accounts and Azure AD accounts is now one simple process.  You can use a single set of endpoints, a single library, and a single app registration to gain access to both the consumer and enterprise worlds.  To learn more about the v2.0 endpoint, check out [the overview](active-directory-appmodel-v2-overview.md).
-
-
-## <a name="new-app-registration-portal"></a>New app registration portal
-the v2.0 endpoint can only be registered in a new location: [apps.dev.microsoft.com](https://apps.dev.microsoft.com).  This is the portal where you can obtain an Application Id, customize the appearance of your app's sign-in page, and more.  All you need to access the portal is a Microsoft powered account - either personal or work/school account.  
-
-We will continue to add more and more functionality to this App Registration Portal over time.  The intent is that this portal will be the new location where you can go to manage anything and everything having to do with your Microsoft apps.
+整合應用程式與 Microsoft 帳戶和 Azure AD 帳戶現在是一個簡單的程序。您可以利用一組端點、單一資源庫和單一應用程式註冊來進入消費者和企業的世界。若要深入了解 v2.0 端點，請參閱[概觀](active-directory-appmodel-v2-overview.md)。
 
 
-## <a name="one-app-id-for-all-platforms"></a>One app Id for all platforms
-In the original Azure Active Directory service, you may have registered several different apps for a single project.  You were forced to use separate app registrations for your native clients and web apps:
+## 新的 App 註冊入口網站
+v2.0 端點只能在下列新位置中註冊：[apps.dev.microsoft.com](https://apps.dev.microsoft.com)。您可以在這個入口網站取得應用程式識別碼、自訂您的應用程式登入頁面的外觀等等。您存取入口網站時唯一需要的是 Microsoft 提供的帳戶 - 個人或工作/學校帳戶。
 
-![Old Application Registration UI](../media/active-directory-v2-flows/old_app_registration.PNG)
+我們會繼續將越來越多的功能加入至這個 App 註冊入口網站。其目的在於讓這個入口網站成為可用來管理與您的 Microsoft 應用程式相關的所有一切的新位置。
 
-For example, if you built both a website and an iOS app, you had to register them separately, using two different Application Ids.  If you had a website and a backend web api, you might have registered each as a separate app in Azure AD.  If you had an iOS app and an Android app, you also might have registered two different apps.  
+
+## 所有平台使用一個 App 識別碼
+在原始的 Azure Active Directory 服務中，您可能已針對單一專案註冊數個不同的 app。您必須針對原生用戶端和 Web 應用程式使用個別的應用程式註冊：
+
+![舊版應用程式註冊 UI](../media/active-directory-v2-flows/old_app_registration.PNG)
+
+例如，如果您同時建置了網站和 iOS app，就必須使用兩個不同的應用程式識別碼分別註冊它們。如果您有網站和後端 Web API，您可能已在 Azure AD 中將每個 API 註冊為個別的應用程式。如果您有 iOS 應用程式和 Android 應用程式，您也可能已註冊兩個不同的應用程式。
 
 <!-- You may have even registered different apps for each of your build environments - one for dev, one for test, and one for production. -->
 
-Now, all you need is a single app registration and a single Application Id for each of your projects.  You can add several "platforms" to a each project, and provide the appropriate data for each platform you add.  Of course, you can create as many apps as you like depending on your requirements, but for the majority of cases only one Application Id should be necessary.
+現在，您的每一個專案只需要有單一應用程式註冊和單一應用程式識別碼。您可以將數個「平台」加入至每個專案，並且為您加入的每個平台提供適當的資料。當然，您可以根據您的需求建立任意數量的應用程式，但在大多數的情況下應該只需要一個應用程式識別碼。
 
 <!-- You can also label a particular platform as "production-ready" when it is ready to be published to the outside world, and use that same Application Id safely in your development environments. -->
 
-Our aim is that this will lead to a more simplified app management and development experience, and create a more consolidated view of a single project that you might be working on.
+我們的目標是促成更簡化的應用程式管理及開發經驗，並且為您可能正在處理的單一專案建立更加整合的檢視。
 
 
-## <a name="scopes,-not-resources"></a>Scopes, not resources
-In the original Azure AD service, an app can behave as a **resource**, or a recipient of tokens.  A resource can define a number of **scopes** or **oAuth2Permissions** that it understands, allowing client apps to request tokens to that resource for a certain set of scopes.  Consider the Azure AD Graph API as an example of a resource:
+## 範圍，而非資源
+在原始的 Azure AD 服務中，app 可做為**資源**或是權杖的收件者。資源可以定義它所了解的許多**範圍**或 **oAuth2Permissions**，讓用戶端應用程式得以針對特定一組範圍要求該資源的權杖。請考慮以 Azure AD Graph API 做為資源的範例：
 
-- Resource Identifier, or `AppID URI`: `https://graph.windows.net/`
-- Scopes, or `OAuth2Permissions`: `Directory.Read`, `Directory.Write`, etc.  
+- 資源識別碼，或`AppID URI`：`https://graph.windows.net/`
+- 範圍，或`OAuth2Permissions`：`Directory.Read`、`Directory.Write` 等。
 
-All of this holds true for the the v2.0 endpoint.  An app can still behave as resource, define scopes, and be identified by a URI.  Client apps can still request access to those scopes.  However, the way in which a client requests those permissions has changed.  In the past, an OAuth 2.0 authorize request to Azure AD might have looked like:
+這一切都適用於 v2.0 端點。應用程式仍可做為資源、定義範圍並依據 URI 識別。用戶端應用程式仍可要求存取這些範圍。不過，用戶端用來要求這些權限的方式已改變。在過去，Azure AD 的 OAuth 2.0 授權要求可能如下所示：
 
 ```
 GET https://login.microsoftonline.com/common/oauth2/authorize?
@@ -70,7 +69,7 @@ client_id=2d4d11a2-f814-46a7-890a-274a72a7309e
 ...
 ```
 
-where the **resource** parameter indicated which resource the client app is requesting authorization for.  Azure AD computed the permissions required by the app based on static configuration in the Azure Portal, and issued tokens accordingly.  Now, the same OAuth 2.0 authorize request looks like:
+其中 **resource** 參數指出用戶端應用程式要求授權的資源。Azure AD 根據 Azure 入口網站中的靜態設定計算應用程式所需的權限，並據以發出權杖。現在，相同的 OAuth 2.0 授權要求如下所示：
 
 ```
 GET https://login.microsoftonline.com/common/oauth2/v2.0/authorize?
@@ -79,20 +78,20 @@ client_id=2d4d11a2-f814-46a7-890a-274a72a7309e
 ...
 ```
 
-where the **scope** parameter indicates which resource and permissions the app is requesting authorization for. The desired resource is still very present in the request - it is simply encompassed in each of the values of the scope parameter.  Using the scope parameter in this manner allows the v2.0 endpoint to be more compliant with the OAuth 2.0 specification, and aligns more closely with common industry practices.  It also enables apps to perform [incremental consent](#incremental-and-dynamic-consent), which is described in the next section.
+其中 **scope** 參數指出用戶端應用程式授權的資源和權限。所需的資源仍是要求中最新的 - 它只會包含在 scope 參數的每個值中。以此方式使用 scope 參數可讓 v2.0 端點更符合 OAuth 2.0 規格，並且更貼近常見的業界作法。它也可以讓應用程式執行下一節所描述的[增量同意](#incremental-and-dynamic-consent)。
 
-## <a name="incremental-and-dynamic-consent"></a>Incremental and dynamic consent
-Apps registered in the generally available Azure AD service needed to specify their required OAuth 2.0 permissions in the Azure Portal, at app creation time:
+## 增量和動態同意
+在公開上市 Azure AD 服務中註冊的應用程式必須於應用程式建立時，在 Azure 入口網站中指定其所需的 OAuth 2.0 權限：
 
-![Permissions Registration UI](../media/active-directory-v2-flows/app_reg_permissions.PNG)
+![權限註冊 UI](../media/active-directory-v2-flows/app_reg_permissions.PNG)
 
-The permissions an app required were configured **statically**.  While this allowed configuration of the app to exist in the Azure Portal and kept the code nice and simple, it presents a few issues for developers:
+應用程式所需的權限是以**靜態**方式進行設定。雖然這可讓應用程式的設定存在於 Azure 入口網站中並使程式碼好用又簡單，但開發人員會面臨一些問題：
 
-- An app had to know all of the permissions it would ever need at app creation time.  Adding permissions over time was a difficult process.
-- An app had to know all of the resources it would ever access ahead of time.  It was difficult to create apps that could access an arbitrary number of resources.
-- An app had to request all the permissions it would ever need upon the user's first sign-in.  In some cases this led to a very long list of permissions, which discouraged end-users from approving the app's access on initial sign-in.
+- 應用程式必須在應用程式建立時知道可能會需要的所有權限。隨著時間新增權限有所困難。
+- 應用程式必須事先知道可能會存取的所有資源。很難建立能夠存取任意數目的資源的應用程式。
+- 應用程式必須在使用者第一次登入時要求可能會需要的權限。在某些情況下，這會導致非常冗長的權限清單，而讓使用者在初始登入時打消核准應用程式存取權的念頭。
 
-With the v2.0 endpoint, you can specify the permissions your app needs **dynamically**, at runtime, during regular usage of your app.  To do so, you can specify the scopes your app needs at any given point in time by including them in the `scope` parameter of an authorization request:
+透過 v2.0 端點，您可以在執行階段**動態**指定您的 app 在一般使用期間所需的權限。若要這麼做，您可以在授權要求的 `scope` 參數中包含範圍，以在任何指定的時間點指定您的應用程式所需的範圍：
 
 ```
 GET https://login.microsoftonline.com/common/oauth2/v2.0/authorize?
@@ -101,40 +100,36 @@ client_id=2d4d11a2-f814-46a7-890a-274a72a7309e
 ...
 ```
 
-The above requests permission for the app to read an Azure AD user's directory data, as well as write data to their directory.  If the user has consented to those permissions in the past for this particular app, they will simply enter their credentials and be signed into the app.  If the user has not consented to any of these permissions, the v2.0 endpoint will ask the user for consent to those permissions.  To learn more, you can read up on [permissions, consent, and scopes](active-directory-v2-scopes.md).
+應用程式的上述要求權限可讀取 Azure AD 使用者的目錄資料，以及將資料寫入至其目錄。如果使用者過去曾針對此特定應用程式同意這些權限，他們只要輸入其認證並登入應用程式。如果使用者未曾同意這些權限的任何一項，v2.0 端點會要求使用者同意這些權限。若要深入了解，您可以參閱[權限、同意和範圍](active-directory-v2-scopes.md)。
 
-Allowing an app to request permissions dynamically via the `scope` parameter gives you full control over your user's experience.  If you wish, you can choose to frontload your consent experience and ask for all permissions in one initial authorization request.  Or if your app requires a large number of permissions, you can choose to gather those permissions from the user incrementally, as they attempt to use certain features of your app over time.
+允許應用程式透過 `scope` 參數動態要求權限，您即可完全掌控使用者的經驗。如果您希望，您可以選擇將您的同意體驗提前，並在一個初始授權要求中要求所有的權限。或者，如果您的應用程式需要大量的權限，您可以選擇在嘗試使用您的應用程式的某些功能時，以遞增方式向使用者收集這些權限。
 
-## <a name="well-known-scopes"></a>Well-known scopes
+## 知名的範圍
 
-#### <a name="offline-access"></a>Offline access
-the v2.0 endpoint may require the use of a new well-known permission for apps - the `offline_access` scope.  All apps will need to request this permission if they need to access resources on the behalf of a user for a prolonged period of time, even when the user may not be actively using the app.  The `offline_access` scope will appear to the user in consent dialogs as "Access your data offline", which the user must agree to.  Requesting the `offline_access` permission will enable your web app to receive OAuth 2.0 refresh_tokens from the v2.0 endpoint.  Refresh_tokens are long-lived, and can be exchanged for new OAuth 2.0 access_tokens for extended periods of access.  
+#### 離線存取
+v2.0 端點可能需要針對 app 使用新的已知權限 - `offline_access` 範圍。如果應用程式需要長期代表使用者存取資源，則所有應用程式都需要要求此權限，即使使用者可能不會主動使用此應用程式亦然。在同意對話方塊中，`offline_access` 範圍會對使用者顯示做為「離線存取您的資料」，而使用者必須加以同意。要求 `offline_access` 權限可讓您的 Web 應用程式從 v2.0 端點獲取 OAuth 2.0 refresh\_token。Refresh\_token 屬於長效權杖，可用來交換新的 OAuth 2.0 access\_token 以延長存取期間。
 
-If your app does not request the `offline_access` scope, it will not receive refresh_tokens.  This means that when you redeem an authorization_code in the [OAuth 2.0 authorization code flow](active-directory-v2-protocols.md#oauth2-authorization-code-flow), you will only receive back an access_token from the `/token` endpoint.  That access_token will remain valid for a short period of time (typically one hour), but will eventually expire.  At that point in time, your app will need to redirect the user back to the `/authorize` endpoint to retrieve a new authorization_code.  During this redirect, the user may or may not need to enter their credentials again or re-consent to permissions, depending on the the type of app.
+如果您的應用程式未要求 `offline_access` 範圍，則不會收到 refresh\_token。這表示當您在 [OAuth 2.0 授權碼流程](active-directory-v2-protocols.md#oauth2-authorization-code-flow)中兌換 authorization\_code 時，您只會從 `/token` 端點接收 access\_token。該 access\_token 會短時間維持有效 (通常是一小時)，但最後終將過期。屆時，您的應用程式必須將使用者重新導向回到 `/authorize` 端點以擷取新的 authorization\_code。在此重新導向期間，視應用程式的類型而定，使用者或許不需要再次輸入其認證或重新同意權限。
 
-To learn more about OAuth 2.0, refresh_tokens, and access_tokens, check out the [v2.0 protocol reference](active-directory-v2-protocols.md).
+若要深入了解 OAuth 2.0、refresh\_token 和 access\_token，請參閱 [v2.0 通訊協定參考](active-directory-v2-protocols.md)。
 
-#### <a name="openid,-profile,-&-email"></a>OpenID, profile, & email
+#### OpenID、設定檔和電子郵件
 
-In the original Azure Active Directory service, the most basic OpenID Connect sign-in flow would provide a wealth of information about the user in the resulting id_token.  The claims in an id_token can include the user's name, preferred username, email address, object ID, and more.
+在原始 Azure Active Directory 服務中，最基本的 OpenID Connect 登入流程會在產生的 id\_token 中提供豐富的使用者相關資訊。id\_token 中的宣告可以包含使用者的名稱、慣用使用者名稱、電子郵件地址、物件識別碼等等。
 
-We are now restricting the information that the `openid` scope affords your app access to.  The ‘openid’ scope will only allow your app to sign the user in, and receive an app-specific identifier for the user.  If you want to obtain personally identifiable information (PII) about the user in your app, your app will need to request additional permissions from the user.  We are introducing two new scopes – the `email` and `profile` scopes – which allow you to do so.
+我們現在會限制 `openid` 範圍可提供 app 存取權的資訊。‘openid’ 範圍只允許您的 app 將使用者登入，並接收使用者的 app 特定識別碼。如果您想要取得有關您的應用程式中的使用者的個人識別資訊 (PII)，您的應用程式必須向使用者要求其他權限。我們引進的兩個新範圍 (`email` 和 `profile` 範圍) 可讓您執行這項操作。
 
-The `email` scope is very straightforward – it allows your app access to the user’s primary email address via the `email` claim in the id_token.  The `profile` scope affords your app access to all other basic information about the user – their name, preferred username, object ID, and so on.
+`email` 範圍非常簡單，它可讓您的 app 透過 id\_token 中的 `email` 宣告存取使用者的主要電子郵件地址。`profile` 範圍可讓您的 app 存取使用者的所有其他基本資訊 – 其名稱、慣用的使用者名稱、物件識別碼等等。
 
-This allows you to code your app in a minimal-disclosure  fashion – you can only ask the user for the set of information that your app requires to do its job.  For more information on these scopes, refer to [the v2.0 scope reference](active-directory-v2-scopes.md). 
+這可讓您以最低洩漏的方式編碼應用程式 – 您只可以向使用者要求應用程式執行其作業所需的資訊集。如需這些範圍的詳細資訊，請參閱 [v2.0 範圍參考](active-directory-v2-scopes.md)。
 
-## <a name="token-claims"></a>Token Claims
+## 權杖宣告
 
-The claims in tokens issued by the v2.0 endpoint will not be identical to tokens issued by the generally available Azure AD endpoints - apps migrating to the new service should not assume a particular claim will exist in id_tokens or access_tokens.   Tokens issued by the v2.0 endpoint are compliant with the OAuth 2.0 and OpenID Connect specifications, but may follow different semantics than the generally available Azure AD service.
+V2.0 端點所簽發的權杖中的宣告與公開上市 Azure AD 端點所簽發的權杖不會相同 - 移轉至新服務的應用程式不應假設特定的宣告會存在於 id\_token 或 access\_token 中。V2.0 端點所簽發的權杖與 OAuth 2.0 和 OpenID Connect 規格相容，但可能會遵循與公開上市 Azure AD 服務不同的語意。
 
-To learn about the specific claims emitted in v2.0 tokens, see the [v2.0 token reference](active-directory-v2-tokens.md).
+若要深入了解 v2.0 權杖中發出的特定宣告，請參閱 [v2.0 權杖參考](active-directory-v2-tokens.md)。
 
-## <a name="limitations"></a>Limitations
-There are a few restrictions to be aware of when using the v2.0 point.  Please refer to the [v2.0 limitations doc](active-directory-v2-limitations.md) to see if any of these restrictions apply to your particular scenario.
+## 限制
+使用 v2.0 端點時有一些要注意的限制。請參閱 [v2.0 限制文件](active-directory-v2-limitations.md)，以了解是否有任何限制適用於您特定的案例。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

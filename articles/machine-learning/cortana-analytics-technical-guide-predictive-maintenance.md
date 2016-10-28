@@ -1,293 +1,275 @@
 <properties
-    pageTitle="Technical guide to the Cortana Intelligence Solution Template for predictive maintenance in aerospace and other businesses | Microsoft Azure"
-    description="A technical guide to the Solution Template with Microsoft Cortana Intelligence for predictive maintenance in aerospace, utilities, and transportation."
-    services="cortana-analytics"
-    documentationCenter=""
-    authors="fboylu"
-    manager="jhubbard"
-    editor="cgronlun"/>
+	pageTitle="航太與其他業務中預測性維護的 Cortana Intelligence 解決方案範本的技術指南 | Microsoft Azure"
+	description="航太、公用事業和運輸中預測性維護的 Microsoft Cortana Intelligence 解決方案範本的技術指南。"
+	services="cortana-analytics"
+	documentationCenter=""
+	authors="fboylu"
+	manager="jhubbard"
+	editor="cgronlun"/>
 
 <tags
-    ms.service="cortana-analytics"
-    ms.workload="data-services"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/13/2016"
-    ms.author="fboylu" />
+	ms.service="cortana-analytics"
+	ms.workload="data-services"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/13/2016"
+	ms.author="fboylu" />
 
+# 航太與其他業務中預測性維護的 Cortana Intelligence 解決方案範本的技術指南
 
-# <a name="technical-guide-to-the-cortana-intelligence-solution-template-for-predictive-maintenance-in-aerospace-and-other-businesses"></a>Technical guide to the Cortana Intelligence Solution Template for predictive maintenance in aerospace and other businesses
+## **通知**
+本文是由 Microsoft 的資料科學家 Yan Zhang、Gauher Shaheen、Fidan Boylu Uz 和軟體工程師 Dan Grecoe 所共同撰寫。
 
-## <a name="**acknowledgements**"></a>**Acknowledgements**
-This article is authored by data scientists Yan Zhang, Gauher Shaheen, Fidan Boylu Uz and software engineer Dan Grecoe at Microsoft.
+## **概觀**
 
-## <a name="**overview**"></a>**Overview**
+解決方案範本的設計是要加速在 Cortana Intelligence 套件之上建置 E2E 示範的程序。已部署的範本會以所需的 Cortana Intelligence 元件佈建您的訂用帳戶，並建立兩者間的關聯性。它也會在資料管線內植入由資料產生器應用程式所產生的範例資料，供您在部署解決方案範本之後下載並安裝到本機電腦上。由產生器產生的資料將會產生資料管線，並開始產生機器學習服務預測，然後您可以在 Power BI 儀表板上將其視覺化。部署程序將引導您完成數個步驟來設定解決方案的認證。務必記錄這些認證，例如您在部署期間提供的解決方案名稱、使用者名稱和密碼。
 
-Solution Templates are designed to accelerate the process of building an E2E demo on top of Cortana Intelligence Suite. A deployed template will provision your subscription with necessary Cortana Intelligence components and build the relationships between them. It also seeds the data pipeline with sample data generated from a data generator application which you will download and install on your local machine after you deploy the solution template. The data generated from the generator will hydrate the data pipeline and start generating machine learning predictions which can then be visualized on the Power BI dashboard. The deployment process will guide you through several steps to set up your solution credentials. Make sure you record these credentials such as solution name, username, and password you provide during the deployment.  
+這份文件的目標是說明參考架構，以及隨著此解決方案範本佈建在您訂用帳戶中的不同元件。文件也會示範如何使用您自己的實際資料來取代範例資料，以便看到您自己的資料的見解和預測。此外，文件將說明如果想要以您自己的資料自訂解決方案，您需要修改的解決方案範本部份。最後會提供如何建置此方案範本的 Power BI 儀表板的指示。
 
-The goal of this document is to explain the reference architecture and different components provisioned in your subscription as part of this solution template. The document also talks about how to replace the sample data with real data of your own to be able to see insights and predictions from your own data. Additionally, the document discusses the parts of the Solution Template that would need to be modified if you wanted to customize the solution with your own data. Instructions on how to build the Power BI dashboard for this Solution Template are provided at the end.
+>[AZURE.TIP] 您可以下載及列印[這份文件的 PDF 版本](http://download.microsoft.com/download/F/4/D/F4D7D208-D080-42ED-8813-6030D23329E9/cortana-analytics-technical-guide-predictive-maintenance.pdf)。
 
->[AZURE.TIP] You can download and print a [PDF version of this document](http://download.microsoft.com/download/F/4/D/F4D7D208-D080-42ED-8813-6030D23329E9/cortana-analytics-technical-guide-predictive-maintenance.pdf).
-
-## <a name="**big-picture**"></a>**Big picture**
+## **概觀**
 
 ![](media/cortana-analytics-technical-guide-predictive-maintenance\predictive-maintenance-architecture.png)
 
-When the solution is deployed, various Azure services within Cortana Analytics Suite are activated (*i.e.* Event Hub, Stream Analytics, HDInsight, Data Factory, Machine Learning, *etc.*). The architecture diagram above shows, at a high level, how the Predictive Maintenance for Aerospace Solution Template is constructed from end-to-end. You will be able to investigate these services in the azure portal by clicking on them on the solution template diagram created with the deployment of the solution with the exception of HDInsight as this service is provisioned on demand when the related pipeline activities are required to run and deleted afterwards.
-You can download a [full-size version of the diagram](http://download.microsoft.com/download/1/9/B/19B815F0-D1B0-4F67-AED3-A40544225FD1/ca-topologies-maintenance-prediction.png).
+部署方案時，會啟動 Cortana Analytics 套件中的各種 Azure 服務 (也就是 事件中樞、串流分析、HDInsight、Data Factory，機器學習服務等)。架構圖顯示在高層從端對端為航太解決方案範本建構預測性維護的方式。您將可以在 Azure 入口網站調查這些服務，方法是對部署解決方案時所建立的解決方案範本圖表上的服務按一下，但 HDInsight 除外，因為當需要相關的管線活動才能執行時才會隨選佈建此服務，並且會於隨後刪除。您可以下載[完整大小版本的圖表](http://download.microsoft.com/download/1/9/B/19B815F0-D1B0-4F67-AED3-A40544225FD1/ca-topologies-maintenance-prediction.png)。
 
-The following sections describe each piece.
+下列章節說明每個片段。
 
-## <a name="**data-source-and-ingestion**"></a>**Data source and ingestion**
+## **資料來源及擷取**
 
-### <a name="synthetic-data-source"></a>Synthetic data source
+### 綜合資料來源
 
-For this template the data source used is generated from a desktop application that you will download and run locally after successful deployment. You will find the instructions to download and install this application in the properties bar when you select the first node called Predictive Maintenance Data Generator on the solution template diagram. This application feeds the [Azure Event Hub](#azure-event-hub) service with data points, or events, that will be used in the rest of the solution flow. This data source is comprised of or derived from publicly available data from the [NASA data repository](http://ti.arc.nasa.gov/tech/dash/pcoe/prognostic-data-repository/) using the [Turbofan Engine Degradation Simulation Data Set](http://ti.arc.nasa.gov/tech/dash/pcoe/prognostic-data-repository/#turbofan).
+針對此範本，使用的資料來源是從桌面應用程式產生，您將會下載應用程式並於部署成功後在本機執行。當您在解決方案範本圖表上選取稱為「預測性維護資料產生器」的第一個節點時，可以在屬性列中找到下載及安裝此應用程式的指示。此應用程式會將在解決方案流程的其餘部分使用的資料點或事件送入 [Azure 事件中樞](#azure-event-hub)服務。此資料來源的組成為或衍生自使用 [Turbofan 引擎降低模擬資料集](http://ti.arc.nasa.gov/tech/dash/pcoe/prognostic-data-repository/#turbofan)從 [NASA 資料儲存機制](http://ti.arc.nasa.gov/tech/dash/pcoe/prognostic-data-repository/)公開取得的資料。
 
-The event generation application will populate the Azure Event Hub only while it's executing on your computer.
+只有當它在您的電腦上執行時，事件產生應用程式才會填入 Azure 事件中樞。
 
-### <a name="azure-event-hub"></a>Azure event hub
+### Azure 事件中樞
 
-The [Azure Event Hub](https://azure.microsoft.com/services/event-hubs/) service is the recipient of the input provided by the Synthetic Data Source described above.
+[Azure 事件中樞](https://azure.microsoft.com/services/event-hubs/)服務是上述的綜合資料來源所提供的輸入收件者。
 
-## <a name="**data-preparation-and-analysis**"></a>**Data preparation and analysis**
-
-
-### <a name="azure-stream-analytics"></a>Azure Stream Analytics
-
-The [Azure Stream Analytics](https://azure.microsoft.com/services/stream-analytics/) service is used to provide near real-time analytics on the input stream from the [Azure Event Hub](#azure-event-hub) service and publish results onto a [Power BI](https://powerbi.microsoft.com) dashboard as well as archiving all raw incoming events to the [Azure Storage](https://azure.microsoft.com/services/storage/) service for later processing by the [Azure Data Factory](https://azure.microsoft.com/documentation/services/data-factory/) service.
-
-### <a name="hd-insights-custom-aggregation"></a>HD Insights custom aggregation
-
-The Azure HD Insight service is used to run [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) scripts (orchestrated by Azure Data Factory) to provide aggregations on the raw events that were archived using the Azure Stream Analytics service.
-
-### <a name="azure-machine-learning"></a>Azure Machine Learning
-
-The [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) service is used (orchestrated by Azure Data Factory) to make predictions on the remaining useful life (RUL) of a particular aircraft engine given the inputs received.
-
-## <a name="**data-publishing**"></a>**Data publishing**
+## **資料準備和分析**
 
 
-### <a name="azure-sql-database-service"></a>Azure SQL Database Service
+### Azure 串流分析
 
-The [Azure SQL Database](https://azure.microsoft.com/services/sql-database/) service is used to store (managed by Azure Data Factory) the predictions received by the Azure Machine Learning service that will be consumed in the [Power BI](https://powerbi.microsoft.com) dashboard.
+[Azure 串流分析](https://azure.microsoft.com/services/stream-analytics/) 服務用來為來自 [Azure 事件中樞](#azure-event-hub)服務的輸入串流提供近乎即時的分析，並將結果發佈到 [Power BI](https://powerbi.microsoft.com) 儀表板，以及保存所有未經處理的內送事件 [Azure 儲存體](https://azure.microsoft.com/services/storage/) 服務，供 [Azure Data Factory](https://azure.microsoft.com/documentation/services/data-factory/) 服務後續處理。
 
-## <a name="**data-consumption**"></a>**Data consumption**
+### HD Insights 自訂彙總
 
-### <a name="power-bi"></a>Power BI
+Azure HD Insight 服務用來執行 [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) 指令碼 (由 Azure Data Factory 協調)，以提供使用 Azure 串流分析服務封存的原始事件的彙總。
 
-The [Power BI](https://powerbi.microsoft.com) service is used to show a dashboard that contains aggregations and alerts provided by the [Azure Stream Analytics](https://azure.microsoft.com/services/stream-analytics/) service as well as RUL predictions stored in [Azure SQL Database](https://azure.microsoft.com/services/sql-database/) that were produced using the [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) service. For Instructions on how to build the Power BI dashboard for this Solution Template, refer to the section below.
+### Azure Machine Learning
 
-## <a name="**how-to-bring-in-your-own-data**"></a>**How to bring in your own data**
+使用 [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) 服務 (由 Azure Data Factory 協調) 對特定飛機引擎 (提供所收到輸入資料) 的剩餘使用年限 (RUL) 進行預測。
 
-This section describes how to bring your own data to Azure, and what areas would require changes for the data you bring into this architecture.
+## **資料發佈**
 
-It's unlikely that any dataset you bring would match the dataset used by the [Turbofan Engine Degradation Simulation Data Set](http://ti.arc.nasa.gov/tech/dash/pcoe/prognostic-data-repository/#turbofan) used for this solution template. Understanding your data and the requirements will be crucial in how you modify this template to work with your own data. If this is your first exposure to the Azure Machine Learning service, you can get an introduction to it by using the example in [How to create your first experiment](machine-learning-create-experiment.md).
 
-The following sections will discuss the sections of the template that will require modifications when a new dataset is introduced.
+### Azure SQL Database 服務
 
-### <a name="azure-event-hub"></a>Azure Event Hub
+[Azure SQL Database](https://azure.microsoft.com/services/sql-database/) 服務用來儲存 (由 Azure Data Factory 管理) 將 [Power BI](https://powerbi.microsoft.com) 儀表板取用之 Azure Machine Learning 服務收到的預測。
 
-The Azure Event Hub service is very generic, such that data can be posted to the hub in either CSV or JSON format. No special processing occurs in the Azure Event Hub, but it's important that you understand the data that's fed into it.
+## **資料耗用量**
 
-This document does not describe how to ingest your data, but you can easily send events or data to an Azure Event Hub using the Event Hub API's.
+### Power BI
 
-### <a name="azure-stream-analytics"></a>Azure Stream Analytics
+[Power BI](https://powerbi.microsoft.com) 服務用來顯示儀表板，其中包含 [Azure 串流分析](https://azure.microsoft.com/services/stream-analytics/) 服務提供的彙總與警示的，以及儲存在使用 [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) 服務產生的 [Azure SQL Database](https://azure.microsoft.com/services/sql-database/) 的 RUL 預測。如需如何建置此方案範本的 Power BI 儀表板的指示，請參閱下一節。
 
-The Azure Stream Analytics service is used to provide near real-time analytics by reading from data streams and outputting data to any number of sources.
+## **如何帶入您自己的資料**
 
-For the Predictive Maintenance for Aerospace Solution Template, the Azure Stream Analytics query consists of four sub-queries, each consuming events from the Azure Event Hub service, and having outputs to four distinct locations. These outputs consist of three Power BI datasets and one Azure Storage location.
+本節說明如何將您自己的資料帶入 Azure，以及對於您放入這個架構的資料，需要變更哪些區域。
 
-The Azure Stream Analytics query can be found by:
+您放入的任何資料集不太可能會符合用於這個解決方案範本的 [Turbofan 引擎降低模擬資料集](http://ti.arc.nasa.gov/tech/dash/pcoe/prognostic-data-repository/#turbofan)所用的資料集。了解您的資料與需求對於您如何修改此範本以搭配您自己的資料非常重要。如果這是您第一次使用 Azure Machine Learning 服務，您可以使用[如何建立您的第一個實驗](machine-learning-create-experiment.md)中的範例來取得簡介。
 
--   Logging into the Azure portal
+下列各節將討論推出新資料集將需要修改的範本區段。
 
--   Locating the stream analytics jobs ![](media\cortana-analytics-technical-guide-predictive-maintenance\icon-stream-analytics.png) that were generated when the solution was deployed (*e.g.*, **maintenancesa02asapbi** and **maintenancesa02asablob** for the predictive maintenance solution)
+### Azure 事件中樞
 
--   Selecting
+Azure 事件中樞服務非常廣泛，因而資料可以以 CSV 或 JSON 格式張貼至中樞。Azure 事件中樞中未發生任何特殊處理，但務必了解提供給它的資料。
 
-    -   ***INPUTS*** to view the query input
+這份文件不會描述如何擷取您的資料，但您可以使用事件中樞 API，輕鬆地傳送事件或資料到 Azure 事件中樞。
 
-    -   ***QUERY*** to view the query itself
+### Azure 串流分析
 
-    -   ***OUTPUTS*** to view the different outputs
+Azure 串流分析服務用來提供近乎即時分析，方法是從資料串流讀取並輸出資料至任意數目的來源。
 
-Information about Azure Stream Analytics query construction can be found in the [Stream Analytics Query Reference](https://msdn.microsoft.com/library/azure/dn834998.aspx) on MSDN.
+針對航太解決方案的預測性維護範本，Azure 串流分析查詢方案範本包含四個子查詢，每個均從 Azure 事件中樞服務取用事件，並且輸出至四個不同的位置。這些輸出包含三個 Power BI 資料集和一個 Azure 儲存體位置。
 
-In this solution, the queries output three datasets with near real-time analytics information about the incoming data stream to a Power BI dashboard that's provided as part of this solution template. Because there's implicit knowledge about the incoming data format, these queries would need to be altered based on your data format.
+可以透過以下方式找到 Azure 串流分析查詢：
 
-The query in the second stream analytics job **maintenancesa02asablob** simply outputs all [Event Hub](https://azure.microsoft.com/services/event-hubs/) events to [Azure Storage](https://azure.microsoft.com/services/storage/) and hence requires no alteration regardless of your data format as the full event information is streamed to storage.
+-   登入 Azure 入口網站
 
-### <a name="azure-data-factory"></a>Azure Data Factory
+-   找到部署解決方案時產生的串流分析作業 ![](media\cortana-analytics-technical-guide-predictive-maintenance\icon-stream-analytics.png) (例如，預測性維護解決方案的 **maintenancesa02asapbi** 和 **maintenancesa02asablob**)
 
-The [Azure Data Factory](https://azure.microsoft.com/documentation/services/data-factory/) service orchestrates the movement and processing of data. In the Predictive Maintenance for Aerospace Solution Template the data factory is made up of three [pipelines](../data-factory/data-factory-create-pipelines.md) that move and process the data using various technologies.  You can access your data factory by opening the the Data Factory node at the bottom of the solution template diagram created with the deployment of the solution. This will take you to the data factory on your Azure portal. If you see errors under your datasets, you can ignore those as they are due to data factory being deployed before the data generator was started. Those errors do not prevent your data factory from functioning.
+-   選取
+
+    -   **輸入**以檢視查詢輸入
+
+    -   **查詢**以檢視查詢本身
+
+    -   **輸出**以檢視不同的輸出
+
+Azure 串流分析查詢建構的相關資訊可在 MSDN 上的[串流分析查詢參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)中找到。
+
+在此解決方案中，查詢會將三個資料集及內送資料串流近乎即時的分析資訊輸出到隨著這個解決方案範本提供的 Power BI 儀表板。因為對於內送資料格式具有隱含知識，必須根據您的資料格式變更這些查詢。
+
+在第二個串流分析作業 **maintenancesa02asablob** 中的查詢只會將所有[事件中樞](https://azure.microsoft.com/services/event-hubs/)事件輸出到 [Azure 儲存體](https://azure.microsoft.com/services/storage/)，因為會將完整的事件資訊串流至儲存體，因此不論資料格式為何都不需進行修改。
+
+### Azure Data Factory
+
+[Azure Data Factory](https://azure.microsoft.com/documentation/services/data-factory/) 服務會協調資料的移動和處理。在航太解決方案的預測性維護範本中，Data Factory 包含三個[管線](../data-factory/data-factory-create-pipelines.md)，會使用各種技術移動和處理資料。您可以開啟隨著解決方案部署建立的解決方案範本圖表底端的 Data Factory 節點，以存取您的 Data Factory。這樣會帶您前往 Azure 入口網站上的 Data Factory。如果您在您的資料集下看到錯誤，您可以忽略這些，錯誤是因為在啟動資料產生器之前即已部署 Data Factory。這些錯誤不會防止您的 Data Factory 運作。
 
 ![](media/cortana-analytics-technical-guide-predictive-maintenance/data-factory-dataset-error.png)
 
-This section discusses the necessary [pipelines](../data-factory/data-factory-create-pipelines.md) and [activities](../data-factory/data-factory-create-pipelines.md) contained in the [Azure Data Factory](https://azure.microsoft.com/documentation/services/data-factory/). Below is the diagram view of the solution.
+本章節將討論 [Azure Data Factory](https://azure.microsoft.com/documentation/services/data-factory/) 中包含的必要[管線](../data-factory/data-factory-create-pipelines.md)和[活動](../data-factory/data-factory-create-pipelines.md)。以下是解決方案的圖表檢視。
 
 ![](media/cortana-analytics-technical-guide-predictive-maintenance/azure-data-factory.png)
 
-Two of the pipelines of this factory contain [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) scripts that are used to partition and aggregate the data. When noted, the scripts will be located in the [Azure Storage](https://azure.microsoft.com/services/storage/) account created during setup. Their location will be: maintenancesascript\\\\script\\\\hive\\\\ (or https://[Your solution name].blob.core.windows.net/maintenancesascript).
+此 Factory 的兩個管線包含 [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) 指令碼，用來分割及彙總資料。如上述，指令碼將會位在安裝期間建立的 [Azure 儲存體](https://azure.microsoft.com/services/storage/)帳戶中。其位置會是：maintenancesascript\\\script\\\hive\\\ (或 https://[Your 解決方案名稱].Blob.core.windows.net/maintenancesascript)。
 
-Similar to the [Azure Stream Analytics](#azure-stream-analytics-1) queries, the [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) scripts have implicit knowledge about the incoming data format, these queries would need to be altered based on your data format and [feature engineering](machine-learning-feature-selection-and-engineering.md) requirements.
+類似於 [Azure 串流分析](#azure-stream-analytics-1)查詢，[Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) 指令碼的對於內送資料格式具有隱含知識，必須根據您的資料格式和[特徵設計](machine-learning-feature-selection-and-engineering.md)需求變更這些查詢。
 
-#### <a name="*aggregateflightinfopipeline*"></a>*AggregateFlightInfoPipeline*
+#### AggregateFlightInfoPipeline
 
-This [pipeline](../data-factory/data-factory-create-pipelines.md) contains a single activity - an [HDInsightHive](../data-factory/data-factory-hive-activity.md) activity using a [HDInsightLinkedService](https://msdn.microsoft.com/library/azure/dn893526.aspx) that runs a [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) script to partition the data put in [Azure Storage](https://azure.microsoft.com/services/storage/) during the [Azure Stream Analytics](https://azure.microsoft.com/services/stream-analytics/) job.
+這個[管線](../data-factory/data-factory-create-pipelines.md)包含單一活動 - 使用 [HDInsightLinkedService](https://msdn.microsoft.com/library/azure/dn893526.aspx) 的 [HDInsightHive](../data-factory/data-factory-hive-activity.md) 活動，會在 [Azure 串流分析](https://azure.microsoft.com/services/stream-analytics/) 作業期間，執行 [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) 指令碼來分割放在 [Azure 儲存體](https://azure.microsoft.com/services/storage/) 中的資料。
 
-The [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) script for this partitioning task is ***AggregateFlightInfo.hql***
+此資料分割工作的 [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) 指令碼為 **AggregateFlightInfo.hql**
 
-#### <a name="*mlscoringpipeline*"></a>*MLScoringPipeline*
+#### MLScoringPipeline
 
-This [pipeline](../data-factory/data-factory-create-pipelines.md) contains several activities and whose end result is the scored predictions from the [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) experiment associated with this solution template.
+這個[管線](../data-factory/data-factory-create-pipelines.md)包含數個活動，而且其最終結果為來自與這個方案範本相關聯的 [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) 實驗評分的預測。
 
-The activities contained in this are:
+包含在此的活動為：
 
--   [HDInsightHive](../data-factory/data-factory-hive-activity.md) activity using an [HDInsightLinkedService](https://msdn.microsoft.com/library/azure/dn893526.aspx) that runs a [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) script to perform aggregations and feature engineering necessary for the [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) experiment.
-    The [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) script for this partitioning task is ***PrepareMLInput.hql***.
+-   使用 [HDInsightLinkedService](https://msdn.microsoft.com/library/azure/dn893526.aspx) 的[HDInsightHive](../data-factory/data-factory-hive-activity.md) 活動會執行 [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) 指令碼來執行 [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) 實驗所需的彙總及特徵設計。此分割工作的 [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) 編寫指令碼是 **PrepareMLInput.hql**。
 
--   [Copy](https://msdn.microsoft.com/library/azure/dn835035.aspx) activity that moves the results from the [HDInsightHive](../data-factory/data-factory-hive-activity.md) activity to a single [Azure Storage](https://azure.microsoft.com/services/storage/) blob that can be access by the [AzureMLBatchScoring](https://msdn.microsoft.com/library/azure/dn894009.aspx) activity.
+-   [複製](https://msdn.microsoft.com/library/azure/dn835035.aspx)活動會將來自 [HDInsightHive](../data-factory/data-factory-hive-activity.md) 活動的結果移動至可供 [AzureMLBatchScoring](https://msdn.microsoft.com/library/azure/dn894009.aspx) 活動存取的單一 [Azure 儲存體](https://azure.microsoft.com/services/storage/) Blob。
 
--   [AzureMLBatchScoring](https://msdn.microsoft.com/library/azure/dn894009.aspx) activity that calls the [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) experiment which results in the results being put in a single [Azure Storage](https://azure.microsoft.com/services/storage/) blob.
+-   呼叫 [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) 實驗的 [AzureMLBatchScoring](https://msdn.microsoft.com/library/azure/dn894009.aspx) 活動會導致將結果放入單一 [Azure 儲存體](https://azure.microsoft.com/services/storage/) Blob。
 
-#### <a name="*copyscoredresultpipeline*"></a>*CopyScoredResultPipeline*
+#### CopyScoredResultPipeline
 
-This [pipeline](../data-factory/data-factory-create-pipelines.md) contains a single activity - a [Copy](https://msdn.microsoft.com/library/azure/dn835035.aspx) activity that moves the results of the [Azure Machine Learning](#azure-machine-learning) experiment from the ***MLScoringPipeline*** to the [Azure SQL Database](https://azure.microsoft.com/services/sql-database/) that was provisioned as part of the solution template installation.
+這個[管線](../data-factory/data-factory-create-pipelines.md)包含單一活動 - [複製](https://msdn.microsoft.com/library/azure/dn835035.aspx)活動，會將 [Azure Machine Learning](#azure-machine-learning) 實驗的結果從 **MLScoringPipeline** 移動至隨著解決方案範本安裝佈建的 [Azure SQL Database](https://azure.microsoft.com/services/sql-database/)。
 
-### <a name="azure-machine-learning"></a>Azure Machine Learning
+### Azure Machine Learning
 
-The [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) experiment used for this solution template provides the Remaining Useful Life (RUL) of an aircraft engine. The experiment is specific to the data set consumed and therefore will require modification or replacement specific to the data that's brought in.
+用於此解決方案範本的 [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) 實驗會提供飛機引擎的剩餘使用年限 (RUL)。實驗因取用的資料集而不同，因而需要特別針對帶入的資料進行修改或取代。
 
-For information about how the Azure Machine Learning experiment was created, see [Predictive Maintenance: Step 1 of 3, data preparation and feature engineering](http://gallery.cortanaanalytics.com/Experiment/Predictive-Maintenance-Step-1-of-3-data-preparation-and-feature-engineering-2).
+如需如何建立 Azure Machine Learning 實驗的詳細資訊，請參閱[預測性維護：步驟 3 之 1，資料準備和特徵設計](http://gallery.cortanaanalytics.com/Experiment/Predictive-Maintenance-Step-1-of-3-data-preparation-and-feature-engineering-2)。
 
-## <a name="**monitor-progress**"></a>**Monitor Progress**
- Once the Data Generator is launched, the pipeline begins to get hydrated and the different components of your solution start kicking into action following the commands issued by the Data Factory. There are two ways you can monitor the pipeline.
+## **監視進度**
+ 一旦資料產生器啟動，管線會開始合成，解決方案的不同元件會遵循 Data Factory 發出的命令開始動作。您有兩種方式可以監視管線。
 
-1. One of the Stream Analytics job writes the raw incoming data to blob storage. If you click on Blob Storage component of your solution from the screen you successfully deployed the solution and then click Open in the right panel, it will take you to the [management portal](https://portal.azure.com/). Once there, click on Blobs. In the next panel, you will see a list of Containers. Click on **maintenancesadata**. In the next panel, you will see the **rawdata** folder. Inside the rawdata folder, you will see folders with names such as hour=17, hour=18 etc. If you see these folders, it indicates that the raw data is successfully being generated on your computer and stored in blob storage. You should see csv files that should have finite sizes in MB in those folders.
+1. 其中一個串流分析作業會將原始內送資料寫入 blob 儲存體。如果您從成功部署解決方案的畫面按一下解決方案的 Blob 儲存體元件，然後在右窗格中按一下 [開啟]，系統會帶您前往[管理入口網站](https://portal.azure.com/)。一旦在該網站中，按一下 Blobs。在接下來的面板中，您會看到容器的清單。按一下 [maintenancesadata]。在接下來的面板中，您會看到 [rawdata] 資料夾。在 rawdata 資料夾內，您會看到具有如 hour=17、hour=18 等等名稱的資料夾。如果您看到這些資料夾，則表示原始資料已經成功在您的電腦上產生並儲存在 blob 儲存體。您應該會在這些資料夾中看到具有有限大小 (MB) 的 csv 檔案。
 
-2. The last step of the pipeline is to write data (e.g. predictions from machine learning) into SQL Database. You might have to wait a maximum of three hours for the data to appear in SQL Database. One way to monitor how much data is available in your SQL Database is through [azure portal](https://manage.windowsazure.com/).On the left panel locate SQL DATABASES ![](media\cortana-analytics-technical-guide-predictive-maintenance\icon-SQL-databases.png) and click it. Then locate your database **pmaintenancedb** and click on it. On the next page at the bottom, click on MANAGE
+2. 管線的最後一個步驟是將資料 (例如從機器學習的預測) 寫入至 SQL Database。您可能必須等候最多三個小時，資料才會出現在 SQL Database。監視您的 SQL Database 中有多少資料可用的其中一個方法是透過 [Azure 入口網站](https://manage.windowsazure.com/)。在左側面板找到 SQL DATABASES ![](media\cortana-analytics-technical-guide-predictive-maintenance\icon-SQL-databases.png) 並且按一下它。然後找到您的資料庫 **pmaintenancedb** 並且按一下它。在下一個頁面的底部，按一下 [管理]
 
-    ![](media\cortana-analytics-technical-guide-predictive-maintenance\icon-manage.png).
+	![](media\cortana-analytics-technical-guide-predictive-maintenance\icon-manage.png)。
 
-    Here, you can click on New Query and query for the number of rows (e.g. select count(*) from PMResult ). As your database grows, the number of rows in the table should  increase.
+	您可以在這裡按一下 [新增查詢]，並且查詢資料列的數目 (例如，從 PMResult 選取 count(*))。隨著您的資料庫成長，資料表中的資料列數目應該會增加。
 
 
-## <a name="**power-bi-dashboard**"></a>**Power BI Dashboard**
+## **Power BI 儀表板**
 
-### <a name="overview"></a>Overview
+### Overview
 
-This section describes how to set up Power BI dashboard to visualize your real time data from Azure stream analytics (hot path), as well as batch prediction results from Azure machine learning (cold path).
+本節說明如何設定 Power BI 儀表板，以視覺化方式檢視來自 Azure 串流分析 (熱路徑) 的即時資料，以及來自 Azure 機器學習 (冷路徑) 的 Batch 預測結果。
 
-### <a name="setup-cold-path-dashboard"></a>Setup cold path dashboard
+### 安裝程式冷路徑儀表板
 
-In the cold path data pipeline, the essential goal is to get the predictive RUL (remaining useful life) of each aircraft engine once it finishes a flight (cycle). The prediction result is updated every 3 hours for predicting the aircraft engines that have finished a flight during the past 3 hours.
+在冷路徑資料管線中，不可或缺的目標是在飛機完成航程 (循環) 後取得每個飛機引擎的預測 RUL (剩餘使用年限)。預測結果會每 3 個小時更新，用於預測在過去 3 小時內完成航班的飛機引擎。
 
-Power BI connects to an Azure SQL database as its data source, where the prediction results are stored. Note: 1) Upon deploying your solution, a real prediction will show up in the database within 3 hours.
-The pbix file that came with the Generator download contains some seed data so that you may create the Power BI dashboard right away. 2) In this step, the prerequisite is to download and install the free software [Power BI desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-get-the-desktop/).
+Power BI 會連接到 Azure SQL Database 做為其資料來源，即預測結果的儲存位置。附註：1) 在部署您的解決方案時，會在資料庫中顯示過去 3 小時內的實際預測。產生器下載隨附的 pbix 檔案包含一些種子資料，因此您可以立即建立 Power BI 儀表板。2) 在此步驟中，必要條件就是下載並安裝免費版軟體 [Power BI 桌面版](https://powerbi.microsoft.com/documentation/powerbi-desktop-get-the-desktop/)。
 
-The following steps will guide you on how to connect the pbix file to the SQL Database that was spun up at the time of solution deployment containing data (*e.g.*. prediction results) for visualization.
+下列步驟將引導您如何將 pbix 檔案連接到 SQL Database，該資料庫針對視覺效果在解決方案部署包含資料 (例如預測結果) 時加快運轉。
 
-1.  Get the database credentials.
+1.  取得資料庫認證。
 
-    You'll need **database server name, database name, user name and password** before moving to next steps. Here are the steps to guide you how to find them.
+    在移至後續步驟之前，您將需要**資料庫伺服器名稱、資料庫名稱、使用者名稱和密碼**。以下是引導您如何尋找的步驟。
 
-    -   Once **'Azure SQL Database'** on your solution template diagram turns green, click it and then click **'Open'**.
+    -   一旦您的解決方案範本圖表上的 **Azure SQL Database** 變成綠色，請按一下它，然後按一下 [開啟]。
 
-    -   You'll see a new browser tab/window which displays the Azure portal page. Click **'Resource groups'** on the left panel.
+    -   您會看到新的瀏覽器索引標籤/視窗，其中顯示 Azure 入口網站頁面。按一下左側面板上的 [資源群組]。
 
-    -   Select the subscription you're using for deploying the solution, and then select **'YourSolutionName\_ResourceGroup'**.
+    -   選取您用於部署解決方案的訂用帳戶，然後選取 [YourSolutionName\_ResourceGroup]。
 
-    -   In the new pop out panel, click the  ![](media\cortana-analytics-technical-guide-predictive-maintenance\icon-sql.png) icon to access your database. Your database name is next to the this icon (*e.g.*, **'pmaintenancedb'**), and  the **database server name** is listed under the Server name property and should look similar to **YourSoutionName.database.windows.net**.
+    -   在新快顯面板中，按一下 ![](media\cortana-analytics-technical-guide-predictive-maintenance\icon-sql.png) 圖示來存取您的資料庫。您的資料庫名稱在這個圖示旁邊 (例如，**'pmaintenancedb'**)，而 **資料庫伺服器名稱**則列在伺服器名稱屬性下方，看起來應該類似 **YourSoutionName.database.windows.net**。
 
-    -   Your database **username** and **password** are the same as the username and password previously recorded during deployment of the solution.
+	-   您的資料庫**使用者名稱**和**密碼**使用解決方案部署期間記錄的相同使用者名稱和密碼。
 
-2.  Update the data source of the cold path report file with Power BI Desktop.
+2.  使用 Power BI 桌面版來更新冷路徑報告檔案的資料來源。
 
-    -   In the folder on your PC where you downloaded and unzipped the Generator file, double-click the **PowerBI\\PredictiveMaintenanceAerospace.pbix** file. If you see any warning messages when you open the file, ignore them. On the top of the file, click **'Edit Queries'**.
+    -   在您下載並解壓縮產生器檔案之電腦上的資料夾中，按兩下 **PowerBI\\PredictiveMaintenanceAerospace.pbix** 檔案。如果您開啟檔案時看到任何警告訊息，請忽略它們。在檔案的頂端按一下 [編輯查詢]。
 
-        ![](media\cortana-analytics-technical-guide-predictive-maintenance\edit-queries.png)
+	    ![](media\cortana-analytics-technical-guide-predictive-maintenance\edit-queries.png)
 
-    -   You'll see two tables, **RemainingUsefulLife** and **PMResult**. Select the first table and click ![](media\cortana-analytics-technical-guide-predictive-maintenance\icon-query-settings.png) next to **'Source'** under **'APPLIED STEPS'** on the right **'Query Settings'** panel. Ignore any warning messages that appear.
+	-	您會看到兩個資料表，**RemainingUsefulLife** 和 **PMResult**。選取第一個資料表，然後在右側 [查詢設定] 面板中 [套用的步驟] 下按一下 [來源] 旁的 ![](media\cortana-analytics-technical-guide-predictive-maintenance\icon-query-settings.png)。略過任何出現的警告訊息。
 
-    -   In the pop out window, replace **'Server'** and **'Database'** with your own server and database names, and then click **'OK'**. For server name, make sure you specify the port 1433 (**YourSoutionName.database.windows.net, 1433**). Leave the Database field as **pmaintenancedb**. Ignore the warning messages that appear on the screen.
+    -   在快顯視窗中，將 [伺服器] 和 [資料庫] 取代為您自己的伺服器和資料庫名稱，然後按一下 [確定]。針對伺服器名稱，請確定您指定連接埠 1433 (**YourSoutionName.database.windows.net, 1433**)。讓 [資料庫] 欄位保持 [pmaintenancedb]。忽略畫面上出現的警告訊息。
 
-    -   In the next pop out window, you'll see two options on the left pane (**Windows** and **Database**). Click **'Database'**, fill in your **'Username'** and **'Password'** (this is the username and password you entered when you first deployed the solution and created an Azure SQL database). In ***Select which level to apply these settings to***, check database level option. Then click **'Connect'**.
+    -   在下一個快顯視窗中，您會在左側窗格上看到兩個選項 (**Windows** 和**資料庫**)。按一下 [資料庫]，填入您的 [使用者名稱] 和 [密碼] \(這是當您首次部署解決方案並建立 Azure SQL Database 時輸入的使用者名稱和密碼)。在 [選取要套用這些設定的層級] 中，請勾選資料庫層級選項。然後按一下 [連接]。
 
-    -   Click on the second table **PMResult** then click ![](media\cortana-analytics-technical-guide-predictive-maintenance\icon-navigation.png) next to **'Source'** under **'APPLIED STEPS'** on the right **'Query Settings'** panel, and update the server and database names as in the above steps and click OK.
+    -   按一下第二個資料表 **PMResult**，然後在右側 [查詢設定] 面板中 [套用的步驟] 下按一下 [來源] 旁的 ![](media\cortana-analytics-technical-guide-predictive-maintenance\icon-navigation.png)，並如上述步驟更新伺服器和資料庫名稱，然後按一下 [確定]。
 
-    -   Once you're guided back to the previous page, close the window. A message will pop out - click **Apply**. Lastly, click the **Save** button to save the changes. Your Power BI file has now established connection to the server. If your visualizations are empty, make sure you clear the selections on the visualizations to visualize all the data by clicking the eraser icon on the upper right corner of the legends. Use the refresh button to reflect new data on the visualizations. Initially, you will only see the seed data on your visualizations as the data factory is scheduled to refresh every 3 hours. After 3 hours, you will see new predictions reflected in your visualizations when you refresh the data.
+    -   一旦引導您回到上一頁，請關閉視窗。訊息將會蹦現 - 按一下 [套用]。最後，按一下 [儲存] 按鈕以儲存變更。您的 Power BI 檔案現在已建立與伺服器的連線。如果視覺效果是空的，請確定將視覺效果上的選取範圍都清除，以將所有資料視覺化，成法是按一下圖例右上角的橡皮擦圖示。使用重新整理按鈕在視覺效果上反映新的資料。最初，您只會在視覺效果上看到種子資料，因為 Data Factory 排定為每 3 個小時重新整理。3 小時後，當您重新整理資料時，您會看到新的預測反映在視覺效果中。
 
-3.  (Optional) Publish the cold path dashboard to [Power BI online](http://www.powerbi.com/). Note that this step needs a Power BI account (or Office 365 account).
+3.  (選擇性) 將冷路徑儀表板發佈至 [Power BI 線上版](http://www.powerbi.com/)。請注意，這個步驟需要 Power BI 帳戶 (或 Office 365 帳戶)。
 
-    -   Click **'Publish'** and few seconds later a window appears displaying "Publishing to Power BI Success!" with a green check mark. Click the link below "Open PredictiveMaintenanceAerospace.pbix in Power BI". To find detailed instructions, see [Publish from Power BI Desktop](https://support.powerbi.com/knowledgebase/articles/461278-publish-from-power-bi-desktop).
+    -   按一下 [發佈]，幾秒鐘後會出現一個視窗顯示帶有綠色核取記號的「發佈至 Power BI 成功!」。按一下 [在 Power BI 中開啟 PredictiveMaintenanceAerospace.pbix] 下方的連結。若要尋找詳細的指示，請參閱[從 Power BI Desktop 桌面版發佈](https://support.powerbi.com/knowledgebase/articles/461278-publish-from-power-bi-desktop)。
 
-    -   To create a new dashboard: click the **+** sign next to the **Dashboards** section on the left pane. Enter the name "Predictive Maintenance Demo" for this new dashboard.
+    -   若要建立新儀表板：在左側窗格中按一下 [儀表板] 區段旁的 **+** 號。為這個新儀表板輸入名稱「預測性維護示範」。
 
-    -   Once you open the report, click ![](media\cortana-analytics-technical-guide-predictive-maintenance\icon-pin.png) to pin all the visualizations to your dashboard. To find detailed instructions, see [Pin a tile to a Power BI dashboard from a report](https://support.powerbi.com/knowledgebase/articles/430323-pin-a-tile-to-a-power-bi-dashboard-from-a-report).
-    Go to the dashboard page and adjust the size and location of your visualizations and edit their titles. To find detailed instructions on how to edit your tiles, see [Edit a tile -- resize, move, rename, pin, delete, add hyperlink](https://powerbi.microsoft.com/documentation/powerbi-service-edit-a-tile-in-a-dashboard/#rename). Here is an example dashboard with some cold path visualizations pinned to it.  Depending on how long you run your data generator, your numbers on the visualizations may be different.
-    <br/>
-    ![](media\cortana-analytics-technical-guide-predictive-maintenance\final-view.png)
-<br/>
-    -   To schedule refresh of the data, hover your mouse over the **PredictiveMaintenanceAerospace** dataset, click ![](media\cortana-analytics-technical-guide-predictive-maintenance\icon-elipsis.png) and then choose **Schedule Refresh**.
-<br/>
-        **Note:** If you see a warning massage, click **Edit Credentials** and make sure your database credentials are the same as those described in step 1.
-<br/>
-    ![](media\cortana-analytics-technical-guide-predictive-maintenance\schedule-refresh.png)
-<br/>
-    -   Expand the **Schedule Refresh** section. Turn on "keep your data up-to-date".
-    <br/>
-    -   Schedule the refresh based on your needs. To find more information, see [Data refresh in Power BI](https://support.powerbi.com/knowledgebase/articles/474669-data-refresh-in-power-bi).
+    -   一旦您開啟報告，請按一下 ![](media\cortana-analytics-technical-guide-predictive-maintenance\icon-pin.png)，將所有視覺效果釘選到儀表板。若要尋找詳細的指示，請參閱[從報告將磚釘選至 Power BI 儀表板](https://support.powerbi.com/knowledgebase/articles/430323-pin-a-tile-to-a-power-bi-dashboard-from-a-report)。前往儀表板頁面並調整視覺效果的大小和位置，以及編輯其標題。若要尋找如何編輯您的磚的詳細說明，請參閱[編輯磚 -- 調整大小、移動、重新命名、釘選、刪除、加入超連結](https://powerbi.microsoft.com/documentation/powerbi-service-edit-a-tile-in-a-dashboard/#rename)。以下是具有釘選了一些冷路徑視覺效果的範例儀表板。根據執行資料產生器的時間長度，在視覺效果上的數字可能會不同。<br/> ![](media\cortana-analytics-technical-guide-predictive-maintenance\final-view.png) <br/>
+    -   若要排程資料的重新整理，請將滑鼠移 **PredictiveMaintenanceAerospace** 資料集，按一下 ![](media\cortana-analytics-technical-guide-predictive-maintenance\icon-elipsis.png)，然後選擇 [排程重新整理]。<br/> **附註：**如果您看到警告訊息，請按一下 [編輯認證]，並確定您的資料庫認證與步驟 1 中所述相同。<br/> ![](media\cortana-analytics-technical-guide-predictive-maintenance\schedule-refresh.png) <br/>
+    -   展開**排程重新整理**一節。開啟「將您的資料保持最新」。<br/>
+    -   根據您的需求排程重新整理。若要尋找詳細資訊，請參閱 [Power BI 中的資料重新整理](https://support.powerbi.com/knowledgebase/articles/474669-data-refresh-in-power-bi)。
 
-### <a name="setup-hot-path-dashboard"></a>Setup hot path dashboard
+### 安裝程式最忙碌路徑儀表板
 
-The following steps will guide you how to visualize real time data output from Stream Analytics jobs that were generated at the time of solution deployment. A [Power BI online](http://www.powerbi.com/) account is required to perform the following steps. If you don't have an account, you can [create one](https://powerbi.microsoft.com/pricing).
+下列步驟將引導您如何以視覺化方式檢視解決方案部署時所產生串流分析作業的即時資料輸出。需要 [Power BI 線上版](http://www.powerbi.com/)帳戶，才能執行下列步驟。如果您沒有帳戶，您可以[建立一個](https://powerbi.microsoft.com/pricing)。
 
-1.  Add Power BI output in Azure Stream Analytics (ASA).
+1.  在 Azure 串流分析 (ASA) 中加入 Power BI 輸出。
 
-    -  You will need to follow the instructions in [Azure Stream Analytics & Power BI: A real-time analytics dashboard for real-time visibility of streaming data](stream-analytics-power-bi-dashboard.md) to set up the output of your Azure Stream Analytics job as your Power BI dashboard.
-    - The ASA query has three outputs which are **aircraftmonitor**, **aircraftalert**, and **flightsbyhour**. You can view the query by clicking on query tab. Corresponding to each of these tables, you will need to add an output to ASA. When you add the first output (*e.g.* **aircraftmonitor**) make sure the **Output Alias**, **Dataset Name** and **Table Name** are the same (**aircraftmonitor**). Repeat the steps to add outputs for **aircraftalert**, and **flightsbyhour**. Once you have added all three output tables and started the ASA job, you should get a confirmation message (*e.g.*, "Starting stream analytics job maintenancesa02asapbi succeeded").
+    -  您必須依照 [Azure 串流分析及 Power BI：適用於串流資料即時可見度的即時分析儀表板](stream-analytics-power-bi-dashboard.md)中的指示來將 Azure 串流分析作業的輸出設定為 Power BI 儀表板。
+	- ASA 查詢有三個輸出，分別是 **aircraftmonitor**、**aircraftalert** 和 **flightsbyhour**。按一下 [查詢] 索引標籤，就可以檢視查詢。對應至每一個資料表，您必須將輸出新增到 ASA。當您新增第一個輸出 (例如 **aircraftmonitor**) 時，請確定**輸出別名**、**資料集名稱**和**資料表名稱**皆相同 (**aircraftmonitor**)。重複這些步驟來新增 **aircraftalert** 和 **flightsbyhour** 的輸出。一旦您加入這三個輸出資料表，並啟動 ASA 作業，應該會取得確認訊息 (例如，「啟動串流分析作業 maintenancesa02asapbi 成功」)。
 
-2. Log in to [Power BI online](http://www.powerbi.com)
+2. 登入 [Power BI 線上版](http://www.powerbi.com)
 
-    -   On the left panel Datasets section in My Workspace, the ***DATASET*** names **aircraftmonitor**, **aircraftalert**, and **flightsbyhour** should appear.This is the streaming data you pushed from Azure Stream Analytics in the previous step.The dataset **flightsbyhour** may not show up at the same time as the other two datasets due to the nature of the SQL query behind it. However, it should show up after an hour.
-    -   Make sure the ***Visualizations*** pane is open and is shown on the right side of the screen.
+    -   在 [我的工作區] 中的左側面板 [資料集] 區段，**DATASET** 名稱 **aircraftmonitor**、**aircraftalert** 和 **flightsbyhour** 應該會出現。這是您在上一個步驟中從 Azure 串流分析推送的串流資料。由於其背後的 SQL 查詢本質使然，資料集 **flightsbyhour** 可能不會和其他兩個資料集同時顯示。不過，它應該會在一個小時之後出現。
+    -   請確定 [視覺效果] 窗格開啟，並顯示在螢幕的右邊。
 
-3. Once you have the data flowing into Power BI, you can start visualizing the streaming data. Below is an example dashboard with some hot path visualizations pinned to it. You can create other dashboard tiles based on appropriate datasets. Depending on how long you run your data generator, your numbers on the visualizations may be different.
+3. 將資料傳送到 Power BI 之後，您就可以開始視覺化串流資料。以下是具有釘選了一些最忙碌路徑視覺效果的範例儀表板。您可以根據適當的資料集建立其他儀表板磚。根據執行資料產生器的時間長度，在視覺效果上的數字可能會不同。
 
 
     ![](media\cortana-analytics-technical-guide-predictive-maintenance\dashboard-view.png)
 
-4. Here are some steps to create one of the tiles above –  the "Fleet View of Sensor 11 vs. Threshold 48.26" tile:
+4. 以下是一些用來建立上述其中一個磚的步驟 -「感應器 11 與閾值 48.26 的機隊檢視」磚：
 
-    -   Click dataset **aircraftmonitor** on the left panel Datasets section.
+    -   在左側面板 [資料集] 區段中按一下資料集 **aircraftmonitor**。
 
-    -   Click the **Line Chart** icon.
+    -   按一下 [折線圖] 圖示。
 
-    -   Click **Processed** in the **Fields** pane so that it shows under "Axis" in the **Visualizations** pane.
+    -   按一下 [欄位] 窗格中的 [已處理]，就會在 [視覺效果] 窗格中的「軸」底下顯示。
 
-    -   Click "s11" and "s11\_alert" so that they both appear under "Values". Click the small arrow next to **s11** and **s11\_alert**, change "Sum" to "Average".
+    -   按一下 "s11" 和 "s11\_alert"，使它們都出現在「值」下。按一下 **s11** 和 **s11\_alert** 旁邊的小箭頭，將「總和」變更為「平均」。
 
-    -   Click **SAVE** on the top and name the report "aircraftmonitor". The report named "aircraftmonitor" will be shown in the **Reports** section in the **Navigator** pane on the left.
+    -   按一下上方的 [儲存] 並將報告命名為 "aircraftmonitor"。名為 "aircraftmonitor" 的報告會顯示在左側 [導覽] 窗格的 [報告] 區段中。
 
-    -   Click the **Pin Visual** icon on the top right corner of this line chart. A "Pin to Dashboard" window may show up for you to choose a dashboard. Select "Predictive Maintenance Demo", then click "Pin".
+    -   按一下此折線圖右上角的 [釘選視覺] 圖示。可能出現「釘選至儀表板」視窗供您選擇儀表板。選取 [預測性維護示範]，然後按一下 [釘選]。
 
-    -   Hover the mouse over this tile on the dashboard, click the "edit" icon on the top right corner to change its title to "Fleet View of Sensor 11 vs. Threshold 48.26" and subtitle to "Average across fleet over time".
+    -   在儀表板上將滑鼠停留在此磚中，按一下右上角的 [編輯] 圖示可將其標題變更為「感應器 11 與閾值 48.26 的機隊檢視」和副標題變更為「機隊經過一段時間的平均值」。
 
-## <a name="**how-to-delete-your-solution**"></a>**How to delete your solution**
-Please ensure that you stop the data generator when not actively using the solution as running the data generator will incur higher costs. Please delete the solution if you are not using it. Deleting your solution will delete all the components provisioned in your subscription when you deployed the solution. To delete the solution click on your solution name in the left panel of the solution template and click on delete.
+## **如何刪除解決方案**
+請確定您在未積極使用解決方案時有停止資料產生器，因為執行資料產生器將會產生較高的成本。如果不使用解決方案，請將其刪除。刪除解決方案時，將會刪除您在部署解決方案時於訂用帳戶中佈建的所有元件。如果要刪除解決方案，請在解決方案範本左側面板中按一下該解決方案的名稱，然後按一下 [刪除]。
 
-## <a name="**cost-estimation-tools**"></a>**Cost estimation tools**
+## **成本估計工具**
 
-The following two tools are available to help you better understand the total costs involved in running the Predictive Maintenance for Aerospace Solution Template in your subscription:
+下列兩項工具可協助您進一步了解在您的訂用帳戶中執行航太解決方案範本的預測性維護所牽涉的總成本：
 
--   [Microsoft Azure Cost Estimator Tool (online)](https://azure.microsoft.com/pricing/calculator/)
+-   [Microsoft Azure Cost Estimator Tool (線上版)](https://azure.microsoft.com/pricing/calculator/)
 
--   [Microsoft Azure Cost Estimator Tool (desktop)](http://www.microsoft.com/download/details.aspx?id=43376)
+-   [Microsoft Azure Cost Estimator Tool (桌面版)](http://www.microsoft.com/download/details.aspx?id=43376)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

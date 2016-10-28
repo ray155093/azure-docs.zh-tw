@@ -1,63 +1,58 @@
 <properties
-    pageTitle="Manage Azure Key Vault using Azure Automation | Microsoft Azure"
-    description="Learn about how the Azure Automation service can be used to manage Azure Key Vault."
-    services="Key-Vault, automation"
-    documentationCenter=""
-    authors="mgoedtel"
-    manager="jwhit"
-    editor=""/>
+	pageTitle="使用 Azure 自動化管理 Azure 金鑰保存庫 | Microsoft Azure"
+	description="了解如何使用 Azure 自動化服務來管理 Azure 金鑰保存庫。"
+	services="Key-Vault, automation"
+	documentationCenter=""
+	authors="mgoedtel"
+	manager="jwhit"
+	editor=""/>
 
 <tags
-    ms.service="key-vault"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="07/29/2016"
-    ms.author="magoedte;csand"/>
+	ms.service="key-vault"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/29/2016"
+	ms.author="magoedte;csand"/>
+
+#使用 Azure 自動化管理 Azure 金鑰保存庫
+
+本指南將為您介紹 Azure 自動化服務，以及如何使用它來簡化管理 Azure 金鑰保存庫中的金鑰和密碼。
+
+## 什麼是 Azure 自動化？
+
+[Azure 自動化](../automation/automation-intro.md)是一項 Azure 服務，可經由程序自動化和所要的狀態組態簡化雲端管理。使用 Azure 自動化，可以自動執行手動、重複、長時間執行及容易出錯的工作，以提高您的組織的可靠性、效率和時間價值。
+
+Azure 自動化提供高度可靠、高度可用的工作流程執行引擎，可加以調整以符合您的需求。在 Azure 自動化中，可以手動方式、由協力廠商系統或依排定的間隔開始執行程序，讓工作只發生在必要時刻。
+
+將您的雲端管理工作交由「Azure 自動化」自動執行，以減少營運負擔並釋出 IT 和開發維運人力，使其專注於能夠為企業創造價值的工作上。
 
 
-#<a name="managing-azure-key-vault-using-azure-automation"></a>Managing Azure Key Vault using Azure Automation
+## Azure 自動化如何協助管理 Azure 金鑰保存庫？
 
-This guide will introduce you to the Azure Automation service and how it can be used to simplify management of your keys and secrets in Azure Key Vault.
+您可以使用 [AzureRM 金鑰保存庫 Cmdlet](https://www.powershellgallery.com/packages/AzureRM.KeyVault/1.1.4) 和 [Azure 傳統金鑰保存庫 Cmdlet](https://msdn.microsoft.com/library/azure/dn868052.aspx)，在 Azure 自動化中管理金鑰保存庫。管理傳統金鑰保存庫的 Azure 模組會自動出現在 Azure 自動化中供您使用，而且您可以將 [AzureRM-KeyVault 模組](https://www.powershellgallery.com/packages/AzureRM.KeyVault/1.1.4)匯入 Azure 自動化，以便在服務中執行許多金鑰保存庫管理工作。您也可以將 Azure 自動化中的這些 Cmdlet 與其他 Azure 服務的 Cmdlet 搭配，以透過 Azure 服務和協力廠商系統自動執行複雜的工作。
 
-## <a name="what-is-azure-automation?"></a>What is Azure Automation?
+使用 Azure 金鑰保存庫 Cmdlet，您可以執行以下工作和其他工作︰
 
-[Azure Automation](../automation/automation-intro.md) is an Azure service for simplifying cloud management through process automation and desired state configuration. Using Azure Automation, manual, repeated, long-running, and error-prone tasks can be automated to increase reliability, efficiency, and time to value for your organization.
+- 建立和設定金鑰保存庫
+- 建立或匯入金鑰
+- 建立或更新密碼
+- 更新金鑰的屬性
+- 取得金鑰或密碼
+- 刪除金鑰或密碼
 
-Azure Automation provides a highly-reliable, highly-available workflow execution engine that scales to meet your needs. In Azure Automation, processes can be kicked off manually, by 3rd-party systems, or at scheduled intervals so that tasks happen exactly when needed.
+以下是使用 PowerShell 來管理金鑰保存庫的一些範例︰
 
-Reduce operational overhead and free up IT and DevOps staff to focus on work that adds business value by moving your cloud management tasks to be run automatically by Azure Automation.
-
-
-## <a name="how-can-azure-automation-help-manage-azure-key-vault?"></a>How can Azure Automation help manage Azure Key Vault?
-
-Key Vault can be managed in Azure Automation by using the [AzureRM Key Vault cmdlets] (https://www.powershellgallery.com/packages/AzureRM.KeyVault/1.1.4) and [Azure Classic Key Vault cmdlets](https://msdn.microsoft.com/library/azure/dn868052.aspx). The Azure module for managing classic Key Vault is available automatically in Azure Automation, and you can import the [AzureRM-KeyVault module](https://www.powershellgallery.com/packages/AzureRM.KeyVault/1.1.4) into Azure Automation, so that you can perform many of your Key Vault management tasks within the service. You can also pair these cmdlets in Azure Automation with the cmdlets for other Azure services, to automate complex tasks across Azure services and 3rd party systems.
-
-With the Azure Key Vault cmdlets you can perform these tasks among others: 
-
-- Create and configure a key vault
-- Create or import a key
-- Create or update a secret
-- Update attributes of a key
-- Get a key or secret
-- Delete a key or secret
-
-Here are some examples of using PowerShell to manage Key Vault:  
-
-* [Azure Key Vault - Step by Step](https://blogs.technet.microsoft.com/kv/2015/06/02/azure-key-vault-step-by-step)
-* [Setting Up and Configuring an Azure Key Vault](https://www.simple-talk.com/cloud/platform-as-a-service/setting-up-and-configuring-an-azure-key-vault)
+* [Azure 金鑰保存庫 - 逐步解說](https://blogs.technet.microsoft.com/kv/2015/06/02/azure-key-vault-step-by-step)
+* [設定 Azure 金鑰保存庫](https://www.simple-talk.com/cloud/platform-as-a-service/setting-up-and-configuring-an-azure-key-vault)
 
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-Now that you've learned the basics of Azure Automation and how it can be used to manage Azure Key Vault, follow these links to learn more about Azure Automation.
+了解 Azure 自動化的基本概念以及如何用它來管理 Azure 金鑰保存庫之後，請參考下列連結，以深入了解 Azure 自動化。
 
-* See the Azure Automation [Getting Started Tutorial](../automation/automation-first-runbook-graphical.md).
-* See the [Azure Key Vault PowerShell scripts](https://gallery.technet.microsoft.com/scriptcenter/site/search?query=azure%20key%20vault&f%5B0%5D.Value=azure%20key%20vault&f%5B0%5D.Type=SearchText&ac=5).
+* 請參閱 Azure 自動化[快速入門教學課程](../automation/automation-first-runbook-graphical.md)。
+* 請參閱 [Azure 金鑰保存庫 PowerShell 指令碼](https://gallery.technet.microsoft.com/scriptcenter/site/search?query=azure%20key%20vault&f%5B0%5D.Value=azure%20key%20vault&f%5B0%5D.Type=SearchText&ac=5)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

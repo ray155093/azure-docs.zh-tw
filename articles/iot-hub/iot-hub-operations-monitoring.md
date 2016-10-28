@@ -1,6 +1,6 @@
 <properties
- pageTitle="IoT Hub operations monitoring"
- description="An overview of Azure IoT Hub operations monitoring, enabling you to monitor the status of operations on your IoT hub in real time"
+ pageTitle="IoT 中樞作業監視"
+ description="Azure IoT 中樞的作業監視概觀，可讓您即時監視其 IoT 中樞上的作業狀態"
  services="iot-hub"
  documentationCenter=""
  authors="nberdy"
@@ -16,38 +16,37 @@
  ms.date="08/11/2016"
  ms.author="nberdy"/>
 
+# 作業監視簡介
 
-# <a name="introduction-to-operations-monitoring"></a>Introduction to operations monitoring
+IoT 中樞的作業監視可讓您即時監視其 IoT 中樞上的作業狀態。IoT 中樞會追蹤數個作業類別的事件，而且您可以選擇傳送一個或多個類別的事件至其 IoT 中樞的端點進行處理。您可以監視資料中是否有錯誤，或根據資料模式設定更複雜的處理行為。
 
-IoT Hub operations monitoring enables you to monitor the status of operations on your IoT hub in real time. IoT Hub tracks events across several categories of operations, and you can opt into sending events from one or more categories to an endpoint of your IoT hub for processing. You can monitor the data for errors or set up more complex processing based on data patterns.
+IoT 中樞會監視五個類別的事件：
 
-IoT Hub monitors five categories of events:
+- 裝置身分識別作業
+- 裝置遙測
+- 雲端到裝置的命令
+- 連線
+- 檔案上傳
 
-- Device identity operations
-- Device telemetry
-- Cloud-to-device commands
-- Connections
-- File uploads
+## 如何啟用作業監視
 
-## <a name="how-to-enable-operations-monitoring"></a>How to enable operations monitoring
+1. 建立 IoT 中樞。您可以在[開始使用][lnk-get-started]指南中找到如何建立 IoT 中樞的指示。
 
-1. Create an IoT hub. You can find instructions on how to create an IoT hub in the [Get Started][lnk-get-started] guide.
-
-2. Open the blade of your IoT hub. From there, click **Operations monitoring**.
+2. 開啟 IoT 中樞的刀鋒視窗。按一下其中的 [作業監視]。
 
     ![][1]
 
-3. Select the monitoring categories you wish you monitor, and then click **Save**. The events are available for reading from the Event Hub-compatible endpoint listed in **Monitoring settings**. The IoT Hub endpoint is called `messages/operationsmonitoringevents`.
+3. 選取您要監視的監視類別，然後按一下 [儲存]。您可以從 [監視設定] 中所列出的事件中樞相容端點讀取事件。IoT 中樞端點稱為 `messages/operationsmonitoringevents`。
 
     ![][2]
 
-## <a name="event-categories-and-how-to-use-them"></a>Event categories and how to use them
+## 事件類別和其使用方式
 
-Each operations monitoring category tracks a different type of interaction with IoT Hub, and each monitoring category has a schema that defines how events in that category are structured.
+每個作業監視類別會各自追蹤與 IoT 中樞所進行的不同類型的互動，而每一個監視類別都有結構描述來定義該類別的事件要如何構成。
 
-### <a name="device-identity-operations"></a>Device identity operations
+### 裝置身分識別作業
 
-The device identity operations category tracks errors that occur when you attempt to create, update, or delete an entry in your IoT hub's identity registry. Tracking this category is useful for provisioning scenarios.
+裝置身分識別作業類別會追蹤您嘗試在其 IoT 中樞的身分識別登錄中建立、更新或刪除項目時所發生的錯誤。佈建案例就很適合追蹤此類別。
 
     {
         "time": "UTC timestamp",
@@ -62,15 +61,15 @@ The device identity operations category tracks errors that occur when you attemp
          "sharedAccessPolicy": "accessPolicy"
     }
 
-### <a name="device-telemetry"></a>Device telemetry
+### 裝置遙測
 
-The device telemetry category tracks errors that occur at the IoT hub and are related to the telemetry pipeline. This category includes errors that occur when sending telemetry events (such as throttling) and receiving telemetry events (such as unauthorized reader). Note that this category cannot catch errors caused by code running on the device itself.
+裝置遙測類別會追蹤在 IoT 中樞發生，且與遙測管線相關的錯誤。此類別包括在傳送遙測事件 (例如節流) 和接收遙測事件 (例如未經授權的讀取器) 時所發生的錯誤。請注意，這個類別無法捕捉裝置本身所執行之程式碼所造成的錯誤。
 
     {
          "messageSizeInBytes": 1234,
          "batching": 0,
          "protocol": "Amqp",
-         "authType": "{\"scope\":\"device\",\"type\":\"sas\",\"issuer\":\"iothub\"}",
+         "authType": "{"scope":"device","type":"sas","issuer":"iothub"}",
          "time": "UTC timestamp",
          "operationName": "ingress",
          "category": "DeviceTelemetry",
@@ -84,13 +83,13 @@ The device telemetry category tracks errors that occur at the IoT hub and are re
          "EventEnqueuedUtcTime": "UTC timestamp"
     }
 
-### <a name="cloud-to-device-commands"></a>Cloud-to-device commands
+### 雲端到裝置的命令
 
-The cloud-to-device commands category tracks errors that occur at the IoT hub and are related to the device command pipeline. This category includes errors that occur when sending commands (such as unauthorized sender), receiving commands (such as delivery count exceeded), and receiving command feedback (such as feedback expired). This category does not catch errors from a device that improperly handles a command if the command was delivered successfully.
+雲端到裝置的命令類別會追蹤在 IoT 中樞發生，且與裝置命令管線相關的錯誤。這個類別包括在傳送命令 (例如未經授權的寄件者)、接收命令 (例如超過傳遞計數) 和接收命令回饋 (例如回饋已過期) 時所發生的錯誤。此類別不會捕捉未正確處理命令但卻將其成功傳遞之裝置所發生的錯誤。
 
     {
          "messageSizeInBytes": 1234,
-         "authType": "{\"scope\":\"hub\",\"type\":\"sas\",\"issuer\":\"iothub\"}",
+         "authType": "{"scope":"hub","type":"sas","issuer":"iothub"}",
          "deliveryAcknowledgement": 0,
          "protocol": "Amqp",
          "time": " UTC timestamp",
@@ -106,13 +105,13 @@ The cloud-to-device commands category tracks errors that occur at the IoT hub an
          "EventEnqueuedUtcTime": “UTC timestamp"
     }
 
-### <a name="connections"></a>Connections
+### 連線
 
-The connections category tracks errors that occur when devices connect or disconnect from an IoT hub. Tracking this category is useful for identifying unauthorized connection attempts and for tracking when a connection is lost for devices in areas of poor connectivity.
+連線類別會追蹤當裝置與 IoT 中樞連線或中斷連線時發生的錯誤。若想識別未經授權的連線嘗試，以及在連線品質不佳之區域內的裝置中斷連線時進行追蹤，就很適合追蹤此類別。
 
     {
          "durationMs": 1234,
-         "authType": "{\"scope\":\"hub\",\"type\":\"sas\",\"issuer\":\"iothub\"}",
+         "authType": "{"scope":"hub","type":"sas","issuer":"iothub"}",
          "protocol": "Amqp",
          "time": " UTC timestamp",
          "operationName": "deviceConnect",
@@ -124,12 +123,12 @@ The connections category tracks errors that occur when devices connect or discon
          "deviceId": "device-ID"
     }
 
-### <a name="file-uploads"></a>File uploads
+### 檔案上傳
 
-The file upload category tracks errors that occur at the IoT hub and are related to file upload functionality. This category includes errors that occur with the SAS URI (such as when it expires before a device notifies the hub of a completed upload), failed uploads reported by the device, and when a file is not found in storage during IoT Hub notification message creation. Note that this category cannot catch errors that directly occur while the device is uploading a file to storage.
+檔案上傳類別會追蹤在 IoT 中樞發生且與檔案上傳功能相關的錯誤。這個類別包括因 SAS URI 而發生的錯誤 (例如當它在裝置通知中樞上傳完成之前即已到期時)、因裝置回報上傳失敗而發生的錯誤，以及在「IoT 中樞」通知訊息建立期間於儲存體中找不到檔案時發生的錯誤。請注意，此類別無法捕捉直接發生在裝置將檔案上傳到儲存體時的錯誤。
 
     {
-         "authType": "{\"scope\":\"hub\",\"type\":\"sas\",\"issuer\":\"iothub\"}",
+         "authType": "{"scope":"hub","type":"sas","issuer":"iothub"}",
          "protocol": "HTTP",
          "time": " UTC timestamp",
          "operationName": "ingress",
@@ -143,12 +142,16 @@ The file upload category tracks errors that occur at the IoT hub and are related
          "durationMs": 1234
     }
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-To further explore the capabilities of IoT Hub, see:
+現在您已了解作業監視的概觀，請參閱[管理 IoT 中樞的存取權][lnk-itpro]，以取得管理 IoT 中樞的其他相關資訊。
 
-- [Developer guide][lnk-devguide]
-- [Simulating a device with the Gateway SDK][lnk-gateway]
+若要進一步探索 IoT 中樞的功能，請參閱︰
+
+- [設計您的解決方案][lnk-design]
+- [開發人員指南][lnk-devguide]
+- [使用範例 UI 探索裝置管理][lnk-dmui]
+- [使用閘道 SDK 模擬裝置][lnk-gateway]
 
 <!-- Links and images -->
 [1]: media/iot-hub-operations-monitoring/enable-OM-1.png
@@ -159,10 +162,11 @@ To further explore the capabilities of IoT Hub, see:
 [lnk-scaling]: iot-hub-scaling.md
 [lnk-dr]: iot-hub-ha-dr.md
 
+[lnk-itpro]: iot-hub-itpro-info.md
+
+[lnk-design]: iot-hub-guidance.md
 [lnk-devguide]: iot-hub-devguide.md
+[lnk-dmui]: iot-hub-device-management-ui-sample.md
 [lnk-gateway]: iot-hub-linux-gateway-sdk-simulated-device.md
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

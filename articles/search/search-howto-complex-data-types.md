@@ -1,11 +1,11 @@
 <properties
-    pageTitle="How to model complex data types in Azure Search | Microsoft Azure Search"
-    description="Nested or hierarchical data structures can be modeled in an Azure Search index using flattened rowset and Collections data type."
+    pageTitle="如何在 Azure 搜尋服務中模型化複雜資料類型 | Microsoft Azure Search"
+    description="在 Azure 搜尋服務索引中，可以使用扁平化資料列集和 Collections 資料類型來模型化巢狀或階層式資料結構。"
     services="search"
     documentationCenter=""
-    authors="LiamCa"
-    manager="pablocas"
-    editor=""
+	authors="LiamCa"
+	manager="pablocas"
+	editor=""
     tags="complex data types; compound data types; aggregate data types"
 />
 
@@ -19,16 +19,15 @@
     ms.author="liamca"
 />
 
+# 如何在 Azure 搜尋服務中模型化複雜資料類型
 
-# <a name="how-to-model-complex-data-types-in-azure-search"></a>How to model complex data types in Azure Search
+用來填入 Azure 搜尋服務索引的外部資料集，有時包含不會整齊細分成表格式資料列集的階層式或巢狀子結構。這類結構的範例可能包含單一客戶的多個位置和電話號碼、單一 SKU 的多種色彩和大小、單一書籍的多位作者等等。就模型化而論，您可能會看到這些結構稱之為「複雜資料類型」、「複合資料類型」、「合成資料類型」或「彙總資料類型」等等。
 
-External datasets used to populate an Azure Search index sometimes include hierarchical or nested substructures that do not break down neatly into a tabular rowset. Examples of such structures might include multiple locations and phone numbers for a single customer, multiple colors and sizes for a single SKU, multiple authors of a single book, and so on. In modeling terms, you might see these structures referred to as *complex data types*, *compound data types*, *composite data types*, or *aggregate data types*, to name a few.
+Azure 搜尋服務中原先不支援複雜資料類型，但經過實證的因應措施包括結構扁平化的程序 (包含兩個步驟)，然後使用 **Collection** 資料類型來重新構成內部結構。遵循本文所述的技巧，以便搜尋、Facet 處理、篩選和排序內容。
 
-Complex data types are not natively supported in Azure Search, but a proven workaround includes a two-step process of flattening the structure and then using a **Collection** data type to reconstitute the interior structure. Following the technique described in this article allows the content to be searched, faceted, filtered, and sorted.
+## 複雜資料結構的範例
 
-## <a name="example-of-a-complex-data-structure"></a>Example of a complex data structure
-
-Typically, the data in question resides as a set of JSON or XML documents, or as items in a NoSQL store such as DocumentDB. Structurally, the challenge stems from having multiple child items that need to be searched and filtered.  As a starting point for illustrating the workaround, take the following JSON document that lists a set of contacts as an example:
+一般而言，有問題的資料會以一組 JSON 或 XML 文件的形式存在，或以項目形式存在於 NoSQL 存放區 (例如 DocumentDB)。在結構上，挑戰源自於有多個需要搜尋和篩選的子項目。在說明因應措施時，請首先採用下列 JSON 文件，其中列出一組連絡人做為範例︰
 
 ~~~~~
 [
@@ -64,22 +63,22 @@ Typically, the data in question resides as a set of JSON or XML documents, or as
 }]
 ~~~~~
 
-While the fields named ‘id’, ‘name’ and ‘company’ can easily be mapped one-to-one as fields within an Azure Search index, the ‘locations’ field contains an array of locations, having both a set of location IDs as well as location descriptions. Given that Azure Search does not have a data type that supports this, we need a different way to model this in Azure Search. 
+雖然名為 ‘id’、‘name’ 和 ‘company’ 的欄位可以輕易地逐一對應成 Azure 搜尋服務索引中的欄位，但 ‘locations’ 欄位包含位置陣列，並有一組位置識別碼以及位置描述。假設 Azure 搜尋服務沒有支援此方法的資料類型，我們需要在 Azure 搜尋服務中進行模型化的不同方法。
 
-> [AZURE.NOTE] This technique is also described by Kirk Evans in a blog post [Indexing DocumentDB with Azure Search](https://blogs.msdn.microsoft.com/kaevans/2015/03/09/indexing-documentdb-with-azure-seach/), which shows a technique called "flattening the data", whereby you would have a field called `locationsID` and `locationsDescription` that are both [collections](https://msdn.microsoft.com/library/azure/dn798938.aspx) (or an array of strings).   
+> [AZURE.NOTE] Kirk Evans 也會在部落格文章 [Indexing DocumentDB with Azure Search](https://blogs.msdn.microsoft.com/kaevans/2015/03/09/indexing-documentdb-with-azure-seach/) 中說明這個技巧，文中顯示稱為「資料扁平化」的技巧，因此您會有稱為 `locationsID` 和 `locationsDescription` 的欄位 (兩者皆為 [collections](https://msdn.microsoft.com/library/azure/dn798938.aspx) (或字串陣列))。
 
-## <a name="part-1:-flatten-the-array-into-individual-fields"></a>Part 1: Flatten the array into individual fields
+## 第 1 部分︰將陣列壓平成為個別的欄位
 
-To create an Azure Search index that accommodates this dataset, create individual fields for the nested substructure: `locationsID` and `locationsDescription` with a data type of [collections](https://msdn.microsoft.com/library/azure/dn798938.aspx) (or an array of strings). In these fields you would index the values ‘1’ and ‘2’ into the `locationsID` field for John Smith and the values ‘3’ & ‘4’ into the `locationsID` field for Jen Campbell.  
+若要建立可容納此資料集的 Azure 搜尋服務索引，請為巢狀子結構建立個別的欄位︰資料類型為 [collections](https://msdn.microsoft.com/library/azure/dn798938.aspx) (或字串陣列) 的 `locationsID` 和 `locationsDescription`。在這些欄位中，您會將值 '1' 和 '2' 的索引編製成 John Smith 的 `locationsID` 欄位，將值 '3' 和 '4' 的索引編製成 Jen Campbell 的 `locationsID` 欄位。
 
-Your data within Azure Search would look like this: 
+Azure 搜尋服務中的資料如下所示︰
 
-![sample data, 2 rows](./media/search-howto-complex-data-types/sample-data.png)
+![範例資料，2 個資料列](./media/search-howto-complex-data-types/sample-data.png)
 
 
-## <a name="part-2:-add-a-collection-field-in-the-index-definition"></a>Part 2: Add a collection field in the index definition
+## 第 2 部分︰在索引定義中加入 collection 欄位
 
-In the index schema, the field definitions might look similar to this example.
+在索引結構描述中，欄位定義看起來類似此範例。
 
 ~~~~
 var index = new Index()
@@ -96,19 +95,19 @@ var index = new Index()
 };
 ~~~~
 
-## <a name="validate-search-behaviors-and-optionally-extend-the-index"></a>Validate search behaviors and optionally extend the index
+## 驗證搜尋行為並選擇性地擴充索引
 
-Assuming you created the index and loaded the data, you can now test the solution to verify search query execution against the dataset. Each **collection** field should be **searchable**, **filterable** and **facetable**. You should be able to run queries like:
+假設您已建立索引並載入資料，您現在即可測試解決方案，以驗證對資料集執行的搜尋查詢。每個 **collection** 欄位都應該**可搜尋**、**可篩選**和**可 Facet 處理**。您應該能夠執行下列查詢︰
 
-* Find all people who work at the ‘Adventureworks Headquarters’.
-* Get a count of the number of people who work in a ‘Home Office’.  
-* Of the people who work at a ‘Home Office’, show what other offices they work along with a count of the people in each location.  
+* 尋找所有在 ‘Adventureworks Headquarters’ 工作的人員。
+* 取得在「家庭辦公室」工作的人員計數。
+* 在「家庭辦公室」工作的人員中，顯示他們在其他哪些辦公室工作以及每個位置的人員計數。
 
-Where this technique falls apart is when you need to do a search that combines both the location id as well as the location description. For example:
+當您需要進行結合位置識別碼和位置描述的搜尋時，這個技巧就不管用。例如：
 
-* Find all people where they have a Home Office AND has a location ID of 4.  
+* 尋找所有具有「家庭辦公室」且位置識別碼為 4 的人員。
 
-If you recall the original content looked like this:
+如果您還記得原始內容看起來如下︰
 
 ~~~~
    {
@@ -117,36 +116,33 @@ If you recall the original content looked like this:
    }
 ~~~~
 
-However, now that we have separated the data into separate fields, we have no way of knowing if the Home Office for Jen Campbell relates to `locationsID 3` or `locationsID 4`.  
+不過，既然我們已將資料分成個別的欄位，我們便無法得知 Jen Campbell 的家庭辦公室是否與 `locationsID 3` 或 `locationsID 4` 相關。
 
-To handle this case, define another field in the index that combines all of the data into a single collection.  For our example, we will call this field `locationsCombined` and we will separate the content with a `||` although you can choose any separator that you think would be a unique set of characters for your content. For example: 
+若要處理這種情況，請在索引中定義另一個可將所有資料結合成單一集合的欄位。此範例中，我們將此欄位稱為 `locationsCombined` 並將以 `||` 分隔內容，雖然您可以為您的內容選擇任何您認為是一組獨特字元的分隔符號。例如：
 
-![sample data, 2 rows with separator](./media/search-howto-complex-data-types/sample-data-2.png)
+![範例資料，含分隔符號的 2 個資料列](./media/search-howto-complex-data-types/sample-data-2.png)
 
-Using this `locationsCombined` field, we can now accommodate even more queries, such as:
+使用此 `locationsCombined` 欄位中，我們現在即可容納更多查詢，例如︰
 
-* Show a count of people who work at a ‘Home Office’ with location Id of ‘4’.  
-* Search for people who work at a ‘Home Office’ with location Id ‘4’. 
+* 顯示在位置識別碼為 '4' 的「家庭辦公室」工作的人員計數。
+* 搜尋在位置識別碼為 '4' 的「家庭辦公室」工作的人員。
 
-## <a name="limitations"></a>Limitations
+## 限制
 
-This technique is useful for a number of scenarios, but it is not applicable in every case.  For example:
+這個技巧可用於許多案例，但並不適用於每個案例。例如：
 
-1. If you do not have a static set of fields in your complex data type and there was no way to map all the possible types to a single field. 
-2. Updating the nested objects requires some extra work to determine exactly what needs to be updated in the Azure Search index
+1. 如果您的複雜資料類型中沒有一組靜態欄位，而且沒有辦法將所有可能的類型對應至單一欄位。
+2. 更新巢狀物件時需要一些額外的工作，才能精確地判斷需要在 Azure 搜尋服務索引中更新的內容
 
-## <a name="sample-code"></a>Sample code
+## 範例程式碼
 
-You can see an example on how to index a complex JSON data set into Azure Search and perform a number of queries over this dataset at this [GitHub repo](https://github.com/liamca/AzureSearchComplexTypes).
+您可以看到範例說明如何在 Azure 搜尋服務中編製複雜 JSON 資料集的索引，並且在 [GitHub 儲存機制](https://github.com/liamca/AzureSearchComplexTypes)對此資料集執行多項查詢。
 
-## <a name="next-step"></a>Next step
+## 後續步驟
 
-[Vote for native support for complex data types](https://feedback.azure.com/forums/263029-azure-search) on the Azure Search UserVoice page and provide any additional input that you’d like us to consider regarding feature implementation. You can also reach out to me directly on Twitter at @liamca.
+在 Azure 搜尋服務的 UserVoice 頁面上[票選複雜資料類型的原生支援](https://feedback.azure.com/forums/263029-azure-search)，並提供您希望我們對於功能實作考量的任何其他輸入。您也可以直接在 Twitter 上透過 @liamca 聯繫我。
 
 
  
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

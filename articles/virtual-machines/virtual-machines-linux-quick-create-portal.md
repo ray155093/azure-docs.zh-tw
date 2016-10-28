@@ -1,6 +1,6 @@
 <properties
-    pageTitle="Create a Linux VM using the Azure Portal | Microsoft Azure"
-    description="Create a Linux VM using the Azure Portal."
+    pageTitle="使用 Azure 入口網站建立 Linux VM | Microsoft Azure"
+    description="使用 Azure 入口網站建立 Linux VM。"
     services="virtual-machines-linux"
     documentationCenter=""
     authors="vlivech"
@@ -19,68 +19,63 @@
     ms.author="v-livech"
 />
 
-
-# <a name="create-a-linux-vm-on-azure-using-the-portal"></a>Create a Linux VM on Azure using the Portal
-
-
-This article shows how to use the [Azure portal](https://portal.azure.com/) to create a Linux Virtual Machine quickly. The only requirements are [an Azure account](https://azure.microsoft.com/pricing/free-trial/) and [SSH public and private key files](virtual-machines-linux-mac-create-ssh-keys.md).
+# 使用入口網站在 Azure 上建立 Linux VM
 
 
-1. Signed into the Azure portal with your Azure account identity, click **+ New** in the upper left corner:
+本文將說明如何使用 [Azure 入口網站](https://portal.azure.com/)快速建立 Linux 虛擬機器。僅有的需求是 [Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)和 [SSH 公開和私密金鑰檔案](virtual-machines-linux-mac-create-ssh-keys.md)。
+
+
+1. 以您的 Azure 帳戶身分識別登入 Azure 入口網站，按一下左上角的 [+ 新增]︰
 
     ![screen1](../media/virtual-machines-linux-quick-create-portal/screen1.png)
 
-2. Click **Virtual Machines** in the **Marketplace** then **Ubuntu Server 14.04 LTS** from the **Featured Apps** images list.  Verify at the bottom that the deployment model is `Resource Manager` and then click **Create**.
+2. 按一下 [Marketplace] 中的 [虛擬機器]，然後按一下 [精選應用程式] 映像清單中的 [Ubuntu Server 14.04 LTS]。確認下方的部署模型是 `Resource Manager`，然後按一下 [建立]。
 
     ![screen2](../media/virtual-machines-linux-quick-create-portal/screen2.png)
 
-3. On the **Basics** page, enter:
-    - a name for the VM
-    - a username for the Admin User
-    - the Authentication Type set to **SSH public key**
-    - your SSH public Key as a string (from your `~/.ssh/` directory)
-    - a resource group name or select an existing group
+3. 在**基本概念**頁面上，輸入︰
+    - VM 的名稱
+    - 系統管理員的使用者名稱
+    - 要設定為 [SSH 公開金鑰] 的驗證類型
+    - SSH 公開金鑰做為字串 (來自您的 `~/.ssh/` 目錄)
+    - 資源群組名稱或選取現有的群組
 
-    and Click **OK** to continue and choose the VM size; it should look something like the following:
+    並按一下 [確定] 以繼續，然後選擇 VM 大小；您應該會看到如下的內容：
 
     ![screen3](../media/virtual-machines-linux-quick-create-portal/screen3.png)
 
-4. Choose the **DS1** size, which installs Ubuntu on a Premium SSD, and click **Select** to configure settings.
+4. 選擇 [DS1] 大小 (這會在進階 SSD 上安裝 Ubuntu)，然後按一下 [選取] 進行設定。
 
     ![screen4](../media/virtual-machines-linux-quick-create-portal/screen4.png)
 
-5. In **Settings**, leave the defaults for Storage and Network values, and click **OK** to view the summary.  Notice the disk type has been set to Premium SSD by choosing DS1, the **S** notates SSD.
+5. 在 [設定] 中，保留 [儲存體] 和 [網路] 的預設值，然後按一下 [確定] 來檢視摘要。請注意，磁碟類型已藉由選擇 DS1 (**S** 表示 SSD) 設定為進階 SSD。
 
     ![screen5](../media/virtual-machines-linux-quick-create-portal/screen5.png)
 
-6. Confirm the settings for your new Ubuntu VM, and click **OK**.
+6. 確認新的 Ubuntu VM 的設定，然後按一下 [確定]。
 
     ![screen6](../media/virtual-machines-linux-quick-create-portal/screen6.png)
 
-7. Open the Portal Dashboard and in **Network interfaces** choose your NIC
+7. 開啟入口網站儀表板並在 [網路介面] 中選擇您的 NIC
 
     ![screen7](../media/virtual-machines-linux-quick-create-portal/screen7.png)
 
-8. Open the Public IP addresses menu under the NIC settings
+8. 開啟 NIC 設定之下的公用 IP 位址功能表
 
     ![screen8](../media/virtual-machines-linux-quick-create-portal/screen8.png)
 
-9. SSH into the public IP using your SSH public key
+9. 使用 SSH 公開金鑰透過 SSH 連接到公用 IP
 
 ```
 ssh -i ~/.ssh/azure_id_rsa ubuntu@13.91.99.206
 ```
 
-## <a name="next-steps"></a>Next Steps
+## 後續步驟
 
-Now you've created a Linux VM quickly to use for testing or demonstration purposes. To create a Linux VM customized for your infrastructure, you can follow any of these articles.
+現在您已經快速建立一個用於測試或示範用途的 Linux VM。若要建立為您的基礎結構自訂的 Linux VM，您可以依照以下任何文章執行。
 
-- [Create a Linux VM on Azure using Templates](virtual-machines-linux-cli-deploy-templates.md)
-- [Create an SSH Secured Linux VM on Azure using Templates](virtual-machines-linux-create-ssh-secured-vm-from-template.md)
-- [Create a Linux VM using the Azure CLI](virtual-machines-linux-create-cli-complete.md)
+- [使用範本在 Azure 上建立 Linux VM](virtual-machines-linux-cli-deploy-templates.md)
+- [使用範本在 Azure 上建立受 SSH 保護的 Linux VM](virtual-machines-linux-create-ssh-secured-vm-from-template.md)
+- [使用 CLI 建立 Linux VM](virtual-machines-linux-create-cli-complete.md)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0907_2016-->

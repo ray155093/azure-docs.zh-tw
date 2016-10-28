@@ -1,9 +1,9 @@
 <properties
-  pageTitle="Client and server SDK versioning in Mobile Apps and Mobile Services | Azure App Service"
-  description="List of client SDKs and compatibility with server SDK versions for Mobile Services and Azure Mobile Apps"
+  pageTitle="Mobile Apps 和行動服務中的用戶端和伺服器 SDK 版本控制 | Azure App Service"
+  description="列出適用於行動服務和 Azure Mobile Apps 的用戶端 SDK 和與伺服器 SDK 版本的相容性"
   services="app-service\mobile"
   documentationCenter=""
-  authors="adrianhall"
+  authors="lindydonna"
   manager="erikre"
   editor=""/>
 
@@ -13,26 +13,24 @@
   ms.tgt_pltfrm="mobile-multiple"
   ms.devlang="dotnet"
   ms.topic="article"
-  ms.date="10/01/2016"
-  ms.author="adrianha"/>
+  ms.date="08/22/2016"
+  ms.author="donnam"/>
 
+# Mobile Apps 和行動服務中的用戶端和伺服器版本控制
 
-# <a name="client-and-server-versioning-in-mobile-apps-and-mobile-services"></a>Client and server versioning in Mobile Apps and Mobile Services
+Azure 行動服務的最新版本是 Azure App Service 的 **Mobile Apps** 功能。
 
-The latest version of Azure Mobile Services is the **Mobile Apps** feature of Azure App Service.
+Mobile Apps 用戶端和伺服器 SDK 最初是以行動服務中的 SDK 為基礎，但是它們彼此「不」相容。也就是說，您必須使用 *Mobile Apps* 用戶端 SDK 搭配 *Mobile Apps* 伺服器 SDK，*行動服務*也是類似作法。您可以透過用戶端和伺服器 SDK 所使用的特殊標頭值 `ZUMO-API-VERSION` 來強制執行。
 
-The Mobile Apps client and server SDKs are originally based on those in Mobile Services, but they are *not* compatible with each other.
-That is, you must use a *Mobile Apps* client SDK with a *Mobile Apps* server SDK and similarly for *Mobile Services*. This contract is enforced through a special header value used by the client and server SDKs, `ZUMO-API-VERSION`.
+注意：每當這份文件提及*行動服務*後端時，它不一定需要裝載於行動服務。現在可以將行動服務移轉到 App Service 上執行而不用變更任何程式碼，但是服務還是會使用*行動服務* SDK 版本。
 
-Note: whenever this document refers to a *Mobile Services* backend, it does not necessarily need to be hosted on Mobile Services. It is now possible to migrate a mobile service to run on App Service without any code changes, but the service would still be using *Mobile Services*  SDK versions.
+若要深入了解如何移轉至 App Service 而不變更任何程式碼，請參閱[將行動服務移轉至 Azure App Service] 一文。
 
-To learn more about migrating to App Service without any code changes, see the article [Migrate a Mobile Service to Azure App Service].
+## 標頭規格
 
-## <a name="header-specification"></a>Header specification
+鍵值 `ZUMO-API-VERSION` 可以在 HTTP 標頭或查詢字串中指定。值是版本字串，格式為 **x.y.z**。
 
-The key `ZUMO-API-VERSION` may be specified in either the HTTP header or the query string. The value is a version string in the form **x.y.z**.
-
-For example:
+例如：
 
 GET https://service.azurewebsites.net/tables/TodoItem
 
@@ -40,109 +38,104 @@ HEADERS: ZUMO-API-VERSION: 2.0.0
 
 POST https://service.azurewebsites.net/tables/TodoItem?ZUMO-API-VERSION=2.0.0
 
-## <a name="opting-out-of-version-checking"></a>Opting out of version checking
+## 選擇不進行版本檢查
 
-You can opt out of version checking by setting a value of **true** for the app setting **MS_SkipVersionCheck**. Specify this either in your web.config or in the Application Settings section of the Azure portal.
+您可以將應用程式設定 **MS\_SkipVersionCheck** 的值設定為 **true** 選擇不要進行版本檢查。在 web.config 中或在 Azure 入口網站的 [應用程式設定] 區段中都可指定這項設定。
 
-> [AZURE.NOTE] There are a number of behavior changes between Mobile Services and Mobile Apps, particularly in the areas of offline sync, authentication, and push notifications. You should only opt out of version checking after complete testing to ensure that these behavioral changes do not break your app's functionality.
+> [AZURE.NOTE] 行動服務和 Mobile Apps 之間有許多行為改變了，尤其是在離線同步處理、驗證和推播通知的區域。您應該在完成測試之後才選擇不要進行版本檢查，確保這些行為的變更不會影響您的 app 功能。
 
-## <a name="summary-of-compatibility-for-all-versions"></a>Summary of compatibility for all versions
+## 所有版本的相容性摘要
 
-The chart below shows the compatibility between all client and server types. A backend is classified as either Mobile **Services** or Mobile **Apps** based on the server SDK that it uses.
+下圖顯示所有的用戶端和伺服器類型之間的相容性。後端會根據所使用的伺服器 SDK 被分類為行動**服務** 或 Mobile **Apps**。
 
-|                           | **Mobile Services** Node.js or .NET | **Mobile Apps** Node.js or .NET |
+| | **行動服務** Node.js 或 .NET | **Mobile Apps** Node.js 或 .NET |
 | ----------                | -----------------------             |   ----------------              |
-| [Mobile Services clients] | Ok                                  | Error\*                         |
-| [Mobile Apps clients]     | Error\*                             | Ok                              |
+| [行動服務用戶端] | 確定 | 錯誤* |
+| [Mobile Apps 用戶端] | 錯誤* | 確定 |
 
-\*This can be controlled by specifying **MS_SkipVersionCheck**.
+* 這可以藉由指定 **MS\_SkipVersionCheck** 控制。
 
 
 <!-- IMPORTANT!  The anchors for Mobile Services and Mobile Apps MUST be 1.0.0 and 2.0.0 respectively, since there is an exception error message that uses those anchors. -->
 
 <!-- NOTE: the fwlink to this document is http://go.microsoft.com/fwlink/?LinkID=690568 -->
 
-## <a name="<a-name="1.0.0"></a>mobile-services-client-and-server"></a><a name="1.0.0"></a>Mobile Services client and server
+## <a name="1.0.0"></a>行動服務用戶端和伺服器
 
-The client SDKs in the table below are compatible with **Mobile Services**.
+下表中的用戶端 SDK 可與**行動服務**相容。
 
-Note: the Mobile Services client SDKs *do not* send a header value for `ZUMO-API-VERSION`. If the service receives this header or query string value, an error will be returned, unless you have explicitly opted out as described above.
+注意：行動服務用戶端 SDK「不會」傳送 `ZUMO-API-VERSION` 的標頭值。如果服務收到此標頭或查詢字串值，將會傳回錯誤，除非您如上面所述明確選擇不要進行檢查。
 
-### <a name="<a-name="mobileservicesclients"></a>-mobile-*services*-client-sdks"></a><a name="MobileServicesClients"></a> Mobile *Services* client SDKs
+### <a name="MobileServicesClients"></a>行動「服務」用戶端 SDK
 
-| Client platform                   | Version                                                                   | Version header value |
+| 用戶端平台 | 版本 | 版本標頭值 |
 | -------------------               | ------------------------                                                  | -------------------  |
-| Managed client (Windows, Xamarin) | [1.3.2](https://www.nuget.org/packages/WindowsAzure.MobileServices/1.3.2) | n/a                  |
-| iOS                               | [2.2.2](http://aka.ms/gc6fex)                                             | n/a                  |
-| Android                           | [2.0.3](https://go.microsoft.com/fwLink/?LinkID=280126)                   | n/a                  |
-| HTML                              | [1.2.7](http://ajax.aspnetcdn.com/ajax/mobileservices/MobileServices.Web-1.2.7.min.js) | n/a     |
+| 受管理的用戶端 (Windows、Xamarin) | [1\.3.2](https://www.nuget.org/packages/WindowsAzure.MobileServices/1.3.2) | n/a |
+| iOS | [2\.2.2](http://aka.ms/gc6fex) | n/a |
+| Android | [2\.0.3](https://go.microsoft.com/fwLink/?LinkID=280126) | n/a |
+| HTML | [1\.2.7](http://ajax.aspnetcdn.com/ajax/mobileservices/MobileServices.Web-1.2.7.min.js) | n/a |
 
-### <a name="mobile-*services*-server-sdks"></a>Mobile *Services* server SDKs
+### 行動「服務」伺服器 SDK
 
-| Server platform  | Version                                                                                                        | Accepted version header |
+| 伺服器平台 | 版本 | 接受的版本標頭 |
 | ---------------- | ------------------------------------------------------------                                                   | ----------------------- |
-| .NET             | [WindowsAzure.MobileServices.Backend.* Version 1.0.x](https://www.nuget.org/packages/WindowsAzure.MobileServices.Backend/) | **No version header ** |
-| Node.js          | (coming soon)                        | **No version header** |
+| .NET | [WindowsAzure.MobileServices.Backend.* 版本 1.0.x](https://www.nuget.org/packages/WindowsAzure.MobileServices.Backend/) | **無版本標頭** |
+| Node.js | (敬請期待) | **無版本標頭** |
 
 <!-- TODO: add Node npm version -->
 
-### <a name="behavior-of-mobile-services-backends"></a>Behavior of Mobile Services backends
+### 行動服務後端的行為
 
-| ZUMO-API-VERSION | Value of MS_SkipVersionCheck | Response |
+| ZUMO-API-VERSION | MS\_SkipVersionCheck 的值 | Response |
 | ---------------- | ---------------------------- | -------- |
-| Not specified    | Any                          | 200 - OK |
-| Any value        | True                         | 200 - OK |
-| Any value        | False/Not Specified          | 400 - Bad Request |
+| 未指定 | 任意 | 200 - 確定 |
+| 任何值 | True | 200 - 確定 |
+| 任何值 | False/未指定 | 400 - 不正確的要求 |
 
-## <a name="<a-name="2.0.0"></a>azure-mobile-apps-client-and-server"></a><a name="2.0.0"></a>Azure Mobile Apps client and server
+## <a name="2.0.0"></a>Azure Mobile Apps 用戶端和伺服器
 
-### <a name="<a-name="mobileappsclients"></a>-mobile-*apps*-client-sdks"></a><a name="MobileAppsClients"></a> Mobile *Apps* client SDKs
+### <a name="MobileAppsClients"></a>Mobile「Apps」用戶端 SDK
 
-Version checking was introduced starting with the following versions of the client SDK for **Azure Mobile Apps**:
+版本檢查是從 **Azure Mobile Apps** 下列版本的用戶端 SDK 開始引進：
 
-| Client platform                   | Version                   | Version header value |
+| 用戶端平台 | 版本 | 版本標頭值 |
 | -------------------               | ------------------------  | -----------------    |
-| Managed client (Windows, Xamarin) | [2.0.0](https://www.nuget.org/packages/Microsoft.Azure.Mobile.Client/2.0.0) | 2.0.0 |
-| iOS                               | [3.0.0](http://go.microsoft.com/fwlink/?LinkID=529823) | 2.0.0  |
-| Android                           | [3.0.0](http://go.microsoft.com/fwlink/?LinkID=717033&clcid=0x409) | 3.0.0 |
+| 受管理的用戶端 (Windows、Xamarin) | [2\.0.0](https://www.nuget.org/packages/Microsoft.Azure.Mobile.Client/2.0.0) | 2\.0.0 |
+| iOS | [3\.0.0](http://go.microsoft.com/fwlink/?LinkID=529823) | 2\.0.0 |
+| Android | [3\.0.0](http://go.microsoft.com/fwlink/?LinkID=717033&clcid=0x409) | 3\.0.0 |
 
 <!-- TODO: add HTML version when released -->
 
-### <a name="mobile-*apps*-server-sdks"></a>Mobile *Apps* server SDKs
+### Mobile「Apps」伺服器 SDK
 
-Version checking is included in following server SDK versions:
+下列伺服器 SDK 版本包含版本檢查：
 
-| Server platform  | SDK                                                                                                        | Accepted version header |
+| 伺服器平台 | SDK | 接受的版本標頭 |
 | ---------------- | ------------------------------------------------------------                                                   | ----------------------- |
-| .NET             | [Microsoft.Azure.Mobile.Server](https://www.nuget.org/packages/Microsoft.Azure.Mobile.Server/) | 2.0.0 |
-| Node.js          | [azure-mobile-apps)](https://www.npmjs.com/package/azure-mobile-apps)                         | 2.0.0 |
+| .NET | [Microsoft.Azure.Mobile.Server](https://www.nuget.org/packages/Microsoft.Azure.Mobile.Server/) | 2\.0.0 |
+| Node.js | [azure-mobile-apps)](https://www.npmjs.com/package/azure-mobile-apps) | 2\.0.0 |
 
-### <a name="behavior-of-mobile-apps-backends"></a>Behavior of Mobile Apps backends
+### Mobile Apps 後端的行為
 
-| ZUMO-API-VERSION | Value of MS_SkipVersionCheck | Response |
+| ZUMO-API-VERSION | MS\_SkipVersionCheck 的值 | Response |
 | ---------------- | ---------------------------- | -------- |
-| x.y.z or Null    | True                         | 200 - OK |
-| Null             | False/Not Specified          | 400 - Bad Request |
-| 1.x.y            | False/Not Specified          | 400 - Bad Request |
-| 2.0.0-2.x.y      | False/Not Specified          | 200 - OK |
-| 3.0.0-3.x.y      | False/Not Specified          | 400 - Bad Request |
+| x.y.z 或 Null | True | 200 - 確定 |
+| Null | False/未指定 | 400 - 不正確的要求 |
+| 1\.x.y | False/未指定 | 400 - 不正確的要求 |
+| 2\.0.0-2.x.y | False/未指定 | 200 - 確定 |
+| 3\.0.0-3.x.y | False/未指定 | 400 - 不正確的要求 |
 
 
-## <a name="next-steps"></a>Next Steps
+## 後續步驟
 
-- [Migrate a Mobile Service to Azure App Service]
+- [將行動服務移轉至 Azure App Service]
 
 
-[Mobile Services clients]: #MobileServicesClients
-[Mobile Apps clients]: #MobileAppsClients
+[行動服務用戶端]: #MobileServicesClients
+[Mobile Apps 用戶端]: #MobileAppsClients
 
 
 [Mobile App Server SDK]: http://www.nuget.org/packages/microsoft.azure.mobile.server
-[Migrate a Mobile Service to Azure App Service]: app-service-mobile-migrating-from-mobile-services.md
+[將行動服務移轉至 Azure App Service]: app-service-mobile-migrating-from-mobile-services.md
 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

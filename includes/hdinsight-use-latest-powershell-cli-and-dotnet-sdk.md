@@ -1,9 +1,4 @@
-> [AZURE.IMPORTANT] Support for managing HDInsight resources using Azure Service Manager (ASM) through Azure PowerShell, the Azure CLI, and the HDInsight .NET SDK is __deprecated__, and will be removed by January 1, 2017. The steps in this document use the new Azure PowerShell cmdlets, Azure CLI commands, and .NET SDK that work with Azure Resource Manager (ARM).
+> [AZURE.IMPORTANT] 透過 Azure PowerShell、Azure CLI 和 HDInsight .NET SDK 使用 Azure Service Manager (ASM) 管理 HDInsight 資源的支援__已被取代__，將會在 2017 年 1 月 1 日前移除。本文件中的步驟會使用可與 Azure Resource Manager (ARM) 搭配使用的新 Azure PowerShell Cmdlet、Azure CLI 命令和 .NET SDK。
 >
-> Please follow the steps in the [Install and Configure Azure CLI](../articles/xplat-cli-install.md) and [Install and Configure Azure PowerShell](../articles/powershell-install-configure.md) to install the latest version of Azure PowerShell and the Azure CLI. To install the latest version of the HDInsight .NET SDK, use the information provided on the [Microsoft Azure HDInsight .NET SDK](https://www.nuget.org/packages/Microsoft.WindowsAzure.Management.HDInsight/) NuGet page. If you have existing scripts or applications that need to be modified to use the new cmdlets, new CLI commands, or .NET SDK, see [Migrating to Azure Resource Manager-based development tools for HDInsight clusters](../articles/hdinsight/hdinsight-hadoop-development-using-azure-resource-manager.md) for more information.
-
-
-
-<!--HONumber=Oct16_HO2-->
-
+> 若要安裝 Azure PowerShell 和 Azure CLI 的最新版本，請遵循[安裝和設定 Azure CLI](../articles/xplat-cli-install.md) 和[安裝和設定 Azure PowerShell](../articles/powershell-install-configure.md) 中的步驟執行。若要安裝最新版的 HDInsight .NET SDK，請使用 [Microsoft Azure HDInsight .NET SDK](https://www.nuget.org/packages/Microsoft.WindowsAzure.Management.HDInsight/) NuGet 頁面上提供的資訊。如果您需要修改現有指令碼或應用程式才能使用新的 Cmdlet、新的 CLI 命令或 .NET SDK，請參閱[移轉至以 Azure Resource Manager 為基礎的開發工具 (適用於 HDInsight 叢集)](../articles/hdinsight/hdinsight-hadoop-development-using-azure-resource-manager.md)，以取得詳細資訊。
 

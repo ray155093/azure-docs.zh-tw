@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="Initiate a planned or unplanned failover for Azure SQL Database with Transact-SQL | Microsoft Azure" 
-    description="Initiate a planned or unplanned failover for Azure SQL Database using Transact-SQL" 
+    pageTitle="使用 Transact-SQL 為 Azure SQL Database 起始計劃性或非計劃性容錯移轉 | Microsoft Azure" 
+    description="使用 Transact-SQL 為 Azure SQL Database 起始計劃性或非計劃性容錯移轉" 
     services="sql-database" 
     documentationCenter="" 
     authors="CarlRabeler" 
@@ -16,96 +16,91 @@
     ms.date="08/29/2016"
     ms.author="carlrab"/>
 
-
-# <a name="initiate-a-planned-or-unplanned-failover-for-azure-sql-database-with-transact-sql"></a>Initiate a planned or unplanned failover for Azure SQL Database with Transact-SQL
+# 使用 Transact-SQL 為 Azure SQL Database 起始計劃性或非計劃性容錯移轉
 
 
 > [AZURE.SELECTOR]
-- [Azure portal](sql-database-geo-replication-failover-portal.md)
+- [Azure 入口網站](sql-database-geo-replication-failover-portal.md)
 - [PowerShell](sql-database-geo-replication-failover-powershell.md)
 - [T-SQL](sql-database-geo-replication-failover-transact-sql.md)
 
 
-This article shows you how to initiate failover to a secondary SQL Database using Transact-SQL. To configure Geo-Replication, see [Configure Geo-Replication for Azure SQL Database](sql-database-geo-replication-transact-sql.md).
+本文說明如何使用 Transact-SQL 起始容錯移轉至次要 SQL Database。若要設定「異地複寫」，請參閱[為 Azure SQL Database 設定異地複寫](sql-database-geo-replication-transact-sql.md)。
 
 
 
-To initiate failover, you need the following:
+若要起始容錯移轉，您需要下列各項︰
 
-- A login that is DBManager on the primary, have db_ownership of the local database that you will geo-replicate, and be DBManager on the partner server(s) to which you will configure Geo-Replication.
+- 一個主要複本上的 DBManager 登入身分、具備您將進行異地複寫之本機資料庫的 db\_ownership，以及成為您將設定「異地複寫」之夥伴伺服器上的 DBManager。
 - SQL Server Management Studio (SSMS)
 
 
-> [AZURE.IMPORTANT] It is recommended that you always use the latest version of Management Studio to remain synchronized with updates to Microsoft Azure and SQL Database. [Update SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx).
+> [AZURE.IMPORTANT] 建議您一律使用最新版本的 Management Studio 保持與 Microsoft Azure 及 SQL Database 更新同步。[更新 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)。
 
 
 
 
-## <a name="initiate-a-planned-failover-promoting-a-secondary-database-to-become-the-new-primary"></a>Initiate a planned failover promoting a secondary database to become the new primary
+## 起始規劃的容錯移轉，將次要資料庫升級成為新主要複本
 
-You can use the **ALTER DATABASE** statement to promote a secondary database to become the new primary database in a planned fashion, demoting the existing primary to become a secondary. This statement is executed on the master database on the Azure SQL Database logical server in which the geo-replicated secondary database that is being promoted resides. This functionality is designed for planned failover, such as during the DR drills, and requires that the primary database be available.
+您可以使用 **ALTER DATABASE** 陳述式，來升級次要資料庫，使它成為規劃的方式中的新主要資料庫，將現有主要降級成為次要資料庫。此陳述式是在要升級的異地複寫次要資料庫所在的 Azure SQL Database 邏輯伺服器上的 master 資料庫上執行。這項功能是為了規劃的容錯移轉 (例如 DR 鑽研期間) 設計，並且需要主要資料庫可供使用。
 
-The command performs the following workflow:
+此命令會執行下列工作流程：
 
-1. Temporarily switches replication to synchronous mode, causing all outstanding transactions to be flushed to the secondary and blocking all new transactions;
+1. 暫時切換複寫為同步模式，造成所有未完成的交易被排清至次要複本並封鎖所有新交易；
 
-2. Switches the roles of the two databases in the Geo-Replication partnership.  
+2. 切換「異地複寫」合作關係中兩個資料庫的角色。
 
-This sequence guarantees that the two databases are synchronized before the roles switch and therefore no data loss will occur. There is a short period during which both databases are unavailable (on the order of 0 to 25 seconds) while the roles are switched. If the primary database has multiple secondary databases, the command will automatically reconfigure the other secondaries to connect to the new primary.  The entire operation should take less than a minute to complete under normal circumstances. For more information, see [ALTER DATABASE (Transact-SQL)](https://msdn.microsoft.com/library/mt574871.aspx) and [Service Tiers](sql-database-service-tiers.md).
+此順序可保證在角色切換之前兩個資料庫經過同步處理，因此不會發生資料遺失。切換角色時，會有一小段時間無法使用這兩個資料庫 (大約為 0 到 25 秒)。如果主要資料庫有多個次要資料庫，此命令會自動重新設定其他次要複本以連接至新的主要複本。在正常情況下，完成整個作業所需的時間應該少於一分鐘。如需詳細資訊，請參閱 [ALTER DATABASE (Transact-SQL)](https://msdn.microsoft.com/library/mt574871.aspx) 和[服務層](sql-database-service-tiers.md)。
 
 
-Use the following steps to initiate a planned failover.
+使用下列步驟來起始規劃的容錯移轉。
 
-1. In Management Studio, connect to the Azure SQL Database logical server in which a geo-replicated secondary database resides.
+1. 在 Management Studio 中，連接到異地複寫次要資料庫所在的 Azure SQL Database 邏輯伺服器。
 
-2. Open the Databases folder, expand the **System Databases** folder, right-click on **master**, and then click **New Query**.
+2. 開啟 Databases 資料夾、展開 **System Databases** 資料夾、在 **master** 上按一下滑鼠右鍵，然後按一下 [新增查詢]。
 
-3. Use the following **ALTER DATABASE** statement to switch the secondary database to the primary role.
+3. 使用下列 **ALTER DATABASE** 陳述式，將次要資料庫切換為主要角色。
 
         ALTER DATABASE <MyDB> FAILOVER;
 
-4. Click **Execute** to run the query.
+4. 按一下 [執行] 來執行查詢。
 
->[AZURE.NOTE] In rare cases, it is possible that the operation cannot complete and may appear stuck. In this case, the user can execute the force failover command and accept data loss.
+>[AZURE.NOTE] 在少數情況下，作業會無法完成並且可能會出現停滯。在此情況下，使用者可以執行強制容錯移轉命令並接受資料遺失。
 
 
-## <a name="initiate-an-unplanned-failover-from-the-primary-database-to-the-secondary-database"></a>Initiate an unplanned failover from the primary database to the secondary database
+## 起始從主要資料庫到次要資料庫的未規劃的容錯移轉
 
-You can use the **ALTER DATABASE** statement to promote a secondary database to become the new primary database in an unplanned fashion, forcing the demotion of the existing primary to become a secondary at a time when the primary databse is no longer available. This statement is executed on the master database on the Azure SQL Database logical server in which the geo-replicated secondary database that is being promoted resides.
+您可以使用 **ALTER DATABASE** 陳述式，來升級次要資料庫，使它成為未規劃的方式中的新主要資料庫，每當主要資料庫無法使用時，一次強制將現有主要降級成為次要資料庫。此陳述式是在要升級的異地複寫次要資料庫所在的 Azure SQL Database 邏輯伺服器上的 master 資料庫上執行。
 
-This functionality is designed for disaster recovery when restoring availability of the database is critical and some data loss is acceptable. When forced failover is invoked, the specified secondary database immediately becomes the primary database and begins accepting write transactions. As soon as the original primary database is able to reconnect with this new primary database, an incremental backup is taken on the original primary database and the old primary database is made into a secondary database for the new primary database; subsequently, it is merely a synchronizing replica of the new primary.
+這項功能是針對還原資料庫的可用性非常重要而且部分資料遺失是可接受時的災害復原所設計。叫用強制容錯移轉時，指定的次要資料庫立即成為主要資料庫，並開始接受寫入交易。原始主要資料庫能夠與這個新的主要資料庫重新連線時，會在原始主要資料庫執行增量備份，而舊的主要資料庫會變成新主要資料庫的次要資料庫；之後就只是新的主要資料庫的複本。
 
-However, because Point In Time Restore is not supported on the secondary databases, if the user wishes to recover data committed to the old primary database that had not been replicated to the new primary database before the forced failover occurred, the user will need to engage support to recover this lost data.
+不過，因為次要資料庫上不支援還原時間點，發生強制容錯移轉之前，如果使用者想要復原已認可到舊主要資料庫但尚未複寫到新主要資料庫的資料，使用者應該接洽支援人員復源遺失的資料。
 
-If the primary database has multiple secondary databases, the command will automatically reconfigure the other secondaries to connect to the new primary.
+如果主要資料庫有多個次要資料庫，此命令會自動重新設定其他次要複本以連接至新的主要複本。
 
-Use the following steps to initiate an unplanned failover.
+使用下列步驟來起始非計劃性的容錯移轉。
 
-1. In Management Studio, connect to the Azure SQL Database logical server in which a geo-replicated secondary database resides.
+1. 在 Management Studio 中，連接到異地複寫次要資料庫所在的 Azure SQL Database 邏輯伺服器。
 
-2. Open the Databases folder, expand the **System Databases** folder, right-click on **master**, and then click **New Query**.
+2. 開啟 Databases 資料夾、展開 **System Databases** 資料夾、在 **master** 上按一下滑鼠右鍵，然後按一下 [新增查詢]。
 
-3. Use the following **ALTER DATABASE** statement to switch the secondary database to the primary role.
+3. 使用下列 **ALTER DATABASE** 陳述式，將次要資料庫切換為主要角色。
 
         ALTER DATABASE <MyDB>   FORCE_FAILOVER_ALLOW_DATA_LOSS;
 
-4. Click **Execute** to run the query.
+4. 按一下 [執行] 來執行查詢。
 
->[AZURE.NOTE] If the command is issued when the both primary and secondary are online the old primary will become the new secondary immediately without data synchronization. If the primary is committing transactions when the command is issued some data loss may occur.
-
-
-
-## <a name="next-steps"></a>Next steps   
-
-- After failover, ensure the authentication requirements for your server and database are configured on the new primary. For details, see [SQL Database security after disaster recovery](sql-database-geo-replication-security-config.md).
-- To learn recovering after a disaster using Active Geo-Replication, including pre and post recovery steps and performing a disaster recovery drill, see [Disaster Recovery](sql-database-disaster-recovery.md)
-- For a Sasha Nosov blog post about Active Geo-Replication, see [Spotlight on new Geo-Replication capabilities](https://azure.microsoft.com/blog/spotlight-on-new-capabilities-of-azure-sql-database-geo-replication/)
-- For information about designing cloud applications to use Active Geo-Replication, see [Designing cloud applications for business continuity using Geo-Replication](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
-- For information about using Active Geo-Replication with elastic database pools, see [Elastic Pool disaster recovery strategies](sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md).
-- For an overview of business continurity, see [Business Continuity Overview](sql-database-business-continuity.md)
+>[AZURE.NOTE] 如果在主要資料庫和次要資料庫上線時發出此命令，舊的主要會立即變成新的次要資料庫，而不會進行資料同步處理。發出命令時，如果主要複本正在認可交易，可能會發生部分資料遺失。
 
 
 
-<!--HONumber=Oct16_HO2-->
+## 後續步驟   
 
+- 容錯移轉之後，請確認已在新的主要資料庫上設定伺服器和資料庫的驗證需求。如需詳細資訊，請參閱[災害復原後的 SQL Database 安全性](sql-database-geo-replication-security-config.md)。
+- 若要了解如何使用主動式異地複寫在災害之後進行復原，包括復原前和復原後步驟，以及執行災害復原演練，請參閱[災害復原](sql-database-disaster-recovery.md)
+- 如需 Sasha Nosov 有關主動式異地複寫的部落格文章，請參閱[新異地複寫功能要點](https://azure.microsoft.com/blog/spotlight-on-new-capabilities-of-azure-sql-database-geo-replication/)
+- 如需如何設計雲端應用程式使用主動式異地複寫的相關資訊，請參閱[使用異地複寫設計商務持續性的雲端應用程式](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
+- 如需使用主動式異地複寫與彈性資料庫集區的相關資訊，請參閱[彈性集區災害復原策略](sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md)。
+- 如需商務持續性的概觀，請參閱[商務持續性概觀](sql-database-business-continuity.md)
 
+<!---HONumber=AcomDC_0831_2016-->

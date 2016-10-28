@@ -1,75 +1,74 @@
 <properties 
-    pageTitle="Data dependent routing | Microsoft Azure" 
-    description="How to use the ShardMapManager class in .NET apps for data-dependent routing, a feature of elastic databases for Azure SQL Database" 
-    services="sql-database" 
-    documentationCenter="" 
-    manager="jhubbard" 
-    authors="torsteng" 
-    editor=""/>
+	pageTitle="資料依存路由 | Microsoft Azure" 
+	description="如何在 .NET 應用程式中將 ShardMapManager 類別用於資料相依路由 (Azure SQL Database 的彈性資料庫的一項功能)" 
+	services="sql-database" 
+	documentationCenter="" 
+	manager="jhubbard" 
+	authors="torsteng" 
+	editor=""/>
 
 <tags 
-    ms.service="sql-database" 
-    ms.workload="sql-database" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="05/27/2016" 
-    ms.author="torsteng"/>
+	ms.service="sql-database" 
+	ms.workload="sql-database" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="05/27/2016" 
+	ms.author="torsteng"/>
 
+#資料相依路由
 
-#<a name="data-dependent-routing"></a>Data dependent routing
+**資料相依路由**是可使用查詢中的資料，將要求路由至適當的資料庫。這是使用分區化資料庫時的一種基本模式。要求內容也可能會用於路由要求，特別是如果分區化索引鍵不是查詢的一部分。在使用資料相依路由的應用程式中，每個特定的查詢或交易會限制每個要求只能存取單一資料庫。針對 Azure SQL Database Elastic 工具，此路由會在 ADO.NET 應用程式中使用 **[ShardMapManager 類別](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.aspx)**來完成。
 
-**Data dependent routing** is the ability to use the data in a query to route the request to an appropriate database. This is a fundamental pattern when working with sharded databases. The request context may also be used to route the request, especially if the sharding key is not part of the query. Each specific query or transaction in an application using data dependent routing is restricted to accessing a single database per request. For the Azure SQL Database Elastic tools, this routing is accomplished with the **[ShardMapManager class](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.aspx)** in ADO.NET applications.
+應用程式不需要在分區化環境中追蹤不同的連接字串或與不同資料片段相關聯的 DB 位置。相反地，[分區對應管理員](sql-database-elastic-scale-shard-map-management.md)會根據分區對應中的資料和分區化索引鍵的值 (應用程式要求的目標)，在必要時開啟正確資料庫的連接。此索引鍵通常是 *customer\_id*、*tenant\_id*、*date\_key*，或作為資料庫要求基本參數的其他一些特定的識別項)。
 
-The application does not need to track various connection strings or DB locations associated with different slices of data in the sharded environment. Instead, the [Shard Map Manager](sql-database-elastic-scale-shard-map-management.md) opens connections to the correct databases when needed, based on the data in the shard map and the value of the sharding key that is the target of the application’s request. The key is typically the *customer_id*, *tenant_id*, *date_key*, or some other specific identifier that is a fundamental parameter of the database request). 
+如需詳細資訊，請參閱 [Scaling Out SQL Server with Data Dependent Routing (使用資料相依路由相應放大 SQL Server)](https://technet.microsoft.com/library/cc966448.aspx)。
 
-For more information, see [Scaling Out SQL Server with Data Dependent Routing](https://technet.microsoft.com/library/cc966448.aspx).
+## 下載用戶端程式庫
 
-## <a name="download-the-client-library"></a>Download the client library
+若要取得類別，請安裝[彈性資料庫用戶端程式庫](http://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/)。
 
-To get the class, install the [Elastic Database Client Library](http://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/). 
+## 在資料相依路由應用程式中使用 ShardMapManager 
 
-## <a name="using-a-shardmapmanager-in-a-data-dependent-routing-application"></a>Using a ShardMapManager in a data dependent routing application 
-
-Applications should instantiate the **ShardMapManager** during initialization, using the factory call **[GetSQLShardMapManager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanagerfactory.getsqlshardmapmanager.aspx)**. In this example, both a **ShardMapManager** and a specific **ShardMap** that it contains are initialized. This example shows the GetSqlShardMapManager and [GetRangeShardMap](https://msdn.microsoft.com/library/azure/dn824173.aspx) methods.
+應用程式應該在初始化期間，使用 Factory 呼叫 **[GetSQLShardMapManager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanagerfactory.getsqlshardmapmanager.aspx)** 來具現化 **ShardMapManager**。此範例中會初始化 **ShardMapManager** 及其包含的特定 **ShardMap**。這個範例示範 GetSqlShardMapManager 和 [GetRangeShardMap](https://msdn.microsoft.com/library/azure/dn824173.aspx) 方法。
 
     ShardMapManager smm = ShardMapManagerFactory.GetSqlShardMapManager(smmConnnectionString, 
                       ShardMapManagerLoadPolicy.Lazy);
     RangeShardMap<int> customerShardMap = smm.GetRangeShardMap<int>("customerMap"); 
 
-### <a name="use-lowest-privilege-credentials-possible-for-getting-the-shard-map"></a>Use lowest privilege credentials possible for getting the shard map
+### 盡可能使用最低權限的認證來取得分區對應
 
-If an application is not manipulating the shard map itself, the credentials used in the factory method should have just read-only permissions on the **Global Shard Map** database. These credentials are typically different from credentials used to open connections to the shard map manager. See also [Credentials used to access the Elastic Database client library](sql-database-elastic-scale-manage-credentials.md). 
+如果應用程式不會自行操作分區對應，用於 Factory 方法中的認證在**全域分區對應**資料庫上應該只有唯讀權限。這些認證通常不同於用來對分區對應管理員開啟連接的認證。另請參閱[用來存取彈性資料庫用戶端程式庫的認證](sql-database-elastic-scale-manage-credentials.md)。
 
-## <a name="call-the-openconnectionforkey-method"></a>Call the OpenConnectionForKey method
+## 呼叫 OpenConnectionForKey 方法
 
-The **[ShardMap.OpenConnectionForKey method](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmap.openconnectionforkey.aspx))** returns an ADO.Net connection ready for issuing commands to the appropriate database based on the value of the **key** parameter. Shard information is cached in the application by the **ShardMapManager**, so these requests do not typically involve a database lookup against the **Global Shard Map** database. 
+**[ShardMap.OpenConnectionForKey 方法](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmap.openconnectionforkey.aspx))** 傳回的 ADO.Net 連接可根據 **key** 參數的值，對適當的資料庫發出命令。**ShardMapManager** 會將分區資訊快取在應用程式中，因此這些要求通常不需要針對**全域分區對應**資料庫進行資料庫尋查。
 
-    // Syntax: 
-    public SqlConnection OpenConnectionForKey<TKey>(
-        TKey key,
-        string connectionString,
-        ConnectionOptions options
-    )
+	// Syntax: 
+	public SqlConnection OpenConnectionForKey<TKey>(
+		TKey key,
+		string connectionString,
+		ConnectionOptions options
+	)
 
 
-* The **key** parameter is used as a lookup key into the shard map to determine the appropriate database for the request. 
+* **key** 參數做為分區對應中的查閱索引鍵，以決定要求的適當資料庫。
 
-* The **connectionString** is used to pass only the user credentials for the desired connection. No database name or server name are included in this *connectionString* since the method will determine the database and server using the **ShardMap**. 
+* **connectionString** 只用來傳遞使用者認證給所需的連接。此 *connectionString* 中不含任何資料庫名稱或伺服器名稱，因為此方法會使用 **ShardMap** 來決定資料庫和伺服器。
 
-* The **[connectionOptions](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.connectionoptions.aspx)** should be set to **ConnectionOptions.Validate** if an environment where shard maps may change and rows may move to other databases as a result of split or merge operations. This involves a brief query to the local shard map on the target database (not to the global shard map) before the connection is delivered to the application. 
+* 若分區對應所在的環境可能變更，且資料列可能會移動到其他的資料庫成為分割或合併作業的結果，則 **[connectionOptions](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.connectionoptions.aspx)** 應設為 **ConnectionOptions.Validate**。這牽涉到在將連接傳遞至應用程式之前，對目標資料庫上的本機分區對應 (不是全域分區對應) 的簡短查詢。
 
-If the validation against the local shard map fails (indicating that the cache is incorrect), the Shard Map Manager will query the global shard map to obtain the new correct value for the lookup, update the cache, and obtain and return the appropriate database connection. 
+如果本機分區對應驗證失敗 (表示快取不正確)，分區對應管理員會查詢全域分區對應來取得查閱的新正確值、更新快取，然後取得並傳回適當的資料庫連接。
 
-Use **ConnectionOptions.None** only when shard mapping changes are not expected while an application is online. In that case, the cached values can be assumed to always be correct, and the extra round-trip validation call to the target database can be safely skipped. That reduces database traffic. The **connectionOptions** may also be set via a value in a configuration file to indicate whether sharding changes are expected or not during a period of time.  
+唯有當應用程式在線上，分區對應的變更是非預期之時，才使用 **ConnectionOptions.None**。在此情況下，快取的值可假定為永遠正確，可放心地略過對於目標資料庫的額外往返驗證呼叫。這會減少資料庫流量。也可透過組態檔中的值來設定 **connectionOptions**，以指出在一段時間內是否預期有分區化變更。
 
-This example uses the value of an integer key **CustomerID**, using a **ShardMap** object named **customerShardMap**.  
+此範例會利用名為 **customerShardMap** 的 **ShardMap** 物件，使用整數索引鍵值 **CustomerID**。
 
     int customerId = 12345; 
     int newPersonId = 4321; 
 
     // Connect to the shard for that customer ID. No need to call a SqlConnection 
-    // constructor followed by the Open method.
+	// constructor followed by the Open method.
     using (SqlConnection conn = customerShardMap.OpenConnectionForKey(customerId, 
         Configuration.GetCredentialsConnectionString(), ConnectionOptions.Validate)) 
     { 
@@ -84,58 +83,54 @@ This example uses the value of an integer key **CustomerID**, using a **ShardMap
         cmd.ExecuteNonQuery(); 
     }  
 
-The **OpenConnectionForKey** method returns a new already-open connection to the correct database. Connections utilized in this way still take full advantage of ADO.Net connection pooling. As long as transactions and requests can be satisfied by one shard at a time, this should be the only modification necessary in an application already using ADO.Net. 
+**OpenConnectionForKey** 方法會傳回新的已開啟連接至正確的資料庫。以這種方式使用連接仍可充分利用 ADO.Net 連接共用。只要一次一個分區就可滿足交易和要求，則已經使用 ADO.Net 的應用程式中只需要如此修改。
 
-The **[OpenConnectionForKeyAsync method](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmap.openconnectionforkeyasync.aspx)** is also available if your application makes use asynchronous programming with ADO.Net. Its behavior is the data dependent routing equivalent of ADO.Net's **[Connection.OpenAsync](https://msdn.microsoft.com/library/hh223688(v=vs.110).aspx)** method.
+如果您的應用程式將非同步程式設計與 ADO.Net 搭配使用，則也可以使用 **[OpenConnectionForKeyAsync 方法](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmap.openconnectionforkeyasync.aspx)**。其行為相當於 ADO.Net **[Connection.OpenAsync](https://msdn.microsoft.com/library/hh223688(v=vs.110).aspx)** 方法的資料相依路由。
 
-## <a name="integrating-with-transient-fault-handling"></a>Integrating with transient fault handling 
+## 與暫時性錯誤處理整合 
 
-A best practice in developing data access applications in the cloud is to ensure that transient faults are caught by the app, and that the operations are retried several times before throwing an error. Transient fault handling for cloud applications is discussed at [Transient Fault Handling](https://msdn.microsoft.com/library/dn440719(v=pandp.60).aspx). 
+在雲端中開發資料存取應用程式時，最佳做法就是確保應用程式會攔截暫時性錯誤，並且將作業重試數次之後才會擲回錯誤。[暫時性錯誤處理](https://msdn.microsoft.com/library/dn440719(v=pandp.60).aspx)) 中討論雲端應用程式的暫時性錯誤處理。
  
-Transient fault handling can coexist naturally with the Data Dependent Routing pattern. The key requirement is to retry the entire data access request including the **using** block that obtained the data-dependent routing connection. The example above could be rewritten as follows (note highlighted change). 
+暫時性錯誤處理可以自然地與資料相依路由模式並存。主要需求是重試整個資料存取要求，包括用以取得資料相依路由連接的 **using** 區塊。上述範例可以改寫如下 (請注意反白顯示的變更)。
 
-### <a name="example-–-data-dependent-routing-with-transient-fault-handling"></a>Example – data dependent routing with transient fault handling 
+### 範例 – 資料相依路由與暫時性錯誤處理 
 
 <pre><code>int customerId = 12345; 
 int newPersonId = 4321; 
 
-<span style="background-color:  #FFFF00">Configuration.SqlRetryPolicy.ExecuteAction(() =&gt; </span> 
+<span style="background-color:  #FFFF00">Configuration.SqlRetryPolicy.ExecuteAction(() => </span> 
 <span style="background-color:  #FFFF00">    { </span>
-        // Connect to the shard for a customer ID. 
-        using (SqlConnection conn = customerShardMap.OpenConnectionForKey(customerId,  
+        // 連接到分區取得客戶識別碼。
+        using (SqlConnection conn = customerShardMap.OpenConnectionForKey(customerId, 
         Configuration.GetCredentialsConnectionString(), ConnectionOptions.Validate)) 
         { 
-            // Execute a simple command 
+            // 執行簡單的命令 
             SqlCommand cmd = conn.CreateCommand(); 
 
-            cmd.CommandText = @&quot;UPDATE Sales.Customer 
+            cmd.CommandText = @"UPDATE Sales.Customer 
                             SET PersonID = @newPersonID 
-                            WHERE CustomerID = @customerID&quot;; 
+                            WHERE CustomerID = @customerID"; 
 
-            cmd.Parameters.AddWithValue(&quot;@customerID&quot;, customerId); 
-            cmd.Parameters.AddWithValue(&quot;@newPersonID&quot;, newPersonId); 
+            cmd.Parameters.AddWithValue("@customerID", customerId); 
+            cmd.Parameters.AddWithValue("@newPersonID", newPersonId); 
             cmd.ExecuteNonQuery(); 
 
-            Console.WriteLine(&quot;Update completed&quot;); 
+            Console.WriteLine("Update completed"); 
         } 
 <span style="background-color:  #FFFF00">    }); </span> 
 </code></pre>
 
 
-Packages necessary to implement transient fault handling are downloaded automatically when you build the elastic database sample application. Packages are also available separately at [Enterprise Library - Transient Fault Handling Application Block](http://www.nuget.org/packages/EnterpriseLibrary.TransientFaultHandling/). Use version 6.0 or later. 
+當您建置彈性資料庫範例應用程式時，自動會下載實作暫時性錯誤處理所需的封裝。另外也可以從[企業程式庫 - 暫時性錯誤處理應用程式區塊](http://www.nuget.org/packages/EnterpriseLibrary.TransientFaultHandling/) (英文) 取得封裝。請使用 6.0 版或更新版本。
 
-## <a name="transactional-consistency"></a>Transactional consistency 
+## 交易一致性 
 
-Transactional properties are guaranteed for all operations local to a shard. For example, transactions submitted through data-dependent routing execute within the scope of the target shard for the connection. At this time, there are no capabilities provided for enlisting multiple connections into a transaction, and therefore there are no transactional guarantees for operations performed across shards.
+對於分區範圍內的所有作業，都保證交易式屬性。例如，透過資料相依路由提交的交易，都在連接的目標分區範圍內執行。目前無法將多個連接編列到交易中，因此對於跨分區執行的作業，不提供交易式保證。
 
-## <a name="next-steps"></a>Next steps
-To detach a shard, or to reattach a shard, see [Using the RecoveryManager class to fix shard map problems](sql-database-elastic-database-recovery-manager.md)
+## 後續步驟
+若要中斷連結分區或重新附加分區，請參閱[使用 RecoveryManager 類別來修正分區對應問題](sql-database-elastic-database-recovery-manager.md)
 
 [AZURE.INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
  
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0706_2016-->

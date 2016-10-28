@@ -1,127 +1,129 @@
-<properties
-    pageTitle="Traffic Manager - traffic routing methods | Microsoft Azure"
-    description="This articles will help you understand the different traffic routing methods used by Traffic Manager"
-    services="traffic-manager"
-    documentationCenter=""
-    authors="sdwheeler"
-    manager="carmonm"
-    editor=""
-/>
-<tags
-    ms.service="traffic-manager"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.tgt_pltfrm="na"
-    ms.workload="infrastructure-services"
-    ms.date="10/11/2016"
-    ms.author="sewhee"
-/>
+<properties 
+   pageTitle="流量管理員 - 流量路由方法 | Microsoft Azure"
+   description="本文將協助您了解流量管理員所使用的不同流量路由方法"
+   services="traffic-manager"
+   documentationCenter=""
+   authors="sdwheeler"
+   manager="carmonm"
+   editor="tysonn" />
+<tags 
+   ms.service="traffic-manager"
+   ms.devlang="na"
+   ms.topic="article"
+   ms.tgt_pltfrm="na"
+   ms.workload="infrastructure-services"
+   ms.date="05/25/2016"
+   ms.author="sewhee" />
+
+# 流量管理員流量路由方法
+
+此頁面描述「Azure 流量管理員」支援的流量路由方法。這些是用來將使用者導向到正確的服務端點。
+
+> [AZURE.NOTE] 適用於「流量管理員」的 Azure Resource Manager (ARM) API 使用與「Azure 服務管理」(ASM) API 不同的術語。這項變更是依據客戶的意見反應而導入的，為的是提升明確性及減少常見的誤解。在此頁面中，我們將使用 ARM 術語。差異包括：
+
+>- 在 ARM 中，我們使用「流量路由方法」來描述演算法，此演算法可用來判斷在特定時間應將特定使用者導向到哪個端點。在 ASM 中，我們將此稱為「負載平衡方法」。
+
+>- 在 ARM 中，「加權」是指根據為每個端點定義的權數，將流量分配到所有可用端點的流量路由方法。在 ASM 中，我們將此稱為「循環配置資源」。
+>- 在 ARM 中，「優先順序」是指將所有流量導向到排序清單中第一個可用端點的流量路由方法。在 ASM 中，我們將此稱為「容錯移轉」。
+
+> 在所有情況下，唯一的差異在於命名。功能上並沒有任何差異。
 
 
-# <a name="traffic-manager-traffic-routing-methods"></a>Traffic Manager traffic-routing methods
+「Azure 流量管理員」支援一些演算法，可判斷如何將使用者傳遞到各個不同的服務端點。這些方法稱為流量路由方法。系統會在每個收到的 DNS 查詢套用流量路由方法，以判斷在 DNS 回應中應該傳回哪一個端點。
 
-Azure Traffic Manager supports three traffic-routing methods to determine how to route network traffic to the various service endpoints. Traffic Manager applies the traffic-routing method to each DNS query it receives. The traffic-routing method determines which endpoint returned in the DNS response.
+「流量管理員」中提供三種流量路由方法：
 
-The Azure Resource Manager support for Traffic Manager uses different terminology than the classic deployment model. The following table shows the differences between the Resource Manager and Classic terms:
+- **優先順序：**如果您想要針對所有流量使用某個主要服務端點，請選取 [優先順序]，並請提供備用方案，以防萬一發生主要端點或備份端點無法供使用的情況。如需詳細資訊，請參閱[優先順序流量路由方法](#priority-traffic-routing-method)。
 
-| Resource Manager term | Classic term |
-|-----------------------|--------------|
-| Traffic-routing method | Load-balancing method |
-| Priority method | Failover method |
-| Weighted method | Round-robin method |
-| Performance method | Performance method |
+- **加權︰**如果您想要將流量分配給一組端點 (不論是平均分配還是根據您定義的權數)，請選取 [加權]。如需詳細資訊，請參閱[加權流量路由方法](#weighted-traffic-routing-method)。
 
-Based on customer feedback, we changed the terminology to improve clarity and reduce common misunderstandings. There is no difference in functionality.
+- **效能：**如果您的端點位於不同的地理位置，而您希望使用者使用「最靠近」(亦即網路延遲最低) 的端點，請選取 [效能]。如需詳細資訊，請參閱[效能流量路由方法](#performance-traffic-routing-method)。
 
-There are three traffic routing methods available in Traffic Manager:
+> [AZURE.NOTE] 所有「流量管理員」設定檔皆包括端點健康情況連續監視和自動容錯移轉。針對所有流量路由方法都有提供這項支援。如需詳細資訊，請參閱[流量管理員端點監視](traffic-manager-monitoring.md)。
 
-- **Priority:** Select 'Priority' when you want to use a primary service endpoint for all traffic, and provide backups in case the primary or the backup endpoints are unavailable.
-- **Weighted:** Select 'Weighted' when you want to distribute traffic across a set of endpoints, either evenly or according to weights, which you define.
-- **Performance:** Select 'Performance' when you have endpoints in different geographic locations and you want end users to use the "closest" endpoint in terms of the lowest network latency.
+單一「流量管理員」設定檔只能使用一個流量路由方法。您可以隨時為您的設定檔選取不同的流量路由方法。變更會在 1 分鐘內套用，不會造成任何停機時間。透過使用巢狀「流量管理員」設定檔可以將流量路由方法加以結合。這可讓您建立既精密又具彈性的流量路由組態，以滿足較大型且較複雜應用程式的需求。如需詳細資訊，請參閱[巢狀流量管理員設定檔](traffic-manager-nested-profiles.md)。
 
-All Traffic Manager profiles include monitoring of endpoint health and automatic endpoint failover. For more information, see [Traffic Manager Endpoint Monitoring](traffic-manager-monitoring.md). A single Traffic Manager profile can use only one traffic routing method. You can select a different traffic routing method for your profile at any time. Changes are applied within one minute, and no downtime is incurred. Traffic-routing methods can be combined by using nested Traffic Manager profiles. Nesting enables sophisticated and flexible traffic-routing configurations that meet the needs of larger, complex applications. For more information, see [nested Traffic Manager profiles](traffic-manager-nested-profiles.md).
+## 優先順序流量路由方法
 
-## <a name="priority-traffic-routing-method"></a>Priority traffic-routing method
+組織通常想要為其服務提供可靠性，而其做法是提供一或多個備份服務，以防萬一發生其主要服務停止運作的情況。「優先順序」流量路由方法可讓 Azure 客戶輕鬆實作此容錯移轉模式。
 
-Often an organization wants to provide reliability for its services by deploying one or more backup services in case their primary service goes down. The 'Priority' traffic-routing method allows Azure customers to easily implement this failover pattern.
+![Azure 流量管理員「優先順序」流量路由方法][1]
 
-![Azure Traffic Manager 'Priority' traffic-routing method][1]
+「流量管理員」設定檔已設定搭配一份服務端點優先順序清單。所有使用者流量預設會傳送到主要 (最高優先順序) 端點。如果主要端點無法供使用 (根據所設定端點的已啟用/已停用狀態，以及持續進行的端點監視)，系統會將使用者轉介到第二個端點。如果主要和次要端點都無法供使用，系統就會將流量傳送到第三個端點，依此類推。
 
-The Traffic Manager profile contains a prioritized list of service endpoints. By default, Traffic Manager sends all traffic to the primary (highest-priority) endpoint. If the primary endpoint is not available, Traffic Manager routes the traffic to the second endpoint. If both the primary and secondary endpoints are not available, the traffic goes to the third, and so on. Availability of the endpoint is based on the configured status (enabled or disabled) and the ongoing endpoint monitoring.
+端點優先順序的設定在 ARM API (和新的 Azure 入口網站) 與 ASM API (和傳統入口網站) 中執行方式不同︰
 
-### <a name="configuring-endpoints"></a>Configuring endpoints
+- 在 ARM API 中，端點優先順序是使用為每個端點定義的 'priority' 屬性來明確設定。此屬性的值必須介於 1 到 1000，其中值越低代表優先順序越高。沒有任何兩個端點可以共用相同的優先順序值。此屬性為選擇性，如果省略，則會使用以端點順序為基礎的預設優先順序。
 
-With Azure Resource Manager, you configure the endpoint priority explicitly using the 'priority' property for each endpoint. This property is a value between 1 and 1000. Lower values represent a higher priority. Endpoints cannot share priority values. Setting the property is optional. When omitted, a default priority based on the endpoint order is used.
+- 在 ASM API 中，端點優先順序是根據端點在設定檔定義中列出的順序，以隱含方式設定。您也可以在 Azure「傳統」入口網站中設定檔的 [組態] 頁面上設定容錯移轉順序。
 
-With the Classic interface, the endpoint priority is configured implicitly. The priority is based on the order in which the endpoints are listed in the profile definition.
+## 加權流量路由方法
 
-## <a name="weighted-traffic-routing-method"></a>Weighted traffic-routing method
+一個既可提供高可用性又能充分利用服務的常見方法，就是提供一組端點，然後將流量以平均或預先定義的加權方式分配給所有端點「加權」流量路由方法支援此做法。
 
-The 'Weighted' traffic-routing method allows you to distribute traffic evenly or to use a pre-defined weighting.
+![Azure 流量管理員「加權」流量路由方法][2]
 
-![Azure Traffic Manager 'Weighted' traffic-routing method][2]
+在「加權」流量路由方法中，於「流量管理員」設定檔組態中會一併為每個端點指派一個權數。每個權數是從 1 到 1000 之間的整數。此參數為選擇性，如果省略，則會使用預設權數 '1'。
+  
+使用者流量會分配到所有可用的服務端點 (根據所設定端點的已啟用/已停用狀態，以及持續進行的端點監視)。針對每個收到的 DNS 查詢，系統會隨機選擇一個可用的端點，其中選中的機率是根據指派給該端點及其他可用端點的權數。
 
-In the Weighted traffic-routing method, you assign a weight to each endpoint in the Traffic Manager profile configuration. The weight is an integer from 1 to 1000. This parameter is optional. If omitted, Traffic Managers uses a default weight of '1'.
+如果所有端點皆使用相同的權數，就會產生平均流量分配，適用於在一組完全相同的端點上建立一致的使用率。在特定端點上使用較高 (或較低) 的權數會提高 (或降低) 在 DNS 回應中傳回這些端點的頻率，因而接收較多的流量。這可讓一些實用案例變得可行︰
 
-For each DNS query received, Traffic Manager randomly chooses an available endpoint. The probability of choosing an endpoint is based on the weights assigned to all available endpoints. Using the same weight across all endpoints results in an even traffic distribution. Using higher or lower weights on specific endpoints causes those endpoints to be returned more or less frequently in the DNS responses.
+- 應用程式逐步升級：配置要路由傳送到新端點的流量百分比，並隨時間逐漸增加流量到 100%。
 
-The weighted method enables some useful scenarios:
+- 應用程式移轉至 Azure：建立包含 Azure 和外部端點的設定檔，並指定要路由傳送至每個端點的流量權數。
 
-- Gradual application upgrade: Allocate a percentage of traffic to route to a new endpoint, and gradually increase the traffic over time to 100%.
-- Application migration to Azure: Create a profile with both Azure and external endpoints. Adjust the weight of the endpoints to prefer the new endpoints.
-- Cloud-bursting for additional capacity: Quickly expand an on-premises deployment into the cloud by putting it behind a Traffic Manager profile. When you need extra capacity in the cloud, you can add or enable more endpoints and specify what portion of traffic goes to each endpoint.
+- 額外容量的雲端負載平衡：將內部部署快速展開到雲端的方式是將它放在流量管理員設定檔後面。當您需要在雲端中增加額外容量時，您可以新增或啟用更多的端點並指定進入每個端點的流量比例。
 
-The new Azure portal supports the configuration of weighted traffic routing. Weights cannot be configured in the Classic portal. You can also configure weights using the Resource Manager and classic versions of Azure PowerShell, CLI, and the REST APIs.
+您可以透過新的 Azure 入口網站設定加權流量路由，不過，無法透過「傳統」入口網站設定權數。使用 Azure PowerShell、Azure CLI 及 Azure REST API 透過 ARM 和 ASM 也可以對其進行設定。
 
-It is important to understand that DNS responses are cached by clients and by the recursive DNS servers that the clients use to resolve DNS names. This caching can have an impact on weighted traffic distributions. When the number of clients and recursive DNS servers is large, traffic distribution works as expected. However, when the number of clients or recursive DNS servers is small, caching can significantly skew the traffic distribution.
+注意︰用戶端和這些用戶端用來發出其 DNS 查詢的遞迴 DNS 伺服器都會快取 DNS 回應。了解此快取對加權流量分配的潛在影響相當重要。如果用戶端和遞迴 DNS 伺服器的數量龐大 (一般網際網路對向應用程式的情況)，流量分配就會依預期的方式運作。不過，如果用戶端或遞迴 DNS 伺服器的數量小，則此快取可能會大幅扭曲流量分配。可能發生這種情況的常見使用案例包括︰
 
-Common use cases include:
+- 開發與測試環境
+- 應用程式間通訊
+- 目標使用者群較窄 (例如組織的員工)、共用共同遞迴 DNS 基礎結構的應用程式。
 
-- Development and testing environments
-- Application-to-application communications
-- Applications aimed at a narrow user-base that share a common recursive DNS infrastructure (for example, employees of company connecting through a proxy)
+這些 DNS 快取效果對所有 DNS 型流量路由系統來說很常見，不僅限於「Azure 流量管理員」。在某些情況下，明確清除 DNS 快取或許可做為一個因應措施。在其他情況下，使用替代的流量路由方法可能更為合適。
 
-These DNS caching effects are common to all DNS-based traffic routing systems, not just Azure Traffic Manager. In some cases, explicitly clearing the DNS cache may provide a workaround. In other cases, an alternative traffic-routing method may be more appropriate.
+## 效能流量路由方法
 
-## <a name="performance-traffic-routing-method"></a>Performance traffic-routing method
+在全球兩個或更多個位置中部署端點，並將使用者傳遞至「最靠近」他們的位置，便可改善許多應用程式的回應速度。這就是「效能」流量路由方法的目的。
 
-Deploying endpoints in two or more locations across the globe can improve the responsiveness of many applications by routing traffic to the location that is 'closest' to you. The 'Performance' traffic-routing method provides this capability.
+![Azure 流量管理員「效能」流量路由方法][3]
 
-![Azure Traffic Manager 'Performance' traffic-routing method][3]
+為了讓回應達到最快，「最靠近」的端點不一定是地理距離測量上最接近的端點。取而代之的是，「效能」流量路由方法會判斷哪一個端點是在網路延遲測量上最靠近使用者的端點。這取決於「網際網路延遲資料表」，此資料表顯示各個 IP 位址範圍與每個 Azure 資料中心之間的往返時間。
 
-The 'closest' endpoint is not necessarily closest as measured by geographic distance. Instead, the 'Performance' traffic-routing method determines the closest endpoint by measuring network latency. Traffic Manager maintains an Internet Latency Table to track the round-trip time between IP address ranges and each Azure datacenter.
+「流量管理員」會檢查每個連入的 DNS 要求，並在「網際網路延遲資料表」中查詢該要求的來源 IP 位址。這可判斷從該 IP 位址到每個 Azure 資料中心的延遲。接著，「流量管理員」會選出可用端點 (根據所設定端點的已啟用/已停用狀態，以及持續進行的端點監視) 中延遲最低的端點，然後在 DNS 回應中傳回該端點。使用者會因此被導向到可提供最低延遲 (因而也提供最佳效能) 的端點。
 
-Traffic Manager looks up the source IP address of the incoming DNS request in the Internet Latency Table. Traffic Manager chooses an available endpoint in the Azure datacenter that has the lowest latency for that IP address range, then returns that endpoint in the DNS response.
+如[流量管理員的運作方式](traffic-manager-how-traffic-manager-works.md)所述，「流量管理員」並不會直接從使用者接收 DNS 查詢，而是會從已設定它們使用的遞迴 DNS 服務接收這些查詢。因此，用來判斷「最靠近」端點的 IP 位址不是使用者的 IP 位址，而是其遞迴 DNS 服務的 IP 位址。實際上，就此目的而言，，此 IP 位址是使用者的一個理想 Proxy。
 
-As explained in [How Traffic Manager Works](traffic-manager-how-traffic-manager-works.md), Traffic Manager does not receive DNS queries directly from clients. Rather, DNS queries come from the recursive DNS service that the clients are configured to use. Therefore, the IP address used to determine the 'closest' endpoint is not the client's IP address, but it is the IP address of the recursive DNS service. In practice, this IP address is a good proxy for the client.
+為了反映全域網際網路的變更以及新 Azure 區域的加入，「流量管理員」會定期更新它所取用的「網際網路延遲資料表」。不過，這並無法將效能方面的即時變化或整個網際網路的負載納入考量。
 
-Traffic Manager regularly updates the Internet Latency Table to account for changes in the global Internet and new Azure regions. However, application performance varies based on real-time variations in load across the Internet. Performance traffic-routing does not monitor load on a given service endpoint. However, if an endpoint becomes unavailable, Traffic Manager does not it in DNS query responses.
+雖然「流量管理員」會監視端點且在 DNS 查詢回應中不會包含無法使用的端點，但效能流量路由仍然不會將所提供之服務端點上的負載納入考量。
 
-Points to note:
+注意事項：
 
-- If your profile contains multiple endpoints in the same Azure region, then Traffic Manager distributes traffic evenly across the available endpoints in that region. If you prefer a different traffic distribution within a region, you can use [nested Traffic Manager profiles](traffic-manager-nested-profiles.md).
+- 如果您的設定檔包含多個位於相同 Azure 區域的端點，則導向到該區域的流量會平均分配到所有可用的端點 (根據所設定端點的已啟用/已停用狀態，以及持續進行的端點監視)。如果您在某個區域內偏好採用不同的流量分配，則可使用[巢狀流量管理員設定檔](traffic-manager-nested-profiles.md)來達到這個目的。
 
-- If all enabled endpoints in a given Azure region are degraded, Traffic Manager distributes traffic across all other available endpoints instead of the next-closest endpoint. This logic prevents a cascading failure from occurring by not overloading the next-closest endpoint. If you want to define a preferred failover sequence, use [nested Traffic Manager profiles](traffic-manager-nested-profiles.md).
+- 如果指定的 Azure 區域中所有已啟用的端點都被降級 (根據持續進行的端點監視)，這些端點的流量將會分配到設定檔中指定的所有其他可用端點，而不是下一個最靠近的端點。如果下一個最靠近的端點超載，這可協助避免可能發生的連鎖失敗。如果您偏好定義端點容錯移轉順序，則可使用[巢狀流量管理員設定檔](traffic-manager-nested-profiles.md)來達到這個目的。
 
-- When using the Performance traffic routing method with external endpoints or nested endpoints, you need to specify the location of those endpoints. Choose the Azure region closest to your deployment. Those locations are the values supported by the Internet Latency Table.
+- 搭配外部端點或巢狀端點使用「效能」流量路由方法時，您將必須指定這些端點的位置。請選擇離您的部署最近的 Azure 區域，可用的選項為各個 Azure 區域，因為這些是「網際網路延遲資料表」所支援的位置。
 
-- The algorithm that chooses the endpoint is deterministic. Repeated DNS queries from the same client are directed to the same endpoint. Typically, clients use different recursive DNS servers when traveling. The client may be routed to a different endpoint. Routing can also be affected by updates to the Internet Latency Table. Therefore, the Performance traffic-routing method does not guarantee that a client is always routed to the same endpoint.
+- 選擇要將哪一個端點傳回給所指定使用者的演算法是決定型演算法，不涉及隨機性。來自同一個用戶端的重複 DNS 查詢將會被導向到同一個端點。不過，「效能」流量路由方法不應該倚賴一律將指定的使用者傳遞給指定的部署 (在某些情況下，可能會需要這樣做，例如該使用者的使用者資料只存放在一個位置中)。這是因為當使用者出差時，通常會使用不同的遞迴 DNS 伺服器，因此系統可能將他們傳遞到不同的端點。他們也可能會受到「網際網路延遲資料表」更新的影響。
 
-- When the Internet Latency Table changes, you may notice that some clients are directed to a different endpoint. This routing change is more accurate based on current latency data. These updates are essential to maintain the accuracy of Performance traffic-routing as the Internet continually evolves.
+- 當「網際網路延遲資料表」更新時，您可能會注意到用戶端被導向到不同的端點。受影響的使用者數量應該極小，並且會根據目前的延遲資料反映出更精確的路由。隨著網際網路的持續發展，這些更新對於維護「效能」流量路由的精確度也變得不可或缺。
 
-## <a name="next-steps"></a>Next steps
 
-Learn how to develop high-availability applications using [Traffic Manager endpoint monitoring](traffic-manager-monitoring.md)
+## 後續步驟
 
-Learn how to [create a Traffic Manager profile](traffic-manager-manage-profiles.md)
+了解如何使用[流量管理員端點監視](traffic-manager-monitoring.md)來開發高可用性應用程式
+
+了解如何[建立流量管理員設定檔](traffic-manager-manage-profiles.md)
+
 
 <!--Image references-->
 [1]: ./media/traffic-manager-routing-methods/priority.png
 [2]: ./media/traffic-manager-routing-methods/weighted.png
 [3]: ./media/traffic-manager-routing-methods/performance.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

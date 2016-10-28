@@ -1,153 +1,152 @@
 <properties
-    pageTitle="Continuous integration in VS Team Services using Azure Resource Group projects | Microsoft Azure"
-    description="Describes how to set up continuous integration in Visual Studio Team Services by using Azure Resource Group deployment projects in Visual Studio."
-    services="visual-studio-online"
-    documentationCenter="na"
-    authors="mlearned"
-    manager="erickson-doug"
-    editor="" />
+	pageTitle="使用 Azure 資源群組專案在 Visual Studio Team Services中進行連續整合 | Microsoft Azure"
+	description="使用 Azure 資源群組部署專案在 Visual Studio Team Services 中進行連續整合"
+	services="visual-studio-online"
+	documentationCenter="na"
+	authors="mlearned"
+	manager="erickson-doug"
+	editor="" />
 
  <tags
-    ms.service="azure-resource-manager"
-    ms.devlang="multiple"
-    ms.topic="article"
-    ms.tgt_pltfrm="na"
-    ms.workload="na"
-    ms.date="08/01/2016"
-    ms.author="mlearned" />
+	ms.service="azure-resource-manager"
+	ms.devlang="multiple"
+	ms.topic="article"
+	ms.tgt_pltfrm="na"
+	ms.workload="na"
+	ms.date="08/01/2016"
+	ms.author="mlearned" />
 
+# 使用 Azure 資源群組部署專案在 Visual Studio Team Services 中進行連續整合
 
-# <a name="continuous-integration-in-visual-studio-team-services-using-azure-resource-group-deployment-projects"></a>Continuous integration in Visual Studio Team Services using Azure Resource Group deployment projects
+要部署 Azure 範本，您需要執行各種階段的工作，包括組建、測試、複製到 Azure (也稱為「暫存」) 及部署範本。在 Visual Studio Team Services (VS Team Services) 中兩種不同的方式進行此作業。兩種方法所產生的結果都相同，因此請選擇最符合您工作流程的方法。
 
-To deploy an Azure template, you need to perform tasks to go through the various stages: Build, Test, Copy to Azure (also called "Staging"), and Deploy Template.  There are two different ways to do this in Visual Studio Team Services (VS Team Services). Both methods provide the same results, so choose the one that best fits your workflow.
+-	在執行 PowerShell 指令碼的組建定義 (包含在 Azure 資源群組部署專案，Deploy-AzureResourceGroup.ps1) 中新增一個步驟。指令碼會複製構件，接著部署範本。
+-	新增多個 VS Team Services 建置步驟，每個都執行一個階段工作。
 
--   Add a single step to your build definition that runs the PowerShell script that’s included in the Azure Resource Group deployment project (Deploy-AzureResourceGroup.ps1). The script copies artifacts and then deploys the template.
--   Add multiple VS Team Services build steps, each one performing a stage task.
+本文示範如何使用第一個選項 (使用組建定義來執行 PowerShell 指令碼)。此選項的其中一個優點是開發人員在 Visual Studio 中使用的指令碼，與 VS Team Services 使用的指令碼相同。此程序假設您已經在 VS Team Services 中簽入 Visual Studio 部署專案。
 
-This article demonstrates how to use the first option (use a build definition to run the PowerShell script). One advantage of this option is that the script used by developers in Visual Studio is the same script that is used by VS Team Services. This procedure assumes you already have a Visual Studio deployment project checked into VS Team Services.
+## 將構件複製到 Azure 
 
-## <a name="copy-artifacts-to-azure"></a>Copy artifacts to Azure 
+無論何種情況，如果有任何需要進行範本部署的構件，您需要提供 Azure 資源管理員存取權。這些構件包括下列檔案：
 
-Regardless of the scenario, if you have any artifacts that are needed for template deployment, you will need to give Azure Resource Manager access to them. These artifacts can include files such as:
+-	巢狀範本
+-	組態指令碼及 DSC 指令碼
+-	應用程式二進位檔
 
--   Nested templates
--   Configuration scripts and DSC scripts
--   Application binaries
+### 巢狀範本和組態指令碼
+當您使用 Visual Studio (或以 Visual Studio 程式碼片段建置的) 提供的範本時，PowerShell 指令碼不但會暫存構件，也會參數化資源 URI 以進行不同的部署。接著，指令碼會將構件複製到 Azure 中的安全容器，並為該容器建立 SaS 權杖，再將該資訊傳遞至範本部署。請參閱[建立範本部署](https://msdn.microsoft.com/library/azure/dn790564.aspx)以深入了解巢狀範本。
 
-### <a name="nested-templates-and-configuration-scripts"></a>Nested Templates and Configuration Scripts
-When you use the templates provided by Visual Studio (or built with Visual Studio snippets), the PowerShell script not only stages the artifacts, it also parameterizes the URI for the resources for different deployments. The script then copies the artifacts to a secure container in Azure, creates a SaS token for that container, and then passes that information on to the template deployment. See [Create a template deployment](https://msdn.microsoft.com/library/azure/dn790564.aspx) to learn more about nested templates.
+## 在 VS Team Services 中設定連續部署
 
-## <a name="set-up-continuous-deployment-in-vs-team-services"></a>Set up continuous deployment in VS Team Services
+要在 VS Team Services 中呼叫 PowerShell 指令碼，請更新您的組建定義。簡單來說，請執行下列步驟：
 
-To call the PowerShell script in VS Team Services, you need to update your build definition. In brief, the steps are: 
+1.	編輯組建定義。
+1.	在 VS Team Services 中設定 Azure 授權。
+1.	新增參考 Azure 資源群組部署專案中 PowerShell 指令碼的 Azure PowerShell 組建步驟。
+1.	設定 *-ArtifactsStagingDirectory* 參數值，以與 VS Team Services 中建置的專案搭配使用。
 
-1.  Edit the build definition.
-1.  Set up Azure authorization in VS Team Services.
-1.  Add an Azure PowerShell build step that references the PowerShell script in the Azure Resource Group deployment project.
-1.  Set the value of the *-ArtifactsStagingDirectory* parameter to work with a project built in VS Team Services.
+### 詳細的逐步解說
 
-### <a name="detailed-walkthrough"></a>Detailed walkthrough
+下列步驟會逐步引導您進行在 VS Team Services 設定連續部署所需的步驟。
 
-The following steps will walk you through the steps necessary to configure continuous deployment in VS Team Services 
-
-1.  Edit your VS Team Services build definition and add an Azure PowerShell build step. Choose the build definition under the **Build definitions** category and then choose the **Edit** link.
+1.	編輯您的 VS Team Services 組建定義並新增 Azure PowerShell 建置步驟。在 [組建定義] 類別下選擇組建定義，再選擇 [編輯] 連結。
 
     ![][0]
 
-1.  Add a new **Azure PowerShell** build step to the build definition and then choose the **Add build step…** button.
+1.	在組建定義中新增 [Azure PowerShell] 組建步驟，再選擇 [新增組建步驟...] 按鈕。
 
     ![][1]
 
-1.  Choose the **Deploy task** category, select the **Azure PowerShell** task, and then choose its **Add** button.
+1.	選擇 [部署工作] 類別，選取 [Azure PowerShell] 工作，再選擇其 [新增] 按鈕。
 
     ![][2]
 
-1.  Choose the **Azure PowerShell** build step and then fill in its values.
+1.	選擇 [Azure PowerShell] 組建步驟，再填上其值。
 
-    1.  If you already have an Azure service endpoint added to VS Team Services, choose the subscription in the **Azure Subscription** drop down list box and then skip to the next section. 
+    1.	如果您已經將 Azure 服務端點加入 VS Team Services，請在 [Azure 訂用帳戶] 下拉式清單方塊中選擇訂用帳戶，並跳至下一節。
 
-        If you don’t have an Azure service endpoint in VS Team Services, you’ll need to add one. This subsection takes you through the process. If your Azure account uses a Microsoft account (such as Hotmail), you’ll need to take the following steps to get a Service Principal authentication.
+        如果您的 VS Team Services 中沒有 Azure 服務端點，請新增一個。此訂用帳戶會帶您完成此程序。如果您的 Azure 帳戶使用 Microsoft 帳戶 (例如 Hotmail)，您需要進行下列步驟以取得服務主體驗證。
 
-    1.  Choose the **Manage** link next to the **Azure Subscription** drop down list box.
+    1.	選擇 [Azure 訂用帳戶] 下拉式清單方塊旁的 [管理] 連結。
 
         ![][3]
 
-    1. Choose **Azure** in the **New Service Endpoint** drop down list box.
+    1. 在 [新服務端點] 下拉式清單方塊中選擇 [Azure]。
 
         ![][4]
 
-    1.  In the **Add Azure Subscription** dialog box, select the **Service Principal** option.
+    1.	在[新增 Azure 訂用帳戶] 對話方塊中，選取 [服務主體] 選項。
 
         ![][5]
 
-    1.  Add your Azure subscription information to the **Add Azure Subscription** dialog box. You’ll need to provide the following items:
-        -   Subscription Id
-        -   Subscription Name
-        -   Service Principal Id
-        -   Service Principal Key
-        -   Tenant Id
+    1.	在 [新增 Azure 訂用帳戶] 對話方塊中新增 Azure 訂用帳戶資訊。您必須先提供下列項目：
+        -	訂用帳戶識別碼
+        -	訂用帳戶名稱
+        -	服務主體識別碼
+        -	服務主體金鑰
+        -	租用戶識別碼
 
-    1.  Add a name of your choice to the **Subscription** name box. This value will appear later in the **Azure Subscription** drop down list in VS Team Services. 
+    1.	在 [訂用帳戶] 名稱方塊中新增您選擇的名稱。此值稍後會出現在 VS Team Services 中的 [Azure 訂用帳戶] 下拉式清單中。
 
-    1.  If you don’t know your Azure subscription ID, you can use one of the following commands to get it.
+    1.	如果您不知道 Azure 訂用帳戶識別碼，可以使用以下其中一個命令取得。
         
-        For PowerShell scripts, use:
+        對於 Azure PowerShell 指令碼，請使用：
 
         `Get-AzureRmSubscription`
 
-        For Azure CLI, use:
+        對於 Azure CLI，請使用：
 
         `azure account show`
     
 
-    1.  To get a Service Principal ID, Service Principal Key, and Tenant ID, follow the procedure in [Create Active Directory application and service principal using portal](resource-group-create-service-principal-portal.md) or [Authenticating a service principal with Azure Resource Manager](resource-group-authenticate-service-principal.md).
+    1.	要取得服務主體識別碼、服務主體金鑰及租用戶識別碼，請依照[使用入口網站建立 Active Directory 應用程式和服務主體](resource-group-create-service-principal-portal.md)或[以 Azure 資源管理員驗證服務主體](resource-group-authenticate-service-principal.md)中的程序。
 
-    1.  Add the Service Principal ID, Service Principal Key, and Tenant ID values to the **Add Azure Subscription** dialog box and then choose the **OK** button.
+    1.	在 [新增 Azure 訂用帳戶] 對話方塊中新增服務主體識別碼、服務主體金鑰及租用戶識別碼值，再選擇 [確定] 按鈕。
 
-        You now have a valid Service Principal to use to run the Azure PowerShell script.
+        現在，您擁有可執行 Azure PowerShell 指令碼的有效服務主體。
 
-1.  Edit the build definition and choose the **Azure PowerShell** build step. Select the subscription in the **Azure Subscription** drop down list box. (If the subscription doesn't appear, choose the **Refresh** button next the **Manage** link.) 
+1.	編輯組建定義並選擇 **Azure PowerShell** 建置步驟。在 [Azue 訂用帳戶] 下拉式清單方塊中選取訂用帳戶。(如果訂用帳戶未出現，請選擇 [管理] 連結旁的 [重新整理] 按鈕。)
 
     ![][8]
 
-1.  Provide a path to the Deploy-AzureResourceGroup.ps1 PowerShell script. To do this, choose the ellipsis (…) button next to the **Script Path** box, navigate to the Deploy-AzureResourceGroup.ps1 PowerShell script in the **Scripts** folder of your project, select it, and then choose the **OK** button. 
+1.	提供 Deploy-AzureResourceGroup.ps1 PowerShell 指令碼的路徑。要這樣做，請選擇 [指令碼路徑] 方塊旁的省略符號 (…) 按鈕，瀏覽到您專案的 [指令碼] 資料夾中的 Deploy-AzureResourceGroup.ps1 PowerShell 指令碼，選取並選擇 [確定] 按鈕。
 
     ![][9]
 
-1. After you select the script, update the path to the script so that it’s run from the Build.StagingDirectory (the same directory that *ArtifactsLocation* is set to). You can do this by adding “$(Build.StagingDirectory)/” to the beginning of the script path.
+1. 選取指令碼之後，將路徑更新到該指令碼，以便從 Build.StagingDirectory 執行 (與 *ArtifactsLocation* 設定的目錄相同)。您可以在指令碼路徑的開頭加入 “$(Build.StagingDirectory)/” 以執行此項作業。
 
     ![][10]
 
-1.  In the **Script Arguments** box, enter the following parameters (in a single line). When you run the script in Visual Studio, you can see how VS uses the parameters in the **Output** window. You can use this as a starting point for setting the parameter values in your build step.
+1.	在 [指令碼引數] 方塊中，輸入下列參數 (請輸入在同一行)。當您在 Visual Studio 中執行指令碼時，可以在 [輸出] 視窗中看到 VS 如何使用參數。您可以從這裡開始，在建置步驟中設定參數值。
 
-  	| Parameter | Description|
-  	|---|---|
-  	| -ResourceGroupLocation           | The geo-location value where the resource group is located, such as **eastus** or **'East US'**. (Add single quotes if there's a space in the name.) See [Azure Regions](https://azure.microsoft.com/en-us/regions/) for more information.|                                                                                                                                                                                                                              |
-  	| -ResourceGroupName               | The name of the resource group used for this deployment.|                                                                                                                                                                                                                                                                                                                                                                                                                |
-  	| -UploadArtifacts                 | This parameter, when present, specifies that artifacts need to be uploaded to Azure from the local system. You only need to set this switch if your template deployment requires extra artifacts that you want to stage using the PowerShell script (such as configuration scripts or nested templates).                                                                                                                                                                 |
-  	| -StorageAccountName              | The name of the storage account used to stage artifacts for this deployment. This parameter is required only if you’re copying artifacts to Azure. This storage account will not be automatically created by the deployment, it must already exist.|                                                                                                                                                                                                                     |
-  	| -StorageAccountResourceGroupName | The name of the resource group associated with the storage account. This parameter is required only if you’re copying artifacts to Azure.|                                                                                                                                                                                                                                                                                                                               |
-  	| -TemplateFile                    | The path to the template file in the Azure Resource Group deployment project. To enhance flexibility, use a path for this parameter that is relative to the location of the PowerShell script instead of an absolute path.|
-  	| -TemplateParametersFile          | The path to the parameters file in the Azure Resource Group deployment project. To enhance flexibility, use a path for this parameter that is relative to the location of the PowerShell script instead of an absolute path.|
-  	| -ArtifactStagingDirectory        | This parameter lets the PowerShell script know the folder from where the project’s binary files should be copied. This value overrides the default value used by the PowerShell script. For VS Team Services use, set the value to: -ArtifactStagingDirectory $(Build.StagingDirectory)                                                                                                                                                                                              |
+    | 參數 | 說明|
+    |---|---|
+    | -ResourceGroupLocation | 資源群組所在的地理位置，例如 **eastus** 或**'美國東部'**。(如果名稱中有空間，請加入單引號。) 如需詳細資訊，請參閱 [Azure 區域](https://azure.microsoft.com/regions/)。| |
+    | -ResourceGroupName | 此部署使用的資源群組名稱。| |
+    | -UploadArtifacts | 出現此參數時，表示必須將構件從本機系統上傳到 Azure。您只需要在範本部署需要您希望暫存的其他構件時，使用 PowerShell 指令碼設定此轉換 (例如組態指令碼或巢狀範本) 即可。 |
+    | -StorageAccountName | 用來暫存此部署之構件的儲存體帳戶名稱。只有在您將構件複製到 Azure 時才需要此參數。部署時不會自動建立此儲存體帳戶，請在部署前先自行建立此儲存體帳戶。| |
+    | -StorageAccountResourceGroupName | 與儲存體帳戶相關聯的資源群組名稱。只有在您將構件複製到 Azure 時才需要此參數。| |
+    | -TemplateFile | Azure 資源群組部署專案中的範本檔案路徑。為了提高彈性，請使用與 PowerShell 指令碼相關的參數路徑，不要使用絕對路徑。|
+    | -TemplateParametersFile | Azure 資源群組部署專案中的參數檔案路徑。為了提高彈性，請使用與 PowerShell 指令碼相關的參數路徑，不要使用絕對路徑。|
+    | -ArtifactStagingDirectory | 此參數可讓 PowerShell 指令碼從應該複製專案二進位檔的位置取得資料夾。這個值會覆寫 PowerShell 指令碼使用的預設值。若要供 VS Team Services 使用，請將值設為：-ArtifactStagingDirectory $(Build.StagingDirectory) |
 
-    Here’s a script arguments example (line broken for readability):
+    以下是指令碼引數的範例 (斷行以方便閱讀)：
 
-    ``` 
+    ```	
     -ResourceGroupName 'MyGroup' -ResourceGroupLocation 'eastus' -TemplateFile '..\templates\azuredeploy.json' 
     -TemplateParametersFile '..\templates\azuredeploy.parameters.json' -UploadArtifacts -StorageAccountName 'mystorageacct' 
-    –StorageAccountResourceGroupName 'Default-Storage-EastUS' -ArtifactStagingDirectory '$(Build.StagingDirectory)' 
+    –StorageAccountResourceGroupName 'Default-Storage-EastUS' -ArtifactStagingDirectory '$(Build.StagingDirectory)'	
     ```
 
-    When you’re finished, the **Script Arguments** box should resemble the following.
+    完成之後，[指令碼引數] 方塊應該如下所示。
 
     ![][11]
 
-1.  After you’ve added all the required items to the Azure PowerShell build step, choose the **Queue** build button to build the project. The **Build** screen shows the output from the PowerShell script.
+1.	將所有必要的項目都加入 Azure PowerShell 建置步驟之後，請選擇 [佇列] 建置按鈕以建置專案。[建置] 畫面會顯示 PowerShell 指令碼的輸出。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-Read [Azure Resource Manager overview](resource-group-overview.md) to learn more about Azure Resource Manager and Azure resource groups.
+如需 Azure 資源管理員和 Azure 資源群組的詳細資訊的詳細資訊，請參閱 [Azure 資源管理員概觀](resource-group-overview.md)。
 
 
 [0]: ./media/vs-azure-tools-resource-groups-ci-in-vsts/walkthrough1.png
@@ -161,8 +160,4 @@ Read [Azure Resource Manager overview](resource-group-overview.md) to learn more
 [10]: ./media/vs-azure-tools-resource-groups-ci-in-vsts/walkthrough11b.png
 [11]: ./media/vs-azure-tools-resource-groups-ci-in-vsts/walkthrough12.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

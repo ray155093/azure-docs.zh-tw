@@ -1,70 +1,65 @@
 <properties
-    pageTitle="Assign users to a custom domain in Azure Active Directory | Microsoft Azure"
-    description="How to populate a custom domain in Azure Active Directory with user accounts."
-    services="active-directory"
-    documentationCenter=""
-    authors="jeffsta"
-    manager="femila"
-    editor=""/>
+	pageTitle="將使用者指派給 Azure Active Directory 中的自訂網域 | Microsoft Azure"
+	description="如何在 Azure Active Directory 中的自訂網域填入使用者帳戶。"
+	services="active-directory"
+	documentationCenter=""
+	authors="jeffsta"
+	manager="femila"
+	editor=""/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="10/04/2016"
-    ms.author="curtand;jeffsta"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/18/2016"
+	ms.author="curtand;jeffsta"/>
 
+# 將使用者指派至自訂網域
 
-# <a name="assign-users-to-a-custom-domain"></a>Assign users to a custom domain
+在您將您的自訂網域新增至 Azure Active Directory 之後，您必須加入此網域的使用者帳戶，以便開始驗證它們。
 
-After you have added your custom domain to Azure Active Directory, you must add the user accounts for this domain so that you can begin authenticating them.
+## 從您的公司網路上的目錄中同步處理的使用者
 
-## <a name="users-synced-in-from-a-directory-on-your-corporate-network"></a>Users synced in from a directory on your corporate network
+如果您已經設定內部部署 Active Directory 與 Azure Active Directory 之間的連線，同步處理可以填入帳戶。如需有關如何同步處理 Azure Active Directory 與內部部署 Active Directory 的詳細資訊，請參閱[整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-If you have already set up a connection between your on-premises Active Directory and Azure Active Directory, synchronization can populate the accounts. For more information on how to synchronize Azure Active Directory with your on-premises Active Directory, see [Integrating your on-premises identities with Azure Active Directory](active-directory-aadconnect.md).
+## 新增和管理雲端中的使用者
 
-## <a name="users-added-and-managed-in-the-cloud"></a>Users added and managed in the cloud
+若要變更現有使用者帳戶的網域：
 
-To change the domain for an existing user account:
+1.  使用全域管理員或使用者管理員帳戶開啟 Azure 傳統入口網站。
 
-1.  Open the Azure classic portal using an account that is a global admin or a user admin.
+2.  開啟您的目錄。
 
-2.  Open your directory.
+3.  選取 [使用者] 索引標籤。
 
-3.  Select the **Users** tab.
+4.  從清單中選取使用者。
 
-4.  Select the user from the list.
+5.  變更使用者的網域，然後選取 [儲存]。
 
-5.  Change the domain for the user, and then select **Save**.
+這還可以使用 [Microsoft PowerShell](https://msdn.microsoft.com/library/azure/e1ef403f-3347-4409-8f46-d72dafa116e0#BKMK_ManageDomains) 或[圖形 API ](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/domains-operations) 來完成。
 
-This can also be done using [Microsoft PowerShell](https://msdn.microsoft.com/library/azure/e1ef403f-3347-4409-8f46-d72dafa116e0#BKMK_ManageDomains) or the [Graph API](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/domains-operations).
+## 在建立新的使用者時選取自訂網域
 
-## <a name="select-a-custom-domain-when-creating-a-new-user"></a>Select a custom domain when creating a new user
+1.  使用全域管理員或使用者管理員帳戶開啟 Azure 傳統入口網站。
 
-1.  Open the Azure classic portal using an account that is a global admin or a user admin.
+2.  開啟您的目錄。
 
-2.  Open your directory.
+3.  選取 [使用者] 索引標籤。
 
-3.  Select the **Users** tab.
+4.  在命令列上選取 [新增]。
 
-4.  In the command bar, select **Add**.
+5.  當您新增使用者名稱時，請從網域清單中選擇自訂網域。
 
-5.  When you add the user name, choose the custom domain from the domain list.
+6.  選取 [**儲存**]。
 
-6.  Select **Save**.
+## 後續步驟
 
-## <a name="next-steps"></a>Next steps
+-   [使用自訂網域名稱，以簡化您的使用者的登入體驗](active-directory-add-domain.md)
 
--   [Using custom domain names to simplify the sign-in experience for your users](active-directory-add-domain.md)
+-   [管理自訂網域名稱](active-directory-add-manage-domain-names.md)
 
--   [Manage custom domain names](active-directory-add-manage-domain-names.md)
+-   [了解 Azure AD 中的網域管理概念](active-directory-add-domain-concepts.md)
 
--   [Learn about domain management concepts in Azure AD](active-directory-add-domain-concepts.md)
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0720_2016-->

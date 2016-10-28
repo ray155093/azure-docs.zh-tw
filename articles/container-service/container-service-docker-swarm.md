@@ -1,13 +1,13 @@
 <properties
-   pageTitle="Azure Container Service container management with Docker Swarm | Microsoft Azure"
-   description="Deploy containers to a Docker Swarm in Azure Container Service"
+   pageTitle="使用 Docker Swarm 管理 Azure 容器服務的容器 | Microsoft Azure"
+   description="在 Azure 容器服務中將容器部署到 Docker Swarm"
    services="container-service"
    documentationCenter=""
    authors="neilpeterson"
    manager="timlt"
    editor=""
    tags="acs, azure-container-service"
-   keywords="Docker, Containers, Micro-services, Mesos, Azure"/>
+   keywords="Docker、容器、微服務、Mesos、Azure"/>
 
 <tags
    ms.service="container-service"
@@ -16,22 +16,21 @@
    ms.tgt_pltfrm="na"
    ms.workload="na"
    ms.date="09/13/2016"
-   ms.author="timlt"/>
+   ms.author="nepeters"/>
 
+# 使用 Docker Swarm 管理容器
 
-# <a name="container-management-with-docker-swarm"></a>Container management with Docker Swarm
+Docker Swarm 提供跨一組匯集的 Docker 主機來部署容器化工作負載的環境。Docker Swarm 使用原生 Docker API。用來管理 Docker Swarm 上容器的工作流程與在單一容器主機時的工作流程幾乎相同。本文件提供在 Docker Swarm 的 Azure 容器服務執行個體中部署容器化工作負載的簡單範例。如需有關 Docker Swarm 的更深入文件，請參閱 [Docker.com 上的 Docker Swarm](https://docs.docker.com/swarm/)。
 
-Docker Swarm provides an environment for deploying containerized workloads across a pooled set of Docker hosts. Docker Swarm uses the native Docker API. The workflow for managing containers on a Docker Swarm is almost identical to what it would be on a single container host. This document provides simple examples of deploying containerized workloads in an Azure Container Service instance of Docker Swarm. For more in-depth documentation on Docker Swarm, see [Docker Swarm on Docker.com](https://docs.docker.com/swarm/).
+本文件中之練習的先決條件︰
 
-Prerequisites to the exercises in this document:
+[在 Azure 容器服務中建立 Swarm 叢集](container-service-deployment.md)
 
-[Create a Swarm cluster in Azure Container Service](container-service-deployment.md)
+[連接到 Azure 容器服務中的 Swarm 叢集](container-service-connect.md)
 
-[Connect with the Swarm cluster in Azure Container Service](container-service-connect.md)
+## 部署新容器
 
-## <a name="deploy-a-new-container"></a>Deploy a new container
-
-To create a new container in the Docker Swarm, use the `docker run` command (ensuring that you have opened an SSH tunnel to the masters as per the prerequisites above). This example creates a container from the `yeasy/simple-web` image:
+若要在 Docker Swarm 中建立新容器，請使用 `docker run` 命令 (確定您已根據上述必要條件開啟主機的 SSH 通道)。此範例會從 `yeasy/simple-web` 映像建立容器：
 
 
 ```bash
@@ -40,7 +39,7 @@ user@ubuntu:~$ docker run -d -p 80:80 yeasy/simple-web
 4298d397b9ab6f37e2d1978ef3c8c1537c938e98a8bf096ff00def2eab04bf72
 ```
 
-After the container has been created, use `docker ps` to return information about the container. Notice here that the Swarm agent that is hosting the container is listed:
+建立容器之後，使用 `docker ps` 傳回容器的相關資訊。請注意，這裡會列出裝載容器的 Swarm 代理程式：
 
 
 ```bash
@@ -50,16 +49,16 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 4298d397b9ab        yeasy/simple-web    "/bin/sh -c 'python i"   31 seconds ago      Up 9 seconds        10.0.0.5:80->80/tcp   swarm-agent-34A73819-1/happy_allen
 ```  
 
-You can now access the application that is running in this container through the public DNS name of the Swarm agent load balancer. You can find this information in the Azure portal:  
+您現在可以透過 Swarm 代理程式負載平衡器的公用 DNS 名稱來存取此容器中執行的應用程式。您可在 Azure 入口網站中找到此資訊：
 
 
-![Real visit results](media/real-visit.jpg)  
+![實際瀏覽結果](media/real-visit.jpg)
 
-By default the Load Balancer has ports 80, 8080 and 443 open. If you want to connect on another port you will need to open that port on the Azure Load Balancer for the Agent Pool.
+根據預設，Load Balancer 開啟連接埠 80、8080 和 443。如果您想要在另一個連接埠上連接，您必須在 Azure Load Balancer 上針對代理程式集區開啟該連接埠。
 
-## <a name="deploy-multiple-containers"></a>Deploy multiple containers
+## 部署多個容器
 
-As multiple containers are started, by executing 'docker run' multiple times, you can use the `docker ps` command to see which hosts the containers are running on. In the example below, three containers are spread evenly across the three Swarm agents:  
+藉由多次執行 'docker run' 來啟動多個容器時，您可以使用 `docker ps` 命令來查看容器執行所在的主機。在以下範例中，三個容器平均分散在三個 Swarm 代理程式中：
 
 
 ```bash
@@ -71,11 +70,11 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 4298d397b9ab        yeasy/simple-web    "/bin/sh -c 'python i"   2 minutes ago       Up 2 minutes        10.0.0.5:80->80/tcp   swarm-agent-34A73819-1/happy_allen
 ```  
 
-## <a name="deploy-containers-by-using-docker-compose"></a>Deploy containers by using Docker Compose
+## 使用 Docker Compose 來部署容器
 
-You can use Docker Compose to automate the deployment and configuration of multiple containers. To do so, ensure that a Secure Shell (SSH) tunnel has been created and that the DOCKER_HOST variable has been set (see the pre-requisites above).
+您可以使用 Docker Compose 來自動部署和設定多個容器。若要這麼做，請確定已建立安全殼層 (SSH) 通道，並已設定 DOCKER\_HOST 變數 (請參閱上述的必要元件)。
 
-Create a docker-compose.yml file on your local system. To do this, use this [sample](https://raw.githubusercontent.com/rgardler/AzureDevTestDeploy/master/docker-compose.yml).
+在您的本機系統上建立 docker-compose.yml 檔案。若要這樣做，請使用此[範例](https://raw.githubusercontent.com/rgardler/AzureDevTestDeploy/master/docker-compose.yml)。
 
 ```bash
 web:
@@ -91,7 +90,7 @@ rest:
 
 ```
 
-Run `docker-compose up -d` to start the container deployments:
+執行 `docker-compose up -d` 以啟動容器部署：
 
 
 ```bash
@@ -108,7 +107,7 @@ swarm-agent-3B7093B8-2: Pulling adtd/web:0.1... : downloaded
 Creating compose_web_1
 ```
 
-Finally, the list of running containers will be returned. This list reflects the containers that were deployed by using Docker Compose:
+最後，將會傳回執行中容器的清單。這份清單會反映使用 Docker Compose 所部署的容器︰
 
 
 ```bash
@@ -118,14 +117,10 @@ caf185d221b7        adtd/web:0.1        "apache2-foreground"   2 minutes ago    
 040efc0ea937        adtd/rest:0.1       "catalina.sh run"      3 minutes ago       Up 2 minutes        10.0.0.4:8080->8080/tcp   swarm-agent-3B7093B8-0/compose_rest_1
 ```
 
-Naturally, you can use `docker-compose ps` to examine only the containers defined in your `compose.yml` file.
+當然，您可以使用 `docker-compose ps`，只檢查 `compose.yml` 檔案中定義的容器。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-[Learn more about Docker Swarm](https://docs.docker.com/swarm/)
+[深入了解 Docker Swarm](https://docs.docker.com/swarm/)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="StorSimple Virtual Array iSCSI server setup | Microsoft Azure"
-   description="Describes how to perform initial setup, register your StorSimple iSCSI server, and complete device setup."
+   pageTitle="StorSimple Virtual Array iSCSI 伺服器安裝 |Microsoft Azure"
+   description="說明如何執行初始安裝程序、為 StorSimple iSCSI 伺服器註冊，以及完成裝置安裝程序。"
    services="storsimple"
    documentationCenter="NA"
    authors="alkohli"
@@ -16,296 +16,288 @@
    ms.author="alkohli" />
 
 
+# 部署 StorSimple Virtual Array：將虛擬裝置設定為 iSCSI 伺服器
 
-# <a name="deploy-storsimple-virtual-array-–-set-up-your-virtual-device-as-an-iscsi-server"></a>Deploy StorSimple Virtual Array – Set up your virtual device as an iSCSI server
+![iSCSI 安裝程序流程](./media/storsimple-ova-deploy3-iscsi-setup/iscsi4.png)
 
-![iscsi setup process flow](./media/storsimple-ova-deploy3-iscsi-setup/iscsi4.png)
+## 概觀
 
-## <a name="overview"></a>Overview
+本部署教學課程適用於執行 2016 年 3 月公開上市 (GA) 版的 Microsoft Azure StorSimple Virtual Array (也稱為 StorSimple 內部部署虛擬裝置或 StorSimple 虛擬裝置)。本教學課程說明如何執行初始安裝程序、為 StorSimple iSCSI 伺服器註冊、完成裝置安裝程序，還有如何在 StorSimple 虛擬裝置的 iSCSI 伺服器上建立、掛接、初始化及格式化磁碟區。這篇文章中的 StorSimple 安裝資訊，僅適用於 StorSimple Virtual Array。
 
-This deployment tutorial applies to the Microsoft Azure StorSimple Virtual Array (also known as the StorSimple on-premises virtual device or the StorSimple virtual device) running March 2016 general availability (GA) release. This tutorial describes how to perform initial setup, register your StorSimple iSCSI server, complete the device setup, and then create, mount, initialize, and format volumes on your StorSimple virtual device iSCSI server. The StorSimple setup information in this article applies to StorSimple Virtual Arrays only. 
+完成此處描述的程序需要大約 30 分鐘至 1 個小時。這篇文章中的資訊僅適用於 StorSimple Virtual Array。
 
-The procedures described here take approximately 30 minutes to 1 hour to complete. The information published in this article applies to StorSimple Virtual Arrays only.
+## 安裝的必要條件
 
-## <a name="setup-prerequisites"></a>Setup prerequisites
+在您設定及安裝 StorSimple 虛擬裝置之前，請先確定：
 
-Before you configure and set up your StorSimple virtual device, make sure that:
+- 您已根據《[部署 StorSimple Virtual Array：在 Hyper-V 中佈建虛擬陣列](storsimple-ova-deploy2-provision-hyperv.md)》或《[部署 StorSimple Virtual Array：在 VMware 中佈建虛擬陣列](storsimple-ova-deploy2-provision-vmware.md)》一文中的指示來佈建虛擬裝置，並與該虛擬裝置連線。
 
-- You have provisioned a virtual device and connected to it as described in [Deploy StorSimple Virtual Array - Provision a virtual array in Hyper-V](storsimple-ova-deploy2-provision-hyperv.md) or [Deploy StorSimple Virtual Array  - Provision a virtual array in VMware](storsimple-ova-deploy2-provision-vmware.md).
+- 您已擁有服務註冊金鑰，且該金鑰來自您建立來管理 StorSimple 虛擬裝置的 StorSimple Manager 服務。如需詳細資訊，請參閱《[部署 StorSimple Virtual Array：準備入口網站](storsimple-ova-deploy1-portal-prep.md#step-2-get-the-service-registration-key)》一文中的〈**步驟 2：取得服務註冊金鑰**〉。
 
-- You have the service registration key from the StorSimple Manager service that you created to manage StorSimple virtual devices. For more information, see **Step 2: Get the service registration key** in [Deploy StorSimple Virtual Array - Prepare the portal](storsimple-ova-deploy1-portal-prep.md#step-2-get-the-service-registration-key).
+- 如果這是第二個或後續新增的虛擬裝置，且您要使用現有的 StorSimple Manager 服務來為該虛擬裝置註冊，您應該已經擁有服務資料加密金鑰。當第一個裝置在此服務註冊成功時，這個金鑰就已經產生。如果您遺失這個金鑰，請參閱《[使用 Web UI 來管理您的 StorSimple Virtual Array](storsimple-ova-web-ui-admin.md#get-the-service-data-encryption-key)》一文中的〈**取得服務資料加密金鑰**〉。
 
-- If this is the second or subsequent virtual device that you are registering with an existing StorSimple Manager service, you should have the service data encryption key. This key was generated when the first device was successfully registered with this service. If you have lost this key, see **Get the service data encryption key** in [Use the Web UI to administer your StorSimple Virtual Array](storsimple-ova-web-ui-admin.md#get-the-service-data-encryption-key).
+## 安裝的逐步指示 
 
-## <a name="step-by-step-setup"></a>Step-by-step setup 
+請使用下列的逐步指示，來安裝並設定您的 StorSimple 虛擬裝置：
 
-Use the following step-by-step instructions to set up and configure your StorSimple virtual device:
+-  [步驟 1：完成本機 Web UI 的安裝程序，並為裝置註冊](#step-1-complete-the-local-web-ui-setup-and-register-your-device)
+-  [步驟 2：完成必要的裝置安裝程序](#step-2-complete-the-required-device-setup)
+-  [步驟 3：新增磁碟區](#step-3-add-a-volume)
+-  [步驟 4：掛接、初始化及格式化磁碟區](#step-4-mount-initialize-and-format-a-volume)
 
--  [Step 1: Complete the local web UI setup and register your device](#step-1-complete-the-local-web-ui-setup-and-register-your-device)
--  [Step 2: Complete the required device setup](#step-2-complete-the-required-device-setup)
--  [Step 3: Add a volume](#step-3-add-a-volume)
--  [Step 4: Mount, initialize, and format a volume](#step-4-mount-initialize-and-format-a-volume)  
+## 步驟 1：完成本機 Web UI 的安裝程序，並為裝置註冊 
 
-## <a name="step-1:-complete-the-local-web-ui-setup-and-register-your-device"></a>Step 1: Complete the local web UI setup and register your device 
+#### 如何完成裝置的安裝程序並為裝置註冊
 
-#### <a name="to-complete-the-setup-and-register-the-device"></a>To complete the setup and register the device
-
-1. Open a browser window and connect to the web UI by typing:
+1. 開啟瀏覽器視窗，並輸入下列文字來連線至本機 Web UI：
 
     `https://<ip-address of network interface>`
 
-    Use the connection URL noted in the previous step. You will see an error notifying you that there is a problem with the website’s security certificate. Click **Continue to this web page**.
+    請使用您在上一個步驟記下的連線 URL。您會看到錯誤訊息，通知您網站的安全性憑證有問題。請按一下 [繼續瀏覽此網頁]。
 
-    ![security certificate error](./media/storsimple-ova-deploy3-iscsi-setup/image3.png)
+    ![安全性憑證錯誤](./media/storsimple-ova-deploy3-iscsi-setup/image3.png)
 
-2. Sign in to the web UI of your virtual device as **StorSimpleAdmin**. Enter the device administrator password that you changed in Step 3: Start the virtual device in [Deploy StorSimple Virtual Array - Provision a virtual device in Hyper-V](storsimple-ova-deploy2-provision-hyperv.md) or [Deploy StorSimple Virtual Array - Provision a virtual device in VMware](storsimple-ova-deploy2-provision-vmware.md).
+2. 以 **StorSimpleAdmin** 的帳戶名稱登入虛擬裝置的 Web UI。請輸入您在《[部署 StorSimple Virtual Array：在 Hyper-V 中佈建虛擬裝置](storsimple-ova-deploy2-provision-hyperv.md)》或《[部署 StorSimple Virtual Array：在 VMware 中佈建虛擬裝置](storsimple-ova-deploy2-provision-vmware.md)》一文的〈步驟 3：啟動虛擬裝置〉中所變更的裝置系統管理員密碼。
 
-    ![Sign-in page](./media/storsimple-ova-deploy3-iscsi-setup/image4.png)
+    ![登入頁面](./media/storsimple-ova-deploy3-iscsi-setup/image4.png)
 
-3. You will be taken to the **Home** page. This page describes the various settings required to configure and register the virtual device with the StorSimple Manager service. Note that the **Network settings**, **Web proxy settings**, and **Time settings** are optional. The only required settings are **Device settings** and **Cloud settings**.
+3. 您將會進入 [首頁] 頁面。此頁面說明各種需要用來設定虛擬裝置的設定，以及為虛擬裝置向 StorSimple Manager 服務註冊的設定。請注意，[網路設定]、[Web Proxy 設定] 及 [時間設定] 是可省略的。只有 [裝置設定] 及 [雲端設定] 是必要的設定。
 
-    ![Home page](./media/storsimple-ova-deploy3-iscsi-setup/image5.png)
+    ![首頁](./media/storsimple-ova-deploy3-iscsi-setup/image5.png)
 
-4. On the **Network settings** page under **Network interfaces**, DATA 0 will be automatically configured for you. Each network interface is set by default to get an IP address automatically (DHCP). Therefore, an IP address, subnet, and gateway will be automatically assigned (for both IPv4 and IPv6).
+4. 在 [網路設定] 頁面的 [網路介面] 下方，系統會自動為您設定 DATA 0。每個網路介面都預設會自動取得 IP 位址 (DHCP)。因此，系統會自動指派 IP 位址、子網路和閘道 (IPv4 和 IPv6 皆適用)。
 
-    As you plan to deploy your device as an iSCSI server (to provision block storage), we recommend that you disable the **Get IP address automatically** option and configure static IP addresses.
+    因為您計畫將裝置部署為 iSCSI 伺服器 (以佈建區塊儲存體)，我們建議您停用 [自動取得 IP 位址] 選項，並設定靜態 IP 位址。
 
-    ![Network settings page](./media/storsimple-ova-deploy3-iscsi-setup/image6.png)
+    ![網路設定頁面](./media/storsimple-ova-deploy3-iscsi-setup/image6.png)
 
-    If you added more than one network interface during the provisioning of the device, you can configure them here. Note you can configure your network interface as IPv4 only or as both IPv4 and IPv6. IPv6 only configurations are not supported.
+    如果您在佈建裝置的過程中新增了不只一個網路介面，您可以在此設定這些網路介面。請注意，您可以將您的網路介面設定為僅 IPv4 或 IPv4 和 IPv6。不支援僅 IPv6 組態。
 
-5. DNS servers are required because they are used when your device attempts to communicate with your cloud storage service providers or to resolve your device by name if it is configured as a file server. On the **Network settings** page under the **DNS servers**:
+5. DNS 伺服器是必要的，因為在裝置嘗試與雲端儲存體服務提供者通訊時，或是在根據名稱來解析已設定為檔案伺服器的裝置時，就需要使用 DNS 伺服器。在 [網路設定] 頁面的 [DNS 伺服器] 下方：
 
-    1. A primary and secondary DNS server will be automatically configured. If you choose to configure static IP addresses, you can specify DNS servers. For high availability, we recommend that you configure a primary and a secondary DNS server.
+    1. 系統會自動設定主要及次要 DNS 伺服器。如果您選擇設定靜態 IP 位址，就可以指定 DNS 伺服器。為了達到高可用性，我們建議您設定主要及次要 DNS 伺服器。
 
-    2. Click **Apply**. This will apply and validate the network settings.
+    2. 按一下 [Apply (套用)]。這將會套用並驗證網路設定。
 
-6. On the **Device settings** page:
+6. 在 [裝置設定] 頁面上：
 
-    1. Assign a unique **Name** to your device. This name can be 1-15 characters and can contain letter, numbers and hyphens.
+    1. 為裝置指派唯一的 [名稱]。這個名稱可以有 1 至 15 個字元，且可以包含字母、數字和連字號。
 
-    2. Click the **iSCSI server** icon ![iSCSI server icon](./media/storsimple-ova-deploy3-iscsi-setup/image7.png) for the **Type** of device that you are creating. An iSCSI server will allow you to provision block storage.
+    2. 對於您所建立裝置的「類型」，按一下 [iSCSI 伺服器] 圖示 ![iSCSI 伺服器圖示](./media/storsimple-ova-deploy3-iscsi-setup/image7.png)。ISCSI 伺服器可讓您佈建區塊儲存體。
 
-    3. Specify if you want this device to be domain-joined. If your device is an iSCSI server, then joining the domain is optional. If you decide to not join your iSCSI server to a domain, click **Apply**, wait for the settings to be applied and then skip to the next step.
+    3. 指定您是否想讓此裝置加入網域。如果您的裝置是 iSCSI 伺服器，您可以省略加入網域這個步驟。如果您決定不將 iSCSI 伺服器加入網域，請按一下 [套用] 並等待設定套用完畢，然後前往下一個的步驟。
 
-        If you want to join the device to a domain. Enter a **Domain name**, and then click **Apply**.
+        如果您想要讓裝置加入網域，輸入 [網域名稱]，然後按一下 [套用]。
 
-        > [AZURE.NOTE] If joining your iSCSI server to a domain, ensure that your virtual  array is in its own organizational unit (OU) for Microsoft Azure Active Directory and no group policy objects (GPO) are applied to it.
+        > [AZURE.NOTE] 如果將您的 iSCSI 加入網域，請確定您的虛擬陣列位於它自己的 Microsoft Azure Active Directory 組織單位 (OU) 中，且沒有套用群組原則物件 (GPO)。
 
-    5. A dialog box will appear. Enter your domain credentials in the specified format. Click the check icon ![check icon](./media/storsimple-ova-deploy3-iscsi-setup/image15.png). The domain credentials will be verified. You will see an error message if the credentials are incorrect.
+    5. 此時畫面會出現對話方塊。請以指定格式輸入網域認證。按一下核取圖示 ![核取圖示](./media/storsimple-ova-deploy3-iscsi-setup/image15.png)。系統將會驗證該網域認證。如果認證不正確，畫面會出現錯誤訊息。
 
-        ![credentials](./media/storsimple-ova-deploy3-iscsi-setup/image8.png)
+        ![認證](./media/storsimple-ova-deploy3-iscsi-setup/image8.png)
 
-    6. Click **Apply**. This will apply and validate the device settings.
+    6. 按一下 [Apply (套用)]。這將會套用並驗證裝置設定。
  
-7. (Optionally) configure your web proxy server. Although web proxy configuration is optional, be aware that if you use a web proxy, you can only configure it here.
+7. (可省略) 設定 Web Proxy 伺服器。雖然 Web Proxy 設定是選用的，但請注意，如果您使用 Web Proxy，就只能在此處設定它。
 
-    ![configure web proxy](./media/storsimple-ova-deploy3-iscsi-setup/image9.png)
+    ![設定 Web Proxy](./media/storsimple-ova-deploy3-iscsi-setup/image9.png)
 
-    On the **Web proxy** page:
+    在 [Web Proxy] 頁面上：
 
-    1. Supply the **Web proxy URL** in this format: *http://host-IP address* or *FDQN:Port number*. Note that HTTPS URLs are not supported.
+    1. 以下列格式提供 **Web Proxy URL**：「http://host-IP 位址」或「FDQN:連接埠號碼」。請注意，此處不支援 HTTPS URL。
 
-    2. Specify **Authentication** as **Basic** or **None**.
+    2. 將 [驗證] 指定為 [基本] 或 [無]。
 
-    3. If you are using authentication, you will also need to provide a **Username** and **Password**.
+    3. 如果您要使用驗證功能，您也必須提供 [使用者名稱] 和 [密碼]。
 
-    4. Click **Apply**. This will validate and apply the configured web proxy settings.
+    4. 按一下 [Apply (套用)]。這將會驗證並套用您設定的 Web Proxy 設定。
  
-8. (Optionally) configure the time settings for your device, such as time zone and the primary and secondary NTP servers. NTP servers are required because your device must synchronize time so that it can authenticate with your cloud service providers.
+8. (可省略) 設定裝置的時間設定，例如時區，以及主要和次要 NTP 伺服器。NTP 伺服器是必要的，因為您的裝置必須讓時間同步，才能與您的雲端服務提供者進行驗證。
 
-    ![Time settings](./media/storsimple-ova-deploy3-iscsi-setup/image10.png)
+    ![時間設定](./media/storsimple-ova-deploy3-iscsi-setup/image10.png)
 
-    On the **Time settings** page:
+    在 [時間設定] 頁面上：
 
-    1. From the drop-down list, select the **Time zone** based on the geographic location in which the device is being deployed. The default time zone for your device is PST. Your device will use this time zone for all scheduled operations.
+    1. 根據裝置部署的地理位置，從下拉式清單中選取 [時區]。裝置的預設時區是太平洋標準時間。裝置將針對所有排程的操作使用這個時區。
 
-    2. Specify a **Primary NTP server** for your device or accept the default value of time.windows.com. Ensure that your network allows NTP traffic to pass from your datacenter to the Internet.
+    2. 指定裝置的 [主要 NTP 伺服器]，或是接受預設值 time.windows.com。請確定您的網路允許 NTP 流量從您的資料中心通過網際網路。
 
-    3. Optionally specify a **Secondary NTP server** for your device.
+    3. (選擇性) 指定裝置的 [次要 NTP 伺服器]。
 
-    4. Click **Apply**. This will validate and apply the configured time settings.
+    4. 按一下 [Apply (套用)]。這將會驗證並套用您設定的時間設定。
 
-9. Configure the cloud settings for your device. In this step, you will complete the local device configuration and then register the device with your StorSimple Manager service.
+9. 設定裝置的雲端設定。在此步驟中，您將會完成本機裝置設定程序，然後向您的 StorSimple Manager 服務註冊裝置。
 
-    1. Enter the **Service registration key** that you got in **Step 2: Get the service registration key** in [Deploy StorSimple Virtual Array - Prepare the Portal](storsimple-ova-deploy1-portal-prep.md#step-2-get-the-service-registration-key).
+    1. 輸入您在[部署 StorSimple Virtual Array：準備入口網站](storsimple-ova-deploy1-portal-prep.md#step-2-get-the-service-registration-key)一文的＜步驟 2：取得服務註冊金鑰＞中取得的「服務註冊金鑰」。
 
-    2. If this is not the first device that you are registering with this service, you will need to provide the **Service data encryption key**. This key is required with the service registration key to register additional devices with the StorSimple Manager service. For more information, refer to [Get the service data encryption key](storsimple-ova-web-ui-admin.md#get-the-service-data-encryption-key) on your local web UI.
+    2. 如果這不是您向此服務註冊的第一個裝置，您將必須提供「服務資料加密金鑰」。您必須將此金鑰與服務註冊金鑰搭配使用，才能向 StorSimple Manager 服務註冊額外的裝置。如需詳細資訊，請參閱使用本機 Web UI 來[取得服務資料加密金鑰](storsimple-ova-web-ui-admin.md#get-the-service-data-encryption-key)。
 
-    3. Click **Register**. This will restart the device. You may need to wait for 2-3 minutes before the device is successfully registered. After the device has restarted, you will be taken to the sign in page.
+    3. 按一下 [註冊]。這將讓裝置重新啟動。您可能需要等待 2 至 3 分鐘，裝置才會註冊成功。裝置重新啟動之後，您將會看到登入頁面。
 
-       ![Register device](./media/storsimple-ova-deploy3-iscsi-setup/image11.png)
+       ![註冊裝置](./media/storsimple-ova-deploy3-iscsi-setup/image11.png)
 
-10. Return to the Azure classic portal. On the **Devices** page, verify that the device has successfully connected to the service by looking up the status. The device status should be **Active**.
+10. 返回 Azure 傳統入口網站。在 [裝置] 頁面上，藉由查閱狀態來確認裝置已成功連接到服務。裝置狀態應該是 [使用中]。
 
-    ![Devices page](./media/storsimple-ova-deploy3-iscsi-setup/image12.png)
+    ![[裝置] 頁面](./media/storsimple-ova-deploy3-iscsi-setup/image12.png)
 
-## <a name="step-2:-complete-the-required-device-setup"></a>Step 2: Complete the required device setup
+## 步驟 2：完成必要的裝置安裝程序
 
-To complete the device configuration of your StorSimple device, you need to:
+若要完成 StorSimple 裝置的裝置設定程序，您必須：
 
-- Select a storage account to associate with your device.
+- 選取儲存體帳戶來與裝置建立關聯。
 
-- Choose encryption settings for the data that is sent to cloud.
+- 選擇要傳送至雲端的資料加密設定。
 
-Perform the following steps in the Azure classic portal to complete the required device setup.
+請在 Azure 傳統入口網站中執行下列步驟，來完成必要的裝置安裝程序。
 
-#### <a name="to-complete-the-minimum-device-setup"></a>To complete the minimum device setup
+#### 如何完成必要的裝置安裝程序
 
-1. On the **Devices** page, select the device that you just created. This device would show up as **Active**. Click the arrow next the device name and then click **Quick Start**.
+1. 在 [裝置] 頁面上，選取您剛建立的裝置。此裝置會顯示為 [使用中]。請按一下裝置名稱旁邊的箭頭，然後按一下 [快速入門]。
 
-    ![Devices page](./media/storsimple-ova-deploy3-iscsi-setup/image13.png)
+    ![[裝置] 頁面](./media/storsimple-ova-deploy3-iscsi-setup/image13.png)
 
-2. Click **complete device setup** to start the Configure device wizard.
+2. 按一下 [完成裝置設定] 來啟動「設定裝置」精靈。
 
-    ![Configure device wizard](./media/storsimple-ova-deploy3-iscsi-setup/image14.png)
+    ![[設定裝置] 精靈](./media/storsimple-ova-deploy3-iscsi-setup/image14.png)
 
-3. In the  Configure device wizard, on the **Basic Settings** page, do the following:
+3. 在「設定裝置」精靈的 [基本設定] 頁面中，執行下列操作：
 
-   1. Specify a storage account to be used with your device. In this subscription, you can select an existing storage account from the drop-down list, or you can specify **Add more** to choose an account from a different subscription.
+   1. 指定要與裝置搭配使用的儲存體帳戶。在這個訂用帳戶中，您可以從下拉式清單選取現有的儲存體帳戶，或是指定 [新增其他] 以從不同的訂用帳戶中選擇帳戶。
 
-   2. Define the encryption settings for all the data at rest that will be sent to the cloud. (StorSimple uses AES-256 encryption.) To encrypt your data, select the **Enable cloud storage encryption** check box. Enter a cloud storage encryption that contains 32 characters. Reenter the key to confirm it.
+   2. 為所有將會傳送至雲端之待用資料的加密設定下定義。(StorSimple 使用 AES-256 加密。) 若要將資料加密，請選取 [啟用雲端儲存體加密] 核取方塊。請輸入包含 32 個字元的雲端儲存體加密金鑰，然後重新輸入金鑰來加以確認。
 
-   3. Click the check icon ![check icon](./media/storsimple-ova-deploy3-iscsi-setup/image15.png).
+   3. 按一下核取圖示 ![核取圖示](./media/storsimple-ova-deploy3-iscsi-setup/image15.png)。
 
-    ![Basic settings](./media/storsimple-ova-deploy3-iscsi-setup/image16.png)
+    ![基本設定](./media/storsimple-ova-deploy3-iscsi-setup/image16.png)
 
-    The settings will now be updated. After settings are updated successfully, the complete device setup button will be unavailable. You will return to the device **Quick Start** page.                                                        
+    設定此時將會更新。設定更新完畢之後，[完成裝置設定] 按鈕將會變得無法使用。您將會回到裝置的 [快速入門] 頁面。
 
->[AZURE.NOTE]You can modify all the other device settings at any time by accessing the **Configure** page.
+>[AZURE.NOTE]您可以藉由存取 [設定] 頁面，隨時修改所有的其他裝置設定。
 
-## <a name="step-3:-add-a-volume"></a>Step 3: Add a volume
+## 步驟 3：新增磁碟區
 
-Perform the following steps in the Azure classic portal to create a volume.
+請在 Azure 傳統入口網站中執行下列步驟以建立磁碟區。
 
-#### <a name="to-create-a-volume"></a>To create a volume
+#### 建立磁碟區
 
-1. On the device **Quick Start** page, click **Add a volume**. This starts the Add a volume wizard.
+1. 在裝置的 [快速入門] 頁面上，按一下 [新增磁碟區]。這樣會啟動 [新增磁碟區] 精靈。
 
-2. In the Add a volume wizard, under **Basic Settings**, do the following:
+2. 在 [新增磁碟區精靈] 的 [基本設定] 下，執行列動作：
 
-    1. Supply a unique name for your volume. The name must be a string that contains 3 to 127 characters.
+    1. 為磁碟區提供唯一的名稱。該名稱必須為包含 3 至 127 個字元的字串。
 
-    2. Provide a description for the volume. The description will help identify the volume owners.
+    2. 為共用提供說明。說明將可協助識別磁碟區的擁有者。
 
-    3. Select a usage type for the volume. The usage type can be **Tiered volume** or **Locally pinned volume.** (**Tiered volume** is the default.) For workloads that require local guarantees, low latencies, and higher performance, select **Locally pinned** **volume**. For all other data, select **Tiered** **volume**.
+    3. 選取磁碟區的使用類型。使用類型可以是 [階層式磁碟區] 或 [固定在本機的磁碟區]。 (預設選項是 [階層式磁碟區]。) 對於需要本機保證、低延遲及更高效能的工作負載，請選取 [固定在本機的磁碟區]。針對所有其他資料，請選取 [階層式磁碟區]。
 
-        A locally pinned volume is thickly provisioned and ensures that the primary data in the volume stays on the device and does not spill to the cloud. If you create a locally pinned volume, the device will check for available space on the local tiers to provision a volume of the requested size. Creating a locally pinned volume may require spilling existing data from the device to the cloud, and the time taken to create the volume may be long. The total time depends on the size of the provisioned volume, available network bandwidth, and the data on your device.
+        固定在本機的磁碟區會密集佈建，且會確保磁碟區中的主要資料會保留在裝置上，不會溢出到雲端。如果您建立固定在本機的磁碟區，裝置將會檢查本機層上的可用空間，以佈建您要求大小的磁碟區。建立固定在本機的磁碟區時，可能必須要讓裝置中現有的資料溢出到雲端，且建立磁碟區所花費的時間可能會很長。總時間取決於已佈建的磁碟區大小、可用的網路頻寬和您裝置上的資料。
 
-        A tiered volume on the other hand is thinly provisioned and can be created very quickly. When you create a tiered volume, approximately 10% of the space is provisioned on the local tier and 90% of the space is provisioned in the cloud. For example, if you provisioned a 1 TB volume, 100 GB would reside in the local space and 900 GB would be used in the cloud when the data tiers. This in turn implies is that if you run out of all the local space on the device, you cannot provision a tiered share (because the 10% will not be available).
+        從另一方面來說，階層式磁碟區會精簡佈建，且可以非常快速地建立。當您建立階層式磁碟區時，大約 10% 的空間會佈建在本機層上，而 90% 的空間會佈建在雲端中。舉例來說，如果您佈建 1 TB 的磁碟區，當資料使用階層式磁碟區時，其中 100 GB 會位於本機的空間，900 GB 會位於雲端。然而這也代表，如果裝置已沒有可用的空間，您就無法佈建階層式共用 (因為那 10% 的空間將無法使用)。
 
-    4. Specify the provisioned capacity for your volume. Note that the specified capacity should be smaller than the available capacity. If you are creating a tiered volume, the size should be between 500 GB and 5 TB. For a locally pinned volume, specify a volume size between 50 GB and 500 GB. Use the available capacity as a guide to provisioning a volume. If the available local capacity is 0 GB, then you will not be allowed to provision a locally pinned or a tiered volume.
+    4. 為磁碟區指定佈建的容量。請注意，指定容量必須小於可用容量。如果您要建立階層式磁碟區，大小應該介於 500 GB 到 5 TB 之間。對於固定在本機的磁碟區，則請指定介於 50 GB 到 500 TB 之間的磁碟區大小。當您在佈建磁碟區時，請參考可用容量來下決定。如果可用的本機容量為 0 GB，您就無法佈建固定在本機或階層式磁碟區。
 
-        ![Basic settings](./media/storsimple-ova-deploy3-iscsi-setup/image17.png)
+        ![基本設定](./media/storsimple-ova-deploy3-iscsi-setup/image17.png)
 
-    5. Click the arrow icon ![arrow icon](./media/storsimple-ova-deploy3-iscsi-setup/image18.png) to go to the next page.
+    5. 按一下箭頭圖示 ![箭號圖示](./media/storsimple-ova-deploy3-iscsi-setup/image18.png) 以移至下一頁。
 
-3. On the **Additional Settings** page, add a new access control record (ACR):
+3. 在 [**其他設定**] 頁面中，加入新的存取控制記錄 (ACR)：
 
-    1. Supply a **Name** for your ACR.
+    1. 提供 ACR 的 [名稱]。
 
-    2. Under **iSCSI Initiator Name**, provide the iSCSI Qualified Name (IQN) of your Windows host. If you don't have the IQN, go to [Appendix A: Get the IQN of a Windows Server host](#appendix-a-get-the-iqn-of-a-windows-server-host).
+    2. 在 [iSCSI 啟動器名稱] 下方，提供 Windows 主機的 iSCSI 完整格式名稱 (IQN)。如果您沒有 IQN，請前往[附錄 A：取得 Windows Server 主機的 IQN](#appendix-a-get-the-iqn-of-a-windows-server-host)。
 
-    3. We recommend that you enable a default backup by selecting the **Enable a default backup for this volume** check box. The default backup will create a policy that executes at 22:30 each day (device time) and creates a cloud snapshot of this volume.
+    3. 建議選取 [**啟用此磁碟區的預設備份**] 核取方塊啟用預設備份。預設備份將會建立原則，在每天的 22:30 (裝置時間) 執行，並建立此磁碟區的雲端快照。
 
-        ![additional settings](./media/storsimple-ova-deploy3-iscsi-setup/image19.png)
+        ![其他設定](./media/storsimple-ova-deploy3-iscsi-setup/image19.png)
 
-    4. Click the check icon ![check icon](./media/storsimple-ova-deploy3-iscsi-setup/image15.png). This starts the volume creation job. You will see a progress message similar to the following.
+    4. 按一下核取圖示 ![核取圖示](./media/storsimple-ova-deploy3-iscsi-setup/image15.png)。這會啟動磁碟區建立作業。您將看到類似下列圖片的進度訊息。
 
-        ![progress message](./media/storsimple-ova-deploy3-iscsi-setup/image20.png)
+        ![進度訊息](./media/storsimple-ova-deploy3-iscsi-setup/image20.png)
 
-        A volume will be created with the specified settings. By default, monitoring and backup will be enabled for the volume.
+        使用指定的設定來建立磁碟區。根據預設，磁碟區的監視及備份功能將會啟用。
 
-    5. To confirm that the volume was successfully created, go to the **Volumes** page. You should see the volume listed.
+    5. 若要確認磁碟區是否已成功建立，請前往 [磁碟區] 頁面。您應該會看到此處列出該磁碟區。
 
         ![](./media/storsimple-ova-deploy3-iscsi-setup/image21.png)
 
-## <a name="step-4:-mount,-initialize,-and-format-a-volume"></a>Step 4: Mount, initialize, and format a volume
+## 步驟 4：掛接、初始化及格式化磁碟區
 
-Perform the following steps to mount, initialize, and format your StorSimple volumes on a Windows Server host.
+請執行下列步驟，以便在 Windows Server 主機上掛接、初始化及格式化您的 StorSimple 磁碟區。
 
-#### <a name="to-mount,-initialize,-and-format-a-volume"></a>To mount, initialize, and format a volume
+#### 掛接、初始化及格式化磁碟區
 
-1. Start the Microsoft iSCSI initiator.
+1. 啟動 Microsoft iSCSI 啟動器。
 
-2. In the **iSCSI Initiator Properties** window, on the **Discovery** tab, click **Discover Portal**.
+2. 在 [iSCSI 啟動器屬性] 視窗的 [探索] 索引標籤上，按一下 [探索入口網站]。
 
-    ![discover portal](./media/storsimple-ova-deploy3-iscsi-setup/image22.png)
+    ![探索入口網站](./media/storsimple-ova-deploy3-iscsi-setup/image22.png)
 
-3. In the **Discover Target Portal** dialog box, supply the IP address of your iSCSI-enabled network interface, and then click **OK**.
+3. 在 [探索目標入口網站] 對話方塊中，提供已啟用 iSCSI 網路介面的 IP 位址，然後按一下 [確定]。
 
-    ![IP address](./media/storsimple-ova-deploy3-iscsi-setup/image23.png)
+    ![IP 位址](./media/storsimple-ova-deploy3-iscsi-setup/image23.png)
 
-4. In the **iSCSI Initiator Properties** window, on the **Targets** tab, locate the **Discovered targets**. (Each volume will be a discovered target.) The device status should appear as **Inactive**.
+4. 在 [iSCSI 啟動器屬性] 視窗的 [目標] 索引標籤上，找到 [探索到的目標]。(每個磁碟區都會是探索到的目標。) 裝置狀態應會顯示為 [非使用中]。
 
-    ![discovered targets](./media/storsimple-ova-deploy3-iscsi-setup/image24.png)
+    ![探索到的目標](./media/storsimple-ova-deploy3-iscsi-setup/image24.png)
 
-5. Select a target device and then click **Connect**. After the device is connected, the status should change to **Connected**. (For more information about using the Microsoft iSCSI initiator, see [Installing and Configuring Microsoft iSCSI Initiator] [1].
+5. 選取目標裝置，然後按一下 [連接]。連接裝置之後，狀態應會變更為 [已連接]如需有關如何使用 Microsoft iSCSI 啟動器的詳細資訊，請參閱[安裝和設定 Microsoft iSCSI 啟動器][1]。
 
-    ![select target device](./media/storsimple-ova-deploy3-iscsi-setup/image25.png)
+    ![選取目標裝置](./media/storsimple-ova-deploy3-iscsi-setup/image25.png)
 
-6. On your Windows host, press the Windows Logo key + X, and then click **Run**.
+6. 在 Windows 主機上按 Windows 標誌鍵 + X，然後按一下 [執行]。
 
-7. In the **Run** dialog box, type **Diskmgmt.msc**. Click **OK**, and the **Disk Management** dialog box will appear. The right pane will show the volumes on your host.
+7. 在 [執行] 對話方塊中，輸入 **Diskmgmt.msc**。按一下 [確定]，隨即會出現 [磁碟管理] 對話方塊。右窗格將會顯示主機上的磁碟區。
 
-8. In the **Disk Management** window, the mounted volumes will appear as shown in the following illustration. Right-click the discovered volume (click the disk name), and then click **Online**.
+8. 在 [磁碟管理] 視窗中，將會出現掛接的磁碟區，如下圖所示。以滑鼠右鍵按一下探索到的磁碟區 (按一下磁碟名稱)，然後按一下 [線上]。
 
-    ![disk management](./media/storsimple-ova-deploy3-iscsi-setup/image26.png)
+    ![磁碟管理](./media/storsimple-ova-deploy3-iscsi-setup/image26.png)
 
-9. Right-click and select **Initialize Disk**.
+9. 按一下滑鼠右鍵，然後選取 [初始化磁碟]。
 
-    ![initialize disk 1](./media/storsimple-ova-deploy3-iscsi-setup/image27.png)
+    ![初始化磁碟 1](./media/storsimple-ova-deploy3-iscsi-setup/image27.png)
 
-10. In the dialog box, select the disk(s) to initialize, and then click **OK**.
+10. 在對話方塊中，選取要初始化的磁碟，然後按一下 [確定]。
 
-    ![initialize disk 2](./media/storsimple-ova-deploy3-iscsi-setup/image28.png)
+    ![初始化磁碟 2](./media/storsimple-ova-deploy3-iscsi-setup/image28.png)
 
-11. The New Simple Volume wizard starts. Select a disk size, and then click **Next**.
+11. [新增簡單磁碟區] 精靈會隨即啟動。請選取磁碟大小，然後按 [下一步]。
 
-    ![new volume wizard 1](./media/storsimple-ova-deploy3-iscsi-setup/image29.png)
+    ![新增磁碟區精靈 1](./media/storsimple-ova-deploy3-iscsi-setup/image29.png)
 
-12. Assign a drive letter to the volume, and then click **Next**.
+12. 指派一個磁碟機代號給磁碟區，然後按 [下一步]。
 
-    ![new volume wizard 2](./media/storsimple-ova-deploy3-iscsi-setup/image30.png)
+    ![新增磁碟區精靈 2](./media/storsimple-ova-deploy3-iscsi-setup/image30.png)
 
-13. Enter the parameters to format the volume. **On Windows Server, only NTFS is supported.** Set the AUS to 64K. Provide a label for your volume. It is a recommended best practice for this name to be identical to the volume name you provided on your StorSimple virtual device. Click **Next**.
+13. 輸入要格式化磁碟區所需的參數。**Windows Server 只支援 NTFS。** 請把 [配置單位大小] 設為 64K，並提供您磁碟區的標籤。我們為這個名稱建議的最佳做法，是將該名稱設成與您在 StorSimple 虛擬裝置中為磁碟區所提供的名稱相同。按 [下一步]。
 
-    ![new volume wizard 3](./media/storsimple-ova-deploy3-iscsi-setup/image31.png)
+    ![新增磁碟區精靈 3](./media/storsimple-ova-deploy3-iscsi-setup/image31.png)
 
-14. Check the values for your volume, and then click **Finish**.
+14. 查看您磁碟區的各個值，然後按一下 [完成]。
 
-    ![new volume wizard 4](./media/storsimple-ova-deploy3-iscsi-setup/image32.png)
+    ![新增磁碟區精靈 4](./media/storsimple-ova-deploy3-iscsi-setup/image32.png)
 
-    The volumes will appear as **Online** on the **Disk Management** page.
+    該磁碟區將會在 [磁碟管理] 頁面中顯示為 [線上]。
 
-    ![volumes online](./media/storsimple-ova-deploy3-iscsi-setup/image33.png)
+    ![磁碟區線上](./media/storsimple-ova-deploy3-iscsi-setup/image33.png)
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-Learn how to use the local web UI to [administer your StorSimple Virtual Array](storsimple-ova-web-ui-admin.md).
+了解如何使用本機 Web UI 來[管理 StorSimple Virtual Array](storsimple-ova-web-ui-admin.md)。
 
-## <a name="appendix-a:-get-the-iqn-of-a-windows-server-host"></a>Appendix A: Get the IQN of a Windows Server host
+## 附錄 A：取得 Windows Server 主機的 IQN
 
-Perform the following steps to get the iSCSI Qualified Name (IQN) of a Windows host that is running Windows Server 2012.
+請執行下列步驟，以取得正在執行 Windows Server 2012 之 Windows 主機的 iSCSI 限定名稱 (IQN)。
 
-#### <a name="to-get-the-iqn-of-a-windows-host"></a>To get the IQN of a Windows host
+#### 取得 Windows 主機的 IQN
 
-1. Start the Microsoft iSCSI initiator on your Windows host.
+1. 在 Windows 主機上啟動 Microsoft iSCSI 啟動器。
 
-2. In the **iSCSI Initiator Properties** window, on the **Configuration** tab, select and copy the string from the **Initiator Name** field.
+2. 在 [iSCSI 啟動器屬性] 視窗的 [設定] 索引標籤上，選取並複製 [啟動器名稱] 欄位的字串。
 
-    ![iSCSI initiator properties](./media/storsimple-ova-deploy3-iscsi-setup/image34.png)
+    ![iSCSI 啟動器屬性](./media/storsimple-ova-deploy3-iscsi-setup/image34.png)
 
-2. Save this string.
+2. 儲存這個字串。
 
 <!--Reference link-->
 [1]: https://technet.microsoft.com/library/ee338480(WS.10).aspx
 
-
-
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0720_2016-->

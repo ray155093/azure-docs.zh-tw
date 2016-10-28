@@ -1,19 +1,16 @@
-### <a name="prerequisites"></a>Prerequisites
+### 必要條件
 
-- An [SFTP](https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol) account  
-
-
-Before you can use your SFTP account in a logic app, you must authorize the logic app to connect to your SFTP account. Fortunately, you can do this easily from within your logic app on the Azure Portal.  
-
-Here are the steps to authorize your logic app to connect to your SFTP account:  
-1. To create a connection to SFTP, in the logic app designer, select **Show Microsoft managed APIs** in the drop down list then enter *SFTP* in the search box. Select the **SFTP - When a file is added or modified** trigger:  
-![SFTP online connection image 1](./media/connectors-create-api-sftp/sftp-1.png)  
-2. If you haven't created any connections to SFTP before, you'll get prompted to provide your SFTP credentials. These credentials will be used to authorize your logic app to connect to, and access your SFTP account's data:  
-![SFTP online connection image 2](./media/connectors-create-api-sftp/sftp-2.png)  
-3. Notice the connection has been created and you are now free to proceed with the other steps in your logic app:   
- ![SFTP online connection image 3](./media/connectors-create-api-sftp/sftp-3.png) 
+- [SFTP](https://en.wikipedia.org/wiki/SSH_File_Transfer_Protocol) 帳戶
 
 
-<!--HONumber=Oct16_HO2-->
+您必須先授權邏輯應用程式連線到您的 SFTP 帳戶，才能在該邏輯應用程式中使用您的 SFTP 帳戶。所幸，您可以使用 Azure 入口網站在邏輯應用程式內輕易達成這項作業。
 
+若要授權邏輯應用程式連線到您的 SFTP 帳戶，其步驟如下：  
+1. 若要建立與 SFTP 的連線，請在邏輯應用程式設計工具中，從下拉式清單中選取 [顯示 Microsoft Managed API]，然後在搜尋方塊中輸入 *SFTP*。選取 [SFTP - 當新增或修改檔案時] 觸發程序：  
+![SFTP 線上連線圖像 1](./media/connectors-create-api-sftp/sftp-1.png)  
+2. 如果您之前尚未建立任何 SFTP 連接，系統會提示您提供 SFTP 認證。這些認證將用來授權邏輯應用程式連線及存取您 SFTP 帳戶的資料：  
+![SFTP 線上連線圖像 2](./media/connectors-create-api-sftp/sftp-2.png)  
+3. 請注意，連線已經建立，您現在可以繼續進行邏輯應用程式中的其他步驟：  
+![SFTP 線上連線圖像 3](./media/connectors-create-api-sftp/sftp-3.png)  
 
+<!---HONumber=AcomDC_0727_2016-->

@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="Accessing private Azure clouds with Visual Studio | Microsoft Azure"
-   description="Learn how to access private cloud resources by using Visual Studio."
+   pageTitle="使用 Visual Studio 存取 Azure 私人雲端 | Microsoft Azure"
+   description="了解如何使用 Visual Studio 存取私人雲端資源。"
    services="visual-studio-online"
    documentationCenter="na"
    authors="TomArcher"
@@ -15,38 +15,32 @@
    ms.date="08/15/2016"
    ms.author="tarcher" />
 
+# 使用 Visual Studio 存取 Azure 私人雲端
 
-# <a name="accessing-private-azure-clouds-with-visual-studio"></a>Accessing private Azure clouds with Visual Studio
+##Overview
 
-##<a name="overview"></a>Overview
+根據預設，Visual Studio 支援 Azure 公用雲端 REST 端點。不過，如果您打算搭配使用 Visual Studio 與 Azure 私人雲端，這可能會是個問題。您可以使用憑證來設定 Visual Studio 存取 Azure 私人雲端 REST 端點。您可以透過 Azure 發佈設定檔取得這些憑證。
 
-By default, Visual Studio supports public Azure cloud REST endpoints. This can be a problem, though, if you're using Visual Studio with a private Azure cloud. You can use certificates to configure Visual Studio to access private Azure cloud REST endpoints. You can get these certificates through your Azure publish settings file.
+## 存取 Visual Studio 中的 Azure 私人雲端
 
-## <a name="to-access-a-private-azure-cloud-in-visual-studio"></a>To access a private Azure cloud in Visual Studio
+1. 在私人雲端的 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)中下載發佈設定檔，或連絡您的系統管理員以取得發佈設定檔。在 Azure 的公用版本上，下載此檔案的連結是 [https://manage.windowsazure.com/publishsettings/](https://manage.windowsazure.com/publishsettings/)。(下載檔案的副檔名應該是 .publishsettings)。
 
-1. In the [Azure classic portal](http://go.microsoft.com/fwlink/?LinkID=213885) for the private cloud, download your publish settings file, or contact your administrator for a publish settings file. On the public version of Azure, the link to download this is [https://manage.windowsazure.com/publishsettings/](https://manage.windowsazure.com/publishsettings/). (The file you download should have a .publishsettings extension.)
+1. 在 Visual Studio 的 [伺服器總管] 中選擇 [Azure] 節點，並在捷徑功能表上選擇 [管理訂用帳戶] 命令。
 
-1. In **Server Explorer** in Visual Studio, choose the **Azure** node and, on the shortcut menu, choose the **Manage Subscriptions** command.
+    ![管理訂用帳戶命令](./media/vs-azure-tools-access-private-azure-clouds-with-visual-studio/IC790778.png)
 
-    ![Manage subscriptions command](./media/vs-azure-tools-access-private-azure-clouds-with-visual-studio/IC790778.png)
+1. 在 [管理 Microsoft Azure 訂用帳戶] 對話方塊中，選擇 [憑證] 索引標籤，然後選擇 [匯入] 按鈕。
 
-1. In the **Manage Microsoft Azure Subscriptions** dialog box, choose the **Certificates** tab, and then choose the **Import** button.
+    ![正在匯入 Azure 憑證](./media/vs-azure-tools-access-private-azure-clouds-with-visual-studio/IC790779.png)
 
-    ![Importing Azure certificates](./media/vs-azure-tools-access-private-azure-clouds-with-visual-studio/IC790779.png)
+1. 在 [匯入 Microsoft Azure 訂用帳戶] 對話方塊中，瀏覽至儲存發佈設定檔案的資料夾並選擇檔案，然後選擇 [匯入] 按鈕。這會將發佈設定檔中的憑證匯入到 Visual Studio。您現在應該能夠與私人雲端資源互動。
 
-1. In the **Import Microsoft Azure Subscriptions** dialog box, browse to the folder where you saved the publish settings file and choose the file, then choose the **Import** button. This imports the certificates in the publish settings file into Visual Studio. You should now be able to interact with your private cloud resources.
+    ![正在匯入發佈設定](./media/vs-azure-tools-access-private-azure-clouds-with-visual-studio/IC790780.png)
 
-    ![Importing publish settings](./media/vs-azure-tools-access-private-azure-clouds-with-visual-studio/IC790780.png)
+## 後續步驟
 
-## <a name="next-steps"></a>Next steps
+[從 Visual Studio 發佈至 Azure 雲端服務](https://msdn.microsoft.com/library/azure/ee460772.aspx)
 
-[Publishing to an Azure Cloud Service from Visual Studio](https://msdn.microsoft.com/library/azure/ee460772.aspx)
+[如何：下載和匯入發佈設定和訂用帳戶資訊](https://msdn.microsoft.com/library/dn385850(v=nav.70).aspx)
 
-[How to: Download and Import Publish Settings and Subscription Information](https://msdn.microsoft.com/library/dn385850(v=nav.70).aspx)
-
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

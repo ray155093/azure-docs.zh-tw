@@ -1,6 +1,6 @@
 <properties
-        pageTitle="Reset Linux VM password and SSH key from the CLI | Microsoft Azure"
-        description="How to use the VMAccess extension from the Azure Command-Line Interface (CLI) to reset a Linux VM password or SSH key, fix the SSH configuration, and check disk consistency"
+        pageTitle="從 CLI 重設 Linux VM 密碼和 SSH 金鑰 | Microsoft Azure"
+        description="如何從 Azure 命令列介面 (CLI) 使用 VMAccess 擴充功能來重設 Linux VM 密碼或 SSH 金鑰、修正 SSH 組態及檢查磁碟一致性"
         services="virtual-machines-linux"
         documentationCenter=""
         authors="cynthn"
@@ -17,44 +17,43 @@
         ms.date="06/14/2016"
         ms.author="cynthn"/>
 
-
-# <a name="how-to-reset-a-linux-vm-password-or-ssh-key,-fix-the-ssh-configuration,-and-check-disk-consistency-using-the-vmaccess-extension"></a>How to reset a Linux VM password or SSH key, fix the SSH configuration, and check disk consistency using the VMAccess extension
-
-
-If you can't connect to a Linux virtual machine on Azure because of a forgotten password, an incorrect Secure Shell (SSH) key, or a problem with the SSH configuration, use the VMAccessForLinux extension with the Azure CLI to reset the password or SSH key, fix the SSH configuration, and check disk consistency. 
-
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] Learn how to [perform these steps using the Resource Manager model](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess).
-
-With the Azure CLI, you use the **azure vm extension set** command from your command-line interface (Bash, Terminal, Command prompt) to access commands. Run **azure help vm extension set** for detailed extension usage.
-
-With the Azure CLI, you can do the following tasks:
-
-+ [Reset the password](#pwresetcli)
-+ [Reset the SSH key](#sshkeyresetcli)
-+ [Reset the password and the SSH key](#resetbothcli)
-+ [Create a new sudo user account](#createnewsudocli)
-+ [Reset the SSH configuration](#sshconfigresetcli)
-+ [Delete a user](#deletecli)
-+ [Display the status of the VMAccess extension](#statuscli)
-+ [Check consistency of added disks](#checkdisk)
-+ [Repair added disks on your Linux VM](#repairdisk)
+# 如何使用 VMAccess 擴充功能重設 Linux VM 密碼或 SSH 金鑰、修正 SSH 組態，和檢查磁碟一致性
 
 
-## <a name="prerequisites"></a>Prerequisites
+如果您因為忘記密碼、安全殼層 (SSH) 金鑰不正確或 SSH 組態有問題而無法連線到 Linux 虛擬機器，請使用 VMAccessForLinux 擴充功能搭配 Azure CLI 來重設密碼或 SSH 金鑰、修正 SSH 組態和檢查磁碟一致性。
 
-You will need to do the following:
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] 了解如何[使用 Resource Manager 模型執行這些步驟](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess)。
 
-- You will need to [install the Azure CLI](../xplat-cli-install.md) and [connect to your subscription](../xplat-cli-connect.md) to use Azure resources associated with your account.
-- Set the correct mode for the classic deployment model by typing the following at the command prompt:
+使用 Azure CLI，您就能從命令列介面 (Bash、終端機、命令提示字元) 中使用 **azure vm extension set** 命令來存取命令。如需詳細的擴充功能使用方式，請執行 **azure help vm extension set**。
+
+使用 Azure CLI，您可以執行下列工作：
+
++ [重設密碼](#pwresetcli)
++ [重設 SSH 金鑰](#sshkeyresetcli)
++ [重設密碼和 SSH 金鑰](#resetbothcli)
++ [建立新的 sudo 使用者帳戶](#createnewsudocli)
++ [重設 SSH 組態](#sshconfigresetcli)
++ [刪除使用者](#deletecli)
++ [顯示 VMAccess 延伸模組的狀態](#statuscli)
++ [檢查新增的磁碟的一致性](#checkdisk)
++ [修復 Linux VM 上新增的磁碟](#repairdisk)
+
+
+## 必要條件
+
+您將需要執行下列動作：
+
+- 您需要[安裝 Azure CLI](../xplat-cli-install.md) 並[連接訂用帳戶](../xplat-cli-connect.md)，才能使用與帳戶相關的 Azure 資源。
+- 針對傳統部署模型設定正確的模式，方法是在命令提示字元中輸入以下命令：
         
         azure config mode asm
         
-- Have a new password or set of SSH keys, if you want to reset either one. You don't need these if you want to reset the SSH configuration.
+- 具備新的密碼或一組 SSH 金鑰 (如果要重設其中一項)。如果您想要重設 SSH 組態，則不需要這些。
 
 
-## <a name="<a-name="pwresetcli"></a>reset-the-password"></a><a name="pwresetcli"></a>Reset the password
+## <a name="pwresetcli"></a>重設密碼
 
-1. Create a file named PrivateConf.json with these lines. Replace the brackets and the &#60;placeholder&#62; values with your own information.
+1. 使用下列程式行建立名為 PrivateConf.json 的檔案。使用您自己的資訊取代括號和 &#60;placeholder&#62; 的值。
 
         {
         "username":"<currentusername>",
@@ -62,26 +61,26 @@ You will need to do the following:
         "expiration":"<2016-01-01>"
         }
 
-2. Run this command, substituting the name of your virtual machine for &#60;vm-name&#62;.
+2. 執行這個命令，以您虛擬機器的名稱來取代 &#60;vm-name&#62;。
 
         azure vm extension set <vm-name> VMAccessForLinux Microsoft.OSTCExtensions 1.* –-private-config-path PrivateConf.json
 
-## <a name="<a-name="sshkeyresetcli"></a>reset-the-ssh-key"></a><a name="sshkeyresetcli"></a>Reset the SSH key
+## <a name="sshkeyresetcli"></a>重設 SSH 金鑰
 
-1. Create a file named PrivateConf.json with these contents. Replace the brackets and the &#60;placeholder&#62; values with your own information.
+1. 使用下列內容建立名為 PrivateConf.json 的檔案。使用您自己的資訊取代括號和 &#60;placeholder&#62; 的值。
 
         {
         "username":"<currentusername>",
         "ssh_key":"<contentofsshkey>"
         }
 
-2. Run this command, substituting the name of your virtual machine for &#60;vm-name&#62;.
+2. 執行這個命令，以您虛擬機器的名稱來取代 &#60;vm-name&#62;。
 
         azure vm extension set <vm-name> VMAccessForLinux Microsoft.OSTCExtensions 1.* --private-config-path PrivateConf.json
 
-## <a name="<a-name="resetbothcli"></a>reset-both-the-password-and-the-ssh-key"></a><a name="resetbothcli"></a>Reset both the password and the SSH key
+## <a name="resetbothcli"></a>同時重設密碼和 SSH 金鑰
 
-1. Create a file named PrivateConf.json with these contents. Replace the brackets and the &#60;placeholder&#62; values with your own information.
+1. 使用下列內容建立名為 PrivateConf.json 的檔案。使用您自己的資訊取代括號和 &#60;placeholder&#62; 的值。
 
         {
         "username":"<currentusername>",
@@ -89,97 +88,93 @@ You will need to do the following:
         "password":"<newpassword>"
         }
 
-2. Run this command, substituting the name of your virtual machine for &#60;vm-name&#62;.
+2. 執行這個命令，以您虛擬機器的名稱來取代 &#60;vm-name&#62;。
 
         azure vm extension set <vm-name> VMAccessForLinux Microsoft.OSTCExtensions 1.* --private-config-path PrivateConf.json
 
-## <a name="<a-name="createnewsudocli"></a>create-a-new-sudo-user-account"></a><a name="createnewsudocli"></a>Create a new sudo user account
+## <a name="createnewsudocli"></a>建立新的 sudo 使用者帳戶
 
-If you forget your user name, you can use VMAccess to create a new one with the sudo authority. In this case, the existing user name and password will not be modified.
+如果您忘記使用者名稱，可以使用 VMAccess，利用 sudo 授權單位來建立一個新的帳戶。在此案例中，將不會修改現有的使用者名稱和密碼。
 
-To create a new sudo user with password access, use the script in [Reset the password](#pwresetcli) and specify the new user name.
+若要建立新的 sudo 使用者及密碼存取權限，請使用[重設密碼](#pwresetcli)中的指令碼，並指定新的使用者名稱。
 
-To create a new sudo user with SSH key access, use the script in [Reset the SSH key](#sshkeyresetcli) and specify the new user name.
+若要建立新的 sudo 使用者及 SSH 金鑰存取權限，請使用[重設 SSH 金鑰](#sshkeyresetcli)中的指令碼，並指定新的使用者名稱。
 
-You can also use [Reset the password and the SSH key](#resetbothcli) to create a new user with both password and SSH key access.
+您也可以使用[重設密碼和 SSH 金鑰](#resetbothcli)，來建立新的使用者以及密碼和 SSH 金鑰存取權限。
 
-## <a name="<a-name="sshconfigresetcli"></a>reset-the-ssh-configuration"></a><a name="sshconfigresetcli"></a>Reset the SSH configuration
+## <a name="sshconfigresetcli"></a>重設 SSH 組態
 
-If the SSH configuration is in an undesired state, you might also lose access to the VM. You can use the VMAccess extension to reset the configuration to its default state. To do so, you just need to set the “reset_ssh” key to “True”. The extension will restart the SSH server, open the SSH port on your VM, and reset the SSH configuration to default values. The user account (name, password or SSH keys) will not be changed.
+如果 SSH 組態處於不良的狀態，您可能也會無法存取 VM。您可以使用 VMAccess 延伸模組，將組態重設為其預設狀態。若要這樣做，只需將 "reset\_ssh" 金鑰設為 "True"。延伸模組將會重新啟動 SSH 伺服器、開啟 VM 上的 SSH 連接埠，然後將 SSH 組態重設為預設值。使用者帳戶 (名稱、密碼或 SSH 金鑰) 將不會變更。
 
-> [AZURE.NOTE] The SSH configuration file that gets reset is located at /etc/ssh/sshd_config.
+> [AZURE.NOTE] 要重設的 SSH 組態檔位於 /etc/ssh/sshd\_config。
 
-1. Create a file named PrivateConf.json with this content.
+1. 使用此內容建立名為 PrivateConf.json 的檔案。
 
         {
         "reset_ssh":"True"
         }
 
-2. Run this command, substituting the name of your virtual machine for &#60;vm-name&#62;. 
+2. 執行這個命令，以您虛擬機器的名稱來取代 &#60;vm-name&#62;。
 
         azure vm extension set <vm-name> VMAccessForLinux Microsoft.OSTCExtensions 1.* --private-config-path PrivateConf.json
 
-## <a name="<a-name="deletecli"></a>delete-a-user"></a><a name="deletecli"></a>Delete a user
+## <a name="deletecli"></a>刪除使用者
 
-If you want to delete a user account without logging into to the VM directly, you can use this script.
+如果您想要刪除使用者帳戶而不直接登入 VM，可以使用這個指令碼。
 
-1. Create a file named PrivateConf.json with this content, substituting the user name to remove for &#60;usernametoremove&#62;. 
+1. 使用此內容建立名為 PrivateConf.json 的檔案，以要移除的使用者名稱來取代 &#60;usernametoremove&#62;。
 
         {
         "remove_user":"<usernametoremove>"
         }
 
-2. Run this command, substituting the name of your virtual machine for &#60;vm-name&#62;. 
+2. 執行這個命令，以您虛擬機器的名稱來取代 &#60;vm-name&#62;。
 
         azure vm extension set <vm-name> VMAccessForLinux Microsoft.OSTCExtensions 1.* --private-config-path PrivateConf.json
 
-## <a name="<a-name="statuscli"></a>display-the-status-of-the-vmaccess-extension"></a><a name="statuscli"></a>Display the status of the VMAccess extension
+## <a name="statuscli"></a>顯示 VMAccess 延伸模組的狀態
 
-To display the status of the VMAccess extension, run this command.
+若要顯示 VMAccess 延伸模組的狀態，請執行下列命令。
 
         azure vm extension get
 
-## <a name="<a-name='checkdisk'<</a>check-consistency-of-added-disks"></a><a name='checkdisk'<</a>Check consistency of added disks
+## <a name='checkdisk'<</a>檢查新增磁碟的一致性
 
-To run fsck on all disks in your Linux virtual machine, you will need to do the following:
+若要在 Linux 虛擬機器中的所有磁碟上執行 fsck，您必須執行下列操作：
 
-1. Create a file named PublicConf.json with this content. Check Disk takes a boolean for whether to check disks attached to your virtual machine or not. 
+1. 使用此內容建立名為 PublicConf.json 的檔案。檢查磁碟以布林值決定是否要檢查附加至您的虛擬機器的磁碟。
 
         {   
         "check_disk": "true"
         }
 
-2. Run this command to execute, substituting the name of your virtual machine for &#60;vm-name&#62;.
+2. 執行這個執行命令，以您的虛擬機器名稱來取代 &#60;vm-name&#62;。
 
         azure vm extension set <vm-name> VMAccessForLinux Microsoft.OSTCExtensions 1.* --public-config-path PublicConf.json 
 
-## <a name="<a-name='repairdisk'></a>repair-disks"></a><a name='repairdisk'></a>Repair disks 
+## <a name='repairdisk'></a>修復磁碟 
 
-To repair disks that are not mounting or have mount configuration errors, use the VMAccess extension to reset the mount configuration on your Linux virtual machine. Substituting the name of your disk for &#60;yourdisk&#62;.
+若要修復未掛接或發生掛接設定錯誤的磁碟，請使用 VMAccess 擴充功能來重設 Linux 虛擬機器上的掛接設定。使用您的磁碟名稱取代 &#60;yourdisk&#62;。
 
-1. Create a file named PublicConf.json with this content. 
+1. 使用此內容建立名為 PublicConf.json 的檔案。
 
         {
         "repair_disk":"true",
         "disk_name":"<yourdisk>"
         }
 
-2. Run this command to execute, substituting the name of your virtual machine for &#60;vm-name&#62;.
+2. 執行這個執行命令，以您的虛擬機器名稱來取代 &#60;vm-name&#62;。
 
         azure vm extension set <vm-name> VMAccessForLinux Microsoft.OSTCExtensions 1.* --public-config-path PublicConf.json
 
 
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-* If you want to use Azure PowerShell cmdlets or Azure Resource Manager templates to reset the password or SSH key, fix the SSH configuration, and check disk consistency, see the [VMAccess extension documentation on GitHub](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess). 
+* 如果您想要使用 Azure PowerShell Cmdlet 或 Azure Resource Manager 範本來重設密碼或 SSH 金鑰、修正 SSH 組態及檢查磁碟一致性，請參閱 [GitHub 上的 VMAccess 擴充功能文件](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess)。
 
-* You can also use the [Azure portal](https://portal.azure.com) to reset the password or SSH key of a Linux VM deployed in the classic deployment model. You can't currently use the portal do to this for a Linux VM deployed in the Resource Manager deployment model.
+* 您也可以使用 [Azure 入口網站](https://portal.azure.com)來重設傳統部署模型中部署的 Linux VM 密碼或 SSH 金鑰。目前您無法使用入口網站來針對部署在 Resource Manager 部署模型內的 Linux VM 執行上述操作。
 
-* See [About virtual machine extensions and features](virtual-machines-linux-extensions-features.md) for more about using VM extensions for Azure virtual machines.
+* 如需使用 Azure 虛擬機器 VM 擴充功能的詳細資訊，請參閱[有關虛擬機器擴充功能和功能](virtual-machines-linux-extensions-features.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0629_2016-->

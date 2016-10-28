@@ -1,68 +1,63 @@
 <properties
-    pageTitle="Pre-load assets on an Azure CDN endpoint | Microsoft Azure"
-    description="Learn how to pre-load cached content on a CDN endpoint."
-    services="cdn"
-    documentationCenter=""
-    authors="camsoper"
-    manager="erikre"
-    editor=""/>
+	pageTitle="在 Azure CDN 端點上預先載入資產 | Microsoft Azure"
+	description="了解如何預先載入 CDN 端點上的快取內容。"
+	services="cdn"
+	documentationCenter=""
+	authors="camsoper"
+	manager="erikre"
+	editor=""/>
 
 <tags
-    ms.service="cdn"
-    ms.workload="tbd"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="07/28/2016"
-    ms.author="casoper"/>
+	ms.service="cdn"
+	ms.workload="tbd"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/28/2016"
+	ms.author="casoper"/>
 
-
-# <a name="pre-load-assets-on-an-azure-cdn-endpoint"></a>Pre-load assets on an Azure CDN endpoint
+# 在 Azure CDN 端點上預先載入資產
 
 [AZURE.INCLUDE [cdn-verizon-only](../../includes/cdn-verizon-only.md)]
 
-By default, assets are first cached as they are requested. This means that the first request from each region may take longer, since the edge servers will not have the content cached and will need to forward the request to the origin server. Pre-loading content avoids this first hit latency.
+根據預設，資產被要求時會先快取。這表示每個區域的第一個要求可能需要較長的時間，因為 Edge Server 沒有快取的內容，而且必須將要求轉送至原始伺服器。預先載入內容以避免此第一次點擊的延遲。
 
-In addition to providing a better customer experience, pre-loading your cached assets can also reduce network traffic on the origin server.
+除了提供較佳的客戶體驗，預先載入快取的資產也可以減少原始伺服器上的網路流量。
 
-> [AZURE.NOTE] Pre-loading assets is useful for  large events or content that becomes simultaneously available to a large number of users, such as a new movie release or a software update.
+> [AZURE.NOTE] 預先載入資產對於大型事件或同時提供給大量使用者的內容很有用，例如新的影片版本或軟體更新。
 
-This tutorial walks you through pre-loading cached content on all Azure CDN edge nodes.
+本教學課程將逐步引導您在 Azure CDN 邊緣節點上預先載入快取的所有內容。
 
-## <a name="walkthrough"></a>Walkthrough
+## 逐步介紹
 
-1. In the [Azure Portal](https://portal.azure.com), browse to the CDN profile containing the endpoint you wish to pre-load.  The profile blade opens.
+1. 在 [Azure 入口網站](https://portal.azure.com)中，瀏覽到包含您希望預載之端點的 CDN 設定檔。設定檔刀鋒視窗隨即開啟。
 
-2. Click the endpoint in the list.  The endpoint blade opens.
+2. 按一下清單中的端點。端點刀鋒視窗隨即開啟。
 
-3. From the CDN endpoint blade, click the load button.
+3. 從 CDN 端點刀鋒視窗，按一下 [載入] 按鈕。
 
-    ![CDN endpoint blade](./media/cdn-preload-endpoint/cdn-endpoint-blade.png)
+	![CDN 端點刀鋒視窗](./media/cdn-preload-endpoint/cdn-endpoint-blade.png)
 
-    The Load blade opens.
+	[載入] 刀鋒視窗隨即開啟。
 
-    ![CDN load blade](./media/cdn-preload-endpoint/cdn-load-blade.png)
+	![CDN 載入刀鋒視窗](./media/cdn-preload-endpoint/cdn-load-blade.png)
 
-4. Enter the full path of each asset you wish to load (e.g., `/pictures/kitten.png`) in the **Path** textbox.
+4. 在 [路徑] 文字方塊中輸入每個您希望載入之資產的完整路徑 (例如，`/pictures/kitten.png`)。
 
-    > [AZURE.TIP] More **Path** textboxes will appear after you enter text to allow you to build a list of multiple assets.  You can delete assets from the list by clicking the ellipsis (...) button.
-    >
-    > Paths must be a relative URL that fits the following [regular expression](https://msdn.microsoft.com/library/az24scfc.aspx):  `^(?:\/[a-zA-Z0-9-_.\u0020]+)+$`.  Each asset must have its own path.  There is no wildcard functionality for pre-loading assets.
+	> [AZURE.TIP] 輸入之後會出現更多 [路徑] 文字方塊，讓您建立多個資產的清單。按一下刪節號 (...) 按鈕可以將資產從清單刪除。
+	>
+	> 路徑必須是符合下列[規則運算式](https://msdn.microsoft.com/library/az24scfc.aspx)：`^(?:\/[a-zA-Z0-9-_.\u0020]+)+$` 的相對 URL。每個資產都必須有自己的路徑。預先載入資產沒有萬用字元功能。
 
-    ![Load button](./media/cdn-preload-endpoint/cdn-load-paths.png)
+    ![載入按鈕](./media/cdn-preload-endpoint/cdn-load-paths.png)
 
-5. Click the **Load** button.
+5. 按一下 [載入] 按鈕。
 
-    ![Load button](./media/cdn-preload-endpoint/cdn-load-button.png)
+	![載入按鈕](./media/cdn-preload-endpoint/cdn-load-button.png)
 
-> [AZURE.NOTE] There is a limitation of 10 load requests per minute per CDN profile.
+> [AZURE.NOTE] 每個 CDN 設定檔都有每分鐘 10 個載入要求的限制。
 
-## <a name="see-also"></a>See also
-- [Purge an Azure CDN endpoint](cdn-purge-endpoint.md)
-- [Azure CDN REST API reference - Purge or Pre-Load an Endpoint](https://msdn.microsoft.com/library/mt634451.aspx)
+## 另請參閱
+- [清除 Azure CDN 端點](cdn-purge-endpoint.md)
+- [Azure CDN REST API 參考資料 - 清除或預先載入端點](https://msdn.microsoft.com/library/mt634451.aspx)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

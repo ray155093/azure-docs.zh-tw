@@ -1,83 +1,79 @@
 <properties
-    pageTitle="DevTest Labs concepts | Microsoft Azure"
-    description="Learn the basic concepts of DevTest Labs, and how it can make it easy to create, manage, and monitor Azure virtual machines"
-    services="devtest-lab,virtual-machines"
-    documentationCenter="na"
-    authors="tomarcher"
-    manager="douge"
-    editor=""/>
+	pageTitle="研發/測試實驗室概念 | Microsoft Azure"
+	description="了解研發/測試實驗室的基本概念，以及它如何讓您輕鬆地建立、管理和監視 Azure 虛擬機器"
+	services="devtest-lab,virtual-machines"
+	documentationCenter="na"
+	authors="tomarcher"
+	manager="douge"
+	editor=""/>
 
 <tags
-    ms.service="devtest-lab"
-    ms.workload="na"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/25/2016"
-    ms.author="tarcher"/>
+	ms.service="devtest-lab"
+	ms.workload="na"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/25/2016"
+	ms.author="tarcher"/>
 
-
-#<a name="devtest-labs-concepts"></a>DevTest Labs concepts
+#研發/測試實驗室概念
 
 > [AZURE.NOTE]
-> This article is part 3 of a 3 part series:
+本文是含有 3 篇文章的一系列文章中的第 3 篇︰
 > 
-> 1. [What is DevTest Labs?](devtest-lab-overview.md)
-> 1. [Why DevTest Labs?](devtest-lab-why.md)
-> 1. **[DevTest Labs concepts](devtest-lab-concepts.md)**
+> 1. [何謂研發/測試實驗室？](devtest-lab-overview.md)
+> 1. [為什麼需要研發/測試實驗室？](devtest-lab-why.md)
+> 1. **[研發/測試實驗室概念](devtest-lab-concepts.md)**
 
-##<a name="overview"></a>Overview
+##Overview
 
-The following list contains key DevTest Labs concepts and definitions:
+下列清單包含重要的研發/測試實驗室概念和定義：
 
-##<a name="artifacts"></a>Artifacts
-Artifacts are used to deploy and configure your application after a VM is provisioned. Artifacts can be:
+##構件
+構件是在佈建 VM 之後用來部署和設定您的應用程式。構件可以是：
 
-- Tools that you want to install on the VM - such as agents, Fiddler, and Visual Studio.
-- Actions that you want to run on the VM - such as cloning a repo.
-- Applications that you want to test.
+- 您想要在 VM 上安裝的工具 - 例如，代理程式、Fiddler 及 Visual Studio。
+- 您想要在 VM 上執行的動作 - 例如，複製儲存機制。
+- 您想要測試的應用程式。
 
-Artifacts are [Azure Resource Manager](../resource-group-overview.md) JSON files that contain instructions to perform deployment and apply configuration. 
+構件是 [Azure Resource Manager](../resource-group-overview.md) JSON 檔案，其中包含執行部署並套用組態的指示。
 
-##<a name="artifact-repositories"></a>Artifact repositories
-Artifact repositories are git repositories where artifacts are checked in. Same artifact repositories can be added to multiple labs in your organization enabling reuse and sharing.
+##構件儲存機制
+構件儲存機制是已簽入構件的 Git 儲存機制。相同的構件儲存機制可以加入組織中的多個實驗室，以便重複使用及共用。
 
-## <a name="base-images"></a>Base images
-Base images are VM images with all the tools and settings preinstalled and configured to quickly create a VM. You can provision a VM by picking an existing base and adding an artifact to install your test agent. You can then save the provisioned VM as a base so that the base can be used without having to reinstall the test agent for each provisioning of the VM.
+## 基礎映像
+基礎映像是 VM 映像，包含預先安裝並加以設定的所有工具與設定，可用來快速建立 VM。您可以挑選現有的基本映像並加入構件來安裝測試代理程式，藉以佈建 VM。您接著可以儲存佈建的 VM 做為基本映像，如此一來，不必針對 VM 的每個佈建重新安裝測試代理程式，就能使用該基本映像。
 
-##<a name="formulas"></a>Formulas 
-Formulas, in addition to base images, provide a mechanism for fast VM provisioning. A formula in DevTest Labs is a list of default property values used to create a lab VM. With formulas, VMs with the same set of properties - such as base image, VM size, virtual network, and artifacts - can be created without needing to specify those properties each time. When creating a VM from a formula, the default values can be used as-is or modified.
+##公式 
+除了基底映像，公式提供快速 VM 佈建的機制。研發/測試實驗室中的公式是用來建立實驗室 VM 的預設屬性值清單。透過公式，可以建立具備相同屬性集 - 例如基底映像、VM 大小、虛擬網路以及成品 - 的 VM，而不需要每次都指定這些屬性。透過公式建立 VM 時，可以依現況使用預設值，或修改預設值。
 
-##<a name="caps"></a>Caps
-Caps is a mechanism to minimize waste in your lab. For example, you can set a cap to restrict the number of VMs that can be created per user, or in a lab.
+##最高限度
+最高限度是可將您實驗室中的成本浪費降至最低的機制。例如，您可以設定一個最高限度，來限制每位使用者或每個實驗室中可建立的 VM 數目。
 
-##<a name="policies"></a>Policies
-Policies help in controlling cost in your lab. For example, you can create a policy to automatically shut down VMs based on a defined schedule.
+##原則
+原則可協助控制實驗室中的成本。例如，您可以建立一個原則，根據定義的排程自動關閉 VM。
 
-##<a name="security-levels"></a>Security levels
-Security access is determined by Azure Role-Based Access Control (RBAC). To understand how access works, it helps to understand the differences between a permission, a role, and a scope as defined by RBAC. 
+##安全性層級
+安全性存取權是由 Azure 角色型存取控制 (RBAC) 所決定。若要了解存取權的運作方式，了解 RBAC 所定義的權限、角色和範圍之間的差異將有所幫助。
 
-- Permission - A permission is a defined access to a specific action (e.g. read-access to all virtual machines). 
-- Role - A role is a set of permissions that can be grouped and assigned to a user. For example, the *subscription owner* role has access to all resources within a subscription. 
-- Scope - A scope is a level within the hierarchy of an Azure resource - such as a resource group, a single lab, or the entire subscription).
+- 權限 - 權限是針對特定動作所定義的存取權 (例如，針對所有虛擬機器的讀取權限)。
+- 角色 - 角色是一組可以分組並指派給使用者的權限。例如，「訂用帳戶擁有者」角色擁有訂用帳戶內所有資源的存取權。
+- 範圍 - 範圍是 Azure 資源階層的其中一個層級 (例如，資源群組、單一實驗室或整個訂用帳戶)。
  
-Within the scope of DevTest Labs, there are two types of roles to define user permissions: lab owner and lab user.
+在 DevTest Labs 的範圍內有兩種可用來定義使用者權限的角色類型︰實驗室擁有者和實驗室使用者。
 
-- Lab Owner - A lab owner has access to any resources within the lab. Therefore, a lab owner can modify policies, read and write any VMs, change the virtual network, and so on. 
-- Lab User - A lab user can view all lab resources, such as VMs, policies, and virtual networks, but cannot modify policies or any VMs created by other users. 
+- 實驗室擁有者 - 實驗室擁有者擁有實驗室內任何資源的存取權。因此，實驗室擁有者可以修改原則、讀取和寫入任何 VM、變更虛擬網路等等。
+- 實驗室使用者 - 實驗室使用者可以檢視所有實驗室資源，例如 VM、原則和虛擬網路，但不能修改原則或任何由其他使用者所建立的 VM。
 
 
-To see how to create custom roles in DevTest Labs, refer to the article, [Grant user permissions to specific lab policies](devtest-lab-grant-user-permissions-to-specific-lab-policies.md).
+若要查看如何在 DevTest Labs 建立自訂角色，請參閱[將特定實驗室原則的權限授與使用者](devtest-lab-grant-user-permissions-to-specific-lab-policies.md)一文。
 
-Since scopes are hierarchical, when a user has permissions at a certain scope, they are automatically granted those permissions at every lower-level scope encompassed. For instance, if a user is assigned to the role of subscription owner, then they have access to all resources in a subscription, which include all virtual machines, all virtual networks, and all labs. Therefore, a subscription owner automatically inherits the role of lab owner. However, the opposite is not true. A lab owner has access to a lab, which is a lower scope than the subscription level. Therefore, a lab owner will not be able to see virtual machines or virtual networks or any resources that are outside of the lab.
+由於範圍是階層形式，當使用者擁有特定範圍的權限時，就會自動獲得該範圍所包含的每個較低層級範圍的權限。例如，如果有使用者指派給訂用帳戶擁有者角色，他們就可以存取訂用帳戶中的所有資源，其中包括所有虛擬機器、所有虛擬網路和所有實驗室。因此，訂用帳戶擁有者會自動繼承實驗室擁有者角色。不過，若情形顛倒過來就不成立。實驗室擁有者可存取實驗室，而實驗室是比訂用帳戶層級還低的範圍。因此，實驗室擁有者將無法看到實驗室以外的虛擬機器、虛擬網路或任何資源。
 
 [AZURE.INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
-##<a name="next-steps"></a>Next steps
+##後續步驟
 
-[Create a lab in DevTest Labs](devtest-lab-create-lab.md)
+[在研測實驗室中建立實驗室](devtest-lab-create-lab.md)
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0831_2016-->

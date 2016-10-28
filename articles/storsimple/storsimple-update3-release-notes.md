@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="StorSimple 8000 Series Update 3 release notes | Microsoft Azure"
-   description="Describes the new features, issues, and workarounds for StorSimple 8000 Series Update 3."
+   pageTitle="StorSimple 8000 系列 Update 3 版本資訊 | Microsoft Azure"
+   description="說明「StorSimple 8000 系列 Update 3」的新功能、問題及因應措施。"
    services="storsimple"
    documentationCenter="NA"
    authors="alkohli"
@@ -12,102 +12,96 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="10/12/2016"
+   ms.date="09/06/2016"
    ms.author="alkohli" />
 
+# StorSimple 8000 系列 Update 3 版本資訊  
 
-# <a name="storsimple-8000-series-update-3-release-notes"></a>StorSimple 8000 Series Update 3 release notes  
+## 概觀
 
-## <a name="overview"></a>Overview
+下列版本資訊說明「StorSimple 8000 系列 Update 3」的新功能，並識別未決的重要問題。當中也包含此版本中隨附之 StorSimple 軟體更新的清單。
 
-The following release notes describe the new features and identify the critical open issues for StorSimple 8000 Series Update 3. They also contain a list of the StorSimple software updates included in this release. 
+Update 3 可以套用至任何執行 Release (GA) 或 Update 0.1 到 Update 2.2 的 StorSimple 裝置。與 Update 3 關聯的裝置版本為 6.3.9600.17759。
 
-Update 3 can be applied to any StorSimple device running Release (GA) or Update 0.1 through Update 2.2. The device version associated with Update 3 is 6.3.9600.17759.
-
-Please review the information contained in the release notes before you deploy the update in your StorSimple solution.
+在 StorSimple 方案中部署更新之前，請檢閱版本資訊中所包含的資訊。
 
 >[AZURE.IMPORTANT]
 > 
-> - Update 3 has device software, LSI driver and firmware, and Storport and Spaceport updates. It takes approximately 1.5-2 hours to install this update. 
+> - Update 3 包含裝置軟體、LSI 驅動程式和韌體以及 Storport 和 Spaceport 的更新。安裝此更新，大約需要花費 1.5-2 小時。
 
-> - For new releases, you may not see updates immediately because we do a phased rollout of the updates. Wait a few days, and then scan for updates again as these will become available soon.
+> - 如果是新版本，您可能不會立即看到更新，因為我們會分階段推出更新。請等候數天然後再次掃描更新，因為很快就會提供更新。
 
 
-## <a name="what's-new-in-update-3"></a>What's new in Update 3
+## Update 3 的新功能
 
-The following key improvements and bug fixes have been made in Update 3.
+Update 3 包含以下重要的改良功能和錯誤修正。
 
  
-- **Automated space reclamation changes** – Starting Update 3, the space reclamation algorithms run on the standby controller of the system resulting in faster execution. For more information on the ports that are required to work with space reclamation, refer to the [StorSimple networking requirements](storsimple-system-requirements.md#networking-requirements-for-your-storsimple-device).
+- **自動化空間回收變更** – 從 Update 3 開始，空間回收演算法是在待命控制器上執行，使得執行更快速。如需有關與空間回收搭配運作所需之連接埠的詳細資訊，請參閱 [StorSimple 的網路需求](storsimple-system-requirements.md#networking-requirements-for-your-storsimple-device)。
 
-- **Performance enhancements** – Update 3 has improved read-write performance to the cloud.
+- **效能增強功能** – Update 3 已改善對雲端的讀寫效能。
 
-- **Migration-related improvements** – In this release, several bug fixes and improvements were done for the Migration feature from 5000/7000 series devices to 8000 series devices. For more information on how to use the migration feature, go to [Migration from 5000/7000 series device to 8000 series device](https://www.microsoft.com/en-us/download/details.aspx?id=47322). 
+- **移轉相關的改良** – 在此版本中，針對從 5000/7000 系列裝置到 8000 系列裝置的移轉功能，進行了數個錯誤修正和改良。如需有關如何使用移轉功能的詳細資訊，請移至[從 5000/7000 系列裝置的移轉到 8000 系列裝置](https://www.microsoft.com/zh-TW/download/details.aspx?id=47322)。
 
-- **Monitoring related fixes** - In this release, bugs related to monitoring charts, service dashboard, and device dashboard were fixed.
+- **監視相關的修正** - 在此版本中，與監視圖表、服務儀表板及裝置儀表板相關的錯誤均已修正。
 
 
-## <a name="issues-fixed-in-update-3"></a>Issues fixed in Update 3
+## Update 3 中修正的問題
 
-The following tables provides a summary of issues that were fixed in Update 3.    
+下表提供 Update 3 中所修正問題的摘要。
 
-| No | Feature                                    | Issue                                                                                                                                                                                                                                                                                        | Applies to physical device | Applies to virtual device |
+| 否 | 功能 | 問題 | 適用於實體裝置 | 適用於虛擬裝置 |
 |----|--------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------|---------------------------|
-| 1  | Host-side data migration                      | In the earlier release, the StorSimple Cloud Appliance was going offline during a host-side data migration. This issue is fixed in this release.                                                | No                        | Yes                        |
-| 2  | Locally pinned volumes                     | In the previous release, there were issues related to I/O failures, volume conversion failures, and datapath failures for locally pinned volumes. These issues were root-caused and fixed in this release.                | Yes                        | No                       |
-| 3  | Monitoring                                    | There were multiple issues related to reporting units and monitoring as well as device dashboard charts where incorrect information was displayed for locally pinned volumes. These issues are fixed in this release. | Yes                         | No                       |
-| 4  | Heavy writes I/O                          | When using StorSimple for workloads involving heavy writes, the user would run into an infrequent bug where the working set was being tiered into the cloud. This bug is fixed in this release. | Yes                        | Yes                       |
-| 5  | Backup                                     | In certain rare instances, in the previous versions of software, when user took a backup of a remote clone, they would run into cloud errors and the operation would error out. In this release, the issue is fixed and the operation completes successfully.             | Yes                        | Yes                       |
-| 6  | Backup policy                                     | In certain rare instances, in the earlier releases of software, there was a bug related to the deletion of backup policy. This issue is fixed in this release.       | Yes                        | Yes                       |
+| 1 | 主機端資料移轉 | 在舊版本中，進行主機端資料移轉時，StorSimple Cloud Appliance 會離線。此版本已經修正這個問題。 | 否 | 是 |
+| 2 | 固定在本機的磁碟區 | 在先前版本中，固定在本機的磁碟區有與 I/O 失敗、磁碟區轉換失敗及資料路徑失敗相關的問題。此版本已找出這些問題的根本原因並加以修正。 | 是 | 否 |
+| 3 | 監視 | 有多個與報表單位和監視以及裝置儀表板圖表相關的問題，其中針對固定在本機的磁碟區顯示了不正確的資訊。此版本已經修正這些問題。 | 是 | 否 |
+| 4 | 大量寫入 I/O | 當使用 StorSimple 來處理涉及大量寫入的工作負載時，使用者會遇到工作集被分層到雲端的罕見錯誤。此版本已經修正這個錯誤。 | 是 | 是 |
+| 5 | 備份 | 在某些罕見的情況下，於舊版軟體中，當使用者進行遠端複本的備份時，會遇到雲端錯誤而使得作業發生錯誤。在此版本中，已修正此問題且作業順利完成。 | 是 | 是 |
+| 6 | 備份原則 | 在某些罕見的情況下，於舊版軟體中，有與刪除備份原則相關的錯誤。此版本已經修正這個問題。 | 是 | 是 |
 
 
 
-## <a name="known-issues-in-update-3"></a>Known issues in Update 3
+## Update 3 中的已知問題
 
-The following table provides a summary of known issues in this release.
+下表提供此版本的已知問題摘要。
 
-| No. | Feature | Issue | Comments / workaround | Applies to physical device | Applies to virtual device |
+| 編號 | 功能 | 問題 | 註解 / 因應措施 | 適用於實體裝置 | 適用於虛擬裝置 |
 |-----|---------|-------|----------------------------|----------------------------|---------------------------|
-| 1 | Disk quorum | In rare instances, if the majority of disks in the EBOD enclosure of an 8600 device are disconnected resulting in no disk quorum, then the storage pool will go offline. It will stay offline even if the disks are reconnected. | You will need to reboot the device. If the issue persists, please contact Microsoft Support for next steps. | Yes | No |
-| 2 | Incorrect controller ID | When a controller replacement is performed, controller 0 may show up as controller 1. During controller replacement, when the image is loaded from the peer node, the controller ID can show up initially as the peer controller’s ID. In rare instances, this behavior may also be seen after a system reboot. | No user action is required. This situation will resolve itself after the controller replacement is complete. | Yes | No |
-| 3 | Storage accounts | Using the Storage service to delete the storage account is an unsupported scenario. This will lead to a situation in which user data cannot be retrieved.|  | Yes | Yes |
-| 4 | Device failover | Multiple failovers of a volume container from the same source device to different target devices is not supported. Failover from a single dead device to multiple devices will make the volume containers on the first failed over device lose data ownership. After such a failover, these volume containers will appear or behave differently when you view them in the Azure classic portal. | | Yes | No |
-| 5 | Installation | During StorSimple Adapter for SharePoint installation, you need to provide a device IP in order for the install to finish successfully.    | | Yes | No |
-| 6 | Web proxy | If your web proxy configuration has HTTPS as the specified protocol, then your device-to-service communication will be affected and the device will go offline. Support packages will also be generated in the process, consuming significant resources on your device. | Make sure that the web proxy URL has HTTP as the specified protocol. For more information, go to [Configure web proxy for your device](storsimple-configure-web-proxy.md). | Yes | No |
-| 7 | Web proxy | If you configure and enable web proxy on a registered device, then you will need to restart the active controller on your device. | | Yes | No |
-| 8 | High cloud latency and high I/O workload | When your StorSimple device encounters a combination of very high cloud latencies (order of seconds) and high I/O workload, the device volumes go into a degraded state and the I/Os may fail with a "device not ready" error. | You will need to manually reboot the device controllers or perform a device failover to recover from this situation. | Yes | No |
-| 9 | Azure PowerShell | When you use the StorSimple cmdlet **Get-AzureStorSimpleStorageAccountCredential &#124; Select-Object -First 1 -Wait** to select the first object so that you can create a new **VolumeContainer** object, the cmdlet returns all the objects. | Wrap the cmdlet in parentheses as follows: **(Get-Azure-StorSimpleStorageAccountCredential) &#124; Select-Object -First 1 -Wait** | Yes | Yes |
-| 10| Migration | When multiple volume containers are passed for migration, the ETA for latest backup is accurate only for the first volume container. Additionally, parallel migration will start after the first 4 backups in the first volume container are migrated. | We recommend that you migrate one volume container at a time. | Yes | No |
-| 11| Migration | After the restore, volumes are not added to the backup policy or the virtual disk group. | You will need to add these volumes to a backup policy in order to create backups. | Yes | Yes |
-| 12| Migration | After the migration is complete, the 5000/7000 series device must not access the migrated data containers. | We recommend that you delete the migrated data containers after the migration is complete and committed. | Yes | No |
-| 13| Clone and DR | A StorSimple device running Update 1 cannot clone or perform disaster recovery to a device running pre-update 1 software. | You will need to update the target device to Update 1 to allow these operations | Yes | Yes |
-| 14 | Migration | Configuration backup for migration may fail on a 5000-7000 series device when there are volume groups with no associated volumes. | Delete all the empty volume groups with no associated volumes and then retry the configuration backup.| Yes | No |
-| 15 | Azure PowerShell cmdlets and locally pinned volumes | You cannot create a locally pinned volume via Azure PowerShell cmdlets. (Any volume you create via Azure PowerShell will be tiered.) |Always use the StorSimple Manager service to configure locally pinned volumes.| Yes | No |
-| 16 |Space available for locally pinned volumes | If you delete a locally pinned volume, the space available for new volumes may not be updated immediately. The StorSimple Manager service updates the local space available approximately every hour.| Wait for an hour before you try to create the new volume. | Yes | No |
-| 17 | Locally pinned volumes | Your restore job exposes the temporary snapshot backup in the Backup Catalog, but only for the duration of the restore job. Additionally, it exposes a virtual disk group with prefix **tmpCollection** on the **Backup Policies** page, but only for the duration of the restore job. | This behavior can occur if your restore job has only locally pinned volumes or a mix of locally pinned and tiered volumes. If the restore job includes only tiered volumes, then this behavior will not occur. No user intervention is required. | Yes | No |
-| 18 | Locally pinned volumes | If you cancel a restore job and a controller failover occurs immediately afterwards, the restore job will show **Failed** instead of **Canceled**. If a restore job fails and a controller failover occurs immediately afterwards, the restore job will show **Canceled** instead of **Failed**. | This behavior can occur if your restore job has only locally pinned volumes or a mix of locally pinned and tiered volumes. If the restore job includes only tiered volumes, then this behavior will not occur. No user intervention is required. | Yes | No |
-| 19 |Locally pinned volumes | If you cancel a restore job or if a restore fails and then a controller failover occurs, an additional restore job appears on the **Jobs** page. | This behavior can occur if your restore job has only locally pinned volumes or a mix of locally pinned and tiered volumes. If the restore job includes only tiered volumes, then this behavior will not occur. No user intervention is required. | Yes | No |
-| 20 |Locally pinned volumes | If you try to convert a tiered volume (created and cloned with Update 1.2 or earlier) to a locally pinned volume and your device is running out of space or there is a cloud outage, then the clone(s) can be corrupted.| This problem occurs only with volumes that were created and cloned with pre-Update 2.1 software. This should be an infrequent scenario.|
-| 21 | Volume conversion | Do not update the ACRs attached to a volume while a volume conversion is in progress (tiered to locally pinned or vice versa). Updating the ACRs could result in data corruption. | If needed, update the ACRs prior to the volume conversion and do not make any further ACR updates while the conversion is in progress. |
-| 22 | Updates | After successfully applying Update 3, the **Maintenance** page in the Azure classic portal still displays the following message related to Update 2 - "StorSimple 8000 series Update 2 includes the ability  for Microsoft to proactively collect log information from your device when we detect potential problems". | This will be fixed in a future release. | Yes | No |
+| 1 | 磁碟仲裁 | 在罕見情況下，如果 8600 裝置的 EBOD 機箱中大部分的磁碟都已中斷連線，而導致沒有磁碟仲裁，那麼將會使存放集區離線。即使已重新連接磁碟時，它依然會保持離線。 | 您必須重新啟動裝置。如果問題持續發生， 請連絡 Microsoft 支援以進行後續步驟。 | 是 | 否 |
+| 2 | 不正確的控制器識別碼 | 進行控制器更換時，控制器 0 可能顯示為控制器 1。在控制器更換期間從對等節點載入影像時，控制器識別碼一開始可能會顯示為對等控制器的識別碼。在罕見情況下，可能會在系統重新開機後出現這種行為。 | 因此，使用者不需要採取任何動作。控制器更換完成之後，會自行解決這種情況。 | 是 | 否 |
+| 3 | 儲存體帳戶 | 不支援使用儲存體服務刪除儲存體帳戶的案例。這會導致無法擷取使用者資料的情況。| | 是 | 是 |
+| 4 | 裝置容錯移轉 | 不支援從相同來源裝置將某個磁碟區容器多次容錯移轉至不同的目標裝置。從單一失效裝置容錯移轉到多個裝置，會讓第一個容錯移轉裝置上的磁碟區容器失去資料擁有權。進行這類容錯移轉之後，當您在 Azure 傳統入口網站中檢視這些磁碟區容器時，會發現它們的外觀或行為有所不同。 | | 是 | 否 |
+| 5 | 安裝 | 在 StorSimple Adapter for SharePoint 安裝其間，您必須提供裝置 IP，才能順利完成安裝。 | | 是 | 否 |
+| 6 | Web Proxy | 如果您的 Web Proxy 組態設定將 HTTPS 做為指定的通訊協定，您的裝置對服務通訊將會受到影響並使裝置離線。同時會在程序中產生支援封裝，耗用裝置上的大量資源。 | 請確定 Web Proxy URL 指定的通訊協定為 HTTP。如需詳細資訊，請參閱[設定裝置的 Web Proxy](storsimple-configure-web-proxy.md)。 | 是 | 否 |
+| 7 | Web Proxy | 如果您在註冊的裝置上設定並啟用 Web Proxy，將需要重新啟動裝置上的主動控制器。 | | 是 | 否 |
+| 8 | 雲端高延遲與高 I/O 工作負載 | 當 StorSimple 裝置同時出現雲端延遲情況嚴重 (大約數秒) 和 I/O 工作負載高的情況時，裝置磁碟區會進入降級的狀態，而且 I/O 可能會失敗，發生「裝置未就緒」錯誤。 | 您必須以手動方式將裝置控制器重新開機，或或執行裝置容錯移轉，才能從這種情況下復原。 | 是 | 否 |
+| 9 | Azure PowerShell | 當您使用 StorSimple Cmdlet **Get-AzureStorSimpleStorageAccountCredential | Select-Object -First 1 -Wait** 選取第一個物件，讓您可以建立新的 **VolumeContainer** 物件時，此 Cmdlet 會傳回所有物件。 | 將此 Cmdlet 以括號括住，如下所示：**(Get-Azure-StorSimpleStorageAccountCredential) | Select-Object -First 1 -Wait** | 是 | 是 |
+| 10| 移轉 | 傳遞多個磁碟區容器以進行移轉時，只有第一個磁碟區容器的最新備份的 ETA 正確。此外，在移轉第一個磁碟區容器中的前 4 個備份之後，將會開始進行平行移轉。 | 建議您一次移轉一個磁碟區容器。 | 是 | 否 |
+| 11| 移轉 | 還原之後，不會將磁碟區新增至備份原則或虛擬磁碟群組。 | 您必須將這些磁碟區新增至備份原則，才能建立備份。 | 是 | 是 |
+| 12| 移轉 | 完成移轉之後，5000/7000 系列裝置不得存取移轉的資料容器。 | 建議您在移轉完成並認可之後，刪除移轉的資料容器。 | 是 | 否 |
+| 13| 複製和 DR | 執行 Update 1 的 StorSimple 裝置無法對執行 Update 1 前軟體的裝置進行複製或執行災害復原。 | 您必須將目標裝置更新為 Update 1，以允許這些作業 | 是 | 是 |
+| 14 | 移轉 | 當磁碟區群組中沒有相關聯的磁碟區時，5000-7000 系列裝置上用於移轉的設定備份可能會失敗。 | 刪除不含相關聯磁碟區的所有空磁碟區群組，然後重試設定備份。| 是 | 否 |
+| 15 | Azure PowerShell Cmdlet 和固定在本機的磁碟區 | 您無法透過 Azure PowerShell Cmdlet 建立固定在本機的磁碟區。(您透過 Azure PowerShell 建立的任何磁碟區都會分層。) |一律使用 StorSimple Manager 服務來設定固定在本機的磁碟區。| 是 | 否 |
+| 16 |固定在本機的磁碟區的可用空間 | 如果您刪除固定在本機的磁碟區，新的磁碟區的可用空間可能不會立即更新。StorSimple Manager 服務會每小時更新大致的本機可用空間。| 等候 1 小時，然後再嘗試建立新的磁碟區。 | 是 | 否 |
+| 17 | 固定在本機的磁碟區 | 您的還原作業會在「備份目錄」中顯示暫時快照集備份，但僅會在還原作業期間顯示。此外，它也會在 [備份原則] 頁面上顯示前面加上 **tmpCollection** 的虛擬磁碟群組，但僅會在還原作業期間顯示。 | 如果還原作業僅有固定在本機的磁碟區或是混合了固定在本機的磁碟區與分層磁碟區，就可能就會發生此問題。如果還原作業僅包含分層磁碟區，將不會發生此問題。不需使用者介入。 | 是 | 否 |
+| 18 | 固定在本機的磁碟區 | 如果您取消還原作業，而之後立即發生控制器容錯移轉，還原作業將會顯示 **Failed** 而不是 **Canceled**。如果還原作業失敗，而之後立即發生控制器容錯移轉，還原作業將會顯示 **Canceled** 而不是 **Failed**。 | 如果還原作業僅有固定在本機的磁碟區或是混合了固定在本機的磁碟區與分層磁碟區，就可能就會發生此問題。如果還原作業僅包含分層磁碟區，將不會發生此問題。不需使用者介入。 | 是 | 否 |
+| 19 |固定在本機的磁碟區 | 如果您取消還原作業，或還原失敗且發生控制器容錯移轉，**工作** 頁面上會顯示額外的還原作業。 | 如果還原作業僅有固定在本機的磁碟區或是混合了固定在本機的磁碟區與分層磁碟區，就可能就會發生此問題。如果還原作業僅包含分層磁碟區，將不會發生此問題。不需使用者介入。 | 是 | 否 |
+| 20 |固定在本機的磁碟區 | 如果您嘗試將分層磁碟區 (使用 Update 1.2 或更早版本所建立及複製) 轉換為固定在本機的磁碟機，而您的裝置空間不足或是雲端空間不足，則複製可能損毀。| 此問題只發生於使用 Update 2.1 之前的軟體所建立及複製的磁碟機。這應該是不常見的案例。|
+| 21 | 磁碟區轉換 | 請勿在磁碟區轉換 (從分層轉換為固定在本機，反之亦然) 正在進行時，更新連接到磁碟區的 ACR。更新 ACR 可能會導致資料損毀。 | 如有需要，請在磁碟區轉換之前更新 ACR，並請勿在轉換時進行任何更進一步的 ACR 更新。 |
 
 
-## <a name="controller-and-firmware-updates-in-update-3"></a>Controller and firmware updates in Update 3
+## Update 3 中的控制器和韌體更新
 
-This release has LSI driver and firmware updates. For more information on how to install the LSI driver and firmware updates, see [install Update 3](storsimple-install-update-3.md) on your StorSimple device.
+此版本包含 LSI 驅動程式和韌體更新。如需有關如何安裝 LSI 驅動程式和韌體更新的詳細資訊，請參閱[在 StorSimple 裝置上安裝 Update 3](storsimple-install-update-3.md)。
 
  
-## <a name="virtual-device-updates-in-update-3"></a>Virtual device updates in Update 3
+## Update 3 中的虛擬裝置更新
 
-This update cannot be applied to the StorSimple Cloud Appliance (also known as the virtual device). New virtual devices will need to be created. 
-
-
-## <a name="next-step"></a>Next step
-
-Learn how to [install Update 3](storsimple-install-update-3.md) on your StorSimple device.
+這項更新無法套用至 StorSimple Cloud Appliance (也稱為虛擬裝置)。將需要建立新的虛擬裝置。
 
 
+## 後續步驟
 
-<!--HONumber=Oct16_HO2-->
+了解如何在 StorSimple 裝置上[安裝 Update 3](storsimple-install-update-3.md)。
 
-
+<!---HONumber=AcomDC_0914_2016-->

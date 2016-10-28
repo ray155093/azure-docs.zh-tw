@@ -1,9 +1,9 @@
 <properties
-   pageTitle="Expire data in DocumentDB with time to live | Microsoft Azure"
-   description="With TTL, Microsoft Azure DocumentDB provides the ability to have documents automatically purged from the system after a period of time."
+   pageTitle="利用存留時間讓 DocumentDB 集合中的資料過期 | Microsoft Azure"
+   description="利用 TTL，Microsoft Azure DocumentDB 提供了在一段時間後從系統自動清除文件的功能。"
    services="documentdb"
    documentationCenter=""
-   keywords="time to live"
+   keywords="存留時間"
    authors="kiratp"
    manager="jhubbard"
    editor=""/>
@@ -17,153 +17,144 @@
    ms.date="04/28/2016"
    ms.author="kipandya"/>
 
+# 利用存留時間讓 DocumentDB 集合中的資料自動過期
 
-# <a name="expire-data-in-documentdb-collections-automatically-with-time-to-live"></a>Expire data in DocumentDB collections automatically with time to live
+應用程式可以產生並儲存大量資料。其中有些資料，例如電腦產生的事件資料、記錄檔和使用者工作階段資訊只能在有限的期間內使用。一旦資料超過應用程式的需求，即可放心清除此資料並減少應用程式的儲存體需求。
 
-Applications can produce and store vast amounts of data. Some of this data, like machine generated event data, logs, and user session information is only useful for a finite period of time. Once the data becomes surplus to the needs of the application it is safe to purge this data and reduce the storage needs of an application.
+利用「存留時間」或 TTL，Microsoft Azure DocumentDB 提供了在一段時間後從資料庫自動清除文件的功能。預設存留時間可以在集合層級設定，並且在每份文件上覆寫。一旦設定 TTL (做為集合預設值或在文件層級)，DocumentDB 就會自動移除自上次修改後存在一段時間 (以秒為單位) 的文件。
 
-With “time to live” or TTL, Microsoft Azure DocumentDB provides the ability to have documents automatically purged from the database after a period of time. The default time to live can be set at the collection level, and overridden on a per-document basis. Once TTL is set, either as a collection default or at a document level, DocumentDB will automatically remove documents that exist after that period of time, in seconds, since they were last modified.
+DocumentDB 中的存留時間會使用上次修改文件時的時間位移。為了這麼做，它會使用每份文件上存在的 \_ts 欄位。\_ts 欄位是 unix 樣式的 Epoch 時間戳記，表示日期和時間。每次修改文件時就會更新 \_ts 欄位。
 
-Time to live in DocumentDB uses an offset against when the document was last modified. To do this it uses the _ts field which exists on every document. The _ts field is a unix-style epoch timestamp representing the date and time. The _ts field is updated every time a document is modified. 
+## TTL 行為
 
-## <a name="ttl-behavior"></a>TTL behavior
+TTL 功能是由兩個層級 (集合層級和文件層級) 的 TTL 屬性所控制。屬性值會以秒設定，而且會被視為上次修改文件的 \_ts 差異。
 
-The TTL feature is controlled by TTL properties at two levels - the collection level and the document level. The values are set in seconds and are treated as a delta from the _ts that the document was last modified at.
-
- 1.  DefaultTTL for the collection
-  * If missing (or set to null), documents are not deleted automatically.
+ 1.  集合的 DefaultTTL
+  * 如果遺失 (或設為 null)，便不會自動刪除文件。
   
-  * If present and the value is “-1” = infinite – documents don’t expire by default
+  * 如果存在且值為 "-1"= 無限 – 文件預設不會過期
   
-  * If present and the value is some number (“n”) – documents expire “n” seconds after last modification
+  * 如果存在且值是某個數字 ("n") – 文件會在上次修改後的 "n"秒到期
 
- 2.  TTL for the documents: 
-  * Property is applicable only if DefaultTTL is present for the parent collection.
+ 2.  文件的 TTL︰
+  * 僅在父集合有 DefaultTTL 時，才適用屬性。
   
-  * Overrides the DefaultTTL value for the parent collection.
+  * 覆寫父集合的 DefaultTTL 值。
 
-As soon as the document has expired (ttl + _ts >= current server time), the document is marked as “expired”. No operation will be allowed on these documents after this time and they will be excluded from the results of any queries performed. The documents are physically deleted in the system, and are deleted in the background opportunistically at a later time. This does not consume any [Request Units (RUs)](documentdb-request-units.md) from the collection budget.
+文件一過期 (ttl + \_ts >= 目前的伺服器時間)，就會標示為「已過期」。在此時間之後，不允許在這些文件上執行任何作業，而且將會從任何執行的查詢結果中排除。這些文件會在系統中遭到實體刪除，而稍後在背景中伺機刪除。這不會耗用集合預算中的任何[要求單位 (RU)](documentdb-request-units.md)。
 
-The above logic can be shown in the following matrix:
+上述邏輯可以顯示在下列矩陣中︰
 
-|       | DefaultTTL missing/not set on the collection | DefaultTTL = -1 on collection | DefaultTTL = "n" on collection|
+| | 集合上遺漏/未設定 DefaultTTL | 集合上的 DefaultTTL = -1 | 集合上的 DefaultTTL = "n"|
 | ------------- |:-------------|:-------------|:-------------|
-| TTL Missing on document| Nothing to override at document level since both the document and collection have no concept of TTL. | No documents in this collection will expire. | The documents in this collection will expire when interval n elapses. |
-| TTL = -1 on document | Nothing to override at the document level since the collection doesn’t define the DefaultTTL property that a document can override. TTL on a document is un-interpreted by the system. | No documents in this collection will expire. | The document with TTL=-1 in this collection will never expire. All other documents will expire after "n" interval. |
-|  TTL = n on document | Nothing to override at the document level. TTL on a document in un-interpreted by the system. | The document with TTL = n will expire after interval n, in seconds. Other documents will inherit interval of -1 and never expire. | The document with TTL = n will expire after interval n, in seconds. Other documents will inherit "n" interval from the collection. |
+| 集合上遺漏 TTL| 文件層級沒有可覆寫的項目，因為文件和集合沒有 TTL 的概念。 | 此集合中的所有文件都不會過期。 | 此集合中的文件將會在間隔 n 過去時到期。 |
+| 文件上的 TTL = -1 | 文件層級沒有可覆寫的項目，因為集合未定義文件可以覆寫的 DefaultTTL 屬性。系統無法解譯文件上的 TTL。 | 此集合中的所有文件都不會過期。 | 此集合中 TTL=-1 的文件永遠不會過期。所有其他文件將在 "n" 間隔之後過期。 |
+| 文件上的 TTL = n | 文件層級沒有可覆寫的項目。系統無法解譯文件上的 TTL。 | TTL = n 的文件將在間隔 n (以秒為單位) 之後到期。其他文件會繼承間隔 -1 且永遠不會過期。 | TTL = n 的文件將在間隔 n (以秒為單位) 之後到期。其他文件會繼承集合的間隔 "n"。 |
 
 
-## <a name="configuring-ttl"></a>Configuring TTL
+## 設定 TTL
 
-By default, time to live is disabled by default in all DocumentDB collections and on all documents.
+根據預設，所有 DocumentDB 集合中和所有文件上的存留時間都會停用。
 
-## <a name="enabling-ttl"></a>Enabling TTL
+## 啟用 TTL
 
-To enable TTL on a collection, or the documents within a collection, you need to set the DefaultTTL property of a collection to either -1 or a non-zero positive number. Setting the DefaultTTL to -1 means that by default all documents in the collection will live forever but the DocumentDB service should monitor this collection for documents that have overridden this default.
+若要在集合上或集合內的文件上啟用 TTL，您需要將集合的 DefaultTTL 屬性設定為 -1 或非零的正數。將 DefaultTTL 設定為 -1，表示集合中的所有文件都預設為永遠存留，但 DocumentDB 服務應監視此集合中已覆寫這個預設值的文件。
 
-## <a name="configuring-default-ttl-on-a-collection"></a>Configuring default TTL on a collection
+## 在集合上設定預設 TTL
 
-You are able to configure a default time to live at a collection level. 
+您可以在集合層級設定預設存留時間。
 
-To set the TTL on a collection, you need to provide a non-zero positive number that indicates the period, in seconds, to expire all documents in the collection after the last modified timestamp of the document (_ts).
+若要在集合上設定 TTL，您必須提供非零的正數，指出集合中的所有文件在上次修改時間戳記 (\_ts) 之後要到期的期間 (以秒為單位)。
 
-Or, you can set the default to -1, which implies that all documents inserted in to the collection will live indefinitely by default.
+或者，您可以將預設值設定為 -1，表示插入集合中的所有文件預設會無限期存留。
 
-## <a name="setting-ttl-on-a-document"></a>Setting TTL on a document
+## 在文件上設定 TTL
 
-In addition to setting a default TTL on a collection you can set specific TTL at a document level. Doing this will override the default of the collection.
+除了在集合上設定預設 TTL，您可以在文件層級設定特定的 TTL。這麼做將會覆寫集合的預設值。
 
-To set the TTL on a document, you need to provide a non-zero positive number which indicates the period, in seconds, to expire the document after the last modified timestamp of the document (_ts).
+若要在文件上設定 TTL，您必須提供非零的正數，指出文件在上次修改時間戳記 (\_ts) 之後要到期的期間 (以秒為單位)。
 
-To set this expiry offset, set the TTL field on the document.
+若要設定此到期位移，請在文件上設定 TTL 欄位。
 
-If a document has no TTL field, then the default of the collection will apply.
+如果文件沒有 TTL 欄位，則會套用集合的預設值。
 
-If TTL is disabled at the collection level, the TTL field on the document will be ignored until TTL is enabled again on the collection.
+如果已在集合層級停用 TTL，則會忽略文件上的 TTL 欄位，直到在集合上重新啟用 TTL 為止。
 
 
-## <a name="extending-ttl-on-an-existing-document"></a>Extending TTL on an existing document
+## 在現有文件上延長 TTL
 
-You can reset the TTL on a document by doing any write operation on the document. Doing this will set the _ts to the current time, and the countdown to the document expiry, as set by the ttl, will begin again.
+您可以在文件上進行任何寫入作業，以重設文件上的 TTL。這麼做會將 \_ts 設定為目前的時間，並重新開始倒數文件到期的時間 (如 ttl 所設定)。
 
-If you wish to change the ttl of a document, you can update the field as you can do with any other settable field.
+如果您想要變更文件的 ttl，您可以如同處理任何其他可設定的欄位一樣更新此欄位。
 
 
-## <a name="removing-ttl-from-a-document"></a>Removing TTL from a document
+## 從文件移除 TTL
 
-If a TTL has been set on a document and you no longer want that document to expire, then you can retrieve the document, remove the TTL field and replace the document on the server.
+如果文件上已設定 TTL，而您不再希望文件會到期，您可以擷取此文件、移除 TTL 欄位，然後取代伺服器上的文件。
 
-When the TTL field is removed from the document, the default of the collection will be applied.
+移除文件的 TTL 欄位後，將會套用集合的預設值。
 
-To stop a document from expiring and not inherit from the collection then you need to set the TTL value to -1.
+若要阻止文件到期且不要繼承集合的值，您必須將 TTL 值設定為 -1。
 
 
-## <a name="disabling-ttl"></a>Disabling TTL
+## 停用 TTL
 
-To disable TTL entirely on a collection and stop the background process from looking for expired documents the DefaultTTL property on the collection should be deleted.
+若要在集合上完全停用 TTL 並阻止背景處理程序尋找過期的文件，則應刪除集合上的 DefaultTTL 屬性。
 
-Deleting this property is different from setting it to -1. Setting to -1 means new documents added to the collection will live forever but you can override this on specific documents in the collection.
+刪除此屬性與將它設定為 -1 不同。設定為 -1，表示加入至集合的新文件會永遠存留，但是您可以在集合中的特定文件上覆寫此值。
 
-Removing this property entirely from the collection means that no documents will expire, even if there are documents that have explicitly overridden a previous default.
+從集合中完全移除此屬性，表示即使有已明確覆寫先前預設值的文件，所有文件也都不會過期。
 
 
-## <a name="faq"></a>FAQ
+## 常見問題集
 
-**What will TTL cost me?**
+**TTL 的費用為何？**
 
-There is no additional cost to setting a TTL on a document.
+在文件上設定 TTL 不會產生額外的費用。
 
-**How long will it take to delete my document once the TTL is up?**
+**TTL 一旦到了，刪除我的文件要花多少時間？**
 
-The documents are marked as unavailable as soon as the document has expired (ttl + _ts >= current server time). No operation will be allowed on these documents after this time and they will be excluded from the results of any queries performed. The documents are physically deleted by the system in the background. This will not consume any RUs from the collection's budget.
+文件一過期，就會標示為無法使用 (ttl + \_ts >= 目前的伺服器時間)。在此時間之後，不允許在這些文件上執行任何作業，而且將會從任何執行的查詢結果中排除。系統會在背景實際刪除這些文件。這不會耗用集合預算中的任何 RU。
 
-**If it takes a period of time to delete the documents, will they count toward my quota (and bill) until they get deleted?**
+**如果要花一段時間才能刪除文件，這些是否會計入我的配額 (和帳單)，直到刪除為止？**
 
-No, once the document has expired you will not be billed for the storage of these documents and the size of the documents will not count toward the storage quota for a collection.
+否，文件到期後，就不會針對這些文件的儲存體向您計費，而且文件的大小不會計入集合的儲存體配額。
 
-**Will TTL on a document have any impact on RU charges?**
+**文件上的 TTL 是否會對 RU 費用造成任何影響？**
 
-No, there will be no impact on RU charges for operations performed on any document within DocumentDB.
+否，不會影響在 DocumentDB 內的任何文件上執行之作業的 RU 費用。
 
-**Will the deleting of documents impact on the throughput I have provisioned on my collection?**
+**刪除文件是否會影響我在集合上佈建的輸送量？**
 
-No, serving requests against your collection will receive priority over running the background process to delete your documents. Adding TTL to any document will not impact this.
+否，處理對您的集合提出的要求，將會優先於執行背景程序來刪除您的文件。將 TTL 加入至任何文件不會影響這點。
 
-**When a document expires, how long will it remain in my collection until it’s deleted?**
+**當文件到期時，在刪除前會在我的集合中保留多久？**
 
-As soon as the document expires it will no longer be accessible. The exact time a document will remain in your collection before actually being deleted is non-deterministic and will be based on when the background process is able to delete the document.
+文件一旦到期，便無法再存取。文件在刪除前會保留在您的集合中的確切時間並不確定，將會以背景處理程序何時能夠刪除此文件為準。
 
-**Are expired documents deleted across all nodes, or is it “eventually consistent?”**
+**所有節點都會刪除到期的文件，還是「最終一致」？**
 
-The document will become unavailable at the same time across all nodes and in all regions.
+此文件會同時在所有節點和所有區域中變成無法使用。
 
-**Is there an RU cost for TTL-monitoring background tasks?**
+**TTL 監視背景工作是否有 RU 費用？**
 
-No, there is no RU cost for this.
+否，沒有任何 RU 費用。
 
-**How often are TTL expirations checked?**
+**TTL 到期項目的檢查頻率為何？**
 
-Checking TTL expirations doesn’t happen as a background process. When responding to a request the backend service will do the checks inline and exclude any documents that have expired. The deletion of the physical document is the only process that is asynchronously run in the background. The frequency of this process is determined by the available RUs on the collection.
+檢查 TTL 到期項目不會當作背景處理程序進行。回應要求時，後端服務會進行文字間檢查，並排除所有已到期的文件。刪除實體文件是唯一在背景中以非同步方式執行的處理程序。此程序的頻率取決於集合上可用的 RU。
 
-**Does the TTL feature only apply to entire documents, or can I expire individual document property values?**
+**TTL 功能只會套用至整個文件，或者我可以讓個別的文件屬性值過期？**
 
-TTL applies to the entire document. If you would like to expire just a portion of a document, then it is recommended that you extract the portion from the main document in to a separate “linked” document and then use TTL on that extracted document.
+TTL 會套用到整份文件。如果您要讓文件的一部分過期，建議您從主要文件中將該部分擷取到個別的「已連結」文件，然後在該擷取文件上使用 TTL。
 
-**Does the TTL feature have any specific indexing requirements?**
+**TTL 功能是否有任何特定的編製索索引需求？**
 
-Yes. The collection must have [indexing policy set](documentdb-indexing-policies.md) to either Lazy or Consistent. Trying to set DefaultTTL on a collection with indexing set to None will result in an error, as will trying to turn off indexing on a collection that has a DefaultTTL already set.
+是。集合的[編製索引原則](documentdb-indexing-policies.md)必須設定為 [延遲] 或 [一致]。嘗試在編製索引設為 [無] 的集合上設定 DefaultTTL 會造成錯誤，而嘗試在已設定 DefaultTTL 的集合上關閉索引編製也會造成錯誤。
 
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-To learn more about Azure DocumentDB, refer to the service [*documentation*](https://azure.microsoft.com/documentation/services/documentdb/) page.
+若要深入了解 Azure DocumentDB，請參閱服務的[文件](https://azure.microsoft.com/documentation/services/documentdb/)頁面。
 
-
-
-
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0720_2016-->

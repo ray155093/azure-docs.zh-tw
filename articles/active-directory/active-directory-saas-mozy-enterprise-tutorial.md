@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="Tutorial: Azure Active Directory integration with Mozy Enterprise | Microsoft Azure" 
-    description="Learn how to use Mozy Enterprise with Azure Active Directory to enable single sign-on, automated provisioning, and more!" 
+    pageTitle="教學課程：Azure Active Directory 與 Mozy Enterprise 整合 | Microsoft Azure" 
+    description="了解如何使用 Mozy Enterprise 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -11,158 +11,150 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="09/29/2016" 
+    ms.date="07/08/2016" 
     ms.author="jeedes" />
 
-
-#<a name="tutorial:-azure-active-directory-integration-with-mozy-enterprise"></a>Tutorial: Azure Active Directory integration with Mozy Enterprise
+#教學課程：Azure Active Directory 與 Mozy Enterprise 整合
   
-The objective of this tutorial is to show the integration of Azure and Mozy Enterprise.  
-The scenario outlined in this tutorial assumes that you already have the following items:
+本教學課程的目的是要示範 Azure 與 Mozy Enterprise 的整合。本教學課程中說明的案例假設您已經具有下列項目：
 
--   A valid Azure subscription
--   A Mozy Enterprise tenant
+-   有效的 Azure 訂閱
+-   Mozy Enterprise 租用戶
   
-After completing this tutorial, the Azure AD users you have assigned to Mozy Enterprise will be able to single sign into the application at your Mozy Enterprise company site (service provider initiated sign on), or using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+完成本教學課程之後，您指派給 Mozy Enterprise 的 Azure AD 使用者就能夠單一登入您 Mozy Enterprise 公司網站 (服務提供者起始登入) 的應用程式，或是使用[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
   
-The scenario outlined in this tutorial consists of the following building blocks:
+本教學課程中說明的案例由下列建置組塊組成：
 
-1.  Enabling the application integration for Mozy Enterprise
-2.  Configuring single sign-on
-3.  Configuring user provisioning
-4.  Assigning users
+1.  啟用 Mozy Enterprise 的應用程式整合
+2.  設定單一登入
+3.  設定使用者佈建
+4.  指派使用者
 
-![Scenario](./media/active-directory-saas-mozy-enterprise-tutorial/IC777308.png "Scenario")
-##<a name="enabling-the-application-integration-for-mozy-enterprise"></a>Enabling the application integration for Mozy Enterprise
+![案例](./media/active-directory-saas-mozy-enterprise-tutorial/IC777308.png "案例")
+##啟用 Mozy Enterprise 的應用程式整合
   
-The objective of this section is to outline how to enable the application integration for Mozy Enterprise.
+本節的目的是要說明如何啟用 Mozy Enterprise 的應用程式整合。
 
-###<a name="to-enable-the-application-integration-for-mozy-enterprise,-perform-the-following-steps:"></a>To enable the application integration for Mozy Enterprise, perform the following steps:
+###若要啟用 Mozy Enterprise 的應用程式整合，請執行下列步驟：
 
-1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-mozy-enterprise-tutorial/IC700993.png "Active Directory")
 
-2.  From the **Directory** list, select the directory for which you want to enable directory integration.
+2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3.  To open the applications view, in the directory view, click **Applications** in the top menu.
+3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
 
-    ![Applications](./media/active-directory-saas-mozy-enterprise-tutorial/IC700994.png "Applications")
+    ![應用程式](./media/active-directory-saas-mozy-enterprise-tutorial/IC700994.png "應用程式")
 
-4.  Click **Add** at the bottom of the page.
+4.  按一下頁面底部的 [新增]。
 
-    ![Add application](./media/active-directory-saas-mozy-enterprise-tutorial/IC749321.png "Add application")
+    ![新增應用程式](./media/active-directory-saas-mozy-enterprise-tutorial/IC749321.png "新增應用程式")
 
-5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
-    ![Add an application from gallerry](./media/active-directory-saas-mozy-enterprise-tutorial/IC749322.png "Add an application from gallerry")
+    ![從組件庫新增應用程式](./media/active-directory-saas-mozy-enterprise-tutorial/IC749322.png "從組件庫新增應用程式")
 
-6.  In the **search box**, type **mozy enterprise**.
+6.  在**搜尋方塊**中輸入 **mozy enterprise**。
 
-    ![Application Gallery](./media/active-directory-saas-mozy-enterprise-tutorial/IC777309.png "Application Gallery")
+    ![應用程式庫](./media/active-directory-saas-mozy-enterprise-tutorial/IC777309.png "應用程式庫")
 
-7.  In the results pane, select **Mozy Enterprise**, and then click **Complete** to add the application.
+7.  在結果窗格中選取 [Mozy Enterprise]，然後按一下 [完成] 以新增應用程式。
 
     ![Mozy Enterprise](./media/active-directory-saas-mozy-enterprise-tutorial/IC777310.png "Mozy Enterprise")
-##<a name="configuring-single-sign-on"></a>Configuring single sign-on
+##設定單一登入
   
-The objective of this section is to outline how to enable users to authenticate to Mozy Enterprise with their account in Azure AD using federation based on the SAML protocol.  
-As part of this procedure, you are required to upload a base-64 encoded certificate to your Mozy Enterprise tenant.  
-If you are not familiar with this procedure, see [How to convert a binary certificate into a text file](http://youtu.be/PlgrzUZ-Y1o)
+本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶在 Mozy Enterprise 中進行驗證。在此程序中，您需要上傳 base-64 編碼憑證到您的 Mozy Enterprise 租用戶。如果您不熟悉這個程序，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)
 
-###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
+###若要設定單一登入，請執行下列步驟：
 
-1.  In the Azure classic portal, on the **Mozy Enterprise** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
+1.  在 Azure 傳統入口網站的 [Mozy Enterprise] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
-    ![Configure single sign-on](./media/active-directory-saas-mozy-enterprise-tutorial/IC771709.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-mozy-enterprise-tutorial/IC771709.png "設定單一登入")
 
-2.  On the **How would you like users to sign on to Mozy Enterprise** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
+2.  在 [要如何讓使用者登入 Mozy Enterprise] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按一下 [下一步]。
 
-    ![Configure single sign-on](./media/active-directory-saas-mozy-enterprise-tutorial/IC777311.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-mozy-enterprise-tutorial/IC777311.png "設定單一登入")
 
-3.  On the **Configure App URL** page, in the **Mozy Enterprise Sign In URL** textbox, type your URL using the following pattern "*https://\<tenant-name\>.Mozyenterprise.com*", and then click **Next**.
+3.  在 [設定應用程式 URL] 頁面的 [Mozy Enterprise 登入 URL] 文字方塊中，使用下列模式輸入您的 URL："*https://\<tenant-name>.Mozyenterprise.com*"，然後按一下 [下一步]。
 
-    ![Configure app URL](./media/active-directory-saas-mozy-enterprise-tutorial/IC777312.png "Configure app URL")
+    ![設定應用程式 URL](./media/active-directory-saas-mozy-enterprise-tutorial/IC777312.png "設定應用程式 URL")
 
-4.  On the **Configure single sign-on at Mozy Enterprise** page, to download your certificate, click **Download certificate**, and then save the certificate file on your computer.
+4.  在 [設定在 Mozy Enterprise 單一登入] 頁面上，按一下 [下載憑證] 以下載您的憑證，然後將憑證檔案儲存在您的電腦上。
 
-    ![Configure single sign-on](./media/active-directory-saas-mozy-enterprise-tutorial/IC777313.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-mozy-enterprise-tutorial/IC777313.png "設定單一登入")
 
-5.  In a different web browser window, log into your Mozy Enterprise company site as an administrator.
+5.  在不同的 Web 瀏覽器視窗中，以系統管理員身分登入您的 Mozy Enterprise 公司網站。
 
-6.  In the **Configuration** section, click **Authentication Policy**.
+6.  在 [組態] 區段中，按一下 [驗證原則]。
 
-    ![Authentication policy](./media/active-directory-saas-mozy-enterprise-tutorial/IC777314.png "Authentication policy")
+    ![驗證原則](./media/active-directory-saas-mozy-enterprise-tutorial/IC777314.png "驗證原則")
 
-7.  On the **Authentication Policy** section, perform the following steps:
+7.  在 [驗證原則] 區段中，執行下列步驟：
 
-    ![Authentication policy](./media/active-directory-saas-mozy-enterprise-tutorial/IC777315.png "Authentication policy")
+    ![驗證原則](./media/active-directory-saas-mozy-enterprise-tutorial/IC777315.png "驗證原則")
 
-    1.  Select **Directory Service** as **Provider**.
-    2.  Select **Use LDAP Push**.
-    3.  Click the **SAML Authentication** tab.
-    4.  In the Azure classic portal, on the **Configure single sign-on at Mozy Enterprise** dialog page, copy the **Authentication Request URL** value, and then paste it into the **Authentication URL** textbox.
-    5.  In the Azure classic portal, on the **Configure single sign-on at Mozy Enterprise** dialog page, copy the **Identity Provider ID** value, and then paste it into the **SAML Endpoint** textbox.
-    6.  Create a **Base-64 encoded** file from your downloaded certificate.  
+    1.  選取 [目錄服務] 做為**提供者**。
+    2.  選取 [使用 LDAP 推送]。
+    3.  按一下 [SAML 驗證] 索引標籤。
+    4.  在 Azure 傳統入口網站上 [設定在 Mozy Enterprise 單一登入] 對話方塊頁面，複製 [驗證要求 URL] 值，然後將它貼至 [驗證 URL] 文字方塊中。
+    5.  在 Azure 傳統入口網站上 [設定在 Mozy Enterprise 單一登入] 對話方塊頁面，複製 [識別提供者 ID] 值，然後將它貼至 [SAML 端點] 文字方塊中。
+    6.  從您下載的憑證建立 **Base-64 編碼**檔案。
 
-        >[AZURE.TIP]For more details, see [How to convert a binary certificate into a text file](http://youtu.be/PlgrzUZ-Y1o)
+        >[AZURE.TIP]如需詳細資訊，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)
 
-    7.  Open your base-64 encoded certificate in notepad, copy the content of it into your clipboard, and then paste the entire Certificate into **SAML Certificate** textbox.
-    8.  Select **Enable SSO for Admins to log in with their network credentials**.
-    9.  Click **Save Changes**.
+    7.  在記事本中開啟您的 base-64 編碼的憑證，將它的內容複製到您的剪貼簿，然後將整個憑證貼至 [SAML 憑證] 文字方塊中。
+    8.  選取 [針對管理員啟用 SSO 以使用其網路認證登入]。
+    9.  按一下 [儲存變更]。
 
-8.  In the Azure classic portal, on the **Configure single sign-on at Mozy Enterprise** dialog page, select the single sign-on configuration confirmation, and then click **Complete**.
+8.  在 Azure 傳統入口網站的 [設定在 Mozy Enterprise 單一登入] 對話方塊上，選取單一登入設定確認，然後按一下 [完成]。
 
-    ![Configure single sign-on](./media/active-directory-saas-mozy-enterprise-tutorial/IC777316.png "Configure single sign-on")
-##<a name="configuring-user-provisioning"></a>Configuring user provisioning
+    ![設定單一登入](./media/active-directory-saas-mozy-enterprise-tutorial/IC777316.png "設定單一登入")
+##設定使用者佈建
   
-In order to enable Azure AD users to log into Mozy Enterprise, they must be provisioned into Mozy Enterprise.  
-In the case of Mozy Enterprise, provisioning is a manual task.
+為了讓 Azure AD 使用者能夠登入 Mozy Enterprise，必須將他們佈建到 Mozy Enterprise 中。在 Mozy Enterprise 的情況下，需以手動方式佈建。
 
-###<a name="to-provision-a-user-accounts,-perform-the-following-steps:"></a>To provision a user accounts, perform the following steps:
+###若要佈建使用者帳戶，請執行下列步驟：
 
-1.  Log in to your **Mozy Enterprise** tenant.
+1.  登入您的 **Mozy Enterprise** 租用戶。
 
-2.  Click **Users**, and then click **Add New User**.
+2.  按一下 [使用者]，然後按一下 [新增使用者]。
 
-    ![Users](./media/active-directory-saas-mozy-enterprise-tutorial/IC777317.png "Users")
+    ![使用者](./media/active-directory-saas-mozy-enterprise-tutorial/IC777317.png "使用者")
 
-    >[AZURE.NOTE]The **Add New User** option is only displayed only if **Mozy** is selected as the provider under **Authentication policy**. If SAML Authentication is configured then the users are added automatically on their first login through Single sign on.
+    >[AZURE.NOTE]只有在 [驗證原則]底下選取 [Mozy] 做為提供者時，才會顯示 [新增使用者] 選項。如果已設定 SAML 驗證，則會在使用者透過單一登入第一次登入時自動新增他們。
 
-3.  On the new user dialog, perform the following steps:
+3.  在 [新增使用者] 對話方塊上，執行下列步驟：
 
-    ![Add Users](./media/active-directory-saas-mozy-enterprise-tutorial/IC777318.png "Add Users")
+    ![新增使用者](./media/active-directory-saas-mozy-enterprise-tutorial/IC777318.png "新增使用者")
 
-    1.  From the **Choose a Group** list, select a group.
-    2.  From the **What type of user** list, select a type.
-    3.  In the **Username** textbox, type the name of the Azure AD user.
-    4.  In the **Email** textbox, type the email address of the Azure AD user.
-    5.  Select **Send user instruction email**.
-    6.  Click **Add User(s)**.
+    1.  從 [選擇群組] 清單中選取一個群組。
+    2.  從 [使用者類型] 清單中選取一種類型。
+    3.  在 [使用者名稱] 文字方塊中，輸入 Azure AD 使用者的名稱。
+    4.  在 [電子郵件] 文字方塊中，輸入 Azure AD 使用者的電子郵件地址。
+    5.  選取 [傳送使用者指示電子郵件]。
+    6.  按一下 [新增使用者]。
 
-    >[AZURE.NOTE]After creating the user, an email will be sent to the Azure AD user that includes a link to confirm the account before it becomes active.
+    >[AZURE.NOTE]建立使用者之後，會寄送一封電子郵件給 Azure AD 使用者，其中包含在帳戶變成作用中之前確認帳戶的連結。
 
->[AZURE.NOTE]You can use any other Mozy Enterprise user account creation tools or APIs provided by Mozy Enterprise to provision AAD user accounts.
+>[AZURE.NOTE]您可以使用任何其他的 Mozy Enterprise 使用者帳戶建立工具或 Mozy Enterprise 提供的 API 來佈建 AAD 使用者帳戶。
 
-##<a name="assigning-users"></a>Assigning users
+##指派使用者
  
-To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
+若要測試您的設定，您需要指派使用者，授予存取權給您想要允許其使用您的應用程式存取設定的 Azure AD 使用者。
 
-###<a name="to-assign-users-to-mozy-enterprise,-perform-the-following-steps:"></a>To assign users to Mozy Enterprise, perform the following steps:
+###若要將使用者指派給 Mozy Enterprise，請執行下列步驟：
 
-1.  In the Azure classic portal, create a test account.
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
-2.  On the **Mozy Enterprise **application integration page, click **Assign users**.
+2.  在 [Mozy Enterprise] 應用程式整合頁面上，按一下 [指派使用者]。
 
-    ![Assign users](./media/active-directory-saas-mozy-enterprise-tutorial/IC777319.png "Assign users")
+    ![指派使用者](./media/active-directory-saas-mozy-enterprise-tutorial/IC777319.png "指派使用者")
 
-3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
+3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
 
-    ![Yes](./media/active-directory-saas-mozy-enterprise-tutorial/IC767830.png "Yes")
+    ![是](./media/active-directory-saas-mozy-enterprise-tutorial/IC767830.png "是")
   
-If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0713_2016-->

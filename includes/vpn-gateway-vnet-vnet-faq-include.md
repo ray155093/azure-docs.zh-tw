@@ -1,25 +1,23 @@
-- The virtual networks can be in the same or different Azure regions (locations).
+- 虛擬網路可位於相同或不同的 Azure 區域 (位置)。
 
-- A cloud service or a load balancing endpoint CANNOT span across virtual networks, even if they are connected together.
+- 即使雲端服務或負載平衡端點與虛擬網路連線在一起，也「無法」橫跨虛擬網路。
 
-- Connecting multiple Azure virtual networks together doesn't require any on-premises VPN gateways unless cross-premises connectivity is required.
+- 除非需要跨部署連線，否則將多個 Azure 虛擬網路連線在一起不需要使用任何內部部署 VPN 閘道。
 
-- VNet-to-VNet supports connecting virtual networks. It does not support connecting virtual machines or cloud services NOT in a virtual network.
+- VNet 對 VNet 支援連接虛擬網路。但是不支援連線「不」在虛擬網路中的虛擬機器或雲端服務。
 
-- VNet-to-VNet requires Azure VPN gateways with RouteBased (previously called Dynamic Routing) VPN types. 
+- VNet 對 VNet 需要 VPN 類型為 RouteBased (前稱為動態路由) 的 Azure VPN 閘道。
 
-- Virtual network connectivity can be used simultaneously with multi-site VPNs, with a maximum of 10 (Default/Standard Gateways) or 30 (High Performance Gateways) VPN tunnels for a virtual network VPN gateway connecting to either other virtual networks or on-premises sites.
+- 虛擬網路連線可以和多網站 VPN 同時使用，最多可以將 10 個 (預設/標準閘道) 或 30 個 (高效能閘道) 虛擬網路 VPN 閘道的 VPN 通道連接至其他虛擬網路，或內部部署網站。
 
-- The address spaces of the virtual networks and on-premises local network sites must not overlap. Overlapping address spaces will cause the creation of VNet-to-VNet connections to fail.
+- 虛擬網路與內部部署區域網路網站的位址空間不得重疊。位址空間重疊會導致 VNet 對 VNet 連線建立失敗。
 
-- Redundant tunnels between a pair of virtual networks are not supported.
+- 不支援成對虛擬網路之間的備援通道。
 
-- All VPN tunnels of the virtual network share the available bandwidth on the Azure VPN gateway and the same VPN gateway uptime SLA in Azure.
+- 虛擬網路的所有 VPN 通道一起共用 Azure VPN 閘道上可用的頻寬，以及 Azure 中相同的 VPN 閘道運作時間 SLA。
 
-- VNet-to-VNet traffic travels across the Microsoft Network, not the Internet.
+- VNet 對 VNet 流量會透過 Microsoft 網路傳輸，而非透過網際網路。
 
-- VNet-to-VNet traffic within the same region is free for both directions; cross region VNet-to-VNet egress traffic is charged with the outbound inter-VNet data transfer rates based on the source regions. Please refer to the [pricing page](https://azure.microsoft.com/pricing/details/vpn-gateway/) for details.
+- 相同區域內的 VNet 對 VNet 流量雙向皆為免費；跨區域 VNet 對 VNet 輸出流量會根據來源區域的輸出 VNet 間資料傳輸費率收費。如需詳細資訊，請參閱[價格頁面](https://azure.microsoft.com/pricing/details/vpn-gateway/)。
 
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0720_2016-->

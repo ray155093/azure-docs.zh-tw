@@ -1,394 +1,387 @@
 <properties
-    pageTitle="Cortana Intelligence Solution Template Playbook for demand forecasting of energy | Microsoft Azure"
-    description="A Solution Template with Microsoft Cortana Intelligence that helps forecast demand for an energy utility company."
-    services="cortana-analytics"
-    documentationCenter=""
-    authors="ilanr9"
-    manager="ilanr9"
-    editor="yijichen"/>
+	pageTitle="能源需求預測的 Cortana Intelligence 解決方案範本教戰守則 | Microsoft Azure"
+	description="使用 Microsoft Cortana Intelligence 的解決方案範本，協助預測能源公共事業公司的需求。"
+	services="cortana-analytics"
+	documentationCenter=""
+	authors="ilanr9"
+	manager="ilanr9"
+	editor="yijichen"/>
 
 <tags
-    ms.service="cortana-analytics"
-    ms.workload="data-services"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="01/24/2016"
-    ms.author="ilanr9;yijichen;garye"/>
+	ms.service="cortana-analytics"
+	ms.workload="data-services"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="01/24/2016"
+	ms.author="ilanr9;yijichen;garye"/>
 
+# 能源需求預測的 Cortana Intelligence 解決方案範本教戰守則  
 
-# <a name="cortana-intelligence-solution-template-playbook-for-demand-forecasting-of-energy"></a>Cortana Intelligence Solution Template Playbook for Demand Forecasting of Energy  
+## 執行摘要  
 
-## <a name="executive-summary"></a>Executive Summary  
+過去幾年來，物聯網 (IoT)、替代能源和巨量資料已共同在公共事業和能源領域中創造龐大的機會。在此同時，公共事業和整個能源工業看到用電量已失控，消費者急需更有效地控制能源用量。因此，公共事業和智慧電網公司本身極需改革與創新。此外，許多電力和公共電網已經過時，維護和管理所費不貲。去年，本小組在能源領域內從事許多研究。在這些研究中，我們經常發現公共事業或 ISV (獨立軟體廠商) 一直在探索如何預測未來的能源需求。這些預測在其目前和未來的事業中扮演著重要角色，已成為不同使用案例的基礎。其中包括短期與長期的電力負載預測、交易、負載平衡、電網最佳化等。為了產生準確且可靠的預測，巨量資料和進階分析 (AA) 方法是關鍵因素，例如機器學習服務 (ML)。
 
-In the past few years, Internet of Things (IoT), alternative energy sources, and big data have merged to create vast opportunities in the utility and energy domain. At the same time, the utility and the entire energy sector have seen consumption flattening out with consumers demanding better ways to control their use of energy. Hence, the utility and smart grid companies are in great need to innovate and renew themselves. Furthermore, many power and utility grids are becoming outdated and very costly to maintain and manage. During the last year, the team has been working on a number of engagements within the energy domain. During these engagements, we have encountered many cases in which the utilities or ISVs (Independent Software Vendors) have been looking into forecasting for future energy demand. These forecasts play an important role in their current and future business and have become the foundation for various use cases. These include short and long-term power load forecast, trading, load balancing, grid optimization etc. Big data and Advanced Analytics (AA) methods such as Machine Learning (ML) are the key enablers for producing accurate and reliable forecasts.  
+在本教戰守則中，我們結合商務和分析指導方針，以成功開發及部署能源需求預測解決方案。這些建議的指導方針可協助公共事業、資料科學家和資料工程師建立全面運作、以雲端為基礎的需求預測解決方案。對於剛踏入巨量資料和進階分析領域的公司，這種解決方案就是長期智慧電源策略的菩提種子。
 
-In this playbook, we put together the business and analytical guidelines needed for a successful development and deployment of energy demand forecast solution. These proposed guidelines can help utilities, data scientists, and data engineers in establishing fully operationalized, cloud-based, demand-forecasting solutions. For companies who are just starting their big data and advanced analytics journey, such a solution can represent the initial seed in their long-term smart grid strategy.
+>[AZURE.TIP] 若要下載此範本的架構概觀圖表，請參閱[能源需求預測的 Cortana Intelligence 解決方案範本架構](cortana-analytics-architecture-demand-forecasting-energy.md)。
 
->[AZURE.TIP] To download a diagram that provides an architectural overview of this template, see [Cortana Intelligence Solution Template architecture for demand forecasting of energy](cortana-analytics-architecture-demand-forecasting-energy.md).  
+## Overview  
 
-## <a name="overview"></a>Overview  
+本文涵蓋使用 Cortana Intelligence (尤其是 Azure Machine Learning (AML)) 來實作與部署能源預測解決方案的商務、資料和技術層面。文件包含三個主要部分 ︰
 
-This document covers the business, data, and technical aspects of using Cortana Intelligence and in particular Azure Machine Learning (AML) for the implementation and deployment of Energy Forecasting Solutions. The document consists of three main parts:  
+1. 了解商務
+2. 了解資料
+3. 技術實作
 
-1. Business understanding  
-2. Data understanding  
-3. Technical implementation
+「了解商務」部分概述在進行投資決策之前需要了解及考慮的商務層面。其中說明如何評估眼前的商務問題，以確保預測性分析和機器學習服務確實有效且可行。本文件進一步說明機器學習服務的基本概念及如何用來解決能源預測問題。其中概述使用案例的先決條件和檢定準則。另外也提供一些範例使用案例和商務案例。
 
-The **Business Understanding** part outlines the business aspect one needs to understand and consider prior to making an investment decision. It explains how to qualify the business problem at hand to ensure that predictive analytics and machine learning are indeed effective and applicable. The document further explains the basics of machine learning and how it is used to address energy-forecasting problems. It outlines the prerequisites and the qualification criteria of a use case. Some sample use cases and business case scenarios are also provided.
+資料是任何機器學習服務解決方案的主要成分。本文件的「了解資料」部分涵蓋一些重要的資料層面。其中概述能源預測所需的資料種類、資料品質需求，以及通常存在的資料來源。我們也會說明如何使用原始資料，以備妥實際主導模型化部分的資料特徵。
 
-Data is the main ingredient for any machine learning solution. The **Data Understanding** part of this document covers some important aspects of the data. It outlines the kind of data that is needed for energy forecasting, data quality requirements, and what data sources typically exist. We also explain how the raw data is used to prepare data features that actually drive the modeling part.
+本文件的第三個部分涵蓋解決方案的「技術實作」層面。特徵工程設計和模型化是資料科學程序的核心，因此會更詳細討論。其中涵蓋 Web 服務的概念，在預測性分析解決方案的雲端部署方面，這些是很重要的機制。我們也會概述端對端運作解決方案的一般架構。
 
-The third part of the document covers the **Technical Implementation** aspect of a solution. Feature engineering and modeling are at the core of the data science process and are therefore being discussed in some detail. It covers the concept of web services, which are an important vehicle for cloud deployment of predictive analytics solutions. We also outline a typical architecture of an end-to-end operationalized solution.
+此外，本文件還包含參考資料，幫助您進一步了解這個領域和技術。
 
-In addition, the document includes reference material that you can use to gain further understanding of the domain and technology.
+請務必注意，本文件不涵蓋深奧的資料科學程序，及其數學和技術層面。您可以在 [Azure ML 文件](http://azure.microsoft.com/services/machine-learning/)和[部落格](http://blogs.microsoft.com/blog/tag/azure-machine-learning/)找到這些詳細資料。
 
-It is important to note that we do not intend to cover in this document the deeper data science process, its mathematical and technical aspects. These details can be found in [Azure ML documentation](http://azure.microsoft.com/services/machine-learning/) and [blogs](http://blogs.microsoft.com/blog/tag/azure-machine-learning/).
+### 目標對象   
+本文件以商業和技術人員為目標對象，幫助他們認識和了解機器學習服務解決方案，及其在能源預測領域內的具體運用情形。
 
-### <a name="target-audience"></a>Target Audience   
-The target audience for this document is both business and technical personnel who would like to gain knowledge and understanding of Machine Learning based solutions and how these are being used specifically within the energy-forecasting domain.
+本文件也有益於資料科學家深入了解主導能源預測解決方案部署的高階程序。就這方面而言，本文件也能為閱讀更詳細和進階的資料打下扎實的基礎和發出點。
 
-Data scientists can also benefit from reading this document to gain a better understanding of the high level process that drives the deployment of an energy forecasting solution. In this context it can also be used to establish a good baseline and starting point for more detailed and advanced material.
+### 產業趨勢  
+過去幾年來，IoT、替代能源和巨量資料已共同在公共事業和能源領域中創造龐大的機會。在此同時，公共事業和整個能源工業看到用電量已失控，消費者急需更有效地控制能源用量。
 
-### <a name="industry-trends"></a>Industry Trends  
-In the past few years, IoT, alternative energy sources, and big data have merged to create vast opportunities in the utility and energy space. At the same time, the utility and the entire energy sectors have seen consumption flattening out with consumers demanding better ways to control their use of energy.
+許多公共事業和智慧能源公司都在研發[智慧電網](https://en.wikipedia.org/wiki/Smart_grid)，利用電網所產生的資料來部署使用一些案例。許多使用案例脫離不了發電的固有特性 ︰無法累積也無法貯藏。因此，生產出來就必須用掉，別無選擇。公共事業想要變得更有效率必須預測的用電量，理由很簡單，因為如此才更能平衡供需，以避免浪費能源、減少溫室氣體排放及控制成本。
 
-Many utility and smart energy companies have been pioneering the [smart grid](https://en.wikipedia.org/wiki/Smart_grid) by deploying a number of use cases that make use of the data generated by the grid. Many use cases revolve around the inherent characteristics of electricity production: it cannot be accumulated nor stored aside as inventory. So, what is produced must be used. Utilities that want to become more efficient need to forecast power consumption simply because that will give them greater ability to **balance supply and demand**, thus preventing energy wastage, **reduce greenhouse gas emission**, and control cost.
+提到成本時，還有另一個重點，就是價格。公共事業之間電力交易的新業務導致更需要預測未來的電力需求和價格。這有助於公司決定他們的產量。
 
-When talking of costs, there is another important aspect, which is price. New abilities to trade power between utilities have brought in a great need to **forecast future demand and future price of electricity**. This can help companies determine their production volumes.
+我們提到「智慧」這個詞時，實際是指可學習並進行預測的電網。它可以預測季節性的用電量變化，以及預知暫時性超載情況並自動調整。藉由從遠端調節用電量 (借助這些智慧型電表)，就可以處理地區性超載情況。電網會先預測再行動，隨著時間而變得越來越聰明。
 
-When we use the word 'smart', we actually refer to a grid that can learn and then make predictions. It can anticipate seasonal changes in consumption as well as **foresee temporary overload situations and automatically adjust for it**. By remotely regulating consumption (with the help of these smart meters), localized overload situations can be handled. **By first predicting and then acting**, the grid makes itself smarter over time.
+本文件的其餘部分著重於一系列特定的使用案例，涵蓋預測未來、短期和長期的能源需求。數個月來我們一直努力於這些領域，已獲得一些知識和技能，能夠產生工業級的結果。不久的未來，本文件也會涵蓋其他使用案例。
 
-For the rest of this document we will focus on a specific family of use cases that cover forecasting of future, short term, and long-term energy demand. We have been working in these areas for a few months and have gained some knowledge and skill that allow us to produce industry grade results. Other use cases will be covered as well in the document in the near future.
+## 了解商務
 
-## <a name="business-understanding"></a>Business Understanding
+### 商務目標
+「能源示範」目的在於示範可在極短時間內部署的一般預測性分析和機器學習服務解決方案。具體來說，我們目前的焦點是推動能源需求預測解決方案，以快速實現並運用其商業價值。本教戰守則中的資訊可協助客戶達成下列目標︰
+-   加速機器學習服務解決方案的價值實現
+-   能夠根據其商務需求，將試驗性使用案例擴展到其他使用案例或更廣的範圍
+-   快速獲得 Cortana Intelligence Suite 產品知識
 
-### <a name="business-goals"></a>Business Goals
-The **Energy Demo** goal is to demonstrate a typical predictive analytics and machine learning solution that can be deployed in a very short time frame. Specifically, our current focus is on enabling energy demand forecast solutions so that its business value can be quickly realized and leveraged upon. The information in this playbook can help the customer accomplishing the following goals:
--   Short time to value of machine learning based solution
--   Ability to expand a pilot use case to other use cases or to a broader scope based on their business need
--   Quickly gain Cortana Intelligence Suite product knowledge
+本教戰守則謹記這些目標，希望提供商務和技術知識來協助達成這些目標。
 
-With these goals in mind, this playbook aims at delivering the business and technical knowledge that will assist in achieving these goals.
+### 電力負載和需求預測
+在能源產業內，需求預測在許多方面可協助解決危急的商業問題。事實上，需求預測可視為產業中許多核心使用案例的基礎。一般而言，我們會考慮兩種能源需求預測︰短期和長期。各有不同的用途並採用不同的方法。兩者的主要差異在於預測範圍，也就是可預測的未來時間範圍。
 
-### <a name="power-load-and-demand-forecasting"></a>Power Load and Demand Forecasting
-Within the energy sector, there could be many ways in which demand forecasting can help solve critical business problems. In fact, demand forecasting can be considered the foundation for many core use cases in the industry. In general, we consider two types of energy demand forecasts: short term and long term. Each one may serve a different purpose and utilize a different approach. The main difference between the two is the forecasting horizon, meaning the range of time into the future for which we would forecast.
+#### 短期負載預測
+在能源需求方面，短期負載預測 (STLF) 定義為對電網各部分 (或整個電網) 預測不久將來的總體負載。在此，短期定義為 1 小時到 24 小時範圍內的時間範圍。在某些情況下，範圍也可能長達 48 小時。因此，STLF 在電網的運作使用案例中很常見。以下是 STLF 導向的使用案例的一些例子：
+-   供需平衡
+-   電力交易支援
+-   造市 (訂定電價)
+-   電網運作最佳化
+-   [需求回應](https://en.wikipedia.org/wiki/Demand_response)
+-   尖峰需求預測
+-   需求面管理
+-   負載平衡和預防超載
+-   長期負載預測
+-   故障和異常偵測
+-   尖峰限電/調節
 
-#### <a name="short-term-load-forecasting"></a>Short Term Load Forecasting
-Within the context of energy demand, Short Term Load Forecasting (STLF) is defined as the aggregated load that is forecasted in the near future on various parts of the grid (or the grid as a whole). In this context, short term is defined to be time horizon within the range of 1 hour to 24 hours. In some cases, a horizon of 48 hours is also possible. Therefore, STLF is very common in an operational use case of the grid. Here are some examples of STLF driven use cases:
--   Supply and demand balancing
--   Power trading support
--   Market making (setting power price)
--   Grid operational optimization
--   [Demand response](https://en.wikipedia.org/wiki/Demand_response)
--   Peak demand forecasting
--   Demand side management
--   Load balancing and overload prevention
--   Long Term Load Forecasting
--   Fault and anomaly detection
--   Peak curtailment/leveling 
+STLF 模型大多根據最近 (昨天或上週) 的用電量資料，並以預測溫度作為重要的預測因子。現在，取得未來一小時甚至 24 小時的準確溫度預測並不困難。這些模型較不易受到季節性模式或長期用電量趨勢所影響。
 
-STLF model are mostly based on the near past (last day or week) consumption data and use forecasted temperature as an important predictor. Obtaining accurate temperature forecast for the next hour and up to 24 hours is becoming less of a challenge now days. These models are less sensitive to seasonal patterns or long-term consumption trends.
+SLTF 解決方案也可能引起大量的預測呼叫 (服務要求)，因為每小時就要引用一次，在某些情況下甚至更頻繁。也常見到機房中每個變電站或變壓器都是獨立模型，因此預測要求量甚至更高。
 
-SLTF solutions are also likely to generate high volume of prediction calls (service requests) since they are being invoked on an hourly basis and in some cases even with higher frequency. It is also very common to see implantation where each individual substation or transformer is represented as a standalone model and therefore the volume of prediction requests are even greater.
+#### 長期負載預測
+長期負載預測 (LTLF) 的目標是預測時間範圍從 1 週到數個月的電力需求 (在某些情況下可能是許多年)。此時間範圍最適用於規劃和投資使用案例。
 
-#### <a name="long-term-load-forecasting"></a>Long Term Load Forecasting
-The goal of Long Term Load Forecasting (LTLF) is to forecast power demand with a time horizon ranging from 1 week to multiple months (and in some cases for a number of years). This range of horizon is mostly applicable for planning and investment use cases.
+在長期情況下，需要有涵蓋多年 (至少 3 年) 的高品質資料。這些模型通常會從歷史資料中萃取出季節性模式，並利用外部預測因子，例如天氣和氣候模式。
 
-For long-term scenarios, it is important to have high quality data that covers a span of multiple years (minimum 3 years). These models will typically extract seasonality patterns from the historical data and make use of external predicators such as weather and climate patterns.
+必須澄清，預測時間越長，預測越不準確。因此，除了實際預測，還必須產生一些信賴區間，以利用於規劃過程中考慮到可能的變異。
 
-It is important to clarify that the longer the forecasting horizon is, the less accurate the forecast may be. It is therefore important to produce some confidence intervals along with the actual forecast that would allow humans to factor the possible variation into their planning process.
+由於 LTLF 的用電量案例大多用於規劃，預測量必然很低 (相較於 STLF)。我們通常會看到這些預測內嵌至視覺化工具中，例如 Excel 或 PowerBI，並由使用者手動引用。
 
-Since the consumption scenario for LTLF is mostly planning, we can expect much lower prediction volumes (as compared to STLF). We would typically see these predictions embedded into visualization tools such as Excel or PowerBI and be invoked manually by the user.
+### 短期與長期預測
+下表比較 STLF 和 LTLF 的最重要屬性︰
 
-### <a name="short-term-vs.-long-term-prediction"></a>Short Term vs. Long Term Prediction
-The following table compares STLF and LTLF in respect to the most important attributes:
-
-|Attribute|Short Term Load Forecast|Long Term Load Forecast|
+|屬性|短期負載預測|長期負載預測|
 |---|---|---|
-|Forecast Horizon|From 1 hour to 48 hours|From 1 to 6 months or more|
-|Data granularity|Hourly|Hourly or daily|
-|Typical use cases|<ul><li>Demand/Supply balancing</li><li>Pick hour forecasting</li><li>Demand response</li></ul>|<ul><li>Long term planning</li><li>Grid assets planning</li><li>Resource planning</li></ul>|
-|Typical predictors|<ul><li>Day or week</li><li>Hour of day</li><li>Hourly temperature</li></ul>|<ul><li>Month of year</li><li>Day of month</li><li>Long term temperature and climate</li></ul>|
-|Historical data range|Two to three years' worth of data|Five to 10 years' worth of data|
-|Typical accuracy|MAPE* of 5% or lower|MAPE* of 25% or lower|
-|Forecast frequency|Produced every hour or every 24 hours|Produced once monthly, quarterly or yearly|
-\*[MAPE](https://en.wikipedia.org/wiki/Mean_absolute_percentage_error) – Mean Average Percent Error
+|預測時間範圍|從 1 小時到 48 小時|從 1 個月到 6 個月以上|
+|資料細微度|每小時|每小時或每日|
+|一般使用案例|<ul><li>供需平衡</li><li>尖峰時段預測</li><li>要求回應</li></ul>|<ul><li>長期規劃</li><li>電網資產規劃</li><li>資源規劃</li></ul>|
+|一般預測因子|<ul><li>日或週</li><li>當天時段</li><li>每小時溫度</li></ul>|<ul><li>年度月份</li><li>月份日期</li><li>長期溫度和氣候</li></ul>|
+|歷史資料範圍|二至三年份的資料|五至 10 年份的資料|
+|一般精確度|5% 或更低的 MAPE*|25% 或更低的 MAPE*|
+|預測頻率|每小時或每 24 小時產生一次|每月、每季或每年產生一次|
+*[MAPE](https://en.wikipedia.org/wiki/Mean_absolute_percentage_error) – 百分比錯誤平均數
 
-As can be seen from this table, it is quite important to distinguish between the short and the long term forecasting scenarios as these represent different business needs and may have different deployment and consumption patterns.
+從這個表格可以看出，區別短期和長期預測案例相當重要，因為這些各代表不同的商務需求，可能會有不同的部署和用電模式。
 
-### <a name="example-use-case-1:-esmart-systems-–-overload-optimization"></a>Example Use Case 1: eSmart Systems – Overload optimization
-An important role of a [smart grid](https://en.wikipedia.org/wiki/Smart_grid) is to dynamically and constantly optimize and adjust for the changing consumption patterns. Power consumption can be impacted by short-term changes that are mainly caused by temperature fluctuations (*e.g.*, more power is used for air condition or heating). At the same time, power consumption is also influenced by long-term trends. These may include seasonality effects, national holidays, long-term consumption growth, and even economic factors such as consumer index, oil price, and GDP.
+### 範例使用案例 1：Esmart Systems – 超載最佳化
+[智慧電網](https://en.wikipedia.org/wiki/Smart_grid)是一個重要角色是隨著不斷變化的用電模式，而動態和持續地最佳化並調整。用電量可能受到短期變化所影響，主要是溫度變動所造成 (例如，空調或暖氣的用電增加)。同時，用電量也會受到長期趨勢所影響。其中包括季節性效應、國定假日、長期用電量成長，甚至是經濟因素，例如消費者指數、石油價格和 GDP。
 
-In this use case, [eSmart](http://www.esmartsystems.com/) wanted to deploy a cloud-based solution that enables predicting the propensity of an overload situation on any given substation of the grid. In particular, eSmart wanted to identify substations that are likely to overload within the next hour, so an immediate action could be taken to avoid or resolve that situation.
+在此使用案例中，[eSmart](http://www.esmartsystems.com/) 想要部署以雲端為基礎的解決方案，以預測電網的任何給定變電站發生超載情況的傾向。特別是的，eSmart 希望找出下一個小時可能超載的變電站，以立即採取動作來避免或解決這種情況。
 
-An accurate and fast performing prediction requires implementation of three predictive models:
--   Long term model that enables forecasting of power consumption on each substation during the next few weeks or months
--   Short term model that enables prediction of overload situation on a given substation during the next hour
--   Temperature model that provides forecasting of future temperature over multiple scenarios
+為了精確和快速預測，必須實作三種預測模型︰
+-   可預測每個變電站未來幾週或幾個月用電量的長期模型
+-   可預測給定變電站在下一個小時發生超載情況的短期模型
+-   在多個案例上提供未來溫度預測的溫度模型
 
-The objective of the long-term model is to rank the substations by their propensity to overload (given their power transmission capacity) during the next week or month. This allows the creation of a short list of substations that would serve as an input for the short-term prediction. As temperature is an important predictor for the long-term model, there is a need to constantly produce multi-scenario temperature forecasts and feed them as input into to the long-term model. The short term forecast is then invoked to predict which substation is likely to overload over the next hour.
+長期模型的目標是依下一週或下個月的超載傾向將變電站排名 (根據其電力輸送能力)。這樣可建立一份變電站初步名單，作為短期預測的輸入。因為溫度是長期模型的重要預測因子，需要不斷產生多重案例的溫度預測，並輸入到長期模型中。接著叫用短期預測，以預測下一個小時可能超載的變電站。
 
-The short-term and long-term models are deployed individually per each substation. Therefore, the practical execution of these models requires extensive orchestration. To gain higher prediction accuracy in the short term, a more granular model is dedicated for each hour of the day. All these models are executed every hour and finish execution within a few minutes to allow sufficient time to respond and take preventive actions if needed. This collection of models is kept up-to-date by periodical retraining using the most recent data.
+每個變電站個別地部署短期和長期模型。因此，實際執行這些模型需要大量的協調流程。為了在短期內獲得更高的預測精確度，有更細微的模型專用於一天的每個小時。所有這些模型每個小時都執行，並在幾分鐘內執行完畢，以便有充裕的時間來回應，並視需要採取預防動作。這組模型定期以最新資料重新訓練，隨時保持在最新狀態。
 
-More information about this use case can be found [here](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18945).
+[這裡](https://customers.microsoft.com/Pages/CustomerStory.aspx?recid=18945)提供此使用案例的詳細資訊。
 
-#### <a name="use-case-qualification-criteria-–-prerequisites"></a>Use Case Qualification Criteria – Prerequisites
-The main strength of Cortana Intelligence is in its powerful ability to deploy and scale machine learning centric solutions. It is designed to support thousands of predictions that are executed concurrently. It can automatically scale to meet a changing consumption pattern. A solution's focus therefore, is on accuracy and computational performance. For example, a utility company is interested in producing accurate energy demand forecast for the next hour, and for each hour of the day. On the other hand, we are less interested in answering the question of why the demand is predicted to be as it is (the model itself will take care of that).
+#### 使用案例檢定準則 – 必要條件
+Cortana Intelligence 的真正威力在於有強大的能力部署及調整以機器學習服務為中心的解決方案。目的是支援數以千計同時執行的預測。它可以自動調整規模以符合不斷變化的用電模式。因此，解決方案的重點是精確度和運算效能。例如，公共事業公司的興趣是為下一個小時及一天中每個小時產生精確的能源需求預測。相反地，我們較沒興趣回答為何預測出如此需求的這種問題 (這是由模型本身來處理)。
 
-It is therefore important to realize that not all use cases and business problems can be effectively solved using machine learning.
+因此，必須了解，並非所有使用案例和商務問題都能利用機器學習服務來有效解決。
 
-Cortana Intelligence and machine learning could be highly effective in solving a given business problem when the following criteria are met:
--   The business problem in hand is **predictive** in nature. A predictive use case example is a utility company that would like to predict power load on a given substation during the next hour. On the other hand, analyzing and ranking drivers of historical demand would be **descriptive** in nature and therefore less applicable.
--   There is a clear **path of action** to be taken once the prediction is available. For example, predicting an overload on a substation during the next hour can trigger a proactive action of reducing load that is associated with that substation and thus potentially preventing an overload.
--   The use case represents a **typical type of problem** such that when solved it can pave the way to solving other similar use cases.
--   The customer can set **quantitative and qualitative goals** to demonstrate a successful solution implementation. For example, a good quantitative goal for energy demand forecast would be the required accuracy threshold (*e.g.*, up to 5% error is allowed) or when predicting substation overload then the precision (rate of true positives) and recall (extent of true positives) should be above a given threshold. These goals should be derived from the customer's business goals.
--   There is a clear **integration scenario** with the company's business workflow. For example, the substation load forecast can be integrated into the grid control center to allow overload prevention activities.
--   The customer has ready to use **data with sufficient quality** to support the use case (see more in the next section, **Data Quality**, of this playbook).
--   The customer embraces cloud centric data architecture or **cloud-based machine learning**, including Azure ML and other Cortana Intelligence Suite components.
--   The customer is willing to establish **an end to end data flow** that facilities the delivery of data into the cloud on an ongoing basis, and is willing to **operationalize** the solution.
--   The customer is ready to **dedicate resources** who will be actively engaged during the initial pilot implementation so that knowledge and ownership of the solution can be transferred to the customer upon successful completion.
--   The customer resource should be a **skilled data professional**, preferably a data scientist.
+只要符合下列條件，Cortana Intelligence 和機器學習服務可以很有效地解決特定的商務問題︰
+-   眼前的商務問題在本質上有預測性。例如，一家公共事業公司想要預測給定變電站下一個小時內的電源負載，這就是預測性使用案例。相反地，分析和排名歷史需求的驅動因素在本質上是描述性，因此較不適用。
+-   一旦獲得預測，就能採取明確的動作途徑。例如，預測變電站下一個小時超載可以觸發積極的行動，降低該變電站的相關負載，因而避免可能發生的超載。
+-   此使用案例代表典型的問題，只要解決它，就能輕鬆解決其他類似的使用案例。
+-   客戶可以設定量化和質化目標，以示範成功的解決方案實作。比方說，必要的精確度臨界值 (例如，最高容許 5% 的錯誤)，或在預測變電站超載時，精確度 (真肯定率) 和回溯 (真肯定的程度) 應超過指定的臨界值，都是能源需求預測的良好量化目標。這些目標應該衍生自客戶的商務目標。
+-   關於公司的商務流程，有一個明確的整合案例。比方說，變電站負載預測可以整合到電網控制中心，以利於進行超載預防活動。
+-   客戶已準備使用品質足夠的資料來支援使用案例 (詳情請參閱本教戰守則的下一節「資料品質」)。
+-   客戶接受以雲端為中心的資料架構或以雲端為基礎的機器學習服務，包括 Azure ML 和其他 Cortana Intelligence Suite 元件。
+-   客戶願意建立**端對端資料流程**，以利於持續將資料傳入雲端，也願意**實施**解決方案。
+-   客戶已準備提供資源來主動參與初始試驗實作過程，以便於成功完成時，就能將解決方案的知識和擁有權移轉給客戶。
+-   客戶資源應該為熟練的資料專業人員，最好是資料科學家。
 
-Qualification of a use case based on the above criteria can greatly improve the success rates of a use case and establish a good beachhead for the implementation of future use cases.
+根據上述準則來檢定使用案例，將可大幅提高使用案例的成功率，並為實作未來的使用案例打下良好基礎。
 
-### <a name="cloud-based-solutions"></a>Cloud-Based Solutions
-Cortana Intelligence Suite on Azure is an integrated environment that resides in the cloud. The deployment of an advanced analytics solution in a cloud environment holds substantial benefits for businesses and at the same time may mean big change for companies that still use on-premise IT solutions. Within the energy sector, there is a clear trend of gradual migration of operations into the cloud. This trend goes hand in hand along with the development of the smart grid as discussed above, in **Industry Trends**. As this playbook is focused on a cloud-based solution in the energy domain, it is important to explain the benefits and other considerations of deploying a cloud-based solution.
+### 以雲端為基礎的解決方案
+Cortana Intelligence Suite 是位於雲端的整合式環境。在雲端環境中部署進階的分析解決方案，將可以為企業帶來顯著的效益，同時也代表仍在使用內部部署 IT 解決方案的公司將出現巨大的轉變。在能源產業內，明顯看出營運逐漸轉向雲端的趨勢。這種趨勢與上述產業趨勢中的智慧電網發展同步並進。由於本教戰守則著重於能源領域中以雲端為基礎的解決方案，因此必須說明部署以雲端為基礎的解決方案帶來的優點和其他考量。
 
-Perhaps the biggest advantage of a cloud-based solution is the cost. As a solution makes use of cloud-deployed components, there is no upfront costs or COGS (Cost of Goods Sold) component costs associated with it. That means that there is no need to invest in hardware, software, and IT maintenance, and therefore there is a substantial reduction in business risk.
+以雲端為基礎的解決方案帶來的最大優點，可能就在於成本。由於解決方案使用雲端部署的元件，因此不需要前期成本或相關的 COGS (銷貨成本) 元件成本。這表示不需要投資硬體、軟體和 IT 維護，因而大幅降低商業風險。
 
-Another important advantage is the pay-as-you-go cost structure of cloud-based solutions. Cloud-based servers for computing or storage can be deployed and scaled on a just-as-needed basis. This represents the cost efficiency advantage of a cloud-based solution.
+另一個重要優點是以雲端為基礎的解決方案採用隨用隨付成本結構。做為計算或儲存用途的以雲端為基礎的伺服器，可以視需要而部署及調整。這代表以雲端為基礎的解決方案帶來的成本效益優點。
 
-Finally, there is no need for investing in IT maintenance or future infrastructure development as all this is part of the cloud-based offering. To that extent, Cortana Intelligence Suite includes the best in class services and its road map keeps evolving. New features, components, and capabilities are constantly being introduced and evolve.
+最後，不需要投資 IT 維護或未來的基礎結構開發，因為以雲端為基礎的供應項目中已一應俱全。就這點而言，Cortana Intelligence Suite 包含最優秀的服務，而其藍圖持續發展中。新的特性、元件和功能持續地推出和演進。
 
-For a company that is just starting its transition into the cloud, we are highly recommending to take a gradual approach by implementing a cloud migration road map. We believe that for utilities and companies in the energy domain, the use cases that are discussed in this playbook represent an excellent opportunity for piloting predictive analytics solutions in the cloud.
+對於剛開始轉換到雲端的公司，強烈建議實作雲端移轉藍圖，採取漸進方式。對於能源領域中的公共事業或公司，我們相信本教戰守則所討論的使用案例，就代表在雲端中試驗預測性分析解決方案的絕佳機會。
 
-#### <a name="business-case-justification-considerations"></a>Business Case Justification Considerations
-In many cases, the customer may be interested in making a business justification for a given use case in which a cloud-based solution and Machine Learning are important components. Unlike an on-premise solution, in the case of a cloud-based solution, the upfront cost component is minimal and most of the cost elements are associated with actual usage. When it comes to deploying an energy forecasting solution on Cortana Intelligence Suite, multiple services can be integrated with a single common cost structure. For example, databases (*e.g.*, SQL Azure) can be used to store the raw data and then for the actual forecasts Azure ML is used to host the forecasting services. In this example, the cost structure could include storage and transactional components.
+#### 商務案例理由考量
+在許多情況下，客戶可能想要對給定的使用案例提出一個商業理由，表明以雲端為基礎的解決方案和機器學習服務是重要的元件。不同於內部部署解決方案，在以雲端為基礎的解決方案中，前期成本的成分極少，大部分的成本要素都與實際用量有關。說到部署預測上 Cortana Intelligence 解決方案的能源，多個服務可以與單一的一般成本結構整合。比方說，資料庫 (例如 SQL Azure) 可以用來儲存原始資料，然後在實際預測時，使用 Azure ML 來裝載預測服務。在此範例中，成本結構可能包含儲存體和交易式元件。
 
-On the other hand, one should have a good understanding of the business value of operating an energy demand forecasting (short or long term). In fact, it is important to realize the business value of each forecast operation. For example, accurately forecasting power load for the next 24 hours can prevent overproduction or can help prevent overloads on the grid and this can be quantified in terms of financial savings on a daily basis.
+另一方面，應該要正確了解從事能源需求預測 (短期或長期) 的商業價值。事實上，必須了解每個預測作業的商業價值。比方說，精確預測接下來 24 小時內的電力負載，可以避免生產過剩或電網超載，還能從每日節省的資金來量化這方面的資訊。
 
-A basic formula for calculating the financial benefit of demand forecast solution would be: ![Basic formula for calculating the financial benefit of demand forecast solution](media/cortana-analytics-playbook-demand-forecasting-energy/financial-benefit-formula.png)
+需求預測解決方案財務優點的基本計算公式為︰![需求預測解決方案財務優點的基本計算公式](media/cortana-analytics-playbook-demand-forecasting-energy/financial-benefit-formula.png)
 
-Since Cortana Intelligence Suite provides a pay-as-you-go pricing model, there is no need for incurring a fixed cost component to this formula. This formula can be calculated on a daily, monthly, or annual basis.
+由於 Cortana Intelligence Suite 提供隨用隨付價格模式，所以不需要將固定成本項帶入這個公式中。每日、每月或每年都可以計算此公式。
 
-Current Cortana Intelligence Suite and Azure ML pricing plans can be found [here](http://azure.microsoft.com/pricing/details/machine-learning/).
+[這裡](http://azure.microsoft.com/pricing/details/machine-learning/)提供 Cortana Intelligence Suite 和 Azure ML 目前的價格方案。
 
-### <a name="solution-development-process"></a>Solution Development Process
-The development cycle of an energy demand forecasting solution typically involves 4 phases, in all of which we make use of cloud-based technologies and services within the Cortana Intelligence Suite.
+### 解決方法開發程序
+能源需求預測解決方案的開發週期通常需要 4 個階段，在所有階段中，我們都採用 Cortana Intelligence Suite 內以雲端為基礎的技術和服務。
 
-This is illustrated in the following diagram:
+下圖提供相關說明：
 
-![Smart Grid Cycle](media/cortana-analytics-playbook-demand-forecasting-energy/smart-grid-cycle.png)
+![智慧電網週期](media/cortana-analytics-playbook-demand-forecasting-energy/smart-grid-cycle.png)
 
-The following paragraph describes this 4 step process:
+下一段說明這 4 個步驟的程序︰
 
-1.  **Data Collection** – Any advanced analytics based solution relies on data (see **Data Understanding**). Specifically, when it comes to predictive analytics and forecasting, we rely on ongoing, dynamic flow of data. In the case of energy demand forecasting, this data can be sourced directly from smart meters, or be already aggregated on an on-prem database. We also rely on other external sources of data such as weather and temperature. This ongoing flow of data must be orchestrated, scheduled, and stored. [Azure Data Factory](http://azure.microsoft.com/services/data-factory/) (ADF) is our main workhorse for accomplishing this task.
-2.  **Modeling** – For accurate and reliable energy forecasts, one must develop (train) and maintain a great model that makes use of the historical data and extracts the meaningful and predictive patterns in the data. The area of Machine Learning (ML) has been growing rapidly with more advanced algorithms being routinely developed. Azure ML Studio provides a great user experience that helps utilize the most advanced ML algorithms within a complete work flow. That workflow is illustrated in an intuitive flow diagram and includes the data preparation, feature extraction, modeling, and model evaluation. The user can pull in hundreds of various models that are included in this environment. By the end of this phase a data scientist will have a working model that is fully evaluated and ready for deployment.
+1.  資料收集 – 任何以進階分析為基礎的解決方案都仰賴資料 (請參閱「了解資料」)。具體來說，在提及預測性分析和預測時，我們需要持續、動態的資料流。就能源需求預測而言，這項資料可能直接來自智慧型電表，或已在內部部署資料庫上彙總。我們也依賴其他外部資料來源，例如天氣和溫度。這個持續的資料流必須協調、排程及儲存。[Azure Data Factory](http://azure.microsoft.com/services/data-factory/) (ADF) 是我們完成這項工作的主力工具。
+2.  模型化 – 為了獲得精確又可靠的能源預測，我們必須開發 (訓練) 並維護一個優秀的模型，以利用歷史資料，並從資料中擷取有意義和可預測的模式。隨著不斷開發出先進的演算法，機器學習服務 (ML) 領域一直在快速成長。Azure ML Studio 提供絕佳的使用者體驗，有助於在完整的工作流程中利用最先進的 ML 演算法。該工作流程如直覺式流程圖所示，包含準備資料、萃取特徵、模型化和評估模型。使用者可以取用此環境中數以百計的各種不同模型。此階段的結束時，資料科學家會獲得一個已完整評估且可部署的工作模型。
 
-    The following diagram is an illustration of a typical workflow:
+	下圖是一般工作流程的說明︰
 
-    ![Modeling Workflow](media/cortana-analytics-playbook-demand-forecasting-energy/modeling-workflow.png)
+	![模型化工作流程](media/cortana-analytics-playbook-demand-forecasting-energy/modeling-workflow.png)
 
-3.  **Deployment** – With a working model in hand, the next step is deployment. Here the model is converted into a web service that exposes a RESTful API that can be concurrently invoked over the     Internet from various consumption clients. Azure ML provides a simple way of deploying a model directly from the Azure ML Studio with a single click of a button. The entire deployment process happens under the hood. This solution can automatically scale to meet the required consumption.
+3.  部署 – 獲得工作模型後，下一步就是部署。在此，模型轉換為 Web 服務並公開 RESTful API，供各種用電用戶端透過網際網路同時叫用。Azure ML 提供簡單的方法，直接從 Azure ML Studio 中按一下按鈕，就能部署模型。整個部署程序都是自動完成。這個解決方案可以自動調整規模以符合所需的用電量。
 
-4.  **Consumption** – In this phase, we actually make use of the forecasting model to produce predictions. The consumption can be driven from a user application (*e.g.*, dashboard) or directly from an operational system such as demand/supply balancing system or a grid optimization solution. Multiple use cases can be driven from a single model.
+4.  用電量 – 在這個階段，我們實際利用預測模型來產生預測。用電量可由使用者應用程式 (例如，儀表板) 或直接從作業系統來控管，例如供需平衡系統或電網最佳化解決方案。單一模型可以控管多個使用案例。
 
-## <a name="data-understanding"></a>Data Understanding
-After covering the business considerations (see **Business Understanding**) of an energy demand forecasting solution, we are now ready to discuss the data part. Any predictive analytics solution relies on reliable data. For energy demand forecasting, we rely on historical consumption data with various levels of granularity. That historical data is used as the raw material. It will undergo a careful analysis in which the data scientist will identify predictors (also referred to as features) that can be put into a model which will eventually generate the required forecasts.
+## 了解資料
+討論過能源需求預測解決方案的商務考量之後 (請參閱「了解商務」)，現在可以開始討論資料部分。任何預測性分析解決方案都仰賴可靠的資料。在能源需求預測方面，我們依賴不同細微程度的用電量歷史資料。該歷史資料就成為原始資料。經過仔細分析，資料科學家將找出預測因子 (也稱為特徵)，然後輸入模型中，最後產生所需的預測。
 
-In the rest of this section, we will describe the various steps and considerations for understanding the data and how to bring it to a usable form.
+在本節的其餘部分，我們將說明各種步驟和考量，讓您了解資料及如何轉換成實用的格式。
 
-### <a name="the-model-development-cycle"></a>The Model Development Cycle
-Producing good forecasting models requires some careful preparation and planning. Breaking down the modeling process into multiple steps and focusing on one step at a time could dramatically improve the outcome of the entire process.
+### 模型開發週期
+需要仔細準備和規劃才能產生良好的預測模型。將模型化程序分解成多個步驟，且一次專注於一個步驟，如此即可大幅改善整個程序的結果。
 
-The following diagram illustrates how the modeling process could be broken down into multiple steps:
+下圖說明如何將模型化程序分解成多個步驟︰
 
-![Model Development Cycle](media/cortana-analytics-playbook-demand-forecasting-energy/model-development-cycle.png)
+![模型開發週期](media/cortana-analytics-playbook-demand-forecasting-energy/model-development-cycle.png)
 
-As can be seen the cycle consists of six steps:
--   Problem formulation
--   Data ingestion and data exploration
--   Data preparation and feature engineering
--   Modeling
--   Model evaluation
--   Development
+從上圖可知，週期包含六個步驟：
+-   問題編寫
+-   資料擷取和資料探索
+-   資料準備和特徵設計
+-   模型化
+-   模型評估
+-   開發
 
-In the rest of this section we will describe the individual steps and items to consider at each step.
+在本節的其餘部分，我們將說明個別的步驟及每個步驟需要考量的項目。
 
-### <a name="problem-formulation"></a>Problem Formulation
-We can consider the problem formulation as the most critical step one needs to take prior to implementing any predictive analytics solution. Here we would transform the business problem and decompose it to specific elements which can be solved by using data and modeling techniques. It is a good practice to formulate the problem as a set of questions we would like to answer. Here are some possible questions that might be applicable within the scope of energy demand forecasting:
--   What is the expected load on an individual substation in the next hour or day?
--   At what time of the day will my grid experience peak demand?
--   How likely is my grid to sustain the expected peak load?
--   How much power should the power station generate during each hour of the day?
+### 問題編寫
+問題編寫可視為在實作任何預測性分析解決方案之前，必須執行的最重要步驟。在此我們會轉換商務問題，並將它分解成利用資料和模型化技術就可解決的特定要素。最好將問題編寫成一組我們想要回答的問題。以下是能源需求預測範圍內可能適用的一些問題︰
+-   個別變電站在下一個小時或次日預期的負載是什麼？
+-   我的電網在一天之中何時會遇到尖峰需求？
+-   我們電網有多少能耐承受預期的尖峰負載？
+-   發電廠在一天的每個小時內產生多少電力？
 
-Formulating these questions allows us to focus on getting the right data and implementing a solution that is fully aligned with the business problem at hand. Furthermore, we can then set some key metrics that allow us to evaluate the performance of the model. For example, how accurate should the forecast be and what is the range of error that would still be acceptable by the business?
+擬定這些問題可讓我們專注於取得正確的資料，並充分配合眼前的商務問題來實作解決方案。此外，我們可以再設定一些重要的計量，讓我們評估模型的效能。比方說，預測應該有多高的準確度及企業仍可接受多大的錯誤範圍？
 
-### <a name="data-sources"></a>Data Sources
-The modern smart grid collects data from various parts and components of the grid. This data represents various aspects of the operation and the utilization of the power grid. Within the scope of the energy demand forecast, we are limiting the discussion on data sources that reflect the actual demand consumption. One important source of energy consumption are smart meters. Utilities around the globe are rapidly deploying smart meters for their consumers. Smart meters record the actual power consumption and constantly relay this data back to the utility company. Data is collected and sent back at a fixed interval, ranging from every 5 minutes to 1 hour. More advanced smart meters can be programmed remotely to control and balance the actual consumption within a household. Smart meter data is relatively reliable and includes a time stamp. That makes it an important ingredient for demand forecast. Meter data can be aggregated (summed up) at various levels within the grid topology: transformer, substation, region, *etc*. We can then pick the required aggregation level to build a forecasting model for it. For example, if the utility company would like to forecast future load on each of its grid substations then all meters' data can be aggregated for each individual substation and used as an input for the forecasting model. We refer to smart meters as an internal data source.
+### 資料來源
+現代智慧電網會從電網的各種組件和元件收集資料。此資料代表電網運作和利用的各個層面。在能源需求預測的範圍內，我們的討論僅限於可反映實際需求消耗的資料來源。能源消耗量的重要來源之一是智慧型電表。世界各地的公共事業正快速地為消費者部署智慧型電表。智慧型電表會記錄實際的用電量，並不斷地將此資料轉送給公共事業公司。資料是以固定時間間隔收集並傳回，範圍從每 5 分鐘到 1 小時。更先進的智慧型電表可以設計成從遠端控制，並平衡住家內的實際用電量。智慧型電表資料相當可靠，而且包含時間戳記。因此成為需求預測的重要元素。電表資料可以電網拓撲內的各個層級上彙總 (加總)︰變壓器、變電站、區域等。然後，我們可以挑選彙總層級來建置預測模型。比方說，如果公共事業公司想要預測每一個電網變電站的未來負載，則可以針對每個變電站來彙總所有電表的資料，再做為預測模型的輸入。我們將智慧型電表稱為內部資料來源。
 
-A reliable energy demand forecast will also rely on other external data sources. One important factor that affects power consumption is the weather, or more precisely the temperature. Historical data shows strong correlation between outside temperature and power consumption. During hot summer days, consumers make use of their air conditioners and during the winter power on heating systems. A reliable source of historical temperatures at the grid location is therefore key. Furthermore, we also rely on accurate forecast of temperature as a predictor of power consumption.
+可靠的能源需求預測也依賴其他外部資料來源。影響用電量的一個重要因素是天氣，更準確地說是溫度。歷史資料顯示室外溫度和用電量之間有很大的關聯性。在酷暑季節，消費者會開冷氣機，而冬季時會開啟暖氣系統。因此，關鍵在於電網地點要有可靠的歷史溫度來源。此外，我們也依賴精確預測的溫度當作用電量的預測因子。
 
-Other external data sources can also help in building energy demand forecast models. These may include long term climate changes, economical indexes (*e.g.*, GDP), and others. In this document we will not include these other data sources.
+其他外部資料來源也有助於建立能源需求預測模型。其中可能包括長期氣候變化、經濟指標 (例如 GDP) 等。本文中不討論其他這些資料來源。
 
-### <a name="data-structure"></a>Data Structure
-After identifying the required data sources, we would like to ensure that raw data that has been collected includes the correct data features. To build a reliable demand forecast model, we would need to ensure that the data collected includes data elements that can help predict the future demand. Here are some basic requirements concerning the data structure (schema) of the raw data.
+### 資料結構
+決定所需的資料來源之後，我們需要確定已收集的原始資料包含正確的資料特徵。若要建立可靠的需求預測模型，我們需要確定收集的資料包含有助於預測未來需求的資料元素。以下是關於原始資料的資料結構 (結構描述) 的一些基本條件。
 
-The raw data consists of rows and columns. Each measurement is represented as a single row of data. Each row of data includes multiple columns (also referred to as features or fields).
+原始資料是由資料列和資料行所組成。每個度量單位以單一資料列表示。每個資料列包含多個資料行 (也稱為特徵或欄位)。
 
-1.  **Time stamp** – the timestamp field represents the actual time when the measurement was recorded. It should comply with one of the common date/time formats. Both date and time parts should be included. In most cases, there is no need for the time to be recorded till the second level of granularity. It is important to specify the time zone in which the data is recorded.
-2.  **Meter ID** - This field identifies the meter or the measurement device. It is a categorical variable and can be a combination of digits and characters.
-3.  **Consumption value** – This is the actual consumption at a given date/time. The consumption can be measured in kWh (kilowatt-hour) or any other preferred units. It is important to note that the measurement unit must stay consistent across all measurements in the data. In some cases, consumption can be supplied over 3 power phases. In that case we would need to collect all the independent consumption phases.
-4.  **Temperature** – the temperature is typically collected from an independent source. However, it should be compatible with the consumption data. It should include a timestamp as described above that will allow it to be synchronized with the actual consumption data. The temperature value can be specified in degrees Celsius or Fahrenheit but should stay consistent across all measurements.
-5.  **Location –** The location field is typically associated with the place where the temperature data has been collected. It can be represented as a zip-code number or in latitude/longitude (lat/long) format.
+1.  時間戳記 – 時間戳記欄位代表記錄度量時的實際時間。它應該符合其中一種常見的日期/時間格式。應該同時包含日期和時間部分。在大部分情況下，除非達到「秒」的細微層級，否則不需要記錄時間。必須指定記錄資料的時區。
+2.  電表識別碼 -此欄位識別電表或測量裝置。它是分類變數，可以是數字和字元的組合。
+3.  用電量值 – 這是在指定日期/時間的實際用電量。用電量可以透過 kWh (千瓦時) 或任何其他慣用單位來測量。請務必注意，在所有資料測量中，測量單位必須保持一致。在某些情況下，可能分成 3 個電源階段來供應用電量。在此情況下，我們需要收集所有獨立的用電量階段。
+4.  溫度 – 通常會從獨立的來源收集溫度。不過，它應該與用電量資料相容。它應該包含如上所述的時間戳記，因而能夠與實際用電量資料保持同步。溫度值都可以指定為攝氏或華氏度數，但在所有測量中應該保持一致。
+5.  位置 – 位置欄位通常與收集溫度資料的位置相關聯。它可以用郵遞區號或經緯度 (lat/long) 格式表示。
 
-The following tables shows examples of a good consumption and temperature data format:
+下表顯示正確用電量和溫度資料格式的範例︰
 
-|**Date**|**Time**|**Meter ID**|**Phase 1**|**Phase 2**|**Phase 3**|
+|日期|時間|計量識別碼|第 1 階段|第 2 階段|第 3 階段|
 |--------|--------|------------|-----------|-----------|-----------|
-|7/1/2015|10:00:00|ABC1234     |7.0        |2.1        |5.3        |
-|7/1/2015|10:00:01|ABC1234     |7.1        |2.2        |4.3        |
-|7/1/2015|10:00:02|ABC1234     |6.0        |2.1        |4.0        |
+|7/1/2015|10:00:00|ABC1234 |7\.0 |2\.1 |5\.3 |
+|7/1/2015|10:00:01|ABC1234 |7\.1 |2\.2 |4\.3 |
+|7/1/2015|10:00:02|ABC1234 |6\.0 |2\.1 |4\.0 |
 
-|**Date**|**Time**|**Location**|**Temperature**|
+|日期|時間|位置|溫度|
 |--------|--------|-------------|---------------|
-|7/1/2015|10:00:00|11242        |24.4           |
-|7/1/2015|10:00:01|11242        |24.4           |
-|7/1/2015|10:00:02|11242        |24.5           |
+|7/1/2015|10:00:00|11242 |24\.4 |
+|7/1/2015|10:00:01|11242 |24\.4 |
+|7/1/2015|10:00:02|11242 |24\.5 |
 
-As can be seen above, this example includes 3 different values for consumption associated with 3 power phases. Also, note that the date and time fields are separated, however they can also be combined into a single column. In this case the location column is represented in a 5-digit zip-code format and the temperature in a degree Celsius format.
+從上面可以看出，這個範例包含與 3 電源階段相關聯的 3 個不同用電量值。另外，請注意日期和時間欄位分隔，但也可以結合成單一資料行。在此案例中，位置資料行以 5 位數郵遞區號格式表示，溫度以攝氏度數格式表示。
 
-### <a name="data-format"></a>Data Format
-Cortana Intelligence Suite can support the most common data formats like CSV, TSV, JSON, *etc*. It is important that the data format stays consistent for the entire life cycle of the project.
+### 資料格式
+Cortana Intelligence Suite 支援最常見的資料格式，例如 CSV、TSV、JSON 等。在專案的整個生命週期，資料格式必須保持一致。
 
-### <a name="data-ingestion"></a>Data Ingestion
-Since energy demand forecast is constantly and frequently predicted, we must ensure that the raw data is flowing by means of a solid and reliable data ingestion process. The ingestion process must guarantee that the raw data is available for the forecasting process at the required time. That implies that the data ingestion frequency should be greater than the forecasting frequency.
+### 資料擷取
+由於能源需求預測是持續且經常預測，我們必須確保有一個穩固且可靠的資料擷取程序不斷地傳送原始資料。擷取程序必須保證預測程序在需要時一定可以取得原始資料。這表示資料擷取頻率應該高於預測頻率。
 
-For example: If our demand forecasting solution would generate a new forecast at 8:00AM on a daily basis then we need to ensure that all the data that has been collected during the last 24 hours has been fully ingested till that point and has to even include the last hour of data.
+例如︰如果需求預測解決方案會在每天上午 8:00 產生新的預測，則我們需要確保在此之前已完全擷取過去 24 小時內已收集的所有資料，甚至包括過去一小時的資料。
 
-In order to accomplish this, Cortana Intelligence Suite offers various ways to support a reliable data ingestion process. This will be further discussed in the **Deployment** section of this document.
+為達成此目的，Cortana Intelligence Suite 提供各種方法來支援可靠的資料擷取程序。這將在本文件的「部署」一節進一步討論。
 
-### <a name="data-quality"></a>Data Quality
-The raw data source that is required for performing reliable and accurate demand forecasting must meet some basic data quality criteria. Although advanced statistical methods can be used to compensate for some possible data quality issue, we still need to ensure that we are crossing some base data quality threshold when ingesting new data. Here are a few considerations concerning raw data quality:
--   **Missing value** – this refers to the situation when specific measurement was not collected. The basic requirement here is that the missing value rate should not be greater than 10% for any given time period. In case that a single value is missing it should be indicated by using a pre-defined value (for example: '9999') and not '0' which could be a valid measurement.
--   **Measurement accuracy** – the actual value of consumption or temperature should be accurately recorded. Inaccurate measurements will produce inaccurate forecasts. Typically, the measurement error should be lower than 1% relative to the true value.
--   **Time of measurement** – it is required that the actual timestamp of the data collected will not deviate by more than 10 seconds relative to the true time of the actual measurement.
--   **Synchronization** – When multiple data sources are being used (*e.g.*, consumption and temperature) we must ensure that there are no time synchronization issues between them. This means that the time difference between the collected timestamp from any two independent data sources should not exceed more than 10 seconds.
--   **Latency** - As discussed above, in **Data Ingestion**, we are dependent on a reliable data flow and ingestion process. To control that we must ensure that we control the data latency. This is specified as the time difference between the time that the actual measurement was taken and the time at which it has been loaded into the Cortana Intelligence Suite storage and is ready for use. For short term load forecasting the total latency should not be greater than 30 minutes. For long term load forecasting the total latency should not be greater than 1 day.
+### 資料品質
+為了執行可靠且正確的需求預測，所需的原始資料來源必須符合一些基本的資料品質準則。雖然進階統計方法可以用來彌補一些可能的資料品質問題，但在擷取新的資料時，我們仍然需要確保跨越某些基本的資料品質門檻。以下是關於原始資料品質的一些考量︰
+-   遺漏值 – 這是指未收集到特定度量的情況。在此，基本要求是在任何指定的期間，遺漏值比率都不應該超過 10%。如果遺漏單一值，應該以預先定義的值 (例如：'9999') 表示，而不是可能為有效度量的 '0'。
+-   測量精確度 – 應該正確記錄用電量或溫度的實際值。不正確的測量會產生不正確的預測。一般而言，相對於真值，測量誤差應該低於 1%。
+-   測量時間 – 相對於實際測量的真正時間，收集資料的實際時間戳記不能偏離超過 10 秒。
+-   同步處理 – 使用多個資料來源時 (例如，用電量和溫度)，必須確保它們之間沒有時間同步化的問題。這表示從任何兩個獨立的資料來源收集的時間戳記之間，時差不應超過 10 秒以上。
+-   延遲 - 如上所述，在「資料擷取」中，我們依賴可靠的資料流和擷取程序。為了做好控制，必須確保我們控制資料延遲。這指定為從進行實際測量的時間，到已載入至 Cortana Intelligence Suite 儲存體且可供使用的時間，兩者之間的時差。對於短期負載預測，總延遲時間不應該超過 30 分鐘。對於長期負載預測，總延遲時間不應該超過 1 天。
 
-### <a name="data-preparation-and-feature-engineering"></a>Data Preparation and Feature Engineering
-Once the raw data has been ingested (see **Data Ingestion**) and has been securely stored, it is ready to be processed. The data preparation phase is basically taking the raw data and converting (transforming, reshaping) it into a form for the modeling phase. That may include simple operations such as using the raw data column as is with its actual measured value, standardized values,  more complex operations such as [time lagging](https://en.wikipedia.org/wiki/Lag_operator), and others. The newly created data columns are referred to as data features and the process of generating these is referred to as feature engineering. By the end of this process we would have a new data set that has been derived from the raw data and can be used for modeling. In addition, the data preparation phase needs to take care of missing values (see **Data Quality**) and compensate for them. In some cases, we would also need to normalize the data to ensure that all values are represented in the same scale.
+### 資料準備和特徵設計
+擷取原始資料 (請參閱「資料擷取」) 並安全地儲存後，就可以開始處理。基本上，資料準備階段是取得原始資料並轉換 (變換、重塑) 成適用於模型化階段的格式。其中包括簡單的作業，例如直接使用原始資料行及其實際的測量值、標準化值，還有更複雜的作業，例如[時間延遲](https://en.wikipedia.org/wiki/Lag_operator)等。新建立的資料行稱為資料特徵，而產生這些特徵的程序就稱為特徵設計。此程序結束時，我們會獲得一組從原始資料導出的新資料集，可用於模型化。此外，資料準備階段還必須處理並補償遺漏值 (請參閱「資料品質」)。在某些情況下，我們也需要將資料正規化，以確保所有的值都以相同的級別表示。
 
-In this section we list some of the common data features that are included in the energy demand forecast models.
+在本節，我們列出能源需求預測模型包含的一些常見的資料特徵。
 
-**Time driven features:** These features are derived from the date/timestamp data. These are extracted and converted into categorical features like:
--   Time of day – This is the hour of the day which takes values from 0 to 23
--   Day of week – This represents the day of the week and takes values from 1 (Sunday) to 7 (Saturday)
--   Day of month – This represents the actual date and can take values from 1 to 31
--   Month of year – This represents the month and takes values from 1 (January) to 12 (December)
--   Weekend – This is a binary value feature that takes the values of 0 for weekdays or 1 for weekend
--   Holiday - This is a binary value feature that takes the values of 0 for a regular day or 1 for a holiday
--   Fourier terms – The Fourier terms are weights that are derived from the timestamp and are used to capture the seasonality (cycles) in the data. Since we may have multiple seasons in our data we may need multiple Fourier terms. For example, demand values may have yearly, weekly, and daily seasons/cycles which will result in 3 Fourier terms.
+時間導向特徵︰這些特徵衍生自日期/時間戳記資料。這些在擷取後會轉換成類別特徵，例如︰
+-   當天時間 – 這是一天中的時段，接受的值從 0 到 23
+-   星期 – 這代表星期幾，接受的值從 1 (星期日) 到 7 (星期六)
+-   月份日期 – 這代表實際的日期，接受的值從 1 到 31
+-   年度月份 – 這代表月份，接受的值從 1 (一月) 到 12 (十二月)
+-   週末 – 這是二進位值特徵，接受的值為 0 (工作日) 或 1 (週末)
+-   假日 – 這是二進位值特徵，接受的值為 0 (平日) 或 1 (假日)
+-   傅立葉項 – 傅立葉項是衍生自時間戳記的權數，用來擷取資料中的季節性 (週期)。因為資料中可能有多個季節，我們可能需要多個傅立葉項。例如，需求值可能有每年、每週和每日季節/週期，所以需要 3 個傅立葉項。
 
-**Independent measurement features:** The independent features include all the data elements that we would like to use as predictors in our model. Here we exclude the dependent feature which we would need to predict.
--   Lag feature – these are time shifted values of the actual demand. For example, lag 1 features will hold the demand value in the previous hour (assuming hourly data) relative to the current timestamp. Similarly, we can add lag 2, lag 3, *etc*. The actual combination of lag features that are used are determined during the modeling phase by evaluation of the model results.
--   Long term trending – this feature represents the linear growth in demand between years.
+獨立測量特徵︰獨立特徵包括我們想要在模型中作為預測因子的所有資料元素。在此我們排除需要預測的相依特徵。
+-   延隔特徵 – 這些是實際需求的時間偏移值。比方說，相對於目前的時間戳記，延隔 1 的特徵保留前一個小時的需求值 (假設是每小時資料)。同樣地，我們可以新增延隔 2、延隔 3 等等。實際使用的延隔時間組合是在模型化階段經由評估模型結果而決定。
+-   長期趨勢 – 此特徵代表年份之間需求的線性成長。
 
-**Dependent feature:** The dependent feature is the data column which we would like our model to predict. With [supervised machine learning](https://en.wikipedia.org/wiki/Supervised_learning), we need to first train the model using the dependent features (which is also referred to as labels). This allows the model to learn the patterns in the data associated with the dependent feature. In energy demand forecast we typically want to predict the actual demand and therefore we would use it as the dependent feature.
+相依特徵︰相依特徵是模型要預測的資料行。使用[監督式機器學習服務](https://en.wikipedia.org/wiki/Supervised_learning)時，我們必須先使用相依特徵 (也稱為標籤) 來訓練模型。這可讓模型從相依特徵相關聯的資料中學習模式。在能源需求預測中，我們通常想要預測實際需求，因此會將它當作相依特徵。
 
-**Handling of missing values:** During the data preparation phase, we would need to determine the best strategy to handle missing values. This is mostly done by using the various statistical [data imputation methods](https://en.wikipedia.org/wiki/Imputation_(statistics)). In the case of energy demand forecasting, we typically impute missing values by using moving average from previous available data points.
+處理遺漏值︰在資料準備階段，我們需要決定最佳策略來處理遺漏值。這通常是利用各種統計來處理 [資料插補方法](https://en.wikipedia.org/wiki/Imputation_(statistics))。以能源需求預測而言，我們通常從先前可用的資料點利用移動平均來推算遺漏值。
 
-**Data Normalization:** Data normalization is another type of transformation which is used to bring all numeric data such as demand forecast into a similar scale. This typically helps improve the model accuracy and precision. We would typically do this by dividing the actual value by the range of the data.
-This will scale the original value down into a smaller range, typically between -1 and 1.
+資料正規化︰資料正規化是另一種轉換，用於將所有數值資料 (例如需求預測) 變成類似的級別。這通常有助於改善模型的正確性和精確度。在作法上我們通常會依資料範圍來分割實際值。這會將原始值按比例縮小到較小的範圍，通常介於 -1 和 1 之間。
 
-## <a name="modeling"></a>Modeling
-The modeling phase is where the conversion of the data into a model takes place. In the core of this process there are advanced algorithms that scan the historical data (training data), extract patterns, and build a model. That model can be later used to predict on new data that has not been used to build the model.
+## 模型化
+模型化階段會將資料轉換成模型。此程序的核心是進階的演算法，負責掃描歷史資料 (訓練資料)、擷取模式及建立模型。稍後，該模型可用來預測未用來建立模型的新資料。
 
-Once we have a working reliable model we can then use it to score new data that is structured to include the required features (X). The scoring process will make use of the persisted model (object from the training phase) and predict the target variable that is denoted by Ŷ.
+獲得可靠的工作模型後，我們就可以用它來評比在結構上包含所需特徵 (X) 的新資料。評分程序將使用持續性模型 (來自訓練階段的物件)，並預測由 Ŷ 所表示的目標變數。
 
-### <a name="demand-forecasting-modeling-techniques"></a>Demand Forecasting Modeling Techniques
-In the case of demand forecasting we make use of historical data which is ordered by time. We generally refer to data that includes the time dimension as [time series](https://en.wikipedia.org/wiki/Time_series). The goal in time series modeling is to find time related trends, seasonality, auto-correlation (correlation over time), and formulate those into a model.
+### 需求預測模型化技巧
+在需求預測方面，我們會使用依時間排序的歷史資料。我們通常將包含時間維度的資料稱為[時間序列](https://en.wikipedia.org/wiki/Time_series)。時間序列模型化的目標是尋找時間相關的趨勢、季節性、自相關 (經過一段時間的相互關聯)，並將這些編寫成模型。
 
-In recent years advanced algorithms have been developed to accommodate time series forecasting and to improve forecasting accuracy. We briefly discuss a few of them here.
+在最近幾年，已開發出進階演算法來配合時間序列預測，並改善預測精確度。在此我們簡短討論其中一部分。
 
-> [AZURE.NOTE] This section is not intended to be used as a machine learning and forecasting overview but rather as a short survey of modeling techniques that are commonly used for demand forecasting. For more information and educational material about time series forecasting, we highly recommend the online book [Forecasting: principles and practice](https://www.otexts.org/book/fpp).
+> [AZURE.NOTE] 本節並不做為機器學習服務和預測的概觀，只是簡單審視需求預測常用的模型化技術。如需時間序列預測相關的詳細資訊和教學資料，強烈建議您閱讀線上書籍 [Forecasting: principles and practice](https://www.otexts.org/book/fpp)。
 
-#### <a name="[**ma-(moving-average)**](https://www.otexts.org/fpp/6/2)"></a>[**MA (Moving Average)**](https://www.otexts.org/fpp/6/2)
-Moving average is one of the first analytical techniques that has been used for time series forecasting and it is still one of the most commonly used techniques as of today. It is also the foundation for more advanced forecasting techniques. With moving average we are forecasting the next data point by averaging over the K most recent points, where K denotes the order of the moving average.
+#### [**MA (移動平均)**](https://www.otexts.org/fpp/6/2)
+移動平均是時間序列預測的第一代分析技巧之一，目前仍是最常用的其中一項技巧。它也是更進階預測技巧的基礎。使用移動平均時，我們會將 K 個最近資料點算出平均值，以預測下一個資料點，其中 K 表示移動平均的順序。
 
-The moving average technique has the effect of smoothing the forecast and therefore may not handle well large volatility in the data.
+移動平均技巧具有將預測平滑化的效果，因此可能無法處理資料中的劇烈波動性。
 
-#### <a name="[**ets-(exponential-smoothing)**](https://www.otexts.org/fpp/7/5)"></a>[**ETS (Exponential Smoothing)**](https://www.otexts.org/fpp/7/5)
-Exponential Smoothing (ETS) is a family of various methods which use weighted average of recent data points in order to predict the next data point. The idea is to assign higher weights to more recent values and gradually decrease this weight for older measured values. There are a number of different methods with this family, some of them include handling of seasonality in the data such as [Holt-Winters Seasonal Method](https://www.otexts.org/fpp/7/5).
+#### [**ETS (指數平滑法)**](https://www.otexts.org/fpp/7/5)
+指數平滑法 (ETS) 是一系列的各種方法，使用最近資料點的加權平均來預測下一個資料點。在概念上是將較高權數指派給較新的值，而對於較舊的測量值，就逐漸降低此權數。這一系列有許多不同的方法，其中包括處理資料中的季節性，例如 [Holt-Winters 季節性方法](https://www.otexts.org/fpp/7/5)。
 
-Some of these methods also factor in the seasonality of the data.
+其中某些方法也會納入資料的季節性。
 
-#### <a name="[**arima-(auto-regression-integrated-moving-average)**](https://www.otexts.org/fpp/8)"></a>[**ARIMA (Auto Regression Integrated Moving Average)**](https://www.otexts.org/fpp/8)
-Auto Regression Integrated Moving Average (ARIMA) is another family of methods which is commonly used for time series forecasting. It practically combines auto-regression methods with moving average. Auto-regression methods use regression models by taking previous time series values in order to compute the next date point. ARIMA methods also apply differencing methods that include calculating the difference between data points and using those instead of the original measured value. Finally, ARIMA also makes use of the moving average techniques that are discussed above. The combination of all of these methods in various ways is what constructs the family of ARIMA methods.
+#### [**ARIMA (自迴歸整合移動平均)**](https://www.otexts.org/fpp/8)
+自迴歸整合移動平均 (ARIMA) 是常用於時間序列預測的另一系列的方法。實際上是結合自迴歸方法與移動平均。自迴歸方法使用迴歸模型時會取得先前的時間序列值來計算下一個日期點。ARIMA 方法也運用差異性方法，包括計算資料點之間的差異，以及使用它們而不是原始的測量值。最後，ARIMA 也使用上面所討論的移動平均技巧。以各種方式將所有這些方法組合起來，就構成 ARIMA 方法系列。
 
-ETS and ARIMA are widely used today for energy demand forecasting and many other forecasting problems. In many cases these are combined together to deliver very accurate results.
+ETS 和 ARIMA 現在廣泛用於能源需求預測和其他許多的預測問題。在許多情況下，這些結合起來可提供非常精確的結果。
 
-**General Multiple Regression** Regression models could be the most important modeling approach within the domain of machine learning and statistics. In the context of time series we use regression to predict the future values (*e.g.*, of demand). In regression we take a linear combination of the predictors and learn the weights (also referred to as coefficients) of those predictors during the training process. The goal is to produce a regression line that will forecast our predicted value. Regression methods are suitable when the target variable is numeric and therefore also fits time series forecasting. There is a wide range of regression methods including very simple regression models such as [Linear Regression](https://en.wikipedia.org/wiki/Linear_regression) and more advanced ones such as decision trees, [Random Forests](https://en.wikipedia.org/wiki/Random_forest), [Neural Networks](https://en.wikipedia.org/wiki/Artificial_neural_network), and Boosted Decision Trees.
+一般多元迴歸 迴歸模型可能是機器學習服務和統計學領域中最重要的模型化方法。在時間序列方面，我們使用迴歸來預測未來值 (例如，需求的)。在迴歸中，我們取得預測值的線性組合，並在訓練過程中學習這些預測值的加權 (也稱為係數)。目標是產生迴歸線來預測我們的預測值。當目標變數為數值，就適合採用迴歸方法，因此也適用於時間序列預測。有各種不同的迴歸方法，包括非常簡單的迴歸模型，例如[線性迴歸](https://en.wikipedia.org/wiki/Linear_regression)，還有更進階的迴歸方法，例如決策樹、[隨機樹系](https://en.wikipedia.org/wiki/Random_forest)、[類神經網路](https://en.wikipedia.org/wiki/Artificial_neural_network)和推進式決策樹。
 
-Constructing energy demand forecasting as a regression problem gives us a lot of flexibility in selecting our data features which can be combined from the actual demand time series data and external factors such as temperature. More information about the selected features are discussed in the Feature Engineering (see **Data Preparation and Feature Engineering**) section of this playbook.
+將能源需求預測當作迴歸問題來建構，讓我們在選取資料特徵時很有彈性，這些特徵可能結合自實際的需求時間序列資料和外部因素 (例如溫度)。本教戰守則的「特徵設計」(請參閱「資料準備和特徵設計」) 一節討論所選特徵的詳細資訊。
 
-From our experience with implementation and deployment of energy demand forecasts pilot, we have found that the advanced regression models that are available in Azure ML tend to produce the best results and we make use of them.
+根據我們在實作和部署能源需求預測試驗的經驗，我們發現 Azure ML 中可用的進階迴歸模型可產生最佳結果，因此我們採用它們。
 
-## <a name="model-evaluation"></a>Model Evaluation
-Model evaluation has a critical role within the **Model Development Cycle**. At this step we look into validating the model and its performance with real life data. During the modeling step we use a part of the available data for training the model. During the evaluation phase we take the remainder of the data to test the model. Practically it means that we are feeding the model new data that has been restructured and contains the same features as the training dataset. However, during the validation process, we use the model to predict the target variable rather than provide the available target variable. We often refer to this process as model scoring. We would then use the true target values and compare them with the predicted ones. The goal here is to measure and minimize the prediction error, meaning the difference between the predictions and the true value. Quantifying the error measurement is key since we would like to fine-tune the model and validate whether the error is actually decreasing. Fine-tuning the model can be done by modifying model parameters that control the learning process, or by adding or removing data features (referred to as [parameters sweep](https://channel9.msdn.com/Blogs/Windows-Azure/Data-Science-Series-Building-an-Optimal-Model-With-Parameter-Sweep)). Practically that means that we may need to iterate between the feature engineering, modeling, and model evaluation phases multiple times until we are able to reduce the error to the required level.
+## 模型評估
+模型評估在「模型開發週期」內扮演重要的角色。在這個步驟中，我們以現實生活中的資料來探討驗證模型及其表現。在模型化步驟期間，我們使用一部分可用的資料來訓練模型。在評估階段，我們利用剩餘的資料來測試模型。實際上，這表示我們在模型中輸入的新資料已重新編排，且包含與訓練資料集相同的特徵。不過，在驗證過程中，我們使用模型來預測目標變數，而不是提供可用的目標變數。我們通常稱此程序稱為模型評分。然後，我們會使用真實目標值，並與預測值做比較。在此，目標是測量並最小化預測誤差，也就是預測值與真值之間的差異。量化錯誤度量是關鍵，因為我們想要微調模型，並驗證是否確實減少錯誤。微調模型可以透過修改控制學習程序的模型參數，也可以新增或移除資料特徵 (稱為[參數掃掠](https://channel9.msdn.com/Blogs/Windows-Azure/Data-Science-Series-Building-an-Optimal-Model-With-Parameter-Sweep))。實際上，這表示我們可能需要在特徵設計、模型化和模型評估階段之間反覆許多次，直到能夠將錯誤減少到所需的程度為止。
 
-It is important to emphasis that the prediction error will never be zero as there is never a model that can perfectly predict every outcome. However, there is a certain magnitude of error that is acceptable by the business. During the validation process, we would like to ensure that our model prediction error is at the level or better than the business tolerance level. It is therefore important to set the level of the tolerable error at the beginning of the cycle during the **Problem Formulation** phase.
+必須強調，預測誤差永遠不會是零，因為從來沒有任何模型能夠完美預測所有結果。不過，企業仍可接受一定程度的誤差量。在驗證過程中，我們想要確保模型預測誤差等於或高於商業容忍度。因此，在「問題編寫」階段的週期開頭，就必須設定誤差容忍度。
 
-### <a name="typical-evaluation-techniques"></a>Typical Evaluation Techniques
-There are various ways in which prediction error can be measured and quantified. In this section we will focus the discussion on evaluation techniques relevant to time series and in specific for energy demand forecast.
+### 一般評估技術
+有各種方法可測量和量化預測誤差。在本節，我們將專注於討論有關時間序列的預測技巧，尤其是能源需求預測。
 
-#### <a name="[**mape**](https://en.wikipedia.org/wiki/mean_absolute_percentage_error)"></a>[**MAPE**](https://en.wikipedia.org/wiki/Mean_absolute_percentage_error)
-MAPE stands for Mean Absolute Percentage Error. With MAPE we are computing the difference between each forecasted point and the actual value of that point. We then quantify the error per point by calculating the proportion of the difference relative to the actual value. At the last step we average these values. The mathematical formula used for MAPE is the following:
+#### [MAPE](https://en.wikipedia.org/wiki/Mean_absolute_percentage_error)
+MAPE (Mean Absolute Percentage Error) 代表「平均絕對百分比誤差」。我們利用 MAPE 來計算每一個預測點和該點的實際值之間的差異。接著，我們計算差異相對於實際值的比例，以量化每個點的誤差。在最後一個步驟中，我們計算這些值的平均。MAPE 使用的數學公式如下所示︰
 
-![MAPE Formula](media/cortana-analytics-playbook-demand-forecasting-energy/mape-formula.png)
-*Where A<sub>t</sub> is the actual value, F<sub>t</sub> is the predicted value, and n is the forecast horizon.*
+![MAPE 公式](media/cortana-analytics-playbook-demand-forecasting-energy/mape-formula.png) *其中 A<sub>t</sub> 是實際值，F<sub>t</sub> 是預測值，而 n 是預測時間範圍。*
 
-## <a name="deployment"></a>Deployment
-Once we have nailed down the modeling phase and validated the model performance we are ready to go into the deployment phase. In this context, deployment means enabling the customer to consume the model by running actual predictions on it at large scale. The concept of deployment is key in Azure ML since our main goal is to constantly invoke predictions as opposed to just obtaining the insight from the data. The deployment phase is the part where we enable the model to be consumed at large scale.
+## 部署
+一旦完成模型化階段，也已驗證模型的效能，我們就可以開始進入部署階段。就此而言，部署是指讓客戶在模型上大規模執行實際預測來運用模型。部署概念是 Azure ML 中的關鍵，因為我們的主要目標是不斷地引用預測，而不是只從資料找到領悟而已。在部署階段，我們讓模型開始被大規模運用。
 
-Within the context of energy demand forecast, our aim is to invoke continuous and periodic forecasts while ensuring that fresh data is available for the model and that the forecasted data is sent back to the consuming client.
+在能源需求預測方面，我們的目標是引用連續和定期的預測，同時確保模型可取得最新的資料，並將預測的資料傳回給取用的用戶端。
 
-### <a name="web-services-deployment"></a>Web Services Deployment
-The main deployable building block in Azure ML is the web service. This is the most effective way to enable consumption of a predictive model in the cloud. The Web service encapsulates the model and wraps it up with a [RESTful](http://www.restapitutorial.com/) API (Application Programming Interface). The API can be used as part of any client code as illustrated in the diagram below.
+### Web 服務部署
+在 Azure ML 中，主要的可部署建置組塊是 Web 服務。這是在雲端中利用預測模型的最有效方式。Web 服務封裝模型，並以 [RESTful](http://www.restapitutorial.com/) API (應用程式開發介面) 來包裝它。API 可以做為任何用戶端程式碼的一部分，如下圖所示。
 
-![We Service Deployment and Consumption](media/cortana-analytics-playbook-demand-forecasting-energy/web-service-deployment-and-consumption.png)
+![Web 服務部署和取用](media/cortana-analytics-playbook-demand-forecasting-energy/web-service-deployment-and-consumption.png)
 
-As can be seen, the web service is deployed in the Cortana Intelligence Suite cloud and can be invoked over its exposed REST API endpoint. Different type of clients across various domains can invoke the service through the Web API simultaneously. The web service can also scale to support thousands of concurrent calls.
+由此可知，Web 服務是部署在 Cortana Intelligence Suite 雲端，然後透過其公開的 REST API 端點來叫用。位於不同網域的各種不同的用戶端，可以透過 Web API 服務來同時叫用服務。Web 服務也可以擴大來支援數千個同時的呼叫。
 
-### <a name="a-typical-solution-architecture"></a>A Typical Solution Architecture
-When deploying an energy demand forecasting solution, we are interested in deploying an end to end solution that goes beyond the prediction web service and facilitates the entire data flow. At the time we invoke a new forecast, we would need to make sure that the model is fed with the up-to-date data features. That implies that the newly collected raw data is constantly ingested, processed, and transformed into the required feature set on which the model was built. At the same time, we would like to make the forecasted data available for the end consuming clients. An example data flow cycle (or data pipeline) is illustrated in the diagram below:
+### 典型的解決方案架構
+在部署能源需求預測解決方案時，我們的興趣是部署端對端解決方案，超越預測 Web 服務，並加速整個資料流。當我們叫用新的預測時，我們必須確定可供應最新的資料特徵給模型。這表示需要不斷地擷取、處理及轉換新收集的原始資料，成為賴以建立模型的必要特徵。同時，我們也想要將預測的資料提供給最終取用的用戶端使用。下圖顯示範例資料流循環 (或資料管線)：
 
-![Energy Demand Forecast End to End Data Flow](media/cortana-analytics-playbook-demand-forecasting-energy/energy-demand-forecase-end-data-flow.png)
+![能源需求預測的端對端資料流](media/cortana-analytics-playbook-demand-forecasting-energy/energy-demand-forecase-end-data-flow.png)
 
-These are the steps that take place as part of the energy demand forecast cycle:
-1.  Millions of deployed data meters are constantly generating power consumption data in real time.
-2.  This data is being collected and uploaded into a cloud repository (*e.g.*, Azure Blob).
-3.  Before being processed, the raw data is aggregated to a substation or regional level as defined by the business.
-4.  The feature processing (see **Data Preparation and Feature Processing**) then takes place and produces the data that is required for model training or scoring – the feature set data is stored in a database (*e.g.*, SQL Azure).
-5.  The re-training service is invoked to re-train the forecasting model – that updated version of the model is persisted so that it can be used by the scoring web service.
-6.  The scoring web service is invoked on a schedule that fits the required forecast frequency.
-7.  The forecasted data is stored in a database that can be accessed by the end consumption client.
-8.  The consumption client retrieves the forecasts, applies it back into the grid, and consumes it in accordance with the required use case.
+這些是能源需求預測週期內進行的步驟︰
+1.  數百萬個已部署的資料計量器不斷地即時產生用電量資料。
+2.  這項資料收集後上傳至雲端儲存機制 (例如 Azure Blob)。
+3.  在處理之前，原始資料先彙總至企業所定義的變電站或區域層級。
+4.  接著進行特徵處理 (請參閱「資料準備和特徵處理」)，並產生模型訓練和評分所需的資料 – 特徵集資料儲存在資料庫 (例如 SQL Azure)。
+5.  叫用重新訓練服務來重新訓練預測模型 – 更新後的模型會持續保存，可供評分 Web 服務使用。
+6.  依符合所需預測頻率的排程來叫用評分 Web 服務。
+7.  預測的資料會儲存在最終取用的用戶端可存取的資料庫。
+8.  取用的用戶端會擷取預測值，將它返回套用到電網，然後根據所需的使用案例來利用它。
 
-It is important to note that this entire cycle is fully automated and runs on a schedule. The entire orchestration of this data cycle can be done by using tools such as [Azure Data Factory](http://azure.microsoft.com/services/data-factory/).
+請務必注意，這整個週期完全自動化，並依排程執行。可利用工具來完成此資料循環的整個協調流程，例如 [Azure Data Factory](http://azure.microsoft.com/services/data-factory/)。
 
-### <a name="end-to-end-deployment-architecture"></a>End to End Deployment Architecture
-In order to practically deploy an energy demand forecast solution on Cortana Intelligence, we need to ensure that the required components are established and configured correctly.
+### 端對端部署架構
+為了實際地在 Cortana Intelligence 上部署能源需求預測解決方案，我們必須確定已建立並正確設定必要的元件。
 
-The following diagram illustrates a typical Cortana Intelligence based architecture that implements and orchestrates the data flow cycle that is described above:
+下圖說明實作並協調上述資料流循環的典型 Cortana Intelligence 架構：
 
-![End to End Deployment Architecture](media/cortana-analytics-playbook-demand-forecasting-energy/architecture.png)
+![端對端部署架構](media/cortana-analytics-playbook-demand-forecasting-energy/architecture.png)
 
-For more information about each of the components and the entire architecture please refer to the Energy Solution Template.
+如需每個元件和整個架構的詳細資訊，請參閱「能源解決方案範本」。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

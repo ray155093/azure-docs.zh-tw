@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Resource Manager template for resource locks | Microsoft Azure"
-   description="Shows the Resource Manager schema for deploying resource locks through a template."
+   pageTitle="資源鎖定的資源管理員範本 | Microsoft Azure"
+   description="說明可透過範本部署資源鎖定的資源管理員結構描述。"
    services="azure-resource-manager"
    documentationCenter="na"
    authors="tfitzmac"
@@ -13,17 +13,16 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="10/03/2016"
+   ms.date="04/05/2016"
    ms.author="tomfitz"/>
 
+# 資源鎖定範本結構描述
 
-# <a name="resource-locks-template-schema"></a>Resource locks template schema
+在資源及其子資源上建立新的鎖定。
 
-Creates a lock on a resource and its child resources.
+## 結構描述格式
 
-## <a name="schema-format"></a>Schema format
-
-To create a lock, add the following schema to the resources section of your template.
+若要建立鎖定，請將下列結構描述新增到範本的資源區段。
     
     {
         "type": enum,
@@ -39,46 +38,47 @@ To create a lock, add the following schema to the resources section of your temp
 
 
 
-## <a name="values"></a>Values
+## 值
 
-The following tables describe the values you need to set in the schema.
+下表描述您在結構描述中必須設定的值。
 
-| Name | Required | Description |
-| ---- | -------- | ----------- |
-| type | Yes | The resource type to create.<br /><br />For resources:<br />**{namespace}/{type}/providers/locks**<br /><br/>For resource groups:<br />**Microsoft.Authorization/locks** |
-| apiVersion | Yes | The API version to use for creating the resource.<br /><br />Use:<br />**2015-01-01**<br /><br /> |
-| name | Yes | A value that specifies both the resource to lock and a name for the lock. Can be up to 64 characters, and cannot contain <, > %, &, ?, or any control characters.<br /><br />For resources:<br />**{resource}/Microsoft.Authorization/{lockname}**<br /><br />For resource groups:<br />**{lockname}** |
-| dependsOn | No | A comma-separated list of a resource names or resource unique identifiers.<br /><br />The collection of resources this lock depends on. If the resource you are locking is deployed in the same template, include that resource name in this element to ensure the resource is deployed first. | 
-| properties | Yes | An object that identifies the type of lock, and notes about the lock.<br /><br />See [properties object](#properties-object). |  
+| 名稱 | 值 |
+| ---- | ---- | 
+| 類型 | 列舉<br />必要<br />**{命名空間}/{類型}/providers/locks** (適用於資源) 或<br />**Microsoft.Authorization/locks** (適用於資源群組)<br /><br />要建立的資源類型。 |
+| apiVersion | 列舉<br />必要<br />**2015-01-01**<br /><br />要用來建立資源的應用程式開發介面 (API) 版本。 |  
+| 名稱 | 字串<br />必要<br />**{resource}/Microsoft.Authorization/{鎖定名稱}** (適用於資源) 或<br />**{鎖定名稱}** (適用於資源群組)<br />最多 64 個字元，而且不能包含 <、>、%、&、? 或任何控制字元。<br /><br />同時指定要鎖定資源與鎖定名稱的值。 |
+| dependsOn | 陣列<br />選用<br />以逗號分隔的資源名稱或資源唯一識別碼清單。<br /><br />此鎖定所相依的資源集合。如果您正在鎖定的資源是部署在同一個範本中，請在此元素中包含資源名稱，確保會先部署該資源。 | 
+| 屬性 | 物件<br />必要<br />[屬性物件](#properties)<br /><br />識別鎖定類型和鎖定附註的物件。 |  
 
-### <a name="properties-object"></a>properties object
+<a id="properties" />
+### 屬性物件
 
-| Name | Required | Description |
-| ---- | -------- | ----------- |
-| level   | Yes | The type of lock to apply to the scope.<br /><br />**CannotDelete** - users can modify resource but not delete it.<br />**ReadOnly** - users can read from a resource, but they can't delete it or perform any actions on it. |
-| notes   | No | Description of the lock. Can be up to 512 characters. |
+| 名稱 | 值 |
+| ------- | ---- |
+| 層級 | 列舉<br />必要<br />**CannotDelete**<br /><br />要套用至範圍的鎖定類型。CanNotDelete 可允許修改，但會防止刪除。 |
+| 版本 | 字串<br />選用<br />最多 512 個字元<br /><br />鎖定的描述。 |
 
 
-## <a name="how-to-use-the-lock-resource"></a>How to use the lock resource
+## 如何使用鎖定資源
 
-You add this resource to your template to prevent specified actions on a resource. The lock applies to all users and groups.
+您可以將此資源新增至範本，以避免在資源上進行指定的動作。鎖定會套用到所有的使用者和群組。一般而言，您只能套用鎖定一段有限的時間，例如當處理序正在執行時，或者您想要確定組織中的某個人不會不小心修改或刪除資源。
 
-To create or delete management locks, you must have access to **Microsoft.Authorization/*** or **Microsoft.Authorization/locks/*** actions. Of the built-in roles, only **Owner** and **User Access Administrator** are granted those actions. For information about role-based access control, see [Azure Role-based Access Control](./active-directory/role-based-access-control-configure.md).
+若要建立或刪除管理鎖定，您必須能夠存取 **Microsoft.Authorization/*** 或 **Microsoft.Authorization/locks/*** 動作。內建角色中，只有**擁有者**和**使用者存取系統管理員**被授與這些動作。如需角色型存取控制的詳細資訊，請參閱 [Azure 角色型存取控制](./active-directory/role-based-access-control-configure.md)。
 
-The lock is applied to the specified resource and any child resources.
+鎖定會套用至指定的資源和任何子資源。
 
-You can remove a lock with the PowerShell command **Remove-AzureRmResourceLock** or with the [delete operation](https://msdn.microsoft.com/library/azure/mt204562.aspx) of the REST API.
+您可以使用 PowerShell 命令 **Remove-AzureRmResourceLock** 或使用 REST API 的[刪除作業](https://msdn.microsoft.com/library/azure/mt204562.aspx)移除鎖定。
 
-## <a name="examples"></a>Examples
+## 範例
 
-The following example applies a cannot-delete lock to a web app.
+下列範例會將 cannot-delete 鎖定套用到 Web 應用程式。
 
     {
         "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
         "contentVersion": "1.0.0.0",
         "parameters": {
             "hostingPlanName": {
-                "type": "string"
+      			"type": "string"
             }
         },
         "variables": {
@@ -109,7 +109,7 @@ The following example applies a cannot-delete lock to a web app.
         "outputs": {}
     }
 
-The next example applies a cannot-delete lock to the resource group.
+接下來的範例會將 cannot-delete 鎖定套用到資源群組。
 
     {
         "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
@@ -131,13 +131,9 @@ The next example applies a cannot-delete lock to the resource group.
         "outputs": {}
     }
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-- For information about the template structure, see [Authoring Azure Resource Manager templates](resource-group-authoring-templates.md).
-- For more information about locks, see [Lock resources with Azure Resource Manager](resource-group-lock-resources.md).
+- 如需範本結構的相關資訊，請參閱[編寫 Azure 資源管理員範本](resource-group-authoring-templates.md)。
+- 如需鎖定的詳細資訊，請參閱[使用 Azure 資源管理員鎖定資源](resource-group-lock-resources.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0406_2016-->

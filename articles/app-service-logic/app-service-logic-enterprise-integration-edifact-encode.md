@@ -1,96 +1,92 @@
 <properties 
-    pageTitle="Learn about Enterprise Integration Pack Encode EDIFACT Message Connctor | Microsoft Azure App Service | Microsoft Azure" 
-    description="Learn how to use partners with the Enterprise Integration Pack and Logic apps" 
-    services="logic-apps" 
-    documentationCenter=".net,nodejs,java"
-    authors="padmavc" 
-    manager="erikre" 
-    editor=""/>
+	pageTitle="了解企業整合套件編碼 EDIFACT 訊息連接器 | Microsoft Azure App Service | Microsoft Azure" 
+	description="了解如何使用夥伴搭配企業整合套件與 Logic Apps" 
+	services="logic-apps" 
+	documentationCenter=".net,nodejs,java"
+	authors="padmavc" 
+	manager="erikre" 
+	editor=""/>
 
 <tags 
-    ms.service="logic-apps" 
-    ms.workload="integration" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="08/15/2016" 
-    ms.author="padmavc"/>
+	ms.service="logic-apps" 
+	ms.workload="integration" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="08/15/2016" 
+	ms.author="padmavc"/>
 
+# 開始使用編碼 EDIFACT 訊息
 
-# <a name="get-started-with-encode-edifact-message"></a>Get started with Encode EDIFACT Message
+驗證 EDI 和夥伴特定屬性
 
-Validates EDI and partner-specific properties 
+## 建立連線
 
-## <a name="create-the-connection"></a>Create the connection
+### 必要條件
 
-### <a name="prerequisites"></a>Prerequisites
+* Azure 帳戶；您可以建立一個[免費帳戶](https://azure.microsoft.com/free)
 
-* An Azure account; you can create a [free account](https://azure.microsoft.com/free)
+* 需要有整合帳戶才能使用編碼 EDIFACT 訊息連接器。詳細資料請參閱如何建立[整合帳戶](./app-service-logic-enterprise-integration-create-integration-account.md)、[合作夥伴](./app-service-logic-enterprise-integration-partners.md)和 [EDIFACT 合約](./app-service-logic-enterprise-integration-edifact.md)
 
-* An Integration Account is required to use Encode EDIFACT message connector. See details on how to create an [Integration Account](./app-service-logic-enterprise-integration-create-integration-account.md), [partners](./app-service-logic-enterprise-integration-partners.md) and [EDIFACT agreement](./app-service-logic-enterprise-integration-edifact.md)
+### 使用下列步驟連線至解碼 EDIFACT 訊息︰
 
-### <a name="connect-to-decode-edifact-message-using-the-following-steps:"></a>Connect to Decode EDIFACT Message using the following steps:
+1. [建立邏輯應用程式](./app-service-logic-create-a-logic-app.md)可提供範例。
 
-1. [Create a Logic App](./app-service-logic-create-a-logic-app.md) provides an example.
+2. 此連接器並沒有任何觸發程序。您可以使用其他觸發程序來啟動邏輯應用程式，例如 [要求] 觸發程序。在邏輯應用程式設計工具中，新增一個觸發程序，然後新增一個動作。從下拉式清單中選取 [顯示 Microsoft Managed API]，然後在搜尋方塊中輸入 "EDIFACT"。選取 [由合約名稱編碼 EDIFACT 訊息] 或是 [由身分識別編碼 EDIFACT 訊息]。
 
-2. This connector does not have any triggers. Use other triggers to start the Logic App, such as a Request trigger.  In the Logic App designer, add a trigger and add an action.  Select Show Microsoft managed APIs in the drop-down list and then enter "EDIFACT" in the search box.  Select either Encode EDIFACT Message by agreement name or Encode to EDIFACT message by identities.
+	![搜尋 EDIFACT](./media/app-service-logic-enterprise-integration-edifactorconnector/edifactdecodeimage1.png)
 
-    ![search EDIFACT](./media/app-service-logic-enterprise-integration-edifactorconnector/edifactdecodeimage1.png)  
+3. 如果您之前尚未建立與整合帳戶的任何連線，系統將會提示您輸入連線詳細資料
 
-3. If you haven’t previously created any connections to Integration Account, you are prompted for the connection details
+	![建立整合帳戶連線](./media/app-service-logic-enterprise-integration-edifactorconnector/edifactencodeimage1.png)
 
-    ![create integration account connection](./media/app-service-logic-enterprise-integration-edifactorconnector/edifactencodeimage1.png)  
+4. 輸入整合帳戶詳細資料。具有星號的屬性為必要項目
 
-4. Enter the Integration account details.  Properties with an asterisk are required
+	| 屬性 | 詳細資料 |
+	| -------- | ------- |
+	| 連線名稱 * | 為連線輸入任何名稱 |
+	| 整合帳戶 * | 輸入整合帳戶名稱。請確定您的整合帳戶和邏輯應用程式位於相同的 Azure 位置 
 
-  	| Property | Details |
-  	| -------- | ------- |
-  	| Connection Name * | Enter any name for your connection |
-  	| Integration Account * | Enter the Integration Account name. Be sure your Integration Account and Logic app are in the same Azure location 
+	完成後，連線詳細資料看起來類似下圖
 
-    Once complete, your connection details look similar to the following
+	![整合帳戶連線](./media/app-service-logic-enterprise-integration-edifactorconnector/edifactencodeimage2.png)
+	
+5. 選取 [建立]
+	
+6. 請注意，已建立連線
 
-    ![integration account connection](./media/app-service-logic-enterprise-integration-edifactorconnector/edifactencodeimage2.png)
-    
-5. Select **Create**
-    
-6. Notice the connection has been created
+	![整合帳戶連線詳細資料](./media/app-service-logic-enterprise-integration-edifactorconnector/edifactencodeimage4.png)
+	
+#### 由合約名稱編碼 EDIFACT 訊息
 
-    ![integration account connection details](./media/app-service-logic-enterprise-integration-edifactorconnector/edifactencodeimage4.png)
-    
-#### <a name="encode-edifact-message-by-agreement-name"></a>Encode EDIFACT Message by agreement name
+7.	提供 EDIFACT 合約名稱和 xml 訊息以進行編碼。
 
-7.  Provide EDIFACT agreement name and xml message to encode.
+	![提供必要欄位](./media/app-service-logic-enterprise-integration-edifactorconnector/edifactencodeimage6.png)
+	
+#### 由身分識別編碼 EDIFACT 訊息
 
-    ![provide mandatory fields](./media/app-service-logic-enterprise-integration-edifactorconnector/edifactencodeimage6.png)
-    
-#### <a name="encode-edifact-message-by-identities"></a>Encode EDIFACT Message by identities
+7. 提供傳送者識別項、傳送者辨識符號、接收者識別項和接收者辨識符號，如 EDIFACT 合約中所設定。選取要編碼的 xml 訊息
 
-7. Provide sender identifier, sender qualifier, receiver identifier, and receiver qualifier as configured in the EDIFACT agreement.  Select xml message to encode
+	![提供必要欄位](./media/app-service-logic-enterprise-integration-edifactorconnector/edifactencodeimage7.png)
+	
+## EDIFACT 編碼處理以下項目
 
-    ![provide mandatory fields](./media/app-service-logic-enterprise-integration-edifactorconnector/edifactencodeimage7.png)
-    
-## <a name="edifact-encode-does-following"></a>EDIFACT Encode does following
+* 比對傳送者辨識符號和識別項，以及接收者辨識符號和識別項，以解析合約
+* 序列化 EDI 交換，將 XML 編碼訊息轉換為交換中的 EDI 交易集。
+* 套用交易集標頭和結尾區段
+* 產生交換控制編號、群組控制編號和每個傳出交換的交易集控制編號
+* 取代承載資料中的分隔符號
+* 驗證 EDI 和夥伴特定屬性
+	* 針對訊息結構描述進行交易集資料元素的結構描述驗證。
+	* 對交易集資料元素執行 EDI 驗證。
+	* 對交易集資料元素執行擴充驗證
+* 產生每個交易集的 XML 文件。
+* 要求技術和/或功能確認 (若已設定)。
+	* 做為技術確認，CONTRL 訊息會指示交換的接收。
+	* 做為功能確認，CONTRL 訊息會指示接受或拒絕接收的交換、群組或訊息，並列出錯誤或不支援的功能清單
 
-* Resolve the agreement by matching the sender qualifier & identifier and receiver qualifier and identifier
-* Serializes the EDI interchange, converting XML-encoded messages into EDI transaction sets in the interchange.
-* Applies transaction set header and trailer segments
-* Generates an interchange control number, a group control number, and a transaction set control number for each outgoing interchange
-* Replaces separators in the payload data
-* Validates EDI and partner-specific properties
-    * Schema validation of the transaction-set data elements against the message schema.
-    * EDI validation performed on transaction-set data elements.
-    * Extended validation performed on transaction-set data elements
-* Generates an XML document for each transaction set.
-* Requests a Technical and/or Functional acknowledgment (if configured).
-    * As a technical acknowledgment, the CONTRL message indicates receipt of an interchange.
-    * As a functional acknowledgment, the CONTRL message indicates acceptance or rejection of the received interchange, group, or message, with a list of errors or unsupported functionality
+## 後續步驟
 
-## <a name="next-steps"></a>Next steps
+[深入了解企業整合套件](./app-service-logic-enterprise-integration-overview.md "了解企業整合套件")
 
-[Learn more about the Enterprise Integration Pack](./app-service-logic-enterprise-integration-overview.md "Learn about Enterprise Integration Pack") 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

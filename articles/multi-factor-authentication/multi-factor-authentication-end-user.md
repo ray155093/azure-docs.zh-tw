@@ -1,55 +1,50 @@
 <properties
-    pageTitle="What does Azure Multi-Factor Authentication mean for me?"
-    description="This is the Azure Multi-Factor authentication page that will assist your end users with getting going with Azure Multi-Factor Authentication."
-    services="multi-factor-authentication"
-    documentationCenter=""
-    authors="kgremban"
-    manager="femila"
-    editor="curtland"/>
+	pageTitle="Azure Multi-Factor Authentication 對我有何意義？"
+	description="這是可協助使用者開始使用 Azure Multi-Factor Authentication 的 Azure Multi-Factor Authentication 頁面。"
+	services="multi-factor-authentication"
+	documentationCenter=""
+	authors="kgremban"
+	manager="femila"
+	editor="curtland"/>
 
 <tags
-    ms.service="multi-factor-authentication"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/22/2016"
-    ms.author="kgremban"/>
+	ms.service="multi-factor-authentication"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/22/2016"
+	ms.author="kgremban"/>
 
 
 
+# Azure Multi-Factor Authentication 對我有何意義？
 
-# <a name="what-does-azure-multi-factor-authentication-mean-for-me?"></a>What does Azure Multi-Factor Authentication mean for me?
+所以，您已向某個 IT 人員取得電子郵件，或甚至是您的老闆表示他們已對您的帳戶加入其他安全性驗證。因此這代表什麼？
 
-So, you have gotten an email from someone in IT or perhaps even your boss saying that they have added additional security verification to your account.  So what does this mean?
+別擔心。這只是表示您的組織想要採取一些額外的步驟，以確保您在登入 Office 365 等項目時就是您所表明的人員。使用您的使用者名稱、密碼及電話的組合，即可完成此作業。您的辦公室電話或智慧型電話。
 
-Not to worry.  That simply means that your organization wants to take some extra steps to ensure that you are who you say you are when signing in to things such as Office 365.  This is done by using a combination of your user name and password and a phone.  Either your office phone or a smart phone.
+所以，您所需進行第一件事就是完成註冊程序。但是在我們開始該程序之前，有幾件事要決定。
 
-So the first thing you are going to need to do is complete the enrollment process.  But before we start that process there are a few things to decide.
+- **辦公室電話或行動電話** - 選擇使用您的辦公室電話或行動電話。
+- **行動電話通話、簡訊或行動應用程式** - 如果您使用行動電話，請選擇接到電話、簡訊，或使用行動應用程式。
+- **具有通知或驗證碼的行動應用程式** - 如果您使用行動應用程式，請選擇收到您要回應的通知或驗證碼。
 
-- **Office phone or mobile phone** - Choose between using your office phone or your mobile phone.
-- **Mobile phone call, text or mobile app** - If using a mobile phone, choose between receiving a call, a text, or using the mobile app.
-- **Mobile app with a notification or verification code** - If using the mobile app, choose between receiving a notification that you respond to or a verification code.
+> [AZURE.NOTE]  請注意，您的 IT 部門可能會停用上述一或多個選項。如果發生這種情況，將無法在註冊期間使用這些選項。
 
-> [AZURE.NOTE]  Be aware that your IT department may disable one or more of the options above.  If this is the case, those options will not be available during the enrollment process.
-
-Now that you have decided on your verification method, it's time to enroll.  Use the [Setup Experience](multi-factor-authentication-end-user-first-time.md) link to get started with a walk through on the enrollment process.
+既然您已決定驗證方法，現在就可以開始註冊。使用[設定體驗](multi-factor-authentication-end-user-first-time.md)連結，開始逐步完成註冊程序。
 
 
-## <a name="how-to-get-going-with-multi-factor-authentication"></a>How to get going with multi-factor authentication
+## 如何開始使用 Multi-Factor Authentication
 
-Select one of the topics below to get started.
+選取以下其中一個主題以便開始。
 
-Topic|Description
+主題|說明
 :------------- | :------------- |
-[Setup Experience](multi-factor-authentication-end-user-first-time.md)|  Describes the process of setting up multi-factor authentication for the first time.
-[Sign-in experience](multi-factor-authentication-end-user-signin.md)|Shows what you can expect from signing in using the various methods such as phone or app.
-[Changing your settings](multi-factor-authentication-end-user-manage-settings.md)|Shows you how you can change your settings such as phone number or preferred enrollment method.
-[Help with app passwords](multi-factor-authentication-end-user-app-passwords.md)| Find information on creating and using app passwords.
-[Use the mobile app](multi-factor-authentication-microsoft-authenticator.md)|The Microsoft Authenticator app is available for [Windows Phone](http://go.microsoft.com/fwlink/?Linkid=825071), [Android](http://go.microsoft.com/fwlink/?Linkid=825072), and [IOS](http://go.microsoft.com/fwlink/?Linkid=825073).
+[設定體驗](multi-factor-authentication-end-user-first-time.md)| 描述第一次設定 Multi-Factor Authentication 的程序。
+[登入體驗](multi-factor-authentication-end-user-signin.md)|顯示使用各種方法 (例如電話或應用程式) 登入時所能預期的情況。
+[變更您的設定](multi-factor-authentication-end-user-manage-settings.md)|示範如何變更您的設定，例如電話號碼或慣用的註冊方法。
+[協助使用應用程式密碼](multi-factor-authentication-end-user-app-passwords.md)| 尋找有關建立和使用應用程式密碼的資訊。
+[使用行動應用程式](multi-factor-authentication-microsoft-authenticator.md)|Microsoft 驗證器應用程式適用於 [Windows Phone](http://go.microsoft.com/fwlink/?Linkid=825071)、[Android](http://go.microsoft.com/fwlink/?Linkid=825072) 和 [IOS](http://go.microsoft.com/fwlink/?Linkid=825073)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

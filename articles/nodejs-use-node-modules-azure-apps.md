@@ -1,96 +1,80 @@
-<properties
-    pageTitle="Working with Node.js Modules"
-    description="Learn how to work with Node.js modules when using Azure App Service or Cloud Services."
-    services=""
-    documentationCenter="nodejs"
-    authors="rmcmurray"
-    manager="wpickett"
-    editor=""/>
+<properties pageTitle="使用 Node.js 模組" description="了解如何在使用 Azure App Service 或雲端服務時使用 Node.js 模組。" services="" documentationCenter="nodejs" authors="rmcmurray" manager="wpickett" editor=""/>
 
-<tags
-    ms.service="multiple"
-    ms.workload="na"
-    ms.tgt_pltfrm="na"
-    ms.devlang="nodejs"
-    ms.topic="article"
-    ms.date="08/11/2016"
-    ms.author="robmcm"/>
+<tags ms.service="multiple" ms.workload="na" ms.tgt_pltfrm="na" ms.devlang="nodejs" ms.topic="article" ms.date="08/11/2016" ms.author="robmcm"/>
 
 
 
-# <a name="using-node.js-modules-with-azure-applications"></a>Using Node.js Modules with Azure applications
 
-This document provides guidance on using Node.js modules with applications hosted on Azure. It provides guidance on ensuring that your application uses a specific version of module as well as using native modules with Azure.
 
-If you are already familiar with using Node.js modules, **package.json** and **npm-shrinkwrap.json** files, the following is a quick summary of what is discussed in this article:
+# 使用 Node.js 模組與 Azure 應用程式搭配
 
-* Azure App Service understands **package.json** and **npm-shrinkwrap.json** files and can install modules based on entries in these files.
-* Azure Cloud Services expect all modules to be installed on the development environment, and the **node\_modules** directory to be included as part of the deployment package. It is possible to enable support for installing modules using **package.json** or **npm-shrinkwrap.json** files on Cloud Services, however this requires customization of the default scripts used by Cloud Service projects. For an example of how to accomplish this, see [Azure Startup task to run npm install to avoid deploying node modules](https://github.com/woloski/nodeonazure-blog/blob/master/articles/startup-task-to-run-npm-in-azure.markdown)
+本文提供有關使用 Node.js 模組與 Azure 上代管之應用程式搭配的指引。它提供有關確保應用程式使用模組特定版本，以及搭配原生模組與 Azure 使用的指引。
 
-> [AZURE.NOTE] Azure Virtual Machines are not discussed in this article, as the deployment experience in a VM will be dependent on the operating system hosted by the Virtual Machine.
+如果您已熟悉使用 Node.js 模組、**package.json** 和 **npm-shrinkwrap.json** 檔案，則下列是本文中討論內容的快速摘要：
 
-##<a name="node.js-modules"></a>Node.js Modules
+* Azure App Service 熟悉 **package.json** 和 **npm-shrinkwrap.json** 檔案，並可根據這些檔案中的項目安裝模組。
+* Azure 雲端服務期望在開發環境上安裝所有模組，且 **node\_modules** 目錄會包括為部署封裝的一部分。提供支援使用雲端服務上的 **package.json** 或 **npm-shrinkwrap.json** 檔案來安裝模組是有可能的，不過，這會需要自訂雲端服務專案所使用的預設指令碼。如需如何完成此目的的範例，請參閱[執行 npm 安裝以避免部署節點模組的 Azure 啟動工作](https://github.com/woloski/nodeonazure-blog/blob/master/articles/startup-task-to-run-npm-in-azure.markdown) (英文)
 
-Modules are loadable JavaScript packages that provide specific functionality for your application. A module is usually installed using the **npm** command-line tool, however some (such as the http module) are provided as part of the core Node.js package.
+> [AZURE.NOTE] 本文中將不會討論 Azure 虛擬機器，因為 VM 中的部署經驗會視虛擬機器所代管的作業系統而定。
 
-When modules are installed, they are stored in the **node\_modules** directory at the root of your application directory structure. Each module within the **node\_modules** directory maintains its own **node\_modules** directory that contains any modules that it depends on, and this repeats again for every module all the way down the dependency chain. This allows each module installed to have its own version requirements for the modules it depends on, however it can result in quite a large directory structure.
+##Node.js 模組
 
-When deploying the **node\_modules** directory as part of your application, it will increase the size of the deployment compared to using a **package.json** or **npm-shrinkwrap.json** file; however, it does guarantee that the version of the modules used in production are the same as those used in development.
+模組是指可載入的 JavaScript 封裝，可為您的應用程式提供特定功能。模組的安裝方式通常是使用 **npm** 命令列工具，不過，也有一些模組 (例如 http 模組) 會以核心 Node.js 封裝的一部分提供。
 
-###<a name="native-modules"></a>Native Modules
+安裝模組時，模組會儲存在應用程式目錄結構之根目錄的 **node\_modules** 目錄中。**node\_modules** 目錄中的每個模組都會維護它自己的 **node\_modules** 目錄 (其中包含它所依賴的任何模組)，且這會在相依性鏈結一路向下的每個模組中重複進行。這可讓每個已安裝模組都有它自己所相依的模組版本需求，不過，它會產生相當大的目錄結構。
 
-While most modules are simply plain-text JavaScript files, some modules are platform-specific binary images. These modules are compiled at install time, usually by using Python and node-gyp. Since Azure Cloud Services rely on the **node\_modules** folder being deployed as part of the application, any native module included as part of the installed modules should work in a cloud service as long as it was installed and compiled on a Windows development system.
+將 **node\_modules** 目錄作為應用程式一部分進行部署時，相較於使用 **package.json** 或 **npm-shrinkwrap.json** 檔案，它的部署大小會增加；不過，它可以確實保證用於生產的模組版本與開發中所用的模組版本相同。
 
-Azure App Service does not support all native modules and might fail at compiling those with very specific prerequisites. While some popular modules like MongoDB have optional native dependencies and work just fine without them, two workarounds proved successful with almost all native modules available today:
+###原生模組
 
-* Run **npm install** on a Windows machine that has all the native module's prerequisites installed. Then, deploy the created **node\_modules** folder as part of the application to Azure App Service.
-* Azure App Service can be configured to execute custom bash or shell scripts during deployment, giving you the opportunity to execute custom commands and precisely configure the way **npm install** is being run. For a video showing how to do this, see [Custom Website Deployment Scripts with Kudu].
+雖然大多數的模組是簡單的純文字 JavaScript 檔案，有些模組卻是平台特定的二進位影像。這些模組會在安裝時編譯，通常是採用 Python 和 node-gyp。由於 Azure 雲端服務仰賴將 **node\_modules** 資料夾當作應用程式的一部分進行部署，任何包括為安裝模組一部分的原生模組應可在雲端服務中運作，只要它是在 Windows 開發系統上安裝與編譯的即可。
 
-###<a name="using-a-package.json-file"></a>Using a package.json file
+Azure App Service 不支援所有的原生模組，而且在編譯具有非常特定必要元件的原生模組時可能會失敗。雖然某些熱門模組 (如 MongoDB) 具有選擇性原生相依性，而且沒有這些相依性仍照常運作，但兩種因應措施成功證明目前可使用幾乎所有的原生模組：
 
-The **package.json** file is a way to specify the top level dependencies your application requires so that the hosting platform can install the dependencies, rather than requiring you to include the **node\_packages** folder as part of the deployment. After the application has been deployed, the **npm install** command is used to parse the **package.json** file and install all the dependencies listed.
+* 在已安裝所有原生模組之必要元件的 Windows 電腦上執行 **npm install**。然後，建立的 **node\_modules** 資料夾部署為 Azure App Service 應用程式的一部分。
+* Azure App Service 可以設定為在部署期間執行自訂 Bash 或 Shell 指令碼，讓您有機會執行自訂命令以及精確地設定 **npm install** 的執行方式。如需示範如何執行這項操作的影片，請參閱[使用 Kudu 自訂網站部署指令碼]。
 
-During development, you can use the **--save**, **--save-dev**, or **--save-optional** parameters when installing modules to add an entry for the module to your **package.json** file automatically. For more information, see [npm-install](https://docs.npmjs.com/cli/install).
+###使用 package.json 檔案
 
-One potential problem with the **package.json** file is that it only specifies the version for top level dependencies. Each module installed may or may not specify the version of the modules it depends on, and so it is possible that you may end up with a different dependency chain than the one used in development.
+**package.json** 檔案是一種方法，可用來指定應用程式要求的最上層相依性，以便主控平台可安裝相依性，而不是要求您包含 **node\_packages** 資料夾作為部署的一部分。在部署應用程式之後，您可使用 **npm install** 命令，來剖析 **package.json** 檔案並安裝所有列出的相依性。
+
+開發期間，當安裝模組將模組項目自動新增至 **package.json** 檔案時，您可以使用 **--save**、**--save-dev** 或 **--save-optional** 參數。如需詳細資訊，請參閱 [npm-install](https://docs.npmjs.com/cli/install) (英文)。
+
+有關 **package.json** 檔案的一個潛在問題是它只指定最上層相依性的版本。每個已安裝模組不一定會指定它所相依的模組版本，而且您最終得到的相依性鏈結可能與在開發中所用的不同。
 
 > [AZURE.NOTE]
-> When deploying to Azure App Service, if your <b>package.json</b> file references a native module you will see an error similar to the following when publishing the application using Git:
+部署到 Azure App Service 時，如果您的 <b>package.json</b> 檔案參考原生模組，當使用 Git 發行應用程式時，您將會看到一則如下所示的錯誤訊息：
 
->       npm ERR! module-name@0.6.0 install: 'node-gyp configure build'
+>		npm ERR! module-name@0.6.0 install: 'node-gyp configure build'
 
->       npm ERR! 'cmd "/c" "node-gyp configure build"' failed with 1
+>		npm ERR! 'cmd "/c" "node-gyp configure build"' failed with 1
 
 
-###<a name="using-a-npm-shrinkwrap.json-file"></a>Using a npm-shrinkwrap.json file
+###使用 npm-shrinkwrap.json 檔案
 
-The **npm-shrinkwrap.json** file is an attempt to address the module versioning limitations of the **package.json** file. While the **package.json** file only includes versions for the top level modules, the **npm-shrinkwrap.json** file contains the version requirements for the full module dependency chain.
+**npm-shrinkwrap.json** 檔案嘗試解決 **package.json** 檔案的模組版本設定限制。**package.json** 檔案只包含最上層模組的版本，而 **npm-shrinkwrap.json** 檔案包含完整模組相依性鏈結的版本需求。
 
-When your application is ready for production, you can lock-down version requirements and create an **npm-shrinkwrap.json** file by using the **npm shrinkwrap** command. This will use the versions currently installed in the **node\_modules** folder, and record these to the **npm-shrinkwrap.json** file. After the application has been deployed to the hosting environment, the **npm install** command is used to parse the **npm-shrinkwrap.json** file and install all the dependencies listed. For more information, see [npm-shrinkwrap](https://docs.npmjs.com/cli/shrinkwrap).
+當您的應用程式準備好開始生產時，您可以鎖定版本需求，並使用 **npm shrinkwrap** 命令建立 **npm-shrinkwrap.json** 檔案。這會使用目前安裝在 **node\_modules** 資料夾中的版本，並將他們記錄到 **npm-shrinkwrap.json** 檔案。在部署應用程式到主控環境之後，使用 **npm install** 命令來剖析 **npm-shrinkwrap.json** 檔案，並安裝所有列出的相依性。如需詳細資訊，請參閱 [npm-shrinkwrap](https://docs.npmjs.com/cli/shrinkwrap)。
 
 > [AZURE.NOTE]
->When deploying to Azure App Service, if your <b>npm-shrinkwrap.json</b> file references a native module you will see an error similar to the following when publishing the application using Git:
+部署到 Azure App Service 時，如果您的 <b>npm-shrinkwrap.json</b> 檔案參考原生模組，當使用 Git 發行應用程式時，您將會看到一則如下所示的錯誤訊息：
 
->       npm ERR! module-name@0.6.0 install: 'node-gyp configure build'
+>		npm ERR! module-name@0.6.0 install: 'node-gyp configure build'
 
->       npm ERR! 'cmd "/c" "node-gyp configure build"' failed with 1
+>		npm ERR! 'cmd "/c" "node-gyp configure build"' failed with 1
 
 
-##<a name="next-steps"></a>Next Steps
+##後續步驟
 
-Now that you understand how to use Node.js modules with Azure, learn how to [specify the Node.js version], [build and deploy a Node.js web app], and [How to use the Azure Command-Line Interface for Mac and Linux].
+現在，您了解如何搭配使用 Node.js 模組與 Azure，接著了解如何[指定 Node.js 版本]、[建置與部署 Node.js Web 應用程式]，和[如何使用適用於 Mac 和 Linux 的 Azure 命令列介面]。
 
-For more information, see the [Node.js Developer Center](/develop/nodejs/).
+如需詳細資訊，請參閱 [Node.js 開發人員中心](/develop/nodejs/)。
 
-[specify the Node.js version]: nodejs-specify-node-version-azure-apps.md
-[How to use the Azure Command-Line Interface for Mac and Linux]: xplat-cli-install.md
-[build and deploy a Node.js web app]: web-sites-nodejs-develop-deploy-mac.md
+[指定 Node.js 版本]: nodejs-specify-node-version-azure-apps.md
+[如何使用適用於 Mac 和 Linux 的 Azure 命令列介面]: xplat-cli-install.md
+[建置與部署 Node.js Web 應用程式]: web-sites-nodejs-develop-deploy-mac.md
 [Node.js Web Application with Storage on MongoDB (MongoLab)]: store-mongolab-web-sites-nodejs-store-data-mongodb.md
 [Build and deploy a Node.js application to an Azure Cloud Service]: cloud-services-nodejs-develop-deploy-app.md
-[Custom Website Deployment Scripts with Kudu]: /documentation/videos/custom-web-site-deployment-scripts-with-kudu/
+[使用 Kudu 自訂網站部署指令碼]: /documentation/videos/custom-web-site-deployment-scripts-with-kudu/
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

@@ -1,206 +1,201 @@
 <properties
-    pageTitle="Azure CDN Advanced HTTP Reports | Microsoft Azure"
-    description="Advanced HTTP reports in Microsoft Azure CDN. These reports provide detailed information on CDN activity."
-    services="cdn"
-    documentationCenter=""
-    authors="camsoper"
-    manager="erikre"
-    editor=""/>
+	pageTitle="Azure CDN 進階 HTTP 報告 | Microsoft Azure"
+	description="Microsoft Azure CDN 中的進階 HTTP 報告。這些報告提供有關 CDN 活動的詳細資訊。"
+	services="cdn"
+	documentationCenter=""
+	authors="camsoper"
+	manager="erikre"
+	editor=""/>
 
 <tags
-    ms.service="cdn"
-    ms.workload="tbd"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="07/28/2016"
-    ms.author="casoper"/>
+	ms.service="cdn"
+	ms.workload="tbd"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/28/2016"
+	ms.author="casoper"/>
 
+# Microsoft Azure CDN 中的進階 HTTP 報告
 
-# <a name="advanced-http-reports-in-microsoft-azure-cdn"></a>Advanced HTTP reports in Microsoft Azure CDN
+## 概觀
 
-## <a name="overview"></a>Overview
-
-This document explains advanced HTTP reporting in Microsoft Azure CDN. These reports provide detailed information on CDN activity.
+本文件說明 Microsoft Azure CDN 中的進階 HTTP 報告。這些報告提供有關 CDN 活動的詳細資訊。
 
 [AZURE.INCLUDE [cdn-premium-feature](../../includes/cdn-premium-feature.md)]
 
-## <a name="accessing-advanced-http-reports"></a>Accessing advanced HTTP reports
+## 存取進階 HTTP 報告
 
-1. From the CDN profile blade, click the **Manage** button.
+1. 在 CDN 設定檔刀鋒視窗中，按一下 [管理] 按鈕。
 
-    ![CDN profile blade manage button](./media/cdn-advanced-http-reports/cdn-manage-btn.png)
+	![[CDN 設定檔] 刀鋒視窗的 [管理] 按鈕](./media/cdn-advanced-http-reports/cdn-manage-btn.png)
 
-    The CDN management portal opens.
+	CDN 管理入口網站隨即開啟。
 
-2. Hover over the **Analytics** tab, then hover over the **Advanced HTTP Reports** flyout.  Click on **HTTP Large Platform**.
+2. 將滑鼠暫留在 [分析] 索引標籤，然後暫留在 [進階 HTTP 報告] 彈出式視窗。按一下 [HTTP 大型平台]。
 
-    ![CDN management portal - Advanced Reports menu](./media/cdn-advanced-http-reports/cdn-advanced-reports.png)
+	![CDN 管理入口網站 - 進階報告功能表](./media/cdn-advanced-http-reports/cdn-advanced-reports.png)
 
-    Report options are displayed.
+	報告選項隨即顯示。
 
-## <a name="geography-reports-(map-based)"></a>Geography Reports (Map-Based)
+## 地理位置報告 (以地圖為基礎)
 
-There are five reports that take advantage of a map to indicate the regions from which your content is being requested. These reports are World Map, United States Map, Canada Map, Europe Map, and Asia Pacific Map.
+有五份報告利用地圖指出哪些區域在要求您的內容。這些報告包括世界地圖、美國地圖、加拿大地圖、歐洲地圖和亞太地區地圖。
 
-Each map-based report ranks geographic entities (i.e., countries, states, and provinces) according to the percentage of hits that originated from that region. Additionally, a map is provided to help you visualize the locations from which your content is being requested. It is able to do so by color-coding each region according to the amount of demand experienced in that region. Lighter shaded regions indicate lower demand for your content, while darker regions indicate higher levels of demand for your content.
+每個以地圖為基礎的報告會根據來自該地區的點擊百分比，排名地理實體 (亦即，國家/地區、州和省)。此外，地圖也協助您呈現哪些位置在要求您的內容。作法是根據每個區域中發生的需求量，以色彩標示該區域。淺色陰影區域表示對您的內容有較低的需求，而較暗區域則表示對您的內容有較高的需求。
 
-Detailed traffic and bandwidth information for each region is provided directly below the map. This allows you to view the total number of hits, the percentage of hits, the total amount of data transferred (in gigabytes), and the percentage of data transferred for each region. View a description for each of these metrics. Finally, when you hover over a region (i.e., country, state, or province), the name and the percentage of hits that occurred in the region will be displayed as a tooltip.
+地圖正下方提供每個區域的詳細流量和頻寬資訊。這可讓您檢視每個區域的點擊總數、點擊百分比、傳輸的資料總量 (GB)，以及傳輸的資料百分比。檢視每個這些度量的描述。最後，當您將滑鼠暫留在某個區域時 (亦即，國家/地區、州或省)，將會以工具提示顯示名稱和該區域中發生的點擊百分比。
 
-A brief description is provided below for each type of map-based geography report.
+下面提供每一種以地圖為基礎的地理位置報告的簡短描述。
 
-Report Name | Description
+報告名稱 | 說明
 ------------|------------
-World Map | This report allows you to view the worldwide demand for your CDN content. Each country is color-coded on the world map to indicate the percentage of hits that originated from that region.
-United States Map | This report allows you to view the demand for your CDN content in the United States. Each state is color-coded on this map to indicate the percentage of hits that originated from that region.
-Canada Map | This report allows you to view the demand for your CDN content in Canada. Each province is color-coded on this map to indicate the percentage of hits that originated from that region.
-Europe Map | This report allows you to view the demand for your CDN content in Europe. Each country is color-coded on this map to indicate the percentage of hits that originated from that region.
-Asia Pacific Map | This report allows you to view the demand for your CDN content in Asia. Each country is color-coded on this map to indicate the percentage of hits that originated from that region.
+世界地圖 | 此報告可讓您檢視全球對您的 CDN 內容的需求。世界地圖上以色彩標示每個國家/地區，指出來自該區域的點擊百分比。
+美國地圖 | 此報告可讓您檢視美國對您的 CDN 內容的需求。此地圖上以色彩標示每個州，指出來自該區域的點擊百分比。
+加拿大地圖 | 此報告可讓您檢視加拿大對您的 CDN 內容的需求。此地圖上以色彩標示每個省，指出來自該區域的點擊百分比。
+歐洲地圖 | 此報告可讓您檢視歐洲對您的 CDN 內容的需求。此地圖上以色彩標示每個國家/地區，指出來自該區域的點擊百分比。
+亞太地區地圖 | 此報告可讓您檢視亞洲對您的 CDN 內容的需求。此地圖上以色彩標示每個國家/地區，指出來自該區域的點擊百分比。
 
-## <a name="geography-reports-(bar-charts)"></a>Geography Reports (Bar Charts)
+## 地理位置報告 (橫條圖)
 
-There are two additional reports that provide statistical information according to geography, which are Top Cities and Top Countries. These reports rank cities and countries, respectively, according to the number of hits that originated from those regions. Upon generating this type of report, a bar chart will indicate the top 10 cities or countries that requested content over a specific platform. This bar chart allows you to quickly assess the regions that generate the highest number of requests for your content.
+另外有兩個報告根據地理位置提供統計資訊：「前幾名城市」和「前幾名國家/地區」。這些報告根據來自這些區域的點擊次數，分別排名城市和國家/地區。產生這種報告時，橫條圖會指出透過特定平台來要求內容的前 10 名城市或國家/地區。這個橫條圖可讓您迅速評估對您的內容產生最多要求的區域。
 
-The left-hand side of the graph (y-axis) indicates how many hits occurred in the specified region. Directly below the graph (x-axis), you will find a label for each of the top 10 regions.
+圖形左手邊 (y 軸) 指出指定的區域中發生的點擊次數。圖形正下方 (x 軸) 有前 10 名區域的每個區域的標籤。
 
-### <a name="using-the-bar-charts"></a>Using the bar charts
+### 使用橫條圖
 
-* If you hover over a bar, the name and the total number of hits that occurred in the region will be displayed as a tooltip.
-* The tooltip for the Top Cities report identifies a city by its name, state/province, and country abbreviation.
-* If the city or region (i.e., state/province) from which a request originated could not be determined, then it will indicate that they are unknown. If the country is unknown, then two question marks (i.e., ??) will be displayed.
-* A report may include metrics for "Europe" or the "Asia/Pacific Region." Those items are not meant to provide statistical information on all IP addresses in those regions. Rather, they only apply to requests that originate from IP addresses that are spread out over Europe or Asia/Pacific instead of to a specific city or country.
+* 如果您將滑鼠暫留在橫條圖，將會以工具提示顯示名稱和該區域中發生的點擊總數。
+* 「前幾名城市」報告的工具提示會依名稱、州/省和國家/地區縮寫來識別城市。
+* 如果無法判斷發出要求的城市或區域 (亦即，州/省)，則會指出不明。如果國家/地區不明，則會顯示兩個問號 (亦即 ??)。
+* 報告可能包含「歐洲」或「亞太地區」的度量。 這些項目並不是提供這些區域中所有 IP 位址的統計資訊。相反地，只是套用至散佈於歐洲或亞太地區的 IP 位址所發出的要求，而非套用至特定城市或國家/地區。
 
-The data that was used to generate the bar chart can be viewed below it. There you will find the total number of hits, the percentage of hits, the amount of data transferred (in gigabytes), and the percentage of data transferred for the top 250 regions. View a description for each of these metrics.
+橫條圖下方可以看到用來產生它的資料。您在這裡可以找到前 250 名區域的點擊總數、點擊百分比、傳輸的資料量 (GB)，以及傳輸的資料百分比。檢視每個這些度量的描述。
 
-A brief description is provided for both types of reports below.
+下面提供這兩種報告的簡短描述。
 
-Report Name | Description
+報告名稱 | 說明
 ------------|------------
-Top Cities | This report ranks cities according to the number of hits that originated from that region.
-Top Countries | This report ranks countries according to the number of hits that originated from that region.
+前幾名城市 | 此報告根據來自該地區的點擊次數來排名城市。
+前幾名國家/地區 | 此報告根據來自該地區的點擊次數來排名國家/地區。
 
-## <a name="daily-summary"></a>Daily Summary
+## 每日摘要
 
-The Daily Summary report allows you to view the total number of hits and data transferred over a particular platform on a daily basis. This information can be used to quickly discern CDN activity patterns. For example, this report can help you detect which days experienced higher or lower than expected traffic.
+「每日摘要」報告可讓您檢視每天透過特定平台傳輸的點擊總數和資料量。這項資訊可用於快速分辨 CDN 的活動模式。比方說，此報告可協助您偵測出哪幾天發生的流量高於或低於預期。
 
-Upon generating this type of report, a bar chart will provide a visual indication as to the amount of platform-specific demand experienced on a daily basis over the time period covered by the report. It will do so by displaying a bar for each day in the report. For example, selecting the time period called "Last Week" will generate a bar chart with seven bars. Each bar will indicate the total number of hits experienced on that day.
+產生這種報告時，橫條圖會提供視覺化指示，指出報告所涵蓋的期間內每天發生的平台特定需求量。作法是對報告中的每一天顯示一個橫條。例如，選取週期 [上週] 將會產生七個橫條的橫條圖。每個橫條指出那一天發生的點擊總數。
 
-The left-hand side of the graph (y-axis) indicates how many hits occurred on the specified date. Directly below the graph (x-axis), you will find a label that indicates the date (Format: YYYY-MM-DD) for each day included in the report.
+圖形左手邊 (y 軸) 指出指定的日期發生的點擊次數。圖形正下方 (x 軸) 的標籤指出報告中每一天的日期 (格式：YYYY-MM-DD)。
 
-> [AZURE.TIP] If you hover over a bar, the total number of hits that occurred on that date will be displayed as a tooltip.
+> [AZURE.TIP] 如果您將滑鼠暫留在橫條，將會以工具提示顯示那一天發生的點擊總數。
 
-The data that was used to generate the bar chart can be viewed below it. There you will find the total number of hits and the amount of data transferred (in gigabytes) for each day covered by the report.
+橫條圖下方可以看到用來產生它的資料。您在這裡可以找到報告所涵蓋的每一天的點擊總數和傳輸的資料量 (GB)。
 
-## <a name="by-hour"></a>By Hour
+## 依小時
 
-The By Hour report allows you to view the total number of hits and data transferred over a particular platform on an hourly basis. This information can be used to quickly discern CDN activity patterns. For example, this report can help you detect the time periods during the day that experience higher or lower than expected traffic.
+「依小時」報告可讓您檢視每小時透過特定平台傳輸的點擊總數和資料量。這項資訊可用於快速分辨 CDN 的活動模式。比方說，此報告可協助您偵測出一天內哪些時段發生的流量高於或低於預期。
 
-Upon generating this type of report, a bar chart will provide a visual indication as to the amount of platform-specific demand experienced on an hourly basis over the time period covered by the report. It will do so by displaying a bar for each hour covered by the report. For example, selecting a 24 hour time period will generate a bar chart with twenty four bars. Each bar will indicate the total number of hits experienced during that hour.
+產生這種報告時，橫條圖會提供視覺化指示，指出報告所涵蓋的期間內每小時發生的平台特定需求量。作法是對報告所涵蓋的每小時顯示一個橫條。例如，選取 24 小時期間將會產生 24 個橫條的橫條圖。每個橫條指出那一小時內發生的點擊總數。
 
-The left-hand side of the graph (y-axis) indicates how many hits occurred on the specified hour. Directly below the graph (x-axis), you will find a label that indicates the date/time (Format: YYYY-MM-DD hh:mm) for each hour included in the report. Time is reported using 24 hour format and it is specified using the UTC/GMT time zone.
+圖形左手邊 (y 軸) 指出指定的小時發生的點擊次數。圖形正下方 (x 軸) 的標籤指出報告中每小時的日期/時間 (格式：YYYY-MM-DD hh:mm)。時間採用 24 小時格式來報告，並使用 UTC/GMT 時區來指定。
 
-> [AZURE.TIP] If you hover over a bar, the total number of hits that occurred during that hour will be displayed as a tooltip.
+> [AZURE.TIP] 如果您將滑鼠暫留在橫條，將會以工具提示顯示那一小時內發生的點擊總數。
 
-The data that was used to generate the bar chart can be viewed below it. There you will find the total number of hits and the amount of data transferred (in gigabytes) for each hour covered by the report.
+橫條圖下方可以看到用來產生它的資料。您在這裡可以找到報告所涵蓋的每小時的點擊總數和傳輸的資料量 (GB)。
 
-## <a name="by-file"></a>By File
+## 依檔案
 
-The By File report allows you to view the amount of demand and the traffic incurred over a particular platform for the most requested assets. Upon generating this type of report, a bar chart will be generated on the top 10 most requested assets over the specified time period.
+「依檔案」報告可讓您檢視最常要求的資產透過特定平台所引起的需求量和流量。產生這種報告時，將會產生指定的期間內前 10 名最常要求的資產的橫條圖。
 
-> [AZURE.NOTE] For the purposes of this report, edge CNAME URLs are converted to their equivalent CDN URLs. This allows an accurate tally for the total number of hits associated with an asset regardless of the CDN or edge CNAME URL used to request it.
+> [AZURE.NOTE] 就此報告而言，邊緣 CNAME URL 會轉換成其對等的 CDN URL。這樣可以精確計算資產相關聯的點擊總數，而不考慮用來要求它的 CDN 或邊緣 CNAME URL。
 
-The left-hand side of the graph (y-axis) indicates the number of requests for each asset over the specified time period. Directly below the graph (x-axis), you will find a label that indicates the file name for each of the top 10 requested assets.
+圖形左手邊 (y 軸) 指出指定的期間內對每個資產的要求次數。圖形正下方 (x 軸) 的標籤指出前 10 名要求的每個資產的檔案名稱。
 
-The data that was used to generate the bar chart can be viewed below it. There you will find the following information for each of the top 250 requested assets: relative path, the total number of hits, the percentage of hits, the amount of data transferred (in gigabytes), and the percentage of data transferred.
+橫條圖下方可以看到用來產生它的資料。您在這裡可以找到前 250 名要求的每個資產的相關資訊：相對路徑、點擊總數、點擊百分比、傳輸的資料量 (GB)，以及傳輸的資料百分比。
 
-## <a name="by-file-detail"></a>By File Detail
+## 依檔案詳細資料
 
-The By File Detail report allows you to view the amount of demand and the traffic incurred over a particular platform for a specific asset. At the very top of this report is the File Details For option. This option provides a list of your most requested assets on the selected platform. In order to generate a By File Detail report, you will need to select the desired asset from the File Details For option. After which, a bar chart will indicate the amount of daily demand that it generated over the specified time period.
+「依檔案詳細資料」報告可讓您檢視特定資產透過特定平台所引起的需求量和流量。此報告最上方是「依檔案詳細資料」選項。此選項提供在選取的平台上最常要求的資產清單。若要產生「依檔案詳細資料」報告，您必須從 [檔案詳細資料] 選項中選取想要的資產。之後，橫條圖會指出該資產在指定的期間內產生的每日需求量。
 
-The left-hand side of the graph (y-axis) indicates the total number of requests that an asset experienced on a particular day. Directly below the graph (x-axis), you will find a label that indicates the date (Format: YYYY-MM-DD) for which CDN demand for the asset was reported.
+圖形左手邊 (y 軸) 指出資產在特定一天發生的要求總數。圖形正下方 (x 軸) 的標籤指出報告資產的 CDN 需求的日期 (格式：YYYY-MM-DD)。
 
-The data that was used to generate the bar chart can be viewed below it. There you will find the total number of hits and the amount of data transferred (in gigabytes) for each day covered by the report.
+橫條圖下方可以看到用來產生它的資料。您在這裡可以找到報告所涵蓋的每一天的點擊總數和傳輸的資料量 (GB)。
 
-## <a name="by-file-type"></a>By File Type
+## 依檔案類型
 
-The By File Type report allows you to view the amount of demand and the traffic incurred by file type. Upon generating this type of report, a donut chart will indicate the percentage of hits generated by the top 10 file types.
+「依檔案類型」報告可讓您檢視檔案類型所引起的需求量和流量。產生這種報告時，環圈圖會指出前 10 名檔案類型所產生的點擊百分比。
 
-> [AZURE.TIP] If you hover over a slice in the donut chart, the Internet media type of that file type will be displayed as a tooltip.
+> [AZURE.TIP] 如果您將滑鼠暫留在環圈圖中的扇形區，將會以工具提示顯示該檔案類型的網際網路媒體類型。
 
-The data that was used to generate the donut chart can be viewed below it. There you will find the file name extension/Internet media type, the total number of hits, the percentage of hits, the amount of data transferred (in gigabytes), and the percentage of data transferred for each of the top 250 file types.
+環圈圖下方可以看到用來產生它的資料。您在這裡可以找到前 250 名的每個檔案類型的副檔名/網際網路媒體類型、點擊總數、點擊百分比、傳輸的資料量 (GB)，以及傳輸的資料百分比。
 
-## <a name="by-directory"></a>By Directory
+## 依目錄
 
-The By Directory report allows you to view the amount of demand and the traffic incurred over a particular platform for content from a specific directory. Upon generating this type of report, a bar chart will indicate the total number of hits generated by content in the top 10 directories.
+「依目錄」報告可讓您檢視特定目錄的內容透過特定平台所引起的需求量和流量。產生這種報告時，橫條圖會指出前 10 名目錄中的內容所產生的點擊總數。
 
-### <a name="using-the-bar-chart"></a>Using the bar chart
+### 使用橫條圖
 
-* Hover over a bar to view the relative path to the corresponding directory.
-* Content stored in a subfolder of a directory does not count when calculating demand by directory. This calculation relies solely on the number of requests generated for content stored in the actual directory.
-* For the purposes of this report, edge CNAME URLs are converted to their equivalent CDN URLs. This allows an accurate tally for all statistics associated with an asset regardless of the CDN or edge CNAME URL used to request it.
+* 將滑鼠暫留在橫條以檢視對應的目錄的相對路徑。
+* 依目錄計算需求時，不會計算儲存在目錄的子資料夾中的內容。這項計算僅依賴儲存在實際目錄中的內容所產生的要求次數。
+* 就此報告而言，邊緣 CNAME URL 會轉換成其對等的 CDN URL。這樣可以精確計算資產相關聯的所有統計資料，而不考慮用來要求它的 CDN 或邊緣 CNAME URL。
 
-The left-hand side of the graph (y-axis) indicates the total number of requests for the content stored in your top 10 directories. Each bar on the chart represents a directory. Use the color-coding scheme to match up a bar to a directory listed in the Top 250 Full Directories section.
+圖形左手邊 (y 軸) 指出儲存在前 10 名目錄中的內容所發生的要求總數。圖表上的每個橫條代表一個目錄。使用色彩編碼配置來對照橫條和 [前 250 名完整目錄] 區段中列出的目錄。
 
-The data that was used to generate the bar chart can be viewed below it. There you will find the following information for each of the top 250 directories: relative path, the total number of hits, the percentage of hits, the amount of data transferred (in gigabytes), and the percentage of data transferred.
+橫條圖下方可以看到用來產生它的資料。您在這裡可以找到前 250 名的每個目錄的相關資訊：相對路徑、點擊總數、點擊百分比、傳輸的資料量 (GB)，以及傳輸的資料百分比。
 
-## <a name="by-browser"></a>By Browser
+## 依瀏覽器
 
-The By Browser report allows you to view which browsers were used to request content. Upon generating this type of report, a pie chart will indicate the percentage of requests handled by the top 10 browsers.
+「依瀏覽器」報告可讓您檢視哪些瀏覽器用來要求內容。產生這種報告時，圓形圖會指出前 10 名瀏覽器所處理的要求百分比。
 
-### <a name="using-the-pie-chart"></a>Using the pie chart
+### 使用圓形圖
 
-* Hover over a slice in the pie chart to view a browser's name and version.
-* For the purposes of this report, each unique browser/version combination is considered a different browser.
-* The slice called "Other" indicates the percentage of requests handled by all other browsers and versions.
+* 將滑鼠暫留在圓形圖的扇形區，以檢視瀏覽器的名稱和版本。
+* 就此報告而言，每個唯一的瀏覽器/版本組合都視為不同的瀏覽器。
+* 稱為「其他」的扇形區指出所有其他瀏覽器和版本所處理的要求百分比。
 
-The data that was used to generate the pie chart can be viewed below it. There you will find the browser type/version number, the total number of hits and the percentage of hits for each of the top 250 browsers.
+圓形圖下方可以看到用來產生它的資料。您在這裡可以找到前 250 名的每個瀏覽器的瀏覽器類型/版本號碼、點擊總數，以及點擊百分比。
 
-## <a name="by-referrer"></a>By Referrer
+## 依訪客來源
 
-The By Referrer report allows you to view the top referrers to content on the selected platform. A referrer indicates the hostname from which a request was generated. Upon generating this type of report, a bar chart will indicate the amount of demand (i.e., hits) generated by the top 10 referrers.
+「依訪客來源」報告可讓您檢視在選取的平台上對於內容的前幾名訪客來源。訪客來源指出產生要求的主機名稱。產生這種報告時，橫條圖會指出前 10 名訪客來源所產生的需求量 (亦即，點擊次數)。
 
-The left-hand side of the graph (y-axis) indicates the total number of requests that an asset experienced for each referrer. Each bar on the chart represents a referrer. Use the color-coding scheme to match up a bar to a referrer listed in the Top 250 Referrer section.
+圖形左手邊 (y 軸) 指出資產透過每個訪客來源發生的要求總數。圖表上的每個橫條代表一個訪客來源。使用色彩編碼配置來對照橫條和 [前 250 名訪客來源] 區段中列出的訪客來源。
 
-The data that was used to generate the bar chart can be viewed below it. There you will find the URL, the total number of hits, and the percentage of hits generated from each of the top 250 referrers.
+橫條圖下方可以看到用來產生它的資料。您在這裡可以找到前 250 名的每個訪客來源的 URL、產生的點擊總數，以及產生的點擊百分比。
 
-## <a name="by-download"></a>By Download
+## 依下載
 
-The By Download report allows you to analyze download patterns for your most requested content. The top of the report contains a bar chart that compares attempted downloads with completed downloads for the top 10 requested assets. Each bar is color-coded according to whether it is an attempted download (blue) or a completed download (green).
+「依下載」報告可讓您分析最常要求的內容的下載模式。報告頂端的橫條圖針對前 10 名要求的資產，比較已嘗試的下載和已完成的下載。每個橫條的色彩標示取決於它是已嘗試的下載 (藍色)，還是已完成的下載 (綠色)。
 
-> [AZURE.NOTE] For the purposes of this report, edge CNAME URLs are converted to their equivalent CDN URLs. This allows an accurate tally for all statistics associated with an asset regardless of the CDN or edge CNAME URL used to request it.
+> [AZURE.NOTE] 就此報告而言，邊緣 CNAME URL 會轉換成其對等的 CDN URL。這樣可以精確計算資產相關聯的所有統計資料，而不考慮用來要求它的 CDN 或邊緣 CNAME URL。
 
-The left-hand side of the graph (y-axis) indicates the file name for each of the top 10 requested assets. Directly below the graph (x-axis), you will find labels that indicate the total number of attempted/completed downloads.
+圖形左手邊 (y 軸) 指出前 10 名要求的每個資產的檔案名稱。圖形正下方 (x 軸) 的標籤指出嘗試/完成的下載總數。
 
-Directly below the bar chart, the following information will be listed for the top 250 requested assets: relative path (including file name), the number of times that it was downloaded to completion, the number of times that it was requested, and the percentage of requests that resulted in a complete download.
+在橫條圖正下方，將列出前 250 名要求的資產的下列資訊：相對路徑 (包括檔案名稱)、下載完成次數、要求次數和下載完成的要求百分比。
 
-> [AZURE.TIP] Our CDN is not informed by an HTTP client (i.e. browser) when an asset has been completely downloaded. As a result, we have to calculate whether an asset has been completely downloaded according to status codes and byte-range requests. The first thing we look for when making this calculation is whether the request results in a 200 OK status code. If so, then we look at byte-range requests to ensure that they cover the entire asset. Finally, we compare the amount of data transferred to the size of the requested asset. If the data transferred is equal to or greater than the file size and the byte-range requests are appropriate for that asset, then the hit will be counted as a complete download.
+> [AZURE.TIP] 資產下載成功時，HTTP 用戶端 (也就是瀏覽器) 不會通知我們的 CDN。因此，我們必須根據狀態碼和位元組範圍要求，計算資產是否已下載完成。進行這項計算時，我們首先要查詢要求是否產生「200 確定」狀態碼。如果是的話，則查看位元組範圍要求，確定它們涵蓋整個資產。最後，我們比較已傳輸的資料量和所要求的資產大小。如果傳輸的資料等於或大於檔案大小，且位元組範圍要求適用於該資產，則會將點擊視為完整下載。
 >
->Due to the interpretive nature of this report, you should keep in mind the following points that may alter the consistency and accuracy of this report.
+>由於此報告的解釋本質，您應該記住下列各點，這幾點可能改變此報告的一致性和正確性。
 >
->* Traffic patterns cannot be accurately predicted when user-agents behave differently. This may produce completed download results that are greater than 100%.
->* Assets that take advantage of HTTP Progressive Download may not be accurately represented by this report. This is due to users seeking to different positions in a video.
+>* 當使用者代理程式的行為不同時，無法準確預測流量模式。這可能會產生大於 100% 的下載完成結果。
+>* 此報告可能無法正確表示利用 HTTP 漸進式下載的資產。這是因為使用者在視訊中快轉到不同位置。
 
-## <a name="by-404-errors"></a>By 404 Errors
+## 依 404 錯誤
 
-The By 404 Errors report allows you to identify the type of content that generates the most number of 404 Not Found status codes. The top of the report contains a bar chart for the top 10 assets for which a 404 Not Found status code was returned. This bar chart compares the total number of requests with requests that resulted in a 404 Not Found status code for those assets. Each bar is color-coded. A yellow bar is used to indicate that the request resulted in a 404 Not Found status code. A red bar is used to indicate the total number of requests for the asset.
+「依 404 錯誤」報告可讓您識別產生最多「404 找不到」狀態碼的內容類型。報告頂端的橫條圖顯示傳回「404 找不到」狀態碼的前 10 名資產。這個橫條圖會比較這些資產的要求總數和導致「404 找不到」狀態碼的要求數。每個橫條以色彩標示。黃色橫條用來表示導致「404 找不到」狀態碼的要求。紅色橫條用來表示資產的要求總數。
 
-> [AZURE.NOTE] For the purposes of this report, note the following:
+> [AZURE.NOTE] 就此報告而言，請注意下列事項：
 >
->* A hit represents any request for an asset regardless of status code.
->* Edge CNAME URLs are converted to their equivalent CDN URLs. This allows an accurate tally for all statistics associated with an asset regardless of the CDN or edge CNAME URL used to request it.
+>* 點擊代表資產的任何要求，而不考慮狀態碼。
+>* 邊緣 CNAME URL 會轉換成其對等的 CDN URL。這樣可以精確計算資產相關聯的所有統計資料，而不考慮用來要求它的 CDN 或邊緣 CNAME URL。
 
-The left-hand side of the graph (y-axis) indicates the file name for each of the top 10 requested assets that resulted in a 404 Not Found status code. Directly below the graph (x-axis), you will find labels that indicate the total number of requests and the number of requests that resulted in a 404 Not Found status code.
+圖形左手邊 (y 軸) 指出導致「404 找不到」狀態碼的前 10 名要求的每個資產的檔案名稱。圖形正下方 (x 軸) 的標籤指出要求總數和導致「404 找不到」狀態碼的要求數。
 
-Directly below the bar chart, the following information will be listed for the top 250 requested assets: relative path (including file name), the number of requests that resulted in a 404 Not Found status code, the total number of times that the asset was requested, and the percentage of requests that resulted in a 404 Not Found status code.
+在橫條圖正下方，將列出前 250 名要求的資產的下列資訊：相對路徑 (包括檔案名稱)、導致「404 找不到」狀態碼的要求數、要求資產的總次數、以及導致「404 找不到」狀態碼的要求百分比。
 
-## <a name="see-also"></a>See also
-* [Azure CDN Overview](cdn-overview.md)
-* [Real-time stats in Microsoft Azure CDN](cdn-real-time-stats.md)
-* [Overriding default HTTP behavior using the rules engine](cdn-rules-engine.md)
-* [Analyze Edge Performance](cdn-edge-performance.md)
+## 另請參閱
+* [Azure CDN 概觀](cdn-overview.md)
+* [Microsoft Azure CDN 中的即時統計資料](cdn-real-time-stats.md)
+* [使用規則引擎覆寫預設的 HTTP 行為](cdn-rules-engine.md)
+* [分析邊緣效能](cdn-edge-performance.md)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

@@ -1,51 +1,46 @@
 <properties
-    pageTitle="Manage Azure RemoteApp using Azure Automation | Microsoft Azure"
-    description="Learn about how the Azure Automation service can be used to manage Azure RemoteApp."
-    services="automation"
-    documentationCenter=""
-    authors="mgoedtel"
-    manager="jwhit"
-    editor=""/>
+	pageTitle="使用 Azure 自動化管理 Azure RemoteApp | Microsoft Azure"
+	description="了解如何使用 Azure 自動化服務管理 Azure RemoteApp。"
+	services="automation"
+	documentationCenter=""
+	authors="mgoedtel"
+	manager="jwhit"
+	editor=""/>
 
 <tags
-    ms.service="automation"
-    ms.workload="tbd"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/15/2016"
-    ms.author="magoedte;csand"/>
+	ms.service="automation"
+	ms.workload="tbd"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/15/2016"
+	ms.author="magoedte;csand"/>
 
-
-#<a name="managing-azure-remoteapp-using-azure-automation"></a>Managing Azure RemoteApp using Azure Automation
+#使用 Azure 自動化管理 Azure RemoteApp
 
 > [AZURE.IMPORTANT]
-> Azure RemoteApp is being discontinued. Read the [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
-This guide will introduce you to the Azure Automation service, and how it can be used to simplify management of Azure RemoteApp.
+本指南將為您介紹 Azure 自動化服務，以及如何使用它來簡化 Azure RemoteApp 的管理。
 
-## <a name="what-is-azure-automation?"></a>What is Azure Automation?
+## 什麼是 Azure 自動化？
 
-[Azure Automation](../automation/automation-intro.md) is an Azure service for simplifying cloud management through process automation. Using Azure Automation, manual, frequently-repeated, long-running, and error-prone tasks can be automated to increase reliability, efficiency, and time to value for your organization.
+[Azure 自動化](../automation/automation-intro.md) 是一項 Azure 服務，可經由程序自動化簡化雲端管理。使用 Azure 自動化，可以自動執行手動、經常重複、長時間執行及容易出錯的工作，以提高您的組織的可靠性、 效率和時間價值。
 
-Azure Automation provides a highly-reliable, highly-available workflow execution engine that scales to meet your needs. In Azure Automation, processes can be kicked off manually, by 3rd-party systems, or at scheduled intervals so that tasks happen exactly when needed.
+Azure 自動化提供高度可靠、高度可用的工作流程執行引擎，可加以調整以符合您的需求。在 Azure 自動化中，可以手動方式、由協力廠商系統或依排定的間隔開始執行程序，讓工作只發生在必要時刻。
 
-Reduce operational overhead and free up IT and DevOps staff to focus on work that adds business value by moving your cloud management tasks to be run automatically by Azure Automation.
-
-
-## <a name="how-can-azure-automation-help-manage-azure-remoteapp?"></a>How can Azure Automation help manage Azure RemoteApp?
-
-RemoteApp can be managed in Azure Automation by using the PowerShell cmdlets that are available in the [Azure PowerShell tools](https://msdn.microsoft.com/library/azure/jj156055.aspx). Azure Automation has these RemoteApp PowerShell cmdlets available out of the box, so that you can perform all of your RemoteApp management tasks within the service. You can also pair these cmdlets in Azure Automation with the cmdlets for other Azure services, to automate complex tasks across Azure services and 3rd party systems.
+將您的雲端管理工作交由「Azure 自動化」自動執行，以減少營運負擔並釋出 IT 和開發維運人力，使其專注於能夠為企業創造價值的工作上。
 
 
-## <a name="next-steps"></a>Next steps
+## Azure 自動化為何有助於管理 Azure RemoteApp？
 
-Now that you've learned the basics of Azure Automation and how it can be used to manage Azure RemoteApp, follow these links to learn more about Azure Automation.
-
-* See the Azure Automation [Getting Started Tutorial](../automation/automation-first-runbook-graphical.md)
+Azure RemoteApp 可透過 [Azure PowerShell](https://msdn.microsoft.com/library/azure/jj156055.aspx) 工具中提供的 PowerShell Cmdlet，在 Azure 自動化中受到管理。Azure 自動化的這些 RemoteApp PowerShell Cmdlet 都是內建的，以便您在服務內執行所有 RemoteApp 管理工作。您也可以將 Azure 自動化中的這些 Cmdlet 與其他 Azure 服務的 Cmdlet 搭配，以透過 Azure 服務和協力廠商系統自動執行複雜的工作。
 
 
+## 後續步驟
 
-<!--HONumber=Oct16_HO2-->
+了解 Azure 自動化的基本概念以及如何用它來管理 Azure RemoteApp 之後，請參考下列連結，以深入了解 Azure 自動化。
 
+* 請參閱 Azure 自動化[入門指南](../automation/automation-first-runbook-graphical.md)
 
+<!---HONumber=AcomDC_0817_2016-->

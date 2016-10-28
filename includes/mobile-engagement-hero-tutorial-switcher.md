@@ -12,7 +12,4 @@
 - [Web](../articles/mobile-engagement/mobile-engagement-web-app-get-started.md)
  
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0615_2016-->

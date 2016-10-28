@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="Modify the DATA 0 settings on a StorSimple device | Microsoft Azure"
-   description="Learn how to use Windows PowerShell for StorSimple to reconfigure the DATA 0 network interface on your StorSimple device."
+   pageTitle="修改 StorSimple 裝置上的 DATA 0 設定 | Microsoft Azure"
+   description="了解如何使用 Windows PowerShell for StorSimple 重新設定 StorSimple 裝置上的 DATA 0 網路介面。"
    services="storsimple"
    documentationCenter=""
    authors="alkohli"
@@ -15,72 +15,66 @@
    ms.date="08/17/2016"
    ms.author="alkohli" />
 
+# 修改 StorSimple 裝置上的 DATA 0 網路介面設定
 
-# <a name="modify-the-data-0-network-interface-settings-on-your-storsimple-device"></a>Modify the DATA 0 network interface settings on your StorSimple device
+## Overview
 
-## <a name="overview"></a>Overview
+Microsoft Azure StorSimple 裝置有 6 個網路介面，從 DATA 0 至 DATA 5。DATA 0 介面一律透過 Windows PowerShell 介面或序列主控台設定，且已自動啟用雲端功能。請注意，您無法透過 Azure 傳統入口網站設定 DATA 0 網路介面。
 
-Your Microsoft Azure StorSimple device has six network interfaces, from DATA 0 to DATA 5. The DATA 0 interface is always configured through the Windows PowerShell interface or the serial console, and is automatically cloud-enabled. Note that you cannot configure DATA 0 network interface through the Azure classic portal. 
+DATA 0 介面會在初始部署 StorSimple 裝置期間，透過安裝精靈進行第一次設定。當裝置處於操作模式時，您可能需要重新進行 DATA 0 設定。本教學課程提供兩種修改 DATA 0 網路設定的方法，皆需透過 Windows PowerShell for StorSimple 進行。
 
-The DATA 0 interface is first configured through the setup wizard during initial deployment of the StorSimple device. When the device is in an operational mode, you may need to reconfigure DATA 0 settings. This tutorial provides two methods to modify DATA 0 network settings, both through Windows PowerShell for StorSimple.
+閱讀本教學課程之後，您將能夠：
 
-After reading this tutorial, you will be able to:
-
-- Modify DATA 0 network setting through the setup wizard
-- Modify DATA 0 network settings through the `Set-HcsNetInterface` cmdlet
-
-
-
-## <a name="modify-data-0-network-settings-through-setup-wizard"></a>Modify DATA 0 network settings through setup wizard
-You can reconfigure DATA 0 network settings by connecting to the Windows PowerShell interface of your StorSimple device and launching a setup wizard session. Perform the following steps to modify DATA 0 settings:
-
-#### <a name="to-modify-data-0-network-settings-through-setup-wizard"></a>To modify DATA 0 network settings through setup wizard
-
-1. In the serial console menu, choose option 1, **Log in with full access**. When prompted provide the **device administrator password**. The default password is `Password1`.
-
-2. At the command prompt, type:
-
-    `Invoke-HcsSetupWizard`
-
-3. A setup wizard will appear to help you configure the DATA 0 interface of your device. Provide new values for the IP address, gateway, and netmask.
-
-> [AZURE.NOTE] The fixed controllers IPs will need to be reconfigured through the **Configure** page of the StorSimple device in the Azure classic portal. For more information, go to [Modify network interfaces](storsimple-modify-device-config.md#modify-network-interfaces).
-
-
-## <a name="modify-data-0-network-settings-through-set-hcsnetinterface-cmdlet"></a>Modify DATA 0 network settings through Set-HcsNetInterface cmdlet
-An alternate way to reconfigure DATA 0 network interface is through the use of  the `Set-HcsNetInterface` cmdlet. The cmdlet is executed from the Windows PowerShell interface of your StorSimple device. When using this procedure, the controller fixed IPs can also be configured here. Perform the following steps to modify the DATA 0 settings: 
-
-#### <a name="to-modify-data-0-network-settings-through-the-set-hcsnetinterface-cmdlet"></a>To modify DATA 0 network settings through the Set-HcsNetInterface cmdlet
-
-1. In the serial console menu, choose option 1, **Log in with full access**. When prompted provide the device administrator password. The default password is `Password1`.
-
-2. At the command prompt, type:
-
-    `Set-HCSNetInterface -InterfaceAlias Data0 -IPv4Address <> -IPv4Netmask <> -IPv4Gateway <> -Controller0IPv4Address <> -Controller1IPv4Address <> -IsiScsiEnabled 1 -IsCloudEnabled 1`
-    
-    In the angled brackets, type the following values for DATA 0:
-                                            
-    - IPv4 address
-    
-    - IPv4 gateway
-    
-    - IPv4 subnet mask
-    
-    - Fixed IPv4 address for Controller 0
-
-    - Fixed IPv4 address for Controller 1
-
-    For more information on the use of this cmdlet, go to [Windows PowerShell for StorSimple cmdlet reference](https://technet.microsoft.com/library/dn688161.aspx).
-
-## <a name="next-steps"></a>Next steps
-
-- To configure network interfaces other than DATA 0, you can use the [Configure page in the Azure classic portal](storsimple-modify-device-config.md). 
-
-- If you experience any issues when configuring your network interfaces, refer to [Troubleshoot deployment issues](storsimple-troubleshoot-deployment.md).
+- 透過安裝精靈修改 DATA 0 網路設定
+- 透過 `Set-HcsNetInterface` Cmdlet 修改 DATA 0 網路設定
 
 
 
+## 透過安裝精靈修改 DATA 0 網路設定
+您可以連接至 StorSimple 裝置的 Windows PowerShell 介面並啟動安裝精靈工作階段以重新設定 DATA 0 網路設定。執行下列步驟以修改 DATA 0 設定：
 
-<!--HONumber=Oct16_HO2-->
+#### 透過安裝精靈修改 DATA 0 網路設定
+
+1. 在序列主控台功能表中，選擇選項 1 [使用完整存取權登入]。出現提示時，提供**裝置系統管理員密碼**。預設密碼為 `Password1`。
+
+2. 在命令提示字元中，輸入：
+
+	`Invoke-HcsSetupWizard`
+
+3. 安裝精靈將會出現以協助您設定裝置的 DATA 0 介面。提供 IP 位址、閘道器和網路遮罩的新值。
+
+> [AZURE.NOTE] 固定控制器 IP 必須在 Azure 傳統入口網站透過 StorSimple 裝置的 [設定] 頁面重新設定。如需詳細資訊，請移至[修改網路介面](storsimple-modify-device-config.md#modify-network-interfaces)。
 
 
+## 透過 Set-HcsNetInterface cmdlet 修改 DATA 0 網路設定
+重新設定 DATA 0 網路介面的替代方式為透過使用 `Set-HcsNetInterface` cmdlet。cmdlet 是從 StorSimple 裝置的 Windows PowerShell 介面執行。使用此程序時，控制器固定 IP 也可以在此設定。執行下列步驟以修改 DATA 0 設定：
+
+#### 透過 Set-HcsNetInterface cmdlet 修改 DATA 0 網路設定
+
+1. 在序列主控台功能表中，選擇選項 1 [使用完整存取權登入]。出現提示時，提供裝置系統管理員密碼。預設密碼為 `Password1`。
+
+2. 在命令提示字元中，輸入：
+
+	`Set-HCSNetInterface -InterfaceAlias Data0 -IPv4Address <> -IPv4Netmask <> -IPv4Gateway <> -Controller0IPv4Address <> -Controller1IPv4Address <> -IsiScsiEnabled 1 -IsCloudEnabled 1`
+	
+    在角括弧內鍵入下列 DATA 0 的值：
+											
+	- IPv4 位址
+	
+	- IPv4 閘道
+	
+	- IPv4 子網路遮罩
+	
+	- 控制器 0 的固定的 IPv4 位址
+
+	- 控制器 1 的固定的 IPv4 位址
+
+	如需使用此 Cmdlet 的詳細資訊，請移至 [Windows PowerShell for StorSimple Cmdlet 參考](https://technet.microsoft.com/library/dn688161.aspx)。
+
+## 後續步驟
+
+- 若要設定 DATA 0 以外的網路介面，您可以使用 [Azure 傳統入口網站中的設定頁面](storsimple-modify-device-config.md)。
+
+- 如果您在設定您的網路介面時遇到任何問題，請參閱[疑難排解部署問題](storsimple-troubleshoot-deployment.md)。
+
+<!---HONumber=AcomDC_0817_2016-->

@@ -1,63 +1,62 @@
 <properties
-    pageTitle="Limitations for Stretch Database | Microsoft Azure"
-    description="Learn about limitations for Stretch Database."
-    services="sql-server-stretch-database"
-    documentationCenter=""
-    authors="douglaslMS"
-    manager=""
-    editor=""/>
+	pageTitle="Stretch Database 的限制 |Microsoft Azure"
+	description="了解 Stretch Database 的限制。"
+	services="sql-server-stretch-database"
+	documentationCenter=""
+	authors="douglaslMS"
+	manager=""
+	editor=""/>
 
 <tags
-    ms.service="sql-server-stretch-database"
-    ms.workload="data-management"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="06/14/2016"
-    ms.author="douglasl"/>
+	ms.service="sql-server-stretch-database"
+	ms.workload="data-management"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="06/14/2016"
+	ms.author="douglasl"/>
 
+# Stretch Database 的限制
 
-# <a name="limitations-for-stretch-database"></a>Limitations for Stretch Database
+了解啟用 Stretch 的資料表的相關限制，以及目前使您無法為資料表啟用 Stretch 的相關限制。
 
-Learn about limitations for Stretch\-enabled tables, and about limitations that currently prevent you from enabling Stretch for a table.
+##  <a name="Caveats"></a>Stretch 資料表的限制
 
-##  <a name="<a-name="caveats"></a>-limitations-for-stretch\-enabled-tables"></a><a name="Caveats"></a> Limitations for Stretch\-enabled tables
+啟用 Stretch 的資料表有下列限制。
 
-Stretch\-enabled tables have the following limitations.
+### 條件約束
 
-### <a name="constraints"></a>Constraints
+-   在包含移轉的資料之 Azure 資料表中，UNIQUE (唯一) 條件約束和 PRIMARY KEY (主索引鍵) 條件約束並無強制唯一性。
 
--   Uniqueness is not enforced for UNIQUE constraints and PRIMARY KEY constraints in the Azure table that contains the migrated data.
+### DML 作業
 
-### <a name="dml-operations"></a>DML operations
+-   在啟用 Stretch 的資料表中，或是包含啟用 Stretch 的資料表之檢視中，您無法 UPDATE (更新) 或 DELETE (刪除) 已移轉的資料列或有資格移轉的資料列。
 
--   You can't UPDATE or DELETE rows that have been migrated, or rows that are eligible for migration, in a Stretch\-enabled table or in a view that includes Stretch\-enabled tables.
+-   您無法將資料列 INSERT (插入) 連結伺服器上啟用 Stretch 的資料表。
 
--   You can't INSERT rows into a Stretch\-enabled table on a linked server.
+### 索引數
 
-### <a name="indexes"></a>Indexes
+-   您無法建立其中包含 Stretch 資料表的檢視表索引。
 
--   You can't create an index for a view that includes Stretch\-enabled tables.
+-   SQL Server 索引上的篩選不會傳播至遠端資料表。
 
--   Filters on SQL Server indexes are not propagated to the remote table.
+##  <a name="Limitations"></a>目前使您無法為資料表啟用 Stretch 的相關限制
 
-##  <a name="<a-name="limitations"></a>-limitations-that-currently-prevent-you-from-enabling-stretch-for-a-table"></a><a name="Limitations"></a> Limitations that currently prevent you from enabling Stretch for a table
+下列項目目前會使您無法為資料表啟用 Stretch
 
-The following items currently prevent you from enabling Stretch for a table.
+### 資料表屬性
 
-### <a name="table-properties"></a>Table properties
+-   有超過 1,023 個資料行或超過 998 個索引的資料表
 
--   Tables that have more than 1,023 columns or more than 998 indexes
+-   包含 FILESTREAM 資料的檔案資料表或資料表
 
--   FileTables or tables that contain FILESTREAM data
+-   複製的資料表，或目前正在使用變更追蹤或異動資料擷取的資料表
 
--   Tables that are replicated, or that are actively using Change Tracking or Change Data Capture
+-   記憶體最佳化資料表
 
--   Memory\-optimized tables
+### 資料類型
 
-### <a name="data-types"></a>Data types
-
--   text, ntext and image
+-   text、ntext 和 image
 
 -   timestamp
 
@@ -65,40 +64,36 @@ The following items currently prevent you from enabling Stretch for a table.
 
 -   XML
 
--   CLR data types including geometry, geography, hierarchyid, and CLR user\-defined types
+-   CLR 資料類型包括 geometry、geography、hierarchyid 和 CLR 使用者定義類型
 
-### <a name="column-types"></a>Column types
+### 資料行類型
 
 -   COLUMN\_SET
 
--   Computed columns
+-   計算資料行
 
-### <a name="constraints"></a>Constraints
+### 條件約束
 
--   Default constraints and check constraints
+-   預設條件約束和檢查條件約束
 
--   Foreign key constraints that reference the table. In a parent\-child relationship \(for example, Order and Order\_Detail\), you can enable Stretch for the child table \(Order\_Detail\) but not for the parent table \(Order\).
+-   參考資料表的外部索引鍵條件約束。在父子式關聯性 (例如，Order 和 Order\_Detail) 中，您可以為子資料 (Order\_Detail) 表啟用 Stretch，父資料表 (Order) 則不行。
 
-### <a name="indexes"></a>Indexes
+### 索引數
 
--   Full text indexes
+-   全文檢索索引
 
--   XML indexes
+-   XML 索引
 
--   Spatial indexes
+-   空間索引
 
--   Indexed views that reference the table
+-   參考資料表的索引檢視表
 
-## <a name="see-also"></a>See also
+## 另請參閱
 
-[Identify databases and tables for Stretch Database by running Stretch Database Advisor](sql-server-stretch-database-identify-databases.md)
+[透過執行 Stretch Database Advisor 為資料庫和資料表識別 Stretch Database](sql-server-stretch-database-identify-databases.md)
 
-[Enable Stretch Database for a database](sql-server-stretch-database-enable-database.md)
+[為資料庫啟用 Stretch Database](sql-server-stretch-database-enable-database.md)
 
-[Enable Stretch Database for a table](sql-server-stretch-database-enable-table.md)
+[為資料表啟用 Stretch Database](sql-server-stretch-database-enable-table.md)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0615_2016-->

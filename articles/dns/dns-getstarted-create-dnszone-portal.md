@@ -1,9 +1,9 @@
 <properties
-   pageTitle="How to create and manage a DNS zone in the Azure portal | Microsoft Azure"
-   description="Learn how to create DNS zones for Azure DNS. This is a Step-by-step guide to create and manage your first DNS and start hosting your DNS domain using the Azure portal."
+   pageTitle="如何在 Azure 入口網站中建立和管理 DNS 區域 | Microsoft Azure"
+   description="了解如何建立 Azure DNS 的 DNS 區域。這是使用 Azure 入口網站建立和管理您的第一個 DNS 並開始裝載 DNS 網域的逐步指南。"
    services="dns"
    documentationCenter="na"
-   authors="sdwheeler"
+   authors="cherylmc"
    manager="carmonm"
    editor=""
    tags="azure-resource-manager"/>
@@ -15,120 +15,115 @@
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
    ms.date="08/16/2016"
-   ms.author="sewhee"/>
+   ms.author="cherylmc"/>
 
-
-# <a name="create-a-dns-zone-in-the-azure-portal"></a>Create a DNS zone in the Azure portal
+# 在 Azure 入口網站中建立 DNS 區域
 
 
 > [AZURE.SELECTOR]
-- [Azure Portal](dns-getstarted-create-dnszone-portal.md)
+- [Azure 入口網站](dns-getstarted-create-dnszone-portal.md)
 - [PowerShell](dns-getstarted-create-dnszone.md)
 - [Azure CLI](dns-getstarted-create-dnszone-cli.md)
 
 
 
-This article will walk you through the steps to create a DNS zone by using the Azure portal. You can also create a DNS zone using PowerShell or CLI.
+本文將逐步引導您完成使用 Azure 入口網站建立 DNS 區域的步驟。您也可以使用 PowerShell 或 CLI 建立 DNS 區域。
 
 [AZURE.INCLUDE [dns-create-zone-about](../../includes/dns-create-zone-about-include.md)]
 
 
-### <a name="about-tags-for-azure-dns"></a>About Tags for Azure DNS
+### 關於 Azure DNS 的標記
 
 
-Tags are a list of name-value pairs and are used by Azure Resource Manager to label resources for billing or grouping purposes. For more information about Tags, see the article [Using tags to organize your Azure resources](../resource-group-using-tags.md).
+標記是名稱-值組的清單，由 Azure Resource Manager 在計費或分群用途上用來標示資源。如需標記的詳細資訊，請參閱[使用標記來組織您的 Azure 資源](../resource-group-using-tags.md)一文。
 
-You can add Tags in the Azure portal by using the **Settings** blade for your DNS zone.
-
-
-## <a name="create-a-dns-zone"></a>Create a DNS zone
-
-1. Sign in to the Azure portal
-
-2. On the Hub menu, click and click **New > Networking >** and then click **DNS zone** to open the DNS zone blade.
-
-    ![DNS zone](./media/dns-getstarted-create-dnszone-portal/openzone650.png)
-
-3. On the **DNS zone** blade, click **Create** at the bottom. This will open the **Create DNS zone** blade.
-
-    ![Create zone](./media/dns-getstarted-create-dnszone-portal/newzone250.png)
-
-4. On the **Create DNS zone** blade, Name your DNS zone. For example, *contoso.com*. See [About DNS Zone Names](#names) in the section above.
-
-5. Next, specify the resource group that you want to use. You can either create a new resource group, or select one that already exists.
-
-6. From the **Location** dropdown, specify the location of the resource group. Note that this setting refers to the location of the resource group, not the location for DNS zone. The actual DNS zone resource is automatically "global" and is not something that you can (or need to) specify in the portal.
-
-7. You can leave the **Pin to dashboard** checkbox selected if you want to easily locate your new zone on your dashboard. Then click **Create**.
-
-    ![Pin to dashboard](./media/dns-getstarted-create-dnszone-portal/pindashboard150.png)
-
-8. After you click Create, you'll see your new zone being configured on the dashboard.
-
-    ![Creating](./media/dns-getstarted-create-dnszone-portal/creating150.png)
-
-9. When your new zone has been created, the blade for your new zone will open on the dashboard.
+您可以在 Azure 入口網站中使用 DNS 區域的 [設定] 刀鋒視窗新增標記。
 
 
-## <a name="view-records"></a>View records
+## 建立 DNS 區域
 
-Creating a DNS zone also creates the following records:
+1. 登入 Azure 入口網站
 
-- The "Start of Authority" (SOA) record. The SOA is present at the root of every DNS zone.
-- The authoritative name server (NS) records. These show which name servers are hosting the zone. Azure DNS uses a pool of name servers, and so different name servers may be assigned to different zones in Azure DNS. See [Delegate a domain to Azure DNS](dns-domain-delegation.md) for more information.
+2. 在 [中樞] 功能表上，按一下 [新增] > [網路] > [DNS 區域] 以開啟 [DNS 區域] 刀鋒視窗。
+ 
+	![DNS 區域](./media/dns-getstarted-create-dnszone-portal/openzone650.png)
 
-You can view the records from the Azure portal
+3. 在 [DNS 區域] 刀鋒視窗中，按一下位於底部的 [建立]。這會開啟 [建立 DNS 區域] 刀鋒視窗。
 
-1. From your **DNS zone** blade, click on **All settings** to open the **Settings blade** for the DNS zone.
+	![建立區域](./media/dns-getstarted-create-dnszone-portal/newzone250.png)
 
-    ![zone](./media/dns-getstarted-create-dnszone-portal/viewzonens500.png)
+4. 在 [建立 DNS 區域] 刀鋒視窗中，提供 DNS 區域的 [名稱]。例如 *contoso.com*。請參閱上面的[關於 DNS 區域名稱](#names)一節。
 
+5. 接下來，指定您想要使用的資源群組。您可以建立新的資源群組，或選取已經存在的資源群組。
 
-2. In the lower part of the Essentials pane, you can see the record sets for the DNS zone.
+6. 在 [位置] 下拉式清單中指定資源群組的位置。請注意，這項設定是指資源群組的位置，而非 DNS 區域的位置。實際的 DNS 區域資源會自動遍布「全域」，因此不是您可以 (或必須) 在入口網站中指定的項目。
 
+7. 如果您想要輕鬆地在儀表板上找到您的新區域，您可以讓 [釘選到儀表板] 核取方塊保持選取狀態。然後按一下 [**建立**]。
 
-    ![zone](./media/dns-getstarted-create-dnszone-portal/viewzone500.png)
+	![釘選到儀表板](./media/dns-getstarted-create-dnszone-portal/pindashboard150.png)
 
-## <a name="test"></a>Test
+8. 按一下 [建立] 之後，您會看到您的新區域已設定到儀表板上。
 
-You can test your DNS zone by using DNS tools such as nslookup, dig, or the [Resolve-DnsName PowerShell cmdlet](https://technet.microsoft.com/library/jj590781.aspx).
+	![建立中](./media/dns-getstarted-create-dnszone-portal/creating150.png)
 
-If you haven’t yet delegated your domain to use the new zone in Azure DNS, you will need to direct the DNS query directly to one of the name servers for your zone. The name servers for your zone are given in the NS records, as listed by `Get-AzureRmDnsRecordSet` above. Be sure the substitute the correct values for your zone into the command below.
-
-    nslookup
-    > set type=SOA
-    > server ns1-01.azure-dns.com
-    > contoso.com
-
-    Server: ns1-01.azure-dns.com
-    Address:  208.76.47.1
-
-    contoso.com
-            primary name server = ns1-01.azure-dns.com
-            responsible mail addr = msnhst.microsoft.com
-            serial  = 1
-            refresh = 900 (15 mins)
-            retry   = 300 (5 mins)
-            expire  = 604800 (7 days)
-            default TTL = 300 (5 mins)
+9. 新區域建立好之後，新區域的刀鋒視窗就會在儀表板上開啟。
 
 
+## 檢視記錄
 
-## <a name="delete-a-dns-zone"></a>Delete a DNS zone
+建立 DNS 區域也會建立下列記錄：
 
-You can delete the DNS zone directly from the portal. Before deleting a DNS zone in Azure DNS, you will need to delete all records sets, except for the NS and SOA records at the root of the zone that were created automatically when the zone was created.
+- 「起始點授權」(SOA) 記錄。SOA 出現在每個 DNS 區域的根。
+- 授權名稱伺服器 (NS) 記錄。這些顯示哪些名稱伺服器裝載該區域。Azure DNS 使用名稱伺服器集區，因此，不同的名稱伺服器可能會指派至 Azure DNS 中的不同區域。如需詳細資訊，請參閱[將網域委派給 Azure DNS](dns-domain-delegation.md)。
 
-1. Locate the **DNS zone** blade for the zone you want to delete, then click **Delete** at the top of the blade.
+您可以從 Azure 入口網站檢視記錄
 
-2. A message will appear letting you know that you must delete all records sets, except the NS and SOA records that were automatically created. If you have deleted your record sets, click **Yes**. Note that when deleting a DNS zone from the portal, the Resource Group that the DNS zone is associated with will not be deleted.
+1. 在 [DNS 區域] 刀鋒視窗上，按一下 [所有設定] 以開啟 DNS 區域的 [設定] 刀鋒視窗。
+
+	![區域](./media/dns-getstarted-create-dnszone-portal/viewzonens500.png)
 
 
-## <a name="next-steps"></a>Next steps
+2. 在 [基本資訊] 窗格的下半部，您可以看到 DNS 區域的記錄集。
 
-After creating a DNS zone, create [record sets and records](dns-getstarted-create-recordset-portal.md) to start resolving names for your Internet domain.
+
+	![區域](./media/dns-getstarted-create-dnszone-portal/viewzone500.png)
+
+## 測試
+
+您可以使用 nslookup、dig 或 [Resolve-DnsName PowerShell Cmdlet](https://technet.microsoft.com/library/jj590781.aspx) 等 DNS 工具測試您的 DNS 區域。
+
+如果您還沒有將網域委派給 Azure DNS 中的新區域，您必須將 DNS 查詢直接導向您的區域的其中一個名稱伺服器。如上面的 `Get-AzureRmDnsRecordSet` 所列，NS 記錄提供您區域的名稱伺服器。請務必在下列命令中用正確的值取代您的區域。
+
+	nslookup
+	> set type=SOA
+	> server ns1-01.azure-dns.com
+	> contoso.com
+
+	Server: ns1-01.azure-dns.com
+	Address:  208.76.47.1
+
+	contoso.com
+        	primary name server = ns1-01.azure-dns.com
+        	responsible mail addr = msnhst.microsoft.com
+        	serial  = 1
+        	refresh = 900 (15 mins)
+        	retry   = 300 (5 mins)
+        	expire  = 604800 (7 days)
+        	default TTL = 300 (5 mins)
 
 
 
-<!--HONumber=Oct16_HO2-->
+## 刪除 DNS 區域
+
+您可以直接從入口網站中刪除 DNS 區域。在 Azure DNS 中刪除 DNS 區域之前，您必須刪除所有記錄集，但建立區域時在區域的根自動建立的 NS 和 SOA 記錄除外。
+
+1. 找到您想要刪除之區域的 [DNS 區域] 刀鋒視窗，然後按一下刀鋒視窗頂端的 [刪除]。
+ 
+2. 隨即會出現一則訊息讓您知道您必須刪除所有記錄集，但自動建立的 NS 和 SOA 記錄除外。如果您已刪除記錄集，則按一下 [是]。請注意，當您從入口網站中刪除 DNS 區域時，將不會刪除 DNS 區域相關聯的資源群組。
 
 
+## 後續步驟
+
+建立 DNS 區域之後，請建立[記錄集和記錄](dns-getstarted-create-recordset-portal.md)，以開始解析您的網際網路網域名稱。
+
+<!---HONumber=AcomDC_0817_2016-->

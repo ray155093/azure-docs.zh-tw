@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Authoring Templates with Windows VM extensions | Microsoft Azure"
-   description="Learn about authoring Azure Resource Manager templates with extensions for Windows VMs"
+   pageTitle="使用 Windows VM 擴充功能編寫範本 | Microsoft Azure"
+   description="了解如何使用 Windows VM 擴充功能編寫 Azure Resource Manager 範本"
    services="virtual-machines-windows"
    documentationCenter=""
    authors="kundanap"
@@ -17,42 +17,37 @@
    ms.date="03/29/2016"
    ms.author="kundanap"/>
 
-
-# <a name="authoring-azure-resource-manager-templates-with-windows-vm-extensions"></a>Authoring Azure Resource Manager templates with Windows VM extensions
+# 使用 Windows VM 擴充功能編寫 Azure Resource Manager 範本
 
 [AZURE.INCLUDE [virtual-machines-common-extensions-authoring-templates](../../includes/virtual-machines-common-extensions-authoring-templates.md)]
 
-From Azure PowerShell, run the following Azure PowerShell cmdlet:
+從 Azure PowerShell，執行下列 Azure PowerShell Cmdlet：
 
       Get-AzureVMAvailableExtension
 
 
-This cmdlet returns the publisher name, extension name, and version as follows:
+此 Cmdlet 會傳回發行者名稱、擴充功能名稱和版本，如下所示：
 
       Publisher                   : Microsoft.Azure.Extensions  
       ExtensionName               : DockerExtension
       Version                     : 1.0
 
-These three properties map to "publisher", "type", and "typeHandlerVersion" respectively in the above template snippet.
+這三個屬性分別對應至上述範本程式碼片段中的 "publisher"、"type" 和 "typeHandlerVersion"。
 
->[AZURE.NOTE]It's always recommended to use the latest extension version to get the most updated functionality.
+>[AZURE.NOTE]建議一律使用最新的擴充功能版本，以取得最新的功能。
 
-## <a name="identifying-the-schema-for-the-extension-configuration-parameters"></a>Identifying the schema for the extension configuration parameters
+## 識別擴充功能組態參數的結構描述
 
-The next step with authoring an extension template is to identify the format for providing configuration parameters. Each extension supports its own set of parameters.
+編寫擴充功能範本的下一個步驟是識別用於提供組態參數的格式。每個延伸模組都支援自己的參數集。
 
-To look at sample configurations for Windows extensions, see [Windows extensions samples](virtual-machines-windows-extensions-configuration-samples.md).
-
-
-Please refer to the following to get a fully complete template with VM extensions.
-
-[Custom Script Extension on a Windows VM](https://github.com/Azure/azure-quickstart-templates/blob/b1908e74259da56a92800cace97350af1f1fc32b/201-list-storage-keys-windows-vm/azuredeploy.json/)
+若要查看 Windows 擴充功能的範例組態，請按一下 [Windows 擴充功能範例](virtual-machines-windows-extensions-configuration-samples.md)。
 
 
-After authoring the template, you can deploy it using Azure PowerShell.
+請參閱下列項目以取得 VM 擴充功能的完整範本。
+
+[Windows VM 上的自訂指令碼延伸模組](https://github.com/Azure/azure-quickstart-templates/blob/b1908e74259da56a92800cace97350af1f1fc32b/201-list-storage-keys-windows-vm/azuredeploy.json/)
 
 
+編寫範本之後，您可以使用 Azure PowerShell 部署它。
 
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0601_2016-->

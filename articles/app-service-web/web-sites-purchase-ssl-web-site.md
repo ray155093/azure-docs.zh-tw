@@ -1,225 +1,212 @@
 <properties
-    pageTitle="Buy and Configure an SSL Certificate for your Azure App Service"
-    description="Learn how to Buy and Configure an SSL Certificate for your Azure App Service."
-    services="app-service"
-    documentationCenter=".net"
-    authors="apurvajo"
-    manager="stefsch"
-    editor="cephalin"
-    tags="buy-ssl-certificates"/>
+	pageTitle="購買並設定您的 Azure App Service 的 SSL 憑證"
+	description="了解如何購買並設定您的 Azure App Service 的 SSL 憑證。"
+	services="app-service"
+	documentationCenter=".net"
+	authors="apurvajo"
+	manager="stefsch"
+	editor="cephalin"
+	tags="buy-ssl-certificates"/>
 
 <tags
-    ms.service="app-service"
-    ms.workload="na"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/19/2016"
-    ms.author="apurvajo"/>
+	ms.service="app-service"
+	ms.workload="na"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/01/2016"
+	ms.author="apurvajo"/>
 
-
-#<a name="buy-and-configure-an-ssl-certificate-for-your-azure-app-service"></a>Buy and Configure an SSL Certificate for your Azure App Service
+#購買並設定您的 Azure App Service 的 SSL 憑證
 
 > [AZURE.SELECTOR]
-- [Buy SSL cert in Azure](web-sites-purchase-ssl-web-site.md)
-- [Use SSL cert from elsewhere](web-sites-configure-ssl-certificate.md)
+- [在 Azure 中購買 SSL 憑證](web-sites-purchase-ssl-web-site.md)
+- [使用來自其他位置的 SSL 憑證](web-sites-configure-ssl-certificate.md)
 
-By default, **[Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)** already enables HTTPS for your web app with a wildcard certificate for the *.azurewebsites.net domain. If you don't plan to configure a custom domain, then you can benefit from the default HTTPS certificate. However, like all *[wildcard domains](https://casecurity.org/2014/02/26/pros-and-cons-of-single-domain-multi-domain-and-wildcard-certificates), it is not as secure as using a custom domain with your own certificate. Azure App Service now provides you a really simplified way to purchase and manage an SSL certificate right from Azure Portal without ever leaving the portal.  
-This article explains how to buy and configure an SSL Certificate for your **[Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)** in 3 simple steps. 
+根據預設，**[Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)** 已使用 *.azurewebsites.net 網域的萬用字元憑證來啟用您 Web 應用程式的 HTTPS。如果您不打算設定自訂網域，您可以直接利用預設的 HTTPS 憑證。但是，就像*[所有萬用字元網域](https://casecurity.org/2014/02/26/pros-and-cons-of-single-domain-multi-domain-and-wildcard-certificates)一樣，這並不如使用自訂網域搭配自己的憑證那麼安全。Azure App Service 現在提供購買及管理 SSL 憑證真正簡易的方法，就是從 Azure 入口網站，完全不用離開入口網站。本文說明如何使用 3 個簡單的步驟，來購買並設定 **[Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714)** 的 SSL 憑證。
 
 > [AZURE.NOTE]
-> SSL Certificates for Custom domain names cannot be used with Free and Shared web app. You must configure your web app for Basic, Standard or Premium mode, which may change how much you are billed for your subscription. See **[Web Apps Pricing Details](https://azure.microsoft.com/pricing/details/web-sites/)** for more information.
+自訂網域名稱的 SSL 憑證無法搭配免費和共用的 Web 應用程式使用。您必須將 Web 應用程式設定為 [基本]、[標準] 或 [進階] 模式，但這可能會變更您的訂用帳戶費用。如需詳細資訊，請參閱 **[Web Apps 定價詳細資料](https://azure.microsoft.com/pricing/details/web-sites/)**。
 
 
 
-##<a name="<a-name="bkmk_overview"></a>overview"></a><a name="bkmk_Overview"></a>Overview
+##<a name="bkmk_Overview"></a>概觀
 > [AZURE.NOTE]
-> Please do not attempt to purchase an SSL Certificate using a subscription that does not have an Active Credit Card associated with it. This could result in your subscription being disabled. 
+請不要嘗試使用沒有與作用中信用卡相關聯的訂用帳戶購買 SSL 憑證。這可能會導致您的訂用帳戶被停用。
 
-##<a name="<a>-purchase,-store-and-assign-an-ssl-certificate-for-your-custom-domain-</a>"></a><a> Purchase, Store and Assign an SSL Certificate for your custom domain </a>
-To enable HTTPS for a custom domain, such as contoso.com, you must first **[configure a custom domain name in Azure App Service.](web-sites-custom-domain-name.md)**
+##<a> 購買、儲存及指派您自訂網域的 SSL 憑證 </a>
+若要為自訂網域 (如 contoso.com) 啟用 HTTPS，首先必須**[在 Azure App Service 中設定自訂網域名稱](web-sites-custom-domain-name.md)**。
 
-Before requesting an SSL certificate, you must first determine which domain names will be secured by the certificate. This will determine what type of certificate you must obtain. If you just need to secure a single domain name such as contoso.com or www.contoso.com a Standard (basic) certificate is sufficient. If you need to secure multiple domain names, such as contoso.com, www.contoso.com, and mail.contoso.com, then you can get a **[wildcard certificate](http://en.wikipedia.org/wiki/Wildcard_certificate)**
+在要求 SSL 憑證之前，您必須先決定有哪些網域名稱要由該憑證保護。這將決定您必須取得的憑證類型。如果您只需要保護單一網域名稱 (如 contoso.com 或 www.contoso.com)，則標準 (基本) 憑證就已足夠。如果您需要保護多個網域名稱 (如 contoso.com、www.contoso.com 與 mail.contoso.com)，則您可以取得**[萬用字元憑證](http://en.wikipedia.org/wiki/Wildcard_certificate)**
 
-##<a name="<a-name="bkmk_purchasecert"></a>step-0:-place-an-ssl-certificate-order"></a><a name="bkmk_purchasecert"></a>Step 0: Place an SSL certificate order
+##<a name="bkmk_purchasecert"></a>步驟 0：訂購 SSL 憑證
 
-In this Step, you will learn how to place an Order for an SSL Certificate of your choice.
+在此步驟中，您將學習如何訂購您選擇的 SSL 憑證。
 
-1.  In the **[Azure Portal](https://portal.azure.com/)**, click Browse and Type “App Service Certificates” in search bar and select “App Service Certificates” from the result and Click Add. 
+1.	在 **[Azure 入口網站](https://portal.azure.com/)**中按一下 [瀏覽]、在搜尋列中輸入「App Service 憑證」、從結果中選取 [App Service 憑證]，然後按一下 [新增]。
 
-    ![insert image of create using browse](./media/app-service-web-purchase-ssl-web-site/browse.jpg)
+    ![插入使用瀏覽建立的影像](./media/app-service-web-purchase-ssl-web-site/browse.jpg)
 
-    ![insert image of create using browse](./media/app-service-web-purchase-ssl-web-site/add.jpg)
+    ![插入使用瀏覽建立的影像](./media/app-service-web-purchase-ssl-web-site/add.jpg)
 
-2.  Enter **friendly name** for your SSL Certificate.
+2.	為 SSL 憑證提供**易記名稱**。
 
-3.  Enter **Host Name**
+3.	輸入**主機名稱**
 > [AZURE.NOTE]
-    This is one of the most critical parts of the purchase process. Make sure to enter correct host name (custom domain) that you want to protect with this certificate. **DO NOT** append the Host name with WWW. For example, if your custom domain name is www.contoso.com then just enter contoso.com in the Host Name field, the certificate in question will protect both www and root domains. 
+    這是購買程序中其中一個最重要的部分。請務必輸入您想要使用此憑證保護的正確主機名稱 (自訂網域)。**請勿**在主機名稱上附加 WWW。例如，如果您的自訂網域名稱為 www.contoso.com，則只要在 [主機名稱] 欄位中輸入 contoso.com，憑證會保護 www 和根網域。
     
-4.  Select your **subscription**. 
+4.	選取您的**訂用帳戶**。
 
-    If you have multiple subscriptions, then make sure to create an SSL Certificate in the same subscription that you have used for your custom domain or Web App in question.
+    如果您有多個訂用帳戶，請務必在您用於自訂網域或 Web 應用程式的相同訂用帳戶中建立 SSL 憑證。
        
-5.  Select or create a **resource group**.
+5.	選取或建立**資源群組**。
 
-    Resource groups enable you to manage related Azure resources as a unit and are useful when establishing role-based access control (RBAC) rules for your apps. For more information, see Managing your Azure resources.
+    資源群組可讓您以單位的形式管理相關的 Azure 資源，並可在您為應用程式建立角色型存取控制 (RBAC) 規則時發揮效用。如需詳細資訊，請參閱「管理 Azure 資源」。
      
-6.  Select the **Certificate SKU** 
+6.	選取 [憑證 SKU]。
 
-    Finally, select the certificate SKU that fits your need and click Create. Today, Azure App Service allows you to purchase two different SKUs •    S1 – Standard Certificate with 1-year validity and auto renewal  
-           •    W1 – Wild card Certificate with 1-year validity and auto renewal      
-    See **[Web Apps Pricing Details](https://azure.microsoft.com/pricing/details/web-sites/)** for more information.
+    最後，選取符合您需求的憑證 SKU，然後按一下 [建立]。現在，Azure App Service 可讓您購買兩個不同 SKU • S1 – 1 年有效期和自動續約的標準憑證 • W1 – 1 年有效期和自動續約的萬用字元憑證。如需詳細資訊，請參閱 **[Web Apps 定價詳細資料](https://azure.microsoft.com/pricing/details/web-sites/)**。
 
-![insert image of certificate SKU](./media/app-service-web-purchase-ssl-web-site/SKU.jpg)
+![插入憑證 SKU 的影像](./media/app-service-web-purchase-ssl-web-site/SKU.jpg)
 
 > [AZURE.NOTE]
-> SSL Certificate creation will take anywhere from 1 – 10 minutes. This process performs multiple steps in background that are otherwise very cumbersome to perform manually.  
+建立 SSL 憑證需要 1 - 10 分鐘。此程序會在背景中執行多個步驟，若手動執行這些步驟有些繁複。
 
-##<a name="<a-name="bkmk_storekeyvault"></a>step-1:-store-the-certificate-in-azure-key-vault"></a><a name="bkmk_StoreKeyVault"></a>Step 1: Store the certificate in Azure Key Vault
+##<a name="bkmk_StoreKeyVault"></a>步驟 1：將憑證儲存至 Azure 金鑰保存庫
 
-In this Step, you will learn how to place an Store an SSL Certificate that you purchased to Azure Key Vault of your choice.
+在此步驟中，您將學習如何訂購 SSL 憑證，並將其儲存至您選擇的 Azure 金鑰保存庫。
 
-1.  Once the SSL Certificate purchase is complete You will need to manually open **App Service Certificates** Resource blade by browsing to it again (See Step 1 above)   
+1.	完成 SSL 憑證購買程序之後，您必須手動開啟 [App Service 憑證] 資源刀鋒視窗，方法是再瀏覽一次 (請參閱上述「步驟 1」)
 
-    ![insert image of ready to store in KV](./media/app-service-web-purchase-ssl-web-site/ReadyKV.jpg)
+    ![插入準備在 KV 中儲存的影像](./media/app-service-web-purchase-ssl-web-site/ReadyKV.jpg)
 
-    You will notice that Certificate status is **“Pending Issuance”** as there are few more steps you need to complete before you can start using this certificates.
+    您會注意到憑證狀態是「暫止發行」，因為您必須先完成一些其他的步驟，才能開始使用此憑證。
  
-2. Click on **“Certificate Configuration”** inside Certificate Properties blade and Click on **“Step 1: Store”** to store this certificate in Azure Key Vault.
+2. 按一下 [憑證內容] 刀鋒視窗內的 [憑證設定]，然後按一下 [步驟 1：儲存]，將此憑證儲存至 Azure 金鑰保存庫。
 
-3.  From **“Key Vault Status”** Blade click on **“Key Vault Repository”** to choose an existing Key Vault to store this certificate **OR “Create New Key Vault”** to create new Key Vault inside same subscription and resource group.
+3.	從 [金鑰保存庫狀態] 刀鋒視窗中按一下 [金鑰保存庫儲存機制]，選擇要儲存此憑證的現有金鑰保存庫，或者選擇 [建立新的金鑰保存庫]，在相同訂用帳戶和資源群組內建立新的金鑰保存庫。
  
-    ![insert image of create new KV](./media/app-service-web-purchase-ssl-web-site/NewKV.jpg)
+    ![插入建立新 KV 的影像](./media/app-service-web-purchase-ssl-web-site/NewKV.jpg)
  
     > [AZURE.NOTE]
-    Azure Key Vault has very minimal charges for storing this certificate. See **[Azure Key Vault Pricing Details](https://azure.microsoft.com/pricing/details/key-vault/)** for more information.
+    Azure 金鑰保存庫儲存此憑證會產生少許費用。如需詳細資訊，請參閱 **[Azure 金鑰保存庫定價詳細資料](https://azure.microsoft.com/pricing/details/key-vault/)**。
 
-4. Once you have selected the Key Vault Repository to store this certificate in, go ahead and store it by clicking on **“Store”** button at the top of **“Key Vault Status”** blade.  
+4. 當您選取要儲存此憑證的金鑰保存庫儲存機制之後，請繼續進行並加以儲存，方法是按一下 [金鑰保存庫狀態] 刀鋒視窗頂端的 [儲存] 按鈕。
 
-    This should complete step to storing the Certificate you purchased with Azure Key Vault of your choice. Upon refreshing the Blade, you should see Green Check mark against this step as well.
+    這樣應該就完成使用您選擇的 Azure 金鑰保存庫儲存您購買的憑證的步驟。在重新整理刀鋒視窗時，您應該會看到此步驟也標示綠色勾號。
     
-##<a name="<a-name="bkmk_verifyownership"></a>step-2:-verify-the-domain-ownership"></a><a name="bkmk_VerifyOwnership"></a>Step 2: Verify the Domain Ownership
+##<a name="bkmk_VerifyOwnership"></a>步驟 2︰確認網域擁有權
 
-In this Step, you will learn how to perform Domain Ownership Verification for an SSL Certificate that you just placed an order for. 
+在此步驟中，您將學習如何對您剛剛訂購的 SSL 憑證執行網域擁有權驗證。
 
-1.  Click on **“Step 2: Verify”** Step from the **“Certificate Configuration”** Blade. There are 4 types of domain Verification supported by App Service Certificates.
+1.	從 [憑證設定] 刀鋒視窗按一下 [步驟 2：驗證] 步驟。App Service 憑證支援 4 種類型的網域驗證。
 
-    * **App Service Verification** 
+    * **App Service 驗證**
     
-        * This is the most convenient process if you already have **your custom domain assigned to the App Service Apps.** This method will list out all the App Service Apps that meet this criteria. 
-           For example, in this case, **contosocertdemo.com** is a custom domain assigned to App Service App called **“ContosoCertDemo”** and hence that’s the only App Service App listed here. If there were multi-region deployment, then it would list them all across the regions.
+        * 如果您已經有**指派給 App Service 應用程式的自訂網域**，則這是最方便的程序。 這個方法將會列出符合此準則的所有 App Service 應用程式。例如，在此案例中，**contosocertdemo.com** 是一個自訂網域，且已將其指派給名為 **"ContosoCertDemo"** 的 App Service 應用程式，所以它是這裡唯一列出的 App Service 應用程式。如果有多重區域部署，則它會列出跨區域的所有項目。
         
-           The verification method is ONLY available for Standard (Basic) certificate purchases. For Wild Card Certificates, please skip and move to option B, C or D below.
-        * Click on **“Verify”** button to complete this step.
-        * Click on **“Refresh”** to update the Certificate status after verification is completed. It might take few minutes for verification to complete.
+           驗證方法僅適用於標準 (基本) 憑證購買。對於萬用字元憑證，請略過並移至以下的選項 B、C 或 D。
+        * 按一下 [驗證] 按鈕來完成這個步驟。
+        * 按一下 [重新整理]，在完成驗證之後更新憑證狀態。驗證可能需要數分鐘才能完成。
         
-        ![insert image of App Service Verification](./media/app-service-web-purchase-ssl-web-site/AppVerify.jpg)     
+        ![插入 App Service 驗證的影像](./media/app-service-web-purchase-ssl-web-site/AppVerify.jpg)
 
-    * **Domain Verification** 
+    * **網域驗證**
 
-        * This is the most convenient process **ONLY IF** you have **[purchased your custom domain from Azure App Service.](custom-dns-web-site-buydomains-web-app.md)**
+        * **只有在**您已經**[從 Azure App Service 購買自訂網域](custom-dns-web-site-buydomains-web-app.md)**時，這才是最方便的程序。
         
-        * Click on **“Verify”** button to complete this step.
+        * 按一下 [驗證] 按鈕來完成這個步驟。
         
-        * Click on **“Refresh”** to update the Certificate status after verification is completed. It might take few minutes for verification to complete.
+        * 按一下 [重新整理]，在完成驗證之後更新憑證狀態。驗證可能需要數分鐘才能完成。
 
-    * **Mail Verification**
+    * **郵件驗證**
         
-        * Verification email has already been sent to the Email Address(es) associated with this custom domain.
+        * 驗證電子郵件已傳送到與此自訂網域相關聯的電子郵件地址。
          
-        * Open the email and Click on the verification link to complete the Email Verification step. 
+        * 開啟電子郵件，然後按一下驗證連結，以完成電子郵件驗證步驟。
         
-        * If you need to resend the verification email, Click on the **"Resend Email"** button.
+        * 如果您需要重新傳送驗證電子郵件，請按一下 [重新傳送電子郵件] 按鈕。
          
-    * **Manual Verification**    
+    * **手動驗證**
                  
-        1. **HTML Web Page Verification**
+        1. **HTML 網頁驗證**
         
-            * Create an HTML file named **{Domain Verification Token}**.html (You can copy the token from he Domain Verification Status Blade)
+            * 建立名為 **{網域驗證權杖}**.html 的 HTML 檔案 (您可以從 [網域驗證狀態] 刀鋒視窗複製權杖)
             
-            * Content of this file should be the exact same name of **Domain Verification Token**.
+            * 此檔案的名稱應該與 [網域驗證權杖] 的名稱完全相同。
             
-            * Upload this file at the root of the web server hosting your domain.
+            * 在主控您的網域的 Web 伺服器的根目錄上傳此檔案。
             
-            * Click on **“Refresh”** to update the Certificate status after verification is completed. It might take few minutes for verification to complete.
+            * 按一下 [重新整理]，在完成驗證之後更新憑證狀態。驗證可能需要數分鐘才能完成。
             
-            For example, if you are buying a standard certificate for contosocertdemo.com with Domain Verification Token **‘cAGgQrKc’** then a web request made to **‘http://contosocertdemo.com/cAGgQrKc.html’** should return **cAGgQrKc.**
-        2. **DNS TXT Record Verification**
+            例如，如果您為具有網域驗證權杖 **‘cAGgQrKc’** 的 contosocertdemo.com 購買標準憑證，則對 **‘http://contosocertdemo.com/cAGgQrKc.html’** 所做的 Web 要求應該會傳回 **cAGgQrKc**。
+        2. **DNS TXT 記錄驗證**
 
-            * Using your DNS manager, Create a TXT record on the **‘DZC’** subdomain with value equal to the **Domain Verification Token.**
+            * 使用 DNS 管理員，在具有與 [網域驗證權杖] 相同值的 [DZC] 子網域上建立 TXT 記錄。
             
-            * Click on **“Refresh”** to update the Certificate status after verification is completed. It might take few minutes for verification to complete.
+            * 按一下 [重新整理]，在完成驗證之後更新憑證狀態。驗證可能需要數分鐘才能完成。
                               
-            For example, in order to perform validation for a wildcard certificate with hostname **\*.contosocertdemo.com** or **\*.subdomain.contosocertdemo.com** and Domain Verification Token **cAGgQrKc**, you need to create a TXT record on dzc.contosocertdemo.com with value **cAGgQrKc.**     
+            例如，若要對具有主機名稱 ***.contosocertdemo.com** 或 ***.subdomain.contosocertdemo.com** 且網域驗證權杖為 **cAGgQrKc** 的萬用字元憑證執行驗證，您必須在值為 **cAGgQrKc** 的 dzc.contosocertdemo.com 上建立 TXT 記錄。
 
 
-##<a name="<a-name="bkmk_assigncertificate"></a>step-3:-assign-certificate-to-app-service-app"></a><a name="bkmk_AssignCertificate"></a>Step 3: Assign Certificate to App Service App
+##<a name="bkmk_AssignCertificate"></a>步驟 3︰將憑證指派給 App Service 應用程式
 
-In this Step, you will learn how to assign this newly purchased certificate to your App Service Apps. 
+在此步驟中，您將學習如何將這個新購買的憑證指派給您的 App Service 應用程式。
 
 > [AZURE.NOTE]
-> Before performing the steps in this section, you must have associated a custom domain name with your app. For more information, see **[Configuring a custom domain name for a web app.](web-sites-custom-domain-name.md)**
+在執行本節中的步驟之前，您必須先建立自訂網域名稱與應用程式的關聯。如需詳細資訊，請參閱**[設定 Web 應用程式的自訂網域名稱](web-sites-custom-domain-name.md)**。
 
-1.  In your browser, open the **[Azure Portal.](https://portal.azure.com/)**
-2.  Click the **App Service** option on the left side of the page.
-3.  Click the name of your app to which you want to assign this certificate. 
-4.  In the **Settings**, Click **SSL certificates**
-5.  Click **Import App Service Certificate** and select the Certificate that you just purchased
+1.	在瀏覽器中，開啟 **[Azure 入口網站](https://portal.azure.com/)**。
+2.	按一下頁面左側的 [App Service] 選項。
+3.	按一下您要指派此憑證的應用程式的名稱。
+4.	在 [設定] 中，按一下 [SSL 憑證]。
+5.	按一下 [匯入 App Service 憑證] 並選取您剛剛購買的憑證
 
-    ![insert image of Import Certificate](./media/app-service-web-purchase-ssl-web-site/ImportCertificate.png)
+    ![插入匯入憑證的影像](./media/app-service-web-purchase-ssl-web-site/ImportCertificate.png)
 
-6. In the **ssl bindings** section Click on **Add bindings**
-7. In the **Add SSL Binding** blade use the dropdowns to select the domain name to secure with SSL, and the certificate to use. You may also select whether to use **[Server Name Indication (SNI)](http://en.wikipedia.org/wiki/Server_Name_Indication)** or IP based SSL.
+6. 在 [SSL 繫結] 區段按一下 [新增繫結]
+7. 在 [新增 SSL 繫結] 刀鋒視窗中，使用下拉式清單選取要以 SSL 保護的網域名稱，以及要使用的憑證。您也可以選擇使用**[伺服器名稱指示 (SNI)](http://en.wikipedia.org/wiki/Server_Name_Indication)** 還是 IP SSL。
 
-    ![insert image of SSL Bindings](./media/app-service-web-purchase-ssl-web-site/SSLBindings.png)
+    ![插入 SSL 繫結的影像](./media/app-service-web-purchase-ssl-web-site/SSLBindings.png)
 
-       •    IP based SSL associates a certificate with a domain name by mapping the dedicated public IP address of the server to the domain name. This requires each domain name (contoso.com, fabricam.com, etc.) associated with your service to have a dedicated IP address. This is the traditional          method of associating SSL certificates with a web server.
-       •    SNI based SSL is an extension to SSL and **[Transport Layer Security](http://en.wikipedia.org/wiki/Transport_Layer_Security)** (TLS) that allows multiple domains to share the same IP address, with separate security certificates for each domain. Most modern browsers (including Internet Explorer, Chrome, Firefox and Opera) support SNI, however older browsers may not support SNI. For more information on SNI, see the **[Server Name Indication](http://en.wikipedia.org/wiki/Server_Name_Indication)** article on Wikipedia.
+       IP SSL 會將伺服器的專用公用 IP 位址對應至網域名稱，以建立憑證與網域名稱的關聯。這需要與您服務相關聯的每個網域名稱 (contoso.com、fabricam.com 等) 都有專用 IP 位址。這是傳統用來建立 SSL 憑證與網頁伺服器之關聯的方法。• SNI SSL 是 SSL 和**[傳輸層安全性](http://en.wikipedia.org/wiki/Transport_Layer_Security)** (TLS) 的延伸，可讓多個網域共用相同的 IP 位址，而每個網域都有個別的安全性憑證。現今大部分的瀏覽器 (包括 Internet Explorer、Chrome、Firefox 和 Opera) 都支援 SNI，不過，較舊的瀏覽器可能不支援 SNI。如需 SNI 的詳細資訊，請參閱 Wikipedia 上的**[伺服器名稱指示](http://en.wikipedia.org/wiki/Server_Name_Indication)**一文。
        
-7. Click **Add Binding** to save the changes and enable SSL.
+7. 按一下 [新增繫結]，儲存變更並啟用 SSL。
 
 
 
-If you selected **IP based SSL** and your custom domain is configured using an A record, you must perform the following additional steps:
+如果您已選取 [**IP SSL**]，而且您的自訂網域是以 A 記錄設定，則必須執行下列額外步驟：
 
-* After you have configured an IP based SSL binding, a dedicated IP address is assigned to your app. You can find this IP address on the **Custom domain** page under settings of your app, right above the **Hostnames** section. It will be listed as **External IP Address**
+* 設定 IP SSL 繫結之後，您的應用程式將會獲派專用的 IP 位址。您可以在應用程式設定下的 [自訂網域] 頁面上找到此 IP 位址，正好位於 [主機名稱] 區段上面。它將會列出成為 [外部 IP 位址]：
     
-    ![insert image of IP SSL](./media/app-service-web-purchase-ssl-web-site/virtual-ip-address.png)
+    ![插入 IP SSL 的影像](./media/app-service-web-purchase-ssl-web-site/virtual-ip-address.png)
 
-    Note that this IP address will be different than the virtual IP address used previously to configure the A record for your domain. If you are configured to use SNI based SSL, or are not configured to use SSL, no address will be listed for this entry.
+    請注意，此 IP 位址與先前用來設定您網域之 A 記錄的虛擬 IP 位址不同。如果您設定成使用 SNI SSL，或未設定成使用 SSL，則不會列出此項目的位址。
     
-2. Using the tools provided by your domain name registrar, modify the A record for your custom domain name to point to the IP address from the previous step.
-At this point, you should be able to visit your app using HTTPS:// instead of HTTP:// to verify that the certificate has been configured correctly.
+2. 使用網域名稱註冊機構所提供的工具，修改自訂網域名稱的 A 記錄，使其指向上一個步驟的 IP 位址。現在，您應該可以使用 HTTPS:// 而非 HTTP:// 造訪您的應用程式，確認已正確設定憑證。
 
 
-##<a name="<a-name="bkmk_rekey"></a>rekey-and-sync-the-certificate"></a><a name="bkmk_Rekey"></a>Rekey and Sync the Certificate
+##<a name="bkmk_Rekey"></a>重設金鑰和同步處理憑證
 
-1. For security reasons, if you ever need to Rekey your certificate then simply select **"Rekey and Sync"** option from **"Certificate Properties"** Blade. 
+1. 基於安全性理由，如果您需要重設憑證的金鑰，只要選取 [憑證內容] 刀鋒視窗的 [重設金鑰和同步處理] 選項。
 
-2. Click on **"Rekey"** Button to initiate the process. This process can take 1-10 minutes to complete. 
+2. 按一下 [重設金鑰] 按鈕來啟動處理程序。此程序需要 1 - 10 分鐘才能完成。
 
-    ![insert image of ReKey SSL](./media/app-service-web-purchase-ssl-web-site/Rekey.jpg)
+    ![插入重設 SSL 金鑰的影像](./media/app-service-web-purchase-ssl-web-site/Rekey.jpg)
 
-3. Rekeying your certificate will roll the certificate with a new certificate issued from the certificate authority.
-4. You will not be charged for the Rekeying for the lifetime of the certificate. 
-5. Rekeying your certificate will go through Pending Issuance state. 
-6. Once the certificate is ready make sure you sync your resources using this certificate to prevent disruption to the service.
-7. Sync option is not available for Certificates that are not yet assigned to the Web App. 
+3. 重設您的憑證的金鑰，會以憑證授權單位發行的新憑證變更憑證。
+4. 在憑證的存留期期間，不會向您收取重設金鑰的費用。
+5. 重設您的憑證的金鑰會經歷 [暫止發行] 狀態。
+6. 憑證準備就緒後，請確定使用此憑證同步處理您的資元，以避免服務中斷。
+7. 同步處理選項不適用於尚未指派到 Web 應用程式的憑證。
 
-## <a name="more-resources"></a>More Resources ##
-- [Enable HTTPS for an app in Azure App Service](web-sites-configure-ssl-certificate.md)
-- [Buy and Configure a custom domain name in Azure App Service](custom-dns-web-site-buydomains-web-app.md)
-- [Microsoft Azure Trust Center](/support/trust-center/security/)
-- [Configuration options unlocked in Azure Web Sites](http://azure.microsoft.com/blog/2014/01/28/more-to-explore-configuration-options-unlocked-in-windows-azure-web-sites/)
-- [Azure Management Portal](https://manage.windowsazure.com)
+## 其他資源 ##
+- [針對 Azure App Service 中的 App 啟用 HTTPS](web-sites-configure-ssl-certificate.md)
+- [在 Azure App Service 中購買並設定自訂網域名稱](custom-dns-web-site-buydomains-web-app.md)
+- [Microsoft Azure 信任中心](/support/trust-center/security/)
+- [Azure 網站中解除鎖定的設定選項](http://azure.microsoft.com/blog/2014/01/28/more-to-explore-configuration-options-unlocked-in-windows-azure-web-sites/)
+- [Azure 管理入口網站](https://manage.windowsazure.com)
 
->[AZURE.NOTE] If you want to get started with Azure App Service before signing up for an Azure account, go to [Try App Service](http://go.microsoft.com/fwlink/?LinkId=523751), where you can immediately create a short-lived starter web app in App Service. No credit cards required; no commitments.
+>[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；沒有承諾。
 
-
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

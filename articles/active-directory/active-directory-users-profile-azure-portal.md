@@ -1,56 +1,51 @@
 <properties
-    pageTitle="Add or change profile information for a user in Azure Active Directory preview | Microsoft Azure"
-    description="Explains how to add the user profile, including profile picture, in Azure Active Directory"
-    services="active-directory"
-    documentationCenter=""
-    authors="curtand"
-    manager="femila"
-    editor=""/>
+	pageTitle="在 Azure Active Directory 預覽版中新增或變更使用者的設定檔資訊 | Microsoft Azure"
+	description="說明如何在 Azure Active Directory 中新增使用者設定檔，包括設定檔圖片"
+	services="active-directory"
+	documentationCenter=""
+	authors="curtand"
+	manager="femila"
+	editor=""/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/12/2016"
-    ms.author="curtand"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/12/2016"
+	ms.author="curtand"/>
 
+# 在 Azure Active Directory 預覽版中新增或變更使用者的設定檔資訊
 
-# <a name="add-or-change-profile-information-for-a-user-in-azure-active-directory-preview"></a>Add or change profile information for a user in Azure Active Directory preview
+本文說明如何在 Azure Active Directory (Azure AD) 預覽版中，新增使用者設定檔資訊，例如設定檔圖片、電話號碼及電子郵件驗證資訊。[預覽版有何功能？](active-directory-preview-explainer.md) 如需有關如何在您組織中新增新使用者的資訊，請參閱[將新的使用者新增到 Azure Active Directory](active-directory-users-create-azure-portal.md)。
 
-This article explains how to add user profile information, such as a profile picture or phone and email authentication information, in Azure Active Directory (Azure AD) preview. [What's in the preview?](active-directory-preview-explainer.md) For information about adding new users in your organization, see [Add new users to Azure Active Directory](active-directory-users-create-azure-portal.md).
+## 如何變更設定檔資訊
 
-## <a name="how-to-change-profile-information"></a>How to change profile information
+1.  使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com)。
 
-1.  Sign in to the [Azure portal](https://portal.azure.com) with an account that's a global admin for the directory.
+2.  選取 [更多服務]，在文字方塊中輸入「使用者和群組」，然後選取 **Enter**。
 
-2.  Select **More services**, enter **Users and groups** in the text box, and then select **Enter**.
+    ![開啟使用者管理](./media/active-directory-users-profile-azure-portal/create-users-user-management.png)
 
-    ![Opening user management](./media/active-directory-users-profile-azure-portal/create-users-user-management.png)
+3.  在 [使用者和群組] 刀鋒視窗上，選取 [使用者]*。
 
-3.  On the **Users and groups*** blade, select **Users**.
+    ![開啟 [使用者] 刀鋒視窗](./media/active-directory-users-profile-azure-portal/create-users-open-users-blade.png)
 
-    ![Opening the Users blade](./media/active-directory-users-profile-azure-portal/create-users-open-users-blade.png)
+4. 在 [使用者和群組 - 使用者] 刀鋒視窗上，從清單中選取一個使用者。
 
-4. On the **Users and groups - Users** blade, select a user from the list.
+5. 在所選使用者的刀鋒視窗上，選取 [設定檔]。
 
-5. On the blade for the selected user, select **Profile**.
+    ![開啟 [工作資訊]](./media/active-directory-users-profile-azure-portal/active-directory-create-users-profile.png)
 
-    ![Opening Work information](./media/active-directory-users-profile-azure-portal/active-directory-create-users-profile.png)
+6. 新增或變更設定檔資訊，然後在命令列中選取 [儲存]。
 
-6. Add or change the profile information, and then in the command bar select **Save**.
+## 後續步驟
 
-## <a name="what's-next"></a>What's next
+- [新增使用者](active-directory-users-create-azure-portal.md)
+- [在新 Azure 入口網站中重設使用者的密碼](active-directory-users-reset-password-azure-portal.md)
+- [在 Azure AD 中將使用者指派給角色](active-directory-users-assign-role-azure-portal.md)
+- [變更使用者的工作資訊](active-directory-users-work-info-azure-portal.md)
+- [在 Azure AD 中刪除使用者](active-directory-users-delete-user-azure-portal.md)
 
-- [Add a user](active-directory-users-create-azure-portal.md)
-- [Reset a user's password in the new Azure portal](active-directory-users-reset-password-azure-portal.md)
-- [Assign a user to a role in your Azure AD](active-directory-users-assign-role-azure-portal.md)
-- [Change a user's work information](active-directory-users-work-info-azure-portal.md)
-- [Delete a user in your Azure AD](active-directory-users-delete-user-azure-portal.md)
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

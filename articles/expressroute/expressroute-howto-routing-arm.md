@@ -1,6 +1,6 @@
 <properties
-   pageTitle="How to configure routing for an ExpressRoute circuit | Microsoft Azure"
-   description="This article walks you through the steps for creating and provisioning the private, public and Microsoft peering of an ExpressRoute circuit. This article also shows you how to check the status, update, or delete peerings for your circuit."
+   pageTitle="如何設定 ExpressRoute 線路的路由 | Microsoft Azure"
+   description="本文將逐步引導您為 ExpressRoute 線路建立和佈建私用、公用及 Microsoft 對等。本文也示範如何檢查狀態、更新或刪除線路的對等。"
    documentationCenter="na"
    services="expressroute"
    authors="ganesr"
@@ -16,8 +16,7 @@
    ms.date="10/05/2016"
    ms.author="ganesr"/>
 
-
-# <a name="create-and-modify-routing-for-an-expressroute-circuit"></a>Create and modify routing for an ExpressRoute circuit
+# 建立和修改 ExpressRoute 線路的路由
 
 
 > [AZURE.SELECTOR]
@@ -27,386 +26,381 @@
 
 
 
-This article walks you through the steps to create and manage routing configuration for an ExpressRoute circuit using PowerShell and the Azure Resource Manager deployment model.  The steps below will also show you how to check the status, update, or delete and deprovision peerings for an ExpressRoute circuit. 
+本文將逐步引導您使用 PowerShell 和 Azure Resource Manager 部署模型，以建立和管理 ExpressRoute 線路的路由組態。下列步驟也會示範如何檢查狀態、更新或刪除和取消佈建 ExpressRoute 線路的對等。
 
 
-**About Azure deployment models**
+**關於 Azure 部署模型**
 
-[AZURE.INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)] 
+[AZURE.INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
 
-## <a name="configuration-prerequisites"></a>Configuration prerequisites
+## 組態必要條件
 
-- You will need the latest version of the Azure PowerShell modules, version 1.0 or later. 
-- Make sure that you have reviewed the [prerequisites](expressroute-prerequisites.md) page, the [routing requirements](expressroute-routing.md) page, and the [workflows](expressroute-workflows.md) page before you begin configuration.
-- You must have an active ExpressRoute circuit. Follow the instructions to [Create an ExpressRoute circuit](expressroute-howto-circuit-arm.md) and have the circuit enabled by your connectivity provider before you proceed. The ExpressRoute circuit must be in a provisioned and enabled state for you to be able to run the cmdlets described below.
+- 您需要最新版的 Azure PowerShell 模組 (版本 1.0 或更新版本)。
+- 開始設定之前，請確定您已經檢閱過[必要條件](expressroute-prerequisites.md)頁面、[路由需求](expressroute-routing.md)頁面和[工作流程](expressroute-workflows.md)頁面。
+- 您必須擁有作用中的 ExpressRoute 線路。繼續之前，請遵循指示來[建立 ExpressRoute 線路](expressroute-howto-circuit-arm.md)，並由您的連線提供者來啟用該線路。ExpressRoute 線路必須處於已佈建和已啟用狀態，您才能執行如下所述的 Cmdlet。
 
-These instructions only apply to circuits created with service providers offering Layer 2 connectivity services. If you are using a service provider offering managed Layer 3 services (typically an IPVPN, like MPLS), your connectivity provider will configure and manage routing for you.
+這些指示只適用於由提供第 2 層連線服務的服務提供者所建立的線路。如果您使用的服務提供者是提供受管理的第 3 層服務 (通常是 IPVPN，如 MPLS)，您的連線提供者會為您設定和管理路由。
 
->[AZURE.IMPORTANT] We currently do not advertise peerings configured by service providers through the service management portal. We are working on enabling this capability soon. Please check with your service provider before configuring BGP peerings.
+>[AZURE.IMPORTANT] 我們目前不會透過服務管理入口網站來公告服務提供者所設定的對等。我們正努力在近期推出這項功能。請在設定 BGP 對等之前，洽詢您的服務提供者。
 
-You can configure one, two, or all three peerings (Azure private, Azure public and Microsoft) for an ExpressRoute circuit. You can configure peerings in any order you choose. However, you must make sure that you complete the configuration of each peering one at a time. 
+您可以為 ExpressRoute 線路設定一個、兩個或全部三個對等 (Azure 私用、Azure 公用和 Microsoft)。您可以依自己選擇的任何順序設定對等。不過，您必須確定一次只完成一個對等的設定。
 
-## <a name="azure-private-peering"></a>Azure private peering
+## Azure 私用對等
 
-This section provides instructions on how to create, get, update, and delete the Azure private peering configuration for an ExpressRoute circuit. 
+本節提供如何為 ExpressRoute 線路建立、取得、更新和刪除 Azure 私用對等組態的指示。
 
-### <a name="to-create-azure-private-peering"></a>To create Azure private peering
+### 建立 Azure 私用對等
 
-1. Import the PowerShell module for ExpressRoute.
-    
-    You must install the latest PowerShell installer from [PowerShell Gallery](http://www.powershellgallery.com/) and import the Azure Resource Manager modules into the PowerShell session in order to start using the ExpressRoute cmdlets. You will need to run PowerShell as an Administrator.
+1. 匯入 ExpressRoute 的 PowerShell 模組。
+	
+ 	您必須從 [PowerShell 資源庫](http://www.powershellgallery.com/)安裝最新的 PowerShell 安裝程式並將 Azure Resource Manager 模組匯入至 PowerShell 工作階段，以開始使用 ExpressRoute Cmdlet。您必須以系統管理員身分執行 PowerShell。
 
-        Install-Module AzureRM
+	    Install-Module AzureRM
 
-        Install-AzureRM
+		Install-AzureRM
 
-    Import all of the AzureRM.* modules within the known semantic version range
+	匯入已知語意版本範圍內所有的 AzureRM.* 模組
 
-        Import-AzureRM
+		Import-AzureRM
 
-    You can also just import a select module within the known semantic version range 
-        
-        Import-Module AzureRM.Network 
+	您也可以只匯入已知語意版本範圍內選取的模組
+		
+		Import-Module AzureRM.Network 
 
-    Logon to your account
+	登入您的帳戶
 
-        Login-AzureRmAccount
+		Login-AzureRmAccount
 
-    Select the subscription you want to create ExpressRoute circuit
-        
-        Select-AzureRmSubscription -SubscriptionId "<subscription ID>"
+	選取您想要建立 ExpressRoute 線路的訂用帳戶
+		
+		Select-AzureRmSubscription -SubscriptionId "<subscription ID>"
 
-2. Create an ExpressRoute circuit.
-    
-    Follow the instructions to create an [ExpressRoute circuit](expressroute-howto-circuit-arm.md) and have it provisioned by the connectivity provider. 
+2. 建立 ExpressRoute 線路。
+	
+	請遵循指示建立 [ExpressRoute 線路](expressroute-howto-circuit-arm.md)，並由連線提供者佈建它。
 
-    If your connectivity provider offers managed Layer 3 services, you can request your connectivity provider to enable Azure private peering for you. In that case, you won't need to follow instructions listed in the next sections. However, if your connectivity provider does not manage routing for you, after creating your circuit, follow the instructions below. 
+	如果您的連線提供者是提供受管理的第 3 層服務，您可以要求連線提供者為您啟用 Azure 私用對等。在此情況下，您不需要遵循後續幾節所列的指示。不過，如果您的連線提供者不會為您管理路由，請在建立線路之後遵循下列指示。
 
-3. Check the ExpressRoute circuit to ensure it is provisioned.
+3. 檢查 ExpressRoute 線路以確定已佈建。
 
-    You must first check to see if the ExpressRoute circuit is Provisioned and also Enabled. See the example below.
+	您必須先檢查 ExpressRoute 線路是否為 Provisioned 和 Enabled。請參閱下方的範例。
 
-        Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
+		Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
 
-    The response will be something similar to the example below:
+	回應如下列範例所示：
 
-        Name                             : ExpressRouteARMCircuit
-        ResourceGroupName                : ExpressRouteResourceGroup
-        Location                         : westus
-        Id                               : /subscriptions/***************************/resourceGroups/ExpressRouteResourceGroup/providers/Microsoft.Network/expressRouteCircuits/ExpressRouteARMCircuit
-        Etag                             : W/"################################"
-        ProvisioningState                : Succeeded
-        Sku                              : {
-                                             "Name": "Standard_MeteredData",
-                                             "Tier": "Standard",
-                                             "Family": "MeteredData"
-                                           }
-        CircuitProvisioningState         : Enabled
-        ServiceProviderProvisioningState : Provisioned
-        ServiceProviderNotes             : 
-        ServiceProviderProperties        : {
-                                             "ServiceProviderName": "Equinix",
-                                             "PeeringLocation": "Silicon Valley",
-                                             "BandwidthInMbps": 200
-                                           }
-        ServiceKey                       : **************************************
-        Peerings                         : []
+		Name                             : ExpressRouteARMCircuit
+		ResourceGroupName                : ExpressRouteResourceGroup
+		Location                         : westus
+		Id                               : /subscriptions/***************************/resourceGroups/ExpressRouteResourceGroup/providers/Microsoft.Network/expressRouteCircuits/ExpressRouteARMCircuit
+		Etag                             : W/"################################"
+		ProvisioningState                : Succeeded
+		Sku                              : {
+		                                     "Name": "Standard_MeteredData",
+		                                     "Tier": "Standard",
+		                                     "Family": "MeteredData"
+		                                   }
+		CircuitProvisioningState         : Enabled
+		ServiceProviderProvisioningState : Provisioned
+		ServiceProviderNotes             : 
+		ServiceProviderProperties        : {
+		                                     "ServiceProviderName": "Equinix",
+		                                     "PeeringLocation": "Silicon Valley",
+		                                     "BandwidthInMbps": 200
+		                                   }
+		ServiceKey                       : **************************************
+		Peerings                         : []
 
 
-4. Configure Azure private peering for the circuit.
+4. 設定線路的 Azure 私用對等。
 
-    Make sure that you have the following items before you proceed with the next steps:
+	繼續執行接下來的步驟之前，請確定您有下列項目：
 
-    - A /30 subnet for the primary link. This must not be part of any address space reserved for virtual networks.
-    - A /30 subnet for the secondary link. This must not be part of any address space reserved for virtual networks.
-    - A valid VLAN ID to establish this peering on. Ensure that no other peering in the circuit uses the same VLAN ID.
-    - AS number for peering. You can use both 2-byte and 4-byte AS numbers. You can use a private AS number for this peering. Ensure that you are not using 65515.
-    - An MD5 hash if you choose to use one. **This is optional**.
-    
-    You can run the following cmdlet to configure Azure private peering for your circuit.
+	- 主要連結的 /30 子網路。這不能在保留給虛擬網路的任何位址空間中。
+	- 次要連結的 /30 子網路。這不能在保留給虛擬網路的任何位址空間中。
+	- 供建立此對等的有效 VLAN ID。請確定線路有沒有其他對等使用相同的 VLAN ID。
+	- 對等的 AS 編號。您可以使用 2 位元組和 4 位元組 AS 編號。您可以將私用 AS 編號用於此對等。請確定您不是使用 65515。
+	- MD5 雜湊 (如果選擇使用)。**這是選擇性的**。
+	
+	您可以執行下列 Cmdlet 來為線路設定 Azure 私用對等。
 
-        Add-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePrivatePeering" -Circuit $ckt -PeeringType AzurePrivatePeering -PeerASN 100 -PrimaryPeerAddressPrefix "10.0.0.0/30" -SecondaryPeerAddressPrefix "10.0.0.4/30" -VlanId 200
+		Add-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePrivatePeering" -Circuit $ckt -PeeringType AzurePrivatePeering -PeerASN 100 -PrimaryPeerAddressPrefix "10.0.0.0/30" -SecondaryPeerAddressPrefix "10.0.0.4/30" -VlanId 200
 
-        Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
+		Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
 
-    You can use the cmdlet below if you choose to use an MD5 hash.
+	如果您選擇使用 MD5 雜湊，您可以使用下列 Cmdlet。
 
-        Add-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePrivatePeering" -Circuit $ckt -PeeringType AzurePrivatePeering -PeerASN 100 -PrimaryPeerAddressPrefix "10.0.0.0/30" -SecondaryPeerAddressPrefix "10.0.0.4/30" -VlanId 200  -SharedKey "A1B2C3D4"
+		Add-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePrivatePeering" -Circuit $ckt -PeeringType AzurePrivatePeering -PeerASN 100 -PrimaryPeerAddressPrefix "10.0.0.0/30" -SecondaryPeerAddressPrefix "10.0.0.4/30" -VlanId 200  -SharedKey "A1B2C3D4"
 
-        Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
+		Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
 
-    >[AZURE.IMPORTANT] Ensure that you specify your AS number as peering ASN, not customer ASN.
+	>[AZURE.IMPORTANT] 請確定您將 AS 編號指定為對等 ASN，而不是客戶 ASN。
 
-### <a name="to-view-azure-private-peering-details"></a>To view Azure private peering details
+### 檢視 Azure 私用對等詳細資訊
 
-You can get configuration details using the following cmdlet
+您可以使用下列 Cmdlet 來取得組態詳細資料
 
-        $ckt = Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
+		$ckt = Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
 
-        Get-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePrivatePeering" -Circuit $ckt   
+		Get-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePrivatePeering" -Circuit $ckt	
 
 
-### <a name="to-update-azure-private-peering-configuration"></a>To update Azure private peering configuration
+### 更新 Azure 私用對等組態
 
-You can update any part of the configuration using the following cmdlet. In the example below, the VLAN ID of the circuit is being updated from 100 to 500.
+您可以使用下列 Cmdlet 來更新組態的任何部分。在下列範例中，線路的 VLAN ID 從 100 更新為 500。
 
-    Set-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePrivatePeering" -ExpressRouteCircuit $ckt -PeeringType AzurePrivatePeering -PeerASN 100 -PrimaryPeerAddressPrefix "10.0.0.0/30" -SecondaryPeerAddressPrefix "10.0.0.4/30" -VlanId 200
+	Set-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePrivatePeering" -ExpressRouteCircuit $ckt -PeeringType AzurePrivatePeering -PeerASN 100 -PrimaryPeerAddressPrefix "10.0.0.0/30" -SecondaryPeerAddressPrefix "10.0.0.4/30" -VlanId 200
 
-    Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
+	Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
 
 
-### <a name="to-delete-azure-private-peering"></a>To delete Azure private peering
+### 刪除 Azure 私用對等
 
-You can remove your peering configuration by running the following cmdlet.
+您可以執行下列 Cmdlet 來移除對等組態。
 
->[AZURE.WARNING] You must ensure that all virtual networks are unlinked from the ExpressRoute circuit before running this cmdlet. 
+>[AZURE.WARNING] 執行此 Cmdlet 之前，您必須確定所有虛擬網路都已經與 ExpressRoute 取消連結。
 
-    Remove-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePrivatePeering" -ExpressRouteCircuit $ckt
-    Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
+	Remove-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePrivatePeering" -ExpressRouteCircuit $ckt
+	Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
 
 
 
-## <a name="azure-public-peering"></a>Azure public peering
+## Azure 公用對等
 
-This section provides instructions on how to create, get, update and delete the Azure public peering configuration for an ExpressRoute circuit.
+本節提供如何為 ExpressRoute 線路建立、取得、更新和刪除 Azure 公用對等組態的指示。
 
-### <a name="to-create-azure-public-peering"></a>To create Azure public peering
+### 建立 Azure 公用對等
 
-1. Import the PowerShell module for ExpressRoute.
-    
-    You must install the latest PowerShell installer from [PowerShell Gallery](http://www.powershellgallery.com/) and import the Azure Resource Manager modules into the PowerShell session in order to start using the ExpressRoute cmdlets. You will need to run PowerShell as an Administrator.
+1. 匯入 ExpressRoute 的 PowerShell 模組。
+	
+ 	您必須從 [PowerShell 資源庫](http://www.powershellgallery.com/)安裝最新的 PowerShell 安裝程式並將 Azure Resource Manager 模組匯入至 PowerShell 工作階段，以開始使用 ExpressRoute Cmdlet。您必須以系統管理員身分執行 PowerShell。
 
-        Install-Module AzureRM
+	    Install-Module AzureRM
 
-        Install-AzureRM
+		Install-AzureRM
 
-    Import all of the AzureRM.* modules within the known semantic version range
+	匯入已知語意版本範圍內所有的 AzureRM.* 模組
 
-        Import-AzureRM
+		Import-AzureRM
 
-    You can also just import a select module within the known semantic version range 
-        
-        Import-Module AzureRM.Network 
+	您也可以只匯入已知語意版本範圍內選取的模組
+		
+		Import-Module AzureRM.Network 
 
-    Logon to your account
+	登入您的帳戶
 
-        Login-AzureRmAccount
+		Login-AzureRmAccount
 
-    Select the subscription you want to create ExpressRoute circuit
-        
-        Select-AzureRmSubscription -SubscriptionId "<subscription ID>"
+	選取您想要建立 ExpressRoute 線路的訂用帳戶
+		
+		Select-AzureRmSubscription -SubscriptionId "<subscription ID>"
 
-2. Create an ExpressRoute circuit.
-    
-    Follow the instructions to create an [ExpressRoute circuit](expressroute-howto-circuit-arm.md) and have it provisioned by the connectivity provider. 
+2. 建立 ExpressRoute 線路。
+	
+	請遵循指示建立 [ExpressRoute 線路](expressroute-howto-circuit-arm.md)，並由連線提供者佈建它。
 
-    If your connectivity provider offers managed Layer 3 services, you can request your connectivity provider to enable Azure public peering for you. In that case, you won't need to follow instructions listed in the next sections. However, if your connectivity provider does not manage routing for you, after creating your circuit, follow the instructions below.
+	如果您的連線提供者提供受管理的第 3 層服務，您可以要求連線提供者為您啟用 Azure 公用對等。在此情況下，您不需要遵循後續幾節所列的指示。不過，如果您的連線提供者不會為您管理路由，請在建立線路之後遵循下列指示。
 
-3. Check ExpressRoute circuit to ensure it is provisioned.
+3. 檢查 ExpressRoute 線路以確定已佈建。
 
-    You must first check to see if the ExpressRoute circuit is Provisioned and also Enabled. See the example below.
+	您必須先檢查 ExpressRoute 線路是否為 Provisioned 和 Enabled。請參閱下方的範例。
 
-        Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
+		Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
 
-    The response will be something similar to the example below:
+	回應如下列範例所示：
 
-        Name                             : ExpressRouteARMCircuit
-        ResourceGroupName                : ExpressRouteResourceGroup
-        Location                         : westus
-        Id                               : /subscriptions/***************************/resourceGroups/ExpressRouteResourceGroup/providers/Microsoft.Network/expressRouteCircuits/ExpressRouteARMCircuit
-        Etag                             : W/"################################"
-        ProvisioningState                : Succeeded
-        Sku                              : {
-                                             "Name": "Standard_MeteredData",
-                                             "Tier": "Standard",
-                                             "Family": "MeteredData"
-                                           }
-        CircuitProvisioningState         : Enabled
-        ServiceProviderProvisioningState : Provisioned
-        ServiceProviderNotes             : 
-        ServiceProviderProperties        : {
-                                             "ServiceProviderName": "Equinix",
-                                             "PeeringLocation": "Silicon Valley",
-                                             "BandwidthInMbps": 200
-                                           }
-        ServiceKey                       : **************************************
-        Peerings                         : []   
+		Name                             : ExpressRouteARMCircuit
+		ResourceGroupName                : ExpressRouteResourceGroup
+		Location                         : westus
+		Id                               : /subscriptions/***************************/resourceGroups/ExpressRouteResourceGroup/providers/Microsoft.Network/expressRouteCircuits/ExpressRouteARMCircuit
+		Etag                             : W/"################################"
+		ProvisioningState                : Succeeded
+		Sku                              : {
+		                                     "Name": "Standard_MeteredData",
+		                                     "Tier": "Standard",
+		                                     "Family": "MeteredData"
+		                                   }
+		CircuitProvisioningState         : Enabled
+		ServiceProviderProvisioningState : Provisioned
+		ServiceProviderNotes             : 
+		ServiceProviderProperties        : {
+		                                     "ServiceProviderName": "Equinix",
+		                                     "PeeringLocation": "Silicon Valley",
+		                                     "BandwidthInMbps": 200
+		                                   }
+		ServiceKey                       : **************************************
+		Peerings                         : []	
 
-4. Configure Azure public peering for the circuit.
+4. 設定線路的 Azure 公用對等。
 
-    Ensure that you have the following information before you proceed further.
+	進一步執行之前，請確定您具有下列資訊。
 
-    - A /30 subnet for the primary link. This must be a valid public IPv4 prefix.
-    - A /30 subnet for the secondary link. This must be a valid public IPv4 prefix.
-    - A valid VLAN ID to establish this peering on. Ensure that no other peering in the circuit uses the same VLAN ID.
-    - AS number for peering. You can use both 2-byte and 4-byte AS numbers.
-    - An MD5 hash if you choose to use one. **This is optional**.
-    
-    You can run the following cmdlet to configure Azure public peering for your circuit
+	- 主要連結的 /30 子網路。這必須是有效的公用 IPv4 首碼。
+	- 次要連結的 /30 子網路。這必須是有效的公用 IPv4 首碼。
+	- 供建立此對等的有效 VLAN ID。請確定線路有沒有其他對等使用相同的 VLAN ID。
+	- 對等的 AS 編號。您可以使用 2 位元組和 4 位元組 AS 編號。
+	- MD5 雜湊 (如果選擇使用)。**這是選擇性的**。
+	
+	您可以執行下列 Cmdlet 來為電路設定 Azure 公用對等
 
-        Add-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePublicPeering" -ExpressRouteCircuit $ckt -PeeringType AzurePublicPeering -PeerASN 100 -PrimaryPeerAddressPrefix "12.0.0.0/30" -SecondaryPeerAddressPrefix "12.0.0.4/30" -VlanId 100
+		Add-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePublicPeering" -ExpressRouteCircuit $ckt -PeeringType AzurePublicPeering -PeerASN 100 -PrimaryPeerAddressPrefix "12.0.0.0/30" -SecondaryPeerAddressPrefix "12.0.0.4/30" -VlanId 100
 
-        Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
+		Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
 
-    You can use the cmdlet below if you choose to use an MD5 hash
+	如果您選擇使用 MD5 雜湊，您可以使用下列 Cmdlet
 
-        Add-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePublicPeering" -ExpressRouteCircuit $ckt -PeeringType AzurePublicPeering -PeerASN 100 -PrimaryPeerAddressPrefix "12.0.0.0/30" -SecondaryPeerAddressPrefix "12.0.0.4/30" -VlanId 100  -SharedKey "A1B2C3D4"
+		Add-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePublicPeering" -ExpressRouteCircuit $ckt -PeeringType AzurePublicPeering -PeerASN 100 -PrimaryPeerAddressPrefix "12.0.0.0/30" -SecondaryPeerAddressPrefix "12.0.0.4/30" -VlanId 100  -SharedKey "A1B2C3D4"
 
-        Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
+		Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
 
 
-    >[AZURE.IMPORTANT] Ensure that you specify your AS number as peering ASN and not customer ASN.
+	>[AZURE.IMPORTANT] 請確定您將 AS 編號指定為對等 ASN，而不是客戶 ASN。
 
-### <a name="to-view-azure-public-peering-details"></a>To view Azure public peering details
+### 檢視 Azure 公用對等詳細資訊
 
-You can get configuration details using the following cmdlet
+您可以使用下列 Cmdlet 來取得組態詳細資料
 
-        $ckt = Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
+		$ckt = Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
 
-        Get-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePublicPeering" -Circuit $ckt
+		Get-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePublicPeering" -Circuit $ckt
 
 
-### <a name="to-update-azure-public-peering-configuration"></a>To update Azure public peering configuration
+### 更新 Azure 公用對等組態
 
-You can update any part of the configuration using the following cmdlet
+您可以使用下列 Cmdlet 來更新組態的任何部分
 
-    Set-AzureRmExpressRouteCircuitPeeringConfig  -Name "MicrosoftPeering" -ExpressRouteCircuit $ckt -PeeringType MicrosoftPeering -PeerASN 100 -PrimaryPeerAddressPrefix "123.0.0.0/30" -SecondaryPeerAddressPrefix "123.0.0.4/30" -VlanId 600 
+	Set-AzureRmExpressRouteCircuitPeeringConfig  -Name "MicrosoftPeering" -ExpressRouteCircuit $ckt -PeeringType MicrosoftPeering -PeerASN 100 -PrimaryPeerAddressPrefix "123.0.0.0/30" -SecondaryPeerAddressPrefix "123.0.0.4/30" -VlanId 600 
 
-    Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
+	Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
 
-The VLAN ID of the circuit is being updated from 200 to 600 in the above example.
+在上面的範例中，線路的 VLAN ID 從 200 更新為 600。
 
-### <a name="to-delete-azure-public-peering"></a>To delete Azure public peering
+### 刪除 Azure 公用對等
 
-You can remove your peering configuration by running the following cmdlet
+您可以執行下列 Cmdlet 來移除對等組態
 
-    Remove-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePublicPeering" -ExpressRouteCircuit $ckt
-    Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
+	Remove-AzureRmExpressRouteCircuitPeeringConfig -Name "AzurePublicPeering" -ExpressRouteCircuit $ckt
+	Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
 
-## <a name="microsoft-peering"></a>Microsoft peering
+## Microsoft 對等互連
 
-This section provides instructions on how to create, get, update and delete the Microsoft peering configuration for an ExpressRoute circuit. 
+本節提供如何為 ExpressRoute 線路建立、取得、更新和刪除 Microsoft 對等組態的指示。
 
-### <a name="to-create-microsoft-peering"></a>To create Microsoft peering
+### 建立 Microsoft 對等
 
-1. Import the PowerShell module for ExpressRoute.
-    
-    You must install the latest PowerShell installer from [PowerShell Gallery](http://www.powershellgallery.com/) and import the Azure Resource Manager modules into the PowerShell session in order to start using the ExpressRoute cmdlets. You will need to run PowerShell as an Administrator.
+1. 匯入 ExpressRoute 的 PowerShell 模組。
+	
+ 	您必須從 [PowerShell 資源庫](http://www.powershellgallery.com/)安裝最新的 PowerShell 安裝程式並將 Azure Resource Manager 模組匯入至 PowerShell 工作階段，以開始使用 ExpressRoute Cmdlet。您必須以系統管理員身分執行 PowerShell。
 
-        Install-Module AzureRM
+	    Install-Module AzureRM
 
-        Install-AzureRM
+		Install-AzureRM
 
-    Import all of the AzureRM.* modules within the known semantic version range
+	匯入已知語意版本範圍內所有的 AzureRM.* 模組
 
-        Import-AzureRM
+		Import-AzureRM
 
-    You can also just import a select module within the known semantic version range 
-        
-        Import-Module AzureRM.Network 
+	您也可以只匯入已知語意版本範圍內選取的模組
+		
+		Import-Module AzureRM.Network 
 
-    Logon to your account
+	登入您的帳戶
 
-        Login-AzureRmAccount
+		Login-AzureRmAccount
 
-    Select the subscription you want to create ExpressRoute circuit
-        
-        Select-AzureRmSubscription -SubscriptionId "<subscription ID>"
+	選取您想要建立 ExpressRoute 線路的訂用帳戶
+		
+		Select-AzureRmSubscription -SubscriptionId "<subscription ID>"
 
-2. Create an ExpressRoute circuit.
-    
-    Follow the instructions to create an [ExpressRoute circuit](expressroute-howto-circuit-arm.md) and have it provisioned by the connectivity provider. 
+2. 建立 ExpressRoute 線路。
+	
+	請遵循指示建立 [ExpressRoute 線路](expressroute-howto-circuit-arm.md)，並由連線提供者佈建它。
 
-    If your connectivity provider offers managed Layer 3 services, you can request your connectivity provider to enable Azure private peering for you. In that case, you won't need to follow instructions listed in the next sections. However, if your connectivity provider does not manage routing for you, after creating your circuit, follow the instructions below.
+	如果您的連線提供者是提供受管理的第 3 層服務，您可以要求連線提供者為您啟用 Azure 私用對等。在此情況下，您不需要遵循後續幾節所列的指示。不過，如果您的連線提供者不會為您管理路由，請在建立線路之後遵循下列指示。
 
-3. Check ExpressRoute circuit to ensure it is provisioned.
+3. 檢查 ExpressRoute 線路以確定已佈建。
 
-    You must first check to see if the ExpressRoute circuit is Provisioned and also Enabled. See the example below.
+	您必須先檢查 ExpressRoute 線路是否為 Provisioned 和 Enabled。請參閱下方的範例。
 
-        Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
+		Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
 
-    The response will be something similar to the example below:
+	回應如下列範例所示：
 
-        Name                             : ExpressRouteARMCircuit
-        ResourceGroupName                : ExpressRouteResourceGroup
-        Location                         : westus
-        Id                               : /subscriptions/***************************/resourceGroups/ExpressRouteResourceGroup/providers/Microsoft.Network/expressRouteCircuits/ExpressRouteARMCircuit
-        Etag                             : W/"################################"
-        ProvisioningState                : Succeeded
-        Sku                              : {
-                                             "Name": "Standard_MeteredData",
-                                             "Tier": "Standard",
-                                             "Family": "MeteredData"
-                                           }
-        CircuitProvisioningState         : Enabled
-        ServiceProviderProvisioningState : Provisioned
-        ServiceProviderNotes             : 
-        ServiceProviderProperties        : {
-                                             "ServiceProviderName": "Equinix",
-                                             "PeeringLocation": "Silicon Valley",
-                                             "BandwidthInMbps": 200
-                                           }
-        ServiceKey                       : **************************************
-        Peerings                         : []   
-4. Configure Microsoft peering for the circuit.
+		Name                             : ExpressRouteARMCircuit
+		ResourceGroupName                : ExpressRouteResourceGroup
+		Location                         : westus
+		Id                               : /subscriptions/***************************/resourceGroups/ExpressRouteResourceGroup/providers/Microsoft.Network/expressRouteCircuits/ExpressRouteARMCircuit
+		Etag                             : W/"################################"
+		ProvisioningState                : Succeeded
+		Sku                              : {
+		                                     "Name": "Standard_MeteredData",
+		                                     "Tier": "Standard",
+		                                     "Family": "MeteredData"
+		                                   }
+		CircuitProvisioningState         : Enabled
+		ServiceProviderProvisioningState : Provisioned
+		ServiceProviderNotes             : 
+		ServiceProviderProperties        : {
+		                                     "ServiceProviderName": "Equinix",
+		                                     "PeeringLocation": "Silicon Valley",
+		                                     "BandwidthInMbps": 200
+		                                   }
+		ServiceKey                       : **************************************
+		Peerings                         : []	
+4. 設定線路的 Microsoft 對等。
 
-    Make sure that you have the following information before you proceed.
+	繼續之前，請確定您擁有下列資訊：
 
-    - A /30 subnet for the primary link. This must be a valid public IPv4 prefix owned by you and registered in an RIR / IRR.
-    - A /30 subnet for the secondary link. This must be a valid public IPv4 prefix owned by you and registered in an RIR / IRR.
-    - A valid VLAN ID to establish this peering on. Ensure that no other peering in the circuit uses the same VLAN ID.
-    - AS number for peering. You can use both 2-byte and 4-byte AS numbers.
-    - Advertised prefixes: You must provide a list of all prefixes you plan to advertise over the BGP session. Only public IP address prefixes are accepted. You can send a comma separated list if you plan to send a set of prefixes. These prefixes must be registered to you in an RIR / IRR.
-    - Customer ASN: If you are advertising prefixes that are not registered to the peering AS number, you can specify the AS number to which they are registered. **This is optional**.
-    - Routing Registry Name: You can specify the RIR / IRR against which the AS number and prefixes are registered.
-    - A MD5 hash, if you choose to use one. **This is optional.**
-    
-    You can run the following cmdlet to configure Microsoft peering for your circuit
+	- 主要連結的 /30 子網路。這必須是您所擁有且註冊在 RIR / IRR 中的有效公用 IPv4 首碼。
+	- 次要連結的 /30 子網路。這必須是您所擁有且註冊在 RIR / IRR 中的有效公用 IPv4 首碼。
+	- 供建立此對等的有效 VLAN ID。請確定線路有沒有其他對等使用相同的 VLAN ID。
+	- 對等的 AS 編號。您可以使用 2 位元組和 4 位元組 AS 編號。
+	- 公告的首碼：您必須提供一份您打算在 BGP 工作階段上公告的所有首碼的清單。只接受公用 IP 位址首碼。如果您打算傳送一組首碼，您可以傳送逗號分隔清單。這些首碼必須在 RIR / IRR 中註冊給您。
+	- 客戶 ASN：如果您要公告的首碼未註冊給對等 AS 編號，您可以指定它們所註冊的 AS 編號。**這是選擇性的**。
+	- 路由登錄名稱：您可以指定可供註冊 AS 編號和首碼的 RIR / IRR。
+	- MD5 雜湊 (如果選擇使用)。**這是選擇性。**
+	
+	您可以執行下列 Cmdlet 來為線路設定 Microsoft 對等
 
-        Add-AzureRmExpressRouteCircuitPeeringConfig -Name "MicrosoftPeering" -ExpressRouteCircuit $ckt -PeeringType MicrosoftPeering -PeerASN 100 -PrimaryPeerAddressPrefix "123.0.0.0/30" -SecondaryPeerAddressPrefix "123.0.0.4/30" -VlanId 300 -MicrosoftConfigAdvertisedPublicPrefixes "123.1.0.0/24" -MicrosoftConfigCustomerAsn 23 -MicrosoftConfigRoutingRegistryName "ARIN"
+		Add-AzureRmExpressRouteCircuitPeeringConfig -Name "MicrosoftPeering" -ExpressRouteCircuit $ckt -PeeringType MicrosoftPeering -PeerASN 100 -PrimaryPeerAddressPrefix "123.0.0.0/30" -SecondaryPeerAddressPrefix "123.0.0.4/30" -VlanId 300 -MicrosoftConfigAdvertisedPublicPrefixes "123.1.0.0/24" -MicrosoftConfigCustomerAsn 23 -MicrosoftConfigRoutingRegistryName "ARIN"
 
-        Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
+		Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
 
 
-### <a name="to-get-microsoft-peering-details"></a>To get Microsoft peering details
+### 取得 Microsoft 對等詳細資料
 
-You can get configuration details using the following cmdlet.
+您可以使用下列 Cmdlet 來取得組態詳細資料。
 
-        $ckt = Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
+		$ckt = Get-AzureRmExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "ExpressRouteResourceGroup"
 
-        Get-AzureRmExpressRouteCircuitPeeringConfig -Name "MicrosoftPeering" -ExpressRouteCircuit $ckt
+		Get-AzureRmExpressRouteCircuitPeeringConfig -Name "MicrosoftPeering" -ExpressRouteCircuit $ckt
 
 
-### <a name="to-update-microsoft-peering-configuration"></a>To update Microsoft peering configuration
+### 更新 Microsoft 對等組態
 
-You can update any part of the configuration using the following cmdlet.
+您可以使用下列 Cmdlet 來更新組態的任何部分。
 
-        Set-AzureRmExpressRouteCircuitPeeringConfig  -Name "MicrosoftPeering" -ExpressRouteCircuit $ckt -PeeringType MicrosoftPeering -PeerASN 100 -PrimaryPeerAddressPrefix "123.0.0.0/30" -SecondaryPeerAddressPrefix "123.0.0.4/30" -VlanId 300 -MicrosoftConfigAdvertisedPublicPrefixes "124.1.0.0/24" -MicrosoftConfigCustomerAsn 23 -MicrosoftConfigRoutingRegistryName "ARIN"
+		Set-AzureRmExpressRouteCircuitPeeringConfig  -Name "MicrosoftPeering" -ExpressRouteCircuit $ckt -PeeringType MicrosoftPeering -PeerASN 100 -PrimaryPeerAddressPrefix "123.0.0.0/30" -SecondaryPeerAddressPrefix "123.0.0.4/30" -VlanId 300 -MicrosoftConfigAdvertisedPublicPrefixes "124.1.0.0/24" -MicrosoftConfigCustomerAsn 23 -MicrosoftConfigRoutingRegistryName "ARIN"
 
-        Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
-        
+		Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
+		
 
-### <a name="to-delete-microsoft-peering"></a>To delete Microsoft peering
+### 刪除 Microsoft 對等
 
-You can remove your peering configuration by running the following cmdlet.
+您可以執行下列 Cmdlet 來移除對等組態。
 
-    Remove-AzureRmExpressRouteCircuitPeeringConfig -Name "MicrosoftPeering" -ExpressRouteCircuit $ckt
+	Remove-AzureRmExpressRouteCircuitPeeringConfig -Name "MicrosoftPeering" -ExpressRouteCircuit $ckt
 
-    Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
+	Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-Next step, [Link a VNet to an ExpressRoute circuit](expressroute-howto-linkvnet-arm.md).
+下一步，[將 VNet 連結到 ExpressRoute 線路](expressroute-howto-linkvnet-arm.md)。
 
--  For more information about ExpressRoute workflows, see [ExpressRoute workflows](expressroute-workflows.md).
+-  如需 ExpressRoute 工作流程的詳細資訊，請參閱 [ExpressRoute 工作流程](expressroute-workflows.md)。
 
--  For more information about circuit peering, see [ExpressRoute circuits and routing domains](expressroute-circuit-peerings.md).
+-  如需線路對等的詳細資訊，請參閱 [ExpressRoute 線路和路由網域](expressroute-circuit-peerings.md)。
 
--  For more information about working with virtual networks, see [Virtual network overview](../virtual-network/virtual-networks-overview.md).
+-  如需使用虛擬網路的詳細資訊，請參閱[虛擬網路概觀](../virtual-network/virtual-networks-overview.md)。
 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_1005_2016-->

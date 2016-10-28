@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="Tutorial: Azure Active Directory Integration with Mimecast Admin Console | Microsoft Azure" 
-    description="Learn how to use Mimecast Admin Console with Azure Active Directory to enable single sign-on, automated provisioning, and more!" 
+    pageTitle="教學課程：Azure Active Directory 與 Mimecast Admin Console 整合 | Microsoft Azure" 
+    description="了解如何使用 Mimecast Admin Console 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -11,174 +11,166 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="09/29/2016" 
+    ms.date="07/08/2016" 
     ms.author="jeedes" />
 
-
-#<a name="tutorial:-azure-active-directory-integration-with-mimecast-admin-console"></a>Tutorial: Azure Active Directory Integration with Mimecast Admin Console
+#教學課程：Azure Active Directory 與 Mimecast Admin Console 整合
   
-The objective of this tutorial is to show the integration of Azure and Mimecast Admin Console.  
-The scenario outlined in this tutorial assumes that you already have the following items:
+本教學課程的目的是要示範 Azure 與 Mimecast Admin Console 的整合。本教學課程中說明的案例假設您已經具有下列項目：
 
--   A valid Azure subscription
--   A Mimecast Admin Console single sign-on enabled subscription
+-   有效的 Azure 訂閱
+-   啟用 Mimecast Admin Console 單一登入的訂用帳戶
   
-After completing this tutorial, the Azure AD users you have assigned to Mimecast Admin Console will be able to single sign into the application at your Mimecast Admin Console company site (service provider initiated sign on), or using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+完成本教學課程之後，您指派給 Mimecast Admin Console 的 Azure AD 使用者將能夠單一登入您 Mimecast Admin Console 公司網站 (服務提供者起始登入) 的應用程式，或是使用[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
   
-The scenario outlined in this tutorial consists of the following building blocks:
+本教學課程中說明的案例由下列建置組塊組成：
 
-1.  Enabling the application integration for Mimecast Admin Console
-2.  Configuring single sign-on
-3.  Configuring user provisioning
-4.  Assigning users
+1.  啟用 Mimecast Admin Console 的應用程式整合
+2.  設定單一登入
+3.  設定使用者佈建
+4.  指派使用者
 
-![Scenario](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795008.png "Scenario")
-##<a name="enabling-the-application-integration-for-mimecast-admin-console"></a>Enabling the application integration for Mimecast Admin Console
+![案例](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795008.png "案例")
+##啟用 Mimecast Admin Console 的應用程式整合
   
-The objective of this section is to outline how to enable the application integration for Mimecast Admin Console.
+本節的目的是要說明如何啟用 Mimecast Admin Console 的應用程式整合。
 
-###<a name="to-enable-the-application-integration-for-mimecast-admin-console,-perform-the-following-steps:"></a>To enable the application integration for Mimecast Admin Console, perform the following steps:
+###若要啟用 Mimecast Admin Console 的應用程式整合，請執行下列步驟：
 
-1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-mimecast-admin-console-tutorial/IC700993.png "Active Directory")
 
-2.  From the **Directory** list, select the directory for which you want to enable directory integration.
+2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3.  To open the applications view, in the directory view, click **Applications** in the top menu.
+3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
 
-    ![Applications](./media/active-directory-saas-mimecast-admin-console-tutorial/IC700994.png "Applications")
+    ![應用程式](./media/active-directory-saas-mimecast-admin-console-tutorial/IC700994.png "應用程式")
 
-4.  Click **Add** at the bottom of the page.
+4.  按一下頁面底部的 [新增]。
 
-    ![Add application](./media/active-directory-saas-mimecast-admin-console-tutorial/IC749321.png "Add application")
+    ![新增應用程式](./media/active-directory-saas-mimecast-admin-console-tutorial/IC749321.png "新增應用程式")
 
-5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
-    ![Add an application from gallerry](./media/active-directory-saas-mimecast-admin-console-tutorial/IC749322.png "Add an application from gallerry")
+    ![從組件庫新增應用程式](./media/active-directory-saas-mimecast-admin-console-tutorial/IC749322.png "從組件庫新增應用程式")
 
-6.  In the **search box**, type **Mimecast Admin Console**.
+6.  在搜尋方塊中，輸入 **Mimecast Admin Console**。
 
-    ![Application Gallery](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795009.png "Application Gallery")
+    ![應用程式庫](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795009.png "應用程式庫")
 
-7.  In the results pane, select **Mimecast Admin Console**, and then click **Complete** to add the application.
+7.  在結果窗格中，選取 [Mimecast Admin Console]，然後按一下 [完成] 以新增應用程式。
 
     ![Mimecast Admin Console](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795010.png "Mimecast Admin Console")
-##<a name="configuring-single-sign-on"></a>Configuring single sign-on
+##設定單一登入
   
-The objective of this section is to outline how to enable users to authenticate to Mimecast Admin Console with their account in Azure AD using federation based on the SAML protocol.  
-As part of this procedure, you are required to create a base-64 encoded certificate file.  
-If you are not familiar with this procedure, see [How to convert a binary certificate into a text file](http://youtu.be/PlgrzUZ-Y1o).
+本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶在 Mimecast Admin Console 中進行驗證。在此程序中，您必須建立 Base-64 編碼的憑證檔案。如果您不熟悉這個程序，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
 
-###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
+###若要設定單一登入，請執行下列步驟：
 
-1.  In the Azure classic portal, on the **Mimecast Admin Console** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
+1.  在 Azure 傳統入口網站的 [Mimecast Admin Console] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795011.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795011.png "設定單一登入")
 
-2.  On the **How would you like users to sign on to Mimecast Admin Console** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
+2.  在 [您希望使用者如何登入 Mimecast Admin Console] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按一下 [下一步]。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795012.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795012.png "設定單一登入")
 
-3.  On the **Configure App URL** page, in the **Mimecast Admin Console Sign On URL** textbox, type the URL used by your users to sign on to your Mimecast Admin Console application (e.g.: “https://webmail-uk.mimecast.com” or “https://webmail-us.mimecast.com”), and then click **Next**.
+3.  在 [設定應用程式 URL] 頁面的 [Mimecast Admin Console 登入 URL] 文字方塊中，輸入使用者登入您的 Mimecast Admin Console 應用程式所使用的 URL (如：“https://webmail-uk.mimecast.com” 或 “https://webmail-us.mimecast.com”)，然後按一下 [下一步]。
 
-    >[AZURE.NOTE] The sign on URL is region specific.
+    >[AZURE.NOTE] 登入 URL 是地區特定的 URL。
 
-    ![Configure App URL](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795013.png "Configure App URL")
+    ![設定應用程式 URL](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795013.png "設定應用程式 URL")
 
-4.  On the **Configure single sign-on at Mimecast Admin Console** page, to download your certificate, click **Download certificate**, and then save the certificate file locally on your computer.
+4.  在 [設定在 Mimecast Admin Console 單一登入] 頁面上，按一下 [下載憑證] 來下載您的憑證，然後將憑證檔案儲存在您的本機電腦中。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795014.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795014.png "設定單一登入")
 
-5.  In a different web browser window, log into your Mimecast Admin Console as an administrator.
+5.  在不同的 Web 瀏覽器視窗中，以系統管理員身分登入您的 Mimecast Admin Console 公司網站。
 
-6.  Go to **Services \> Application**.
+6.  移至 [服務 > 應用程式]。
 
-    ![Services](./media/active-directory-saas-mimecast-admin-console-tutorial/IC794998.png "Services")
+    ![服務](./media/active-directory-saas-mimecast-admin-console-tutorial/IC794998.png "服務")
 
-7.  Click **Authentication Profiles**.
+7.  按一下 [驗證設定檔]。
 
-    ![Authentication Profiles](./media/active-directory-saas-mimecast-admin-console-tutorial/IC794999.png "Authentication Profiles")
+    ![驗證設定檔](./media/active-directory-saas-mimecast-admin-console-tutorial/IC794999.png "驗證設定檔")
 
-8.  Click **New Authentication Profile**.
+8.  按一下 [新驗證設定檔]。
 
-    ![New Authentication Profiles](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795000.png "New Authentication Profiles")
+    ![新驗證設定檔](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795000.png "新驗證設定檔")
 
-9.  In the **Authentication Profile** section, perform the following steps:
+9.  在 [驗證設定檔] 區段中，執行下列步驟：
 
-    ![Authentication Profile](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795015.png "Authentication Profile")
+    ![驗證設定檔](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795015.png "驗證設定檔")
 
-    1.  In the **Description** textbox, type a name for your configuration.
-    2.  Select **Enforce SAML Authentication for Mimecast Admin Console**.
-    3.  As **Provider**, select **Azure Active Directory**.
-    4.  In the Azure classic portal, on the **Configure single sign-on at Mimecast Admin Console** dialog page, copy the **Issuer URL** value, and then paste it into the **Issuer URL** textbox.
-    5.  In the Azure classic portal, on the **Configure single sign-on at Mimecast Admin Console** dialog page, copy the **Remote Login URL** value, and then paste it into the **Login URL** textbox.
-    6.  In the Azure classic portal, on the **Configure single sign-on at Mimecast Admin Console** dialog page, copy the **Remote Login URL** value, and then paste it into the **Logout URL** textbox.  
+    1.  在 [描述] 文字方塊中，輸入您的組態名稱。
+    2.  選取 [強制執行 Mimecast Admin Console 的 SAML 驗證]。
+    3.  在 [提供者] 中選取 [Azure Active Directory]。
+    4.  在 Azure 傳統入口網站中的 [設定在 Mimecast Admin Console 單一登入] 對話頁面上，複製 [簽發者 URL] 值，然後將它貼至 [簽發者 URL] 文字方塊中。
+    5.  在 Azure 傳統入口網站中的 [設定在 Mimecast Admin Console 單一登入] 對話頁面上，複製 [遠端登入 URL] 值，然後將它貼至 [登入 URL] 文字方塊中。
+    6.  在 Azure 傳統入口網站中的 [設定在 Mimecast Admin Console 單一登入] 對話頁面上，複製 [遠端登入 URL] 值，然後將它貼至 [登出 URL] 文字方塊中。
 
-        >[AZURE.NOTE]The Login URL value and the Logout URL value are for the Mimecast Admin Console the same.
+        >[AZURE.NOTE]Mimecast Admin Console 的登入 URL 值與登出 URL 值是相同的。
 
-    7.  Create a **base-64 encoded** file from your downloaded certificate.  
+    7.  從您下載的憑證建立「Base-64 編碼」檔案。
 
-        >[AZURE.TIP]For more details, see [How to convert a binary certificate into a text file](http://youtu.be/PlgrzUZ-Y1o).
+        >[AZURE.TIP]如需詳細資訊，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
 
-    8.  Open your base-64 encoded certificate in notepad, remove the first line (“*--*“) and the last line (“*--*“), copy the remaining content of it into your clipboard, and then paste it to the **Identity Provider Certificate (Metadata)** textbox.
-    9.  Select **Allow Single Sign On**.
-    10. Click **Save**.
+    8.  在記事本中開啟您的 base-64 編碼的憑證，移除第一行 (“*--*“) 與最後一行 (“*--*“)，將它的其餘內容複製到您的剪貼簿，然後貼到 [識別提供者憑證 (中繼資料)] 文字方塊中。
+    9.  選取 [允許單一登入]。
+    10. 按一下 [儲存]。
 
-10. On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
+10. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795016.png "Configure Single Sign-On")
-##<a name="configuring-user-provisioning"></a>Configuring user provisioning
+    ![設定單一登入](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795016.png "設定單一登入")
+##設定使用者佈建
   
-In order to enable Azure AD users to log into Mimecast Admin Console, they must be provisioned into Mimecast Admin Console.  
-In the case of Mimecast Admin Console, provisioning is a manual task.
+若要讓 Azure AD 使用者能夠登入 Mimecast Admin Console，必須將它們佈建到 Mimecast Admin Console。Mimecast Admin Consol 需以手動的方式佈建。
   
-You need to register a domain before you can create users.
+您需要先註冊網域才能建立使用者。
 
-###<a name="to-configure-user-provisioning,-perform-the-following-steps:"></a>To configure user provisioning, perform the following steps:
+###若要設定使用者佈建，請執行下列步驟：
 
-1.  Sign on to your **Mimecast Admin Console** as administrator.
+1.  以系統管理員身份登入您的 **Mimecast Admin Console**。
 
-2.  Go to **Directories \> Internal**.
+2.  移至 [目錄 > 內部]。
 
-    ![Directories](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795003.png "Directories")
+    ![目錄](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795003.png "目錄")
 
-3.  Click **Register New Domain**.
+3.  按一下 [註冊新網域]。
 
-    ![Register New Domain](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795004.png "Register New Domain")
+    ![註冊新網域](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795004.png "註冊新網域")
 
-4.  After your new domain has been created, click **New Address**.
+4.  在您建立好新網域之後，，按一下 [新位址]。
 
-    ![New Address](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795005.png "New Address")
+    ![新位址](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795005.png "新位址")
 
-5.  In the new address dialog, perform the following steps:
+5.  在 [新位址] 對話方塊中，執行下列步驟：
 
-    ![Save](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795006.png "Save")
+    ![儲存](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795006.png "儲存")
 
-    1.  Type the **Email Address**, **Global Name**, **Password** and **Confirm Password** attributes of a valid AAD account you want to provision into the related textboxes.
-    2.  Click **Save**.
+    1.  在相關的文字方塊中，輸入您要佈建之有效 AAD 帳戶的 [電子郵件地址]、[全域名稱]、[密碼]、[確認密碼] 屬性。
+    2.  按一下 [儲存]。
 
->[AZURE.NOTE]You can use any other Mimecast Admin Console user account creation tools or APIs provided by Mimecast Admin Console to provision AAD user accounts.
+>[AZURE.NOTE]您可以使用任何其他的 Mimecast Admin Console 使用者帳戶建立工具或 Mimecast Admin Console 提供的 API，佈建 AAD 使用者帳戶。
 
-##<a name="assigning-users"></a>Assigning users
+##指派使用者
   
-To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
+若要測試您的設定，您需要指派使用者，授予存取權給您想要允許其使用您的應用程式存取設定的 Azure AD 使用者。
 
-###<a name="to-assign-users-to-mimecast-admin-console,-perform-the-following-steps:"></a>To assign users to Mimecast Admin Console, perform the following steps:
+###若要指派使用者給 Mimecast Admin Console，請執行下列步驟：
 
-1.  In the Azure classic portal, create a test account.
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
-2.  On the **Mimecast Admin Console **application integration page, click **Assign users**.
+2.  在 [Mimecast Admin Console] 應用程式整合頁面中，按一下 [指派使用者]。
 
-    ![Assign Users](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795017.png "Assign Users")
+    ![指派使用者](./media/active-directory-saas-mimecast-admin-console-tutorial/IC795017.png "指派使用者")
 
-3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
+3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
 
-    ![Yes](./media/active-directory-saas-mimecast-admin-console-tutorial/IC767830.png "Yes")
+    ![是](./media/active-directory-saas-mimecast-admin-console-tutorial/IC767830.png "是")
   
-If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0713_2016-->

@@ -1,181 +1,176 @@
 <properties
-    pageTitle="How to set Azure Active Directory device-based conditional access policy for access control to Azure Active Directory connected applications"
-    description="Explains how IT admins can set device-based conditional access policies for Azure AD connected applications."
-    services="active-directory"
-    documentationCenter=""
-    authors="markusvi"
-    manager="femila"
-    editor=""/>
+	pageTitle="如何設定 Azure Active Directory 裝置型條件式存取原則來控制對 Azure Active Directory 連線應用程式的存取"
+	description="說明 IT 系統管理員如何為 Azure AD 連線應用程式設定裝置型條件式存取原則。"
+	services="active-directory"
+	documentationCenter=""
+	authors="markusvi"
+	manager="femila"
+	editor=""/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/14/2016"
-    ms.author="markvi"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/14/2016"
+	ms.author="markvi"/>
 
 
-
-# <a name="how-to-set-azure-active-directory-device-based-conditional-access-policy-for-access-control-to-azure-active-directory-connected-applications"></a>How to set Azure Active Directory device-based conditional access policy for access control to Azure Active Directory connected applications 
-
-
-Azure Active Directory device-based conditional access is the ability you have to protect organizational resources from:
-
-- Access made from unknown / unmanaged devices 
-- From devices that don’t meet security policies as defined by your organization. 
-
-For an overview on conditional access, see [Azure Active Directory conditional access](active-directory-conditional-access.md). 
-
-You can set device-based conditional access policies to protect the following: 
-
-- Office 365 SharePoint Online to protect organizational sites and documents. 
-
-- Office 365 Exchange Online to protect organizational email. 
-
-- SaaS applications connected to Azure AD for authentication. 
-
-- On-premises applications published through the Azure AD Application Proxy. 
+# 如何設定 Azure Active Directory 裝置型條件式存取原則來控制對 Azure Active Directory 連線應用程式的存取 
 
 
-In the Azure management portal, you can set this policy by going to the specific application in the directory. 
+Azure Active Directory 裝置型條件式存取是可供您保護組織資源免於遭受下列情況的能力︰
 
- 
-  ![Applications](./media/active-directory-conditional-access-policy-connected-applications/01.png "Applications")
+- 從不明/未受管理的裝置進行的存取
+- 從不符合貴組織所定義安全性原則的裝置進行的存取。
+
+如需有關條件式存取的概觀，請參閱 [Azure Active Directory 條件式存取](active-directory-conditional-access.md)。
+
+您可以設定裝置型條件式存取原則來保護下列各項︰
+
+- Office 365 SharePoint Online - 用以保護組織的網站和文件。
+
+- Office 365 Exchange Online - 用以保護組織的電子郵件。
+
+- 連線到 Azure AD 以進行驗證的 SaaS 應用程式。
+
+- 透過「Azure AD 應用程式 Proxy」發佈的內部部署應用程式。
 
 
-After selecting the application, click the **Configure** tab to set the Conditional Access policy.  
-
-
-  ![Device based access rules](./media/active-directory-conditional-access-policy-connected-applications/02.png "Device based access rules")
-
+在 Azure 管理入口網站中，您可以移至目錄中的特定應用程式來設定此原則。
 
  
+  ![應用程式](./media/active-directory-conditional-access-policy-connected-applications/01.png "應用程式")
 
-To enable a device-based conditional access policy, in the **Device based access rules** section, for **Enable Access Rules**, select **On**. 
 
-This policy consist of three components:
+選取應用程式之後，請按一下 [設定] 索引標籤以設定「條件式存取」原則。
 
-1. **Apply To** -  The scope of users this policy applies to when accessing the application. 
 
-2. **Device Rules** -  The required conditions devices must meet before accessing the application. 
+  ![以裝置為準的存取規則](./media/active-directory-conditional-access-policy-connected-applications/02.png "以裝置為準的存取規則")
 
-3. **Application Enforcement** -  The client applications (native vs. browser) the policy should be evaluated for. 
 
-  ![Device based access rules](./media/active-directory-conditional-access-policy-connected-applications/03.png "Device based access rules")
  
 
-## <a name="selecting-the-users-the-policy-applies-to"></a>Selecting the users the policy applies to 
+若要啟用裝置型條件式存取原則，請在 [以裝置為準的存取規則] 區段中，針對 [啟用存取規則]，選取 [開啟]。
 
-In the **Apply To** section, you can select the scope of users this policy applies to. 
+此原則是由三個元件所組成︰
 
-You have two options for the scope:
+1. **套用對象** - 存取應用程式時，要套用此原則的使用者範圍。
 
-- **All Users** - For everyone accessing the application 
+2. **裝置規則** - 裝置必須符合才能存取應用程式的必要條件。
 
-- **Groups** - To limit the scope to users that are a member of a group or groups. 
+3. **應用程式強制** - 評估原則時應針對的用戶端應用程式 (原生對上瀏覽器)。
 
-![Apply to](./media/active-directory-conditional-access-policy-connected-applications/11.png "Apply to")
-
-
-By selecting **Except**, you can exclude users from this policy while accessing the application. This is helpful when you need to enable specific users to access the application temporarily. Select this option, for example, if some of your users have devices that are not ready for conditional access (not yet registered, coming out of compliance, etc.).
+  ![以裝置為準的存取規則](./media/active-directory-conditional-access-policy-connected-applications/03.png "以裝置為準的存取規則")
  
 
-## <a name="selecting-the-conditions-that-devices-must-meet"></a>Selecting the conditions that devices must meet 
+## 選取要套用原則的使用者 
 
-With **Device Rules**, you set the conditions for devices to be able to access the application. 
+在 [套用對象] 區段中，您可以選取要套用此原則的使用者範圍。
 
-For Device-based Conditional Access, the following devices are supported: 
+您有兩個範圍選項：
 
-- Windows 10 Anniversary Update, Windows 7 and Windows 8.1. 
+- **所有使用者** - 針對存取應用程式的每個人
 
-- Windows Server 2016, Windows Server 2012 R2, Windows Server 2012 and Windows Server 2008 R2 
+- **群組** - 可將範圍限制在身為群組成員的使用者。
 
-- iOS devices (iPad, iPhone) 
-
-- Android devices 
-
-Support for Mac is coming soon. 
-
-  ![Devices](./media/active-directory-conditional-access-policy-connected-applications/04.png "Applications")
+![套用對象](./media/active-directory-conditional-access-policy-connected-applications/11.png "套用對象")
 
 
-
- >[AZURE.NOTE] For information about differences between Domain Join and Azure AD Join please see [Using Windows 10 devices in your workplace](active-directory-azureadjoin-windows10-devices.md). 
-
-
-You have two options for device rules: 
-
-- **All devices must be compliant** - This requires all device platforms accessing the application to be compliant. For platforms that don't support Device-based Conditional Access, the devices are denied access. 
-
-- **Only selected devices must be compliant** - This requires only selected device platforms to be compliant. Non-selected platforms or other platforms accessing the application are allowed access.”
-
-  ![Applications](./media/active-directory-conditional-access-policy-connected-applications/05.png "Applications")
-
-
-
-Azure AD joined devices are compliant if they are marked as **compliant** in the directory by Microsoft Intune or a 3rd party Mobile Device Management (MDM) system that integrates with Azure AD. 
-
-Domain joined devices are compliant in one of two ways: 
-
-- If they are registered with Azure AD, the fact that they are domain joined many organizations treat them as trusted devices. 
-
-- If they are marked as ‘compliant’ in the Azure AD by System Center Configuration Manager 2016. 
-
- ![Device Rules](./media/active-directory-conditional-access-policy-connected-applications/06.png "Device Rules")
+您可以藉由選取 [例外]，在存取應用程式時將使用者從此原則中排除。當您需要讓特定使用者能夠暫時存取應用程式時，這會相當有用。舉例來說，如果某些使用者有尚未針對條件式存取準備就緒 (尚未註冊、未符合規範等) 的裝置，請選取此選項。
  
 
-Windows personal devices are compliant if they are marked as **compliant** in the directory by Microsoft Intune or a 3rd party Mobile Device Management (MDM) system that integrates with Azure AD. 
+## 選取裝置必須符合的條件 
 
-Non-Windows devices are compliant if they are marked as **compliant** in the directory by Microsoft Intune. 
+您可以使用 [裝置規則] 來為裝置設定能夠存取應用程式的條件。
 
- >[AZURE.NOTE] For more information on how to setup Azure AD for device compliance by management system, see [Azure Active Directory Conditional Access](active-directory-conditional-access.md). 
+針對「裝置型條件式存取」，以下是支援的裝置：
+
+- 「Windows 10 年度更新版」、Windows 7 及 Windows 8.1。
+
+- Windows Server 2016、Windows Server 2012 R2、Windows Server 2012 及 Windows Server 2008 R2
+
+- iOS 裝置 (iPad、iPhone)
+
+- Android 裝置
+
+即將推出對 Mac 的支援。
+
+  ![裝置](./media/active-directory-conditional-access-policy-connected-applications/04.png "應用程式")
 
 
-When you select specific device platforms, you can select one or multiple options including Android, iOS, Windows Mobile (Windows 8.1 phones and tablets) and Windows (all other Windows devices including all Windows 10 devices). With this option, the policy evaluation only occurs on the selected platforms. If access is attempted from a device that is not part of the selection, no device policy is evaluated and the device is allowed if the user is. 
 
-![Device Rules](./media/active-directory-conditional-access-policy-connected-applications/07.png "Device Rules")
+ >[AZURE.NOTE] 如需有關「加入網域」與「加入 Azure AD」之間差異的資訊，請參閱[您工作場所中使用 Windows 10 裝置](active-directory-azureadjoin-windows10-devices.md)。
+
+
+您有兩個裝置規則選項：
+
+- **所有裝置都必須相容** - 這會要求存取應用程式的所有裝置平台都必須符合規範。針對不支援「裝置型條件式存取」的平台，系統將會拒絕這些裝置的存取。
+
+- **只有選取的裝置必須相容** - 這只會要求選取的裝置平台必須符合規範。非選取的平台或其他存取應用程式的平台則獲允許存取。
+
+  ![應用程式](./media/active-directory-conditional-access-policy-connected-applications/05.png "應用程式")
+
+
+
+已加入 Azure AD 的裝置如果在目錄中被 Microsoft Intune 或與 Azure AD 整合的第三方「行動裝置管理」(MDM) 系統標示為「相容」，即為相容裝置。
+
+已加入網域的裝置如果符合下列兩種情況其中之一，即為相容裝置︰
+
+- 如果它們已向 Azure AD 註冊，由於它們已加入網域，因此許多組織會將它們視為信任的裝置。
+
+- 如果它們在 Azure AD 中被 System Center Configuration Manager 2016 標示為「相容」。
+
+ ![裝置規則](./media/active-directory-conditional-access-policy-connected-applications/06.png "裝置規則")
+ 
+
+Windows 個人裝置如果在目錄中被 Microsoft Intune 或與 Azure AD 整合的第三方「行動裝置管理」(MDM) 系統標示為「相容」，即為相容裝置。
+
+非 Windows 裝置如果在目錄中被 Microsoft Intune 標示為「相容」，即為相容裝置。
+
+ >[AZURE.NOTE] 如需有關如何依據裝置管理系統來設定 Azure AD 以符合裝置相容性的詳細資訊，請參閱 [Azure Active Directory 條件式存取](active-directory-conditional-access.md)。
+
+
+當您選取特定裝置平台時，您可以選取一或多個選項，包括 Android、iOS、Windows Mobile (Windows 8.1 手機和平板電腦) 及 Windows (所有其他 Windows 裝置，包括所有 Windows 10 裝置)。使用此選項時，只會針對選取的平台進行原則評估。如果存取嘗試是來自不屬於所選範圍的裝置，則不會評估任何裝置原則，而只要使用者獲允許存取，該裝置即獲允許存取。
+
+![裝置規則](./media/active-directory-conditional-access-policy-connected-applications/07.png "裝置規則")
   
 
-## <a name="selecting-the-type-of-client-applications-under-which-policy-will-be-evaluated"></a>Selecting the type of client applications under which policy will be evaluated 
+## 選取將在其下評估原則的用戶端應用程式類型 
 
-In the **Application Enforcement** section, you set the type of applications the policy must be evaluated for.
-
-
-You have two options for applications: 
-
-- For browser and native applications 
-- For only native applications. 
+在 [應用程式強制] 區段中，您需設定評估原則時所必須針對的應用程式類型。
 
 
-![Applications](./media/active-directory-conditional-access-policy-connected-applications/08.png "Applications")
+您有兩個應用程式選項：
+
+- 適用於瀏覽器與原生應用程式
+- 僅限原生應用程式
 
 
-Selecting **For browser and native applications** enforces the policy on access to applications by: 
+![應用程式](./media/active-directory-conditional-access-policy-connected-applications/08.png "應用程式")
 
-- Browsers (e.g. Edge in Windows 10, Safari in iOS, etc.) 
-- Applications using the Active Directory Authentication Library (ADAL) in any platform or the Web Account Manager (WAM) API in Windows 10 
 
->[AZURE.NOTE] For more information about browser support and other considerations for the end-user accessing device-based CA protected applications see, [Azure Active Directory Conditional Access](active-directory-conditional-access.md). 
+選取 [適用於瀏覽器與原生應用程式] 會在下列項目存取應用程式時強制執行原則︰
 
- 
+- 瀏覽器 (例如 Windows 10 中的 Edge、iOS 中的 Safari 等)
+- 在任何平台中使用 Active Directory 驗證程式庫 (ADAL) 或在 Windows 10 中使用 Web 帳戶管理員 (WAM) API 的應用程式
 
-## <a name="protecting-email-access-from-exchange-active-sync-based-applications"></a>Protecting email access from Exchange Active Sync based applications 
-
-In Office 365 Exchange Online applications, you have an additional section called **Exchange Activesync**. This section enables you to block email access to Exchange Active Sync based mail applications. 
-
-![Applications](./media/active-directory-conditional-access-policy-connected-applications/09.png "Applications")
- 
-![Applications](./media/active-directory-conditional-access-policy-connected-applications/10.png "Applications")
+>[AZURE.NOTE] 如需有關瀏覽器支援及其他針對存取裝置型受 CA 保護應用程式之使用者的考量，請參閱 [Azure Active Directory 條件式存取](active-directory-conditional-access.md)。
 
  
-## <a name="additional-topics"></a>Additional topics
 
-- [Azure Active Directory Conditional Access](active-directory-conditional-access.md) 
+## 保護來自 Exchange Active Sync 型應用程式的電子郵件存取 
 
+在 Office 365 Exchange Online 應用程式中，您有一個名為 [Exchange ActiveSync] 的額外區段。此區段可讓您封鎖對 Exchange Active Sync 型郵件應用程式的電子郵件存取。
 
+![應用程式](./media/active-directory-conditional-access-policy-connected-applications/09.png "應用程式")
+ 
+![應用程式](./media/active-directory-conditional-access-policy-connected-applications/10.png "應用程式")
 
-<!--HONumber=Oct16_HO2-->
+ 
+## 其他主題
 
+- [Azure Active Directory 條件式存取](active-directory-conditional-access.md)
 
+<!---HONumber=AcomDC_0914_2016-->

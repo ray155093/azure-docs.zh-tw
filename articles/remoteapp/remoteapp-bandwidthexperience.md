@@ -1,10 +1,10 @@
 <properties 
-    pageTitle="Azure RemoteApp - how do network bandwidth and quality of experience work together? | Microsoft Azure"
-    description="Learn how network bandwidth in Azure RemoteApp can impact your user's quality of experience."
-    services="remoteapp"
-    documentationCenter="" 
-    authors="lizap" 
-    manager="mbaldwin" />
+    pageTitle="Azure RemoteApp - how do network bandwidth and quality of experience work together? (Azure RemoteApp - 如何兼顧網路頻寬和體驗品質？) | Microsoft Azure"
+	description="了解 Azure RemoteApp 中的網路頻寬如何影響您使用者的體驗品質。"
+	services="remoteapp"
+	documentationCenter="" 
+	authors="lizap" 
+	manager="mbaldwin" />
 
 <tags 
     ms.service="remoteapp" 
@@ -15,31 +15,27 @@
     ms.date="08/15/2016" 
     ms.author="elizapo" />
 
-
-# <a name="azure-remoteapp---how-do-network-bandwidth-and-quality-of-experience-work-together?"></a>Azure RemoteApp - how do network bandwidth and quality of experience work together?
+# Azure RemoteApp - how do network bandwidth and quality of experience work together? (Azure RemoteApp - 如何兼顧網路頻寬和體驗品質？)
 
 > [AZURE.IMPORTANT]
-> Azure RemoteApp is being discontinued. Read the [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
-When you are looking at the [overall network bandwidth](remoteapp-bandwidth.md) required for Azure RemoteApp, keep in mind the following factors - these are all part of a dynamic system that impacts the overall user experience. 
+當您查看 Azure RemoteApp 所需的[整體網路頻寬](remoteapp-bandwidth.md)時，請記住下列因素；這些是影響整體使用者體驗之動態系統的所有部分。
 
-- **Available network bandwidth and current network conditions** - A set of parameters (loss, latency, jitter) on the same network at a given time can impact the application streaming experience, meaning a lowered overall user experience. The bandwidth available in your network is a function of congestion, random loss, latency because all these parameters affect the congestion control mechanism, which in turn controls the transmission speed to avoid collisions.  For example, a lossy network or network with high latency will make the user experience bad even on a network with 1000 MB bandwidth. The loss and latency vary based on the number of users that are on the same network and what those users are doing (for example, watching videos, downloading or uploading large files, printing).
-- **Usage scenario** - The experience depends on what the users are doing as individuals and as a group on the same network. For example, reading one slide requires only a single frame to be updated; if the user skims and scrolls over the content of a text document, they need a higher number of frames to be updated per second. The communication back and forth to the server in this scenario will eventually consume more network bandwidth. Also consider an extreme example: multiple users are watching high-definition videos (like 4K resolution), holding HD conference calls, playing 3D video games, or working on CAD systems. All of these can make even a really high bandwidth network practically unusable.
-- **Screen resolution and the number of screens** - More network bandwidth is required to full update bigger screens than smaller screens. The underlying technology does a pretty good job of encoding and transmitting only the regions of the screens that have been updated, but once in a while, the whole screen needs to be updated. When the user has a higher resolution screen (for example 4K resolution), that update requires more network bandwidth than a screen with lower resolution (like 1024x768px). This same logic applies if you use more than one screen for redirection. Bandwidth needs to increase with the number of screens.
-- **Clipboard and device redirection** - This is a not very obvious issue, but in many cases if a user stores a large chunk of data to the clipboard, it takes a bit of time for that information to transfer from the Remote Desktop client to the server. The downstream experience can be impacted by the experience of sending the clipboard content upstream. The same applies for device redirection - if a scanner or web cam produces a lot of data that needs to be sent upstream to the server, or a printer needs to receive a large document, or local storage needs to be available to an app running in the cloud to copy a large file, users might notice dropped frames or temporarily "frozen" video because the data needed for the device redirection is increasing the network bandwidth needs. 
+- **可用的網路頻寬和目前網路狀況** - 相同網路上特定時間的一組參數 (遺失、延遲、抖動) 可能會影響應用程式串流體驗，這表示會降低整體使用者體驗。網路中的可用頻寬是壅塞、隨機遺失、延遲的功能，因為所有這些參數都會影響壅塞控制機制，進而控制傳輸速度來避免衝突。例如，遺失的網路或具有高延遲的網路會造成較差的使用者體驗，甚至在具有 1000 MB 頻寬的網路上也是一樣。遺失和延遲會根據相同網路上的使用者數目以及這些使用者的動作 (例如，觀賞影片、下載或上傳大型檔案、列印) 而不同。
+- **使用案例** - 體驗取決於使用者在相同網路上個人執行的動作以及以群組形式執行的動作。例如，讀取一張投影片僅需要更新單一畫面格；如果使用者瀏覽並捲動文字文件的內容，則每秒需要更新較多的畫面格。在此案例中，與伺服器之間的來回通訊最後會消耗更多的網路頻寬。也請考量極端範例︰多位使用者觀賞高畫質影片 (例如 4K 解析度)、進行 HD 電話會議、玩 3D 視訊遊戲，或在 CAD 系統上工作。所有這些動作甚至可能會讓真正高頻寬的網路無法使用。
+- **螢幕解析度和螢幕數目** - 完整更新較大的螢幕比更新較小的螢幕，需要較多的網路頻寬。基礎技術善於編碼和僅傳輸已更新的螢幕區域，但偶而需要更新整個畫面螢幕。使用者的螢幕解析度較高 (例如 4K 解析度) 時，該更新所需的網路頻寬會高於解析度低的螢幕 (如 1024x768px)。如果您使用數個螢幕進行重新導向，則適用這個相同的邏輯。頻寬需要隨著螢幕數目而增加。
+- **剪貼簿和裝置重新導向** - 這不是很明顯的問題，但在許多情況下，如果使用者將大量資料儲存至剪貼簿，則需要一些時間，將該資訊從遠端桌面用戶端傳送到伺服器。在上游傳送剪貼簿內容的體驗可能會影響下游體驗。這也適用於裝置重新導向 - 如果掃描器或網路攝影機產生很多需要往上游傳送到伺服器的資料、印表機需要接收大型文件，或本機存放區必須可供在雲端執行的應用程式複製大型檔案，則使用者可能會注意到畫面格減少或暫時「凍結」，因為裝置重新導向所需的資料會增加網路頻寬需求。
 
-When you evaluate your network bandwidth needs, make sure to consider all of these factors working as a system.
+當您評估網路頻寬需求時，請務必考慮將所有這些因素當成一個系統來運作。
 
-Now, go back to the [main network bandwidth article](remoteapp-bandwidth.md), or move on to testing your [network bandwidth](remoteapp-bandwidthtests.md).
+現在，請回到[主要網路頻寬](remoteapp-bandwidth.md)一文，或繼續測試您的[網路頻寬](remoteapp-bandwidthtests.md)。
 
-## <a name="learn-more"></a>Learn more
-- [Estimate Azure RemoteApp network bandwidth usage](remoteapp-bandwidth.md)
+## 詳細資訊
+- [Estimate Azure RemoteApp network bandwidth usage (評估 Azure RemoteApp 網路頻寬使用量)](remoteapp-bandwidth.md)
 
-- [Azure RemoteApp - testing your network bandwidth usage with some common scenarios](remoteapp-bandwidthtests.md)
+- [Azure RemoteApp - testing your network bandwidth usage with some common scenarios (Azure RemoteApp - 利用一些常見案例測試您的網路頻寬使用量)](remoteapp-bandwidthtests.md)
 
-- [Azure RemoteApp network bandwidth - general guidelines (if you can't test your own)](remoteapp-bandwidthguidelines.md)
+- [Azure RemoteApp network bandwidth - general guidelines (if you can't test your own) (Azure RemoteApp 網路頻寬 - 一般指導方針 (如果您無法自行測試))](remoteapp-bandwidthguidelines.md)
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

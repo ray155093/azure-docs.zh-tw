@@ -1,10 +1,7 @@
-This is reference information for Azure Functions developers. If you're new to Azure Functions, start with the following resources:
+這是 Azure Functions 開發人員的參考資訊。如果您不熟悉 Azure Functions，請從下列資源開始︰
 
-* [Create your first Azure Function](../articles/azure-functions/functions-create-first-azure-function.md)
-* [Azure Functions developer reference](../articles/azure-functions/functions-reference.md)
-* [C#](../articles/azure-functions/functions-reference-csharp.md), [F#](../articles/azure-functions/functions-reference-fsharp.md), or [Node](../articles/azure-functions/functions-reference-node.md) developer reference
+* [建立您的第一個 Azure 函式](../articles/azure-functions/functions-create-first-azure-function.md)
+* [Azure Functions 開發人員參考](../articles/azure-functions/functions-reference.md)
+* [C#](../articles/azure-functions/functions-reference-csharp.md)、[F#](../articles/azure-functions/functions-reference-fsharp.md) 或 [Node](../articles/azure-functions/functions-reference-node.md) 開發人員參考
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

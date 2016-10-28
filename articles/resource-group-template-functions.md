@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Resource Manager Template Functions | Microsoft Azure"
-   description="Describes the functions to use in an Azure Resource Manager template to retrieve values, work with strings and numerics, and retrieve deployment information."
+   pageTitle="資源管理員範本函數 | Microsoft Azure"
+   description="描述要在 Azure 資源管理員範本中用來擷取值、搭配字串和數字使用，並擷取部署資訊的函數。"
    services="azure-resource-manager"
    documentationCenter="na"
    authors="tfitzmac"
@@ -16,18 +16,17 @@
    ms.date="09/12/2016"
    ms.author="tomfitz"/>
 
+# Azure 資源管理員範本函數
 
-# <a name="azure-resource-manager-template-functions"></a>Azure Resource Manager template functions
+本主題描述您可以在Azure Resource Manager 範本中使用的所有函式。
 
-This topic describes all the functions you can use in an Azure Resource Manager template.
+範本函數和其參數不區分大小寫。例如，資源管理員在解析 **variables('var1')** 和 **VARIABLES('VAR1')** 時，會將它們視為相同。評估時，除非函式明確修改大小寫 (例如 toUpper 或 toLower)，否則函式將會保留大小寫。特定資源類型可能有與評估函式方式無關的大小寫需求。
 
-Template functions and their parameters are case-insensitive. For example, Resource Manager resolves **variables('var1')** and **VARIABLES('VAR1')** as the same. When evaluated, unless the function expressly modifies case (such as toUpper or toLower), the function preserves the case. Certain resource types may have case requirements irrespective of how functions are evaluated.
+## 數值函式
 
-## <a name="numeric-functions"></a>Numeric functions
+資源管理員提供下列函式以使用整數：
 
-Resource Manager provides the following functions for working with integers:
-
-- [add](#add)
+- [新增](#add)
 - [copyIndex](#copyindex)
 - [div](#div)
 - [int](#int)
@@ -37,18 +36,18 @@ Resource Manager provides the following functions for working with integers:
 
 
 <a id="add" />
-### <a name="add"></a>add
+### 新增
 
 **add(operand1, operand2)**
 
-Returns the sum of the two provided integers.
+傳回兩個所提供整數加總後的數字。
 
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| operand1                           |   Yes    | First integer to add.
-| operand2                           |   Yes    | Second integer to add.
+| operand1 | 是 | 要新增的第一個整數。
+| operand2 | 是 | 要新增的第二個整數。
 
-The following example adds two parameters.
+下列範例會新增兩個參數。
 
     "parameters": {
       "first": {
@@ -73,19 +72,19 @@ The following example adds two parameters.
     }
 
 <a id="copyindex" />
-### <a name="copyindex"></a>copyIndex
+### copyIndex
 
 **copyIndex(offset)**
 
-Returns the current index of an iteration loop. 
+傳回反覆項目迴圈目前的索引。
 
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| offset                           |   No    | The amount to add to current iteration value.
+| Offset | 否 | 要新增目前反覆運算值的數量。
 
-This function is always used with a **copy** object. For a complete description of how you use **copyIndex**, see [Create multiple instances of resources in Azure Resource Manager](resource-group-create-multiple.md).
+這個函式一律搭配 **copy** 物件使用。如需如何使用 **copyIndex** 的完整範例，請參閱[在 Azure Resource Manager 中建立資源的多個執行個體](resource-group-create-multiple.md)。
 
-The following example shows a copy loop and the index value included in the name. 
+下列範例顯示複製迴圈以及名稱中所包含的索引值。
 
     "resources": [ 
       { 
@@ -101,18 +100,18 @@ The following example shows a copy loop and the index value included in the name
 
 
 <a id="div" />
-### <a name="div"></a>div
+### div
 
 **div(operand1, operand2)**
 
-Returns the integer division of the two provided integers.
+傳回兩個所提供整數相除後的商。
 
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| operand1                           |   Yes    | Integer being divided.
-| operand2                           |   Yes    | Integer that is used to divide. Cannot be 0.
+| operand1 | 是 | 被除數 (整數)。
+| operand2 | 是 | 除數 (整數)。不能為 0。
 
-The following example divides one parameter by another parameter.
+下列範例會使用一個參數除以另一個參數。
 
     "parameters": {
       "first": {
@@ -137,17 +136,17 @@ The following example divides one parameter by another parameter.
     }
 
 <a id="int" />
-### <a name="int"></a>int
+### int
 
 **int(valueToConvert)**
 
-Converts the specified value to Integer.
+將指定的值轉換成整數。
 
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| valueToConvert                     |   Yes    | The value to convert to Integer. The type of value can only be String or Integer.
+| valueToConvert | 是 | 要轉換成整數的值。值的類型只能是字串或整數。
 
-The following example converts the user-provided parameter value to Integer.
+下列範例會將使用者提供的參數值轉換成整數。
 
     "parameters": {
         "appId": { "type": "string" }
@@ -158,18 +157,18 @@ The following example converts the user-provided parameter value to Integer.
 
 
 <a id="mod" />
-### <a name="mod"></a>mod
+### mod
 
 **mod(operand1, operand2)**
 
-Returns the remainder of the integer division using the two provided integers.
+傳回兩個所提供整數相除後的餘數。
 
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| operand1                           |   Yes    | Integer being divided.
-| operand2                           |   Yes    | Integer that is used to divide, has to be different from 0.
+| operand1 | 是 | 被除數 (整數)。
+| operand2 | 是 | 除數不得為 0。
 
-The following example returns the remainder of dividing one parameter by another parameter.
+下列範例傳回的是一個參數除以另一個參數的餘數。
 
     "parameters": {
       "first": {
@@ -194,18 +193,18 @@ The following example returns the remainder of dividing one parameter by another
     }
 
 <a id="mul" />
-### <a name="mul"></a>mul
+### mul
 
 **mul(operand1, operand2)**
 
-Returns the multiplication of the two provided integers.
+傳回兩個所提供整數相乘後的數字。
 
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| operand1                           |   Yes    | First integer to multiply.
-| operand2                           |   Yes    | Second integer to multiply.
+| operand1 | 是 | 要相乘的第一個整數。
+| operand2 | 是 | 要相乘的第二個整數。
 
-The following example multiplies one parameter by another parameter.
+下列範例會使用一個參數乘以另一個參數。
 
     "parameters": {
       "first": {
@@ -230,18 +229,18 @@ The following example multiplies one parameter by another parameter.
     }
 
 <a id="sub" />
-### <a name="sub"></a>sub
+### sub
 
 **sub(operand1, operand2)**
 
-Returns the subtraction of the two provided integers.
+傳回兩個所提供整數相減後的數字。
 
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| operand1                           |   Yes    | Integer that is subtracted from.
-| operand2                           |   Yes    | Integer that is subtracted.
+| operand1 | 是 | 被減數 (整數)。
+| operand2 | 是 | 減數 (整數)。
 
-The following example subtracts one parameter from another parameter.
+下列範例會對一個參數減去另一個參數。
 
     "parameters": {
       "first": {
@@ -265,9 +264,9 @@ The following example subtracts one parameter from another parameter.
       }
     }
 
-## <a name="string-functions"></a>String functions
+## 字串函數
 
-Resource Manager provides the following functions for working with strings:
+資源管理員提供下列函式以使用字串：
 
 - [base64](#base64)
 - [concat](#concat)
@@ -275,29 +274,29 @@ Resource Manager provides the following functions for working with strings:
 - [padLeft](#padleft)
 - [replace](#replace)
 - [skip](#skipstring)
-- [split](#split)
-- [string](#string)
+- [分割](#split)
+- [字串](#string)
 - [substring](#substring)
 - [take](#takestring)
 - [toLower](#tolower)
 - [toUpper](#toupper)
-- [trim](#trim)
+- [修剪](#trim)
 - [uniqueString](#uniquestring)
 - [uri](#uri)
 
 
 <a id="base64" />
-### <a name="base64"></a>base64
+### base64
 
 **base64 (inputString)**
 
-Returns the base64 representation of the input string.
+傳回輸入字串的 base64 表示法。
 
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| inputString                        |   Yes    | The string value to return as a base64 representation.
+| inputString | 是 | 要以 base64 表示法傳回的字串值。
 
-The following example shows how to use the base64 function.
+下列範例顯示如何使用 base64 函式。
 
     "variables": {
       "usernameAndPassword": "[concat('parameters('username'), ':', parameters('password'))]",
@@ -305,20 +304,20 @@ The following example shows how to use the base64 function.
     }
 
 <a id="concat" />
-### <a name="concat---string"></a>concat - string
+### concat - 字串
 
-**concat (string1, string2, string3, ...)**
+**concat (string1、string2、string3、…)**
 
-Combines multiple string values and returns the concatenated string. 
+結合多個字串值，並傳回串連的字串。
 
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| string1                        |   Yes    | A string value to concatenate.
-| additional strings             |   No     | String values to concatenate.
+| string1 | 是 | 要串連的字串值。
+| 其他字串 | 否 | 要串連的字串值。
 
-This function can take any number of arguments, and can accept either strings or arrays for the parameters. For an example of concatenating arrays, see [concat - array](#concatarray).
+此函式可以接受任意數目的引數，並且可針對參數接受字串或陣列。如需串連陣列的範例，請參閱 [concat - 陣列](#concatarray)。
 
-The following example shows how to combine multiple string values to return a concatenated string.
+下列範例顯示如何結合多個字串值來傳回串連的字串。
 
     "outputs": {
         "siteUri": {
@@ -329,19 +328,19 @@ The following example shows how to combine multiple string values to return a co
 
 
 <a id="lengthstring" />
-### <a name="length---string"></a>length - string
+### length - 字串
 
 **length(string)**
 
-Returns the number of characters in a string.
+傳回字串中的字元數。
 
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| string                        |   Yes    | The string value to use for getting the number of characters.
+| string | 是 | 取得字元數所用的字串值。
 
-For an example of using length with an array, see [length - array](#length).
+如需 length 與陣列搭配使用的範例，請參閱 [length - 陣列](#length)。
 
-The following example returns the number of characters in a string. 
+下列範例傳回字串中的字元數。
 
     "parameters": {
         "appName": { "type": "string" }
@@ -352,19 +351,19 @@ The following example returns the number of characters in a string.
         
 
 <a id="padleft" />
-### <a name="padleft"></a>padLeft
+### padLeft
 
 **padLeft(valueToPad, totalLength, paddingCharacter)**
 
-Returns a right-aligned string by adding characters to the left until reaching the total specified length.
+藉由將字元新增至左邊，直到到達指定的總長度，以傳回靠右對齊的字串。
   
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| valueToPad                         |   Yes    | The string or int to right-align.
-| totalLength                        |   Yes    | The total number of characters in the returned string.
-| paddingCharacter                   |   No     | The character to use for left-padding until the total length is reached. The default value is a space.
+| valueToPad | 是 | 要靠右對齊的字串或 int。
+| totalLength | 是 | 傳回字串中的字元總數。
+| paddingCharacter | 否 | 要用於左側填補直到達到總長度的字元。預設值是空格。
 
-The following example shows how to pad the user-provided parameter value by adding the zero character until the string reaches 10 characters. If the original parameter value is longer than 10 characters, no characters are added.
+下列範例顯示如何藉由新增零個字元，直到字傳達到 10 個字元，以填補使用者提供的參數值。如果原始參數值超過 10 個字元，就不新增任何字元。
 
     "parameters": {
         "appName": { "type": "string" }
@@ -374,19 +373,19 @@ The following example shows how to pad the user-provided parameter value by addi
     }
 
 <a id="replace" />
-### <a name="replace"></a>replace
+### 取代
 
 **replace(originalString, oldCharacter, newCharacter)**
 
-Returns a new string with all instances of one character in the specified string replaced by another character.
+在由另一個字元取代的指定字串中，傳回具備一個字元的所有執行個體的新字串。
 
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| originalString                     |   Yes    | The string that has all instances of one character replaced by another character.
-| oldCharacter                       |   Yes    | The character to be removed from the original string.
-| newCharacter                       |   Yes    | The character to add in place of the removed character.
+| originalString | 是 | 具有由另一個字元取代之某個字元的所有執行個體的字串。
+| oldCharacter | 是 | 要從原始字串中移除的字元。
+| newCharacter | 是 | 要新增來取代移除字元的字元。
 
-The following example shows how to remove all dashes from the user-provided string.
+下列範例顯示如何從使用者提供的字串中移除所有的連字號。
 
     "parameters": {
         "identifier": { "type": "string" }
@@ -396,19 +395,19 @@ The following example shows how to remove all dashes from the user-provided stri
     }
 
 <a id="skipstring" />
-### <a name="skip---string"></a>skip - string
+### skip - 字串
 **skip(originalValue, numberToSkip)**
 
-Returns a string with all the characters after the specified number in the string.
+傳回在字串中指定數字之後之所有字元的字串。
 
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| originalValue                      |   Yes    | The string to use for skipping.
-| numberToSkip                       |   Yes    | The number of characters to skip. If this value is 0 or less, all the characters in the string are returned. If it is larger than the length of the string, an empty string is returned. 
+| originalValue | 是 | 略過所用的字串。
+| numberToSkip | 是 | 要略過的字元數。如果此值為 0 或更小，則會傳回字串中的所有字元。如果此值大於字串的長度，則會傳回空白陣列。 
 
-For an example of using skip with an array, see [skip - array](#skip).
+如需 skip 和陣列搭配使用的範例，請參閱 [skip - 陣列](#skip)。
 
-The following example skips the specified number of characters in the string.
+下列範例會略過字串中指定的字元數目。
 
     "parameters": {
       "first": {
@@ -435,20 +434,20 @@ The following example skips the specified number of characters in the string.
 
 
 <a id="split" />
-### <a name="split"></a>split
+### split
 
 **split(inputString, delimiterString)**
 
-**split(inputString, delimiterArray)**
+**split(inputString, delimiterString)**
 
-Returns an array of strings that contains the substrings of the input string that are delimited by the specified delimiters.
+傳回包含輸入字串之子字串的字串陣列，其中的子字串已使用指定的分隔符號分隔。
 
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| inputString                        |   Yes    | The string to split.
-| delimiter                          |   Yes    | The delimiter to use, can be a single string or an array of strings.
+| inputString | 是 | 要分割的字串。
+| 分隔符號 | 是 | 使用的分隔符號可以是單一字串或字串的陣列。
 
-The following example splits the input string with a comma.
+下列範例會使用逗號來分割輸入字串。
 
     "parameters": {
         "inputString": { "type": "string" }
@@ -457,7 +456,7 @@ The following example splits the input string with a comma.
         "stringPieces": "[split(parameters('inputString'), ',')]"
     }
 
-The next example splits the input string with either a comma or a semi-colon.
+下一個範例使用逗號或分號分割輸入的字串。
 
     "variables": {
       "stringToSplit": "test1,test2;test3",
@@ -472,17 +471,17 @@ The next example splits the input string with either a comma or a semi-colon.
     }
 
 <a id="string" />
-### <a name="string"></a>string
+### string
 
 **string(valueToConvert)**
 
-Converts the specified value to a string.
+將指定的值轉換成字串。
 
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| valueToConvert                     |   Yes    | The value to convert to string. Any type of value can be converted, including objects and arrays.
+| valueToConvert | 是 | 要轉換成字串的值。任何類型的值均可轉換，包括物件和陣列。
 
-The following example converts the user-provided parameter values to strings.
+下列範例會將使用者提供的參數值轉換成字串。
 
     "parameters": {
       "jsonObject": {
@@ -508,19 +507,19 @@ The following example converts the user-provided parameter values to strings.
     }
 
 <a id="substring" />
-### <a name="substring"></a>substring
+### substring
 
 **substring(stringToParse, startIndex, length)**
 
-Returns a substring that starts at the specified character position and contains the specified number of characters.
+傳回起始於指定字元位置的子字串，其中包含指定的字元數。
 
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| stringToParse                     |   Yes    | The original string from which the substring is extracted.
-| startIndex                         | No      | The zero-based starting character position for the substring.
-| length                             | No      | The number of characters for the substring.
+| stringToParse | 是 | 要用來擷取子字串的原始字串。
+| startIndex | 否 | 起始字元位置為零的子字串。
+| length | 否 | 子字串的字元數。
 
-The following example extracts the first three characters from a parameter.
+下列範例擷取了參數的前三個字元。
 
     "parameters": {
         "inputString": { "type": "string" }
@@ -530,19 +529,19 @@ The following example extracts the first three characters from a parameter.
     }
 
 <a id="takestring" />
-### <a name="take---string"></a>take - string
+### take - 字串
 **take(originalValue, numberToTake)**
 
-Returns a string with the specified number of characters from the start of the string.
+傳回字串開頭之指定字元數目的字串。
 
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| originalValue                      |   Yes    | The string to take the characters from.
-| numberToTake                       |   Yes    | The number of characters to take. If this value is 0 or less, an empty string is returned. If it is larger than the length of the given string, all the characters in the string are returned.
+| originalValue | 是 | 要從其中擷取字元的字串。
+| numberToTake | 是 | 要擷取的字元數。如果此值為 0 或更小，則會傳回空白字串。如果此值大於指定字串的長度，則會傳回字串中的所有字元。
 
-For an example of using take with an array, see [take - array](#take).
+如需 take 和陣列搭配使用的範例，請參閱 [ - 陣列](#take)。
 
-The following example takes the specified number of characters from the string.
+下列範例會從字串中擷取指定的字元數。
 
     "parameters": {
       "first": {
@@ -568,17 +567,17 @@ The following example takes the specified number of characters from the string.
     }
 
 <a id="tolower" />
-### <a name="tolower"></a>toLower
+### toLower
 
 **toLower(stringToChange)**
 
-Converts the specified string to lower case.
+將指定的字串轉換為小寫。
 
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| stringToChange                     |   Yes    | The string to convert to lower case.
+| stringToChange | 是 | 要轉換成小寫的字串。
 
-The following example converts the user-provided parameter value to lower case.
+下列範例會將使用者提供的參數值轉換為小寫。
 
     "parameters": {
         "appName": { "type": "string" }
@@ -588,17 +587,17 @@ The following example converts the user-provided parameter value to lower case.
     }
 
 <a id="toupper" />
-### <a name="toupper"></a>toUpper
+### toUpper
 
 **toUpper(stringToChange)**
 
-Converts the specified string to upper case.
+將指定的字串轉換為大寫。
 
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| stringToChange                     |   Yes    | The string to convert to upper case.
+| stringToChange | 是 | 要轉換成大寫的字串。
 
-The following example converts the user-provided parameter value to upper case.
+下列範例會將使用者提供的參數值轉換為大寫。
 
     "parameters": {
         "appName": { "type": "string" }
@@ -608,17 +607,17 @@ The following example converts the user-provided parameter value to upper case.
     }
 
 <a id="trim" />
-### <a name="trim"></a>trim
+### 修剪
 
 **trim (stringToTrim)**
 
-Removes all leading and trailing white-space characters from the specified string.
+從指定的字串中移除所有開頭和尾端空白字元。
 
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| stringToTrim                       |   Yes    | The string to trim.
+| stringToTrim | 是 | 要修剪的字串。
 
-The following example trims the white-space characters from the user-provided parameter value.
+下列範例會修剪由使用者提供之參數值的空白字元。
 
     "parameters": {
         "appName": { "type": "string" }
@@ -628,38 +627,38 @@ The following example trims the white-space characters from the user-provided pa
     }
 
 <a id="uniquestring" />
-### <a name="uniquestring"></a>uniqueString
+### uniqueString
 
 **uniqueString (baseString, ...)**
 
-Creates a deterministic hash string based on the values provided as parameters. 
+根據當作參數提供的值，建立具決定性的雜湊字串。
 
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| baseString      |   Yes    | The string used in the hash function to create a unique string.
-| additional parameters as needed    | No       | You can add as many strings as needed to create the value that specifies the level of uniqueness.
+| baseString | 是 | 雜湊函式中用來建立唯一字串的字串。
+| 視需要，也會使用其他參數 | 否 | 您可以視需要新增多個字串，來建立指定唯一性層級的值。
 
-This function is helpful when you need to create a unique name for a resource. You provide parameter values that limit the scope of uniqueness for the result. You can specify whether the name is unique down to subscription, resource group, or deployment. 
+當您需要建立資源的唯一名稱時，這個函式很有幫助。您提供限制結果唯一性範圍的參數值。您可以指定名稱對於訂用帳戶、資源群組或部署是否唯一。
 
-The returned value is not a random string, but rather the result of a hash function. The returned value is 13 characters long. It is not globally unique. You may want to combine the value with a prefix from your naming convention to create a name that is meaningful. The following example shows the format of the returned value. Of course, the actual value will vary by the provided parameters.
+傳回的值不是隨機字串，而是雜湊函式的結果。傳回的值為 13 個字元長。它不是全域唯一的。建議您將值與來自命名慣例的前置詞結合，建立有意義的名稱。下列範例顯示傳回值的格式。當然，實際值會根據提供的參數而有所不同。
 
     tcvhiyu5h2o5o
 
-The following examples show how to use uniqueString to create a unique value for commonly used levels.
+下列範例顯示如何使用 uniqueString 來建立常用層級的唯一值。
 
-Unique scoped to subscription
+在訂用帳戶範圍內是唯一
 
     "[uniqueString(subscription().subscriptionId)]"
 
-Unique scoped to resource group
+在資源群組範圍內是唯一
 
     "[uniqueString(resourceGroup().id)]"
 
-Unique scoped to deployment for a resource group
+在資源群組的部署範圍內是唯一
 
     "[uniqueString(resourceGroup().id, deployment().name)]"
     
-The following example shows how to create a unique name for a storage account based on your resource group (inside this resource group the name is not unique if constructed the same way).
+下列範例示範如何根據資源群組建立儲存體帳戶的唯一名稱 (若以相同方式建構，則在此資源群組內名稱不是唯一的)。
 
     "resources": [{ 
         "name": "[concat('contosostorage', uniqueString(resourceGroup().id))]", 
@@ -669,49 +668,49 @@ The following example shows how to create a unique name for a storage account ba
 
 
 <a id="uri" />
-### <a name="uri"></a>uri
+### uri
 
 **uri (baseUri, relativeUri)**
 
-Creates an absolute URI by combining the baseUri and the relativeUri string.
+藉由結合 baseUri 和 relativeUri 字串建立絕對 URI。
 
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| baseUri                            |   Yes    | The base uri string.
-| relativeUri                        |   Yes    | The relative uri string to add to the base uri string.
+| baseUri | 是 | 基底 uri 的字串。
+| relativeUri | 是 | 要加入至基底 uri 字串的相對 uri 字串。
 
-The value for the **baseUri** parameter can include a specific file, but only the base path is used when constructing the URI. For example, passing **http://contoso.com/resources/azuredeploy.json** as the baseUri parameter results in a base URI of **http://contoso.com/resources/**.
+**baseUri** 參數的值可包含特定檔案，但在建構 URI 時只會使用基底路徑。例如，將 **http://contoso.com/resources/azuredeploy.json** 作為 baseUri 參數傳遞時，會產生 http://contoso.com/resources/** 的基底 URI**。
 
-The following example shows how to construct a link to a nested template based on the value of the parent template.
+下列範例顯示如何根據上層範本的值建構巢狀範本的連結。
 
     "templateLink": "[uri(deployment().properties.templateLink.uri, 'nested/azuredeploy.json')]"
 
-## <a name="array-functions"></a>Array functions
+## 陣列函數
 
-Resource Manager provides several functions for working with array values.
+資源管理員提供下列函式以使用陣列值。
 
 - [concat](#concatarray)
 - [length](#length)
 - [skip](#skip)
 - [take](#take)
 
-To get an array of string values delimited by a value, see [split](#split).
+若要取得以值分隔的字串值陣列，請參閱[分割](#split)。
 
 <a id="concatarray" />
-### <a name="concat---array"></a>concat - array
+### concat - 陣列
 
 **concat (array1, array2, array3, ...)**
 
-Combines multiple arrays and returns the concatenated array. 
+結合多個陣列，並傳回串連的陣列。
 
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| array1                        |   Yes    | An array to concatenate.
-| additional arrays             |   No     | Arrays to concatenate.
+| array1 | 是 | 要串連的陣列。
+| 其他的陣列 | 否 | 要串連的陣列。
 
-This function can take any number of arguments, and can accept either strings or arrays for the parameters. For an example of concatenating string values, see [concat - string](#concat).
+此函式可以接受任意數目的引數，並且可針對參數接受字串或陣列。如需串連字串值的範例，請參閱 [concat - 字串](#concat)。
 
-The following example shows how to combine two arrays.
+下一個範例顯示如何結合兩個陣列。
 
     "parameters": {
         "firstarray": {
@@ -727,41 +726,41 @@ The following example shows how to combine two arrays.
         
 
 <a id="length" />
-### <a name="length---array"></a>length - array
+### length - 陣列
 
 **length(array)**
 
-Returns the number of elements in an array.
+傳回陣列中的元素數目。
 
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| array                        |   Yes    | The array to use for getting the number of elements.
+| array | 是 | 取得元素數目所用的陣列。
 
-You can use this function with an array to specify the number of iterations when creating resources. In the following example, the parameter **siteNames** would refer to an array of names to use when creating the web sites.
+建立資源時，您可在陣列中使用此函式指定反覆運算的數量。下列範例中，參數 **siteNames** 會參考在建立網站時要使用的名稱陣列。
 
     "copy": {
         "name": "websitescopy",
         "count": "[length(parameters('siteNames'))]"
     }
 
-For more information about using this function with an array, see [Create multiple instances of resources in Azure Resource Manager](resource-group-create-multiple.md). 
+如需有關在此陣列中使用函式的詳細資訊，請參閱[在 Azure 資源管理員中建立資源的多個執行個體](resource-group-create-multiple.md)。
 
-For an example of using length with a string value, see [length - string](#lengthstring).
+如需字串值與 length 搭配的範例，請參閱 [length - 字串](#lengthstring)。
 
 <a id="skip" />
-### <a name="skip---array"></a>skip - array
+### skip - 陣列
 **skip(originalValue, numberToSkip)**
 
-Returns an array with all the elements after the specified number in the array.
+傳回陣列中指定的元素數之後的所有元素的陣列。
 
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| originalValue                      |   Yes    | The array to use for skipping.
-| numberToSkip                       |   Yes    | The number of elements to skip. If this value is 0 or less, all the elements in the array are returned. If it is larger than the length of the array, an empty array is returned. 
+| originalValue | 是 | 用於略過的陣列。
+| numberToSkip | 是 | 要略過的元素數目。如果此值為 0 或更小，則會傳回陣列中的所有元素。如果此值大於陣列的長度，則會傳回空白陣列。 
 
-For an example of using skip with a string, see [skip - string](#skipstring).
+如需 skip 和字串搭配使用的範例，請參閱 [skip - 陣列](#skipstring)。
 
-The following example skips the specified number of elements in the array.
+下列範例會略過陣列中指定的元素數目。
 
     "parameters": {
       "first": {
@@ -788,19 +787,19 @@ The following example skips the specified number of elements in the array.
     }
 
 <a id="take" />
-### <a name="take---array"></a>take - array
+### take - 陣列
 **take(originalValue, numberToTake)**
 
-Returns an array with the specified number of elements from the start of the array.
+傳回其中包含從陣列開頭算起指定的元素數目的陣列。
 
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| originalValue                      |   Yes    | The array to take the elements from.
-| numberToTake                       |   Yes    | The number of elements to take. If this value is 0 or less, an empty array is returned. If it is larger than the length of the given array, all the elements in the array are returned.
+| originalValue | 是 | 要從其中擷取元素的陣列。
+| numberToTake | 是 | 要擷取的元素數目。如果此值為 0 或更小，則會傳回空白陣列。如果此值大於指定陣列的長度，則會傳回陣列中的所有元素。
 
-For an example of using take with a string, see [take - string](#takestring).
+如需 take 和字串搭配使用的範例，請參閱 [ - 字串](#takestring)。
 
-The following example takes the specified number of elements from the array.
+下列範例會從陣列中取得指定的元素數目。
 
     "parameters": {
       "first": {
@@ -826,26 +825,26 @@ The following example takes the specified number of elements from the array.
       }
     }
 
-## <a name="deployment-value-functions"></a>Deployment value functions
+## 部署值函式
 
-Resource Manager provides the following functions for getting values from sections of the template and values related to the deployment:
+資源管理員提供下列函式，以從與部署相關的範本和值的區段中取得值：
 
-- [deployment](#deployment)
-- [parameters](#parameters)
-- [variables](#variables)
+- [部署](#deployment)
+- [參數](#parameters)
+- [變數](#variables)
 
-To get values from resources, resource groups, or subscriptions, see [Resource functions](#resource-functions).
+若要從資源、資源群組或訂用帳戶中取得值，請參閱[資源函式](#resource-functions)。
 
 <a id="deployment" />
-### <a name="deployment"></a>deployment
+### 部署
 
 **deployment()**
 
-Returns information about the current deployment operation.
+傳回目前部署作業的相關資訊。
 
-This function returns the object that is passed during deployment. The properties in the returned object differ based on whether the deployment object is passed as a link or as an in-line object. 
+此函式會傳回部署期間所傳遞的物件。視部署物件是以連結或內嵌物件形式傳遞，所傳回物件中的屬性將有所不同。
 
-When the deployment object is passed in-line, such as when using the **-TemplateFile** parameter in Azure PowerShell to point to a local file, the returned object has the following format:
+部署物件以內嵌形式傳遞時 (例如使用 Azure PowerShell 中的 **-TemplateFile** 參數指向本機檔案時)，所傳回的物件為下列格式：
 
     {
         "name": "",
@@ -865,7 +864,7 @@ When the deployment object is passed in-line, such as when using the **-Template
         }
     }
 
-When the object is passed as a link, such as when using the **-TemplateUri** parameter to point to a remote object, the object is returned in the following format. 
+部署物件以連結形式傳遞時 (例如使用 **-TemplateUri** 參數指向遠端檔案時)，所傳回的物件為下列格式：
 
     {
         "name": "",
@@ -887,24 +886,24 @@ When the object is passed as a link, such as when using the **-TemplateUri** par
         }
     }
 
-The following example shows how to use deployment() to link to another template based on the URI of the parent template.
+下列範例說如何根據上層範本 URI，使用部署() 連結至另一個範本。
 
     "variables": {  
         "sharedTemplateUrl": "[uri(deployment().properties.templateLink.uri, 'shared-resources.json')]"  
     }  
 
 <a id="parameters" />
-### <a name="parameters"></a>parameters
+### 參數
 
 **parameters (parameterName)**
 
-Returns a parameter value. The specified parameter name must be defined in the parameters section of the template.
+傳回參數值。指定的參數名稱必須定義於範本的 parameters 區段中。
 
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| parameterName                      |   Yes    | The name of the parameter to return.
+| parameterName | 是 | 要傳回的參數名稱。
 
-The following example shows a simplified use of the parameters function.
+下列範例顯示 parameters 函數的簡化用法。
 
     "parameters": { 
       "siteName": {
@@ -921,17 +920,17 @@ The following example shows a simplified use of the parameters function.
     ]
 
 <a id="variables" />
-### <a name="variables"></a>variables
+### 變數
 
 **variables (variableName)**
 
-Returns the value of variable. The specified variable name must be defined in the variables section of the template.
+傳回變數的值。指定的變數名稱必須定義於範本的 variables 區段中。
 
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| variable Name                      |   Yes    | The name of the variable to return.
+| 變數名稱 | 是 | 要傳回的變數名稱。
 
-The following example uses a variable value.
+下列範例會使用變數值。
 
     "variables": {
       "storageName": "[concat('storage', uniqueString(resourceGroup().id))]"
@@ -944,45 +943,44 @@ The following example uses a variable value.
       }
     ],
 
-## <a name="resource-functions"></a>Resource functions
+## 資源函式
 
-Resource Manager provides the following functions for getting resource values:
+資源管理員提供下列函式以取得資源值：
 
-- [listKeys and list{Value}](#listkeys)
-- [providers](#providers)
+- [listKeys 和 list{Value}](#listkeys)
+- [提供者](#providers)
 - [reference](#reference)
 - [resourceGroup](#resourcegroup)
 - [resourceId](#resourceid)
-- [subscription](#subscription)
+- [訂用帳戶](#subscription)
 
-To get values from parameters, variables, or the current deployment, see [Deployment value functions](#deployment-value-functions).
+若要從參數、變數或目前的部署中取得值，請參閱[部署值函式](#deployment-value-functions)。
 
-<a id="listkeys" />
-<a id="list" />
-### <a name="listkeys-and-list{value}"></a>listKeys and list{Value}
+<a id="listkeys" /> <a id="list" />
+### listKeys 和 list{Value}
 
 **listKeys (resourceName or resourceIdentifier, apiVersion)**
 
 **list{Value} (resourceName or resourceIdentifier, apiVersion)**
 
-Returns the values for any resource type that supports the list operation. The most common usage is **listKeys**. 
+對支援 list 作業的任何資源類型傳回值。最常見的用法是 **listKeys**。
   
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| resourceName or resourceIdentifier |   Yes    | Unique identifier for the resource.
-| apiVersion                         |   Yes    | API version of resource runtime state.
+| resourceName 或 resourceIdentifier | 是 | 資源的唯一識別碼。
+| apiVersion | 是 | 資源執行階段狀態的 API 版本。
 
-Any operation that starts with **list** can be used a function in your template. The available operations include not only **listKeys**, but also operations like **list**, **listAdminKeys**, and **listStatus**. To determine which resource types have a list operation, use the following PowerShell command.
+開頭為 **list** 的任何作業都可在您的範本中用為函式。可用作業不只包含 **listKeys**、還可包含像 **list**、**listAdminKeys** 和 **listStatus** 等作業。為判斷哪一個資源類型具有清單作業，請使用以下 PowerShell 命令。
 
     Get-AzureRmProviderOperation -OperationSearchString *  | where {$_.Operation -like "*list*"} | FT Operation
 
-Or, retrieve the list with Azure CLI. The following example retrieves all the operations for **apiapps**, and uses the JSON utility [jq](http://stedolan.github.io/jq/download/) to filter only the list operations.
+或者，請擷取具有 Azure CLI 的清單。以下範例會擷取 **apiapps** 的所有作業，並使用 JSON 公用程式 [jq](http://stedolan.github.io/jq/download/) 來只篩選出 list 作業。
 
-    azure provider operations show --operationSearchString */apiapps/* --json | jq ".[] | select (.operation | contains(\"list\"))"
+    azure provider operations show --operationSearchString */apiapps/* --json | jq ".[] | select (.operation | contains("list"))"
 
-The resourceId can be specified by using the [resourceId function](#resourceid) or by using the format **{providerNamespace}/{resourceType}/{resourceName}**.
+使用 [resourceId](./#resourceid) 函式或使用格式 **{providerNamespace}/{resourceType}/{resourceName}**，即可指定 resourceId。
 
-The following example shows how to return the primary and secondary keys from a storage account in the outputs section.
+下列範例顯示如何在 outputs 區段中從儲存體帳戶傳回主要和次要金鑰。
 
     "outputs": { 
       "listKeysOutput": { 
@@ -991,7 +989,7 @@ The following example shows how to return the primary and secondary keys from a 
       } 
     } 
 
-The returned object from listKeys has the following format:
+從 listKeys 傳回的物件具有下列格式︰
 
     {
       "keys": [
@@ -1009,18 +1007,18 @@ The returned object from listKeys has the following format:
     }
 
 <a id="providers" />
-### <a name="providers"></a>providers
+### 提供者
 
 **providers (providerNamespace, [resourceType])**
 
-Returns information about a resource provider and its supported resource types. If you do not provide a resource type, the function returns all the supported types for the resource provider.
+傳回資源提供者和其所支援資源類型的相關資訊。如果未提供資源類型，則函式會傳回資源提供者所有的支援類型。
 
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| providerNamespace                  |   Yes    | Namespace of the provider
-| resourceType                       |   No     | The type of resource within the specified namespace.
+| providerNamespace | 是 | 提供者的命名空間
+| resourceType | 否 | 所指定命名空間內的資源類型。
 
-Each supported type is returned in the following format. Array ordering is not guaranteed.
+每個支援類型都會以下列格式傳回。不保證陣列排序。
 
     {
         "resourceType": "",
@@ -1028,77 +1026,77 @@ Each supported type is returned in the following format. Array ordering is not g
         "apiVersions": [ ]
     }
 
-The following example shows how to use the provider function:
+下列範例顯示如何使用 provider 函數：
 
     "outputs": {
-        "exampleOutput": {
-            "value": "[providers('Microsoft.Storage', 'storageAccounts')]",
-            "type" : "object"
-        }
+	    "exampleOutput": {
+		    "value": "[providers('Microsoft.Storage', 'storageAccounts')]",
+		    "type" : "object"
+	    }
     }
 
 <a id="reference" />
-### <a name="reference"></a>reference
+### reference
 
 **reference (resourceName or resourceIdentifier, [apiVersion])**
 
-Returns an object representing another resource's runtime state.
+傳回代表另一個資源執行階段狀態的物件。
 
-| Parameter                          | Required | Description
+| 參數 | 必要 | 說明
 | :--------------------------------: | :------: | :----------
-| resourceName or resourceIdentifier |   Yes    | Name or unique identifier of a resource.
-| apiVersion                         |   No     | API version of the specified resource. Include this parameter when the resource is not provisioned within same template.
+| resourceName 或 resourceIdentifier | 是 | 資源的名稱或唯一識別碼。
+| apiVersion | 否 | 指定的資源的 API 版本。如果在相同的範本內未供應資源，則請包含此參數。
 
-The **reference** function derives its value from a runtime state, and therefore cannot be used in the variables section. It can be used in outputs section of a template.
+**reference** 函數會從執行階段狀態衍生其值，因此不能用在 variables 區段中。它可以用於範本的 outputs 區段中。
 
-By using the reference function, you implicitly declare that one resource depends on another resource if the referenced resource is provisioned within same template. You do not need to also use the **dependsOn** property. The function is not evaluated until the referenced resource has completed deployment.
+如果在相同的範本內佈建所參考的資源，則可使用 reference 函式來隱含宣告一個資源相依於另一個資源。您不需要同時使用 **dependsOn** 屬性。所參考的資源完成部署之前不會評估函式。
 
-The following example references a storage account that is deployed in the same template.
-
-    "outputs": {
-        "NewStorage": {
-            "value": "[reference(parameters('storageAccountName'))]",
-            "type" : "object"
-        }
-    }
-
-The following example references a storage account that is not deployed in this template, but exists within the same resource group as the resources being deployed.
+下列範例會參考相同的範本中部署的儲存體帳戶。
 
     "outputs": {
-        "ExistingStorage": {
-            "value": "[reference(concat('Microsoft.Storage/storageAccounts/', parameters('storageAccountName')), '2016-01-01')]",
-            "type" : "object"
-        }
-    }
+		"NewStorage": {
+			"value": "[reference(parameters('storageAccountName'))]",
+			"type" : "object"
+		}
+	}
 
-You can retrieve a particular value from the returned object, such as the blob endpoint URI, as shown in the following example.
-
-    "outputs": {
-        "BlobUri": {
-            "value": "[reference(concat('Microsoft.Storage/storageAccounts/', parameters('storageAccountName')), '2016-01-01').primaryEndpoints.blob]",
-            "type" : "string"
-        }
-    }
-
-The following example references a storage account in a different resource group.
+下列範例會參考未部署在此範本中，但是當部署資源時存在於相同資源群組內的儲存體帳戶。
 
     "outputs": {
-        "BlobUri": {
-            "value": "[reference(resourceId(parameters('relatedGroup'), 'Microsoft.Storage/storageAccounts/', parameters('storageAccountName')), '2016-01-01').primaryEndpoints.blob]",
-            "type" : "string"
-        }
-    }
+		"ExistingStorage": {
+			"value": "[reference(concat('Microsoft.Storage/storageAccounts/', parameters('storageAccountName')), '2016-01-01')]",
+			"type" : "object"
+		}
+	}
 
-The properties on the object returned from the **reference** function vary by resource type. To see the property names and values for a resource type, create a simple template that returns the object in the **outputs** section. If you have an existing resource of that type, your template just returns the object without deploying any new resources. If you do not have an existing resource of that type, your template deploys only that type and returns the object. Then, add those properties to other templates that need to dynamically retrieve the values during deployment. 
+您可以從傳回的物件 (例如 blob 端點 URI) 擷取特定的值，如下範例所示。
+
+    "outputs": {
+		"BlobUri": {
+			"value": "[reference(concat('Microsoft.Storage/storageAccounts/', parameters('storageAccountName')), '2016-01-01').primaryEndpoints.blob]",
+			"type" : "string"
+		}
+	}
+
+下列範例會參考不同的資源群組中的儲存體帳戶。
+
+    "outputs": {
+		"BlobUri": {
+			"value": "[reference(resourceId(parameters('relatedGroup'), 'Microsoft.Storage/storageAccounts/', parameters('storageAccountName')), '2016-01-01').primaryEndpoints.blob]",
+			"type" : "string"
+		}
+	}
+
+從 **reference** 函式傳回之物件上的屬性會因資源類型而有所不同。若要查看資源類型的屬性名稱和值，請建立一個會在 **outputs** 區段中傳回物件的範例範本。如果您有一個該類型的現有資源，您的範本就會直接傳回物件，而不會部署任何新資源。如果您沒有該類型的現有資源，您的範本則會只部署該類型並傳回物件。然後，請將這些屬性新增到需要在部署時以動態方式擷取值的其他範本。
 
 <a id="resourcegroup" />
-### <a name="resourcegroup"></a>resourceGroup
+### resourceGroup
 
 **resourceGroup()**
 
-Returns an object that represents the current resource group. 
+傳回代表目前資源群組的物件。
 
-The returned object is in the following format:
+傳回的物件會使用下列格式：
 
     {
       "id": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}",
@@ -1111,7 +1109,7 @@ The returned object is in the following format:
       }
     }
 
-The following example uses the resource group location to assign the location for a web site.
+下列範例使用資源群組位置來指派網站的位置。
 
     "resources": [
        {
@@ -1124,30 +1122,30 @@ The following example uses the resource group location to assign the location fo
     ]
 
 <a id="resourceid" />
-### <a name="resourceid"></a>resourceId
+### resourceId
 
 **resourceId ([subscriptionId], [resourceGroupName], resourceType, resourceName1, [resourceName2]...)**
 
-Returns the unique identifier of a resource. 
+傳回資源的唯一識別碼。
       
-| Parameter         | Required | Description
+| 參數 | 必要 | 說明
 | :---------------: | :------: | :----------
-| subscriptionId    |   No     | Default value is the current subscription. Specify this value when you need to retrieve a resource in another subscription.
-| resourceGroupName |   No     | Default value is current resource group. Specify this value when you need to retrieve a resource in another resource group.
-| resourceType      |   Yes    | Type of resource including resource provider namespace.
-| resourceName1     |   Yes    | Name of resource.
-| resourceName2     |   No     | Next resource name segment if resource is nested.
+| subscriptionId | 否 | 預設值為目前的訂用帳戶。需要擷取另一個訂用帳戶中的資源群組時，請指定此值。
+| resourceGroupName | 否 | 預設值為目前資源群組。需要擷取另一個訂用帳戶中的資源群組時，請指定此值。
+| resourceType | 是 | 資源的類型 (包括資源提供者命名空間)。
+| resourceName1 | 是 | 資源的名稱。
+| resourceName2 | 否 | 如果是巢狀資源，則為下一個資源名稱區段。
 
-You use this function when the resource name is ambiguous or not provisioned within the same template. The identifier is returned in the following format:
+如果資源名稱不確定或未佈建在相同的範本內，請使用此函數。識別碼會以下列格式傳回：
 
     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/{resourceProviderNamespace}/{resourceType}/{resourceName}
 
-The following example shows how to retrieve the resource ids for a web site and a database. The web site exists in a resource group named **myWebsitesGroup** and the database exists in the current resource group for this template.
+下列範例顯示如何擷取網站和資料庫的資源識別碼。網站存在於名稱為 **myWebsitesGroup** 的資源群組中，而資料庫存在於此範本的目前資源群組中。
 
     [resourceId('myWebsitesGroup', 'Microsoft.Web/sites', parameters('siteName'))]
     [resourceId('Microsoft.SQL/servers/databases', parameters('serverName'), parameters('databaseName'))]
     
-Often, you need to use this function when using a storage account or virtual network in an alternate resource group. The storage account or virtual network may be used across multiple resource groups; therefore, you do not want to delete them when deleting a single resource group. The following example shows how a resource from an external resource group can easily be used:
+通常，在替代資源群組中使用儲存體帳戶或虛擬網路時，需要使用此函數。儲存體帳戶或虛擬網路可能用於多個資源群組中；因此，您不想要在刪除單一資源群組時刪除它們。下列範例顯示如何輕鬆地使用外部資源群組中的資源：
 
     {
       "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
@@ -1191,11 +1189,11 @@ Often, you need to use this function when using a storage account or virtual net
     }
 
 <a id="subscription" />
-### <a name="subscription"></a>subscription
+### 訂用帳戶
 
 **subscription()**
 
-Returns details about the subscription in the following format.
+以下列格式傳回訂用帳戶的詳細資料。
 
     {
         "id": "/subscriptions/#####",
@@ -1203,7 +1201,7 @@ Returns details about the subscription in the following format.
         "tenantId": "#####"
     }
 
-The following example shows the subscription function called in the outputs section. 
+下列範例顯示在 outputs 區段中所呼叫的 subscription 函式。
 
     "outputs": { 
       "exampleOutput": { 
@@ -1213,15 +1211,10 @@ The following example shows the subscription function called in the outputs sect
     } 
 
 
-## <a name="next-steps"></a>Next Steps
-- For a description of the sections in an Azure Resource Manager template, see [Authoring Azure Resource Manager templates](resource-group-authoring-templates.md)
-- To merge multiple templates, see [Using linked templates with Azure Resource Manager](resource-group-linked-templates.md)
-- To iterate a specified number of times when creating a type of resource, see [Create multiple instances of resources in Azure Resource Manager](resource-group-create-multiple.md)
-- To see how to deploy the template you have created, see [Deploy an application with Azure Resource Manager template](resource-group-template-deploy.md)
+## 後續步驟
+- 如需有關 Azure 資源管理員範本中各區段的說明，請參閱[編寫 Azure 資源管理員範本](resource-group-authoring-templates.md)
+- 若要合併多個範本，請參閱[透過 Azure 資源管理員使用連結的範本](resource-group-linked-templates.md)
+- 建立資源類型時若要逐一查看指定的次數，請參閱[在 Azure 資源管理員中建立資源的多個執行個體](resource-group-create-multiple.md)。
+- 若要了解如何部署已建立的範本，請參閱[使用 Azure 資源管理員範本部署應用程式](resource-group-template-deploy.md)
 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

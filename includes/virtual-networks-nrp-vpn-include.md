@@ -1,15 +1,13 @@
-## <a name="vpn-gateway"></a>VPN Gateway 
-A VPN gateway resource enables you to create a secure connection between their on-premises data center and Azure. A VPN gateway resource can be configured in three different ways:
+## VPN 閘道 
+VPN 閘道資源可讓您建立其內部部署資料中心與 Azure 之間的安全連線。您可以使用三種不同的方式設定 VPN 閘道資源：
  
-- **Point to Site** – you can securely access your Azure resources hosted in a VNET by using a VPN client from any computer. 
-- **Multi-site connection** – you can securely connect from your on-premises data centers to resources running in a VNET. 
-- **VNET to VNET** – you can securely connect across Azure VNETS within the same region, or across regions to build workloads with geo-redundancy.
+- **指向網站** - 您可以從任何電腦使用 VPN 用戶端，安全地存取 VNET 中所裝載的 Azure 資源。 
+- **多網站連線** - 您可以安全地從內部部署資料中心連接到 VNET 中執行的資源。 
+- **VNET 對 VNET** - 您可以安全地跨相同區域內的 Azure VNET 或跨區域連接，以建置異地備援的工作負載。
 
-Key properties of a VPN gateway include:
+VPN 閘道的重要屬性包括：
  
-- **Gateway type** - dynamically routed or a static routed gateway. 
-- **VPN Client Address Pool Prefix** – IP addresses to be assigned to clients connecting in a point to site configuration.
+- **閘道類型** - 動態路由閘道或靜態路由閘道。 
+- **VPN 用戶端位址集區首碼** - 要指派給用戶端的 IP 位址，而用戶端透過指向網站組態進行連接。
 
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=Oct15_HO3-->

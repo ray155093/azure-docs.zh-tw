@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Use Performance Counters in Azure Diagnostics | Microsoft Azure"
-   description="Use performance counters in Azure cloud services or virtual machine to find bottlenecks and tune performance."
+   pageTitle="在 Azure 診斷中使用效能計數器 |Microsoft Azure"
+   description="在 Azure 雲端服務或虛擬機器中使用效能計數器來找出瓶頸和調整效能。"
    services="cloud-services"
    documentationCenter=".net"
    authors="rboucher"
@@ -15,94 +15,93 @@
    ms.date="02/29/2016"
    ms.author="robb" />
 
+# 在 Azure 應用程式中建立及使用效能計數器
 
-# <a name="create-and-use-performance-counters-in-an-azure-application"></a>Create and use performance counters in an Azure application
+本文說明效能計數器的優點，以及如何將效能計數器放入 Azure 應用程式中。您可以使用它們來收集資料、找出瓶頸，以及調整系統和應用程式效能。
 
-This article describes the benefits of and how to put performance counters into your Azure application. You can use them to collect data, find bottlenecks, and tune system and application performance.
+適用於 Windows Server、IIS 和 ASP.NET 的效能計數器也可用來收集資料，以判斷 Azure Web 角色、背景工作角色和虛擬機器的健康情況。您也可以建立和使用自訂效能計數器。
 
-Performance counters available for Windows Server, IIS and ASP.NET can also be collected and used to determine the health of your Azure web roles, worker roles and Virtual Machines. You can also create and use custom performance counters.  
+您可以採取下列方法來檢查效能計數器資料：
+1. 直接在應用程式主機上，使用透過遠端桌面存取的效能監視器工具
+2. 透過使用 Azure Management Pack 的 System Center Operations Manager
+3. 透過其他監視工具，存取已傳輸至 Azure 儲存體的診斷資料。如需詳細資訊，請參閱[在 Azure 儲存體中儲存和檢視診斷資料](https://msdn.microsoft.com/library/azure/hh411534.aspx)。  
 
-You can examine performance counter data
-1. Directly on the application host with the Performance Monitor tool accessed using Remote Desktop
-2. With System Center Operations Manager using the Azure Management Pack
-3. With other monitoring tools that access the diagnostic data transferred to Azure storage. See [Store and View Diagnostic Data in Azure Storage](https://msdn.microsoft.com/library/azure/hh411534.aspx) for more information.  
+如需在 [Azure 傳統入口網站](http://manage.azure.com/)中監視應用程式效能的詳細資訊，請參閱[如何監視雲端服務](https://www.azure.com/manage/services/cloud-services/how-to-monitor-a-cloud-service/)。
 
-For more information on monitoring the performance of your application in the [Azure classic portal](http://manage.azure.com/), see [How to Monitor Cloud Services](https://www.azure.com/manage/services/cloud-services/how-to-monitor-a-cloud-service/).
-
-For additional in-depth guidance on creating a logging and tracing strategy and using diagnostics and other techniques to troubleshoot problems and optimize Azure applications, see [Troubleshooting Best Practices for Developing Azure Applications](https://msdn.microsoft.com/library/azure/hh771389.aspx).
+如需建立記錄及追蹤策略、使用診斷和其他技術進行疑難排解，以及將 Azure 應用程式最佳化的其他深入指引，請參閱[開發 Azure 應用程式的疑難排解最佳作法](https://msdn.microsoft.com/library/azure/hh771389.aspx) (英文)。
 
 
-## <a name="enable-performance-counter-monitoring"></a>Enable performance counter monitoring
+## 啟用效能計數器監視
 
-Performance counters are not enabled by default. Your application or a startup task must modify the default diagnostics agent configuration to include the specific performance counters that you wish to monitor for each role instance.
+預設不會啟用效能計數器。您的應用程式或啟動工作必須修改預設診斷代理程式組態，以納入您想要針對每個角色執行個體監視的效能計數器。
 
-### <a name="performance-counters-available-for-microsoft-azure"></a>Performance counters available for Microsoft Azure
+### Microsoft Azure 可用的效能計數器
 
-Azure provides a subset of the performance counters available for Windows Server, IIS and the ASP.NET stack. The following table lists some of the performance counters of particular interest for Azure applications.
+Azure 為 Windows Server、IIS 和 ASP.NET 堆疊提供了一小組可用的效能計數器。下表列出一些對 Azure 應用程式特別實用的效能計數器。
 
-|Counter Category: Object (Instance)|Counter Name      |Reference|
+|計數器類別：物件 (執行個體)|計數器名稱 |參考|
 |---|---|---|
-|.NET CLR Exceptions(_Global_)|# Exceps Thrown / sec   |Exception Performance Counters|
-|.NET CLR Memory(_Global_)    |% Time in GC            |Memory Performance Counters|
-|ASP.NET                      |Application Restarts    |Performance Counters for ASP.NET|
-|ASP.NET                      |Request Execution Time  |Performance Counters for ASP.NET|
-|ASP.NET                      |Requests Disconnected   |Performance Counters for ASP.NET|
-|ASP.NET                      |Worker Process Restarts |Performance Counters for ASP.NET|
-|ASP.NET Applications(__Total__)|Requests Total        |Performance Counters for ASP.NET|
-|ASP.NET Applications(__Total__)|Requests/Sec          |Performance Counters for ASP.NET|
-|ASP.NET v4.0.30319           |Request Execution Time  |Performance Counters for ASP.NET|
-|ASP.NET v4.0.30319           |Request Wait Time       |Performance Counters for ASP.NET|
-|ASP.NET v4.0.30319           |Requests Current        |Performance Counters for ASP.NET|
-|ASP.NET v4.0.30319           |Requests Queued         |Performance Counters for ASP.NET|
-|ASP.NET v4.0.30319           |Requests Rejected       |Performance Counters for ASP.NET|
-|Memory                       |Available MBytes        |Memory Performance Counters|
-|Memory                       |Committed Bytes         |Memory Performance Counters|
-|Processor(_Total)            |% Processor Time        |Performance Counters for ASP.NET|
-|TCPv4                        |Connection Failures     |TCP Object|
-|TCPv4                        |Connections Established |TCP Object|
-|TCPv4                        |Connections Reset       |TCP Object|
-|TCPv4                        |Segments Sent/sec       |TCP Object|
-|Network Interface(*)         |Bytes Received/sec      |Network Interface Object|
-|Network Interface(*)         |Bytes Sent/sec          |Network Interface Object|
-|Network Interface(Microsoft Virtual Machine Bus Network Adapter _2)|Bytes Received/sec|Network Interface Object|
-|Network Interface(Microsoft Virtual Machine Bus Network Adapter _2)|Bytes Sent/sec|Network Interface Object|
-|Network Interface(Microsoft Virtual Machine Bus Network Adapter _2)|Bytes Total/sec|Network Interface Object|
+|.NET CLR 例外狀況 (_全域_)|擲回的例外狀況數目 / 秒 |例外狀況效能計數器|
+|.NET CLR 記憶體 (_全域_) |記憶體回收中的時間 % |記憶體效能計數器|
+|ASP.NET |應用程式重新啟動 |ASP.NET 的效能計數器|
+|ASP.NET |要求執行時間 |ASP.NET 的效能計數器|
+|ASP.NET |中斷連接的要求 |ASP.NET 的效能計數器|
+|ASP.NET |背景工作角色處理序重新啟動 |ASP.NET 的效能計數器|
+|ASP.NET 應用程式 (__總計__)|要求總數 |ASP.NET 的效能計數器|
+|ASP.NET 應用程式 (__總計__)|要求/秒 |ASP.NET 的效能計數器|
+|ASP.NET v4.0.30319 |要求執行時間 |ASP.NET 的效能計數器|
+|ASP.NET v4.0.30319 |要求等候時間 |ASP.NET 的效能計數器|
+|ASP.NET v4.0.30319 |目前的要求 |ASP.NET 的效能計數器|
+|ASP.NET v4.0.30319 |已排入佇列的要求 |ASP.NET 的效能計數器|
+|ASP.NET v4.0.30319 |遭拒絕的要求 |ASP.NET 的效能計數器|
+|記憶體 |可用的 MB |記憶體效能計數器|
+|記憶體 |認可的位元組 |記憶體效能計數器|
+|Processor(\_Total) |處理器時間 % |ASP.NET 的效能計數器|
+|TCPv4 |連線失敗 |TCP 物件|
+|TCPv4 |建立的連線 |TCP 物件|
+|TCPv4 |重設的連線 |TCP 物件|
+|TCPv4 |傳送的區段/秒 |TCP 物件|
+|網路介面(*) |接收的位元組/秒 |網路介面物件|
+|網路介面(*) |傳送的位元組/秒 |網路介面物件|
+|網路介面 (Microsoft 虛擬機器匯流排網路介面卡 \_2)|接收的位元組/秒|網路介面物件|
+|網路介面 (Microsoft 虛擬機器匯流排網路介面卡 \_2)|傳送的位元組/秒|網路介面物件|
+|網路介面 (Microsoft 虛擬機器匯流排網路介面卡 \_2)|位元組總數/秒|網路介面物件|
 
-## <a name="create-and-add-custom-performance-counters-to-your-application"></a>Create and add custom performance counters to your application
+## 建立自訂效能計數器並加入您的應用程式中
 
-Azure has support to create and modify custom performance counters for web roles and worker roles. The counters may be used to track and monitor application-specific behavior. You can create and delete custom performance counter categories and specifiers from a startup task, web role, or worker role with elevated permissions.
+Azure 支援建立和修改 Web 角色和背景工作角色的自訂效能計數器。計數器可用來追蹤和監視應用程式特有的行為。您可以用更高權限，建立和刪除啟動工作、Web 角色或背景工作角色的自訂效能計數器類別和規範。
 
->[AZURE.NOTE] Code that makes changes to custom performance counters must have elevated permissions to run. If the code is in a web role or worker role, the role must include the tag <Runtime executionContext="elevated" /> in the ServiceDefinition.csdef file for the role to initialize properly.
+>[AZURE.NOTE] 必須擁有更高權限，才能執行對自訂效能計數器進行變更的程式碼。如果程式碼屬於 Web 角色或背景工作角色，角色必須在 ServiceDefinition.csdef 檔案中包含標記 <Runtime executionContext="elevated" />，才能正確地初始化角色。
 
-You can send custom performance counter data to Azure storage using the diagnostics agent.
+您可以使用診斷代理程式，將自訂效能計數器資料傳送到 Azure 儲存體。
 
-The standard performance counter data is generated by the Azure processes. Custom performance counter data must be created by your web role or worker role application. See [Performance Counter Types](https://msdn.microsoft.com/library/z573042h.aspx) for information on the types of data that can be stored in custom performance counters. See [PerformanceCounters Sample](http://code.msdn.microsoft.com/azure/) for an example that creates and sets custom performance counter data in a web role.
+標準效能計數器資料是由 Azure 處理序產生。自訂效能計數器資料必須由 Web 角色或背景工作角色應用程式建立。如需自訂效能計數器可儲存的資料類型的相關資訊，請參閱[效能計數器類型](https://msdn.microsoft.com/library/z573042h.aspx)。如需在 Web 角色中建立及設定自訂效能計數器資料的範例，請參閱 [PerformanceCounters 範例](http://code.msdn.microsoft.com/azure/)。
 
-## <a name="store-and-view-performance-counter-data"></a>Store and view performance counter data
+## 儲存和檢視效能計數器資料
 
-Azure caches performance counter data with other diagnostic information. This data is available for remote monitoring while the role instance is running using remote desktop access to view tools such as Performance Monitor. To persist the data outside of the role instance, the diagnostics agent must transfer the data to Azure storage. The size limit of the cached performance counter data can be configured in the diagnostics agent, or it may be configured to be part of a shared limit for all the diagnostic data. For more information about setting the buffer size, see [OverallQuotaInMB](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.diagnostics.diagnosticmonitorconfiguration.overallquotainmb.aspx) and [DirectoriesBufferConfiguration](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.diagnostics.directoriesbufferconfiguration.aspx). See [Store and View Diagnostic Data in Azure Storage](https://msdn.microsoft.com/library/azure/hh411534.aspx) for an overview of setting up the diagnostics agent to transfer data to a storage account.
+Azure 會快取效能計數器資料與其他診斷資訊。當角色執行個體正在執行時，使用遠端桌面存取來檢視效能監視器等工具，此資料即可供遠端監視。若要在角色執行個體外部保存資料，則診斷代理程式必須將資料傳輸到 Azure 儲存體。在診斷代理程式中可以設定快取的效能計數器資料的大小限制，或也可以將它設定為所有診斷資料之共用限制的一部分。如需有關設定緩衝區大小的詳細資訊，請參閱 [OverallQuotaInMB](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.diagnostics.diagnosticmonitorconfiguration.overallquotainmb.aspx) 和 [DirectoriesBufferConfiguration](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.diagnostics.directoriesbufferconfiguration.aspx)。如需設定診斷代理程式以將資料傳輸到儲存體帳戶的概觀，請參閱[在 Azure 儲存體中儲存和檢視診斷資料](https://msdn.microsoft.com/library/azure/hh411534.aspx)。
 
-Each configured performance counter instance is recorded at a specified sampling rate, and the sampled data is transferred to the storage account either by a scheduled transfer request or an on-demand transfer request. Automatic transfers may be scheduled as often as once per minute. Performance counter data transferred by the diagnostics agent is stored in a table, WADPerformanceCountersTable, in the storage account. This table may be accessed and queried with standard Azure storage API methods. See [Microsoft Azure PerformanceCounters Sample](http://code.msdn.microsoft.com/Windows-Azure-PerformanceCo-7d80ebf9) for an example of querying and displaying performance counter data from the WADPerformanceCountersTable table.
+每個設定的效能計數器執行個體都會以指定的取樣速率進行記錄，而取樣的資料會經由排程的傳輸要求或隨選傳輸要求傳輸到儲存體帳戶。可將自動傳輸的頻率排程為每分鐘一次。診斷代理程式所傳輸的效能計數器資料會儲存在儲存體帳戶的 WADPerformanceCountersTable 資料表中。使用標準 Azure 儲存體 API 方法即可存取和查詢此資料表。如需查詢及顯示 WADPerformanceCountersTable 資料表中效能計數器資料的範例，請參閱 [Microsoft Azure PerformanceCounters 範例](http://code.msdn.microsoft.com/Windows-Azure-PerformanceCo-7d80ebf9)。
 
->[AZURE.NOTE] Depending on the diagnostics agent transfer frequency and queue latency, the most recent performance counter data in the storage account may be several minutes out of date.
+>[AZURE.NOTE] 視診斷代理程式的傳輸頻率和佇列延遲研定，儲存體帳戶中的最新效能計數器資料可能會過期幾分鐘。
 
-## <a name="enable-performance-counters-using-diagnostics-configuration-file"></a>Enable performance counters using diagnostics configuration file
+## 使用診斷組態檔來啟用效能計數器
 
-Use the following procedure to enable performance counters in your Azure application.
+使用下列程序在 Azure 應用程式中啟用效能計數器。
 
-## <a name="prerequisites"></a>Prerequisites
+## 必要條件
 
-This section assumes that you have imported the Diagnostics monitor into your application and added the diagnostics configuration file to your Visual Studio solution (diagnostics.wadcfg in SDK 2.4 and below or diagnostics.wadcfgx in SDK 2.5 and above). See steps 1 and 2 in [Enabling Diagnostics in Azure Cloud Services and Virtual Machines](./cloud-services-dotnet-diagnostics.md)) for more information.
+本節假設您已將診斷監視器匯入應用程式中，並已將診斷組態檔加入 Visual Studio 方案中 (SDK 2.4 和以下版本為 diagnostics.wadcfg，而 SDK 2.5 和以上版本為 diagnostics.wadcfgx)。如需詳細資訊，請參閱[在 Azure 雲端服務和虛擬機器中啟用診斷](./cloud-services-dotnet-diagnostics.md)中的步驟 1 和 2。
 
-## <a name="step-1:-collect-and-store-data-from-performance-counters"></a>Step 1: Collect and store data from performance counters
+## 步驟 1：收集和儲存來自效能計數器的資料
 
-After you have added the diagnostics file to your Visual Studio solution you can configure the collection and storage of performance counter data in a Azure application. This is done by adding performance counters to the diagnostics file. Diagnostics data, including performance counters, is first collected on the instance. The data is then persisted to the WADPerformanceCountersTable table in the Azure Table service, so you will also need to specify the storage account in your application. If you're testing your application locally in the Compute Emulator, you can also store diagnostics data locally in the Storage Emulator. Before you store diagnostics data you must first go to the [Azure classic portal](http://manage.windowsazure.com/) and create a storage account. A best practice is to locate your storage account in the same geo-location as your Azure application in order to avoid paying external bandwidth costs and to reduce latency.
+將診斷檔案加入 Visual Studio 方案中後，您即可在 Azure 應用程式中進行效能計數器資料的收集和儲存設定。將效能計數器加入診斷檔案中，即可完成此動作。首先會在執行個體上收集診斷資料，包括效能計數器在內。這項資料後續會持續存留在 Azure 資料表服務的 WADPerformanceCountersTable 資料表中，因此您也須在應用程式中指定儲存帳號。如果您要使用計算模擬器在本機中測試應用程式，您也可以在儲存模擬器中本機儲存診斷資料。在儲存診斷資料之前，您必須先移至 [Azure 傳統入口網站](http://manage.windowsazure.com/)，並建立儲存體帳戶。最佳作法是，將儲存帳號設定在與 Azure 應用程式相同的地理位置，以免支付外部頻寬成本，同時降低延遲。
 
-### <a name="add-performance-counters-to-the-diagnostics-file"></a>Add performance counters to the diagnostics file
+### 將效能計數器加入診斷檔案中
 
-There are many counters you can use. The following example shows several performance counters that are recommended for web and worker role monitoring.
+有許多計數器可供您使用。下列範例說明幾個建議用於 Web 和背景工作角色監視的效能計數器。
 
-Open the diagnostics file (diagnostics.wadcfg in SDK 2.4 and below or diagnostics.wadcfgx in SDK 2.5 and above) and add the following to the DiagnosticMonitorConfiguration element:
+開啟診斷檔案 (SDK 2.4 和以下版本為 diagnostics.wadcfg，而 SDK 2.5 和以上版本為 diagnostics.wadcfgx)，並將下列內容加入 DiagnosticMonitorConfiguration 元素中：
 
 ```
     <PerformanceCounters bufferQuotaInMB="0" scheduledTransferPeriod="PT30M">
@@ -121,77 +120,77 @@ Open the diagnostics file (diagnostics.wadcfg in SDK 2.4 and below or diagnostic
        <PerformanceCounterConfiguration counterSpecifier="\Process(WaWorkerHost)\Thread Count" sampleRate="PT30S" />
     -->
 
-       <PerformanceCounterConfiguration counterSpecifier="\.NET CLR Interop(_Global_)\# of marshalling" sampleRate="PT30S" />
+       <PerformanceCounterConfiguration counterSpecifier="\.NET CLR Interop(_Global_)# of marshalling" sampleRate="PT30S" />
        <PerformanceCounterConfiguration counterSpecifier="\.NET CLR Loading(_Global_)\% Time Loading" sampleRate="PT30S" />
        <PerformanceCounterConfiguration counterSpecifier="\.NET CLR LocksAndThreads(_Global_)\Contention Rate / sec" sampleRate="PT30S" />
-       <PerformanceCounterConfiguration counterSpecifier="\.NET CLR Memory(_Global_)\# Bytes in all Heaps" sampleRate="PT30S" />
+       <PerformanceCounterConfiguration counterSpecifier="\.NET CLR Memory(_Global_)# Bytes in all Heaps" sampleRate="PT30S" />
        <PerformanceCounterConfiguration counterSpecifier="\.NET CLR Networking(_Global_)\Connections Established" sampleRate="PT30S" />
        <PerformanceCounterConfiguration counterSpecifier="\.NET CLR Remoting(_Global_)\Remote Calls/sec" sampleRate="PT30S" />
        <PerformanceCounterConfiguration counterSpecifier="\.NET CLR Jit(_Global_)\% Time in Jit" sampleRate="PT30S" />
     </PerformanceCounters>
 ```
 
-The bufferQuotaInMB attribute, which specifies the maximum amount of file system storage that is available for the data collection type (Azure logs, IIS logs, etc.). The default is 0. When the quota is reached, the oldest data is deleted as new data is added. The sum of all the bufferQuotaInMB properties must be greater than the value of the OverallQuotaInMB attribute. For a more detailed discussion of determining how much storage will be required for the collection of diagnostics data, see the Setup WAD section of [Troubleshooting Best Practices for Developing Azure Applications](https://msdn.microsoft.com/library/windowsazure/hh771389.aspx).
+bufferQuotaInMB 屬性會指定可用於資料收集類型 (Azure 記錄、IIS 記錄等) 的檔案系統儲存體數量上限。預設值為 0。到達此配額時，即會在新增新資料時刪除最舊的資料。所有 bufferQuotaInMB 屬性 (property) 的總和必須大於 OverallQuotaInMB 屬性 (attribute) 的值。如需判斷收集診斷資料將需要多少儲存體的詳細討論，請參閱[開發 Azure 應用程式的疑難排解最佳作法](https://msdn.microsoft.com/library/windowsazure/hh771389.aspx) (英文) 中的「設定 WAD」一節。
 
-The scheduledTransferPeriod attribute, which specifies the interval between scheduled transfers of data, rounded up to the nearest minute. In the following examples it is set to PT30M (30 minutes). Setting the transfer period to a small value, such as 1 minute, will adversely impact your application's performance in production but can be useful for seeing diagnostics working quickly when you are testing. The scheduled transfer period should be small enough to ensure that diagnostic data is not overwritten on the instance, but large enough that it will not impact the performance of your application.
+scheduledTransferPeriod 屬性會指定排程的資料傳輸所採用的間隔 (四捨五入至最接近的分鐘)。下列範例將此值設為 PT30M (30 分鐘)。將傳輸期間設為較小的值 (例如 1 分鐘)，將對生產環境中的應用程式效能造成不良影響，但在執行測試時可能有助於診斷的快速運作。排程的傳輸期間應大小適中，以確保執行個體上的診斷資料不會被覆寫，同時不會對應用程式的效能造成影響。
 
-The counterSpecifier attribute specifies the performance counter to collect.The sampleRate attribute specifies the rate at which the performance counter should be sampled, in this case 30 seconds.
+counterSpecifier 屬性會指定要收集的效能計數器。sampleRate 屬性會指定對效能計數器取樣的頻率，在本例中為 30 秒。
 
-Once you've added the performance counters that you want to collect, save your changes to the diagnostics file. Next, you need to specify the storage account that the diagnostics data will be persisted to.
+加入您要收集的效能計數器後，請將變更儲存至診斷檔案。接著，您必須指定將持續保存診斷資料的儲存帳號。
 
-### <a name="specify-the-storage-account"></a>Specify the storage account
+### 指定儲存帳號
 
-To persist your diagnostics information to your Azure Storage account, you must specify a connection string in your service configuration (ServiceConfiguration.cscfg) file.
+若要讓您的診斷資訊持續存留於 Azure 儲存帳號中，您必須在服務組態檔 (ServiceConfiguration.cscfg) 中指定連接字串。
 
-For Azure SDK 2.5 the Storage Account can be specified in the diagnostics.wadcfgx file.
+在 Azure SDK 2.5 中，儲存體帳戶可在 diagnostics.wadcfgx 檔案中指定。
 
->[AZURE.NOTE] These instructions only apply to Azure SDK 2.4 and below. For Azure SDK 2.5 the Storage Account can be specified in the diagnostics.wadcfgx file.
+>[AZURE.NOTE] 這些指示只會套用至 Azure SDK 2.4 和以下版本。在 Azure SDK 2.5 中，儲存體帳戶可在 diagnostics.wadcfgx 檔案中指定。
 
-To set the connection strings:
+若要設定連接字串：
 
-1. Open the ServiceConfiguration.Cloud.cscfg file using your favorite text editor and set the connection string for your storage. The *AccountName* and *AccountKey* values are found in the Azure classic portal in the storage account dashboard, under Manage Keys.
+1. 使用您慣用的文字編輯器開啟 ServiceConfiguration.Cloud.cscfg 檔案，然後設定儲存體的連接字串。*AccountName* 和 *AccountKey* 值可在 Azure 傳統入口網站的儲存體帳戶儀表板中找到 (位於[管理金鑰] 下)。
 
     ```
     <ConfigurationSettings>
        <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=<name>;AccountKey=<key>"/>
     </ConfigurationSettings>
     ```
-2. Save the ServiceConfiguration.Cloud.cscfg file.
+2. 儲存 ServiceConfiguration.Cloud.cscfg 檔案。
 
-3. Open the ServiceConfiguration.Local.cscfg file and verify that UseDevelopmentStorage is set to true.
+3. 開啟 ServiceConfiguration.Local.cscfg 檔案，驗證 UseDevelopmentStorage 是否設為 true。
 
     ```
     <ConfigurationSettings>
       <Settingname="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true"/>
     </ConfigurationSettings>
     ```
-Now that the connection strings are set, your application will persist diagnostics data to your storage account when your application is deployed.
-4. Save and build your project, then deploy your application.
+現在，連接字串已設定，您的應用程式將可在部署時，將診斷資料持續存留至您的儲存帳號中。
+4. 儲存並建置您的專案，然後部署應用程式。
 
-## <a name="step-2:-(optional)-create-custom-performance-counters"></a>Step 2: (Optional) Create custom performance counters
+## 步驟 2：(選擇性) 建立自訂效能計數器
 
-In addition to the pre-defined performance counters, you can add your own custom performance counters to monitor web or worker roles. Custom performance counters may be used to track and monitor application-specific behavior and can be created or deleted in a startup task, web role, or worker role with elevated permissions.
+除了預先定義的效能計數器以外，您也可以新增自訂效能計數器，以監視 Web 或背景工作角色。自訂效能計數器可用來追蹤及監視應用程式特定行為，並可藉由提高的權限在啟動工作、Web 角色或背景工作角色中建立或刪除。
 
-The Azure diagnostics agent refreshes the performance counter configuration from the .wadcfg file one minute after starting.  If you create custom performance counters in the OnStart method and your startup tasks take longer than one minute to execute, your custom performance counters will not have been created when the Azure Diagnostics agent tries to load them.  In this scenario you will see that Azure Diagnostics correctly captures all diagnostics data except your custom performance counters.  To resolve this issue, create the performance counters in a startup task or move some of your startup task work to the OnStart method after creating the performance counters.
+Azure 診斷代理程式會在啟動一分鐘後從 .wadcfg 檔案重新整理效能計數器組態。如果您在 OnStart 方法中建立自訂效能計數器，而且您的啟動工作在一分鐘以後執行，則您的自訂效能計數器在 Azure 診斷代理程式嘗試載入時尚未建立。在此情況下，您會看到 Azure 診斷正確地擷取自訂效能計數器以外的所有診斷資料。若要解決此問題，請在啟動工作中建立效能計數器，或在建立效能計數器之後，將部分啟動工作移到 OnStart 方法。
 
-Perform the following steps to create a simple custom performance counter named "\MyCustomCounterCategory\MyButton1Counter":
+執行下列步驟，可建立名為 "\\MyCustomCounterCategory\\MyButton1Counter" 的簡易自訂效能計數器：
 
-1. Open the service definition file (CSDEF) for your application.
-2. Add the Runtime element to the WebRole or WorkerRole element to allow execution with elevated privileges:
+1. 開啟應用程式的服務定義檔 (CSDEF)。
+2. 將 Runtime 元素新增至 WebRole 或 WorkerRole 元素，使其可在提升的權限下執行：
 
     ```
     <runtime executioncontext="elevated"/>
     ```
-3. Save the file.
-4. Open the diagnostics file (diagnostics.wadcfg in SDK 2.4 and below or diagnostics.wadcfgx in SDK 2.5 and above) and add the following to the DiagnosticMonitorConfiguration 
+3. 儲存檔案。
+4. 開啟診斷檔案 (SDK 2.4 和以下版本為 diagnostics.wadcfg，而 SDK 2.5 和以上版本為 diagnostics.wadcfgx)，並將下列內容加入 DiagnosticMonitorConfiguration 中 
 
     ```
     <PerformanceCounters bufferQuotaInMB="0" scheduledTransferPeriod="PT30M">
      <PerformanceCounterConfiguration counterSpecifier="\MyCustomCounterCategory\MyButton1Counter" sampleRate="PT30S"/>
     </PerformanceCounters>
     ```
-5. Save the file.
-6. Create the custom performance counter category in the OnStart method of your role, before invoking base.OnStart. The following C# example creates a custom category, if it does not already exist:
+5. 儲存檔案。
+6. 在您角色的 OnStart 方法中建立自訂效能計數器類別，然後叫用 base.OnStart。下列 C# 範例會建立自訂類別 (如果尚不存在)：
 
     ```
     public override bool OnStart()
@@ -221,7 +220,7 @@ Perform the following steps to create a simple custom performance counter named 
     return base.OnStart();
     }
     ```
-7. Update the counters within your application. The following example updates a custom performance counter on Button1_Click events:
+7. 更新應用程式內的計數器。下列範例會更新 Button1\_Click 事件的自訂效能計數器：
 
     ```
     protected void Button1_Click(object sender, EventArgs e)
@@ -236,15 +235,15 @@ Perform the following steps to create a simple custom performance counter named 
            button1Counter.RawValue.ToString();
         }
     ```
-8. Save the file.  
+8. 儲存檔案。  
 
-Custom performance counter data will now be collected by the Azure diagnostics monitor.
+Azure 診斷監視器現在即會收集自訂效能計數器資料。
 
-## <a name="step-3:-query-performance-counter-data"></a>Step 3: Query performance counter data
+## 步驟 3：查詢效能計數器資料
 
-Once your application is deployed and running the Diagnostics monitor will begin collecting performance counters and persisting that data to Azure storage. You use tools such as Server Explorer in Visual Studio,  [Azure Storage Explorer](http://azurestorageexplorer.codeplex.com/), or [Azure Diagnostics Manager](http://www.cerebrata.com/Products/AzureDiagnosticsManager/Default.aspx) by Cerebrata to view the performance counters data in the WADPerformanceCountersTable table. You can also programatically query the Table service using [C#](../storage/storage-dotnet-how-to-use-tables.d),  [Java](../storage/storage-java-how-to-use-table-storage.md),  [Node.js](../storage/storage-nodejs-how-to-use-table-storage.md), [Python](../storage/storage-python-how-to-use-table-storage.md), [Ruby](../storage/storage-ruby-how-to-use-table-storage.md), or [PHP](../storage/storage-php-how-to-use-table-storage.md).
+當應用程式完成部署並開始執行後，診斷監視器即會開始收集效能計數器，並將資料存留至 Azure 儲存體。您可以使用 Visual Studio 中的伺服器總管、[Azure 儲存體總管](http://azurestorageexplorer.codeplex.com/)或 Cerebrata 提供的 [Azure 診斷管理員](http://www.cerebrata.com/Products/AzureDiagnosticsManager/Default.aspx)等工具，檢視 WADPerformanceCountersTable 資料表中的效能計數器資料。您也可以透過程式設計，使用 [C#](../storage/storage-dotnet-how-to-use-tables.d)、[Java](../storage/storage-java-how-to-use-table-storage.md)、[Node.js](../storage/storage-nodejs-how-to-use-table-storage.md)、[Python](../storage/storage-python-how-to-use-table-storage.md)、[Ruby](../storage/storage-ruby-how-to-use-table-storage.md) 或 [PHP](../storage/storage-php-how-to-use-table-storage.md) 來查詢表格服務。
 
-The following C# example shows a simple query against the WADPerformanceCountersTable table and saves the diagnostics data to a CSV file. Once the performance counters are saved to a CSV file you can use the graphing capabilities in Microsoft Excel or some other tool to visualize the data. Be sure to add a reference to Microsoft.WindowsAzure.Storage.dll, which is included in the Azure SDK for .NET October 2012 and later. The assembly is installed to the %Program Files%\Microsoft SDKs\Microsoft Azure.NET SDK\version-num\ref\ directory.
+下列 C# 範例將說明對 WADPerformanceCountersTable 資料表的簡易查詢，並將診斷資料儲存至 CSV 檔案。效能計數器儲存至 CSV 檔案後，您可以使用 Microsoft Excel 或其他工具的圖表功能，將資料視覺化。請務必為 Azure SDK for .NET (2012 年 10 月或更新版本) 隨附的 Microsoft.WindowsAzure.Storage.dll 新增參考。此組件會安裝在 %Program Files%\\Microsoft SDKs\\Microsoft Azure.NET SDK\\version-num\\ref\\ 目錄中。
 
 ```
     using Microsoft.WindowsAzure.Storage;
@@ -304,7 +303,7 @@ The following C# example shows a simple query against the WADPerformanceCounters
     sw.Close();
 ```
 
-Entities map to C# objects using a custom class derived from **TableEntity**. The following code defines an entity class that represents a performance counter in the **WADPerformanceCountersTable** table.
+實體會使用衍生自 **TableEntity** 的自訂類別來對應至 C# 物件。下列程式碼會定義一個實體類別，用以代表 **WADPerformanceCountersTable** 資料表中的效能計數器。
 
 
     public class PerformanceCountersEntity : TableEntity
@@ -318,11 +317,7 @@ Entities map to C# objects using a custom class derived from **TableEntity**. Th
     }
 
 
-## <a name="next-steps"></a>Next Steps
-[View additional articles on Azure Diagnostics] (../azure-diagnostics.md)
+## 後續步驟
+[檢視有關 Azure 診斷的其他文章](../azure-diagnostics.md)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0302_2016-------->

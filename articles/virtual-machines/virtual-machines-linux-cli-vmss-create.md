@@ -1,55 +1,49 @@
 <properties
-    pageTitle="What are VM scale sets? | Microsoft Azure"
-    description="Learn about VM scale sets."
-    keywords="linux virtual machine,virtual machine scale sets" 
-    services="virtual-machines-linux"
-    documentationCenter=""
-    authors="gatneil"
-    manager="madhana"
-    editor="tysonn"
-    tags="azure-resource-manager" />
+	pageTitle="什麼是 VM 擴展集？ | Microsoft Azure"
+	description="了解 VM 擴展集。"
+	keywords="linux 虛擬機器, 虛擬機器擴展集" 
+	services="virtual-machines-linux"
+	documentationCenter=""
+	authors="gatneil"
+	manager="madhana"
+	editor="tysonn"
+	tags="azure-resource-manager" />
 
 <tags
-    ms.service="virtual-machine-linux"
-    ms.workload="infrastructure-services"
-    ms.tgt_pltfrm="vm-linux"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="03/24/2016"
-    ms.author="gatneil"/>
+	ms.service="virtual-machine-linux"
+	ms.workload="infrastructure-services"
+	ms.tgt_pltfrm="vm-linux"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="03/24/2016"
+	ms.author="gatneil"/>
 
+# 什麼是虛擬機器擴展集？
 
-# <a name="what-are-virtual-machine-scale-sets?"></a>What are virtual machine scale sets?
+虛擬機器擴展集可讓您以一個集合來管理多部 VM。概括而言，擴展集具有下列優缺點︰
 
-Virtual Machine Scale Sets allow you to manage multiple VMs as a set. At a high level, scale sets have the following pros and cons:
+優點：
 
-Pros:
+1. 高可用性。每個擴展集都會將它的 VM 放入具有 5 個容錯網域 (FD) 和 5 個更新網域 (UD) 的可用性設定組，以確保可用性 (如需 FD 和 UD 的詳細資訊，請參閱 [VM 可用性](./virtual-machines-linux-manage-availability.md))。 
+2. 與 Azure 負載平衡器和應用程式閘道輕鬆整合。
+3. 與 Azure 自動調整輕鬆整合。
+4. 簡化 VM 的部署、管理和清除。
+5. 支援常見 Windows 和 Linux 類別以及自訂映像。
 
-1. High availability. Each scale set puts its VMs into an Availability Set with 5 Fault Domains (FDs) and 5 Update Domains (UDs) to ensure availability (for more information on FDs and UDs, see [VM availability](./virtual-machines-linux-manage-availability.md)). 
-2. Easy integration with Azure Load Balancer and App Gateway.
-3. Easy integration with Azure Autoscale.
-4. Simplified deployment, management, and clean up of VMs.
-5. Support common Windows and Linux flavors, as well as custom images.
+缺點：
 
-Cons:
+1. 無法將資料磁碟連接至擴展集中的 VM 執行個體。相反地，必須使用 Blob 儲存體、Azure 檔案、Azure 資料表或其他儲存體解決方案。
 
-1. Cannot attach data disks to VM instances in a scale set. Instead, must use Blob Storage, Azure Files, Azure Tables, or other storage solution.
-
-## <a name="quick-create-using-azure-cli"></a>Quick-create using Azure CLI
+## 使用 Azure CLI 快速建立
 
 [AZURE.INCLUDE [cli-vmss-quick-create](../../includes/virtual-machines-linux-cli-vmss-quick-create-include.md)]
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-For general information, check out the [main landing page for scale sets](https://azure.microsoft.com/services/virtual-machine-scale-sets/).
+如需一般資訊，請參閱[擴展集的主要登陸頁面](https://azure.microsoft.com/services/virtual-machine-scale-sets/)。
 
-For more documentation, check out the [main documentation page for scale sets](../virtual-machine-scale-sets/virtual-machine-scale-sets-overview.md).
+如需文件，請參閱[擴展集的主要文件頁面](../virtual-machine-scale-sets/virtual-machine-scale-sets-overview.md)。
 
-For example Resource Manager templates using scale sets, search for "vmss" in the [Azure Quickstart Templates github repo](https://github.com/Azure/azure-quickstart-templates).
+如需使用擴展集的範例 Resource Manager 範本，請在 [Azure 快速入門範本 github 儲存機制](https://github.com/Azure/azure-quickstart-templates)中搜尋 "vmss"。
 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0413_2016-->

@@ -1,81 +1,76 @@
 <properties
-    pageTitle="Azure Active Directory B2C: Facebook configuration | Microsoft Azure"
-    description="Provide sign-up and sign-in to consumers with Facebook accounts in your applications that are secured by Azure Active Directory B2C."
-    services="active-directory-b2c"
-    documentationCenter=""
-    authors="swkrish"
-    manager="mbaldwin"
-    editor="bryanla"/>
+	pageTitle="Azure Active Directory B2C：Facebook 設定 | Microsoft Azure"
+	description="在受 Azure Active Directory B2C 保護的應用程式中，針對具有 Facebook 帳戶的取用者提供註冊和登入。"
+	services="active-directory-b2c"
+	documentationCenter=""
+	authors="swkrish"
+	manager="msmbaldwin"
+	editor="bryanla"/>
 
 <tags
-    ms.service="active-directory-b2c"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="07/24/2016"
-    ms.author="swkrish"/>
+	ms.service="active-directory-b2c"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/24/2016"
+	ms.author="swkrish"/>
 
+# Azure Active Directory B2C：針對具有 Facebook 帳戶的取用者提供註冊和登入
 
-# <a name="azure-active-directory-b2c:-provide-sign-up-and-sign-in-to-consumers-with-facebook-accounts"></a>Azure Active Directory B2C: Provide sign-up and sign-in to consumers with Facebook accounts
+## 建立 Facebook 應用程式
 
-## <a name="create-a-facebook-application"></a>Create a Facebook application
+若要在 Azure Active Directory (Azure AD) B2C 中使用 Facebok 做為身分識別提供者，您必須建立 Facebook 應用程式，並對其提供正確的參數。您需要 Facebook 帳戶來執行此動作。如果您沒有帳戶，您可以在 [https://www.facebook.com/](https://www.facebook.com/) 上取得。
 
-To use Facebook as an identity provider in Azure Active Directory (Azure AD) B2C, you need to create a Facebook application and supply it with the right parameters. You need a Facebook account to do this. If you don’t have one, you can get it at [https://www.facebook.com/](https://www.facebook.com/).
+1. 前往 [Facebook for developers (開發人員專用的 Facebook)](https://developers.facebook.com/) 網站，並以您的 Facebook 帳戶認證登入。
+2. 如果您尚未這麼做，您需要註冊為 Facebook 開發人員。若要這樣做，請按一下 [註冊] \(位於頁面右上角)、接受 Facebook 的原則，然後完成註冊步驟。
+3. 按一下 [我的 App]，然後按一下 [加入新的 App]。選擇 [網站] 做為平台，然後按一下[略過並建立應用程式識別碼]。
 
-1. Go to the [Facebook for developers](https://developers.facebook.com/) website and sign in with your Facebook account credentials.
-2. If you have not already done so, you need to register as a Facebook developer. To do this, click **Register** (on the upper-right corner of the page), accept Facebook's policies, and complete the registration steps.
-3. Click **My Apps** and then click **Add a new App**. Choose **Website** as the platform, and then click **Skip and Create App ID**.
+    ![Facebook - 新增 App](./media/active-directory-b2c-setup-fb-app/fb-add-new-app.png)
 
-    ![Facebook - Add a new App](./media/active-directory-b2c-setup-fb-app/fb-add-new-app.png)
+    ![Facebook - 新增 App - 網站](./media/active-directory-b2c-setup-fb-app/fb-add-new-app-website.png)
 
-    ![Facebook - Add a New App - Website](./media/active-directory-b2c-setup-fb-app/fb-add-new-app-website.png)
+    ![Facebook - 建立應用程式識別碼](./media/active-directory-b2c-setup-fb-app/fb-new-app-skip.png)
 
-    ![Facebook - Create App ID](./media/active-directory-b2c-setup-fb-app/fb-new-app-skip.png)
+4. 在表單上提供 [顯示名稱]、有效的**連絡人電子郵件**、適當的**類別**，然後按一下 [建立應用程式識別碼]。這會要求您接受 Facebook 平台原則，並完成線上安全性檢查。
 
-4. On the form, provide a **Display Name**, a valid **Contact Email**, an appropriate **Category**, and click **Create App ID**. This requires you to accept Facebook platform policies and complete an online security check.
+    ![Facebook - 建立新的應用程式識別碼](./media/active-directory-b2c-setup-fb-app/fb-create-app-id.png)
 
-    ![Facebook - Create a New App ID](./media/active-directory-b2c-setup-fb-app/fb-create-app-id.png)
+5. 在左側導覽中按一下 [設定]。
+6. 按一下 [+新增平台]，然後選取 [網站]。
 
-5. Click **Settings** on the left navigation.
-6. Click **+Add Platform** and then select **Website**.
+    ![Facebook - 設定](./media/active-directory-b2c-setup-fb-app/fb-settings.png)
 
-    ![Facebook - Settings](./media/active-directory-b2c-setup-fb-app/fb-settings.png)
+    ![Facebook - 設定 - 網站](./media/active-directory-b2c-setup-fb-app/fb-website.png)
 
-    ![Facebook - Settings - Website](./media/active-directory-b2c-setup-fb-app/fb-website.png)
+7. 在 [網站 URL] 欄位中輸入 [https://login.microsoftonline.com/](https://login.microsoftonline.com/)，然後按一下 [儲存變更]。
 
-7. Enter [https://login.microsoftonline.com/](https://login.microsoftonline.com/) in the **Site URL** field and then click **Save Changes**.
+    ![Facebook - 網站 URL](./media/active-directory-b2c-setup-fb-app/fb-site-url.png)
 
-    ![Facebook - Site URL](./media/active-directory-b2c-setup-fb-app/fb-site-url.png)
+8. 複製 [應用程式識別碼] 的值。按一下 [顯示]，並複製 [應用程式密碼]的值。您必須同時使用這兩個值，將 Facebook 設定為您租用戶中的身分識別提供者。**應用程式密碼**是重要的安全性認證。
 
-8. Copy the value of **App ID**. Click **Show** and copy the value of **App Secret**. You will need both of them to configure Facebook as an identity provider in your tenant. **App Secret** is an important security credential.
+    ![Facebook - 應用程式識別碼和應用程式密碼](./media/active-directory-b2c-setup-fb-app/fb-app-id-app-secret.png)
 
-    ![Facebook - App ID & App Secret](./media/active-directory-b2c-setup-fb-app/fb-app-id-app-secret.png)
+9. 在左側導覽中按一下 [+ 新增產品]，然後按一下 [Facebook 登入] 旁邊的 [開始使用] 按鈕。
 
-9. Click **+ Add Product** on the left navigation and then the **Get Started** button next to **Facebook Login**.
+    ![Facebook - Facebook 登入](./media/active-directory-b2c-setup-fb-app/fb-login.png)
 
-    ![Facebook - Facebook Login](./media/active-directory-b2c-setup-fb-app/fb-login.png)
+10. 在 [用戶端 OAuth 設定] 區段的 [有效的 OAuth 重新導向 URI] 欄位中輸入 `https://login.microsoftonline.com/te/{tenant}/oauth2/authresp`。使用您的租用戶名稱 (例如 contosob2c.onmicrosoft.com) 來取代 **{tenant}**。按一下頁面底部的 [儲存變更]。
 
-10. Enter `https://login.microsoftonline.com/te/{tenant}/oauth2/authresp` in the **Valid OAuth redirect URIs** field in the **Client OAuth Settings** section. Replace **{tenant}** with your tenant's name (for example, contosob2c.onmicrosoft.com). Click **Save Changes** at the bottom of the page.
+    ![Facebook - OAuth 重新導向 URI](./media/active-directory-b2c-setup-fb-app/fb-oauth-redirect-uri.png)
 
-    ![Facebook - OAuth Redirect URI](./media/active-directory-b2c-setup-fb-app/fb-oauth-redirect-uri.png)
+11. 若要讓您的 Facebook 應用程式可供 Azure AD B2C 使用，您必須將其設定為對外公開。若要執行此動作，請在左側導覽中按一下 [應用程式檢閱]，然後將頁面頂端的開關切換為 [是]，並按一下 [確認]。
 
-11. To make your Facebook application usable by Azure AD B2C, you need to make it publicly available. You can do this by clicking **App Review** on the left navigation and by turning the switch at the top of the page to **YES** and clicking **Confirm**.
+    ![Facebook - App 公開](./media/active-directory-b2c-setup-fb-app/fb-app-public.png)
 
-    ![Facebook - App public](./media/active-directory-b2c-setup-fb-app/fb-app-public.png)
+## 將 Facebook 設定為您租用戶中的身分識別提供者
 
-## <a name="configure-facebook-as-an-identity-provider-in-your-tenant"></a>Configure Facebook as an identity provider in your tenant
+1. 遵循下列步驟以[瀏覽至 B2C 功能刀鋒視窗](active-directory-b2c-app-registration.md#navigate-to-the-b2c-features-blade) (位於 Azure 入口網站上)。
+2. 在 B2C 功能刀鋒視窗中，按一下 [**身分識別提供者**]。
+3. 按一下刀鋒視窗頂端的 [新增]。
+4. 針對身分識別提供者組態，提供容易辨識的**名稱**。例如，輸入「FB」。
+5. 按一下 [身分識別提供者類型]、選取 [Facebook]，然後按一下 [確定]。
+6. 按一下 [設定此身分識別提供者]，然後在 [用戶端識別碼] 與 [用戶端密碼] 欄位中，分別輸入您先前建立之 Facebook 應用程式的應用程式識別碼和應用程式密碼。
+7. 依序按一下 [確定] 與 [建立]，以儲存您的 Facebook 設定。
 
-1. Follow these steps to [navigate to the B2C features blade](active-directory-b2c-app-registration.md#navigate-to-the-b2c-features-blade) on the Azure portal.
-2. On the B2C features blade, click **Identity providers**.
-3. Click **+Add** at the top of the blade.
-4. Provide a friendly **Name** for the identity provider configuration. For example, enter "FB".
-5. Click **Identity provider type**, select **Facebook**, and click **OK**.
-6. Click **Set up this identity provider** and enter the app ID and app secret (of the Facebook application that you created earlier) in the **Client ID** and **Client secret** fields respectively.
-7. Click **OK**, and then click **Create** to save your Facebook configuration.
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0727_2016-->

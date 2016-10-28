@@ -1,6 +1,6 @@
 <properties
-    pageTitle="Send Azure Diagnostic logs to Application Insights"
-    description="Configure the details of the Azure Cloud Services diagnostic logs that are sent to the Application Insights portal."
+    pageTitle="將 Azure 診斷記錄傳送至 Application Insights"
+    description="設定 Azure 雲端服務診斷記錄的詳細資料，該記錄會傳送至 Application Insights 入口網站。"
     services="application-insights"
     documentationCenter=".net"
     authors="sbtron"
@@ -9,49 +9,48 @@
 <tags
     ms.service="application-insights"
     ms.workload="tbd"
-    ms.tgt_pltfrm="ibiza"
+	ms.tgt_pltfrm="ibiza"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="11/17/2015"
+	ms.date="11/17/2015"
     ms.author="awills"/>
 
+# 設定 Azure 診斷以記錄至 Application Insights
 
-# <a name="configure-azure-diagnostic-logging-to-application-insights"></a>Configure Azure Diagnostic logging to Application Insights
+當您在 Microsoft Azure 中設定雲端服務專案或虛擬機器時，[Azure 可以產生診斷記錄](../vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines.md)。您可以將此記錄傳送至 Application Insights，以便分析它與 Application Insights SDK 從應用程式內傳送的診斷和使用狀況遙測。Azure 記錄檔會包含應用程式管理的事件，例如啟動、停止、當機，以及效能計數器。記錄檔也會包含應用程式中對 System.Diagnostics.Trace 的呼叫。
 
-When you set up a Cloud Services project or a Virtual Machine in Microsoft Azure, [Azure can generate a diagnostic log](../vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines.md). You can have this sent on to Application Insights so that you can analyze it along with diagnostic and usage telemetry sent from within the app by the Application Insights SDK. The Azure log includes events in the management of the app such as start, stop, crashes, as well as performance counters. The log also includes calls in the app to System.Diagnostics.Trace.
+本文詳細說明診斷擷取的組態。
 
-This article describes configuration of the diagnostic capture in detail.
+您必須在 Visual Studio 中安裝 Azure SDK 2.8。
 
-You need Azure SDK 2.8 installed in Visual Studio.
+## 取得 Application Insights 資源
 
-## <a name="get-an-application-insights-resource"></a>Get an Application Insights resource
+為了達到最佳的體驗，[將 Application Insights SDK 新增至雲端服務應用程式的每個角色](app-insights-cloudservices.md)，或[您將在您的 VM 中執行的任何應用程式](app-insights-overview.md)。然後您就可以傳送要分析的診斷資料，並且顯示相同的 Application Insights 資源。
 
-For the best experience, [add the Application Insights SDK to each role of your Cloud Services app](app-insights-cloudservices.md), or [to whatever app you will run in your VM](app-insights-overview.md). You can then send the diagnostic data to be  analyzed and displayed the same Application Insights resource.
-
-Alternatively, if you don't want to use the SDK - for example, if the app is already live - you can just [create a new Application Insights resource](app-insights-create-new-resource.md) in the Azure portal. Choose **Azure Diagnostics** as the application type.
+或者，如果不想使用 SDK - 例如，如果應用程式已經處於線上狀態 - 您只能在 Azure 入口網站中[建立新的 Application Insights 資源](app-insights-create-new-resource.md)。選擇 **Azure 診斷**做為應用程式類型。
 
 
-## <a name="send-azure-diagnostics-to-application-insights"></a>Send Azure diagnostics to Application Insights
+## 將 Azure 診斷傳送至 Application Insights
 
-If you are able to update your app project, then in Visual Studio select each role, choose its Properties, and in the Configuration tab, select **Send diagnostics to Application Insights**.
+如果您可以更新應用程式專案，則在 Visual Studio 中選取每個角色、選擇其屬性，並且在 [設定] 索引標籤中，選取 [將診斷傳送至 Application Insights]。
 
-If your app is already live, use Visual Studio's Server Explorer or Cloud Services explorer to open the properties of the app. Select **Send diagnostics to Application Insights**.
+如果您的應用程式已經處於線上狀態，則使用 Visual Studio 的伺服器總管或雲端服務總管以開啟應用程式的內容。選取 [傳送診斷至 Application Insights]。
 
-In each case you'll be asked for the details of the Application Insights resource you created.
+在每個案例中，您都會被詢問您建立的 Application Insights 資源的詳細資料。
 
-[Learn more about setting up Application Insights for a Cloud Services app](app-insights-cloudservices.md).
+[深入了解設定雲端服務應用程式的 Application Insights](app-insights-cloudservices.md)。
 
-## <a name="configuring-the-azure-diagnostics-adapter"></a>Configuring the Azure diagnostics adapter
+## 設定 Azure 診斷配接器
 
-Read on only if you want to select the parts of the log that you send to Application Insights. By default, everything is sent, including: Microsoft Azure events; performance counters; trace calls from the app to System.Diagnostics.Trace.
+只在您想要選取傳送至 Application Insights 的部分記錄檔時參閱。根據預設，會傳送所有項目，包括：Microsoft Azure 事件、效能計數器、追蹤從應用程式對 System.Diagnostics.Trace 的呼叫。
 
-Azure diagnostics stores data to Azure Storage tables. However, you can also pipe all or a subset of the data to Application Insights by configuring "sinks" and "channels" in your configuration when using Azure Diagnostics extension 1.5 or later.
+Azure 診斷會將資料儲存至 Azure 儲存體資料表。不過，您也可以在使用 Azure 診斷擴充 1.5 或更新版本時，藉由在組態中設定「接收器」和「通道」，將全部資料或資料的子集管線處理到 Application Insights。
 
-### <a name="configure-application-insights-as-a-sink"></a>Configure Application Insights as a Sink
+### 將 Application Insights 設定為接收器
 
-When you use the role properties to set "Send data to Application Insights", the Azure SDK (2.8 or later) adds a `<SinksConfig>` element to the public [Azure Diagnostics configuration file](https://msdn.microsoft.com/library/azure/dn782207.aspx) of the role.
+當您使用角色屬性來設定 [將資料傳送至 Application Insights] 時，Azure SDK (2.8 或更新版本) 會將 `<SinksConfig>` 元素新增至角色的公用 [Azure 診斷組態檔](https://msdn.microsoft.com/library/azure/dn782207.aspx)。
 
-`<SinksConfig>` defines the additional sink where the Azure diagnostics data can be sent.  An example `SinksConfig` looks like this:
+`<SinksConfig>` 會定義可以傳送 Azure 診斷資料的其他接收器位置。範例 `SinksConfig` 如下所示：
 
 ```xml
 
@@ -67,40 +66,40 @@ When you use the role properties to set "Send data to Application Insights", the
 
 ```
 
-The `ApplicationInsights` element specifies the instrumentation key which identifies the Application Insights resource to which the Azure diagnostics data will be sent. When you select the resource, it is automatically populated based on the `APPINSIGHTS_INSTRUMENTATIONKEY` service configuration. (If you want to set it manually, get the key from the Essentials drop-down of the resource.)
+`ApplicationInsights` 元素指定檢測金鑰，它會識別在其中傳送 Azure 診斷資料的 Application Insights。當您選取資源時，會根據 `APPINSIGHTS_INSTRUMENTATIONKEY` 服務組態自動填入。(如果您想要手動設定它，從資源的 [Essentials] 下拉式清單取得金鑰。)
 
-`Channels` define the data that will be sent to the sink. The channel acts like a filter. The `loglevel` attribute lets you specify the log level that the channel will send. The available values are: `{Verbose, Information, Warning, Error, Critical}`.
+`Channels` 定義將會傳送至接收器的資料。通道的行為類似篩選器。`loglevel` 屬性可讓您指定通道將會傳送的記錄層級。可用值為：`{Verbose, Information, Warning, Error, Critical}`。
 
-### <a name="send-data-to-the-sink"></a>Send data to the sink
+### 將資料傳送到接收器
 
-Send data to the Application Insights sink by adding the sinks attribute under the DiagnosticMonitorConfiguration node. Adding the sinks element to each node specifies that you want data collected from that node and any node under it to be sent to the sink specified.
+將資料傳送到 Application Insights 接收器，方法是在 DiagnosticMonitorConfiguration 節點底下新增接收器屬性。將接收器元素新增至每個節點會指定您想要從該節點及其下的任何節點收集資料，並傳送到指定的接收器。
 
-For example, the default created by the Azure SDK is to send all the Azure diagnostic data:
+例如，由 Azure SDK 所建立的預設值是傳送所有的 Azure 診斷資料：
 
 ```xml
 
     <DiagnosticMonitorConfiguration overallQuotaInMB="4096" sinks="ApplicationInsights">
 ```
 
-But if you want to send only error logs, qualify the sink name with a channel name:
+但是，如果您只想要傳送錯誤記錄檔，將接收器名稱限定為通道名稱：
 
 ```xml
 
     <DiagnosticMonitorConfiguration overallQuotaInMB="4096" sinks="ApplicationInsights.MyTopDiagdata">
 ```
 
-Notice that we're using the name of the Sink that we defined, together with the name of a channel that we defined above.
+請注意，我們使用我們所定義的接收器名稱，以及上面定義的通道名稱。
 
-If you only wanted to send Verbose application logs to Application Insights then you would add the sinks attribute to the `Logs` node.
+如果只想要傳送「詳細資訊」應用程式記錄檔至 Application Insights，則會將接收器屬性新增至 `Logs` 節點。
 
 ```xml
 
     <Logs scheduledTransferPeriod="PT1M" scheduledTransferLogLevelFilter="Verbose" sinks="ApplicationInsights.MyLogData"/>
 ```
 
-You can also include multiple sinks in the configuration at different levels in the hierarchy. In that case the sink specified at the top level of the hierarchy acts as a global setting and the one specified at the individual element element acts like an override to that global setting.
+您也可以在階層的不同層級的組態中包含多個接收器。在此情況下，在階層最上層指定的接收器會做為全域設定，而在個別元素指定的接收器則做為該全域設定的覆寫。
 
-Here is a complete example of the public configuration file that sends all errors to Application Insights (specified at the `DiagnosticMonitorConfiguration` node) and in addition Verbose level logs for the Application Logs (specified at the `Logs` node).
+以下的公用組態檔完整範例會將所有錯誤傳送至 Application Insights (在 `DiagnosticMonitorConfiguration` 節點指定)，此外還有應用程式記錄檔的「詳細資訊」層級記錄 (在 `Logs` 節點指定)。
 
 ```xml
 
@@ -135,20 +134,16 @@ Here is a complete example of the public configuration file that sends all error
 
 ![](./media/app-insights-azure-diagnostics/diagnostics-publicconfig.png)
 
-There are some limitations to be aware of with this functionality:
+對於這項功能有一些要注意的限制：
 
-* Channels are only meant to work with log type and not performance counters. If you specify a channel with a performance counter element it will be ignored.
-* The log level for a channel cannot exceed the log level for what is being collected by Azure diagnostics. For example: you cannot collect Application Log errors in the Logs element and try to send Verbose logs to the Application Insight sync. The scheduledTransferLogLevelFilter attribute must always collect equal or more logs than the logs you are trying to send to a sink.
-* You cannot send any blob data collected by Azure diagnostics extension to Application Insights. For example anything specified under the Directories node. For Crash Dumps the actual crash dump will still be sent to blob storage and only a notification that the crash dump was generated will be sent to Application Insights.
+* 通道只是為了配合記錄類型 (而不是效能計數器) 使用。如果您對效能計數器元素指定通道，將會忽略它。
+* 通道的記錄層級不能超過 Azure 診斷所要收集的記錄層級。例如：您不能在「記錄」元素中收集「應用程式記錄」錯誤，並且嘗試傳送「詳細資訊」記錄至 Application Insight 同步處理。scheduledTransferLogLevelFilter 屬性一律必須收集與您正嘗試傳送到接收器的記錄相等或更多個記錄。
+* 您無法將 Azure 診斷擴充收集的任何 blob 資料傳送至 Application Insights。例如，目錄節點下指定的任何項目。針對損毀傾印，實際損毀傾印將仍可傳送至 blob 儲存體，並只會將損毀傾印所產生的通知傳送至 Application Insights。
 
-## <a name="related-topics"></a>Related topics
+## 相關主題
 
-* [Monitoring Azure Cloud Services with Application Insights](app-insights-cloudservices.md)
-* [Using PowerShell to send Azure diagnostics to Application Insights](app-insights-powershell-azure-diagnostics.md)
-* [Azure Diagnostics Configuration file](https://msdn.microsoft.com/library/azure/dn782207.aspx)
+* [使用 Application Insights 監視 Azure 雲端服務](app-insights-cloudservices.md)
+* [使用 PowerShell 將 Azure 診斷傳送至 Application Insights](app-insights-powershell-azure-diagnostics.md)
+* [Azure 診斷組態檔](https://msdn.microsoft.com/library/azure/dn782207.aspx)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!----HONumber=AcomDC_0907_2016-->

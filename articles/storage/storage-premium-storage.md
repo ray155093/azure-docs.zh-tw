@@ -1,581 +1,574 @@
 <properties
-    pageTitle="Premium Storage: High-Performance Storage for Azure Virtual Machine Workloads | Microsoft Azure"
-    description="Premium Storage offers high-performance, low-latency disk support for I/O-intensive workloads running on Azure Virtual Machines. Azure DS-series, DSv2-series and GS-series VMs support Premium Storage."
-    services="storage"
-    documentationCenter=""
-    authors="yuemlu"
-    manager="aungoo-msft"
-    editor="tysonn"/>
+	pageTitle="進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體 | Microsoft Azure"
+	description="「進階儲存體」可針對在「Azure 虛擬機器」上執行且需要大量 I/O 的工作負載，提供高效能、低延遲的磁碟支援。Azure DS 系列、DSv2 系列和 GS 系列 VM 支援進階儲存體。"
+	services="storage"
+	documentationCenter=""
+	authors="aungoo-msft"
+	manager="tadb"
+	editor="tysonn"/>
 
 <tags
-    ms.service="storage"
-    ms.workload="storage"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/28/2016"
-    ms.author="yuemlu;aungoo;robinsh"/>
+	ms.service="storage"
+	ms.workload="storage"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/19/2016"
+	ms.author="aungoo;robinsh"/>
 
 
+# 進階儲存體： Azure 虛擬機器工作負載適用的高效能儲存體
 
-# <a name="premium-storage:-high-performance-storage-for-azure-virtual-machine-workloads"></a>Premium Storage: High-Performance Storage for Azure Virtual Machine Workloads
+## Overview
 
-## <a name="overview"></a>Overview
+針對執行時需要大量 I/O 之工作負載的虛擬機器，「Azure 進階儲存體」可提供高效能、低延遲的磁碟支援。使用「進階儲存體」的虛擬機器 (VM) 會將資料儲存在固態硬碟 (SSD) 上。您可以將應用程式的 VM 磁碟移轉到「Azure 進階儲存體」，以利用這些磁碟的速度和效能。
 
-Azure Premium Storage delivers high-performance, low-latency disk support for virtual machines running I/O-intensive workloads. Virtual machine (VM) disks that use Premium Storage store data on solid state drives (SSDs). You can migrate your application's VM disks to Azure Premium Storage to take advantage of the speed and performance of these disks.
+Azure VM 支援連接數個「進階儲存體」磁碟，讓您應用程式的每一 VM 最多可擁有 64 TB 的儲存體。使用「進階儲存體」時，您應用程式的每一 VM 可達到 80,000 IOPS (每秒輸入/輸出作業)，而每一 VM 的每秒磁碟輸送量為 2000 MB，且讀取作業的延遲極低。
 
-An Azure VM supports attaching several Premium Storage disks, so that your applications can have up to 64 TB of storage per VM. With Premium Storage, your applications can achieve 80,000 IOPS (input/output operations per second) per VM and 2000 MB per second disk throughput per VM with extremely low latencies for read operations.
+Azure 使用進階儲存體，提供您將要求較高的企業應用程式 (例如 Dynamics AX、Dynamics CRM、Exchange Server、SharePoint Farms 與 SAP Business Suite) 真正提升並轉移至雲端的能力。您可以在進階儲存體上執行強調效能、需要持續高效能和低延遲的資料庫工作負載，例如 SQL Server、Oracle、MongoDB、MySQL、Redis。
 
-With Premium Storage, Azure offers the ability to truly lift-and-shift your demanding enterprise applications like, Dynamics AX, Dynamics CRM, Exchange Server, SharePoint Farms, and SAP Business Suite, to the cloud. You can run a variety of performance intensive database workloads like SQL Server, Oracle, MongoDB, MySQL, Redis, that require consistent high performance and low latency on Premium Storage.
+>[AZURE.NOTE] 建議您將任何需要高 IOPS 的虛擬機器磁碟移轉到「Azure 進階儲存體」，以發揮應用程式最佳效能。如果您的磁碟不需要高 IOPS，您可以在「標準儲存體」中維護它來限制成本，這會將虛擬機器磁碟資料儲存在「硬碟機 (HDD)」上而非 SSD 上。
 
->[AZURE.NOTE] We recommend migrating any virtual machine disk requiring high IOPS to Azure Premium Storage for the best performance for your application. If your disk does not require high IOPS, you can limit costs by maintaining it in Standard Storage, which stores virtual machine disk data on Hard Disk Drives (HDDs) instead of SSDs.
+若要開始使用 Azure Premium 儲存體，請造訪[免費開始](https://azure.microsoft.com/pricing/free-trial/)頁面。如需有關將現有虛擬機器移轉到「進階儲存體」的資訊，請參閱＜移轉到 Azure 進階儲存體＞[](storage-migration-to-premium-storage.md)。
 
-To get started with Azure Premium Storage, visit [Get started for free](https://azure.microsoft.com/pricing/free-trial/) page. For information on migrating your existing virtual machines to Premium Storage, see [Migrating to Azure Premium Storage](storage-migration-to-premium-storage.md).
+>[AZURE.NOTE] 目前有些區域不支援進階儲存體。您可以在[依區域的 Azure 服務](https://azure.microsoft.com/regions/#services)中找到可用區域清單。
 
->[AZURE.NOTE] Premium Storage is currently supported in some regions. You can find the list of available regions in [Azure Services by Region](https://azure.microsoft.com/regions/#services).
+## 進階儲存體功能
 
-## <a name="premium-storage-features"></a>Premium Storage Features
+**進階儲存體磁碟**：「Azure 進階儲存體」支援可連接到「進階儲存體」支援之 Azure VM (DS、DSv2、GS 或 Fs 系列) 的 VM 磁碟。使用進階儲存體時，您可以選擇三種磁碟大小 (也就是 P10 (128GiB)、P20 (512GiB) 及 P30 (1024GiB))，每種都有自己的效能規格。視您的應用程式需求而定，您可以將一或多個這類磁碟連接到「進階儲存體」支援的 VM。在下一節的[進階儲存體延展性和效能目標](#premium-storage-scalability-and-performance-targets)中，我們會更詳細地說明規格。
 
-**Premium Storage Disks**: Azure Premium Storage supports VM disks that can be attached to Premium Storage supported Azure VMs (DS, DSv2, GS, or Fs series). When using Premium Storage you have a choice of three disk sizes namely, P10 (128GiB), P20 (512GiB) and P30 (1024GiB), each with its own performance specifications. Depending on your application requirement you can attach one or more of these disks to your Premium Storage supported VM. In the following section on [Premium Storage Scalability and Performance Targets ](#premium-storage-scalability-and-performance-targets) we will describe the specifications in more detail.
+進階儲存體 Blob：進階儲存體可支援 Azure 分頁 Blob，其用於保存適用於 Azure 虛擬機器 (VM) 的永續性磁碟。進階儲存體目前不支援 Azure 區塊 Blob、Azure 附加 Blob、Azure 檔案、Azure 資料表或 Azure 佇列。放在進階儲存體帳戶中的任何其他物件都會是分頁 Blob，並且貼齊其中一個支援的佈建大小。Heance 進階儲存體帳戶不是用於儲存小型 Blob。
 
-**Premium Page Blob**: Premium Storage supports Azure Page Blobs, which are used to hold persistent disks for Azure Virtual Machines (VMs). Currently, Premium Storage does not support Azure Block Blobs, Azure Append Blobs, Azure Files, Azure Tables, or Azure Queues. Any other object placed in a Premium Storage account will be a Page Blob, and it will snap to one of the supported provisioned sizes. Hence Premium Storage account is not meant for storing tiny blobs.
+**進階儲存體帳戶**︰若要開始使用進階儲存體，您必須建立進階儲存體帳戶。如果您想要使用 [Azure 入口網站](https://portal.azure.com)，則可以指定「進階」效能層和「本地備援儲存體 (LRS)」作為複寫選項來建立進階儲存體帳戶。使用[儲存體 REST API](http://msdn.microsoft.com//library/azure/dd179355.aspx) 2014-02-14 版或更新版本將類型指定為 “Premium\_LRS”、[服務管理 REST API](http://msdn.microsoft.com/library/azure/ee460799.aspx) 2014-10-01 版或更新版本 (傳統部署)、[Azure 儲存體資源提供者 REST API 參考](http://msdn.microsoft.com/library/azure/mt163683.aspx) (Resource Manager 部署) 以及 [Azure PowerShell](../powershell-install-configure.md) 0.8.10 版或更新版本，也可以建立進階儲存體帳戶。在下一節的[進階儲存體延展性和效能目標](#premium-storage-scalability-and-performance-targets)中，深入了解進階儲存體帳戶限制。
 
-**Premium Storage account**: To start using Premium Storage, you must create a Premium Storage account. If you prefer to use the [Azure portal](https://portal.azure.com), you can create a Premium Storage account by specifying the “Premium” performance tier and “Locally-redundant storage (LRS)” as the replication option. You can also create a Premium Storage account by specifying the type as “Premium_LRS” using the [Storage REST API](http://msdn.microsoft.com//library/azure/dd179355.aspx) version 2014-02-14 or later; the [Service Management REST API](http://msdn.microsoft.com/library/azure/ee460799.aspx) version 2014-10-01 or later (Classic deployments); the [Azure Storage Resource Provider REST API Reference](http://msdn.microsoft.com/library/azure/mt163683.aspx) (Resource Manager deployments); and the [Azure PowerShell](../powershell-install-configure.md) version 0.8.10 or later. Learn about premium storage account limits in the following section on [Premium Storage Scalability and Performance Targets](#premium-storage-scalability-and-performance-targets).
+**進階本地備援儲存體**：進階儲存體帳戶僅支援本地備援儲存體 (LRS) 作為複寫選項，並在單一區域內會保留三份資料。如需使用進階儲存體時關於異地複寫的考量，請參閱本文的[快照與複製 Blob](#snapshots-and-copy-blob) 一節。
 
-**Premium Locally Redundant Storage**: A Premium Storage account only supports Locally Redundant Storage (LRS) as the replication option and keeps three copies of the data within a single region. For considerations regarding geo replication when using Premium Storage, see the [Snapshots and Copy Blob](#snapshots-and-copy-blob) section in this article.
+Azure 使用儲存體帳戶做為作業系統 (OS) 和資料磁碟的容器。當您建立 Azure DS、DSv2、GS 或 Fs VM 並選取「Azure 進階儲存體」帳戶時，您的作業系統和資料磁碟會儲存在該儲存體帳戶中。
 
-Azure uses the storage account as a container for your operating system (OS) and data disks. When you create an Azure DS, DSv2, GS, or Fs  VM and select an Azure Premium Storage account, your operating system and data disks are stored in that storage account.
+有兩種方式可使用 Premium 磁碟儲存體：
+- 首先，建立新的進階儲存體帳戶。接著，在建立新的 DS、DSv2、GS 或 Fs VM 時，在儲存體組態設定中選取進階儲存體帳戶。或者，
+- 在建立新的 DS、DSv2、GS 或 Fs VM 時，在儲存體組態設定中建立新的進階儲存體帳戶，或讓 Azure 入口網站建立預設的進階儲存體帳戶。
 
-You can use Premium Storage for Disks in one of two ways:
-- First, create a new premium storage account. Next, when creating a new DS, DSv2, GS, or Fs VM, select the premium storage account in the Storage configuration settings. OR,
-- When creating a new DS, DSv2, GS, or Fs VM create a new premium storage account in Storage configuration settings, or let Azure portal create a default premium storage account.
+如需逐步指示，請參閱本文稍後的[快速啟動](#quick-start)一節。
 
-For step-by-step instructions, see the [Quick Start](#quick-start) section later in this article.
+>[AZURE.NOTE] Premium 儲存體帳戶無法對應到自訂網域名稱。
 
->[AZURE.NOTE] A premium storage account cannot be mapped to a custom domain name.
+## 進階儲存體支援的 VM
 
-## <a name="premium-storage-supported-vms"></a>Premium Storage supported VMs
+「進階儲存體」支援 DS 系列、DSv2 系列、GS 系列及 Fs 系列的 Azure 虛擬機器 (VM)。您可以將「標準」和「進階」儲存體磁碟與「進階儲存體」支援的 VM 搭配使用。但是不能將「進階儲存體」磁碟與非「進階儲存體」相容的 VM 系列搭配使用。
 
-Premium Storage supports DS-series, DSv2-series, GS-series, and Fs-series Azure Virtual Machines (VMs). You can use both Standard and Premium storage disks with Premium Storage supported of VMs. But you cannot use Premium Storage disks with VM series which are not Premium Storage compatible.
+如需可用 Azure VM 類型和 Windows VM 大小的資訊，請參閱 [Windows VM 大小](../virtual-machines/virtual-machines-windows-sizes.md)。如需可用 VM 類型和 Linux VM 大小的資訊，請參閱 [Linux VM 大小](../virtual-machines/virtual-machines-linux-sizes.md)。
 
-For information on available Azure VM types and sizes for Windows VMs, see [Windows VM sizes](../virtual-machines/virtual-machines-windows-sizes.md). For information on VM types and sizes for Linux VMs, see [Linux VM sizes](../virtual-machines/virtual-machines-linux-sizes.md).
+以下是 DS、DSv2、GS 及 Fs 系列 VM 的一些功能：
 
-Following are some of the features of DS, DSv2, GS, and Fs series VMs:
+**雲端服務**：可以將 DS 系列 VM 加入至僅包含 DS 系列 VM 的雲端服務。請勿將 DS 系列 VM 加入至包含非 DS 系列 VM 的現有雲端服務。您可以將現有的 VHD 移轉到僅執行 DS 系列 VM 的新雲端服務。如果您想要為裝載 DS 系列 VM 的新雲端服務保留相同的虛擬 IP 位址 (VIP)，請使用[保留的 IP 位址](../virtual-network/virtual-networks-instance-level-public-ip.md)。可將 GS 系列 VM 加入至僅執行 G 系列 VM 的現有雲端服務。
 
-**Cloud Service**: DS-series VMs can be added to a cloud service that includes only DS-series VMs. Do not add DS-series VMs to an existing cloud service that includes non-DS-series VMs. You can migrate your existing VHDs to a new cloud service running only DS-series VMs. If you want to retain the same virtual IP address (VIP) for the new cloud service that hosts your DS-series VMs, use the [Reserved IP Addresses](../virtual-network/virtual-networks-instance-level-public-ip.md). GS-series VMs can be added to an existing cloud service running only G-series VMs.
+**作業系統磁碟**：您可以將「進階儲存體」支援的 Azure 虛擬機器設定成使用裝載在「標準儲存體」帳戶或「進階儲存體」帳戶上的作業系統 (OS) 磁碟。我們建議使用進階儲存體型的 OS 磁碟以獲得最佳體驗。
 
-**Operating System Disk**: The Premium Storage supported Azure virtual machines can be configured to use an operating system (OS) disk hosted either on a Standard Storage account or on a Premium Storage account. We recommend using Premium Storage based OS disk for best experience.
+**資料磁碟**：您可以在相同的「進階儲存體」支援 VM 中同時使用「進階」和「標準」儲存體磁碟。使用「進階儲存體」時，您可以佈建「進階儲存體」支援的 VM，然後將數個持續性資料磁碟連接到此 VM。如有需要，您可以跨磁碟等量磁碟區以增加磁碟區的容量和效能。
 
-**Data Disks**: You can use both Premium and Standard storage disks in the same Premium Storage supported VM. With Premium Storage, you can provision a Premium Storage supported VM and attach several persistent data disks to the VM. If needed, you can stripe across the disks to increase the capacity and performance of the volume.
+> [AZURE.NOTE] 如果您使用[儲存空間](http://technet.microsoft.com/library/hh831739.aspx)等量 Premium 儲存體資料磁碟，應該為所使用的每個磁碟，以一個資料行進行設定。否則，等量磁碟區的整體效能可能會因為磁碟流量分配不平均而比預期的效能還低。根據預設，伺服器管理員使用者介面 (UI) 可讓您設定最多 8 個磁碟的資料行。但是，如果您有 8 個以上的磁碟，您就必須使用 PowerShell 來建立磁碟區，並且手動指定資料行數目。否則，即使您擁有更多磁碟，伺服器管理員 UI 還是會繼續使用 8 個資料行。例如，如果您在單一等量磁碟區組有 32 個磁碟，您應該指定 32 個資料行。您可以使用 [New-VirtualDisk](http://technet.microsoft.com/library/hh848643.aspx) PowerShell Cmdlet 的 *NumberOfColumns* 參數，指定虛擬磁碟所使用的資料行數目。如需詳細資訊，請參閱[儲存體空間概觀](http://technet.microsoft.com/library/hh831739.aspx)和[儲存體空間常見問題集](http://social.technet.microsoft.com/wiki/contents/articles/11382.storage-spaces-frequently-asked-questions-faq.aspx)。
 
-> [AZURE.NOTE] If you stripe Premium Storage data disks using [Storage Spaces](http://technet.microsoft.com/library/hh831739.aspx), you should configure it with one column for each disk that is used. Otherwise, overall performance of the striped volume may be lower than expected due to uneven distribution of traffic across the disks. By default, the Server Manager user interface (UI) allows you to setup columns up to 8 disks. But if you have more than 8 disks, you need to use PowerShell to create the volume and also specify the number of columns manually. Otherwise, the Server Manager UI continues to use 8 columns even though you have more disks. For example, if you have 32 disks in a single stripe set, you should specify 32 columns. You can use the *NumberOfColumns* parameter of the [New-VirtualDisk](http://technet.microsoft.com/library/hh848643.aspx) PowerShell cmdlet to specify the number of columns used by the virtual disk. For more information, see [Storage Spaces Overview](http://technet.microsoft.com/library/hh831739.aspx) and [Storage Spaces Frequently Asked Questions](http://social.technet.microsoft.com/wiki/contents/articles/11382.storage-spaces-frequently-asked-questions-faq.aspx).
+**快取**：「進階儲存體」支援的 VM 具有獨特的快取功能，可讓您享有超越基礎「進階儲存體」磁碟效能的高層級輸送量和延遲表現。您可以在進階儲存體磁碟上將磁碟快取原則設定為 [唯讀]、[讀寫] 或 [無]。所有進階資料磁碟的預設磁碟快取原則都是 [唯讀]，而作業系統磁碟的磁碟快取原則則是 [讀寫]。使用正確的組態設定，以達到應用程式的最佳效能。例如，對於讀取繁重或唯讀資料磁碟 (如 SQL Server 資料檔)，將磁碟快取原則設定為 [唯讀]。例如，對於寫入繁重或唯寫資料磁碟 (如 SQL Server 記錄檔)，將磁碟快取原則設定為 [無]。在[使用進階儲存體設計高效能](storage-premium-storage-performance.md)中，深入了解如何最佳化進階儲存體。
 
-**Cache**: Premium Storage supported VMs have a unique caching capability with which you can get high levels of throughput and latency, which exceeds underlying Premium Storage disk performance. You can configure disk caching policy on the Premium Storage disks as ReadOnly, ReadWrite or None. The default disk caching policy is ReadOnly for all premium data disks and ReadWrite for operating system disks. Use the right configuration setting to achieve optimal performance for your application. For example, for read heavy or read only data disks, such as SQL Server data files, set disk caching policy to “ReadOnly”. For write heavy or write only data disks, such as SQL Server log files, set disk caching policy to “None”. Learn more about optimizing your design with Premium Storage in [Design for Performance with Premium Storage](storage-premium-storage-performance.md).
+**分析**︰若要分析使用進階儲存體帳戶磁碟的 VM 效能，您可以在 Azure 入口網站中啟用 Azure VM 診斷。如需詳細資料，請參閱[使用 Azure 診斷擴充功能監視 Microsoft Azure 虛擬機器](https://azure.microsoft.com/blog/2014/09/02/windows-azure-virtual-machine-monitoring-with-wad-extension/)。若要查看磁碟效能，請使用作業系統工具，例如適用於 Windows VM 的 [Windows 效能監視器](https://technet.microsoft.com/library/cc749249.aspx)和適用於 Linux VM 的 [IOSTAT](http://linux.die.net/man/1/iostat)。
 
-**Analytics**: To analyze the performance of VMs using disks on Premium Storage accounts, you can enable the Azure VM Diagnostics in the Azure portal. Refer to [Microsoft Azure Virtual Machine Monitoring with Azure Diagnostics Extension](https://azure.microsoft.com/blog/2014/09/02/windows-azure-virtual-machine-monitoring-with-wad-extension/) for details. To see the disk performance, use operating system based tools, such as [Windows Performance Monitor](https://technet.microsoft.com/library/cc749249.aspx) for Windows VMs and [IOSTAT](http://linux.die.net/man/1/iostat) for Linux VMs.
+**VM 規模限制和效能**︰每個「進階儲存體」支援的 VM 大小在 IOPS、頻寬及每個 VM 可連接的磁碟數目上都有規模限制和效能規格。使用進階儲存體磁碟搭配「進階儲存體」支援的 VM 時，請確定 VM 上有足夠的 IOPS 和頻寬可用來運送磁碟流量。例如，STANDARD\_DS1 VM 每秒專用頻寬有 32 MB 的 Premium 儲存體磁碟流量。P10 進階儲存體磁碟可以提供每秒 100 MB 的頻寬。如果 P10 進階儲存體磁碟連接到此 VM，則最高只能達到每秒 32 MB，而無法達到 P10 磁碟可提供的每秒 100 MB。
 
-**VM scale limits and performance**: Each Premium Storage supported VM size has scale limits and performance specification for IOPS, bandwidth and number of disks that can be attached per VM. When using premium storage disks with Premium Storage supported VMs, make sure there is sufficient IOPS and Bandwidth available on your VM to drive the disk traffic.
-For example, a STANDARD_DS1 VM has 32 MB per second dedicated bandwidth available for Premium Storage disk traffic. A P10 premium storage disk can provide 100 MB per second bandwidth. If a P10 Premium Storage disk were attached to this VM, it can only go up to 32 MB per second but not up to 100 MB per second that the P10 disk can provide.
+目前在 DS 系列上最大的 VM 是 STANDARD\_DS14，它在所有磁碟最多可以提供每秒 512 MB。GS 系列上最大的 VM 是 STANDARD\_GS5，它在所有磁碟最多可以提供每秒 2000 MB。請注意，這些限制僅適用於磁碟流量，不包含快取命中數和網路流量。VM 網路流量有不同的頻寬，與 Premium 儲存體磁碟專用的頻寬不同。
 
-Currently, the largest VM on DS-series is Standard_DS15_v2 and it can provide up to 960 MB per second across all disks. The largest VM on GS-series is Standard_GS5 and it can give up to 2000 MB per second across all disks.
-Note that these limits are for disk traffic alone, not including cache-hits and network traffic. There is a separate bandwidth available for VM network traffic, which is different from the dedicated bandwidth for Premium Storage disks.
+如需有關「進階儲存體」支援之 VM 的最新 IOPS 和輸送量 (頻寬) 上限資訊，請參閱 [Windows VM 大小](../virtual-machines/virtual-machines-windows-sizes.md)或 [Linux VM 大小](../virtual-machines/virtual-machines-linux-sizes.md)。
 
-For the most up-to-date information on maximum IOPS and throughput (bandwidth) for Premium Storage supported VMs, see [Windows VM sizes](../virtual-machines/virtual-machines-windows-sizes.md) or [Linux VM sizes](../virtual-machines/virtual-machines-linux-sizes.md).
+若要了解進階儲存體磁碟及其 IOPS 與輸送量限制，請參閱本文的[進階儲存體延展性和效能目標](#premium-storage-scalability-and-performance-targets)一節中的表格。
 
-To learn about the Premium storage disks and their IOPs and throughput limits, see the table in the [Premium Storage Scalability and Performance Targets](#premium-storage-scalability-and-performance-targets) section in this article.
+## 進階儲存體延展性和效能目標
 
-## <a name="premium-storage-scalability-and-performance-targets"></a>Premium Storage Scalability and Performance Targets
+在這一節中，我們將說明在使用進階儲存體時必須考慮的延展性和效能目標。
 
-In this section, we will describe all the Scalability and Performance targets you must consider when using Premium Storage.
+### 進階儲存體帳戶限制
 
-### <a name="premium-storage-account-limits"></a>Premium Storage account limits
-
-Premium Storage accounts have following scalability targets:
+進階儲存體帳戶有下列延展性目標：
 
 <table border="1" cellspacing="0" cellpadding="5" style="border: 1px solid #000000;">
 <tbody>
 <tr>
-    <td><strong>Total Account Capacity</strong></td>
-    <td><strong>Total Bandwidth for a Locally Redundant Storage Account</strong></td>
+	<td><strong>總帳戶容量</strong></td>
+	<td><strong>本地備援儲存體帳戶總頻寬</strong></td>
 </tr>
 <tr>
-    <td>
-    <ul>
-       <li type=round>Disk capacity: 35 TB</li>
-       <li type=round>Snapshot capacity: 10 TB</li>
+	<td>
+	<ul>
+       <li type=round>磁碟容量：35 TB</li>
+       <li type=round>快照容量：10 TB</li>
     </ul>
-    </td>
-    <td>Up to 50 gigabits per second for Inbound + Outbound</td>
+	</td>
+	<td>每秒最多 50 Gbps (輸入 + 輸出)</td>
 </tr>
 </tbody>
 </table>
 
-- Inbound refers to all data (requests) being sent to a storage account.
-- Outbound refers to all data (responses) being received from a storage account.
+- 輸入是指傳送至某個儲存體帳戶的所有資料 (要求)。
+- 輸出是指從某個儲存體帳戶接收的所有資料 (回應)。
 
-For more information, see [Azure Storage Scalability and Performance Targets](storage-scalability-targets.md).
+如需詳細資訊，請參閱 [Azure 儲存體延展性和效能目標](storage-scalability-targets.md)。
 
-If the needs of your application exceed the scalability targets of a single storage account, build your application to use multiple storage accounts, and partition your data across those storage accounts. For example, if you want to attach 51 terabytes (TB) disks across a number of VMs, spread them across two storage accounts since 35 TB is the limit for a single Premium Storage account. Make sure that a single Premium Storage account has never more than 35 TB of provisioned disks.
+如果您的應用程式需求超出單一儲存體帳戶的延展性目標，請建置使用多個儲存體帳戶的應用程式，並將資料分散到那些儲存體帳戶中。例如，如果要將 51 TB 的磁碟連結到多個 VM，請將它們分散到兩個儲存體帳戶，因為單一進階儲存體帳戶的限制是 35 TB。請務必確認單一 Premium 儲存體帳戶的佈建磁碟不要超過 35 TB。
 
-### <a name="premium-storage-disks-limits"></a>Premium Storage Disks Limits
+### 進階儲存體磁碟限制
 
-When you provision a disk against a Premium Storage account, how much input/output operations per second (IOPS) and throughput (bandwidth) it can get depends on the size of the disk. Currently, there are three types of Premium Storage disks: P10, P20, and P30. Each one has specific limits for IOPS and throughput as specified in the following table:
+當您為某個 Premium 儲存體帳戶佈建磁碟時，其每秒的輸入/輸出作業 (IOPS) 和輸送量 (頻寬) 取決於磁碟大小。目前有三種類型的 Premium 儲存體磁碟：P10、P20 及 P30。每種各有特定的 IOPS 和輸送量限制，如下表所示：
 
 <table border="1" cellspacing="0" cellpadding="5" style="border: 1px solid #000000;">
 <tbody>
 <tr>
-    <td><strong>Premium Storage Disk Type</strong></td>
-    <td><strong>P10</strong></td>
-    <td><strong>P20</strong></td>
-    <td><strong>P30</strong></td>
+	<td><strong>Premium 儲存體磁碟類型</strong></td>
+	<td><strong>P10</strong></td>
+	<td><strong>P20</strong></td>
+	<td><strong>P30</strong></td>
 </tr>
 <tr>
-    <td><strong>Disk size</strong></td>
-    <td>128 GiB</td>
-    <td>512 GiB</td>
-    <td>1024 GiB (1 TB)</td>
+	<td><strong>磁碟大小</strong></td>
+	<td>128 GB</td>
+	<td>512 GB</td>
+	<td>1024 GB (1 TB)</td>
 </tr>
 <tr>
-    <td><strong>IOPS per disk</strong></td>
-    <td>500</td>
-    <td>2300</td>
-    <td>5000</td>
+	<td><strong>每一磁碟的 IOPS</strong></td>
+	<td>500</td>
+	<td>2300</td>
+	<td>5000</td>
 </tr>
 <tr>
-    <td><strong>Throughput per disk</strong></td>
-    <td>100 MB per second </td>
-    <td>150 MB per second </td>
-    <td>200 MB per second </td>
+	<td><strong>每一磁碟的輸送量</strong></td>
+	<td>每秒 100 MB </td>
+	<td>每秒 150 MB </td>
+	<td>每秒 200 MB </td>
 </tr>
 </tbody>
 </table>
 
-> [AZURE.NOTE] Make sure that there is sufficient bandwidth available on your VM to drive the disk traffic as explained in the [Premium Storage supported VMs](#ds-dsv2-and-gs-series-vms) section earlier in this article. Otherwise, your disk throughput and IOPS will be constrained to lower values based on the VM limits rather than the disk limits mentioned in the previous table.  
+> [AZURE.NOTE] 請確定您的 VM 上有足夠的頻寬可用來運送磁碟流量，如本文稍早[進階儲存體支援的 VM](#ds-dsv2-and-gs-series-vms) 一節所述。否則，您的磁碟輸送量和 IOPS 將會根據 VM 限制而不是上表所述的磁碟限制而受限於較低的值。
 
-Here are some important things you must know regarding Premium Storage scalability and performance targets:
+以下是有關進階儲存體延展性和效能目標，您必須知道的一些重要事項︰
 
-- **Provisioned Capacity and Performance**: When you provision a premium storage disk, unlike standard storage, you are guaranteed the Capacity, IOPS and Throughput for that disk. For example, if you create a P30 disk, Azure provisions 1024 GB storage capacity, 5000 IOPS and 200 MB per second Throughput for that disk. Your application can use all or part of the capacity and performance.
+- **佈建的容量和效能**︰當您佈建進階儲存體磁碟時，不同於標準儲存體的是，您可獲得該磁碟的容量、IOPS 和輸送量保證。例如，如果您建立 P30 磁碟，Azure 會為該磁碟佈建 1024 GB 儲存體容量、5000 IOPS 和每秒 200 MB 的輸送量。您的應用程式可以使用全部或部分的容量和效能。
 
-- **Disk Size**: Azure maps the disk size (rounded up) to the nearest Premium Storage Disk option as specified in the table. For example, a disk of size 100 GiB is classified as a P10 option and can perform up to 500 IO units per second, and with up to 100 MB per second throughput. Similarly, a disk of size 400 GiB is classified as a P20 option, and can perform up to 2300 IO units per second and up to 150 MB per second throughput.
+- **磁碟大小**：Azure 會將磁碟大小對應 (無條件進位) 至表格中指定之最接近的 [進階儲存體磁碟] 選項。例如，大小為 100 GB 的磁碟會分類為 P10 選項，每秒最多可執行 500 個 IO 單位，每秒輸送量可達 100 MB。同樣地，大小為 400 GB 的磁碟會分類為 P20 選項，每秒最多可執行 2300 個 IO 單位，每秒輸送量可達 150 MB。
 
-    > [AZURE.NOTE] You can easily increase the size of existing disks. For example, if you wish to increase the size of a 30 GB disk to 128GB or to 1 TB. Or, if you wish to convert your P20 disk to a P30 disk because you need more capacity or more IOPS and throughput. You can expand the disk using "Update-AzureDisk" PowerShell commandlet with "-ResizedSizeInGB" property. For performing this action, disk needs to be detached from the VM or the VM needs to be stopped.
+	> [AZURE.NOTE] 您可以輕易增加現有磁碟的大小。例如，如果您想要將 30 GB 大小的磁碟增加到 128 GB 或 1 TB。或者，如果您想要將 P20 磁碟轉換為 P30 磁碟，因為您需要更多容量或更多的 IOPS 和輸送量。您可以使用 "Update-AzureDisk" PowerShell 命令搭配 "-ResizedSizeInGB" 屬性來擴充磁碟。若要執行這個動作，必須先從 VM 卸離磁碟或停止 VM。
 
-- **IO Size**: The input/output (I/O) unit size is 256 KB. If the data being transferred is less than 256 KB, it is considered a single I/O unit. The larger I/O sizes are counted as multiple I/Os of size 256 KB. For example, 1100 KB I/O is counted as five I/O units.
+- **IO 大小**：輸入/輸出 (I/O) 單位大小為 256 KB。如果要傳送的資料少於 256 KB，會視為單一 I/O 單位。較大的 I/O 大小則會視為大小是 256 KB 的多個 I/O。例如，1100 KB 的 I/O 會視為五個 I/O 單位。
 
-- **Throughput**: The throughput limit includes writes to the disk as well as reads from that disk that are not served from the cache. For example, a P10 disk has 100 MB per second throughput per disk. Some examples of valid throughput for the P10 disk are,
+- **輸送量**：輸送量限制包含寫入至磁碟，以及從磁碟而不是從快取的讀取。例如，P10 磁碟有每秒 100 MB 的每一磁碟輸送量。P10 磁碟的有效輸送量範例如下：
 <table border="1" cellspacing="0" cellpadding="5" style="border: 1px solid #000000;">
 <tbody>
 <tr>
-    <td><strong>Max Throughput per P10 disk</strong></td>
-    <td><strong>Non-cache Reads from disk</strong></td>
-    <td><strong>Non-cache Writes to disk</strong></td>
+<td><strong>每個 P10 磁碟的輸送量上限</strong></td>
+<td><strong>從磁碟的非快取讀取</strong></td>
+<td><strong>對磁碟的非快取寫入</strong></td>
 </tr>
 <tr>
-    <td>100 MB per sec</td>
-    <td>100 MB per sec</td>
-    <td>0</td>
+<td>每秒 100 MB</td>
+<td>每秒 100 MB</td>
+<td>0</td>
 </tr>
 <tr>
-    <td>100 MB per sec</td>
-    <td>0</td>
-    <td>100 MB per sec</td>
+<td>每秒 100 MB</td>
+<td>0</td>
+<td>每秒 100 MB</td>
 </tr>
 <tr>
-    <td>100 MB per second </td>
-    <td>60 MB per second </td>
-    <td>40 MB per second </td>
+<td>每秒 100 MB </td>
+<td>每秒 60 MB </td>
+<td>每秒 40 MB </td>
 </tr>
 </tbody>
 </table>
 
-- **Cache hits**: Cache-hits are not limited by the allocated IOPS/Throughput of the disk. For example, when you use a data disk with ReadOnly cache setting on a Premium Storage supported VM, Reads that are served from the cache are not subject to Premium Storage disk limits. Hence you could get very high throughput from a disk if the workload is predominantly Reads. Note that, cache is subject to separate IOPS / Throughput limits at VM level based on the VM size. DS-series VMs have roughly 4000 IOPS and 33 MB/sec per core for cache and local SSD IOs. GS-series VMs have a limit of 5000 IOPS and 50 MB/sec per core for cache and local SSD IOs.
+- **快取命中數**：快取命中數不會受到磁碟配置 IOPS/輸送量的限制。例如，當您在「進階儲存體」支援的 VM 上使用具有 ReadOnly 快取設定的資料磁碟時，從快取提供的「讀取數」並不受「進階儲存體」磁碟限制約束。因此，如果工作負載以讀取為主，可以從磁碟獲得極高的輸送量。請注意，快取會根據 VM 大小，受到 VM 層級個別 IOPS / 輸送量的限制。DS 系列 VM 大約有 4000 IOPS，快取與本機 SSD IO 是每個核心 33 MB/秒。GS 系列 VM 的限制為 5000 IOPS，而快取與本機 SSD IO 是每個核心 50 MB/秒。
 
-## <a name="throttling"></a>Throttling
-You may see throttling if your application IOPS or throughput exceed the allocated limits for a Premium Storage disk or if your total disk traffic across all disks on the VM exceeds the disk bandwidth limit available for the VM. To avoid throttling, we recommend that you limit the number of pending I/O requests for disk based on the scalability and performance targets for the disk you have provisioned and based on the disk bandwidth available to the VM.  
+## 節流
+如果您的應用程式 IOPS 或輸送量超過進階儲存體磁碟的配置限制，或如果您在 VM 上所有磁碟的磁碟總流量超過 VM 可用的磁碟頻寬限制，您可能會看到節流。若要避免節流，建議您根據佈建之磁碟的延展性和效能目標，以及根據 VM 可用的磁碟頻寬，來限制磁碟的擱置 I/O 要求數。
 
-Your application can achieve the lowest latency when it is designed to avoid throttling. On the other hand, if the number of pending I/O requests for the disk is too small, your application cannot take advantage of the maximum IOPS and throughput levels that are available to the disk.
+當您的應用程式設計為避免節流情況時，可以達到最低延遲。但是，如果磁碟的擱置 I/O 要求數過小，您的應用程式便無法達到磁碟最大的 IOPS 和輸送量層級。
 
-The following examples demonstrate how to calculate the throttling levels. All calculations are based on I/O unit size of 256 KB:
+下列範例示範如何計算節流層級。所有計算都是以 256 KB 的 I/O 單位大小為基礎：
 
-### <a name="example-1:"></a>Example 1:
-Your application has done 495 I/O units of 16 KB size in one second on a P10 disk. These will be counted as 495 I/O Units per second (IOPS). If you try a 2 MB I/O in the same second, the total of I/O units is equal to 495 + 8. This is because 2 MB I/O results in 2048 KB / 256 KB = 8 I/O Units when the I/O unit size is 256 KB. Since the sum of 495 + 8 exceeds the 500 IOPS limit for the disk, throttling occurs.
+### 範例 1：
+在 P10 磁碟上，您的應用程式一秒內有 495 個 16 KB 大小的 I/O 單位。這些會被視為每秒 495 個 I/O 單位 (IOPS)。如果您在該秒內嘗試 2 MB 的 I/O，I/O 單位的總數會等於 495 + 8。這是因為當 I/O 單位大小是 256 KB 時，2 MB 的 I/O 會產生 2048 KB / 256 KB = 8 個 I/O 單位。因為 495 + 8 的總和超出磁碟 500 個 IOPS 的限制，因此會發生節流情況。
 
-### <a name="example-2:"></a>Example 2:
-Your application has done 400 I/O units of 256 KB size on a P10 disk. The total bandwidth consumed is (400 * 256) / 1024 = 100 MB/sec. A P10 disk has throughput limit of 100 MB per second. If your application tries to perform more I/O in that second, it gets throttled because it exceeds the allocated limit.
+### 範例 2：
+在 P10 磁碟上，您的應用程式有 400 個 256 KB 大小的 I/O 單位。耗用的總頻寬是 (400 * 256) / 1024 = 100 MB/秒。P10 磁碟的輸送量限制為每秒 100 MB。如果您的應用程式嘗試在該秒內執行更多 I/O 便會發生節流情況，因為會超出配置的限制。
 
-### <a name="example-3:"></a>Example 3:
-You have a DS4 VM with two P30 disks attached. Each P30 disk is capable of 200 MB per second throughput. However, a DS4 VM has a total disk bandwidth capacity of 256 MB per second. Therefore, you cannot drive the attached disks to the maximum throughput on this DS4 VM at the same time. To resolve this, you can sustain traffic of 200 MB per second on one disk and 56 MB per second on the other disk. If the sum of your disk traffic goes over 256 MB per second, the disk traffic gets throttled.
+### 範例 3：
+DS4 VM 連接了兩個 P30 磁碟。每個 P30 磁碟有每秒 200 MB 的輸送量。不過，DS4 VM 有每秒 256 MB 的磁碟總頻寬容量。因此，此 DS4 VM 上連接的磁碟無法同時達到最大的輸送量。若要解決這個問題，您可以在一個磁碟上維持每秒 200 MB 的流量，在另一個磁碟上維持每秒 56 MB 的流量。如果您的磁碟流量總和超過每秒 256 MB，磁碟流量就會發生節流。
 
->[AZURE.NOTE] If the disk traffic mostly consists of small I/O sizes, it is highly likely that your application will hit the IOPS limit before the throughput limit. On the other hand, if the disk traffic mostly consists of large I/O sizes, it is highly likely that your application will hit the throughput limit instead of the IOPS limit. You can maximize your application IOPS and throughput capacity by using optimal I/O sizes and also by limiting the number of pending I/O requests for disk.
+>[AZURE.NOTE] 如果磁碟流量大多包含小型 I/O，您的應用程式在達到輸送量限制前很可能會先達到 IOPS 限制。但是，如果磁碟流量大多包含大型 I/O，您的應用程式可能會達到輸送量限制，而非 IOPS 限制。您可以使用最佳的 I/O 大小和限制磁碟的擱置 I/O 要求數，以最大化應用程式 IOPS 和輸送量容量。
 
-To learn about designing for high performance using Premium Storage read the article, [Design for Performance with Premium Storage](storage-premium-storage-performance.md).
+若要了解如何使用進階儲存體設計高效能，請參閱[使用進階儲存體設計高效能](storage-premium-storage-performance.md)一文。
 
-## <a name="snapshots-and-copy-blob"></a>Snapshots and Copy Blob
-You can create a snapshot for Premium Storage in the same way as you create a snapshot when using Standard Storage. Since Premium Storage only supports Locally Redundant Storage (LRS) as the replication option, we recommend that you create snapshots and then copy those snapshots to a geo-redundant standard storage account. For more information, see [Azure Storage Redundancy Options](storage-redundancy.md).
+## 快照與複製 Blob
+您可以使用 Standard 儲存體時建立快照的方式來為 Premium 儲存體建立快照。因為進階儲存體僅支援本地備援儲存體 (LRS) 作為複寫選項，所以建議您建立快照集，然後將那些快照集複製到異地備援標準儲存體帳戶。如需詳細資訊，請參閱 [Azure 儲存體備援選項](storage-redundancy.md)。
 
-If a disk is attached to a VM, certain API operations are not permitted on the page blob backing the disk. For example, you cannot perform a [Copy Blob](http://msdn.microsoft.com/library/azure/dd894037.aspx) operation on that blob as long as the disk is attached to a VM. Instead, first create a snapshot of that blob by using the [Snapshot Blob](http://msdn.microsoft.com/library/azure/ee691971.aspx) REST API method, and then perform the [Copy Blob](http://msdn.microsoft.com/library/azure/dd894037.aspx) of the snapshot to copy the attached disk. Alternatively, you can detach the disk and then perform any necessary operations on the underlying blob.
+如果磁碟已連結至 VM，在備份磁碟的分頁 Blob 上不允許某些 API 作業。例如，只要磁碟連接至 VM，您就無法在該 Blob 上執行[複製 Blob](http://msdn.microsoft.com/library/azure/dd894037.aspx) 作業。您必須先使用[快照 Blob](http://msdn.microsoft.com/library/azure/ee691971.aspx) REST API 方法建立該 Blob 的快照，然後對該快照執行[複製 Blob](http://msdn.microsoft.com/library/azure/dd894037.aspx) 以複製連接的磁碟。或者，您可以中斷連結磁碟，然後在基礎 Blob 上執行任何必要的作業。
 
-Following limits apply to Premium Storage blob snapshots:
+下列限制適用於進階儲存體 Blob 快照︰
 <table border="1" cellspacing="0" cellpadding="5" style="border: 1px solid #000000;">
 <tbody>
 <tr>
-    <td><strong>Premium Storage Limit</strong></td>
-    <td><strong>Value</strong></td>
+	<td><strong>進階儲存體限制</strong></td>
+	<td><strong>值</strong></td>
 </tr>
 <tr>
-    <td>Max. number of snapshots per blob</td>
-    <td>100</td>
+	<td>每個 Blob 的快照數目上限</td>
+	<td>100</td>
 </tr>
 <tr>
-    <td>Storage account capacity for snapshots (Includes data in snapshots only, and does not include data in base blob)</td>
-    <td>10 TB</td>
+	<td>快照的儲存體帳戶容量 (只包含快照中的資料，不包含基底 Blob 中的資料)。</td>
+	<td>10 TB</td>
 </tr>
 <tr>
-    <td>Min. time between consecutive snapshots</td>
-    <td>10 minutes</td>
+	<td>連續快照之間的時間下限</td>
+	<td>10 分鐘</td>
 </tr>
 </tbody>
 </table>
 
-To maintain geo-redundant copies of your snapshots, you can copy snapshots from a Premium Storage account to a geo-redundant standard storage account by using AzCopy or Copy Blob. For more information, see [Transfer data with the AzCopy Command-Line Utility](storage-use-azcopy.md) and [Copy Blob](http://msdn.microsoft.com/library/azure/dd894037.aspx).
+若要維護快照集的異地備援副本，您可以使用 AzCopy 或「複製 Blob」，將進階儲存體帳戶中的快照複製到異地備援的標準儲存體帳戶。如需詳細資訊，請參閱[使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)和[複製 Blob](http://msdn.microsoft.com/library/azure/dd894037.aspx)。
 
-For detailed information on performing REST operations against page blobs in Premium Storage accounts, see [Using Blob Service Operations with Azure Premium Storage](http://go.microsoft.com/fwlink/?LinkId=521969) in the MSDN library.
+如需對 Premium 儲存體帳戶中的分頁 Blob 執行 REST 作業的詳細資訊，請參閱 MSDN Library 中的[在 Azure 儲存體帳戶使用 Blob 服務作業](http://go.microsoft.com/fwlink/?LinkId=521969)。
 
-## <a name="using-linux-vms-with-premium-storage"></a>Using Linux VMs with Premium Storage
-Please refer to important instructions below for configuring your Linux VMs on Premium Storage:
+## 在 Premium 儲存體使用 Linux VM
+請參閱下方重要的指示了解如何在 Premium 儲存體上設定 Linux VM：
 
-- For all Premium Storage disks with cache setting as either “ReadOnly” or “None”, you must disable “barriers” while mounting the file system in order to achieve the scalability targets for Premium Storage. You do not need barriers for this scenario because the writes to Premium Storage backed disks are durable for these cache settings. When the write request successfully completes, data has been written to the persistent store. Please use the following methods for disabling “barriers” depending on your file system:
-    - If you use **reiserFS**, disable barriers using the mount option “barrier=none” (For enabling barriers, use “barrier=flush”)
-    - If you use **ext3/ext4**, disable barriers using the mount option “barrier=0” (For enabling barriers, use “barrier=1”)
-    - If you use **XFS**, disable barriers using the mount option “nobarrier” (For enabling barriers, use the option “barrier”)
+- 對於快取設定為 "ReadOnly" 或 "None" 的所有 Premium 儲存體磁碟，您在掛接檔案系統時必須停用 "barrier" (阻礙)，才能達到 Premium 儲存體的延展性目標。此案例中您不需要阻礙，因為這些快取設定的 Premium 儲存體磁碟寫入都是持久的。寫入要求成功完成時，資料就已寫入永久性的存放區。請根據您的檔案系統，使用下列方法停用 "barrier" (阻礙)：
+	- 如果您使用 **reiserFS**，請使用掛接選項 "barrier=none" 停用阻礙 (若要啟用阻礙，請使用 "barrier=flush")
+	- 如果您使用 **ext3/ext4**，請使用掛接選項 "barrier=0" 停用阻礙 (若要啟用阻礙，請使用 "barrier=1")
+	- 如果您使用 **XFS**，請使用掛接選項 "nobarrier" 停用阻礙 (若要啟用阻礙，請使用 "barrier" 選項)
 
-- For Premium Storage disks with cache setting “ReadWrite”, barriers should be enabled for durability of writes.
-- For the volume labels to persist after VM reboot, you must update /etc/fstab with the UUID references to the disks. Also refer to [How to Attach a Data Disk to a Linux Virtual Machine](../virtual-machines/virtual-machines-linux-classic-attach-disk.md)
+- 對於快取設定為 "ReadWrite" 的 Premium 儲存體磁碟，則應該啟用阻礙以持續寫入。
+- 對於要在 VM 重新開機後保存的磁碟機標籤，您必須以參考磁碟的 UUID 更新 /etc/fstab。另請參閱[如何將資料磁碟連接至 Linux 虛擬機器](../virtual-machines/virtual-machines-linux-classic-attach-disk.md)
 
-Following are the Linux Distributions that we validated with Premium Storage. We recommend that you upgrade your VMs to at least one of these versions (or later) for better performance and stability with Premium Storage. Also, some of the versions require the latest LIS (Linux Integration Services v4.0 for Microsoft Azure). Please follow the link provided below for download and installation. We will continue to add more images to the list as we complete additional validations. Please note, our validations showed that performance varies for these images, and it also depends on workload characteristics and settings on the images. Different images are tuned for different kinds of workload.
+以下是我們驗證能使用 Premium 儲存體的 Linux 散發套件。我們建議您升級 VM 到至少其中一個版本 (或更新版本)，以便獲得 Premium 儲存體較佳的效能和穩定性。此外，部分版本需要最新的 LIS (適用於 Microsoft Azure 的 Linux Integration Services v4.0)。請依照下面提供的連結進行下載及安裝。當我們完成其他驗證後，將繼續在清單中新增更多映像。請注意，我們的驗證顯示效能依映像而有所不同，而且也取決於工作負載特性和映像上的設定。不同的映像已針對不同種類的工作負載進行調整。
 <table border="1" cellspacing="0" cellpadding="5" style="border: 1px solid #000000;">
 <tbody>
 <tr>
-    <td><strong>Distribution</strong></td>
-    <td><strong>Version</strong></td>
-    <td><strong>Supported Kernel</strong></td>
-    <td><strong>Details</strong></td>
+	<td><strong>配送映像</strong></td>
+	<td><strong>版本</strong></td>
+	<td><strong>支援的核心</strong></td>
+	<td><strong>詳細資料</strong></td>
 </tr>
 <tr>
-    <td rowspan="2"><strong>Ubuntu</strong></td>
-    <td>12.04</td>
-    <td>3.2.0-75.110+</td>
-    <td>Ubuntu-12_04_5-LTS-amd64-server-20150119-en-us-30GB</td>
+	<td rowspan="2"><strong>Ubuntu</strong></td>
+	<td>12.04</td>
+	<td>3.2.0-75.110+</td>
+	<td>Ubuntu-12_04_5-LTS-amd64-server-20150119-zh-TW-30GB</td>
 </tr>
 <tr>
-    <td>14.04+</td>
-    <td>3.13.0-44.73+</td>
-    <td>Ubuntu-14_04_1-LTS-amd64-server-20150123-en-us-30GB</td>
+	<td>14.04+</td>
+	<td>3.13.0-44.73+</td>
+	<td>Ubuntu-14_04_1-LTS-amd64-server-20150123-zh-TW-30GB</td>
 </tr>
 <tr>
-    <td><strong>Debian</strong></td>
-    <td>7.x, 8.x</td>
-    <td>3.16.7-ckt4-1+</td>
+	<td><strong>Debian</strong></td>
+	<td>7.x、8.x</td>
+	<td>3.16.7-ckt4-1+</td>
     <td> </td>
 </tr>
 <tr>
-    <td rowspan="2"><strong>SUSE</strong></td>
-    <td>SLES 12</td>
-    <td>3.12.36-38.1+</td>
-    <td>suse-sles-12-priority-v20150213<br>suse-sles-12-v20150213</td>
+	<td rowspan="2"><strong>SUSE</strong></td>
+	<td>SLES 12</td>
+	<td>3.12.36-38.1+</td>
+	<td>suse-sles-12-priority-v20150213<br>suse-sles-12-v20150213</td>
 </tr>
 <tr>
-    <td>SLES 11 SP4</td>
+	<td>SLES 11 SP4</td>
     <td>3.0.101-0.63.1+</td>
     <td> </td>
 </tr>
 <tr>
-    <td><strong>CoreOS</strong></td>
-    <td>584.0.0+</td>
-    <td>3.18.4+</td>
-    <td>CoreOS 584.0.0</td>
+	<td><strong>CoreOS</strong></td>
+	<td>584.0.0+</td>
+	<td>3.18.4+</td>
+	<td>CoreOS 584.0.0</td>
 </tr>
 <tr>
-    <td rowspan="2"><strong>CentOS</strong></td>
-    <td>6.5, 6.6, 6.7, 7.0</td>
-    <td></td>
-    <td>
-        <a href="http://go.microsoft.com/fwlink/?LinkID=403033&clcid=0x409"> LIS4 Required </a> <br/>
-        *See note below*
-    </td>
+	<td rowspan="2"><strong>CentOS</strong></td>
+	<td>6.5、6.6、6.7、7.0</td>
+	<td></td>
+	<td>
+		<a href="http://go.microsoft.com/fwlink/?LinkID=403033&clcid=0x409"> LIS4 (必要) </a> <br/>
+		*請參閱下方注意事項*
+	</td>
 </tr>
 <tr>
-    <td>7.1+</td>
-    <td>3.10.0-229.1.2.el7+</td>
-    <td>
-        <a href="http://go.microsoft.com/fwlink/?LinkID=403033&clcid=0x409"> LIS4 Recommended </a> <br/>
-        *See note below*
-    </td>
+	<td>7.1+</td>
+	<td>3.10.0-229.1.2.el7+</td>
+	<td>
+		<a href="http://go.microsoft.com/fwlink/?LinkID=403033&clcid=0x409"> LIS4 (建議使用) </a> <br/>
+		*請參閱下方注意事項*
+	</td>
 </tr>
 <tr>
-    <td><strong>RHEL</strong></td>
-    <td>6.8+, 7.2+</td>
+	<td><strong>RHEL</strong></td>
+	<td>6.8+、7.2+</td>
+	<td> </td>
+	<td></td>
+</tr>
+<tr>
+	<td rowspan="3"><strong>Oracle</strong></td>
+    <td>6.8+、7.2+</td>
     <td> </td>
-    <td></td>
-</tr>
-<tr>
-    <td rowspan="3"><strong>Oracle</strong></td>
-    <td>6.8+, 7.2+</td>
-    <td> </td>
-    <td> UEK4 or RHCK </td>
+    <td> UEK4 或 RHCK </td>
 
 </tr>
 <tr>
-    <td>7.0-7.1</td>
-    <td> </td>
-    <td>UEK4 or RHCK w/<a href="http://go.microsoft.com/fwlink/?LinkID=403033&clcid=0x409">LIS 4.1+</a></td>
+	<td>7.0-7.1</td>
+	<td> </td>
+	<td>UEK4 或 RHCK 搭配 <a href="http://go.microsoft.com/fwlink/?LinkID=403033&clcid=0x409">LIS 4.1+</a></td>
 </tr>
 <tr>
-    <td>6.4-6.7</td>
-    <td></td>
-    <td>UEK4 or RHCK w/<a href="http://go.microsoft.com/fwlink/?LinkID=403033&clcid=0x409">LIS 4.1+</a></td>
+	<td>6.4-6.7</td>
+	<td></td>
+	<td>UEK4 或 RHCK 搭配 <a href="http://go.microsoft.com/fwlink/?LinkID=403033&clcid=0x409">LIS 4.1+</a></td>
 </tr>
 </tbody>
 </table>
 
 
-### <a name="lis-drivers-for-openlogic-centos"></a>LIS Drivers for Openlogic CentOS
+### Openlogic CentOS 的 LIS 驅動程式
 
-Customers running OpenLogic CentOS VMs should run the following command to install the latest drivers:
+執行 OpenLogic CentOS VM 的客戶應該執行下列命令以安裝最新的驅動程式：
 
-    sudo rpm -e hypervkvpd  ## (may return error if not installed, that's OK)
-    sudo yum install microsoft-hyper-v
+	sudo rpm -e hypervkvpd  ## (may return error if not installed, that's OK)
+	sudo yum install microsoft-hyper-v
 
-A reboot will then be required to activate the new drivers.
+您需要重新開機才能啟動驅動程式。
 
-## <a name="pricing-and-billing"></a>Pricing and Billing
-When using Premium Storage, the following billing considerations apply:
-- Premium Storage Disk / Blob Size
-- Premium Storage Snapshots
-- Outbound data transfers
+## 價格和計費
+使用 Premium 儲存體時，需考量下列計費資訊：
+- 進階儲存體磁碟/Blob 大小
+- 進階儲存體快照
+- 輸出資料傳輸
 
-**Premium Storage Disk / Blob Size**: Billing for a Premium Storage disk/blob depends on the provisioned size of the disk/blob. Azure maps the provisioned size (rounded up) to the nearest Premium Storage Disk option as specified in the table given in the [Scalability and Performance Targets when using Premium Storage](#premium-storage-scalability-and-performance-targets) section. All objects stored in a Premium Storage account will map to one of the the supported provisioned sizes and will be billed accordingly. Hence avoid using Premium Storage account for storing tiny blobs. Billing for any provisioned disk/blob is prorated hourly using the monthly price for the Premium Storage offer. For example, if you provisioned a P10 disk and deleted it after 20 hours, you are billed for the P10 offering prorated to 20 hours. This is regardless of the amount of actual data written to the disk or the IOPS/throughput used.
+**進階儲存體磁碟/Blob 大小**：進階儲存體磁碟/Blob 的計費依據是磁碟/Blob 的佈建大小。Azure 會將佈建大小 (無條件進位) 對應至[使用進階儲存體時的延展性和效能目標](#premium-storage-scalability-and-performance-targets)一節的表格中最接近的進階儲存體磁碟選項。儲存在進階儲存體帳戶中的所有物件都會對應至其中一個支援的佈建大小，並據此計費。Heance 會避免使用進階儲存體帳戶來儲存小型 Blob。任何已佈建的磁碟/Blob 都是依每月的進階儲存體優惠價格以每小時的方式計費。例如，如果您在佈建完 P10 磁碟的 20 小時後刪除它，則會以 20 小時計算 P10 解決方案的費用。這與寫入磁碟的實際資料量或使用的 IOPS/輸送量無關。
 
-**Premium Storage Snapshots**: Snapshots on Premium Storage are billed for the additional capacity used by the snapshots. For information on snapshots, see [Creating a Snapshot of a Blob](http://msdn.microsoft.com/library/azure/hh488361.aspx).
+**進階儲存體快照**：進階儲存體上的快照會因為使用的額外容量而產生費用。如需有關快照的資訊，請參閱[建立 Blob 的快照](http://msdn.microsoft.com/library/azure/hh488361.aspx)。
 
-**Outbound data transfers**: [Outbound data transfers](https://azure.microsoft.com/pricing/details/data-transfers/) (data going out of Azure data centers) incur billing for bandwidth usage.
+**輸出資料傳輸**：[輸出資料傳輸](https://azure.microsoft.com/pricing/details/data-transfers/) (Azure 資料中心送出的資料) 會產生頻寬使用量費用。
 
-For detailed information on pricing for Premium Storage,  Premium Storage supported VMs, see:
+如需有關「進階儲存體」與「進階儲存體」支援之 VM 的定價詳細資訊，請參閱：
 
-- [Azure Storage Pricing](https://azure.microsoft.com/pricing/details/storage/)
-- [Virtual Machines Pricing](https://azure.microsoft.com/pricing/details/virtual-machines/)
+- [Azure 儲存體定價](https://azure.microsoft.com/pricing/details/storage/)
+- [虛擬機器定價](https://azure.microsoft.com/pricing/details/virtual-machines/)
 
-## <a name="backup"></a>Backup
-Virtual machines using premium storage can be backed up using Azure Backup. [More details](../backup/backup-azure-vms-first-look-arm.md).
+## 備份
+使用進階儲存體的虛擬機器可使用 Azure 備份進行備份。[其他詳細資訊](../backup/backup-azure-vms-first-look-arm.md)。
 
-## <a name="quick-start"></a>Quick Start
+## 快速啟動
 
-## <a name="create-and-use-a-premium-storage-account-for-a-virtual-machine-data-disk"></a>Create and use a Premium Storage account for a virtual machine data disk
+## 為虛擬機器資料磁碟建立和使用 Premium 儲存體帳戶
 
-In this section we will demonstrate the following scenarios using Azure portal, Azure PowerShell and Azure CLI:
+在這一節中，我們將使用 Azure 入口網站、Azure PowerShell 和 Azure CLI 示範下列案例︰
 
-- How to create a Premium Storage account.
-- How to create a virtual machine and attach a data disk to the virtual machine when using Premium Storage.
-- How to change disk caching policy of a data disk attached to a virtual machine.
+- 如何建立進階儲存體帳戶。
+- 如何在使用進階儲存體時，建立虛擬機器並將資料磁碟連接到虛擬機器。
+- 如何變更已連接到虛擬機器的資料磁碟的磁碟快取原則：
 
-### <a name="create-an-azure-virtual-machine-using-premium-storage-via-the-azure-portal"></a>Create an Azure virtual machine using Premium Storage via the Azure portal
+### 透過 Azure 入口網站使用進階儲存體來建立 Azure 虛擬機器
 
-#### <a name="i.-create-a-premium-storage-account-in-azure-portal"></a>I. Create a Premium Storage account in Azure portal
+#### I.在 Azure 入口網站中建立進階儲存體帳戶
 
-This section shows how to create a Premium Storage account using the Azure portal.
+本節說明如何使用 Azure 入口網站來建立進階儲存體帳戶。
 
-1.  Sign in to the [Azure portal](https://portal.azure.com). Check out the [Free Trial](https://azure.microsoft.com/pricing/free-trial/) offer if you do not have a subscription yet.
+1.	登入 [Azure 入口網站](https://portal.azure.com)。如果您還沒有訂用帳戶，請參考[免費試用](https://azure.microsoft.com/pricing/free-trial/)方案。
 
-2. On the Hub menu, select **New** -> **Data + Storage** -> **Storage account**.
+2. 在 [中樞] 功能表上，選取 [新增] -> [資料+儲存體] -> [儲存體帳戶]。
 
-3. Enter a name for your storage account.
+3. 輸入儲存體帳戶的名稱。
 
-    > [AZURE.NOTE] Storage account names must be between 3 and 24 characters in length and may contain numbers and lowercase letters only.
-    >  
-    > Your storage account name must be unique within Azure. The Azure portal will indicate if the storage account name you select is already in use.
+	> [AZURE.NOTE] 儲存體帳戶名稱必須介於 3 到 24 個字元的長度，而且只能包含數字和小寫字母。
+	>  
+	> 儲存體帳戶名稱必須在 Azure 中是獨一無二的。Azure 入口網站會指出您選取的儲存體帳戶名稱是否已在使用中。
 
-4. Specify the deployment model to be used: **Resource Manager** or **Classic**. **Resource Manager** is the recommended deployment model. For more information, see [Understanding Resource Manager deployment and classic deployment](../resource-manager-deployment-model.md).
+4. 指定所要使用的部署模型：[Resource Manager] 或 [傳統]。[資源管理員] 是建議的部署模型。如需詳細資訊，請參閱[了解資源管理員部署和傳統部署](../resource-manager-deployment-model.md)。
 
-5. Specify the performance tier for the storage account as **Premium**.
+5. 將儲存體帳戶的效能層指定為 [進階]。
 
-6. **Locally-redundant storage (LRS)** is the only available replication option with Premium Storage. For more details on Azure Storage replication options, see [Azure Storage replication](storage-redundancy.md).
+6. **本地備援儲存體 (LRS)** 是進階儲存體唯一可用的複寫選項。如需 Azure 儲存體複寫選項的詳細資訊，請參閱下方的 [Azure 儲存體複寫](storage-redundancy.md)。
 
-7. Select the subscription in which you want to create the new storage account.
+7. 選取您要在其中建立新儲存體帳戶的訂用帳戶。
 
-8. Specify a new resource group or select an existing resource group. For more information on resource groups, see [Azure Resource Manager overview](../resource-group-overview.md).
+8. 指定新的資源群組，或選取現有的資源群組。如需資源群組的詳細資訊，請參閱 [Azure Resource Manager 概觀](../resource-group-overview.md)。
 
-9. Select the geographic location for your storage account. You can confirm whether Premium Storage is available in the selected Location by referring to [Azure Services by Region](https://azure.microsoft.com/regions/#services).
+9. 選取儲存體帳戶的地理位置。您可以參考[依區域提供的 Azure 服務](https://azure.microsoft.com/regions/#services)，來確認進階儲存體是否可在選取的位置使用。
 
-10. Click **Create** to create the storage account.
+10. 按一下 [建立] 建立儲存體帳戶。
 
-#### <a name="ii.-create-an-azure-virtual-machine-via-azure-portal"></a>II. Create an Azure virtual machine via Azure portal
+#### II.透過 Azure 入口網站建立 Azure 虛擬機器
 
-You must create a Premium Storage supported VM to be able to use Premium Storage. Follow the steps in [Create a Windows virtual machine in the Azure portal](../virtual-machines/virtual-machines-windows-hero-tutorial.md) to create a new DS, DSv2, GS, or Fs virtual machine.
+您必須建立「進階儲存體」支援的 VM，才能使用「進階儲存體」。請依照[在 Azure 入口網站中建立 Windows 虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md)中的步驟來建立新的 DS、DSv2、GS 或 Fs 虛擬機器。
 
-#### <a name="iii.-attach-a-premium-storage-data-disk-via-azure-portal"></a>III. Attach a premium storage data disk via Azure portal
+#### III.透過 Azure 入口網站連接進階儲存體資料磁碟
 
-1. Find the new or existing DS, DSv2, GS, or Fs VM in Azure portal.
-2. In the VM **All Settings**, go to **Disks** and click on **Attach New**.
-3. Enter the name of your data disk and select the **Type** as **Premium**. Select the desired **Size** and **Host caching** setting.
+1. 在 Azure 入口網站中尋找新的或現有的 DS、DSv2、GS 或 Fs VM。
+2. 在 VM 的 [所有設定] 中，移至 [磁碟]，然後按一下 [連接新項目]。
+3. 輸入資料磁碟的名稱，然後將 [類型] 選取為 [進階]。選取所需的 [大小] 和 [主機快取] 設定。
 
-    ![Premium Disk][Image1]
+	![進階磁碟][Image1]
 
-See more detailed steps in [How to attach a data disk in Azure portal](../virtual-machines/virtual-machines-windows-attach-disk-portal.md).
+請參閱[如何在 Azure 入口網站中連接資料磁碟](../virtual-machines/virtual-machines-windows-attach-disk-portal.md)中的詳細步驟。
 
-#### <a name="iv.-change-disk-caching-policy-via-azure-portal"></a>IV. Change disk caching policy via Azure portal
+#### IV.透過 Azure 入口網站變更磁碟快取原則
 
-1. Find the new or existing DS, DSv2, GS, or Fs VM in Azure portal.
-2. In the VM All Settings, go to Disks and click on the disk you wish to change.
-3. Change the Host caching option to the desired value, None or ReadOnly or ReadWrite
+1. 在 Azure 入口網站中尋找新的或現有的 DS、DSv2、GS 或 Fs VM。
+2. 在 VM 的 [所有設定] 中，移至 [磁碟]，然後按一下您要變更的磁碟。
+3. 將 [主機快取] 選項變更為所要的值：[無]、[唯讀] 或 [讀寫]
 
->[AZURE.WARNING] Changing the cache setting of an Azure disk detaches and re-attaches the target disk. If it is the operating system disk, the VM is restarted. Stop all applications/services that might be affected by this disruption before changing the disk cache setting.
+>[AZURE.WARNING] 變更 Azure 磁碟的快取設定會將目標磁碟中斷連接再重新連接。如果它是作業系統磁碟，則會重新啟動 VM。在變更磁碟快取設定之前，請先將可能受此中斷情況影響的所有應用程式/服務停止。
 
-### <a name="create-an-azure-virtual-machine-using-premium-storage-via-azure-powershell"></a>Create an Azure virtual machine using Premium Storage via Azure PowerShell
+### 透過 Azure PwerShell 使用 Premium 儲存體建立 Azure 虛擬機器
 
-#### <a name="i.-create-a-premium-storage-account-in-azure-powershell"></a>I. Create a Premium Storage account in Azure PowerShell
+#### I.在 Azure PowerShell 中建立進階儲存體帳戶
 
-This PowerShell example shows how to create a new Premium Storage account and attach a data disk that uses that account to a new Azure virtual machine.
+這個 PowerShell 範例示範如何建立新的 Premium 儲存體帳戶並將使用該帳戶的資料磁碟連接至新的 Azure 虛擬機器。
 
-1. Setup your PowerShell environment by following the steps given at [How to install and configure Azure PowerShell](../powershell-install-configure.md).
-2. Start the PowerShell console, connect to your subscription, and run the following PowerShell cmdlet in the console window. As seen in this PowerShell statement, you need to specify the **Type** parameter as **Premium_LRS** when you create a Premium Storage account.
+1. 依照[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 中提供的步驟設定您的 PowerShell 環境。
+2. 啟動 PowerShell 主控台，連接至您的訂閱，並在主控台視窗中執行下列 PowerShell Cmdlet。如此 PowerShell 陳述式所示，當您建立「進階儲存體」帳戶時，必須將 **Type** 參數指定為 **Premium\_LRS**。
 
-        New-AzureStorageAccount -StorageAccountName "yourpremiumaccount" -Location "West US" -Type "Premium_LRS"
+		New-AzureStorageAccount -StorageAccountName "yourpremiumaccount" -Location "West US" -Type "Premium_LRS"
 
-#### <a name="ii.-create-an-azure-virtual-machine-via-azure-powershell"></a>II. Create an Azure virtual machine via Azure PowerShell
+#### II.透過 Azure PowerShell 建立 Azure 虛擬機器
 
-Next, create a new DS-Series VM and specify that you want Premium Storage by running the following PowerShell cmdlets in the console window. You can create a GS-series VM using the same steps. Specify the appropriate VM size in the commands. For e.g. Standard_GS2:
+接著建立新的 DS 系列 VM，並在主控台視窗中執行下列 PowerShell Cmdlet 以指定您要使用進階儲存體。您可以使用相同的步驟建立 GS 系列 VM。在命令中指定適當的 VM 大小。例如針對 Standard\_GS2︰
 
-        $storageAccount = "yourpremiumaccount"
-        $adminName = "youradmin"
-        $adminPassword = "yourpassword"
-        $vmName ="yourVM"
-        $location = "West US"
-        $imageName = "a699494373c04fc0bc8f2bb1389d6106__Windows-Server-2012-R2-201409.01-en.us-127GB.vhd"
-        $vmSize ="Standard_DS2"
-        $OSDiskPath = "https://" + $storageAccount + ".blob.core.windows.net/vhds/" + $vmName + "_OS_PIO.vhd"
-        $vm = New-AzureVMConfig -Name $vmName -ImageName $imageName -InstanceSize $vmSize -MediaLocation $OSDiskPath
-        Add-AzureProvisioningConfig -Windows -VM $vm -AdminUsername $adminName -Password $adminPassword
-        New-AzureVM -ServiceName $vmName -VMs $VM -Location $location
+    	$storageAccount = "yourpremiumaccount"
+    	$adminName = "youradmin"
+    	$adminPassword = "yourpassword"
+    	$vmName ="yourVM"
+    	$location = "West US"
+    	$imageName = "a699494373c04fc0bc8f2bb1389d6106__Windows-Server-2012-R2-201409.01-en.us-127GB.vhd"
+    	$vmSize ="Standard_DS2"
+    	$OSDiskPath = "https://" + $storageAccount + ".blob.core.windows.net/vhds/" + $vmName + "_OS_PIO.vhd"
+    	$vm = New-AzureVMConfig -Name $vmName -ImageName $imageName -InstanceSize $vmSize -MediaLocation $OSDiskPath
+    	Add-AzureProvisioningConfig -Windows -VM $vm -AdminUsername $adminName -Password $adminPassword
+    	New-AzureVM -ServiceName $vmName -VMs $VM -Location $location
 
-#### <a name="iii.-attach-a-premium-storage-data-disk-via-azure-powershell"></a>III. Attach a premium storage data disk via Azure PowerShell
+#### III.透過 Azure PowerShell 連接進階儲存體資料磁碟
 
-If you want more disk space for your VM, attach a new data disk to an existing Premium Storage supported VM after it is created by running the following PowerShell cmdlets in the console window:
+如果您希望 VM 有更多磁碟空間，請在虛擬機器建立後，於主控台視窗中執行下列 PowerShell Cmdlet，以將新資料磁碟連接至現有的「進階儲存體」支援 VM：
 
-        $storageAccount = "yourpremiumaccount"
-        $vmName ="yourVM"
-        $vm = Get-AzureVM -ServiceName $vmName -Name $vmName
-        $LunNo = 1
-        $path = "http://" + $storageAccount + ".blob.core.windows.net/vhds/" + "myDataDisk_" + $LunNo + "_PIO.vhd"
-        $label = "Disk " + $LunNo
-        Add-AzureDataDisk -CreateNew -MediaLocation $path -DiskSizeInGB 128 -DiskLabel $label -LUN $LunNo -HostCaching ReadOnly -VM $vm | Update-AzureVm
+    	$storageAccount = "yourpremiumaccount"
+    	$vmName ="yourVM"
+    	$vm = Get-AzureVM -ServiceName $vmName -Name $vmName
+    	$LunNo = 1
+    	$path = "http://" + $storageAccount + ".blob.core.windows.net/vhds/" + "myDataDisk_" + $LunNo + "_PIO.vhd"
+    	$label = "Disk " + $LunNo
+    	Add-AzureDataDisk -CreateNew -MediaLocation $path -DiskSizeInGB 128 -DiskLabel $label -LUN $LunNo -HostCaching ReadOnly -VM $vm | Update-AzureVm
 
-#### <a name="iv.-change-disk-caching-policy-via-azure-powershell"></a>IV. Change disk caching policy via Azure PowerShell
+#### IV.透過 Azure PowerShell 變更磁碟快取原則
 
-To update the disk caching policy, note the LUN number of the data disk attached. Run the following command to update data disk attached at LUN number 2, to ReadOnly.
+若要更新磁碟快取原則，請記下所連接資料磁碟的 LUN 編號。執行下列命令，將連接於 LUN 編號 2 的資料磁碟更新為 [唯讀]。
 
-        Get-AzureVM "myservice" -name "MyVM" | Set-AzureDataDisk -LUN 2 -HostCaching ReadOnly | Update-AzureVM
+		Get-AzureVM "myservice" -name "MyVM" | Set-AzureDataDisk -LUN 2 -HostCaching ReadOnly | Update-AzureVM
 
->[AZURE.WARNING] Changing the cache setting of an Azure disk detaches and re-attaches the target disk. If it is the operating system disk, the VM is restarted. Stop all applications/services that might be affected by this disruption before changing the disk cache setting.
+>[AZURE.WARNING] 變更 Azure 磁碟的快取設定會將目標磁碟中斷連接再重新連接。如果它是作業系統磁碟，則會重新啟動 VM。在變更磁碟快取設定之前，請先將可能受此中斷情況影響的所有應用程式/服務停止。
 
-### <a name="create-an-azure-virtual-machine-using-premium-storage-via-the-azure-command-line-interface"></a>Create an Azure virtual machine using Premium Storage via the Azure Command-Line Interface
+### 透過 Azure 命令列介面使用 Premium 儲存體建立 Azure 虛擬機器
 
-The [Azure Command-Line Interface](../xplat-cli-install.md)(Azure CLI) provides a provides a set of open source, cross-platform commands for working with the Azure Platform. The following examples show how to use Azure CLI (version 0.8.14 and later) to create a Premium Storage account, a new virtual machine, and attach a new data disk from a Premium Storage account.
+[Azure 命令列介面](../xplat-cli-install.md) (Azure CLI) 提供一組可與 Azure 平台搭配運作的開放原始碼跨平台命令。下列範例示範如何使用 Azure CLI (版本 0.8.14 和更新版本) 建立進階儲存體帳戶、新的虛擬機器，並從進階儲存體帳戶連接新的資料磁碟。
 
-#### <a name="i.-create-a-premium-storage-account-via-azure-cli"></a>I. Create a Premium Storage account via Azure CLI
+#### I.透過 Azure CLI 建立進階儲存體帳戶
 
 ````
 azure storage account create "premiumtestaccount" -l "west us" --type PLRS
 ````
 
-#### <a name="ii.-create-a-ds-series-virtual-machine-via-azure-cli"></a>II. Create a DS-series virtual machine via Azure CLI
+#### II.透過 Azure CLI 建立 DS 系列的虛擬機器
 
-    azure vm create -z "Standard_DS2" -l "west us" -e 22 "premium-test-vm"
-        "b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_10-amd64-server-20150202-en-us-30GB" -u "myusername" -p "passwd@123"
+	azure vm create -z "Standard_DS2" -l "west us" -e 22 "premium-test-vm"
+		"b39f27a8b8c64d52b05eac6a62ebad85__Ubuntu-14_10-amd64-server-20150202-zh-TW-30GB" -u "myusername" -p "passwd@123"
 
-Display information about the virtual machine
+顯示虛擬機器的相關資訊
 
-    azure vm show premium-test-vm
+	azure vm show premium-test-vm
 
-#### <a name="iii.-attach-a-new-premium-data-disk-via-azure-cli"></a>III. Attach a new premium data disk via Azure CLI
+#### III.透過 Azure CLI 連接新的進階資料磁碟
 
-    azure vm disk attach-new premium-test-vm 20 https://premiumstorageaccount.blob.core.windows.net/vhd-store/data1.vhd
+	azure vm disk attach-new premium-test-vm 20 https://premiumstorageaccount.blob.core.windows.net/vhd-store/data1.vhd
 
-Display information about the new data disk
+顯示新資料磁碟的相關資訊
 
-    azure vm disk show premium-test-vm-premium-test-vm-0-201502210429470316
+	azure vm disk show premium-test-vm-premium-test-vm-0-201502210429470316
 
-#### <a name="iv.-change-disk-caching-policy"></a>IV. Change disk caching policy
+#### IV.變更磁碟快取原則
 
-To change the cache policy on one of your disks using Azure CLI, run the following command:
+若要使用 Azure CLI 變更其中一個磁碟上的快取原則，請執行下列命令：
 
-        $ azure vm disk attach -h ReadOnly <VM-Name> <Disk-Name>
+		$ azure vm disk attach -h ReadOnly <VM-Name> <Disk-Name>
 
-Note that the caching policy options can be ReadOnly, None, or ReadWrite. For more options, see the help by running the following command:
+請注意，快取原則選項可以是 ReadOnly、None 或 ReadWrite。如需其他選項，請執行下列命令參閱說明：
 
-        azure vm disk attach --help
+		azure vm disk attach --help
 
->[AZURE.WARNING] Changing the cache setting of an Azure disk detaches and re-attaches the target disk. If it is the operating system disk, the VM is restarted. Stop all applications/services that might be affected by this disruption before changing the disk cache setting.
+>[AZURE.WARNING] 變更 Azure 磁碟的快取設定會將目標磁碟中斷連接再重新連接。如果它是作業系統磁碟，則會重新啟動 VM。在變更磁碟快取設定之前，請先將可能受此中斷情況影響的所有應用程式/服務停止。
 
-## <a name="faqs"></a>FAQs
+## 常見問題集
 
-1. **Can I attach both premium and standard data disks to a Premium Storage supported VM?**
+1. **我是否可以將進階和標準資料磁碟都連接到「進階儲存體」支援的 VM？**
 
-    Yes. You can attach both premium and standard data disks to a Premium Storage supported series VM.
+	是。您可將進階和標準資料磁碟都連接到「進階儲存體」支援的系列 VM。
 
-2. **Can I attach both premium and standard data disks to a D, Dv2, G or F series VM?**
+2. **我是否可以將進階和標準資料磁碟都連接到 D、Dv2、G 或 F 系列 VM？**
 
-    No. You can only attach a standard data disk to all VMs that are not Premium Storage supported series.
+	否。您只能將標準資料磁碟連接到所有不屬於「進階儲存體」支援系列的 VM。
 
-3. **If I create a premium data disk from an existing VHD that was 80 GB in size, how much will that cost me?**
+3. **如果我從現有的 VHD (大小 為 80 GB) 建立進階資料磁碟，需要多少費用？**
 
-    A premium data disk created from 80 GB VHD will be treated as the next available premium disk size, a P10 disk. You will be charged as per the P10 disk pricing.
+	從 80 GB VHD 建立的進階資料磁碟會被視為下一個可用的進階磁碟大小 (P10 磁碟)。我們將根據 P10 磁碟價格收費。
 
-4. **Are there any transaction costs when using Premium Storage?**
+4. **使用進階儲存體時是否有任何交易成本？**
 
-    There is a fixed cost for each disk size which comes provisioned with certain number of IOPS and Throughput. The only other costs are outbound bandwidth and snapshots capacity, if applicable. See [Azure Storage Pricing](https://azure.microsoft.com/pricing/details/storage/) for more details.
+	每個磁碟大小都有固定成本，其隨著特定數量的 IOPS 和輸送量佈建。其他成本包括輸出頻寬和快照容量 (如果適用的話)。如需詳細資料，請參閱 [Azure 儲存體定價](https://azure.microsoft.com/pricing/details/storage/)。
 
-5. **Where can I store boot diagnostics for my Premium Storage supported series VM?**
+5. **我可以將「進階儲存體」支援之系列 VM 的開機診斷儲存在哪裡？**
 
-    Create a standard storage account to store the boot diagnostics of your Premium Storage supported series VM.
+	請建立標準儲存體帳戶來儲存「進階儲存體」支援之系列 VM 的開機診斷。
 
-6. **How many IOPS and Throughput can I get from the disk cache?**
+6. **我可以從磁碟快取取得多少 IOPS 和輸送量？**
 
-    The combined limits for cache and local SSD for a DS series are 4000 IOPS per core and 33 MB per second per core. GS series offers 5000 IOPS per core and 50 MB per second per core.
+	DS 系列的快取和本機 SSD 合併限制是每個核心 4000 IOPS，以及每個核心每秒 33 MB。GS 系列提供每個核心 5000 IOPS，以及每個核心每秒 50 MB。
 
-7. **What is the local SSD in a Premium Storage supported series VM?**
+7. **「進階儲存體」支援之系列 VM 中的本機 SSD 是什麼？**
 
-    The local SSD is a temporary storage that is included with a Premium Storage supported series VM. There is no extra cost for this temporary storage. It is recommended that you do not use this temporary storage or local SSD for storing your application data as it is not persisted in Azure Blob Storage.
+	本機 SSD 是「進階儲存體」支援之系列 VM 隨附的暫時儲存體。暫時儲存體不需額外的成本。建議您不要使用此暫時儲存體或本機 SSD 來儲存應用程式資料，因為它不會保存在 Azure Blob 儲存體中。
 
-8. **Can I convert my standard storage account to a Premium Storage account?**
+8. **是否可以將標準儲存體帳戶轉換成進階儲存體帳戶？**
 
-    No. It is not possible to convert standard storage account to Premium Storage account or vice versa. You must create a new storage account with the desired type and copy data to new storage account, if applicable.
+	否。不可能將標準儲存體帳戶轉換成進階儲存體帳戶 (反之亦然)。您必須以所需的類型建立新的儲存體帳戶，並將資料複製到新的儲存體帳戶 (如果適用的話)。
 
-9. **How can I convert my D series VM to a DS series VM?**
+9. **如何將 D 系列 VM 轉換成 DS 系列 VM？**
 
-    Please refer to the migration guide, [Migrating to Azure Premium Storage](storage-migration-to-premium-storage.md) to move your workload from a D series VM using standard storage account to a DS series VM using Premium Storage account.
+	請參閱[移轉到 Azure 進階儲存體](storage-migration-to-premium-storage.md)移轉指南，以將您的工作負載從使用標準儲存體帳戶的 D 系列 VM 移到使用「進階儲存體」帳戶的 DS 系列 VM。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-For more information about Azure Premium Storage refer to the following articles.
+如需 Azure 進階儲存體的詳細資訊，請參閱下列文章。
 
-### <a name="design-and-implement-with-azure-premium-storage"></a>Design and implement with Azure Premium Storage
+### 使用 Azure 進階儲存體進行設計和實作
 
-- [Design for Performance with Premium Storage](storage-premium-storage-performance.md)
-- [Using Blob Service Operations with Azure Premium Storage](http://go.microsoft.com/fwlink/?LinkId=521969)
+- [使用進階儲存體設計高效能](storage-premium-storage-performance.md)
+- [在 Azure 儲存體帳戶使用 Blob 服務作業](http://go.microsoft.com/fwlink/?LinkId=521969)
 
-### <a name="operational-guidance"></a>Operational guidance
+### 作業指引
 
-- [Migrating to Azure Premium Storage](storage-migration-to-premium-storage.md)
+- [移轉到 Azure 進階儲存體](storage-migration-to-premium-storage.md)
 
-### <a name="blog-posts"></a>Blog Posts
+### 部落格文章
 
-- [Azure Premium Storage Generally Available](https://azure.microsoft.com/blog/azure-premium-storage-now-generally-available-2/)
-- [Announcing the GS-Series: Adding Premium Storage Support to the Largest VMs in the Public Cloud](https://azure.microsoft.com/blog/azure-has-the-most-powerful-vms-in-the-public-cloud/)
+- [Azure 進階儲存體正式推出](https://azure.microsoft.com/blog/azure-premium-storage-now-generally-available-2/)
+- [宣佈 GS 系列︰將進階儲存體支援加入至公用雲端中的最大 VM](https://azure.microsoft.com/blog/azure-has-the-most-powerful-vms-in-the-public-cloud/)
 
 [Image1]: ./media/storage-premium-storage/Azure_attach_premium_disk.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

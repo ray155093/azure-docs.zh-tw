@@ -1,396 +1,388 @@
 <properties
-    pageTitle="Add Push Notifications to Apache Cordova App with Azure Mobile Apps | Azure App Service"
-    description="Learn how to use Azure Mobile Apps to send push notifications to your Apache Cordova app."
-    services="app-service\mobile"
-    documentationCenter="javascript"
-    manager="erikre"
-    editor=""
-    authors="adrianhall"/>
+	pageTitle="使用 Azure Mobile Apps 新增推播通知至 Apache Cordova 應用程式| Azure App Service"
+	description="了解如何使用 Azure Mobile Apps 將推播通知傳送至 Apache Cordova 應用程式。"
+	services="app-service\mobile"
+	documentationCenter="javascript"
+	manager="ggailey777"
+	editor=""
+	authors="adrianhall"/>
 
 <tags
-    ms.service="app-service-mobile"
-    ms.workload="mobile"
-    ms.tgt_pltfrm="mobile-html"
-    ms.devlang="javascript"
-    ms.topic="article"
-    ms.date="10/01/2016"
-    ms.author="adrianha"/>
+	ms.service="app-service-mobile"
+	ms.workload="mobile"
+	ms.tgt_pltfrm="mobile-html"
+	ms.devlang="javascript"
+	ms.topic="article"
+	ms.date="08/11/2016"
+	ms.author="glenga"/>
 
-
-# <a name="add-push-notifications-to-your-apache-cordova-app"></a>Add push notifications to your Apache Cordova app
+# 新增推播通知至您的 Apache Cordova 應用程式
 
 [AZURE.INCLUDE [app-service-mobile-selector-get-started-push](../../includes/app-service-mobile-selector-get-started-push.md)]
 
-## <a name="overview"></a>Overview
+## Overview
 
-In this tutorial, you add push notifications to the [Apache Cordova quick start] project so that every time a record is inserted, a push notification is sent. This tutorial is based on the [Apache Cordova quick start] tutorial, which you must complete first. If you have an ASP.NET backend and do not use the downloaded quick start server project, you must add the push notification extension package to your project. For more information about server extension packages, see [Work with the .NET backend server SDK for Azure Mobile Apps].
+在本教學課程中，您會將推播通知新增至 [Apache Cordova 快速入門]專案，以便在每次插入一筆記錄時傳送推播通知。本教學課程以 [Apache Cordova 快速入門]教學課程為基礎，您必須先完成該教學課程。如果您有 ASP.NET 後端，且不使用下載的快速入門伺服器專案，您必須將推播通知擴充套件新增至您的專案。如需伺服器擴充套件的詳細資訊，請參閱[使用 Azure Mobile Apps 的 .NET 後端伺服器 SDK]。
 
-##<a name="<a-name="prerequisites"></a>prerequisites"></a><a name="prerequisites"></a>Prerequisites
+##<a name="prerequisites"></a>必要條件
 
-This tutorial covers an Apache Cordova application being developed within Visual Studio 2015 and being run on the Google Android Emulator, an Android device, a Windows device, and an iOS device.
+本教學課程涵蓋在 Visual Studio 2015 內開發且在 Google Android 模擬器、Android 裝置、Windows 裝置和 iOS 裝置上執行的 Apache Cordova 應用程式。
 
-To complete this tutorial, you need the following:
+若要完成此教學課程，您需要下列項目：
 
-* A PC with [Visual Studio Community 2015] or newer.
-* [Visual Studio Tools for Apache Cordova].
-* An [active Azure account](https://azure.microsoft.com/pricing/free-trial/).
-* A completed [Apache Cordova quick start] project.  Completing other tutorials (like [authentication]) can happen first, but is not required.
-* (Android) A [Google account] with a verified email address and an Android device.
-* (iOS) An Apple Developer Program membership and an iOS device (iOS Simulator does not support push)
-* (Windows) A Windows Store Developer Account and a Windows 10 device
+* 具有 [Visual Studio Community 2015] 或更新版本的電腦。
+* [Visual Studio Tools for Apache Cordova]。
+* 有效的 [Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)。
+* 已完成的 [Apache Cordova 快速入門]專案。可以先完成其他教學課程 (例如，[驗證])，但並非必要。
+* (Android) 具有已驗證電子郵件地址和 Android 裝置的 [Google 帳戶]。
+* (iOS) Apple Developer Program 成員資格和 iOS 裝置 (iOS 模擬器不支援推播)
+* (Windows) Windows 市集開發人員帳戶和 Windows 10 裝置
 
-Although push notifications are supported on Android Emulators, we have found them to be unstable and do not recommend that you test push notifications on emulators.
+雖然 Android 模擬器支援推播通知，但是我們發現它們很不穩定，因此不建議您在模擬器上測試推播通知。
 
-##<a name="<a-name="create-hub"></a>create-a-notification-hub"></a><a name="create-hub"></a>Create a notification hub
+##<a name="create-hub"></a>建立通知中樞
 
 [AZURE.INCLUDE [app-service-mobile-create-notification-hub](../../includes/app-service-mobile-create-notification-hub.md)]
 
-[Watch a video showing similar steps](https://channel9.msdn.com/series/Azure-connected-services-with-Cordova/Azure-connected-services-task-3-Create-azure-notification-hub)
+[觀看示範類似步驟的影片](https://channel9.msdn.com/series/Azure-connected-services-with-Cordova/Azure-connected-services-task-3-Create-azure-notification-hub)
 
-##<a name="update-the-server-project-to-send-push-notifications"></a>Update the server project to send push notifications
+##更新伺服器專案以傳送推播通知
 
 [AZURE.INCLUDE [app-service-mobile-update-server-project-for-push-template](../../includes/app-service-mobile-update-server-project-for-push-template.md)]
 
-##<a name="<a-name="add-push-to-app"></a>modify-your-cordova-app-to-receive-push-notifications"></a><a name="add-push-to-app"></a>Modify your Cordova app to receive push notifications
+##<a name="add-push-to-app"></a>修改 Cordova 應用程式以接收推播通知
 
-You must make sure that your Apache Cordova app project is ready to handle push notifications. You must install the Cordova push plugin, plus any platform-specific push services.
+您必須確認自己的 Apache Cordova 應用程式專案已經能夠處理推播通知。您必須安裝 Cordova 推播外掛程式，再加上任何平台特定的推播服務。
 
-#### <a name="update-the-cordova-version-in-your-project."></a>Update the Cordova version in your project.
+#### 更新您的專案中的 Cordova 版本。
 
-We recommended that you update the client project to Cordova 6.1.1 if your project is configured using an older version. To update the project, right-click config.xml to open the configuration designer. Select the Platforms tab and choose 6.1.1 in the **Cordova CLI** text box.
+如果您的專案使用舊版進行設定，建議您將用戶端專案更新為 Cordova 6.1.1。若要更新專案，請以滑鼠右鍵按一下 config.xml 來開啟組態設計工具。選取 [平台] 索引標籤，然後在 [Cordova CLI] 文字方塊中選擇 6.1.1。
 
-Choose **Build**, then **Build Solution** to update the project.
+依序選擇 [建置] 和 [建置方案] 來更新專案。
 
-#### <a name="install-the-push-plugin"></a>Install the push plugin
+#### 安裝推播外掛程式
 
-Apache Cordova applications do not natively handle device or network capabilities.  These capabilities are provided by plugins that are published either on [npm](https://www.npmjs.com/) or on GitHub.  The `phonegap-plugin-push` plugin is used to handle network push notifications.
+Apache Cordova 應用程式原本就不會處理裝置或網路功能。這些功能是由 [npm](https://www.npmjs.com/) 或 GitHub 上發佈的外掛程式所提供。`phonegap-plugin-push` 外掛程式是用來處理網路推播通知。
 
-You can install the push plugin in one of these ways:
+您可透過下列其中一種方式安裝推撥外掛程式：
 
-**From the command-prompt:**
+**從命令提示：**
 
-Execute the following command:
+執行以下命令：
 
     cordova plugin add phonegap-plugin-push
 
-**From within Visual Studio:**
+**從 Visual Studio 內：**
 
-1.  In Solution Explorer, open the `config.xml` file click **Plugins** > **Custom**, select **Git** as the installation source, then enter `https://github.com/phonegap/phonegap-plugin-push` as the source.
+1.  在方案總管中開啟 `config.xml` 檔案，按一下 [外掛程式] > [自訂]，選取 [Git] 作為安裝來源，然後輸入 `https://github.com/phonegap/phonegap-plugin-push` 作為來源。
 
-    ![](./media/app-service-mobile-cordova-get-started-push/add-push-plugin.png)
+	![](./media/app-service-mobile-cordova-get-started-push/add-push-plugin.png)
 
-2.  Click on the arrow next to the installation source.
+2.  按一下安裝來源旁邊的箭頭。
 
-3. In **SENDER_ID**, if you already have a numeric project ID for the Google Developer Console project, you can add it here. Otherwise, enter a placeholder value, like 777777, and if you are targeting Android you can update this value in config.xml later.
+3. 在 **SENDER\_ID** 中，如果您已經有 Google 開發人員主控台專案的數值專案識別碼，您可以在此將它加入。否則，請輸入預留位置值，例如 777777，而如果您是以 Android 為目標，您可以稍後在 config.xml 中更新此值。
 
-4. Click **Add**.
+4. 按一下 [新增]。
 
-The push plugin is now installed.
+推撥外掛程式現已安裝。
 
-####<a name="install-the-device-plugin"></a>Install the device plugin
+####安裝裝置外掛程式
 
-Follow the same procedure you used to install the push plugin, but you will find the Device plugin in the Core plugins list (click **Plugins** > **Core** to find it). You need this plugin to obtain the platform name (`device.platform`).
+遵循您用來安裝推播外掛程式的相同程序，但您會在核心外掛程式清單中找到裝置外掛程式 (按一下 [外掛程式] > [核心] 即可找到它)。您需要此外掛程式才能取得平台名稱 (`device.platform`)。
 
-#### <a name="register-your-device-for-push-on-start-up"></a>Register your device for push on start-up
+#### 註冊您的裝置在啟動時推播
 
-Initially, we will include some minimal code for Android. Later, we will make some small modifications to run on iOS or Windows 10.
+一開始，我們會包含一些適用於 Android 的最低限度程式碼。稍後，我們將會進行一些小幅修改以在 iOS 或 Windows 10 上執行。
 
-1. Add a call to **registerForPushNotifications** during the callback for the login process, or at the bottom of the **onDeviceReady** method:
+1. 在登入程序的回呼期間或是在 **onDeviceReady** 方法的底部，新增對 **registerForPushNotifications** 的呼叫：
 
-        // Login to the service.
-        client.login('google')
-            .then(function () {
-                // Create a table reference
-                todoItemTable = client.getTable('todoitem');
+		// Login to the service.
+		client.login('google')
+		    .then(function () {
+		        // Create a table reference
+		        todoItemTable = client.getTable('todoitem');
 
-                // Refresh the todoItems
-                refreshDisplay();
+		        // Refresh the todoItems
+		        refreshDisplay();
 
-                // Wire up the UI Event Handler for the Add Item
-                $('#add-item').submit(addItemHandler);
-                $('#refresh').on('click', refreshDisplay);
+		        // Wire up the UI Event Handler for the Add Item
+		        $('#add-item').submit(addItemHandler);
+		        $('#refresh').on('click', refreshDisplay);
 
-                    // Added to register for push notifications.
-                registerForPushNotifications();
+				    // Added to register for push notifications.
+		        registerForPushNotifications();
 
-            }, handleError);
+		    }, handleError);
 
-    This example shows calling **registerForPushNotifications** after authentication succeeds, which is recommended when using both push notifications and authentication in your app.
+	此範例為驗證成功後呼叫 **registerForPushNotifications**，如果應用程式中同時使用推播通知和驗證，建議採此方法。
 
-2. Add the new **registerForPushNotifications** method as follows:
+2. 加入新的 **registerForPushNotifications** 方法，如下所示︰
 
-        // Register for Push Notifications. Requires that phonegap-plugin-push be installed.
-        var pushRegistration = null;
-        function registerForPushNotifications() {
-          pushRegistration = PushNotification.init({
-              android: { senderID: 'Your_Project_ID' },
-              ios: { alert: 'true', badge: 'true', sound: 'true' },
-              wns: {}
-          });
+		// Register for Push Notifications. Requires that phonegap-plugin-push be installed.
+		var pushRegistration = null;
+		function registerForPushNotifications() {
+		  pushRegistration = PushNotification.init({
+		      android: { senderID: 'Your_Project_ID' },
+		      ios: { alert: 'true', badge: 'true', sound: 'true' },
+		      wns: {}
+		  });
 
-        // Handle the registration event.
-        pushRegistration.on('registration', function (data) {
-          // Get the native platform of the device.
-          var platform = device.platform;
-          // Get the handle returned during registration.
-          var handle = data.registrationId;
-          // Set the device-specific message template.
-          if (platform == 'android' || platform == 'Android') {
-              // Register for GCM notifications.
-              client.push.register('gcm', handle, {
-                  mytemplate: { body: { data: { message: "{$(messageParam)}" } } }
-              });
-          } else if (device.platform === 'iOS') {
-              // Register for notifications.            
-              client.push.register('apns', handle, {
-                  mytemplate: { body: { aps: { alert: "{$(messageParam)}" } } }
-              });
-          } else if (device.platform === 'windows') {
-              // Register for WNS notifications.
-              client.push.register('wns', handle, {
-                  myTemplate: {
-                      body: '<toast><visual><binding template="ToastText01"><text id="1">$(messageParam)</text></binding></visual></toast>',
-                      headers: { 'X-WNS-Type': 'wns/toast' } }
-              });
-          }
-        });
+		// Handle the registration event.
+		pushRegistration.on('registration', function (data) {
+		  // Get the native platform of the device.
+		  var platform = device.platform;
+		  // Get the handle returned during registration.
+		  var handle = data.registrationId;
+		  // Set the device-specific message template.
+		  if (platform == 'android' || platform == 'Android') {
+		      // Register for GCM notifications.
+		      client.push.register('gcm', handle, {
+		          mytemplate: { body: { data: { message: "{$(messageParam)}" } } }
+		      });
+		  } else if (device.platform === 'iOS') {
+		      // Register for notifications.            
+		      client.push.register('apns', handle, {
+		          mytemplate: { body: { aps: { alert: "{$(messageParam)}" } } }
+		      });
+		  } else if (device.platform === 'windows') {
+		      // Register for WNS notifications.
+		      client.push.register('wns', handle, {
+		          myTemplate: {
+		              body: '<toast><visual><binding template="ToastText01"><text id="1">$(messageParam)</text></binding></visual></toast>',
+		              headers: { 'X-WNS-Type': 'wns/toast' } }
+		      });
+		  }
+		});
 
-        pushRegistration.on('notification', function (data, d2) {
-          alert('Push Received: ' + data.message);
-        });
+		pushRegistration.on('notification', function (data, d2) {
+		  alert('Push Received: ' + data.message);
+		});
 
-        pushRegistration.on('error', handleError);
-        }
+		pushRegistration.on('error', handleError);
+		}
 
-3. (Android) In the above code, replace `Your_Project_ID` with the numeric project ID for your app from the [Google Developer Console].
+3. (Android) 在上述程式碼中，從 [Google Developer Console] 使用應用程式的數字專案識別碼取代 `Your_Project_ID`。
 
-## <a name="(optional)-configure-and-run-the-app-on-android"></a>(Optional) Configure and run the app on Android
+## (選擇性) 在 Android 上設定和執行應用程式
 
-Complete this section to enable push notifications for Android.
+完成本節可以為 Android 啟用推播通知。
 
-####<a name="<a-name="enable-gcm"></a>enable-google-cloud-messaging"></a><a name="enable-gcm"></a>Enable Google Cloud Messaging
+####<a name="enable-gcm"></a>啟用 Google Cloud Messaging
 
-Since we are targeting the Google Android platform initially, you must enable Google Cloud Messaging.  Similarly, if you were targeting Microsoft Windows devices, you would enable WNS support.
+因為我們一開始是以 Google Android 平台為目標，所以您必須啟用 Google 雲端通訊。同樣地，如果您以 Microsoft Windows 裝置為目標，您應該啟用 WNS 支援。
 
 [AZURE.INCLUDE [mobile-services-enable-google-cloud-messaging](../../includes/mobile-services-enable-google-cloud-messaging.md)]
 
-[Watch a video showing similar steps](https://channel9.msdn.com/series/Azure-connected-services-with-Cordova/Azure-connected-services-task-4-Set-up-gcm-for-push)
+[觀看示範類似步驟的影片](https://channel9.msdn.com/series/Azure-connected-services-with-Cordova/Azure-connected-services-task-4-Set-up-gcm-for-push)
 
-####<a name="<a-name="configure-backend"></a>configure-the-mobile-app-backend-to-send-push-requests-using-gcm"></a><a name="configure-backend"></a>Configure the Mobile App backend to send push requests using GCM
+####<a name="configure-backend"></a>設定行動應用程式後端以使用 GCM 傳送推送要求
 
 [AZURE.INCLUDE [app-service-mobile-android-configure-push](../../includes/app-service-mobile-android-configure-push.md)]
 
-####<a name="configure-your-cordova-app-for-android"></a>Configure your Cordova app for Android
+####針對 Android 設定您的 Cordova 應用程式
 
-In your Cordova app, open config.xml and replace `Your_Project_ID` with the numeric project ID for your app from the [Google Developer Console].
+請在 Cordova 應用程式中，從 [Google Developer Console] 開啟 config.xml 並使用您應用程式的數字專案識別碼取代 `Your_Project_ID`。
 
-        <plugin name="phonegap-plugin-push" version="1.7.1" src="https://github.com/phonegap/phonegap-plugin-push.git">
-            <variable name="SENDER_ID" value="Your_Project_ID" />
-        </plugin>
+		<plugin name="phonegap-plugin-push" version="1.7.1" src="https://github.com/phonegap/phonegap-plugin-push.git">
+			<variable name="SENDER_ID" value="Your_Project_ID" />
+		</plugin>
 
-Open index.js and update the code to use your numeric project ID.
+開啟 index.js，並更新程式碼以使用您的數值專案識別碼。
 
-        pushRegistration = PushNotification.init({
-            android: { senderID: 'Your_Project_ID' },
-            ios: { alert: 'true', badge: 'true', sound: 'true' },
-            wns: {}
-        });
+		pushRegistration = PushNotification.init({
+			android: { senderID: 'Your_Project_ID' },
+			ios: { alert: 'true', badge: 'true', sound: 'true' },
+			wns: {}
+		});
 
-####<a name="<a-name="configure-device"></a>configure-your-android-device-for-usb-debugging"></a><a name="configure-device"></a>Configure your Android device for USB debugging
+####<a name="configure-device"></a>設定 Android 裝置進行 USB 偵錯
 
-Before you can deploy your application to your Android Device, you need to enable USB Debugging.  Perform the following steps on your Android phone:
+在您可以將應用程式部署到您的 Android 裝置之前，您需要啟用 USB 偵錯。在您的 Android 手機上執行下列步驟：
 
-1. Go to **Settings** > **About phone**, then tap the **Build number** until developer mode is enabled (about 7 times).
+1. 移至 [設定] > [關於手機]，然後點選 [版本號碼]，直到啟用開發人員模式為止 (大約 7 次)。
 
-2. Back in **Settings** > **Developer Options** enable **USB debugging**, then connect your Android phone to your development PC with a USB Cable.
+2. 回到 [設定] > [開發人員選項] 啟用 [USB 偵錯]，然後使用 USB 纜線將 Android 手機連接到開發電腦。
 
-We tested this using a Google Nexus 5X device running Android 6.0 (Marshmallow).  However, the techniques are common across any modern Android release.
+我們測試時使用的是執行 Android 6.0 (Marshmallow) 的 Google Nexus 5 X 裝置。不過，這些技術在任何現代化 Android 版本中都是相同的。
 
-#### <a name="install-google-play-services"></a>Install Google Play Services
+#### 安裝 Google Play 服務
 
-The push plugin relies on Android Google Play Services for push notifications.  
+推播外掛程式仰賴 Android Google Play 服務來進行推播通知。
 
-1.  In **Visual Studio**,  click **Tools** > **Android** > **Android SDK Manager**, expand the **Extras** folder and check the box to make sure that each of the following SDKs is installed.    
-    * Android Support Repository version 20 or greater
-    * Google Play Services version 27 or greater
-    * Google Repository version 22 or greater
+1.  在 [Visual Studio] 中按一下 [工具] > [Android] > [Android SDK Manager]，然後展開 [Extras] 資料夾並核取方塊，確定已安裝下列所有的 SDK。
+    * Android Support Repository (版本 20 或更高版本)
+    * Google Play 服務 (版本 27 或更高版本)
+    * Google Repository (版本 22 或更高版本)
 
-2.  Click on **Install Packages** and wait for the installation to complete.
+2.  按一下 [Install Packages] \(安裝封裝)，並等候安裝完成。
 
-The current required libraries are listed in the [phonegap-plugin-push installation documentation].
+目前的必要程式庫會在 [phonegap-plugin-push Installation 文件]中列出。
 
-#### <a name="test-push-notifications-in-the-app-on-android"></a>Test push notifications in the app on Android
+#### 在 Android 上的應用程式中測試推播通知
 
-You can now test push notifications by running the app and inserting items in the TodoItem table. You can do this from the same device or from a second device, as long as you are using the same backend. Test your Cordova app on the Android platform in one of the following ways:
+您現在可以執行應用程式，在 TodoItem 資料表中插入項目，以測試推播通知。只要使用相同的後端，您可以在相同的裝置或第二部裝置上執行這項作業。以下列方法之一在 Android 平台上測試 Cordova 應用程式︰
 
-- **On a physical device:**  
-Attach your Android device to your development computer with a USB cable.  Instead of **Google Android Emulator**, select **Device**. Visual Studio will deploy the application to the device and run it.  You can then interact with the application on the device.  
-Improve your development experience.  Screen sharing applications such as [Mobizen] can assist you in developing an Android application by projecting your Android screen on to a web browser on your PC.
+- **實體裝置︰**使用 USB 纜線將 Android 裝置連接到開發電腦。請選取 [裝置]，不要選取 [Google Android 模擬器]。Visual Studio 會將應用程式部署至裝置並執行。您接著可以在裝置上與應用程式互動。改善您的開發經驗。畫面共用應用程式 (例如 [Mobizen]) 可在電腦上將您的 Android 畫面投射到 Web 瀏覽器，並協助您開發 Android 應用程式。
 
-- **On an an Android emulator:**  
-There are additional configuration steps required when running on an emulator.
+- **在 Android 模擬器上︰**在模擬器上執行時，您需要採取其他設定步驟。
 
-    Make sure that you are deploying to or debugging on a virtual device that has Google APIs set as the target, as shown below in the Android Virtual Device (AVD) manager.
+	針對您要部署的目的地虛擬裝置或偵錯的所在虛擬裝置，請確認該裝置具有已設定為目標的 Google API，如以下 Android 虛擬裝置管理員 (AVD) 所示。
 
-    ![](./media/app-service-mobile-cordova-get-started-push/google-apis-avd-settings.png)
+	![](./media/app-service-mobile-cordova-get-started-push/google-apis-avd-settings.png)
 
-    If you want to use a faster x86 emulator, you [install the the HAXM driver](https://taco.visualstudio.com/en-us/docs/run-app-apache/#HAXM) and configure the emulator use it.
+	如果您想要使用更快速的 x86 模擬器，請[安裝 HAXM 驅動程式](https://taco.visualstudio.com/zh-TW/docs/run-app-apache/#HAXM)並設定模擬器使用它。
 
-    Add a Google account to the Android device by clicking **Apps** > **Settings** > **Add account**, then follow the prompts to add an existing Google account to the device (we recommend using an existing account rather than creating a new one).
+	按一下 [應用程式] > [設定] > [加入帳戶]，將 Google 帳戶加入至 Android 裝置，然後依照提示將現有的 Google 帳戶加入至此裝置 (建議使用現有的帳戶，而非建立新帳戶)。
 
-    ![](./media/app-service-mobile-cordova-get-started-push/add-google-account.png)
+	![](./media/app-service-mobile-cordova-get-started-push/add-google-account.png)
 
-    Run the todolist app as before and insert a new todo item. This time, a notification icon is displayed in the notification area. You can open the notification drawer to view the full text of the notification.
+	按照先前的方法執行 todolist 應用程式，然後插入新的 todo 項目。這次，通知圖示會顯示在通知區域中。您可以開啟通知抽屜來檢視通知的完整內容。
 
-    ![](./media/app-service-mobile-cordova-get-started-push/android-notifications.png)
+	![](./media/app-service-mobile-cordova-get-started-push/android-notifications.png)
 
-##<a name="(optional)-configure-and-run-on-ios"></a>(Optional) Configure and run on iOS
+##(選擇性) 在 iOS 上設定和執行
 
-This section is for running the Cordova project on iOS devices. You can skip this section if you are not working with iOS devices.
+本節適用於在 iOS 裝置上執行 Cordova 專案。如果未使用 iOS 裝置，可以略過這一節。
 
-####<a name="install-and-run-the-ios-remotebuild-agent-on-a-mac-or-cloud-service"></a>Install and run the iOS remotebuild agent on a Mac or cloud service
+####在 Mac 或雲端服務上安裝及執行 iOS remotebuild 代理程式
 
-Before you can run a Cordova app on iOS using Visual Studio, go through the steps in the [iOS Setup Guide](http://taco.visualstudio.com/en-us/docs/ios-guide/) to install and run the remotebuild agent.
+請先進行 [iOS 安裝指南](http://taco.visualstudio.com/zh-TW/docs/ios-guide/)中的步驟來安裝和執行 remotebuild 代理程式，才可以使用 Visual Studio 在 iOS 上執行 Cordova 應用程式。
 
-Make sure you can build the app for iOS. The steps in the setup guide are required to build for iOS from Visual Studio. If you do not have a Mac, you can build for iOS using the remotebuild agent on a service like MacInCloud. For more info, see [Run your iOS app in the cloud](http://taco.visualstudio.com/en-us/docs/build_ios_cloud/).
+確定您可以建置適用於 iOS 的應用程式。必須執行安裝指南中的步驟才能從 Visual Studio 針對 iOS 建置。如果您沒有 Mac，您可以在 MacInCloud 之類的服務上使用 remotebuild 代理程式針對 iOS 建置。如需詳細資訊，請參閱[在雲端中執行 iOS 應用程式](http://taco.visualstudio.com/zh-TW/docs/build_ios_cloud/)。
 
->[AZURE.NOTE] XCode 7 or greater is required to use the push plugin on iOS.
+>[AZURE.NOTE] 必須有 XCode 7 或更新版本，才能在 iOS 上使用推播外掛程式。
 
-####<a name="find-the-id-to-use-as-your-app-id"></a>Find the ID to use as your App ID
+####尋找要做為應用程式識別碼的識別碼
 
-Before you register your app for push notifications, open config.xml in your Cordova app, find the `id` attribute value in the widget element, and copy it for later use. In the following XML, the ID is `io.cordova.myapp7777777`.
+在針對推播通知註冊您的應用程式之前，在 Cordova 應用程式中開啟 config.xml，在 widget 元素中尋找 `id` 屬性值，並加以複製以供稍後使用。在下列 XML 中，識別碼為 `io.cordova.myapp7777777`。
 
-        <widget defaultlocale="en-US" id="io.cordova.myapp7777777"
-        version="1.0.0" windows-packageVersion="1.1.0.0" xmlns="http://www.w3.org/ns/widgets"
-            xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps">
+		<widget defaultlocale="zh-TW" id="io.cordova.myapp7777777"
+  		version="1.0.0" windows-packageVersion="1.1.0.0" xmlns="http://www.w3.org/ns/widgets"
+			xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps">
 
-Later, use this identifier when you create an App ID on Apple's developer portal. (If you create a different App ID on the developer portal and want to use that, you will need to take a few extra steps later in this tutorial to change this ID in config.xml. The ID in the widget element must match the App ID on the developer portal.)
+稍後，當您在 Apple 開發人員入口網站上建立應用程式識別碼時，請使用這個識別碼。(如果您在開發人員入口網站上建立不同的應用程式識別碼而且想要使用該識別碼，您稍後必須在本教學課程中採取一些額外的步驟，以在 config.xml 中變更此識別碼。widget 元素中的識別碼必須相符開發人員入口網站上的應用程式識別碼)。
 
-####<a name="register-the-app-for-push-notifications-on-apple's-developer-portal"></a>Register the app for push notifications on Apple's developer portal
+####在 Apple 的開發人員入口網站註冊應用程式以取得推播通知
 
-[AZURE.INCLUDE [Notification Hubs Xamarin Enable Apple Push Notifications](../../includes/notification-hubs-xamarin-enable-apple-push-notifications.md)]
+[AZURE.INCLUDE [通知中樞 Xamarin 啟用 Apple 推播通知](../../includes/notification-hubs-xamarin-enable-apple-push-notifications.md)]
 
-[Watch a video showing similar steps](https://channel9.msdn.com/series/Azure-connected-services-with-Cordova/Azure-connected-services-task-5-Set-up-apns-for-push)
+[觀看示範類似步驟的影片](https://channel9.msdn.com/series/Azure-connected-services-with-Cordova/Azure-connected-services-task-5-Set-up-apns-for-push)
 
-####<a name="configure-azure-to-send-push-notifications"></a>Configure Azure to send push notifications
+####設定 Azure 來傳送推播通知
 
-1. Log into the [Azure portal](https://portal.azure.com/). Click **Browse** > **Mobile Apps** > your Mobile App > **Settings** > **Push** > **Apple (APNS)** > **Upload Certificate**. Upload the .p12 push certificate file you exported earlier.  Make sure to select **Sandbox** if you created a development push certificate for development and testing.  Otherwise, choose **Production**. Your service is now configured to work with push notifications for iOS.
+1. 登入 [Azure 入口網站](https://portal.azure.com/)。按一下 [瀏覽] > [Mobile Apps] > 您的行動應用程式 > [設定] > [推送] > [Apple (APNS)] > [上傳憑證]。上傳您稍早匯出的 .p12 推播憑證檔案。如果您建立開發推播憑證是為了開發和測試，請務必選取 [沙箱]。否則，請選擇 [生產]。您的服務現在已設定為對 iOS 使用推播通知。
 
-    ![](./media/app-service-mobile-cordova-get-started-push/mobile-app-upload-apns-cert.png)
+	![](./media/app-service-mobile-cordova-get-started-push/mobile-app-upload-apns-cert.png)
 
-####<a name="verify-that-your-app-id-matches-your-cordova-app"></a>Verify that your App ID matches your Cordova app
+####確認您的應用程式識別碼符合 Cordova 應用程式
 
-If the App ID you created in your Apple Developer Account already matches the ID of the widget element in config.xml, you can skip this step. However, if the IDs don't match, take the following steps:
+如果您在 Apple 開發人員帳戶中建立的應用程式識別碼已經符合 config.xml 中 widget 元素的識別碼，您即可略過此步驟。不過，如果識別碼不相符，請採取下列步驟︰
 
-1. Delete the platforms folder from your project.
+1. 從您的專案中刪除 platforms 資料夾。
 
-2. Delete the plugins folder from your project.
+2. 從您的專案中刪除 plugins 資料夾。
 
-3. Delete the node_modules folder from your project.
+3. 從您的專案中刪除 node\_modules 資料夾。
 
-4. Update the id attribute of the widget element in config.xml to use the App ID that you created in your Apple Developer Account.
+4. 更新 config.xml 中的 widget 元素的 id 屬性，才能使用您在 Apple 開發人員帳戶中建立的應用程式識別碼。
 
-5. Rebuild your project.
+5. 重建您的專案。
 
-#####<a name="test-push-notifications-in-your-ios-app"></a>Test push notifications in your iOS app
+#####在 iOS 應用程式中測試推播通知
 
-1. In Visual Studio, make sure that **iOS** is selected as the deployment target, and then choose **Device** to run on your connected iOS device.
+1. 在 Visual Studio 中，確定已選取 **iOS** 做為部署目標，然後選擇 [裝置] 以在連線的 iOS 裝置上執行。
 
-    You can run on an iOS device connected to your PC using iTunes. The iOS Simulator does not support push notifications.
+	您可以在使用 iTunes 連線至您的 PC 的 iOS 裝置上執行。iOS 模擬器不支援推播通知。
 
-2. Press the **Run** button or **F5** in Visual Studio to build the project and start the app in an iOS device, then click **OK** to accept push notifications.
+2. 在 Visual Studio 中按下 [執行] 按鈕或 **F5** 以建置專案，並在 iOS 裝置上啟動應用程式，然後按一下 [確定] 以接受推播通知。
 
-    >[AZURE.NOTE] You must explicitly accept push notifications from your app. This request only occurs the first time that the app runs.
+	>[AZURE.NOTE] 您必須明確地接受來自應用程式的推播通知。只有在應用程式第一次執行時，才會發生此要求。
 
-3. In the app, type a task, and then click the plus (+) icon.
+3. 在應用程式中輸入一項工作，然後按一下加號 (+) 圖示。
 
-4. Verify that a notification is received, then click OK to dismiss the notification.
+4. 確認您已接收到通知，然後按一下 [確定] 以關閉通知。
 
-##<a name="(optional)-configure-and-run-on-windows"></a>(Optional) Configure and run on Windows
+##(選擇性) 在 Windows 上設定和執行
 
-This section is for running the Apache Cordova app project on Windows 10 devices (the PhoneGap push plugin is supported on Windows 10). You can skip this section if you are not working with Windows devices.
+本節適用於在 Windows 10 裝置 (Windows 10 支援 PhoneGap 推播外掛程式) 上執行 Apache Cordova 應用程式專案。如果未使用 Windows 裝置，可以略過這一節。
 
-####<a name="register-your-windows-app-for-push-notifications-with-wns"></a>Register your Windows app for push notifications with WNS
+####向 WNS 註冊 Windows 應用程式以使用推播通知
 
-To use the Store options in Visual Studio, select a Windows target from the Solution Platforms list, like **Windows-x64** or **Windows-x86** (avoid **Windows-AnyCPU** for push notifications).
+若要使用 Visual Studio 中的 [存放區] 選項，請從 [方案平台] 清單中選取 Windows 目標，例如 **Windows-x64** 或 **Windows-x86** (避免 **Windows-AnyCPU** 使用推播通知)。
 
 [AZURE.INCLUDE [app-service-mobile-register-wns](../../includes/app-service-mobile-register-wns.md)]
 
-[Watch a video showing similar steps](https://channel9.msdn.com/series/Azure-connected-services-with-Cordova/Azure-connected-services-task-6-Set-up-wns-for-push)
+[觀看示範類似步驟的影片](https://channel9.msdn.com/series/Azure-connected-services-with-Cordova/Azure-connected-services-task-6-Set-up-wns-for-push)
 
-####<a name="configure-the-notification-hub-for-wns"></a>Configure the notification hub for WNS
+####設定 WNS 的通知中樞
 
 [AZURE.INCLUDE [app-service-mobile-configure-wns](../../includes/app-service-mobile-configure-wns.md)]
 
-####<a name="configure-your-cordova-app-to-support-windows-push-notifications"></a>Configure your Cordova app to support Windows push notifications
+####設定 Cordova 應用程式以支援 Windows 推播通知
 
-Open the configuration designer (right-click on config.xml and select **View Designer**), select the **Windows** tab, and choose **Windows 10** under **Windows Target Version**.
+開啟組態設計工具 (以滑鼠右鍵按一下 config.xml 並選取 [檢視表設計工具])，選取 [Windows] 索引標籤，然後選擇 [Windows 目標版本] 下的 [Windows 10]。
 
->[AZURE.NOTE] If you are using a Cordova version prior to Cordova 5.1.1 (6.1.1 recommended), you must also set the Toast Capable flag to true in config.xml.
+>[AZURE.NOTE] 如果您使用 Cordova 5.1.1 之前的 Cordova 版本 (建議使用 6.1.1)，您也必須在 config.xml 中將 [支援快顯通知] 旗標設定為 true。
 
-To support push notifications in your default (debug) builds, open build.json file. Copy the "release" configuration to your debug configuration.
+若要在您的預設 (偵錯) 組建中支援推播通知，請開啟 build.json 檔案。將 "release" 組態複製到您的偵錯組態。
 
-        "windows": {
-            "release": {
-                "packageCertificateKeyFile": "res\\native\\windows\\CordovaApp.pfx",
-                "publisherId": "CN=yourpublisherID"
-            }
-        }
+		"windows": {
+			"release": {
+				"packageCertificateKeyFile": "res\\native\\windows\\CordovaApp.pfx",
+				"publisherId": "CN=yourpublisherID"
+			}
+		}
 
-After the update, the preceding code should look like this.
+更新之後，上述程式碼應如下所示。
 
-    "windows": {
-        "release": {
-            "packageCertificateKeyFile": "res\\native\\windows\\CordovaApp.pfx",
-            "publisherId": "CN=yourpublisherID"
-            },
-        "debug": {
-            "packageCertificateKeyFile": "res\\native\\windows\\CordovaApp.pfx",
-            "publisherId": "CN=yourpublisherID"
-            }
-        }
+	"windows": {
+		"release": {
+			"packageCertificateKeyFile": "res\\native\\windows\\CordovaApp.pfx",
+			"publisherId": "CN=yourpublisherID"
+			},
+		"debug": {
+			"packageCertificateKeyFile": "res\\native\\windows\\CordovaApp.pfx",
+			"publisherId": "CN=yourpublisherID"
+			}
+		}
 
-Build the app and verify that you have no errors. You client app should now register for the notifications from the Mobile App backend. Repeat this section for every Windows project in your solution.
+建置應用程式並確認沒有錯誤。您的用戶端應用程式現在應該註冊行動應用程式後端的通知。針對方案中每個 Windows 專案重複操作這一節。
 
-####<a name="test-push-notifications-in-your-windows-app"></a>Test push notifications in your Windows app
+####在 Windows 應用程式中測試推播通知
 
-In Visual Studio, make sure that a Windows platform is selected as the deployment target, such as **Windows-x64** or **Windows-x86**. To run the app on a Windows 10 PC hosting Visual Studio, choose **Local Machine**.
+在 Visual Studio 中，確定已選取 Windows 平台做為部署目標，例如 **Windows-x64** 或 **Windows-x86**。若要在裝載 Visual Studio 的 Windows 10 電腦上執行應用程式，請選擇 [本機電腦]。
 
-Press the Run button to build the project and start the app.
+按 [執行] 按鈕，以建置專案並啟動應用程式。
 
-In the app, type a name for a new todoitem, and then click the plus (+) icon to add it.
+在應用程式中輸入新 todoitem 的名稱，然後按一下加號 (+) 圖示來加入它。
 
-Verify that a notification is received when the item is added.
+確認在加入項目時收到通知。
 
-##<a name="<a-name="next-steps"></a>next-steps"></a><a name="next-steps"></a>Next Steps
+##<a name="next-steps"></a>後續步驟
 
-* Read about [Notification Hubs] to learn about push notifications.
-* If you have not already done so, continue the tutorial by [Adding Authentication] to your Apache Cordova app.
+* 請閱讀[通知中樞]，了解推播通知的相關資訊。
+* 如果您尚未這麼做，請[新增驗證]至您的 Apache Cordova 應用程式，繼續教學課程。
 
-Learn how to use the SDKs.
+了解如何使用 SDK。
 
 * [Apache Cordova SDK]
 * [ASP.NET Server SDK]
 * [Node.js Server SDK]
 
 <!-- URLs -->
-[Adding Authentication]: app-service-mobile-cordova-get-started-users.md
-[Apache Cordova quick start]: app-service-mobile-cordova-get-started.md
-[authentication]: app-service-mobile-cordova-get-started-users.md
-[Work with the .NET backend server SDK for Azure Mobile Apps]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
-[Google account]: http://go.microsoft.com/fwlink/p/?LinkId=268302
+[新增驗證]: app-service-mobile-cordova-get-started-users.md
+[Apache Cordova 快速入門]: app-service-mobile-cordova-get-started.md
+[驗證]: app-service-mobile-cordova-get-started-users.md
+[使用 Azure Mobile Apps 的 .NET 後端伺服器 SDK]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
+[Google 帳戶]: http://go.microsoft.com/fwlink/p/?LinkId=268302
 [Google Developer Console]: https://console.developers.google.com/home/dashboard
-[phonegap-plugin-push installation documentation]: https://github.com/phonegap/phonegap-plugin-push/blob/master/docs/INSTALLATION.md
+[phonegap-plugin-push Installation 文件]: https://github.com/phonegap/phonegap-plugin-push/blob/master/docs/INSTALLATION.md
 [Mobizen]: https://www.mobizen.com/
 [Visual Studio Community 2015]: http://www.visualstudio.com/
-[Visual Studio Tools for Apache Cordova]: https://www.visualstudio.com/en-us/features/cordova-vs.aspx
-[Notification Hubs]: ../notification-hubs/notification-hubs-push-notification-overview.md
+[Visual Studio Tools for Apache Cordova]: https://www.visualstudio.com/zh-TW/features/cordova-vs.aspx
+[通知中樞]: ../notification-hubs/notification-hubs-push-notification-overview.md
 [Apache Cordova SDK]: app-service-mobile-cordova-how-to-use-client-library.md
 [ASP.NET Server SDK]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
 [Node.js Server SDK]: app-service-mobile-node-backend-how-to-use-server-sdk.md
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!----HONumber=AcomDC_0907_2016-->

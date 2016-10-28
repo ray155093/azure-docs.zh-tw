@@ -1,40 +1,39 @@
 <properties 
-    pageTitle="Use Powershell to set alerts in Application Insights" 
-    description="Automate configuration of Application Insights to get emails about metric changes." 
-    services="application-insights" 
+	pageTitle="在 Application Insights 中使用 PowerShell 設定警示" 
+	description="自動化 Application Insights 的組態以取得有關度量變更的電子郵件。" 
+	services="application-insights" 
     documentationCenter=""
-    authors="alancameronwills" 
-    manager="douge"/>
+	authors="alancameronwills" 
+	manager="douge"/>
 
 <tags 
-    ms.service="application-insights" 
-    ms.workload="tbd" 
-    ms.tgt_pltfrm="ibiza" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="02/19/2016" 
-    ms.author="awills"/>
+	ms.service="application-insights" 
+	ms.workload="tbd" 
+	ms.tgt_pltfrm="ibiza" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="02/19/2016" 
+	ms.author="awills"/>
  
+# 在 Application Insights 中使用 PowerShell 設定警示
 
-# <a name="use-powershell-to-set-alerts-in-application-insights"></a>Use PowerShell to set alerts in Application Insights
+您可以在 [Visual Studio Application Insights](app-insights-overview.md) 中自動化[警示](app-insights-alerts.md)的組態。
 
-You can automate the configuration of [alerts](app-insights-alerts.md) in [Visual Studio Application Insights](app-insights-overview.md). 
+此外，您可以[設定 webhook 以自動回應至警示](../azure-portal/insights-webhooks-alerts.md)。
 
-In addition, you can [set webhooks to automate your response to an alert](../azure-portal/insights-webhooks-alerts.md).
+## 單次設定
 
-## <a name="one-time-setup"></a>One-time setup
+若您未曾將 PowerShell 與 Azure 訂用帳戶搭配使用：
 
-If you haven't used PowerShell with your Azure subscription before:
+在您要執行指令碼的電腦上，安裝 Azure Powershell 模組。
 
-Install the Azure Powershell module on the machine where you want to run the scripts. 
-
- * Install [Microsoft Web Platform Installer (v5 or higher)](http://www.microsoft.com/web/downloads/platform.aspx).
- * Use it to install Microsoft Azure Powershell
+ * 安裝 [Microsoft Web Platform Installer (v5 或更高版本)](http://www.microsoft.com/web/downloads/platform.aspx)。
+ * 使用該程式安裝 Microsoft Azure PowerShell
 
 
-## <a name="connect-to-azure"></a>Connect to Azure
+## 連接到 Azure
 
-Start Azure PowerShell and [connect to your subscription](../powershell-install-configure.md):
+啟動 Azure PowerShell 並[連接至您的訂用帳戶](../powershell-install-configure.md)：
 
 ```PowerShell
 
@@ -43,11 +42,11 @@ Start Azure PowerShell and [connect to your subscription](../powershell-install-
 ```
 
 
-## <a name="get-alerts"></a>Get alerts
+## 取得警示
 
     Get-AlertRule -ResourceGroup "Fabrikam" [-Name "My rule"] [-DetailedOutput]
 
-## <a name="add-alert"></a>Add alert
+## Add alert
 
 
     Add-AlertRule  -Name "{ALERT NAME}" -Description "{TEXT}" `
@@ -64,11 +63,11 @@ Start Azure PowerShell and [connect to your subscription](../powershell-install-
 
 
 
-## <a name="example-1"></a>Example 1
+## 範例 1
 
-Email me if the server's response to HTTP requests, averaged over 5 minutes, is slower than 1 second. My Application Insights resource is called IceCreamWebApp, and it is in resource group Fabrikam. I am the owner of the Azure subscription.
+若伺服器針對 HTTP 要求的回應時間 (平均超過 5 分鐘) 慢於 1 秒，則傳送電子郵件給我。我的 Application Insights 資源稱為 IceCreamWebApp，其位於 Fabrikam 資源群組。我是 Azure 訂用帳戶的擁有者。
 
-The GUID is the subscription ID (not the instrumentation key of the application).
+GUID 是該訂用帳戶的 ID (而非應用程式的檢測金鑰)。
 
     Add-AlertRule -Name "slow responses" `
      -Description "email me if the server responds slowly" `
@@ -81,9 +80,9 @@ The GUID is the subscription ID (not the instrumentation key of the application)
      -SendEmailToServiceOwners `
      -Location "East US" -RuleType Metric
 
-## <a name="example-2"></a>Example 2
+## 範例 2
 
-I have an application in which I use [TrackMetric()](app-insights-api-custom-events-metrics.md#track-metric) to report a metric named "salesPerHour." Send an email to my colleagues if "salesPerHour" drops below 100, averaged over 24 hours.
+我已有應用程式，並在其中使用 [TrackMetric()](app-insights-api-custom-events-metrics.md#track-metric) 來報告名為 "salesPerHour" 的度量。 若 salesPerHour 超過 24 小時皆低於平均值 100，則傳送電子郵件給我的同事。
 
     Add-AlertRule -Name "poor sales" `
      -Description "slow sales alert" `
@@ -96,60 +95,57 @@ I have an application in which I use [TrackMetric()](app-insights-api-custom-eve
      -CustomEmails "satish@fabrikam.com","lei@fabrikam.com" `
      -Location "East US" -RuleType Metric
 
-The same rule can be used for the metric reported by using the [measurement parameter](app-insights-api-custom-events-metrics.md#properties) of another tracking call such as TrackEvent or trackPageView.
+您亦可針對使用其他追蹤呼叫之[測量參數](app-insights-api-custom-events-metrics.md#properties) (例如 TrackEvent 或 trackPageView) 報告的度量，使用相同的規則。
 
-## <a name="metric-names"></a>Metric names
+## 度量名稱
 
-Metric name | Screen name | Description
+度量名稱 | 畫面名稱 | 說明
 ---|---|---
-`basicExceptionBrowser.count`|Browser exceptions|Count of uncaught exceptions thrown in the browser.
-`basicExceptionServer.count`|Server exceptions|Count of unhandled exceptions thrown by the app
-`clientPerformance.clientProcess.value`|Client processing time|Time between receiving the last byte of a document until the DOM is loaded. Async requests may still be processing.
-`clientPerformance.networkConnection.value`|Page load network connect time| Time the browser takes to connect to the network. Can be 0 if cached.
-`clientPerformance.receiveRequest.value`|Receiving response time| Time between browser sending request to starting to receive response.
-`clientPerformance.sendRequest.value`|Send request time| Time taken by browser to send request.
-`clientPerformance.total.value`|Browser page load time|Time from user request until DOM, stylesheets, scripts and images are loaded.
-`performanceCounter.available_bytes.value`|Available memory|Physical memory immediately available for a process or for system use.
-`performanceCounter.io_data_bytes_per_sec.value`|Process IO Rate|Total bytes per second read and written to files, network and devices.
-`performanceCounter.number_of_exceps_thrown_per_sec`|exception rate|Exceptions thrown per second.
-`performanceCounter.percentage_processor_time.value`|Process CPU|The percentage of elapsed time of all process threads used by the processor to execution instructions for the applications process.
-`performanceCounter.percentage_processor_total.value`|Processor time|The percentage of time that the processor spends in non-Idle threads.
-`performanceCounter.process_private_bytes.value`|Process private bytes|Memory exclusively assigned to the monitored application's processes.
-`performanceCounter.request_execution_time.value`|ASP.NET request execution time|Execution time of the most recent request.
-`performanceCounter.requests_in_application_queue.value`|ASP.NET requests in execution queue|Length of the application request queue.
-`performanceCounter.requests_per_sec`|ASP.NET request rate|Rate of all requests to the application per second from ASP.NET.
-`remoteDependencyFailed.durationMetric.count`|Dependency failures|Count of failed calls made by the server application to external resources.
-`request.duration`|Server response time|Time between receiving an HTTP request and finishing sending the response.
-`request.rate`|Request rate|Rate of all requests to the application per second.
-`requestFailed.count`|Failed requests|Count of HTTP requests that resulted in a response code >= 400 
-`view.count`|Page views|Count of client user requests for a web page. Synthetic traffic is filtered out.
-{your custom metric name}|{Your metric name}|Your metric value reported by [TrackMetric](app-insights-api-custom-events-metrics.md#track-metric) or in the [measurements parameter of a tracking call](app-insights-api-custom-events-metrics.md#properties).
+`basicExceptionBrowser.count`|瀏覽器例外狀況|在瀏覽器中擲回的未攔截例外狀況計數。
+`basicExceptionServer.count`|伺服器例外狀況|應用程式擲回的未處理例外狀況計數
+`clientPerformance.clientProcess.value`|用戶端處理時間|從接收上個文件位元組直至載入 DOM 的經過時間。系統可能仍在處理非同步要求。
+`clientPerformance.networkConnection.value`|頁面載入網路連線時間| 瀏覽器連線至網路所需的時間。可為 0 (若已快取)。
+`clientPerformance.receiveRequest.value`|接收回應時間| 瀏覽器傳送要求直至開始接收回應的經過時間。
+`clientPerformance.sendRequest.value`|傳送要求時間| 瀏覽器傳送要求所耗費的時間。
+`clientPerformance.total.value`|瀏覽器頁面載入時間|從使用者要求直至載入 DOM、樣式表、指令碼和影像的經過時間。
+`performanceCounter.available_bytes.value`|可用的記憶體|針對處理程序或系統用途的立即可用實體記憶體。
+`performanceCounter.io_data_bytes_per_sec.value`|處理程序 IO 速率|每秒讀取與寫入檔案、 網路和裝置的總位元組數。
+`performanceCounter.number_of_exceps_thrown_per_sec`|例外狀況比率|每秒擲回的例外狀況。
+`performanceCounter.percentage_processor_time.value`|處理程序 CPU|處理器針對應用程式處理程序執行指示，所用之全部處理程序執行緒的經過時間百分比。
+`performanceCounter.percentage_processor_total.value`|處理器時間|處理器針對非閒置執行緒所耗費時間的百分比。
+`performanceCounter.process_private_bytes.value`|處理程序私人位元組|以獨佔方式指派至監視應用程式處理程序的記憶體。
+`performanceCounter.request_execution_time.value`|ASP.NET 要求執行時間|最近要求的執行時間。
+`performanceCounter.requests_in_application_queue.value`|執行佇列中的 ASP.NET 要求|應用程式要求佇列的長度。
+`performanceCounter.requests_per_sec`|ASP.NET 要求率|每秒從 ASP.NET 發出所有應用程式要求的速率。
+`remoteDependencyFailed.durationMetric.count`|相依性失敗|伺服器應用程式針對外部資源的呼叫失敗計數。
+`request.duration`|伺服器回應時間|從接收 HTTP 要求直至完成傳送回應的經過時間。
+`request.rate`|要求率|每秒發出所有應用程式要求的速率。
+`requestFailed.count`|失敗的要求|產生回應碼的 HTTP 要求計數 >= 400 
+`view.count`|頁面檢視|網頁的用戶端使用者要求計數。系統會篩選掉綜合流量。
+{您的自訂度量名稱}|{您的度量名稱}|由 [TrackMetric](app-insights-api-custom-events-metrics.md#track-metric) 或[追蹤呼叫之測量參數](app-insights-api-custom-events-metrics.md#properties)所報告的度量值。
 
-The metrics are sent by different telemetry modules:
+此度量由不同遙測模組所傳送：
 
-Metric group | Collector module
+度量群組 | 收集器模組
 ---|---
-basicExceptionBrowser,<br/>clientPerformance,<br/>view | [Browser JavaScript](app-insights-javascript.md)
-performanceCounter | [Performance](app-insights-configuration-with-applicationinsights-config.md#nuget-package-3)
-remoteDependencyFailed| [Dependency](app-insights-configuration-with-applicationinsights-config.md#nuget-package-1)
-request,<br/>requestFailed|[Server request](app-insights-configuration-with-applicationinsights-config.md#nuget-package-2)
+basicExceptionBrowser、<br/>clientPerformance、<br/>view | [瀏覽器 JavaScript](app-insights-javascript.md)
+performanceCounter | [效能](app-insights-configuration-with-applicationinsights-config.md#nuget-package-3)
+remoteDependencyFailed| [相依性](app-insights-configuration-with-applicationinsights-config.md#nuget-package-1)
+request、<br/>requestFailed|[伺服器要求](app-insights-configuration-with-applicationinsights-config.md#nuget-package-2)
 
-## <a name="webhooks"></a>Webhooks
+## Webhook
 
-You can [automate your response to an alert](../azure-portal/insights-webhooks-alerts.md). Azure will call a web address of your choice when an alert is raised. 
+您可以[自動回應至警示](../azure-portal/insights-webhooks-alerts.md)。Azure 會在出現警示時呼叫您選擇的網址。
 
-## <a name="see-also"></a>See also
+## 另請參閱
 
 
-* [Script to configure Application Insights](app-insights-powershell-script-create-resource.md)
-* [Create Application Insights and web test resources from templates](app-insights-powershell.md)
-* [Automate coupling Microsoft Azure Diagnostics to Application Insights](app-insights-powershell-azure-diagnostics.md)
-* [Automate your response to an alert](../azure-portal/insights-webhooks-alerts.md)
+* [用來設定 Application Insights 的指令碼](app-insights-powershell-script-create-resource.md)
+* [從範本建立 Application Insights 和 Web 測試資源](app-insights-powershell.md)
+* [自動化 Microsoft Azure 診斷與 Application Insights 的耦合](app-insights-powershell-azure-diagnostics.md)
+* [自動回應至警示](../azure-portal/insights-webhooks-alerts.md)
 
 
  
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0224_2016-->

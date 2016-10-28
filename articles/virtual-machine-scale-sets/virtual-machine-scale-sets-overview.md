@@ -1,165 +1,160 @@
 <properties
-    pageTitle="Virtual Machine Scale Sets Overview | Microsoft Azure"
-    description="Learn more about Virtual Machine Scale Sets"
-    services="virtual-machine-scale-sets"
-    documentationCenter=""
-    authors="gbowerman"
-    manager="timlt"
-    editor=""
-    tags="azure-resource-manager"/>
+	pageTitle="虛擬機器調整集概觀 | Microsoft Azure"
+	description="深入了解虛擬機器調整集"
+	services="virtual-machine-scale-sets"
+	documentationCenter=""
+	authors="gbowerman"
+	manager="timlt"
+	editor=""
+	tags="azure-resource-manager"/>
 
 <tags
-    ms.service="virtual-machine-scale-sets"
-    ms.workload="na"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="get-started-article"
-    ms.date="09/13/2016"
-    ms.author="guybo"/>
+	ms.service="virtual-machine-scale-sets"
+	ms.workload="na"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/13/2016"
+	ms.author="guybo"/>
 
+# 虛擬機器調整集概觀
 
-# <a name="virtual-machine-scale-sets-overview"></a>Virtual Machine Scale Sets Overview
+虛擬機器調整集是一個您可以用來部署和管理一組相同 VM 的 Azure 計算資源。藉由將所有的 VM 進行相同設定，設計 VM 擴展集以支援真正的自動調整 (不需要預先佈建 VM)，因而能夠更輕鬆地建置以大型計算、巨量資料和容器化工作負載為目標的大規模服務。
 
-Virtual machine scale sets are an Azure Compute resource you can use to deploy and manage a set of identical VMs. With all VMs configured the same, VM scale sets are designed to support true autoscale – no pre-provisioning of VMs is required – and as such makes it easier to build large-scale services targeting big compute, big data, and containerized workloads.
+對於需要相應放大計算資源的應用程式，調整作業會隱含地平衡分散到容錯網域和更新網域。如需 VM 擴展集的簡介，請參閱 [Azure 部落格通知](https://azure.microsoft.com/blog/azure-virtual-machine-scale-sets-ga/)。
 
-For applications that need to scale compute resources out and in, scale operations are implicitly balanced across fault and update domains. For an introduction to VM scale sets refer to the [Azure blog announcement](https://azure.microsoft.com/blog/azure-virtual-machine-scale-sets-ga/).
+若想進一步了解 VM 調整集，請觀看下列影片：
 
-Take a look at these videos for more about VM scale sets:
+ - [Mark Russinovich 講述 Azure 調整集](https://channel9.msdn.com/Blogs/Regular-IT-Guy/Mark-Russinovich-Talks-Azure-Scale-Sets/)
 
- - [Mark Russinovich talks Azure Scale Sets](https://channel9.msdn.com/Blogs/Regular-IT-Guy/Mark-Russinovich-Talks-Azure-Scale-Sets/)  
+ - [Guy Bowerman 與虛擬機器調整集](https://channel9.msdn.com/Shows/Cloud+Cover/Episode-191-Virtual-Machine-Scale-Sets-with-Guy-Bowerman)
 
- - [Virtual Machine Scale Sets with Guy Bowerman](https://channel9.msdn.com/Shows/Cloud+Cover/Episode-191-Virtual-Machine-Scale-Sets-with-Guy-Bowerman)
+## 建立和管理 VM 調整集
 
-## <a name="creating-and-managing-vm-scale-sets"></a>Creating and managing VM scale sets
+您可以在 [Azure 入口網站](https://portal.azure.com)中選取 [新增]，並在搜尋列中輸入「調整」來建立 VM 擴展集。您將會在結果中看到「虛擬機器擴展集」。您可以在這裡填寫必要的欄位，以自訂和部署您的擴展集。
 
-You can create a VM Scale Set in the [Azure portal](https://portal.azure.com) by selecting _new_ and typing in "scale" in the search bar. You will see "Virtual machine scale set" in the results. From there you can fill in the required fields to customize and deploy your scale set. 
+VM 擴展集也可以使用 JSON 範本和 [REST API](https://msdn.microsoft.com/library/mt589023.aspx) 來定義和部署，如同個別的 Azure Resource Manager VM 一樣。因此，您可以使用任何標準 Azure 資源管理員部署方法。如需範本的詳細資訊，請參閱[編寫 Azure 資源管理員範本](../resource-group-authoring-templates.md)。
 
-VM scale sets can also be defined and deployed using JSON templates and [REST APIs](https://msdn.microsoft.com/library/mt589023.aspx) just like individual Azure Resource Manager VMs. Therefore, any standard Azure Resource Manager deployment methods can be used. For more information about templates, see [Authoring Azure Resource Manager templates](../resource-group-authoring-templates.md).
+在 Azure 快速入門範本 GitHub 儲存機制中 ([這裡](https://github.com/Azure/azure-quickstart-templates)) 可以找到 VM 擴展集的範例範本集。(尋找標題中有 _vmss_ 的範本)
 
-A set of example templates for VM scale sets can be found in the Azure Quickstart templates GitHub repository [here.](https://github.com/Azure/azure-quickstart-templates) (look for templates with _vmss_ in the title)
+在這些範本的詳細資料頁面中，您會看到連結至入口網站部署功能的按鈕。若要部署 VM 調整集，請按一下該按鈕，然後在入口網站中填入所需的任何參數。如果您不確定某項資源是否支援大寫或混合大小寫，一律使用小寫參數值會比較安全。此外也有 VM 調整集範本的視訊剖析，非常容易存取：
 
-In the detail pages for these templates you'll see a button that links to the portal deployment feature. To deploy the VM scale set, click on the button and then fill in any parameters that are required in the portal. If you're not sure whether a resource supports upper or mixed case it is safer to always use lower case parameter values. There is also a handy video dissection of a VM scale set template here:
+[VM 調整集範本剖析](https://channel9.msdn.com/Blogs/Windows-Azure/VM-Scale-Set-Template-Dissection/player)
 
-[VM Scale Set Template Dissection](https://channel9.msdn.com/Blogs/Windows-Azure/VM-Scale-Set-Template-Dissection/player)
+## 相應放大和相應縮小 VM 調整集
 
-## <a name="scaling-a-vm-scale-set-out-and-in"></a>Scaling a VM scale set out and in
+若要增加或減少 VM 調整集內的虛擬機器數目，請直接變更 _capacity_ 屬性，並重新部署範本。這樣的單純性，可讓您在想要定義不受 Azure 自動調整支援的自訂調整事件時，能更輕易地撰寫您的自訂調整層。
 
-To increase or decrease the number of virtual machines in a VM scale set, simply change the _capacity_ property and redeploy the template. This simplicity makes it easy to write your own custom scaling layer if you want to define custom scale events that are not supported by Azure autoscale.
+如果您想要重新部署範本以變更容量，您可以定義小得多的範本，使其僅包含 SKU 和更新的容量。範例如[這裡](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-scale-existing)所示。
 
-If you are redeploying a template to change the capacity, you could define a much smaller template which only includes the SKU and the updated capacity. An example of this is shown [here.](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-scale-existing)
+若要逐步完成相關步驟以建立會自動調整的調整集，請參閱[在虛擬機器調整集中自動調整機器](virtual-machine-scale-sets-windows-autoscale.md)
 
-To walk through the steps that create a scale set that is automatically scaled, see [Automatically Scale Machines in a Virtual Machine Scale Set](virtual-machine-scale-sets-windows-autoscale.md)
+## 監視 VM 調整集
 
-## <a name="monitoring-your-vm-scale-set"></a>Monitoring your VM scale set
+[Azure 入口網站](https://portal.azure.com)會列出擴展集，並顯示基本屬性以及擴展集中的 VM 清單。如需詳細資訊，可使用 [Azure 資源總管](https://resources.azure.com)來檢視 VM 擴展集。VM 調整集是 Microsoft.Compute 之下的一項資源，因此您可以展開下列連結，從這個網站加以檢視：
 
-The [Azure portal](https://portal.azure.com) lists scale sets and shows basic properties, as well as listing VMs in the set. For more detail you can use the [Azure Resource Explorer](https://resources.azure.com) to view VM scale sets. VM scale sets are a resource under Microsoft.Compute, so from this site you can see them by expanding the following links:
+	subscriptions -> your subscription -> resourceGroups -> providers -> Microsoft.Compute -> virtualMachineScaleSets -> your VM scale set -> etc.
 
-    subscriptions -> your subscription -> resourceGroups -> providers -> Microsoft.Compute -> virtualMachineScaleSets -> your VM scale set -> etc.
+## VM 調整集案例
 
-## <a name="vm-scale-set-scenarios"></a>VM scale set scenarios
+本節列出一些典型的 VM 調整集案例。某些較高階的 Azure 服務 (例如 Batch、Service Fabric、Azure 容器服務) 也會使用這些案例。
 
-This section lists some typical VM scale set scenarios. Some higher level Azure services (like Batch, Service Fabric, Azure Container Service) will use these scenarios.
+ - **透過 RDP/SSH 連接到 VM 擴展集執行個體** - VM 擴展集會建立於 VNET 內，且不會為擴展集中的個別 VM 配置公用 IP 位址。這是件好事，因為您通常不希望計算方格中，為了要將個別公用 IP 位址配置給所有的無狀態資源，而產生支出與管理負擔，而且您可以輕鬆地從 VNET 中的其他資源連接到這些 VM，包括具有公用 IP 位址的資源，像是負載平衡器或獨立虛擬機器。
 
- - **RDP / SSH to VM scale set instances** - A VM scale set is created inside a VNET and individual VMs in the scale set are not allocated public IP addresses. This is a good thing because you don't generally want the expense and management overhead of allocating separate public IP addresses to all the stateless resources in your compute grid, and you can easily connect to these VMs from other resources in your VNET including ones which have public IP addresses like load balancers or standalone virtual machines.
-
- - **Connect to VMs using NAT rules** - You can create a public IP address, assign it to a load balancer, and define inbound NAT rules which map a port on the IP address to a port on a VM in the VM scale set. For example:
+ - **使用 NAT 規則連接到 VM** - 您可以建立一個公用 IP 位址、將它指派給負載平衡器，然後定義將 IP 位址的連接埠對應至 VM 調整集內某個 VM 之連接埠的輸入 NAT 規則。例如：
  
-    Source | Source Port | Destination | Destination Port
-    --- | --- | --- | ---
-    Public IP | Port 50000 | vmss\_0 | Port 22
-    Public IP | Port 50001 | vmss\_1 | Port 22
-    Public IP | Port 50002 | vmss\_2 | Port 22
+	來源 | 來源連接埠 | 目的地 | 目的地連接埠
+	--- | --- | --- | ---
+	公用 IP | 連接埠 50000 | vmss\_0 | 連接埠 22
+	公用 IP | 連接埠 50001 | vmss\_1 | 連接埠 22
+	公用 IP | 連接埠 50002 | vmss\_2 | 連接埠 22
 
-    Here's an example of creating a VM scale set which uses NAT rules to enable SSH connection to every VM in a scale set using a single public IP: [https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-linux-nat](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-linux-nat)
+	以下範例會建立一個使用 NAT 規則的 VM 調整集，以便能使用單一公用 IP，對調整集內的每個 VM 進行 SSH 連線：[https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-linux-nat](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-linux-nat)
 
-    Here's an example of doing the same with RDP and Windows: [https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-nat](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-nat)
+	以下是使用 RDP 和 Windows 執行相同作業的範例：[https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-nat](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-nat)
 
- - **Connect to VMs using a "jumpbox"** - If you create a VM scale set and a standalone VM in the same VNET, the standalone VM and the VM scale set VMs can connect to one another using their internal IP addresses as defined by the VNET/Subnet. If you create a public IP address and assign it to the standalone VM you can RDP or SSH to the standalone VM and then connect from that machine to your VM scale set instances. You may notice at this point that a simple VM scale set is inherently more secure than a simple standalone VM with a public IP address in its default configuration.
+ - **使用 Jumpbox 連接到 VM** - 如果您在相同的 VNET 中建立 VM 調整集和獨立 VM，獨立 VM 與 VMSS VM 將可使用 VNET/子網路為它們定義的內部 IP 位址彼此連接。如果您建立公用 IP 位址，並將它指派給獨立 VM，您可以透過 RDP 或 SSH 連接到獨立 VM，然後從該部機器連接到 VM 調整集執行個體。此時您可能會發現，簡易 VM 調整集在本質上比在預設組態中設定了公用 IP 位址的獨立 VM 來得安全。
 
-    [For an example of this approach, this template creates a simple Mesos cluster consisting of a standalone Master VM which manages a VM scale-set based cluster of VMs.](https://github.com/gbowerman/azure-myriad/blob/master/mesos-vmss-simple-cluster.json)
+	[為了提供此方法的範例，此範本建立了一個簡易 Mesos 叢集，其中包含一個獨立的主要 VM，用來管理 VM 的 VM 擴展集架構叢集。](https://github.com/gbowerman/azure-myriad/blob/master/mesos-vmss-simple-cluster.json)
 
- - **Load balancing to VM scale set instances** - If you want to deliver work to a compute cluster of VMs using a "round-robin" approach, you can configure an Azure load balancer with load-balancing rules accordingly. You can define probes to verify your application is running by pinging ports with a specified protocol, interval and request path. The Azure [Application Gateway](https://azure.microsoft.com/services/application-gateway/) also supports scale sets, along with more sophisticated load balancing scenarios.
+ - **對 VM 擴展集執行個體進行負載平衡** - 如果您想要使用「循環配置資源」方法來將工作傳送到 VM 的計算叢集，您可以使用負載平衡規則據以設定 Azure 負載平衡器。您可以定義探查，藉由使用指定的通訊協定、間隔和要求路徑對連接埠執行 ping，以驗證您的應用程式正在執行中。Azure [應用程式閘道](https://azure.microsoft.com/services/application-gateway/)也支援擴展集，以及更複雜的負載平衡案例。
 
-    [Here is an example which creates a VM scale set of VMs running IIS web server, and uses a load balancer to balance the load that each VM receives. It also uses the HTTP protocol to ping a specific URL on each VM.](https://github.com/gbowerman/azure-myriad/blob/master/vmss-win-iis-vnet-storage-lb.json) (look at the Microsoft.Network/loadBalancers resource type and the networkProfile and extensionProfile in the virtualMachineScaleSet)
+	[以下範例會為執行 IIS Web 伺服器的 VM 建立一個 VM 擴展集，並使用負載平衡器來平衡每個 VM 所接收到的負載。此外也會使用 HTTP 通訊協定對每個 VM 的特定 URL 執行 ping。](https://github.com/gbowerman/azure-myriad/blob/master/vmss-win-iis-vnet-storage-lb.json) (請查看 Microsoft.Network/loadBalancers 資源類型，以及 virtualMachineScaleSet 中的 networkProfile 和 extensionProfile。)
 
- - **Deploying a VM scale set as a compute cluster in a PaaS cluster manager** - VM scale sets are sometimes described as a next-generation worker role. It's a valid description but it also runs the risk of confusing scale set features with PaaS v1 Worker role features. In a sense VM scale sets provide a true "worker role" or worker resource, in that they provide a generalized compute resource which is platform/runtime independent, customizable and integrates into Azure Resource Manager IaaS.
+ - **在 PaaS 叢集管理員中，將 VM 調整集部署為計算叢集** - VM 調整集有時會被稱為新一代的背景工作角色。雖然這可說是有效的說明，但也可能導致調整集功能與 PaaS v1 背景工作角色功能令人混淆。就某方面來說，VM 調整集提供了真正的「背景工作角色」或背景工作資源，因為它們提供了不會隨平台/執行階段而改變、可自訂且整合至 Azure 資源管理員 IaaS 的一般化計算資源。
 
-    A PaaS v1 worker role, while limited in terms of platform/runtime support (Windows platform images only) also includes services such as VIP swap, configurable upgrade settings, runtime/app deployment specific settings which are either not _yet_ available in VM scale sets, or will be delivered by other higher level PaaS services like Service Fabric. With this in mind you can look at VM scale sets as an infrastructure which supports PaaS. I.e. PaaS solutions like Service Fabric or cluster managers like Mesos can build on top of VM scale sets as a scalable compute layer.
+	PaaS v1 背景工作角色雖然在平台/執行階段支援方面有所限制 (僅限 Windows 平台映像)，但也包含像是 VIP 交換、可設定的升級設定、執行階段/應用程式部署的特定設定等服務，但這些服務_尚未_成為 VM 調整集內的可用項目，或將在其他較高階的 PaaS 服務 (如 Service Fabric) 中提供。了解這一點之後，您可以將 VM 調整集視為支援 PaaS 的基礎結構。亦即PaaS 解決方案 (如 Service Fabric) 或叢集管理員 (如 Mesos) 可以建置在 VM 調整集之上，作為可調整的計算層。
 
-    [For an example of this approach, this template creates a simple Mesos cluster consisting of a standalone Master VM which manages a VM scale-set based cluster of VMs.](https://github.com/gbowerman/azure-myriad/blob/master/mesos-vmss-simple-cluster.json) Future versions of the [Azure Container Service](https://azure.microsoft.com/blog/azure-container-service-now-and-the-future/) will deploy more complex/hardened versions of this scenario based on VM scale sets.
+	[為了提供此方法的範例，此範本建立了一個簡易 Mesos 叢集，其中包含一個獨立的主要 VM，用來管理 VM 的 VM 擴展集架構叢集。](https://github.com/gbowerman/azure-myriad/blob/master/mesos-vmss-simple-cluster.json) 未來的 [Azure 容器服務](https://azure.microsoft.com/blog/azure-container-service-now-and-the-future/)版本將根據 VM 調整集，為此案例部署更複雜/強化的版本。
 
-## <a name="vm-scale-set-performance-and-scale-guidance"></a>VM scale set performance and scale guidance
+## VM 調整集的效能和調整指南
 
-- Do not create more than 500 VMs in multiple VM Scale Sets at a time.
-- Plan for no more than 20 VMs per storage account (unless you set the _overprovision_ property to "false", in which case you can go up to 40).
-- Spread out the first letters of storage account names as much as possible.  The example VMSS templates in [Azure Quickstart templates](https://github.com/Azure/azure-quickstart-templates/) provide examples of how to do this.
-- If using custom VMs, plan for no more than 40 VMs per VM scale set, in a single storage account.  You will need the image pre-copied into the storage account before you can begin VM scale set deployment. See the FAQ for more information.
-- Plan for no more than 4096 VMs per VNET.
-- The number of VMs you can create is limited by the core quota in the region in which you are deploying. You may need to contact Customer Support to increase your Compute quota limit increased even if you have a high limit of cores for use with cloud services or IaaS v1 today. To query your quota you can run the following Azure CLI command: `azure vm list-usage`, and the following PowerShell command: `Get-AzureRmVMUsage` (if using a version of PowerShell below 1.0 use `Get-AzureVMUsage`).
+- 請不要同時在多個 VM 調整集內建立 500 個以上的 VM。
+- 規劃每個儲存體帳戶不超過 20 個 VM (除非您將 _overprovision_ 屬性設定為 "false"，在這種情況下，最多可以有 40 個)。
+- 盡可能分散儲存體帳戶名稱的第一個字母。[Azure 快速入門範本](https://github.com/Azure/azure-quickstart-templates/)中的範例 VMSS 範本提供如何執行這項操作的範例。
+- 如果使用自訂 VM，在單一儲存體帳戶中，請勿為每個 VM 調整集規劃超過 40 個 VM。您必須將映像預先複製到儲存體帳戶中，才能開始進行 VM 調整集部署。如需詳細資訊，請參閱常見問題集。
+- 請勿為每個 VNET 規劃超過 4096 個 VM。
+- 您可以建立的 VM 數目受限於您正在部署之區域中的核心配額。您可能需要連絡客戶支援人員，以提高您的計算配額限制，即使您目前用於雲端服務或 IaaS v1 的核心已具有較高的上限亦然。若要查詢您的配額，您可以執行下列 Azure CLI 命令：`azure vm list-usage`，以及下列 PowerShell 命令：`Get-AzureRmVMUsage` (如果使用 1.0 以下的 PowerShell 版本，請使用 `Get-AzureVMUsage`)。
 
-## <a name="vm-scale-set-frequently-asked-questions"></a>VM scale set frequently asked questions
+## VM 調整集常見問題集
 
-**Q.** How many VMs can you have in a VM scale set?
+**問：** 您在 VM 調整集內可以有多少個 VM？
 
-**A.** 100 if you use platform images which can be distributed across multiple storage accounts. If you use custom images, up to 40 (if the _overprovision_ property is set to "false", 20 by default), since custom images are currently limited to a single storage account.
+**答：** 如果您使用可以分散到多個儲存體帳戶的平台映像，則是 100 個。如果您使用自訂映像，則最多是 40 個 (如果 _overprovision_ 屬性設定為 "false"，則預設為 20 個)，因為自訂映像目前受限於單一儲存體帳戶。
 
-**Q** What other resource limits exist for VM scale sets?
+**問：**VM 調整集有哪些其他資源的限制？
 
-**A.** You are limited to creating no more than 500 VMs in multiple scale sets per region during a 10 minute period. The existing [Azure Subscription Service Limits/](../azure-subscription-service-limits.md) apply.
+**答：** 在 10 分鐘期間，會有在多個調整集內為每個區域建立的 VM 不可超過 500 個的限制。適用現有的 [Azure 訂用帳戶服務限制/](../azure-subscription-service-limits.md)。
 
-**Q.** Are Data Disks Supported within VM scale sets?
+**問：** 在 VM 調整集內是否支援資料磁碟？
 
-**A.** Not in the initial release. Your options for storing data are:
+**答：** 在初始版本中不支援。您的資料儲存選項包括：
 
-- Azure files (SMB shared drives)
+- Azure 檔案 (SMB 共用磁碟機)
 
-- OS drive
+- OS 磁碟機
 
-- Temp drive (local, not backed by Azure storage)
+- 暫存磁碟機 (本機，未受 Azure 儲存體支援)
 
-- Azure data service (e.g. Azure tables, Azure blobs)
+- Azure 資料服務 (例如 Azure 資料表、Azure Blob)
 
-- External data service (e.g. remote DB)
+- 外部資料服務 (例如遠端 DB)
 
-**Q.** Which Azure regions support VM scale sets?
+**問：** 哪些 Azure 區域支援 VM 調整集？
 
-**A.** Any region which supports Azure Resource Manager supports VM Scale Sets.
+**答：** 任何支援 Azure 資源管理員的區域，都支援 VM 調整集。
 
-**Q.** How do you create a VM scale set using a custom image?
+**問：** 要如何使用自訂映像建立 VM 調整集？
 
-**A.** Leave the vhdContainers property blank, for example:
+**答：** 將 vhdContainers 屬性保留為空白，例如：
 
-    "storageProfile": {
-        "osDisk": {
-            "name": "vmssosdisk",
-            "caching": "ReadOnly",
-            "createOption": "FromImage",
-            "image": {
-                "uri": "https://mycustomimage.blob.core.windows.net/system/Microsoft.Compute/Images/mytemplates/template-osDisk.vhd"
-            },
-            "osType": "Windows"
-        }
-    },
-
-
-**Q.** If I reduce my VM scale set capacity from 20 to 15, which VMs will be removed?
-
-**A.** Virtual machines are removed from the scale set evenly across upgrade domains and fault domains to maximize availability. VMs with the highest id's are removed first.
-
-**Q.** How about it if I then increase the capacity from 15 to 18?
-
-**A.** If you increase capacity to 18, then 3 new VMs will be created. Each time the VM instance id will be incremented from the previous highest value (e.g. 20, 21, 22). VMs are balanced across FDs and UDs.
-
-**Q.** When using multiple extensions in a VM scale set, can I enforce an execution sequence?
-
-**A.** Not directly, but for the customScript extension, your script could wait for another extension to complete ([for example by monitoring the extension log](https://github.com/Azure/azure-quickstart-templates/blob/master/201-vmss-lapstack-autoscale/install_lap.sh)). Additional guidance on extension sequencing can be found in this blog post: [Extension Sequencing in Azure VM Scale Sets](https://msftstack.wordpress.com/2016/05/12/extension-sequencing-in-azure-vm-scale-sets/).
-
-**Q.** Do VM scale sets work with Azure availability sets?
-
-**A.** Yes. A VM scale set is an implicit availability set with 5 FDs and 5 UDs. You don't need to configure anything under virtualMachineProfile. In future releases, VM scale sets are likely to span multiple tenants but for now a scale set is a single availability set.
+	"storageProfile": {
+		"osDisk": {
+			"name": "vmssosdisk",
+			"caching": "ReadOnly",
+			"createOption": "FromImage",
+			"image": {
+				"uri": "https://mycustomimage.blob.core.windows.net/system/Microsoft.Compute/Images/mytemplates/template-osDisk.vhd"
+			},
+			"osType": "Windows"
+		}
+	},
 
 
+**問：** 如果我將 VMS 調整集容量從 20 減少為 15，VM 會被移除嗎？
 
-<!--HONumber=Oct16_HO2-->
+**答：** 虛擬機器會跨升級網域和容錯網域從調整集平均地移除，以達到最大的可用性。系統會先移除具有最高識別碼的 VM。
 
+**問：** 如果我後續又將容量從 15 增加到 18 呢？
 
+**答：** 如果您將容量增加到 18，則會建立 3 個新的 VM。每次 VM 執行個體識別碼都會從上一個最高值遞增 (例如 20、21、22)。VM 會分散到各個 FD 和 UD 來進行平衡。
+
+**問：** 在一個 VM 調整集內使用多個延伸模組時，是否可以強制執行「執行順序」？
+
+**答：** 不是直接，但針對 customScript 擴充，您的指令碼可以等候另一個擴充完成 ([例如透過監視擴充記錄](https://github.com/Azure/azure-quickstart-templates/blob/master/201-vmss-lapstack-autoscale/install_lap.sh))。有關擴充排序的其他指導方針，請參閱此部落格文章︰[Extension Sequencing in Azure VM Scale Sets (Azure VM 擴展集中的擴充排序)](https://msftstack.wordpress.com/2016/05/12/extension-sequencing-in-azure-vm-scale-sets/)。
+
+**問：** VM 調整集是否可與 Azure 可用性設定組組搭配使用？
+
+**答：** 是。VM 調整集是隱含的可用性設定組，具有 5 個 FD 和 5 個 UD。您不需要在 virtualMachineProfile 下進行任何設定。在未來的版本中，VM 調整集有可能跨越多個租用戶，但目前調整集只是單一可用性設定組。
+
+<!---HONumber=AcomDC_0914_2016-->

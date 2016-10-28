@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Create Azure service principal with PowerShell | Microsoft Azure"
-   description="Describes how to use Azure PowerShell to create an Active Directory application and service principal, and grant it access to resources through role-based access control. It shows how to authenticate application with a password or certificate."
+   pageTitle="使用 PowerShell 建立 Azure 服務主體 | Microsoft Azure"
+   description="描述如何使用 Azure PowerShell 建立 Active Directory 應用程式和服務主體，並透過角色型存取控制將存取權授與資源。它示範如何使用密碼或憑證來驗證應用程式。"
    services="azure-resource-manager"
    documentationCenter="na"
    authors="tfitzmac"
@@ -16,72 +16,71 @@
    ms.date="09/12/2016"
    ms.author="tomfitz"/>
 
-
-# <a name="use-azure-powershell-to-create-a-service-principal-to-access-resources"></a>Use Azure PowerShell to create a service principal to access resources
+# 使用 Azure PowerShell 建立用來存取資源的服務主體
 
 > [AZURE.SELECTOR]
 - [PowerShell](resource-group-authenticate-service-principal.md)
 - [Azure CLI](resource-group-authenticate-service-principal-cli.md)
-- [Portal](resource-group-create-service-principal-portal.md)
+- [入口網站](resource-group-create-service-principal-portal.md)
 
-When you have an application or script that needs to access resources, you most likely do not want to run this process under your own credentials. You may have different permissions that you want for the application, and you do not want the application to continue using your credentials if your responsibilities change. Instead, you create an identity for the application that includes authentication credentials and role assignments. Every time the app runs, it authenticates itself with these credentials. This topic shows you how to use [Azure PowerShell](powershell-install-configure.md) to set up everything you need for an application to run under its own credentials and identity.
+當您有需要存取資源的應用程式或指令碼時，您很可能不會想要以您擁有的認證執行此程序。您可能具有應用程式的不同權限，而如果您的職責變更，您就不希望應用程式繼續使用您的認證。相反地，您可以為應用程式建立身分識別，在其中包含驗證認證和角色指派。每次應用程式執行時，它會以這些認證進行自我驗證。本主題說明如何使用 [Azure PowerShell](powershell-install-configure.md) 來設定所需的一切項目，以便讓應用程式利用自己的認證和身分識別來執行。
 
-With PowerShell, you have two options for authenticating your AD application:
+在 PowerShell 中，您有兩個選項可以驗證您的 AD 應用程式︰
 
  - password
- - certificate
+ - 憑證
 
-This topic shows how to use both options in PowerShell. If you intend to log in to Azure from a programming framework (such Python, Ruby, or Node.js), password authentication might be your best option. Before deciding whether to use a password or certificate, see the [Sample applications](#sample-applications) section for examples of authenticating in the different frameworks.
+本主題說明如何在 PowerShell 中使用這兩個選項。如果您想要從程式設計架構 (例如 Python、Ruby 或 Node.js) 登入 Azure，密碼驗證可能是您的最佳選項。在決定是要使用密碼還是憑證時，請參閱[範例應用程式](#sample-applications)一節，以查看在不同架構進行驗證的範例。
 
-## <a name="active-directory-concepts"></a>Active Directory concepts
+## Active Directory 概念
 
-In this article, you create two objects - the Active Directory (AD) application and the service principal. The AD application is the global representation of your application. It contains the credentials (an application id and either a password or certificate). The service principal is the local representation of your application in an Active Directory. It contains the role assignment. This topic focuses on a single-tenant application where the application is intended to run within only one organization. You typically use single-tenant applications for line-of-business applications that run within your organization. In a single-tenant application, you have one AD app and one service principal.
+在本文中，您會建立 Active Directory (AD) 應用程式和服務主體這兩個物件。AD 應用程式是您的應用程式的全域表示法。其中包含認證 (應用程式識別碼以及密碼或憑證)。服務主體是您的應用程式在 Active Directory 中的本機表示法。其中包含角色指派。本主題著重在說明單一租用戶應用程式，此應用程式的目的是只在一個組織內執行。您通常會將單一租用戶應用程式用在組織內執行的企業營運系統應用程式。在單一租用戶應用程式中，您有一個 AD 應用程式和一個服務主體。
 
-You may be wondering - why do I need both objects? This approach makes more sense when you consider multi-tenant applications. You typically use multi-tenant applications for software-as-a-service (SaaS) applications, where your application runs in many different subscriptions. For multi-tenant applications, you have one AD app and multiple service principals (one in each Active Directory that grants access to the app). To set up a multi-tenant application, see [Developer's guide to authorization with the Azure Resource Manager API](resource-manager-api-authentication.md).
+您可能想知道 - 為什麼我需要這兩個物件？ 當您考慮多租用戶應用程式時，這個方法比較合適。您通常會將多租用戶應用程式用於軟體即服務 (SaaS) 應用程式，以便您的應用程式在許多不同的訂用帳戶中執行。對於多租用戶應用程式，您有一個 AD 應用程式和多個服務主體 (每個 Active Directory 中有一個服務主體可授與應用程式的存取權)。若要設定多租用戶應用程式，請參閱[利用 Azure Resource Manager API 進行授權的開發人員指南](resource-manager-api-authentication.md)。
 
-## <a name="required-permissions"></a>Required permissions
+## 所需的權限
 
-To complete this topic, you must have sufficient permissions in both your Azure Active Directory and your Azure subscription. Specifically, you must be able to create an app in the Active Directory, and assign the service principal to a role. 
+若要完成本主題，您必須在 Azure Active Directory 和您的 Azure 訂用帳戶中有足夠的權限。具體來說，您必須能夠在 Active Directory 中建立應用程式，並將服務主體指派給角色。
 
-In your Active Directory, your account must be an administrator (such as **Global Admin** or **User Admin**). If your account is assigned to the **User** role, you need to have an administrator elevate your permissions.
+在您的 Active Directory 中，您的帳戶必須是系統管理員 (例如 [全域管理員]或 [使用者管理員])。如果您的帳戶已指派給 [使用者] 角色，您需要讓系統管理員提高您的權限。
 
-In your subscription, your account must have `Microsoft.Authorization/*/Write` access, which is granted through the [Owner](./active-directory/role-based-access-built-in-roles.md#owner) role or [User Access Administrator](./active-directory/role-based-access-built-in-roles.md#user-access-administrator) role. If your account is assigned to the **Contributor** role, you receive an error when attempting to assign the service principal to a role. Again, your subscription administrator must grant you sufficient access.
+在您的訂用帳戶中，您的帳戶必須擁有 `Microsoft.Authorization/*/Write` 存取權，這是透過[擁有者](./active-directory/role-based-access-built-in-roles.md#owner)角色或[使用者存取管理員](./active-directory/role-based-access-built-in-roles.md#user-access-administrator)角色來授與。如果您的帳戶已指派給 [參與者] 角色，您會在嘗試將服務主體指派給角色時收到錯誤。同樣地，您的訂用帳戶管理員必須授與您足夠的存取權。
 
-Now, proceed to a section for either [password](#create-service-principal-with-password) or [certificate](#create-service-principal-with-certificate) authentication.
+現在，繼續進行[密碼](#create-service-principal-with-password)或[憑證](#create-service-principal-with-certificate)驗證的章節。
 
-## <a name="create-service-principal-with-password"></a>Create service principal with password
+## 使用密碼建立服務主體
 
-In this section, you perform the steps to:
+在本節中，您會執行下列步驟：
 
-- create the AD application with a password
-- create the service principal
-- assign the Reader role to the service principal
+- 建立具有密碼的 AD 應用程式
+- 建立服務主體
+- 將 [讀取者角色] 指派給服務主體
 
-To quickly perform these steps, see the following three cmdlets. 
+若要快速執行這些步驟，請參閱下列三個 Cmdlet。
 
      $app = New-AzureRmADApplication -DisplayName "{app-name}" -HomePage "https://{your-domain}/{app-name}" -IdentifierUris "https://{your-domain}/{app-name}" -Password "{your-password}"
      New-AzureRmADServicePrincipal -ApplicationId $app.ApplicationId
      New-AzureRmRoleAssignment -RoleDefinitionName Reader -ServicePrincipalName $app.ApplicationId.Guid
 
-Let's go through these steps more carefully to make sure you understand the process.
+我們會更仔細解說這些步驟，確保您了解此程序。
 
-1. Sign in to your account.
+1. 登入您的帳戶。
 
         Add-AzureRmAccount
 
-1. Create a new Active Directory application by providing a display name, the URI that describes your application, the URIs that identify your application, and the password for your application identity.
+1. 建立新的 Active Directory 應用程式，方法是提供顯示名稱、描述應用程式的 URI、識別應用程式的 URI，以及應用程式身分識別的密碼。
 
         $app = New-AzureRmADApplication -DisplayName "exampleapp" -HomePage "https://www.contoso.org/exampleapp" -IdentifierUris "https://www.contoso.org/exampleapp" -Password "<Your_Password>"
 
-     For single-tenant applications, the URIs are not validated.
+     對於單一租用戶應用程式，不會驗證 URI。
      
-     If your account does not have the [required permissions](#required-permissions) on the Active Directory, you see an error message indicating "Authentication_Unauthorized" or "No subscription found in the context".
+     如果您的帳戶沒有 Active Directory 的[必要權限](#required-permissions)，您會看到一則錯誤訊息，指出 "Authentication\_Unauthorized" 或「在內容中找不到任何訂用帳戶」。
 
-1. Examine the new application object. 
+1. 檢查新的應用程式物件。
 
         $app
         
-     Note in particular the **ApplicationId** property, which is needed for creating service principals, role assignments, and acquiring the access token.
+     請特別注意，需要有 **ApplicationId** 屬性，才能建立服務主體、角色指派以及取得存取權杖。
 
         DisplayName             : exampleapp
         ObjectId                : c95e67a3-403c-40ac-9377-115fa48f8f39
@@ -93,70 +92,70 @@ Let's go through these steps more carefully to make sure you understand the proc
         AppPermissions          : 
         ReplyUrls               : {}
 
-2. Create a service principal for your application by passing in the application id of the Active Directory application.
+2. 傳入 Active Directory 應用程式的應用程式識別碼來建立應用程式的服務主體。
 
         New-AzureRmADServicePrincipal -ApplicationId $app.ApplicationId
 
-3. Grant the service principal permissions on your subscription. In this example, you add the service principal to the **Reader** role, which grants permission to read all resources in the subscription. For other roles, see [RBAC: Built-in roles](./active-directory/role-based-access-built-in-roles.md). For the **ServicePrincipalName** parameter, provide the **ApplicationId** that you used when creating the application. 
+3. 授與服務主體對您訂用帳戶的權限。在此範例中，您會將服務主體新增至 [讀取者] 角色，以授與讀取訂用帳戶中所有資源的權限。若為其他角色，請參閱 [RBAC︰內建角色](./active-directory/role-based-access-built-in-roles.md)。針對 **ServicePrincipalName** 參數，提供您在建立應用程式時所使用的 **ApplicationId**。
 
         New-AzureRmRoleAssignment -RoleDefinitionName Reader -ServicePrincipalName $app.ApplicationId.Guid
 
-    If your account does not have sufficient permissions to assign a role, you see an error message. The message states your account **does not have authorization to perform action 'Microsoft.Authorization/roleAssignments/write' over scope '/subscriptions/{guid}'**. 
+    如果您的帳戶沒有足夠的權限可指派角色，您會看到一則錯誤訊息。此訊息說明您的帳戶**沒有權限來對 '/subscriptions/{guid}' 範圍執行 'Microsoft.Authorization/roleAssignments/write' 動作**。
 
-That's it! Your AD application and service principal are set up. The next section shows you how to log in with the credential through PowerShell. If you want to use the credential in your code application, you can jump to the [Sample applications](#sample-applications). 
+就這麼簡單！ 您的 AD 應用程式和服務主體已設定好。下一節會說明如何透過 PowerShell 以認證來登入。如果您想要使用程式碼應用程式中的認證，您可以跳到[範例應用程式](#sample-applications)。
 
-### <a name="provide-credentials-through-powershell"></a>Provide credentials through PowerShell
+### 透過 PowerShell 提供認證
 
-Now, you need to log in as the application to perform operations.
+現在，您需要以應用程式的形式登入以執行作業。
 
-1. Create a **PSCredential** object that contains your credentials by running the **Get-Credential** command. You need the **ApplicationId** before running this command so make sure you have that available to paste.
+1. 執行 **Get-Credential** 命令，以建立含有您認證的 **PSCredential** 物件。您必須先擁有 **ApplicationId** 才能執行此命令，因此請確定您已有上述項目可供貼上。
 
         $creds = Get-Credential
 
-2. You are prompted you to enter your credentials. For the user name, use the **ApplicationId** that you used when creating the application. For the password, use the one you specified when creating the account.
+2. 系統會提示您輸入認證。針對使用者名稱，使用您在建立應用程式時所使用的 **ApplicationId**。針對密碼，使用您在建立帳戶時所指定的密碼。
 
-     ![enter credentials](./media/resource-group-authenticate-service-principal/arm-get-credential.png)
+     ![輸入認證](./media/resource-group-authenticate-service-principal/arm-get-credential.png)
 
-2. Whenever you sign in as a service principal, you need to provide the tenant id of the directory for your AD app. A tenant is an instance of Active Directory. If you only have one subscription, you can use:
+2. 每當您以服務主體的形式登入時，都需要提供 AD 應用程式目錄的租用戶識別碼。租用戶是 Active Directory 的執行個體。如果您只有一個訂用帳戶，您可以使用：
 
         $tenant = (Get-AzureRmSubscription).TenantId
     
-     If you have more than one subscription, specify the subscription where your Active Directory resides. For more information, see [How Azure subscriptions are associated with Azure Active Directory](./active-directory/active-directory-how-subscriptions-associated-directory.md).
+     如果您有多個訂用帳戶，請指定 Active Directory 所在的訂用帳戶。如需詳細資訊，請參閱 [Azure 訂用帳戶如何與 Azure Active Directory 產生關聯](./active-directory/active-directory-how-subscriptions-associated-directory.md)。
 
         $tenant = (Get-AzureRmSubscription -SubscriptionName "Contoso Default").TenantId
 
-4. Log in as the service principal by specifying that this account is a service principal and by providing the credentials object. 
+4. 登入為服務主體，方法是指定此帳戶為服務主體，以及提供認證物件。
 
         Add-AzureRmAccount -Credential $creds -ServicePrincipal -TenantId $tenant
         
-     You are now authenticated as the service principal for the Active Directory application that you created.
+     您現在驗證為您所建立之 Active Directory 應用程式的服務主體。
 
-### <a name="save-access-token-to-simplify-log-in"></a>Save access token to simplify log in
+### 儲存存取權杖以簡化登入
 
-To avoid providing the service principal credentials every time it needs to log in, you can save the access token.
+若要避免每次需要登入時都要提供服務主體認證，您可以儲存存取權杖。
 
-1. To use the current access token in a later session, save the profile.
+1. 若要在稍後的工作階段中使用目前的存取權杖，請儲存設定檔。
 
         Save-AzureRmProfile -Path c:\Users\exampleuser\profile\exampleSP.json
         
-     Open the profile and examine its contents. Notice that it contains an access token. 
+     開啟設定檔，並檢查其內容。請注意其中包含存取權杖。
         
-2. Instead of manually logging in again, simply load the profile.
+2. 請不要以手動方式再次登入，只要載入設定檔即可。
 
         Select-AzureRmProfile -Path c:\Users\exampleuser\profile\exampleSP.json
         
-> [AZURE.NOTE] The access token expires, so using a saved profile only works for as long as the token is valid.
+> [AZURE.NOTE] 存取權杖會過期，因此，只要權杖有效，就只使用可使用的已儲存設定檔。
         
-## <a name="create-service-principal-with-certificate"></a>Create service principal with certificate
+## 使用憑證建立服務主體
 
-In this section, you perform the steps to:
+在本節中，您會執行下列步驟：
 
-- create a self-signed certificate
-- create the AD application with the certificate
-- create the service principal
-- assign the Reader role to the service principal
+- 建立自我簽署憑證
+- 建立具有憑證的 AD 應用程式
+- 建立服務主體
+- 將 [讀取者角色] 指派給服務主體
 
-To quickly perform these steps with Azure PowerShell 2.0 on Windows 10 or Windows Server 2016 Technical Preview, see the following cmdlets. 
+若要在 Windows 10 或 Windows Server 2016 Technical Preview 上使用 Azure PowerShell 2.0 快速執行這些步驟，請參閱下列 Cmdlet。
 
     $cert = New-SelfSignedCertificate -CertStoreLocation "cert:\CurrentUser\My" -Subject "CN=exampleapp" -KeySpec KeyExchange
     $keyValue = [System.Convert]::ToBase64String($cert.GetRawCertData())
@@ -164,56 +163,56 @@ To quickly perform these steps with Azure PowerShell 2.0 on Windows 10 or Window
     New-AzureRmADServicePrincipal -ApplicationId $app.ApplicationId
     New-AzureRmRoleAssignment -RoleDefinitionName Reader -ServicePrincipalName $app.ApplicationId.Guid
 
-Let's go through these steps more carefully to make sure you understand the process. This article also shows how to accomplish the tasks when using earlier versions of Azure PowerShell or operating systems.
+我們會更仔細解說這些步驟，確保您了解此程序。本文也說明如何在使用舊版 Azure PowerShell 或作業系統時完成工作。
 
-### <a name="create-the-self-signed-certificate"></a>Create the self-signed certificate
+### 建立自我簽署憑證
 
-The version of PowerShell available with Windows 10 and Windows Server 2016 Technical Preview has an updated **New-SelfSignedCertificate** cmdlet for generating a self-signed certificate. Earlier operating systems have the New-SelfSignedCertificate cmdlet but it does not offer the parameters needed for this topic. Instead, you need to import a module to generate the certificate. This topic shows both approaches for generating the certificate based on the operating system you have. 
+Windows 10 和 Windows Server 2016 Technical Preview 提供的 PowerShell 版本已更新用來產生自我簽署憑證的 **New-SelfSignedCertificate** Cmdlet。舊版作業系統有 New-SelfSignedCertificate Cmdlet，但它不會提供本主題所需的參數。相反地，您需要匯入模組來產生憑證。根據您擁有的作業系統，本主題說明兩種用來產生憑證的方法。
 
-- If you have **Windows 10 or Windows Server 2016 Technical Preview**, run the following command to create a self-signed certificate: 
+- 如果您執行 **Windows 10 或 Windows Server 2016 Technical Preview**，請執行下列命令來建立自我簽署憑證：
 
         $cert = New-SelfSignedCertificate -CertStoreLocation "cert:\CurrentUser\My" -Subject "CN=exampleapp" -KeySpec KeyExchange
        
-- If you **do not have Windows 10 or Windows Server 2016 Technical Preview**, you need to download the [Self-signed certificate generator](https://gallery.technet.microsoft.com/scriptcenter/Self-signed-certificate-5920a7c6/) from Microsoft Script Center. Extract its contents and import the cmdlet you need.
+- 如果您**不是執行 Windows 10 或 Windows Server 2016 Technical Preview**，則必須從 Microsoft 指令碼中心下載[自我簽署憑證產生器](https://gallery.technet.microsoft.com/scriptcenter/Self-signed-certificate-5920a7c6/)。將其內容解壓縮，並匯入您需要的 Cmdlet。
      
         # Only run if you could not use New-SelfSignedCertificate
         Import-Module -Name c:\ExtractedModule\New-SelfSignedCertificateEx.ps1
     
-     Then, generate the certificate.
+     然後產生憑證。
     
         $cert = New-SelfSignedCertificateEx -Subject "CN=exampleapp" -KeySpec "Exchange" -FriendlyName "exampleapp"
 
-You have your certificate and can proceed with creating your AD app.
+您已擁有憑證，接下來可以繼續建立 AD 應用程式。
 
-### <a name="create-the-active-directory-app-and-service-principal"></a>Create the Active Directory app and service principal
+### 建立 Active Directory 應用程式和服務主體
 
-1. Retrieve the key value from the certificate.
+1. 從憑證擷取金鑰值。
 
         $keyValue = [System.Convert]::ToBase64String($cert.GetRawCertData())
 
-2. Sign in to your Azure account.
+2. 登入您的 Azure 帳戶。
 
         Add-AzureRmAccount
 
-3. Create a new Active Directory application by providing a display name, the URI that describes your application, the URIs that identify your application, and the password for your application identity.
+3. 建立新的 Active Directory 應用程式，方法是提供顯示名稱、描述應用程式的 URI、識別應用程式的 URI，以及應用程式身分識別的密碼。
 
-     If you have Azure PowerShell 2.0 (August 2016 or later), use the following cmdlet:
+     如果您有 Azure PowerShell 2.0 (2016 年 8 月或更新版本)，請使用下列 Cmdlet：
 
         $app = New-AzureRmADApplication -DisplayName "exampleapp" -HomePage "https://www.contoso.org" -IdentifierUris "https://www.contoso.org/example" -CertValue $keyValue -EndDate $cert.NotAfter -StartDate $cert.NotBefore      
     
-    If you have Azure PowerShell 1.0, use the following cmdlet:
+    如果您有 Azure PowerShell 1.0，請使用下列 Cmdlet：
     
         $app = New-AzureRmADApplication -DisplayName "exampleapp" -HomePage "https://www.contoso.org" -IdentifierUris "https://www.contoso.org/example" -KeyValue $keyValue -KeyType AsymmetricX509Cert  -EndDate $cert.NotAfter -StartDate $cert.NotBefore      
     
-    For single-tenant applications, the URIs are not validated.
+    對於單一租用戶應用程式，不會驗證 URI。
     
-    If your account does not have the [required permissions](#required-permissions) on the Active Directory, you see an error message indicating "Authentication_Unauthorized" or "No subscription found in the context".
+    如果您的帳戶沒有 Active Directory 的[必要權限](#required-permissions)，您會看到一則錯誤訊息，指出 "Authentication\_Unauthorized" 或「在內容中找不到任何訂用帳戶」。
         
-    Examine the new application object. 
+    檢查新的應用程式物件。
 
         $app
 
-    Notice the **ApplicationId** property, which is needed for creating service principals, role assignments, and acquiring access tokens.
+    請注意，需要有 **ApplicationId** 屬性，才能建立服務主體、角色指派以及取得存取權杖。
 
         DisplayName             : exampleapp
         ObjectId                : c95e67a3-403c-40ac-9377-115fa48f8f39
@@ -226,74 +225,67 @@ You have your certificate and can proceed with creating your AD app.
         ReplyUrls               : {}
 
 
-5. Create a service principal for your application by passing in the application id of the Active Directory application.
+5. 傳入 Active Directory 應用程式的應用程式識別碼來建立應用程式的服務主體。
 
         New-AzureRmADServicePrincipal -ApplicationId $app.ApplicationId
 
-6. Grant the service principal permissions on your subscription. In this example, you add the service principal to the **Reader** role, which grants permission to read all resources in the subscription. For other roles, see [RBAC: Built-in roles](./active-directory/role-based-access-built-in-roles.md). For the **ServicePrincipalName** parameter, provide the **ApplicationId** that you used when creating the application.
+6. 授與服務主體對您訂用帳戶的權限。在此範例中，您會將服務主體新增至 [讀取者] 角色，以授與讀取訂用帳戶中所有資源的權限。若為其他角色，請參閱 [RBAC︰內建角色](./active-directory/role-based-access-built-in-roles.md)。針對 **ServicePrincipalName** 參數，提供您在建立應用程式時所使用的 **ApplicationId**。
 
         New-AzureRmRoleAssignment -RoleDefinitionName Reader -ServicePrincipalName $app.ApplicationId.Guid
 
-    If your account does not have sufficient permissions to assign a role, you see an error message. The message states your account **does not have authorization to perform action 'Microsoft.Authorization/roleAssignments/write' over scope '/subscriptions/{guid}'**.
+    如果您的帳戶沒有足夠的權限可指派角色，您會看到一則錯誤訊息。此訊息說明您的帳戶**沒有權限來對 '/subscriptions/{guid}' 範圍執行 'Microsoft.Authorization/roleAssignments/write' 動作**。
 
-That's it! Your AD application and service principal are set up. The next section shows you how to log in with certificate through PowerShell.
+就這麼簡單！ 您的 AD 應用程式和服務主體已設定好。下一節會說明如何透過 PowerShell 以憑證來登入。
 
-### <a name="provide-certificate-through-automated-powershell-script"></a>Provide certificate through automated PowerShell script
+### 透過自動化的 PowerShell 指令碼提供憑證
 
-Whenever you sign in as a service principal, you need to provide the tenant id of the directory for your AD app. A tenant is an instance of Active Directory. If you only have one subscription, you can use:
+每當您以服務主體的形式登入時，都需要提供 AD 應用程式目錄的租用戶識別碼。租用戶是 Active Directory 的執行個體。如果您只有一個訂用帳戶，您可以使用：
 
     $tenant = (Get-AzureRmSubscription).TenantId
     
-If you have more than one subscription, specify the subscription where your Active Directory resides. For more information, see [Administer your Azure AD directory](./active-directory/active-directory-administer.md).
+如果您有多個訂用帳戶，請指定 Active Directory 所在的訂用帳戶。如需詳細資訊，請參閱[管理您的 Azure AD 目錄](./active-directory/active-directory-administer.md)。
 
     $tenant = (Get-AzureRmSubscription -SubscriptionName "Contoso Default").TenantId
 
-To authenticate in your script, specify the account is a service principal and provide the certificate thumbprint, the application id, and tenant id. To automate your script, you can store these values as environment variables and retrieve them during execution, or you can include them in your script.
+若要在指令碼中進行驗證，請指定帳戶為服務主體，並且提供憑證指紋、應用程式識別碼和租用戶識別碼。若要讓指令碼自動執行，您可以將這些值儲存為環境變數，並在執行期間擷取它們，或者您可以將它們包含在指令碼中。
 
     Add-AzureRmAccount -ServicePrincipal -CertificateThumbprint $cert.Thumbprint -ApplicationId $app.ApplicationId -TenantId $tenant
 
-You are now authenticated as the service principal for the Active Directory application that you created.
+您現在驗證為您所建立之 Active Directory 應用程式的服務主體。
 
-## <a name="sample-applications"></a>Sample applications
+## 範例應用程式
 
-The following sample applications show how to log in as the service principal.
+下列範例應用程式會顯示如何登入為服務主體。
 
 **.NET**
 
-- [Deploy an SSH Enabled VM with a Template with .NET](https://azure.microsoft.com/documentation/samples/resource-manager-dotnet-template-deployment/)
-- [Manage Azure resources and resource groups with .NET](https://azure.microsoft.com/documentation/samples/resource-manager-dotnet-resources-and-groups/)
+- [使用 .NET 以範本部署已啟用 SSH 的 VM](https://azure.microsoft.com/documentation/samples/resource-manager-dotnet-template-deployment/)
+- [使用 .NET 管理 Azure 資源和資源群組](https://azure.microsoft.com/documentation/samples/resource-manager-dotnet-resources-and-groups/)
 
 **Java**
 
-- [Getting Started with Resources - Deploy Using Azure Resource Manager Template - in Java](https://azure.microsoft.com/documentation/samples/resources-java-deploy-using-arm-template/)
-- [Getting Started with Resources - Manage Resource Group - in Java](https://azure.microsoft.com/documentation/samples/resources-java-manage-resource-group//)
+- [開始使用資源 - 在 Java 中使用 Azure Resource Manager 範本進行部署](https://azure.microsoft.com/documentation/samples/resources-java-deploy-using-arm-template/)
+- [開始使用資源 - 在 Java 中管理資源群組](https://azure.microsoft.com/documentation/samples/resources-java-manage-resource-group//)
 
 **Python**
 
-- [Deploy an SSH Enabled VM with a Template in Python](https://azure.microsoft.com/documentation/samples/resource-manager-python-template-deployment/)
-- [Managing Azure Resource and Resource Groups with Python](https://azure.microsoft.com/documentation/samples/resource-manager-python-resources-and-groups/)
+- [使用 Python 格式的範本部署已啟用 SSH 的 VM](https://azure.microsoft.com/documentation/samples/resource-manager-python-template-deployment/)
+- [使用 Python 管理 Azure 資源和資源群組](https://azure.microsoft.com/documentation/samples/resource-manager-python-resources-and-groups/)
 
 **Node.js**
 
-- [Deploy an SSH Enabled VM with a Template in Node.js](https://azure.microsoft.com/documentation/samples/resource-manager-node-template-deployment/)
-- [Manage Azure resources and resource groups with Node.js](https://azure.microsoft.com/documentation/samples/resource-manager-node-resources-and-groups/)
+- [使用 Node.js 格式的範本部署已啟用 SSH 的 VM](https://azure.microsoft.com/documentation/samples/resource-manager-node-template-deployment/)
+- [使用 Node.js 管理 Azure 資源和資源群組](https://azure.microsoft.com/documentation/samples/resource-manager-node-resources-and-groups/)
 
 **Ruby**
 
-- [Deploy an SSH Enabled VM with a Template in Ruby](https://azure.microsoft.com/documentation/samples/resource-manager-ruby-template-deployment/)
-- [Managing Azure Resource and Resource Groups with Ruby](https://azure.microsoft.com/documentation/samples/resource-manager-ruby-resources-and-groups/)
+- [使用 Ruby 格式的範本部署已啟用 SSH 的 VM](https://azure.microsoft.com/documentation/samples/resource-manager-ruby-template-deployment/)
+- [使用 Ruby 管理 Azure 資源和資源群組](https://azure.microsoft.com/documentation/samples/resource-manager-ruby-resources-and-groups/)
 
-## <a name="next-steps"></a>Next Steps
+## 後續步驟
   
-- For detailed steps on integrating an application into Azure for managing resources, see [Developer's guide to authorization with the Azure Resource Manager API](resource-manager-api-authentication.md).
-- For a more detailed explanation of applications and service principals, see [Application Objects and Service Principal Objects](./active-directory/active-directory-application-objects.md). 
-- For more information about Active Directory authentication, see [Authentication Scenarios for Azure AD](./active-directory/active-directory-authentication-scenarios.md).
+- 如需有關將應用程式整合至 Azure 來管理資源的詳細步驟，請參閱[利用 Azure Resource Manager API 進行授權的開發人員指南](resource-manager-api-authentication.md)。
+- 如需應用程式和服務主體的詳細說明，請參閱[應用程式物件和服務主體物件](./active-directory/active-directory-application-objects.md)。
+- 如需 Active Directory 驗證的詳細資訊，請參閱 [Azure AD 的驗證案例](./active-directory/active-directory-authentication-scenarios.md)。
 
-
-
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

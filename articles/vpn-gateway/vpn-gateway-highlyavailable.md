@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Overview of Highly Available configurations with Azure VPN Gateways | Microsoft Azure"
-   description="This article provides an overview of highly available configuration options using Azure VPN Gateways."
+   pageTitle="使用 Azure VPN 閘道的高可用性組態概觀 | Microsoft Azure"
+   description="本文提供使用 Azure VPN 閘道的高可用性組態選項概觀。"
    services="vpn-gateway"
    documentationCenter="na"
    authors="yushwang"
@@ -17,86 +17,81 @@
    ms.date="09/24/2016"
    ms.author="yushwang"/>
 
+# 高可用性跨單位和 VNet 對 VNet 連線
 
-# <a name="highly-available-cross-premises-and-vnet-to-vnet-connectivity"></a>Highly Available Cross-Premises and VNet-to-VNet Connectivity
+本文針對使用 Azure VPN 閘道的跨單位和 VNet 對 VNet 連線提供高可用性組態選項的概觀。
 
-This article provides an overview of Highly Available configuration options for your cross-premises and VNet-to-VNet connectivity using Azure VPN gateways.
+## <a name = "activestandby"></a>關於 Azure VPN 閘道備援
 
-## <a name="<a-name-=-"activestandby"></a>about-azure-vpn-gateway-redundancy"></a><a name = "activestandby"></a>About Azure VPN gateway redundancy
+每個 Azure VPN 閘道都是由作用中-待命組態中的兩個執行個體組成。對於作用中執行個體所發生的任何計劃性維護或非計劃性中斷，待命執行個體都會自動進行接管 (容錯移轉)，並繼續 S2S VPN 或 VNet 對 VNet 連線。切換會導致短暫中斷。對於計劃性維護，應在 10 到 15 秒內還原連線。對於非計劃問題，連線復原會更久，大約 1 分鐘到 1 分半 (最糟的情況)。對於閘道的 P2S VPN 用戶端連線，P2S 連接將會中斷連線，而使用者必須從用戶端電腦重新連線。
 
-Every Azure VPN gateway consists of two instances in an active-standby configuration. For any planned maintenance or unplanned disruption that happens to the active instance, the standby instance would take over (failover) automatically, and resume the S2S VPN or VNet-to-VNet connections. The switch over will cause a brief interruption. For planned maintenance, the connectivity should be restored within 10 to 15 seconds. For unplanned issues, the connection recovery will be longer, about 1 minute to 1 and a half minutes in the worst case. For P2S VPN client connections to the gateway, the P2S connections will be disconnected and the users will need to reconnect from the client machines.
+![作用中-待命](./media/vpn-gateway-highlyavailable/active-standby.png)
 
-![Active-Standby](./media/vpn-gateway-highlyavailable/active-standby.png)
+## 高可用性跨單位連線
 
-## <a name="highly-available-cross-premises-connectivity"></a>Highly Available Cross-Premises Connectivity
+若要為跨單位連線提供更好的可用性，有幾個選項可用︰
 
-To provide better availability for your cross premises connections, there are a couple of options available:
+- 多個內部部署 VPN 裝置
+- 主動-主動 Azure VPN 閘道
+- 兩者的組合
 
-- Multiple on-premises VPN devices
-- Active-active Azure VPN gateway
-- Combination of both
+### <a name = "activeactiveonprem"></a>多個內部部署 VPN 裝置
 
-### <a name="<a-name-=-"activeactiveonprem"></a>multiple-on-premises-vpn-devices"></a><a name = "activeactiveonprem"></a>Multiple on-premises VPN devices
+您可以使用內部部署網路中的多個 VPN 裝置連接到 Azure VPN 閘道，如下圖所示︰
 
-You can use multiple VPN devices from your on-premises network to connect to your Azure VPN gateway, as shown in the following diagram:
+![多個內部部署 VPN](./media/vpn-gateway-highlyavailable/multiple-onprem-vpns.png)
 
-![Multiple On-Premises VPN](./media/vpn-gateway-highlyavailable/multiple-onprem-vpns.png)
+此組態會提供多個作用中通道 (從同一個 Azure VPN 閘道到相同位置的內部部署裝置)。有一些需求和限制︰
 
-This configuration provides multiple active tunnels from the same Azure VPN gateway to your on-premises devices in the same location. There are some requirements and constraints:
+1. 您需要建立從 VPN 裝置至 Azure 的多個 S2S VPN 連線。當您從同一個內部部署網路的多個 VPN 裝置連接到 Azure 時，您需要為每個 VPN 裝置建立一個區域網路閘道，以及一個從 Azure VPN 閘道至區域網路閘道的連線。
 
-1. You need to create multiple S2S VPN connections from your VPN devices to Azure. When you connect multiple VPN devices from the same on-premises network to Azure, you need to create one local network gateway for each VPN device, and one connection from your Azure VPN gateway to the local network gateway.
+2. 對應到 VPN 裝置的區域網路閘道在 "GatewayIpAddress" 屬性中必須有唯一的公用 IP 位址。
 
-2. The local network gateways corresponding to your VPN devices must have unique public IP addresses in the "GatewayIpAddress" property.
+3. 此組態需要 BGP。代表 VPN 裝置的每個區域網路閘道都必須有在 "BgpPeerIpAddress" 屬性中指定的唯一 BGP 對等 IP 位址。
 
-3. BGP is required for this configuration. Each local network gateway representing a VPN device must have a unique BGP peer IP address specified in the "BgpPeerIpAddress" property.
+4. 每個區域網路閘道中的 AddressPrefix 屬性欄位不得重疊。您應該在 AddressPrefix 欄位中指定 /32 CIDR 格式的 "BgpPeerIpAddress"，例如 10.200.200.254/32。
 
-4. The AddressPrefix property field in each local network gateway must not overlap. You should specify the "BgpPeerIpAddress" in /32 CIDR format in the AddressPrefix field, for example, 10.200.200.254/32.
+5. 您應該使用 BGP 向您的 Azure VPN 閘道通告相同內部部署網路首碼的相同首碼，而流量會同時透過這些通道轉送。
 
-5. You should use BGP to advertise the same prefixes of the same on-premises network prefixes to your Azure VPN gateway, and the traffic will be forwarded through these tunnels simultaneously.
+6. 每個連線會計入 Azure VPN 閘道的通道數目上限，基本和標準 SKU 的上限為 10，而高效能 SKU 的上限為 30。
 
-6. Each connection is counted against the maximum number of tunnels for your Azure VPN gateway, 10 for Basic and Standard SKUs, and 30 for HighPerformance SKU. 
-
-In this configuration, the Azure VPN gateway is still in active-standby mode, so the same failover behavior and brief interruption will still happen as described [above](#activestandby). But this setup guards against failures or interruptions on your on-premises network and VPN devices.
+在此組態中，Azure VPN 閘道仍處於作用中-待命模式，因此，仍會發生如[上面](#activestandby)所述的相同容錯移轉行為和短暫中斷。但這項設定可防範內部部署網路和 VPN 裝置發生錯誤或中斷。
  
-### <a name="active-active-azure-vpn-gateway"></a>Active-active Azure VPN gateway
+### 主動-主動 Azure VPN 閘道
 
-You can now create an Azure VPN gateway in an active-active configuration, where both instances of the gateway VMs will establish S2S VPN tunnels to your on-premises VPN device, as shown the following diagram:
+您現在可以在主動-主動組態中建立 Azure VPN 閘道，其中兩個閘道 VM 執行個體將會對內部部署 VPN 裝置建立 S2S VPN 通道，如下圖所示︰
 
-![Active-Active](./media/vpn-gateway-highlyavailable/active-active.png)
+![主動-主動](./media/vpn-gateway-highlyavailable/active-active.png)
 
-In this configuration, each Azure gateway instance will have a unique public IP address, and each will establish an IPsec/IKE S2S VPN tunnel to your on-premises VPN device specified in your local network gateway and connection. Note that both VPN tunnels are actually part of the same connection. You will still need to configure your on-premises VPN device to accept or establish two S2S VPN tunnels to those two Azure VPN gateway public IP addresses.
+在此組態中，每個 Azure 閘道執行個體都會有唯一的公用 IP 位址，而每個執行個體會對在區域網路閘道與連線中指定的內部部署 VPN 裝置建立 IPsec/IKE S2S VPN 通道。請注意，這兩個 VPN 通道實際上屬於相同的連線。您仍必須設定內部部署 VPN 裝置，才能接受或建立對這兩個 Azure VPN 閘道公用 IP 位址的兩個 S2S VPN 通道。
 
-Because the Azure gateway instances are in active-active configuration, the traffic from your Azure virtual network to your on-premises network will be routed through both tunnels simultaneously, even if your on-premises VPN device may favor one tunnel over the other. Note though the same TCP or UDP flow will always traverse the same tunnel or path, unless a maintenance event happens on one of the instances.
+因為 Azure 閘道執行個體是在主動-主動組態中，所以從 Azure 虛擬網路到內部部署網路的流量會同時透過這兩個通道路由傳送，即使內部部署 VPN 裝置可能偏好其中一個通道亦然。請注意，除非其中一個執行個體發生維護事件，否則相同的 TCP 或 UDP 流量一律會周遊相同的通道或路徑。
 
-When a planned maintenance or unplanned event happens to one gateway instance, the IPsec tunnel from that instance to your on-premises VPN device will be disconnected. The corresponding routes on your VPN devices should be removed or withdrawn automatically so that the traffic will be switched over to the other active IPsec tunnel. On the Azure side, the switch over will happen automatically from the affected instance to the active instance.
+當一個閘道器執行個體發生計劃性維護或非計劃性事件時，從該執行個體至內部部署 VPN 裝置的 IPsec 通道將會中斷。VPN 裝置上的對應路由應會自動移除或撤銷，以便將流量切換到其他作用中 IPsec 通道。在 Azure 端，會從受影響的執行個體自動切換到作用中執行個體。
 
-### <a name="dual-redundancy:-active-active-vpn-gateways-for-both-azure-and-on-premises-networks"></a>Dual-redundancy: active-active VPN gateways for both Azure and on-premises networks
+### 雙重備援︰Azure 和內部部署網路的主動-主動 VPN 閘道
 
-The most reliable option is to combine the active-active gateways on both your network and Azure, as shown in the diagram below.
+最可靠的選項是結合網路和 Azure 上的主動-主動閘道，如下圖所示。
 
-![Dual Redundancy](./media/vpn-gateway-highlyavailable/dual-redundancy.png)
+![雙重備援](./media/vpn-gateway-highlyavailable/dual-redundancy.png)
 
-Here you create and setup the Azure VPN gateway in an active-active configuration, and create two local network gateways and two connections for your two on-premises VPN devices as described above. The result is a full mesh connectivity of 4 IPsec tunnels between your Azure virtual network and your on-premises network.
+您會在主動-主動組態中建立和設定 Azure VPN 閘道，並針對如上所述的兩個內部部署 VPN 裝置，建立兩個區域網路閘道和兩個連線。結果是 Azure 虛擬網路與內部部署網路之間有包含 4 個 IPsec 通道的完整網狀連線。
 
-All gateways and tunnels are active from the Azure side, so the traffic will be spread among all 4 tunnels simultaneously, although each TCP or UDP flow will again follow the same tunnel or path from the Azure side. Even though by spreading the traffic, you may see slightly better throughput over the IPsec tunnels, the primary goal of this configuration is for high availability. And due to the statistical nature of the spreading, it is difficult to provide the measurement on how different application traffic conditions will affect the aggregate throughput.
+所有閘道和通道都是從 Azure 端起作用，所以流量會同時分散於 4 個通道，而每個 TCP 或 UDP 流量會再次遵循出自 Azure 端的相同通道或路徑。即使分散流量，您可能會看到 IPsec 通道上的輸送量稍微變好，而此組態的主要目標是要達到高可用性。而且由於分散的統計特性，因此難以提供不同應用程式流量狀況對彙總輸送量有何影響的測量方式。
 
-This topology will require two local network gateways and two connections to support the pair of on-premises VPN devices, and BGP is required to allow the two connections to the same on-premises network. These requirements are the same as the [above](#activeactiveonprem). 
+此拓撲需要兩個區域網路閘道和兩個連線以支援成對的內部部署 VPN 裝置，而且需要 BGP 才能允許相同內部部署網路的兩個連線。這些需求與[上面](#activeactiveonprem)的需求相同。
 
-## <a name="highly-available-vnet-to-vnet-connectivity-through-azure-vpn-gateways"></a>Highly Available VNet-to-VNet Connectivity through Azure VPN Gateways
+## 透過 Azure VPN 閘道的高可用性 VNet 對 VNet 連線
 
-The same active-active configuration can also apply to Azure VNet-to-VNet connections. You can create active-active VPN gateways for both virtual networks, and connect them together to form the same full mesh connectivity of 4 tunnels between the two VNets, as shown in the diagram below:
+相同的主動-主動組態也適用於 Azure VNet 對 VNet 連線。您可以為兩個虛擬網路建立主動-主動 VPN 閘道，並將它們連在一起，以在兩個 VNet 之間形成包含 4 個通道的相同完整網狀連線，如下圖所示︰
 
-![VNet-to-VNet](./media/vpn-gateway-highlyavailable/vnet-to-vnet.png)
+![VNet 對 VNet](./media/vpn-gateway-highlyavailable/vnet-to-vnet.png)
 
-This ensures there are always a pair of tunnels between the two virtual networks for any planned maintenance events, providing even better availability. Even though the same topology for cross-premises connectivity requires two connections, the VNet-to-VNet topology shown above will need only one connection for each gateway. Additionally, BGP is optional unless transit routing over the VNet-to-VNet connection is required.
-
-
-## <a name="next-steps"></a>Next steps
-
-See [Configuring Active-Active VPN Gateways for Cross-Premises and VNet-to-VNet Connections](http://go.microsoft.com/fwlink/?LinkId=828726) for steps to configure active-active cross-premises and VNet-to-VNet connections.
+這可確保任何計劃性維護事件的兩個虛擬網路之間一律有一組通道，以提供更好的可用性。即使適用於跨單位連線的相同拓撲需要兩個連線，如上所示的 VNet 對 VNet 拓樸對每個閘道只需要一個連線。此外，除非透過 VNet 對 VNet 連線的傳輸路由是必要的，否則 BGP 是選擇性的。
 
 
+## 後續步驟
 
-<!--HONumber=Oct16_HO2-->
+如需設定主動-主動跨單位和 VNet 對 VNet 連線的步驟，請參閱[設定跨單位和 VNet 對 VNet 連線的主動-主動 VPN 閘道](http://go.microsoft.com/fwlink/?LinkId=828726)。
 
-
+<!---HONumber=AcomDC_0928_2016-->

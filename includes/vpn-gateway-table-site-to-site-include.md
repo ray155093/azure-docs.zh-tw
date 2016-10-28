@@ -1,17 +1,13 @@
-|  | **Classic Deployment**  | **Resource Manager Deployment** |
+| | **傳統部署** | **資源管理員部署** |
 |----------------------------------------|--------------|----------------------|
-| **Classic Portal**                     |[Article*](../articles/vpn-gateway/vpn-gateway-site-to-site-create.md) |  Not Supported |
-| **Azure Portal**                       | Supported**              | [Article](vpn-gateway-howto-site-to-site-resource-manager-portal.md)|
-| **PowerShell**               |[Article+](..articles/vpn-gateway/vpn-gateway-multi-site.md)          | [Article](..articles/vpn-gateway/vpn-gateway-create-site-to-site-rm-powershell.md)| 
+| **傳統入口網站** |[文章*](../articles/vpn-gateway/vpn-gateway-site-to-site-create.md) | 不支援 |
+| **Azure 入口網站** | 支援** | [文章](vpn-gateway-howto-site-to-site-resource-manager-portal.md)|
+| **PowerShell** |[文章+](..articles/vpn-gateway/vpn-gateway-multi-site.md) | [文章](..articles/vpn-gateway/vpn-gateway-create-site-to-site-rm-powershell.md)| 
 
-(*) denotes that the classic portal can only support creating one S2S VPN connection.
+(*) 表示傳統入口網站只能支援建立一個 S2S VPN 連線。
 
-(**) denotes that an end-to-end scenario is not yet available for the Azure portal.
+(**) 表示 Azure 入口網站尚無法使用端對端案例。
 
-(+) denotes that this article is written for multi-site connections.
+(+) 表示本文是針對多站台連線來進行撰寫。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

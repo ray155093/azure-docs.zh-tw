@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Create EAI Logic App using VETR in logic apps in Azure App Service | Microsoft Azure"
-   description="Validate, Encode and Transform features of BizTalk XML services"
+   pageTitle="在 Azure App Service 中使用邏輯應用程式內的 VETR 建立 EAI Logic Apps | Microsoft Azure"
+   description="BizTalk XML 服務的驗證、編碼和轉換功能"
    services="logic-apps"
    documentationCenter=".net,nodejs,java"
    authors="rajeshramabathiran"
@@ -17,104 +17,99 @@
    ms.author="rajram"/>
 
 
-
-# <a name="create-eai-logic-app-using-vetr"></a>Create EAI Logic App Using VETR
+# 使用 VETR 建立 EAI 邏輯應用程式
 
 [AZURE.INCLUDE [app-service-logic-version-message](../../includes/app-service-logic-version-message.md)]
 
-Most Enterprise Application Integration (EAI) scenarios mediate data between a source and a destination. Such scenarios often have a common set of requirements:
+大部分的企業應用程式整合 (EAI) 案例可在來源與目的地之間傳達資料。此種案例通常會有一組常見的需求：
 
-- Ensure that data from different systems are correctly formatted.
-- Perform “look-up” on incoming data to make decisions.
-- Convert data from one format to another. For example, convert data from a CRM system's data format to an ERP system's data format.
-- Route data to desired application or system.
+- 確定來自不同系統的資料格式正確。
+- 對內送資料執行「查閱」動作以便制定決策。
+- 將資料從一種格式轉換成另一種格式。例如，將資料從 CRM 系統的資料格式轉換成 ERP 系統的資料格式。
+- 將資料路由到所需的應用程式或系統。
 
-This article shows you a common integration pattern: "one-way message mediation" or VETR (Validate, Enrich, Transform, Route). The VETR pattern mediates data between a source entity and a destination entity. Usually the source and destination are data sources.
+本文將說明常見的整合模式：「單向訊息中繼」，即 VETR (驗證、擴充、轉換、路由)。VETR 模式會在來源實體與目的地實體之間傳達資料。通常來源和目的地為資料來源。
 
-Consider a website that accepts orders. Users post orders to the system using HTTP. Behind the scenes, the system validates the incoming data for correctness, normalizes it, and persists it in a Service Bus queue for further processing. The system takes orders off the queue, expecting it in a particular format. Thus, the end-to-end flow is:
+想像一個接受訂單的網站。使用者會使用 HTTP 將訂單張貼至系統。系統會在幕後驗證內送資料的正確性、將其正規化，並將它保存在服務匯流排佇列中以進行後續處理。系統會將訂單從佇列中移除，預期它會採用特定的格式。因此：端對端流程會是：
 
-**HTTP** → **Validate** → **Transform** → **Service Bus**
+**HTTP** → **驗證** → **轉換** → **服務匯流排**
 
-![Basic VETR Flow][1]
+![基本 VETR 流程][1]
 
-The following BizTalk API Apps help build this pattern:
+下列的 BizTalk API Apps 可協助您建立這種模式：
 
-* **HTTP Trigger** - Source to trigger message event
-* **Validate** - Validates correctness of incoming data
-* **Transform** - Transforms data from incoming format to format required by downstream system
-* **Service Bus Connector** - Destination entity where data is sent
-
-
-## <a name="constructing-the-basic-vetr-pattern"></a>Constructing the basic VETR pattern
-### <a name="the-basics"></a>The basics
-
-In the Azure portal, select **+New**, select **Web + Mobile**, and then select **Logic App**. Choose a name, location, subscription, resource group, and location that works. Resource groups act as containers for your apps; all of the resources for your app go to the same resource group.
-
-Next, let's add triggers and actions.
+* **HTTP 觸發程序** - 觸發訊息事件的來源
+* **驗證** - 驗證內送資料的正確性
+* **轉換** - 將資料從內送格式轉換成下游系統所需的格式
+* **服務匯流排連接器** - 傳送資料的目的地實體
 
 
-## <a name="add-http-trigger"></a>Add HTTP Trigger
-1. In **Logic App Templates**, select **Create from Scratch**.
-1. Select **HTTP Listener** from the gallery to create a new listener. Call it **HTTP1**.
-2. Set the **Send response automatically?** setting to false. Configure the trigger action by setting _HTTP Method_ to _POST_ and setting _Relative URL_ to _/OneWayPipeline_:  
-    ![HTTP Trigger][2]
-3. Select the green checkmark to complete the trigger.
+## 建構基本的 VETR 模式
+### 基本概念
 
-## <a name="add-validate-action"></a>Add Validate Action
+在 Azure 入口網站中，依序選取 [+ 新增]、[Web + 行動] 和 [邏輯應用程式]。選擇名稱、位置、訂閱、資源群組以及運作位置。資源群組可做為應用程式的容器使用，且應用程式的所有資源都屬於相同的資源群組。
 
-Now, let’s enter actions that run whenever the trigger fires — that is, whenever a call is received on the HTTP endpoint.
-
-1. Add **BizTalk XML Validator** from the gallery and name it _(Validate1)_ to create an instance.
-2. Configure an XSD schema to validate the incoming XML messages. Select the _Validate_ action and select _triggers(‘httplistener’).outputs.Content_ as the value for the _inputXml_ parameter.
-
-Now, the validate action is the first action after the HTTP listener: 
-
-![BizTalk XML Validator][3]
-
-Similarly, let's add the rest of the actions. 
-
-## <a name="add-transform-action"></a>Add Transform action
-Let's configure transforms to normalize the incoming data.
-
-1. Add **BizTalk Transform Service** from the gallery.
-2. To configure a transform to transform the incoming XML messages, select the **Transform** action as the action to carry out when this API is called. Select ```triggers(‘httplistener’).outputs.Content``` as the value for _inputXml_. *Map* is an optional parameter since the incoming data is matched with all configured transforms, and only those that match the schema are applied.
-3. Lastly, the Transform runs only if Validate succeeds. To configure this condition, select the gear icon on the top right, and select _Add a condition to be met_. Set the condition to ```equals(actions('xmlvalidator').status,'Succeeded')```:  
-
-![BizTalk Transforms][4]
+接下來，讓我們新增觸發程序和動作。
 
 
-## <a name="add-service-bus-connector"></a>Add Service Bus Connector
-Next, let's add the destination — a Service Bus Queue — to write data to.
+## 新增 HTTP 觸發程序
+1. 在 [邏輯應用程式範本] 中，選取 [從頭建立]。
+1. 從組件庫中選取 [**HTTP 接聽程式**] 以建立新的接聽程式。稱它為 **HTTP1**。
+2. 將 [是否自動傳送回應？] 設定設為 false。透過將 [HTTP 方法]設定為 [POST]，並將 [相對 URL] 設定為 _/OneWayPipeline_，來設定觸發程序動作：![HTTP 觸發程序][2]
+3. 選取綠色打勾記號來完成觸發程序。
 
-1. Add a **Service Bus Connector** from the gallery. Set the **Name** to _Servicebus1_, set **Connection String** to the connection string to your service bus instance, set **Entity Name** to _Queue_, and skip **Subscription name**.
-2. Select the **Send Message** action and set the **Content** field for the action to _actions('transformservice').outputs.OutputXml_.
-3. Set the **Content Type** field to *application/xml*:  
+## 加入驗證動作
 
-![Service Bus][5]
+現在，讓我們輸入每當引發觸發程序時 (亦即，每當 HTTP 端點上收到呼叫時) 所要執行的動作。
+
+1. 從組件庫中新增 **BizTalk XML 驗證器**，並將它命名為 _(Validate1)_ 以建立執行個體。
+2. 設定 XSD 結構描述來驗證內送的 XML 訊息。選取 _Validate_ 動作，然後選取 _triggers(‘httplistener’).outputs.Content_ 做為 _inputXml_ 參數的值。
+
+目前，驗證動作是 HTTP 接聽程式之後的第一個動作：
+
+![BizTalk XML 驗證器][3]
+
+讓我們以類似的方式加入其餘動作。
+
+## 新增轉換動作
+我們將設定可標準化內送資料的轉換。
+
+1. 從資源庫中新增 [BizTalk 轉換服務]。
+2. 若要設定轉換以轉換內送 XML 訊息，請選取 [轉換] 動作做為呼叫這個 API 時要執行的動作。選取 ```triggers(‘httplistener’).outputs.Content``` 做為 [inputXml] 的值。因為內送資料符合所有已設定的轉換，因此*對應*會是選擇性參數，而且僅適用於符合結構描述的對應。
+3. 最後，只有當驗證成功時才會執行轉換。若要設定此條件，請選取右上方的齒輪圖示，然後選取 [新增要符合的條件]。將條件設為 ```equals(actions('xmlvalidator').status,'Succeeded')```：
+
+![BizTalk 轉換][4]
 
 
-## <a name="send-http-response"></a>Send HTTP Response
-Once pipeline processing is done, send back an HTTP response for both success and failure with the following steps:
+## 新增服務匯流排連接器
+接下來，我們將新增可寫入資料的目的地 (服務匯流排佇列)。
 
-1. Add an **HTTP Listener** from the gallery and select the **Send HTTP Response** action.
-2. Set **Response ID** to Send *Message*.
-2. Set **Response Content** to *Pipeline processing completed*.
-3. **Response Status Code** to *200* to indicate HTTP 200 OK.
-4. Select the drop down menu on the top right, and select **Add a condition to be met**.  Set the condition to the following expression:  
-    ```@equals(actions('azureservicebusconnector').status,'Succeeded')```  <br/>
-5. Repeat these steps to send an HTTP response on failure as well. Change **Condition** to the following expression:  
-```@not(equals(actions('azureservicebusconnector').status,'Succeeded'))``` <br/>
-6. Select **OK** then **Create**.
+1. 從組件庫新增 [**服務匯流排連接器**]。將 **Name** 設為 _Servicebus1_、將 **Connection String** 設為服務匯流排執行個體的連接字串、將 **Entity Name** 設為 _Queue_，然後略過 **Subscription name**。
+2. 選取 [傳送訊息] 動作，並將動作的 [內容] 欄位設為 _actions('transformservice').outputs.OutputXml_。
+3. 將 [內容類型] 欄位設為 [應用程式/xml]：
+
+![服務匯流排][5]
+
+
+## 傳送 HTTP 回應
+完成管線處理後，以下列步驟傳回成功和失敗的 HTTP 回應：
+
+1. 從組件庫新增 [**HTTP 接聽程式**]，然後選取 [**傳送 HTTP 回應**] 動作。
+2. 設定用以傳送*訊息*的 [回應識別碼]。
+2. 將 [回應內容] 設為 [已完成管線處理]。
+3. [回應狀態碼] 為 *200* 表示 HTTP 200 沒問題。
+4. 選取右上方的下拉式功能表，然後選取 [新增要符合的條件]。將條件設為下列運算式：```@equals(actions('azureservicebusconnector').status,'Succeeded')``` <br/>
+5. 您也可以重複上述步驟來傳送失敗的 HTTP 回應。變更 [條件] 為下列運算式：```@not(equals(actions('azureservicebusconnector').status,'Succeeded'))``` <br/>
+6. 依序選取 [確定] 和 [建立]。
 
 
 
-## <a name="completion"></a>Completion
-Every time someone sends a message to the HTTP endpoint, it triggers the app and executes the actions you just created. To manage any such logic apps you create, select **Browse** in the Azure Portal, and select **Logic Apps**. Select your app to see more information.
+## 完成
+每次有人傳送訊息至 HTTP 端點時，它會觸發應用程式並執行您剛建立的動作。若要管理任何您所建立的此類邏輯應用程式，請在 Azure 入口網站中依序選取 [瀏覽] 和 [Logic Apps]。選取您的 App，以查看詳細資訊。
 
-Some helpful topics:
+一些有用的主題：
 
-[Manage and Monitor your API Apps and Connectors](app-service-logic-monitor-your-connectors.md)  <br/>
-[Monitor your Logic Apps](app-service-logic-monitor-your-logic-apps.md)
+[管理和監視 API Apps 和連接器](app-service-logic-monitor-your-connectors.md) <br/> [監視 Logic Apps](app-service-logic-monitor-your-logic-apps.md)
 
 <!--image references -->
 [1]: ./media/app-service-logic-create-EAI-logic-app-using-VETR/BasicVETR.PNG
@@ -123,8 +118,4 @@ Some helpful topics:
 [4]: ./media/app-service-logic-create-EAI-logic-app-using-VETR/BizTalkTransforms.PNG
 [5]: ./media/app-service-logic-create-EAI-logic-app-using-VETR/AzureServiceBus.PNG
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

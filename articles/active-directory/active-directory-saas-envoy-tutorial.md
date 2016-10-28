@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="Tutorial: Azure Active Directory integration with Envoy | Microsoft Azure" 
-    description="Learn how to use Envoy with Azure Active Directory to enable single sign-on, automated provisioning, and more!" 
+    pageTitle="教學課程：Azure Active Directory 與 Envoy 整合 | Microsoft Azure" 
+    description="了解如何使用 Envoy 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -11,137 +11,128 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="09/29/2016" 
+    ms.date="07/09/2016" 
     ms.author="jeedes" />
 
-
-#<a name="tutorial:-azure-active-directory-integration-with-envoy"></a>Tutorial: Azure Active Directory integration with Envoy
+#教學課程：Azure Active Directory 與 Envoy 整合
   
-The objective of this tutorial is to show the integration of Azure and Envoy.  
-The scenario outlined in this tutorial assumes that you already have the following items:
+本教學課程的目的是要示範 Azure 與 Envoy 的整合。本教學課程中說明的案例假設您已經具有下列項目：
 
--   A valid Azure subscription
--   A Envoy tenant
+-   有效的 Azure 訂閱
+-   Envoy 租用戶
   
-After completing this tutorial, the Azure AD users you have assigned to Envoy will be able to single sign into the application at your Envoy company site (service provider initiated sign on), or using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+完成本教學課程之後，您指派給 Envoy 的 Azure AD 使用者就能夠單一登入您 Envoy 公司網站 (服務提供者起始登入) 的應用程式，或是使用[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
   
-The scenario outlined in this tutorial consists of the following building blocks:
+本教學課程中說明的案例由下列建置組塊組成：
 
-1.  Enabling the application integration for Envoy
-2.  Configuring single sign-on
-3.  Configuring user provisioning
-4.  Assigning users
+1.  啟用 Envoy 的應用程式整合
+2.  設定單一登入
+3.  設定使用者佈建
+4.  指派使用者
 
-![Scenario](./media/active-directory-saas-envoy-tutorial/IC776759.png "Scenario")
-##<a name="enabling-the-application-integration-for-envoy"></a>Enabling the application integration for Envoy
+![案例](./media/active-directory-saas-envoy-tutorial/IC776759.png "案例")
+##啟用 Envoy 的應用程式整合
   
-The objective of this section is to outline how to enable the application integration for Envoy.
+本節的目的是要說明如何啟用 Envoy 的應用程式整合。
 
-###<a name="to-enable-the-application-integration-for-envoy,-perform-the-following-steps:"></a>To enable the application integration for Envoy, perform the following steps:
+###若要啟用 Envoy 的應用程式整合，請執行下列步驟：
 
-1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-envoy-tutorial/IC700993.png "Active Directory")
 
-2.  From the **Directory** list, select the directory for which you want to enable directory integration.
+2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3.  To open the applications view, in the directory view, click **Applications** in the top menu.
+3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
 
-    ![Applications](./media/active-directory-saas-envoy-tutorial/IC700994.png "Applications")
+    ![應用程式](./media/active-directory-saas-envoy-tutorial/IC700994.png "應用程式")
 
-4.  Click **Add** at the bottom of the page.
+4.  按一下頁面底部的 [新增]。
 
-    ![Add application](./media/active-directory-saas-envoy-tutorial/IC749321.png "Add application")
+    ![新增應用程式](./media/active-directory-saas-envoy-tutorial/IC749321.png "新增應用程式")
 
-5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
-    ![Add an application from gallerry](./media/active-directory-saas-envoy-tutorial/IC749322.png "Add an application from gallerry")
+    ![從組件庫新增應用程式](./media/active-directory-saas-envoy-tutorial/IC749322.png "從組件庫新增應用程式")
 
-6.  In the **search box**, type **Envoy**.
+6.  在**搜尋方塊**中，輸入 **Envoy**。
 
-    ![Application gallery](./media/active-directory-saas-envoy-tutorial/IC776760.png "Application gallery")
+    ![應用程式庫](./media/active-directory-saas-envoy-tutorial/IC776760.png "應用程式庫")
 
-7.  In the results pane, select **Envoy**, and then click **Complete** to add the application.
+7.  在結果窗格中，選取 [Envoy]，然後按一下 [完成] 以加入應用程式。
 
     ![Envoy](./media/active-directory-saas-envoy-tutorial/IC776777.png "Envoy")
-##<a name="configuring-single-sign-on"></a>Configuring single sign-on
+##設定單一登入
   
-The objective of this section is to outline how to enable users to authenticate to Envoy with their account in Azure AD using federation based on the SAML protocol.  
-Configuring single sign-on for Envoy requires you to retrieve a thumbprint value from a certificate.  
-If you are not familiar with this procedure, see [How to retrieve a certificate's thumbprint value](http://youtu.be/YKQF266SAxI)
+本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶驗證至 Envoy。設定 Envoy 的單一登入需要您從憑證擷取指紋值。如果您不熟悉這個程序，請參閱[如何擷取憑證的指紋值](http://youtu.be/YKQF266SAxI)
 
-###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
+###若要設定單一登入，請執行下列步驟：
 
-1.  In the Azure classic portal, on the **Envoy** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
+1.  在 Azure 傳統入口網站的 [Envoy] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
-    ![Enable single sign-on](./media/active-directory-saas-envoy-tutorial/IC776778.png "Enable single sign-on")
+    ![啟用單一登入](./media/active-directory-saas-envoy-tutorial/IC776778.png "啟用單一登入")
 
-2.  On the **How would you like users to sign on to Envoy** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
+2.  在 [您希望使用者如何登入 Envoy] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
 
-    ![Configure single sign-on](./media/active-directory-saas-envoy-tutorial/IC776779.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-envoy-tutorial/IC776779.png "設定單一登入")
 
-3.  On the **Configure App URL** page, in the **Envoy Sign In URL** textbox, type your URL using the following pattern "*https://\<tenant-name\>.Envoy.com*", and then click **Next**.
+3.  在 [設定應用程式 URL] 頁面的 [Envoy 登入 URL] 文字方塊中，使用下列模式輸入您的 URL："*https://\<租用戶名稱>.Envoy.com*"，然後按 [下一步]。
 
-    ![Configure app URL](./media/active-directory-saas-envoy-tutorial/IC776780.png "Configure app URL")
+    ![設定應用程式 URL](./media/active-directory-saas-envoy-tutorial/IC776780.png "設定應用程式 URL")
 
-4.  On the **Configure single sign-on at Envoy** page, to download your certificate, click **Download certificate**, and then save the certificate file locally as **c:\\Envoy.cer**.
+4.  在 [設定在 Envoy 單一登入] 頁面上，按 [下載憑證] 以下載您的憑證，然後在本機電腦上將憑證檔案儲存為 **c:\\Envoy.cer**。
 
-    ![Configure single sign-on](./media/active-directory-saas-envoy-tutorial/IC776781.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-envoy-tutorial/IC776781.png "設定單一登入")
 
-5.  In a different web browser window, log into your Envoy company site as an administrator.
+5.  在不同的網頁瀏覽器視窗中，以系統管理員身分登入您的 Envoy 公司網站。
 
-6.  In the toolbar on the top, click **Settings**.
+6.  在頂端工具列中，按一下 [設定]。
 
     ![Envoy](./media/active-directory-saas-envoy-tutorial/IC776782.png "Envoy")
 
-7.  Click **Company**.
+7.  按一下 [公司]。
 
-    ![Company](./media/active-directory-saas-envoy-tutorial/IC776783.png "Company")
+    ![公司](./media/active-directory-saas-envoy-tutorial/IC776783.png "公司")
 
-8.  Click **SAML**.
+8.  按一下 [SAML]。
 
     ![SAML](./media/active-directory-saas-envoy-tutorial/IC776784.png "SAML")
 
-9.  In the **SAML Authentication** configuration section, perform the following steps:
+9.  在 [SAML 驗證] 組態區段中，執行下列步驟：
 
-    ![SAML authentication](./media/active-directory-saas-envoy-tutorial/IC776785.png "SAML authentication")
+    ![SAML 驗證](./media/active-directory-saas-envoy-tutorial/IC776785.png "SAML 驗證")
 
-    >[AZURE.NOTE] The value for the HQ location ID is auto generated by the application.
+    >[AZURE.NOTE] 總部位置識別碼的值是由應用程式自動產生。
 
-    1.  Copy the **Thumbprint** value from the exported certificate, and then paste it into the **Fingerprint** textbox.  
+    1.  從匯出的憑證複製**指紋**值，然後將它貼入 [指紋] 文字方塊。
 
-        >[AZURE.TIP] For more details, see [How to retrieve a certificate's thumbprint value](http://youtu.be/YKQF266SAxI)
+        >[AZURE.TIP] 如需詳細資訊，請參閱[如何擷取憑證的指紋值](http://youtu.be/YKQF266SAxI)。
 
-    2.  In the Azure classic portal, on the **Configure single sign-on at Envoy** dialog page, copy the **SAML SSO URL** value, and then paste it into the **Identity Provider HTTP SAML URL** textbox.
-    3.  Click **Save changes**.
+    2.  在 Azure 傳統入口網站的 [在 Envoy 設定單一登入] 對話頁面上，複製 [SAML SSO URL] 值，然後將它貼至 [識別提供者 HTTP SAML URL] 文字方塊中。
+    3.  按一下 [儲存變更]。
 
-10. On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
+10. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
-    ![Configure single sign-on](./media/active-directory-saas-envoy-tutorial/IC776786.png "Configure single sign-on")
-##<a name="configuring-user-provisioning"></a>Configuring user provisioning
+    ![設定單一登入](./media/active-directory-saas-envoy-tutorial/IC776786.png "設定單一登入")
+##設定使用者佈建
   
-There is no action item for you to configure user provisioning to Envoy.  
-When an assigned user tries to log into Envoy using the access panel, Envoy checks whether the user exists.  
-If there is no user account available yet, it is automatically created by Envoy.
-##<a name="assigning-users"></a>Assigning users
+沒有動作項目可讓您設定 Envoy 使用者佈建。當指派的使用者透過存取面板嘗試登入 Envoy 時，Envoy 會檢查使用者是否存在。如果尚無可用的使用者帳戶，Envoy 會自動予以建立。
+##指派使用者
   
-To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
+若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-###<a name="to-assign-users-to-envoy,-perform-the-following-steps:"></a>To assign users to Envoy, perform the following steps:
+###若要指派使用者給 Envoy，請執行下列步驟：
 
-1.  In the Azure classic portal, create a test account.
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
-2.  On the **Envoy **application integration page, click **Assign users**.
+2.  在 [Envoy] 應用程式整合頁面上，按一下 [指派使用者]。
 
-    ![Assign users](./media/active-directory-saas-envoy-tutorial/IC776787.png "Assign users")
+    ![指派使用者](./media/active-directory-saas-envoy-tutorial/IC776787.png "指派使用者")
 
-3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
+3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
 
-    ![Yes](./media/active-directory-saas-envoy-tutorial/IC767830.png "Yes")
+    ![是](./media/active-directory-saas-envoy-tutorial/IC767830.png "是")
   
-If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0713_2016-->

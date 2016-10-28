@@ -1,9 +1,9 @@
 <properties 
-   pageTitle="Learn about the latest Azure Guest OS Releases | Microsoft Azure" 
-   description="The latest release news and SDK compatibility for Azure Cloud Services Guest OS." 
+   pageTitle="了解最新的 Azure 客體 OS 版次 | Microsoft Azure" 
+   description="Azure 雲端服務客體作業系統的發行最新消息和 SDK 相容性。" 
    services="cloud-services" 
    documentationCenter="na" 
-   authors="raiye" 
+   authors="yuemlu" 
    manager="timlt" 
    editor=""/>
 
@@ -13,204 +13,200 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="tbd" 
-   ms.date="10/18/2016"
+   ms.date="07/13/2016"
    ms.author="raiye"/>
 
+# Azure 客體 OS 版次與 SDK 相容性矩陣
+提供適用於雲端服務的最新 Azure 客體作業系統版次的最新資訊。此資訊協助您在客體 OS停用之前規劃升級路徑。如果您設定角色來使用「自動化」客體 OS 更新，如 [Azure 客體 OS 更新設定][]所述，則不一定要閱讀此頁面。
 
-# <a name="azure-guest-os-releases-and-sdk-compatibility-matrix"></a>Azure Guest OS releases and SDK compatibility matrix
-Provides you with up-to-date information about the latest Azure Guest OS releases for Cloud Services. This information will help you plan your upgrade path before a Guest OS is disabled. If you configure your roles to use *automatic* Guest OS updates as described in [Azure Guest OS Update Settings][], it is not vital that you read this page.
-
-> [AZURE.IMPORTANT] This page applies to Cloud Services web and worker roles, which run on top of a Guest OS. It does **not apply** to IaaS Virtual Machines. 
+> [AZURE.IMPORTANT] 此頁面適用於客體作業系統上執行的雲端服務 Web 角色和背景工作角色。不適用於 IaaS 虛擬機器。
 
 <!-- -->
 
-> [AZURE.TIP] Subscribe to the [Guest OS Update RSS Feed][rss] to receive the most timely notification on all Guest OS changes.
+> [AZURE.TIP] 訂閱[客體作業系統更新 RSS 摘要][rss]，以接收所有客體作業系統變更的最及時性通知。
 
-Unsure about what the Guest OS is or how the Guest OS releases work? Read [this](#how-it-works) section.
+不確定客體 OS 為何或客體 OS 版次如何工作？ 請閱讀[本節內容](#how-it-works)。
 
-## <a name="news-updates"></a>News updates
-###### <a name="**september-13-2016**"></a>**September 13 2016**
-September Guest OS rollout is starting September 13 2016, and projected to be released on October 13 2016.
+## 新聞更新
+###### **2016 年 9 月 13 日**
+9 月客體 OS 的首度發行期間從 2016 年 9 月 13 日開始，預訂的正式發行日為 2016 日 10 月 13 日。
 
-###### <a name="**august-9-2016**"></a>**August 9 2016**
-August Guest OS rollout is starting August 9 2016, and projected to be released on September 8 2016. 
+###### **2016 年 8 月 9 日**
+8 月客體 OS 於 2016 年 8 月 9 日首度發行，並計畫於 2016 年 9 月 8 日發行。
 
-###### <a name="**july-13-2016**"></a>**July 13 2016**
-July Guest OS rollout is starting July 13 2016, and projected to be released on August 12 2016. 
+###### **2016 年 7 月 13 日**
+7 月的客體 OS 發行期間從 2016 年 7 月 13 日開始，預計於 2016 日 8 月 12 日正式發行。
 
-###### <a name="**june-15-2016**"></a>**June 15 2016**
-June Guest OS rollout is starting June 15 2016, and projected to be released on July 14 2016. 
+###### **2016 年 6 月 15 日**
+6 月的客體 OS 的首度發行期間從 2016 年 6 月 15 日開始，預訂的正式發行日為 2016 日 7 月 14 日。
 
-###### <a name="**may-17-2016**"></a>**May 17 2016**
-May Guest OS rollout is starting May 17 2016, and projected to be released on June 10 2016. 
+###### **2016 年 5 月 17 日**
+5 月的客體 OS 的首度發行期間從 2016 年 5 月 17 日開始，預訂的正式發行日為 2016 日 6 月 10 日。
 
-###### <a name="**april-18-2016**"></a>**April 18 2016**
-April Guest OS rollout is starting April 18 2016, and projected to be released on May 12 2016. 
+###### **2016 年 4 月 18 日**
+4 月的客體 OS 的度發行期間從 2016 年 4 月 18 日開始，預訂發行日為 2016 日 5 月 12 日。
 
-###### <a name="**march-14-2016**"></a>**March 14 2016**
-March Guest OS rollout is starting March 14 2016, and projected to be released on April 8 2016. 
+###### **2016 年 3 月 14 日**
+3 月的客體 OS 的首度發行期間從 2016 年 3 月 14 日開始，預訂發行日為 2016 日 4 月 8 日。
 
-###### <a name="**february-22-2016**"></a>**February 22 2016**
-February Guest OS rollout is starting February 22 2016, and projected to be released on March 9 2016.
+###### **2016 年 2 月 22 日**
+2 月客體 OS 的首度發行期間從 2016 年 2 月 22 日開始，預訂發行日為 2016 年 3 月 9 日。
 
-###### <a name="**january-18-2016**"></a>**January 18 2016**
-January Guest OS rollout is starting January 18 2016, and projected to be released on February 12 2016.
+###### **2016 年 1 月 18 日**
+1 月客體 OS 的首度發行期間從 2016 年 1 月 18 日開始，預訂發行日為 2016 年 2 月 12 日。
 
-###### <a name="**january-4-2016**"></a>**January 4 2016**
-November 201511-02 Guest OS was released on January 4, 2016 for deployment. This OS version is not set as the default OS for automatic update, so the provisioning time of Guest OS deployment to November 201511-02 OS version would be slightly longer. 
+###### **2016 年 1 月 4 日**
+11 月 201511-02 客體 OS 已在 2016 年 1 月 4 日發行以供部署。此作業系統版本並未設定為自動更新的預設作業系統，因此將客體 OS 部署至 11 月 201511-02 作業系統版本的佈建時間會略為拉長。
 
-## <a name="releases"></a>Releases
+## 版次
 
-## <a name="family-4-releases"></a>Family 4 releases
+## 系列 4 版次
 **Windows Server 2012 R2**
 
-Supports .NET 4.0, 4.5, 4.5.1, 4.5.2
+支援 .NET 4.0、4.5、4.5.1、4.5.2
 
->[AZURE.NOTE] Dates with a * are subject to change
+>[AZURE.NOTE] 具有 * 的日期可能會變更
 
-| Configuration String           | Release date    | Disable date  | Expired date |
+| 組態字串 | 發行日期 | 停用日期 | 到期日期 |
 | ------------------------------ | --------------- | ------------- | ---- |
-| WA-GUEST-OS-4.36_201609-01     | Oct 13 2016     | Post 4.38     | TBD |
-| WA-GUEST-OS-4.35_201608-01     | Sept 13 2016    | Post 4.37     | TBD |
-| WA-GUEST-OS-4.34_201607-01     | Aug 8 2016      | Post 4.36     | TBD |
-| WA-GUEST-OS-4.33_201606-01     | July 13 2016    | Oct 13 2016   | TBD |
-| WA-GUEST-OS-4.32_201605-01     | June 10 2016    | Sept 8 2016   | TBD |
-| WA-GUEST-OS-4.31_201604-01     | May 2 2016      | Aug 13 2016   | TBD |
-| WA-GUEST-OS-4.30_201603-01     | April 7 2016    | July 10 2016  | TBD |
-| WA-GUEST-OS-4.29_201602-02     | March 12 2016   | June 2 2016   | TBD |
-| WA-GUEST-OS-4.28_201601-01     | Feb 12 2016     | May 7 2016    | TBD | 
-| WA-GUEST-OS-4.27_201512-01     | Jan 12 2016     | April 12 2016 | TBD |
-| ~~WA-GUEST-OS-4.26_201511-02~~ | Jan 4 2016      | March 12 2016 | TBD |
-| ~~WA-GUEST-OS-4.26_201511-01~~ | Dec 10 2015     | March 12 2016 | TBD |
-| ~~WA-GUEST-OS-4.25_201510-01~~ | Nov 6 2015      | Feb 12 2016   | TBD |
-| ~~WA-GUEST-OS-4.24_201509-01~~ | Oct 1 2015      | Jan 10 2016   | TBD |
-| ~~WA-GUEST-OS-4.23_201508-02~~ | Sep 9 2015      | Dec 6 2015    | TBD |
-| ~~WA-GUEST-OS-4.22_201507-02~~ | Aug 7 2015      | Nov 1 2015    | TBD |
-| ~~WA-GUEST-OS-4.21_201506-01~~ | July 9 2015     | Oct 9 2015    | TBD |
-| ~~WA-GUEST-OS-4.20_201505-02~~ | June 12 2015    | Sep 7 2015    | TBD |
-| ~~WA-GUEST-OS-4.19_201504-01~~ | April 17 2015   | Aug 9 2015    | TBD |
+| WA-GUEST-OS-4.36\_201609-01 | 2016 年 10 月 13 日 | Post 4.38 | TBD |
+| WA-GUEST-OS-4.35\_201608-01 | 2016 年 9 月 13 日 | Post 4.37 | TBD |
+| WA-GUEST-OS-4.34\_201607-01 | 2016 年 8 月 8 日 | Post 4.36 | TBD |
+| WA-GUEST-OS-4.33\_201606-01 | 2016 年 7 月 13 日 | 2016 年 10 月 13 日 | TBD |
+| WA-GUEST-OS-4.32\_201605-01 | 2016 年 6 月 10 日 | 2016 年 9 月 8 日 | TBD |
+| WA-GUEST-OS-4.31\_201604-01 | 2016 年 5 月 2 日 | 2016 年 8 月 13 日 | TBD |
+| WA-GUEST-OS-4.30\_201603-01 | 2016 年 4 月 7 日 | 2016 年 7 月 10 日 | TBD |
+| WA-GUEST-OS-4.29\_201602-02 | 2016 年 3 月 12 日 | 2016 年 6 月 2 日 | TBD |
+| WA-GUEST-OS-4.28\_201601-01 | 2016 年 2 月 12 日 | 2016 年 5 月 7 日 | TBD | 
+| WA-GUEST-OS-4.27\_201512-01 | 2016 年 1 月 12 日 | 2016 年 4 月 12 日 | TBD |
+| ~~WA-GUEST-OS-4.26\_201511-02~~ | 2016 年 1 月 4 日 | 2016 年 3 月 12 日 | TBD |
+| ~~WA-GUEST-OS-4.26\_201511-01~~ | 2015 年 12 月 10 日 | 2016 年 3 月 12 日 | TBD |
+| ~~WA-GUEST-OS-4.25\_201510-01~~ | 2015 年 11 月 6 日 | 2016 年 2 月 12 日 | TBD |
+| ~~WA-GUEST-OS-4.24\_201509-01~~ | 2015 年 10 月 1 日 | 2016 年 1 月 10 日 | TBD |
+| ~~WA-GUEST-OS-4.23\_201508-02~~ | 2015 年 9 月 9 日 | 2015 年 12 月 6 日 | TBD |
+| ~~WA-GUEST-OS-4.22\_201507-02~~ | 2015 年 8 月 7 日 | 2015 年 11 月 1 日 | TBD |
+| ~~WA-GUEST-OS-4.21\_201506-01~~ | 2015 年 7 月 9 日 | 2015 年 10 月 9 日 | TBD |
+| ~~WA-GUEST-OS-4.20\_201505-02~~ | 2015 年 6 月 12 日 | 2015 年 9 月 7 日 | TBD |
+| ~~WA-GUEST-OS-4.19\_201504-01~~ | 2015 年 4 月 17 日 | 2015 年 8 月 9 日 | TBD |
 
-## <a name="family-3-releases"></a>Family 3 releases
+## 系列 3 版次
 
 **Windows Server 2012**
 
-Supports .NET 4.0, 4.5, 4.5.1, 4.5.2
+支援 .NET 4.0、4.5、4.5.1、4.5.2
 
->[AZURE.NOTE] Dates with a * are subject to change
+>[AZURE.NOTE] 具有 * 的日期可能會變更
 
-| Configuration String           | Release date   | Disable date  | Expired date |
+| 組態字串 | 發行日期 | 停用日期 | 到期日期 |
 | ------------------------------ | -------------- | ------------- | --- |
-| WA-GUEST-OS-3.43_201609-01     | Oct 13 2016    | Post 3.45     | TBD |
-| WA-GUEST-OS-3.42_201608-01     | Sept 13 2016   | Post 3.44     | TBD |
-| WA-GUEST-OS-3.41_201607-01     | Aug 8 2016     | Post 3.43     | TBD |
-| WA-GUEST-OS-3.40_201606-01     | July 13 2016   | Oct 13 2016   | TBD |
-| WA-GUEST-OS-3.39_201605-01     | June 10 2016   | Sept 8 2016   | TBD |
-| WA-GUEST-OS-3.38_201604-01     | May 2 2016     | Aug 13 2016   | TBD |
-| WA-GUEST-OS-3.37_201603-01     | April 7 2016   | July 10 2016  | TBD |
-| WA-GUEST-OS-3.36_201602-02     | March 12 2016  | June 2 2016   | TBD |
-| WA-GUEST-OS-3.35_201601-01     | Feb 12 2016    | May 7 2016    | TBD |
-| WA-GUEST-OS-3.34_201512-01     | Jan 12 2016    | April 12 2016 | TBD |
-| ~~WA-GUEST-OS-3.33_201511-02~~ | Jan 4 2016     | March 12 2016 | TBD |
-| ~~WA-GUEST-OS-3.33_201511-01~~ | Dec 10 2015    | March 12 2016 | TBD |
-| ~~WA-GUEST-OS-3.32_201510-01~~ | Nov 6 2015     | Feb 12 2016   | TBD |
-| ~~WA-GUEST-OS-3.31_201509-01~~ | Oct 1 2015     | Jan 10 2016   | TBD |
-| ~~WA-GUEST-OS-3.30_201508-02~~ | Sep 9 2015     | Dec 6 2015    | TBD |
-| ~~WA-GUEST-OS-3.29_201507-02~~ | Aug 7 2015     | Nov 1 2015    | TBD |
-| ~~WA-GUEST-OS-3.28_201506-01~~ | July 9 2015    | Oct 9 2015    | TBD |
-| ~~WA-GUEST-OS-3.27_201505-02~~ | June 12 2015   | Sep 7 2015    | TBD |
-| ~~WA-GUEST-OS-3.26_201504-01~~ | April 17 2015  | Aug 9 2015    | TBD |
+| WA-GUEST-OS-3.43\_201609-01 | 2016 年 10 月 13 日 | Post 3.45 | TBD |
+| WA-GUEST-OS-3.42\_201608-01 | 2016 年 9 月 13 日 | Post 3.44 | TBD |
+| WA-GUEST-OS-3.41\_201607-01 | 2016 年 8 月 8 日 | Post 3.43 | TBD |
+| WA-GUEST-OS-3.40\_201606-01 | 2016 年 7 月 13 日 | 2016 年 10 月 13 日 | TBD |
+| WA-GUEST-OS-3.39\_201605-01 | 2016 年 6 月 10 日 | 2016 年 9 月 8 日 | TBD |
+| WA-GUEST-OS-3.38\_201604-01 | 2016 年 5 月 2 日 | 2016 年 8 月 13 日 | TBD |
+| WA-GUEST-OS-3.37\_201603-01 | 2016 年 4 月 7 日 | 2016 年 7 月 10 日 | TBD |
+| WA-GUEST-OS-3.36\_201602-02 | 2016 年 3 月 12 日 | 2016 年 6 月 2 日 | TBD |
+| WA-GUEST-OS-3.35\_201601-01 | 2016 年 2 月 12 日 | 2016 年 5 月 7 日 | TBD |
+| WA-GUEST-OS-3.34\_201512-01 | 2016 年 1 月 12 日 | 2016 年 4 月 12 日 | TBD |
+| ~~WA-GUEST-OS-3.33\_201511-02~~ | 2016 年 1 月 4 日 | 2016 年 3 月 12 日 | TBD |
+| ~~WA-GUEST-OS-3.33\_201511-01~~ | 2015 年 12 月 10 日 | 2016 年 3 月 12 日 | TBD |
+| ~~WA-GUEST-OS-3.32\_201510-01~~ | 2015 年 11 月 6 日 | 2016 年 2 月 12 日 | TBD |
+| ~~WA-GUEST-OS-3.31\_201509-01~~ | 2015 年 10 月 1 日 | 2016 年 1 月 10 日 | TBD |
+| ~~WA-GUEST-OS-3.30\_201508-02~~ | 2015 年 9 月 9 日 | 2015 年 12 月 6 日 | TBD |
+| ~~WA-GUEST-OS-3.29\_201507-02~~ | 2015 年 8 月 7 日 | 2015 年 11 月 1 日 | TBD |
+| ~~WA-GUEST-OS-3.28\_201506-01~~ | 2015 年 7 月 9 日 | 2015 年 10 月 9 日 | TBD |
+| ~~WA-GUEST-OS-3.27\_201505-02~~ | 2015 年 6 月 12 日 | 2015 年 9 月 7 日 | TBD |
+| ~~WA-GUEST-OS-3.26\_201504-01~~ | 2015 年 4 月 17 日 | 2015 年 8 月 9 日 | TBD |
 
 
-## <a name="family-2-releases"></a>Family 2 releases
+## 系列 2 版次
 
 **Windows Server 2008 R2 SP1**
 
-Supports .NET 3.5, 4.0, 4.5, 4.5.1, 4.5.2
+支援 .NET 3.5、4.0、4.5、4.5.1、4.5.2
 
->[AZURE.NOTE] Dates with a * are subject to change
+>[AZURE.NOTE] 具有 * 的日期可能會變更
 
-| Configuration String           | Release date  | Disable date  | Expired date |
+| 組態字串 | 發行日期 | 停用日期 | 到期日期 |
 | ------------------------------ | ------------- | ------------  | --- |
-| WA-GUEST-OS-2.55_201609-01     | Oct 13 2016   | Post 2.57     | TBD |
-| WA-GUEST-OS-2.54_201608-01     | Sept 13 2016  | Post 2.56     | TBD |
-| WA-GUEST-OS-2.53_201607-01     | Aug 8 2016    | Post 2.55     | TBD |
-| WA-GUEST-OS-2.52_201606-01     | July 13 2016  | Oct 13 2016   | TBD |
-| WA-GUEST-OS-2.51_201605-01     | June 10 2016  | Sept 8 2016   | TBD |
-| WA-GUEST-OS-2.50_201604-01     | May 2 2016    | Aug 13 2016   | TBD |
-| WA-GUEST-OS-2.49_201603-01     | April 7 2016  | July 10 2016  | TBD |
-| WA-GUEST-OS-2.48_201602-02     | March 12 2016 | June 2 2016   | TBD |
-| WA-GUEST-OS-2.47_201601-01     | Feb 12 2016   | May 7 2016    | TBD |
-| WA-GUEST-OS-2.46_201512-01     | Jan 12 2016   | April 12 2016 | TBD |
-| ~~WA-GUEST-OS-2.45_201511-02~~ | Jan 4 2016    | March 12 2016 | TBD |
-| ~~WA-GUEST-OS-2.45_201511-01~~ | Dec 10 2015   | March 12 2016 | TBD |
-| ~~WA-GUEST-OS-2.44_201510-01~~ | Nov 6 2015    | Feb 12 2016   | TBD |
-| ~~WA-GUEST-OS-2.43_201509-01~~ | Oct 1 2015    | Jan 10 2016   | TBD |
-| ~~WA-GUEST-OS-2.42_201508-02~~ | Sep 9 2015    | Dec 6 2015    | TBD |
-| ~~WA-GUEST-OS-2.41_201507-02~~ | Aug 7 2015    | Nov 1 2015    | TBD |
-| ~~WA-GUEST-OS-2.40_201506-01~~ | July 9 2015   | Oct 9 2015    | TBD |
-| ~~WA-GUEST-OS-2.39_201505-02~~ | June 12 2015  | Sep 7 2015    | TBD |
-| ~~WA-GUEST-OS-2.38_201504-01~~ | April 17 2015 | Aug 9 2015    | TBD |
+| WA-GUEST-OS-2.55\_201609-01 | 2016 年 10 月 13 日 | Post 2.57 | TBD |
+| WA-GUEST-OS-2.54\_201608-01 | 2016 年 9 月 13 日 | Post 2.56 | TBD |
+| WA-GUEST-OS-2.53\_201607-01 | 2016 年 8 月 8 日 | Post 2.55 | TBD |
+| WA-GUEST-OS-2.52\_201606-01 | 2016 年 7 月 13 日 | 2016 年 10 月 13 日 | TBD |
+| WA-GUEST-OS-2.51\_201605-01 | 2016 年 6 月 10 日 | 2016 年 9 月 8 日 | TBD |
+| WA-GUEST-OS-2.50\_201604-01 | 2016 年 5 月 2 日 | 2016 年 8 月 13 日 | TBD |
+| WA-GUEST-OS-2.49\_201603-01 | 2016 年 4 月 7 日 | 2016 年 7 月 10 日 | TBD |
+| WA-GUEST-OS-2.48\_201602-02 | 2016 年 3 月 12 日 | 2016 年 6 月 2 日 | TBD |
+| WA-GUEST-OS-2.47\_201601-01 | 2016 年 2 月 12 日 | 2016 年 5 月 7 日 | TBD |
+| WA-GUEST-OS-2.46\_201512-01 | 2016 年 1 月 12 日 | 2016 年 4 月 12 日 | TBD |
+| ~~WA-GUEST-OS-2.45\_201511-02~~ | 2016 年 1 月 4 日 | 2016 年 3 月 12 日 | TBD |
+| ~~WA-GUEST-OS-2.45\_201511-01~~ | 2015 年 12 月 10 日 | 2016 年 3 月 12 日 | TBD |
+| ~~WA-GUEST-OS-2.44\_201510-01~~ | 2015 年 11 月 6 日 | 2016 年 2 月 12 日 | TBD |
+| ~~WA-GUEST-OS-2.43\_201509-01~~ | 2015 年 10 月 1 日 | 2016 年 1 月 10 日 | TBD |
+| ~~WA-GUEST-OS-2.42\_201508-02~~ | 2015 年 9 月 9 日 | 2015 年 12 月 6 日 | TBD |
+| ~~WA-GUEST-OS-2.41\_201507-02~~ | 2015 年 8 月 7 日 | 2015 年 11 月 1 日 | TBD |
+| ~~WA-GUEST-OS-2.40\_201506-01~~ | 2015 年 7 月 9 日 | 2015 年 10 月 9 日 | TBD |
+| ~~WA-GUEST-OS-2.39\_201505-02~~ | 2015 年 6 月 12 日 | 2015 年 9 月 7 日 | TBD |
+| ~~WA-GUEST-OS-2.38\_201504-01~~ | 2015 年 4 月 17 日 | 2015 年 8 月 9 日 | TBD |
 
-## <a name="msrc-patch-updates"></a>MSRC patch updates
-The list of patches that are included with each monthly Guest OS release is available [here][patches].
+## MSRC 修補程式更新
+[這裡][patches]提供每月客體作業系統版次隨附的修補程式清單。
 
-## <a name="sdk-support"></a>SDK support
+## SDK 支援
 
-Even though the [retirement policy for the Azure SDK][retire policy sdk] indicates that only versions above 2.2 are supported, specific Guest OS families allow you to use earlier versions. You should always use the latest supported SDK. 
+雖然 [Azure SDK 的淘汰原則][retire policy sdk]表示只支援高於 2.2 的版本，特定客體 OS 系列仍允許您使用較早版本。您應該一律使用最新版本的支援 SDK。
 
-| Guest OS Family | Compatible SDK Versions |
+| 客體作業系統系列 | 相容的 SDK 版本 |
 | --------------- | ----------------------- |
-| 4               | Version 2.1+ |
-| 3               | Version 1.8+ |
-| 2               | Version 1.3+ |
-| 1               | Version 1.0+ |
+| 4 | 版本 2.1+ |
+| 3 | 版本 1.8+ |
+| 2 | 版本 1.3+ |
+| 1 | 版本 1.0+ |
 
-## <a name="guest-os-release-information"></a>Guest OS Release Information
-There are three dates that are important to Guest OS releases: **release** date, **disabled** date, and **expiration** date. A Guest OS is considered available when it is in the Portal and can be selected as the target Guest OS. When a Guest OS hits the **disabled** date it is removed from Azure. However, any Cloud Service targetting that Guest OS will still operate as normal. 
+## 客體作業系統版次資訊
+有三個重要的客體 OS 版次日期︰**發行**日期、**停用**日期，以及**到期**日期。客體 OS 在入口網站時會視為可用，且可以選擇作為目標客體 OS。當客體 OS 到達**停用**日期，會從 Azure 中移除。不過，以該客體 OS 為目標的任何雲端服務將仍正常運作。
 
-The window between the **disabled** date and the **expiration** date provide you with a buffer to easily transition from one Guest OS to one newer. If you're using *automatic* as your Guest OS, you'll always be on the latest version and you don't have to worry about it expiring. 
+**停用**日期和**到期**日期之間的時間範圍，提供一個緩衝區，讓您可以輕鬆從一個客體 OS 轉換到到較新的客體 OS。如果您使用「自動化」作為客體 OS，則一律會是最新版本，不必擔心過期問題。
 
-When the **expiration** date passes and any Cloud Service still using that Guest OS will be stopped, deleted, or forced to upgrade. You can read more about the retirement policy [here][retirepolicy].
+當**到期**日期已過，任何仍在使用該客體 OS 的雲端服務將會遭到停止、刪除或強制升級。您可以在[這裡][retirepolicy]閱讀更多有關淘汰原則的資訊。
 
-## <a name="guest-os-family-version-explanation"></a>Guest OS Family-Version Explanation
-The Guest OS families are based on released versions of Microsoft Windows Server. The Guest OS is the underlying operating system that Azure Cloud Services run on. Each Guest OS has a family, version and release number. 
+## 客體 OS 系列版本說明
+客體作業系統系列以 Microsoft Windows Server 的發行版本為基礎。客體作業系統是指執行 Azure 雲端服務的基礎作業系統。每一個客體作業系統都有系列、版本和版次號碼。
 
-- **Guest OS family**  
-A Windows Server operating system release that a Guest OS is based on. For example, *family 3* is based on Windows Server 2012.
+- **客體 OS 系列**是客體 OS 所根據的 Windows Server 作業系統版次。例如，「系列 3」以 Windows Server 2012 為基礎。
 
-- **Guest OS version**  
-Specific to a Guest OS family image plus relevant [Microsoft Security Response Center (MSRC)][msrc] patches that are available at the date the new Guest OS version is produced. Not all patches may be included. 
+- **客體 OS 版本**是客體 OS 系列映像，加上新的客體 OS 版本發行當天可用的相關 [Microsoft Security Response Center (MSRC)][msrc] 修補程式。不一定包含所有修補程式。
 
-    Numbers start at 0 and increment by 1 each time a new set of updates is added. Trailing zeros are only shown if important. That is, version 2.10 is a different, much later version than version 2.1.
+    編號從 0 開始，每增加一組新的更新就加 1。必要時才會顯示尾端的零。亦即，2.10 版是與 2.1 版不同且更新的版本。
 
-- **Guest OS release**  
-A rerelease of a Guest OS version. A rerelease occurs if Microsoft finds issues during testing; requiring changes. The latest release always supersedes any previous releases, public or not. The Azure classic portal will only allow users to pick the latest release for a given version. Deployments running on a previous release are usually not force upgraded depending on the severity of the bug. 
+- **客體 OS 版次**是指客體 OS 版本的再發行版次。如果 Microsoft 在測試期間發現問題而需要變更時，就會推出再發行版次。最新的版次一律取代任何先前的版次，無論是否公開都一樣。Azure 傳統入口網站只允許使用者挑選特定版本的最新版次。視錯誤的嚴重性而定，通常不會強制升級舊版次上執行的部署。
 
-In the example below, 2 is the family, 12 is the version and "rel2" is the release.
+在下列範例中，2 是系列，12 是版本，"rel2" 是版次。
 
-**Guest OS release** - 2.12 rel2
+**客體作業系統版次** - 2.12 rel2
 
-**Configuration string for this release** - WA-GUEST-OS-2.12_201208-02
+**此版次的組態字串** - WA-GUEST-OS-2.12\_201208-02
 
-The configuration string for a Guest OS has this same information embedded in it, along with a date showing which MSRC patches were considered for that release. In this example, MSRC patches produced for Windows Server 2008 R2 up to and including August 2012 were considered for inclusion. Only patches specifically applying to that version of Windows Server are included. For example, if an MSRC patch applies to Microsoft Office, it will not be included because that product is not part of the Windows Server base image. 
+客體作業系統的組態字串內嵌這項相同的資訊，還附上指出該版次考量哪些 MSRC 修補程式的日期。在此範例中，針對 Widows Server 2008 R2 推出的 MSRC 修補程式 (達到且包含 2012 年 8 月) 已考量納入。只會包含明確適用於該 Windows Server 版本的修補程式。例如，如果某個 MSRC 修補程式適用於 Microsoft Office，則不會納入，因為該產品不是 Windows Server 基本映像的一部分。
 
-## <a name="guest-os-system-update-process"></a>Guest OS System Update Process
-This page includes information on upcoming Guest OS Releases. Customers have indicated that they want to know when a release occurs because their cloud service roles will reboot if they are set to "Automatic" update. Guest OS releases typically occur at least 5 days after the MSRC update release that occurs on the second Tuesday of every month. New releases include all the relevant MSRC patches for each Guest OS family. 
+## 客體作業系統的系統更新程序
+此頁面包含即將推出的客體作業系統版次的相關資訊。客戶表示想要知道何時推出版次，因為他們的雲端服務角色如果設為「自動」更新，將重新啟動。在每月第二個星期二發行 MSRC 更新後，通常至少 5 天才會推出客體作業系統版次。新版次包含每個客體作業系統系列的相關 MSRC 修補程式。
 
-Microsoft Azure is constantly releasing updates. The Guest OS is only one such update in the pipeline. A release can be affected by a number of factors too numerous to list here. In addition, Azure runs on literally hundreds of thousands of machines. This means that it's impossible to give an exact date and time when your role(s) will reboot. We will update the [Guest OS Update RSS Feed][rss] with the latest information we have, but consider that time an approximate window. We are aware that this is problematic for customers and working on a plan to limit or time reboots. 
+Microsoft Azure 正持續發行更新。客體作業系統只是這過程中的一項更新。影響版次的因素太多，無法在這裡完整列出。此外，Azure 實際上是在成千上萬個電腦上執行。這表示不可能指出您的角色重新啟動的確切日期和時間。我們會在[客體作業系統更新 RSS 摘要][rss]中隨時提供最新資訊，但請視為大約的時間。我們知道這對客戶造成困擾，所以正計劃對重新啟動設限或訂定時間。
 
-When a new release of the Guest OS is published, it can take time to fully propagate across Azure. As services are updated to the new Guest OS, they are rebooted honoring update domains. Services set to use "Automatic" updates will get a release first. After the update, you’ll see the new Guest OS version listed for your service in the Azure classic portal. Rereleases may occur during this period. Some versions may be deployed over longer periods of time and automatic upgrade reboots may not occur for many weeks after the official release date. Once a Guest OS is available, you can then explicitly choose that version from the portal or in your configuration file. 
+新版次的客體作業系統發行時，需要一段時間才會完全傳播到整個 Azure。當服務更新到新的客體作業系統時，它們會重新啟動，讓更新網域生效。設為「自動」更新的服務會最先取得一個版次。更新之後，您在 Azure 傳統入口網站中會看到您的服務列出新的客體作業系統版本。此期間可能再度發行版次。某些版本的部署期間可能很長，而且在官方發行日期之後，可能經過許多個星期都還不會進行自動升級重新啟動。當客體作業系統推出時，您可以從入口網站或組態檔中明確地選擇該版本。
 
-For a great deal of valuable information on restarts and pointers to more information technical details of Guest and Host OS updates, see the MSDN blog post titled [Role Instance Restarts Due to OS Upgrades][restarts].
+關於重新啟動的大量實用資訊，以及客體和主機作業系統更新的更多技術細節的線索，請參閱 MSDN 部落格文章＜[角色執行個體由於作業系統升級而重新啟動][restarts]＞。
 
-If you manually update your Guest OS, please read the [Guest OS retirement policy][retirepolicy].
+如果您手動更新客體作業系統，請參閱[客體作業系統淘汰原則][retirepolicy]。
 
 
-## <a name="guest-os-supportability-and-retirement-policy"></a>Guest OS Supportability and Retirement Policy
-The Guest OS supportability and retirement policy is explained [here][retirepolicy].
+## 客體作業系統可支援性和淘汰原則
+[這裡][retirepolicy]說明客體作業系統可支援性和淘汰原則。
 
-[Install .NET on a Cloud Service Role]: https://azure.microsoft.com/en-us/documentation/articles/cloud-services-dotnet-install-dotnet/?WT.mc_id=azurebg_email_Trans_963_RevisedNET_Update
-[Azure Guest OS Update Settings]: cloud-services-how-to-configure.md
+[Install .NET on a Cloud Service Role]: https://azure.microsoft.com/documentation/articles/cloud-services-dotnet-install-dotnet/?WT.mc_id=azurebg_email_Trans_963_RevisedNET_Update
+[Azure 客體 OS 更新設定]: cloud-services-how-to-configure.md
 [rss]: http://sxp.microsoft.com/feeds/3.0/msdntn/WindowsAzureOSUpdates
 [ssl3 announcement]: http://azure.microsoft.com/blog/2014/12/09/azure-security-ssl-3-0-update/
 [Microsoft Security Advisory 3009008]: https://technet.microsoft.com/library/security/3009008.aspx
@@ -230,8 +226,4 @@ The Guest OS supportability and retirement policy is explained [here][retirepoli
 [fam1retire]: cloud-services-guestos-family1-retirement.md
  
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

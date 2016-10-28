@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Autoscaling guidance | Microsoft Azure"
-   description="Guidance on how to autoscale to dynamically allocate resources required by an application."
+   pageTitle="自動調整指引 |Microsoft Azure"
+   description="如何自動調整以動態方式配置應用程式所需資源的指引。"
    services=""
    documentationCenter="na"
    authors="dragon119"
@@ -17,103 +17,97 @@
    ms.date="07/13/2016"
    ms.author="masashin"/>
 
-
-# <a name="autoscaling-guidance"></a>Autoscaling guidance
+# 自動調整指引
 
 [AZURE.INCLUDE [pnp-header](../includes/guidance-pnp-header-include.md)]
 
-## <a name="overview"></a>Overview
-Autoscaling is the process of dynamically allocating the resources required by an application to match performance requirements and satisfy service-level agreements (SLAs), while minimizing runtime costs. As the volume of work grows, an application may require additional resources to enable it to perform its tasks in a timely manner. As demand slackens, resources can be de-allocated to minimize costs, while still maintaining adequate performance and meeting SLAs.
-Autoscaling takes advantage of the elasticity of cloud-hosted environments while easing management overhead. It does so by reducing the need for an operator to continually monitor the performance of a system and make decisions about adding or removing resources.
->[AZURE.NOTE] Autoscaling applies to all of the resources used by an application, not just the compute resources. For example, if your system uses message queues to send and receive information, it could create additional queues as it scales.
+## 概觀
+自動調整是以動態方式配置應用程式所需資源的程序，以便符合效能需求並滿足服務等級協定 (SLA)，同時將執行階段成本降至最低。當工作量增長時，應用程式可能需要額外的資源，才能及時執行其工作。當需求減緩時，可以取消配置資源，讓成本降至最低，同時又能維護適當的效能並符合 SLA。自動調整會充分利用雲端裝載環境的彈性，以降低管理負擔。執行此動作的方式是減少操作員持續監視系統效能的需求，並做出有關新增或移除資源的決策。
+>[AZURE.NOTE] 自動調整會套用至應用程式使用的所有資源，不侷限於計算資源。例如，如果您的系統使用訊息佇列來傳送和接收資訊，它可以在調整時建立更多佇列。
 
-## <a name="types-of-scaling"></a>Types of scaling
-Scaling typically takes one of the following two forms:
+## 調整類型
+調整通常會採用下列其中一種形式︰
 
-- **Vertical** (often referred to as _scaling up and down_). This form requires that you modify the hardware (expand or reduce its capacity and performance), or redeploy the solution using alternative hardware that has the appropriate capacity and performance. In a cloud environment, the hardware platform is typically a virtualized environment. Unless the original hardware was substantially overprovisioned, with the consequent upfront capital expense, vertically scaling up in this environment involves provisioning more powerful resources, and then moving the system onto these new resources. Vertical scaling is often a disruptive process that requires making the system temporarily unavailable while it is being redeployed. It may be possible to keep the original system running while the new hardware is provisioned and brought online, but there will likely be some interruption while the processing transitions from the old environment to the new one. It is uncommon to use autoscaling to implement a vertical scaling strategy.
-- **Horizontal** (often referred to as _scaling out and in_). This form requires deploying the solution on additional or fewer resources, which are typically commodity resources rather than high-powered systems. The solution can continue running without interruption while these resources are provisioned. When the provisioning process is complete, copies of the elements that comprise the solution can be deployed on these additional resources and made available. If demand drops, the additional resources can be reclaimed after the elements using them have been shut down cleanly. Many cloud-based systems, including Microsoft Azure, support automation of this form of scaling.
+- **垂直** (通常稱為「相應增加和減少」)。此形式要求您修改硬體 (擴大或縮小其容量和效能)，或使用具備適當容量和效能的其他硬體來重新部署解決方案。在雲端環境中，硬體平台通常是虛擬環境。除非原始硬體已大幅過度佈建，否則隨著後續前期資本支出，這種環境中的垂直向上調整牽涉到佈建功能更強大的資源，然後將系統移動到這些新資源上。垂直調整通常是破壞性程序，在重新部署時系統必須暫時無法使用。在佈建新硬體並將其上線時也許可以保持原始系統繼續執行，但在將舊環境的處理轉換到新系統時，仍有可能造成一些中斷。使用自動調整來實作垂直調整策略並不常見。
+- **水平** (通常稱為「相應放大和縮小」)。此形式需要在更多或更少的資源上部署解決方案，這些資源通常是商品資源，而不是高功率系統。在佈建這些資源時，解決方案可以繼續執行而不中斷。佈建程序完成後，可將構成方案的元素副本部署至這些額外的資源上。如果需求降低了，則在使用額外資源的元素完全關閉後，可以回收這些資源。許多雲端系統 (包括 Microsoft Azure) 都支援這種調整形式的自動化。
 
-## <a name="implement-an-autoscaling-strategy"></a>Implement an autoscaling strategy
-Implementing an autoscaling strategy typically involves the following components and processes:
+## 實作自動調整策略
+實作自動調整策略通常牽涉到下列元件和處理程序：
 
-- Instrumentation and monitoring systems at the application, service, and infrastructure levels. These systems capture key metrics, such as response times, queue lengths, CPU utilization, and memory usage.
-- Decision-making logic that can evaluate the monitored scaling factors against predefined system thresholds or schedules, and make decisions regarding whether to scale or not.
-- Components that are responsible for carrying out tasks associated with scaling the system, such as provisioning or de-provisioning resources.
-- Testing, monitoring, and tuning of the autoscaling strategy to ensure that it functions as expected.
+- 檢測和監視應用程式、服務和基礎結構層級上的系統。這些系統會擷取關鍵計量，例如回應時間、佇列長度、CPU 使用率及記憶體使用量。
+- 可以依據預先定義的系統臨界值或排程來評估受監視的調整係數，並決定是否要調整的決策邏輯。
+- 負責執行與調整系統 (例如佈建或取消佈建資源) 相關聯工作的元件。
+- 測試、監視和微調自動調整策略，以確保它能正常運作。
 
-Most cloud-based environments, such as Azure, provide built-in autoscaling mechanisms that address common scenarios. If the environment or service you use doesn't provide the necessary automated scaling functionality, or if you have extreme autoscaling requirements beyond its capabilities, a custom implementation may be necessary. Use this customized implementation to collect operational and system metrics, analyze them to identify relevant data, and then scale resources accordingly.
+大部分的雲端環境 (例如 Azure) 都提供可處理常見案例的內建自動調整機制。如果您使用的環境或服務並未提供所需的自動調整功能，或者您有超過其功能的極端自動調整需求，則可能需要自訂實作。請使用此自訂功能來收集作業和系統計量、分析這些計量以識別相關資料，然後據以調整資源。
 
 
-## <a name="configure-autoscaling-for-an-azure-solution"></a>Configure autoscaling for an Azure solution
-There are several options for configuring autoscaling for your Azure solutions:
+## 為 Azure 解決方案設定自動調整
+為 Azure 解決方案設定自動調整有數個選項：
 
-- **Azure Autoscale** supports the most common scaling scenarios based on a schedule and, optionally, triggered scaling operations based on runtime metrics (such as processor utilization, queue length, or built-in and custom counters). You can configure simple autoscaling policies for a solution quickly and easily by using the Azure portal. For more detailed control, you can make use of the [Azure Service Management REST API](https://msdn.microsoft.com/library/azure/ee460799.aspx) or the [Azure Resource Manager REST API](https://msdn.microsoft.com//library/azure/dn790568.aspx). The [Azure Monitoring Service Management Library](http://www.nuget.org/packages/Microsoft.WindowsAzure.Management.Monitoring) and the [Microsoft Insights Library](https://www.nuget.org/packages/Microsoft.Azure.Insights/) (in preview) are SDKs that allow collecting metrics from different resources, and perform autoscaling by making use of the REST APIs. For resources where Azure Resource Manager support isn't available, or if you are using Azure Cloud Services, the Service Management REST API can be used for autoscaling. In all other cases, use Azure Resource Manager.
-- **A custom solution**, based on your instrumentation on the application, and management features of Azure, can be useful. For example, you could use Azure diagnostics or other methods of instrumentation in your application, along with custom code to continually monitor and export metrics of the application. You could have custom rules that work on these metrics, and make use of the Service Management or Resource Manager REST API's to trigger autoscaling. The metrics for triggering a scaling operation can be any built-in or custom counter, or other instrumentation you implement within the application. However, a custom solution is not simple to implement, and should be considered only if none of the previous approaches can fulfill your requirements. The [Autoscaling Application Block](http://msdn.microsoft.com/library/hh680892%28v=pandp.50%29.aspx) makes use of this approach.
-- **Third-party services**, such as [Paraleap AzureWatch](http://www.paraleap.com/AzureWatch), enable you to scale a solution based on schedules, service load and system performance indicators, custom rules, and combinations of different types of rules.
+- **Azure 自動調整**支援根據排程的最常見調整案例，並可選擇根據執行階段計量 (例如，處理器使用率、佇列長度，或內建和自訂計數器) 觸發調整作業。您可以使用 Azure 入口網站，快速而輕鬆地為解決方案設定簡單的自動調整原則。如需更細微的控制，您可以使用 [Azure 服務管理 REST API](https://msdn.microsoft.com/library/azure/ee460799.aspx) 或 [Azure Resource Manager REST API](https://msdn.microsoft.com//library/azure/dn790568.aspx)。[Azure 監視服務管理資源庫](http://www.nuget.org/packages/Microsoft.WindowsAzure.Management.Monitoring)和 [Microsoft Insights 資源庫](https://www.nuget.org/packages/Microsoft.Azure.Insights/) (預覽版) 是可讓您從不同的資源收集計量以及利用 REST API 執行自動調整的 SDK。對於不支援 Azure Resource Manager 的資源，或是當您使用 Azure 雲端服務時，都可以使用服務管理 REST API 進行自動調整。在所有其他情況下，請使用 Azure Resource Manager。
+- 根據應用程式和 Azure 的管理功能進行檢測的**自訂解決方案**非常實用。例如，您可以使用 Azure 診斷或應用程式中的其他檢測方法，並搭配自訂程式碼，持續監視及匯出應用程式的計量。您可以讓處理這些計量的自訂規則使用服務管理或資源管理員 REST API 來觸發自動調整。觸發調整作業的度量資訊可以是任何內建或自訂計數器，或是您在應用程式內實作的其他檢測工具。不過，自訂解決方案並不容易實作，只應在前述方法都無法滿足您的需求時才加以考慮。[自動調整應用程式區塊](http://msdn.microsoft.com/library/hh680892%28v=pandp.50%29.aspx)即運用此方法。
+- **協力廠商服務** (例如 [Paraleap AzureWatch](http://www.paraleap.com/AzureWatch)) 可讓您根據排程、服務負載和系統效能指標、自訂規則及不同規則類型的組合，來調整解決方案。
 
-When choosing which autoscaling solution to adopt, consider the following points:
+選擇要採用哪種自動調整解決方案時，請考慮下列幾點：
 
-- Use the built-in autoscaling features of the platform, if they can meet your requirements. If not, carefully consider whether you really do need more complex scaling features. Some examples of additional requirements may include more granularity of control, different ways to detect trigger events for scaling, scaling across subscriptions, and scaling other types of resources.
-- Consider if you can predict the load on the application with sufficient accuracy to depend only on scheduled autoscaling (adding and removing instances to meet anticipated peaks in demand). Where this isn't possible, use reactive autoscaling based on metrics collected at runtime, to allow the application to handle unpredictable changes in demand. Typically, you can combine these approaches. For example, create a strategy that adds resources such as compute, storage, and queues, based on a schedule of the times when you know the application is most busy. This helps to ensure that capacity is available when required, without the delay encountered when starting new instances. In addition, for each scheduled rule, define metrics that allow reactive autoscaling during that period to ensure that the application can handle sustained but unpredictable peaks in demand.
-- It's often difficult to understand the relationship between metrics and capacity requirements, especially when an application is initially deployed. Prefer to provision a little extra capacity at the beginning, and then monitor and tune the autoscaling rules to bring the capacity closer to the actual load.
+- 如果平台的內建自動調整功能可符合您的需求，就使用它們。如果沒有，請仔細考量您是否真的需要更複雜的縮放功能。額外需求的部分範例包括更細微的控制程度、偵測觸發事件進行調整的其他方式、跨訂用帳戶進行調整，以及調整其他資源類型。
+- 請考慮您是否可以用足夠的精確度預測應用程式負載，以便只依賴排程自動調整 (新增和移除執行個體以滿足要求的預期尖峰期)。如果不可行，則根據在執行階段收集的計量使用被動式自動調整，以允許應用程式處理無法預期的需求變更。一般而言，您可以結合這些方法。例如，如果您知道應用程式何時最忙碌，便可建立根據排程新增計算、儲存和佇列等資源的策略。這有助於確保容量在需要時可供使用，且不會在啟動新執行個體時遇到延遲。此外，針對每個排程的規則，定義在該期間內允許被動式自動調整的度量，以確保應用程式能夠處理持續但無法預期的要求尖峰期。
+- 通常很難了解計量和容量需求之間的關聯性，尤其是在最初部署應用程式的時候。建議在一開始多佈建一些額外的容量，然後加以監視並調整自動調整規則，使容量更接近實際負載。
 
-### <a name="use-azure-autoscale"></a>Use Azure Autoscale
-Autoscale enables you to configure scale out and scale in options for a solution. Autoscale can automatically add and remove instances of Azure Cloud Services web and worker roles, Azure Mobile Services, and Web Apps feature in Azure App Service. It can also enable automatic scaling by starting and stopping instances of Azure Virtual Machines. An Azure autoscaling strategy includes two sets of factors:
+### 使用 Azure 自動調整
+自動調整可讓您設定解決方案的相應放大和相應縮小選項。自動調整可以自動新增和移除 Azure 雲端服務 Web 和背景工作角色、Azure 行動服務及 Azure App Service 中 Web Apps 的執行個體。它也可以透過啟動和停止 Azure 虛擬機器的執行個體來啟用自動調整。Azure 自動調整策略包含兩組因素：
 
-- Schedule-based autoscaling that can ensure additional instances are available to coincide with an expected peak in usage, and can scale in once the peak time has passed. This enables you to ensure that you have sufficient instances already running, without waiting for the system to react to the load.
-- Metrics-based autoscaling that reacts to factors such as average CPU utilization over the last hour, or the backlog of messages that the solution is processing in an Azure storage or Azure Service Bus queue. This allows the application to react separately from the scheduled autoscaling rules to accommodate unplanned or unforeseen changes in demand.
+- 排程型自動調整可確保能提供額外執行個體以符合預期尖峰使用量，並可在尖峰時間過後相應縮小。這可讓您確保擁有足夠的執行中執行個體，而不需等待系統向負載做出反應。
+- 計量型自動調整則是對最後一個小時的平均 CPU 使用率或是 Azure 儲存體或 Azure 服務匯流排佇列中解決方案正在處理的訊息待處理項目等因素做出反應。這可讓應用程式在排程自動調整規則之外，針對計劃外或無法預見的需求變化做出回應。
 
-Consider the following points when using Autoscale:
+使用自動調整時，請考慮下列幾點：
 
-- Your autoscaling strategy combines both scheduled and metrics-based scaling. You can specify both types of rules for a service.
-- You should configure the autoscaling rules, and then monitor the performance of your application over time. Use the results of this monitoring to adjust the way in which the system scales if necessary. However, keep in mind that autoscaling is not an instantaneous process. It takes time to react to a metric such as average CPU utilization exceeding (or falling below) a specified threshold.
-- Autoscaling rules that use a detection mechanism based on a measured trigger attribute (such as CPU usage or queue length) use an aggregated value over time, rather than instantaneous values, to trigger an autoscaling action. By default, the aggregate is an average of the values. This prevents the system from reacting too quickly, or causing rapid oscillation. It also allows time for new instances that are auto-started to settle into running mode, preventing additional autoscaling actions from occurring while the new instances are starting up. For Azure Cloud Services and Azure Virtual Machines, the default period for the aggregation is 45 minutes, so it can take up to this period of time for the metric to trigger autoscaling in response to spikes in demand. You can change the aggregation period by using the SDK, but be aware that periods of fewer than 25 minutes may cause unpredictable results (for more information, see [Auto Scaling Cloud Services on CPU Percentage with the Azure Monitoring Services Management Library](http://rickrainey.com/2013/12/15/auto-scaling-cloud-services-on-cpu-percentage-with-the-windows-azure-monitoring-services-management-library/)). For Web Apps, the averaging period is much shorter, allowing new instances to be available in about five minutes after a change to the average trigger measure.
-- If you configure autoscaling using the SDK rather than the web portal, you can specify a more detailed schedule during which the rules are active. You can also create your own metrics and use them with or without any of the existing ones in your autoscaling rules. For example, you may wish to use alternative counters, such as the number of requests per second or the average memory availability, or use custom counters that measure specific business processes.
-- When autoscaling Azure Virtual Machines, you must deploy a number of instances of the virtual machine that is equal to the maximum number you will allow autoscaling to start. These instances must be part of the same availability set. The Virtual Machines autoscaling mechanism does not create or delete instances of the virtual machine; instead, the autoscaling rules you configure will start and stop an appropriate number of these instances. For more information, see [Automatically scale an application running Web Roles, Worker Roles, or Virtual Machines](./cloud-services/cloud-services-how-to-scale.md).
-- If new instances cannot be started, perhaps because the maximum for a subscription has been reached or an error occurs during startup, the portal may show that an autoscaling operation succeeded. However, subsequent **ChangeDeploymentConfiguration** events displayed in the portal will show only that a service startup was requested, and there will be no event to indicate it was successfully completed.
-- You can use the web portal UI to link resources such as SQL Database instances and queues to a compute service instance. This allows you to more easily access the separate manual and automatic scaling configuration options for each of the linked resources. For more information, see [How to: Link a resource to a cloud service](cloud-services-how-to-manage.md#linkresources) and [How to Scale an Application](./cloud-services/cloud-services-how-to-scale.md).
-- When you configure multiple policies and rules, they could conflict with each other. Autoscale uses the following conflict resolution rules to ensure that there is always a sufficient number of instances running:
-  - Scale out operations always take precedence over scale in operations.
-  - When scale out operations conflict, the rule that initiates the largest increase in the number of instances takes precedence.
-  - When scale in operations conflict, the rule that initiates the smallest decrease in the number of instances takes precedence.
+- 您的自動調整策略同時結合了排程和度量型調整。您可以針對服務指定這兩種類型的規則。
+- 您應該設定自動調整規則，然後監視經過一段時間的應用程式效能。如有必要，使用此監視結果來調整系統的調整方式。不過，請記住，自動調整不是即時生效的程序它需要時間來回應計量，例如平均 CPU 使用率超過 (或低於) 指定的臨界值。
+- 根據測量的觸發程序屬性 (例如 CPU 使用量或佇列長度) 使用偵測機制的自動調整規則，會使用經過一段時間的彙總值 (而不是瞬間值) 來觸發自動調整動作。根據預設，彙總是值的平均。這可防止系統反應太快，或造成快速震盪。這也可以讓自動啟動的新執行個體順利進入執行模式，避免新執行個體正在啟動時，又發生其他自動調整動作。若是 Azure 雲端服務和 Azure 虛擬機器，彙總的預設期間為 45 分鐘，因此，計量需要經過這段時間後再觸發自動調整以回應尖峰需求量。您可以使用 SDK 來變更彙總期間，但請注意低於 25 分鐘可能會造成無法預期的結果 (如需詳細資訊，請參閱 [使用 Azure 監視服務管理資源庫，根據 CPU 百分比自動調整雲端服務](http://rickrainey.com/2013/12/15/auto-scaling-cloud-services-on-cpu-percentage-with-the-windows-azure-monitoring-services-management-library/))。若是 Web Apps，平均期間較短，允許在平均觸發量值變更約五分鐘後提供新執行個體。
+- 如果您使用 SDK 設定自動調整，而不是使用網路入口網站，您可以指定更詳細的作用中規則排程期間。您也可以建立您自己的度量，並在自動調整規則中與現有度量一起使用。例如，您可能想要使用替代計數器 (例如，每秒要求數或平均記憶體可用性)，或使用自訂計數器來測量特定商務程序。
+- 自動調整 Azure 虛擬機器時，您必須部署相當於您允許自動調整啟動之最大數目的虛擬機器執行個體數。這些執行個體必須屬於相同的可用性設定組。虛擬機器自動調整機制不會建立或刪除虛擬機器的執行個體；相反地，您設定的自動調整規則將會啟動和停止適當數目的執行個體。如需詳細資訊，請參閱[自動調整執行 Web 角色、 背景工作角色或虛擬機器的應用程式](./cloud-services/cloud-services-how-to-scale.md)。
+- 如果無法啟動新的執行個體，可能是因為已達到訂用帳戶的最大值，或在啟動期間發生錯誤，入口網站可能會顯示自動調整作業成功。不過，後續入口網站中顯示的 **ChangeDeploymentConfiguration** 事件只會顯示已要求服務啟動，不會有任何事件指出是否已順利完成。
+- 您可以使用入口網站 UI，將 SQL Database 執行個體和佇列之類的資源連結至計算服務執行個體。這可讓您更輕鬆地存取每個連結資源的個別手動和自動調整設定選項。如需詳細資訊，請參閱[做法：將資源連結到雲端服務](cloud-services-how-to-manage.md#linkresources)和[如何調整應用程式](./cloud-services/cloud-services-how-to-scale.md)。
+- 當您設定多個原則和規則時，它們有可能互相衝突。自動調整會使用下列衝突解決規則，來確保一定有足量的執行中執行個體：
+  - 相應放大作業一律優先於相應縮小作業。
+  - 當相應放大作業發生衝突時，起始執行個體數目增幅最多的規則優先。
+  - 當相應縮小作業發生衝突時，起始執行個體數目降幅最少的規則優先。
 
 <a name="the-azure-monitoring-services-management-library"></a>
 
-## <a name="application-design-considerations-for-implementing-autoscaling"></a>Application design considerations for implementing autoscaling
-Autoscaling isn't an instant solution. Simply adding resources to a system or running more instances of a process doesn't guarantee that the performance of the system will improve. Consider the following points when designing an autoscaling strategy:
+## 實作自動調整的應用程式設計考量
+自動調整不是立即見效的解決方案。只是將資源加入至系統或執行更多處理程序執行個體，並不保證能改善系統效能。設計自動調整策略時，請考慮下列幾點：
 
-- The system must be designed to be horizontally scalable. Avoid making assumptions about instance affinity; do not design solutions that require that the code is always running in a specific instance of a process. When scaling a cloud service or web site horizontally, don't assume that a series of requests from the same source will always be routed to the same instance. For the same reason, design services to be stateless to avoid requiring a series of requests from an application to always be routed to the same instance of a service. When designing a service that reads messages from a queue and processes them, don't make any assumptions about which instance of the service handles a specific message. Autoscaling could start additional instances of a service as the queue length grows. The [Competing Consumers Pattern](http://msdn.microsoft.com/library/dn568101.aspx) describes how to handle this scenario.
-- If the solution implements a long-running task, design this task to support both scaling out and scaling in. Without due care, such a task could prevent an instance of a process from being shut down cleanly when the system scales in, or it could lose data if the process is forcibly terminated. Ideally, refactor a long-running task and break up the processing that it performs into smaller, discrete chunks. The [Pipes and Filters Pattern](http://msdn.microsoft.com/library/dn568100.aspx) provides an example of how you can achieve this.
-- Alternatively, you can implement a checkpoint mechanism that records state information about the task at regular intervals, and save this state in durable storage that can be accessed by any instance of the process running the task. In this way, if the process is shutdown, the work that it was performing can be resumed from the last checkpoint by using another instance.
-- When background tasks run on separate compute instances, such as in worker roles of a cloud services hosted application, you may need to scale different parts of the application using different scaling policies. For example, you may need to deploy additional user interface (UI) compute instances without increasing the number of background compute instances, or the opposite of this. If you offer different levels of service (such as basic and premium service packages), you may need to scale out the compute resources for premium service packages more aggressively than those for basic service packages in order to meet SLAs.
-- Consider using the length of the queue over which UI and background compute instances communicate as a criterion for your autoscaling strategy. This is the best indicator of an imbalance or difference between the current load and the processing capacity of the background task.
-- If you base your autoscaling strategy on counters that measure business processes, such as the number of orders placed per hour or the average execution time of a complex transaction, ensure that you fully understand the relationship between the results from these types of counters and the actual compute capacity requirements. It may be necessary to scale more than one component or compute unit in response to changes in business process counters.  
-- To prevent a system from attempting to scale out excessively, and to avoid the costs associated with running many thousands of instances, consider limiting the maximum number of instances that can be automatically added. Most autoscaling mechanisms allow you to specify the minimum and maximum number of instances for a rule. In addition, consider gracefully degrading the functionality that the system provides if the maximum number of instances have been deployed, and the system is still overloaded.
-- Keep in mind that autoscaling might not be the most appropriate mechanism to handle a sudden burst in workload. It takes time to provision and start new instances of a service or add resources to a system, and the peak demand may have passed by the time these additional resources have been made available. In this scenario, it may be better to throttle the service. For more information, see the [Throttling Pattern](http://msdn.microsoft.com/library/dn589798.aspx).
-- Conversely, if you do need the capacity to process all requests when the volume fluctuates rapidly, and cost isn't a major contributing factor, consider using an aggressive autoscaling strategy that starts additional instances more quickly. You can also use a scheduled policy that starts a sufficient number of instances to meet the maximum load before that load is expected.
-- The autoscaling mechanism should monitor the autoscaling process, and log the details of each autoscaling event (what triggered it, what resources were added or removed, and when). If you create a custom autoscaling mechanism, ensure that it incorporates this capability. Analyze the information to help measure the effectiveness of the autoscaling strategy, and tune it if necessary. You can tune both in the short term, as the usage patterns become more obvious, and over the long term, as the business expands or the requirements of the application evolve. If an application reaches the upper limit defined for autoscaling, the mechanism might also alert an operator who could manually start additional resources if necessary. Note that, under these circumstances, the operator may also be responsible for manually removing these resources after the workload eases.
+- 系統必須設計為可以水平調整。不要假設執行個體具有同質性；不要設計出程式碼一律在特定的處理程序執行個體中執行的解決方案。水平調整雲端服務或網站時，不要假設一系列來自相同來源的要求一律會路由傳送至相同的執行個體。基於相同理由，請將服務設計成無狀態，以避免需將一連串來自應用程式的要求一律路由傳送至相同的服務執行個體。在設計從佇列讀取訊息並處理它們的服務時，不要假設哪個服務的執行個體會處理特定訊息。自動調整會在佇列長度增長時，啟動其他的服務執行個體。[Competing Consumers Pattern (競爭取用者模式)](http://msdn.microsoft.com/library/dn568101.aspx) 說明如何解決這種情況。
+- 如果解決方案會實作長時間執行的工作，請將此工作設計為同時支援相應縮小和相應放大。如果不小心，這類工作會在系統相應放大時阻止處理程序執行個體完全關閉，或者，如果處理程序被強制終止，則可能會遺失資料。理想的情況是，重整長時間執行工作並分解處理，讓其以較小且不連續的區塊執行。[Pipes and Filters Pattern (管道與篩選模式)](http://msdn.microsoft.com/library/dn568100.aspx) 提供如何達成的範例。
+- 或者，您可以實作檢查點機制，定期記錄工作的狀態資訊，並將此狀態儲存在執行工作之任何處理程序執行個體可以存取的耐久性儲存體中。如此一來，如果處理程序關閉，它所執行的工作可以使用另一個執行個體，從最後一個檢查點繼續進行。
+- 當背景工作在不同的計算執行個體上執行 (例如已裝載雲端服務之應用程式的背景工作角色)，您可能需要使用不同的調整原則來調整應用程式的不同部分。例如，您可能需要部署其他使用者介面 (UI) 來計算執行個體，而不增加背景計算執行個體數目，或是相反。如果您提供不同層級的服務 (例如基本和進階服務套件) 時，相較於基本服務套件，您可能需要更積極相應放大進階服務套件的計算資源，才能符合 SLA。
+- 請考慮使用 UI 和背景計算執行個體通訊的佇列長度，作為自動調整策略的準則。這是不平衡狀態或目前負載和背景工作處理能力之間差異的最佳指標。
+- 如果您的自動調整策略是根據測量商務程序 (例如每小時訂單數或複雜交易的平均執行時間) 的計數器，請確定您完全了解這些計數器類型的結果與實際計算容量需求之間的關係。您可能需要調整多個元件或計算單位，以因應商務程序計數器的變更。
+- 若要防止系統過度相應放大，並避免執行數千個執行個體的相關聯成本，請考慮限制可以自動加入的執行個體數目上限。大部分動調整機制可讓您指定規則的執行個體數目上下限。此外，如果部署的執行個體數目已達上限而系統仍然超載，請考慮適當地降低系統提供的功能。
+- 請記住，自動調整可能不是處理工作負載中突發高載狀況的最適當機制。佈建並啟動新服務執行個體或將資源新增到系統都需要花時間，而當這些額外資源可供使用時，尖峰需求可能已過。在這種情況下，節流服務可能比較適合。如需詳細資訊，請參閱 [Throttling Pattern (分節流模式)](http://msdn.microsoft.com/library/dn589798.aspx)。
+- 相反地，如果您需要在交易量快速波動時足以處理所有要求的能力，而且成本不是主要考量因素，那麼請考慮使用積極的自動調整策略，以更快速啟動額外的執行個體。您也可以使用排程原則，在最大負載來臨前預先啟動足量的執行個體。
+- 自動調整機制應該監視自動調整程序，並記錄每個自動調整事件的詳細資料 (觸發的事件、加入或移除哪些資源，以及發生時間)。如果您建立自訂自動調整機制，請確定它包含這項功能。分析資訊，以協助測量自動調整策略的有效性，並視需要加以微調。您可以在使用模式變得更明顯時短時間內進行調整，以及在業務量拓展或對應用程式的需求演變時長期進行調整。如果應用程式達到定義的自動調整上限，機制也可以警告操作員，讓操作員視需要手動啟動其他資源。請注意，在這種情況下，操作員可能也需在工作負載減輕後，手動移除這些資源。
 
-## <a name="related-patterns-and-guidance"></a>Related patterns and guidance
-The following patterns and guidance may also be relevant to your scenario when implementing autoscaling:
+## 相關的模式和指導方針
+實作自動調整時，下列模式和指引也可能與您的案例相關：
 
-- [Throttling Pattern](http://msdn.microsoft.com/library/dn589798.aspx). This pattern describes how an application can continue to function and meet SLAs when an increase in demand places an extreme load on resources. Throttling can be used with autoscaling to prevent a system from being overwhelmed while the system scales out.
-- [Competing Consumers Pattern](http://msdn.microsoft.com/library/dn568101.aspx). This pattern describes how to implement a pool of service instances that can handle messages from any application instance. Autoscaling can be used to start and stop service instances to match the anticipated workload. This approach enables a system to process multiple messages concurrently to optimize throughput, improve scalability and availability, and balance the workload.
-- [Instrumentation and Telemetry Guidance](http://msdn.microsoft.com/library/dn589775.aspx). Instrumentation and telemetry are vital for gathering the information that can drive the autoscaling process.
+- [節流模式](http://msdn.microsoft.com/library/dn589798.aspx)。此模式說明當需求增加而對資源產生極大負載時，應用程式如何繼續運作並符合 SLA。節流可以搭配自動調整，用來避免系統相應縮小時超過負荷。
+- [競爭取用者模式](http://msdn.microsoft.com/library/dn568101.aspx)。這個模式說明如何實作服務執行個體集區，以便處理來自任何應用程式執行個體的訊息。自動調整可用來啟動和停止服務執行個體，以符合預期的工作負載。此方法可讓系統同時處理多個訊息，以達到最佳輸送量、增進延展性及可用性，以及平衡工作負載。
+- [檢測和遙測指引](http://msdn.microsoft.com/library/dn589775.aspx)。檢測和遙測對於收集資訊以進行自動調整程序相當重要。
 
-## <a name="more-information"></a>More information
-- [How to Scale an Application](./cloud-services/cloud-services-how-to-scale.md)
-- [Automatically scale an application running Web Roles, Worker Roles, or Virtual Machines](cloud-services-how-to-manage.md#linkresources)
-- [How to: Link a resource to a cloud service](cloud-services-how-to-manage.md#linkresources)
-- [Scale linked resources](./cloud-services/cloud-services-how-to-scale.md#scale-link-resources)
-- [Azure Monitoring Services Management Library](http://www.nuget.org/packages/Microsoft.WindowsAzure.Management.Monitoring)
-- [Azure Service Management REST API](http://msdn.microsoft.com/library/azure/ee460799.aspx)
+## 詳細資訊
+- [如何調整應用程式](./cloud-services/cloud-services-how-to-scale.md)
+- [自動調整執行 Web 角色、背景工作角色或虛擬機器的應用程式](cloud-services-how-to-manage.md#linkresources)
+- [作法：將資源連結到雲端服務](cloud-services-how-to-manage.md#linkresources)
+- [調整連結的資源](./cloud-services/cloud-services-how-to-scale.md#scale-link-resources)
+- [Azure 監視服務管理資源庫](http://www.nuget.org/packages/Microsoft.WindowsAzure.Management.Monitoring)
+- [Azure 服務管理 REST API](http://msdn.microsoft.com/library/azure/ee460799.aspx)
 - [Azure Resource Manager REST API](https://msdn.microsoft.com/library/azure/dn790568.aspx)
-- [Microsoft Insights library](https://www.nuget.org/packages/Microsoft.Azure.Insights/)
-- [Operations on Autoscaling](http://msdn.microsoft.com/library/azure/dn510374.aspx)
-- [Microsoft.WindowsAzure.Management.Monitoring.Autoscale Namespace](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.management.monitoring.autoscale.aspx)
+- [Microsoft Insights 資源庫](https://www.nuget.org/packages/Microsoft.Azure.Insights/)
+- [自動調整的相關作業](http://msdn.microsoft.com/library/azure/dn510374.aspx)
+- [Microsoft.WindowsAzure.Management.Monitoring.Autoscale 命名空間](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.management.monitoring.autoscale.aspx)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0720_2016-->

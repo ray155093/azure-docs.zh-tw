@@ -1,6 +1,6 @@
 <properties
-    pageTitle="Azure Role Properties"
-    description="Learn how to use the Azure Toolkit for Eclipse to configure Azure role settings."
+    pageTitle="Azure 角色屬性"
+    description="了解如何使用適用於 Eclipse 的 Azure 工具組以進行 Azure 角色設定。"
     services=""
     documentationCenter="java"
     authors="rmcmurray"
@@ -16,409 +16,403 @@
     ms.date="08/11/2016" 
     ms.author="robmcm"/>
 
-
 <!-- Legacy MSDN URL = https://msdn.microsoft.com/library/azure/hh690945.aspx -->
 
-# <a name="azure-role-properties"></a>Azure Role Properties #
+# Azure 角色屬性 #
 
-Various configuration settings for your Azure role can be set within the Azure Toolkit for Eclipse.
+您可以在適用於 Eclipse 的 Azure 工具組內設定 Azure 角色的各種組態設定。
 
-## <a name="configuring-azure-role-properties"></a>Configuring Azure Role Properties ##
+## 設定 Azure 角色屬性 ##
 
-Configuring your Azure Role Properties is accomplished through the property dialogs for your worker role. Open the context menu for the role in Eclipse's Project Explorer pane and select the **Azure** sub-menu. (If you don't see the role in the Eclipse Project Explorer, expand your Azure project in Project Explorer.)
+透過背景工作角色的各個屬性對話方塊，即可完成 Azure 角色屬性的設定工作。在 Eclipse 的 [專案總管] 窗格中開啟角色的內容功能表，然後選取 [Azure] 子功能表 (如果在 Eclipse 的 [專案總管] 中看不到角色，請在 [專案總管] 中展開 Azure 專案)。
 
 ![][ic789599]
 
-The various properties that can be set from the **Properties** dialogs are described in this topic. Note that many properties are filled in automatically when you create a new Azure deployment project.
+本主題說明可以從 [屬性] 對話方塊設定的各種屬性。要注意的是，在您建立新的 Azure 部署專案時，系統會自動填入其中的許多屬性。
 
-The following property pages are available for Azure roles.
+以下是可供 Azure 角色使用的屬性頁。
 
-* [Virtual machine properties](#virtual_machine_properties)
-* [Caching properties](#caching_properties)
-* [Certificates properties](#certificates_properties)
-* [Components properties](#components_properties)
-* [Debugging properties](#debugging_properties)
-* [Endpoints properties](#endpoints_properties)
-* [Environment variables properties](#environment_variables_properties)
-* [Load balancing / session affinity (a.k.a "sticky sessions") properties](#session_affinity_properties)
-* [Local storage properties](#local_storage_properties)
-* [Server configuration properties](#server_configuration_properties)
-* [SSL offloading properties](#ssl_offloading_properties)
-    
+* [虛擬機器屬性](#virtual_machine_properties)
+* [快取屬性](#caching_properties)
+* [憑證屬性](#certificates_properties)
+* [元件屬性](#components_properties)
+* [偵錯屬性](#debugging_properties)
+* [端點屬性](#endpoints_properties)
+* [環境變數屬性](#environment_variables_properties)
+* [負載平衡/工作階段親和性 (也稱為「黏性工作階段」) 屬性](#session_affinity_properties)
+* [本機儲存體屬性](#local_storage_properties)
+* [伺服器組態屬性](#server_configuration_properties)
+* [SSL 卸載屬性](#ssl_offloading_properties)
+	
 <a name="virtual_machine_properties"></a>
-### <a name="virtual-machine-properties"></a>Virtual machine properties ###
+### 虛擬機器屬性 ###
 
-Open the context menu for the role in Eclipse's Project Explorer pane, click **Azure**, and then click **Properties**, and you will have the ability to change the virtual machine size, and also change the number of instances, as shown in the following image.
+在 Eclipse 的 [專案總管] 窗格中開啟角色的內容功能表，按一下 [Azure]，然後按一下 [屬性]，您就能夠變更虛擬機器的大小，而且也可以變更執行個體數目，如下圖所示。
 
 ![][ic719499]
 
->[AZURE.NOTE] Windows only: when you set the number of instances to a value greater than 1 and you also configure an application server, the toolkit will allow only 1 role instance to run in the emulator, regardless of this setting. This is to avoid port binding conflicts between the different server instances (for example, all trying to bind to port 8080) when they run on the same computer. Your desired instance count setting is preserved, but it goes into effect only when you deploy to the cloud.
+>[AZURE.NOTE] 僅限 Windows：若您將執行個體數目設為大於 1 的值，並同時設定了應用程式伺服器，則不論此設定為何，工具組將只會允許在模擬器中執行 1 個角色執行個體。這是為了避免不同的伺服器執行個體在同一部電腦上執行時，彼此之間發生連接埠繫結衝突 (例如，全都嘗試繫結至連接埠 8080) 。您想要的執行個體計數設定會保留下來，但此設定只會在您部署至雲端時生效。
 
-<a name="caching_properties"></a> 
-### <a name="caching-properties"></a>Caching properties ###
+<a name="caching_properties"></a>
+### 快取屬性 ###
 
-Open the context menu for the role in Eclipse's Project Explorer pane, click **Azure**, and then click **Caching**. Within this dialog, you can enable named co-located memcache-compatible caches, allowing you to help speed up your web applications.
+在 Eclipse 的 [專案總管] 窗格中開啟角色的內容功能表，按一下 [Azure]，然後按一下 [快取]。在這個對話方塊中，您可以啟用已具名且共置的 memcache 相容快取，以協助 Web 應用程式加快速度。
 
 ![][ic719483]
 
-Within the **Caching** property page, you can specify global settings for the following:
+在 [快取] 屬性頁內，您可以指定下列項目的全域設定：
 
-* whether co-located caching is enabled.
-* the cache size as a percent of memory.
-* the storage account name for saving the cache state when your application runs as a cloud service, or none if you do not want to save the cache state. (The storage account name is not used when you run your application in the compute emulator.) If you set the storage account name to **(auto)** (which is the default), your caching configuration will automatically use the same storage account as the one you select in the **Publish to Azure** dialog.
+* 是否啟用共置快取。
+* 快取大小佔記憶體的百分比。
+* 當應用程式以雲端服務的形式執行時，用來儲存快取狀態的儲存體帳戶名稱，若不想儲存快取狀態，則為無 (在計算模擬器中執行應用程式時，不會使用儲存體帳戶名稱)。 如果您將儲存體帳戶名稱設定為 [(自動)] \(此為預設值)，您的快取設定會自動使用您在 [發佈至 Azure] 對話方塊中所選取的同一個儲存體帳戶。
 
->[AZURE.NOTE] The **(auto)** setting will have the desired effect only if you publish your deployment using the Eclipse toolkit's publish wizard. If instead you publish the .cspkg file manually using an external mechanism, such as the [Azure Management Portal][], the deployment will not function properly.
+>[AZURE.NOTE] 只有在使用 Eclipse 工具組的發佈精靈發佈部署時，[(自動)] 設定才會有所要的效果。如果您改為使用外部機制 (例如 [Azure 管理入口網站][]) 手動發佈 .cspkg 檔案，部署作業將無法正確運作。
 
-The following dialog shows the properties for a cache.
+下列對話方塊顯示快取的各項屬性。
 
 ![][ic719501]
 
-* **Name:** The name of the co-located cache.
-* **Port number:** The port number to use for the cache.
-* **Expiration policy:** One of the following values that specifies when a key in the cache expires.
-    * **Absolute:** The key expires when the time specified by **Minutes to live** is reached.
-    * **NeverExpires:** The key does not have an expiration time.
-    * **SlidingWindow:** The key expires if it has not been accessed for the amount of time specified by **Minutes to live**; each time it is accessed, the expiration clock is reset.
-* **Minutes to live:** Maximum number of minutes for a memcached key to live, subject to the expiration policy.
-* **High availability with replicated backups on different role instances:** If enabled, helps provide high availability utilizing replicated backups on different role instances. Note that at least two role instances must be in effect for your deployment for this feature to work.
+* **名稱：**共置快取的名稱。
+* **連接埠號碼：**用於快取的連接埠號碼。
+* **到期原則：**可為下列其中一個值，用以指定快取中的金鑰何時到期。
+    * **絕對：**到達 [存留分鐘數] 所指定的時間時，金鑰就會到期。
+    * **永久有效：**金鑰沒有到期時間。
+    * **滑動視窗：**金鑰未遭到存取的時間達到 [存留分鐘數] 所指定的時間長度時，金鑰就會到期。金鑰一經存取，便會重設到期時鐘。
+* **存留分鐘數：**依據到期原則所決定的 Memcached 金鑰存留分鐘數上限。
+* **在不同角色執行個體上複寫備份以提供高可用性：**啟用時，有助於利用在不同角色執行個體上複寫備份以提供高可用性。但請注意，若要讓此功能運作，您的部署中至少要有兩個作用中的角色執行個體。
 
-To add a new cache, click the **Add** button in the **Caching** property page, and a **Configure Named Cache** dialog will be opened. Provide values for the properties which are described above.
+若要新增快取，請按一下 [快取] 屬性頁中的 [新增] 按鈕，隨即就會開啟 [設定具名快取] 對話方塊。提供上述屬性的值。
 
-To modify a named cache, select the cache and click the **Edit** button in the **Caching** property page. A dialog will be opened allowing you to modify the cache properties. Press **OK** to save the cache values.
+若要修改具名快取，請選取快取，然後按一下 [快取] 屬性頁中的 [編輯] 按鈕。隨即會開啟對話方塊供您修改快取屬性。按 [確定] 以儲存快取值。
 
-To delete a cache, select the cache and click the **Remove** button in the **Caching** property page, and then click **Yes** to confirm the deletion.
+若要刪除快取，請選取快取，按一下 [快取] 屬性頁中的 [移除] 按鈕，然後按一下 [是] 以確認刪除。
 
-For more information on how to use caching, see [How to Use Co-located Caching][].
+如需如何使用快取的詳細資訊，請參閱[如何使用共置快取][]。
 
-<a name="certificates_properties"></a> 
-### <a name="certificates-properties"></a>Certificates properties ###
+<a name="certificates_properties"></a>
+### 憑證屬性 ###
 
-Open the context menu for the role in Eclipse's Project Explorer pane, click **Azure**, and then click **Certificates**.
+在 Eclipse 的 [專案總管] 窗格中開啟角色的內容功能表，按一下 [Azure]，然後按一下 [憑證]。
 
 ![][ic710964]
 
-Within this dialog, you can add or remove certificates referenced by your Eclipse project. Note that the certificates listed here are not automatically stored inside any Java keystore, and therefore are not automatically available for any use from within a Java application. They are only registered with Azure so that they can be preloaded into the Windows certificate store on the virtual machines running your deployment and subsequently used by other Windows software. Currently, the only feature of the toolkit that uses the certificates referenced this way in the **Certificates** dialog is [SSL Offloading][], due to its reliance on Internet Information Services (IIS) and Application Request Routing (ARR), which require the proper certificate to be made available in this manner.
+在這個對話方塊中，您可以新增或移除 Eclipse 專案所參考的憑證。請注意，此處所列的憑證不會自動儲存在任何 Java 金鑰存放區內，因此無法自動在 Java 應用程式內提供使用。這些憑證只會向 Azure 進行註冊，以便可以預先載入到執行部署之虛擬機器上的 Windows 憑證存放區，並於隨後供其他 Windows 軟體使用。目前來說，工具組中只有一個功能會使用 [憑證] 對話方塊中以此方式所參考的憑證，那就是 [SSL 卸載][]，因為此功能需依賴 Internet Information Services (IIS) 和應用程式要求路由 (ARR)，而這兩者需要以這種方式提供適當的憑證。
 
-When you deploy your project to Azure using the Publish wizard, you will be prompted to point at the Personal Information Exchange (PFX) files corresponding to these certificates, along with their passwords, in order to automatically upload them to the Azure service, but only if they have not been uploaded there previously.
+當您使用發佈精靈將專案部署至 Azure 時，系統會提示您指向這些憑證所對應的個人資訊交換 (PFX) 檔案以及憑證的密碼，以便自動將憑證上傳至 Azure 服務，但前提是這些憑證先前並未上傳至該處。
 
-<a name="components_properties"></a> 
-### <a name="components-properties"></a>Components properties ###
+<a name="components_properties"></a>
+### 元件屬性 ###
 
-Open the context menu for the role in Eclipse's Project Explorer pane, click **Azure**, and then click **Components**. Within this dialog, you have the ability to add, modify, or remove the components of your role, as well as change the order in which they are processed.
+在 Eclipse 的 [專案總管] 窗格中開啟角色的內容功能表，按一下 [Azure]，然後按一下 [元件]。在這個對話方塊中，您可以新增、修改或移除角色的元件，以及變更它們的處理順序。
 
 ![][ic719502]
 
-The components feature enables you to add dependencies to your Azure deployment project, such as Java application projects, special files, and executable command line statements that are needed by your deployment.
+元件功能可讓您對 Azure 部署專案新增相依項目，例如 Java 應用程式專案、特殊檔案，以及部署所需的可執行命令列陳述式。
 
-For each component, you can specify:
+針對每個元件，您可以指定：
 
-* The step to be taken when importing the component into your Azure deployment project when it is built.
-* The step to be taken when deploying that component in the Azure cloud.
+* 在建置 Azure 部署專案時，將元件匯入到其中時所要採取的步驟。
+* 在 Azure 雲端部署該元件時所要採取的步驟。
 
->[AZURE.NOTE] When specifying component files or command lines, keep in mind that your deployment will be published to a Windows virtual machine, so your custom steps must be valid for a Windows-based operating system. 
+>[AZURE.NOTE] 在指定元件檔案或命令列時請記住，您的部署將會發佈至 Windows 虛擬機器，因此您自訂的步驟必須適用於 Windows 架構的作業系統。
 
-Components have the following properties:
+元件具有下列屬性：
 
-* **Import:** Method that indicates how the component will be imported into the project when the project is built. This can be one of the following values:
-    * **copy:** The component is copied from the local path specified by the **From** property into the role's **approot** directory.
-    * **EAR:** The component is a Java enterprise archive (EAR) imported from an Enterprise Application Project at the local path specified by the **From** property. (This is detected automatically by the toolkit based on the nature of the project at that location).
-    * **JAR:** The component is a Java archive (JAR) and is imported from a Java project at the local path specified by the **From** property. (This is detected automatically by the toolkit based on the nature of the project at that location).
-    * **none:** No action is taken to import the component. This is applicable when the component is assumed to already be present in the role's **approot** directory, or when the component is merely an executable command line statement, as specified in the **As** property when the **Deploy** method is **exec**.
-    * **WAR:** The component is a Java web application archive (WAR) and is imported from a Dynamic Web Project at the local path specified by the **From** property. (This is detected automatically by the toolkit based on the nature of the project at that location).
-    * **zip:** The component is a zip file and is imported by zipping the directory or file specified by the **From** property.
-* **From:** Source path on your local machine to the folder or file that represents the item(s) to import to your deployment. Windows environment variables can be used in this property. All importable components will be imported into the role's **approot** directory when the project is built.
-    
-    Note that you have the ability to deploy a component from a download when deploying to the cloud (not the compute emulator). See related information below about adding a component.    
-    
-* **As:** File name under which the component will be imported into the role's **approot** directory and ultimately deployed in the Azure cloud. Leave this property blank to keep the name the same as it is on the local machine. (For executable components, that is, those whose **Deploy** method is set to **exec**, this can be an arbitrary Windows command line statement.)
+* **匯入：**指出在建置專案時用來將元件匯入到其中的方法。此屬性可為下列其中一個值：
+    * **複製：**將元件從 [來源] 屬性所指定的本機路徑複製到角色的 **approot** 目錄。
+    * **EAR：**元件是從 [來源] 屬性所指定之本機路徑上的企業應用程式專案所匯入的 Java 企業封存檔 (EAR) (工具組會根據該位置之專案的性質自動偵測此元件)。
+    * **JAR：**元件是從 [來源] 屬性所指定之本機路徑上的 Java 專案所匯入的 Java 封存檔 (JAR) (工具組會根據該位置之專案的性質自動偵測此元件)。
+    * **無：**不採取任何動作來匯入元件。此值適用於假設元件已出現在角色的 **approot** 目錄中時，或當元件只是如 [為] 屬性所指定的可執行命令列陳述式時 (當 [部署] 方法是 [可執行檔] 時)。
+    * **WAR：**元件是從 [來源] 屬性所指定之本機路徑上的動態 Web 專案所匯入的 Java Web 應用程式封存檔 (WAR) (工具組會根據該位置之專案的性質自動偵測此元件)。
+    * **Zip 檔：**元件是透過壓縮 [來源] 屬性所指定的目錄或檔案所匯入的 Zip 檔案。
+* **來源：**代表要匯入部署中之項目的資料夾或檔案在本機電腦上的來源路徑。此屬性可以使用 Windows 環境變數。在建置專案時，所有可匯入的元件都會匯入到角色的 **approot** 目錄。
+	
+	請注意，在部署到雲端 (而非計算模擬器) 時，可以透過下載來部署元件。請參閱以下有關新增元件的相關資訊。
+	
+* **為：**元件要匯入到角色的 **approot** 目錄下的檔案名稱，而且此元件最終會部署在 Azure 雲端。將此屬性空白，可讓名稱保持與位於本機電腦上時相同 (若為可執行檔元件，亦即 [部署] 方法設為 [可執行檔] 的元件，此屬性可以是任意的 Windows 命令列陳述式)。
 
-    >[AZURE.IMPORTANT] If you use space characters for this value, they will be handled differently depending on the deploy method. If the deploy method is **exec**, spaces will be interpreted as command line argument separators and not as part of the file name. For all other deploy methods, spaces will be interpreted as part of the file name.
-    
-* **Deploy:** Method that indicates the action applied to the component when the deployment is started. This can be one of the following values:
-    * **copy:** The component is copied to the destination path specified by the **To** property.
-    * **exec:** The component is an executable Windows command line statement executed in the context of the path specified by the **To** property, at the time the deployment starts.
-    * **none:** No action is applied to the component when the deployment starts.
-    * **zip:** The component is unzipped to the destination path specified by the **To** property. This method is available only when the **Import** property is **zip**.
-* **To:** Destination path on the virtual machine where the component will be deployed. Windows environment variables can be used in this property, and file paths are relative to **approot**.
-    
-To add a new component, click the **Add** button in the **Components** property page, and an **Azure Role Component** dialog will be opened. Provide values for the properties which are described above. 
+	>[AZURE.IMPORTANT] 如果您對這個值使用空格字元，則會根據部署方法進行不同的處理。如果部署方法是 [可執行檔]，系統會將空格解譯為命令列引數分隔符號，而非檔案名稱的一部分。若為其他所有部署方法，系統會將空格解譯為檔案名稱的一部分。
+	
+* **部署：**指出開始部署時套用至元件之動作的方法。此屬性可為下列其中一個值：
+    * **複製：**元件會複製到 [目的地] 屬性所指定的目的地路徑。
+    * **可執行檔：**元件是可執行的 Windows 命令列陳述式，會在開始部署於 [目的地] 屬性所指定之路徑的內容中執行。
+    * **無：**開始部署時，不會對元件套用任何動作。
+    * **Zip 檔：**元件會解壓縮到 [目的地] 屬性所指定的目的地路徑。這個方法只適用於 [匯入] 屬性是 [Zip 檔] 時。
+* **目的地：**元件將要部署在虛擬機器上的目的地路徑。此屬性可以使用 Windows 環境變數，而且檔案路徑是相對於 **approot**。
+	
+若要新增元件，請按一下 [元件] 屬性頁中的 [新增] 按鈕，隨即就會開啟 [Azure 角色元件] 對話方塊。提供上述屬性的值。
 
-The following shows an example for adding a new WAR component.
+下圖顯示新增 WAR 元件的範例。
 
 ![][ic719503]
 
-When deploying to the cloud (not the compute emulator), if you want to deploy the component from a download, ensure that **When in cloud, instead of including in the package, deploy from** is checked. If you want to download from your Azure storage account, select the storage account from the **Storage account** drop-down list (you can click the **Accounts** link to modify what is in the list), which will partially fill in the **URL** field, and then fill in the remaining portion of the URL. If you do not want to use Azure storage, select **(none)** from the **Storage account** drop-down list, and enter the URL to your component in the **URL** field. Specify one of the following methods:
+在部署到雲端 (而非計算模擬器) 時，如果您想要透過下載來部署元件，請確定您已核取 [在雲端中而非納入封裝時，透過下列方式部署]。如果您想要從 Azure 儲存體帳戶進行下載，請從 [儲存體帳戶] 下拉式清單選取儲存體帳戶 (您可以按一下 [帳戶] 連結以修改清單內容)，所選結果會部分填入 [URL] 欄位，請您自行填入 URL 的其餘部分。如果您不想使用 Azure 儲存體，請從 [儲存體帳戶] 下拉式清單選取 [(無)]，然後在 [URL] 欄位中輸入元件的 URL。指定下列其中一個方法：
 
-* **copy:** The download component is copied to the destination path specified by the **To Directory** path.
-* **same:** The same method used for **Deploy from download** as for **Deploy from package**.
-* **zip:** The download component is unzipped to the destination path specified by the **To Directory** path.
+* **複製：**下載元件會複製到 [目的地目錄] 路徑所指定的目的地路徑。
+* **相同：**用於 [從下載部署] 和用於 [從封裝部署] 的方法相同。
+* **Zip 檔：**下載元件會解壓縮到 [目的地目錄] 路徑所指定的目的地路徑。
 
-To modify a component, select the component and click the **Edit** button in the **Components** property page. A dialog will be opened allowing you to modify the component properties. Press **OK** to save the component values.
+若要修改元件，請選取元件，然後按一下 [元件] 屬性頁中的 [編輯] 按鈕。隨即會開啟對話方塊供您修改元件屬性。按 [確定] 以儲存元件值。
 
-To delete a component, select the component and click the **Remove** button in the **Components** property page, and then click **Yes** to confirm the deletion.
+若要刪除元件，請選取元件，按一下 [元件] 屬性頁中的 [移除] 按鈕，然後按一下 [是] 以確認刪除。
 
-Components are processed in the order listed. Use the **Move Up** and **Move Down** buttons to arrange the order.
+元件會依照所列順序進行處理。使用 [上移] 和 [下移] 按鈕來排列順序。
 
->[AZURE.NOTE] The server configuration feature relies on components as well. Those components cannot be removed or edited without removing the corresponding server configuration. You will be prompted about that when attempting to make changes to such components.
+>[AZURE.NOTE] 伺服器組態功能也需依賴元件。不移除對應的伺服器組態，就無法移除或編輯這些元件。當您嘗試對這類元件進行變更時，將會提示您相關資訊。
 
-<a name="debugging_properties"></a> 
-### <a name="debugging-properties"></a>Debugging properties ###
+<a name="debugging_properties"></a>
+### 偵錯屬性 ###
 
-Open the context menu for the role in Eclipse's Project Explorer pane, click **Azure**, and then click **Debugging**. Within this dialog, you have the ability to enable or disable remote debugging, as well as create debug configurations, as shown in the following image.
+在 Eclipse 的 [專案總管] 窗格中開啟角色的內容功能表，按一下 [Azure]，然後按一下 [偵錯]。在這個對話方塊中，您可以啟用或停用遠端偵錯以及建立偵錯組態，如下圖所示。
 
 ![][ic719504]
 
-For related information about debugging, see [Debugging Azure Applications in Eclipse][].
+如需有關偵錯的相關資訊，請參閱[在 Eclipse 中偵錯 Azure 應用程式][]。
 
-<a name="endpoints_properties"></a> 
-### <a name="endpoints-properties"></a>Endpoints properties ###
+<a name="endpoints_properties"></a>
+### 端點屬性 ###
 
-Open the context menu for the role in Eclipse's Project Explorer pane, click **Azure**, and then click **Endpoints**. Within this dialog, you have the ability to create an endpoint, as well as edit or remove an endpoint, as shown in the following image.
+在 Eclipse 的 [專案總管] 窗格中開啟角色的內容功能表，按一下 [Azure]，然後按一下 [端點]。在這個對話方塊中，您可以建立端點以及編輯或移除端點，如下圖所示。
 
 ![][ic719505]
 
-To add an endpoint, click the **Add** button in the **Endpoints** property page, and an **Add Endpoint** dialog will be opened.
+若要新增端點，請按一下 [端點] 屬性頁中的 [新增] 按鈕，隨即就會開啟 [新增端點] 對話方塊。
 
 ![][ic710897]
 
-Enter a name for the endpoint, select the type (either **Input**, **Internal**, or **InstanceInput**), and specify the public and private port. Press **OK** to save the new endpoint values.
+輸入端點名稱，選取類型 ([輸入]、[內部] 或 [執行個體輸入])，並指定公用和私人連接埠。按 [確定] 以儲存新的端點值。
 
-Depending on the type of endpoint, you may use port ranges as follows:
+根據端點的類型，您可以使用的連接埠範圍如下：
 
-* For an input instance endpoint, the public port can be a range of ports (for example **2000-2010**) and the private port is a fixed value.
-* For an internal endpoint, the public port is not used, and the private port can be a range, or left blank or set to an asterisk to indicate it is automatically set by Azure.
-* For input endpoints, the public port can only be a fixed value, and the private port can be a fixed value, or left blank or set to an asterisk to indicate it is automatically set by Azure.
+* 若為輸入執行個體端點，公用連接埠可以是連接埠範圍 (例如 **2000-2010**)，但私人連接埠是固定值。
+* 若為內部端點，則不會使用公用連接埠，而且私用連接埠可以是範圍、保留空白，或設為星號以表示它會由 Azure 自動設定。
+* 若為輸入端點，則公用連接埠只能是固定值，但私用連接埠可以是固定值、保留空白，或設為星號以表示它會由 Azure 自動設定。
 
-If you want to use a single port number instead of a range, leave the text box for the end of the range blank.
+如果您想要使用單一連接埠號碼而非某個範圍，請將代表範圍結尾的文字方塊保留空白。
 
-For ports that are set to automatic, if you need to determine which port is actually used during runtime, your application can use the Azure Service Runtime API, which is documented in the [com.microsoft.windowsazure.serviceruntime package summary][].
+對於設為自動設定的連接埠，如果您需要確定執行階段期間實際上會使用哪個連接埠，則應用程式可以使用 [com.microsoft.windowsazure.serviceruntime 封裝摘要][]中所記載的 Azure 服務執行階段 API。
 
-To see how instance input endpoints can be used to help with debugging a multi-instance deployment, see [Debugging a specific role instance in a multi-instance deployment][].
+若要查看如何使用執行個體輸入端點來協助偵錯多個執行個體部署，請參閱[偵錯多個執行個體部署中的特定角色執行個體][]。
 
-To modify an endpoint, select the endpoint and click the **Edit** button in the **Endpoints** property page. A dialog will be opened allowing you to modify the endpoint name, type, and public and private ports. Press **OK** to save the modified endpoint values.
+若要修改端點，請選取端點，然後按一下 [端點] 屬性頁中的 [編輯] 按鈕。隨即會開啟對話方塊供您修改端點名稱、類型和公用與私人連接埠。按 [確定] 以儲存修改過的端點值。
 
-To delete an endpoint, select the endpoint and click the **Remove** button in the **Endpoints** property page, and then click **Yes** to confirm the deletion.
+若要刪除端點，請選取端點，按一下 [端點] 屬性頁中的 [移除] 按鈕，然後按一下 [是] 以確認刪除。
 
-In order to properly configure some of the features (such as Caching, Remote Debugging, Session Affinity, or SSL offloading) enabled by the user on a role, the toolkit may automatically configure special endpoints that will be listed along with user-defined endpoints. The toolkit prevents the user from editing or deleting such automatically generated endpoints as long as the associated feature is enabled.
+為了正確設定使用者對某個角色所啟用的某些功能 (例如快取、遠端偵錯、工作階段親和性或 SSL 卸載)，工具組可能會自動設定隨使用者定義的端點一起列出的特殊端點。只要啟用關聯的功能，工具組就會防止使用者編輯或刪除這類自動產生的端點。
 
-<a name="environment_variables_properties"></a> 
-### <a name="environment-variables-properties"></a>Environment variables properties ###
+<a name="environment_variables_properties"></a>
+### 環境變數屬性 ###
 
-Open the context menu for the role in Eclipse's Project Explorer pane, click **Azure**, and then click **Environment Variables**. Within this dialog, you have the ability to create an environment variable, as well as modify or remove an environment variable, as shown in the following image.
+在 Eclipse 的 [專案總管] 窗格中開啟角色的內容功能表，按一下 [Azure]，然後按一下 [環境變數]。在這個對話方塊中，您可以建立環境變數以及修改或移除環境變數，如下圖所示。
 
 ![][ic719506]
 
-Environment variables are available to your startup script when the role starts.
+當角色啟動時，啟動指令碼就能夠使用環境變數。
 
->[AZURE.NOTE] When specifying environment variables, keep in mind that your deployment will be published to a Windows virtual machine, so your environment variables must be valid for a Windows-based operating system.
+>[AZURE.NOTE] 在指定環境變數時請記住，您的部署將會發佈至 Windows 虛擬機器，因此您的環境變數必須適用於 Windows 架構的作業系統。
 
-As an example of an environment variable being available when the role starts, create a new environment variable by clicking the **Add** button. The following shows an environment variable named **MyRoleVersion** being created and assigned the value **1.0**.
+為了舉例說明角色啟動時可供使用的環境變數，請按一下 [新增] 按鈕以建立新的環境變數。下圖顯示我們將會建立名為 **MyRoleVersion** 的環境變數，並對其指派 **1.0** 的值。
 
 ![][ic659268]
 
-Within your jsp code, you could display the value using the `System.getenv` method:
+在 jsp 程式碼中，您可以使用 `System.getenv` 方法來顯示值：
 
     <body>
       <b> Hello World!</b>
       <p>Running role version: <%= System.getenv("MyRoleVersion") %></p>
     </body>
 
-Resulting in this output when your application runs:
+當應用程式執行時會產生以下輸出：
 
 ![][ic552233]
 
-To modify an environment variable, select the environment variable and click the **Edit** button in the **Environment Variables** property page. A dialog will be opened allowing you to modify the environment variable properties. Press **OK** to save the environment variable values.
+若要修改環境變數，請選取環境變數，然後按一下 [環境變數] 屬性頁中的 [編輯] 按鈕。隨即會開啟對話方塊供您修改環境變數屬性。按 [確定] 以儲存環境變數值。
 
-To delete an environment variable, select the environment variable and click the **Remove** button in the **Environment Variables** property page, and then click **Yes** to confirm the deletion.
+若要刪除環境變數，請選取環境變數，按一下 [環境變數] 屬性頁中的 [移除] 按鈕，然後按一下 [是] 以確認刪除。
 
-In order to properly configure some of the features (such as Server Configuration, Remote Debugging or Local Storage) enabled by the user on a role, the toolkit may automatically configure special environment variables that will be listed along with user-defined environment variables. The toolkit prevents the user from editing or deleting such automatically generated environment variables as long as the associated feature is enabled.
+為了正確設定使用者對某個角色所啟用的某些功能 (例如伺服器組態、遠端偵錯或本機儲存體)，工具組可能會自動設定隨使用者定義的環境變數一起列出的特殊環境變數。只要啟用關聯的功能，工具組就會防止使用者編輯或刪除這類自動產生的環境變數。
 
-<a name="session_affinity_properties"></a> 
-### <a name="load-balancing-/-session-affinity-(a.k.a-"sticky-sessions")-properties"></a>Load balancing / session affinity (a.k.a "sticky sessions") properties ###
+<a name="session_affinity_properties"></a>
+### 負載平衡/工作階段親和性 (也稱為「黏性工作階段」) 屬性 ###
 
-Open the context menu for the role in Eclipse's Project Explorer pane, click **Azure**, and then click **Load Balancing**. Within this dialog, you have the ability to enable or disable session affinity, as shown in the following image.
+在 Eclipse 的 [專案總管] 窗格中開啟角色的內容功能表，按一下 [Azure]，然後按一下 [負載平衡]。在這個對話方塊中，您可以啟用或停用工作階段親和性，如下圖所示。
 
 ![][ic719492]
 
-For related information, see [Session Affinity][]. Also, note this feature's behavior in the context of SSL offloading, as described at [SSL Offloading][].
+如需相關資訊，請參閱[工作階段親和性][]。另外請注意這項功能在 SSL 卸載情況下的行為，如 [SSL 卸載][]所述。
 
-<a name="local_storage_properties"></a> 
-### <a name="local-storage-properties"></a>Local storage properties ###
+<a name="local_storage_properties"></a>
+### 本機儲存體屬性 ###
 
-Open the context menu for the role in Eclipse's Project Explorer pane, click **Azure**, and then click **Local Storage**. Within this dialog, you have the ability to create, modify or remove temporary local storage for the virtual machine that is running your application. Specific values can be set for the size of the local storage, as well as whether the contents are preserved when the role is recycled, as shown in the following image.
+在 Eclipse 的 [專案總管] 窗格中開啟角色的內容功能表，按一下 [Azure]，然後按一下 [本機儲存體]。在這個對話方塊中，您可以建立、修改或移除正在執行應用程式之虛擬機器的暫存本機儲存體。您可以針對本機儲存體大小，以及回收角色時是否保留其內容設定特定值，如下圖所示。
 
 ![][ic719508]
 
-You can also optionally specify an environment variable that corresponds to the local storage.
+您也可以選擇性地指定對應至本機儲存體的環境變數。
 
-By default, everything that you deploy into Azure is placed (and unzipped) in the **approot** folder of the role instance. While most simple deployments will fit there even after unzipping, the space allocated for the **approot** directory is limited and not well-defined (less than 1 GB is a reasonable rule of thumb). Therefore, to ensure Azure allocates sufficient disk space for larger deployments that might not fit in the **approot** folder, you should set up a local storage resource using the **Local Storage** dialog. For an easy way to do this, see [Deploying Large Deployments][].
+根據預設，所有部署至 Azure 的項目皆會放置 (和解壓縮) 在角色執行個體的 **approot** 資料夾。雖然該資料夾可容納大多數的簡單部署 (即使在解壓縮之後)，但配置給 **approot** 目錄的空間實際上有限且未明確定義 (根據經驗合理推估是小於 1 GB)。因此，為確保 Azure 配置足夠的磁碟空間來容納 **approot** 資料夾可能放不下的較大部署，您應該使用 [本機儲存體] 對話方塊設定本機儲存資源。若要輕鬆進行此設定，請參閱[部署大型部署][]。
 
-You can easily reference the storage resource from startup scripts (for example, your **startup.cmd**) using the environment variable automatically associated by the Eclipse toolkit with the resource, as shown in the **Local Storage** dialog. That environment variable will contain the full path of the local resource you've configured at the time your startup script is executed. 
+您可以使用由 Eclipse 工具組自動關聯至資源的環境變數，從啟動指令碼 (例如 **startup.cmd**) 輕鬆參考儲存體資源，如 [本機儲存] 對話方塊所示。該環境變數會包含您已在執行啟動指令碼時設定之本機資源的完整路徑。
 
-To modify a local storage resource, select the local storage resource and click the **Edit** button in the **Local Storage** property page. A dialog will be opened allowing you to modify the local storage resource properties. Press **OK** to save the local storage resource values.
+若要修改本機儲存體資源，請選取本機儲存體資源，然後按一下 [本機儲存] 屬性頁中的 [編輯] 按鈕。隨即會開啟對話方塊供您修改本機儲存資源屬性。按 [確定] 以儲存本機儲存資源的值。
 
-To delete a local storage resource, select the local storage resource and click the **Remove** button in the **Local Storage** property page, and then click **Yes** to confirm the deletion.
+若要刪除本機儲存體資源，請選取本機儲存體資源，按一下 [本機儲存] 屬性頁中的 [移除] 按鈕，然後按一下 [是] 以確認刪除。
 
-<a name="server_configuration_properties"></a> 
-### <a name="server-configuration-properties"></a>Server configuration properties ###
+<a name="server_configuration_properties"></a>
+### 伺服器組態屬性 ###
 
-Open the context menu for the role in Eclipse's Project Explorer pane, click **Azure**, and then click **Server Configuration**. Within this dialog, you have the ability to add, remove, and modify the JDK and Java application server used by your deployment, as well as add or remove the applications (such as WAR, JAR or EAR files) used by your deployment.
+在 Eclipse 的 [專案總管] 窗格中開啟角色的內容功能表，按一下 [Azure]，然後按一下 [伺服器組態]。在這個對話方塊中，您可以新增、移除和修改部署所使用的 JDK 和 Java 應用程式伺服器，以及新增或移除部署所使用的應用程式 (例如 WAR、JAR 或 EAR 檔案)。
 
-### <a name="jdk-configuration"></a>JDK configuration ###
+### JDK 組態 ###
 
-This dialog allows you to specify the JDK package to use for your deployment. If you are using Eclipse on Windows, you can specify the JDK package to use locally when running in the Azure emulator and you have the option to deploy that local installation to Azure. On non-Windows operating systems, the emulator JDK setting is not applicable and you cannot deploy the locally installed JDK since it is not compatible with Windows. However, regardless of the operating system that you are using, you can always choose among the 3rd party JDK packages to deploy to Azure, or point at your own Windows-compatible JDK package from an alternate download location.
+這個對話方塊可讓您指定要用於部署的 JDK 封裝。如果您在 Windows 上使用 Eclipse，您可以指定當 JDK 封裝是在 Azure 模擬器中執行時，讓此封裝在本機上使用，而且您可以選擇將該本機安裝部署至 Azure。在非 Windows 作業系統上則不適用模擬器 JDK 設定，而且您無法部署本機安裝的 JDK，因為它與 Windows 不相容。不過，無論您使用什麼作業系統，一律都可以選擇使用第三方 JDK 封裝來部署至 Azure，或從其他下載位置指向您自己的 Windows 相容 JDK 封裝。
 
-The following is an example of how you can specify a JDK on Windows:
+以下範例說明如何在 Windows 上指定 JDK：
 
 ![][ic780647]
 
-If you are using Eclipse on Windows, you can specify a JDK to use with the compute emulator; to do so, ensure **Use the JDK from this file path for testing locally** is checked in the **Emulator deployment** section. Then, specify the local path to your JDK; you can browse to different JDK if the one you want to use is not selected automatically. You also have the option to deploy your JDK to your Azure cloud service; to do so, select the **Deploy my local JDK (auto-upload to cloud storage)** option in the **Cloud deployment** section.
+如果您在 Windows 上使用 Eclipse，您可以指定用於計算模擬器的 JDK，若要進行指定，請確定已核取 [模擬器部署] 區段中的 [使用此檔案路徑中的 JDK 以進行本機測試]。然後，指定 JDK 的本機路徑，如果系統未自動選取您想使用的 JDK，您可以瀏覽至不同的 JDK。您也可以選擇將 JDK 部署至 Azure 雲端服務，若要這樣做，請選取 [雲端部署] 區段中的 [部署本機 JDK (自動上傳至雲端儲存體)] 選項。
 
-Note: On non-Windows operating systems, the **Emulator deployment** settings and the **Deploy my local JDK** option are not available. The following example illustrates specifying a JDK on a Mac or other supported non-Windows operating system:
+附註：在非 Windows 作業系統中，無法使用 [模擬器部署] 設定和 [部署本機 JDK] 選項。下列範例說明如何在 Mac 或其他支援的非 Windows 作業系統上指定 JDK：
 
 ![][ic789643]
 
-Regardless of the operating system you are on, you have the following two **Cloud deployment** options for the source and type of your JDK package:
+不論您所在的作業系統為何，JDK 封裝的來源和類型都有下列兩個 [雲端部署] 選項：
 
-* **Deploy a 3rd party JDK package available on Azure** 
-* **Deploy from a custom download** 
+* **部署 Azure 提供的第三方 JDK 封裝**
+* **從自訂下載部署**
 
-If you are using the **Deploy a 3rd party JDK package available from Azure** option:
+如果您使用 [部署可從 Azure 取得的第三方 JDK 封裝] 選項：
 
-1. Check the checkbox named **Deploy a 3rd party JDK package available from Azure**.
-1. From the drop-down list, select the 3rd party JDK package that is available on Azure.
-1. Your **JDK** tab will look similar to the following on Windows:  ![][ic780648]
-    And it will look similar to the following on Mac OS or other supported non-Windows operating systems:  ![][ic789643]
-1. Click **OK** to save your changes.
-1. When prompted to accept the license agreement from the 3rd party JDK package provider, review the license terms. Assuming you accept the terms, click **Yes** to close the **Accept license agreement** dialog.
-    Note that the underlying logic for which items appear in the drop-down list for the **Deploy a 3rd party JDK package available from Azure** option can be customized. To customize the items, in the **JDK** dialog, click the **Customize** link. This will close the **JDK** property page and open the **componentsets.xml** file in Eclipse, which you can then modify as needed. Documentation for **componentsets.xml** is included in the **componentsets.xml** file itself.
+1. 核取名為 [部署可從 Azure 取得的第三方 JDK 封裝] 的核取方塊。
+1. 從下拉式清單中，選取 Azure 提供的第三方 JDK 封裝。
+1. 在 Windows 上，[JDK] 索引標籤看起來類似下圖：![][ic780648] 在 Mac OS 或其他支援的非 Windows 作業系統上，則看起來類似下圖：![][ic789643]
+1. 按一下 [確定] 以儲存變更。
+1. 當系統提示您接受第三方 JDK 封裝提供者所提出的授權合約時，請檢閱授權條款。假設您接受這些條款，請按一下 [是] 以關閉 [接受授權合約] 對話方塊。請注意，您可以自訂 [部署可從 Azure 取得的第三方 JDK 封裝] 選項的下拉式清單中要出現哪些項目的基礎邏輯。若要自訂出現的項目，請在 [JDK] 對話方塊中按一下 [自訂] 連結。此動作將會關閉 [JDK] 屬性頁，並在 Eclipse 中開啟 **componentsets.xml** 檔案，然後您就可以視需要進行修改。**componentsets.xml** 的說明文件包含在 **componentsets.xml** 檔案本身之中。
 
-If you are using the **Deploy a JDK from a custom download** option:
+如果您使用 [從自訂下載部署 JDK] 選項：
 
-1. Create a ZIP of your JDK installation directory, ensuring that the directory node itself is the child of the ZIP structure, and not its contents. Take note of the name of the directory, as you will need it later, and keep in mind this JDK installation will be deployed to a Windows virtual machine.
-1. Upload the ZIP into your Azure storage account as a blob. You can do this using an externally available tool for uploading blobs to Azure storage. It is recommended to use a private blob. Take note of the blob URL of the ZIP contents.
-1. Check the checkbox named **Deploy a JDK from a custom download**.
-    If you want to download from your Azure storage account, select the storage account from the **Storage account** drop-down list (you can click the **Accounts** link to modify what is in the list), which will partially fill in the **URL** field, and then fill in the remaining portion of the URL. If you do not want to use Azure storage, select **(none)** from the **Storage account** drop-down list, and enter the URL to your JDK download in the **URL** field. If using Azure storage, blob names in the URL must be lowercase.
-1. Ensure that the **JAVA_HOME** textbox refers to the correct directory name. By default, it will reference the same JDK directory name as the value you chose for your local use. But if the directory contained in the ZIP has a different name (for example, due to using a different version), update the directory name in the **JAVA_HOME** textbox accordingly, since this setting will be used in the cloud (not in the compute emulator).
-1. Click **OK** to save your changes.
+1. 建立 JDK 安裝目錄的 ZIP 檔，確保目錄節點本身是 ZIP 結構的子系，而非其內容的子系。記下目錄名稱，因為您稍後會需要它，並請記住此 JDK 安裝將會部署到 Windows 虛擬機器。
+1. 以 blob 的形式將 ZIP 檔上傳到 Azure 儲存體帳戶。若要這麼做，您可以使用外部取得的工具來將 blob 上傳至 Azure 儲存體。建議您使用私人 blob。記下 ZIP 內容的 blob URL。
+1. 核取名為 [從自訂下載部署 JDK]的核取方塊。如果您想要從 Azure 儲存體帳戶進行下載，請從 [儲存體帳戶] 下拉式清單選取儲存體帳戶 (您可以按一下 [帳戶] 連結以修改清單內容)，所選結果會部分填入 [URL] 欄位，請您自行填入 URL 的其餘部分。如果您不想使用 Azure 儲存體，請從 [儲存體帳戶] 下拉式清單選取 [(無)]，然後在 [URL] 欄位中輸入 JDK 下載的 URL。如果使用 Azure 儲存體，則 URL 中的 blob 名稱必須是小寫。
+1. 確定 **JAVA\_HOME** 文字方塊有參考正確的目錄名稱。根據預設，它會參考與您為本機使用所選擇之值相同的 JDK 目錄名稱。但如果 ZIP 檔中包含的目錄有不同名稱 (例如由於使用不同版本)，請相應地更新 **JAVA\_HOME** 文字方塊中的目錄名稱，因為此設定會用於雲端 (而非計算模擬器)。
+1. 按一下 [確定] 以儲存變更。
 
-That's it. Now, when you build for the cloud, you will notice the package size will be much smaller, the build process should typically take less time, and the deployment itself when you publish to the cloud should also take less time. Note that the **Deploy my local JDK (auto-upload to cloud storage)** or **Deploy a JDK from a custom download** options are in effect only when your application is deployed in the cloud. They have no effect on your compute emulator experience; the local version of the components will still be used when you deploy to the compute emulator. 
+就這麼簡單。現在，當您針對雲端進行建置時，您會發現封裝大小變小很多，建置程序所需的時間通常較少，而且部署本身在發佈至雲端時所需的時間也應該會變少。請注意，只有當應用程式部署在雲端時，[部署本機 JDK (自動上傳至雲端儲存體)] 或 [從自訂下載部署 JDK] 選項才有作用。在使用計算模擬器時，這兩個選項不會有任何作用，當您部署至計算模擬器時，仍然會使用本機版本的元件。
 
-### <a name="server-configuration"></a>Server configuration ###
+### 伺服器組態 ###
 
-The following is an example of how you can specify an application server.
+以下範例說明如何指定應用程式伺服器。
 
 ![][ic796926]
 
-Verify that the **Deploy a server of this type** checkbox is selected, and then choose the type of application server you want to use.
+確認已選取 [部署此類型的伺服器] 核取方塊，然後選擇您想要使用的應用程式伺服器類型。
 
-For specifying a server to use for cloud deployment, you can take advantage of the following options:
+若要指定要用於雲端部署的伺服器，您可以利用下列選項：
 
-1. **Deploy a 3rd party server available on Azure** - this is especially applicable in dev/test scenarios where deployment efficiency and simplicity is a priority and the server does not require a custom configuration. Or when you want to use one of those servers as the starting point but you include appropriate server customization steps in your deployment's startup logic.
-1. **Deploy from a custom download** - this is especially applicable in production scenarios when you have a specially prepared and configured server that you want to use in the cloud.
-1. **Deploy my local server installation** - this is especially applicable in if your local server installation is already custom-configured for your use. If you choose this option, you must also specify your local server's path in the **Local server path** text box below.
+1. **部署 Azure 提供的第三方伺服器** - 這個選項特別適用於開發/測試案例，因為這種案例的優先考量是部署效率和簡易性，因此伺服器不需要自訂組態。或者，當您想要使用其中一部伺服器做為起點，但您在部署的啟動邏輯中加入了適當的伺服器自訂步驟。
+1. **從自訂下載部署** - 這個選項特別適用於生產案例，前提示您有為了在雲端中使用而特別準備及設定的伺服器。
+1. **部署本機伺服器安裝** - 這個選項特別適用於如果本機伺服器安裝已針對您的用途進行自訂設定。如果您選擇此選項，則必須同時在下方的 [本機伺服器路徑] 文字方塊中指定本機伺服器的路徑。
 
-If you are using the **Deploy a 3rd party server available on Azure** option:
+如果您使用 [部署 Azure 提供的第三方伺服器] 選項：
 
-1. Check the checkbox named **Deploy a 3rd party server available on Azure**.
-1. From the dropdown menu, select the desired server software to use with your deployment in the cloud. Note, if you already specified a type of server to use earlier, you will be limited to choosing only a cloud server that is in the same family as that server type. But if you did not choose a server type, you can choose from any of the servers that are currently available on Azure and the server type will be automatically selected for you.
-1. Click **OK** to save your changes.
+1. 核取名為 [部署 Azure 提供的第三方伺服器] 的核取方塊。
+1. 從下拉式功能表中，選取想要在雲端中搭配部署使用的伺服器軟體。請注意，如果您先前已指定要使用的伺服器類型，您會遭到限制而只能選擇與該伺服器類型位於相同系列中的雲端伺服器。但如果您沒有選擇伺服器類型，則可以選擇 Azure 上目前提供的任何伺服器，而且系統會自動為您選取伺服器類型。
+1. 按一下 [確定] 以儲存變更。
 
-If using the **Deploy from a custom download** option:
+如果使用 [從自訂下載部署] 選項：
 
-1. Make sure that you have already selected a server type according to the preceding steps. This tells the plugin how to deploy the server from your custom download, as it must be from the same family as your selected server type.
-1. Check the checkbox named **Deploy from a custom download**.
-    If you want to download from your Azure storage account, select the storage account from the **Storage account** drop-down list (you can click the **Accounts** link to modify what is in the list), which will partially fill in the **URL** field, and then fill in the remaining portion of the URL to your server download ZIP (when using Azure storage, blob names in the URL must be lowercase). If you do not want to use Azure storage, select **(none)** from the **Storage account** drop-down list, and enter the URL to your server download ZIP in the **URL** field. The ZIP would contain a child folder representing your application server installation directory. For example, if you are using a zip for Apache Tomcat 7.0.35, within the zip would be the child folder representing the installation directory, such as **apache-tomcat-7.0.35**. 
-1. Specify the value for the home directory environment variable. It will default to the value used for your local application server, if any, but you can specify a different value if your cloud application server is different from your local application server. However, you need to make sure that your cloud application server is of the same family as the server type selected earlier.
-    If you update your cloud application server zip in the future, you can manually change the home directory setting, or, to have it again match your local setting (if you changed your local application server too).
-1. Click **OK** to save your changes.
+1. 確定您已根據上述步驟選取伺服器類型。這會告訴外掛程式如何從自訂下載部署伺服器，因為伺服器必須來自與所選伺服器類型相同的系列。
+1. 核取名為 [從自訂下載部署]的核取方塊。如果您想要從 Azure 儲存體帳戶進行下載，請從 [儲存體帳戶] 下拉式清單選取儲存體帳戶 (您可以按一下 [帳戶] 連結以修改清單內容)，所選結果會部分填入 [URL] 欄位，請您自行填入伺服器下載 ZIP 檔之 URL 的其餘部分 (在使用 Azure 儲存體時，URL 中的 blob 名稱必須是小寫)。如果您不想使用 Azure 儲存體，請從 [儲存體帳戶] 下拉式清單選取 [(無)]，然後在 [URL] 欄位中輸入伺服器下載 ZIP 檔的 URL。ZIP 檔會包含代表應用程式伺服器安裝目錄的子資料夾。例如，如果您使用 Apache Tomcat 7.0.35 的 ZIP 檔，ZIP 檔內會有代表安裝目錄的子資料夾，例如 **apache-tomcat-7.0.35**。
+1. 指定主目錄環境變數的值。它會預設為用於本機應用程式伺服器的值 (如果有的話)，但如果您的雲端應用程式伺服器與本機應用程式伺服器不同，則可以指定不同的值。不過，您必須確定雲端應用程式伺服器屬於與先前所選伺服器類型相同的系列。如果您日後更新雲端應用程式伺服器 ZIP 檔，您可以手動變更主目錄設定，或讓它再次符合本機設定 (如果您也變更了本機應用程式伺服器)。
+1. 按一下 [確定] 以儲存變更。
 
-The underlying logic for which items appear in the **Server** tab of the **Server Configuration** property page can be customized. This is an advanced feature that you might need if your needs extend beyond the default values or if you want to add other servers. To customize the logic, in the **Server** dialog, click the **Customize** link. This will close the **Server Configuration** property page and open the **componentsets.xml** file in Eclipse, which you can then modify as needed to extend the server configuration template. Documentation for **componentsets.xml** is included in the **componentsets.xml** file itself.
+您可以自訂 [伺服器組態] 屬性頁的 [伺服器] 索引標籤中要出現哪些項目的基礎邏輯。如果您需要的不是預設值，或如果您想要新增其他伺服器，就可能需要這項進階功能。若要自訂此邏輯，請在 [伺服器] 對話方塊中按一下 [自訂] 連結。此動作將會關閉 [伺服器組態] 屬性頁，並在 Eclipse 中開啟 **componentsets.xml** 檔案，然後您就可以視需要進行修改，以擴充伺服器組態範本。**componentsets.xml** 的說明文件包含在 **componentsets.xml** 檔案本身之中。
 
-If you are using the **Deploy my local server (auto-upload to cloud storage)** option:
+如果您使用 [部署本機伺服器 (自動上傳至雲端儲存體)] 選項：
 
-1. Check the checkbox named **Deploy my local server (auto-upload to cloud storage)**.
-1. Using the **Storage account** drop-down list, select **(auto)**. If you specify **(auto)** here, the Eclipse toolkit will use the same storage account for your server as the one you select for your deployment in the **Publish to Azure** dialog.
-1. Click **OK** to save your changes.
+1. 核取名為 [部署本機伺服器 (自動上傳至雲端儲存體)] 的核取方塊。
+1. 使用 [儲存體帳戶] 下拉式清單，選取 [(自動)]。如果您在此指定 [(自動)]，Eclipse 工具組會為您的伺服器使用與您在 [發佈至 Azure] 對話方塊中為部署所選帳戶相同的儲存體帳戶。
+1. 按一下 [確定] 以儲存變更。
 
-Select a server installation path on your computer in the **Local server path** text box if any of the following conditions are true:
+如果下列任一條件成立，請在 [本機伺服器路徑] 文字方塊中選取電腦上的伺服器安裝路徑：
 
-* You want to test your deployment in the emulator (applies to Windows only).
-* You want to deploy your locally installed server to the cloud.
-* You want to use a custom server download of your own in the cloud, in which case, also ensure the **Deploy my local server (auto-upload to cloud storage)** option is selected above.
+* 您想要在模擬器中測試部署 (僅適用於 Windows)。
+* 您想要將本機安裝的伺服器部署到雲端。
+* 您想要使用雲端中的自有自訂伺服器下載，若是這種情況，也請確定您已選取上面的 [部署本機伺服器 (自動上傳至雲端儲存體)] 選項。
 
-If none of the preceding options apply to your situation, the local server setting is optional.
+如果您的情況不適用上述任何選項，則可以選擇使用本機伺服器設定。
 
-### <a name="applications-configuration"></a>Applications configuration ###
+### 應用程式組態 ###
 
-The following is an example of how you can specify an application.
+以下範例說明如何指定應用程式。
 
 ![][ic719512]
 
-Click **Add** to add another application, or **Remove** to remove an application. For efficiency purposes, if you want to use a download for the source of an application when deploying to the cloud, use the [components properties](#components_properties) to specify a URL, storage account, etc. 
+按一下 [新增] 以新增其他應用程式，或按一下 [移除] 以移除應用程式。為求效率，如果您想要在部署到雲端時使用下載做為應用程式的來源，請使用[元件屬性](#components_properties)以指定 URL、儲存體帳戶等項目。
 
-Beginning with the April 2014 release, your applications are automatically uploaded into the same storage account (under the **eclipsedeploy** container) as the one selected for your deployment. The startup logic of your deployment contains a step that first downloads those applications from that storage account. This means that you may upgrade your applications in your deployment without needing to rebuild and redeploy the entire package, by manually uploading newer versions of the application directly into that storage account (using the Azure portal for example), replacing the WAR files originally uploaded there by the toolkit. Then, just initiate the recycling of all those role instances using Azure's management portal again, or via command line utilities. (Triggering role recycling directly from within the Eclipse toolkit is not currently supported.)
+從 2014 年 4 月版本開始，您的應用程式會自動上傳至與您為部署所選帳戶相同的儲存體帳戶 (在 **eclipsedeploy** 容器之下)。部署的啟動邏輯包含先從該儲存體帳戶下載這些應用程式的步驟。這表示您不需要重新建置並重新部署整個封裝就可以升級部署中的應用程式，方法是直接將較新版的應用程式手動上傳至該儲存體帳戶 (例如使用 Azure 入口網站)，來取代工具組原本上傳至該處的 WAR 檔案。然後，就只要再次使用 Azure 的管理入口網站或透過命令列公用程式開始回收所有角色執行個體 (目前不支援直接從 Eclipse 工具組內觸發角色回收程序)。
 
-### <a name="notes-about-server-configuration"></a>Notes about server configuration ###
+### 伺服器組態的相關注意事項 ###
 
-Changes made through the **Server configuration** property page are reflected in the `<component>` elements of the package.xml file.
+透過 [伺服器組態] 屬性頁所做的變更會反映在 package.xml 檔的 `<component>` 項目中。
 
-When you use the **Automatically upload...** or **Deploy from download...** options for either the JDK or application server, and you are building for the cloud (not the compute emulator), and you are connected to the network, you may notice build messages such as the following in the Console output, as the Ant builder verifies the download's availability:
+當您針對 JDK 或應用程式伺服器使用 [自動上傳...] 或 [從下載部署...] 選項，而且您正在針對雲端 (而非計算模擬器) 進行建置，並且已連線到網路時，您可能會發現建置訊息 (例如主控台輸出中的下列內容)，因為 Ant 產生器會驗證下載的可用性：
 
-`[windowsazurepackage] Verifying blob availability (https://example.blob.core.windows.net/temp/tomcat6.zip)...` 
+`[windowsazurepackage] Verifying blob availability (https://example.blob.core.windows.net/temp/tomcat6.zip)...`
 
-If you selected the **Deploy from download...** option, the following warning may be shown, but the build will continue:
+如果您選取 [從下載部署...] 選項，可能會顯示下列警告，但建置作業會繼續：
 
-`[windowsazurepackage] warning: Failed to confirm blob availability! Make sure the URL and/or the access key is correct (https://example.blob.core.windows.net/temp/tomcat6.zip).` 
+`[windowsazurepackage] warning: Failed to confirm blob availability! Make sure the URL and/or the access key is correct (https://example.blob.core.windows.net/temp/tomcat6.zip).`
 
-This warning is the only indication that the download's availability hasn't been verified. So if a deployment fails in the cloud for some reason, check to see if you received this warning.
+只有這個警告會指出尚未驗證下載的可用性。因此如果雲端中的部署因為某些原因失敗，請檢查是否有收到這個警告。
 
-If you want to disable the download verification (for example, if you feel it unnecessarily slows down the build), set the `verifydownloads` attribute to `false` in the `<windowsazurepackage>` element of package.xml: 
+如果您想要停用下載驗證 (例如，如果您認為進行驗證只會拖慢建置速度)，請在 package.xml 的 `<windowsazurepackage>` 項目中，將 `verifydownloads` 屬性設定為 `false`。
 
-`<windowsazurepackage verifydownloads="false" ...>` 
+`<windowsazurepackage verifydownloads="false" ...>`
 
-If you selected the **Automatically upload...** option, then in the console window you will see build messages reporting the progress of the upload every 5 seconds, whenever an upload is necessary.
+如果您已選取 [自動上傳...] 選項，則每當需要上傳時，您就會在主控台視窗中看到每隔 5 秒報告一次上傳進度的建置訊息。
 
-<a name="ssl_offloading_properties"></a> 
-### <a name="ssl-offloading-properties"></a>SSL offloading properties ###
+<a name="ssl_offloading_properties"></a>
+### SSL 卸載屬性 ###
 
-Open the context menu for the role in Eclipse's Project Explorer pane, click **Azure**, and then click **SSL Offloading**. 
+在 Eclipse 的 [專案總管] 窗格中開啟角色的內容功能表，按一下 [Azure]，然後按一下 \[SSL 卸載]。
 
 ![][ic719481]
 
-Within this dialog, you can enable SSL offloading, allowing you to easily enable Hypertext Transfer Protocol Secure (HTTPS) support in your Java deployment on Azure, without requiring you to configure SSL in your Java application server. For more information, see [SSL Offloading][] and [How to Use SSL Offloading][].
+在這個對話方塊中，您可以啟用 SSL 卸載，以便在 Azure 上的 Java 部署中輕鬆啟用超文字安全傳輸通訊協定 (HTTPS) 支援，而不必在 Java 應用程式伺服器中設定 SSL。如需詳細資訊，請參閱 [SSL 卸載][]和[如何使用 SSL 卸載][]。
 
-## <a name="see-also"></a>See Also ##
+## 另請參閱 ##
 
-[Azure Toolkit for Eclipse][]
+[適用於 Eclipse 的 Azure 工具組][]
 
-[Installing the Azure Toolkit for Eclipse][]
+[安裝 Azure Toolkit for Eclipse][]
 
-[Creating a Hello World Application for Azure in Eclipse][]
+[在 Eclipse 中建立適用於 Azreu 的 Hello World 應用程式][]
 
-[Azure Project Properties][]
+[Azure 專案屬性][]
 
-[Azure Storage Account List][]
+[Azure 儲存體帳戶清單][]
 
-For more information about using Azure with Java, see the [Azure Java Developer Center][].
+如需有關在 Azure 中使用 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心][]。
 
 <!-- URL List -->
 
-[Azure Java Developer Center]: http://go.microsoft.com/fwlink/?LinkID=699547
-[Azure Management Portal]: http://go.microsoft.com/fwlink/?LinkID=512959
-[Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699529
-[Azure Project Properties]: http://go.microsoft.com/fwlink/?LinkID=699524
-[Azure Storage Account List]: http://go.microsoft.com/fwlink/?LinkID=699528
-[com.microsoft.windowsazure.serviceruntime package summary]: http://azure.github.io/azure-sdk-for-java/com/microsoft/windowsazure/serviceruntime/package-summary.html
-[Creating a Hello World Application for Azure in Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699533
-[Debugging a specific role instance in a multi-instance deployment]: http://go.microsoft.com/fwlink/?LinkID=699535#debugging_specific_role_instance
-[Debugging Azure Applications in Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699535
-[Deploying Large Deployments]: http://go.microsoft.com/fwlink/?LinkID=699536
-[How to Use Co-located Caching]: http://go.microsoft.com/fwlink/?LinkID=699542
-[How to Use SSL Offloading]: http://go.microsoft.com/fwlink/?LinkID=699545
-[Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
-[Session Affinity]: http://go.microsoft.com/fwlink/?LinkID=699548
-[SSL Offloading]: http://go.microsoft.com/fwlink/?LinkID=699549
+[Azure Java 開發人員中心]: http://go.microsoft.com/fwlink/?LinkID=699547
+[Azure 管理入口網站]: http://go.microsoft.com/fwlink/?LinkID=512959
+[適用於 Eclipse 的 Azure 工具組]: http://go.microsoft.com/fwlink/?LinkID=699529
+[Azure 專案屬性]: http://go.microsoft.com/fwlink/?LinkID=699524
+[Azure 儲存體帳戶清單]: http://go.microsoft.com/fwlink/?LinkID=699528
+[com.microsoft.windowsazure.serviceruntime 封裝摘要]: http://azure.github.io/azure-sdk-for-java/com/microsoft/windowsazure/serviceruntime/package-summary.html
+[在 Eclipse 中建立適用於 Azreu 的 Hello World 應用程式]: http://go.microsoft.com/fwlink/?LinkID=699533
+[偵錯多個執行個體部署中的特定角色執行個體]: http://go.microsoft.com/fwlink/?LinkID=699535#debugging_specific_role_instance
+[在 Eclipse 中偵錯 Azure 應用程式]: http://go.microsoft.com/fwlink/?LinkID=699535
+[部署大型部署]: http://go.microsoft.com/fwlink/?LinkID=699536
+[如何使用共置快取]: http://go.microsoft.com/fwlink/?LinkID=699542
+[如何使用 SSL 卸載]: http://go.microsoft.com/fwlink/?LinkID=699545
+[安裝 Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
+[工作階段親和性]: http://go.microsoft.com/fwlink/?LinkID=699548
+[SSL 卸載]: http://go.microsoft.com/fwlink/?LinkID=699549
 
 <!-- IMG List -->
 
@@ -445,8 +439,4 @@ For more information about using Azure with Java, see the [Azure Java Developer 
 [ic719512]: ./media/azure-toolkit-for-eclipse-azure-role-properties/ic719512.png
 [ic719481]: ./media/azure-toolkit-for-eclipse-azure-role-properties/ic719481.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

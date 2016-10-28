@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="StorSimple Snapshot Manager backup policies | Microsoft Azure"
-   description="Describes how to use the StorSimple Snapshot Manager MMC snap-in to create and manage the backup policies that control scheduled backups."
+   pageTitle="StorSimple Snapshot Manager 備份原則 | Microsoft Azure"
+   description="描述如何使用 StorSimple Snapshot Manager MMC 嵌入式管理單元，來建立和管理控制已排定之備份的備份原則。"
    services="storsimple"
    documentationCenter="NA"
    authors="SharS"
@@ -15,114 +15,109 @@
    ms.date="05/12/2016"
    ms.author="v-sharos" />
 
+# 使用 StorSimple Snapshot Manager 來建立和管理備份原則
 
-# <a name="use-storsimple-snapshot-manager-to-create-and-manage-backup-policies"></a>Use StorSimple Snapshot Manager to create and manage backup policies
+## 概觀
 
-## <a name="overview"></a>Overview
+備份原則會建立一個在本機或雲端中備份磁碟區資料的排程。建立備份原則時，您也可以指定保留原則。(您最多可以保留 64 個快照)。 如需備份原則的詳細資訊，請參閱 [StorSimple 8000 系列：混合式雲端解決方案](storsimple-overview.md)中的[備份類型](storsimple-what-is-snapshot-manager.md#backup-type)。
 
-A backup policy creates a schedule for backing up volume data locally or in the cloud. When you create a backup policy, you can also specify a retention policy. (You can retain a maximum of 64 snapshots.) For more information about backup policies, see [Backup types](storsimple-what-is-snapshot-manager.md#backup-type) in [StorSimple 8000 series: a hybrid cloud solution](storsimple-overview.md).
+本教學課程說明如何：
 
-This tutorial explains how to:
+- 建立備份原則 
+- 編輯備份原則 
+- 刪除備份原則 
 
-- Create a backup policy 
-- Edit a backup policy 
-- Delete a backup policy 
+## 建立備份原則
 
-## <a name="create-a-backup-policy"></a>Create a backup policy
+請使用下列程序來建立新的備份原則。
 
-Use the following procedure to create a new backup policy.
+#### 若要建立備份原則
 
-#### <a name="to-create-a-backup-policy"></a>To create a backup policy
+1. 按一下桌面圖示以啟動 StorSimple Snapshot Manager。
 
-1. Click the desktop icon to start StorSimple Snapshot Manager.
+2. 在 [**範圍**] 窗格中，以滑鼠右鍵按一下 [**備份原則**]，然後按一下 [**建立備份原則**]。
 
-2. In the **Scope** pane, right-click **Backup Policies**, and click **Create Backup Policy**.
+    ![建立備份原則](./media/storsimple-snapshot-manager-manage-backup-policies/HCS_SSM_Create_BU_policy.png)
 
-    ![Create a backup policy](./media/storsimple-snapshot-manager-manage-backup-policies/HCS_SSM_Create_BU_policy.png)
+    [**建立原則**] 對話方塊隨即出現。
 
-    The **Create a Policy** dialog box appears. 
+    ![建立原則 - 一般索引標籤](./media/storsimple-snapshot-manager-manage-backup-policies/HCS_SSM_Create_policy_general.png)
 
-    ![Create a Policy - General tab](./media/storsimple-snapshot-manager-manage-backup-policies/HCS_SSM_Create_policy_general.png)
+3. 在 [**一般**] 索引標籤上，完成下列資訊：
 
-3. On the **General** tab, complete the following information:
+   1. 在 [**名稱**] 文字方塊中，輸入原則的名稱。
 
-   1. In the **Name** text box, type a name for the policy.
+   2. 在 [磁碟機群組] 文字方塊中，輸入與原則相關聯之磁碟區群組的名稱。
 
-   2. In the **Volume group** text box, type the name of the volume group associated with the policy.
+   3. 選取 [**本機快照**] 或 [**雲端快照**]。
 
-   3. Select either **Local Snapshot** or **Cloud Snapshot**.
+   4. 選取要保留的快照數目。如果選取 [**全部**]，將保留 64 個快照 (上限)。
 
-   4. Select the number of snapshots to retain. If you select **All**, 64 snapshots will be retained (the maximum). 
+4. 按一下 [**排程**] 索引標籤。
 
-4. Click the **Schedule** tab.
+    ![建立原則 - 排程索引標籤](./media/storsimple-snapshot-manager-manage-backup-policies/HCS_SSM_Create_policy_schedule.png)
 
-    ![Create a Policy - Schedule tab](./media/storsimple-snapshot-manager-manage-backup-policies/HCS_SSM_Create_policy_schedule.png)
+5. 在 [**排程**] 索引標籤上，完成下列資訊：
 
-5. On the **Schedule** tab, complete the following information: 
+   1. 按一下 [**啟用**] 核取方塊，以排程下次備份。
 
-   1. Click the **Enable** check box to schedule the next backup.
+   2. 在 [**設定**] 之下，選取 [**一次**]、[**每日**]、[**每週**] 或 [**每月**]。
 
-   2. Under **Settings**, select **One time**, **Daily**, **Weekly**, or **Monthly**. 
+   3. 在 [**開始**] 文字方塊中，按一下日曆圖示，然後選取開始日期。
 
-   3. In the **Start** text box, click the calendar icon and select a start date.
+   4. 在 [**進階設定**] 之下，您可以設定選用的重複排程和結束日期。
 
-   4. Under **Advanced Settings**, you can set optional repeat schedules and an end date.
+   5. 按一下 [確定]。
 
-   5. Click **OK**.
+建立備份原則之後，下列資訊會出現在 [**結果**] 窗格中：
 
-After you create a backup policy, the following information appears in the **Results** pane:
+- [**名稱**] – 備份原則的名稱。
 
-- **Name** – the name of backup policy.
+- [**類型**] – 本機快照或雲端快照。
 
-- **Type** – local snapshot or cloud snapshot.
+- [**磁碟區群組**] – 與原則相關聯的磁碟區群組。
 
-- **Volume Group** – the volume group associated with the policy.
+- [**保留**] – 保留的快照數目；上限為 64。
 
-- **Retention** – the number of snapshots retained; the maximum is 64.
+- [**建立時間**] – 此原則的建立日期。
 
-- **Created** – the date that this policy was created.
+- [**已啟用**] – 原則目前是否生效：**True** 表示生效；**False** 表示未生效。
 
-- **Enabled** – whether the policy is currently in effect: **True** indicates that it is in effect; **False** indicates that it is not in effect. 
+## 編輯備份原則
 
-## <a name="edit-a-backup-policy"></a>Edit a backup policy
+請使用下列程序來編輯現有的備份原則。
 
-Use the following procedure to edit an existing backup policy.
+#### 若要編輯備份原則
 
-#### <a name="to-edit-a-backup-policy"></a>To edit a backup policy
+1. 按一下桌面圖示以啟動 StorSimple Snapshot Manager。 
 
-1. Click the desktop icon to start StorSimple Snapshot Manager. 
+2. 在 [**範圍**] 窗格中，按一下 [**備份原則**] 節點。所有備份原則都會出現在 [**結果**] 窗格中。
 
-2. In the **Scope** pane, click the **Backup Policies** node. All the backup policies appear in the **Results** pane. 
+3. 以滑鼠右鍵按一下您要編輯的原則，然後按一下 [**編輯**]。
 
-3. Right-click the policy that you want to edit, and then click **Edit**. 
+    ![編輯備份原則](./media/storsimple-snapshot-manager-manage-backup-policies/HCS_SSM_Edit_BU_policy.png)
 
-    ![Edit a backup policy](./media/storsimple-snapshot-manager-manage-backup-policies/HCS_SSM_Edit_BU_policy.png) 
+4. 當 [**建立原則**] 視窗出現時，輸入您的變更，然後按一下 [**確定**]。
 
-4. When the **Create a Policy** window appears, enter your changes, and then click **OK**. 
+## 刪除備份原則
 
-## <a name="delete-a-backup-policy"></a>Delete a backup policy
+請使用下列程序來刪除備份原則。
 
-Use the following procedure to delete a backup policy.
+#### 若要刪除備份原則
 
-#### <a name="to-delete-a-backup-policy"></a>To delete a backup policy
+1. 按一下桌面圖示以啟動 StorSimple Snapshot Manager。 
 
-1. Click the desktop icon to start StorSimple Snapshot Manager. 
+2. 在 [**範圍**] 窗格中，按一下 [**備份原則**] 節點。所有備份原則都會出現在 [**結果**] 窗格中。
 
-2. In the **Scope** pane, click the **Backup Policies** node. All the backup policies appear in the **Results** pane. 
+3. 以滑鼠右鍵按一下您要刪除的備份原則，然後按一下 [刪除]。
 
-3. Right-click the backup policy that you want to delete, and then click **Delete**.
+4. 確認訊息出現時，按一下 [**是**]。
 
-4. When the confirmation message appears, click **Yes**.
+    ![確認刪除備份原則](./media/storsimple-snapshot-manager-manage-backup-policies/HCS_SSM_Delete_BU_policy.png)
 
-    ![Delete backup policy confirmation](./media/storsimple-snapshot-manager-manage-backup-policies/HCS_SSM_Delete_BU_policy.png)
+## 後續步驟
 
-## <a name="next-steps"></a>Next steps
+- 了解如何[使用 StorSimple Snapshot Manager 來管理您的 StorSimple 解決方案](storsimple-snapshot-manager-admin.md)。
+- 了解如何[使用 StorSimple Snapshot Manager 來檢視和管理備份工作](storsimple-snapshot-manager-manage-backup-jobs.md)。
 
-- Learn how to [use StorSimple Snapshot Manager to administer your StorSimple solution](storsimple-snapshot-manager-admin.md).
-- Learn how to [use StorSimple Snapshot Manager to view and manage backup jobs](storsimple-snapshot-manager-manage-backup-jobs.md).
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0518_2016-->

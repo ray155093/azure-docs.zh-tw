@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="StorSimple failover and disaster recovery | Microsoft Azure"
-   description="Learn how to fail over your StorSimple device to itself, another physical device, or a virtual device."
+   pageTitle="StorSimple 容錯移轉和災害復原 | Microsoft Azure"
+   description="了解如何將 StorSimple 裝置容錯移轉至其本身、另一個實體裝置或虛擬裝置。"
    services="storsimple"
    documentationCenter=""
    authors="alkohli"
@@ -15,213 +15,207 @@
    ms.date="09/16/2016"
    ms.author="alkohli" />
 
+# StorSimple 裝置的容錯移轉與災害復原
 
-# <a name="failover-and-disaster-recovery-for-your-storsimple-device"></a>Failover and disaster recovery for your StorSimple device
+## 概觀
 
-## <a name="overview"></a>Overview
+本教學課程說明發生災害時容錯移轉 StorSimple 裝置所需的步驟。容錯移轉可讓您將資料中心的來源裝置資料移轉至位於相同或不同地理位置的另一個實體或甚至是虛擬裝置。
 
-This tutorial describes the steps required to fail over a StorSimple device in the event of a disaster. A failover will allow you to migrate your data from a source device in the datacenter to another physical or even a virtual device located in the same or a different geographical location. 
+災害復原 (DR) 是透過裝置容錯移轉功能來進行協調，並且是從 [裝置] 頁面起始。此頁面會以表格列出與 StorSimple Manager 服務連接的所有 StorSimple 裝置。顯示每個裝置的易記名稱、狀態、佈建與最大容量、類型及模型。
 
-Disaster recovery (DR) is orchestrated via the device failover feature and is initiated from the **Devices** page. This page tabulates all the StorSimple devices connected to your StorSimple Manager service. For each device, the friendly name, status, provisioned and maximum capacity, type and model are displayed.
+![[裝置] 頁面](./media/storsimple-device-failover-disaster-recovery/IC740972.png)
 
-![Devices page](./media/storsimple-device-failover-disaster-recovery/IC740972.png)
-
-The guidance in this tutorial applies to StorSimple physical and virtual devices across all software versions.
-
+本教學課程中的指導方針適用於跨所有軟體版本的 StorSimple 實體和虛擬裝置。
 
 
-## <a name="disaster-recovery-(dr)-and-device-failover"></a>Disaster recovery (DR) and device failover
 
-In a disaster recovery (DR) scenario, the primary device stops functioning. In this situation, you can move the cloud data associated with the failed device to another device by using the primary device as the *source* and specifying another device as the *target*. You can select one or more volume containers to migrate to the target device. This process is referred to as the *failover*. 
+## 災害復原 (DR) 與裝置容錯移轉
 
-During the failover, the volume containers from the source device change ownership and are transferred to the target device. Once the volume containers change ownership, these are deleted from the source device. After the deletion is complete, the target device can then be failed back.
+在災害復原 (DR) 案例中，主要裝置會停止運作。在此情況下，您可以使用主要裝置當做「來源」，並將另一個裝置指定為「目標」，將與失敗裝置相關聯的雲端資料移至另一個裝置。您可以選取一或多個磁碟區容器來移轉到目標裝置。這個程序就稱為「容錯移轉」。
 
-Typically following a DR, the most recent backup is used to restore the data to the target device. However, if there are multiple backup policies for the same volume, then the backup policy with the largest number of volumes gets picked and the most recent backup from that policy is used to restore the data on the target device.
+在容錯移轉期間，來源裝置的磁碟區容器會變更擁有權，並移轉到目標裝置。在磁碟區容器變更擁有權之後，系統會將這些容器從來源裝置中刪除。完成刪除之後，目標裝置便可以容錯回復。
 
-As an example, if there are two backup policies (one default and one custom) *defaultPol*, *customPol* with the following details:
+緊接在 DR 之後，最新的備份通常用來將資料還原至目標裝置。不過，如果相同的磁碟區有多個備份原則，則會挑選具有最大量磁碟區的備份原則，而該原則的最新備份可用於還原目標裝置上的資料。
 
-- *defaultPol* : One volume, *vol1*, runs daily starting at 10:30 PM.
-- *customPol* : Four volumes, *vol1*, *vol2*, *vol3*, *vol4*, runs daily starting at 10:00 PM.
+例如，如果有兩個備份原則 (一個是預設原則，一個是自訂原則)，defaultPol、customPol 的詳細資料如下︰
 
-In this case, *customPol* will be used as it has more volumes and we prioritize for crash-consistency. The most recent backup from this policy is used to restore data.
+- defaultPol︰一個磁碟區 (vol1) 會於每日下午 10:30 開始執行。
+- customPol︰四個磁碟區 (vol1、vol2、vol3、vol4) 會於每日下午 10:00 開始執行。
+
+在此情況下，將會使用 customPol，因為它有更多磁碟區，而我們會針對損毀一致性排定優先順序。此原則的最新備份可用來還原資料。
 
 
-## <a name="considerations-for-device-failover"></a>Considerations for device failover
+## 裝置容錯移轉考量
 
-In the event of a disaster, you may choose to fail over your StorSimple device:
+萬一發生災害，您可以選擇將 StorSimple 裝置容錯移轉到：
 
-- To a physical device 
-- To itself
-- To a virtual device
+- 實體裝置
+- 其本身
+- 虛擬裝置
 
-For any device failover, keep in mind the following:
+對於任何裝置容錯移轉，都請記住下列事項：
 
-- The prerequisites for DR are that all the volumes within the volume containers are offline and the volume containers have an associated cloud snapshot. 
-- The available target devices for DR are devices that have sufficient space to accommodate the selected volume containers. 
-- The devices that are connected to your service but do not meet the criteria of sufficient space will not be available as target devices.
-- Following a DR, for a limited duration, the data access performance can be affected significantly, as the device will need to access the data from the cloud and store it locally.
+- DR 的必要條件是磁碟區容器內的所有磁碟區都必須離線，而且磁碟區容器要有相關聯的雲端快照。
+- 適用於 DR 的可用目標裝置是空間足以容納選定磁碟區容器的裝置。
+- 與服務連接但空間不足而不符合條件的裝置，無法當成目標裝置使用。
+- 以下的 DR 在一段有限時間中，資料存取效能會受到大幅影響，因為裝置必須從雲端存取資料，然後儲存到本機。
 
-#### <a name="device-failover-across-software-versions"></a>Device failover across software versions
+#### 跨軟體版本的裝置容錯移轉
 
-A StorSimple Manager service in a deployment may have multiple devices, both physical and virtual, all running different software versions. Depending upon the software version, the volume types on the devices may also be different. For instance, a device running Update 2 or higher would have locally pinned and tiered volumes (with archival being a subset of tiered). A pre-Update 2 device on the other hand may have tiered and archival volumes. 
+部署中的 StorSimple Manager 服務可能會有多個實體和虛擬裝置，且全都執行不一樣的軟體版本。依軟體版本而定，裝置上的磁碟區類型也可能不同。例如，執行 Update 2 或更高版本的裝置會有固定在本機的磁碟區和分層磁碟區 (包含做為分層子集的封存)。另一方面 pre-Update 2 裝置可能會有分層磁碟區和封存磁碟區。
 
-Use the following table to determine if you can fail over to another device running a different software version and the behavior of volume types during DR.
+您可以使用下表來判斷您是否可以在 DR 期間容錯移轉至另一個執行不同軟體版本的裝置，以及磁碟區類型的行為。
 
-| Fail over from                                      | Allowed for physical device                                                                                                                                                      | Allowed for virtual device                            |
+| 容錯移轉自 | 允許實體裝置 | 允許虛擬裝置 |
 |----------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|
-| Update 2 to pre-Update 1 (Release, 0.1, 0.2, 0.3) | No                                                                                                                                                                               | No                                                    |
-| Update 2 to Update 1 (1, 1.1, 1.2)                 | Yes <br></br>If using locally pinned or tiered volumes or a mix of two, the volumes are always failed over as tiered.                  | Yes<br></br>If using locally pinned volumes, these are failed over as tiered. |
-| Update 2 to Update 2 (later version)                               | Yes<br></br>If using locally pinned or tiered volumes or a mix of two, the volumes are always failed over as the starting volume type; tiered as tiered and locally pinned as locally pinned. | Yes<br></br>If using locally pinned volumes, these are failed over as tiered. |
+| Update 2 至 pre-Update 1 (版本 0.1、0.2、0.3) | 否 | 否 |
+| Update 2 至 Update 1 (1, 1.1, 1.2) | 是<br></br>如果使用固定在本機的磁碟區或分層磁碟區 (或兩者混合)，磁碟區一律如分層容錯移轉。 | 是<br></br>如果使用固定在本機的磁碟區，這些會容錯移轉為分層磁碟區。 |
+| Update 2 至 Update 2 (更新版本) | 是<br></br>如果使用固定在本機的磁碟區或分層磁碟區 (或兩者混合)，磁碟區一律以起始的磁碟區類型容錯移轉；分層即容錯移轉為分層，固定在本機即容錯移轉為固定在本機。 | 是<br></br>如果使用固定在本機的磁碟區，這些會容錯移轉為分層磁碟區。 |
 
 
-#### <a name="partial-failover-across-software-versions"></a>Partial failover across software versions
+#### 跨軟體版本的部分容錯移轉
 
-Follow this guidance if you intend to perform a partial failover using a StorSimple source device running pre-Update 1 to a target running Update 1 or later. 
+如果您想要將執行 Update 1 之前的 StorSimple 來源裝置部分容錯移轉至執行 Update 1 或更新版本的目標，請依照本指南進行。
 
 
-| Partial failover from                                      | Allowed for physical device                                                                                                                                                      | Allowed for virtual device                            |
+| 部分容錯移轉從 | 允許實體裝置 | 允許虛擬裝置 |
 |----------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------|
-|Pre-Update 1 (Release, 0.1, 0.2, 0.3) to Update 1 or later  | Yes, see below for the best practice tip.                                                                                                                                                                               | Yes, see below for the best practice tip.                                                    |
+|Update 1 之前 (版次 0.1、0.2、0.3) 至 Update 1 或更新版本 | 是，請參閱以下的最佳作法提示。 | 是，請參閱以下的最佳作法提示。 |
 
 
->[AZURE.TIP] There was a cloud metadata and data format change in Update 1 and later versions. Hence, we do not recommend a partial failover from pre-Update 1 to Update 1 or later versions. If you need to perform a partial failover, we recommend that you first apply Update 1 or later on both the devices (source and target) and then proceed with the failover. 
+>[AZURE.TIP] Update 1 及更新版本中的雲端中繼資料和資料格式已變更。因此，不建議從 Update 1 之前部分容錯移轉至 Update 1 或更新版本。如果您需要執行部分容錯移轉，建議您先在兩個裝置 (來源和目標) 上套用 Update 1 或更新版本，再繼續容錯移轉。
 
-## <a name="fail-over-to-another-physical-device"></a>Fail over to another physical device
+## 容錯移轉到另一個實體裝置
 
-Perform the following steps to restore your device to a target physical device.
+請執行下列步驟以將裝置還原至目標實體裝置。
 
-1. Verify that the volume container you want to fail over has associated cloud snapshots.
+1. 確認您要容錯移轉的磁碟區容器是否具有相關聯的雲端快照。
 
-1. On the **Devices** page, click the **Volume Containers** tab.
+1. 在 [裝置] 頁面上，按一下 [磁碟區容器] 索引標籤。
 
-1. Select a volume container that you would like to fail over to another device. Click the volume container to display the list of volumes within this container. Select a volume and click **Take Offline** to take the volume offline. Repeat this process for all the volumes in the volume container.
+1. 選取您要容錯移轉至另一個裝置的磁碟區容器。按一下磁碟區容器，以顯示此容器內的磁碟區清單。選取磁碟區，然後按一下 [離線]，使磁碟區離線。針對磁碟區容器中的所有磁碟區，重複執行這個程序。
 
-1. Repeat the previous step for all the volume containers you would like to fail over to another device.
+1. 針對您要容錯移轉至另一個裝置的所有磁碟區容器，重複執行前一個步驟。
 
-1. On the **Devices** page, click **Failover**.
+1. 在 [裝置] 頁面中，按一下 [容錯移轉]。
 
-1. In the wizard that opens up, under **Choose volume container to fail over**:
+1. 在隨即開啟的精靈中，於 [選擇要容錯移轉的磁碟區容器] 下：
 
-    1. In the list of volume containers, select the volume containers you would like to fail over.
-    **Only the volume containers with associated cloud snapshots and offline volumes are displayed.**
+	1. 在磁碟區容器清單中，選取您要容錯移轉的磁碟區容器。**只會顯示與雲端快照集和離線磁碟區相關聯的磁碟區容器。**
 
-    1. Under **Choose a target device** for the volumes in the selected containers, select a target device from the drop-down list of available devices. Only the devices that have the available capacity are displayed in the drop-down list.
+	1. 在 [為所選取容器中的磁碟區選擇目標裝置] 中，從可用裝置的下拉式清單中選取目標裝置。下拉式清單中只會顯示具有可用容量的裝置。
 
-    1. Finally, review all the failover settings under **Confirm failover**. Click the check icon ![Check icon](./media/storsimple-device-failover-disaster-recovery/IC740895.png).
+	1. 最後，檢閱 [確認容錯移轉] 下的所有容錯移轉設定。按一下核取圖示 ![核取圖示](./media/storsimple-device-failover-disaster-recovery/IC740895.png)。
 
-1. A failover job is created that can be monitored via the **Jobs** page. If the volume container that you failed over has local volumes, then you will see individual restore jobs for each local volume (not for tiered volumes) in the container. These restore jobs may take quite some time to complete. It is likely that the failover job may complete earlier. Note that these volumes will have local guarantees only after the restore jobs are complete. After the failover is completed, go to the **Devices** page.                                            
+1. 將會建立一個可透過 [工作] 頁面監視的容錯移轉作業。如果要容錯移轉的磁碟區容器包含本機磁碟區，則您會看到容器中每個本機磁碟區 (除分層磁碟區外) 的還原作業。這些還原作業可能需要一段時間才能完成。容錯移轉作業可能會較早完成。請注意，還原作業完成之後這些磁碟區才有本機保證。完成容錯移轉後，移至 [裝置] 頁面。
 
-    1. Select the device that was used as the target device for the failover process.
+	1. 為容錯移轉程序選取要用來做為目標裝置的裝置。
 
-    1. Go to the **Volume Containers** page. All the volume containers, along with the volumes from the old device, should be listed.
+	1. 移至 [磁碟區容器] 頁面。此時應會列出所有磁碟區容器以及舊裝置中的磁碟區。
 
-## <a name="failover-using-a-single-device"></a>Failover using a single device
+## 使用單一裝置容錯移轉
 
-Perform the following steps if you only have a single device and need to perform a failover.
+如果您只有單一裝置且需要執行容錯移轉，請執行下列步驟。
 
-1. Take cloud snapshots of all the volumes in your device.
+1. 建立裝置中所有磁碟區的雲端快照。
 
-1. Reset your device to factory defaults. Follow the detailed instructions in [how to reset a StorSimple device to factory default settings](storsimple-manage-device-controller.md#reset-the-device-to-factory-default-settings).
+1. 將裝置重設為原廠預設值。請依照[如何將 StorSimple 裝置重設為原廠預設值](storsimple-manage-device-controller.md#reset-the-device-to-factory-default-settings)中的詳細指示執行。
 
-1. Configure your device and register it again with your StorSimple Manager service.
+1. 設定裝置並再次向 StorSimple Manager 服務註冊。
 
-1. On the **Devices** page, the old device should show as **Offline**. The newly registered device should show as **Online**.
+1. 在 [裝置] 頁面上，舊的裝置應會顯示成 [離線]。新註冊的裝置應該會顯示成 [上線]。
 
-1. For the new device, complete the minimum configuration of the device first. 
-                                                
-    >[AZURE.IMPORTANT] **If the minimum configuration is not completed first, your DR will fail as a result of a bug in the current implementation. This behavior will be fixed in a later release.**
+1. 對於新的裝置，請先完成最小量裝置組態設定。
+												
+	>[AZURE.IMPORTANT] **如果不先完成最小量組態設定，您的 DR 會因目前實作中的錯誤而失敗。未來版本中將會修正這個問題。**
 
-1. Select the old device (status offline) and click **Failover**. In the wizard that is presented, fail over this device and specify the target device as the newly registered device. For detailed instructions, refer to [Fail over to another physical device](#fail-over-to-another-physical-device).
+1. 選取舊裝置 (離線狀態)，然後按一下 [容錯移轉]。在呈現的精靈中，容錯移轉這個裝置，並將新註冊的裝置指定為目標裝置。如需詳細指示，請參閱[容錯移轉到另一個實體裝置](#fail-over-to-another-physical-device)。
 
-1. A device restore job will be created that you can monitor from the **Jobs** page.
+1. 您可以監視從 [工作] 頁面來監視建立的裝置還原工作。
 
-1. After the job has successfully completed, access the new device and navigate to the **Volume Containers** page. All the volume containers from the old device should now be migrated to the new device.
+1. 順利完成工作後，請存取新的裝置，並瀏覽到 [磁碟區容器] 頁面。舊裝置的所有磁碟區容器現在應已移轉到新的裝置。
 
-## <a name="fail-over-to-a-storsimple-virtual-device"></a>Fail over to a StorSimple virtual device
+## 容錯移轉到 StorSimple 虛擬裝置
 
-You must have a StorSimple virtual device created and configured prior to running this procedure. If running Update 2, consider using an 8020 virtual device for the DR that has 64 TB and uses Premium Storage. 
+執行此程序之前，您必須已建立並設定 StorSimple 虛擬裝置。如果執行 Update 2，請考慮針對 DR 使用具有 64 TB，且會使用進階儲存體的 8020 虛擬裝置。
  
-Perform the following steps to restore the device to a target StorSimple virtual device.
+請執行下列步驟以將裝置還原至目標 StorSimple 虛擬裝置。
 
-1. Verify that the volume container you want to fail over has associated cloud snapshots.
+1. 確認您要容錯移轉的磁碟區容器是否具有相關聯的雲端快照。
 
-1. On the **Devices** page, click the **Volume Containers** tab.
+1. 在 [裝置] 頁面上，按一下 [磁碟區容器] 索引標籤。
 
-1. Select a volume container that you would like to fail over to another device. Click the volume container to display the list of volumes within this container. Select a volume and click **Take Offline** to take the volume offline. Repeat this process for all the volumes in the volume container.
+1. 選取您要容錯移轉至另一個裝置的磁碟區容器。按一下磁碟區容器，以顯示此容器內的磁碟區清單。選取磁碟區，然後按一下 [離線]，使磁碟區離線。針對磁碟區容器中的所有磁碟區，重複執行這個程序。
 
-1. Repeat the previous step for all the volume containers you would like to fail over to another device.
+1. 針對您要容錯移轉至另一個裝置的所有磁碟區容器，重複執行前一個步驟。
 
-1. On the **Devices** page, click **Failover**.
+1. 在 [裝置] 頁面中，按一下 [容錯移轉]。
 
-1. In the wizard that opens up, under **Choose volume container to failover**, complete the following:
-                                                    
-    a. In the list of volume containers, select the volume containers you would like to fail over.
+1. 在隨即開啟的精靈中，於 [選擇要容錯移轉的磁碟區容器] 下，完成下列動作：
+													
+	a.在磁碟區容器清單中，選取您要容錯移轉的磁碟區容器。
 
-    **Only the volume containers with associated cloud snapshots and offline volumes are displayed.**
+	**只會顯示與雲端快照集和離線磁碟區相關聯的磁碟區容器。**
 
-    b. Under **Choose a target device for the volumes in the selected containers**, select the StorSimple virtual device from the drop-down list of available devices. **Only the devices that have sufficient capacity are displayed in the drop-down list.**  
-    
+	b.在 [為所選取容器中的磁碟區選擇目標裝置] 下，從可用裝置的下拉式清單中選取 StorSimple 虛擬裝置。**下拉式清單中只會顯示具有足夠容量的裝置。**
+	
 
-1. Finally, review all the failover settings under **Confirm failover**. Click the check icon ![Check icon](./media/storsimple-device-failover-disaster-recovery/IC740895.png).
+1. 最後，檢閱 [確認容錯移轉] 下的所有容錯移轉設定。按一下核取圖示 ![核取圖示](./media/storsimple-device-failover-disaster-recovery/IC740895.png)。
 
-1. After the failover is completed, go to the **Devices** page.
-                                                    
-    a. Select the StorSimple virtual device that was used as the target device for the failover process.
-    
-    b. Go to the **Volume Containers** page. All the volume containers, along with the volumes from the old device should now be listed.
+1. 完成容錯移轉後，移至 [裝置] 頁面。
+													
+	a.為容錯移轉程序選取要用來做為目標裝置的 StorSimple 虛擬裝置。
+	
+	b.移至 [磁碟區容器] 頁面。此時應會列出所有磁碟區容器，以及舊裝置中的磁碟區。
 
-![Video available](./media/storsimple-device-failover-disaster-recovery/Video_icon.png) **Video available**
+![提供的影片](./media/storsimple-device-failover-disaster-recovery/Video_icon.png)**提供的影片**
 
-To watch a video that demonstrates how you can restore a failed over physical device to a virtual device in the cloud, click [here](https://azure.microsoft.com/documentation/videos/storsimple-and-disaster-recovery/).
-
-
-## <a name="failback"></a>Failback
-
-For Update 3 and later versions, StorSimple also supports failback. After the failover is complete, the following actions occur:
-
-- The volume containers that are failed over are cleaned from the source device.
-
-- A background job per volume container (failed over) is initiated on the source device. If you attempt to failback while the job is in progress, you will recieve a notification to that effect. You will need to wait until the job is complete to start the failback. 
-
-    The time to complete the deletion of volume containers is dependent on various factors such as amount of data, age of the data, number of backups, and the network bandwidth available for the operation. If you are planning test failovers/failbacks, we recommend that you test volume containers with less data (Gbs). In most cases, you can start the failback 24 hours after the failover is complete. 
+若要觀看影片示範如何將失敗的實體裝置還原至雲端中的虛擬裝置，請按一下[這裡](https://azure.microsoft.com/documentation/videos/storsimple-and-disaster-recovery/)。
 
 
+## 容錯回復
+
+針對 Update 3 和更新版本，StorSimple 也支援容錯回復。在容錯移轉完成之後，會進行下列動作：
+
+- 系統會將已容錯移轉的磁碟區容器從來源裝置中清除。
+
+- 在來源裝置上會針對每一磁碟區容器起始一個背景作業 (容錯移轉)。如果您嘗試在作業進行中時進行容錯回復，您將會收到該項影響的通知。您將必須等到作業完成後才能開始容錯回復。
+
+	完成磁碟區容器刪除的時間取決於各種因素，例如資料量、資料存留期、備份數目以及作業可用的網路頻寬。如果您正在規劃測試容錯移轉/容錯回復，建議您以含較少資料 (單位為 Gb) 的磁碟區容器進行測試。在大多數情況下，您可以在容錯移轉完成之後 24 小時開始進行容錯回復。
 
 
-## <a name="frequently-asked-questions"></a>Frequently asked questions
-
-Q. **What happens if the DR fails or has partial success?**
-
-A. If the DR fails, we recommend that you try agian. The second time around, DR knows what all was done and when the process stalled the first time. The DR process starts from that point onwards. 
-
-Q. **Can I delete a device while the device failover is in progress?**
-
-A. You cannot delete a device while a DR is in progress. You can only delete your device after the DR is complete.
-
-Q.  **When does the garbage collection start on the source device so that the local data on source device is deleted?**
-
-A. Garbage collection will be enabled on the source device only after the device is completely cleaned up. The cleanup includes cleaning up objects that have failed over from the source device such as volumes, backup objects (not data), volume containers, and policies.
-
-Q. **What happens if the delete job associated with the volume containers in the source device fails?**
-
-A.  If the delete job fails, then you will need to manually trigger the deletion of the volume containers. In the **Devices** page, select your source device and click **Volume containers**. Select the volume containers that you failed over and in the bottom of the page, click **Delete**. Once you have deleted all the failed over volume containers on the source device, you can start the failback.
-
-## <a name="business-continuity-disaster-recovery-(bcdr)"></a>Business continuity disaster recovery (BCDR)
-
-A business continuity disaster recovery (BCDR) scenario occurs when the entire Azure datacenter stops functioning. This can affect your StorSimple Manager service and the associated StorSimple devices.
-
-If there are StorSimple devices that were registered just before a disaster occurred, then these StorSimple devices may need to undergo a factory reset. After the disaster, the StorSimple device will be shown as offline. The StorSimple device must be deleted from the portal, and a factory reset should be done, followed by a fresh registration.
 
 
-## <a name="next-steps"></a>Next steps
+## 常見問題集
 
-- After you have performed a failover, you may need to [deactivate or delete your StorSimple device](storsimple-deactivate-and-delete-device.md).
+問：**如果 DR 失敗或只有部分成功，會發生什麼狀況？**
 
-- For information about how to use the StorSimple Manager service, go to [Use the StorSimple Manager service to administer your StorSimple device](storsimple-manager-service-administration.md).
+答：如果 DR 失敗，建議您再試一次。第二次執行時，DR 會知道哪些已全部完成，以及在第一次執行時程序是在何時停止。DR 程序會從該點繼續執行。
+
+問：**裝置容錯移轉正在進行時，是否可以刪除裝置？**
+
+答：您無法在 DR 正在進行時刪除裝置。只有在 DR 完成之後，您才能刪除裝置。
+
+問：**來源裝置上的廢棄項目收集何時開始，以便刪除來源裝置上的本機資料？**
+
+答：只有在完全清理裝置之後，才會在來源裝置上啟用廢棄項目收集。清理作業包括清理已從來源裝置容錯移轉的物件，例如磁碟區、備份物件 (非資料)、磁碟區容器，以及原則。
+
+問：**如果與來源裝置中磁碟區容器關聯的刪除作業失敗，會發生什麼狀況？**
+
+答：如果刪除作業失敗，您就必須手動觸發磁碟區容器的刪除作業。在 [裝置] 頁面上，選取您的來源裝置，然後按一下 [磁碟區容器]。選取您已容錯移轉的磁碟區容器，然後在頁面底部按一下 [刪除]。刪除來源裝置上所有已容錯移轉的磁碟區容器之後，您便可以開始容錯回復。
+
+## 業務持續性災害復原 (BCDR)
+
+當整個 Azure 資料中心停止運作時，就構成業務持續性災害復原 (BCDR) 狀況。這會影響您的 StorSimple Manager 服務和相關聯的 StorSimple 裝置。
+
+如果 StorSimple 裝置在發生災害的前一刻才剛註冊，這些 StorSimple 裝置可能需要進行原廠重設。災害發生後，StorSimple 裝置會顯示為離線。必須從入口網站刪除 StorSimple 裝置，進行原廠重設，然後重新註冊。
+
+
+## 後續步驟
+
+- 執行容錯移轉之後，您可能需要[停用或刪除 StorSimple 裝置](storsimple-deactivate-and-delete-device.md)。
+
+- 如需如何使用 StorSimple Manager 服務的相關資訊，請移至[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
  
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

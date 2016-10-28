@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="StorSimple Manager service administration | Microsoft Azure"
-   description="Learn how to manage your StorSimple device by using the StorSimple Manager service in the Azure classic portal."
+   pageTitle="StorSimple Manager 服務管理 | Microsoft Azure"
+   description="了解如何使用 Azure 傳統入口網站中的 StorSimple Manager 服務管理 StorSimple 裝置。"
    services="storsimple"
    documentationCenter=""
    authors="alkohli"
@@ -15,108 +15,103 @@
    ms.date="09/21/2016"
    ms.author="alkohli" />
 
+# 使用 StorSimple Manager 服務管理 StorSimple 裝置
 
-# <a name="use-the-storsimple-manager-service-to-administer-your-storsimple-device"></a>Use the StorSimple Manager service to administer your StorSimple device
+## 概觀
 
-## <a name="overview"></a>Overview
+本文描述 StorSimple Manager 服務介面，包括如何與其連接、各種可用選項，以及可以透過此 UI 執行的特定工作流程連結。本指引適用於以下兩者；StorSimple 實體和虛擬裝置。
 
-This article describes the StorSimple Manager service interface, including how to connect to it, the various options available, and links out to the specific workflows that can be performed via this UI. This guidance is applicable to both; the StorSimple physical and the virtual device.
+閱讀本文知後，您將了解：
 
-After reading this article, you will learn to:
-
-- Connect to StorSimple Manager service
-- Navigate the StorSimple Manager UI
-- Administer your StorSimple device via the StorSimple Manager service
-
-
-## <a name="connect-to-storsimple-manager-service"></a>Connect to StorSimple Manager service
-
-The StorSimple Manager service runs in Microsoft Azure and connects to multiple StorSimple devices. You use a central Microsoft Azure classic portal running in a browser to manage these devices. To connect to the StorSimple Manager service, do the following.
-
-#### <a name="to-connect-to-the-service"></a>To connect to the service
-
-1. Navigate to [https://manage.windowsazure.com/](https://manage.windowsazure.com/).
-
-1. Using your Microsoft account credentials, log on to the Microsoft Azure classic portal (located at the top-right of the pane).
-
-1. Scroll down the left navigation pane to access the StorSimple Manager service.
+- 和 StorSimple Manager 服務的連接
+- 瀏覽 StorSimple Manager UI
+- 透過 StorSimple Manager 服務管理 StorSimple 裝置
 
 
-## <a name="navigate-storsimple-manager-service-ui"></a>Navigate StorSimple Manager service UI
+## 和 StorSimple Manager 服務的連接
 
-The navigational hierarchy for the StorSimple Manager service UI is shown in the following table.
+StorSimple Manager 服務可在 Microsoft Azure 中執行，並且連接至多個 StorSimple 裝置。您可以使用在瀏覽器中執行的中央 Microsoft Azure 傳統入口網站來管理這些裝置。若要連接道 StorSimple Manager 服務，請執行下列動作。
 
-- **StorSimple Manager** landing page takes you to the UI service-level pages applicable to all devices within a service.
+#### 連接至此服務
 
-- **Devices** page takes you to the device–level UI pages applicable to a specific device.
+1. 瀏覽至 [https://manage.windowsazure.com/](https://manage.windowsazure.com/)。
 
-- **Volume Containers** page takes you to the volume page that shows all the volumes associated with a device.
+1. 使用您的 Microsoft 帳戶認證，登入 Microsoft Azure 傳統入口網站 (位於窗格右上角)。
+
+1. 向下捲動左方瀏覽窗格以存取 StorSimple Manager 服務。
 
 
-#### <a name="storsimple-manager-service-navigational-hierarchy"></a>StorSimple Manager service navigational hierarchy
+## 瀏覽 StorSimple Manager 服務 UI
 
-|Landing page|Service-level pages|Device-level pages|Device-level pages|
+StorSimple Manager 服務 UI 的瀏覽階層顯示於下表。
+
+- **StorSimple Manager** 登陸頁面將帶您到適用於服務內所有裝置的 UI 服務層級頁面。
+
+- [**裝置**] 頁面會將您導向適用於特定裝置的裝置層級 UI 頁面。
+
+- [**磁碟區容器**] 頁面會將您導向顯示與裝置相關聯之所有磁碟區的磁碟區頁面。
+
+
+#### StorSimple Manager 服務瀏覽階層
+
+|登陸頁面|服務層級頁面|裝置層級頁面|裝置層級頁面|
 |---|---|---|---|
-|StorSimple Manager service|Service dashboard|Device dashboard||
-||Devices →|Monitor|
-||Backup catalog|Volume containers→|Volumes|
-||Configure (Service)|Backup policies||
-||Jobs|Configure (Device)|
-||Alerts|Maintenance|
+|StorSimple Manager 服務|服務儀表板|裝置儀表板||
+||裝置 →|監視|
+||備份類別目錄|磁碟區容器 →|磁碟區|
+||設定 (服務)|備份原則||
+||作業|設定 (裝置)|
+||Alerts|維護|
 
-![Video available](./media/storsimple-manager-service-administration/Video_icon.png) **Video available**
+![提供的影片](./media/storsimple-manager-service-administration/Video_icon.png)**提供的影片**
 
-To watch a video that walks you through the StorSimple Manager service user interface, click [here](https://azure.microsoft.com/documentation/videos/storsimple-manager-service-overview/).
+若要觀看逐步引導您使用 StorSimple Manager 服務使用者介面的影片，請按一下[這裡](https://azure.microsoft.com/documentation/videos/storsimple-manager-service-overview/)。
 
-## <a name="administer-storsimple-device-using-storsimple-manager-service"></a>Administer StorSimple device using StorSimple Manager service
+## 使用 StorSimple Manager 服務管理 StorSimple 裝置
 
-The following table shows a summary of all the common management tasks and complex workflows that can be performed within the StorSimple Manager service UI. These tasks are organized based on the UI pages on which they are initiated.
+下表顯示所有一般管理工作和複雜工作流程 (可在 StorSimple Manager 服務 UI 內執行) 的摘要。這些工作會根據在其中啟動它們的 UI 頁面加以組織。
 
-For more information about each workflow, click the appropriate procedure in the table.
+如需每個工作流程的詳細資訊，請按一下資料表中的適當程序。
 
-#### <a name="storsimple-manager-workflows"></a>StorSimple Manager workflows
+#### StorSimple Manager 工作流程
 
-|If you want to do this ...|Go to this UI page ...|Use this procedure.|
+|如果您想要執行此動作...|請移至此 UI 頁面...|使用此程序。|
 |---|---|---|
-|Create a service</br>Delete a service</br>Get service registration key</br>Regenerate service registration key|StorSimple Manager service|[Deploy a StorSimple Manager service](storsimple-manage-service.md)
-|Change the service data encryption key</br>View the operation logs|StorSimple Manager service → Dashboard|[Use the StorSimple Manager service dashboard](storsimple-service-dashboard.md)|
-|Deactivate a device</br>Delete a device|StorSimple Manager service → Devices|[Deactivate or delete a device](storsimple-deactivate-and-delete-device.md)|
-|Learn about disaster recovery and device failover</br>Failover to a physical device</br>Failover to a virtual device</br>Business continuity disaster recovery (BCDR)|StorSimple Manager service → Devices|[Failover and disaster recovery for your StorSimple device](storsimple-device-failover-disaster-recovery.md)|
-|List backups for a volume</br>Select a backup set</br>Delete a backup set|StorSimple Manager service → Backup Catalog|[Manage backups](storsimple-manage-backup-catalog.md)|
-|Clone a volume|StorSimple Manager service → Backup Catalog|[Clone a volume](storsimple-clone-volume.md)|
-|Restore a backup set|StorSimple Manager service → Backup Catalog|[Restore a backup set](storsimple-restore-from-backup-set.md)|
-|About  storage accounts</br>Add a storage account</br>Edit a storage account</br>Delete a storage account</br>Key rotation of storage accounts|StorSimple Manager service → Configure|[Manage storage accounts](storsimple-manage-storage-accounts.md)|
-|About bandwidth templates</br>Add a bandwidth template</br>Edit a bandwidth template</br>Delete a bandwidth template</br>Use a default bandwidth template</br>Create an all-day bandwidth template that starts at a specified time|StorSimple Manager service → Configure|[Manage bandwidth templates](storsimple-manage-bandwidth-templates.md)|
-|About access control records</br>Create an access control record</br>Edit an access control record</br>Delete an access control record|StorSimple Manager service → Configure|[Manage access control records](storsimple-manage-acrs.md)|
-|View job details</br>Cancel a job|StorSimple Manager service → Jobs|[Manage jobs](storsimple-manage-jobs.md)
-|Receive alert notifications</br>Manage alerts</br>Review alerts|StorSimple Manager service → Alerts|[View and manage StorSimple alerts](storsimple-manage-alerts.md)
-|View connected initiators</br>Find the device serial number</br>Find the target IQN|StorSimple Manager service → Devices → Dashboard|[Use the StorSimple device dashboard](storsimple-device-dashboard.md)|
-|Create monitoring charts|StorSimple Manager service → Devices → Monitor|[Monitor your StorSimple device](storsimple-monitor-device.md)|
-|Add a volume container</br>Modify a volume container</br>Delete a volume container|StorSimple Manager service → Devices → Volume Containers|[Manage volume containers](storsimple-manage-volume-containers.md)|
-|Add a volume</br>Modify a volume</br>Take a volume offline</br>Delete a volume</br>Monitor a volume|StorSimple Manager service → Devices → Volume Containers → Volumes|[Manage volumes](storsimple-manage-volumes.md)|
-|Modify device settings</br>Modify time settings</br>Modify DNS.md settings</br>Configure network interfaces|StorSimple Manager service → Devices → Configure|[Modify device configuration for your StorSimple device](storsimple-modify-device-config.md)|
-|View web proxy settings|StorSimple Manager service → Devices → Configure|[Configure web proxy for your device](storsimple-configure-web-proxy.md)|
-|Modify device administrator password</br>Modify StorSimple Snapshot Manager password|StorSimple Manager service → Devices → Configure|[Change StorSimple passwords](storsimple-change-passwords.md)|
-|Configure remote management|StorSimple Manager service → Devices → Configure|[Connect remotely to your StorSimple device](storsimple-remote-connect.md)|
-|Configure alert settings|StorSimple Manager service → Devices → Configure|[View and manage StorSimple alerts](storsimple-manage-alerts.md)|
-|Configure CHAP for your StorSimple device|StorSimple Manager service → Devices → Configure|[Configure CHAP for your StorSimple device](storsimple-configure-chap.md)|
-|Add a backup policy</br>Add or modify a schedule</br>Delete a backup policy</br>Take a manual backup</br>Create a custom backup policy with multiple volumes and schedules|StorSimple Manager service → Devices → Backup policies|[Manage backup policies](storsimple-manage-backup-policies.md)|
-|Stop device controllers</br>Restart device controllers</br>Shut down device controllers</br>Reset your device to factory defaults</br>(Above are for on-premises device only)|StorSimple Manager service → Devices → Maintenance|[Manage StorSimple device controller](storsimple-manage-device-controller.md)|
-|Learn about StorSimple hardware components</br>Monitor hardware status</br>(Above are for on-premises device only)|StorSimple Manager service → Devices → Maintenance|[Monitor hardware components](storsimple-monitor-hardware-status.md)|
-|Create a support package|StorSimple Manager service → Devices → Maintenance|[Create and manage a Support package](storsimple-create-manage-support-package.md)|
-|Install software updates|StorSimple Manager service → Devices → Maintenance|[Update your device](storsimple-update-device.md)|
+|建立服務</br>刪除服務</br>取得服務註冊金鑰</br>重新產生服務註冊金鑰|StorSimple Manager 服務|[部署 StorSimple Manager 服務](storsimple-manage-service.md)
+|變更服務資料加密金鑰</br>檢視作業記錄檔|StorSimple Manager 服務 → 儀表板|[使用 StorSimple Manager 服務儀表板](storsimple-service-dashboard.md)|
+|停用裝置</br>刪除裝置|StorSimple Manager 服務 → 裝置|[停用或刪除裝置](storsimple-deactivate-and-delete-device.md)|
+|了解災害復原和裝置容錯移轉</br>容錯移轉至實體裝置</br>容錯移轉至虛擬裝置</br>業務持續性災害復原 (BCDR)|StorSimple Manager 服務 → 裝置|[StorSimple 裝置的容錯移轉與災害復原](storsimple-device-failover-disaster-recovery.md)|
+|列出磁碟區備份</br>選取備份組</br>刪除備份組|StorSimple Manager 服務 → 備份目錄|[管理備份](storsimple-manage-backup-catalog.md)|
+|複製磁碟區|StorSimple Manager 服務 → 備份目錄|[複製磁碟區](storsimple-clone-volume.md)|
+|還原備份組|StorSimple Manager 服務 → 備份目錄|[還原備份組](storsimple-restore-from-backup-set.md)|
+|有關儲存體帳戶</br>加入儲存體帳戶</br>編輯儲存體帳戶</br>刪除儲存體帳戶</br>儲存體帳戶的金鑰輪替|StorSimple Manager 服務 → 設定|[管理儲存體帳戶](storsimple-manage-storage-accounts.md)|
+|關於頻寬範本</br>新增頻寬範本</br>編輯頻寬範本</br>刪除頻寬範本</br>使用預設頻寬範本</br>建立在指定時間啟動的全天頻寬範本|StorSimple Manager 服務 → 設定|[管理頻寬範本](storsimple-manage-bandwidth-templates.md)|
+|關於存取控制記錄</br>建立存取控制記錄</br>編輯存取控制記錄</br>刪除存取控制記錄|StorSimple Manager 服務 → 設定|[管理存取控制記錄](storsimple-manage-acrs.md)|
+|檢視工作詳細資料</br>取消工作|StorSimple Manager 服務 → 工作|[管理工作](storsimple-manage-jobs.md)
+|接收警示通知</br>管理警示</br>檢閱警示|StorSimple Manager 服務 → 警示|[檢視和管理 StorSimple 警示](storsimple-manage-alerts.md)
+|檢視連接的啟動器</br>尋找裝置序號</br>尋找目標 IQN|StorSimple Manager 服務 → 裝置 → 儀表板|[使用 StorSimple Manager 裝置儀表板](storsimple-device-dashboard.md)|
+|建立監視圖表|StorSimple Manager 服務 → 裝置 → 監視器|[監視您的 StorSimple 裝置](storsimple-monitor-device.md)|
+|新增磁碟區容器</br>修改磁碟區容器</br>刪除磁碟區容器|StorSimple Manager 服務 → 裝置 → 磁碟區容器|[管理磁碟區容器](storsimple-manage-volume-containers.md)|
+|新增磁碟區</br>修改磁碟區</br>讓磁碟區離線</br>刪除磁碟區</br>監視磁碟區|StorSimple Manager 服務 → 裝置 → 磁碟區容器 → 磁碟區|[管理磁碟區](storsimple-manage-volumes.md)|
+|修改裝置設定</br>修改時間設定</br>修改 DNS.md 設定</br>設定網路介面|StorSimple Manager 服務 → 裝置 → 設定|[修改 StorSimple 裝置的裝置組態](storsimple-modify-device-config.md)|
+|檢視 Web Proxy 設定|StorSimple Manager 服務 → 裝置 → 設定|[設定裝置的 Web Proxy](storsimple-configure-web-proxy.md)|
+|修改裝置系統管理員密碼</br>修改 StorSimple Snapshot Manager 密碼|StorSimple Manager 服務 → 裝置 → 設定|[變更 StorSimple 密碼](storsimple-change-passwords.md)|
+|設定遠端管理|StorSimple Manager 服務 → 裝置 → 設定|[遠端連接至 StorSimple 裝置](storsimple-remote-connect.md)|
+|設定警示設定|StorSimple Manager 服務 → 裝置 → 設定|[檢視和管理 StorSimple 警示](storsimple-manage-alerts.md)|
+|為 StorSimple 裝置設定 CHAP|StorSimple Manager 服務 → 裝置 → 設定|[為 StorSimple 裝置設定 CHAP](storsimple-configure-chap.md)|
+|新增備份原則</br>新增或修改排程</br>刪除備份原則</br>手動備份</br>使用多個磁碟區和排程建立自訂備份原則|StorSimple Manager 服務 → 裝置 → 備份原則|[管理備份原則](storsimple-manage-backup-policies.md)|
+|停止裝置控制器</br>重新啟動裝置控制器</br>關閉裝置控制器</br>將您的裝置重設為出廠預設值</br>(上述項目僅適用於內部部署裝置)|StorSimple Manager 服務 → 裝置 → 維護|[管理 StorSimple 裝置控制器](storsimple-manage-device-controller.md)|
+|了解 StorSimple 硬體元件</br>監視硬體狀態</br>(上述項目僅適用於內部部署裝置)|StorSimple Manager 服務 → 裝置 → 維護|[監視硬體元件](storsimple-monitor-hardware-status.md)|
+|建立支援封裝|StorSimple Manager 服務 → 裝置 → 維護|[建立及管理支援封裝](storsimple-create-manage-support-package.md)|
+|安裝軟體更新|StorSimple Manager 服務 → 裝置 → 維護|[更新您的裝置](storsimple-update-device.md)|
 
 
-##<a name="next-steps"></a>Next steps
-If you experience any issues with the day-to-day operation of your StorSimple device or with any of its hardware components, refer to:
+##後續步驟
+如果您遇到與 StorSimple 裝置的日常作業或其中任何硬體元件的任何問題，請參閱：
 
-- [Troubleshoot an operational device](storsimple-troubleshoot-operational-device.md)
-- [Use StorSimple monitoring indicator LEDs](storsimple-monitoring-indicators.md)
+- [可運作裝置的疑難排解](storsimple-troubleshoot-operational-device.md)
+- [使用 StorSimple 監視 LED 指示燈](storsimple-monitoring-indicators.md)
 
-If you cannot resolve the issues and you need to create a service request, refer to [Contact Microsoft Support](storsimple-contact-microsoft-support.md).
+如果您不能解決問題，且您必須建立服務要求，請參閱：[連絡 Microsoft 支援服務](storsimple-contact-microsoft-support.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

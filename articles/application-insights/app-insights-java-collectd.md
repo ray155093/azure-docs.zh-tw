@@ -1,53 +1,52 @@
 <properties 
-    pageTitle="collectd: perf stats for Java on Unix in Application Insights" 
-    description="Extended monitoring of your Java website with the CollectD plug-in for Application Insights" 
-    services="application-insights" 
+	pageTitle="collectd：Application Insights 中 Unix 上的 Java 效能統計資料" 
+	description="使用 Application Insights 的 CollectD 外掛程式擴充您的 Java 網站的監視" 
+	services="application-insights" 
     documentationCenter="java"
-    authors="alancameronwills" 
-    manager="douge"/>
+	authors="alancameronwills" 
+	manager="douge"/>
 
 <tags 
-    ms.service="application-insights" 
-    ms.workload="tbd" 
-    ms.tgt_pltfrm="ibiza" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="08/24/2016" 
-    ms.author="awills"/>
+	ms.service="application-insights" 
+	ms.workload="tbd" 
+	ms.tgt_pltfrm="ibiza" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="08/24/2016" 
+	ms.author="awills"/>
  
+# collectd：Application Insights 中的 Unix 效能度量
 
-# <a name="collectd:-unix-performance-metrics-in-application-insights"></a>collectd: Unix performance metrics in Application Insights
+*Application Insights 目前僅供預覽。*
 
-*Application Insights is in Preview.*
+若要在 [Application Insights](app-insights-overview.md) 中瀏覽 Unix 系統效能度量，請安裝 [collectd](http://collectd.org/) 以及其 Application Insights 外掛程式。這個開放原始碼解決方案會收集各種系統和網路統計資料。
 
-To explore Unix system performance metrics in [Application Insights](app-insights-overview.md), install [collectd](http://collectd.org/), together with its Application Insights plug-in. This open-source solution gathers various system and network statistics.
+如果您已[使用 Application Insights 檢測您的 Java Web 服務][java]，通常您會使用 collectd。提供給您更多資料來幫助您增強應用程式的效能或診斷問題。
 
-Typically you'll use collectd if you have already [instrumented your Java web service with Application Insights][java]. It gives you more data to help you to enhance your app's performance or diagnose problems. 
+![範例圖表](./media/app-insights-java-collectd/sample.png)
 
-![Sample charts](./media/app-insights-java-collectd/sample.png)
+## 取得檢測金鑰
 
-## <a name="get-your-instrumentation-key"></a>Get your instrumentation key
+在 [Microsoft Azure 入口網站](https://portal.azure.com)中，開啟您要顯示資料的 [Application Insights](app-insights-overview.md) 資源。(或[建立新的資源](app-insights-create-new-resource.md)。)
 
-In the [Microsoft Azure portal](https://portal.azure.com), open the [Application Insights](app-insights-overview.md) resource where you want the data to appear. (Or [create a new resource](app-insights-create-new-resource.md).)
+取得一份可識別資源的檢測金鑰。
 
-Take a copy of the instrumentation key, which identifies the resource.
-
-![Browse all, open your resource, and then in the Essentials drop-down, select, and copy the Instrumentation Key](./media/app-insights-java-collectd/02-props.png)
-
+![瀏覽全部，開啟您的資源，然後在 [Essentials] 下拉式清單中，選取並複製檢測金鑰](./media/app-insights-java-collectd/02-props.png)
 
 
-## <a name="install-collectd-and-the-plug-in"></a>Install collectd and the plug-in
 
-On your Unix server machines:
+## 安裝 collectd 和外掛程式
 
-1. Install [collectd](http://collectd.org/) version 5.4.0 or later.
-2. Download the [Application Insights collectd writer plugin](https://aka.ms/aijavasdk). Note the version number.
-3. Copy the plugin JAR into `/usr/share/collectd/java`.
-3. Edit `/etc/collectd/collectd.conf`:
- * Ensure that [the Java plugin](https://collectd.org/wiki/index.php/Plugin:Java) is enabled.
- * Update the JVMArg for the java.class.path to include the following JAR. Update the version number to match the one you downloaded:
+在您的 Unix 伺服器機器上：
+
+1. 安裝 [collectd](http://collectd.org/) 5.4.0 版或更新版本。
+2. 下載 [Application Insights collectd 寫入器外掛程式](https://aka.ms/aijavasdk)。記下版本號碼。
+3. 將外掛程式 JAR 複製到 `/usr/share/collectd/java`。
+3. 編輯 `/etc/collectd/collectd.conf`：
+ * 確定 [Java 外掛程式](https://collectd.org/wiki/index.php/Plugin:Java)已啟用。
+ * 更新 java.class.path 的 JVMArg 以包括下列 JAR。更新版本號碼以符合您所下載的版本：
   * `/usr/share/collectd/java/applicationinsights-collectd-1.0.5.jar`
- * Add this snippet, using the Instrumentation Key from your resource:
+ * 使用來自您的資源的檢測金鑰，加入此程式碼片段：
 
 ```
 
@@ -57,7 +56,7 @@ On your Unix server machines:
      </Plugin>
 ```
 
-Here's part of a sample configuration file:
+以下是範例組態檔的一部分：
 
     ...
     # collectd plugins
@@ -85,47 +84,47 @@ Here's part of a sample configuration file:
       # Other plugin configurations ...
       ...
     </Plugin>
-.   ...
+. ...
 
-Configure other [collectd plugins](https://collectd.org/wiki/index.php/Table_of_Plugins), which can collect various data from different sources.
+設定其他 [collectd 外掛程式](https://collectd.org/wiki/index.php/Table_of_Plugins)，它可以從不同來源收集各種資料。
 
-Restart collectd according to its [manual](https://collectd.org/wiki/index.php/First_steps).
+根據其[手冊](https://collectd.org/wiki/index.php/First_steps)重新啟動 collectd。
 
-## <a name="view-the-data-in-application-insights"></a>View the data in Application Insights
+## 在 Application Insights 中檢視資料
 
-In your Application Insights resource, open [Metrics Explorer and add charts][metrics], selecting the metrics you want to see from the Custom category.
+在您的 Application Insights 資源中，開啟[計量瀏覽器並加入圖表][metrics]，從 [自訂] 類別選取您想要查看的度量。
 
 ![](./media/app-insights-java-collectd/result.png)
 
-By default, the metrics are aggregated across all host machines from which the metrics were collected. To view the metrics per host, in the Chart details blade, turn on Grouping and then choose to group by CollectD-Host.
+根據預設，會對收集度量來源的所有主機電腦彙總度量。若要檢視每一主機的度量，在圖表的 [詳細資料] 刀鋒視窗中，開啟 [群組]，然後選擇依 CollectD-Host 群組。
 
 
-## <a name="to-exclude-upload-of-specific-statistics"></a>To exclude upload of specific statistics
+## 排除特定統計資料的上傳
 
-By default, the Application Insights plugin sends all the data collected by all the enabled collectd 'read' plugins. 
+根據預設，Application Insights 外掛程式會傳送所有啟用的 collectd 'read' 外掛程式所收集的所有資料。
 
-To exclude data from specific plugins or data sources:
+若要排除特定外掛程式或資料來源的資料：
 
-* Edit the configuration file. 
-* In `<Plugin ApplicationInsightsWriter>`, add directive lines like this:
+* 編輯組態檔。
+* 在 `<Plugin ApplicationInsightsWriter>` 中，加入指示詞行，如下所示：
 
-Directive | Effect
+指示詞 | 效果
 ---|---
-`Exclude disk` | Exclude all data collected by the `disk` plugin
-`Exclude disk:read,write` | Exclude the sources named `read` and `write` from the `disk` plugin.
+`Exclude disk` | 排除 `disk` 外掛程式所收集的所有資料
+`Exclude disk:read,write` | 排除來自 `disk` 外掛程式名為 `read` 和 `write` 的來源。
 
-Separate directives with a newline.
+以新行分隔個別指示詞。
 
 
-## <a name="problems?"></a>Problems?
+## 有問題嗎？
 
-*I don't see data in the portal*
+*我在入口網站中看不到任何資料*
 
-* Open [Search][diagnostic] to see if the raw events have arrived. Sometimes they take longer to appear in metrics explorer.
-* You might need to [set firewall exceptions for outgoing data](app-insights-ip-addresses.md)
-* Enable tracing in the Application Insights plugin. Add this line within `<Plugin ApplicationInsightsWriter>`:
+* 開啟[搜尋][diagnostic]以查看原始事件是否已抵達。有時需要較長的時間才會在計量瀏覽器中顯示。
+* 您可能需要[設定輸出資料的防火牆例外狀況](app-insights-ip-addresses.md)
+* 在 Application Insights 外掛程式中啟用追蹤。在 `<Plugin ApplicationInsightsWriter>` 內加入這一行：
  *  `SDKLogger true`
-* Open a terminal and start collectd in verbose mode, to see any issues it is reporting:
+* 開啟終端機，並以詳細資訊模式啟動 collectd，以查看所報告的任何問題：
  * `sudo collectd -f`
 
 
@@ -145,8 +144,4 @@ Separate directives with a newline.
 
  
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

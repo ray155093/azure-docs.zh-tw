@@ -1,96 +1,92 @@
 <properties 
-    pageTitle="Analytics - the powerful search tool of Application Insights | Microsoft Azure" 
-    description="Overview of Analytics, the powerful diagnostic search tool of Application Insights. " 
-    services="application-insights" 
+	pageTitle="強大的 Application Insights 搜尋工具 | Microsoft Azure" 
+	description="分析概觀，強大的 Application Insights 診斷搜尋工具。" 
+	services="application-insights" 
     documentationCenter=""
-    authors="alancameronwills" 
-    manager="douge"/>
+	authors="alancameronwills" 
+	manager="douge"/>
 
 <tags 
-    ms.service="application-insights" 
-    ms.workload="tbd" 
-    ms.tgt_pltfrm="ibiza" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="07/26/2016" 
-    ms.author="awills"/>
+	ms.service="application-insights" 
+	ms.workload="tbd" 
+	ms.tgt_pltfrm="ibiza" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="07/25/2016" 
+	ms.author="awills"/>
 
 
+# Application Insights 中的分析
 
-# <a name="analytics-in-application-insights"></a>Analytics in Application Insights
 
+[分析](app-insights-analytics.md)是 [Application Insights](app-insights-overview.md) 的強大搜尋功能。這些頁面說明分析查詢語言。
 
-[Analytics](app-insights-analytics.md) is the powerful search feature of [Application Insights](app-insights-overview.md). These pages describe the Analytics query lanquage. 
+* **[觀看簡介影片](https://applicationanalytics-media.azureedge.net/home_page_video.mp4)**。
+* **[在我們的模擬資料上測試分析](https://analytics.applicationinsights.io/demo)**，如果您的應用程式還未傳送資料至 Application Insights。
 
-* **[Watch the introductory video](https://applicationanalytics-media.azureedge.net/home_page_video.mp4)**.
-* **[Test drive Analytics on our simulated data](https://analytics.applicationinsights.io/demo)** if your app isn't sending data to Application Insights yet.
-
-## <a name="queries-in-analytics"></a>Queries in Analytics
+## 分析中的查詢功能
  
-A typical query is a *source* table followed by a series of *operators* separated by `|`. 
+標準的查詢是一個「來源」資料表，後面接著一系列由 `|` 隔開的「運算子」。
 
-For example, let's find out what time of day the citizens of Hyderabad try our web app. And while we're there, let's see what result codes are returned to their HTTP requests. 
+例如，讓我們來了解海德拉巴的市民在一天當中的哪些時間試用我們的 Web 應用程式。同時我們要看看針對他們的 HTTP 要求傳回哪些結果碼。
 
 ```AIQL
 
     requests      // Table of events that log HTTP requests.
-  	| where timestamp > ago(7d) and client_City == "Hyderabad"
-  	| summarize clients = dcount(client_IP) 
+    | where timestamp > ago(7d) and client_City == "Hyderabad"
+    | summarize clients = dcount(client_IP) 
       by tod_UTC=bin(timestamp % 1d, 1h), resultCode
-  	| extend local_hour = (tod_UTC + 5h + 30min) % 24h + datetime("2001-01-01") 
+    | extend local_hour = (tod_UTC + 5h + 30min) % 24h + datetime("2001-01-01") 
 ```
 
-We count distinct client IP addresses, grouping them by the hour of the day over the past 7 days. 
+我們會計算不同的用戶端 IP 位址，並以過去 7 天每天的小時為單位將它們群組。
 
-Let's display the results with the bar chart presentation, choosing to stack the results from different response codes:
+使用橫條圖展示來顯示結果，選擇以不同的回應碼來堆疊結果：
 
-![Choose bar chart, x and y axes, then segmentation](./media/app-insights-analytics/020.png)
+![選擇橫條圖、X 和 Y 軸，然後分割](./media/app-insights-analytics/020.png)
 
-Looks like our app is most popular at lunchtime and bed-time in Hyderabad. (And we should investigate those 500 codes.)
+看來我們的應用程式在海德拉巴的午休時間及就寢時間最受歡迎。(而且我們應該調查那些 500 的代碼。)
 
 
-There are also powerful statistical operations:
+也有強大的統計運算功能︰
 
 ![](./media/app-insights-analytics/025.png)
 
 
-The language has many attractive features:
+這個語言具有許多吸引人的功能︰
 
-* [Filter](app-insights-analytics-reference.md#where-operator) your raw app telemetry by any fields, including your custom properties and metrics.
-* [Join](app-insights-analytics-reference.md#join-operator) multiple tables – correlate requests with page views, dependency calls, exceptions and log traces.
-* Powerful statistical [aggregations](app-insights-analytics-reference.md#aggregations).
-* Just as powerful as SQL, but much easier for complex queries: instead of nesting statements, you pipe the data from one elementary operation to the next.
-* Immediate and powerful visualizations.
-
-
+* 依任何欄位[篩選](app-insights-analytics-reference.md#where-operator)未經處理的應用程式遙測，包括您的自訂屬性和計量。
+* [加入](app-insights-analytics-reference.md#join-operator)多個資料表 – 將要求與頁面檢視、相依性呼叫、例外狀況和記錄追蹤相互關聯。
+* 功能強大的統計[彙總](app-insights-analytics-reference.md#aggregations)。
+* 功能如同 SQL 一般強大，但更容易用來進行複雜的查詢︰您可以使用管線將資料從某一個基本運算傳送到下一個運算，而不需使用巢串陳述式。
+* 立即且功能強大的視覺效果。
 
 
 
 
 
-## <a name="connect-to-your-application-insights-data"></a>Connect to your Application Insights data
 
 
-Open Analytics from your app's [overview blade](app-insights-dashboards.md) in Application Insights: 
-
-![Open portal.azure.com, open your Application Insights resource, and click Analytics.](./media/app-insights-analytics/001.png)
+## 連接到您的 Application Insights 資料
 
 
-## <a name="limits"></a>Limits
+在 Application Insights 中，從應用程式的[概觀刀鋒視窗](app-insights-dashboards.md)開啟 [分析]：
 
-At present, query results are limited to just over a week of past data.
+![開啟 portal.azure.com，開啟您的 Application Insights 資源，然後按一下 [分析]。](./media/app-insights-analytics/001.png)
+
+
+## 限制
+
+目前，查詢結果受限於僅只過去一週的資料。
 
 
 
 [AZURE.INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
 
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
 
-* We recommend you start with the [language tour](app-insights-analytics-tour.md).
+* 我們建議您從[語言教學](app-insights-analytics-tour.md)開始。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0831_2016-->

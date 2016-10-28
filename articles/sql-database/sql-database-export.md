@@ -1,96 +1,95 @@
 <properties
-    pageTitle="Archive an Azure SQL database to a BACPAC file using the Azure Portal"
-    description="Archive an Azure SQL database to a BACPAC file  using the Azure Portal"
-    services="sql-database"
-    documentationCenter=""
-    authors="stevestein"
-    manager="jhubbard"
-    editor=""/>
+	pageTitle="使用 Azure 入口網站將 Azure SQL Database 封存到 BACPAC 檔案"
+	description="使用 Azure 入口網站將 Azure SQL Database 封存到 BACPAC 檔案"
+	services="sql-database"
+	documentationCenter=""
+	authors="stevestein"
+	manager="jhubbard"
+	editor=""/>
 
 <tags
-    ms.service="sql-database"
-    ms.devlang="NA"
-    ms.date="08/15/2016"
-    ms.author="sstein"
-    ms.workload="data-management"
-    ms.topic="article"
-    ms.tgt_pltfrm="NA"/>
+	ms.service="sql-database"
+	ms.devlang="NA"
+	ms.date="08/15/2016"
+	ms.author="sstein"
+	ms.workload="data-management"
+	ms.topic="article"
+	ms.tgt_pltfrm="NA"/>
 
 
-
-# <a name="archive-an-azure-sql-database-to-a-bacpac-file-using-the-azure-portal"></a>Archive an Azure SQL database to a BACPAC file using the Azure Portal
+# 使用 Azure 入口網站將 Azure SQL Database 封存到 BACPAC 檔案
 
 > [AZURE.SELECTOR]
-- [Azure portal](sql-database-export.md)
+- [Azure 入口網站](sql-database-export.md)
 - [PowerShell](sql-database-export-powershell.md)
 
-This article provides directions for archiving your Azure SQL database to a BACPAC file (stored in Azure blob storage) using the [Azure portal](https://portal.azure.com).
+本文提供的指示，說明如何使用 [Azure 入口網站](https://portal.azure.com)，將 Azure SQL Database 封存到 BACPAC 檔案 (儲存於 Azure Blob 儲存體中)。
 
-When you need to create an archive of an Azure SQL database, you can export the database schema and data to a BACPAC file. A BACPAC file is simply a ZIP file with an extension of BACPAC. A BACPAC file can later be stored in Azure blob storage or in local storage in an on-premises location and later imported back into Azure SQL Database or into a SQL Server on-premises installation. 
+當您需要建立 Azure SQL Database 的封存檔時，可以將資料庫結構描述和資料匯出到 BACPAC 檔案。BACPAC 檔案就是副檔名為 BACPAC 的 ZIP 檔案。BACPAC 檔案可以稍後儲存在 Azure Blob 儲存體，或在內部部署位置的本機儲存體中，之後再匯入至 Azure SQL Database 或 SQL Server 內部部署安裝。
 
-***Considerations***
+***注意事項***
 
-- For an archive to be transactionally consistent, you must ensure either that no write activity is occurring during the export, or that you are exporting from a [transactionally consistent copy](sql-database-copy.md) of your Azure SQL database.
-- The maximum size of a BACPAC file archived to Azure Blob storage is 200 GB. To archive a larger BACPAC file to local storage, use the [SqlPackage](https://msdn.microsoft.com/library/hh550080.aspx) command-prompt utility. This utility ships with both Visual Studio and SQL Server. You can also [download](https://msdn.microsoft.com/library/mt204009.aspx) the latest version of SQL Server Data Tools to get this utility.
-- Archiving to Azure premium storage by using a BACPAC file is not supported.
-- If the export operation exceeds 20 hours, it may be canceled. To increase performance during export, you can:
- - Temporarily increase your service level.
- - Cease all read and write activity during the export.
- - Use a [clustered index](https://msdn.microsoft.com/library/ms190457.aspx) with non-null values on all large tables. Without clustered indexes, an export may fail if it takes longer than 6-12 hours. This is because the export service needs to complete a table scan to try to export entire table. A good way to determine if your tables are optimized for export is to run **DBCC SHOW_STATISTICS** and make sure that the *RANGE_HI_KEY* is not null and its value has good distribution. For details, see [DBCC SHOW_STATISTICS](https://msdn.microsoft.com/library/ms174384.aspx).
+- 為了讓封存檔處於交易一致狀態，您必須確定在匯出期間未發生任何寫入活動，或者是從 Azure SQL Database 的[交易一致性複本](sql-database-copy.md)匯出。
+- 封存到 Azure Blob 儲存體的 BACPAC 檔案大小上限為 200 GB。若要將較大的 BACPAC 檔案封存到本機儲存體，請使用 [SqlPackage](https://msdn.microsoft.com/library/hh550080.aspx) 命令提示字元公用程式。此公用程式隨附於 Visual Studio 和 SQL Server。您也可以[下載](https://msdn.microsoft.com/library/mt204009.aspx)最新版的 SQL Server Data Tools 以取得此公用程式。
+- 不支援使用 BACPAC 檔案封存 Azure 進階儲存體。
+- 如果匯出作業超過 20 個小時，它可能會被取消。若要增加匯出期間的效能，您可以︰
+ - 暫時提高您的服務等級。
+ - 在匯出期間停止所有讀取及寫入活動。
+ - 在所有大型資料表上搭配使用 [叢集索引](https://msdn.microsoft.com/library/ms190457.aspx)和非 null 值。若沒有叢集索引，如果要花超過 6-12 小時，匯出可能會失敗。這是因為匯出服務需要完成資料表掃描，以便嘗試匯出整份資料表。用來判斷資料表是否已針對匯出進行最佳化的最佳方式是執行 DBCC SHOW\_STATISTICS，並確定 RANGE\_HI\_KEY 不是 null 且其值具有良好的分佈。如需詳細資訊，請參閱 [DBCC SHOW\_STATISTICS](https://msdn.microsoft.com/library/ms174384.aspx)。
 
 
-> [AZURE.NOTE] BACPACs are not intended to be used for backup and restore operations. Azure SQL Database automatically creates backups for every user database. For details, see [Business Continuity Overview](sql-database-business-continuity.md).
+> [AZURE.NOTE] BACPAC 並非用於備份和還原作業。Azure SQL Database 會自動為每個使用者資料庫建立備份。如需詳細資訊，請參閱[商務持續性概觀](sql-database-business-continuity.md)。
 
-To complete this article you need the following:
+若要完成本文，您需要下列項目：
 
-- An Azure subscription.
-- An Azure SQL Database. 
-- An [Azure Standard Storage account](../storage/storage-create-storage-account.md) with a blob container to store the BACPAC in standard storage.
+- Azure 訂用帳戶。
+- Azure SQL Database。
+- 用來在標準儲存體中儲存 BACPAC 的 [Azure 標準儲存體帳戶](../storage/storage-create-storage-account.md)與 Blob 容器。
 
-## <a name="export-your-database"></a>Export your database
+## 匯出您的資料庫
 
-Open the SQL Database blade for the database you want to export.
+開啟欲匯出資料庫的 [SQL Database] 刀鋒視窗。
 
-> [AZURE.IMPORTANT] To guarantee a transactionally consistent BACPAC file you should first [create a copy of your database](sql-database-copy.md) and then export the database copy. 
+> [AZURE.IMPORTANT] 若要保證在交易上一致的 BACPAC 檔案，您應該先[建立您的資料庫複本](sql-database-copy.md)，然後匯出資料庫複本。
 
-1.  Go to the [Azure portal](https://portal.azure.com).
-2.  Click **SQL databases**.
-3.  Click the database to archive.
-4.  In the SQL Database blade, click **Export** to open the **Export database** blade:
+1.	移至 [Azure 入口網站](https://portal.azure.com)。
+2.	按一下 [SQL Database]。
+3.	按一下要封存的資料庫。
+4.	在 [SQL Database] 刀鋒視窗中，按一下 [匯出] 以開啟 [匯出資料庫] 刀鋒視窗：
 
-    ![export button][1]
+    ![匯出按鈕][1]
 
-5.  Click **Storage** and select your storage account and blob container where the BACPAC will be stored:
+5.  按一下 [**儲存體**]，並選取您的儲存體帳戶以及要儲存 BACPAC 的 Blob 容器：
 
-    ![export database][2]
+    ![匯出資料庫][2]
 
-6. Select your authentication type. 
-7.  Enter the appropriate authentication credentials for the Azure SQL server containing the database you are exporting.
-8.  Click **OK** to archive the database. Clicking **OK** creates an export database request and submits it to the service. The length of time the export will take depends on the size and complexity of your database, and your service level. You will receive a notification.
+6. 選取驗證類型。
+7.  針對包含欲匯出之資料庫的 Azure SQL Server，輸入適當的驗證認證。
+8.  按一下 [確定] 封存資料庫。按一下 [確定] 時，會建立匯出資料庫要求並將它提交至服務。匯出所需的時間長度取決於您資料庫的大小和複雜性，以及您的服務等級。您將會收到通知。
 
-    ![export notification][3]
+    ![匯出通知][3]
 
-## <a name="monitor-the-progress-of-the-export-operation"></a>Monitor the progress of the export operation
+## 監視匯出作業的進度
 
-1.  Click **SQL servers**.
-2.  Click the server containing the original (source) database you just archived.
-3.  Scroll down to Operations.
-4.  In the SQL server blade click **Import/Export history**:
+1.	按一下 [SQL Server]。
+2.	按一下包含您剛才封存之原始 (來源) 資料庫的伺服器。
+3.  向下捲動到 [作業]。
+4.	在 SQL Server 刀鋒視窗中，按一下 [匯入/匯出記錄]：
 
-    ![import export history][4]
+    ![匯入匯出記錄][4]
 
-## <a name="verify-the-bacpac-is-in-your-storage-container"></a>Verify the BACPAC is in your storage container
+## 確認 BACPAC 位於儲存體容器中
 
-1.  Click **Storage accounts**.
-2.  Click the storage account where you stored the BACPAC archive.
-3.  Click **Containers** and select the container you exported the database into for details (you can download and save the BACPAC from here).
+1.	按一下 [儲存體帳戶]。
+2.	按一下您用來儲存 BACPAC 封存檔的儲存體帳戶。
+3.	按一下 [**容器**]，並選取存放匯出資料庫的容器，以取得詳細資料 (您也可以從這裡下載並儲存 BACPAC)。
 
-    ![.bacpac file details][5]  
+    ![.bacpac 檔案詳細資料][5]
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-- To learn about importing a BACPAC to an Azure SQL Database, see [Import a BACPCAC to an Azure SQL database](sql-database-import.md)
-- To learn about importing a BACPAC to a SQL Server database, see [Import a BACPCAC to a SQL Server database](https://msdn.microsoft.com/library/hh710052.aspx)
+- 若要了解如何將 BACPAC 匯入 Azure SQL Database，請參閱[將 BACPAC 匯入 Azure SQL Database](sql-database-import.md)
+- 若要了解如何將 BACPAC 匯入 SQL Server 資料庫，請參閱[將 BACPAC 匯入 SQL Server 資料庫](https://msdn.microsoft.com/library/hh710052.aspx)
 
 
 
@@ -101,9 +100,4 @@ Open the SQL Database blade for the database you want to export.
 [4]: ./media/sql-database-export/export-history.png
 [5]: ./media/sql-database-export/bacpac-archive.png
 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

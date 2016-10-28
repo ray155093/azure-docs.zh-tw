@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Enable Transparent Data Encryption in Azure Security Center | Microsoft Azure"
-   description="This document shows you how to implement the Azure Security Center recommendation **Enable Transparent Data Encryption**."
+   pageTitle="在 Azure 資訊安全中心啟用透明資料加密 | Microsoft Azure"
+   description="本文件說明如何實作 Azure 資訊安全中心建議的「啟用透明資料加密」。"
    services="security-center"
    documentationCenter="na"
    authors="TerryLanfear"
@@ -16,54 +16,46 @@
    ms.date="07/29/2016"
    ms.author="terrylan"/>
 
+# 在 Azure 資訊安全中心啟用透明資料加密
 
-# <a name="enable-transparent-data-encryption-in-azure-security-center"></a>Enable Transparent Data Encryption in Azure Security Center
+如果尚未啟用 TDE，Azure 資訊安全中心將建議您在 SQL Database 上啟用透明資料加密 (TDE)。TDE 可保護您的資料，並在無須變更您應用程式的情況下，加密不在作用中的資料庫、相關聯的備份以及交易記錄檔，以協助您符合法規遵循需求。若要深入了解，請參閱 [Azure SQL Database 的透明資料加密](https://msdn.microsoft.com/library/dn948096)。
 
-Azure Security Center will recommend that you enable Transparent Data Encryption (TDE) on SQL databases if TDE is not already enabled. TDE protects your data and helps you meet compliance requirements by encrypting your database, associated backups, and transaction log files at rest, without requiring changes to your application. To learn more see [Transparent Data Encryption with Azure SQL Database](https://msdn.microsoft.com/library/dn948096).
+此建議僅適用於 Azure SQL 服務；不包含在虛擬機器上執行的 SQL。
 
-This recommendation applies to the Azure SQL service only; doesn't include SQL running on your virtual machines.
+> [AZURE.NOTE] 本文件將使用範例部署來介紹服務。這不是逐步指南。
 
-> [AZURE.NOTE] This document introduces the service by using an example deployment.  This is not a step-by-step guide.
+## 實作建議
 
-## <a name="implement-the-recommendation"></a>Implement the recommendation
+1. 在 [建議] 刀鋒視窗中，選取 [啟用透明資料加密]。![啟用透明資料加密][1]
 
-1. In the **Recommendations** blade, select **Enable Transparent Data Encryption**.
-![Enable Transparent Data Encryption][1]
+2. 這會開啟 [在 SQL 資料庫上啟用透明資料加密] 刀鋒視窗。選取要在其上啟用 TDE 的 SQL Database。![選取要在其上啟用 TDE 的 SQL DB][2]
+3. 在 [透明資料加密] 刀鋒視窗中，選取 [資料加密] 下方的 [開啟]，然後選取刀鋒視窗頂端功能區中的 [儲存]。![開啟 TDE][3]
 
-2. This opens the **Enable Transparent Data Encryption on SQL databases** blade. Select a SQL database to enable TDE on.
-![Select SQL DB to enable TDE on][2]
-3. On the **Transparent data encryption** blade, select **ON** under Data encryption and select **Save** in the top ribbon of the blade.
-![Turn on TDE][3]
+  一旦在所選取的 SQL Database 上啟用 TDE 後，[加密狀態] 就會變成 [已加密]。
 
-  Once TDE is enabled on the selected SQL database, the **Encryption status** will change to **Encrypted**.    
+  ![加密狀態][4]
 
-  ![Encryption status][4]
+## 另請參閱
 
-## <a name="see-also"></a>See also
+本文說明了如何實作資訊安全中心建議的「啟用透明資料加密」。 如要深入了解 SQL TDE，請參閱下列主題：
 
-This article showed you how to implement the Security Center recommendation "Enable Transparent Data Encryption." To learn more about SQL TDE, see the following:
+- [Azure SQL Database 的透明資料加密](https://msdn.microsoft.com/library/dn948096)
+- [開始使用透明資料加密 (TDE)](../sql-data-warehouse/sql-data-warehouse-encryption-tde.md)
 
-- [Transparent Data Encryption with Azure SQL Database](https://msdn.microsoft.com/library/dn948096)
-- [Get started with Transparent Data Encryption (TDE)](../sql-data-warehouse/sql-data-warehouse-encryption-tde.md)
+如要深入了解資訊安全中心，請參閱下列主題：
 
-To learn more about Security Center, see the following:
-
-- [Setting security policies in Azure Security Center](security-center-policies.md) -- Learn how to configure security policies for your Azure subscriptions and resource groups.
-- [Managing security recommendations in Azure Security Center](security-center-recommendations.md) -- Learn how recommendations help you protect your Azure resources.
-- [Security health monitoring in Azure Security Center](security-center-monitoring.md) -- Learn how to monitor the health of your Azure resources.
-- [Managing and responding to security alerts in Azure Security Center](security-center-managing-and-responding-alerts.md) -- Learn how to manage and respond to security alerts.
-- [Monitoring partner solutions with Azure Security Center](security-center-partner-solutions.md) -- Learn how to monitor the health status of your partner solutions.
-- [Azure Security Center FAQ](security-center-faq.md) -- Find frequently asked questions about using the service.
-- [Azure Security blog](http://blogs.msdn.com/b/azuresecurity/) -- Get the latest Azure security news and information.
+- [在 Azure 資訊安全中心設定安全性原則](security-center-policies.md) --了解如何為您的 Azure 訂用帳戶及資源群組設定安全性原則。
+- [管理 Azure 資訊安全中心的安全性建議](security-center-recommendations.md) -- 了解建議如何協助保護您的 Azure 資源。
+- [Azure 資訊安全中心的安全性健康狀態監視](security-center-monitoring.md)--了解如何監視 Azure 資源的健康狀態。
+- [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) -- 了解如何管理與回應安全性警示。
+- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健康狀態。
+- [Azure 資訊安全中心常見問題集](security-center-faq.md) -- 尋找使用服務的常見問題。
+- [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/)--取得最新的 Azure 安全性新聞和資訊。
 
 <!--Image references-->
 [1]: ./media/security-center-enable-tde-on-sql-databases/enable-tde.png
-[2]:./media/security-center-enable-tde-on-sql-databases/transparent-data-encryption-blade.png
+[2]: ./media/security-center-enable-tde-on-sql-databases/transparent-data-encryption-blade.png
 [3]: ./media/security-center-enable-tde-on-sql-databases/turn-on-tde.png
 [4]: ./media/security-center-enable-tde-on-sql-databases/encrypted.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

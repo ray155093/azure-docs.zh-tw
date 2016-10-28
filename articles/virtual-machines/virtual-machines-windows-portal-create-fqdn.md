@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Create FQDN for a VM in Azure portal | Microsoft Azure"
-   description="Learn how to create a Fully Qualified Domain Name or FQDN for a Resource Manager based virtual machine in the Azure portal."
+   pageTitle="在 Azure 入口網站中建立 VM 的 FQDN | Microsoft Azure"
+   description="了解如何在 Azure 入口網站中為基於資源管理員的虛擬機器建立完整格式的網域名稱或 FQDN。"
    services="virtual-machines-windows"
    documentationCenter=""
    authors="iainfoulds"
@@ -17,20 +17,16 @@
    ms.date="08/24/2016"
    ms.author="iainfou"/>
 
-
-# <a name="create-a-fully-qualified-domain-name-in-the-azure-portal"></a>Create a Fully Qualified Domain Name in the Azure portal
-When you create a virtual machine (VM) in the [Azure portal](https://portal.azure.com) using the Resource Manager deployment model, a public IP resource for the virtual machine is automatically created. You use this IP address to remotely access the VM. Although the portal does not create a [fully qualified domain name](https://en.wikipedia.org/wiki/Fully_qualified_domain_name), or FQDN, by default, you can create one once the VM is created. This article demonstrates the steps to create a DNS name or FQDN.
+# 在 Azure 入口網站中建立完整格式的網域名稱
+在 [Azure 入口網站](https://portal.azure.com)中使用 Resource Manager 部署模型來建立虛擬機器 (VM) 時，會自動建立虛擬機器的公用 IP 資源。您可以使用此 IP 位址從遠端存取 VM。雖然入口網站預設不會建立 [fully qualified domain name (完整網域名稱)](https://en.wikipedia.org/wiki/Fully_qualified_domain_name) (或稱 FQDN)，但是您可以在 VM 建立之後建立一個。這篇文章示範建立 DNS 名稱或 FQDN 的步驟。
 
 [AZURE.INCLUDE [virtual-machines-common-portal-create-fqdn](../../includes/virtual-machines-common-portal-create-fqdn.md)]
 
-You can now connect remotely to the VM using this DNS name such as for Remote Desktop Protocol (RDP).
+您現在可以使用這個 DNS 名稱 (例如用於「遠端桌面通訊協定」(RDP)) 從遠端連接到 VM。
 
-## <a name="next-steps"></a>Next steps
-Now that your VM has a public IP and DNS name, you can deploy common application frameworks or services such as IIS, SQL, or SharePoint.
+## 後續步驟
+既然您的 VM 已經有公用 IP 和 DNS 名稱，您便可以部署通用應用程式架構或服務，例如 IIS、SQL 或 SharePoint。
 
-You can also read more about [using Resource Manager](../resource-group-overview.md) for tips on building your Azure deployments.
+您也可以進一步閱讀[使用 Resource Manager](../resource-group-overview.md)，以取得建置 Azure 部署的相關秘訣。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0831_2016-->

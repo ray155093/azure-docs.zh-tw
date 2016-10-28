@@ -1,207 +1,201 @@
 <properties
-    pageTitle="Attach a disk to a Linux VM | Microsoft Azure"
-    description="Learn how to attach a data disk to an Azure virtual machine running Linux and initialize it so it's ready for use."
-    services="virtual-machines-linux"
-    documentationCenter=""
-    authors="iainfoulds"
-    manager="timlt"
-    editor="tysonn"
-    tags="azure-service-management"/>
+	pageTitle="將磁碟附加至 Linux VM | Microsoft Azure"
+	description="了解如何將資料磁碟連接至執行 Linux 的 Azure 虛擬機器並初始化磁碟，以便開始使用。"
+	services="virtual-machines-linux"
+	documentationCenter=""
+	authors="iainfoulds"
+	manager="timlt"
+	editor="tysonn"
+	tags="azure-service-management"/>
 
 <tags
-    ms.service="virtual-machines-linux"
-    ms.workload="infrastructure-services"
-    ms.tgt_pltfrm="vm-linux"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/23/2016"
-    ms.author="iainfou"/>
+	ms.service="virtual-machines-linux"
+	ms.workload="infrastructure-services"
+	ms.tgt_pltfrm="vm-linux"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/23/2016"
+	ms.author="iainfou"/>
 
+# 如何將資料磁碟連接至 Linux 虛擬機器
 
-# <a name="how-to-attach-a-data-disk-to-a-linux-virtual-machine"></a>How to Attach a Data Disk to a Linux Virtual Machine
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] 參閱如何[使用 Resource Manager 部署模型連接資料磁碟](virtual-machines-linux-add-disk.md)。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] See how to [attach a data disk using the Resource Manager deployment model](virtual-machines-linux-add-disk.md).
+您可以將空的磁碟和含有資料的磁碟連接到 Azure VM。這兩種類型的磁碟都是位於 Azure 儲存體帳戶中的 .vhd 檔案。就像將任何磁碟新增到 Linux 機器一樣，連接磁碟之後，您必須將磁碟初始化並格式化，它才可供使用。本文將會詳細說明連接空的磁碟和連接含有資料的磁碟到 VM，以及初始化和格式化新磁碟的方法。
 
-You can attach both empty disks and disks that contain data to your Azure VMs. Both types of disks are .vhd files that reside in an Azure storage account. As with adding any disk to a Linux machine, after you attach the disk you need to initialize and format it so it's ready for use. This article details attaching both empty disks and disks already containing data to your VMs, as well as how to then initialize and format a new disk.
-
-> [AZURE.NOTE] It's a best practice to use one or more separate disks to store a virtual machine's data. When you create an Azure virtual machine, it has an operating system disk and a temporary disk. **Do not use the temporary disk to store persistent data.** As the name implies, it provides temporary storage only. It offers no redundancy or backup because it doesn't reside in Azure storage.
-> The temporary disk is typically managed by the Azure Linux Agent and automatically mounted to **/mnt/resource** (or **/mnt** on Ubuntu images). On the other hand, a data disk might be named by the Linux kernel something like `/dev/sdc`, and you need to partition, format, and mount this resource. See the [Azure Linux Agent User Guide][Agent] for details.
+> [AZURE.NOTE] 最好使用一或多個不同的磁碟來儲存虛擬機器的資料。當您建立 Azure 虛擬機器時，它會有作業系統磁碟和暫存磁碟。**請勿使用暫存磁碟來儲存持續資料。** 顧名思義，它只提供暫存儲存空間。它並不提供備援或備份，因為它不在 Azure 儲存體內。暫存磁碟通常是由 Azure Linux 代理程式管理，並自動掛接到 **/mnt/resource** (或 Ubuntu 映像中的**/mnt**)。另一方面，Linux 核心可能會將資料磁碟命名為 `/dev/sdc` 之類的名稱，而您必須分割、格式化及掛接此資源。如需詳細資訊，請參閱 [Azure Linux 代理程式使用者指南][Agent]。
 
 [AZURE.INCLUDE [howto-attach-disk-windows-linux](../../includes/howto-attach-disk-linux.md)]
 
-## <a name="initialize-a-new-data-disk-in-linux"></a>Initialize a new data disk in Linux
+## 在 Linux 中初始化新的資料磁碟
 
-1. SSH to your VM. For further details, see [How to log on to a virtual machine running Linux][Logon].
+1. SSH 連線到您的 VM。如需進一步的詳細資料，請參閱[如何登入執行 Linux 的虛擬機器][Logon]。
 
-2. Next you need to find the device identifier for the data disk to initialize. There are two ways to do that:
+2. 接下來您需要尋找資料磁碟的裝置識別碼以進行初始化。作法有二：
 
-    a) Grep for SCSI devices in the logs, such as in the following command:
+	a) Grep SCSI 裝置中的記錄檔，如以下命令︰
 
-            $sudo grep SCSI /var/log/messages
+			$sudo grep SCSI /var/log/messages
 
-    For recent Ubuntu distributions, you may need to use `sudo grep SCSI /var/log/syslog` because logging to `/var/log/messages` might be disabled by default.
+	針對最新的 Ubuntu 散發套件，您可能需要使用 `sudo grep SCSI /var/log/syslog`，因為預設可能會停用記錄到 `/var/log/messages` 的功能。
 
-    You can find the identifier of the last data disk that was added in the messages that are displayed.
+	在出現的訊息中，您可以找到最後一個新增之資料磁碟的識別碼。
 
-    ![Get the disk messages](./media/virtual-machines-linux-classic-attach-disk/scsidisklog.png)
+	![取得磁碟訊息](./media/virtual-machines-linux-classic-attach-disk/scsidisklog.png)
 
-    OR
+	或
 
-    b) Use the `lsscsi` command to find out the device id. `lsscsi` can be installed by either `yum install lsscsi` (on Red Hat based distributions) or `apt-get install lsscsi` (on Debian based distributions). You can find the disk you are looking for by its _lun_ or **logical unit number**. For example, the _lun_ for the disks you attached can be easily seen from `azure vm disk list <virtual-machine>` as:
+	b) 使用 `lsscsi` 命令來找出裝置識別碼。您可透過 `yum install lsscsi` (Red Hat 式散發) 或 `apt-get install lsscsi`(Debian 式散發) 來安裝 `lsscsi`。您可以透過磁碟的 _LUN_ (亦稱為**邏輯單元編號**) 找到您所需的磁碟。例如，您可從 `azure vm disk list <virtual-machine>` 輕易看到所附加磁碟的 _LUN_，如下所示：
 
-            ~$ azure vm disk list TestVM
-            info:    Executing command vm disk list
-            + Fetching disk images
-            + Getting virtual machines
-            + Getting VM disks
-            data:    Lun  Size(GB)  Blob-Name                         OS
-            data:    ---  --------  --------------------------------  -----
-            data:         30        TestVM-2645b8030676c8f8.vhd  Linux
-            data:    0    100       TestVM-76f7ee1ef0f6dddc.vhd
-            info:    vm disk list command OK
+			~$ azure vm disk list TestVM
+			info:    Executing command vm disk list
+			+ Fetching disk images
+			+ Getting virtual machines
+			+ Getting VM disks
+			data:    Lun  Size(GB)  Blob-Name                         OS
+			data:    ---  --------  --------------------------------  -----
+			data:         30        TestVM-2645b8030676c8f8.vhd  Linux
+			data:    0    100       TestVM-76f7ee1ef0f6dddc.vhd
+			info:    vm disk list command OK
 
-    Compare this data with the output of `lsscsi` for the same sample virtual machine:
+	將此資料與相同範例虛擬機器的 `lsscsi` 輸出做比較：
 
-            ops@TestVM:~$ lsscsi
-            [1:0:0:0]    cd/dvd  Msft     Virtual CD/ROM   1.0   /dev/sr0
-            [2:0:0:0]    disk    Msft     Virtual Disk     1.0   /dev/sda
-            [3:0:1:0]    disk    Msft     Virtual Disk     1.0   /dev/sdb
-            [5:0:0:0]    disk    Msft     Virtual Disk     1.0   /dev/sdc
+			ops@TestVM:~$ lsscsi
+			[1:0:0:0]    cd/dvd  Msft     Virtual CD/ROM   1.0   /dev/sr0
+			[2:0:0:0]    disk    Msft     Virtual Disk     1.0   /dev/sda
+			[3:0:1:0]    disk    Msft     Virtual Disk     1.0   /dev/sdb
+			[5:0:0:0]    disk    Msft     Virtual Disk     1.0   /dev/sdc
 
-    The last number in the tuple in each row is the _lun_. See `man lsscsi` for more information.
+	在每個資料列的 Tuple 中，最後一個數字即為 _LUN_。如需詳細資訊，請參閱 `man lsscsi`。
 
-3. At the prompt, type the following command to create your device:
+3. 出現提示時，輸入下列命令來建立裝置：
 
-        $sudo fdisk /dev/sdc
+		$sudo fdisk /dev/sdc
 
 
-4. When prompted, type **n** to create a new partition.
+4. 出現提示時，輸入 **n** 建立新的磁碟分割。
 
 
-    ![Create device](./media/virtual-machines-linux-classic-attach-disk/fdisknewpartition.png)
+	![建立裝置](./media/virtual-machines-linux-classic-attach-disk/fdisknewpartition.png)
 
-5. When prompted, type **p** to make the partition the primary partition. Type **1** to make it the first partition, and then type enter to accept the default value for the cylinder. On some systems, it can show the default values of the first and the last sectors, instead of the cylinder. You can choose to accept these defaults.
+5. 出現提示時，輸入 **p** 以將磁碟分割設為主要磁碟分割。輸入 **1** 以將它設為第一個磁碟分割，然後按 Enter 來接受預設的磁柱值。在某些系統上，它可能會顯示第一個和最後一個磁區的預設值，而不是圓柱圖。您可以選擇接受這些預設值。
 
 
-    ![Create partition](./media/virtual-machines-linux-classic-attach-disk/fdisknewpartdetails.png)
+	![建立磁碟分割](./media/virtual-machines-linux-classic-attach-disk/fdisknewpartdetails.png)
 
 
 
-6. Type **p** to see the details about the disk that is being partitioned.
+6. 輸入 **p** 查看目前分割之磁碟的詳細資料。
 
 
-    ![List disk information](./media/virtual-machines-linux-classic-attach-disk/fdiskpartitiondetails.png)
+	![列出磁碟資訊](./media/virtual-machines-linux-classic-attach-disk/fdiskpartitiondetails.png)
 
 
 
-7. Type **w** to write the settings for the disk.
+7. 輸入 **w** 寫入磁碟的設定。
 
 
-    ![Write the disk changes](./media/virtual-machines-linux-classic-attach-disk/fdiskwritedisk.png)
+	![寫入磁碟變更](./media/virtual-machines-linux-classic-attach-disk/fdiskwritedisk.png)
 
-8. Now you can create the file system on the new partition. Append the partition number to the device ID (in the following example `/dev/sdc1`). The following example creates an ext4 partition on /dev/sdc1:
+8. 您現在可以在新的磁碟分割上建立檔案系統。在裝置識別碼後加上磁碟分割編號 (在以下範例中為 `/dev/sdc1`)。以下範例會在 /dev/sdc1 上建立 ext4 磁碟分割：
 
-        # sudo mkfs -t ext4 /dev/sdc1
+		# sudo mkfs -t ext4 /dev/sdc1
 
-    ![Create file system](./media/virtual-machines-linux-classic-attach-disk/mkfsext4.png)
+	![建立檔案系統](./media/virtual-machines-linux-classic-attach-disk/mkfsext4.png)
 
-    >[AZURE.NOTE] SuSE Linux Enterprise 11 systems only support read-only access for ext4 file systems. For these systems, it is recommended to format the new file system as ext3 rather than ext4.
+	>[AZURE.NOTE] SuSE Linux Enterprise 11 系統針對 ext4 檔案系統只支援唯讀存取。針對這些系統，建議您將新檔案系統格式化為 ext3，而非 ext4。
 
 
-9. Make a directory to mount the new file system, as follows:
+9. 建立目錄以掛接新的檔案系統，如下所示：
 
-        # sudo mkdir /datadrive
+		# sudo mkdir /datadrive
 
 
-10. Finally you can mount the drive, as follows:
+10. 最後您可以掛接磁碟機，如下所示︰
 
-        # sudo mount /dev/sdc1 /datadrive
+		# sudo mount /dev/sdc1 /datadrive
 
-    The data disk is now ready to use as **/datadrive**.
-    
-    ![Create the directory and mount the disk](./media/virtual-machines-linux-classic-attach-disk/mkdirandmount.png)
+	資料磁碟現在可以當做 **/datadrive** 來使用。
+	
+	![建立目錄和掛接磁碟](./media/virtual-machines-linux-classic-attach-disk/mkdirandmount.png)
 
 
-11. Add the new drive to /etc/fstab:
+11. 將新的磁碟機新增至 /etc/fstab：
 
-    To ensure the drive is remounted automatically after a reboot it must be added to the /etc/fstab file. In addition, it is highly recommended that the UUID (Universally Unique IDentifier) is used in /etc/fstab to refer to the drive rather than just the device name (i.e. /dev/sdc1). Using the UUID avoids the incorrect disk being mounted to a given location if the OS detects a disk error during boot and any remaining data disks then being assigned those device IDs. To find the UUID of the new drive, you can use the **blkid** utility:
+	為了確保重新開機之後自動重新掛接磁碟機，必須將磁碟機新增至 /etc/fstab 檔案。此外，強烈建議在 /et/fstab 中使用全域唯一識別碼 (Universally Unique IDentifier, UUID) 來參考磁碟機，而不只是裝置名稱 (例如，/dev/sdc1)。使用 UUID 可避免當作業系統在開機期間偵測到磁碟錯誤時，將不正確的磁碟掛接到指定的位置，又接著將這些裝置識別碼指派給任何其餘的資料磁碟。若要尋找新磁碟機的 UUID，您可以使用 **blkid** 公用程式：
 
-        # sudo -i blkid
+		# sudo -i blkid
 
-    The output looks similar to the following:
+	輸出大致如下：
 
-        /dev/sda1: UUID="11111111-1b1b-1c1c-1d1d-1e1e1e1e1e1e" TYPE="ext4"
-        /dev/sdb1: UUID="22222222-2b2b-2c2c-2d2d-2e2e2e2e2e2e" TYPE="ext4"
-        /dev/sdc1: UUID="33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e" TYPE="ext4"
+		/dev/sda1: UUID="11111111-1b1b-1c1c-1d1d-1e1e1e1e1e1e" TYPE="ext4"
+		/dev/sdb1: UUID="22222222-2b2b-2c2c-2d2d-2e2e2e2e2e2e" TYPE="ext4"
+		/dev/sdc1: UUID="33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e" TYPE="ext4"
 
 
-    >[AZURE.NOTE] Improperly editing the **/etc/fstab** file could result in an unbootable system. If unsure, refer to the distribution's documentation for information on how to properly edit this file. It is also recommended that a backup of the /etc/fstab file is created before editing.
+	>[AZURE.NOTE] 不當編輯 **/etc/fstab** 檔案會導致系統無法開機。如果不確定，請參閱散發套件的文件，以取得如何適當編輯此檔案的相關資訊。在編輯之前，也建議先備份 /etc/fstab 檔案。
 
-    Next, open the **/etc/fstab** file in a text editor:
+	接下來，在文字編輯器中開啟 **/etc/fstab** 檔案：
 
-        # sudo vi /etc/fstab
+		# sudo vi /etc/fstab
 
-    In this example, we use the UUID value for the new **/dev/sdc1** device that was created in the previous steps, and the mountpoint **/datadrive**. Add the following line to the end of the **/etc/fstab** file:
+	在此範例中，我們會使用先前步驟所建立之新的 **/dev/sdc1** 裝置的 UUID 值，並使用掛接點 **/datadrive**。在 **/etc/fstab** 檔案的結尾加入以下程式碼：
 
-        UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults   1   2
+		UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults   1   2
 
-    Or, on systems based on SuSE Linux you may need to use a slightly different format:
+	或者，在基於 SUSE Linux 的系統上，您可能需要使用稍微不同的格式：
 
-        /dev/disk/by-uuid/33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext3   defaults   1   2
+		/dev/disk/by-uuid/33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext3   defaults   1   2
 
-    You can now test that the file system is mounted properly by unmounting and then remounting the file system, i.e. using the example mount point `/datadrive` created in the earlier steps:
+	您現在可以將檔案系統取消掛接後再重新掛接 (例如使用在先前步驟中建立的範例掛接點 `/datadrive`)，來測試是否已正確掛接檔案系統：
 
-        # sudo umount /datadrive
-        # sudo mount /datadrive
+		# sudo umount /datadrive
+		# sudo mount /datadrive
 
-    If the `mount` command produces an error, check the /etc/fstab file for correct syntax. If additional data drives or partitions are created, enter them into /etc/fstab separately as well.
+	如果 `mount` 命令發生錯誤，請檢查 /etc/fstab 檔案的語法是否正確。如果還有建立其他資料磁碟機或磁碟分割，也請分別在 /etc/fstab 中分別輸入它們。
 
-    Make the drive writable by using this command:
+	使用下列命令將磁碟機設為可寫入：
 
-        # sudo chmod go+w /datadrive
+		# sudo chmod go+w /datadrive
 
->[AZURE.NOTE] Subsequently removing a data disk without editing fstab could cause the VM to fail to boot. If this is a common occurrence, most distributions provide either the `nofail` and/or `nobootwait` fstab options that allow a system to boot even if the disk fails to mount at boot time. Consult your distribution's documentation for more information on these parameters.
+>[AZURE.NOTE] 後續移除資料磁碟而不編輯 fstab，可能會造成 VM 無法開機。如果這是常見的情況，大多數散發套件都會提供 `nofail` 和/或 `nobootwait` fstab 選項，可讓系統在即使開機時無法掛接磁碟的情況下也能開機。請查閱散發套件的文件，以取得這些參數的相關資訊。
 
-### <a name="trim/unmap-support-for-linux-in-azure"></a>TRIM/UNMAP support for Linux in Azure
-Some Linux kernels support TRIM/UNMAP operations to discard unused blocks on the disk. These operations are primarily useful in standard storage to inform Azure that deleted pages are no longer valid and can be discarded. Discarding pages can save cost if you create large files and then delete them.
+### Azure 中 Linux 的 TRIM/UNMAP 支援
+有些 Linux 核心會支援 TRIM/UNMAP 作業以捨棄磁碟上未使用的區塊。這些作業主要是在標準儲存體中相當實用，可用來通知 Azure 已刪除的頁面已不再有效而可予以捨棄。如果您建立大型檔案，然後再將它們刪除，捨棄頁面可以節省成本。
 
-There are two ways to enable TRIM support in your Linux VM. As usual, consult your distribution for the recommended approach:
+有兩種方式可在 Linux VM 中啟用 TRIM 支援。像往常一樣，請參閱您的散發套件以了解建議的方法︰
 
-- Use the `discard` mount option in `/etc/fstab`, for example:
+- 在 `/etc/fstab` 中使用 `discard` 掛接選項，例如：
 
-        UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults,discard   1   2
+		UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults,discard   1   2
 
-- Alternatively, you can run the `fstrim` command manually from the command line, or add it to your crontab to run regularly:
+- 或者，您也可以從命令列手動執行 `fstrim` 命令，或將它新增到 crontab 來定期執行︰
 
-    **Ubuntu**
+	**Ubuntu**
 
-        # sudo apt-get install util-linux
-        # sudo fstrim /datadrive
+		# sudo apt-get install util-linux
+		# sudo fstrim /datadrive
 
-    **RHEL/CentOS**
+	**RHEL/CentOS**
 
-        # sudo yum install util-linux
-        # sudo fstrim /datadrive
+		# sudo yum install util-linux
+		# sudo fstrim /datadrive
 
-## <a name="troubleshooting"></a>Troubleshooting
+## 疑難排解
 [AZURE.INCLUDE [virtual-machines-linux-lunzero](../../includes/virtual-machines-linux-lunzero.md)]
 
 
-## <a name="next-steps"></a>Next Steps
-You can read more about using your Linux VM in the following articles:
+## 後續步驟
+您可以閱讀下列文章來進一步了解如何使用 Linux VM：
 
-- [How to log on to a virtual machine running Linux][Logon]
+- [如何登入執行 Linux 的虛擬機器][Logon]
 
-- [How to detach a disk from a Linux virtual machine](virtual-machines-linux-classic-detach-disk.md)
+- [如何從 Linux 虛擬機器卸離磁碟](virtual-machines-linux-classic-detach-disk.md)
 
-- [Using the Azure CLI with the Classic deployment model](../virtual-machines-command-line-tools.md)
+- [搭配傳統部署模型使用 Azure CLI](../virtual-machines-command-line-tools.md)
 
 <!--Link references-->
 [Agent]: virtual-machines-linux-agent-user-guide.md
 [Logon]: virtual-machines-linux-mac-create-ssh-keys.md
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0831_2016-->

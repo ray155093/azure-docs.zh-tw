@@ -1,607 +1,601 @@
 <properties 
-    pageTitle="Monitor and manage Azure Data Factory pipelines" 
-    description="Learn how to use Azure Portal and Azure PowerShell to monitor and manage Azure data factories and pipelines you have created." 
-    services="data-factory" 
-    documentationCenter="" 
-    authors="spelluru" 
-    manager="jhubbard" 
-    editor="monicar"/>
+	pageTitle="監視和管理 Azure Data Factory 管線" 
+	description="了解如何使用 Azure 入口網站和 Azure PowerShell 監視並管理您建立的 Azure 資料處理站和管線。" 
+	services="data-factory" 
+	documentationCenter="" 
+	authors="spelluru" 
+	manager="jhubbard" 
+	editor="monicar"/>
 
 <tags 
-    ms.service="data-factory" 
-    ms.workload="data-services" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="09/06/2016" 
-    ms.author="spelluru"/>
+	ms.service="data-factory" 
+	ms.workload="data-services" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="09/06/2016" 
+	ms.author="spelluru"/>
 
 
-
-# <a name="monitor-and-manage-azure-data-factory-pipelines"></a>Monitor and manage Azure Data Factory pipelines
+# 監視和管理 Azure Data Factory 管線
 > [AZURE.SELECTOR]
-- [Using Azure portal/Azure PowerShell](data-factory-monitor-manage-pipelines.md)
-- [Using Monitoring and Management App](data-factory-monitor-manage-app.md)
+- [使用 Azure 入口網站/Azure PowerShell](data-factory-monitor-manage-pipelines.md)
+- [使用監視及管理應用程式](data-factory-monitor-manage-app.md)
 
-The Data Factory service provides reliable and complete view of your storage, processing, and data movement services. The service provides you a monitoring dashboard helps that you can use to perform the following: 
+Data Factory 服務提供一個可靠且完整的儲存、處理和資料移動服務檢視。此服務可提供您監視儀表板說明供您執行下列作業︰
 
-- Quickly assess end-to-end data pipeline health.
-- Identify issues, and take corrective action if needed. 
-- Track data lineage. 
-- Track relationships between your data across any of your sources.
-- View full historical accounting of job execution, system health, and dependencies.
+- 快速評估端對端資料管線健全狀態。
+- 指出問題所在，並視需要採取修正動作。
+- 追蹤資料歷程。
+- 在您的任何來源間追蹤資料之間的關聯性。
+- 檢視作業執行、系統健全狀態和相依性的完整歷程記錄。
 
-This article describes how to monitor, manage, and debug your pipelines. It also provides information on how to create alerts and get notified on failures.
+本文描述如何監視、管理和偵錯您的管線。同時也會提供如何建立警示和取得失敗通知的詳細資訊。
 
-## <a name="understand-pipelines-and-activity-states"></a>Understand pipelines and activity states
-Using the Azure portal, you can do the following: 
+## 了解管線和活動狀態
+您可以使用 Azure 入口網站執行下列操作：
 
-- View your data factory as a diagram
-- View activities in a pipeline
-- View input and output datasets
-- and more. 
+- 以圖表形式檢視 Data Factory
+- 檢視管線中的活動
+- 檢視輸入和輸出資料集
+- 不勝枚舉。
 
-This section also provides how a slice transitions from one state to another state.   
+本節也提供配量從某個狀態轉換至另一個狀態的方法。
 
-### <a name="navigate-to-your-data-factory"></a>Navigate to your data factory
-1.  Sign in to the [Azure portal](https://portal.azure.com).
-2.  Click **Browse All** and select **Data Factories**.
-    
-    ![Browse All -> Data factories](./media/data-factory-monitor-manage-pipelines/browseall-data-factories.png)
+### 瀏覽至您的 Data Factory
+1.	登入 [Azure 入口網站](https://portal.azure.com)。
+2.	按一下 [全部瀏覽]，選取 [資料處理站]。
+	
+	![全部瀏覽 -> 資料處理站](./media/data-factory-monitor-manage-pipelines/browseall-data-factories.png)
 
-    You should see all the data factories in the **Data factories** blade. 
-4. In the Data factories blade, select the data factory you are interested in and you should see the home page (**Data factory** blade) for the data factory.
+	您應該會在 [Data Factory] 刀鋒視窗中看到所有 Data Factory。
+4. 在 Data Factory 刀鋒視窗中，選取您感興趣的 Data Factory，接著您應該會看到該 Data Factory 的首頁 (**Data Factory** 刀鋒視窗)。
 
-    ![Data factory blade](./media/data-factory-monitor-manage-pipelines/data-factory-blade.png)
+	![Data Factory 刀鋒視窗](./media/data-factory-monitor-manage-pipelines/data-factory-blade.png)
 
-#### <a name="diagram-view-of-your-data-factory"></a>Diagram view of your data factory
-The Diagram View of a data factory provides a single pane of glass to monitor and manage the data factory and its assets.
+#### Data Factory 的圖表檢視
+Data Factory 的圖表檢視提供單一窗格，可用來監視和管理 Data Factory 及其資產。
 
-To see the diagram view of your data factory, click **Diagram** on the data factory home page.
+若要查看 Data Factory 的圖表檢視，請按一下 Data Factory 首頁上的 [圖表]。
 
-![Diagram view](./media/data-factory-monitor-manage-pipelines/diagram-view.png)
+![圖表檢視](./media/data-factory-monitor-manage-pipelines/diagram-view.png)
 
-You can zoom in, zoom out, zoom to fit, zoom to 100%, lock the layout of the diagram, and automatically position pipelines and tables. You can also see the data lineage information (show upstream and downstream items of selected items).
+您可以將圖表配置放大、縮小、縮放至適當比例、放大到 100% 和鎖定，以及自動定位管線和資料表。您也可以查看資料歷程資訊 (顯示所選取項目的上游和下游項目)。
  
 
-### <a name="activities-inside-a-pipeline"></a>Activities inside a pipeline 
-1. Right-click the pipeline and click **Open pipeline** to see all activities in the pipeline along with input and output datasets for the activities. This feature is useful when your pipeline comprises of more than one Activity and you want to understand the operational lineage of a single pipeline.
+### 管線中的活動 
+1. 在管線上按一下滑鼠右鍵，然後按一下 [開啟管線]，就能查看所有管線中的活動，以及活動的輸入和輸出資料集。當您的管線有超過一個的活動且您想了解單一管線的作業歷程時，這個功能會非常有用。
 
-    ![Open pipeline menu](./media/data-factory-monitor-manage-pipelines/open-pipeline-menu.png)  
-2. In the following example, you see two activities in the pipeline with their inputs and outputs. The activity titled **JoinData** of type HDInsight Hive Activity and **EgressDataAzure** of type Copy Activity are in this sample pipeline. 
-    
-    ![Activities inside a pipeline](./media/data-factory-monitor-manage-pipelines/activities-inside-pipeline.png) 
-3. You can navigate back to Data Factory home page by clicking Data factory link in the breadcrumb at the top-left corner.
+	![開啟管線功能表](./media/data-factory-monitor-manage-pipelines/open-pipeline-menu.png)
+2. 在下列範例中，您會看到管線中的兩個活動及其輸入和輸出。本管線範例內的兩個活動名為 **JoinData** HDInsight Hive 活動類型和 **EgressDataAzure** 複製活動類型。
+	
+	![管線中的活動](./media/data-factory-monitor-manage-pipelines/activities-inside-pipeline.png)
+3. 您可以按一下左上角階層連結中的 Data Factory 連結，瀏覽回 Data Factory 首頁。
 
-    ![Navigate back to data factory](./media/data-factory-monitor-manage-pipelines/navigate-back-to-data-factory.png)
+	![瀏覽回到 Data Factory](./media/data-factory-monitor-manage-pipelines/navigate-back-to-data-factory.png)
 
-### <a name="view-state-of-each-activity-inside-a-pipeline"></a>View state of each activity inside a pipeline
-You can view the current state of an activity by viewing the status of any of the datasets produced by the activity. 
+### 管線中每個活動的檢視狀態
+您可以藉由檢視活動所產生的任何資料集的狀態，查看活動的目前狀態。
 
-For example: in the following example, the **BlobPartitionHiveActivity** ran successfully and produced a dataset named **PartitionedProductsUsageTable**, which is in **Ready** state.
+例如：在下列範例中，**BlobPartitionHiveActivity** 已順利執行並產生名為 **PartitionedProductsUsageTable** 的資料集，其狀態為**就緒**。
 
-![State of pipeline](./media/data-factory-monitor-manage-pipelines/state-of-pipeline.png)
+![管線的狀態](./media/data-factory-monitor-manage-pipelines/state-of-pipeline.png)
 
-Double-clicking the **PartitionedProductsUsageTable** in the diagram view showcases all the slices produced by different activity runs inside a pipeline. You can see that the **BlobPartitionHiveActivity** ran successfully every month for last eight months and produced the slices in **Ready** state.
+按兩次圖表檢視中的 **PartitionedProductsUsageTable**，會展示管線中各種不同的活動執行時所產生的所有配量。您可以看到 **BlobPartitionHiveActivity** 過去八個月來每個月都執行成功，所產生的配量都處於**就緒**狀態。
 
-The dataset slices in data factory can have one of the following statuses:
+Data Factory 中的資料集配量可以有下列狀態之一：
 
 <table>
 <tr>
-    <th align="left">State</th><th align="left">Substate</th><th align="left">Description</th>
+	<th align="left">State</th><th align="left">子狀態</th><th align="left">說明</th>
 </tr>
 <tr>
-    <td rowspan="8">Waiting</td><td>ScheduleTime</td><td>The time has not come for the slice to run.</td>
+	<td rowspan="8">等候</td><td>ScheduleTime</td><td>尚未到達執行配量的時間。</td>
 </tr>
 <tr>
-<td>DatasetDependencies</td><td>The upstream dependencies are not ready.</td>
+<td>DatasetDependencies</td><td>上游相依項目尚未就緒。</td>
 </tr>
 <tr>
-<td>ComputeResources</td><td>The compute resources are not available.</td>
+<td>ComputeResources</td><td>計算資源無法使用。</td>
 </tr>
 <tr>
-<td>ConcurrencyLimit</td> <td>All the activity instances are busy running other slices.</td>
+<td>ConcurrencyLimit</td> <td>所有活動執行個體都忙於執行其他配量。</td>
 </tr>
 <tr>
-<td>ActivityResume</td><td>Activity is paused and cannot run the slices until it is resumed.</td>
+<td>ActivityResume</td><td>活動已暫停，要繼續之後才能執行配量。</td>
 </tr>
 <tr>
-<td>Retry</td><td>Activity execution is retried.</td>
+<td>Retry</td><td>會重試活動執行。</td>
 </tr>
 <tr>
-<td>Validation</td><td>Validation has not started yet.</td>
+<td>驗證</td><td>驗證尚未啟動。</td>
 </tr>
 <tr>
-<td>ValidationRetry</td><td>Waiting for the validation to be retried.</td>
+<td>ValidationRetry</td><td>正在等待重試驗證。</td>
 </tr>
 <tr>
-<tr
-<td rowspan="2">InProgress</td><td>Validating</td><td>Validation in progress.</td>
+&lt;tr
+<td rowspan="2">InProgress</td><td>Validating</td><td>驗證進行中。</td>
 </tr>
 <td></td>
-<td>The slice is being processed.</td>
+<td>正在處理配量。</td>
 </tr>
 <tr>
-<td rowspan="4">Failed</td><td>TimedOut</td><td>Execution took longer than that is allowed by the activity.</td>
+<td rowspan="4">Failed</td><td>TimedOut</td><td>執行花費的時間超過活動所允許的時間。</td>
 </tr>
 <tr>
-<td>Canceled</td><td>Canceled by user action.</td>
+<td>Canceled</td><td>被使用者動作取消。</td>
 </tr>
 <tr>
-<td>Validation</td><td>Validation has failed.</td>
+<td>驗證</td><td>驗證失敗。</td>
 </tr>
 <tr>
-<td></td><td>Failed to generate and/or validate the slice.</td>
+<td></td><td>無法產生和/或驗證配量。</td>
 </tr>
-<td>Ready</td><td></td><td>The slice is ready for consumption.</td>
-</tr>
-<tr>
-<td>Skipped</td><td></td><td>The slice is not processed.</td>
+<td>就緒</td><td></td><td>配量已就緒，可供取用。</td>
 </tr>
 <tr>
-<td>None</td><td></td><td>A slice that used to exist with a different status, but has been reset.</td>
+<td>Skipped</td><td></td><td>未處理配量。</td>
+</tr>
+<tr>
+<td>None</td><td></td><td>過去存在不同狀態的配量，但已重設。</td>
 </tr>
 </table>
 
 
 
-You can view the details about a slice by clicking a slice entry in the **Recently Updated Slices** blade.
+按一下 [**最近更新的配量**] 刀鋒視窗中的配量項目，即可檢視有關配量的詳細資訊。
 
-![Slice details](./media/data-factory-monitor-manage-pipelines/slice-details.png)
+![配量的詳細資料](./media/data-factory-monitor-manage-pipelines/slice-details.png)
  
-If the slice has been executed multiple times, you see multiple rows in the **Activity runs** list.
+若已多次執行配量，則您會在 [活動執行] 清單中看到多個資料列。
 
-![Activity runs for a slice](./media/data-factory-monitor-manage-pipelines/activity-runs-for-a-slice.png)
+![配量的活動執行](./media/data-factory-monitor-manage-pipelines/activity-runs-for-a-slice.png)
 
-You can view details about an activity run by clicking the run entry in the **Activity runs** list. The list shows all the log files along with an error message if any. This feature is useful to view and debug logs without having to leave your data factory.
+您可按一下 [**活動執行**] 清單中的執行項目，檢視有關活動執行的詳細資訊。此清單會顯示所有記錄檔，且如果有錯誤訊息的話，也會一併展示。這個功能非常實用，您可以檢視和偵錯記錄檔而不必離開您的 Data Factory。
 
-![Activity run details](./media/data-factory-monitor-manage-pipelines/activity-run-details.png)
+![活動執行詳細資料](./media/data-factory-monitor-manage-pipelines/activity-run-details.png)
 
-If the slice is not in the **Ready** state, you can see the upstream slices that are not ready and are blocking the current slice from executing in the **Upstream slices that are not ready** list. This feature is useful when your slice is in **Waiting** state and you want to understand the upstream dependencies on which the slice is waiting.
+若配量不是處於 [**就緒**] 狀態，您可以在 [**未就緒的上游配量**] 清單中看到未就緒且阻礙目前配量執行的上游配量。當您的配量處於 [等候] 狀態且您想要了解配量等候的上游相依項目時，此功能相當有用。
 
-![Upstream slices not ready](./media/data-factory-monitor-manage-pipelines/upstream-slices-not-ready.png)
+![尚未就緒的上游配量](./media/data-factory-monitor-manage-pipelines/upstream-slices-not-ready.png)
 
-### <a name="dataset-state-diagram"></a>Dataset State Diagram
-Once you deploy a data factory and the pipelines have a valid active period, the dataset slices transition from one state to another. Currently the slice status follows the following state diagram:
+### 資料集狀態圖表
+一旦您部署 Data Factory 且管線具有有效的使用中週期，則資料集配量會從某個狀態轉換到另一種狀態。目前配量狀態遵循下列的狀態圖表：
 
-![State diagram](./media/data-factory-monitor-manage-pipelines/state-diagram.png)
+![狀態圖表](./media/data-factory-monitor-manage-pipelines/state-diagram.png)
 
-The dataset state transition flow in data factory involves the following: Waiting-> In-Progress/In-Progress (Validating) -> Ready/Failed
+Data Factory 內的資料集狀態轉換流程有下列階段：等候中 -> 進行中/進行中 (驗證中) -> 就緒/失敗
 
-The slices start in a **Waiting** state for pre-conditions to be met before executing. Then, the activity starts executing and the slice goes in **In-Progress** state. The activity execution may succeed or fail. The slice is marked as **Ready**’ or **Failed** based on the result of the execution. 
+處於 [**等候**] 狀態的配量在執行前，會先開始進行符合前置條件的動作。接著活動開始執行，配量進入 [進行中] 狀態。活動執行可能成功或失敗。根據執行的結果，配量會標示為 [就緒] 或 [失敗]。
 
-You can reset the slice to go back from **Ready** or **Failed** state to **Waiting** state. You can also mark the slice state to **Skip**, which prevents the activity from executing and not process the slice.
+您可以重設配量，以從 [就緒] 或 [失敗] 狀態返回 [等候] 狀態。您也可以將配量狀態標記為 [略過]，這會防止活動執行且不會處理該配量。
 
 
-## <a name="manage-pipelines"></a>Manage pipelines
-You can manage your pipelines using Azure PowerShell. For example, you can pause and resume pipelines by running Azure PowerShell cmdlets. 
+## 管理管線
+您可以使用 Azure Powershell 管理您的管線。例如，您可以執行 Azure PowerShell Cmdlet 來暫停和繼續執行管線。
 
-### <a name="pause-and-resume-pipelines"></a>Pause and resume pipelines
-You can pause/suspend pipelines using the **Suspend-AzureRmDataFactoryPipeline** Powershell cmdlet. This cmdlet is useful when you don’t want to run your pipelines until an issue is fixed.
+### 暫停及繼續管線
+您可以使用 **Suspend-AzureRmDataFactoryPipeline** Powershell Cmdlet 來暫停/暫止管線。若您在問題獲得解決之前不想執行管線，此 Cmdlet 非常有用。
 
-For example: in the following screen shot, an issue has been identified with the **PartitionProductsUsagePipeline** in **productrecgamalbox1dev** data factory and we want to suspend the pipeline.
+例如：在下列螢幕擷取畫面中，**productrecgamalbox1dev** Data Factory 內的 **PartitionProductsUsagePipeline** 發現問題，因此我們想暫止管線。
 
-![Pipeline to be suspended](./media/data-factory-monitor-manage-pipelines/pipeline-to-be-suspended.png)
+![暫止的管線](./media/data-factory-monitor-manage-pipelines/pipeline-to-be-suspended.png)
 
-To suspend a pipeline, run the following PowerShell command.
+若要暫停管線，請執行下列 PowerShell 命令。
 
-    Suspend-AzureRmDataFactoryPipeline [-ResourceGroupName] <String> [-DataFactoryName] <String> [-Name] <String>
+	Suspend-AzureRmDataFactoryPipeline [-ResourceGroupName] <String> [-DataFactoryName] <String> [-Name] <String>
 
-For example:
+例如：
 
-    Suspend-AzureRmDataFactoryPipeline -ResourceGroupName ADF -DataFactoryName productrecgamalbox1dev -Name PartitionProductsUsagePipeline 
+	Suspend-AzureRmDataFactoryPipeline -ResourceGroupName ADF -DataFactoryName productrecgamalbox1dev -Name PartitionProductsUsagePipeline 
 
-Once the issue has been fixed with the **PartitionProductsUsagePipeline**, the suspended pipeline can be resumed by running the following PowerShell command.
+一旦 **PartitionProductsUsagePipeline** 的問題修正後，只要執行下列 PowerShell 命令，暫止的管線就可以繼續執行。
 
-    Resume-AzureRmDataFactoryPipeline [-ResourceGroupName] <String> [-DataFactoryName] <String> [-Name] <String>
+	Resume-AzureRmDataFactoryPipeline [-ResourceGroupName] <String> [-DataFactoryName] <String> [-Name] <String>
 
-For example:
+例如：
 
-    Resume-AzureRmDataFactoryPipeline -ResourceGroupName ADF -DataFactoryName productrecgamalbox1dev -Name PartitionProductsUsagePipeline 
+	Resume-AzureRmDataFactoryPipeline -ResourceGroupName ADF -DataFactoryName productrecgamalbox1dev -Name PartitionProductsUsagePipeline 
 
 
-## <a name="debug-pipelines"></a>Debug pipelines
-Azure Data Factory provides rich capabilities via Azure portal and Azure PowerShell to debug and troubleshoot pipelines.
+## 偵錯管線
+Azure Data Factory 透過 Azure 入口網站和 Azure PowerShell 提供許多功能，可用來偵錯和疑難排解管線。
 
-### <a name="find-errors-in-a-pipeline"></a>Find errors in a pipeline
-If the activity run fails in a pipeline, the dataset produced by the pipeline is in an error state due to the failure. You can debug and troubleshoot errors in Azure Data Factory using the following mechanisms.
+### 尋找管線中的錯誤
+如果管線中的活動執行失敗，管線所產生的資料集會因為該失敗而處於錯誤狀態。您可以使用下列方法，在 Azure Data Factory 中偵錯和疑難排解錯誤。
 
-#### <a name="use-azure-portal-to-debug-an-error:"></a>Use Azure portal to debug an error:
+#### 使用 Azure 入口網站偵錯錯誤：
 
-1.  Click **With errors** on **Datasets** tile on the data factory home page.
-    
-    ![Datasets tile with error](./media/data-factory-monitor-manage-pipelines/datasets-tile-with-errors.png)
-2.  In the **Datasets with errors** blade, click the table that you are interested in.
+1.	在 Data Factory 首頁，按一下 [**資料集**] 磚上的 [**發生錯誤**]。
+	
+	![發生錯誤的資料集磚](./media/data-factory-monitor-manage-pipelines/datasets-tile-with-errors.png)
+2.	在 [**出現錯誤的資料集**] 刀鋒視窗中，按一下您感興趣的資料表。
 
-    ![Datasets with errors blade](./media/data-factory-monitor-manage-pipelines/datasets-with-errors-blade.png)
-3.  In the **TABLE** blade, click the problem slice with **STATUS** set to **Failed**.
+	![[發生錯誤的資料集] 刀鋒視窗](./media/data-factory-monitor-manage-pipelines/datasets-with-errors-blade.png)
+3.	在 [資料表] 刀鋒視窗中，按一下 [狀態] 設為 [失敗] 的問題配量。
 
-    ![Table blade with problem slice](./media/data-factory-monitor-manage-pipelines/table-blade-with-error.png)
-4.  In the **DATA SLICE** blade, click the activity run that failed.
-    
-    ![Dataslice with an error](./media/data-factory-monitor-manage-pipelines/dataslice-with-error.png)
-5.  In the **ACTIVITY RUN DETAILS** blade, you can download the files associated with the HDInsight processing. Click Download for Status/stderr to download the error log file that contains details about the error.
+	![含有問題配量的資料表刀鋒視窗](./media/data-factory-monitor-manage-pipelines/table-blade-with-error.png)
+4.	在 [**資料配量**] 刀鋒視窗中，按一下失敗的活動執行。
+	
+	![發生錯誤的資料配量](./media/data-factory-monitor-manage-pipelines/dataslice-with-error.png)
+5.	在 [**活動執行詳細資料**] 刀鋒視窗中，您可以下載與 HDInsight 處理相關聯的檔案。按一下 Status/stderr 中的 [下載] 以下載包含錯誤詳細資料的錯誤記錄檔。
 
-    ![Activity run details blade with error](./media/data-factory-monitor-manage-pipelines/activity-run-details-with-error.png)  
+	![含有錯誤的活動執行詳細資料刀鋒視窗](./media/data-factory-monitor-manage-pipelines/activity-run-details-with-error.png)
 
-#### <a name="use-the-powershell-to-debug-an-error"></a>Use the PowerShell to debug an error
-1.  Launch **Azure PowerShell**.
-3.  Run **Get-AzureRmDataFactorySlice** command to see the slices and their statuses. You should see a slice with the status: **Failed**.
+#### 使用 PowerShell 偵錯錯誤
+1.	啟動 **Azure PowerShell**。
+3.	執行 **Get-AzureRmDataFactorySlice** 命令來查看配量及其狀態。您應該會看到有以下狀態的配量：[**失敗**]。
 
-        Get-AzureRmDataFactorySlice [-ResourceGroupName] <String> [-DataFactoryName] <String> [-TableName] <String> [-StartDateTime] <DateTime> [[-EndDateTime] <DateTime> ] [-Profile <AzureProfile> ] [ <CommonParameters>]
-    
-    For example:
+		Get-AzureRmDataFactorySlice [-ResourceGroupName] <String> [-DataFactoryName] <String> [-TableName] <String> [-StartDateTime] <DateTime> [[-EndDateTime] <DateTime> ] [-Profile <AzureProfile> ] [ <CommonParameters>]
+	
+	例如：
 
 
-        Get-AzureRmDataFactorySlice -ResourceGroupName ADF -DataFactoryName LogProcessingFactory -TableName EnrichedGameEventsTable -StartDateTime 2014-05-04 20:00:00
+		Get-AzureRmDataFactorySlice -ResourceGroupName ADF -DataFactoryName LogProcessingFactory -TableName EnrichedGameEventsTable -StartDateTime 2014-05-04 20:00:00
 
-    Replace **StartDateTime** with the StartDateTime value you specified for the Set-AzureRmDataFactoryPipelineActivePeriod.
-4. Now, run the **Get-AzureRmDataFactoryRun** cmdlet to get details about activity run for the slice.
+	將 **StartDateTime** 取代成您針對 Set-AzureRmDataFactoryPipelineActivePeriod 所指定的 StartDateTime 值。
+4. 現在，執行 **Get-AzureRmDataFactoryRun** Cmdlet，以取得關於此配量之活動執行的詳細資料。
 
-        Get-AzureRmDataFactoryRun [-ResourceGroupName] <String> [-
-        DataFactoryName] <String> [-TableName] <String> [-StartDateTime] 
-        <DateTime> [-Profile <AzureProfile> ] [ <CommonParameters>]
-    
-    For example:
+		Get-AzureRmDataFactoryRun [-ResourceGroupName] <String> [-
+		DataFactoryName] <String> [-TableName] <String> [-StartDateTime] 
+		<DateTime> [-Profile <AzureProfile> ] [ <CommonParameters>]
+	
+	例如：
 
 
-        Get-AzureRmDataFactoryRun -ResourceGroupName ADF -DataFactoryName LogProcessingFactory -TableName EnrichedGameEventsTable -StartDateTime "5/5/2014 12:00:00 AM"
+		Get-AzureRmDataFactoryRun -ResourceGroupName ADF -DataFactoryName LogProcessingFactory -TableName EnrichedGameEventsTable -StartDateTime "5/5/2014 12:00:00 AM"
 
-    The value of StartDateTime is the start time for the error/problem slice you noted from the previous step. The date-time should be enclosed in double quotes.
-5.  You should see the output with details about the error (similar to the following):
+	StartDateTime 的值就是您在上一步驟記下的錯誤/問題配量的開始時間。date-time 應該用雙引號括住。
+5. 	您應該會看到關於此錯誤的詳細資料 (如下所示) 輸出：
 
-        Id                      : 841b77c9-d56c-48d1-99a3-8c16c3e77d39
-        ResourceGroupName       : ADF
-        DataFactoryName         : LogProcessingFactory3
-        TableName               : EnrichedGameEventsTable
-        ProcessingStartTime     : 10/10/2014 3:04:52 AM
-        ProcessingEndTime       : 10/10/2014 3:06:49 AM
-        PercentComplete         : 0
-        DataSliceStart          : 5/5/2014 12:00:00 AM
-        DataSliceEnd            : 5/6/2014 12:00:00 AM
-        Status                  : FailedExecution
-        Timestamp               : 10/10/2014 3:04:52 AM
-        RetryAttempt            : 0
-        Properties              : {}
-        ErrorMessage            : Pig script failed with exit code '5'. See wasb://     adfjobs@spestore.blob.core.windows.net/PigQuery
-                                        Jobs/841b77c9-d56c-48d1-99a3-
-                    8c16c3e77d39/10_10_2014_03_04_53_277/Status/stderr' for
-                    more details.
-        ActivityName            : PigEnrichLogs
-        PipelineName            : EnrichGameLogsPipeline
-        Type                    :
-    
-    
-6.  You can run **Save-AzureRmDataFactoryLog** cmdlet with Id value you see from the output and download the log files using the **-DownloadLogsoption** for the cmdlet.
-
-    Save-AzureRmDataFactoryLog -ResourceGroupName "ADF" -DataFactoryName "LogProcessingFactory" -Id "841b77c9-d56c-48d1-99a3-8c16c3e77d39" -DownloadLogs -Output "C:\Test"
-
-
-## <a name="rerun-failures-in-a-pipeline"></a>Rerun failures in a pipeline
-
-### <a name="using-azure-portal"></a>Using Azure portal
-
-Once you troubleshoot and debug failures in a pipeline, you can rerun failures by navigating to the error slice and clicking the **Run** button on the command bar.
-
-![Rerun a failed slice](./media/data-factory-monitor-manage-pipelines/rerun-slice.png)
-
-In case the slice has failed validation due to a policy failure (for ex: data not available), you can fix the failure and validate again by clicking the **Validate** button on the command bar.
-![Fix errors and validate](./media/data-factory-monitor-manage-pipelines/fix-error-and-validate.png)
-
-### <a name="using-azure-powershell"></a>Using Azure PowerShell
-
-You can rerun failures by using the Set-AzureRmDataFactorySliceStatus cmdlet. See [Set-AzureRmDataFactorySliceStatus](https://msdn.microsoft.com/library/mt603522.aspx) topic for syntax and other details about the cmdlet. 
-
-**Example:** The following example sets the status of all slices for the table 'DAWikiAggregatedData' to 'Waiting' in the Azure data factory 'WikiADF'.
-
-The UpdateType is set to UpstreamInPipeline, which means that statuses of each slice for the table and all the dependent (upstream) tables are set to "Waiting." Other possible value for this parameter is "Individual."
-
-    Set-AzureRmDataFactorySliceStatus -ResourceGroupName ADF -DataFactoryName WikiADF -TableName DAWikiAggregatedData -Status Waiting -UpdateType UpstreamInPipeline -StartDateTime 2014-05-21T16:00:00 -EndDateTime 2014-05-21T20:00:00
-
-
-## <a name="create-alerts"></a>Create alerts
-Azure logs user events when an Azure resource (for example, a data factory) is created, updated, or deleted. You can create alerts on these events. Data Factory allows you to capture various metrics and create alerts on metrics. We recommend that you use events for real-time monitoring and metrics for historical purposes. 
-
-### <a name="alerts-on-events"></a>Alerts on events
-Azure events provide useful insights into what is happening in your Azure resources. Azure logs user events when an Azure resource (for example, a data factory) is created, updated, or deleted. When using the Azure Data Factory, events are generated when:
-
-- Azure Data Factory is created/updated/deleted.
-- Data processing (called as Runs) has started/completed.
-- An on-demand HDInsight cluster is created and removed.
-
-You can create alerts on these user events and configure them to send email notifications to the administrator and co-administrators of the subscription. In addition, you can specify additional email addresses of users who need to receive email notifications when the conditions are met. This feature is useful when you want to get notified on failures and don’t want to continuously monitor your data factory.
-
-> [AZURE.NOTE] Currently, the portal does not show alerts on events. Use the [Monitoring and Management App](data-factory-monitor-manage-app.md) to see all alerts.
-
-#### <a name="specifying-an-alert-definition:"></a>Specifying an alert definition:
-To specify an alert definition, you create a JSON file describing the operations that you want to be alerted on. In the following example, the alert sends an email notification for the RunFinished operation. To be specific, an email notification is sent when a run in the data factory has completed and the run has failed (Status = FailedExecution).
-
-    {
-        "contentVersion": "1.0.0.0",
-         "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
-        "parameters": {},
-        "resources": 
-        [
-            {
-                "name": "ADFAlertsSlice",
-                "type": "microsoft.insights/alertrules",
-                "apiVersion": "2014-04-01",
-                "location": "East US",
-                "properties": 
-                {
-                    "name": "ADFAlertsSlice",
-                    "description": "One or more of the data slices for the Azure Data Factory has failed processing.",
-                    "isEnabled": true,
-                    "condition": 
-                    {
-                        "odata.type": "Microsoft.Azure.Management.Insights.Models.ManagementEventRuleCondition",
-                        "dataSource": 
-                        {
-                            "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleManagementEventDataSource",
-                            "operationName": "RunFinished",
-                            "status": "Failed",
-                            "subStatus": "FailedExecution"   
-                        }
-                    },
-                    "action": 
-                    {
-                        "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleEmailAction",
-                        "customEmails": [ "<your alias>@contoso.com" ]
-                    }
-                }
-            }
-        ]
-    }
-
-From the JSON definition, **subStatus** can be removed if you don’t want to be alerted on a specific failure.
-
-This example sets up the alert for all data factories in your subscription. If you want the alert to be set up for a particular data factory, you can specify data factory **resourceUri** in the **dataSource**:
-
-    "resourceUri" : "/SUBSCRIPTIONS/<subscriptionId>/RESOURCEGROUPS/<resourceGroupName>/PROVIDERS/MICROSOFT.DATAFACTORY/DATAFACTORIES/<dataFactoryName>"
-
-The following table provides the list of available operations and statuses (and sub-statuses).
-
-Operation name | Status | Sub status
+		Id                  	: 841b77c9-d56c-48d1-99a3-8c16c3e77d39
+		ResourceGroupName   	: ADF
+		DataFactoryName     	: LogProcessingFactory3
+		TableName           	: EnrichedGameEventsTable
+		ProcessingStartTime 	: 10/10/2014 3:04:52 AM
+		ProcessingEndTime   	: 10/10/2014 3:06:49 AM
+		PercentComplete     	: 0
+		DataSliceStart      	: 5/5/2014 12:00:00 AM
+		DataSliceEnd        	: 5/6/2014 12:00:00 AM
+		Status              	: FailedExecution
+		Timestamp           	: 10/10/2014 3:04:52 AM
+		RetryAttempt        	: 0
+		Properties          	: {}
+		ErrorMessage        	: Pig script failed with exit code '5'. See wasb://		adfjobs@spestore.blob.core.windows.net/PigQuery
+		                        		Jobs/841b77c9-d56c-48d1-99a3-
+					8c16c3e77d39/10_10_2014_03_04_53_277/Status/stderr' for
+					more details.
+		ActivityName        	: PigEnrichLogs
+		PipelineName        	: EnrichGameLogsPipeline
+		Type                	:
+	
+	
+6. 	您可以使用在輸出中看見的 ID 值執行 **Save-AzureRmDataFactoryLog** Cmdlet，並在 Cmdlet 中使用 **-DownloadLogsoption** 來下載記錄檔。
+
+	Save-AzureRmDataFactoryLog -ResourceGroupName "ADF" -DataFactoryName "LogProcessingFactory" -Id "841b77c9-d56c-48d1-99a3-8c16c3e77d39" -DownloadLogs -Output "C:\\Test"
+
+
+## 重新執行管線中的失敗
+
+### 使用 Azure 入口網站
+
+一旦您對管線中的失敗進行疑難排解和偵錯，您可以瀏覽到錯誤配量並按一下命令列上的 [執行] 按鈕，重新執行失敗。
+
+![重新執行失敗的配量](./media/data-factory-monitor-manage-pipelines/rerun-slice.png)
+
+萬一原則失敗而導致配量驗證失敗 (例如：沒有可用資料)，您可以修正失敗並重新驗證，方法是按一下命令列上的 [**驗證**] 按鈕。![修正錯誤並進行驗證](./media/data-factory-monitor-manage-pipelines/fix-error-and-validate.png)
+
+### 使用 Azure PowerShell
+
+您可以使用 Set-AzureRmDataFactorySliceStatus Cmdlet 來重新執行失敗。如需該 Cmdlet 的語法及其他詳細資料，請參閱 [Set-AzureRmDataFactorySliceStatus](https://msdn.microsoft.com/library/mt603522.aspx) 主題。
+
+**範例：**下列範例把 Azure Data Factory 'WikiADF' 中 'DAWikiAggregatedData' 資料表的所有配量狀態都設為 'Waiting'。
+
+UpdateType 已設為 UpstreamInPipeline，這代表資料表中每個配量的狀態以及所有相依 (上游) 資料表的狀態都設為 "Waiting"。 此參數的另一個可能值為 "Individual"。
+
+	Set-AzureRmDataFactorySliceStatus -ResourceGroupName ADF -DataFactoryName WikiADF -TableName DAWikiAggregatedData -Status Waiting -UpdateType UpstreamInPipeline -StartDateTime 2014-05-21T16:00:00 -EndDateTime 2014-05-21T20:00:00
+
+
+## 建立警示
+當建立、更新或刪除 Azure 資料時 (例如 Data Factory)，Azure 會記錄使用者事件。您可以對這些事件建立警示。Data Factory 可讓您擷取各種度量並建立度量警示。我們建議您使用即時監視事件及做為歷程用途的度量。
+
+### 事件警示
+Azure 事件可讓您深入了解 Azure 資源的情況。當建立、更新或刪除 Azure 資料時 (例如 Data Factory)，Azure 會記錄使用者事件。使用 Azure Data Factory 時，下列情況會產生事件：
+
+- 建立/更新/刪除 Azure Data Factory。
+- 資料處理 (稱為「回合」) 開始/完成。
+- 建立和移除隨選 HDInsight 叢集。
+
+您可以針對這些使用者事件建立警示，並設定它們傳送電子郵件通知給訂用帳戶的管理員和共同管理員。此外，您還可以指定使用者的其他電子郵件地址，當條件符合時，這些使用者需要收到電子郵件通知。此功能在您想要取得有關失敗的通知且不想要持續監視您的 Data Factory 時會非常有用。
+
+> [AZURE.NOTE] 入口網站目前無法顯示事件警示。使用[監視及管理應用程式](data-factory-monitor-manage-app.md)來查看所有警示。
+
+#### 指定警示定義：
+若要指定警示定義，您需要建立 JSON 檔案來描述您想要接獲通知的作業。在下列範例中，警示會針對 RunFinished 作業傳送電子郵件通知。具體而言，當 Data Factory 中完成一個回合，而且執行失敗時 (Status = FailedExecution)，就會傳送電子郵件通知。
+
+	{
+	    "contentVersion": "1.0.0.0",
+	     "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+	    "parameters": {},
+	    "resources": 
+	    [
+	        {
+	            "name": "ADFAlertsSlice",
+	            "type": "microsoft.insights/alertrules",
+	            "apiVersion": "2014-04-01",
+	            "location": "East US",
+	            "properties": 
+	            {
+	                "name": "ADFAlertsSlice",
+	                "description": "One or more of the data slices for the Azure Data Factory has failed processing.",
+	                "isEnabled": true,
+	                "condition": 
+	                {
+	                    "odata.type": "Microsoft.Azure.Management.Insights.Models.ManagementEventRuleCondition",
+	                    "dataSource": 
+	                    {
+	                        "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleManagementEventDataSource",
+	                        "operationName": "RunFinished",
+	                        "status": "Failed",
+	                        "subStatus": "FailedExecution"   
+	                    }
+	                },
+	                "action": 
+	                {
+	                    "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleEmailAction",
+	                    "customEmails": [ "<your alias>@contoso.com" ]
+	                }
+	            }
+	        }
+	    ]
+	}
+
+在 JSON 定義中，如果不想接獲特定失敗的通知，您可以移除 **subStatus**。
+
+此範例會為您的訂用帳戶中所有 Data Factory 設定警示。如果您想要為特定 Data Factory 設定警示，可以在 **dataSource** 指定 Data Factory 的 **resourceUri**：
+
+	"resourceUri" : "/SUBSCRIPTIONS/<subscriptionId>/RESOURCEGROUPS/<resourceGroupName>/PROVIDERS/MICROSOFT.DATAFACTORY/DATAFACTORIES/<dataFactoryName>"
+
+下列表格提供可用作業與狀態 (及子狀態) 的清單。
+
+作業名稱 | 狀態 | 子狀態
 -------------- | ------ | ----------
-RunStarted | Started | Starting
+RunStarted | 已啟動 | 啟動中
 RunFinished | Failed / Succeeded | FailedResourceAllocation<br/><br/>Succeeded<br/><br/>FailedExecution<br/><br/>TimedOut<br/><br/><Canceled<br/><br/>FailedValidation<br/><br/>Abandoned
-OnDemandClusterCreateStarted | Started
+OnDemandClusterCreateStarted | 已啟動
 OnDemandClusterCreateSuccessful | Succeeded
 OnDemandClusterDeleted | Succeeded
 
-See [Create Alert Rule](https://msdn.microsoft.com/library/azure/dn510366.aspx) for details about JSON elements used in the example. 
+如需範例中所使用之 JSON 元素的詳細資料，請參閱[建立警示規則](https://msdn.microsoft.com/library/azure/dn510366.aspx)。
 
-#### <a name="deploying-the-alert"></a>Deploying the Alert 
-To deploy the alert, use the Azure PowerShell cmdlet: **New-AzureRmResourceGroupDeployment**, as shown in the following example:
+#### 部署警示 
+如果要部署警示，請使用 Azure PowerShell Cmdlet：**New-AzureRmResourceGroupDeployment**，如下列範例所示：
 
-    New-AzureRmResourceGroupDeployment -ResourceGroupName adf -TemplateFile .\ADFAlertFailedSlice.json  
+	New-AzureRmResourceGroupDeployment -ResourceGroupName adf -TemplateFile .\ADFAlertFailedSlice.json  
 
-Once the resource group deployment has completed successfully, you see the following messages:
+成功完成資源群組部署之後，您會看到下列訊息：
 
-    VERBOSE: 7:00:48 PM - Template is valid.
-    WARNING: 7:00:48 PM - The StorageAccountName parameter is no longer used and will be removed in a future release.
-    Please update scripts to remove this parameter.
-    VERBOSE: 7:00:49 PM - Create template deployment 'ADFAlertFailedSlice'.
-    VERBOSE: 7:00:57 PM - Resource microsoft.insights/alertrules 'ADFAlertsSlice' provisioning status is succeeded
-    
-    DeploymentName    : ADFAlertFailedSlice
-    ResourceGroupName : adf
-    ProvisioningState : Succeeded
-    Timestamp         : 10/11/2014 2:01:00 AM
-    Mode              : Incremental
-    TemplateLink      :
-    Parameters        :
-    Outputs           :
+	VERBOSE: 7:00:48 PM - Template is valid.
+	WARNING: 7:00:48 PM - The StorageAccountName parameter is no longer used and will be removed in a future release.
+	Please update scripts to remove this parameter.
+	VERBOSE: 7:00:49 PM - Create template deployment 'ADFAlertFailedSlice'.
+	VERBOSE: 7:00:57 PM - Resource microsoft.insights/alertrules 'ADFAlertsSlice' provisioning status is succeeded
+	
+	DeploymentName    : ADFAlertFailedSlice
+	ResourceGroupName : adf
+	ProvisioningState : Succeeded
+	Timestamp         : 10/11/2014 2:01:00 AM
+	Mode              : Incremental
+	TemplateLink      :
+	Parameters        :
+	Outputs           :
 
-> [AZURE.NOTE] You can use the [Create Alert Rule](https://msdn.microsoft.com/library/azure/dn510366.aspx) REST API to create an alert rule. The JSON payload is similar to the JSON example.  
+> [AZURE.NOTE] 您可以使用[建立警示規則](https://msdn.microsoft.com/library/azure/dn510366.aspx) REST API 來建立警示規則。JSON 承載類似於 JSON 範例。
 
-#### <a name="retrieving-the-list-of-azure-resource-group-deployments"></a>Retrieving the list of Azure Resource Group Deployments
-To retrieve the list of deployed Azure Resource Group deployments, use the cmdlet: **Get-AzureRmResourceGroupDeployment**, as shown in the following example:
+#### 擷取 Azure 資源群組部署的清單
+如果要擷取已部署的 Azure 資源群組部署清單，請使用 Cmdlet：**Get-AzureRmResourceGroupDeployment**，如下列範例所示：
 
-    Get-AzureRmResourceGroupDeployment -ResourceGroupName adf
-    
-    DeploymentName    : ADFAlertFailedSlice
-    ResourceGroupName : adf
-    ProvisioningState : Succeeded
-    Timestamp         : 10/11/2014 2:01:00 AM
-    Mode              : Incremental
-    TemplateLink      :
-    Parameters        :
-    Outputs           :
-
-
-#### <a name="troubleshooting-user-events"></a>Troubleshooting User Events
+	Get-AzureRmResourceGroupDeployment -ResourceGroupName adf
+	
+	DeploymentName    : ADFAlertFailedSlice
+	ResourceGroupName : adf
+	ProvisioningState : Succeeded
+	Timestamp         : 10/11/2014 2:01:00 AM
+	Mode              : Incremental
+	TemplateLink      :
+	Parameters        :
+	Outputs           :
 
 
-- You can see all the events generated after clicking the **Operations** tile, and alerts can be set up on any of these operations visible on the **Events** blade:
-
-    ![Operations](./media/data-factory-monitor-manage-pipelines/operations.png)
+#### 使用者事件疑難排解
 
 
-- See [Azure Insight Cmdlets](https://msdn.microsoft.com/library/mt282452.aspx) article for PowerShell cmdlets that you can use to add/get/remove alerts. Here are a few examples of using the **Get-AlertRule** cmdlet: 
+- 您可以看到按一下 [作業] 圖格後所產生的所有事件，而且也可以在 [事件] 刀鋒視窗中針對這些作業設定顯示警示：
+
+	![Operations](./media/data-factory-monitor-manage-pipelines/operations.png)
 
 
-        PS C:\> get-alertrule -res $resourceGroup -n ADFAlertsSlice -det
-            
-                Properties :
-                Action      : Microsoft.Azure.Management.Insights.Models.RuleEmailAction
-                Condition   :
-                DataSource :
-                EventName             :
-                Category              :
-                Level                 :
-                OperationName         : RunFinished
-                ResourceGroupName     :
-                ResourceProviderName  :
-                ResourceId            :
-                Status                : Failed
-                SubStatus             : FailedExecution
-                Claims                : Microsoft.Azure.Management.Insights.Models.RuleManagementEventClaimsDataSource
-                Condition   :
-                Description : One or more of the data slices for the Azure Data Factory has failed processing.
-                Status      : Enabled
-                Name:       : ADFAlertsSlice
-                Tags       :
-                $type          : Microsoft.WindowsAzure.Management.Common.Storage.CasePreservedDictionary, Microsoft.WindowsAzure.Management.Common.Storage
-                Id: /subscriptions/<subscription ID>/resourceGroups/<resource group name>/providers/microsoft.insights/alertrules/ADFAlertsSlice
-                Location   : West US
-                Name       : ADFAlertsSlice
-        
-        PS C:\> Get-AlertRule -res $resourceGroup
-    
-                Properties : Microsoft.Azure.Management.Insights.Models.Rule
-                Tags       : {[$type, Microsoft.WindowsAzure.Management.Common.Storage.CasePreservedDictionary, Microsoft.WindowsAzure.Management.Common.Storage]}
-                Id         : /subscriptions/<subscription id>/resourceGroups/<resource group name>/providers/microsoft.insights/alertrules/FailedExecutionRunsWest0
-                Location   : West US
-                Name       : FailedExecutionRunsWest0
-        
-                Properties : Microsoft.Azure.Management.Insights.Models.Rule
-                Tags       : {[$type, Microsoft.WindowsAzure.Management.Common.Storage.CasePreservedDictionary, Microsoft.WindowsAzure.Management.Common.Storage]}
-                Id         : /subscriptions/<subscription id>/resourceGroups/<resource group name>/providers/microsoft.insights/alertrules/FailedExecutionRunsWest3
-                Location   : West US
-                Name       : FailedExecutionRunsWest3
-    
-        PS C:\> Get-AlertRule -res $resourceGroup -Name FailedExecutionRunsWest0
-        
-                Properties : Microsoft.Azure.Management.Insights.Models.Rule
-                Tags       : {[$type, Microsoft.WindowsAzure.Management.Common.Storage.CasePreservedDictionary, Microsoft.WindowsAzure.Management.Common.Storage]}
-                Id         : /subscriptions/<subscription id>/resourceGroups/<resource group name>/providers/microsoft.insights/alertrules/FailedExecutionRunsWest0
-                Location   : West US
-                Name       : FailedExecutionRunsWest0
-
-    Run the following get-help commands to see details and examples for the Get-AlertRule cmdlet. 
-
-        get-help Get-AlertRule -detailed 
-        get-help Get-AlertRule -examples
+- 如需可用於新增/取得/移除警示的 PowerShell Cmdlet 資訊，請參閱 [Azure Insight Cmdlet](https://msdn.microsoft.com/library/mt282452.aspx) 一文。以下是一些關於使用 **Get AlertRule** Cmdlet 的範例：
 
 
-- If you see the alert generation events on the portal blade but you don't receive email notifications, check whether e-mail address specified is set to receive emails from external senders. The alert e-mails may have been blocked by your e-mail settings.
+		PS C:\> get-alertrule -res $resourceGroup -n ADFAlertsSlice -det
+			
+				Properties :
+		        Action      : Microsoft.Azure.Management.Insights.Models.RuleEmailAction
+		        Condition   :
+				DataSource :
+				EventName             :
+				Category              :
+				Level                 :
+				OperationName         : RunFinished
+				ResourceGroupName     :
+				ResourceProviderName  :
+				ResourceId            :
+				Status                : Failed
+				SubStatus             : FailedExecution
+				Claims                : Microsoft.Azure.Management.Insights.Models.RuleManagementEventClaimsDataSource
+		        Condition  	:
+				Description : One or more of the data slices for the Azure Data Factory has failed processing.
+				Status      : Enabled
+				Name:       : ADFAlertsSlice
+				Tags       :
+				$type          : Microsoft.WindowsAzure.Management.Common.Storage.CasePreservedDictionary, Microsoft.WindowsAzure.Management.Common.Storage
+				Id: /subscriptions/<subscription ID>/resourceGroups/<resource group name>/providers/microsoft.insights/alertrules/ADFAlertsSlice
+				Location   : West US
+				Name       : ADFAlertsSlice
+		
+		PS C:\> Get-AlertRule -res $resourceGroup
+	
+				Properties : Microsoft.Azure.Management.Insights.Models.Rule
+				Tags       : {[$type, Microsoft.WindowsAzure.Management.Common.Storage.CasePreservedDictionary, Microsoft.WindowsAzure.Management.Common.Storage]}
+				Id         : /subscriptions/<subscription id>/resourceGroups/<resource group name>/providers/microsoft.insights/alertrules/FailedExecutionRunsWest0
+				Location   : West US
+				Name       : FailedExecutionRunsWest0
+		
+				Properties : Microsoft.Azure.Management.Insights.Models.Rule
+				Tags       : {[$type, Microsoft.WindowsAzure.Management.Common.Storage.CasePreservedDictionary, Microsoft.WindowsAzure.Management.Common.Storage]}
+				Id         : /subscriptions/<subscription id>/resourceGroups/<resource group name>/providers/microsoft.insights/alertrules/FailedExecutionRunsWest3
+				Location   : West US
+				Name       : FailedExecutionRunsWest3
+	
+		PS C:\> Get-AlertRule -res $resourceGroup -Name FailedExecutionRunsWest0
+		
+				Properties : Microsoft.Azure.Management.Insights.Models.Rule
+				Tags       : {[$type, Microsoft.WindowsAzure.Management.Common.Storage.CasePreservedDictionary, Microsoft.WindowsAzure.Management.Common.Storage]}
+				Id         : /subscriptions/<subscription id>/resourceGroups/<resource group name>/providers/microsoft.insights/alertrules/FailedExecutionRunsWest0
+				Location   : West US
+				Name       : FailedExecutionRunsWest0
 
-### <a name="alerts-on-metrics"></a>Alerts on Metrics
-Data Factory allows you to capture various metrics and create alerts on metrics. You can monitor and create alerts on the following metrics for the slices in your data factory.
+	執行下列 get-help 命令，以查看關於 Get-AlertRule Cmdlet 的詳細資訊和範例。
+
+		get-help Get-AlertRule -detailed 
+		get-help Get-AlertRule -examples
+
+
+- 如果您在入口網站刀鋒視窗上看到產生警示的事件但沒有收到電子郵件通知，請檢查指定的電子郵件地址是否設定為接收來自外部寄件者的電子郵件。警示的電子郵件可能遭到您的電子郵件設定封鎖。
+
+### 度量的警示
+Data Factory 可讓您擷取各種度量並建立度量警示。您可以針對您 Data Factory 配量的下列度量進行監視和建立警示。
  
-- Failed Runs
-- Successful Runs
+- 失敗的執行
+- 成功的執行
 
-These metrics are useful and allow you to get an overview of overall failed and successful runs in their data factory. Metrics are emitted every time there is a slice run. On top of the hour, these metrics are aggregated and pushed to your storage account. Therefore, to enable metrics, set up a storage account.
+這些度量很有幫助，並且可讓您在其 Data Factory 取得整體失敗和成功執行的概觀。每次有配量執行時就會發出度量。整點時，這些度量會彙總並推送至儲存體帳戶。因此，若要啟用度量，請設定儲存體帳戶。
 
-#### <a name="enabling-metrics:"></a>Enabling Metrics:
-To enable metrics, click the following from Data Factory blade:
+#### 啟用度量：
+若要啟用度量，請從 Data Factory 的刀鋒視窗按一下下列選項：
 
-**Monitoring** -> **Metric** -> **Diagnostic settings** -> **Diagnostic**
+[**監視**] -> [**度量**] -> [**診斷設定**] -> [**診斷**]
 
-On the **Diagnostic** blade, click **On** and select the storage account and save.
+在 [**診斷**] 刀鋒視窗中，按一下 [**啟用**]，然後選取儲存體帳戶並儲存。
 
-![Enable metrics](./media/data-factory-monitor-manage-pipelines/enable-metrics.png)
+![啟用度量](./media/data-factory-monitor-manage-pipelines/enable-metrics.png)
 
-Once saved, it may take up to one hour for the metrics to be visible on the monitoring blade, because metrics aggregation happens hourly.
-
-
-### <a name="setting-up-alert-on-metrics:"></a>Setting up alert on Metrics:
-
-To set up alerting on Metrics, click the following from Data factory blade: **Monitoring** -> **Metric** -> **Add alert** -> **Add an alert rule**.
-
-Fill in the details for alert rule, specify emails, and click **OK**.
+儲存之後，在監視刀鋒視窗中可能最多可以看見度量一小時，因為度量每小時彙總一次。
 
 
-![Setting up alerts on metrics](./media/data-factory-monitor-manage-pipelines/setting-up-alerts-on-metrics.png)
+### 設定度量警示：
 
-Once done, you should see a new alert rule enabled on Alert rules tile as following:
+若要設定度量警示，請從 Data Factory 刀鋒視窗按一下下列選項：[監視] -> [度量] -> [新增警示] -> [新增警示規則]。
 
-![Alert rules enabled](./media/data-factory-monitor-manage-pipelines/alert-rule-enabled.png)
+填入警示規則的詳細資料、指定電子郵件並按一下 [確定]。
 
-Congratulations! You have set up your first alert on Metrics. Now you should get notifications every time alert rule matches in the given time window.
 
-### <a name="alert-notifications:"></a>Alert notifications:
-Once the alert rule matches the condition, you should get an alert activated email. Once the issue is resolved and the alert condition doesn’t match any more, you get an alert resolved email.
+![設定度量警示](./media/data-factory-monitor-manage-pipelines/setting-up-alerts-on-metrics.png)
 
-This behavior is different than events where a notification is sent on every failure for which alert rule qualifies.
+完成之後，您應該會看到警示規則磚上啟用新的警示規則，如下所示：
 
-### <a name="deploying-alerts-using-powershell"></a>Deploying alerts using PowerShell
-You can deploy alerts for metrics in the same way as you do for events. 
+![啟用的警示規則](./media/data-factory-monitor-manage-pipelines/alert-rule-enabled.png)
 
-**Alert definition:**
+恭喜！ 您已設定您的第一個度量警示。現在開始，每次警示規則在指定的時間間隔內進行比對時，您應該就會收到通知。
 
-    {
-        "contentVersion" : "1.0.0.0",
-        "$schema" : "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
-        "parameters" : {},
-        "resources" : [
-        {
-                "name" : "FailedRunsGreaterThan5",
-                "type" : "microsoft.insights/alertrules",
-                "apiVersion" : "2014-04-01",
-                "location" : "East US",
-                "properties" : {
-                    "name" : "FailedRunsGreaterThan5",
-                    "description" : "Failed Runs greater than 5",
-                    "isEnabled" : true,
-                    "condition" : {
-                        "$type" : "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.ThresholdRuleCondition, Microsoft.WindowsAzure.Management.Mon.Client",
-                        "odata.type" : "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
-                        "dataSource" : {
-                            "$type" : "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleMetricDataSource, Microsoft.WindowsAzure.Management.Mon.Client",
-                            "odata.type" : "Microsoft.Azure.Management.Insights.Models.RuleMetricDataSource",
-                            "resourceUri" : "/SUBSCRIPTIONS/<subscriptionId>/RESOURCEGROUPS/<resourceGroupName
-    >/PROVIDERS/MICROSOFT.DATAFACTORY/DATAFACTORIES/<dataFactoryName>",
-                            "metricName" : "FailedRuns"
-                        },
-                        "threshold" : 5.0,
-                        "windowSize" : "PT3H",
-                        "timeAggregation" : "Total"
-                    },
-                    "action" : {
-                        "$type" : "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleEmailAction, Microsoft.WindowsAzure.Management.Mon.Client",
-                        "odata.type" : "Microsoft.Azure.Management.Insights.Models.RuleEmailAction",
-                        "customEmails" : ["abhinav.gpt@live.com"]
-                    }
-                }
-            }
-        ]
-    }
+### 警示通知：
+一旦警示規則與條件相符，您應該會收到警示啟用的電子郵件。一旦問題獲得解決且警示條件不再符合任何規則，您就會收到警示已解決的電子郵件。
+
+此行為不同於事件，其會針對警示規則相符的每個失敗傳送通知。
+
+### 使用 PowerShell 部署警示
+您可以使用部署事件警示的方法來部署度量警示。
+
+**警示定義：**
+
+	{
+	    "contentVersion" : "1.0.0.0",
+	    "$schema" : "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+	    "parameters" : {},
+	    "resources" : [
+		{
+	            "name" : "FailedRunsGreaterThan5",
+	            "type" : "microsoft.insights/alertrules",
+	            "apiVersion" : "2014-04-01",
+	            "location" : "East US",
+	            "properties" : {
+	                "name" : "FailedRunsGreaterThan5",
+	                "description" : "Failed Runs greater than 5",
+	                "isEnabled" : true,
+	                "condition" : {
+	                    "$type" : "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.ThresholdRuleCondition, Microsoft.WindowsAzure.Management.Mon.Client",
+	                    "odata.type" : "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
+	                    "dataSource" : {
+	                        "$type" : "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleMetricDataSource, Microsoft.WindowsAzure.Management.Mon.Client",
+	                        "odata.type" : "Microsoft.Azure.Management.Insights.Models.RuleMetricDataSource",
+	                        "resourceUri" : "/SUBSCRIPTIONS/<subscriptionId>/RESOURCEGROUPS/<resourceGroupName
+	>/PROVIDERS/MICROSOFT.DATAFACTORY/DATAFACTORIES/<dataFactoryName>",
+	                        "metricName" : "FailedRuns"
+	                    },
+	                    "threshold" : 5.0,
+	                    "windowSize" : "PT3H",
+	                    "timeAggregation" : "Total"
+	                },
+	                "action" : {
+	                    "$type" : "Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.RuleEmailAction, Microsoft.WindowsAzure.Management.Mon.Client",
+	                    "odata.type" : "Microsoft.Azure.Management.Insights.Models.RuleEmailAction",
+	                    "customEmails" : ["abhinav.gpt@live.com"]
+	                }
+	            }
+	        }
+	    ]
+	}
  
-Replace subscriptionId, resourceGroupName, and dataFactoryName in the sample with appropriate values.
+以適當的值取代範例中的 subscriptionId、resourceGroupName、和 dataFactoryName。
 
-*metricName* as of now supports two values:
+metricName 目前支援兩個值︰
 - FailedRuns
 - SuccessfulRuns
 
-**Deploying the alert:**
+**部署警示：**
 
-To deploy the alert, use the Azure PowerShell cmdlet: **New-AzureRmResourceGroupDeployment**, as shown in the following example:
+如果要部署警示，請使用 Azure PowerShell Cmdlet：**New-AzureRmResourceGroupDeployment**，如下列範例所示：
 
-    New-AzureRmResourceGroupDeployment -ResourceGroupName adf -TemplateFile .\FailedRunsGreaterThan5.json
+	New-AzureRmResourceGroupDeployment -ResourceGroupName adf -TemplateFile .\FailedRunsGreaterThan5.json
 
-You should see following message after successful deployment:
+您應該會在部署成功後看到下列訊息：
 
-    VERBOSE: 12:52:47 PM - Template is valid.
-    VERBOSE: 12:52:48 PM - Create template deployment 'FailedRunsGreaterThan5'.
-    VERBOSE: 12:52:55 PM - Resource microsoft.insights/alertrules 'FailedRunsGreaterThan5' provisioning status is succeeded
-    
-    
-    DeploymentName    : FailedRunsGreaterThan5
-    ResourceGroupName : adf
-    ProvisioningState : Succeeded
-    Timestamp         : 7/27/2015 7:52:56 PM
-    Mode              : Incremental
-    TemplateLink      :
-    Parameters        :
-    Outputs           
-
-
-You can also use the **Add-AlertRule** cmdlet to deploy an alert rule. See [Add-AlertRule](https://msdn.microsoft.com/library/mt282468.aspx) topic for details and examples.  
-
-## <a name="move-data-factory-to-a-different-resource-group-or-subscription"></a>Move data factory to a different resource group or subscription
-You can move a data factory to a different resource group or a different subscription by using the **Move** command bar button on the home page of your data factory. 
-
-![Move data factory](./media/data-factory-monitor-manage-pipelines/MoveDataFactory.png)
-
-You can also move any related resources (such as alerts associated with the data factory) along with the data factory.
-
-![Move Resources dialog box](./media/data-factory-monitor-manage-pipelines/MoveResources.png)
+	VERBOSE: 12:52:47 PM - Template is valid.
+	VERBOSE: 12:52:48 PM - Create template deployment 'FailedRunsGreaterThan5'.
+	VERBOSE: 12:52:55 PM - Resource microsoft.insights/alertrules 'FailedRunsGreaterThan5' provisioning status is succeeded
+	
+	
+	DeploymentName    : FailedRunsGreaterThan5
+	ResourceGroupName : adf
+	ProvisioningState : Succeeded
+	Timestamp         : 7/27/2015 7:52:56 PM
+	Mode              : Incremental
+	TemplateLink      :
+	Parameters        :
+	Outputs           
 
 
+您也可以使用 **Add-AlertRule** Cmdlet 來部署警示規則。如需詳細資料及範例，請參閱 [Add-AlertRule](https://msdn.microsoft.com/library/mt282468.aspx) 主題。
 
-<!--HONumber=Oct16_HO2-->
+## 將 Data Factory 移至另一個資源群組或訂用帳戶
+您可以使用 Data Factory 首頁上的 [移動] 命令列按鈕，將 Data Factory 移至另一個資源群組或訂用帳戶。
 
+![移動 Data Factory](./media/data-factory-monitor-manage-pipelines/MoveDataFactory.png)
 
+您也可以將任何相關資源 (例如與 Data Factory 相關聯的警示) 連同 Data Factory 一起移動。
+
+![移動資源對話方塊](./media/data-factory-monitor-manage-pipelines/MoveResources.png)
+
+<!----HONumber=AcomDC_0907_2016-->

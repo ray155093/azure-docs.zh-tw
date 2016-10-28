@@ -1,50 +1,46 @@
 <properties 
-    pageTitle="Testing a runbook in Azure Automation | Microsoft Azure"
-    description="Before you publish a runbook in Azure Automation, you can test it to ensure that works as expected.  This article describes how to test a runbook and view its output."
-    services="automation"
-    documentationCenter=""
-    authors="mgoedtel"
-    manager="jwhit"
-    editor="tysonn" />
+	pageTitle="在 Azure 自動化中測試 Runbook | Microsoft Azure"
+	description="在 Azure 自動化中發佈 Runbook 之前，您可以先加以測試，以確保 Runbook 能夠如預期般運作。本文說明如何測試 Runbook 及檢視其輸出。"
+	services="automation"
+	documentationCenter=""
+	authors="mgoedtel"
+	manager="jwhit"
+	editor="tysonn" />
 <tags 
-    ms.service="automation"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.tgt_pltfrm="na"
-    ms.workload="infrastructure-services"
-    ms.date="09/12/2016"
-    ms.author="magoedte;bwren" />
+	ms.service="automation"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.tgt_pltfrm="na"
+	ms.workload="infrastructure-services"
+	ms.date="09/12/2016"
+	ms.author="magoedte;bwren" />
+
+# 在 Azure 自動化中測試 Runbook
+當您測試 Runbook 時，[草稿版本](automation-creating-importing-runbook.md#publishing-a-runbook)會執行，而且它執行的任何動作都會完成。不會建立任何工作歷程記錄，但 [測試輸出] 窗格中會顯示[輸出](automation-runbook-output-and-messages.md#output-stream)和[警告和錯誤](automation-runbook-output-and-messages.md#message-streams)資料流。只有將 [$VerbosePreference 變數](automation-runbook-output-and-messages.md#preference-variables)設為 [繼續]，傳送給[詳細資訊資料流](automation-runbook-output-and-messages.md#message-streams)的訊息才會顯示在 [輸出] 窗格。
+
+即使執行的是草稿版本，Runbook 仍會正常執行工作流程，並會針對環境中的資源執行任何動作。因此，您只能在非生產資源中測試 Runbook。
+
+測試每個 [Runbook 類型](automation-runbook-types.md)的程序都相同，而且無論是在文字式編輯器或 Azure 入口網站的圖形化編輯器中進行測試，都沒有任何差別。
 
 
-# <a name="testing-a-runbook-in-azure-automation"></a>Testing a runbook in Azure Automation
-When you test a runbook, the [Draft version](automation-creating-importing-runbook.md#publishing-a-runbook) is executed and any actions that it performs are completed. No job history is created, but the [Output](automation-runbook-output-and-messages.md#output-stream) and [Warning and Error](automation-runbook-output-and-messages.md#message-streams) streams are displayed in the Test output Pane. Messages to the [Verbose Stream](automation-runbook-output-and-messages.md#message-streams) are displayed in the Output Pane only if the [$VerbosePreference variable](automation-runbook-output-and-messages.md#preference-variables) is set to Continue.
+## 在 Azure 入口網站中測試 Runbook
 
-Even though the draft version is being run, the runbook still executes the workflow normally and performs any actions against resources in the environment. For this reason, you should only test runbooks at non-production resources.
+您可以在 Azure 入口網站中使用任何 [Runbook 類型](automation-runbook-types.md)。
 
-The procedure to test each [type of runbook](automation-runbook-types.md) is the same, and there is no difference in testing between the textual editor and the graphical editor in the Azure portal.  
-
-
-## <a name="to-test-a-runbook-in-the-azure-portal"></a>To test a runbook in the Azure portal
-
-You can work with any [runbook type](automation-runbook-types.md) in the Azure portal.
-
-1. Open the Draft version of the runbook in either the [textual editor](automation-editing-a-runbook.md#Portal) or [graphical editor](automation-graphical-authoring-intro.md).
-2. Click the **Test** button to open the Test blade.
-3. If the runbook has parameters, they will be listed in the left pane where you can provide values to be used for the test.
-4. If you want to run the test on a [Hybrid Runbook Worker](automation-hybrid-runbook-worker.md), then change **Run Settings** to **Hybrid Worker** and select the name of the target group.  Otherwise, keep the default **Azure** to run the test in the cloud.
-5. Click the **Start** button to start the test.
-6. If the runbook is [PowerShell Workflow](automation-runbook-types.md#powershell-workflow-runbooks) or [Graphical](automation-runbook-types.md#graphical-runbooks), then you can stop or suspend it while it is being tested with the buttons underneath the Output Pane. When you suspend the runbook, it completes the current activity before being suspended. Once the runbook is suspended, you can stop it or restart it.
-7. Inspect the output from the runbook in the output pane.
+1. 您可以在[文字編輯器](automation-editing-a-runbook.md#Portal)或[圖形化編輯器](automation-graphical-authoring-intro.md)中開啟 Runbook 的草稿版本。
+2. 按一下 [測試] 按鈕以開啟 [測試] 刀鋒視窗。
+3. 如果 Runbook 含有參數，這些參數會列在左窗格中，您可以在此提供值，以供測試使用。
+4. 如果您想要在[混合式 Runbook 背景工作](automation-hybrid-runbook-worker.md)上執行測試，則需將 [執行設定] 變更為 [混合式背景工作]，然後選取目標群組的名稱。否則請保留預設值 **Azure**，在雲端中執行測試。
+5. 按一下 [啟動] 按鈕以啟動測試。
+6. 如果 Runbook 是 [PowerShell 工作流程](automation-runbook-types.md#powershell-workflow-runbooks)或[圖形化](automation-runbook-types.md#graphical-runbooks) Runbook，那麼在測試過程中，您可以使用 [輸出] 窗格下方的按鈕來停止或暫停 Runbook。暫停 Runbook 時，它會先完成目前的活動後才暫停。Runbook 一旦暫停，您可以選擇停止或重新啟動。
+7. 您可以在 [輸出] 窗格中檢查 Runbook 的輸出。
 
 
-## <a name="next-steps"></a>Next Steps
+## 後續步驟
 
-- To learn how to create or import a runbook, see [Creating or importing a runbook in Azure Automation](automation-creating-importing-runbook.md)
-- To learn more about Graphical Authoring, see [Graphical authoring in Azure Automation](automation-graphical-authoring-intro.md)
-- To get started with PowerShell workflow runbooks, see [My first PowerShell workflow runbook](automation-first-runbook-textual.md)
-- To learn more about configuring runboks to return status messages and errors, including recommended practices, see [Runbook output and messages in Azure Automation](automation-runbook-output-and-messages.md)
+- 若要了解如何建立或匯入 Runbook，請參閱[建立或匯入 Azure 自動化中的 Runbook](automation-creating-importing-runbook.md)
+- 若要深入了解圖形化編寫，請參閱 [Azure 自動化中的圖形化編寫](automation-graphical-authoring-intro.md)
+- 若要開始使用 PowerShell 工作流程 Runbook，請參閱[我的第一個 PowerShell 工作流程 Runbook](automation-first-runbook-textual.md)
+- 若要深入了解設定 Runbok 以傳回狀態訊息和錯誤，包括建議的作法，請參閱[Azure 自動化中的 Runbook 輸出和訊息](automation-runbook-output-and-messages.md)
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

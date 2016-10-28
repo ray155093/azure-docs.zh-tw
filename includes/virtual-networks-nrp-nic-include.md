@@ -1,83 +1,80 @@
-## <a name="nic"></a>NIC
+## NIC
  
-A network interface card (NIC) resource provides network connectivity to an existing subnet in a VNet resource. Although you can create a NIC as a stand alone object, you need to associate it to another object to actually provide connectivity. A NIC can be used to connect a VM to a subnet, a public IP address, or a load balancer.  
+網路介面卡 (NIC) 資源提供 VNet 資源中現有子網路的網路連線能力。雖然您可以將 NIC 建立為獨立物件，但您必須將其關聯到另一個物件，才能實際提供連線。NIC 可用來將 VM 連接到子網路、公用 IP 位址或負載平衡器。
 
-|Property|Description|Sample values|
+|屬性|說明|範例值|
 |---|---|---|
-|**virtualMachine**|VM the NIC is associated with.|/subscriptions/{guid}/../Microsoft.Compute/virtualMachines/vm1|
-|**macAddress**|MAC address for the NIC|any value between 4 and 30|
-|**networkSecurityGroup**|NSG associated to the NIC|/subscriptions/{guid}/../Microsoft.Network/networkSecurityGroups/myNSG1|
-|**dnsSettings**|DNS settings for the NIC|see [PIP](#Public-IP-address)|
+|**virtualMachine**|與 NIC 相關聯的 VM。|/subscriptions/{guid}/../Microsoft.Compute/virtualMachines/vm1|
+|**macAddress**|適用於 NIC 的 MAC 位址|介於 4 到 30 之間的任意值|
+|**networkSecurityGroup**|關聯到 NIC 的 NSG|/subscriptions/{guid}/../Microsoft.Network/networkSecurityGroups/myNSG1|
+|**dnsSettings**|適用於 NIC 的 DNS 設定|請參閱 [PIP](#Public-IP-address)|
 
-A Network Interface Card, or NIC, represents a network interface that can be associated to a virtual machine (VM). A VM can have one or more NICs.
+網路介面卡或 NIC 代表可以關聯到虛擬機器 (VM) 的網路介面。一個 VM 可以有一或多個 NIC。
 
-![NIC's on a single VM](./media/resource-groups-networking/Figure3.png)
+![單一 VM 上的 NIC](./media/resource-groups-networking/Figure3.png)
 
-### <a name="ip-configurations"></a>IP configurations
-NICs have a child object named **ipConfigurations** containing the following properties:
+### IP 組態
+NIC 具有名為 **ipConfigurations** 的子物件，其包含下列屬性：
 
-|Property|Description|Sample values|
+|屬性|說明|範例值|
 |---|---|---|
-|**subnet**|Subnet the NIC is onnected to.|/subscriptions/{guid}/../Microsoft.Network/virtualNetworks/myvnet1/subnets/mysub1|
-|**privateIPAddress**|IP address for the NIC in the subnet|10.0.0.8|
-|**privateIPAllocationMethod**|IP allocation method|Dynamic or Static|
-|**enableIPForwarding**|Whether the NIC can be used for routing|true or false|
-|**primary**|Whether the NIC is the primary NIC for the VM|true or false|
-|**publicIPAddress**|PIP associated with the NIC|see [DNS Settings](#DNS-settings)|
-|**loadBalancerBackendAddressPools**|Back end address pools the NIC is associated with||
-|**loadBalancerInboundNatRules**|Inbound load balancer NAT rules the NIC is associated with||
+|**subnet**|NIC 連接到的子網路。|/subscriptions/{guid}/../Microsoft.Network/virtualNetworks/myvnet1/subnets/mysub1|
+|**privateIPAddress**|子網路中適用於 NIC 的 IP 位址|10\.0.0.8|
+|**privateIPAllocationMethod**|IP 配置方法|動態或靜態|
+|**enableIPForwarding**|是否可以使用 NIC 來進行路由|True 或 False|
+|**primary**|NIC 是否為 VM 的主要 NIC|True 或 False|
+|**publicIPAddress**|與 NIC 相關聯的 PIP|請參閱 [DNS 設定](#DNS-settings)|
+|**loadBalancerBackendAddressPools**|與 NIC 相關聯的後端位址集區||
+|**loadBalancerInboundNatRules**|與 NIC 相關聯的輸入負載平衡器 NAT 規則||
 
-Sample public IP address in JSON format:
+JSON 格式的範例公用 IP 位址：
 
-    {
-        "name": "lb-nic1-be",
-        "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/nrprg/providers/Microsoft.Network/networkInterfaces/lb-nic1-be",
-        "etag": "W/\"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\"",
-        "type": "Microsoft.Network/networkInterfaces",
-        "location": "eastus",
-        "properties": {
-            "provisioningState": "Succeeded",
-            "resourceGuid": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-            "ipConfigurations": [
-                {
-                    "name": "NIC-config",
-                    "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/nrprg/providers/Microsoft.Network/networkInterfaces/lb-nic1-be/ipConfigurations/NIC-config",
-                    "etag": "W/\"0027f1a2-3ac8-49de-b5d5-fd46550500b1\"",
-                    "properties": {
-                        "provisioningState": "Succeeded",
-                        "privateIPAddress": "10.0.0.4",
-                        "privateIPAllocationMethod": "Dynamic",
-                        "subnet": {
-                            "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/NRPRG/providers/Microsoft.Network/virtualNetworks/NRPVnet/subnets/NRPVnetSubnet"
-                        },
-                        "loadBalancerBackendAddressPools": [
-                            {
-                                "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/nrprg/providers/Microsoft.Network/loadBalancers/nrplb/backendAddressPools/NRPbackendpool"
-                            }
-                        ],
-                        "loadBalancerInboundNatRules": [
-                            {
-                                "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/nrprg/providers/Microsoft.Network/loadBalancers/nrplb/inboundNatRules/rdp1"
-                            }
-                        ]
-                    }
-                }
-            ],
-            "dnsSettings": { ... },
-            "macAddress": "00-0D-3A-10-F1-29",
-            "enableIPForwarding": false,
-            "primary": true,
-            "virtualMachine": {
-                "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/nrprg/providers/Microsoft.Compute/virtualMachines/web1"
-            }
-        }
-    }
+	{
+	    "name": "lb-nic1-be",
+	    "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/nrprg/providers/Microsoft.Network/networkInterfaces/lb-nic1-be",
+	    "etag": "W/"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"",
+	    "type": "Microsoft.Network/networkInterfaces",
+	    "location": "eastus",
+	    "properties": {
+	        "provisioningState": "Succeeded",
+	        "resourceGuid": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+	        "ipConfigurations": [
+	            {
+	                "name": "NIC-config",
+	                "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/nrprg/providers/Microsoft.Network/networkInterfaces/lb-nic1-be/ipConfigurations/NIC-config",
+	                "etag": "W/"0027f1a2-3ac8-49de-b5d5-fd46550500b1"",
+	                "properties": {
+	                    "provisioningState": "Succeeded",
+	                    "privateIPAddress": "10.0.0.4",
+	                    "privateIPAllocationMethod": "Dynamic",
+	                    "subnet": {
+	                        "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/NRPRG/providers/Microsoft.Network/virtualNetworks/NRPVnet/subnets/NRPVnetSubnet"
+	                    },
+	                    "loadBalancerBackendAddressPools": [
+	                        {
+	                            "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/nrprg/providers/Microsoft.Network/loadBalancers/nrplb/backendAddressPools/NRPbackendpool"
+	                        }
+	                    ],
+	                    "loadBalancerInboundNatRules": [
+	                        {
+	                            "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/nrprg/providers/Microsoft.Network/loadBalancers/nrplb/inboundNatRules/rdp1"
+	                        }
+	                    ]
+	                }
+	            }
+	        ],
+	        "dnsSettings": { ... },
+	        "macAddress": "00-0D-3A-10-F1-29",
+	        "enableIPForwarding": false,
+	        "primary": true,
+	        "virtualMachine": {
+	            "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/nrprg/providers/Microsoft.Compute/virtualMachines/web1"
+	        }
+	    }
+	}
 
-### <a name="additional-resources"></a>Additional resources
+### 其他資源
 
-- Read the [REST API reference documentation](https://msdn.microsoft.com/library/azure/mt163579.aspx) for NICs.
+- 讀取適用於 NIC 的 [REST API 參考文件](https://msdn.microsoft.com/library/azure/mt163579.aspx)。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=Oct15_HO3-->

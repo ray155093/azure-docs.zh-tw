@@ -1,113 +1,106 @@
 <properties
-    pageTitle=" Create an Azure Media Services account with the Azure portal | Microsoft Azure"
-    description="This tutorial walks you through the steps of creating an Azure Media Services account with the Azure portal."
-    services="media-services"
-    documentationCenter=""
-    authors="Juliako"
-    manager="erikre"
-    editor=""/>
+	pageTitle=" 使用 Azure 入口網站建立 Azure 媒體服務帳戶 | Microsoft Azure"
+	description="本教學課程逐步引導您完成使用 Azure 入口網站建立 Azure 媒體服務帳戶的步驟。"
+	services="media-services"
+	documentationCenter=""
+	authors="Juliako"
+	manager="erikre"
+	editor=""/>
 
 <tags
-    ms.service="media-services"
-    ms.workload="media"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="get-started-article"
-    ms.date="09/07/2016"
-    ms.author="juliako"/>
+	ms.service="media-services"
+	ms.workload="media"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="get-started-article"
+	ms.date="09/07/2016"
+	ms.author="juliako"/>
 
 
-
-# <a name="create-an-azure-media-services-account-with-the-azure-portal"></a>Create an Azure Media Services account with the Azure portal
+# 使用 Azure 入口網站建立 Azure 媒體服務帳戶
 
 > [AZURE.SELECTOR]
-- [Portal](media-services-portal-create-account.md)
+- [入口網站](media-services-portal-create-account.md)
 - [PowerShell](media-services-manage-with-powershell.md)
 - [REST](http://msdn.microsoft.com/library/azure/dn194267.aspx)
 
-> [AZURE.NOTE] To complete this tutorial, you need an Azure account. For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/). 
+> [AZURE.NOTE] 若要完成此教學課程，您需要 Azure 帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
-The Azure portal provides a way to quickly create an Azure Media Services (AMS) account. You can use your account to access Media Services that enable you to store, encrypt, encode, manage, and stream media content in Azure. At the time you create a Media Services account, you also create an associated storage account (or use an existing one) in the same geographic region as the Media Services account.
+Azure 入口網站提供一種方法來快速建立 Azure 媒體服務 (AMS) 帳戶。您可以使用自己的帳戶，來存取讓您在 Azure 中儲存、加密、編碼、管理和串流播放媒體內容的媒體服務。當您建立媒體服務帳戶時，您也會在與媒體服務帳戶相同的地理區域中建立相關聯的儲存體帳戶 (或使用現有儲存體帳戶)。
 
-This article explains some common concepts and shows how to create a Media Services account with the Azure portal.
+本文說明一些常見的概念，並示範如何使用 Azure 入口網站建立媒體服務帳戶。
 
-## <a name="concepts"></a>Concepts
+## 概念
 
-Accessing Media Services requires two associated accounts:
+存取媒體服務時需要有兩個相關聯的帳戶：
 
-- A Media Services account. Your account gives you access to a set of cloud-based Media Services that are available in Azure. A Media Services account does not store actual media content. Instead it stores metadata about the media content and media processing jobs in your account. At the time you create the account, you select an available Media Services region. The region you select is a data center that stores the metadata records for your account.
+- 媒體服務帳戶。您的帳戶可讓您存取 Azure 中提供的一組雲端型媒體服務。媒體服務帳戶並不會儲存實際媒體內容。而是在您的帳戶中儲存媒體內容和媒體處理工作的中繼資料。當您建立帳戶時，您會選取一個可用的媒體服務區域。所選取的區域會是儲存您帳戶之中繼資料記錄的資料中心。
 
-    Available Media Services (AMS) regions include the following: North Europe, West Europe, West US, East US, Southeast Asia, East Asia, Japan West, Japan East. Media Services does not use affinity groups.
-    
-    AMS is now also available in the following data centers: Brazil South, India West, India South, and India Central. You can now use the Azure  portal to create Media Service accounts and perform various tasks described here. However, Live Encoding is not enabled in these data centers. Further, not all types of Encoding Reserved Units are available in these data centers.
-    
-    - Brazil South: Only Standard and Basic Encoding Reserved Units are available.
-    - India West, India South: Provide storage blobs for media files; storage accounts must be located in the same geographic region as the Media Services account. When you create a Media Services account, you can either choose an existing storage account in the same region, or you can create a new storage account in the same region. If you delete a Media Services account, the blobs in your related storage account are not deleted.
+	Available Media Services 可用的媒體服務 (AMS) 區域如下：北歐、西歐、美國西部、美國東部、東南亞、東亞、日本西部、日本東部。媒體服務不會使用同質群組。
+	
+	AMS 現在也適用於下列資料中心：巴西南部、印度西部、印度南部和印度中部。您現在可以使用 Azure 入口網站來建立媒體服務帳戶，以及執行這裡所述的各種工作。不過，這些資料中心不會啟用即時編碼。此外，並非所有類型的編碼保留單元都可用於這些資料中心。
+	
+	- 巴西南部：只可以使用標準和基本編碼保留單元。
+	- 印度西部、印度南部：為媒體檔案提供儲存體 Blob，且儲存體帳戶必須與媒體服務帳戶位於相同的地理區域中。建立媒體服務帳戶時，可以選擇相同區域中的現有儲存體帳戶，也可以在相同區域中建立新的儲存體帳戶。如果您刪除媒體服務帳戶，並不會刪除相關儲存體帳戶中的 Blob。
 
-## <a name="create-an-ams-account"></a>Create an AMS account
+## 建立 AMS 帳戶
 
-The steps in this section show how to create an AMS account.
+本節中的步驟示範如何建立 AMS 帳戶。
 
-1. Log in at the [Azure portal](https://portal.azure.com/).
-2. Click **+New** > **Media + CDN** > **Media Services**.
+1. 登入 [Azure 入口網站](https://portal.azure.com/)。
+2. 按一下 [+新增] > [媒體 + CDN] > [媒體服務]。
 
-    ![Media Services Create](./media/media-services-portal-vod-get-started/media-services-new1.png)
+	![建立媒體服務](./media/media-services-portal-vod-get-started/media-services-new1.png)
 
-3. In **CREATE MEDIA SERVICES ACCOUNT** enter required values.
+3. 在 [建立媒體服務帳戶] 中輸入必要的值。
 
-    ![Media Services Create](./media/media-services-portal-vod-get-started/media-services-new3.png)
-    
-    1. In **Account Name**, enter the name of the new AMS account. A Media Services account name is all lowercase numbers or letters with no spaces, and is 3 to 24 characters in length.
-    2. In Subscription, select among the different Azure subscriptions that you have access to.
-    
-    2. In **Resource Group**, select the new or existing resource.  A resource group is a collection of resources that share lifecycle, permissions, and policies. Learn more [here](resource-group-overview.md#resource-groups).
-    3. In **Location**,  select the geographic region that will be used to store the media and metadata records for your Media Services account. This  region will be used to process and stream your media. Only the available Media Services regions appear in the drop-down list box. 
-    
-    3. In **Storage Account**, select a storage account to provide blob storage of the media content from your Media Services account. You can select an existing storage account in the same geographic region as your Media Services account, or you can create a storage account. A new storage account is created in the same region. The rules for storage account names are the same as for Media Services accounts.
+	![建立媒體服務](./media/media-services-portal-vod-get-started/media-services-new3.png)
+	
+	1. 在 [帳戶名稱] 中，輸入新 AMS 帳戶的名稱。媒體服務帳戶名稱為全部小寫且不含空格的數字或字母，且長度是 3 到 24 個字元。
+	2. 在訂用帳戶中，從您可存取的不同 Azure 訂用帳戶中進行選取。
+	
+	2. 在 [資源群組] 中，選取新的或現有資源。資源群組是共用生命週期、權限及原則的資源集合。在[按此](resource-group-overview.md#resource-groups)深入了解。
+	3. 在 [位置] 中，選取將用來儲存您媒體服務帳戶之媒體和中繼資料記錄的地理區域。此區域將用於處理和串流媒體。只有可用的媒體服務區域才會出現在下拉式清單方塊中。
+	
+	3. 在 [儲存體帳戶] 中，選取儲存體帳戶以從媒體服務帳戶提供媒體內容的 Blob 儲存體。您可以選取與媒體服務帳戶相同地理區域中的現有儲存體帳戶，也可以建立儲存體帳戶。新的儲存體帳戶會建立於相同的區域中。儲存體帳戶名稱的規則會與媒體服務帳戶相同。
 
-        Learn more about storage [here](storage-introduction.md).
+		在[這裡](storage-introduction.md)深入了解儲存體。
 
-    4. Select **Pin to dashboard** to see the progress of the account deployment.
-    
-7. Click **Create** at the bottom of the form.
+	4. 選取 [釘選到儀表板] 以查看帳戶部署的進度。
+	
+7. 按一下表單底部的 [建立]。
 
-    Once the account is successfully created, the status changes to **Running**. 
+	成功建立帳戶之後，狀態會變更為 [執行中]。
 
-    ![Media Services settings](./media/media-services-portal-vod-get-started/media-services-settings.png)
+	![媒體服務設定](./media/media-services-portal-vod-get-started/media-services-settings.png)
 
-    To manage your AMS account (for example, upload videos, encode assets, monitor job progress) use the **Settings** window.
+	若要管理 AMS 帳戶 (例如，上傳視訊、為資產編碼、監視作業進度)，請使用 [設定] 視窗。
 
-## <a name="manage-keys"></a>Manage Keys
+## Manage Keys
 
-You need the account name and the primary key information to programmatically access the Media Services account.
+您需要帳戶名稱和主要金鑰資訊，以便以程式設計方式存取媒體服務帳戶。
 
-1. In the Azure portal, select your account. 
+1. 在 Azure 入口網站中，選取您的帳戶。
 
-    The **Settings** window appears on the right. 
+	[設定] 視窗隨即出現在右邊。
 
-2. In the **Settings** window, select **Keys**. 
+2. 在 [設定] 視窗中，選取 [金鑰]。
 
-    The **Manage keys** windows shows the account name and the primary and secondary keys is displayed. 
-3. Press the copy button to copy the values.
-    
-    ![Media Services Keys](./media/media-services-portal-vod-get-started/media-services-keys.png)
+	[管理金鑰] 視窗會顯示帳戶名稱以及主要和次要金鑰。
+3. 按複製按鈕以複製這些值。
+	
+	![媒體服務金鑰](./media/media-services-portal-vod-get-started/media-services-keys.png)
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-You can now upload files into your AMS account. For more information, see [Upload files](media-services-portal-upload-files.md).
+您現在可以將檔案上傳到 AMS 帳戶。如需詳細資訊，請參閱[上傳檔案](media-services-portal-upload-files.md)。
 
-## <a name="media-services-learning-paths"></a>Media Services learning paths
+## 媒體服務學習路徑
 
 [AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-##<a name="provide-feedback"></a>Provide feedback
+##提供意見反應
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0907_2016-->

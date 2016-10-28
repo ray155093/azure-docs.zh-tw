@@ -1,31 +1,28 @@
-1. Log in at the [Azure Portal].
+1. 登入 [Azure 入口網站]。
 
-2. Click **+NEW** > **Web + Mobile** > **Mobile App**, then provide a name for your Mobile App backend.
+2. 按一下 [+ 新增] > [Web + 行動] > [行動應用程式]，然後為您的行動應用程式後端提供名稱。
 
-3. For the **Resource Group**, select an existing resource group, or create a new one (using the same name as your app.) 
+3. 在 [資源群組] 中選取現有資源群組或建立新的群組 (使用和應用程式相同的名稱)。
  
-    You can either select another App Service plan or create a new one. For more about App Services plans and how to create a new plan in a different pricing tier and in your desired location, see [Azure App Service plans in-depth overview](../articles/app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md).
+	您可以選取另一個 App Service 方案或建立新方案。如需有關應用程式服務方案以及如何在不同的定價層和您所要的位置建立新方案的詳細資訊，請參閱 [Azure App Service 方案深入概觀](../articles/app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)。
 
-4. For the **App Service plan**, the default plan (in the [Standard tier](https://azure.microsoft.com/pricing/details/app-service/)) is selected. You can also  select a different plan, or [create a new one](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md#create-an-app-service-plan). The App Service plan's settings determine the [location, features, cost and compute resources](https://azure.microsoft.com/pricing/details/app-service/) associated with your app. 
+4. 若為 **App Service 方案**，則會選取預設方案 (在[標準層](https://azure.microsoft.com/pricing/details/app-service/))。您也可以選取不同的方案，或[建立新的方案](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md#create-an-app-service-plan)。App Service 方案的設定會決定與您應用程式相關聯的[位置、功能、成本和計算資源](https://azure.microsoft.com/pricing/details/app-service/)。
 
-    After you decide on the plan, click **Create**. This creates the Mobile App backend. 
-    
-6. In the **Settings** blade for the new Mobile App backend, click **Quick start** > your client app platform > **Connect a database**. 
+	在決定方案之後，按一下 [建立]。這會建立行動應用程式後端。
+	
+6. 在新行動應用程式後端的 [設定] 刀鋒視窗中，按一下 [快速啟動] > 您的用戶端應用程式平台 > [連接資料庫]。
 
-    ![](./media/app-service-mobile-dotnet-backend-create-new-service/dotnet-backend-create-data-connection.png)
+	![](./media/app-service-mobile-dotnet-backend-create-new-service/dotnet-backend-create-data-connection.png)
 
-7. In the **Add data connection** blade, click **SQL Database** > **Create a new database**, type the database **Name**, choose a pricing tier, then click **Server**.  You can reuse this new database. If you already have a database in the same location, you can instead choose **Use an existing database**. The use of a database in a different location isn't recommended due to bandwidth costs and higher latency.
+7. 在 [加入資料連接] 刀鋒視窗中，按一下 [SQL Database] > [建立新的資料庫]，輸入資料庫**名稱**，選擇定價層，然後按一下 [伺服器]。您可以重複使用這個新資料庫。如果您在同樣的位置內已有資料庫，則可以改為選擇 [使用現有的資料庫]。不建議您使用位在不同位置的資料庫，因為這會需要頻寬成本和產生更高的延遲。
  
     ![](./media/app-service-mobile-dotnet-backend-create-new-service/dotnet-backend-create-db.png)
 
-8. In the **New server** blade, type a unique server name in the **Server name** field, provide a login and password, check **Allow azure services to access server**, and click **OK**. This creates the new database.
+8. 在 [新增伺服器] 刀鋒視窗的 [伺服器名稱] 欄位中輸入唯一的伺服器名稱、提供登入和密碼、勾選 [允許 Azure 服務存取伺服器]，然後按一下 [確定]。這會建立新的資料庫。
 
-9. Back in the **Add data connection** blade, click **Connection string**, type the login and password values for your database, and click **OK**. Wait a few minutes for the database to be deployed successfully before proceeding.
+9. 回到 [加入資料連接] 刀鋒視窗中，按一下 [連接字串]、輸入您的資料庫登入和密碼值，然後按一下 [確定]。等候幾分鐘的時間讓資料庫成功部署，然後再繼續進行。
 
 <!-- URLs. -->
-[Azure Portal]: https://portal.azure.com/
+[Azure 入口網站]: https://portal.azure.com/
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

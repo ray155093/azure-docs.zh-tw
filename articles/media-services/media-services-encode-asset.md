@@ -1,250 +1,245 @@
 <properties 
-    pageTitle="Overview and comparison of Azure on demand media encoders | Microsoft Azure" 
-    description="This topic gives an overview and comparison of Azure on demand media encoders." 
-    services="media-services" 
-    documentationCenter="" 
-    authors="juliako" 
-    manager="erikre" 
-    editor=""/>
+	pageTitle="Azure 隨選媒體編碼器的概觀和比較 | Microsoft Azure" 
+	description="本主題概要說明並比較 Azure 隨選媒體編碼器。" 
+	services="media-services" 
+	documentationCenter="" 
+	authors="juliako" 
+	manager="erikre" 
+	editor=""/>
 
 <tags 
-    ms.service="media-services" 
-    ms.workload="media" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="09/19/2016" 
-    ms.author="juliako"/>
+	ms.service="media-services" 
+	ms.workload="media" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="09/19/2016" 
+	ms.author="juliako"/>
 
+#Azure 隨選媒體編碼器的概觀和比較
 
-#<a name="overview-and-comparison-of-azure-on-demand-media-encoders"></a>Overview and comparison of Azure on demand media encoders
+##編碼概觀
 
-##<a name="encoding-overview"></a>Encoding overview
+Azure 媒體服務提供多個用於將雲端中之媒體編碼的選項。
 
-Azure Media Services provides multiple options for the encoding of media in the cloud.
+開始使用媒體服務時，請務必了解轉碼器和檔案格式之間的差異。轉碼器是實作壓縮/解壓縮演算法的軟體，而檔案格式是保存已壓縮視訊的容器。
 
-When starting out with Media Services, it is important to understand the difference between codecs and file formats.
-Codecs are the software that implements the compression/decompression algorithms whereas file formats are containers that hold the compressed video.
+媒體服務提供動態封裝，這讓您以媒體服務支援的串流格式 (MPEG DASH、HLS、Smooth Streaming、HDS) 提供調適性位元速率 MP4 或 Smooth Streaming 編碼內容，而不必重新封裝成這些串流格式。
 
-Media Services provides dynamic packaging which allows you to deliver your adaptive bitrate MP4 or Smooth Streaming encoded content in streaming formats supported by Media Services (MPEG DASH, HLS, Smooth Streaming, HDS) without you having to re-package into these streaming formats.
+若要利用[動態封裝](media-services-dynamic-packaging-overview.md)，您需要執行下列動作：
 
-To take advantage of [dynamic packaging](media-services-dynamic-packaging-overview.md), you need to do the following:
+- 將您的夾層 (來源) 檔編碼為一組調適性位元速率 MP4 檔案或調適性位元速率 Smooth Streaming 檔案 (編碼步驟稍後示範於本教學課程中)。
+- 為您計畫從該處傳遞內容的串流端點取得至少一個隨選串流單元。如需詳細資訊，請參閱[如何調整隨選串流保留單元](media-services-portal-manage-streaming-endpoints.md)。
 
-- Encode your mezzanine (source) file into a set of adaptive bitrate MP4 files or adaptive bitrate Smooth Streaming files (the encoding steps are demonstrated later in this tutorial).
-- Get at least one On-Demand streaming unit for the streaming endpoint from which you plan to delivery your content. For more information, see [How to Scale On-Demand Streaming Reserved Units](media-services-portal-manage-streaming-endpoints.md).
-
-Media Services supports the following on demand encoders that are described in this article:
+媒體服務支援本文中所描述的下列隨選編碼器：
 
 - [Media Encoder Standard](media-services-encode-asset.md#media-encoder-standard)
 - [Media Encoder Premium Workflow](media-services-encode-asset.md#media-encoder-premium-workflow)
 
-This article gives a brief overview of on demand media encoders and provides links to articles that give more detailed information. The topic also provides comparison of the encoders.
+本文概略敘述隨選媒體編碼器，並提供文章連結以提供更詳細資訊。本主題也提供各種編碼器的比較。
 
-Note that by default each Media Services account can have one active encoding task at a time. You can reserve encoding units that allow you to have multiple encoding tasks running concurrently, one for each encoding reserved unit you purchase. For information, see [Scaling encoding units](media-services-scale-media-processing-overview.md).
+請注意，每個媒體服務帳戶預設一次可以有一個進行中的編碼工作。您可以保留編碼單位，這樣就可以同時執行多個編碼工作，其中一個用於您購買的每一個編碼保留單位。如需相關資訊，請參閱[調整編碼單位](media-services-scale-media-processing-overview.md)。
 
-##<a name="media-encoder-standard"></a>Media Encoder Standard
+##Media Encoder Standard
 
-###<a name="how-to-use"></a>How to use
+###使用方式
 
-[How to encode with Media Encoder Standard](media-services-dotnet-encode-with-media-encoder-standard.md)
+[如何使用 Media Encoder Standard 進行編碼](media-services-dotnet-encode-with-media-encoder-standard.md)
 
-###<a name="formats"></a>Formats
+###格式
 
-[Formats and codecs](media-services-media-encoder-standard-formats.md)
+[格式和轉碼器](media-services-media-encoder-standard-formats.md)
 
-###<a name="presets"></a>Presets
+###預設值
 
-Media Encoder Standard is configured using one of the encoder presets described [here](http://go.microsoft.com/fwlink/?linkid=618336&clcid=0x409).
+Media Encoder Standard 使用[這裡](http://go.microsoft.com/fwlink/?linkid=618336&clcid=0x409)描述的其中一個編碼器預設值進行設定。
 
-###<a name="input-and-output-metadata"></a>Input and output metadata
+###輸入和輸出中繼資料
 
-The encoders input metadata is described [here](http://msdn.microsoft.com/library/azure/dn783120.aspx).
+[這裡](http://msdn.microsoft.com/library/azure/dn783120.aspx)說明編碼器輸入中繼資料。
 
-The encoders output metadata is described [here](http://msdn.microsoft.com/library/azure/dn783217.aspx).
+[這裡](http://msdn.microsoft.com/library/azure/dn783217.aspx)說明編碼器輸出中繼資料。
 
-###<a name="generate-thumbnails"></a>Generate thumbnails
+###產生縮圖
 
-For information, see [How to generate thumbnails using Media Encoder Standard](media-services-custom-mes-presets-with-dotnet.md#thumbnails).
+如需相關資訊，請參閱[如何使用媒體編碼器標準產生縮圖](media-services-custom-mes-presets-with-dotnet.md#thumbnails)。
 
-###<a name="trim-videos-(clipping)"></a>Trim videos (clipping)
+###修剪視訊 (裁剪)
 
-For information, see [How to trim videos using Media Encoder Standard](media-services-custom-mes-presets-with-dotnet.md#trim_video).
+如需相關資訊，請參閱[如何使用媒體編碼器標準修剪視訊](media-services-custom-mes-presets-with-dotnet.md#trim_video)。
 
-###<a name="create-overlays"></a>Create overlays
+###建立疊加層
 
-For information, see [How to create overlays using Media Encoder Standard](media-services-custom-mes-presets-with-dotnet.md#overlay).
+如需相關資訊，請參閱[如何使用媒體編碼器標準建立覆疊](media-services-custom-mes-presets-with-dotnet.md#overlay)。
 
-###<a name="see-also"></a>See also
+###另請參閱
 
-[The Media Services blog](https://azure.microsoft.com/blog/2015/07/16/announcing-the-general-availability-of-media-encoder-standard/)
+[媒體服務部落格](https://azure.microsoft.com/blog/2015/07/16/announcing-the-general-availability-of-media-encoder-standard/)
  
-##<a name="media-encoder-premium-workflow"></a>Media Encoder Premium Workflow
+##Media Encoder Premium Workflow
 
-###<a name="overview"></a>Overview
+###Overview
 
-[Introducing Premium Encoding in Azure Media Services](https://azure.microsoft.com/blog/2015/03/05/introducing-premium-encoding-in-azure-media-services/)
+[介紹 Azure 媒體服務中的 Premium 編碼](https://azure.microsoft.com/blog/2015/03/05/introducing-premium-encoding-in-azure-media-services/)
 
-###<a name="how-to-use"></a>How to use
+###使用方式
 
-Media Encoder Premium Workflow is configured using complex workflows. Workflow files could be created and updated using the [Workflow Designer](media-services-workflow-designer.md) tool.
+Media Encoder Premium Workflow 使用複雜的工作流程設定。您可以使用[工作流程設計工具](media-services-workflow-designer.md)建立和更新工作流程檔案。
 
-[How to Use Premium Encoding in Azure Media Services](https://azure.microsoft.com/blog/2015/03/06/how-to-use-premium-encoding-in-azure-media-services/)
+[如何使用 Azure 媒體服務中的 Premium 編碼](https://azure.microsoft.com/blog/2015/03/06/how-to-use-premium-encoding-in-azure-media-services/)
 
-###<a name="known-issues"></a>Known issues
+###已知問題
 
-If your input video does not contain closed captioning, the output Asset will still contain an empty TTML file. 
+如果您的輸入視訊不包含隱藏式字幕，輸出資產仍然會包含空白 TTML 檔案。
 
 
-##<a name="<a-id="compare_encoders"></a>compare-encoders"></a><a id="compare_encoders"></a>Compare Encoders
+##<a id="compare_encoders"></a>比較編碼器
 
-###<a name="<a-id="billing"></a>billing-meter-used-by-each-encoder"></a><a id="billing"></a>Billing meter used by each encoder
+###<a id="billing"></a>每個編碼器所使用的計費計量表
 
-Media Processor Name|Applicable Pricing|Notes
+媒體處理器名稱|適用的價格|注意事項
 ---|---|---
-**Media Encoder Standard** |ENCODER|Encoding Tasks will be charged according to the size of the output Asset, in GBytes, at the rate specified [here][1], under the ENCODER column.
-**Media Encoder Premium Workflow** |PREMIUM ENCODER|Encoding Tasks will be charged according to the size of the output Asset, in GBytes, at the rate specified [here][1], under the PREMIUM ENCODER column.
+**Media Encoder Standard** |ENCODER|在 ENCODER 資料行之下，編碼工作會以[這裡][1]指定的費率，根據輸出資產的大小 (以 GB 為單位) 收費。
+**Media Encoder Premium 工作流程** |PREMIUM ENCODER|在 PREMIUM ENCODER 資料行之下，編碼工作會以[這裡][1]指定的費率，根據輸出資產的大小 (以 GB 為單位) 收費。
 
 
-This section compares the encoding capabilities of **Media Encoder Standard** and **Media Encoder Premium Workflow**.
+本節比較**媒體編碼器標準**和**媒體編碼器高階工作流程**的編碼功能。
 
 
-###<a name="input-container/file-formats"></a>Input Container/File Formats
+###輸入容器/檔案格式
 
-Input Container/File Formats|Media Encoder Standard|Media Encoder Premium Workflow
+輸入容器/檔案格式|Media Encoder Standard|Media Encoder Premium Workflow
 ---|---|---
-Adobe® Flash® F4V           |Yes|Yes
-MXF/SMPTE 377M              |Yes|Yes
-GXF                         |Yes|Yes
-MPEG-2 Transport Streams    |Yes|Yes
-MPEG-2 Program Streams      |Yes|Yes
-MPEG-4/MP4                  |Yes|Yes
-Windows Media/ASF           |Yes|Yes
-AVI (Uncompressed 8bit/10bit)|Yes|Yes
-3GPP/3GPP2                  |Yes|No
-Smooth Streaming File Format (PIFF 1.3)|Yes|No
-[Microsoft Digital Video Recording(DVR-MS)](https://msdn.microsoft.com/library/windows/desktop/dd692984)|Yes|No
-Matroska/WebM               |Yes|No
-QuickTime (.mov) |Yes|No
+Adobe® Flash® F4V |是|是
+MXF/SMPTE 377M |是|是
+GXF |是|是
+MPEG-2 傳輸資料流 |是|是
+MPEG-2 程式資料流 |是|是
+MPEG-4/MP4 |是|是
+Windows Media/ASF |是|是
+AVI (未壓縮 8 位元/10 位元)|是|是
+3GPP/3GPP2 |是|否
+Smooth Streaming 檔案格式 (PIFF 1.3)|是|否
+[Microsoft Digital Video Recording(DVR-MS)](https://msdn.microsoft.com/library/windows/desktop/dd692984)|是|否
+Matroska/WebM |是|否
+QuickTime (.mov) |是|否
 
-###<a name="input-video-codecs"></a>Input Video Codecs
+###輸入視訊轉碼器
 
-Input Video Codecs|Media Encoder Standard|Media Encoder Premium Workflow
+輸入視訊轉碼器|Media Encoder Standard|Media Encoder Premium Workflow
 ---|---|---
-AVC 8-bit/10-bit, up to 4:2:2, including AVCIntra   |8 bit 4:2:0 and 4:2:2|Yes
-Avid DNxHD (in MXF)                                 |Yes|Yes
-DVCPro/DVCProHD (in MXF)                            |Yes|Yes
-JPEG2000                                            |Yes|Yes
-MPEG-2 (up to 422 Profile and High Level; including variants such as XDCAM, XDCAM HD, XDCAM IMX, CableLabs® and D10)|Up to 422 Profile|Yes
-MPEG-1                                              |Yes|Yes
-Windows Media Video/VC-1                            |Yes|Yes
-Canopus HQ/HQX                                      |No|No
-MPEG-4 Part 2                                       |Yes|No
-[Theora](https://en.wikipedia.org/wiki/Theora)      |Yes|No
-Apple ProRes 422    |Yes|No
-Apple ProRes 422 LT |Yes|No
-Apple ProRes 422 HQ |Yes|No
-Apple ProRes Proxy|Yes|No
-Apple ProRes 4444 |Yes|No
-Apple ProRes 4444 XQ |Yes|No
+AVC 8 位元/10 位元，高達 4:2:2，包括 AVCIntra |8 位元 4:2:0 和 4:2:2|是
+Avid DNxHD (使用 MXF) |是|是
+DVCPro/DVCProHD (使用 MXF) |是|是
+JPEG2000 |是|是
+MPEG-2 (高達 422 Profile 和 High Level，包括 XDCAM、XDCAM HD、XDCAM IMX、CableLabs ® 和 D10 等變種)|最高 422 設定檔|是
+MPEG-1 |是|是
+Windows Media 視訊/VC-1 |是|是
+Canopus HQ/HQX |否|否
+Mpeg-4 第 2 部分 |是|否
+[Theora](https://en.wikipedia.org/wiki/Theora) |是|否
+Apple ProRes 422 |是|否
+Apple ProRes 422 LT |是|否
+Apple ProRes 422 HQ |是|否
+Apple ProRes Proxy|是|否
+Apple ProRes 4444 |是|否
+Apple ProRes 4444 XQ |是|否
 
-###<a name="input-audio-codecs"></a>Input Audio Codecs
+###輸入音訊轉碼器
 
-Input Audio Codecs|Media Encoder Standard|Media Encoder Premium Workflow
+輸入音訊轉碼器|Media Encoder Standard|Media Encoder Premium Workflow
 ---|---|---
-AES (SMPTE 331M and 302M, AES3-2003)        |No|Yes
-Dolby® E                                    |No|Yes
-Dolby® Digital (AC3)                        |No|Yes
-Dolby® Digital Plus (E-AC3)                 |No|Yes
-AAC (AAC-LC, AAC-HE, and AAC-HEv2; up to 5.1)|Yes|Yes
-MPEG Layer 2|Yes|Yes
-MP3 (MPEG-1 Audio Layer 3)|Yes|Yes
-Windows Media Audio|Yes|Yes
-WAV/PCM|Yes|Yes
-[FLAC](https://en.wikipedia.org/wiki/FLAC)</a>|Yes|No
-[Opus](https://en.wikipedia.org/wiki/Opus_(audio_format)) |Yes|No
-[Vorbis](https://en.wikipedia.org/wiki/Vorbis)</a>|Yes|No
+AES (SMPTE 331M 和 302M，AES3-2003) |否|是
+Dolby® E |否|是
+Dolby® Digital (AC3) |否|是
+Dolby® Digital Plus (E-AC3) |否|是
+AAC (AAC-LC、AAC-HE 和 AAC-HEv2；高達 5.1)|是|是
+MPEG Layer 2|是|是
+MP3 (MPEG-1 音訊層 3)|是|是
+Windows Media 音訊|是|是
+WAV/PCM|是|是
+[FLAC](https://en.wikipedia.org/wiki/FLAC)</a>|是|否
+[Opus](https://en.wikipedia.org/wiki/Opus_(audio_format)) |是|否
+[Vorbis](https://en.wikipedia.org/wiki/Vorbis)</a>|是|否
 
 
-###<a name="output-container/file-formats"></a>Output Container/File Formats
+###輸出容器/檔案格式
 
-Output Container/File Formats|Media Encoder Standard|Media Encoder Premium Workflow
+輸出容器/檔案格式|Media Encoder Standard|Media Encoder Premium Workflow
 ---|---|---
-Adobe® Flash® F4V|No|Yes
-MXF (OP1a, XDCAM and AS02)|No|Yes
-DPP (including AS11)|No|Yes
-GXF|No|Yes
-MPEG-4/MP4|Yes|Yes
-MPEG-TS|Yes|Yes
-Windows Media/ASF|No|Yes
-AVI (Uncompressed 8bit/10bit)|No|Yes
-Smooth Streaming File Format (PIFF 1.3)|No|Yes
+Adobe® Flash® F4V|否|是
+MXF (OP1a、XDCAM 和 AS02)|否|是
+DPP (包括 AS11)|否|是
+GXF|否|是
+MPEG-4/MP4|是|是
+MPEG-TS|是|是
+Windows Media/ASF|否|是
+AVI (未壓縮 8 位元/10 位元)|否|是
+Smooth Streaming 檔案格式 (PIFF 1.3)|否|是
 
-###<a name="output-video-codecs"></a>Output Video Codecs
+###輸出視訊轉碼器
 
-Output Video Codecs|Media Encoder Standard|Media Encoder Premium Workflow
+輸出視訊轉碼器|Media Encoder Standard|Media Encoder Premium Workflow
 ---|---|---
-AVC (H.264; 8-bit; up to High Profile, Level 5.2; 4K Ultra HD; AVC Intra)|Only 8 bit 4:2:0|Yes
-Avid DNxHD (in MXF)|No|Yes
-MPEG-2 (up to 422 Profile and High Level; including variants such as XDCAM, XDCAM HD, XDCAM IMX, CableLabs® and D10)|No|Yes
-MPEG-1|No|Yes
-Windows Media Video/VC-1|No|Yes
-JPEG thumbnail creation|No|Yes
+AVC (H.264；8 位元；高達 High Profile、Level 5.2；4K Ultra HD；AVC Intra)|僅限 8 位元 4:2:0|是
+Avid DNxHD (使用 MXF)|否|是
+DVCPro/DVCProHD (使用 MXF)|否|是
+MPEG-2 (高達 422 Profile 和 High Level，包括 XDCAM、XDCAM HD、XDCAM IMX、CableLabs ® 和 D10 等變種)|否|是
+MPEG-1|否|是
+Windows Media 視訊/VC-1|否|是
+JPEG 縮圖建立|否|是
 
-###<a name="output-audio-codecs"></a>Output Audio Codecs
+###輸出音訊轉碼器
 
-Output Audio Codecs|Media Encoder Standard|Media Encoder Premium Workflow
+輸出音訊轉碼器|Media Encoder Standard|Media Encoder Premium Workflow
 ---|---|---
-AES (SMPTE 331M and 302M, AES3-2003)|No|Yes
-Dolby® Digital (AC3)|No|Yes
-Dolby® Digital Plus (E-AC3) up to 7.1|No|Yes
-AAC (AAC-LC, AAC-HE, and AAC-HEv2; up to 5.1)|Yes|Yes
-MPEG Layer 2|No|Yes
-MP3 (MPEG-1 Audio Layer 3)|No|Yes
-Windows Media Audio|No|Yes
+AES (SMPTE 331M 和 302M，AES3-2003)|否|是
+Dolby® Digital (AC3)|否|是
+Dolby® Digital Plus (E-AC3) 高達 7.1|否|是
+AAC (AAC-LC、AAC-HE 和 AAC-HEv2；高達 5.1)|是|是
+MPEG Layer 2|否|是
+MP3 (MPEG-1 音訊層 3)|否|是
+Windows Media 音訊|否|是
 
 
-##<a name="error-codes"></a>Error codes  
+##錯誤碼  
 
-The following table lists error codes that could be returned in case an error was encountered during the encoding task execution.  To get error details in your .NET code, use the [ErrorDetails](http://msdn.microsoft.com/library/microsoft.windowsazure.mediaservices.client.errordetail.aspx) class. To get error details in your REST code, use the [ErrorDetail](https://msdn.microsoft.com/library/jj853026.aspx) REST API.
+下表列出在編碼工作執行期間發生錯誤的情況下可能傳回的錯誤碼。若要取得 .NET 程式碼中的錯誤詳細資料，請使用 [ErrorDetails](http://msdn.microsoft.com/library/microsoft.windowsazure.mediaservices.client.errordetail.aspx) 類別。若要取得 REST 程式碼中的錯誤詳細資料，請使用 [ErrorDetail](https://msdn.microsoft.com/library/jj853026.aspx) REST API。
 
-ErrorDetail.Code|Possible causes for error
+ErrorDetail.Code|導致發生錯誤的可能原因
 -----|-----------------------
-Unknown| Unknown error while executing the task
-ErrorDownloadingInputAssetMalformedContent|Category of errors that covers errors in downloading input asset such as bad file names, zero length files, incorrect formats and so on.
-ErrorDownloadingInputAssetServiceFailure|Category of errors that covers problems on the service side - for example network or storage errors while downloading.
-ErrorParsingConfiguration|Category of errors where task <see cref="MediaTask.PrivateData"/> (configuration) is not valid, for example the configuration is not a valid system preset or it contains invalid XML.
-ErrorExecutingTaskMalformedContent|Category of errors during the execution of the task where issues inside the input media files cause failure.
-ErrorExecutingTaskUnsupportedFormat|Category of errors where the media processor cannot process the files provided - media format not supported, or does not match the Configuration. For example, trying to produce an audio-only output from an asset that has only video
-ErrorProcessingTask|Category of other errors that the media processor encounters during the processing of the task that are unrelated to content.
-ErrorUploadingOutputAsset|Category of errors when uploading the output asset
-ErrorCancelingTask|Category of errors to cover failures when attempting to cancel the Task
-TransientError|Category of errors to cover transient issues (eg. temporary networking issues with Azure Storage)
+不明| 執行工作時發生不明錯誤
+ErrorDownloadingInputAssetMalformedContent|涵蓋下載輸入資產中之錯誤 (例如無效的檔案名稱、長度為零檔案、錯誤格式等等) 的錯誤類別。
+ErrorDownloadingInputAssetServiceFailure|涵蓋服務端問題 (例如下載時發生網路或儲存體錯誤) 的錯誤類別。
+ErrorParsingConfiguration|工作 <see cref="MediaTask.PrivateData"/> (組態) 無效時的錯誤類別，例如組態不是有效的系統預設值或包含無效的 XML。
+ErrorExecutingTaskMalformedContent|在工作執行期間因輸入媒體檔案內部問題導致失敗的錯誤類別。
+ErrorExecutingTaskUnsupportedFormat|媒體處理器無法處理提供之檔案 (不支援的媒體格式或與組態不符) 的錯誤類別。例如，嘗試從只有影片的資產產生只含音訊的輸出
+ErrorProcessingTask|媒體處理器在處理和內容不相關的工作時發生的其他錯誤類別。
+ErrorUploadingOutputAsset|上傳輸出資產時的錯誤類別
+ErrorCancelingTask|涵蓋嘗試取消工作時失敗的錯誤類別
+TransientError|涵蓋暫時性問題 (例如 Azure 儲存體暫時性網路問題) 的錯誤類別
 
 
-To get help from the **Media Services** team, open a [support ticket](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade).
+若要獲得**媒體服務**小組的協助，請開啟[支援票證](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade)。
 
 
 
-##<a name="media-services-learning-paths"></a>Media Services learning paths
+##媒體服務學習路徑
 
 [AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-##<a name="provide-feedback"></a>Provide feedback
+##提供意見反應
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 
-##<a name="related-articles"></a>Related articles
+##相關文章
 
-- [Perform advanced encoding tasks by customizing Media Encoder Standard presets](media-services-custom-mes-presets-with-dotnet.md)
-- [Quotas and Limitations](media-services-quotas-and-limitations.md)
+- [透過自訂 Media Encoder Standard 預設值來執行進階編碼工作](media-services-custom-mes-presets-with-dotnet.md)
+- [配額和限制](media-services-quotas-and-limitations.md)
 
  
 <!--Reference links in article-->
 [1]: http://azure.microsoft.com/pricing/details/media-services/
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

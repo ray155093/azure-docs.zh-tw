@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Application upgrade: data serialization | Microsoft Azure"
-   description="Best practices for data serialization and how it affects rolling application upgrades."
+   pageTitle="應用程式升級：資料序列化 | Microsoft Azure"
+   description="資料序列化的最佳作法，以及它如何影響應用程式輪流升級。"
    services="service-fabric"
    documentationCenter=".net"
    authors="vturecek"
@@ -13,62 +13,57 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="10/19/2016"
+   ms.date="07/06/2016"
    ms.author="vturecek"/>
 
 
+# 資料序列化如何影響應用程式升級
 
-# <a name="how-data-serialization-affects-an-application-upgrade"></a>How data serialization affects an application upgrade
-
-In a [rolling application upgrade](service-fabric-application-upgrade.md), the upgrade is applied to a subset of nodes, one upgrade domain at a time. During this process, some upgrade domains will be on the newer version of your application, and some upgrade domains will be on the older version of your application. During the rollout, the new version of your application must be able to read the old version of your data, and the old version of your application must be able to read the new version of your data. If the data format is not forward and backward compatible, the upgrade may fail, or worse, data may be lost or corrupted. This article discusses what constitutes your data format and offers best practices for ensuring that your data is forward and backward compatible.
-
-
-## <a name="what-makes-up-your-data-format?"></a>What makes up your data format?
-
-In Azure Service Fabric, the data that is persisted and replicated comes from your C# classes. For applications that use [Reliable Collections](service-fabric-reliable-services-reliable-collections.md), that is the objects in the reliable dictionaries and queues. For applications that use [Reliable Actors](service-fabric-reliable-actors-introduction.md), that is the backing state for the actor. These C# classes must be serializable to be persisted and replicated. Therefore, the data format is defined by the fields and properties that are serialized, as well as how they are serialized. For example, in an `IReliableDictionary<int, MyClass>` the data is a serialized `int` and a serialized `MyClass`.
-
-### <a name="code-changes-that-result-in-a-data-format-change"></a>Code changes that result in a data format change
-
-Since the data format is determined by C# classes, changes to the classes may cause a data format change. Care must be taken to ensure that a rolling upgrade can handle the data format change. Examples that may cause data format changes:
-
-- Adding or removing fields or properties
-- Renaming fields or properties
-- Changing the types of fields or properties
-- Changing the class name or namespace
-
-### <a name="data-contract-as-the-default-serializer"></a>Data Contract as the default serializer
-
-The serializer is generally responsible for reading the data and deserializing it into the current version, even if the data is in an older or *newer* version. The default serializer is the [Data Contract serializer](https://msdn.microsoft.com/library/ms733127.aspx), which has well-defined versioning rules. Reliable Collections allow the serializer to be overridden, but Reliable Actors currently do not. The data serializer plays an important role in enabling rolling upgrades. The Data Contract serializer is the serializer that we recommend for Service Fabric applications.
+在[輪流應用程式升級](service-fabric-application-upgrade.md)中，升級會套用至節點的子集，一次一個升級網域。在此過程中，某些升級網域會比您的應用程式版本新，而某些升級網域會比您的應用程式的版本舊。在首度發行期間，新版的應用程式必須能夠讀取舊版的資料，而舊版的應用程式必須能夠讀取新版的資料。如果資料格式沒有向前及向後相容，升級便可能會失敗，或是發生更糟糕的狀況，像是資料可能會遺失或損毀。本文將討論您資料格式的構成項目並提供最佳作法，以確保您的資料向前及向後相容。
 
 
-## <a name="how-the-data-format-affects-a-rolling-upgrade"></a>How the data format affects a rolling upgrade
+## 資料格式的構成項目？
 
-During a rolling upgrade, there are two main scenarios where the serializer may encounter an older or *newer* version of your data:
+在 Azure Service Fabric 中，保留及複寫的資料來自您的 C# 類別。對於使用[可靠集合](service-fabric-reliable-services-reliable-collections.md)的應用程式，也就是可靠的字典和佇列中的物件。對於使用 [Reliable Actors](service-fabric-reliable-actors-introduction.md) 的應用程式，也就是動作項目的備份狀態。這些 C# 類別必須是可序列化，以便保存和複寫。因此，資料格式是由已序列化的欄位和屬性，以及其序列化方式來定義。例如，在 `IReliableDictionary<int, MyClass>` 中，資料是序列化 `int` 和序列化 `MyClass`。
 
-1. After a node is upgraded and starts back up, the new serializer will load the data that was persisted to disk by the old version.
-2. During the rolling upgrade, the cluster will contain a mix of the old and new versions of your code. Since replicas may be placed in different upgrade domains, and replicas send data to each other, the new and/or old version of your data may be encountered by the new and/or old version of your serializer.
+### 程式碼變更造成資料格式變更
 
-> [AZURE.NOTE] The "new version" and "old version" here refer to the version of your code that is running. The "new serializer" refers to the serializer code that is executing in the new version of your application. The "new data" refers to the serialized C# class from the new version of your application.
+由於資料格式是由 C# 類別決定，所以類別的變更可能會導致資料格式變更。請小心確保輪流升級能夠處理資料格式變更。可能會造成資料格式變更的範例：
 
-The two versions of code and data format must be both forward and backward compatible. If they are not compatible, the rolling upgrade may fail or data may be lost. The rolling upgrade may fail because the code or serializer may throw exceptions or a fault when it encounters the other version. Data may be lost if, for example, a new property was added but the old serializer discards it during deserialization.
+- 新增或移除欄位或屬性
+- 重新命名欄位或屬性
+- 變更欄位或屬性的類型
+- 變更類別名稱或命名空間
 
-Data Contract is the recommended solution for ensuring that your data is compatible. It has well-defined versioning rules for adding, removing, and changing fields. It also has support for dealing with unknown fields, hooking into the serialization and deserialization process, and dealing with class inheritance. For more information, see [Using Data Contract](https://msdn.microsoft.com/library/ms733127.aspx).
+### 將資料合約做為預設的序列化程式
 
-
-## <a name="next-steps"></a>Next steps
-
-[Uprading your Application Using Visual Studio](service-fabric-application-upgrade-tutorial.md) walks you through an application upgrade using Visual Studio.
-
-[Uprading your Application Using Powershell](service-fabric-application-upgrade-tutorial-powershell.md) walks you through an application upgrade using PowerShell.
-
-Control how your application upgrades by using [Upgrade Parameters](service-fabric-application-upgrade-parameters.md).
-
-Learn how to use advanced functionality while upgrading your application by referring to [Advanced Topics](service-fabric-application-upgrade-advanced.md).
-
-Fix common problems in application upgrades by referring to the steps in [Troubleshooting Application Upgrades ](service-fabric-application-upgrade-troubleshooting.md).
+序列化程式通常負責讀取資料，以及還原序列化為目前版本，即使資料是舊版或*新*版。預設的序列化程式是[資料合約序列化程式](https://msdn.microsoft.com/library/ms733127.aspx)，其具有定義完善的版本控制規則。可靠的集合允許覆寫序列化程式，但是 Reliable Actors 目前不允許。資料序列化程式在啟用輪流升級中扮演著重要的角色。資料合約序列化程式是我們建議用於 Service Fabric 應用程式的序列化程式。
 
 
+## 資料格式如何影響輪流升級
 
-<!--HONumber=Oct16_HO2-->
+輪流升級期間，有兩種序列化程式可能會遇到舊版或*新*版資料的主要案例：
+
+1. 節點升級並重新啟動之後，新的序列化程式會載入資料，該資料保存到舊版的磁碟。
+2. 輪流升級期間，叢集將會包含舊和新版本程式碼的混合。由於複本會放在不同升級網域，且複本會互相傳送資料，因此您的新版和/或舊版資料可能會遇到新版和/或舊版序列化程式。
+
+> [AZURE.NOTE] 此處的「新版」和「舊版」是指您正在執行的程式碼的版本。「新序列化程式」是指在您的新版應用程式中執行的序列化程式程式碼。「新資料」是指來自您的新版應用程式的序列化 C# 類別。
+
+兩個版本的程式碼和資料格式必須同時向前及向後相容。如果它們不相容，輪流升級可能會失敗，或可能會遺失資料。輪流升級可能會失敗，因為程式碼或序列化程式在遇到其他版本時可能會擲回例外狀況或錯誤。比方說，如果已加入新屬性，但是舊的序列化程式在還原序列化期間捨棄它，則可能會遺失資料。
+
+資料合約是建議的解決方案，以確保您的資料相容。它有新增、移除及變更欄位的定義完善版本控制規則。它也支援處理未知欄位、連結到序列化和還原序列化程序，以及處理類別繼承。如需詳細資訊，請參閱[使用資料合約](https://msdn.microsoft.com/library/ms733127.aspx)。
 
 
+## 後續步驟
+
+[使用 Visual Studio 升級您的應用程式](service-fabric-application-upgrade-tutorial.md)將引導您完成使用 Visual Studio 進行應用程式升級的步驟。
+
+[使用 PowerShell 升級您的應用程式](service-fabric-application-upgrade-tutorial-powershell.md)將引導您完成使用 PowerShell 進行應用程式升級的步驟。
+
+使用[升級參數](service-fabric-application-upgrade-parameters.md)來控制您應用程式的升級方式。
+
+參考[進階主題](service-fabric-application-upgrade-advanced.md)，以了解如何在升級您的應用程式時使用進階功能。
+
+參考[疑難排解應用程式升級](service-fabric-application-upgrade-troubleshooting.md)中的步驟，以修正應用程式升級中常見的問題。
+
+<!---HONumber=AcomDC_0713_2016-->

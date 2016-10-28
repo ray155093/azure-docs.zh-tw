@@ -1,124 +1,123 @@
 <properties 
-    pageTitle="Azure Search performance and optimization considerations | Microsoft Azure" 
-    description="Tune Azure Search performance and configure optimum scale" 
-    services="search" 
-    documentationCenter="" 
-    authors="LiamCavanagh" 
-    manager="pablocas" 
-    editor=""/>
+	pageTitle="Azure 搜尋服務的效能與最佳化考量 | Microsoft Azure" 
+	description="調整 Azure 搜尋服務效能並設定最佳規模" 
+	services="search" 
+	documentationCenter="" 
+	authors="LiamCavanagh" 
+	manager="pablocas" 
+	editor=""/>
 
 <tags 
-    ms.service="search" 
-    ms.devlang="rest-api" 
-    ms.workload="search" 
-    ms.topic="article" 
-    ms.tgt_pltfrm="na" 
-    ms.date="10/17/2016" 
-    ms.author="liamca"/>
+	ms.service="search" 
+	ms.devlang="rest-api" 
+	ms.workload="search" 
+	ms.topic="article" 
+	ms.tgt_pltfrm="na" 
+	ms.date="06/27/2016" 
+	ms.author="liamca"/>
 
+# Azure 搜尋服務的效能與最佳化考量
 
-# <a name="azure-search-performance-and-optimization-considerations"></a>Azure Search performance and optimization considerations
+絕佳搜尋體驗是許多行動和 Web 應用程式成功的關鍵。從房地產到二手車市場，再到線上目錄，快速搜尋和相關結果都將影響客戶體驗。本文旨在協助您探索如何充分利用 Azure 搜尋服務的最佳做法，特別適用於對延展性、多語言支援或自訂排名有複雜需求的進階案例。此外，本文件也會概述本質，並涵蓋可在真實世界客戶應用程式中有效率地工作的處理方法。
 
-A great search experience is a key to success for many mobile and web applications. From real estate, to used car marketplaces to online catalogs, fast search and relevant results will affect the customer experience. This document is intended to help you discover best practices for how to get the most out of Azure Search, especially for advanced scenarios with sophisticated requirements for scalability, multi-language support, or custom ranking.  In addition, this document outlines internals and covers approaches that work effectively in real-world customer apps.
+## 適用於搜尋服務的效能和規模調整
 
-## <a name="performance-and-scale-tuning-for-search-services"></a>Performance and scale tuning for Search services
+我們全都適用於搜尋引擎 (例如 Bing 和 Google) 以及它們提供的高效能。因此，當客戶使用您已具備搜尋功能的 Web 或行動應用程式時，他們將期望類似的效能特性。針對搜尋效能進行最佳化時，其中一個最佳處理方法是將重點放在延遲，也就是查詢完成並傳回結果所花費的時間。針對搜尋延遲進行最佳化時，請務必：
 
-We are all used to search engines such as Bing and Google and the high performance they offer.  As a result, when customers use your search-enabled web or mobile application, they will expect similar performance characteristics.  When optimizing for search performance, one of the best approaches is to focus on latency, which is the time a query takes to complete and return results.  When optimizing for search latency it is important to:
+1. 挑選完成一般搜尋要求所應花費的目標延遲 (或最大時間量)。
 
-1. Pick a target latency (or maximum amount of time) that a typical search request should take to complete.
+2. 針對您的搜尋服務，使用實際資料集來建立和測試真正的工作負載，以衡量這些延遲率。
 
-2. Create and test a real workload against your search service with a realistic dataset to measure these latency rates.
+3. 從較低的每秒查詢數目 (QPS) 開始，持續增加在測試中執行的數目，直到查詢延遲低於定義的目標延遲為止。這是很重要的效能評定，可協助您規劃應用程式將在使用量方面成長的規模。
 
-3. Start with a low number of queries per second (QPS) and continue to increase the number executed in the test until the query latency drops below the defined target latency.  This is an important benchmark to help you plan for scale as your application grows in usage.
-
-4. Wherever possible, reuse HTTP connections.  If you are using the Azure Search .NET SDK, this means you should reuse an instance or [SearchIndexClient](https://msdn.microsoft.com/library/azure/microsoft.azure.search.searchindexclient.aspx) instance, and if you are using the REST API, you should reuse a single HttpClient.
+4. 如果可能，請重複使用 HTTP 連接。如果您使用 Azure 搜尋服務 .NET SDK，這表示您應該重複使用執行個體或 [SearchIndexClient](https://msdn.microsoft.com/library/azure/microsoft.azure.search.searchindexclient.aspx) 執行個體，而且如果您使用 REST API，就應該重複使用單一的 HttpClient。
  
-While creating these test workloads, there are some characteristics of Azure Search to keep in mind:
+建立這些測試工作負載時，有一些要牢記的 Azure 搜尋服務特性：
 
-1. It is possible to push so many search queries at one time, that the resources available in your Azure Search service will be overwhelmed.  When this happens, you will see HTTP 503 response codes.  For this reason, it is best to start with various ranges of search requests to see the differences in latency rates as you add more search requests.
+1. 它能夠推送，因此，同一時間可以有許多搜尋查詢，而您 Azure 搜尋服務中的可用資源將會過度負荷。發生這種情況時，您將會看到 HTTP 503 回應碼。基於這個理由，最好從各種不同範圍的搜尋要求開始，以查看當您新增更多搜尋要求時延遲率中的差異。
 
-2. Uploading of content to Azure Search will impact the overall performance and latency of the Azure Search service.  If you expect to send data while users are performing searches, it is important to take this workload into account in your tests.
+2. 將內容上傳至 Azure 搜尋服務，會影響 Azure 搜尋服務的整體效能和延遲。如果您預期會在使用者執行搜尋時傳送資料，請務必考慮將這個工作負載納入測試中。
 
-3. Not every search query will perform at the same performance levels.  For example, a document lookup or search suggestion will typically perform faster than a query with a significant number of facets and filters.  It is best to take the various queries you expect to see into account when building your tests.  
+3. 並非所有搜尋查詢都將在同一個效能層級執行。例如，比起具有大量 Facet 和篩選的查詢，文件查閱或搜尋建議的執行速度通常會更快。建置測試時，最好將您預期要看見的各種查詢納入考量。
 
-4. Variation of search requests is important because if you continually execute the same search requests, caching of data will start to make performance look better than it might with a more disparate query set.
+4. 搜尋要求的變化是非常重要，因為如果您持續執行相同的搜尋要求，比起資料可能包含差異性更大的查詢集，快取資料會開始讓效能看起來變得更好。
 
-> [AZURE.NOTE] [Visual Studio Load Testing](https://www.visualstudio.com/docs/test/performance-testing/run-performance-tests-app-before-release) is a really good way to perform your benchmark tests as it allows you to execute HTTP requests as you would need for executing queries against Azure Search and enables parallelization of requests.
+> [AZURE.NOTE] [Visual Studio Load Testing](https://www.visualstudio.com/docs/test/performance-testing/run-performance-tests-app-before-release) 是真正適合用來執行您效能評定測試的方式，因為，當您需要針對 Azure 搜尋服務執行查詢並啟用要求的平行處理時，它允許您執行 HTTP 要求。
 
-## <a name="scaling-azure-search-for-high-query-rates-and-throttled-requests"></a>Scaling Azure Search for high query rates and throttled requests
+## 調整 Azure 搜尋服務以提供高速查詢和節流要求
 
-When you are receiving too many throttled requests or exceed your target latency rates from an increased query load, you can look to decrease latency rates in one of two ways:
+當您收到太多節流要求或增加的查詢負載已超過目標延遲率時，您可以使用下列其中一種方式來查看以降低延遲率：
 
-1. **Increase Replicas:**  A replica is like a copy of your data allowing Azure Search to load balance requests against the multiple copies.  All load balancing and replication of data across replicas is managed by Azure Search and you can alter the number of replicas allocated for your service at any time.  You can allocate up to 12 replicas in a Standard search service and 3 replicas in a Basic search service.  Replicas can be adjusted either from the [Azure Portal](search-create-service-portal.md) or using the [Azure Search management API](search-get-started-management-api.md).
+1. **增加複本︰**複本就像是您的資料複本，允許 Azure 搜尋服務針對多個複本進行要求的負載平衡。在複本之間針對資料進行的所有負載平衡和複寫都是由 Azure 搜尋服務所管理，而您可以隨時變更配置給服務的複本數目。您最多可在標準搜尋服務中配置 12 個複本，並在基本搜尋服務中配置 3 個複本。您可以從 [Azure 入口網站](search-create-service-portal.md)或使用 [Azure 搜尋服務管理 API](search-get-started-management-api.md) 來調整複本。
 
-2. **Increase Search Tier:**  Azure Search comes in a [number of tiers](https://azure.microsoft.com/pricing/details/search/) and each of these tiers offers different levels of performance.  In some cases, you may have so many queries that the tier you are on cannot provide sufficiently low latency rates, even when replicas are maxed out.  In this case, you may want to consider leveraging one of the higher search tiers such as the Azure Search S3 tier that is well suited for scenarios with large numbers of documents and extremely high query workloads.
+2. **增加搜尋服務層︰**Azure 搜尋服務來自[層數](https://azure.microsoft.com/pricing/details/search/)，而這其中的每一層都會提供不同等級的效能。在某些情況下，您可能會有這麼多查詢，即使當複本超量時，您所在的層仍不足以提供低延遲率。在此情況下，您可能要考慮使用較高的搜尋層，例如 Azure 搜尋服務 S3 層，這非常適合具有大量文件且有極高查詢工作負載的案例。
 
-## <a name="scaling-azure-search-for-slow-individual-queries"></a>Scaling Azure Search for slow individual queries
+## 針對速度較慢的個別查詢調整 Azure 搜尋服務
 
-Another reason why latency rates can be slow is from a single query taking too long to complete.  In this case, adding replicas will not improve latency rates.  For this case there are two options available:
+延遲率為什麼很慢的另一個原因是，因為單一查詢花費太長的時間才能完成。在此情況下，新增複本將無法改善延遲率。在此情況下，有兩個可用選項：
 
-1. **Increase Partitions** A partition is a mechanism for splitting your data across extra resources.  For this reason, when you add a second partition, your data gets split into two.  A third partition splits your index into three, etc.  This also has the effect that in some cases, slow queries will perform faster due to the parallelization of computation.  There are a few examples of where we have seen this parallelization work extremely well with queries that have low selectivity queries.  This consists of queries that match many documents or when faceting needs to provide counts over large numbers of documents.  Since there is a lot of computation needed to score the relevancy of the documents or to count the numbers of documents, adding extra partitions can help to provide additional computation.  
+1. **增加分割區** 分割區是一種機制，可分割資料以分散到額外的資源上。基於這個理由，當您新增第二個分割區時，您的資料就會一分為二。第三個分割區會將您的索引分成三等份，依此類推。這也會產生效果，在某些情況下，速度較慢的查詢會因為平行處理計算而執行得更快。我們可以在一些範例中看見這個平行處理搭配具有低度選擇性查詢的查詢時運作得非常好。這其中包括符合許多文件的查詢，或者當設定 Facet 需要提供超過大量文件的計數時。由於有許多需要調整文件相關性或計算文件數目所需的計算，因此，新增額外的分割區有助於提供其他計算。
 
-   There can be a maximum of 12 partitions in Standard search service and 1 partition in the basic search service.  Partitions can be adjusted either from the [Azure Portal](search-create-service-portal.md) or using the [Azure Search management API](search-get-started-management-api.md).
+   在標準搜尋服務中最多可有 12 個分割區，在基本搜尋服務中則為 1 個分割區。您可以從 [Azure 入口網站](search-create-service-portal.md)或使用 [Azure 搜尋服務管理 API](search-get-started-management-api.md) 來調整分割區。
 
-2. **Limit High Cardinality Fields:** A high cardinality field consists of a facetable or filterable field that has a significant number of unique values, and as a result, takes a lot of resources to compute results over.   For example, setting a Product ID or Description field as facetable/filterable would make for high cardinality because most of the values from document to document are unique. Wherever possible, limit the number of high cardinality fields.
+2. **限制高基數欄位︰**高基數欄位包含具有大量唯一值的可 Facet 或可篩選欄位，因此，會取得許多要在其上計算結果的資源。例如，將 [產品識別碼] 或 [說明] 欄位設定為可 Facet 或可篩選的會導致高基數，因為文件彼此間大多數值都是唯一的。如果可能，請限制高基數欄位數目。
 
-3. **Increase Search Tier:**  Moving up to a higher Azure Search tier can be another way to improve performance of slow queries.  Each higher tier also provides faster CPU’s and more memory which can have a positive impact on query performance.
+3. **增加搜尋服務層︰**另一種方式是往上移動到更高的 Azure 搜尋服務層，可為速度較慢的查詢改善效能。每一個較高的層也會提供更快速的 CPU 和更多記憶體，可以對查詢效能產生正面的影響。
 
-## <a name="scaling-for-availability"></a>Scaling for availability
+## 調整可用性
 
-Replicas not only help reduce query latency but can also allow for high availability.  With a single replica, you should expect periodic downtime due to server reboots after software updates or for other maintenance events that will occur.  As a result, it is important to consider if your application requires high availability of searches (queries) as well as writes (indexing events).  Azure Search offers SLA options on all the paid search offerings with the following attributes:
+複本不僅有助於減少查詢延遲，也可以允許高可用性。利用單一複本，您應該可以預期定期的停機時間，因為伺服器會在軟體更新之後重新開機，或針對其他將發生的維護事件重新開機。因此，請務必考慮應用程式是否需要搜尋 (查詢) 及寫入 (編製事件的索引) 的高可用性。Azure 搜尋服務在具有下列屬性的所有付費搜尋供應項目上提供 SLA 選項：
 
-- 2 replicas for high availability of read-only workloads (queries)
-- 3 or more replicas for high availability of read-write workloads (queries and indexing)
+- 針對唯讀工作負載 (查詢)，需有 2 個複本才能達到高可用性
+- 針對讀取/寫入工作負載 (查詢和索引) 的高可用性為 3 或更多個複本
 
-For more details on this, please visit the [Azure Search Service Level Agreement](https://azure.microsoft.com/support/legal/sla/search/v1_0/).
+如需此內容的詳細資訊，請瀏覽 [Azure 搜尋服務等級協定](https://azure.microsoft.com/support/legal/sla/search/v1_0/)。
 
-Since replicas are copies of your data, having multiple replicas allows Azure Search to do machine reboots and maintenance against one replica at a time while allowing queries to continue to be executed against the other replicas.  For that reason, you will also need to consider how this downtime may impact the queries that now have to be executed against one less copy of the data.
+由於複本是資料的複本，因此，擁有多個複本可讓 Azure 搜尋服務同時針對一個複本進行電腦重新開機和維護，同時能夠繼續針對其他複本執行查詢。基於這個理由，如果查詢現在必須根據少一個複本的資料加以執行，您也必須考慮這種停機情形可能會對該查詢產生何種影響。
 
-## <a name="scaling-geo-distributed-workloads-and-provide-geo-redundancy"></a>Scaling geo-distributed workloads and provide geo-redundancy
+## 調整異地分散的工作負載並提供異地備援
 
-For geo-distributed workloads, you will find that users located far from the data center where your Azure Search service is hosted will have higher latency rates.  For this reason, it is often important to have multiple search services in regions that are in closer proximity to these users.  Azure Search does not currently provide an automated method of geo-replicating Azure Search indexes across regions, but there are some techniques that can be used that can make this process simple to implement and manage. These are outlined in the next few sections.
+針對異地分散的工作負載，您將會發現遠離資料中心 (裝載您 Azure 搜尋服務所在) 的使用者延遲率比較高。基於這個理由，在更接近這類使用者的區域中，具有多個搜尋服務通常很重要。Azure 搜尋服務目前不提供自動化方法來跨區域進行 Azure 搜尋服務索引的異地複寫，但是有一些技術可用來讓這個程序更容易實作與管理。我們將在後續小節中加以概述。
 
-The goal of a geo-distributed set of search services is to have two or more indexes available in two or more regions where a user will be routed to the Azure Search service that provides the lowest latency as seen in this example:
+一組異地分散的搜尋服務目標是，在兩個以上的區域中，可以使用兩個以上的索引，而使用者將在這些區域中路由傳送到 Azure 搜尋服務以提供最低延遲，如此範例中所示：
 
-   ![Cross-tab of services by region][1]
+   ![依區域交叉分析服務][1]
 
-### <a name="keeping-data-in-sync-across-multiple-azure-search-services"></a>Keeping data in sync across multiple Azure Search services
+### 跨多個 Azure 搜尋服務，讓資料維持同步
 
-There are two options for keeping your distributed search services in sync which consist of either using the [Azure Search Indexer](search-indexer-overview.md) or the Push API (also referred to as the [Azure Search REST API](https://msdn.microsoft.com/library/dn798935.aspx)).  
+有兩個選項可讓分散的搜尋服務維持同步，包括使用 [Azure 搜尋服務索引子](search-indexer-overview.md) 或推送 API (也稱為 [Azure 搜尋服務 REST API](https://msdn.microsoft.com/library/dn798935.aspx))。
 
-### <a name="azure-search-indexers"></a>Azure Search Indexers
+### Azure 搜尋服務索引子
 
-If you are using the Azure Search Indexer, you are already importing data changes from a central datastore such as Azure SQL DB or DocumentDB. When you create a new search Service, you simply also create a new Azure Search Indexer for that service that points to this same datastore. That way, whenever new changes come into the data store, they will then be indexed by the various Indexers.  
+如果您正在使用 Azure 搜尋服務索引子，您就已經從中央資料存放區 (例如 Azure SQL DB 或 DocumentDB) 匯入資料變更。當您建立新的搜尋服務時，針對指向這個相同資料存放區的服務，也只需要建立新的 Azure 搜尋服務索引子。這樣一來，每當新的變更出現在資料存放區時，接著將會透過各種索引子為它們編製索引。
 
-Here is an example of what that architecture would look like.
+以下範例為該架構所呈現的樣子。
 
-   ![Single data source with distributed indexer and service combinations][2]
+   ![具有分散式索引子和服務組合的單一資料來源][2]
 
 
-### <a name="push-api"></a>Push API 
-If you are using the Azure Search Push API to [update content in your Azure Search index](https://msdn.microsoft.com/library/dn798930.aspx), you can keep your various search services in sync by pushing changes to all search services whenever an update is required.  When doing this it is important to make sure to handle cases where an update to one search service fails and one or more updates succeed.
+### 推送 API 
+如果您正在使用 Azure 搜尋推送 API 來[更新 Azure 搜尋服務索引的內容](https://msdn.microsoft.com/library/dn798930.aspx)，您可以在需要更新時，將變更推送到所有搜尋服務，藉以讓各種搜尋服務維持同步。執行這項操作時，務必確定會處理某一個搜尋服務更新失敗且有一或多個更新成功時的情況。
 
-## <a name="leveraging-azure-traffic-manager"></a>Leveraging Azure Traffic Manager
+## 運用 Azure 流量管理員
 
-[Azure Traffic Manager](../traffic-manager/traffic-manager-overview.md) allows you to route requests to multiple geo-located websites that are then backed by multiple Azure Search Services.  One advantage of the Traffic Manager is that it can probe Azure Search to ensure that it is available and route users to alternate search services in the event of downtime.  In addition, if you are routing search requests through Azure Web Sites, Azure Traffic Manager allows you to load balance cases where the Website is up but not Azure Search.  Here is an example of what the architecture that leverages Traffic Manager.
+[Azure 流量管理員](../traffic-manager/traffic-manager-overview.md)可讓您將要求路由傳送至位於多個地理位置的網站，然後透過多個 Azure 搜尋服務進行備份。流量管理員的一個優點是，它可以探查 Azure 搜尋服務，以確保它可供使用，並在發生停機時將使用者路由傳送至替代的搜尋服務。此外，如果您透過 Azure 網站路由傳送搜尋要求，Azure 流量管理員可讓您在網站已啟動，但 Azure 搜尋服務沒有的情況下進行負載平衡。以下範例為運用流量管理員的架構。
 
-   ![Cross-tab of services by region, with central Traffic Manager][3]
+   ![利用中央流量管理員依區域交叉分析服務][3]
 
-## <a name="monitoring-performance"></a>Monitoring performance
+## 監視效能
 
-Azure Search offers the ability to analyze and monitor the performance of your service through [Search Traffic Analytics (STA)](search-traffic-analytics.md). Through STA, you can optionally log the individual search operations as well as aggregated metrics to an Azure Storage account that can then be processed for analysis or visualized in Power BI.  Using STA metrics, you can review performance statistics such as average number of queries or query response times.  In addition, the operation logging allows you to drill into details of specific search operations.
+Azure 搜尋服務透過[搜尋流量分析 (STA)](search-traffic-analytics.md) 提供功能來分析和監視您的服務。透過 STA，您可以選擇性地將個別搜尋作業以及彙總的計量記錄到 Azure 儲存體帳戶，然後加以處理來進行分析或在 Power BI 中視覺化。使用 STA 計量，您可以檢閱效能統計資料，例如查詢或查詢回應時間的平均數目。此外，作業記錄可讓您向下切入到特定搜尋作業的詳細資料。
 
-STA is a valuable tool to understand latency rates from that Azure Search perspective.  Since the query performance metrics logged are based on the time a query takes to be fully processed in Azure Search (from the time it is requested to when it is sent out), you are able to use this to determine if latency issues are from the Azure Search service side or outside of the service, such as from network latency.  
+STA 是可從 Azure 搜尋服務觀點了解延遲率的寶貴工具。由於記錄的查詢效能計量是以查詢在 Azure 搜尋服務中進行完整處理所花費的時間為基礎 (從要求它的時間到送出時間)，因此，您能夠使用這個工具來判斷延遲問題是來自 Azure 搜尋服務端或服務外部，例如，來自網路延遲。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-To learn more about the pricing tiers and services limits for each one, see [Service limits in Azure Search](search-limits-quotas-capacity.md).
+若要深入了解定價層及每一層的服務限制，請參閱 [Azure 搜尋中的服務限制](search-limits-quotas-capacity.md)。
 
-Visit [Capacity planning](search-capacity-planning.md) to learn more about partition and replica combinations.
+請參閱[容量規劃](search-capacity-planning.md)，以便深入了解分割區和複本組合。
 
-For more drilldown on performance and to see some demonstrations of how to implement the optimizations discussed in this article, watch the following video:
+如需更多效能的詳細說明，以及查看一些如何實作本文中討論的最佳化示範，請觀賞下列影片：
 
 > [AZURE.VIDEO azurecon-2015-azure-search-best-practices-for-web-and-mobile-applications]
 
@@ -127,7 +126,4 @@ For more drilldown on performance and to see some demonstrations of how to imple
 [2]: ./media/search-performance-optimization/scale-indexers.png
 [3]: ./media/search-performance-optimization/geo-search-traffic-mgr.png
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0629_2016-->

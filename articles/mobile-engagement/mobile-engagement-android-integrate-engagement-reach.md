@@ -1,652 +1,647 @@
 <properties
-    pageTitle="Azure Mobile Engagement Android SDK Integration"
-    description="Latest updates and procedures for Android SDK for Azure Mobile Engagement"
-    services="mobile-engagement"
-    documentationCenter="mobile"
-    authors="piyushjo"
-    manager="dwrede"
-    editor="" />
+	pageTitle="Azure Mobile Engagement Android SDK 整合"
+	description="Android SDK for Azure Mobile Engagement 的最新更新和程序"
+	services="mobile-engagement"
+	documentationCenter="mobile"
+	authors="piyushjo"
+	manager="dwrede"
+	editor="" />
 
 <tags
-    ms.service="mobile-engagement"
-    ms.workload="mobile"
-    ms.tgt_pltfrm="mobile-android"
-    ms.devlang="Java"
-    ms.topic="article"
-    ms.date="08/19/2016"
-    ms.author="piyushjo" />
+	ms.service="mobile-engagement"
+	ms.workload="mobile"
+	ms.tgt_pltfrm="mobile-android"
+	ms.devlang="Java"
+	ms.topic="article"
+	ms.date="08/19/2016"
+	ms.author="piyushjo" />
 
+#如何在 Android 上整合 Engagement Reach
 
-#<a name="how-to-integrate-engagement-reach-on-android"></a>How to Integrate Engagement Reach on Android
+> [AZURE.IMPORTANT] 您必須遵循＜如何在 Android 上整合＞文件中所述的整合程序，才能接著遵循本指南。
 
-> [AZURE.IMPORTANT] You must follow the integration procedure described in the How to Integrate Engagement on Android document before following this guide.
+##標準整合
 
-##<a name="standard-integration"></a>Standard integration
+Reach SDK 需要「Android 支援程式庫 (v4)」。
 
-The Reach SDK requires the **Android Support library (v4)**.
+在 Eclipse 中，將程式庫加入到專案的最快方法是 `Right click on your project -> Android Tools -> Add Support Library...`。
 
-The fastest way to add the library to your project in **Eclipse** is `Right click on your project -> Android Tools -> Add Support Library...`.
+如果您未使用 Eclipse，可以先閱讀[這裡]的指示。
 
-If you don't use Eclipse, you can read the instructions [here].
+從專案中的 SDK 複製 Reach 資源檔：
 
-Copy Reach resource files from the SDK in your project :
+-   將 SDK 所附 `res/layout` 資料夾中的檔案複製到應用程式的 `res/layout` 資料夾。
+-   將 SDK 所附 `res/drawable` 資料夾中的檔案複製到應用程式的 `res/drawable` 資料夾。
 
--   Copy the files from the `res/layout` folder delivered with the SDK into the `res/layout` folder of your application.
--   Copy the files from the `res/drawable` folder delivered with the SDK into the `res/drawable` folder of your application.
+編輯 `AndroidManifest.xml` 檔案：
 
-Edit your `AndroidManifest.xml` file:
+-   加入下列區段 (在 `<application>` 和 `</application>` 標記之間)：
 
--   Add the following section (between the `<application>` and `</application>` tags):
+			<activity android:name="com.microsoft.azure.engagement.reach.activity.EngagementTextAnnouncementActivity" android:theme="@android:style/Theme.Light" android:exported="false">
+			  <intent-filter>
+			    <action android:name="com.microsoft.azure.engagement.reach.intent.action.ANNOUNCEMENT"/>
+			    <category android:name="android.intent.category.DEFAULT" />
+			    <data android:mimeType="text/plain" />
+			  </intent-filter>
+			</activity>
+			<activity android:name="com.microsoft.azure.engagement.reach.activity.EngagementWebAnnouncementActivity" android:theme="@android:style/Theme.Light" android:exported="false">
+			  <intent-filter>
+			    <action android:name="com.microsoft.azure.engagement.reach.intent.action.ANNOUNCEMENT"/>
+			    <category android:name="android.intent.category.DEFAULT" />
+			    <data android:mimeType="text/html" />
+			  </intent-filter>
+			</activity>
+			<activity android:name="com.microsoft.azure.engagement.reach.activity.EngagementPollActivity" android:theme="@android:style/Theme.Light" android:exported="false">
+			  <intent-filter>
+			    <action android:name="com.microsoft.azure.engagement.reach.intent.action.POLL"/>
+			    <category android:name="android.intent.category.DEFAULT" />
+			  </intent-filter>
+			</activity>
+			<activity android:name="com.microsoft.azure.engagement.reach.activity.EngagementLoadingActivity" android:theme="@android:style/Theme.Dialog" android:exported="false">
+			  <intent-filter>
+			    <action android:name="com.microsoft.azure.engagement.reach.intent.action.LOADING"/>
+			    <category android:name="android.intent.category.DEFAULT"/>
+			  </intent-filter>
+			</activity>
+			<receiver android:name="com.microsoft.azure.engagement.reach.EngagementReachReceiver" android:exported="false">
+			  <intent-filter>
+			    <action android:name="android.intent.action.BOOT_COMPLETED"/>
+			    <action android:name="com.microsoft.azure.engagement.intent.action.AGENT_CREATED"/>
+			    <action android:name="com.microsoft.azure.engagement.intent.action.MESSAGE"/>
+			    <action android:name="com.microsoft.azure.engagement.reach.intent.action.ACTION_NOTIFICATION"/>
+			    <action android:name="com.microsoft.azure.engagement.reach.intent.action.EXIT_NOTIFICATION"/>
+			    <action android:name="com.microsoft.azure.engagement.reach.intent.action.DOWNLOAD_TIMEOUT"/>
+			  </intent-filter>
+			</receiver>
+			<receiver android:name="com.microsoft.azure.engagement.reach.EngagementReachDownloadReceiver">
+			  <intent-filter>
+			    <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>
+			  </intent-filter>
+			</receiver>
 
-            <activity android:name="com.microsoft.azure.engagement.reach.activity.EngagementTextAnnouncementActivity" android:theme="@android:style/Theme.Light" android:exported="false">
-              <intent-filter>
-                <action android:name="com.microsoft.azure.engagement.reach.intent.action.ANNOUNCEMENT"/>
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="text/plain" />
-              </intent-filter>
-            </activity>
-            <activity android:name="com.microsoft.azure.engagement.reach.activity.EngagementWebAnnouncementActivity" android:theme="@android:style/Theme.Light" android:exported="false">
-              <intent-filter>
-                <action android:name="com.microsoft.azure.engagement.reach.intent.action.ANNOUNCEMENT"/>
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="text/html" />
-              </intent-filter>
-            </activity>
-            <activity android:name="com.microsoft.azure.engagement.reach.activity.EngagementPollActivity" android:theme="@android:style/Theme.Light" android:exported="false">
-              <intent-filter>
-                <action android:name="com.microsoft.azure.engagement.reach.intent.action.POLL"/>
-                <category android:name="android.intent.category.DEFAULT" />
-              </intent-filter>
-            </activity>
-            <activity android:name="com.microsoft.azure.engagement.reach.activity.EngagementLoadingActivity" android:theme="@android:style/Theme.Dialog" android:exported="false">
-              <intent-filter>
-                <action android:name="com.microsoft.azure.engagement.reach.intent.action.LOADING"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-              </intent-filter>
-            </activity>
-            <receiver android:name="com.microsoft.azure.engagement.reach.EngagementReachReceiver" android:exported="false">
-              <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-                <action android:name="com.microsoft.azure.engagement.intent.action.AGENT_CREATED"/>
-                <action android:name="com.microsoft.azure.engagement.intent.action.MESSAGE"/>
-                <action android:name="com.microsoft.azure.engagement.reach.intent.action.ACTION_NOTIFICATION"/>
-                <action android:name="com.microsoft.azure.engagement.reach.intent.action.EXIT_NOTIFICATION"/>
-                <action android:name="com.microsoft.azure.engagement.reach.intent.action.DOWNLOAD_TIMEOUT"/>
-              </intent-filter>
-            </receiver>
-            <receiver android:name="com.microsoft.azure.engagement.reach.EngagementReachDownloadReceiver">
-              <intent-filter>
-                <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>
-              </intent-filter>
-            </receiver>
+-   您需要此權限才能重新執行開機時未按下的系統通知 (否則它們將保留在磁碟上，但不會再顯示，您真的必須加入此區段)。
 
--   You need this permission to replay system notifications that were not clicked at boot (otherwise they will be kept on disk but won't be displayed anymore, you really have to include this).
+			<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
-            <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+-   複製和編輯下列區段 (在 `<application>` 和 `</application>` 標記之間)，以指定用於通知的圖示 (在應用程式中的圖示以及系統圖示)：
 
--   Specify an icon used for notifications (both in app and system ones) by copying and editing the following section (between the `<application>` and `</application>` tags):
+			<meta-data android:name="engagement:reach:notification:icon" android:value="<name_of_icon_WITHOUT_file_extension_and_WITHOUT_'@drawable/'>" />
 
-            <meta-data android:name="engagement:reach:notification:icon" android:value="<name_of_icon_WITHOUT_file_extension_and_WITHOUT_'@drawable/'>" />
+> [AZURE.IMPORTANT] 如果您打算在建立 Reach 活動時使用系統通知，則「務必」使用此區段。Android 禁止顯示沒有圖示的系統通知。因此如果您省略此區段，使用者將無法接收系統通知。
 
-> [AZURE.IMPORTANT] This section is **mandatory** if you plan on using system notifications when creating Reach campaigns. Android prevents system notifications without icons from being shown. So if you omit this section, your end users will not be able to receive them.
+-   建立活動時，當系統通知使用大圖片，若缺少下列權限便需先行加入 (在 `</application>` 標記之後)：
 
--   If you create campaigns with system notifications using big picture, you need to add the following permissions (after the `</application>` tag) if missing:
+			<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+			<uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION"/>
 
-            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-            <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION"/>
+  -   在 Android M 上，若您的應用程式目標為 Android API 層級 23 或更高層級，``WRITE_EXTERNAL_STORAGE`` 權限需要使用者核准。請閱讀[本節](mobile-engagement-android-integrate-engagement.md#android-m-permissions)。
 
-  -   On Android M and if your application targets Android API level 23 or greater, ``WRITE_EXTERNAL_STORAGE`` permission requires user approval. Please read [this section](mobile-engagement-android-integrate-engagement.md#android-m-permissions).
+-   針對系統通知，如果裝置應該響鈴及/或震動，您也可以在 Reach 活動中指定。要讓其正常運作，您必須確定已宣告下列權限 (在 `</application>` 標記之後)：
 
--   For system notifications you can also specify in the Reach campaign if the device should ring and/or vibrate. For it to work, you have to make sure you declared the following permission (after the `</application>` tag):
+			<uses-permission android:name="android.permission.VIBRATE" />
 
-            <uses-permission android:name="android.permission.VIBRATE" />
+	若無此權限，如果您在 Reach 活動管理員中核取了響鈴或震動的選項，Android 會禁止顯示系統通知。
 
-    Without this permission, Android prevents system notifications from being shown if you checked the ring or the vibrate option in the Reach Campaign manager.
+-   如果使用 ProGuard 建置應用程式，且發生與 Android 支援程式庫或 Engagement jar 相關的錯誤，請在 `proguard.cfg` 檔案中加入下列幾行：
 
--   If you build your application using **ProGuard** and have errors related to the Android Support library or the Engagement jar, add the following lines to your `proguard.cfg` file:
+			-dontwarn android.**
+			-keep class android.support.v4.** { *; }
 
-            -dontwarn android.**
-            -keep class android.support.v4.** { *; }
+## 原生推送
 
-## <a name="native-push"></a>Native Push
+現在，您會設定 Reach 模組，您需要設定原生推播以便在裝置上接收行銷活動。
 
-Now that you configured Reach module, you need to configure native push to be able to receive the campaigns on the device.
+我們在 Android 上支援兩種服務：
 
-We support two services on Android:
+  - Google Play 裝置：遵循[如何整合 GCM 與 Engagement 指南](mobile-engagement-android-gcm-integrate.md)，來使用 [Google Cloud Messaging]。
+  - Amazon 裝置：遵循[如何整合 ADM 與 Engagement 指南](mobile-engagement-android-adm-integrate.md)，來使用 [Amazon Device Messaging]
 
-  - Google Play devices: Use [Google Cloud Messaging] by following the [How to Integrate GCM with Engagement guide](mobile-engagement-android-gcm-integrate.md) guide.
-  - Amazon devices: Use [Amazon Device Messaging] by following the [How to Integrate ADM with Engagement guide](mobile-engagement-android-adm-integrate.md) guide.
+如果您的目標想要同時鎖定 Amazon 和 Google Play 裝置，可以將所有東西放在一個 AndroidManifest.xml/APK 進行開發。但提交給 Amazon 時，如果他們發現 GCM 程式碼可能會拒絕您的應用程式。
 
-If you want to target both Amazon and Google Play devices, its possible to have everything inside 1 AndroidManifest.xml/APK for development. But when submitting to Amazon, they may reject your application if they find GCM code.
+您應該在此情況下使用多個 APK。
 
-You should use multiple APKs in that case.
+**現在您的應用程式已準備好接收及顯示 Reach 活動！**
 
-**Your application is now ready to receive and display reach campaigns!**
+##如何處理資料推送
 
-##<a name="how-to-handle-data-push"></a>How to handle data push
+### 整合
 
-### <a name="integration"></a>Integration
+如果希望應用程式能夠接收 Reach 資料推送，您必須建立 `com.microsoft.azure.engagement.reach.EngagementReachDataPushReceiver` 的子類別，並在 `AndroidManifest.xml` 檔案中加以參考 (在 `<application>` 及/或 `</application>` 標記之間)：
 
-If you want your application to be able to receive Reach data pushes, you have to create a sub-class of `com.microsoft.azure.engagement.reach.EngagementReachDataPushReceiver` and reference it in the `AndroidManifest.xml` file (between the `<application>` and/or `</application>` tags):
+			<receiver android:name="<your_sub_class_of_com.microsoft.azure.engagement.reach.EngagementReachDataPushReceiver>"
+			  android:exported="false">
+			  <intent-filter>
+			    <action android:name="com.microsoft.azure.engagement.reach.intent.action.DATA_PUSH" />
+			  </intent-filter>
+			</receiver>
 
-            <receiver android:name="<your_sub_class_of_com.microsoft.azure.engagement.reach.EngagementReachDataPushReceiver>"
-              android:exported="false">
-              <intent-filter>
-                <action android:name="com.microsoft.azure.engagement.reach.intent.action.DATA_PUSH" />
-              </intent-filter>
-            </receiver>
+然後便可以覆寫 `onDataPushStringReceived` 和 `onDataPushBase64Received` 回呼。下列是一個範例：
 
-Then you can override the `onDataPushStringReceived` and `onDataPushBase64Received` callbacks. Here is an example:
+			public class MyDataPushReceiver extends EngagementReachDataPushReceiver
+			{
+			  @Override
+			  protected Boolean onDataPushStringReceived(Context context, String category, String body)
+			  {
+			    Log.d("tmp", "String data push message received: " + body);
+			    return true;
+			  }
 
-            public class MyDataPushReceiver extends EngagementReachDataPushReceiver
-            {
-              @Override
-              protected Boolean onDataPushStringReceived(Context context, String category, String body)
-              {
-                Log.d("tmp", "String data push message received: " + body);
-                return true;
-              }
+			  @Override
+			  protected Boolean onDataPushBase64Received(Context context, String category, byte[] decodedBody, String encodedBody)
+			  {
+			    Log.d("tmp", "Base64 data push message received: " + encodedBody);
+			    // Do something useful with decodedBody like updating an image view
+			    return true;
+			  }
+			}
 
-              @Override
-              protected Boolean onDataPushBase64Received(Context context, String category, byte[] decodedBody, String encodedBody)
-              {
-                Log.d("tmp", "Base64 data push message received: " + encodedBody);
-                // Do something useful with decodedBody like updating an image view
-                return true;
-              }
-            }
+### 類別
 
-### <a name="category"></a>Category
+當您建立「資料推送」活動時，類別參數是選用的，並且允許您篩選資料推送。若您有數個廣播接收器在處理不同類型的資料推送，或是您希望推送不同種類的 `Base64` 資料且想要在剖析之前識別其類型，便相當適合使用此範例。
 
-The category parameter is optional when you create a Data Push campaign and allows you to filter data pushes. This is useful if you have several broadcast receivers handling different types of data pushes, or if you want to push different kinds of `Base64` data and want to identify their type before parsing them.
+### 回呼的傳回參數
 
-### <a name="callbacks'-return-parameter"></a>Callbacks' return parameter
+以下是正確處理 `onDataPushStringReceived` 和 `onDataPushBase64Received` 傳回參數的部分指導方針：
 
-Here are some guidelines to properly handle the return parameter of `onDataPushStringReceived` and `onDataPushBase64Received`:
+-   如果廣播接收器不知道如何處理資料推送，應會在回呼中傳回 `null`。您應該使用類別目錄來判斷廣播接收器是否應處理資料推送。
+-   如果接受資料推送，其中一個廣播接收器應會在回呼中傳回 `true`。
+-   如果可辨識資料推送，但因為各種原因而捨棄，則其中一個廣播接收器應會在回呼中傳回 `false`。例如，當接收的資料無效時傳回 `false`。
+-   如果一個廣播接收器傳回 `true`，而另一個針對相同的資料推送傳回 `false`，則屬於未定義行為，您絕不應該這麼做。
 
--   A broadcast receiver should return `null` in the callback if it does not know how to handle a data push. You should use the category to determine whether your broadcast receiver should handle the data push or not.
--   One of the broadcast receiver should return `true` in the callback if it accepts the data push.
--   One of the broadcast receiver should return `false` in the callback if it recognizes the data push, but discards it for whatever reason. For example, return `false` when the received data is invalid.
--   If one broadcast receiver returns `true` while another one returns `false` for the same data push, the behavior is undefined, you should never do that.
+傳回類型只用於 Reach 統計資料：
 
-The return type is used only for the Reach statistics:
+-   如果其中一個廣播接收器傳回 `true` 或 `false`，則 `Replied` 會遞增。
+-   只有在其中一個廣播接收器傳回 `true` 時，`Actioned` 才會遞增。
 
--   `Replied` is incremented if one of the broadcast receivers returned either `true` or `false`.
--   `Actioned` is incremented only if one of the broadcast receivers returned `true`.
+##如何自訂活動
 
-##<a name="how-to-customize-campaigns"></a>How to customize campaigns
+若要自訂活動，您可以修改 Reach SDK 中提供的配置。
 
-To customize campaigns, you can modify the layouts provided in the Reach SDK.
+您應該保留配置中使用的所有識別碼，並保留使用識別碼的檢視類型，尤其是文字檢視和影像檢視。有些檢視只用來隱藏或顯示區域，所以可能會變更其類型。如果您想要變更所提供配置中的檢視類型，請檢查原始碼。
 
-You should keep all the identifiers used in the layouts and keep the types of the views that use an identifier, especially for text views and image views. Some views are just used to hide or show areas so their type may be changed. Please check the source code if you intend to change the type of a view in the provided layouts.
+### 通知
 
-### <a name="notifications"></a>Notifications
+有兩種類型的通知：系統和應用程式內通知，它們使用不同的配置檔。
 
-There are two types of notifications: system and in-app notifications which use different layout files.
+#### 系統通知
 
-#### <a name="system-notifications"></a>System notifications
+若要自訂系統通知，您需要使用 [類別]。您可以跳到 [類別](#categories)。
 
-To customize system notifications you need to use the **categories**. You can jump to [Categories](#categories).
+#### 應用程式內通知
 
-#### <a name="in-app-notifications"></a>In-app notifications
+根據預設，應用程式內通知是採用 Android 方法 `addContentView()`，以動態方式加入至目前活動使用者介面的檢視。這稱為通知重疊。通知重疊非常適合快速整合，因為它們不需要您修改應用程式中的任何配置。
 
-By default, an in-app notification is a view that is dynamically added to the current activity user interface thanks to the Android method `addContentView()`. This is called a notification overlay. Notification overlays are great for a fast integration because they do not require you to modify any layout in your application.
+若要修改通知重疊的外觀，您只需依照需求修改檔案 `engagement_notification_area.xml` 即可。
 
-To modify the look of your notification overlays, you can simply modify the file `engagement_notification_area.xml` to your needs.
+> [AZURE.NOTE] 檔案 `engagement_notification_overlay.xml` 是用來建立通知重疊的檔案，其中也包含檔案 `engagement_notification_area.xml`。您也可以自訂以配合您的需求 (例如在覆疊內定位通知區域)。
 
-> [AZURE.NOTE] The file `engagement_notification_overlay.xml` is the one that is used to create a notification overlay, it includes the file `engagement_notification_area.xml`. You can also customize it to suit your needs (such as for positioning the notification area within the overlay).
+##### 包含通知配置做為活動配置的一部分
 
-##### <a name="include-notification-layout-as-part-of-an-activity-layout"></a>Include notification layout as part of an activity layout
+覆疊非常適合快速整合，但可能在特殊情況下造成不便或有副作用。可以在活動層級自訂覆疊系統，以便輕鬆避免特殊活動的副作用。
 
-Overlays are great for a fast integration but can be inconvenient or have side effects in special cases. The overlay system can be customized at an activity level, making it easy to prevent side effects for special activities.
+您可以決定使用 Android **include** 陳述式，將通知配置納入您現有的配置。以下是修改過的 `ListActivity` 配置範例，且其中只包含 `ListView`。
 
-You can decide to include our notification layout in your existing layout thanks to the Android **include** statement. The following is an example of a modified `ListActivity` layout containing just a `ListView`.
+**Engagement 整合之前：**
 
-**Before Engagement integration :**
+			<?xml version="1.0" encoding="utf-8"?>
+			<ListView
+			  xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:id="@android:id/list"
+			  android:layout_width="fill_parent"
+			  android:layout_height="fill_parent" />
 
-            <?xml version="1.0" encoding="utf-8"?>
-            <ListView
-              xmlns:android="http://schemas.android.com/apk/res/android"
-              android:id="@android:id/list"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent" />
+**Engagement 整合之後：**
 
-**After Engagement integration :**
+			<?xml version="1.0" encoding="utf-8"?>
+			<LinearLayout
+			  xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:orientation="vertical"
+			  android:layout_width="fill_parent"
+			  android:layout_height="fill_parent">
 
-            <?xml version="1.0" encoding="utf-8"?>
-            <LinearLayout
-              xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent">
+			  <ListView
+			    android:id="@android:id/list"
+			    android:layout_width="fill_parent"
+			    android:layout_height="fill_parent"
+			    android:layout_weight="1" />
 
-              <ListView
-                android:id="@android:id/list"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1" />
+			  <include layout="@layout/engagement_notification_area" />
 
-              <include layout="@layout/engagement_notification_area" />
+			</LinearLayout>
 
-            </LinearLayout>
+在此範例中我們加入了父容器，因為原始配置使用清單檢視做為最上層項目。我們也加入了 `android:layout_weight="1"`，以便在使用 `android:layout_height="fill_parent"` 設定的清單檢視下加入檢視。
 
-In this example we added a parent container since the original layout used a list view as the top level element. We also added `android:layout_weight="1"` to be able to add a view below a list view configured with `android:layout_height="fill_parent"`.
+Engagement Reach SDK 會自動偵測到通知配置已包含在此活動中，且不會加入此活動的覆疊。
 
-The Engagement Reach SDK automatically detects that the notification layout is included in this activity and will not add an overlay for this activity.
+> [AZURE.TIP] 如果您在應用程式中使用 ListActivity，可見的 Reach 覆疊會使您無法再對清單檢視中的被按項目做出反應。這是已知的問題。若要暫時解決這個問題，我們建議您在自己的清單活動配置中內嵌通知配置，就像在先前範例那樣。
 
-> [AZURE.TIP] If you use a ListActivity in your application, a visible Reach overlay will prevent you from reacting to clicked items in the list view anymore. This is a known issue. To work around this problem we suggest you to embed the notification layout in your own list activity layout like in the previous sample.
+##### 停用關於活動的應用程式通知
 
-##### <a name="disabling-application-notification-per-activity"></a>Disabling application notification per activity
+如果您不想要覆疊加入至您的活動，且您自己的配置中也未包含通知配置，您可以在 `AndroidManifest.xml` 停用此活動的覆疊，方法是加入 `meta-data` 區段，如同下列範例所示：
 
-If you don't want the overlay to be added to your activity, and if you don't include the notification layout in your own layout, you can disable the overlay for this activity in the `AndroidManifest.xml` by adding a `meta-data` section like in the following example:
+			<activity android:name="SplashScreenActivity">
+			  <meta-data android:name="engagement:notification:overlay" android:value="false"/>
+			</activity>
 
-            <activity android:name="SplashScreenActivity">
-              <meta-data android:name="engagement:notification:overlay" android:value="false"/>
-            </activity>
+#### <a name="categories"></a> 類別
 
-#### <a name="<a-name="categories"></a>-categories"></a><a name="categories"></a> Categories
+當您修改提供的配置時，您會修改所有通知的外觀。類別可讓您定義通知的各種目標外觀 (也可能是行為)。當您建立觸達活動時可以指定類別。請記住，類別也可讓您自訂宣告與輪詢，本文件稍後將會說明。
 
-When you modify the provided layouts, you modify the look of all your notifications. Categories allow you to define various targeted looks (possibly behaviors) for notifications. A category can be specified when you create a Reach campaign. Keep in mind that categories also let you customize announcements and polls, that is described later in this document.
+若要登記通知的類別處理常式，您需要在應用程式初始化時加入呼叫。
 
-To register a category handler for your notifications, you need to add a call when the application is initialized.
+> [AZURE.IMPORTANT] 請閱讀＜如何在 Android 上整合 Engagement＞主題中關於 android:process attribute \<android-sdk-engagement-process\> 的警告，然後再繼續。
 
-> [AZURE.IMPORTANT] Please read the warning about the android:process attribute \<android-sdk-engagement-process\> in the How to Integrate Engagement on Android topic before proceeding.
+下列範例假設您已知悉先前的警告，並使用 `EngagementApplication` 的子類別：
 
-The following example assumes you acknowledged the previous warning and use a sub-class of `EngagementApplication`:
+			public class MyApplication extends EngagementApplication
+			{
+			  @Override
+			  protected void onApplicationProcessCreate()
+			  {
+			    // [...] other init
+			    EngagementReachAgent reachAgent = EngagementReachAgent.getInstance(this);
+			    reachAgent.registerNotifier(new MyNotifier(this), "myCategory");
+			  }
+			}
 
-            public class MyApplication extends EngagementApplication
-            {
-              @Override
-              protected void onApplicationProcessCreate()
-              {
-                // [...] other init
-                EngagementReachAgent reachAgent = EngagementReachAgent.getInstance(this);
-                reachAgent.registerNotifier(new MyNotifier(this), "myCategory");
-              }
-            }
+`MyNotifier` 物件是通知類別處理常式的實作。這是 `EngagementNotifier` 介面的實作，或是預設實作的子類別：`EngagementDefaultNotifier`。
 
-The `MyNotifier` object is the implementation of the notification category handler. It is either an implementation of the `EngagementNotifier` interface or a sub class of the default implementation: `EngagementDefaultNotifier`.
+請注意，相同通知程式能夠處理數種類別，您可以像這樣登記它們：
 
-Note that the same notifier can handle several categories, you can register them like this:
+			reachAgent.registerNotifier(new MyNotifier(this), "myCategory", "myAnotherCategory");
 
-            reachAgent.registerNotifier(new MyNotifier(this), "myCategory", "myAnotherCategory");
+若要取代預設類別實作，您可以如下列範例中地登記您的實作：
 
-To replace the default category implementation, you can register your implementation like in the following example:
+			public class MyApplication extends EngagementApplication
+			{
+			  @Override
+			  protected void onApplicationProcessCreate()
+			  {
+			    // [...] other init
+			    EngagementReachAgent reachAgent = EngagementReachAgent.getInstance(this);
+			    reachAgent.registerNotifier(new MyNotifier(this), Intent.CATEGORY_DEFAULT); // "android.intent.category.DEFAULT"
+			  }
+			}
 
-            public class MyApplication extends EngagementApplication
-            {
-              @Override
-              protected void onApplicationProcessCreate()
-              {
-                // [...] other init
-                EngagementReachAgent reachAgent = EngagementReachAgent.getInstance(this);
-                reachAgent.registerNotifier(new MyNotifier(this), Intent.CATEGORY_DEFAULT); // "android.intent.category.DEFAULT"
-              }
-            }
+處理常式中目前使用的類別會在您可以於 `EngagementDefaultNotifier` 覆寫的大部分方法中傳遞做為參數。
 
-The current category used in a handler is passed as a parameter in most methods you can override in `EngagementDefaultNotifier`.
+這能以 `String` 參數的形式傳遞，或是間接在 `EngagementReachContent` 物件中傳遞 (使用 `getCategory()` 方法)。
 
-It is passed either as a `String` parameter or indirectly in a `EngagementReachContent` object which has a `getCategory()` method.
+您可以在 `EngagementDefaultNotifier` 重新方法定義方法，藉此變更大部分的通知建立程序；如需更進一步自訂，歡迎查看技術文件和原始程式碼。
 
-You can change most of the notification creation process by redefining methods on `EngagementDefaultNotifier`, for more advanced customization feel free to take a look at the technical documentation and at the source code.
+##### 應用程式內通知
 
-##### <a name="in-app-notifications"></a>In-app notifications
+如果您只想要針對特定類別使用替代配置，可以如下列範例所示實作：
 
-If you just want to use alternate layouts for a specific category, you can implement this as in the following example:
+			public class MyNotifier extends EngagementDefaultNotifier
+			{
+			  public MyNotifier(Context context)
+			  {
+			    super(context);
+			  }
 
-            public class MyNotifier extends EngagementDefaultNotifier
-            {
-              public MyNotifier(Context context)
-              {
-                super(context);
-              }
+			  @Override
+			  protected int getOverlayLayoutId(String category)
+			  {
+			    return R.layout.my_notification_overlay;
+			  }
 
-              @Override
-              protected int getOverlayLayoutId(String category)
-              {
-                return R.layout.my_notification_overlay;
-              }
 
+			  @Override
+			  public Integer getOverlayViewId(String category)
+			  {
+			    return R.id.my_notification_overlay;
+			  }
 
-              @Override
-              public Integer getOverlayViewId(String category)
-              {
-                return R.id.my_notification_overlay;
-              }
+			  @Override
+			  public Integer getInAppAreaId(String category)
+			  {
+			    return R.id.my_notification_area;
+			  }
+			}
 
-              @Override
-              public Integer getInAppAreaId(String category)
-              {
-                return R.id.my_notification_area;
-              }
-            }
+**`my_notification_overlay.xml` 的範例：**
 
-**Example of `my_notification_overlay.xml` :**
+			<?xml version="1.0" encoding="utf-8"?>
+			<RelativeLayout
+			  xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:id="@+id/my_notification_overlay"
+			  android:layout_width="fill_parent"
+			  android:layout_height="fill_parent">
 
-            <?xml version="1.0" encoding="utf-8"?>
-            <RelativeLayout
-              xmlns:android="http://schemas.android.com/apk/res/android"
-              android:id="@+id/my_notification_overlay"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent">
+			  <include layout="@layout/my_notification_area" />
 
-              <include layout="@layout/my_notification_area" />
+			</RelativeLayout>
 
-            </RelativeLayout>
+如您所見，覆疊檢視識別碼與標準不同。很重要的是，每個配置要針對覆疊使用唯一識別碼。
 
-As you can see, the overlay view identifier is different than the standard one. It is important that each layout use a unique identifier for overlays.
+**`my_notification_area.xml` 的範例：**
 
-**Example of `my_notification_area.xml` :**
+			<?xml version="1.0" encoding="utf-8"?>
+			<merge
+			  xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:layout_width="fill_parent"
+			  android:layout_height="fill_parent">
 
-            <?xml version="1.0" encoding="utf-8"?>
-            <merge
-              xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent">
+			  <RelativeLayout
+			    android:id="@+id/my_notification_area"
+			    android:layout_width="fill_parent"
+			    android:layout_height="64dp"
+			    android:layout_alignParentTop="true"
+			    android:background="#B000">
 
-              <RelativeLayout
-                android:id="@+id/my_notification_area"
-                android:layout_width="fill_parent"
-                android:layout_height="64dp"
-                android:layout_alignParentTop="true"
-                android:background="#B000">
+			    <LinearLayout
+			      android:orientation="horizontal"
+			      android:layout_width="fill_parent"
+			      android:layout_height="fill_parent"
+			      android:gravity="center_vertical">
 
-                <LinearLayout
-                  android:orientation="horizontal"
-                  android:layout_width="fill_parent"
-                  android:layout_height="fill_parent"
-                  android:gravity="center_vertical">
+			      <ImageView
+			        android:id="@+id/engagement_notification_icon"
+			        android:layout_width="48dp"
+			        android:layout_height="48dp" />
 
-                  <ImageView
-                    android:id="@+id/engagement_notification_icon"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp" />
+			      <LinearLayout
+			        android:id="@+id/engagement_notification_text"
+			        android:orientation="vertical"
+			        android:layout_width="fill_parent"
+			        android:layout_height="fill_parent"
+			        android:layout_weight="1"
+			        android:gravity="center_vertical">
 
-                  <LinearLayout
-                    android:id="@+id/engagement_notification_text"
-                    android:orientation="vertical"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical">
+			        <TextView
+			          android:id="@+id/engagement_notification_title"
+			          android:layout_width="fill_parent"
+			          android:layout_height="wrap_content"
+			          android:singleLine="true"
+			          android:ellipsize="end"
+			          android:textAppearance="@android:style/TextAppearance.Medium" />
 
-                    <TextView
-                      android:id="@+id/engagement_notification_title"
-                      android:layout_width="fill_parent"
-                      android:layout_height="wrap_content"
-                      android:singleLine="true"
-                      android:ellipsize="end"
-                      android:textAppearance="@android:style/TextAppearance.Medium" />
+			        <TextView
+			          android:id="@+id/engagement_notification_message"
+			          android:layout_width="fill_parent"
+			          android:layout_height="wrap_content"
+			          android:maxLines="2"
+			          android:ellipsize="end"
+			          android:textAppearance="@android:style/TextAppearance.Small" />
 
-                    <TextView
-                      android:id="@+id/engagement_notification_message"
-                      android:layout_width="fill_parent"
-                      android:layout_height="wrap_content"
-                      android:maxLines="2"
-                      android:ellipsize="end"
-                      android:textAppearance="@android:style/TextAppearance.Small" />
+			      </LinearLayout>
 
-                  </LinearLayout>
+			      <ImageView
+			        android:id="@+id/engagement_notification_image"
+			        android:layout_width="wrap_content"
+			        android:layout_height="fill_parent"
+			        android:adjustViewBounds="true" />
 
-                  <ImageView
-                    android:id="@+id/engagement_notification_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:adjustViewBounds="true" />
+			      <ImageButton
+			        android:id="@+id/engagement_notification_close_area"
+			        android:visibility="invisible"
+			        android:layout_width="wrap_content"
+			        android:layout_height="fill_parent"
+			        android:src="@android:drawable/btn_dialog"
+			        android:background="#0F00" />
 
-                  <ImageButton
-                    android:id="@+id/engagement_notification_close_area"
-                    android:visibility="invisible"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:src="@android:drawable/btn_dialog"
-                    android:background="#0F00" />
+			    </LinearLayout>
 
-                </LinearLayout>
+			    <ImageButton
+			      android:id="@+id/engagement_notification_close"
+			      android:layout_width="wrap_content"
+			      android:layout_height="fill_parent"
+			      android:layout_alignParentRight="true"
+			      android:src="@android:drawable/btn_dialog"
+			      android:background="#0F00" />
 
-                <ImageButton
-                  android:id="@+id/engagement_notification_close"
-                  android:layout_width="wrap_content"
-                  android:layout_height="fill_parent"
-                  android:layout_alignParentRight="true"
-                  android:src="@android:drawable/btn_dialog"
-                  android:background="#0F00" />
+			  </RelativeLayout>
 
-              </RelativeLayout>
+			</merge>
 
-            </merge>
+如您所見，通知區域檢視識別碼與標準不同。很重要的是，每個配置要針對通知區域使用唯一識別碼。
 
-As you can see, the notification area view identifier is different than the standard one. It is important that each layout uses a unique identifier for notification areas.
+這個簡單的類別範例會讓應用程式 (或應用程式內) 通知顯示在畫面頂端。我們並未變更在通知區域本身所使用的標準識別碼。
 
-This simple example of category makes application (or in-app) notifications displayed at the top of the screen. We did not change the standard identifiers used in the notification area itself.
+如果您要加以變更，則必須重新定義 `EngagementDefaultNotifier.prepareInAppArea` 方法。如果想要這個層級的進一步自訂，建議查看 `EngagementNotifier` 和 `EngagementDefaultNotifier` 的技術文件和原始程式碼。
 
-If you want to change that, you have to redefine the `EngagementDefaultNotifier.prepareInAppArea` method. It's recommended to look at the technical documentation and at the source code of `EngagementNotifier` and `EngagementDefaultNotifier` if you want this level of advanced customization.
+##### 系統通知
 
-##### <a name="system-notifications"></a>System notifications
+藉由延伸 `EngagementDefaultNotifier`，您可以覆寫 `onNotificationPrepared` 以改變預設實作所準備的通知。
 
-By extending `EngagementDefaultNotifier`, you can override `onNotificationPrepared` to alter the notification that was prepared by the default implementation.
+例如：
 
-For example:
+			@Override
+			protected boolean onNotificationPrepared(Notification notification, EngagementReachInteractiveContent content)
+			  throws RuntimeException
+			{
+			  if ("ongoing".equals(content.getCategory()))
+			    notification.flags |= Notification.FLAG_ONGOING_EVENT;
+			  return true;
+			}
 
-            @Override
-            protected boolean onNotificationPrepared(Notification notification, EngagementReachInteractiveContent content)
-              throws RuntimeException
-            {
-              if ("ongoing".equals(content.getCategory()))
-                notification.flags |= Notification.FLAG_ONGOING_EVENT;
-              return true;
-            }
+此範例在使用「進行中」類別時，針對正在顯示為進行中事件的內容產生系統通知。
 
-This example makes a system notification for a content being displayed as an ongoing event when the "ongoing" category is used.
+如果您想要從頭建置 `Notification` 物件，可以將 `false` 傳回給方法，然後自行在 `NotificationManager` 呼叫 `notify`。在此情況下，務必要保留 `contentIntent`、`deleteIntent` 和 `EngagementReachReceiver` 所使用的通知識別碼。
 
-If you want to build the `Notification` object from scratch, you can return `false` to the method and call `notify` yourself on the `NotificationManager`. In that case it's important that you keep a `contentIntent`, a `deleteIntent` and the notification identifier used by `EngagementReachReceiver`.
+以下是這類實作的正確範例：
 
-Here is a correct example of such an implementation:
+			@Override
+			protected boolean onNotificationPrepared(Notification notification, EngagementReachInteractiveContent content) throws RuntimeException
+			{
+			  /* Required fields */
+			  NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext)
+			    .setSmallIcon(notification.icon)              // icon is mandatory
+			    .setContentIntent(notification.contentIntent) // keep content intent
+			    .setDeleteIntent(notification.deleteIntent);  // keep delete intent
 
-            @Override
-            protected boolean onNotificationPrepared(Notification notification, EngagementReachInteractiveContent content) throws RuntimeException
-            {
-              /* Required fields */
-              NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext)
-                .setSmallIcon(notification.icon)              // icon is mandatory
-                .setContentIntent(notification.contentIntent) // keep content intent
-                .setDeleteIntent(notification.deleteIntent);  // keep delete intent
+			  /* Your customization */
+			  // builder.set...
 
-              /* Your customization */
-              // builder.set...
+			  /* Dismiss option can be managed only after build */
+			  Notification myNotification = builder.build();
+			  if (!content.isNotificationCloseable())
+			    myNotification.flags |= Notification.FLAG_NO_CLEAR;
 
-              /* Dismiss option can be managed only after build */
-              Notification myNotification = builder.build();
-              if (!content.isNotificationCloseable())
-                myNotification.flags |= Notification.FLAG_NO_CLEAR;
+			  /* Notify here instead of super class */
+			  NotificationManager manager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+			  manager.notify(getNotificationId(content), myNotification); // notice the call to get the right identifier
 
-              /* Notify here instead of super class */
-              NotificationManager manager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-              manager.notify(getNotificationId(content), myNotification); // notice the call to get the right identifier
+			  /* Return false, we notify ourselves */
+			  return false;
+			}
 
-              /* Return false, we notify ourselves */
-              return false;
-            }
+##### 僅通知的公告
 
-##### <a name="notification-only-announcements"></a>Notification only announcements
+對於僅限通知之公告的點擊管理，可以藉由覆寫 `EngagementDefaultNotifier.onNotifAnnouncementIntentPrepared` 以修改已備妥之 `Intent` 來自訂。使用此方法可讓您輕鬆地調整旗標。
 
-The management of the click on a notification only announcement can be customized by overriding `EngagementDefaultNotifier.onNotifAnnouncementIntentPrepared` to modify the prepared `Intent`. Using this method allows you to tune the flags easily.
+例如，若要加入 `SINGLE_TOP` 旗標：
 
-For example to add the `SINGLE_TOP` flag:
+			@Override
+			protected Intent onNotifAnnouncementIntentPrepared(EngagementNotifAnnouncement notifAnnouncement,
+			  Intent intent)
+			{
+			  intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+			  return intent;
+			}
 
-            @Override
-            protected Intent onNotifAnnouncementIntentPrepared(EngagementNotifAnnouncement notifAnnouncement,
-              Intent intent)
-            {
-              intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-              return intent;
-            }
+對於舊版的 Engagement 使用者，請注意，沒有動作 URL 的系統通知現在會啟動在背景中的應用程式，所以可以用沒有動作 URL 的公告來呼叫這個方法。自訂意圖時，您應該考慮它。
 
-For legacy Engagement users, please note that system notifications without action URL now launches the application if it was in background, so this method can be called with an announcement without action URL. You should consider that when customizing the intent.
+您也可以從頭實作 `EngagementNotifier.executeNotifAnnouncementAction`。
 
-You can also implement `EngagementNotifier.executeNotifAnnouncementAction` from scratch.
+##### 通知生命週期
 
-##### <a name="notification-life-cycle"></a>Notification life cycle
+使用預設類別時，會在 `EngagementReachInteractiveContent` 物件上呼叫部分生命週期方法，來報告統計資料並更新活動狀態：
 
-When using the default category, some life cycle methods are called on the `EngagementReachInteractiveContent` object to report statistics and update the campaign state:
+-   當通知顯示在應用程式中或放在狀態列時，如果 `handleNotification` 傳回 `true`，則 `EngagementReachAgent` 會呼叫 `displayNotification` 方法 (這會報告統計資料)。
+-   如果關閉通知，則會呼叫 `exitNotification` 方法、報告統計資料，且可立即處理下一個活動。
+-   如果按一下通知，則會呼叫 `actionNotification`、報告統計資料，並啟動相關聯的意圖。
 
--   When the notification is displayed in application or put in the status bar, the `displayNotification` method is called (which reports statistics) by `EngagementReachAgent` if `handleNotification` returns `true`.
--   If the notification is dismissed, the `exitNotification` method is called, statistic is reported and next campaigns can now be processed.
--   If the notification is clicked, `actionNotification` is called, statistic is reported and the associated intent is launched.
+如果您 `EngagementNotifier` 的實作略過預設行為，您必須自行呼叫這些生命週期方法。以下範例說明一些會略過預設行為的情況：
 
-If your implementation of `EngagementNotifier` bypasses the default behavior, you have to call these life cycle methods by yourself. The following examples illustrate some cases where the default behavior is bypassed:
+-   您不需延伸 `EngagementDefaultNotifier`，例如從頭開始實作類別處理。
+-   若為系統通知，您已覆寫 `onNotificationPrepared` 並修改 `Notification` 物件中的 `contentIntent` 或 `deleteIntent`。
+-   若為應用程式內通知，您已覆寫 `prepareInAppArea`，請務必至少將 `actionNotification` 對應到其中一個 U.I 控制項。
 
--   You don't extend `EngagementDefaultNotifier`, e.g. you implemented category handling from scratch.
--   For system notifications, you overrode the `onNotificationPrepared` and you modified `contentIntent` or `deleteIntent` in the `Notification` object.
--   For in-app notifications, you overrode `prepareInAppArea`, be sure to map at least `actionNotification` to one of your U.I controls.
+> [AZURE.NOTE] 如果 `handleNotification` 擲回例外狀況，會刪除內容然後呼叫 `dropContent`。這報告在統計資料中，並且立即可以處理接下來的活動。
 
-> [AZURE.NOTE] If `handleNotification` throws an exception, the content is deleted and `dropContent` is called. This is reported in statistics and next campaigns can now be processed.
+### 宣告和輪詢
 
-### <a name="announcements-and-polls"></a>Announcements and polls
+#### 版面配置
 
-#### <a name="layouts"></a>Layouts
+您可以修改 `engagement_text_announcement.xml`、`engagement_web_announcement.xml` 和 `engagement_poll.xml` 檔案，以自訂文字公告、Web 公告和輪詢。
 
-You can modify the `engagement_text_announcement.xml`, `engagement_web_announcement.xml` and `engagement_poll.xml` files to customize text announcements, web announcements and polls.
+這些檔案的標題區域和按鈕區域共用兩個共同的配置。標題的配置是 `engagement_content_title.xml`，並針對背景使用具名的可繪製檔案。動作和結束按鈕的配置是 `engagement_button_bar.xml`，並針對背景使用具名的可繪製檔案。
 
-These files share two common layouts for the title area and the button area. The layout for the title is `engagement_content_title.xml` and uses the eponymous drawable file for the background. The layout for the action and exit buttons is `engagement_button_bar.xml` and uses the eponymous drawable file for the background.
+在輪詢中，問題配置和選項會多次針對問題使用 `engagement_question.xml` 配置檔，並針對選項使用 `engagement_choice.xml` 檔案，動態地膨脹。
 
-In a poll, the question layout and their choices are dynamically inflated using several times the `engagement_question.xml` layout file for the questions and the `engagement_choice.xml` file for the choices.
+#### 類別
 
-#### <a name="categories"></a>Categories
+##### 替代版面配置
 
-##### <a name="alternate-layouts"></a>Alternate layouts
+類似通知，活動類別可以用來做為宣告和輪詢的替代版片配置。
 
-Like notifications, the campaign's category can be used to have alternate layouts for your announcements and polls.
+例如，若要為文字公告建立類別，您可以延伸 `EngagementTextAnnouncementActivity` 並在 `AndroidManifest.xml` 檔案中加以參考：
 
-For example, to create a category for a text announcement, you can extend `EngagementTextAnnouncementActivity` and reference it the `AndroidManifest.xml` file:
+			<activity android:name="com.your_company.MyCustomTextAnnouncementActivity">
+			  <intent-filter>
+			    <action android:name="com.microsoft.azure.engagement.reach.intent.action.ANNOUNCEMENT"/>
+			    <category android:name="my_category" />
+			    <data android:mimeType="text/plain" />
+			  </intent-filter>
+			</activity>
 
-            <activity android:name="com.your_company.MyCustomTextAnnouncementActivity">
-              <intent-filter>
-                <action android:name="com.microsoft.azure.engagement.reach.intent.action.ANNOUNCEMENT"/>
-                <category android:name="my_category" />
-                <data android:mimeType="text/plain" />
-              </intent-filter>
-            </activity>
+請注意，意圖篩選中的類別會用來產生與預設公告活動的差異。
 
-Note that the category in the intent filter is used to make the difference with the default announcement activity.
+Reach SDK 使用意圖系統來解析特定類別的正確活動，如果解析失敗便會回到預設類別。
 
-The Reach SDK uses the intent system to resolve the right activity for a specific category and it falls back on the default category if the resolution failed.
+那麼，您必須實作 `MyCustomTextAnnouncementActivity`，如果只想要變更配置 (但保留相同的檢視識別碼)，您只需要像下列範例所示定義類別：
 
-Then you have to implement `MyCustomTextAnnouncementActivity`, if you just want to change the layout (but keep the same view identifiers), you just have to define the class like in the following example:
+			public class MyCustomTextAnnouncementActivity extends EngagementTextAnnouncementActivity
+			{
+			  @Override
+			  protected String getLayoutName()
+			  {
+			    return "my_text_announcement";  // tell super class to use R.layout.my_text_announcement
+			  }
+			}
 
-            public class MyCustomTextAnnouncementActivity extends EngagementTextAnnouncementActivity
-            {
-              @Override
-              protected String getLayoutName()
-              {
-                return "my_text_announcement";  // tell super class to use R.layout.my_text_announcement
-              }
-            }
+若要取代文字公告的預設類別，只要在您的實作中取代 `android:name="com.microsoft.azure.engagement.reach.activity.EngagementTextAnnouncementActivity"` 即可。
 
-To replace the default category of text announcements, simply replace `android:name="com.microsoft.azure.engagement.reach.activity.EngagementTextAnnouncementActivity"` by your implementation.
+可以以類似的方式自訂 web 公告與輪詢。
 
-Web announcements and polls can be customized in a similar fashion.
+針對 Web 公告，您可以延伸 `EngagementWebAnnouncementActivity` 並在 `AndroidManifest.xml` 中宣告活動，如下列範例所示：
 
-For web announcements you can extend `EngagementWebAnnouncementActivity` and declare your activity in the `AndroidManifest.xml` like in the following example:
+			<activity android:name="com.your_company.MyCustomWebAnnouncementActivity">
+			  <intent-filter>
+			    <action android:name="com.microsoft.azure.engagement.reach.intent.action.ANNOUNCEMENT"/>
+			    <category android:name="my_category" />
+			    <data android:mimeType="text/html" />    <!-- only difference with text announcements in the intent is the data mime type -->
+			  </intent-filter>
+			</activity>
 
-            <activity android:name="com.your_company.MyCustomWebAnnouncementActivity">
-              <intent-filter>
-                <action android:name="com.microsoft.azure.engagement.reach.intent.action.ANNOUNCEMENT"/>
-                <category android:name="my_category" />
-                <data android:mimeType="text/html" />    <!-- only difference with text announcements in the intent is the data mime type -->
-              </intent-filter>
-            </activity>
+針對輪詢，您可以延伸 `EngagementPollActivity` 並在 `AndroidManifest.xml` 中宣告活動，如下列範例所示：
 
-For polls you can extend `EngagementPollActivity` and declare your in the `AndroidManifest.xml` like in the following example:
+			<activity android:name="com.your_company.MyCustomPollActivity">
+			  <intent-filter>
+			    <action android:name="com.microsoft.azure.engagement.reach.intent.action.POLL"/>
+			    <category android:name="my_category" />
+			  </intent-filter>
+			</activity>
 
-            <activity android:name="com.your_company.MyCustomPollActivity">
-              <intent-filter>
-                <action android:name="com.microsoft.azure.engagement.reach.intent.action.POLL"/>
-                <category android:name="my_category" />
-              </intent-filter>
-            </activity>
+##### 從頭實作
 
-##### <a name="implementation-from-scratch"></a>Implementation from scratch
+您可以實作公告 (和輪詢) 活動的類別，而不延伸 Reach SDK 所提供的其中一個 `Engagement*Activity` 類別。這非常適用於您想要定義不會使用與標準配置相同之檢視的配置。
 
-You can implement categories for your announcement (and poll) activities without extending one of the `Engagement*Activity` classes provided by the Reach SDK. This is useful for example if you want to define a layout that does not use the same views as the standard layouts.
+就像對進階通知自訂一樣，也建議您查看標準實作的原始程式碼。
 
-Like for advanced notification customization, it is recommended to look at the source code of the standard implementation.
+請記住以下幾點：Reach 將會以特定的意圖 (相對應於意圖篩選)，加上額外的參數，也就是內容識別碼來啟動活動。
 
-Here are some things to keep in mind: Reach will launch the activity with a specific intent (corresponding to the intent filter) plus an extra parameter which is the content identifier.
+若要擷取包含您在網站上建立活動時指定的內容物件，您可以這樣做：
 
-To retrieve the content object which contain the fields you specified when creating the campaign on the web site you can do this:
+			public class MyCustomTextAnnouncement extends EngagementActivity
+			{
+			  private EngagementAnnouncement mContent;
 
-            public class MyCustomTextAnnouncement extends EngagementActivity
-            {
-              private EngagementAnnouncement mContent;
+			  @Override
+			  protected void onCreate(Bundle savedInstanceState)
+			  {
+			    super.onCreate(savedInstanceState);
 
-              @Override
-              protected void onCreate(Bundle savedInstanceState)
-              {
-                super.onCreate(savedInstanceState);
+			    /* Get content */
+			    mContent = EngagementReachAgent.getInstance(this).getContent(getIntent());
+			    if (mContent == null)
+			    {
+			      /* If problem with content, exit */
+			      finish();
+			      return;
+			    }
 
-                /* Get content */
-                mContent = EngagementReachAgent.getInstance(this).getContent(getIntent());
-                if (mContent == null)
-                {
-                  /* If problem with content, exit */
-                  finish();
-                  return;
-                }
+			    setContentView(R.layout.my_text_announcement);
 
-                setContentView(R.layout.my_text_announcement);
+			    /* Configure views by querying fields on mContent */
+			    // ...
+			  }
+			}
 
-                /* Configure views by querying fields on mContent */
-                // ...
-              }
-            }
+若為統計資料，您應該報告內容已顯示在 `onResume` 事件中：
 
-For statistics, you should report the content is displayed in the `onResume` event:
+			@Override
+			protected void onResume()
+			{
+			 /* Mark the content displayed */
+			 mContent.displayContent(this);
+			 super.onResume();
+			}
 
-            @Override
-            protected void onResume()
-            {
-             /* Mark the content displayed */
-             mContent.displayContent(this);
-             super.onResume();
-            }
+接著，別忘了在活動進入背景之前，在內容物件上呼叫 `actionContent(this)` 或 `exitContent(this)`。
 
-Then, don't forget to call either `actionContent(this)` or `exitContent(this)` on the content object before the activity goes into background.
+如果您不呼叫 `actionContent` 或 `exitContent`，將不會傳送統計資料 (亦即不會分析活動)；更重要的是，在應用程式處理程序重新啟動之前，都不會通知接下來的活動。
 
-If you don't call either `actionContent` or `exitContent`, statistics won't be sent (i.e. no analytics on the campaign) and more importantly, the next campaigns will not be notified until the application process is restarted.
+方向或其他組態變更可能會使程式碼難以判定活動是否進入背景，而標準的實作則可確保在使用者離開活動時 (按下 `HOME` 或 `BACK`)，會在結束當下報告內容，但方向變更時不會。
 
-Orientation or other configuration changes can make the code tricky to determine whether the activity goes into background or not, the standard implementation makes sure the content is reported as exited if the user leaves the activity (either by pressing `HOME` or `BACK`) but not if the orientation changes.
+以下是實作的有趣部分：
 
-Here is the interesting part of the implementation:
+			@Override
+			protected void onUserLeaveHint()
+			{
+			  finish();
+			}
 
-            @Override
-            protected void onUserLeaveHint()
-            {
-              finish();
-            }
+			@Override
+			protected void onPause()
+			{
+			  if (isFinishing() && mContent != null)
+			  {
+			    /*
+			     * Exit content on exit, this is has no effect if another process method has already been
+			     * called so we don't have to check anything here.
+			     */
+			    mContent.exitContent(this);
+			  }
+			  super.onPause();
+			}
 
-            @Override
-            protected void onPause()
-            {
-              if (isFinishing() && mContent != null)
-              {
-                /*
-                 * Exit content on exit, this is has no effect if another process method has already been
-                 * called so we don't have to check anything here.
-                 */
-                mContent.exitContent(this);
-              }
-              super.onPause();
-            }
+如您所見，如果您呼叫 `actionContent(this)` 然後完成活動，則可以安全地呼叫 `exitContent(this)` 而不會有任何影響。
 
-As you can see, if you called `actionContent(this)` then finished the activity, `exitContent(this)` can be safely called without having any effect.
+[這裡]: http://developer.android.com/tools/extras/support-library.html#Downloading
+[Google Cloud Messaging]: http://developer.android.com/guide/google/gcm/index.html
+[Amazon Device Messaging]: https://developer.amazon.com/sdk/adm.html
 
-[here]:http://developer.android.com/tools/extras/support-library.html#Downloading
-[Google Cloud Messaging]:http://developer.android.com/guide/google/gcm/index.html
-[Amazon Device Messaging]:https://developer.amazon.com/sdk/adm.html
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

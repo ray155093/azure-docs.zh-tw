@@ -1,419 +1,418 @@
 <properties
-    pageTitle="How to use the service management API (Python) - feature guide"
-    description="Learn how to programmatically perform common service management tasks from Python."
-    services="cloud-services"
-    documentationCenter="python"
-    authors="lmazuel"
-    manager="wpickett"
-    editor=""/>
+	pageTitle="如何使用服務管理 API (Python) - 功能指南"
+	description="了解如何透過程式設計從 Python 執行一般服務管理工作。"
+	services="cloud-services"
+	documentationCenter="python"
+	authors="lmazuel"
+	manager="wpickett"
+	editor=""/>
 
 <tags
-    ms.service="cloud-services"
-    ms.workload="tbd"
-    ms.tgt_pltfrm="na"
-    ms.devlang="python"
-    ms.topic="article"
-    ms.date="09/06/2016"
-    ms.author="lmazuel"/>
+	ms.service="cloud-services"
+	ms.workload="tbd"
+	ms.tgt_pltfrm="na"
+	ms.devlang="python"
+	ms.topic="article"
+	ms.date="09/06/2016"
+	ms.author="lmazuel"/>
 
+# 如何從 Python 使用服務管理
 
-# <a name="how-to-use-service-management-from-python"></a>How to use Service Management from Python
+> [AZURE.NOTE] 服務管理 API 會以新的資源管理 API 取代，目前可在 Preview 版本中使用。請參閱 [Azure 資源管理文件](http://azure-sdk-for-python.readthedocs.org/)了解從 Python 使用新的資源管理 API 的詳細資訊。
 
-> [AZURE.NOTE] Service Management API is being replaced with the new Resource Management API, currently available in a preview release.  See the [Azure Resource Management documentation](http://azure-sdk-for-python.readthedocs.org/) for details on using the new Resource Management API from Python.
+本指南說明如何以程式設計方式，從 Python 執行一般服務管理工作。[Azure SDK for Python](https://github.com/Azure/azure-sdk-for-python) 中的 **ServiceManagementService** 類別支援以程式設計方式存取 [Azure 傳統入口網站][management-portal]所提供的大部分服務管理相關功能 (例如**建立、更新及刪除雲端服務、部署、資料管理服務和虛擬機器**)。建置需要透過程式設計方式存取服務管理的應用程式時，此功能十分實用。
 
-This guide shows you how to programmatically perform common service management tasks from Python. The **ServiceManagementService** class in the [Azure SDK for Python](https://github.com/Azure/azure-sdk-for-python) supports programmatic access to much of the service management-related functionality that is available in the [Azure classic portal][management-portal] (such as **creating, updating, and deleting cloud services, deployments, data management services, and virtual machines**). This functionality can be useful in building applications that need programmatic access to service management.
+## <a name="WhatIs"> </a>什麼是服務管理？
+服務管理 API 可讓使用者以程式設計方式存取 [Azure 傳統入口網站][management-portal]所提供的大部分服務管理功能。Azure SDK for Python 可讓您管理雲端服務和儲存體帳戶。
 
-## <a name="<a-name="whatis">-</a>what-is-service-management"></a><a name="WhatIs"> </a>What is Service Management
-The Service Management API provides programmatic access to much of the service management functionality available through the [Azure classic portal][management-portal]. The Azure SDK for Python allows you to manage your cloud services and storage accounts.
+若要使用服務管理 API，您必須[建立 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)。
 
-To use the Service Management API, you need to [create an Azure account](https://azure.microsoft.com/pricing/free-trial/).
+## <a name="Concepts"> </a>概念
+Azure SDK for Python 含有 [Azure 服務管理 API][svc-mgmt-rest-api]，這是一種 REST API。所有 API 作業都會透過 SSL 而執行，並可使用 X.509 v3 憑證相互驗證。管理服務可從執行於 Azure 的服務內存取，或直接透過網際網路，從任何可傳送 HTTPS 要求和接收 HTTPS 回應的應用程式存取。
 
-## <a name="<a-name="concepts">-</a>concepts"></a><a name="Concepts"> </a>Concepts
-The Azure SDK for Python wraps the [Azure Service Management API][svc-mgmt-rest-api], which is a REST API. All API operations are performed over SSL and mutually authenticated using X.509 v3 certificates. The management service may be accessed from within a service running in Azure, or directly over the Internet from any application that can send an HTTPS request and receive an HTTPS response.
+## <a name="Installation"> </a>安裝
 
-## <a name="<a-name="installation">-</a>installation"></a><a name="Installation"> </a>Installation
+本文中所述的所有功能都可在 `azure-servicemanagement-legacy` 封裝中找到，您可以使用 pip 來安裝此封裝。如需安裝 (例如，若您不熟悉 Python) 的詳細資訊，請參閱這篇文章︰[安裝 Python 和 Azure SDK](../python-how-to-install.md)
 
-All the features described in this article are available in the `azure-servicemanagement-legacy` package, which you can install using pip. For more details about installation (for example, if you are new to Python), consult this article: [Installing Python and the Azure SDK](../python-how-to-install.md)
+## <a name="Connect"> </a>作法：連線到服務管理
+若要連接到服務管理端點，您必須具備 Azure 訂用帳戶 ID 和有效的管理憑證。您可以透過 [Azure 傳統入口網站][management-portal]取得訂用帳戶 ID。
 
-## <a name="<a-name="connect">-</a>how-to:-connect-to-service-management"></a><a name="Connect"> </a>How to: Connect to service management
-To connect to the Service Management endpoint, you need your Azure subscription ID and a valid management certificate. You can obtain your subscription ID through the [Azure classic portal][management-portal].
+> [AZURE.NOTE] 從 Azure SDK for Python v0.8.0 開始，目前在 Windows 上執行時就能使用以 OpenSSL 建立的憑證。這需要使用 Python 2.7.4 或更新版本。建議使用者使用 OpenSSL 而非 .pfx，因為未來可能會移除 .pfx 憑證的支援。
 
-> [AZURE.NOTE] Since Azure SDK for Python v0.8.0, it is now possible to use certificates created with OpenSSL when running on Windows.  It requires Python 2.7.4 or later. We recommend users to use OpenSSL instead of .pfx, since support for .pfx certificates will likely be removed in the future.
-
-### <a name="management-certificates-on-windows/mac/linux-(openssl)"></a>Management certificates on Windows/Mac/Linux (OpenSSL)
-You can use [OpenSSL](http://www.openssl.org/) to create your management certificate.  You actually need to create two certificates, one for the server (a `.cer` file) and one for the client (a `.pem` file). To create the `.pem` file, execute:
+### Windows/Mac/Linux 上的管理憑證 (OpenSSL)
+您可以使用 [OpenSSL](http://www.openssl.org/) 建立管理憑證。實際上您需要建立兩個憑證，一個用於伺服器 (`.cer` 檔案)，一個用於用戶端 (`.pem` 檔案)。若要建立 `.pem` 檔案，請執行下列命令：
 
     openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout mycert.pem -out mycert.pem
 
-To create the `.cer` certificate, execute:
+若要建立 `.cer` 憑證，請執行下列命令：
 
     openssl x509 -inform pem -in mycert.pem -outform der -out mycert.cer
 
-For more information about Azure certificates, see [Certificates Overview for Azure Cloud Services](./cloud-services-certs-create.md). For a complete description of OpenSSL parameters, see the documentation at [http://www.openssl.org/docs/apps/openssl.html](http://www.openssl.org/docs/apps/openssl.html).
+如需有關 Azure 憑證的詳細資訊，請參閱 [Azure 雲端服務的憑證概觀](./cloud-services-certs-create.md)。如需 OpenSSL 參數的完整說明，請參閱 [http://www.openssl.org/docs/apps/openssl.html](http://www.openssl.org/docs/apps/openssl.html) 上的文件。
 
-After you have created these files, you need to upload the `.cer` file to Azure via the "Upload" action of the "Settings" tab of the [Azure classic portal][management-portal], and you need to make note of where you saved the `.pem` file.
+建立這些檔案之後，您必須透過 [Azure 傳統入口網站][management-portal]中 [設定] 索引標籤的 [上傳] 動作，將 `.cer` 檔案上傳至 Azure，且必須記下儲存 `.pem` 檔案的位置。
 
-After you have obtained your subscription ID, created a certificate, and uploaded the `.cer` file to Azure, you can connect to the Azure management endpoint by passing the subscription id and the path to the `.pem` file to **ServiceManagementService**:
+取得訂用帳戶 ID、建立憑證，並將 `.cer` 檔案上傳至 Azure 之後，您可以將訂用帳戶 ID 和 `.pem` 檔案的路徑傳送至 **ServiceManagementService**，以連接到 Azure 管理端點：
 
-    from azure import *
-    from azure.servicemanagement import *
+	from azure import *
+	from azure.servicemanagement import *
 
-    subscription_id = '<your_subscription_id>'
-    certificate_path = '<path_to_.pem_certificate>'
+	subscription_id = '<your_subscription_id>'
+	certificate_path = '<path_to_.pem_certificate>'
 
-    sms = ServiceManagementService(subscription_id, certificate_path)
+	sms = ServiceManagementService(subscription_id, certificate_path)
 
-In the preceding example, `sms` is a **ServiceManagementService** object. The **ServiceManagementService** class is the primary class used to manage Azure services.
+在上一個範例中，`sms` 是 **ServiceManagementService** 物件。**ServiceManagementService** 類別是用來管理 Azure 服務的主要類別。
 
-### <a name="management-certificates-on-windows-(makecert)"></a>Management certificates on Windows (MakeCert)
+### Windows 上的管理憑證 (MakeCert)
 
-You can create a self-signed management certificate on your machine using `makecert.exe`.  Open a **Visual Studio command prompt** as an **administrator** and use the following command, replacing *AzureCertificate* with the certificate name you would like to use.
+您可以使用 `makecert.exe`，在您的機器上建立自我簽署管理憑證。請以**系統管理員**的身分開啟 **Visual Studio 命令提示字元**，並使用下列命令 (將 *AzureCertificate* 取代為您要使用的憑證名稱)。
 
     makecert -sky exchange -r -n "CN=AzureCertificate" -pe -a sha1 -len 2048 -ss My "AzureCertificate.cer"
 
-The command creates the `.cer` file, and installs it in the **Personal** certificate store. For more details, see [Certificates Overview for Azure Cloud Services](./cloud-services-certs-create.md).
+此命令會建立 `.cer` 檔案，並將其安裝在 [個人] 憑證存放區中。如需詳細資訊，請參閱 [Azure 雲端服務的憑證概觀](./cloud-services-certs-create.md)。
 
-After you have created the certificate, you need to upload the `.cer` file to Azure via the "Upload" action of the "Settings" tab of the [Azure classic portal][management-portal].
+建立憑證之後，您必須透過 [Azure 傳統入口網站][management-portal]中 [設定] 索引標籤的 [上傳] 動作，將 `.cer` 檔案上傳至 Azure。
 
-After you have obtained your subscription ID, created a certificate, and uploaded the `.cer` file to Azure, you can connect to the Azure management endpoint by passing the subscription id and the location of the certificate in your **Personal** certificate store to **ServiceManagementService** (again, replace *AzureCertificate* with the name of your certificate):
+取得訂用帳戶 ID、建立憑證，並將 `.cer` 檔案上傳至 Azure 之後，您可以將訂用帳戶 ID 和 [個人] 憑證存放區中的憑證位置傳送至 **ServiceManagementService**，以連接到 Azure 管理端點 (同樣地，使用您的憑證名稱來取代 AzureCertificate)：
 
-    from azure import *
-    from azure.servicemanagement import *
+	from azure import *
+	from azure.servicemanagement import *
 
-    subscription_id = '<your_subscription_id>'
-    certificate_path = 'CURRENT_USER\\my\\AzureCertificate'
+	subscription_id = '<your_subscription_id>'
+	certificate_path = 'CURRENT_USER\\my\\AzureCertificate'
 
-    sms = ServiceManagementService(subscription_id, certificate_path)
+	sms = ServiceManagementService(subscription_id, certificate_path)
 
-In the preceding example, `sms` is a **ServiceManagementService** object. The **ServiceManagementService** class is the primary class used to manage Azure services.
+在上一個範例中，`sms` 是 **ServiceManagementService** 物件。**ServiceManagementService** 類別是用來管理 Azure 服務的主要類別。
 
-## <a name="<a-name="listavailablelocations">-</a>how-to:-list-available-locations"></a><a name="ListAvailableLocations"> </a>How to: List available locations
+## <a name="ListAvailableLocations"> </a>作法：列出可用位置
 
-To list the locations that are available for hosting services, use the **list\_locations** method:
+若要列出可用來代管服務的位置，請使用 **list\_locations** 方法：
 
-    from azure import *
-    from azure.servicemanagement import *
+	from azure import *
+	from azure.servicemanagement import *
 
-    sms = ServiceManagementService(subscription_id, certificate_path)
+	sms = ServiceManagementService(subscription_id, certificate_path)
 
-    result = sms.list_locations()
-    for location in result:
-        print(location.name)
+	result = sms.list_locations()
+	for location in result:
+		print(location.name)
 
-When you create a cloud service or storage service you need to provide a valid location. The **list\_locations** method always returns an up-to-date list of the currently available locations. As of this writing, the available locations are:
+在建立雲端服務或儲存體服務時，您必須提供有效的位置。**list\_locations** 方法一律會傳回目前可用位置的最新清單。截至本文撰寫時間為止，可用位置如下：
 
-- West Europe
-- North Europe
-- Southeast Asia
-- East Asia
-- Central US
-- North Central US
-- South Central US
-- West US
-- East US
-- Japan East
-- Japan West
-- Brazil South
-- Australia East
-- Australia Southeast
+- 西歐
+- 北歐
+- 東南亞
+- 東亞
+- 美國中部
+- 美國中北部
+- 美國中南部
+- 美國西部
+- 美國東部
+- 日本東部
+- 日本西部
+- 巴西南部
+- 澳洲東部
+- 澳大利亞東南部
 
-## <a name="<a-name="createcloudservice">-</a>how-to:-create-a-cloud-service"></a><a name="CreateCloudService"> </a>How to: Create a cloud service
+## <a name="CreateCloudService"> </a>作法：建立雲端服務
 
-When you create an application and run it in Azure, the code and configuration together are called an Azure [cloud service][] (known as a *hosted service* in earlier Azure releases). The **create\_hosted\_service** method allows you to create a new hosted service by providing a hosted service name (which must be unique in Azure), a label (automatically encoded to base64), a description, and a location.
+當您在 Azure 中建立應用程式並加以執行時，程式碼和組態會統稱為 Azure [雲端服務] \(在舊版的 Azure 中稱為*代管服務*)。**create\_hosted\_service** 方法可讓您藉由提供託管服務名稱 (在 Azure 中必須是唯一的)、標籤 (自動編碼為 base64)、描述和位置，來建立新的託管服務。
 
-    from azure import *
-    from azure.servicemanagement import *
+	from azure import *
+	from azure.servicemanagement import *
 
-    sms = ServiceManagementService(subscription_id, certificate_path)
+	sms = ServiceManagementService(subscription_id, certificate_path)
 
-    name = 'myhostedservice'
-    label = 'myhostedservice'
-    desc = 'my hosted service'
-    location = 'West US'
+	name = 'myhostedservice'
+	label = 'myhostedservice'
+	desc = 'my hosted service'
+	location = 'West US'
 
-    sms.create_hosted_service(name, label, desc, location)
+	sms.create_hosted_service(name, label, desc, location)
 
-You can list all the hosted services for your subscription with the **list\_hosted\_services** method:
+您可以使用 **list\_hosted\_services** 方法，列出訂用帳戶的所有託管服務：
 
-    result = sms.list_hosted_services()
+	result = sms.list_hosted_services()
 
-    for hosted_service in result:
-        print('Service name: ' + hosted_service.service_name)
-        print('Management URL: ' + hosted_service.url)
-        print('Location: ' + hosted_service.hosted_service_properties.location)
-        print('')
+	for hosted_service in result:
+		print('Service name: ' + hosted_service.service_name)
+		print('Management URL: ' + hosted_service.url)
+		print('Location: ' + hosted_service.hosted_service_properties.location)
+		print('')
 
-If you want to get information about a particular hosted service, you can do so by passing the hosted service name to the **get\_hosted\_service\_properties** method:
+如果要取得特定代管服務的相關資訊，您只要將代管服務名稱傳至 **get\_hosted\_service\_properties** 方法即可：
 
-    hosted_service = sms.get_hosted_service_properties('myhostedservice')
+	hosted_service = sms.get_hosted_service_properties('myhostedservice')
 
-    print('Service name: ' + hosted_service.service_name)
-    print('Management URL: ' + hosted_service.url)
-    print('Location: ' + hosted_service.hosted_service_properties.location)
+	print('Service name: ' + hosted_service.service_name)
+	print('Management URL: ' + hosted_service.url)
+	print('Location: ' + hosted_service.hosted_service_properties.location)
 
-After you have created a cloud service, you can deploy your code to the service with the **create\_deployment** method.
+建立雲端服務後，您可以使用 **create\_deployment** 方法將程式碼部署至服務。
 
-## <a name="<a-name="deletecloudservice">-</a>how-to:-delete-a-cloud-service"></a><a name="DeleteCloudService"> </a>How to: Delete a cloud service
+## <a name="DeleteCloudService"> </a>作法：刪除雲端服務
 
-You can delete a cloud service by passing the service name to the **delete\_hosted\_service** method:
+您可以將服務名稱傳至 **delete\_hosted\_service** 方法，以刪除雲端服務：
 
-    sms.delete_hosted_service('myhostedservice')
+	sms.delete_hosted_service('myhostedservice')
 
-Before you can delete a service, all deployments for the service must first be deleted. (See [How to: Delete a deployment](#DeleteDeployment) for details.)
+您必須先刪除服務的所有部署，才能刪除該服務。(請參閱[作法：刪除部署](#DeleteDeployment)，以取得詳細資料)。
 
-## <a name="<a-name="deletedeployment">-</a>how-to:-delete-a-deployment"></a><a name="DeleteDeployment"> </a>How to: Delete a deployment
+## <a name="DeleteDeployment"> </a>作法：刪除部署
 
-To delete a deployment, use the **delete\_deployment** method. The following example shows how to delete a deployment named `v1`.
+若要刪除部署，請使用 **delete\_deployment** 方法。下列範例示範如何刪除名為 `v1` 的部署。
 
-    from azure import *
-    from azure.servicemanagement import *
+	from azure import *
+	from azure.servicemanagement import *
 
-    sms = ServiceManagementService(subscription_id, certificate_path)
+	sms = ServiceManagementService(subscription_id, certificate_path)
 
-    sms.delete_deployment('myhostedservice', 'v1')
+	sms.delete_deployment('myhostedservice', 'v1')
 
-## <a name="<a-name="createstorageservice">-</a>how-to:-create-a-storage-service"></a><a name="CreateStorageService"> </a>How to: Create a storage service
+## <a name="CreateStorageService"> </a>作法：建立儲存體服務
 
-A [storage service](../storage/storage-create-storage-account.md) gives you access to Azure [Blobs](../storage/storage-python-how-to-use-blob-storage.md), [Tables](../storage/storage-python-how-to-use-table-storage.md), and [Queues](../storage/storage-python-how-to-use-queue-storage.md). To create a storage service, you need a name for the service (between 3 and 24 lowercase characters and unique within Azure), a description, a label (up to 100 characters, automatically encoded to base64), and a location. The following example shows how to create a storage service by specifying a location.
+[儲存服務](../storage/storage-create-storage-account.md)可讓您存取 Azure [Blob](../storage/storage-python-how-to-use-blob-storage.md)、[資料表](../storage/storage-python-how-to-use-table-storage.md)和[佇列](../storage/storage-python-how-to-use-queue-storage.md)。若要建立儲存服務，您必須要有服務的名稱 (3 到 24 個小寫字元，且在 Azure 中是唯一的)、描述、標籤 (最多 100 個字元，會自動編碼為 base64)，以及位置。下列範例說明如何藉由指定位置來建立儲存服務。
 
-    from azure import *
-    from azure.servicemanagement import *
+	from azure import *
+	from azure.servicemanagement import *
 
-    sms = ServiceManagementService(subscription_id, certificate_path)
+	sms = ServiceManagementService(subscription_id, certificate_path)
 
-    name = 'mystorageaccount'
-    label = 'mystorageaccount'
-    location = 'West US'
-    desc = 'My storage account description.'
+	name = 'mystorageaccount'
+	label = 'mystorageaccount'
+	location = 'West US'
+	desc = 'My storage account description.'
 
-    result = sms.create_storage_account(name, desc, label, location=location)
+	result = sms.create_storage_account(name, desc, label, location=location)
 
-    operation_result = sms.get_operation_status(result.request_id)
-    print('Operation status: ' + operation_result.status)
+	operation_result = sms.get_operation_status(result.request_id)
+	print('Operation status: ' + operation_result.status)
 
-Note in the preceding example that the status of the **create\_storage\_account** operation can be retrieved by passing the result returned by **create\_storage\_account** to the **get\_operation\_status** method.  
+請注意，在上一個範例中，可將 **create\_storage\_account** 所傳回的結果傳至 **get\_operation\_status** 方法，以擷取 **create\_storage\_account** 作業的狀態。
 
-You can list your storage accounts and their properties with the **list\_storage\_accounts** method:
+您可以使用 **list\_storage\_accounts** 方法列出您的儲存帳號及其屬性：
 
-    from azure import *
-    from azure.servicemanagement import *
+	from azure import *
+	from azure.servicemanagement import *
 
-    sms = ServiceManagementService(subscription_id, certificate_path)
+	sms = ServiceManagementService(subscription_id, certificate_path)
 
-    result = sms.list_storage_accounts()
-    for account in result:
-        print('Service name: ' + account.service_name)
-        print('Location: ' + account.storage_service_properties.location)
-        print('')
+	result = sms.list_storage_accounts()
+	for account in result:
+		print('Service name: ' + account.service_name)
+		print('Location: ' + account.storage_service_properties.location)
+		print('')
 
-## <a name="<a-name="deletestorageservice">-</a>how-to:-delete-a-storage-service"></a><a name="DeleteStorageService"> </a>How to: Delete a storage service
+## <a name="DeleteStorageService"> </a>作法：刪除儲存體服務
 
-You can delete a storage service by passing the storage service name to the **delete\_storage\_account** method. Deleting a storage service deletes all data stored in the service (blobs, tables, and queues).
+您可以將儲存服務名稱傳至 **delete\_storage\_account** 方法，以刪除儲存服務。如果刪除儲存體服務，則會刪除該服務中儲存的所有資料 (Blob、資料表和佇列)。
 
-    from azure import *
-    from azure.servicemanagement import *
+	from azure import *
+	from azure.servicemanagement import *
 
-    sms = ServiceManagementService(subscription_id, certificate_path)
+	sms = ServiceManagementService(subscription_id, certificate_path)
 
-    sms.delete_storage_account('mystorageaccount')
+	sms.delete_storage_account('mystorageaccount')
 
-## <a name="<a-name="listoperatingsystems">-</a>how-to:-list-available-operating-systems"></a><a name="ListOperatingSystems"> </a>How to: List available operating systems
+## <a name="ListOperatingSystems"> </a>作法：列出可用作業系統
 
-To list the operating systems that are available for hosting services, use the **list\_operating\_systems** method:
+若要列出可用來代管服務的作業系統，請使用 **list\_operating\_systems** 方法：
 
-    from azure import *
-    from azure.servicemanagement import *
+	from azure import *
+	from azure.servicemanagement import *
 
-    sms = ServiceManagementService(subscription_id, certificate_path)
+	sms = ServiceManagementService(subscription_id, certificate_path)
 
-    result = sms.list_operating_systems()
+	result = sms.list_operating_systems()
 
-    for os in result:
-        print('OS: ' + os.label)
-        print('Family: ' + os.family_label)
-        print('Active: ' + str(os.is_active))
+	for os in result:
+		print('OS: ' + os.label)
+		print('Family: ' + os.family_label)
+		print('Active: ' + str(os.is_active))
 
-Alternatively, you can use the **list\_operating\_system\_families** method, which groups the operating systems by family:
+或者，您可以使用 **list\_operating\_system\_families** 方法，以依系列將作業系統分組：
 
-    result = sms.list_operating_system_families()
+	result = sms.list_operating_system_families()
 
-    for family in result:
-        print('Family: ' + family.label)
-        for os in family.operating_systems:
-            if os.is_active:
-                print('OS: ' + os.label)
-                print('Version: ' + os.version)
-        print('')
+	for family in result:
+		print('Family: ' + family.label)
+		for os in family.operating_systems:
+			if os.is_active:
+				print('OS: ' + os.label)
+				print('Version: ' + os.version)
+		print('')
 
-## <a name="<a-name="createvmimage">-</a>how-to:-create-an-operating-system-image"></a><a name="CreateVMImage"> </a>How to: Create an operating system image
+## <a name="CreateVMImage"> </a>作法：建立作業系統映像
 
-To add an operating system image to the image repository, use the **add\_os\_image** method:
+若要將作業系統映像新增至映像儲存機制，請使用 **add\_os\_image** 方法：
 
-    from azure import *
-    from azure.servicemanagement import *
+	from azure import *
+	from azure.servicemanagement import *
 
-    sms = ServiceManagementService(subscription_id, certificate_path)
+	sms = ServiceManagementService(subscription_id, certificate_path)
 
-    name = 'mycentos'
-    label = 'mycentos'
-    os = 'Linux' # Linux or Windows
-    media_link = 'url_to_storage_blob_for_source_image_vhd'
+	name = 'mycentos'
+	label = 'mycentos'
+	os = 'Linux' # Linux or Windows
+	media_link = 'url_to_storage_blob_for_source_image_vhd'
 
-    result = sms.add_os_image(label, media_link, name, os)
+	result = sms.add_os_image(label, media_link, name, os)
 
-    operation_result = sms.get_operation_status(result.request_id)
-    print('Operation status: ' + operation_result.status)
+	operation_result = sms.get_operation_status(result.request_id)
+	print('Operation status: ' + operation_result.status)
 
-To list the operating system images that are available, use the **list\_os\_images** method. It includes all platform images and user images:
+若要列出可用的作業系統映像，請使用 **list\_os\_images** 方法。其中包括所有的平台映像和使用者映像：
 
-    result = sms.list_os_images()
+	result = sms.list_os_images()
 
-    for image in result:
-        print('Name: ' + image.name)
-        print('Label: ' + image.label)
-        print('OS: ' + image.os)
-        print('Category: ' + image.category)
-        print('Description: ' + image.description)
-        print('Location: ' + image.location)
-        print('Media link: ' + image.media_link)
-        print('')
+	for image in result:
+		print('Name: ' + image.name)
+		print('Label: ' + image.label)
+		print('OS: ' + image.os)
+		print('Category: ' + image.category)
+		print('Description: ' + image.description)
+		print('Location: ' + image.location)
+		print('Media link: ' + image.media_link)
+		print('')
 
-## <a name="<a-name="deletevmimage">-</a>how-to:-delete-an-operating-system-image"></a><a name="DeleteVMImage"> </a>How to: Delete an operating system image
+## <a name="DeleteVMImage"> </a>作法：刪除作業系統映像
 
-To delete a user image, use the **delete\_os\_image** method:
+若要刪除使用者映像，請使用 **delete\_os\_image** 方法：
 
-    from azure import *
-    from azure.servicemanagement import *
+	from azure import *
+	from azure.servicemanagement import *
 
-    sms = ServiceManagementService(subscription_id, certificate_path)
+	sms = ServiceManagementService(subscription_id, certificate_path)
 
-    result = sms.delete_os_image('mycentos')
+	result = sms.delete_os_image('mycentos')
 
-    operation_result = sms.get_operation_status(result.request_id)
-    print('Operation status: ' + operation_result.status)
+	operation_result = sms.get_operation_status(result.request_id)
+	print('Operation status: ' + operation_result.status)
 
-## <a name="<a-name="createvm">-</a>how-to:-create-a-virtual-machine"></a><a name="CreateVM"> </a>How to: Create a virtual machine
+## <a name="CreateVM"> </a>作法：建立虛擬機器
 
-To create a virtual machine, you first need to create a [cloud service](#CreateCloudService).  Then create the virtual machine deployment using the **create\_virtual\_machine\_deployment** method:
+若要建立虛擬機器，您必須先建立[雲端服務](#CreateCloudService)。接著，請使用 **create\_virtual\_machine\_deployment** 方法建立虛擬機器部署：
 
-    from azure import *
-    from azure.servicemanagement import *
+	from azure import *
+	from azure.servicemanagement import *
 
-    sms = ServiceManagementService(subscription_id, certificate_path)
+	sms = ServiceManagementService(subscription_id, certificate_path)
 
-    name = 'myvm'
-    location = 'West US'
+	name = 'myvm'
+	location = 'West US'
 
-    #Set the location
-    sms.create_hosted_service(service_name=name,
-        label=name,
-        location=location)
+	#Set the location
+	sms.create_hosted_service(service_name=name,
+		label=name,
+		location=location)
 
-    # Name of an os image as returned by list_os_images
-    image_name = 'OpenLogic__OpenLogic-CentOS-62-20120531-en-us-30GB.vhd'
+	# Name of an os image as returned by list_os_images
+	image_name = 'OpenLogic__OpenLogic-CentOS-62-20120531-zh-TW-30GB.vhd'
 
-    # Destination storage account container/blob where the VM disk
-    # will be created
-    media_link = 'url_to_target_storage_blob_for_vm_hd'
+	# Destination storage account container/blob where the VM disk
+	# will be created
+	media_link = 'url_to_target_storage_blob_for_vm_hd'
 
-    # Linux VM configuration, you can use WindowsConfigurationSet
-    # for a Windows VM instead
-    linux_config = LinuxConfigurationSet('myhostname', 'myuser', 'mypassword', True)
+	# Linux VM configuration, you can use WindowsConfigurationSet
+	# for a Windows VM instead
+	linux_config = LinuxConfigurationSet('myhostname', 'myuser', 'mypassword', True)
 
-    os_hd = OSVirtualHardDisk(image_name, media_link)
+	os_hd = OSVirtualHardDisk(image_name, media_link)
 
-    sms.create_virtual_machine_deployment(service_name=name,
-        deployment_name=name,
-        deployment_slot='production',
-        label=name,
-        role_name=name,
-        system_config=linux_config,
-        os_virtual_hard_disk=os_hd,
-        role_size='Small')
+	sms.create_virtual_machine_deployment(service_name=name,
+		deployment_name=name,
+		deployment_slot='production',
+		label=name,
+		role_name=name,
+		system_config=linux_config,
+		os_virtual_hard_disk=os_hd,
+		role_size='Small')
 
-## <a name="<a-name="deletevm">-</a>how-to:-delete-a-virtual-machine"></a><a name="DeleteVM"> </a>How to: Delete a virtual machine
+## <a name="DeleteVM"> </a>作法：刪除虛擬機器
 
-To delete a virtual machine, you first delete the deployment using the **delete\_deployment** method:
+若要刪除虛擬機器，您必須先使用 **delete\_deployment** 方法刪除部署：
 
-    from azure import *
-    from azure.servicemanagement import *
+	from azure import *
+	from azure.servicemanagement import *
 
-    sms = ServiceManagementService(subscription_id, certificate_path)
+	sms = ServiceManagementService(subscription_id, certificate_path)
 
-    sms.delete_deployment(service_name='myvm',
-        deployment_name='myvm')
+	sms.delete_deployment(service_name='myvm',
+		deployment_name='myvm')
 
-The cloud service can then be deleted using the **delete\_hosted\_service** method:
+接著可以使用 **delete\_hosted\_service** 方法刪除雲端服務：
 
-    sms.delete_hosted_service(service_name='myvm')
+	sms.delete_hosted_service(service_name='myvm')
 
-##<a name="how-to:-create-a-virtual-machine-from-a-captured-virtual-machine-image"></a>How To: Create a Virtual Machine from a Captured Virtual Machine Image
+##作法：從擷取的虛擬機器映像建立虛擬機器
 
-To capture a VM image, you first call the **capture\_vm\_image** method:
+若要擷取 VM 映像，請先呼叫 **capture\_vm\_image** 方法：
 
-    from azure import *
-    from azure.servicemanagement import *
+	from azure import *
+	from azure.servicemanagement import *
 
-    sms = ServiceManagementService(subscription_id, certificate_path)
+	sms = ServiceManagementService(subscription_id, certificate_path)
 
-    # replace the below three parameters with actual values
-    hosted_service_name = 'hs1'
-    deployment_name = 'dep1'
-    vm_name = 'vm1'
+	# replace the below three parameters with actual values
+	hosted_service_name = 'hs1'
+	deployment_name = 'dep1'
+	vm_name = 'vm1'
 
-    image_name = vm_name + 'image'
-    image = CaptureRoleAsVMImage    ('Specialized',
-        image_name,
-        image_name + 'label',
-        image_name + 'description',
-        'english',
-        'mygroup')
+	image_name = vm_name + 'image'
+	image = CaptureRoleAsVMImage	('Specialized',
+		image_name,
+		image_name + 'label',
+		image_name + 'description',
+		'english',
+		'mygroup')
 
-    result = sms.capture_vm_image(
-            hosted_service_name,
-            deployment_name,
-            vm_name,
-            image
-        )
+	result = sms.capture_vm_image(
+			hosted_service_name,
+			deployment_name,
+			vm_name,
+			image
+		)
 
-Next, to make sure that you have successfully captured the image, use the **list\_vm\_images** api, and make sure your image is displayed in the results:
+接著，若要確定您已成功擷取映像，請使用 **list\_vm\_images** api 並確定映像已顯示在結果中：
 
-    images = sms.list_vm_images()
+	images = sms.list_vm_images()
 
-To finally create the virtual machine using the captured image, use the **create\_virtual\_machine\_deployment** method as before, but this time pass in the vm_image_name instead
+若最後要使用擷取的映像建立虛擬機器，請如同前面使用 **create\_virtual\_machine\_deployment** 方法，但這次改為傳入 vm\_image\_name
 
-    from azure import *
-    from azure.servicemanagement import *
+	from azure import *
+	from azure.servicemanagement import *
 
-    sms = ServiceManagementService(subscription_id, certificate_path)
+	sms = ServiceManagementService(subscription_id, certificate_path)
 
-    name = 'myvm'
-    location = 'West US'
+	name = 'myvm'
+	location = 'West US'
 
-    #Set the location
-    sms.create_hosted_service(service_name=name,
-        label=name,
-        location=location)
+	#Set the location
+	sms.create_hosted_service(service_name=name,
+		label=name,
+		location=location)
 
-    sms.create_virtual_machine_deployment(service_name=name,
-        deployment_name=name,
-        deployment_slot='production',
-        label=name,
-        role_name=name,
-        system_config=linux_config,
-        os_virtual_hard_disk=None,
-        role_size='Small',
-        vm_image_name = image_name)
+	sms.create_virtual_machine_deployment(service_name=name,
+		deployment_name=name,
+		deployment_slot='production',
+		label=name,
+		role_name=name,
+		system_config=linux_config,
+		os_virtual_hard_disk=None,
+		role_size='Small',
+		vm_image_name = image_name)
 
-To learn more about how to capture a Linux Virtual Machine, see [How to Capture a Linux Virtual Machine.](../virtual-machines/virtual-machines-linux-classic-capture-image.md)
+若要深入了解如何擷取 Linux 虛擬機器，請參閱[如何擷取 Linux 虛擬機器](../virtual-machines/virtual-machines-linux-classic-capture-image.md)。
 
-To learn more about how to capture a Windows Virtual Machine, see [How to Capture a Windows Virtual Machine.](../virtual-machines/virtual-machines-windows-classic-capture-image.md)
+若要深入了解如何擷取 Windows 虛擬機器，請參閱[如何擷取 Windows 虛擬機器](../virtual-machines/virtual-machines-windows-classic-capture-image.md)。
 
-## <a name="<a-name="what's-next">-</a>next-steps"></a><a name="What's Next"> </a>Next Steps
+## <a name="What's Next"> </a>後續步驟
 
-Now that you've learned the basics of service management, you can access the [Complete API reference documentation for the Azure Python SDK](http://azure-sdk-for-python.readthedocs.org/) and perform complex tasks easily to manage your python application.
+現在，您已了解服務管理的基本概念，您可以存取 [Azure Python SDK 的完整 API 參考文件](http://azure-sdk-for-python.readthedocs.org/)並輕鬆執行複雜工作，以管理 Python 應用程式。
 
-For more information, see the [Python Developer Center](/develop/python/).
+如需詳細資訊，請參閱 [Python 開發人員中心](/develop/python/)。
 
 [What is Service Management]: #WhatIs
 [Concepts]: #Concepts
@@ -437,11 +436,6 @@ For more information, see the [Python Developer Center](/develop/python/).
 [svc-mgmt-rest-api]: http://msdn.microsoft.com/library/windowsazure/ee460799.aspx
 
 
-[cloud service]:/services/cloud-services/
+[雲端服務]: https://azure.microsoft.com/documentation/services/cloud-services/
 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

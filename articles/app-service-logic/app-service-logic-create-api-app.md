@@ -1,98 +1,94 @@
 <properties 
-    pageTitle="Create an API for Logic Apps" 
-    description="Creating a custom API to use with Logic Apps" 
-    authors="jeffhollan" 
-    manager="dwrede" 
-    editor="" 
-    services="logic-apps" 
-    documentationCenter=""/>
+	pageTitle="建立 Logic Apps 的 API" 
+	description="建立自訂 API 來與 Logic Apps 搭配使用" 
+	authors="jeffhollan" 
+	manager="dwrede" 
+	editor="" 
+	services="logic-apps" 
+	documentationCenter=""/>
 
 <tags
-    ms.service="logic-apps"
-    ms.workload="integration"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na" 
-    ms.topic="article"
-    ms.date="10/18/2016"
-    ms.author="jehollan"/>
+	ms.service="logic-apps"
+	ms.workload="integration"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"	
+	ms.topic="article"
+	ms.date="07/25/2016"
+	ms.author="jehollan"/>
     
+# 建立自訂 API 來與 Logic Apps 搭配使用
 
-# <a name="creating-a-custom-api-to-use-with-logic-apps"></a>Creating a custom API to use with Logic Apps
+如果您想要擴充 Logic Apps 平台，有許多方法可供您呼叫到 API 或不屬於我們諸多現成連接器之一的系統之中。在這些方法之中，其中一種便是建立可從邏輯應用程式工作流程內呼叫的 API 應用程式。
 
-If you want to extend the Logic Apps platform, there are many ways you can call into APIs or systems that aren't available as one of our many out-of-the-box connectors.  One of those ways to create an API App you can call from within a Logic App workflow.
+## 實用工具
 
-## <a name="helpful-tools"></a>Helpful Tools
+為了讓 API 與 Logic Apps 在搭配運作時達到最佳效能，建議您產生 [Swagger](http://swagger.io) 文件來詳述您的 API 所支援的作業和參數。有許多程式庫 (例如 [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle)) 可為您自動產生 Swagger。您也可以使用 [TRex](https://github.com/nihaue/TRex) 來協助您註解 Swagger 以使其與 Logic Apps 良好配合 (顯示名稱、屬性類型等)。如需針對 Logic Apps 所建置之 API Apps 的部分範例，請務必查看我們的 [GitHub 儲存機制](http://github.com/logicappsio)或[部落格](http://aka.ms/logicappsblog)。
 
-For APIs to work best with Logic Apps, we recommend generating a [swagger](http://swagger.io) doc detailing the supported operations and parameters for your API.  There are many libraries (like [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle)) that will automatically generate the swagger for you.  You can also use [TRex](https://github.com/nihaue/TRex) to help annotate the swagger to work well with Logic Apps (display names, property types, etc.).  For some samples of API Apps built for Logic Apps, be sure to check out our [GitHub repository](http://github.com/logicappsio) or [blog](http://aka.ms/logicappsblog).
+## 動作
 
-## <a name="actions"></a>Actions
+邏輯應用程式的基本動作是會接受 HTTP 要求並傳回回應 (通常是 200) 的控制器。不過，也有不同的模式可供遵循，以便根據您的需求擴充動作。
 
-The basic action for a Logic App is a controller that will accept an HTTP Request and return a response (usually 200).  However there are different patterns you can follow to extend actions based on your needs.
+根據預設，邏輯應用程式引擎會在 1 分鐘後讓要求逾時。不過，透過遵循下面會詳細說明的非同步或 Webhook 模式，您也可以讓您的 API 執行需要更長時間的動作並讓引擎等候動作完成。
 
-By default the Logic App engine will timeout a request after 1 minute.  However, you can have your API execute on actions that take longer, and have the engine wait for completion, by following either an async or webhook pattern detailed below.
+對於標準動作，只要在 API 中撰寫透過 Swagger 公開的 HTTP 要求方法。您可以在我們的 [GitHub 儲存機制](https://github.com/logicappsio)中看到使用 Logic Apps 之 API 應用程式的範例。以下是使用自訂連接器完成常見模式的方法。
 
-For standard actions, simply write an HTTP request method in your API which is exposed via swagger.  You can see samples of API apps that work with Logic Apps in our [GitHub repository](https://github.com/logicappsio).  Below are ways to accomplish common patterns with a custom connector.
+### 長時間執行的動作 - 非同步模式
 
-### <a name="long-running-actions---async-pattern"></a>Long Running Actions - Async Pattern
+在執行需要長時間的步驟或工作時，首要工作是確定引擎知道您還沒有逾時。您也需要與引擎溝通它要如何知道您已完成工作，最後，您需要將相關資料傳回給引擎，以便它能繼續工作流程。您可以遵循下列流程以透過 API 來完成。下列步驟是從自訂 API 的觀點出發︰
 
-When running a long step or task, the first thing you need to do is make sure the engine knows you haven’t timed out. You also need to communicate with the engine how it will know when you are finished with the task, and finally, you need to return relevant data to the engine so it can continue with the workflow. You can complete that via an API by following the flow below. These steps are from the point-of-view of the custom API:
+1. 收到要求時，立即傳回回應 (再完成工作)。這個回應會是 `202 ACCEPTED` 回應，可讓引擎知道您已收到資料並接受裝載，現在正在處理。202 回應應包含下列標頭︰
+ * `location` 標頭 (必要)︰這是可用來檢查作業狀態之 URL Logic Apps 的絕對路徑。
+ * `retry-after` (選用，針對動作會預設為 20)。這是引擎在輪詢位置標頭 URL 以檢查狀態前應該等候的秒數。
 
-1. When a request is received, immediately return a response (before work is done). This response will be a `202 ACCEPTED` response, letting the engine know you got the data, accepted the payload, and are now processing. The 202 response should contain the following headers: 
- * `location` header (required): This is an absolute path to the URL Logic Apps can use to check the status of the job.
- * `retry-after` (optional, will default to 20 for actions). This is the number of seconds the engine should wait before polling the location header URL to check status.
+2. 在檢查作業狀態時，請執行下列檢查︰
+ * 如果作業完成︰傳回 `200 OK` 回應，並具有回應裝載。
+ * 如果作業仍在處理︰傳回另一個 `202 ACCEPTED` 回應，並以相同的標頭做為初始回應
 
-2. When a job status is checked, perform the following checks: 
- * If the job is done: return a `200 OK` response, with the response payload.
- * If the job is still processing: return another `202 ACCEPTED` response, with the same headers as the initial response
+此模式可讓您在自訂 API 的執行緒內執行需要相當長時間的工作，但讓 Logic Apps 中的作用中連線保持運作，以免它在工作完成之前逾時或繼續。在將此模式加入邏輯應用程式時，請務必注意您的定義中不需要任何資料，就可讓邏輯應用程式繼續輪詢和檢查狀態。引擎一看到「202 已接受」回應和有效的位置標頭就會採用非同步模式，並繼續輪詢位置標頭直到傳回非 202 為止。
 
-This pattern allows you to run extremely long tasks within a thread of your custom API, but keep an active connection alive with the Logic Apps engine so it doesn’t timeout or continue before work is completed. When adding this into your Logic App, it’s important to note you do not need do anything in your definition for the Logic App to continue to poll and check the status. As soon as the engine sees a 202 ACCEPTED response with a valid location header, it will honor the async pattern and continue to poll the location header until a non-202 is returned.
+您可以在[這裡](https://github.com/jeffhollan/LogicAppsAsyncResponseSample)查看這種模式在 GitHub 中的範例
 
-You can see a sample of this pattern in GitHub [here](https://github.com/jeffhollan/LogicAppsAsyncResponseSample)
+### Webhook 動作
 
-### <a name="webhook-actions"></a>Webhook Actions
+在您的工作流程期間，您可以讓邏輯應用程式暫停並等候「回呼」後再繼續。此回呼的形式是 HTTP POST。若要實作此模式，您需要在控制器上提供兩個端點︰訂閱和取消訂閱。
 
-During your workflow, you can have the Logic App pause and wait for a "callback" to continue.  This callback comes in the form of an HTTP POST.  To implement this pattern, you need to provide two endpoints on your controller: subscribe and unsubscribe.
+在「訂閱」上，邏輯應用程式會建立並註冊回呼 URL，以供您的 API 準備好以 HTTP POST 的形式儲存和回呼。任何內容/標頭都會傳遞至邏輯應用程式，並可用於工作流程的其餘部分。邏輯應用程式引擎一旦在執行時碰到該步驟，就會呼叫訂閱點。
 
-On 'subscribe', the Logic App will create and register a callback URL which your API can store and callback with ready as an HTTP POST.  Any content/headers will be passed into the Logic App and can be used within the remainder of the workflow.  The Logic App engine will call the subscribe point on execution as soon as it hits that step.
+如果執行遭到取消，邏輯應用程式引擎便會呼叫「取消訂閱」端點。然後您的 API 就可以視需要取消註冊回呼 URL。
 
-If the run was cancelled, the Logic App engine will make a call to the 'unsubscribe' endpoint.  Your API can then unregister the callback URL as needed.
+邏輯應用程式設計工具目前不支援透過 Swagger 探索 Webhook 端點，因此若要使用這種類型的動作，您必須新增「Webhook」動作並指定 URL、標頭和要求本文。您可以視需要在這些欄位中的任何一個使用 `@listCallbackUrl()` 工作流程函式，以傳遞回呼 URL。
 
-Currently the Logic App Designer doesn't support discovering a webhook endpoint through swagger, so to use this type of action you must add the "Webhook" action and specify the URL, headers, and body of your request.  You can use the `@listCallbackUrl()` workflow function in any of those fields as needed to pass in the callback URL.
+您可以在[這裡](https://github.com/jeffhollan/LogicAppTriggersExample/blob/master/LogicAppTriggers/Controllers/WebhookTriggerController.cs)查看 Webhook 模式在 GitHub 中的範例
 
-You can see a sample of a webhook pattern in GitHub [here](https://github.com/jeffhollan/LogicAppTriggersExample/blob/master/LogicAppTriggers/Controllers/WebhookTriggerController.cs)
+## 觸發程序
 
-## <a name="triggers"></a>Triggers
+除了動作之外，您也可以讓您的自訂 API 做為邏輯應用程式的觸發程序。下面有兩種模式可供遵循以便觸發邏輯應用程式︰
 
-In addition to actions, you can have your custom API act as a trigger to a Logic App.  There are two patterns you can follow below to trigger a Logic App:
+### 輪詢觸發程序
 
-### <a name="polling-triggers"></a>Polling Triggers
+輪詢觸發程序的作用很像上面的長時間執行非同步動作。邏輯應用程式引擎會在經過一段特定時間後呼叫觸發程序端點 (取決於 SKU，「進階」為 15 秒、「標準」為 1 分鐘，「免費」則為 1 小時)。
 
-Polling triggers act much like the Long Running Async actions above.  The Logic App engine will call the trigger endpoint after a certain period of time elapsed (dependent on SKU, 15 seconds for Premium, 1 minute for Standard, and 1 hour for Free).
+如果沒有資料可用，觸發程序會傳回 `202 ACCEPTED` 回應以及 `location` 和 `retry-after` 標頭。不過，建議讓觸發程序的 `location` 標頭包含 `triggerState` 的查詢參數。這是可讓您的 API 知道上一次引發邏輯應用程式之時間的少許識別碼。如果有資料可用，觸發程序會傳回 `200 OK` 回應和內容裝載。這將會引發邏輯應用程式。
 
-If there is no data available, the trigger returns a `202 ACCEPTED` response, with a `location` and `retry-after` header.  However, for triggers it is recommended the `location` header contains a query parameter of `triggerState`.  This is some identifier for your API to know when the last time the Logic App fired.  If there is data available, the trigger returns a `200 OK` response with the content payload.  This will fire the Logic App.
+比方說，如果我進行輪詢以查看檔案是否可用，則您可以建置輪詢觸發程序來執行下列作業︰
 
-For example if I was polling to see if a file was available, you could build a polling trigger that would do the following:
+* 如果收到的要求沒有 triggerState，API 將會傳回 `202 ACCEPTED` 和 `location` 標頭，且其 triggerState 為目前時間、`retry-after` 為 15。
+* 如果收到的要求有 triggerState︰
+ * 檢查看看在 triggerState DateTime 後是否新增了任何檔案。
+  * 如果有 1 個檔案，則傳回 `200 OK` 回應和內容裝載、將 triggerState 增加為我傳回之檔案的 DateTime，並將 `retry-after` 設定為 15。
+  * 如果有多個檔案，我可以一次傳回 1 個檔案和 `200 OK`、在 `location` 標頭中增加我的 triggerState，並將 `retry-after` 設定為 0。這可讓引擎知道還有其他資料可用，並立即在指定的 `location` 標頭中要求資料。
+  * 如果沒有任何可用的檔案，則傳回 `202 ACCEPTED` 回應，並讓 `location` triggerState 保持相同。將 `retry-after` 設定為 15。
 
-* If a request was received with no triggerState the API would return a `202 ACCEPTED` with a `location` header that has a triggerState of the current time and a `retry-after` of 15.
-* If a request was received with a triggerState:
- * Check to see if any files were added after the triggerState DateTime. 
-  * If there is 1 file, return a `200 OK` response with the content payload, increment the triggerState to the DateTime of the file I returned, and set the `retry-after` to 15.
-  * If there are multiple files, I can return 1 at a time with a `200 OK`, increment my triggerState in the `location` header, and set `retry-after` to 0.  This will let the engine know there is more data available and it will immediately request it at the `location` header specified.
-  * If there are no files available, return a `202 ACCEPTED` response, and leave the `location` triggerState the same.  Set `retry-after` to 15.
+您可以在[這裡](https://github.com/jeffhollan/LogicAppTriggersExample/tree/master/LogicAppTriggers)查看輪詢觸發程序在 GitHub 中的範例
 
-You can see a sample of a polling trigger in GitHub [here](https://github.com/jeffhollan/LogicAppTriggersExample/tree/master/LogicAppTriggers)
+### WebHook 觸發程序
 
-### <a name="webhook-triggers"></a>Webhook Triggers
+Webhook 觸發程序的作用很像上面的 Webhook 動作。每次新增和儲存 Webhook 觸發程序時，邏輯應用程式引擎便會呼叫「訂閱」端點。每當有資料可用時，您的 API 可以註冊 Webhook URL 並透過 HTTP POST 來加以呼叫。內容裝載和標頭會傳遞至邏輯應用程式執行。
 
-Webhook triggers act much like Webhook Actions above.  The Logic App engine will call the 'subscribe' endpoint whenever a webhook trigger is added and saved.  Your API can register the webhook URL and call it via HTTP POST whenever data is available.  The content payload and headers will be passed into the Logic App run.
+如果 Webhook 觸發程序曾遭到刪除 (不論是刪除整個邏輯應用程式還是只刪除 Webhook 觸發程序)，引擎便會呼叫「取消訂閱」URL 以供您的 API 取消註冊回呼 URL，並視需要停止任何處理程序。
 
-If a webhook trigger is ever deleted (either the Logic App entirely, or just the webhook trigger), the engine will make a call to the 'unsubscribe' URL where your API can unregister the callback URL and stop any processes as needed.
+邏輯應用程式設計工具目前不支援透過 Swagger 探索 Webhook 觸發程序，因此若要使用這種類型的動作，您必須新增 "Webhook" 觸發程序並指定 URL、標頭和要求本文。您可以視需要在這些欄位中的任何一個使用 `@listCallbackUrl()` 工作流程函式，以傳遞回呼 URL。
 
-Currently the Logic App Designer doesn't support discovering a webhook trigger through swagger, so to use this type of action you must add the "Webhook" trigger and specify the URL, headers, and body of your request.  You can use the `@listCallbackUrl()` workflow function in any of those fields as needed to pass in the callback URL.
+您可以在[這裡](https://github.com/jeffhollan/LogicAppTriggersExample/tree/master/LogicAppTriggers)查看 Webhook 觸發程序在 GitHub 中的範例
 
-You can see a sample of a webhook trigger in GitHub [here](https://github.com/jeffhollan/LogicAppTriggersExample/tree/master/LogicAppTriggers)
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

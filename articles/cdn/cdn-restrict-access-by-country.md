@@ -1,75 +1,70 @@
 <properties
-    pageTitle="Restrict access to your Azure CDN content by country | Microsoft Azure"
-    description="Learn how to restrict access to your Azure CDN content using the Country Filtering feature."
-    services="cdn"
-    documentationCenter=""
-    authors="camsoper"
-    manager="erikre"
-    editor=""/>
+	pageTitle="依國家/地區限制您的 Azure CDN 內容的存取 | Microsoft Azure"
+	description="了解如何使用國家 (地區) 篩選功能限制您的 Azure CDN 內容的存取。"
+	services="cdn"
+	documentationCenter=""
+	authors="camsoper"
+	manager="erikre"
+	editor=""/>
 
 <tags
-    ms.service="cdn"
-    ms.workload="tbd"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="07/28/2016"
-    ms.author="casoper"/>
+	ms.service="cdn"
+	ms.workload="tbd"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/28/2016"
+	ms.author="casoper"/>
 
-
-#<a name="restrict-access-to-your-content-by-country"></a>Restrict access to your content by country
+#依國家 (地區) 限制存取您的內容
 
 [AZURE.INCLUDE [cdn-verizon-only](../../includes/cdn-verizon-only.md)]
 
-When a user requests your content, by default, the content is served regardless of where the user made this request from. In some cases, you may want to restrict access to your content by country. This topic explains how to use the **Country Filtering** feature in order to configure the service to allow or block access by country.
+當使用者要求您的內容時，預設會提供內容，不論使用者從哪裡提出這項要求。在某些情況下，您可能想要依國家 (地區) 限制存取您的內容。本主題說明如何使用**國家 (地區) 篩選**功能設定服務，以依國家 (地區) 允許或封鎖存取。
 
->[AZURE.NOTE] Once the configuration is set up, it will apply to all **Azure CDN from Verizon** endpoints in this Azure CDN profile.
+>[AZURE.NOTE] 設定組態後，它會套用至此 Azure CDN 設定檔中的所有**來自 Verizon 的 Azure CDN** 端點。
 
-For information about considerations that apply to configuring this type of restriction, see the [Considerations](cdn-restrict-access-by-country.md#considerations) section at the end of the topic.  
+如需適用於設定此類限制之考量的資訊，請參閱本主題結尾的[考量](cdn-restrict-access-by-country.md#considerations)一節。
 
-![Country filtering](./media/cdn-filtering/cdn-country-filtering.png)
-
-
-##<a name="step-1:-define-the-directory-path"></a>Step 1: Define the directory path
-
-When configuring a country filter, you must specify the relative path to the location to which users will be allowed or denied access. You can apply country filtering for all your files with "/" or selected folders by specifying directory paths.
-
-Example directory path filter:
-
-    /                                 
-    /Photos/
-    /Photos/Strasbourg
-
-##<a name="step-2:-define-the-action:-block-or-allow"></a>Step 2: Define the action: block or allow
-
-**Block:** Users from the specified countries will be denied access to assets requested from that recursive path. If no other country filtering options have been configured for that location, then all other users will be allowed access.
-
-**Allow:** Only users from the specified countries will be allowed access to assets requested from that recursive path.
-
-##<a name="step-3:-define-the-countries"></a>Step 3: Define the countries
-
-Select the countries that you want to block or allow for the path. For more information, see [Azure CDN from Verizon Country Codes](https://msdn.microsoft.com/library/mt761717.aspx).
-
-For example, the rule of blocking /Photos/Strasbourg/ will filter files including:
-
-    http://<endpoint>.azureedge.net/Photos/Strasbourg/1000.jpg
-    http://<endpoint>.azureedge.net/Photos/Strasbourg/Cathedral/1000.jpg
+![國家 (地區) 篩選](./media/cdn-filtering/cdn-country-filtering.png)
 
 
-##<a name="country-codes"></a>Country codes
+##步驟 1：定義目錄路徑
 
-The **Country Filtering** feature uses country codes to define the countries from which a request will be allowed or blocked for a secured directory. You will find the country codes in [Azure CDN from Verizon Country Codes](https://msdn.microsoft.com/library/mt761717.aspx). If you specify “EU” (Europe) or "AP" (Asia/Pacific), a subset of IP addresses that originate from any country in that regions will be blocked or allowed.
+在設定國家 (地區) 篩選器時，您必須指定要允許或拒絕使用者存取之位置的相對路徑。您可以使用 "/"，或藉由指定目錄路徑來選定資料夾，為所有檔案套用國家 (地區) 篩選。
+
+目錄路徑篩選器範例：
+
+	/                                 
+	/Photos/
+	/Photos/Strasbourg
+
+##步驟 2：定義動作：封鎖或允許
+
+**封鎖：**將拒絕來自指定國家 (地區) 的使用者，存取從該遞迴路徑要求的資產。若尚未設定該位置的其他國家 (地區) 篩選選項，則其他所有使用者都將允許存取。
+
+**允許：**只允許來自指定國家 (地區) 的使用者存取從該遞迴路徑要求的資產。
+
+##步驟 3：定義國家 (地區)
+
+選取您想要封鎖或允許路徑的國家 (地區)。如需詳細資訊，請參閱[來自 Verizon 的 Azure CDN 國家/地區代碼](https://msdn.microsoft.com/library/mt761717.aspx)。
+
+例如，封鎖 /Photos/Strasbourg/ 的規則會篩選檔案，包括：
+
+	http://<endpoint>.azureedge.net/Photos/Strasbourg/1000.jpg
+	http://<endpoint>.azureedge.net/Photos/Strasbourg/Cathedral/1000.jpg
 
 
-##<a name="<a-id="considerations"></a>considerations"></a><a id="considerations"></a>Considerations
+##國碼
 
-- It may take up to 90 minutes for changes to your country filtering configuration to take effect.
-- This feature does not support wildcard characters (for example, ‘*’).
-- The country filtering configuration associated with the relative path will be applied recursively to that path.
-- Only one rule can be applied to the same relative path (you cannot create multiple country filters that point to the same relative path. However, a folder may have multiple country filters. This is due to the recursive nature of country filters. In other words, a subfolder of a previously configured folder can be assigned a different country filter.
+**國家 (地區) 篩選**功能可使用國碼來定義國家 (地區)，以允許或封鎖該國家 (地區) 對受保護目錄的要求。您可以在[來自 Verizon 的 Azure CDN 國家/地區代碼](https://msdn.microsoft.com/library/mt761717.aspx)找到國家/地區代碼。如果您指定 "EU" (歐洲) 或 "AP" (亞太地區)，來自該區域中任何國家 (地區) 的 IP 位址子集將會被封鎖或允許。
 
 
+##<a id="considerations"></a>考量
 
-<!--HONumber=Oct16_HO2-->
+- 最多可能需要 90 分鐘，您對國家 (地區) 篩選組態的變更才會生效。
+- 這項功能不支援萬用字元 (例如，‘*’)。
+- 會將相對路徑相關聯的國家 (地區) 篩選組態，遞迴地套用到該路徑。
+- 只有一個規則可套用至相同的相對路徑，您無法建立指向相同之相對路徑的多個國家 (地區) 篩選。不過，一個資料夾可有多個國家 (地區) 篩選。這是因為國家 (地區) 篩選的遞迴本質。換句話說，可以將不同的國家 (地區) 篩選指派給先前設定之資料夾的子資料夾。
 
-
+<!---HONumber=AcomDC_0803_2016-->

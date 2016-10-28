@@ -1,109 +1,104 @@
 <properties
-    pageTitle="Troubleshoot common connection issues to Azure SQL Database"
-    description="Steps to identify and resolve common connection errors for Azure SQL Database."
-    services="sql-database"
-    documentationCenter=""
-    authors="dalechen"
-    manager="felixwu"
-    editor=""/>
+	pageTitle="疑難排解 Azure SQL Database 常見的連接問題"
+	description="找出並解決 Azure SQL Database 常見之連接錯誤的步驟。"
+	services="sql-database"
+	documentationCenter=""
+	authors="dalechen"
+	manager="felixwu"
+	editor=""/>
 
 <tags
-    ms.service="sql-database"
-    ms.workload="data-management"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/31/2016"
-    ms.author="daleche"/>
+	ms.service="sql-database"
+	ms.workload="data-management"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/31/2016"
+	ms.author="daleche"/>
 
+# 針對 Azure SQL Database 連線問題進行疑難排解
 
-# <a name="troubleshoot-connection-issues-to-azure-sql-database"></a>Troubleshoot connection issues to Azure SQL Database
+連線到 Azure SQL Database 失敗時，您會收到[錯誤訊息](sql-database-develop-error-messages.md)。本文是集中式主題，可協助您針對 Azure SQL Database 連線問題進行疑難排解。本文除了介紹連線問題的[常見原因](#cause)，還推薦可協助您識別問題的[疑難排解工具](#try-the-troubleshooter-for-azure-sql-database-connectivity-issues)，以及提供疑難排解步驟來解決[暫時性錯誤](#troubleshoot-transient-errors)和[持續性或非暫時性錯誤](#troubleshoot-the-persistent-errors)。最後，則是列出 [Azure SQL Database 連線問題的所有相關文章](#all-topics-for-azure-sql-database-connection-problems)。
 
-When the connection to Azure SQL Database fails, you receive [error messages](sql-database-develop-error-messages.md). This article is a centralized topic that helps you troubleshoot Azure SQL Database connectivity issues. It introduces [the common causes](#cause) of connection issues, recommends [a troubleshooting tool](#try-the-troubleshooter-for-azure-sql-database-connectivity-issues) that helps you identity the problem, and provides troubleshooting steps to solve [transient errors](#troubleshoot-transient-errors) and [persistent or non-transient errors](#troubleshoot-the-persistent-errors). Finally, it lists [all the relevant articles for Azure SQL Database connectivity issues](#all-topics-for-azure-sql-database-connection-problems).
+如果您遇到連線問題，請嘗試本文中所述的疑難排解步驟。
+|[AZURE.INCLUDE [支援免責聲明](../../includes/support-disclaimer.md)]
 
-If you encounter the connection issues, try the troubleshoot steps that are described in this article.
-[AZURE.INCLUDE [support-disclaimer](../../includes/support-disclaimer.md)]
+## 原因
 
-## <a name="cause"></a>Cause
+連線問題可能由下列任何一個原因所造成：
 
-Connection problems may be caused by any of the following:
+- 在設計應用程式的過程中，無法套用最佳作法和設計指南。請參閱 [SQL Database 開發概觀](sql-database-develop-overview.md)以便開始使用。
+- Azure SQL Database 重新設定
+- 防火牆設定
+- 連線逾時
+- 不正確的登入資訊
+- 部分 Azure SQL Database 資源已達上限
 
-- Failure to apply best practices and design guidelines during the application design process.  See [SQL Database Development Overview](sql-database-develop-overview.md) to get started.
-- Azure SQL Database reconfiguration
-- Firewall settings
-- Connection time-out
-- Incorrect login information
-- Maximum limit reached on some Azure SQL Database resources
+一般而言，Azure SQL Database 的連線問題可以分類如下：
 
-Generally, connection issues to Azure SQL Database can be classified as follows:
+- [暫時性錯誤 (短期或間歇性)](#troubleshoot-transient-errors)
+- [持續性或非暫時性錯誤 (定期重複發生的錯誤)](#troubleshoot-the-persistent-errors)
 
-- [Transient errors (short-lived or intermittent)](#troubleshoot-transient-errors)
-- [Persistent or non-transient errors (errors that regularly recur)](#troubleshoot-the-persistent-errors)
+## 嘗試使用 Azure SQL Database 連線問題疑難排解工具
 
-## <a name="try-the-troubleshooter-for-azure-sql-database-connectivity-issues"></a>Try the troubleshooter for Azure SQL Database connectivity issues
+如果您遇到特定的連線錯誤，請嘗試使用[此工具](https://support.microsoft.com/help/10085/troubleshooting-connectivity-issues-with-microsoft-azure-sql-database)，此工具可協助您快速識別並解決您的問題。
 
-If you encounter a specific connection error, try [this tool](https://support.microsoft.com/help/10085/troubleshooting-connectivity-issues-with-microsoft-azure-sql-database), which will help you quickly identity and resolve your problem.
+## 針對暫時性錯誤進行疑難排解
+如果您的應用程式發生暫時性錯誤，請檢閱下列主題以取得有關如何疑難排解這些錯誤並減少其發生頻率的提示︰
 
-## <a name="troubleshoot-transient-errors"></a>Troubleshoot transient errors
-If your application is experiencing transient errors, review the following topics for tips about how to troubleshoot and reduce the frequency of these errors:
-
-- [Troubleshooting Database &lt;x&gt; on Server &lt;y&gt; is unavailable (Error: 40613)](sql-database-troubleshoot-connection.md)
-- [Troubleshoot, diagnose, and prevent SQL connection errors and transient errors for SQL Database](sql-database-connectivity-issues.md)
+- [疑難排解無法使用 伺服器 &lt;y&gt; 上的資料庫 &lt;x&gt; (錯誤：40613)](sql-database-troubleshoot-connection.md)
+- [排解、診斷和防止 SQL Database 的 SQL 連接錯誤和暫時性錯誤](sql-database-connectivity-issues.md)
 
 <a id="troubleshoot-the-persistent-errors" name="troubleshoot-the-persistent-errors"></a>
 
-## <a name="troubleshoot-persistent-errors-(non-transient-errors)"></a>Troubleshoot persistent errors (non-transient errors)
+## 針對持續性錯誤 (非暫時性錯誤) 進行疑難排解
 
-If the application persistently fails to connect to Azure SQL Database, it usually indicates an issue with one of the following:
+如果應用程式持續無法連接到 Azure SQL Database，通常表示下列其中一項發生問題︰
 
-- Firewall configuration. The Azure SQL database or client-side firewall is blocking connections to Azure SQL Database.
-- Network reconfiguration on the client side: for example, a new IP address or a proxy server.
-- User error: for example, mistyped connection parameters, such as the server name in the connection string.
+- 防火牆組態。Azure SQL Database 或用戶端防火牆封鎖 Azure SQL Database 的連接。
+- 用戶端上的網路重新設定：例如，新的 IP 位址或 Proxy 伺服器。
+- 使用者錯誤︰例如，輸入錯誤的連線參數，例如連接字串中的伺服器名稱。
 
-### <a name="steps-to-resolve-persistent-connectivity-issues"></a>Steps to resolve persistent connectivity issues
+### 解決永久性連線問題的步驟
 
-1.  Set up [firewall rules](sql-database-configure-firewall-settings.md) to allow the client IP address.
-2.  On all firewalls between the client and the Internet, make sure that port 1433 is open for outbound connections. Review [Configure the Windows Firewall to Allow SQL Server Access](https://msdn.microsoft.com/library/cc646023.aspx) for additional pointers.
-3.  Verify your connection string and other connection settings. See the Connection String section in the [connectivity issues topic](sql-database-connectivity-issues.md#connections-to-azure-sql-database).
-4.  Check service health in the dashboard. If you think there’s a regional outage, see [Recover from an outage](sql-database-disaster-recovery.md) for steps to recover to a new region.
+1.	設定[防火牆規則](sql-database-configure-firewall-settings.md)允許用戶端 IP 位址。
+2.	在用戶端與網際網路之間的所有防火牆上，請確定開放連接埠 1433 供輸出連線使用。檢閱[設定 Windows 防火牆以允許 SQL Server 存取](https://msdn.microsoft.com/library/cc646023.aspx)，以取得其他指標。
+3.	請確認您的連接字串和其他連線設定。請參閱[連線能力問題主題](sql-database-connectivity-issues.md#connections-to-azure-sql-database)中的「連接字串」一節。
+4.	檢查儀表板中的服務健全狀況。如果您認為沒有區域性停電，請參閱[從中斷復原](sql-database-disaster-recovery.md)以了解復原到新區域的步驟。
 
-## <a name="all-topics-for-azure-sql-database-connection-problems"></a>All topics for Azure SQL Database connection problems
+## 所有 Azure SQL Database 連線問題的主題
 
-The following table lists every connection problem topic that applies directly to the Azure SQL Database service.
+下表列出每一個直接適用於 Azure SQL Database 服務的連線問題主題。
 
 
-| &nbsp; | Title | Description |
+| &nbsp; | 課程名稱 | 說明 |
 | --: | :-- | :-- |
-| 1 | [Troubleshoot connection issues to Azure SQL Database](sql-database-troubleshoot-common-connection-issues.md) | This is the landing page for troubleshooting connectivity issues in Azure SQL Database. It describes how to identify and resolve transient errors and persistent or non-transient errors in Azure SQL Database. |
-| 2 | [Troubleshoot, diagnose, and prevent SQL connection errors and transient errors for SQL Database](sql-database-connectivity-issues.md) | Learn how to troubleshoot, diagnose, and prevent a SQL connection error or transient error in Azure SQL Database. |
-| 3 | [General transient fault-handling guidance](best-practices-retry-general.md) | Provides general guidance for transient fault handling when connecting to Azure SQL Database. |
-| 4 | [Troubleshoot connectivity issues with Microsoft Azure SQL Database](https://support.microsoft.com/help/10085/troubleshooting-connectivity-issues-with-microsoft-azure-sql-database) | This tool helps identity your problem solve connection errors. |
-| 5 | [Troubleshoot "Database &lt;x&gt; on server &lt;y&gt; is not currently available. Please retry the connection later" error](sql-database-troubleshoot-connection.md) | Describes how to identify and resolve a 40613 error: "Database &lt;x&gt; on server &lt;y&gt; is not currently available. Please retry the connection later." |
-| 6 | [SQL error codes for SQL Database client applications: Database connection error and other issues](sql-database-develop-error-messages.md) | Provides info about SQL error codes for SQL Database client applications, such as common database connection errors, database copy issues, and general errors. |
-| 7 | [Azure SQL Database performance guidance for single databases](sql-database-performance-guidance.md) | Provides guidance to help you determine which service tier is right for your application. Also provides recommendations for tuning your application to get the most out of your Azure SQL Database. |
-| 8 | [SQL Database Development Overview](sql-database-develop-overview.md) | Provides links to code samples for various technologies that you can use to connect to and interact with Azure SQL Database. |
-| 9 | Upgrade to Azure SQL Database v12 page ([Azure portal](sql-database-upgrade-server-portal.md), [PowerShell](sql-database-upgrade-server-powershell.md)) | Provides directions for upgrading existing Azure SQL Database V11 servers and databases to Azure SQL Database V12 by using Azure portal or PowerShell. |
+| 1 | [針對 Azure SQL Database 連線問題進行疑難排解](sql-database-troubleshoot-common-connection-issues.md) | 這是針對 Azure SQL Database 中的連線問題進行疑難排解的登陸頁面。說明如何識別並解決 Azure SQL Database 中的暫時性錯誤及持續性或非暫時性錯誤。 |
+| 2 | [排解、診斷和防止 SQL Database 的 SQL 連接錯誤和暫時性錯誤](sql-database-connectivity-issues.md) | 了解如何在 Azure SQL Database 中排解、診斷和防止 SQL 連接錯誤或暫時性錯誤。 |
+| 3 | [一般暫時性錯誤處理指引](best-practices-retry-general.md) | 提供連線到 Azure SQL Database 時的暫時性錯誤處理指引。 |
+| 4 | [針對 Microsoft Azure SQL Database 的連線問題進行疑難排解](https://support.microsoft.com/help/10085/troubleshooting-connectivity-issues-with-microsoft-azure-sql-database) | 此工具可協助識別您的問題並解決連線錯誤。 |
+| 5 | [疑難排解「目前無法使用伺服器 &lt;y&gt; 上的資料庫 &lt;x&gt;。請稍後重試連接」錯誤](sql-database-troubleshoot-connection.md) | 說明如何識別並解決 40613 錯誤：「目前無法使用伺服器 &lt;y&gt; 上的資料庫 &lt;x&gt;。請稍後重試連接。」 |
+| 6 | [SQL Database 用戶端應用程式的 SQL 錯誤碼：資料庫連線錯誤和其他問題](sql-database-develop-error-messages.md) | 提供 SQL Database 用戶端應用程式的 SQL 錯誤碼相關資訊，例如常見的資料庫連線錯誤、資料庫複製問題，以及一般錯誤。 |
+| 7 | [單一資料庫的 Azure SQL Database 效能指引](sql-database-performance-guidance.md) | 提供可協助您判斷哪個服務層是最適合您應用程式的指引。同時也提供微調應用程式以充分運用您 Azure SQL Database 的建議。 |
+| 8 | [SQL Database 開發概觀](sql-database-develop-overview.md) | 提供各種技術之程式碼範例的連結，可用來連接到 Azure SQL Database 並與其互動。 |
+| 9 | 升級到 Azure SQL Database v12 頁面 ([Azure 入口網站](sql-database-upgrade-server-portal.md)、[PowerShell](sql-database-upgrade-server-powershell.md)) | 提供使用 Azure 入口網站或 PowerShell 將現有 Azure SQL Database V11 伺服器和資料庫升級到 Azure SQL Database V12 的指示。 |
 
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-- [Troubleshoot Azure SQL Database performance issues](sql-database-troubleshoot-performance.md)
-- [Troubleshoot Azure SQL Database permissions issues](sql-database-troubleshoot-permissions.md)
-- [See all topics for the Azure SQL Database service](sql-database-index-all-articles.md)
-- [Search the documentation on Microsoft Azure](http://azure.microsoft.com/search/documentation/)
-- [View the latest updates to the Azure SQL Database service](http://azure.microsoft.com/updates/?service=sql-database)
-
-
-## <a name="additional-resources"></a>Additional resources
-
-- [SQL Database Development Overview](sql-database-develop-overview.md)
-- [General transient fault-handling guidance](../best-practices-retry-general.md)
-- [Connection libraries for SQL Database and SQL Server](sql-database-libraries.md)
-- [The learning path for using Azure SQL Database](https://azure.microsoft.com/documentation/learning-paths/sql-database-training-learn-sql-database)
-- [The learning path for using elastic database features and tools](https://azure.microsoft.com/documentation/learning-paths/sql-database-elastic-scale) 
+- [針對 Azure SQL Database 效能問題進行疑難排解](sql-database-troubleshoot-performance.md)
+- [針對 Azure SQL Database 權限問題進行疑難排解](sql-database-troubleshoot-permissions.md)
+- [參閱所有 Azure SQL Database 服務的主題](sql-database-index-all-articles.md)
+- [搜尋 Microsoft Azure 相關文件](http://azure.microsoft.com/search/documentation/)
+- [檢視 Azure SQL Database 服務的最新更新](http://azure.microsoft.com/updates/?service=sql-database)
 
 
+## 其他資源
 
-<!--HONumber=Oct16_HO2-->
+- [SQL Database 開發概觀](sql-database-develop-overview.md)
+- [一般暫時性錯誤處理指引](../best-practices-retry-general.md)
+- [SQL Database 和 SQL Server 的連線庫](sql-database-libraries.md)
+- [使用 Azure SQL Database 的學習路徑](https://azure.microsoft.com/documentation/learning-paths/sql-database-training-learn-sql-database)
+- [使用彈性資料庫功能和工具的學習路徑](https://azure.microsoft.com/documentation/learning-paths/sql-database-elastic-scale)
 
-
+<!---HONumber=AcomDC_0831_2016-->

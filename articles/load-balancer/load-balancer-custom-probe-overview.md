@@ -1,6 +1,6 @@
 <properties
-  pageTitle="Load Balancer custom probes and monitoring health status | Microsoft Azure"
-  description="Learn how to use custom probes for Azure Load Balancer to monitor instances behind Load Balancer"
+  pageTitle="負載平衡器自訂探查和監視健全狀況狀態 | Microsoft Azure"
+  description="了解如何使用 Azure 負載平衡器的自訂探查，來監視負載平衡器後方的執行個體"
   services="load-balancer"
   documentationCenter="na"
   authors="sdwheeler"
@@ -17,82 +17,77 @@
   ms.date="08/25/2016"
   ms.author="sewhee" />
 
+# 負載平衡器探查
 
-# <a name="load-balancer-probes"></a>Load Balancer probes
+Azure 負載平衡器提供了使用探查來監視伺服器執行個體健全狀況的功能。當探查無法回應時，負載平衡器會停止傳送新的連線至狀況不良的執行個體。現有的連線不會受到影響，而新的連線會傳送到狀況良好的執行個體。
 
-Azure Load Balancer offers the capability to monitor the health of server instances by using probes. When a probe fails to respond, Load Balancer stops sending new connections to the unhealthy instance. The existing connections are not affected, and new connections are sent to healthy instances.
+雲端服務角色 (背景工作角色和 Web 角色) 會使用客體代理程式進行探查監視。當您在負載平衡器後方使用虛擬機器時，必須設定 TCP 或 HTTP 自訂探查。
 
-Cloud service roles (worker roles and web roles) use a guest agent for probe monitoring. TCP or HTTP custom probes must be configured when you use virtual machines behind Load Balancer.
+## 了解探查計數及逾時
 
-## <a name="understand-probe-count-and-timeout"></a>Understand probe count and timeout
+探查行為取決於︰
 
-Probe behavior depends on:
+- 允許執行個體標示為已啟動的成功探查數目。
+- 導致執行個體標示為已關閉的失敗探查數目。
 
-- The number of successful probes that allow an instance to be labeled as up.
-- The number of failed probes that cause an instance to be labeled as down.
+逾時除以探查頻率值等於 SuccessFailCount，其可決定要將執行個體視為啟動還是關閉。在 Azure 入口網站中，逾時設定為頻率值的兩倍。
 
-The timeout divided by the probe frequency value is equal to SuccessFailCount which determines whether an instance is assumed to be up or down. In the Azure portal, the timeout is set to two times the value of the frequency.
-
-The probe configuration of all load-balanced instances for an endpoint (that is, a load-balanced set) must be the same. This means you cannot have a different probe configuration for each role instance or virtual machine in the same hosted service for a particular endpoint combination. For example, each instance must have identical local ports and timeouts.
-
-
->[AZURE.IMPORTANT] A Load Balancer probe uses the IP address 168.63.129.16. This public IP address facilitates communication to internal platform resources for the bring-your-own-IP Azure Virtual Network scenario. The virtual public IP address 168.63.129.16 is used in all regions and will not change. We recommend that you allow this IP address in any local firewall policies. It should not be considered a security risk because only the internal Azure platform can source a message from that address. If you do not do this, there will be unexpected behavior in a variety of scenarios like configuring the same IP address range of 168.63.129.16 and having duplicated IP addresses.
-
-## <a name="learn-about-the-types-of-probes"></a>Learn about the types of probes
-
-### <a name="guest-agent-probe"></a>Guest agent probe
-
-This probe is available for Azure Cloud Services only. Load Balancer utilizes the guest agent inside the virtual machine, and then listens and responds with an HTTP 200 OK response only when the instance is in the Ready state (that is, not in another state such as Busy, Recycling, or Stopping).
-
-For more information, see [Configuring the service definition file (csdef) for health probes](https://msdn.microsoft.com/library/azure/jj151530.asp) or [Get started creating an Internet-facing load balancer for cloud services](load-balancer-get-started-internet-classic-cloud.md#check-load-balancer-health-status-for-cloud-services).
-
-### <a name="what-makes-a-guest-agent-probe-mark-an-instance-as-unhealthy?"></a>What makes a guest agent probe mark an instance as unhealthy?
-
-If the guest agent fails to respond with HTTP 200 OK, the Load Balancer marks the instance as unresponsive and stops sending traffic to that instance. Load Balancer continues to ping the instance. If the guest agent responds with an HTTP 200, Load Balancer sends traffic to that instance again.
-
-When you use a web role, the website code typically runs in w3wp.exe, which is not monitored by the Azure fabric or guest agent. This means that failures in w3wp.exe (for example, HTTP 500 responses) will not be reported to the guest agent, and Load Balancer will not take that instance out of rotation.
-
-### <a name="http-custom-probe"></a>HTTP custom probe
-
-The custom HTTP Load Balancer probe overrides the default guest agent probe, which means that you can create your own custom logic to determine the health of the role instance. Load Balancer probes your endpoint every 15 seconds, by default. The instance is considered to be in the Load Balancer rotation if it responds with an HTTP 200 within the timeout period (31 seconds by default).
-
-This can be useful if you want to implement your own logic to remove instances from Load Balancer rotation. For example, you could decide to remove an instance if it is above 90% CPU and returns a non-200 status. If you have web roles that use w3wp.exe, this also means you get automatic monitoring of your website, because failures in your website code will return a non-200 status to the Load Balancer probe.
-
->[AZURE.NOTE] The HTTP custom probe supports relative paths and HTTP protocol only. HTTPS is not supported.
-
-### <a name="what-makes-an-http-custom-probe-mark-an-instance-as-unhealthy?"></a>What makes an HTTP custom probe mark an instance as unhealthy?
-
-- The HTTP application returns an HTTP response code other than 200 (for example, 403, 404, or 500). This is a positive acknowledgment that the application instance should be taken out of service right away.
-
-. The HTTP server does not respond at all after the timeout period. Depending on the timeout value that is set, this might mean that multiple probe requests go unanswered before the probe gets marked as not running (that is, before SuccessFailCount probes are sent).
--   The server closes the connection via a TCP reset.
-
-### <a name="tcp-custom-probe"></a>TCP custom probe
-
-TCP probes initiate a connection by performing a three-way handshake with the defined port.
-
-### <a name="what-makes-a-tcp-custom-probe-mark-an-instance-as-unhealthy?"></a>What makes a TCP custom probe mark an instance as unhealthy?
-
-- The TCP server does not respond at all after the timeout period. When the probe is marked as not running depends on the number of failed probe requests that were configured to go unanswered before marking the probe as not running.
-- The probe receives a TCP reset from the role instance.
-
-For more information about configuring an HTTP health probe or a TCP probe, see [Get started creating an Internet-facing load balancer in Resource Manager using PowerShell](load-balancer-get-started-internet-arm-ps.md#create-lb-rules-nat-rules-a-probe-and-a-load-balancer).
-
-## <a name="add-healthy-instances-back-into-load-balancer-rotation"></a>Add healthy instances back into Load Balancer rotation
-
-TCP and HTTP probes are considered healthy and mark the role instance as healthy when:
-
-- Load Balancer gets a positive probe the first time the VM boots.
-- The number SuccessFailCount (described earlier) defines the value of successful probes that are required to mark the role instance as healthy. If a role instance was removed, the number of successful, successive probes must equal or exceed the value of SuccessFailCount to mark the role instance as running.
-
->[AZURE.NOTE] If the health of a role instance is fluctuating, Load Balancer waits longer before putting the role instance back in the healthy state. This is done via policy to protect the user and the infrastructure.
-
-## <a name="use-log-analytics-for-load-balancer"></a>Use log analytics for Load Balancer
-
-You can use [log analytics for Load Balancer](load-balancer-monitor-log.md) to check on the probe health status and probe count. Logging can be used with Power BI or Azure Operational Insights to provide statistics about Load Balancer health status.
+端點 (也就是負載平衡集) 的所有負載平衡執行個體的探查設定必須相同。這表示針對位在相同託管服務特定端點組合的各個角色執行個體或虛擬機器，您不能有不同的探查設定。例如，每個執行個體必須具有相同的本機連接埠和逾時。
 
 
+>[AZURE.IMPORTANT] 負載平衡器探查會使用 IP 位址 168.63.129.16。這個公用 IP 位址可促進自備 IP Azure 虛擬網路案例中內部平台資源的通訊。虛擬公用 IP 位址 168.63.129.16 會使用於所有區域中，且不會變更。建議您在任何本機防火牆原則中允許此 IP 位址。它不應被視為安全性風險，因為只有內部 Azure 平台可以從該位址取得訊息來源。如果您不這麼做，各種不同的案例中將會有非預期的行為，例如設定相同的 IP 位址範圍 168.63.129.16 和具有重複的 IP 位址。
 
-<!--HONumber=Oct16_HO2-->
+## 深入了解探查類型
 
+### 客體代理程式探查
 
+此探查僅供 Azure 雲端服務使用。只有在執行個體處於 [就緒] 狀態 (也就是不在其他狀態中，例如 [忙碌]、[回收中] 或 [停止中]) 時，負載平衡器才會利用虛擬機器內的客體代理程式、然後接聽並以「HTTP 200 確定」做為回應。
+
+如需詳細資訊，請查看[設定適用於健全狀況探查的服務定義檔案 (csdef)](https://msdn.microsoft.com/library/azure/jj151530.asp) 或[開始為雲端服務建立網際網路對向的負載平衡器](load-balancer-get-started-internet-classic-cloud.md#check-load-balancer-health-status-for-cloud-services)。
+
+### 什麼原因會讓客體代理程式探查將執行個體標示為狀況不良？
+
+如果客體代理程式無法以「HTTP 200 確定」回應，則負載平衡器會將執行個體標示為沒有回應，並停止傳送流量到該執行個體。負載平衡器會繼續 ping 執行個體。如果客體代理程式以 HTTP 200 回應，則負載平衡器會再次傳送流量到該執行個體。
+
+使用 Web 角色時，網站程式碼通常會在不受 Azure 網狀架構或客體代理程式監視的 w3wp.exe 中執行。這表示不會向客體代理程式回報 w3wp.exe 中的失敗 (例如，HTTP 500 回應)，而且負載平衡器不會將該執行個體退出循環。
+
+### HTTP 自訂探查
+
+自訂 HTTP 負載平衡器探查會覆寫預設客體代理程式探查，這代表您可以建立自己的自訂邏輯來判斷角色執行個體的健全狀況。根據預設，負載平衡器會每隔 15 秒探查您的端點。如果執行個體在逾時期限 (預設為 31 秒) 內以「HTTP 200 確定」回應，它就會視為在負載平衡器循環中。
+
+這適合用於您想要實作自己的邏輯，以從負載平衡器循環中移除執行個體。例如，如果執行個體超過 90% CPU，並傳回非 200 狀態，您可以決定移除執行個體。如果您有使用 w3wp.exe 的 Web 角色，這也表示您可自動監視您的網站，因為網站程式碼中的錯誤會將非 200 狀態傳回給負載平衡器探查。
+
+>[AZURE.NOTE] HTTP 自訂探查僅支援相對路徑和 HTTP 通訊協定。不支援 HTTPS。
+
+### 什麼原因會讓 HTTP 自訂探查將執行個體標示為狀況不良？
+
+- HTTP 應用程式傳回 200 以外的 HTTP 回應碼 (例如，403、404 或 500)。這是應用程式執行個體應該立即被帶離服務的正面回答。
+
+。HTTP 伺服器在逾時期限之後完全沒有回應。根據設定的逾時值，這可能表示在探查標示為非執行中之前 (也就是說，在傳送 SuccessFailCount 探查之前)，多個探查要求並未獲得回應。
+- 	伺服器會透過 TCP 重設關閉連線。
+
+### TCP 自訂探查
+
+TCP 探查透過利用定義的連接埠執行三向信號交換來初始化連線。
+
+### 什麼原因會讓 TCP 自訂探查將執行個體標示為狀況不良？
+
+- TCP 伺服器在逾時期限之後完全沒有回應。當探查標示為非執行中時，取決於失敗探查的數目，在探查標示為非執行中之前，這些要求設定為未獲得回應。
+- 探查會從角色執行個體接收 TCP 重設。
+
+如需有關設定 HTTP 健全狀況探查或 TCP 探查的詳細資訊，請參閱[開始使用 PowerShell 在資源管理員中建立網際網路對向負載平衡器](load-balancer-get-started-internet-arm-ps.md#create-lb-rules-nat-rules-a-probe-and-a-load-balancer)。
+
+## 將狀況良好的執行個體重新加入至負載平衡器輪替
+
+TCP 和 HTTP 探查於下列狀況時會視為狀況良好，並將角色執行個體標示為狀況良好：
+
+- 負載平衡器在 VM 第一次開機時取得正面探查。
+- SuccessFailCount 的數目 (如上所述) 可定義將角色執行個體標示為狀況良好所需的成功探查值。如果已移除角色執行個體，成功且連續的探查數目必須大於或等於 SuccessFailCount 的值才能將角色執行個體標示為執行中。
+
+>[AZURE.NOTE] 如果角色執行個體的健全狀況變動，負載平衡器會在將角色執行個體重新放置回狀況良好狀態之前等候。這是透過原則保護使用者和基礎結構來完成。
+
+## 使用負載平衡器的記錄分析
+
+您可以使用[負載平衡器的記錄分析](load-balancer-monitor-log.md)來檢查探查健全狀況狀態和探查計數。記錄可以與 Power BI 或 Azure Operation Insights 搭配使用，以提供負載平衡器健康狀態。
+
+<!---HONumber=AcomDC_0921_2016-->

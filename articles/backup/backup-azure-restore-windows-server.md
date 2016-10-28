@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Restore data to a Windows Server or Windows Client from Azure using the Resource Manager deployment model | Microsoft Azure"
-   description="Learn how to restore from a Windows Server or Windows Client."
+   pageTitle="使用 Resource Manager 部署模型將資料從 Azure 還原到 Windows Server 或 Windows 用戶端 | Microsoft Azure"
+   description="了解如何從 Windows Server 或 Windows 用戶端進行還原。"
    services="backup"
    documentationCenter=""
    authors="saurabhsensharma"
@@ -10,116 +10,111 @@
 <tags
    ms.service="backup"
    ms.workload="storage-backup-recovery"
-     ms.tgt_pltfrm="na"
-     ms.devlang="na"
-     ms.topic="article"
-     ms.date="08/02/2016"
-     ms.author="trinadhk; jimpark; markgal;"/>
+	 ms.tgt_pltfrm="na"
+	 ms.devlang="na"
+	 ms.topic="article"
+	 ms.date="08/02/2016"
+	 ms.author="trinadhk; jimpark; markgal;"/>
 
-
-# <a name="restore-files-to-a-windows-server-or-windows-client-machine-using-resource-manager-deployment-model"></a>Restore files to a Windows server or Windows client machine using Resource Manager deployment model
+# 使用 Resource Manager 部署模型將檔案還原到 Windows Server 或 Windows 用戶端電腦
 
 > [AZURE.SELECTOR]
-- [Azure portal](backup-azure-restore-windows-server.md)
-- [Classic portal](backup-azure-restore-windows-server-classic.md)
+- [Azure 入口網站](backup-azure-restore-windows-server.md)
+- [傳統入口網站](backup-azure-restore-windows-server-classic.md)
 
-This article covers the steps required to perform two types of restore operations:
+本文涵蓋執行兩種類型還原作業所需的步驟：
 
-- Restore data to the same machine from which the backups were taken.
-- Restore data to any other machine.
+- 將資料還原到進行備份的相同電腦。
+- 將資料還原到任何其他電腦。
 
-In both cases, the data is retrieved from the Azure Recovery Services vault.
+這兩種情況之下，都會從 Azure 復原服務保存庫擷取資料。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)] classic deployment model.
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)] 傳統部署模型。
 
-## <a name="recover-data-to-the-same-machine"></a>Recover data to the same machine
-If you accidentally deleted a file and wish to restore it to the same machine (from which the backup is taken), the following steps will help you recover the data.
+## 將資料還原到相同電腦
+如果您不小心刪除檔案，而您想要將它還原到相同的電腦 (備份進行處)，下列步驟可協助您復原資料。
 
-1. Open the **Microsoft Azure Backup** snap in.
-2. Click **Recover Data** to initiate the workflow.
+1. 開啟**Microsoft Azure 備份**嵌入式管理單元。
+2. 按一下 [復原資料] 初始化工作流程。
 
-    ![Recover Data](./media/backup-azure-restore-windows-server/recover.png)
+    ![復原資料](./media/backup-azure-restore-windows-server/recover.png)
 
-3. Select the **This server (*yourmachinename*)** option to restore the backed up file on the same machine.
+3. 選取 [這台伺服器 (*yourmachinename*)] 選項來於同一部電腦上還原備份檔案。
 
-    ![Same machine](./media/backup-azure-restore-windows-server/samemachine.png)
+    ![相同電腦](./media/backup-azure-restore-windows-server/samemachine.png)
 
-4. Choose to **Browse for files** or **Search for files**.
+4. 選擇 [瀏覽檔案] 或 [搜尋檔案]。
 
-    Leave the default option if you plan to restore one or more files whose path is known. If you are not sure about the folder structure but would like to search for a file, pick the **Search for files** option. For the purpose of this section, we will proceed with the default option.
+    如果您打算還原路徑已知的一個或多個檔案，請保留預設選項。如果您不確定資料夾結構，但想要搜尋檔案，請挑選 [**搜尋檔案**] 選項。為了達成本章節的目的，我們將使用預設選項繼續進行。
 
-    ![Browse files](./media/backup-azure-restore-windows-server/browseandsearch.png)
+    ![瀏覽檔案](./media/backup-azure-restore-windows-server/browseandsearch.png)
 
-5. Select the volume from which you wish to restore the file.
+5. 選取您要還原檔案所在的磁碟區。
 
-    You can restore from any point in time. Dates which appear in **bold** in the calendar control indicate the availability of a restore point. Once a date is selected, based on your backup schedule (and the success of a backup operation), you can select a point in time from the **Time** drop down.
+    您可以從任何時間點還原。日曆控制項中以**粗體**顯示的日期會指出還原點的可用性。選取日期之後，您可以根據您的備份排程 (以及成功的備份作業)，從 [時間] 下拉式清單選取時間點。
 
-    ![Volume and Date](./media/backup-azure-restore-windows-server/volanddate.png)
+    ![磁碟區和日期](./media/backup-azure-restore-windows-server/volanddate.png)
 
-6. Select the items to recover. You can multi-select folders/files you wish to restore.
+6. 選取要復原的項目。您可以複選想要還原的資料夾/檔案。
 
-    ![Select files](./media/backup-azure-restore-windows-server/selectfiles.png)
+    ![選取檔案](./media/backup-azure-restore-windows-server/selectfiles.png)
 
-7. Specify the recovery parameters.
+7. 指定復原參數。
 
-    ![Recovery options](./media/backup-azure-restore-windows-server/recoveroptions.png)
+    ![修復選項](./media/backup-azure-restore-windows-server/recoveroptions.png)
 
-  - You have an option of restoring to the original location (in which the file/folder would be overwritten) or to another location in the same machine.
-  - If the file/folder you wish to restore exists in the target location, you can create copies (two versions of the same file), overwrite the files in the target location, or skip the recovery of the files which exist in the target.
-  - It is highly recommended that you leave the default option of restoring the ACLs on the files which are being recovered.
+  - 您可以選擇還原至原始位置 (其中的檔案/資料夾可能會遭到覆寫) 或相同電腦中的其他位置。
+  - 如果目標位置有您想要還原的檔案/資料夾存在，您可以建立複本 (相同檔案的兩個版本)、覆寫目標位置中的檔案，或略過修復目標位置已存在的檔案。
+  - 強烈建議您針對正在復原檔案上的 ACL 保留預設還原選項。
 
-8. Once these inputs are provided, click **Next**. The recovery workflow, which restores the files to this machine, will begin.
+8. 提供這些輸入之後，按一下 [下一步]。就會開始執行將檔案還原到這部電腦的復原工作流程。
 
-## <a name="recover-to-an-alternate-machine"></a>Recover to an alternate machine
-If your entire server is lost, you can still recover data from Azure Backup to a different machine. The following steps illustrate the workflow.  
+## 還原至其他電腦
+若您遺失整個伺服器，您仍然可從 Azure 備份將資料還原到其他電腦。下列步驟說明工作流程。
 
-The terminology used in these steps includes:
+這些步驟中所使用的術語包含：
 
-- *Source machine* – The original machine from which the backup was taken and which is currently unavailable.
-- *Target machine* – The machine to which the data is being recovered.
-- *Sample vault* – The Recovery Services vault to which the *Source machine* and *Target machine* are registered. <br/>
+- 「來源電腦」 – 用來進行備份且目前無法使用的的原始電腦。
+- 「目標電腦」 – 復原資料時的目標電腦。
+- 「範例保存庫」–「來源電腦」和「目標電腦」註冊的復原服務保存庫。<br/>
 
-> [AZURE.NOTE] Backups taken from a machine cannot be restored on a machine which is running an earlier version of the operating system. For example, if backups are taken from a Windows 7 machine, it can be restored on a Windows 8 or above machine. However the vice-versa does not hold true.
+> [AZURE.NOTE] 從電腦進行的備份無法在執行舊版作業系統的電腦上進行還原。例如，如果從 Windows 7 電腦進行備份，則可以在 Windows 8 或更新版電腦上進行還原。不過若情況相反，便無法進行還原。
 
-1. Open the **Microsoft Azure Backup** snap in on the *Target machine*.
-2. Ensure that the *Target machine* and the *Source machine* are registered to the same Recovery Services vault.
-3. Click **Recover Data** to initiate the workflow.
+1. 在「目標電腦」上開啟 [Microsoft Azure 備份] 嵌入式管理單元。
+2. 確定「目標電腦」和「來源電腦」均已註冊到相同的復原服務保存庫。
+3. 按一下 [復原資料] 初始化工作流程。
 
-    ![Recover Data](./media/backup-azure-restore-windows-server/recover.png)
+    ![復原資料](./media/backup-azure-restore-windows-server/recover.png)
 
-4. Select **Another server**
+4. 選取 [其他伺服器]
 
-    ![Another Server](./media/backup-azure-restore-windows-server/anotherserver.png)
+    ![其他伺服器](./media/backup-azure-restore-windows-server/anotherserver.png)
 
-5. Provide the vault credential file that corresponds to the *Sample vault*. If the vault credential file is invalid (or expired) download a new vault credential file from the *Sample vault* in the Azure portal. Once the vault credential file is provided, the Recovery Services vault against the vault credential file is displayed.
+5. 提供與「範例保存庫」相對應的保存庫認證檔。如果保存庫認證檔無效 (或已過期)，請從 Azure 入口網站中的「範例保存庫」下載新的保存庫認證檔。一旦提供保存庫認證檔，即會顯示保存庫認證檔的復原服務保存庫。
 
-6. Select the *Source machine* from the list of displayed machines.
+6. 在顯示電腦的清單中選取 [來源電腦]。
 
-    ![List of machines](./media/backup-azure-restore-windows-server/machinelist.png)
+    ![電腦清單](./media/backup-azure-restore-windows-server/machinelist.png)
 
-7. Select either the **Search for files** or **Browse for files** option. For the purpose of this section, we will use the **Search for files** option.
+7. 選取 [搜尋檔案] 或 [瀏覽檔案] 選項。為了達成本章節的目的，我們將使用 [搜尋檔案] 選項。
 
     ![Search](./media/backup-azure-restore-windows-server/search.png)
 
-8. Select the volume and date in the next screen. Search for the folder/file name you want to restore.
+8. 在下一個畫面中選取磁碟區和日期。搜尋您想要還原的資料夾/檔案名稱。
 
-    ![Search items](./media/backup-azure-restore-windows-server/searchitems.png)
+    ![搜尋項目](./media/backup-azure-restore-windows-server/searchitems.png)
 
-9. Select the location where the files need to be restored.
+9. 選取需要還原之檔案的位置。
 
-    ![Restore location](./media/backup-azure-restore-windows-server/restorelocation.png)
+    ![還原位置](./media/backup-azure-restore-windows-server/restorelocation.png)
 
-10. Provide the encryption passphrase that was provided during *Source machine’s* registration to *Sample vault*.
+10. 提供「來源電腦」註冊至「範例保存庫」期間所提供的加密複雜密碼。
 
-    ![Encryption](./media/backup-azure-restore-windows-server/encryption.png)
+    ![加密](./media/backup-azure-restore-windows-server/encryption.png)
 
-11. Once the input is provided, click **Recover**, which triggers the restore of the backed up files to the destination provided.
+11. 一旦提供輸入，則按一下 [復原]，將會觸發還原備份檔案到所提供目的地的程序。
 
-## <a name="next-steps"></a>Next steps
-- Now that you've recovered your files and folders, you can [manage your backups](backup-azure-manage-windows-server.md).
+## 後續步驟
+- 現在您已復原檔案和資料夾，接下來您可以[管理您的備份](backup-azure-manage-windows-server.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

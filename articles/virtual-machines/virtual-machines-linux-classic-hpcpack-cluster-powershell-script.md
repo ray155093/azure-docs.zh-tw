@@ -1,6 +1,6 @@
 <properties
-   pageTitle="PowerShell script to deploy Linux HPC cluster | Microsoft Azure"
-   description="Run a PowerShell script to deploy a Linux HPC Pack cluster in Azure virtual machines"
+   pageTitle="用來部署 Linux HPC 叢集的 PowerShell 指令碼 | Microsoft Azure"
+   description="執行 PowerShell 指令碼，以在 Azure 虛擬機器中部署 Linux HPC Pack 叢集"
    services="virtual-machines-linux"
    documentationCenter=""
    authors="dlepow"
@@ -16,20 +16,19 @@
    ms.date="07/07/2016"
    ms.author="danlep"/>
 
+# 使用 HPC Pack IaaS 部署指令碼建立 Linux 高效能運算 (HPC) 叢集
 
-# <a name="create-a-linux-high-performance-computing-(hpc)-cluster-with-the-hpc-pack-iaas-deployment-script"></a>Create a Linux high performance computing (HPC) cluster with the HPC Pack IaaS deployment script
-
-Run the HPC Pack IaaS deployment PowerShell script to deploy a complete HPC cluster for Linux workloads in Azure virtual machines. The cluster consists of an Active Directory-joined head node running Windows Server and Microsoft HPC Pack, and compute nodes that run one of the Linux distributions supported by HPC Pack. If you want to deploy an HPC Pack cluster in Azure for Windows workloads, see [Create a Windows HPC cluster with the HPC Pack IaaS deployment script](virtual-machines-windows-classic-hpcpack-cluster-powershell-script.md). You can also use an Azure Resource Manager template to deploy an HPC Pack cluster. For an example, see [Create an HPC cluster with Linux compute nodes](https://azure.microsoft.com/documentation/templates/create-hpc-cluster-linux-cn/).
+執行 HPC Pack IaaS 部署 PowerShell 指令碼，在 Azure 虛擬機器中為 Linux 工作負載部署完整的 HPC 叢集。叢集是由加入 Active Directory、且執行 Windows Server 和 Microsoft HPC Pack 的前端節點，以及執行其中一個 HPC Pack 所支援的 Linux 散發套件的計算節點所組成。如果您想要在 Azure 中為 Windows 工作負載部署 HPC Pack 叢集，請參閱[使用 HPC Pack IaaS 部署指令碼建立 Windows HPC 叢集](virtual-machines-windows-classic-hpcpack-cluster-powershell-script.md)。您也可以使用 Azure 資源管理員範本來部署 HPC Pack 叢集。如需範例，請參閱[使用 Linux 計算節點建立 HPC 叢集](https://azure.microsoft.com/documentation/templates/create-hpc-cluster-linux-cn/)。
 
 [AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 [AZURE.INCLUDE [virtual-machines-common-classic-hpcpack-cluster-powershell-script](../../includes/virtual-machines-common-classic-hpcpack-cluster-powershell-script.md)]
 
-## <a name="example-configuration-file"></a>Example configuration file
+## 範例組態檔
 
-The following configuration file creates a new domain controller and domain forest and deploys an HPC Pack cluster which has 1 head node with local databases and 10 Linux compute nodes. All the cloud services are created directly in the East Asia location. The Linux compute nodes are created in 2 cloud services and 2 storage accounts (i.e. _MyLnxCN-0001_ to _MyLnxCN-0005_ in _MyLnxCNService01_ and _mylnxstorage01_, and _MyLnxCN-0006_ to _MyLnxCN-0010_ in _MyLnxCNService02_ and _mylnxstorage02_). The compute nodes are created from an OpenLogic CentOS version 7.0 Linux image. 
+下列組態檔會建立新的網域控制站和網域樹系並部署 HPC Pack 叢集，其中包含 1 個具有本機資料庫的前端節點和 10 個 Linux 計算節點。所有雲端服務都直接建立在「東亞」位置中。Linux 計算節點會建立在 2 個雲端服務和 2 個儲存體帳戶中 (即 _MyLnxCNService01_ 和 _mylnxstorage01_ 中的 _MyLnxCN-0001_ 至 _MyLnxCN-0005_、_MyLnxCNService02_ 和 _mylnxstorage02_ 中的 _MyLnxCN-0006_ 至 _MyLnxCN-0010_)。計算節點會從 OpenLogic CentOS 7.0 版 Linux 映像建立。
 
-Substitute your own values for your subscription name and the account and service names.
+請將訂用帳戶名稱和服務及服務名稱取代為您自己的值。
 
 ```
 <?xml version="1.0" encoding="utf-8" ?>
@@ -71,26 +70,20 @@ Substitute your own values for your subscription name and the account and servic
   </LinuxComputeNodes>
 </IaaSClusterConfig>
 ```
-## <a name="troubleshooting"></a>Troubleshooting
+## 疑難排解
 
-* **“VNet doesn’t exist” error** - If you run the HPC Pack IaaS deployment script to deploy multiple clusters in Azure concurrently under one subscription, one or more deployments may fail with the error “VNet *VNet\_Name* doesn't exist”.
-If this error occurs, re-run the script for the failed deployment.
+* **「VNet 不存在」錯誤** - 如果您執行 HPC Pack IaaS 部署指令碼，在一個訂用帳戶下同時將多個叢集部署於 Azure 中，則可能會有一或多個部署失敗，並顯示錯誤「VNet *VNet\_Name* 不存在」。如果發生此錯誤，請對失敗的部署重新執行指令碼。
 
-* **Problem accessing the Internet from the Azure virtual network** - If you create an HPC Pack cluster with a new domain controller by using the deployment script, or you manually promote a head node VM to domain controller, you may experience problems connecting the VMs in the Azure virtual network to the Internet. This can occur if a forwarder DNS server is automatically configured on the domain controller, and this forwarder DNS server doesn’t resolve properly.
+* **從 Azure 虛擬網路存取網際網路時發生問題** - 如果您使用部署指令碼建立具有新網域控制站的 HPC Pack 叢集，或手動將前端節點 VM 升級到網域控制站，則在將 Azure 虛擬網路中的 VM 連接到網際網路時，可能會發生問題。如果在網域控制站上自動設定轉寄站 DNS 伺服器，且這個轉寄站 DNS 伺服器未正確解析，就可能出現這種狀況。
 
-    To work around this problem, log on to the domain controller and either remove the forwarder configuration setting or configure a valid forwarder DNS server. To do this, in Server Manager click **Tools** >
-    **DNS** to open DNS Manager, and then double-click **Forwarders**.
+    若要解決此問題，請登入網域控制站，並選擇移除轉寄站組態設定，或設定有效的轉寄站 DNS 伺服器。若要這樣做，請在伺服器管理員中按一下 [工具] > [DNS] 以開啟 DNS 管理員，然後按兩下 [轉寄站]。
     
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-* See [Get started with Linux compute nodes in an HPC Pack cluster in Azure](virtual-machines-linux-classic-hpcpack-cluster.md) for information about supported Linux distributions, moving data, and submitting jobs to an HPC Pack cluster with Linux compute nodes.
-* For tutorials that use the script to create a cluster and run a Linux HPC workload, see:
-    * [Run NAMD with Microsoft HPC Pack on Linux compute nodes in Azure](virtual-machines-linux-classic-hpcpack-cluster-namd.md)
-    * [Run OpenFOAM with Microsoft HPC Pack on Linux compute nodes in Azure](virtual-machines-linux-classic-hpcpack-cluster-openfoam.md)
-    * [Run STAR-CCM+ with Microsoft HPC Pack on Linux compute nodes in Azure](virtual-machines-linux-classic-hpcpack-cluster-starccm.md)
+* 有關支援的 Linux 散發套件、移動資料，以及使用 Linux 計算節點將工作提交至 HPC Pack 叢集，如需詳細資訊請參閱[開始在 Azure 中的 HPC Pack 叢集使用 Linux 計算節點](virtual-machines-linux-classic-hpcpack-cluster.md)。
+* 如需有關使用指令碼來建立叢集和執行 Linux HPC 工作負載的教學課程，請參閱︰
+    * [在 Azure 中的 Linux 計算節點以 Microsoft HPC Pack 執行 NAMD](virtual-machines-linux-classic-hpcpack-cluster-namd.md)
+    * [在 Azure 中的 Linux 計算節點以 Microsoft HPC Pack 執行 OpenFOAM](virtual-machines-linux-classic-hpcpack-cluster-openfoam.md)
+    * [在 Azure 中的 Linux 計算節點以 Microsoft HPC Pack 執行 STAR-CCM+](virtual-machines-linux-classic-hpcpack-cluster-starccm.md)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0713_2016-->

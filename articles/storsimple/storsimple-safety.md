@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="Safety for your StorSimple device | Microsoft Azure"
-   description="Describes safety conventions, guidelines, and considerations, and explains how to safely install and operate your StorSimple device."
+   pageTitle="StorSimple 裝置的安全性 | Microsoft Azure"
+   description="描述安全性慣例、方針和考量，並說明如何安全地安裝和操作您的 StorSimple 裝置。"
    services="storsimple"
    documentationCenter=""
    authors="alkohli"
@@ -15,175 +15,168 @@
    ms.date="08/18/2016"
    ms.author="alkohli" />
 
+# 安全地安裝和操作您的 StorSimple 裝置
 
-# <a name="safely-install-and-operate-your-storsimple-device"></a>Safely install and operate your StorSimple device
+![警告圖示](./media/storsimple-safety/IC740879.png)![閱讀安全性注意事項圖示](./media/storsimple-safety/IC740885.png)**讀取的安全性和健全狀況資訊**
 
-![Warning Icon](./media/storsimple-safety/IC740879.png)
-![Read Safety Notice Icon](./media/storsimple-safety/IC740885.png) **READ SAFETY AND HEALTH INFORMATION**
+請閱讀本文中適用於 Microsoft Azure StorSimple 裝置的所有安全性和健全狀況資訊。保留隨附於 StorSimple 裝置的所有列印指南供日後參考。無法遵循下列指示並適當地設定、使用和照顧這項產品可能會提高嚴重傷害或人員死亡的風險，或造成裝置的損毀。[本指南的可下載版本](http://www.microsoft.com/download/details.aspx?id=44233)也可供使用。
 
-Read all the safety and health information in this article that applies to your Microsoft Azure StorSimple device. Keep all the printed guides shipped with your StorSimple device for future reference. Failure to follow instructions and properly set up, use, and care for this product can increase the risk of serious injury or death, or damage to the device or devices. A [downloadable version of this guide](http://www.microsoft.com/download/details.aspx?id=44233) is also available.
+## 安全性圖示慣例
 
-## <a name="safety-icon-conventions"></a>Safety icon conventions
+以下是您在檢閱安全性預防措施時會發現的圖示，這些措施可在設定與執行 Microsoft Azure StorSimple 裝置時觀查到。
 
-Here are the icons that you will find when you review the safety precautions to be observed when setting up and running your Microsoft Azure StorSimple device.
-
-| Icon  | Description  |
+| 圖示 | 說明 |
 |:------|:-------------| 
-|![Danger Icon](./media/storsimple-safety/IC740879.png) **DANGER!**|Indicates a hazardous situation that, if not avoided, will result in death or serious injury. This signal word is to be limited to the most extreme situations.| 
-|![Warning Icon](./media/storsimple-safety/IC740879.png) **WARNING!**|Indicates a hazardous situation that, if not avoided, could result in death or serious injury.|
-|![Warning Icon](./media/storsimple-safety/IC740879.png) **CAUTION!**|Indicates a hazardous situation that, if not avoided, could result in minor or moderate injury.|
-|![Notice Icon](./media/storsimple-safety/IC740881.png) **NOTICE:**|Indicates information considered important, but not hazard-related.|
-|![Electrical Shock Icon](./media/storsimple-safety/IC740882.png) **Electrical Shock Hazard** |High voltage|
-|![Heavy Weight Icon](./media/storsimple-safety/IC740883.png) **Heavy Weight**| |
-|![No User Serviceable Parts Icon](./media/storsimple-safety/IC740879.png) **No User Serviceable Parts**|Do not access unless properly trained.|
-|![Read Safety Notice Icon](./media/storsimple-safety/IC740885.png)**Read All Instructions First**| |
-|![Tip Hazard Icon](./media/storsimple-safety/IC740886.png) **Tip Hazard**| |
+|![危險圖示](./media/storsimple-safety/IC740879.png) **危險！**|指出危險的情況，如果無法避免，將會導致死亡或嚴重傷害。此訊號文字僅限用於最極端的情況。| 
+|![警告圖示](./media/storsimple-safety/IC740879.png) **警告！**|指出危險的情況，如果無法避免，可能會導致死亡或嚴重傷害。|
+|![警告圖示](./media/storsimple-safety/IC740879.png) **小心！**|指出危險的情況，如果無法避免，可能會導致次要或中度的傷害。|
+|![注意事項圖示](./media/storsimple-safety/IC740881.png) **注意事項：**|表示重要資訊，但與危險無關。|
+|![電擊圖示](./media/storsimple-safety/IC740882.png) **電擊危險** |高電壓|
+|![超重圖示](./media/storsimple-safety/IC740883.png) **重量**| |
+|![沒有使用者可自行維修零件圖示](./media/storsimple-safety/IC740879.png) **沒有使用者可自行維修的零件**|除非受過適當訓練，否則請勿觸碰。|
+|![閱讀安全性注意事項圖示](./media/storsimple-safety/IC740885.png)**請先閱讀所有指示**| |
+|![傾倒危險圖示](./media/storsimple-safety/IC740886.png) **傾倒危險**| |
 
 
-## <a name="handling-precautions"></a>Handling precautions
+## 處理預防措施
 
-![Warning Icon](./media/storsimple-safety/IC740879.png) ![Heavy Weight Icon](./media/storsimple-safety/IC740883.png) **WARNING!** 
+![警告圖示](./media/storsimple-safety/IC740879.png) ![超重圖示](./media/storsimple-safety/IC740883.png) **警告！**
 
 
-To reduce the risk of injury:
+減少受傷的風險：
 
-- A fully configured enclosure can weigh up to 32 kg (70 lbs); do not try to lift it by yourself.
-- Before moving the enclosure, always ensure that two people are available to handle the weight. Be aware that one person attempting to lift this weight can sustain injuries.
-- Do not lift the enclosure by the handles on the Power and Cooling Modules (PCMs) located at the rear of the unit. These are not designed to take the weight.
+- 完整設定的機箱重達 32 公斤 (70 磅)；請勿嘗試自己將其抬起。
+- 移動機箱之前，請務必確定由兩人承受重量。請注意，一個人嘗試抬起這個重量可能造成受傷。
+- 請勿利用單元後方電源和冷卻模組 (PCM) 上的把手抬起機箱。這些把手不是設計來承受重量的。
 
-## <a name="connection-precautions"></a>Connection precautions
+## 連接預防措施
 
-![Warning Icon](./media/storsimple-safety/IC740879.png) ![Electrical Shock Icon](./media/storsimple-safety/IC740882.png) **WARNING!**
+![警告圖示](./media/storsimple-safety/IC740879.png) ![電擊圖示](./media/storsimple-safety/IC740882.png) **警告！**
 
-To reduce the likelihood of injury, electrical shock, or death:
+減少傷害、電擊或死亡的可能性：
 
-- When powered by multiple AC sources, disconnect all supply power for complete isolation.
+- 由多個 AC 來源提供電源時，請中斷所有供應電源以達完全隔離。
 
-- Permanently unplug the unit before you move it or if you think it has become damaged in any way.
+- 在您移動單元，或者認為單元受到任何損毀時，請一律拔除電源。
 
-- Provide a safe electrical earth connection to the power supply cords. Verify that the grounding of the enclosure meets the national and local requirements before applying power.
+- 提供電源供應線安全的接地線。請確認機箱接地符合國家和當地需求，然後再供應電源。
 
-- Ensure that the power connection is always disconnected prior to the removal of a PCM from the enclosure.
+- 從機箱移除 PCM 之前請務必中斷電源連接。
 
-- Given that the plug on the power supply cord is the main disconnect device, ensure that the socket outlets are located near the equipment and are easily accessible.
+- 假設電源供應線上的插頭是主要的中斷裝置，請確保插座位於設備附近且可輕鬆觸及。
 
-![Warning Icon](./media/storsimple-safety/IC740879.png) ![Electrical Shock Icon](./media/storsimple-safety/IC740882.png) **WARNING!**
+![警告圖示](./media/storsimple-safety/IC740879.png) ![電擊圖示](./media/storsimple-safety/IC740882.png) **警告！**
 
-To reduce the likelihood of overheating or fire from the electrical connections:
+降低電力連接過熱或火災的可能性：
 
-- Provide a suitable power source with electrical overload protection to meet the requirements detailed in the technical specification.
+- 提供適當的電源及電力多載保護，以符合技術規格中詳細列出的需求。
 
-- Do not use bifurcated power cords (“Y” leads).
+- 請勿使用分叉的電源線 ("Y" 引線)。
 
-- To comply with applicable safety, emission, and thermal requirements, no covers should be removed and all bays must be populated with plug-in modules or drive blanks.
+- 若要符合適用的安全性、放射性與熱需求，您不能移除任何封蓋且所有機架必須填入外掛程式模組或磁碟機空白。
 
-- Ensure that the equipment is used in a manner specified by the manufacturer. If this equipment is used in a manner not specified by the manufacturer, the protection provided by the equipment may be impaired.
+- 請確定以製造商所指定的方式使用設備。如果未以製造商所指定的方式使用設備，設備所提供的保護可能會減損。
 
-![Notice Icon](./media/storsimple-safety/IC740881.png) **NOTICE:**
+![注意事項圖示](./media/storsimple-safety/IC740881.png) **注意事項：**
 
-For the proper operation of your equipment and to prevent product damage:
+讓您的設備正確作業並避免產品損害：
 
-- The RJ45 ports at the back of the device are for an Ethernet connection only. These must not be connected to a telecommunications network.
+- 在裝置背面的 RJ45 連接埠僅適用於乙太網路連線。這些不必連接到電信網路。
 
-- Be sure to install the device in a rack that can accommodate a front-to-back cooling design.
+- 請務必在可容納前後冷卻設計的機架上安裝該裝置。
 
-- All plug-in modules and blank plates are part of the system enclosure. These must only be removed when a replacement can be immediately added. The system must not be run without all modules or blanks in place.
+- 所有外掛程式模組和空白面板都是系統機箱的一部分。立即加入替代項目時必須只能將其移除。系統不能在所有模組或空白都備妥之前執行。
 
-## <a name="rack-system-precautions"></a>Rack system precautions
+## 機架系統預防措施
 
-The following safety requirements must be considered when you mount the device in a rack cabinet.
+在機櫃中掛接裝置時，必須考量下列安全性需求。
 
-![Warning Icon](./media/storsimple-safety/IC740879.png) ![Tip Hazard Icon](./media/storsimple-safety/IC740886.png) **WARNING!**
+![警告圖示](./media/storsimple-safety/IC740879.png) ![傾倒危險圖示](./media/storsimple-safety/IC740886.png) **警告！**
  
-To reduce the likelihood of injury from a tip over:
+減少因為傾倒而受傷的可能性：
 
-- The rack design should support the total weight of the installed enclosures and should incorporate stabilizing features suitable to prevent the rack from tipping or being pushed over during installation or normal use.
+- 機架設計應該支援已安裝機箱的總重量，而且應該納入穩定功能，適用於防止機架在安裝或正常使用期間傾倒或推倒。
 
-- When loading a rack, fill the rack from the bottom up and empty from the top down.
+- 載入時機架，從下到上填滿機架並從上到下清空。
 
-- Do not slide more than one enclosure out of the rack at a time to avoid the danger of the rack toppling over.
+- 不要一次從機架滑動超過一個機箱，以避免機架倒塌的危險。
 
-![Warning Icon](./media/storsimple-safety/IC740879.png) ![Electrical Shock Icon](./media/storsimple-safety/IC740882.png) **WARNING!**
+![警告圖示](./media/storsimple-safety/IC740879.png) ![電擊圖示](./media/storsimple-safety/IC740882.png) **警告！**
 
-To reduce the likelihood of injury, electrical shock, or death:
+減少傷害、電擊或死亡的可能性：
 
-- The rack should have a safe electrical distribution system. It must provide over-current protection for the enclosure and must not be overloaded by the total number of enclosures installed. The electrical power consumption rating shown on the nameplate should be observed.
+- 機架應該有一個安全的電子散發系統。它必須提供機箱的過電流保護，而且安裝的機箱總數不能超載。應該觀察顯示在名牌上的電力消耗評等。
 
-- The electrical distribution system must provide a reliable ground for each enclosure in the rack.
+- 電力發散系統必須提供可靠的地面給機架中的每個機箱。
 
-- The design of the electrical distribution system must take into consideration the total ground leakage current from all power supplies in all enclosures. Note that each power supply in each enclosure has a ground leakage current of 1.0 mA maximum at 60 Hz, 264 volts. The rack may require labeling with “HIGH LEAKAGE CURRENT. Ground (earth) connection is essential before connecting a supply.”
+- 電力發散系統的設計必須考量所有機箱中所有電源供應器的總漏地電流。請注意，每個機箱中的每個電源供應器都有最大值 1.0 mA，60 Hz、264 伏特的漏地電流。機架可能需要加上下列標籤「高漏地電流。在連接供應電源之前，接地 (接地) 是不可或缺的。
 
-- The rack, when configured with the enclosures, must meet the safety requirements of UL 60950-1 and IEC 60950-1/EN 60950-1.
+- 利用機箱設定機架時，機架上必須符合 UL 60950-1 和 IEC 60950-1/EN 60950-1 的安全性需求。
 
-![Notice Icon](./media/storsimple-safety/IC740881.png) **NOTICE:**
+![注意事項圖示](./media/storsimple-safety/IC740881.png) **注意事項：**
 
-For the proper cooling of your rack system:
+關於機架系統的適當冷卻：
 
-- Ensure that the rack design takes into consideration the maximum enclosure operating ambient temperature of 35 degrees Celsius (95 degrees Fahrenheit).
+- 請確定機架設計考量到機箱作業周圍溫度最大值為攝氏 35 度 (華氏 95 度)。
 
-- The system is operated with low-pressure, rear-exhaust installation (back pressure created by rack doors and obstacles not to exceed 5 Pascal [0.5 mm water gauge]).
+- 系統在低壓、後方排氣安裝的條件下運作 (機架門和障礙建立的背部壓力不能超過 5 Pascal [0.5 mm-1.0 水位表])。
 
-## <a name="power-cooling-module-(pcm)-precautions"></a>Power Cooling Module (PCM) precautions
+## 電源冷卻模組 (PCM) 預防措施
 
-The device is designed to operate with two PCMs. Each of the PCMs has a power supply and a dual-axis fan. During a critical condition, the system allows for a failure of one power supply while continuing normal operations. Two PCMs (and hence power supplies) must always be installed. A single PCM does not provide redundant power. Therefore, the failure of even one PCM can result in downtime or possible data loss.
+裝置設計為利用兩個 PCM 運作。每個 PCM 都具有電源供應器和雙軸風扇。在嚴苛條件期間，系統會允許其中一個電源供應器失敗，同時繼續正常作業。兩個 PCM (因此和電源供應器) 必須一律安裝。單一 PCM 不會提供備援電源。因此，即使一個 PCM 失敗也可能會導致停機或可能會遺失資料。
 
-![Warning Icon](./media/storsimple-safety/IC740879.png) ![Electrical Shock Icon](./media/storsimple-safety/IC740882.png) **WARNING!**
+![警告圖示](./media/storsimple-safety/IC740879.png) ![電擊圖示](./media/storsimple-safety/IC740882.png) **警告！**
 
-To reduce the likelihood of injury, electrical shock, or death:
+減少傷害、電擊或死亡的可能性：
 
-- Do not remove the covers from the PCM. There is a danger of electric shock inside. To return the PCM and obtain a replacement, [contact Microsoft Support](https://msdn.microsoft.com/library/azure/dn757750.aspx).
+- 請勿從 PCM 移除封蓋。沒有內部觸電的危險。若要傳回 PCM 並取得替代項目，請[連絡 Microsoft 支援服務](https://msdn.microsoft.com/library/azure/dn757750.aspx)。
 
-![Notice Icon](./media/storsimple-safety/IC740881.png) **NOTICE:**
+![注意事項圖示](./media/storsimple-safety/IC740881.png) **注意事項：**
 
-For the proper operation of your equipment and to prevent product damage:
+讓您的設備正確作業並避免產品損害：
 
-- You must replace the failed PCM within 24 hours. After a PCM is removed for replacement, the replacement must be completed within 10 minutes after removal.
+- 您必須在 24 小時內取代失敗的 PCM。移除 PCM 以進行取代之後，必須在移除後 10 分鐘內完成取代。
 
-- Do not remove a PCM unless a replacement can be installed immediately. The enclosure must not be operated without all modules in place.
+- 請勿移除 PCM，除非可以立即安裝替代項目。機箱不得在所有模組尚未備妥之前運作。
 
-## <a name="electrostatic-discharge-(esd)-precautions"></a>Electrostatic discharge (ESD) precautions
+## 靜電放電 (ESD) 預防措施
 
-![Notice Icon](./media/storsimple-safety/IC740881.png) **NOTICE:**
+![注意事項圖示](./media/storsimple-safety/IC740881.png) **注意事項：**
 
-Observe the following ESD-related precautions.
+請遵循下列 ESD 相關的預防措施。
 
-- Ensure that you have installed and checked a suitable antistatic wrist or ankle strap.
+- 請確定您已安裝並檢查適合的抗靜電腕或踝帶。
 
-- Observe all conventional ESD precautions when handling modules and components.
+- 處理模組和元件時，請觀察所有傳統的 ESD 預防措施。
 
-- Avoid contact with backplane components and module connectors.
+- 避免接觸後擋板元件和模組連接器。
 
-- ESD damage is not covered by warranty.
+- 瑕疵擔保未涵蓋 ESD 損害。
 
-## <a name="battery-disposal-precautions"></a>Battery disposal precautions
+## 電池處置預防措施
 
-The power supply uses a special battery to protect the contents of memory during temporary, short-term power outages. The battery is seated in the PCM. Keep the following information in mind about the battery.
+電源供應器會使用特殊的電池，以在暫時的短期電源中斷期間保護記憶體的內容。電池置於 PCM 中。記住下列電池相關資訊。
 
-![Warning Icon](./media/storsimple-safety/IC740879.png) **WARNING!**
+![警告圖示](./media/storsimple-safety/IC740879.png) **警告！**
 
-To reduce the risk of shorts, fire, explosion, injury, or death:
+減少短路、火災、爆炸、傷害或死亡的風險：
 
-- Dispose of used batteries in accordance with national/regional regulations.
+- 根據國家/地區規定處置使用過的電池。
 
-- Do not disassemble, crush, or heat above 60 degrees Celsius (140 degrees Fahrenheit) or incinerate. Replace the PCM battery with a supplied battery only. Use of another battery may present a risk of fire or explosion.
+- 請勿拆解、損毀或加熱至高於攝氏 60 度 (華氏 140 度) 或焚毀。只能以提供的電池取代 PCM 電池。使用另一個電池可能有火災或爆炸的風險。
 
-- Use protective end caps on the batteries if these are removed from the power supply.
+- 如果從電源供應器移除電池，請使用電池上的保護端帽。
 
-![Notice Icon](./media/storsimple-safety/IC740881.png) **NOTICE:**
+![注意事項圖示](./media/storsimple-safety/IC740881.png) **注意事項：**
 
-When shipping or otherwise transporting the batteries by air, follow the IATA Lithium Battery Guidance document available at [http://www.iata.org/whatwedo/cargo/dgr/Pages/lithium-batteries.aspx](http://www.iata.org/whatwedo/cargo/dgr/Pages/lithium-batteries.aspx)
+以空運傳送或傳輸電池時，請遵循 [http://www.iata.org/whatwedo/cargo/dgr/Pages/lithium-batteries.aspx](http://www.iata.org/whatwedo/cargo/dgr/Pages/lithium-batteries.aspx) 中提供的 IATA 鋰電池指引文件
 
-After you have reviewed these safety notices, the next steps are to unpack, rack and cable your device.
+在您檢閱這些安全性注意事項之後，接下來的步驟是為裝置解除封裝、安裝機架和纜線。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-- For an 8100 device, go to [Install your StorSimple 8100 device](storsimple-8100-hardware-installation.md).
+- 針對 8100 裝置，請至[安裝您的 StorSimple 8100 裝置](storsimple-8100-hardware-installation.md)。
 
-- For an 8600 device, go to [Install your StorSimple 8600 device](storsimple-8600-hardware-installation.md).
+- 針對 8600 裝置，請至[安裝您的 StorSimple 8600 裝置](storsimple-8600-hardware-installation.md)。
 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

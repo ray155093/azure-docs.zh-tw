@@ -1,35 +1,29 @@
 <!--author=SharS last changed: 1/7/2016-->
 
-#### <a name="to-modify-a-volume-container"></a>To modify a volume container
+#### 修改磁碟區容器
 
-1. On the **Devices** page, select the device, double-click it, and then click the **Volume containers** tab.
+1. 在 [**裝置**] 頁面中，選取並按兩下裝置，然後按一下 [**磁碟區容器**] 索引標籤。
 
-2. In the tabular listing of the volume containers, select the setting that you want to modify, and click **Modify**.
+2. 在磁碟區容器的表格式清單中，選取您想修改的設定，然後按一下 [**修改**]。
 
-3. In the **Modify Volume container** dialog box, do the following:
+3. 在 [**修改磁碟區容器**] 對話方塊中，執行下列動作：
 
-    1. Change the name of the volume container and modify the associated bandwidth setting. 
+    1. 變更磁碟區容器的名稱並修改相關頻寬設定。 
 
-        ![Modify Volume Container with Bandwidth Template 1](./media/storsimple-modify-volume-container/HCS_ModifyVCBT1-include.png)
+        ![使用頻寬範本 1 修改磁碟區容器](./media/storsimple-modify-volume-container/HCS_ModifyVCBT1-include.png)
 
-    2. The encryption key and storage account cannot be changed after they are specified. If you specified **Select a bandwidth template**, click the arrow to proceed to the next page.
+    2. 指定之後，就無法變更加密金鑰和儲存體帳戶。如果您指定 [**選擇頻寬範本**]，按一下箭頭以前往下一頁。
 
-4. In the next page of the **Modify Volume Container** dialog box:
+4. 在 [**修改磁碟區容器**] 對話方塊的下一頁中：
 
-    1. From the drop-down list, choose an existing bandwidth template.
+    1. 從下拉式清單中選擇現有的頻寬範本。
 
-    2. Review the schedule settings for the specified bandwidth template.
+    2. 檢閱指定的頻寬範本的排程設定。
 
-        ![Modify Volume Container with Bandwidth Template 2](./media/storsimple-modify-volume-container/HCS_ModifyVCBT2-include.png)
+        ![使用頻寬範本 2 修改磁碟區容器](./media/storsimple-modify-volume-container/HCS_ModifyVCBT2-include.png)
 
-    3. Click the check icon ![check icon](./media/storsimple-modify-volume-container/HCS_CheckIcon-include.png) to save the updated settings. The **Volume containers** page will be updated to reflect the changes.
+    3. 按一下核取圖示 ![核取圖示](./media/storsimple-modify-volume-container/HCS_CheckIcon-include.png) 儲存已更新的設定。[**磁碟區容器**] 頁面將會更新以反映所做的變更。
 
  
 
-
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0114_2016-->

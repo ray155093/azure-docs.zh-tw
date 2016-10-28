@@ -1,84 +1,83 @@
 <properties 
-    pageTitle="Use Azure Machine Learning Web Service Parameters | Microsoft Azure" 
-    description="How to use Azure Machine Learning Web Service Parameters to modify the behavior of your model when the web service is accessed." 
-    services="machine-learning" 
-    documentationCenter="" 
-    authors="raymondlaghaeian" 
-    manager="jhubbard" 
-    editor="cgronlun"/>
+	pageTitle="使用 Azure Machine Learning Web 服務參數 | Microsoft Azure" 
+	description="如何使用 Azure Machine Learning Web 服務參數來修改模型在 Web 服務受到存取時的行為。" 
+	services="machine-learning" 
+	documentationCenter="" 
+	authors="raymondlaghaeian" 
+	manager="jhubbard" 
+	editor="cgronlun"/>
 
 <tags 
-    ms.service="machine-learning" 
-    ms.workload="data-services" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="10/10/2016" 
-    ms.author="raymondl;garye"/>
+	ms.service="machine-learning" 
+	ms.workload="data-services" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="07/06/2016" 
+	ms.author="raymondl;garye"/>
+
+#使用 Azure Machine Learning Web 服務參數
+
+藉由發行包含可設定參數模組的試驗，來建立 Azure Machine Learning Web 服務。在某些情況下，您可能想要在執行 Web 服務時之際，變更模組的行為。*Web 服務參數*可讓您執行這項操作。
+
+常見的範例是設定[匯入資料][reader]模組，讓已發佈之 Web 服務的使用者可以在存取 Web 服務時，指定不同的資料來源。或者，設定[匯出資料][writer]模組，以便能夠指定不同的目的地。部分其他範例包括變更[雜湊功能][feature-hashing]模組的位元數，或變更[以篩選為基礎的功能選擇][filter-based-feature-selection] 模組的所需功能數。
+
+您可以設定 Web 服務參數，並使其與實驗中的一個或多個模組參數產生關聯，而且您可以指定它們是必要還是選用參數。然後 Web 服務的使用者就可以在呼叫 Web 服務時，提供這些參數的值。
+
+[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
 
 
-#<a name="use-azure-machine-learning-web-service-parameters"></a>Use Azure Machine Learning Web Service Parameters
+##如何設定及使用 Web 服務參數
 
-An Azure Machine Learning web service is created by publishing an experiment that contains modules with configurable parameters. In some cases, you may want to change the module behavior while the web service is running. *Web Service Parameters* allow you to do this task. 
+您可以按一下模組參數旁邊的圖示，然後選取 [設為 Web 服務參數] 來定義 Web 服務參數。這會建立新的 Web 服務參數並將它連線至該模組參數。然後，在 Web 服務受到存取時，使用者可以指定 Web 服務參數的值，該值就會套用至模組參數。
 
-A common example is setting up the [Import Data][reader] module so that the user of the published web service can specify a different data source when the web service is accessed. Or configuring the [Export Data][writer] module so that a different destination can be specified. Some other examples include changing the number of bits for the [Feature Hashing][feature-hashing] module or the number of desired features for the [Filter-Based Feature Selection][filter-based-feature-selection] module. 
+在您定義 Web 服務參數之後，該參數就可以供試驗中任何其他的模組參數使用。如果您定義和某個模組參數相關聯的 Web 服務參數，那麼只要參數預期具有相同類型的值，您就可以將該 Web 服務參數用於任何其他模組。例如，如果 Web 服務參數是數值，那麼該參數就只能用於預期值為數值的模組參數。當使用者設定 Web 服務參數的值時，該值將會套用至所有相關聯的模組參數。
 
-You can set Web Service Parameters and associate them with one or more module parameters in your experiment, and you can specify whether they are required or optional. The user of the web service can then provide values for these parameters when they call the web service. 
+您可以決定是否要為 Web 服務參數提供預設值。如果您提供預設值，Web 服務的使用者就可以選擇是否使用該參數。如果您沒有提供預設值，使用者就需要在存取 Web 服務時輸入值。
 
-[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
+Web 服務的 API 文件將包括 Web 服務使用者在存取 Web 服務時，如何以程式設計方式指定 Web 服務參數的資訊。
 
-
-##<a name="how-to-set-and-use-web-service-parameters"></a>How to set and use Web Service Parameters
-
-You define a Web Service Parameter by clicking the icon next to the parameter for a module and selecting "Set as web service parameter". This creates a new Web Service Parameter and connects it to that module parameter. Then, when the web service is accessed, the user can specify a value for the Web Service Parameter and it is applied to the module parameter.
-
-Once you define a Web Service Parameter, it's available to any other module parameter in the experiment. If you define a Web Service Parameter associated with a parameter for one module, you can use that same Web Service Parameter for any other module, as long as the parameter expects the same type of value. For example, if the Web Service Parameter is a numeric value, then it can only be used for module parameters that expect a numeric value. When the user sets a value for the Web Service Parameter, it will be applied to all associated module parameters.
-
-You can decide whether to provide a default value for the Web Service Parameter. If you do, then the parameter is optional for the user of the web service. If you don't provide a default value, then the user is required to enter a value when the web service is accessed.
-
-The API documentation for the web service includes information for the web service user on how to specify the Web Service Parameter programmatically when accessing the web service.
-
->[AZURE.NOTE] The API documentation for a classic web service is provided through the **API help page** link in the web service **DASHBOARD** in Machine Learning Studio. The API documentation for a new web service is provided through the [Azure Machine Learning Web Services](https://services.azureml.net/Quickstart) portal on the **Consume** and **Swagger API** pages for your web service.
+>[AZURE.NOTE] 傳統 Web 服務的 API 文件是透過 Machine Learning Studio 中 Web 服務 [儀表板] 的 [API 說明頁面] 連結提供。新的 Web 服務的 API 文件則是透過 [Azure Machine Learning Web Services](https://services.azureml.net/Quickstart) 入口網站中 Web 服務的 [取用] 和 [Swagger API] 頁面提供。
 
 
-##<a name="example"></a>Example
+##範例
 
-As an example, let's assume we have an experiment with an [Export Data][writer] module that sends information to Azure blob storage. We'll define a Web Service Parameter named "Blob path" that allows the web service user to change the path to the blob storage when the service is accessed.
+舉例來說，假設我們有一個[匯出資料][writer]模組實驗，該模組會傳送資訊給 Azure Blob 儲存體。我們將會定義名為 Blob path 的 Web 服務參數，以在服務被存取時允許 Web 服務使用者將路徑變更至 Blob 儲存體。
 
-1.  In Machine Learning Studio, click the [Export Data][writer] module to select it. Its properties are shown in the Properties pane to the right of the experiment canvas.
+1.	在 Machine Learning Studio 中，按一下 [[匯出資料][writer]] 模組來選取它。其屬性會顯示在試驗畫布右邊的 [屬性] 窗格中。
 
-2.  Specify the storage type:
+2.	指定儲存體類型：
 
-    - Under **Please specify data destination**, select "Azure Blob Storage".
-    - Under **Please specify authentication type**, select "Account".
-    - Enter the account information for the Azure blob storage. 
+    - 在 **[請指定資料目的地]** 底下，選取 [Azure Blob 儲存體]。
+    - 在 **[請指定驗證類型]** 底下，選取 [帳戶]。
+    - 輸入 Azure Blob 儲存體的帳戶資訊。
     <p />
 
-3.  Click the icon to the right of the **Path to blob beginning with container parameter**. It looks like this:
+3.	按一下 **[以容器參數為開頭的 Blob 路徑]** 右邊的圖示。它看起來像這樣：
 
-    ![Web Service Parameter icon][icon]
+	![Web 服務參數圖示][icon]
 
-    Select "Set as web service parameter".
+    選取 [設為 Web 服務參數]。
 
-    An entry is added under **Web Service Parameters** at the bottom of the Properties pane with the name "Path to blob beginning with container". This is the Web Service Parameter that is now associated with this [Export Data][writer] module parameter.
+    就會在 **[屬性] 窗格底部的 [Web 服務參數]** 底下新增一個名為 [以容器為開頭的 Blob 路徑] 項目。這就是現在與此[匯出資料][writer]模組參數關聯的「Web 服務參數」。
 
-4.  To rename the Web Service Parameter, click the name, enter "Blob path", and press the **Enter** key. 
+4.	若要重新命名 Web 服務參數，請按一下名稱，輸入 Blob path，然後按 **Enter** 鍵。
  
-5.  To provide a default value for the Web Service Parameter, click the icon to the right of the name, select "Provide default value", enter a value (for example, "container1/output1.csv"), and press the **Enter** key.
+5.	若要為 Web 服務參數提供預設值，請按一下名稱右邊的圖示，選取 [提供預設值]，輸入值 (例如 container1/output1.csv)，然後按 **Enter** 鍵。
 
-    ![Web Service Parameter][parameter]
+	![Web 服務參數][parameter]
 
-6.  Click **Run**. 
+6.	按一下 **[執行]**。
 
-7.  Click **Deploy Web Service** and select **Deploy Web Service [Classic]** or **Deploy Web Service [New]** to deploy the web service.
+7.	按一下 [部署 Web 服務]，然後選取 [部署 Web 服務 [傳統]] 或 [部署 Web 服務 [新]] 可部署 Web 服務。
 
-The user of the web service can now specify a new destination for the [Export Data][writer] module when accessing the web service.
+Web 服務的使用者現在存取 Web 服務時，可以為[匯出資料][writer]模組指定新的目的地。
 
-##<a name="more-information"></a>More information
+##詳細資訊
 
-For a more detailed example, see the [Web Service Parameters](http://blogs.technet.com/b/machinelearning/archive/2014/11/25/azureml-web-service-parameters.aspx) entry in the [Machine Learning Blog](http://blogs.technet.com/b/machinelearning/archive/2014/11/25/azureml-web-service-parameters.aspx).
+如需更詳細的範例，請參閱 [Machine Learning Blog](http://blogs.technet.com/b/machinelearning/archive/2014/11/25/azureml-web-service-parameters.aspx) 中的 [Web 服務參數](http://blogs.technet.com/b/machinelearning/archive/2014/11/25/azureml-web-service-parameters.aspx)項目。
 
-For more information on accessing a Machine Learning web service, see [How to consume a published machine learning web service](machine-learning-consume-web-services.md).
+如需存取 Machine Learning Web 服務的詳細資訊，請參閱[如何使用已發佈的 Machine Learning Web 服務](machine-learning-consume-web-services.md)。
 
 
 
@@ -94,8 +93,4 @@ For more information on accessing a Machine Learning web service, see [How to co
 [writer]: https://msdn.microsoft.com/library/azure/7a391181-b6a7-4ad4-b82d-e419c0d6522c/
  
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

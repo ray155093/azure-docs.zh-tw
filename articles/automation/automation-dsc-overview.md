@@ -1,12 +1,12 @@
 <properties 
-   pageTitle="Azure Automation DSC Overview | Microsoft Azure" 
-   description="An Overview of Azure Automation Desired State Configuration (DSC), its terms, and known issues" 
+   pageTitle="Azure 自動化 DSC 概觀 | Microsoft Azure" 
+   description="Azure 自動化期望狀態組態 (DSC)、其條款和已知問題的概觀" 
    services="automation" 
    documentationCenter="dev-center-name" 
    authors="coreyp-at-msft" 
    manager="stevenka" 
    editor="tysonn"
-   keywords="powershell dsc, desired state configuration, powershell dsc azure"/>
+   keywords="powershell dsc, 需要的狀態組態, powershell dsc azure"/>
 
 <tags
    ms.service="automation"
@@ -17,120 +17,115 @@
    ms.date="05/10/2016"
    ms.author="magoedte;coreyp"/>
 
+# Azure 自動化 DSC 概觀 #
 
-# <a name="azure-automation-dsc-overview"></a>Azure Automation DSC Overview #
+##什麼是 Azure 自動化 DSC？##
+部署和維護伺服器與應用程式資源的期望狀態可能會非常繁瑣又容易出錯。使用 Azure 自動化期望狀態組態 (DSC)，您可以一致地部署、可靠地監視和自動更新雲端的所有 IT 資源的期望狀態。建置在 PowerShell DSC 上，自動化 DSC 可以對齊機器組態與跨實體和虛擬機器 (VM) 的特定狀態 (使用 Windows 或 Linux，以及在雲端或內部部署)。您可以啟用連續 IT 服務傳遞，具有一致的控制項，並且輕鬆地管理跨異質混合式 IT 環境的快速變更。
 
-##<a name="what-is-azure-automation-dsc?##"></a>What is Azure Automation DSC?##
-Deploying and maintaining the desired state of your servers and application resources can be tedious and error prone. With Azure Automation Desired State Configuration (DSC), you can consistently deploy, reliably monitor, and automatically update the desired state of all your IT resources, at scale from the cloud. Built on PowerShell DSC, Automation DSC can align machine configuration with a specific state across physical and virtual machines (VMs), using Windows or Linux, and in the cloud or on-premises. You can enable continuous IT services delivery with consistent control and manage rapid change across your heterogeneous hybrid IT environment with ease.
+Azure 自動化 DSC 建置在 PowerShell DSC 中推出的基礎上，提供您更輕鬆的組態管理經驗。Azure Automation DSC 為 [PowerShell 期望狀態組態](https://msdn.microsoft.com/powershell/dsc/overview)帶來與現今的 Azure 自動化提供的 PowerShell 指令碼相同的管理層。
 
-Azure Automation DSC builds on top of the fundamentals introduced in PowerShell DSC to provide an even easier configuration management experience. Azure Automation DSC brings the same management layer to [PowerShell Desired State Configuration](https://msdn.microsoft.com/powershell/dsc/overview) as Azure Automation offers for PowerShell scripting today.
+Azure 自動化 DSC 可讓您 [編寫和管理 PowerShell 期望狀態組態](https://technet.microsoft.com/library/dn249918.aspx)、匯入 [DSC 資源](https://technet.microsoft.com/library/dn282125.aspx)，並產生 DSC 節點組態 (MOF 文件)，全都在雲端。這些 DSC 項目將會放在 Azure 自動化 [DSC 提取伺服器](https://technet.microsoft.com/library/dn249913.aspx)上，以便在雲端或內部的目標節點 (例如實體和虛擬機器) 可以加以提取，自動符合它們指定的狀態，並向 Azure 自動化回報其期望狀態的符合性。
 
-Azure Automation DSC allows you to [author and manage PowerShell Desired State Configurations](https://technet.microsoft.com/library/dn249918.aspx), import [DSC Resources](https://technet.microsoft.com/library/dn282125.aspx), and generate DSC Node Configurations (MOF documents), all in the cloud. These DSC items will be placed on the Azure Automation [DSC pull server](https://technet.microsoft.com/library/dn249913.aspx) so that target nodes (such as physical and virtual machines) in the cloud or on-premises can pick them up, automatically conform to the desired state they specify, and report back on their compliance with the desired state to Azure Automation.
-
-Prefer watching to reading? Have a look at the below video from May 2015, when Azure Automation DSC was first announced. **Note:** While the concepts and lifecycle discussed in this video are correct, Azure Automation DSC has progressed a lot since this video was recorded. It is now generally available, has a much more extensive UI in the Azure portal, and supports many additional capabilities.
+寧可觀賞也不要閱讀？ 請觀賞以下在 2015 年 5 月發佈的影片，此為首次發佈 Azure 自動化 DSC 的時間。**附註：**儘管這段影片中所討論的概念和週期都是正確的，但是 Azure 自動化 DSC 自從這段影片錄製之後已經進步許多。它現在已正式發行，在 Azure 入口網站中具有更豐富的 UI，並支援額外的功能。
 
 > [AZURE.VIDEO microsoft-ignite-2015-heterogeneous-configuration-management-using-microsoft-azure-automation]
 
 
 
-## <a name="azure-automation-dsc-terms"></a>Azure Automation DSC Terms ##
-### <a name="configuration"></a>Configuration ###
-PowerShell DSC introduced a new concept called configurations. Configurations allow you to define, via PowerShell syntax, the desired state of your environment. To use DSC to configure your environment, first define a Windows PowerShell script block using the configuration keyword, then follow it with an identifier, then with braces ({}) to delimit the block.
+## Azure 自動化 DSC 詞彙 ##
+### 組態 ###
+PowerShell DSC 引進了稱為組態的新概念。組態可讓您透過 PowerShell 語法定義您的環境所需的狀態。若要使用 DSC 來設定您的環境，請先使用組態關鍵字定義 Windows PowerShell 指令碼區塊，接著使用識別項，然後以大括弧 ({}) 來分隔區塊。
 
-![alt text](./media/automation-dsc-overview/AADSC_1.png)
+![替代文字](./media/automation-dsc-overview/AADSC_1.png)
 
-Inside the configuration block you can define node configuration blocks that specify the desired configuration for a set of nodes (computers) in your environment that should be configured exactly the same. In this way, a node configuration represents a “role” for one or more nodes to assume. A node configuration block starts with the node keyword. Follow this keyword with the name of the role, which can be a variable or expression. After the role name, use braces {} to delimit the node configuration block.
+在組態區塊內，您可以定義節點組態區塊，指定一組環境中應該完全相同的節點 (電腦) 的期望組態。如此一來，節點組態可表示要設想的一或多個節點的「角色」。節點組態區塊開頭為 node 關鍵字。在此關鍵字之後加上角色名稱，它可以是變數或運算式。在角色名稱之後，使用大括弧 {} 來分隔節點組態區塊。
 
-![alt text](./media/automation-dsc-overview/AADSC_2.png)
+![替代文字](./media/automation-dsc-overview/AADSC_2.png)
  
-Inside the node configuration block, you can define resource blocks to configure specific DSC resources. A resource block starts with the name of the resource, followed by the identifier you want to specify for that block, then braces {} to delimit the block.
+在節點組態區塊內，您可以定義資源區塊來設定特定 DSC 資源。資源區塊的開頭是資源的名稱，後面接著要為該區塊指定的識別碼，然後是大括弧 {} 用來分隔區塊。
 
-![alt text](./media/automation-dsc-overview/AADSC_3.png)
+![替代文字](./media/automation-dsc-overview/AADSC_3.png)
 
-For more detailed information about the configuration keyword, see: [Understanding Configuration Keyword in Desired State Configuration](http://blogs.msdn.com/b/powershell/archive/2013/11/05/understanding-configuration-keyword-in-desired-state-configuration.aspx "Understanding Configuration Keyword in Desired State Configuration")
+如需組態關鍵字的詳細資訊，請參閱：[了解期望狀態組態中的組態關鍵字](http://blogs.msdn.com/b/powershell/archive/2013/11/05/understanding-configuration-keyword-in-desired-state-configuration.aspx "了解期望狀態組態中的組態關鍵字")
 
-Running (compiling) a DSC configuration will produce one or more DSC node configurations (MOF documents), which are what DSC nodes apply to comply with desired state.
+執行 (編譯) DSC 組態將會產生一或多個 DSC 節點組態 (MOF 文件)，這是 DSC 節點會套用以符合所需狀態的組態。
 
-Azure Automation DSC allows you to import, author, and compile DSC configurations in Azure Automation, similar to how runbooks can be imported, authored, and started in Azure Automation.
+Azure 自動化 DSC 可讓您在 Azure 自動化中匯入、編寫並編譯 DSC 組態，類似於匯入、編寫並在 Azure 自動化中開始使用 Runbook 的方式。
 
->[AZURE.IMPORTANT] A configuration should contain only one configuration block, with the same name as the configuration, in Azure Automation DSC. 
-
-
-###<a name="node-configuration###"></a>Node Configuration###
-
-When a DSC Configuration is compiled, one or more node configurations are produced depending on the Node blocks in the configuration. A node configuration is the same as a “MOF,” or “configuration document” (if you are familiar with those PS DSC terms) and represents a “role,” such as webserver or worker, which desired state one or more nodes should assume or check for compliance against. Names of node configurations in Azure Automation DSC take the form of “Configuration Name.NodeConfigurationBlockName”.
-
-PS DSC nodes become aware of node configurations they should enact via either DSC push, or pull methods. Azure Automation DSC relies on the DSC pull method, where nodes request node configurations they should apply from the Azure Automation DSC pull server. Because the nodes make the request to Azure Automation DSC, nodes can be behind firewalls, have all inbound ports closed, etc. They only need outbound access to the Internet (either directly or via a proxy).
+>[AZURE.IMPORTANT] 在 Azure 自動化 DSC 中，組態應該僅包含一個組態區塊，具有與組態相同的名稱。
 
 
-###<a name="node###"></a>Node###
+###節點組態###
 
-A DSC node is any machine that has its configuration managed by DSC. This could be a Windows or Linux Azure VM, on-premises VM / physical host, or machine in another public cloud. Nodes enact node configurations to become and maintain compliance with the desired state they define, and also can report back to a reporting server on their configuration status and compliance versus the desired state.
+編譯了 DSC 組態之後，根據組態中的節點區塊，會產生一或多個節點組態。節點組態與「MOF」或「組態文件」是一樣的 (如果您熟悉這些 PS DSC 詞彙)，而代表「角色」，例如 webserver 或worker，應該設想一或多個節點的期望狀態，或檢查其相容性。Azure 自動化 DSC 中的節點組態名稱會採用 Configuration Name.NodeConfigurationBlockName 的形式。
 
-Azure Automation DSC makes onboarding of nodes for management by Azure Automation DSC easy, and allows changing of the node configuration assigned to each node server-side, so next time a node checks the server for instructions it will assume a different role and change both how it is configured and the complaince status it should report against to match.
-
-
-###<a name="resource###"></a>Resource###
-DSC resources are building blocks that you can use to define a Windows PowerShell Desired State Configuration (DSC) configuration. DSC comes with a set of built-in resources such as those for files and folders, server features and roles, registry settings, environment variables, and services and processes. To learn about the full list of built-in DSC resources and how to use them, see [Built-In Windows PowerShell Desired State Configuration Resources](https://technet.microsoft.com/library/dn249921.aspx).
-
-DSC resources can also be imported as part of PowerShell Modules to extend the set of built-in DSC resources. Non-default resources will be pulled down by DSC nodes from the DSC pull server, if a node configuration the node is meant to enact contains references to those resources. To learn how to create custom resources, see [Build Custom Windows PowerShell Desired State Configuration Resources](https://technet.microsoft.com/library/dn249927.aspx).
-
-Azure Automation DSC ships with all the same built-in DSC resources as does PS DSC. Additional resources can be added to Azure Automation DSC by importing PowerShell modules containing the resources into Azure Automation.
+可察覺節點組態的 PS DSC 節點，應該透過 DSC 發送或提取方法來執行。Azure Automation DSC 依賴 DSC 提取方法，其中要求節點組態的節點應該從 Azure 自動化 DSC 提取伺服器套用。由於節點會對 Azure 自動化 DSC 提出要求，因此這些節點可以在防火牆之後、將所有輸入連接埠關閉等等。它們只需要對網際網路的輸出存取權 (直接或透過 proxy)。
 
 
-###<a name="compilation-job###"></a>Compilation Job###
-A compilation job in Azure Automation DSC is an instance of compilation of a configuration, to create one or more node configurations. They are similar to Azure Automation runbook jobs, except that they do not actually perform any task except to create node configurations. Any node configurations created by a compilation job are automatically placed on the Azure Automation DSC pull server, and overwrite previous versions of node configurations, if they existed for this configuration. The name of a node configuration produced by a compilation job takes the form of “ConfigurationName.NodeConfigurationBlockName”. For example, compiling the below configuration would produce a single node configuration called “MyConfiguration.webserver”
+###節點###
+
+DSC 節點是由 DSC 所管理的任何一部機器的組態。包括 Windows 或 Linux Azure VM、內部部署 VM、實體主機或其他公用雲端中的機器。節點執行節點組態以成為並保持符合它們定義的期望狀態，而且也可以回報給報告伺服器其相關的組態狀態和符合性與期望狀態。
+
+Azure Automation DSC 使將節點上架以由 Azure Automation DSC 進行管理更為輕鬆，並允許變更指派給每個節點伺服器端的節點組態，因此下一次節點檢查伺服器的指示時，會設想不同的角色並變更它的設定方式和它應該報告的相容性狀態來符合組態。
 
 
-![alt text](./media/automation-dsc-overview/AADSC_5.png)
+###資源###
+DSC 資源是可用來定義 Windows PowerShell 期望狀態組態 (DSC) 組態的建置組塊。DSC 隨附一組內建功能資源，例如檔案和資料夾、伺服器功能和角色、登錄設定、環境變數，以及服務和程序。若要了解內建 DSC 資源的完整清單，以及如何使用它們，請參閱 [內建的 Windows PowerShell 期望狀態組態資源](https://technet.microsoft.com/library/dn249921.aspx)。
+
+DSC 資源也可匯入成為 PowerShell 模組的一部分，以擴充內建的 DSC 資源集。如果應執行節點的節點組態包含這些資源的參考，非預設的資源會由 DSC 節點從 DSC 提取伺服器撤下。若要了解如何建立自訂資源，請參閱[建置自訂 Windows PowerShell 期望狀態組態資源](https://technet.microsoft.com/library/dn249927.aspx)。
+
+Azure 自動化 DSC 隨附與 PS DSC 相同的所有內建 DSC 資源。透過匯入包含資源的 PowerShell 模組到 Azure 自動化，即可加入其他資源至 Azure 自動化 DSC。
 
 
->[AZURE.NOTE] Just like runbooks, configurations can be published. This is not related to putting DSC items onto the Azure Automation DSC pull server. Compilation jobs cause DSC items to be placed on the Azure Automation DSC pull server. For more information on “publishing” in Azure Automation, see [Publishing a Runbook](https://msdn.microsoft.com/library/dn903765.aspx).
+###編譯工作###
+Azure 自動化 DSC 中的編譯工作是組態編譯的執行個體，以建立一或多個節點組態。它們類似於 Azure 自動化 Runbook 工作，除了它們未實際執行除了建立節點組態以外的任何工作。編譯工作所建立的任何節點組態都會自動放在 Azure 自動化 DSC 提取伺服器上，並覆寫舊版節點組態 (如果此組態具有舊版節點組態)。編譯工作產生之節點組態的名稱會採用 ConfigurationName.NodeConfigurationBlockName 的形式。例如，編譯下列組態會產生稱為 "MyConfiguration.webserver" 的單一節點組態
 
 
-##<a name="azure-automation-dsc-lifecycle##"></a>Azure Automation DSC LifeCycle##
-Going from an empty automation account to a managed set of correctly configured nodes involves a set of processes for defining configurations, turning those configurations into node configurations, and onboarding nodes to Azure Automation DSC and to those node configurations. The following diagram illustrates the Azure Automation DSC lifecycle:
-
-![alt text](./media/automation-dsc-overview/DSCLifecycle.png)
+![替代文字](./media/automation-dsc-overview/AADSC_5.png)
 
 
-The following image illustrates detailed step-by-step process in the life cycle of DSC. It includes different ways a configuration is imported and applied to nodes in Azure Automation, components required for an on-premises machine to support DSC and interactions between different components. 
+>[AZURE.NOTE] 就像 Runbook，一樣可以發行組態。這與將 DSC 項目放入 Azure 自動化 DSC 提取伺服器無關。編譯工作造成 DSC 項目放在 Azure 自動化 DSC 提取伺服器上。如需有關 Azure 自動化中的「發行」的詳細資訊，請參閱[發行 Runbook](https://msdn.microsoft.com/library/dn903765.aspx)。
 
-![DSC Architecture](./media/automation-dsc-overview/dsc-architecture.png)     
 
-##<a name="gotchas-/-known-issues:##"></a>Gotchas / Known Issues:##
+##Azure 自動化 DSC 週期##
+從空的自動化帳戶到一組受管理的正確設定節點，會包含一組用來定義組態、將這些組態變為節點組態，並將節點上架至 Azure 自動化 DSC 及節點組態的程序。下圖說明 Azure 自動化 DSC 週期：
 
-- When upgrading to WMF 5 RTM, if the machine is already registered as a node in Azure Automation DSC, please unregister it from Azure Automation DSC and reregister it after the WMF 5 RTM upgrade.
+![替代文字](./media/automation-dsc-overview/DSCLifecycle.png)
 
-- Azure Automation DSC does not support partial or composite DSC configurations at this time. However, DSC composite resources can be imported and used in Azure Automation DSC Configurations just like in local PowerShell, enabling configuration reuse.
 
-- The latest version of WMF 5 must be installed for the PowerShell DSC agent for Windows to be able to communicate with Azure Automation. The latest version of the PowerShell DSC agent for Linux must be installed for Linux to be able to communicate with Azure Automation.
+下圖說明 DSC 的生命週期的詳細逐步程序。它包含組態匯入和套用至 Azure 自動化中的節點的不同方式、內部部署電腦所需的元件以支援 DSC 和不同元件之間互動。
 
-- The traditional PowerShell DSC pull server expects module zips to be placed on the pull server in the format **ModuleName_Version.zip”**. Azure Automation expects PowerShell modules to be imported with names in the form of **ModuleName.zip**. See [this blog post](https://azure.microsoft.com/blog/2014/12/15/authoring-integration-modules-for-azure-automation/) for more info on the Integration Module format needed to import the module into Azure Automation. 
+![DSC 架構](./media/automation-dsc-overview/dsc-architecture.png)
 
-- PowerShell modules imported into Azure Automation cannot contain .doc or .docx files. Some PowerShell modules containing DSC resources contain these files, for help purposes. These files should be removed from modules, prior to import into Azure Automation.
+##錯誤/已知問題：##
 
-- When a node is first registered with an Azure Automation account, or the node is changed to be mapped to a different node configuration server-side, it’s status will be 'Compliant', even if the node’s status is not actually compliant with the node configuration it is now mapped to. After the node performs its first pull, and sends its first report, after registration or a node configuration mapping change, the node status can be trusted.
+- 升級至 WMF 5 RTM 時，如果機器已註冊為 Azure Automation DSC 的節點，請從 Azure Automation DSC 將其取消註冊，並且在 WMF 5 RTM 升級之後重新註冊。
 
-- When onboarding an Azure Windows VM for management by Azure Automation DSC using any of our direct onboarding methods, it could take up to an hour for the VM to show up as a DSC node in Azure Automation. This is due to the installation of Windows Management Framework 5.0 on the VM by the Azure VM DSC extension, which is required to onboard the VM to Azure Automation DSC.
+- Azure 自動化 DSC 目前不支援進行部分或複合 DSC 組態。不過，DSC 複合資源可以在 Azure 自動化 DSC 組態中匯入及使用，就像在本機 PowerShell 中，讓組態重複使用。
 
-- After registering, each node automatically negotiates a unique certificate for authentication that expires after one year. At this time, the PowerShell DSC registration protocol cannot automatically renew certificates when they are nearing expiration, so you need to reregister the nodes after a year’s time. Before reregistering, ensure that each node is running Windows Management Framework 5.0 RTM. If a node’s authentication certificate expires, and the node is not reregistered, the node will be unable to communicate with Azure Automation and will be marked ‘Unresponsive.’ Reregistration is performed in the same way you registered the node initially. Reregistration performed 90 days or less from the certificate expiration time, or at any point after the certificate expiration time, will result in a new certificate being generated and used.
+- 必須安裝 WMF 5 的最新版本，Windows 適用的 PowerShell DSC 代理程式才能與 Azure 自動化通訊。必須安裝 Linux 適用之 PowerShell DSC 代理程式的最新版本，Linux 才能與 Azure 自動化通訊。
 
-- When upgrading to WMF 5 RTM, if the machine is already registered as a node in Azure Automation DSC, please unregister it from Azure Automation DSC and reregister it after the WMF 5 RTM upgrade. Before reregistering, delete the $env:windir\system32\configuration\DSCEngineCache.mof file.
+- 傳統的 PowerShell DSC 提取伺服器預期模組 Zip 會以格式 **ModuleName\_Version.zip** 放置在提取伺服器上。Azure 自動化預期 PowerShell 模組會以 **ModuleName.zip** 名稱格式匯入。請參閱[此部落格文章](https://azure.microsoft.com/blog/2014/12/15/authoring-integration-modules-for-azure-automation/)，以取得將模組匯入至 Azure 自動化所需的整合模組格式的詳細資訊。
 
-- PowerShell DSC cmdlets may not work if WMF 5 RTM is installed on top of WMF 5 Production Preview. To fix this, run the following command in an elevated PowerShell session (run as administrator): `mofcomp $env:windir\system32\wbem\DscCoreConfProv.mof`
+- 匯入到 Azure 自動化的 PowerShell 模組不能包含 .doc 或 .docx 檔案。包含 DSC 資源的某些 PowerShell 模組包含這些檔案，供說明之用。匯入到 Azure 自動化之前，應該先從模組移除這些檔案。
+
+- 若已先向 Azure 自動化帳戶註冊節點，或已將該節點變更為對應至不同的節點組態伺服器端，則它的狀態將會是「相容」，即使節點的狀態實際上與現在對應的節點組態不相容亦然。當節點執行它的首次提取並傳送它的第一份報告之後，在註冊或節點組態對應變更之後，均可信任節點狀態。
+
+- 上架 Azure Windows VM 以讓 Azure Automation DSC 使用任何直接上架方法進行管理時，可能需要一個小時讓 VM 顯示為 Azure 自動化中的 DSC 節點。這是因為 VM 上憑藉著 Azure VM DSC 延伸模組的 Windows Management Framework 5.0 安裝，需要它才能將 VM 上架到 Azure 自動化 DSC。
+
+- 在註冊之後，每個節點會自動交涉唯一的驗證憑證，該憑證於一年之後到期。此時，當憑證即將過期時，PowerShell DSC 註冊通訊協定便無法自動更新憑證，因此您必須在一年之後重新註冊這些節點。在重新登錄之前，請確定每個節點都正在執行 Windows Management Framework 5.0 RTM。如果節點的驗證憑證過期，而且該節點尚未註冊，則該節點將無法與 Azure 自動化通訊，並將標示為「未回應」。 註冊執行方式與您一開始註冊節點時相同。與憑證到期時間相距 90 天或更短時間內執行的註冊，或是憑證到期時間之後任何時間點執行的註冊，將會產生新的憑證並予以使用。
+
+- 升級至 WMF 5 RTM 時，如果機器已註冊為 Azure Automation DSC 的節點，請從 Azure Automation DSC 將其取消註冊，並且在 WMF 5 RTM 升級之後重新註冊。在重新註冊之前，刪除 $env:windir\\system32\\configuration\\DSCEngineCache.mof 檔案。
+
+- 如果將 WMF 5 RTM 安裝於 WMF 5 Production Preview 上，PowerShell DSC Cmdlet 可能不會運作。若要修正此問題，請在提高權限的 PowerShell 工作階段 (以系統管理員身分執行) 中執行下列命令︰`mofcomp $env:windir\system32\wbem\DscCoreConfProv.mof`
  
 
-##<a name="related-articles##"></a>Related Articles##
+##相關文章##
 
-- [Onboarding machines for management by Azure Automation DSC] (../automation/automation-dsc-onboarding.md)
-- [Compiling configurations in Azure Automation DSC] (../automation/automation-dsc-compile.md)
-- [Azure Automation DSC cmdlets] (https://msdn.microsoft.com/library/mt244122.aspx)
-- [Azure Automation DSC pricing] (https://azure.microsoft.com/pricing/details/automation/)
-- [Continuous Deployment to IaaS VMs Using Azure Automation DSC and Chocolatey] (automation-dsc-cd-chocolatey.md)
+- [上架由 Azure 自動化 DSC 管理的機器](../automation/automation-dsc-onboarding.md)
+- [編譯 Azure 自動化 DSC 中的組態](../automation/automation-dsc-compile.md)
+- [Azure 自動化 DSC Cmdlet](https://msdn.microsoft.com/library/mt244122.aspx)
+- [Azure 自動化 DSC 價格](https://azure.microsoft.com/pricing/details/automation/)
+- [使用 Azure 自動化 DSC 和 Chocolatey 的 IaaS VM 持續部署](automation-dsc-cd-chocolatey.md)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

@@ -1,241 +1,227 @@
 <properties
-    pageTitle="How to choose machine learning algorithms | Microsoft Azure"
-    description="How to choose Azure Machine Learning algorithms for supervised and unsupervised learning in clustering, classification, or regression experiments."
-    services="machine-learning"
-    documentationCenter=""
-    authors="brohrer"
-    manager="jhubbard"
-    editor="cgronlun"
+	pageTitle="如何選擇機器學習演算法 | Microsoft Azure"
+	description="如何在叢集、分類或迴歸實驗中選擇適用於經過指導和未經指導之學習的 Azure Machine Learning 演算法。"
+	services="machine-learning"
+	documentationCenter=""
+	authors="brohrer"
+	manager="jhubbard"
+	editor="cgronlun"
     tags=""/>
     
 <tags
-    ms.service="machine-learning"
+	ms.service="machine-learning"
     ms.devlang="na"
     ms.topic="article"
     ms.tgt_pltfrm="na"
-    ms.workload="data-services"
-    ms.date="08/09/2016"
-    ms.author="brohrer;garye" />
+	ms.workload="data-services"
+	ms.date="08/09/2016"
+	ms.author="brohrer;garye" />
 
+# 如何選擇 Microsoft Azure Machine Learning 的演算法
 
-# <a name="how-to-choose-algorithms-for-microsoft-azure-machine-learning"></a>How to choose algorithms for Microsoft Azure Machine Learning
+「我該使用何種機器學習演算法？」的答案永遠都是「視情況。」 這可視資料的大小、品質和本質而定。也可取決於您想用這個答案來做些什麼。或是取決於演算法的數學運算如何針對您正在使用的電腦轉譯成指令。而這又需視您有多少時間。即使經驗最豐富的資料科學家，在沒有嘗試之前，也無法確認哪一個演算法效果會最好。
 
-The answer to the question "What machine learning algorithm should I use?" is always "It depends." It depends on the size, quality, and nature of the data. It depends what you want to do with the answer. It depends on how the math of the algorithm was translated into instructions for the computer you are using. And it depends on how much time you have. Even the most experienced data scientists can't tell which algorithm will perform best before trying them.
+## 機器學習演算法小祕技
 
-## <a name="the-machine-learning-algorithm-cheat-sheet"></a>The Machine Learning Algorithm Cheat Sheet
+**Microsoft Azure Machine Learning 演算法小祕技**可協助您從 Microsoft Azure Machine Learning 演算法資源庫中選擇適合您預測性分析解決方案的機器學習演算法。本文將引導您如何使用它。
 
-The **Microsoft Azure Machine Learning Algorithm Cheat Sheet** helps you choose the right machine learning algorithm for your predictive analytics solutions from the Microsoft Azure Machine Learning library of algorithms.
-This article walks you through how to use it.
+> [AZURE.NOTE] 若要下載小祕技，並搭配本文使用，請移至[適用於 Microsoft Azure Machine Learning Studio 的機器學習演算法小祕技](machine-learning-algorithm-cheat-sheet.md)。
 
-> [AZURE.NOTE] To download the cheat sheet and follow along with this article, go to [Machine learning algorithm cheat sheet for Microsoft Azure Machine Learning Studio](machine-learning-algorithm-cheat-sheet.md).
+請記住，這份小祕技有非常特定的預設對象：一位剛起步的資料科學家，其機器學習的經驗為大學生程度，正試著在 Azure Machine Learning Studio 中選擇要開始使用的演算法。這表示小祕技可能會比較概括且過於簡化，但它可指引您一個可靠的方向。同時這也意味著還有許多演算法並未列入其中。當 Azure 機器學習成長到擁有一組更完整的可用方法時，我們就會新增這些演算法。
 
-This cheat sheet has a very specific audience in mind: a beginning data scientist with undergraduate-level machine learning, trying to choose an algorithm to start with in Azure Machine Learning Studio. That means that it makes some generalizations and oversimplifications, but it will point you in a safe direction. It also means that there are lots of algorithms not listed here. As Azure Machine Learning grows to encompass a more complete set of available methods, we'll add them.
+這些建議是收集許多資料科學家與機器學習專家的意見反應和提示所編撰而成。雖然我們的想法並不一致，但我已試著將我們的意見整理成粗略的共識。而大部分的爭論其實都具有同一個考量：「視情況而定。」
 
-These recommendations are compiled feedback and tips from a lot of data scientists and machine learning experts. We didn't agree on everything, but I've tried to harmonize our opinions into a rough consensus. Most of the statements of disagreement begin with "It depends…"
+### 如何使用小祕技
 
-### <a name="how-to-use-the-cheat-sheet"></a>How to use the cheat sheet
+請將圖表上的路徑和演算法標籤解讀為「如果需要 *&lt;路徑標籤&gt;* 則使用 *&lt;演算法&gt;*。」 例如「如果需要 *speed* (速度) 則使用 *two class logistic regression* (二元羅吉斯迴歸)。」 有時候會適用多個分支。有時候則全部都不適用。這些建議通常是來自經驗法則，因此不必擔心是否準確。我和一些資料科學家討論過，他們都認為唯有全部試用一次，才能找出最佳的演算法。
 
-Read the path and algorithm labels on the chart as "For *&lt;path label&gt;* use *&lt;algorithm&gt;*." For example, "For *speed* use *two class logistic regression*." Sometimes more than one branch will apply.
-Sometimes none of them will be a perfect fit. They're intended to be rule-of-thumb recommendations, so don't worry about it being exact.
-Several data scientists I talked with said that the only sure way to find the very best algorithm is to try all of them.
+以下是 [Cortana Intelligence 資源庫](http://gallery.cortanaintelligence.com/)中的實驗範例，該實驗對相同的資料嘗試數種演算法，並比較其結果：[比較多類別分類器：字母辨識](http://gallery.cortanaintelligence.com/Details/a635502fc98b402a890efe21cec65b92)。
 
-Here's an example from the [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com/) of an experiment that tries several algorithms against the same data and compares the results: [Compare Multi-class Classifiers: Letter recognition](http://gallery.cortanaintelligence.com/Details/a635502fc98b402a890efe21cec65b92).
+>[AZURE.TIP] 若要下載並列印提供 Machine Learning Studio 功能概觀的圖表，請參閱 [Azure Machine Learning Studio 功能的概觀圖](machine-learning-studio-overview-diagram.md)。
 
->[AZURE.TIP] To download and print a diagram that gives an overview of the capabilities of Machine Learning Studio, see [Overview diagram of Azure Machine Learning Studio capabilities](machine-learning-studio-overview-diagram.md).
+## 機器學習的類型
 
-## <a name="flavors-of-machine-learning"></a>Flavors of machine learning
+### 監督式
 
-### <a name="supervised"></a>Supervised
+監督式學習演算法會根據一組範例做出預測。例如，利用歷史股價來大膽猜測未來的價格。用於定型的各個範例都會標上需要關注的值，在這裡指的就是股價。監督式學習演算法會在這些值標籤中尋找模式。它可以使用任何可能相關的資訊：星期幾、季節、公司的財務資料、產業類型、是否有破壞性的地緣政治事件等，然後每個演算法就會尋找不同類型的模式。當演算法找到最佳模式之後，它會使用這種模式為沒有標示的測試資料 (也就是未來的股價) 做出預測。
 
-Supervised learning algorithms make predictions based on a set of examples. For instance, historical stock prices can be used to hazard guesses at future prices. Each example used for training is labeled with the value of interest—in this case the stock price. A supervised learning algorithm looks for patterns in those value labels. It can use any information that might be relevant—the day of the week, the season, the company's financial data, the type of industry, the presence of disruptive geopolicitical events—and each algorithm looks for different types of patterns. After the algorithm has found the best pattern it can, it uses that pattern to make predictions for unlabeled testing data—tomorrow's prices.
+這是常見且實用的機器學習服務類型。除了一個例外之外，Azure 機器學習中的所有模組都是監督式學習演算法。Azure 機器學習中有幾個代表性的特定監督式學習類型：分類、迴歸和異常偵測。
 
-This is a popular and useful type of machine learning. With one exception, all of the modules in Azure Machine Learning are supervised learning algorithms. There are several specific types of supervised learning that are represented within Azure Machine Learning: classification, regression, and anomaly detection.
+* **分類**。當資料用來預測類別時，這種監督式學習也稱為分類。將影像指定為 'cat' 或 'dog' 的圖片便屬這種情況。如果只有兩個選擇，則稱作**雙類別**或**二項式分類**。如果有多個類別，例如預測 NCAA 季後賽的優勝隊伍，則這個問題就稱為**多類別分類**。
 
-* **Classification**. When the data are being used to predict a category, supervised learning is also called classification. This is the case when assigning an image as a picture of either a 'cat' or a 'dog'. When there are only two choices, this is called **two-class** or **binomial classification**. When there are more categories, as when predicting the winner of the NCAA March Madness tournament, this problem is known as **multi-class classification**.
+* **迴歸**。如果要預測值，例如股價，這種監督式學習稱為迴歸。
 
-* **Regression**. When a value is being predicted, as with stock prices, supervised learning is called regression.
+* **異常偵測**。有時候它的目的只是要找出異常的資料點。例如在偵測詐騙時，只要是極不尋常的信用卡消費模式都有嫌疑。由於詐騙可能產生的變化過多，而定型的範例過少，因此難以學習何謂詐騙活動。異常偵測採用的方法，只能使用非詐騙交易的歷史記錄來了解何謂正常活動，並找出與正常活動明顯不同的情況。
 
-* **Anomaly detection**. Sometimes the goal is to identify data points that are simply unusual. In fraud detection, for example, any highly unusual credit card spending patterns are suspect. The possible variations are so numerous and the training examples so few, that it's not feasible to learn what fraudulent activity looks like. The approach that anomaly detection takes is to simply learn what normal activity looks like (using a history non-fraudulent transactions) and identify anything that is significantly different.
+### 未監督式
 
-### <a name="unsupervised"></a>Unsupervised
+在未監督的學習中，資料點沒有與其相關聯的標籤。然而，未經指導的學習演算法的目標在於以某種方式組織資料或描述其結構。這種方式可能是將資料劃分為叢集，或尋找各種查看複雜資料的方式，讓資料變得更簡單或更整齊。
 
-In unsupervised learning, data points have no labels associated with them. Instead, the goal of an unsupervised learning algorithm is to organize the data in some way or to describe its structure. This can mean grouping it into clusters or finding different ways of looking at complex data so that it appears simpler or more organized.
+### 增強式學習
 
-### <a name="reinforcement-learning"></a>Reinforcement learning
+在增強式學習中，演算法需要選擇一個動作來回應每個資料點。此學習演算法也會在短時間內收到獎勵訊號，指出決策的好壞程度。演算法會據此修改其策略，以達到最高的獎勵。Azure 機器學習中目前沒有增強式學習演算法模組。增強式學習是機器人領域中的常見方法，其中在某個時間點的感應器讀數集就是一個資料點，而演算法必須選擇機器人的下一個動作。它的性質也很適合物聯網應用。
 
-In reinforcement learning, the algorithm gets to choose an action in response to each data point. The learning algorithm also receives a reward signal a short time later, indicating how good the decision was.
-Based on this, the algorithm modifies its strategy in order to achieve the highest reward. Currently there are no reinforcement learning algorithm modules in Azure Machine Learning. Reinforcement learning is common in robotics, where the set of sensor readings at one point in time is a data point, and the algorithm must choose the robot's next action. It is also a natural fit for Internet of Things applications.
+## 選擇演算法時的考量
 
-## <a name="considerations-when-choosing-an-algorithm"></a>Considerations when choosing an algorithm
+### 精確度
 
-### <a name="accuracy"></a>Accuracy
+您不一定常常需要取得最準確的答案。視您的用途而定，有時候近似值便已足夠。如果是這樣，您就能採用近似法，並大幅縮短處理時間。近似法的另一項優點是，它們會自然傾向於避免[過度學習](https://youtu.be/DQWI1kvmwRg)。
 
-Getting the most accurate answer possible isn't always necessary.
-Sometimes an approximation is adequate, depending on what you want to use it for. If that's the case, you may be able to cut your processing time dramatically by sticking with more approximate methods. Another advantage of more approximate methods is that they naturally tend to avoid [overfitting](https://youtu.be/DQWI1kvmwRg).
+### 定型時間
 
-### <a name="training-time"></a>Training time
+定型出一個模型可能需要幾分鐘或幾小時，這在各個演算法間有很大的差異。定型時間通常取決於精確度，這兩者的關係密不可分。此外，有些演算法對資料點的數目較為敏感。如果有時間限制，就可以促使演算法做出選擇 (尤其是資料集很大時)。
 
-The number of minutes or hours necessary to train a model varies a great deal between algorithms. Training time is often closely tied to accuracy—one typically accompanies the other. In addition, some algorithms are more sensitive to the number of data points than others.
-When time is limited it can drive the choice of algorithm, especially when the data set is large.
+### 線性
 
-### <a name="linearity"></a>Linearity
+許多機器學習演算法都會使用線性。線性分類演算法會假設可以直線 (或較高維度類比) 分隔類別。這些演算法包括羅吉斯迴歸和支援向量機器 (如同 Azure 機器學習中所實作)。線性迴歸演算法會假設資料趨勢依循著一條直線。這類假設對某些問題而言還不錯，但在其他問題上會降低精確度。
 
-Lots of machine learning algorithms make use of linearity. Linear classification algorithms assume that classes can be separated by a straight line (or its higher-dimensional analog). These include logistic regression and support vector machines (as implemented in Azure Machine Learning).
-Linear regression algorithms assume that data trends follow a straight line. These assumptions aren't bad for some problems, but on others they bring accuracy down.
+![非線性類別界限][1]
 
-![Non-linear class bounday][1]
+***非線性類別界限****：依賴線性分類演算法會造成低精確度的結果*
 
-***Non-linear class boundary*** *- relying on a linear classification algorithm would result in low accuracy*
+![具有非線性趨勢的資料][2]
 
-![Data with a nonlinear trend][2]
+***具有非線性趨勢的資料****：使用線性迴歸方法會產生較大且不必要的誤差*
 
-***Data with a nonlinear trend*** *- using a linear regression method would generate much larger errors than necessary*
+儘管有風險，線性演算法對於首次攻擊而言仍是一種非常熱門的方式。這種演算法定型起來通常又快又簡單。
 
-Despite their dangers, linear algorithms are very popular as a first line of attack. They tend to be algorithmically simple and fast to train.
+### 參數數目
 
-### <a name="number-of-parameters"></a>Number of parameters
+參數是資料科學家在設定演算法時的必經之路。參數就是會影響演算法行為的數值，例如容錯或反覆運算次數，或是演算法運作方式的變化選項。定型時間和演算法的精確度有時候很容易因為設定是否正確而受到影響。一般而言，具有大量參數的演算法需要最多次的反覆試驗，才能找出好的組合。
 
-Parameters are the knobs a data scientist gets to turn when setting up an algorithm. They are numbers that affect the algorithm's behavior, such as error tolerance or number of iterations, or options between variants of how the algorithm behaves. The training time and accuracy of the algorithm can sometimes be quite sensitive to getting just the right settings. Typically, algorithms with large numbers parameters require the most trial and error to find a good combination.
+或者，Azure 機器學習中有[參數掃掠](machine-learning-algorithm-parameters-optimize.md)模組區塊，會依照您選擇的細微性，自動嘗試所有參數組合。雖然這是確認是否定義出參數空間的好方法，但定型模型時所需的時間，仍會以指數方式隨著參數數目而增加。
 
-Alternatively, there is a [parameter sweeping](machine-learning-algorithm-parameters-optimize.md) module block in Azure Machine Learning that automatically tries all parameter combinations at whatever granularity you choose. While this is a great way to make sure you've spanned the parameter space, the time required to train a model increases exponentially with the number of parameters.
+一般而言，具有許多參數的優點是可讓演算法有更大的彈性。這通常可以達到很高的精確度。不過前提是您得為參數設定找到正確的組合。
 
-The upside is that having many parameters typically indicates that an algorithm has greater flexibility. It can often achieve very good accuracy. Provided you can find the right combination of parameter settings.
+### 特徵數目
 
-### <a name="number-of-features"></a>Number of features
+就特定的資料類型而言，可能會有比資料點數目更龐大的特徵數目。基因學或文字資料通常屬於這種情況。大量的特徵會使一些學習演算法陷入膠著，讓定型時間長到無法作業。支援向量機器就特別適合此情況 (請參閱下述)。
 
-For certain types of data, the number of features can be very large compared to the number of data points. This is often the case with genetics or textual data. The large number of features can bog down some learning algorithms, making training time unfeasibly long. Support Vector Machines are particularly well suited to this case (see below).
+### 特殊案例
 
-### <a name="special-cases"></a>Special cases
+有些學習演算法會對資料結構或想要的結果做出特定假設。如果可以找到符合需求的假設，您就能獲得更實用的結果、更精確的預測或更快的定型時間。
 
-Some learning algorithms make particular assumptions about the structure of the data or the desired results. If you can find one that fits your needs, it can give you more useful results, more accurate predictions, or faster training times.
-
-|**Algorithm**|**Accuracy**|**Training time**|**Linearity**|**Parameters**|**Notes**|
+|**演算法**|**精確度**|**定型時間**|**線性**|**參數**|**注意事項**|
 |---|:---:|:---:|:---:|:---:|---|
-|**Two-class classification**| | | | | |
-|[logistic regression](https://msdn.microsoft.com/library/azure/dn905994.aspx)                    | |●|●|5| |
-|[decision forest](https://msdn.microsoft.com/library/azure/dn906008.aspx)|●|○| |6| |
-|[decision jungle](https://msdn.microsoft.com/library/azure/dn905976.aspx)|●|○| |6|Low memory footprint|
-|[boosted decision tree](https://msdn.microsoft.com/library/azure/dn906025.aspx)|●|○| |6|Large memory footprint|
-|[neural network](https://msdn.microsoft.com/library/azure/dn905947.aspx)|●| | |9|[Additional customization is possible](http://go.microsoft.com/fwlink/?LinkId=402867)|
-|[averaged perceptron](https://msdn.microsoft.com/library/azure/dn906036.aspx)|○|○|●|4| |
-|[support vector machine](https://msdn.microsoft.com/library/azure/dn905835.aspx)| |○|●|5|Good for large feature sets|
-|[locally deep support vector machine](https://msdn.microsoft.com/library/azure/dn913070.aspx)|○| | |8|Good for large feature sets|
-|[Bayes’ point machine](https://msdn.microsoft.com/library/azure/dn905930.aspx)| |○|●|3| |
-|**Multi-class classification**| | | | | |
-|[logistic regression](https://msdn.microsoft.com/library/azure/dn905853.aspx)| |●|●|5| |
-|[decision forest](https://msdn.microsoft.com/library/azure/dn906015.aspx)|●|○| |6| |
-|[decision jungle ](https://msdn.microsoft.com/library/azure/dn905963.aspx)|●|○| |6|Low memory footprint|
-|[neural network](https://msdn.microsoft.com/library/azure/dn906030.aspx)|●| | |9|[Additional customization is possible](http://go.microsoft.com/fwlink/?LinkId=402867)|
-|[one-v-all](https://msdn.microsoft.com/library/azure/dn905887.aspx)|-|-|-|-|See properties of the two-class method selected|
-|**Regression**| | | | | |
-|[linear ](https://msdn.microsoft.com/library/azure/dn905978.aspx)| |●|●|4| |
-|[Bayesian linear](https://msdn.microsoft.com/library/azure/dn906022.aspx)| |○|●|2| |
-|[decision forest](https://msdn.microsoft.com/library/azure/dn905862.aspx)|●|○| |6| |
-|[boosted decision tree](https://msdn.microsoft.com/library/azure/dn905801.aspx)|●|○| |5|Large memory footprint|
-|[fast forest quantile](https://msdn.microsoft.com/library/azure/dn913093.aspx)|●|○| |9|Distributions rather than point predictions|
-|[neural network](https://msdn.microsoft.com/library/azure/dn905924.aspx)|●| | |9|[Additional customization is possible](http://go.microsoft.com/fwlink/?LinkId=402867)|
-|[Poisson ](https://msdn.microsoft.com/library/azure/dn905988.aspx)| | |●|5|Technically log-linear. For predicting counts|
-|[ordinal](https://msdn.microsoft.com/library/azure/dn906029.aspx)| | | |0|For predicting rank-ordering|
-|**Anomaly detection**| | | | | |
-|[support vector machine](https://msdn.microsoft.com/library/azure/dn913103.aspx)|○|○| |2|Especially good for large feature sets|
-|[PCA-based anomaly detection ](https://msdn.microsoft.com/library/azure/dn913102.aspx)| |○|●|3| |
-|[K-means](https://msdn.microsoft.com/library/azure/5049a09b-bd90-4c4e-9b46-7c87e3a36810/)| |○|●|4|A clustering algorithm|
+|**雙類別分類**| | | | | |
+|[羅吉斯迴歸](https://msdn.microsoft.com/library/azure/dn905994.aspx) | |●|●|5| |
+|[決策樹系](https://msdn.microsoft.com/library/azure/dn906008.aspx)|●|○| |6| |
+|[決策叢林](https://msdn.microsoft.com/library/azure/dn905976.aspx)|●|○| |6|低記憶體使用量|
+|[促進式決策樹](https://msdn.microsoft.com/library/azure/dn906025.aspx)|●|○| |6|高記憶體使用量|
+|[類神經網路](https://msdn.microsoft.com/library/azure/dn905947.aspx)|●| | |9|[支援其他自訂項目](http://go.microsoft.com/fwlink/?LinkId=402867)|
+|[平均感知器](https://msdn.microsoft.com/library/azure/dn906036.aspx)|○|○|●|4| |
+|[支援向量機器](https://msdn.microsoft.com/library/azure/dn905835.aspx)| |○|●|5|適用於大型特徵集|
+|[本機深度支援向量機器](https://msdn.microsoft.com/library/azure/dn913070.aspx)|○| | |8|適用於大型特徵集|
+|[貝氏點機器](https://msdn.microsoft.com/library/azure/dn905930.aspx)| |○|●|3| |
+|**多類別分類**| | | | | |
+|[羅吉斯迴歸](https://msdn.microsoft.com/library/azure/dn905853.aspx)| |●|●|5| |
+|[決策樹系](https://msdn.microsoft.com/library/azure/dn906015.aspx)|●|○| |6| |
+|[決策叢林](https://msdn.microsoft.com/library/azure/dn905963.aspx)|●|○| |6|低記憶體使用量|
+|[類神經網路](https://msdn.microsoft.com/library/azure/dn906030.aspx)|●| | |9|[支援其他自訂項目](http://go.microsoft.com/fwlink/?LinkId=402867)|
+|[一對多](https://msdn.microsoft.com/library/azure/dn905887.aspx)|-|-|-|-|請參閱選定之雙類別的屬性|
+|**迴歸**| | | | | | 
+|[線性](https://msdn.microsoft.com/library/azure/dn905978.aspx) | |●|●|4| | 
+|[貝氏線性](https://msdn.microsoft.com/library/azure/dn906022.aspx)| |○|●|2| | 
+|[決策樹系](https://msdn.microsoft.com/library/azure/dn905862.aspx)|●|○| |6| | 
+|[促進式決策樹](https://msdn.microsoft.com/library/azure/dn905801.aspx)|●|○| |5|高記憶體使用量| 
+|[快速樹系分量](https://msdn.microsoft.com/library/azure/dn913093.aspx)|●|○| |9|分佈而非點預測| 
+|[類神經網路](https://msdn.microsoft.com/library/azure/dn905924.aspx)|●| | |9|[支援其他自訂項目](http://go.microsoft.com/fwlink/?LinkId=402867)|
+|[Poisson ](https://msdn.microsoft.com/library/azure/dn905988.aspx)| | |●|5|技術上的對數線性，用於預測計數|
+|[序數](https://msdn.microsoft.com/library/azure/dn906029.aspx)| | | |0|用於預測排名順序|
+|**異常偵測**| | | | | |
+|[支援向量機器](https://msdn.microsoft.com/library/azure/dn913103.aspx)|○|○| |2|特別適用於大型特徵集|
+|[以 PCA 為基礎的異常偵測](https://msdn.microsoft.com/library/azure/dn913102.aspx)| |○|●|3| |
+|[K-means](https://msdn.microsoft.com/library/azure/5049a09b-bd90-4c4e-9b46-7c87e3a36810/)| |○|●|4|叢集演算法|
 
 
-**Algorithm properties:**
+**演算法屬性：**
 
-**●** - shows excellent accuracy, fast training times, and the use of linearity
+**●**：顯示優異的精確度、快速定型時間及使用線性
 
-**○** - shows good accuracy and moderate training times
+**○**：顯示不錯的精確度和適度的定型時間
 
-## <a name="algorithm-notes"></a>Algorithm notes
+## 演算法備註
 
-### <a name="linear-regression"></a>Linear regression
+### 線性迴歸
 
-As mentioned previously, [linear regression](https://msdn.microsoft.com/library/azure/dn905978.aspx) fits a line (or plane, or hyperplane) to the data set. It's a workhorse, simple and fast, but it may be overly simplistic for some problems.
-Check here for a [linear regression tutorial](machine-learning-linear-regression-in-azure.md).
+如同之前提到，[線性迴歸](https://msdn.microsoft.com/library/azure/dn905978.aspx)會使一條線 (或平面或超平面) 符合資料集。它是常被使用的主力，簡單又快速，但可能會過度簡化某些問題。請查看這裡的[線性迴歸教學課程](machine-learning-linear-regression-in-azure.md)。
 
-![Data with a linear trend][3]
+![具有線性趨勢的資料][3]
 
-***Data with a linear trend***
+***具有線性趨勢的資料***
 
-### <a name="logistic-regression"></a>Logistic regression
+### 羅吉斯迴歸
 
-Although it confusingly includes 'regression' in the name, logistic regression is actually a powerful tool for [two-class](https://msdn.microsoft.com/library/azure/dn905994.aspx) and [multiclass](https://msdn.microsoft.com/library/azure/dn905853.aspx) classification. It's fast and simple. The fact that it uses an 'S'-shaped curve instead of a straight line makes it a natural fit for dividing data into groups. Logistic regression gives linear class boundaries, so when you use it, make sure a linear approximation is something you can live with.
+雖然名稱中的「迴歸」讓人感到有點奇怪，但羅吉斯迴歸對[雙類別](https://msdn.microsoft.com/library/azure/dn905994.aspx)和[多類別](https://msdn.microsoft.com/library/azure/dn905853.aspx)分類而言，其實是很強大的工具。它既快速又簡單。它事實上會使用 'S' 形的曲線而不是一條直線，這使它在性質上很適合將資料分組。羅吉斯迴歸提供線性類別界限，因此使用它時，請確定線性近似值是您能接受的結果。
 
-![Logistic regression to two-class data with just one feature][4]
+![羅吉斯迴歸與只有一項特徵的雙類別資料][4]
 
-***A logistic regression to two-class data with just one feature*** *- the class boundary is the point at which the logistic curve is just as close to both classes*
+***羅吉斯迴歸與只有一項特徵的雙類別資料*** *：類別界限的點就是羅吉斯曲線接近這兩個類別的地方*
 
-### <a name="trees,-forests,-and-jungles"></a>Trees, forests, and jungles
+### 樹、樹系和叢林
 
-Decision forests ([regression](https://msdn.microsoft.com/library/azure/dn905862.aspx), [two-class](https://msdn.microsoft.com/library/azure/dn906008.aspx), and [multiclass](https://msdn.microsoft.com/library/azure/dn906015.aspx)), decision jungles ([two-class](https://msdn.microsoft.com/library/azure/dn905976.aspx) and [multiclass](https://msdn.microsoft.com/library/azure/dn905963.aspx)), and boosted decision trees ([regression](https://msdn.microsoft.com/library/azure/dn905801.aspx) and [two-class](https://msdn.microsoft.com/library/azure/dn906025.aspx)) are all based on decision trees, a foundational machine learning concept. There are many variants of decision trees, but they all do the same thing—subdivide the feature space into regions with mostly the same label. These can be regions of consistent category or of constant value, depending on whether you are doing classification or regression.
+決策樹系 ([迴歸](https://msdn.microsoft.com/library/azure/dn905862.aspx)、[雙類別](https://msdn.microsoft.com/library/azure/dn906008.aspx)和[多類別](https://msdn.microsoft.com/library/azure/dn906015.aspx))、決策叢林 ([雙類別](https://msdn.microsoft.com/library/azure/dn905976.aspx)和[多類別](https://msdn.microsoft.com/library/azure/dn905963.aspx)) 以及促進式決策樹 ([迴歸](https://msdn.microsoft.com/library/azure/dn905801.aspx)和[雙類別](https://msdn.microsoft.com/library/azure/dn906025.aspx))，都是以基本的機器學習概念「決策樹」做為基礎。決策樹有許多變化，但是用途都相同：將特徵空間細分成區域，這些區域大多具有相同的標記。根據您是執行分類或迴歸而定，這些區域可能會有一致的類別或常數值。
 
-![Decision tree subdivides a feature space][5]
+![細分特徵空間的決策樹][5]
 
-***A decision tree subdivides a feature space into regions of roughly uniform values***
+***此決策樹將特徵空間細分為值大致統一的區域***
 
-Because a feature space can be subdivided into arbitrarily small regions, it's easy to imagine dividing it finely enough to have one data point per region—an extreme example of overfitting. In order to avoid this, a large set of trees are constructed with special mathematical care taken that the trees are not correlated. The average of this "decision forest" is a tree that avoids overfitting. Decision forests can use a lot of memory. Decision jungles are a variant that consumes less memory at the expense of a slightly longer training time.
+由於特徵空間可以任意細分成較小的區域，因此會很容易推斷出每個區域都能細分成只有一個資料點，而這就是過度學習的極端範例。若要避免這個問題，建構一大組樹需要採取特殊的數學計算方式，也就是讓樹與樹之間沒有相互關聯。這種「決策樹系」的平均就是可避免過度學習的樹。決策樹系會使用大量記憶體。決策叢林則是使用較少記憶體的變體，但代價是定型時間較長。
 
-Boosted decision trees avoid overfitting by limiting how many times they can subdivide and how few data points are allowed in each region. The algorithm constructs a sequence of trees, each of which learns to compensate for the error left by the tree before. The result is a very accurate learner that tends to use a lot of memory. For the full technical description, check out [Friedman's original paper](http://www-stat.stanford.edu/~jhf/ftp/trebst.pdf).
+促進式決策樹可藉由限制細分的次數，以及每個區域中允許的最少資料點，來避免過度學習。此演算法會建構一連串的樹，其中每個樹都會學習彌補前一個樹所留下來的錯誤。這種學習方式雖然非常精確，但通常會使用大量記憶體。如需完整的技術說明，請參閱 [Friedman 的原始文件](http://www-stat.stanford.edu/~jhf/ftp/trebst.pdf)。
 
-[Fast forest quantile regression](https://msdn.microsoft.com/library/azure/dn913093.aspx) is a variation of decision trees for the special case where you want to know not only the typical (median) value of the data within a region, but also its distribution in the form of quantiles.
+[快速樹系分量迴歸](https://msdn.microsoft.com/library/azure/dn913093.aspx)是決策樹的變化之一，適用的特殊案例是，您不只想要知道區域內資料的一般 (中位數) 值，還想知道資料在分量形式中的分佈。
 
-### <a name="neural-networks-and-perceptrons"></a>Neural networks and perceptrons
+### 類神經網路和感知器
 
-Neural networks are brain-inspired learning algorithms covering [multiclass](https://msdn.microsoft.com/library/azure/dn906030.aspx), [two-class](https://msdn.microsoft.com/library/azure/dn905947.aspx), and [regression](https://msdn.microsoft.com/library/azure/dn905924.aspx) problems. They come in an infinite variety, but the neural networks within Azure Machine Learning are all of the form of directed acyclic graphs. That means that input features are passed forward (never backward) through a sequence of layers before being turned into outputs. In each layer, inputs are weighted in various combinations, summed, and passed on to the next layer. This combination of simple calculations results in the ability to learn sophisticated class boundaries and data trends, seemingly by magic. Many-layered networks of this sort perform the "deep learning" that fuels so much tech reporting and science fiction.
+類神經網路是受大腦啟發的學習演算法，其中涵蓋[多類別](https://msdn.microsoft.com/library/azure/dn906030.aspx)、[雙類別](https://msdn.microsoft.com/library/azure/dn905947.aspx)和[迴歸](https://msdn.microsoft.com/library/azure/dn905924.aspx)問題。雖然它們具有無限的變化，但 Azure 機器學習內的類神經網路都是定向非循環圖的形式。這表示輸入的特徵在轉換成輸出前，會在一連串的層中一直向前傳遞，且永遠不會向後。在每個層中，會以各種組合加權輸入、再加以加總，然後傳遞到下一個層。這種簡單的計算組合能夠學習複雜的類別界限和資料趨勢，就好像魔術一樣。這類擁有許多層的網路會執行所謂的「深度學習」，聽起來很適合當作科技報導和科幻小說題材的能力。
 
-This high performance doesn't come for free, though. Neural networks can take a long time to train, particularly for large data sets with lots of features. They also have more parameters than most algorithms, which means that parameter sweeping expands the training time a great deal.
-And for those overachievers who wish to [specify their own network structure](http://go.microsoft.com/fwlink/?LinkId=402867), the possibilities are inexhaustible.
+可惜這種高效能並非隨手可得。類神經網路需要用很長的時間來定型，特別是有許多特徵的大型資料集。它們也比大部分的演算法具有更多參數，這表示參數掃掠會大幅延長定型時間。但對於那些想要[自行指定專屬網路結構](http://go.microsoft.com/fwlink/?LinkId=402867)的佼佼者而言，它們所賦予的可能性將會是取之不盡的。
 
-<a name="![boundaries-learned-by-neural-networks][6]"></a>![Boundaries learned by neural networks][6]
+![類神經網路所學習的界限][6]
 ---------------------------
 
-***The boundaries learned by neural networks can be complex and irregular***
+***類神經網路所學到的界限可能會相當複雜且不規則***
 
-The [two-class averaged perceptron](https://msdn.microsoft.com/library/azure/dn906036.aspx) is neural networks' answer to skyrocketing training times. It uses a network structure that gives linear class boundaries. It is almost primitive by today's standards, but it has a long history of working robustly and is small enough to learn quickly.
+[雙類別的平均感知器](https://msdn.microsoft.com/library/azure/dn906036.aspx)是可以急速定型的類神經網路。它使用的網路結構會提供線性類別界限。以現今的標準來看，它似乎過於簡略，但它長期以來具有穩定運作的歷史記錄，而且小到足以快速學會。
 
-### <a name="svms"></a>SVMs
+### SVM
 
-Support vector machines (SVMs) find the boundary that separates classes by as wide a margin as possible. When the two classes can't be clearly separated, the algorithms find the best boundary they can. As written in Azure Machine Learning, the [two-class SVM](https://msdn.microsoft.com/library/azure/dn905835.aspx) does this with a straight line only. (In SVM-speak, it uses a linear kernel.) Because it makes this linear approximation, it is able to run fairly quickly. Where it really shines is with feature-intense data, like text or genomic. In these cases SVMs are able to separate classes more quickly and with less overfitting than most other algorithms, in addition to requiring only a modest amount of memory.
+支援向量機器 (SVM) 會尋找使用盡可能寬的邊界來分隔類別的界限。如果無法清楚地分隔兩個類別，演算法就會盡量找出最佳界限。如同 Azure 機器學習中所述，[雙類別 SVM](https://msdn.microsoft.com/library/azure/dn905835.aspx) 會以一條直線來尋找(但以 SVM 的說法，應該是使用線性核心)。 因為使用這種線性近似值，所以能夠相當快速地執行。可以真正發揮它功效的地方是特徵密集的資料，例如文字或基因資料。在這些情況中，SVM 能比其他大部分的演算法更快區隔出類別，也較不容易過度學習，只不過它需要適度的記憶體量才能執行。
 
-![Support vector machine class boundary][7]
+![支援向量機器類別界限][7]
 
-***A typical support vector machine class boundary maximizes the margin separating two classes***
+***典型的支援向量機器類別界限，會將分隔兩個類別的邊界最大化***
 
-Another product of Microsoft Research, the [two-class locally deep SVM](https://msdn.microsoft.com/library/azure/dn913070.aspx) is a non-linear variant of SVM that retains most of the speed and memory efficiency of the linear version. It is ideal for cases where the linear approach doesn't give accurate enough answers. The developers kept it fast by breaking the problem down into a bunch of small linear SVM problems. Read the [full description](http://research.microsoft.com/um/people/manik/pubs/Jose13.pdf) for the details on how they pulled off this trick.
+另一個 Microsoft Research 的產品 [雙類別本機深度 SVM](https://msdn.microsoft.com/library/azure/dn913070.aspx) 是 SVM 的非線性變體，能夠保留線性版本中大部分的速度和記憶體效率。當線性方法的答案不夠精確時，就非常適合使用它。開發人員藉由將問題分成一堆小型線性 SVM 問題，讓它能保持快速。請閱讀[完整說明](http://research.microsoft.com/um/people/manik/pubs/Jose13.pdf)，其中有如何完成這個技巧的詳細資料。
 
-Using a clever extension of nonlinear SVMs, the [one-class SVM](https://msdn.microsoft.com/library/azure/dn913103.aspx) draws a boundary that tightly outlines the entire data set. It is useful for anomaly detection. Any new data points that fall far outside that boundary are unusual enough to be noteworthy.
+使用聰明的非線性 SVM 延伸模組 (即[單一類別 SVM](https://msdn.microsoft.com/library/azure/dn913103.aspx))，可繪製出緊密圍繞整個資料集的界限。這適合用於異常偵測。任何遠超出該界限外的新資料點，其異常程度都值得特別注意。
 
-### <a name="bayesian-methods"></a>Bayesian methods
+### 貝氏方法
 
-Bayesian methods have a highly desirable quality: they avoid overfitting. They do this by making some assumptions beforehand about the likely distribution of the answer. Another byproduct of this approach is that they have very few parameters. Azure Machine Learning has both Bayesian algorithms for both classification ([Two-class Bayes' point machine](https://msdn.microsoft.com/library/azure/dn905930.aspx)) and regression ([Bayesian linear regression](https://msdn.microsoft.com/library/azure/dn906022.aspx)).
-Note that these assume that the data can be split or fit with a straight line.
+貝氏方法具有令人滿意的高品質：可避免過度學習。這些方法會針對可能的答案分佈事先做出一些假設。這種方法的另一個附加好處在於其參數非常少。Azure 機器學習中的分類 ([雙類別貝氏點機器](https://msdn.microsoft.com/library/azure/dn905930.aspx)) 和迴歸 ([貝氏線性迴歸](https://msdn.microsoft.com/library/azure/dn906022.aspx)) 都各有貝氏演算法。請注意，這些假設是建立在資料可以用一條直線分割或符合一條直線的情況下。
 
-On an historical note, Bayes' point machines were developed at Microsoft Research. They have some exceptionally beautiful theoretical work behind them. The interested student is directed to the [original article in JMLR](http://jmlr.org/papers/volume1/herbrich01a/herbrich01a.pdf) and an [insightful blog by Chris Bishop](http://blogs.technet.com/b/machinelearning/archive/2014/10/30/embracing-uncertainty-probabilistic-inference.aspx).
+在歷史記錄中，貝氏點機器是由 Microsoft Research 所開發。它們有一些格外出色的理論做為後盾。有興趣的學生可參考 [JMLR 中的原始文章](http://jmlr.org/papers/volume1/herbrich01a/herbrich01a.pdf)和 [Chris Bishop 深入探討的部落格](http://blogs.technet.com/b/machinelearning/archive/2014/10/30/embracing-uncertainty-probabilistic-inference.aspx)。
 
-### <a name="specialized-algorithms"></a>Specialized algorithms
+### 專門的演算法
 
-If you have a very specific goal you may be in luck. Within the Azure Machine Learning collection there are algorithms that specialize in rank prediction ([ordinal regression](https://msdn.microsoft.com/library/azure/dn906029.aspx)), count prediction ([Poisson regression](https://msdn.microsoft.com/library/azure/dn905988.aspx)), and anomaly detection (one based on [principal components analysis](https://msdn.microsoft.com/library/azure/dn913102.aspx) and one based on [support vector machine](https://msdn.microsoft.com/library/azure/dn913103.aspx)s).
-And there is a lone clustering algorithm as well ([K-means](https://msdn.microsoft.com/library/azure/5049a09b-bd90-4c4e-9b46-7c87e3a36810/)).
+如果您有非常特定的目標，那麼您的可能運氣特別好。Azure 機器學習集合中有各種專用的演算法，包括排名預測 ([序數迴歸](https://msdn.microsoft.com/library/azure/dn906029.aspx))、計數預測 ([Poisson 迴歸](https://msdn.microsoft.com/library/azure/dn905988.aspx)) 和異常偵測 (一項是依據[主體元件分析](https://msdn.microsoft.com/library/azure/dn913102.aspx)，另一項是依據[支援向量機器](https://msdn.microsoft.com/library/azure/dn913103.aspx))。此外還有單獨群集演算法 ([K-means](https://msdn.microsoft.com/library/azure/5049a09b-bd90-4c4e-9b46-7c87e3a36810/))。
 
-![PCA-based anomaly detection][8]
+![以 PCA 為基礎的異常偵測][8]
 
-***PCA-based anomaly detection*** *- the vast majority of the data falls into a stereotypical distribution; points deviating dramatically from that distribution are suspect*
+***以 PCA 為基礎的異常偵測*** *：大部分的資料均可分成舊式的散佈；而大幅偏離該散佈的點都是可疑之處*
 
-![Data set grouped using K-means][9]
+![使用 K-means 分組的資料集][9]
 
-***A data set is grouped into 5 clusters using K-means***
+***資料集使用 K-means分成 5 個叢集***
 
-There is also an ensemble [one-v-all multiclass classifier](https://msdn.microsoft.com/library/azure/dn905887.aspx), which breaks the N-class classification problem into N-1 two-class classification problems. The accuracy, training time, and linearity properties are determined by the two-class classifiers used.
+另外還有整體的[一對多多類別分類器](https://msdn.microsoft.com/library/azure/dn905887.aspx)，其中會將 N 類別分類問題分成 N-1 雙類別分類問題。精確度、定型時間和線性屬性是由使用的雙類別分類器來決定。
 
-![Two-class classifiers combined to form a three-class classifier][10]
+![雙類別分類器結合成三個類別分類器][10]
 
-***A pair of two-class classifiers combine to form a three-class classifier***
+***一組雙類別分類器結合成三個類別分類器***
 
-Azure Machine Learning also includes access to a powerful machine learning framework under the title of [Vowpal Wabbit](https://msdn.microsoft.com/library/azure/8383eb49-c0a3-45db-95c8-eb56a1fef5bf).
-VW defies categorization here, since it can learn both classification and regression problems and can even learn from partially unlabeled data. You can configure it to use any one of a number of learning algorithms, loss functions, and optimization algorithms. It was designed from the ground up to be efficient, parallel, and extremely fast. It handles ridiculously large feature sets with little apparent effort.
-Started and led by Microsoft Research's own John Langford, VW is a Formula One entry in a field of stock car algorithms. Not every problem fits VW, but if yours does, it may be worth your while to climb the learning curve on its interface. It's also available as [stand-alone open source code](https://github.com/JohnLangford/vowpal_wabbit) in several languages.
+Azure 機器學習中也可存取 [Vowpal Wabbit](https://msdn.microsoft.com/library/azure/8383eb49-c0a3-45db-95c8-eb56a1fef5bf) 標題下，一個功能強大的機器學習架構。VW 背離這裡的歸納，因為它可以學習分類和迴歸問題，甚至還能從一些沒有標記的資料中學習。您可以將它設定為任意使用一些學習演算法、損失函式以及最佳化演算法。它從一開始就是設計為高效率、可平行工作且速度極快。它可以輕鬆處理大到不可思議的特徵集。由創辦 Microsoft Research 的 John Langford 所發起及領導的 VW，可謂原裝賽車演算法領域中的一級方程式項目。並非所有問題都符合 VW，但如果能符合，或許會值得您花時間在它的介面中了解它的學習曲線。它也有以數種語言提供[獨立的開放原始程式碼](https://github.com/JohnLangford/vowpal_wabbit)。
 
 
 <!-- Media -->
@@ -251,8 +237,4 @@ Started and led by Microsoft Research's own John Langford, VW is a Formula One e
 [9]: ./media/machine-learning-algorithm-choice/image9.png
 [10]: ./media/machine-learning-algorithm-choice/image10.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

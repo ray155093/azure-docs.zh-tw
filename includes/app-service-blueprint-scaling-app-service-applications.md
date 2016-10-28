@@ -1,20 +1,17 @@
-* [Scale Azure App Service](../articles/app-service-web/web-sites-scale.md)
-    * Understanding Redundancy and Reliability
-    * StateFULL vs StateLESS applications
-        * [Configuring your Stateless app](/blog/disabling-arrs-instance-affinity-in-windows-azure-web-sites/)
+* [調整 Azure App Service](../articles/app-service-web/web-sites-scale.md)
+	* 了解備援性與可靠性
+	* 比較「具狀態」與「無狀態」應用程式
+		* [設定無狀態應用程式](/blog/disabling-arrs-instance-affinity-in-windows-azure-web-sites/)
 
-* Load Testing apps in App Service   
+* 在 App Service 中進行應用程式的負載測試
 
-* App Service scaling best practices
-    * Port exhaustion and connection pooling
-    * [Leveraging Azure Storage from your App Service app](../articles/storage/storage-dotnet-how-to-use-blobs.md)
-    * [Leveraging Azure CDN from your App Service app](../articles/cdn/cdn-overview.md)
-    * [Leveraging Azure Redis Cache from your App Service app](../articles/redis-cache/cache-dotnet-how-to-use-azure-redis-cache.md)
+* 調整 App Service 的最佳做法
+	* 連接埠耗盡與連線共用
+	* [如何從 App Service 應用程式運用 Azure 儲存體](../articles/storage/storage-dotnet-how-to-use-blobs.md)
+	* [如何從 App Service 應用程式運用 Azure CDN](../articles/cdn/cdn-overview.md)
+	* [如何從 App Service 應用程式運用 Azure Redis Cache](../articles/redis-cache/cache-dotnet-how-to-use-azure-redis-cache.md)
 
-* Geo distribution
-    * [Leveraging Traffic Manager to achive global scale](../articles/traffic-manager/traffic-manager-overview.md)
+* 地理分散
+	* [運用流量管理員達到全球規模](../articles/traffic-manager/traffic-manager-overview.md)
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0706_2016-->

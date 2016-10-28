@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Azure SQL Database Learns and Adapts"
-   description="Learn how SQL Database learns and adapts"
+   pageTitle="Azure SQL Database 學習與調整"
+   description="了解 SQL Database 如何學習與調整"
    keywords=""
    services="sql-database"
    documentationCenter=""
@@ -14,55 +14,49 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-management"
-   ms.date="10/13/2016"
+   ms.date="07/19/2016"
    ms.author="carlrab"/>
 
+# Azure SQL Database 學習與調整
 
-# <a name="azure-sql-database-learns-&amp;-adapts"></a>Azure SQL Database Learns &amp; Adapts
 
+## Azure SQL Database 如何學習、調整，並隨著您的應用程式成長
 
-## <a name="how-azure-sql-database-learns,-adapts,-and-grows-with-your-application"></a>How Azure SQL Database learns, adapts, and grows with your application
-
-Azure SQL Database manages billions of transactions and millions of databases per day. And one of its key features is that SQL Database is always learning and adapting with your app. That way you can dynamically maximize performance, reliability, and data security&mdash;with little effort on your part.
+Azure SQL Database 每天管理數十億筆交易以及數百萬個資料庫。其重要功能之一是 SQL Database 隨時都在隨著您的應用程式學習與調整。如此一來，您可以動態地發揮最大效能、可靠性和資料安全性，完全不費吹灰之力。
 
 ![learn-and-adapt](./media/sql-database-learn-and-adapt/sql-database-learn-and-adapt.png)
 
-## <a name="threat-detection-and-alerts"></a>Threat detection and alerts  
-With threat and anomaly detection, SQL Database has built-in behavioral analysis, real-time alerts, a configurable threat policy, an audit log, and intelligent ways to detect and fix unusual patterns.
+## 威脅偵測及警示  
+透過威脅與異常偵測，SQL Database 內建行為分析、即時警示，可設定的威脅原則、稽核記錄和智慧型方式來偵測並修正不尋常的模式。
 
-[Read the documentation](sql-database-threat-detection-get-started.md)
+[閱讀文件](sql-database-threat-detection-get-started.md)
 
-## <a name="automatic-tuning"></a>Automatic tuning
-SQL Database is equipped to make your app run at its best performance. By continuously learning your app’s patterns, adaptively self-tuning its performance, and automatically refining without you doing anything&mdash;because we know you don’t want to anyway.
+## 自動微調
+SQL Database 可以讓應用程式發揮最佳效能。藉由持續學習應用程式的模式、彈性自我微調它的效能，並在什麼都不用做的情況下自動調整，因為我們知道這是最省時的方法。
 
 
-[Read the documentation](http://go.microsoft.com/fwlink/?LinkID=787566)
+[閱讀文件](http://go.microsoft.com/fwlink/?LinkID=787566)
 
-## <a name="insights-when-you-need-them"></a>Insights when you need them
-SQL Database is able to track each query and its duration, frequency, and resource utilization. Based on this telemetry, automatic algorithms optimally tune your databases exactly to your queries. Additionally, SQL Database provides insights to help minimize time tuning queries and troubleshooting performance issues. That means you gain direct insight into resource consumption, top performing queries, and the ability to drill down for more details.
+## 深入了解您需要這些功能的時機
+SQL Database 可追蹤每個查詢和其持續時間、頻率及資源使用率。根據此遙測，自動演算法會以最佳方式微調您的資料庫，精確符合您的查詢。此外，SQL Database 提供深入解析，協助盡量減少微調查詢以及針對效能問題進行疑難排解的時間。這表示您可深入了解資源耗用量、頂端執行查詢，以及向下鑽研詳細資料的能力。
 
-[Read the documentation](http://go.microsoft.com/fwlink/?LinkID=787567)
+[閱讀文件](http://go.microsoft.com/fwlink/?LinkID=787567)
 
-## <a name="no-administration-required"></a>No administration required
-SQL Database provides the automatic administration and data protection your app needs so you can go back to doing what you do best&mdash;coding. You automatically get back-ups, disaster recovery failover, infrastructure maintenance, security and software patches, and feature updates. You’ll not only save money and time as SQL Database works behind the scenes, but you’ll also never have to worry about that dreaded app downtime.
+## 不需要系統管理
+SQL Database 提供您的應用程式需要的自動系統管理和資料保護，讓您可以著重在最擅長的編碼工作。您會自動取得備份、災害復原容錯移轉、基礎結構維護、安全性和軟體修補程式和功能更新。當 SQL Database 在幕後運作時，您不僅能節省金錢與時間，也永遠不必再擔心可怕的應用程式停機。
 
-[Read the documentation](http://go.microsoft.com/fwlink/?LinkID=787568)
+[閱讀文件](http://go.microsoft.com/fwlink/?LinkID=787568)
 
-Go to the homepage to see what else SQL Database has to offer.
-[Check it out](https://azure.microsoft.com/services/sql-database/) 
+請移至首頁，查看 SQL Database 還提供哪些項目。[了解相關資訊](https://azure.microsoft.com/services/sql-database/)
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-Get a [free Azure subscription](https://azure.microsoft.com/get-started/) and [create your first Azure SQL Database](sql-database-get-started.md).
+取得[免費 Azure 訂用帳戶](https://azure.microsoft.com/get-started/)與[建立您的第一個 Azure SQL Database](sql-database-get-started.md)。
 
-## <a name="additional-resources"></a>Additional resources
+## 其他資源
 
-Explore all the [capabilities of SQL Database](https://azure.microsoft.com/services/sql-database/).
+瀏覽所有 [SQL Database 的能力](https://azure.microsoft.com/services/sql-database/)。
  
-Review the [technical overview of SQL Database](sql-database-technical-overview.md).
+檢閱 [SQL Database 的技術概觀](sql-database-technical-overview.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

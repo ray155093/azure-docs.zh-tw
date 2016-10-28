@@ -1,69 +1,64 @@
 <properties
-    pageTitle="Request increased DocumentDB account quotas | Microsoft Azure"
-    description="Learn how to request an adjustment to DocumentDB database quotas such as document storage and throughput per collection."
-    services="documentdb"
-    authors="AndrewHoh"
-    manager="jhubbard"
-    editor="monicar"
-    documentationCenter=""/>
+	pageTitle="要求增加 DocumentDB 帳戶配額 | Microsoft Azure"
+	description="了解如何要求調整 DocumentDB 資料庫配額，例如文件儲存和每個集合的輸送量。"
+	services="documentdb"
+	authors="AndrewHoh"
+	manager="jhubbard"
+	editor="monicar"
+	documentationCenter=""/>
 
 <tags
-    ms.service="documentdb"
-    ms.workload="data-services"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/25/2016"
-    ms.author="anhoh"/>
+	ms.service="documentdb"
+	ms.workload="data-services"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/25/2016"
+	ms.author="anhoh"/>
 
+# 要求增加 DocumentDB 帳戶限制
 
-# <a name="request-increased-documentdb-account-limits"></a>Request increased DocumentDB account limits
+[Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) 有一組預設的配額，可以透過聯絡 Azure 支援人員來調整。本文說明如何要求增加配額。
 
-[Microsoft Azure DocumentDB](https://azure.microsoft.com/services/documentdb/) has a set of default quotas that can be adjusted by contacting Azure support.  This article shows how to request a quota increase.
+閱讀本文後，您將能夠回答下列問題：
 
-After reading this article, you'll be able to answer the following questions:  
+-	哪種 DocumentDB 資料庫配額可以透過聯絡 Azure 支援人員來調整？
+-	如何要求 DocumentDB 帳戶配額調整？
 
--   Which DocumentDB database quotas can be adjusted by contacting Azure support?
--   How can I request a DocumentDB account quota adjustment?
+##<a id="Quotas"></a> DocumentDB 帳戶配額
 
-##<a name="<a-id="quotas"></a>-documentdb-account-quotas"></a><a id="Quotas"></a> DocumentDB account quotas
-
-The following table describes the DocumentDB quotas. The quotas that have an asterisk (*) can be adjusted by contacting Azure support:
+下表描述 DocumentDB 配額。具有星號 (*) 的配額可以透過聯絡 Azure 支援人員來進行調整：
 
 [AZURE.INCLUDE [azure-documentdb-limits](../../includes/azure-documentdb-limits.md)]
 
 
-##<a name="<a-id="requestquotaincrease"></a>-request-a-quota-adjustment"></a><a id="RequestQuotaIncrease"></a> Request a quota adjustment
-The following steps show how to request a quota adjustment.
+##<a id="RequestQuotaIncrease"></a> 要求配額調整
+下列步驟說明如何要求配額調整。
 
-1. In the [Azure portal](https://portal.azure.com), click **More Services**, and then click **Help + support**.
+1. 在 [Azure 入口網站](https://portal.azure.com)中，按一下 [更多服務]，然後按一下 [說明 + 支援]。
 
-    ![Screenshot of launching help and support](media/documentdb-increase-limits/helpsupport.png)
+	![啟動說明和支援的螢幕擷取畫面](media/documentdb-increase-limits/helpsupport.png)
 
-2. In the **Help + support** blade, click **New support request**.
+2. 在 [說明 + 支援] 刀鋒視窗中，按一下 [新增支援要求]。
 
-    ![Screenshot of creating a support ticket](media/documentdb-increase-limits/getsupport.png)
+	![建立支援票證的螢幕擷取畫面](media/documentdb-increase-limits/getsupport.png)
 
-3. In the **New support request** blade, click **Basics**. Next, set **Issue type** to **Quota**, **Subscription** to your subscription that hosts your DocumentDB account, **Quota type** to **DocumentDB**, and **Support plan** to **Quota SUPPORT - Included**. Then, click **Next**.
+3. 在 [新增支援要求] 刀鋒視窗中，按一下 [基本]。接下來，分別將 [問題類型] 設定為 [配額]、將 [訂用帳戶] 設定為託管 DocumentDB 帳戶的訂用帳戶、將 [配額類型] 設定為 [DocumentDB]，並將 [支援方案] 設定為 [配額支援 - 包含]。然後按 [下一步]。
 
-    ![Screenshot of support ticket request type](media/documentdb-increase-limits/supportrequest1.png)
+	![支援票證要求類型的螢幕擷取畫面](media/documentdb-increase-limits/supportrequest1.png)
 
-4. In the **Problem** blade, choose a severity and include information about your quota increase in **Details**. Click **Next**.
+4. 在 [問題] 刀鋒視窗中選擇嚴重性，並在 [詳細資料] 中包含有關配額增加的資訊。按 [下一步]。
 
-    ![Screenshot of support ticket subscription picker](media/documentdb-increase-limits/supportrequest2.png)
+	![支援票證訂用帳戶選擇器的螢幕擷取畫面](media/documentdb-increase-limits/supportrequest2.png)
 
-5. Finally, fill in your contact information in the **Contact information** blade and click **Create**.
+5. 最後，在 [連絡資訊] 刀鋒視窗中填入您的連絡資訊，然後按一下 [建立]。
 
-Once the support ticket has been created, you should receive the support request number via email.  You can also view the support request by clicking **Manage support requests** in the **Help + support** blade.
+建立支援票證之後，您應該會透過電子郵件收到支援要求編號。您也可以按一下 [說明 + 支援] 刀鋒視窗中的 [管理支援要求] 來檢視支援要求。
 
-![Screenshot of support requests blade](media/documentdb-increase-limits/supportrequest4.png)
-
-
-##<a name="<a-name="nextsteps"></a>-next-steps"></a><a name="NextSteps"></a> Next steps
-- To learn more about DocumentDB, click [here](http://azure.com/docdb).
+![支援要求刀鋒視窗的螢幕擷取畫面](media/documentdb-increase-limits/supportrequest4.png)
 
 
+##<a name="NextSteps"></a> 後續步驟
+- 若要深入了解 DocumentDB，請按一下[這裡](http://azure.com/docdb)。
 
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0831_2016-->

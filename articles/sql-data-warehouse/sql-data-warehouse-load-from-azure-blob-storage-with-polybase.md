@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Load data from Azure blob storage into SQL Data Warehouse (PolyBase) | Microsoft Azure"
-   description="Learn how to use PolyBase to load data from Azure blob storage into SQL Data Warehouse. Load a few tables from public data into the Contoso Retail Data Warehouse schema."
+   pageTitle="從 Azure Blob 儲存體將資料載入 SQL 資料倉儲 (PolyBase) | Microsoft Azure"
+   description="了解如何此用 PolyBase 從 Azure Blob 儲存體將資料載入 SQL 資料倉儲。從公用資料將幾個資料表載入 Contoso 零售資料倉儲結構描述。"
    services="sql-data-warehouse"
    documentationCenter="NA"
    authors="ckarst"
@@ -17,36 +17,35 @@
    ms.author="cakarst;barbkess;sonyama"/>
 
 
-
-# <a name="load-data-from-azure-blob-storage-into-sql-data-warehouse-(polybase)"></a>Load data from Azure blob storage into SQL Data Warehouse (PolyBase)
+# 從 Azure Blob 儲存體將資料載入 SQL 資料倉儲 (PolyBase)
 
 > [AZURE.SELECTOR]
 - [Data Factory](sql-data-warehouse-load-from-azure-blob-storage-with-data-factory.md)
 - [PolyBase](sql-data-warehouse-load-from-azure-blob-storage-with-polybase.md)
 
-Use PolyBase and T-SQL commands to load data from Azure blob storage into Azure SQL Data Warehouse. 
+使用 PolyBase 和 T-SQL 命令來從 Azure Blob 儲存體將資料載入 Azure SQL 資料倉儲。
 
-To keep it simple, this tutorial loads two tables from a public Azure Storage Blob into the Contoso Retail Data Warehouse schema. To load the full data set, run the example [Load the full Contoso Retail Data Warehouse][] from the Microsoft SQL Server Samples repository.
+為了簡單起見，本教學課程會從公用 Azure 儲存體 Blob 將兩個資料表載入 Contoso 零售資料倉儲結構描述。若要載入完整的資料集，請從 Microsoft SQL Server 範例儲存機制執行[載入完整 Contoso 零售資料倉儲][]範例。
 
-In this tutorial you will:
+在本教學課程中，您將：
 
-1. Configure PolyBase to load from Azure blob storage
-2. Load public data into your database
-3. Perform optimizations after the load is finished.
+1. 設定 PolyBase 以從 Azure Blob 儲存體載入
+2. 將公用資料載入您的資料庫
+3. 在完成載入後執行最佳化。
 
 
-## <a name="before-you-begin"></a>Before you begin
-To run this tutorial, you need an Azure account that already has a SQL Data Warehouse database. If you don't already have this, see [Create a SQL Data Warehouse][].
+## 開始之前
+若要執行本教學課程，您需要已經擁有 SQL 資料倉儲資料庫的 Azure 帳戶。如果您尚未擁有此資料庫，請參閱[建立 SQL 資料倉儲][]。
 
-## <a name="1.-configure-the-data-source"></a>1. Configure the data source
+## 1\.設定資料來源
 
-PolyBase uses T-SQL external objects to define the location and attributes of the external data. The external object definitions are stored in SQL Data Warehouse. The data itself is stored externally.
+PolyBase 使用 T-SQL 外部物件以定義外部資料的位置和屬性。外部物件定義會儲存在 SQL 資料倉儲中。資料本身則會儲存在外部。
 
-### <a name="1.1.-create-a-credential"></a>1.1. Create a credential
+### 1\.1.建立認證
 
-**Skip this step** if you are loading the Contoso public data. You don't need secure access to the public data since it is already accessible to anyone.
+如果您正在載入 Contoso 公用資料，請**略過此步驟**。您並不需要安全地存取公用資料，因為該資料已經可供所有人存取。
 
-**Don't skip this step** if you are using this tutorial as a template for loading your own data. To access data through a credential, use the following script to create a database-scoped credential, and then use it when defining the location of the data source.
+如果您正在使用本教課程做為載入您自己資料的範本，請**不要略過此步驟**。若要透過認證存取資料，請使用下列指令碼來建立資料庫範圍的認證，然後在定義資料來源的位置時使用它。
 
 
 ```sql
@@ -82,11 +81,11 @@ WITH (
 );
 ```
 
-Skip to step 2.
+跳到步驟 2。
 
-### <a name="1.2.-create-the-external-data-source"></a>1.2. Create the external data source
+### 1\.2.建立外部資料來源
 
-Use this [CREATE EXTERNAL DATA SOURCE][] command to store the location of the data, and the type of data. 
+使用此 [CREATE EXTERNAL DATA SOURCE][] 命令以儲存資料的位置及類型。
 
 ```sql
 CREATE EXTERNAL DATA SOURCE AzureStorage_west_public
@@ -97,80 +96,80 @@ WITH
 ); 
 ```
 
-> [AZURE.IMPORTANT] If you choose to make your azure blob storage containers public, remember that as the data owner you will be charged for data egress charges when data leaves the data center. 
+> [AZURE.IMPORTANT] 如果您選擇將 Azure Blob 儲存體容器設為公用，請記住，當資料離開資料中心時，您身為資料擁有者將必須支付資料流出費用。
 
-## <a name="2.-configure-data-format"></a>2. Configure data format
+## 2\.設定資料格式
 
-The data is stored in text files in Azure blob storage, and each field is separated with a delimiter. Run this [CREATE EXTERNAL FILE FORMAT][] command to specify the format of the data in the text files. The Contoso data is uncompressed and pipe delimited.
+資料將會以文字檔儲存在 Azure Blob 儲存體中，每個欄位都會以分隔符號分隔。執行此 [CREATE EXTERNAL FILE FORMAT][] 命令以指定文字檔中資料的格式。Contoso 資料為未壓縮且以直立線符號分隔。
 
 ```sql
 CREATE EXTERNAL FILE FORMAT TextFileFormat 
 WITH 
 (   FORMAT_TYPE = DELIMITEDTEXT
-,   FORMAT_OPTIONS  (   FIELD_TERMINATOR = '|'
-                    ,   STRING_DELIMITER = ''
-                    ,   DATE_FORMAT      = 'yyyy-MM-dd HH:mm:ss.fff'
-                    ,   USE_TYPE_DEFAULT = FALSE 
-                    )
+,	FORMAT_OPTIONS	(   FIELD_TERMINATOR = '|'
+					,	STRING_DELIMITER = ''
+					,	DATE_FORMAT		 = 'yyyy-MM-dd HH:mm:ss.fff'
+					,	USE_TYPE_DEFAULT = FALSE 
+					)
 );
 ``` 
 
-## <a name="3.-create-the-external-tables"></a>3. Create the external tables
+## 3\.建立外部資料表
 
-Now that you have specified the data source and file format, you are ready to create the external tables. 
+您在指定資料來源和檔案格式之後，便可以開始建立外部資料表。
 
-### <a name="3.1.-create-a-schema-for-the-data."></a>3.1. Create a schema for the data. 
+### 3\.1.建立資料的結構描述。 
 
-To create a place to store the Contoso data in your database, create a schema.
+若要在您的資料庫中建立儲存 Contoso 資料的位置，請建立結構描述。
 
 ```sql
 CREATE SCHEMA [asb]
 GO
 ```
 
-### <a name="3.2.-create-the-external-tables."></a>3.2. Create the external tables. 
+### 3\.2.建立外部資料表。 
 
-Run this script to create the DimProduct and FactOnlineSales external tables. All we are doing here is defining column names and data types, and binding them to the location and format of the Azure blob storage files. The definition is stored in SQL Data Warehouse and the data is still in the Azure Storage Blob.
+執行此指令碼來建立 DimProduct 和 FactOnlineSales 外部資料表。我們在這邊只需要定義資料行名稱和資料類型，並將它們繫結至 Azure Blob 儲存體檔案的位置及格式。定義會儲存在 SQL 資料倉儲中，而資料則仍然儲存在 Azure 儲存體 Blob 中。
 
-The  **LOCATION** parameter is the folder under the root folder in the Azure Storage Blob. Each table is in a different folder.
+**LOCATION** 參數為 Azure 儲存體 Blob 中根目錄下方的資料夾。每個資料表都位於不同的資料夾中。
 
 
 ```sql
 
 --DimProduct
 CREATE EXTERNAL TABLE [asb].DimProduct (
-    [ProductKey] [int] NOT NULL,
-    [ProductLabel] [nvarchar](255) NULL,
-    [ProductName] [nvarchar](500) NULL,
-    [ProductDescription] [nvarchar](400) NULL,
-    [ProductSubcategoryKey] [int] NULL,
-    [Manufacturer] [nvarchar](50) NULL,
-    [BrandName] [nvarchar](50) NULL,
-    [ClassID] [nvarchar](10) NULL,
-    [ClassName] [nvarchar](20) NULL,
-    [StyleID] [nvarchar](10) NULL,
-    [StyleName] [nvarchar](20) NULL,
-    [ColorID] [nvarchar](10) NULL,
-    [ColorName] [nvarchar](20) NOT NULL,
-    [Size] [nvarchar](50) NULL,
-    [SizeRange] [nvarchar](50) NULL,
-    [SizeUnitMeasureID] [nvarchar](20) NULL,
-    [Weight] [float] NULL,
-    [WeightUnitMeasureID] [nvarchar](20) NULL,
-    [UnitOfMeasureID] [nvarchar](10) NULL,
-    [UnitOfMeasureName] [nvarchar](40) NULL,
-    [StockTypeID] [nvarchar](10) NULL,
-    [StockTypeName] [nvarchar](40) NULL,
-    [UnitCost] [money] NULL,
-    [UnitPrice] [money] NULL,
-    [AvailableForSaleDate] [datetime] NULL,
-    [StopSaleDate] [datetime] NULL,
-    [Status] [nvarchar](7) NULL,
-    [ImageURL] [nvarchar](150) NULL,
-    [ProductURL] [nvarchar](150) NULL,
-    [ETLLoadID] [int] NULL,
-    [LoadDate] [datetime] NULL,
-    [UpdateDate] [datetime] NULL
+	[ProductKey] [int] NOT NULL,
+	[ProductLabel] [nvarchar](255) NULL,
+	[ProductName] [nvarchar](500) NULL,
+	[ProductDescription] [nvarchar](400) NULL,
+	[ProductSubcategoryKey] [int] NULL,
+	[Manufacturer] [nvarchar](50) NULL,
+	[BrandName] [nvarchar](50) NULL,
+	[ClassID] [nvarchar](10) NULL,
+	[ClassName] [nvarchar](20) NULL,
+	[StyleID] [nvarchar](10) NULL,
+	[StyleName] [nvarchar](20) NULL,
+	[ColorID] [nvarchar](10) NULL,
+	[ColorName] [nvarchar](20) NOT NULL,
+	[Size] [nvarchar](50) NULL,
+	[SizeRange] [nvarchar](50) NULL,
+	[SizeUnitMeasureID] [nvarchar](20) NULL,
+	[Weight] [float] NULL,
+	[WeightUnitMeasureID] [nvarchar](20) NULL,
+	[UnitOfMeasureID] [nvarchar](10) NULL,
+	[UnitOfMeasureName] [nvarchar](40) NULL,
+	[StockTypeID] [nvarchar](10) NULL,
+	[StockTypeName] [nvarchar](40) NULL,
+	[UnitCost] [money] NULL,
+	[UnitPrice] [money] NULL,
+	[AvailableForSaleDate] [datetime] NULL,
+	[StopSaleDate] [datetime] NULL,
+	[Status] [nvarchar](7) NULL,
+	[ImageURL] [nvarchar](150) NULL,
+	[ProductURL] [nvarchar](150) NULL,
+	[ETLLoadID] [int] NULL,
+	[LoadDate] [datetime] NULL,
+	[UpdateDate] [datetime] NULL
 )
 WITH
 (
@@ -185,27 +184,27 @@ WITH
 --FactOnlineSales
 CREATE EXTERNAL TABLE [asb].FactOnlineSales 
 (
-    [OnlineSalesKey] [int]  NOT NULL,
-    [DateKey] [datetime] NOT NULL,
-    [StoreKey] [int] NOT NULL,
-    [ProductKey] [int] NOT NULL,
-    [PromotionKey] [int] NOT NULL,
-    [CurrencyKey] [int] NOT NULL,
-    [CustomerKey] [int] NOT NULL,
-    [SalesOrderNumber] [nvarchar](20) NOT NULL,
-    [SalesOrderLineNumber] [int] NULL,
-    [SalesQuantity] [int] NOT NULL,
-    [SalesAmount] [money] NOT NULL,
-    [ReturnQuantity] [int] NOT NULL,
-    [ReturnAmount] [money] NULL,
-    [DiscountQuantity] [int] NULL,
-    [DiscountAmount] [money] NULL,
-    [TotalCost] [money] NOT NULL,
-    [UnitCost] [money] NULL,
-    [UnitPrice] [money] NULL,
-    [ETLLoadID] [int] NULL,
-    [LoadDate] [datetime] NULL,
-    [UpdateDate] [datetime] NULL
+	[OnlineSalesKey] [int]  NOT NULL,
+	[DateKey] [datetime] NOT NULL,
+	[StoreKey] [int] NOT NULL,
+	[ProductKey] [int] NOT NULL,
+	[PromotionKey] [int] NOT NULL,
+	[CurrencyKey] [int] NOT NULL,
+	[CustomerKey] [int] NOT NULL,
+	[SalesOrderNumber] [nvarchar](20) NOT NULL,
+	[SalesOrderLineNumber] [int] NULL,
+	[SalesQuantity] [int] NOT NULL,
+	[SalesAmount] [money] NOT NULL,
+	[ReturnQuantity] [int] NOT NULL,
+	[ReturnAmount] [money] NULL,
+	[DiscountQuantity] [int] NULL,
+	[DiscountAmount] [money] NULL,
+	[TotalCost] [money] NOT NULL,
+	[UnitCost] [money] NULL,
+	[UnitPrice] [money] NULL,
+	[ETLLoadID] [int] NULL,
+	[LoadDate] [datetime] NULL,
+	[UpdateDate] [datetime] NULL
 )
 WITH
 (
@@ -218,26 +217,26 @@ WITH
 ;
 ```
 
-## <a name="4.-load-the-data"></a>4. Load the data
-There's different ways to access external data.  You can query data directly from the external table, load the data into new database tables, or add external data to existing database tables.  
+## 4\.載入資料
+存取外部資料有很多不同的方式。您可以直接從外部資料表查詢資料、將資料載入新的資料庫資料表，或將外部資料新增到現有資料庫資料表。
 
 
-### <a name="4.1.-create-a-new-schema"></a>4.1. Create a new schema
+### 4\.1.建立新的結構描述
 
-CTAS creates a new table that contains data.  First, create a schema for the contoso data.
+CTAS 會建立包含資料的新資料表。首先，請建立 Contoso 資料的結構描述。
 
 ```sql
 CREATE SCHEMA [cso]
 GO
 ```
 
-### <a name="4.2.-load-the-data-into-new-tables"></a>4.2. Load the data into new tables
+### 4\.2.將資料載入新資料表
 
-To load data from Azure blob storage and save it in a table inside of your database, use the [CREATE TABLE AS SELECT (Transact-SQL)][] statement. Loading with CTAS leverages the strongly typed external tables you have just created.To load the data into new tables, use one [CTAS][] statement per table. 
+若要從 Azure Blob 儲存體載入資料，並將它儲存在資料庫內的資料表中，請使用 [CREATE TABLE AS SELECT (Transact-SQL)][] 陳述式。以 CTAS 載入將能利用您剛剛建立的強型別外部資料表。針對每個資料表，請使用一個 [CTAS][] 陳述式。
 
-CTAS creates a new table and populates it with the results of a select statement. CTAS defines the new table to have the same columns and data types as the results of the select statement. If you select all the columns from an external table, the new table will be a replica of the columns and data types in the external table.
+CTAS 建立新的資料表，並將選取陳述式的結果填入該資料表。CTAS 定義新資料表，以使它擁有和選取陳述式之結果相同的資料行和資料類型。如果您選取外部資料表上的所有資料行，則新資料表將會是外部資料表中資料行和資料類型的複本。
 
-In this example, we create both the dimension and the fact table as hash distributed tables. 
+在此範例中，我們同時將維度和事實資料表建立為雜湊分散式資料表。
 
 
 ```sql
@@ -248,9 +247,9 @@ CREATE TABLE [cso].[DimProduct]            WITH (DISTRIBUTION = HASH([ProductKey
 CREATE TABLE [cso].[FactOnlineSales]       WITH (DISTRIBUTION = HASH([ProductKey]  ) ) AS SELECT * FROM [asb].[FactOnlineSales]        OPTION (LABEL = 'CTAS : Load [cso].[FactOnlineSales]        ');
 ```
 
-### <a name="4.3-track-the-load-progress"></a>4.3 Track the load progress
+### 4\.3 追蹤載入進度
 
-You can track the progress of your load using dynamic management views (DMVs). 
+您可以使用動態管理檢視 (DMV) 來追蹤載入進度。
 
 ```sql
 -- To see all requests
@@ -285,11 +284,11 @@ ORDER BY
     gb_processed desc;
 ```
 
-## <a name="5.-optimize-columnstore-compression"></a>5. Optimize columnstore compression
+## 5\.最佳化資料行存放區壓縮
 
-By default, SQL Data Warehouse stores the table as a clustered columnstore index. After a load completes, some of the data rows might not be compressed into the columnstore.  There's a variety of reasons why this can happen. To learn more, see [manage columnstore indexes][].
+根據預設，SQL 資料倉儲會將資料表儲存為叢集資料行存放區索引。載入完成後，某些資料列可能不會被壓縮為資料行存放區。有許多原因會導致發生此情況。若要深入了解，請參閱[管理資料行存放區索引][]。
 
-To optimize query performance and columnstore compression after a load, rebuild the table to force the columnstore index to compress all the rows. 
+若要最佳化載入後的查詢效能和資料行存放區壓縮，請重建資料表以強制資料行存放區索引對所有資料列進行壓縮。
 
 ```sql
 SELECT GETDATE();
@@ -299,15 +298,15 @@ ALTER INDEX ALL ON [cso].[DimProduct]               REBUILD;
 ALTER INDEX ALL ON [cso].[FactOnlineSales]          REBUILD;
 ```
 
-For more information on maintaining columnstore indexes, see the [manage columnstore indexes][] article.
+如需維護資料行存放區索引的詳細資訊，請參閱[管理資料行存放區索引][]一文。
 
-## <a name="6.-optimize-statistics"></a>6. Optimize statistics
+## 6\.最佳化統計資料
 
-It is best to create single-column statistics immediately after a load. There are some choices for statistics. For example, if you create single-column statistics on every column it might take a long time to rebuild all the statistics. If you know certain columns are not going to be in query predicates, you can skip creating statistics on those columns.
+您最好在載入後立刻建立單一資料行統計資料。針對統計資料，您將會有一些選項。例如，如果您在每個資料行上建立單一資料行統計資料，可能會需要很長的時間才能重建所有統計資料。如果您知道某些資料行不會被包含在查詢述詞中，您可以略過為那些資料行建立統計資料。
 
-If you decide to create single-column statistics on every column of every table, you can use the stored procedure code sample `prc_sqldw_create_stats` in the [statistics][] article.
+如果您決定要在每個資料表的每個資料行上建立單一資料行統計資料，您可以使用[統計資料][]一文中的預存程序程式碼範例 `prc_sqldw_create_stats`。
 
-The following example is a good starting point for creating statistics. It creates single-column statistics on each column in the dimension table, and on each joining column in the fact tables. You can always add single or multi-column statistics to other fact table columns later on.
+下列範例為建立統計資料的好起點。它會在維度資料表中的每個資料行上，以及在事實資料表中的每個聯結資料行上建立單一資料行統計資料。您之後隨時可以將單一或多個資料行統計資料新增到其他事實資料表資料行上。
 
 
 ```sql
@@ -352,11 +351,11 @@ CREATE STATISTICS [stat_cso_FactOnlineSales_PromotionKey] ON [cso].[FactOnlineSa
 CREATE STATISTICS [stat_cso_FactOnlineSales_StoreKey] ON [cso].[FactOnlineSales]([StoreKey]);
 ```
 
-## <a name="achievement-unlocked!"></a>Achievement unlocked!
+## 成就解鎖！
 
-You have successfully loaded public data into Azure SQL Data Warehouse. Great job!
+您已成功將公用資料載入 Azure SQL 資料倉儲。太棒了！
 
-You can now start querying the tables using queries like the following:
+您現在可以使用與下面類似的查詢來開始查詢資料表︰
 
 ```sql
 SELECT  SUM(f.[SalesAmount]) AS [sales_by_brand_amount]
@@ -366,33 +365,29 @@ JOIN    [cso].[DimProduct]      AS p ON f.[ProductKey] = p.[ProductKey]
 GROUP BY p.[BrandName]
 ```
 
-## <a name="next-steps"></a>Next steps
-To load the full Contoso Retail Data Warehouse data, use the script in For more development tips, see [SQL Data Warehouse development overview][].
+## 後續步驟
+若要載入完整的 Contoso 零售資料倉儲資料，請使用指令碼。如需更多開發秘訣，請參閱 [SQL 資料倉儲開發概觀][]。
 
 <!--Image references-->
 
 <!--Article references-->
-[Create a SQL Data Warehouse]: sql-data-warehouse-get-started-provision.md
+[建立 SQL 資料倉儲]: sql-data-warehouse-get-started-provision.md
 [Load data into SQL Data Warehouse]: sql-data-warehouse-overview-load.md
-[SQL Data Warehouse development overview]: sql-data-warehouse-overview-develop.md
-[manage columnstore indexes]: sql-data-warehouse-tables-index.md
-[Statistics]: sql-data-warehouse-tables-statistics.md
+[SQL 資料倉儲開發概觀]: sql-data-warehouse-overview-develop.md
+[管理資料行存放區索引]: sql-data-warehouse-tables-index.md
+[統計資料]: sql-data-warehouse-tables-statistics.md
 [CTAS]: sql-data-warehouse-develop-ctas.md
 [label]: sql-data-warehouse-develop-label.md
 
 <!--MSDN references-->
-[CREATE EXTERNAL DATA SOURCE]: https://msdn.microsoft.com/en-us/library/dn935022.aspx
-[CREATE EXTERNAL FILE FORMAT]: https://msdn.microsoft.com/en-us/library/dn935026.aspx
+[CREATE EXTERNAL DATA SOURCE]: https://msdn.microsoft.com/zh-TW/library/dn935022.aspx
+[CREATE EXTERNAL FILE FORMAT]: https://msdn.microsoft.com/zh-TW/library/dn935026.aspx
 [CREATE TABLE AS SELECT (Transact-SQL)]: https://msdn.microsoft.com/library/mt204041.aspx
 [sys.dm_pdw_exec_requests]: https://msdn.microsoft.com/library/mt203887.aspx
 [REBUILD]: https://msdn.microsoft.com/library/ms188388.aspx
 
 <!--Other Web references-->
 [Microsoft Download Center]: http://www.microsoft.com/download/details.aspx?id=36433
-[Load the full Contoso Retail Data Warehouse]: https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/contoso-data-warehouse/readme.md
+[載入完整 Contoso 零售資料倉儲]: https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/contoso-data-warehouse/readme.md
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!----HONumber=AcomDC_0907_2016-->

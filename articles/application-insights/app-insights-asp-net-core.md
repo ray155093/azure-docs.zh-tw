@@ -1,70 +1,63 @@
 <properties 
-    pageTitle="Application Insights for ASP.NET Core" 
-    description="Monitor web applications for availability, performance and usage." 
-    services="application-insights" 
+	pageTitle="ASP.NET Core 的 Application Insights" 
+	description="監視 Web 應用程式的可用性、效能和使用方式。" 
+	services="application-insights" 
     documentationCenter=".net"
-    authors="alancameronwills" 
-    manager="douge"/>
+	authors="alancameronwills" 
+	manager="douge"/>
 
 <tags 
-    ms.service="application-insights" 
-    ms.workload="tbd" 
-    ms.tgt_pltfrm="ibiza" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="08/30/2016" 
-    ms.author="awills"/>
+	ms.service="application-insights" 
+	ms.workload="tbd" 
+	ms.tgt_pltfrm="ibiza" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="08/30/2016" 
+	ms.author="awills"/>
+
+# ASP.NET Core 的 Application Insights
+
+[Visual Studio Application Insights](app-insights-overview.md) 可讓您監視 Web 應用程式的可用性、效能和使用情形。當您取得有關應用程式在現實世界的效能和效率的意見反應時，您可以在每個開發生命週期中針對設計方向做出明智的抉擇。
+
+![範例](./media/app-insights-asp-net-core/sample.png)
+
+您需要 [Microsoft Azure](http://azure.com) 的訂用帳戶。使用 Microsoft 帳戶登入，可能是針對 Windows、XBox Live 或其他 Microsoft 雲端服務具備的帳戶。您的小組可能已有 Azuare 組織訂用帳戶：請洽詢擁有者將您的 Microsoft 帳戶新增至其中。
 
 
-# <a name="application-insights-for-asp.net-core"></a>Application Insights for ASP.NET Core
+## 開始使用
 
-[Visual Studio Application Insights](app-insights-overview.md) lets you monitor your web application for availability, performance and usage. With the feedback you get about the performance and effectiveness of your app in the wild, you can make informed choices about the direction of the design in each development lifecycle.
+請依照[快速入門指南](https://github.com/Microsoft/ApplicationInsights-aspnetcore/wiki/Getting-Started)的指示進行。
 
-![Example](./media/app-insights-asp-net-core/sample.png)
+## 使用 Application Insights
 
-You'll need a subscription with [Microsoft Azure](http://azure.com). Sign in with a Microsoft account, which you might have for Windows, XBox Live, or other Microsoft cloud services. Your team might have an organizational subscription to Azure: ask the owner to add you to it using your Microsoft account.
+登入 [Microsoft Azure 入口網站](https://portal.azure.com)，瀏覽至您建立用來監視應用程式的資源。
 
+在另一個瀏覽器視窗中，使用您的應用程式一段時間。您會看到資料出現在 Application Insights 圖表。(您可能需要按一下 [重新整理])。 在您的開發過程只會有少量的資料，但是當您發行應用程式並有許多使用者時，這些圖表就會真正活躍起來。
 
-## <a name="getting-started"></a>Getting started
+[概觀] 頁面顯示您最可能有興趣的效能圖表：伺服器回應時間、頁面載入時間和失敗的要求計數。按一下任一圖表以查看更多的圖表和資料。
 
-Please follow the [Getting Started guide](https://github.com/Microsoft/ApplicationInsights-aspnetcore/wiki/Getting-Started).
+入口網站中的檢視分成兩個主要類別：
 
-## <a name="using-application-insights"></a>Using Application Insights
+* [計量瀏覽器](app-insights-metrics-explorer.md)，顯示計量和計數 (如回應時間、失敗率或您使用 [API](app-insights-api-custom-events-metrics.md) 自行建立的計量) 的圖形與表格。依屬性值篩選和分割資料，以進一步了解您的應用程式和其使用者。
+* [搜尋總管](app-insights-diagnostic-search.md)，列出個別事件，例如特定要求、例外狀況、記錄檔追蹤或您使用 [API](app-insights-api-custom-events-metrics.md) 自行建立的事件。在事件中篩選和搜尋，並瀏覽相關事件以調查問題。
+* [分析](app-insights-analytics.md)可讓您在遙測上執行類似 SQL 的查詢，而且這是一個功能強大的分析與診斷工具。
 
-Sign into the [Microsoft Azure portal](https://portal.azure.com) and browse to the resource you created to monitor your app.
+## Alerts
 
-In a separate browser window, use your app for a while. You'll see data appearing in the Application Insights charts. (You might have to click Refresh.) There will be only a small amount of data while you're developing, but these charts really come alive when you publish your app and have many users. 
+* 您將會自動取得[調適性警示](app-insights-nrt-proactive-diagnostics.md)，其將會通知您，在失敗要求的比率中出現異常變更的相關資訊。
+* 設定[可用性測試](app-insights-monitor-web-app-availability.md)，持續從全球各地的位置 測試您的網站，並在有任何測試失敗時立即取得電子郵件。
+* 設定[計量警示](app-insights-monitor-web-app-availability.md)，以了解計量 (如回應時間或例外狀況率) 是否超出可接受的限制。
 
-The overview page shows the performance charts you're most likely to be interested in: server response time,  page load time, and counts of failed requests. Click any chart to see more charts and data.
+## 取得更多的遙測
 
-Views in the portal fall into two main categories:
-
-* [Metrics Explorer](app-insights-metrics-explorer.md) shows graphs and tables of metrics and counts, such as response times, failure rates, or metrics you create yourself with the [API](app-insights-api-custom-events-metrics.md). Filter and segment the data by property values to get a better understanding of your app and its users.
-* [Search Explorer](app-insights-diagnostic-search.md) lists individual events, such as specific requests, exceptions, log traces, or events you created yourself with the [API](app-insights-api-custom-events-metrics.md). Filter and search in the events, and navigate among related events to investigate issues.
-* [Analytics](app-insights-analytics.md) lets you run SQL-like queries over your telemetry, and is a powerful analytical and diagnostic tool.
-
-## <a name="alerts"></a>Alerts
-
-* You'll automatically get [adaptive alerts](app-insights-nrt-proactive-diagnostics.md) that will tell you about anomalous changes in the rate of failed requests.
-* Set up [availability tests](app-insights-monitor-web-app-availability.md) to test your website continually from locations worldwide, and get emails as soon as any test fails.
-* Set up [metric alerts](app-insights-monitor-web-app-availability.md) to know if metrics such as response times or exception rates go outside acceptable limits.
-
-## <a name="get-more-telemetry"></a>Get more telemetry
-
-* [Add telemetry to your web pages](app-insights-javascript.md) to monitor page usage and performance.
-* [Monitor dependencies](app-insights-dependencies.md) to see if REST, SQL or other external resources are slowing you down.
-* [Use the API](app-insights-api-custom-events-metrics.md) to send your own events and metrics for a more detailed view of your app's performance and usage.
-* [Availability tests](app-insights-monitor-web-app-availability.md) check your app constantly from around the world. 
+* [將遙測加入至您的網頁](app-insights-javascript.md)以監視頁面使用情況和效能。
+* [監視相依性](app-insights-dependencies.md)，可查看 REST、SQL 或其他外部資源是否降低您的效能。
+* [使用 API](app-insights-api-custom-events-metrics.md) 可傳送您自己的事件和計量，以取得您的應用程式效能和使用方式的更詳細檢視。
+* [可用性測試](app-insights-monitor-web-app-availability.md)可持續從世界各地檢查您的應用程式。
 
 
-## <a name="open-source"></a>Open source
+## 開放原始碼
 
-[Read and contribute to the code](https://github.com/Microsoft/ApplicationInsights-aspnetcore#recent-updates)
+[讀取和貢獻程式碼](https://github.com/Microsoft/ApplicationInsights-aspnetcore#recent-updates)
 
-
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!----HONumber=AcomDC_0907_2016-->

@@ -1,6 +1,6 @@
 <properties 
-pageTitle="Run Startup Tasks in Azure Cloud Services | Microsoft Azure" 
-description="Startup tasks help prepare your cloud service environment for your app. This teaches you how startup tasks work and how to make them" 
+pageTitle="在 Azure 雲端服務中執行啟動工作 | Microsoft Azure" 
+description="啟動工作可協助您為應用程式備妥雲端服務環境。本文將說明啟動工作的運作方式，以及建立啟動工作的方法" 
 services="cloud-services" 
 documentationCenter="" 
 authors="Thraka" 
@@ -17,54 +17,53 @@ ms.author="adegeo"/>
 
 
 
+# 如何設定和執行雲端服務的啟動工作
 
-# <a name="how-to-configure-and-run-startup-tasks-for-a-cloud-service"></a>How to configure and run startup tasks for a cloud service
+您可以利用啟動工作，在角色啟動之前執行作業。您可能想要執行的作業包括安裝元件、註冊 COM 元件、設定登錄機碼，或啟動長時間執行的處理序。
 
-You can use startup tasks to perform operations before a role starts. Operations that you might want to perform include installing a component, registering COM components, setting registry keys, or starting a long running process.
+>[AZURE.NOTE] 啟動工作不適用於虛擬機器，只適用於雲端服務 Web 和背景工作角色。
 
->[AZURE.NOTE] Startup tasks are not applicable to Virtual Machines, only to Cloud Service Web and Worker roles.
+## 啟動工作的運作方式
 
-## <a name="how-startup-tasks-work"></a>How startup tasks work
+啟動工作是在您的角色開始之前採取的動作，且會透過 [Startup] 項目中的 [Task] 項目，在 [ServiceDefinition.csdef] 檔案內加以定義。啟動工作經常是批次檔，但也可以是主控台應用程式，或是啟動 PowerShell 指令碼的批次檔。
 
-Startup tasks are actions that are taken before your roles begin and are defined in the [ServiceDefinition.csdef] file by using the [Task] element within the [Startup] element. Frequently startup tasks are batch files, but they can also be console applications, or batch files that start PowerShell scripts.
+環境變數可將資訊傳入啟動工作，而本機存放區可以用來傳遞來自啟動工作的資訊。例如，環境變數可以指定您想要安裝的程式路徑，以及可以將哪些檔案寫入本機存放區，以便日後供您的角色讀取。
 
-Environment variables pass information into a startup task, and local storage can be used to pass information out of a startup task. For example, an environment variable can specify the path to a program you want to install, and files can be written to local storage that can then be read later by your roles.
+啟動工作可以將資訊和錯誤記錄到 **TEMP** 環境變數所指定的目錄中。啟動工作期間，如果在雲端上執行，**TEMP** 環境變數會解析成 *C:\\Resources\\temp\\[guid].[rolename]\\RoleTemp* 目錄。
 
-Your startup task can log information and errors to the directory specified by the **TEMP** environment variable. During the startup task, the **TEMP** environment variable resolves to the *C:\\Resources\\temp\\[guid].[rolename]\\RoleTemp* directory when running on the cloud.
+啟動工作也可以在重新開機之間執行數次。例如，每次角色回收時，都會執行啟動工作，但每次角色回收不一定會重新開機。啟動工作的撰寫方式，應該要可讓它們順利執行多次。
 
-Startup tasks can also be executed several times between reboots. For example, the startup task will be run each time the role recycles, and role recycles may not always include a reboot. Startup tasks should be written in a way that allows them to run several times without problems.
-
-Startup tasks must end with an **errorlevel** (or exit code) of zero for the startup process to complete. If a startup task ends with a non-zero **errorlevel**, the role will not start.
+啟動工作必須以零值的 **errorlevel** (或結束代碼) 做為結尾，才算完成啟動處理序。如果啟動工作的結尾不是零值的 **errorlevel**，角色將不會啟動。
 
 
-## <a name="role-startup-order"></a>Role startup order
+## 角色啟動順序
 
-The following lists the role startup procedure in Azure:
+以下列出 Azure 中的角色啟動程序：
 
-1. The instance is marked as **Starting** and does not receive traffic.
+1. 執行個體標示為**啟動中**，且沒有收到流量。
 
-2. All startup tasks are executed according to their **taskType** attribute.
-    - The **simple** tasks are executed synchronously, one at a time.
-    - The **background** and **foreground** tasks are started asynchronously, parallel to the startup task.  
+2. 所有啟動工作均會根據其 **taskType** 屬性來執行。
+    - **simple** 的工作會以同步方式執行，一次一個。
+    - **background** 和 **foreground** 工作則會以非同步方式，與啟動工作平行開始。
        
-    > [AZURE.WARNING] IIS may not be fully configured during the startup task stage in the startup process, so role-specific data may not be available. Startup tasks that require role-specific data should use [Microsoft.WindowsAzure.ServiceRuntime.RoleEntryPoint.OnStart](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.onstart.aspx).
+    > [AZURE.WARNING] 在啟動處理序中的啟動工作階段期間，IIS 可能不會完全設定好，因此特定的角色資料可能會無法使用。需要特定角色資料的啟動工作應該使用 [Microsoft.WindowsAzure.ServiceRuntime.RoleEntryPoint.OnStart](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.onstart.aspx)。
 
-3. The role host process is started and the site is created in IIS.
+3. 角色主機處理序已啟動，且已在 IIS 中建立網站。
 
-4. The [Microsoft.WindowsAzure.ServiceRuntime.RoleEntryPoint.OnStart](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.onstart.aspx) method is called.
+4. 呼叫了 [Microsoft.WindowsAzure.ServiceRuntime.RoleEntryPoint.OnStart](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.onstart.aspx) 方法。
 
-5. The instance is marked as **Ready** and traffic is routed to the instance.
+5. 執行個體標示為**就緒**，且流量已路由傳送至執行個體。
 
-6. The [Microsoft.WindowsAzure.ServiceRuntime.RoleEntryPoint.Run](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) method is called.
+6. 呼叫了 [Microsoft.WindowsAzure.ServiceRuntime.RoleEntryPoint.Run](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) 方法。
 
 
-## <a name="example-of-a-startup-task"></a>Example of a startup task
+## 啟動工作範例
 
-Startup tasks are defined in the [ServiceDefinition.csdef] file, in the **Task** element. The **commandLine** attribute specifies the name and parameters of the startup batch file or console command, the **executionContext** attribute specifies the privilege level of the startup task, and the **taskType** attribute specifies how the task will be executed.
+啟動工作會在 [ServiceDefinition.csdef] 檔案中的 **Task** 項目定義。**commandLine** 屬性會指定啟動批次檔案或主控台命令的名稱和參數，**executionContext** 屬性會指定啟動工作的權限等級，而 **taskType** 屬性則指定工作執行的方式。
 
-In this example, an environment variable, **MyVersionNumber**, is created for the startup task and set to the value "**1.0.0.0**".
+在此範例中，針對啟動工作建立了環境變數 **MyVersionNumber**，並設定為值 "**1.0.0.0**"。
 
-**ServiceDefinition.csdef**:
+**ServiceDefinition.csdef**：
 
 ```xml
 <Startup>
@@ -76,64 +75,59 @@ In this example, an environment variable, **MyVersionNumber**, is created for th
 </Startup>
 ```
 
-In the following example, the **Startup.cmd** batch file writes the line "The current version is 1.0.0.0" to the StartupLog.txt file in the directory specified by the TEMP environment variable. The `EXIT /B 0` line ensures that the startup task ends with an **errorlevel** of zero.
+在以下範例中，**Startup.cmd** 批次檔將 "The current version is 1.0.0.0" 一行寫入了 StartupLog.txt 檔案，此檔案位於 TEMP 環境變數所指定的目錄中。`EXIT /B 0` 一行將確保啟動工作是以零值的 **errorlevel** 為結尾。
 
 ```cmd
 ECHO The current version is %MyVersionNumber% >> "%TEMP%\StartupLog.txt" 2>&1
 EXIT /B 0
 ```
 
-> [AZURE.NOTE] In Visual Studio, the **Copy to Output Directory** property for your startup batch file should be set to **Copy Always** to be sure that your startup batch file is properly deployed to your project on Azure (**approot\\bin** for Web roles, and **approot** for worker roles).
+> [AZURE.NOTE] 在 Visual Studio 中，啟動批次檔的**複製到輸出目錄**屬性應該設為**永遠複製**，才能確保將啟動批次檔正確部署至您在 Azure 上的專案 (Web 角色為 **approot\\bin**，背景工作角色為 **approot**)。
 
-## <a name="description-of-task-attributes"></a>Description of task attributes
+## 工作屬性說明
 
-The following describes the attributes of the **Task** element in the [ServiceDefinition.csdef] file:
+以下說明 [ServiceDefinition.csdef] 檔案中 **Task** 項目的屬性：
 
-**commandLine** - Specifies the command line for the startup task:
+**commandLine** - 指定啟動工作的命令列：
 
-- The command, with optional command line parameters, which begins the startup task.
-- Frequently this is the filename of a .cmd or .bat batch file.
-- The task is relative to the AppRoot\\Bin folder for the deployment. Environment variables are not expanded in determining the path and file of the task. If environment expansion is required, you can create a small .cmd script that calls your startup task.
-- Can be a console application or a batch file that starts a [PowerShell script](cloud-services-startup-tasks-common.md#create-a-powershell-startup-task).
+- 此命令使用選擇性命令列參數，可開始啟動工作。
+- 這通常是 .cmd 或 .bat 批次檔的檔名。
+- 工作是相對於部署的 AppRoot\\Bin 資料夾。在決定工作的路徑和檔案時，不會展開環境變數。如果需要展開環境變數，可以建立小型 .cmd 指令碼，藉以呼叫啟動工作。
+- 可以是主控台應用程式，或啟動 [PowerShell 指令碼](cloud-services-startup-tasks-common.md#create-a-powershell-startup-task)的批次檔。
 
-**executionContext** - Specifies the privilege level for the startup task. The privilege level can be limited or elevated:
+**executionContext** - 指定啟動工作的權限等級。權限等級可以是 limited (受到限制) 或 elevated (提高權限)：
 
-- **limited**  
-The startup task runs with the same privileges as the role. When the **executionContext** attribute for the [Runtime] element is also **limited**, then user privileges are used.
+- **limited** 啟動工作執行時會使用和角色相同的權限。當 [Runtime] 項目的 **executionContext** 屬性也是 **limited** 時，就會動用使用者權限。
 
-- **elevated**  
-The startup task runs with administrator privileges. This allows startup tasks to install programs, make IIS configuration changes, perform registry changes, and other administrator level tasks, without increasing the privilege level of the role itself.  
+- **elevated** 啟動工作執行時會使用系統管理員權限。這可讓啟動工作安裝程式、變更 IIS 組態、執行登錄變更，以及其他系統管理員層級的工作，且不會提高角色本身的權限等級。
 
-> [AZURE.NOTE] The privilege level of a startup task does not need to be the same as the role itself.
+> [AZURE.NOTE] 啟動工作的權限等級不需要與角色本身相同。
 
-**taskType** - Specifies the way a startup task is executed.
+**taskType** - 指定啟動工作執行的方式。
 
-- **simple**  
-Tasks are executed synchronously, one at a time, in the order specified in the [ServiceDefinition.csdef] file. When one **simple** startup task ends with an **errorlevel** of zero, the next **simple** startup task is executed. If there are no more **simple** startup tasks to execute, then the role itself will be started.   
+- **simple** 工作會以同步的方式執行，一次一個，並依照 [ServiceDefinition.csdef] 檔案所指定的順序。當某個 **simple** 啟動工作以零值的 **errorlevel** 做為結尾時，就會執行下一個 **simple** 啟動工作。如果沒有任何 **simple** 啟動工作需要執行，則會啟動角色本身。
 
-    > [AZURE.NOTE] If the **simple** task ends with a non-zero **errorlevel**, the instance will be blocked. Subsequent **simple** startup tasks, and the role itself, will not start.
+    > [AZURE.NOTE] 如果 **simple** 的結尾是非零值的 **errorlevel**，執行個體會遭到封鎖。後續的 **simple** 啟動工作和角色本身將不會啟動。
 
-    To ensure that your batch file ends with an **errorlevel** of zero, execute the command `EXIT /B 0` at the end of your batch file process.
+    若要確保批次檔是以零值的 **errorlevel** 做為結尾，請在批次檔處理序結束時執行命令 `EXIT /B 0`。
 
-- **background**  
-Tasks are executed asynchronously, in parallel with the startup of the role.
+- **background** 以非同步方式執行工作，並與角色的啟動工作平行進行。
 
-- **foreground**  
-Tasks are executed asynchronously, in parallel with the startup of the role. The key difference between a **foreground** and a **background** task is that a **foreground** task prevents the role from recycling or shutting down until the task has ended. The **background** tasks do not have this restriction.
+- **foreground** 以非同步方式執行工作，並與角色的啟動工作平行進行。**foreground** 和 **background** 工作之間的主要差異，在於 **foreground** 工作可避免角色在工作結束之前遭到回收或關閉。**background** 工作則不具備這項限制功能。
 
-## <a name="environment-variables"></a>Environment variables
+## 環境變數
 
-Environment variables are a way to pass information to a startup task. For example, you can put the path to a blob that contains a program to install, or port numbers that your role will use, or settings to control features of your startup task.
+環境變數是將資訊傳遞給啟動工作的方式。例如，您可以放上這些項目的路徑：含有要安裝之程式的 Blob，或角色要使用的連接埠號碼，或是各項可控制啟動工作功能的設定。
 
-There are two kinds of environment variables for startup tasks; static environment variables and environment variables based on members of the [RoleEnvironment] class. Both are in the [Environment] section of the [ServiceDefinition.csdef] file, and both use the [Variable] element and **name** attribute.
+啟動工作的環境變數有兩種類型，包括靜態環境變數，還有以 [RoleEnvironment] 類別的成員為基礎的環境變數。這兩者都位於 [ServiceDefinition.csdef] 檔案的 [Environment] 區段中，而且均使用 [Variable] 項目和 **name** 屬性。
 
-Static environment variables uses the **value** attribute of the [Variable] element. The example above creates the environment variable **MyVersionNumber** which has a static value of "**1.0.0.0**". Another example would be to create a **StagingOrProduction** environment variable which you can manually set to values of "**staging**" or "**production**" to perform different startup actions based on the value of the **StagingOrProduction** environment variable.
+靜態環境變數會使用 [Variable] 項目的 **value** 屬性。上述範例會建立環境變數 **MyVersionNumber**，這具有靜態值 "**1.0.0.0**"。另一個範例則是建立 **StagingOrProduction** 環境變數，您可以手動將值設為 "**staging**" 或 "**production**"，以根據 **StagingOrProduction** 環境變數的值執行不同的啟動動作。
 
-Environment variables based on members of the RoleEnvironment class do not use the **value** attribute of the [Variable] element. Instead, the [RoleInstanceValue] child element, with the appropriate **XPath** attribute value, are used to create an environment variable based on a specific member of the [RoleEnvironment] class. Values for the **XPath** attribute to access various [RoleEnvironment] values can be found [here](cloud-services-role-config-xpath.md).
+以 RoleEnvironment 類別的成員為基礎的環境變數不會使用 [Variable] 項目的 **value** 屬性。相反地，這會使用具有適當 **XPath** 屬性值的 [RoleInstanceValue] 子項目，藉此建立以 [RoleEnvironment] 類別的特定成員為基礎的環境變數。[這裡](cloud-services-role-config-xpath.md)有存取各種 [RoleEnvironment] 值的 **XPath** 屬性值。
 
 
 
-For example, to create an environment variable that is "**true**" when the instance is running in the compute emulator, and "**false**" when running in the cloud, use the following [Variable] and [RoleInstanceValue] elements:
+例如，若要建立執行個體在計算模擬器中執行的 "**true**" 環境變數，以及建立執行個體在雲端中執行的 "**false**" 環境變數，請使用下列[變數]和 [RoleInstanceValue] 項目：
 
 ```xml
 <Startup>
@@ -154,10 +148,10 @@ For example, to create an environment variable that is "**true**" when the insta
 </Startup>
 ```
 
-## <a name="next-steps"></a>Next steps
-Learn how to perform some [common startup tasks](cloud-services-startup-tasks-common.md) with your Cloud Service.
+## 後續步驟
+了解如何透過雲端服務執行一些[常見的啟動工作](cloud-services-startup-tasks-common.md)。
 
-[Package](cloud-services-model-and-package.md) your Cloud Service.  
+[封裝](cloud-services-model-and-package.md)雲端服務。
 
 
 [ServiceDefinition.csdef]: cloud-services-model-and-package.md#csdef
@@ -166,10 +160,8 @@ Learn how to perform some [common startup tasks](cloud-services-startup-tasks-co
 [Runtime]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Runtime
 [Environment]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Environment
 [Variable]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Variable
+[變數]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Variable
 [RoleInstanceValue]: https://msdn.microsoft.com/library/azure/gg557552.aspx#RoleInstanceValue
 [RoleEnvironment]: https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.aspx
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

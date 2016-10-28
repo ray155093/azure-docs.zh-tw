@@ -1,62 +1,57 @@
 <properties
-    pageTitle="Add new users to Azure Active Directory preview| Microsoft Azure"
-    description="Explains how to add new users or change user information in Azure Active Directory."
-    services="active-directory"
-    documentationCenter=""
-    authors="curtand"
-    manager="femila"
-    editor=""/>
+	pageTitle="將新的使用者新增到 Azure Active Directory 預覽版 | Microsoft Azure"
+	description="說明如何在 Azure Active Directory 中新增新的使用者或變更使用者資訊。"
+	services="active-directory"
+	documentationCenter=""
+	authors="curtand"
+	manager="femila"
+	editor=""/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/12/2016"
-    ms.author="curtand"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/12/2016"
+	ms.author="curtand"/>
 
 
-
-# <a name="add-new-users-to-azure-active-directory-preview"></a>Add new users to Azure Active Directory preview
+# 將新的使用者新增到 Azure Active Directory 預覽版
 
 > [AZURE.SELECTOR]
-- [Azure portal](active-directory-users-create-azure-portal.md)
-- [Azure classic portal](active-directory-create-users.md)
+- [Azure 入口網站](active-directory-users-create-azure-portal.md)
+- [Azure 傳統入口網站](active-directory-create-users.md)
 
-This article explains how to add new users in your organization in teh Azure Active Direstory (Azure AD) preview. [What's in the preview?](active-directory-preview-explainer.md)
+本文說明如何透過 Azure Active Directory (Azure AD) 預覽版，在您的組織中新增新的使用者。[預覽版有何功能？](active-directory-preview-explainer.md)
 
-1.  Sign in to the [Azure portal](https://portal.azure.com) with an account that's a global admin for the directory.
+1.  使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com)。
 
-2.  Select **More services**, enter **Users and groups** in the text box, and then select **Enter**.
+2.  選取 [更多服務]，在文字方塊中輸入「使用者和群組」，然後選取 **Enter**。
 
-    ![Opening user management](./media/active-directory-users-create-azure-portal/create-users-user-management.png)
+    ![開啟使用者管理](./media/active-directory-users-create-azure-portal/create-users-user-management.png)
 
-3.  On the **Users and groups** blade, select **All users**, and then select **Add**.
+3.  在 [使用者和群組] 刀鋒視窗上，選取 [所有使用者]，然後選取 [新增]。
 
-    ![Selecting the Add command](./media/active-directory-users-create-azure-portal/create-users-add-command.png)
+    ![選取 [新增] 命令](./media/active-directory-users-create-azure-portal/create-users-add-command.png)
 
-4.  Enter details for the user, such as **Name** and **User name**. The domain name portion of the user name must either be the initial default domain name "foo.onmicrosoft.com" domain name, or a verified, non-federated domain name such as "contoso.com."
+4.  輸入使用者的詳細資料，例如「名稱」和「使用者名稱」。使用者名稱的網域名稱部分必須是初始預設網域名稱 "foo.onmicrosoft.com" 網域名稱，或是已驗證的非同盟網域名稱，例如"contoso.com"。
 
-5. Copy or otherwise note the generated user password so that you can provide it to the user after this process is complete.
+5. 複製或記下產生的使用者密碼，以便在此程序完成後，將它提供給使用者。
 
-6. Optionally, you can open and fill out the information in the **Profile** blade, the **Groups** blade, or the **Directory role** blade for the user. For more information about user and administrator roles, see [Assigning administrator roles in Azure AD](active-directory-assign-admin-roles.md).
+6. (選擇性) 您可以開啟使用者的 [設定檔] 刀鋒視窗、[群組] 刀鋒視窗或 [目錄角色] 刀鋒視窗，然後在其中填入資訊。如需有關使用者和系統管理員角色的詳細資訊，請參閱[在 Azure AD 中指派系統管理員角色](active-directory-assign-admin-roles.md)。
 
-7.  On the **User** blade, select **Create**.
+7.  在 [使用者] 刀鋒視窗中，選取 [建立]。
 
-8. Securely distribute the generated password to the new user so that the user can sign in.
+8. 將產生的密碼安全地散發給新使用者，以便讓使用者可以登入。
 
-## <a name="what's-next"></a>What's next
+## 後續步驟
 
-- [Add an external user](active-directory-users-create-external-azure-portal.md)
-- [Reset a user's password in the new Azure portal](active-directory-users-reset-password-azure-portal.md)
-- [Change a user's work information](active-directory-users-work-info-azure-portal.md)
-- [Manage user profiles](active-directory-users-profile-azure-portal.md)
-- [Delete a user in your Azure AD](active-directory-users-delete-user-azure-portal.md)
-- [Assign a user to a role in your Azure AD](active-directory-users-assign-role-azure-portal.md)
+- [新增外部使用者](active-directory-users-create-external-azure-portal.md)
+- [在新 Azure 入口網站中重設使用者的密碼](active-directory-users-reset-password-azure-portal.md)
+- [變更使用者的工作資訊](active-directory-users-work-info-azure-portal.md)
+- [管理使用者設定檔](active-directory-users-profile-azure-portal.md)
+- [在 Azure AD 中刪除使用者](active-directory-users-delete-user-azure-portal.md)
+- [在 Azure AD 中將使用者指派給角色](active-directory-users-assign-role-azure-portal.md)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

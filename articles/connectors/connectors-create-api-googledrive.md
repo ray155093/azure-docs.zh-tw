@@ -1,6 +1,6 @@
 <properties
-    pageTitle="Add the Google Drive connector in logic apps | Microsoft Azure"
-    description="Overview of the Google Drive connector with REST API parameters"
+    pageTitle="在邏輯應用程式中新增 Google 雲端硬碟連接器 | Microsoft Azure"
+    description="搭配 REST API 參數來使用 Google 雲端硬碟連接器的概觀"
     services=""
     suite=""
     documentationCenter="" 
@@ -18,333 +18,319 @@
    ms.date="08/18/2016"
    ms.author="mandia"/>
 
+# 開始使用 Google 雲端硬碟連接器
+連線到 Google 雲端硬碟來建立檔案、取得資料列等等。您可以利用 Google 雲端硬碟來：
 
-# <a name="get-started-with-the-google-drive-connector"></a>Get started with the Google Drive connector
-Connect to Google Drive to create files, get rows, and more. With Google Drive, you can: 
+- 根據您透過搜尋所取得的資料，來建置您的商務流程。
+- 使用動作來搜尋圖像、搜尋新聞等等。這些動作會收到回應，然後輸出能讓其他動作使用的資料。舉例來說，您可以搜尋某支影片，然後利用 Twitter 把該影片張貼在某個 Twitter 摘要上。
 
-- Build your business flow based on the data you get from your search. 
-- Use actions to search images, search the news, and more. These actions get a response, and then make the output available for other actions. For example, you can search for a video, and then use Twitter to post that video to a Twitter feed.
-
-To add an operation in logic apps, see [Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md).
+如要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
 
-## <a name="triggers-and-actions"></a>Triggers and actions
-Google Drive includes the following actions. There are no triggers. 
+## 觸發程序及動作
+Google 雲端硬碟包含下列動作，但不包含觸發程序。
 
-Triggers | Actions
+觸發程序 | 動作
 --- | ---
-None | <ul><li>Create file</li><li>Insert row</li><li>Copy file</li><li>Delete file</li><li>Delete row</li><li>Extract archive to folder</li><li>Get file content using id</li><li>Get file content using path</li><li>Get file metadata using id</li><li>Get file metadata using path</li><li>Get row</li><li>Update file</li><li>Update row</li></ul>
+None | <ul><li>建立檔案</li><li>插入資料列</li><li>複製檔案</li><li>刪除檔案</li><li>刪除資料列</li><li>將封存檔案解壓縮到資料夾</li><li>使用識別碼來取得檔案內容</li><li>使用路徑來取得檔案內容</li><li>使用識別碼來取得檔案中繼資料</li><li>使用路徑來取得檔案中繼資料</li><li>取得資料列</li><li>更新檔案</li><li>更新資料列</li></ul>
 
-All connectors support data in JSON and XML formats.
-
-
-## <a name="create-the-connection-to-google-drive"></a>Create the connection to Google Drive
-
-When you add this connector to your logic apps, you must authorize logic apps to connect to your Google Drive.
-
->[AZURE.INCLUDE [Steps to create a connection to googledrive](../../includes/connectors-create-api-googledrive.md)]
-
-After you create the connection, you enter the Google Drive properties, like the folder path or file name. The **REST API reference** in this topic describes these properties.
-
->[AZURE.TIP] You can use this same Google Drive connection in other logic apps.
+所有連接器都支援 JSON 和 XML 格式的資料。
 
 
-## <a name="swagger-rest-api-reference"></a>Swagger REST API reference
-Applies to version: 1.0.
+## 建立至 Google 雲端硬碟的連線
 
-### <a name="create-file"></a>Create file    
-Uploads a file to Google Drive.  
-```POST: /datasets/default/files```
+當您將這個 API 新增到邏輯應用程式時，您必須授權邏輯應用程式，使其能夠連線到您的 Google 雲端硬碟。
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+>[AZURE.INCLUDE [建立至 googledrive 連線的步驟](../../includes/connectors-create-api-googledrive.md)]
+
+當您建立連線之後，請輸入 Google 雲端硬碟的屬性，例如資料夾路徑或檔案名稱。本主題的 **REST API 參考**一節說明這些屬性。
+
+>[AZURE.TIP] 您可以在其他的邏輯應用程式中，使用這個相同的 Google 雲端硬碟連線。
+
+
+## Swagger REST API 參考
+適用的版本：1.0。
+
+### 建立檔案    
+把檔案上傳到 Google 雲端硬碟。```POST: /datasets/default/files```
+
+| 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|folderPath|string|yes|query|none |Folder path to upload the file to Google Drive|
-|name|string|yes|query|none |Name of the file to create in Google Drive|
-|body|string(binary) |yes|body| none|Content of the file to upload to Google Drive|
+|folderPath|string|yes|query|無 |用來把檔案上傳到 Google 雲端硬碟的資料夾路徑|
+|名稱|string|yes|query|無 |要在 Google 雲端硬碟中建立之檔案的名稱|
+|body|字串 (二進位) |yes|body| 無|要上傳到 Google 雲端硬碟之檔案的內容|
 
-#### <a name="response"></a>Response
-|Name|Description|
+#### Response
+|名稱|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-### <a name="insert-row"></a>Insert row    
-Inserts a row into a Google Sheet.  
-```POST: /datasets/{dataset}/tables/{table}/items```
+### 插入資料列    
+在 Google 工作表中插入資料列。```POST: /datasets/{dataset}/tables/{table}/items```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|dataset|string|yes|path| none|Unique identifier of the Google Sheet file|
-|table|string|yes|path|none |Unique identifier of the worksheet|
-|item|ItemInternalId: string |yes|body|none |Row to insert into the specified sheet|
+|資料集|string|yes|路徑| 無|Google 試算表檔案的唯一識別碼|
+|資料表|string|yes|路徑|無 |工作表的唯一識別碼。|
+|item|ItemInternalId：字串 |yes|body|無 |要在指定工作表中插入的資料列|
 
-#### <a name="response"></a>Response
-|Name|Description|
+#### Response
+|Name|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-### <a name="copy-file"></a>Copy file    
-Copies a file on Google Drive.  
-```POST: /datasets/default/copyFile```
+### 複製檔案    
+複製 Google 雲端硬碟上的檔案。```POST: /datasets/default/copyFile```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|source|string|yes|query| none|Url to source file|
-|destination|string|yes|query|none |Destination file path in Google Drive, including target filename|
-|overwrite|boolean|no|query|none |Overwrites the destination file if set to 'true'|
+|來源|string|yes|query| 無|來源檔案的 URL|
+|目的地|string|yes|query|無 |Google 雲端硬碟中的目的檔案路徑，包括目標檔案名稱|
+|overwrite|布林值|no|query|無 |如果設定為「True」，則會覆寫目的檔案|
 
-#### <a name="response"></a>Response
-|Name|Description|
+#### Response
+|Name|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-### <a name="delete-file"></a>Delete file    
-Deletes a file from Google Drive.  
-```DELETE: /datasets/default/files/{id}```
+### 刪除檔案    
+刪除 Google 雲端硬碟中的檔案。```DELETE: /datasets/default/files/{id}```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|id|string|yes|path|none |Unique identifier of the file to delete from Google Drive|
+|id|string|yes|路徑|無 |要從 Google 雲端硬碟刪除之檔案的唯一識別碼|
 
-#### <a name="response"></a>Response
-|Name|Description|
+#### Response
+|名稱|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-### <a name="delete-row"></a>Delete Row    
-Deletes a row from a Google Sheet.  
-```DELETE: /datasets/{dataset}/tables/{table}/items/{id}```
+### 刪除資料列    
+刪除 Google 工作表中的資料列。```DELETE: /datasets/{dataset}/tables/{table}/items/{id}```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|dataset|string|yes|path|none |Unique identifier of the Google Sheet file|
-|table|string|yes|path|none |Unique identifier of the worksheet|
-|id|string|yes|path|none |Unique identifier of the row to delete|
+|資料集|string|yes|路徑|無 |Google 試算表檔案的唯一識別碼|
+|資料表|string|yes|路徑|無 |工作表的唯一識別碼。|
+|id|string|yes|路徑|無 |要刪除的資料列的唯一識別碼|
 
-#### <a name="response"></a>Response
-|Name|Description|
+#### Response
+|名稱|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-### <a name="extract-archive-to-folder"></a>Extract archive to folder    
-Extracts an archive file into a folder in Google Drive (example: .zip).  
-```POST: /datasets/default/extractFolderV2```
+### 將封存檔案解壓縮到資料夾    
+將封存檔案 (例如 .zip) 解壓縮到 Google 雲端硬碟中的資料夾。```POST: /datasets/default/extractFolderV2```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|source|string|yes|query|none |Path to the archive file|
-|destination|string|yes|query|none |Path in Google Drive to extract the archive contents|
-|overwrite|boolean|no|query|none |Overwrites the destination files if set to 'true'|
+|來源|string|yes|query|無 |封存檔案的路徑|
+|目的地|string|yes|query|無 |用來把封存檔案內容解壓縮到 Google 雲端硬碟中的路徑|
+|overwrite|布林值|no|query|無 |如果設定為「True」，則會覆寫目的檔案|
 
-#### <a name="response"></a>Response
-|Name|Description|
+#### Response
+|Name|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-### <a name="get-file-content-using-id"></a>Get file content using id    
-Retrieves file content from Google Drive using id.  
-```GET: /datasets/default/files/{id}/content```
+### 使用識別碼來取得檔案內容    
+使用識別碼來擷取 Google 雲端硬碟中的檔案內容。```GET: /datasets/default/files/{id}/content```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|id|string|yes|path|none |Unique identifier of the file to retrieve in Google Drive|
+|id|string|yes|路徑|無 |要從 Google 雲端硬碟擷取之檔案的唯一識別碼|
 
-#### <a name="response"></a>Response
-|Name|Description|
+#### Response
+|Name|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-### <a name="get-file-content-using-path"></a>Get file content using path    
-Retrieves file content from Google Drive using path.  
-```GET: /datasets/default/GetFileContentByPath```
+### 使用路徑來取得檔案內容    
+使用路徑來擷取 Google 雲端硬碟中的檔案內容。```GET: /datasets/default/GetFileContentByPath```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|path|string|yes|query|none |Path of the file in Google Drive|
+|路徑|string|yes|query|無 |Google 雲端硬碟中檔案的路徑。|
 
-#### <a name="response"></a>Response
-|Name|Description|
+#### Response
+|名稱|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-### <a name="get-file-metadata-using-id"></a>Get file metadata using id    
-Retrieves file metadata from Google Drive using id.  
-```GET: /datasets/default/files/{id}```
+### 使用識別碼來取得檔案中繼資料    
+使用識別碼來擷取 Google 雲端硬碟中的檔案中繼資料。```GET: /datasets/default/files/{id}```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|id|string|yes|path|none |Unique identifier of the file in Google Drive|
+|id|string|yes|路徑|無 |Google 雲端硬碟中檔案的唯一識別碼|
 
-#### <a name="response"></a>Response
-|Name|Description|
+#### Response
+|名稱|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-### <a name="get-file-metadata-using-path"></a>Get file metadata using path    
-Retrieves file metadata from Google Drive using path.  
-```GET: /datasets/default/GetFileByPath```
+### 使用路徑來取得檔案中繼資料    
+使用路徑來擷取 Google 雲端硬碟中的檔案中繼資料。```GET: /datasets/default/GetFileByPath```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|path|string|yes|query|none |Path of the file in Google Drive|
+|路徑|string|yes|query|無 |Google 雲端硬碟中檔案的路徑。|
 
-#### <a name="response"></a>Response
-|Name|Description|
+#### Response
+|名稱|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-### <a name="get-row"></a>Get row    
-Retrieves a single row from a Google Sheet.  
-```GET: /datasets/{dataset}/tables/{table}/items/{id}```
+### 取得單一資料列    
+擷取 Google 工作表中的單一資料列。```GET: /datasets/{dataset}/tables/{table}/items/{id}```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|dataset|string|yes|path|none |Unique identifier of the Google Sheet file|
-|table|string|yes|path|none |Unique identifier of the worksheet|
-|id|string|yes|path| none|Unique identifier of row to retrieve|
+|資料集|string|yes|路徑|無 |Google 試算表檔案的唯一識別碼|
+|資料表|string|yes|路徑|無 |工作表的唯一識別碼。|
+|id|string|yes|路徑| 無|要擷取的資料列的唯一識別碼|
 
-#### <a name="response"></a>Response
-|Name|Description|
+#### Response
+|名稱|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-### <a name="update-file"></a>Update file    
-Updates a file in Google Drive.  
-```PUT: /datasets/default/files/{id}```
+### 更新檔案    
+更新 Google 雲端硬碟中的檔案。```PUT: /datasets/default/files/{id}```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| Name| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|id|string|yes|path|none |Unique identifier of the file to update in Google Drive|
-|body|string(binary) |yes|body| none|Content of the file to upload to Google Drive|
+|id|string|yes|路徑|無 |Google 雲端硬碟中要更新之檔案的唯一識別碼|
+|body|字串 (二進位) |yes|body| 無|要上傳到 Google 雲端硬碟之檔案的內容|
 
-#### <a name="response"></a>Response
-|Name|Description|
+#### Response
+|名稱|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-### <a name="update-row"></a>Update row    
-Updates a row in a Google Sheet.  
-```PATCH: /datasets/{dataset}/tables/{table}/items/{id}```
+### 更新資料列    
+更新 Google 工作表中的資料列。```PATCH: /datasets/{dataset}/tables/{table}/items/{id}```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|dataset|string|yes|path|none |Unique identifier of the Google Sheet file|
-|table|string|yes|path| none|Unique identifier of the worksheet|
-|id|string|yes|path|none |Unique identifier of the row to update|
-|item|ItemInternalId: string |yes|body|none |Row with updated values|
+|資料集|string|yes|路徑|無 |Google 試算表檔案的唯一識別碼|
+|資料表|string|yes|路徑| 無|工作表的唯一識別碼。|
+|id|string|yes|路徑|無 |要更新的資料列的唯一識別碼|
+|item|ItemInternalId：字串 |yes|body|無 |值已更新的資料列|
 
-#### <a name="response"></a>Response
-|Name|Description|
+#### Response
+|名稱|說明|
 |---|---|
 |200|OK|
-|default|Operation Failed.|
+|預設值|作業失敗。|
 
 
-## <a name="object-definitions"></a>Object definitions
+## 物件定義
 
-#### <a name="datasetsmetadata"></a>DataSetsMetadata
+#### DataSetsMetadata
 
-|Property Name | Data Type | Required|
+|屬性名稱 | 資料類型 | 必要|
 |---|---|---|
-|tabular|not defined|no|
-|blob|not defined|no|
+|表格式|沒有定義|no|
+|blob|沒有定義|no|
 
-#### <a name="tabulardatasetsmetadata"></a>TabularDataSetsMetadata
+#### TabularDataSetsMetadata
 
-|Property Name | Data Type |Required|
+|屬性名稱 | 資料類型 |必要|
 |---|---|---|
-|source|string|no|
+|來源|string|no|
 |displayName|string|no|
 |urlEncoding|string|no|
 |tableDisplayName|string|no|
 |tablePluralName|string|no|
 
-#### <a name="blobdatasetsmetadata"></a>BlobDataSetsMetadata
+#### BlobDataSetsMetadata
 
-|Property Name | Data Type |Required|
+|屬性名稱 | 資料類型 |必要|
 |---|---|---|
-|source|string|no|
+|來源|string|no|
 |displayName|string|no|
 |urlEncoding|string|no|
 
-#### <a name="blobmetadata"></a>BlobMetadata
+#### BlobMetadata
 
-|Property Name | Data Type |Required|
+|屬性名稱 | 資料類型 |必要|
 |---|---|---|
-|Id|string|no|
-|Name|string|no|
+|識別碼|string|no|
+|名稱|string|no|
 |DisplayName|string|no|
 |Path|string|no|
 |LastModified|string|no|
-|Size|integer|no|
+|大小|integer|no|
 |MediaType|string|no|
-|IsFolder|boolean|no|
+|IsFolder|布林值|no|
 |ETag|string|no|
 |FileLocator|string|no|
 
-#### <a name="tablemetadata"></a>TableMetadata
+#### TableMetadata
 
-|Property Name | Data Type |Required|
+|屬性名稱 | 資料類型 |必要|
 |---|---|---|
-|name|string|no|
+|名稱|string|no|
 |title|string|no|
 |x-ms-permission|string|no|
-|schema|not defined|no|
+|結構描述|沒有定義|no|
 
-#### <a name="tableslist"></a>TablesList
+#### TablesList
 
-|Property Name | Data Type |Required|
+|屬性名稱 | 資料類型 |必要|
 |---|---|---|
 |value|array|no|
 
-#### <a name="table"></a>Table
+#### 資料表
 
-|Property Name | Data Type |Required|
+|屬性名稱 | 資料類型 |必要|
 |---|---|---|
-|Name|string|no|
+|名稱|string|no|
 |DisplayName|string|no|
 
-#### <a name="item"></a>Item
+#### 項目
 
-|Property Name | Data Type |Required|
+|屬性名稱 | 資料類型 |必要|
 |---|---|---|
 |ItemInternalId|string|no|
 
-#### <a name="itemslist"></a>ItemsList
+#### ItemsList
 
-|Property Name | Data Type |Required|
+|屬性名稱 | 資料類型 |必要|
 |---|---|---|
 |value|array|no|
 
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-[Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md).
+[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
-Go back to the [APIs list](apis-list.md).
+返回 [API 清單](apis-list.md)。
 
 
 <!--References-->
@@ -357,8 +343,4 @@ Go back to the [APIs list](apis-list.md).
 [13]: ./media/connectors-create-api-googledrive/configure-consent-screen.png
 [14]: ./media/connectors-create-api-googledrive/create-client-id.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

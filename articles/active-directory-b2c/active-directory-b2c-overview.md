@@ -1,74 +1,69 @@
 <properties
-    pageTitle="Azure Active Directory B2C: Overview | Microsoft Azure"
-    description="Developing consumer-facing applications with Azure Active Directory B2C"
-    services="active-directory-b2c"
-    documentationCenter=""
-    authors="swkrish"
-    manager="mbaldwin"
-    editor="bryanla"/>
+	pageTitle="Azure Active Directory B2C︰概觀 | Microsoft Azure"
+	description="使用 Azure Active Directory B2C 開發取用者導向應用程式"
+	services="active-directory-b2c"
+	documentationCenter=""
+	authors="swkrish"
+	manager="msmbaldwin"
+	editor="bryanla"/>
 
 <tags
-    ms.service="active-directory-b2c"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="hero-article"
-    ms.date="07/24/2016"
-    ms.author="swkrish"/>
+	ms.service="active-directory-b2c"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="hero-article"
+	ms.date="07/24/2016"
+	ms.author="swkrish"/>
 
+# Azure Active Directory B2C：在您的應用程式中註冊與登入取用者
 
-# <a name="azure-active-directory-b2c:-sign-up-and-sign-in-consumers-in-your-applications"></a>Azure Active Directory B2C: Sign up and sign in consumers in your applications
+Azure Active Directory B2C 是適用於取用者導向 Web 與行動應用程式的全方位雲端身分識別管理解決方案。其為高可用性的全域服務，可針對數億萬的取用者身分識別進行級別調整。Azure Active Directory B2C 建置於企業級安全平台，確保您的應用程式、商務和取用者受到安全防護。
 
-Azure Active Directory B2C is a comprehensive cloud identity management solution for your consumer-facing web and mobile applications. It is a highly available global service that scales to hundreds of millions of consumer identities. Built on an enterprise-grade secure platform, Azure Active Directory B2C keeps your applications, your business, and your consumers protected.
+在過去，應用程式開發人員若想要註冊並讓取用者登入其應用程式，他們會編寫自己的程式碼。而且他們會使用內部部署資料庫或系統來儲存使用者名稱和密碼。Azure Active Directory B2C 為開發人員提供更理想的做法，透過安全且以標準為基礎的平台以及豐富的可延伸原則組合，協助將取用者身分識別管理整合至應用程式。當您使用 Azure Active Directory B2C 時，您的取用者可以使用現有的社交帳戶 (Facebook、Google、Amazon、LinkedIn) 註冊應用程式，或是建立新的認證 (電子郵件地址與密碼，或使用者名稱與密碼)；後者稱為「本機帳戶」。
 
-In the past, application developers who wanted to sign up and sign in consumers into their applications would have written their own code. And they would have used on-premises databases or systems to store usernames and passwords. Azure Active Directory B2C offers developers a better way to integrate consumer identity management into their applications with the help of a secure, standards-based platform and a rich set of extensible policies. When you use Azure Active Directory B2C, your consumers can sign up for your applications by using their existing social accounts (Facebook, Google, Amazon, LinkedIn) or by creating new credentials (email address and password, or username and password); we call the latter "local accounts."
+## 開始使用
 
-## <a name="get-started"></a>Get started
+若要建置可接受取用者註冊與登入的應用程式，您必須先使用 Azure Active Directory B2C 租用戶註冊該應用程式。使用[建立 Azure AD B2C 租用戶](active-directory-b2c-get-started.md)中概述的步驟來建立您自己的租用戶。
 
-To build an application that accepts consumer sign up and sign in, you'll first need to register the application with an Azure Active Directory B2C tenant. Get your own tenant by using the steps outlined in [Create an Azure AD B2C tenant](active-directory-b2c-get-started.md).
-
-You can write your application against the Azure Active Directory B2C service either by choosing to send protocol messages directly, using [OAuth 2.0](active-directory-b2c-reference-protocols.md#oauth2-authorization-code-flow) or [Open ID Connect](active-directory-b2c-reference-protocols.md#openid-connect-sign-in-flow), or by using our libraries to do the work for you. Choose your favorite platform in the following table and get started.
+您可透過以下方式針對 Azure Active Directory B2C 服務撰寫應用程式：選擇直接傳送通訊協定訊息、使用 [OAuth 2.0](active-directory-b2c-reference-protocols.md#oauth2-authorization-code-flow) 或 [Open ID Connect](active-directory-b2c-reference-protocols.md#openid-connect-sign-in-flow)，或是使用我們的程式庫為您執行工作。在下表中選擇您喜愛的平台以開始使用。
 
 [AZURE.INCLUDE [active-directory-b2c-quickstart-table](../../includes/active-directory-b2c-quickstart-table.md)]
 
-## <a name="what's-new"></a>What's new
+## 新功能
 
-Check back here often to learn about future changes to the Azure Active Directory B2C. We'll also tweet about any updates by using @AzureAD.
+請不時返回此處查看，瞭解關於 Azure Active Directory B2C 未來變更的相關資訊。我們也會使用 @AzureAD 發佈任何更新的相關推文。
 
-- Learn about our [extensible policy framework](active-directory-b2c-reference-policies.md) and about the types of policies that you can create and use in your applications.
-- Bookmark our [service blog](https://blogs.msdn.microsoft.com/azureadb2c/) for notifications on minor service issues, updates, status and mitigations. Continue to monitor the [Azure status dashboard](https://azure.microsoft.com/status/) as well.
-- Current [service limitations, restrictions, and constraints](active-directory-b2c-limitations.md).
-- Finally, a [code sample](https://github.com/Azure-Samples/active-directory-dotnet-webapp-openidconnect-aspnetcore-b2c) using Azure AD B2C & ASP.NET Core.
+- 瞭解關於[可延伸原則架構](active-directory-b2c-reference-policies.md)，以及您在應用程式中可建立和使用的原則類型資訊。
+- 將我們的[服務部落格](https://blogs.msdn.microsoft.com/azureadb2c/)設為標籤，以取得次要服務問題、更新、狀態和補救措施的通知。也請持續監視 [Azure 狀態儀表板](https://azure.microsoft.com/status/)。
+- 目前[服務限制和條件約束](active-directory-b2c-limitations.md)。
+- 最後是使用 Azure AD B2C 和 ASP.NET Core 的[程式碼範例](https://github.com/Azure-Samples/active-directory-dotnet-webapp-openidconnect-aspnetcore-b2c)。
 
-## <a name="how-to-articles"></a>How-to articles
+## 操作說明文章
 
-Learn how to use specific Azure Active Directory B2C features:
+瞭解如何使用特定 Azure Active Directory B2C 功能：
 
-- Configure [Facebook](active-directory-b2c-setup-fb-app.md), [Google+](active-directory-b2c-setup-goog-app.md), [Microsoft account](active-directory-b2c-setup-msa-app.md), [Amazon](active-directory-b2c-setup-amzn-app.md), and [LinkedIn](active-directory-b2c-setup-li-app.md) accounts for use in your consumer-facing applications.
-- [Use custom attributes to collect information about your consumers](active-directory-b2c-reference-custom-attr.md).
-- [Enable Azure Multi-Factor Authentication in your consumer-facing applications](active-directory-b2c-reference-mfa.md).
-- [Set up self-service password reset for your consumers](active-directory-b2c-reference-sspr.md).
-- [Customize the look and feel of sign up, sign in, and other consumer-facing pages](active-directory-b2c-reference-ui-customization.md) that are served by Azure Active Directory B2C.
-- [Use the Azure Active Directory Graph API to programmatically create, read, update, and delete consumers](active-directory-b2c-devquickstarts-graph-dotnet.md) in your Azure Active Directory B2C tenant.
+- 設定您要在取用者導向應用程式中使用的 [Facebook](active-directory-b2c-setup-fb-app.md)、[Google+](active-directory-b2c-setup-goog-app.md)、[Microsoft 帳戶](active-directory-b2c-setup-msa-app.md)、[Amazon](active-directory-b2c-setup-amzn-app.md) 和 [LinkedIn](active-directory-b2c-setup-li-app.md)。
+- [使用自訂屬性來收集取用者相關資訊](active-directory-b2c-reference-custom-attr.md)。
+- [在取用者導向應用程式中啟用 Azure Multi-Factor Authentication](active-directory-b2c-reference-mfa.md)。
+- [設定取用者的自助式密碼重設](active-directory-b2c-reference-sspr.md)。
+- 針對 Azure Active Directory B2C [自訂其提供之註冊、登入和其他取用者導向頁面的外觀](active-directory-b2c-reference-ui-customization.md)。
+- 在 Azure Active Directory B2C 租用戶中，[使用 Azure Active Directory 圖形 API 來以程式設計方式建立、讀取、更新和刪除取用者](active-directory-b2c-devquickstarts-graph-dotnet.md)。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-These links will be useful for exploring the service in depth:
+以下連結有助於深入探索服務：
 
-- See the [Azure Active Directory B2C pricing information](https://azure.microsoft.com/pricing/details/active-directory-b2c/).
-- Get help on Stack Overflow by using the [azure-active-directory](http://stackoverflow.com/questions/tagged/azure-active-directory) or [adal](http://stackoverflow.com/questions/tagged/adal) tags.
-- Give us your thoughts by using [User Voice](https://feedback.azure.com/forums/169401-azure-active-directory/)--we want to hear them! Use the phrase "AzureADB2C:" in the title of your post so we can find it.
-- Review the [Azure AD B2C Protocol Reference](active-directory-b2c-reference-protocols.md).
-- Review the [Azure AD B2C Token Reference](active-directory-b2c-reference-tokens.md).
-- Read the [Azure Active Directory B2C FAQs](active-directory-b2c-faqs.md).
-- [File support requests for Azure Active Directory B2C](active-directory-b2c-support.md).
+- 請參閱 [Azure Active Directory B2C 價格資訊](https://azure.microsoft.com/pricing/details/active-directory-b2c/)。
+- 使用 [azure-active-directory](http://stackoverflow.com/questions/tagged/azure-active-directory) 或 [adal](http://stackoverflow.com/questions/tagged/adal) 標記，取得堆疊溢位的相關說明。
+- 透過 [User Voice](https://feedback.azure.com/forums/169401-azure-active-directory/) 告訴我們您的想法 -- 我們冀望瞭解您的看法！ 請在您的文章標題中使用 "AzureADB2C:" 字詞，以方便我們尋找。
+- 檢閱 [Azure AD B2C 通訊協定參考](active-directory-b2c-reference-protocols.md)。
+- 檢閱 [Azure AD B2C 權杖參考](active-directory-b2c-reference-tokens.md)。
+- 閱讀 [Azure Active Directory B2C 常見問題集](active-directory-b2c-faqs.md)。
+- [提出 Azure Active Directory B2C 的支援要求](active-directory-b2c-support.md)。
 
-## <a name="get-security-updates-for-our-products"></a>Get security updates for our products
+## 取得產品的安全性更新
 
-We encourage you to get notifications of when security incidents occur by visiting [this page](https://technet.microsoft.com/security/dd252948) and subscribing to Security Advisory Alerts.
+我們鼓勵您造訪[此頁面](https://technet.microsoft.com/security/dd252948)並訂閱資訊安全摘要報告警示，以在安全性事件發生時收到通知。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0727_2016-->

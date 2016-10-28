@@ -1,126 +1,125 @@
 <properties 
-    pageTitle="Authenticate with Mobile Engagement REST APIs - manual setup"
-    description="Describes how to manually setup authentication for Mobile Engagement REST APIs" 
-    services="mobile-engagement" 
-    documentationCenter="mobile" 
-    authors="piyushjo"
-    manager="erikre"
-    editor=""/>
+	pageTitle="使用 Mobile Engagement REST API 進行驗證 - 手動設定"
+	description="描述如何手動設定 Mobile Engagement REST API 的驗證" 
+	services="mobile-engagement" 
+	documentationCenter="mobile" 
+	authors="piyushjo"
+	manager="erikre"
+	editor=""/>
 
 <tags
-    ms.service="mobile-engagement"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.tgt_pltfrm="mobile-multiple"
-    ms.workload="mobile" 
-    ms.date="08/19/2016"
-    ms.author="piyushjo"/>
+	ms.service="mobile-engagement"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.tgt_pltfrm="mobile-multiple"
+	ms.workload="mobile" 
+	ms.date="08/19/2016"
+	ms.author="piyushjo"/>
+
+# 使用 Mobile Engagement REST API 進行驗證 - 手動設定
+
+這是[使用 Mobile Engagement REST API 進行驗證](mobile-engagement-api-authentication.md)的附錄說明文件。請務必先閱讀它，以取得內容。這會說明如何使用 Azure 入口網站設定 Mobile Engagement REST API 驗證的一次性設定的替代方式。
+
+>[AZURE.NOTE] 下列指示是根據這份 [Active Directory 指南](../resource-group-create-service-principal-portal.md)，並且針對 Mobile Engagement API 驗證所需進行自訂。如果您想要了解以下的詳細步驟，請參閱它。
+
+1. 透過[傳統入口網站](https://manage.windowsazure.com/)登入 Azure 帳戶。
+
+2. 從左窗格中，選取 [**Active Directory**]。
+
+     ![選取 Active Directory][1]
+
+3. 在 Azure 入口網站中選擇 [預設 Active Directory]。
+
+     ![選擇目錄][2]
+
+	>[AZURE.IMPORTANT] 這個方法只適用於您在帳戶的預設 Active Directory 中工作時，如果您在帳戶中建立的 Active Directory 中進行則無效。
+
+4. 若要檢視目錄中的應用程式，請按一下 [**應用程式**]。
+
+     ![檢視應用程式][3]
+
+5. 按一下 [加入]。
+
+     ![新增應用程式][4]
+
+6. 按一下 [加入我的組織正在開發的應用程式]。
+
+     ![新的應用程式][5]
+
+6. 填入應用程式的名稱，然後選取 [WEB 應用程式和/或 WEB API] 作為應用程式的類型，再按一下 [下一步] 按鈕。
+
+     ![名稱應用程式][6]
+
+7. 您可以針對 [登入 URL] 和 [應用程式識別碼 URI] 提供任何 dummy URL。我們的案例不會使用它們，且不會驗證 URL 本身。
+
+     ![應用程式屬性][7]
+
+8. 在這結束時，您將會有 AAD 應用程式，且具有您先前提供如下的名稱。這是您的 **AD\_APP\_NAME**，請記下它。
+
+     ![應用程式名稱][8]
+
+9. 按一下應用程式名稱，然後按一下 [設定]。
+
+     ![設定應用程式][9]
+
+10. 記下將作為 API 呼叫之 **CLIENT\_ID** 的用戶端識別碼。
+
+     ![設定應用程式][10]
+
+11. 向下捲動至 [金鑰] 區段，並加入持續時間最好為 2 年 (到期) 的金鑰，然後按一下 [儲存]。
+
+     ![設定應用程式][11]
 
 
-# <a name="authenticate-with-mobile-engagement-rest-apis---manual-setup"></a>Authenticate with Mobile Engagement REST APIs - manual setup
+12. 立即複製為金鑰顯示的值，因為它只會現在顯示，且不會儲存，因此不會再顯示。如果您遺失它，則必須產生新的金鑰。這會是您 API 呼叫的 **CLIENT\_SECRET**。
 
-This is an appendix documentation to [Authenticate with Mobile Engagement REST APIs](mobile-engagement-api-authentication.md). Make sure you read it first to get the context. This describes an alternate way to do the One-time setup for setting up your authentication for the Mobile Engagement REST APIs using the Azure Portal. 
+     ![設定應用程式][12]
 
->[AZURE.NOTE] The instructions below are based on this [Active Directory guide](../resource-group-create-service-principal-portal.md) and customized for what is required for authentication for Mobile Engagement APIs. So refer to it if you want to understand the steps below in detail. 
-
-1. Login to your Azure Account through the [classic portal](https://manage.windowsazure.com/).
-
-2. Select **Active Directory** from the left pane.
-
-     ![select Active Directory][1]
-
-3. Choose the **Default Active Directory** in your Azure portal. 
-
-     ![choose directory][2]
-
-    >[AZURE.IMPORTANT] This approach works only when you are working in the default Active Directory of your account and will not work if you are doing this in an Active Directory that you have created in your account. 
-
-4. To view the applications in your directory, click on **Applications**.
-
-     ![view applications][3]
-
-5. Click on **ADD**. 
-
-     ![add application][4]
-
-6. Click on **Add an application my organization is developing**
-
-     ![new application][5]
-
-6. Fill in name of the application and select the type of application as **WEB APPLICATION AND/OR WEB API** and click the next button.
-
-     ![name application][6]
-
-7. You can provide any dummy URLs for **SIGN-ON URL** and **APP ID URI**. They are not used for our scenario and the URLs themselves are not validated.  
-
-     ![application properties][7]
-
-8. At the end of this, you will have an AAD app with the name you provided previously like the following. This is your **AD\_APP\_NAME** and make a note of it.  
-
-     ![app name][8]
-
-9. Click on the app name and click on **Configure**.
-
-     ![configure app][9]
-
-10. Make a note of the CLIENT ID that will be used as **CLIENT\_ID** for your API calls. 
-
-     ![configure app][10]
-
-11. Scroll down to the **Keys** section and add a key with preferably 2 years (expiry) duration and click **Save**. 
-
-     ![configure app][11]
-
-
-12. Immediately copy the value which is shown for the key as it is only shown now and is not stored so will not be displayed ever again. If you lose it then you will have to generate a new key. This will be the **CLIENT_SECRET** for your API calls. 
-
-     ![configure app][12]
-
-    >[AZURE.IMPORTANT] This key will expire at the end of the duration that you specified so make sure to renew it when the time comes otherwise your API authentication will not work anymore. You can also delete and recreate this key if you think that it has been compromised.
+	>[AZURE.IMPORTANT] 此金鑰將在您指定的持續時間結束時到期，因此到時候請務必更新，否則您的 API 驗證將無法再使用。如果您認為此金鑰遭到盜用，您也可以將它刪除並重新建立。
  
-13. Click on **VIEW ENDPOINTS** button now which will open up the **App Endpoints** dialog box. 
+13. 按一下 [檢視端點] 按鈕，現在它將會開啟 [應用程式端點] 對話方塊。
 
-    ![][13]
+	![][13]
 
-14. From the App Endpoints dialog box, copy the **OAUTH 2.0 TOKEN ENDPOINT**. 
+14. 從 [應用程式端點] 對話方塊中，複製 [OAUTH 2.0 權杖端點]。
 
-    ![][14]
+	![][14]
 
-15. This endpoint will be in the following form where the GUID in the URL is your **TENANT_ID** so make a note of it: 
+15. 此端點將為下列形式，其中 URL 中的 GUID 是您的 **TENANT\_ID**，因此請記下它︰
 
-        https://login.microsoftonline.com/<GUID>/oauth2/token
+		https://login.microsoftonline.com/<GUID>/oauth2/token
 
-16. Now we will proceed to configure the permissions on this app. For this you will have to open up the [Azure portal](https://portal.azure.com). 
+16. 現在我們將繼續設定此應用程式上的權限。這將需要開啟 [Azure 入口網站](https://portal.azure.com)。
 
-17. Click on **Resource Groups** and find the **Mobile Engagement** resource group.  
+17. 按一下 [資源群組] 並尋找 [Mobile Engagement] 資源群組。
 
-    ![][15]
+	![][15]
 
-18. Click the **Mobile Engagement** resource group and navigate to the **Settings** blade here. 
+18. 按一下 [Mobile Engagement] 資源群組，並瀏覽至此處的 [設定] 刀鋒視窗。
 
-    ![][16]
+	![][16]
 
-19. Click on **Users** in the Settings blade and then click on **Add** to add a user. 
+19. 在 [設定] 刀鋒視窗中按一下 [使用者]，然後按一下 [加入] 來加入使用者。
 
-    ![][17]
+	![][17]
 
-20. Click on **Select a role**
+20. 按一下 [選取角色]
 
-    ![][18]
+	![][18]
 
-21. Click on **Owner**
+21. 按一下 [擁有者]
 
-    ![][19]
+	![][19]
 
-22. Search for the name of your application **AD\_APP\_NAME** in the Search box. You will not see this by default here. Once you find it, select it and click on **Select** at the bottom of the blade. 
+22. 在 [搜尋] 方塊中搜尋應用程式的名稱 **AD\_APP\_NAME**。依預設，您不會在這裡看到它。找到之後請選取它，然後按一下刀鋒視窗底部的 [選取]。
 
-    ![][20]
+	![][20]
 
-23. On the **Add Access** blade, it will show up as **1 user, 0 groups**. Click **OK** on this blade to confirm the change. 
+23. 在 [加入存取] 刀鋒視窗中，它會顯示為 [1 個使用者、0 個群組]。按一下此刀鋒視窗中的 [確定]，確認變更。
 
-    ![][21]
+	![][21]
 
-You have now completed the required AAD configuration and you are all set to call the APIs. 
+您現在已完成所需的 AAD 組態，可以呼叫 API。
 
 <!-- Images -->
 [1]: ./media/mobile-engagement-api-authentication-manual/active-directory.png
@@ -145,11 +144,4 @@ You have now completed the required AAD configuration and you are all set to cal
 [20]: ./media/mobile-engagement-api-authentication-manual/add-user-select.png
 [21]: ./media/mobile-engagement-api-authentication-manual/add-access-final.png
 
-
-
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

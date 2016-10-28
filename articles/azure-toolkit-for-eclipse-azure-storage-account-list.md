@@ -1,6 +1,6 @@
 <properties
-    pageTitle="Azure Storage Account List"
-    description="Manage your storage account settings using the Azure Toolkit for Eclipse"
+    pageTitle="Azure 儲存體帳戶清單"
+    description="使用 Azure Toolkit for Eclipse 來管理您的儲存體帳戶設定"
     services=""
     documentationCenter="java"
     authors="rmcmurray"
@@ -16,84 +16,83 @@
     ms.date="08/11/2016" 
     ms.author="robmcm"/>
 
-
 <!-- Legacy MSDN URL = https://msdn.microsoft.com/library/azure/dn205108.aspx -->
 
-# <a name="azure-storage-account-list"></a>Azure Storage Account List #
+# Azure 儲存體帳戶清單 #
 
-Azure storage accounts enable download locations to be used for your JDK, application server, and arbitrary components, as well as for storing state when using caching. Eclipse maintains a list of known storage accounts that are available to your projects in your Eclipse workspace. To open the **Storage Accounts** dialog, which is used to manage that list, within Eclipse, click **Window**, click **Preferences**, expand **Azure**, and then click **Storage Accounts**.
+Azure 儲存體帳戶可讓下載位置用於您的 JDK、應用程式伺服器和任意元件，以及在使用快取時用於儲存狀態。Eclipse 維護一份已知儲存體帳戶清單，可供 Eclipse 工作區中的專案使用。若要開啟用來管理 Eclipse 中該清單的 [儲存體帳戶] 對話方塊，請依序按一下 [視窗] 和 [喜好設定]，展開 [Azure]，然後按一下 [儲存體帳戶]。
 
-The following shows the **Storage Accounts** dialog.
+下圖顯示 [儲存體帳戶] 對話方塊。
 
 ![][ic719496]
 
-This dialog can also be opened from an **Accounts** link on dialog boxes that use storage accounts, such as the following:
+您也可以在使用儲存體帳戶的下列對話方塊上，從 [帳戶] 連結開啟這個對話方塊：
 
-* The **JDK** tab of the **Server Configuration** dialog.
-* The **Server** tab of the **Server Configuration** dialog.
-* The **Add Component** dialog.
-* The **Caching** properties dialog.
+* [伺服器組態] 對話方塊的 [JDK] 索引標籤。
+* [伺服器組態] 對話方塊的 [伺服器] 索引標籤。
+* [加入元件] 對話方塊。
+* [快取] 屬性對話方塊。
 
-## <a name="to-import-your-storage-accounts-using-a-publish-settings-file"></a>To import your storage accounts using a publish settings file ##
+## 使用發行設定檔匯入您的儲存體帳戶 ##
 
-1. Within the **Storage Accounts** dialog, click **Import from PUBLISH-SETTINGS file**.
-2. (Skip this step if you have already saved a publish settings file to your local machine.) In the **Import Subscription Information** dialog, click **Download PUBLISH-SETTINGS File**. If you are not yet logged into your Azure account, you will be prompted to log in. Then you'll be prompted to save an Azure publish settings file. (You can ignore the resulting instructions shown on the logon pages - they are provided by the Azure portal and are intended for Visual Studio users.) Save it to your local machine.
-3. Still in the **Import Subscription Information** dialog, click the **Browse** button, select the publish settings file that you saved locally previously, and then click **Open**.
-4. Click **OK** to close the **Import Subscription Information** dialog.
+1. 在 [儲存體帳戶] 對話方塊中，按一下 [從發行設定檔匯入]
+2. (如果您已將發行設定檔儲存至本機電腦，則略過這個步驟)。 在 [匯入訂用帳戶資訊] 對話方塊中，按一下 [下載發行設定檔]。如果您尚未登入 Azure 帳戶，系統會提示您登入。然後會提示您儲存 Azure 發行設定檔(您可以忽略登入頁面上所顯示的產生指示，這是由 Azure 入口網站提供給 Visual Studio 使用者的指示)。 請將其儲存至本機電腦。
+3. 同樣在 [匯入訂用帳戶資訊] 對話方塊中，按一下 [瀏覽] 按鈕，選取您先前在本機儲存的發行設定檔，然後按一下 [開啟]。
+4. 按一下 [確定] 關閉 [匯入訂用帳戶資訊] 對話方塊。
 
-## <a name="to-create-a-new-storage-account"></a>To create a new storage account ##
+## 建立新的儲存體帳戶 ##
 
-1. Within the **Storage Accounts** dialog, click **Add**.
-2. Within the **Add Storage Account** dialog, click **New**.
-3. Within the **New Storage Account** dialog, specify values for the following:
-    * Storage account name.
-    * Location of the storage account.
-    * Description of the storage account.
-    * The subscription to which the storage account belongs.
-4. Click **OK** to close the **New Storage Account** dialog.
+1. 在 [儲存體帳戶] 對話方塊中，按一下 [加入]。
+2. 在 [加入儲存體帳戶] 對話方塊中，按一下 [新增]。
+3. 在 [新增儲存體帳戶] 對話方塊中，指定下列值：
+    * 儲存體帳戶名稱。
+    * 儲存體帳戶的位置。
+    * 儲存體帳戶的描述。
+    * 儲存體帳戶所屬的訂用帳戶。
+4. 按一下 [確定] 關閉 [新增儲存體帳戶] 對話方塊。
 
-It may take several minutes for your storage account to be created. After it is created, click **OK** to close the **Add Storage Account** dialog, and your new storage account will be added to the list of available storage accounts.
+建立儲存體帳戶可能需要幾分鐘的時間。建立後，請按一下 [確定] 關閉 [加入儲存體帳戶] 對話方塊，新的儲存體帳戶會隨即加入可用的儲存體帳戶清單中。
 
-## <a name="to-add-an-existing-storage-account-to-the-list"></a>To add an existing storage account to the list ##
+## 將現有的儲存體帳戶加入清單中 ##
 
-1. If you do not already have a Azure storage account, create one by following the steps listed in the **To create a new storage account section** above. (Alternatively, you can create a new storage account at the [Azure Management Portal][].)
-2. Within the **Storage Accounts** dialog, click **Add**.
-3. Within the **Add Storage Account** dialog, enter values for **Name** and **Access Key**. The account name and access key must be for an existing Azure storage account. Use the **Storage** section of the [Azure Management Portal][] to view your storage account names and keys. Your **Add Storage Account** dialog will look similar to the following.
+1. 如果您還沒有 Azure 儲存體帳戶，請遵循上一節＜建立新的儲存體帳戶＞中所列的步驟，建立一個帳戶。(您也可以在 [Azure 管理入口網站][]中，建立新的儲存體帳戶)。
+2. 在 [儲存體帳戶] 對話方塊中，按一下 [加入]。
+3. 在 [加入儲存體帳戶] 對話方塊中，輸入 [名稱] 和 [存取金鑰] 的值。這必須是現有 Azure 儲存體帳戶的帳戶名稱和存取金鑰。使用 [Azure 管理入口網站][]的 [儲存體] 區段可檢視您的儲存體帳戶名稱和金鑰。您的 [加入儲存體帳戶] 對話方塊將會類似如下。
 
     ![][ic719497]
 
-4. Click **OK** to close the **Add Storage Account** dialog.
+4. 按一下 [確定] 關閉 [加入儲存體帳戶] 對話方塊。
 
-## <a name="to-modify-a-storage-account-to-use-a-new-access-key"></a>To modify a storage account to use a new access key ##
+## 修改儲存體帳戶以使用新的存取金鑰 ##
 
-1. Within the **Storage Accounts** dialog, click the storage account that you want to edit and then click **Edit**.
-2. Within the **Edit Storage Account Access Key** dialog, modify the **Access Key** value.
-3. Click **OK** to close the **Edit Storage Account Access Key** dialog.
+1. 在 [儲存體帳戶] 對話方塊中，按一下您要編輯的儲存體帳戶，然後按一下 [編輯]。
+2. 在 [編輯儲存體帳戶存取金鑰] 對話方塊中，修改 [存取金鑰] 值。
+3. 按一下 [確定] 關閉 [編輯儲存體帳戶存取金鑰] 對話方塊。
 
-## <a name="to-remove-a-storage-account-from-the-list-maintained-in-eclipse"></a>To remove a storage account from the list maintained in Eclipse ##
+## 從 Eclipse 所維護的清單中移除儲存體帳戶 ##
 
-1. Within the **Storage Accounts** dialog, click the storage account that you want to edit and then click **Remove**.
-2. Click **OK** when prompted to remove the storage account.
+1. 在 [儲存體帳戶] 對話方塊中，按一下您要編輯的儲存體帳戶，然後按一下 [移除]。
+2. 出現提示時，按一下 [確定] 以移除儲存體帳戶。
 
->[AZURE.NOTE] Removing the storage account through the **Storage Accounts** dialog only removes it from the list of storage accounts viewable within Eclipse. It does not remove the storage account from your Azure subscription. Additionally, the storage account could appear again in your list after Eclipse reloads the details of your subscription.
+>[AZURE.NOTE] 透過 [儲存體帳戶] 對話方塊移除儲存體帳戶，只會將其從可在 Eclipse 中檢視的儲存體帳戶清單中移除，而不會從您的 Azure 訂用帳戶中移除此儲存體帳戶。此外，當 Eclipse 重新載入您訂用帳戶的詳細資料之後，該儲存體帳戶可能會再次出現於清單中。
 
-## <a name="see-also"></a>See Also ##
+## 另請參閱 ##
 
-[Azure Toolkit for Eclipse][]
+[適用於 Eclipse 的 Azure 工具組][]
 
-[Installing the Azure Toolkit for Eclipse][] 
+[安裝 Azure Toolkit for Eclipse][]
 
-[Creating a Hello World Application for Azure in Eclipse][]
+[在 Eclipse 中為 Azure 建立 Hello World 應用程式][]
 
-For more information about using Azure with Java, see the [Azure Java Developer Center][].
+如需如何搭配使用 Azure 與 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心][]。
 
 <!-- URL List -->
 
-[Azure Java Developer Center]: http://go.microsoft.com/fwlink/?LinkID=699547
-[Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699529
-[Azure Management Portal]: http://go.microsoft.com/fwlink/?LinkID=512959
-[Creating a Hello World Application for Azure in Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699533
-[Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
+[Azure Java 開發人員中心]: http://go.microsoft.com/fwlink/?LinkID=699547
+[適用於 Eclipse 的 Azure 工具組]: http://go.microsoft.com/fwlink/?LinkID=699529
+[Azure 管理入口網站]: http://go.microsoft.com/fwlink/?LinkID=512959
+[在 Eclipse 中為 Azure 建立 Hello World 應用程式]: http://go.microsoft.com/fwlink/?LinkID=699533
+[安裝 Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
 [What's New in the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699552
 
 <!-- IMG List -->
@@ -101,8 +100,4 @@ For more information about using Azure with Java, see the [Azure Java Developer 
 [ic719496]: ./media/azure-toolkit-for-eclipse-azure-storage-account-list/ic719496.png
 [ic719497]: ./media/azure-toolkit-for-eclipse-azure-storage-account-list/ic719497.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

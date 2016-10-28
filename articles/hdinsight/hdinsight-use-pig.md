@@ -1,12 +1,12 @@
 <properties
-   pageTitle="Use Hadoop Pig in HDInsight | Microsoft Azure"
-   description="Learn how to use Pig with Hadoop on HDInsight."
+   pageTitle="在 HDInsight 中使用 Hadoop Pig | Microsoft Azure"
+   description="了解如何在 HDInsight 上搭配 Hadoop 使用 Pig。"
    services="hdinsight"
    documentationCenter=""
    authors="Blackmist"
    manager="jhubbard"
    editor="cgronlun"
-    tags="azure-portal"/>
+	tags="azure-portal"/>
 
 <tags
    ms.service="hdinsight"
@@ -17,108 +17,107 @@
    ms.date="09/14/2016"
    ms.author="larryfr"/>
 
-
-# <a name="use-pig-with-hadoop-on-hdinsight"></a>Use Pig with Hadoop on HDInsight
+# 搭配使用 Pig 與 HDInsight 上的 Hadoop
 
 [AZURE.INCLUDE [pig-selector](../../includes/hdinsight-selector-use-pig.md)]
 
-[Apache Pig](http://pig.apache.org/) is a platform for creating programs for Hadoop by using a procedural language known as *Pig Latin*. Pig is an alternative to Java for creating *MapReduce* solutions, and it is included with Azure HDInsight.
+[Apache Pig](http://pig.apache.org/) 是一個平台，可使用稱為 *Pig Latin* 的程序性語言建立 Hadoop 程式。若要建立 *MapReduce* 解決方案，Pig 是 Java 的替代選項，而且也已包含在 Azure HDInsight 中。
 
-In this article, you will learn how you can use Pig with HDInsight.
+在本文中，您將了解如何搭配 HDInsight 使用 Pig。
 
-##<a name="<a-id="why"></a>why-use-pig?"></a><a id="why"></a>Why use Pig?
+##<a id="why"></a>為何要使用 Pig？
 
-One of the challenges of processing data by using MapReduce in Hadoop is implementing your processing logic by using only a map and a reduce function. For complex processing, you often have to break processing into multiple MapReduce operations that are chained together to achieve the desired result.
+在 Hadoop 中使用 MapReduce 處理資料的其中一項挑戰是，只藉由使用 map 和 reduce 函數實作處理邏輯。如果是複雜的處理，您經常必須將處理分成多個鏈結在一起的 MapReduce 作業，才能獲得想要的結果。
 
-Instead of forcing you to use only map and reduce functions, Pig allows you to define processing as a series of transformations that the data flows through to produce the desired output.
+Pig 不會強迫您只使用 map 和 reduce 函數，反而會允許您將處理定義為一系列轉換，使資料流過以產生所需的輸出。
 
-The Pig Latin language allows you to describe the data flow from raw input, through one or more transformations, to produce the desired output. Pig Latin programs follow this general pattern:
+Pig Latin 語言可讓您從原始輸入描述資料流 (經過一或多個轉換後) 以產生所需的輸出。Pig Latin 程式遵循此一般模式：
 
-- **Load**: Read data to be manipulated from the file system
-- **Transform**: Manipulate the data
-- **Dump or store**: Output data to the screen or store it for processing
+- **載入**：從檔案系統讀取要處理的資料
+- **轉換**：處理資料
+- **傾印或儲存**：將資料輸出至畫面，或儲存資料以供處理
 
-Pig Latin also supports user-defined functions (UDF), which allows you to invoke external components that implement logic that is difficult to model in Pig Latin.
+Pig Latin 也支援使用者定義函數 (UDF)，此函數讓您可用叫用外部元件，這些元件會實作很難以 Pig Latin 模型化的邏輯。
 
-For more information about Pig Latin, see [Pig Latin Reference Manual 1](http://pig.apache.org/docs/r0.7.0/piglatin_ref1.html) and [Pig Latin Reference Manual 2](http://pig.apache.org/docs/r0.7.0/piglatin_ref2.html).
+如需 Pig Latin 的詳細資訊，請參閱 [Pig Latin 參考手冊 1](http://pig.apache.org/docs/r0.7.0/piglatin_ref1.html) (英文) 和 [Pig Latin 參考手冊 2](http://pig.apache.org/docs/r0.7.0/piglatin_ref2.html) (英文)。
 
-For an example of using UDFs with Pig, see the following documents:
+如需搭配 Pig 使用 UDF 的範例，請參閱以下文件：
 
-* [Use DataFu with Pig in HDInsight](hdinsight-hadoop-use-pig-datafu-udf.md) - DataFu is a collection of useful UDFs maintained by Apache
+* [ 在 HDInsight 中搭配使用 DataFu 與 Pig ](hdinsight-hadoop-use-pig-datafu-udf.md) - DataFu 是由 Apach 維護的 UDF 實用集合
 
-* [Use Python with Pig and Hive in HDInsight](hdinsight-python.md)
+* [在 HDInsight 中使用 Python 搭配 Pig 和 Hive](hdinsight-python.md)
 
-* [Use C# with Hive and Pig in HDInsight](hdinsight-hadoop-hive-pig-udf-dotnet-csharp.md)
+* [在 HDInsight 中搭配 Hive 與 Pig 使用 C#](hdinsight-hadoop-hive-pig-udf-dotnet-csharp.md)
 
-##<a name="<a-id="data"></a>about-the-sample-data"></a><a id="data"></a>About the sample data
+##<a id="data"></a>關於範例資料
 
-This example uses a *log4j* sample file, which is stored at **/example/data/sample.log** in your blob storage container. Each log inside the file consists of a line of fields that contains a `[LOG LEVEL]` field to show the type and the severity, for example:
+此範例使用 *log4j* 範例檔案，其儲存在 Blob 儲存容器中的 **/example/data/sample.log**。檔案中的每一筆記錄均由一列欄位組成，包括以 `[LOG LEVEL]` 欄位來顯示類型和嚴重性，例如：
 
-    2012-02-03 20:26:41 SampleClass3 [ERROR] verbose detail for id 1527353937
+	2012-02-03 20:26:41 SampleClass3 [ERROR] verbose detail for id 1527353937
 
-In the previous example, the log level is ERROR.
+在上一個範例中，記錄層級是「錯誤」。
 
-> [AZURE.NOTE] You can also generate a log4j file by using the [Apache Log4j](http://en.wikipedia.org/wiki/Log4j) logging tool and then upload that file to your blob. See [Upload Data to HDInsight](hdinsight-upload-data.md) for instructions. For more information about how blobs in Azure storage are used with HDInsight, see [Use Azure Blob Storage with HDInsight](hdinsight-hadoop-use-blob-storage.md).
+> [AZURE.NOTE] 您也可以使用 [Apache Log4j](http://en.wikipedia.org/wiki/Log4j) 記錄工具產生 log4j 檔案，然後將該檔案上傳至 Blob。如需指示，請參閱[將資料上傳至 HDInsight](hdinsight-upload-data.md)。如需關於如何搭配 HDInsight 使用 Azure 儲存體 Blob 的詳細資訊，請參閱[搭配 HDInsight 使用 Azure Blob 儲存體](hdinsight-hadoop-use-blob-storage.md)。
 
-The sample data is stored in Azure Blob storage, which HDInsight uses as the default file system for Hadoop clusters. HDInsight can access files stored in blobs by using the **wasb** prefix. For example, to access the sample.log file, you would use the following syntax:
+範例資料會儲存在 Azure Blob 儲存體中，供 HDInsight 做為 Hadoop 叢集的預設檔案系統使用。HDInsight 可使用 **wasb** 字首存取儲存在 Blob 中的檔案。例如，若要存取 sample.log 檔案，您應使用下列語法：
 
-    wasbs:///example/data/sample.log
+	wasbs:///example/data/sample.log
 
-Because WASB is the default storage for HDInsight, you can also access the file by using **/example/data/sample.log** from Pig Latin.
+由於 WASB 是 HDInsight 的預設儲存體，因此您也可以從 Pig Latin 使用 **/example/data/sample.log** 存取此檔案。
 
-> [AZURE.NOTE] The syntax, **wasbs:///**, is used to access files stored in the default storage container for your HDInsight cluster. If you specified additional storage accounts when you provisioned your cluster, and you want to access files stored in these accounts, you can access the data by specifying the container name and storage account address, for example: **wasbs://mycontainer@mystorage.blob.core.windows.net/example/data/sample.log**.
+> [AZURE.NOTE] 語法 **wasbs:///** 是用來存取 HDInsight 叢集的預設儲存容器所儲存的檔案。如果您在佈建叢集時指定其他儲存體帳戶，並想要存取儲存在這些帳戶中的檔案，可以指定容器名稱和儲存體帳戶位址來存取資料，例如：**wasbs://mycontainer@mystorage.blob.core.windows.net/example/data/sample.log**。
 
 
-##<a name="<a-id="job"></a>about-the-sample-job"></a><a id="job"></a>About the sample job
+##<a id="job"></a>關於範例工作
 
-The following Pig Latin job loads the **sample.log** file from the default storage for your HDInsight cluster. Then it performs a series of transformations that result in a count of how many times each log level occurred in the input data. The results are dumped into STDOUT.
+以下 Pig Latin 工作會從 HDInsight 叢集的預設儲存體載入 **sample.log** 檔案。然後該工作會執行一系列轉換，進而產生輸入資料中每個記錄層級出現次數的計數。這些結果會傾印至 STDOUT。
 
-    LOGS = LOAD 'wasbs:///example/data/sample.log';
-    LEVELS = foreach LOGS generate REGEX_EXTRACT($0, '(TRACE|DEBUG|INFO|WARN|ERROR|FATAL)', 1)  as LOGLEVEL;
-    FILTEREDLEVELS = FILTER LEVELS by LOGLEVEL is not null;
-    GROUPEDLEVELS = GROUP FILTEREDLEVELS by LOGLEVEL;
-    FREQUENCIES = foreach GROUPEDLEVELS generate group as LOGLEVEL, COUNT(FILTEREDLEVELS.LOGLEVEL) as COUNT;
-    RESULT = order FREQUENCIES by COUNT desc;
-    DUMP RESULT;
+	LOGS = LOAD 'wasbs:///example/data/sample.log';
+	LEVELS = foreach LOGS generate REGEX_EXTRACT($0, '(TRACE|DEBUG|INFO|WARN|ERROR|FATAL)', 1)  as LOGLEVEL;
+	FILTEREDLEVELS = FILTER LEVELS by LOGLEVEL is not null;
+	GROUPEDLEVELS = GROUP FILTEREDLEVELS by LOGLEVEL;
+	FREQUENCIES = foreach GROUPEDLEVELS generate group as LOGLEVEL, COUNT(FILTEREDLEVELS.LOGLEVEL) as COUNT;
+	RESULT = order FREQUENCIES by COUNT desc;
+	DUMP RESULT;
 
-The following image shows a breakdown of what each transformation does to the data.
+下圖詳細說明了每個轉換對資料執行的動作。
 
-![Graphical representation of the transformations][image-hdi-pig-data-transformation]
+![轉換的圖形化表示][image-hdi-pig-data-transformation]
 
-##<a name="<a-id="run"></a>run-the-pig-latin-job"></a><a id="run"></a>Run the Pig Latin job
+##<a id="run"></a>執行 Pig Latin 工作
 
-HDInsight can run Pig Latin jobs by using a variety of methods. Use the following table to decide which method is right for you, then follow the link for a walkthrough.
+HDInsight 可以使用各種方法執行 Pig Latin 工作。請使用下表決定適合您的方法，然後跟著連結逐項閱讀介紹。
 
-| **Use this** if you want...                                   | ...an **interactive** shell | ...**batch** processing | ...with this **cluster operating system** | ...from this **client operating system** |
+| 如果您想要...，請**使用此方法** | ...一個**互動式**殼層 | ...**批次**處理 | ...搭配此**叢集作業系統** | ...從此**用戶端作業系統** |
 |:--------------------------------------------------------------|:---------------------------:|:-----------------------:|:------------------------------------------|:-----------------------------------------|
-| [SSH](hdinsight-hadoop-use-pig-ssh.md)                        |              ✔              |            ✔            | Linux                                     | Linux, Unix, Mac OS X, or Windows        |
-| [Curl](hdinsight-hadoop-use-pig-curl.md)                      |           &nbsp;            |            ✔            | Linux or Windows                          | Linux, Unix, Mac OS X, or Windows        |
-| [.NET SDK for Hadoop](hdinsight-hadoop-use-pig-dotnet-sdk.md) |           &nbsp;            |            ✔            | Linux or Windows                          | Windows (for now)                        |
-| [Windows PowerShell](hdinsight-hadoop-use-pig-powershell.md)  |           &nbsp;            |            ✔            | Linux or Windows                          | Windows                                  |
-| [Remote Desktop](hdinsight-hadoop-use-pig-remote-desktop.md)  |              ✔              |            ✔            | Windows                                   | Windows                                  |
+| [SSH](hdinsight-hadoop-use-pig-ssh.md) | ✔ | ✔ | Linux | Linux、Unix、Mac OS X 或 Windows |
+| [Curl](hdinsight-hadoop-use-pig-curl.md) | &nbsp; | ✔ | Linux 或 Windows | Linux、Unix、Mac OS X 或 Windows |
+| [.NET SDK for Hadoop](hdinsight-hadoop-use-pig-dotnet-sdk.md) | &nbsp; | ✔ | Linux 或 Windows | Windows (目前) |
+| [Windows PowerShell](hdinsight-hadoop-use-pig-powershell.md) | &nbsp; | ✔ | Linux 或 Windows | Windows |
+| [遠端桌面](hdinsight-hadoop-use-pig-remote-desktop.md) | ✔ | ✔ | Windows | Windows |
 
 
-## <a name="running-pig-jobs-on-azure-hdinsight-using-on-premises-sql-server-integration-services"></a>Running Pig jobs on Azure HDInsight using on-premises SQL Server Integration Services
+## 使用內部部署 SQL Server Integration Services 在 Azure HDInsight 叢集執行 Pig 工作
 
-You can also use SQL Server Integration Services (SSIS) to run a Pig job. The Azure Feature Pack for SSIS provides the following components that work with Pig jobs on HDInsight.
-
-
-- [Azure HDInsight Pig Task][pigtask]
-- [Azure Subscription Connection Manager][connectionmanager]
+您也可以使用 SQL Server Integration Services (SSIS) 來執行 Pig 工作。適用於 SSIS 的 Azure Feature Pack 中提供下列元件可搭配 HDInsight 上的 Pig 工作使用。
 
 
-Learn more about the Azure Feature Pack for SSIS [here][ssispack].
+- [Azure HDInsight Pig 工作][pigtask]
+- [Azure 訂用帳戶連接管理員][connectionmanager]
 
 
-##<a name="<a-id="nextsteps"></a>next-steps"></a><a id="nextsteps"></a>Next steps
+在[這裡][ssispack]深入瞭解適用於 SSIS 的 Azure Feature Pack。
 
-Now that you have learned how to use Pig with HDInsight, use the following links to explore other ways to work with Azure HDInsight.
 
-* [Upload data to HDInsight][hdinsight-upload-data]
-* [Use Hive with HDInsight][hdinsight-use-hive]
-* [Use Sqoop with HDInsight](hdinsight-use-sqoop.md)
-* [Use Oozie with HDInsight](hdinsight-use-oozie.md)
-* [Use MapReduce jobs with HDInsight][hdinsight-use-mapreduce]
+##<a id="nextsteps"></a>接續步驟
+
+現在您已學會如何搭配 HDInsight 使用 Pig，接著請使用下列連結來探索 Azure HDInsight 的其他使用方式。
+
+* [將資料上傳到 HDInsight][hdinsight-upload-data]
+* [搭配 HDInsight 使用 Hivet][hdinsight-use-hive]
+* [搭配 HDInsight 使用 Sqoop](hdinsight-use-sqoop.md)
+* [在 HDInsight 上使用 Oozie](hdinsight-use-oozie.md)
+* [搭配 HDInsight 使用 MapReduce 工作][hdinsight-use-mapreduce]
 
 [check]: ./media/hdinsight-use-pig/hdi.checkmark.png
 
@@ -149,8 +148,4 @@ Now that you have learned how to use Pig with HDInsight, use the following links
 [image-hdi-pig-powershell]: ./media/hdinsight-use-pig/hdi.pig.powershell.png
 [image-hdi-pig-architecture]: ./media/hdinsight-use-pig/HDI.Pig.Architecture.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

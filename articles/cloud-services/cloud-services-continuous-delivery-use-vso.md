@@ -1,274 +1,274 @@
 <properties
-    pageTitle="Continuous delivery with Visual Studio Team Services in Azure | Microsoft Azure"
-    description="Learn how to configure your Visual Studio Team Services team projects to automatically build and deploy to the Web App feature in Azure App Service or cloud services."
-    services="cloud-services"
-    documentationCenter=".net"
-    authors="mlearned"
-    manager="douge"
-    editor=""/>
+	pageTitle="在 Azure 中使用 Visual Studio Team Services 來連續傳遞 | Microsoft Azure"
+	description="了解如何設定 Visual Studio Team Services 的 Team 專案，自動建置和部署至 Azure App Service 或雲端服務中的 Web 應用程式功能。"
+	services="cloud-services"
+	documentationCenter=".net"
+	authors="mlearned"
+	manager="douge"
+	editor=""/>
 
 <tags
-    ms.service="cloud-services"
-    ms.workload="tbd"
-    ms.tgt_pltfrm="na"
-    ms.devlang="dotnet"
-    ms.topic="article"
-    ms.date="07/06/2016"
-    ms.author="mlearned"/>
+	ms.service="cloud-services"
+	ms.workload="tbd"
+	ms.tgt_pltfrm="na"
+	ms.devlang="dotnet"
+	ms.topic="article"
+	ms.date="07/06/2016"
+	ms.author="mlearned"/>
 
+# 使用 Visual Studio Team Services 連續傳遞至 Azure
 
-# <a name="continuous-delivery-to-azure-using-visual-studio-team-services"></a>Continuous delivery to Azure using Visual Studio Team Services
+您可以將 Visual Studio Team Services 小組專案設定為自動建置和部署至 Azure Web 應用程式或雲端服務。(如需如何使用「內部部署」的 Team Foundation Server 來設定連續組建及部署系統的相關資訊，請參閱 [Azure 中雲端服務的連續傳遞](cloud-services-dotnet-continuous-delivery.md))。
 
-You can configure your Visual Studio Team Services team projects to automatically build and deploy to Azure web apps or cloud services.  (For information on how to set up a continuous build and deploy system using an *on-premises* Team Foundation Server, see [Continuous Delivery for Cloud Services in Azure](cloud-services-dotnet-continuous-delivery.md).)
+本教學課程假設您已安裝 Visual Studio 2013 和 Azure SDK。如果尚無 Visual Studio 2013，請至 **www.visualstudio.com** 選擇 [免費開始用](http://www.visualstudio.com) 連結來下載。從[這裡](http://go.microsoft.com/fwlink/?LinkId=239540)安裝 Azure SDK。
 
-This tutorial assumes you have Visual Studio 2013 and the Azure SDK installed. If you don't already have Visual Studio 2013, download it by choosing the **Get started for free** link at [www.visualstudio.com](http://www.visualstudio.com). Install the Azure SDK from [here](http://go.microsoft.com/fwlink/?LinkId=239540).
+> [AZURE.NOTE] 您需要 Visual Studio Team Services 帳戶，才能完成本教學課程：您可以[開啟免費的 Visual Studio Team Services 帳戶](http://go.microsoft.com/fwlink/p/?LinkId=512979)。
 
-> [AZURE.NOTE] You need an Visual Studio Team Services account to complete this tutorial: You can [open a Visual Studio Team Services account for free](http://go.microsoft.com/fwlink/p/?LinkId=512979).
+若要使用 Visual Studio Team Services 將雲端服務設定為自動建立和部署至 Azure，請依照下列步驟進行。
 
-To set up a cloud service to automatically build and deploy to Azure by using Visual Studio Team Services, follow these steps.
+## 1：建立 Team 專案
 
-## <a name="1:-create-a-team-project"></a>1: Create a team project
+請遵循[這裡](http://go.microsoft.com/fwlink/?LinkId=512980)的指示來建立您的 Team 專案，並將專案連結至 Visual Studio。本逐步解說假設您使用 Team Foundation 版本控制 (TFVC) 做為原始檔控制解決方案。如果您想使用 Git 進行版本控制，請參閱[本逐步解說的 Git 版本](http://go.microsoft.com/fwlink/p/?LinkId=397358) (英文)。
 
-Follow the instructions [here](http://go.microsoft.com/fwlink/?LinkId=512980) to create your team project and link it to Visual Studio. This walkthrough assumes you are using Team Foundation Version Control (TFVC) as your source control solution. If you want to use Git for version control, see [the Git version of this walkthrough](http://go.microsoft.com/fwlink/p/?LinkId=397358).
+## 2︰將專案簽入原始檔控制
 
-## <a name="2:-check-in-a-project-to-source-control"></a>2: Check in a project to source control
+1. 在 Visual Studio 中，開啟您要部署的方案，或建立新方案。您可以依照此逐步解說的步驟部署 Web 應用程式或雲端服務 (Azure 應用程式)。
+如果要建立新方案，請建立新的 Azure 雲端服務專案，或建立新的 ASP.NET MVC 專案。請確定專案以 .NET Framework 4 或 4.5 為目標，如果是建立雲端服務專案，
+請加入 ASP.NET MVC Web 角色和背景工作角色，然後對 Web 角色選擇網際網路應用程式。出現提示時，選擇 [**網際網路應用程式**]。
+如果要建立 Web 應用程式，請選擇 ASP.NET Web 應用程式的專案範本，然後選擇 [MVC]。
+請參閱「[在 Azure App Service 中建立 ASP.NET Web 應用程式](../app-service-web/web-sites-dotnet-get-started.md)」。
 
-1. In Visual Studio, open the solution you want to deploy, or create a new one.
-You can deploy a web app or a cloud service (Azure Application) by following the steps in this walkthrough.
-If you want to create a new solution, create a new Azure Cloud Service project, or a new ASP.NET MVC project. Make sure that the project targets .NET Framework 4 or 4.5, and if you are creating a cloud service project, add an ASP.NET MVC web role and a worker role, and choose Internet application for the web role. When prompted, choose **Internet Application**.
-If you want to create a web app, choose the ASP.NET Web Application project template, and then choose MVC. See [Create an ASP.NET web app in Azure App Service](../app-service-web/web-sites-dotnet-get-started.md).
+	> [AZURE.NOTE] Visual Studio Team Services 目前僅支援 Visual Studio Web 應用程式的 CI 部署。Web Site 專案超出範圍。
 
-    > [AZURE.NOTE] Visual Studio Team Services only support CI deployments of Visual Studio Web Applications at this time. Web Site projects are out of scope.
+1. 開啟方案的內容功能表，選擇 [將方案加入至原始檔控制]。
 
-1. Open the context menu for the solution, and choose **Add Solution to Source Control**.
+	![][5]
 
-    ![][5]
+1. 接受或變更預設值，然後選擇 [確定] 按鈕。處理完成之後，[方案總管] 中會出現原始檔控制圖示。
 
-1. Accept or change the defaults and choose the **OK** button. Once the process completes, source control icons appear in **Solution Explorer**.
+	![][6]
 
-    ![][6]
+1. 開啟解決方案的捷徑功能表，選擇 [簽入]。
 
-1. Open the shortcut menu for the solution, and choose **Check In**.
+	![][7]
 
-    ![][7]
+1. 在 [Team Explorer] 的 [暫止的變更] 區域中，輸入簽入註解，然後選擇 [簽入] 按鈕。
 
-1. In the **Pending Changes** area of **Team Explorer**, type a comment for the check-in and choose the **Check In** button.
+	![][8]
 
-    ![][8]
+	請注意簽入時用來包含或排除特定變更的選項。如果已排除您要的變更，請選擇 [全部包含]。
 
-    Note the options to include or exclude specific changes when you check in. If desired changes are excluded, choose the **Include All** link.
+	![][9]
 
-    ![][9]
+## 3：將專案連線至 Azure
 
-## <a name="3:-connect-the-project-to-azure"></a>3: Connect the project to Azure
+1. 您現有一個 VS Team Services 小組專案，且裡面有一些原始程式碼，可以準備將小組專案連接至 Azure。在 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)中，選取您的雲端服務或 Web 應用程式，或選取左下方的 **+** 圖示並選擇 [雲端服務] 或 [Web 應用程式]，然後選取 [快速建立]，建立新的雲端服務或 Web 應用程式。請選擇 [使用 Visual Studio Team Services 設定發行] 連結。
 
-1. Now that you have a VS Team Services team project with some source code in it, you are ready to connect your team project to Azure.  In the [Azure classic portal](http://go.microsoft.com/fwlink/?LinkID=213885), select your cloud service or web app, or create a new one by choosing the **+** icon at the bottom left and choosing **Cloud Service** or **Web App** and then **Quick Create**. Choose the **Set up publishing with Visual Studio Team Services** link.
+	![][10]
 
-    ![][10]
+1. 在精靈中，於文字方塊中輸入 Visual Studio Team Services 帳戶的名稱，然後按一下 [立即授權] 連結。可能會要求您登入。
 
-1. In the wizard, type the name of your Visual Studio Team Services account in the textbox and click the **Authorize Now** link. You might be asked to sign in.
+	![][11]
 
-    ![][11]
+1. 在 [連接要求] 快顯對話方塊中，選擇 [接受] 按鈕，以授權 Azure 在 VS Team Services 中設定 Team 專案。
 
-1. In the **Connection Request** pop-up dialog, choose the **Accept** button to authorize Azure to configure your team project in VS Team Services.
+	![][12]
 
-    ![][12]
+1. 授權成功時，將出現含有 Visual Studio Team Services 小組專案清單的下拉清單。選擇您在先前步驟中建立的小組專案，然後選擇精靈的勾選記號按鈕。
 
-1. When authorization succeeds, you see a dropdown containing a list of your Visual Studio Team Services team projects. Choose  the name of team project that you created in the previous steps, and then choose the wizard's checkmark button.
+	![][13]
 
-    ![][13]
+1. 連結專案之後，將出現一些指示，指出如何將變更簽入至 Visual Studio Team Services 小組專案。下次簽入時，Visual Studio Team Services 就會建立專案並部署至 Azure。現在就試著按一下 [從 Visual Studio 簽入] 連結，再按一下 [啟動 Visual Studio] 連結 (或入口網站畫面底部同等的 [Visual Studio] 按鈕)。
 
-1. After your project is linked, you will see some instructions for checking in changes to your Visual Studio Team Services team project.  On your next check-in, Visual Studio Team Services will build and deploy your project to Azure.  Try this now by clicking the **Check In from Visual Studio** link, and then the **Launch Visual Studio** link (or the equivalent **Visual Studio** button at the bottom of the portal screen).
+	![][14]
 
-    ![][14]
+## 4：觸發重建和重新部署專案
 
-## <a name="4:-trigger-a-rebuild-and-redeploy-your-project"></a>4: Trigger a rebuild and redeploy your project
+1. 在 Visual Studio 的 [Team Explorer] 中，選擇 [原始檔控制總管] 連結。
 
-1. In Visual Studio's **Team Explorer**, choose the **Source Control Explorer** link.
+	![][15]
 
-    ![][15]
+1. 瀏覽至方案檔並開啟。
 
-1. Navigate to your solution file and open it.
+	![][16]
 
-    ![][16]
+1. 在 [方案總管] 中，開啟檔案進行變更。例如，在 MVC Web 角色中，變更 Views\\Shared 資料夾下的 `_Layout.cshtml` 檔案。
 
-1. In **Solution Explorer**, open up a file and change it. For example, change the file `_Layout.cshtml` under the Views\\Shared folder in an MVC web role.
+	![][17]
 
-    ![][17]
+1. 編輯網站的標誌，然後選擇 **Ctrl+S** 儲存檔案。
 
-1. Edit the logo for the site and choose **Ctrl+S** to save the file.
+	![][18]
 
-    ![][18]
+1. 在 [Team Explorer] 中，選擇 [暫止的變更] 連結。
 
-1. In **Team Explorer**, choose the **Pending Changes** link.
+	![][19]
 
-    ![][19]
+1. 輸入註解，然後選擇 [簽入] 按鈕。
 
-1. Enter a comment and then choose the **Check In** button.
+	![][20]
 
-    ![][20]
+1. 選擇 [首頁] 按鈕回到 [Team Explorer] 首頁。
 
-1. Choose the **Home** button to return to the **Team Explorer** home page.
+	![][21]
 
-    ![][21]
+1. 選擇 [組建] 連結來檢視進行中的組件。
 
-1. Choose the **Builds** link to view the builds in progress.
+	![][22]
 
-    ![][22]
+	**Team Explorer** 會顯示簽入已觸發的組建。
 
-    **Team Explorer** shows that a build has been triggered for your check-in.
+	![][23]
 
-    ![][23]
+1. 按兩下進行中的組建名稱，檢視進行中組建的詳細記錄。
 
-1. Double-click the name of the build in progress to view a detailed log as the build progresses.
+	![][24]
 
-    ![][24]
+1. 當組建進行時，查看您使用精靈將 TFS 連結至 Azure 時所建立的組建定義。開啟組建定義的捷徑功能表，然後選擇 [編輯組建定義]。
 
-1. While the build is in-progress, take a look at the build definition that was created when you linked TFS to Azure by using the wizard.  Open the shortcut menu for the build definition and choose **Edit Build Definition**.
+	![][25]
 
-    ![][25]
+	在 [觸發程序] 索引標籤中，您會看到已設為依預設每次簽入時建置的組建定義。
 
-    In the **Trigger** tab, you will see that the build definition is set to build on every check-in by default.
+	![][26]
 
-    ![][26]
+	在 [處理序] 索引標籤中，您可以看到部署環境已設為您的雲端服務或 Web 應用程式的名稱。如果您使用的是 Web 應用程式，則顯示的屬性跟下面的屬性不同。
 
-    In the **Process** tab, you can see the deployment environment is set to the name of your cloud service or web app. If you are working with web apps, the properties you see will be different from those shown here.
+	![][27]
 
-    ![][27]
+1. 如果不想要使用預設值，請指定屬性的值。Azure 發行屬性在 [部署] 區段中。
 
-1. Specify values for the properties if you want different values than the defaults. The properties for Azure publishing are in the **Deployment** section.
+	下表顯示 [部署] 區段中可用的屬性：
 
-    The following table shows the available properties in the **Deployment** section:
+	|屬性|預設值|
+	|---|---|
+	|允許未受信任的憑證|如果為 false，SSL 憑證必須經過根授權單位簽署。|
+	|允許升級|允許部署更新現有的部署而非建立新的部署。保留 IP 位址。|
+	|不要刪除|如果為 true，則不要覆寫現有不相關的部署 (允許升級)。|
+	|部署設定的路徑|Web 應用程式的 .pubxml 檔的路徑，這是儲存機制之根資料夾的相對路徑。雲端服務則會忽略。|
+	|SharePoint 部署環境|與服務名稱相同。|
+	|Azure 部署環境|Web 應用程式或雲端服務的名稱。|
 
-  	|Property|Default Value|
-  	|---|---|
-  	|Allow Untrusted Certificates|If false, SSL certificates must be signed by a root authority.|
-  	|Allow Upgrade|Allows the deployment to update an existing deployment instead of creating a new one. Preserves the IP address.|
-  	|Do Not Delete|If true, do not overwrite an existing unrelated deployment (upgrade is allowed).|
-  	|Path to Deployment Settings|The path to your .pubxml file for a web app, relative to the root folder of the repo. Ignored for cloud services.|
-  	|Sharepoint Deployment Environment|The same as the service name.|
-  	|Azure Deployment Environment|The web app or cloud service name.|
+1. 如果使用多個服務組態 (.cscfg 檔)，則可以在 [組建、進階、MSBuild 引數] 設定中指定所需的服務組態。例如，若要使用 ServiceConfiguration.Test.cscfg，請設定 MSBuild 引數的命令列選項 `/p:TargetProfile=Test`。
 
-1. If you are using multiple service configurations (.cscfg files), you can specify the desired service configuration in the **Build, Advanced, MSBuild arguments** setting. For example, to use ServiceConfiguration.Test.cscfg, set MSBuild arguments line option `/p:TargetProfile=Test`.
+	![][38]
 
-    ![][38]
+	現在應該已順利完成您的組建。
 
-    By this time, your build should be completed successfully.
+	![][28]
 
-    ![][28]
+1. 如果按兩下組建名稱，Visual Studio 會顯示 [組建摘要]，包括與單元測試專案相關聯的任何測試結果。
 
-1. If you double-click the build name, Visual Studio shows a **Build Summary**, including any test results from associated unit test projects.
+	![][29]
 
-    ![][29]
+1. 在 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)中，選取預備環境之後，您可以在 [部署] 索引標籤上檢視相關聯的部署。
 
-1. In the [Azure classic portal](http://go.microsoft.com/fwlink/?LinkID=213885), you can view the associated deployment on the **Deployments** tab when the staging environment is selected.
+	![][30]
 
-    ![][30]
+1.	瀏覽至網站的 URL。若是 Web 應用程式，請按一下命令列上的 [瀏覽] 按鈕。若是雲端服務，請在 [**儀表板**] 頁面的 [**快速概覽**] 區段中選擇 URL，以顯示雲端服務的預備環境。依預設，來自雲端服務連續整合的部署會發行至預備環境。您可以將 [替代雲端服務環境] 屬性設為 [生產] 來變更此設定。此擷取畫面顯示網站 URL 在雲端服務儀表板頁面上的位置。
 
-1.  Browse to your site's URL. For a web app, just click the **Browse** button on the command bar. For a cloud service, choose the URL in the **Quick Glance** section of the **Dashboard** page that shows the Staging environment for a cloud service. Deployments from continuous integration for cloud services are published to the Staging environment by default. You can change this by setting the **Alternate Cloud Service Environment** property to **Production**. This screenshot shows where the site URL is on the cloud service's dashboard page.
+	![][31]
 
-    ![][31]
+	新的瀏覽器索引標籤會開啟來顯示您執行中的網站。
 
-    A new browser tab will open to reveal your running site.
+	![][32]
 
-    ![][32]
+	若為雲端服務，如果對專案進行其他變更，則會觸發更多組建，將累積多個部署。最後一個會標示為「作用中」。
 
-    For cloud services, if you make other changes to your project, you trigger more builds, and you will accumulate multiple deployments. The latest one marked as Active.
+	![][33]
 
-    ![][33]
+## 5：重新部署舊版組建
 
-## <a name="5:-redeploy-an-earlier-build"></a>5: Redeploy an earlier build
-
-This step applies to cloud services and is optional. In the Azure classic portal, choose an earlier deployment and then choose the **Redeploy** button to rewind your site to an earlier check-in.  Note that this will trigger a new build in TFS and create a new entry in your deployment history.
+此步驟適用於雲端服務，且為選用的。在 Azure 傳統入口網站中，選擇先前的部署，然後選擇 [重新部署] 按鈕，將網站倒回到更早的簽入。請注意，這會在 TFS 中觸發新的組建，並在部署歷程記錄中建立新的項目。
 
 ![][34]
 
-## <a name="6:-change-the-production-deployment"></a>6: Change the Production deployment
+## 6：變更生產部署
 
-This step applies only to cloud services, not web apps. When you are ready, you can promote the Staging environment to the production environment by choosing the **Swap** button in the Azure classic portal. The newly deployed Staging environment is promoted to Production, and the previous Production environment, if any, becomes a Staging environment. The Active deployment may be different for the Production and Staging environments, but the deployment history of recent builds is the same regardless of environment.
+此步驟僅適用於雲端服務，不適用於 Web 應用程式。準備就緒後，您可以在 Azure 傳統入口網站中選擇 [交換] 按鈕，將預備環境升級至生產環境。新部署的預備環境會升級至「生產」，而先前的生產環境 (若有的話) 會變成預備環境。「作用中」部署可能與生產和預備環境不同，但最近組建的部署歷程記錄都一樣，與環境無關。
 
 ![][35]
 
-## <a name="7:-run-unit-tests"></a>7: Run unit tests
+## 7：執行單元測試
 
-This step applies only to web apps, not cloud services. To put a quality gate on your deployment, you can run unit tests and if they fail, you can stop the deployment.
+此步驟僅適用於 Web 應用程式，不適用於雲端服務。若要為部署的品質把關，您可以執行單元測試；如果測試失敗，則可以停止部署。
 
-1.  In Visual Studio, add a unit test project.
+1.  在 Visual Studio 中，加入單元測試專案。
 
-    ![][39]
+	![][39]
 
-1.  Add project references to the project you want to test.
+1.  將專案參考加入您要測試的專案。
 
-    ![][40]
+	![][40]
 
-1.  Add some unit tests. To get started, try a dummy test that will always pass.
+1.  加入一些單元測試。若要開始使用，請嘗試一律會通過的虛擬測試。
 
-        ```
-        using System;
-        using Microsoft.VisualStudio.TestTools.UnitTesting;
+		```
+		using System;
+		using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-        namespace UnitTestProject1
-        {
-            [TestClass]
-            public class UnitTest1
-            {
-                [TestMethod]
-                [ExpectedException(typeof(NotImplementedException))]
-                public void TestMethod1()
-                {
-                    throw new NotImplementedException();
-                }
-            }
-        }
-        ```
+		namespace UnitTestProject1
+		{
+		    [TestClass]
+		    public class UnitTest1
+		    {
+		        [TestMethod]
+		        [ExpectedException(typeof(NotImplementedException))]
+		        public void TestMethod1()
+		        {
+		            throw new NotImplementedException();
+		        }
+		    }
+		}
+		```
 
-1.  Edit the build definition, choose the **Process** tab, and expand the **Test** node.
+1.  編輯組建定義，選擇 [處理序] 索引標籤，然後展開 [測試] 節點。
 
-1.  Set the **Fail build on test failure** to True. This means that the deployment won't occur unless the tests pass.
+1.  將 [在測試失敗時使組建失敗] 設為 True。換句話說，除非通過測試，否則不會進行部署。
 
-    ![][41]
+	![][41]
 
-1.  Queue a new build.
+1.  將新組建排入佇列。
 
-    ![][42]
+	![][42]
 
-    ![][43]
+	![][43]
 
-1. While the build is proceeding, check on its progress.
+1. 在建置進行時，檢查其進度。
 
-    ![][44]
+	![][44]
 
-    ![][45]
+	![][45]
 
-1. When the build is done, check the test results.
+1. 在建置完成時，檢查測試結果。
 
-    ![][46]
+	![][46]
 
-    ![][47]
+	![][47]
 
-1.  Try creating a test that will fail. Add a new test by copying the first one, rename it, and comment out the line of code that states NotImplementedException is an expected exception.
+1.  嘗試建立將失敗的測試。透過複製第一個測試、將其重新命名，並將 NotImplementedException 標記為預期的例外狀況的程式碼行加上註解，來加入新的測試。
 
-        ```
-        [TestMethod]
-        //[ExpectedException(typeof(NotImplementedException))]
-        public void TestMethod2()
-        {
-            throw new NotImplementedException();
-        }
-        ```
+		```
+		[TestMethod]
+		//[ExpectedException(typeof(NotImplementedException))]
+		public void TestMethod2()
+		{
+		    throw new NotImplementedException();
+		}
+		```
 
-1. Check in the change to queue a new build.
+1. 簽入變更，以將新組建排入佇列。
 
-    ![][48]
+	![][48]
 
-1. View the test results to see details about the failure.
+1. 檢視測試結果，以查看失敗的詳細資料。
 
-    ![][49]
+	![][49]
 
-    ![][50]
+	![][50]
 
-## <a name="next-steps"></a>Next steps
-For more about unit testing in Visual Studio Team Services, see [Run unit tests in your build](http://go.microsoft.com/fwlink/p/?LinkId=510474). If you're using Git, see [Share your code in Git](http://www.visualstudio.com/get-started/share-your-code-in-git-vs.aspx) and [Continuous deployment to Azure App Service](../app-service-web/app-service-continuous-deployment.md).  For more information about Visual Studio Team Services, see [Visual Studio Team Services](http://go.microsoft.com/fwlink/?LinkId=253861).
+## 後續步驟
+如需在 Visual Studio Team Services 中進行單元測試的詳細資訊，請參閱[在建置中執行單元測試](http://go.microsoft.com/fwlink/p/?LinkId=510474)。如果您使用的是 Git，請參閱[在 Git 中共用程式碼](http://www.visualstudio.com/get-started/share-your-code-in-git-vs.aspx)和[持續部署至 Azure App Service](../app-service-web/app-service-continuous-deployment.md)。如需 Visual Studio Team Services 的詳細資訊，請參閱 [Visual Studio Team Services](http://go.microsoft.com/fwlink/?LinkId=253861)。
 
 [0]: ./media/cloud-services-continuous-delivery-use-vso/tfs0.PNG
 [1]: ./media/cloud-services-continuous-delivery-use-vso/tfs1.png
@@ -321,8 +321,4 @@ For more about unit testing in Visual Studio Team Services, see [Run unit tests 
 [49]: ./media/cloud-services-continuous-delivery-use-vso/TestsFailed.PNG
 [50]: ./media/cloud-services-continuous-delivery-use-vso/TestsResultsFailed.PNG
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

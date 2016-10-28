@@ -1,6 +1,6 @@
 <properties
-    pageTitle="What is a Cloud Service model and package | Microsoft Azure"
-    description="Describes the cloud service model (.csdef, .cscfg) and package (.cspkg) in Azure"
+    pageTitle="什麼是雲端服務模型和封裝 | Microsoft Azure"
+    description="說明 Azure 中的雲端服務模型 (.csdef、.cscfg) 和封裝 (.cspkg)"
     services="cloud-services"
     documentationCenter=""
     authors="Thraka"
@@ -15,26 +15,25 @@
     ms.date="09/06/2016"
     ms.author="adegeo"/>
 
+# 什麼是雲端服務模型？如何封裝？
+雲端服務是從三個元件建立的，也就是服務定義 _(.csdef)_、服務組態 _(.cscfg)_ 和服務封裝 _(.cspkg)_。**ServiceDefinition.csdef** 和 **ServiceConfig.cscfg** 這兩個檔案是以 XML 為基礎，描述雲端服務的結構及其設定方式，統稱為模型。**ServicePackage.cspkg** 是從 **ServiceDefinition.csdef** 產生的 zip 檔案，此外，包含所有必要的二進位型相依性。Azure 會從 **ServicePackage.cspkg** 和 **ServiceConfig.cscfg** 建立雲端服務。
 
-# <a name="what-is-the-cloud-service-model-and-how-do-i-package-it?"></a>What is the Cloud Service model and how do I package it?
-A cloud service is created from three components, the service definition _(.csdef)_, the service config _(.cscfg)_, and a service package _(.cspkg)_. Both the **ServiceDefinition.csdef** and **ServiceConfig.cscfg** files are XML-based and describe the structure of the cloud service and how it's configured; collectively called the model. The **ServicePackage.cspkg** is a zip file that is generated from the **ServiceDefinition.csdef** and among other things, contains all of the required binary-based dependencies. Azure creates a cloud service from both the **ServicePackage.cspkg** and the **ServiceConfig.cscfg**.
+一旦雲端服務在 Azure 中執行之後，您就可以透過 **ServiceConfig.cscfg** 檔案重新設定它，但您無法改變定義。
 
-Once the cloud service is running in Azure, you can reconfigure it through the **ServiceConfig.cscfg** file, but you cannot alter the definition.
+## 您想要深入了解什麼？
 
-## <a name="what-would-you-like-to-know-more-about?"></a>What would you like to know more about?
-
-* I want to know more about the [ServiceDefinition.csdef](#csdef) and [ServiceConfig.cscfg](#cscfg) files.
-* I already know about that, give me [some examples](#next-steps) on what I can configure.
-* I want to create the [ServicePackage.cspkg](#cspkg).
-* I am using Visual Studio and I want to...
-    * [Create a new cloud service][vs_create]
-    * [Reconfigure an existing cloud service][vs_reconfigure]
-    * [Deploy a Cloud Service project][vs_deploy]
-    * [Remote desktop into a cloud service instance][remotedesktop]
+* 我想要深入了解 [ServiceDefinition.csdef](#csdef) 和 [ServiceConfig.cscfg](#cscfg) 檔案。
+* 我已經了解，請給我[一些範例](#next-steps)，讓我可以設定。
+* 我想要建立 [ServicePackage.cspkg](#cspkg)。
+* 我打算使用 Visual Studio，而我想要...
+    * [建立新的雲端服務][vs_create]
+    * [重新設定現有的雲端服務][vs_reconfigure]
+    * [部署雲端服務專案][vs_deploy]
+    * [雲端服務執行個體中的遠端桌面][remotedesktop]
 
 <a name="csdef"></a>
-## <a name="servicedefinition.csdef"></a>ServiceDefinition.csdef
-The **ServiceDefinition.csdef** file specifies the settings that are used by Azure to configure a cloud service. The [Azure Service Definition Schema (.csdef File)](https://msdn.microsoft.com/library/azure/ee758711.aspx) provides the allowable format for a service definition file. The following example shows the settings that can be defined for the Web and Worker roles:
+## ServiceDefinition.csdef
+**ServiceDefinition.csdef** 檔案會指定 Azure 所使用的設定來設定雲端服務。[Azure 服務定義結構描述 (.csdef 檔)](https://msdn.microsoft.com/library/azure/ee758711.aspx) 會為服務定義檔提供允許的格式。以下範例顯示可以針對 Web 和背景工作角色定義的設定：
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -85,39 +84,31 @@ The **ServiceDefinition.csdef** file specifies the settings that are used by Azu
 </ServiceDefinition>
 ```
 
-You can refer to the [Service Definition Schema][] for a better understanding of the XML schema used here, however, here is a quick explanation of some of the elements:
+您可以參考 [服務定義結構描述][]，進一步了解此處所使用的 XML 結構描述，不過，以下是某些元素的簡短說明：
 
-**Sites**  
-Contains the definitions for websites or web applications that are hosted in IIS7.
+**Sites** 包含 IIS7 中所裝載的網站或 Web 應用程式的定義。
 
-**InputEndpoints**  
-Contains the definitions for endpoints that are used to contact the cloud service.
+**InputEndpoints** 包含用來連絡雲端服務的端點的定義。
 
-**InternalEndpoints**  
-Contains the definitions for endpoints that are used by role instances to communicate with each other.
+**InternalEndpoints** 包含角色執行個體用來彼此通訊的端點的定義。
 
-**ConfigurationSettings**  
-Contains the setting definitions for features of a specific role.
+**ConfigurationSettings** 包含特定角色功能的設定定義。
 
-**Certificates**  
-Contains the definitions for certificates that are needed for a role. The previous code example shows a certificate that is used for the configuration of Azure Connect.
+**Certificates** 包含角色所需的憑證的定義。上述程式碼範例顯示用於設定 Azure Connect 的憑證。
 
-**LocalResources**  
-Contains the definitions for local storage resources. A local storage resource is a reserved directory on the file system of the virtual machine in which an instance of a role is running.
+**LocalResources** 包含本機儲存資源的定義。本機儲存資源是執行中角色執行個體所在之虛擬機器的檔案系統上的保留目錄。
 
-**Imports**  
-Contains the definitions for imported modules. The previous code example shows the modules for Remote Desktop Connection and Azure Connect.
+**Imports** 包含匯入的模組的定義。上述程式碼範例顯示遠端桌面連線與 Azure Connect 的模組。
 
-**Startup**  
-Contains tasks that are run when the role starts. The tasks are defined in a .cmd or executable file.
+**Startup** 包含角色啟動時執行的工作。這些工作是在 .cmd 或可執行檔中定義。
 
 
 
 <a name="cscfg"></a>
-## <a name="serviceconfiguration.cscfg"></a>ServiceConfiguration.cscfg
-The configuration of the settings for your cloud service is determined by the values in the **ServiceConfiguration.cscfg** file. You specify the number of instances that you want to deploy for each role in this file. The values for the configuration settings that you defined in the service definition file are added to the service configuration file. The thumbprints for any management certificates that are associated with the cloud service are also added to the file. The [Azure Service Configuration Schema (.cscfg File)](https://msdn.microsoft.com/library/azure/ee758710.aspx) provides the allowable format for a service configuration file.
+## ServiceConfiguration.cscfg
+雲端服務設定的組態取決於 **ServiceConfiguration.cscfg** 檔案中的值。您可以指定您想要在此檔案中為每個角色部署的執行個體的數目。您在服務定義檔中定義的組態設定的值會加入至服務組態檔。與雲端服務相關聯的任何管理憑證的指紋也會加入至檔案。[Azure 服務組態結構描述 (.cscfg 檔)](https://msdn.microsoft.com/library/azure/ee758710.aspx) 為服務組態檔提供允許的格式。
 
-The service configuration file is not packaged with the application, but is uploaded to Azure as a separate file and is used to configure the cloud service. You can upload a new service configuration file without redeploying your cloud service. The configuration values for the cloud service can be changed while the cloud service is running. The following example shows the configuration settings that can be defined for the Web and Worker roles:
+服務組態檔沒有與應用程式封裝在一起，但是做為個別的檔案上傳至 Azure，並用來設定雲端服務。您可以上傳新的服務組態檔，無需重新部署您的雲端服務。雲端服務執行時，可以變更雲端服務的組態值。以下範例顯示可以針對 Web 和背景工作角色定義的組態設定：
 
 ```xml
 <?xml version="1.0"?>
@@ -137,27 +128,24 @@ The service configuration file is not packaged with the application, but is uplo
 </ServiceConfiguration>
 ```
 
-You can refer to the [Service Configuration Schema](https://msdn.microsoft.com/library/azure/ee758710.aspx) for better understanding the XML schema used here, however, here is a quick explanation of the elements:
+您可以參考[服務組態結構描述](https://msdn.microsoft.com/library/azure/ee758710.aspx)，進一步了解此處所使用的 XML 結構描述，不過，以下是元素的簡短說明：
 
-**Instances**  
-Configures the number of running instances for the role. To prevent your cloud service from potentially becoming unavailable during upgrades, it is recommend that you deploy more than one instance of your web-facing roles. By doing this, you are adhering to the guidelines in the [Azure Compute Service Level Agreement (SLA)](http://azure.microsoft.com/support/legal/sla/), which guarantees 99.95% external connectivity for Internet-facing roles when two or more role instances are deployed for a service.
+**Instances** 設定執行中角色執行個體的數目。為防止您的雲端服務在升級期間可能變成無法使用，建議您部署多個 Web 對向角色的執行個體。如此一來，您將遵守 [Azure 運算服務等級協定 (SLA)](http://azure.microsoft.com/support/legal/sla/) 中的指導方針，當您為服務部署兩個或多個角色執行個體時，此等級協定可保證網際網路對向角色 99.95% 的外部連線能力。
 
-**ConfigurationSettings**  
-Configures the settings for the running instances for a role. The name of the `<Setting>` elements must match the setting definitions in the service definition file.
+**ConfigurationSettings** 設定執行中角色執行個體的設定。`<Setting>` 元素的名稱必須符合服務定義檔中的設定定義。
 
-**Certificates**  
-Configures the certificates that are used by the service. The previous code example shows how to define the certificate for the RemoteAccess module. The value of the *thumbprint* attribute must be set to the thumbprint of the certificate to use.
+**Certificates** 設定服務所使用的憑證。上述程式碼範例顯示如何定義 RemoteAccess 模組的憑證。*thumbprint* 屬性的值必須設定為要使用的憑證的指紋。
 
 <p/>
 
- >[AZURE.NOTE] The thumbprint for the certificate can be added to the configuration file by using a text editor, or the value can be added on the **Certificates** tab of the **Properties** page of the role in Visual Studio.
+ >[AZURE.NOTE] 憑證的指紋可以使用文字編輯器加入至組態檔，或是在 Visual Studio 中角色的 [屬性] 頁面的 [憑證] 索引標籤上加入此值。
 
 
 
-## <a name="defining-ports-for-role-instances"></a>Defining ports for role instances
-Azure allows only one entry point to a web role. This means that all traffic occurs through one IP address. You can configure your websites to share a port by configuring the host header to direct the request to the correct location. You can also configure your applications to listen to well-known ports on the IP address.
+## 定義角色執行個體的連接埠
+Azure 對於 Web 角色，僅允許一個進入點。這表示所有流量都是透過一個 IP 位址發生。您可以設定您的網站共用連接埠，方法是設定主機標頭，將要求導向到正確的位置。您也可以設定您的應用程式接聽 IP 位址的公認連接埠。
 
-The following sample shows the configuration for a web role with a website and web application. The website is configured as the default entry location on port 80, and the web applications are configured to receive requests from an alternate host header that is called “mail.mysite.cloudapp.net”.
+以下範例顯示具有網站及 Web 應用程式的 Web 角色的組態。網站會設定為連接埠 80 上的預設進入位置，而 Web 應用程式則會設定為從稱為 "mail.mysite.cloudapp.net" 的替代主機標頭接收要求。
 
 ```xml
 <WebRole>
@@ -192,90 +180,84 @@ The following sample shows the configuration for a web role with a website and w
 ```
 
 
-## <a name="changing-the-configuration-of-a-role"></a>Changing the configuration of a role
-You can update the configuration of your cloud service while it is running in Azure, without taking the service offline. To change configuration information, you can either upload a new configuration file, or edit the configuration file in place and apply it to your running service. The following changes can be made to the configuration of a service:
+## 變更角色的組態
+您可以在雲端服務於 Azure 中執行的同時，更新該雲端服務的組態，而不讓服務離線。若要變更組態資訊，您可以上傳新的組態檔，或就地編輯現有的組態檔，並將其套用到執行中的服務。您可以針對服務的組態進行下列變更：
 
-- **Changing the values of configuration settings**  
-When a configuration setting changes, a role instance can choose to apply the change while the instance is online, or to recycle the instance gracefully and apply the change while the instance is offline.
+- **變更組態設定的值**：當組態設定變更時，角色執行個體可以選擇在執行個體上線時套用變更，或是正常回收執行個體，並在執行個體離線時套用變更。
 
-- **Changing the service topology of role instances**  
-Topology changes do not affect running instances, except where an instance is being removed. All remaining instances generally do not need to be recycled; however, you can choose to recycle role instances in response to a topology change.
+- **變更角色執行個體的服務拓撲**：拓撲變更不會影響執行中的執行個體，但是要移除的執行個體除外。其餘所有執行個體通常不需要進行回收，不過，您可以選擇回收角色執行個體，以回應拓撲變更。
 
-- **Changing the certificate thumbprint**  
-You can only update a certificate when a role instance is offline. If a certificate is added, deleted, or changed while a role instance is online, Azure gracefully takes the instance offline to update the certificate and bring it back online after the change is complete.
+- **變更憑證指紋**：當角色執行個體離線時，您可以只更新憑證。如果在角色執行個體上線時加入、刪除或變更憑證，Azure 會讓執行個體正常離線以更新憑證，並在變更完成後讓它再次上線。
 
-### <a name="handling-configuration-changes-with-service-runtime-events"></a>Handling configuration changes with Service Runtime Events
-The [Azure Runtime Library](https://msdn.microsoft.com/library/azure/mt419365.aspx) includes the [Microsoft.WindowsAzure.ServiceRuntime](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.aspx) namespace, which provides classes for interacting with the Azure environment from code running in an instance of a role. The [RoleEnvironment](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.aspx) class defines the following events that are raised before and after a configuration change:
+### 使用服務執行階段事件處理組態變更
+[Azure 執行階段程式庫](https://msdn.microsoft.com/library/azure/mt419365.aspx)包含 [Microsoft.WindowsAzure.ServiceRuntime](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.aspx) 命名空間，可從角色執行個體中執行的程式碼，提供與 Azure 環境互動的類別。[RoleEnvironment](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.aspx) 類別會定義組態變更前後會引發的下列事件：
 
-- **[Changing](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.changing.aspx) event**  
-This occurs before the configuration change is applied to a specified instance of a role giving you a chance to take down the role instances if required.
-- **[Changed](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.changed.aspx) event**  
-Occurs after the configuration change is applied to a specified instance of a role.
+- **[Changing](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.changing.aspx) 事件**：這會在組態變更套用至指定的角色執行個體之前發生，讓您有機會記下角色執行個體 (如有需要)。
+- **[Changed](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.changed.aspx) 事件**：在組態變更套用至指定的角色執行個體之後發生。
 
-> [AZURE.NOTE] Because certificate changes always take the instances of a role offline, they do not raise the RoleEnvironment.Changing or RoleEnvironment.Changed events.
+> [AZURE.NOTE] 由於憑證變更時，一律會讓角色執行個體離線，因此不會引發 RoleEnvironment.Changing 或 RoleEnvironment.Changed 事件。
 
 <a name="cspkg"></a>
-## <a name="servicepackage.cspkg"></a>ServicePackage.cspkg
-To deploy an application as a cloud service in Azure, you must first package the application in the appropriate format. You can use the **CSPack** command-line tool (installed with the [Azure SDK](https://azure.microsoft.com/downloads/)) to create the package file as an alternative to Visual Studio.
+## ServicePackage.cspkg
+若要將應用程式部署為 Azure 中的雲端服務，您必須先使用適當的格式封裝應用程式。您可以使用 **CSPack** 命令列工具 (隨 [Azure SDK](https://azure.microsoft.com/downloads/) 安裝) 做為 Visual Studio 的替代方案，以建立封裝檔案。
 
-**CSPack** uses the contents of the service definition file and service configuration file to define the contents of the package. **CSPack** generates an application package file (.cspkg) that you can upload to Azure by using the [Azure portal](cloud-services-how-to-create-deploy-portal.md#create-and-deploy). By default, the package is named `[ServiceDefinitionFileName].cspkg`, but you can specify a different name by using the `/out` option of **CSPack**.
+**CSPack** 會使用服務定義檔和服務組態檔的內容，定義封裝的內容。**CSPack** 會產生應用程式封裝檔案 (.cspkg)，您可以使用 [Azure 入口網站](cloud-services-how-to-create-deploy-portal.md#create-and-deploy)，將其上傳至 Azure。根據預設，封裝的名稱為 `[ServiceDefinitionFileName].cspkg`，但是您可以使用 **CSPack** 的 `/out` 選項指定不同的名稱。
 
-**CSPack** is generally located at  
-`C:\Program Files\Microsoft SDKs\Azure\.NET SDK\[sdk-version]\bin\`
+**CSPack** 通常位於 `C:\Program Files\Microsoft SDKs\Azure\.NET SDK[sdk-version]\bin`
 
 >[AZURE.NOTE]
-CSPack.exe (on windows) is available by running the **Microsoft Azure Command Prompt** shortcut that is installed with the SDK.  
+CSPack.exe (在 Windows 上) 可以透過執行隨 SDK 一起安裝的 **Microsoft Azure 命令提示字元**捷徑來使用。
 >  
->Run the CSPack.exe program by itself to see documentation about all of the possible switches and commands.
+>執行 CSPack.exe 程式本身，以查看所有可能的參數和命令的相關文件。
 
 <p />
 
 >[AZURE.TIP]
-Run your cloud service locally in the **Microsoft Azure Compute Emulator**, use the **/copyonly** option This option copies the binary files for the application to a directory layout from which they can be run in the compute emulator.
+在本機上使用 **Microsoft Azure 運算模擬器**執行雲端服務 (使用 **/copyonly** 選項)。此選項會將應用程式的二進位檔案複製到目錄配置，您可以使用運算模擬器，從該目錄配置執行這些二進位檔案。
 
-### <a name="example-command-to-package-a-cloud-service"></a>Example command to package a cloud service
-The following example creates an application package that contains the information for a web role. The command specifies the service definition file to use, the directory where binary files can be found, and the name of the package file.
+### 封裝雲端服務的範例命令
+下列範例會建立應用程式封裝，其中包含 Web 角色的資訊。此命令會指定要使用的服務定義檔、可以找到二進位檔案所在的目錄，以及封裝檔案的名稱。
 
-    cspack [DirectoryName]\[ServiceDefinition]
+    cspack [DirectoryName][ServiceDefinition]
            /role:[RoleName];[RoleBinariesDirectory]
            /sites:[RoleName];[VirtualPath];[PhysicalPath]
            /out:[OutputFileName]
 
-If the application contains both a web role and a worker role, the following command is used:
+如果應用程式同時包含 Web 角色和背景工作角色，則會使用下列命令：
 
-    cspack [DirectoryName]\[ServiceDefinition]
+    cspack [DirectoryName][ServiceDefinition]
            /out:[OutputFileName]
            /role:[RoleName];[RoleBinariesDirectory]
            /sites:[RoleName];[VirtualPath];[PhysicalPath]
            /role:[RoleName];[RoleBinariesDirectory];[RoleAssemblyName]
 
-Where the variables are defined as follows:
+其中的變數定義如下：
 
-| Variable                  | Value |
+| 變數 | 值 |
 | ------------------------- | ----- |
-| \[DirectoryName\]         | The subdirectory under the root project directory that contains the .csdef file of the Azure project.|
-| \[ServiceDefinition\]     | The name of the service definition file. By default, this file is named ServiceDefinition.csdef.  |
-| \[OutputFileName\]        | The name for the generated package file. Typically, this is set to the name of the application. If no file name is specified, the application package is created as \[ApplicationName\].cspkg.|
-| \[RoleName\]              | The name of the role as defined in the service definition file.|
-| \[RoleBinariesDirectory] | The location of the binary files for the role.|
-| \[VirtualPath\]           | The physical directories for each virtual path defined in the Sites section of the service definition.|
-| \[PhysicalPath\]          | The physical directories of the contents for each virtual path defined in the site node of the service definition.|
-| \[RoleAssemblyName\]      | The name of the binary file for the role.| 
+| [DirectoryName] | 專案根目錄底下的子目錄，其中包含 Azure 專案的 .csdef 檔案。|
+| [ServiceDefinition] | 服務定義檔的名稱。根據預設，此檔案的名稱為 ServiceDefinition.csdef。 |
+| [OutputFileName] | 所產生的封裝檔案的名稱。一般而言，這是設定為應用程式的名稱。如果沒有指定檔案名稱，就會將應用程式封裝建立為 [ApplicationName].cspkg。|
+| [RoleName] | 服務定義檔中所定義的角色名稱。|
+| [RoleBinariesDirectory] | 角色的二進位檔案的位置。|
+| [VirtualPath] | 在服務定義的 Sites 區段中定義的每個虛擬路徑的實體目錄。|
+| [PhysicalPath] | 在服務定義的 site 節點中定義的每個虛擬路徑內容的實體目錄。|
+| [RoleAssemblyName] | 角色的二進位檔案的名稱。| 
 
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-I'm creating a cloud service package and I want to...
+我打算建立雲端服務封裝，而且我想要...
 
-* [Setup remote desktop for a cloud service instance][remotedesktop]
-* [Deploy a Cloud Service project][deploy]
+* [設定雲端服務執行個體的遠端桌面][remotedesktop]
+* [部署雲端服務專案][deploy]
 
-I am using Visual Studio and I want to...
+我打算使用 Visual Studio，而我想要...
 
-* [Create a new cloud service][vs_create]
-* [Reconfigure an existing cloud service][vs_reconfigure]
-* [Deploy a Cloud Service project][vs_deploy]
-* [Setup remote desktop for a cloud service instance][vs_remote]
+* [建立新的雲端服務][vs_create]
+* [重新設定現有的雲端服務][vs_reconfigure]
+* [部署雲端服務專案][vs_deploy]
+* [設定雲端服務執行個體的遠端桌面][vs_remote]
 
 [deploy]: cloud-services-how-to-create-deploy-portal.md
 [remotedesktop]: cloud-services-role-enable-remote-desktop.md
@@ -284,8 +266,4 @@ I am using Visual Studio and I want to...
 [vs_reconfigure]: ../vs-azure-tools-configure-roles-for-cloud-service.md
 [vs_create]: ../vs-azure-tools-azure-project-create.md
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

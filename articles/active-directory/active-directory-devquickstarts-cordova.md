@@ -1,139 +1,136 @@
 <properties
-    pageTitle="Azure AD Cordova Getting Started | Microsoft Azure"
-    description="How to build a Cordova application that integrates with Azure AD for sign in and calls Azure AD protected APIs using OAuth."
-    services="active-directory"
-    documentationCenter=""
-    authors="vibronet"
-    manager="mbaldwin"
-    editor=""/>
+	pageTitle="開始使用 Azure AD Cordova | Microsoft Azure"
+	description="如何建置 Cordova 應用程式來與 Azure AD 整合進行登入，並使用 OAuth 呼叫受 Azure AD 保護的 API。"
+	services="active-directory"
+	documentationCenter=""
+	authors="vibronet"
+	manager="mbaldwin"
+	editor=""/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="javascript"
-    ms.topic="article"
-    ms.date="09/16/2016"
-    ms.author="vittorib"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="javascript"
+	ms.topic="article"
+	ms.date="09/16/2016"
+	ms.author="vittorib"/>
 
-
-# <a name="integrate-azure-ad-with-an-apache-cordova-app"></a>Integrate Azure AD with an Apache Cordova app
+# 整合 Azure AD 與 Apache Cordova 應用程式
 
 [AZURE.INCLUDE [active-directory-devquickstarts-switcher](../../includes/active-directory-devquickstarts-switcher.md)]
 
 [AZURE.INCLUDE [active-directory-devguide](../../includes/active-directory-devguide.md)]
 
-Apache Cordova makes it possible for you to develop HTML5/JavaScript applications which can run on mobile devices as full-fledged native applications.
-With Azure AD, you can add enterprise grade authentication capabilities to your Cordova applications. Thanks to a Cordova plugin wrapping Azure AD's native SDKs on iOS, Android, Windows Store and Windows Phone, you can enhance your application to support sign on with your users' AD accounts, gain access to Office 365 and Azure API, and even protect calls to your own custom Web API.
+Apache Cordova 可讓您開發 HTML5/JavaScript 應用程式，然後在行動裝置上當做一個完備的原生應用程式執行。Azure AD 可讓您將企業級的驗證功能加入 Cordova 應用程式中。由於 iOS、 Android、 Windows 市集和 Windows Phone 上有一個 Cordova 外掛程式包裝 Azure AD 的原生 SDK，您可以增強您的應用程式來支援以使用者的 AD 帳戶登入、存取 Office 365 和 Azure API，甚至保護對您自己自訂的 Web API 的呼叫。
 
-In this tutorial we will use the Apache Cordova plugin for Active Directory Authentication Library (ADAL) to improve a simple app with the following features:
+在本教學課程中，我們將使用 Active Directory 驗證程式庫 (ADAL) 的 Apache Cordova 外掛程式，提供下列功能來改善一個簡單的應用程式：
 
--   With just few lines of code, authenticate an AD user and obtain a token for calling the Azure AD Graph API.
--   Use that token to invoke the Graph API to query that directory and display the results  
--   Leverage the ADAL token cache for minimizing the authentication prompts for the user.
+-	短短幾行程式碼，就可驗證 AD 使用者並取得權杖來呼叫 Azure AD Graph API。
+-	使用該權杖叫用 Graph API 來查詢目錄，並顯示結果
+-	運用 ADAL 權杖快取，將使用者的驗證提示減到最少。
 
-In order to do this, you’ll need to:
+若要執行此作業，您需要執行下列動作：
 
-2. Register an application with Azure AD
-2. Add code to your app to request tokens
-3. Add code to use the token for querying the Graph API and display results.
-4. Create the Cordova deployment project with all the platforms you want to target, and the Cordova ADAL plugin and test the solution in emulators.
+2. 向 Azure AD 註冊應用程式
+2. 在您的應用程式中加入程式碼來要求權杖
+3. 加入程式碼以使用權杖來查詢 Graph API，並顯示結果。
+4. 使用您想要做為目標的所有平台和 Cordova ADAL 外掛程式，建立 Cordova 部署專案，並在模擬器中測試解決方案。
 
-## <a name="*0.-prerequisites*"></a>*0.  Prerequisites*
+## *0.必要條件*
 
-To complete this tutorial you will need:
+若要完成本教學課程，您需要：
 
-- An Azure AD tenant where you have an account with app development rights
-- A development environment configured to use Apache Cordova  
+- Azure AD 租用戶，您在其中有一個帳戶具備應用程式開發權限
+- 為了使用 Apache Cordova 而設定的開發環境
 
-If you have both already set up, please proceed directly to step 1.
+如果兩者都已設定，請直接跳到步驟 1。
 
-If you don't have an Azure AD tenant, you can find [instructions on how to get one here](active-directory-howto-tenant.md).
+如果您沒有 Azure AD 租用戶，您可以[在這裡找到如何取得租用戶的指示](active-directory-howto-tenant.md)。
 
-If you don't have Apache Cordova set up on your machine, please install the following:
+如果您的電腦上沒有安裝 Apache Cordova，請安裝下列項目：
 
 - [Git](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 - [NodeJS](https://nodejs.org/download/)
-- [Cordova CLI](https://cordova.apache.org/) (can be easily installed via NPM package manager: `npm install -g cordova`)
+- [Cordova CLI](https://cordova.apache.org/) (可以輕鬆地透過 NPM 封裝管理員來安裝：`npm install -g cordova`)
 
-Note that those should work both on the PC and on the Mac.
+請注意，這些都應該可以在 PC 和 Mac 上執行。
 
-Each target platform has different prerequisites.
+每個目標平台各有不同的先決條件。
 
-- To build and run Windows Tablet/PC or Phone app version
-    - [Visual Studio 2013 for Windows with Update 2 or later](http://www.visualstudio.com/downloads/download-visual-studio-vs#d-express-windows-8) (Express or another version).
-- To build and run for iOS
-    -   Xcode 5.x or greater. Download it at http://developer.apple.com/downloads or the [Mac App Store](http://itunes.apple.com/us/app/xcode/id497799835?mt=12)
-    -   [ios-sim](https://www.npmjs.org/package/ios-sim) – allows you to launch iOS apps into the iOS Simulator from the command line (can be easily installed via the terminal: `npm install -g ios-sim`)
+- 建置和執行 Windows Tablet/PC 或 Phone 應用程式版本
+	- [Visual Studio 2013 for Windows with Update 2 或更新版本](http://www.visualstudio.com/downloads/download-visual-studio-vs#d-express-windows-8) (Express 或另一個版本)。
+- 針對 iOS 建置和執行
+	-   Xcode 5.x 或更新版本。請 http://developer.apple.com/downloads 或 [Mac App Store](http://itunes.apple.com/us/app/xcode/id497799835?mt=12) 下載
+	-   [ios-sim](https://www.npmjs.org/package/ios-sim) – 可讓您到 iOS 模擬器從命令列啟動 iOS 應用程式 (可以輕鬆地透過終端機來安裝：`npm install -g ios-sim`)
 
-- To build and run application for Android
-    - Install [Java Development Kit (JDK) 7](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html) or later. Make sure `JAVA_HOME` (Environment Variable) is correctly set according to JDK installation path (for example C:\Program Files\Java\jdk1.7.0_75).
-    - Install [Android SDK](http://developer.android.com/sdk/installing/index.html?pkg=tools) and add `<android-sdk-location>\tools` location (for example, C:\tools\Android\android-sdk\tools) to your `PATH` Environment Variable.
-    - Open Android SDK Manager (for example, via terminal: `android`) and install
-    - *Android 5.0.1 (API 21)* platform SDK
-    - *Android SDK Build-tools* version 19.1.0 or higher
+- 針對 Android 建置和執行應用程式
+	- 安裝 [Java Development Kit (JDK) 7](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html) 或更新版本。請確定 `JAVA_HOME` (環境變數) 已根據 JDK 安裝路徑 (例如 C:\\Program Files\\Java\\jdk1.7.0\_75) 正確設定。
+	- 安裝 [Android SDK](http://developer.android.com/sdk/installing/index.html?pkg=tools)，並將 `<android-sdk-location>\tools` 位置 (例如，C:\\tools\\Android\\android-sdk\\tools) 加入至 `PATH` 環境變數。
+	- 開啟 Android SDK Manager (例如，透過終端機：`android`) 並安裝
+    - *Android 5.0.1 (API 21)* 平台 SDK
+    - *Android SDK Build-tools* 19.1.0 版或更新版本
     - *Android Support Repository* (Extras)
 
-  Android sdk doesn't provide any default emulator instance. Create a new one by running `android avd` from terminal and then selecting *Create...* if you want to run Android app on emulator. Recommended *Api Level* is 19 or higher, see [AVD Manager] (http://developer.android.com/tools/help/avd-manager.html) for more information about Android emulator and creation options.
+  Android sdk 並不提供任何預設模擬器執行個體。如果您想要在模擬器上執行 Android 應用程式，請從終端機執行 `android avd`，然後選取 [*Create...*]，以建立新的模擬器執行個體。建議使用 *API 層級* 19 或更高版本，請參閱 [AVD Manager](http://developer.android.com/tools/help/avd-manager.html)，取得 Android 模擬器和建立選項的相關資訊。
 
 
-## <a name="*1.-register-an-application-with-azure-ad*"></a>*1.  Register an application with Azure AD*
+## *1.向 Azure AD 註冊應用程式*
 
-Note: this __step is optional__. The tutorial provided pre-provisioned values that will allow you to see the sample in action without doing any provisioning in your own tenant. However it is recommended that you do perform this step and become familiar with the process, as it will be required when you will create your own applications.
+注意：此為選用步驟。本教學課程提供預先佈建的值，您完全不需要在自己的租用戶中佈建，就能看到可運作的範例。不過，建議您執行這個步驟，並熟悉此程序，因為當您建立自己的應用程式時，就需要這樣做。
 
-Azure AD will only issue tokens to known applications. Before you can use Azure AD from your app, you need to create an entry for it in your tenant.  To register a new application in your tenant,
+Azure AD 只會發出權杖給已知的應用程式。您必須先在租用戶中建立應用程式的項目，才能從應用程式使用 Azure AD。若要在您的租用戶中註冊新的應用程式，請執行下列動作：
 
--   Sign into the [Azure Management Portal](https://manage.windowsazure.com)
--   In the left hand nav, click on **Active Directory**
--   Select the tenant where you wish to register the application.
--   Click the **Applications** tab, and click **Add** in the bottom drawer.
--   Follow the prompts and create a new **Native Client Application** (despite the fact that Cordova apps are HTML based, we are creating native client application here so `Native Client Application` option must be selected; otherwise, the application won't work).
-    -   The **Name** of the application will describe your application to end-users
-    -   The **Redirect URI** is the URI used to return tokens to your app. Enter `http://MyDirectorySearcherApp`.
+-	登入 [Azure 管理入口網站](https://manage.windowsazure.com)
+-	在左側導覽中按一下 **Active Directory**
+-	選取您要註冊應用程式的租用戶。
+-	按一下 [**應用程式**] 索引標籤，然後按一下最下面抽屜的 [**新增**]。
+-	遵循提示，並建立新的原生用戶端應用程式 (儘管 Cordova 應用程式是以 HTML 為基礎，我們在此建立原生用戶端應用程式，因此必須選取 `Native Client Application` 選項，否則應用程式無法運作)。
+    -	應用程式的 [**名稱**] 將對使用者說明您的應用程式
+    -	[重新導向 URI] 是用來將權杖傳回至您應用程式的 URI。輸入 `http://MyDirectorySearcherApp`。
 
-Once you’ve completed registration, AAD will assign your app a unique client identifier.  You’ll need this value in the next sections: you can find it in the **Configure** tab of the newly created app.
+完成註冊後，AAD 會為您的應用程式指派一個唯一用戶端識別碼。您在後續章節中將會用到這個值：您可以在新建立之應用程式的 [設定] 索引標籤中找到此值。
 
-In order to run `DirSearchClient Sample`, grant the newly created app permission to query the _Azure AD Graph API_:
--   In **Configure** tab, locate the "Permissions to Other Applications" section.  For the "Azure Active Directory" application, add the **Access the directory as the signed-in user** permission under **Delegated Permissions**.  This will enable your application to query the Graph API for users.
+若要執行 `DirSearchClient Sample`，請授與剛建立的應用程式權限來查詢 Azure AD Graph API：
+-	在 [設定] 索引標籤上找到 [其他應用程式的權限] 區段。對於 "Azure Active Directory" 應用程式，在 [委派權限] 下，加入 [以登入使用者的身分存取目錄] 權限。這樣做可讓您的應用程式查詢 Graph API 的使用者。
 
-## <a name="*2.-clone-the-sample-app-repository-required-for-the-tutorial*"></a>*2. Clone the sample app repository required for the tutorial*
+## *2.複製本教學課程所需的範例應用程式儲存機制*
 
-From your shell or command line, type the following command:
+從 Shell 或命令列，輸入下列命令：
 
     git clone -b skeleton https://github.com/AzureADQuickStarts/NativeClient-MultiTarget-Cordova.git
 
-## <a name="*3.-create-the-cordova-app*"></a>*3. Create the Cordova app*
+## *3.建立 Cordova 應用程式*
 
-There are multiple ways of creating Cordova applications. In this tutorial we will use the Cordova command line interface (CLI).
-From your shell or command line, type the following command:
+有多種方式可以建立 Cordova 應用程式。在本教學課程中，我們將使用 Cordova 命令列介面 (CLI)。從 Shell 或命令列，輸入下列命令：
 
 
      cordova create DirSearchClient --copy-from="NativeClient-MultiTarget-Cordova/DirSearchClient"
 
-That will create the folder structure and scaffolding for the Cordova project, copying the content of the starter project in the www subfolder.
-Move to the new DirSearchClient folder.
+這會建立 Cordova 專案的資料夾結構和架構，並將入門專案的內容複製到 www 子資料夾中。移至新的 DirSearchClient 資料夾。
 
     cd .\DirSearchClient
 
-Add the whitelist plugin, necessary for invoking the Graph API.
+加入叫用 Graph API 所需的允許清單外掛程式。  
+
 
      cordova plugin add cordova-plugin-whitelist
 
-Next, add all of the platforms you want to support. In order to have a working sample, you will need to execute at least one of the commands below. Note that you will not be able to emulate iOS on Windows, or Windows/Windows Phone on a Mac.
+接著，加入所有您想要支援的平台。您至少必須執行下列其中一個命令，才能發揮範例的實用性。請注意，您無法在 Windows 模擬 iOS，或在 Mac 上模擬 Windows/Windows Phone。
 
     cordova platform add android
     cordova platform add ios
     cordova platform add windows
 
-Finally, you can add the ADAL for Cordova plugin to your project.
+最後，您可以將 ADAL for Cordova 外掛程式加入您的專案。
 
     cordova plugin add cordova-plugin-ms-adal
 
-## <a name="*3.-add-code-to-authenticate-users-and-obtain-tokens-from-aad*"></a>*3. Add code to authenticate users and obtain tokens from AAD*
+## *3.加入程式碼來驗證使用者，並從 AAD 取得權杖*
 
-The application you are developing in this tutorial will provide a bare-bone directory search feature, where the end user can type the alias of any user in the directory and visualize some basic attributes.  The starter project contains the definition of the basic user interface of the app (in www/index.html) and the scaffolding that wires up basic app event cycles, user interface bindings and results display logic (in www/js/index.js). The only thing left out for you is to add the logic implementing identity tasks.
+您在本教學課程中開發應用程式會提供簡易的目錄搜尋功能，使用者可以輸入目錄中任何使用者的別名，就會呈現一些基本的屬性。入門專案包含應用程式基本使用者介面的定義 (在 www/index.html 中)，也包含串連基本應用程式事件系列的架構、使用者介面繫結及結果顯示邏輯 (在 www/js/index.js 中)。您剩下的工作只是加入實作識別工作的邏輯。
 
-The very first thing you need to do is to introduce in your code the protocol values that are used by AAD for identifying your app and the resources you target. Those values will be used to construct the token requests later on. Insert the snippet below at the very top of the index.js file.
+您所要做的第一件事是在程式碼中引入通訊協定值，供 AAD 用於識別您的應用程式和您的目標資源。稍後會使用這些值來建構權杖要求。在 Index.js 檔案最上方插入下面程式碼片段。
 
 ```javascript
     var authority = "https://login.windows.net/common",
@@ -143,10 +140,9 @@ The very first thing you need to do is to introduce in your code the protocol va
     graphApiVersion = "2013-11-08";
 ```
 
-The `redirectUri` and `clientId` values should match the values describing your app in AAD. You can find those from the Configure tab in the Azure portal, as described in step 1 earlier in this tutorial.
-Note: if you opted for not registering a new app in your own tenant, you can simply paste the pre-configured values above as is - that will allow you to see the sample running, though you should always create your own entry for your apps meant for production.
+`redirectUri` 和 `clientId` 值應該符合 AAD 中用於描述您的應用程式的值。您可以從 Azure 入口網站的 [設定] 索引標籤中找到這些值，如稍早在本教學課程的步驟 1 所述。注意：如果您選擇不在您自己的租用戶中註冊新的應用程式，您可以直接貼上上述預先設定的值，這可讓看到範例在執行，但對於打算實際執行的應用程式，您總應該建立自己的項目。
 
-Next, we need to add the actual token request code. Insert the following snippet between the `search `and `renderdata `definitions.
+接下來，我們必須加入實際的權杖要求程式碼。在 `search ` 和 `renderdata ` 定義之間，插入下列程式碼片段。
 
 ```javascript
     // Shows user authentication dialog if required.
@@ -171,9 +167,7 @@ Next, we need to add the actual token request code. Insert the following snippet
 
     },
 ```
-Let's examine that function by breaking it down in its two main parts.
-This sample is designed to work with any tenant, as opposed to be tied to a particular one. It uses the "/common" endpoint, which allows the user to enter any account at authentication time and directs the request to the tenant it belongs.
-This first part of the method inspects the ADAL cache to see if there is already a stored token - and if there is, it uses the tenants it came from for re-initializing ADAL. This is necessary to avoid extra prompts, as the use of "/common" always results in asking the user to enter a new account.
+讓我們將該函式分成兩個主要部分來檢查一下。此範例設計成可搭配任何租用戶，而不受限於特定的租用戶。它使用 "/common" 端點，可讓使用者在驗證時輸入任何帳戶，而且會將要求導向其所屬的租用戶。此方法的第一個部分會檢查 ADAL 快取，查看是否有已儲存的權杖。如果有的話，則使用它的來源租用戶來重新初始化 ADAL。這是為了避免額外提示而必須執行的動作，因為使用 "/common" 永遠會導致要求使用者輸入新的帳戶。
 ```javascript
         app.context = new Microsoft.ADAL.AuthenticationContext(authority);
         app.context.tokenCache.readItems().then(function (items) {
@@ -182,9 +176,7 @@ This first part of the method inspects the ADAL cache to see if there is already
                 app.context = new Microsoft.ADAL.AuthenticationContext(authority);
             }
 ```
-The second part of the method performs the proper tokewn request.
-The `acquireTokenSilentAsync` method asks to ADAL to return a token for the specified resource without showing any UX. That can happen if the cache already has a suitable access token stored, or if there is a refresh token that can be used to get a new access token without shwoing any prompt.
-If that attempt fails, we fall back on `acquireTokenAsync` - which will visibly prompt the user to authenticate.
+此方法的第二個部分會執行適當的權杖要求。`acquireTokenSilentAsync` 方法會要求 ADAL 傳回指定資源的權杖，而不會顯示任何 UX。如果快取中已儲存適當的存取權杖，或者如果有重新整理權杖可用來取得新的存取權杖，而不會顯示任何提示，就會發生此情況。如果該嘗試失敗，我們就退回到 `acquireTokenAsync`，將會明顯提示使用者進行驗證。
 ```javascript
             // Attempt to authorize user silently
             app.context.acquireTokenSilentAsync(resourceUri, clientId)
@@ -196,7 +188,7 @@ If that attempt fails, we fall back on `acquireTokenAsync` - which will visibly 
                 });
             });
 ```
-Now that we have the token, we can finally invoke the Graph API and perform the search query we want. Insert the following snippet right below the `authenticate` definition.
+既然已取得權杖，我們終於可以叫用圖形 API，並執行我們想要的搜尋查詢。在 `authenticate` 定義下方，插入下列程式碼片段。
 
 ```javascript
 // Makes Api call to receive user list.
@@ -223,64 +215,59 @@ Now that we have the token, we can finally invoke the Graph API and perform the 
     },
 
 ```
-The starting point files supplied a barebone UX for entering a user's alias in a textbox. This method uses that value to construct a query, combine it with the access token, send it to the Graph, and parse the results. The renderData method, already present in the starting point file, takes care to visualize the results.
+起始點檔案提供簡易型 UX，可在文字方塊中輸入使用者的別名。這個方法會使用該值來建構查詢、將它與存取權杖結合、將它傳送到 Graph，然後剖析結果。起始點檔案中已存在的 renderData 方法會負責呈現結果。
 
-## <a name="*4.-run*"></a>*4. Run*
-Your app is finally ready to run! Operating it is very simple: once the app starts, enter in the text box the alias of the user you want to look up - then click the button. You will be prompted for authentication. Upon successful authentication and successful search, the attributes of the searched user will be displayed. Subsequent runs will perform the search without showing any prompt, thanks to the presence in cache of the token previously acquired.
-The concrete steps for running the app vary by platform.
+## *4.執行*
+終於可以開始執行您的應用程式了！ 操作很簡單：應用程式啟動後，在文字方塊中輸入您要查閱的使用者的別名，然後按一下按鈕。系統會提示您進行驗證。在成功驗證和成功搜尋之後，將會顯示搜尋到的使用者的屬性。後續執行時只會執行搜尋，而不會顯示任何提示，因為先前取得的權杖已存在於快取中。執行應用程式的具體步驟隨著平台而不同。
 
-####<a name="windows-10:"></a>Windows 10:
+####Windows 10：
 
-   Tablet/PC: `cordova run windows --archs=x64 -- --appx=uap`
+   平板電腦/PC：`cordova run windows --archs=x64 -- --appx=uap`
 
-   Mobile (requires Windows10 Mobile device connected to PC): `cordova run windows --archs=arm -- --appx=uap --phone`
+   行動裝置 (需要連線至 PC 的 Windows10 行動裝置)︰`cordova run windows --archs=arm -- --appx=uap --phone`
 
-   __Note__: During first run you may be asked to sign in for a developer license. See [Developer license](https://msdn.microsoft.com/library/windows/apps/hh974578.aspx) for more details.
+   __注意__：第一次執行期間可能會要求您登入，以取得開發人員授權。如需詳細資訊，請參閱[開發人員授權](https://msdn.microsoft.com/library/windows/apps/hh974578.aspx)。
 
-####<a name="windows-8.1-tablet/pc:"></a>Windows 8.1 Tablet/PC:
+####Windows 8.1 平板電腦/PC：
 
    `cordova run windows`
 
-   __Note__: During first run you may be asked to sign in for a developer license. See [Developer license](https://msdn.microsoft.com/library/windows/apps/hh974578.aspx) for more details.
+   __注意__：第一次執行期間可能會要求您登入，以取得開發人員授權。如需詳細資訊，請參閱[開發人員授權](https://msdn.microsoft.com/library/windows/apps/hh974578.aspx)。
 
-####<a name="windows-phone-8.1:"></a>Windows Phone 8.1:
+####Windows Phone 8.1：
 
-   To run on connected device: `cordova run windows --device -- --phone`
+   在已連接的裝置上執行：`cordova run windows --device -- --phone`
 
-   To run on default emulator: `cordova emulate windows -- --phone`
+   在預設模擬器上執行：`cordova emulate windows -- --phone`
 
-   Use `cordova run windows --list -- --phone` to see all available targets and `cordova run windows --target=<target_name> -- --phone` to run application on specific device or emulator (for example,  `cordova run windows --target="Emulator 8.1 720P 4.7 inch" -- --phone`).
+   使用 `cordova run windows --list -- --phone` 查看所有可用的目標，使用 `cordova run windows --target=<target_name> -- --phone` 在特定裝置或模擬器上執行應用程式 (例如，`cordova run windows --target="Emulator 8.1 720P 4.7 inch" -- --phone`)。
 
-####<a name="android:"></a>Android:
+####Android：
 
-   To run on connected device: `cordova run android --device`
+   在已連接的裝置上執行：`cordova run android --device`
 
-   To run on default emulator: `cordova emulate android`
+   在預設模擬器上執行：`cordova emulate android`
 
-   __Note__: Make sure you've created emulator instance using *AVD Manager* as it is showed in *Prerequisites* section.
+   __注意__：請確定您已使用 *AVD Manager* 建立模擬器執行個體，如*必要條件*一節所示。
 
-   Use `cordova run android --list` to see all available targets and `cordova run android --target=<target_name>` to run application on specific device or emulator (for example,  `cordova run android --target="Nexus4_emulator"`).
+   使用 `cordova run android --list` 查看所有可用的目標，使用 `cordova run android --target=<target_name>` 在特定裝置或模擬器上執行應用程式 (例如，`cordova run android --target="Nexus4_emulator"`)。
 
-####<a name="ios:"></a>iOS:
+####iOS：
 
-   To run on connected device: `cordova run ios --device`
+   在已連接的裝置上執行：`cordova run ios --device`
 
-   To run on default emulator: `cordova emulate ios`
+   在預設模擬器上執行：`cordova emulate ios`
 
-   __Note__: Make sure you have `ios-sim` package installed to run on emulator. See *Prerequisites* section for more details.
+   __注意__：請確定您已安裝要在模擬器上執行的 `ios-sim` 封裝。請參閱*必要條件*一節，以取得詳細資訊。
 
     Use `cordova run ios --list` to see all available targets and `cordova run ios --target=<target_name>` to run application on specific device or emulator (for example,  `cordova run android --target="iPhone-6"`).
 
-Use `cordova run --help` to see additional build and run options.
+使用 `cordova run --help` 查看其他建置和執行選項。
 
-For reference, the completed sample (without your configuration values) is provided [here](https://github.com/AzureADQuickStarts/NativeClient-MultiTarget-Cordova/tree/complete/DirSearchClient).  You can now move on to more advanced (ok, and more interesting) scenarios.  You may want to try:
+[這裡](https://github.com/AzureADQuickStarts/NativeClient-MultiTarget-Cordova/tree/complete/DirSearchClient)提供完成的範例供您參考 (不含您的設定值)。您現在可以進入更進階 (應該說更有趣) 的案例。您可以嘗試：
 
-[Secure a Node.js Web API with Azure AD >>](active-directory-devquickstarts-webapi-nodejs.md)
+[使用 Azure AD 保護 Node.js Web API >>](active-directory-devquickstarts-webapi-nodejs.md)
 
 [AZURE.INCLUDE [active-directory-devquickstarts-additional-resources](../../includes/active-directory-devquickstarts-additional-resources.md)]
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

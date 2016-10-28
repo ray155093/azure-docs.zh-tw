@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Azure portal keyboard shortcuts | Microsoft Azure"
-   description="This article will always be an up-to-date listing of the keyboard shortcuts that work throughout the Azure portal. Individual services might have their own specialized keyboard shortcuts."
+   pageTitle="Azure 入口網站鍵盤快速鍵 | Microsoft Azure"
+   description="本文章一律是最新且適用於整個 Azure 入口網站的鍵盤快速鍵清單。個別的服務可能會擁有專用的鍵盤快速鍵。"
    services="azure-portal"
    documentationCenter=""
    authors="flanakin"
@@ -16,39 +16,33 @@
    ms.date="02/07/2016"
    ms.author="micflan"/>
 
+# Azure 入口網站鍵盤快速鍵
 
-# <a name="azure-portal-keyboard-shortcuts"></a>Azure portal keyboard shortcuts
+## 開啟中樞
 
-## <a name="open-hubs"></a>Open hubs
-
-| Shortcut | Action |
+| 快速鍵 | 動作 |
 |--------|----------|
-| N | Notifications |
-| / | Browse services |
-| A | Active sessions |
-| B | Billing |
-| C | Create |
+| N | 通知 |
+| / | 瀏覽服務 |
+| A | 使用中工作階段 |
+| B | 計費 |
+| C | 建立 |
 
-## <a name="navigation"></a>Navigation
+## 瀏覽
 
-| Shortcut | Action |
+| 快速鍵 | 動作 |
 |--------|----------|
-| H | Azure Start dashboard |
-| F | First open blade |
-| J | Previous open blade |
-| K | Next open blade |
-| L | Last open blade |
-| - | Minimize blade or restore from maximized |
-| + | Maximize blade or restore from minimized |
-| # | Close current blade |
-| ¦ | Close all blades |
-| , | Move focus to command bar |
-| . | Move focus to navigation bar |
-| ? | View keyboard shortcuts |
+| H | Azure 啟動儀表板 |
+| F | 第一次開啟刀鋒視窗 |
+| J | 上一個開啟的刀鋒視窗 |
+| K | 下一次開啟的刀鋒視窗 |
+| L | 上次開啟的刀鋒視窗 |
+|- | 最小化刀鋒視窗或從最大化還原 |
+|+ | 最大化刀鋒視窗，或從最小化還原 |
+|# | 關閉目前的刀鋒視窗 |
+|¦ | 關閉所有刀鋒視窗 |
+|, | 將焦點移至命令列 |
+|. | 將焦點移至巡覽列 |
+|? | 檢視鍵盤快速鍵 |
 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0504_2016-->

@@ -1,195 +1,190 @@
 <properties
-    pageTitle="Slow web app performance in App Service | Microsoft Azure"
-    description="This article helps you troubleshoot slow web app performance issues in Azure App Service."
-    services="app-service\web"
-    documentationCenter=""
-    authors="cephalin"
-    manager="wpickett"
-    editor=""
-    tags="top-support-issue"
-    keywords="web app performance, slow app, app slow"/>
+	pageTitle="App Service 中的 Web 應用程式效能變慢 | Microsoft Azure"
+	description="本文可協助您針對 Azure App Service 中 Web 應用程式效能變慢的問題進行疑難排解。"
+	services="app-service\web"
+	documentationCenter=""
+	authors="cephalin"
+	manager="wpickett"
+	editor=""
+	tags="top-support-issue"
+	keywords="Web 應用程式效能、變慢的應用程式、應用程式變慢"/>
 
 <tags
-    ms.service="app-service-web"
-    ms.workload="web"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="07/06/2016"
-    ms.author="cephalin"/>
+	ms.service="app-service-web"
+	ms.workload="web"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/06/2016"
+	ms.author="cephalin"/>
 
+# 針對 Azure App Service 中 Web 應用程式效能變慢的問題進行疑難排解
 
-# <a name="troubleshoot-slow-web-app-performance-issues-in-azure-app-service"></a>Troubleshoot slow web app performance issues in Azure App Service
+本文可協助您針對 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 中 Web 應用程式效能變慢的問題進行疑難排解。
 
-This article helps you troubleshoot slow web app performance issues in [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714).
+如果在本文章中有任何需要協助的地方，您可以連絡 [MSDN Azure 和 Stack Overflow 論壇](https://azure.microsoft.com/support/forums/)上的 Azure 專家。或者，您也可以提出 Azure 支援事件。請移至 [Azure 支援網站](https://azure.microsoft.com/support/options/)，然後按一下 [取得支援]。
 
-If you need more help at any point in this article, you can contact the Azure experts on [the MSDN Azure and the Stack Overflow forums](https://azure.microsoft.com/support/forums/). Alternatively, you can also file an Azure support incident. Go to the [Azure Support site](https://azure.microsoft.com/support/options/) and click on **Get Support**.
+## 徵狀
 
-## <a name="symptom"></a>Symptom
+當您瀏覽 Web 應用程式時，頁面載入緩慢且有時候會逾時。
 
-When you browse the web app, the pages load slowly and sometimes timeout.
+## 原因
 
-## <a name="cause"></a>Cause
+此問題通常是因為應用程式層級問題所造成，例如：
 
-This problem is often caused by application level issues, such as:
+-	要求耗費過長的時間
+-	應用程式的記憶體/CPU 使用率過高
+-	應用程式因例外狀況導致損毀
 
--   requests taking a long time
--   application using high memory/CPU
--   application crashing due to an exception.
+## 疑難排解步驟
 
-## <a name="troubleshooting-steps"></a>Troubleshooting steps
+疑難排解可以分成三種不同的工作，依序為：
 
-Troubleshooting can be divided into three distinct tasks, in sequential order:
+1.	[觀察和監視應用程式行為](#observe)
+2.	[收集資料](#collect)
+3.	[減輕問題](#mitigate)
 
-1.  [Observe and monitor application behavior](#observe)
-2.  [Collect data](#collect)
-3.  [Mitigate the issue](#mitigate)
-
-[App Service Web Apps](/services/app-service/web/) gives you various options at each step.
+[App Service Web Apps](/services/app-service/web/) 在每個步驟均提供您各種選項。
 
 <a name="observe" />
-### <a name="1.-observe-and-monitor-application-behavior"></a>1. Observe and monitor application behavior
+### 1\.觀察和監視應用程式行為
 
-#### <a name="track-service-health"></a>Track Service health
+#### 追蹤服務健全狀況
 
-Microsoft Azure publicizes each time there is a service interruption or performance degradation. You can track the health of the service on the [Azure Portal](https://portal.azure.com/). For more information, see [Track service health](../azure-portal/insights-service-health.md).
+每次發生服務中斷或效能降低時，Microsoft Azure 就會發出公告。您可以在 [Azure 入口網站](https://portal.azure.com/)上追蹤服務健全狀況。如需詳細資訊，請參閱[追蹤服務健全狀況](../azure-portal/insights-service-health.md)。
 
-#### <a name="monitor-your-web-app"></a>Monitor your web app
+#### 監視 Web 應用程式
 
-This option enables you to find out if your application is having any issues. In your web app’s blade, click the **Requests and errors** tile. The **Metric** blade will show you all the metrics you can add.
+此選項可讓您了解應用程式是否有任何問題。在 Web 應用程式刀鋒視窗中，按一下 [**要求和錯誤**] 磚。[**度量**] 刀鋒視窗將顯示所有可以加入的計量。
 
-Some of the metrics that you might want to monitor for your web app are
+某些您可能想用以監視 Web 應用程式的計量為
 
--   Average memory working set
--   Average response time
--   CPU time
--   Memory working set
--   Requests
+-	平均記憶體工作集
+-	平均回應時間
+-	CPU 時間
+-	記憶體工作集
+-	要求
 
-![monitor web app performance](./media/app-service-web-troubleshoot-performance-degradation/1-monitor-metrics.png)
+![監視 Web 應用程式效能](./media/app-service-web-troubleshoot-performance-degradation/1-monitor-metrics.png)
 
-For more information, see:
+如需詳細資訊，請參閱：
 
--   [Monitor Web Apps in Azure App Service](web-sites-monitor.md)
--   [Receive alert notifications](../azure-portal/insights-receive-alert-notifications.md)
+-	[監視 Azure App Service 中的 Web Apps](web-sites-monitor.md)
+-	[接收警示通知](../azure-portal/insights-receive-alert-notifications.md)
 
-#### <a name="monitor-web-endpoint-status"></a>Monitor web endpoint status
+#### 監視 Web 端點狀態
 
-If you are running your web app in the **Standard** pricing tier, Web Apps lets you monitor 2 endpoints from 3 geographic locations.
+若您在**標準**定價層中執行 Web 應用程式，Web Apps 可讓您從 3 個地理位置監視 2 個端點。
 
-Endpoint monitoring configures web tests from geo-distributed locations that test response time and uptime of web URLs. The test performs an HTTP GET operation on the web URL to determine the response time and uptime from each location. Each configured location runs a test every five minutes.
+端點監視能讓您設定從不同地理位置執行，且用來測試 Web URL 之回應時間和運作時間的 Web 測試。這項測試會針對 Web URL 執行 HTTP GET 作業，以從每個位置判斷回應時間和執行時間。各個已設定的位置會每隔五分鐘執行一次測試。
 
-Uptime is monitored using HTTP response codes, and response time is measured in milliseconds. A monitoring test fails if the HTTP response code is greater than or equal to 400 or if the response takes more than 30 seconds. An endpoint is considered available if its monitoring tests succeed from all the specified locations.
+運作時間是透過 HTTP 回應碼來加以監視，而回應時間的測量單位是毫秒。如果 HTTP 回應碼大於或等於 400，或是當回應時間超過 30 秒時，監視測試即告失敗。如果所有指定位置上的端點監視測試全都成功，表示該端點可用。
 
-To set it up, see [How to: Monitor web endpoint status](web-sites-monitor.md#webendpointstatus).
+若要設定，請參閱[如何監視 Web 端點狀態](web-sites-monitor.md#webendpointstatus)。
 
-Also, see [Keeping Azure Web Sites up plus Endpoint Monitoring - with Stefan Schackow](/documentation/videos/azure-web-sites-endpoint-monitoring-and-staying-up/) for a video on endpoint monitoring.
+同時，亦請參閱[讓 Azure 網站保持運作以及端點監視 - 對談來賓 Stefan Schackow](/documentation/videos/azure-web-sites-endpoint-monitoring-and-staying-up/)的端點監視影片。
 
-#### <a name="application-performance-monitoring-using-extensions"></a>Application performance monitoring using Extensions
+#### 使用擴充功能的應用程式效能監視
 
-You can also monitor your application performance by leveraging _site extensions_.
+您也可以利用_網站擴充功能_監視應用程式的效能。
 
-Each App Service web app provides an extensible management end point that allows you to leverage a powerful set of tools deployed as site extensions. These tools range from source code editors like [Visual Studio Team Services](https://www.visualstudio.com/products/what-is-visual-studio-online-vs.aspx) to management tools for connected resources such as a MySQL database connected to a web app.
+每個 App Service Web 應用程式都提供可擴充的管理端點，讓您得以運用一套以網站擴充功能形式部署的強大工具。這些工具從原始程式碼編輯器 (例如 [Visual Studio Team Services](https://www.visualstudio.com/products/what-is-visual-studio-online-vs.aspx))，到已連接資源的管理工具 (例如連接至 Web 應用程式的 MySQL 資料庫)，應有盡有。
 
-[Azure Application Insights](/services/application-insights/) and [New Relic](/marketplace/partners/newrelic/newrelic/) are two of the performance monitoring site extensions that are available. To use New Relic, you install an agent at runtime. To use Azure Application Insights, you rebuild your code with an SDK, and you can also install an extension that provides access to additional data. The SDK lets you write code to monitor the usage and performance of your app in more detail.
+[Azure Application Insights](/services/application-insights/) 和 [New Relic](/marketplace/partners/newrelic/newrelic/) 是兩個可用的效能監視網站擴充功能。若要使用 New Relic，您需要在執行階段安裝代理程式。若要使用 Azure Application Insights，請透過 SDK 重建程式碼，您也可以安裝可存取其他資料的擴充功能。SDK 可讓您撰寫程式碼來監視應用程式的詳細使用狀況和效能。
 
-To use Application Insights, see [Monitor performance in web applications](../application-insights/app-insights-web-monitor-performance.md).
+若要使用 Application Insights，請參閱[監視 Web 應用程式的效能](../application-insights/app-insights-web-monitor-performance.md)。
 
-To use New Relic, see [New Relic Application Performance Management on Azure](../store-new-relic-cloud-services-dotnet-application-performance-management.md).
+若要使用 New Relic，請參閱 [Azure 上的 New Relic 應用程式效能管理](../store-new-relic-cloud-services-dotnet-application-performance-management.md)。
 
 <a name="collect" />
-### <a name="2.-collect-data"></a>2. Collect data
+### 2\.收集資料
 
-####    <a name="enable-diagnostics-logging-for-your-web-app"></a>Enable diagnostics logging for your web app
+####	為 Web 應用程式啟用診斷記錄
 
-The Web Apps environment provides diagnostic functionality for logging information from both the web server and the web application. These are logically separated into web server diagnostics and application diagnostics.
+Web Apps 環境會針對來自 Web 伺服器和 Web 應用程式的記錄資訊提供診斷功能。這些資訊邏輯上可區分為 [Web 伺服器診斷]與 [應用程式診斷]。
 
-##### <a name="web-server-diagnostics"></a>Web server diagnostics
+##### Web 伺服器診斷
 
-You can enable or disable the following kinds of logs:
+您可以啟用或停用下列各種記錄：
 
--   **Detailed Error Logging** - Detailed error information for HTTP status codes that indicate a failure (status code 400 or greater). This may contain information that can help determine why the server returned the error code.
--   **Failed Request Tracing** - Detailed information on failed requests, including a trace of the IIS components used to process the request and the time taken in each component. This can be useful if you are attempting to improve web app performance or isolate what is causing a specific HTTP error.
--   **Web Server Logging** - Information about HTTP transactions using the W3C extended log file format. This is useful when determining overall web app metrics, such as the number of requests handled or how many requests are from a specific IP address.
+-	**詳細的錯誤記錄** - 對於表示失敗的 HTTP 狀態碼 (狀態碼 400 或更大) 的詳細錯誤資訊。這當中包含的資訊可協助您判斷為何伺服器傳回錯誤碼。
+-	**失敗的要求追蹤** - 關於失敗要求的詳細資訊，包括用於處理要求的 IIS 元件追蹤，以及每個元件所花費的時間。若您嘗試提升 Web 應用程式的效能，或是想要隔離造成特定 HTTP 錯誤的原因，這個方法將有所助益。
+-	**Web 伺服器記錄** - 使用 W3C 擴充記錄檔格式的 HTTP 交易相關資訊。當您需要判斷整體 Web 應用程式計量 (例如，所處理的要求數量，或來自特定 IP 位址要求的數量) 時，這個方法將有所助益。
 
-##### <a name="application-diagnostics"></a>Application diagnostics
+##### 應用程式診斷
 
-Application diagnostics enables you to capture information produced by a web application. ASP.NET applications can use the `System.Diagnostics.Trace` class to log information to the application diagnostics log.
+應用程式診斷功能可讓您擷取 Web 應用程式所產生的資訊。ASP.NET 應用程式會使用 `System.Diagnostics.Trace` 類別將資訊記錄到應用程式診斷記錄。
 
-For detailed instructions on how to configure your application for logging, see [Enable diagnostics logging for web apps in Azure App Service](web-sites-enable-diagnostic-log.md).
+如需如何設定應用程式記錄功能的詳細指示，請參閱[在 Azure App Service 中針對 Web 應用程式啟用診斷記錄功能](web-sites-enable-diagnostic-log.md)。
 
-#### <a name="use-remote-profiling"></a>Use Remote Profiling
+#### 使用遠端分析
 
-In Azure App Service, Web Apps, API Apps, and WebJobs can be remotely profiled. If your process is running slower than expected, or the latency of HTTP requests are higher than normal and the CPU usage of the process is also high, you can remotely profile your process and get the CPU sampling call stacks to analyze the process activity and code hot paths.
+您可在 Azure App Service、Web Apps、API Apps 和 WebJobs 進行遠端分析。若您的處理序執行速度比預期緩慢，或 HTTP 要求的延遲情形高於一般且處理序的 CPU 使用量偏高，您可以從遠端分析處理序，取得 CPU 取樣呼叫堆疊，來分析處理序活動和程式碼忙碌路徑。
 
-For more information on, see [Remote Profiling support in Azure App Service](/blog/remote-profiling-support-in-azure-app-service).
-
-
-#### <a name="use-the-azure-app-service-support-portal"></a>Use the Azure App Service Support Portal
-
-Web Apps provides you with the ability to troubleshoot issues related to your web app by looking at HTTP logs, event logs, process dumps, and more. You can access all this information using our Support portal at **http://&lt;your app name>.scm.azurewebsites.net/Support**
-
-The Azure App Service Support portal provides you with three separate tabs to support the three steps of a common troubleshooting scenario:
-
-1.  Observe current behavior
-2.  Analyze by collecting diagnostics information and running the built-in analyzers
-3.  Mitigate
-
-If the issue is happening right now, click **Analyze** > **Diagnostics** > **Diagnose Now** to create a diagnostic session for you, which will collect HTTP logs, event viewer logs, memory dumps, PHP error logs and PHP process report.
-
-Once the data is collected, it will also run an analysis on the data and provide you with an HTML report.
-
-In case you want to download the data, by default, it would be stored in the D:\home\data\DaaS folder.
-
-For more information on the Azure App Service Support portal, see [New Updates to Support Site Extension for Azure Websites](/blog/new-updates-to-support-site-extension-for-azure-websites).
-
-#### <a name="use-the-kudu-debug-console"></a>Use the Kudu Debug Console
-
-Web Apps comes with a debug console that you can use for debugging, exploring, uploading files, as well as JSON endpoints for getting information about your environment. This is called the _Kudu Console_ or the _SCM Dashboard_ for your web app.
-
-You can access this dashboard by going to the link **https://&lt;Your app name>.scm.azurewebsites.net/**.
-
-Some of the things that Kudu provides are:
-
--   environment settings for your application
--   log stream
--   diagnostic dump
--   debug console in which you can run Powershell cmdlets and basic DOS commands.
+如需詳細資訊，請參閱 [Azure App Service 中的遠端分析支援](/blog/remote-profiling-support-in-azure-app-service)。
 
 
-Another useful feature of Kudu is that, in case your application is throwing first-chance exceptions, you can use Kudu and the SysInternals tool Procdump to create memory dumps. These memory dumps are snapshots of the process and can often help you troubleshoot more complicated issues with your web app.
+#### 使用 Azure App Service 支援入口網站
 
-For more information on features available in Kudu, see [Azure Websites Team Services tools you should know about](/blog/windows-azure-websites-online-tools-you-should-know-about/).
+Web Apps 透過查看 HTTP 記錄檔、事件記錄檔、處理序傾印等，提供您疑難排解 Web 應用程式相關問題的能力。您可以利用我們位於 **http://&lt;your app name>.scm.azurewebsites.net/Support** 的支援入口網站，存取所有這方面的資訊。
+
+Azure App Service 支援入口網站提供三個不同的索引標籤，支援常見疑難排解案例的三個步驟：
+
+1.	觀察目前的行為
+2.	藉由收集診斷資訊與執行內建分析器進行分析
+3.	減輕問題
+
+若問題現在正好發生，請按一下 [分析] > [診斷] > [立即診斷]，將為您建立診斷工作階段，該工作階段會收集 HTTP 記錄檔、事件檢視器記錄檔、記憶體傾印、PHP 錯誤記錄檔和 PHP 處理序報告。
+
+完成資料收集後，將對資料執行分析並提供您一份 HTML 報告。
+
+若您想下載資料，根據預設，資料會儲存在 D:\\home\\data\\DaaS 資料夾中。
+
+如需有關 Azure App Service 支援入口網站的詳細資訊，請參閱[支援 Azure 網站的網站擴充功能最新更新](/blog/new-updates-to-support-site-extension-for-azure-websites)。
+
+#### 使用 Kudu 偵錯主控台
+
+Web Apps 隨附可用於偵錯、探索、上傳檔案的偵錯主控台，以及可以取得您環境相關資訊的 JSON 端點。這稱為 Web 應用程式的 _Kudu 主控台_或 _SCM 儀表板_。
+
+您可以前往連結 **https://&lt;Your app name>.scm.azurewebsites.net/** 存取此儀表板。
+
+Kudu 提供的部分項目為：
+
+-	您的應用程式的環境設定
+-	記錄檔串流
+-	診斷傾印
+-	您可以執行 Powershell Cmdlet 和基本 DOS 命令的偵錯主控台。
+
+
+Kudu 的另一項實用功能是，如果應用程式擲回第一次例外狀況，您可以使用 Kudu 和 SysInternals 工具 Procdump 建立記憶體傾印。這些記憶體傾印是處理序的快照集，通常可以協助您疑難排解 Web 應用程式較複雜的問題。
+
+如需 Kudu 可用功能的詳細資訊，請參閱[您應該知道的 Azure 網站 Team Services 工具](/blog/windows-azure-websites-online-tools-you-should-know-about/)。
 
 <a name="mitigate" />
-### <a name="3.-mitigate-the-issue"></a>3. Mitigate the issue
+### 3\.減輕問題
 
-####    <a name="scale-the-web-app"></a>Scale the web app
+####	調整 Web 應用程式
 
-In Azure App Service, for increased performance and throughput,  you can adjust the scale at which you are running your application. Scaling up a web app involves two related actions: changing your App Service plan to a higher pricing tier, and configuring certain settings after you have switched to the higher pricing tier.
+在 Azure App Service 中，為提高效能和輸送量，您可以調整所執行之應用程式的大小。相應增加 Web 應用程式規模牽涉到兩個相關動作：將 App Service 方案變更為較高的定價層，以及在改為較高的定價層後進行某些設定。
 
-For more information on scaling, see [Scale a web app in Azure App Service](web-sites-scale.md).
+如需有關調整的詳細資訊，請參閱[在 Azure App Service 中調整 Web 應用程式規模](web-sites-scale.md)。
 
-Additionally, you can choose to run your application on more than one instance . This not only provides you with more processing capability, but also gives you some amount of fault tolerance. If the process goes down on one instance, the other instance will still continue serving requests.
+此外，您可以選擇在多個執行個體上執行應用程式。這不僅提供您更強大的處理能力，同時也提供您一定程度的容錯量。若處理序在某個執行個體上中斷，其他執行個體仍將繼續處理要求。
 
-You can set the scaling to be Manual or Automatic.
+您可以將調整設定為手動或自動。
 
-####    <a name="use-autoheal"></a>Use AutoHeal
+####	使用 AutoHeal
 
-AutoHeal recycles the worker process for your app based on settings you choose (like configuration changes, requests, memory-based limits, or the time needed to execute a request). Most of the time, recycle the process is the fastest way to recover from a problem. Though you can always restart the web app from directly within the Azure Portal, AutoHeal will do it automatically for you. All you need to do is add some triggers in the root web.config for your web app. Note that these settings would work in the same way even if your application is not a .Net one.
+AutoHeal 會根據您選擇的設定 (例如組態變更、要求、以記憶體為基礎的限制或執行要求所需的時間)，回收應用程式的背景工作角色處理序。在大部分情況下，回收處理序是從問題中復原的最快方式。雖然您永遠可以從 Azure 入口網站中直接重新啟動 Web 應用程式，AutoHeal 會自動為您完成。您只需要在 Web 應用程式的根目錄 web.config 中加入某些觸發程序。請注意，即使您的應用程式並非 .Net，這些設定的運作方式仍相同。
 
-For more information, see [Auto-Healing Azure Web Sites](/blog/auto-healing-windows-azure-web-sites/).
+如需詳細資訊，請參閱[自動修復 Azure 網站](/blog/auto-healing-windows-azure-web-sites/)。
 
-####    <a name="restart-the-web-app"></a>Restart the web app
+####	重新啟動 Web 應用程式
 
-This is often the simplest way to recover from one-time issues. On the [Azure Portal](https://portal.azure.com/), on your web app’s blade, you have the options to stop or restart your app.
+若要從一次性問題中復原，這通常是最簡單的方式。在 [Azure 入口網站](https://portal.azure.com/)上的 Web 應用程式刀鋒視窗中有提供停止或重新啟動應用程式的選項。
 
- ![restart web app to solve performance issues](./media/app-service-web-troubleshoot-performance-degradation/2-restart.png)
+ ![重新啟動 Web 應用程式以解決效能問題](./media/app-service-web-troubleshoot-performance-degradation/2-restart.png)
 
-You can also manage your web app using Azure Powershell. For more information, see [Using Azure PowerShell with Azure Resource Manager](../powershell-azure-resource-manager.md).
+您也可以使用 Azure Powershell 管理 Web 應用程式。如需詳細資訊，請參閱[將 Azure PowerShell 與 Azure 資源管理員搭配使用](../powershell-azure-resource-manager.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

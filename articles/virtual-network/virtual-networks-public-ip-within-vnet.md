@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="How to use public IP addresses in a virtual network"
-   description="Learn how to configure a virtual network to use public IP addresses"
+   pageTitle="如何在虛擬網路中使用公用 IP 位址"
+   description="了解如何設定虛擬網路以使用公用 IP 位址"
    services="virtual-network"
    documentationCenter="na"
    authors="jimdial"
@@ -15,40 +15,36 @@
    ms.date="04/27/2016"
    ms.author="jdial" />
 
+# 在虛擬網路 (VNet) 中使用公用 IP 位址
 
-# <a name="public-ip-address-space-in-a-virtual-network-(vnet)"></a>Public IP address space in a Virtual Network (VNet)
+虛擬網路 (Vnet) 可以包含公用和私人 (RFC 1918 位址區塊) IP 位址空間。當您新增公用 IP 位址範圍時，其將會視為私人 VNet IP 位址空間的一部分，該位址空間僅能在 VNet、互連式 VNet 中，以及從內部部署位置進行連線。
 
-Virtual networks (VNets) can contain both public and private (RFC 1918 address blocks) IP address spaces. When you add a public IP address range, it will be treated as part of the private VNet IP address space that is only reachable within the VNet, interconnected VNets, and from your on-premises location.
+下圖顯示包含公用和私人 IP 位址空間的 VNet。
 
-The picture below shows a VNet that includes public and private IP adress spaces.
+![公用 IP 概念](./media/virtual-networks-public-ip-within-vnet/IC775683.jpg)
 
-![Public IP Conceptual](./media/virtual-networks-public-ip-within-vnet/IC775683.jpg)
+## 如何新增公用 IP 位址範圍？
 
-## <a name="how-do-i-add-a-public-ip-address-range?"></a>How do I add a public IP address range?
+新增公用 IP 位址範圍與新增私人 IP 位址範圍的方式相同，即使用 *netcfg* 檔案，或在 [Azure 入口網站](http://portal.azure.com)中新增組態。您可以在建立 VNet 時新增公用 IP 位址範圍，或者您可以返回並在之後新增。下方範例會同時顯示在相同 VNet 中設定的公用和私人 IP 位址空間。
 
-You add a public IP address range the same way you would add a private IP address range; by either using a *netcfg* file, or by adding the configuration in the [Azure portal](http://portal.azure.com). You can add a public IP address range when you create your VNet, or you can go back and add it afterward. The example below shows both public and private IP address spaces configured in the same VNet.
+![入口網站中的公用 IP 位址](./media/virtual-networks-public-ip-within-vnet/IC775684.png)
 
-![Public IP Address in Portal](./media/virtual-networks-public-ip-within-vnet/IC775684.png)
+## 是否有任何限制？
 
-## <a name="are-there-any-limitations?"></a>Are there any limitations?
+系統不允許少數 IP 位址範圍：
 
-There are a few IP address ranges that are not allowed:
+- 224\.0.0.0/4 (多點傳送)
 
-- 224.0.0.0/4 (Multicast)
+- 255\.255.255.255/32 (廣播)
 
-- 255.255.255.255/32 (Broadcast)
+- 127\.0.0.0/8 (回送)
 
-- 127.0.0.0/8 (loopback)
+- 169\.254.0.0/16 (連結-本機)
 
-- 169.254.0.0/16 (link-local)
+- 168\.63.129.16/32 (內部 DNS)
 
-- 168.63.129.16/32 (Internal DNS)
+## 後續步驟
 
-## <a name="next-steps"></a>Next Steps
+[如何管理 VNet 所使用的 DNS 伺服器](virtual-networks-manage-dns-in-vnet.md)
 
-[How to manage DNS servers used by a VNet](virtual-networks-manage-dns-in-vnet.md)
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

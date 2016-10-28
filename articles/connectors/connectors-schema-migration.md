@@ -1,57 +1,45 @@
 <properties
-    pageTitle="How to migrate logic apps to schema version 2015-08-01-preview | Microsoft Azure App Service"
-    description="You can easily migrate your logic apps to the latest schema version. Just follow these steps."
-    services="logic-apps"
-    documentationCenter=""
-    authors="MSFTMAN"
-    manager="erikre"
-    editor=""
+	pageTitle="如何將邏輯應用程式移轉至結構描述版本 2015-08-01-preview | Microsoft Azure App Service"
+	description="您可以輕鬆地將邏輯應用程式移轉至最新的結構描述版本。請直接遵循下列步驟。"
+	services="logic-apps"
+	documentationCenter=""
+	authors="MSFTMAN"
+	manager="erikre"
+	editor=""
     tags="connectors"/>
 
 <tags
-    ms.service="logic-apps"
-    ms.workload="integration"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="get-started-article"
-    ms.date="08/23/2016"
-    ms.author="deonhe"/>
+	ms.service="logic-apps"
+	ms.workload="integration"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="get-started-article"
+	ms.date="08/23/2016"
+	ms.author="deonhe"/>
+
+# 如何將邏輯應用程式移轉至結構描述版本 2015-08-01-preview
+
+若要將現有的邏輯應用程式移至新的結構描述，請執行下列作業︰  
+1. 在 Azure 入口網站中開啟邏輯應用程式  
+2. 按一下 [更新結構描述]︰
+
+ ![API 圖示][step1] \[更新結構描述] 頁面便會出現，並提供會提供新結構描述增強功能詳細資訊之文件的連結︰![API 圖示][step2]
+
+>[AZURE.NOTE] 當您選取 [更新結構描述] 時，我們會自動執行移轉步驟，並為您提供程式碼輸出。您可以使用此輸出更新您的定義，不過，請確定您有遵循良好的程式碼撰寫方式，例如下面的**最佳作法**一節中所說的方式。
+
+## 將邏輯應用程式移轉至最新結構描述版本時的最佳作法︰  
+
+- 將已移轉的指令碼複製到新的邏輯應用程式 - 在完成測試並確認移轉的應用程式已如預期般運作後再覆寫舊的邏輯應用程式。
+- 放入生產環境**之前**先測試邏輯應用程式
+- 移轉完成後，開始更新邏輯應用程式以盡可能使用 [Managed API](./apis-list.md)。例如，您可以在使用 DropBox v1 的地方開始使用 Dropbox v2。
 
 
-# <a name="how-to-migrate-logic-apps-to-schema-version-2015-08-01-preview"></a>How to migrate logic apps to schema version 2015-08-01-preview
-
-To move your existing logic apps to the new schema, do the following:  
-1. Open your logic app in the Azure portal  
-2. Click Update Schema:
-
- ![API Icon][step1]   
-The Update Schema page displays and provides a link to a document that provide details on the improvements in the new schema: ![API Icon][step2]
-
->[AZURE.NOTE] When you select **Update Schema**, we automatically run the migration steps and provide the code output for you. You can use this to update your definition, however, ensure you follow good coding practices such as those outlined in the **Best practices** section below.
-
-## <a name="best-practices-when-migrating-your-logic-apps-to-the-latest-schema-version:"></a>Best practices when migrating your Logic apps to the latest schema version:  
-
-- Copy the migrated script to a new Logic App - don't overwrite the old one until you've completed your testing and confirmed the migrated app works as expected.
-- Test your Logic app **before** putting in production
-- After migration completes, start updating your Logic apps to use the [managed APIs](./apis-list.md) where possible. For example, you can start using Dropbox v2, whereever you are using DropBox v1.
-
-
-## <a name="what's-next"></a>What's next
--  [Learn how to manually migrate your Logic apps](../app-service-logic/app-service-logic-schema-2015-08-01.md)
+## 後續步驟
+-  [了解如何手動移轉邏輯應用程式](../app-service-logic/app-service-logic-schema-2015-08-01.md)
 
 
 <!--Icon references-->
 [step1]: ./media/connectors-schema-migration/migrateschema1.png
 [step2]: ./media/connectors-schema-migration/migrateschema2.png
 
-
-
-
-
-
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!----HONumber=AcomDC_0824_2016-->

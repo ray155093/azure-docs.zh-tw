@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Create a record set and records for a DNS Zone using CLI| Microsoft Azure"
-   description="How to create host records for Azure DNS.Setting up record sets and records using CLI"
+   pageTitle="使用 CLI 建立 DNS 區域的記錄集和記錄 | Microsoft Azure"
+   description="如何建立 Azure DNS 的主機記錄。使用 CLI 設定記錄集和記錄"
    services="dns"
    documentationCenter="na"
    authors="sdwheeler"
@@ -16,59 +16,54 @@
    ms.date="08/16/2016"
    ms.author="sewhee"/>
 
-
-# <a name="create-dns-record-sets-and-records-by-using-cli"></a>Create DNS record sets and records by using CLI
+# 使用 CLI 建立 DNS 記錄集和記錄
 
 > [AZURE.SELECTOR]
-- [Azure Portal](dns-getstarted-create-recordset-portal.md)
+- [Azure 入口網站](dns-getstarted-create-recordset-portal.md)
 - [PowerShell](dns-getstarted-create-recordset.md)
 - [Azure CLI](dns-getstarted-create-recordset-cli.md)
 
 
-This article walks you through the process of creating records and records sets by using CLI. After creating your DNS zone, you need to add the DNS records for your domain. To do this, you first need to understand DNS records and record sets.
+本文將逐步引導您完成使用 CLI 建立記錄和記錄集的程序。建立 DNS 區域之後，您必須加入網域的 DNS 記錄。若要這樣做，您必須先了解 DNS 記錄和記錄集。
 
 [AZURE.INCLUDE [dns-about-records-include](../../includes/dns-about-records-include.md)]
 
-## <a name="create-a-record-set-and-record"></a>Create a record set and record
+## 建立記錄集和記錄
 
-In this section, we'll show you how to create a record set and records. In this example, you'll create a record set that has the relative name "www" in the DNS zone "contoso.com". The fully-qualified name of the records is "www.contoso.com". The record type is "A", and the time to live (TTL) is 60 seconds. After completing this step, you will have created an empty record set.
+在本節中，我們將示範如何建立記錄集和記錄。在此範例中，您將會在 DNS 區域 "contoso.com" 中建立具有相對名稱 "www" 的記錄集。記錄的完整名稱是 "www.contoso.com"。記錄類型是 "A"，存留時間 (TTL) 是 60 秒。完成此步驟之後，您就能建立空的記錄集。
 
-To create a record set in the apex of the zone (in this case, "contoso.com"), use the record name "@", including the quotation marks. This is a common DNS convention.
+若要在區域頂點 (在此案例中為 "contoso.com") 建立記錄集，請使用記錄名稱 "@" (包括引號)。這是常見的 DNS 慣例。
 
-### <a name="1.-create-a-record-set"></a>1. Create a record set
+### 1\.建立記錄集
 
-To create record set, use `azure network dns record-set create`. Specify the resource group, zone name, record set relative name, the record type, and the TTL. If the `--ttl` parameter is not defined, the value defaults to four (in seconds). After completing this step, you will have an empty "www" record set.
+若要建立記錄集，請使用 `azure network dns record-set create`。指定資源群組、區域名稱、記錄集相對名稱、記錄類型和 TTL。若未定義 `--ttl` 參數，預設值為四 (以秒為單位)。完成此步驟之後，您就具有空的 "www" 記錄集。
 
-*Usage: network dns record-set create <resource-group> <dns-zone-name> <name> <type> <ttl>*
+*使用方式：network dns record-set create <resource-group> <dns-zone-name> <name> <type> <ttl>*
 
-    azure network dns record-set create myresourcegroup  contoso.com  www A  60
+	azure network dns record-set create myresourcegroup  contoso.com  www A  60
 
-### <a name="2.-add-records"></a>2. Add records
+### 2\.新增記錄
 
-To use the newly created "www" record set, you need to add records to it. You add records to record sets by using `azure network dns record-set add-record`.
+若要使用新建立的 "www" 記錄集，您必須對其新增記錄。您可以使用 `azure network dns record-set add-record` 將記錄新增至記錄集。
 
-The parameters for adding records to a record set vary depending on the type of the record set. For example, when using a record set of type "A", you will only be able to specify records with the parameter `-a <IPv4 address>`.
+將記錄加入至記錄集的參數，根據記錄集的類型而所有不同。例如，使用 "A" 類型的記錄集時，您只能使用參數 `-a <IPv4 address>` 來指定記錄。
 
-You can add IPv4 *A* records to the "www" record set by using the following command:
+您可以使用下列命令將 IPv4 A記錄新增至 "www" 記錄集：
 
-*Usage: network dns record-set add-record <resource-group> <dns-zone-name> <record-set-name> <type>*
+*使用方式：network dns record-set add-record <resource-group> <dns-zone-name> <record-set-name> <type>*
 
-    azure network dns record-set add-record myresourcegroup contoso.com  www A  -a 134.170.185.46
+	azure network dns record-set add-record myresourcegroup contoso.com  www A  -a 134.170.185.46
 
-## <a name="additional-record-type-examples"></a>Additional record type examples
+## 其他記錄類型範例
 
-The following examples show how to create a record set of each record type. Each record set contains a single record.
+下列範例示範如何建立每一種記錄類型的記錄集。每個記錄集都會包含一筆記錄。
 
 [AZURE.INCLUDE [dns-add-record-cli-include](../../includes/dns-add-record-cli-include.md)]
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-To manage your record set and records, see [Manage DNS records and record sets by using CLI](dns-operations-recordsets-portal.md).
+若要管理您的記錄集和記錄，請參閱[使用 CLI 管理 DNS 記錄和記錄集](dns-operations-recordsets-portal.md)。
 
-For more information about Azure DNS, see the [Azure DNS Overview](dns-overview.md).
+如需 Azure DNS 的詳細資訊，請參閱 [Azure DNS 概觀](dns-overview.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_1005_2016-->

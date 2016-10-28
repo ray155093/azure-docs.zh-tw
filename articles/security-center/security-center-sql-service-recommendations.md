@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Protecting Azure SQL service in Azure Security Center  | Microsoft Azure"
-   description="This document addresses recommendations in Azure Security Center that help you protect Azure SQL service and stay in compliance with security policies."
+   pageTitle="保護 Azure 資訊安全中心內的 Azure SQL 服務 | Microsoft Azure"
+   description="本文件說明可協助您保護 Azure SQL 服務及遵守安全性原則的 Azure 資訊安全中心建議。"
    services="security-center"
    documentationCenter="na"
    authors="TerryLanfear"
@@ -16,37 +16,32 @@
    ms.date="08/04/2016"
    ms.author="terrylan"/>
 
+# 保護 Azure 資訊安全中心內的 Azure SQL 服務
 
-# <a name="protecting-azure-sql-service-in-azure-security-center"></a>Protecting Azure SQL service in Azure Security Center
+「Azure 資訊安全中心」會分析 Azure 資源的安全性狀態。當資訊安全中心發現潛在的安全性弱點時，它會建立可引導您完成所需控制之設定程序的建議。這些建議適用於下列 Azure 資源類型︰虛擬機器 (VM)、網路、SQL 和應用程式。
 
-Azure Security Center analyzes the security state of your Azure resources. When Security Center identifies potential security vulnerabilities, it creates recommendations that guide you through the process of configuring the needed controls.  Recommendations apply to Azure resource types: virtual machines (VMs), networking, SQL, and applications.
+本文說明適用於 Azure SQL 服務的建議。Azure SQL 服務建議圍繞在為 Azure SQL 伺服器和資料庫啟用稽核以及為 SQL 資料庫啟用加密。請使用下表做為參考，以協助您了解可用的 SQL 服務建議，以及如果套用建議，每一個建議將產生的作用。
 
-This article addresses recommendations that apply to Azure SQL service.  Azure SQL service recommendations center around enabling auditing for Azure SQL servers and databases and enabling encryption for SQL databases.  Use the table below as a reference to help you understand the available SQL service recommendations and what each one will do if you apply it.
+## 可用的 SQL 服務建議
 
-## <a name="available-sql-service-recommendations"></a>Available SQL service recommendations
-
-|Recommendation|Description|
+|建議|說明|
 |-----|-----|
-|[Enable server SQL Auditing](security-center-enable-auditing-on-sql-servers.md)|Recommends that you turn on auditing for Azure SQL servers (Azure SQL service only; doesn't include SQL running on your virtual machines).|
-|[Enable database SQL Auditing](security-center-enable-auditing-on-sql-databases.md)|Recommends that you turn on auditing for Azure SQL databases (Azure SQL service only; doesn't include SQL running on your virtual machines).|
-|[Enable Transparent Data Encryption on SQL databases](security-center-enable-transparent-data-encryption.md)|Recommends that you enable encryption for SQL databases (Azure SQL service only).|
+|[啟用伺服器 SQL 稽核](security-center-enable-auditing-on-sql-servers.md)|建議您針對 Azure SQL 伺服器開啟稽核 (僅適用於 Azure SQL 服務，不包括在您虛擬機器上執行的 SQL)。|
+|[啟用資料庫 SQL 稽核](security-center-enable-auditing-on-sql-databases.md)|建議您針對 Azure SQL 資料庫開啟稽核 (僅適用於 Azure SQL 服務，不包括在您虛擬機器上執行的 SQL)。|
+|[在 SQL 資料庫上啟用透明資料加密](security-center-enable-transparent-data-encryption.md)|建議您針對 SQL 資料庫啟用加密 (僅適用於 Azure SQL 服務)。|
 
-## <a name="see-also"></a>See also
+## 另請參閱
 
-To learn more about recommendations that apply to other Azure resource types, see the following:
+若要深入了解適用於其他 Azure 資源類型的建議，請參閱下列文章︰
 
-- [Protecting your virtual machines in Azure Security Center](security-center-virtual-machine-recommendations.md)
-- [Protecting your applications in Azure Security Center](security-center-application-recommendations.md)
-- [Protecting your network in Azure Security Center](security-center-network-recommendations.md)
+- [保護 Azure 資訊安全中心內的虛擬機器](security-center-virtual-machine-recommendations.md)
+- [保護 Azure 資訊安全中心內的應用程式](security-center-application-recommendations.md)
+- [保護 Azure 資訊安全中心內的網路](security-center-network-recommendations.md)
 
-To learn more about Security Center, see the following:
+如要深入了解資訊安全中心，請參閱下列主題：
 
-- [Setting security policies in Azure Security Center](security-center-policies.md) -- Learn how to configure security policies for your Azure subscriptions and resource groups.
-- [Managing and responding to security alerts in Azure Security Center](security-center-managing-and-responding-alerts.md) -- Learn how to manage and respond to security alerts.
-- [Azure Security Center FAQ](security-center-faq.md) -- Find frequently asked questions about using the service.
+- [在 Azure 資訊安全中心設定安全性原則](security-center-policies.md) -- 了解如何為您的 Azure 訂用帳戶及資源群組設定安全性原則。
+- [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) -- 了解如何管理與回應安全性警示。
+- [Azure 資訊安全中心常見問題集](security-center-faq.md) -- 尋找有關使用服務的常見問題。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

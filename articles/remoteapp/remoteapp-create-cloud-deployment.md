@@ -1,119 +1,115 @@
 <properties 
-    pageTitle="How to create a cloud collection of Azure RemoteApp | Microsoft Azure" 
-    description="Learn how to create a deployment of Azure RemoteApp that saves data in the Azure cloud." 
-    services="remoteapp" 
-    documentationCenter="" 
-    authors="lizap" 
-    manager="mbaldwin" 
-    editor=""/>
+	pageTitle="如何建立 Azure RemoteApp 的雲端收藏 | Microsoft Azure" 
+	description="了解如何建立將資料儲存在 Azure 雲端中的 Azure RemoteApp 部署。" 
+	services="remoteapp" 
+	documentationCenter="" 
+	authors="lizap" 
+	manager="mbaldwin" 
+	editor=""/>
 
 <tags 
-    ms.service="remoteapp" 
-    ms.workload="compute" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="08/15/2016" 
-    ms.author="elizapo"/>
+	ms.service="remoteapp" 
+	ms.workload="compute" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="08/15/2016" 
+	ms.author="elizapo"/>
 
-
-# <a name="how-to-create-a-cloud-collection-of-azure-remoteapp"></a>How to create a cloud collection of Azure RemoteApp
+# 如何建立 Azure RemoteApp 的雲端收藏
 
 > [AZURE.IMPORTANT]
-> Azure RemoteApp is being discontinued. Read the [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
-There are two kinds of [Azure RemoteApp collections](remoteapp-collections.md): 
+[Azure RemoteApp 收藏](remoteapp-collections.md)分成兩種：
 
-- Cloud: resides completely in Azure. You can choose to save all data in the cloud (so a cloud-only collection) or to connect your collection to a VNET and save data there.   
-- Hybrid: includes a virtual network for on-premises access - this requires the use of Azure AD and an on-premises Active Directory environment.
+- 雲端：完全位於 Azure 中。您可以選擇在雲端儲存所有資料 (也就是僅限雲端的集合) 或將您的集合連線到 VNET，並於該處儲存資料。
+- 混合式：包含可內部存取的虛擬網路，這需要使用 Azure AD 和內部部署的 Active Directory 環境。
 
-This tutorial walks you through the process of creating a cloud collection. There are four steps: 
+本教學課程將逐步引導您完成建立雲端收藏的程序。共有四個步驟：
 
-1.  Create an Azure RemoteApp collection.
-2.  Optionally configure directory synchronization. If you are using Azure AD + Active Directory, you have to synchronize users, contacts, and passwords from your on-premises Active Directory to your Azure AD tenant.
-5.  Publish apps.
-6.  Configure user access.
-
-
-**Before you begin**
-
-You need to do the following before creating the collection:
-
-- [Sign up](https://azure.microsoft.com/services/remoteapp/) for Azure RemoteApp. 
-- Gather information about the users that you want to grant access to. This can be either Microsoft account information or Active Directory work account information for users.
-- This procedure assumes you are either going to use one of the template images provided as part of your subscription or that you have already uploaded the template image you want to use. If you need to upload a different template image, you can do that from the Template Images page. Just click **upload a template image** and follow the steps in the wizard. 
-- Want to use the Office 365 ProPlus image? Check out info [here](remoteapp-officesubscription.md).
-- Want to provide custom apps or LOB programs? Create a new [image](remoteapp-imageoptions.md) and use it in your cloud collection.
-- Figure out whether you need to connect to a VNET. If you choose to connect to a VNET, make sure it meets the [sizing guidelines](remoteapp-vnetsizing.md) and that it [can connect to RemoteApp](remoteapp-vnet.md). Check out the [VNET planning article ](remoteapp-planvnet.md)for more information.
-- If you're using a VNET, decide whether you want to join it to your local Active Directory domain.
-
-## <a name="step-1:-create-a-cloud-collection---with-or-without-a-vnet##"></a>Step 1: Create a cloud collection - with or without a VNET##
+1.	建立 Azure RemoteApp 集合。
+2.	選擇性地設定目錄同步處理。如果您使用 Azure AD + Active Directory，就必須將使用者、連絡人和密碼從您的內部部署 Active Directory 同步處理至 Azure AD 租用戶。
+5.	發佈應用程式。
+6.	設定使用者存取。
 
 
-Use the following steps to **create a cloud-only collection**:
+**開始之前**
 
-1. In the management portal, go to the RemoteApp page.
-2. Click **New > Quick Create**.
-3. Enter a name for your collection, and select your region.
-4. Choose the plan that you want to use - standard or basic.
-5. Choose the template to use for this collection. 
+在建立收藏之前，您必須執行下列作業：
 
-    **Tip:** Your subscription for RemoteApp comes with [template images](remoteapp-images.md) that contain Office 365 or Office 2013 (for trial use) programs, some published (such as Word) and others ready to publish. You can also create a new [image](remoteapp-imageoptions.md) and use it in your cloud collection.
+- [註冊](https://azure.microsoft.com/services/remoteapp/) Azure RemoteApp。
+- 收集您想授與存取權之使用者的相關資訊。這可以是使用者 Microsoft 帳戶資訊或 Active Directory 工作帳戶資訊。
+- 此程序假設您將使用您的訂閱隨附的範本映像之一，或是您已上傳所要使用的範本映像。如果您需要上傳不同的範本映像，您可以從 [範本映像] 頁面執行此作業。只要按一下 [上傳範本映像]，然後遵循精靈中的步驟即可。
+- 想要使用 Office 365 ProPlus 的映像嗎？ 請在[這裡](remoteapp-officesubscription.md)查看資訊。
+- 想提供自訂應用程式或 LOB 程式？ 請建立新的[映像](remoteapp-imageoptions.md)，並在您的雲端部署中加以使用。
+- 了解您是否需要連接到 VNET。如果您選擇連接到 VNET，請確定它是否符合[調整大小的指導方針](remoteapp-vnetsizing.md)，以及它是否[可以連接到 RemoteApp](remoteapp-vnet.md)。如需詳細資訊，請參閱 [VNET 規劃文章](remoteapp-planvnet.md)。
+- 如果您使用 VNET，請決定是否要將它聯結至本機 Active Directory 網域。
 
-
-1. Click **Create RemoteApp collection**.
-    
-    **Important:** It can take up to 30 minutes to provision your collection.
-
-After your Azure RemoteApp collection has been created, double-click the name of the collection. That will bring up the **Quick Start** page - this is where you finish configuring the collection.
-
-Use the following steps to create a **cloud + VNET collection**:
-
-1. In the management portal, go to the Azure RemoteApp page.
-2. Click **New** > **Create with VNET**.
-3. Enter a name for your collection.
-4. Choose the plan that you want to use - standard or basic.
-5. Choose the VNET you already created. Don't know how to do that? For now, the steps are in the [hybrid](remoteapp-create-hybrid-deployment.md) topic.
-6. Decide whether you want to join your collection to your domain. If yes, you'll need to use AD Connect to integrate Azure AD and your Active Directory environment. That's covered in below in **Step 2**.
-6. Click **Create RemoteApp collection**.
+## 步驟 1：建立雲端集合 - 不論是否有 VNET##
 
 
-## <a name="step-2:-configure-active-directory-directory-synchronization-(optional)"></a>Step 2: Configure Active Directory directory synchronization (optional) ##
+請使用下列步驟**建立純雲端集合**：
 
-If you want to use Active Directory, Azure RemoteApp requires directory synchronization between Azure Active Directory and your on-premises Active Directory to synchronize users,  contacts, and passwords to your Azure Active Directory tenant. See [Configuring Active Directory for Azure RemoteApp](remoteapp-ad.md) for planning information. You can also go directly to [AD Connect](https://blogs.technet.microsoft.com/enterprisemobility/2014/08/04/connecting-ad-and-azure-ad-only-4-clicks-with-azure-ad-connect/) for information.
+1. 在 Azure 管理入口網站中，移至 RemoteApp 頁面。
+2. 按一下 [新增] > [快速建立]。
+3. 輸入收藏的名稱，然後選取區域。
+4. 選擇您要使用的方案 - 標準或基本。
+5. 選擇要用於此收藏的範本。
 
-## <a name="step-3:-publish-apps"></a>Step 3: Publish apps ##
+	**提示：**您的 RemoteApp 訂閱會隨附於包含 Office 365 或 Office 2013 (供試用) 程式的[範本映像](remoteapp-images.md)，其中有些程式已發佈 (例如 Word)，有些即將發佈。您也可以建立新的[映像](remoteapp-imageoptions.md)，並在您的雲端部署中加以使用。
 
-An Azure RemoteApp app is the app or program that you provide to your users. It is located in the template image you uploaded for the collection. When a user accesses an app, the app appears to run in their local environment, but it is really running in a virtual machine in Azure. 
 
-Before your users can access apps, you need to publish them – publishing apps lets your users access the apps through the Remote Desktop client.
+1. 按一下 [建立 RemoteApp 收藏]。
+	
+	**重要：**佈建收藏最多可能需要 30 分鐘。
+
+建立了 Azure RemoteApp 集合之後，請按兩下集合的名稱。這時會顯示 [快速入門] 頁面，您可以在這裡完成設定集合。
+
+請使用下列步驟建立**雲端 + VNET 集合**：
+
+1. 在管理入口網站中，前往 [Azure RemoteApp] 頁面。
+2. 按一下 [新增] > [使用 VNET 建立]。
+3. 輸入收藏的名稱。
+4. 選擇您要使用的方案 - 標準或基本。
+5. 選擇您已經建立的 VNET。不知道該怎麼做？ 這些步驟目前都在[混合式](remoteapp-create-hybrid-deployment.md)主題中。
+6. 決定您是否要將集合聯結至網域。如果是，您需要使用 AD Connect 來整合 Azure AD 及 Active Directory 環境。這涵蓋在**步驟 2** 中。
+6. 按一下 [建立 RemoteApp 收藏]。
+
+
+## 步驟 2：設定 Active Directory 目錄同步處理 (選用) ##
+
+如果您要使用 Active Directory，則必須在 Azure Active Directory 與您的內部部署 Active Directory 之間進行目錄同步處理，RemoteApp 才能將使用者、連絡人和密碼同步處理至您的 Azure Active Directory 租用戶。如需規劃資訊，請參閱[設定 Azure RemoteApp 的 Active Directory](remoteapp-ad.md)。您也可以直接移至 [AD Connect](https://blogs.technet.microsoft.com/enterprisemobility/2014/08/04/connecting-ad-and-azure-ad-only-4-clicks-with-azure-ad-connect/) 以取得資訊。
+
+## 步驟 3：發佈應用程式 ##
+
+Azure RemoteApp 應用程式就是您提供給使用者的應用程式或程式。此程式位於您為收藏上傳的範本映像中。當使用者存取應用程式時，應用程式看起來會像是在本機環境中執行，但其實是在 Azure 中的虛擬機器中執行。
+
+您必須先發佈應用程式，您的使用者才能存取應用程式 – 發佈應用程式可讓您的使用者透過遠端桌面用戶端存取應用程式。
  
-You can publish multiple apps to your Azure RemoteApp collection. From the publishing page, click **Publish** to add a program. You can either publish from the **Start** menu of the template image or by specifying the path on the template image for the app. If you choose to add from the **Start** menu, choose the app to publish. If you choose to provide the path to the app, provide a name for the app and the path to where it is installed on the template image.
+您可以將多個應用程式發佈到自己的 Azure RemoteApp 集合。請在發佈頁面中按一下 [發佈] 來新增程式。您可以從範本映像的 [開始] 功能表發佈，或藉由為 App 指定範本映像的路徑來發佈。如果您選擇從 [開始] 功能表新增，請選擇要發佈的應用程式。如果您選擇提供應用程式的路徑，請提供應用程式的名稱，以及應用程式在範本映像上的安裝路徑。
 
-## <a name="step-4:-configure-user-access"></a>Step 4: Configure user access ##
+## 步驟 4：設定使用者存取 ##
 
-Now that you have created your collection, you need to add the users that you want to be able to use your remote resources. If you are using Active Directory, the users that you provide access to need to exist in the Active Directory tenant associated with the subscription you used to create this collection.
+您已經建立集合，現在您必須新增可使用您遠端資源的使用者。如果您使用 Active Directory，則您要給予存取權的使用者，必須存在於與您用來建立此集合的訂用帳戶相關聯的 Active Directory 租用戶中。
 
-1.  From the Quick Start page, click **Configure user access**. 
-2.  Enter the work account (from Active Directory) or Microsoft account that you want to grant access for.
+1.	在 [快速入門] 頁面上，按一下 [Configure user access]。
+2.	輸入工作帳戶 (來自於 Active Directory)，或是您要為其授與存取權的 Microsoft 帳戶。
 
-    **Notes:** 
+	**注意：**
 
-    Make sure that you use the “user@domain.com” format.
+	確定您使用的是 “user@domain.com” 格式。
 
-    If you are using Office 365 ProPlus in your collection, you must use the Active Directory identities for your users. This helps validate licensing. 
+	如果您的收藏中使用 Office 365 ProPlus，您必須為使用者使用 Active Directory 身分識別。這有助於驗證授權。
 
-3.  After the users are validated, click **Save**.
-
-
-## <a name="next-steps"></a>Next steps ##
-
-That's it - you have successfully created and deployed your Azure RemoteApp cloud collection. The next step is to have your users download and install the Remote Desktop client. You can find the URL for the client on the Azure RemoteApp Quick Start page. Then, have users log into the client and access the apps you published.
-
-### <a name="help-us-help-you"></a>Help us help you 
-Did you know that in addition to rating this article and making comments down below, you can make changes to the article itself? Something missing? Something wrong? Did I write something that's just confusing? Scroll up and click **Edit on GitHub** to make changes - those will come to us for review, and then, once we sign off on them, you'll see your changes and improvements right here.
+3.	在驗證使用者之後，按一下 [儲存]。
 
 
-<!--HONumber=Oct16_HO2-->
+## 後續步驟 ##
 
+您已經成功建立並部署了自己的 Azure RemoteApp 雲端收藏。下一個步驟是要讓使用者下載並安裝遠端桌面用戶端。您可以在 Azure RemoteApp 的 [快速啟動] 頁面上找到用戶端的 URL。接著，請讓使用者登入用戶端，並存取您所發佈的應用程式。
 
+### 幫我們來協助您 
+您知道除了評比這篇文章以及在下面留言以外，您可以變更文件本身嗎？ 有所遺漏？ 有所錯誤？ 我是否撰寫了令人混淆的內容？ 向上捲動並按一下 [在 GitHub 上編輯] 以進行變更 - 系統會顯示這些變更以供我們檢閱，而我們簽核後，您就會在這裡看到您所進行的變更和改良。
+
+<!---HONumber=AcomDC_0817_2016-->

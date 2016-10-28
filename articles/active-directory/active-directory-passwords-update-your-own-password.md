@@ -1,250 +1,247 @@
 <properties
-    pageTitle="How to update your own password using Azure Active Directory| Microsoft Azure"
-    description="Learn that ways you can register for password reset, how to change your password, and how to reset your own password in case you ever forget it."
-    services="active-directory"
-    documentationCenter=""
-    authors="asteen"
-    manager="femila"
-    editor="curtand"/>
+	pageTitle="使用 Azure Active Directory 如何更新您自己的密碼 | Microsoft Azure"
+	description="了解如何註冊密碼重設、如何變更您的密碼，以及如何在您忘記自己的密碼時加以重設。"
+	services="active-directory"
+	documentationCenter=""
+	authors="asteen"
+	manager="femila"
+	editor="curtand"/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/30/2016"
-    ms.author="asteen"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/30/2016"
+	ms.author="asteen"/>
 
+# 如何更新自己的密碼
+如果您不確定如何管理您的工作或學校帳戶密碼，來這裡就對了！ 請閱讀下列內容，了解如何執行常見步驟，例如變更密碼、重設密碼或註冊密碼重設。
 
-# <a name="how-to-update-your-own-password"></a>How to update your own password
-If you are unsure how to manage your work or school account password, you've come to the right place!  Read below to learn how to perform common steps, like changing a password, resetting a password, or registering for password reset.
+* [**別失去存取帳戶的能力！**](#dont-lose-access-to-your-account)
+* [**如何從 Office 365 變更您的密碼**](#how-to-change-your-password-from-o365)
+* [**如何從存取面板變更您的密碼**](#how-to-change-your-password-from-the-access-panel)
+* [**如何重設密碼**](#how-to-reset-your-password)
+* [**如何解除鎖定您的帳戶**](#how-to-unlock-your-account)
+* [**常見問題及其解決方案**](#common-problems-and-their-solutions)
 
-* [**Don’t lose access to your account!**](#dont-lose-access-to-your-account)
-* [**How to change your password from Office 365**](#how-to-change-your-password-from-o365)
-* [**How to change your password from the access panel**](#how-to-change-your-password-from-the-access-panel)
-* [**How to reset your password**](#how-to-reset-your-password)
-* [**How to unlock your account**](#how-to-unlock-your-account)
-* [**Common problems and their solutions**](#common-problems-and-their-solutions)
-
-## <a name="don’t-lose-access-to-your-account!"></a>Don’t lose access to your account!
+## 別失去存取帳戶的能力！
 
 > [AZURE.IMPORTANT]
-> **Why am I seeing this?** If you followed a link to get here, you're probably seeing this because your administrator requires you to register for password reset to gain access to your app. You might be asked for phone or email information, or to set up security questions.  Don’t worry – we won’t use this information to spam you, just to keep your account more secure. The steps presented here should help you to reach your goal.
+**為什麼會看到此內容？** 如果您是透過連結來到此頁面，則看見此內容的原因可能是因為系統管理員要求您註冊密碼重設以取得您應用程式的存取權。系統可能會要求您提供電話或電子郵件資訊，或是設定安全性問題。別擔心，我們不會利用這項資訊來對您廣發垃圾郵件，這麼做只是為了讓您的帳戶更安全。此處所提供的步驟應該可幫助您達到您的目標。
 
-The fastest way to register for password reset is to go to [http://aka.ms/ssprsetup](http://aka.ms/ssprsetup).  
+要註冊密碼重設，最快的方法是移至 [http://aka.ms/ssprsetup](http://aka.ms/ssprsetup)。
 
- 1. Navigate to [http://aka.ms/ssprsetup](http://aka.ms/ssprsetup).
- 2. Enter your username and password.
- 3. Choose an option to register for by clicking **set it up now**.  In this case, I'll demonstrate registering my **authentication phone**.
+ 1. 瀏覽至 [http://aka.ms/ssprsetup](http://aka.ms/ssprsetup)。
+ 2. 輸入您的使用者名稱和密碼。
+ 3. 按一下 [立即設定]，以選擇要註冊的選項。在此案例中，我將示範如何註冊我的**驗證電話**。
 
     ![][011]
 
- 4. Select your country code from the dropdown and enter your **full phone number + area code**.
+ 4. 從下拉式清單中選取您的國碼，然後輸入您的**完整電話號碼 + 區碼**。
 
-    ![][012]
-    ![][013]
+    ![][012] ![][013]
 
- 5. Select one of the **text me** or **call me** options.  In this case, I'll select **text me**, which will send a 6 digit code to my phone.  Wait for the code to arrive on your phone.
+ 5. 選取其中一個 [傳送訊息給我] 或 [打電話給我] 選項。在此案例中，我會選取 [傳送訊息給我]，這將會傳送 6 位數代碼到我的電話。請等候代碼送達您的電話。
 
     ![][014]
 
- 6. Once the code arrives, enter it into the input box, and then click "verify."
- 7. When you see **thanks**, that's it! Now you can use what you registered for to reset your password at any time by going to [https://passwordreset.microsoftonline.com](https://passwordreset.microsoftonline.com).
+ 6. 收到代碼之後，請在輸入方塊中輸入它，然後按一下 [驗證]。
+ 7. 當您看到**感謝您**時，就完成了。 現在，您可以使用您註冊的項目，隨時到 [https://passwordreset.microsoftonline.com](https://passwordreset.microsoftonline.com) 重設密碼。
 
     ![][015]
 
- >[AZURE.IMPORTANT] If your admin lets you register for more than one option, we highly recommend you also register a back-up option in case you lose your phone or access to your email.
+ >[AZURE.IMPORTANT] 如果您的系統管理員讓您註冊多個選項，強烈建議您也註冊備份選項，以備您在遺失電話或電子郵件存取時使用。
 
-## <a name="how-to-change-your-password-from-o365"></a>How to change your password from O365
-Follow the steps below to change your work or school account password in Office 365.  If you have forgotten your password and want to reset it, follow the steps [here](#how-to-reset-your-password).
+## 如何從 O365 變更您的密碼
+請遵循下列步驟，在 Office 365 中變更您的工作或學校帳戶密碼。如果您忘記密碼而要加以重設，請遵循[這裡](#how-to-reset-your-password)的步驟。
 
- 1. Sign in to Office 365 with your work or school account.
- 2. Go to **Settings** > **Office 365 settings** > **Password** > **Change password**.
- 3. Type your old password, and then type a new password and confirm it.
- 4. Click **Save**.
+ 1. 使用您的工作或學校帳戶登入 Office 365。
+ 2. 移至 [設定] > [Office 365 設定] > [密碼] > [變更密碼]。
+ 3. 輸入您的舊密碼，然後輸入新密碼並加以確認。
+ 4. 按一下 [儲存]。
 
-You can read more about this on the [Office 365 documentation center](https://support.office.com/article/Change-my-password-in-Office-365-for-business-d1efbaee-63a7-4c08-ab1d-71bf932bbb5d).
+您可以在 [Office 365 文件中心](https://support.office.com/article/Change-my-password-in-Office-365-for-business-d1efbaee-63a7-4c08-ab1d-71bf932bbb5d)閱讀更多相關資訊。
 
-## <a name="how-to-change-your-password-from-the-access-panel"></a>How to change your password from the access panel
-Follow the steps below to change your work or school account password from the [Access Panel](https://myapps.microsoft.com).  If you have forgotten your password and want to reset it, follow the steps [here](#how-to-reset-your-password).
+## 如何從存取面板變更您的密碼
+請遵循下列步驟，從[存取面板](https://myapps.microsoft.com)變更您的工作或學校帳戶密碼。如果您忘記密碼而要加以重設，請遵循[這裡](#how-to-reset-your-password)的步驟。
 
- 1. Sign into https://myapps.microsoft.com with your work or school account.
- 2. Click on the **profile** tab.
- 3. Click on the **change my password** tile on the right hand side of the screen.
- 4. Type your old password, and then type a new password and confirm it.
- 5. Click **Submit**.
+ 1. 使用您的工作或學校帳戶登入 https://myapps.microsoft.com。
+ 2. 按一下 [設定檔] 索引標籤
+ 3. 在畫面右手邊，按一下 [變更我的密碼] 圖格。
+ 4. 輸入您的舊密碼，然後輸入新密碼並加以確認。
+ 5. 按一下 [提交]。
 
- Run into a problem changing your password?  Read about [common problems and their solutions](#common-problems-and-their-solutions).
+ 在變更密碼時發生問題嗎？ 請閱讀[常見問題及其解決方案](#common-problems-and-their-solutions)。
 
-## <a name="how-to-reset-your-password"></a>How to reset your password
+## 如何重設密碼
 
 
-Follow the steps below to reset your work or school account password from any work or school account sign in screen.
+請遵循下列步驟，從任何工作或學校帳戶登入畫面變更您的工作或學校帳戶密碼。
 
->[AZURE.IMPORTANT] This feature is only available to you if your admin has turned it on. If it's not turned on, you'll see a message indicating your account is not enabled for this feature.  You can use the "contact your administrator" link in this case to get in touch with your admin to unlock your account.
+>[AZURE.IMPORTANT] 在您的系統管理員開啟這項功能後，只有您才可加以使用。如果未開啟，您將會看到一則訊息，指出您的帳戶未啟用這項功能。在此情況下，您可以使用「連絡您的系統管理員」連結與系統管理員聯繫，以便將您的帳戶解除鎖定。
 >
-> If your admin has enabled you for this feature, you'll first need to sign up before you can use it. You can do that here: http://aka.ms/ssprsetup.
+> 如果系統管理員已為您啟用這項功能，則您必須先註冊才能使用這項功能。您可以在此處完成此作業：http://aka.ms/ssprsetup。
 
 
- 1. On the any work or school account sign-in page, click on one of the "can't access your account?" or "forgot your password?" links, or navigate to https://passwordreset.microsoftonline.com directly.
+ 1. 在任何工作或學校帳戶登入頁面上，按一下「無法存取帳戶？」或「忘記密碼？」連結，或直接瀏覽至 https://passwordreset.microsoftonline.com。
 
     ![][001]
 
- 2. On the "who are you?" page, enter your work or school account ID and prove you aren't a robot by passing the CAPTCHA challenge.
+ 2. 在「你是誰？」頁面上，輸入您的工作或學校帳戶 ID，並傳遞 CAPTCHA 查問以證明您不是傀儡程式。
 
     ![][002]
 
- 3. Click the "next" button.
- 4. Choose an option to reset your password.  Depending on how your admin has configured the system, you might see one or more of the following choices:
-     * **Email my alternate email** - sends an email with a 6 digit code to either your **alternate email** or **authentication email** (you choose).
-     * **Text my mobile phone** - texts your phone with a 6 digit code to either your **mobile phone** or **authentication email** (you choose).
-     * **Call my mobile phone** - calls your **mobile phone** or **authentication phone** (you choose) - press the *#* key to verify the call.
-     * **Call my office phone** - calls your **office phone** - press the *#* key to verify the call.
-     * **Answer my security questions** - displays your pre-registered security questions for you to answer.
+ 3. 按 [下一步] 按鈕。
+ 4. 選擇重設密碼的選項。依據您的系統管理員設定系統的方式，您可能會看到下列一或多個選項：
+     * **寄電子郵件到我的備用電子郵件地址** -將含有 6 位數代碼的電子郵件傳送至您的**備用電子郵件**或**驗證電子郵件** (由您選擇)。
+	 * **傳簡訊到我的行動電話** -將含有 6 位數代碼的簡訊傳送至您的**行動電話**或**驗證電子郵件** (由您選擇)。
+	 * **撥打我的行動電話** - 撥打您的**行動電話**或**驗證電話** (由您選擇) - 按 *#* 鍵以驗證通話。
+	 * **撥打我的辦公室電話** - 撥打您的**辦公室電話** - 按 *#* 鍵以驗證通話。
+	 * **回答我的安全性問題** - 顯示您預先登錄要回答的安全性問題。
 
     ![][003]
 
- 5. We'll use the "text my mobile phone" option as an example.  If you are using a phone based option, you'll need to verify your phone number before we'll send a text.  Enter your full phone number and then click **Next** to verify it's correct and send a text.
+ 5. 我們在範例中將使用「傳簡訊到我的行動電話」選項。如果您使用電話類的選項，您必須我們傳送簡訊之前確認您的電話號碼。輸入完整的電話號碼，然後按 [下一步] 確認號碼正確，再傳送簡訊。
 
     ![][004]
 
- 6. When you receive the text, make sure you use the verification code in the message body, not the number the code was sent from.  It might take a few minutes to get the text, so grab a coffee!
+ 6. 當您收到簡訊時，請務必使用訊息本文中的驗證碼，而不是傳送驗證碼的號碼。可能需要幾分鐘才能收到簡訊，您就喝杯咖啡吧！
 
     ![][009]
 
- 8. Now, enter the code you just received on your phone into the input box on the page.
+ 8. 現在，將您電話上剛收到的驗證碼，輸入到頁面上的輸入方塊中。
 
     ![][005]
 
- 9. Your admin may require a second verification step, in which case repeat step 4 with a different option selected.
- 10. On the "choose a new password" screen, select a new password and confirm your choice, then click **Finish**.
+ 9. 系統管理員可能會要求您執行第二個驗證步驟，此時請選取不同的選項重複執行步驟 4。
+ 10. 在 [選擇新密碼] 畫面上，選取新的密碼並確認您的選擇，然後按一下 [完成]。
 
-    ![][006]
-    ![][007]
+    ![][006] ![][007]
 
- 11. Once you see the success page, you are good to go!  You can now sign in with your new password.
+ 11. 在您看到 [成功] 頁面後，即已準備就緒。 現在，您可以使用新密碼登入。
 
     ![][008]
 
-Run into a problem resetting your password?  Read about [common problems and their solutions](#common-problems-and-their-solutions).
+在重設密碼時發生問題嗎？ 請閱讀[常見問題及其解決方案](#common-problems-and-their-solutions)。
 
-## <a name="how-to-unlock-your-account"></a>How to unlock your account
-Follow the steps below to unlock your local account from any work or school account sign in screen.  **Note: You will only be able to unlock your account if it has been locked on-premises.**
+## 如何解除鎖定您的帳戶
+請遵循下列步驟，從任何工作或學校帳戶登入畫面解除鎖定您的本機帳戶。**注意：您只能解除鎖定在內部部署鎖定的帳戶。**
 
->[AZURE.IMPORTANT] This feature is only available to you if your admin has turned it on.  If it's not turned on, you'll see a message indicating your account is not enabled for this feature.  You can use the "contact your administrator" link in this case to get in touch with your admin to unlock your account.
+>[AZURE.IMPORTANT] 在您的系統管理員開啟這項功能後，只有您才可加以使用。如果未開啟，您將會看到一則訊息，指出您的帳戶未啟用這項功能。在此情況下，您可以使用「連絡您的系統管理員」連結與系統管理員聯繫，以便將您的帳戶解除鎖定。
 >
-> If your admin has enabled you for this feature, you'll first need to sign up before you can use it.  You can do that here: http://aka.ms/ssprsetup.
+> 如果系統管理員已為您啟用這項功能，則您必須先註冊才能使用這項功能。您可以在此處完成此作業：http://aka.ms/ssprsetup。
 
 
- 1. On the any work or school account sign in page, click on one of the "can't access your account?" or "forgot your password?" links, or navigate to https://passwordreset.microsoftonline.com directly.
+ 1. 在任何工作或學校帳戶登入頁面上，按一下「無法存取帳戶？」或「忘記密碼？」連結，或直接瀏覽至 https://passwordreset.microsoftonline.com。
 
     ![][001]
 
- 2. On the "who are you?" page, enter your work or school account ID and prove you aren't a robot by passing the CAPTCHA challenge.
+ 2. 在「你是誰？」頁面上，輸入您的工作或學校帳戶 ID，並傳遞 CAPTCHA 查問以證明您不是傀儡程式。
 
     ![][002]
 
- 3. Click the "next" button.
- 4. Choose an option to unlock your account.  Depending on how your admin has configured the system, you might see one or more of the following choices:
-     * **Email my alternate email** - sends an email with a 6 digit code to either your **alternate email** or **authentication email** (you choose).
-     * **Text my mobile phone** - texts your phone with a 6 digit code to either your **mobile phone** or **authentication email** (you choose).
-     * **Call my mobile phone** - calls your **mobile phone** or **authentication phone** (you choose) - press the *#* key to verify the call.
-     * **Call my office phone** - calls your **office phone** - press the *#* key to verify the call.
-     * **Answer my security questions** - displays your pre-registered security questions for you to answer.
+ 3. 按 [下一步] 按鈕。
+ 4. 選擇解除鎖定帳戶的選項。依據您的系統管理員設定系統的方式，您可能會看到下列一或多個選項：
+     * **寄電子郵件到我的備用電子郵件地址** -將含有 6 位數代碼的電子郵件傳送至您的**備用電子郵件**或**驗證電子郵件** (由您選擇)。
+	 * **傳簡訊到我的行動電話** -將含有 6 位數代碼的簡訊傳送至您的**行動電話**或**驗證電子郵件** (由您選擇)。
+	 * **撥打我的行動電話** - 撥打您的**行動電話**或**驗證電話** (由您選擇) - 按 *#* 鍵以驗證通話。
+	 * **撥打我的辦公室電話** - 撥打您的**辦公室電話** - 按 *#* 鍵以驗證通話。
+	 * **回答我的安全性問題** - 顯示您預先登錄要回答的安全性問題。
 
     ![][003]
 
- 5. We'll use the "text my mobile phone" option as an example.  If you are using a phone based option, you'll need to verify your phone number before we'll send a text.  Enter your full phone number and then click **Next** to verify it's correct and send a text.
+ 5. 我們在範例中將使用「傳簡訊到我的行動電話」選項。如果您使用電話類的選項，您必須我們傳送簡訊之前確認您的電話號碼。輸入完整的電話號碼，然後按 [下一步] 確認號碼正確，再傳送簡訊。
 
     ![][004]
 
- 6. When you receive the text, make sure you use the verification code in the message body, not the number the code was sent from.  It might take a few minutes to get the text, so grab a coffee!
+ 6. 當您收到簡訊時，請務必使用訊息本文中的驗證碼，而不是傳送驗證碼的號碼。可能需要幾分鐘才能收到簡訊，您就喝杯咖啡吧！
 
     ![][009]
 
- 8. Now, enter the code you just received on your phone into the input box on the page.
+ 8. 現在，將您電話上剛收到的驗證碼，輸入到頁面上的輸入方塊中。
 
     ![][005]
 
- 9. Your admin may require a second verification step, in which case you must repeat step 4 with a different option selected.
+ 9. 系統管理員可能會要求您執行第二個驗證步驟，在此情況下，您必須選取不同的選項來重複執行步驟 4。
 
- 11. Once you see the success page, you are good to go!  Your on-premises account has been unlocked and you can now sign in once more.
+ 11. 在您看到 [成功] 頁面後，即已準備就緒。 您的內部部署帳戶已解除鎖定，現在您已可再次登入。
 
     ![][010]
 
- >[AZURE.IMPORTANT] Make sure you update all your devices to your newest password, as often times a rogue app with an old password (like your phone email client) can be the culprit behind why your account got locked out in the first place.
+ >[AZURE.IMPORTANT] 請確實將您所有的裝置更新為最新的密碼，因為使用舊密碼 (像您電話的電子郵件用戶端) 的惡意應用程式經常就是您的帳戶最初遭到鎖定的肇因。
 
-Run into a problem unlocking your account?  Read about [common problems and their solutions](#common-problems-and-their-solutions).
+在解除鎖定帳戶時發生問題嗎？ 請閱讀[常見問題及其解決方案](#common-problems-and-their-solutions)。
 
-## <a name="common-problems-and-their-solutions"></a>Common problems and their solutions
-Here are some common error cases and their solutions:
+## 常見問題及其解決方案
+以下提供一些常見的錯誤案例及其解決方案：
 
 <table>
           <tbody><tr>
             <td>
               <p>
-                <strong>Error Case</strong>
+                <strong>錯誤案例</strong>
               </p>
             </td>
             <td>
               <p>
-                <strong>What error do you see?</strong>
+                <strong>您看到什麼錯誤訊息？</strong>
               </p>
             </td>
             <td>
               <p>
-                <strong>Solution</strong>
+                <strong>解決方案</strong>
               </p>
             </td>
           </tr>
           <tr>
             <td>
-              <p>I get a "please contact your admin" page after entering my user ID</p>
+              <p>在輸入我的使用者 ID 後，出現了「請連絡您的系統管理員」頁面</p>
             </td>
             <td>
-              <p>Please contact your admin <br><br>We've detected that your user account password is not managed by Microsoft. As a result, we are unable to automatically reset your password. <br><br>You will need to contact your admin or helpdesk for any further assistance. </p>
+              <p>請連絡您的系統管理員 <br><br>我們偵測到您的使用者帳戶密碼未受到 Microsoft 管理。因此，我們無法自動重設您的密碼。<br><br>您必須連絡系統管理員或客服人員，以尋求進一步的協助。</p>
             </td>
             <td>
-              <p>You are seeing this message because your administrator manages your password in your on-premises environment and does not allow you to reset your password from the <b>Can't access your account link</b>. <br><br> To reset your password, please contact your administrator directly for help, and let him or her know you want to reset your password from Office 365 so he or she can enable this feature for you.</p>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p>I get a "your account is not enabled for password reset" error after entering my user ID</p>
-            </td>
-            <td>
-              <p>Your account is not enabled for password reset<br><br>We're sorry, but your administrator has not set up your account for use with this service.<br><br> If you'd like, we can contact an administrator in your organization to reset your password for you.</p>
-            </td>
-            <td>
-              <p>You are seeing this message because your administrator has not enabled password reset for your organization from the <b>Can't access your account</b> link, or hasn't licensed you to use the feature. <br><br> To reset your password, click the <b>contact an administrator</b> link to send an email to your company's admin, and let him or her know you want to reset your password from Office 365 so he or she can enable this feature for you.</p>
+              <p>您之所以看到此訊息，是因為您的系統管理員在內部部署環境中管理您的密碼，而不允許您從<b>無法存取您的帳戶</b>連結重設您的密碼。<br><br> 若要重設密碼，請直接向您的系統管理員尋求協助，使其了解您想要從 Office 365 重設密碼，而為您啟用這項功能。</p>
             </td>
           </tr>
           <tr>
             <td>
-              <p>I get a "we could not verify your account" error after entering my user ID</p>
+              <p>在輸入我的使用者 ID 後，出現了「您的帳戶未啟用密碼重設」錯誤</p>
             </td>
             <td>
-              <p>We could not verify your account<br><br>If you'd like, we can contact an administrator in your organization to reset your password for you. </p>
+              <p>您的帳戶未啟用密碼重設功能<br><br>很抱歉，您的系統管理員還沒將您的帳戶設定用於此服務。<br><br> 如果您願意，我們可以連絡貴組織的系統管理員來為您重設密碼。</p>
             </td>
             <td>
-              <p>You are seeing this message because you are enabled for password reset, but you have not registered to use the service.  To register for password reset, go to http://aka.ms/ssprsetup after you have regained access to your account. <br><br> To reset your password, click the <b>contact an administrator</b> link to send an email to your company's admin.</p>
+              <p>您之所以看到此訊息，是因為您的系統管理員未針對您的組織啟用從<b>無法存取您的帳戶</b>連結重設密碼的密碼重設功能，或未授權給您使用該功能。<br><br> 若要重設密碼，請按一下<b>連絡系統管理員</b>連結以傳送電子郵件給公司的系統管理員，使其了解您想要從 Office 365 重設密碼，而為您啟用這項功能。</p>
+            </td>
+          </tr>
+		  <tr>
+            <td>
+              <p>在輸入我的使用者 ID 後，出現了「我們無法驗證您的帳戶」錯誤</p>
+            </td>
+            <td>
+              <p>我們無法驗證您的帳戶<br><br>如果您願意，我們可以連絡貴組織的系統管理員來為您重設密碼。</p>
+            </td>
+            <td>
+              <p>您之所以看到此訊息，是因為您已啟用密碼重設，但並未註冊使用此服務。若要註冊密碼重設，請在重新取得帳戶存取權後移至 http://aka.ms/ssprsetup。<br><br> 若要重設密碼，請按一下<b>連絡系統管理員</b>連結，以傳送電子郵件給公司的系統管理員。</p>
             </td>
           </tr>
         </tbody></table>
 
 
-## <a name="links-to-password-reset-documentation"></a>Links to password reset documentation
-Below are links to all of the Azure AD Password Reset documentation pages:
+## 密碼重設文件的連結
+以下是所有 Azure AD 密碼重設文件頁面的連結：
 
-* [**How it works**](active-directory-passwords-how-it-works.md) - learn about the six different components of the service and what each does
-* [**Getting started**](active-directory-passwords-getting-started.md) - learn how to allow you users to reset and change their cloud or on-premises passwords
-* [**Customize**](active-directory-passwords-customize.md) - learn how to customize the look & feel and behavior of the service to your organization's needs
-* [**Best practices**](active-directory-passwords-best-practices.md) - learn how to quickly deploy and effectively manage passwords in your organization
-* [**Get insights**](active-directory-passwords-get-insights.md) - learn about our integrated reporting capabilities
-* [**FAQ**](active-directory-passwords-faq.md) - get answers to frequently asked questions
-* [**Troubleshooting**](active-directory-passwords-troubleshoot.md) - learn how to quickly troubleshoot problems with the service
-* [**Learn more**](active-directory-passwords-learn-more.md) - go deep into the technical details of how the service works
+* [**運作方式**](active-directory-passwords-how-it-works.md) - 了解六個不同的服務元件及其功能
+* [**開始使用**](active-directory-passwords-getting-started.md) - 了解如何讓使用者重設及變更雲端或內部部署密碼
+* [**自訂**](active-directory-passwords-customize.md) - 了解如何依照組織的需求自訂外觀和服務行為
+* [**最佳作法**](active-directory-passwords-best-practices.md) - 了解如何快速部署且有效管理組織的密碼
+* [**深入探索**](active-directory-passwords-get-insights.md) - 了解整合式報告功能
+* [**常見問題集**](active-directory-passwords-faq.md) - 取得常見問題的解答
+* [**疑難排解**](active-directory-passwords-troubleshoot.md) - 了解如何快速移難排解服務的問題
+* [**深入了解**](active-directory-passwords-learn-more.md) - 深入探索服務運作方式的技術細節
 
 
 
@@ -264,8 +261,4 @@ Below are links to all of the Azure AD Password Reset documentation pages:
 [014]: ./media/active-directory-passwords-update-your-own-password/014.jpg "Image_014.jpg"
 [015]: ./media/active-directory-passwords-update-your-own-password/015.jpg "Image_015.jpg"
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0831_2016-->

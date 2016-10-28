@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="Track B2B messages in your logic apps in Azure App Service | Microsoft Azure" 
-   description="This topic covers tracking of B2B processing" 
+   pageTitle="在 Azure App Service 的 Logic Apps 中追蹤 B2B 訊息 | Microsoft Azure" 
+   description="本主題說明 B2B 處理的追蹤" 
    services="logic-apps" 
    documentationCenter=".net,nodejs,java" 
    authors="rajram" 
@@ -17,39 +17,34 @@
    ms.author="rajram"/>
 
 
-
-# <a name="track-b2b-messages"></a>Track B2B messages
+# 追蹤 B2B 訊息
 
 [AZURE.INCLUDE [app-service-logic-version-message](../../includes/app-service-logic-version-message.md)]
 
-## <a name="b2b-tracking-information"></a>B2B Tracking Information
-B2B communication involves message processing between trading partners. The relationships are defined as agreements between two trading partners. Once the communication is established, there needs to be a way to monitor if the communication is happening as expected. 
+## B2B 追蹤資訊
+B2B 通訊牽涉到交易夥伴之間的訊息處理。關聯性定義為兩個交易夥伴之間的協議。建立通訊後，必須以適當方式監視通訊是否如預期般執行。
 
-We've implemented message tracking for the following B2B scenarios: AS2, EDIFACT, and X12.
+我們已經實作了下列 B2B 案例的訊息追蹤：AS2、EDIFACT 和 X12。
 
-## <a name="as2"></a>AS2
-Once you have created an instance of an AS2 API App, browse to that instance, and select **Tracking**. Herein you can view and filter all the AS2 tracking information:  
+## AS2
+在您建立 AS2 API 應用程式的執行個體後，您可以瀏覽至該執行個體，然後選取 [追蹤]。在此處，您可以檢視和篩選所有 AS2 追蹤資訊：
 
-![][1]  
+![][1]
 
-## <a name="edifact"></a>EDIFACT
-Once you have created an instance of an EDIFACT API App, browse to that instance, and select **Tracking**. Herein you can view and filter all the EDIFACT tracking information. Additionally, you can view the interchange level, group level, and transaction set level data, all in a single view. 
+## EDIFACT
+在您建立 EDIFACT API 應用程式的執行個體後，您可以瀏覽至該執行個體，然後選取 [追蹤]。在此處，您可以檢視和篩選所有 EDIFACT 追蹤資訊。此外，您可以檢視交換層級、群組層級和交易集層級資料，全在單一檢視畫面中。
 
-If batches are created as part of EDIFACT agreements in the associated Trading Partner Management API app, then the Batching section lists all these batches. You can select a batch to see the active message (if any) and also the information for the completed:  
+如果批次在相關聯的交易夥伴管理 API 應用程式中建立為 EDIFACT 協議的一部分，則 [批次] 區段會將這些批次全部列出。您可以選取批次來查看作用中的訊息 (如果有的話)，以及已完成的資訊：
 
-![][2]      
+![][2]
 
-## <a name="x12"></a>X12
-Once you have created an instance of an X12 API App, browse to that instance, and select **Tracking**. Herein you can view and filter all the X12 tracking information. Additionally, you can view the interchange level, group level, and transaction set level data, all in a single view.
+## X12
+在您建立 X12 API 應用程式的執行個體後，您可以瀏覽至該執行個體，然後選取 [追蹤]。在此處，您可以檢視和篩選所有 X12 追蹤資訊。此外，您可以檢視交換層級、群組層級和交易集層級資料，全在單一檢視畫面中。
 
-If batches are created as part of X12 agreements in the associated Trading Partner Management API app, then the Batching section lists all these batches. You can select a batch to see the active message (if any) and also the information for the completed batches.
+如果批次在相關聯的交易夥伴管理 API 應用程式中建立為 X12 協議的一部分，則 [批次] 區段會將這些批次全部列出。您可以選取批次來查看作用中的訊息 (如果有的話)，以及已完成批次的資訊。
 
 <!--Image references-->
 [1]: ./media/app-service-logic-track-b2b-messages/AS2Tracking.png
 [2]: ./media/app-service-logic-track-b2b-messages/EDIFACTTracking.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

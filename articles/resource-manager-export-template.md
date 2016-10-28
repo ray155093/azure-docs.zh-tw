@@ -1,122 +1,160 @@
 <properties
-    pageTitle="Export Azure Resource Manager template | Microsoft Azure"
-    description="Use Azure Resource Manage to export a template from an existing resource group."
-    services="azure-resource-manager"
-    documentationCenter=""
-    authors="tfitzmac"
-    manager="timlt"
-    editor="tysonn"/>
+	pageTitle="匯出 Azure Resource Manager 範本 | Microsoft Azure"
+	description="使用 Azure Resource Manager 從現有資源群組匯出範本。"
+	services="azure-resource-manager"
+	documentationCenter=""
+	authors="tfitzmac"
+	manager="timlt"
+	editor="tysonn"/>
 
 <tags
-    ms.service="azure-resource-manager"
-    ms.workload="multiple"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="get-started-article"
-    ms.date="08/03/2016"
-    ms.author="tomfitz"/>
+	ms.service="azure-resource-manager"
+	ms.workload="multiple"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="get-started-article"
+	ms.date="08/03/2016"
+	ms.author="tomfitz"/>
 
+# 從現有資源匯出 Azure Resource Manager 範本
 
-# <a name="export-an-azure-resource-manager-template-from-existing-resources"></a>Export an Azure Resource Manager template from existing resources
+Resource Manager 可讓您從您的訂用帳戶中現有的資源匯出 Resource Manager 範本。您可以使用產生的範本了解範本語法，或視需要自動重新部署解決方案。
 
-Resource Manager enables you to export a Resource Manager template from existing resources in your subscription. You can use that generated template to learn about the template syntax or to automate the redeployment of your solution as needed.
+請務必注意，有兩種不同的方式可匯出範本︰
 
-It is important to note that there are two different ways to export a template:
+- 您可以匯出用於部署的實際範本。匯出的範本包含與原始範本完全相同的所有參數和變數。當您已透過入口網站部署資源時，這個方法很有用。現在，您想要了解如何建構範本來建立這些資源。
+- 您可以匯出代表資源群組目前狀態的範本。匯出的範本不是以任何用於部署的範本為基礎。反而，它所建立的範本是資源群組的快照。匯出的範本會有許多硬式編碼值，但數量可能不如您通常會定義的參數數量。當您已透過入口網站或指令碼修改資源群組時，這個方法很有用。現在，您需要擷取做為範本的資源群組。
 
-- You can export the actual template that you used for a deployment. The exported template includes all the parameters and variables exactly as they appeared in the original template. This approach is helpful when you have deployed resources through the portal. Now, you want to see how to construct the template to create those resources.
-- You can export a template that represents the current state of the resource group. The exported template is not based on any template that you used for deployment. Instead, it creates a template that is a snapshot of the resource group. The exported template has many hard-coded values and probably not as many parameters as you would typically define. This approach is useful when you have modified the resource group through the portal or scripts. Now, you need to capture the resource group as a template.
+本主題說明這兩種方法。在[自訂匯出的 Azure Resource Manager 範本](resource-manager-customize-template.md)一文中，您會了解如何採用從資源群組的目前狀態所產生的範本，並使其更適合用於重新部署您的方案。
 
-This topic shows both approaches. In the [Customize an exported Azure Resource Manager template](resource-manager-customize-template.md) article, you see how to take a template you generated from the current state of the resource group and make it more useful for redeploying your solution.
+在本教學課程中，您會登入 Azure 入口網站、建立儲存體帳戶，並匯出該儲存體帳戶的範本。您會新增虛擬網路以修改資源群組。最後，您會匯出可表示其目前狀態的新範本。雖然本文著重於簡化基礎結構，您可以使用這些相同的步驟匯出更複雜的解決方案的範本。
 
-In this tutorial, you sign in to the Azure portal, create a storage account, and export the template for that storage account. You add a virtual network to modify the resource group. Finally, you export a new template that represents its current state. Although this article focuses on a simplified infrastructure, you could use these same steps to export a template for a more complicated solution.
+## 建立儲存體帳戶
 
-## <a name="create-a-storage-account"></a>Create a storage account
+1. 在 [Azure 入口網站](https://portal.azure.com)中，選取 [新增] > [資料 + 儲存體] > [儲存體帳戶]。
 
-1. In the [Azure portal](https://portal.azure.com), select **New** > **Data + Storage** > **Storage account**.
+      ![建立儲存體](./media/resource-manager-export-template/create-storage.png)
 
-      ![create storage](./media/resource-manager-export-template/create-storage.png)
+2. 使用名稱 **storage**、您的姓名縮寫和日期建立儲存體帳戶。儲存體帳戶名稱必須是 Azure 中是獨一無二的。如果您一開始嘗試已使用中的名稱，請試著變化。對於資源群組，請使用 **ExportGroup**。您可以對其他屬性使用預設值。選取 [**建立**]。
 
-2. Create a storage account with the name **storage**, your initials, and the date. The storage account name must be unique across Azure. If you initially try a name that's already in use, try a variation. For resource group, use **ExportGroup**. You can use the default values for the other properties. Select **Create**.
+      ![提供儲存體的值](./media/resource-manager-export-template/provide-storage-values.png)
 
-      ![provide values for storage](./media/resource-manager-export-template/provide-storage-values.png)
+部署完成後，您的訂用帳戶會包含儲存體帳戶。
 
-After the deployment finishes, your subscription contains the storage account.
+## 從部署歷程記錄匯出範本
 
-## <a name="export-the-template-from-deployment-history"></a>Export the template from deployment history
+1. 移至您的新資源群組的 [資源群組] 刀鋒視窗。請注意，刀鋒視窗會顯示最後部署的結果。選取此連結。
 
-1. Go to the resource group blade for your new resource group. Notice that the blade shows the result of the last deployment. Select this link.
+      ![資源群組刀鋒視窗](./media/resource-manager-export-template/resource-group-blade.png)
 
-      ![resource group blade](./media/resource-manager-export-template/resource-group-blade.png)
+2. 您會看到群組的部署歷程記錄。在您的案例中，刀鋒視窗可能只列出一個部署。選取此部署。
 
-2. You see a history of deployments for the group. In your case, the blade probably lists only one deployment. Select this deployment.
+     ![上次部署](./media/resource-manager-export-template/last-deployment.png)
 
-     ![last deployment](./media/resource-manager-export-template/last-deployment.png)
+3. 刀鋒視窗會顯示部署的摘要。摘要包含部署和其作業的狀態，與您為參數所提供的值。若要查看用於部署的範本，請選取 [檢視範本]。
 
-3. The blade displays a summary of the deployment. The summary includes the status of the deployment and its operations and the values that you provided for parameters. To see the template that you used for the deployment, select **View template**.
+     ![檢視部署摘要](./media/resource-manager-export-template/deployment-summary.png)
 
-     ![view deployment summary](./media/resource-manager-export-template/deployment-summary.png)
+4. Resource Manager 會為您擷取下列六個檔案：
 
-4. Resource Manager retrieves the following six files for you:
+   1. **範本** - 用於定義解決方案之基礎結構的範本。當您透過入口網站建立儲存體帳戶時，Resource Manager 會使用範本來部署它，並且儲存該範本供日後參考。
+   2. **參數** - 您可以在部署期間用來傳入值的參數檔案。它包含您在第一次部署時提供的值，但是您可以在重新部署範本時變更這些值。
+   3. **CLI** - 您可以為了部署範本而使用的 Azure 令列介面 (CLI) 指令碼檔案。
+   4. **PowerShell** - 您可以為了部署範本而使用的 Azure PowerShell 指令碼檔案。
+   5. **.NET** - 您可以為了部署範本而使用的 .NET 類別。
+   6. **Ruby** - 您可以為了部署範本而使用的 Ruby 類別。
 
-   1. **Template** - The template that defines the infrastructure for your solution. When you created the storage account through the portal, Resource Manager used a template to deploy it and saved that template for future reference.
-   2. **Parameters** - A parameter file that you can use to pass in values during deployment. It contains the values that you provided during the first deployment, but you can change any of these values when you redeploy the template.
-   3. **CLI** - An Azure command-line-interface (CLI) script file that you can use to deploy the template.
-   4. **PowerShell** - An Azure PowerShell script file that you can use to deploy the template.
-   5. **.NET** - A .NET class that you can use to deploy the template.
-   6. **Ruby** - A Ruby class that you can use to deploy the template.
+     這些檔案可以透過刀鋒視窗的連結取得。根據預設，刀鋒視窗會顯示範本。
 
-     The files are available through links across the blade. By default, the blade displays the template.
+       ![檢視範本](./media/resource-manager-export-template/view-template.png)
 
-       ![view template](./media/resource-manager-export-template/view-template.png)
+     請特別注意範本。您的範本應該如下所示：
 
-     Let's pay particular attention to the template. Your template should look similar to:
-
-        {     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",     "contentVersion": "1.0.0.0",     "parameters": {       "name": {         "type": "String"       },       "accountType": {         "type": "String"       },       "location": {         "type": "String"       },       "encryptionEnabled": {         "defaultValue": false,         "type": "Bool"       }     },     "resources": [       {         "type": "Microsoft.Storage/storageAccounts",         "sku": {           "name": "[parameters('accountType')]"         },         "kind": "Storage",         "name": "[parameters('name')]",         "apiVersion": "2016-01-01",         "location": "[parameters('location')]",         "properties": {           "encryption": {             "services": {               "blob": {                 "enabled": "[parameters('encryptionEnabled')]"               }             },             "keySource": "Microsoft.Storage"           }         }       }     ]   }
+        {
+          "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "parameters": {
+            "name": {
+              "type": "String"
+            },
+            "accountType": {
+              "type": "String"
+            },
+            "location": {
+              "type": "String"
+            },
+            "encryptionEnabled": {
+              "defaultValue": false,
+              "type": "Bool"
+            }
+          },
+          "resources": [
+            {
+              "type": "Microsoft.Storage/storageAccounts",
+              "sku": {
+                "name": "[parameters('accountType')]"
+              },
+              "kind": "Storage",
+              "name": "[parameters('name')]",
+              "apiVersion": "2016-01-01",
+              "location": "[parameters('location')]",
+              "properties": {
+                "encryption": {
+                  "services": {
+                    "blob": {
+                      "enabled": "[parameters('encryptionEnabled')]"
+                    }
+                  },
+                  "keySource": "Microsoft.Storage"
+                }
+              }
+            }
+          ]
+        }
  
-This template is the actual template used to create your storage account. Notice it contains parameters that enable you to deploy different types of storage accounts. To learn more about the structure of a template, see [Authoring Azure Resource Manager templates](resource-group-authoring-templates.md). For the complete list of the functions you can use in a template, see [Azure Resource Manager template functions](resource-group-template-functions.md).
+該範本是用來建立儲存體帳戶的實際範本。請注意，其中包含的參數可讓您部署不同類型的儲存體帳戶。若要深入了解範本的結構，請參閱[編寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)。如需可以在範本中使用的完整函式清單，請參閱 [Azure Resource Manager 範本函式](resource-group-template-functions.md)。
 
 
-## <a name="add-a-virtual-network"></a>Add a virtual network
+## 新增虛擬網路
 
-The template that you downloaded in the previous section represented the infrastructure for that original deployment. However, it will not account for any changes you make after the deployment.
-To illustrate this issue, let's modify the resource group by adding a virtual network through the portal.
+您在上一節中下載的範本表示該原始部署的基礎結構，但是它不會計入您在部署後所做的任何變更。為了說明這個問題，讓我們修改資源群組，方法是透過入口網站新增虛擬網路。
 
-1. In the resource group blade, select **Add**.
+1. 在資源群組刀鋒視窗中，選取 [新增]。
 
-      ![add resource](./media/resource-manager-export-template/add-resource.png)
+      ![新增資源](./media/resource-manager-export-template/add-resource.png)
 
-2. Select **Virtual network** from the available resources.
+2. 從可用的資源中選取 [虛擬網路]。
 
-      ![select virtual network](./media/resource-manager-export-template/select-vnet.png)
+      ![選取虛擬網路](./media/resource-manager-export-template/select-vnet.png)
 
-2. Name your virtual network **VNET**, and use the default values for the other properties. Select **Create**.
+2. 將您的虛擬網路命名為 **VNET**，並且對其他屬性使用預設值。選取 [**建立**]。
 
-      ![set alert](./media/resource-manager-export-template/create-vnet.png)
+      ![設定警示](./media/resource-manager-export-template/create-vnet.png)
 
-3. After the virtual network has successfully deployed to your resource group, look again at the deployment history. You now see two deployments. If you do not see the second deployment, you may need to close your resource group blade and reopen it. Select the more recent deployment.
+3. 虛擬網路成功部署到您的資源群組之後，請再次查看部署歷程記錄。您現在會看到兩個部署。如果看不到第二個部署，您可能需要關閉資源群組刀鋒視窗，然後重新開啟它。選取較新的部署。
 
-      ![deployment history](./media/resource-manager-export-template/deployment-history.png)
+      ![部署歷程記錄](./media/resource-manager-export-template/deployment-history.png)
 
-4. Look at the template for that deployment. Notice that it defines only the changes that you have made to add the virtual network.
+4. 查看該部署的範本。請注意，它只會定義您為了新增虛擬網路所做的變更。
 
-It is generally a best practice to work with a template that deploys all the infrastructure for your solution in a single operation. This approach is more reliable than remembering many different templates to deploy.
+一般的最佳做法是使用範本，該範本在單一作業中部署您的解決方案的所有基礎結構。這個方法會比記住許多不同的部署範來得可靠。
 
 
-## <a name="export-the-template-from-resource-group"></a>Export the template from resource group
+## 從資源群組匯出範本
 
-Although each deployment shows only the changes that you have made to your resource group, at any time you can export a template to show the attributes of your entire resource group.  
+雖然每個部署只會顯示您對資源群組所做的變更，您隨時可以匯出範本，以顯示整個資源群組的屬性。
 
-> [AZURE.NOTE] You cannot export a template for a resource group that has more than 200 resources.
+> [AZURE.NOTE] 您無法針對具有超過 200 個資源的資源群組匯出範本。
 
-1. To view the template for a resource group, select **Automation script**.
+1. 若要檢視資源群組的範本，請選取 [自動化指令碼]。
 
-      ![export resource group](./media/resource-manager-export-template/export-resource-group.png)
+      ![匯出資源群組](./media/resource-manager-export-template/export-resource-group.png)
 
-     Not all resource types support the export template function. If your resource group only contains the storage account and virtual network shown in this article, you will not see an error. However, if you have created other resource types, you may see an error stating that there is a problem with the export. You learn how to handle those issues in the [Fix export issues](#fix-export-issues) section.
+     並非所有的資源類型都支援匯出範本功能。如果您的資源群組只包含本文中顯示的儲存體帳戶和虛擬網路，將不會看到錯誤。不過，如果您已建立其他資源類型，您可能會看到錯誤，指出匯出有問題。您會在[修正匯出問題](#fix-export-issues)一節中了解如何處理這些問題。
 
       
 
-2. You again see the six files that you can use to redeploy the solution, but this time the template is a little different. This template has only two parameters: one for the storage account name, and one for the virtual network name.
+2. 您會再次看到可用來重新部署解決方案的六個檔案，但是這次的範本有點不同。此範本只包含 2 個參數：一個用於儲存體帳戶名稱，一個用於虛擬網路名稱。
 
         "parameters": {
           "virtualNetworks_VNET_name": {
@@ -129,7 +167,7 @@ Although each deployment shows only the changes that you have made to your resou
           }
         },
 
-     Resource Manager did not retrieve the templates that you used during deployment. Instead, it generated a new template that's based on the current configuration of the resources. For example, the template sets the storage account location and replication value to:
+     Resource Manager 未擷取在部署期間使用的範本。而是根據資源的目前組態產生新的範本。例如，範本將儲存體帳戶位置和複寫值設為：
 
         "location": "northeurope",
         "tags": {},
@@ -137,31 +175,31 @@ Although each deployment shows only the changes that you have made to your resou
             "accountType": "Standard_RAGRS"
         },
 
-3. Download the template so that you can work on it locally.
+3. 下載範本，您就可以在本機使用。
 
-      ![download template](./media/resource-manager-export-template/download-template.png)
+      ![下載範本](./media/resource-manager-export-template/download-template.png)
 
-4. Find the .zip file that you downloaded and extract the contents. You can use this downloaded template to redeploy your infrastructure.
+4. 尋找您所下載的 .zip 檔案，並將內容解壓縮。您可以使用此下載的範本重新部署您的基礎結構。
 
-## <a name="fix-export-issues"></a>Fix export issues
+## 修正匯出問題
 
-Not all resource types support the export template function. Resource Manager specifically does not export some resource types to prevent exposing sensitive data. For example, if you have a connection string in your site config, you probably do not want it explicitly displayed in an exported template. You can get around this issue by manually adding the missing resources back into your template.
+並非所有的資源類型都支援匯出範本功能。Resource Manager 明確地不匯出某些資源類型，以免公開敏感性資料。例如，如果您的網站組態中有連接字串，您可能不想讓它明確地顯示在匯出的範本中。您可以將遺漏資源手動加回您的範本，以解決此問題。
 
-> [AZURE.NOTE] You only encounter export issues when exporting from a resource group rather than from your deployment history. If your last deployment accurately represents the current state of the resource group, you should export the template from the deployment history rather than from the resource group. Only export from a resource group when you have made changes to the resource group that are not defined in a single template.
+> [AZURE.NOTE] 從資源群組 (而非部署歷程記錄) 匯出時，您只會遇到匯出問題。如果上一次部署精確地表示資源群組的目前狀態，您應該從部署歷程記錄 (而非資源群組) 匯出範本。只有在變更未定義於單一範本中的資源群組時，才能從資源群組匯出。
 
-For example, if you export a template for a resource group that contains a web app, SQL Database, and a connection string in the site config, you will see the following message.
+比方說，如果您針對包含 Web 應用程式、SQL Database 和網站組態中的連接字串的資源群組匯出範本，您會看到下列訊息。
 
 ![show error](./media/resource-manager-export-template/show-error.png)
 
-Selecting the message shows you exactly which resource types were not exported. 
+選取此訊息，將會完全顯示未匯出的資源類型。
      
 ![show error](./media/resource-manager-export-template/show-error-details.png)
 
-This topic shows the following common fixes. To implement these resources, you need to add parameters to template. For more information, see [Customize and redeploy exported template](resource-manager-customize-template.md).
+本主題說明下列常見的修正方法。若要實作這些資源，您需要將參數加入至範本。如需詳細資訊，請參閱[自訂和重新部署匯出的範本](resource-manager-customize-template.md)。
 
-### <a name="connection-string"></a>Connection string
+### Connection string
 
-In the web sites resource, add a definition for the connection string to the database:
+在網站資源中，將連接字串的定義新增至資料庫︰
 
 ```
 {
@@ -186,9 +224,9 @@ In the web sites resource, add a definition for the connection string to the dat
 }
 ```    
 
-### <a name="web-site-extension"></a>Web site extension
+### 網站擴充功能
 
-In the web site resource, add a definition for the code to install:
+在網站資源中，新增要安裝的程式碼的定義︰
 
 ```
 {
@@ -216,13 +254,13 @@ In the web site resource, add a definition for the code to install:
 }
 ```
 
-### <a name="virtual-machine-extension"></a>Virtual machine extension
+### 虛擬機器擴充功能
 
-For examples of virtual machine extensions, see [Azure Windows VM Extension Configuration Samples](./virtual-machines/virtual-machines-windows-extensions-configuration-samples.md).
+如需虛擬機器擴充功能的範例，請參閱 [Azure Windows VM 擴充功能組態範例](./virtual-machines/virtual-machines-windows-extensions-configuration-samples.md)。
 
-### <a name="virtual-network-gateway"></a>Virtual network gateway
+### 虛擬網路閘道
 
-Add a virtual network gateway resource type.
+新增虛擬網路閘道資源類型。
 
 ```
 {
@@ -256,9 +294,9 @@ Add a virtual network gateway resource type.
 },
 ```
 
-### <a name="local-network-gateway"></a>Local network gateway
+### 區域網路閘道
 
-Add a local network gateway resource type.
+新增區域網路閘道資源類型。
 
 ```
 {
@@ -274,9 +312,9 @@ Add a local network gateway resource type.
 }
 ```
 
-### <a name="connection"></a>Connection
+### 連線
 
-Add a connection resource type.
+新增連線資源類型。
 
 ```
 {
@@ -299,16 +337,12 @@ Add a connection resource type.
 ```
 
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-Congratulations! You have learned how to export a template from resources that you created in the portal.
+恭喜！ 您已經了解如何從您在入口網站中建立的資源匯出範本。
 
-- In the second part of this tutorial, you customize the template that you downloaded by adding more parameters and redeploy it through a script. See [Customize and redeploy exported template](resource-manager-customize-template.md).
-- To see how to export a template through PowerShell, see [Using Azure PowerShell with Azure Resource Manager](powershell-azure-resource-manager.md).
-- To see how to export a template through Azure CLI, see [Use the Azure CLI for Mac, Linux, and Windows with Azure Resource Manager](xplat-cli-azure-resource-manager.md).
+- 在本教學課程的第二個部分中，您會自訂下載的範本，方法是新增更多參數，並且透過指令碼重新部署它。請參閱[自訂和重新部署匯出的範本](resource-manager-customize-template.md)。
+- 若要查看如何透過 PowerShell 匯出範本，請參閱[搭配使用 Azure PowerShell 與 Azure Resource Manager](powershell-azure-resource-manager.md)。
+- 若要查看如何透過 Azure CLI 匯出範本，請參閱[搭配使用 Mac、Linux 和 Windows 適用的 Azure CLI 與 Azure Resource Manager](xplat-cli-azure-resource-manager.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0928_2016-->

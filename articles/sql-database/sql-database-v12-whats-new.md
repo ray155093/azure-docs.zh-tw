@@ -1,191 +1,186 @@
 <properties
-    pageTitle="What's new in SQL Database V12 | Microsoft Azure"
-    description="Describes why business systems that are using Azure SQL Database in the cloud will benefit by upgrading to version V12 now."
-    services="sql-database"
-    documentationCenter=""
-    authors="MightyPen"
-    manager="jhubbard"
-    editor=""/>
+	pageTitle="SQL Database V12 的新功能 | Microsoft Azure"
+	description="說明在雲端使用 Azure SQL Database 的業務系統為何可在立即升級至 V12 版本之後受益。"
+	services="sql-database"
+	documentationCenter=""
+	authors="MightyPen"
+	manager="jhubbard"
+	editor=""/>
 
 
 <tags
-    ms.service="sql-database"
-    ms.workload="data-management"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/15/2016"
-    ms.author="genemi"/>
+	ms.service="sql-database"
+	ms.workload="data-management"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/15/2016"
+	ms.author="genemi"/>
 
 
-
-# <a name="what's-new-in-sql-database-v12"></a>What's new in SQL Database V12
-
-
-This topic describes the many advantages that the new V12 version of Azure SQL Database has over version V11.
+# SQL Database V12 新功能
 
 
-We continue to add features to V12. So we encourage you to visit our Service Updates webpage for Azure, and to use its filters:
+本主題說明許多 Azure SQL Database V12 版本優於 V11 版本的新優點。
 
 
-- Filtered to the [SQL Database service](https://azure.microsoft.com/updates/?service=sql-database).
-- Filtered to General Availability [(GA) announcements](http://azure.microsoft.com/updates/?service=sql-database&update-type=general-availability) for SQL Database features.
+我們持續新增 V12 的功能。因此我們鼓勵您造訪我們的 Azure 服務更新網頁，並使用它的篩選條件：
 
 
-The latest information about resource limits for SQL Database is documented at:<br/>[Azure SQL Database Resource Limits](sql-database-resource-limits.md).
+- 篩選出 [SQL Database 服務](https://azure.microsoft.com/updates/?service=sql-database)。
+- 篩選出 SQL Database 功能的「正式運作 [(GA)」公告](http://azure.microsoft.com/updates/?service=sql-database&update-type=general-availability)。
 
 
-## <a name="increased-application-compatibility-with-sql-server"></a>Increased application compatibility with SQL Server
+SQL Database 的資源限制的最新資訊記載於：<br/>[Azure SQL Database 資源限制](sql-database-resource-limits.md)。
 
 
-A key goal for SQL Database V12 was to improve the compatibility with Microsoft SQL Server 2014, and to maintain the compatibility as new versions of SQL Server are released. Among other areas, V12 achieves parity with SQL Server in the important area of programmability. For example:
+## 提升與 SQL Server 的應用程式相容性
 
-- [Built-in JSON support](https://msdn.microsoft.com/library/dn921897.aspx)
 
-- [Window functions](http://msdn.microsoft.com/library/ms189798.aspx), with [OVER](http://msdn.microsoft.com/library/ms189461.aspx)
+SQL Database V12 的一個主要目標是提高與 Microsoft SQL Server 2014 的相容性，以及在發行新版本的 SQL Server 時保有相容性。在其他區域中，V12 在可程式性的重要區域中已達成 SQL Server 同位檢查例如：
 
-- [XML indexes](http://msdn.microsoft.com/library/bb934097.aspx) and [selective XML indexes](http://msdn.microsoft.com/library/jj670104.aspx)
+- [內建的 JSON 支援](https://msdn.microsoft.com/library/dn921897.aspx)
 
-- [Change tracking](http://msdn.microsoft.com/library/bb933875.aspx)
+- [Window 函數](http://msdn.microsoft.com/library/ms189798.aspx) (包含 [OVER](http://msdn.microsoft.com/library/ms189461.aspx))
+
+- [XML 索引](http://msdn.microsoft.com/library/bb934097.aspx)和[選擇性 XML 索引](http://msdn.microsoft.com/library/jj670104.aspx)
+
+- [變更追蹤](http://msdn.microsoft.com/library/bb933875.aspx)
 
 - [SELECT...INTO](http://msdn.microsoft.com/library/ms188029.aspx)
 
-- [Full-text search](http://msdn.microsoft.com/library/ms142571.aspx)
+- [全文檢索搜尋](http://msdn.microsoft.com/library/ms142571.aspx)
 
 - [ALTER DATABASE SCOPED CONFIGURATION (Transact-SQL)](http://msdn.microsoft.com/library/mt629158.aspx)
 
-See [here](sql-database-transact-sql-information.md) for the small set of features not yet supported in SQL Database.
+如需了解 SQL Database 中尚未支援的少部分功能，請參閱[這裡](sql-database-transact-sql-information.md)。
 
 
-### <a name="compatibility-level-130"></a>Compatibility level 130
+### 相容性層級 130
 
 
-> [AZURE.IMPORTANT] Starting in **June 2016**, *newly* created databases on Azure SQL Database V12 have their compatibility level start at 130, which matches Microsoft SQL Server 2016 GA.
+> [AZURE.IMPORTANT] 從 **2016 年 6 月**起，Azure SQL Database V12 中*新*建立的資料庫至少都有 130 以上的相容性層級，符合 Microsoft SQL Server 2016 GA。
 > 
-> You can use `ALTER DATABASE YourDatabase SET COMPATIBILITY_LEVEL = 120` if you prefer.
+> 如果您喜歡，可以使用 `ALTER DATABASE YourDatabase SET COMPATIBILITY_LEVEL = 120`。
 > 
-> Databases created before June 2016 do not have their compatibility level changed by this change of default. Nor is the level of a database changed by upgrading it from V11 to V12.
+> 2016 年 6 月之前建立的資料庫，不會隨這項預設值變更而改變相容性層級。資料庫就算從 V11 升級至 V12 也不會變更層級。
 
 
 
-For an explanation of how you can compare your most important queries between the latest versus previous compatibility level, see:
+關於如何在最新版與舊版相容性層級之間比較您最重要的查詢，相關說明請參閱︰
 
-- [Improved Query Performance with Compatibility Level 130 in Azure SQL Database](sql-database-compatibility-level-query-performance-130.md)
-
-
-
-## <a name="more-premium-performance,-new-performance-levels"></a>More premium performance, new performance levels
+- [在 Azure SQL Database 中以相容性層級 130 改善查詢效能](sql-database-compatibility-level-query-performance-130.md)
 
 
-In V12, we increased the Database Transaction Units (DTUs) allocated to all Premium performance levels by 25% at no additional cost. Even greater performance gains can be achieved with new features like:
+
+## 更多高階效能，新的效能層級
 
 
-- Support for in-memory [columnstore indexes](http://msdn.microsoft.com/library/gg492153.aspx).
-- [Table partitioning by rows](http://msdn.microsoft.com/library/ms187802.aspx) with related enhancements to [TRUNCATE TABLE](http://msdn.microsoft.com/library/ms177570.aspx).
-- The availability of dynamic management views [(DMVs)](http://msdn.microsoft.com/library/ms188754.aspx) to help monitor and tune performance.
+在 V12 中，我們將分配給所有高階效能層級的資料庫交易單位 (DTU) 提高了 25% 且不需要額外成本更可透過新功能進一步提升效能，例如：
 
 
-### <a name="reliable-performance"></a>Reliable performance
+- 支援記憶體內部[資料行存放區索引](http://msdn.microsoft.com/library/gg492153.aspx)。
+- 利用 [TRUNCATE TABLE](http://msdn.microsoft.com/library/ms177570.aspx) 相關增強功能，[依據資料列進行資料表分割](http://msdn.microsoft.com/library/ms187802.aspx)
+- 可使用動態管理檢視 [(DMV)](http://msdn.microsoft.com/library/ms188754.aspx) 來協助監視和調整效能。
 
 
-If your client program connects to SQL Database V12 while your client runs on an Azure virtual machine (VM), you must open the following port ranges on the VM:
+### 可靠的效能
+
+
+如果您的用戶端在 Azure 虛擬機器 (VM) 上執行時，用戶端程式連線至 SQL Database V12，您就必須開啟此 VM 上的下列範圍連接埠：
 
 - 11000-11999
 - 14000-14999
 
 
-Click [here](sql-database-develop-direct-route-ports-adonet-v12.md) for details about the ports for SQL Database V12. The ports are needed by performance enhancements in SQL Database V12.
+如需 SQL Database V12 連接埠的詳細資訊，請按一下[這裡](sql-database-develop-direct-route-ports-adonet-v12.md)。SQL Database V12 的效能增強功能需要這些連接埠。
 
 
-## <a name="better-support-for-cloud-saas-vendors"></a>Better support for cloud SaaS vendors
+## 更有效地支援雲端 SaaS 廠商
 
 
-Only in V12, we released the new Standard performance level S3 and the public preview of [elastic database pools](sql-database-elastic-pool.md). Elastic database pools is a solution designed for cloud SaaS vendors.  With elastic database pools, you can:
+我們只在 V12 中發佈新的 Standard 效能層級 S3 與[彈性資料庫集區](sql-database-elastic-pool.md)公用預覽彈性資料庫集區是為雲端 SaaS 廠商所設計的解決方案。使用彈性資料庫集區，您可以：
 
 
-- Share DTUs among databases to reduce costs for large numbers of databases.
-- Execute [elastic database jobs](sql-database-elastic-jobs-overview.md) to manage databases at scale.
+- 在資料庫之間共用 DTU，以降低大量資料庫的成本。
+- 執行[彈性資料庫工作](sql-database-elastic-jobs-overview.md)以大規模管理資料庫。
 
 
-## <a name="security-enhancements"></a>Security enhancements
+## 安全性增強功能
 
 
-Security is a primary concern for anyone who runs their business in the cloud. The latest security features released in V12 include:
+對於在雲端營運業務的任何人來說，安全性是一個主要考量。V12 中發行的最新安全性功能包括：
 
 
-- [Row-level security](http://msdn.microsoft.com/library/dn765131.aspx) (RLS)
-- [Dynamic Data Masking](sql-database-dynamic-data-masking-get-started.md)
-- [Contained databases](http://msdn.microsoft.com/library/ff929188.aspx)
-- [Application roles](http://msdn.microsoft.com/library/ms190998.aspx) managed with GRANT, DENY, REVOKE
-- [Transparent Data Encryption](http://msdn.microsoft.com/library/0bf7e8ff-1416-4923-9c4c-49341e208c62.aspx) (TDE)
-- [Connecting to SQL Database By Using Azure Active Directory Authentication](sql-database-aad-authentication.md)
- - SQL Database now supports Azure Active Directory authentication, a mechanism of connecting to SQL Database by using identities in Azure Active Directory (Azure AD). With Azure Active Directory authentication you can centrally manage the identities of database users and other Microsoft services in one central location.
-- [Always Encrypted](https://msdn.microsoft.com/library/mt163865.aspx) (in preview) makes encryption transparent to applications and allows clients to encrypt sensitive data inside client applications without sharing the encryption keys with SQL Database.
+- [資料列層級安全性](http://msdn.microsoft.com/library/dn765131.aspx) (RLS)
+- [動態資料遮罩](sql-database-dynamic-data-masking-get-started.md)
+- [自主資料庫](http://msdn.microsoft.com/library/ff929188.aspx)
+- 使用 GRANT、DENY、REVOKE 管理的[應用程式角色](http://msdn.microsoft.com/library/ms190998.aspx)
+- [透明資料加密](http://msdn.microsoft.com/library/0bf7e8ff-1416-4923-9c4c-49341e208c62.aspx) (TDE)
+- [使用 Azure Active Directory 驗證連線到 SQL Database](sql-database-aad-authentication.md)
+ - SQL Database 現在支援 Azure Active Directory 驗證，這是 Azure Active Directory (Azure AD) 中使用身分識別連線到 SQL Database 的機制。您可以使用 Azure Active Directory 驗證，在單一中央位置集中管理資料庫使用者和其他 Microsoft 服務的身分識別。
+- [永遠加密](https://msdn.microsoft.com/library/mt163865.aspx) (預覽版) 可讓加密對應用程式來說變成透明化，並允許用戶端加密用戶端應用程式內的機密資料，而不需與 SQL Database 共用加密金鑰。
 
 
-## <a name="increased-business-continuity-when-recovery-is-needed"></a>Increased business continuity when recovery is needed
+## 當需要復原時提升業務持續性
 
 
-V12 offers improved recovery point objectives (RPOs) and estimated recovery times (ERTs):
+V12 提供改進的復原點目標 (RPO) 與預估復原時間 (ERT)：
 
 
-| Business continuity feature | Earlier version | V12 |
+| 業務續航力功能 | 較早版本 | V12 |
 | :-- | :-- | :-- |
-| Geo-restore | • RPO < 24 hours.<br/>• ERT <  12 hours. | • RPO < 1 hour.<br/>• ERT < 12 hours. |
-| Active Geo-Replication | • RPO < 5 minutes.<br/>• ERT < 1 hour. | • RPO < 5 seconds.<br/>• ERT < 30 seconds. |
+| 異地還原 | • RPO < 24 小時。<br/>• ERT < 12 小時。 | • RPO < 1 小時。<br/>• ERT < 12 小時。 |
+| 主動式異地複寫 | • RPO < 5 分鐘。<br/>• ERT < 1 小時。 | • RPO < 5 秒。<br/>• ERT < 30 秒。 |
 
 
-See [SQL Database business continuity](sql-database-business-continuity.md) for more information.
+如需詳細資訊，請參閱 [SQL Database 業務持續性](sql-database-business-continuity.md)。
 
 
-## <a name="more-reasons-to-upgrade-now"></a>More reasons to upgrade now
+## 更多需要立即升級的理由
 
 
-There are many good reasons why customers should upgrade now to Azure SQL Database V12 from V11:
+客戶有許多很好的理由應該立即從 V11 升級到 Azure SQL Database V12：
 
 
-- SQL Database V12 has a long list of features beyond the features of V11.
-- We continue to add new features to V12, but no new features will be added to V11.
-- Most new features are released on SQL Database V12 before they are being released for Microsoft SQL Server.
+- SQL Database V12 新增了許多 V11 功能中沒有的新功能。
+- 我們持續新增 V12 的功能，但是 V11 不會新增功能。
+- 大部分的新功能在發佈給 Microsoft SQL Server 之前，都已在 SQL Database V12 上發佈。
 
 
-## <a name="are-you-using-v12-already?"></a>Are you using V12 already?
+## 您已經在使用 V12 了嗎？
 
 
-One easy way to see if you have a database or logical server running on an earlier version of the SQL Database service is to do the following:
+查看您是否已經具備執行較早版本 SQL Database 服務的資料庫或邏輯伺服器的一個簡單方法是執行下列動作：
 
 
-1. Go to the [Azure Portal](https://portal.azure.com/).
-2. Click **Browse**.
-3. Click **SQL Servers**.
-4. The icon next to your server or database tells the story:
- - ![Icon for a v12 server](./media/sql-database-v12-whats-new/v12_icon.png) **V12 logical server**
- - ![Icon for earlier version server](./media/sql-database-v12-whats-new/earlier_icon.png) **Earlier version logical server**
+1. 移至 [Azure 入口網站](https://portal.azure.com/)。
+2. 按一下 [瀏覽]。
+3. 按一下 [SQL Server]。
+4. 您的伺服器或資料庫旁邊的圖示會告知詳情：
+ - ![V12 伺服器圖示](./media/sql-database-v12-whats-new/v12_icon.png) **V12 邏輯伺服器**
+ - ![較早版本的伺服器圖示](./media/sql-database-v12-whats-new/earlier_icon.png) **較早版本的邏輯伺服器**
 
 
-Another technique to ascertain the version is to run the `SELECT @@version;` statement in your database, and view the results similar to:
+確定版本的另一個方法是在資料庫中執行 `SELECT @@version;` 陳述式，並檢視類似於下面所示的結果：
 
 
-- **12**.0.2000.10 &nbsp; *(version V12)*
-- **11**.0.9228.18 &nbsp; *(version V11)*
+- **12**.0.2000.10 &nbsp; *(版本 V12)*
+- **11**.0.9228.18 &nbsp; *(版本 V11)*
 
 
-A V12 database can be hosted only on a V12 logical server. And a V12 server can host only V12 databases.
+V12 資料庫只能裝載在 V12 邏輯伺服器上。而 V12 只可以裝載 V12 資料庫。
 
 
-If you are not yet running on V12, you can upgrade your logical server by following the steps in [Upgrade to SQL Database V12 in place](sql-database-v12-plan-prepare-upgrade.md).
+如果您尚未於 V12 上執行，您可以依照下列[就地升級至 SQL Database V12](sql-database-v12-plan-prepare-upgrade.md) 中的步驟，升級您的邏輯伺服器。
 
 
-## <a name="<a-name="v12azuresqldbpreviewgatable"></a>-general-availability-regions"></a><a name="V12AzureSqlDbPreviewGaTable"></a> General Availability regions
+## <a name="V12AzureSqlDbPreviewGaTable"></a>公開上市區域
 
 
-- By July 31, 2015, all regions had been promoted to General Availability (GA).
-- V12 was released in December 2014, but only at the status of Preview.
+- 2015 年 7 月 31，所有區域都已升級至公開上市 (GA)。
+- V12 已於 2014 年 12 月發行，但是僅以預覽狀態提供。
 
-[Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+[Microsoft Azure 預覽專用的使用補充條款](https://azure.microsoft.com/support/legal/preview-supplemental-terms/)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

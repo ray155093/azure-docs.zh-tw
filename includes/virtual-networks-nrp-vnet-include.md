@@ -1,81 +1,79 @@
-## <a name="virtual-network"></a>Virtual Network
-Virtual Networks (VNET) and subnets resources help define a security boundary for workloads running in Azure. A VNet is characterized by a collection of address spaces, defined as CIDR blocks. 
+## 虛擬網路
+虛擬網路 (VNET) 和子網路資源有助於定義在 Azure 中執行之工作負載的安全性範圍。VNET 可由一組位址空間集合所界定 (此集合定義為 CIDR 區塊)。
 
->[AZURE.NOTE] Network administrators are familiar with CIDR notation. If you are not familiar with CIDR, [learn more about it](http://whatismyipaddress.com/cidr).
+>[AZURE.NOTE] 網路管理員都熟悉 CIDR 標記法。如果您不熟悉 CIDR，請[深入了解](http://whatismyipaddress.com/cidr)。
 
-![VNet with multiple subnets](./media/resource-groups-networking/Figure4.png)
+![含有多個子網路的 VNET](./media/resource-groups-networking/Figure4.png)
 
-VNets contain the following properties.
+VNET 包含下列屬性：
 
-|Property|Description|Sample values|
+|屬性|說明|範例值|
 |---|---|---|
-|**addressSpace**|Collection of address prefixes that make up the VNet in CIDR notation|192.168.0.0/16|
-|**subnets**|Collection of subnets that make up the VNet|see [subnets](#Subnets) below.|
-|**ipAddress**|IP address assigned to object. This is a read-only property.|104.42.233.77|
+|**addressSpace**|CIDR 標記法中，構成 VNET 的位址首碼的集合|192\.168.0.0/16|
+|**子網路**|構成 VNET 的子網路的集合|請參閱下方的[子網路](#Subnets)。|
+|**ipAddress**|IP 位址已指派給物件。這是唯讀屬性。|104\.42.233.77|
 
-### <a name="subnets"></a>Subnets
-A subnet is a child resource of a VNet, and helps define segments of address spaces within a CIDR block, using IP address prefixes. NICs can be added to subnets, and connected to VMs, providing connectivity for various workloads.
+### 子網路
+子網路是 VNET 的子資源，而且有助於使用 IP 位址首碼來定義 CIDR 區塊內位址空間的區段。NIC 可以加入子網路和連接到 VM，提供各種工作負載的連線。
 
-Subnets contain the following properties. 
+子網路包含下列屬性：
 
-|Property|Description|Sample values|
+|屬性|說明|範例值|
 |---|---|---|
-|**addressPrefix**|Single address prefix that make up the subnet in CIDR notation|192.168.1.0/24|
-|**networkSecurityGroup**|NSG applied to the subnet|see [NSGs](#Network-Security-Group)|
-|**routeTable**|Route table applied to the subnet|see [UDR](#Route-table)|
-|**ipConfigurations**|Collection of IP configruation objects used by NICs connected to the subnet|see [UDR](#Route-table)|
+|**addressPrefix**|CIDR 標記法中，構成的子網路的單一位址首碼|192\.168.1.0/24|
+|**networkSecurityGroup**|套用至子網路的 NSG|請參閱 [NSG](#Network-Security-Group)|
+|**routeTable**|套用至子網路的路由表|請參閱 [UDR](#Route-table)|
+|**ipConfigurations**|NIC 用於連線至子網路的 IP 設定物件的集合|請參閱 [UDR](#Route-table)|
 
 
-Sample VNet in JSON format:
+JSON 格式的範例 VNET：
 
-    {
-        "name": "TestVNet",
-        "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/TestRG/providers/Microsoft.Network/virtualNetworks/TestVNet",
-        "etag": "W/\"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\"",
-        "type": "Microsoft.Network/virtualNetworks",
-        "location": "westus",
-        "tags": {
-            "displayName": "VNet"
-        },
-        "properties": {
-            "provisioningState": "Succeeded",
-            "resourceGuid": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-            "addressSpace": {
-                "addressPrefixes": [
-                    "192.168.0.0/16"
-                ]
-            },
-            "subnets": [
-                {
-                    "name": "FrontEnd",
-                    "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/TestRG/providers/Microsoft.Network/virtualNetworks/TestVNet/subnets/FrontEnd",
-                    "etag": "W/\"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\"",
-                    "properties": {
-                        "provisioningState": "Succeeded",
-                        "addressPrefix": "192.168.1.0/24",
-                        "networkSecurityGroup": {
-                            "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/TestRG/providers/Microsoft.Network/networkSecurityGroups/NSG-BackEnd"
-                        },
-                        "routeTable": {
-                            "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/TestRG/providers/Microsoft.Network/routeTables/UDR-FrontEnd"
-                        },
-                        "ipConfigurations": [
-                            {
-                                "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/TestRG/providers/Microsoft.Network/networkInterfaces/NICWEB1/ipConfigurations/ipconfig1"
-                            },
-                            ...]
-                    }
-                },
-                ...]
-        }
-    }
+	{
+	    "name": "TestVNet",
+	    "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/TestRG/providers/Microsoft.Network/virtualNetworks/TestVNet",
+	    "etag": "W/"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"",
+	    "type": "Microsoft.Network/virtualNetworks",
+	    "location": "westus",
+	    "tags": {
+	        "displayName": "VNet"
+	    },
+	    "properties": {
+	        "provisioningState": "Succeeded",
+	        "resourceGuid": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+	        "addressSpace": {
+	            "addressPrefixes": [
+	                "192.168.0.0/16"
+	            ]
+	        },
+	        "subnets": [
+	            {
+	                "name": "FrontEnd",
+	                "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/TestRG/providers/Microsoft.Network/virtualNetworks/TestVNet/subnets/FrontEnd",
+	                "etag": "W/"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"",
+	                "properties": {
+	                    "provisioningState": "Succeeded",
+	                    "addressPrefix": "192.168.1.0/24",
+	                    "networkSecurityGroup": {
+	                        "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/TestRG/providers/Microsoft.Network/networkSecurityGroups/NSG-BackEnd"
+	                    },
+	                    "routeTable": {
+	                        "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/TestRG/providers/Microsoft.Network/routeTables/UDR-FrontEnd"
+	                    },
+	                    "ipConfigurations": [
+	                        {
+	                            "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/TestRG/providers/Microsoft.Network/networkInterfaces/NICWEB1/ipConfigurations/ipconfig1"
+	                        },
+	                        ...]
+	                }
+	            },
+	            ...]
+	    }
+	}
 
-### <a name="additional-resources"></a>Additional resources
+### 其他資源
 
-- Get more information about [VNet](../articles/virtual-network/virtual-networks-overview.md).
-- Read the [REST API reference documentation](https://msdn.microsoft.com/library/azure/mt163650.aspx) for VNets.
-- Read the [REST API reference documentation](https://msdn.microsoft.com/library/azure/mt163618.aspx) for Subnets.
+- 取得 [VNET](../articles/virtual-network/virtual-networks-overview.md) 的詳細資訊。
+- 閱讀關於 VNET 的 [REST API 參考文件](https://msdn.microsoft.com/library/azure/mt163650.aspx)。
+- 閱讀關於子網路的 [REST API 參考文件](https://msdn.microsoft.com/library/azure/mt163618.aspx)。
 
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0323_2016-->

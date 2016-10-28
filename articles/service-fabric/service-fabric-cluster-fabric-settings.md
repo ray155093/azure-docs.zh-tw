@@ -1,7 +1,7 @@
 
 <properties
-   pageTitle="Customize Service Fabric cluster settings and Fabric Upgrade policy | Microsoft Azure"
-   description="This article describes the fabric settings and the fabric upgrade policies that you can customize."
+   pageTitle="自訂 Service Fabric 叢集設定和網狀架構升級原則 | Microsoft Azure"
+   description="本文說明您可以自訂的網狀架構設定和網狀架構升級原則。"
    services="service-fabric"
    documentationCenter=".net"
    authors="chackdan"
@@ -17,67 +17,59 @@
    ms.date="09/20/2016"
    ms.author="chackdan"/>
 
+# 自訂 Service Fabric 叢集設定和網狀架構升級原則
 
-# <a name="customize-service-fabric-cluster-settings-and-fabric-upgrade-policy"></a>Customize Service Fabric cluster settings and Fabric Upgrade policy
+本文將告訴您如何為 Service Fabric 叢集自訂各種網狀架構設定和網狀架構升級原則。您可以在入口網站上或使用 Resource Manager 範本自訂。
 
-This document tells you how to customize the various fabric settings and the fabric upgrade policy for your service fabric cluster. You can customize them on the portal or using a Resource Manager template.
-
-## <a name="fabric-settings-that-you-can-customize"></a>Fabric settings that you can customize
+## 您可以自訂的網狀架構設定
 
 
-Here are the Fabric settings that you can customize:
+以下是您可以自訂的網狀架構設定：
 
-### <a name="section-name:-security"></a>Section Name: Security
+### 區段名稱︰Security
 
-|**Parameter**|**Allowed Values**|**Guidance or short Description**|
+|**參數**|**允許的值**|**指引或簡短描述**|
 |-----------------------|--------------------------|--------------------------|
-|ClusterProtectionLevel|None or EncryptAndSign| None (default) for unsecured clusters, EncryptAndSign for secure clusters. |
+|ClusterProtectionLevel|None 或 EncryptAndSign| 不安全的叢集為 None (預設值)，安全的叢集為 EncryptAndSign。 |
 
-### <a name="section-name:-hosting"></a>Section Name: Hosting
+### 區段名稱：Hosting
 
-|**Parameter**|**Allowed Values**|**Guidance or short Description**|
+|**參數**|**允許的值**|**指引或簡短描述**|
 |-----------------------|--------------------------|--------------------------|
-|ServiceTypeRegistrationTimeout|Time in Seconds, default is 300| Maximum time allowed for the ServiceType to be  registered with fabric|
-|ServiceTypeDisableFailureThreshold|Whole number, default is 1| This is the threshold for the failure count after which FailoverManager (FM) is notified to disable the service type on that node and try a different node for placement.|
-|ActivationRetryBackoffInterval|Time in Seconds, default is 5|Backoff interval on every activation failure; On every continuous activation failure, the system retries the activation for up to the MaxActivationFailureCount. The retry interval on every try is a product of continuous activation failure and the activation back-off interval.|
-|ActivationMaxRetryInterval|Time in seconds, default is 300| On every continuous activation failure, the system retries the activation for up to ActivationMaxFailureCount. ActivationMaxRetryInterval specifies Wait time interval before retry after every activation failure |
-|ActivationMaxFailureCount|Whole number, default is 10| Number of times system retries failed activation before giving up |
+|ServiceTypeRegistrationTimeout|時間 (秒)，預設值為 300| 允許 ServiceType 向網狀架構註冊的最大時間|
+|ServiceTypeDisableFailureThreshold|整數，預設值為 1| 這是失敗次數的閾值，超過此值之後，就會通知 FailoverManager (FM) 停用該節點上的服務類型，並嘗試放置在另一個節點。|
+|ActivationRetryBackoffInterval|時間 (秒)，預設值為 5|每次啟用失敗的輪詢間隔；在每次連續啟用失敗之後，系統會重試啟用最多 MaxActivationFailureCount 次。每次嘗試的重試間隔是連續啟用失敗與啟用輪詢間隔的乘積。|
+|ActivationMaxRetryInterval|時間 (秒)，預設值為 300| 在每次連續啟用失敗時，系統會重試啟用最多 ActivationMaxFailureCount 次。ActivationMaxRetryInterval 指定每次啟用失敗之後在重試之前等待的時間間隔 |
+|ActivationMaxFailureCount|整數，預設值為 10| 系統在放棄之前重試失敗啟用的次數 |
 
-### <a name="section-name:-failovermanager"></a>Section Name: FailoverManager
+### 區段名稱︰FailoverManager
 
-|**Parameter**|**Allowed Values**|**Guidance or short Description**|
+|**參數**|**允許的值**|**指引或簡短描述**|
 |-----------------------|--------------------------|--------------------------|
-|PeriodicLoadPersistInterval|Time in seconds, default is 10| This determines how often the FM check for new load reports|
+|PeriodicLoadPersistInterval|時間 (秒)，預設值為 10| 這決定 FM 檢查是否有新負載報告的頻率|
 
-### <a name="section-name:-federation"></a>Section Name: Federation
+### 區段名稱︰Federation
 
-|**Parameter**|**Allowed Values**|**Guidance or short Description**|
+|**參數**|**允許的值**|**指引或簡短描述**|
 |-----------------------|--------------------------|--------------------------|
-|LeaseDuration|Time in seconds, default is 30|Duration that a lease lasts between a node and its neighbors.|
-|LeaseDurationAcrossFaultDomain|Time in seconds, default is 30|Duration that a lease lasts between a node and its neighbors across fault domains.|
+|LeaseDuration|時間 (秒)，預設值為 30|節點與其相鄰節點之間的租用持續時間。|
+|LeaseDurationAcrossFaultDomain|時間 (秒)，預設值為 30|所有容錯網域的節點與其相鄰節點之間的租用持續時間。|
 
-### <a name="section-name:-clustermanager"></a>Section Name: ClusterManager
+### 區段名稱︰ClusterManager
 
-|**Parameter**|**Allowed Values**|**Guidance or short Description**|
+|**參數**|**允許的值**|**指引或簡短描述**|
 |-----------------------|--------------------------|--------------------------|
-|UpgradeStatusPollInterval|Time in seconds, default is 60|The frequency of polling for application upgrade status. This value determines the rate of update for any GetApplicationUpgradeProgress call|
-|UpgradeHealthCheckInterval|Time in seconds, default is 60|The frequency of health status checks during a monitored application upgrades|
-|FabricUpgradeStatusPollInterval|Time in seconds, default is 60|The frequency of polling for Fabric upgrade status. This value determines the rate of update for any GetFabricUpgradeProgress call |
-|FabricUpgradeHealthCheckInterval|Time in seconds, default is 60|The frequency of health status check during a  monitored Fabric upgrade|
+|UpgradeStatusPollInterval|時間 (秒)，預設值為 60|輪詢應用程式升級狀態的頻率。此值決定任何 GetApplicationUpgradeProgress 呼叫的更新速率|
+|UpgradeHealthCheckInterval|時間 (秒)，預設值為 60|受監視應用程式升級期間的健康狀態檢查頻率|
+|FabricUpgradeStatusPollInterval|時間 (秒)，預設值為 60|輪詢網狀架構升級狀態的頻率。此值決定任何 GetFabricUpgradeProgress 呼叫的更新速率 |
+|FabricUpgradeHealthCheckInterval|時間 (秒)，預設值為 60|受監視網狀架構升級期間的健康狀態檢查頻率|
 
 
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-Read these articles for more information on cluster management:
+如需有關叢集管理的詳細資訊，請參閱下列文件︰
 
-[Add, Roll over, remove certificates from your Azure cluster ](service-fabric-cluster-security-update-certs-azure.md) 
+[新增、變換、移除 Azure 叢集的憑證](service-fabric-cluster-security-update-certs-azure.md)
 
-
-
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

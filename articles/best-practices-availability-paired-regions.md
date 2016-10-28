@@ -1,11 +1,11 @@
 <properties
-    pageTitle="Business continuity and disaster recovery (BCDR): Azure Paired Regions | Microsoft Azure"
-    description="Azure regional pairs ensure that applications are resilient during data center failures."
-    services="site-recovery"
-    documentationCenter=""
-    authors="rayne-wiselman"
-    manager="jwhit"
-    editor=""/>
+	pageTitle="業務持續性和災害復原 (BCDR)：Azure 配對的區域 | Microsoft Azure"
+	description="Azure 區域配對可確保當資料中心發生故障時應用程式可復原。"
+	services="site-recovery"
+	documentationCenter=""
+	authors="rayne-wiselman"
+	manager="jwhit"
+	editor=""/>
 
 <tags
     ms.service="site-recovery"
@@ -16,87 +16,76 @@
     ms.date="08/23/2016"
     ms.author="raynew"/>
 
+# 業務持續性和災害復原 (BCDR)：Azure 配對的區域
 
-# <a name="business-continuity-and-disaster-recovery-(bcdr):-azure-paired-regions"></a>Business continuity and disaster recovery (BCDR): Azure Paired Regions
+## 什麼是配對的區域？
 
-## <a name="what-are-paired-regions?"></a>What are paired regions?
+Azure 能在世界各地多個地理位置運作。Azure 地理位置是包含至少一個 Azure 區域的已定義世界區域。Azure 區域是包含一或多個資料中心之地理位置內的區域。
 
-Azure operates in multiple geographies around the world. An Azure geography is a defined area of the world that contains at least one Azure Region. An Azure region is an area within a geography containing one or more datacenters.
-
-Each Azure region is paired with another region within the same geography, together making a regional pair. The exception is Brazil South which is paired with a region outside its geography.
+每個 Azure 區域都會與相同地理位置內的另一個區域配對，以共同形成區域配對。例外狀況是巴西南部，此區域會與其所在地理位置外的區域配對。
 
 
 ![AzureGeography](./media/best-practices-availability-paired-regions/GeoRegionDataCenter.png)
 
-Figure 1 – Azure regional pair diagram
+圖 1 – Azure 區域配對圖表
 
 
 
-| Geography     |  Paired regions  |                     |
+| [地理位置] | 配對的區域 | |
 | :-------------| :-------------   | :-------------      |
-| North America | North Central US | South Central US    |
-| North America | East US          | West US             |
-| North America | US East 2        | US Central          |
-| North America | West US 2        | West Central US     |
-| Europe        | North Europe     | West Europe         |
-| Asia          | South East Asia  | East Asia           |
-| China         | East China       | North China         |
-| Japan         | Japan East       | Japan West          |
-| Brazil        | Brazil South (1) | South Central US    |
-| Australia     | Australia East   | Australia Southeast |
-| US Government | US Gov Iowa      | US Gov Virginia     |
-| India         | Central India    | South India         |
-| Canada        | Canada Central   | Canada East         |
-| UK            | UK West          | UK South            |
-
-Table 1 - Mapping of azure regional pairs
-
-> (1) Brazil South is unique because it is paired with a region outside of its own geography. Brazil South’s secondary region is South Central US but South Central US’s secondary region is not Brazil South.
-
-We recommend that you replicate workloads across regional pairs to benefit from Azure’s isolation and availability policies. For example, planned Azure system updates are deployed sequentially (not at the same time) across paired regions. That means that even in the rare event of a faulty update, both regions will not be affected simultaneously. Furthermore, in the unlikely event of a broad outage, recovery of at least one region out of every pair is prioritized.
-
-## <a name="an-example-of-paired-regions"></a>An example of paired regions
-Figure 2 below shows a hypothetical application which uses the regional pair for disaster recovery. The green numbers highlight the cross-region activities of three Azure services (Azure Compute, Storage, and Database) and how they are configured to replicate across regions. The unique benefits of deploying across paired regions are highlighted by the orange numbers.
+| 北美洲 | 美國中北部 | 美國中南部 |
+| 北美洲 | 美國東部 | 美國西部 |
+| 北美洲 | 美國東部 2 | 美國中部 |
+|北美洲 | 美國西部 2 | 美國中西部 |
+| 歐洲 | 北歐 | 西歐 |
+| 亞洲 | 東南亞 | 東亞 |
+| 中國 | 中國東部 | 中國北部 |
+| 日本 | 日本東部 | 日本西部 |
+| 巴西 | 巴西南部 (1) | 美國中南部 |
+| 澳大利亞 | 澳洲東部 | 澳大利亞東南部 |
+| 美國政府 | 美國政府愛荷華州 | 美國政府維吉尼亞州 |
+| 印度 | 印度中部 | 印度南部 |
+| 加拿大 | 加拿大中部 | 加拿大東部 |
 
 
-![Overview of Paired Region Benefits](./media/best-practices-availability-paired-regions/PairedRegionsOverview2.png)
+表 1 - Azure 區域配對對應表
 
-Figure 2 – Hypothetical Azure regional pair
+> (1) 巴西南部與其他區域的不同點在於，其與自身地理位置以外的區域配對。巴西南部的次要地區是美國中南部，但是美國中南部的次要地區並不是巴西南部。
 
-## <a name="cross-region-activities"></a>Cross-region activities
-As referred to in figure 2.
+我們建議您複寫跨區域配對的工作負載，以善用 Azure 的隔離與可用性原則。例如，預定的 Azure 系統更新會跨配對區域循序部署 (並非同時)。這表示即使面臨罕見的更新錯誤事件，兩個區域也不會同時受到影響。此外，若遭遇少見的廣泛中斷事件，就能至少優先復原所有配對中的其中一個區域。
 
-![1Green](./media/best-practices-availability-paired-regions/1Green.png) **Azure Compute (PaaS)** – You must provision additional compute resources in advance to ensure resources are available in another region during a disaster. For more information, see [Azure resiliency technical guidance](./resiliency/resiliency-technical-guidance.md).
-
-![2Green](./media/best-practices-availability-paired-regions/2Green.png) **Azure Storage** - Geo-Redundant storage (GRS) is configured by default when an Azure Storage account is created. With GRS, your data is automatically replicated three times within the primary region, and three times in the paired region. For more information, see [Azure Storage Redundancy Options](storage/storage-redundancy.md).
+## 配對的區域範例
+以下的圖 2 顯示使用地區配對以進行災害復原的假設應用程式。綠色的數字強調了三項 Azure 服務 (Azure 計算、儲存體和資料庫) 的跨區域活動，以及這些服務設定為跨區域複寫的方式。橘色數字則強調跨配對區域部署的獨特優點。
 
 
-![3Green](./media/best-practices-availability-paired-regions/3Green.png) **Azure SQL Databases** – With Azure SQL Standard Geo-Replication, you can configure asynchronous replication of transactions to a paired region. With Premium Geo-replication, you can configure replication to any region in the world; however, we recommend you deploy these resources in a paired region for most disaster recovery scenarios. For more information, see [Geo-Replication in Azure SQL Database](./sql-database/sql-database-geo-replication-overview.md).
+![配對區域優點概觀](./media/best-practices-availability-paired-regions/PairedRegionsOverview2.png)
 
-![4Green](./media/best-practices-availability-paired-regions/4Green.png) **Azure Resource Manager (ARM)** - ARM inherently provides logical isolation of service management components across regions. This means logical failures in one region are less likely to impact another.
+圖 2 – 假設的 Azure 區域配對
 
-## <a name="benefits-of-paired-regions"></a>Benefits of paired regions
-As referred to in figure 2.  
+## 跨區域活動
+如圖 2 所示。
 
-![5Orange](./media/best-practices-availability-paired-regions/5Orange.png)
-**Physical isolation** – When possible, Azure prefers at least 300 miles of separation between datacenters in a regional pair, although this isn't practical or possible in all geographies. Physical datacenter separation reduces the likelihood of natural disasters, civil unrest, power outages, or physical network outages affecting both regions at once. Isolation is subject to the constraints within the geography (geography size, power/network infrastructure availability, regulations, etc.).  
+![1Green](./media/best-practices-availability-paired-regions/1Green.png) **Azure 運算 (PaaS)** – 您必須佈建額外的運算資源，以便確保發生嚴重損壞時資源可在其他區域中使用。如需詳細資訊，請參閱 [Azure 復原技術指導](./resiliency/resiliency-technical-guidance.md)。
 
-![6Orange](./media/best-practices-availability-paired-regions/6Orange.png)
-**Platform-provided replication** - Some services such as Geo-Redundant Storage provide automatic replication to the paired region.
-
-![7Orange](./media/best-practices-availability-paired-regions/7Orange.png)
-**Region recovery order** – In the event of a broad outage, recovery of one region is prioritized out of every pair. Applications that are deployed across paired regions are guaranteed to have one of the regions recovered with priority. If an application is deployed across regions that are not paired, recovery may be delayed – in the worst case the chosen regions may be the last two to be recovered.
-
-![8Orange](./media/best-practices-availability-paired-regions/8Orange.png)
-**Sequential updates** – Planned Azure system updates are rolled out to paired regions sequentially (not at the same time) to minimize downtime, the effect of bugs, and logical failures in the rare event of a bad update.
+![2Green](./media/best-practices-availability-paired-regions/2Green.png) **Azure 儲存體** - 建立 Azure 儲存體帳戶時，系統預設會設定異地備援儲存體 (GRS)。使用 GRS 時，系統會在主要區域內將您的資料自動複寫三次，並在配對區域中複寫三次。如需詳細資訊，請參閱 [Azure 儲存體備援選項](storage/storage-redundancy.md)。
 
 
-![9Orange](./media/best-practices-availability-paired-regions/9Orange.png)
-**Data residency** – A region resides within the same geography as its pair (with the exception of Brazil South) in order to meet data residency requirements for tax and law enforcement jurisdiction purposes.
+![3Green](./media/best-practices-availability-paired-regions/3Green.png) **Azure SQL Database** – 使用 Azure SQL 標準異地複寫，您就可以設定交易至配對區域的非同步複寫。使用高階異地複寫，您就可以設定複寫至世界上任何區域。不過，我們建議您在配對區域中，為大部分的災害復原案例部署這些資源。如需詳細資訊，請參閱 [Azure SQL Database 中的異地複寫](./sql-database/sql-database-geo-replication-overview.md)。
+
+![4Green](./media/best-practices-availability-paired-regions/4Green.png) **Azure 資源管理員 (ARM)** - ARM 原本就會跨區域提供服務管理元件的邏輯隔離。這表示某個區域中的邏輯失敗不太可能會影響另一個區域。
+
+## 配對區域的優點
+如圖 2 所示。
+
+![5Orange](./media/best-practices-availability-paired-regions/5Orange.png) **實體隔離** – 在可能的情況下，Azure 會偏好區域配對中的資料中心之間距離至少要相隔 300 英哩，但是這在所有地理位置中並不實際也不可能。實體資料中心分隔能夠降低自然災害、社會動亂、電力中斷或實體網路中斷同時影響兩個區域的可能性。隔離會受限於地理位置內的條件約束 (地理位置大小、電源/網路基礎結構可用性、法規等等)。
+
+![6Orange](./media/best-practices-availability-paired-regions/6Orange.png) **平台提供的複寫** - 異地備援儲存體之類的部分服務會提供自動複寫到配對的區域。
+
+![7Orange](./media/best-practices-availability-paired-regions/7Orange.png) **區域復原順序** – 若發生廣泛中斷事件，會優先復原所有配對中的一個區域。跨配對區域部署的應用程式能夠保障其中一個區域優先復原。如果在未配對的區域中部署應用程式，就可能會發生復原延遲的情況；最壞的情況是，這兩個選定的區域可能都不會被復原。
+
+![8Orange](./media/best-practices-availability-paired-regions/8Orange.png) **循序更新** – 預定的 Azure 系統更新會循序發行至配對的區域 (並非同時)，以便在出現罕見的不正確更新時，將停機時間、錯誤影響和邏輯故障的影響降到最低。
 
 
+![9Orange](./media/best-practices-availability-paired-regions/9Orange.png) **資料常駐地** - 區域會駐留在相同的地理位置之內形成配對 (巴西南部除外)，以符合資料常駐地之稅務和執法管轄區的要求。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

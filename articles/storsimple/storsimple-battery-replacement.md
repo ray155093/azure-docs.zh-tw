@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="Replace the battery on a StorSimple device | Microsoft Azure"
-   description="Describes how to remove, replace, and maintain the backup battery module on your StorSimple device."
+   pageTitle="更換 StorSimple 裝置上的電池 | Microsoft Azure"
+   description="描述如何取下、更換和維護 StorSimple 裝置上的備份電池模組。"
    services="storsimple"
    documentationCenter=""
    authors="alkohli"
@@ -15,109 +15,104 @@
    ms.date="08/17/2016"
    ms.author="alkohli" />
 
+# 更換 StorSimple 裝置上的備份電池模組
 
-# <a name="replace-the-backup-battery-module-on-your-storsimple-device"></a>Replace the backup battery module on your StorSimple device
+## Overview
 
-## <a name="overview"></a>Overview
+Microsoft Azure StorSimple 裝置上的主要機箱電源和冷卻模組 (PCM) 具有額外的電池組。這個電池組會提供電源，以便如果主要機箱失去 AC 電源，StorSimple 裝置可以儲存資料。這個電池組稱為*備份電池模組*。備份電池模組僅針對 StorSimple 裝置中的主要機箱而存在 (EBOD 機箱未包含備份電池模組) 。
 
-The primary enclosure Power and Cooling Module (PCM) on your Microsoft Azure StorSimple device has an additional battery pack. This pack provides power so that the StorSimple device can save data if there is loss of AC power to the primary enclosure. This battery pack is referred to as the *backup battery module*. The backup battery module exists only for the primary enclosure in your StorSimple device (the EBOD enclosure does not contain a backup battery module). 
+本教學課程說明如何：
 
-This tutorial explains how to:
+- 取下備份電池模組
+- 安裝新的備份電池模組
+- 維護備份電池模組
 
-- Remove the backup battery module 
-- Install a new backup battery module
-- Maintain the backup battery module
+>[AZURE.IMPORTANT] 取下及更換備份電池模組之前，請閱讀 [StorSimple 硬體元件更換](storsimple-hardware-component-replacement.md)中的安全資訊。
 
->[AZURE.IMPORTANT] Before removing and replacing a backup battery module, review the safety information in the [Introduction to StorSimple hardware component replacement](storsimple-hardware-component-replacement.md).
+## 取下備份電池模組
 
-## <a name="remove-the-backup-battery-module"></a>Remove the backup battery module
+StorSimple 裝置的備份電池模組是現場可置換裝置。在 PCM 中安裝它之前，電池模組應該儲存在其原始包裝中。執行下列步驟以取下備份電池。
 
-The backup battery module for your StorSimple device is a field-replaceable unit. Before it is installed in the PCM, the battery module should be stored in its original packaging. Perform the following steps to remove the backup battery.
+#### 若要取下備份電池模組
 
-#### <a name="to-remove-the-backup-battery-module"></a>To remove the backup battery module
+1. 在 Azure 傳統入口網站中，移至 [裝置] > [維護] > [硬體狀態]。在 [**共用元件**] 下，查看電池狀態。
 
-1. In the Azure classic portal, go to **Devices** > **Maintenance** > **Hardware Status**. Under **Shared Components**, look at the status of the battery.
+2. 識別電池故障的 PCM。圖 1 顯示 StorSimple 裝置的背面。
 
-2. Identify the PCM in which the battery has failed. Figure 1 shows the back of the StorSimple device.
+    ![裝置主要機箱模組的後擋板](./media/storsimple-battery-replacement/IC740994.png)
 
-    ![Backplane Of Device Primary Enclosure Modules](./media/storsimple-battery-replacement/IC740994.png)
+    **圖 1**顯示 PCM 和控制器模組的主要裝置背面
 
-    **Figure 1** Back of primary device showing PCM and controller modules
+    |標籤|說明|
+    |:----|:----------|
+    |1|PCM 0|
+    |2|PCM 1|
+    |3|控制器 0|
+    |4|控制器 1|
 
-  	|Label|Description|
-  	|:----|:----------|
-  	|1|PCM 0|
-  	|2|PCM 1|
-  	|3|Controller 0|
-  	|4|Controller 1|
+    如圖 2 中的號碼 3 所示，PCM 0 上對應到**電池故障**的監視指示器 LED 應該亮起。
 
-    As shown by number 3 in the Figure 2, the monitoring indicator LED on PCM 0 that corresponds to **Battery Fault** should be lit.
+    ![裝置後擋板 PCM 監視 LED 指示燈](./media/storsimple-battery-replacement/IC740992.png)
 
-    ![Backplane Of Device PCM Monitoring Indicator LEDs](./media/storsimple-battery-replacement/IC740992.png)
+    **圖 2** 顯示監視指示器 LED 的 PCM 背面
 
-    **Figure 2** Back of PCM showing the monitoring indicator LEDs
+    |標籤|說明|
+    |:---|:-----------|
+    |1|AC 電源故障|
+    |2|風扇故障|
+    |3|電池故障|
+    |4|PCM 正常|
+    |5|DC 電源故障|
+    |6|電池狀況良好|
 
-  	|Label|Description|
-  	|:---|:-----------|
-  	|1|AC power failure|
-  	|2|Fan failure|
-  	|3|Battery fault|
-  	|4|PCM OK|
-  	|5|DC power failure|
-  	|6|Battery healthy|
+3. 若要取下電池故障的 PCM，請遵循[取下 PCM](storsimple-power-cooling-module-replacement.md#remove-a-pcm) 中的步驟。
 
-3. To remove the PCM with a failed battery, follow the steps in [Remove a PCM](storsimple-power-cooling-module-replacement.md#remove-a-pcm).
+4. 一旦取下 PCM，請提起並向上旋轉電池模組把手 (如下圖中所示)，並將它拔出以取下電池。
 
-4. With the PCM removed, lift and rotate the battery module handle upward as indicated in the following figure, and pull it up to remove the battery.
+    ![從 pcm 取出電池](./media/storsimple-battery-replacement/IC741019.png)
 
-    ![Removing Battery From PCM](./media/storsimple-battery-replacement/IC741019.png)
+    **圖 3** 從 PCM 取下電池
 
-    **Figure 3** Removing the battery from the PCM
+5. 將模組放置在現場可更換裝置包裝中。
 
-5. Place the module in the field-replaceable unit packaging.
+6. 將故障裝置退回給 Microsoft，以取得適當的服務和處理。
 
-6. Return the defective unit to Microsoft for proper servicing and handling.
+## 安裝新的備份電池模組
 
-## <a name="install-a-new-backup-battery-module"></a>Install a new backup battery module
+執行下列步驟，以在 StorSimple 裝置的主要機箱中的 PCM 安裝更換電池模組。
 
-Perform the following steps to install the replacement battery module in the PCM in the primary enclosure of your StorSimple device.
+#### 若要安裝電池模組
 
-#### <a name="to-install-the-battery-module"></a>To install the battery module
+1. 以適當的方向將備份電池模組放入 PCM 中。
 
-1. Place the backup battery module in the proper orientation in the PCM.
+2. 全力按壓電池模組把手以固定連接器。
 
-2. Press down the battery module handle all the way to seat the connector.
+3. 依照[更換 StorSimple 裝置上的電源和冷卻模組](storsimple-power-cooling-module-replacement.md)中的指導方針，更換主要機箱的 PCM。
 
-3. Replace the PCM in the primary enclosure by following the guidelines in [Replace a Power and Cooling Module on your StorSimple device](storsimple-power-cooling-module-replacement.md).
+4. 完成更換之後，請在 Azure 傳統入口網站中，移至 [裝置] > [維護] > [硬體狀態]。確認電池的狀態，以確定安裝成功。綠色狀態表示電池狀況良好。
 
-4. After the replacement is complete, go to **Devices** > **Maintenance** > **Hardware Status** in the Azure classic portal. Verify the status of the battery to make sure that the installation was successful. A green status indicates that the battery is healthy.
+## 維護備份電池模組
 
-## <a name="maintain-the-backup-battery-module"></a>Maintain the backup battery module
+在 StorSimple 裝置中，備份電池模組會在停電期間提供電源給控制器。它可讓 StorSimple 裝置在以控制方式關閉之前儲存重要資料。由於 PCM 中有兩個完全充電的電池，系統可以處理兩個連續停電事件。
 
-In your StorSimple device, the backup battery module provides power to the controller during a power loss event. It allows the StorSimple device to save critical data prior to shutting down in a controlled manner. With two fully charged batteries in the PCMs, the system can handle two consecutive loss events.
+在管理入口網站中，[維護] 頁面上的 [硬體狀態] 指出電池是否故障，或電池何時即將用光。在[**共用元件**] 下，電池狀態是以 [**PCM 1 中的電池**] 或 [**PCM 0 中的電池**] 指出。此頁面會顯示 [**降級**] 狀態，表示電池即將用光，以及顯示 [**故障**]，表示電池已用光。
 
-In the Azure classic portal, the **Hardware Status** on the **Maintenance** page indicates whether the battery is malfunctioning or the end-of-life is approaching. The battery status is indicated by **Battery in PCM 0** or **Battery in PCM 1** under **Shared Components**. This page will show a **DEGRADED** state for end-of-life approaching, and **FAILED** for end-of-life reached. 
-
->[AZURE.NOTE] The battery can report **FAILED** when it simply needs to be charged.
+>[AZURE.NOTE] 當電池只需充電時，可以報告 [**故障**]。
  
-If the **DEGRADED** state appears, we recommend the following course of action:
+如果 [**降級**] 狀態出現，我們建議採取下列動作：
 
-- The system may have experienced a recent power loss or the batteries may be undergoing periodic maintenance. Observe the system for 12 hours before proceeding.
+- 系統最近可能遭遇停電，或電池可能正在進行定期維護。觀察系統 12 小時，再繼續進行。
 
-    - If the state is still **DEGRADED** after 12 hours of continuous connection to AC power with the controllers and PCMs running, then the battery needs to be replaced. Please [contact Microsoft Support](storsimple-contact-microsoft-support.md) for a replacement backup battery module.
+    - 在連續 12 小時連接至 AC 電源，而且控制器與 PCM 正在執行之後，如果狀態仍為 [**降級**]，則需要更換電池。請[連絡 Microsoft 支援](storsimple-contact-microsoft-support.md)，以取得更換備份電池模組。
 
-    - If the state becomes OK after 12 hours, the battery is operational, and it only needed a maintenance charge.
+    - 如果狀態在 12 小時之後變成良好，則電池可操作，而且只需維護費用。
 
-- If there has not been an associated loss of AC power and the PCM is turned on and connected to AC power, the battery needs to be replaced. [Contact Microsoft Support](storsimple-contact-microsoft-support.md) to order a replacement backup battery module.
+- 如果沒有相關聯的 AC 電源喪失，而且 PCM 已開啟並連接至 AC 電源，則電池需要更換。請[連絡 Microsoft 支援](storsimple-contact-microsoft-support.md)，以訂購更換備份電池模組。
 
->[AZURE.IMPORTANT] Dispose of the failed battery according to national and regional regulations. 
+>[AZURE.IMPORTANT] 依據國家及地區法規處置故障電池。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-Learn more about [StorSimple hardware component replacement](storsimple-hardware-component-replacement.md).
+深入了解 [StorSimple 硬體元件更換](storsimple-hardware-component-replacement.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

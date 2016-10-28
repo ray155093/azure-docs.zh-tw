@@ -1,144 +1,139 @@
 <properties
-    pageTitle="Azure Mobile Engagement Web SDK Overview | Microsoft Azure"
-    description="The latest updates and procedures for the Web SDK for Azure Mobile Engagement"
-    services="mobile-engagement"
-    documentationCenter="mobile"
-    authors="piyushjo"
-    manager="erikre"
-    editor="" />
+	pageTitle="Azure Mobile Engagement Web SDK 概觀 | Microsoft Azure"
+	description="Azure Mobile Engagement Web SDK 的最新更新與程序"
+	services="mobile-engagement"
+	documentationCenter="mobile"
+	authors="piyushjo"
+	manager="erikre"
+	editor="" />
 
 <tags
-    ms.service="mobile-engagement"
-    ms.workload="mobile"
-    ms.tgt_pltfrm="web"
-    ms.devlang="js"
-    ms.topic="article"
-    ms.date="06/07/2016"
-    ms.author="piyushjo" />
+	ms.service="mobile-engagement"
+	ms.workload="mobile"
+	ms.tgt_pltfrm="web"
+	ms.devlang="js"
+	ms.topic="article"
+	ms.date="06/07/2016"
+	ms.author="piyushjo" />
 
 
+# Azure Mobile Engagement Web SDK
 
-# <a name="azure-mobile-engagement-web-sdk"></a>Azure Mobile Engagement Web SDK
+從這裡開始取得有關如何在 Web 應用程式中整合 Azure Mobile Engagement 的所有詳細資料。如果您想要在開始使用您自己的 Web 應用程式之前，先嘗試一下，請參閱我們的 [15 分鐘教學課程](mobile-engagement-web-app-get-started.md)。
 
-Start here for all the details about how to integrate Azure Mobile Engagement in a web app. If you'd like to give it a try before getting started with your own web app, see our [15-minute tutorial](mobile-engagement-web-app-get-started.md).
+## 整合程序
+1. 了解[如何在 Web 應用程式中整合 Mobile Engagement](mobile-engagement-web-integrate-engagement.md)。
 
-## <a name="integration-procedures"></a>Integration procedures
-1. Learn [how to integrate Mobile Engagement in your web app](mobile-engagement-web-integrate-engagement.md).
+2. 對於標籤計劃實作，了解[如何在 Web 應用程式中使用進階的 Mobile Engagement 標籤 API](mobile-engagement-web-use-engagement-api.md)。
 
-2. For tag plan implementation, learn [how to use the advanced Mobile Engagement tagging API in your web app](mobile-engagement-web-use-engagement-api.md).
+## 版本資訊
 
-## <a name="release-notes"></a>Release notes
+### 2\.0.1 (6/10/2016)
 
-### <a name="2.0.1-(6/10/2016)"></a>2.0.1 (6/10/2016)
+-   在 Internet Explorer 8 和 Internet Explorer 9 中停用 Mobile Engagement Web SDK。
+-   已修正 Opera 網頁瀏覽器偵測。
 
--   Disabled the Mobile Engagement Web SDK in Internet Explorer 8 and Internet Explorer 9.
--   Fixed the Opera web browser detection.
+如需所有版本，請參閱[完整版本資訊](mobile-engagement-web-release-notes.md)。
 
-For all versions, please see the [complete release notes](mobile-engagement-web-release-notes.md).
+## 升級程序
 
-## <a name="upgrade-procedures"></a>Upgrade procedures
+### 從 1.2.1 升級到 2.0.0
 
-### <a name="upgrade-from-1.2.1-to-2.0.0"></a>Upgrade from 1.2.1 to 2.0.0
+下列章節說明如何將 Mobile Engagement Web SDK 整合從 Capptain SAS 提供的 Capptain 服務移轉到 Azure Mobile Engagement 應用程式。如果您是從 1.2.1 之前的版本移轉，請參閱 Capptain 網站，先移轉到 1.2.1 後再套用以下程序。
 
-The following sections describe how to migrate a Mobile Engagement Web SDK integration from the Capptain service, offered by Capptain SAS, to an Azure Mobile Engagement app. If you are migrating from a version earlier than 1.2.1, please consult the Capptain website to migrate to 1.2.1 first, and then apply the following procedures.
+此版本的 Mobile Engagement Web SDK 不支援 Samsung Smart TV、Opera TV、webOS 或 Reach 功能。
 
-This version of the Mobile Engagement Web SDK doesn't support Samsung Smart TV, Opera TV, webOS, or the Reach feature.
+>[AZURE.IMPORTANT] Capptain 和 Azure Mobile Engagement 是不同的服務，反白顯示的以下程序只適用於移轉用戶端應用程式。移轉應用程式中的 Mobile Engagement Web SDK，不會將您的資料從 Capptain 伺服器移轉到 Mobile Engagement 伺服器。
 
->[AZURE.IMPORTANT] Capptain and Azure Mobile Engagement are not the same service, and the following procedures highlight only how to migrate the client app. Migrating the Mobile Engagement Web SDK in the app will not migrate your data from a Capptain server to a Mobile Engagement server.
+#### JavaScript 檔案
 
-#### <a name="javascript-files"></a>JavaScript files
+使用 azure-engagement.js 檔案來取代 capptain-sdk.js 檔案，然後據以更新您的指令碼匯入。
 
-Replace the file capptain-sdk.js with the file azure-engagement.js, and then update your script imports accordingly.
+#### 移除 Capptain Reach
 
-#### <a name="remove-capptain-reach"></a>Remove Capptain Reach
+此版本的 Mobile Engagement Web SDK 不支援 Reach 功能。如果您將 Capptain Reach 整合到您的應用程式，就需要加以移除。
 
-This version of the Mobile Engagement Web SDK doesn't support the Reach feature. If you have integrated Capptain Reach into your application, you need to remove it.
+從您的頁面移除 Reach CSS 匯入，並移除相關的 .css 檔案 (預設為 capptain-reach.css)。
 
-Remove the Reach CSS import from your page and delete the related .css file (capptain-reach.css, by default).
+刪除下列 Reach 資源：關閉影像 (預設為 capptain-close.png) 和品牌圖示 (預設為 capptain-notification-icon)。
 
-Delete the following Reach resources: the close image (capptain-close.png, by default) and the brand icon (capptain-notification-icon, by default).
+移除用於應用程式內通知的 Reach UI。預設配置看起來像這樣：
 
-Remove the Reach UI for in-app notifications. The default layout looks like this:
+	<!-- capptain notification -->
+	<div id="capptain_notification_area" class="capptain_category_default">
+	  <div class="icon">
+	    <img src="capptain-notification-icon.png" alt="icon" />
+	  </div>
+	  <div class="content">
+	    <div class="title" id="capptain_notification_title"></div>
+	    <div class="message" id="capptain_notification_message"></div>
+	  </div>
+	  <div id="capptain_notification_image"></div>
+	  <div>
+	    <button id="capptain_notification_close">Close</button>
+	  </div>
+	</div>
 
-    <!-- capptain notification -->
-    <div id="capptain_notification_area" class="capptain_category_default">
-      <div class="icon">
-        <img src="capptain-notification-icon.png" alt="icon" />
-      </div>
-      <div class="content">
-        <div class="title" id="capptain_notification_title"></div>
-        <div class="message" id="capptain_notification_message"></div>
-      </div>
-      <div id="capptain_notification_image"></div>
-      <div>
-        <button id="capptain_notification_close">Close</button>
-      </div>
-    </div>
+移除用於文字和 Web 宣告和輪詢的 Reach UI。預設配置看起來像這樣：
 
-Remove the Reach UI for text and web announcements and polls. The default layout looks like this:
+	<div id="capptain_overlay" class="capptain_category_default">
+	  <button id="capptain_overlay_close">x</button>
+	  <div id="capptain_overlay_title"></div>
+	  <div id="capptain_overlay_body"></div>
+	  <div id="capptain_overlay_poll"></div>
+	  <div id="capptain_overlay_buttons">
+	    <button id="capptain_overlay_exit"></button>
+	    <button id="capptain_overlay_action"></button>
+	  </div>
+	</div>
 
-    <div id="capptain_overlay" class="capptain_category_default">
-      <button id="capptain_overlay_close">x</button>
-      <div id="capptain_overlay_title"></div>
-      <div id="capptain_overlay_body"></div>
-      <div id="capptain_overlay_poll"></div>
-      <div id="capptain_overlay_buttons">
-        <button id="capptain_overlay_exit"></button>
-        <button id="capptain_overlay_action"></button>
-      </div>
-    </div>
+從您的組態中移除 `reach` 物件 (如果存在)。它看起來像這樣：
 
-Remove the `reach` object from your configuration, if it exists. It looks like this:
+	window.capptain = {
+	  [...]
+	  reach: {
+	    [...]
+	  }
+	}
 
-    window.capptain = {
-      [...]
-      reach: {
-        [...]
-      }
-    }
+移除所有其他的 Reach 自訂，例如類別。
 
-Remove any other Reach customization, such as categories.
+#### 移除已被取代的 API
 
-#### <a name="remove-deprecated-apis"></a>Remove deprecated APIs
+在 Mobile Engagement Web SDK 中，某些來自 Capptain 的 API 已被取代。
 
-Some APIs from Capptain are deprecated in the Mobile Engagement Web SDK.
+移除針對下列 API 的所有呼叫：`agent.connect`、`agent.disconnect`、`agent.pause` 及 `agent.sendMessageToDevice`。
 
-Remove any calls to the following APIs: `agent.connect`, `agent.disconnect`, `agent.pause`, and `agent.sendMessageToDevice`.
+從您的 Capptain 組態移除下列回呼的任何項目：`onConnected`、`onDisconnected`、`onDeviceMessageReceived` 及 `onPushMessageReceived`。
 
-Remove any of the following callbacks from your Capptain configuration: `onConnected`, `onDisconnected`, `onDeviceMessageReceived`, and `onPushMessageReceived`.
+#### 組態
 
-#### <a name="configuration"></a>Configuration
+Mobile Engagement 使用連接字串來設定 SDK 識別碼，例如應用程式識別碼。
 
-Mobile Engagement uses a connection string to configure SDK identifiers, for example, the application identifier.
+使用您的連接字串來取代應用程式識別碼。請注意，適用於 SDK 組態的全域物件會從 `capptain` 變更為 `azureEngagement`。
 
-Replace the application ID with your connection string. Note that the global object for the SDK configuration changes from `capptain` to `azureEngagement`.
+移轉前：
 
-Before migration:
+	window.capptain = {
+	  appId: ...,
+	  [...]
+	};
 
-    window.capptain = {
-      appId: ...,
-      [...]
-    };
+移轉後：
 
-After migration:
+	window.azureEngagement = {
+	  connectionString: 'Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}',
+	  [...]
+	};
 
-    window.azureEngagement = {
-      connectionString: 'Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}',
-      [...]
-    };
+您應用程式的連接字串會顯示於 Azure 入口網站中。
 
-The connection string for your application is displayed in the Azure portal.
+#### JavaScript API
 
-#### <a name="javascript-apis"></a>JavaScript APIs
+全域 JavaScript 物件 `window.capptain` 已重新命名為 `window.azureEngagement`，但您可以針對 API 呼叫使用 `window.engagement` 別名。您無法使用此別名來定義 SDK 組態。
 
-The global JavaScript object `window.capptain` has been renamed `window.azureEngagement`, but you can use the `window.engagement` alias for API calls. You can't use this alias to define the SDK configuration.
+例如，`capptain.deviceId` 會變成 `engagement.deviceId`，`capptain.agent.startActivity` 會變成 `engagement.agent.startActivity`，依此類推。
 
-For instance, `capptain.deviceId` becomes `engagement.deviceId`, `capptain.agent.startActivity` becomes `engagement.agent.startActivity`, and so on.
+如果您已經將舊版 Azure Mobile Engagement Web SDK 整合到您的 Web 應用程式，請參閱[升級程序](mobile-engagement-web-upgrade-procedure.md)。
 
-If you have already integrated an earlier version of the Azure Mobile Engagement Web SDK into your application, please read about [upgrade procedures](mobile-engagement-web-upgrade-procedure.md).
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0713_2016-->

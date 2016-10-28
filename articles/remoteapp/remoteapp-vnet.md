@@ -1,7 +1,7 @@
 
 <properties
-    pageTitle="Validate the Azure VNET to use with Azure RemoteApp | Microsoft Azure"
-    description="Learn how to make sure your Azure VNET is ready to use with Azure RemoteApp"
+    pageTitle="驗證要搭配 Azure RemoteApp 使用的 Azure VNET | Microsoft Azure"
+    description="了解如何確定 Azure VNET 已準備好搭配 Azure RemoteApp 使用"
     services="remoteapp"
     documentationCenter=""
     authors="lizap"
@@ -18,31 +18,26 @@
 
 
 
-
-# <a name="validate-the-azure-vnet-to-use-with-azure-remoteapp"></a>Validate the Azure VNET to use with Azure RemoteApp
+# 驗證要搭配 Azure RemoteApp 使用的 Azure VNET
 
 > [AZURE.IMPORTANT]
-> Azure RemoteApp is being discontinued. Read the [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
-Before you use an Azure VNET with Azure RemoteApp, you might want to validate the VNET. This helps prevent issues with connectivity.
+在搭配 Azure RemoteApp 使用 Azure VNET 之前，您可能想要驗證 VNET。這有助於避免發生連線問題。
 
-To validate your Azure VNET, do the following:
+若要驗證 Azure VNET，請執行下列動作：
 
-1. Create an Azure virtual machine inside the subnet of the Azure VNET you want to use with Azure RemoteApp.
+1. 在您想要搭配 Azure RemoteApp 使用之 Azure VNET 的子網路內建立 Azure 虛擬機器。
 
-2. Connect to that VM by using the **Connect** option in the management portal.
-3. Join the virtual machine to the same domain that you want to use with Azure RemoteApp. If you are creating a hybrid collection that connects to your on-premises network, join the virtual machine to your local domain.
+2. 使用管理入口網站中的 [**連接**] 選項連接到該 VM 。
+3. 將您想要搭配 Azure RemoteApp 使用的虛擬機器加入至相同網域。如果您要建立連線到內部部署網路的混合式集合，請將此虛擬機器加入您的本機網域。
 
-If this is successful, the Azure VNET is ready to use with RemoteApp.
+如果成功，Azure VNET 已準備好搭配 RemoteApp 使用。
 
-For more information about the end-to-end hybrid collection workflow, see the following articles:
+如需端對端混合式收藏工作流程的詳細資訊，請參閱下列文章：
 
-- [How to plan your virtual network for Azure RemoteApp](remoteapp-planvnet.md)
-- [Create a hybrid collection](remoteapp-create-hybrid-deployment.md)
-- [Deploy Azure RemoteApp collection to your Azure Virtual Network (with support for ExpressRoute)](http://blogs.msdn.com/b/rds/archive/2015/04/23/deploy-azure-remoteapp-collection-to-your-azure-virtual-network-with-support-for-expressroute.aspx)
+- [如何針對 Azure RemoteApp 規劃您的虛擬網路](remoteapp-planvnet.md)
+- [建立混合式收藏](remoteapp-create-hybrid-deployment.md)
+- [將 Azure RemoteApp 收藏部署到 Azure 虛擬網路 (支援 ExpressRoute)](http://blogs.msdn.com/b/rds/archive/2015/04/23/deploy-azure-remoteapp-collection-to-your-azure-virtual-network-with-support-for-expressroute.aspx)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

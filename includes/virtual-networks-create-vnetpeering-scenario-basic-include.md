@@ -1,11 +1,9 @@
-## <a name="peering-vnets-in-the-same-subscription"></a>Peering VNets in the same subscription
+## 在相同訂用帳戶中對等互連 VNet
 
-In this scenario you will create a peering between two VNets named **VNet1** and **VNet2** belonging to the same subscription. 
+在此案例中，您將在名為 **VNet1** 和 **VNet2** 的兩個 Vnet 之間建立對等互連，兩個 Vnet 屬於相同訂用帳戶。
 
-![Basic scenario](./media/virtual-networks-create-vnetpeering-scenario-basic-include/figure01.PNG)
+![基本案例](./media/virtual-networks-create-vnetpeering-scenario-basic-include/figure01.PNG)
 
-VNet peering will allow full connectivity between the entire address space of peered virtual networks.    
+VNet 對等互連可讓對等互連的虛擬網路整個位址空間之間具有完整的連線。
 
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

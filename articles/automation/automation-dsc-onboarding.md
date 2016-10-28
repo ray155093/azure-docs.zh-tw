@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="Onboarding physical and virtual machines for management by Azure Automation DSC | Microsoft Azure" 
-   description="How to setup machines for management with Azure Automation DSC" 
+   pageTitle="上架由 Azure 自動化 DSC 管理的實體和虛擬機器 | Microsoft Azure" 
+   description="如何設定機器以使用 Azure 自動化 DSC 管理" 
    services="automation" 
    documentationCenter="dev-center-name" 
    authors="coreyp-at-msft" 
@@ -16,41 +16,40 @@
    ms.date="04/22/2016"
    ms.author="coreyp"/>
 
+# 上架由 Azure 自動化 DSC 管理的機器
 
-# <a name="onboarding-machines-for-management-by-azure-automation-dsc"></a>Onboarding machines for management by Azure Automation DSC
+## 為什麼要使用 Azure 自動化 DSC 管理機器？
 
-## <a name="why-manage-machines-with-azure-automation-dsc?"></a>Why manage machines with Azure Automation DSC?
+如同 [PowerShell 期望的狀態設定](https://technet.microsoft.com/library/dn249912.aspx)，Azure 自動化期望的狀態設定在任何雲端或內部部署資料中心中是 DSC 節點 (實體和虛擬機器) 的一個簡單但強大的組態管理服務。它可讓您從中央、安全的位置快速且輕鬆地延展性到數千部電腦。您可以輕鬆地上架機器、指派它們宣告式組態和檢視顯示每個電腦的符合性報告 (達您指定的所需狀態)。Azure 自動化 DSC 管理層之於 DSC 如同 Azure 自動化管理層之於 PowerShell 指令碼。換句話說，「Azure 自動化」會以協助您管理 Powershell 指令碼的相同方式，同樣協助您管理 DSC 組態。若要深入了解使用 Azure Automation DSC 的優點，請參閱 [Azure Automation DSC 概觀](automation-dsc-overview.md)。
 
-Like [PowerShell Desired State Configuration](https://technet.microsoft.com/library/dn249912.aspx), Azure Automation Desired State Configuration is a simple, yet powerful, configuration management service for DSC nodes (physical and virtual machines) in any cloud or on-premises datacenter. It enables scalability across thousands of machines quickly and easily from a central, secure location. You can easily onboard machines, assign them declarative configurations, and view reports showing each machine’s compliance to the desired state you specified. The Azure Automation DSC management layer is to DSC what the Azure Automation management layer is to PowerShell scripting. In other words, in the same way that Azure Automation helps you manage PowerShell scripts, it also helps you manage DSC configurations. To learn more about the benefits of using Azure Automation DSC, see [Azure Automation DSC overview](automation-dsc-overview.md). 
+Azure 自動化 DSC 可以用來管理各種不同的機器：
 
-Azure Automation DSC can be used to manage a variety of machines:
+*    Azure 虛擬機器 (傳統)
+*    Azure 虛擬機器
+*    Amazon Web Services (AWS) 虛擬機器
+*    位於內部部署或 Azure/AWS 以外之雲端中的實體/虛擬 Windows 電腦
+*    位於內部部署、Azure 或 Azure 以外之雲端中的實體/虛擬 Linux 機器
 
-*    Azure virtual machines (classic)
-*    Azure virtual machines
-*    Amazon Web Services (AWS) virtual machines
-*    Physical/virtual Windows machines on-premises, or in a cloud other than Azure/AWS
-*    Physical/virtual Linux machines on-premises, in Azure, or in a cloud other than Azure
+此外，如果您不準備從雲端管理機器組態，Azure Automation DSC 也可用來當做報告專用端點。這可讓您透過 DSC 內部部署設定 (推送) 所需的組態，以及檢視與 Azure 自動化中的期望狀態相符節點的豐富報告詳細資料。
 
-In addition, if you are not ready to manage machine configuration from the cloud, Azure Automation DSC can also be used as a report-only endpoint. This allows you to set (push) desired configuration through DSC on-premises and view rich reporting details on node compliance with the desired state in Azure Automation.
+下列各節概述如何將每個類型的機器上架到 Azure 自動化 DSC。
 
-The following sections outline how you can onboard each type of machine to Azure Automation DSC.
+## Azure 虛擬機器 (傳統)
 
-## <a name="azure-virtual-machines-(classic)"></a>Azure virtual machines (classic)
-
-With Azure Automation DSC, you can easily onboard Azure virtual machines (classic) for configuration management using either the Azure portal, or PowerShell. Under the hood, and without an administrator having to remote into the VM, the Azure VM Desired State Configuration extension registers the VM with Azure Automation DSC. Since the Azure VM Desired State Configuration extension runs asynchronously, steps to track its progress or troubleshoot it are provided in the [**Troubleshooting Azure virtual machine onboarding**](#troubleshooting-azure-virtual-machine-onboarding) section below.
+利用 Azure 自動化 DSC，您可以輕鬆上架 Azure 虛擬機器 (傳統)，以使用 Azure 入口網站或 PowerShell 進行組態管理。在幕後並且不需要系統管理員遠端連至 VM 的情況下，Azure VM 期望的狀態組態延伸模組會向 Azure 自動化 DSC 註冊 VM。因為 Azure VM 預期狀態設定延伸模組是以非同步方式執行，以下的[**疑難排解 Azure 虛擬機器上架**](#troubleshooting-azure-virtual-machine-onboarding)一節會提供追蹤其進度或疑難排解的步驟。
 
 
-### <a name="azure-portal"></a>Azure portal
+### Azure 入口網站
 
-In the [Azure portal](http://portal.azure.com/), click **Browse** -> **Virtual machines (classic)**. Select the Windows VM you want to onboard. On the virtual machine’s dashboard blade, click **All settings** -> **Extensions** -> **Add** -> **Azure Automation DSC** -> **Create**. Enter the [PowerShell DSC Local Configuration Manager values](https://msdn.microsoft.com/powershell/dsc/metaconfig4) required for your use case, your Automation account’s registration key and registration URL, and optionally a node configuration to assign to the VM.
+在 [Azure 入口網站](http://portal.azure.com/)中，按一下 [瀏覽] -> [虛擬機器 (傳統)]。選取您要上架的 Windows VM。在虛擬機器的儀表板刀鋒視窗上，按一下 [所有設定] -> [延伸模組] -> [新增] -> [Azure Automation DSC] -> [建立]。輸入您的使用情況所需的 [PowerShell DSC 本機設定管理員值](https://msdn.microsoft.com/powershell/dsc/metaconfig4)、自動化帳戶的註冊金鑰和註冊 URL，並選擇性地輸入要指派給 VM 的節點組態。
 
 
 ![](./media/automation-dsc-onboarding/DSC_Onboarding_1.png)
 
 
-To find the registration URL and key for the Automation account to onboard the machine to, see the [**Secure registration**](#secure-registration) section below.
+若要找出自動化帳戶所要上架機器的註冊 URL 與金鑰，請查看以下的[**安全註冊**](#secure-registration)一節。
 
-### <a name="powershell"></a>PowerShell
+### PowerShell
 
     # log in to both Azure Service Management and Azure Resource Manager
     Add-AzureAccount
@@ -112,96 +111,96 @@ To find the registration URL and key for the Automation account to onboard the m
 
     $VM | Update-AzureVM
 
-## <a name="azure-virtual-machines"></a>Azure virtual machines
+## Azure 虛擬機器
 
-Azure Automation DSC lets you easily onboard Azure virtual machines for configuration management, using either the Azure portal, Azure Resource Manager templates, or PowerShell. Under the hood, and without an administrator having to remote into the VM, the Azure VM Desired State Configuration extension registers the VM with Azure Automation DSC. Since the Azure VM Desired State Configuration extension runs asynchronously, steps to track its progress or troubleshoot it are provided in the [**Troubleshooting Azure virtual machine onboarding**](#troubleshooting-azure-virtual-machine-onboarding) section below.
+Azure 自動化 DSC 可讓您輕鬆上架 Azure 虛擬機器以進行組態管理，請使用 Azure 入口網站、Azure 資源管理員範本或 PowerShell。在幕後並且不需要系統管理員遠端連至 VM 的情況下，Azure VM 期望的狀態組態延伸模組會向 Azure 自動化 DSC 註冊 VM。因為 Azure VM 預期狀態設定延伸模組是以非同步方式執行，以下的[**疑難排解 Azure 虛擬機器上架**](#troubleshooting-azure-virtual-machine-onboarding)一節會提供追蹤其進度或疑難排解的步驟。
 
 
-### <a name="azure-portal"></a>Azure portal
+### Azure 入口網站
 
-In the [Azure portal](https://portal.azure.com/), navigate to the Azure Automation account where you want to onboard virtual machines. On the Automation account dashboard, click **DSC Nodes** -> **Add Azure VM**.
+在 [Azure 入口網站](https://portal.azure.com/)中，瀏覽至您想要佈建虛擬機器的「Azure 自動化」帳戶。在 [自動化帳戶] 儀表板上，按一下 [DSC 節點] -> [新增 Azure VM]。
 
-Under **Select virtual machines to onboard**, select one or more Azure virtual machines to onboard.
+在 [選取要上架的虛擬機器] 下，選取一或多個要上架的 Azure 虛擬機器。
 
 ![](./media/automation-dsc-onboarding/DSC_Onboarding_2.png)
 
 
-Under **Configure registration data**, enter the [PowerShell DSC Local Configuration Manager values](https://msdn.microsoft.com/powershell/dsc/metaconfig4) required for your use case, and optionally a node configuration to assign to the VM.
+在 [設定註冊資料] 下，輸入您的使用情況所需的 [PowerShell DSC 本機設定管理員值](https://msdn.microsoft.com/powershell/dsc/metaconfig4)，並選擇性地輸入要指派給 VM 的節點組態。
 
 ![](./media/automation-dsc-onboarding/DSC_Onboarding_3.png)
 
  
-### <a name="azure-resource-manager-templates"></a>Azure Resource Manager templates
+### Azure 資源管理員範本
 
-Azure virtual machines can be deployed and onboarded to Azure Automation DSC via Azure Resource Manager templates. See [Configure a VM via DSC extension and Azure Automation DSC](https://azure.microsoft.com/documentation/templates/dsc-extension-azure-automation-pullserver/) for an example template that onboards an existing VM to Azure Automation DSC. To find the registration key and registration URL taken as input in this template, see the [**Secure registration**](#secure-registration) section below.
+您可以透過 Azure 資源管理員範本部署 Azure 虛擬機器和上架到 Azure 自動化 DSC。如需將現有的 VM 上架到 Azure Automation DSC 的範例範本，請參閱[透過 DSC 延伸模組和 Azure Automation DSC 設定 VM](https://azure.microsoft.com/documentation/templates/dsc-extension-azure-automation-pullserver/)。若要尋找註冊金鑰和註冊 URL 做為此範本中的輸入，請參閱以下的[**安全註冊**](#secure-registration)一節。
 
-### <a name="powershell"></a>PowerShell
+### PowerShell
 
-The [Register-AzureRmAutomationDscNode](https://msdn.microsoft.com/library/mt603833.aspx) cmdlet can be used to onboard virtual machines in the Azure portal via PowerShell.
+您可以透過 PowerShell 使用 [Register-AzureRmAutomationDscNode](https://msdn.microsoft.com/library/mt603833.aspx) Cmdlet 在 Azure 入口網站中佈建虛擬機器。
 
-## <a name="amazon-web-services-(aws)-virtual-machines"></a>Amazon Web Services (AWS) virtual machines
+## Amazon Web Services (AWS) 虛擬機器
 
-You can easily onboard Amazon Web Services virtual machines for configuration management by Azure Automation DSC using the AWS DSC Toolkit. You can learn more about the toolkit [here](https://blogs.msdn.microsoft.com/powershell/2016/04/20/aws-dsc-toolkit/).
+您可以使用 AWS DSC Toolkit 輕鬆加入 Amazon Web Services 虛擬機器，讓 Azure 自動化 DSC 管理組態。您可以在[這裡](https://blogs.msdn.microsoft.com/powershell/2016/04/20/aws-dsc-toolkit/)深入了解工具組。
 
-## <a name="physical/virtual-windows-machines-on-premises,-or-in-a-cloud-other-than-azure/aws"></a>Physical/virtual Windows machines on-premises, or in a cloud other than Azure/AWS
+## 位於內部部署或 Azure/AWS 以外之雲端中的實體/虛擬 Windows 電腦
 
-On-premises Windows machines and Windows machines in non-Azure clouds (such as Amazon Web Services) can also be onboarded to Azure Automation DSC, as long as they have outbound access to the internet, via a few simple steps:
+內部部署 Windows 電腦和非 Azure 雲端中的 Windows 電腦 (例如 Amazon Web Services) 也可以上架到 Azure 自動化 DSC，只要它們對外可存取網際網路，透過一些簡單的步驟：
 
-1. Make sure the latest version of [WMF 5](http://aka.ms/wmf5latest) is installed on the machines you want to onboard to Azure Automation DSC.
-2. Follow the directions in section [**Generating DSC metaconfigurations**](#generating-dsc-metaconfigurations) below to generate a folder containing the needed DSC metaconfigurations.
-3. Remotely apply the PowerShell DSC metaconfiguration to the machines you want to onboard. **The machine this command is run from must have the latest version of [WMF 5](http://aka.ms/wmf5latest) installed**:
+1. 確定在您想要上架到 Azure Automation DSC 的電腦上已安裝最新版的 [WMF 5](http://aka.ms/wmf5latest)。
+2. 請依照下列[**產生 DSC 中繼設定**](#generating-dsc-metaconfigurations)一節中的指示，來產生包含所需 DSC 中繼設定的資料夾。
+3. 從遠端將 PowerShell DSC 中繼設定套用至您想要上架的電腦。**執行此命令的電腦必須安裝最新版的 [WMF 5](http://aka.ms/wmf5latest)**：
 
-    `Set-DscLocalConfigurationManager -Path C:\Users\joe\Desktop\DscMetaConfigs -ComputerName MyServer1, MyServer2`
+	`Set-DscLocalConfigurationManager -Path C:\Users\joe\Desktop\DscMetaConfigs -ComputerName MyServer1, MyServer2`
 
-4. If you cannot apply the PowerShell DSC metaconfigurations remotely, copy the metaconfigurations folder from step 2 onto each machine to onboard. Then call **Set-DscLocalConfigurationManager** locally on each machine to onboard.
-5. Using the Azure portal or cmdlets, check that the machines to onboard now show up as DSC nodes registered in your Azure Automation account.
+4. 如果您無法從遠端套用 PowerShell DSC 中繼設定，請將步驟 2 中繼設定的資料夾複製到每一部要上架的電腦。然後在要上架的每台電腦本機上呼叫 **Set-DscLocalConfigurationManager**。
+5. 使用 Azure 入口網站或 Cmdlet，檢查要上架的電腦現在在您的 Azure 自動化帳戶中顯示為已註冊的 DSC 節點。
 
-## <a name="physical/virtual-linux-machines-on-premises,-in-azure,-or-in-a-cloud-other-than-azure"></a>Physical/virtual Linux machines on-premises, in Azure, or in a cloud other than Azure
+## 位於內部部署、Azure 或 Azure 以外之雲端中的實體/虛擬 Linux 機器
 
-On-premises Linux machines, Linux machines in Azure, and Linux machines in non-Azure clouds can also be onboarded to Azure Automation DSC, as long as they have outbound access to the internet, via a few simple steps:
+內部部署 Linux 電腦、Azure 中的 Linux 電腦和非 Azure 雲端中的 Linux 電腦也可以上架到 Azure Automation DSC，只要它們對外可存取網際網路，透過一些簡單的步驟：
 
-1. Make sure the latest version of the [DSC Linux agent](http://www.microsoft.com/download/details.aspx?id=49150) is installed on the machines you want to onboard to Azure Automation DSC.
+1. 確定在您想要上架到 Azure Automation DSC 的電腦上已安裝最新版的 [DSC Linux 代理程式](http://www.microsoft.com/download/details.aspx?id=49150)。
 
-2. If the [PowerShell DSC Local Configuration Manager defaults](https://msdn.microsoft.com/powershell/dsc/metaconfig4) match your use case, and you want to onboard machines such that they **both** pull from and report to Azure Automation DSC:
+2. 如果 [PowerShell DSC 本機設定管理員的預設值](https://msdn.microsoft.com/powershell/dsc/metaconfig4)符合您的使用案例，且您想要將電腦上架**同時**從 Azure 自動化 DSC 提取並報告：
 
-    *    On each Linux machine to onboard to Azure Automation DSC, use Register.py to onboard using the PowerShell DSC Local Configuration Manager defaults:
+	*    在要上架到 Azure 自動化 DSC 的每部 Linux 電腦上，使用 Register.py 來使用 PowerShell DSC 本機組態管理員預設值上架：
 
-        `/opt/microsoft/dsc/Scripts/Register.py <Automation account registration key> <Automation account registration URL>`
+		`/opt/microsoft/dsc/Scripts/Register.py <Automation account registration key> <Automation account registration URL>`
 
-    *    To find the registration key and registration URL for your Automation account, see the [**Secure registration**](#secure-registration) section below.
+	*    若要尋找您的自動化帳戶的註冊金鑰和註冊 URL，請參閱以下的[**安全註冊**](#secure-registration)一節。
 
-    If the PowerShell DSC Local Configuration Manager defaults **do** **not** match your use case, or you want to onboard machines such that they only report to Azure Automation DSC, but do not pull configuration or PowerShell modules from it,  follow steps 3 - 6. Otherwise, proceed directly to step 6.
+	如果 PowerShell DSC 本機設定管理員的預設值**不**符合您的使用案例，或者您希望將電腦上架以便只向 Azure 自動化 DSC 報告，但不提取設定或 PowerShell 模組，請依照步驟 3 - 6 執行。否則，請直接跳到步驟 6。
 
-3.  Follow the directions in the [**Generating DSC metaconfigurations**](#generating-dsc-metaconfigurations) section below to generate a folder containing the needed DSC metaconfigurations.
-4.  Remotely apply the PowerShell DSC metaconfiguration to the machines you want to onboard:
-        
-        $SecurePass = ConvertTo-SecureString -String "<root password>" -AsPlainText -Force
+3.	請依照下列[**產生 DSC 中繼設定**](#generating-dsc-metaconfigurations)一節中的指示，來產生包含所需 DSC 中繼設定的資料夾。
+4.  從遠端將 PowerShell DSC metaconfiguration 套用至您想要上架的電腦：
+    	
+    	$SecurePass = ConvertTo-SecureString -String "<root password>" -AsPlainText -Force
         $Cred = New-Object System.Management.Automation.PSCredential "root", $SecurePass
         $Opt = New-CimSessionOption -UseSsl -SkipCACheck -SkipCNCheck -SkipRevocationCheck
 
         # need a CimSession for each Linux machine to onboard
         
         $Session = New-CimSession -Credential $Cred -ComputerName <your Linux machine> -Port 5986 -Authentication basic -SessionOption $Opt
-        
-        Set-DscLocalConfigurationManager -CimSession $Session –Path C:\Users\joe\Desktop\DscMetaConfigs
-    
-The machine this command is run from must have the latest version of [WMF 5](http://aka.ms/wmf5latest) installed.
+    	
+    	Set-DscLocalConfigurationManager -CimSession $Session –Path C:\Users\joe\Desktop\DscMetaConfigs
+	
+執行此命令的電腦必須安裝最新版的 [WMF 5](http://aka.ms/wmf5latest)。
 
-5.  If you cannot apply the PowerShell DSC metaconfigurations remotely, for each Linux machine to onboard, copy the metaconfiguration corresponding to that machine from the folder in step 5 onto the Linux machine. Then call `SetDscLocalConfigurationManager.py` locally on each Linux machine you want to onboard to Azure Automation DSC:
+5.  如果您無法從遠端套用 PowerShell DSC 中繼設定，針對要上架的每部 Linux 電腦，請從步驟 5 的資料夾複製對應於該電腦的中繼組態到 Linux 電腦。然後在您要上架到 Azure Automation DSC 的每個 Linux 電腦本機上呼叫 `SetDscLocalConfigurationManager.py`：
 
-    `/opt/microsoft/dsc/Scripts/SetDscLocalConfigurationManager.py –configurationmof <path to metaconfiguration file>`
+	`/opt/microsoft/dsc/Scripts/SetDscLocalConfigurationManager.py –configurationmof <path to metaconfiguration file>`
 
-6.  Using the Azure portal or cmdlets, check that the machines to onboard now show up as DSC nodes registered in your Azure Automation account.
+6.  使用 Azure 入口網站或 Cmdlet，檢查要上架的電腦現在在您的 Azure 自動化帳戶中顯示為已註冊的 DSC 節點。
 
-##<a name="generating-dsc-metaconfigurations"></a>Generating DSC metaconfigurations
-To generically onboard any machine to Azure Automation DSC, a DSC metaconfiguration can be generated that, when applied, tells the DSC agent on the machine to pull from and/or report to Azure Automation DSC. DSC metaconfigurations for Azure Automation DSC can be generated using either a PowerShell DSC configuration, or the Azure Automation PowerShell cmdlets.
+##產生 DSC 中繼設定
+若要以一般方式將任何電腦上架至 Azure 自動化 DSC，可產生套用時會告知電腦上的 DSC 代理程式從 Azure 自動化 DSC 提取且/或報告的 DSC 中繼設定。Azure 自動化 DSC 的 DSC 中繼設定可以使用 PowerShell DSC 設定或 Azure 自動化 PowerShell Cmdlet 產生。
 
-**Note:** DSC metaconfigurations contain the secrets needed to onboard a machine to an Automation account for management. Make sure to properly protect any DSC metaconfigurations you create, or delete them after use.
+**注意：**DSC 中繼設定包含將電腦上架至進行管理之自動化帳戶的機密資料。請務必適當地保護您所建立的任何 DSC 中繼設定，或在使用後將它們刪除。
 
-###<a name="using-a-dsc-configuration"></a>Using a DSC Configuration
-1.  Open the PowerShell ISE as an administrator in a machine in your local environment. The machine must have the latest version of [WMF 5](http://aka.ms/wmf5latest) installed.
+###使用 DSC 設定
+1.	在您的本機環境中，以電腦的系統管理員身分開啟 PowerShell ISE。電腦必須安裝最新版本的 [WMF 5](http://aka.ms/wmf5latest)。
 
-2.  Copy the following script locally. This script contains a PowerShell DSC configuration for creating metaconfigurations, and a command to kick off the metaconfiguration creation.
+2.	在本機複製下列指令碼。此指令碼包含用來建立中繼設定的 PowerShell DSC 設定，以及開始執行中繼設定建立作業的命令。
     
         # The DSC configuration that will generate metaconfigurations
         [DscLocalConfigurationManager()]
@@ -312,79 +311,72 @@ To generically onboard any machine to Azure Automation DSC, a DSC metaconfigurat
         # For more info about splatting, run: Get-Help -Name about_Splatting
         DscMetaConfigs @Params
 
-3.  Fill in the registration key and URL for your Automation account, as well as the names of the machines to onboard. All other parameters are optional. To find the registration key and registration URL for your Automation account, see the [**Secure registration**](#secure-registration) section below.
+3.	填寫您自動化帳戶的註冊金鑰和 URL，以及要上架的電腦名稱。所有其他參數都是選擇性的。若要尋找您的自動化帳戶的註冊金鑰和註冊 URL，請參閱以下的[**安全註冊**](#secure-registration)一節。
 
-4.  If you want the machines to report DSC status information to Azure Automation DSC, but not pull configuration or PowerShell modules, set the **ReportOnly** parameter to true.
+4.	如果您希望電腦向 Azure 自動化 DSC 報告 DSC 狀態資訊，但不提取設定或 PowerShell 模組，請將 **ReportOnly** 參數設定為 true。
 
-5.  Run the script. You should now have a folder called **DscMetaConfigs** in your working directory, containing the PowerShell DSC metaconfigurations for the machines to onboard.
+5.	執行指令碼。您現在工作目錄中應該有一個名為 **DscMetaConfigs** 的資料夾，其中包含要上架之電腦的 PowerShell DSC 中繼設定。
 
-###<a name="using-the-azure-automation-cmdlets"></a>Using the Azure Automation cmdlets
-If the PowerShell DSC Local Configuration Manager defaults match your use case, and you want to onboard machines such that they both pull from and report to Azure Automation DSC, the Azure Automation cmdlets provide a simplified method of generating the DSC metaconfigurations needed:
+###使用 Azure 自動化 Cmdlet
+如果 PowerShell DSC 本機設定管理員的預設值符合您的使用案例，且您想要將電腦上架同時從 Azure 自動化 DSC 提取並報告，Azure 自動化 Cmdlet 會提供簡單的方法，來產生所需的 DSC 中繼設定：
 
-1.  Open the PowerShell console or PowerShell ISE as an administrator in a machine in your local environment.
+1.	在您的本機環境的機器中，以系統管理員身分開啟 PowerShell 主控台或 PowerShell ISE。
 
-2.  Connect to Azure Resource Manager using **Add-AzureRmAccount**
+2.	使用 **Add-AzureRmAccount** 連接至 Azure Resource Manager
 
-3.  Download the PowerShell DSC metaconfigurations for the machines you want to onboard from the Automation account to which you want to onboard nodes:
+3.	從您要上架節點的目標自動化帳戶下載您想要上架之電腦的 PowerShell DSC 中繼設定：
 
         # Define the parameters for Get-AzureRmAutomationDscOnboardingMetaconfig using PowerShell Splatting
         $Params = @{
             ResourceGroupName = 'ContosoResources'; # The name of the ARM Resource Group that contains your Azure Automation Account
             AutomationAccountName = 'ContosoAutomation'; # The name of the Azure Automation Account where you want a node on-boarded to
             ComputerName = @('web01', 'web02', 'sql01'); # The names of the computers that the meta configuration will be generated for
-            OutputFolder = "$env:UserProfile\Desktop\";
+            OutputFolder = "$env:UserProfile\Desktop";
         }
         
         # Use PowerShell splatting to pass parameters to the Azure Automation cmdlet being invoked
         # For more info about splatting, run: Get-Help -Name about_Splatting
         Get-AzureRmAutomationDscOnboardingMetaconfig @Params
 
-You should now have a folder called ***DscMetaConfigs***, containing the PowerShell DSC metaconfigurations for the machines to onboard.
+您現在應該有一個名為 ***DscMetaConfigs*** 的資料夾，其中包含要上架之電腦的 PowerShell DSC 中繼設定。
 
-##<a name="secure-registration"></a>Secure registration
+##安全註冊
 
-Machines can securely onboard to an Azure Automation account through the WMF 5 DSC registration protocol, which allows a DSC node to authenticate to a PowerShell DSC V2 Pull or Reporting server (including Azure Automation DSC). The node registers to the server at a **Registration URL**, authenticating using a **Registration key**. During registration, the DSC node and DSC Pull/Reporting server negotiate a unique certificate for this node to use for authentication to the server post-registration. This process prevents onboarded nodes from impersonating one another, such as if a node is compromised and behaving maliciously. After registration, the Registration key is not used for authentication again, and is deleted from the node.
+機器可以透過 WMF 5 DSC 註冊通訊協定安全地上架到 Azure 自動化帳戶，如此可讓 DSC 節點向 PowerShell DSC V2 提取或報表伺服器 (包括 Azure 自動化 DSC) 進行驗證。節點會在**註冊 URL**時向伺服器註冊，並使用**註冊金鑰**驗證。在註冊期間，DSC 節點和 DSC 提取/報告伺服器會交涉獨特的憑證，讓此節點在註冊伺服器用於進行驗證。此程序可避免上架的節點彼此模擬，例如當節點遭到入侵並且具有惡意行為。註冊之後，註冊金鑰不會再次用於驗證，並且會從節點中刪除。
 
-You can get the information required for the DSC registration protocol from the **Manage Keys** blade in the Azure preview portal. Open this blade by clicking the key icon on the **Essentials** panel for the Automation account.
+您可以從 Azure Preview 入口網站的 [管理金鑰] 刀鋒視窗取得 DSC 註冊通訊協定所需的資訊。在自動化帳戶的 [基本功能] 面板按一下金鑰圖示，可開啟此刀鋒視窗。
 
 ![](./media/automation-dsc-onboarding/DSC_Onboarding_4.png)
 
-*    Registration URL is the URL field in the Manage Keys blade.
-*    Registration key is the Primary Access Key or Secondary Access Key in the Manage Keys blade. Either key can be used.
+*    「註冊 URL」是 [管理金鑰] 刀鋒視窗中的 [URL] 欄位。
+*    「註冊金鑰」是 [管理金鑰] 刀鋒視窗中的主要存取金鑰或次要存取金鑰。可以使用這兩個金鑰。
 
-For added security, the primary and secondary access keys of an Automation account can be regenerated at any time (on the **Manage Keys** blade) to prevent future node registrations using previous keys.
+為了提高安全性，自動化帳戶的主要和次要存取金鑰可以隨時重新產生 (在 [管理金鑰] 刀鋒視窗上)，以避免未來的節點使用先前的金鑰註冊。
 
-##<a name="troubleshooting-azure-virtual-machine-onboarding"></a>Troubleshooting Azure virtual machine onboarding
+##疑難排解 Azure 虛擬機器上架
 
-Azure Automation DSC lets you easily onboard Azure Windows VMs for configuration management. Under the hood, the Azure VM Desired State Configuration extension is used to register the VM with Azure Automation DSC. Since the Azure VM Desired State Configuration extension runs asynchronously, tracking its progress and troubleshooting its execution may be important. 
+Azure Automation DSC 可讓您輕鬆地將 Azure Windows VM 上架以進行組態管理。在幕後，Azure VM 期望的狀態組態延伸模組是用來向 Azure 自動化 DSC 註冊 VM。因為 Azure VM 期望的狀態組態延伸模組是以非同步方式執行，追蹤其進度和疑難排解其執行可能很重要。
 
->[AZURE.NOTE] Any method of onboarding an Azure Windows VM to Azure Automation DSC that uses the Azure VM Desired State Configuration extension could take up to an hour for the node to show up as registered in Azure Automation. This is due to the installation of Windows Management Framework 5.0 on the VM by the Azure VM DSC extension, which is required to onboard the VM to Azure Automation DSC.
+>[AZURE.NOTE] 將 Azure Windows VM 上架到使用 Azure VM 期望的狀態組態延伸模組的 Azure 自動化 DSC 的任何方法，最多可能需要一小時的時間，節點才會顯示為已在 Azure 自動化中註冊。這是因為 VM 上憑藉著 Azure VM DSC 延伸模組的 Windows Management Framework 5.0 安裝，需要它才能將 VM 上架到 Azure 自動化 DSC。
 
-To troubleshoot or view the status of the Azure VM Desired State Configuration extension, in the Azure portal navigate to the VM being onboarded, then click -> **All settings** -> **Extensions** -> **DSC**. For more details, you can click **View detailed status**.
+若要對「Azure VM 預期狀態設定」擴充功能的狀態進行疑難排解或檢視，請在 Azure 入口網站中，瀏覽至正在佈建的 VM，然後按一下 -> [所有設定] -> [擴充功能] -> [DSC]。如需詳細資訊，您可以按一下 [檢視詳細狀態]。
 
 [![](./media/automation-dsc-onboarding/DSC_Onboarding_5.png)](https://technet.microsoft.com/library/dn249912.aspx)
 
-## <a name="certificate-expiration-and-reregistration"></a>Certificate expiration and reregistration
+## 憑證到期日和重新註冊
 
-After registering a machine as a DSC node in Azure Automation DSC, there are a number of reasons why you may need to reregister that node in the future:
+在將機器註冊為 Azure Automation DSC 中的 DSC 節點之後，有數種原因讓您可能需要在未來重新註冊該節點：
 
-* After registering, each node automatically negotiates a unique certificate for authentication that expires after one year. Currently, the PowerShell DSC registration protocol cannot automatically renew certificates when they are nearing expiration, so you need to reregister the nodes after a year’s time. Before reregistering, ensure that each node is running Windows Management Framework 5.0 RTM. If a node’s authentication certificate expires, and the node is not reregistered, the node will be unable to communicate with Azure Automation and will be marked ‘Unresponsive.’ Reregistration performed 90 days or less from the certificate expiration time, or at any point after the certificate expiration time, will result in a new certificate being generated and used.
+* 在註冊之後，每個節點會自動交涉唯一的驗證憑證，該憑證於一年之後到期。目前，當憑證即將過期時，PowerShell DSC 註冊通訊協定便無法自動更新憑證，因此您必須在一年之後重新註冊這些節點。在重新登錄之前，請確定每個節點都正在執行 Windows Management Framework 5.0 RTM。如果節點的驗證憑證過期，而且該節點尚未註冊，則該節點將無法與 Azure 自動化通訊，並將標示為「未回應」。 與憑證到期時間相距 90 天或更短時間內執行的註冊，或是憑證到期時間之後任何時間點執行的註冊，將會產生新的憑證並予以使用。
 
-* To change any [PowerShell DSC Local Configuration Manager values](https://msdn.microsoft.com/powershell/dsc/metaconfig4) that were set during initial registration of the node, such as ConfigurationMode. Currently, these DSC agent values can only be changed through reregistration. The one exception is the Node Configuration assigned to the node -- this can be changed in Azure Automation DSC directly.
+* 變更在節點初始註冊期間設定的任何 [PowerShell DSC 本機組態管理員值](https://msdn.microsoft.com/powershell/dsc/metaconfig4)，例如 ConfigurationMode。目前，這些 DSC 代理程式值只可以透過重新註冊變更。其中一個例外是指派給節點的節點組態 - 它可以在 Azure Automation DSC 中直接變更。
 
-Reregistration can be performed in the same way you registered the node initially, using any of the onboarding methods described in this document. You do not need to unregister a node from Azure Automation DSC before reregistering it.
-
-
-## <a name="related-articles"></a>Related Articles
-* [Azure Automation DSC overview](automation-dsc-overview.md)
-* [Azure Automation DSC cmdlets](https://msdn.microsoft.com/library/mt244122.aspx)
-* [Azure Automation DSC pricing](https://azure.microsoft.com/pricing/details/automation/)
+重新註冊可以用您初始註冊節點的相同方法執行，使用這份文件中所述的任何上架方法。重新註冊節點之前，您不需要從 Azure Automation DSC 取消註冊節點。
 
 
+## 相關文章
+* [Azure 自動化 DSC 概觀](automation-dsc-overview.md)
+* [Azure 自動化 DSC Cmdlet](https://msdn.microsoft.com/library/mt244122.aspx)
+* [Azure 自動化 DSC 價格](https://azure.microsoft.com/pricing/details/automation/)
 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

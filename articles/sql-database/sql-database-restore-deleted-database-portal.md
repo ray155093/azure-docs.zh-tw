@@ -1,53 +1,48 @@
 <properties
-    pageTitle="Restore a deleted Azure SQL database (Azure portal) | Microsoft Azure"
-    description="Restore a deleted Azure SQL database (Azure portal)."
-    services="sql-database"
-    documentationCenter=""
-    authors="stevestein"
-    manager="jhubbard"
-    editor=""/>
+	pageTitle="還原已刪除的 Azure SQL Database (Azure 入口網站) | Microsoft Azure"
+	description="還原已刪除的 Azure SQL Database (Azure 入口網站)。"
+	services="sql-database"
+	documentationCenter=""
+	authors="stevestein"
+	manager="jhubbard"
+	editor=""/>
 
 <tags
-    ms.service="sql-database"
-    ms.devlang="NA"
-    ms.date="10/12/2016"
-    ms.author="sstein"
-    ms.workload="NA"
-    ms.topic="article"
-    ms.tgt_pltfrm="NA"/>
+	ms.service="sql-database"
+	ms.devlang="NA"
+	ms.date="07/09/2016"
+	ms.author="sstein"
+	ms.workload="NA"
+	ms.topic="article"
+	ms.tgt_pltfrm="NA"/>
 
 
-
-# <a name="restore-a-deleted-azure-sql-database-using-the-azure-portal"></a>Restore a deleted Azure SQL database using the Azure Portal
+# 還原使用 Azure 入口網站的已刪除 Azure SQL Database
 
 > [AZURE.SELECTOR]
-- [Overview](sql-database-recovery-using-backups.md)
-- [**Restore Deleted DB: Portal**](sql-database-restore-deleted-database-portal.md)
-- [Restore Deleted DB: PowerShell](sql-database-restore-deleted-database-powershell.md)
+- [概觀](sql-database-recovery-using-backups.md)
+- [還原已刪除的資料庫︰PowerShell](sql-database-restore-deleted-database-powershell.md)
 
-## <a name="select-the-database-to-restore"></a>Select the database to restore 
+## 選取要還原的資料庫 
 
-To restore a deleted database in the Azure portal:
+若要在 Azure 入口網站中還原資料庫，請執行下列動作：
 
-1.  In the [Azure portal](https://portal.azure.com), click **More services** > **SQL servers**.
-3.  Select the server that contained the database you want to restore.
-4.  Scroll down to the **operations** section of your server blade and select **Deleted databases**: ![Restore an Azure SQL database](./media/sql-database-restore-deleted-database-portal/restore-deleted-trashbin.png)
-5.  Select the database you want to restore.
-6.  Specify a database name, and click **OK**:
+1.	開啟 [Azure 入口網站](https://portal.azure.com)。
+2.  在畫面左側選取 [瀏覽] > [SQL Server]。
+3.  瀏覽至包含已刪除資料庫的伺服器，您想要還原與選取伺服器
+4.  向下捲動至伺服器刀鋒視窗的 [作業] 區段，然後選取 [已刪除的資料庫]：![還原 Azure SQL Database](./media/sql-database-restore-deleted-database-portal/restore-deleted-trashbin.png)
+5.  按一下您想要還原的已刪除資料庫。
+6.  指定資料庫名稱，然後按一下 [確定]：
 
-    ![Restore an Azure SQL database](./media/sql-database-restore-deleted-database-portal/restore-deleted.png)
-
-
-## <a name="next-steps"></a>Next steps
-
-- For a business continuity overview and scenarios, see [Business continuity overview](sql-database-business-continuity.md)
-- To learn about Azure SQL Database automated backups, see [SQL Database automated backups](sql-database-automated-backups.md)
-- To learn about using automated backups for recovery, see [restore a database from the service-initiated backups](sql-database-recovery-using-backups.md)
-- To learn about faster recovery options, see [Active-Geo-Replication](sql-database-geo-replication-overview.md)  
-- To learn about using automated backups for archiving, see [database copy](sql-database-copy.md)
+    ![還原 Azure SQL Database](./media/sql-database-restore-deleted-database-portal/restore-deleted.png)
 
 
+## 後續步驟
 
-<!--HONumber=Oct16_HO2-->
+- 如需商務持續性概觀和案例，請參閱[商務持續性概觀](sql-database-business-continuity.md)
+- 若要了解 Azure SQL Database 自動備份，請參閱 [SQL Database 自動備份](sql-database-automated-backups.md)
+- 若要了解如何使用自動備份進行復原，請參閱[從服務起始的備份還原資料庫](sql-database-recovery-using-backups.md)
+- 若要了解更快速的復原選項，請參閱[主動式異地複寫](sql-database-geo-replication-overview.md)
+- 若要了解如何使用自動備份進行封存，請參閱[資料庫複製](sql-database-copy.md)
 
-
+<!---HONumber=AcomDC_0727_2016-->

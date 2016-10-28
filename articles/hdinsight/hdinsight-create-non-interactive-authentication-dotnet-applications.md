@@ -1,97 +1,95 @@
 <properties
-    pageTitle="Create non-interactive authentication .NET HDInsight applciations | Microsoft Azure"
-    description="Learn how to create non-interactive authentication .NET HDInsight applications."
-    editor="cgronlun"
-    manager="jhubbard"
-    services="hdinsight"
-    documentationCenter=""
-    tags="azure-portal"
-    authors="mumian"/>
+	pageTitle="建立非互動式驗證 .NET HDInsight 應用程式 | Microsoft Azure"
+	description="了解如何建立非互動式驗證 .NET HDInsight 應用程式。"
+	editor="cgronlun"
+	manager="jhubbard"
+	services="hdinsight"
+	documentationCenter=""
+	tags="azure-portal"
+	authors="mumian"/>
 
 <tags
-    ms.service="hdinsight"
-    ms.workload="big-data"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/02/2016"
-    ms.author="jgao"/>
+	ms.service="hdinsight"
+	ms.workload="big-data"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/02/2016"
+	ms.author="jgao"/>
+
+# 建立非互動式驗證 .NET HDInsight 應用程式
+
+您可以使用應用程式本身的身分識別 (非互動式) 或使用應用程式的登入使用者的身分識別 (互動式)，執行 .NET Azure HDInsight 應用程式。如需互動式應用程式的範例，請參閱[使用 HDInsight .NET SDK 提交 Hive/Pig/Sqoop 工作](hdinsight-submit-hadoop-jobs-programmatically.md#submit-hivepigsqoop-jobs-using-hdinsight-net-sdk)。本文將說明如何建立非互動式驗證 .NET 應用程式，來連接到 Azure HDInsight，並提交 Hive 作業。
+
+從 .NET 應用程式，您將需要︰
+
+- 您的 Azure 訂用帳戶租用戶識別碼
+- Azure Directory 應用程式用戶端識別碼
+- Azure Directory 應用程式秘密金鑰
+
+此主要程序包含下列步驟：
+
+2. 建立 Azure Directory 應用程式
+2. 將角色指派至 AD 應用程式
+3. 開發您的用戶端應用程式
 
 
-# <a name="create-non-interactive-authentication-.net-hdinsight-applications"></a>Create non-interactive authentication .NET HDInsight applications
+##必要條件
 
-You can execute your .NET Azure HDInsight application either under application's own identity (non-interactive) or under the identity of the signed-in user of the application (interactive). For a sample of the interactive application, see [Submit Hive/Pig/Sqoop jobs using HDInsight .NET SDK](hdinsight-submit-hadoop-jobs-programmatically.md#submit-hivepigsqoop-jobs-using-hdinsight-net-sdk). This article shows you how to create non-interactive authentication .NET application to connect to Azure HDInsight and submit a Hive job.
-
-From your .NET application, you will need:
-
-- your Azure subscription tenant ID
-- the Azure Directory application client ID
-- the Azure Directory application secret key.  
-
-The main process includes the following steps:
-
-2. Create an Azure Directory application.
-2. Assign roles to the AD application.
-3. Develop your client application.
-
-
-##<a name="prerequisites"></a>Prerequisites
-
-- HDInsight cluster. You can create one using the instructions found in the [getting started tutorial](hdinsight-hadoop-linux-tutorial-get-started.md#create-cluster). 
+- HDInsight 叢集。您可以使用[開始使用教學課程](hdinsight-hadoop-linux-tutorial-get-started.md#create-cluster)中的指示建立。
 
 
 
 
-## <a name="create-azure-directory-application"></a>Create Azure Directory application 
-When you create an Active Directory application, it actually creates both the application and a service principal. You can execute the application under the application’s identity.
+## 建立 Azure Directory 應用程式 
+當您建立 Active Directory 應用程式時，將會同時建立應用程式和服務主體。您可以使用應用程式的身分識別執行應用程式。
 
-Currently, you must use the Azure classic portal to create a new Active Directory application. This ability will be added to the Azure portal in a later release. You can also perform these steps through Azure PowerShell or Azure CLI. For more information about using PowerShell or CLI with the service principal, see [Authenticate service principal with Azure Resource Manager](../resource-group-authenticate-service-principal.md).
+目前，您必須使用 Azure 傳統入口網站來建立新的 Active Directory 應用程式。Azure 入口網站會在稍後的版本中新增這項功能 。您也可以透過 Azure PowerShell 或 Azure CLI 執行下列步驟。如需了解搭配服務主體來使用 PowerShell 或 CLI 的詳細資訊，請參閱[使用 Azure Resource Manager 驗證服務主體](../resource-group-authenticate-service-principal.md)。
 
-**To create an Azure Directory application**
+**建立 Azure Directory 應用程式**
 
-1.  Sign in to the [Azure classic portal]( https://manage.windowsazure.com/).
-2.  Select **Active Directory** from the left pane.
+1.	登入 [Azure 傳統入口網站](https://manage.windowsazure.com/)。
+2.	從左窗格中，選取 [**Active Directory**]。
 
-    ![Azure classic portal active directory](.\media\hdinsight-create-non-interactive-authentication-dotnet-application\active-directory.png)
+    ![Azure 傳統入口網站 Active Directory](.\media\hdinsight-create-non-interactive-authentication-dotnet-application\active-directory.png)
     
-3.  Select the directory that you want to use for creating the new application. It shall be the existing one.
-4.  Click **Applications** from the top to list the existing applications.
-5.  Click **Add** from the bottom to add a new application.
-6.  Enter **Name**, select **Web application and/or Web API**, and then click **Next**.
+3.	選取您想要用來建立新應用程式的目錄。應該為現有的項目。
+4.	按一下頂端的 [應用程式] 以列出現有的應用程式。
+5.	按一下底端的 [新增] 以新增新的應用程式。
+6.	輸入 [名稱]，選取 [Web 應用程式和/或 Web API]，然後按 [下一步]。
 
-    ![new azure active directory application](.\media\hdinsight-create-non-interactive-authentication-dotnet-application\hdinsight-add-ad-application.png)
+    ![新 Azure Active Directory 應用程式](.\media\hdinsight-create-non-interactive-authentication-dotnet-application\hdinsight-add-ad-application.png)
 
-7.  Enter **Sign-on URL** and **App ID URI**. For **SIGN-ON URL**, provide the URI to a web-site that describes your application. The existence of the web-site is not validated. For APP ID URI, provide the URI that identifies your application. And then click **Complete**.
-It takes a few moments to create the application.  Once the application is created, the portal shows you the Quick Glace page of the new application. Don’t close the portal. 
+7.	輸入 [登入 URL] 和 [應用程式識別碼 URI]。針對 [**登入 URL**]，提供描述您應用程式之網站的 URI。不會驗證網站是否存在。針對 [應用程式識別碼 URI]，提供識別您應用程式的 URI。然後，按一下 [完成]。需要一點時間才會建立應用程式。應用程式建立之後，入口網站會顯示新的應用程式的 [快速瀏覽] 頁面。請不要關閉入口網站。
 
-    ![new azure active directory application properties](.\media\hdinsight-create-non-interactive-authentication-dotnet-application\hdinsight-add-ad-application-properties.png)
+    ![新 Azure Active Directory 應用程式屬性](.\media\hdinsight-create-non-interactive-authentication-dotnet-application\hdinsight-add-ad-application-properties.png)
 
-**To get the application client ID and the secret key**
+**若要取得應用程式用戶端識別碼和秘密金鑰**
 
-1.  From the newly created AD application page, click **Configure** from the top menu.
-2.  Make a copy of **Client ID**. You will need it in your .NET application.
-3.  Under **Keys**, click **Select duration** dropdown, and select either **1 year** or **2 years**. The key value will not be displayed until you save the configuration.
-4.  Click **Save** on the bottom of the page. When the secret key appears, make a copy of the key. You will need it in your .NET application.
+1.	從新建立的 AD 應用程式頁面的頂端功能表，按一下 [設定]。
+2.	複製 [用戶端識別碼]。您在 .NET 應用程式中需要它。
+3.	在 [金鑰] 底下按一下 [選取持續時間] 下拉式清單，然後選取 [1 年] 或 [2 年]。在您儲存組態之前不會顯示金鑰值。
+4.	按一下頁面底部的 [儲存]。秘密金鑰出現時，複製金鑰。您在 .NET 應用程式中需要它。
 
-##<a name="assign-ad-application-to-role"></a>Assign AD application to role
+##將 AD 應用程式指派給角色
 
-You must assign the application to a [role](../active-directory/role-based-access-built-in-roles.md) to grant it permissions for performing actions. You can set the scope at the level of the subscription, resource group, or resource. The permissions are inherited to lower levels of scope (for example, adding an application to the Reader role for a resource group means it can read the resource group and any resources it contains). In this tutorial, you will set the scope at the resource group level.  Because the Azure classic portal doesn’t support resource groups, this part has to be performed from the Azure portal. 
+您必須將應用程式指派給某個[角色](../active-directory/role-based-access-built-in-roles.md)，以便授與它執行動作的權限。您可以針對訂用帳戶、資源群組或資源的層級設定範圍。較低的範圍層級會繼承較高層級的權限 (舉例來說，為資源群組的讀取者角色新增應用程式，代表該角色可以讀取資源群組及其所包含的任何資源)。在本教學課程中，您將在資源群組層級設定範圍。因為 Azure 傳統入口網站不支援資源群組，這個部分必須從 Azure 入口網站執行。
 
-**To add the Owner role to the AD application**
+**若要將擁有者角色新增至 AD 應用程式**
 
-1.  Sign in to the [Azure portal](https://portal.azure.com).
-2.  Click **Resource Group** from the left pane.
-3.  Click the resource group that contains the HDInsight cluster where you will run your Hive query later in this tutorial. If there are too many resource groups, you can use the filter.
-4.  Click **Access** from the cluster blade.
+1.	登入 [Azure 入口網站](https://portal.azure.com)。
+2.	按一下左側面板上的 [資源群組]。
+3.	按一下資源群組，它包含您稍後在本教學課程中要在其中執行 Hive 查詢的 HDInsight 叢集。如果有太多的資源群組，您可以使用篩選器。
+4.	從叢集刀鋒視窗中，按一下 [存取]。
 
-    ![cloud and thunderbolt icon = quickstart](./media/hdinsight-hadoop-create-linux-cluster-portal/quickstart.png)
-5.  Click **Add** from the **Users** blade.
-6.  Follow the instruction to add the **Owner** role to the AD application you created in the last procedure. When you complete it successfully, you shall see the application listed in the Users blade with the Owner role.
+    ![雲和雷電圖示 = 快速入門](./media/hdinsight-hadoop-create-linux-cluster-portal/quickstart.png)
+5.	從 [使用者] 刀鋒視窗中，按一下 [新增]。
+6.	依照指示以將 [擁有者] 角色新增至您在上一個程序中建立的 AD 應用程式。當您成功完成此作業時，您會看到 [使用者] 刀鋒視窗中列出的應用程式具有 [擁有者] 角色。
 
 
-##<a name="develop-hdinsight-client-application"></a>Develop HDInsight client application
+##開發 HDInsight 用戶端應用程式
 
-Create a C# .net console application following the instructions found in [Submit Hadoop jobs in HDInsight](hdinsight-submit-hadoop-jobs-programmatically.md#submit-hivepigsqoop-jobs-using-hdinsight-net-sdk). Then replace the GetTokenCloudCredentials method with the following:
+遵循[在 HDInsight 中提交 Hadoop 工作](hdinsight-submit-hadoop-jobs-programmatically.md#submit-hivepigsqoop-jobs-using-hdinsight-net-sdk)中的指示，建立 C# .net 主控台應用程式。以下列項目取代 GetTokenCloudCredentials 方法：
 
     public static TokenCloudCredentials GetTokenCloudCredentials(string tenantId, string clientId, SecureString secretKey)
     {
@@ -108,24 +106,20 @@ Create a C# .net console application following the instructions found in [Submit
         return new TokenCloudCredentials(accessToken);
     }
 
-To retrieve the Tenant ID through PowerShell:
+若要透過 PowerShell 擷取租用戶識別碼︰
 
     Get-AzureRmSubscription
 
-Or, Azure CLI:
+或者，Azure CLI：
 
     azure account show --json
 
       
-## <a name="see-also"></a>See also
+## 另請參閱
 
-- [Submit Hadoop jobs in HDInsight](hdinsight-submit-hadoop-jobs-programmatically.md)
-- [Create Active Directory application and service principal using portal](../resource-group-create-service-principal-portal.md)
-- [Authenticate service principal with Azure Resource Manager](../resource-group-authenticate-service-principal.md)
-- [Azure Role-Based Access Control](../active-directory/role-based-access-control-configure.md)
+- [在 HDInsight 上提交 Hadoop 工作](hdinsight-submit-hadoop-jobs-programmatically.md)
+- [使用入口網站建立 Active Directory 應用程式和服務主體](../resource-group-create-service-principal-portal.md)
+- [使用 Azure Resource Manager 驗證服務主體](../resource-group-authenticate-service-principal.md)
+- [Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Resource Manager template for linking resources | Microsoft Azure"
-   description="Shows the Resource Manager schema for deploying links between related resources through a template."
+   pageTitle="連結資源的資源管理員範本 | Microsoft Azure"
+   description="顯示可透過範本在相關資源之間部署連結的資源管理員結構描述。"
    services="azure-resource-manager"
    documentationCenter="na"
    authors="tfitzmac"
@@ -16,14 +16,13 @@
    ms.date="04/05/2016"
    ms.author="tomfitz"/>
 
+# 資源連結範本結構描述
 
-# <a name="resource-links-template-schema"></a>Resource links template schema
+這會在兩個資源之間建立連結。該連結會套用至稱為「來源資源」的資源。連結中的第二個資源則稱為「目標資源」。
 
-Creates a link between two resources. The link is applied to a resource known as the source resource. The second resource in the link is known as the target resource.
+## 結構描述格式
 
-## <a name="schema-format"></a>Schema format
-
-To create a link, add the following schema to the resources section of your template.
+若要建立連結，請將下列結構描述新增到範本的資源區段。
     
     {
         "type": enum,
@@ -39,42 +38,41 @@ To create a link, add the following schema to the resources section of your temp
 
 
 
-## <a name="values"></a>Values
+## 值
 
-The following tables describe the values you need to set in the schema.
+下表描述您在結構描述中必須設定的值。
 
-| Name | Value |
+| 名稱 | 值 |
 | ---- | ---- |
-| type | Enum<br />Required<br />**{namespace}/{type}/providers/links**<br /><br />The resource type to create. The {namespace} and {type} values refer to the provider namespace and resource type of the source resource. |
-| apiVersion | Enum<br />Required<br />**2015-01-01**<br /><br />The API version to use for creating the resource. |  
-| name | String<br />Required<br />**{resouce}/Microsoft.Resources/{linkname}**<br /> up to 64 characters, and cannot contain <, > %, &, ?, or any control characters.<br /><br />A value that specifes both the name of source resource and a name for the link. |
-| dependsOn | Array<br />Optional<br />A comma-separated list of a resource names or resource unique identifiers.<br /><br />The collection of resources this link depends on. If the resources you are linking are deployed in the same template, include those resource names in this element to ensure they are deployed first. | 
-| properties | Object<br />Required<br />[properties object](#properties)<br /><br />An object that identifies the resource to link to, and notes about the link. |  
+| 類型 | 列舉<br />必要<br />**{命名空間}/{類型}/providers/links**<br /><br />要建立的資源類型。{namespace} 和 {type} 值指的是來源資源的提供者命名空間和資源類型。 |
+| apiVersion | 列舉<br />必要<br />**2015-01-01**<br /><br />要用來建立資源的應用程式開發介面 (API) 版本。 |  
+| 名稱 | 字串<br />必要<br />**{資源}/Microsoft.Resources/{連結名稱}**<br /> 最多 64 個字元，而且不能包含 <、>、%、&、? 或任何控制字元。<br /><br />同時指定來源資源名稱和連結名稱的值。| 
+| dependsOn | 陣列<br />選用<br />以逗號分隔的資源名稱或資源唯一識別碼清單。<br /><br />此連結所相依的資源集合。如果您所連結的資源部署到相同的範本，請在此元素中包含那些資源的名稱，確保優先部署它們。| 
+| 屬性 | 物件<br />必要<br />[物件](#properties)<br /><br />能識別要連結的資源，以及該連結之相關資訊的物件。| 
 
 <a id="properties" />
-### <a name="properties-object"></a>properties object
+### 屬性物件
 
-| Name | Value |
+| 名稱 | 值 |
 | ------- | ---- |
-| targetId | String<br />Required<br />**{resource id}**<br /><br />The identifier of the target resource to link to. |
-| notes | String<br />Optional<br />up to 512 characters<br /><br />Description of the lock. |
+| targetId | 字串<br />必要<br />**{資源識別碼}**<br /><br />要連結之目標資源的識別碼。| | 附註 | 字串<br />選用<br />最多 512 個字元<br /><br />鎖定的描述。|
 
 
-## <a name="how-to-use-the-link-resource"></a>How to use the link resource
+## 如何使用連結資源
 
-You apply a link between two resources when the resources have a dependency that continues after deployment. For example, an app may connect to a database in a different resource group. You can define that dependency by creating a link from the app to the database. Links enable you to document the relationship between two resources. Later, you or someone else in your organization can query a resource for links to discover how the resource works with other resources.
+當兩個資源的相依性在部署後持續時，在它們之間套用連結。例如，某個 app 可能會連接到位於不同資源群組的資料庫。您可以藉由在該 app 和資料庫之間建立連結，來定義該相依性。連結能讓您記錄兩個資源之間的關聯性。稍後您或組織內的其他人可以向資源查詢連結，以探索該資源和其他資源一同運作的方式。
 
-All linked resources must belong to the same subscription. Each resource can be linked to 50 other resources. If any of the linked resources are deleted or moved, the link owner must clean up the remaining link.
+所有已連結的資源都必須屬於同一個訂用帳戶。每個資源都可以連結至其他 50 個資源。如果任何已連結的資源被刪除或移動，連結擁有者必須清除剩餘的連結。
 
-To work with links through REST, see [Linked Resources](https://msdn.microsoft.com/library/azure/mt238499.aspx).
+若要透過 REST 使用連結，請參閱[連結的資源 (英文)](https://msdn.microsoft.com/library/azure/mt238499.aspx)。
 
-Use the following Azure PowerShell command to see all of the links in your subscription. You can provide other parameters to limit the results.
+使用下列 Azure PowerShell 命令來查看訂用帳戶中的所有連結。您可以提供其他參數來限制結果。
 
     Get-AzureRmResource -ResourceType Microsoft.Resources/links -isCollection -ResourceGroupName <YourResourceGroupName>
 
-## <a name="examples"></a>Examples
+## 範例
 
-The following example applies a read-only lock to a web app.
+下列範例會將唯讀鎖定套用到 Web 應用程式。
 
     {
         "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
@@ -121,29 +119,25 @@ The following example applies a read-only lock to a web app.
                     "targetId": "[resourceId('Microsoft.Storage/storageAccounts','storagecontoso')]",
                     "notes": "This web site uses the storage account to store user information."
                 }
-            }
+    	    }
         ],
         "outputs": {}
     }
 
-## <a name="quickstart-templates"></a>Quickstart templates
+## 快速入門範本
 
-The following quickstart templates deploy resources with a link.
+下列快速入門範本會利用連結部署資源。
 
-- [Alert to queue with Logic app](https://azure.microsoft.com/documentation/templates/201-alert-to-queue-with-logic-app)
-- [Alert to Slack with Logic app](https://azure.microsoft.com/documentation/templates/201-alert-to-slack-with-logic-app)
-- [Provision an API app with an existing gateway](https://azure.microsoft.com/documentation/templates/201-api-app-gateway-existing)
-- [Provision an API app with a new gateway](https://azure.microsoft.com/documentation/templates/201-api-app-gateway-new)
-- [Create a Logic App plus API app using a template](https://azure.microsoft.com/documentation/templates/201-logic-app-api-app-create)
-- [Logic app that sends a text message when an alert fires](https://azure.microsoft.com/documentation/templates/201-alert-to-text-message-with-logic-app)
-
-
-## <a name="next-steps"></a>Next steps
-
-- For information about the template structure, see [Authoring Azure Resource Manager templates](resource-group-authoring-templates.md).
+- [利用邏輯應用程式警示加入佇列](https://azure.microsoft.com/documentation/templates/201-alert-to-queue-with-logic-app)
+- [利用邏輯應用程式警示放入 Slack](https://azure.microsoft.com/documentation/templates/201-alert-to-slack-with-logic-app)
+- [以現有閘道佈建 API 應用程式](https://azure.microsoft.com/documentation/templates/201-api-app-gateway-existing)
+- [以新的閘道佈建 API 應用程式](https://azure.microsoft.com/documentation/templates/201-api-app-gateway-new)
+- [使用範本建立邏輯應用程式與 API 應用程式](https://azure.microsoft.com/documentation/templates/201-logic-app-api-app-create)
+- [會在引發警示時傳送文字訊息的邏輯應用程式](https://azure.microsoft.com/documentation/templates/201-alert-to-text-message-with-logic-app)
 
 
+## 後續步驟
 
-<!--HONumber=Oct16_HO2-->
+- 如需範本結構的相關資訊，請參閱[編寫 Azure 資源管理員範本](resource-group-authoring-templates.md)。
 
-
+<!---HONumber=AcomDC_0406_2016-->

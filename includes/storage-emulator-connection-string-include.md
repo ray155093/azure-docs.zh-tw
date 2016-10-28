@@ -1,39 +1,36 @@
-The storage emulator supports a single fixed account and a well-known authentication key for Shared Key authentication. This account and key are the only Shared Key credentials permitted for use with the storage emulator. They are:
+儲存體模擬器支援共用金鑰驗證的單一固定帳戶及已知驗證金鑰。此帳戶和金鑰都是唯一允許搭配儲存體模擬器使用的共用金鑰認證。如下：
 
     Account name: devstoreaccount1
     Account key: Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==
     
-> [AZURE.NOTE] The authentication key supported by the storage emulator is intended only for testing the functionality of your client authentication code. It does not serve any security purpose. You cannot use your production storage account and key with the storage emulator. Also note that you should not use the development account with production data.
+> [AZURE.NOTE]儲存體模擬器所支援的驗證金鑰僅可用來測試用戶端驗證碼的功能。它不提供任何安全性用途。您無法將生產儲存體帳戶和金鑰與儲存體模擬器搭配使用。也請注意，您不應該將開發帳戶與生產資料搭配使用。
 >
-> Note that the storage emulator supports connection via HTTP only. However, HTTPS is the recommended protocol for accessing resources in an Azure production storage account.
+> 請注意，儲存體模擬器只透過 HTTP 支援連線。不過，HTTPS 是建議的通訊協定，用於存取 Azure 生產儲存體帳戶中的資源。
  
-#### <a name="connect-to-the-emulator-account-using-a-shortcut"></a>Connect to the emulator account using a shortcut
+#### 使用捷徑連接到模擬器帳戶
 
-The easiest way to connect to the storage emulator from your application is to configure a connection string from within your application's configuration file that references the shortcut `UseDevelopmentStorage=true`. Here's an example of a connection string to the storage emulator in an app.config file: 
+從您的應用程式連線到儲存體模擬器最簡單的方法，就是從您應用程式內部參照捷徑 `UseDevelopmentStorage=true` 的組態檔中設定連接字串。以下是 app.config 檔中儲存體模擬器連接字串的範例：
 
     <appSettings>
       <add key="StorageConnectionString" value="UseDevelopmentStorage=true" />
     </appSettings>
 
-#### <a name="connect-to-the-emulator-account-using-the-well-known-account-name-and-key"></a>Connect to the emulator account using the well-known account name and key
+#### 使用已知的帳戶名稱和金鑰連接到模擬器帳戶
 
-To create a connection string that references the emulator account name and key, note that you must specify the endpoints for each of the services that you wish to use from the emulator in the connection string. This is necessary so that the connection string will reference the emulator endpoints, which are different than those for a production storage account. For example, the value of your connection string will look like this:
+若要建立參考模擬器帳戶名稱與金鑰的連接字串，請注意您必須針對每一個您希望從連接字串中的模擬器使用的服務指定端點。這是必要的，這樣一來連接字串將會參考模擬器端點 (不同於正式作業儲存體帳戶的模擬器端點)。例如，連接字串的值看起來會像這樣：
 
-    DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;
-    AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;
+	DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;
+	AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;
     BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;
     TableEndpoint=http://127.0.0.1:10002/devstoreaccount1;
     QueueEndpoint=http://127.0.0.1:10001/devstoreaccount1; 
 
-This value is identical to the shortcut shown above, `UseDevelopmentStorage=true`.
+此值等同於上面顯示的捷徑 `UseDevelopmentStorage=true`。
 
-#### <a name="specify-an-http-proxy"></a>Specify an HTTP proxy
+#### 指定 HTTP proxy
 
-You can also specify an HTTP proxy to use when you're testing your service against the storage emulator. This can be useful for observing HTTP requests and responses while you're debugging operations against the storage services. To specify a proxy, add the `DevelopmentStorageProxyUri` option to the connection string, and set its value to the proxy URI. For example, here is a connection string that points to the storage emulator and configures an HTTP proxy:
+您也可以指定在對儲存體模擬器測試服務時要使用的 HTTP Proxy。當您正在對儲存體服務進行作業偵錯時，這對於觀察 HTTP 要求和回應非常有用。若要指定 Proxy，可將 `DevelopmentStorageProxyUri` 選項加入連接字串，並將其值設為 Proxy URI。例如，以下是指向儲存體模擬器並設定 HTTP Proxy 的連接字串：
 
     UseDevelopmentStorage=true;DevelopmentStorageProxyUri=http://myProxyUri
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=Oct15_HO3-->

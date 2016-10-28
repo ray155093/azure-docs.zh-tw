@@ -1,43 +1,40 @@
-The following table lists the limits associated with the different service tiers (S1, S2, S3, F1). For information about the cost of each *unit* in each tier, see [IoT Hub Pricing](https://azure.microsoft.com/pricing/details/iot-hub/).
+下表列出與不同服務層 (S1, S2, S3, F1) 關聯的限制。如需有關每一層中各個*單位*之成本的詳細資訊，請參閱 [IoT 中樞價格](https://azure.microsoft.com/pricing/details/iot-hub/)。
 
-| Resource | S1 Standard | S2 Standard | S3 Standard | F1 Free |
+| 資源 | S1 標準 | S2 標準 | S3 標準 | F1 免費 |
 | -------- | ----------- | ----------- | ----------- | ------- |
-| Messages/day | 400,000 | 6,000,000   | 300,000,000 | 8,000   |
-| Maximum units | 200    | 200         | 200         | 1       |
+| 訊息/天 | 400,000 | 6,000,000 | 300,000,000 | 8,000 |
+| 單位上限 | 200 | 200 | 200 | 1 |
 
-> [AZURE.NOTE] If you anticipate using more than 200 units with an S1 or S2 or S3 tier hub, please contact Microsoft support.
+> [AZURE.NOTE] 若您預期單一 S1、S2 或 S3 層的中樞會使用超過 200 個單位，請連絡 Microsoft 支援。
 
-The following table lists the limits that apply to IoT Hub resources:
+下表列出適用於 IoT 中樞資源的限制：
 
-| Resource | Limit |
+| 資源 | 限制 |
 | -------- | ----- |
-| Maximum paid IoT hubs per Azure subscription | 10 |
-| Maximum free IoT hubs per Azure subscription | 1 |
-| Maximum number of device identities<br/>  returned in a single call | 1000 |
-| IoT Hub message maximum retention for device-to-cloud messages | 7 days |
-| Maximum size of device-to-cloud message | 256 KB |
-| Maximum size of device-to-cloud batch | 256 KB |
-| Maximum messages in device-to-cloud batch | 500 |
-| Maximum size of cloud-to-device message | 64 KB |
-| Maximum TTL for cloud-to-device messages | 2 days |
-| Maximum delivery count for cloud-to-device <br/> messages | 100 |
-| Maximum delivery count for feedback messages <br/> in response to a cloud-to-device message | 100 |
-| Maximum TTL for feedback messages in <br/> response to a cloud-to-device message | 2 days |
+| 每個 Azure 訂用帳戶的付費 IoT 中樞上限 | 10 |
+| 每個 Azure 訂用帳戶的免費 IoT 中樞上限 | 1 |
+| 單一呼叫中傳回的裝置身分識別 <br/> 數目上限 | 1000 |
+| 裝置到雲端訊息的 IoT 中樞訊息保留上限 | 7 天 |
+| 裝置到雲端訊息的大小上限 | 256 KB |
+| 裝置到雲端批次的大小上限 | 256 KB |
+| 裝置到雲端批次的訊息上限 | 500 |
+| 雲端到裝置訊息的大小上限 | 64 KB |
+| 雲端到裝置訊息的 TTL 上限 | 2 天 |
+| 雲端到裝置訊息的傳遞計數 <br/> 上限 | 100 |
+| 回應雲端到裝置訊息之反應訊息的 <br/> 傳遞計數上限 | 100 |
+| 回應雲端到裝置訊息之反應訊息的 <br/> TTL 上限 | 2 天 |
 
-> [AZURE.NOTE] If you need more than 10 paid IoT hubs in an Azure subscription, please contact Microsoft support.
+> [AZURE.NOTE] 如果您在 Azure 訂用帳戶中需要超過 10 個付費 IoT 中樞，請連絡 Microsoft 支援服務。
 
-The IoT Hub service throttles requests when the following quotas are exceeded:
+IoT 中樞服務將在超過下列配額時開始對要求進行節流：
 
-| Throttle | Per-hub value |
+| 節流 | 每個中心的值 |
 | -------- | ------------- |
-| Identity registry operations <br/> (create, retrieve, list, update, delete), <br/> individual or bulk import/export | 5000/min/unit (for S3) <br/> 100/min/unit (for S1 and S2). |
-| Device connections | 6000/sec/unit (for S3), 120/sec/unit (for S2), 12/sec/unit (for S1). <br/>Minimum of 100/sec. |
-| Device-to-cloud sends | 6000/sec/unit (for S3), 120/sec/unit (for S2), 12/sec/unit (for S1). <br/>Minimum of 100/sec. |
-| Cloud-to-device sends | 5000/min/unit (for S3), 100/min/unit (for S1 and S2). |
-| Cloud-to-device receives | 50000/min/unit (for S3), 1000/min/unit (for S1 and S2). |
-| File upload operations | 5000 file upload notifications/min/unit (for S3), 100 file upload notifications/min/unit (for S1 and S2). <br/> 10000 SAS URIs can be out for a storage account at one time.<br/> 10 SAS URIs/device can be out at one time. |
+| 身分識別登錄作業 <br/> (建立、擷取、列出、更新、刪除)，<br/> 個別或大量匯入/匯出 | 5000/分鐘/單位 (適用於 S3) <br/>100/分鐘/單位 (適用於 S1 和 S2)。 |
+| 裝置連線 | 6000/秒/單位 (適用於 S3)，120/秒/單位 (適用於 S2)，12/秒/單位 (適用於 S1)。<br/>最小值為 100/秒 |
+| 裝置到雲端傳送 | 6000/秒/單位 (適用於 S3)，120/秒/單位 (適用於 S2)，12/秒/單位 (適用於 S1)。<br/>最小值為 100/秒 |
+| 雲端到裝置的傳送 | 5000/分鐘/單位 (適用於 S3)，100/分鐘/單位 (適用於 S1 和 S2)。 |
+| 雲端到裝置的接收 | 50000/分鐘/單位 (適用於 S3)，1000/分鐘/單位 (適用於 S1 和 S2)。 |
+| 檔案上傳作業 | 5000 個檔案上傳通知/最小值/單位 (適用於 S3)，100 個檔案上傳通知/最小值/單位 (適用於 S1 和 S2)。<br/> 10000 個 SAS URI 可以讓儲存體帳戶一次用盡。<br/> 10 個 SAS URI/裝置可以一次用盡。 |
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

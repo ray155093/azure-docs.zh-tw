@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="Tutorial: Azure Active Directory integration with Workday | Microsoft Azure" 
-    description="Learn how to use Workday with Azure Active Directory to enable single sign-on, automated provisioning, and more!." 
+    pageTitle="教學課程：Azure Active Directory 與 Workday 整合 | Microsoft Azure" 
+    description="了解如何使用 Workday 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -14,222 +14,214 @@
     ms.date="09/09/2016" 
     ms.author="jeedes" />
 
-
-#<a name="tutorial:-azure-active-directory-integration-with-workday"></a>Tutorial: Azure Active Directory integration with Workday
+#教學課程：Azure Active Directory 與 Workday 整合
   
-The objective of this tutorial is to show the integration of Azure and Workday. The scenario outlined in this tutorial assumes that you already have the following items:
+本教學課程的目的是要示範 Azure 與 Workday 的整合。本教學課程中說明的案例假設您已經具有下列項目：
 
--   A valid Azure subscription
--   A tenant in Workday
+-   有效的 Azure 訂用帳戶
+-   Workday 中的租用戶
   
-The scenario outlined in this tutorial consists of the following building blocks:
+本教學課程中說明的案例由下列建置組塊組成：
 
-1.  Enabling the application integration for Workday
-2.  Configuring single sign-on
-3.  Configuring user provisioning
-4.  Configuring user provisioning
+1.  啟用 Workday 的應用程式整合
+2.  設定單一登入
+3.  設定使用者佈建
+4.  設定使用者佈建
 
-![Scenario](./media/active-directory-saas-workday-tutorial/IC782919.png "Scenario")
+![案例](./media/active-directory-saas-workday-tutorial/IC782919.png "案例")
 
-##<a name="enabling-the-application-integration-for-workday"></a>Enabling the application integration for Workday
+##啟用 Workday 的應用程式整合
   
-The objective of this section is to outline how to enable the application integration for Salesforce.
+本節的目的是要說明如何啟用 Salesforce 的應用程式整合。
 
-###<a name="to-enable-the-application-integration-for-workday,-perform-the-following-steps:"></a>To enable the application integration for Workday, perform the following steps:
+###若要啟用 Workday 的應用程式整合，請執行下列步驟：
 
-1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-workday-tutorial/IC700993.png "Active Directory")
 
-2.  From the **Directory** list, select the directory for which you want to enable directory integration.
+2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3.  To open the applications view, in the directory view, click **Applications** in the top menu.
+3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
 
-    ![Applications](./media/active-directory-saas-workday-tutorial/IC700994.png "Applications")
+    ![應用程式](./media/active-directory-saas-workday-tutorial/IC700994.png "應用程式")
 
-4.  To open the **Application Gallery**, click **Add An App**, and then click **Add an application for my organization to use**.
+4.  若要開啟 [應用程式庫]，請按一下 [新增應用程式]，然後按一下 [新增應用程式讓我的組織使用]。
 
-    ![What do you want to do?](./media/active-directory-saas-workday-tutorial/IC700995.png "What do you want to do?")
+    ![欲執行動作](./media/active-directory-saas-workday-tutorial/IC700995.png "欲執行動作")
 
-5.  In the **search box**, type **Workday**.
+5.  在**搜尋方塊**中，輸入 **Workday**。
 
     ![Workday](./media/active-directory-saas-workday-tutorial/IC701021.png "Workday")
 
-6.  In the results pane, select **Workday**, and then click **Complete** to add the application.
+6.  在結果窗格中，選取 [Workday]，然後按一下 [完成] 以加入應用程式。
 
     ![Workday](./media/active-directory-saas-workday-tutorial/IC701022.png "Workday")
 
-##<a name="configuring-single-sign-on"></a>Configuring single sign-on
+##設定單一登入
   
-The objective of this section is to outline how to enable users to authenticate to Workday with their account in Azure AD using federation based on the SAML protocol.  
-As part of this procedure, you are required to create a base-64 encoded certificate.  
-If you are not familiar with this procedure, see [How to convert a binary certificate into a text file](http://youtu.be/PlgrzUZ-Y1o).
+本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶在 Workday 中進行驗證。在此程序中，您必須建立 Base-64 編碼的憑證。如果您不熟悉這個程序，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
 
-###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
+###若要設定單一登入，請執行下列步驟：
 
-1.  On the **Workday** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
+1.  在 [Workday] 應用程式整合頁面上，按一下 [設定單一登入] 以開啟 [設定單一登入] 對話方塊。
 
-    ![Configure single sign-on](./media/active-directory-saas-workday-tutorial/IC782920.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-workday-tutorial/IC782920.png "設定單一登入")
 
-2.  On the **How would you like users to sign on to Workday** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
+2.  在 [您希望使用者如何登入 Workday] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
 
-    ![Configure single sign-on](./media/active-directory-saas-workday-tutorial/IC782921.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-workday-tutorial/IC782921.png "設定單一登入")
 
-3.  On the **Configure App URL** page, perform the following steps, and then click **Next**.
+3.  在 [設定應用程式 URL] 頁面上，執行下列步驟，然後按 [下一步]。
 
-    ![Configure App URL](./media/active-directory-saas-workday-tutorial/IC782957.png "Configure App URL")
+    ![設定應用程式 URL](./media/active-directory-saas-workday-tutorial/IC782957.png "設定應用程式 URL")
 
-    a. In the **Sign On URL** textbox, type the URL used by your users to sign in to Workday using the following pattern: `https://impl.workday.com/<tenant>/login-saml2.htmld`
+	a.在 [登入 URL] 文字方塊中，使用下列模式輸入使用者用來登入 Workday 的 URL：`https://impl.workday.com/<tenant>/login-saml2.htmld`
 
-    b.  In the **Workday Reply URL** textbox, type the Workday reply URL using the following pattern: `https://impl.workday.com/<tenant>/login-saml.htmld`
+	b.在 [Workday 回覆 URL] 文字方塊中，使用下列模式輸入 Workday 回覆 URL：`https://impl.workday.com/<tenant>/login-saml.htmld`
 
-    >[AZURE.NOTE] Your reply URL must have a sub-domain (e.g.: www, wd2, wd3, wd3-impl, wd5, wd5-impl). 
-    >Using something like "*http://www.myworkday.com*" works but "*http://myworkday.com*" does not. 
+	>[AZURE.NOTE] 您的回覆 URL 必須有子網域 (例如：www、wd2、wd3、wd3-impl、wd5、wd5-impl)。使用 "http://www.myworkday.com*" 這類網域有效，但 "http://myworkday.com*" 這類網域則無效。
  
-4.  On the **Configure single sign-on at Workday** page, to download your certificate, click **Download certificate**, and then save the certificate file on your computer.
+4.  在 [設定在 Workday 單一登入] 頁面上，若要下載您的憑證，請按一下 [下載憑證]，然後將憑證檔案儲存在您的電腦上。
 
-    ![Configure single sign-on](./media/active-directory-saas-workday-tutorial/IC782922.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-workday-tutorial/IC782922.png "設定單一登入")
 
-5.  In a different web browser window, log into your Workday company site as an administrator.
+5.  在不同的 Web 瀏覽器視窗中，以系統管理員身分登入您的 Workday 公司網站。
 
-6.  Go to **Menu \> Workbench**.
+6.  移至 [功能表] > [Workbench]。
 
     ![Workbench](./media/active-directory-saas-workday-tutorial/IC782923.png "Workbench")
 
-7.  Go to **Account Administration**.
+7.  移至 [帳戶管理]。
 
-    ![Account Administration](./media/active-directory-saas-workday-tutorial/IC782924.png "Account Administration")
+    ![帳戶管理](./media/active-directory-saas-workday-tutorial/IC782924.png "帳戶管理")
 
-8.  Go to **Edit Tenant Setup – Security**.
+8.  移至 [編輯租用戶設定 – 安全性]。
 
-    ![Edit Tenant Security](./media/active-directory-saas-workday-tutorial/IC782925.png "Edit Tenant Security")
+    ![編輯租用戶安全性](./media/active-directory-saas-workday-tutorial/IC782925.png "編輯租用戶安全性")
 
-9.  In the **Redirection URLs** section, perform the following steps:
+9.  在 [重新導向 URL] 區段中，執行下列步驟：
 
-    ![Redirection URLs](./media/active-directory-saas-workday-tutorial/IC7829581.png "Redirection URLs")
+    ![重新導向 URL](./media/active-directory-saas-workday-tutorial/IC7829581.png "重新導向 URL")
 
-    a. Click **Add Row**.
+	a.按一下 [加入資料列]。
 
-    b. In the **Login Redirect URL** textbox and the **Mobile Redirect URL** textbox, type the **Workday Tenant URL** you have entered on the **Configure App URL** page of the Azure classic portal.
+	b.在 [登入重新導向 URL] 文字方塊和 [行動裝置重新導向 URL] 文字方塊中，輸入您在 Azure 傳統入口網站的 [設定應用程式 URL] 頁面上輸入的 [Workday 租用戶 URL]。
     
-    c. In the Azure classic portal, on the **Configure single sign-on at Workday** dialog page, copy the **Single Sign-Out Service URL**, and then paste it into the **Logout Redirect URL** textbox.
+	c.在 Azure 傳統入口網站的 [設定在 Workday 單一登入] 對話方塊頁面上，複製 [單一登出服務 URL]，然後將它貼到 [登出重新導向 URL] 文字方塊中。
 
-    d.  In **Environment** textbox, type the environment name.  
-
-
-    >[AZURE.NOTE] The value of the Environment attribute is tied to the value of the tenant URL:
-    >
-    >-   If the domain name of the Workday tenant URL starts with impl (e.g.: *https://impl.workday.com/\<tenant\>/login-saml2.htmld*), the **Environment** attribute must be set to Implementation.
-    >-   If the domain name starts with something else, you need to contact Workday to get the matching **Environment** value.
-
-10. In the **SAML Setup** section, perform the following steps:
-
-    ![SAML Setup](./media/active-directory-saas-workday-tutorial/IC782926.png "SAML Setup")
-
-    a.  Select **Enable SAML Authentication**.
-
-    b.  Click **Add Row**.
-
-11. In the SAML Identity Providers section, perform the following steps:
-
-    ![SAML Identity Providers](./media/active-directory-saas-workday-tutorial/IC7829271.png "SAML Identity Providers")
-
-    a. In the Identity Provider Name textbox, type a provider name (e.g.: *SPInitiatedSSO*).
-
-    b. In the Azure classic portal, on the **Configure single sign-on at Workday** dialog page, copy the **Identity Provider ID** value, and then paste it into the **Issuer** textbox.
-
-    c. Select **Enable Workday Initialted Logout**.
-
-    d. In the Azure classic portal, on the **Configure single sign-on at Workday** dialog page, copy the **Single Sign-Out Service URL** value, and then paste it into the **Logout Request URL** textbox.
+	d.在 [環境] 文字方塊中輸入環境名稱。
 
 
-    e. Click **Identity Provider Public Key Certificate**, and then click **Create**. 
+	>[AZURE.NOTE] [環境] 屬性的值會繫結至租用戶 URL 的值：
+	>
+    >-   如果 Workday 租用戶 URL 的網域名稱開頭為 impl (例如：*https://impl.workday.com/\<tenant>/login-saml2.htmld*)，則 [環境] 屬性必須設為 [實作]。
+    >-   如果網域名稱的開頭是其他字元，您需要聯絡 Workday 以取得相符的 [環境] 值。
 
-    ![Create](./media/active-directory-saas-workday-tutorial/IC782928.png "Create")
+10. 在 [SAML 設定] 區段中，執行下列步驟：
 
-    f. Click **Create x509 Public Key**. 
+    ![SAML 設定](./media/active-directory-saas-workday-tutorial/IC782926.png "SAML 設定")
+
+	a.選取 [啟用 SAML 驗證]。
+
+	b.按一下 [加入資料列]。
+
+11. 在 [SAML 身分識別提供者] 區段中，執行下列步驟：
+
+    ![SAML 身分識別提供者](./media/active-directory-saas-workday-tutorial/IC7829271.png "SAML 身分識別提供者")
+
+	a.在 [身分識別提供者名稱] 文字方塊中，輸入提供者名稱 (例如：*SPInitiatedSSO*)。
+
+    b.在 Azure 傳統入口網站的 [設定在 Workday 單一登入] 對話方塊頁面上，複製 [識別提供者 ID] 值，然後將它貼到 [簽發者] 文字方塊中。
+
+    c.選取 [啟用 Workday 啟始的登出]。
+
+    d.在 Azure 傳統入口網站的 [設定在 Workday 單一登入] 對話方塊頁面上，複製 [單一登出服務 URL] 值，然後將它貼到 [登出要求 URL] 文字方塊中。
+
+
+    e.按一下 [識別提供者公開金鑰憑證]，然後按一下 [建立]。
+
+	![建立](./media/active-directory-saas-workday-tutorial/IC782928.png "建立")
+
+    f.按一下 [建立 x509 公開金鑰]。
         
-    ![Create](./media/active-directory-saas-workday-tutorial/IC782929.png "Create")
+	![建立](./media/active-directory-saas-workday-tutorial/IC782929.png "建立")
 
 
-1. In the **View x509 Public Key** section, perform the following steps: 
+1. 在 [檢視 x509 公開金鑰] 區段中，執行下列步驟：
 
-    ![View x509 Public Key](./media/active-directory-saas-workday-tutorial/IC782930.png "View x509 Public Key") 
+	![檢視 x509 公用金鑰](./media/active-directory-saas-workday-tutorial/IC782930.png "檢視 x509 公用金鑰")
 
-    a. In the **Name** textbox, type a name for your certificate (e.g.: *PPE\_SP*).
-        
-    b. In the **Valid From** textbox, type the valid from attribute value of your certificate.
+	a.在 [名稱] 文字方塊中，輸入您的憑證名稱 (例如：*PPE\_SP*)。
+    	
+	b.在 [有效開始日期] 文字方塊中輸入憑證屬性值的有效開始日期。
     
-    c.  In the **Valid To** textbox, type the valid to attribute value of your certificate.
-        
-    >[AZURE.NOTE] You can get the valid from date and the valid to date from the downloaded certificate by double-clicking it. The dates are listed under the **Details** tab.
+	c.在 [有效結束日期] 文字方塊中輸入憑證屬性值的有效結束日期。
+		
+    >[AZURE.NOTE] 按兩下所下載的憑證，即可取得有效開始日期和有效結束日期。這些日期會列在 [詳細資料] 索引標籤之下。
 
-    d. Create a **Base-64 encoded** file from your downloaded certificate.  
+	d.從您下載的憑證建立 **Base-64 編碼**檔案。
 
-    >[AZURE.TIP] For more details, see [How to convert a binary certificate into a text file](http://youtu.be/PlgrzUZ-Y1o)
+	>[AZURE.TIP] 如需詳細資料，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)
 
-    e.  Open your base-64 encoded certificate in notepad, and then copy the content of it.
+	e.在記事本中開啟 base-64 編碼的憑證，然後複製其內容。
     
-    f.  In the **Certificate** textbox, paste the content of your clipboard.
+	f.在 [憑證] 文字方塊中貼上剪貼簿的內容。
     
-    g.  Click **OK**.
+	g.按一下 [確定]。
 
-12.  Perform the following steps: 
+12.  執行下列步驟：
 
-    ![SSO configuration](./media/active-directory-saas-workday-tutorial/IC7829351111.png "SSO configuration")
+	![SSO 組態](./media/active-directory-saas-workday-tutorial/IC7829351111.png "SSO 組態")
 
-    a.  Enable the **x509 Private Key Pair**.
+	a.啟用 [x509 私密金鑰組]。
 
-    b.  In the **Service Provider ID** textbox, type **http://www.workday.com**.
+	b.在 [服務提供者識別碼] 文字方塊中，輸入 **http://www.workday.com**。
 
-    c.  Select **Enable SP Initiated SAML Authentication**.
+	c.選取 [啟用 SP 啟始的 SAML 驗證]。
 
-    d.  In the Azure classic portal, on the **Configure single sign-on at Workday** dialog page, copy the **Single Sign-On Service URL** value, and then paste it into the **IdP SSO Service URL** textbox.
+	d.在 Azure 傳統入口網站的 [設定在 Workday 單一登入] 對話方塊頁面上，複製 [單一登入服務 URL] 值，然後將它貼到 [IdP SSO 服務 URL] 文字方塊中。
      
-    e. Select **Do Not Deflate SP-initiated Authentication Request**.
+	e.選取 [不要壓縮 SP 起始的驗證要求]。
 
-    f. As **Authentication Request Signature Method**, select **SHA256**. 
+    f.選取 **SHA256** 做為 [驗證要求簽章方法]。
         
-    ![Authentication Request Signature Method](./media/active-directory-saas-workday-tutorial/IC782932.png "Authentication Request Signature Method") 
+	![驗證要求簽章方法](./media/active-directory-saas-workday-tutorial/IC782932.png "驗證要求簽章方法")
  
-    g. Click **OK**. 
+	g.按一下 [確定]。
         
-    ![OK](./media/active-directory-saas-workday-tutorial/IC782933.png "OK")
+	![OK](./media/active-directory-saas-workday-tutorial/IC782933.png "OK")
 
-12. In the Azure classic portal, on the **Configure single sign-on at Workday** page, click **Next**. 
+12. 在 Azure 傳統入口網站的 [設定在 Workday 單一登入] 頁面上，按 [下一步]。
 
-    ![Configure single sign-on](./media/active-directory-saas-workday-tutorial/IC782934.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-workday-tutorial/IC782934.png "設定單一登入")
 
-13. On the **Single sign-on confirmation** page, click **Complete**. 
+13. 在 [單一登入確認] 頁面上，按一下 [完成]。
 
-    ![Configure single sign-on](./media/active-directory-saas-workday-tutorial/IC782935111.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-workday-tutorial/IC782935111.png "設定單一登入")
 
 
 
-##<a name="configuring-user-provisioning"></a>Configuring user provisioning
+##設定使用者佈建
   
-To get a test user provisioned into Workday, you need to contact the Workday support team.  
-The Workday support team will create the user for you.
+若要讓測試使用者佈建到 Workday 中，您需要聯絡 Workday 支援小組。Workday 支援小組會為您建立此使用者。
 
-##<a name="assigning-users"></a>Assigning users
+##指派使用者
   
-To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
+若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-###<a name="to-assign-users-to-workday,-perform-the-following-steps:"></a>To assign users to Workday, perform the following steps:
+###若要指派使用者給 Workday，請執行下列步驟：
 
-1.  In the Azure classic portal, create a test account.
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
-2.  On the **Workday **application integration page, click **Assign users**.
+2.  在 [Workday] 應用程式整合頁面上，按一下 [指派使用者]。
 
-    ![Assign Users](./media/active-directory-saas-workday-tutorial/IC782935.png "Assign Users")
+    ![指派使用者](./media/active-directory-saas-workday-tutorial/IC782935.png "指派使用者")
 
-3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
+3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
 
-    ![Yes](./media/active-directory-saas-workday-tutorial/IC767830.png "Yes")
+    ![是](./media/active-directory-saas-workday-tutorial/IC767830.png "是")
   
-If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

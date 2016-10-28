@@ -1,46 +1,45 @@
 <properties 
-    pageTitle="New schema version 2015-08-01-preview" 
-    description="Learn how to write the JSON definition for the latest version of Logic apps" 
-    authors="stepsic-microsoft-com" 
-    manager="dwrede" 
-    editor="" 
-    services="logic-apps" 
-    documentationCenter=""/>
+	pageTitle="新結構描述版本 2015-08-01 預覽" 
+	description="了解如何撰寫最新版邏輯應用程式的 JSON 定義" 
+	authors="stepsic-microsoft-com" 
+	manager="dwrede" 
+	editor="" 
+	services="logic-apps" 
+	documentationCenter=""/>
 
 <tags
-    ms.service="logic-apps"
-    ms.workload="integration"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="05/31/2016"
-    ms.author="stepsic"/>
-    
+	ms.service="logic-apps"
+	ms.workload="integration"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="05/31/2016"
+	ms.author="stepsic"/>
+	
+# 新結構描述版本 2015-08-01 預覽
 
-# <a name="new-schema-version-2015-08-01-preview"></a>New schema version 2015-08-01-preview
+邏輯應用程式的新結構描述和 API 版本有一些增強功能，可提升邏輯應用程式的可靠性和易用性。有 4 個主要的差異：
 
-The new schema and API version for Logic apps has a number of improvements which improve the reliability and ease-of-use of Logic apps. There are 4 key differences:
+1. **APIApp** 動作類型已更新為新的 **APIConnection** 動作類型。
+2. **Repeat** 已重新命名為 **Foreach**。
+3. 不再需要 **HTTP 接聽程式** API 應用程式。
+4. 呼叫子工作流程時使用新的結構描述。
 
-1. The **APIApp** action type has been updated to a new **APIConnection** action type.
-2. **Repeat** has been renamed to **Foreach**.
-3. The **HTTP Listener** API app is no longer required.
-4. Calling child workflows uses a new schema.
+## 1\.移轉至 API 連接
 
-## <a name="1.-moving-to-api-connections"></a>1. Moving to API connections
+最大的改變是您不再需要將 API 應用程式部署至您的 Azure 訂用帳戶，也能使用 API。有 2 種方式可以使用 API：
+* Managed API
+* 您自訂的 Web API
 
-The biggest change is that you no longer need to deploy API apps into your Azure Subscription to use API's. There are 2 ways you can use APIs:
-* Managed API's
-* Your custom Web API's
+每一種都因為其管理和裝載模型不同，而有稍微不同的處理方式。此模型的優點之一是您不再受限於只能存取部署在資源群組中的資源。
 
-Each of these is handled slightly differently because their management and hosting models are different. One advantage of this model is you're no longer constrained to resources that are deployed in your Resource Group. 
+### Managed API
 
-### <a name="managed-apis"></a>Managed APIs
+有許多由 Microsoft 替您管理的 API，例如 Office 365、Salesforce、Twitter、FTP 等...其中有些 Managed API 可直接使用，例如 Bing 翻譯，而有些則需要設定。此組態稱為「連接」。
 
-There are a number of API's that are managed by Microsoft on your behalf, such as Office 365, Salesforce, Twitter, FTP etc.... Some of these managed API's can be used as-is, such as Bing Translate, while others require configuration. This configuration is called a *connection*.
+例如，當您使用 Office 365 時，您需要建立包含 Office 365 登入權杖的連接。此權杖會安全地儲存並重新整理，讓您的邏輯應用程式隨時都可以呼叫 Office 365 API。或者，如果您想要連線到 SQL 或 FTP 伺服器，您需要建立具有連接字串的連接。
 
-For example, when you use Office 365, you need to create a connection that contains your Office 365 sign-in token. This token will be securely stored and refreshed so that your Logic app can always call the Office 365 API. Alternatively, if you want to connect to your SQL or FTP server, you need to create a connection that has the connection string. 
-
-Inside of the definition these actions are called `APIConnection`. Here is an example of a connection that calls Office 365 to send an email:
+這些動作在定義內稱為 `APIConnection`。以下是一個呼叫 Office 365 來傳送電子郵件的連接範例：
 
 ```
 {
@@ -69,17 +68,17 @@ Inside of the definition these actions are called `APIConnection`. Here is an ex
 }
 ```
 
-The portion of the inputs that is unique to API connections is the `host` object. This contains two parts: `api` and `connection`.
+輸入中特別有關於 API 連接的部分是 `host` 物件。這包含兩個部分： `api` 和 `connection`。
 
-The `api` has the runtime URL of where that managed API is hosted. You can see all of the available managed APIs for you by calling `GET https://management.azure.com/subscriptions/{subid}/providers/Microsoft.Web/managedApis/?api-version=2015-08-01-preview`.
+`api` 有用來裝載該 Managed API 的執行階段 URL。您可以呼叫 `GET https://management.azure.com/subscriptions/{subid}/providers/Microsoft.Web/managedApis/?api-version=2015-08-01-preview` 查看可供您使用的所有 Managed API。
 
-When you use an API, it may or may not have any **connection parameters** defined. If it doesn't then no **connection** is required. If it does, then you will have to create a connection. When you create that connection it'll have the name you choose, and then you reference that in the `connection` object inside the `host` object. To create a connection in a resource group, call:
+當您使用 API 時，可能有也可能沒有定義任何**連接參數**。如果沒有的話，則不需要**連接**。如果有的話，則您必須建立連接。當您建立該連接時，它會有您所選擇的名稱，然後您在 `host` 物件內的 `connection` 物件中會參考它。若要在資源群組中建立連接，請呼叫：
 
 ```
 PUT https://management.azure.com/subscriptions/{subid}/resourceGroups/{rgname}/providers/Microsoft.Web/connections/{name}?api-version=2015-08-01-preview
 ```
 
-With the following body:
+使用下列主體：
 
 
 ```
@@ -88,114 +87,114 @@ With the following body:
     "api": {
       "id": "/subscriptions/{subid}/providers/Microsoft.Web/managedApis/azureblob"
     },
-    "parameterValues" : {
-        "accountName" : "{The name of the storage account -- the set of parameters is different for each API}"
-    }
+	"parameterValues" : {
+		"accountName" : "{The name of the storage account -- the set of parameters is different for each API}"
+	}
   },
   "location" : "{Logic app's location}"
 }
 ```
 
-### <a name="deploying-managed-apis-in-an-azure-resource-manager-template"></a>Deploying managed APIs in an Azure Resource manager template
+### 在 Azure Resource Manager 範本中部署 Managed API
 
-You can create a full application in an ARM template as long as it doesn’t require interactive sign-in. If it requires sign-in, you can set everything up with the ARM template, but will still have to visit the portal to authorize the connections. 
+只要應用程式不需要互動式登入，您可以在 ARM 範本中建立完整的應用程式。如果它需要登入，您可以使用 ARM 範本來設定所有項目，但仍然必須造訪入口網站來授權連接。
 
 ```
-    "resources": [{
-        "apiVersion": "2015-08-01-preview",
-        "name": "azureblob",
-        "type": "Microsoft.Web/connections",
-        "location": "[resourceGroup().location]",
-        "properties": {
-            "api": {
-                "id": "[concat(subscription().id,'/providers/Microsoft.Web/locations/westus/managedApis/azureblob')]"
-            },
-            "parameterValues": {
-                "accountName": "[parameters('storageAccountName')]",
-                "accessKey": "[parameters('storageAccountKey')]"
-            }
-        }
-    }, {
-        "type": "Microsoft.Logic/workflows",
-        "apiVersion": "2015-08-01-preview",
-        "name": "[parameters('logicAppName')]",
-        "location": "[resourceGroup().location]",
-        "dependsOn": [
-            "[resourceId('Microsoft.Web/connections', 'azureblob')]"
-        ],
-        "properties": {
-            "sku": {
-                "name": "[parameters('sku')]",
-                "plan": {
-                    "id": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/',parameters('svcPlanName'))]"
-                }
-            },
-            "definition": {
-                "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2015-08-01-preview/workflowdefinition.json#",
-                "actions": {
-                    "Create_file": {
-                        "type": "apiconnection",
-                        "inputs": {
-                            "host": {
-                                "api": {
-                                    "runtimeUrl": "https://logic-apis-westus.azure-apim.net/apim/azureblob"
-                                },
-                                "connection": {
-                                    "name": "@parameters('$connections')['azureblob']['connectionId']"
-                                }
-                            },
-                            "method": "post",
-                            "queries": {
-                                "folderPath": "[concat('/',parameters('containerName'))]",
-                                "name": "helloworld.txt"
-                            },
-                            "body": "@decodeDataUri('data:,Hello+world!')",
-                            "path": "/datasets/default/files"
-                        },
-                        "conditions": []
-                    }
-                },
-                "contentVersion": "1.0.0.0",
-                "outputs": {},
-                "parameters": {
-                    "$connections": {
-                        "defaultValue": {},
-                        "type": "Object"
-                    }
-                },
-                "triggers": {
-                    "recurrence": {
-                        "type": "Recurrence",
-                        "recurrence": {
-                            "frequency": "Day",
-                            "interval": 1
-                        }
-                    }
-                }
-            },
-            "parameters": {
-                "$connections": {
-                    "value": {
-                        "azureblob": {
-                            "connectionId": "[concat(resourceGroup().id,'/providers/Microsoft.Web/connections/azureblob')]",
-                            "connectionName": "azureblob",
-                            "id": "[concat(subscription().id,'/providers/Microsoft.Web/locations/westus/managedApis/azureblob')]"
-                        }
+	"resources": [{
+		"apiVersion": "2015-08-01-preview",
+		"name": "azureblob",
+		"type": "Microsoft.Web/connections",
+		"location": "[resourceGroup().location]",
+		"properties": {
+			"api": {
+				"id": "[concat(subscription().id,'/providers/Microsoft.Web/locations/westus/managedApis/azureblob')]"
+			},
+			"parameterValues": {
+				"accountName": "[parameters('storageAccountName')]",
+				"accessKey": "[parameters('storageAccountKey')]"
+			}
+		}
+	}, {
+		"type": "Microsoft.Logic/workflows",
+		"apiVersion": "2015-08-01-preview",
+		"name": "[parameters('logicAppName')]",
+		"location": "[resourceGroup().location]",
+		"dependsOn": [
+			"[resourceId('Microsoft.Web/connections', 'azureblob')]"
+		],
+		"properties": {
+			"sku": {
+				"name": "[parameters('sku')]",
+				"plan": {
+					"id": "[concat(resourceGroup().id, '/providers/Microsoft.Web/serverfarms/',parameters('svcPlanName'))]"
+				}
+			},
+			"definition": {
+				"$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2015-08-01-preview/workflowdefinition.json#",
+				"actions": {
+					"Create_file": {
+						"type": "apiconnection",
+						"inputs": {
+							"host": {
+								"api": {
+									"runtimeUrl": "https://logic-apis-westus.azure-apim.net/apim/azureblob"
+								},
+								"connection": {
+									"name": "@parameters('$connections')['azureblob']['connectionId']"
+								}
+							},
+							"method": "post",
+							"queries": {
+								"folderPath": "[concat('/',parameters('containerName'))]",
+								"name": "helloworld.txt"
+							},
+							"body": "@decodeDataUri('data:,Hello+world!')",
+							"path": "/datasets/default/files"
+						},
+						"conditions": []
+					}
+				},
+				"contentVersion": "1.0.0.0",
+				"outputs": {},
+				"parameters": {
+					"$connections": {
+						"defaultValue": {},
+						"type": "Object"
+					}
+				},
+				"triggers": {
+					"recurrence": {
+						"type": "Recurrence",
+						"recurrence": {
+							"frequency": "Day",
+							"interval": 1
+						}
+					}
+				}
+			},
+			"parameters": {
+				"$connections": {
+					"value": {
+						"azureblob": {
+							"connectionId": "[concat(resourceGroup().id,'/providers/Microsoft.Web/connections/azureblob')]",
+							"connectionName": "azureblob",
+							"id": "[concat(subscription().id,'/providers/Microsoft.Web/locations/westus/managedApis/azureblob')]"
+						}
 
-                    }
-                }
-            }
-        }
-    }]
+					}
+				}
+			}
+		}
+	}]
 ```
 
-You can see in this example that the connections are just normal resources that live in your resource group. They reference the managedAPIs available to you in your subscription.
+在此範例中，您可以看到連接只是存在於資源群組中的一般資源。它們會參考您的訂用帳戶中可供您使用的 Managed API。
 
-### <a name="your-custom-web-apis"></a>Your custom Web APIs
+### 您自訂的 Web API
 
-If you use your own API's (specifically, not Microsoft-managed ones), then you should use the built-in **HTTP** action to call them. In order to have an ideal experience, you should expose a swagger endpoint for your API. This will enable the Logic app designer to render the inputs and outputs for your API. Without a swagger, the designer will only be able to show the inputs and outputs as opaque JSON objects.
+如果您使用您自己的 API (明確地說，不是 Microsoft 管理的 API)，則應該使用內建 **HTTP** 動作來呼叫它們。為了獲得理想的體驗，您應該公開您的 API 的 swagger 端點。這樣可讓邏輯應用程式設計工具呈現您的 API 的輸入和輸出。如果沒有 swagger，設計工具只能將輸入和輸出顯示成不透明的 JSON 物件。
 
-Here is an example showing the new `metadata.apiDefinitionUrl` property:
+下列範例顯示新的 `metadata.apiDefinitionUrl` 屬性：
 ```
 {
    "actions": {
@@ -213,13 +212,13 @@ Here is an example showing the new `metadata.apiDefinitionUrl` property:
 }
 ```
 
-If you host your Web API on **App Service** then it will automatically show up in the list of actions available in the designer. If not, you'll have to paste in the URL directly. The swagger endpoint must be unauthenticated in order to be usable inside of the Logic apps designer (although you may secure the API itself with whatever methods are supported in the Swagger).
+如果您將 Web API 裝載於 **App Service**，它會自動顯示在設計工具可用的動作清單。如果不是的話，您必須直接貼在 URL 中。Swagger 端點必須未經驗證，才能在邏輯應用程式設計工具內使用 (雖然您可以使用 Swagger 中支援的任何方法來保護 API 本身)。
 
-### <a name="using-your-already-deployed-api-apps-with-2015-08-01-preview"></a>Using your already deployed API apps with 2015-08-01-preview
+### 搭配 2015-08-01-preview 使用您已部署的 API 應用程式
 
-If you previously deployed an API app, you can call it via the **HTTP** action.
+如果您先前已部署 API 應用程式，您可以透過 **HTTP** 動作呼叫它。
 
-For example, if you use Dropbox to list files, you may have something like this in your **2014-12-01-preview** schema version definition:
+例如，如果您使用 Dropbox 列出檔案，您的 **2014-12-01-preview** 結構描述版本定義中可能會有類似下面的內容：
 
 ```
 {
@@ -260,7 +259,7 @@ For example, if you use Dropbox to list files, you may have something like this 
 }
 ```
 
-You can construct the equivalent HTTP action like below (the parameters section of the Logic app definition remains unchanged):
+您可以如下建構同等的 HTTP 動作 (邏輯應用程式定義的 parameters 區段保持不變)：
 
 ```
 {
@@ -287,22 +286,22 @@ You can construct the equivalent HTTP action like below (the parameters section 
 }
 ```
 
-Walking through these properties one-by-one:
+逐一解說這些屬性：
 
-| Action property |  Description |
+| 動作屬性 | 說明 |
 | --------------- | -----------  |
-| `type` | `Http` instead of `APIapp` |
-| `metadata.apiDefinitionUrl` | If you want to use this action in the Logic apps designer, you'll want to include the metadata endpoint. This is constructed from: `{api app host.gateway}/api/service/apidef/{last segment of the api app host.id}/?api-version=2015-01-14&format=swagger-2.0-standard` |
-| `inputs.uri` | This is constructed from: `{api app host.gateway}/api/service/invoke/{last segment of the api app host.id}/{api app operation}?api-version=2015-01-14` |
-| `inputs.method` | Always `POST` |
-| `inputs.body` | Identical to the api app parameters | 
-| `inputs.authentication` | Identical to the api app authentication |
+| `type` | `Http` 而不是 `APIapp` |
+| `metadata.apiDefinitionUrl` | 如果您想要在邏輯應用程式設計工具中使用此動作，您需要包含中繼資料端點。這是建構自：`{api app host.gateway}/api/service/apidef/{last segment of the api app host.id}/?api-version=2015-01-14&format=swagger-2.0-standard` |
+| `inputs.uri` | 這是建構自：`{api app host.gateway}/api/service/invoke/{last segment of the api app host.id}/{api app operation}?api-version=2015-01-14` |
+| `inputs.method` | 一律為 `POST` |
+| `inputs.body` | 與 api app 參數相同 | 
+| `inputs.authentication` | 與 api app 驗證相同 |
 
-This approach should work for all API app actions. However, please keep in mind that these previous API apps are no longer supported, and you should move to one of the two other options above (either a managed API or hosting your custom Web API).
+此方法應可適用於 API 應用程式的所有動作。不過，請記住，已不再支援這些先前的 API 應用程式，您應該移轉到上述的其他兩個選項 (Managed API 或裝載您自訂的 Web API)。
 
-## <a name="2.-repeat-renamed-to-foreach"></a>2. Repeat renamed to Foreach
+## 2\.Repeat 重新命名為 Foreach
 
-For the previous schema version we received a lot of customer feedback that **Repeat** was confusing and didn't properly capture that it was really a for each loop. As a result, we have renamed it to **Foreach**. For example:
+針對先前的結構描述版本，我們接到許多的客戶意見，他們覺得 **Repeat** 造成混淆，並沒有正確表達它真的是 for each 迴圈。因此，我們已將它重新命名為 **Foreach**。例如：
 
 ```
 {
@@ -319,7 +318,7 @@ For the previous schema version we received a lot of customer feedback that **Re
 }
 ```
 
-Would now be written as:
+現在會寫成：
 
 ```
 {
@@ -336,10 +335,10 @@ Would now be written as:
 }
 ```
 
-Previously the function `@repeatItem()` was used to reference the current item being iterated over. This has been simplified to just `@item()`. 
+先前的函式 `@repeatItem()` 用來參考目前反覆處理的項目。這已簡化到只剩下 `@item()`。
 
-### <a name="referencing-the-outputs-of-the-foreach"></a>Referencing the outputs of the Foreach
-To further simplify, the outputs of **Foreach** actions will not be wrapped in an object called **repeatItems**. This means, whereas the outputs of the above repeat were:
+### 參考 Foreach 的輸出
+為了進一步簡化，**Foreach** 動作的輸出不會包裝在稱為 **repeatItems** 的物件中。這表示，上述重複的輸出原本為：
 
 ```
 {
@@ -352,7 +351,7 @@ To further simplify, the outputs of **Foreach** actions will not be wrapped in a
             },
             "outputs": {
                 "headers": { },
-                "body": "<!DOCTYPE html><html lang=\"en\" xml:lang=\"en\" xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:Web=\"http://schemas.live.com/Web/\">...</html>"
+                "body": "<!DOCTYPE html><html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:Web="http://schemas.live.com/Web/">...</html>"
             }
             "status": "Succeeded"
         }
@@ -360,7 +359,7 @@ To further simplify, the outputs of **Foreach** actions will not be wrapped in a
 }
 ```
 
-Now it will be:
+現在變成：
 
 ```
 [
@@ -372,14 +371,14 @@ Now it will be:
         },
         "outputs": {
             "headers": { },
-            "body": "<!DOCTYPE html><html lang=\"en\" xml:lang=\"en\" xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:Web=\"http://schemas.live.com/Web/\">...</html>"
+            "body": "<!DOCTYPE html><html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:Web="http://schemas.live.com/Web/">...</html>"
         }
         "status": "Succeeded"
     }
 ]
 ```
 
-When referencing these outputs, to get to the body of the action you'd have to do:
+當參考這些輸出時，若要取得動作的主體，您必須執行：
 
 ```
 {
@@ -397,7 +396,7 @@ When referencing these outputs, to get to the body of the action you'd have to d
 }
 ```
 
-Now you can do instead:
+現在，您可以改為執行：
 
 ```
 {
@@ -415,16 +414,16 @@ Now you can do instead:
 }
 ```
 
-With these changes, the functions `@repeatItem()`, `@repeatBody()` and `@repeatOutputs()` are removed.
+經過這些變更，已移除函式 `@repeatItem()`、`@repeatBody()` 和 `@repeatOutputs()`。
 
-## <a name="3.-native-http-listener"></a>3. Native HTTP listener 
-The HTTP Listener capabilities are now built-in, so you no longer need to deploy an HTTP Listener API app. Read about [the full details for how to make your Logic app endpoint callable here](app-service-logic-http-endpoint.md). 
+## 3\.原生 HTTP 接聽程式 
+現在已內建 HTTP 接聽程式功能，所以您不再需要部署 HTTP 接聽程式 API 應用程式。請參閱[這裡有關如何讓您的邏輯應用程式端點可供呼叫的完整詳細資料](app-service-logic-http-endpoint.md)。
 
-With these changes, the function `@accessKeys()` is removed and has been replaced with the `@listCallbackURL()` function for the purposes of getting the endpoint (when needed). In addition, you now must define at least one trigger in your Logic app now. If you want to `/run` the workflow, you'll need to have one of a `manual`, `apiConnectionWebhook` or `httpWebhook` triggers. 
+經過這些變更，已移除函式 `@accessKeys()`，改為以 `@listCallbackURL()` 函式來取得端點 (如果需要)。此外，您現在必須在邏輯應用程式中至少定義一個觸發程序。如果您想要 `/run` 工作流程，您必須有一個 `manual`、`apiConnectionWebhook` 或 `httpWebhook` 觸發程序。
 
-## <a name="4.-calling-child-workflows"></a>4. Calling child workflows
+## 4\.呼叫子工作流程
 
-Previously, calling child workflows required going to that workflow, getting the access token, and then pasting that in to the definition of the Logic app that you want to call that child. With the new schema version, the Logic apps engine will automatically generate a SAS at runtime for the child workflow, which means that you don't have to paste any secrets into the definition.  Here is an example:
+在以前，呼叫子工作流程時必須移至該工作流程、取得存取權杖，然後貼到要呼叫該子工作流程的邏輯應用程式的定義中。在新的結構描述版本中，邏輯應用程式引擎會在執行階段自動為子工作流程產生 SAS，這表示您不需要將任何機密資料貼到定義中。下列是一個範例：
 
 ```
 "mynestedwf" : {
@@ -450,23 +449,19 @@ Previously, calling child workflows required going to that workflow, getting the
 }
 ```
 
-A second improvement is we will be giving the child workflows full access to the incoming request. That means that you can pass parameters in the *queries* section and in the *headers* object and that you can fully define the entire body.
+第二個改進是我們將允許子工作流程完整存取內送要求。這表示您可以將參數傳入 *queries* 區段和 *headers* 物件中，而且您可以完整定義整個主體。
 
-Finally, there are required changes to the child workflow. Whereas before you could just call a child workflow directly; now, you’ll need to define a trigger endpoint in the workflow for the parent to call. Generally, this means you’ll add a trigger of type **manual** and then use that in the parent definition. Note that the `host` property specifically has a `triggerName`, because you must always specify which trigger you are invoking.
+最後是必須對子工作流程進行的變更。您以前可能只是直接呼叫子工作流程，但現在，您必須在工作流程中定義觸發程序端點供父工作流程呼叫。一般而言，這表示您需要加入**手動**類型的觸發程序，然後用在父定義中。請注意，`host` 屬性明確地具有 `triggerName`，因為您一定要指定您所叫用的觸發程序。
 
-## <a name="other-changes"></a>Other changes
+## 其他變更
 
-### <a name="new-queries-property"></a>New queries property
-All action types now support a new input called **queries**. This can be a structured object rather than you having to assemble the string by hand.
+### 新的 queries 屬性
+所有動作類型現在支援一個稱為 **queries** 的新輸入。這可以是結構化物件，而不必是您手動組合的字串。
 
-### <a name="parse()-function-renamed"></a>parse() function renamed
-As we will soon be adding more content types, the `parse()` function has been renamed to `json()`.
+### 已重新命名 parse() 函式
+由於我們即將新增更多內容類型，`parse()` 函式已重新命名為 `json()`。
 
-## <a name="coming-soon:-enterprise-integration-apis"></a>Coming soon: Enterprise Integration APIs
-At this point in time, we do not yet have managed versions of the Enterprise Integration APIs available (such as AS2). These will be coming soon as covered in the [roadmap](http://www.zdnet.com/article/microsoft-outlines-its-cloud-and-server-integration-roadmap-for-2016/). In the meanwhile, you can use your existing deployed BizTalk APIs via the HTTP action, as covered above in "Using your already deployed API apps."
+## 敬請期待：企業整合 API
+目前，我們尚未提供 Managed 版本的企業整合 API (例如 AS2)。這些都已納入[藍圖](http://www.zdnet.com/article/microsoft-outlines-its-cloud-and-server-integration-roadmap-for-2016/)中，敬請期待。在此期間，您可以透過 HTTP 動作來使用現有已部署的 BizTalk API，如以上的「使用您已部署的 API 應用程式」所述。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

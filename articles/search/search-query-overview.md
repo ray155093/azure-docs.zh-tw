@@ -1,9 +1,9 @@
 <properties
-    pageTitle="Query your Azure Search Index | Microsoft Azure | Hosted cloud search service"
-    description="Build a search query in Azure search and use search parameters to filter and sort search results."
+    pageTitle="查詢 Azure 搜尋服務索引 | Microsoft Azure | 雲端託管搜尋服務"
+    description="在 Azure 搜尋服務中建立搜尋查詢，並使用搜尋參數來篩選及排序搜尋結果。"
     services="search"
     documentationCenter=""
-    authors="ashmaka"
+	authors="ashmaka"
 />
 
 <tags
@@ -15,52 +15,47 @@
     ms.date="08/29/2016"
     ms.author="ashmaka"/>
 
-
-# <a name="query-your-azure-search-index"></a>Query your Azure Search index
+# 查詢 Azure 搜尋服務索引
 > [AZURE.SELECTOR]
-- [Overview](search-query-overview.md)
-- [Portal](search-explorer.md)
+- [概觀](search-query-overview.md)
+- [入口網站](search-explorer.md)
 - [.NET](search-query-dotnet.md)
 - [REST](search-query-rest-api.md)
 
-When submitting search requests to Azure Search, there are a number of parameters that can be specified alongside the actual words that are typed into the search box of your application. These query parameters allow you to achieve some deeper control of the full-text search experience.
+在提交搜尋要求給 Azure 搜尋服務時，除了在應用程式搜尋方塊中實際輸入的單字以外，還可以指定幾個參數。這些查詢參數可讓您更深入地控制全文檢索搜尋體驗。
 
-Below is a list that briefly explains common uses of the query parameters in Azure Search. For full coverage of query parameters and their behavior, please see the detailed pages for the [REST API](https://msdn.microsoft.com/library/azure/dn798927.aspx) and [.NET SDK](https://msdn.microsoft.com/library/azure/microsoft.azure.search.models.searchparameters_properties.aspx).
+以下清單簡短說明查詢參數在 Azure 搜尋服務中的常見用法。如需查詢參數和其行為的完整說明，請參閱 [REST API](https://msdn.microsoft.com/library/azure/dn798927.aspx) 和 [.NET SDK](https://msdn.microsoft.com/library/azure/microsoft.azure.search.models.searchparameters_properties.aspx) 的詳細資料頁面。
 
-## <a name="types-of-queries"></a>Types of queries
+## 查詢類型
 
-Azure Search offers many options to create extremely powerful queries. The two main types of query you will use are `search` and `filter`. A `search` query searches for one or more terms in all _searchable_ fields in your index, and works the way you would expect a search engine like Google or Bing to work. A `filter` query evaluates a boolean expression over all _filterable_ fields in an index. Unlike `search` queries, `filter` queries match the exact contents of a field, which means they are case-sensitive for string fields.
+Azure 搜尋服務提供許多選項可建立功能極為強大的查詢。您將會使用的兩個主要查詢類型是 `search` 和 `filter`。`search` 查詢可在索引的所有可搜尋欄位中搜尋一或多個字詞，而且運作方式就如同您對 Google 或 Bing 等搜尋引擎的期待。`filter` 查詢可跨索引的所有可篩選欄位評估布林運算式。與 `search` 查詢不同的是，`filter` 查詢會完全符合欄位內容，也就是對字串欄位區分大小寫。
 
-You can use searches and filters together or separately. If you use them together, the filter is applied first to the entire index, and then the search is performed on the results of the filter. Filters can therefore be a useful technique to improve query performance since they reduce the set of documents that the search query needs to process.
+您可以同時或個別使用搜尋和篩選。如果同時使用，就會先將篩選套用到整個索引，再對篩選結果執行搜尋。由於篩選能夠減少搜尋查詢需要處理的資料集合，因此對於提升查詢效能方面是很實用的技術。
 
-The syntax for filter expressions is a subset of the [OData filter language](https://msdn.microsoft.com/library/azure/dn798921.aspx). For search queries you can use either the [simplified syntax](https://msdn.microsoft.com/library/azure/dn798920.aspx) or the [Lucene query syntax](https://msdn.microsoft.com/library/azure/mt589323.aspx) which are discussed below.
+篩選運算式的語法是 [OData 篩選語言](https://msdn.microsoft.com/library/azure/dn798921.aspx)的子集。對於搜尋查詢，您可以使用[簡化語法](https://msdn.microsoft.com/library/azure/dn798920.aspx)或 [Lucene 查詢語法](https://msdn.microsoft.com/library/azure/mt589323.aspx)，下面會有這兩種語法的討論。
 
-### <a name="simple-query-syntax"></a>Simple query syntax
-The [simple query syntax](https://msdn.microsoft.com/library/azure/dn798920.aspx) is the default query language used in Azure Search. The simple query syntax supports a number of common search operators including the AND, OR, NOT, phrase, suffix, and precedence operators.
+### 簡單查詢語法
+[簡單查詢語法](https://msdn.microsoft.com/library/azure/dn798920.aspx)是 Azure 搜尋服務所使用的預設查詢語言。簡單查詢語法支援許多常見的搜尋運算子，包括 AND、OR、NOT、片語、尾碼和優先順序運算子。
 
-### <a name="lucene-query-syntax"></a>Lucene query syntax
-The [Lucene query syntax](https://msdn.microsoft.com/library/azure/mt589323.aspx) allows you to use the widely-adopted and expressive query language developed as part of [Apache Lucene](https://lucene.apache.org/core/4_10_2/queryparser/org/apache/lucene/queryparser/classic/package-summary.html).
+### Lucene 查詢語法
+[Lucene 查詢語法](https://msdn.microsoft.com/library/azure/mt589323.aspx)可讓您使用被開發做為 [Apache Lucene](https://lucene.apache.org/core/4_10_2/queryparser/org/apache/lucene/queryparser/classic/package-summary.html) 一部分且廣為採用的易懂查詢語言。
 
-Using this query syntax allows you to easily achieve the following capabilities: [Field-scoped queries](https://msdn.microsoft.com/library/azure/mt589323.aspx#bkmk_fields), [fuzzy search](https://msdn.microsoft.com/library/azure/mt589323.aspx#bkmk_fuzzy), [proximity search](https://msdn.microsoft.com/library/azure/mt589323.aspx#bkmk_proximity), [term boosting](https://msdn.microsoft.com/library/azure/mt589323.aspx#bkmk_termboost), [regular expression search](https://msdn.microsoft.com/library/azure/mt589323.aspx#bkmk_regex), [wildcard search](https://msdn.microsoft.com/library/azure/mt589323.aspx#bkmk_wildcard), [syntax fundamentals](https://msdn.microsoft.com/library/azure/mt589323.aspx#bkmk_syntax), and [queries using boolean operators](https://msdn.microsoft.com/library/azure/mt589323.aspx#bkmk_boolean).
-
-
-
-## <a name="ordering-results"></a>Ordering results
-When receiving results for a search query, you can request that Azure Search serves the results ordered by values in a specific field. By default, Azure Search orders the search results based on the rank of each document's search score, which is derived from [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf).
-
-If you want Azure Search to return your results ordered by a value other than the search score, you can use the `orderby` search parameter. You can specify the value of the `orderby` parameter to include field names and calls to the [`geo.distance()` function](https://msdn.microsoft.com/library/azure/dn798921.aspx) for geospatial values. Each expression can be followed by `asc` to indicate that results are requested in ascending order, and `desc` to indicate that results are requested in descending order. The default ranking ascending order.
-
-## <a name="paging"></a>Paging
-Azure Search makes it easy to implement paging of search results. By using the `top` and `skip` parameters, you can smoothly issue search requests that allow you to receive the total set of search results in manageable, ordered subsets that easily enable good search UI practices. When receiving these smaller subsets of results, you can also receive the count of documents in the total set of search results.
-
-You can learn more about paging search results in the article [How to page search results in Azure Search](search-pagination-page-layout.md).
-
-
-## <a name="hit-highlighting"></a>Hit highlighting
-In Azure Search, emphasizing the exact portion of search results that match the search query is made easy by using the `highlight`, `highlightPreTag`, and `highlightPostTag` parameters. You can specify which _searchable_ fields should have their matched text emphasized as well as specifying the exact string tags to append to the start and end of the matched text that Azure Search returns.
+使用此查詢語法可讓您輕鬆獲得下列功能︰[欄位範圍的查詢](https://msdn.microsoft.com/library/azure/mt589323.aspx#bkmk_fields)、[模糊搜尋](https://msdn.microsoft.com/library/azure/mt589323.aspx#bkmk_fuzzy)、[鄰近搜尋](https://msdn.microsoft.com/library/azure/mt589323.aspx#bkmk_proximity)、[詞彙提升](https://msdn.microsoft.com/library/azure/mt589323.aspx#bkmk_termboost)、[規則運算式搜尋](https://msdn.microsoft.com/library/azure/mt589323.aspx#bkmk_regex)、[萬用字元搜尋](https://msdn.microsoft.com/library/azure/mt589323.aspx#bkmk_wildcard)、[語法基礎](https://msdn.microsoft.com/library/azure/mt589323.aspx#bkmk_syntax)和[使用布林運算子的查詢](https://msdn.microsoft.com/library/azure/mt589323.aspx#bkmk_boolean)。
 
 
 
-<!--HONumber=Oct16_HO2-->
+## 排序結果
+收到搜尋查詢的結果時，您可以要求 Azure 搜尋服務提供依特定欄位值排序的結果。根據預設，Azure 搜尋服務會以每份文件的搜尋分數排名 (衍生自 [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf)) 來排序搜尋結果。
+
+如果您想要讓 Azure 搜尋服務在傳回結果時是以搜尋分數以外的值來排序，您可以使用 `orderby` 搜尋參數。您可以指定 `orderby` 參數的值，納入欄位名稱和 [`geo.distance()` 函式](https://msdn.microsoft.com/library/azure/dn798921.aspx)的呼叫以獲得地理空間值。每個運算式後面都可以加上 `asc` 來表示要以遞增順序要求結果，而加上 `desc` 則表示要以遞減順序要求結果。預設排名為遞增順序。
+
+## 分頁
+Azure 搜尋服務可讓您輕鬆地對搜尋結果分頁。透過使用 `top` 和 `skip` 參數，您就可以順利地發出搜尋要求，將所收到的整組搜尋結果分拆成方便管理且經過排序的子集，輕鬆實現良好的搜尋 UI 做法。在收到這些分拆成較小子集的結果時，您也會收到整組搜尋結果中所含文件的計數。
+
+您可以在[如何在 Azure 搜尋服務中對搜尋結果分頁](search-pagination-page-layout.md)一文中深入了解如何對搜尋結果分頁。
 
 
+## 搜尋結果醒目提示
+在 Azure 搜尋服務中，只要使用 `highlight`、`highlightPreTag` 和 `highlightPostTag` 參數就可強調提示搜尋結果中符合搜尋查詢的確切部分。您可以指定哪些可搜尋欄位應該強調其相符的文字，以及指定要在 Azure 搜尋服務傳回的相符文字開頭和結尾附加的確切字串標記。
+
+<!---HONumber=AcomDC_0831_2016-->

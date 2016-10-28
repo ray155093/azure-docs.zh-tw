@@ -1,61 +1,52 @@
 <properties 
-    pageTitle="Use Case - Customer Profiling" 
-    description="Learn how Azure Data Factory is used to create a data-driven workflow (pipeline) to profile gaming customers." 
-    services="data-factory" 
-    documentationCenter="" 
-    authors="sharonlo101" 
-    manager="jhubbard" 
-    editor="monicar"/>
+	pageTitle="使用案例 - 客戶分析" 
+	description="了解如何使用 Azure Data Factory 建立資料驅動的工作流程 (管線) 以分析遊戲客戶。" 
+	services="data-factory" 
+	documentationCenter="" 
+	authors="spelluru" 
+	manager="jhubbard" 
+	editor="monicar"/>
 
 <tags 
-    ms.service="data-factory" 
-    ms.workload="data-services" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="09/06/2016" 
-    ms.author="shlo"/>
+	ms.service="data-factory" 
+	ms.workload="data-services" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="09/06/2016" 
+	ms.author="spelluru"/>
+
+# 使用案例 - 客戶分析
+
+Azure Data Factory 是許多服務之一，可用來實作解決方案加速器的 Cortana Intelligence 套件。如需 Cortana Intelligence 的詳細資訊，請瀏覽 [Cortana Intelligence 套件](http://www.microsoft.com/cortanaanalytics)。在本文中，我們會說明簡單的使用案例，以幫助您開始著手了解 Azure Data Factory 如何解決常見的分析問題。
+
+若要存取並嘗試這個簡單的使用案例，您只需要 [Azure 訂用帳戶](https://azure.microsoft.com/pricing/free-trial/)。您可以藉由遵循[範例](data-factory-samples.md)一文所述的步驟，部署實作此使用案例的範例。
+
+## 案例
+
+Contoso 是為多個平台建立遊戲的遊戲公司，包含遊戲主機、手持裝置與個人電腦 (PC)。當玩家玩這些遊戲時，會產生大量追蹤使用模式、遊戲風格與使用者喜好設定的記錄檔資料。結合人口統計、區域和產品資料時，Contoso 可以執行分析，引導他們如何增強每位玩家的體驗，並使他們達到升級及在遊戲中購買的目標。
+
+Contoso 的目標是要根據其玩家的遊戲歷程記錄識別向上銷售/交叉銷售機會，並新增強大功能來推動業務成長以及為客戶提供更好的體驗。在此使用案例中，我們使用遊戲公司做為企業範例。該公司想要根據玩家的行為最佳化其遊戲。這些原則適用於所有想要建立客戶及產品和服務之關聯，並強化其客戶體驗的所有企業。
+
+## 挑戰
 
 
-# <a name="use-case---customer-profiling"></a>Use Case - Customer Profiling
+## 解決方案概觀
 
-Azure Data Factory is one of many services used to implement the Cortana Intelligence Suite of solution accelerators.  For more information about Cortana Intelligence, visit [Cortana Intelligence Suite](http://www.microsoft.com/cortanaanalytics). In this document, we describe a simple use case to help you get started with understanding how Azure Data Factory can solve common analytics problems.
+這個簡單的使用案例可以當做您如何使用 Azure Data Factory 擷取、準備、轉換、分析和發佈資料的範例。
 
-All you need to access and try out this simple use case is an [Azure subscription](https://azure.microsoft.com/pricing/free-trial/).  You can deploy a sample that implements this use case by following the steps described in the [Samples](data-factory-samples.md) article.
+![端對端工作流程](./media/data-factory-customer-profiling-usecase/EndToEndWorkflow.png)
 
-## <a name="scenario"></a>Scenario
+此圖說明部署資料管線之後，其會如何出現在 Azure 入口網站中。
 
-Contoso is a gaming company that creates games for multiple platforms: game consoles, hand held devices, and personal computers (PCs). As players play these games, large volume of log data is produced that tracks the usage patterns, gaming style, and preferences of the user.  When combined with demographic, regional, and product data, Contoso can perform analytics to guide them about how to enhance players’ experience and target them for upgrades and in-game purchases. 
+1.	**PartitionGameLogsPipeline** 從 Blob 儲存體讀取原始遊戲事件，並根據年、月和日建立分割區。
+2.	**EnrichGameLogsPipeline** 聯結分割的遊戲事件與地區代碼參考資料，並將 IP 位址對應到相對應的地理位置來充實資料。
+3.	**AnalyzeMarketingCampaignPipeline** 管線使用已充實的資料並加上廣告資料來處理，以建立包含行銷活動成效的最終輸出。
 
-Contoso’s goal is to identify up-sell/cross-sell opportunities based on the gaming history of its players and add compelling features to drive business growth and provide a better experience to customers. For this use case, we use a gaming company as an example of a business. The company wants to optimize its games based on players’ behavior. These principles apply to any business that wants to engage its customers around its goods and services and enhance their customers’ experience.
+在此範例中，Data Factory 可用來協調數個活動，包括複製輸入資料、轉換和處理資料，以及將最後的資料輸出至 Azure SQL Database。您也可以視覺化資料管線的網路、管理它們，並從 UI 監視其狀態。
 
-## <a name="challenges"></a>Challenges
+## 優點
 
+藉由最佳化其使用者設定檔分析並將其與企業目標對齊，遊戲公司可以快速收集使用模式，並分析其行銷活動的效益。
 
-## <a name="solution-overview"></a>Solution Overview
-
-This simple use case can be used as an example of how you can use Azure Data Factory to ingest, prepare, transform, analyze, and publish data.
-
-![End-to-end workflow](./media/data-factory-customer-profiling-usecase/EndToEndWorkflow.png)
-
-This Figure depicts how the data pipelines appear in the Azure portal after they have been deployed.
-
-1.  The **PartitionGameLogsPipeline** reads the raw game events from blob storage and creates partitions based on year, month, and day.
-2.  The **EnrichGameLogsPipeline** joins partitioned game events with geo code reference data and enriches the data by mapping IP addresses to the corresponding geo-locations.
-3.  The **AnalyzeMarketingCampaignPipeline** pipeline uses the enriched data and processes it with the advertising data to create the final output that contains marketing campaign effectiveness.
-
-In this example, Data Factory is used to orchestrate activities that copy input data, transform, and process the data, and output the final data to an Azure SQL Database.  You can also visualize the network of data pipelines, manage them, and monitor their status from the UI.
-
-## <a name="benefits"></a>Benefits
-
-By optimizing their user profile analytics and aligning it with business goals, gaming company is able to quickly collect usage patterns, and analyze the effectiveness of its marketing campaigns.
-
-
-
-
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!----HONumber=AcomDC_0907_2016-->

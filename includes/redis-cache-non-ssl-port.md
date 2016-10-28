@@ -1,9 +1,5 @@
-To enable the non-SSL port, [browse](../articles/redis-cache/cache-configure.md#configure-redis-cache-settings) to your cache in the [Azure portal](https://portal.azure.com) and click **Settings > Advanced settings**. Click **No** for **Allow access only via SSL** on the **Advanced settings blade** and then click **Save**.
+若要啟用非 SSL 連接埠，請在 [Azure 入口網站](https://portal.azure.com)中[瀏覽](../articles/redis-cache/cache-configure.md#configure-redis-cache-settings)至您的快取，然後按一下 [設定] > [進階設定]。針對 [進階設定] 刀鋒視窗上的 [只允許透過 SSL 存取]，按一下 [否]，然後按一下 [儲存]。
 
-![Redis cache settings](media/redis-cache-non-ssl-port/redis-cache-non-ssl-port.png)
+![Redis 快取設定](media/redis-cache-non-ssl-port/redis-cache-non-ssl-port.png)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

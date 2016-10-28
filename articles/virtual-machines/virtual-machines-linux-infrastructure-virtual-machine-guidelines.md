@@ -1,64 +1,60 @@
 <properties
-    pageTitle="Linux Virtual Machines Guidelines | Microsoft Azure"
-    description="Learn about the key design and implementation guidelines for deploying Linux virtual machines into Azure"
-    documentationCenter=""
-    services="virtual-machines-linux"
-    authors="iainfoulds"
-    manager="timlt"
-    editor=""
-    tags="azure-resource-manager"/>
+	pageTitle="Linux 虛擬機器指導方針 | Microsoft Azure"
+	description="了解將 Linux 虛擬機器部署到 Azure 中的關鍵設計和實作指導方針"
+	documentationCenter=""
+	services="virtual-machines-linux"
+	authors="iainfoulds"
+	manager="timlt"
+	editor=""
+	tags="azure-resource-manager"/>
 
 <tags
-    ms.service="virtual-machines-linux"
-    ms.workload="infrastructure-services"
-    ms.tgt_pltfrm="vm-linux"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/08/2016"
-    ms.author="iainfou"/>
+	ms.service="virtual-machines-linux"
+	ms.workload="infrastructure-services"
+	ms.tgt_pltfrm="vm-linux"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/08/2016"
+	ms.author="iainfou"/>
+
+# 虛擬機器指導方針
+
+[AZURE.INCLUDE [virtual-machines-linux-infrastructure-guidelines-intro](../../includes/virtual-machines-linux-infrastructure-guidelines-intro.md)]
+
+本文著重於了解在 Azure 環境內建立及管理虛擬機器 (VM) 的必要計畫步驟。
+
+## VM 的實作指導方針
+决策：
+
+- 您針對各種應用程式層級和基礎結構元件將需要多少 VM？
+- 每個 VM 需要什麼 CPU 和記憶體資源？而儲存體需求為何？
+
+工作：
+
+- 定義應用程式的工作負載，以及 VM 所需的資源。
+- 以適當的 VM 大小和儲存體類型，對齊每個 VM 的資源需求。
+- 針對基礎結構的不同層級和元件定義您的資源群組。
+- 定義您的 VM 命名慣例。
+- 使用 Azure CLI、入口網站，或 Resource Manager 範本建立 VM。
+
+## 虛擬機器
+
+您 Azure 環境內的其中一個主要元件很可能是 VM。這是您執行應用程式、資料庫、驗證服務等項目的位置。
+
+請務必了解[不同的 VM 大小](virtual-machines-linux-sizes.md)，以根據效能和成本觀點正確評估您環境的大小。如果您的 VM 沒有足夠的 CPU 核心數或記憶體，無論您的應用程式設計及開發得多好，它的效能都會受到影響。做為開始，請檢閱每個 VM 系列的建議工作負載，並決定在基礎結構中要用於每個元件的 VM 大小。您可以在部署後[變更 VM 的大小](virtual-machines-linux-change-vm-size.md)。
+
+儲存體在 VM 效能中扮演重要的角色。您可以選擇使用一般旋轉磁碟的標準儲存體，或是選擇使用 SSD 磁碟的進階儲存體，以取得高 I/O 工作負載和尖端效能。針對 VM 大小，有一些選取儲存媒體的成本考量。您可以閱讀 [storage infrastructure guidelines (儲存體基礎結構指導方針) 一文](virtual-machines-linux-infrastructure-storage-solutions-guidelines.md)，以了解針對 VM 的最佳效能設計適當儲存體的方式。
 
 
-# <a name="virtual-machines-guidelines"></a>Virtual machines guidelines
-
-[AZURE.INCLUDE [virtual-machines-linux-infrastructure-guidelines-intro](../../includes/virtual-machines-linux-infrastructure-guidelines-intro.md)] 
-
-This article focuses on understanding the required planning steps for creating and managing virtual machines (VMs) within your Azure environment.
-
-## <a name="implementation-guidelines-for-vms"></a>Implementation guidelines for VMs
-Decisions:
-
-- How many VMs do you require for your various application tiers and components of your infrastructure?
-- What CPU and memory resources does each VM need, and what are the storage requirements?
-
-Tasks:
-
-- Define the workloads for your application and the resources the VMs require.
-- Align the resource demands for each VM with the appropriate VM size and storage type.
-- Define your resource groups for the different tiers and components of your infrastructure.
-- Define your VM naming convention.
-- Create your VMs using the Azure CLI, web portal, or with Resource Manager templates.
-
-## <a name="virtual-machines"></a>Virtual machines
-
-One of the main components within your Azure environment is likely VMs. This is where you run your applications, databases, authentication services, etc.
-
-It is important to understand the [different VM sizes](virtual-machines-linux-sizes.md) to correctly size your environment from a performance and cost perspective. If your VMs do not have enough CPU cores or memory, performance of your application suffers regardless of how well it is designed and developed. Review the suggested workloads for each VM series as a starting point as you decide which size VM to use for each component in your infrastructure. You can [change the size of a VM](virtual-machines-linux-change-vm-size.md) after deployment.
-
-Storage plays a key role in VM performance. You can use Standard storage, that uses regular spinning disks, or Premium storage for high I/O workloads and peak performance, that use SSD disks. As with the VM size, there are cost considerations to selecting the storage medium. You can read the [storage infrastructure guidelines article](virtual-machines-linux-infrastructure-storage-solutions-guidelines.md) to understand how to design appropriate storage for optimum performance of your VMs.
+## 資源群組
+VM 之類的元件會以邏輯方式分組在一起，以方便使用 [Azure 資源群組](../resource-group-overview.md)進行管理和維護。透過使用資源群組，您可以建立、管理並監視組成特定應用程式的所有資源。您也可以實作[角色型存取控制](../active-directory/role-based-access-control-what-is.md)，以授與小組中的其他人員存取所需資源的權限。請花上一點時間計畫您的資源群組和角色指派。實際設計並實作資源群組有數個不同的方式，因此請務必閱讀[資源群組指導方針一文](virtual-machines-linux-infrastructure-resource-groups-guidelines.md)，以了解建置 VM 的最佳做法。
 
 
-## <a name="resource-groups"></a>Resource groups
-Components such as VMs are logically grouped together for ease of management and maintenance using [Azure Resource Groups](../resource-group-overview.md). By using resource groups, you can create, manage, and monitor all the resources that make up a given application. You can also implement [role-based access controls](../active-directory/role-based-access-control-what-is.md) to grant access to others within your team to only the resources they require. Take time to plan out your resource groups and role assignments. There are different approaches to actually design and implement resource groups, so be sure to read the [resource groups guidelines article](virtual-machines-linux-infrastructure-resource-groups-guidelines.md) to understand how best to build out your VMs.
+## 範本 
+您可以建置範本 (由宣告式 JSON 檔案定義) 以建立您的 VM。範本除了 VM 之外，通常也會建置必要的儲存體、網路、網路介面、IP 位址等。您可以針對開發和測試目的使用範本來建立一致且可重現的環境，以輕鬆複寫生產環境，反之亦然。您可以深入了解[建置並使用範本](../resource-group-overview.md#template-deployment)，以了解將它們用於建立及部署 VM 的方式。
 
 
-## <a name="templates"></a>Templates 
-You can build templates, defined by declarative JSON files, to create your VMs. Templates typically also build the required storage, networking, network interfaces, IP addressing, etc. along with the VMs themselves. You can use templates to create consistent, reproducible environments for development and testing purposes to easily replicate production environments and vice versa. You can read more about [building and using templates](../resource-group-overview.md#template-deployment) to understand how you can use them for creating and deploying your VMs.
+## 後續步驟
+[AZURE.INCLUDE [virtual-machines-linux-infrastructure-guidelines-next-steps](../../includes/virtual-machines-linux-infrastructure-guidelines-next-steps.md)]
 
-
-## <a name="next-steps"></a>Next steps
-[AZURE.INCLUDE [virtual-machines-linux-infrastructure-guidelines-next-steps](../../includes/virtual-machines-linux-infrastructure-guidelines-next-steps.md)] 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

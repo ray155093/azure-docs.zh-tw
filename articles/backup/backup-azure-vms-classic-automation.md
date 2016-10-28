@@ -1,51 +1,50 @@
 <properties
-    pageTitle="Deploy and manage backup for Azure VMs using PowerShell | Microsoft Azure"
-    description="Learn how to deploy and manage Azure Backup using PowerShell"
-    services="backup"
-    documentationCenter=""
-    authors="markgalioto"
-    manager="cfreeman"
-    editor=""/>
+	pageTitle="使用 PowerShell 部署和管理 Azure VM 的備份 | Microsoft Azure"
+	description="了解如何使用 PowerShell 部署和管理 Azure 備份"
+	services="backup"
+	documentationCenter=""
+	authors="markgalioto"
+	manager="cfreeman"
+	editor=""/>
 
 <tags
-    ms.service="backup"
-    ms.workload="storage-backup-recovery"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/08/2016"
-    ms.author="markgal;trinadhk;jimpark" />
+	ms.service="backup"
+	ms.workload="storage-backup-recovery"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/08/2016"
+	ms.author="markgal;trinadhk;jimpark" />
 
 
-
-# <a name="deploy-and-manage-backup-for-azure-vms-using-powershell"></a>Deploy and manage backup for Azure VMs using PowerShell
+# 使用 PowerShell 部署和管理 Azure VM 的備份
 
 > [AZURE.SELECTOR]
-- [Resource Manager](backup-azure-vms-automation.md)
-- [Classic](backup-azure-vms-classic-automation.md)
+- [資源管理員](backup-azure-vms-automation.md)
+- [傳統](backup-azure-vms-classic-automation.md)
 
-This article shows you how to use Azure PowerShell for backup and recovery of Azure VMs. Azure has two different deployment models for creating and working with resources: Resouce Manager and Classic. This article covers using the Classic deployment model. Microsoft recommends that most new deployments use the Resource Manager model.
+本文說明如何使用 Azure PowerShell 來備份和復原 Azure VM。Azure 建立和處理資源的部署模型有二種：資源管理員和傳統。本文涵蓋之內容包括使用傳統部署模型。Microsoft 建議讓大部分的新部署使用資源管理員模式。
 
-## <a name="concepts"></a>Concepts
-
-
-This article provides information specific to the PowerShell cmdlets used to back up virtual machines. For introductory information about protecting Azure VMs, please see [Plan your VM backup infrastructure in Azure](backup-azure-vms-introduction.md).
-
-> [AZURE.NOTE] Before you start, read the [prerequisites](backup-azure-vms-prepare.md) required to work with Azure Backup, and the [limitations](backup-azure-vms-prepare.md#limitations) of the current VM backup solution.
-
-To use PowerShell effectively, take a moment to understand the hierarchy of objects and from where to start.
-
-![Object hierarchy](./media/backup-azure-vms-classic-automation/object-hierarchy.png)
-
-The two most important flows are enabling protection for a VM, and restoring data from a recovery point. The focus of this article is to help you become adept at working with the PowerShell cmdlets to enable these two scenarios.
+## 概念
 
 
-## <a name="setup-and-registration"></a>Setup and Registration
-To begin:
+本文章提供用來備份虛擬機器之 PowerShell Cmdlet 的特定資訊。如需有關保護 Azure VM 的基本資訊，請參閱[Plan your VM backup infrastructure in Azure (在 Azure 中規劃 VM 備份基礎結構)](backup-azure-vms-introduction.md)。
 
-1. [Download latest PowerShell](https://github.com/Azure/azure-powershell/releases) (minimum version required is : 1.0.0)
+> [AZURE.NOTE] 在您開始之前，請閱讀使用 Azure 備份所需的[必要條件](backup-azure-vms-prepare.md)，以及目前 VM 備份解決方案的[限制](backup-azure-vms-prepare.md#limitations)。
 
-2. Find the Azure Backup PowerShell cmdlets available by typing the following command:
+若要有效地使用 PowerShell，請花一點時間了解物件的階層以及從何處開始。
+
+![物件階層](./media/backup-azure-vms-classic-automation/object-hierarchy.png)
+
+最重要的兩個流程是啟用 VM 保護，以及從復原點還原資料。本文的重點是協助您熟練 PowerShell Cmdlet 來支援這兩種情況。
+
+
+## 設定和註冊
+開始：
+
+1. [下載最新版 PowerShell](https://github.com/Azure/azure-powershell/releases) (所需的基本版本為：1.0.0)
+
+2. 輸入下列命令，以找到可用的 Azure 備份 PowerShell Cmdlet：
 
 ```
 PS C:\> Get-Command *azurermbackup*
@@ -78,40 +77,40 @@ Cmdlet          Unregister-AzureRmBackupContainer                  1.0.1      Az
 Cmdlet          Wait-AzureRmBackupJob                              1.0.1      AzureRM.Backup
 ```
 
-The following setup and registration tasks can be automated with PowerShell:
+PowerShell 可以自動化下列設定和註冊工作：
 
-- Create a backup vault
-- Registering the VMs with the Azure Backup service
+- 建立備份保存庫
+- 向 Azure 備份服務註冊 VM
 
-### <a name="create-a-backup-vault"></a>Create a backup vault
+### 建立備份保存庫
 
-> [AZURE.WARNING] For customers using Azure Backup for the first time, you need to register the Azure Backup provider to be used with your subscription. This can be done by running the following command: Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.Backup"
+> [AZURE.WARNING] 對於第一次使用 Azure 備份的客戶，您需要註冊 Azure 備份提供者以搭配您的訂用帳戶使用。這可以透過執行下列命令來完成：Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.Backup"
 
-You can create a new backup vault using the **New-AzureRmBackupVault** cmdlet. The backup vault is an ARM resource, so you need to place it within a Resource Group. In an elevated Azure PowerShell console, run the following commands:
+您可以使用 **New-AzureRmBackupVault** Cmdlet，來建立新的備份保存庫。備份保存庫是 ARM 資源，因此您必須將它放在資源群組內。在提高權限的 Azure PowerShell 主控台中，執行下列命令：
 
 ```
 PS C:\> New-AzureRmResourceGroup –Name “test-rg” –Location “West US”
 PS C:\> $backupvault = New-AzureRmBackupVault –ResourceGroupName “test-rg” –Name “test-vault” –Region “West US” –Storage GeoRedundant
 ```
 
-You can get a list of all the backup vaults in a given subscription using the **Get-AzureRmBackupVault** cmdlet.
+您可以使用 **Get-AzureRmBackupVault** Cmdlet，來取得特定訂用帳戶中所有備份保存庫的清單。
 
-> [AZURE.NOTE] It is convenient to store the backup vault object into a variable. The vault object is needed as an input for many Azure Backup cmdlets.
+> [AZURE.NOTE] 將備份保存庫物件儲存到變數中會很方便。許多 Azure 備份 Cmdlet 都需要保存庫物件做為輸入。
 
 
-### <a name="registering-the-vms"></a>Registering the VMs
-The first step towards configuring backup with Azure Backup is to register your machine or VM with an Azure Backup vault. The **Register-AzureRmBackupContainer** cmdlet takes the input information of an Azure IaaS virtual machine and registers it with the specified vault. The register operation associates the Azure virtual machine with the backup vault and tracks the VM through the backup lifecycle.
+### 註冊 VM
+使用 Azure 備份來設定備份的第一個步驟是向 Azure 備份保存庫註冊您的電腦或 VM。**Register-AzureRmBackupContainer** Cmdlet 會取用 Azure IaaS 虛擬機器的輸入資訊，並對指定的保存庫進行註冊。註冊作業會將 Azure 虛擬機器與備份保存庫相關聯，並於整個備份生命週期內追蹤 VM。
 
-Registering your VM with the Azure Backup service creates a top-level container object. A container typically contains multiple items that can be backed up, but in the case of VMs there will be only one backup item for the container.
+向 Azure 備份服務註冊您的 VM 會建立最上層的容器物件。一個容器通常包含多個可備份的項目，但以 VM 而言，容器只有一個備份項目。
 
 ```
 PS C:\> $registerjob = Register-AzureRmBackupContainer -Vault $backupvault -Name "testvm" -ServiceName "testvm"
 ```
 
-## <a name="backup-azure-vms"></a>Backup Azure VMs
+## 備份 Azure VM
 
-### <a name="create-a-protection-policy"></a>Create a protection policy
-It is not mandatory to create a new protection policy to start backup of your VMs. The vault comes with a 'Default Policy' that can be used to quickly enable protection, and then edited later with the right details. You can get a list of the policies available in the vault by using the **Get-AzureRmBackupProtectionPolicy** cmdlet:
+### 建立保護原則
+啟動 VM 的備份並不一定要建立新的保護原則。保存庫隨附「預設原則」，可用來快速啟用保護，稍後再編輯正確的細節。您可以使用 **Get-AzureRmBackupProtectionPolicy** Cmdlet，來取得保存庫中可用的原則清單：
 
 ```
 PS C:\> Get-AzureRmBackupProtectionPolicy -Vault $backupvault
@@ -121,11 +120,11 @@ Name                      Type               ScheduleType       BackupTime
 DefaultPolicy             AzureVM            Daily              26-Aug-15 12:30:00 AM
 ```
 
-> [AZURE.NOTE] The timezone of the BackupTime field in PowerShell is UTC. However, when the backup time is shown in the Azure portal, the timezone is aligned to your local system along with the UTC offset.
+> [AZURE.NOTE] PowerShell 中 BackupTime 欄位的時區是 UTC。不過，當備份時間顯示在 Azure 入口網站中時，時區會對應您的本機系統與 UTC 時差。
 
-A backup policy is associated with at least one retention policy. The retention policy defines how long a recovery point is kept with Azure Backup. The **New-AzureRmBackupRetentionPolicy** cmdlet creates PowerShell objects that hold retention policy information. These retention policy objects are used as inputs to the *New-AzureRmBackupProtectionPolicy* cmdlet, or directly with the *Enable-AzureRmBackupProtection* cmdlet.
+備份原則至少與一個保留原則相關聯。保留原則定義復原點在 Azure 備份中保留的時間長度。**New-AzureRmBackupRetentionPolicy** Cmdlet 會建立可儲存保留原則資訊的 PowerShell 物件。這些保留原則物件會用來做為 *New-AzureRmBackupProtectionPolicy* Cmdlet 的輸入，或直接與 *Enable-AzureRmBackupProtection* Cmdlet 搭配使用。
 
-A backup policy defines when and how often the backup of an item is done. The **New-AzureRmBackupProtectionPolicy** cmdlet creates a PowerShell object that holds backup policy information. The backup policy is used as an input to the *Enable-AzureRmBackupProtection* cmdlet.
+備份原則定義項目備份的時間和頻率。**New-AzureRmBackupProtectionPolicy** Cmdlet 會建立可儲存備份原則資訊的 PowerShell 物件。備份原則會用來做為 *Enable-AzureRmBackupProtection* Cmdlet 的輸入。
 
 ```
 PS C:\> $Daily = New-AzureRmBackupRetentionPolicyObject -DailyRetention -Retention 30
@@ -136,15 +135,15 @@ Name                      Type               ScheduleType       BackupTime
 DailyBackup01             AzureVM            Daily              01-Sep-15 3:30:00 PM
 ```
 
-### <a name="enable-protection"></a>Enable protection
-Enabling protection involves two objects - the Item and the Policy, and both need to belong to the same vault. Once the policy has been associated with the item, the backup workflow will kick in at the defined schedule.
+### 啟用保護。
+啟用保護牽涉到兩個物件：項目和原則，兩者都必須屬於相同的保存庫。一旦原則與項目相關聯，備份工作流程將依定義的排程開始運作。
 
 ```
 PS C:\> Get-AzureRmBackupContainer -Type AzureVM -Status Registered -Vault $backupvault | Get-AzureRmBackupItem | Enable-AzureRmBackupProtection -Policy $newpolicy
 ```
 
-### <a name="initial-backup"></a>Initial backup
-The backup schedule will take care of doing the full initial copy for the item and the incremental copy for the subsequent backups. However, if you want to force the initial backup to happen at a certain time or even immediately then use the **Backup-AzureRmBackupItem** cmdlet:
+### 初始備份
+備份排程會負責執行項目的完整初始複製，以及後續備份的增量複製。但如果您想要在特定時間強制進行初始備份，甚至是立即開始，請使用 **Backup-AzureRmBackupItem** Cmdlet：
 
 ```
 PS C:\> $container = Get-AzureRmBackupContainer -Vault $backupvault -Type AzureVM -Name "testvm"
@@ -156,12 +155,12 @@ WorkloadName    Operation       Status          StartTime              EndTime
 testvm          Backup          InProgress      01-Sep-15 12:24:01 PM  01-Jan-01 12:00:00 AM
 ```
 
-> [AZURE.NOTE] The timezone of the StartTime and EndTime fields shown in PowerShell is UTC. However, when the similar information is shown in the Azure portal, the timezone is aligned to your local system clock.
+> [AZURE.NOTE] 在 PowerShell 中顯示的 StartTime 和 EndTime 欄位的時間為 UTC。不過，當類似資訊顯示在 Azure 入口網站中時，時區會對應您的本機系統時鐘。
 
-### <a name="monitoring-a-backup-job"></a>Monitoring a backup job
-Most long-running operations in Azure Backup are modelled as a job. This makes it easy to track progress without having to keep the Azure portal open at all times.
+### 監視備份工作
+Azure 備份中長時間執行的大部分作業都模擬成工作。如此就很容易追蹤進度，而不需要一直開啟 Azure 入口網站。
 
-To get the latest status of an in-progress job, use the **Get-AzureRmBackupJob** cmdlet.
+若要取得進行中作業的最新狀態，請使用 **Get-AzureRmBackupJob** Cmdlet。
 
 ```
 PS C:\> $joblist = Get-AzureRmBackupJob -Vault $backupvault -Status InProgress
@@ -172,28 +171,28 @@ WorkloadName    Operation       Status          StartTime              EndTime
 testvm          Backup          InProgress      01-Sep-15 12:24:01 PM  01-Jan-01 12:00:00 AM
 ```
 
-Instead of polling these jobs for completion - which is unnecessary, additional code - it is simpler to use the **Wait-AzureRmBackupJob** cmdlet. When used in a script, the cmdlet will pause the execution until either the job completes or the specified timeout value is reached.
+因為需要額外的程式碼且並非必要，所以不輪詢這些作業是否完成，而是更簡單地改用 **Wait-AzureRmBackupJob** Cmdlet。在指令碼中使用此 Cmdlet 會暫停執行，直到工作完成或達到指定的逾時值為止。
 
 ```
 PS C:\> Wait-AzureRmBackupJob -Job $joblist[0] -Timeout 43200
 ```
 
 
-## <a name="restore-an-azure-vm"></a>Restore an Azure VM
+## 還原 Azure VM
 
-In order to restore backup data, you need to identify the backed-up Item and the Recovery Point that holds the point-in-time data. This information is supplied to the Restore-AzureRmBackupItem cmdlet to initiate a restore of data from the vault to the customer's account.
+若要還原備份資料，您需要識別備份的「項目」和保存時間點資料的「復原點」。這項資訊會提供給 Restore-AzureRmBackupItem Cmdlet，開始從保存庫將資料還原到客戶的帳戶。
 
-### <a name="select-the-vm"></a>Select the VM
+### 選取 VM
 
-To get the PowerShell object that identifies the right backup Item, you need to start from the Container in the vault, and work your way down object hierarchy. To select the container that represents the VM, use the **Get-AzureRmBackupContainer** cmdlet and pipe that to the **Get-AzureRmBackupItem** cmdlet.
+若要取得可識別正確備份項目的 PowerShell 物件，您需要從保存庫中的「容器」開始，向下深入物件階層。若要選取代表 VM 的容器，請使用 **Get-AzureRmBackupContainer** Cmdlet，並透過管道將它傳送到 **Get-AzureRmBackupItem** Cmdlet。
 
 ```
 PS C:\> $backupitem = Get-AzureRmBackupContainer -Vault $backupvault -Type AzureVM -name "testvm" | Get-AzureRmBackupItem
 ```
 
-### <a name="choose-a-recovery-point"></a>Choose a recovery point
+### 選擇復原點
 
-You can now list all the recovery points for the backup item using the **Get-AzureRmBackupRecoveryPoint** cmdlet, and choose the recovery point to restore. Typically users pick the most recent *AppConsistent* point in the list.
+您現在可以使用 **Get-AzureRmBackupRecoveryPoint** Cmdlet，列出備份項目的所有復原點，並選擇要還原的復原點。使用者通常會從清單中選擇最近的 *AppConsistent* 點。
 
 ```
 PS C:\> $rp =  Get-AzureRmBackupRecoveryPoint -Item $backupitem
@@ -204,13 +203,13 @@ RecoveryPointId    RecoveryPointType  RecoveryPointTime      ContainerName
 15273496567119     AppConsistent      01-Sep-15 12:27:38 PM  iaasvmcontainer;testvm;testv...
 ```
 
-The variable ```$rp``` is an array of recovery points for the selected backup item, sorted in reverse order of time - the latest recovery point is at index 0. Use standard PowerShell array indexing to pick the recovery point. For example: ```$rp[0]``` will select the latest recovery point.
+變數 ```$rp``` 是所選取之備份項目的復原點陣列，以時間的回推順序排序 - 最近的復原點位於索引 0。使用標準 PowerShell 陣列索引來挑選復原點。例如：```$rp[0]``` 將會選取最新的復原點。
 
-### <a name="restoring-disks"></a>Restoring disks
+### 還原磁碟
 
-There is a key difference between the restore operations done through the Azure portal and through Azure PowerShell. With PowerShell, the restore operation stops at restoring the disks and config information from the recovery point. It does not create a virtual machine.
+透過 Azure 入口網站或透過 Azure PowerShell 執行還原作業，兩者之間有一項重要差異。如果使用 PowerShell，從復原點還原磁碟及組態資訊時，還原作業會停止。不會建立虛擬機器。
 
-> [AZURE.WARNING] The Restore-AzureRmBackupItem does not create a VM. It only restores the disks to the specified storage account. This is not the same behavior you will experience in the Azure portal.
+> [AZURE.WARNING] Restore-AzureRmBackupItem 不會建立 VM。只會將磁碟還原到指定的儲存體帳戶。這與 Azure 入口網站中的行為不同。
 
 ```
 PS C:\> $restorejob = Restore-AzureRmBackupItem -StorageAccountName "DestAccount" -RecoveryPoint $rp[0]
@@ -221,16 +220,16 @@ WorkloadName    Operation       Status          StartTime              EndTime
 testvm          Restore         InProgress      01-Sep-15 1:14:01 PM   01-Jan-01 12:00:00 AM
 ```
 
-You can get the details of the restore operation using the **Get-AzureRmBackupJobDetails** cmdlet once the Restore job has completed. The *ErrorDetails* property will have the information needed to rebuild the VM.
+完成還原作業之後，可以使用 **Get-AzureRmBackupJobDetails** Cmdlet 來取得還原作業的詳細資料。*ErrorDetails* 屬性會有重建 VM 所需的資訊。
 
 ```
 PS C:\> $restorejob = Get-AzureRmBackupJob -Job $restorejob
 PS C:\> $details = Get-AzureRmBackupJobDetails -Job $restorejob
 ```
 
-### <a name="build-the-vm"></a>Build the VM
+### 建置 VM
 
-Building the VM out of the restored disks can be done using the older Azure Service Management PowerShell cmdlets, the new Azure Resource Manager templates, or even using the Azure portal. In a quick example, we will show how to get there using the Azure Service Management cmdlets.
+如果要從還原的磁碟建置 VM，您可以使用較舊的 Azure 服務管理 PowerShell Cmdlet、新的 Azure Resource Manager 範本，或甚至使用 Azure 入口網站。在快速的範例中，我們將說明如何使用 Azure 服務管理 Cmdlet 來達到目的。
 
 ```
  $properties  = $details.Properties
@@ -257,33 +256,33 @@ $obj = [xml](((Get-Content -Path $destination_path -Encoding UniCode)).TrimEnd([
 
  if (!($dds -eq $null))
  {
-     foreach($d in $dds.DataVirtualHardDisk)
-     {
-         $lun = 0
-         if(!($d.Lun -eq $null))
-         {
-             $lun = $d.Lun
-         }
-         $name = "panbhadataDisk" + $lun
+	 foreach($d in $dds.DataVirtualHardDisk)
+ 	 {
+		 $lun = 0
+		 if(!($d.Lun -eq $null))
+		 {
+	 		 $lun = $d.Lun
+		 }
+		 $name = "panbhadataDisk" + $lun
      Add-AzureDisk -DiskName $name -MediaLocation $d.MediaLink
      $vm | Add-AzureDataDisk -Import -DiskName $name -LUN $lun
-    }
+	}
 }
 
 New-AzureVM -ServiceName "panbhasample" -Location "SouthEast Asia" -VM $vm
 ```
 
-For more information on how to build a VM from the restored disks, read about the following cmdlets:
+如需如何從還原的磁碟建置 VM 的詳細資訊，請參閱下列 Cmdlet：
 
 - [Add-AzureDisk](https://msdn.microsoft.com/library/azure/dn495252.aspx)
 - [New-AzureVMConfig](https://msdn.microsoft.com/library/azure/dn495159.aspx)
 - [New-AzureVM](https://msdn.microsoft.com/library/azure/dn495254.aspx)
 
-## <a name="code-samples"></a>Code samples
+## 程式碼範例
 
-### <a name="1.-get-the-completion-status-of-job-sub-tasks"></a>1. Get the completion status of job sub-tasks
+### 1\.取得作業子工作的完成狀態
 
-To track the completion status of individual sub-tasks, you can use the **Get-AzureRmBackupJobDetails** cmdlet:
+若要追蹤個別子作業的完成狀態，可以使用 **Get-AzureRmBackupJobDetails** Cmdlet：
 
 ```
 PS C:\> $details = Get-AzureRmBackupJobDetails -JobId $backupjob.InstanceId -Vault $backupvault
@@ -295,9 +294,9 @@ Take Snapshot                                               Completed
 Transfer data to Backup vault                               InProgress
 ```
 
-### <a name="2.-create-a-daily/weekly-report-of-backup-jobs"></a>2. Create a daily/weekly report of backup jobs
+### 2\.建立備份作業的每日/每週報表
 
-Administrators typically want to know what backup jobs ran in the last 24 hours, the status of those backup jobs. Additionally, the amount of data transferred gives administrators a way to estimate their monthly data usage. The script below pulls the raw data from the Azure Backup service and displays the information in the PowerShell console.
+系統管理員通常想要知道備份作業在過去 24 小時的執行情況，以及那些備份作業的狀態。此外，傳輸的資料量提供系統管理員一種預估其每月資料使用量的方式。下列指令碼會從 Azure 備份服務提取原始資料，並將資訊顯示在 PowerShell 主控台上。
 
 ```
 param(  [Parameter(Mandatory=$True,Position=1)]
@@ -340,14 +339,10 @@ for( $i = 1; $i -le $numberofdays; $i++ )
 $DAILYBACKUPSTATS | Out-GridView
 ```
 
-If you want to add charting capabilities to this report output, learn from the TechNet blog post [Charting with PowerShell](http://blogs.technet.com/b/richard_macdonald/archive/2009/04/28/3231887.aspx)
+如果想要將製作圖表的功能加入這個報表輸出，請參閱 TechNet 部落格文章 [Charting with PowerShell (使用 PowerShell 製作圖表)](http://blogs.technet.com/b/richard_macdonald/archive/2009/04/28/3231887.aspx) 以了解
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-If you prefer using PowerShell to engage with your Azure resources, check out the PowerShell article for protecting Windows Server, [Deploy and Manage Backup for Windows Server](./backup-client-automation-classic.md). There is also a PowerShell article for managing DPM backups, [Deploy and Manage Backup for DPM](./backup-dpm-automation-classic.md). Both of these articles have a version for Resource Manager deployments as well as Classic deployments.
+如果您偏好使用 PowerShell 來與您的 Azure 資源交流，請參閱保護 Windows Server 的 PowerShell 文章：[部署和管理 Windows Server 的備份](./backup-client-automation-classic.md)。另請參閱管理 DPM 備份的 PowerShell 文章：[部署及管理 DPM 的備份](./backup-dpm-automation-classic.md)。這兩篇文章都有適用於 Resource Manager 部署以及傳統部署的版本。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Compute, Network, and Storage providers | Microsoft Azure"
-   description="Conceptual overview of the Compute, Network, and Storage Resource Providers (CRP, NRP, and SRP) for Windows applications in Azure Resource Manager deployment model"
+   pageTitle="運算、網路和儲存體提供者 | Microsoft Azure"
+   description="Azure Resource Manager 部署模型中的 Windows 應用程式的計算、網路和儲存體資源提供者 (CRP、NRP 和 SRP) 概念性概觀"
    services="virtual-machines-windows"
    documentationCenter=""
    authors="tfitzmac"
@@ -17,15 +17,10 @@
    ms.date="08/19/2015"
    ms.author="tomfitz"/>
 
+# Azure Resource Manager 部署模型提供的 Windows 應用程式的 Azure 計算、網路和儲存提供者
 
-# <a name="azure-compute,-network,-and-storage-providers-for-windows-applications-under-azure-resource-manager-deployment-model"></a>Azure Compute, Network, and Storage Providers for Windows applications under Azure Resource Manager deployment model
-
-The inclusion of compute, network, and storage capabilities with the Azure Resource Manager deployment model will fundamentally simplify the deployment and management of complex applications running on IaaS. Many applications require a combination of resources, including a Virtual Network, Storage Account, Virtual Machine, and a Network Interface. The Azure Resource Manager deployment model offers the ability to construct a JSON template to deploy and manage all these resources together as a single application.
+Azure Resource Manager 部署模型包含的計算、網路與存放功能，可以大幅簡化各種 IaaS 複雜應用程式的部署和管理。很多應用程式需要各種的資源組合，其中包括虛擬網路、儲存體帳戶、虛擬機器以及網路介面。Azure Resource Manager 部署模型可以建構 JSON 範本，然後作為單一應用程式部署所有這些資源，並集中管理。
 
 [AZURE.INCLUDE [virtual-machines-common-compare-deployment-models](../../includes/virtual-machines-common-compare-deployment-models.md)]
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

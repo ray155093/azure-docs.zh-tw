@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="Testing the performance of a cloud service | Microsoft Azure"
-   description="Test the performance of a cloud service using the Visual Studio profiler"
+   pageTitle="測試雲端服務的效能 | Microsoft Azure"
+   description="使用 Visual Studio 分析工具測試雲端服務的效能"
    services="visual-studio-online"
    documentationCenter="n/a"
    authors="TomArcher"
@@ -16,140 +16,134 @@
    ms.author="tarcher" />
 
 
+# 測試雲端服務的效能 
 
-# <a name="testing-the-performance-of-a-cloud-service"></a>Testing the performance of a cloud service 
+##Overview
 
-##<a name="overview"></a>Overview
+您可以利用下列方式測試雲端服務的效能：
 
-You can test the performance of a cloud service in the following ways:
+- 使用 Azure 診斷來收集關於要求和連接的資訊，並檢閱可顯示從客戶觀點來看，服務執行的情況的網站統計資料。若要開始使用，請參閱[為 Azure 雲端服務和虛擬機器設定診斷功能](http://go.microsoft.com/fwlink/p/?LinkId=623009)。
 
-- Use Azure Diagnostics to collect information about requests and connections, and to review site statistics that show how the service performs from a customer perspective. To get started with , see [Configuring diagnostics for Azure Cloud Services and Virtual Machines]( http://go.microsoft.com/fwlink/p/?LinkId=623009).
+- 使用 Visual Studio 分析工具可取得服務執行情況在計算方面的深入分析。如本主題所述，您可以使用分析工具於服務在 Azure 中執行時來測量服務。如需如何使用分析工具來測量服務在本機的計算模擬器中執行的效能的詳細資訊，請參閱[使用 Visual Studio 分析工具，在計算模擬器中本機測試 Azure 雲端服務的效能](http://go.microsoft.com/fwlink/p/?LinkId=262845)。
 
-- Use the Visual Studio profiler to get an in-depth analysis of the computational aspects of how the service runs. As this topic describes, you can use the profiler to measure performance as a service runs in Azure. For information about how to use the profiler to measure performance as a service runs locally in a compute emulator, see [Testing the Performance of an Azure Cloud Service Locally in the Compute Emulator Using the Visual Studio Profiler](http://go.microsoft.com/fwlink/p/?LinkId=262845).
 
 
+## 選擇效能測試方法
 
-## <a name="choosing-a-performance-testing-method"></a>Choosing a performance testing method
+###使用 Azure 診斷以收集：###
 
-###<a name="use-azure-diagnostics-to-collect:###"></a>Use Azure Diagnostics to collect:###
+- 網頁或服務 (例如要求和連接) 的相關統計資料。
 
-- Statistics on web pages or services, such as requests and connections.
+- 角色的統計資料，例如角色重新啟動的頻率。
 
-- Statistics on roles, such as how often a role is restarted.
+- 記憶體使用量的整體資訊，例如記憶體回收耗費時間的百分比或執行中角色的記憶體集。
 
-- Overall information about memory usage, such as the percentage of time that the garbage collector takes or the memory set of a running role.
+###使用 Visual Studio 分析工具，以便：###
 
-###<a name="use-the-visual-studio-profiler-to:###"></a>Use the Visual Studio profiler to:###
+- 判斷哪一個函式耗用最多時間。
 
-- Determine which functions take the most time.
+- 測量每一部分密集運算的程式花費多少時間。
 
-- Measure how much time each part of a computationally intensive program takes.
+- 比較兩個版本服務的詳細效能報告。
 
-- Compare detailed performance reports for two versions of a service.
+- 較個別記憶體配置的層級更詳細分析記憶體配置。
 
-- Analyze memory allocation in more detail than the level of individual memory allocations.
+- 分析多執行緒程式碼中的並行處理問題。
 
-- Analyze concurrency problems in multithreaded code.
+使用分析工具時，您可以在雲端服務於本機或在 Azure 中執行時收集資料。
 
-When you use the profiler, you can collect data when a cloud service runs locally or in Azure.
+###在本機收集分析資料，以便：###
 
-###<a name="collect-profiling-data-locally-to:###"></a>Collect profiling data locally to:###
+- 測試部分雲端服務的效能，例如不需要實際模擬負載的特定背景工作角色的執行。
 
-- Test the performance of a part of a cloud service, such as the execution of specific worker role, that doesn’t require a realistic simulated load.
+- 在受控制的情況下，隔離測試雲端服務的效能。
 
-- Test the performance of a cloud service in isolation, under controlled conditions.
+- 將雲端服務部署至 Azure 之前，測試雲端服務的效能。
 
-- Test the performance of a cloud service before you deploy it to Azure.
+- 私下測試雲端服務的效能，而不影響現有的部署。
 
-- Test the performance of a cloud service privately, without disturbing the existing deployments.
+- 測試服務的效能而不會產生在 Azure 中執行的費用。
 
-- Test the performance of the service without incurring charges for running in Azure.
+###在 Azure 中收集分析資料，以便：###
 
-###<a name="collect-profiling-data-in-azure-to:###"></a>Collect profiling data in Azure to:###
+- 在模擬或實際負載下測試雲端服務的效能。
 
-- Test the performance of a cloud service under a simulated or real load.
+- 使用收集分析資料的檢測方法，如稍後所述。
 
-- Use the instrumentation method of collecting profiling data, as this topic describes later.
+- 在服務執行的生產環境的相同環境中測試服務的效能。
 
-- Test the performance of the service in the same environment as when the service runs in production.
+您通常會透過模擬負載以測試在標準模式或壓力狀況下的雲端服務。
 
-You typically simulate a load to test cloud services under normal or stress conditions.
+## 在 Azure 中分析雲端服務
 
-## <a name="profiling-a-cloud-service-in-azure"></a>Profiling a cloud service in Azure
+當您從 Visual Studio 發佈雲端服務時，您可以分析服務並指定可提供您想要的資訊的分析設定。對每個角色的執行個體啟動分析工作階段。如需有關如何從 Visual Studio 發佈服務的詳細資訊，請參閱[從 Visual Studio 發佈至 Azure 雲端服務](https://msdn.microsoft.com/library/azure/ee460772.aspx)。
 
-When you publish your cloud service from Visual Studio, you can profile the service and specify the profiling settings that give you the information that you want. A profiling session is started for each instance of a role. For more information about how to publish your service from Visual Studio, see [Publishing to an Azure Cloud Service from Visual Studio](https://msdn.microsoft.com/library/azure/ee460772.aspx).
+若要了解有關 Visual Studio 中的效能分析的詳細資訊，請參閱[效能分析的初學者指南](https://msdn.microsoft.com/library/azure/ms182372.aspx)和[使用分析工具來分析應用程式效能](https://msdn.microsoft.com/library/azure/z9z62c29.aspx)。
 
-To understand more about performance profiling in Visual Studio, see [Beginners Guide to Performance Profiling](https://msdn.microsoft.com/library/azure/ms182372.aspx) and [Analyzing Application Performance by Using Profiling Tools](https://msdn.microsoft.com/library/azure/z9z62c29.aspx).
+>[AZURE.NOTE] 發佈雲端服務時，您可以啟用 IntelliTrace 或分析。您不能同時啟用。
 
->[AZURE.NOTE] You can enable either IntelliTrace or profiling when you publish your cloud service. You can't enable both.
+###分析工具收集方法
 
-###<a name="profiler-collection-methods"></a>Profiler collection methods
+您可以對分析使用不同的收集方法，根據效能問題：
 
-You can use different collection methods for profiling, based on your performance issues:
+- **CPU 取樣** - 這個方法會收集對 CPU 使用率問題的初始分析很實用的應用程式統計資料。CPU 取樣是開始大多數效能調查的建議方法。收集 CPU 取樣資料時，對您正在分析的應用程式有很小的影響。
 
-- **CPU sampling** - This method collects application statistics that are useful for initial analysis of CPU utilization issues. CPU sampling is the suggested method for starting most performance investigations. There is a low impact on the application that you are profiling when you collect CPU sampling data.
+- **檢測** - 這個方法會收集詳細的時間資料，對重點分析以及分析輸入/輸出效能問題非常實用。檢測方法會在執行分析期間記錄模組中函式的每個進入、結束和函式呼叫。這個方法適合用來收集關於您的程式碼的某個區段的詳細時間資訊，以及了解輸入和輸出作業對應用程式效能的影響。執行 32 位元作業系統的電腦會停用這個方法。只有當您在 Azure 中 (而不是在本機計算模擬器中) 執行雲端服務時，此選項才可供使用。
 
-- **Instrumentation** -This method collects detailed timing data that is useful for focused analysis and for analyzing input/output performance issues. The instrumentation method records each entry, exit, and function call of the functions in a module during a profiling run. This method is useful for gathering detailed timing information about a section of your code and for understanding the impact of input and output operations on application performance. This method is disabled for a computer running a 32-bit operating system. This option is available only when you run the cloud service in Azure, not locally in the compute emulator.
+- **.NET 記憶體配置** - 這個方法會使用取樣分析方法收集 .NET Framework 記憶體配置資料。收集的資料包含配置的物件的數目和大小。
 
-- **.NET Memory Allocation** - This method collects .NET Framework memory allocation data by using the sampling profiling method. The collected data includes the number and size of allocated objects.
+- **並行** - 這個方法會收集資源爭用資料，以及處理序與執行緒執行資料，對於分析多執行緒及多處理序的應用程式很實用。並行方法會收集封鎖您的程式碼執行的每個事件的資料，例如當執行緒等候對應用程式資源的鎖定存取被釋放。這個方法對於分析多執行緒應用程式很實用。
 
-- **Concurrency** - This method collects resource contention data, and process and thread execution data that is useful in analyzing multi-threaded and multi-process applications. The concurrency method collects data for each event that blocks execution of your code, such as when a thread waits for locked access to an application resource to be freed. This method is useful for analyzing multi-threaded applications.
+- 您也可以啟用**階層互動分析**，提供有關一或多個資料庫通訊的多層式應用程式中的函式中同步 ADO.NET 呼叫執行時間的其他資訊。您可以使用任何分析方法收集階層互動資料。如需有關階層互動分析的詳細資訊，請參閱[階層互動檢視](https://msdn.microsoft.com/library/azure/dd557764.aspx)。
 
-- You can also enable **Tier Interaction Profiling**, which provides additional information about the execution times of synchronous ADO.NET calls in functions of multi-tiered applications that communicate with one or more databases. You can collect tier interaction data with any of the profiling methods. For more information about tier interaction profiling, see [Tier Interactions View](https://msdn.microsoft.com/library/azure/dd557764.aspx).
+## 設定分析設定
 
-## <a name="configuring-profiling-settings"></a>Configuring profiling settings
+下圖顯示如何從 [發佈 Azure 應用程式] 對話方塊中設定分析設定。
 
-The following illustration shows how to configure your profiling settings from the Publish Azure Application dialog box.
+![設定分析設定](./media/vs-azure-tools-performance-profiling-cloud-services/IC526984.png)
 
-![Configure Profiling Settings](./media/vs-azure-tools-performance-profiling-cloud-services/IC526984.png)
+>[AZURE.NOTE] 若要啟用 [啟用分析] 核取方塊，您必須要在用來發佈雲端服務的本機電腦上安裝分析工具。根據預設，當您安裝 Visual Studio 時會一併安裝程式碼剖析工具。
 
->[AZURE.NOTE] To enable the **Enable profiling** check box, you must have the profiler installed on the local computer that you are using to publish your cloud service. By default, the profiler is installed when you install Visual Studio.
+### 設定分析設定
 
-### <a name="to-configure-profiling-settings"></a>To configure profiling settings
+1. 在 [方案總管] 中，開啟 Azure 專案的捷徑功能表，然後選擇 [發佈]。如需有關如何發佈雲端服務的詳細步驟，請參閱[使用 Azure 工具發佈雲端服務](http://go.microsoft.com/fwlink/p?LinkId=623012)。
 
-1. In Solution Explorer, open the shortcut menu for your Azure project, and then choose **Publish**. For detailed steps about how to publish a cloud service, see [Publishing a cloud service using the Azure tools](http://go.microsoft.com/fwlink/p?LinkId=623012).
+1. 在 [發佈 Azure 應用程式] 對話方塊中，選擇 [進階設定] 索引標籤。
 
-1. In the **Publish Azure Application** dialog box, chose the **Advanced Settings** tab.
+1. 若要啟用分析，請選取 [啟用分析] 核取方塊。
 
-1. To enable profiling, select the **Enable profiling** check box.
+1. 若要進行分析設定，請選擇 [設定] 超連結。[分析設定] 對話方塊隨即出現。
 
-1. To configure your profiling settings, choose the **Settings** hyperlink. The Profiling Settings dialog box appears.
+1. 從 [您要使用的分析方法] 選項按鈕，選擇您所需要的分析類型。
 
-1. From the **What method of profiling would you like to use** option buttons, choose the type of profiling that you need.
+1. 若要收集層次互動分析資料，請選取 [啟用階層互動分析] 核取方塊。
 
-1. To collect the tier interaction profiling data, select the **Enable Tier Interaction Profiling** check box.
+1. 若要儲存設定，請選擇 [確定] 按鈕。
 
-1. To save the settings, choose the **OK** button.
+    發佈這個應用程式時，這些設定會用來建立每個角色的分析工作階段。
 
-    When you publish this application, these settings are used to create the profiling session for each role.
+## 檢視分析報告
 
-## <a name="viewing-profiling-reports"></a>Viewing Profiling Reports
+對為雲端服務中每個角色的執行個體建立分析工作階段。若要從 Visual Studio 檢視每個工作階段的分析報告，您可以檢視 [伺服器總管] 視窗，然後選擇 [Azure 運算] 節點以選取角色的執行個體。您接著可以檢視分析報告，如下圖所示。
 
-A profiling session is created for each instance of a role in your cloud service. To view your profiling reports of each session from Visual Studio, you can view the Server Explorer window and then choose the Azure Compute node to select an instance of a role. You can then view the profiling report as shown in the following illustration.
+![檢視來自 Azure 的分析報告](./media/vs-azure-tools-performance-profiling-cloud-services/IC748914.png)
 
-![View Profiling Report from Azure](./media/vs-azure-tools-performance-profiling-cloud-services/IC748914.png)
+### 檢視分析報告
 
-### <a name="to-view-profiling-reports"></a>To view profiling reports
+1. 若要在 Visual Studio 中檢視 [伺服器總管] 視窗，請在功能表列上依序選擇 [檢視] 和 [伺服器總管]。
 
-1. To view the Server Explorer window in Visual Studio, on the menu bar choose View, Server Explorer.
+1. 選擇 [Azure 運算] 節點，然後選擇從 Visual Studio 發佈時您選取要分析的雲端服務的 Azure 部署節點。
 
-1. Choose the Azure Compute node, and then choose the Azure deployment node for the cloud service that you selected to profile when you published from Visual Studio.
+1. 若要檢視執行個體的分析報告，請選擇服務中的角色、開啟特定執行個體的捷徑功能表，然後選擇 [檢視分析報告]。
 
-1. To view profiling reports for an instance, choose the role in the service, open the shortcut menu for a specific instance, and then choose **View Profiling Report**.
+    現在便會從 Azure 下載 .vsp 檔案的報告，而下載狀態會出現在 Azure 活動記錄檔中。下載完成時，分析報告會顯示在 Visual Studio 編輯器的索引標籤中，名為 <Role name>_<Instance Number>_<identifier>.vsp.報告的摘要資料隨即出現。
 
-    The report, a .vsp file, is now downloaded from Azure, and the status of the download appears in the  Azure Activity Log. When the download completes, the profiling report appears in a tab in the editor for Visual Studio named <Role name>_<Instance Number>_<identifier>.vsp. Summary data for the report appears.
+1. 若要顯示報告的不同檢視，在 [目前檢視] 清單中，選擇您要的檢視類型。如需詳細資訊，請參閱[分析工具報告檢視](https://msdn.microsoft.com/library/azure/bb385755.aspx)。
 
-1. To display different views of the report, in the Current View list, choose the type of view that you want. For more information, see [Profiling Tools Report Views](https://msdn.microsoft.com/library/azure/bb385755.aspx).
+## 後續步驟
 
-## <a name="next-steps"></a>Next steps
+[偵錯雲端服務](https://msdn.microsoft.com/library/azure/ee405479.aspx)
 
-[Debugging Cloud Services](https://msdn.microsoft.com/library/azure/ee405479.aspx)
+[從 Visual Studio 發佈至 Azure 雲端服務](https://msdn.microsoft.com/library/azure/ee460772.aspx)
 
-[Publishing to an Azure Cloud Service from Visual Studio](https://msdn.microsoft.com/library/azure/ee460772.aspx)
-
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

@@ -1,83 +1,78 @@
 <properties 
-    pageTitle="Explore data in SQL Server Virtual Machine on Azure | Microsoft Azure" 
-    description="How to explore data that is stored in a SQL Server VM on Azure." 
-    services="machine-learning" 
-    documentationCenter="" 
-    authors="bradsev" 
-    manager="jhubbard" 
-    editor="cgronlun" />
+	pageTitle="在 Azure 上瀏覽 SQL Server 虛擬機器中的資料 | Microsoft Azure" 
+	description="如何瀏覽儲存在 Azure 上 SQL Server VM 中的資料。" 
+	services="machine-learning" 
+	documentationCenter="" 
+	authors="bradsev" 
+	manager="jhubbard" 
+	editor="cgronlun" />
 
 <tags 
-    ms.service="machine-learning" 
-    ms.workload="data-services" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="09/13/2016" 
-    ms.author="bradsev" /> 
+	ms.service="machine-learning" 
+	ms.workload="data-services" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="09/13/2016" 
+	ms.author="bradsev" />
+
+#在 Azure 上瀏覽 SQL Server 虛擬機器中的資料
 
 
-#<a name="explore-data-in-sql-server-virtual-machine-on-azure"></a>Explore data in SQL Server Virtual Machine on Azure
+本文件涵蓋如何瀏覽儲存在 Azure 上 SQL Server VM 中的資料。使用 SQL整理資料或使用 Python 這類程式設計語言，即可完成此動作。
 
-
-This document covers how to explore data that is stored in a SQL Server VM on Azure. This can be done by data wrangling using SQL or by using a programming language like Python.
-
-The following **menu** links to topics that describe how to use tools to explore data from various storage environments. This task is a step in the Cortana Analytics Process (CAP).
+下列**功能表**所連結的主題會說明如何從各種不同的儲存體環境使用工具來瀏覽資料。此工作是 Cortana 分析程序 (CAP) 中的一個步驟。
 
 [AZURE.INCLUDE [cap-explore-data-selector](../../includes/cap-explore-data-selector.md)]
 
 
-> [AZURE.NOTE] The sample SQL statements in this document assume that data is in SQL Server. If it isn't, refer to the cloud data science process map to learn how to move your data to SQL Server.
+> [AZURE.NOTE] 本文件中的 SQL 陳述式範例假設資料位於 SQL Server 中。如果不是，請參閱雲端資料科學程序圖，以了解如何將資料移至 SQL Server。
 
 
 
-## <a name="<a-name="sql-dataexploration"></a>explore-sql-data-with-sql-scripts"></a><a name="sql-dataexploration"></a>Explore SQL data with SQL scripts
+## <a name="sql-dataexploration"></a>使用 SQL 指令碼瀏覽 SQL 資料
 
-Here are a few sample SQL scripts that can be used to explore data stores in SQL Server.
+以下是數個 SQL 指令碼範例，可用來探索儲存於 SQL Server 中的資料。
 
-1. Get the count of observations per day
+1. 取得每天的觀察計數
 
-    `SELECT CONVERT(date, <date_columnname>) as date, count(*) as c from <tablename> group by CONVERT(date, <date_columnname>)` 
+	`SELECT CONVERT(date, <date_columnname>) as date, count(*) as c from <tablename> group by CONVERT(date, <date_columnname>)`
 
-2. Get the levels in a categorical column
+2. 取得類別資料行中的層級
 
-    `select  distinct <column_name> from <databasename>`
+	`select  distinct <column_name> from <databasename>`
 
-3. Get the number of levels in combination of two categorical columns 
+3. 取得兩個類別資料行組合中的層級數目
 
-    `select <column_a>, <column_b>,count(*) from <tablename> group by <column_a>, <column_b>`
+	`select <column_a>, <column_b>,count(*) from <tablename> group by <column_a>, <column_b>`
 
-4. Get the distribution for numerical columns
+4. 取得數值資料行的分佈
 
-    `select <column_name>, count(*) from <tablename> group by <column_name>`
+	`select <column_name>, count(*) from <tablename> group by <column_name>`
 
-> [AZURE.NOTE] For a practical example, you can use the [NYC Taxi dataset](http://www.andresmh.com/nyctaxitrips/) and refer to the IPNB titled [NYC Data wrangling using IPython Notebook and SQL Server](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/DataScienceProcess/iPythonNotebooks/machine-Learning-data-science-process-sql-walkthrough.ipynb) for an end-to-end walk-through.
+> [AZURE.NOTE] 如需實用範例，您可以使用 [NYC 計程車資料集](http://www.andresmh.com/nyctaxitrips/)，並參考標題為[使用 IPython Notebook 和 SQL Server 來處理有爭議的 NYC 資料](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/DataScienceProcess/iPythonNotebooks/machine-Learning-data-science-process-sql-walkthrough.ipynb)的 IPNB，以進行端對端逐步解說。
 
-##<a name="<a-name="python"></a>explore-sql-data-with-python"></a><a name="python"></a>Explore SQL data with Python
+##<a name="python"></a>使用 Python 瀏覽 SQL 資料
 
-Using Python to explore data and generate features when the data is in SQL Server is similar to processing data in Azure blob using Python, as documented in [Process Azure Blob data in your data science environment](machine-learning-data-science-process-data-blob.md). The data needs to be loaded from the database into a pandas DataFrame and then can be processed further. We document the process of connecting to the database and loading the data into the DataFrame in this section.
+當資料位於 SQL Server 時，使用 Python 來瀏覽資料與產生特徵，類似於使用 Python 來處理 Azure Blob 中的資料，如[在資料科學環境中處理 Azure Blob 資料](machine-learning-data-science-process-data-blob.md)中所述。資料必須從資料庫載入 Pandas 資料框架，然後就能進一步處理。我們將在本節中說明連接到資料庫以及將資料載入資料框架的程序。
 
-The following connection string format can be used to connect to a SQL Server database from Python using pyodbc (replace servername, dbname, username, and password with your specific values):
+下列連接字串格式可用來使用 pyodbc (使用您的特定值來取代 servername、dbname、username 和 password)，從 Python 連接到 SQL Server 資料庫：
 
-    #Set up the SQL Azure connection
-    import pyodbc   
-    conn = pyodbc.connect('DRIVER={SQL Server};SERVER=<servername>;DATABASE=<dbname>;UID=<username>;PWD=<password>')
+	#Set up the SQL Azure connection
+	import pyodbc	
+	conn = pyodbc.connect('DRIVER={SQL Server};SERVER=<servername>;DATABASE=<dbname>;UID=<username>;PWD=<password>')
 
-The [Pandas library](http://pandas.pydata.org/) in Python provides a rich set of data structures and data analysis tools for data manipulation for Python programming. The following code reads the results returned from a SQL Server database into a Pandas data frame:
+Python 中的 [Pandas 程式庫](http://pandas.pydata.org/)提供一組豐富的資料結構和資料分析工具，可用來對 Python 程式設計進行資料操作。下列程式碼會將從 SQL Server 資料庫傳回的結果讀取至 Pandas 資料框架：
 
-    # Query database and load the returned results in pandas data frame
-    data_frame = pd.read_sql('''select <columnname1>, <cloumnname2>... from <tablename>''', conn)
+	# Query database and load the returned results in pandas data frame
+	data_frame = pd.read_sql('''select <columnname1>, <cloumnname2>... from <tablename>''', conn)
 
-Now you can work with the Pandas DataFrame as covered in the topic [Process Azure Blob data in your data science environment](machine-learning-data-science-process-data-blob.md).
+現在您可以利用[在資料科學環境中處理 Azure Blob 資料](machine-learning-data-science-process-data-blob.md)主題中說明的方式來使用 Pandas 資料框架。
 
-## <a name="cortana-analytics-process-in-action-example"></a>Cortana Analytics Process in Action Example
+## Cortana 分析程序實務範例
 
-For an end-to-end walkthrough example of the Cortana Analytics Process using a public dataset, see [The Team Data Science Process in action: using SQL Server](machine-learning-data-science-process-sql-walkthrough.md).
+如需使用公用資料集進行 Cortana Analytics 程序的端對端逐步解說範例，請參閱 [Team Data Science Process 實務：使用 SQL Server](machine-learning-data-science-process-sql-walkthrough.md)。
 
  
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

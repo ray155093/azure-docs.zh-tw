@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="Azure Mobile Engagement User Interface - Reach Content" 
-   description="Learn how to manage the unique content of the different types of push notification campaigns in Azure Mobile Engagement" 
+   pageTitle="Azure Mobile Engagement 使用者介面 - 觸達內容" 
+   description="了解如何在 Azure Mobile Engagement 管理不同類型推播通知活動的指定內容" 
    services="mobile-engagement" 
    documentationCenter="" 
    authors="piyushjo" 
@@ -16,133 +16,127 @@
    ms.date="08/19/2016"
    ms.author="piyushjo"/>
 
-
-# <a name="how-to-manage-the-unique-content-of-the-different-types-of-push-notification-campaigns"></a>How to manage the unique content of the different types of push notification campaigns
+# 如何管理不同類型推播通知活動的指定內容
  
-You can use the Content section of a new reach campaign to modify the content of your Announcements, Polls, Data Pushes, and Tiles (Windows Phone only). The content setting of Push campaigns is specific to the type of campaign. 
+您可以使用新觸達活動的 [內容] 區段修改通知、投票、資料推送和磚 (僅限 Windows Phone) 的內容。推播活動的內容設定與活動類型有關。
  
-### <a name="content-types:"></a>Content types:
-- Announcements
-- Polls
-- Data pushes
-- Tiles (Windows Phone Only)
+### 內容類型：
+- 通知
+- 投票
+- 資料推送
+- 磚 (僅限 Windows Phone)
  
-## <a name="content-of-announcements"></a>Content of Announcements
- ![Reach-Content1][30] 
+## 通知的內容
+ ![Reach-Content1][30]
 
-### <a name="choose-the-type-of-your-announcement:"></a>Choose the type of your announcement:
--    Notification only: It is a simple standard notification. Meaning that if a user clicks on it, no additional view will appear, but only the action associated to it will occur.
--    Text announcement: It is a notification that engages the user to have a look at a text view.
--    Web announcement: It is a notification that engages the user to have a look at a web view.
+### 選擇通知的類型：
+-    僅通知：這是簡單的標準通知。表示如果使用者按一下通知，不會出現任何其他檢視，但是會發生與它關聯的動作。
+-    文字通知：這是一種吸引使用者查看文字檢視的通知。
+-    Web 通知：這是一種吸引使用者查看 Web 檢視的通知。
 
-### <a name="see-also"></a>See also
-- [Reach - How Tos - Announcements][Link 3] 
+### 另請參閱
+- [觸達 - 作法 - 通知][Link 3]
 
-### <a name="about-web-view-announcements:"></a>About Web View Announcements:
-Occurrences of the pattern "{deviceid}" in the HTML code or JavaScript code you provide here will be automatically replaced by the identifier of the device displaying the announcement. This is an easy way to retrieve Azure Mobile Engagement device identifiers in an external web service hosted on your back office.
-If you want to create a full screen web view (without the default Action and Exit buttons we provide) you can use the following functions from your web view announcement's JavaScript code: 
+### 關於 Web 檢視通知：
+您在此處提供的每個 "{deviceid}" 字樣 (在 HTML 程式碼或 JavaScript 程式碼中) 將會自動取代為顯示通知的裝置識別碼。這個簡單的方法可以擷取您後端系統裝載的外部 Web 服務中的 Azure Mobile Engagement 裝置識別碼。如果您想要建立全螢幕的 Web 檢視 (不含我們提供的預設 [動作] 和 [離開] 按鈕)，您可以從 Web 檢視通知的 JavaScript 程式碼中使用下列函式：
 
--    perform the announcement action: ReachContent.actionContent()
--    exit from the announcement: ReachContent.exitContent()
+-    執行通知動作：ReachContent.actionContent()
+-    離開通知：ReachContent.exitContent()
  
-### <a name="choose-your-action:"></a>Choose your Action:
+### 選擇您的動作：
 
-### <a name="about-action-urls:"></a>About Action URLs:
-Any URL that can be interpreted by a targeted device's operating system can be used as an action URL.
-Any dedicated URL that your application might support (e.g. to make users jump to a particular screen) can also be used as an action URL.
-Each occurrence of the {deviceid} pattern is automatically replaced by the identifier of the device performing the action. This can be used to easily retrieve Azure Mobile Engagement device identifiers via an external web service hosted on your back office.
+### 關於動作 URL：
+可由目標裝置的作業系統解譯的任何 URL 都可以用來做為動作 URL。應用程式可能支援的任何專用 URL (例如讓使用者跳至特定畫面) 也可用來做為動作 URL。每個 {deviceid} 字樣的項目都會自動取代為執行動作的裝置識別碼。透過您後端系統裝載的外部 Web 服務，這可用來輕鬆擷取 Azure Mobile Engagement 裝置識別碼。
 
-- **Android + iOS actions**
-    - Open a web page
-    - http://\[web-site-domain\] 
-    - Example:http://www.azure.com
-    - Send an e-mail
-    - mailto:\[e-mail-recipient\]?subject=\[subject\]&body=\[message\] 
-    - Example:mailto:foo@example.com?subject=Greetings%20from%20Azure%20Mobile%20Engagement!&body=Good%20stuff!
-    - Send a SMS
-    - sms:\[phone-number\] 
-    - Example:sms:2125551212
-    - Dial a phone number
-    - tel:\[phone-number\] 
-    - Example:tel:2125551212
-- **Android only actions**
-    - Download an application on the Play Store
-    - market://details?id=\[app package\] 
-    - Example:market://details?id=com.microsoft.office.word
-    - Start a geo-localized search
-    - geo:0,0?q=\[search query\] 
-    - Example:geo:0,0?q=starbucks,paris
-- **iOS only actions**
-    - Download an application on the App Store
-    - http://itunes.apple.com/[country]/app/[app name]/id[app id]?mt=8 
-    - Example:http://itunes.apple.com/fr/app/briquet-virtuel/id430154748?mt=8
-    - Windows Actions
-    - Open a web page
-    - http://\[web-site-domain\] 
-    - Example:http://www.azure.com
-    - Send an e-mail
-    - mailto:\[e-mail-recipient\]?subject=\[subject\]&body=\[message\] 
-    - Example:mailto:foo@example.com?subject=Greetings%20from%20Azure%20Mobile%20Engagement!&body=Good%20stuff!
-    - Send a SMS (Skype Store App required)
-    - sms:\[phone-number\] 
-    - Example:sms:2125551212
-    - Dial a phone number (Skype Store App required)
-    - tel:\[phone-number\] 
-    - Example:tel:2125551212
-    - Download an application on the Play Store
-    - ms-windows-store:PDP?PFN=\[app package ID\] 
-    - Example:ms-windows-store:PDP?PFN=4d91298a-07cb-40fb-aecc-4cb5615d53c1
-    - Start a bingmaps search
-    - bingmaps:?q=\[search query\] 
-    - Example:bingmaps:?q=starbucks,paris
-    - Use a custom scheme
-    - \[custom scheme\]://\[custom scheme params\] 
-    - Example:myCustomProtocol://myCustomParams
-    - Use a package data (Store App for extension read required)
-    - \[folder\]\[data\].\[extension\] 
-    - Example:myfolderdata.txt
+- **Android + iOS 動作**
+    - 開啟網頁
+    - http://[web-site-domain\]
+    - 範例：http://www.azure.com
+    - 傳送電子郵件
+    - mailto:[收件者]?subject=[主旨]&body=[訊息]
+    - 範例：mailto:foo@example.com?subject=Greetings%20from%20Azure%20Mobile%20Engagement!&body=Good%20stuff!
+    - 傳送簡訊
+    - sms:[電話號碼]
+    - 範例：sms:2125551212
+    - 撥電話號碼
+    - tel:[電話號碼]
+    - 範例：tel:2125551212
+- **僅限 Android 的動作**
+    - 下載 Play 商店上的應用程式
+    - market://details?id=[app 套件]
+    - 範例：market://details?id=com.microsoft.office.word
+    - 開始地理當地化的搜尋
+    - geo:0,0?q=[搜尋查詢]
+    - 範例：geo:0,0?q=starbucks,paris
+- **僅限 iOS 的動作**
+    - 下載 App Store 上的應用程式
+    - http://itunes.apple.com/[country]/app/[app name]/id[app id]?mt=8
+    - 範例：http://itunes.apple.com/fr/app/briquet-virtuel/id430154748?mt=8
+    - Windows 動作
+    - 開啟網頁
+    - http://[web-site-domain\]
+    - 範例：http://www.azure.com
+    - 傳送電子郵件
+    - mailto:[收件者]?subject=[主旨]&body=[訊息]
+    - 範例：mailto:foo@example.com?subject=Greetings%20from%20Azure%20Mobile%20Engagement!&body=Good%20stuff!
+    - 傳送簡訊 (需要 Skype 市集應用程式)
+    - sms:[電話號碼]
+    - 範例：sms:2125551212
+    - 撥電話號碼 (需要 Skype 市集應用程式)
+    - tel:[電話號碼]
+    - 範例：tel:2125551212
+    - 下載 Play 商店上的應用程式
+    - ms-windows-store:PDP?PFN=[應用程式套件識別碼]
+    - 範例：ms-windows-store:PDP?PFN=4d91298a-07cb-40fb-aecc-4cb5615d53c1
+    - 開始 bingmaps 搜尋
+    - bingmaps:?q=[搜尋查詢]
+    - 範例：bingmaps:?q=starbucks,paris
+    - 使用自訂配置
+    - [自訂配置]://[自訂配置參數]
+    - 範例：myCustomProtocol://myCustomParams
+    - 使用套件資料 (需要副檔名讀取的市集應用程式)
+    - [資料夾][資料].[副檔名]
+    - 範例：myfolderdata.txt
  
-### <a name="build-a-tracking-url:"></a>Build a Tracking URL:
--    See the “Settings” section of the <UI Documentation> for instruction on building a tracking URL that will allow users to download one of your other applications.
+### 建置追蹤 URL：
+-    請參閱＜UI 文件＞的＜設定＞一節，了解建置可讓使用者下載其他應用程式之追蹤 URL 的相關指示。
  
-### <a name="define-the-texts-of-your-announcement"></a>Define the texts of your announcement
-Fill in the title, content, and button texts of your announcement. You can target an audience of a future campaign based on the reach feedback of how users responded to this campaign. Audience targeting can be based on the feedback of whether this campaign was just pushed, replied, actioned, or exited.
+### 定義您的通知文字：
+填寫通知的標題、內容和按鈕文字。您可以根據使用者如何回應此活動的觸達意見反應，找出未來的活動對象。選取目標對象可以根據此活動是否已推送、回覆、採取動作或離開的意見反應。
 
-### <a name="see-also"></a>See also
-- [UI Documentation - Reach - New Push Criterion][Link 28]
+### 另請參閱
+- [UI 文件 - 觸達 - 新增推播準則][Link 28]
 
-## <a name="content-of-polls"></a>Content of Polls
-![Reach-Content2][31] Fill in the title, description, and button texts of your announcement. Then, add questions and choices for the answers to your questions.
-You can target an audience of a future campaign based on the reach feedback of how users responded to this campaign. Audience targeting can be based on whether this campaign was just pushed, replied, actioned, or exited. Audience targeting can also be based on Poll answer feedback, where the question and answer choice are used as criteria.
+## 投票的內容
+![Reach-Content2][31] 填寫通知的標題、描述和按鈕文字。然後，新增問題和問題的答案選項。您可以根據使用者如何回應此活動的觸達意見反應，找出未來的活動對象。選取目標對象時可以根據此活動是否已推送、回覆、採取動作或離開。選取目標對象時也可以根據投票答案的意見反應，將其中的問題和答案選項做為準則。
 
-### <a name="see-also"></a>See also
-- [UI Documentation - Reach - New Push Criterion][Link 28]
+### 另請參閱
+- [UI 文件 - 觸達 - 新增推播準則][Link 28]
  
-## <a name="content-of-data-pushes"></a>Content of Data Pushes
-![Reach-Content3][32] 
+## 資料推送的內容
+![Reach-Content3][32]
 
-### <a name="choose-the-type-of-your-data:"></a>Choose the type of your data:
-- Text
-- Binary data
-- Base64 data
+### 選擇您的資料類型：
+- 文字
+- 二進位資料
+- Base64 資料
 
-### <a name="define-the-content-of-your-data"></a>Define the content of your data
-- If you selected to push text data, copy and paste the text into the "content" box.
-- If you selected to push either binary or base64 data, use the "upload your file" button to upload your file.
-- You can target an audience of a future campaign based on the reach feedback of how users responded to this campaign. Audience targeting can be based on whether this campaign was just pushed, replied, actioned, or exited.
+### 定義資料的內容
+- 如果您選取推送文字資料，請複製文字並貼到 [內容] 方塊。
+- 如果您選取推送二進位或 base64 資料，請使用 [上傳您的檔案] 按鈕上傳您的檔案。
+- 您可以根據使用者如何回應此活動的觸達意見反應，找出未來的活動對象。選取目標對象時可以根據此活動是否已推送、回覆、採取動作或離開。
 
-### <a name="see-also"></a>See also
-- [UI Documentation - Reach - New Push Criterion][Link 28]
+### 另請參閱
+- [UI 文件 - 觸達 - 新增推播準則][Link 28]
 
-## <a name="content-of-tiles-(windows-phone-only)"></a>Content of Tiles (Windows Phone only)
+## 磚的內容 (僅限 Windows Phone)
 ![Reach-Content4][33]
 
-### <a name="define-the-content-of-your-tile"></a>Define the content of your tile
-The tile payload is the text to be displayed in the tile of your app on Windows Phone devices.
-A tile push is the Microsoft Push Notification Service (MPNS) version of a native push for Windows Phone. The tile push type is the only push type that does not have a response and so the audience of future campaigns can't be built on the results of a tile push campaign. 
+### 定義磚的內容
+磚承載是在 Windows Phone 裝置上應用程式磚中顯示的文字。磚推送是適用於 Windows Phone 之原生推送的 Microsoft 推播通知服務 (MPNS) 版本。磚推送類型是唯一沒有回應的推播類型，因此無法依據磚推播活動的結果建置未來活動的對象。
 
-### <a name="see-also"></a>See also
-- [API Documentation - Reach API - Native Push][Link 4]
+### 另請參閱
+- [API 文件 - 觸達 API - 原生推送][Link 4]
 
 <!--Image references-->
 [1]: ./media/mobile-engagement-user-interface-navigation/navigation1.png
@@ -236,8 +230,4 @@ A tile push is the Microsoft Push Notification Service (MPNS) version of a nativ
 [Link 29]: mobile-engagement-user-interface-reach-content.md
  
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

@@ -1,95 +1,90 @@
 <properties
-    pageTitle="Azure CDN Overview | Microsoft Azure"
-    description="Learn what the Azure Content Delivery Network (CDN) is and how to use it to deliver high-bandwidth content by caching blobs and static content."
-    services="cdn"
-    documentationCenter=""
-    authors="camsoper"
-    manager="erikre"
-    editor=""/>
+	pageTitle="Azure CDN 概觀 |Microsoft Azure"
+	description="了解何謂 Azure 內容傳遞網路 (CDN)，以及如何使用它透過快取 Blob 和靜態內容來傳遞高頻寬內容。"
+	services="cdn"
+	documentationCenter=""
+	authors="camsoper"
+	manager="erikre"
+	editor=""/>
 
 <tags
-    ms.service="cdn"
-    ms.workload="tbd"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="hero-article"
-    ms.date="09/30/2016"
-    ms.author="casoper"/>
+	ms.service="cdn"
+	ms.workload="tbd"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="hero-article"
+	ms.date="09/30/2016"
+	ms.author="casoper"/>
+
+# Azure 內容傳遞網路 (CDN) 概觀
+
+> [AZURE.NOTE] 本文件說明 Azure 內容傳遞網路 (CDN) 是什麼、其運作方式與每項 Azure CDN 產品的功能。如果您想要跳過這項資訊，直接進入如何建立 CDN 端點的教學課程，請參閱[使用 Azure CDN](cdn-create-new-endpoint.md)。如果您想要查看目前的 CDN 節點位置清單，請參閱 [Azure CDN POP 位置](cdn-pop-locations.md)。
+
+Azure 內容傳遞網路 (CDN) 會在策略性放置的位置上快取靜態 Web 內容，以提供最大輸送量來將內容傳遞給使用者。CDN 為開發人員提供一套全球解決方案，以在全球實體節點上快取內容來傳遞高頻寬內容。
+
+使用 CDN 來快取網站資產的優點包括：
+
+- 讓使用者享有更好的效能和使用者經驗，尤其是當使用的應用程式需要反覆存取多次才能載入內容時。
+- 可進行大幅調整以更妥善地處理瞬間大量負載 (例如產品上市事件的開始)。
+- 透過分散使用者要求以及從 Edge Server 提供內容，傳送至原始來源的流量將會減少。
 
 
-# <a name="overview-of-the-azure-content-delivery-network-(cdn)"></a>Overview of the Azure Content Delivery Network (CDN)
+## 運作方式
 
-> [AZURE.NOTE] This document describes what the Azure Content Delivery Network (CDN) is, how it works, and the features of each Azure CDN product.  If you want to skip this information and go straight to a tutorial on how to create a CDN endpoint, see [Using Azure CDN](cdn-create-new-endpoint.md).  If you want to see a list of current CDN node locations, see [Azure CDN POP Locations](cdn-pop-locations.md).
+![CDN 概觀](./media/cdn-overview/cdn-overview.png)
 
-The Azure Content Delivery Network (CDN) caches static web content at strategically placed locations to provide maximum throughput for delivering content to users.  The CDN offers developers a global solution for delivering high-bandwidth content by caching the content at physical nodes across the world. 
+1. 使用者 (Alice) 使用具有特殊網域名稱的 URL (例如 `<endpointname>.azureedge.net`) 要求檔案 (也稱為資產)。DNS 將要求路由傳送到最佳的存在點 (POP) 位置。這通常是地理位置最接近使用者的 POP。
 
-The benefits of using the CDN to cache web site assets include:
+2. 如果 POP 中的 Edge Server 在其快取中沒有該檔案，Edge Server 便會從原始來源要求檔案。原始來源可以是 Azure Web 應用程式、Azure 雲端服務、Azure 儲存體帳戶或任何可公開存取的 Web 伺服器。
 
-- Better performance and user experience for end users, especially when using applications where multiple round-trips are required to load content.
-- Large scaling to better handle instantaneous high load, like at the start of a product launch event.
-- By distributing user requests and serving content from edge servers, less traffic is sent to the origin.
+3. 原始來源將檔案傳回給 Edge Server，包括描述檔案存留時間 (TTL) 的選擇性 HTTP 標頭。
 
+4. Edge Server 快取檔案，並將檔案傳回給原始要求者 (Alice)。在 TTL 到期之前，檔案會一直快取在 Edge Server 上。如果原始來源未指定 TTL，預設 TTL 為 7 天。
 
-## <a name="how-it-works"></a>How it works
+5. 其他使用者後來可能會使用相同 URL 要求相同檔案，而且也可能導向至該相同 POP。
 
-![CDN Overview](./media/cdn-overview/cdn-overview.png)
-
-1. A user (Alice) requests a file (also called an asset) using a URL with a special domain name, such as `<endpointname>.azureedge.net`.  DNS routes the request to the best performing Point-of-Presence (POP) location.  Usually this is the POP that is geographically closest to the user.
-
-2. If the edge servers in the POP do not have the file in their cache, the edge server requests the file from the origin.  The origin can be an Azure Web App, Azure Cloud Service, Azure Storage account, or any publicly accessible web server.
-
-3. The origin returns the file to the edge server, including optional HTTP headers describing the file's Time-to-Live (TTL).
-
-4. The edge server caches the file and returns the file to the original requestor (Alice).  The file remains cached on the edge server until the TTL expires.  If the origin didn't specify a TTL, the default TTL is seven days.
-
-5. Additional users may then request the same file using that same URL, and may also be directed to that same POP.
-
-6. If the TTL for the file hasn't expired, the edge server returns the file from the cache.  This results in a faster, more responsive user experience.
+6. 如果檔案的 TTL 尚未過期，Edge Server 便會從快取傳回檔案。這會產生更快、更靈敏回應的使用者經驗。
 
 
-## <a name="azure-cdn-features"></a>Azure CDN Features
+## Azure CDN 功能
 
-There are three Azure CDN products:  **Azure CDN Standard from Akamai**, **Azure CDN Standard from Verizon**, and **Azure CDN Premium from Verizon**.  The following table lists the features available with each product.
+共有三種 Azure CDN 產品︰**來自 Akamai 的 Azure CDN 標準**、**來自 Verizon 的 Azure CDN 標準**和**來自 Verizon 的 Azure CDN 進階**。下表列出每種產品的可用功能。
 
-|       | Standard Akamai | Standard Verizon | Premium Verizon |
+| | 標準 Akamai | 標準 Verizon | 進階 Verizon |
 |-------|-----------------|------------------|-----------------|
-| Easy integration with Azure services such as [Storage](cdn-create-a-storage-account-with-cdn.md), [Cloud Services](cdn-cloud-service-with-cdn.md), [Web Apps](../app-service-web/cdn-websites-with-cdn.md), and [Media Services](../media-services/media-services-manage-origins.md#enable-cdn) | **&#x2713;** | **&#x2713;** | **&#x2713;**|
-| Management via [REST API](https://msdn.microsoft.com/library/mt634456.aspx), [.NET](./cdn-app-dev-net.md), [Node.js](./cdn-app-dev-node.md), or [PowerShell](./cdn-manage-powershell.md). | **&#x2713;** | **&#x2713;** | **&#x2713;** |
-| HTTPS support | **&#x2713;** | **&#x2713;** | **&#x2713;** |
-| Load balancing | **&#x2713;** | **&#x2713;** | **&#x2713;** |
-| [DDOS](https://www.us-cert.gov/ncas/tips/ST04-015) protection | **&#x2713;** | **&#x2713;** | **&#x2713;** |
-| IPv4/IPv6 dual-stack | **&#x2713;** | **&#x2713;** | **&#x2713;** |
-| [Custom domain name support](cdn-map-content-to-custom-domain.md) | **&#x2713;** | **&#x2713;** | **&#x2713;** |
-| [Query string caching](cdn-query-string.md) | **&#x2713;** | **&#x2713;** | **&#x2713;** |
-| [Country filtering](cdn-restrict-access-by-country.md) |  | **&#x2713;** | **&#x2713;** |
-| [Fast purge](cdn-purge-endpoint.md) | **&#x2713;** | **&#x2713;** | **&#x2713;** |
-| [Asset pre-loading](cdn-preload-endpoint.md) |  | **&#x2713;** | **&#x2713;** |
-| [Core analytics](cdn-analyze-usage-patterns.md) |  | **&#x2713;** | **&#x2713;** |
-| [HTTP/2 support](https://msdn.microsoft.com/library/mt762901.aspx) | **&#x2713;**  |  |  |
-| [Advanced HTTP reports](cdn-advanced-http-reports.md) | | | **&#x2713;** |
-| [Real-time stats](cdn-real-time-stats.md) | | | **&#x2713;** |
-| [Real-time alerts](cdn-real-time-alerts.md) | | | **&#x2713;** |
-| [Customizable, rule-based content delivery engine](cdn-rules-engine.md) | | | **&#x2713;** |
-| Cache/header settings (using [rules engine](cdn-rules-engine.md))  | | | **&#x2713;** |
-| URL redirect/rewrite  (using [rules engine](cdn-rules-engine.md)) | | | **&#x2713;** |
-| Mobile device rules (using [rules engine](cdn-rules-engine.md))  | | | **&#x2713;** |
+| 很容易與[儲存體](cdn-create-a-storage-account-with-cdn.md)、[雲端服務](cdn-cloud-service-with-cdn.md)、[Web Apps](../app-service-web/cdn-websites-with-cdn.md) 和[媒體服務](../media-services/media-services-manage-origins.md#enable-cdn)等 Azure 服務整合 | **&#x2713;** | **&#x2713;** | **&#x2713;**|
+| 透過 [REST API](https://msdn.microsoft.com/library/mt634456.aspx)、[.NET](./cdn-app-dev-net.md)、[Node.js](./cdn-app-dev-node.md) 或 [PowerShell](./cdn-manage-powershell.md) 管理。 | **&#x2713;** | **&#x2713;** | **&#x2713;** |
+| HTTPS 支援 | **&#x2713;** | **&#x2713;** | **&#x2713;** |
+| 負載平衡 | **&#x2713;** | **&#x2713;** | **&#x2713;** |
+| [DDOS](https://www.us-cert.gov/ncas/tips/ST04-015) 保護 | **&#x2713;** | **&#x2713;** | **&#x2713;** |
+| IPv4/IPv6 雙重堆疊 | **&#x2713;** | **&#x2713;** | **&#x2713;** |
+| [自訂網域名稱支援](cdn-map-content-to-custom-domain.md) | **&#x2713;** | **&#x2713;** | **&#x2713;** |
+| [查詢字串快取](cdn-query-string.md) | **&#x2713;** | **&#x2713;** | **&#x2713;** |
+| [國家 (地區) 篩選](cdn-restrict-access-by-country.md) | | **&#x2713;** | **&#x2713;** |
+| [快速清除](cdn-purge-endpoint.md) | **&#x2713;** | **&#x2713;** | **&#x2713;** |
+| [資產預先載入](cdn-preload-endpoint.md) | | **&#x2713;** | **&#x2713;** |
+| [核心分析](cdn-analyze-usage-patterns.md) | | **&#x2713;** | **&#x2713;** |
+| [HTTP/2 支援](https://msdn.microsoft.com/library/mt762901.aspx) | **&#x2713;** | | |
+| [進階 HTTP 報告](cdn-advanced-http-reports.md) | | | **&#x2713;** |
+| [即時統計資料](cdn-real-time-stats.md) | | | **&#x2713;** |
+| [即時警示](cdn-real-time-alerts.md) | | | **&#x2713;** |
+| [可自訂的、規則式內容傳遞引擎](cdn-rules-engine.md) | | | **&#x2713;** |
+| 快取/標頭設定 (使用[規則引擎](cdn-rules-engine.md)) | | | **&#x2713;** |
+| URL 重新導向/重寫 (使用[規則引擎](cdn-rules-engine.md)) | | | **&#x2713;** |
+| 行動裝置規則 (使用[規則引擎](cdn-rules-engine.md)) | | | **&#x2713;** |
 
->[AZURE.TIP] Is there a feature you'd like to see in Azure CDN?  [Give us feedback](https://feedback.azure.com/forums/169397-cdn)! 
+>[AZURE.TIP] 您是否有想要在 Azure CDN 中看到的功能？ [請不吝提供意見](https://feedback.azure.com/forums/169397-cdn)！
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-To get started with CDN, see [Using Azure CDN](./cdn-create-new-endpoint.md).
+若要開始使用 CDN，請參閱[使用 Azure CDN](./cdn-create-new-endpoint.md)。
 
-If you are an existing CDN customer, you can now manage your CDN endpoints through the [Microsoft Azure portal](https://portal.azure.com) or with [PowerShell](cdn-manage-powershell.md).
+如果您是現有的 CDN 客戶，現在可以透過 [Microsoft Azure 入口網站](https://portal.azure.com)或 [PowerShell](cdn-manage-powershell.md) 管理您的 CDN 端點。
 
-To see the CDN in action, check out the [video of our Build 2016 session](https://azure.microsoft.com/documentation/videos/build-2016-leveraging-the-new-azure-cdn-apis-to-build-wicked-fast-applications/).
+若要查看作用中的 CDN，請參閱 [2016 組建會議的影片](https://azure.microsoft.com/documentation/videos/build-2016-leveraging-the-new-azure-cdn-apis-to-build-wicked-fast-applications/)。
 
-Learn how to automate Azure CDN with [.NET](./cdn-app-dev-net.md) or [Node.js](./cdn-app-dev-node.md).
+了解如何透過 [.NET](./cdn-app-dev-net.md) 或 [Node.js](./cdn-app-dev-node.md) 自動化 Azure CDN。
 
-For pricing information, see [CDN Pricing](https://azure.microsoft.com/pricing/details/cdn/).
+如需價格資訊，請參閱 [CDN 價格](https://azure.microsoft.com/pricing/details/cdn/)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_1005_2016-->

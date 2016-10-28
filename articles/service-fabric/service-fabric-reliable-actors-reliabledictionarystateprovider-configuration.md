@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Overview of the Azure Service Fabric Reliable Actors ReliableDictionaryActorStateProvider configuration | Microsoft Azure"
-   description="Learn about configuring Azure Service Fabric stateful actors of type ReliableDictionaryActorStateProvider."
+   pageTitle="Azure Service Fabric Reliable Actors 的 ReliableDictionaryActorStateProvider 組態概觀 | Microsoft Azure"
+   description="了解設定 ReliableDictionaryActorStateProvider 類型的 Azure Service Fabric 可設定狀態的動作項目。"
    services="Service-Fabric"
    documentationCenter=".net"
    authors="sumukhs"
@@ -16,33 +16,32 @@
    ms.date="07/18/2016"
    ms.author="sumukhs"/>
 
+# 設定 Reliable Actors - ReliableDictionaryActorStateProvider
+您可以在指定之動作項目的 Config 資料夾下，變更 Visual Studio 封裝根中所產生的 settings.xml，來修改 ReliableDictionaryActorStateProvider 的預設組態。
 
-# <a name="configuring-reliable-actors--reliabledictionaryactorstateprovider"></a>Configuring Reliable Actors--ReliableDictionaryActorStateProvider
-You can modify the default configuration of ReliableDictionaryActorStateProvider by changing the settings.xml file generated in the Visual Studio package root under the Config folder for the specified actor.
+Azure Service Fabric 執行階段會在建立基礎執行階段元件時，在 settings.xml 檔案中尋找預先定義的區段名稱，並使用組態值。
 
-The Azure Service Fabric runtime looks for predefined section names in the settings.xml file and consumes the configuration values while creating the underlying runtime components.
+>[AZURE.NOTE] 請**不要**刪除或修改在 Visual Studio 方案中產生之 settings.xml 檔案中的下列組態區段名稱。
 
->[AZURE.NOTE] Do **not** delete or modify the section names of the following configurations in the settings.xml file that is generated in the Visual Studio solution.
+也有一些全域設定會影響 ReliableDictionaryActorStateProvider 的組態。
 
-There are also global settings that affect the configuration of ReliableDictionaryActorStateProvider.
+## 全域組態
 
-## <a name="global-configuration"></a>Global Configuration
+在 KtlLogger 區段下，叢集的叢集資訊清單中所指定的全域組態。它可設定共用記錄檔位置和大小，加上記錄器所使用的全域記憶體限制。請注意，叢集資訊清單中的變更會影響使用 ReliableDictionaryActorStateProvider 的所有服務，以及可靠的可設定狀態服務。
 
-The global configuration is specified in the cluster manifest for the cluster under the KtlLogger section. It allows configuration of the shared log location and size plus the global memory limits used by the logger. Note that changes in the cluster manifest affect all services that use ReliableDictionaryActorStateProvider and reliable stateful services.
+叢集資訊清單是單一 XML 檔案，可保留套用至叢集中所有節點和服務態的設定與組態。此檔案通常稱為 ClusterManifest.xml。您可以查看叢集的叢集資訊清單使用 Get-ServiceFabricClusterManifest powershell 命令。
 
-The cluster manifest is a single XML file that holds settings and configurations that apply to all nodes and services in the cluster. The file is typically called ClusterManifest.xml. You can see the cluster manifest for your cluster using the Get-ServiceFabricClusterManifest powershell command.
+### 組態名稱
 
-### <a name="configuration-names"></a>Configuration names
-
-|Name|Unit|Default value|Remarks|
+|名稱|單位|預設值|備註|
 |----|----|-------------|-------|
-|WriteBufferMemoryPoolMinimumInKB|Kilobytes|8388608|Minimum number of KB to allocate in kernel mode for the logger write buffer memory pool. This memory pool is used for caching state information before writing to disk.|
-|WriteBufferMemoryPoolMaximumInKB|Kilobytes|No Limit|Maximum size to which the logger write buffer memory pool can grow.|
-|SharedLogId|GUID|""|Specifies a unique GUID to use for identifying the default shared log file used by all reliable services on all nodes in the cluster that do not specify the SharedLogId in their service specific configuration. If SharedLogId is specified, then SharedLogPath must also be specified.|
-|SharedLogPath|Fully qualified path name|""|Specifies the fully qualified path where the shared log file used by all reliable services on all nodes in the cluster that do not specify the SharedLogPath in their service specific configuration. However, if SharedLogPath is specified, then SharedLogId must also be specified.|
-|SharedLogSizeInMB|Megabytes|8192|Specifies the number of MB of disk space to statically allocate for the shared log. The value must be 2048 or larger.|
+|WriteBufferMemoryPoolMinimumInKB|KB|8388608|以核心模式配置給記錄器寫入緩衝區記憶體集區的最小 KB 數。此記憶體集區用於在寫入至磁碟之前快取狀態資訊。|
+|WriteBufferMemoryPoolMaximumInKB|KB|沒有限制|記錄器寫入緩衝區記憶體集區可以成長的的大小上限。|
+|SharedLogId|GUID|""|指定用來識別預設共用記錄檔的唯一 GUID，用於叢集中所有節點上的所有 Reliable Services (不會在其服務特定組態中指定 SharedLogId)。如果有指定 SharedLogId，則也必須指定 SharedLogPath。|
+|SharedLogPath|完整路徑名稱|""|指定完整路徑，其中共用記錄檔用於叢集中所有節點上的所有 Reliable Services (不會在其服務特定組態中指定 SharedLogPath)。不過，如果有指定 SharedLogPath，則也必須指定 SharedLogId。|
+|SharedLogSizeInMB|MB|8192|指定以靜態方式配置給共用記錄檔的磁碟空間 MB 數。此值必須是 2048 或更大。|
 
-### <a name="sample-cluster-manifest-section"></a>Sample cluster manifest section
+### 範例叢集資訊清單一節
 ```xml
    <Section Name="KtlLogger">
      <Parameter Name="WriteBufferMemoryPoolMinimumInKB" Value="8192" />
@@ -53,44 +52,42 @@ The cluster manifest is a single XML file that holds settings and configurations
    </Section>
 ```
 
-### <a name="remarks"></a>Remarks
-The logger has a global pool of memory allocated from non paged kernel memory that is available to all reliable services on a node for caching state data before being written to the dedicated log associated with the reliable service replica. The pool size is controlled by the WriteBufferMemoryPoolMinimumInKB and WriteBufferMemoryPoolMaximumInKB settings. WriteBufferMemoryPoolMinimumInKB specifies both the initial size of this memory pool and the lowest size to which the memory pool may shrink. WriteBufferMemoryPoolMaximumInKB is the highest size to which the memory pool may grow. Each reliable service replica that is opened may increase the size of the memory pool by a system determined amount up to WriteBufferMemoryPoolMaximumInKB. If there is more demand for memory from the memory pool than is available, requests for memory will be delayed until memory is available. Therefore if the write buffer memory pool is too small for a particular configuration then performance may suffer.
+### 備註
+記錄器有配置自未分頁核心記憶體的記憶體全域集區，可供節點上的所有 Reliable Services 使用，在寫入至與 Reliable Service 複本相關聯的專用記錄檔之前快取狀態資料。集區大小由 WriteBufferMemoryPoolMinimumInKB 和 WriteBufferMemoryPoolMaximumInKB 設定控制。WriteBufferMemoryPoolMinimumInKB 指定此記憶體集區的初始大小，以及記憶體集區可能會縮小的大小下限。WriteBufferMemoryPoolMaximumInKB 是記憶體集區可能會成長的大小上限。每個開啟的 Reliable Service 複本都可能會增加記憶體集區的大小，增加幅度從系統決定的數量到 WriteBufferMemoryPoolMaximumInKB。如果記憶體集區的記憶體需求大於可用的記憶體，會延遲記憶體要求，直到記憶體可供使用。因此，如果寫入緩衝區記憶體集區對特定組態而言太小，則效能可能會受到影響。
 
-The SharedLogId and SharedLogPath settings are always used together to define the GUID and location for the default shared log for all nodes in the cluster. The default shared log is used for all reliable services that do not specify the settings in the settings.xml for the specific service. For best performance, shared log files should be placed on disks that are used solely for the shared log file to reduce contention.
+SharedLogId 和 SharedLogPath 設定永遠會一起使用，以便為叢集中的所有節點定義 GUID 和預設共用記錄檔的位置。預設共用記錄檔可用於不在特定服務 settings.xml 中指定設定的所有 Reliable Services。為了達到最佳效能，共用記錄檔應該放在共用記錄檔專用的磁碟上，以減少爭用情形。
 
-SharedLogSizeInMB specifies the amount of disk space to preallocate for the default shared log on all nodes.  SharedLogId and SharedLogPath do not need to be specified in order for SharedLogSizeInMB to be specified.
+SharedLogSizeInMB 會指定要預先配置給所有節點上之預設共用記錄檔的磁碟空間數量。若要指定SharedLogSizeInMB，不需要指定 SharedLogId 和 SharedLogPath。
 
-## <a name="replicator-security-configuration"></a>Replicator security configuration
-Replicator security configurations are used to secure the communication channel that is used during replication. This means that services cannot see each other's replication traffic, ensuring the data that is made highly available is also secure.
-By default, an empty security configuration section prevents replication security.
+## 複寫器安全性組態
+複寫器安全性組態用來保護在複寫期間使用的通訊通道。這表示服務將無法看到彼此的複寫流量，並且也會確保高度可用資料的安全。依預設，空白的安全性組態區段會妨礙複寫安全性。
 
-### <a name="section-name"></a>Section name
-&lt;ActorName&gt;ServiceReplicatorSecurityConfig
+### 區段名稱
+& l t;ActorName & g t;ServiceReplicatorSecurityConfig
 
-## <a name="replicator-configuration"></a>Replicator configuration
-Replicator configurations are used to configure the replicator that is responsible for making the Actor State Provider state highly reliable by replicating and persisting the state locally.
-The default configuration is generated by the Visual Studio template and should suffice. This section talks about additional configurations that are available to tune the replicator.
+## 複寫器組態
+複寫器組態用來設定負責將狀態複寫和保存至本機，讓動作項目狀態提供者變得高度可靠的複寫器。預設組態由 Visual Studio 範本所產生，且應該已經足夠。本節說明可用於微調複寫器的其他組態。
 
-### <a name="section-name"></a>Section name
+### 區段名稱
 &lt;ActorName&gt;ServiceReplicatorConfig
 
-### <a name="configuration-names"></a>Configuration names
+### 組態名稱
 
-|Name|Unit|Default value|Remarks|
+|名稱|單位|預設值|備註|
 |----|----|-------------|-------|
-|BatchAcknowledgementInterval|Seconds|0.015|Time period for which the replicator at the secondary waits after receiving an operation before sending back an acknowledgement to the primary. Any other acknowledgements to be sent for operations processed within this interval are sent as one response.||
-|ReplicatorEndpoint|N/A|No default--required parameter|IP address and port that the primary/secondary replicator will use to communicate with other replicators in the replica set. This should reference a TCP resource endpoint in the service manifest. Refer to [Service manifest resources](service-fabric-service-manifest-resources.md) to read more about defining endpoint resources in service manifest. |
-|MaxReplicationMessageSize|Bytes|50 MB|Maximum size of replication data that can be transmitted in a single message.|
-|MaxPrimaryReplicationQueueSize|Number of operations|8192|Maximum number of operations in the primary queue. An operation is freed up after the primary replicator receives an acknowledgement from all the secondary replicators. This value must be greater than 64 and a power of 2.|
-|MaxSecondaryReplicationQueueSize|Number of operations|16384|Maximum number of operations in the secondary queue. An operation is freed up after making its state highly available through persistence. This value must be greater than 64 and a power of 2.|
-|CheckpointThresholdInMB|MB|200|Amount of log file space after which the state is checkpointed.|
-|MaxRecordSizeInKB|KB|1024|Largest record size that the replicator may write in the log. This value must be a multiple of 4 and greater than 16.|
-|OptimizeLogForLowerDiskUsage|Boolean|true|When true, the log is configured so that the replica's dedicated log file is created by using an NTFS sparse file. This lowers the actual disk space usage for the file. When false, the file is created with fixed allocations, which provide the best write performance.|
-|SharedLogId|guid|""|Specifies a unique guid to use for identifying the shared log file used with this replica. Typically, services should not use this setting. However, if SharedLogId is specified, then SharedLogPath must also be specified.|
-|SharedLogPath|Fully qualified path name|""|Specifies the fully qualified path where the shared log file for this replica will be created. Typically, services should not use this setting. However, if SharedLogPath is specified, then SharedLogId must also be specified.|
+|BatchAcknowledgementInterval|秒|0\.015|次要複寫器收到作業後，將通知傳回給主要複寫器前所等待的時間間隔。任何要在此間隔內傳送給作業處理的其他通知，會集中以一個回應傳送。||
+|ReplicatorEndpoint|N/A|無預設值--必要的參數|主要/次要複寫器將用於與複本集中其他複寫器通訊的 IP 位址與連接埠。這應該參考服務資訊清單中的 TCP 資源端點。請參閱[服務資訊清單資源](service-fabric-service-manifest-resources.md)，深入了解如何在服務資訊清單中定義端點資源。 |
+|MaxReplicationMessageSize|位元組|50 MB|單一訊息可傳輸的複寫資料大小上限。|
+|MaxPrimaryReplicationQueueSize|作業數目|8192|主要佇列中作業數目上限。主要複寫器收到所有次要複寫器的通知後，系統便會釋放作業。此值必須大於 64 且為 2 的乘冪。|
+|MaxSecondaryReplicationQueueSize|作業數目|16384|次要佇列中作業數目上限。透過持續性讓狀態成為高可用性後，系統便會釋放作業。此值必須大於 64 且為 2 的乘冪。|
+|CheckpointThresholdInMB|MB|200|狀態完成檢查點作業後的記錄檔空間量。|
+|MaxRecordSizeInKB|KB|1024|複寫器可以寫入記錄檔中的最大記錄大小。此值必須是 4 的倍數且大於 16。|
+|OptimizeLogForLowerDiskUsage|Boolean|true|為 true 時會設定記錄檔，以便使用 NTFS 疏鬆檔案來建立複本的專用記錄檔。這會降低檔案實際使用的磁碟空間量。為 false 時，將以固定配置建立檔案，以提供最佳寫入效能。|
+|SharedLogId|guid|""|指定用於識別此複本共用記錄檔的唯一 GUID。服務通常不應使用此設定。不過，如果有指定 SharedLogId，則也必須指定 SharedLogPath。|
+|SharedLogPath|完整路徑名稱|""|指定建立此複本共用記錄檔的完整路徑。服務通常不應使用此設定。不過，如果有指定 SharedLogPath，則也必須指定 SharedLogId。|
 
 
-## <a name="sample-configuration-file"></a>Sample configuration file
+## 範例組態檔
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -112,20 +109,15 @@ The default configuration is generated by the Visual Studio template and should 
 </Settings>
 ```
 
-## <a name="remarks"></a>Remarks
-The BatchAcknowledgementInterval parameter controls replication latency. A value of '0' results in the lowest possible latency, at the cost of throughput (as more acknowledgement messages must be sent and processed, each containing fewer acknowledgements).
-The larger the value for BatchAcknowledgementInterval, the higher the overall replication throughput, at the cost of higher operation latency. This directly translates to the latency of transaction commits.
+## 備註
+BatchAcknowledgementInterval 參數會控制複寫延遲性。值為 '0' 時延遲可能性最低，但代價是降低輸送量 (隨著必須傳送與處理的通知訊息增加，每個訊息包含的通知會變少)。BatchAcknowledgementInterval 的值越大，整體複寫輸送量越高，代價是作業延遲變高。這會直接轉換成交易認可的延遲。
 
-The CheckpointThresholdInMB parameter controls the amount of disk space that the replicator can use to store state information in the replica's dedicated log file. Increasing this to a higher value than the default could result in faster reconfiguration times when a new replica is added to the set. This is due to the partial state transfer that takes place due to the availability of more history of operations in the log. This can potentially increase the recovery time of a replica after a crash.
+CheckpointThresholdInMB 參數可控制複寫器可用來將狀態資訊儲存在複本專用記錄檔中的磁碟空間量。若此值大於預設值，可能會在將複本新增至集合時，加速重新設定的時間。這是因為記錄中具有更多可用的歷程記錄作業而造成部分狀態傳送的緣故。這可能會在當機之後增加複本的復原時間。
 
-If you set OptimizeForLowerDiskUsage to true, log file space will be over-provisioned so that active replicas can store more state information in their log files, while inactive replicas will use less disk space. This makes it possible to host more replicas on a node. If you set OptimizeForLowerDiskUsage to false, the state information is written to the log files more quickly.
+如果您將 OptimizeForLowerDiskUsage 設定為 true，將會過度佈建記錄檔空間，讓作用中的複本可以在其記錄檔中儲存較多狀態資訊，而非作用中的複本則會使用較少的磁碟空間。如此可以在節點上裝載多個複本。如果您將 OptimizeForLowerDiskUsage 設定為 false，狀態資訊會更快寫入記錄檔。
 
-The MaxRecordSizeInKB setting defines the maximum size of a record that can be written by the replicator into the log file. In most cases, the default 1024-KB record size is optimal. However, if the service is causing larger data items to be part of the state information, then this value might need to be increased. There is little benefit in making MaxRecordSizeInKB smaller than 1024, as smaller records use only the space needed for the smaller record. We expect that this value would need to be changed only in rare cases.
+MaxRecordSizeInKB 設定會定義複寫器可以寫入記錄檔的記錄大小上限。在大部分情況下，預設的 1024 KB 記錄大小是最佳作法。不過，如果服務造成更大的資料項目成為狀態資訊的一部分，則可能需要增加此值。讓 MaxRecordSizeInKB 小於 1024 的好處不大，因為較小的記錄只會使用較小記錄所需的空間。預期此值只會在極少數的情況下需要變更。
 
-The SharedLogId and SharedLogPath settings are always used together to make a service use a separate shared log from the default shared log for the node. For best efficiency, as many services as possible should specify the same shared log. Shared log files should be placed on disks that are used solely for the shared log file, to reduce head movement contention. We expect that these values would need to be changed only in rare cases.
+SharedLogId 和 SharedLogPath 設定永遠會一起使用，以便讓服務使用與節點的預設共用記錄檔不同的共用記錄檔。如需最佳效率，請儘可能讓所有服務指定相同的共用記錄檔。共用記錄檔應該放在共用記錄檔專用的磁碟上，以減少磁頭移動爭用情形。預期這些值只會在極少數的情況下需要變更。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0720_2016-->

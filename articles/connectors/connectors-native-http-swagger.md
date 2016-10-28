@@ -1,13 +1,13 @@
 
 <properties
-    pageTitle="Add the HTTP + Swagger action in Logic apps | Microsoft Azure"
-    description="Overview of the HTTP + Swagger action and operations"
-    services=""
-    documentationCenter=""
-    authors="jeffhollan"
-    manager="erikre"
-    editor=""
-    tags="connectors"/>
+	pageTitle="在邏輯應用程式中新增 HTTP + Swagger 動作 | Microsoft Azure"
+	description="HTTP + Swagger 動作與作業的概觀"
+	services=""
+	documentationCenter=""
+	authors="jeffhollan"
+	manager="erikre"
+	editor=""
+	tags="connectors"/>
 
 <tags
    ms.service="logic-apps"
@@ -18,121 +18,115 @@
    ms.date="07/18/2016"
    ms.author="jehollan"/>
 
+# 開始使用 HTTP + Swagger 動作
 
-# <a name="get-started-with-the-http-+-swagger-action"></a>Get started with the HTTP + Swagger action
+您可以使用 HTTP + Swagger 動作，透過 [Swagger 文件](https://swagger.io)在任一 REST 端點建立一流的連接器。您也可以使用一流的邏輯應用程式設計工具體驗，擴充邏輯應用程式以呼叫任何 REST 端點。
 
-With the HTTP + Swagger action, you can create a first-class connector to any REST endpoint through a [Swagger document](https://swagger.io). You can also extend a logic app to call any REST endpoint with a first-class Logic App Designer experience.
-
-To get started with the HTTP + Swagger action in a logic app, see [Create a new logic app](../app-service-logic/app-service-logic-create-a-logic-app.md).
+若要開始在邏輯應用程式中使用 HTTP + Swagger 動作，請參閱[建立新的邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
 ---
 
-## <a name="use-http-+-swagger-as-a-trigger-or-an-action"></a>Use HTTP + Swagger as a trigger or an action
+## 使用 HTTP + Swagger 做為觸發程序或動作
 
-The HTTP + Swagger trigger and action function the same as the [HTTP action](connectors-native-http.md) but provide a better design experience by showing the shape of the API and outputs in the designer from the [Swagger metadata](https://swagger.io). In addition, you can use HTTP + Swagger as a trigger. If you want to implement a polling trigger, it should follow the polling pattern that's described in [Creating a custom API to use with logic apps](../app-service-logic/app-service-logic-create-api-app.md#polling-triggers).
+HTTP + Swagger 觸發程序和動作的功能與 [HTTP 動作](connectors-native-http.md)相同，但能從 [Swagger 中繼資料](https://swagger.io)將 API 的形式和輸出顯示在設計工具中，因此可以提供較佳的設計體驗。此外，您可以使用 HTTP + Swagger 做為觸發程序。如果您想要實作輪詢觸發程序，它應該依照[建立自訂 API 來與邏輯應用程式搭配使用](../app-service-logic/app-service-logic-create-api-app.md#polling-triggers)中所述的輪詢模式進行。
 
-[Learn more about logic app triggers and actions.](connectors-overview.md)
+[進一步了解邏輯應用程式觸發程序和動作。](connectors-overview.md)
 
-Here's an example of how to use the HTTP + Swagger operation as an action in a workflow in a logic app.
+以下是如何使用 HTTP + Swagger 作業做為邏輯應用程式中工作流程動作的範例。
 
-1. Select the **New Step** button.
-2. Select **Add an action**.
-3. In the action search box, type **swagger** to list the HTTP + Swagger action.
+1. 選取 [新增步驟] 按鈕。
+2. 選取 [新增動作]。
+3. 在動作搜尋方塊中，輸入 **swagger** 以列出 HTTP + Swagger 動作。
 
-    ![Select HTTP + Swagger action](./media/connectors-native-http-swagger/using-action-1.png)
+	![選取 HTTP + Swagger 動作](./media/connectors-native-http-swagger/using-action-1.png)
 
-4. Type the URL for a Swagger document:
-    - To work from the Logic App Designer, the URL must be an HTTPS endpoint and have CORS enabled.
-    - If the Swagger document doesn't meet this requirement, you can use [Azure Storage with CORS enabled](#hosting-swagger-from-storage) to store the document.
-5. Click **Next** to read and render from the Swagger document.
-6. Add in any parameters that are required for the HTTP call.
+4. 輸入 Swagger 文件的 URL：
+	- 若要從邏輯應用程式設計工具使用，此 URL 必須是 HTTPS 端點並已啟用 CORS。
+	- 如果 Swagger 文件不符合此需求，您可以使用[已啟用 CORS 的 Azure 儲存體](#hosting-swagger-from-storage)來儲存文件。
+5. 按一下 [下一步] 以從 Swagger 文件讀取和轉譯。
+6. 新增 HTTP 呼叫所需的任何參數。
 
-    ![Complete HTTP action](./media/connectors-native-http-swagger/using-action-2.png)
+	![完成 HTTP 動作](./media/connectors-native-http-swagger/using-action-2.png)
 
-1. Click **Save** on the upper-left corner of the toolbar, and your logic app will both save and publish (activate).
+1. 按一下工具列左上角的 [儲存]，邏輯應用程式便會儲存並發佈 (啟動)。
 
-### <a name="host-swagger-from-azure-storage"></a>Host Swagger from Azure Storage
+### 從 Azure 儲存體託管 Swagger
 
-You might want to reference a Swagger document that's not hosted, or that doesn't meet the security and cross-origin requirements for the designer. To resolve this issue, you can store the Swagger document in Azure Storage and enable CORS to reference the document.  
+您可能想要參考未託管的 Swagger 文件，但這並不符合設計工具的安全性及跨原始來源需求。為解決這個問題，您可以將 Swagger 文件儲存在 Azure 儲存體並啟用 CORS 來參考該文件。
 
-Here are the steps to create, configure, and store Swagger documents in Azure Storage:
+以下是在 Azure 儲存體中建立、設定和儲存 Swagger 文件的步驟：
 
-1. [Create an Azure storage account with Azure Blob storage](../storage/storage-create-storage-account.md). (To do this, set permissions to **Public Access**.)
-2. Enable CORS on the blob. You can use [this PowerShell script](https://github.com/logicappsio/EnableCORSAzureBlob/blob/master/EnableCORSAzureBlob.ps1) to configure that setting automatically.
-3. Upload the Swagger file into the blob. You can do this from the [Azure portal](https://portal.azure.com) or from a tool like [Azure Storage Explorer](http://storageexplorer.com/).
-1. Reference an HTTPS link to the document in Azure Blob storage. (The link follows the format `https://*storageAccountName*.blob.core.windows.net/*container*/*filename*`.)
+1. [建立 Azure 儲存體帳戶與 Azure Blob 儲存體](../storage/storage-create-storage-account.md)。(若要這樣做，請將權限設為 [公用存取]。)
+2. 在 Blob 啟用 CORS。您可以使用[這個 PowerShell 指令碼](https://github.com/logicappsio/EnableCORSAzureBlob/blob/master/EnableCORSAzureBlob.ps1)自動設定該設定。
+3. 將 Swagger 檔案上傳至 Blob。您可以從 [Azure 入口網站](https://portal.azure.com)或 [Azure 儲存體總管](http://storageexplorer.com/)之類的工具執行這項動作。
+1. 參考 Azure Blob 儲存體中文件的 HTTPS 連結。(連結遵循下列格式 `https://*storageAccountName*.blob.core.windows.net/*container*/*filename*`。)
 
 
 
-## <a name="technical-details"></a>Technical details
+## 技術詳細資訊
 
-Following are the details for the triggers and actions that this HTTP + Swagger connector supports.
+以下是此 HTTP + Swagger 連接器所支援觸發程序和動作的詳細資料。
 
-## <a name="http-+-swagger-triggers"></a>HTTP + Swagger triggers
+## HTTP + Swagger 觸發程序
 
-A trigger is an event that can be used to start the workflow that's defined in a logic app. [Learn more about triggers.](connectors-overview.md) The HTTP + Swagger connector has one trigger.
+觸發程序是一個事件，可用來啟動邏輯應用程式中定義的工作流程。[深入了解觸發程序。](connectors-overview.md) HTTP + Swagger 連接器有一個觸發程序。
 
-|Trigger|Description|
+|觸發程序|說明|
 |---|---|
-|HTTP + Swagger|Make an HTTP call and return the response content|
+|HTTP + Swagger|進行 HTTP 呼叫並傳回回應內容|
 
-## <a name="http-+-swagger-actions"></a>HTTP + Swagger actions
+## HTTP + Swagger 動作
 
-An action is an operation that's carried out by the workflow that's defined in a logic app. [Learn more about actions.](connectors-overview.md) The HTTP + Swagger connector has one possible action.
+動作是由邏輯應用程式中定義的工作流程所執行的作業。[深入了解動作。](connectors-overview.md) HTTP + Swagger 連接器有一個可能的動作。
 
-|Action|Description|
+|動作|說明|
 |---|---|
-|HTTP + Swagger|Make an HTTP call and return the response content|
+|HTTP + Swagger|進行 HTTP 呼叫並傳回回應內容|
 
-### <a name="action-details"></a>Action details
+### 動作詳細資料
 
-The HTTP + Swagger connector comes with one possible action. Following is information about each of the actions, their required and optional input fields, and the corresponding output details that are associated with their usage.
+HTTP + Swagger 連接器隨附一個可能的動作。以下是關於每個動作、其必要和選擇性輸入欄位，以及與其使用方式相關聯的對應輸出詳細資料的資訊。
 
-#### <a name="http-+-swagger"></a>HTTP + Swagger
+#### HTTP + Swagger
 
-Make an HTTP outbound request with assistance of Swagger metadata.
-An asterisk (*) means a required field.
+在 Swagger 中繼資料的協助下提出 HTTP 輸出要求。星號 (*) 表示必要的欄位。
 
-|Display name|Property name|Description|
+|顯示名稱|屬性名稱|說明|
 |---|---|---|
-|Method*|method|HTTP verb to use.|
-|URI*|uri|URI for the HTTP request.|
-|Headers|headers|A JSON object of HTTP headers to include.|
-|Body|body|The HTTP request body.|
-|Authentication|authentication|Authentication to use for request. [For more details, see HTTP](./connectors-native-http.md#authentication).|
+|方法 *|method|要使用的 HTTP 指令動詞。|
+|URI*|uri|HTTP 要求的 URI。|
+|標頭|headers|要包含之 HTTP 標頭的 JSON 物件。|
+|內文|body|HTTP 要求本文。|
+|驗證|authentication|用於要求的驗證。[如需詳細資料，請參閱 HTTP](./connectors-native-http.md#authentication)。|
 
-**Output details**
+**輸出詳細資料**
 
-HTTP response
+HTTP 回應
 
-|Property Name|Data type|Description|
+|屬性名稱|資料類型|說明|
 |---|---|---|
-|Headers|object|Response headers|
-|Body|object|Response object|
-|Status Code|int|HTTP status code|
+|標頭|物件|回應標頭|
+|內文|物件|回應物件|
+|狀態碼|整數|HTTP 狀態碼|
 
-### <a name="http-responses"></a>HTTP responses
+### HTTP 回應
 
-When making calls to various actions, you might get certain responses. Following is a table that outlines corresponding responses and descriptions.
+呼叫不同動作時，您可能會收到特定回應。下表概述對應的回應及說明。
 
-|Name|Description|
+|名稱|說明|
 |---|---|
 |200|OK|
-|202|Accepted|
-|400|Bad request|
-|401|Unauthorized|
-|403|Forbidden|
-|404|Not Found|
-|500|Internal server error. Unknown error occurred.|
+|202|已接受|
+|400|不正確的要求|
+|401|未經授權|
+|403|禁止|
+|404|找不到|
+|500|內部伺服器錯誤。發生未知錯誤。|
 
 ---
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-Try out the platform and [create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md) now. You can explore the other available connectors in logic apps by looking at our [list of APIs](apis-list.md).
+立即試用平台和[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。您可以查看我們的 [API 清單](apis-list.md)，以探索邏輯應用程式中其他可用的連接器。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

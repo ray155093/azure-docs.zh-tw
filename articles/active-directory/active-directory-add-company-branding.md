@@ -1,234 +1,232 @@
 <properties
-    pageTitle="Add company branding to your sign-in and Access Panel pages"
-    description="Learn how to add a company branding to the Azure sign-in page and the access panel page"
-    services="active-directory"
-    documentationCenter=""
-    authors="curtand"
-    manager="femila"
-    editor=""/>
+	pageTitle="在登入和存取面板頁面加上公司商標"
+	description="了解如何將公司商標新增至 Azure 登入頁面和存取面板頁面"
+	services="active-directory"
+	documentationCenter=""
+	authors="curtand"
+	manager="femila"
+	editor=""/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="infrastructure-services"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="get-started-article"
-    ms.date="09/30/2016"
-    ms.author="curtand"/>
+	ms.service="active-directory"
+	ms.workload="infrastructure-services"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="get-started-article"
+	ms.date="09/30/2016"
+	ms.author="curtand"/>
+
+# 在登入和存取面板頁面加上公司商標
 
 
-# <a name="add-company-branding-to-your-sign-in-and-access-panel-pages"></a>Add company branding to your sign-in and Access Panel pages
+為了避免混淆，許多公司都想對其管理的所有網站和服務套用一致的外觀與風格。Azure Active Directory 提供這項功能，讓您利用公司標誌和自訂色彩配置來自訂下列網頁的外觀：
 
+- **登入頁面** - 當您登入 Office 365 或其他使用 Azure AD 作為識別提供者的 Web 型應用程式時，便會出現此頁面。在進行主領域探索期間或要輸入認證時，您就會與此頁面互動。主領域探索可讓系統將同盟使用者重新導向至其內部部署 STS (例如 AD FS)。
 
-To avoid confusion, many companies want to apply a consistent look and feel across all the websites and services they manage. Azure Active Directory provides this capability by allowing you to customize the appearance of the following web pages with your company logo and custom color schemes:
+- **存取面板頁面** - 存取面板是網頁型入口網站，可讓您檢視並啟動 Azure AD 系統管理員已授與您存取權的雲端式應用程式。若要存取「存取面板」，請使用下列 URL：[https://myapps.microsoft.com](https://myapps.microsoft.com)。
 
-- **Sign-in page** - This is the page that appears when you sign in to Office 365 or other web-based applications that are using Azure AD as your identity provider. You interact with this page either during a Home Realm Discovery or to enter your credentials. The Home Realm Discovery allows the system to redirect federated users to their on-premises STS (such as AD FS).
-
-- **Access Panel page** - The Access Panel is a web-based portal that allows you to view and launch the cloud-based applications your Azure AD administrator has granted you access to. To access the Access Panel, use the following URL: [https://myapps.microsoft.com](https://myapps.microsoft.com).
-
-This topic explains how you can customize the sign-in page and the access panel page.
-
-> [AZURE.NOTE]
->
-- Company branding is a feature that is available only if you upgraded to the Premium or Basic edition of Azure Active Directory, or are an Office 365 user. For more information, see [Azure Active Directory editions](active-directory-editions.md).
-- Azure Active Directory Premium and Basic editions are available for customers in China using the worldwide instance of Azure Active Directory. Azure Active Directory Premium and Basic editions are not currently supported in the Microsoft Azure service operated by 21Vianet in China. For more information, contact us at the [Azure Active Directory Forum](https://feedback.azure.com/forums/169401-azure-active-directory/).
-
-
-
-## <a name="customizing-the-sign-in-page"></a>Customizing the sign-in page
-
-Typically, if you need browser-based access to your cloud apps and services that your organization subscribes to, you use the sign-in page.
-
-If you have applied changes to your sign-in page, it can take up to an hour for the changes to appear.
-
-A branded sign-in page only appears when you visit a service with a tenant-specific URL such as https://outlook.com/**contoso**.com, or https://mail.**contoso**.com.
-
-When you visit a service with non-tenant specific URLs (e.g.: https://mail.office365.com), a non-branded sign-in page appears. in this case, your branding appears once you have entered your user ID or you have selected a user tile.
+本主題說明如何自訂登入頁面和存取面板頁面。
 
 > [AZURE.NOTE]
 >
-- Your domain name must appear as “Active” in the **Active Directory** > **Directory** > **Domains** section of the Azure classic portal where you have configured branding.
-- Sign-in page branding doesn’t carry over to the consumer sign in page of Microsoft. If you sign in with a personal Microsoft account, you may see a branded list of user tiles rendered by Azure AD, but the branding of your organization does not apply to the Microsoft account sign-in page.
+- 公司商標是您升級至 Premium 或 Basic 版本的 Azure Active Directory 後，或是 Office 365 使用者時才能使用的功能。如需詳細資訊，請參閱 [Azure Active Directory 版本](active-directory-editions.md)。
+- Azure Active Directory Premium 和 Basic 版本適用於使用全球 Azure Active Directory 執行個體的中國客戶。由 21Vianet 在中國提供的 Microsoft Azure 服務目前不支援 Azure Active Directory Premium 和 Basic 版本。如需詳細資訊，請透過 [Azure Active Directory 論壇](https://feedback.azure.com/forums/169401-azure-active-directory/)與我們連絡。
 
 
-If you want to show your company brand, colors and other customizable elements on this page, see the following images to understand the difference between the two experiences.
 
-The following screenshot shows and example for the Office 365 sign-in page on a desktop computer **before** a customization:
+## 自訂登入頁面
 
-![Office 365 sign-in page before customization][1]
+一般而言，如果您需要透過瀏覽器存取貴組織訂閱的雲端應用程式和服務，您可使用登入頁面。
 
-The following screenshot shows and example for the Office 365 sign-in page on a desktop computer **after** a customization:
+如果您已對登入頁面套用變更，最多需要一小時變更才會出現。
 
-![Office 365 sign-in page after customization][2]
+只有當您使用租用戶特定 URL (例如 https://outlook.com/**contoso**.com 或 https://mail.**contoso**.com) 來造訪服務時，才會顯示加上商標的登入頁面。
 
-The following screenshot shows an example of the Office 365 sign-in page on a mobile device **before** a customization:
+當您使用非租用戶特定 URL (例如 https://mail.office365.com) 造訪服務時，則會出現沒有商標的登入頁面。在此情況下，在您輸入使用者識別碼或選取使用者圖格之後，您的商標就會出現。
 
-![Office 365 sign-in page before customization][3]
-
-
-The following screenshot shows an example of the Office 365 sign-in page on a mobile device **after** a customization:
-
-![Office 365 sign-in page after customization][4]
+> [AZURE.NOTE]
+>
+- 在已設定商標之 Azure 傳統入口網站的 [Active Directory] > [目錄] > [網域] 區段中，您的網域名稱必須為 [作用中]。
+- 登入頁面商標不會延續到 Microsoft 的消費者登入頁面。如果您使用個人 Microsoft 帳戶進行登入，可能會看到 Azure AD 所呈現並加上商標的使用者圖格清單，但是您組織的商標不會套用到 Microsoft 帳戶登入頁面。
 
 
-When you resize a browser window, the large Illustration, like the one shown previously, is often cropped to accommodate different screen aspect ratios. With this in mind, you should try to keep the key visual elements in the illustration so that they always appear in the top-left corner (top-right for right-to-left languages). This is important because resizing typically occurs from the bottom-right corner going towards the top / left or from the bottom towards the top.
+如果您想要在此頁面上顯示您的公司商標、色彩和其他可自訂的元素，請參閱下列影像以了解這兩種做法的差異。
 
-The following picture shows how the illustration is cropped when the browser is resized to the left:
+下列螢幕擷取畫面顯示桌上型電腦上 Office 365 登入頁面的自訂「前」範例︰
+
+![自訂前的 Office 365 登入頁面][1]
+
+下列螢幕擷取畫面顯示桌上型電腦上 Office 365 登入頁面的自訂「後」範例︰
+
+![自訂後的 Office 365 登入頁面][2]
+
+下列螢幕擷取畫面顯示自訂**前**在行動裝置上的 Office 365 登入頁面範例︰
+
+![自訂前的 Office 365 登入頁面][3]
+
+
+下列螢幕擷取畫面顯示自訂**後**在行動裝置上的 Office 365 登入頁面範例︰
+
+![自訂後的 Office 365 登入頁面][4]
+
+
+當您調整瀏覽器視窗大小時，大型圖例 (例如先前所示的圖例) 通常會裁剪成符合不同的螢幕外觀比例。請記住，您應該嘗試保持圖例中的主要視覺元素，讓它們永遠顯示在左上角 (從右至左的語言，則顯示在右上角)。這十分重要，因為調整大小通常會從右下角往上/往左，或從下方往上方。
+
+下圖顯示將瀏覽器調整到左方時如何裁剪圖例：
 
 ![][6]
 
-Here is how it appears after the browser is resized toward the top:
+以下是將瀏覽器調整到上方之後，如何顯示圖例：
 
 ![][7]
 
-## <a name="what-elements-on-the-page-can-i-customize?"></a>What elements on the page can I customize?
+## 我們可以自訂頁面上的哪些元素？
 
-You can customize the following elements on the sign-in page:
+您可以自訂登入頁面上的下列元素：
 
 ![][5]
 
 
 
-| Page element  | Location on the page |
+| 頁面元素 | 頁面上的位置 |
 |:--            | ---                  |
-|Banner Logo    | Shown at the top-right of the page. Replaces the logo the destination site you are signing in to displays (For example. Office 365 or Azure).|
-|Large Illustration / Background Color | Shown at the left of the page. Replaces the image the destination site you are signing in to displays. The Background Color may be shown in place of the Large Illustration on low bandwidth connections, or on narrow screens.|
-|Keep me signed-in | Shown under the Password textbox. |
-|Sign-in Page Text | Shown above the page footer when you need to convey helpful information before a sign-in with a work or school account. For example, you may want to include the phone number to your help desk, or a legal statement.|
+|橫幅標誌 | 顯示於頁面的右上方。取代您所登入之目的地網站要顯示的標誌 (例如 Office 365 或 Azure)。|
+|大型圖例/背景色彩 | 顯示於頁面的左方。取代您所登入之目的地網站要顯示的影像。可能會顯示「背景色彩」，來替代低頻寬連線或窄畫面上的「大型圖例」。|
+|讓我保持登入 | 顯示在 [密碼] 文字方塊之下。 |
+|登入頁面文字 | 在使用工作或學校帳戶登入之前需要傳達有用資訊時，會顯示於頁尾上方。例如，您可能想要包括支援人員的電話號碼或法律聲明。|
 
 
 > [AZURE.NOTE]
-All elements are optional. For example, if you specify a Banner Logo but no Large Illustration, the sign-in page shows your logo and the illustration for the destination site (that is, the Office 365 California highway image).
+所有元素都是選用的。例如，如果您指定 [橫幅標誌]，但未指定 [大型圖例]，則登入頁面會顯示您的標誌以及目的地網站的圖例 (即 Office 365 加州高速公路影像)。
 
 
-On your sign-in page, the **Keep me signed in** checkbox allows a user to remain signed in when they close and re-open their browser. It does not effect session lifetime. You can hide the checkbox on the Azure Active Directory sign-in page.
+登入頁面上的 [讓我保持登入] 核取方塊，可讓使用者在關閉並重新開啟其瀏覽器時保持登入狀態。它不會影響工作階段存留期。您可以在 Azure Active Directory 登入頁面上隱藏此核取方塊。
 
-Whether the checkbox is displayed depends on the setting of **Hide KMSI**.
+核取方塊顯示與否取決於 [隱藏 KMSI] 的設定。
 
 ![][9]
 
 
-To hide the checkbox, configure this setting to **Hidden**. 
+若要隱藏此核取方塊，請將此設定設為 [隱藏]。
 
-> [AZURE.NOTE] Some features of SharePoint Online and Office 2010 depend on users being able to check this box. If you configure this setting to hidden, your users may see additional and unexpected prompts to sign-in.
-
-
-
-
-You can also localize all elements on this page. Once you’ve configured a “default” set of customization elements, you can configure more versions for different locales. You can also mix and match various elements. For example, you can:
-
-- Create a “default” Large Illustration that works for all cultures, then create specific versions for English and French. When you set your browsers to one of these two languages, the specific image appears, while the default illustration appears for all other languages.
-
-- Configure different logos for your organization (e.g. Japanese or Hebrew versions).
+> [AZURE.NOTE] SharePoint Online 和 Office 2010 的某些功能取決於能夠核取此方塊的使用者。如果您將此設定設為隱藏，使用者可能會在登入時看見其他和非預期的提示。
 
 
 
-## <a name="access-panel-page-customization"></a>Access panel page customization
 
-The Access Panel page is essentially a portal page for quick access to the cloud apps you have been granted access to by your administrator. On this page, your apps appear as clickable application tiles.
+您也可以將此頁面上的所有元素都翻成當地使用語。設定一組「預設」自訂元素之後，就可以設定不同地區設定的其他版本。您也可以混合使用並符合各種元素。例如，您可以：
+
+- 建立適用於所有文化的「預設」大型圖例，然後建立英文和法文的特定版本。當您將瀏覽器設定為這兩種語言之一時，會出現特定的影像，至於其他所有語言則會出現預設圖例。
+
+- 為您的組織設定不同的標誌 (例如日文或希伯來文版本)。
 
 
-The following screenshot shows an example of an access panel page after customization.
+
+## 存取面板頁面自訂
+
+[存取面板] 頁面基本上是入口網站頁面，可供快速存取系統管理員已授與您存取權的雲端應用程式。在此頁面上，您的應用程式會顯示為可點選的應用程式圖格。
+
+
+下列螢幕擷取畫面顯示自訂後的存取面板頁面範例：
 
 ![][8]
 
-## <a name="configure-your-directory-with-company-branding"></a>Configure your directory with company branding
+## 使用公司商標來設定目錄
 
-You can configure one default set of customizable elements per directory in the Azure classic portal. After the defaults have been saved, an administrator can add localized versions of each element, for different languages / locales. All customizable elements are optional.
+您可以針對 Azure 傳統入口網站中的每個目錄，設定一組預設的可自訂元素。儲存預設值之後，系統管理員可以針對不同的語言/地區設定新增每個元素的當地語系化版本。所有可自訂元素都是選用的。
 
-For example, if you configure a default Banner Logo but no Large Illustration, the sign-in page displays your logo in the upper-right corner. However the default illustration of the site is displayed.
+例如，如果您設定預設 [橫幅標誌]，但未設定 [大型圖例]，則登入頁面會將您的標誌顯示在右上角。不過，會顯示網站的預設圖例。
 
-Imagine the following configuration:
+假設有下列組態︰
 
-- A default Banner Logo and Sign-In Page Text in English
-- A language-specific sign in Page Text for German
+- 預設的橫幅標誌和英文登入頁面文字
+- 語言特定的德文登入頁面文字
 
-If your language preference is German, you get the default Banner Logo but the German text.
+如果您的語言喜好設定是德文，您會得到預設的橫幅標誌但為德文文字。
 
-While you could technically configure a different set for each language supported by Azure AD, we recommend that you keep the number of variations low, for maintenance and performance reasons.
+技術上，雖然您可以針對 Azure AD 所支援的每種語言設定不同的一組，但是基於維護和效能考量，建議您保持低變化數目。
 
-**To add company branding to your directory, perform the following steps:**
+**若要將公司商標新增至您的目錄，請執行下列步驟：**
 
-1. Sign in to the [Azure classic portal](https://manage.windowsazure.com) as an administrator of the directory you want to customize.
-2. Select the directory you want to customize.
-3. In the toolbar on the top, click **Configure**.
-4. Click **Customize Branding**.
-4. Modify the elements you want to customize. All fields are optional.
-5. Click **Save**.
+1. 以想要自訂之目錄的管理員身分，登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
+2. 選取您想要自訂的目錄。
+3. 在頂端的工具列中，按一下 [設定]。
+4. 按一下 [自訂商標]。
+4. 修改您想要自訂的元素。所有欄位都是選用的。
+5. 按一下 [儲存]。
 
-It can take up to an hour for new change you made to the sign-in page branding to appear.
+您對登入頁面商標進行的新變更最多需要一個小時才會出現。
 
-**To add language-specific company branding, perform the following steps:**
+**若要新增語言特定公司商標，請執行下列步驟：**
 
-1. Sign in to the [Azure classic portal](https://manage.windowsazure.com) as an administrator of the directory you want to customize.
-2. Select the directory you want to customize.
-3. In the toolbar on the top, click **Configure**.
-4. Click **Customize Branding**.
-2. Click **Add branding for a specific language**.
-3. Select the language you want to customize the logo for, and then click **Next**.
-3. Edit only the elements for which you want to configure language-specific overrides. All fields are optional. If a field is left blank, then the custom default value is displayed instead (or the Microsoft default if a custom default is not configured).
-4. Click **Save**.
+1. 以想要自訂之目錄的管理員身分，登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
+2. 選取您想要自訂的目錄。
+3. 在頂端的工具列中，按一下 [設定]。
+4. 按一下 [自訂商標]。
+2. 按一下 [新增特定語言的商標]。
+3. 選取您要自訂標誌的語言，然後按 [下一步]。
+3. 僅編輯您想要設定語言特定覆寫的元素。所有欄位都是選用的。如果欄位空白，則會改為顯示自訂預設值 (或者，如果未設定自訂預設值，則為 Microsoft 預設值)。
+4. 按一下 [儲存]。
 
-**To remove company branding from your directory, perform the following steps:**
+**若要從您的目錄中移除公司商標，請執行下列步驟：**
 
-1. Sign in to the [Azure classic portal](https://manage.windowsazure.com) as an administrator of the directory you want to customize.
-2. Select the directory you want to customize.
-3. In the toolbar on the top, click **Configure**.
-4. Click **Customize Branding**.
-5. On the Customize Branding page, select **Edit Existing Branding Settings** and then go to the next page.
-3. Depending on which elements you want to remove, do one or more of the following:
+1. 以想要自訂之目錄的管理員身分，登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
+2. 選取您想要自訂的目錄。
+3. 在頂端的工具列中，按一下 [設定]。
+4. 按一下 [自訂商標]。
+5. 在 [自訂商標] 頁面上，選取 [編輯現有商標設定]，然後移至下一頁。
+3. 根據您想要移除的元素，執行下列一或多項動作：
 
-    a. Under **Banner Logo**, select **Remove uploaded logo**.
+	a.在 [橫幅標誌] 之下，選取 [移除上傳的標誌]。
 
-    b. Under **Tile Logo**, select **Remove uploaded logo**.
+    b.在 [圖格標誌] 之下，選取 [移除上傳的標誌]。
 
-    c. Remove the text from all textboxes.
+    c.移除所有文字方塊中的文字。
 
-    d. Click **Next**.
+    d.按 [下一步]。
 
-    e. Remove the text from all textboxes.
+    e.移除所有文字方塊中的文字。
 
-4. Click **Save** to remove the elements.
-5. If necessary, click **Customize Branding** again and repeat these steps for all language-specific branding that needs to be removed.
-    All branding settings have been removed when you click **Customize Branding** and see the **Customize Default Branding** form with no existing settings configured.
+4. 按一下 [儲存] 移除元素。
+5. 如有必要，請再按一下 [自訂商標]，並針對需要移除的所有語言特定商標重複這些步驟。按一下 [自訂商標] 並看到未設定現有設定的 [自訂預設商標] 表單時，已移除所有商標設定。
 
-## <a name="testing-and-examples"></a>Testing and examples
+## 測試和範例
 
-We recommend that you experiment with a test tenant before making changes in your production environment.
+建議您先使用測試租用戶進行試驗，再於生產環境中進行變更。
 
-**To verify whether your branding has been applied:**
+**若要確認商標是否已套用︰**
 
-1. Open an InPrivate or Incognito browser session.
-2. Visit https://outlook.com/contoso.com, replacing contoso.com with the domain you’ve customized.
+1. 開啟 InPrivate 或 Incognito 瀏覽器工作階段。
+2. 瀏覽 https://outlook.com/contoso.com，並將 contoso.com 取代為您自訂的網域。
 
-This also works with domains that look like contoso.onmicrosoft.com.
+這也適用於類似 contoso.onmicrosoft.com 的網域。
 
-To help you create effective customization sets, we have customized the following two fictitious sign-in pages:
+為了協助您建立有效自訂集，我們已自訂下列兩個虛構的登入頁面：
 
 - [http://aka.ms/aaddemo001](http://aka.ms/aaddemo001)
 - [http://aka.ms/aaddemo002](http://aka.ms/aaddemo002)
 
-To test the language-specific settings, you need to modify the default language preferences in your web browser to a language you have set in your customization. In Internet Explorer, you configure this in the **Internet Options** menu.
+若要測試語言特定設定，您需要將網頁瀏覽器中的預設語言喜好設定修改為已在自訂中所設定的語言。在 Internet Explorer 中，您可在 [網際網路選項] 功能表中進行此設定。
 
-## <a name="customizable-elements"></a>Customizable elements
+## 可自訂元素
 
-Some customizable elements in Azure AD have multiple use cases. You can configure company logos once per directory and is used on both, the sign-in and Access Panel pages. Some customizable elements are specific only to the sign-in page. The following table provides details for the different customizable elements.
+Azure AD 中的部分可自訂元素有多個使用案例。您可以在每個目錄設定一次公司標誌並同時用於 [登入] 頁面和 [存取面板] 頁面。有些可自訂元素為登入頁面所特有。下表提供不同可自訂元素的詳細資料。
 
-Name | Description | Constraints | Recommendations
-    ------------- | ------------- | ------------- | -------------
-Banner Logo | The Banner Logo is displayed on the sign-in page and the Access panel. | <p>JPG or PNG</p><p>60x280 pixels</p><p>10 KB</p> | <p>Use your organization’s full logo (including pictogram and logotype)</p><p>Keep it under 30 pixels high to avoid introducing scrollbars on mobile devices</p><p>Keep it under 4 KB</p><p>Use a transparent PNG (don’t assume that the sign-in page always has a white background)</p>
-Tile Logo | (currently not used in the sign-in page) In the future, this text may be used to replace the generic “work or school account” pictogram in different places of the experience. | <p>JPG or PNG</p><p>120x120 pixels</p><p>10 KB</p> | <p>Keep it simple (no small text), as this image may be resized to 50%
+名稱 | 說明 | 條件約束 | 建議
+	------------- | ------------- | ------------- | -------------
+橫幅標誌 | [橫幅標誌] 會顯示在 [登入] 頁面和 [存取面板] 上。 | <p>JPG 或 PNG</p><p>60x280 像素</p><p>10 KB</p> | <p>使用您組織的完整標誌 (包含 pictogram 和 logotype)</p><p>高度保持低於 30 個像素，避免行動裝置上出現捲軸</p><p>保持低於 4 KB</p><p>使用透明 PNG (不假設 [登入] 頁面的背景永遠是白色)</p>
+磚標誌 | (目前未用於 [登入] 頁面中) 未來，這段文字可能用來取代不同體驗位置中的泛用「工作或學校帳戶」pictogram。 | <p>JPG 或 PNG</p><p>120x120 像素</p><p>10 KB</p> | <p>保持簡單 (無小型文字)，因為此影像大小可能會調整為 50%
 </p> |
-Sign-in Page User Name Label | (currently not used in the sign-in page) In the future, this text may be used to replace the generic “work or school account” string in different places of the experience. You can set it to something like “Contoso account” or “Contoso ID.” | <p>Unicode text, up to 50 characters</p><p>Plain text only (no links or HTML tags)</p> | <p>Keep it short and simple</p><p>Ask your users how they usually refer to the work or school account you provide them with.</p>
-Sign-in Page Text | This “boilerplate” text appears below the sign-in page form and can be used to communicate additional instructions, or where to get help and support. | <p>Unicode text, up to 256 characters</p><p>Plain text only (no links or HTML tags)</p> | Keep it under 250 characters (approximately 3 lines of text)
-Sign-in Page Illustration | The illustration is a large image that is displayed on the sign-in page to the left of the sign-in page form. | <p>JPG or PNG</p><p>1420x1200</p><p>500 KB</p> | <p>1420x1200 pixels</p><p>Important: Keep it as small as possible, ideally under 200 KB. If this image is too large, the performance of the Sign-in page is impacted when the image isn’t cached</p><p>This image is often cropped, to accommodate different screen ratios. Keep the primary visual elements in the top left corner (top right for RTL languages), because resizing occurs from the bottom/right corner, going towards the top / left, as the browser window shrinks.</p>
-Sign-in Page Background Color | The sign-in page background color is used in the area to the left of the sign-in page form. | Must be an RGB color in hexadecimal form (example: #FFFFFF) | <p>The background color may be shown in place of the large Illustration on low-bandwidth connections</p><p>We suggest picking the primary color of the Banner Logo</p>
+登入頁面使用者名稱標籤 | (目前未用於 [登入] 頁面中) 未來，這段文字可能用來取代不同體驗位置中的泛用「工作或學校帳戶」字串。您可以將它設定為「Contoso 帳戶」或「Contoso 識別碼」這類項目。 | <p>Unicode 文字，最多 50 個字元</p><p>僅純文字 (沒有連結或 HTML 標記)</p> | <p>保持簡短和簡單</p><p>詢問使用者通常如何參照您提供給他們的工作或學校帳戶。</p>
+登入頁面文字 | 此「重複使用」文字會出現在 [登入] 頁面表單下方，並且可以用來傳達其他指示或可在何處取得說明和支援。 | <p>Unicode 文字，最多 256 個字元</p><p>僅純文字 (沒有連結或 HTML 標記)</p> | 保持低於 250 個字元 (約 3 行文字)
+登入頁面圖例 | 圖例是顯示在 [登入] 頁面表單左邊之 [登入] 頁面中的大型影像。 | <p>JPG 或 PNG</p><p>1420x1200</p><p>500 KB</p> | <p>1420x1200 像素</p><p>重要事項：保持越小越好，最好低於 200 KB。如果此影像太大，則會在未快取影像時影響 [登入] 頁面的效能</p><p>此影像通常會進行剪裁，以符合不同的螢幕外觀比例。將主要視覺元素保持在左上角 (RTL 語言，則顯示在右上角)，因為隨著瀏覽器視窗的縮小，調整大小會從右下角往左上方。</p>
+登入頁面背景色彩 | 登入頁面背景色彩用於 [登入] 頁面表單左方的區域。 | 必須是十六進位格式的 RGB 色彩 (範例: #FFFFFF) | <p>可能會顯示背景色彩，來替代低頻寬連線上的「大型圖例」</p><p>建議挑選 [橫幅標誌] 的主要色彩</p>
 
 
-## <a name="next-steps"></a>Next Steps
+## 後續步驟
 
-- [Getting started with Azure Active Directory Premium](active-directory-get-started-premium.md)
-- [View your access and usage reports](active-directory-view-access-usage-reports.md)
+- [開始使用 Azure Active Directory Premium](active-directory-get-started-premium.md)
+- [檢視存取和使用情況報告](active-directory-view-access-usage-reports.md)
 
 <!--Image references-->
 [1]: ./media/active-directory-add-company-branding/SignInPage_beforecustomization.png
@@ -241,8 +239,4 @@ Sign-in Page Background Color | The sign-in page background color is used in the
 [8]: ./media/active-directory-add-company-branding/APBranding.png
 [9]: ./media/active-directory-add-company-branding/hidekmsi.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_1005_2016-->

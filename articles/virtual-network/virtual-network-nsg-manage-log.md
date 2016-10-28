@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Monitor operations, events, and counters for NSGs | Microsoft Azure"
-   description="Learn how to enable counters, events, and operational logging for NSGs"
+   pageTitle="監視 NSG 的作業、事件和計數器 | Microsoft Azure"
+   description="了解如何啟用 NSG 的計數器、事件和作業記錄"
    services="virtual-network"
    documentationCenter="na"
    authors="jimdial"
@@ -17,110 +17,105 @@
    ms.date="07/14/2016"
    ms.author="jdial" />
 
+#網路安全性群組 (NSG) 的記錄檔分析
 
-#<a name="log-analytics-for-network-security-groups-(nsgs)"></a>Log analytics for network security groups (NSGs)
+您可以在 Azure 中使用不同類型的記錄檔來管理和疑難排解 NSG。透過入口網站可以存取這些當中的一些記錄檔，而從 Azure Blob 儲存體可以擷取所有記錄檔，並且可在不同的工具 (例如 [Log Analytics](../log-analytics/log-analytics-azure-networking-analytics.md)、Excel 及 PowerBI) 中檢視這些記錄檔。您可以從下列清單進一步了解不同類型的記錄檔。
 
-You can use different types of logs in Azure to manage and troubleshoot NSGs. Some of these logs can be accessed through the portal, and all logs can be extracted from an Azure blob storage, and viewed in different tools, such as [Log Analytics](../log-analytics/log-analytics-azure-networking-analytics.md), Excel and PowerBI. You can learn more about the different types of logs from the list below.
+- **稽核記錄檔︰**您可以使用 [Azure 稽核記錄檔](../azure-portal/insights-debugging-with-events.md) (之前稱為「作業記錄檔」) 來檢視提交至您的 Azure 訂用帳戶的所有作業及其狀態。預設會啟用稽核記錄檔，並可在 Azure Preview 入口網站中進行檢視。
+- **事件記錄檔︰**您可以使用此記錄檔來檢視哪些 NSG 規則會套用到以 MAC 位址為基礎的 VM 和執行個體角色。每隔 60 秒會收集一次這些規則的狀態。
+- **計數器記錄檔︰** 您可以使用此記錄檔來檢視每個 NSG 規則套用到拒絕或允許流量的次數。
 
-- **Audit logs:** You can use [Azure Audit Logs](../azure-portal/insights-debugging-with-events.md) (formerly known as Operational Logs) to view all operations being submitted to your Azure subscription(s), and their status. Audit logs are enabled by default, and can be viewed in the Azure preview portal.
-- **Event logs:** You can use this log to view what NSG rules are applied to VMs and instance roles based on MAC address. The status for these rules is collected every 60 seconds.
-- **Counter logs:** You can use this log to view how many times each NSG rule was applied to deny or allow traffic.
+>[AZURE.WARNING] 記錄檔僅適用於在資源管理員部署模型中部署的資源。您無法將記錄檔使用於傳統部署模型中的資源。若要深入了解這兩個模型，請參閱[了解資源管理員部署和傳統部署](../resource-manager-deployment-model.md)一文。
 
->[AZURE.WARNING] Logs are only available for resources deployed in the Resource Manager deployment model. You cannot use logs for resources in the classic deployment model. For a better understanding of the two models, reference the [Understanding Resource Manager deployment and classic deployment](../resource-manager-deployment-model.md) article.
+##啟用記錄
+每個資源管理員資源都會隨時自動啟用稽核記錄。您需要啟用事件和計數器記錄，才能開始收集可透過這些記錄檔取得的資料。若要啟用記錄，請遵循下列步驟。
 
-##<a name="enable-logging"></a>Enable logging
-Audit logging is automatically enabled at all times for every Resource Manager resource. You need to enable event and counter logging to start collecting the data available through those logs. To enable logging, follow the steps below.
+1.  登入 [Azure 入口網站](https://portal.azure.com)。如果您還沒有現有的網路安全性群組，請在繼續之前[建立 NSG](virtual-networks-create-nsg-arm-ps.md)。
 
-1.  Sign-in to the [Azure portal](https://portal.azure.com). If you don't already have an existing network security group, [create an NSG](virtual-networks-create-nsg-arm-ps.md) before you continue.
+2.  在 Preview 入口網站中，按一下 [瀏覽] > [網路安全性群組]。
 
-2.  In the preview portal, click **Browse** >> **Network security groups**.
+	![Preview 入口網站 - 網路安全性群組](./media/virtual-network-nsg-manage-log/portal-enable1.png)
 
-    ![Preview portal - Network security groups](./media/virtual-network-nsg-manage-log/portal-enable1.png)
+3. 選取現有的網路安全性群組。
 
-3. Select an existing network security group.
+	![Preview 入口網站 - 網路安全性群組設定](./media/virtual-network-nsg-manage-log/portal-enable2.png)
 
-    ![Preview portal - Network security group settings](./media/virtual-network-nsg-manage-log/portal-enable2.png)
+4. 在 [設定] 刀鋒視窗中，按一下 [診斷]，然後在 [診斷] 窗格中，按一下 [狀態] 旁邊的 [開啟]
+5. 在 [設定] 刀鋒視窗中，按一下 [儲存體帳戶]，然後選取現有的儲存體帳戶或建立新的帳戶。
 
-4. In the **Settings** blade, click **Diagnostics**, and then in the **Diagnostics** pane, next to **Status**, click **On**
-5. In the **Settings** blade, click **Storage Account**, and either select an existing storage account, or create a new one.  
+>[AZURE.INFORMATION] 稽核記錄檔不需要個別的儲存體帳戶。將儲存體用於事件和規則記錄將會產生服務費用。
 
->[AZURE.INFORMATION] Audit logs do not require a separate storage account. The use of storage for event and rule logging will incur service charges.
+6. 在下拉式清單的 [儲存體帳戶] 之下，選取您是否要記錄事件、計數器或兩者，然後按一下 [儲存]。
 
-6. In the drop-down list just under **Storage Account**, select whether you want to log events, counters, or both, and then click **Save**.
+	![Preview 入口網站 - 診斷記錄檔](./media/virtual-network-nsg-manage-log/portal-enable3.png)
 
-    ![Preview portal - Diagnostics logs](./media/virtual-network-nsg-manage-log/portal-enable3.png)
+## 稽核記錄檔
+此記錄檔 (之前稱為「作業記錄檔」) 預設是由 Azure 產生。記錄檔會在 Azure 的 [事件記錄檔] 存放區中保留 90 天。閱讀[檢視事件和稽核記錄檔](../azure-portal/insights-debugging-with-events.md)一文，進一步了解這些記錄檔。
 
-## <a name="audit-log"></a>Audit log
-This log (formerly known as the "operational log") is generated by Azure by default.  The logs are preserved for 90 days in Azure’s Event Logs store. Learn more about these logs by reading the [View events and audit logs](../azure-portal/insights-debugging-with-events.md) article.
+## 計數器記錄檔
+如果您已如上所述對每一個 NSG 進行啟用，才會產生此記錄檔。資料會儲存在您啟用記錄時所指定的儲存體帳戶中。套用至資源的每個規則會以 JSON 格式記錄，如下所示。
 
-## <a name="counter-log"></a>Counter log
-This log is only generated if you've enabled it on a per NSG basis as detailed above. The data is stored in the storage account you specified when you enabled the logging. Each rule applied to resources is logged in JSON format, as seen below.
+	{
+		"time": "2015-09-11T23:14:22.6940000Z",
+		"systemId": "e22a0996-e5a7-4952-8e28-4357a6e8f0c5",
+		"category": "NetworkSecurityGroupRuleCounter",
+		"resourceId": "/SUBSCRIPTIONS/D763EE4A-9131-455F-8C5E-876035455EC4/RESOURCEGROUPS/INSIGHTOBONRP/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGINSIGHTOBONRP",
+		"operationName": "NetworkSecurityGroupCounters",
+		"properties": {
+			"vnetResourceGuid":"{DD0074B1-4CB3-49FA-BF10-8719DFBA3568}",
+			"subnetPrefix":"10.0.0.0/24",
+			"macAddress":"001517D9C43C",
+			"ruleName":"DenyAllOutBound",
+			"direction":"Out",
+			"type":"block",
+			"matchedConnections":0
+			}
+	}
 
-    {
-        "time": "2015-09-11T23:14:22.6940000Z",
-        "systemId": "e22a0996-e5a7-4952-8e28-4357a6e8f0c5",
-        "category": "NetworkSecurityGroupRuleCounter",
-        "resourceId": "/SUBSCRIPTIONS/D763EE4A-9131-455F-8C5E-876035455EC4/RESOURCEGROUPS/INSIGHTOBONRP/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGINSIGHTOBONRP",
-        "operationName": "NetworkSecurityGroupCounters",
-        "properties": {
-            "vnetResourceGuid":"{DD0074B1-4CB3-49FA-BF10-8719DFBA3568}",
-            "subnetPrefix":"10.0.0.0/24",
-            "macAddress":"001517D9C43C",
-            "ruleName":"DenyAllOutBound",
-            "direction":"Out",
-            "type":"block",
-            "matchedConnections":0
-            }
-    }
+## 事件記錄檔
+如果您已如上所述對每一個 NSG 進行啟用，才會產生此記錄檔。資料會儲存在您啟用記錄時所指定的儲存體帳戶中。會記錄下列資料：
 
-## <a name="event-log"></a>Event log
-This log is only generated if you've enabled it on a per NSG basis as detailed above. The data is stored in the storage account you specified when you enabled the logging. The following data is logged:
+	{
+		"time": "2015-09-11T23:05:22.6860000Z",
+		"systemId": "e22a0996-e5a7-4952-8e28-4357a6e8f0c5",
+		"category": "NetworkSecurityGroupEvent",
+		"resourceId": "/SUBSCRIPTIONS/D763EE4A-9131-455F-8C5E-876035455EC4/RESOURCEGROUPS/INSIGHTOBONRP/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGINSIGHTOBONRP",
+		"operationName": "NetworkSecurityGroupEvents",
+		"properties": {
+			"vnetResourceGuid":"{DD0074B1-4CB3-49FA-BF10-8719DFBA3568}",
+			"subnetPrefix":"10.0.0.0/24",
+			"macAddress":"001517D9C43C",
+			"ruleName":"AllowVnetOutBound",
+			"direction":"Out",
+			"priority":65000,
+			"type":"allow",
+			"conditions":{
+				"destinationPortRange":"0-65535",
+				"sourcePortRange":"0-65535",
+				"destinationIP":"10.0.0.0/8,172.16.0.0/12,169.254.0.0/16,192.168.0.0/16,168.63.129.16/32",
+				"sourceIP":"10.0.0.0/8,172.16.0.0/12,169.254.0.0/16,192.168.0.0/16,168.63.129.16/32"
+			}
+		}
+	}
 
-    {
-        "time": "2015-09-11T23:05:22.6860000Z",
-        "systemId": "e22a0996-e5a7-4952-8e28-4357a6e8f0c5",
-        "category": "NetworkSecurityGroupEvent",
-        "resourceId": "/SUBSCRIPTIONS/D763EE4A-9131-455F-8C5E-876035455EC4/RESOURCEGROUPS/INSIGHTOBONRP/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/NSGINSIGHTOBONRP",
-        "operationName": "NetworkSecurityGroupEvents",
-        "properties": {
-            "vnetResourceGuid":"{DD0074B1-4CB3-49FA-BF10-8719DFBA3568}",
-            "subnetPrefix":"10.0.0.0/24",
-            "macAddress":"001517D9C43C",
-            "ruleName":"AllowVnetOutBound",
-            "direction":"Out",
-            "priority":65000,
-            "type":"allow",
-            "conditions":{
-                "destinationPortRange":"0-65535",
-                "sourcePortRange":"0-65535",
-                "destinationIP":"10.0.0.0/8,172.16.0.0/12,169.254.0.0/16,192.168.0.0/16,168.63.129.16/32",
-                "sourceIP":"10.0.0.0/8,172.16.0.0/12,169.254.0.0/16,192.168.0.0/16,168.63.129.16/32"
-            }
-        }
-    }
+## 檢視和分析稽核記錄檔
+您可以使用下列任何方法，檢視和分析稽核記錄檔資料：
 
-## <a name="view-and-analyze-the-audit-log"></a>View and analyze the audit log
-You can view and analyze audit log data using any of the following methods:
+- **Azure 工具︰**透過 Azure PowerShell、Azure 命令列介面 (CLI)、Azure REST API 或 Azure Preview 入口網站，從稽核記錄擷取資訊。[稽核作業與資源管理員](../resource-group-audit.md)一文會詳述每個方法的逐步指示。
+- **Power BI︰**如果還沒有 [Power BI](https://powerbi.microsoft.com/pricing) 帳戶，您可以免費試用。使用 [Power BI 的 Azure 稽核記錄檔內容套件](https://powerbi.microsoft.com/documentation/powerbi-content-pack-azure-audit-logs/)，您可以使用預先設定的儀表板 (可按原樣使用或加以自訂) 來分析資料。
 
-- **Azure tools:** Retrieve information from the audit logs through Azure PowerShell, the Azure Command Line Interface (CLI), the Azure REST API, or the Azure preview portal.  Step-by-step instructions for each method are detailed in the [Audit operations with Resource Manager](../resource-group-audit.md) article.
-- **Power BI:** If you don't already have a [Power BI](https://powerbi.microsoft.com/pricing) account, you can try it for free. Using the [Azure Audit Logs content pack for Power BI](https://powerbi.microsoft.com/documentation/powerbi-content-pack-azure-audit-logs/) you can analyze your data with pre-configured dashboards that you can use as-is, or customize.
+## 檢視和分析計數器和事件記錄檔
 
-## <a name="view-and-analyze-the-counter-and-event-log"></a>View and analyze the counter and event log
+Azure [Log Analytics](../log-analytics/log-analytics-azure-networking-analytics.md) 可以從您的 Blob 儲存體帳戶收集計數器和事件記錄檔，並且納入了視覺效果和強大的搜尋功能來分析您的記錄檔。
 
-Azure [Log Analytics](../log-analytics/log-analytics-azure-networking-analytics.md) can collect the counter and event log files from your Blob storage account and includes visualizations and powerful search capabilities to analyze your logs.
+您也可以連接到儲存體帳戶，然後擷取事件和計數器記錄檔的 JSON 記錄項目。下載 JSON 檔案後，您可以將它們轉換成 CSV 並在 Excel、PowerBI 或任何其他資料視覺化工具中檢視。
 
-You can also connect to your storage account and retrieve the JSON log entries for event and counter logs. Once you download the JSON files, you can convert them to CSV and view in Excel, PowerBI, or any other data visualization tool.
+>[AZURE.TIP] 如果您熟悉 Visual Studio 以及在 C# 中變更常數和變數值的基本概念，您可以使用 Github 所提供的[記錄檔轉換器工具](https://github.com/Azure-Samples/networking-dotnet-log-converter)。
 
->[AZURE.TIP] If you are familiar with Visual Studio and basic concepts of changing values for constants and variables in C#, you can use the [log converter tools](https://github.com/Azure-Samples/networking-dotnet-log-converter) available from Github.
+## 後續步驟
 
-## <a name="next-steps"></a>Next steps
+- 利用 [Log Analytics](../log-analytics/log-analytics-azure-networking-analytics.md) 以視覺化方式呈現計數器和事件記錄檔
+- [使用 Power BI 視覺化您的 Azure 稽核記錄檔](http://blogs.msdn.com/b/powerbi/archive/2015/09/30/monitor-azure-audit-logs-with-power-bi.aspx)部落格文章。
+- [在 Power BI 和其他工具中檢視和分析 Azure 稽核記錄](https://azure.microsoft.com/blog/analyze-azure-audit-logs-in-powerbi-more/)部落格文章。
 
-- Visualize counter and event logs with [Log Analytics](../log-analytics/log-analytics-azure-networking-analytics.md)
-- [Visualize your Azure Audit Logs with Power BI](http://blogs.msdn.com/b/powerbi/archive/2015/09/30/monitor-azure-audit-logs-with-power-bi.aspx) blog post.
-- [View and analyze Azure Audit Logs in Power BI and more](https://azure.microsoft.com/blog/analyze-azure-audit-logs-in-powerbi-more/) blog post.
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

@@ -1,48 +1,44 @@
 <properties 
-    pageTitle="Application Insights for Microsoft Azure apps" 
-    description="Analyze usage and performance of your Azure app with Application Insights." 
-    services="application-insights" 
+	pageTitle="Microsoft Azure 應用程式的 Application Insights" 
+	description="使用 Application Insights 分析 Azure 應用程式的使用量和效能。" 
+	services="application-insights" 
     documentationCenter="windows"
-    authors="alancameronwills" 
-    manager="douge"/>
+	authors="alancameronwills" 
+	manager="douge"/>
 
 <tags 
-    ms.service="application-insights" 
-    ms.workload="tbd" 
-    ms.tgt_pltfrm="ibiza" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="08/15/2016" 
-    ms.author="awills"/>
+	ms.service="application-insights" 
+	ms.workload="tbd" 
+	ms.tgt_pltfrm="ibiza" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="08/15/2016" 
+	ms.author="awills"/>
+
+#  Microsoft Azure 應用程式的 Application Insights
+
+*Application Insights 目前僅供預覽。*
 
 
-#  <a name="application-insights-for-microsoft-azure-apps"></a>Application Insights for Microsoft Azure apps
+偵測問題、解決問題並持續改善您的應用程式。快速診斷即時應用程式中的任何問題。了解您的使用者與其有無任何關係？
 
-*Application Insights is in preview.*
+組態作業非常簡單，幾分鐘之內就能看到結果。
 
+您有何種應用程式？
 
-Detect issues, solve problems, and continuously improve your applications. Quickly diagnose any problems in your live application. Understand what your users do with it.
-
-Configuration is very easy, and you'll see results within minutes.
-
-What type of app do you have?
-
-* [Azure web app](app-insights-asp-net.md)
-* [Azure Cloud Services App - web and worker roles](app-insights-cloudservices.md)
-* [Web app on IIS in Azure VM](app-insights-asp-net.md)
-* [Application outside Azure](app-insights-overview.md)
+* [Azure Web 應用程式](app-insights-asp-net.md)
+* [Azure 雲端服務 App - Web 和背景工作角色](app-insights-cloudservices.md)
+* [Azure VM 中的 IIS 上的 Web 應用程式](app-insights-asp-net.md)
+* [Azure 外部的應用程式](app-insights-overview.md)
 
 
-Additional telemetry
+額外的遙測
 
-* [Show Azure diagnostic logs in Application Insights](app-insights-azure-diagnostics.md)
+* [在 Application Insights 中顯示 Azure 診斷記錄](app-insights-azure-diagnostics.md)
 
 
 
 
  
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

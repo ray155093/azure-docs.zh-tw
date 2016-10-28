@@ -1,6 +1,6 @@
 <properties
-pageTitle="Add the Excel connector | Microsoft Azure"
-description="Overview of the Excel connector with REST API parameters"
+pageTitle="新增 Excel 連接器 | Microsoft Azure"
+description="搭配 REST API 參數來使用 Excel 連接器的概觀"
 services=""    
 documentationCenter=""     
 authors="msftman"    
@@ -17,13 +17,12 @@ ms.workload="na"
 ms.date="08/23/2016"
 ms.author="deonhe"/>
 
+# 開始使用 Excel 連接器
 
-# <a name="get-started-with-the-excel-connector"></a>Get started with the Excel connector
+目前，Logic Apps 中沒有任何 Excel 連接器。
 
-Currently, there is no Excel connector in Logic Apps. 
-
-## <a name="to-use-excel-data"></a>To use Excel data
-You can store Excel data as a comma-separated value (CSV) file in a storage folder, such as [OneDrive](connectors-create-api-onedrive.md). You can also use this CSV file with the [flat-file connector](../app-service-logic/app-service-logic-enterprise-integration-flatfile.md).
+## 使用 Excel 資料
+您可以將 Excel 資料儲存為儲存體資料夾中的逗號分隔值 (CSV) 檔案，例如 [OneDrive](connectors-create-api-onedrive.md)。您也可以搭配使用此 CSV 檔案與[一般檔案連接器](../app-service-logic/app-service-logic-enterprise-integration-flatfile.md)。
 
 <!---
 
@@ -215,8 +214,4 @@ Applies to version: 1.0.
 
 -->
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

@@ -1,55 +1,54 @@
 <properties
-    pageTitle="Use REST to back up and restore App Service apps"
-    description="Learn how to use RESTful API calls to back up and restore an app in Azure App Service"
-    services="app-service"
-    documentationCenter=""
-    authors="NKing92"
-    manager="wpickett"
+	pageTitle="使用 REST 來備份及還原 App Service 應用程式"
+	description="了解如何使用 RESTful API 呼叫來備份和還原 Azure App Service 中的 Web 應用程式"
+	services="app-service"
+	documentationCenter=""
+	authors="NKing92"
+	manager="wpickett"
     editor="" />
 
 <tags
-    ms.service="app-service"
-    ms.workload="na"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/10/2016"
-    ms.author="nicking"/>
-
-# <a name="use-rest-to-back-up-and-restore-app-service-apps"></a>Use REST to back up and restore App Service apps
+	ms.service="app-service"
+	ms.workload="na"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/10/2016"
+	ms.author="nicking"/>
+# 使用 REST 來備份及還原 App Service 應用程式
 
 > [AZURE.SELECTOR]
 - [PowerShell](../app-service/app-service-powershell-backup.md)
 - [REST API](websites-csm-backup.md)
 
-[App Service apps](https://azure.microsoft.com/services/app-service/web/) can be backed up as blobs in Azure storage. The backup can also contain the app’s databases. If the app is ever accidentally deleted, or if the app needs to be reverted to a previous version, it can be restored from any previous backup. Backups can be done at any time on demand, or backups can be scheduled at suitable intervals.
+[App Service 應用程式](https://azure.microsoft.com/services/app-service/web/) 可以備份成 Azure 儲存體中的 blob。此備份中也可以包含應用程式的資料庫。如果不小心刪除應用程式，或需要將應用程式還原成先前的版本，則可以從任何先前的備份加以還原。您可以視需要隨時進行備份，或排定在間隔適當時間後進行備份。
 
-This article explains how to backup and restore an app with RESTful API requests. If you would like to create and manage app backups graphically through the Azure portal, see [Back up a web app in Azure App Service](web-sites-backup.md)
+本文說明如何透過 RESTful API 要求，來備份和還原應用程式。如果您想要透過 Azure 入口網站以圖形方式建立和管理 Web 應用程式的備份，請參閱[在 Azure App Service 中備份 Web 應用程式](web-sites-backup.md)
 
 <a name="gettingstarted"></a>
-## <a name="getting-started"></a>Getting Started
-To send REST requests, you need to know your app’s **name**, **resource group**, and **subscription id**. This information can be found by clicking your app in the **App Service** blade of the [Azure portal](https://portal.azure.com). For the examples in this article, we are configuring the website **backuprestoreapiexamples.azurewebsites.net**. It is stored in the Default-Web-WestUS resource group and is running on a subscription with the ID 00001111-2222-3333-4444-555566667777.
+## 開始使用
+若要傳送 REST 要求，您必須知道應用程式的**名稱**、**資源群組**和**訂用帳戶識別碼**。如要尋找這些資訊，請在 [Azure 入口網站](https://portal.azure.com)的 [App Service] 刀鋒視窗中按一下您的應用程式。在本文的範例中，我們會設定 **backuprestoreapiexamples.azurewebsites.net** 網站。它儲存在 Default-Web-WestUS 資源群組中，並在識別碼為 00001111-2222-3333-4444-555566667777 的訂用帳戶上執行。
 
-![Sample Website Information][SampleWebsiteInformation]
+![範例網站資訊][SampleWebsiteInformation]
 
 <a name="backup-restore-rest-api"></a>
-## <a name="backup-and-restore-rest-api"></a>Backup and restore REST API
-We will now cover several examples of how to use the REST API to backup and restore an app. Each example includes a URL and HTTP request body. The sample URL contains placeholders wrapped in curly braces, such as {subscription-id}. Replace the placeholders with the corresponding information for your app. For reference, here is an explanation of each placeholder that appears in the example URLs.
+## 備份和還原 REST API
+現在我們要討論幾個範例，說明如何使用 REST API 來備份和還原應用程式。每個範例都包含 URL 和 HTTP 要求本文。範例 URL 中包含以大括號括住的預留位置，例如 {subscription-id}。請以對應的應用程式資訊來取代預留位置。以下有範例 URL 中會出現之預留位置的說明可供您參考。
 
-* subscription-id – ID of the Azure subscription containing the app
-* resource-group-name – Name of the resource group containing the app
-* name – Name of the app
-* backup-id – ID of the app backup
+* subscription-id – 包含應用程式的 Azure 訂用帳戶識別碼
+* resource-group-name – 包含應用程式的資源群組名稱
+* name – 應用程式的名稱
+* backup-id – 應用程式備份的識別碼
 
-For the complete documentation of the API, including several optional parameters that can be included in the HTTP request, see the [Azure Resource Explorer](https://resources.azure.com/).
+如需 API 的完整說明文件，包括可在 HTTP 要求內加入的幾個選用參數，請參閱 [Azure 資源總管](https://resources.azure.com/)。
 
 <a name="backup-on-demand"></a>
-## <a name="backup-an-app-on-demand"></a>Backup an app on demand
-To back up an app immediately, send a **POST** request to **https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backup/**.
+## 視需求備份應用程式
+若要立即備份應用程式，請將 **POST** 要求傳送到 **https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backup/**。
 
-Here is what the URL looks like using our example website. **https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backup/**
+使用範例網站後的 URL 看起來就像這樣：**https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backup/**
 
-Supply a JSON object in the body of your request to specify which storage account to use to store the backup. The JSON object must have a property named **storageAccountUrl**, which holds a [SAS URL](../storage/storage-dotnet-shared-access-signature-part-1.md) granting write access to the Azure Storage container that holds the backup blob. If you want to back up your databases, you must also supply a list containing the names, types, and connection strings of the databases to be backed up.
+請在要求本文中提供 JSON 物件，以指定要用來儲存備份的儲存體帳戶。JSON 物件必須有名為 **storageAccountUrl** 的屬性以保存 [SAS URL](../storage/storage-dotnet-shared-access-signature-part-1.md)，此 URL 會授與保有備份 Blob 之 Azure 儲存體容器的寫入權限。如果您想要備份資料庫，則還必須提供包含所要備份之資料庫的名稱、類型和連接字串的清單。
 
 ```
 {
@@ -67,7 +66,7 @@ Supply a JSON object in the body of your request to specify which storage accoun
 }
 ```
 
-A backup of the app begins immediately when the request is received. The backup process may take a long time to complete. The HTTP response contains an ID that you can use in another request to see the status of the backup. Here is an example of the body of the HTTP response to our backup request.
+當系統收到要求時，就會立刻開始備份應用程式。備份程序可能需要很長的時間才能完成。HTTP 回應中會有識別碼可供您用於其他要求以查看備份狀態。以下是備份要求之 HTTP 回應本文的範例。
 
 ```
 {
@@ -97,18 +96,18 @@ A backup of the app begins immediately when the request is received. The backup 
 }
 ```
 
->[AZURE.NOTE] Error messages can be found in the log property of the HTTP response.
+>[AZURE.NOTE] 在 HTTP 回應的記錄檔屬性中可以找到錯誤訊息。
 
 <a name="schedule-automatic-backups"></a>
-## <a name="schedule-automatic-backups"></a>Schedule automatic backups
-In addition to backing up an app on demand, you can also schedule a backup to happen automatically.
+## 排程自動備份
+除了視需要備份應用程式，您也可以建立排程來自動備份。
 
-### <a name="set-up-a-new-automatic-backup-schedule"></a>Set up a new automatic backup schedule
-To set up a backup schedule, send a **PUT** request to **https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/config/backup**.
+### 設定新的自動備份排程
+若要設定備份排程，請傳送 **PUT** 要求給 **https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/config/backup**。
 
-Here is what the URL looks like for our example website. **https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/config/backup**
+範例網站的 URL 看起來就像這樣：**https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/config/backup**
 
-The request body must have a JSON object that specifies the backup configuration. Here is an example with all the required parameters.
+要求本文必須有指定備份組態的 JSON 物件。以下是具有所有必要參數的範例。
 
 ```
 {
@@ -128,24 +127,24 @@ The request body must have a JSON object that specifies the backup configuration
 }
 ```
 
-This example configures the app to be automatically backed up every seven days. The parameters **frequencyInterval** and **frequencyUnit** together determine how often the backups happen. Valid values for **frequencyUnit** are **hour** and **day**. For example, to back up an app every 12 hours, set frequencyInterval to 12 and frequencyUnit to hour.
+此範例設定應用程式每隔七天自動備份。**frequencyInterval** 和 **frequencyUnit** 參數一起決定備份的執行頻率。**frequencyUnit** 的有效值為**小時**和**天**。例如，若要每 12 小時備份一次應用程式，請將 frequencyInterval 設為 12，並將 frequencyUnit 設為小時。
 
-Old backups are automatically removed from the storage account. You can control how old the backups can be by setting the **retentionPeriodInDays** parameter. If you want to always have at least one backup saved, regardless of how old it is, set **keepAtLeastOneBackup** to true.
+系統會自動移除儲存體帳戶中的舊有備份。您可以藉由設定 **retentionPeriodInDays** 參數來控制舊有備份的保留期。如果您想要永遠儲存至少一個備份，不論它已存在多久，請將 **keepAtLeastOneBackup** 設為 true。
 
-### <a name="get-the-automatic-backup-schedule"></a>Get the automatic backup schedule
-To get an app’s backup configuration, send a **POST** request to the URL **https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/config/backup/list**.
+### 取得自動備份排程
+若要取得應用程式的備份組態，請傳送 **POST** 要求到以下 URL：**https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/config/backup/list**。
 
-The URL for our example site is **https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/config/backup/list**.
+範例網站的 URL 是 **https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/config/backup/list**。
 
 <a name="get-backup-status"></a>
-## <a name="get-the-status-of-a-backup"></a>Get the status of a backup
-Depending on how large the app is, a backup may take a while to complete. Backups might also fail, time out, or partially succeed. To see the status of all an app’s backups, send a **GET** request to the URL **https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backups**.
+## 取得備份狀態
+視應用程式的大小而定，備份程序可能需要一些時間才能完成。備份程序也可能失敗、逾時或是部分成功。若要查看所有應用程式的備份狀態，請傳送 **GET** 要求到以下 URL：**https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backups**。
 
-To see the status of a specific backup, send a GET request to the URL **https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backups/{backup-id}**.
+若要查看特定備份的狀態，請傳送 GET 要求到以下 URL：**https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backups/{backup-id}**。
 
-Here is what the URL looks like for our example website. **https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backups/1**
+範例網站的 URL 看起來就像這樣：**https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backups/1**
 
-The response body contains a JSON object similar to this example.
+回應本文會包含類似此範例的 JSON 物件。
 
 ```
 {
@@ -166,26 +165,26 @@ The response body contains a JSON object similar to this example.
 }
 ```
 
-The status of a backup is an enumerated type. Here is every possible state.
+備份狀態是列舉的類型。以下是各個可能的狀態。
 
-* 0 – InProgress: The backup has been started but has not yet completed.
-* 1 – Failed: The backup was unsuccessful.
-* 2 – Succeeded: The backup completed successfully.
-* 3 – TimedOut: The backup did not finish in time and was canceled.
-* 4 – Created: The backup request is queued but has not been started.
-* 5 – Skipped: The backup did not proceed due to a schedule triggering too many backups.
-* 6 – PartiallySucceeded: The backup succeeded, but some files were not backed up because they could not be read. This usually happens because an exclusive lock was placed on the files.
-* 7 – DeleteInProgress: The backup has been requested to be deleted, but has not yet been deleted.
-* 8 – DeleteFailed: The backup could not be deleted. This might happen because the SAS URL that was used to create the backup has expired.
-* 9 – Deleted: The backup was deleted successfully.
+* 0 – 進行中：備份已啟動但尚未完成。
+* 1 – 失敗：備份未能成功。
+* 2 – 成功：已成功完成備份。
+* 3 – 逾時：備份未能及時完成，因此已取消。
+* 4 - 已建立：備份要求已排入佇列，但尚未啟動。
+* 5 - 略過：未進行備份，因為排程觸發了太多備份。
+* 6 – 部分成功：備份成功，但某些檔案因為無法讀取而未能予以備份。會發生此狀況通常是因為檔案已遭到獨佔鎖定。
+* 7 – 正在進行刪除：已要求刪除備份，但系統尚未刪除。
+* 8 - 刪除失敗：無法刪除備份。會發生此狀況通常是因為用來建立備份的 SAS URL 已過期。
+* 9 - 已刪除：已成功刪除備份。
 
 <a name="restore-app"></a>
-## <a name="restore-an-app-from-a-backup"></a>Restore an app from a backup
-If your app has been deleted, or if you want to revert your app to a previous version, you can restore the app from a backup. To invoke a restore, send a **POST** request to the URL **https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backups/{backup-id}/restore**.
+## 從備份還原應用程式
+如果應用程式遭到刪除，或是當您想要把應用程式還原為較舊的版本時，您可以從備份還原應用程式。若要叫用還原，請傳送 **POST** 要求到以下 URL：**https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backups/{backup-id}/restore**。
 
-Here is what the URL looks like for our example website. **https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backups/1/restore**
+範例網站的 URL 看起來就像這樣：**https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backups/1/restore**
 
-In the request body, send a JSON object that contains the properties for the restore operation. Here is an example containing all required properties:
+在要求本文中，傳送包含還原作業屬性的 JSON 物件。以下是包含所有必要屬性的範例：
 
 ```
 {
@@ -204,22 +203,22 @@ In the request body, send a JSON object that contains the properties for the res
 }
 ```
 
-### <a name="restore-to-a-new-app"></a>Restore to a new app
-Sometimes you might want to create a new app when you restore a backup, instead of overwriting an already existing app. To do this, change the request URL to point to the new app you want to create, and change the **overwrite** property in the JSON to **false**.
+### 還原成新的應用程式
+當您在還原備份時，可能有時您會想要建立新的 Web 應用程式，而非覆寫現有的應用程式。方法是變更要求 URL 來指向您要建立的新應用程式，然後把 JSON 中的 **overwrite** 屬性變更為 **false**。
 
 <a name="delete-app-backup"></a>
-## <a name="delete-an-app-backup"></a>Delete an app backup
-If you would like to delete a backup, send a **DELETE** request to the URL **https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backups/{backup-id}**.
+## 刪除應用程式備份
+如果您想要刪除備份，請傳送 **DELETE** 要求給以下 URL：**https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backups/{backup-id}**。
 
-Here is what the URL looks like for our example website. **https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backups/1**
+範例網站的 URL 看起來就像這樣：**https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backups/1**
 
 <a name="manage-sas-url"></a>
-## <a name="manage-a-backup’s-sas-url"></a>Manage a backup’s SAS URL
-Azure App Service will attempt to delete your backup from Azure Storage using the SAS URL that was provided when the backup was created. If this SAS URL is no longer valid, the backup cannot be deleted through the REST API. However, you can update the SAS URL associated with a backup by sending a **POST** request to the URL **https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backups/{backup-id}/list**.
+## 管理備份的 SAS URL
+Azure App Service 會嘗試使用備份建立時所提供的 SAS URL，來刪除 Azure 儲存體中的備份。如果此 SAS URL 不再有效，就無法透過 REST API 刪除備份。不過，您可以傳送 **POST** 要求給以下 URL 來更新與備份相關聯的 SAS URL：**https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backups/{backup-id}/list**。
 
-Here is what the URL looks like for our example website. **https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backups/1/list**
+範例網站的 URL 看起來就像這樣：**https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backups/1/list**
 
-In the request body, send a JSON object that contains the new SAS URL. Here is an example.
+在要求本文中，傳送包含新的 SAS URL 的 JSON 物件。範例如下。
 
 ```
 {
@@ -230,13 +229,9 @@ In the request body, send a JSON object that contains the new SAS URL. Here is a
 }
 ```
 
->[AZURE.NOTE] For security reasons, the SAS URL associated with a backup is not returned when sending a GET request for a specific backup. If you want to view the SAS URL associated with a backup, send a POST request to the same URL above. Include an empty JSON object in the request body. The response from the server contains all of that backup’s information, including its SAS URL.
+>[AZURE.NOTE] 為了確保安全，在傳送特定備份的 GET 要求時，並不會傳回與該備份相關聯的 SAS URL。如果您想要檢視與備份相關聯的 SAS URL，請傳送 POST 要求給上述的同一個 URL。在要求本文中包含空的 JSON 物件。伺服器所傳回的回應中便會包含該備份的所有資訊，包括其 SAS URL。
 
 <!-- IMAGES -->
 [SampleWebsiteInformation]: ./media/websites-csm-backup/01siteconfig.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

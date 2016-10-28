@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Using the DB2 connector in Microsoft Azure App Service | Microsoft Azure"
-   description="How to use the DB2 connector with Logic app triggers and actions"
+   pageTitle="在 Microsoft Azure App Service 中使用 DB2 連接器 | Microsoft Azure"
+   description="如何使用 DB2 連接器搭配邏輯應用程式觸發程序和動作"
    services="logic-apps"
    documentationCenter=".net,nodejs,java"
    authors="gplarsen"
@@ -16,70 +16,69 @@
    ms.date="05/31/2016"
    ms.author="plarsen"/>
 
+# DB2 連接器
+>[AZURE.NOTE] 這一版文章適用於 Logic Apps 2014-12-01-preview 結構描述版本。
 
-# <a name="db2-connector"></a>DB2 connector
->[AZURE.NOTE] This version of the article applies to Logic apps 2014-12-01-preview schema version.
+Microsoft connector for DB2 是一個 API 應用程式，可透過 Azure App Service 將應用程式連接至儲存在 IBM DB2 資料庫中的資源。連接器含有一個 Microsoft 用戶端，可透過 TCP/IP 網路連線 (包括使用 Azure 服務匯流排轉送對內部部署 DB2 伺服器進行的 Azure 混合式連線) 連接至遠端 DB2 伺服器電腦。連接器支援下列資料庫作業：
 
-Microsoft connector for DB2 is an API app for connecting applications through Azure App Service to resources stored in an IBM DB2 database. Connector includes a Microsoft Client to connect to remote DB2 server computers across a TCP/IP network connection, including Azure hybrid connections to on-premises DB2 servers using the Azure Service Bus Relay connector supports the following database operations:
+- 使用 SELECT 讀取資料列
+- 使用後接 SELECT 的 SELECT COUNT 輪詢以讀取資料列
+- 使用 INSERT 加入一個資料列或多個 (大量) 資料列
+- 使用 UPDATE 變更一個資料列或多個 (大量) 資料列
+- 使用 DELETE 移除一個資料列或多個 (大量) 資料列
+- 使用後接 UPDATE WHERE CURRENT OF CURSOR 的 SELECT CURSOR 讀取以變更資料列
+- 使用後接 UPDATE WHERE CURRENT OF CURSOR 的 SELECT CURSOR 讀取以移除資料列
+- 使用 CALL 執行具有輸入和輸出參數、傳回值、結果集的程序
+- 使用 SELECT、INSERT、UPDATE、DELETE 的自訂命令和複合作業
 
-- Read rows using SELECT
-- Poll to read rows using SELECT COUNT followed by SELECT
-- Add one row or multiple (bulk) rows using INSERT
-- Alter one row or multiple (bulk) rows using UPDATE
-- Remove one row or multiple (bulk) rows using DELETE
-- Read to alter rows using SELECT CURSOR followed by UPDATE WHERE CURRENT OF CURSOR
-- Read to remove rows using SELECT CURSOR followed by UPDATE WHERE CURRENT OF CURSOR
-- Run procedure with input and output parameters, return value, resultset, using CALL
-- Custom commands and composite operations using SELECT, INSERT, UPDATE, DELETE
+## 觸發程序和動作
+連接器支援下列邏輯應用程式觸發程序和動作：
 
-## <a name="triggers-and-actions"></a>Triggers and Actions
-Connector supports the following Logic app triggers and actions:
-
-Triggers | Actions
+觸發程序 | 動作
 --- | ---
-<ul><li>Poll Data</li></ul> | <ul><li>Bulk Insert</li><li>Insert</li><li>Bulk Update</li><li>Update</li><li>Call</li><li>Bulk Delete</li><li>Delete</li><li>Select</li><li>Conditional update</li><li>Post to EntitySet</li><li>Conditional delete</li><li>Select single entity</li><li>Delete</li><li>Upsert to EntitySet</li><li>Custom commands</li><li>Composite operations</li></ul>
+<ul><li>輪詢資料</li></ul> | <ul><li>Bulk Insert</li><li>Insert</li><li>Bulk Update</li><li>Update</li><li>Call</li><li>Bulk Delete</li><li>Delete</li><li>Select</li><li>Conditional update</li><li>Post to EntitySet</li><li>Conditional delete</li><li>選取單一實體</li><li>Delete</li><li>Upsert to EntitySet</li><li>自訂命令</li><li>復合作業</li></ul>
 
 
-## <a name="create-the-db2-connector"></a>Create the DB2 connector
-You can define a connector within a Logic app or from the Azure Marketplace, like in the following example:  
+## 建立 DB2 連接器
+您可以在邏輯應用程式中或從 Azure Marketplace 定義連接器，如下列範例所示：
 
-1. In the Azure startboard, select **Marketplace**.
-2. In the **Everything** blade, type **db2** in the **Search Everything** box, and then click the enter key.
-3. In the search everything results pane, select **DB2 connector**.
-4. In the DB2 connector description blade, select **Create**.
-5. In the DB2 connector package blade, enter the Name (e.g. "Db2ConnectorNewOrders"), App Service Plan, and other properties.
-6. Select **Package settings**, and enter the following package settings:  
+1. 在 Azure 開始面板中，選取 [**Marketplace**]。
+2. 在 [所有項目] 刀鋒視窗的 [搜尋所有項目] 方塊中輸入 **db2**，然後按一下 Enter 鍵。
+3. 在 [搜尋所有項目的結果] 窗格中，選取 [DB2 連接器]。
+4. 在 [DB2 連接器描述] 刀鋒視窗中，選取 [建立]。
+5. 在 [DB2 連接器封裝] 刀鋒視窗中，輸入 [名稱] \(例如："Db2ConnectorNewOrders")、[App Service 方案] 和其他屬性。
+6. 選取 [封裝設定]，然後輸入下列封裝設定：
 
-    Name | Required |  Description
+	名稱 | 必要 | 說明
 --- | --- | ---
-ConnectionString | Yes | DB2 Client connection string (e.g., "Network Address=servername;Network Port=50000;User ID=username;Password=password;Initial Catalog=SAMPLE;Package Collection=NWIND;Default Schema=NWIND").
-Tables | Yes | Comma separated list of table, view and alias names required for OData operations and to generate swagger documentation with examples (e.g. "*NEWORDERS*").
-Procedures | Yes | Comma separated list of procedure and function names (e.g. "SPORDERID").
-OnPremise | No | Deploy on-premises using Azure Service Bus Relay.
-ServiceBusConnectionString | No | Azure Service Bus Relay connection string.
-PollToCheckData | No | SELECT COUNT statement to use with a Logic app trigger (e.g. "SELECT COUNT(\*) FROM NEWORDERS WHERE SHIPDATE IS NULL").
-PollToReadData | No | SELECT statement to use with a Logic app trigger (e.g. "SELECT \* FROM NEWORDERS WHERE SHIPDATE IS NULL FOR UPDATE").
-PollToAlterData | No | UPDATE or DELETE statement to use with a Logic app trigger (e.g. "UPDATE NEWORDERS SET SHIPDATE = CURRENT DATE WHERE CURRENT OF &lt;CURSOR&gt;").
+ConnectionString | 是 | DB2 用戶端連接字串 (例如，"Network Address=servername;Network Port=50000;User ID=username;Password=password;Initial Catalog=SAMPLE;Package Collection=NWIND;Default Schema=NWIND")。
+資料表 | 是 | OData 作業所需以及產生含範例之 Swagger 文件所需的資料表、檢視和別名清單 (以逗號分隔) (例如"*NEWORDERS*")。
+程序 | 是 | 以逗號分隔的程序和函式名稱清單 (例如"SPORDERID")。
+OnPremise | 否 | 使用 Azure 服務匯流排轉送部署內部部署應用程式
+ServiceBusConnectionString | 否 | Azure 服務匯流排轉送連接字串。
+PollToCheckData | 否 | 要搭配邏輯應用程式觸發程序使用的 SELECT COUNT 陳述式 (例如"SELECT COUNT(*) FROM NEWORDERS WHERE SHIPDATE IS NULL")。
+PollToReadData | 否 | 要搭配邏輯應用程式觸發程序使用的 SELECT 陳述式 (例如"SELECT * FROM NEWORDERS WHERE SHIPDATE IS NULL FOR UPDATE")。
+PollToAlterData | 否 | 要搭配邏輯應用程式觸發程序使用的 UPDATE 或 DELETE 陳述式 (例如"UPDATE NEWORDERS SET SHIPDATE = CURRENT DATE WHERE CURRENT OF &lt;CURSOR&gt;")。
 
-7. Select **OK**, and then Select **Create**.
-8. When complete, the Package Settings look similar to the following:  
+7. 選取 [確定]，然後選取 [建立]。
+8. 完成時，[封裝設定] 看起來如下：  
 ![][1]
 
 
-## <a name="logic-app-with-db2-connector-action-to-add-data"></a>Logic app with DB2 connector action to add data ##
-You can define a Logic app action to add data to a DB2 table using an API Insert or Post to Entity OData operation. For example, you can insert a new customer order record, by processing a SQL INSERT statement against a table defined with an identity column, returning the identity value or the rows affected to the Logic app (SELECT ORDID FROM FINAL TABLE (INSERT INTO NWIND.NEWORDERS (CUSTID,SHIPNAME,SHIPADDR,SHIPCITY,SHIPREG,SHIPZIP) VALUES (?,?,?,?,?,?))).
+## 以 DB2 連接器動作新增資料的邏輯應用程式 ##
+您可以定義邏輯應用程式動作，以使用 API Insert 或 Post to Entity OData 作業將資料加入至 DB2 資料表。例如，您可對以身分識別資料行定義的資料表處理 SQL INSERT 陳述式，將身分識別值或受影響的資料列傳回至邏輯應用程式，進而插入一筆新的客戶訂單記錄 (SELECT ORDID FROM FINAL TABLE (INSERT INTO NWIND.NEWORDERS (CUSTID,SHIPNAME,SHIPADDR,SHIPCITY,SHIPREG,SHIPZIP) VALUES (?,?,?,?,?,?)))。
 
-> [AZURE.TIP] DB2 Connection "*Post to EntitySet*" returns the identity column value and "*API Insert*" returns rows affected
+> [AZURE.TIP] DB2 Connection "*Post to EntitySet*" 會傳回身分識別資料行值，而 "*API Insert*" 會傳回受影響的資料列
 
-1. In the Azure startboard, select **+** (plus sign), **Web + Mobile**, and then **Logic app**.
-2. Enter the Name (e.g. "NewOrdersDb2"), App Service Plan, other properties, and then select **Create**.
-3. In the Azure startboard, select the Logic app you just created, **Settings**, and then **Triggers and actions**.
-4. In the Triggers and actions blade, select **Create from Scratch** within the Logic app Templates.
-5. In the API Apps panel, select **Recurrence**, set a frequency and interval, and then **checkmark**.
-6. In the API Apps panel, select **DB2 connector**, expand the operations list to select **Insert into NEWORDER**.
-7. Expand the parameters list to enter the following values:  
+1. 在 Azure 開始面板中，依序選取 **+** (加號)、[Web + 行動] 和 [邏輯應用程式]。
+2. 輸入名稱 (例如"NewOrdersDb2")、App Service 方案、其他屬性，然後選取 [建立]。
+3. 在 Azure 開始面板中，依序選取您剛建立的邏輯應用程式、[設定] 和 [觸發程序和動作]。
+4. 在 [觸發程序和動作] 刀鋒視窗中，選取 [邏輯應用程式範本] 中的 [從頭建立]。
+5. 在 API Apps 面板中，選取 [週期]，設定頻率和間隔，然後選取**核取記號**。
+6. 在 [API Apps] 面板中，選取 [DB2 連接器]，展開作業清單以選取 [插入 NEWORDER]。
+7. 展開參數清單以輸入下列值：
 
-    Name | Value
+	名稱 | 值
 --- | --- 
 CUSTID | 10042
 SHIPNAME | Lazy K Kountry Store 
@@ -88,183 +87,183 @@ SHIPCITY | Walla Walla
 SHIPREG | WA
 SHIPZIP | 99362 
 
-8. Select the **checkmark** to save the action settings, and then **Save**.
-9. The settings should look as follows:  
+8. 選取**核取記號**以儲存動作設定，然後選取 [儲存]。
+9. 設定應如下所示：  
 ![][3]
 
-10. In the **All runs** list under **Operations**, select the first-listed item (most recent run). 
-11. In the **Logic app run** blade, select the **ACTION** item **db2connectorneworders**.
-12. In the **Logic app action** blade, select the **INPUTS LINK**. DB2 connector uses the inputs to process a parameterized INSERT statement.
-13. In the **Logic app action** blade, select the **OUTPUTS LINK**. The inputs should look as follows:  
+10. 在 [作業] 之下的 [所有執行] 清單中，選取第一個列出的項目 (最近一次執行)。
+11. 在 [邏輯應用程式執行] 刀鋒視窗中，選取 [動作] 項目 **db2connectorneworders**。
+12. 在 [邏輯應用程式動作] 刀鋒視窗中，選取 [輸入連結]。DB2 連接器會使用輸入來處理參數化的 INSERT 陳述式。
+13. 在 [邏輯應用程式動作] 刀鋒視窗中，選取 [輸出連結]。輸入應如下所示：  
 ![][4]
 
-#### <a name="what-you-need-to-know"></a>What you need to know
+#### 您所需了解的事情
 
-- Connector truncates DB2 table names when forming Logic app action names. For example, the operation **Insert into NEWORDERS** is truncated to **Insert into NEWORDER**.
-- After saving the Logic app **Triggers and actions**, Logic app processes the operation. There may be a delay of a number of seconds (e.g. 3-5 seconds) before Logic app processes the operation. Optionally, you can click **Run Now** to process the operation.
-- DB2 connector defines EntitySet members with attributes, including whether the member corresponds to a DB2 column with a default or generated columns (e.g. identity). Logic app displays a red asterisk next to the EntitySet member ID name, to denote DB2 columns that require values. You should not enter a value for the ORDID member, which corresponds to DB2 identity column. You may enter values for other optional members (ITEMS, ORDDATE, REQDATE, SHIPID, FREIGHT, SHIPCTRY), which correspond to DB2 columns with default values. 
-- DB2 connector returns to Logic app the response on the Post to EntitySet that includes the values for identity columns, which is derived from the DRDA SQLDARD (SQL Data Area Reply Data) on the prepared SQL INSERT statement. DB2 server does not return the inserted values for columns with default values.  
+- 形成邏輯應用程式的動作名稱時，連接器會截斷 DB2 資料表名稱。例如，[插入 NEWORDERS] 作業會被截斷成 [插入 NEWORDER]。
+- 儲存邏輯應用程式的 [觸發程序和動作] 之後，邏輯應用程式會處理此作業。在邏輯應用程式處理此作業前，可能會有數秒的延遲 (例如 3-5 秒)。或者，您可以按一下 [立即執行] 來處理此作業。
+- DB2 連接器會以屬性定義 EntitySet 成員，包括成員是否對應至具有預設值的 DB2 資料行或產生的資料行 (例如身分識別)。邏輯應用程式會在 EntitySet 成員識別碼名稱旁邊顯示一個紅色星號，表示需有值的 DB2 資料行。您不應輸入 ORDID 成員的值，其對應至 DB2 身分識別資料行。您可以輸入其他選擇性成員 (ITEMS、ORDDATE、REQDATE、SHIPID、FREIGHT、SHIPCTRY) 的值，其對應至具有預設值的 DB2 資料行。
+- DB2 連接器會將 Post to EntitySet 回應 (包含身分識別資料行的值) 傳回至邏輯應用程式，而該回應衍生自已備妥 SQL INSERT 陳述式上的 DRDA SQLDARD (SQL 資料區域回覆資料)。DB2 伺服器不會對具有預設值的資料行傳回插入的值。
 
 
-## <a name="logic-app-with-db2-connector-action-to-add-bulk-data"></a>Logic app with DB2 connector action to add bulk data ##
-You can define a Logic app action to add data to a DB2 table using an API Bulk Insert operation. For example, you can insert two new customer order records, by processing a SQL INSERT statement using an array of row values against a table defined with an identity column, returning the rows affected to the Logic app (SELECT ORDID FROM FINAL TABLE (INSERT INTO NWIND.NEWORDERS (CUSTID,SHIPNAME,SHIPADDR,SHIPCITY,SHIPREG,SHIPZIP) VALUES (?,?,?,?,?,?))).
+## 以 DB2 連接器動作大量新增資料的邏輯應用程式 ##
+您可以定義邏輯應用程式動作，以使用 API Bulk Insert 作業將資料加入至 DB2 資料表。例如，您可使用資料列值的陣列對以身分識別資料行定義的資料表處理 SQL INSERT 陳述式，將受影響的資料列傳回至邏輯應用程式，進而插入兩筆新的客戶訂單記錄 (SELECT ORDID FROM FINAL TABLE (INSERT INTO NWIND.NEWORDERS (CUSTID,SHIPNAME,SHIPADDR,SHIPCITY,SHIPREG,SHIPZIP) VALUES (?,?,?,?,?,?)))。
 
-1. In the Azure startboard, select **+** (plus sign), **Web + Mobile**, and then **Logic app**.
-2. Enter the Name (e.g. "NewOrdersBulkDb2"), App Service Plan, other properties, and then select **Create**.
-3. In the Azure startboard, select the Logic app you just created, **Settings**, and then **Triggers and actions**.
-4. In the Triggers and actions blade, select **Create from Scratch** within the Logic app Templates.
-5. In the API Apps panel, select **Recurrence**, set a frequency and interval, and then **checkmark**.
-6. In the API Apps panel, select **DB2 connector**, expand the operations list to select **Bulk Insert into NEW**.
-7. Enter the **rows** value as an array. For example, copy and paste the following:
+1. 在 Azure 開始面板中，依序選取 **+** (加號)、[Web + 行動] 和 [邏輯應用程式]。
+2. 輸入名稱 (例如"NewOrdersBulkDb2")、App Service 方案、其他屬性，然後選取 [建立]。
+3. 在 Azure 開始面板中，依序選取您剛建立的邏輯應用程式、[設定] 和 [觸發程序和動作]。
+4. 在 [觸發程序和動作] 刀鋒視窗中，選取 [邏輯應用程式範本] 中的 [從頭建立]。
+5. 在 API Apps 面板中，選取 [週期]，設定頻率和間隔，然後選取**核取記號**。
+6. 在 [API Apps] 面板中，選取 [DB2 連接器]，展開作業清單以選取 [大量插入 NEW]。
+7. 輸入**資料列**值做為陣列。例如，複製並貼上下列程式碼：
 
-    ```
+	```
     [{"CUSTID":10081,"SHIPNAME":"Trail's Head Gourmet Provisioners","SHIPADDR":"722 DaVinci Blvd.","SHIPCITY":"Kirkland","SHIPREG":"WA","SHIPZIP":"98034"},{"CUSTID":10088,"SHIPNAME":"White Clover Markets","SHIPADDR":"305 14th Ave. S. Suite 3B","SHIPCITY":"Seattle","SHIPREG":"WA","SHIPZIP":"98128","SHIPCTRY":"USA"}]
-    ```
+	```
 
-8. Select the **checkmark** to save the action settings, and then **Save**. The settings should look as follows:  
+8. 選取**核取記號**以儲存動作設定，然後選取 [儲存]。設定應如下所示：  
 ![][6]
 
-9. In the **All runs** list under **Operations**, click the first-listed item (most recent run).
-10. In the **Logic app run** blade, click the **ACTION** item.
-11. In the **Logic app action** blade, click the **INPUTS LINK**. The outputs should look as follows:  
-[][7]
-12. In the **Logic app action** blade, click the **OUTPUTS LINK**. The outputs should look as follows:  
+9. 在 [作業] 之下的 [所有執行] 清單中，按一下第一個列出的項目 (最近一次執行)。
+10. 在 [邏輯應用程式執行] 刀鋒視窗中，按一下 [動作] 項目。
+11. 在 [邏輯應用程式動作] 刀鋒視窗中，按一下 [輸入連結]。輸出應如下所示：  
+![][7]
+12. 在 [邏輯應用程式動作] 刀鋒視窗中，按一下 [輸出連結]。輸出應如下所示：  
 ![][8]
 
-#### <a name="what-you-need-to-know"></a>What you need to know
+#### 您所需了解的事情
 
-- Connector truncates DB2 table names when forming Logic app action names. For example, the operation **Bulk Insert into NEWORDERS** is truncated to **Bulk Insert into NEW**.
-- By omitting identity columns (e.g. ORDID), nullable columns (e.g. SHIPDATE), and columns with default values (e.g. ORDDATE, REQDATE, SHIPID, FREIGHT, SHIPCTRY), DB2 database generates values.
-- By specifying "today" and "tomorrow", DB2 connector generates "CURRENT DATE" and "CURRENT DATE + 1 DAY" functions (e.g. REQDATE). 
+- 形成邏輯應用程式的動作名稱時，連接器會截斷 DB2 資料表名稱。例如，[大量插入 NEWORDERS] 作業會被截斷成 [大量插入 NEW]。
+- 略過身分識別欄位 (例如 ORDID)、可為 null 的資料行 (例如 SHIPDATE) 和具有預設值的資料行 (例如 ORDDATE、REQDATE、SHIPID、FREIGHT、SHIPCTRY)，DB2 資料庫即可產生值。
+- 指定「今天」和「明天」，DB2 連接器即可產生「目前日期」和「目前日期 + 1 天」函式 (例如 REQDATE)。
 
 
-## <a name="logic-app-with-db2-connector-trigger-to-read,-alter-or-delete-data"></a>Logic app with DB2 connector trigger to read, alter or delete data ##
-You can define a Logic app trigger to poll and read data from a DB2 table using an API Poll Data composite operation. For example, you can read one or more new customer order records, returning the records to the Logic app. The DB2 Connection package/app settings should look as follows:
+## 以 DB2 連接器觸發程序讀取、變更或刪除資料的邏輯應用程式 ##
+您可定義邏輯應用程式觸發程序，使用 API 輪詢資料複合作業來輪詢和讀取 DB2 資料表中的資料。例如，您可以讀取一或多筆新的客戶訂單記錄，並將記錄傳回至邏輯應用程式。DB2 Connection 封裝/應用程式設定應如下所示：
 
-    App Setting | Value
+	App Setting | Value
 --- | --- | ---
-PollToCheckData | SELECT COUNT(\*) FROM NEWORDERS WHERE SHIPDATE IS NULL
-PollToReadData | SELECT \* FROM NEWORDERS WHERE SHIPDATE IS NULL FOR UPDATE
-PollToAlterData | <no value specified>
+PollToCheckData | SELECT COUNT(*) FROM NEWORDERS WHERE SHIPDATE IS NULL
+PollToReadData | SELECT * FROM NEWORDERS WHERE SHIPDATE IS NULL FOR UPDATE
+PollToAlterData | <未指定值>
 
 
-Also, you can define a Logic app trigger to poll, read and alter data in a DB2 table using an API Poll Data composite operation. For example, you can read one or more new customer order records, update the row values, returning the selected (before update) records to the Logic app. The DB2 Connection package/app settings should look as follows:
+此外，您可定義邏輯應用程式觸發程序，使用 API 輪詢資料複合作業來輪詢、讀取及變更 DB2 資料表中的資料。例如，您可以讀取一或多筆新的客戶訂單記錄、更新資料列值，並將選取 (更新前) 的記錄傳回至邏輯應用程式。DB2 Connection 封裝/應用程式設定應如下所示：
 
-    App Setting | Value
+	App Setting | Value
 --- | --- | ---
-PollToCheckData | SELECT COUNT(\*) FROM NEWORDERS WHERE SHIPDATE IS NULL
-PollToReadData | SELECT \* FROM NEWORDERS WHERE SHIPDATE IS NULL FOR UPDATE
+PollToCheckData | SELECT COUNT(*) FROM NEWORDERS WHERE SHIPDATE IS NULL
+PollToReadData | SELECT * FROM NEWORDERS WHERE SHIPDATE IS NULL FOR UPDATE
 PollToAlterData | UPDATE NEWORDERS SET SHIPDATE = CURRENT DATE WHERE CURRENT OF &lt;CURSOR&gt;
 
 
-Further, you can define a Logic app trigger to poll, read and remove data from a DB2 table using an API Poll Data composite operation. For example, you can read one or more new customer order records, delete the rows, returning the selected (before delete) records to the Logic app. The DB2 Connection package/app settings should look as follows:
+此外，您可定義邏輯應用程式觸發程序，使用 API 輪詢資料複合作業來輪詢、讀取及移除 DB2 資料表中的資料。例如，您可以讀取一或多筆新的客戶訂單記錄、刪除資料列，並將選取 (刪除前) 的記錄傳回至邏輯應用程式。DB2 Connection 封裝/應用程式設定應如下所示：
 
-    App Setting | Value
+	App Setting | Value
 --- | --- | ---
-PollToCheckData | SELECT COUNT(\*) FROM NEWORDERS WHERE SHIPDATE IS NULL
-PollToReadData | SELECT \* FROM NEWORDERS WHERE SHIPDATE IS NULL FOR UPDATE
+PollToCheckData | SELECT COUNT(*) FROM NEWORDERS WHERE SHIPDATE IS NULL
+PollToReadData | SELECT * FROM NEWORDERS WHERE SHIPDATE IS NULL FOR UPDATE
 PollToAlterData | DELETE NEWORDERS WHERE CURRENT OF &lt;CURSOR&gt;
 
-In this example, Logic app will poll, read, update, and then re-read data in the DB2 table.
+在此範例中，邏輯應用程式會輪詢、讀取、更新，而後重新讀取 DB2 資料表中的資料。
 
-1. In the Azure startboard, select **+** (plus sign), **Web + Mobile**, and then **Logic app**.
-2. Enter the Name (e.g. "ShipOrdersDb2"), App Service Plan, other properties, and then select **Create**.
-3. In the Azure startboard, select the Logic app you just created, **Settings**, and then **Triggers and actions**.
-4. In the Triggers and actions blade, select **Create from Scratch** within the Logic app Templates.
-5. In the API Apps panel, select **DB2 connector**, set a frequency and interval, and then **checkmark**.
-6. In the API Apps panel, select **DB2 connector**, expand the operations list to select **Select from NEWORDERS**.
-7. Select the **checkmark** to save the action settings, and then **Save**. The settings should look as follows:  
-![][10]  
-8. Click to close the **Triggers and actions** blade, and then click to close the **Settings** blade.
-9. In the **All runs** list under **Operations**, click the first-listed item (most recent run).
-10. In the **Logic app run** blade, click the **ACTION** item.
-11. In the **Logic app action** blade, click the **OUTPUTS LINK**. The outputs should look as follows:  
+1. 在 Azure 開始面板中，依序選取 **+** (加號)、[Web + 行動] 和 [邏輯應用程式]。
+2. 輸入名稱 (例如"ShipOrdersDb2")、App Service 方案、其他屬性，然後選取 [建立]。
+3. 在 Azure 開始面板中，依序選取您剛建立的邏輯應用程式、[設定] 和 [觸發程序和動作]。
+4. 在 [觸發程序和動作] 刀鋒視窗中，選取 [邏輯應用程式範本] 中的 [從頭建立]。
+5. 在 [API Apps] 面板中，選取 [DB2 連接器]，設定頻率和間隔，然後選取**核取記號**。
+6. 在 [API Apps] 面板中，選取 [DB2 連接器]，展開作業清單以選取 [從 NEWORDERS 選取]。
+7. 選取**核取記號**以儲存動作設定，然後選取 [儲存]。設定應如下所示：  
+![][10]
+8. 按一下以關閉 [觸發程序和動作] 刀鋒視窗，然後按一下以關閉 [設定] 刀鋒視窗。
+9. 在 [作業] 之下的 [所有執行] 清單中，按一下第一個列出的項目 (最近一次執行)。
+10. 在 [邏輯應用程式執行] 刀鋒視窗中，按一下 [動作] 項目。
+11. 在 [邏輯應用程式動作] 刀鋒視窗中，按一下 [輸出連結]。輸出應如下所示：  
 ![][11]
 
 
-## <a name="logic-app-with-db2-connector-action-to-remove-data"></a>Logic app with DB2 connector action to remove data ##
-You can define a Logic app action to remove data from a DB2 table using an API Delete or Post to Entity OData operation. For example, you can insert a new customer order record, by processing a SQL INSERT statement against a table defined with an identity column, returning the identity value or the rows affected to the Logic app (SELECT ORDID FROM FINAL TABLE (INSERT INTO NWIND.NEWORDERS (CUSTID,SHIPNAME,SHIPADDR,SHIPCITY,SHIPREG,SHIPZIP) VALUES (?,?,?,?,?,?))).
+## 以 DB2 連接器動作移除資料的邏輯應用程式 ##
+您可以定義邏輯應用程式動作，以使用 API Delete 或 Post to Entity OData 作業來移除 DB2 資料表中的資料。例如，您可對以身分識別資料行定義的資料表處理 SQL INSERT 陳述式，將身分識別值或受影響的資料列傳回至邏輯應用程式，進而插入一筆新的客戶訂單記錄 (SELECT ORDID FROM FINAL TABLE (INSERT INTO NWIND.NEWORDERS (CUSTID,SHIPNAME,SHIPADDR,SHIPCITY,SHIPREG,SHIPZIP) VALUES (?,?,?,?,?,?)))。
 
-## <a name="create-logic-app-using-db2-connector-to-remove-data"></a>Create Logic app using DB2 connector to remove data ##
-You can create a new Logic app from within the Azure Marketplace, and then use the DB2 connector as an action to remove customer orders. For example, you can use the DB2 connector conditional Delete operation to process a SQL DELETE statement (DELETE FROM NEWORDERS WHERE ORDID >= 10000).
+## 建立使用 DB2 連接器來移除資料的邏輯應用程式 ##
+您可以從 Azure Marketplace 建立新的邏輯應用程式，然後使用 DB2 連接器動作來移除客戶訂單。例如，您可以使用 DB2 連接器條件式刪除作業來處理 SQL DELETE 陳述式 (DELETE FROM NEWORDERS WHERE ORDID >= 10000)。
 
-1. In the hub menu of the Azure **Start** board, click **+** (plus sign), click **Web + Mobile**, and then click **Logic app**. 
-2. In the **Create Logic app** blade, type a **Name**, for example **RemoveOrdersDb2**.
-3. Select or define values for the other settings (e.g. service plan, resource group).
-4. The settings should look as follows. Click **Create**:  
+1. 在 Azure **開始**面板的中樞功能表中，依序按一下 **+** (加號)、[Web + 行動] 和 [邏輯應用程式]。
+2. 在 [建立邏輯應用程式] 刀鋒視窗中，輸入 [名稱]，例如 **RemoveOrdersDb2**。
+3. 選取或定義其他設定 (例如服務計劃、資源群組) 的值。
+4. 設定應如下所示。按一下 [建立]：  
 ![][12]  
-5. In the **Settings** blade, click **Triggers and actions**.
-6. In the **Triggers and actions** blade, in the **Logic app Templates** list, click **Create from Scratch**.
-7. In the **Triggers and actions** blade, in the **API Apps** panel, within the resource group, click **Recurrence**.
-8. On the Logic app design surface, click the **Recurrence** item, set a **Frequency** and **Interval**, for example **Days** and **1**, and then click the **checkmark** to save the recurrence item settings.
-9. In the **Triggers and actions** blade, in the **API Apps** panel, within the resource group, click **DB2 connector**.
-10. On the Logic app design surface, click the **DB2 connector** action item, click the ellipses (**...**) to expand the operations list, and then click **Conditional delete from N**.
-11. On the DB2 connector action item, type **ORDID ge 10000** for an **expression that identifies a subset of entries**.
-12. Click the **checkmark** to save the action settings, and then click **Save**. The settings should look as follows:  
+5. 在 [設定] 刀鋒視窗中，按一下 [觸發程序和動作]。
+6. 在 [觸發程序和動作] 刀鋒視窗的 [邏輯應用程式範本] 清單中，按一下 [從頭建立]。
+7. 在 [觸發程序和動作] 刀鋒視窗的 [API Apps] 面板中，按一下資源群組內的 [週期]。
+8. 在邏輯應用程式設計介面上，按一下 [週期] 項目、設定 [頻率] 和 [間隔]，例如 [天] 和 \[1]，然後按一下**核取記號**以儲存週期項目設定。
+9. 在 [觸發程序和動作] 刀鋒視窗的 [API Apps] 面板中，按一下資源群組內的 [DB2 連接器]。
+10. 在邏輯應用程式設計介面上，按一下 [DB2 連接器] 動作項目，按一下省略符號 (**...**) 以展開作業清單中，然後按一下 [條件式刪除自 N]。
+11. 在 DB2 連接器動作項目上，針對 [識別項目子集的運算式] 輸入 **ORDID ge 10000**。
+12. 按一下**核取記號**以儲存動作設定，然後按一下 [儲存]。設定應如下所示：  
 ![][13]  
-13. Click to close the **Triggers and actions** blade, and then click to close the **Settings** blade.
-14. In the **All runs** list under **Operations**, click the first-listed item (most recent run).
-15. In the **Logic app run** blade, click the **ACTION** item.
-16. In the **Logic app action** blade, click the **OUTPUTS LINK**. The outputs should look as follows:  
+13. 按一下以關閉 [觸發程序和動作] 刀鋒視窗，然後按一下以關閉 [設定] 刀鋒視窗。
+14. 在 [作業] 之下的 [所有執行] 清單中，按一下第一個列出的項目 (最近一次執行)。
+15. 在 [邏輯應用程式執行] 刀鋒視窗中，按一下 [動作] 項目。
+16. 在 [邏輯應用程式動作] 刀鋒視窗中，按一下 [輸出連結]。輸出應如下所示：  
 ![][14]
 
-**Note:** Logic app designer truncates table names. For example, the operation **Conditional delete from NEWORDERS** is truncated to **Conditional delete from N**.
+**注意：**邏輯應用程式設計工具會截斷資料表名稱。例如，[條件式刪除自 NEWORDERS] 作業會被截斷成 [條件式刪除自 N]。
 
 
-> [AZURE.TIP] Use the following SQL statements to create the sample table and stored procedures. 
+> [AZURE.TIP] 使用下列 SQL 陳述式來建立範例資料表與預存程序。
 
-You can create the sample NEWORDERS table using the following DB2 SQL DDL statements:
+您可以使用下列 DB2 SQL DDL 陳述式建立範例 NEWORDERS 資料表：
  
-    CREATE TABLE ORDERS (  
-        ORDID INT NOT NULL GENERATED BY DEFAULT AS IDENTITY (START WITH 10000, INCREMENT BY 1) ,  
-        CUSTID INT NOT NULL ,  
-        EMPID INT NOT NULL DEFAULT 10000 ,  
-        ORDDATE DATE NOT NULL DEFAULT CURRENT DATE ,  
-        REQDATE DATE DEFAULT CURRENT DATE ,  
-        SHIPDATE DATE ,  
-        SHIPID INT NOT NULL DEFAULT 10000,  
-        FREIGHT DECIMAL (9,2) NOT NULL DEFAULT 0.00 ,  
-        SHIPNAME CHAR (40) NOT NULL ,  
-        SHIPADDR CHAR (60) NOT NULL ,  
-        SHIPCITY CHAR (20) NOT NULL ,  
-        SHIPREG CHAR (15) NOT NULL ,  
-        SHIPZIP CHAR (10) NOT NULL ,  
-        SHIPCTRY CHAR (15) NOT NULL DEFAULT 'USA' ,  
-        PRIMARY KEY(ORDID)  
-        )  
+ 	CREATE TABLE ORDERS (  
+ 		ORDID INT NOT NULL GENERATED BY DEFAULT AS IDENTITY (START WITH 10000, INCREMENT BY 1) ,  
+ 		CUSTID INT NOT NULL ,  
+ 		EMPID INT NOT NULL DEFAULT 10000 ,  
+ 		ORDDATE DATE NOT NULL DEFAULT CURRENT DATE ,  
+ 		REQDATE DATE DEFAULT CURRENT DATE ,  
+ 		SHIPDATE DATE ,  
+ 		SHIPID INT NOT NULL DEFAULT 10000,  
+ 		FREIGHT DECIMAL (9,2) NOT NULL DEFAULT 0.00 ,  
+ 		SHIPNAME CHAR (40) NOT NULL ,  
+ 		SHIPADDR CHAR (60) NOT NULL ,  
+ 		SHIPCITY CHAR (20) NOT NULL ,  
+ 		SHIPREG CHAR (15) NOT NULL ,  
+ 		SHIPZIP CHAR (10) NOT NULL ,  
+ 		SHIPCTRY CHAR (15) NOT NULL DEFAULT 'USA' ,  
+ 		PRIMARY KEY(ORDID)  
+ 		)  
  
-    CREATE UNIQUE INDEX XORDID ON ORDERS (ORDID ASC)  
+ 	CREATE UNIQUE INDEX XORDID ON ORDERS (ORDID ASC)  
 
 
 
-You can create the sample SPOERID stored procedure using the following DB2 DDL statement:
+您可以使用下列 DB2 DDL 陳述式建立範例 SPOERID 預存程序：
  
-    CREATE OR REPLACE PROCEDURE NWIND.SPORDERID (IN ORDERID VARCHAR(128))  
-        DYNAMIC RESULT SETS 1  
-    P1: BEGIN  
-        DECLARE CURSOR1 CURSOR WITH RETURN FOR  
-            SELECT * FROM NWIND.NEWORDERS  
-                WHERE ORDID = ORDERID;  
-        OPEN CURSOR1;  
-    END P1  
-    ') 
+ 	CREATE OR REPLACE PROCEDURE NWIND.SPORDERID (IN ORDERID VARCHAR(128))  
+ 		DYNAMIC RESULT SETS 1  
+ 	P1: BEGIN  
+ 		DECLARE CURSOR1 CURSOR WITH RETURN FOR  
+ 			SELECT * FROM NWIND.NEWORDERS  
+ 				WHERE ORDID = ORDERID;  
+ 		OPEN CURSOR1;  
+ 	END P1  
+ 	') 
 
 
-## <a name="hybrid-configuration-(optional)"></a>Hybrid Configuration (Optional)
+## 混合式組態 (選用)
 
-> [AZURE.NOTE] This step is required only if you are using DB2 connector on-premises behind your firewall.
+> [AZURE.NOTE] 只有當您在防火牆後方使用 DB2 連接器內部部署時，才需要此步驟。
 
-App Service uses the Hybrid Configuration Manager to connect securely to your on-premises system. If connector uses an on-premises IBM DB2 Server for Windows, the Hybrid Connection Manager is required.
+App Service 使用混合式組態管理員來安全地連線到內部部署系統。如果連接器使用內部部署 IBM DB2 Server for Windows，則需要混合式連線管理員。
 
-See [Using the Hybrid Connection Manager](app-service-logic-hybrid-connection-manager.md).
+請參閱[使用混合式連線管理員](app-service-logic-hybrid-connection-manager.md)。
 
 
-## <a name="do-more-with-your-connector"></a>Do more with your connector
-Now that the connector is created, you can add it to a business workflow using a Logic app. See [What are Logic apps?](app-service-logic-what-are-logic-apps.md).
+## 進一步運用您的連接器
+現在已建立連接器，您可以將它加入到使用邏輯應用程式的商務工作流程。請參閱[什麼是 Logic Apps？](app-service-logic-what-are-logic-apps.md)。
 
-Create the API Apps using REST APIs. See [Connectors and API Apps Reference](http://go.microsoft.com/fwlink/p/?LinkId=529766).
+使用 REST API 建立 API Apps。請參閱[連接器和 API Apps 參考](http://go.microsoft.com/fwlink/p/?LinkId=529766)。
 
-You can also review performance statistics and control security to the connector. See [Manage and Monitor your built-in API Apps and Connectors](app-service-logic-monitor-your-connectors.md).
+您也可以檢閱連接器的效能統計資料及控制安全性。請參閱[管理和監視內建 API Apps 和連接器](app-service-logic-monitor-your-connectors.md)。
 
 
 <!--Image references-->
@@ -283,9 +282,5 @@ You can also review performance statistics and control security to the connector
 [13]: ./media/app-service-logic-connector-db2/LogicApp_RemoveOrdersDb2_TriggersActions.png
 [14]: ./media/app-service-logic-connector-db2/LogicApp_RemoveOrdersDb2_Outputs.png
 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
+<!---HONumber=AcomDC_0803_2016-->
 

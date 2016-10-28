@@ -1,11 +1,11 @@
 <properties
-    pageTitle="Install RStudio with R Server on HDInsight (preview) | Microsoft Azure"
-    description="How to install RStudio with R Server on HDInsight (preview)."
-    services="hdinsight"
-    documentationCenter=""
-    authors="jeffstokes72"
-    manager="jhubbard"
-    editor="cgronlun"/>
+	pageTitle="在具有 R 伺服器的 HDInsight 叢集上安裝 RStudio (預覽) | Microsoft Azure"
+	description="如何在 HDInsight (預覽) 中使用 R 伺服器安裝 RStudio。"
+	services="hdinsight"
+	documentationCenter=""
+	authors="jeffstokes72"
+	manager="jhubbard"
+	editor="cgronlun"/>
 
 <tags
    ms.service="hdinsight"
@@ -17,118 +17,113 @@
    ms.author="jeffstok"/>
 
 
+# 在 HDInsight (預覽) 中使用 R 伺服器安裝 RStudio
 
-# <a name="installing-rstudio-with-r-server-on-hdinsight-(preview)"></a>Installing RStudio with R Server on HDInsight (preview)
+現今有多個整合的開發環境 (IDE) 適用於 R，包括 Microsoft 最近推出的 [R Tools for Visual Studio](https://www.visualstudio.com/zh-TW/features/rtvs-vs.aspx) (RTVS)、[RStudio](https://www.rstudio.com/products/rstudio-server/) 的桌面和伺服器工具系列，或 Walware 的 Eclipse 型 [StatET](http://www.walware.de/goto/statet)。在 Linux 上最熱門的是使用 [RStudio 伺服器](https://www.rstudio.com/products/rstudio-server/)，其提供可讓遠端用戶端使用的瀏覽器型 IDE。在 HDInsight Premium 叢集的邊緣節點上安裝 RStudio 伺服器時，可提供完整的 IDE 體驗以搭配叢集上的 R 伺服器開發和執行 R 指令碼；和預設使用 R 主控台相比，可以大幅提高生產力。
 
-There are multiple integrated development environments (IDE) available for R today, including Microsoft’s recently announced [R Tools for Visual Studio](https://www.visualstudio.com/en-us/features/rtvs-vs.aspx) (RTVS), a family of desktop and server tools from [RStudio](https://www.rstudio.com/products/rstudio-server/), or Walware’s Eclipse-based [StatET](http://www.walware.de/goto/statet). Among the most popular on Linux is the use of [RStudio Server](https://www.rstudio.com/products/rstudio-server/) that provides a browser-based IDE for use by remote clients.  Installing RStudio Server on the edge node of an HDInsight Premium cluster provides a full IDE experience for the development and execution of R scripts with R Server on the cluster, and can be considerably more productive than default use of the R Console.
+在這篇文章中，您將學習如何使用自訂指令碼，在叢集的邊緣節點上安裝 RStudio Server 的社群 (免費) 版本。如果您偏好 RStudio 伺服器的商業授權 Pro 版本，您必須依照 [RStudio 伺服器](https://www.rstudio.com/products/rstudio/download-server/)的安裝指示。
 
-In this article you will learn how to install the community (free) version of RStudio Server on the edge node of a cluster by using a custom script. If you prefer the commercially licensed Pro version of RStudio Server, you must follow the installation instructions from [RStudio Server](https://www.rstudio.com/products/rstudio/download-server/).
+> [AZURE.NOTE] 這份文件中的步驟需要 HDInsight 叢集中的 R 伺服器，且如果您使用的 HDInsight 叢集上，當初是使用[安裝 R 指令碼動作](hdinsight-hadoop-r-scripts-linux.md)來安裝 R，將無法正常運作。
 
-> [AZURE.NOTE] The steps in this document require an R Server on HDInsight cluster and will not work correctly if you are using an HDInsight cluster where R was installed using the [Install R Script Action](hdinsight-hadoop-r-scripts-linux.md).
+## 必要條件
 
-## <a name="prerequisites"></a>Prerequisites
-
-* An Azure HDInsight cluster with R Server installed. For instructions, see [Get started with R Server on HDInsight clusters](hdinsight-hadoop-r-server-get-started.md).
-* An SSH client. For Linux and Unix distributions or Macintosh OS X, the `ssh` command is provided with the operating system. For Windows, we recommend [Cygwin](http://www.redhat.com/services/custom/cygwin/) with the [OpenSSH option](https://www.youtube.com/watch?v=CwYSvvGaiWU), or [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).  
+* 具有 R 伺服器的 Azure HDInsight 叢集已安裝。如需相關指示，請參閱[開始在 HDInsight 叢集上使用 R 伺服器](hdinsight-hadoop-r-server-get-started.md)。
+* SSH 用戶端。若為 Linux 和 Unix 發佈或 Macintosh OS X，`ssh` 命令會隨作業系統提供。對於 Windows，我們建議使用 [Cygwin](http://www.redhat.com/services/custom/cygwin/) 與 [OpenSSH 選項](https://www.youtube.com/watch?v=CwYSvvGaiWU)，或 [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)。
 
 
-## <a name="install-rstudio-on-the-cluster-using-a-custom-script"></a>Install RStudio on the cluster using a custom script
+## 使用自訂指令碼在叢集上安裝 RStudio
 
-1. Identify the edge node of the cluster. For an HDInsight cluster with R Server, following is the naming convention for head node and edge node.
+1. 識別叢集的邊緣節點。若為具有 R 伺服器的 HDInsight 叢集，以下是前端節點和邊緣節點的命名慣例。
 
-    * Head node - `CLUSTERNAME-ssh.azurehdinsight.net`
-    * Edge node - `R-Server.CLUSTERNAME-ssh.azurehdinsight.net` 
+	* 前端節點 - `CLUSTERNAME-ssh.azurehdinsight.net`
+	* 邊緣節點 - `R-Server.CLUSTERNAME-ssh.azurehdinsight.net`
 
-2. SSH into the edge node of the cluster using the above naming pattern. 
+2. 使用上述的命名模式將 SSH 連接至叢集的邊緣節點。
  
-    * If you are connecting from a Linux client, see [Connect to a Linux-based HDInsight cluster](hdinsight-hadoop-linux-use-ssh-unix.md#connect-to-a-linux-based-hdinsight-cluster).
-    * If you are connecting from a Windows client, see [Connect to a Linux-based HDInsight cluster using PuTTY](hdinsight-hadoop-linux-use-ssh-windows.md#connect-to-a-linux-based-hdinsight-cluster).
+	* 如果您是從 Linux 用戶端連接，請參閱[連接至以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-linux-use-ssh-unix.md#connect-to-a-linux-based-hdinsight-cluster)。
+	* 如果您是從 Windows 用戶端連接，請參閱[使用 PuTTY 連接至以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-linux-use-ssh-windows.md#connect-to-a-linux-based-hdinsight-cluster)。
 
-3. Once you are connected, become a root user on the cluster. In the SSH session, use the following command.
+3. 一旦連接，就會變成叢集上的根使用者。在 SSH 工作階段中，輸入下列命令。
 
-        sudo su -
+		sudo su -
 
-4. Download the custom script to install RStudio. Use the following command.
+4. 下載自訂指令碼以安裝 RStudio。使用下列命令。
 
-        wget http://mrsactionscripts.blob.core.windows.net/rstudio-server-community-v01/InstallRStudio.sh
+		wget http://mrsactionscripts.blob.core.windows.net/rstudio-server-community-v01/InstallRStudio.sh
 
-5. Change the permissions on the custom script file and run the script. Use the following commands.
+5. 變更自訂指令碼檔案的權限，然後執行指令碼。使用下列命令。
 
-        chmod 755 InstallRStudio.sh
-        ./InstallRStudio.sh
+		chmod 755 InstallRStudio.sh
+		./InstallRStudio.sh
 
-6. If you used an SSH password while creating an HDInsight cluster with R Server, you can skip this step and proceed to the next. If you used an SSH key instead to create the cluster, you must set a password for your SSH user. You will need this password when connecting to RStudio. Run the following commands. When prompted for **Current Kerberos password**, just press **ENTER**.  Note that you must replace `USERNAME` with an SSH user for your HDInsight cluster.
+6. 如果您在建立具有 R 伺服器的 HDInsight 叢集時使用 SSH 密碼，您可以略過此步驟，並繼續進行下一步。如果您是使用 SSH 金鑰建立叢集，您必須為您的 SSH 使用者設定密碼。連接至 Rstudio 時，您會需要此密碼。執行下列命令。當系統提示您輸入**目前的 Kerberos 密碼**時，只要按 **Enter**。請注意，您必須將 `USERNAME` 取代為您的 HDInsight 叢集的 SSH 使用者。
 
-        passwd USERNAME
-        Current Kerberos password:
-        New password:
-        Retype new password:
-        Current Kerberos password:
-        
-    If your password is successfully set, you should see a message like this.
+		passwd USERNAME
+		Current Kerberos password:
+		New password:
+		Retype new password:
+		Current Kerberos password:
+		
+	如果已成功設定您的密碼，您應該會看到如下的訊息。
 
-        passwd: password updated successfully
+		passwd: password updated successfully
 
 
-    Exit the SSH session.
+	結束 SSH 工作階段。
 
-7. Create an SSH tunnel to the cluster by mapping `localhost:8787` on the HDInsight cluster to the client machine. You must create an SSH tunnel before opening a new browser session.
+7. 建立到叢集的 SSH 通道，方法是將 HDInsight 叢集上的 `localhost:8787` 對應至用戶端電腦。您必須在開啟新的瀏覽器工作階段之前，建立 SSH 通道。
 
-    * On a Linux client or a Windows client with [Cygwin](http://www.redhat.com/services/custom/cygwin/) then open a terminal session and use the following command.
+	* 在使用 [Cygwin](http://www.redhat.com/services/custom/cygwin/) 的 Linux 用戶端或 Windows 用戶端上，開啟終端機工作階段並且使用下列命令。
 
-            ssh -L localhost:8787:localhost:8787 USERNAME@R-Server.CLUSTERNAME-ssh.azurehdinsight.net
-            
-        Replace **USERNAME** with an SSH user for your HDInsight cluster, and replace **CLUSTERNAME** with the name of your HDInsight cluster   You can also use a SSH key rather than a password by adding `-i id_rsa_key`     
+			ssh -L localhost:8787:localhost:8787 USERNAME@R-Server.CLUSTERNAME-ssh.azurehdinsight.net
+			
+		以您的 HDInsight 叢集的 SSH 使用者取代 **USERNAME**，並以您的 HDInsight 叢集的名稱取代 **CLUSTERNAME**。您也可以新增 `-i id_rsa_key` 以使用 SSH 金鑰而非密碼。
 
-    * If using a Windows client with PuTTY then
+	* 如果使用 Windows 用戶端與 PuTTY，則
 
-        1.  Open PuTTY, and enter your connection information. If you are not familiar with PuTTY, see [Use SSH with Linux-based Hadoop on HDInsight from Windows](hdinsight-hadoop-linux-use-ssh-windows.md) for information on how to use it with HDInsight.
-        2.  In the **Category** section to the left of the dialog, expand **Connection**, expand **SSH**, and then select **Tunnels**.
-        3.  Provide the following information on the **Options controlling SSH port forwarding** form:
+		1.  開啟 PuTTY，並輸入連線資訊。如果您不熟悉 PuTTY，請參閱[從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md)，以取得如何搭配 HDInsight 使用 PuTTY 的資訊。
+		2.  在對話方塊左側的 [**類別**] 區段中，依序展開 [**連接**] 和 [**SSH**]，最後選取 [**通道**]。
+		3.  在 [**控制 SSH 連接埠轉送的選項**] 表單中提供下列資訊：
 
-            * **Source port** - The port on the client that you wish to forward. For example, **8787**.
-            * **Destination** - The destination that must be mapped to the local client machine. For example, **localhost:8787**.
+			* **來源連接埠** - 您想要轉送之用戶端上的連接埠。例如，**8787**。
+			* **目的地** - 必須對應至本機用戶端電腦的目的地。例如，**localhost:8787**。
 
-            ![Create an SSH tunnel](./media/hdinsight-hadoop-r-server-install-r-studio/createsshtunnel.png "Create an SSH tunnel")
+			![建立 SSH 通道](./media/hdinsight-hadoop-r-server-install-r-studio/createsshtunnel.png "建立 SSH 通道")
 
-        4. Click **Add** to add the settings, and then click **Open** to open an SSH connection.
-        5. When prompted, log in to the server. This will establish an SSH session and enable the tunnel.
+		4. 按一下 [**新增**] 以新增設定，然後按一下 [**開啟**] 開啟 SSH 連線。
+		5. 出現提示時，登入伺服器。這會建立 SSH 工作階段，並啟用通道。
 
-8. Open a web browser and enter the following URL based on the port you entered for the tunnel.
+8. 開啟網頁瀏覽器，並且根據您針對通道輸入的連接埠輸入下列 URL。
 
-        http://localhost:8787/ 
+		http://localhost:8787/ 
 
-9. You will be prompted to enter the SSH username and password to connect to the cluster. If you used an SSH key while creating the cluster, you must enter the password you created in step 5 above.
+9. 系統將會提示您輸入 SSH 使用者名稱和密碼以連接至叢集。如果您在建立叢集時使用 SSH 金鑰，您必須輸入在上述的步驟 5 中所建立的密碼。
 
-    ![Connect to R Studio](./media/hdinsight-hadoop-r-server-install-r-studio/connecttostudio.png "Create an SSH tunnel")
+	![連接至 R Studio](./media/hdinsight-hadoop-r-server-install-r-studio/connecttostudio.png "建立 SSH 通道")
 
-10. To test whether the RStudio installation was successful, you can run a test script that executes R based MapReduce and Spark jobs on the cluster. Go back to the SSH console and enter the following commands to download the test script to run in RStudio.
+10. 若要測試 RStudio 安裝是否成功，您可以執行測試指令碼，該指令碼會在叢集上執行以 R 為基礎的 MapReduce 和 Spark 作業。返回 [SSH] 主控台，並且輸入下列命令來下載測試指令碼，在 RStudio 中執行。
 
-    * If you created a Hadoop cluster with R, use this command.
-        
-            wget http://mrsactionscripts.blob.core.windows.net/rstudio-server-community-v01/testhdi.r
+	* 如果您建立具有 R 的 Hadoop 叢集，請使用此命令。
+		
+			wget http://mrsactionscripts.blob.core.windows.net/rstudio-server-community-v01/testhdi.r
 
-    * If you created a Spark cluster with R, use this command.
+	* 如果您建立具有 R 的 Spark 叢集，請使用此命令。
 
-            wget http://mrsactionscripts.blob.core.windows.net/rstudio-server-community-v01/testhdi_spark.r
+			wget http://mrsactionscripts.blob.core.windows.net/rstudio-server-community-v01/testhdi_spark.r
 
-11. In RStudio, you will see the test script you downloaded. Double click the file to open it, select the contents of the file, and then click **Run**. You should see the output in the **Console** pane.
+11. 在 RStudio 中，您會看到您所下載的測試指令碼。按兩下以開啟該檔案，選取檔案的內容，然後按一下 [執行]。您應該可以在 [主控台] 窗格中看到輸出。
  
-    ![Test the installation](./media/hdinsight-hadoop-r-server-install-r-studio/test-r-script.png "Test the installation")
+	![測試安裝](./media/hdinsight-hadoop-r-server-install-r-studio/test-r-script.png "測試安裝")
 
-Another option would be to type `source(testhdi.r)` or `source(testhdi_spark.r)` to execute the script.
+另一個做法是輸入 `source(testhdi.r)` 或 `source(testhdi_spark.r)` 執行指令碼。
 
-## <a name="see-also"></a>See also
+## 另請參閱
 
-- [Compute context options for R Server on HDInsight clusters](hdinsight-hadoop-r-server-compute-contexts.md)
+- [適用於 HDInsight 叢集上的 R 伺服器的計算內容選項](hdinsight-hadoop-r-server-compute-contexts.md)
 
-- [Azure Storage options for R Server on HDInsight premium](hdinsight-hadoop-r-server-storage.md)
+- [適用於 HDInsight Premium 上的 R 伺服器的 Azure 儲存體選項](hdinsight-hadoop-r-server-storage.md)
 
 
  
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

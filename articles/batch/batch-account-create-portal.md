@@ -1,115 +1,114 @@
 <properties
-    pageTitle="Create an Azure Batch account | Microsoft Azure"
-    description="Learn how to create an Azure Batch account in the Azure portal to run large-scale parallel workloads in the cloud"
-    services="batch"
-    documentationCenter=""
-    authors="mmacy"
-    manager="timlt"
-    editor=""/>
+	pageTitle="建立 Azure Batch 帳戶 | Microsoft Azure"
+	description="了解如何在 Azure 入口網站中建立 Azure Batch 帳戶，以在雲端中執行大規模的平行工作負載"
+	services="batch"
+	documentationCenter=""
+	authors="mmacy"
+	manager="timlt"
+	editor=""/>
 
 <tags
-    ms.service="batch"
-    ms.workload="big-compute"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="get-started-article"
-    ms.date="09/21/2016"
-    ms.author="marsma"/>
+	ms.service="batch"
+	ms.workload="big-compute"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="get-started-article"
+	ms.date="09/21/2016"
+	ms.author="marsma"/>
 
-
-# <a name="create-an-azure-batch-account-using-the-azure-portal"></a>Create an Azure Batch account using the Azure portal
+# 使用 Azure 入口網站建立 Azure Batch 帳戶
 
 > [AZURE.SELECTOR]
-- [Azure portal](batch-account-create-portal.md)
+- [Azure 入口網站](batch-account-create-portal.md)
 - [Batch Management .NET](batch-management-dotnet.md)
 
-Learn how to create an Azure Batch account in the [Azure portal][azure_portal], and where to find important account properties like access keys and account URLs. We also discuss Batch pricing, and linking an Azure Storage account to your Batch account so that you can use [application packages](batch-application-packages.md) and [persist job and task output](batch-task-output.md).
+了解如何在 [Azure 入口網站][azure_portal]中建立 Azure Batch 帳戶，以及何處尋找重要帳戶屬性，例如存取金鑰與帳戶 URL。我們也會討論 Batch 定價，以及如何將 Azure 儲存體帳戶連結到 Batch 帳戶，以便您使用[應用程式封裝](batch-application-packages.md)及[保存作業和工作輸出](batch-task-output.md)。
 
-## <a name="create-a-batch-account"></a>Create a Batch account
+## 建立批次帳戶：
 
-1. Sign in to the [Azure portal][azure_portal].
+1. 登入 [Azure 入口網站][azure_portal]。
 
-2. Click **New** > **Compute** > **Batch Service**.
+2. 按一下 [**新增**] > [**計算**] > [**Batch 服務**]。
 
-    ![Batch in the Marketplace][marketplace_portal]
+	![Marketplace 中的批次][marketplace_portal]
 
-3. The **New Batch Account** blade is displayed. See items *a* through *e* below for descriptions of each blade element.
+3. [新增 Batch 帳戶] 刀鋒視窗隨即出現。請參閱以下的項目 a 到 e，以取得每個刀鋒視窗元素的說明。
 
-    ![Create a Batch account][account_portal]
+    ![建立批次帳戶：][account_portal]
 
-    a. **Account Name**: A unique name for your Batch account. This name must be unique within the Azure region the account is created (see *Location* below). It may contain only lowercase characters, numbers, and must be 3-24 characters in length.
+	a.**帳戶名稱**：Batch 帳戶的唯一名稱。此名稱必須是建立帳戶的 Azure 區域內的唯一名稱 (請參閱下面的「位置」)。它只能包含小寫字元、數字，且長度必須為 3-24 個字元。
 
-    b. **Subscription**: A subscription in which to create the Batch account. If you have only one subscription, it is selected by default.
+	b.**訂用帳戶**：要在其中建立 Batch 帳戶的訂用帳戶。如果您只有一個訂用帳戶，則預設會選取此項目。
 
-    c. **Resource group**: An existing resource group for your new Batch account, or optionally create a new one.
+	c.**資源群組**：為新的 Batch 帳戶使用現有資源群組，或選擇性地建立一個新的資源群組。
 
-    d. **Location**: An Azure region in which to create the Batch account. Only the regions supported by your subscription and resource group are displayed as options.
+	d.**位置**：要在其中建立 Batch 帳戶的 Azure 區域。只有您的訂用帳戶和資源群組所支援的區域會顯示為選項。
 
-    e. **Storage Account** (optional): A **General purpose** storage account you associate (link) to your new Batch account. See [Linked Azure Storage account](#linked-azure-storage-account) below for more details.
+    e.**儲存體帳戶** (選用)：與新的 Batch 帳戶有關聯 (連結) 的**一般用途**儲存體帳戶。如需詳細資訊，請參閱下面的[連結的 Azure 儲存體帳戶](#linked-azure-storage-account)。
 
-4. Click **Create** to create the account.
+4. 按一下 [建立] 來建立帳戶。
 
-  The portal indicates that it is **Deploying** the account, and upon completion, a **Deployments succeeded** notification appears in *Notifications*.
+  入口網站會指出它**正在部署**帳戶，部署完成時，[通知] 中就會出現 [部署成功] 通知。
 
-## <a name="view-batch-account-properties"></a>View Batch account properties
+## 檢視 Batch 帳戶屬性
 
-Once the account has been created, you can open the **Batch account blade** to access its settings and properties. You can access all account settings and properties by using the left menu of the Batch account blade.
+一旦建立帳戶，即可開啟 [Batch 帳戶] 刀鋒視窗以存取其設定和屬性。您可以使用 [Batch 帳戶] 刀鋒視窗的左側功能表來存取所有的帳戶設定和屬性。
 
-![Batch account blade in Azure portal][account_blade]
+![Azure 入口網站中的 Batch 帳戶刀鋒視窗][account_blade]
 
-* **Batch account URL**: Applications you create with the [Batch development APIs](batch-technical-overview.md#batch-development-apis) need an account URL to manage resources and run jobs in the account. A Batch account URL has the following format:
+* **Batch 帳戶 URL**︰您使用 [Batch 開發 API](batch-technical-overview.md#batch-development-apis) 建立的應用程式需要帳戶 URL，才能管理資源並在帳戶中執行作業。Batch 帳戶 URL 具有下列格式︰
 
     `https://<account_name>.<region>.batch.azure.com`
 
-![Batch account URL in portal][account_url]
+![入口網站中的 Batch 帳戶 URL][account_url]
 
-* **Access keys**: Your applications also need an access key when working with resources in your Batch account. To view or regenerate your Batch account's access keys, enter `keys` in the left menu **Search** box on the Batch account blade, then select **Keys**.
+* **存取金鑰**︰您的應用程式在 Batch 帳戶中處理資源時也需要存取金鑰。若要檢視或重新產生 Batch 帳戶存取金鑰，請在 [Batch 帳戶] 刀鋒視窗上的左功能表 [搜尋] 方塊中輸入 `keys`，然後選取 [金鑰]。
 
-    ![Batch account keys in Azure portal][account_keys]
+    ![Azure 入口網站中的 Batch 帳戶金鑰][account_keys]
 
-## <a name="pricing"></a>Pricing
+## 價格
 
-Batch accounts are offered only in a "Free Tier," which means you aren't charged for the Batch account itself. You are charged for the underlying Azure compute resources that your Batch solutions consume, and for the resources consumed by other services when your workloads run. For example, you are charged for the compute nodes in your pools and for the data you store in Azure Storage as input or output for your tasks. Similarly, if you use the [application packages](batch-application-packages.md) feature of Batch, you are charged for the Azure Storage resources used for storing your application packages. See [Batch pricing][batch_pricing] for more information.
+Batch 帳戶只在「免費層」提供，這表示您不需為 Batch 帳戶本身付費。您需為 Batch 解決方案所使用的基礎 Azure 計算資源，以及工作負載執行時其他服務所使用的資源付費。例如，您需針對您集區中的計算節點以及您儲存在 Azure 儲存體中作為您的工作輸入或輸出的資料付費。同樣地，如果您使用 Batch 的[應用程式封裝](batch-application-packages.md)功能，您則需支付用來儲存應用程式封裝的 Azure 儲存體資源費用。如需詳細資訊，請參閱 [Batch 價格][batch_pricing]。
 
-## <a name="linked-azure-storage-account"></a>Linked Azure Storage account
+## 連結的 Azure 儲存體帳戶
 
-As mentioned earlier, you can (optionally) link a **General purpose** Storage account to your Batch account. The [application packages](batch-application-packages.md) feature of Batch uses blob storage in a linked General purpose Storage account, as does the [Batch File Conventions .NET](batch-task-output.md) library. These optional features assist you in deploying the applications your Batch tasks run, and persisting the data they produce.
+如先前所提，您可以 (選擇性地) 將**一般用途**的儲存體帳戶連結至您的 Batch 帳戶。Batch 的 [應用程式封裝](batch-application-packages.md)功能會在連結的一般用途儲存體帳戶中使用 blob 儲存體，如同 [Batch 檔案慣例 .NET](batch-task-output.md) 程式庫所為。這些選擇性功能可協助您部署您的 Batch 工作所執行的應用程式，並保存其所產生的資料。
 
-Batch currently supports *only* the **General purpose** storage account type as described in step 5, [Create a storage account](../storage/storage-create-storage-account.md#create-a-storage-account), in [About Azure storage accounts](../storage/storage-create-storage-account.md). When you link an Azure Storage account to your Batch account, be sure link *only* a **General purpose** storage account.
+Batch 目前僅支援**一般用途**的儲存體帳戶類型，如[關於 Azure 儲存體帳戶](../storage/storage-create-storage-account.md)中的步驟 5 [建立儲存體帳戶](../storage/storage-create-storage-account.md#create-a-storage-account)所述。當您將 Azure 儲存體帳戶連結至 Batch 帳戶時，務必「只」連結**一般用途**的儲存體帳戶。
 
-![Creating a "General purpose" storage account][storage_account]
+![建立「一般用途」的儲存體帳戶][storage_account]
 
-We recommend that you create a Storage account for exclusive use by your Batch account.
+我們建議您建立 Batch 帳戶專用的儲存體帳戶。
 
->[AZURE.WARNING] Take care when regenerating the access keys of a linked Storage account. Regenerate only one Storage account key and click **Sync Keys** on the linked Storage account blade. Wait five minutes to allow the keys to propagate to the compute nodes in your pools, then regenerate and synchronize the other key if necessary. If you regenerate both keys at the same time, your compute nodes will not be able to synchronize either key, and they will lose access to the Storage account.
+>[AZURE.WARNING] 重新產生連結的儲存體帳戶的存取金鑰時，請格外小心。只重新產生單一儲存體帳戶金鑰，並按一下連結的儲存體帳戶刀鋒視窗中上的 [同步金鑰]。等候 5 分鐘，讓金鑰傳播至您的集區中的計算節點，然後重新產生並同步處理其他金鑰 (如有必要)。如果您同時重新產生這兩個金鑰，計算節點將無法同步處理任何一個金鑰，而且將無法存取儲存體帳戶。
 
-  ![Regenerating storage account keys][4]
+  ![重新產生儲存體帳戶金鑰][4]
 
-## <a name="batch-service-quotas-and-limits"></a>Batch service quotas and limits
+## Batch 服務配額和限制
 
-Please be aware that as with your Azure subscription and other Azure services, certain [quotas and limits](batch-quota-limit.md) apply to Batch accounts. Current quotas for a Batch account appear in the portal in the account **Properties**.
+請留意您的 Azure 訂用帳戶與其他 Azure 服務，某些[配額和限制](batch-quota-limit.md)會套用至 Batch 帳戶。Batch 帳戶的目前配額會出現在入口網站的帳戶 [屬性] 中。
 
-![Batch account quotas in Azure portal][quotas]
+![Azure 入口網站中的 Batch 帳戶配額][quotas]
 
-Keep these quotas in mind as you are designing and scaling up your Batch workloads. For example, if your pool isn't reaching the target number of compute nodes you've specified, you might have reached the core quota limit for your Batch account.
+當您設計和相應增加您的 Batch 工作負載時，請記住這些配額。比方說，如果您的集區未達到您所指定的計算節點目標數目，您可能已達到 Batch 帳戶的核心配額限制。
 
-Also note that you are not restricted to a single Batch account for your Azure subscription. You can run multiple Batch workloads in a single Batch account, or distribute your workloads among Batch accounts in the same subscription, but in different Azure regions.
+也請注意，您的 Azure 訂用帳戶不受限於單一 Batch 帳戶。您可以在單一 Batch 帳戶中執行多個 Batch 工作負載，或在相同訂用帳戶 (但不同 Azure 區域) 的 Batch 帳戶之間散佈工作負載。
 
-Many of these quotas can be increased simply with a free product support request submitted in the Azure portal. See [Quotas and limits for the Azure Batch service](batch-quota-limit.md) for details on requesting quota increases.
+只要透過在 Azure 入口網站中提交的免費產品支援要求，即可增加其中多項配額。如需要求配額加的詳細資料，請參閱 [Azure Batch 服務的配額和限制](batch-quota-limit.md)。
 
-## <a name="other-batch-account-management-options"></a>Other Batch account management options
+## 其他 Batch 帳戶管理選項
 
-In addition to using the Azure portal, you can also create and manage Batch accounts with the following:
+除了使用 Azure 入口網站以外，您也可以使用下列各項建立及管理 Batch 帳戶︰
 
-* [Batch PowerShell cmdlets](batch-powershell-cmdlets-get-started.md)
+* [Batch PowerShell Cmdlet](batch-powershell-cmdlets-get-started.md)
 * [Azure CLI](../xplat-cli-install.md)
 * [Batch Management .NET](batch-management-dotnet.md)
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-* See the [Azure Batch feature overview](batch-api-basics.md) to learn more about Batch service concepts and features. The article discusses the primary Batch resources such as pools, compute nodes, jobs, and tasks, and provides an overview of the service's features that enable large-scale compute workload execution.
+* 若要深入了解 Batch 服務概念和功能，請參閱 [Azure Batch 功能概觀](batch-api-basics.md)。本文討論主要 Batch 資源 (例如集區、計算節點、作業和工作)，並提供能夠進行大規模計算工作負載執行的服務功能概觀。
 
-* Learn the basics of developing a Batch-enabled application using the [Batch .NET client library](batch-dotnet-get-started.md). The [introductory article](batch-dotnet-get-started.md) guides you through a working application that uses the Batch service to execute a workload on multiple compute nodes, and includes using Azure Storage for workload file staging and retrieval.
+* 了解使用 [Batch .NET 用戶端程式庫](batch-dotnet-get-started.md)開發啟用 Batch 之應用程式的基本概念。[簡介文章](batch-dotnet-get-started.md)會介紹使用 Batch 服務在多個計算節點上執行工作負載的可行應用程式，並說明如何使用 Azure 儲存體進行工作負載檔案預備和擷取。
 
 [api_net]: https://msdn.microsoft.com/library/azure/mt348682.aspx
 [api_rest]: https://msdn.microsoft.com/library/azure/Dn820158.aspx
@@ -117,7 +116,7 @@ In addition to using the Azure portal, you can also create and manage Batch acco
 [azure_portal]: https://portal.azure.com
 [batch_pricing]: https://azure.microsoft.com/pricing/details/batch/
 
-[4]: ./media/batch-account-create-portal/batch_acct_04.png "Regenerating storage account keys"
+[4]: ./media/batch-account-create-portal/batch_acct_04.png "重新產生儲存體帳戶金鑰"
 [marketplace_portal]: ./media/batch-account-create-portal/marketplace_batch.PNG
 [account_blade]: ./media/batch-account-create-portal/batch_blade.png
 [account_portal]: ./media/batch-account-create-portal/batch_acct_portal.png
@@ -126,8 +125,4 @@ In addition to using the Azure portal, you can also create and manage Batch acco
 [storage_account]: ./media/batch-account-create-portal/storage_account.png
 [quotas]: ./media/batch-account-create-portal/quotas.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

@@ -1,6 +1,6 @@
 <properties
- pageTitle="IoT Hub device management overview | Microsoft Azure"
- description="This article provides an overview of device management in Azure IoT Hub: enterprise device lifecycle, reboot, factory reset, firmware update, configuration, device twins, queries, jobs"
+ pageTitle="裝置管理概觀 | Microsoft Azure"
+ description="Azure IoT 中樞裝置管理概觀"
  services="iot-hub"
  documentationCenter=""
  authors="bzurcher"
@@ -13,94 +13,92 @@
  ms.topic="get-started-article"
  ms.tgt_pltfrm="na"
  ms.workload="na"
- ms.date="10/03/2016"
+ ms.date="09/16/2016"
  ms.author="bzurcher"/>
 
 
-# <a name="overview-of-azure-iot-hub-device-management-(preview)"></a>Overview of Azure IoT Hub device management (preview)
 
-## <a name="introduction"></a>Introduction
+# Azure IoT 中樞裝置管理概觀 (預覽)
 
-Azure IoT Hub provides the features and an extensibility model that enable device and back-end developers to build robust IoT device management solutions. IoT devices range from constrained sensors and single purpose microcontrollers, to powerful gateways that route communications for groups of devices.  In addition, the use cases and requirements for IoT operators vary significantly across industries.  Despite this variation, Azure IoT Hub device management provides the capabilities, patterns, and code libraries to cater to a diverse set of devices and end users.
+## Azure IoT 裝置管理方法
 
-A crucial part of creating a successful enterprise IoT solution to provide a strategy for how operators handle the ongoing management of their collection of devices. IoT operators require simple and reliable tools and applications that enable them to focus on the more strategic aspects of their jobs. This article provides:
+Azure IoT 中樞裝置管理可提供功能和擴充性模型，讓裝置和後端得以利用 IoT 裝置管理，應付 IoT 中各式各樣的裝置和通訊協定。IoT 內的裝置包羅萬象，從非常受限的感應器、單一用途的微控制器，到功能更強大、可啟用其他裝置和通訊協定的閘道器都是其中一分子。由於垂直領域內的操作員各有其獨特的使用案例，因此 IoT 解決方案在這些領域和應用程式的變化也相當大。IoT 解決方案可以利用 IoT 中樞裝置管理的功能、模式和程式碼程式庫，來對裝置和使用者所形成的各種組合實行裝置管理。
 
-- A brief overview of Azure IoT Hub approach to device management.
-- A description of common device management principles.
-- A description of the device lifecycle.
-- An overview of common device management patterns.
+## 簡介
 
-## <a name="iot-device-management-principles"></a>IoT device management principles
+建立成功 IoT 解決方案的關鍵在於，針對操作員該如何持續管理其裝置群組提供策略。IoT 操作員需要簡單可靠的工具和應用程式，讓他們能夠專注於作業中更為重要的層面上。Azure IoT 中樞可提供您用於建立 IoT 應用程式的建置組塊，以幫助您建立最重要的裝置管理模式。
 
-IoT brings with it a unique set of device management challenges and every enterprise-class solution must address the following principles:
+裝置若執行可將其安全地連線到雲端的簡單應用程式 (稱為裝置管理代理程式)，就會被視為受到 IoT 中樞管理。該代理程式的程式碼可讓位於應用程式端的操作員，從遠端證明裝置的狀態並執行管理作業，例如套用網路組態變更或部署韌體更新。
 
-![Azure IoT Hub device management principles graphic][img-dm_principles]
+## IoT 裝置管理原則
 
-- **Scale and automation**: IoT solutions require simple tools that can automate routine tasks and enable a relatively small operations staff to manage millions of devices. Day-to-day, operators expect to handle device operations remotely, in bulk, and to only be alerted when issues arise that require their direct attention.
+IoT 本身伴隨著一組獨特的管理挑戰，因此解決方案必須考慮到下列 IoT 裝置管理原則︰
 
-- **Openness and compatibility**: The IoT device ecosystem is extraordinarily diverse. Management tools must be tailored to accommodate a multitude of device classes, platforms, and protocols. Operators must be able to support many types of devices, from the most constrained embedded single-process chips, to powerful and fully functional computers.
+![][img-dm_principles]
 
-- **Context awareness**: IoT environments are dynamic and ever-changing. Service reliability is paramount. Device management operations must factor in SLA maintenance windows, network and power states, in-use conditions, and device geolocation to ensure that maintenance downtime doesn't affect critical business operations or create dangerous conditions.
+- **規模和自動化**：IoT 需要簡單的工具，以便能夠自動執行例行工作，並且只需要少數作業人員就可以管理數百萬個裝置。每一天，操作員無不期望能夠從遠端大量處理裝置作業，並且只在發生需要他們直接關注的問題時才接獲通知。
 
-- **Service many roles**: Support for the unique workflows and processes of IoT operations roles is crucial. The operations staff must work harmoniously with the given constraints of internal IT departments.  They must also find sustainable ways to surface realtime device operations information to supervisors and other business managerial roles.
+- **開放性和相容性**：IoT 裝置生態系統富含多樣性。管理工具必須經過量身打造，才能配合數量眾多的裝置類別、平台和通訊協定。操作員必須能夠支援所有裝置，不論是最受限的內嵌單一處理晶片，乃至功能完整而強大的電腦。
 
-## <a name="iot-device-lifecycle"></a>IoT device lifecycle
+- **內容感知**：IoT 環境是動態且不斷變化的，因此服務的可靠性非常重要。裝置管理作業必須納入 SLA 維護時段、網路和電源狀態、使用中況況和裝置地理位置等因素，以確保該維護停機時間不會影響重要的商業運作或造成危險情況。
 
-There is a set of general device management stages that are common to all enterprise IoT projects. In Azure IoT, there are five stages within the IoT device lifecycle:
+- **服務眾多角色**︰是否能夠支援 IoT 作業角色的獨特工作流程和處理程序非常重要。作業人員也必須能夠平順地配合內部 IT 部門所提出的約束條件，並將相關的裝置作業資訊提交給主管和其他管理角色。
 
-![The five Azure IoT device lifecycle phases: plan, provision, configure, monitor, retire][img-device_lifecycle]
+## IoT 裝置的生命週期 
 
-Within each of these five stages, there are several device operator requirements that should be fulfilled to provide a complete solution:
+雖然 IoT 專案差異極大，但在裝置管理方面仍有一套常見的模式。在 Azure IoT 中，您可於 IoT 裝置的生命週期內發現這些模式，其由五個不同的階段所組成︰
 
-- **Plan**: Enable operators to create a device metadata scheme that enables them to easily and accurately query for, and target a group of devices for bulk management operations. You can use the device twin to store this device metadata in the form of tags and properties.
+![][img-device_lifecycle]
 
-    *Further reading*: [Get started with device twins][lnk-twins-getstarted], [Understand device twins][lnk-twins-devguide], [How to use twin properties][lnk-twin-properties]
+1. **計劃**︰讓操作員得以建立裝置屬性配置，以便他們可以輕鬆且精確地查詢和鎖定要進行大量管理作業的裝置群組。
 
-- **Provision**: Securely provision new devices to IoT Hub and enable operators to immediately discover device capabilities.  Use the IoT Hub device registry to create flexible device identities and credentials, and perform this operation in bulk by using a job. Build devices to report their capabilities and conditions through device properties in the device twin.
+    相關建置組塊：[開始使用攣生裝置][lnk-twins-getstarted]、[使用攣生屬性的方式][lnk-twin-properties]
 
-    *Further reading*: [Manage device identities][lnk-identity-registry], [Bulk management of device identities][lnk-bulk-identity], [How to use twin properties][lnk-twin-properties]
+2. **佈建**︰安全地向 IoT 中樞驗證新裝置，並讓操作員可以立即探索裝置功能與目前的狀態。
 
-- **Configure**: Facilitate bulk configuration changes and firmware updates to devices while maintaining both health and security. Perform these device management operations in bulk by using desired properties or with direct methods and broadcast jobs.
+    相關建置組塊：[開始使用 IoT 中樞][lnk-hub-getstarted]、[使用攣生屬性的方式][lnk-twin-properties]
 
-    *Further reading*:  [Use direct methods][lnk-c2d-methods], [Invoke a direct method on a device][lnk-methods-devguide], [How to use twin properties][lnk-twin-properties], [Schedule and broadcast jobs][lnk-jobs], [Schedule jobs on multiple devices][lnk-jobs-devguide]
+3. **設定**︰協助裝置進行大量組態變更和韌體更新，同時維持健康狀態與安全性。
 
-- **Monitor**: Monitor overall device collection health, the status of ongoing operations, and alert operators to issues that might require their attention.  Apply the device twin to allow devices to report realtime operating conditions and status of update operations. Build powerful dashboard reports that surface the most immediate issues by using device twin queries.
+    相關建置組塊：[使用攣生屬性的方式][lnk-twin-properties]、[C2D 方法][lnk-c2d-methods]、[排程/廣播作業][lnk-jobs]
 
-    *Further reading*: [How to use twin properties][lnk-twin-properties], [Query language for twins and jobs][lnk-query-language]
+4. **監視**︰監視裝置群的整體健康狀態和進行中更新部署的狀態，以就可能需要關注的問題對操作員發出警示。
 
-- **Retire**:  Replace or decommission devices after a failure, upgrade cycle, or at the end of the service lifetime.  Use the device twin to maintain device info if the physical device is being replaced, or archived if being retired. Use the IoT Hub device registry for securely revoking device identities and credentials.
+    相關建置組塊：[使用攣生屬性的方式][lnk-twin-properties]
 
-    *Further reading*: [How to use twin properties][lnk-twin-properties], [Manage device identities][lnk-identity-registry]
+5. **淘汰**︰在故障、升級循環或服務存留期結束後，更換裝置或予以解除委任。
 
-## <a name="iot-hub-device-management-patterns"></a>IoT Hub device management patterns
+    相關建置組塊：
+    
+## IoT 中樞裝置管理模式
 
-IoT Hub enables the following set of device management patterns.  The [device management tutorials][lnk-get-started] show you in more detail how to extend these patterns to fit your exact scenario and how to design new patterns based on these core templates.
+IoT 中樞可實現下列這套 (初始) 裝置管理模式。如[教學課程][lnk-get-started]所示，您可以延伸這些模式以完全符合您的案例，並根據這些核心模式設計適用於其他案例的新模式。
 
-- **Reboot** - The back-end application informs the device through a direct method that it has initiated a reboot.  The device uses the device twin reported properties to update the reboot status of the device.
+1. **重新啟動** - 後端應用程式會透過 D2C 方法讓裝置知道已起始重新啟動。裝置會使用攣生裝置報告的屬性來更新裝置的重新啟動狀態。
 
-    ![Azure IoT Hub device management reboot pattern graphic][img-reboot_pattern]
+    ![][img-reboot_pattern]
 
-- **Factory Reset** - The back-end application informs the device through a direct method that it has initiated a factory reset.  The device uses the device twin reported properties to update the factory reset status of the device.
+2. **恢復出廠預設值** - 後端應用程式會透過 D2C 方法讓裝置知道已起始恢復出廠預設值。裝置會使用攣生裝置報告的屬性來更新裝置的恢復出廠預設值狀態。
 
-    ![Azure IoT Hub device management factory reset pattern graphic][img-facreset_pattern]
+    ![][img-facreset_pattern]
 
-- **Configuration** - The back-end application uses the device twin desired properties to configure software running on the device.  The device uses the device twin reported properties to update configuration status of the device.
+3. **組態** - 後端應用程式使用攣生裝置所需的屬性來設定裝置上執行的軟體。裝置會使用攣生裝置報告的屬性來更新裝置的組態狀態。
 
-    ![Azure IoT Hub device management configuration pattern graphic][img-config_pattern]
+    ![][img-config_pattern]
 
-- **Firmware Update** - The back-end application informs the device through a direct method that it has initiated a firmware update.  The device initiates a multistep process to download the firmware package, apply the firmware package, and finally reconnect to the IoT Hub service.  Throughout the mult-step process, the device uses the device twin reported properties to update the progress and status of the device.
+4. **韌體更新** - 後端應用程式會透過 D2C 方法讓裝置知道已起始韌體更新。裝置會起始多步驟程序，以下載韌體套件、套用韌體套件，並於最後重新連線到 IoT 中樞服務。透過多步驟程序，裝置會使用攣生裝置報告的屬性來更新裝置的進度和狀態。
 
-    ![Azure IoT Hub device management firmware update pattern graphic][img-fwupdate_pattern]
+    ![][img-fwupdate_pattern]
 
-- **Reporting progress and status** - The application back-end runs device twin queries, across a set of devices, to report on the status and progress of actions running on the devices.
+5. **報告進度和狀態** - 應用程式後端會橫跨一組裝置來執行攣生裝置查詢，以報告裝置上所執行動作的狀態和進度。
 
-    ![Azure IoT Hub device management reporting progress and status pattern graphic][img-report_progress_pattern]
+    ![][img-report_progress_pattern]
 
-## <a name="next-steps"></a>Next Steps
+## 後續步驟
 
-You can use the capabilities, patterns, and code libraries that Azure IoT Hub device management provides, to create IoT applications that fulfill the enterprise IoT operator requirements within in each device lifecycle stage.
+藉由使用 Azure IoT 中樞提供的建置組塊，開發人員可以建立 IoT 應用程式，來滿足 IoT 操作員在裝置生命週期內各個階段的獨特需求。
 
-To continue learning about the Azure IoT Hub device management features, see the [Get started with Azure IoT Hub device management][lnk-get-started] tutorial.
+若要繼續了解 Azure IoT 中樞裝置管理功能，請參閱[開始使用 Azure IoT 中樞裝置管理][lnk-get-started]教學課程。
 
 <!-- Images and links -->
 [img-dm_principles]: media/iot-hub-device-management-overview/image4.png
@@ -111,20 +109,11 @@ To continue learning about the Azure IoT Hub device management features, see the
 [img-reboot_pattern]: media/iot-hub-device-management-overview/reboot-pattern.png
 [img-report_progress_pattern]: media/iot-hub-device-management-overview/report-progress-pattern.png
 
-[lnk-twins-devguide]: iot-hub-devguide-device-twins.md
 [lnk-get-started]: iot-hub-device-management-get-started.md
 [lnk-twins-getstarted]: iot-hub-node-node-twin-getstarted.md
 [lnk-twin-properties]: iot-hub-node-node-twin-how-to-configure.md
 [lnk-hub-getstarted]: iot-hub-csharp-csharp-getstarted.md
-[lnk-identity-registry]: iot-hub-devguide-identity-registry.md
-[lnk-bulk-identity]: iot-hub-bulk-identity-mgmt.md
-[lnk-query-language]: iot-hub-devguide-query-language
 [lnk-c2d-methods]: iot-hub-c2d-methods.md
-[lnk-methods-devguide]: iot-hub-devguide-direct-methods.md
 [lnk-jobs]: iot-hub-schedule-jobs.md
-[lnk-jobs-devguide]: iot-hub-devguide-jobs.md
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_1005_2016-->

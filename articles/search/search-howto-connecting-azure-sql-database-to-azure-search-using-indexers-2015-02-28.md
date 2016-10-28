@@ -1,286 +1,281 @@
 <properties 
-    pageTitle="Connecting Azure SQL Database to Azure Search Using Indexers | Microsoft Azure | Indexers" 
-    description="Learn how to pull data from Azure SQL Database to an Azure Search index using indexers." 
-    services="search" 
-    documentationCenter="" 
-    authors="chaosrealm" 
-    manager="pablocas" 
-    editor=""/>
+	pageTitle="使用索引子將 Azure SQL Database 連接至 Azure 搜尋服務 | Microsoft Azure| 索引子" 
+	description="了解如何使用索引子將資料從 Azure SQL Database 提取至 Azure 搜尋服務索引。" 
+	services="search" 
+	documentationCenter="" 
+	authors="chaosrealm" 
+	manager="pablocas" 
+	editor=""/>
 
 <tags 
-    ms.service="search" 
-    ms.devlang="rest-api" 
-    ms.workload="search" 
-    ms.topic="article" 
-    ms.tgt_pltfrm="na" 
-    ms.date="05/26/2016" 
-    ms.author="eugenesh"/>
+	ms.service="search" 
+	ms.devlang="rest-api" 
+	ms.workload="search" 
+	ms.topic="article" 
+	ms.tgt_pltfrm="na" 
+	ms.date="05/26/2016" 
+	ms.author="eugenesh"/>
 
+#使用索引子將 Azure SQL Database 連接至 Azure 搜尋服務
 
-#<a name="connecting-azure-sql-database-to-azure-search-using-indexers"></a>Connecting Azure SQL Database to Azure Search using indexers
+Azure 搜尋服務是託管的雲端搜尋服務，讓提供絕佳的搜尋體驗變得更容易。可以搜尋之前，您需要使用您的資料填入 Azure 搜尋服務索引。如果 Azure SQL Database 中有您的資料，您可以在 Azure 搜尋服務中，使用全新**適用於 Azure SQL Database 的 Azure 搜尋服務索引子** (或簡稱 **Azure SQL 索引子**)，自動化編製索引的程序。這表示您可以減少編寫程式碼的工作，並且減少需要處理的基礎結構。
 
-Azure Search service is a hosted cloud search service that makes it easy to provide a great search experience. Before you can search, you need to populate an Azure Search index with your data. If the data lives in an Azure SQL database, the new **Azure Search indexer for Azure SQL Database** (or **Azure SQL indexer** for short) in Azure Search can automate the indexing process. This means you have less code to write and less infrastructure to care about.
+目前索引子僅適用於 Azure SQL Database、Azure VM 上的 SQL Server，以及 [Azure DocumentDB](../documentdb/documentdb-search-indexer.md)。在本文中，我們將重點放在如何針對 Azure SQL Database 使用索引子。如果您想參閱其他資料來源的支援，請您在 [Azure 搜尋意見反應論壇](https://feedback.azure.com/forums/263029-azure-search/)上提供寶貴意見。
 
-Currently, indexers only work with Azure SQL Database, SQL Server on Azure VMs, and [Azure DocumentDB](../documentdb/documentdb-search-indexer.md). In this article, we’ll focus on indexers that work with Azure SQL Database. If you would like to see support for additional data sources, please provide your feedback on the [Azure Search feedback forum](https://feedback.azure.com/forums/263029-azure-search/).
+本文將介紹使用索引子的機制，但我們也會深入了解僅在 SQL 資料庫上出現的功能與行為 (例如，整合變更追蹤)。
 
-This article will cover the mechanics of using indexers, but we’ll also drill down into features and behaviors that are only available with SQL databases (for example, integrated change tracking).
+## 索引子和資料來源
 
-## <a name="indexers-and-data-sources"></a>Indexers and data sources
+若要設定 Azure SQL 索引子，您可以呼叫 [Azure 搜尋服務 REST API](http://go.microsoft.com/fwlink/p/?LinkID=528173) 以建立和管理**索引子**及**資料來源**。
 
-To set up and configure an Azure SQL indexer, you can call the [Azure Search REST API](http://go.microsoft.com/fwlink/p/?LinkID=528173) to create and manage **indexers** and **data sources**. 
+您也可以使用 [.NET SDK](https://msdn.microsoft.com/library/azure/dn951165.aspx) 的 [索引子類別](https://msdn.microsoft.com/library/azure/microsoft.azure.search.models.indexer.aspx)，或 [Azure 入口網站](https://portal.azure.com) 的 [匯入資料精靈]，建立並排程索引子。
 
-You can also use the [Indexer class](https://msdn.microsoft.com/library/azure/microsoft.azure.search.models.indexer.aspx) in the [.NET SDK](https://msdn.microsoft.com/library/azure/dn951165.aspx), or Import Data wizard in the [Azure portal](https://portal.azure.com) to create and schedule an indexer.
+**資料來源**能指定哪項資料要編製索引、存取資料需要哪些認證，以及哪些政策能讓 Azure 搜尋服務有效識別資料變更 (新增、修改或刪除的資料列)。資料來源會被定義為獨立的資源，因此可供多個索引子使用。
 
-A **data source** specifies which data to index, credentials needed to access the data, and policies that enable Azure Search to efficiently identify changes in the data (new, modified or deleted rows). It's defined as an independent resource so that it can be used by multiple indexers.
-
-An **indexer** is a resource that connects data sources with target search indexes. An indexer is used in the following ways:
+**索引子**是一種用來連接資料來源與目標搜尋索引的資源。索引子的使用方式如下：
  
-- Perform a one-time copy of the data to populate an index.
-- Update an index with changes in the data source on a schedule.
-- Run on-demand to update an index as needed. 
+- 執行資料的一次性複製以填入索引。
+- 依照排程使用資料來源中的變更來更新索引。
+- 視需要執行隨選作業更新索引。
 
-## <a name="when-to-use-azure-sql-indexer"></a>When to Use Azure SQL Indexer
+## 使用 Azure SQL 索引子的時機
 
-Depending on several factors relating to your data, the use of Azure SQL indexer may or may not be appropriate. If your data fits the following requirements, you can use Azure SQL indexer: 
+使用 Azure SQL 索引子適當與否，取決於一些資料相關因素。如果您的資料符合下列要求，您就可以使用 Azure SQL 索引子：
 
-- All the data comes from a single table or view
-    - If the data is scattered across multiple tables, you can create a view and use that view with the indexer. However, be aware that if you use a view, you won’t be able to use SQL Server integrated change detection. See this section for more details. 
-- The data types used in the data source are supported by the indexer. Most but not all of the SQL types are supported. For details, see [Mapping data types in Azure Search](http://go.microsoft.com/fwlink/p/?LinkID=528105). 
-- You don’t need near real-time updates to the index when a row changes. 
-    - The indexer can re-index your table at most every 5 minutes. If your data changes frequently and the changes need to be reflected in the index within seconds or single minutes, we recommend using [Azure Search Index API](https://msdn.microsoft.com/library/azure/dn798930.aspx) directly. 
-- If you have a large data set and plan to run the indexer on a schedule, your schema allows us to efficiently identify changed (and deleted, if applicable) rows. For more details, see "Capturing Changed and Deleted Rows" below. 
-- The size of the indexed fields in a row doesn’t exceed the maximum size of an Azure Search indexing request, which is 16 MB. 
+- 所有資料皆來自單一資料表或檢視
+	- 如果資料散布在多個資料表中，您可以建立一個檢視，並且將該檢視與索引子搭配使用。但是請注意，若您使用檢視，您將不能使用 SQL Server 的整合變更偵測。請參閱此節以瞭解更多詳細資訊。
+- 索引子支援資料來源中所使用的資料類型。支援大部分但並非所有的 SQL 類型。如需詳細資料，請參閱[對應 Azure 搜尋服務內的資料來源](http://go.microsoft.com/fwlink/p/?LinkID=528105)。
+- 當資料列變更時，您不需要幾近即時索引更新。
+	- 索引子可以最多每隔 5 分鐘重新索引您的資料表。若您經常變更資料，且變更需要在幾秒或幾分鐘內反映到索引中，我們建議您直接使用 [Azure 搜尋服務索引 API](https://msdn.microsoft.com/library/azure/dn798930.aspx)。
+- 若您擁有大量資料集且計畫按照排程執行索引子，您的結構描述讓我們能夠有效識別已變更 (和已刪除 (若適用)) 的資料列。如需更多詳細資料，請參閱下列的「擷取變更及刪除的資料列」。
+- 資料列中的索引欄位大小不得超過 Azure 搜尋服務索引要求的大小上限 (16 MB)。
 
-## <a name="create-and-use-an-azure-sql-indexer"></a>Create and Use an Azure SQL Indexer
+## 建立和使用 Azure SQL 索引子
 
-First, create the data source: 
+首先，建立資料來源：
 
-    POST https://myservice.search.windows.net/datasources?api-version=2015-02-28 
-    Content-Type: application/json
-    api-key: admin-key
-    
-    { 
-        "name" : "myazuresqldatasource",
-        "type" : "azuresql",
-        "credentials" : { "connectionString" : "Server=tcp:<your server>.database.windows.net,1433;Database=<your database>;User ID=<your user name>;Password=<your password>;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;" },
-        "container" : { "name" : "name of the table or view that you want to index" }
-    }
+	POST https://myservice.search.windows.net/datasources?api-version=2015-02-28 
+	Content-Type: application/json
+	api-key: admin-key
+	
+	{ 
+	    "name" : "myazuresqldatasource",
+	    "type" : "azuresql",
+	    "credentials" : { "connectionString" : "Server=tcp:<your server>.database.windows.net,1433;Database=<your database>;User ID=<your user name>;Password=<your password>;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;" },
+	    "container" : { "name" : "name of the table or view that you want to index" }
+	}
 
 
-You can get the connection string from the [Azure Classic Portal](https://portal.azure.com); use the `ADO.NET connection string` option.
+您可以從 [Azure 傳統入口網站](https://portal.azure.com)取得連接字串；使用 `ADO.NET connection string` 選項。
 
-Then, create the target Azure Search index if you don’t have one already. You can do this from the [portal UI](https://portal.azure.com) or by using the [Create Index API](https://msdn.microsoft.com/library/azure/dn798941.aspx).  Ensure that the schema of your target index is compatible with the schema of the source table - see [mapping between SQL and Azure search data types](#TypeMapping) for details.
+然後，建立目標 Azure 搜尋服務索引 (如果您尚未建立)。您可以從 [Azure 入口網站 UI](https://portal.azure.com) 或使用[建立索引 API](https://msdn.microsoft.com/library/azure/dn798941.aspx) 來執行此作業。請確定目標索引的結構描述可與來源資料表的結構描述相容 - 如需詳細資訊，請參閱 [SQL 和 Azure 搜尋服務資料類型之間的對應](#TypeMapping)。
 
-Finally, create the indexer by giving it a name and referencing the data source and target index:
+最後，利用命名及參考資料來源和目標索引建立索引子。
 
-    POST https://myservice.search.windows.net/indexers?api-version=2015-02-28 
-    Content-Type: application/json
-    api-key: admin-key
-    
-    { 
-        "name" : "myindexer",
-        "dataSourceName" : "myazuresqldatasource",
-        "targetIndexName" : "target index name"
-    }
+	POST https://myservice.search.windows.net/indexers?api-version=2015-02-28 
+	Content-Type: application/json
+	api-key: admin-key
+	
+	{ 
+	    "name" : "myindexer",
+	    "dataSourceName" : "myazuresqldatasource",
+	    "targetIndexName" : "target index name"
+	}
 
-An indexer created in this way doesn’t have a schedule. It automatically runs once as soon as it’s created. You can run it again at any time using a **run indexer** request:
+以這種方式建立索引子不需依照排程。一旦索引子建立完成，會自動執行一次。您可以在任何時候使用 **執行索引子** 要求再執行一次：
 
-    POST https://myservice.search.windows.net/indexers/myindexer/run?api-version=2015-02-28 
-    api-key: admin-key
+	POST https://myservice.search.windows.net/indexers/myindexer/run?api-version=2015-02-28 
+	api-key: admin-key
 
-You can customize several aspects of indexer behavior, such as batch size and how many documents can be skipped before an indexer execution will be failed. For more details, see [Create Indexer API](https://msdn.microsoft.com/library/azure/dn946899.aspx).
+您可以自訂數個層面的索引子行為，例如，批次處理大小，以及在索引子執行失敗前可略過多少份文件。如需詳細資訊，請參閱[建立索引子 API](https://msdn.microsoft.com/library/azure/dn946899.aspx)。
  
-You may need to allow Azure services to connect to your database. See [Connecting From Azure](https://msdn.microsoft.com/library/azure/ee621782.aspx#ConnectingFromAzure) for instructions on how to do that.
+在您可能需要允許 Azure 服務以連線您的資料庫的時候。如需瞭解如何執行連線的指示，請參閱 [從 Azure連線](https://msdn.microsoft.com/library/azure/ee621782.aspx#ConnectingFromAzure) 。
 
-To monitor the indexer status and execution history (number of items indexed, failures, etc.), use an **indexer status** request: 
+若要監視索引子狀態及執行歷程紀錄 (項目索引編製數量、失敗等)，請使用 **索引子狀態** 要求：
 
-    GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2015-02-28 
-    api-key: admin-key
+	GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2015-02-28 
+	api-key: admin-key
 
-The response should look similar to the following: 
+回應看起來應該如下所示：
 
-    {
-        "@odata.context":"https://myservice.search.windows.net/$metadata#Microsoft.Azure.Search.V2015_02_28.IndexerExecutionInfo",
-        "status":"running",
-        "lastResult": {
-            "status":"success",
-            "errorMessage":null,
-            "startTime":"2015-02-21T00:23:24.957Z",
-            "endTime":"2015-02-21T00:36:47.752Z",
-            "errors":[],
-            "itemsProcessed":1599501,
-            "itemsFailed":0,
-            "initialTrackingState":null,
-            "finalTrackingState":null 
+	{
+		"@odata.context":"https://myservice.search.windows.net/$metadata#Microsoft.Azure.Search.V2015_02_28.IndexerExecutionInfo",
+		"status":"running",
+		"lastResult": {
+			"status":"success",
+			"errorMessage":null,
+			"startTime":"2015-02-21T00:23:24.957Z",
+			"endTime":"2015-02-21T00:36:47.752Z",
+			"errors":[],
+			"itemsProcessed":1599501,
+			"itemsFailed":0,
+			"initialTrackingState":null,
+			"finalTrackingState":null 
         },
-        "executionHistory":
-        [
-            {
-                "status":"success",
-                "errorMessage":null,
-                "startTime":"2015-02-21T00:23:24.957Z",
-                "endTime":"2015-02-21T00:36:47.752Z",
-                "errors":[],
-                "itemsProcessed":1599501,
-                "itemsFailed":0,
-                "initialTrackingState":null,
-                "finalTrackingState":null 
-            },
-            ... earlier history items 
-        ]
-    }
+		"executionHistory":
+		[
+			{
+				"status":"success",
+				"errorMessage":null,
+				"startTime":"2015-02-21T00:23:24.957Z",
+				"endTime":"2015-02-21T00:36:47.752Z",
+				"errors":[],
+				"itemsProcessed":1599501,
+				"itemsFailed":0,
+				"initialTrackingState":null,
+				"finalTrackingState":null 
+			},
+			... earlier history items 
+		]
+	}
 
-Execution history contains up to 50 of the most recently completed executions, which are sorted in the reverse chronological order (so that the latest execution comes first in the response). Additional information about the response can be found in [Get Indexer Status](http://go.microsoft.com/fwlink/p/?LinkId=528198)
+執行歷程記錄包含多達 50 個最近完成的執行，以倒序的方式進行排序 (因此最新的執行會排在回應中的第一位)。有關回應的的其他資訊可在 [取得索引子狀態](http://go.microsoft.com/fwlink/p/?LinkId=528198) 找到。
 
-## <a name="run-indexers-on-a-schedule"></a>Run indexers on a schedule
+## 依照排程執行索引子
 
-You can also arrange the indexer to run periodically on a schedule. To do this, just add the **schedule** property when creating or updating the indexer. The example below shows a PUT request to update the indexer:
+您也可以排列索引子，依照排程定期執行。若要執行此工作，您只需在建立或更新索引子時加入 **排程** 屬性。下方範例顯示以 PUT 要求更新索引子：
 
-    PUT https://myservice.search.windows.net/indexers/myindexer?api-version=2015-02-28 
-    Content-Type: application/json
-    api-key: admin-key 
+	PUT https://myservice.search.windows.net/indexers/myindexer?api-version=2015-02-28 
+	Content-Type: application/json
+	api-key: admin-key 
 
-    { 
-        "dataSourceName" : "myazuresqldatasource",
-        "targetIndexName" : "target index name",
-        "schedule" : { "interval" : "PT10M", "startTime" : "2015-01-01T00:00:00Z" }
-    }
+	{ 
+	    "dataSourceName" : "myazuresqldatasource",
+	    "targetIndexName" : "target index name",
+	    "schedule" : { "interval" : "PT10M", "startTime" : "2015-01-01T00:00:00Z" }
+	}
 
-The **interval** parameter is required. The interval refers to the time between the start of two consecutive indexer executions. The smallest allowed interval is 5 minutes; the longest is one day. It must be formatted as an XSD "dayTimeDuration" value (a restricted subset of an [ISO 8601 duration](http://www.w3.org/TR/xmlschema11-2/#dayTimeDuration) value). The pattern for this is: `P(nD)(T(nH)(nM))`. Examples: `PT15M` for every 15 minutes, `PT2H` for every 2 hours.
+**間隔** 參數是必需的。間隔指兩個連續索引子開始執行的時間。允許的最小間隔為 5 分鐘；最長間隔為一天。其必須格式化為 XSD "dayTimeDuration" 值 ([ISO 8601 持續時間](http://www.w3.org/TR/xmlschema11-2/#dayTimeDuration)值的受限子集)。間隔的模式為：`P(nD)(T(nH)(nM))`。範例：`PT15M` 代表每隔 15 分鐘，`PT2H` 代表每隔 2 個小時。
 
-The optional **startTime** indicates when the scheduled executions should commence; if it is omitted, the current UTC time will be used. This time can be in the past – in which case the first execution will be scheduled as if the indexer has been running continuously since the startTime.  
+選用的 **startTime** 表示排定執行應開始的時間 ；如果省略選用時間，則會使用您目前的 UTC 時間 。開始時間可以設定為過去的時間 (在這種情況下，可以假設索引子從 startTime 已持續執行一段時間，以排定第一次執行的時間)。
 
-Only one execution of a given indexer can run at a time. If an indexer is already executing when the next one is supposed to start, the execution is skipped and resumes at the next interval, assuming no other indexer job is running.
+給定的索引子一次僅能執行一個。若下個索引子應開始執行時此索引此仍在執行，該執行將會被跳過並且在下個間隔時間重新開始執行 (假設已無其他索引子工作正在執行)。
 
-Let’s consider an example to make this more concrete. Suppose we the following hourly schedule configured: 
+讓我們參考一個範例，讓您更具體了解詳情。我們假設下列排程已設定為每小時執行：
 
-    "schedule" : { "interval" : "PT1H", "startTime" : "2015-03-01T00:00:00Z" }
+	"schedule" : { "interval" : "PT1H", "startTime" : "2015-03-01T00:00:00Z" }
 
-Here’s what happens: 
+排程狀況如下：
 
-1. The first indexer execution starts at or around March 1, 2015 12:00 a.m. UTC.
-1. Assume this execution takes 20 minutes (or any time less than 1 hour).
-1. The second execution starts at or around March 1, 2015 1:00 a.m. 
-1. Now suppose that this execution takes more than an hour (this would require a huge number of documents for this to actually occur, but it’s a useful illustration) – for example, 70 minutes – so that it completes around 2:10 a.m.
-1. It’s now 2:00 a.m., time for the third execution to start. However, because the second execution from 1 a.m. is still running, the third execution is skipped. The third execution starts at 3 a.m.
+1. 第一次索引子執行開始時間約於 2015年 3 月 1 日 上午 12:00UTC。
+1. 假設此執行需要 20 分鐘 (或任何小於 1 小時的時間)。
+1. 第二次執行開始時間約於 2015 年 3 月 1 日 上午 1:00。
+1. 現在假設此執行需要一個多小時 (此狀況實際發生於可能需要執行大量文件時，但是個相當實用的示範) ：例如，70 分鐘，因此結束時間約於上午 2:10。
+1. 目前為上午 2:00，為第三個執行的開始時間。但是，因為從上午 1 點開始的第二次執行仍在運作，第三次執行就會被跳過。第三次執行時間改於上午 3 點開始。
 
-You can add, change, or delete a schedule for an existing indexer by using a **PUT indexer** request. 
+您可以使用 **PUT 索引子** 要求，加入、 變更或刪除現有之索引子的排程。
 
-## <a name="capturing-new,-changed-and-deleted-rows"></a>Capturing new, changed and deleted rows
+## 擷取新增、變更和刪除的資料列
 
-If you’re using a schedule and your table contains a non-trivial number of rows, you should use a data change detection policy, so that the indexer can efficiently retrieve only the new or changed rows without having to re-index the entire table.
+若您正在使用排程且資料表包含非一般數量的資料列，應使用資料變更偵測原則，如此索引子才能有效地只擷取新增或變更的資料列，而不需再重新編製整個資料列的索引。
 
-### <a name="sql-integrated-change-tracking-policy"></a>SQL Integrated Change Tracking Policy
+### SQL 整合變更追蹤原則
 
-If your SQL database supports [change tracking](https://msdn.microsoft.com/library/bb933875.aspx), we recommend using **SQL Integrated Change Tracking Policy**. This policy enables the most efficient change tracking, and it also allows Azure Search to identify deleted rows without you having to add an explicit "soft delete" column to your table.
+如果您的 SQL 資料庫支援 [變更追蹤](https://msdn.microsoft.com/library/bb933875.aspx)，則建議您使用 **SQL 整合式變更追蹤原則**。這項原則可保障最高效的變更追蹤，並讓 Azure 搜尋服務識別出已刪除的資料列，而不需在資料表中加入明確的「虛刪除」資料行。
 
-Integrated change tracking is supported starting with the following SQL Server database versions:
+下列的 SQL Server 資料庫版本支援整合變更追蹤：
  
-- SQL Server 2008 R2 and later, if you're using SQL Server on Azure VMs. 
-- Azure SQL Database V12, if you're using Azure SQL Database.
+- SQL Server 2008 R2 和更高版本 (若您使用 Azure VM 上 SQL Server )。
+- Azure SQL Database V12 (若您使用 Azure SQL Database )。
 
-When using SQL integrated change tracking policy, do not specify a separate data deletion detection policy - this policy has built-in support for identifying deleted rows.
+使用 SQL 整合式變更追蹤原則時，請不要指定個別的資料刪除偵測原則，因為本原則已內建支援刪除資料列的識別。
 
-This policy can only be used with tables; it cannot be used with views. You need to enable change tracking for the table you're using before you can use this policy. See [Enable and disable change tracking](https://msdn.microsoft.com/library/bb964713.aspx) for instructions. 
+這項原則僅可用於資料表，無法用於檢視表。您必須先啟用正在使用之資料表的變更追蹤，才能使用這項原則。如需指示，請參閱[啟用和停用變更追蹤](https://msdn.microsoft.com/library/bb964713.aspx)。
 
-To use this policy, create or update your data source like this:
+若要使用此原則，請以下列方式建立或更新您的資料來源：
  
-    { 
-        "name" : "myazuresqldatasource",
-        "type" : "azuresql",
-        "credentials" : { "connectionString" : "connection string" },
-        "container" : { "name" : "table or view name" }, 
-        "dataChangeDetectionPolicy" : {
-           "@odata.type" : "#Microsoft.Azure.Search.SqlIntegratedChangeTrackingPolicy" 
-      }
-    }
+	{ 
+	    "name" : "myazuresqldatasource",
+	    "type" : "azuresql",
+	    "credentials" : { "connectionString" : "connection string" },
+	    "container" : { "name" : "table or view name" }, 
+	    "dataChangeDetectionPolicy" : {
+	       "@odata.type" : "#Microsoft.Azure.Search.SqlIntegratedChangeTrackingPolicy" 
+	  }
+	}
 
-### <a name="high-water-mark-change-detection-policy"></a>High Water Mark Change Detection policy
+### 上限標準變更偵測原則
 
-While the SQL Integrated Change Tracking policy is recommended, you won’t be able to use it if your data is in a view, or if you’re using an older version of Azure SQL database. In such a case, consider using the high water mark policy. This policy can be used if your table contains a column that meets the following criteria:
+雖然我們推薦您使用 SQL 整合變更追蹤原則，但如果檢視表中有您的資料，或您使用的是舊版的 Azure SQL Database ，則無法使用此原則。若是這種情況，請考慮使用上限標準原則。您可以使用此原則，若您的資料表包含之資料行符合下列準則：
 
-- All inserts specify a value for the column. 
-- All updates to an item also change the value of the column. 
-- The value of this column increases with each change.
-- Queries that use a `WHERE` clause similar to `WHERE [High Water Mark Column] > [Current High Water Mark Value]` can be executed efficiently.
+- 所有插入都有指定資料行的值。
+- 所有項目更新變更資料行的值。
+- 每次變更都會增加此資料行的值。
+- 使用與 `WHERE [High Water Mark Column] > [Current High Water Mark Value]` 相同的 `WHERE` 子句的查詢能有效地執行。
 
-For example, an indexed **rowversion** column is an ideal candidate for the high water mark column. To use this policy, create or update your data source like this: 
+例如，已編製索引的 **rowversion** 資料行就適合使用上限標準資料行。若要使用此原則，請以下列方式建立或更新您的資料來源：
 
-    { 
-        "name" : "myazuresqldatasource",
-        "type" : "azuresql",
-        "credentials" : { "connectionString" : "connection string" },
-        "container" : { "name" : "table or view name" }, 
-        "dataChangeDetectionPolicy" : {
-           "@odata.type" : "#Microsoft.Azure.Search.HighWaterMarkChangeDetectionPolicy",
-           "highWaterMarkColumnName" : "[a row version or last_updated column name]" 
-      }
-    }
+	{ 
+	    "name" : "myazuresqldatasource",
+	    "type" : "azuresql",
+	    "credentials" : { "connectionString" : "connection string" },
+	    "container" : { "name" : "table or view name" }, 
+	    "dataChangeDetectionPolicy" : {
+	       "@odata.type" : "#Microsoft.Azure.Search.HighWaterMarkChangeDetectionPolicy",
+	       "highWaterMarkColumnName" : "[a row version or last_updated column name]" 
+	  }
+	}
 
-### <a name="soft-delete-column-deletion-detection-policy"></a>Soft Delete Column Deletion Detection policy
+### 虛刪除資料行刪除偵測原則
 
-When rows are deleted from the source table, you probably want to delete those rows from the search index as well. If you use the SQL integrated change tracking policy, this is taken care of for you. However, the high water mark change tracking policy doesn’t help you with deleted rows. What to do? 
+當從來源資料表中刪除資料列時，您應該也想刪除在搜尋索引內的那些資料列。若您使用 SQL 整合變更追蹤原則，就能幫您處理這件工作。但是，上限標準變更追蹤原則無法幫助您刪除資料列。怎麼辦？
 
-If the rows are physically removed from the table, you’re out of luck – there’s no way to infer the presence of records that no longer exist.  However, you can use the “soft-delete” technique to mark rows as logically deleted without removing them from the table by adding a column and marking rows as deleted using a marker value in that column.
+若資料列已實際從資料表內移除，那麼很不幸地，您無法推斷出不復存在的記錄。但是，您可以使用「虛刪除」技術標記資料列，如此可以以邏輯方式刪除資料列，使用資料行內的標記值加入已刪除的資料行及標記已刪除的資料行，您就不會移除它們。
 
-When using the soft-delete technique, you can specify the soft delete policy as follows when creating or updating the data source: 
+當您使用虛刪除技術時，可以在建立或升級資料來源時，按照下列方式指定虛刪除原則：
 
-    { 
-        …, 
-        "dataDeletionDetectionPolicy" : { 
-           "@odata.type" : "#Microsoft.Azure.Search.SoftDeleteColumnDeletionDetectionPolicy",
-           "softDeleteColumnName" : "[a column name]", 
-           "softDeleteMarkerValue" : "[the value that indicates that a row is deleted]" 
-        }
-    }
+	{ 
+	    …, 
+	    "dataDeletionDetectionPolicy" : { 
+	       "@odata.type" : "#Microsoft.Azure.Search.SoftDeleteColumnDeletionDetectionPolicy",
+	       "softDeleteColumnName" : "[a column name]", 
+	       "softDeleteMarkerValue" : "[the value that indicates that a row is deleted]" 
+	    }
+	}
 
-Note that the **softDeleteMarkerValue** must be a string – use the string representation of your actual value. For example, if you have an integer column where deleted rows are marked with the value 1, use `"1"`; if you have a BIT column where deleted rows are marked with the Boolean true value, use `"True"`. 
+請注意， **softDeleteMarkerValue** 必須為一個字串 (使用代表實際值的字串)。例如，若您擁有一個整數的資料行，且刪除的資料列標記為 1 值，請使用 `"1"`；若您擁有一個 BIT 資料行，且刪除的資料列標記為布林真值，請使用 `"True"`。
 
 <a name="TypeMapping"></a>
-## <a name="mapping-between-sql-data-types-and-azure-search-data-types"></a>Mapping between SQL Data Types and Azure Search data types
+## SQL 資料類型與 Azure 搜尋服務資料類型之間的對應
 
-|SQL data type | Allowed target index field types |Notes 
+|SQL 資料類型 | 允許的目標索引欄位類型 |注意事項 
 |------|-----|----|
-|bit|Edm.Boolean, Edm.String| |
-|int, smallint, tinyint |Edm.Int32, Edm.Int64, Edm.String| |
-| bigint | Edm.Int64, Edm.String | |
-| real, float |Edm.Double, Edm.String | |
-| smallmoney, money decimal numeric | Edm.String| Azure Search does not support converting decimal types into Edm.Double because this would lose precision |
-| char, nchar, varchar, nvarchar | Edm.String<br/>Collection(Edm.String)|Transforming a string column into Collection(Edm.String) requires using a preview API version 2015-02-28-Preview. See [this article](search-api-indexers-2015-02-28-Preview.md#CreateIndexer) for details| 
-|smalldatetime, datetime, datetime2, date, datetimeoffset |Edm.DateTimeOffset, Edm.String| |
+|bit|Edm.Boolean、Edm.String| |
+|int、smallint、tinyint |Edm.Int32、Edm.Int64、Edm.String| |
+| bigint | Edm.Int64、Edm.String | |
+| real、float |Edm.Double、Edm.String | |
+| smallmoney、money 十進位數值 | Edm.String| Azure 搜尋服務不支援將十進位類型轉換為 Edm.Double，因為這麼做會降低準確度。 |
+| char、nchar、varchar、nvarchar | Edm.String<br/>Collection(Edm.String)|將字串資料行轉換成 Collection(Edm.String) 需要使用預覽 API 2015-02-28-Preview 版本。如需詳細資訊，請參閱[本文](search-api-indexers-2015-02-28-Preview.md#create-indexer)| 
+|smalldatetime、datetime、datetime2、date、datetimeoffset |Edm.DateTimeOffset、Edm.String| |
 |uniqueidentifer | Edm.String | |
-|geography | Edm.GeographyPoint | Only geography instances of type POINT with SRID 4326 (which is the default) are supported | | 
-|rowversion| N/A |Row-version columns cannot be stored in the search index, but they can be used for change tracking | |
-| time, timespan, binary, varbinary, image, xml, geometry, CLR types | N/A |Not supported |
+|geography | Edm.GeographyPoint | 僅支援使用 SRID 4326 (預設) 之 POINT 類型的 geography 執行個體。 | | 
+|rowversion| N/A |資料列版本的資料行無法儲存在搜尋索引中，但可用於追蹤變更。 | |
+| time、timespan、binary、varbinary、image、xml、geometry、CLR 類型 | N/A |不支援 |
 
 
-## <a name="frequently-asked-questions"></a>Frequently asked questions
+## 常見問題集
 
-**Q:** Can I use Azure SQL indexer with SQL databases running on IaaS VMs in Azure?
+**問：** 在 Azure 服務的 IaaS 模擬器上執行 SQL 資料庫時，能夠使用 Azure SQL 索引子嗎？
 
-A: Yes. However, you need to allow your search service to connect to your database by doing the following two things. Please see article [Configure a connection from an Azure Search indexer to SQL Server on an Azure VM](search-howto-connecting-azure-sql-iaas-to-azure-search-using-indexers.md) for more information.
+答： 會。不過，您需要執行下列兩個動作，以允許搜尋服務連接到資料庫。如需詳細資訊，請參閱[在 Azure VM 上設定從 Azure 搜尋服務索引子到 SQL Server 的連線](search-howto-connecting-azure-sql-iaas-to-azure-search-using-indexers.md)一文。
 
-1. You may need to configure your database with a trusted certificate so that the search service can open SSL connections to the database.
-2. Configure the firewall to allow access to the IP address of your search service.
+1. 您可能需要使用信任的憑證來設定資料庫，以便搜尋服務可以開啟與資料庫的 SSL 連線。
+2. 設定防火牆，以允許存取您搜尋服務的 IP 位址。
 
-**Q:** Can I use Azure SQL indexer with SQL databases running on-premises? 
+**問：** 在內部部署執行 SQL 資料庫時，能夠使用 Azure SQL 索引子嗎？
 
-A: We do not recommend or support this, as doing this would require you to open your databases to Internet traffic. 
+答：我們不建議或不支援此功能，因為使用此功能時，需要您的網際網路流量開啟資料庫。
 
-**Q:** Can I use Azure SQL indexer with databases other than SQL Server running in IaaS on Azure? 
+**問：** 若不使用 Azure 服務的 IaaS 模擬器執行 SQL Server ，能夠使用其他資料庫的 Azure SQL 索引子嗎？
 
-A: We don’t support this scenario, because we haven’t tested the indexer with any databases other than SQL Server.  
+答：我們並不支援這樣的案例，因為我們尚未測試 SQL Server 以外之資料庫的索引子。
 
-**Q:** Can I create multiple indexers running on a schedule? 
+**問：** 可以建立多個依照排程執行的索引子嗎？
 
-A: Yes. However, only one indexer can be running on one node at one time. If you need multiple indexers running concurrently, consider scaling up your search service to more than one search unit. 
+答： 會。但是一次只能在一個節點上執行一個索引子。如果您需要多個同時執行的索引子，請考慮將搜尋服務調整大於一個搜尋單位。
 
-**Q:** Does running an indexer affect my query workload? 
+**問：** 執行一個索引子會影響我的查詢工作負載嗎？
 
-A: Yes. Indexer runs on one of the nodes in your search service, and that node’s resources are shared between indexing and serving query traffic and other API requests. If you run intensive indexing and query workloads and encounter a high rate of 503 errors or increasing response times, consider scaling up your search service.
+答： 會。索引子會在您搜尋服務中的其中一個節點執行，且節點上的資源會在索引及服務查詢流量和其他 API 要求之間共用。如果您密集執行索引及查詢工作負載，且經常遇到 503 錯誤或回應次數增加，請考慮調整您的搜尋服務。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!----HONumber=AcomDC_0907_2016-->

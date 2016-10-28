@@ -1,167 +1,166 @@
 <properties 
-    pageTitle="Publish Azure Media Services content using REST" 
-    description="Learn how to create a locator that is used to build a streaming URL. The code uses REST API." 
-    authors="Juliako" 
-    manager="erikre" 
-    editor="" 
-    services="media-services" 
-    documentationCenter=""/>
+	pageTitle="使用 REST 發佈 Azure 媒體服務內容" 
+	description="了解如何建立定位器，用來建置串流 URL。程式碼使用 REST API。" 
+	authors="Juliako" 
+	manager="erikre" 
+	editor="" 
+	services="media-services" 
+	documentationCenter=""/>
 
 <tags 
-    ms.service="media-services" 
-    ms.workload="media" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="08/30/2016"
-    ms.author="juliako"/>
+	ms.service="media-services" 
+	ms.workload="media" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="08/30/2016"
+	ms.author="juliako"/>
 
 
-
-# <a name="publish-azure-media-services-content-using-rest"></a>Publish Azure Media Services content using REST
+# 使用 REST 發佈 Azure 媒體服務內容
 
 > [AZURE.SELECTOR]
 - [.NET](media-services-deliver-streaming-content.md)
 - [REST](media-services-rest-deliver-streaming-content.md)
-- [Portal](media-services-portal-publish.md)
+- [入口網站](media-services-portal-publish.md)
 
-##<a name="overview"></a>Overview
+##Overview
 
 
-You can stream an adaptive bitrate MP4 set by creating an OnDemand streaming locator and building a streaming URL. The [encoding an asset](media-services-rest-encode-asset.md) topic shows how to encode into an adaptive bitrate MP4 set. If your content is encrypted, configure asset delivery policy (as described in [this](media-services-rest-configure-asset-delivery-policy.md) topic) before creating a locator. 
+您可以建立隨選串流定位器及建置串流 URL，串流處理調適性位元速率 MP4 集。[為資產編碼](media-services-rest-encode-asset.md)主題說明如何編碼為調適性位元速率 MP4 集。如果您的內容已加密，請在建立定位器之前設定資產傳遞原則 (如[這個](media-services-rest-configure-asset-delivery-policy.md)主題中所述)。
 
-You can also use an OnDemand streaming locator to build URLs that point to MP4 files that can be progressively downloaded.  
+您也可以使用隨選串流定位器來建置指向可漸進式下載之 MP4 檔案的 URL。
 
-This topic shows how to create an OnDemand streaming locator in order to publish your asset and build a Smooth, MPEG DASH, and HLS streaming URLs. It also shows hot to build progressive download URLs.
+本主題說明如何建立隨選串流定位器以發佈資產及建置 Smooth、MPEG DASH 和 HLS 串流 URL。它也會示範如何建置漸進式下載 URL。
 
-The [following](#types) section shows the enum types whose values are used in the REST calls.   
+[下列章節](#types)說明列舉類型，REST 呼叫中會使用這些類型的值。
   
-##<a name="create-an-ondemand-streaming-locator"></a>Create an OnDemand streaming locator
+##建立隨選串流定位器
 
-To create the OnDemand streaming locator and get URLs you need to do the following:
-
-
-   1. If the content is encrypted, define an access policy.
-   2. Create an OnDemand streaming locator.
-   3. If you plan to stream, get the streaming manifest file (.ism) in the asset. 
-        
-    If you plan to progressively download, get the names of MP4 files in the asset. 
-   4. Build URLs to the manifest file or MP4 files. 
-   5. Note that you cannot create a streaming locator using an AccessPolicy that includes write or delete permissions.
+若要建立隨選串流定位器並取得 URL，您需要執行下列動作：
 
 
-###<a name="create-an-access-policy"></a>Create an access policy
-
-Request:
-        
-    POST https://media.windows.net/api/AccessPolicies HTTP/1.1
-    Content-Type: application/json
-    DataServiceVersion: 1.0;NetFx
-    MaxDataServiceVersion: 3.0;NetFx
-    Accept: application/json
-    Accept-Charset: UTF-8
-    Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=amstest1&urn%3aSubscriptionId=zbbef702-e769-2233-9f16-bc4d3aa97387&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1424263184&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=NWE%2f986Hr5lZTzVGKtC%2ftzHm9n6U%2fxpTFULItxKUGC4%3d
-    x-ms-version: 2.11
-    x-ms-client-request-id: 6bcfd511-a561-448d-a022-a319a89ecffa
-    Host: media.windows.net
-    Content-Length: 68
-    
-    {"Name":"access policy","DurationInMinutes":43200.0,"Permissions":1}
-    
-Response:
-    
-    HTTP/1.1 201 Created
-    Cache-Control: no-cache
-    Content-Length: 311
-    Content-Type: application/json;odata=minimalmetadata;streaming=true;charset=utf-8
-    Location: https:/media.windows.net/api/AccessPolicies('nb%3Apid%3AUUID%3A69c80d98-7830-407f-a9af-e25f4b0d3e5f')
-    Server: Microsoft-IIS/8.5
-    request-id: a877528a-bdb4-4414-9862-273f8e64f882
-    x-ms-request-id: a877528a-bdb4-4414-9862-273f8e64f882
-    x-ms-client-request-id: 6bcfd511-a561-448d-a022-a319a89ecffa
-    X-Content-Type-Options: nosniff
-    DataServiceVersion: 3.0;
-    X-Powered-By: ASP.NET
-    Strict-Transport-Security: max-age=31536000; includeSubDomains
-    Date: Wed, 18 Feb 2015 06:52:09 GMT
-    
-    {"odata.metadata":"https://media.windows.net/api/$metadata#AccessPolicies/@Element","Id":"nb:pid:UUID:69c80d98-7830-407f-a9af-e25f4b0d3e5f","Created":"2015-02-18T06:52:09.8862191Z","LastModified":"2015-02-18T06:52:09.8862191Z","Name":"access policy","DurationInMinutes":43200.0,"Permissions":1}
-
-###<a name="create-an-ondemand-streaming-locator"></a>Create an OnDemand streaming locator
-
-Create the locator for the specified asset and asset policy.
-
-Request:
-    
-    POST https://media.windows.net/api/Locators HTTP/1.1
-    Content-Type: application/json
-    DataServiceVersion: 1.0;NetFx
-    MaxDataServiceVersion: 3.0;NetFx
-    Accept: application/json
-    Accept-Charset: UTF-8
-    Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=amstest1&urn%3aSubscriptionId=zbbef702-e769-2233-9f16-bc4d3aa97387&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1424263184&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=NWE%2f986Hr5lZTzVGKtC%2ftzHm9n6U%2fxpTFULItxKUGC4%3d
-    x-ms-version: 2.11
-    x-ms-client-request-id: ac159492-9a0c-40c3-aacc-551b1b4c5f62
-    Host: media.windows.net
-    Content-Length: 181
-    
-    {"AccessPolicyId":"nb:pid:UUID:1480030d-c481-430a-9687-535c6a5cb272","AssetId":"nb:cid:UUID:cc1e445d-1500-80bd-538e-f1e4b71b465e","StartTime":"2015-02-18T06:34:47.267872Z","Type":2}
-
-Response:
-    
-    HTTP/1.1 201 Created
-    Cache-Control: no-cache
-    Content-Length: 637
-    Content-Type: application/json;odata=minimalmetadata;streaming=true;charset=utf-8
-    Location: https://media.windows.net/api/Locators('nb%3Alid%3AUUID%3Abe245661-2bbd-4fc6-b14f-9cf9a1492e5e')
-    Server: Microsoft-IIS/8.5
-    request-id: 5bd5864a-0afd-44c0-a67a-4044a2c9043b
-    x-ms-request-id: 5bd5864a-0afd-44c0-a67a-4044a2c9043b
-    x-ms-client-request-id: ac159492-9a0c-40c3-aacc-551b1b4c5f62
-    X-Content-Type-Options: nosniff
-    DataServiceVersion: 3.0;
-    X-Powered-By: ASP.NET
-    Strict-Transport-Security: max-age=31536000; includeSubDomains
-    Date: Wed, 18 Feb 2015 06:58:37 GMT
-    
-    {"odata.metadata":"https://media.windows.net/api/$metadata#Locators/@Element","Id":"nb:lid:UUID:be245661-2bbd-4fc6-b14f-9cf9a1492e5e","ExpirationDateTime":"2015-03-20T06:34:47.267872+00:00","Type":2,"Path":"http://amstest1.streaming.mediaservices.windows.net/be245661-2bbd-4fc6-b14f-9cf9a1492e5e/","BaseUri":"http://amstest1.streaming.mediaservices.windows.net","ContentAccessComponent":"be245661-2bbd-4fc6-b14f-9cf9a1492e5e","AccessPolicyId":"nb:pid:UUID:1480030d-c481-430a-9687-535c6a5cb272","AssetId":"nb:cid:UUID:cc1e445d-1500-80bd-538e-f1e4b71b465e","StartTime":"2015-02-18T06:34:47.267872+00:00","Name":null}
-
-###<a name="build-streaming-urls"></a>Build streaming URLs
-
-Use the **Path** value returned after the creation of the locator to build the Smooth, HLS, and MPEG DASH URLs. 
-
-Smooth Streaming: **Path** + manifest file name + "/manifest"
-
-example:
-
-    http://amstest1.streaming.mediaservices.windows.net/3c5fe676-199c-4620-9b03-ba014900f214/BigBuckBunny.ism/manifest
-
-HLS: **Path** + manifest file name + "/manifest(format=m3u8-aapl)"
-
-example:
-
-    http://amstest1.streaming.mediaservices.windows.net/3c5fe676-199c-4620-9b03-ba014900f214/BigBuckBunny.ism/manifest(format=m3u8-aapl)
+   1. 如果內容已加密，請定義存取原則。
+   2. 建立隨選串流定位器。
+   3. 如果您想要串流處理，請取得資產內的串流資訊清單檔案 (.ism)。
+   		
+	如果您想要漸進式地下載，請取得資產中的 MP4 檔案名稱。
+   4. 建置資訊清單檔或 MP4 檔案的 URL。
+   5. 請注意，您無法使用包含寫入或刪除權限的 AccessPolicy 建立串流訂位器。
 
 
-DASH: **Path** + manifest file name + "/manifest(format=mpd-time-csf)"
+###建立存取原則
+
+要求：
+		
+	POST https://media.windows.net/api/AccessPolicies HTTP/1.1
+	Content-Type: application/json
+	DataServiceVersion: 1.0;NetFx
+	MaxDataServiceVersion: 3.0;NetFx
+	Accept: application/json
+	Accept-Charset: UTF-8
+	Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=amstest1&urn%3aSubscriptionId=zbbef702-e769-2233-9f16-bc4d3aa97387&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1424263184&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=NWE%2f986Hr5lZTzVGKtC%2ftzHm9n6U%2fxpTFULItxKUGC4%3d
+	x-ms-version: 2.11
+	x-ms-client-request-id: 6bcfd511-a561-448d-a022-a319a89ecffa
+	Host: media.windows.net
+	Content-Length: 68
+	
+	{"Name":"access policy","DurationInMinutes":43200.0,"Permissions":1}
+	
+回應：
+	
+	HTTP/1.1 201 Created
+	Cache-Control: no-cache
+	Content-Length: 311
+	Content-Type: application/json;odata=minimalmetadata;streaming=true;charset=utf-8
+	Location: https:/media.windows.net/api/AccessPolicies('nb%3Apid%3AUUID%3A69c80d98-7830-407f-a9af-e25f4b0d3e5f')
+	Server: Microsoft-IIS/8.5
+	request-id: a877528a-bdb4-4414-9862-273f8e64f882
+	x-ms-request-id: a877528a-bdb4-4414-9862-273f8e64f882
+	x-ms-client-request-id: 6bcfd511-a561-448d-a022-a319a89ecffa
+	X-Content-Type-Options: nosniff
+	DataServiceVersion: 3.0;
+	X-Powered-By: ASP.NET
+	Strict-Transport-Security: max-age=31536000; includeSubDomains
+	Date: Wed, 18 Feb 2015 06:52:09 GMT
+	
+	{"odata.metadata":"https://media.windows.net/api/$metadata#AccessPolicies/@Element","Id":"nb:pid:UUID:69c80d98-7830-407f-a9af-e25f4b0d3e5f","Created":"2015-02-18T06:52:09.8862191Z","LastModified":"2015-02-18T06:52:09.8862191Z","Name":"access policy","DurationInMinutes":43200.0,"Permissions":1}
+
+###建立隨選串流定位器
+
+建立指定資產和資產原則的定位器。
+
+要求：
+	
+	POST https://media.windows.net/api/Locators HTTP/1.1
+	Content-Type: application/json
+	DataServiceVersion: 1.0;NetFx
+	MaxDataServiceVersion: 3.0;NetFx
+	Accept: application/json
+	Accept-Charset: UTF-8
+	Authorization: Bearer http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=amstest1&urn%3aSubscriptionId=zbbef702-e769-2233-9f16-bc4d3aa97387&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&Audience=urn%3aWindowsAzureMediaServices&ExpiresOn=1424263184&Issuer=https%3a%2f%2fwamsprodglobal001acs.accesscontrol.windows.net%2f&HMACSHA256=NWE%2f986Hr5lZTzVGKtC%2ftzHm9n6U%2fxpTFULItxKUGC4%3d
+	x-ms-version: 2.11
+	x-ms-client-request-id: ac159492-9a0c-40c3-aacc-551b1b4c5f62
+	Host: media.windows.net
+	Content-Length: 181
+	
+	{"AccessPolicyId":"nb:pid:UUID:1480030d-c481-430a-9687-535c6a5cb272","AssetId":"nb:cid:UUID:cc1e445d-1500-80bd-538e-f1e4b71b465e","StartTime":"2015-02-18T06:34:47.267872Z","Type":2}
+
+回應：
+	
+	HTTP/1.1 201 Created
+	Cache-Control: no-cache
+	Content-Length: 637
+	Content-Type: application/json;odata=minimalmetadata;streaming=true;charset=utf-8
+	Location: https://media.windows.net/api/Locators('nb%3Alid%3AUUID%3Abe245661-2bbd-4fc6-b14f-9cf9a1492e5e')
+	Server: Microsoft-IIS/8.5
+	request-id: 5bd5864a-0afd-44c0-a67a-4044a2c9043b
+	x-ms-request-id: 5bd5864a-0afd-44c0-a67a-4044a2c9043b
+	x-ms-client-request-id: ac159492-9a0c-40c3-aacc-551b1b4c5f62
+	X-Content-Type-Options: nosniff
+	DataServiceVersion: 3.0;
+	X-Powered-By: ASP.NET
+	Strict-Transport-Security: max-age=31536000; includeSubDomains
+	Date: Wed, 18 Feb 2015 06:58:37 GMT
+	
+	{"odata.metadata":"https://media.windows.net/api/$metadata#Locators/@Element","Id":"nb:lid:UUID:be245661-2bbd-4fc6-b14f-9cf9a1492e5e","ExpirationDateTime":"2015-03-20T06:34:47.267872+00:00","Type":2,"Path":"http://amstest1.streaming.mediaservices.windows.net/be245661-2bbd-4fc6-b14f-9cf9a1492e5e/","BaseUri":"http://amstest1.streaming.mediaservices.windows.net","ContentAccessComponent":"be245661-2bbd-4fc6-b14f-9cf9a1492e5e","AccessPolicyId":"nb:pid:UUID:1480030d-c481-430a-9687-535c6a5cb272","AssetId":"nb:cid:UUID:cc1e445d-1500-80bd-538e-f1e4b71b465e","StartTime":"2015-02-18T06:34:47.267872+00:00","Name":null}
+
+###建置串流 URL
+
+建立定位器之後，使用傳回的 **Path** 值建置 Smooth、HLS 和 MPEG DASH URL。
+
+Smooth Streaming：**Path** + 資訊清單檔案名稱 + "/manifest"
+
+例如：
+
+	http://amstest1.streaming.mediaservices.windows.net/3c5fe676-199c-4620-9b03-ba014900f214/BigBuckBunny.ism/manifest
+
+HLS：**Path** + 資訊清單檔案名稱 + "/manifest(format=m3u8-aapl)"
+
+例如：
+
+	http://amstest1.streaming.mediaservices.windows.net/3c5fe676-199c-4620-9b03-ba014900f214/BigBuckBunny.ism/manifest(format=m3u8-aapl)
 
 
-example:
-
-    http://amstest1.streaming.mediaservices.windows.net/3c5fe676-199c-4620-9b03-ba014900f214/BigBuckBunny.ism/manifest(format=mpd-time-csf)
+DASH：**Path** + 資訊清單檔案名稱 + "/manifest(format=mpd-time-csf)"
 
 
-###<a name="build-progressive-download-urls"></a>Build progressive download URLs
+例如：
 
-Use the **Path** value returned after the creation of the locator to build the progressive download URL.   
+	http://amstest1.streaming.mediaservices.windows.net/3c5fe676-199c-4620-9b03-ba014900f214/BigBuckBunny.ism/manifest(format=mpd-time-csf)
 
-URL: **Path** + asset file mp4 name
 
-example:
+###建置漸進式下載 URL
 
-    http://amstest1.streaming.mediaservices.windows.net/3c5fe676-199c-4620-9b03-ba014900f214/BigBuckBunny_H264_650kbps_AAC_und_ch2_96kbps.mp4
+建立定位器之後，使用傳回的 **Path** 值建置漸進式下載 URL。
 
-##<a name="<a-id="types"></a>enum-types"></a><a id="types"></a>Enum types
+URL：**Path** + 資產檔案 MP4 名稱
+
+例如：
+
+	http://amstest1.streaming.mediaservices.windows.net/3c5fe676-199c-4620-9b03-ba014900f214/BigBuckBunny_H264_650kbps_AAC_und_ch2_96kbps.mp4
+
+##<a id="types"></a>列舉類型
 
     [Flags]
     public enum AccessPermissions
@@ -180,20 +179,16 @@ example:
         OnDemandOrigin = 2,
     }
 
-##<a name="media-services-learning-paths"></a>Media Services learning paths
+##媒體服務學習路徑
 
 [AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-##<a name="provide-feedback"></a>Provide feedback
+##提供意見反應
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-##<a name="see-also"></a>See also
+##另請參閱
 
-[Configure asset delivery policy](media-services-rest-configure-asset-delivery-policy.md)
+[設定資產傳遞原則](media-services-rest-configure-asset-delivery-policy.md)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0831_2016-->

@@ -1,234 +1,229 @@
 <properties
-    pageTitle="Back up a Windows server or client to Azure using the classic deployment model | Microsoft Azure"
-    description="Backup Windows servers or clients to Azure by creating a backup vault, downloading credentials, installing the backup agent, and completing an initial backup of your files and folders."
-    services="backup"
-    documentationCenter=""
-    authors="markgalioto"
-    manager="cfreeman"
-    editor=""
-    keywords="backup vault; back up a Windows server; backup windows;"/>
+	pageTitle="使用傳統部署模型將 Windows Server 或用戶端備份至 Azure | Microsoft Azure"
+	description="藉由建立備份保存庫、下載認證、安裝備份代理程式，並完成檔案和資料夾的初始備份，來將 Windows Server 或用戶端備份到 Azure。"
+	services="backup"
+	documentationCenter=""
+	authors="markgalioto"
+	manager="cfreeman"
+	editor=""
+	keywords="備份保存庫；備份 Windows Server；備份Windows；"/>
 
 <tags
-    ms.service="backup"
-    ms.workload="storage-backup-recovery"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/08/2016"
-    ms.author="jimpark; trinadhk; markgal"/>
+	ms.service="backup"
+	ms.workload="storage-backup-recovery"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/08/2016"
+	ms.author="jimpark; trinadhk; markgal"/>
 
 
-
-# <a name="back-up-a-windows-server-or-client-to-azure-using-the-classic-deployment-model"></a>Back up a Windows server or client to Azure using the classic deployment model
+# 使用傳統部署模型將 Windows Server 或用戶端備份至 Azure
 
 > [AZURE.SELECTOR]
-- [Classic portal](backup-configure-vault-classic.md)
-- [Azure portal](backup-configure-vault.md)
+- [傳統入口網站](backup-configure-vault-classic.md)
+- [Azure 入口網站](backup-configure-vault.md)
 
-This article covers the procedures that you need to follow to prepare your environment and back up a Windows server (or client) to Azure. It also covers considerations for deploying your backup solution. If you're interested in trying Azure Backup for the first time, this article quickly walks you through the process.
+本文涵蓋您要準備環境並將 Windows Server (或用戶端) 備份至 Azure 所需依循的程序。它還涵蓋部署備份解決方案的考量。如果您想要第一次嘗試 Azure 備份，這篇文章可快速引導您完成該程序。
 
-![Create vault](./media/backup-configure-vault-classic/initial-backup-process.png)
+![[建立保存庫]](./media/backup-configure-vault-classic/initial-backup-process.png)
 
->[AZURE.IMPORTANT] Azure has two different deployment models for creating and working with resources: Resource Manager and classic. This article covers using the classic deployment model. Microsoft recommends that most new deployments use the Resource Manager model.
+>[AZURE.IMPORTANT] Azure 建立和處理資源的部署模型有二種：資源管理員和傳統。本文涵蓋之內容包括使用傳統部署模型。Microsoft 建議讓大部分的新部署使用資源管理員模式。
 
-## <a name="before-you-start"></a>Before you start
-To back up a server or client to Azure, you need an Azure account. If you don't have one, you can create a [free account](https://azure.microsoft.com/free/) in just a couple of minutes.
+## 開始之前
+若要將伺服器或用戶端備份至 Azure，您需要 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶](https://azure.microsoft.com/free/)。
 
-## <a name="step-1:-create-a-backup-vault"></a>Step 1: Create a backup vault
-To back up files and folders from a server or client, you need to create a backup vault in the geographic region where you want to store the data.
+## 步驟 1：建立備份保存庫
+若要從伺服器或用戶端備份檔案與資料夾，您必須在要儲存這些資料的地理區域中建立備份保存庫。
 
-### <a name="to-create-a-backup-vault"></a>To create a backup vault
+### 若要建立備份保存庫
 
-1. Sign in to [the classic portal](https://manage.windowsazure.com/).
+1. 登入[傳統入口網站](https://manage.windowsazure.com/)。
 
-2. Click **New** > **Data Services** > **Recovery Services** > **Backup Vault**, and then choose **Quick Create**.
+2. 按一下 [新增] > [資料服務] > [復原服務] > [備份保存庫]，然後選擇 [快速建立]。
 
-3. For the **Name** parameter, enter a friendly name for the backup vault. Type a name that contains between 2 and 50 characters. It must start with a letter, and can contain only letters, numbers, and hyphens. This name needs to be unique for each subscription.
+3. 針對 [名稱] 參數，輸入易記的備份保存庫名稱。輸入包含 2 到 50 個字元的名稱。該名稱必須以字母開頭，而且只可以包含字母、數字和連字號。每個訂用帳戶的名稱皆需為唯一名稱。
 
-4. For the **Region** parameter, select the geographic region for the backup vault. This choice determines the geographic region where your backup data is sent. By choosing a geographic region that's close to your location, you can reduce network latency when backing up to Azure.
+4. 針對 [**區域**] 參數，選取備份保存庫的地區區域。此選項會決定您的備份資料要傳送到哪個地理區域。透過選擇靠近您位置的地理區域，可以在備份至 Azure 時減少網路延遲。
 
-5. Click **Create Vault**.
+5. 按一下 [建立保存庫]。
 
-    ![Create a backup vault](./media/backup-configure-vault-classic/demo-vault-name.png)
+    ![建立備份保存庫](./media/backup-configure-vault-classic/demo-vault-name.png)
 
-    It can take a while for the backup vault to be created. To check the status, monitor the notifications at the bottom of the classic portal.
+    要等備份保存庫建立好，可能需要一些時間。若要檢查狀態，可以監控位於傳統入口網站底部的通知。
 
-    After the backup vault has been created, you'll see a message saying that the vault has been successfully created. It also appears as **Active** in the **Recovery Services** resource list.
+    建立備份保存庫之後，您會看到一則訊息表示已成功建立保存庫。它也會在 [復原服務] 資源清單中顯示為 [使用中]。
 
-    ![Creating vault status](./media/backup-configure-vault-classic/recovery-services-select-vault.png)
+    ![正在建立保存庫狀態](./media/backup-configure-vault-classic/recovery-services-select-vault.png)
 
-4. Select the storage redundancy option by following the steps described here.
+4. 依照此處說明的步驟選取儲存體備援選項。
 
-    >[AZURE.IMPORTANT] The best time to identify your storage redundancy option is right after vault creation and before any machines are registered to the vault. After an item has been registered to the vault, the storage redundancy option is locked and cannot be modified.
+    >[AZURE.IMPORTANT] 識別儲存體備援選項的最佳時機，在於保存庫建立之後，以及任何電腦註冊至保存庫之前。在項目已註冊至保存庫之後，儲存體備援選項就會鎖定且無法修改。
 
-    If you are using Azure as a primary backup storage endpoint (for example, you are backing up to Azure from a Windows server), consider picking (the default) [geo-redundant storage](../storage/storage-redundancy.md#geo-redundant-storage) option.
+    如果您使用 Azure 作為主要的備份儲存體端點 (例如，您正從 Windows Server 備份至 Azure)，請考慮挑選 (預設值) [異地備援儲存體](../storage/storage-redundancy.md#geo-redundant-storage)選項。
 
-    If you are using Azure as a tertiary backup storage endpoint (for example, you are using System Center Data Protection Manager to store a local backup copy on-premises and using Azure for long-term retention needs), consider choosing [locally redundant storage](../storage/storage-redundancy.md#locally-redundant-storage). This brings down the cost of storing data in Azure, while providing a lower level of durability for your data that might be acceptable for tertiary copies.
+    如果您使用 Azure 做為第三備份儲存體端點 (例如，您使用 System Center Data Protection Manager 在內部部署環境中儲存本機備份複本，並使用 Azure 來滿足長期保留需求)，則應該考慮選擇[本地備援儲存體](../storage/storage-redundancy.md#locally-redundant-storage)。這將減少在 Azure 中儲存資料的成本，同時針對您可能會接受第三個複本的資料提供較低層級的持久性。
 
-    **To select the storage redundancy option:**
+    **選取儲存體備援選項：**
 
-    a. Click the vault you just created.
+    a.按一下您剛才建立的保存庫。
 
-    b. On the Quick Start page, select **Configure**.
+    b.在 [快速啟動] 頁面上，選取 [設定]。
 
-    ![Configure vault status](./media/backup-configure-vault-classic/configure-vault.png)
+    ![設定保存庫狀態](./media/backup-configure-vault-classic/configure-vault.png)
 
-    c. Choose the appropriate storage redundancy option.
+    c.選擇適當的儲存體備援選項。
 
-    If you select **Locally Redundant**, you need to click **Save** (because **Geo-Redundant** is the default option).
+    如果您選取 [本地備援]，您必須按一下 [儲存]\(因為 [異地備援] 是預設選項)。
 
-    d. In the left navigation pane, click **Recovery Services** to return to the list of resources for Recovery Services.
+    d.在左側瀏覽窗格中，按一下 [復原服務] 來回到復原服務的資源清單。
 
-## <a name="step-2:-download-the-vault-credential-file"></a>Step 2: Download the vault credential file
-The on-premises machine needs to be authenticated with a backup vault before it can back up data to Azure. The authentication is achieved through *vault credentials*. The vault credential file is downloaded through a secure channel from the classic portal. The certificate private key does not persist in the portal or the service.
+## 步驟 2：下載保存庫認證檔
+內部部署機器必須先驗證備份保存庫，才能將資料備份至 Azure。驗證是透過「保存庫認證」來達成。保存庫認證檔會透過安全通道，從傳統入口網站下載。憑證私密金鑰不會保存在入口網站或服務中。
 
-Learn more about [using vault credentials to authenticate with the Backup service](backup-introduction-to-azure-backup.md#what-is-the-vault-credential-file).
+深入了解如何[使用保存庫認證來驗證備份服務](backup-introduction-to-azure-backup.md#what-is-the-vault-credential-file)。
 
-### <a name="to-download-the-vault-credential-file-to-a-local-machine"></a>To download the vault credential file to a local machine
+### 將保存庫認證檔下載至本機電腦
 
-1. In the left navigation pane, click **Recovery Services**, and then select the backup vault that you created.
+1. 在左側導覽窗格中，按一下 [復原服務]，然後選取您所建立的備份保存庫。
 
-    ![IR complete](./media/backup-configure-vault-classic/rs-left-nav.png)
+    ![IR 已完成](./media/backup-configure-vault-classic/rs-left-nav.png)
 
-2.  On the Quick Start page, click **Download vault credentials**.
+2.  在 [快速入門] 頁面上，按一下 [**下載保存庫認證**]。
 
-    The classic portal generates a vault credential by using a combination of the vault name and the current date. The vault credentials file is used only during the registration workflow and expires after 48 hours.
+    傳統入口網站會使用保存庫名稱和目前日期的組合來產生保存庫認證。保存庫認證檔僅在註冊工作流程期間使用，並於 48 小時後過期。
 
-    The vault credential file can be downloaded from the portal.
+    保存庫認證檔可以從入口網站下載。
 
-3. Click **Save** to download the vault credential file to the Downloads folder of the local account. You can also select **Save As** from the **Save** menu to specify a location for the vault credential file.
+3. 按一下 [儲存] 將保存庫認證檔下載至本機帳戶的 [下載] 資料夾。您也可以從 [儲存] 功能表選取 [另存新檔]，以指定保存庫認證檔的儲存位置。
 
-    >[AZURE.NOTE] Make sure the vault credential file is saved in a location that can be accessed from your machine. If it is stored in a file share or server message block, verify that you have the permissions to access it.
+    >[AZURE.NOTE] 請確保保存庫認證檔儲存在可從您的電腦存取的位置。如果是儲存在檔案共用或伺服器訊息區塊中，請確認您擁有存取權限。
 
-## <a name="step-3:-download,-install,-and-register-the-backup-agent"></a>Step 3: Download, install, and register the Backup agent
-After you create the backup vault and download the vault credential file, an agent must be installed on each of your Windows machines.
+## 步驟 3：下載、安裝和註冊備份代理程式
+在您建立備份保存庫並下載保存庫認證檔之後，必須在您每一部 Windows 電腦上安裝代理程式。
 
-### <a name="to-download,-install,-and-register-the-agent"></a>To download, install, and register the agent
+### 下載、安裝和註冊代理程式
 
-1. Click **Recovery Services**, and then select the backup vault that you want to register with a server.
+1. 按一下 [復原服務]，然後選取您要向伺服器註冊的備份保存庫。
 
-2. On the Quick Start page, click the agent **Agent for Windows Server or System Center Data Protection Manager or Windows client**. Then click **Save**.
+2. 在 [快速啟動] 頁面上，按一下 [適用於 Windows Server 或 System Center Data Protection Manager 或 Windows 用戶端的代理程式] 代理程式。然後按一下 [儲存]。
 
-    ![Save agent](./media/backup-configure-vault-classic/agent.png)
+    ![儲存代理程式](./media/backup-configure-vault-classic/agent.png)
 
-3. After the MARSagentinstaller.exe file has downloaded, click **Run** (or double-click **MARSAgentInstaller.exe** from the saved location).
+3. 在下載 MARSagentinstaller.exe 檔案之後，按一下 [執行]\(或從儲存的位置按兩下 **MARSAgentInstaller.exe**)。
 
-4. Choose the installation folder and cache folder that are required for the agent, and then click **Next**. The cache location you specify must have free space equal to at least 5 percent of the backup data.
+4. 選擇代理程式所需的安裝資料夾和快取資料夾，然後按一下 [下一步]。您指定的快取位置必須至少包含等於備份資料大小 5% 的可用空間。
 
-5. You can continue to connect to the Internet through the default proxy settings.          If you use a proxy server to connect to the Internet, on the Proxy Configuration page, select the **Use custom proxy settings** check box, and then enter the proxy server details. If you use an authenticated proxy, enter the user name and password details, and then click **Next**.
+5. 您可以繼續透過預設 Proxy 設定連線網際網路。若您使用 Proxy 伺服器連線網際網路，請在 [Proxy 組態] 頁面上選取 [使用自訂 Proxy 設定] 核取方塊，然後輸入 Proxy 伺服器詳細資料。若您使用已驗證的 Proxy，請輸入使用者名稱和密碼詳細資料，然後按一下 [下一步]。
 
-7. Click **Install** to begin the agent installation. The Backup agent installs .NET Framework 4.5 and Windows PowerShell (if it’s not already installed) to complete the installation.
+7. 按一下 [安裝] 開始代理程式安裝。備份代理程式會安裝 .NET Framework 4.5 和 Windows PowerShell (若尚未安裝) 來完成安裝。
 
-8. After the agent is installed, click **Proceed to Registration** to continue with the workflow.
+8. 安裝代理程式之後，按一下 [繼續註冊] 以繼續工作流程。
 
-9. On the Vault Identification page, browse to and select the vault credential file that you previously downloaded.
+9. 在 [保存庫識別] 頁面中，瀏覽並選取先前下載的保存庫認證檔。
 
-    The vault credential file is valid for only 48 hours after it’s downloaded from the portal. If you encounter an error on this page (such as “Vault credentials file provided has expired”), sign in to the portal and download the vault credential file again.
+    從入口網站下載保存庫認證檔之後，其有效期只有 48 小時。如果您在此頁面上遇到錯誤 (例如「提供的保存庫認證檔已過期」)，請登入入口網站並再次下載保存庫認證檔。
 
-    Ensure that the vault credential file is available in a location that can be accessed by the setup application. If you encounter access-related errors, copy the vault credential file to a temporary location on the same machine and retry the operation.
+    請確定保存庫認證檔位於可透過設定應用程式存取的位置。如果您遇到存取權相關的錯誤，請將保存庫認證檔複製到同一部電腦中的暫存位置並重試作業。
 
-    If you encounter a vault credential error such as “Invalid vault credentials provided," the file is damaged or does not have the latest credentials associated with the recovery service. Retry the operation after downloading a new vault credential file from the portal. This error can also occur if a user clicks the **Download vault credential** option several times in quick succession. In this case, only the last vault credential file is valid.
+    如果您遇到保存庫認證錯誤 (例如「提供的保存庫認證無效」)，表示檔案已經損毀或沒有和復原服務關聯的最新認證。從入口網站下載新的保存庫認證檔後重試作業。若使用者連續快速地按下 [下載保存庫認證] 選項數次，也可能會發生此錯誤。在此情況下，只有最後一個保存庫認證檔有效。
 
-9. On the Encryption Setting page, you can either generate a passphrase or provide a passphrase (with a minimum of 16 characters). Remember to save the passphrase in a secure location.
+9. 在 [加密設定] 頁面中，您可以產生複雜密碼或提供複雜密碼 (最少 16 個字元)。請記得將複雜密碼存放在安全的位置。
 
-10. Click **Finish**. The Register Server Wizard registers the server with Backup.
+10. 按一下 [完成]。[註冊伺服器精靈] 會向備份註冊伺服器。
 
-    >[AZURE.WARNING] If you lose or forget the passphrase, Microsoft cannot help you recover the backup data. You own the encryption passphrase, and Microsoft does not have visibility into the passphrase that you use. Save the file in a secure location because it will be required during a recovery operation.
+    >[AZURE.WARNING] 如果遺失或忘記複雜密碼，Microsoft 將無法協助您復原備份資料。加密複雜密碼為您所擁有，Microsoft 並無法看到您所使用的複雜密碼。請將檔案儲存在安全的位置，因為在復原作業期間將會需要該檔案。
 
-11. After the encryption key is set, leave the **Launch Microsoft Azure Recovery Services Agent** check box selected, and then click **Close**.
+11. 設定加密金鑰之後，請讓 [啟動 Microsoft Azure 復原服務代理程式] 核取方塊保持已選取狀態，然後按一下 [關閉]。
 
-## <a name="step-4:-complete-the-initial-backup"></a>Step 4: Complete the initial backup
+## 步驟 4︰完成初始備份
 
-The initial backup includes two key tasks:
+初始備份包括兩項重要工作：
 
-- Creating the backup schedule
-- Backing up files and folders for the first time
+- 建立備份排程
+- 第一次備份檔案和資料夾
 
-After the backup policy completes the initial backup, it creates backup points that you can use if you need to recover the data. The backup policy does this based on the schedule that you define.
+在備份原則完成初始備份之後，它會建立在您需要復原資料時可使用的備份點。備份原則會依據您定義的排程執行此作業。
 
-### <a name="to-schedule-the-backup"></a>To schedule the backup
+### 排程備份
 
-1. Open the Microsoft Azure Backup agent. (It will open automatically if you left the **Launch Microsoft Azure Recovery Services Agent** check box selected when you closed the Register Server Wizard.) You can find it by searching your machine for **Microsoft Azure Backup**.
+1. 開啟 Microsoft Azure 備份代理程式。(如果您在關閉註冊伺服器精靈時，讓 [啟動 Microsoft Azure 復原服務代理程式] 核取方塊保持已選取狀態，備份代理程式將會自動開啟。) 您可以透過在您的電腦中搜尋 **Microsoft Azure 備份**來找出備份。
 
-    ![Launch the Azure Backup agent](./media/backup-configure-vault-classic/snap-in-search.png)
+    ![啟動 Azure 備份代理程式](./media/backup-configure-vault-classic/snap-in-search.png)
 
-2. In the Backup agent, click **Schedule Backup**.
+2. 在備份代理程式中，按一下 [排程備份]。
 
-    ![Schedule a Windows Server backup](./media/backup-configure-vault-classic/schedule-backup-close.png)
+    ![Windows Server 備份排程](./media/backup-configure-vault-classic/schedule-backup-close.png)
 
-3. On the Getting started page of the Schedule Backup Wizard, click **Next**.
+3. 在排程備份精靈的 [開始使用] 頁面上，按 [下一步]。
 
-4. On the Select Items to Backup page, click **Add Items**.
+4. 在 [選取要備份的項目] 頁面上，按一下 [新增項目]。
 
-5. Select the files and folders that you want to back up, and then click **Okay**.
+5. 選取您要備份的檔案和資料夾，然後按一下 [確定]。
 
-6. Click **Next**.
+6. 按 [下一步]。
 
-7. On the **Specify Backup Schedule** page, specify the **backup schedule** and click **Next**.
+7. 在 [指定備份排程] 頁面上，指定[備份排程]，然後按一下 [下一步]。
 
-    You can schedule daily (at a maximum rate of three times per day) or weekly backups.
+    您可以排程每日 (一天最多三次) 或每週備份。
 
-    ![Items for Windows Server Backup](./media/backup-configure-vault-classic/specify-backup-schedule-close.png)
+    ![Windows Server 備份項目](./media/backup-configure-vault-classic/specify-backup-schedule-close.png)
 
-    >[AZURE.NOTE] For more information about how to specify the backup schedule, see the article [Use Azure Backup to replace your tape infrastructure](backup-azure-backup-cloud-as-tape.md).
+    >[AZURE.NOTE] 如需如何指定備份排程的相關詳細資訊，請參閱[使用 Azure 備份來取代您的磁帶基礎結構](backup-azure-backup-cloud-as-tape.md)一文。
 
-8. On the **Select Retention Policy** page, select the **Retention Policy** for the backup copy.
+8. 在 [選取保留原則] 頁面上，選取 [保留原則] 做為備份複本。
 
-    The retention policy specifies the duration for which the backup will be stored. Rather than just specifying a “flat policy” for all backup points, you can specify different retention policies based on when the backup occurs. You can modify the daily, weekly, monthly, and yearly retention policies to meet your needs.
+    保留原則會指定備份將儲存的期間。除了僅針對所有備份點指定「一般原則」之外，您可以指定在進行備份時根據不同的保留原則。您可以修改每日、每週、每月和每年保留原則，以符合您的需求。
 
-9. On the Choose Initial Backup Type page, choose the initial backup type. Leave the option **Automatically over the network** selected, and then click **Next**.
+9. 在 [選擇初始備份類型] 頁面上，選擇初始備份類型。讓 [自動透過網路] 選項保持已選取狀態，然後按一下 [下一步]。
 
-    You can back up automatically over the network, or you can back up offline. The remainder of this article describes the process for backing up automatically. If you prefer to do an offline backup, review the article [Offline backup workflow in Azure Backup](backup-azure-backup-import-export.md) for additional information.
+    您可以透過網路自動備份，也可以離線備份。這篇文章的其餘部分說明自動備份的程序。如果您想要執行離線備份，請檢閱[在 Azure Backup 中離線備份工作流程](backup-azure-backup-import-export.md)一文以了解其他資訊。
 
-10. On the Confirmation page, review the information, and then click **Finish**.
+10. 在 [確認] 頁面上檢閱資訊，然後按一下 [完成]。
 
-11. After the wizard finishes creating the backup schedule, click **Close**.
+11. 當精靈建立好備份排程時，請按一下 [關閉]。
 
-### <a name="enable-network-throttling-(optional)"></a>Enable network throttling (optional)
+### 啟用網路節流 (選擇性)
 
-The Backup agent provides network throttling. Throttling controls how network bandwidth is used during data transfer. This control can be helpful if you need to back up data during work hours but do not want the backup process to interfere with other Internet traffic. Throttling applies to back up and restore activities.
+備份代理程式提供網路節流。節流會控制資料傳輸期間的網路頻寬使用方式。如果您需要在上班時間內備份資料，但不希望備份程序干擾其他網際網路流量，這樣的控制會很有幫助。節流適用於備份和還原活動。
 
-**To enable network throttling**
+**啟用網路節流**
 
-1. In the Backup agent, click **Change Properties**.
+1. 在備份代理程式中，按一下 [變更屬性]。
 
-    ![Change properties](./media/backup-configure-vault-classic/change-properties.png)
+    ![變更屬性](./media/backup-configure-vault-classic/change-properties.png)
 
-2. On the **Throttling** tab, select the **Enable internet bandwidth usage throttling for backup operations** check box.
+2. 在 [節流] 索引標籤上，選取 [啟用備份操作的網際網路頻寬使用節流設定] 核取方塊。
 
-    ![Network throttling](./media/backup-configure-vault-classic/throttling-dialog.png)
+    ![網路節流](./media/backup-configure-vault-classic/throttling-dialog.png)
 
-3. After you have enabled throttling, specify the allowed bandwidth for backup data transfer during **Work hours** and **Non-work hours**.
+3. 在您啟用節流之後，請指定允許的頻寬進行 [工作時間] 和 [非工作時間] 期間的備份資料傳輸。
 
-    The bandwidth values begin at 512 kilobits per second (Kbps) and can go up to 1,023 megabytes per second (MBps). You can also designate the start and finish for **Work hours**, and which days of the week are considered work days. Hours outside of designated work hours are considered non-work hours.
+    頻寬值從每秒 512 KB (Kbps) 開始，並可高達每秒 1023 MB (Mbps)。您也可以指定 [工作時間] 的開始和完成時間，以及一週中有哪幾天視為工作天。指定之工作時間以外的時間則視為非工作時間。
 
-4. Click **OK**.
+4. 按一下 [確定]。
 
-### <a name="to-back-up-now"></a>To back up now
+### 立即備份
 
-1. In the Backup agent, click **Back Up Now** to complete the initial seeding over the network.
+1. 在備份代理程式中，按一下 [立即備份]，以透過網路完成初始植入。
 
-    ![Windows Server backup now](./media/backup-configure-vault-classic/backup-now.png)
+    ![Windows Server 立即備份](./media/backup-configure-vault-classic/backup-now.png)
 
-2. On the Confirmation page, review the settings that the Back Up Now Wizard will use to back up the machine. Then click **Back Up**.
+2. 在 [確認] 頁面上，檢閱立即備份精靈將用於備份電腦的設定。然後按一下 [備份]。
 
-3. Click **Close** to close the wizard. If you do this before the backup process finishes, the wizard continues to run in the background.
+3. 按一下 [關閉] 即可關閉精靈。如果您在備份程序完成之前關閉精靈，精靈會繼續在背景中執行。
 
-After the initial backup is completed, the **Job completed** status appears in the Backup console.
+完成初始備份之後，備份主控台中會顯示 [作業已完成] 狀態。
 
-![IR complete](./media/backup-configure-vault-classic/ircomplete.png)
+![IR 已完成](./media/backup-configure-vault-classic/ircomplete.png)
 
-## <a name="next-steps"></a>Next steps
-- Sign up for a [free Azure account](https://azure.microsoft.com/free/).
+## 後續步驟
+- 註冊[免費的 Azure 帳戶](https://azure.microsoft.com/free/)。
 
-For additional information about backing up VMs or other workloads, see:
+如需備份 VM 或其他工作負載的詳細資訊，請參閱︰
 
-- [Back up IaaS VMs](backup-azure-vms-prepare.md)
-- [Back up workloads to Azure with Microsoft Azure Backup Server](backup-azure-microsoft-azure-backup.md)
-- [Back up workloads to Azure with DPM](backup-azure-dpm-introduction.md)
+- [備份 IaaS VM](backup-azure-vms-prepare.md)
+- [使用 Microsoft Azure 備份伺服器備份工作負載](backup-azure-microsoft-azure-backup.md)
+- [使用 DPM 將工作負載備份到 Azure](backup-azure-dpm-introduction.md)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

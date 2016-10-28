@@ -1,108 +1,103 @@
 <properties
-    pageTitle="What is Team Data Science Process?  | Microsoft Azure"
-    description="The Team Data Science Process is a systematic method for building intelligent applications that leverage advanced analytics."
-    keywords="data science process,data science teams"
-    services="machine-learning"
-    documentationCenter=""
-    authors="bradsev"
-    manager="jhubbard"
-    editor="cgronlun" />
+	pageTitle="何謂 Team Data Science Process？| Microsoft Azure"
+	description="Team Data Science Process 是一種系統化的方法，可建置運用進階分析的智慧型應用程式。"
+	keywords="資料科學程序, 資料科學小組"
+	services="machine-learning"
+	documentationCenter=""
+	authors="bradsev"
+	manager="jhubbard"
+	editor="cgronlun" />
 
 <tags
-    ms.service="machine-learning"
-    ms.workload="data-services"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/19/2016"
-    ms.author="bradsev" />
+	ms.service="machine-learning"
+	ms.workload="data-services"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/19/2016"
+	ms.author="bradsev" />
 
 
+# 何謂 Team Data Science Process (TDSP)？
 
-# <a name="what-is-the-team-data-science-process-(tdsp)?"></a>What is the Team Data Science Process (TDSP)?
+Team Data Science Process (TDSP) 提供系統化的方式建置智慧型應用程式，讓資料科學家小組可在將這些應用程式轉換為產品所需的完整活動生命週期內，有效率地共同作業。
 
-The Team Data Science Process (TDSP) provides a systematic approach to building intelligent applications that enables teams of data scientists to collaborate effectively over the full lifecycle of activities needed to turn these applications into products.
+具體來說，TDSP 目前可為資料科學小組提供下列各項：
 
-Specifically, the TDSP currently provides data science teams with:
+- **方法論**︰概述定義開發週期的一系列步驟，以提供如何定義問題、分析相關資料、建置及評估預測模型，然後在企業應用程式中部署這些模型的指引。
+- **資源**︰可簡化設定適用於資料科學活動環境的工具和技術 (例如資料科學 VM)，以及適用於加入新技術的實用指引。
 
-- **Methodology**: It outlines a sequence of steps that define the development lifecycle providing guidance on how to define the problem, analyze relevant data, build and evaluate predictive models, and then deploy those models in enterprise applications.
-- **Resources**: Tools and technologies such as the Data Science VM to simplify setting up environments for data science activities and practical guidance for on-boarding new technologies.
+以下是 Team Data Science Process 的開發週期：
 
-Here is the development lifecycle of the Team Data Science Process:
-
-![Diagram: Data science process for teams ](./media/data-science-process-overview/data-science-process-for-teams-diagram.png)
-
-
-The process is **iterative**: the understanding of new and existing or refinements in the model evolves and requires reworking steps previously completed in the sequence. Existing organizational development and project planning processes are **easily adapted** to work with the TDSP-defined sequence of steps.
-
-The steps in the process are diagrammed and linked in the [TDSP learning path](https://azure.microsoft.com/documentation/learning-paths/data-science-process/) and described below.  
+![圖表︰小組的資料科學程序](./media/data-science-process-overview/data-science-process-for-teams-diagram.png)
 
 
-## <a name="planning-and-preparation-steps"></a>Planning and preparation steps
+此程序是**反覆執行的**：對於模型能有新的和現有的了解或精確調整，可發展出、同時也有賴於先前依序完成的修改步驟。現有的組織開發和專案規劃程序**可輕易調整**，以使用 TDSP 定義的步驟順序。
 
-## <a name="p1.-business-and-technology-planning"></a>P1. Business and technology planning
-
-Start an analytics project by defining your business goals and problems. They are specified in terms of **business requirements**. A central objective of this step is to identify the key business variables (sales forecast or the probability of an order being fraudulent, for example) that the analysis needs to predict to satisfy these requirements. Additional planning is then usually essential to develop an understanding of the **data sources** needed to address the objectives of the project from an analytical perspective. It is not uncommon, for example, to find that existing systems need to collect and log additional kinds of data to address the problem and achieve the project goals. For guidance, see [Plan your environment for the Team Data Science Process](machine-learning-data-science-plan-your-environment.md) and [Scenarios for advanced analytics in Azure Machine Learning](machine-learning-data-science-plan-sample-scenarios.md).  
+程序中的步驟已在 [TDSP 學習路徑](https://azure.microsoft.com/documentation/learning-paths/data-science-process/)中以圖表和連結方式呈現，如下所述。
 
 
-## <a name="p2.-plan-and-prepare-infrastructure"></a>P2. Plan and prepare infrastructure
+## 規劃與準備步驟
 
-An analytics environment for the Team Data Science Process involves several components:
+## P1.商務和技術規劃
 
-- **data workspaces** where the data is staged for analysis and modeling,
-- a **processing infrastructure** for pre-processing, exploring, and modeling the data
-- a **runtime infrastructure** to operationalize the analytical models and run the intelligent client applications that consume the models.  
-
-The analytics infrastructure that needs to be set up is often part of an environment that is separate from core operational systems. But it typically leverages data from multiple systems within the enterprise as well as from sources external to the company. The analytics infrastructure can be purely cloud-based, or an on-premises setup, or a hybrid of the two. For options, see [Set up data science environments for use in the Team Data Science Process](machine-learning-data-science-environment-setup.md).
+定義您的商業目標和問題，是展開分析專案的第一步。這些項目會以**商業需求**的形式指定。此步驟的主要目標，是要識別分析需要哪些主要商業變數 (例如銷售預測，或訂單屬詐騙性質的機率) 進行預測以達成這些需求。接著通常需要進一步的規劃，以嘗試從分析的觀點了解達成專案目標所需的**資料來源**。舉例來說，我們常會發現現有的系統必須收集並記錄其他類型的資料，才能解決問題並達成專案目標。如需指引，請參閱[針對 Team Data Science Process 規劃您的環境](machine-learning-data-science-plan-your-environment.md)和[在 Azure 機器學習中的進階分析案例](machine-learning-data-science-plan-sample-scenarios.md)。
 
 
-## <a name="analytics-steps:"></a>Analytics Steps:  
+## P2.規劃和準備基礎結構
 
-## <a name="1.-ingest-the-data-into-the-data-platform"></a>1. Ingest the data into the data platform
+Team Data Science Process 的分析環境包含數個元件：
 
-The first step is to bring the relevant data from various sources, either from within or from outside the enterprise, into an analytics environment where the data can be processed. The **format** of the data at source may differ from the format required by the destination. So some data transformation may also have to be done by the ingestion tooling. For options, see [Load data into storage environments for analytics](machine-learning-data-science-ingest-data.md)
+- **資料工作區**，用來暫存分析和建立模型所需的資料
+- **處理基礎結構**，用於資料的前置處理、瀏覽和模型化
+- **執行階段基礎結構**，用來運作分析模型，及執行取用模型的智慧型用戶端應用程式。
 
-In addition to the initial ingestion of data, many intelligent applications are required to refresh the data regularly as part of an ongoing learning process. This can be done by setting up a **data pipeline** or workflow. This forms part of the iterative part of the process that includes rebuilding and re-evaluating the analytical models used by the intelligent application deploying the solution. See, for example, [Move data from an on-premise SQL server to SQL Azure with Azure Data Factory](machine-learning-data-science-move-sql-azure-adf.md).
-
-
-## <a name="2.-explore-and-visualize-the-data"></a>2. Explore and visualize the data
-
-The next step is to obtain a deeper understanding of the data by investigating its **summary statistics**, relationships, and by using techniques such **visualization**. This is also where issues of **data quality** and integrity, such as missing values, data type mismatches, and inconsistent data relationships, are handled. Pre-processing transforms are used to clean up the raw data before further analytics and modeling can take place. For a description, see [Tasks to prepare data for enhanced machine learning](machine-learning-data-science-prepare-data.md).
+必須設定的分析基礎結構通常是環境中不屬於核心作業系統的部分。但它通常會運用來自企業內多個系統的資料，以及來自公司外部的資料。分析基礎結構可以純雲端架構或內部部署設定，或是兩者的混合。如需選項，請參閱[設定用於 Team Data Science Process 中的資料科學環境](machine-learning-data-science-environment-setup.md)。
 
 
-## <a name="3.-generate-and-select-features"></a>3. Generate and select features
+## 分析步驟：  
 
-Data scientists, in collaboration with domain experts, must identify the features that capture the salient properties of the data set and that can best be used to predict the key business variables identified during planning. These new features can be derived from existing data or may require additional data to be collected. This process is known as **feature engineering** and is one of the key steps in building an effective predictive analytics system. This step requires a creative combination of domain expertise and the insights obtained from the data exploration step. For guidance, see [Feature engineering in the Team Data Science Process](machine-learning-data-science-create-features.md).
+## 1\.將資料內嵌於資料平台
 
+第一個步驟是從各種來源 (企業內部或外部) 將相關資料導入預計用來處理資料的分析環境中。來源的資料**格式**可能不同於目的地所需的格式。因此，嵌入工具也可能必須完成某些資料轉換。如需選項，請參閱[將資料載入至儲存體環境進行分析](machine-learning-data-science-ingest-data.md)
 
-## <a name="4.-create-and-train-machine-learning-models"></a>4. Create and train Machine Learning models
-
-Data scientists build analytical models to predict the key variables identified by the business requirements defined in the planning step using data that has been cleaned and featurized. Machine learning systems support multiple **modeling algorithms** that are applicable to a wide variety of cases. For guidance, see [How to choose algorithms for Azure Machine Learning](machine-learning-algorithm-choice.md).
-
-Data scientists must choose the most appropriate model for their prediction task and it is not uncommon that results from multiple models need to be combined to obtain the best results. The input data for modeling is usually divided randomly into three parts:
-
-- a training data set,
-- a validation data set
-- a testing data set
-
-The models are built using the **training data set**. The optimal combination of models (with parameters tuned) is selected by running the models and measuring the prediction errors for the **validation data set**. Finally the **test data set** is used to evaluate the performance of the chosen model on independent data that was not used to train or validate the model.  For procedures, see [How to evaluate model performance in Azure Machine Learning](machine-learning-evaluate-model-performance.md).
+除了初始的資料擷取以外，許多智慧型應用程式還需要在進行中的學習過程中定期重新整理資料。這可以透過設定**資料管線**或工作流程來完成。這構成了程序中反覆執行的部分，包括會重新建置和重新評估部署解決方案的智慧型應用程式所使用的分析模型。例如，請參閱[使用 Azure Data Factory 從內部部署的 SQL Server 移動資料至 SQL Azure](machine-learning-data-science-move-sql-azure-adf.md)。
 
 
-## <a name="5.-deploy-and-consume-the-models-in-the-product"></a>5. Deploy and consume the models in the product
+## 2\.探索資料並加以視覺化
 
-Once we have a set of models that perform well, they can be **operationalized** for other applications to consume. Depending on the business requirements, predictions are made either in **real time** or on a **batch** basis. To be operationalized, the models have to be exposed with an **open API interface** that is easily consumed from various applications such online website, spreadsheets, dashboards, or line of business and backend applications. See [Deploy an Azure Machine Learning web service](machine-learning-publish-a-machine-learning-web-service.md).
-
-
-## <a name="summary-and-next-steps"></a>Summary and next steps
-
-The [Team Data Science Process](https://azure.microsoft.com/documentation/learning-paths/data-science-process/) is modeled as a sequence of iterated steps that **provide guidance** on the tasks needed to use advanced analytics to build an intelligent application. Each step also provides details on how to use various Microsoft technologies to complete the tasks described.
-
-While TDSP does not prescribe specific types of **documentation** artifacts, it is a best practice to document the results of the data exploration, modeling and evaluation, and to save the pertinent code so that the analysis can be iterated when required. This also allows reuse of the analytics work when working on other applications involving similar data and prediction tasks.
-
-Full end-to-end walkthroughs that demonstrate all the steps in the process for **specific scenarios** are also provided. They are listed with thumbnail descriptions in the [Team Data Science Process walkthroughs](data-science-process-walkthroughs.md) topic.
+下一個步驟藉由調查資料的**摘要統計資料**、關聯性和使用**視覺效果**之類的技術，來深入了解資料。這也是處理**資料品質**及完整性問題之處，例如遺漏值、資料類型不相符和資料關聯性不一致等。必須先使用前置處理轉換來清理原始資料，才能進一步執行分析和模型化。如需說明，請參閱[工作以準備資料增強機器學習](machine-learning-data-science-prepare-data.md)。
 
 
+## 3\.產生特徵並加以選取
 
-<!--HONumber=Oct16_HO2-->
+與網域專家合作的資料科學家，必須識別可擷取資料集的顯著屬性以及最適合用來預測計劃期間所識別之重要商業變數的特性。這些新特性可以衍生自現有資料，或可能需要收集其他資料。此程序稱為**特性工程**，這是建置有效預測性分析系統的重要步驟之一。要執行此步驟，必須有創意地結合網域知識和獲取自資料瀏覽步驟的深入資訊。如需指引，請參閱 [Team Data Science Process 中的特徵工程設計](machine-learning-data-science-create-features.md)。
 
 
+## 4\.建立和訓練機器學習服務模型
+
+資料科學家會建立分析模型，使用已清理和特性化的資料來預測規劃步驟中定義的商業需求所識別的重要變數。機器學習系統支援多個適用於各種情況的**模型化演算法**。如需指引，請參閱[如何選擇 Azure Machine Learning 的演算法](machine-learning-algorithm-choice.md)。
+
+資料科學家必須選擇最適合其預測工作的模型，而來自多個模型的結果也經常必須結合以取得最佳結果。模型化的輸入資料通常隨機分成三個部分：
+
+- 訓練資料集、
+- 驗證資料集
+- 測試資料集
+
+模型會使用**訓練資料集**來建置。模型的最佳組合 (透過參數調整) 可藉由執行模型及評估**驗證資料集**的預測誤差來選取。最後，會使用**測試資料集**來評估選擇的模型對於未用來訓練或驗證模型之獨立資料的效能。如需程序，請參閱[如何評估 Azure 機器學習中的模型效能](machine-learning-evaluate-model-performance.md)。
+
+
+## 5\.在產品中部署和使用模型
+
+在我們擁有一組妥善執行的模型後，這些模型即可**開始運作**，供其他應用程式取用。預測可根據商業需求，以**即時**或**批次**的形式執行。模型必須透過可輕易從各種不同的應用程式 (例如線上網站、試算表、儀表板或企業營運和後端應用程式) 取用的**開放式 API 介面**加以公開，才能開始運作。請參閱[部署 Azure Machine Learning Web 服務](machine-learning-publish-a-machine-learning-web-service.md)。
+
+
+## 摘要和後續步驟
+
+[Team Data Science Process](https://azure.microsoft.com/documentation/learning-paths/data-science-process/) 會模型化為一系列反覆執行的步驟，以針對使用進階分析來建置智慧型應用程式所需的工作**提供指引**。每個步驟也會提供詳細資訊，說明如何使用各種不同的 Microsoft 技術來完成工作。
+
+雖然 TDSP 並未指定特定類型的**文件**構件，但最好能夠記錄資料瀏覽、模型化和評估的結果，並儲存相關的程式碼，使分析可以在必要時反覆執行。這也可讓您在處理牽涉到類似資料和預測工作的其他應用程式時，能夠重複使用分析工作。
+
+此外也會提供完整的端對端逐步解說，說明**特定案例**之程序中的所有步驟。[Team Data Science Process 逐步解說](data-science-process-walkthroughs.md)主題中會列出這些逐步解說與縮圖描述。
+
+<!---HONumber=AcomDC_0921_2016-->

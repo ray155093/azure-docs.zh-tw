@@ -1,45 +1,40 @@
 <properties 
-    pageTitle="Windows Phone Silverlight SDK content" 
-    description="Learn about the contents of the Windows Phone Silverlight SDK for Azure Mobile Engagement"                     
-    services="mobile-engagement" 
-    documentationCenter="mobile" 
-    authors="piyushjo" 
-    manager="dwrede"
-    editor="" />
+	pageTitle="Windows Phone Silverlight SDK 內容" 
+	description="了解適用於 Azure Mobile Engagement 的 Windows Phone Silverlight SDK 的內容" 					
+	services="mobile-engagement" 
+	documentationCenter="mobile" 
+	authors="piyushjo" 
+	manager="dwrede"
+	editor="" />
 
 <tags 
-    ms.service="mobile-engagement" 
-    ms.workload="mobile" 
-    ms.tgt_pltfrm="mobile-windows-phone"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/19/2016" 
-    ms.author="piyushjo" />
-    
+	ms.service="mobile-engagement" 
+	ms.workload="mobile" 
+	ms.tgt_pltfrm="mobile-windows-phone"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/19/2016" 
+	ms.author="piyushjo" />
+	
+#Windows Phone Silverlight SDK 內容
 
-#<a name="windows-phone-silverlight-sdk-content"></a>Windows Phone Silverlight SDK content
+本文件列出及說明 SDK 在應用程式中部署的內容。
 
-This document lists and describes the content deployed by the SDK in your application.
+##`/Resources` 資料夾 
 
-##<a name="the-`/resources`-folder"></a>The `/Resources` folder 
+此資料夾包含 Mobile Engagement 需要的所有資源。您也可以自訂它們，以符合您的應用程式。
 
-This folder contains all the resources that Mobile Engagement needs. You can also customize them to fit your app.
+- `EngagementIconNotification.png`：顯示在通知左側的品牌圖示，由您的品牌圖示取代此圖示。
 
-- `EngagementIconNotification.png` : The brand icon displayed at the left of a notification, replace this one by your brand icon.
-
-- `EngagementIconOk.png` : The "Ok" icon of the reach pages ApplicationBar.
+- `EngagementIconOk.png`：觸達頁面 ApplicationBar 的「確定」圖示。
  
-- `EngagementIconCancel.png` : The "Cancel" icon of the reach pages ApplicationBar.
+- `EngagementIconCancel.png`：觸達頁面 ApplicationBar 的 「取消」圖示。
  
-- `EngagementIconCloseLight.png` : The "Close" icon of the Mobile Engagement's reach notification for the Windows Phone light theme.
+- `EngagementIconCloseLight.png`：適用於 Windows Phone 亮色調佈景主題，Engagement 觸達通知的「關閉」圖示。
  
-- `EngagementIconCloseDark.png` : The "Close" icon of the Mobile Engagement's reach notification for the Windows Phone dark theme.
+- `EngagementIconCloseDark.png`：適用於 Windows Phone 暗色調佈景主題，Engagement 觸達通知的「關閉」圖示。
 
-- `EngagementConfiguration.xml` : The Mobile Engagement's configuration file, this is where you can customize Engagement settings (Engagement connection string, report crashes etc).
+- `EngagementConfiguration.xml`：Mobile Engagement 的組態檔，您可以在此自訂 Engagement 的設定 (Engagement 連接字串、報告當機等)。
  
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

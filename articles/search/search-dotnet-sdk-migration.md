@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Upgrading to the Azure Search .NET SDK version 1.1 | Microsoft Azure | Hosted cloud search service"
-   description="Upgrading to the Azure Search .NET SDK version 1.1"
+   pageTitle="升級至 Azure 搜尋服務 .NET SDK 版本 1.1 | Microsoft Azure | 託管的雲端搜尋服務"
+   description="升級至 Azure 搜尋服務 .NET SDK 版本 1.1"
    services="search"
    documentationCenter=""
    authors="brjohnstmsft"
@@ -16,134 +16,133 @@
    ms.date="08/15/2016"
    ms.author="brjohnst"/>
 
+# 升級至 Azure 搜尋服務 .NET SDK 版本 2.0 預覽版
 
-# <a name="upgrading-to-the-azure-search-.net-sdk-version-2.0-preview"></a>Upgrading to the Azure Search .NET SDK version 2.0-preview
+如果您正在使用 [Azure 搜尋服務 .NET SDK](https://msdn.microsoft.com/library/azure/dn951165.aspx) 版本 1.1 或是更舊版本，本文章將協助您升級應用程式，以便使用下一個主要版本，2.0 預覽版。
 
-If you're using version 1.1 or older of the [Azure Search .NET SDK](https://msdn.microsoft.com/library/azure/dn951165.aspx), this article will help you upgrade your application to use the next major version, 2.0-preview.
+如需包括範例的 SDK 一般逐步解說，請參閱[如何從 .NET 應用程式使用 Azure 搜尋服務](search-howto-dotnet-sdk.md)。
 
-For a more general walkthrough of the SDK including examples, see [How to use Azure Search from a .NET Application](search-howto-dotnet-sdk.md).
+Azure 搜尋服務 .NET SDK 的版本 2.0 預覽版包含一些較舊版本的變更。這些變更大部分是次要變更，所以變更程式碼應該只需要最少的工作。請參閱[升級步驟](#UpgradeSteps)以取得如何變更您的程式碼以使用新的 SDK 版本的指示。
 
-Version 2.0-preview of the Azure Search .NET SDK contains some changes from earlier versions. These are mostly minor, so changing your code should require only minimal effort. See [Steps to upgrade](#UpgradeSteps) for instructions on how to change your code to use the new SDK version.
-
-> [AZURE.NOTE] If you're using version 0.13-preview or older, you should upgrade to version 1.1 first, and then upgrade to 2.0-preview. See [Appendix: Steps to upgrade to version 1.1](#UpgradeStepsV1) for instructions.
+> [AZURE.NOTE] 如果您使用的是版本 0.13 預覽版或更舊版本，您應該先升級到版本 1.1，然後再升級到 2.0 預覽版。如需指示，請參閱[附錄：升級至版本 1.1 的步驟](#UpgradeStepsV1)。
 
 <a name="WhatsNew"></a>
-## <a name="what's-new-in-version-2.0-preview"></a>What's new in version 2.0-preview
+## 版本 2.0 預覽版的新功能
 
-Version 2.0-preview is the first version of the Azure Search .NET SDK to target a preview version of the Azure Search REST API, specifically 2015-02-28-preview. This makes it possible to use many preview features of Azure Search from a .NET application, including the following:
+版本 2.0 預覽版是 Azure 搜尋服務 .NET SDK 以 Azure 搜尋服務 REST API 預覽版本 (特別是 2015-02-28-preview) 為目標所推出的第一個版本。此版本可讓您使用 .NET 應用程式中 Azure 搜尋服務的多種預覽版功能，包括：
 
-- [Custom analyzers](https://aka.ms/customanalyzers)
-- [Azure Blob Storage](search-howto-indexing-azure-blob-storage.md) and [Azure Table Storage](search-howto-indexing-azure-tables.md) indexer support
-- Indexer customization via [field mappings](search-indexer-field-mappings.md)
-- ETags support to enable safe concurrent updating of index definitions, indexers, and data sources
-- Support for .NET Core and .NET Portable Profile 111
+- [自訂分析器](https://aka.ms/customanalyzers)
+- [Azure Blob 儲存體](search-howto-indexing-azure-blob-storage.md)和[Azure 表格儲存體](search-howto-indexing-azure-tables.md)索引子支援
+- 透過[欄位對應](search-indexer-field-mappings.md)自訂索引子
+- 可安全地並行更新索引定義、索引子和資料來源的 ETag 支援
+- 對 .NET Core 和 .NET Portable Profile 111 的支援
 
 <a name="UpgradeSteps"></a>
-## <a name="steps-to-upgrade"></a>Steps to upgrade
+## 升級步驟
 
-First, update your NuGet reference for `Microsoft.Azure.Search` using either the NuGet Package Manager Console or by right-clicking on your project references and selecting "Manage NuGet Packages..." in Visual Studio. Make sure you enable Pre-release packages by selecting "Include Prerelease" in the NuGet "Manage Packages" window in Visual Studio, or by using the `-IncludePrerelease` switch if you're using NuGet Package Manager Console.
+首先，更新 `Microsoft.Azure.Search` 的 NuGet 參考，方法是使用 NuGet 封裝管理員主控台，或是在 Visual Studio 中用滑鼠右鍵按一下您的專案參考並選取 [管理 NuGet 封裝]。如果您使用 Visual Studio，請確定您可以藉由選取 NuGet [管理封裝] 視窗內的 [包含發行前版本]，來啟用發行前版本封裝，或者如果您使用 NuGet 封裝管理員主控台，請確定您可以藉由使用 `-IncludePrerelease` 切換參數，來啟用發行前版本封裝。
 
-Once NuGet has downloaded the new packages and their dependencies, rebuild your project. Depending on how your code is structured, it may rebuild successfully. If so, you're ready to go!
+一旦 NuGet 下載新的封裝和其相依性，請重建您的專案。根據您的程式碼結構情況，它可能會順利重新建置。如果是這樣，代表您已準備就緒！
 
-If your build fails, you should see a build error like the following:
+如果建置失敗，您應該會看到如下所示的建置錯誤：
 
     Program.cs(31,45,31,86): error CS0266: Cannot implicitly convert type 'Microsoft.Azure.Search.ISearchIndexClient' to 'Microsoft.Azure.Search.SearchIndexClient'. An explicit conversion exists (are you missing a cast?)
 
-The next step is to fix this build error. See [Breaking changes in version 2.0-preview](#ListOfChanges) for details on what causes the error and how to fix it.
+下一個步驟是修正此建置錯誤。如需造成錯誤的原因以及修正方式的詳細資料，請參閱[版本 2.0 預覽版中的重大變更](#ListOfChanges)。
 
-You may see additional build warnings related to obsolete methods or properties. The warnings will include instructions on what to use instead of the deprecated feature. For example, if your application uses the `SearchRequestOptions.RequestId` property, you should get a warning that says `"This property is deprecated. Please use ClientRequestId instead."`
+您可能會看到與過時的方法或屬性相關的其他建置警告。警告將會包含要使用哪些內容取代過時功能的指示。例如，如果您的應用程式使用 `SearchRequestOptions.RequestId` 屬性，您應該會收到指出 `"This property is deprecated. Please use ClientRequestId instead."`
 
-Once you've fixed any build errors, you can make changes to your application to take advantage of new functionality if you wish. New features in the SDK are detailed in [What's new in version 2.0-preview](#WhatsNew).
+一旦您已修正任何建置錯誤，您就可以變更您的應用程式以視需要利用新的功能。[版本 2.0 預覽版的新功能](#WhatsNew)中詳述 SDK 中的新功能。
 
 <a name="ListOfChanges"></a>
-## <a name="breaking-changes-in-version-2.0-preview"></a>Breaking changes in version 2.0-preview
+## 版本 2.0 預覽版中的重大變更
 
-There is only one breaking change in version 2.0-preview that may require code changes in addition to rebuilding your application.
+版本 2.0 預覽版中只有一項重大變更，除了重新建置您的應用程式之外也可能需要變更程式碼。
 
-### <a name="indexes.getclient-return-type"></a>Indexes.GetClient return type
+### Indexes.GetClient 傳回類型
 
-The `Indexes.GetClient` method has a new return type. Previously, it returned `SearchIndexClient`, but this has been changed to `ISearchIndexClient` in version 2.0-preview. This is to support customers that wish to mock the `GetClient` method for unit tests by returning a mock implementation of `ISearchIndexClient`.
+`Indexes.GetClient` 方法有新的傳回類型。以往，它會傳回 `SearchIndexClient`，但這在版本 2.0 預覽版中已變更為 `ISearchIndexClient`。這是為了支援想要藉由傳回 `ISearchIndexClient` 的模擬實作，針對單元測試模擬 `GetClient` 方法的客戶。
 
-#### <a name="example"></a>Example
+#### 範例
 
-If your code looks like this:
+如果您的程式碼如下所示：
 
 ```csharp
 SearchIndexClient indexClient = serviceClient.Indexes.GetClient("hotels");
 ```
 
-You can change it to this to fix any build errors:
+您可以將其變更如下以修正任何建置錯誤：
 
 ```csharp
 ISearchIndexClient indexClient = serviceClient.Indexes.GetClient("hotels");
 ```
 
-## <a name="conclusion"></a>Conclusion
-If you need more details on using the Azure Search .NET SDK, see our recently updated [How-to](search-howto-dotnet-sdk.md).
+## 結論
+如果您需要使用 Azure 搜尋服務 .NET SDK 的更多詳細資料，請參閱我們最近更新的[做法](search-howto-dotnet-sdk.md)。
 
-We welcome your feedback on the SDK. If you encounter problems, feel free to ask us for help on the [Azure Search MSDN forum](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=azuresearch). If you find a bug, you can file an issue in the [Azure .NET SDK GitHub repository](https://github.com/Azure/azure-sdk-for-net/issues). Make sure to prefix your issue title with "Search SDK: ".
+歡迎您提供 SDK 的意見反應。如果您遇到問題，歡迎在 [Azure 搜尋服務 MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/zh-TW/home?forum=azuresearch)上尋求協助。如果您發現錯誤，您可以在 [Azure .NET SDK GitHub 儲存機制](https://github.com/Azure/azure-sdk-for-net/issues)中提出問題。請確定在您的問題標題加上前置詞「搜尋服務 SDK：」。
 
-Thank you for using Azure Search!
+感謝您使用 Azure 搜尋服務！
 
 <a name="UpgradeStepsV1"></a>
-## <a name="appendix:-steps-to-upgrade-to-version-1.1"></a>Appendix: Steps to upgrade to version 1.1 
+## 附錄：升級至版本 1.1 的步驟 
 
-> [AZURE.NOTE] This section applies only to users of the Azure Search .NET SDK version 0.13-preview and older.
+> [AZURE.NOTE] 本節僅適用於 Azure 搜尋服務 .NET SDK 版本 0.13 預覽版和較舊版本的使用者。
 
-First, update your NuGet reference for `Microsoft.Azure.Search` using either the NuGet Package Manager Console or by right-clicking on your project references and selecting "Manage NuGet Packages..." in Visual Studio.
+首先，更新 `Microsoft.Azure.Search` 的 NuGet 參考，方法是使用 NuGet 封裝管理員主控台，或是在 Visual Studio 中用滑鼠右鍵按一下您的專案參考並選取 [管理 NuGet 封裝]。
 
-Once NuGet has downloaded the new packages and their dependencies, rebuild your project.
+一旦 NuGet 下載新的封裝和其相依性，請重建您的專案。
 
-If you were previously using version 1.0.0-preview, 1.0.1-preview, or 1.0.2-preview, the build should succeed and you're ready to go!
+如果您之前使用版本 1.0.0 預覽版、1.0.1 預覽版，或 1.0.2 預覽版，應能夠成功建置且您已經準備就緒！
 
-If you were previously using version 0.13.0-preview or older, you should see build errors like the following:
+如果您之前使用版本 0.13.0 預覽版或更舊版本，您應該會看到如下所示的建置錯誤：
 
     Program.cs(137,56,137,62): error CS0117: 'Microsoft.Azure.Search.Models.IndexBatch' does not contain a definition for 'Create'
     Program.cs(137,99,137,105): error CS0117: 'Microsoft.Azure.Search.Models.IndexAction' does not contain a definition for 'Create'
     Program.cs(146,41,146,54): error CS1061: 'Microsoft.Azure.Search.IndexBatchException' does not contain a definition for 'IndexResponse' and no extension method 'IndexResponse' accepting a first argument of type 'Microsoft.Azure.Search.IndexBatchException' could be found (are you missing a using directive or an assembly reference?)
     Program.cs(163,13,163,42): error CS0246: The type or namespace name 'DocumentSearchResponse' could not be found (are you missing a using directive or an assembly reference?)
 
-The next step is to fix the build errors one by one. Most will require changing some class and method names that have been renamed in the SDK. [List of breaking changes in version 1.1](#ListOfChangesV1) contains a list of these name changes.
+下一步是逐一修正建置錯誤。大部分錯誤需要變更 SDK 中已重新命名的某些類別和方法名稱。[版本 1.1 的重大變更清單](#ListOfChangesV1)一節包含這些名稱變更的清單。
 
-If you're using custom classes to model your documents, and those classes have properties of non-nullable primitive types (for example, `int` or `bool` in C#), there is a bug fix in the 1.1 version of the SDK of which you should be aware. See [Bug fixes in version 1.1](#BugFixesV1) for more details.
+如果您使用自訂類別來建立您文件的模型，且這些類別有不可為 Null 的基本類型屬性 (例如 C# 中的 `int` 或 `bool`)，則您應該要注意 SDK 1.1 版本中的某個錯誤修正。請參閱[版本 1.1 的錯誤修正](#BugFixesV1)一節以取得更多詳細資料。
 
-Finally, once you've fixed any build errors, you can make changes to your application to take advantage of new functionality if you wish.
+最後，一旦您已修正任何建置錯誤，您可以變更您的應用程式以視需要利用新的功能。
 
 <a name="ListOfChangesV1"></a>
-### <a name="list-of-breaking-changes-in-version-1.1"></a>List of breaking changes in version 1.1
+### 版本 1.1 的重大變更清單
 
-The following list is ordered by the likelihood that the change will affect your application code.
+下列清單會根據變更影響應用程式程式碼的可能性排序。
 
-#### <a name="indexbatch-and-indexaction-changes"></a>IndexBatch and IndexAction changes
+#### IndexBatch 和 IndexAction 變更
 
-`IndexBatch.Create` has been renamed to `IndexBatch.New` and no longer has a `params` argument. You can use `IndexBatch.New` for batches that mix different types of actions (merges, deletes, etc.). In addition, there are new static methods for creating batches where all the actions are the same: `Delete`, `Merge`, `MergeOrUpload`, and `Upload`.
+`IndexBatch.Create` 已重新命名為 `IndexBatch.New` 且不再具有 `params` 引數。您可以針對混合不同類型動作 (合併、刪除等等) 的批次使用 `IndexBatch.New`。此外，還有新的靜態方法可以用來建立批次，其中所有動作都相同：`Delete`、`Merge`、`MergeOrUpload` 和 `Upload`。
 
-`IndexAction` no longer has public constructors and its properties are now immutable. You should use the new static methods for creating actions for different purposes: `Delete`, `Merge`, `MergeOrUpload`, and `Upload`. `IndexAction.Create` has been removed. If you used the overload that takes only a document, make sure to use `Upload` instead.
+`IndexAction` 不再具有公用建構函式且其屬性現在固定不變。您應該使用新的靜態方法來針對不同用途建立動作：`Delete`、`Merge`、`MergeOrUpload` 和 `Upload`。`IndexAction.Create` 已移除。如果您使用僅採用文件的多載，請務必改為使用 `Upload`。
 
-##### <a name="example"></a>Example
+##### 範例
 
-If your code looks like this:
+如果您的程式碼如下所示：
 
     var batch = IndexBatch.Create(documents.Select(doc => IndexAction.Create(doc)));
     indexClient.Documents.Index(batch);
 
-You can change it to this to fix any build errors:
+您可以將其變更如下以修正任何建置錯誤：
 
     var batch = IndexBatch.New(documents.Select(doc => IndexAction.Upload(doc)));
     indexClient.Documents.Index(batch);
 
-If you want, you can further simplify it to this:
+如果您想要的話，可以進一步加以簡化如下：
 
     var batch = IndexBatch.Upload(documents);
     indexClient.Documents.Index(batch);
 
-#### <a name="indexbatchexception-changes"></a>IndexBatchException changes
+#### IndexBatchException 變更
 
-The `IndexBatchException.IndexResponse` property has been renamed to `IndexingResults`, and its type is now `IList<IndexingResult>`.
+`IndexBatchException.IndexResponse` 屬性已重新命名為 `IndexingResults`，而其類型現在是 `IList<IndexingResult>`。
 
-##### <a name="example"></a>Example
+##### 範例
 
-If your code looks like this:
+如果您的程式碼如下所示：
 
     catch (IndexBatchException e)
     {
@@ -152,7 +151,7 @@ If your code looks like this:
             String.Join(", ", e.IndexResponse.Results.Where(r => !r.Succeeded).Select(r => r.Key)));
     }
 
-You can change it to this to fix any build errors:
+您可以將其變更如下以修正任何建置錯誤：
 
     catch (IndexBatchException e)
     {
@@ -162,20 +161,20 @@ You can change it to this to fix any build errors:
     }
 
 <a name="OperationMethodChanges"></a>
-#### <a name="operation-method-changes"></a>Operation method changes
+#### 作業方法變更
 
-Each operation in the Azure Search .NET SDK is exposed as a set of method overloads for synchronous and asynchronous callers. The signatures and factoring of these method overloads has changed in version 1.1.
+Azure 搜尋服務 .NET SDK 中的每項作業都針對同步和非同步呼叫端公開為一組方法多載。在版本 1.1 中，這些方法多載的簽章和分解已經變更。
 
-For example, the "Get Index Statistics" operation in older versions of the SDK exposed these signatures:
+例如，較舊版本的 SDK 中的「取得索引統計資料」作業會公開這些簽章：
 
-In `IIndexOperations`:
+在 `IIndexOperations` 中：
 
     // Asynchronous operation with all parameters
     Task<IndexGetStatisticsResponse> GetStatisticsAsync(
         string indexName,
         CancellationToken cancellationToken);
 
-In `IndexOperationsExtensions`:
+在 `IndexOperationsExtensions` 中：
 
     // Asynchronous operation with only required parameters
     public static Task<IndexGetStatisticsResponse> GetStatisticsAsync(
@@ -187,9 +186,9 @@ In `IndexOperationsExtensions`:
         this IIndexOperations operations,
         string indexName);
 
-The method signatures for the same operation in version 1.1 look like this:
+在版本 1.1 中，相同作業的方法簽章看起來像這樣：
 
-In `IIndexesOperations`:
+在 `IIndexesOperations` 中：
 
     // Asynchronous operation with lower-level HTTP features exposed
     Task<AzureOperationResponse<IndexGetStatisticsResult>> GetStatisticsWithHttpMessagesAsync(
@@ -198,7 +197,7 @@ In `IIndexesOperations`:
         Dictionary<string, List<string>> customHeaders = null,
         CancellationToken cancellationToken = default(CancellationToken));
 
-In `IndexesOperationsExtensions`:
+在 `IndexesOperationsExtensions` 中：
 
     // Simplified asynchronous operation
     public static Task<IndexGetStatisticsResult> GetStatisticsAsync(
@@ -213,25 +212,25 @@ In `IndexesOperationsExtensions`:
         string indexName,
         SearchRequestOptions searchRequestOptions = default(SearchRequestOptions));
 
-Starting with version 1.1, the Azure Search .NET SDK organizes operation methods differently:
+從版本 1.1 開始，Azure 搜尋服務 .NET SDK 會採用不同的作業方法組織方式：
 
- - Optional parameters are now modeled as default parameters rather than additional method overloads. This reduces the number of method overloads, sometimes dramatically.
- - The extension methods now hide a lot of the extraneous details of HTTP from the caller. For example, older versions of the SDK returned a response object with an HTTP status code, which you often didn't need to check because operation methods throw `CloudException` for any status code that indicates an error. The new extension methods just return model objects, saving you the trouble of having to unwrap them in your code.
- - Conversely, the core interfaces now expose methods that give you more control at the HTTP level if you need it. You can now pass in custom HTTP headers to be included in requests, and the new `AzureOperationResponse<T>` return type gives you direct access to the `HttpRequestMessage` and `HttpResponseMessage` for the operation. `AzureOperationResponse` is defined in the `Microsoft.Rest.Azure` namespace and replaces `Hyak.Common.OperationResponse`.
+ - 選擇性參數現在模型化為預設參數，而不是其他方法多載。這樣可以減少方法多載的數目，有時候減少的數量相當大。
+ - 擴充方法現在會隱藏許多來自呼叫端的無關 HTTP 詳細資料。例如，較舊版本的 SDK 會傳回具有 HTTP 狀態碼的回應物件，您通常不需要檢查，因為作業方法會針對表示發生錯誤的任何狀態碼擲回 `CloudException`。新的擴充方法只會傳回模型物件，省卻您必須在程式碼中將它們解除包裝的麻煩。
+ - 相反地，核心介面現在會公開方法，在您需要時為您提供 HTTP 層級更多的控制權。您現在可以傳入自訂 HTTP 標頭以包含在要求中，新的 `AzureOperationResponse<T>` 傳回類型給予您針對作業對於 `HttpRequestMessage` 和 `HttpResponseMessage` 的直接存取。`AzureOperationResponse` 是在 `Microsoft.Rest.Azure` 命名空間中定義，並且取代 `Hyak.Common.OperationResponse`。
 
-#### <a name="scoringparameters-changes"></a>ScoringParameters changes
+#### ScoringParameters 變更
 
-A new class named `ScoringParameter` has been added in the latest SDK to make it easier to provide parameters to scoring profiles in a search query. Previously the `ScoringProfiles` property of the `SearchParameters` class was typed as `IList<string>`; Now it is typed as `IList<ScoringParameter>`.
+名為 `ScoringParameter` 的新類別已在最新的 SDK 中加入，讓您更輕鬆地提供參數給搜尋查詢中的評分設定檔。先前 `SearchParameters` 類別的 `ScoringProfiles` 屬性的類型是 `IList<string>`；現在它的類型是 `IList<ScoringParameter>`。
 
-##### <a name="example"></a>Example
+##### 範例
 
-If your code looks like this:
+如果您的程式碼如下所示：
 
     var sp = new SearchParameters();
     sp.ScoringProfile = "jobsScoringFeatured";      // Use a scoring profile
     sp.ScoringParameters = new[] { "featuredParam-featured", "mapCenterParam-" + lon + "," + lat };
 
-You can change it to this to fix any build errors: 
+您可以將其變更如下以修正任何建置錯誤：
 
     var sp = new SearchParameters();
     sp.ScoringProfile = "jobsScoringFeatured";      // Use a scoring profile
@@ -242,22 +241,22 @@ You can change it to this to fix any build errors:
             new ScoringParameter("mapCenterParam", GeographyPoint.Create(lat, lon))
         };
 
-#### <a name="model-class-changes"></a>Model class changes
+#### 模型類別變更
 
-Due to the signature changes described in [Operation method changes](#OperationMethodChanges), many classes in the `Microsoft.Azure.Search.Models` namespace have been renamed or removed. For example:
+由於[作業方法變更](#OperationMethodChanges)中所述的簽章變更，`Microsoft.Azure.Search.Models` 命名空間中的許多類別都已重新命名或移除。例如：
 
- - `IndexDefinitionResponse` has been replaced by `AzureOperationResponse<Index>`
- - `DocumentSearchResponse` has been renamed to `DocumentSearchResult`
- - `IndexResult` has been renamed to `IndexingResult`
- - `Documents.Count()` now returns a `long` with the document count instead of a `DocumentCountResponse`
- - `IndexGetStatisticsResponse` has been renamed to `IndexGetStatisticsResult`
- - `IndexListResponse` has been renamed to `IndexListResult`
+ - `IndexDefinitionResponse` 已由 `AzureOperationResponse<Index>` 取代
+ - `DocumentSearchResponse` 已重新命名為 `DocumentSearchResult`
+ - `IndexResult` 已重新命名為 `IndexingResult`
+ - `Documents.Count()` 現在會傳回 `long`，具有文件計數而不是 `DocumentCountResponse`
+ - `IndexGetStatisticsResponse` 已重新命名為 `IndexGetStatisticsResult`
+ - `IndexListResponse` 已重新命名為 `IndexListResult`
 
-To summarize, `OperationResponse`-derived classes that existed only to wrap a model object have been removed. The remaining classes have had their suffix changed from `Response` to `Result`.
+總而言之，已存在的 `OperationResponse` 衍生類別只是用來包裝已移除的模型物件。其餘的類別已將其尾碼從 `Response` 變更為 `Result`。
 
-##### <a name="example"></a>Example
+##### 範例
 
-If your code looks like this:
+如果您的程式碼如下所示：
 
     IndexerGetStatusResponse statusResponse = null;
 
@@ -273,7 +272,7 @@ If your code looks like this:
 
     IndexerExecutionResult lastResult = statusResponse.ExecutionInfo.LastResult;
 
-You can change it to this to fix any build errors:
+您可以將其變更如下以修正任何建置錯誤：
 
     IndexerExecutionInfo status = null;
 
@@ -289,9 +288,9 @@ You can change it to this to fix any build errors:
 
     IndexerExecutionResult lastResult = status.LastResult;
 
-##### <a name="response-classes-and-ienumerable"></a>Response classes and IEnumerable
+##### 回應類別和 IEnumerable
 
-An additional change that may affect your code is that response classes that hold collections no longer implement `IEnumerable<T>`. Instead, you can access the collection property directly. For example, if your code looks like this:
+可能會影響您程式碼的其他變更，就是讓集合不再實作 `IEnumerable<T>` 的回應類別。您可以改為直接存取集合屬性。例如，如果您的程式碼如下所示：
 
     DocumentSearchResponse<Hotel> response = indexClient.Documents.Search<Hotel>(searchText, sp);
     foreach (SearchResult<Hotel> result in response)
@@ -299,7 +298,7 @@ An additional change that may affect your code is that response classes that hol
         Console.WriteLine(result.Document);
     }
 
-You can change it to this to fix any build errors:
+您可以將其變更如下以修正任何建置錯誤：
 
     DocumentSearchResult<Hotel> response = indexClient.Documents.Search<Hotel>(searchText, sp);
     foreach (SearchResult<Hotel> result in response.Results)
@@ -307,9 +306,9 @@ You can change it to this to fix any build errors:
         Console.WriteLine(result.Document);
     }
 
-##### <a name="important-note-for-web-applications"></a>Important note for web applications
+##### Web 應用程式的重要注意事項
 
-If you have a web application that serializes `DocumentSearchResponse` directly to send search results to the browser, you will need to change your code or the results will not serialize correctly. For example, if your code looks like this:
+如果您有 Web 應用程式會直接將 `DocumentSearchResponse` 序列化，以將搜尋結果傳送至瀏覽器，您將需要變更程式碼，否則結果不會正確地序列化。例如，如果您的程式碼如下所示：
 
     public ActionResult Search(string q = "")
     {
@@ -324,7 +323,7 @@ If you have a web application that serializes `DocumentSearchResponse` directly 
         };
     }
 
-You can change it by getting the `.Results` property of the search response to fix search result rendering:
+您可以藉由取得搜尋回應的 `.Results` 屬性以修正搜尋結果轉譯，來加以變更：
 
     public ActionResult Search(string q = "")
     {
@@ -339,79 +338,79 @@ You can change it by getting the `.Results` property of the search response to f
         };
     }
 
-You will have to look for such cases in your code yourself; **The compiler will not warn you** because `JsonResult.Data` is of type `object`.
+您必須自行在您的程式碼中尋找這種情況；編譯器不會警告您，因為 `JsonResult.Data` 的類型是 `object`。
 
-#### <a name="cloudexception-changes"></a>CloudException changes
+#### CloudException 變更
 
-The `CloudException` class has moved from the `Hyak.Common` namespace to the `Microsoft.Rest.Azure` namespace. Also, its `Error` property has been renamed to `Body`.
+`CloudException` 類別已經從 `Hyak.Common` 命名空間移至 `Microsoft.Rest.Azure` 命名空間。此外，`Error` 屬性已重新命名為 `Body`。
 
-#### <a name="searchserviceclient-and-searchindexclient-changes"></a>SearchServiceClient and SearchIndexClient changes
+#### SearchServiceClient 和 SearchIndexClient 變更
 
-The type of the `Credentials` property has changed from `SearchCredentials` to its base class, `ServiceClientCredentials`. If you need to access the `SearchCredentials` of a `SearchIndexClient` or `SearchServiceClient`, please use the new `SearchCredentials` property.
+`Credentials` 屬性的類型已經從 `SearchCredentials` 變更為其基底類別，`ServiceClientCredentials`。如果您需要存取 `SearchIndexClient` 或 `SearchServiceClient` 的 `SearchCredentials`，請使用新的 `SearchCredentials` 屬性。
 
-In older versions of the SDK, `SearchServiceClient` and `SearchIndexClient` had constructors that took an `HttpClient` parameter. These have been replaced with constructors that take an `HttpClientHandler` and an array of `DelegatingHandler` objects. This makes it easier to install custom handlers to pre-process HTTP requests if necessary.
+在舊版的 SDK 中，`SearchServiceClient` 和 `SearchIndexClient` 有建構函式，會採用 `HttpClient` 參數。這些建構函式已由使用 `HttpClientHandler` 的建構函式和 `DelegatingHandler` 物件的陣列取代。如此可讓在需要時將自訂處理常式安裝至前置處理 HTTP 要求更加簡易。
 
-Finally, the constructors that took a `Uri` and `SearchCredentials` have changed. For example, if you have code that looks like this:
+最後，採用 `Uri` 和 `SearchCredentials` 的建構函式已變更。例如，如果您的程式碼如下所示：
 
     var client =
         new SearchServiceClient(
             new SearchCredentials("abc123"),
             new Uri("http://myservice.search.windows.net"));
 
-You can change it to this to fix any build errors:
+您可以將其變更如下以修正任何建置錯誤：
 
     var client =
         new SearchServiceClient(
             new Uri("http://myservice.search.windows.net"),
             new SearchCredentials("abc123"));
 
-Also note that the type of the credentials parameter has changed to `ServiceClientCredentials`. This is unlikely to affect your code since `SearchCredentials` is derived from `ServiceClientCredentials`.
+另外請注意，認證參數的類型已變更為 `ServiceClientCredentials`。這不會影響您的程式碼，因為 `SearchCredentials` 衍生自 `ServiceClientCredentials`。
 
-#### <a name="passing-a-request-id"></a>Passing a request ID
+#### 傳送要求 ID
 
-In older versions of the SDK, you could set a request ID on the `SearchServiceClient` or `SearchIndexClient` and it would be included in every request to the REST API. This is useful for troubleshooting issues with your search service if you need to contact support. However, it is more useful to set a unique request ID for every operation rather than to use the same ID for all operations. For this reason, the `SetClientRequestId` methods of `SearchServiceClient` and `SearchIndexClient` have been removed. Instead, you can pass a request ID to each operation method via the optional `SearchRequestOptions` parameter.
+在較舊版本的 SDK 中，您可以在 `SearchServiceClient` 或 `SearchIndexClient` 上設定要求 ID，且它會納入 REST API 的每個要求中。如果您需要連絡支援人員，疑難排解搜尋服務的問題時，相當有用。不過，為每個作業設定唯一要求 ID 更加有用，而不是對所有作業使用相同 ID。基於這個原因，`SearchServiceClient` 和 `SearchIndexClient` 的 `SetClientRequestId` 方法已移除。您可以改為透過選擇性 `SearchRequestOptions` 參數將要求 ID 傳送給每個作業方法。
 
-> [AZURE.NOTE] In a future release of the SDK, we will add a new mechanism for setting a request ID globally on the client objects that is consistent with the approach used by other Azure SDKs.
+> [AZURE.NOTE] 在未來的 SDK 版本中，我們會新增新機制，在用戶端物件上全域設定要求 ID，與其他 Azure SDK 所使用的方法一致。
 
-#### <a name="example"></a>Example
+#### 範例
 
-If you have code that looks like this:
+如果您的程式碼如下所示：
 
     client.SetClientRequestId(Guid.NewGuid());
     ...
     long count = client.Documents.Count();
 
-You can change it to this to fix any build errors:
+您可以將其變更如下以修正任何建置錯誤：
 
     long count = client.Documents.Count(new SearchRequestOptions(requestId: Guid.NewGuid()));
 
-#### <a name="interface-name-changes"></a>Interface name changes
+#### 介面名稱變更
 
-The operation group interface names have all changed to be consistent with their corresponding property names:
+作業群組介面名稱皆已變更，與其對應的屬性名稱一致：
 
- - The type of `ISearchServiceClient.Indexes` has been renamed from `IIndexOperations` to `IIndexesOperations`.
- - The type of `ISearchServiceClient.Indexers` has been renamed from `IIndexerOperations` to `IIndexersOperations`.
- - The type of `ISearchServiceClient.DataSources` has been renamed from `IDataSourceOperations` to `IDataSourcesOperations`.
- - The type of `ISearchIndexClient.Documents` has been renamed from `IDocumentOperations` to `IDocumentsOperations`.
+ - `ISearchServiceClient.Indexes` 的類型已從 `IIndexOperations` 重新命名為 `IIndexesOperations`。
+ - `ISearchServiceClient.Indexers` 的類型已從 `IIndexerOperations` 重新命名為 `IIndexersOperations`。
+ - `ISearchServiceClient.DataSources` 的類型已從 `IDataSourceOperations` 重新命名為 `IDataSourcesOperations`。
+ - `ISearchIndexClient.Documents` 的類型已從 `IDocumentOperations` 重新命名為 `IDocumentsOperations`。
 
-This change is unlikely to affect your code unless you created mocks of these interfaces for test purposes.
+這項變更不會影響您的程式碼，除非您針對測試目的建立這些介面的模擬。
 
 <a name="BugFixesV1"></a>
-### <a name="bug-fixes-in-version-1.1"></a>Bug fixes in version 1.1
+### 版本 1.1 的錯誤修正
 
-There was a bug in older versions of the Azure Search .NET SDK relating to serialization of custom model classes. The bug could occur if you created a custom model class with a property of a non-nullable value type.
+在舊版的 Azure 搜尋服務 .NET SDK 中，有與自訂模型類別的序列化相關的錯誤。如果您建立具有不可為 null 值類型的屬性的自訂模型類別，可能會發生錯誤。
 
-#### <a name="steps-to-reproduce"></a>Steps to reproduce
+#### 重現的步驟
 
-Create a custom model class with a property of non-nullable value type. For example, add a public `UnitCount` property of type `int` instead of `int?`.
+建立具有不可為 null 值類型的屬性的自訂模型類別。例如，加入類型 `int` 而不是 `int?` 的公用 `UnitCount` 屬性。
 
-If you index a document with the default value of that type (for example, 0 for `int`), the field will be null in Azure Search. If you subsequently search for that document, the `Search` call will throw `JsonSerializationException` complaining that it can't convert `null` to `int`.
+如果要使用該類型的預設值編製文件的索引 (例如，`int` 的 0)，欄位在 Azure 搜尋服務中將會是 null。如果您後續搜尋該文件，`Search` 呼叫將會擲回 `JsonSerializationException`，提報它無法將 `null` 轉換為 `int`。
 
-Also, filters may not work as expected since null was written to the index instead of the intended value.
+此外，篩選可能無法如預期般執行，因為 null 被寫入索引，而不是預期的值。
 
-#### <a name="fix-details"></a>Fix details
+#### 修正詳細資料
 
-We have fixed this issue in version 1.1 of the SDK. Now, if you have a model class like this:
+我們已在 SDK 的版本 1.1 中修正此問題。現在，如果您有一個如下的模型類別：
 
     public class Model
     {
@@ -420,20 +419,16 @@ We have fixed this issue in version 1.1 of the SDK. Now, if you have a model cla
         public int IntValue { get; set; }
     }
 
-and you set `IntValue` to 0, that value is now correctly serialized as 0 on the wire and stored as 0 in the index. Round tripping also works as expected.
+而且您將 `IntValue` 設定為 0，該值現在會在線路上正確序列化為 0，並且在索引中儲存為 0。來回行程也如預期般運作。
 
-There is one potential issue to be aware of with this approach: If you use a model type with a non-nullable property, you have to **guarantee** that no documents in your index contain a null value for the corresponding field. Neither the SDK nor the Azure Search REST API will help you to enforce this.
+這種方法有一個需要注意的可能問題：如果您使用具有不可為 null 屬性的模型類型，您必須保證索引中沒有任何文件對於對應欄位包含 null 值。SDK 和 Azure 搜尋服務 REST API 都不會協助您強制執行。
 
-This is not just a hypothetical concern: Imagine a scenario where you add a new field to an existing index that is of type `Edm.Int32`. After updating the index definition, all documents will have a null value for that new field (since all types are nullable in Azure Search). If you then use a model class with a non-nullable `int` property for that field, you will get a `JsonSerializationException` like this when trying to retrieve documents:
+這不只是假設性的問題：如果您在類型為 `Edm.Int32` 的現有索引中新增欄位，更新索引定義之後，所有文件對於該新的欄位具有 null 值 (因為所有類型在 Azure 搜尋服務中都可為 null)。如果您接著對該欄位使用 `int` 屬性不可為 Null 的模型類別，就會在嘗試擷取文件時得到類似這樣的 `JsonSerializationException`：
 
     Error converting value {null} to type 'System.Int32'. Path 'IntValue'.
 
-For this reason, we still recommend that you use nullable types in your model classes as a best practice.
+基於這個原因，我們仍然建議您在模型類別中使用可為 null 的類型做為最佳作法。
 
-For more details on this bug and the fix, please see [this issue on GitHub](https://github.com/Azure/azure-sdk-for-net/issues/1063).
+如需有關此錯誤和修正的詳細資訊，請參閱 [GitHub 上的這個問題](https://github.com/Azure/azure-sdk-for-net/issues/1063)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

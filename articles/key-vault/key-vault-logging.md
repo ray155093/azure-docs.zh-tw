@@ -1,133 +1,132 @@
 <properties
-    pageTitle="Azure Key Vault Logging | Microsoft Azure"
-    description="Use this tutorial to help you get started with Azure Key Vault logging."
-    services="key-vault"
-    documentationCenter=""
-    authors="cabailey"
-    manager="mbaldwin"
-    tags="azure-resource-manager"/>
+	pageTitle="Azure 金鑰保存庫記錄 | Microsoft Azure"
+	description="使用本教學課程來協助您開始使用 Azure 金鑰保存庫記錄。"
+	services="key-vault"
+	documentationCenter=""
+	authors="cabailey"
+	manager="mbaldwin"
+	tags="azure-resource-manager"/>
 
 <tags
-    ms.service="key-vault"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="hero-article"
-    ms.date="08/31/2016"
-    ms.author="cabailey"/>
+	ms.service="key-vault"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="hero-article"
+	ms.date="08/31/2016"
+	ms.author="cabailey"/>
+
+# Azure 金鑰保存庫記錄 #
+大部分地區均提供 Azure 金鑰保存庫。如需詳細資訊，請參閱[金鑰保存庫價格頁面](https://azure.microsoft.com/pricing/details/key-vault/)。
+
+## 簡介  
+在建立一或多個金鑰保存庫之後，您可能會想要監視金鑰保存庫的存取方式、時間和存取者。想要做到這點，您可以啟用金鑰保存庫記錄，以在您提供的 Azure 儲存體帳戶中儲存這方面的資訊。系統會自動為您指定的儲存體帳戶建立新的容器，其名稱為 **insights-logs-auditevent**，而您也可以使用同一個儲存體帳戶來收集多個金鑰保存庫的記錄。
+
+您最多在執行過金鑰保存庫作業 10 分鐘後，就能存取其記錄資訊。但大多不用這麼久。儲存體帳戶中的記錄由您全權管理：
+
+- 請使用標準的 Azure 存取控制方法限制可存取記錄的人員，藉此來保護記錄。
+- 刪除不想繼續保留在儲存體帳戶中的記錄。
+
+請使用本教學課程來協助您開始使用 Azure 金鑰保存庫記錄、建立儲存體帳戶、啟用記錄，以及解譯所收集到的記錄資訊。
 
 
-# <a name="azure-key-vault-logging"></a>Azure Key Vault Logging #
-Azure Key Vault is available in most regions. For more information, see the [Key Vault pricing page](https://azure.microsoft.com/pricing/details/key-vault/).
-
-## <a name="introduction"></a>Introduction  
-After you have created one or more key vaults, you will likely want to monitor how and when your key vaults are accessed, and by whom. You can do this by enabling logging for Key Vault, which saves information in an Azure storage account that you provide. A new container named **insights-logs-auditevent** is automatically created for your specified storage account, and you can use this same storage account for collecting logs for multiple key vaults.
-
-You can access your logging information at most, 10 minutes after the key vault operation. In most cases, it will be quicker than this.  It's up to you to manage your logs in your storage account:
-
-- Use standard Azure access control methods to secure your logs by restricting who can access them.
-- Delete logs that you no longer want to keep in your storage account.
-
-Use this tutorial to help you get started with Azure Key Vault logging, to create your storage account, enable logging, and interpret the logging information collected.  
-
-
->[AZURE.NOTE]  This tutorial does not include instructions for how to create key vaults, keys, or secrets. For this information, see [Get started with Azure Key Vault](key-vault-get-started.md). Or, for Cross-Platform Command-Line Interface instructions, see [this equivalent tutorial](key-vault-manage-with-cli.md).
+>[AZURE.NOTE]  本教學課程不會指示如何建立金鑰保存庫、金鑰或密碼。如需這方面的資訊，請參閱[開始使用 Azure 金鑰保存庫](key-vault-get-started.md)。或者，如需跨平台命令列介面的指示，請參閱[這個對等的教學課程](key-vault-manage-with-cli.md)。
 >
->Currently, you cannot configure Azure Key Vault in the Azure portal. Instead, use these Azure PowerShell instructions.
+>目前，您無法在 Azure 入口網站中設定 Azure 金鑰保存庫。請改用這些 Azure PowerShell 指示。
 
-The logs that you collect can be visualized by using Log analytics from the Operations Management Suite. For more information, see [Azure Key Vault (Preview) solution in Log Analytics](../log-analytics/log-analytics-azure-key-vault.md).
+使用 Operations Management Suite 中的 Log Analytics 可以視覺化您收集的記錄檔。如需詳細資訊，請參閱 [Log Analytics 中的 Azure 金鑰保存庫 (預覽) 解決方案](../log-analytics/log-analytics-azure-key-vault.md)。
 
-For overview information about Azure Key Vault, see [What is Azure Key Vault?](key-vault-whatis.md)
+如需 Azure 金鑰保存庫的概觀資訊，請參閱[什麼是 Azure 金鑰保存庫？](key-vault-whatis.md)
 
-## <a name="prerequisites"></a>Prerequisites
+## 必要條件
 
-To complete this tutorial, you must have the following:
+若要完成本教學課程，您必須具備下列項目：
 
-- An existing key vault that you have been using.  
-- Azure PowerShell, **minimum version of 1.0.1**. To install Azure PowerShell and associate it with your Azure subscription, see [How to install and configure Azure PowerShell](../powershell-install-configure.md). If you have already installed Azure PowerShell and do not know the version, from the Azure PowerShell console, type `(Get-Module azure -ListAvailable).Version`.  
-- Sufficient storage on Azure for your Key Vault logs.
+- 所使用的現有金鑰保存庫。
+- Azure PowerShell (**至少必須是 1.0.1 版**)。若要安裝 Azure PowerShell，並將它與 Azure 訂用帳戶建立關聯，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。如果您已安裝 Azure PowerShell 但不知道版本，請在 Azure PowerShell 主控台中輸入 `(Get-Module azure -ListAvailable).Version`。
+- 足夠的 Azure 儲存體以儲存金鑰保存庫記錄。
 
 
-## <a name="<a-id="connect"></a>connect-to-your-subscriptions"></a><a id="connect"></a>Connect to your subscriptions ##
+## <a id="connect"></a>連線到您的訂用帳戶 ##
 
-Start an Azure PowerShell session and sign in to your Azure account with the following command:  
+開始 Azure PowerShell 工作階段，並使用下列命令登入您的 Azure 帳戶：
 
     Login-AzureRmAccount
 
-In the pop-up browser window, enter your Azure account user name and password. Azure PowerShell will get all the subscriptions that are associated with this account and by default, uses the first one.
+在快顯瀏覽器視窗中，輸入您的 Azure 帳戶使用者名稱與密碼。Azure PowerShell 會取得與此帳戶相關聯的所有訂用帳戶，並依預設使用第一個訂用帳戶。
 
-If you have multiple subscriptions, you might have to specify a specific one that was used to create your Azure Key Vault. Type the following to see the subscriptions for your account:
+如果您有多個訂用帳戶，您可能必須指定用來建立 Azure 金鑰保存庫的那一個特定訂用帳戶。輸入下列命令以查看您帳戶的訂用帳戶：
 
     Get-AzureRmSubscription
 
-Then, to specify the subscription that's associated with your key vault you will be logging, type:
+然後，輸入下列命令以指定與所要記錄之金鑰保存庫相關聯的訂用帳戶：
 
     Set-AzureRmContext -SubscriptionId <subscription ID>
 
-For more information about configuring Azure PowerShell, see  [How to install and configure Azure PowerShell](../powershell-install-configure.md).
+如需設定 Azure PowerShell 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 
 
-## <a name="<a-id="storage"></a>create-a-new-storage-account-for-your-logs"></a><a id="storage"></a>Create a new storage account for your logs ##
+## <a id="storage"></a> 建立新的儲存體帳戶來儲存記錄 ##
 
-Although you can use an existing storage account for your logs, we'll create a new storage account that will be dedicated to Key Vault logs. For convenience for when we have to specify this later, we'll store the details into a variable named **sa**.
+雖然您可以使用現有儲存體帳戶來儲存記錄，但我們將建立新的儲存體帳戶來專用儲存金鑰保存庫記錄。為了方便起見，在稍後遇到必須指定此帳戶時，我們會將詳細資料儲存到名為 **sa** 的變數中。
 
-For additional ease of management, we'll also use the same resource group as the one that contains our key vault. From the [getting started tutorial](key-vault-get-started.md), this resource group is named **ContosoResourceGroup** and we'll continue to use the East Asia location. Substitute these values for your own, as applicable:
+為了進一步簡化管理，我們也會使用包含我們的金鑰保存庫的同一個資源群組。在 [開始使用教學課程](key-vault-get-started.md) 中，此資源群組的名稱是 **ContosoResourceGroup**，並且我們會繼續使用「東亞」位置。請視情況將這些值替換成您自己的值：
 
-    $sa = New-AzureRmStorageAccount -ResourceGroupName ContosoResourceGroup -Name ContosoKeyVaultLogs -Type Standard_LRS -Location 'East Asia'
-
-
->[AZURE.NOTE]  If you decide to use an existing storage account, it must use the same subscription as your key vault and it must use the Resource Manager deployment model, rather than the Classic deployment model.
-
-## <a name="<a-id="identify"></a>identify-the-key-vault-for-your-logs"></a><a id="identify"></a>Identify the key vault for your logs ##
-
-In our getting started tutorial, our key vault name was **ContosoKeyVault**, so we'll continue to use that name and store the details into a variable named **kv**:
-
-    $kv = Get-AzureRmKeyVault -VaultName 'ContosoKeyVault'
+	$sa = New-AzureRmStorageAccount -ResourceGroupName ContosoResourceGroup -Name ContosoKeyVaultLogs -Type Standard_LRS -Location 'East Asia'
 
 
-## <a name="<a-id="enable"></a>enable-logging"></a><a id="enable"></a>Enable logging ##
+>[AZURE.NOTE]  如果您決定使用現有儲存體帳戶，則必須使用和金鑰保存庫相同的訂用帳戶，此外也必須使用 Resource Manager 部署模型，而非傳統部署模型。
 
-To enable logging for Key Vault, we'll use the Set-AzureRmDiagnosticSetting cmdlet, together with the variables we created for our new storage account and our key vault. We'll also set the **-Enabled** flag to **$true** and set the category to AuditEvent (the only category for Key Vault logging), :
+## <a id="identify"></a>識別用來儲存記錄的金鑰保存庫 ##
 
+在開始使用教學課程中，金鑰保存庫名稱是 **ContosoKeyVault**，因此我們會繼續使用該名稱，並將詳細資料儲存到名為 **kv** 的變數中：
 
-    Set-AzureRmDiagnosticSetting -ResourceId $kv.ResourceId -StorageAccountId $sa.Id -Enabled $true -Categories AuditEvent
-
-The output for this includes:
-
-    StorageAccountId   : /subscriptions/<subscription-GUID>/resourceGroups/ContosoResourceGroup/providers/Microsoft.Storage/storageAccounts/ContosoKeyVaultLogs
-    ServiceBusRuleId   :
-    StorageAccountName :
-        Logs
-        Enabled           : True
-        Category          : AuditEvent
-        RetentionPolicy
-        Enabled : False
-        Days    : 0
+	$kv = Get-AzureRmKeyVault -VaultName 'ContosoKeyVault'
 
 
-This confirms that logging is now enabled for your key vault, saving information to your storage account.
+## <a id="enable"></a>啟用記錄 ##
 
-Optionally you can also set retention policy for your logs such that older logs will be automatically deleted. For example, set retention policy using **-RetentionEnabled** flag to **$true** and set **-RetentionInDays** parameter to **90** so that logs older than 90 days will be automatically deleted.
-
-    Set-AzureRmDiagnosticSetting -ResourceId $kv.ResourceId -StorageAccountId $sa.Id -Enabled $true -Categories AuditEvent -RetentionEnabled $true -RetentionInDays 90
-
-What's logged:
-
-- All authenticated REST API requests are logged, which includes failed requests as a result of access permissions, system errors or bad requests.
-- Operations on the key vault itself, which includes creation, deletion, setting key vault access policies, and updating key vault attributes such as tags.
-- Operations on keys and secrets in the key vault, which includes creating, modifying, or deleting these keys or secrets; operations such as sign, verify, encrypt, decrypt, wrap and unwrap keys, get secrets, list keys and secrets and their versions.
-- Unauthenticated requests that result in a 401 response. For example, requests that do not have a bearer token, or are malformed or expired, or have an invalid token.  
+為了啟用金鑰保存庫記錄，我們將使用 Set-AzureRmDiagnosticSetting Cmdlet，並搭配針對新儲存體帳戶和金鑰保存庫所建立的變數。我們也會將 **-Enabled** 旗標設定為 **$true**，並將類別設定為 AuditEvent (金鑰保存庫記錄適用的唯一類別)：
 
 
-## <a name="<a-id="access"></a>access-your-logs"></a><a id="access"></a>Access your logs ##
+	Set-AzureRmDiagnosticSetting -ResourceId $kv.ResourceId -StorageAccountId $sa.Id -Enabled $true -Categories AuditEvent
 
-Key vault logs are stored in the **insights-logs-auditevent** container in the storage account you provided. To list all the blobs in this container, type:
+此命令的輸出包含：
+
+	StorageAccountId   : /subscriptions/<subscription-GUID>/resourceGroups/ContosoResourceGroup/providers/Microsoft.Storage/storageAccounts/ContosoKeyVaultLogs
+	ServiceBusRuleId   :
+	StorageAccountName :
+		Logs
+		Enabled           : True
+		Category          : AuditEvent
+		RetentionPolicy
+		Enabled : False
+		Days    : 0
+
+
+這個結果可確認金鑰保存庫記錄現已啟用，系統會將資訊儲存到儲存體帳戶中。
+
+您也可以選擇性地設定記錄檔的保留原則，以便自動刪除較舊的記錄檔。例如，使用 **-RetentionEnabled** 旗標將保留原則設為 **$true** 並將 **-RetentionInDays** 參數設為 **90**，以便自動刪除超過 90 天的舊記錄檔。
+
+	Set-AzureRmDiagnosticSetting -ResourceId $kv.ResourceId -StorageAccountId $sa.Id -Enabled $true -Categories AuditEvent -RetentionEnabled $true -RetentionInDays 90
+
+所記錄的內容：
+
+- 會記錄所有已驗證的 REST API 要求，包括因為存取權限、系統錯誤或要求錯誤而發生的失敗要求。
+- 對金鑰保存庫本身所執行的作業，包括建立、刪除、設定金鑰保存庫存取原則，以及更新金鑰保存庫屬性 (例如標記)。
+- 對金鑰保存庫中的金鑰和密碼所執行的作業，包括建立、修改或刪除這些金鑰或密碼，以及簽署、驗證、加密、解密、包裝和解除包裝金鑰、取得密碼、列出金鑰和密碼及其版本等等的作業。
+- 產生 401 回應的未經驗證要求。例如，沒有持有人權杖的要求，或格式不正確或已過期的要求，或具有無效權杖的要求。
+
+
+## <a id="access"></a>存取記錄 ##
+
+金鑰保存庫記錄儲存在所提供儲存體帳戶的 **insights-logs-auditevent** 容器中。若要列出此容器中的所有 blob，請輸入：
 
     Get-AzureStorageBlob -Container 'insights-logs-auditevent' -Context $sa.Context
 
-The output will look something similar to this:
+其輸出類似如下範例：
 
-**Container Uri: https://contosokeyvaultlogs.blob.core.windows.net/insights-logs-auditevent**
+**Container Uri：https://contosokeyvaultlogs.blob.core.windows.net/insights-logs-auditevent**
 
 
 **Name**
@@ -138,153 +137,149 @@ The output will look something similar to this:
 
 **resourceId=/SUBSCRIPTIONS/361DA5D4-A47A-4C79-AFDD-XXXXXXXXXXXX/RESOURCEGROUPS/CONTOSORESOURCEGROUP/PROVIDERS/MICROSOFT.KEYVAULT/VAULTS/CONTOSOKEYVAULT/y=2016/m=01/d=04/h=02/m=00/PT1H.json**
 
-**resourceId=/SUBSCRIPTIONS/361DA5D4-A47A-4C79-AFDD-XXXXXXXXXXXX/RESOURCEGROUPS/CONTOSORESOURCEGROUP/PROVIDERS/MICROSOFT.KEYVAULT/VAULTS/CONTOSOKEYVAULT/y=2016/m=01/d=04/h=18/m=00/PT1H.json****
+**resourceId=/SUBSCRIPTIONS/361DA5D4-A47A-4C79-AFDD-XXXXXXXXXXXX/RESOURCEGROUPS/CONTOSORESOURCEGROUP/PROVIDERS/MICROSOFT.KEYVAULT/VAULTS/CONTOSOKEYVAULT/y=2016/m=01/d=04/h=18/m=00/PT1H.json**
 
 
-As you can see from this output, the blobs follow a naming convention: **resourceId=<ARM resource ID>/y=<year>/m=<month>/d=<day of month>/h=<hour>/m=<minute>/filename.json**
+在此輸出中我們可以看到，blob 會遵循以下命名慣例：**resourceId=<ARM 資源識別碼>/y=<年>/m=<月>/d=<日期>/h=<時>/m=<分>/filename.json**
 
-The date and time values use UTC.
+日期和時間值使用 UTC。
 
-Because the same storage account can be used to collect logs for multiple resources, the full resource ID in the blob name is very useful to access or download just the blobs that you need. But before we do that, we'll first cover how to download all the blobs.
+因為可以使用相同的儲存體帳戶來收集多個資源的記錄，blob 名稱中的完整資源識別碼很適合用來只存取或下載所需 blob。但在這麼做之前，我們要先討論如何下載所有 blob。
 
-First, create a folder to download the blobs. For example:
+首先，建立資料夾來下載 blob。例如：
 
-    New-Item -Path 'C:\Users\username\ContosoKeyVaultLogs' -ItemType Directory -Force
+	New-Item -Path 'C:\Users\username\ContosoKeyVaultLogs' -ItemType Directory -Force
 
-Then get a list of all blobs:  
+然後取得所有 blob 的清單：
 
-    $blobs = Get-AzureStorageBlob -Container $container -Context $sa.Context
+	$blobs = Get-AzureStorageBlob -Container $container -Context $sa.Context
 
-Pipe this list through 'Get-AzureStorageBlobContent' to download the blobs into our destination folder:
+透過 'Get-AzureStorageBlobContent' 以管道傳送這份清單，將 blob 下載到目的地資料夾：
 
-    $blobs | Get-AzureStorageBlobContent -Destination 'C:\Users\username\ContosoKeyVaultLogs'
+	$blobs | Get-AzureStorageBlobContent -Destination 'C:\Users\username\ContosoKeyVaultLogs'
 
-When you run this second command, the **/** delimiter in the blob names create a full folder structure under the destination folder, and this structure will be used to download and store the blobs as files.
+在執行第二個命令時，blob 名稱中的 **/** 分隔符號會在目的地資料夾下建立完整資料夾結構，而此結構將會用來下載 blob 並儲存為檔案。
 
-To selectively download blobs, use wildcards. For example:
+若要有所選擇地下載 blob，請使用萬用字元。例如：
 
-- If you have multiple key vaults and want to download logs for just one key vault, named CONTOSOKEYVAULT3:
+- 如果您有多個金鑰保存庫，並且只想下載其中的 CONTOSOKEYVAULT3 金鑰保存庫的記錄：
 
-        Get-AzureStorageBlob -Container $container -Context $sa.Context -Blob '*/VAULTS/CONTOSOKEYVAULT3
+		Get-AzureStorageBlob -Container $container -Context $sa.Context -Blob '*/VAULTS/CONTOSOKEYVAULT3
 
-- If you have multiple resource groups and want to download logs for just one resource group, use `-Blob '*/RESOURCEGROUPS/<resource group name>/*'`:
+- 如果您有多個資源群組，並且只想下載其中某個資源群組的記錄，請使用 `-Blob '*/RESOURCEGROUPS/<resource group name>/*'`：
 
-        Get-AzureStorageBlob -Container $container -Context $sa.Context -Blob '*/RESOURCEGROUPS/CONTOSORESOURCEGROUP3/*'
+		Get-AzureStorageBlob -Container $container -Context $sa.Context -Blob '*/RESOURCEGROUPS/CONTOSORESOURCEGROUP3/*'
 
-- If you want to download all the logs for the month of January 2016, use `-Blob '*/year=2016/m=01/*'`:
+- 如果您想下載 2016 年 1 月份當月的所有記錄，請使用 `-Blob '*/year=2016/m=01/*'`：
 
-        Get-AzureStorageBlob -Container $container -Context $sa.Context -Blob '*/year=2016/m=01/*'
+		Get-AzureStorageBlob -Container $container -Context $sa.Context -Blob '*/year=2016/m=01/*'
 
-You're now ready to start looking at what's in the logs. But before moving onto that, two more parameters for Get-AzureRmDiagnosticSetting that you might need to know:
+您現在已做好準備，可以開始查看記錄中有何內容。但在開始之前，您可能還需要了解 Get-AzureRmDiagnosticSetting 的兩個參數：
 
-- To query the  status of diagnostic settings for your key vault resource: `Get-AzureRmDiagnosticSetting -ResourceId $kv.ResourceId`
+- 若要查詢金鑰保存庫資源的診斷設定狀態：`Get-AzureRmDiagnosticSetting -ResourceId $kv.ResourceId`
 
-- To disable logging for your key vault resource: `Set-AzureRmDiagnosticSetting -ResourceId $kv.ResourceId -StorageAccountId $sa.Id -Enabled $false -Categories AuditEvent`
-
-
-## <a name="<a-id="interpret"></a>interpret-your-key-vault-logs"></a><a id="interpret"></a>Interpret your Key Vault logs ##
-
-Individual blobs are stored as text, formatted as a JSON blob. This is an example log entry from running `Get-AzureRmKeyVault -VaultName 'contosokeyvault'`:
-
-    {
-        "records":
-        [
-            {
-                "time": "2016-01-05T01:32:01.2691226Z",
-                "resourceId": "/SUBSCRIPTIONS/361DA5D4-A47A-4C79-AFDD-XXXXXXXXXXXX/RESOURCEGROUPS/CONTOSOGROUP/PROVIDERS/MICROSOFT.KEYVAULT/VAULTS/CONTOSOKEYVAULT",
-                "operationName": "VaultGet",
-                "operationVersion": "2015-06-01",
-                "category": "AuditEvent",
-                "resultType": "Success",
-                "resultSignature": "OK",
-                "resultDescription": "",
-                "durationMs": "78",
-                "callerIpAddress": "104.40.82.76",
-                "correlationId": "",
-                "identity": {"claim":{"http://schemas.microsoft.com/identity/claims/objectidentifier":"d9da5048-2737-4770-bd64-XXXXXXXXXXXX","http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn":"live.com#username@outlook.com","appid":"1950a258-227b-4e31-a9cf-XXXXXXXXXXXX"}},
-                "properties": {"clientInfo":"azure-resource-manager/2.0","requestUri":"https://control-prod-wus.vaultcore.azure.net/subscriptions/361da5d4-a47a-4c79-afdd-XXXXXXXXXXXX/resourcegroups/contosoresourcegroup/providers/Microsoft.KeyVault/vaults/contosokeyvault?api-version=2015-06-01","id":"https://contosokeyvault.vault.azure.net/","httpStatusCode":200}
-            }
-        ]
-    }
+- 若要停用金鑰保存庫資源記錄：`Set-AzureRmDiagnosticSetting -ResourceId $kv.ResourceId -StorageAccountId $sa.Id -Enabled $false -Categories AuditEvent`
 
 
-The following table lists the field names and descriptions.
+## <a id="interpret"></a>解譯金鑰保存庫記錄 ##
+
+各個 blob 皆會儲存為文字，並格式化為 JSON blob。以下是執行 `Get-AzureRmKeyVault -VaultName 'contosokeyvault'` 後所得到的範例記錄項目：
+
+	{
+    	"records":
+    	[
+        	{
+        	    "time": "2016-01-05T01:32:01.2691226Z",
+        	    "resourceId": "/SUBSCRIPTIONS/361DA5D4-A47A-4C79-AFDD-XXXXXXXXXXXX/RESOURCEGROUPS/CONTOSOGROUP/PROVIDERS/MICROSOFT.KEYVAULT/VAULTS/CONTOSOKEYVAULT",
+            	"operationName": "VaultGet",
+            	"operationVersion": "2015-06-01",
+            	"category": "AuditEvent",
+            	"resultType": "Success",
+            	"resultSignature": "OK",
+            	"resultDescription": "",
+            	"durationMs": "78",
+            	"callerIpAddress": "104.40.82.76",
+            	"correlationId": "",
+            	"identity": {"claim":{"http://schemas.microsoft.com/identity/claims/objectidentifier":"d9da5048-2737-4770-bd64-XXXXXXXXXXXX","http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn":"live.com#username@outlook.com","appid":"1950a258-227b-4e31-a9cf-XXXXXXXXXXXX"}},
+            	"properties": {"clientInfo":"azure-resource-manager/2.0","requestUri":"https://control-prod-wus.vaultcore.azure.net/subscriptions/361da5d4-a47a-4c79-afdd-XXXXXXXXXXXX/resourcegroups/contosoresourcegroup/providers/Microsoft.KeyVault/vaults/contosokeyvault?api-version=2015-06-01","id":"https://contosokeyvault.vault.azure.net/","httpStatusCode":200}
+        	}
+    	]
+	}
 
 
-| Field name        | Description |
+下表列出各個欄位的名稱和其描述。
+
+
+| 欄位名稱 | 說明 |
 | ------------- |-------------|
-| time      | Date and time (UTC).|
-| resourceId      | Azure Resource Manager Resource ID. For Key Vault logs, this is always the  Key Vault resource ID.|
-| operationName      | Name of the operation, as documented in the next table.|
-| operationVersion      | This is the REST API version requested by the client.|
-| category      | For Key Vault logs, AuditEvent is the single, available value.|
-| resultType      | Result of REST API request.|
-| resultSignature      | HTTP status.|
-| resultDescription     | Additional description about the result, when available.|
-| durationMs      | Time it took to service the REST API request, in milliseconds. This does not include the network latency, so the time you measure on the client side might not match this time.|
-| callerIpAddress      | IP address of the client who made the request.|
-| correlationId      | An optional GUID that the client can pass to correlate client-side logs with service-side (Key Vault) logs.|
-| identity      | Identity from the token that was presented when making the REST API request. This is usually a "user", a "service principal" or a combination "user+appId" as in case of a request resulting from a Azure PowerShell cmdlet.|
-| properties      | This field will contain different information based on the operation (operationName). In most cases, contains client information (the useragent string passed by the client), the exact REST API request URI, and HTTP status code. In addition, when an object is returned as a result of a request (for example, KeyCreate or VaultGet) it will also contain the Key URI (as "id"), Vault URI, or Secret URI.|
+| 分析 | 日期和時間 (UTC)。|
+| resourceId | Azure 資源管理員資源識別碼。對於金鑰保存庫記錄來說，這一律是金鑰保存庫的資源識別碼。|
+| operationName | 下一份表格所述作業的名稱。|
+| operationVersion | 這是用戶端所要求的 REST API 版本。|
+| category | 對於金鑰保存庫記錄來說，AuditEvent 是其唯一可用的值。|
+| resultType | REST API 要求的結果。|
+| resultSignature | HTTP 狀態。|
+| resultDescription | 結果的其他描述 (若有提供)。|
+| durationMs | 服務 REST API 要求時所花費的時間，以毫秒為單位。此時間不包括網路延遲，因此在用戶端所測量到的時間可能不符合此時間。|
+| callerIpAddress | 提出要求之用戶端的 IP 位址。|
+| correlationId | 選擇性的 GUID，用戶端可傳遞此 GUID 來讓用戶端記錄與服務端 (金鑰保存庫) 記錄相互關聯。|
+| 身分識別 | 在提出 REST API 要求時所提供之權杖中的身分識別。和 Azure PowerShell Cmdlet 所產生之要求的案例一樣，這通常是「使用者」、「服務主體」或「使用者+appId」的組合。|
+| properties | 在不同作業 (operationName) 中，此欄位會包含不同的資訊。在大部分情況下，會包含用戶端資訊 (用戶端所傳遞的使用者代理程式字串)、確切的 REST API 要求 URI 和 HTTP 狀態碼。此外，在因為提出要求 (例如，KeyCreate 或 VaultGet) 而傳回物件時，此欄位還將包含金鑰 URI (形式為 "id")、保存庫 URI 或密碼 URI。|
 
 
 
 
-The **operationName** field values are in ObjectVerb format. For example:
+**operationName** 欄位值的格式為 ObjectVerb。例如：
 
-- All key vault operations have the 'Vault`<action>`' format, such as `VaultGet` and `VaultCreate`.
+- 所有金鑰保存庫作業都有 'Vault`<action>`' 格式，例如 `VaultGet` 和 `VaultCreate`。
 
-- All  key operations have the 'Key`<action>`' format, such as `KeySign` and `KeyList`.
+- 所有金鑰作業都有 'Key`<action>`' 格式，例如 `KeySign` 和 `KeyList`。
 
-- All secret operations have the 'Secret`<action>`' format, such as `SecretGet` and `SecretListVersions`.
+- 所有密碼作業都有 'Secret`<action>`' 格式，例如 `SecretGet` 和 `SecretListVersions`。
 
-The following table lists the operationName and corresponding REST API command.
+下表列出 operationName 和相對應的 REST API 命令。
 
-| operationName        | REST API Command |
+| operationName | REST API 命令 |
 | ------------- |-------------|
-| Authentication      | Via Azure Active Directory endpoint|
-| VaultGet      | [Get information about a key vault](https://msdn.microsoft.com/en-us/library/azure/mt620026.aspx)|
-| VaultPut      | [Create or update a key vault](https://msdn.microsoft.com/en-us/library/azure/mt620025.aspx)|
-| VaultDelete      | [Delete a key vault](https://msdn.microsoft.com/en-us/library/azure/mt620022.aspx)|
-| VaultPatch      | [Update a key vault](https://msdn.microsoft.com/library/azure/mt620025.aspx)|
-| VaultList      | [List all key vaults in a resource group](https://msdn.microsoft.com/en-us/library/azure/mt620027.aspx)|
-| KeyCreate      | [Create a key](https://msdn.microsoft.com/en-us/library/azure/dn903634.aspx)|
-| KeyGet      | [Get information about a key](https://msdn.microsoft.com/en-us/library/azure/dn878080.aspx)|
-| KeyImport      | [Import a key into a vault](https://msdn.microsoft.com/en-us/library/azure/dn903626.aspx)|
-| KeyBackup      | [Backup a key](https://msdn.microsoft.com/en-us/library/azure/dn878058.aspx).|
-| KeyDelete      | [Delete a key](https://msdn.microsoft.com/en-us/library/azure/dn903611.aspx)|
-| KeyRestore      | [Restore a key](https://msdn.microsoft.com/en-us/library/azure/dn878106.aspx)|
-| KeySign      | [Sign with a key](https://msdn.microsoft.com/en-us/library/azure/dn878096.aspx)|
-| KeyVerify      | [Verify with a key](https://msdn.microsoft.com/en-us/library/azure/dn878082.aspx)|
-| KeyWrap      | [Wrap a key](https://msdn.microsoft.com/en-us/library/azure/dn878066.aspx)|
-| KeyUnwrap      | [Unwrap a key](https://msdn.microsoft.com/en-us/library/azure/dn878079.aspx)|
-| KeyEncrypt      | [Encrypt with a key](https://msdn.microsoft.com/en-us/library/azure/dn878060.aspx)|
-| KeyDecrypt      | [Decrypt with a key](https://msdn.microsoft.com/en-us/library/azure/dn878097.aspx)|
-| KeyUpdate      | [Update a key](https://msdn.microsoft.com/en-us/library/azure/dn903616.aspx)|
-| KeyList      | [List the keys in a vault](https://msdn.microsoft.com/en-us/library/azure/dn903629.aspx)|
-| KeyListVersions      | [List the versions of a key](https://msdn.microsoft.com/en-us/library/azure/dn986822.aspx)|
-| SecretSet      | [Create a secret](https://msdn.microsoft.com/en-us/library/azure/dn903618.aspx)|
-| SecretGet      | [Get secret](https://msdn.microsoft.com/en-us/library/azure/dn903633.aspx)|
-| SecretUpdate      | [Update a secret](https://msdn.microsoft.com/en-us/library/azure/dn986818.aspx)|
-| SecretDelete      | [Delete a secret](https://msdn.microsoft.com/en-us/library/azure/dn903613.aspx)|
-| SecretList      | [List secrets in a vault](https://msdn.microsoft.com/en-us/library/azure/dn903614.aspx)|
-| SecretListVersions      | [List versions of a secret](https://msdn.microsoft.com/en-us/library/azure/dn986824.aspx)|
+| 驗證 | 透過 Azure Active Directory 端點|
+| VaultGet | [取得金鑰保存庫的相關資訊](https://msdn.microsoft.com/en-us/library/azure/mt620026.aspx)|
+| VaultPut | [建立或更新金鑰保存庫](https://msdn.microsoft.com/en-us/library/azure/mt620025.aspx)|
+| VaultDelete | [刪除金鑰保存庫](https://msdn.microsoft.com/en-us/library/azure/mt620022.aspx)|
+| VaultPatch | [更新金鑰保存庫](https://msdn.microsoft.com/library/azure/mt620025.aspx)|
+| VaultList | [列出資源群組中的所有金鑰保存庫](https://msdn.microsoft.com/en-us/library/azure/mt620027.aspx)|
+| KeyCreate | [建立金鑰](https://msdn.microsoft.com/en-us/library/azure/dn903634.aspx)|
+| KeyGet | [取得金鑰的相關資訊](https://msdn.microsoft.com/en-us/library/azure/dn878080.aspx)|
+| KeyImport | [將金鑰匯入保存庫](https://msdn.microsoft.com/en-us/library/azure/dn903626.aspx)|
+| KeyBackup | [備份金鑰](https://msdn.microsoft.com/en-us/library/azure/dn878058.aspx)。|
+| KeyDelete | [刪除金鑰](https://msdn.microsoft.com/en-us/library/azure/dn903611.aspx)|
+| KeyRestore | [還原金鑰](https://msdn.microsoft.com/en-us/library/azure/dn878106.aspx)|
+| KeySign | [使用金鑰簽署](https://msdn.microsoft.com/en-us/library/azure/dn878096.aspx)|
+| KeyVerify | [使用金鑰驗證](https://msdn.microsoft.com/en-us/library/azure/dn878082.aspx)|
+| KeyWrap | [包裝金鑰](https://msdn.microsoft.com/en-us/library/azure/dn878066.aspx)|
+| KeyUnwrap | [解除包裝金鑰](https://msdn.microsoft.com/en-us/library/azure/dn878079.aspx)|
+| KeyEncrypt | [使用金鑰加密](https://msdn.microsoft.com/en-us/library/azure/dn878060.aspx)|
+| KeyDecrypt | [使用金鑰解密](https://msdn.microsoft.com/en-us/library/azure/dn878097.aspx)|
+| KeyUpdate | [更新金鑰](https://msdn.microsoft.com/en-us/library/azure/dn903616.aspx)|
+| KeyList | [列出保存庫中的金鑰](https://msdn.microsoft.com/en-us/library/azure/dn903629.aspx)|
+| KeyListVersions | [列出金鑰的版本](https://msdn.microsoft.com/en-us/library/azure/dn986822.aspx)|
+| SecretSet | [建立密碼](https://msdn.microsoft.com/en-us/library/azure/dn903618.aspx)|
+| SecretGet | [取得密碼](https://msdn.microsoft.com/en-us/library/azure/dn903633.aspx)|
+| SecretUpdate | [更新密碼](https://msdn.microsoft.com/en-us/library/azure/dn986818.aspx)|
+| SecretDelete | [刪除秘密](https://msdn.microsoft.com/en-us/library/azure/dn903613.aspx)|
+| SecretList | [列出保存庫中的密碼](https://msdn.microsoft.com/en-us/library/azure/dn903614.aspx)|
+| SecretListVersions | [列出密碼的版本](https://msdn.microsoft.com/en-us/library/azure/dn986824.aspx)|
 
 
 
 
-## <a name="<a-id="next"></a>next-steps"></a><a id="next"></a>Next steps ##
+## <a id="next"></a>接續步驟 ##
 
-For a tutorial that uses Azure Key Vault in a web application, see [Use Azure Key Vault from a Web Application](key-vault-use-from-web-application.md).
+如需在 Web 應用程式中使用 Azure 金鑰保存庫的教學課程，請參閱 [從 Web 應用程式使用 Azure 金鑰保存庫](key-vault-use-from-web-application.md)。
 
-For programming references, see [the Azure Key Vault developer's guide](key-vault-developers-guide.md).
+如需程式設計參考，請參閱 [Azure 金鑰保存庫開發人員指南](key-vault-developers-guide.md)。
 
-For a list of Azure PowerShell 1.0 cmdlets for Azure Key Vault, see [Azure Key Vault Cmdlets](https://msdn.microsoft.com/library/azure/dn868052.aspx).
+如需 Azure 金鑰保存庫的 Azure PowerShell 1.0 Cmdlet 清單，請參閱 [Azure 金鑰保存庫 Cmdlet](https://msdn.microsoft.com/library/azure/dn868052.aspx)。
 
-For a tutorial on key rotation and log auditing with Azure Key Vault, see [How to setup Key Vault with end to end key rotation and auditing](key-vault-key-rotation-log-monitoring.md).
+如需有關 Azure 金鑰保存庫的金鑰輪替和記錄檔稽核的教學課程，請參閱 [如何使用端對端金鑰輪替和稽核設定金鑰保存庫](key-vault-key-rotation-log-monitoring.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0907_2016-->

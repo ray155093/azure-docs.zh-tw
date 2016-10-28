@@ -1,160 +1,155 @@
 <properties
-    pageTitle="Azure Functions Event Hub bindings | Microsoft Azure"
-    description="Understand how to use Azure Event Hub bindings in Azure Functions."
-    services="functions"
-    documentationCenter="na"
-    authors="wesmc7777"
-    manager="erikre"
-    editor=""
-    tags=""
-    keywords="azure functions, functions, event processing, dynamic compute, serverless architecture"/>
+	pageTitle="Azure Functions 事件中樞繫結 | Microsoft Azure"
+	description="了解如何在 Azure Functions 中使用 Azure 事件中樞繫結。"
+	services="functions"
+	documentationCenter="na"
+	authors="wesmc7777"
+	manager="erikre"
+	editor=""
+	tags=""
+	keywords="azure functions, 函數, 事件處理, 動態運算, 無伺服器架構"/>
 
 <tags
-    ms.service="functions"
-    ms.devlang="multiple"
-    ms.topic="reference"
-    ms.tgt_pltfrm="multiple"
-    ms.workload="na"
-    ms.date="08/22/2016"
-    ms.author="wesmc"/>
+	ms.service="functions"
+	ms.devlang="multiple"
+	ms.topic="reference"
+	ms.tgt_pltfrm="multiple"
+	ms.workload="na"
+	ms.date="08/22/2016"
+	ms.author="wesmc"/>
 
-
-# <a name="azure-functions-event-hub-bindings"></a>Azure Functions Event Hub bindings
+# Azure Functions 事件中樞繫結
 
 [AZURE.INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-This article explains how to configure and code [Azure Event Hub](../event-hubs/event-hubs-overview.md) bindings for Azure Functions. Azure functions supports trigger and output bindings for Azure Event Hubs.
+本文說明如何針對 Azure Functions 設定 [Azure 事件中樞](../event-hubs/event-hubs-overview.md)繫結以及撰寫程式碼。Azure Functions 支援適用於 Azure 事件中樞的觸發程序和輸出繫結。
 
-[AZURE.INCLUDE [intro](../../includes/functions-bindings-intro.md)] 
+[AZURE.INCLUDE [簡介](../../includes/functions-bindings-intro.md)]
 
 
-## <a name="azure-event-hub-trigger-binding"></a>Azure Event Hub trigger binding
+## Azure 事件中樞觸發程序繫結
 
-An Azure Event Hub trigger can be used to respond to an event sent to an event hub event stream. You must have read access to the event hub to setup a trigger binding.
+Azure 事件中樞觸發程序可用來回應傳送至事件中樞事件資料流的事件。您必須具有事件中樞的讀取權限，才能設定觸發程序繫結。
 
-#### <a name="function.json-for-event-hub-trigger-binding"></a>function.json for Event Hub trigger binding
+#### 適用於事件中樞觸發程序繫結的 function.json
 
-The *function.json* file for an Azure Event Hub trigger specifies the following properties:
+適用於 Azure 事件中樞觸發程序的「function.json」檔案會指定下列屬性：
 
-- `type` : Must be set to *eventHubTrigger*.
-- `name` : The variable name used in function code for the event hub message. 
-- `direction` : Must be set to *in*. 
-- `path` : The name of the event hub.
-- `connection` : The name of an app setting that contains the connection string to the namespace that the event hub resides in. Copy this connection string by clicking the **Connection Information** button for the namespace, not the event hub itself.  This connection string must have at least read permissions to activate the trigger.
+- `type`︰必須設定為「eventHubTrigger」。
+- `name`︰用於事件中樞訊息之函式程式碼中的變數名稱。
+- `direction`：必須設為 in。
+- `path`：事件中樞的名稱。
+- `connection`：應用程式設定的名稱，包含事件中樞所在之命名空間的連接字串。按一下命名空間的 [連接資訊] 按鈕 (而不是事件中樞本身)，來複製此連接字串。此連接字串至少必須具備讀取權限，才能啟動觸發程序。
 
-        {
-          "bindings": [
-            {
-              "type": "eventHubTrigger",
-              "name": "myEventHubMessage",
-              "direction": "in",
-              "path": "MyEventHub",
-              "connection": "myEventHubReadConnectionString"
-            }
-          ],
-          "disabled": false
-        }
+		{
+		  "bindings": [
+		    {
+		      "type": "eventHubTrigger",
+		      "name": "myEventHubMessage",
+		      "direction": "in",
+		      "path": "MyEventHub",
+		      "connection": "myEventHubReadConnectionString"
+		    }
+		  ],
+		  "disabled": false
+		}
 
-#### <a name="azure-event-hub-trigger-c#-example"></a>Azure Event Hub trigger C# example
+#### Azure 事件中樞觸發程序 C# 範例
  
-Using the example function.json above, the body of the event message will be logged using the C# function code below:
+使用上述範例 function.json，利用下列 C# 函數程式碼來記錄事件訊息的主體：
  
-    using System;
-    
-    public static void Run(string myEventHubMessage, TraceWriter log)
-    {
-        log.Info($"C# Event Hub trigger function processed a message: {myEventHubMessage}");
-    }
+	using System;
+	
+	public static void Run(string myEventHubMessage, TraceWriter log)
+	{
+	    log.Info($"C# Event Hub trigger function processed a message: {myEventHubMessage}");
+	}
 
-#### <a name="azure-event-hub-trigger-f#-example"></a>Azure Event Hub trigger F# example
+#### Azure 事件中樞觸發程序 F# 範例
 
-Using the example function.json above, the body of the event message will be logged using the F# function code below:
+使用上述範例 function.json，利用下列 F# 函式程式碼來記錄事件訊息的主體：
 
-    let Run(myEventHubMessage: string, log: TraceWriter) =
-        log.Info(sprintf "F# eventhub trigger function processed work item: %s" myEventHubMessage)
+	let Run(myEventHubMessage: string, log: TraceWriter) =
+	    log.Info(sprintf "F# eventhub trigger function processed work item: %s" myEventHubMessage)
 
-#### <a name="azure-event-hub-trigger-node.js-example"></a>Azure Event Hub trigger Node.js example
+#### Azure 事件中樞觸發程序 Node.js 範例
  
-Using the example function.json above, the body of the event message will be logged using the Node.js function code below:
+使用上述範例 function.json，利用下列 Node.js 函數程式碼來記錄事件訊息的主體：
  
-    module.exports = function (context, myEventHubMessage) {
-        context.log('Node.js eventhub trigger function processed work item', myEventHubMessage);    
-        context.done();
-    };
+	module.exports = function (context, myEventHubMessage) {
+	    context.log('Node.js eventhub trigger function processed work item', myEventHubMessage);	
+	    context.done();
+	};
 
 
-## <a name="azure-event-hub-output-binding"></a>Azure Event Hub output binding
+## Azure 事件中樞輸出繫結
 
-An Azure Event Hub output binding is used to write events to an event hub event stream. You must have send permission to an event hub to write events to it. 
+Azure 事件中樞輸出繫結可用來將事件寫入事件中樞事件資料流。您必須具備事件中樞的傳送權限，才能將事件寫入其中。
 
-#### <a name="function.json-for-event-hub-output-binding"></a>function.json for Event Hub output binding
+#### 適用於事件中樞輸出繫結的 function.json
 
-The *function.json* file for an Azure Event Hub output binding specifies the following properties:
+適用於 Azure 事件中樞輸出繫結的「function.json」檔案會指定下列屬性：
 
-- `type` : Must be set to *eventHub*.
-- `name` : The variable name used in function code for the event hub message. 
-- `path` : The name of the event hub.
-- `connection` : The name of an app setting that contains the connection string to the namespace that the event hub resides in. Copy this connection string by clicking the **Connection Information** button for the namespace, not the event hub itself.  This connection string must have send permissions to send the message to the Event Hub stream.
-- `direction` : Must be set to *out*. 
+- `type`：必須設定為「eventHub」。
+- `name`︰用於事件中樞訊息之函式程式碼中的變數名稱。
+- `path`：事件中樞的名稱。
+- `connection`：應用程式設定的名稱，包含事件中樞所在之命名空間的連接字串。按一下命名空間的 [連接資訊] 按鈕 (而不是事件中樞本身)，來複製此連接字串。此連接字串必須具有傳送權限，才能將訊息傳送至事件中樞資料流。
+- `direction`：必須設為「out」。
 
-        {
-          "type": "eventHub",
-          "name": "outputEventHubMessage",
-          "path": "myeventhub",
-          "connection": "MyEventHubSend",
-          "direction": "out"
-        }
+	    {
+	      "type": "eventHub",
+	      "name": "outputEventHubMessage",
+	      "path": "myeventhub",
+	      "connection": "MyEventHubSend",
+	      "direction": "out"
+	    }
 
 
-#### <a name="azure-event-hub-c#-code-example-for-output-binding"></a>Azure Event Hub C# code example for output binding
+#### 適用於輸出繫結的 Azure 事件中樞 C# 程式碼範例
  
-The following C# example function code demonstrates writing an event to an Event Hub event stream. This example represents the Event Hub output binding shown above applied to a C# timer trigger.  
+下列 C# 範例函式程式碼示範如何將事件寫入事件中樞事件資料流。這個範例代表上述套用到 C# 計時器觸發程序的事件中樞輸出繫結。
  
-    using System;
-    
-    public static void Run(TimerInfo myTimer, out string outputEventHubMessage, TraceWriter log)
-    {
-        String msg = $"TimerTriggerCSharp1 executed at: {DateTime.Now}";
-    
-        log.Verbose(msg);   
-        
-        outputEventHubMessage = msg;
-    }
+	using System;
+	
+	public static void Run(TimerInfo myTimer, out string outputEventHubMessage, TraceWriter log)
+	{
+	    String msg = $"TimerTriggerCSharp1 executed at: {DateTime.Now}";
+	
+	    log.Verbose(msg);   
+	    
+	    outputEventHubMessage = msg;
+	}
 
-#### <a name="azure-event-hub-f#-code-example-for-output-binding"></a>Azure Event Hub F# code example for output binding
+#### 適用於輸出繫結的 Azure 事件中樞 F# 程式碼範例
 
-The following F# example function code demonstrates writing an event to an Event Hub event stream. This example represents the Event Hub output binding shown above applied to a C# timer trigger.
+下列 F# 範例函式程式碼示範如何將事件寫入事件中樞事件資料流。這個範例代表上述套用到 C# 計時器觸發程序的事件中樞輸出繫結。
 
-    let Run(myTimer: TimerInfo, outputEventHubMessage: byref<string>, log: TraceWriter) =
-        let msg = sprintf "TimerTriggerFSharp1 executed at: %s" DateTime.Now.ToString()
-        log.Verbose(msg);
-        outputEventHubMessage <- msg;
+	let Run(myTimer: TimerInfo, outputEventHubMessage: byref<string>, log: TraceWriter) =
+	    let msg = sprintf "TimerTriggerFSharp1 executed at: %s" DateTime.Now.ToString()
+	    log.Verbose(msg);
+	    outputEventHubMessage <- msg;
 
-#### <a name="azure-event-hub-node.js-code-example-for-output-binding"></a>Azure Event Hub Node.js code example for output binding
+#### 適用於輸出繫結的 Azure 事件中樞 Node.js 程式碼範例
  
-The following Node.js example function code demonstrates writing a event to an Event Hub event stream. This example represents the Event Hub output binding shown above applied to a Node.js timer trigger.  
+下列 Node.js 範例函數程式碼示範如何將事件寫入事件中樞事件資料流。這個範例代表上述套用到 Node.js 計時器觸發程序的事件中樞輸出繫結。
  
-    module.exports = function (context, myTimer) {
-        var timeStamp = new Date().toISOString();
-        
-        if(myTimer.isPastDue)
-        {
-            context.log('TimerTriggerNodeJS1 is running late!');
-        }
+	module.exports = function (context, myTimer) {
+	    var timeStamp = new Date().toISOString();
+	    
+	    if(myTimer.isPastDue)
+	    {
+	        context.log('TimerTriggerNodeJS1 is running late!');
+	    }
 
-        context.log('TimerTriggerNodeJS1 function ran!', timeStamp);   
-        
-        context.bindings.outputEventHubMessage = "TimerTriggerNodeJS1 ran at : " + timeStamp;
-    
-        context.done();
-    };
+	    context.log('TimerTriggerNodeJS1 function ran!', timeStamp);   
+	    
+	    context.bindings.outputEventHubMessage = "TimerTriggerNodeJS1 ran at : " + timeStamp;
+	
+	    context.done();
+	};
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-[AZURE.INCLUDE [next steps](../../includes/functions-bindings-next-steps.md)]
+[AZURE.INCLUDE [後續步驟](../../includes/functions-bindings-next-steps.md)]
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

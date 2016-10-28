@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Accessing publisher support for the Azure Marketplace | Microsoft Azure"
-   description="How to access and submit publisher support requests for the Azure Marketplace"
+   pageTitle="存取 Azure Marketplace 的發佈者支援 | Microsoft Azure"
+   description="如何存取並提交 Azure Marketplace 的發佈者支援要求"
    services="marketplace-publishing"
    documentationCenter="na"
    authors="v-jeana"
@@ -17,76 +17,75 @@
    ms.author="v-jeana; hascipio"/>
 
 
+# 存取 Azure Marketplace 的發佈者支援
 
-# <a name="accessing-publisher-support-for-the-azure-marketplace"></a>Accessing publisher support for the Azure Marketplace
+Microsoft 提供各式各樣的產品和服務支援。務必讓您的查詢能找到正確的支援團隊，對確保適當且及時的回應很重要。請考慮下列案例，這些案例應有助於將您的查詢傳送給適當的團隊。
 
-Microsoft provides support for a wide variety of products and services. Ensuring that your query finds the right support team is important to ensure an appropriate and timely response. Please consider the following scenarios, which should help you route your query to the appropriate team:
+- 如果您是 Azure Marketplace 中的發佈者且仍在開發您的 VM，您應該與您的 Microsoft 上線或計算團隊交流。
 
-- If you are a publisher in the Azure Marketplace and are still developing your VM, you should engage with your Microsoft onboarding or compute teams.
+- 如果您是 Marketplace 中的發佈者並有來自客戶的問題，請告訴您的客戶透過支援連結 (https://portal.azure.com/) 要求支援。
 
-- If you are a publisher in the Marketplace and have a question from a customer, please tell your customer to request support via the support links at https://portal.azure.com/.
+- 如果您是 Marketplace 中的發佈者並有與您的應用程式或服務相關的問題，請繼續閱讀以下內容。
 
-- If you are a publisher in the Marketplace and have a question relating to your app or service, continue reading below.
+此文將示範如何：
 
-This article will show you how to:
+- 登入您的 Microsoft 帳戶。
+- 瀏覽至發佈者支援頁面。
+- 選取問題類型和類別。
+- 要求支援。
+- 提供連絡資訊。
+- 描述問題。
 
-- Sign in to your Microsoft account.
-- Navigate to the publisher support pages.
-- Select the problem type and category.
-- Request support.
-- Provide contact information.
-- Describe the problem.
+## 1\.登入您的 Microsoft 帳戶
 
-## <a name="1.-sign-in-to-your-microsoft-account"></a>1. Sign in to your Microsoft account
+瀏覽至 https://publish.windowsazure.com/ 並使用您的 Microsoft 帳戶認證登入
 
-Navigate to https://publish.windowsazure.com/ and sign in with your Microsoft account credentials.
+  ![登入畫面][1]
 
-  ![Sign-in screen][1]
+## 2\.瀏覽至發佈者支援頁面
 
-## <a name="2.-navigate-to-the-publisher-support-pages"></a>2. Navigate to the publisher support pages
+從右上方的功能表中選取 [取得支援]。
 
-From the upper-right menu, select **Get Support**.
+  ![取得支援][2]
 
-  ![Get support][2]
+## 3\.選取問題類型和類別
 
-## <a name="3.-select-the-problem-type-and-category"></a>3. Select the problem type and category
+![問題類型類別][3]
 
-![Problem type & category][3]
+可用的問題類型如下：
 
-Available problem types are as follows:
+  - **帳戶管理**
+  - **報告和見解**
+  - **VM 映像憑證**
+  - **管理客戶**
+  - **管理供應項目**
+  - **支出**
+  - **開發人員中心**
+  - **其他**
 
-  - **Account Management**
-  - **Reports and Insights**
-  - **VM Image Certification**
-  - **Managing Customers**
-  - **Managing Offers**
-  - **Payouts**
-  - **Developer Center**
-  - **Other**
+## 4\.要求支援
 
-## <a name="4.-request-support"></a>4. Request support
+選取問題類型和類別之後，按一下 [提出要求] 按鈕。
 
-After you select the problem type and category, click the **Start request** button.
+![啟動支援][4]
 
-![Start support][4]
+## 5\.提供連絡資訊並描述問題
 
-## <a name="5.-provide-contact-information-and-describe-the-problem"></a>5. Provide contact information and describe the problem
+儘可能完整地描述問題，並提供任何可能有助於解決問題的檔案 (螢幕擷取畫面、網路追蹤等)。
 
-Describe the problem as fully as you can, and provide any files (screenshots, network traces, etc.) that may be helpful in solving your issue.
+![描述問題][5]
 
-![Describe problem][5]
+## 6\.提交確認
 
-## <a name="6.-submission-confirmation"></a>6. Submission confirmation
+一旦您提交問題後，我們將在 24 小時內確認接收，並指派問題的優先順序和嚴重性。我們專屬的支援工程師團隊會根據我們的服務層級協定回應時間，協助解決問題。
 
-Once you have submitted your issue, we will acknowledge receipt within 24 hours and assign your issue a priority and severity. Our dedicated team of support engineers will assist with its resolution according to our Service Level Agreement response times.
+![確認][6]
++ 如果您需要與我們談談您的問題，請在所有的通信聯繫中包括該確認號碼。
++ 您可以隨時檢視您的問題進度。
 
-![Confirmation][6]
-+ If you need to talk to us about your issue, use the confirmation number in all correspondence.
-+ You can view progress on your issue at any time.
+## 後續步驟
 
-## <a name="next-steps"></a>Next steps
-
-To learn how to resolve specific support issues, see [Troubleshooting common issues on the Azure Marketplace](marketplace-publishing-support-common-issues.md).
+若要了解如何解決特定的支援問題，請參閱[疑難排解 Azure Marketplace 的常見問題](marketplace-publishing-support-common-issues.md)。
 
 [1]: ./media/marketplace-publishing-get-publisher-support/step1.png
 [2]: ./media/marketplace-publishing-get-publisher-support/step2.png
@@ -95,8 +94,4 @@ To learn how to resolve specific support issues, see [Troubleshooting common iss
 [5]: ./media/marketplace-publishing-get-publisher-support/step5.png
 [6]: ./media/marketplace-publishing-get-publisher-support/step6.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0615_2016-->

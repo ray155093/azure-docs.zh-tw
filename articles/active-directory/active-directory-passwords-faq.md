@@ -1,214 +1,209 @@
 <properties
-    pageTitle="FAQ: Azure AD Password Management | Microsoft Azure"
-    description="Frequently asked questions (FAQ) about password management in Azure AD, including password reset, registration, reports, and writeback to on-premises Active Directory ."
-    services="active-directory"
-    documentationCenter=""
-    authors="asteen"
-    manager="femila"
-    editor="curtand"/>
+	pageTitle="常見問題集：Azure AD 密碼管理 |Microsoft Azure"
+	description="Azure AD 中密碼管理的相關常見問題集 (FAQ)，包括密碼重設、註冊、報告和回寫至內部部署 Active Directory。"
+	services="active-directory"
+	documentationCenter=""
+	authors="asteen"
+	manager="femila"
+	editor="curtand"/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="07/12/2016"
-    ms.author="asteen"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/12/2016"
+	ms.author="asteen"/>
+
+# 密碼管理常見問題集
+
+> [AZURE.IMPORTANT] **您來到此處是因為有登入問題嗎？** 若是如此，[以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
+
+以下是與密碼管理相關之所有事項的一些常見問題。
+
+如果您發現自己不知道答案的問題，或者要對所面臨到的問題尋求協助，您可以參閱下方資訊以查看我們是否已涵蓋該問題。如果我們尚未涵蓋該問題，不用擔心！ 請儘管對於 [Azure AD 論壇](https://social.msdn.microsoft.com/Forums/home?forum=WindowsAzureAD)上未涵蓋的問題提出疑問，我們會盡速回覆您。
+
+此常見問題集分成下列各節：
+
+- [**密碼重設註冊的相關問題**](#password-reset-registration)
+- [**密碼重設的相關問題**](#password-reset)
+- [**密碼管理報告的相關問題**](#password-management-reports)
+- [**密碼回寫的相關問題**](#password-writeback)
+
+## 密碼重設註冊
+ - **問：我的使用者是否可以註冊自己的密碼重設資料？**
+
+ > **答：**是，只要已啟用密碼重設並且您的使用者已獲得授權，他們就可以前往位於 http://aka.ms/ssprsetup 的「密碼重設註冊」入口網站來註冊要搭配密碼重設使用的驗證資訊。使用者也可以藉由前往位於 http://myapps.microsoft.com 的存取面板，按一下 [設定檔] 索引標籤，然後按一下 [註冊密碼重設] 選項，來進行註冊。深入了解如何讓您的使用者設定密碼重設，方法是閱讀如何讓使用者設定重設密碼。
+
+ - **問：是否可以代表我的使用者定義密碼重設資料？**
+
+ > **答：**是，您可以使用 DirSync 或 PowerShell，或者透過 [Azure 管理入口網站](https://manage.windowsazure.com)或 Office Admin 入口網站來進行此動作。藉由部落格文章「Azure AD MFA 和密碼重設電話號碼的改進隱私權」和閱讀「了解密碼重設如何使用資料」，來深入了解此功能。
+
+ - **問：是否可以從內部部署同步處理安全性問題的資料？**
+
+ > **答：**否，目前無法這麼做，但是我們正考慮這麼做。
+
+ - **問：我的使用者是否可以用其他使用者看不到此資料的方式來註冊資料？**
+
+ > **答：**是，當使用者使用「密碼重設註冊入口網站」來註冊資料時，該資料會儲存到私密的驗證欄位中，只有「全域管理員」和使用者自己能夠看見。藉由部落格文章「Azure AD MFA 和密碼重設電話號碼的改進隱私權」和閱讀「了解密碼重設如何使用資料」，來深入了解此功能。
+
+ - **問：我的使用者是否必須註冊才能使用密碼重設？**
+
+ > **答：**否，如果您代表使用者定義足夠的驗證資訊，使用者就不需要註冊。只要您已正確地格式化儲存在目錄中適當欄位的資料，密碼重設功能就會順利運作。藉由閱讀「了解密碼重設如何使用資料」以深入了解。
+
+ - **問：我是否可以代表我的使用者同步處理驗證電話、驗證電子郵件或備用驗證電話欄位？**
+
+ > **答：**否，目前還無法這麼做，但是我們正考慮啟用這項功能。
+
+ - **問：註冊入口網站如何得知要對我的使用者顯示那些選項？**
+
+ > **答：**密碼重設註冊入口網站只會顯示您已在目錄的 [設定] 索引標籤中 [使用者密碼重設原則] 區段下，為使用者啟用的選項。這表示如果您未啟用，例如安全性問題，則使用者無法註冊該選項。
+
+ - **問：使用者何時會被視為已註冊？**
+
+ > **答：**使用者至少要有 N 個已定義的驗證資訊時，才會被視為已註冊，其中 N 是您在 [Azure 管理入口網站](https://manage.windowsazure.com)中設定的「必要驗證方法的數目」。若要深入了解，請參閱「自訂使用者密碼重設原則」。
 
 
-# <a name="password-management-frequently-asked-questions"></a>Password Management Frequently Asked Questions
+## 密碼重設
 
-> [AZURE.IMPORTANT] **Are you here because you're having problems signing in?** If so, [here's how you can change and reset your own password](active-directory-passwords-update-your-own-password.md).
+ - **問：密碼重設之後，我應該等待多久的時間才能接收電子郵件、SMS 或電話？**
 
-The following are some frequently asked questions for all things related to password management.
+ > **答：**電子郵件、SMS 訊息及電話應該在 1 分鐘內即可送達，正常的情形下為 5-20 秒。如果您在此時間範圍內沒有收到通知，請檢查垃圾郵件資料夾中連絡的號碼/電子郵件是您預期的，且目錄中的驗證資料已正確格式化。若要深入了解搭配格式化電話號碼和電子郵件地址使用密碼重設，請參閱「了解密碼重設如何使用資料」。
 
-If you find yourself with a question that you don't know the answer to, or are looking for help with a particular problem you are facing, you can read on below to see if we've covered it already.  If we haven't already, don't worry! Feel free to ask any question you have that's not covered here on the [Azure AD Forums](https://social.msdn.microsoft.com/Forums/home?forum=WindowsAzureAD) and we'll get back to you as soon as we can.
+ - **問：密碼重設支援哪些語言？**
 
-This FAQ is split into the following sections:
+ > **答：**密碼重設 UI、SMS 訊息及語音通話都已採用與 Office 365 中支援的相同 40 種語言當地語系化。這些語言為：阿拉伯文、保加利亞文、簡體中文、繁體中文、克羅埃西亞文、捷克文、丹麥文、荷蘭文、英文、愛沙尼亞文、芬蘭文、法文、德文、希臘文、希伯來文、印度文、匈牙利文、印尼文、義大利文、日文、哈薩克文、韓文、拉脫維亞文、立陶宛文、馬來文 (馬來西亞)、挪威文 (巴克摩)、波蘭文、葡萄牙文 (巴西)、葡萄牙文 (葡萄牙)、羅馬尼亞文、俄文、塞爾維亞文 (拉丁)、斯洛伐克文、斯洛維尼亞文、西班牙文、瑞典文、泰文、土耳其文、烏克蘭文和越南文。
 
-- [**Questions about Password Reset Registration**](#password-reset-registration)
-- [**Questions about Password Reset**](#password-reset)
-- [**Questions about Password Management Reports**](#password-management-reports)
-- [**Questions about Password Writeback**](#password-writeback)
+ - **問：當我在目錄的 [設定] 索引標籤中設定組織商標時，哪個部份的密碼重設體驗會有商標？**
 
-## <a name="password-reset-registration"></a>Password reset registration
- - **Q:  Can my users register their own password reset data?**
-
- > **A:** Yes, as long as password reset is enabled and they are licensed, they can go to the Password Reset Registration portal at http://aka.ms/ssprsetup to register their authentication information to be used with password reset. Users can also register by going to the access panel at http://myapps.microsoft.com, clicking the profile tab, and clicking the Register for Password Reset option. Learn more about how to get your users configured for password reset by reading How to get users configured for password reset.
-
- - **Q:  Can I define password reset data on behalf of my users?**
-
- > **A:** Yes, you can do so with DirSync or PowerShell, or through the [Azure Management Portal](https://manage.windowsazure.com) or Office Admin portal. Learn more about this feature on the blog post Improved Privacy for Azure AD MFA and Password Reset Phone Numbers and by reading Learn how data is used by password reset.
-
- - **Q:  Can I synchronize data for security questions from on premises?**
-
- > **A:** No, this is not possible today, but we are considering it.
-
- - **Q:  Can my users register data in such a way that other users cannot see this data?**
-
- > **A:** Yes, when users register data using the Password Reset Registration Portal it gets saved into private authentication fields that are only visible by Global Administrators and the user himself. Learn more about this feature on the blog post Improved Privacy for Azure AD MFA and Password Reset Phone Numbers and by reading Learn how data is used by password reset.
-
- - **Q:  Do my users have to be registered before they can use password reset?**
-
- > **A:** No, if you define enough authentication information on their behalf, users will not have to register. Password reset will work just fine as long as you have properly formatted data stored in the appropriate fields in the directory. Learn more about by reading Learn how data is used by password reset.
-
- - **Q:  Can I synchronize or set the Authentication Phone, Authentication Email or Alternate Authentication Phone fields on behalf of my users?**
-
- > **A:** Not currently, but we are considering enabling this capability.
-
- - **Q:  How does the registration portal know which options to show my users?**
-
- > **A:** The password reset registration portal only shows the options that you have enabled for your users under the User Password Reset Policy section of your directory’s Configure tab. This means that if you do not enable, say, security questions, then users will not be able to register for that option.
-
- - **Q:  When is a user considered registered?**
-
- > **A:** A user is considered registered when he or she has at least N pieces of authentication info defined, where N is the Number of Authentication Methods Required that you have set in the [Azure Management Portal](https://manage.windowsazure.com). To learn more, see Customizing User Password Reset Policy.
-
-
-## <a name="password-reset"></a>Password reset
-
- - **Q:  How long should I wait to receive an email, SMS, or phone call from password reset?**
-
- > **A:** Email, SMS messages, and phone calls should arrive in under 1 minute, with the normal case being 5-20 seconds. If you do not receive the notification in this timeframe, check your junk folder, that the number / email being contacted is the one you expect, and that the authentication data in the directory is correctly formatted. To learn more about formatting phone numbers and email addresses for use with password reset see Learn how data is used by password reset.
-
- - **Q:  What languages are supported by password reset?**
-
- > **A:** The password reset UI, SMS messages, and voice calls are localized in the same 40 languages that are supported in Office 365. Those are: Arabic, Bulgarian, Chinese Simplified, Chinese Traditional, Croatian, Czech, Danish, Dutch, English, Estonian, Finnish, French, German, Greek, Hebrew, Hindi, Hungarian, Indonesian, Italian, Japanese, Kazakh, Korean, Latvian, Lithuanian, Malay (Malaysia), Norwegian (Bokmål), Polish, Portuguese (Brazil), Portuguese (Portugal), Romanian, Russian, Serbian (Latin), Slovak, Slovenian, Spanish, Swedish, Thai, Turkish, Ukrainian, and Vietnamese.
-
- - **Q:  What parts of the password reset experience get branded when I set organizational branding in my directory’s configure tab?**
-
- > **A:** The password reset portal will show your organizational logo and will also allow you to configure the Contact your administrator link to point to a custom email or URL. Any email that gets sent by password reset will include your organization’s logo, colors (in this case red), name in the body of the email, and customized from name. See an example with all the branded elements below. To learn more, read Customizing Password Reset Look and Feel.
+ > **答：**密碼重設入口網站會顯示您的組織商標，也會讓您設定「連絡您的系統管理員」連結以指向自訂的電子郵件或 URL。密碼重設所傳送的任何電子郵件都會包含您的組織商標、顏色 (此案例為紅色)、電子郵件內文中的名稱，以及自訂的寄件者名稱。請參閱下方具有所有商標項目的範例。若要深入了解，請閱讀「自訂密碼重設外觀」。
 
   ![][001]
 
- - **Q:  How can I educate my users about where to go to reset their passwords?**
+ - **問：如何教育我的使用者要在哪裡重設其密碼？**
 
- > **A:** You can send your users to https://passwordreset.microsoftonline.com directly, or you can instruct them to click on the Can’t access your account link found on any School or Work ID sign in screen. You can feel free to publish these links (or create URL redirects to them) in any place that is easily accessible to your users.
+ > **答：**您可以將使用者直接帶往 https://passwordreset.microsoftonline.com，或是指示他們按一下可在任何學校或工作識別碼登入畫面上找到的「無法存取您的帳戶」連結。您可以放心地在使用者可以輕易存取的任何位置發佈這些連結 (或建立 URL 以重新導向至它們)。
 
- - **Q:  Can I use this page from a mobile device?**
+ - **問：我可以從行動裝置使用此頁面嗎？**
 
- > **A:** Yes, this page works on mobile devices.
+ > **答：**是，此頁面可在行動裝置上運作。
 
- - **Q:  Do you support unlocking local active directory accounts when users reset their passwords?**
+ - **問：當使用者重設其密碼時，您是否支援解除鎖定本機 Active Directory 帳戶？**
 
- > **A:** Yes, when a user resets his or her password and Password Writeback has been deployed with all versions of Azure AD Connect, or versions of Azure AD Sync 1.0.0485.0222 or later, then that user’s account will be automatically unlocked when that user resets his or her password.
+ > **答：**是，如果使用者重設其密碼，並且「密碼回寫」已搭配所有版本的 Azure AD Connect (或是 Azure AD 同步 1.0.0485.0222 版或更新的版本) 一起部署，則當該使用者重設其密碼時，將會自動把該使用者的帳戶解除鎖定。
 
- - **Q:  How can I integrate password reset directly into my user’s desktop sign-in experience?**
+ - **問：我要如何將密碼重設直接整合到我的使用者的桌面登入體驗？**
 
- > **A:** This is not possible today. However, if you absolutely need this capability and are an Azure AD Premium customer, you can install Microsoft Identity Manager at no additional cost and deploy the on-premises password reset solution found therein to solve this requirement.
+ > **答：**目前無法這麼做。不過，如果您絕對需要這項功能，而且是 Azure AD Premium 客戶，您不需要額外成本即可安裝 Microsoft Identity Manager，並且部署內部部署密碼重設方案，以解決這項需求。
 
- - **Q:  Can I set different security questions for different locales?**
+ - **問：是否可以對不同的地區設定，設定不同的安全性問題？**
 
- > **A:** No, this is not possible today, but we are considering it.
+ > **答：**否，目前無法這麼做，但是我們正考慮這麼做。
 
- - **Q:  How many questions can we configure for the Security Questions authentication option?**
+ - **問：我們可以對安全性問題驗證選項設定多少問題？**
 
- > **A:** You can configure up to 20 custom security questions in the [Azure Management Portal](https://manage.windowsazure.com).
+ > **答：**您可以在 [Azure 管理入口網站](https://manage.windowsazure.com)中設定最多 20 個自訂安全性問題。
 
- - **Q:  How long may security questions be?**
+ - **問：安全性問題的長度限制為何？**
 
- > **A:** Security questions may be between 3 and 200 characters long.
+ > **答：**安全性問題的長度可以介於 3 到 200 個字元之間。
 
- - **Q:  How long may answers to security questions be?**
+ - **問：安全性問題之答案的長度限制為何？**
 
- > **A:** Answers may be 3 to 40 characters long.
+ > **答：**答案的長度可以介於 3 到 40 個字元之間。
 
- - **Q:  Are duplicate answers to security questions rejected?**
+ - **問：重複的安全性問題答案是否會遭到拒絕？**
 
- > **A:** Yes, we reject duplicate answers to security questions.
+ > **答：**是，我們會拒絕重複的安全性問題答案。
 
- - **Q:  May a user register more than one of the same security question?**
+ - **問：使用者是否可以註冊一個以上的相同安全性問題？**
 
- > **A:** No, once a user registers a particular question, he or she may not register for that question a second time.
+ > **答：**否，使用者註冊特定的問題之後，便不可以再次註冊該問題。
 
- - **Q:  Is it possible to set a minimum limit of security questions for registration and reset?**
+ - **問：是否可以針對註冊和重設設定安全性問題的最小限制？**
 
- > **A:** Yes, one limit can be set for registration and another for reset. 3-5 security questions may be required for registration and 3-5 may be required for reset.
+ > **答：**是，可以針對註冊設定一個限制，針對重設設定另一個限制。註冊可能需要 3-5 個安全性問題，重設也需要 3-5 個安全性問題。
 
- - **Q:  If a user has registered more than the maximum number of questions required to reset, how are security questions selected during reset?**
+ - **問：如果使用者註冊的問題數目超過重設所需的問題數目上限，在重設期間會如何選取安全性問題？**
 
- > **A:** N security questions are selected at random out of the total number of questions a user has registered for, where N is the minimum number of questions required for password reset. For example, if a user has 5 security questions registered, but only 3 are required to reset, 3 of those 5 will be selected randomly and presented to the user at the time of reset. If the user gets the answers to the questions wrong, the selection process re-occurs to prevent question hammering.
+ > **答：**會在使用者已註冊的問題總數當中隨機選取 N 個安全性問題，其中 N 是密碼重設所需的問題數目下限。例如，如果使用者已註冊 5 個安全性問題，但是重設只需要 3 個，則會在 5 個問題當中隨機選取 3 個，並且在重設時對使用者顯示。如果使用者回答問題的答案錯誤，則選取程序會重新發生以避免問題 hammering。
 
- - **Q:  Do you prevent users from attempting password reset many times in a short time period?**
+ - **問：您是否禁止使用者在短時間內嘗試多次密碼重設？**
 
- > **A:** Yes, there are several security features built into password reset. Users may only try 5 password reset attempts within an hour before being locked out for 24 hours. Users may only try to validate a phone number 5 times within an hour before being locked out for 24 hours. Users may only try a single authentication method 5 times within an hour before being locked out for 24 hours.
+ > **答：**是，密碼重設有幾項內建的安全性功能。使用者在一個小時之內只能嘗試 5 次密碼重設，否則會鎖定 24 小時。使用者在一個小時之內只能嘗試驗證電話號碼 5 次，否則會鎖定 24 小時。使用者在一個小時之內只能嘗試單一驗證方法 5 次，否則會鎖定 24 小時。
 
- - **Q:  For how long are the email and SMS one-time passcode valid?**
+ - **問：電子郵件和 SMS 單次密碼有效期限是多久？**
 
- > **A:** The session lifetime for password reset is 105 minutes. This means that from the beginning of the password reset operation, the user has 105 minutes to reset his or her password. The email and SMS one-time passcode are invalid after this time period expires.
+ > **答：**密碼重設的工作階段存留期為 105 分鐘。這表示從密碼重設作業開始，使用者有 105 分鐘可以重設其密碼。這段時間之後，電子郵件和 SMS 單次密碼就會無效。
 
 
-## <a name="password-management-reports"></a>Password Management reports
+## 密碼管理報告
 
- - **Q:  How long does it take for data to show up on the password management reports?**
+ - **問：資料需要多久的時間才會顯示在密碼管理報告上？**
 
- > **A:** Data should appear on the password management reports within 5-10 minutes. It some instances it may take up to an hour to appear.
+ > **答：**資料應該會在 5-10 分鐘內顯示在密碼管理報告上。某些情況下，可能會花費多達一小時才顯示。
 
- - **Q:  How can I filter the password management reports?**
+ - **問：我要如何篩選密碼管理報告？**
 
- > **A:** You can filter the password management reports by clicking the small magnifying glass to the extreme right of the column labels, towards the top of the report (see screenshot). If you want to do richer filtering, you can download the report to excel and create a pivot table.
+ > **答：**您可以在靠近報告頂端處，按一下欄標籤最右邊的小放大鏡圖示 (參見螢幕擷取畫面)，來篩選密碼管理報告。如果您想要做更豐富的篩選，您可以將報告下載到 excel，並建立樞紐分析表。
 
   ![][002]
 
- - **Q: What is the maximum number of events are stored in the password management reports?**
+ - **問：密碼管理報告中最多可以儲存多少事件？**
 
- > **A:** Up to 1,000 password reset or password reset registration events are stored in the password management reports.  We are working to expand this number to include more events.
+ > **答：**密碼管理報告中最多可以儲存 1,000 個密碼重設或密碼重設註冊事件。我們正在擴展此數目，以包含更多的事件。
 
- - **Q:  How far back do the password management reports go?**
+ - **問：密碼管理報告可以回溯到多久時間？**
 
- > **A:** The password management reports show operations occurring within the last 30 days. We are currently investigating how to make this a longer time period. For now, if you need to archive this data, you can download the reports periodically and save them in a separate location.
+ > **答：**密碼管理報告會顯示過去 30 天內發生的作業。我們目前正在調查要如何讓這一段時間更長。現在，如果您需要封存這項資料，您可以定期下載報告並將它們儲存在不同的位置。
 
- - **Q:  Is there a maximum number of rows that can appear on the password management reports?**
+ - **問：密碼管理報告可以顯示的資料列是否有數目上限？**
 
- > **A:** Yes, a maximum of 1,000 rows may appear on either of the Password Management reports, whether they are being shown in the UI or being downloaded. We are currently investigating how to increase this limit.
+ > **答：**是，每份在 UI 中顯示或是下載的密碼管理報告最多可以顯示 1,000 個資料列。我們目前正在調查要如何增加此限制。
 
- - **Q:  Is there an API to access the password reset or registration reporting data?**
+ - **問：是否有可用來存取密碼重設或註冊報告資料的 API？**
 
- > **A:** Yes, please see the following documentation to learn how you can access the password reset reporting data stream.  [Learn how to access password reset reporting events programmatically](https://msdn.microsoft.com/library/azure/mt126081.aspx#BKMK_SsprActivityEvent).
+ > **答：**是，請參閱下列文件，以了解如何存取密碼重設報告資料流。[了解如何以程式設計方式存取密碼重設報告事件](https://msdn.microsoft.com/library/azure/mt126081.aspx#BKMK_SsprActivityEvent)。
 
-## <a name="password-writeback"></a>Password Writeback
- - **Q:  How does Password Writeback work behind the scenes?**
+## 密碼回寫
+ - **問：密碼回寫如何在幕後運作？**
 
- > **A:** See [How Password Writeback works](active-directory-passwords-learn-more.md#how-password-writeback-works) for a detailed explanation of what happens when you enable Password Writeback, as well as how data flows through the system back into your on-premises environment. See [Password Writeback security model](active-directory-passwords-learn-more.md#password-writeback-security-model) in How Password Writeback works to learn how we ensure Password Writeback is a highly secure service.
+ > **答：**請參閱[密碼回寫的運作方式](active-directory-passwords-learn-more.md#how-password-writeback-works)，以詳細了解啟用「密碼回寫」時會發生的情況，以及資料如何透過系統回流到您的內部部署環境。請參閱＜密碼回寫的運作方式＞中的[密碼回寫的安全性模型](active-directory-passwords-learn-more.md#password-writeback-security-model)，以了解我們如何確保「密碼回寫」是高安全性的服務。
 
- - **Q:  How long does Password Writeback take to work?  Is there a synchronization delay like with password hash sync?**
+ - **問：密碼回寫需要多久時間才會運作？ 是否有像是使用密碼雜湊同步處理的同步處理延遲？**
 
- > **A:** Password Writeback is instant. It is a synchronous pipeline that works fundamentally differently than password hash synchronization. Password Writeback allows users to get realtime feedback about the success of their password reset or change operation. The average time for a successful writeback of a password is under 500 ms.
+ > **答：**「密碼回寫」會立即進行。它是同步管線，基本上的運作與密碼雜湊同步處理不同。密碼回寫可以讓使用者即時取得密碼重設或變更作業成功的回應。成功回寫密碼的平均時間低於 500 毫秒。
 
- - **Q:  What types of accounts does Password Writeback work for?**
+ - **問：密碼回寫適用於哪些類型的帳戶？**
 
- > **A:** Password Writeback works for Federated and Password Hash Sync’d users.
+ > **答：**「密碼回寫」適用於「同盟」和「密碼雜湊同步處理」使用者。
 
- - **Q:  Does Password Writeback enforce my domain’s password policies?**
+ - **問：密碼回寫是否會強制執行我的網域密碼原則？**
 
- > **A:** Yes, Password Writeback enforces password age, history, complexity, filters and any other restriction you may put in place on passwords in your local domain.
+ > **答：**是，「密碼回寫」會強制執行密碼使用期限、歷程記錄、複雜度、篩選及任何其他您可能在本機網域中的密碼上適當加諸的限制。
 
- - **Q:  Is Password Writeback secure?  How can I be sure I won’t get hacked?**
+ - **問：密碼回寫是否安全？ 我要如何確定不會受到駭客入侵？**
 
- > **A:** Yes, Password Writeback is extremely secure. To read more about the 4 layers of security implemented by the Password Writeback service, check out the [Password Writeback security model](active-directory-passwords-learn-more.md#password-writeback-security-model) in How Password Writeback works.
-
-
+ > **答：**「密碼回寫」非常安全。若要進一步了解「密碼回寫」服務所實作的 4 層安全性，請參閱＜密碼回寫的運作方式＞中的[密碼回寫的安全性模型](active-directory-passwords-learn-more.md#password-writeback-security-model)。
 
 
-## <a name="links-to-password-reset-documentation"></a>Links to password reset documentation
-Below are links to all of the Azure AD Password Reset documentation pages:
 
-* **Are you here because you're having problems signing in?** If so, [here's how you can change and reset your own password](active-directory-passwords-update-your-own-password.md).
-* [**How it works**](active-directory-passwords-how-it-works.md) - learn about the six different components of the service and what each does
-* [**Getting started**](active-directory-passwords-getting-started.md) - learn how to allow you users to reset and change their cloud or on-premises passwords
-* [**Customize**](active-directory-passwords-customize.md) - learn how to customize the look & feel and behavior of the service to your organization's needs
-* [**Best practices**](active-directory-passwords-best-practices.md) - learn how to quickly deploy and effectively manage passwords in your organization
-* [**Get insights**](active-directory-passwords-get-insights.md) - learn about our integrated reporting capabilities
-* [**Troubleshooting**](active-directory-passwords-troubleshoot.md) - learn how to quickly troubleshoot problems with the service
-* [**Learn more**](active-directory-passwords-learn-more.md) - go deep into the technical details of how the service works
+
+## 密碼重設文件的連結
+以下是所有 Azure AD 密碼重設文件頁面的連結：
+
+* **您來到此處是因為有登入問題嗎？** 若是如此，[以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
+* [**運作方式**](active-directory-passwords-how-it-works.md) - 了解六個不同的服務元件及其功能
+* [**開始使用**](active-directory-passwords-getting-started.md) - 了解如何讓使用者重設及變更雲端或內部部署密碼
+* [**自訂**](active-directory-passwords-customize.md) - 了解如何依照組織的需求自訂外觀和服務行為
+* [**最佳作法**](active-directory-passwords-best-practices.md) - 了解如何快速部署且有效管理組織的密碼
+* [**深入探索**](active-directory-passwords-get-insights.md) - 了解整合式報告功能
+* [**疑難排解**](active-directory-passwords-troubleshoot.md) - 了解如何快速移難排解服務的問題
+* [**深入了解**](active-directory-passwords-learn-more.md) - 深入探索服務運作方式的技術細節
 
 
 [001]: ./media/active-directory-passwords-faq/001.jpg "Image_001.jpg"
 [002]: ./media/active-directory-passwords-faq/002.jpg "Image_002.jpg"
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0713_2016-->

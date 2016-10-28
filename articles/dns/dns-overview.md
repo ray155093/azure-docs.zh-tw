@@ -1,10 +1,10 @@
-<properties
-   pageTitle="Overview of Azure DNS | Microsoft Azure"
-   description="Overview of Azure DNS hosting services on Microsoft Azure. Host your domain on Microsoft Azure."
-   services="dns"
-   documentationCenter="na"
-   authors="sdwheeler"
-   manager="carmonm"
+<properties 
+   pageTitle="Azure DNS 概觀 | Microsoft Azure" 
+   description="在 Microsoft Azure 上裝載 Azure DNS 服務的概觀在 Microsoft Azure 上裝載您的網域。" 
+   services="dns" 
+   documentationCenter="na" 
+   authors="cherylmc" 
+   manager="carmonm" 
    editor=""/>
 
 <tags
@@ -12,35 +12,30 @@
    ms.devlang="na"
    ms.topic="article"
    ms.tgt_pltfrm="na"
-   ms.workload="infrastructure-services"
+   ms.workload="infrastructure-services" 
    ms.date="08/16/2016"
-   ms.author="sewhee"/>
+   ms.author="cherylmc"/>
+
+# Azure DNS 概觀
 
 
-# <a name="azure-dns-overview"></a>Azure DNS Overview
+網域名稱系統 (DNS) 負責將網站或服務名稱轉譯 (或解析) 為其 IP 位址。Azure DNS 是 DNS 網域的主機服務，採用 Microsoft Azure 基礎結構提供名稱解析。只要將您的網域裝載於 Azure，就可以像管理其他 Azure 服務一樣，使用相同的認證、API、工具和計費方式來管理 DNS 記錄。
 
 
-The Domain Name System, or DNS, is responsible for translating (or resolving) a website or service name to its IP address. Azure DNS is a hosting service for DNS domains, providing name resolution using Microsoft Azure infrastructure. By hosting your domains in Azure, you can manage your DNS records using the same credentials, APIs, tools, and billing as your other Azure services.
+Azure DNS 中的 DNS 網域裝載於 Azure 的 DNS 名稱伺服器全球網路。我們使用「任一傳播」網路，所以每個 DNS 查詢是由最接近的可用 DNS 伺服器回答。這為您的網域提供快速的效能與高可用性。
+
+Azure DNS 是以 Azure Resource Manager (ARM) 為基礎。這樣，它就可得益於 ARM 功能，如角色型存取控制、稽核記錄檔，以及資源鎖定。您可以透過 Azure 入口網站、Azure PowerShell Cmdlet 和跨平台 Azure CLI 來管理網域和記錄。需要自動化 DNS 管理的應用程式可以透過 REST API 和 SDK 與服務進行整合。
+
+Azure DNS 目前不支援購買網域名稱。若想要購買網域，必須洽詢第三方網域名稱註冊機構。註冊機構通常會收取些微年費。然後便可以在 Azure DNS 裝載這些網域來管理 DNS 記錄。如需詳細資訊，請參閱[將網域委派給 Azure DNS](dns-domain-delegation.md)。
 
 
-DNS domains in Azure DNS are hosted on Azure’s global network of DNS name servers. We use Anycast networking so that each DNS query is answered by the closest available DNS server. This provides both fast performance and high availability for your domain.
+## 後續步驟
 
-The Azure DNS service is based on Azure Resource Manager (ARM). As such, it benefits from ARM features such as role-based access control, audit logs, and resource locking. Your domains and records can be managed via the Azure portal, Azure PowerShell cmdlets, and the cross-platform Azure CLI. Applications requiring automatic DNS management can integrate with the service via the REST API and SDKs.
-
-Azure DNS does not currently support purchasing of domain names. If you want to purchase domains, you'll need to use a third-party domain name registrar. The registrar will typically charge a small annual fee. The domains can then be hosted in Azure DNS for management of DNS records. See [Delegate a Domain to Azure DNS](dns-domain-delegation.md) for details.
-
-
-## <a name="next-steps"></a>Next steps
-
-[Create a DNS zone](dns-getstarted-create-dnszone-portal.md)
-
-
+[建立 DNS 區域](dns-getstarted-create-dnszone-portal.md)
 
 
 
 
+ 
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

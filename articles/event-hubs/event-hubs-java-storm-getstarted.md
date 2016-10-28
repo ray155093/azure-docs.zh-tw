@@ -1,39 +1,38 @@
 <properties
-    pageTitle="Get Started with Event Hubs in Java with Apache Storm | Microsoft Azure"
-    description="Follow this tutorial to get started using Azure Event Hubs; sending events with Java and receiving them in an Apache Storm cluster."
-    services="event-hubs"
-    documentationCenter=""
-    authors="fsautomata"
-    manager="timlt"
-    editor=""/>
+	pageTitle="搭配 Apache Storm 開始使用以 Java 撰寫的事件中樞 | Microsoft Azure"
+	description="遵循此教學課程，開始使用 Azure Event Hubs 以 Java 傳送事件並且在 Apache Storm 叢集中接收這些事件。"
+	services="event-hubs"
+	documentationCenter=""
+	authors="fsautomata"
+	manager="timlt"
+	editor=""/>
 
 <tags
-    ms.service="event-hubs"
-    ms.workload="na"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/06/2016"
-    ms.author="sethm"/>
+	ms.service="event-hubs"
+	ms.workload="na"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/06/2016"
+	ms.author="sethm"/>
 
-
-# <a name="get-started-with-event-hubs"></a>Get started with Event Hubs
+# 開始使用事件中心
 
 [AZURE.INCLUDE [service-bus-selector-get-started](../../includes/service-bus-selector-get-started.md)]
 
-## <a name="introduction"></a>Introduction
+## 簡介
 
-Event Hubs is a highly scalable ingestion system that can intake millions of events per second, enabling an application to process and analyze the massive amounts of data produced by your connected devices and applications. Once collected into Event Hubs, you can transform and store data using any real-time analytics provider or storage cluster.
+事件中心是可高度擴充的擷取系統，每秒可以吸收數以百萬計的事件，讓應用程式能處理和分析已連線裝置和應用程式所產生的大量資料。收集到事件中樞後，您可以使用任何即時分析提供者或儲存體叢集轉換和儲存資料。
 
-For more information, see the [Event Hubs Overview][].
+如需詳細資訊，請參閱[事件中樞概觀][]。
 
-This tutorial describes how to collect messages into an Event Hub using a console application in Java, and to retrieve them in parallel using Apache Storm.
+本教學課程說明如何使用以 Java 撰寫的主控台應用程式將訊息收集到事件中心，以及如何使用 Apache Storm 平行擷取它們。
 
-To complete this tutorial, you will need the following:
+若要完成本教學課程，您需要下列項目：
 
-+ A Java development environment configured to run [Maven](http://maven.apache.org/). For this tutorial, we assume [Eclipse](https://www.eclipse.org/).
++ 為了執行 [Maven](http://maven.apache.org/) 所設定的 Java 開發環境。針對本教學課程，我們採用 [Eclipse](https://www.eclipse.org/)。
 
-+ An active Azure account. If you don't have an account, you can create a free trial account in just a couple of minutes. For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/).
++ 使用中的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
 [AZURE.INCLUDE [event-hubs-create-event-hub](../../includes/event-hubs-create-event-hub.md)]
 
@@ -42,40 +41,37 @@ To complete this tutorial, you will need the following:
 
 [AZURE.INCLUDE [service-bus-event-hubs-get-started-receive-storm](../../includes/service-bus-event-hubs-get-started-receive-storm.md)]
 
-## <a name="run-the-applications"></a>Run the applications
+## 執行應用程式
 
-Now you are ready to run the applications.
+現在您已經準備好執行應用程式。
 
-1.  Run the **LogTopology** class from Eclipse, then wait for it to start the receivers for all the partitions.
+1.	從 Eclipse 執行 **LogTopology** 類別，然後等它啟動所有資料分割的接收器。
 
-2.  Run the **Sender** project, press **Enter** in the console window, and see the events appear in the receiver window.
+2.	執行 **Sender** 專案，按下主控台視窗中的 **Enter** 鍵，並查看出現在接收器視窗中的事件。
 
-    ![][22]
+   	![][22]
 
-> [AZURE.NOTE] In this tutorial only, use Storm in local mode for development purposes. See the [HDInsight Storm Overview][] and the official [Apache Storm][] documentation for more information of Storm deployments and patterns.
+> [AZURE.NOTE] 本教學課程中只使用本機模式的 Storm 進行開發。如需 Storm 部署和模式的詳細資訊，請參閱 [HDInsight Storm 概觀][]和 [Apache Storm][] 官方文件。
 
-## <a name="next-steps"></a>Next Steps
+## 後續步驟
 
-The following resources are available for developing applications integrating Event Hubs and Storm.
+下列資源可供開發整合事件中心和 Storm 的應用程式。
 
-- [Analyzing sensor data with Storm and HDInsight] is a full scenario tutorial using Event Hubs, Storm, and HBase to ingest sensor data in an Hadoop cluster.
-- [Develop streaming data processing applications with SCP.NET and C# on Storm and HDInsight][] is a tutorial on how to write Storm pipelines using C#.
+- [使用 Storm 和 HDInsight 分析感應器資料]是一個完整案例教學課程，該課程使用事件中心、Storm 和 HBase 擷取 Hadoop 叢集中的感應器資料。
+- [在 Storm 和 HDInsight 上使用 SCP.NET 和 C# 開發串流資料處理應用程式][]教學課程說明如何使用 C# 撰寫 Storm 管線。
 
 <!-- Images. -->
 [22]: ./media/event-hubs-java-storm-getstarted/receive-storm2.png
 
 <!-- Links -->
-[Azure classic portal]: https://manage.windowsazure.com/
+[Azure 傳統入口網站]: https://manage.windowsazure.com/
 [Event Processor Host]: https://www.nuget.org/packages/Microsoft.Azure.ServiceBus.EventProcessorHost
-[Event Hubs Overview]: event-hubs-overview.md
+[事件中樞概觀]: event-hubs-overview.md
 
 [Apache Storm]: https://storm.incubator.apache.org
-[HDInsight Storm Overview]: ../hdinsight/hdinsight-storm-overview.md
-[Analyzing sensor data with Storm and HDInsight]: ../hdinsight/hdinsight-storm-sensor-data-analysis.md
-[Develop streaming data processing applications with SCP.NET and C# on Storm and HDInsight]: ../hdinsight/hdinsight-storm-develop-csharp-visual-studio-topology.md
+[HDInsight Storm 概觀]: ../hdinsight/hdinsight-storm-overview.md
+[使用 Storm 和 HDInsight 分析感應器資料]: ../hdinsight/hdinsight-storm-sensor-data-analysis.md
+[在 Storm 和 HDInsight 上使用 SCP.NET 和 C# 開發串流資料處理應用程式]: ../hdinsight/hdinsight-storm-develop-csharp-visual-studio-topology.md
  
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!----HONumber=AcomDC_0907_2016-->

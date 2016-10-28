@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Manage Azure Data Lake Analytics using Azure SDK for Node.js | Azure"
-   description="Learn how to manage Data Lake Analytics accounts, data sources, jobs and users using Azure SDK for Node.js"
+   pageTitle="使用 Node.js | Azure 的 Azure SDK 管理 Azure 資料湖分析"
+   description="了解如何使用 Node.js 的 Azure SDK，管理資料湖分析帳戶、資料來源、工作與使用者"
    services="data-lake-analytics"
    documentationCenter=""
    authors="edmacauley"
@@ -16,34 +16,33 @@
    ms.date="05/16/2016"
    ms.author="edmaca"/>
 
-
-# <a name="manage-azure-data-lake-analytics-using-azure-sdk-for-node.js"></a>Manage Azure Data Lake Analytics using Azure SDK for Node.js
+# 使用 Node.js 的 Azure SDK 管理 Azure 資料湖分析
 
 
 [AZURE.INCLUDE [manage-selector](../../includes/data-lake-analytics-selector-manage.md)]
 
-The Azure SDK for Node.js can be used for managing Azure Data Lake Analytics accounts, jobs and catalogs. To see management topic using other tools, click the tab select above.
+Node.js 的 Azure SDK 可用於管理 Azure Data Lake Analytics 帳戶、作業與目錄。若要使用其他工具查看管理主題，請按一下上方選取的索引標籤。
 
-Right now it supports:
+它目前支援︰
 
-  *  **Node.js version: 0.10.0 or higher**
-  *  **REST API version for Account: 2015-10-01-preview**
-  *  **REST API version for Catalog: 2015-10-01-preview**
-  *  **REST API version for Job: 2016-03-20-preview**
+  *  **Node.js 版本：0.10.0 或更高版本**
+  *  **帳戶的 REST API 版本：2015-10-01-preview**
+  *  **目錄的 REST API 版本：2015-10-01-preview**
+  *  **作業的 REST API 版本：2016-03-20-preview**
 
-## <a name="features"></a>Features
+## 特性
 
-- Account management: create, get, list, update, and delete.
-- Job management: submit, get, list, cancel.
-- Catalog management: get, list, create (secrets), update (secrets), delete (secrets).
+- 帳戶管理：建立、取得、列出、更新及刪除。
+- 作業管理︰提交、取得、列出、取消。
+- 目錄管理︰取得、列出、建立 (密碼)、更新 (密碼)、刪除 (密碼)。
 
-## <a name="how-to-install"></a>How to Install
+## 如何安裝
 
 ```bash
 npm install azure-arm-datalake-analytics
 ```
 
-## <a name="authenticate-using-azure-active-directory"></a>Authenticate using Azure Active Directory
+## 使用 Azure Active Directory 進行驗證
 
  ```javascript
  var msrestAzure = require('ms-rest-azure');
@@ -53,7 +52,7 @@ npm install azure-arm-datalake-analytics
  var credentials = new msRestAzure.ApplicationTokenCredentials('your-client-id', 'your-domain', 'your-secret');
  ```
 
-## <a name="create-the-data-lake-analytics-client"></a>Create the Data Lake Analytics client
+## 建立 Data Lake Analytics 用戶端
 
 ```javascript
 var adlaManagement = require("azure-arm-datalake-analytics");
@@ -62,7 +61,7 @@ var jobClient = new adlaManagement.DataLakeAnalyticsJobClient(credentials, 'azur
 var catalogClient = new adlaManagement.DataLakeAnalyticsCatalogClient(credentials, 'azuredatalakeanalytics.net');
 ```
 
-## <a name="create-a-data-lake-analytics-account"></a>Create a Data Lake Analytics account
+## 建立 Data Lake Analytics 帳戶
 
 ```javascript
 var util = require('util');
@@ -112,7 +111,7 @@ client.account.create(resourceGroupName, accountName, accountToCreate, function 
 });
 ```
 
-## <a name="get-a-list-of-jobs"></a>Get a list of jobs
+## 取得作業清單
 
 ```javascript
 var util = require('util');
@@ -126,7 +125,7 @@ jobClient.job.list(accountName, function (err, result, request, response) {
 });
 ```
 
-## <a name="get-a-list-of-databases-in-the-data-lake-analytics-catalog"></a>Get a list of databases in the Data Lake Analytics Catalog
+## 取得 Data Lake Analytics 目錄中的資料庫清單
 ```javascript
 var util = require('util');
 var accountName = 'testadlaacct';
@@ -139,13 +138,9 @@ catalogClient.catalog.listDatabases(accountName, function (err, result, request,
 });
 ```
 
-## <a name="see-also"></a>See also
+## 另請參閱
 
 - [Microsoft Azure SDK for Node.js](https://github.com/azure/azure-sdk-for-node)
-- [Microsoft Azure SDK for Node.js - Data Lake Store Management](https://github.com/Azure/azure-sdk-for-node/tree/autorest/lib/services/dataLake.Store)
+- [Microsoft Azure SDK for Node.js - Data Lake Store 管理](https://github.com/Azure/azure-sdk-for-node/tree/autorest/lib/services/dataLake.Store)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

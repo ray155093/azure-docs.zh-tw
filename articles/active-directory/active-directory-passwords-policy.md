@@ -1,71 +1,66 @@
 <properties
-    pageTitle="Password policies and restrictions in Azure Active Directory | Microsoft Azure"
-    description="Describes the policies that apply to passwords in Azure Active Directory, including allowed characters, length, and expiration"
+	pageTitle="密碼原則和 Azure Active Directory 中的限制 | Microsoft Azure"
+	description="描述適用於 Azure Active Directory 中的密碼的原則，包括允許的字元、長度和有效期限"
   services="active-directory"
-    documentationCenter=""
-    authors="curtand"
-    manager="femila"
-    editor=""/>
+	documentationCenter=""
+	authors="curtand"
+	manager="femila"
+	editor=""/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="10/04/2016"
-    ms.author="curtand"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/12/2016"
+	ms.author="curtand"/>
 
 
+# 密碼原則和 Azure Active Directory 中的限制
 
-# <a name="password-policies-and-restrictions-in-azure-active-directory"></a>Password policies and restrictions in Azure Active Directory
+本文說明和儲存在 Azure AD 目錄中的使用者帳戶相關聯的密碼原則和複雜性需求。
 
-This article describes the password policies and complexity requirements associated with user accounts stored in your Azure AD directory.
+> [AZURE.IMPORTANT] **您來到此處是因為有登入問題嗎？** 若是如此，[以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
 
-> [AZURE.IMPORTANT] **Are you here because you're having problems signing in?** If so, [here's how you can change and reset your own password](active-directory-passwords-update-your-own-password.md).
+## 適用於所有使用者帳戶的 UserPrincipalName 原則
 
-## <a name="userprincipalname-policies-that-apply-to-all-user-accounts"></a>UserPrincipalName policies that apply to all user accounts
+每個需要登入 Azure AD 驗證系統的使用者帳戶，都必須具有與該帳戶相關聯的唯一使用者主體名稱 (UPN) 屬性值。下表列出適用於內部部署的 Active Directory 來源使用者帳戶 (已同步至雲端) 和僅適用於雲端使用者帳戶的原則。
 
-Every user account that needs to sign in to the Azure AD authentication system must have a unique user principal name (UPN) attribute value associated with that account. The following table outlines the polices  that apply to both on-premises Active Directory-sourced user accounts   (synced to the cloud) and to cloud-only user accounts.
-
-|   Property           |     UserPrincipalName requirements  |
+| 屬性 | UserPrincipalName 需求 |
 |   ----------------------- |   ----------------------- |
-|  Characters allowed    |  <ul> <li>A – Z</li> <li>a -z </li><li>0 – 9</li> <li> . - \_ ! \# ^ \~</li></ul> |
-|  Characters not allowed  | <ul> <li>Any '@' character that is not separating the user name from the domain.</li> <li>Cannot contain a period character '.' immediately preceding the '@' symbol</li></ul> |
-| Length constraints  |       <ul> <li>Total length must not exceed 113 characters</li><li>64 characters before the ‘@’ symbol</li><li>48 characters after the ‘@’ symbol</li></ul>
+| 允許的字元 | <ul> <li>A – Z</li> <li>a -z </li><li>0 – 9</li> <li> . - \_ ! \# ^ \~</li></ul> |
+| 不允許的字元 | <ul> <li>任何不是用來分隔使用者名稱和網域的 '@' 字元。</li> <li>'@' 符號前面不可直接包含句點字元 '.'</li></ul> |
+| 長度限制 | <ul> <li>總長度不得超過 113 個字元</li><li>'@' 符號前是 64 個字元</li><li>' @' 符號後是 48 個字元</li></ul>
 
-## <a name="password-policies-that-apply-only-to-cloud-user-accounts"></a>Password policies that apply only to cloud user accounts
+## 僅適用於雲端使用者帳戶的密碼原則
 
-The following table describes the available password policy settings that can be applied to user accounts that are created and managed in   Azure AD.
+下表描述可套用至在 Azure AD 中建立及管理的使用者帳戶的可用密碼原則設定。
 
-|  Property       |    Requirements          |
+| 屬性 | 需求 |
 |   ----------------------- |   ----------------------- |
-|  Characters allowed   |   <ul><li>A – Z</li><li>a -z </li><li>0 – 9</li> <li>@ # $ % ^ & * - _ ! + = [ ] { } &#124; \ : ‘ , . ? / ` ~ “ ( ) ;</li></ul> |
-|  Characters not allowed   |       <ul><li>Unicode characters</li><li>Spaces</li><li> **Strong passwords only**: Cannot contain a dot character '.' immediately preceding the '@' symbol</li></ul> |
-|   Password restrictions | <ul><li>8 characters minimum and 16 characters maximum</li><li>**Strong passwords only**: Requires 3 out of 4 of the following:<ul><li>Lowercase characters</li><li>Uppercase characters</li><li>Numbers (0-9)</li><li>Symbols (see password restrictions above)</li></ul></li></ul> |
-| Password expiry duration      | <ul><li>Default value: **90** days </li><li>Value is configurable using the Set-MsolPasswordPolicy cmdlet from the Azure Active Directory Module for Windows PowerShell.</li></ul> |
-| Password expiry notification |  <ul><li>Default value: **14** days (before password expires)</li><li>Value is configurable using the Set-MsolPasswordPolicy cmdlet.</li></ul> |
-| Password Expiry |  <ul><li>Default value: **false** days (indicates that password expiry is enabled) </li><li>Value can be configured for individual user accounts using the Set-MsolUser cmdlet. </li></ul> |
-|  Password history  | Last password cannot be used again. |
-|  Password history duration | Forever |
-|  Account Lockout | After 10 unsuccessful sign-in attempts (wrong password), the user will be locked out for one minute. Further incorrect sign-in attempts will lock out the user for increasing durations. |
+| 允許的字元 | <ul><li>A – Z</li><li>a -z </li><li>0 – 9</li> <li>@ # $ % ^ & * - _ ! + = [ ] { } &#124; \ : ‘ , . ? / ` ~ “ ( ) ;</li></ul> |
+| 不允許的字元 | <ul><li>Unicode 字元</li><li>空格</li><li> **僅限使用增強式密碼**：'@' 符號前面不能直接包含點字元 '.'</li></ul> |
+| 密碼限制 | <ul><li>最少 8 個字元，最多 16 個字元</li><li>**僅限使用增強式密碼**：必須包含下列 4 種字元中的 3 種：<ul><li>小寫字元</li><li>大寫字元</li><li>數字 (0-9)</li><li>符號 (請參閱上面的密碼限制)</li></ul></li></ul> |
+| 密碼到期時間 | <ul><li>預設值：**90** 天 </li><li>值可透過適用於 Windows PowerShell 的 Azure Active Directory 模組使用 Set-MsolPasswordPolicy Cmdlet 設定。</li></ul> |
+| 密碼到期通知 | <ul><li>預設值：**14** 天 (密碼到期前)</li><li>值可使用 Set-msolpasswordpolicy Cmdlet 設定。</li></ul> |
+| 密碼到期 | <ul><li>預設值：**false** 天 (表示已啟用該密碼到期) </li><li>可以針對個別使用者帳戶使用 Set-msoluser Cmdlet 設定值。 </li></ul> |
+| 密碼歷程記錄 | 無法再次使用上次密碼。 |
+| 密碼歷程記錄期間 | 不限次數 |
+| 帳戶鎖定 | 10 次嘗試登入失敗 (錯誤密碼) 之後，使用者會被封鎖一分鐘。後續嘗試登入的錯誤會增加使用者被封鎖的時間。 |
 
 
-## <a name="next-steps"></a>Next Steps
+## 後續步驟
 
-* **Are you here because you're having problems signing in?** If so, [here's how you can change and reset your own password](active-directory-passwords-update-your-own-password.md).
-* [Manage your passwords from anywhere](active-directory-passwords.md)
-* [How Password Management works](active-directory-passwords-how-it-works.md)
-* [Getting started with Password Mangement](active-directory-passwords-getting-started.md)
-* [Customize Password Management](active-directory-passwords-customize.md)
-* [Password Management Best Practices](active-directory-passwords-best-practices.md)
-* [How to get Operational Insights with Password Management Reports](active-directory-passwords-get-insights.md)
-* [Password Management FAQ](active-directory-passwords-faq.md)
-* [Troubleshoot Password Management](active-directory-passwords-troubleshoot.md)
-* [Learn More](active-directory-passwords-learn-more.md)
+* **您來到此處是因為有登入問題嗎？** 若是如此，[以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
+* [從任何地方管理您的密碼](active-directory-passwords.md)
+* [密碼管理如何運作](active-directory-passwords-how-it-works.md)
+* [開始使用密碼管理](active-directory-passwords-getting-started.md)
+* [自訂密碼管理](active-directory-passwords-customize.md)
+* [密碼管理最佳作法](active-directory-passwords-best-practices.md)
+* [如何使用密碼管理報告取得 Operational Insights](active-directory-passwords-get-insights.md)
+* [密碼管理常見問題集](active-directory-passwords-faq.md)
+* [疑難排解密碼管理](active-directory-passwords-troubleshoot.md)
+* [深入了解](active-directory-passwords-learn-more.md)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0713_2016-->

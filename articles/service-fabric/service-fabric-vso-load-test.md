@@ -1,6 +1,6 @@
 <properties
-    pageTitle="Load test your application by using Visual Studio Team Services | Microsoft Azure"
-    description="Learn how to stress test your Azure Service Fabric applications by using Visual Studio Team Services."
+    pageTitle="使用 Visual Studio Team Services 對應用程式執行負載測試 | Microsoft Azure"
+    description="了解如何使用 Visual Studio Team Services 對您的 Azure Service Fabric 應用程式執行壓力測試。"
     services="service-fabric"
     documentationCenter="na"
     authors="cawams"
@@ -16,120 +16,119 @@
     ms.date="07/29/2016"
     ms.author="cawa" />
 
+# 使用 Visual Studio Team Services 對您的應用程式執行負載測試
 
-# <a name="load-test-your-application-by-using-visual-studio-team-services"></a>Load test your application by using Visual Studio Team Services
+本文章說明如何使用 Microsoft Visual Studio 負載測試功能對應用程式進行壓力測試。它會使用 Azure Service Fabric 具狀態服務後端和無狀態服務 Web 前端。以下使用的範例應用程式是飛機位置模擬器。您提供飛機識別碼、起飛時間和目的地。應用程式的後端會處理要求，而前端會顯示地圖上與準則相符的飛機。
 
-This article shows how to use Microsoft Visual Studio load test features to stress test an application. It uses an Azure Service Fabric stateful service back end and a stateless service web front end. The example application used here is an airplane location simulator. You provide an airplane ID, departure time, and destination. The application’s back end processes the requests, and the front end displays on a map the airplane that matches the criteria.
+下圖說明您即將測試的 Service Fabric 應用程式。
 
-The following diagram illustrates the Service Fabric application that you'll be testing.
+![範例飛機位置應用程式的圖表][0]
 
-![Diagram of the example airplane location application][0]
+## 先決條件
+開始之前，您需要執行下列動作：
 
-## <a name="prerequisites"></a>Prerequisites
-Before getting started, you need to do the following:
+- 取得 Visual Studio Team Services 帳戶。您可以在 [Visual Studio Team Services](https://www.visualstudio.com) 取得一個免費帳戶。
+- 取得並安裝 Visual Studio 2013 或 Visual Studio 2015。本文使用 Visual Studio 2015 Enterprise 版本，但是 Visual Studio 2013 和其他版本應該也同樣可以運作。
+- 將您的應用程式部署至預備環境。如需相關詳細資訊，請參閱[如何使用 Visual Studio 將應用程式部署至遠端叢集](service-fabric-publish-app-remote-cluster.md)。
+- 了解您的應用程式的使用模式。這項資訊是用來模擬負載模式。
+- 了解您的負載測試的目標。這可協助您解譯和分析負載測試結果。
 
-- Get a Visual Studio Team Services account. You can get one for free at [Visual Studio Team Services](https://www.visualstudio.com).
-- Get and install Visual Studio 2013 or Visual Studio 2015. This article uses Visual Studio 2015 Enterprise edition, but Visual Studio 2013 and other editions should work similarly.
-- Deploy your application to a staging environment. See [How to deploy applications to a remote cluster using Visual Studio](service-fabric-publish-app-remote-cluster.md) for information about this.
-- Understand your application’s usage pattern. This information is used to simulate the load pattern.
-- Understand the goal for your load testing. This helps you interpret and analyze the load test results.
+## 建立及執行 Web 效能和負載測試專案
 
-## <a name="create-and-run-the-web-performance-and-load-test-project"></a>Create and run the Web Performance and Load Test project
+### 建立 Web 效能和負載測試專案
 
-### <a name="create-a-web-performance-and-load-test-project"></a>Create a Web Performance and Load Test project
+1. 開啟 Visual Studio 2015。在功能表列上選擇 [檔案] > [新增] > [專案] 以開啟 [新增專案] 對話方塊。
 
-1. Open Visual Studio 2015. Choose **File** > **New** > **Project** on the menu bar to open the **New Project** dialog box.
+2. 展開 [Visual C#] 節點，然後選擇 [測試] > [Web 效能和負載測試專案]。給予專案名稱，然後選擇 [確定] 按鈕。
 
-2. Expand the **Visual C#** node and choose **Test** > **Web Performance and Load Test project**. Give the project a name and then choose the **OK** button.
+    ![[新增專案] 對話方塊的螢幕擷取畫面][1]
 
-    ![Screen shot of the New Project dialog box][1]
+    您應該會在 [方案總管] 中看到新的 Web 效能和負載測試專案。
 
-    You should see a new Web Performance and Load Test project in Solution Explorer.
+    ![顯示新專案的 [方案總管] 螢幕擷取畫面][2]
 
-    ![Screen shot of Solution Explorer showing the new project][2]
+### 記錄 Web 效能測試
 
-### <a name="record-a-web-performance-test"></a>Record a web performance test
+1. 開啟 .webtest 專案。
 
-1. Open the .webtest project.
+2. 選擇 [加入錄製] 圖示以在瀏覽器中啟動錄製工作階段。
 
-2. Choose the **Add Recording** icon to start a recording session in your browser.
+    ![瀏覽器中 [加入錄製] 圖示的螢幕擷取畫面][3]
 
-    ![Screen shot of the Add Recording icon in a browser][3]
+    ![瀏覽器中 [錄製] 按鈕的螢幕擷取畫面][4]
 
-    ![Screen shot of the Record button in a browser][4]
+3. 瀏覽至 Service Fabric 應用程式。[錄製] 面板應該會顯示 Web 要求。
 
-3. Browse to the Service Fabric application. The recording panel should show the web requests.
+    ![錄製面板中 Web 要求的螢幕擷取畫面][5]
 
-    ![Screen shot of web requests in the recording panel][5]
+4. 執行您預期使用者執行的一系列動作。這些動作會當做產生負載的模式。
 
-4. Perform a sequence of actions that you expect the users to perform. These actions are used as a pattern to generate the load.
+5. 完成時，選擇 [停止] 按鈕以停止錄製。
 
-5. When you're done, choose the **Stop** button to stop recording.
+    ![[停止] 按鈕的螢幕擷取畫面][6]
 
-    ![Screen shot of the Stop button][6]
+    Visual Studio 中的 .webtest 專案應該已擷取一系列的要求。會自動取代動態參數。此時，您可以刪除不屬於您的測試案例的任何額外、重複相依性要求。
 
-    The .webtest project in Visual Studio should have captured a series of requests. Dynamic parameters are replaced automatically. At this point, you can delete any extra, repeated dependency requests that are not part of your test scenario.
+6. 儲存專案，然後選擇 [執行測試] 命令以在本機執行 Web 效能測試，並且確認一切運作正常。
 
-6. Save the project and then choose the **Run Test** command to run the web performance test locally and make sure everything works correctly.
+    ![[執行測試] 命令的螢幕擷取畫面][7]
 
-    ![Screen shot of the Run Test command][7]
+### 參數化 Web 效能測試
 
-### <a name="parameterize-the-web-performance-test"></a>Parameterize the web performance test
+您可以將 Web 效能測試轉換成 Web 效能測試程式碼，然後編輯程式碼，以參數化 Web 效能測試。或者，您可以將 Web 效能測試繫結至資料清單，以便測試逐一查看資料。請參閱[產生和執行 Web 效能測試程式碼](https://msdn.microsoft.com/library/ms182552.aspx)以取得如何將 Web 效能測試轉換成程式碼測試的詳細資訊。請參閱[將資料來源新增至 Web 效能測試](https://msdn.microsoft.com/library/ms243142.aspx)以取得如何將資料繫結至 Web 效能測試的詳細資訊。
 
-You can parameterize the web performance test by converting it to a coded web performance test and then editing the code. As an alternative, you can bind the web performance test to a data list so that the test iterates through the data. See [Generate and run a coded web performance test](https://msdn.microsoft.com/library/ms182552.aspx) for details about how to convert the web performance test to a coded test. See [Add a data source to a web performance test](https://msdn.microsoft.com/library/ms243142.aspx) for information about how to bind data to a web performance test.
+對於此範例，我們會將 Web 效能測試轉換成程式碼測試，您就可以使用產生的 GUID 取代飛機識別碼，並且加入更多要求以將航班傳送至不同位置。
 
-For this example, we'll convert the web performance test to a coded test so you can replace the airplane ID with a generated GUID and add more requests to send flights to different locations.
+### 建立負載測試專案
 
-### <a name="create-a-load-test-project"></a>Create a load test project
+負載測試專案是由 Web 效能測試和單位測試所描述的一或多個案例，以及其他指定的負載測試設定組成。下列步驟說明如何建立負載測試專案：
 
-A load test project is composed of one or more scenarios described by the web performance test and unit test, along with additional specified load test settings. The following steps show how to create a load test project:
+1. 在您的 Web 效能和負載測試專案的捷徑功能表上選擇 [新增] > [負載測試]。在 [負載測試] 精靈中，選擇 [下一步] 按鈕以設定測試設定。
 
-1. On the shortcut menu of your Web Performance and Load Test project, choose **Add** > **Load Test**. In the **Load Test** wizard, choose the **Next** button to configure the test settings.
+2. 在 [負載模式] 區段中，選擇要常數使用者負載或逐步執行負載，開頭為少數使用者並且隨著時間經過增加使用者。
 
-2. In the **Load Pattern** section, choose whether you want a constant user load or a step load, which starts with a few users and increases the users over time.
+    如果您對於使用者負載量有良好的評估並且想要查看目前系統的執行方式，請選擇 [常數負載]。如果您的目標是了解系統在不同負載之下的執行是否一致，請選擇 [逐步執行負載]。
 
-    If you have a good estimate of the amount of user load and want to see how the current system performs, choose **Constant Load**. If your goal is to learn whether the system performs consistently under various loads, choose **Step Load**.
+3. 在 [測試混合] 區段中，選擇 [新增] 按鈕，然後選取您要包含在負載測試的測試。您可以使用 [散發] 資料行指定每一項測試的測試執行總計百分比。
 
-3. In the **Test Mix** section, choose the **Add** button and then select the test that you want to include in the load test. You can use the **Distribution** column to specify the percentage of total tests run for each test.
+4. 在 [回合設定] 區段中，指定負載測試持續期間。
 
-4. In the **Run Settings** section, specify the load test duration.
+    >[AZURE.NOTE] [測試反覆項目] 選項只有當您使用 Visual Studio 在本機執行負載測試時才可以使用。
 
-    >[AZURE.NOTE] The **Test Iterations** option is available only when you run a load test locally using Visual Studio.
+5. 在 [回合設定] 的 [位置] 區段中，指定產生負載測試要求的位置。此精靈可能會提示您登入您的 Team Services 帳戶。登入，然後選擇一個地理位置。完成時，選擇 [完成] 按鈕。
 
-5. In the **Location** section of **Run Settings**, specify the location where load test requests are generated. The wizard may prompt you to log in to your Team Services account. Log in and then choose a geographic location. When you're done, choose the **Finish** button.
+6. 建立負載測試之後，開啟 .loadtest 專案並選擇目前回合設定，例如 [回合設定] > [回合設定1 [作用中]]。這會在 [屬性] 視窗中開啟回合設定。
 
-6. After the load test is created, open the .loadtest project and choose the current run setting, such as **Run Settings** > **Run Settings1 [Active]**. This opens the run settings in the **Properties** window.
+7. 在 [回合設定] 屬性視窗中的 [結果] 區段中，[計時詳細資料儲存區] 設定的預設值應該為 [無]。將此值變更為 [所有個別細節] 以取得更多有關負載測試結果的資訊。如需如何連接至 Visual Studio Team Services 及執行負載測試的詳細資訊，請參閱[負載測試](https://www.visualstudio.com/load-testing.aspx)。
 
-7. In the **Results** section of the **Run Settings** properties window, the **Timing Details Storage** setting should have **None** as its default value. Change this value to **All Individual Details** to get more information on the load test results. See [Load Testing](https://www.visualstudio.com/load-testing.aspx) for more information on how to connect to Visual Studio Team Services and run a load test.
+### 使用 Visual Studio Team Services 執行負載測試
 
-### <a name="run-the-load-test-by-using-visual-studio-team-services"></a>Run the load test by using Visual Studio Team Services
+選擇 [執行負載測試] 命令來啟動測試回合。
 
-Choose the **Run Load Test** command to start the test run.
+![[執行負載測試] 命令的螢幕擷取畫面][8]
 
-![Screen shot of the Run Load Test command][8]
+## 檢視及分析負載測試結果
 
-## <a name="view-and-analyze-the-load-test-results"></a>View and analyze the load test results
+隨著負載測試進行，效能資訊會圖表化。您應該會看到類似下面的圖形。
 
-As the load test progresses, the performance information is graphed. You should see something similar to the following graph.
+![負載測試結果的效能圖表的螢幕擷取畫面][9]
 
-![Screen shot of performance graph for load test results][9]
+1. 選擇頁面頂端附近的 [下載報告] 連結。下載報告之後，選擇 [檢視報告] 按鈕。
 
-1. Choose the **Download report** link near the top of the page. After the report is downloaded, choose the **View report** button.
+    在 [圖形] 索引標籤上，您可以看到各種效能計數器的圖形。在 [摘要] 索引標籤上，會顯示整體測試結果。[資料表] 索引標籤會顯示成功和失敗負載測試的總數。
 
-    On the **Graph** tab you can see graphs for various performance counters. On the **Summary** tab, the overall test results appear. The **Tables** tab shows the total number of passed and failed load tests.
+2. 在 [測試] > [失敗] 和 [錯誤] > [計數] 資料行上選擇數字連結，以查看錯誤詳細資料。
 
-2. Choose the number links on the **Test** > **Failed** and the **Errors** > **Count** columns to see error details.
+    [詳細資料] 索引標籤會顯示失敗要求的虛擬使用者和測試案例資訊。如果負載測試包含多個案例，此資料相當有用。
 
-    The **Detail** tab shows virtual user and test scenario information for failed requests. This data can be useful if the load test includes multiple scenarios.
+請參閱[在負載測試分析器的圖形檢視中分析負載測試結果](https://www.visualstudio.com/load-testing.aspx)以取得有關檢視負載測試結果的詳細資訊。
 
-See [Analyzing Load Test Results in the Graphs View of the Load Test Analyzer](https://www.visualstudio.com/load-testing.aspx) for more information on viewing load test results.
+## 自動化您的負載測試
 
-## <a name="automate-your-load-test"></a>Automate your load test
+Visual Studio Team Services 負載測試會提供 API 協助您管理負載測試，並分析 Team Services 帳戶中的結果。如需詳細資訊，請參閱[雲端負載測試 Rest API](http://blogs.msdn.com/b/visualstudioalm/archive/2014/11/03/cloud-load-testing-rest-apis-are-here.aspx)。
 
-Visual Studio Team Services Load Test provides APIs to help you manage load tests and analyze results in a Team Services account. See [Cloud Load Testing Rest APIs](http://blogs.msdn.com/b/visualstudioalm/archive/2014/11/03/cloud-load-testing-rest-apis-are-here.aspx) for more information.
-
-## <a name="next-steps"></a>Next steps
-- [Monitoring and diagnosing services in a local machine development setup](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)
+## 後續步驟
+- [監視和診斷本機開發設定中的服務](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)
 
 [0]: ./media/service-fabric-vso-load-test/OverviewDiagram.png
 [1]: ./media/service-fabric-vso-load-test/NewProjectDialog.png
@@ -142,8 +141,4 @@ Visual Studio Team Services Load Test provides APIs to help you manage load test
 [8]: ./media/service-fabric-vso-load-test/RunTest2.png
 [9]: ./media/service-fabric-vso-load-test/Graph.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

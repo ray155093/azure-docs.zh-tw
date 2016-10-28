@@ -1,18 +1,15 @@
 <!--author=SharS last changed: 03/17/2016-->
 
-#### <a name="to-install-update-1.2-from-the-azure-classic-portal"></a>To install Update 1.2 from the Azure classic portal
+#### 從 Azure 傳統入口網站安裝 Update 1.2
 
-1. In the Azure classic portal, go to the **Devices** page and select your device.
+1. 在 Azure 入口網站中，移至 [裝置]頁面，並選取您的裝置。
 
-2. Navigate to **Devices** > **Configure**.
+2. 瀏覽至 [**裝置**] > [**設定**]。
 
-3. Under **Network Interfaces**, first verify that you have at least one network interface that is iSCSI-enabled. Then locate the network interface (other than DATA 0) that has a gateway assigned.
+3. 在 [網路介面] 下，請先確認您有至少一個已啟用 iSCSI 的網路介面。接著，找到具有已指派閘道的網路介面 (而非 DATA 0)。
 
-4. Disable the network interface that has an assigned gateway and save the modified configuration. Note the network interface settings are retained and so when you re-enable this network interface later, the portal will revert to the original settings.
+4. 停用具有已指派閘道的網路介面，並儲存修改過的組態。請注意，系統會保留網路介面設定，因此當您稍後重新啟用此網路介面時，入口網站會還原為原始設定。
 
-7. You can now [use the Azure classic portal to install Update 1.2](#install-update-12-via-the-azure-classic-portal). Follow the instructions starting from step 3 of this procedure. After you have installed all the updates, you can re-enable the network interface that you disabled.
+7. 您現在可以[使用 Azure 傳統入口網站安裝 Update 1.2](#install-update-12-via-the-azure-classic-portal)。請遵循從本程序步驟 3 開始的指示。當您安裝完所有更新後，便可重新啟用停用的網路介面。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0323_2016-->

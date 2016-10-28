@@ -1,37 +1,36 @@
 <properties 
-    pageTitle="Streaming logs and console" 
-    description="Streaming logs and console overview" 
-    authors="btardif" 
-    manager="wpickett" 
-    editor="" 
-    services="app-service\web" 
-    documentationCenter=""/>
+	pageTitle="串流記錄和主控台" 
+	description="串流記錄和主控台概觀" 
+	authors="btardif" 
+	manager="wpickett" 
+	editor="" 
+	services="app-service\web" 
+	documentationCenter=""/>
 
 <tags 
-    ms.service="app-service-web" 
-    ms.workload="web" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="multiple" 
-    ms.topic="article" 
-    ms.date="10/12/2016" 
-    ms.author="byvinyal"/>
+	ms.service="app-service-web" 
+	ms.workload="web" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="multiple" 
+	ms.topic="article" 
+	ms.date="07/26/2016" 
+	ms.author="byvinyal"/>
 
+#串流記錄和主控台
 
-# <a name="streaming-logs-and-the-console"></a>Streaming Logs and the Console
+### 串流記錄 ###
 
-## <a name="streaming-logs"></a>Streaming Logs
+Microsoft Azure 入口網站提供整合式串流記錄檢視器，可讓您從 App Service 應用程式即時檢視追蹤事件。
 
-The **Azure portal** provides an integrated streaming log viewer that lets you view tracing events from your **App Service** apps in real time.  
+設定此功能只需要一些簡單的步驟：
 
-Setting up this feature requires a few simple steps:
+- 在程式碼中撰寫追蹤
+- 從 Azure 入口網站中啟用應用程式診斷
+- 在 Web 應用程式刀鋒視窗上按一下串流記錄部分
 
-- Write traces in your code
-- Enable Application **Diagnostic Logs** for your app
-- View the stream from the built-in **Streaming Logs** UI in the **Azure portal**.
+### 如何在程式碼中撰寫追蹤 ###
 
-### <a name="how-to-write-traces-in-your-code"></a>How to write traces in your code ###
-
-Writing traces in your code is easy.  In C# it's as easy as writing the following code:
+在程式碼中撰寫追蹤很簡單。在 C# 中可輕易撰寫下列程式碼：
 
 `````````````````````````
 Trace.TraceInformation("My trace statement");
@@ -45,31 +44,31 @@ Trace.TraceWarning("My warning statement");
 Trace.TraceError("My error statement");
 `````````````````````````
 
-The Trace class lives in the System.Diagnostics namespace.
+Trace 類別位於 System.Diagnostics 命名空間。
 
-In a node.js app you can write this code to achieve the same result:
+您可以在 node.js 應用程式中，撰寫此程式碼以取得相同的結果：
 
 `````````````````````````
 console.log("My trace statement").
 `````````````````````````
 
-### <a name="how-to-enable-and-view-the-streaming-logs"></a>How to enable and view the streaming logs
-![][BrowseSitesScreenshot] Diagnostics are enabled on a per app basis. Start by browsing to the site you would like to enable this feature on.  
+### 如何啟用和檢視串流記錄 ###
+![][BrowseSitesScreenshot] 診斷會根據 Web 應用程式啟用。從[入口網站](https://portal.azure.com)內瀏覽至您想要啟用這項功能的網站。
   
-![][DiagnosticsLogs] From settings menu, scroll down to the **Monitoring** section and click on **(1) Diagnostic Logs**. Then **(2) enable** **Application Logging (Filesystem)** or **Application Logging (blob)** The **Level** option lets you change the severity level of traces to capture. If you're just trying to get familiar with the feature, set the level to **Verbose** to ensure all of your trace statements are collected.
+![][DiagnosticsLogs] 然後按一下 [設定 (1)] > [診斷記錄 (2)] 和 [(3) 開啟] **應用程式記錄 (檔案系統)** 或**應用程式記錄 (Blob)**。[層級] 選項可讓您變更要擷取之追蹤的嚴重性層級。如果您才剛熟悉此功能，應該將此選項設定為 [詳細資訊]，因此這可確保記錄追蹤陳述式。
 
-Click **SAVE** at the top of the blade and you're ready to view logs.
+按一下刀鋒頂端的 [儲存]，隨後可準備檢視記錄。
 
->[AZURE.NOTE] The higher the **severity level** the more resources are consumed to log and the more traces are produced. Make sure **severity level** is configured to the correct verbosity for a production or high traffic site. 
+**注意：****嚴重性層級**愈高，系統會耗用更多的資源進行記錄，且您會取得更多追蹤。針對高流量 / 生產的網站使用此功能時，請確定這個值設定為適當的層級。
 
-![][StreamingLogsScreenshot] To view the **streaming logs** from within the Azure portal, click on **(1) Log Stream** also in the **Monitoring** section of the settings menu. If your app is actively writing trace statements, then you should see them in the **(2) streaming logs UI** in near real time.
+![][StreamingLogsScreenshot] 若要從入口網站內檢視資料流記錄，請按一下 [工具 (1)] > [記錄資料流 (2)]。如果您的應用程式主動撰寫追蹤陳述式，則您應在 **(3)** 結果視窗中近乎即時地看到這些追蹤陳述式。
 
-## <a name="console"></a>Console
-The **Azure portal** provides console access to your app. You can explore your app's file system and run powershell/cmd scripts. You are bound by the same permissions set as your running app code when executing console commands. Access to protected directories or running scripts that require elevated permissions is blocked.  
+## 主控台 ##
+Azure 入口網站提供能夠存取您 Web 應用程式環境的主控台。您可以探索 Web 應用程式的檔案系統並執行 powershell/cmd 指令碼。執行主控台命令時，您會受到與執行 Web 應用程式程式碼之相同權限集的限制。您無法存取受保護的目錄或執行需要提高權限的指令碼。
 
-![][ConsoleScreenshot] From settings menu, scroll down to **Development Tools** section and click on **(1) Console** and the **(2) console** UI opens to the right.
+![][ConsoleScreenshot] 若要取得主控台，請如上節所述瀏覽至 Web 應用程式。按一下 [工具 (1)] > [主控台 (2)]，**(3)** 主控台會隨即開啟。
 
-To get familiar with the **console**, try basic commands like:
+若要熟悉主控台，請嘗試以下類似的基本命令：
 
 `````````````````````````
 dir
@@ -85,8 +84,4 @@ cd
 [StreamingLogsScreenshot]: ./media/web-sites-streaming-logs-and-console/streaming-logs.png
 [ConsoleScreenshot]: ./media/web-sites-streaming-logs-and-console/console.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0727_2016-->

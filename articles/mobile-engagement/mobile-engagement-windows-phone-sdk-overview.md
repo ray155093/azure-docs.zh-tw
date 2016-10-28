@@ -1,67 +1,62 @@
 <properties 
-    pageTitle="Windows Phone Silverlight SDK Overview" 
-    description="Overview of the Windows Phone Silverlight SDK for Azure Mobile Engagement"                     
-    services="mobile-engagement" 
-    documentationCenter="mobile" 
-    authors="piyushjo" 
-    manager="dwrede"
-    editor="" />
+	pageTitle="Windows Phone Silverlight SDK 概觀" 
+	description="適用於 Azure Mobile Engagement 的 Windows Phone Silverlight SDK 概觀" 					
+	services="mobile-engagement" 
+	documentationCenter="mobile" 
+	authors="piyushjo" 
+	manager="dwrede"
+	editor="" />
 
 <tags 
-    ms.service="mobile-engagement" 
-    ms.workload="mobile" 
-    ms.tgt_pltfrm="mobile-windows-phone" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="08/19/2016" 
-    ms.author="piyushjo" />
+	ms.service="mobile-engagement" 
+	ms.workload="mobile" 
+	ms.tgt_pltfrm="mobile-windows-phone" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="08/19/2016" 
+	ms.author="piyushjo" />
 
+#適用於 Azure Mobile Engagement 的 Windows Phone Silverlight SDK 概觀
 
-#<a name="windows-phone-silverlight-sdk-overview-for-azure-mobile-engagement"></a>Windows Phone Silverlight SDK Overview for Azure Mobile Engagement
+從這裡開始了解在 Windows Phone Silverlight 應用程式中整合 Azure Mobile Engagement 的細節。如果您想要先試用一下，請務必先完成我們的 [15 分鐘教學課程](mobile-engagement-windows-phone-get-started.md)。
 
-Start here to get the details on how to integrate Azure Mobile Engagement in a Windows Phone Silverlight App. If you'd like to give it a try first, make sure you complete our [15 minutes tutorial](mobile-engagement-windows-phone-get-started.md).
+按一下以查看 [SDK 內容](mobile-engagement-windows-phone-sdk-content.md)
 
-Click to see the [SDK Content](mobile-engagement-windows-phone-sdk-content.md)
+##整合程序
 
-##<a name="integration-procedures"></a>Integration procedures
+1. 從這裡開始：[如何在 Windows Phone Silverlight 應用程式中整合 Mobile Engagement](mobile-engagement-windows-phone-integrate-engagement.md)
 
-1. Start here: [How to integrate Mobile Engagement in your Windows Phone Silverlight app](mobile-engagement-windows-phone-integrate-engagement.md)
+2. 通知：[如何在 Windows Phone Silverlight 應用程式中整合 Reach (通知)](mobile-engagement-windows-phone-integrate-engagement-reach.md)
 
-2. For Notifications: [How to integrate Reach (Notifications) in your Windows Phone Silverlight app](mobile-engagement-windows-phone-integrate-engagement-reach.md)
+3. 標記計劃實作：[如何在 Windows Phone Silverlight 應用程式中使用進階的 Mobile Engagement 標記 API](mobile-engagement-windows-phone-use-engagement-api.md)。
 
-3. Tag plan implementation: [How to use the advanced Mobile Engagement tagging API in your Windows Phone Silverlight app](mobile-engagement-windows-phone-use-engagement-api.md)
+##版本資訊
 
-##<a name="release-notes"></a>Release notes
+###3\.3.0 (04/19/2016)
+*MicrosoftAzure.MobileEngagement* Nuget 封裝 **v3.4.0** 的一部分
 
-###<a name="3.3.0-(04/19/2016)"></a>3.3.0 (04/19/2016)
-Part of the *MicrosoftAzure.MobileEngagement* nuget package **v3.4.0**
+-   已加入 "TestLogLevel" API 來啟用/停用/篩選 SDK 所發出的主控台記錄檔。
 
--   Added "TestLogLevel" API to enable/disable/filter console logs emitted by the SDK.
+如需較早版本，請參閱[完整版本資訊](mobile-engagement-windows-phone-release-notes.md)
 
-For earlier version please see the [complete release notes](mobile-engagement-windows-phone-release-notes.md)
+##升級程序
 
-##<a name="upgrade-procedures"></a>Upgrade procedures
+如果您已經整合我們的舊版 SDK 到您的應用程式，在升級 SDK 時您必須考慮以下幾點。
 
-If you already have integrated an older version of our SDK into your application, you have to consider the following points when upgrading the SDK.
+如果您有錯過幾個版本的 SDK，您必須遵循幾個步驟。請參閱完整的[升級程序](mobile-engagement-windows-phone-upgrade-procedure.md)。例如，如果您要從 0.10.1 移轉到 0.11.0，必須先遵循「從 0.9.0 到 0.10.1」的程序，然後「從 0.10.1 到 0.11.0」的程序。
 
-You may have to follow several procedures if you missed several versions of the SDK. See the complete [Upgrade Procedures](mobile-engagement-windows-phone-upgrade-procedure.md). For example if you migrate from 0.10.1 to 0.11.0 you have to first follow the "from 0.9.0 to 0.10.1" procedure then the "from 0.10.1 to 0.11.0" procedure.
+###從 2.0.0 到 3.3.0
 
-###<a name="from-2.0.0-to-3.3.0"></a>From 2.0.0 to 3.3.0
+####測試記錄檔
 
-####<a name="test-logs"></a>Test logs
+SDK 所產生的主控台記錄檔現在可以啟用/停用/篩選。若要自訂這種情況，請將屬性 `EngagementAgent.Instance.TestLogEnabled` 更新為 `EngagementTestLogLevel` 列舉的其中一個可用值，例如︰
 
-Console logs produced by the SDK can now be enabled/disabled/filtered. To customize this, update the property `EngagementAgent.Instance.TestLogEnabled` to one of the value available from the `EngagementTestLogLevel` enumeration, for instance:
+			EngagementAgent.Instance.TestLogLevel = EngagementTestLogLevel.Verbose;
+			EngagementAgent.Instance.Init();
 
-            EngagementAgent.Instance.TestLogLevel = EngagementTestLogLevel.Verbose;
-            EngagementAgent.Instance.Init();
+### 從舊版升級
 
-### <a name="upgrade-from-older-versions"></a>Upgrade from older versions
-
-See [Upgrade Procedures](mobile-engagement-windows-phone-upgrade-procedure.md)
+請參閱[升級程序](mobile-engagement-windows-phone-upgrade-procedure.md)
  
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

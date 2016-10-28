@@ -1,13 +1,10 @@
 
-1. In the [Azure Portal]( https://azure.portal.com/), click **Browse** > **App Services**, then click your Mobile App backend > **All settings**, then under **Mobile** click **Push**.
+1. 在 [Azure 入口網站](https://azure.portal.com/)中，按一下 [瀏覽] > [應用程式服務]，再按一下您的行動應用程式後端 > [所有設定]，並在 [行動] 下方的 [推送]。
 
-2. In Push notification services, click **Windows (WNS)**, enter the **Security key** (client secret) and **Package SID** that you obtained from the Live Services site, then click **Save**.
+2. 在 [推送通知] 中，按一下 [Windows (WNS)]，輸入您從線上服網站上取得的安全性金鑰 (用戶端密碼) 和封裝 SID，然後按一下 [儲存]。
 
-    ![Set the GCM API key in the portal](./media/app-service-mobile-configure-wns/mobile-push-wns-credentials.png)
+    ![在入口網站中設定 GCM API 金鑰](./media/app-service-mobile-configure-wns/mobile-push-wns-credentials.png)
 
-Your Mobile App backend is now configured to use WNS to send push notifications to your Windows app using its notification hub.
+您已將行動應用程式後端設定為使用 WNS 和其通知中樞，將推播通知傳送到您的 Windows 應用程式。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_1203_2015-->

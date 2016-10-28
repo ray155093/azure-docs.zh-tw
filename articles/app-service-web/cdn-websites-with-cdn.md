@@ -1,148 +1,147 @@
 <properties 
-    pageTitle="Use Azure CDN in Azure App Service" 
-    description="A tutorial that teaches you how to deploy a web app to Azure App Service that serves content from an integrated Azure CDN endpoint" 
-    services="app-service\web,cdn" 
-    documentationCenter=".net" 
-    authors="cephalin" 
-    manager="wpickett" 
-    editor="jimbe"/>
+	pageTitle="在 Azure App Service 中使用 Azure CDN" 
+	description="教學課程，指導您如何將 Web 應用程式部署至提供整合式 Azure CDN 端點內容的 Azure App Service" 
+	services="app-service\web,cdn" 
+	documentationCenter=".net" 
+	authors="cephalin" 
+	manager="wpickett" 
+	editor="jimbe"/>
 
 <tags 
-    ms.service="app-service" 
-    ms.workload="tbd" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="dotnet" 
-    ms.topic="article" 
-    ms.date="07/01/2016" 
-    ms.author="cephalin"/>
+	ms.service="app-service" 
+	ms.workload="tbd" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="dotnet" 
+	ms.topic="article" 
+	ms.date="07/01/2016" 
+	ms.author="cephalin"/>
 
 
+# 在 Azure App Service 中使用 Azure CDN
 
-# <a name="use-azure-cdn-in-azure-app-service"></a>Use Azure CDN in Azure App Service
+[App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 可以與 [Azure CDN](/services/cdn/) 整合，並透過從靠近您客戶的伺服器節點全域地提供 Web 應用程式內容，來加入 [App Service Web Apps](http://go.microsoft.com/fwlink/?LinkId=529714) 中原有的全域調整功能 (在[這裡](http://msdn.microsoft.com/library/azure/gg680302.aspx)可以找到更新的所有目前節點位置清單)。在提供靜態影像這類情況下，這項整合可以大幅提高您 Azure App Service Web Apps 的效能，同時大幅提升全球 Web 應用程式的使用者經驗。
 
-[App Service](http://go.microsoft.com/fwlink/?LinkId=529714) can be integrated with [Azure CDN](/services/cdn/), adding to the global scaling capabilities inherent in [App Service Web Apps](http://go.microsoft.com/fwlink/?LinkId=529714) by serving your web app content globally from server nodes near your customers (an updated list of all current node locations can be found [here](http://msdn.microsoft.com/library/azure/gg680302.aspx)). In scenarios like serving static images, this integration can dramatically increase the performance of your Azure App Service Web Apps and significantly improves your web app's user experience worldwide. 
+整合 Web Apps 與 Azure CDN 提供下列優點：
 
-Integrating Web Apps with Azure CDN gives you the following advantages:
+- 將內容部署 (影像、指令碼和樣式表) 整合到 Web 應用程式的[連續部署](app-service-continuous-deployment.md)程序中
+- 輕鬆地升級 Azure App Service 的 Web 應用程式中的 NuGet 封裝 (例如 jQuery 或 Bootstrap 版本)
+- 從相同的 Visual Studio 介面來管理 Web 應用程式和 CDN 提供的內容
+- 整合 ASP.NET 統合和縮製與 Azure CDN
 
-- Integrate content deployment (images, scripts, and stylesheets) as part of your web app's [continuous deployment](app-service-continuous-deployment.md) process
-- Easily upgrade the NuGet packages in your web app in Azure App Service, such as jQuery or Bootstrap versions 
-- Manage your Web application and your CDN-served content from the same Visual Studio interface
-- Integrate ASP.NET bundling and minification with Azure CDN
+[AZURE.INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
-[AZURE.INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)] 
+## 將建置的項目 ##
 
-## <a name="what-you-will-build"></a>What you will build ##
+您將在 Visual Studio 中使用預設 ASP.NET MVC 範本將 Web 應用程式部署至 Azure App Service、加入程式碼從整合式 Azure CDN 提供內容 (例如影像、控制器動作結果，以及預設 JavaScript 和 CSS 檔案)，也會撰寫程式碼來為 CDN 離線時提供的套件組合設定後援機制。
 
-You will deploy a web app to Azure App Service using the default ASP.NET MVC template in Visual Studio, add code to serve content from an integrated Azure CDN, such as an image, controller action results, and the default JavaScript and CSS files, and also write code to configure the fallback mechanism for bundles served in the event that the CDN is offline.
+## 必要元件 ##
 
-## <a name="what-you-will-need"></a>What you will need ##
+本教學課程有下列先決條件：
 
-This tutorial has the following prerequisites:
+-	使用中的 [Microsoft Azure 帳戶](/account/)
+-	Visual Studio 2015 (含 [Azure SDK for .NET](http://go.microsoft.com/fwlink/p/?linkid=323510&clcid=0x409))。如果您使用 Visual Studio，則步驟可能有差異。
 
--   An active [Microsoft Azure account](/account/)
--   Visual Studio 2015 with the [Azure SDK for .NET](http://go.microsoft.com/fwlink/p/?linkid=323510&clcid=0x409). If you use Visual Studio, the steps may vary.
-
-> [AZURE.NOTE] You need an Azure account to complete this tutorial:
-> + You can [open an Azure account for free](/pricing/free-trial/) - You get credits you can use to try out paid Azure services, and even after they're used up you can keep the account and use free Azure services, such as Web Apps.
-> + You can [activate Visual Studio subscriber benefits](/pricing/member-offers/msdn-benefits-details/) - Your Visual Studio subscription gives you credits every month that you can use for paid Azure services.
+> [AZURE.NOTE] 要完成此教學課程，您必須要有 Azure 帳戶：
+> + 您可以[免費申請 Azure 帳戶](/pricing/free-trial/)：您將取得可試用 Azure 付費服務的額度，且即使在額度用完後，您仍可保留帳戶，並使用免費的 Azure 服務，例如 Web Apps。
+> + 您可以[啟用 Visual Studio 訂戶權益](/pricing/member-offers/msdn-benefits-details/)：您的 Visual Studio 訂用帳戶每個月都會提供額度，供您用在 Azure 付費服務。
 >
-> If you want to get started with Azure App Service before signing up for an Azure account, go to [Try App Service](http://go.microsoft.com/fwlink/?LinkId=523751), where you can immediately create a short-lived starter web app in App Service. No credit cards required; no commitments.
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；沒有承諾。
 
-## <a name="deploy-a-web-app-to-azure-with-an-integrated-cdn-endpoint"></a>Deploy a web app to Azure with an integrated CDN endpoint ##
+## 將具有整合式 CDN 端點的 Web 應用程式部署至 Azure ##
 
-In this section, you will deploy the default ASP.NET MVC application template in Visual Studio 2015 to App Service, and then integrate it with a new CDN endpoint. Follow the instructions below:
+在本節中，您會在 Visual Studio 2015 中將預設 ASP.NET MVC 應用程式範本部署至 App Service，然後將它與新的 CDN 端點整合。請遵循下列指示：
 
-1. In Visual Studio 2015, create a new ASP.NET web application from the menu bar by going to **File > New > Project > Web > ASP.NET Web Application**. Give it a name and click **OK**.
+1. 在 Visual Studio 2015 中，從功能表列中移至 [檔案] > [新增] > [專案] > [Web] > [ASP.NET Web 應用程式]，以建立新的 ASP.NET Web 應用程式。命名並按一下 [確定]。
 
-    ![](media/cdn-websites-with-cdn/1-new-project.png)
+	![](media/cdn-websites-with-cdn/1-new-project.png)
 
-3. Select **MVC** and click **OK**.
+3. 選取 [**MVC**]，按一下 [**確定**]。
 
-    ![](media/cdn-websites-with-cdn/2-webapp-template.png)
+	![](media/cdn-websites-with-cdn/2-webapp-template.png)
 
-4. If you haven't logged into your Azure account yet, click the account icon in the upper-right corner and follow the dialog to log into your Azure account. Once you're done, configure your app as shown below, then click **New** to create a new App Service plan for your app.  
+4. 如果尚未登入您的 Azure 帳戶，請按一下右上角的帳戶圖示，並按照對話方塊登入您的 Azure 帳戶。完成之後，設定在底下所顯示您的應用程式，設定然後按一下 [新增] 來為應用程式建立新的 App Service 計畫。
 
-    ![](media/cdn-websites-with-cdn/3-configure-webapp.png)
+	![](media/cdn-websites-with-cdn/3-configure-webapp.png)
 
-5. Configure a new App Service plan in the dialog as shown below and click **OK**. 
+5. 在對話方塊中設定新的 App Service (如下所示)，然後按一下 [確定]。
 
-    ![](media/cdn-websites-with-cdn/4-app-service-plan.png)
+	![](media/cdn-websites-with-cdn/4-app-service-plan.png)
 
-8. Click **Create** to create the web app.
+8. 按一下 [建立] 來建立 Web 應用程式。
 
-    ![](media/cdn-websites-with-cdn/5-create-website.png)
+	![](media/cdn-websites-with-cdn/5-create-website.png)
 
-9. Once your ASP.NET application is created, publish it to Azure in the Azure App Service Activity pane by clicking **Publish `<app name>` to this Web App now**. Click **Publish** to complete the process.
+9. 建立 ASP.NET 應用程式之後，在 [Azure App Service Activity] 窗格中按一下 [將 `<app name>` 立即發佈至此 Web 應用程式]，將它發佈至 Azure。按一下 [**發佈**] 完成程序。
 
-    ![](media/cdn-websites-with-cdn/6-publish-website.png)
+	![](media/cdn-websites-with-cdn/6-publish-website.png)
 
-    You will see your published web app in the browser when publishing is complete. 
+	當發佈完成時，您會在瀏覽器中看到您已發佈的 Web 應用程式。
 
-1. To create a CDN endpoint, log into the [Azure portal](https://portal.azure.com). 
-2. Click **+ New** > **Media + CDN** > **CDN**.
+1. 若要建立 CDN 端點，請登入 [Azure 入口網站](https://portal.azure.com)。
+2. 按一下 [+ 新增] >[媒體 + CDN] > [CDN]。
 
-    ![](media/cdn-websites-with-cdn/create-cdn-profile.png)
+	![](media/cdn-websites-with-cdn/create-cdn-profile.png)
 
-3. Specify the **CDN**, **Location**, **Resource group**,  **Pricing tier**, then click **Create**
+3. 指定 **CDN**、**位置**、**資源群組**、**定價層**，然後按一下 [建立]
 
-    ![](media/cdn-websites-with-cdn/7-create-cdn.png)   
+	![](media/cdn-websites-with-cdn/7-create-cdn.png)
 
-4. In the **CDN Profile** blade click on **+ Endpoint** button. Give it a name, select **Web App** in the **Origin Type** dropdown and your web app in the **Origin hostname** dropdown, then click **Add**.  
+4. 在 [CDN 設定檔] 刀鋒視窗中，按一下 [+ 端點] 按鈕。請加以命名，接著在 [原始類型] 下拉式清單中選取 **Web 應用程式**，並在 [原始主機名稱] 中選取您的 web 應用程式，然後按一下 [新增]。
 
-    ![](media/cdn-websites-with-cdn/cdn-profile-blade.png)
-
-
-
-    > [AZURE.NOTE] Once your CDN endpoint is created, the **Endpoint** blade will show you its CDN URL and the origin domain that it's integrated with. However, it can take a while for the new CDN endpoint's configuration to be fully propagated to all the CDN node locations. 
-
-3. Back in the **Endpoint** blade, click the name of the CDN endpoint you just created.
-
-    ![](media/cdn-websites-with-cdn/8-select-cdn.png)
-
-3. Click the **Configure** button. In the **Configure** blade, select **Cache every unique URL** in **Query string caching behavior** dropdown, then click the **Save** button.
+	![](media/cdn-websites-with-cdn/cdn-profile-blade.png)
 
 
-    ![](media/cdn-websites-with-cdn/9-enable-query-string.png)
 
-Once you enable this, the same link accessed with different query strings will be cached as separate entries.
+	> [AZURE.NOTE] 建立 CDN 端點之後，[端點] 刀鋒視窗會顯示其 CDN URL 及與它整合的原始網域。不過，需要花費一些時間，新的 CDN 端點的組態才能完全傳播到所有 CDN 節點位置。
 
->[AZURE.NOTE] While enabling the query string is not necessary for this tutorial section, you want to do this as early as possible for convenience since any change here is going to take time to propagate to all the CDN nodes, and you don't want any non-query-string-enabled content to clog up the CDN cache (updating CDN content will be discussed later).
+3. 回到 [端點] 刀鋒視窗，按一下您剛建立的 CDN 端點的名稱。
 
-2. Now, navigate to the CDN endpoint address. If the endpoint is ready, you should see your web app displayed. If you get an **HTTP 404** error, the CDN endpoint is not ready. You may need to wait up to an hour for the CDN configuration to be propagated to all the edge nodes. 
+	![](media/cdn-websites-with-cdn/8-select-cdn.png)
 
-    ![](media/cdn-websites-with-cdn/11-access-success.png)
+3. 按一下 [設定] 按鈕。在 [設定] 刀鋒視窗中，選取 [查詢字串快取行為] 下拉式清單中的 [快取每個唯一的 URL]，然後按一下 [儲存] 按鈕。
 
-1. Next, try to access the **~/Content/bootstrap.css** file in your ASP.NET project. In the browser window, navigate to **http://*&lt;cdnName>*.azureedge.net/Content/bootstrap.css**. In my setup, this URL is:
 
-        http://az673227.azureedge.net/Content/bootstrap.css
+	![](media/cdn-websites-with-cdn/9-enable-query-string.png)
 
-    Which corresponds to the following origin URL at the CDN endpoint:
+啟用此選項後，將以個別項目來快取以不同查詢字串存取的相同連結。
 
-        http://cdnwebapp.azurewebsites.net/Content/bootstrap.css
+>[AZURE.NOTE] 雖然本節教學課程並不需要啟用查詢字串，但為了方便起見，請儘早這樣做，因為此處的任何變更需要花費很長時間才能傳播至所有 CDN 節點，您不希望任何未啟用查詢字串的內容塞滿 CDN 快取 (稍後會討論更新 CDN 內容)。
 
-    When you navigate to **http://*&lt;cdnName>*.azureedge.net/Content/bootstrap.css**, you will be prompted to download the bootstrap.css that came from your web app in Azure. 
+2. 現在，請瀏覽至 CDN 端點位址。如果端點已準備就緒，您應該會看到顯示的 Web 應用程式。如果您收到 **HTTP 404** 錯誤，表示 CDN 端點還未準備就緒。您可能需要等候一小時，CDN 組態才能傳播到所有邊緣節點。
 
-    ![](media/cdn-websites-with-cdn/12-file-access.png)
+	![](media/cdn-websites-with-cdn/11-access-success.png)
 
-You can similarly access any publicly accessible URL at **http://*&lt;serviceName>*.cloudapp.net/**, straight from your CDN endpoint. For example:
+1. 接下來，試著存取 ASP.NET 專案中的 **~/Content/bootstrap.css** 檔案。在瀏覽器視窗中，瀏覽至 **http://*&lt;cdnName>*.azureedge.net/Content/bootstrap.css**。在我的設定中，此 URL 為：
 
--   A .js file from the /Script path
--   Any content file from the /Content path
--   Any controller/action 
--   If the query string is enabled at your CDN endpoint, any URL with query strings
--   The entire Azure web app, if all content is public
+		http://az673227.azureedge.net/Content/bootstrap.css
 
-Note that it may not be always a good idea (or generally a good idea) to serve an entire Azure web app through Azure CDN. Some of the caveats are:
+	對應至 CDN 端點上的下列原始 URL：
 
--   This approach requires your entire site to be public, because Azure CDN cannot serve any private content.
--   If the CDN endpoint goes offline for any reason, whether scheduled maintenance or user error, your entire web app goes offline unless the customers can be redirected to the origin URL **http://*&lt;sitename>*.azurewebsites.net/**. 
--   Even with the custom Cache-Control settings (see [Configure caching options for static files in your Azure web app](#configure-caching-options-for-static-files-in-your-azure-web-app)), a CDN endpoint does not improve the performance of highly-dynamic content. If you tried to load the home page from your CDN endpoint as shown above, notice that it took at least 5 seconds to load the default home page the first time, which is a fairly simple page. Imagine what would happen to the client experience if this page contains dynamic content that must update every minute. Serving dynamic content from a CDN endpoint requires short cache expiration, which translates to frequent cache misses at the CDN endpoint. This hurts the performance of your Azure web app and defeats the purpose of a CDN.
+		http://cdnwebapp.azurewebsites.net/Content/bootstrap.css
 
-The alternative is to determine which content to serve from Azure CDN on a case-by-case basis in your Azure web app. To that end, you have already seen how to access individual content files from the CDN endpoint. I will show you how to serve a specific controller action through the CDN endpoint in [Serve content from controller actions through Azure CDN](#serve-content-from-controller-actions-through-azure-cdn).
+	瀏覽至 **http://*&lt;cdnName>*.azureedge.net/Content/bootstrap.css** 時，系統將提示您下載來自 Azure 中 Web 應用程式的 bootstrap.css。
 
-## <a name="configure-caching-options-for-static-files-in-your-azure-web-app"></a>Configure caching options for static files in your Azure web app ##
+	![](media/cdn-websites-with-cdn/12-file-access.png)
 
-With Azure CDN integration in your Azure web app, you can specify how you want static content to be cached in the CDN endpoint. To do this, open *Web.config* from your ASP.NET project (e.g. **cdnwebapp**) and add a `<staticContent>` element to `<system.webServer>`. The XML below configures the cache to expire in 3 days.  
+同樣地，您可以直接從 CDN 端點，以 **http://*&lt;serviceName>*.cloudapp.net/** 存取任何可公開存取的 URL。例如：
+
+-	/Script 路徑中的 .js 檔案
+-	/Content 路徑中的任何內容檔案
+-	任何控制器/動作
+-	任何含有查詢字串的 URL (若 CDN 端點已啟用查詢字串的話)
+-	整個 Azure Web 應用程式 (若所有內容都是公用)
+
+請注意，透過 Azure CDN 提供整個 Azure Web 應用程式不見得是個好主意 (或通常是個好主意)。有幾點需要注意：
+
+-	此作法需要公開整個網站，因為 Azure CDN 無法提供任何私人內容。
+-	如果 CDN 端點因故離線 (不論是排定的維護或使用者錯誤)，除非能夠將客戶重新導向至原始 URL **http://*&lt;sitename>*.azurewebsites.net/**，否則整個 Web 應用程式都會離線。
+-	即使使用自訂 Cache-Control 設定 (請參閱[在 Azure Web 應用程式中設定靜態檔案的快取選項](#configure-caching-options-for-static-files-in-your-azure-web-app))，CDN 端點也無法改善高度動態內容的效能。如果您嘗試從 CDN 端點載入首頁，如上所示，請注意，第一次載入預設首頁 (非常簡單的頁面) 至少需要 5 秒。設想，如果此頁面包含必須每分鐘更新的動態內容，客戶體驗有何影響。從 CDN 端點提供動態內容需要有較短的快取到期時間，這也說明 CDN 端點經常會發生快取遺漏。這會降低 Azure Web 應用程式的效能，也會折損 CDN 的效用。
+
+替代方法是在 Azure Web 應用程式中依個別情況決定從 Azure CDN 提供什麼內容。總之，您已了解如何從 CDN 端點存取個別的內容檔案。我將在[透過 Azure CDN 從控制器動作提供內容](#serve-content-from-controller-actions-through-azure-cdn)中說明如何透過 CDN 端點提供特定的控制器動作。
+
+## 在 Azure Web 應用程式中設定靜態檔案的快取設定 ##
+
+利用 Azure Web 應用程式中的 Azure CDN 整合，您可以指定如何在 CDN 端點中快取靜態內容。若要這樣做，請從 ASP.NET 專案 (例如 **cdnwebapp**) 開啟 *Web.config*，將 `<staticContent>` 元素加入至 `<system.webServer>`。以下的 XML 將快取設為 3 天過期。
 
     <system.webServer>
       <staticContent>
@@ -151,36 +150,36 @@ With Azure CDN integration in your Azure web app, you can specify how you want s
       ...
     </system.webServer>
 
-Once you do this, all static files in your Azure web app will observe the same rule in your CDN cache. For more granular control of cache settings, add a *Web.config* file into a folder and add your settings there. For example, add a *Web.config* file to the *\Content* folder and replace the content with the following XML:
+這樣做時，Azure Web 應用程式中的所有靜態檔案會在您的 CDN 快取中遵守相同規則。若要更精確控制快取設定，請將 *Web.config* 檔案加入至資料夾，並在檔案中新增您的設定。例如，將 *Web.config* 檔案加入至 *\\Content* 資料夾，並將內容改成下列 XML：
 
-    <?xml version="1.0"?>
-    <configuration>
-      <system.webServer>
-        <staticContent>
-          <clientCache cacheControlMode="UseMaxAge" cacheControlMaxAge="15.00:00:00"/>
-        </staticContent>
-      </system.webServer>
-    </configuration>
+	<?xml version="1.0"?>
+	<configuration>
+	  <system.webServer>
+	    <staticContent>
+	      <clientCache cacheControlMode="UseMaxAge" cacheControlMaxAge="15.00:00:00"/>
+	    </staticContent>
+	  </system.webServer>
+	</configuration>
 
-This setting causes all static files from the *\Content* folder to be cached for 15 days.
+此設定會將 *\\Content* 資料夾中的所有靜態檔案快取 15 天。
 
-For more information on how to configure the `<clientCache>` element, see [Client Cache &lt;clientCache>](http://www.iis.net/configreference/system.webserver/staticcontent/clientcache).
+如需有關如何設定 `<clientCache>` 元素的詳細資訊，請參閱[用戶端快取 &lt;clientCache>](http://www.iis.net/configreference/system.webserver/staticcontent/clientcache)。
 
-In the next section, I will also show you how you can configure cache settings for controller action results in the CDN cache.
+在下一節中，我也會說明如何在 CDN 快取中設定控制器動作結果的快取設定。
 
-## <a name="serve-content-from-controller-actions-through-azure-cdn"></a>Serve content from controller actions through Azure CDN ##
+## 透過 Azure CDN 從控制器動作提供內容 ##
 
-When you integrate Web Apps with Azure CDN, it is relatively easy to serve content from controller actions through the Azure CDN. Again, if you decide to serve the entire Azure web app through your CDN, you don't need to do this at all since all the controller actions are reachable through the CDN already. But for the reasons I already pointed out in [Deploy an Azure web app with an integrated CDN endpoint](#deploy-a-web-app-to-azure-with-an-integrated-cdn-endpoint), you may decide against this and choose instead to select the controller action you want to serve from Azure CDN. [Maarten Balliauw](https://twitter.com/maartenballiauw) shows you how to do it with a fun MemeGenerator controller in [Reducing latency on the web with the Azure CDN](http://channel9.msdn.com/events/TechDays/Techdays-2014-the-Netherlands/Reducing-latency-on-the-web-with-the-Windows-Azure-CDN). I will simply reproduce it here.
+整合 Web 應用程式與 Azure CDN 時，透過 Azure CDN 從控制器動作提供內容就非常簡單。同樣地，如果您決定透過 CDN 來提供整個 Azure Web 應用程式，則您不需要這麼做，因為已可透過 CDN 來呼叫所有控制器動作。但是，就像我在[部署具有整合式 CDN 端點的 Azure Web 應用程式](#deploy-a-web-app-to-azure-with-an-integrated-cdn-endpoint)中所提出的理由，您可能決定不這樣做，而是選擇選取您想要從 Azure CDN 提供的控制器動作。[Maarten Balliauw](https://twitter.com/maartenballiauw) 在[使用 Azure CDN 縮短網路延遲時間](http://channel9.msdn.com/events/TechDays/Techdays-2014-the-Netherlands/Reducing-latency-on-the-web-with-the-Windows-Azure-CDN)中以一個有趣的 MemeGenerator 控制器來說明作法。我在這裡簡單地重述一次。
 
-Suppose in your web app you want to generate memes based on a young Chuck Norris image (photo by [Alan Light](http://www.flickr.com/photos/alan-light/218493788/)) like this:
+假設您想在 Web 應用程式中利用查克羅禮士年輕時的一張相片 ([Alan Light](http://www.flickr.com/photos/alan-light/218493788/) 拍攝) 來引起網路瘋傳：
 
 ![](media/cdn-websites-with-cdn/cdn-5-memegenerator.PNG)
 
-You have a simple `Index` action that allows the customers to specify the superlatives in the image, then generates the meme once they post to the action. Since it's Chuck Norris, you would expect this page to become wildly popular globally. This is a good example of serving semi-dynamic content with Azure CDN. 
+您有一個簡單的 `Index` 動作可讓客戶在照片上指定笑梗，再傳給此動作來引起網路瘋傳。因為是查克羅禮士，您預期此頁面一定會在全球造成一股旋風。這就是利用 Azure CDN 來提供半動態內容的一個最佳例子。
 
-Follow the steps above to setup this controller action:
+請依照上述步驟來設定此控制器動作：
 
-1. In the *\Controllers* folder, create a new .cs file called *MemeGeneratorController.cs* and replace the content with the following code. Substitute your file path for `~/Content/chuck.bmp` and your CDN name for `yourCDNName`.
+1. 在 *\\Controllers* 資料夾中，建立一個新的 .cs 檔案稱為 *MemeGeneratorController.cs*，並將內容改成下列程式碼。針對 `~/Content/chuck.bmp` 取代您的檔案路徑，並針對 `yourCDNName` 取代您的 CDN 名稱。
 
 
         using System;
@@ -213,7 +212,7 @@ Follow the steps above to setup this controller action:
                 Memes.Add(identifier, new Tuple<string, string>(top, bottom));
               }
 
-              return Content("<a href=\"" + Url.Action("Show", new {id = identifier}) + "\">here's your meme</a>");
+              return Content("<a href="" + Url.Action("Show", new {id = identifier}) + "">here's your meme</a>");
             }
 
             [OutputCache(VaryByParam = "*", Duration = 1, Location = OutputCacheLocation.Downstream)]
@@ -278,29 +277,29 @@ Follow the steps above to setup this controller action:
           }
         }
 
-2. Right-click in the default `Index()` action and select **Add View**.
+2. 以滑鼠右鍵按一下預設的 `Index()` 動作，選取 [**加入檢視**]。
 
-    ![](media/cdn-websites-with-cdn/cdn-6-addview.PNG)
+	![](media/cdn-websites-with-cdn/cdn-6-addview.PNG)
 
-3.  Accept the settings below and click **Add**.
+3.  接受下列設定，按一下 [加入]。
 
-    ![](media/cdn-websites-with-cdn/cdn-7-configureview.PNG)
+	![](media/cdn-websites-with-cdn/cdn-7-configureview.PNG)
 
-4. Open the new *Views\MemeGenerator\Index.cshtml* and replace the content with the following simple HTML for submitting the superlatives:
+4. 開啟新的 *Views\\MemeGenerator\\Index.cshtml*，將內容改成下列簡單的 HTML 來提交笑梗：
 
-        <h2>Meme Generator</h2>
-        
-        <form action="" method="post">
-            <input type="text" name="top" placeholder="Enter top text here" />
-            <br />
-            <input type="text" name="bottom" placeholder="Enter bottom text here" />
-            <br />
-            <input class="btn" type="submit" value="Generate meme" />
-        </form>
+		<h2>Meme Generator</h2>
+		
+		<form action="" method="post">
+		    <input type="text" name="top" placeholder="Enter top text here" />
+		    <br />
+		    <input type="text" name="bottom" placeholder="Enter bottom text here" />
+		    <br />
+		    <input class="btn" type="submit" value="Generate meme" />
+		</form>
 
-5. Publish to the Azure web app again and navigate to **http://*&lt;serviceName>*.cloudapp.net/MemeGenerator/Index** in your browser. 
+5. 重新發佈至 Azure Web 應用程式，然後在瀏覽器中瀏覽至 **http://*&lt;serviceName>*.cloudapp.net/MemeGenerator/Index**。
 
-When you submit the form values to `/MemeGenerator/Index`, the `Index_Post` action method returns a link to the `Show` action method with the respective input identifier. When you click the link, you reach the following code:  
+當您將表單值提交至 `/MemeGenerator/Index` 時，`Index_Post` 動作方法會傳回 `Show` 動作方法的連結及個別的輸入識別碼。按一下連結會執行下列程式碼：
 
     [OutputCache(VaryByParam = "*", Duration = 1, Location = OutputCacheLocation.Downstream)]
     public ActionResult Show(string id)
@@ -321,37 +320,37 @@ When you submit the form values to `/MemeGenerator/Index`, the `Index_Post` acti
       }
     }
 
-If your local debugger is attached, then you will get the regular debug experience with a local redirect. If it's running in the Azure web app, then it will redirect to:
+如果已附加本機偵錯程式，您將經由本機重新導向而享有一般的偵錯體驗。如果是在 Azure Web 應用程式中執行，則會重新導向至：
 
-    http://<yourCDNName>.azureedge.net/MemeGenerator/Generate?top=<formInput>&bottom=<formInput>
+	http://<yourCDNName>.azureedge.net/MemeGenerator/Generate?top=<formInput>&bottom=<formInput>
 
-Which corresponds to the following origin URL at your CDN endpoint:
+對應至 CDN 端點上的下列原始 URL：
 
-    http://<yourSiteName>.azurewebsites.net/cdn/MemeGenerator/Generate?top=<formInput>&bottom=<formInput>
+	http://<yourSiteName>.azurewebsites.net/cdn/MemeGenerator/Generate?top=<formInput>&bottom=<formInput>
 
-After URL rewrite rule previously applied, the actual file that gets cached to your CDN endpoint is:
+先前套用 URL 重寫規則之後，實際快取至 CDN 端點的檔案為：
 
-    http://<yourSiteName>.azurewebsites.net/MemeGenerator/Generate?top=<formInput>&bottom=<formInput>
+	http://<yourSiteName>.azurewebsites.net/MemeGenerator/Generate?top=<formInput>&bottom=<formInput>
 
-You can then use the `OutputCacheAttribute` attribute on the `Generate` method to specify how the action result should be cached, which Azure CDN will honor. The code below specify a cache expiration of 1 hour (3,600 seconds).
+然後，您可以在 `Generate` 方法上使用 `OutputCacheAttribute` 屬性，以指定如何快取 Azure CDN 將接受的動作結果。以下程式碼指定快取到期時間 1 小時 (3,600 秒)。
 
     [OutputCache(VaryByParam = "*", Duration = 3600, Location = OutputCacheLocation.Downstream)]
 
-Likewise, you can serve up content from any controller action in your Azure web app through your Azure CDN, with the desired caching option.
+同樣地，您可以在 Azure Web 應用程式中透過 Azure CDN，並指定想要的快取選項，從任何控制器動作提供內容。
 
-In the next section, I will show you how to serve the bundled and minified scripts and CSS through Azure CDN. 
+在下一節，我將說明如何透過 Azure CDN 提供統合和縮製的指令碼與 CSS。
 
-## <a name="integrate-asp.net-bundling-and-minification-with-azure-cdn"></a>Integrate ASP.NET bundling and minification with Azure CDN ##
+## 整合 ASP.NET 統合和縮製與 Azure CDN ##
 
-Scripts and CSS stylesheets change infrequently and are prime candidates for the Azure CDN cache. Serving the entire web app through your Azure CDN is the easiest way to integrate bundling and minification with Azure CDN. However, as you may elect against this approach for the reasons described in [Integrate an Azure CDN endpoint with your Azure web app and serve static content in your Web pages from Azure CDN](#deploy-a-web-app-to-azure-with-an-integrated-cdn-endpoint), I will show you how to do it while preserving the desired develper experience of ASP.NET bundling and minification, such as:
+指令碼和 CSS 樣式表不常變更，是 Azure CDN 快取的最佳候選項。透過 Azure CDN 提供整個 Web 應用程式是整合統合和縮製與 Azure CDN 最輕鬆的方法。不過，由於您可能因為[整合 Azure CDN 端點與 Azure Web 應用程式，並從 Azure CDN 提供網頁的靜態內容](#deploy-a-web-app-to-azure-with-an-integrated-cdn-endpoint)中所述的理由而不選擇這種作法，我將說明如何這樣做，但同時保留開發人員希望的 ASP.NET 統合和縮製體驗，例如：
 
--   Great debug mode experience
--   Streamlined deployment
--   Immediate updates to clients for script/CSS version upgrades
--   Fallback mechanism when your CDN endpoint fails
--   Minimize code modification
+-	絕佳的偵錯模式體驗
+-	流暢的部署
+-	隨著指令碼/CSS 版本升級立即更新用戶端
+-	CDN 端點失敗時的後援機制
+-	儘可能不修改程式碼
 
-In the ASP.NET project that you created in [Integrate an Azure CDN endpoint with your Azure web app and serve static content in your Web pages from Azure CDN](#deploy-a-web-app-to-azure-with-an-integrated-cdn-endpoint), open *App_Start\BundleConfig.cs* and take a look at the `bundles.Add()` method calls.
+在您於[整合 Azure CDN 端點與 Azure 網站，並從 Azure CDN 提供網頁的靜態內容](#deploy-a-web-app-to-azure-with-an-integrated-cdn-endpoint)中所建立的 ASP.NET 專案中，開啟 *App\_Start\\BundleConfig.cs*，然後查看 `bundles.Add()` 方法呼叫。
 
     public static void RegisterBundles(BundleCollection bundles)
     {
@@ -360,24 +359,24 @@ In the ASP.NET project that you created in [Integrate an Azure CDN endpoint with
         ...
     }
 
-The first `bundles.Add()` statement adds a script bundle at the virtual directory `~/bundles/jquery`. Then, open *Views\Shared\_Layout.cshtml* to see how the script bundle tag is rendered. You should be able to find the following line of Razor code:
+第一個 `bundles.Add()` 陳述式將指令碼套件組合加入至虛擬目錄 `~/bundles/jquery`。然後，開啟 *Views\\Shared\_Layout.cshtml*，查看指令碼套件組合標籤如何轉譯。您應該可以找到下列這一行 Razor 程式碼：
 
     @Scripts.Render("~/bundles/jquery")
 
-When this Razor code is run in the Azure web app, it will render a `<script>` tag for the script bundle similar to the following: 
+當此 Razor 程式碼在 Azure Web 應用程式中執行時，它會類似如下轉譯指令碼套件組合的 `<script>` 標籤：
 
     <script src="/bundles/jquery?v=FVs3ACwOLIVInrAl5sdzR2jrCDmVOWFbZMY6g6Q0ulE1"></script>
 
-However, when it is run in Visual Studio by typing `F5`, it will render each script file in the bundle individually (in the case above, only one script file is in the bundle):
+不過，當在 Visual Studio 中按 `F5` 執行時，則會個別轉譯套件組合中的每一個指令碼檔案 (在上述案例中，套件組合中只有一個指令碼檔案)：
 
     <script src="/Scripts/jquery-1.10.2.js"></script>
 
-This enables you to debug the JavaScript code in your development environment while reducing concurrent client connections (bundling) and improving file download performance (minification) in production. It's a great feature to preserve with Azure CDN integration. Furthermore, since the rendered bundle already contains an automatically generated version string, you want to replicate that functionality so that whenever you update your jQuery version through NuGet, it can be updated at the client side as soon as possible.
+這樣可讓您在開發環境中進行 JavaScript 程式碼偵錯，同時減少並行的用戶端連線 (統合)，在實際執行環境中提升檔案下載效能 (縮製)。這是 Azure CDN 整合中保留的絕佳功能。此外，由於轉譯的套件組合已包含自動產生的版本字串，您可以仿照此功能，每當您透過 NuGet 更新 jQuery 版本時，就會以最快速度更新用戶端。
 
-Follow the steps below to integration ASP.NET bundling and minification with your CDN endpoint.
+請遵循下列步驟來整合 ASP.NET 統合和縮製與 CDN 端點。
 
-1. Back in *App_Start\BundleConfig.cs*, modify the `bundles.Add()` methods to use a different [Bundle constructor](http://msdn.microsoft.com/library/jj646464.aspx), one that specifies a CDN address. To do this, replace the `RegisterBundles` method definition with the following code:  
-    
+1. 回到 *App\_Start\\BundleConfig.cs*，修改 `bundles.Add()` 方法來使用不同的 [Bundle 建構函數](http://msdn.microsoft.com/library/jj646464.aspx) (此函數會指定 CDN 位址)。若要這樣做，請將 `RegisterBundles` 方法定義改成下列程式碼：
+	
         public static void RegisterBundles(BundleCollection bundles)
         {
           bundles.UseCdn = true;
@@ -406,31 +405,31 @@ Follow the steps below to integration ASP.NET bundling and minification with you
         }
 
 
-    Be sure to replace `<yourCDNName>` with the name of your Azure CDN.
+	請記得將 `<yourCDNName>` 取代為您的 Azure CDN 名稱。
 
-    In plain words, you are setting `bundles.UseCdn = true` and added a carefully crafted CDN URL to each bundle. For example, the first constructor in the code:
+	簡單地說，您正在設定 `bundles.UseCdn = true`，且已在每一個套件組合中加入謹慎建構的 CDN URL。例如，程式碼的第一個建構函式：
 
-        new ScriptBundle("~/bundles/jquery", string.Format(cdnUrl, "bundles/jquery"))
+		new ScriptBundle("~/bundles/jquery", string.Format(cdnUrl, "bundles/jquery"))
 
-    is the same as: 
+	就如同：
 
-        new ScriptBundle("~/bundles/jquery", string.Format(cdnUrl, "http://<yourCDNName>.azureedge.net/bundles/jquery?<W.X.Y.Z>"))
+		new ScriptBundle("~/bundles/jquery", string.Format(cdnUrl, "http://<yourCDNName>.azureedge.net/bundles/jquery?<W.X.Y.Z>"))
 
-    This constructor tells ASP.NET bundling and minification to render individual script files when debugged locally, but use the specified CDN address to access the script in question. However, note two important characteristics with this carefully crafted CDN URL:
-    
-    - The origin for this CDN URL is `http://<yourSiteName>.azurewebsites.net/bundles/jquery?<W.X.Y.Z>`, which is actually the virtual directory of the script bundle in your Web application.
-    - Since you are using CDN constructor, the CDN script tag for the bundle no longer contains the automatically generated version string in the rendered URL. You must manually generate a unique version string every time the script bundle is modified to force a cache miss at your Azure CDN. At the same time, this unique version string must remain constant through the life of the deployment to maximize cache hits at your Azure CDN after the bundle is deployed.
+	此建構函式告知 ASP.NET 統合和縮製在本機偵錯時轉譯個別指令碼檔案，但使用指定的 CDN 位址來存取所提及的指令碼。不過，對於此謹慎建構的 CDN URL，請注意兩項重要特性：
+	
+	- 此 CDN URL 的來源是 `http://<yourSiteName>.azurewebsites.net/bundles/jquery?<W.X.Y.Z>`，實際上就是 Web 應用程式中指令碼套件組合的虛擬目錄。
+	- 由於是使用 CDN 建構函式，套件組合的 CDN 指令碼標籤在轉譯的 URL 中已不再包含自動產生的版本字串。指令碼套件組合每次修改時，您都必須手動產生唯一的版本字串，以強制在 Azure CDN 上發生快取遺漏。同時，在部署套件組合之後，此唯一的版本字串在部署的整個存在期間內必須保持不變，讓 Azure CDN 的快取命中率達到最高。
 
-3. The query string `<W.X.Y.Z>` pulls from *Properties\AssemblyInfo.cs* in your ASP.NET project. You can have a deployment workflow that includes incrementing the assembly version every time you publish to Azure. Or, you can just modify *Properties\AssemblyInfo.cs* in your project to automatically increment the version string every time you build, using the wildcard character '*'. For example, change `AssemblyVersion` as shown below:
-    
-        [assembly: AssemblyVersion("1.0.0.*")]
-    
-    Any other strategy to streamline generating a unique string for the life of a deployment will work here.
+3. 查詢字串 `<W.X.Y.Z>` 會從 ASP.NET 專案的 *Properties\\AssemblyInfo.cs* 中提取。您的部署工作流程中可以包含每次發佈至 Azure 時就遞增組件版本。或者，您可以直接修改專案中的 *Properties\\AssemblyInfo.cs*，使用萬用字元 '*' 表示每次建置時就自動遞增版本字串。例如，變更 `AssemblyVersion`，如下所示：
+	
+		[assembly: AssemblyVersion("1.0.0.*")]
+	
+	在此可採取其他任何策略在部署的存在期間內產生唯一字串。
 
-3. Republish the ASP.NET application and access the home page.
+3. 重新發行 ASP.NET 應用程式和存取首頁。
  
-4. View the HTML code for the page. You should be able to see the CDN URL rendered, with a unique version string every time you republish changes to your Azure web app. For example:  
-    
+4. 檢視頁面的 HTML 程式碼。您應該會看到轉譯的 CDN URL，以及每次將變更重新發佈至 Azure Web 應用程式時的唯一版本字串。例如：
+	
         ...
         <link href="http://az673227.azureedge.net/Content/css?1.0.0.25449" rel="stylesheet"/>
         <script src="http://az673227.azureedge.net/bundles/modernizer?1.0.0.25449"></script>
@@ -439,10 +438,10 @@ Follow the steps below to integration ASP.NET bundling and minification with you
         <script src="http://az673227.azureedge.net/bundles/bootstrap?1.0.0.25449"></script>
         ...
 
-5. In Visual Studio, debug the ASP.NET application in Visual Studio by typing `F5`., 
+5. 在 Visual Studio 中，按 `F5`，在 Visual Studio 中進行 ASP.NET 應用程式偵錯。
 
-6. View the HTML code for the page. You will still see each script file individually rendered so that you can have a consistent debug experience in Visual Studio.  
-    
+6. 檢視頁面的 HTML 程式碼。您仍然會看到每一個指令檔以個別方式轉譯，讓您在 Visual Studio 中享有一致的偵錯體驗。
+	
         ...
         <link href="/Content/bootstrap.css" rel="stylesheet"/>
         <link href="/Content/site.css" rel="stylesheet"/>
@@ -453,14 +452,14 @@ Follow the steps below to integration ASP.NET bundling and minification with you
         <script src="/Scripts/respond.js"></script>
         ...    
 
-## <a name="fallback-mechanism-for-cdn-urls"></a>Fallback mechanism for CDN URLs ##
+## CDN URL 的後援機制 ##
 
-When your Azure CDN endpoint fails for any reason, you want your Web page to be smart enough to access your origin Web server as the fallback option for loading JavaScript or Bootstrap. It's serious enough to lose images on your web app due to CDN unavailability, but much more severe to lose crucial page functionality provided by your scripts and stylesheets.
+當 Azure CDN 端點因故失敗時，您一定希望網頁能夠聰明地存取原始 Web 伺服器，當作後援選項來載入 JavaScript 或 Bootstrap。因 CDN 無法使用而遺失 Web 應用程式的影像就已經夠嚴重，而遺失由指令碼和樣式表所提供的重要頁面功能又更加嚴重。
 
-The [Bundle](http://msdn.microsoft.com/library/system.web.optimization.bundle.aspx) class contains a property called [CdnFallbackExpression](http://msdn.microsoft.com/library/system.web.optimization.bundle.cdnfallbackexpression.aspx) that enables you to configure the fallback mechanism for CDN failure. To use this property, follow the steps below:
+[Bundle](http://msdn.microsoft.com/library/system.web.optimization.bundle.aspx) 類別包含一個稱為 [CdnFallbackExpression](http://msdn.microsoft.com/library/system.web.optimization.bundle.cdnfallbackexpression.aspx) 的屬性，可讓您設定 CDN 失敗時的後援機制。若要使用此屬性，請遵循下列步驟：
 
-1. In your ASP.NET project, open *App_Start\BundleConfig.cs*, where you added a CDN URL in each [Bundle constructor](http://msdn.microsoft.com/library/jj646464.aspx), and add `CdnFallbackExpression` code in four places as shown to add a fallback mechanism to the default bundles.  
-    
+1. 在 ASP.NET 專案中，開啟 *App\_Start\\BundleConfig.cs*，在您於每一個 [Bundle 建構函式](http://msdn.microsoft.com/library/jj646464.aspx)中已加入 CDN URL 的地方，如下方顯示的四處加入 `CdnFallbackExpression` 程式碼，以便將後援機制加入預設套件組合。
+	
         public static void RegisterBundles(BundleCollection bundles)
         {
           var version = System.Reflection.Assembly.GetAssembly(typeof(BundleConfig))
@@ -493,22 +492,22 @@ The [Bundle](http://msdn.microsoft.com/library/system.web.optimization.bundle.as
                 "~/Content/site.css"));
         }
 
-    When `CdnFallbackExpression` is not null, script is injected into the HTML to test whether the bundle is loaded successfully and, if not, access the bundle directly from the origin Web server. This property needs to be set to a JavaScript expression that tests whether the respective CDN bundle is loaded properly. The expression needed to test each bundle differs according to the content. For the default bundles above:
-    
-    - `window.jquery` is defined in jquery-{version}.js
-    - `$.validator` is defined in jquery.validate.js
-    - `window.Modernizr` is defined in modernizer-{version}.js
-    - `$.fn.modal` is defined in bootstrap.js
-    
-    You might have noticed that I did not set CdnFallbackExpression for the `~/Cointent/css` bundle. This is because currently there is a [bug in System.Web.Optimization](https://aspnetoptimization.codeplex.com/workitem/104) that injects a `<script>` tag for the fallback CSS instead of the expected `<link>` tag.
-    
-    There is, however, a good [Style Bundle Fallback](https://github.com/EmberConsultingGroup/StyleBundleFallback) offered by [Ember Consulting Group](https://github.com/EmberConsultingGroup). 
+	當 `CdnFallbackExpression` 不是 null 時，指令碼會插入 HTML 中來測試是否已成功載入套件組合，如果不是，則直接從原始 Web 伺服器存取套件組合。此屬性必須設為 JavaScript 運算式來測試個別的 CDN 套件組合是否正確載入。測試每一個套件組合所需的運算式根據內容而不同。在以上的預設套件組合中：
+	
+	- `window.jquery` 定義於 jquery-{version}.js 中
+	- `$.validator` 定義於 jquery.validate.js 中
+	- `window.Modernizr` 定義於 modernizer-{version}.js 中
+	- `$.fn.modal` 定義於 bootstrap.js 中
+	
+	您可能發現到我沒有為 `~/Cointent/css` 套件組合設定 CdnFallbackExpression。這是因為目前 [System.Web.Optimization 中有錯誤](https://aspnetoptimization.codeplex.com/workitem/104)，導致插入後援 CSS 的 `<script>` 標籤，而非預期的 `<link>` 標籤。
+	
+	不過，[Ember 顧問團](https://github.com/EmberConsultingGroup/StyleBundleFallback) (英文) 提供一套良好的[樣式套件組合後援](https://github.com/EmberConsultingGroup) (英文)。
 
-2. To use the workaround for CSS, create a new .cs file in your ASP.NET project's *App_Start* folder called *StyleBundleExtensions.cs*, and replace its content with the [code from GitHub](https://github.com/EmberConsultingGroup/StyleBundleFallback/blob/master/Website/App_Start/StyleBundleExtensions.cs). 
+2. 若要使用 CSS 的解決方案，請在 ASP.NET 專案的 *App\_Start* 資料夾中，建立新的 .cs 檔案 (稱為 *StyleBundleExtensions.cs*)，並將內容改成 [GitHub 提供的程式碼](https://github.com/EmberConsultingGroup/StyleBundleFallback/blob/master/Website/App_Start/StyleBundleExtensions.cs)。
 
-4. In *App_Start\StyleFundleExtensions.cs*, rename the namespace to your ASP.NET application's namespace (e.g. **cdnwebapp**). 
+4. 在 *App\_Start\\StyleFundleExtensions.cs* 中，將命名空間重新命名為您的 ASP.NET 應用程式的命名空間 (例如 **cdnwebapp**)。
 
-3. Go back to `App_Start\BundleConfig.cs` and replace the last `bundles.Add` statement with the following code:  
+3. 回到 `App_Start\BundleConfig.cs`，將最後一個 `bundles.Add` 陳述式取代為下列程式碼：
 
         bundles.Add(new StyleBundle("~/Content/css", string.Format(cdnUrl, "Content/css"))
           .IncludeFallback("~/Content/css", "sr-only", "width", "1px")
@@ -516,14 +515,14 @@ The [Bundle](http://msdn.microsoft.com/library/system.web.optimization.bundle.as
             "~/Content/bootstrap.css",
             "~/Content/site.css"));
 
-    This new extension method uses the same idea to inject script in the HTML to check the DOM for the a matching class name, rule name, and rule value defined in the CSS bundle, and falls back to the origin Web server if it fails to find the match.
+	這個新的延伸方法採用相同的概念，將指令碼插入 HTML 中來檢查 DOM，尋找 CSS 套件組合中定義的相符類別名稱、規則名稱和規則值，而如果找不到相符項，則退一步存取原始 Web 伺服器。
 
-4. Publish to your Azure web app again and access the home page. 
-5. View the HTML code for the page. You should find injected scripts similar to the following:    
-    
-    ```
-    ...
-    <link href="http://az673227.azureedge.net/Content/css?1.0.0.25474" rel="stylesheet"/>
+4. 重新發佈至 Azure Web 應用程式並存取首頁。
+5. 檢視頁面的 HTML 程式碼。您應該會發現類似下方的插入指令碼：
+	
+	```
+	...
+	<link href="http://az673227.azureedge.net/Content/css?1.0.0.25474" rel="stylesheet"/>
 <script>(function() {
                 var loadFallback,
                     len = document.styleSheets.length;
@@ -543,38 +542,33 @@ The [Bundle](http://msdn.microsoft.com/library/system.web.optimization.bundle.as
                 return true;
             }())||document.write('<script src="/Content/css"><\/script>');</script>
 
-    <script src="http://az673227.azureedge.net/bundles/modernizer?1.0.0.25474"></script>
-    <script>(window.Modernizr)||document.write('<script src="/bundles/modernizr"><\/script>');</script>
-    ... 
-    <script src="http://az673227.azureedge.net/bundles/jquery?1.0.0.25474"></script>
-    <script>(window.jquery)||document.write('<script src="/bundles/jquery"><\/script>');</script>
+	<script src="http://az673227.azureedge.net/bundles/modernizer?1.0.0.25474"></script>
+ 	<script>(window.Modernizr)||document.write('<script src="/bundles/modernizr"><\/script>');</script>
+	... 
+	<script src="http://az673227.azureedge.net/bundles/jquery?1.0.0.25474"></script>
+	<script>(window.jquery)||document.write('<script src="/bundles/jquery"><\/script>');</script>
 
-    <script src="http://az673227.azureedge.net/bundles/bootstrap?1.0.0.25474"></script>
-    <script>($.fn.modal)||document.write('<script src="/bundles/bootstrap"><\/script>');</script>
-    ...
-    ```
+ 	<script src="http://az673227.azureedge.net/bundles/bootstrap?1.0.0.25474"></script>
+ 	<script>($.fn.modal)||document.write('<script src="/bundles/bootstrap"><\/script>');</script>
+	...
+	```
 
-    Note that injected script for the CSS bundle still contains the errant remnant from the `CdnFallbackExpression` property in the line:
+	請注意，針對 CSS 套件組合插入的指令碼，仍在這一行中包含 `CdnFallbackExpression` 屬性殘留的遊蕩部分：
 
-        }())||document.write('<script src="/Content/css"><\/script>');</script>
+		}())||document.write('<script src="/Content/css"><\/script>');</script>
 
-    But since the first part of the || expression will always return true (in the line directly above that), the document.write() function will never run.
+	但因為 || 運算式的開頭部分一定會傳回 true (緊鄰的上一行)，所以 document.write() 函數永遠不會執行。
 
-6. To test whether the fallback script is working, go back to the your CDN endpoint's blade and click **Stop**.
+6. 若要測試後援指令碼是否正在運作，請回到 CDN 端點的刀鋒視窗，並按一下 [停止]。
 
-    ![](media/cdn-websites-with-cdn/13-test-fallback.png)
+	![](media/cdn-websites-with-cdn/13-test-fallback.png)
 
-7. Refresh your browser window for the Azure web app. You should now see that the all scripts and stylesheets are properly loaded.
+7. 重新整理瀏覽器視窗來顯示 Azure Web 應用程式。您現在應該會看到所有的指令碼和樣式表都已正確載入。
 
-## <a name="more-information"></a>More Information 
-- [Overview of the Azure Content Delivery Network (CDN)](../cdn/cdn-overview.md)
-- [Using Azure CDN](../cdn/cdn-create-new-endpoint.md)
-- [Integrate a cloud service with Azure CDN](../cdn/cdn-cloud-service-with-cdn.md)
-- [ASP.NET Bundling and Minification](http://www.asp.net/mvc/tutorials/mvc-4/bundling-and-minification)
+## 相關資訊 
+- [Azure 內容傳遞網路 (CDN) 概觀](../cdn/cdn-overview.md)
+- [使用 Azure CDN](../cdn/cdn-create-new-endpoint.md)
+- [整合雲端服務與 Azure CDN](../cdn/cdn-cloud-service-with-cdn.md)
+- [ASP.NET 統合和縮製](http://www.asp.net/mvc/tutorials/mvc-4/bundling-and-minification)
 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

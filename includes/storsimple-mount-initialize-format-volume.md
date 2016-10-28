@@ -1,41 +1,38 @@
 <!--author=SharS last changed: 9/17/15-->
 
-#### <a name="to-mount,-initialize,-and-format-a-volume"></a>To mount, initialize, and format a volume
+#### 掛接、初始化及格式化磁碟區
 
-1. Start the Microsoft iSCSI initiator.
+1. 啟動 Microsoft iSCSI 啟動器。
 
-2. In the **iSCSI Initiator Properties** window, on the **Discovery** tab, click **Discover Portal**.
+2. 在 [iSCSI 啟動器屬性] 視窗的 [探索] 索引標籤上，按一下 [探索入口網站]。
 
-3. In the **Discover Target Portal** dialog box, supply the IP address of your iSCSI-enabled network interface, and then click **OK**. 
+3. 在 [探索目標入口網站] 對話方塊中，提供已啟用 iSCSI 網路介面的 IP 位址，然後按一下 [確定]。
 
-4. In the **iSCSI Initiator Properties** window, on the **Targets** tab, locate the **Discovered targets**. The device status should appear as **Inactive**.
+4. 在 [iSCSI 啟動器屬性] 視窗的 [目標] 索引標籤上，找到 [探索到的目標]。裝置狀態應會顯示為 [非使用中]。
 
-5. Select the target device and then click **Connect**. After the device is connected, the status should change to **Connected**. (For more information about using the Microsoft iSCSI initiator, see [Installing and Configuring Microsoft iSCSI Initiator][1]).
+5. 選取目標裝置，然後按一下 [連接]。連接裝置之後，狀態應會變更為 [已連接]。 (如需如何使用 Microsoft iSCSI 啟動器的詳細資訊，請參閱[安裝和設定 Microsoft iSCSI 啟動器][1])。
 
-6. On your Windows host, press the Windows Logo key + X, and then click **Run**. 
+6. 在 Windows 主機上按 Windows 標誌鍵 + X，然後按一下 [執行]。
 
-7. In the **Run** dialog box, type **Diskmgmt.msc**. Click **OK**, and the **Disk Management** dialog box will appear. The right pane will show the volumes on your host.
+7. 在 [執行] 對話方塊中，輸入 **Diskmgmt.msc**。按一下 [確定]，隨即會出現 [磁碟管理] 對話方塊。右窗格將會顯示主機上的磁碟區。
 
-8. In the **Disk Management** window, the mounted volumes will appear as shown in the following illustration. Right-click the discovered volume (click the disk name), and then click **Online**.
+8. 在 [磁碟管理] 視窗中，將會出現掛接的磁碟區，如下圖所示。以滑鼠右鍵按一下探索到的磁碟區 (按一下磁碟名稱)，然後按一下 [線上]。
 
-     ![Initialize format volume](./media/storsimple-mount-initialize-format-volume/HCS_InitializeFormatVolume-include.png) 
+     ![初始化格式化磁碟區](./media/storsimple-mount-initialize-format-volume/HCS_InitializeFormatVolume-include.png)
 
-9. Right-click the volume (click the disk name) again, and then click **Initialize**.
+9. 再次以滑鼠右鍵按一下磁碟區 (按一下磁碟名稱)，然後按一下 [初始化]。
 
-10. To format a simple volume, perform the following steps:
-  1. Select the volume, right-click it (click the right area), and click **New Simple Volume**.
-  2. In the New Simple Volume wizard, specify the volume size and drive letter and configure the volume as an NTFS file system.
-  3. Specify a 64 KB allocation unit size. This allocation unit size works well with the deduplication algorithms used in the StorSimple solution.
-  4. Perform a quick format.
+10. 若要格式化簡單磁碟區，請執行下列步驟：
+  1. 選取磁碟區、以滑鼠右鍵按一下該磁碟區 (按一下正確的區域)，然後按一下 [新增簡單磁碟區]。
+  2. 在 [新增簡單磁碟區] 精靈中，指定磁碟區大小和磁碟機代號，並將磁碟區設定為 NTFS 檔案系統。
+  3. 指定 64 KB 的配置單位大小。這個配置單位大小適用於 StorSimple 解決方案中所使用的重複資料刪除演算法。
+  4. 執行快速格式化。
 
-![Video available](./media/storsimple-mount-initialize-format-volume/Video_icon.png) **Video available**
+![提供的影片](./media/storsimple-mount-initialize-format-volume/Video_icon.png)**提供的影片**
 
-To watch a video that demonstrates how to mount, initialize, and format a StorSimple volume, click [here](https://azure.microsoft.com/documentation/videos/mount-initialize-and-format-a-storsimple-volume/).
+若要觀看影片示範如何掛接、初始化和格式化 StorSimple 磁碟區，請按一下[這裡](https://azure.microsoft.com/documentation/videos/mount-initialize-and-format-a-storsimple-volume/)。
 
 <!--Link references-->
 [1]: https://technet.microsoft.com/library/ee338480(WS.10).aspx
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0128_2016-->

@@ -1,8 +1,8 @@
 <properties 
-    pageTitle="Azure RemoteApp Troubleshooting - Application launch and connection failures  | Microsoft Azure" 
-    description="Learn how to troubleshoot issues with starting and connecting to applications in Azure RemoteApp." 
+    pageTitle="Azure RemoteApp 疑難排解 - 應用程式啟動和連線失敗 | Microsoft Azure" 
+    description="瞭解如何疑難排解啟動及連線至 Azure RemoteApp 中之應用程式的問題。" 
     services="remoteapp" 
-    documentationCenter="" 
+	documentationCenter="" 
     authors="ericorman" 
     manager="mbaldwin" />
 
@@ -17,45 +17,41 @@
 
 
 
-
-#<a name="troubleshoot-azure-remoteapp---application-launch-and-connection-failures"></a>Troubleshoot Azure RemoteApp - Application launch and connection failures 
+#為 Azure RemoteApp 進行疑難排解 - 應用程式啟動和連線失敗 
 
 > [AZURE.IMPORTANT]
-> Azure RemoteApp is being discontinued. Read the [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
-Applications hosted in Azure RemoteApp can fail to launch for a few different reasons. This article describes various reasons and error messages users might receive when trying to launch applications. It also talks about connection failures. (But this article does not describe issues when signing into the Azure RemoteApp client.)  
+Azure RemoteApp 中裝載的應用程式可能因幾個不同原因而無法啟動。此文章說明使用者嘗試啟動應用程式時可能會收到的各種原因和錯誤訊息。文章中也會討論連線失敗。(但此文章不會說明登入 Azure RemoteApp 用戶端時出現的問題。)
 
-Read on for information about common error messages due to app launch and connection failures.
+請閱讀此文章以瞭解因應用程式啟動和連線失敗而顯示之一般錯誤訊息的相關資訊。
 
-##<a name="we're-getting-you-set-up...-try-again-in-10-minutes."></a>We're getting you set up... Try again in 10 minutes.
+##我們正在引導您設定...請在 10 分鐘內再試一次。
 
-This error means Azure RemoteApp is scaling up to meet the capacity need of your users. In the background more Azure RemoteApp VM instances are being created to handle the capacity needs of your users. Typically this takes around five minutes but can take up to 10 minutes. Sometimes, this doesn't happen fast enough and resources are needed immediately. For example a 9 AM scenario where many users need to use your app in Azure RemoteAppn at the same time. If this happens to you we can enable **capacity mode** on the back end. To do this open an Azure Support ticket and or email us at [remoteappforum@microsoft.com](mailto:remoteappforum@microsoft.com). Be certain to include your subscription ID in the request.  
+此錯誤表示 Azure RemoteApp 正在向上擴充以滿足您使用者的容量需求。正在背景建立更多 Azure RemoteApp VM，以處理您使用者的容量需求。通常此工作約需要五分鐘來完成，但最多可能需要 10 分鐘。有時候此工作完成速度不夠快，但是資源的需求卻是立即性的。例如，9 AM 時許多使用者需要同時使用 Azure RemoteAppn 中的應用程式。如果您遇到這個問題，我們可以在後端啟用**容量模式**。若要這樣做，請開啟一個 Azure 支援票證或寄送電子郵件到 [remoteappforum@microsoft.com](mailto:remoteappforum@microsoft.com) 給我們。請務必在要求中包含您的訂用帳戶識別碼。
 
-![We are getting you set up](./media/remoteapp-apptrouble/ra-apptrouble1.png)
+![我們正在引導您設定](./media/remoteapp-apptrouble/ra-apptrouble1.png)
 
-## <a name="could-not-auto-reconnect-to-your-applications,-please-re-launch-your-application"></a>Could not auto-reconnect to your applications, please re-launch your application  
+## 無法自動重新連線至您的應用程式，請重新啟動您的應用程式  
 
-This error message is often seen if you were using Azure RemoteApp and then put your PC to sleep longer than 4 hours and then woke your PC up and the Azure RemoteApp client attempt to auto reconnect and timeout was exceeded.  Instruct users to navigate back to the application and attempt to open it from the Azure RemoteApp client.
+如果您是使用 Azure RemoteApp 接著讓電腦睡眠超過 4 小時，然後喚醒電腦且 Azure RemoteApp 用戶端嘗試自動重新連線且逾時時，您就會常常看到這個錯誤訊息。請指示使用者瀏覽回應用程式並嘗試從 Azure RemoteApp 用戶端開啟應用程式。
 
-![Could not auto-reconnect to your applications](./media/remoteapp-apptrouble/ra-apptrouble2.png) 
+![無法自動重新連線至您的應用程式](./media/remoteapp-apptrouble/ra-apptrouble2.png)
 
-## <a name="problems-with-the-temp-profile"></a>Problems with the temp profile 
+## 暫存設定檔的問題 
 
-This error occurs when your user profile (User Profile Disk) failed to mount and the user received a temporary profile.  Administrators should navigate to the collection in the Azure portal and then go to the **Sessions** tab and attempt to **Log Off** the user. This will force a full log off of the user session - then have the user attempt to launch an app again. If that fails contact Azure support and or email us at [remoteappforum@microsoft.com](mailto:remoteappforum@microsoft.com).
+當您的使用者設定檔 (使用者設定檔磁碟) 無法掛接且使用者收到暫存設定檔時，就會發生這項錯誤。系統管理員應瀏覽至 Azure 入口網站中的集合，然後移到 [工作階段] 索引標籤並嘗試 [登出] 使用者。這會強制完整登出使用者工作階段 - 然後讓使用者嘗試再次啟動應用程式。如果失敗，請連絡 Azure 支援服務或寄送電子郵件到 [remoteappforum@microsoft.com](mailto:remoteappforum@microsoft.com) 給我們。
 
-## <a name="azure-remoteapp-has-stopped-working"></a>Azure RemoteApp has stopped working
+## Azure RemoteApp 已停止運作
 
-This error message means the Azure RemoteApp client is having an issue and needs to be restarted. Instruct users to close: select **Close program** and then launch the Azure RemoteApp client again.  If the issue continues open and Azure Support ticket and or email us at [remoteappforum@microsoft.com](mailto:remoteappforum@microsoft.com).
+此錯誤訊息表示 Azure RemoteApp 用戶端發生問題並需要重新啟動。請指示使用者：選取 [關閉程式] 然後再次啟動 Azure RemoteApp 用戶端。如果持續發生此問題，請開啟一個 Azure 支援票證或寄送電子郵件到 [remoteappforum@microsoft.com](mailto:remoteappforum@microsoft.com) 給我們。
 
-![Azure RemoteApp has stopped working](./media/remoteapp-apptrouble/ra-apptrouble3.png)  
+![Azure RemoteApp 已停止運作](./media/remoteapp-apptrouble/ra-apptrouble3.png)
 
-## <a name="an-error-occurred-while-remote-desktop-connection-was-accessing-this-resource.-retry-the-connection-or-contact-your-system-administrator"></a>An error occurred while Remote Desktop Connection was accessing this resource. Retry the connection or contact your system administrator
+## 「遠端桌面連線」存取此資源時發生錯誤。請嘗試重新連線，或連絡您的系統管理員。
 
-This is a generic error message - contact Azure support and or email us at [remoteappforum@microsoft.com](mailto:remoteappforum@microsoft.com) so we can investigate. 
+這是一般錯誤訊息 - 請連絡 Azure 支援服務或寄送電子郵件到 [remoteappforum@microsoft.com](mailto:remoteappforum@microsoft.com) 給我們，以供我們調查問題。
 
-![Generic Azure RemoteApp message](./media/remoteapp-apptrouble/ra-apptrouble4.png) 
+![一般 Azure RemoteApp 訊息](./media/remoteapp-apptrouble/ra-apptrouble4.png)
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

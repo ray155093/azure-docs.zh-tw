@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Deploy multi NIC VMs using the Azure CLI in the classic deployment model | Microsoft Azure"
-   description="Learn how to deploy multi NIC VMs using the Azure CLI in the classic deployment model"
+   pageTitle="在傳統部署模型中使用 Azure CLI 部署多部 NIC VM | Microsoft Azure"
+   description="了解如何在傳統部署模型中使用 Azure CLI 部署多部 NIC VM"
    services="virtual-network"
    documentationCenter="na"
    authors="jimdial"
@@ -17,166 +17,161 @@
    ms.date="02/02/2016"
    ms.author="jdial" />
 
-
-#<a name="deploy-multi-nic-vms-(classic)-using-the-azure-cli"></a>Deploy multi NIC VMs (classic) using the Azure CLI
+#使用 Azure CLI 部署多個 NIC VM (傳統)
 
 [AZURE.INCLUDE [virtual-network-deploy-multinic-classic-selectors-include.md](../../includes/virtual-network-deploy-multinic-classic-selectors-include.md)]
 
 [AZURE.INCLUDE [virtual-network-deploy-multinic-intro-include.md](../../includes/virtual-network-deploy-multinic-intro-include.md)]
 
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-classic-include.md)] Learn how to [perform these steps using the Resource Manager model](virtual-network-deploy-multinic-arm-cli.md).
+[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-classic-include.md)] 了解如何[使用 Resource Manager 模型執行這些步驟](virtual-network-deploy-multinic-arm-cli.md)。
 
 [AZURE.INCLUDE [virtual-network-deploy-multinic-scenario-include.md](../../includes/virtual-network-deploy-multinic-scenario-include.md)]
 
-Currently, you cannot have VMs with a single NIC and VMs with multiple NICs in the same cloud service. Therefore, you need to implement the back end servers in a different cloud service than and all other components in the scenario. The steps below use a cloud service named *IaaSStory* for the main resources, and *IaaSStory-BackEnd* for the back end servers.
+目前，在相同的雲端服務中，您不能有具有單一 NIC 的 VM 和具有多個 NIC 的 VM。因此，您需要在與案例中的所有其他元件不同的雲端服務中實作後端伺服器。下列步驟中，主要資源使用名為 *IaaSStory* 的雲端服務，後端伺服器使用 *IaaSStory-BackEnd*。
 
-## <a name="prerequisites"></a>Prerequisites
+## 必要條件
 
-Before you can deploy the back end servers, you need to deploy the main cloud service with all the necessary resources for this scenario. At minimum, you need to create a virtual network with a subnet for the backend. Visit [Create a virtual network by using the Azure CLI](virtual-networks-create-vnet-classic-cli.md) to learn how to deploy a virtual network.
+在這個案例中，主要雲端服務必須先部署所有必要的資源，然後才可以部署後端伺服器。至少，您需要以後端的子網路建立虛擬網路。請瀏覽[使用 Azure CLI 建立虛擬網路](virtual-networks-create-vnet-classic-cli.md)，以了解如何部署虛擬網路。
 
 [AZURE.INCLUDE [azure-cli-prerequisites-include.md](../../includes/azure-cli-prerequisites-include.md)]
 
-## <a name="deploy-the-back-end-vms"></a>Deploy the back end VMs
+## 部署後端 VM
 
-The backend VMs depend on the creation of the resources listed below.
+後端 VM 有賴於建立下列資源。
 
-- **Storage account for data disks**. For better performance, the data disks on the database servers will use solid state drive (SSD) technology, which requires a premium storage account. Make sure the Azure location you deploy to support premium storage.
-- **NICs**. Each VM will have two NICs, one for database access, and one for management.
-- **Availability set**. All database servers will be added to a single availability set, to ensure at least one of the VMs is up and running during maintenance.
+- **資料磁碟的儲存體帳戶**。為取得更佳的效能，資料庫伺服器上的資料磁碟會使用需要進階儲存體帳戶的固態硬碟 (SSD) 技術。請確定 Azure 的部署位置，以支援進階儲存體。
+- **NIC**。每部 VM 都會有兩個 NIC，一個用於資料庫存取，另一個用於管理。
+- **可用性設定組**。所有的資料庫伺服器都會加入單一的可用性設定組，確保在維護期間至少有一部 VM 啟動並執行。
 
-### <a name="step-1---start-your-script"></a>Step 1 - Start your script
+### 步驟 1：啟動指令碼
 
-You can download the full bash script used [here](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/11-MultiNIC/classic/virtual-network-deploy-multinic-classic-cli.sh). Follow the steps below to change the script to work in your environment.
+[這裡](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/11-MultiNIC/classic/virtual-network-deploy-multinic-classic-cli.sh)可以下載所使用的完整 Bash 指令碼。請遵循下列步驟來變更指令碼來讓指令碼在環境中運作。
 
-1. Change the values of the variables below based on your existing resource group deployed above in [Prerequisites](#Prerequisites).
+1. 根據上述[必要條件](#Prerequisites)中已部署的現有資源群組來變更下列變數的值。
 
-        location="useast2"
-        vnetName="WTestVNet"
-        backendSubnetName="BackEnd"
+		location="useast2"
+		vnetName="WTestVNet"
+		backendSubnetName="BackEnd"
 
-2. Change the values of the variables below based on the values you want to use for your backend deployment.
+2. 根據後端部署要使用的值，變更下列變數值。
 
-        backendCSName="IaaSStory-Backend"
-        prmStorageAccountName="iaasstoryprmstorage"
-        image="0b11de9248dd4d87b18621318e037d37__RightImage-Ubuntu-14.04-x64-v14.2.1"
-        avSetName="ASDB"
-        vmSize="Standard_DS3"
-        diskSize=127
-        vmNamePrefix="DB"
-        osDiskName="osdiskdb"
-        dataDiskPrefix="db"
-        dataDiskName="datadisk"
-        ipAddressPrefix="192.168.2."
-        username='adminuser'
-        password='adminP@ssw0rd'
-        numberOfVMs=2
+		backendCSName="IaaSStory-Backend"
+		prmStorageAccountName="iaasstoryprmstorage"
+		image="0b11de9248dd4d87b18621318e037d37__RightImage-Ubuntu-14.04-x64-v14.2.1"
+		avSetName="ASDB"
+		vmSize="Standard_DS3"
+		diskSize=127
+		vmNamePrefix="DB"
+		osDiskName="osdiskdb"
+		dataDiskPrefix="db"
+		dataDiskName="datadisk"
+		ipAddressPrefix="192.168.2."
+		username='adminuser'
+		password='adminP@ssw0rd'
+		numberOfVMs=2
 
-### <a name="step-2---create-necessary-resources-for-your-vms"></a>Step 2 - Create necessary resources for your VMs
+### 步驟 2：為 VM 建立必要的資源
 
-1. Create a new cloud service for all backend VMs. Notice the use of the `$backendCSName` variable for the resource group name, and `$location` for the Azure region.
+1. 為所有後端 VM 建立新的雲端服務。請注意，資源群組名稱的 `$backendCSName` 變數，以及 Azure 區域之 `$location` 的使用方式。
 
-        azure service create --serviceName $backendCSName \
-            --location $location
+		azure service create --serviceName $backendCSName \
+		    --location $location
 
-2. Create a premium storage account for the OS and data disks to be used by yours VMs.
+2. 為您的 VM 要使用的作業系統和資料磁碟建立進階儲存體帳戶。
 
-        azure storage account create $prmStorageAccountName \
-            --location $location \
-            --type PLRS
+		azure storage account create $prmStorageAccountName \
+		    --location $location \
+		    --type PLRS
 
-### <a name="step-3---create-vms-with-multiple-nics"></a>Step 3 - Create VMs with multiple NICs
+### 步驟 3：建立具有多個 NIC 的 VM
 
-1. Start a loop to create multiple VMs, based on the `numberOfVMs` variables.
+1. 根據 `numberOfVMs` 變數，啟動迴圈以建立多部 VM。
 
-        for ((suffixNumber=1;suffixNumber<=numberOfVMs;suffixNumber++));
-        do
+		for ((suffixNumber=1;suffixNumber<=numberOfVMs;suffixNumber++));
+		do
 
-2. For each VM, specify the name and IP address of each of the two NICs.
+2. 對於每個 VM，請分別為這兩個 NIC 的個別指定名稱和 IP 位址。
 
-            nic1Name=$vmNamePrefix$suffixNumber-DA
-            x=$((suffixNumber+3))
-            ipAddress1=$ipAddressPrefix$x
+		    nic1Name=$vmNamePrefix$suffixNumber-DA
+		    x=$((suffixNumber+3))
+		    ipAddress1=$ipAddressPrefix$x
 
-            nic2Name=$vmNamePrefix$suffixNumber-RA
-            x=$((suffixNumber+53))
-            ipAddress2=$ipAddressPrefix$x
+		    nic2Name=$vmNamePrefix$suffixNumber-RA
+		    x=$((suffixNumber+53))
+		    ipAddress2=$ipAddressPrefix$x
 
-4. Create the VM. Notice the usage of the `--nic-config` parameter, containing a list of all NICs with name, subnet, and IP address.
+4. 建立 VM。請注意使用 `--nic-config` 參數，其中包含具有名稱、子網路和 IP 位址的所有 NIC 清單。
 
-            azure vm create $backendCSName $image $username $password \
-                --connect $backendCSName \
-                --vm-name $vmNamePrefix$suffixNumber \
-                --vm-size $vmSize \
-                --availability-set $avSetName \
-                --blob-url $prmStorageAccountName.blob.core.windows.net/vhds/$osDiskName$suffixNumber.vhd \
-                --virtual-network-name $vnetName \
-                --subnet-names $backendSubnetName \
-                --nic-config $nic1Name:$backendSubnetName:$ipAddress1::,$nic2Name:$backendSubnetName:$ipAddress2::
+		    azure vm create $backendCSName $image $username $password \
+		        --connect $backendCSName \
+		        --vm-name $vmNamePrefix$suffixNumber \
+		        --vm-size $vmSize \
+		        --availability-set $avSetName \
+		        --blob-url $prmStorageAccountName.blob.core.windows.net/vhds/$osDiskName$suffixNumber.vhd \
+		        --virtual-network-name $vnetName \
+		        --subnet-names $backendSubnetName \
+		        --nic-config $nic1Name:$backendSubnetName:$ipAddress1::,$nic2Name:$backendSubnetName:$ipAddress2::
 
-5. For each VM, create two data disks.
+5. 針對每個 VM，請建立兩個資料磁碟。
 
-            azure vm disk attach-new $vmNamePrefix$suffixNumber \
-                $diskSize \
-                vhds/$dataDiskPrefix$suffixNumber$dataDiskName-1.vhd
+		    azure vm disk attach-new $vmNamePrefix$suffixNumber \
+		        $diskSize \
+		        vhds/$dataDiskPrefix$suffixNumber$dataDiskName-1.vhd
 
-            azure vm disk attach-new $vmNamePrefix$suffixNumber \
-                $diskSize \
-                vhds/$dataDiskPrefix$suffixNumber$dataDiskName-2.vhd
-        done
+		    azure vm disk attach-new $vmNamePrefix$suffixNumber \
+		        $diskSize \
+		        vhds/$dataDiskPrefix$suffixNumber$dataDiskName-2.vhd
+		done
 
-### <a name="step-4---run-the-script"></a>Step 4 - Run the script
+### 步驟 4：執行指令碼
 
-Now that you downloaded and changed the script based on your needs, run the script to create the back end database VMs with multiple NICs.
+現在您已根據需求下載並變更了指令碼，請執行指令碼來建立具有多個 NIC 的後端資料庫 VM。
 
-1. Save your script and run it from your **Bash** terminal. You will see the initial output, as shown below.
+1. 儲存您的指令碼並從 **Bash** 終端機執行。您會看到初始的輸出，如下所示。
 
-        info:    Executing command service create
-        info:    Creating cloud service
-        data:    Cloud service name IaaSStory-Backend
-        info:    service create command OK
-        info:    Executing command storage account create
-        info:    Creating storage account
-        info:    storage account create command OK
-        info:    Executing command vm create
-        info:    Looking up image 0b11de9248dd4d87b18621318e037d37__RightImage-Ubuntu-14.04-x64-v14.2.1
-        info:    Looking up virtual network
-        info:    Looking up cloud service
-        info:    Getting cloud service properties
-        info:    Looking up deployment
-        info:    Creating VM
+		info:    Executing command service create
+		info:    Creating cloud service
+		data:    Cloud service name IaaSStory-Backend
+		info:    service create command OK
+		info:    Executing command storage account create
+		info:    Creating storage account
+		info:    storage account create command OK
+		info:    Executing command vm create
+		info:    Looking up image 0b11de9248dd4d87b18621318e037d37__RightImage-Ubuntu-14.04-x64-v14.2.1
+		info:    Looking up virtual network
+		info:    Looking up cloud service
+		info:    Getting cloud service properties
+		info:    Looking up deployment
+		info:    Creating VM
 
-2. After a few minutes, the execution will end and you will see the rest of the output as shown below.
+2. 幾分鐘後，執行將會結束，且您將會看到其餘的輸出，如下所示。
 
-        info:    OK
-        info:    vm create command OK
-        info:    Executing command vm disk attach-new
-        info:    Getting virtual machines
-        info:    Adding Data-Disk
-        info:    vm disk attach-new command OK
-        info:    Executing command vm disk attach-new
-        info:    Getting virtual machines
-        info:    Adding Data-Disk
-        info:    vm disk attach-new command OK
-        info:    Executing command vm create
-        info:    Looking up image 0b11de9248dd4d87b18621318e037d37__RightImage-Ubuntu-14.04-x64-v14.2.1
-        info:    Looking up virtual network
-        info:    Looking up cloud service
-        info:    Getting cloud service properties
-        info:    Looking up deployment
-        info:    Creating VM
-        info:    OK
-        info:    vm create command OK
-        info:    Executing command vm disk attach-new
-        info:    Getting virtual machines
-        info:    Adding Data-Disk
-        info:    vm disk attach-new command OK
-        info:    Executing command vm disk attach-new
-        info:    Getting virtual machines
-        info:    Adding Data-Disk
-        info:    vm disk attach-new command OK
+		info:    OK
+		info:    vm create command OK
+		info:    Executing command vm disk attach-new
+		info:    Getting virtual machines
+		info:    Adding Data-Disk
+		info:    vm disk attach-new command OK
+		info:    Executing command vm disk attach-new
+		info:    Getting virtual machines
+		info:    Adding Data-Disk
+		info:    vm disk attach-new command OK
+		info:    Executing command vm create
+		info:    Looking up image 0b11de9248dd4d87b18621318e037d37__RightImage-Ubuntu-14.04-x64-v14.2.1
+		info:    Looking up virtual network
+		info:    Looking up cloud service
+		info:    Getting cloud service properties
+		info:    Looking up deployment
+		info:    Creating VM
+		info:    OK
+		info:    vm create command OK
+		info:    Executing command vm disk attach-new
+		info:    Getting virtual machines
+		info:    Adding Data-Disk
+		info:    vm disk attach-new command OK
+		info:    Executing command vm disk attach-new
+		info:    Getting virtual machines
+		info:    Adding Data-Disk
+		info:    vm disk attach-new command OK
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

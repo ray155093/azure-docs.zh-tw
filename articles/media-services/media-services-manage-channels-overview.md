@@ -1,176 +1,169 @@
 <properties 
-    pageTitle="Overview of Live Steaming using Azure Media Services | Microsoft Azure" 
-    description="This topic gives an overview of live steaming using Azure Media Services." 
-    services="media-services" 
-    documentationCenter="" 
-    authors="Juliako" 
-    manager="erikre" 
-    editor=""/>
+	pageTitle="使用 Azure 媒體服務之即時串流的概觀 | Microsoft Azure" 
+	description="本主題提供了使用 Azure 媒體服務之即時串流的概觀。" 
+	services="media-services" 
+	documentationCenter="" 
+	authors="Juliako" 
+	manager="erikre" 
+	editor=""/>
 
 <tags 
-    ms.service="media-services" 
-    ms.workload="media" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="ne" 
-    ms.topic="article" 
-    ms.date="10/12/2016"
-    ms.author="juliako"/>
+	ms.service="media-services" 
+	ms.workload="media" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="ne" 
+	ms.topic="article" 
+	ms.date="09/19/2016"
+	ms.author="juliako"/>
+
+#使用 Azure 媒體服務之即時串流的概觀
+
+##Overview
+
+使用 Azure 媒體服務傳遞即時串流時，通常涉及下列元件：
+
+- 相機，用來廣播事件。
+- 即時視訊編碼器，它會將相機中的訊號轉換成資料流，然後再傳送至即時資料流服務。
+
+	(選擇性) 多個即時同步處理的編碼器。針對某些需要相當高度可用性與高品質經驗的重要即時事件，建議使用主動對主動備援編碼器搭配時間同步處理，以便順利進行容錯移轉，而不會遺失資料。
+- 即時串流服務可讓您執行下列動作：
+	
+	- 使用各種即時串流處理通訊協定 (例如 RTMP 或 Smooth Streaming) 擷取即時內容，
+	- (選擇性) 將您的串流編碼成調適性位元速率串流
+	- 預覽您的即時串流，
+	- 記錄並儲存擷取的內容以於稍後進行串流 (隨選視訊)
+	- 透過一般串流通訊協定 (例如，MPEG DASH、Smooth、HLS、HDS) 直接將內容傳遞給客戶，或傳遞至內容傳遞網路 (CDN) 供進一步的發佈。
 
 
-#<a name="overview-of-live-steaming-using-azure-media-services"></a>Overview of Live Steaming using Azure Media Services
+**Microsoft Azure 媒體服務** (AMS) 提供擷取、編碼、預覽、儲存和傳遞即時串流內容的能力。
 
-##<a name="overview"></a>Overview
+當您將內容傳遞給客戶時，您的目標是在不同的網路條件下將高品質的視訊傳遞到各種裝置。為達成此目的，請使用即時編碼器將您的串流編碼成多位元速率 (調適性位元速率) 視訊串流。請注意不同裝置上的串流，使用媒體服務[動態封裝](media-services-dynamic-packaging-overview.md)將串流動態地重新封裝至不同的通訊協定。媒體服務支援傳遞下列可調位元速率資料流技術：HTTP 即時資料流 (HLS)、Smooth Streaming、MPEG DASH 和 HDS (僅適用於 Adobe PrimeTime/Access licensees)。
 
-When delivering live streaming events with Azure Media Services the following components are commonly involved:
+在 Azure 媒體服務中，**通道**、**程式**及 **StreamingEndpoints** 會處理所有的即時串流功能，包括內嵌、格式化、DVR、安全性、延展性和備援能力。
 
-- A camera that is used to broadcast an event.
-- A live video encoder that converts signals from the camera to streams that are sent to a live streaming service.
+在 Azure 媒體服務中，**通道**代表處理即時串流內容的管線。通道可以用下列方式接收即時輸入串流：
 
-    Optionally, multiple live time synchronized encoders. For certain critical live events that demand very high availability and quality of experience, it is recommended to employ active-active redundant encoders with time synchronization to achieve seamless failover with no data loss.
-- A live streaming service that enables you to do the following:
-    
-    - ingest live content using various live streaming protocols (for example RTMP or Smooth Streaming),
-    - (optionally) encode your stream into adaptive bitrate stream
-    - preview your live stream,
-    - record and store the ingested content in order to be streamed later (Video-on-Demand)
-    - deliver the content through common streaming protocols (for example, MPEG DASH, Smooth, HLS, HDS) directly to your customers, or to a Content Delivery Network (CDN) for further distribution.
+- 內部部署即時編碼器會傳送多位元速率 **RTMP** 或 **Smooth Streaming** (分散的 MP4) 到針對**即時通行**傳遞所設定的通道。**即時通行**傳遞就是擷取的串流會通過**通道**，無需進一步的處理。您可以使用下列輸出多位元速率 Smooth Streaming 的即時編碼器：Elemental、Envivio、Cisco。下列即時編碼器會輸出 RTMP：Adobe Flash Media Live Encoder (FMLE)、Telestream Wirecast 和 Tricaster 轉錄器。即時編碼器也會將單一位元速率串流傳送至無法用於即時編碼的通道，但是不建議您使用此方法。接到要求時，媒體服務會傳遞串流給客戶。
+
+	>[AZURE.NOTE] 如果您在很長一段時間內進行多個事件，而且已投資內部部署編碼器時，使用傳遞方法是進行即時串流的最經濟實惠方式。請參閱[價格](/pricing/details/media-services/)詳細資料。
+	
+	
+- 內部部署即時編碼器會將單一位元速率串流傳送至通道，可以使用下列格式之一，以媒體服務執行即時編碼：RTMP 或 Smooth Streaming (分散的 MP4)。也支援 RTP (MPEG-TS)，可提供您連接至 Azure 資料中心的專用連接。下列包含 RTMP 輸出的即時編碼器已知可與以下類型的通道協同作業：Telestream Wirecast 和 FMLE。通道接著會執行即時編碼，將連入的單一位元速率串流編碼成多位元速率 (自動調整) 視訊串流。接到要求時，媒體服務會傳遞串流給客戶。
 
 
-**Microsoft Azure Media Services** (AMS) provides the ability to ingest,  encode, preview, store, and deliver your live streaming content.
+自媒體服務 2.10 版起，當您建立通道時，您可以指定您希望通道接收輸入串流的方式，以及您是否想要通道執行串流的即時編碼。您有兩個選擇：
 
-When delivering your content to customers your goal is to deliver a high quality video to various devices under different network conditions. To achieve this, use live encoders to encode your stream to a multi-bitrate (adaptive bitrate) video stream.  To take care of streaming on different devices, use Media Services [dynamic packaging](media-services-dynamic-packaging-overview.md) to dynamically re-package your stream to different protocols. Media Services supports delivery of the following adaptive bitrate streaming technologies: HTTP Live Streaming (HLS), Smooth Streaming, MPEG DASH, and HDS (for Adobe PrimeTime/Access licensees only).
+- **無** (傳遞) – 如果您想要使用會輸出多位元速率串流 (傳遞串流) 的內部部署即時編碼器，請指定這個值。在此情況下，連入的串流會傳遞至輸出，無須任何編碼。這是在 2.10 版以前的通道行為。
 
-In Azure Media Services, **Channels**, **Programs**, and **StreamingEndpoints** handle all the live streaming functionalities including ingest, formatting, DVR, security, scalability and redundancy.
+- **標準** – 如果您打算使用媒體服務將單一位元速率即時串流編碼成多位元速率串流，請選擇這個值。對於快速相應增加的非頻繁事件來說，這是較為經濟的方法。請注意即時編碼有計費影響，而且您應該記住將即時編碼通道保持在「執行中」狀態會產生費用。建議您在即時串流事件完成之後立即停止執行的通道，以避免額外的每小時費用。
 
-A **Channel** represents a pipeline for processing live streaming content. A Channel can receive a live input streams in the following ways:
+##通道類型的比較
 
-- An on-premises live encoder sends multi-bitrate **RTMP** or **Smooth Streaming** (fragmented MP4) to the Channel that is configured for **pass-through** delivery. The **pass-through** delivery is when the ingested streams pass through **Channel**s without any further processing. You can use the following live encoders that output multi-bitrate Smooth Streaming: Elemental, Envivio, Cisco.  The following live encoders output RTMP: Adobe Flash Media Live Encoder (FMLE), Telestream Wirecast, and Tricaster transcoders.  A live encoder can also send a single bitrate stream to a channel that is not enabled for live encoding, but that is not recommended. When requested, Media Services delivers the stream to customers.
+下表提供了媒體服務所支援的兩種通道類型比較指南
 
-    >[AZURE.NOTE] Using a pass-through method is the most economical way to do live streaming when you are doing multiple events over a long period of time, and you have already invested in on-premises encoders. See [pricing](/pricing/details/media-services/) details.
-    
-    
-- An on-premises live encoder sends a single-bitrate stream to the Channel that is enabled to perform live encoding with Media Services in one of the following formats: RTMP or Smooth Streaming (fragmented MP4). RTP (MPEG-TS) is also supported, provided you have a dedicated connection to the Azure data center. The following live encoders with RTMP output are known to work with channels of this type: Telestream Wirecast, FMLE. The Channel then performs live encoding of the incoming single bitrate stream to a multi-bitrate (adaptive) video stream. When requested, Media Services delivers the stream to customers.
-
-
-Starting with the Media Services 2.10 release, when you create a Channel, you can specify in which way you want for your channel to receive the input stream and whether or not you want for the channel to perform live encoding of your stream. You have two options:
-
-- **None** (pass-through) – Specify this value, if you plan to use an on-premises live encoder which will output multi-bitrate stream (a pass-through stream). In this case, the incoming stream passed through to the output without any encoding. This is the behavior of a Channel prior to 2.10 release.  
-
-- **Standard** – Choose this value, if you plan to use Media Services to encode your single bitrate live stream to multi-bitrate stream. This method is more economical for scaling up quickly for infrequent events. Be aware that there is a billing impact for live encoding and you should remember that leaving a live encoding channel in the "Running" state will incur billing charges.  It is recommended that you immediately stop your running channels after your live streaming event is complete to avoid extra hourly charges. 
-
-##<a name="comparison-of-channel-types"></a>Comparison of Channel Types
-
-Following table provides a guide to comparing the two Channel types supported in Media Services
-
-Feature|Pass-through Channel|Standard Channel
+功能|傳遞通道|標準通道
 ---|---|---
-Single bitrate input is encoded into multiple bitrates in the cloud|No|Yes
-Maximum resolution, number of layers|1080p, 8 layers, 60+fps|720p, 6 layers, 30 fps
-Input protocols|RTMP, Smooth Streaming|RTMP, Smooth Streaming, and RTP
-Price|See the [pricing page](/pricing/details/media-services/) and click on "Live Video" tab|See the [pricing page](/pricing/details/media-services/) 
-Maximum run time|24x7|8 hours
-Support for inserting slates|No|Yes
-Support for ad signaling|No|Yes
-Pass-through CEA 608/708 captions|Yes|Yes
-Ability to recover from brief stalls in contribution feed|Yes|No (Channel will begin slating after 6+ seconds w/o input data)
-Support for non-uniform input GOPs|Yes|No – input must be fixed 2sec GOPs
-Support for variable frame rate input|Yes|No – input must be fixed frame rate.<br/>Minor variations are tolerated, for example, during high motion scenes. But encoder cannot drop to 10 frames/sec.
-Auto-shutoff of Channels when input feed is lost|No|After 12 hours, if there is no Program running 
+單一位元速率輸入會在雲端編碼為多重位元速率|否|是
+最大解析度、分層數目|1080p、8 層、60+fps|720p、6 層、30 fps
+輸入通訊協定|RTMP、Smooth Streaming|RTMP、Smooth Streaming 和 RTP
+價格|請參閱[定價頁面](/pricing/details/media-services/)並按一下 [即時影片] 索引標籤|請參閱[定價頁面](/pricing/details/media-services/) 
+最長執行時間|全天候|8 小時
+插入靜態圖像支援|否|是
+廣告訊號支援|否|是
+傳遞 CEA 608/708 字幕|是|是
+在比重摘要內能從短暫延遲中復原的能力|是|否 (經過 6 秒以上且未有任何輸入資料時，通道便會中斷)
+支援未統一輸入的 GOP|是|否 – 輸入必須為固定式 2 秒 GOP
+支援變動畫面播放速率輸入|是|否 – 輸入必須是固定畫面播放速率。<br/>輕微的差異可以接受，例如：處於高速動態場景的情況。但編碼器無法降至 10 個畫面/秒的標準。
+在輸入摘要遺失時自動關閉通道|否|經過 12 個小時，如果沒有程式仍在執行 
 
-##<a name="working-with-channels-that-receive-multi-bitrate-live-stream-from-on-premises-encoders-(pass-through)"></a>Working with Channels that receive multi-bitrate live stream from on-premises encoders (pass-through)
+##使用可從內部部署編碼器接收多位元速率即時串流的通道 (傳遞)
 
-The following diagram shows the major parts of the AMS platform that are involved in the **pass-through** workflow.
+下圖顯示**即時通行**工作流程中涉及的 AMS 平台主要部分。
 
-![Live workflow](./media/media-services-live-streaming-workflow/media-services-live-streaming-current.png)
+![即時工作流程](./media/media-services-live-streaming-workflow/media-services-live-streaming-current.png)
 
-For more information, see [Working with Channels that Receive Multi-bitrate Live Stream from On-premises Encoders](media-services-live-streaming-with-onprem-encoders.md).
+如需詳細資訊，請參閱[使用通道，從內部部署編碼器接收多位元速率即時串流](media-services-live-streaming-with-onprem-encoders.md)。
 
-##<a name="working-with-channels-that-are-enabled-to-perform-live-encoding-with-azure-media-services"></a>Working with Channels that are enabled to perform live encoding with Azure Media Services
+##使用啟用的通道來以 Azure 媒體服務執行即時編碼
 
-The following diagram shows the major parts of the AMS platform that are involved in Live Streaming workflow where a Channel is enabled to perform live encoding with Media Services.
+下圖顯示 AMS 平台的主要部分，與通道可以使用媒體服務執行即時編碼的即時串流工作流程有關。
 
-![Live workflow](./media/media-services-live-streaming-workflow/media-services-live-streaming-new.png)
+![即時工作流程](./media/media-services-live-streaming-workflow/media-services-live-streaming-new.png)
 
-For more information, see [Working with Channels that are Enabled to Perform Live Encoding with Azure Media Services](media-services-manage-live-encoder-enabled-channels.md).
+如需詳細資訊，請參閱[使用啟用的通道來以 Azure 媒體服務執行即時編碼](media-services-manage-live-encoder-enabled-channels.md)。
 
-##<a name="description-of-a-channel-and-its-related-components"></a>Description of a Channel and its related components
+##通道和其相關元件的說明
 
-###<a name="channel"></a>Channel
+###通道
 
-In Media Services, [Channel](https://msdn.microsoft.com/library/azure/dn783458.aspx)s are responsible for processing live streaming content. A Channel provides an input endpoint (ingest URL) that you then provide to a live transcoder. The channel receives live input streams from the live transcoder and makes it available for streaming through one or more StreamingEndpoints. Channels also provide a preview endpoint (preview URL) that you use to preview and validate your stream before further processing and delivery.
+在媒體服務中，[通道](https://msdn.microsoft.com/library/azure/dn783458.aspx)負責處理即時資料流內容。通道會提供輸入端點 (內嵌 URL)，接著您再提供給即時轉碼器。通道從即時轉碼器接收即時輸入資料流，再透過一或多個 StreamingEndpoint 進行串流處理。通道也會提供預覽端點 (預覽 URL)，您可在進一步處理和傳遞之前先用來預覽及驗證您的資料流。
 
-You can get the ingest URL and the preview URL when you create the channel. To get these URLs, the channel does not have to be in the started state. When you are ready to start pushing data from a live transcoder into the channel, the channel must be started. Once the live transcoder starts ingesting data, you can preview your stream.
+您可在建立通道時取得內嵌 URL 和預覽 URL。通道不需處於啟動狀態也可以取得這些 URL。當您準備好要開始從即時轉碼器推播資料給通道時，就必須先啟動通道。即時轉碼器開始內嵌資料後，您就可以預覽您的資料流。
 
-Each Media Services account can contain multiple Channels, multiple Programs, and multiple StreamingEndpoints. Depending on the bandwidth and security needs, StreamingEndpoint services can be dedicated to one or more channels. Any StreamingEndpoint can pull from any Channel.
-
-
-###<a name="program"></a>Program 
-
-A [Program](https://msdn.microsoft.com/library/azure/dn783463.aspx) enables you to control the publishing and storage of segments in a live stream. Channels manage Programs. The Channel and Program relationship is very similar to traditional media where a channel has a constant stream of content and a program is scoped to some timed event on that channel.
-You can specify the number of hours you want to retain the recorded content for the program by setting the **ArchiveWindowLength** property. This value can be set from a minimum of 5 minutes to a maximum of 25 hours. 
-
-ArchiveWindowLength also dictates the maximum amount of time clients can seek back in time from the current live position. Programs can run over the specified amount of time, but content that falls behind the window length is continuously discarded. This value of this property also determines how long the client manifests can grow.
-
-Each program is associated with an Asset. To publish the program you must create a locator for the associated asset. Having this locator will enable you to build a streaming URL that you can provide to your clients.
-
-A channel supports up to three concurrently running programs so you can create multiple archives of the same incoming stream. This allows you to publish and archive different parts of an event as needed. For example, your business requirement is to archive 6 hours of a program, but to broadcast only last 10 minutes. To accomplish this, you need to create two concurrently running programs. One program is set to archive 6 hours of the event but the program is not published. The other program is set to archive for 10 minutes and this program is published.
+每個媒體服務帳戶可以包含多個通道、多個程式和多個 StreamingEndpoints。根據頻寬和安全性需求，StreamingEndpoint 服務可以專屬於一或多個通道。任何 StreamingEndpoint 可以從任何通道中提取。
 
 
-##<a name="billing-implications"></a>Billing Implications
+###程式 
 
-A channel begins billing as soon as it's state transitions to "Running" via the API.  
+[程式](https://msdn.microsoft.com/library/azure/dn783463.aspx)可讓您控制即時資料流區段的發佈和儲存體。通道會管理程式。通道和程式的關聯性非常類似於傳統媒體，此處的通道有常數內容資料流，而程式的範圍是該通道上的某些計時事件。您可以透過設定 **ArchiveWindowLength** 屬性，指定您想要保留已記錄程式內容的時數。此值最小可以設定為 5 分鐘，最大可以設定為 25 個小時。
 
-The following table shows how Channel states map to billing states in the API and Azure portal. Note that the states are slightly different between the API and Portal UX. As soon as a channel is in the "Running" state via the API, or in the "Ready" or "Streaming" state in the Azure Classic Portal, billing will be active.
+ArchiveWindowLength 也指定用戶端可從目前即時位置往回搜尋的最大時間量。程式可以執行超過指定的時間量，但是超過此時間長度的內容會被持續捨棄。此屬性的這個值也會決定用戶端資訊清單可以成長多長的時間。
 
-To stop the Channel from billing you further, you have to Stop the Channel via the API or in the Azure portal.
-You are responsible for stopping your channels when you are done with the channel. Failure to stop the channel will result in continued billing.
+每個程式都是與「資產」相關聯。若要發佈程式，您必須建立相關資產的定位器。擁有此定位器，可讓您建置可提供給用戶端的串流 URL。
 
->[AZURE.NOTE]When working with Standard channels, AMS will auto shutoff any Channel that is still in “Running” state 12 hours after the input feed is lost, and there are no Programs running. However, you will still be billed for the time the Channel was in “Running” state.
+通道支援最多三個同時執行的程式，因此您可以建立相同內送串流的多個封存。這可讓您視需要發行和封存事件的不同部分。例如，您的商務需求是封存 6 小時的程式，但只廣播最後 10 分鐘。為了達成此目的，您必須建立兩個同時執行的程式。其中一個程式設定為封存 6 小時的事件，但是未發行該程式。另一個程式則設定為封存 10 分鐘，並發行程式。
 
-###<a name="<a-id="states"></a>channel-states-and-how-they-map-to-the-billing-mode"></a><a id="states"></a>Channel states and how they map to the billing mode 
 
-The current state of a Channel. Possible values include:
+##計費影響
 
-- **Stopped**. This is the initial state of the Channel after its creation (unless autostart was selected in the portal.) No billing occurs in this state. In this state, the Channel properties can be updated but streaming is not allowed.
-- **Starting**. The Channel is being started. No billing occurs in this state. No updates or streaming is allowed during this state. If an error occurs, the Channel returns to the Stopped state.
-- **Running**. The Channel is capable of processing live streams. It is now billing usage. You must stop the channel to prevent further billing. 
-- **Stopping**. The Channel is being stopped. No billing occurs in this transient state. No updates or streaming is allowed during this state.
-- **Deleting**. The Channel is being deleted. No billing occurs in this transient state. No updates or streaming is allowed during this state.
+通道只要其狀態透過 API 轉換為「執行中」，即會開始計費。
 
-The following table shows how Channel states map to the billing mode. 
+下表顯示通道狀態如何對應至 API 和 Azure 傳統入口網站的計費狀態。請注意，API 和入口網站 UX 之間的狀態稍有不同。一旦通道透過 API 處於「執行中」狀態，或在 Azure 傳統入口網站中處於「就緒」或「串流」狀態，就會開始計費。
+
+若要停止通道進一步向您計費，您必須停止透過 API 或在 Azure 傳統入口網站中的通道。您必須負責在完成通道時停止您的通道。無法停止通道將會導致持續計費。
+
+>[AZURE.NOTE]使用標準通道時，在輸入饋送遺失 12 小時之後且沒有執行任何程式時，AMS 會自動關閉仍處於「執行中」狀態的任何通道。不過，您將還是需要支付通道處於「執行中」狀態時間的費用。
+
+###<a id="states"></a>通道狀態和狀態如何對應至計費模式 
+
+通道的目前狀態。可能的值包括：
+
+- **已停止**。這是通道建立後的初始狀態 (除非在入口網站中選取自動啟動)。 此狀態中不會計費。在此狀態下，通道屬性可以更新，但是不允許串流。
+- **啟動中**。正在啟動通道。此狀態中不會計費。在此狀態期間允許任何更新或串流。如果發生錯誤，通道會回到已停止狀態。
+- **執行中**。通道能夠處理即時串流。現在針對使用量計費。您必須停止通道來防止進一步計費。
+- **停止中**。正在停止通道。此暫時性狀態中不會計費。在此狀態期間允許任何更新或串流。
+- **刪除中**。正在刪除通道。此暫時性狀態中不會計費。在此狀態期間允許任何更新或串流。
+
+下表顯示通道狀態如何對應至計費模式。
  
-Channel state|Portal UI Indicators|Is it Billing?
+通道狀態|入口網站 UI 指標|會計費嗎？
 ---|---|---
-Starting|Starting|No (transient state)
-Running|Ready (no running programs)<br/>or<br/>Streaming (at least one running program)|YES
-Stopping|Stopping|No (transient state)
-Stopped|Stopped|No
+啟動中|啟動中|無 (暫時性狀態)
+執行中|就緒 (沒有執行中的程式)<br/>或<br/>串流 (至少一個執行中的程式)|是
+停止中|停止中|無 (暫時性狀態)
+已停止|已停止|否
 
 
-##<a name="media-services-learning-paths"></a>Media Services learning paths
+##媒體服務學習路徑
 
 [AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-##<a name="provide-feedback"></a>Provide feedback
+##提供意見反應
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 
 
-##<a name="related-topics"></a>Related topics
+##相關主題
 
-[Azure Media Services Fragmented MP4 Live Ingest Specification](media-services-fmp4-live-ingest-overview.md)
+[Azure 媒體服務的分散 MP4 即時內嵌規格](media-services-fmp4-live-ingest-overview.md)
 
-[Working with Channels that are Enabled to Perform Live Encoding with Azure Media Services](media-services-manage-live-encoder-enabled-channels.md)
+[使用啟用的通道來以 Azure 媒體服務執行即時編碼](media-services-manage-live-encoder-enabled-channels.md)
 
-[Working with Channels that Receive Multi-bitrate Live Stream from On-premises Encoders](media-services-live-streaming-with-onprem-encoders.md)
+[使用通道，從內部部署編碼器接收多位元速率即時串流](media-services-live-streaming-with-onprem-encoders.md)
 
-[Quotas and limitations](media-services-quotas-and-limitations.md).  
+[配額和限制](media-services-quotas-and-limitations.md)。
 
-[Media Services Concepts](media-services-concepts.md)
+[媒體服務概念](media-services-concepts.md)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

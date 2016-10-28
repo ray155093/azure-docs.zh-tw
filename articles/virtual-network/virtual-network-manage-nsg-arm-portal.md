@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="Manage NSGs using the preview portal in Resource Manager | Microsoft Azure"
-   description="Learn how to manage exising NSGs using the preview portal in Resource Manager"
+   pageTitle="在資源管理員中使用 Preview 入口網站管理 NSG | Microsoft Azure"
+   description="了解如何在資源管理員中使用 Preview 入口網站管理管理現有的 NSG"
    services="virtual-network"
    documentationCenter="na"
    authors="jimdial"
@@ -17,179 +17,174 @@
    ms.date="03/14/2016"
    ms.author="jdial" />
 
-
-# <a name="manage-nsgs-using-the-preview-portal"></a>Manage NSGs using the preview portal
+# 使用 Preview 入口網站管理 NSG
 
 > [AZURE.SELECTOR]
-- [Portal](virtual-network-manage-nsg-arm-portal.md)
+- [入口網站](virtual-network-manage-nsg-arm-portal.md)
 - [PowerShell](virtual-network-manage-nsg-arm-ps.md)
 - [Azure CLI](virtual-network-manage-nsg-arm-cli.md)
 
 [AZURE.INCLUDE [virtual-network-manage-nsg-intro-include.md](../../includes/virtual-network-manage-nsg-intro-include.md)]
 
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-rm-include.md)] classic deployment model.
+[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-rm-include.md)] 傳統部署模型。
 
 [AZURE.INCLUDE [virtual-network-manage-nsg-arm-scenario-include.md](../../includes/virtual-network-manage-nsg-arm-scenario-include.md)]
 
-## <a name="retrieve-information"></a>Retrieve Information
+## 擷取資訊
 
-You can view your existing NSGs, retrieve rules for an existing NSG, and find out what resources an NSG is associated to.
+您可以檢視您現有的 NSG、擷取現有 NSG 的規則，並找出與 NSG 相關聯的資源。
 
-### <a name="view-existing-nsgs"></a>View existing NSGs
-To view all existing NSGs in a subscription, follow the steps below.
+### 檢視現有的 NSG
+若要檢視訂用帳戶中所有現有的 NSG，請遵循下列步驟。
 
-1. From a browser, navigate to http://portal.azure.com and, if necessary, sign in with your Azure account.
-2. Click **Browse >** > **Network security groups**.
+1. 透過瀏覽器瀏覽至 http://portal.azure.com，並視需要使用您的 Azure 帳戶登入。
+2. 按一下 [瀏覽] > [網路安全性群組]。
 
-![Azure portal - NSGs](./media/virtual-network-manage-nsg-arm-portal/figure1.png)
+![Azure 入口網站 - NSG](./media/virtual-network-manage-nsg-arm-portal/figure1.png)
 
-3. Check the list of NSGs in the **Network security groups** blade.
+3. 查看 [網路安全性群組] 刀鋒視窗中的 NSG 清單。
 
-![Azure portal - NSGs](./media/virtual-network-manage-nsg-arm-portal/figure2.png)
+![Azure 入口網站 - NSG](./media/virtual-network-manage-nsg-arm-portal/figure2.png)
 
-To view the list of NSGs in the **RG-NSG** resource group, follow the steps below. 
+若要檢視 **RG-NSG** 資源群組中的 NSG 清單，請遵循下列步驟。
 
-1. Click **Resource groups >** > **RG-NSG** > **...**.
+1. 按一下[資源群組] > [RG-NSG] > [...]。
 
-![Azure portal - NSGs](./media/virtual-network-manage-nsg-arm-portal/figure3.png)
+![Azure 入口網站 - NSG](./media/virtual-network-manage-nsg-arm-portal/figure3.png)
 
-2. In the list of resources, look for items displaying the NSG icon, as shown in the **Resources** blade below.
+2. 在資源清單中，尋找顯示 NSG 圖示的項目，如下圖 [資源] 刀鋒視窗所示。
 
-![Azure portal - NSGs](./media/virtual-network-manage-nsg-arm-portal/figure4.png)
-         
-### <a name="list-all-rules-for-an-nsg"></a>List all rules for an NSG
+![Azure 入口網站 - NSG](./media/virtual-network-manage-nsg-arm-portal/figure4.png)
+		 
+### 列出 NSG 的所有規則
 
-To view the rules of an NSG named **NSG-FrontEnd**, follow the steps below. 
+若要檢視名為 **NSG-FrontEnd** 的 NSG 的規則，請遵循下列步驟。
 
-1. From the **Network security groups** blade, or the **Resources** blade shown above, click **NSG-FrontEnd**.
-2. In the **Settings** tab, click **Inbound security rules**.
+1. 在 [網路安全性群組] 刀鋒視窗或前文提及的 [資源] 刀鋒視窗中，按一下 [NSG-FrontEnd]。
+2. 在 [設定] 索引標籤中，按一下 [輸入安全性規則]。
 
-![Azure portal - NSGs](./media/virtual-network-manage-nsg-arm-portal/figure5.png)
+![Azure 入口網站 - NSG](./media/virtual-network-manage-nsg-arm-portal/figure5.png)
 
-3. The **Inbound security rules** blade is displayed as shown below.
+3. [輸入安全性規則] 刀鋒視窗隨即會出現，如下圖所示。
 
-![Azure portal - NSGs](./media/virtual-network-manage-nsg-arm-portal/figure6.png)
+![Azure 入口網站 - NSG](./media/virtual-network-manage-nsg-arm-portal/figure6.png)
 
-4. In the **Settings** tab, click **Outbound security rules** to see the outbound rules.
+4. 在 [設定] 索引標籤中，按一下 [輸出安全性規則] 以查看輸出規則。
 
->[AZURE.NOTE] To view default rules, click the **Default rules** icon at the top of the blade that displays the rules.
+>[AZURE.NOTE] 若要檢視預設規則，請按一下顯示規則之刀鋒視窗頂端的 [預設規則] 圖示。
 
-### <a name="view-nsgs-associations"></a>View NSGs associations
+### 檢視 NSG 關聯
 
-To view what resources the **NSG-FrontEnd** NSG is associate with, follow the steps below.
+若要檢視與 **NSG-FrontEnd** NSG 相關聯的資源，請遵循下列步驟。
 
-1. From the **Network security groups** blade, or the **Resources** blade shown above, click **NSG-FrontEnd**.
-2. In the **Settings** tab, click **Subnets** to view what subnets are associated to the NSG.
+1. 在 [網路安全性群組] 刀鋒視窗或前文提及的 [資源] 刀鋒視窗中，按一下 [NSG-FrontEnd]。
+2. 在 [設定] 索引標籤中，按一下 [子網路] 以檢視與 NSG 相關聯的子網路。
 
-![Azure portal - NSGs](./media/virtual-network-manage-nsg-arm-portal/figure7.png)
+![Azure 入口網站 - NSG](./media/virtual-network-manage-nsg-arm-portal/figure7.png)
 
-3. In the **Settings** tab, click **Network interfaces** to view what NICs are associated to the NSG.
+3. 在 [設定] 索引標籤中，按一下 [網路介面] 以檢視與 NSG 相關聯的 NIC。
 
-## <a name="manage-rules"></a>Manage rules
+## 管理規則
 
-You can add rules to an existing NSG, edit existing rules, and remove rules.
+您可以將規則新增至現有的 NSG、編輯現有的規則，以及移除規則。
 
-### <a name="add-a-rule"></a>Add a rule
+### 新增規則
 
-To add a rule allowing **inbound** traffic to port **443** from any machine to the **NSG-FrontEnd** NSG, follow the steps below.
+若要新增規則，允許來自任何電腦的連接埠 **443** 的**輸入**流量流向 **NSG-FrontEnd** NSG，請依照下列步驟進行。
 
-1. From the **Network security groups** blade, or the **Resources** blade shown above, click **NSG-FrontEnd**.
-2. In the **Settings** tab, click **Inbound security rules**.
-3. In the **Inbound security rules** blade, click **Add**. Then, in the **Add inbound security rule** blade, fill the values as shown below, and then click **OK**.
+1. 在 [網路安全性群組] 刀鋒視窗或前文提及的 [資源] 刀鋒視窗中，按一下 [NSG-FrontEnd]。
+2. 在 [設定] 索引標籤中，按一下 [輸入安全性規則]。
+3. 在 [輸入安全性規則] 刀鋒視窗中，按一下 [新增]。接著，在 [新增輸入安全性規則] 刀鋒視窗中，依照下圖所示填入值，然後按一下 [確定]。
 
-![Azure portal - NSGs](./media/virtual-network-manage-nsg-arm-portal/figure8.png)
+![Azure 入口網站 - NSG](./media/virtual-network-manage-nsg-arm-portal/figure8.png)
 
-4. After a few seconds, notice the new rule in the **Inbound security rules** blade.
+4. 幾秒鐘後，請注意 [輸入安全性規則] 刀鋒視窗中的新規則。
 
-![Azure portal - NSGs](./media/virtual-network-manage-nsg-arm-portal/figure9.png)
+![Azure 入口網站 - NSG](./media/virtual-network-manage-nsg-arm-portal/figure9.png)
 
-### <a name="change-a-rule"></a>Change a rule
+### 變更規則
 
-To change the rule created above to allow inbound traffic from the **Internet** only, follow the steps below.
+若要變更以上所建立的規則，僅允許來自**網際網路**的輸入流量，請依照下列步驟進行。
 
-1. From the **Network security groups** blade, or the **Resources** blade shown above, click **NSG-FrontEnd**.
-2. In the **Settings** tab, click the rule created above.
-3. In the **allow-https** blade, change the **Source** property as shown below, and then click **Save**.
+1. 在 [網路安全性群組] 刀鋒視窗或前文提及的 [資源] 刀鋒視窗中，按一下 [NSG-FrontEnd]。
+2. 在 [設定] 索引標籤中，按一下在前文中建立的規則。
+3. 在 [allow-https] 刀鋒視窗中，依照下圖所示變更 [來源] 屬性，然後按一下 [儲存]。
 
-![Azure portal - NSGs](./media/virtual-network-manage-nsg-arm-portal/figure10.png)
+![Azure 入口網站 - NSG](./media/virtual-network-manage-nsg-arm-portal/figure10.png)
 
-### <a name="delete-a-rule"></a>Delete a rule
+### 刪除規則
 
-To delete the rule created above, follow the steps below.
+若要刪除在前文中建立的規則，請遵循下列步驟。
 
-1. From the **Network security groups** blade, or the **Resources** blade shown above, click **NSG-FrontEnd**.
-2. In the **Settings** tab, click the rule created above.
-3. In the **allow-https** blade, click **Delete**, and then click **Yes**.
+1. 在 [網路安全性群組] 刀鋒視窗或前文提及的 [資源] 刀鋒視窗中，按一下 [NSG-FrontEnd]。
+2. 在 [設定] 索引標籤中，按一下在前文中建立的規則。
+3. 在 [allow-https] 刀鋒視窗中，依序按一下 [刪除] 和 [是]。
 
-![Azure portal - NSGs](./media/virtual-network-manage-nsg-arm-portal/figure11.png)
+![Azure 入口網站 - NSG](./media/virtual-network-manage-nsg-arm-portal/figure11.png)
 
-## <a name="manage-associations"></a>Manage associations
+## 管理關聯
 
-You can associate an NSG to subnets and NICs. You can also dissociate an NSG from any resource it's associated to.
+您可以建立 NSG 與子網路和 NIC 的關聯。您也可以中斷 NSG 與其相關聯的任何資源的關聯。
 
-### <a name="associate-an-nsg-to-a-nic"></a>Associate an NSG to a NIC
+### 建立 NSG 與 NIC 的關聯
 
-To associate the **NSG-FrontEnd** NSG to the **TestNICWeb1** NIC, follow the steps below.
+若要建立 **NSG-FrontEnd** NSG 與 **TestNICWeb1** NIC 的關聯，請依照下列步驟進行。
 
-1. From the **Network security groups** blade, or the **Resources** blade shown above, click **NSG-FrontEnd**.
-2. In the **Settings** tab, click **Network interfaces** > **Associate** > **TestNICWeb1**.
+1. 在 [網路安全性群組] 刀鋒視窗或前文提及的 [資源] 刀鋒視窗中，按一下 [NSG-FrontEnd]。
+2. 在 [設定] 索引標籤中，按一下 [網路介面] > [關聯] > [TestNICWeb1]。
 
-![Azure portal - NSGs](./media/virtual-network-manage-nsg-arm-portal/figure12.png)
+![Azure 入口網站 - NSG](./media/virtual-network-manage-nsg-arm-portal/figure12.png)
 
-### <a name="dissociate-an-nsg-from-a-nic"></a>Dissociate an NSG from a NIC
+### 中斷 NSG 與 NIC 的關聯
 
-To dissociate the **NSG-FrontEnd** NSG from the **TestNICWeb1** NIC, follow the steps below.
+若要中斷 **NSG-FrontEnd** NSG 與 **TestNICWeb1** NIC 的關聯，請依照下列步驟進行。
 
-1. From the Azure portal, click **Resource groups >** > **RG-NSG** > **...** > **TestNICWeb1**.
-2. In the **TestNICWeb1** blade, click **Change security...** > **None**.
+1. 從 Azure 入口網站中，按一下 [資源群組] > [RG-NSG] > [...] > [TestNICWeb1]。
+2. 在 [TestNICWeb1] 刀鋒視窗中，按一下 [變更安全性...] > [無]。
 
-![Azure portal - NSGs](./media/virtual-network-manage-nsg-arm-portal/figure13.png)
+![Azure 入口網站 - NSG](./media/virtual-network-manage-nsg-arm-portal/figure13.png)
 
->[AZURE.NOTE] You can also use this blade to associate the NIC to any existing NSG.
+>[AZURE.NOTE] 您也可以使用此刀鋒視窗來建立 NIC 與任何現有 NSG 之間的關聯。
 
-### <a name="dissociate-an-nsg-from-a-subnet"></a>Dissociate an NSG from a subnet
+### 中斷 NSG 與子網路的關聯
 
-To dissociate the **NSG-FrontEnd** NSG from the **FrontEnd** subnet, follow the steps below.
+若要中斷 **NSG-FrontEnd** NSG 與 **FrontEnd** 子網路的關聯，請依照下列步驟進行。
 
-1. From the Azure portal, click **Resource groups >** > **RG-NSG** > **...** > **TestVNet**.
-2. In the **Settings** blade, click **Subnets** > **FrontEnd** > **Network security group** > **None**.
+1. 從 Azure 入口網站中，按一下 [資源群組] > [RG-NSG] > [...] > [TestVNet]。
+2. 在 [設定] 刀鋒視窗中，按一下 [子網路] > [FrontEnd] > [網路安全性群組] > [無]。
 
-![Azure portal - NSGs](./media/virtual-network-manage-nsg-arm-portal/figure14.png)
+![Azure 入口網站 - NSG](./media/virtual-network-manage-nsg-arm-portal/figure14.png)
 
-3. In the **FrontEnd** blade, click **Save**.
+3. 在 [FrontEnd] 刀鋒視窗中，按一下 [儲存]。
 
-![Azure portal - NSGs](./media/virtual-network-manage-nsg-arm-portal/figure15.png)
+![Azure 入口網站 - NSG](./media/virtual-network-manage-nsg-arm-portal/figure15.png)
 
-### <a name="associate-an-nsg-to-a-subnet"></a>Associate an NSG to a subnet
+### 建立 NSG 至子網路的關聯
 
-To associate the **NSG-FrontEnd** NSG to the **FronEnd** subnet again, follow the steps below.
+若要再次建立 **NSG-FrontEnd** NSG 與 **FronEnd** 子網路的關聯，請依照下列步驟進行。
 
-1. From the Azure portal, click **Resource groups >** > **RG-NSG** > **...** > **TestVNet**.
-2. In the **Settings** blade, click **Subnets** > **FrontEnd** > **Network security group** > **NSG-FrontEnd**.
-3. In the **FrontEnd** blade, click **Save**.
+1. 從 Azure 入口網站中，按一下 [資源群組] > [RG-NSG] > [...] > [TestVNet]。
+2. 在 [設定] 刀鋒視窗中，按一下 [子網路] > [FrontEnd] > [網路安全性群組] > [NSG-FrontEnd]。
+3. 在 [FrontEnd] 刀鋒視窗中，按一下 [儲存]。
 
->[AZURE.NOTE] You can also associate an NSG to a subnet from thh NSG's **Settings** blade.
+>[AZURE.NOTE] 您也可以從 NSG 的 [設定] 刀鋒視窗建立 NSG 與子網路之間的關聯。
 
-## <a name="delete-an-nsg"></a>Delete an NSG
+## 刪除 NSG
 
-You can only delete an NSG if it's not associated to any resource. To delete an NSG, follow the steps below.
+您只能刪除與任何資源沒有關聯的 NSG。若要刪除 NSG，請依照下列步驟進行。
 
-1. From the Azure portal, click **Resource groups >** > **RG-NSG** > **...** > **NSG-FrontEnd**.
-2. In the **Settings** blade, click **Network interfaces**.
-3. If there are any NICs listed, click the NIC, and follow step 2 in [Dissociate an NSG from a NIC](#Dissociate-an-NSG-from-a-NIC).
-4. Repeat step 3 for each NIC.
-5. In the **Settings** blade, click **Subnets**.
-6. If there are any subnets listed, click the subnet and follow steps 2 and 3 in [Dissociate an NSG from a subnet](#Dissociate-an-NSG-from-a-subnet).
-7. Scrolls left to the **NSG-FrontEnd** blade, then click **Delete** > **Yes**.
+1. 從 Azure 入口網站中，按一下 [資源群組] > [RG-NSG] > [...] > [NSG-FrontEnd]。
+2. 在 [設定] 刀鋒視窗中，按一下 [網路介面]。
+3. 如果有列出任何 NIC，請按一下 NIC，然後遵循[中斷 NSG 與 NIC 的關聯](#Dissociate-an-NSG-from-a-NIC)中的步驟 2。
+4. 針對每個 NIC 重複步驟 3。
+5. 在 [設定] 刀鋒視窗中，按一下 [子網路]。
+6. 如果有列出任何子網路，請按一下子網路，然後遵循[中斷 NSG 與子網路的關聯](#Dissociate-an-NSG-from-a-subnet)中的步驟 2 和 3。
+7. 向左捲動到 [NSG-FrontEnd] 刀鋒視窗，然後按一下 [刪除] > [是]。
 
-[Azure portal - NSGs](./media/virtual-network-manage-nsg-arm-portal/figure16.png)
+[Azure 入口網站 - NSG](./media/virtual-network-manage-nsg-arm-portal/figure16.png)
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-- [Enable logging](virtual-network-nsg-manage-log.md) for NSGs.
+- [啟用 NSG 的記錄](virtual-network-nsg-manage-log.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

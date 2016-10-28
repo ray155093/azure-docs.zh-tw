@@ -1,23 +1,20 @@
-### <a name="prerequisites"></a>Prerequisites
+### 必要條件
 
-- A [Salesforce](https://salesforce.com) account  
-
-
-Before you can use your Salesforce account in a logic app, you must authorize the logic app to connect to your Salesforce account.Fortunately, you can do this easily from within your logic app on the Azure Portal.  
-
-Here are the steps to authorize your logic app to connect to your Salesforce account:  
-1. To create a connection to Salesforce, in the logic app designer, select **Show Microsoft managed APIs** in the drop down list then enter *Salesforce* in the search box. Select the trigger or action you'll like to use:  
-![Salesforce connection image 1](./media/connectors-create-api-salesforce/salesforce-1.png)  
-2. If you haven't created any connections to Salesforce before, you'll get prompted to provide your Salesforce credentials. These credentials will be used to authorize your logic app to connect to, and access your Salesforce account's data:  
-![Salesforce connection image 2](./media/connectors-create-api-salesforce/salesforce-2.png)  
-3. Provide your Salesforce user name and password to authorize your logic app:  
- ![Salesforce connection image 3](./media/connectors-create-api-salesforce/salesforce-3.png)  
-4. Allow us to connect to Salesforce:  
-![Salesforce connection image 4](./media/connectors-create-api-salesforce/salesforce-4.png)  
-5. Notice the connection has been created and you are now free to proceed with the other steps in your logic app:  
-![Salesforce connection image 5](./media/connectors-create-api-salesforce/salesforce-5.png)  
+- [Salesforce](https://salesforce.com) 帳戶
 
 
-<!--HONumber=Oct16_HO2-->
+您必須先授權邏輯應用程式連線到您的 Salesforce 帳戶，才能在該邏輯應用程式中使用您的 Salesforce 帳戶。幸運的是，您可以在「Azure 入口網站」上，從邏輯應用程式內輕鬆完成此操作。
 
+若要授權邏輯應用程式連線到您的 Salesforce 帳戶，其步驟如下：
+1. 若要建立與 Salesforce 的連線，請在邏輯應用程式設計工具中，從下拉式清單中選取 [顯示 Microsoft Managed API]，然後在搜尋方塊中輸入 *Salesforce*。請選取您想要使用的觸發程序或動作：  
+![Salesforce 連線圖像 1](./media/connectors-create-api-salesforce/salesforce-1.png)  
+2. 如果您之前尚未建立任何 Salesforce 連接，系統會提示您提供 Salesforce 認證。這些認證將用來授權邏輯應用程式連線及存取您 Salesforce 帳戶的資料：  
+![Salesforce 連線圖像 2](./media/connectors-create-api-salesforce/salesforce-2.png)  
+3. 提供您的 Salesforce 使用者名稱和密碼來授權邏輯應用程式：  
+![Salesforce 連線圖像 3](./media/connectors-create-api-salesforce/salesforce-3.png)  
+4. 允許我們連線到 Salesforce：  
+![Salesforce 連線圖像 4](./media/connectors-create-api-salesforce/salesforce-4.png)  
+5. 請注意，連線已經建立，您現在可以繼續進行邏輯應用程式中的其他步驟：  
+![Salesforce 連線圖像 5](./media/connectors-create-api-salesforce/salesforce-5.png)  
 
+<!---HONumber=AcomDC_0727_2016-->

@@ -1,105 +1,100 @@
 <properties
-     pageTitle="Using Azure CDN | Microsoft Azure"
-     description="This topic shows how to enable the Content Delivery Network (CDN) for Azure. The tutorial walks through the creation of a new CDN profile and endpoint."
-     services="cdn"
-     documentationCenter=""
-     authors="camsoper"
-     manager="erikre"
-     editor=""/>
+	 pageTitle="使用 Azure CDN | Microsoft Azure"
+	 description="本主題說明如何啟用 Azure 內容傳遞網路 (CDN)。本教學課程會逐步建立新的 CDN 設定檔和端點。"
+	 services="cdn"
+	 documentationCenter=""
+	 authors="camsoper"
+	 manager="erikre"
+	 editor=""/>
 <tags
-     ms.service="cdn"
-     ms.workload="media"
-     ms.tgt_pltfrm="na"
-     ms.devlang="na"
-     ms.topic="get-started-article"
-     ms.date="07/28/2016" 
-     ms.author="casoper"/>
+	 ms.service="cdn"
+	 ms.workload="media"
+	 ms.tgt_pltfrm="na"
+	 ms.devlang="na"
+	 ms.topic="get-started-article"
+	 ms.date="07/28/2016" 
+	 ms.author="casoper"/>
 
+# 使用 Azure CDN  
 
-# <a name="using-azure-cdn"></a>Using Azure CDN  
+本主題將逐步解說如何透過建立新的 CDN 設定檔和端點來啟用 Azure CDN。
 
-This topic walks through enabling Azure CDN by creating a new CDN profile and endpoint.
+>[AZURE.IMPORTANT] 如需 CDN 運作方式的簡介以及功能清單，請參閱 [CDN 概觀](./cdn-overview.md)。
 
->[AZURE.IMPORTANT] For an introduction to how CDN works, as well as a list of features, see the [CDN Overview](./cdn-overview.md).
+## 建立新的 CDN 設定檔
 
-## <a name="create-a-new-cdn-profile"></a>Create a new CDN profile
+CDN 設定檔就是 CDN 端點的集合。每個設定檔皆包含一或多個 CDN 端點。您可能會想要使用多個設定檔，依網際網路網域、Web 應用程式或其他準則來組織您的 CDN 端點。
 
-A CDN profile is a collection of CDN endpoints.  Each profile contains one or more CDN endpoints.  You may wish to use multiple profiles to organize your CDN endpoints by internet domain, web application, or some other criteria.
-
-> [AZURE.NOTE] By default, a single Azure subscription is limited to eight CDN profiles. Each CDN profile is limited to ten CDN endpoints.
+> [AZURE.NOTE] 依預設，一個 Azure 訂用帳戶只能擁有八個 CDN 設定檔。而每個 CDN 設定檔則只能擁有十個 CDN 端點。
 >
-> CDN pricing is applied at the CDN profile level. If you wish to use a mix of Azure CDN pricing tiers, you will need multiple CDN profiles.
+> CDN 定價是根據 CDN 設定檔層級來套用的。如果您想要混合使用 Azure CDN 定價層，您需要擁有多個 CDN 設定檔。
 
 [AZURE.INCLUDE [cdn-create-profile](../../includes/cdn-create-profile.md)]
 
-## <a name="create-a-new-cdn-endpoint"></a>Create a new CDN endpoint
+## 建立新的 CDN 端點
 
-**To create a new CDN endpoint**
+**建立新的 CDN 端點**
 
-1. In the [Azure Portal](https://portal.azure.com), navigate to your CDN profile.  You may have pinned it to the dashboard in the previous step.  If you not, you can find it by clicking **Browse**, then **CDN profiles**, and clicking on the profile you plan to add your endpoint to.
+1. 在 [Azure 入口網站](https://portal.azure.com)中，瀏覽到您的 CDN 設定檔。您可能已在先前步驟中將其釘選至儀表板。若否，則您可依序按一下 [瀏覽]、[CDN 設定檔] 尋找該設定檔，然後再按一下您要在其中加入端點的設定檔。
 
-    The CDN profile blade appears.
+    此時會顯示 [CDN 設定檔] 刀鋒視窗。
 
-    ![CDN profile][cdn-profile-settings]
+    ![CDN 設定檔][cdn-profile-settings]
 
-2. Click the **Add Endpoint** button.
+2. 按一下 [新增端點] 按鈕。
 
-    ![Add endpoint button][cdn-new-endpoint-button]
+    ![[加入端點] 按鈕][cdn-new-endpoint-button]
 
-    The **Add an endpoint** blade appears.
+    此時會顯示 [加入端點] 刀鋒視窗。
 
-    ![Add endpoint blade][cdn-add-endpoint]
+    ![[加入端點] 刀鋒視窗][cdn-add-endpoint]
 
-3. Enter a **Name** for this CDN endpoint.  This name will be used to access your cached resources at the domain `<endpointname>.azureedge.net`.
+3. 輸入這個 CDN 端點的 [名稱]。此名稱會用於存取位於網域 `<endpointname>.azureedge.net` 的快取資源。
 
-4. In the **Origin type** dropdown, select your origin type.  Select **Storage** for an Azure Storage account, **Cloud service** for an Azure Cloud Service, **Web App** for an Azure Web App, or **Custom origin** for any other publicly accessible web server origin (hosted in Azure or elsewhere).
+4. 在 [原始來源類型] 下拉式清單中，選取您的原始來源類型。Azure 儲存體帳戶請選取 [儲存體]、Azure 雲端服務請選取 [雲端服務]、Azure Web 應用程式請選取 [Web 應用程式]，若為其他任何可公開存取的 Web 伺服器來源 (裝載於 Azure 或其他位置)，則請選取 [自訂原始來源]。
 
-    ![CDN origin type](./media/cdn-create-new-endpoint/cdn-origin-type.png)
-        
-5. In the **Origin hostname** dropdown, select or type your origin domain.  The dropdown will list all available origins of the type you specified in step 4.  If you selected *Custom origin* as your **Origin type**, you will type in the domain of your custom origin.
+	![CDN 原始來源類型](./media/cdn-create-new-endpoint/cdn-origin-type.png)
+		
+5. 在 [原始主機名稱] 下拉式清單中，選取您的原始網域類型。下拉式清單會列出您在步驟 4 中指定之類型的所有可用原始來源。如果您選取 [自訂原始來源] 作為您的 [原始來源類型]，您將會輸入自訂原始來源的網域。
 
-6. In the **Origin path** text box, enter the path to the resources you want to cache, or leave blank to allow cache any resource at the domain you specified in step 5.
+6. 在 [原始路徑] 文字方塊中，輸入您要快取的資源路徑，或保留空白以允許快取位於您在步驟 5 中指定之網域中的任何資源。
 
-7. In the **Origin host header**, enter the host header you want the CDN to send with each request, or leave the default.
+7. 在 [原始主機標頭] 中，輸入您要 CDN 連同每個要求一起傳送的主機標頭，或保留預設值。
 
-    > [AZURE.WARNING] Some types of origins, such as Azure Storage and Web Apps, require the host header to match the domain of the origin. Unless you have an origin that requires a host header different from its domain, you should leave the default value.
+	> [AZURE.WARNING] 某些類型的原始來源 (例如 Azure 儲存體和 Web Apps) 要求主機標頭必須符合原始來源的網域。除非您的原始來源需要與其網域不同的主機標頭，否則您應該保留預設值。
 
-8. For **Protocol** and **Origin port**, specify the protocols and ports used to access your resources at the origin.  At least one protocol (HTTP or HTTPS) must be selected.
-    
-    > [AZURE.NOTE] The **Origin port** only affects what port the endpoint uses to retrieve information from the origin.  The endpoint itself will only be available to end clients on the default HTTP and HTTPS ports (80 and 443), regardless of the **Origin port**.  
-    >
-    > **Azure CDN from Akamai** endpoints do not allow the full TCP port range for origins.  For a list of origin ports that are not allowed, see [Azure CDN from Akamai Allowed Origin Ports](https://msdn.microsoft.com/library/mt757337.aspx).  
-    >
-    > Accessing CDN content using HTTPS has the following constraints:
-    > 
-    > - You must use the SSL certificate provided by the CDN. Third party certificates are not supported.
-    > - You must use the CDN-provided domain (`<endpointname>.azureedge.net`) to access HTTPS content. HTTPS support is not available for custom domain names (CNAMEs) since the CDN does not support custom certificates at this time.
+8. 在 [通訊協定] 和 [原始連接埠] 中，指定用來存取原始來源之資源的通訊協定和連接埠。至少必須選取一個通訊協定 (HTTP 或 HTTPS)。
+	
+	> [AZURE.NOTE] [原始連接埠] 只會影響端點用來從原始來源擷取資訊的連接埠。不論 [原始連接埠] 為何，端點本身只會透過預設 HTTP 和 HTTPS 連接埠 (80 和 443) 提供給終端用戶端使用。
+	>
+	> **來自 Akamai 的 Azure CDN** 端點不允許原始來源的完整 TCP 連接埠範圍。如需不允許的原始連接埠清單，請參閱[來自 Akamai 的 Azure CDN 允許的原始連接埠](https://msdn.microsoft.com/library/mt757337.aspx)。
+	>
+	> 使用 HTTPS 存取 CDN 內容具有下列限制：
+	> 
+	> - 您必須使用 CDN 所提供的 SSL 憑證。不支援第三方憑證。
+	> - 您必須使用 CDN 提供的網域 (`<endpointname>.azureedge.net`) 來存取 HTTPS 內容。因為 CDN 目前不支援自訂憑證，所以自訂網域名稱 (CNAME) 不提供 HTTPS 支援。
 
-9. Click the **Add** button to create the new endpoint.
+9. 按一下 [加入] 按鈕，以建立新的端點。
 
-10. Once the endpoint is created, it appears in a list of endpoints for the profile. The list view shows the URL to use to access cached content, as well as the origin domain.
+10. 端點建立完畢之後，即會出現在設定檔的端點清單中。此清單檢視會顯示用來存取所快取內容的 URL 以及原始網域。
 
-    ![CDN endpoint][cdn-endpoint-success]
+    ![CDN 端點][cdn-endpoint-success]
 
-    > [AZURE.IMPORTANT] The endpoint will not immediately be available for use, as it takes time for the registration to propagate through the CDN.  For <b>Azure CDN from Akamai</b> profiles, propagation will usually complete within one minute.  For <b>Azure CDN from Verizon</b> profiles, propagation will usually complete within 90 minutes, but in some cases can take longer.
-    >    
-    > Users who try to use the CDN domain name before the endpoint configuration has propagated to the POPs will receive HTTP 404 response codes.  If it's been several hours since you created your endpoint and you're still receiving 404 responses, please see [Troubleshooting CDN endpoints returning 404 statuses](cdn-troubleshoot-endpoint.md).
+    > [AZURE.IMPORTANT] 端點不會立即可供使用，因為註冊資訊需要一段時間才能傳遍 CDN。若為<b>來自 Akamai 的 Azure CDN</b> 設定檔，通常會在一分鐘之內完成傳播。若為<b>來自 Verizon 的 Azure CDN</b> 設定檔，則通常會在 90 分鐘之內完成傳播，但在某些情況下可能會更久。
+	>	 
+	> 嘗試在端點組態傳播到 POP 之前就使用 CDN 網域名稱的使用者會收到 HTTP 404 回應碼。如果在端點建立好後已過了好幾個小時，而您仍然收到 404 回應，請參閱[針對傳回 404 狀態的 CDN 端點進行疑難排解](cdn-troubleshoot-endpoint.md)。
 
 
-##<a name="see-also"></a>See Also
-- [Controlling caching behavior of requests with query strings](cdn-query-string.md)
-- [How to Map CDN Content to a Custom Domain](cdn-map-content-to-custom-domain.md)
-- [Pre-load assets on an Azure CDN endpoint](cdn-preload-endpoint.md)
-- [Purge an Azure CDN Endpoint](cdn-purge-endpoint.md)
-- [Troubleshooting CDN endpoints returning 404 statuses](cdn-troubleshoot-endpoint.md)
+##另請參閱
+- [使用查詢字串控制 CDN 要求的快取行為](cdn-query-string.md)
+- [如何將 CDN 內容對應至自訂網域](cdn-map-content-to-custom-domain.md)
+- [在 Azure CDN 端點上預先載入資產](cdn-preload-endpoint.md)
+- [清除 Azure CDN 端點](cdn-purge-endpoint.md)
+- [針對傳回 404 狀態的 CDN 端點進行疑難排解](cdn-troubleshoot-endpoint.md)
 
 [cdn-profile-settings]: ./media/cdn-create-new-endpoint/cdn-profile-settings.png
 [cdn-new-endpoint-button]: ./media/cdn-create-new-endpoint/cdn-new-endpoint-button.png
 [cdn-add-endpoint]: ./media/cdn-create-new-endpoint/cdn-add-endpoint.png
 [cdn-endpoint-success]: ./media/cdn-create-new-endpoint/cdn-endpoint-success.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

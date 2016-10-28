@@ -1,64 +1,59 @@
 <properties
-    pageTitle="Controlling Azure CDN caching behavior of requests with query strings | Microsoft Azure"
-    description="Azure CDN query string caching controls how files are to be cached when they contain query strings."
-    services="cdn"
-    documentationCenter=""
-    authors="camsoper"
-    manager="erikre"
-    editor=""/>
+	pageTitle="使用查詢字串控制 Azure CDN 要求的快取行為 | Microsoft Azure"
+	description="Azure CDN 查詢字串快取可控制檔案內含查詢字串時的檔案快取方式。"
+	services="cdn"
+	documentationCenter=""
+	authors="camsoper"
+	manager="erikre"
+	editor=""/>
 
 <tags
-    ms.service="cdn"
-    ms.workload="tbd"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="07/28/2016"
-    ms.author="casoper"/>
+	ms.service="cdn"
+	ms.workload="tbd"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/28/2016"
+	ms.author="casoper"/>
 
-
-#<a name="controlling-caching-behavior-of-cdn-requests-with-query-strings"></a>Controlling caching behavior of CDN requests with query strings
+#使用查詢字串控制 CDN 要求的快取行為
 
 > [AZURE.SELECTOR]
-- [Standard](cdn-query-string.md)
-- [Azure CDN Premium from Verizon](cdn-query-string-premium.md)
+- [標準](cdn-query-string.md)
+- [來自 Verizon 的 Azure CDN 進階](cdn-query-string-premium.md)
 
-##<a name="overview"></a>Overview
+##概觀
 
-Query string caching controls how files are to be cached when they contain query strings.
+查詢字串快取可控制檔案內含查詢字串時的檔案快取方式。
 
-> [AZURE.IMPORTANT] The Standard and Premium CDN products provide the same query string caching functionality, but the user interface differs.  This document describes the interface for **Azure CDN Standard from Akamai** and **Azure CDN Standard from Verizon**.  For query string caching with **Azure CDN Premium from Verizon**, see [Controlling caching behavior of CDN requests with query strings - Premium](cdn-query-string-premium.md).
+> [AZURE.IMPORTANT] 「標準」與「進階」CDN 產品提供相同的查詢字串快取功能，但兩者的使用者介面不同。本文件描述**來自 Akamai 的 Azure CDN 標準**和**來自 Verizon 的 Azure CDN 標準**的介面。如需利用**來自 Verizon 的 Azure CDN 進階**查詢字串快取，請參閱[利用查詢字串控制 CDN 要求的快取行為 - 進階](cdn-query-string-premium.md)。
 
-Three modes are available:
+提供三種可用模式：
 
-- **Ignore query strings**:  This is the default mode.  The CDN edge node will pass the query string from the requestor to the origin on the first request and cache the asset.  All subsequent requests for that asset that are served from the edge node will ignore the query string until the cached asset expires.
-- **Bypass caching for URL with query strings**:  In this mode, requests with query strings are not cached at the CDN edge node.  The edge node retrieves the asset directly from the origin and passes it to the requestor with each request.
-- **Cache every unique URL**:  This mode treats each request with a query string as a unique asset with its own cache.  For example, the response from the origin for a request for *foo.ashx?q=bar* would be cached at the edge node and returned for subsequent caches with that same query string.  A request for *foo.ashx?q=somethingelse* would be cached as a separate asset with its own time to live.
+- **忽略查詢字串**：這是預設模式。CDN 邊緣節點會將要求者發出的查詢字串，傳遞至第一個要求的來源並快取資產。快取的資產到期之前，所有從邊緣節點提供且針對該資產的後續查詢皆會忽略查詢字串。
+- **略過包含查詢字串之 URL 的快取**：在此模式中，系統不會於 CDN 邊緣節點快取包含查詢字串的要求。邊緣節點會直接從來源擷取資產，然後透過每個要求將其傳遞給要求者。
+- **快取每個唯一 URL**：此模式會將包含查詢字串的每個要求，視為具有專屬快取的唯一資產。例如，系統會於邊緣節點快取 *foo.ashx?q=bar* 要求的來源回應，並使用相同的查詢字串針對後續快取傳回。針對 *foo.ashx?q=somethingelse* 要求，系統會將其快取為具專屬存留時間的個別資產。
 
-##<a name="changing-query-string-caching-settings-for-standard-cdn-profiles"></a>Changing query string caching settings for standard CDN profiles
+##變更標準 CDN 設定檔的查詢字串快取設定
 
-1. From the CDN profile blade, click the CDN endpoint you wish to manage.
+1. 在 [CDN 設定檔] 刀鋒視窗中，按一下您要管理的 CDN 端點。
 
-    ![CDN profile blade endpoints](./media/cdn-query-string/cdn-endpoints.png)
+	![[CDN 設定檔] 刀鋒視窗端點](./media/cdn-query-string/cdn-endpoints.png)
 
-    The CDN endpoint blade opens.
+	隨即開啟 [CDN 端點] 刀鋒視窗。
 
-2. Click the **Configure** button.
+2. 按一下 [設定] 按鈕。
 
-    ![CDN profile blade manage button](./media/cdn-query-string/cdn-config-btn.png)
+	![[CDN 設定檔] 刀鋒視窗管理按鈕](./media/cdn-query-string/cdn-config-btn.png)
 
-    The CDN Configuration blade opens.
+	[CDN 組態] 刀鋒視窗隨即開啟。
 
-3. Select a setting from the **Query string caching behavior** dropdown.
+3. 從 [查詢字串快取行為] 下拉式清單選取設定。
 
-    ![CDN query string caching options](./media/cdn-query-string/cdn-query-string.png)
+	![CDN 查詢字串快取選項](./media/cdn-query-string/cdn-query-string.png)
 
-4. After making your selection, click the **Save** button.
+4. 進行選擇後，按一下 [儲存] 按鈕。
 
-> [AZURE.IMPORTANT] The settings changes may not be immediately visible, as it takes time for the registration to propagate through the CDN.  For <b>Azure CDN from Akamai</b> profiles, propagation will usually complete within one minute.  For <b>Azure CDN from Verizon</b> profiles, propagation will usually complete within 90 minutes, but in some cases can take longer.
+> [AZURE.IMPORTANT] 設定變更可能無法立即看見，因為註冊資訊需要一段時間才能傳遍 CDN。若為<b>來自 Akamai 的 Azure CDN</b> 設定檔，通常將會在一分鐘之內完成傳播。若為<b>來自 Verizon 的 Azure CDN</b> 設定檔，則通常會在 90 分鐘之內完成傳播，但在某些情況下可能會更久。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

@@ -1,28 +1,25 @@
-### <a name="create-a-tcp-endpoint-for-the-virtual-machine"></a>Create a TCP endpoint for the virtual machine
+### 為虛擬機器建立 TCP 端點
 
-In order to access SQL Server from the internet, the virtual machine must have an endpoint to listen for incoming TCP communication. This Azure configuration step, directs incoming TCP port traffic to a TCP port that is accessible to the virtual machine.
+若要從網際網路存取 SQL Server，虛擬機器必須具有端點才能接聽傳入 TCP 通訊。此 Azure 組態步驟能將傳入 TCP 連接埠流量導向虛擬機器可存取的 TCP 連接埠。
 
->[AZURE.NOTE] If you are connecting within the same cloud service or virtual network, you do not have to create a publically accessible endpoint. In that case, you could continue to the next step. For more information, see [Connection Scenarios](../articles/virtual-machines/virtual-machines-windows-classic-sql-connect.md#connection-scenarios).
+>[AZURE.NOTE] 如果您在相同的雲端服務或虛擬網路內連接，則不需要建立可公開存取的端點在此情況下，您可以繼續進行下一個步驟。如需詳細資訊，請參閱[連接案例](../articles/virtual-machines/virtual-machines-windows-classic-sql-connect.md#connection-scenarios)。
 
-1. On the Azure Portal, select **Virtual machines (classic)**.
+1. 在 Azure 入口網站中，選取 [虛擬機器 (傳統)]。
 
-2. Then select you SQL Server virtual machine.
+2. 然後選取您的 SQL Server 虛擬機器。
 
-3. Select **Endpoints**, and then click the **Add** button at the top of the Endpoints blade.
+3. 選取 [端點]，然後按一下位於 [端點] 刀鋒視窗頂端的 [新增] 按鈕。
 
-    ![Portal Steps for Endpoint Creation](./media/virtual-machines-sql-server-connection-steps/portal-endpoint-creation.png)
+	![建立端點的入口網站步驟](./media/virtual-machines-sql-server-connection-steps/portal-endpoint-creation.png)
 
-4. On the **Add Endpoint** blade, provide a **Name** such as SQLEndpoint.
+4. 在 [新增端點] 刀鋒視窗上，提供 [名稱]，例如 SQLEndpoint。
 
-5. Select **TCP** for the **Protocol**.
+5. [通訊協定].請選取 [TCP]。
 
-6. For **Public port**, specify a port number such as **57500**.
+6. 對於 [公用連接埠]，請指定連接埠號碼，例如 **57500**。
 
-7. For **Private port**, specify SQL Server's listening port, which defaults to **1433**.
+7. 對於 [私用連接埠]，請指定 SQL Server 的接聽連接埠，預設為 **1433**。
 
-6. Click **Ok** to create the endpoint.
+6. 按一下 [確定] 以建立端點。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0629_2016-->

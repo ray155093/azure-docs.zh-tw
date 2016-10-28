@@ -1,73 +1,66 @@
 <properties
-    pageTitle=" Scale streaming endpoints with the Azure portal | Microsoft Azure"
-    description="This tutorial walks you through the steps of scaling streaming endpoints with the Azure portal."
-    services="media-services"
-    documentationCenter=""
-    authors="Juliako"
-    manager="erikre"
-    editor=""/>
+	pageTitle=" 透過 Azure 入口網站調整串流端點 | Microsoft Azure"
+	description="本教學課程將逐步引導您完成使用 Azure 入口網站調整串流端點的步驟。"
+	services="media-services"
+	documentationCenter=""
+	authors="Juliako"
+	manager="erikre"
+	editor=""/>
 
 <tags
-    ms.service="media-services"
-    ms.workload="media"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/29/2016"
-    ms.author="juliako"/>
+	ms.service="media-services"
+	ms.workload="media"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/29/2016"
+	ms.author="juliako"/>
 
 
+# 透過 Azure 入口網站調整串流端點
 
-# <a name="scale-streaming-endpoints-with-the-azure-portal"></a>Scale streaming endpoints with the Azure portal
+##Overview
 
-##<a name="overview"></a>Overview
+> [AZURE.NOTE] 若要完成此教學課程，您需要 Azure 帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
-> [AZURE.NOTE] To complete this tutorial, you need an Azure account. For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/). 
+使用 Azure 媒體服務時，其中一個最常見案例是透過自適性串流提供影片給您的用戶端。媒體服務支援下列調適性位元速率串流技術：HTTP 即時串流 (HLS)、Smooth Streaming、MPEG DASH 和 HDS (僅適用於 Adobe PrimeTime/Access 授權)。
 
-When working with Azure Media Services one of the most common scenarios is delivering video via adaptive bitrate streaming to your clients. Media Services supports the following adaptive bitrate streaming technologies: HTTP Live Streaming (HLS), Smooth Streaming, MPEG DASH, and HDS (for Adobe PrimeTime/Access licensees only).
+媒體服務提供動態封裝，這讓您以媒體服務即時支援的串流格式 (MPEG DASH、HLS、Smooth Streaming、HDS) 提供自適性 MP4 編碼內容，而不必儲存這些串流格式個別的預先封裝版本。
 
-Media Services provides dynamic packaging which allows you to deliver your adaptive bitrate MP4  encoded content in streaming formats supported by Media Services (MPEG DASH, HLS, Smooth Streaming, HDS) just-in-time, without you having to store pre-packaged versions of each of these streaming formats.
+若要利用動態封裝，您需要執行下列動作：
 
-To take advantage of dynamic packaging, you need to do the following:
+- 將您的夾層 (來源) 檔編碼為一組自適性 MP4 檔案 (編碼步驟稍後示範於本教學課程中)。
+- 為您計畫從該處傳遞內容的「串流端點」至少建立一個串流單位。以下步驟顯示如何變更串流單位數目。
 
-- Encode your mezzanine (source) file into a set of adaptive bitrate MP4 files (the encoding steps are demonstrated later in this tutorial).  
-- Create at least one streaming unit for the *streaming endpoint* from which you plan to delivery your content. The steps below show how to change the number of streaming units.
+使用動態封裝，您只需要以單一儲存格式儲存及播放檔案，媒體服務會根據來自用戶端的要求建置及傳遞適當的回應。
 
-With dynamic packaging you only need to store and pay for the files in single storage format and Media Services will build and serve the appropriate response based on requests from a client.
+此外，您可以藉由調整串流單位，控制串流端點服務如何應付不斷增加的頻寬需求。建議您為生產環境中的應用程式配置一個或多個縮放單位。利用串流單位，我們可以購買專用的流出容量 (以 200 Mbps 為單位逐次增加) 以及其他包含以下幾點的功能：[動態封裝](media-services-dynamic-packaging-overview.md)、CDN 整合及進階組態。如需詳細資訊，請參閱[使用 Azure 入口網站管理串流端點](media-services-portal-manage-streaming-endpoints.md)。
 
-In addition, you can control the capacity of the Streaming Endpoint service to handle growing bandwidth needs by adjusting streaming units. It is recommended to allocate one or more scale units for applications in production environment. Streaming units provide you with both dedicated egress capacity that can be purchased in increments of 200 Mbps and additional functionality which functionality which includes: [dynamic packaging](media-services-dynamic-packaging-overview.md), CDN integration, and advanced configuration. For more information, see [Manage streaming endpoints with the Azure portal](media-services-portal-manage-streaming-endpoints.md).
+## 調整串流端點
 
-## <a name="scale-streaming-endpoints"></a>Scale streaming endpoints
+若要建立和變更串流保留單位數目，請執行下列動作：
 
-To create and change the number of streaming reserved units, do the following:
-
-1. Log in at the [Azure portal](https://portal.azure.com/).
-2. In the **Settings** window, select **Streaming endpoints**.
-3. Click on the streaming endpoint that you want to scale. 
-4. Move the slider to specify the number of streaming units
+1. 登入 [Azure 入口網站](https://portal.azure.com/)。
+2. 在 [設定] 視窗中，選取 [串流端點]。
+3. 按一下您要調整的串流端點。
+4. 移動滑桿以指定串流單位數目
  
-![Streaming endpoint](./media/media-services-portal-manage-streaming-endpoints/media-services-manage-streaming-endpoints3.png)
+![串流端點](./media/media-services-portal-manage-streaming-endpoints/media-services-manage-streaming-endpoints3.png)
 
-The following considerations apply:
+您必須考量下列事項：
 
-- The allocation of any new streaming units can take around 20 minutes to complete. 
-- Currently, going from any positive value of streaming units back to none, can disable on-demand streaming for up to an hour.
-- The highest number of units specified for the 24-hour period is used in calculating the cost. For information about pricing details, see [Media Services Pricing Details](http://go.microsoft.com/fwlink/?LinkId=275107).
+- 任何新的串流單位配置可能會花費大約 20 分鐘的時間才能完成。
+- 目前，串流單位從任何正數值到無，都可能停用隨選串流長達一小時。
+- 計算成本時會使用 24 小時內指定的最大單位數。如需定價詳細資料的相關資訊，請參閱＜[媒體服務定價詳細資料](http://go.microsoft.com/fwlink/?LinkId=275107)＞。
 
-##<a name="next-steps"></a>Next steps
+##後續步驟
 
-Review Media Services learning paths.
+檢閱媒體服務學習路徑。
 
 [AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-##<a name="provide-feedback"></a>Provide feedback
+##提供意見反應
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0831_2016-->

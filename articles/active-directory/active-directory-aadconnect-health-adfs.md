@@ -1,122 +1,117 @@
 
 <properties
-    pageTitle="Using Azure AD Connect Health with AD FS | Microsoft Azure"
-    description="This is the Azure AD Connect Health page how to monitor your on-premises AD FS infrastructure."
-    services="active-directory"
-    documentationCenter=""
-    authors="karavar"
-    manager="femila"
-    editor="karavar"/>
+	pageTitle="使用 Azure AD Connect Health 搭配 AD FS | Microsoft Azure"
+	description="這是如何監視內部部署 AD FS 基礎結構的 Azure AD Connect Health 頁面。"
+	services="active-directory"
+	documentationCenter=""
+	authors="karavar"
+	manager="femila"
+	editor="karavar"/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="get-started-article"
-    ms.date="09/30/2016"
-    ms.author="vakarand"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="get-started-article"
+	ms.date="09/30/2016"
+	ms.author="vakarand"/>
+
+# 使用 Azure AD Connect Health 搭配 AD FS
+下列文件適用於使用 Azure AD Connect Health 來監視 AD FS 基礎結構。如需使用 Azure AD Connect Health 來監視 Azure AD Connect (同步處理) 的詳細資訊，請參閱 [使用適用於同步處理的 Azure AD Connect Health](active-directory-aadconnect-health-sync.md)。此外，如需使用 Azure AD Connect Health 來監視 Active Directory 網域服務的詳細資訊，請參閱 [在 AD DS 使用 Azure AD Connect Health](active-directory-aadconnect-health-adds.md)。
+
+## AD FS 的警示
+[Azure AD Connect Health 警示] 區段將為您提供作用中警示的清單。每個警示都包含相關資訊、解決步驟，以及相關文件的連結。
+
+您可以連按兩下作用中或已解決的警示，以開啟新的刀鋒視窗，其中含有額外資訊、解決警示可以採取的步驟，以及相關文件的連結。您也可以檢視過去已解決的警示的歷史資料。
+
+![Azure AD Connect Health 入口網站](./media/active-directory-aadconnect-health/alert2.png)
 
 
-# <a name="using-azure-ad-connect-health-with-ad-fs"></a>Using Azure AD Connect Health with AD FS
-The following documentation is specific to monitoring your AD FS infrastructure with Azure AD Connect Health. For information on monitoring Azure AD Connect (Sync) with Azure AD Connect Health, see [Using Azure AD Connect Health for Sync](active-directory-aadconnect-health-sync.md). Additionally, for information on monitoring Active Directory Domain Services with Azure AD Connect Health, see [Using Azure AD Connect Health with AD DS](active-directory-aadconnect-health-adds.md). 
 
-## <a name="alerts-for-ad-fs"></a>Alerts for AD FS
-The Azure AD Connect Health Alerts section provides you the list of active alerts. Each alert includes relevant information, resolution steps, and links to related documentation. 
+## AD FS 的使用情況分析
+Azure AD Connect Health 使用情況分析會分析您的同盟伺服器的驗證流量。您可連按兩下使用情況分析方塊來開啟使用情況分析刀鋒視窗，以顯示數個度量和群組。
 
-You can double-click an active or resolved alert, to open a new blade with additional information, steps you can take to resolve the alert, and links to relevant documentation. You can also view historical data on alerts that were resolved in the past.
+>[AZURE.NOTE] 若要搭配 AD FS 使用使用情況分析，您必須確定已啟用 AD FS 稽核。如需詳細資訊，請參閱[啟用 AD FS 的稽核](active-directory-aadconnect-health-agent-install.md#enable-auditing-for-ad-fs)。
 
-![Azure AD Connect Health Portal](./media/active-directory-aadconnect-health/alert2.png)
+![Azure AD Connect Health 入口網站](./media/active-directory-aadconnect-health/report1.png)
 
+若要選取其他度量，請指定時間範圍；若要變更群組，請在使用情況分析圖表上按一下滑鼠右鍵，並選取 [編輯圖表]。接著，您可以指定時間範圍、選取不同的度量，以及變更群組。您可以根據不同的「度量」檢視驗證流量的分佈，並使用下表所數的相關「分組依據」參數來為每個度量分組：
 
-
-## <a name="usage-analytics-for-ad-fs"></a>Usage Analytics for AD FS
-Azure AD Connect Health Usage Analytics analyzes the authentication traffic of your federation servers. You can double-click the usage analytics box, to open the usage analytics blade, which shows you several metrics and groupings.
-
->[AZURE.NOTE] To use Usage Analytics with AD FS, you must ensure that AD FS auditing is enabled. For more information, see [Enable Auditing for AD FS](active-directory-aadconnect-health-agent-install.md#enable-auditing-for-ad-fs).
-
-![Azure AD Connect Health Portal](./media/active-directory-aadconnect-health/report1.png)
-
-To select additional metrics, specify a time range, or to change the grouping, right-click on the usage analytics chart and select Edit Chart. Then you can specify the time range, select a different metric, and change the grouping. You can view the distribution of the authentication traffic based on different "metrics" and group each metric using relevant "group by" parameters described in the following table:
-
-| Metric | Group By | What the grouping means and why it's useful? |
+| 度量 | 分組依據 | 分組是什麼意思，為什麼分組很有用？ |
 | ------ | -------- | -------------------------------------------- |
-| Total Requests: The total number of requests processed by the federation service | All | Shows the count of total number of requests without grouping. |
-|  | Application | Groups the total requests based on the targeted relying party. This grouping is useful to understand which application is receiving how much percentage of the total traffic. |
-|  | Server | Groups the total requests based on the server that processed the request. This grouping is useful to understand the load distribution of the total traffic. |
-|  | Workplace Join | Groups the total requests based on whether they are coming from devices that are workplace joined (known). This grouping is useful to understand if your resources are accessed using devices that are unknown to the identity infrastructure. |
-|  | Authentication Method | Groups the total requests based on the authentication method used for authentication. This grouping is useful to understand the common authentication method that gets used for authentication. Following are the possible authentication methods <ol> <li>Windows Integrated Authentication (Windows)</li> <li>Forms Based Authentication (Forms)</li> <li>SSO (Single Sign On)</li> <li>X509 Certificate Authentication (Certificate)</li> <br>If the federation servers receive the request with an SSO Cookie, that request is counted as SSO (Single Sign On). In such cases, if the cookie is valid, the user is not asked to provide credentials and gets seamless access to the application. This behavior is common if you have multiple relying parties protected by the federation servers. |
-|  | Network Location | Groups the total requests based on the network location of the user. It can be either intranet or extranet. This grouping is useful to know what percentage of the traffic is coming from the intranet versus extranet. |
-| Total Failed Requests: The total number failed requests processed by the federation service. <br> (This metric is only available on AD FS for Windows Server 2012 R2)| Error Type | Shows the number of errors based on predefined error types. This grouping is useful to understand the common types of errors. <ul><li>Incorrect Username or Password: Errors due to incorrect username or password.</li> <li>"Extranet Lockout": Failures due to the requests received from a user that was locked out from extranet </li><li> "Expired Password": Failures due to users logging in with an expired password.</li><li>"Disabled Account": Failures due to users logging with a disabled account.</li><li>"Device Authentication": Failures due to users failing to authenticate using Device Authentication.</li><li>"User Certificate Authentication": Failures due to users failing to authenticate because of an invalid certificate.</li><li>"MFA": Failures due to user failing to authenticate using Multi-Factor Authentication.</li><li>"Other Credential": "Issuance Authorization": Failures due to authorization failures.</li><li>"Issuance Delegation": Failures due to issuance delegation errors.</li><li>"Token Acceptance": Failures due to ADFS rejecting the token from a third-party Identity Provider.</li><li>"Protocol": Failure due to protocol errors.</li><li>"Unknown": Catch all. Any other failures that do not fit into the defined categories.</li> |
-|  | Server | Groups the errors based on the server. This grouping is useful to understand the error distribution across servers. Uneven distribution could be an indicator of a server in a faulty state. |
-|  | Network Location | Groups the errors based on the network location of the requests (intranet vs extranet). This grouping is useful to understand the type of requests that are failing. |
-|  | Application | Groups the failures based on the targeted application (relying party). This grouping is useful to understand which targeted application is seeing most number of errors. |
-| User Count: Average number of unique users active in the system | All | This metric provides a count of average number of users using the federation service in the selected time slice. The users are not grouped. <br>The average depends on the time slice selected. |
-|  | Application | Groups the average number of users based on the targeted application (relying party). This grouping is useful to understand how many users are using which application. |
+| 要求總數：同盟服務所處理的要求的總數 | 全部 | 顯示未分組的要求總數計數。 |
+| | 應用程式 | 根據目標信賴憑證者，為要求總數分組。這個分組對於了解哪個應用程式收到多少百分比的總流量非常有幫助。 |
+| | 伺服器 | 根據處理要求的伺服器，為要求總數分組。這個分組對於了解總流量的負載分佈非常有幫助。 |
+| | 加入工作場所 | 根據要求是否來自已加入工作場所的裝置 (已知)，為要求總數分組。這個分組對於了解是否使用識別基礎結構未知的裝置存取您的資源非常有幫助。 |
+| | 驗證方法 | 根據用於驗證的驗證方法，為要求總數分組。這個分組對於了解用於驗證的常見驗證方法非常有幫助。以下是可能的驗證方法<ol> <li>Windows 整合式驗證 (Windows)</li> <li>表單型驗證 (表單)</li> <li>SSO (單一登入)</li> <li>X 509 憑證驗證 (憑證)</li> <br>如果同盟伺服器收到包含 SSO Cookie 的要求，該要求就會計入 SSO (單一登入)。在這種情況下，如果 Cookie 有效，則不會要求使用者提供認證，並不間斷地存取應用程式。如果您有多個同盟伺服器所保護的信賴憑證者，此行為非常常見。 |
+| | 網路位置 | 根據使用者的網路位置，為要求總數分組。它可以是內部網路或外部網路。這個分組對於了解流量百分比是來自內部網路還是外部網路非常有幫助。 |
+| 失敗要求總數：同盟服務所處理的失敗要求總數。<br> (此度量僅能在適用於 Windows Server 2012 R2 的 AD FS 上使用)| 錯誤類型 | 根據預先定義的錯誤類型，顯示錯誤數目。這個分組對於了解常見的錯誤類型非常有幫助。<ul><li>不正確的使用者名稱或密碼：由於不正確的使用者名稱或密碼而導致的錯誤。</li> <li>「外部網路鎖定」：由於從外部網路鎖定的使用者收到要求而導致的失敗</li><li>「過期的密碼」：由於使用者使用已過期的密碼登入而導致的失敗。</li><li>「停用的帳戶」：由於使用者使用已停用的帳戶登入而導致的失敗。</li><li>「裝置驗證」：由於使用者無法使用裝置驗證進行驗證而導致的失敗。</li><li>「使用者憑證驗證」:由於使用者因為憑證無效而無法進行驗證所導致的失敗。</li><li>「MFA」：由於使用者無法使用 Multi-Factor Authentication 來進行驗證而導致的失敗。</li><li>「其他認證」：「發佈授權」：由於授權失敗而導致的失敗。</li><li>「發佈委派」：由於發佈委派錯誤而導致的失敗。</li><li>「權杖接受」：由於 ADFS 拒絕來自第三方身分識別提供者的權杖而導致的失敗。</li><li>「通訊協定」：由於通訊協定錯誤而導致的失敗。</li><li>「未知」：全部攔截。不適合已定義的類別的其他任何失敗。</li> |
+| | 伺服器 | 依伺服器為錯誤分組。此分組對於了解跨伺服器的錯誤分佈非常有幫助。分佈不平均可能是伺服器處於錯誤狀態的指標。 |
+| | 網路位置 | 根據要求的網路位置 (內部網路與外部網路)，為錯誤分組。此分組對於了解失敗的要求類型非常有幫助。 |
+| | 應用程式 | 根據目標應用程式 (信賴憑證者)，為失敗分組。此分組對於了解哪個目標應用程式將看到最多錯誤數目非常有幫助。 |
+| 使用者計數：系統中有效的唯一使用者的平均數目 | 全部 | 此度量會提供在所選時間配量內，使用同盟服務的使用者平均數目計數。系統不會為使用者分組。<br>平均值取決於選取的時間配量。 |
+| | 應用程式 | 根據目標應用程式 (信賴憑證者)，為使用者的平均數目分組。此分組對於了解有多少使用者正在使用哪一個應用程式非常有幫助。 |
 
 
-## <a name="performance-monitoring-for-ad-fs"></a>Performance Monitoring for AD FS
-Azure AD Connect Health Performance Monitoring provides monitoring information on metrics. Selecting the Monitoring box, opens a new blade with detailed information on the metrics.
+## AD FS 的效能監視
+Azure AD Connect Health 效能監視會提供關於度量的監視資訊。選取 [監視] 方塊，以開啟內含度量詳細資訊的新刀鋒視窗。
 
 
-![Azure AD Connect Health Portal](./media/active-directory-aadconnect-health/perf1.png)
+![Azure AD Connect Health 入口網站](./media/active-directory-aadconnect-health/perf1.png)
 
 
-By selecting the Filter option at the top of the blade, you can filter by server to see an individual server’s metrics. To change metrics, right-click on the monitoring chart under the monitoring blade and select Edit Chart. Then, from the new blade that opens up, you can select additional metrics from the drop-down and specify a time range for viewing the performance data.
+選取刀鋒視窗頂端的 [篩選] 選項，您可以依伺服器篩選以查看個別伺服器的度量。若要變更度量，請在監視刀鋒視窗底下的監視圖表上按一下滑鼠右鍵，並選取 [編輯圖表]。接著，在開啟的新刀鋒視窗中，您可以從下拉式清單中選取其他度量，並指定檢視效能資料的時間範圍。
 
-## <a name="reports-for-ad-fs"></a>Reports for AD FS
-Azure AD Connect Health provides reports about activity and performance of AD FS. These reports help administrators gain insight into activities on their AD FS servers.
+## AD FS 報告
+Azure AD Connect Health 提供有關 AD FS 活動與效能的報告。這些報告可協助系統管理員深入了解 AD FS 伺服器上的活動。
 
-### <a name="top-50-users-with-failed-username/password-logins"></a>Top 50 Users with failed Username/Password logins
+### 使用者名稱/密碼登入失敗的前 50 個使用者
 
-One of the common reasons for a failed authentication request on an AD FS server is a request with invalid credentials, that is, a wrong username or password. Usually happens to users due to complex passwords, forgotten passwords, or typos.
+AD FS 伺服器上驗證要求失敗的常見原因之一就是要求所提供的認證無效，也就是錯誤的使用者名稱或密碼。使用者通常是因為密碼太複雜、忘記密碼或打錯字，才會發生這種情況。
 
-But there are other reasons that can result in an unexpected number of requests being handled by your AD FS servers, such as: An application that caches user credentials and the credentials expire or a malicious user attempting to sign into an account with a series of well-known passwords. These two examples are valid reasons that could lead to a surge in requests.
+但還是有其他原因會導致 AD FS 伺服器所處理的要求數量超出預期，例如：可快取使用者認證的應用程式和到期的認證，或嘗試以一系列的常見密碼登入帳戶的惡意使用者。這兩個範例都是可能導致要求激增的正當理由。
 
-Azure AD Connect Health for ADFS provides a report about top 50 Users with failed login attempts due to invalid username or password. This report is achieved by processing the audit events generated by all the AD FS servers in the farms
+Azure AD Connect Health for ADFS 會提供一份報告，內容有關因為使用者名稱或密碼無效而登入嘗試失敗的前 50 個使用者。處理伺服器陣列中所有 AD FS 伺服器所產生的稽核事件，即可達成此報告
 
-![Azure AD Connect Health Portal](./media/active-directory-aadconnect-health-adfs/report1a.png)
+![Azure AD Connect Health 入口網站](./media/active-directory-aadconnect-health-adfs/report1a.png)
 
-Within this report you have easy access to the following pieces of information:
+您可以在這份報告中輕鬆取得下列資訊︰
 
-- Total # of failed requests with wrong username/password in the last 30 days
-- Average # of users that failed with a bad username/password login per day.
+- 過去 30 天內使用者名稱/密碼錯誤的失敗要求總數
+- 每天由於使用者名稱/密碼不正確而登入失敗的平均使用者人數。
 
-Clicking this part takes you to the main report blade that provides additional details. This blade includes a graph with trending information to help establish a baseline about requests with wrong username or password. Additionally, it provides the list of top 50 users with the number of failed attempts.
+按一下此組件即可前往可提供其他詳細資料的主要報告刀鋒視窗。此刀鋒視窗包含一個提供趨勢資訊的圖形，以便建立有關使用者名稱或密碼錯誤之要求的基準。此外，還提供前 50 個使用者清單及其嘗試失敗次數。
 
-The graph provides the following information:
+此圖形可提供以下資訊：
 
-- The total # of failed logins due to a bad username/password on a per-day basis.
-- The total # of unique users that failed logins on a per-day basis.
+- 每天由於使用者名稱/密碼不正確而登入失敗的總數。
+- 每天登入失敗的唯一使用者總數。
 
-![Azure AD Connect Health Portal](./media/active-directory-aadconnect-health-adfs/report2a.png)
+![Azure AD Connect Health 入口網站](./media/active-directory-aadconnect-health-adfs/report2a.png)
 
-The report provides the following information:
+此報告可提供以下資訊：
 
-| Report Item | Description
+| 報告項目 | 說明
 | ------ | -------- |
-|User ID| Shows the user ID that was used. This value is what the user typed, which in some cases is the wrong user ID being used.|
-|Failed Attempts| Shows the total # of failed attempts for that specific user ID. The table is sorted with the most number of failed attempts in descending order.|
-|Last Failure| Shows the time stamp when the last failure occurred.
+|使用者識別碼| 顯示所使用的使用者識別碼。這個值是使用者所輸入的內容，在某些情況下是所使用的錯誤使用者識別碼。|
+|嘗試失敗| 顯示該特定使用者識別碼的嘗試失敗總數。此資料表是依據最多失敗嘗試次數以遞減順序排序。|
+|上次失敗| 顯示上次發生失敗時的時間戳記。
 
 
 
->[AZURE.NOTE] This report is automatically updated after every two hours with the new information collected within that time. As a result, login attempts within the last two hours may not be included in the report.
+>[AZURE.NOTE] 此報告會每隔 2 小時以該段時間內收集的新資訊自動進行更新。因此，報告中不包含過去 2 小時內的登入嘗試。
 
 
 
-## <a name="related-links"></a>Related links
+## 相關連結
 
 * [Azure AD Connect Health](active-directory-aadconnect-health.md)
-* [Azure AD Connect Health Agent Installation](active-directory-aadconnect-health-agent-install.md)
-* [Azure AD Connect Health Operations](active-directory-aadconnect-health-operations.md)
-* [Using Azure AD Connect Health for sync](active-directory-aadconnect-health-sync.md)
-* [Using Azure AD Connect Health with AD DS](active-directory-aadconnect-health-adds.md)
-* [Azure AD Connect Health FAQ](active-directory-aadconnect-health-faq.md)
-* [Azure AD Connect Health Version History](active-directory-aadconnect-health-version-history.md)
+* [Azure AD Connect Health 代理程式安裝](active-directory-aadconnect-health-agent-install.md)
+* [Azure AD Connect Health 操作](active-directory-aadconnect-health-operations.md)
+* [使用 Azure AD Connect Health 進行同步處理](active-directory-aadconnect-health-sync.md)
+* [在 AD DS 使用 Azure AD Connect Health](active-directory-aadconnect-health-adds.md)
+* [Azure AD Connect Health 常見問題集](active-directory-aadconnect-health-faq.md)
+* [Azure AD Connect Health 版本歷程記錄](active-directory-aadconnect-health-version-history.md)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_1005_2016-->

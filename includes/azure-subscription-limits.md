@@ -1,23 +1,20 @@
-Resource|Default Limit|Maximum Limit
+資源|預設限制|上限
 ---|---|---
-Cores per [subscription](../articles/billing-buy-sign-up-azure-subscription.md) <sup>1</sup>|20|10,000
-[Co-administrators](../articles/billing-add-change-azure-subscription-administrator.md) per subscription|200|200
-[Storage accounts](../articles/storage/storage-create-storage-account.md) per subscription<sup>2</sup>|200|250
-[Cloud services](../articles/cloud-services/cloud-services-choose-me.md) per subscription|20|200
-[Local networks](http://msdn.microsoft.com/library/jj157100.aspx) per subscription|10|500
-SQL Database servers per subscription|6|150
-DNS servers per subscription|9|100
-Reserved IPs per subscription|20|100
-Hosted service certificates per subscription|400|400
-[Affinity groups](../articles/virtual-network/virtual-networks-migrate-to-regional-vnet.md) per subscription|256|256
-[Batch](https://azure.microsoft.com/services/batch/) accounts per region per subscription|1|50
-Alert rules per subscription|250|250
+每一[訂用帳戶](../articles/billing-buy-sign-up-azure-subscription.md)的核心 <sup>1</sup>|20|10,000
+每一訂用帳戶的[共同管理員](../articles/billing-add-change-azure-subscription-administrator.md)|200|200
+每一訂用帳戶的[儲存體帳戶](../articles/storage/storage-create-storage-account.md)<sup>2</sup>|200|250
+每一訂用帳戶的[雲端服務](../articles/cloud-services/cloud-services-choose-me.md)|20|200
+每一訂用帳戶的[區域網路](http://msdn.microsoft.com/library/jj157100.aspx)|10|500
+每一訂用帳戶的 SQL Database 伺服器|6|150
+每一訂閱的 DNS 伺服器|9|100
+每一訂用帳戶的保留 IP|20|100
+每一訂用帳戶託管服務的憑證|400|400
+每一訂用帳戶的[同質群組](../articles/virtual-network/virtual-networks-migrate-to-regional-vnet.md)|256|256
+[Batch](https://azure.microsoft.com/services/batch/) 帳戶 (每一區域的每一訂用帳戶)|1|50
+每一訂用帳戶的警示規則|250|250
 
-<sup>1</sup>Extra Small instances count as one core towards the core limit despite using a partial core.
+<sup>1</sup>雖然只使用部分核心，在計算核心限制時，仍會將超小型執行個體視為一個核心。
 
-<sup>2</sup>This includes both Standard and Premium storage accounts. If you require more than 200 storage accounts, make a request through [Azure Support](https://azure.microsoft.com/support/faq/). The Azure Storage team will review your business case and may approve up to 250 storage accounts. 
+<sup>2</sup>這包括標準和進階儲存體帳戶。如果您需要超過 200 個儲存體帳戶，請透過 [Azure 支援](https://azure.microsoft.com/support/faq/)提出要求。Azure 儲存體團隊將會檢閱您的商務案例，而且可以核准多達 250 個儲存體帳戶。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

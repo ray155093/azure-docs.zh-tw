@@ -1,179 +1,177 @@
 <properties 
-    pageTitle="Get started with Azure Search | Microsoft Azure | DocumentDB | Cloud search service" 
-    description="Learn how to create your first Azure Search index using this tutorial walkthrough and DocumentDB sample data. This portal-based, code-free exercise uses the Import Data wizard." 
-    services="search" 
-    documentationCenter="" 
-    authors="HeidiSteen" 
-    manager="jhubbard" 
-    editor=""
+	pageTitle="開始使用 Azure 搜尋服務 | Microsoft Azure | DocumentDB | 雲端搜尋服務" 
+	description="了解如何使用此教學課程的逐步解說和 DocumentDB 範例資料建立第一個 Azure 搜尋服務索引。這個入口網站式的無程式碼練習會使用匯入資料精靈。" 
+	services="search" 
+	documentationCenter="" 
+	authors="HeidiSteen" 
+	manager="jhubbard" 
+	editor=""
     tags="azure-portal"/>
 
 <tags 
-    ms.service="search" 
-    ms.devlang="na" 
-    ms.workload="search" 
-    ms.topic="hero-article" 
-    ms.tgt_pltfrm="na" 
-    ms.date="10/03/2016" 
-    ms.author="heidist"/>
+	ms.service="search" 
+	ms.devlang="na" 
+	ms.workload="search" 
+	ms.topic="hero-article" 
+	ms.tgt_pltfrm="na" 
+	ms.date="10/03/2016" 
+	ms.author="heidist"/>
 
+# 開始在入口網站中使用 Azure 搜尋服務
 
-# <a name="get-started-with-azure-search-in-the-portal"></a>Get started with Azure Search in the portal
+這篇無程式碼的簡介說明如何透過入口網站內建功能來開始使用 Microsoft Azure 搜尋服務。
 
-This code-free introduction gets you started with Microsoft Azure Search using capabilities built right into the portal. 
+本教學課程採用可使用我們的資料和指示輕鬆建立的[範例 Azure DocumentDB 資料庫](#apdx-sampledata)，但您也可以將這些步驟套用至 DocumentDB 或 SQL Database 中現有的資料。
 
-The tutorial assumes a [sample Azure DocumentDB database](#apdx-sampledata) that's simple to create using our data and instructions, but you can also adapt these steps to your existing data in either DocumentDB or SQL Database.
-
-> [AZURE.NOTE] This Get Started tutorial requires an [Azure subscription](/pricing/free-trial/?WT.mc_id=A261C142F) and an [Azure Search service](search-create-service-portal.md). 
+> [AZURE.NOTE] 本入門教學課程需要有 [Azure 訂用帳戶](/pricing/free-trial/?WT.mc_id=A261C142F)和 [Azure 搜尋服務](search-create-service-portal.md)。
  
-## <a name="find-your-service"></a>Find your service
+## 尋找您的服務
 
-1. Sign in to the [Azure portal](https://portal.azure.com).
+1. 登入 [Azure 入口網站](https://portal.azure.com)。
 
-2. Open the service dashboard of your Azure Search service. Here are a few ways to find the dashboard.
-    - In the Jumpbar, click **Search services**. The Jumpbar lists every service provisioned in your subscription. If a search service has been defined, you see **Search services** in the list.
-    - In the Jumpbar, click **Browse** and then type "search" in the search box to produce a list of all search services created in your subscriptions.
+2. 開啟 Azure 搜尋服務的服務儀表板。以下提供一些尋找儀表板的方法。
+	- 在 Jumpbar 中，按一下 [搜尋服務]。Jumpbar 列出您的訂用帳戶中佈建的每項服務。如果已定義搜尋服務，您會看到清單中的**搜尋服務**。
+	- 在 Jumpbar 中，按一下 [瀏覽]，然後在搜尋方塊中輸入 "search" 來產生您訂用帳戶中建立的所有搜尋服務清單。
 
-## <a name="check-for-space"></a>Check for space
+## 檢查空間
 
-Many customers start with the free service. This version is limited to three indexes, three data sources, and three indexers. Make sure you have room for extra items before you begin. This walkthrough creates one of each object.
+許多客戶開始使用此免費服務。此版本的限制為三個索引、三個資料來源，以及三個索引子。開始之前，請先確定您有空間可容納額外的項目。本逐步解說會建立各一個物件。
 
-## <a name="create-an-index-and-load-data"></a>Create an index and load data
+## 建立索引和載入資料
 
-Search queries iterate over an *index* containing searchable data, metadata, and constructs used for optimizing certain search behaviors. As a first step, define and populate an index.
+搜尋查詢會逐一查看索引，其中包含用來最佳化特定搜尋行為的可搜尋資料、中繼資料及建構。在第一個步驟中，請定義及填入索引。
 
-There are several ways to create an index. If your data is in a store that Azure Search can crawl - such as Azure SQL Database, SQL Server on an Azure VM, or DocumentDB - you can create and populate an index very easily using an *indexer*.
+有數種方法能夠建立索引。如果您的資料位於 Azure 搜尋服務可以搜耙的存放區 (例如 Azure SQL Database、Azure VM 上的 SQL Server 或 DocumentDB)，您就可以非常輕鬆地使用索引子建立及填入索引。
 
-To keep this task portal-based, we use data from DocumentDB that can be crawled using an indexer via the **Import data** wizard. 
+為了讓這項工作以入口網站為基礎，我們使用可以透過 [匯入資料精靈] 使用索引子搜耙的 DocumentDB 資料。
 
-Before you continue, create a [sample DocumentDB database](#apdx-sampledata) to use with this tutorial, and then return to this section to complete the steps below.
+繼續之前，請建立[範例 DocumentDB 資料庫](#apdx-sampledata)以搭配本教學課程使用，再回到本節完成下列步驟。
 
 <a id="defineDS"></a>
-#### <a name="step-1:-define-the-data-source"></a>Step 1: Define the data source
+#### 步驟 1：定義資料來源
 
-1. On your Azure Search service dashboard, click **Import data** in the command bar to start a wizard that both creates and populates an index.
+1. 在 Azure 搜尋服務儀表板上，按一下命令列中的 [匯入資料] 來啟動可建立及填入索引的精靈。
 
     ![][7]
 
-2. In the wizard, click **Data Source** > **DocumentDB** > **Name**, type a name for the data source. A data source is a connection object in Azure Search that can be used with other indexers. Once you create it, it becomes available as an "existing data source" in your service.
+2. 在精靈中，按一下 [資料來源] > [DocumentDB] > [名稱]，鍵入資料來源的名稱。資料來源是 Azure 搜尋服務中可以搭配其他索引子使用的連接物件。建立資料來源後，它就會成為您的服務中可用的「現有資料來源」。
 
-3. Choose your existing DocumentDB account, and the database and collection. If you're using the sample data we provide, your data source definition looks like this:
+3. 選擇現有的 DocumentDB 帳戶，以及資料庫和集合。如果您使用我們所提供的範例資料，您的資料來源定義會如下所示：
 
     ![][2]
 
-Notice that we are skipping the query. This is because we're not implementing change tracking in our dataset this time around. If your dataset includes a field that keeps track of when a record is updated, you can configure an Azure Search indexer to use change tracking for selective updates to your index.
+請注意，我們正略過查詢。這是因為我們這陣子並未在我們的資料集中實作變更追蹤。如果您的資料集包含可追蹤何時更新記錄的欄位，您可以設定 Azure 搜尋服務索引子，以對您的索引選擇性更新使用變更追蹤。
 
-Click **OK** to complete this step of the wizard.
+按一下 [確定] 來完成精靈的這個步驟。
 
-#### <a name="step-2:-define-the-index"></a>Step 2: Define the index
+#### 步驟 2：定義索引
 
-Still in the wizard, click **Index** and take a look at the design surface used to create an Azure Search index. Minimally, an index requires a name, and a fields collection, with one field marked as the document key. Because we're using a DocumentDB data set, fields are detected by the wizard automatically and the index is preloaded with fields and data type assignments. 
+同樣在精靈中，按一下 [索引] 並查看用來建立 Azure 搜尋服務索引的設計介面。索引至少需要有名稱和欄位的集合，而其中一個欄位標示為文件索引鍵。我們正在使用 DocumentDB 資料集，所以精靈會自動偵測欄位，而且索引中會預先載入欄位和資料類型指派。
 
   ![][3]
 
-Although the fields and data types are configured, you still need to assign attributes. The check boxes across the top of the field list are *index attributes* that control how the field is used. 
+雖已設定欄位和資料類型，但您仍需要指定屬性。欄位清單上方的核取方塊為索引屬性，可控制欄位的使用方式。
 
-- **Retrievable** means that it shows up in search results list. You can mark individual fields as off limits for search results by clearing this checkbox, for example when fields used only in filter expressions. 
-- **Filterable**, **Sortable**, and **Facetable** determine whether a field can be used in a filter, a sort, or a facet navigation structure. 
-- **Searchable** means that a field is included in full text search. Strings are usually searchable. Numeric fields and Boolean fields are often marked as not searchable. 
+- [可擷取] 表示它會出現在搜尋結果清單中。例如當欄位僅使用於篩選運算式時，您可以清除此核取方塊，將個別欄位標記為關閉搜尋結果的限制。
+- [可篩選]、[可排序] 和 [可面向化] 判斷欄位是否可以用於篩選、排序或多面向導覽結構。
+- [可搜尋] 表示欄位包含在全文檢索搜尋中。字串通常可以搜尋。數字欄位和布林值欄位通常會標示為不可搜尋。
 
-Before you leave this page, mark the fields in your index to use the following options (Retrievable, Searchable, and so on). Most fields are Retrievable. Most string fields are Searchable (you don't need to make the Key searchable). A few fields like genre, orderableOnline, rating, and tags are also Filterable, Sortable, and Facetable. 
-    
-Field | Type | Options |
+離開此頁面之前，將您索引中的欄位標示為使用下列選項 (可擷取、可搜尋等等)。大部分的欄位都 [可擷取]。大部分的字串欄位都 [可搜尋] \(您不需要產生可搜尋的索引鍵)。有些欄位 (像是 orderableOnline、rating 和 tags) 也都 [可篩選]、[可排序] 和 [可面向化]。
+	
+欄位 | 類型 | 選項 |
 ------|------|---------|
 id | Edm.String | |
-albumTitle | Edm.String | Retrievable, Searchable |
-albumUrl | Edm.String | Retrievable, Searchable |
-genre | Edm.String | Retrievable, Searchable, Filterable, Sortable, Facetable |
-genreDescription | Edm.String | Retrievable, Searchable |
-artistName | Edm.String | Retrievable, Searchable |
-orderableOnline | Edm.Boolean | Retrievable, Filterable, Sortable, Facetable |
-tags | Collection(Edm.String) | Retrievable, Filterable, Facetable |
-price | Edm.Double | Retrievable, Filterable, Facetable |
+albumTitle | Edm.String | 可擷取、可搜尋 |
+albumUrl | Edm.String | 可擷取、可搜尋 |
+genre | Edm.String | 可擷取、可搜尋、可篩選、可排序、可面向化 |
+genreDescription | Edm.String | 可擷取、可搜尋 |
+artistName | Edm.String | 可擷取、可搜尋 |
+orderableOnline | Edm.Boolean | 可擷取、可篩選、可排序、可面向化 |
+tags | Collection(Edm.String) | 可擷取、可篩選、可面向化 |
+price | Edm.Double | 可擷取、可篩選、可面向化 |
 margin | Edm.Int32 | |
-rating | Edm.Int32 | Retrievable, Filterable, Sortable, Facetable |
+rating | Edm.Int32 | 可擷取、可篩選、可排序、可面向化 |
 inventory | Edm.Int32 | Retrievable |
 lastUpdated | Edm.DateTimeOffset | |
 
-As a point of comparison, the following screenshot is an illustration of an index built to the specification in the previous table.
+下列螢幕擷取畫面是依上表中的規格建立的索引圖解，以供對照。
 
  ![][4]
 
-Click **OK** to complete this step of the wizard.
+按一下 [確定] 來完成精靈的這個步驟。
 
-#### <a name="step-3:-define-the-indexer"></a>Step 3: Define the indexer
+#### 步驟 3：定義索引子
 
-Still in the **Import data** wizard, click **Indexer** > **Name**, type a name for the indexer, and use defaults for all the other values. This object defines an executable process. Once you create it, you could put it on recurring schedule, but for now use the default option to run the indexer once, immediately, when you click **OK**. 
+同樣在 [匯入資料精靈] 中，按一下 [索引子] > [名稱]，鍵入索引子的名稱，並使用所有其他值的預設值。此物件定義可執行的程序。一旦建立此物件，您就可以將其放入週期性排程，但現在請先按一下 [確定]，立即使用預設選項執行索引子一次。
 
-Your import data entries should be all filled in and ready to go.
+匯入資料項目應全部填入並準備就緒。
 
   ![][5]
 
-To run the wizard, click **OK** to start the import and close the wizard.
+若要執行精靈，請按一下 [確定] 開始匯入並關閉精靈。
 
-## <a name="check-progress"></a>Check progress
+## 檢查進度
 
-To check progress, go back to the service dashboard, scroll down, and double-click the **Indexers** tile to open the indexers list. You should see the indexer you just created in the list, and you should see status indicating "in progress" or success, along with the number of documents indexed into Azure Search.
+若要檢查進度，請回到服務儀表板，向下捲動，然後按兩下 [索引子] 圖格以開啟索引子清單。您應該會在清單中看到您剛建立的索引子，您應該會看到指出「進行中」或成功的狀態，以及索引編製到 Azure 搜尋服務中的文件數目。
 
   ![][6]
 
-## <a name="query-the-index"></a>Query the index
+## 查詢索引
 
-You now have a search index that's ready to query. 
+您現在有準備好要查詢的搜尋索引。
 
-**Search explorer** is a query tool built into the portal. It provides a search box so that you can verify a search input returns the data you expect. 
+搜尋總管是入口網站內建的查詢工具。它會提供搜尋方塊，以便您確認搜尋輸入可傳回您預期的資料。
 
-1. Click **Search explorer** on the command bar.
-2. Notice which index is active. If it's not the one you just created, click **Change index** on the command bar to select the one you want.
-2. Leave the search box empty and then click the **Search** button to execute a wildcard search that returns all documents.
-3. Enter a few full-text search queries. You can review the results from your wildcard search to get familiar with artists, albums, and genres to query.
-4. Try other query syntax using the [examples provided at the end of this article](https://msdn.microsoft.com/library/azure/dn798927.aspx) for ideas, modifying your query to use search strings that are likely to be found in your index.
+1. 按一下命令列上的 [搜尋總管]。
+2. 請注意哪個索引在使用中。如果這不是您剛才建立的索引，請按一下命令列上的 [變更索引] 以選取您想要的索引。
+2. 將搜尋方塊保留空白，然後按一下 [搜尋] 按鈕，以執行可傳回所有文件的萬用字元搜尋。
+3. 輸入一些全文檢索搜尋查詢。您可以檢閱萬用字元搜尋的結果，以熟悉要查詢的演出者、專輯和內容類型。
+4. 您可以使用[本文結尾提供的範例](https://msdn.microsoft.com/library/azure/dn798927.aspx)以獲得靈感，以及將您的查詢修改成使用可能在索引中找到的搜尋字串，藉此嘗試其他查詢語法。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-After you run the wizard once, you can go back and view or modify individual components: index, indexer, or data source. Some edits, such as the changing the field data type, are not allowed on the index, but most properties and settings are modifiable. To view individual components, click the **Index**, **Indexer**, or **Data Sources** tiles on your dashboard to display a list of existing objects.
+在您執行精靈一次之後，您可以返回並檢視或修改個別的元件︰索引、索引子或資料來源。在索引上不允許進行某些編輯 (例如變更欄位資料類型)，但大部分的屬性和設定都可修改。若要檢視個別元件，請按一下儀表板上的 [索引]、[索引子] 或 [資料來源] 磚，以顯示現有物件的清單。
 
-To learn more about other features mentioned in this article, visit these links:
+若要深入了解本文提到的其他功能，請造訪下列連結︰
 
-- [Indexers](search-indexer-overview.md)
-- [Create Index (includes a detailed explanation of the index attributes)](https://msdn.microsoft.com/library/azure/dn798941.aspx)
-- [Search Explorer](search-explorer.md)
-- [Search Documents (includes examples of query syntax)](https://msdn.microsoft.com/library/azure/dn798927.aspx)
+- [索引子](search-indexer-overview.md)
+- [建立索引 (包含索引屬性的詳細說明)](https://msdn.microsoft.com/library/azure/dn798941.aspx)
+- [搜尋總管](search-explorer.md)
+- [搜尋文件 (包含查詢語法範例)](https://msdn.microsoft.com/library/azure/dn798927.aspx)
 
-You can try this same workflow, using the Import data wizard for other data sources like Azure SQL Database or SQL Server on Azure virtual machines.
+您可以嘗試此相同的工作流程，並將匯入資料精靈用於 Azure 虛擬機器上的 Azure SQL Database 或 SQL Server 等其他資料來源。
 
-> [AZURE.NOTE] Newly announced is indexer support for crawling Azure Blob Storage, but that feature is in preview and not yet a portal option. To try that indexer, you need to write code. See [Indexing Azure Blob storage in Azure Search](search-howto-indexing-azure-blob-storage.md) for more information.
-<a id="apdx-sampledata"></a>
+> [AZURE.NOTE] 最近宣佈索引子支援搜耙 Azure Blob 儲存體，但這項功能處於預覽階段，尚未成為入口網站選項。若嘗試該索引子，您必須撰寫程式碼。如需詳細資訊，請參閱[在 Azure 搜尋服務中編製 Azure Blob 儲存體的索引](search-howto-indexing-azure-blob-storage.md)。<a id="apdx-sampledata"></a>
 
 
-## <a name="appendix:-create-sample-data-in-documentdb"></a>Appendix: Create sample data in DocumentDB
+## 附錄：在 DocumentDB 中建立範例資料
 
-This section creates a small database in DocumentDB that can be used to complete the tasks in this tutorial.
+這一節會在 DocumentDB 中建立一個小型資料庫，以便完成此教學課程中的工作。
 
-The following instructions give you general guidance, but are not exhaustive. If you need more help with DocumentDB portal navigation or tasks, you can refer to DocumentDB documentation, but most of the commands you need are either in the service command bar at the top of the dashboard or in the database blade. 
+下列指示可給您一般指引，但並不詳盡。如果您需要更多有關 DocumentDB 入口網站導覽或工作的協助，可以參考 DocumentDB 文件，但您需要的大部分命令是位於儀表板上方的服務命令列或資料庫刀鋒視窗中。
 
   ![][1]
 
-### <a name="create-musicstoredb-for-this-tutorial"></a>Create musicstoredb for this tutorial
+### 建立本教學課程的 musicstoredb
 
-1. [Click here](https://github.com/HeidiSteen/azure-search-get-started-sample-data) to download a ZIP file containing the music store JSON data files. We provide 246 JSON documents for this dataset.
-2. Add DocumentDB to your subscription and then open the service dashboard.
-2. Click **Add Database** to create a new database with an id of `musicstoredb`. It shows up in the database tile further down the page after it's created.
-2. Click on the database name to open the database blade.
-3. Click **Add Collection** to create a collection with an id of `musicstorecoll`.
-3. Click **Document Explorer**.
-4. Click **Upload**.
-5. In **Upload Document**, navigate to the local folder that contains the JSON files you downloaded previously. Select JSON files in batches of 100 or fewer.
-    - 386.json
-    - 387.json
-    - . . .
-    - 486.json
-6. Repeat to get the next batch of files until you've uploaded the last one, 669.json.
-7. Click **Query Explorer** to verify the data is uploaded to meet the upload requirements of Document Explorer.
+1. [按一下這裡](https://github.com/HeidiSteen/azure-search-get-started-sample-data)以下載包含音樂市集 JSON 資料檔案的 ZIP 檔案。我們為此資料集提供 246 個 JSON 文件。
+2. 將 DocumentDB 新增至您的訂用帳戶，然後開啟服務儀表板。
+2. 按一下 [新增資料庫] 以建立識別碼為 `musicstoredb` 的新資料庫。所建立的新資料庫會顯示在頁面更下方的資料庫圖格中。
+2. 按一下資料庫名稱以開啟資料庫刀鋒視窗。
+3. 按一下 [新增集合] 以建立識別碼為 `musicstorecoll` 的集合。
+3. 按一下 [文件總管]。
+4. 按一下 [上傳]。
+5. 在 [上傳文件] 中，瀏覽至包含您先前下載之 JSON 檔案的本機資料夾。以每批 100 個或更少的數量選取 JSON 檔案。
+	- 386\.json
+	- 387\.json
+	- . . .
+	- 486\.json
+6. 重複執行以取得下一批次檔案，直到您已上傳最後一個 669.json 檔案為止。
+7. 按一下 [查詢總管] 以確認資料已上傳，進而符合 Document Explorer 的上傳需求。
 
-An easy way to do this is to use the default query, but you can also modify the default query so that it selects the top 300 (there are fewer than 300 items in this dataset).
+若要這麼做，最簡單的方式就是使用預設查詢，但您也可以修改預設查詢，使其選取前 300 個 (此資料集中的項目少於 300 個)。
 
-You should get back JSON output, starting with document number 386, and ending with document 669. Once the data is loaded, you can [return to the steps in this walkthrough](#defineDS) to build an index using the  **Import data wizard**.
+您應該取回 JSON 輸出 (起始於文件編號 386，結束於文件 669)。載入資料後，您可以[回到本逐步解說中的步驟](#defineDS)，使用 [匯入資料精靈] 來建置索引。
 
 
 <!--Image references-->
@@ -185,8 +183,4 @@ You should get back JSON output, starting with document number 386, and ending w
 [6]: ./media/search-get-started-portal/AzureSearch-GetStart-IndexerList.png
 [7]: ./media/search-get-started-portal/search-data-import-wiz-btn.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_1005_2016-->

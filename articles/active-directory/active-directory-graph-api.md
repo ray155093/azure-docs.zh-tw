@@ -1,9 +1,9 @@
 <properties
-   pageTitle="Azure Active Directory Graph API | Microsoft Azure"
-   description="An overview and quickstart guide for the Graph API which allows programmatic access to Azure AD through REST API endpoints."
+   pageTitle="Azure Active Directory 圖形 API | Microsoft Azure"
+   description="圖形 API 的概觀和快取入門指南，可讓您以程式設計方式透過 REST API 端點存取 Azure AD。"
    services="active-directory"
    documentationCenter=""
-   authors="PatAltimore"
+   authors="msmbaldwin"
    manager="mbaldwin"
    editor="mbaldwin" />
 <tags
@@ -15,67 +15,62 @@
    ms.date="09/16/2016"
    ms.author="mbaldwin" />
 
+# Azure Active Directory 圖形 API
 
-# <a name="azure-active-directory-graph-api"></a>Azure Active Directory Graph API
+> [AZURE.IMPORTANT] Azure AD Graph API 功能也透過 [Microsoft Graph](https://graph.microsoft.io/) 提供使用，Microsoft Graph 是一個統一的 API，包含了來自其他 Microsoft 服務 (例如 Outlook、OneDrive、OneNote、Planner 和 Office Graph) 的 API，並可透過單一端點與使用單一存取權杖進行存取。
 
-> [AZURE.IMPORTANT] Azure AD Graph API functionality is also available through [Microsoft Graph](https://graph.microsoft.io/), a unified API that  includes APIs from other Microsoft services such as Outlook, OneDrive, OneNote, Planner, and Office Graph, accessible through a single endpoint and with a single access token.
+Azure Active Directory 圖形 API 支援以程式設計方式透過 REST API 端點存取 Azure AD。應用程式可以使用 Graph API，來執行有關目錄資料和物件的建立、讀取、更新及刪除 (CRUD) 作業。例如，圖形 API 支援對使用者物件執行下列常見的作業：
 
-The Azure Active Directory Graph API provides programmatic access to Azure AD through REST API endpoints. Applications can use the Graph API to perform create, read, update, and delete (CRUD) operations on directory data and objects. For example, the Graph API supports the following common operations for a user object:
+- 在目錄中建立新的使用者
 
-- Create a new user in a directory
+- 取得使用者的詳細屬性，例如其群組
 
-- Get a user’s detailed properties, such as their groups
+- 更新使用者的屬性 (例如其位置和電話號碼)，或變更其密碼
 
-- Update a user’s properties, such as their location and phone number, or change their password
+- 檢查使用者在角色型存取方面的群組成員資格
 
-- Check a user’s group membership for role-based access
+- 停用使用者帳戶或完全刪除
 
-- Disable a user’s account or delete it entirely
+除了使用者物件，您也可以在其他物件上執行類似的作業，例如群組和應用程式。若要在目錄上呼叫圖形 API，應用程式必須向 Azure AD 註冊並設定為允許存取此目錄。這通常是透過使用者或系統管理員同意流程來達成。
 
-In addition to user objects, you can perform similar operations on other objects such as groups and applications. To call the Graph API on a directory, the application must be registered with Azure AD and be configured to allow access to the directory. This is normally achieved through a user or admin consent flow.
-
-To begin using the Azure Active Directory Graph API, see the [Graph API Quickstart Guide](active-directory-graph-api-quickstart.md), or view the [interactive Graph API reference documentation](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/api-catalog).
-
-
-## <a name="features"></a>Features
-
-The Graph API provides the following features:
-
-- **REST API Endpoints**: The Graph API is a RESTful service comprised of endpoints that are accessed using standard HTTP requests. The Graph API supports XML or Javascript Object Notation (JSON) content types for requests and responses. For more information, see [Azure AD Graph REST API Reference](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/api-catalog).
-
-- **Authentication with Azure AD**: Every request to the Graph API must be authenticated by appending a JSON Web Token (JWT) in the Authorization header of the request. This token is acquired by making a request to Azure AD’s token endpoint and providing valid credentials. You can use the OAuth 2.0 client credentials flow or the authorization code grant flow to acquire a token to call the Graph. For more information, [OAuth 2.0 in Azure AD](https://msdn.microsoft.com/library/azure/dn645545.aspx).
-
-- **Role-Based Authorization (RBAC)**: Security groups are used to perform RBAC in the Graph API. For example, if you want to determine whether a user has access to a specific resource, the application can call the [Check Group Membership (transitive)](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/groups-operations#FunctionsandactionsongroupsCheckmembershipinaspecificgrouptransitive) operation, which returns true or false.
-
-- **Differential Query**: If you want to check for changes in a directory between two time periods without having to make frequent queries to the Graph API, you can make a differential query request. This type of request will return only the changes made between the previous differential query request and the current request. For more information, see [Azure AD Graph API Differential Query](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-differential-query).
-
-- **Directory Extensions**: If you are developing an application that needs to read or write unique properties for directory objects, you can register and use extension values by using the Graph API. For example, if your application requires a Skype ID property for each user, you can register the new property in the directory and it will be available on every user object. For more information, see [Azure AD Graph API Directory Schema Extensions](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-directory-schema-extensions).
-
-- **Secured by permission scopes**: AAD Graph API exposes permission scopes that enable secure/consented access to AAD data, and support a variety of client app types, including:
- - those with a user interface which are given delegated access to data via authorization from the signed-in user (delegated)
-  - those that use application-define role-based access control such as service/daemon clients (app roles)
-
-    Both delegated and app role permission scopes represent a privilege exposed by the Graph API and can be requested by client applications through application registration permissions [features in the Azure classic portal](https://manage.windowsazure.com). Clients can verify the permission scopes granted to them by inspecting the scope (“scp”) claim received in the access token for delegated permissions and the roles (“roles”) claim for app role permissions. Learn more about [Azure AD Graph API Permission Scopes](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-permission-scopes).
+若要開始使用 Azure Active Directory Graph API，請參閱[Graph API 快速入門指南](active-directory-graph-api-quickstart.md)，或檢視[互動式 Graph API 參考文件](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/api-catalog)。
 
 
-## <a name="scenarios"></a>Scenarios
+## 特性
 
-The Graph API enables many application scenarios. The following scenarios are the most common:
+圖形 API 提供下列功能：
 
-- **Line of Business (Single Tenant) Application**: In this scenario, an enterprise developer works for an organization that has an Office 365 subscription. The developer is building a web application that interacts with Azure AD to perform tasks such assigning a license to a user. This task requires access to the Graph API, so the developer registers the single tenant application in Azure AD and configures read and write permissions for the Graph API. Then the application is configured to use either its own credentials or those of the currently sign-in user to acquire a token to call the Graph API.
+- **REST API 端點**：Graph API 是 RESTful 服務，由使用標準 HTTP 要求存取的端點所組成。圖形 API 支援要求和回應的 XML 或 Javascript 物件標記法 (JSON) 內容類型。如需詳細資訊，請參閱 [Azure AD Graph REST API 參考](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/api-catalog)。
 
-- **Software as a Service Application (Multi-Tenant)**: In this scenario, an independent software vendor (ISV) is developing hosted multi-tenant web application that provides user management features for other organizations that use Azure AD. These features require access to directory objects, and so the application needs to call the Graph API. The developer registers the application in Azure AD, configures it to require read and write permissions for the Graph API, and then enables external access so that other organizations can consent to use the application in their directory. When a user in another organization authenticates to the application for the first time, they are shown a consent dialog with the permissions the application is requesting.  Granting consent will then give the application those requested permissions to the Graph API in the user’s directory. For more information on the consent framework, see [Overview of the Consent Framework](active-directory-integrating-applications.md).
+- **向 Azure AD 驗證**：必須在要求的 Authorization 標頭中附加 JSON Web Token (JWT)，以驗證 Graph API 的每個要求。您可以向 Azure AD 的權杖端點提出要求並提供有效的認證，以取得此權杖。您可以使用 OAuth 2.0 用戶端認證流程或授權碼授與流程，以取得權杖來呼叫 Graph。如需詳細資訊，請參閱 [Azure AD 中的 OAuth 2.0](https://msdn.microsoft.com/library/azure/dn645545.aspx)。
 
-## <a name="see-also"></a>See Also
+- **以角色為基礎的授權 (RBAC)**：在 Graph API 中使用安全性群組執行 RBAC。例如，如果您想要判斷使用者是否能夠存取特定的資源，應用程式可以呼叫[檢查群組成員資格 (可移轉)](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/groups-operations#FunctionsandactionsongroupsCheckmembershipinaspecificgrouptransitive) 作業，它會傳回 true 或 false。
 
-[Azure AD Graph API Quickstart Guide](active-directory-graph-api-quickstart.md)
+- **差異查詢**：如果您想要檢查目錄在兩段時間之間的變更，但不想對 Graph API 進行頻繁的查詢，您可以提出差異查詢要求。此類型的要求只會傳回前一個差異查詢要求與目前要求之間所做的變更。如需詳細資訊，請參閱 [Azure AD Graph API 差異查詢](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-differential-query)。
 
-[AD Graph REST documentation](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/api-catalog)
+- **目錄延伸模組**：如果您正在開發的應用程式需要讀取或寫入目錄物件的唯一屬性，您可以使用 Graph API 註冊並使用延伸模組值。例如，如果應用程式需要每個使用者都有 Skype ID 屬性，您可以在目錄中註冊新的屬性，每個使用者物件上就會有此屬性。如需詳細資訊，請參閱 [Azure AD Graph API 目錄結構描述延伸模組](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-directory-schema-extensions)。
 
-[Azure Active Directory developer's guide](active-directory-developers-guide.md)
+- **受權限範圍保護**：AAD 圖形 API 會公開權限範圍，以啟用 AAD 資料的安全/同意存取，並支援各種用戶端應用程式類型，包括︰
+ - 透過登入使用者 (委派) 授權，指定具有資料委派存取權之使用者介面的類型
+  - 使用服務/服務精靈用戶端 (應用程式角色) 等應用程式定義角色型存取控制的類型
+
+    委派和應用程式角色權限範圍都代表圖形 API 公開的權限，而且用戶端應用程式可以透過應用程式註冊權限要求它們 ([Azure 傳統入口網站中的功能](https://manage.windowsazure.com))。用戶端可以驗證被授與的權限範圍：檢查委派權限的存取權杖中所收到的範圍 ("scp") 宣告，和應用程式角色權限的角色 (“roles”) 宣告。深入了解 [Azure AD 圖形 API 權限範圍](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-permission-scopes)。
 
 
+## 案例
 
-<!--HONumber=Oct16_HO2-->
+圖形 API 支援許多應用程式案例。以下是最常見的案例：
 
+- **企業營運 (單一租用戶) 應用程式**：在此案例中，企業開發人員任職於具有 Office 365 訂用帳戶的組織中。開發人員正在建置的 Web 應用程式會與 Azure AD 互動來執行工作，例如指派授權給使用者。這項工作需要存取圖形 API，所以開發人員在 Azure Ad 中註冊單一租用戶應用程式，並設定圖形 API 的讀取和寫入權限。然後，將應用程式設定為使用它自己的認證，或目前登入之使用者的認證，以取得權杖來呼叫圖形 API。
 
+- **軟體即服務應用程式 (多租用戶)**：在此案例中，獨立軟體廠商 (ISV) 正在開發託管的多租用戶 Web 應用程式，目的是為使用 Azure AD 的其他組織提供使用者管理功能。這些功能需要存取目錄物件，所以此應用程式需要呼叫圖形 API。開發人員在 Azure AD 中註冊此應用程式，將它設定為需要圖形 API 的讀取和寫入權限，然後啟用外部存取，讓其他組織同意在其目錄中使用此應用程式。當另一個組織中的使用者第一次向應用程式驗證時，就會出現同意對話方塊及此應用程式所要求的權限。同意之後，就會給予所要求的權限，讓應用程式在使用者的目錄中存取圖形 API。如需同意架構的詳細資訊，請參閱[同意架構的概觀](active-directory-integrating-applications.md)。
+
+## 另請參閱
+
+[Azure AD Graph API 快速入門指南](active-directory-graph-api-quickstart.md)
+
+[AD Graph REST 文件](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/api-catalog)
+
+[Azure Active Directory 開發人員指南](active-directory-developers-guide.md)
+
+<!---HONumber=AcomDC_0921_2016-->

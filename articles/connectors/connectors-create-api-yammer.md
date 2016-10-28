@@ -1,6 +1,6 @@
 <properties
-pageTitle="Add the Yammer Connector in your Logic Apps | Microsoft Azure"
-description="Overview of the Yammer Connector with REST API parameters"
+pageTitle="在您的 Logic Apps 中新增 Yammer 連接器 | Microsoft Azure"
+description="搭配 REST API 參數來使用 Yammer 連接器的概觀"
 services=""    
 documentationCenter=""     
 authors="msftman"    
@@ -17,189 +17,182 @@ ms.workload="na"
 ms.date="05/18/2016"
 ms.author="deonhe"/>
 
+# 開始使用 Yammer 連接器
 
-# <a name="get-started-with-the-yammer-connector"></a>Get started with the Yammer connector
+連線到 Yammer 來存取您企業網路中的交談。
 
-Connect to Yammer to access conversations in your enterprise network.
+>[AZURE.NOTE] 這一版的文章適用於邏輯應用程式 2015-08-01-preview 結構描述版本。
 
->[AZURE.NOTE] This version of the article applies to logic apps 2015-08-01-preview schema version.
+您可以利用 Yammer 來：
 
-With Yammer, you can:
+- 根據您從 Yammer 所取得的資料，來建置您的商務流程。 
+- 在群組或您追蹤的摘要中有新訊息時使用觸發程序。
+- 使用動作來張貼訊息、取得所有訊息等等。這些動作會收到回應，然後輸出能讓其他動作使用的資料。舉例來說，當新訊息出現時，您可以利用 Office 365 來傳送電子郵件。
 
-- Build your business flow based on the data you get from Yammer. 
-- Use triggers for when there is a new message in a group, or a feed your following.
-- Use actions to post a message, get all messages, and more. These actions get a response, and then make the output available for other actions. For example, when a new message appears, you can send an email using Office 365.
+如要在邏輯應用程式中新增作業，請參閱[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
-To add an operation in logic apps, see [Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md).
+## 觸發程序及動作
+Yammer 包含下列觸發程序及動作。
 
-## <a name="triggers-and-actions"></a>Triggers and actions
-Yammer includes the following triggers and actions. 
-
-Trigger | Actions
+觸發程序 | 動作
 --- | ---
-<ul><li>When there is a new message in a group</li><li>When there is a new message in my Following feed</li></ul>| <ul><li>Get all messages</li><li>Gets messages in a group</li><li>Gets the messages from my Following feed</li><li>Post message</li><li>When there is a new message in a group</li><li>When there is a new message in my Following feed</li></ul>
+<ul><li>當群組有新訊息時</li><li>當我正在追蹤的摘要有新訊息時</li></ul>| <ul><li>取得所有訊息</li><li>取得群組中的訊息</li><li>取得我正在追蹤的摘要中的訊息</li><li>張貼訊息</li><li>當群組有新訊息時</li><li>當我正在追蹤的摘要有新訊息時</li></ul>
 
-All connectors support data in JSON and XML formats. 
+所有連接器都支援 JSON 和 XML 格式的資料。
 
-## <a name="create-a-connection-to-yammer"></a>Create a connection to Yammer
-To use the Yammer connector, you first create a **connection** then provide the details for these properties: 
+## 建立至 Yammer 的連線
+如要使用 Yammer 連接器，您必須先建立**連線**，然後提供下列屬性的詳細資料：
 
-|Property| Required|Description|
+|屬性| 必要|說明|
 | ---|---|---|
-|Token|Yes|Provide Yammer Credentials|
+|權杖|是|提供 Yammer 的認證|
 
->[AZURE.INCLUDE [Steps to create a connection to Yammer](../../includes/connectors-create-api-yammer.md)]
-
-
->[AZURE.TIP] You can use this connection in other logic apps.
-
-## <a name="yammer-rest-api-reference"></a>Yammer REST API reference
-This documentation is for version: 1.0
+>[AZURE.INCLUDE [建立至 Yammer 連線的步驟](../../includes/connectors-create-api-yammer.md)]
 
 
-### <a name="get-all-public-messages-in-the-logged-in-user's-yammer-network"></a>Get all public messages in the logged in user's Yammer network
-Corresponds to "All" conversations in the Yammer web interface.  
-```GET: /messages.json```
+>[AZURE.TIP] 您可以在其他邏輯應用程式中使用這個連接。
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+## Yammer REST API 參考
+本文件適用的版本：1.0
+
+
+### 取得已登入使用者的 Yammer 網路中的所有公開訊息
+對應到 Yammer Web 介面中的「所有」交談。```GET: /messages.json```
+
+| 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|older_then|integer|no|query|none|Returns messages older than the message ID specified as a numeric string. This is useful for paginating messages. For example, if you’re currently viewing 20 messages and the oldest is number 2912, you could append “?older_than=2912″ to your request to get the 20 messages prior to those you’re seeing.|
-|newer_then|integer|no|query|none|Returns messages newer than the message ID specified as a numeric string. This should be used when polling for new messages. If you’re looking at messages, and the most recent message returned is 3516, you can make a request with the parameter “?newer_than=3516″ to ensure that you do not get duplicate copies of messages already on your page.|
-|limit|integer|no|query|none|Return only the specified number of messages.|
-|page|integer|no|query|none|Get the page specified. If returned data is greater than the limit, you can use this field to access subsequent pages|
+|older\_then|integer|no|query|無|傳回比指定為數值字串的訊息識別碼還要舊的訊息。這在您將訊息編頁時會很有用。舉例來說，如果您正在檢視 20 個訊息，其中最舊的訊息為 2912 號，則您可以讓要求附加「?older\_than=2912」，以便取得比您正在檢視的訊息更早的 20 個訊息。|
+|newer\_then|integer|no|query|無|傳回比指定為數值字串的訊息識別碼還要新的訊息。當您輪詢新訊息時，就必須使用這個參數。如果您正在查看訊息，且傳回的最新訊息是 3516 號，則您可以傳送參數為「? newer\_than = 3516」的要求，以確保您不會收到已出現在您頁面上的相同訊息。|
+|limit|integer|no|query|無|只傳回指定數目的訊息。|
+|page|integer|no|query|無|取得指定的頁面。如果傳回的資料超出限制，您可以使用這個欄位來存取後續的頁面|
 
 
-### <a name="response"></a>Response
+### Response
 
-|Name|Description|
+|名稱|說明|
 |---|---|
 |200|OK|
-|400|Bad Request|
-|408|Request Timeout|
-|429|Too Many Requests|
-|500|Internal Server Error. Unknown error occurred|
-|503|Yammer Service Unavailable|
-|504|Gateway Timeout|
-|default|Operation Failed.|
+|400|不正確的要求|
+|408|要求逾時|
+|429|太多要求|
+|500|內部伺服器錯誤。發生未知錯誤|
+|503|Yammer 服務無法使用|
+|504|閘道逾時|
+|預設值|作業失敗。|
 
 
-### <a name="post-a-message-to-a-group-or-all-company-feed"></a>Post a Message to a Group or All Company Feed
-If group ID is provided, message will be posted to the specified group else it will be posted in All Company Feed.    
-```POST: /messages.json``` 
+### 將訊息張貼到群組中或全公司摘要上
+如果有提供群組識別碼，訊息將會張貼到指定群組中，否則將會張貼到全公司摘要上。```POST: /messages.json```
 
-| Name| Data Type|Required|Located In|Default Value|Description|
+| 名稱| 資料類型|必要|位於|預設值|說明|
 | ---|---|---|---|---|---|
-|input| |yes|body|none|Post Message Request|
+|input| |yes|body|無|張貼訊息的要求|
 
 
-### <a name="response"></a>Response
+### Response
 
-|Name|Description|
+|名稱|說明|
 |---|---|
-|201|Created|
+|201|建立時間|
 
 
 
-## <a name="object-definitions"></a>Object definitions
+## 物件定義
 
-#### <a name="message:-yammer-message"></a>Message: Yammer Message
+#### Message：Yammer 訊息
 
-| Name | Data Type | Required |
+| 名稱 | 資料類型 | 必要 |
 |---|---| --- | 
 |id|integer|no|
-|content_excerpt|string|no|
-|sender_id|integer|no|
-|replied_to_id|integer|no|
-|created_at|string|no|
-|network_id|integer|no|
-|message_type|string|no|
-|sender_type|string|no|
-|url|string|no|
-|web_url|string|no|
-|group_id|integer|no|
-|body|not defined|no|
-|thread_id|integer|no|
-|direct_message|boolean|no|
-|client_type|string|no|
-|client_url|string|no|
-|language|string|no|
-|notified_user_ids|array|no|
-|privacy|string|no|
-|liked_by|not defined|no|
-|system_message|boolean|no|
+|content\_excerpt|字串|no|
+|sender\_id|integer|no|
+|replied\_to\_id|integer|no|
+|created\_at|字串|no|
+|network\_id|integer|no|
+|message\_type|字串|no|
+|sender\_type|字串|no|
+|url|字串|no|
+|web\_url|字串|no|
+|group\_id|integer|no|
+|body|沒有定義|no|
+|thread\_id|integer|no|
+|direct\_message|布林值|no|
+|client\_type|字串|no|
+|client\_url|字串|no|
+|語言|字串|no|
+|notified\_user\_ids|array|no|
+|privacy|字串|no|
+|liked\_by|沒有定義|no|
+|system\_message|布林值|no|
 
-#### <a name="postoperationrequest:-represents-a-post-request-for-yammer-connector-to-post-to-yammer"></a>PostOperationRequest: Represents a post request for Yammer Connector to post to yammer
+#### PostOperationRequest：代表要張貼到 Yammer 上的 Yammer 連接器張貼要求
 
-| Name | Data Type | Required |
+| 名稱 | 資料類型 | 必要 |
 |---|---| --- | 
-|body|string|yes|
-|group_id|integer|no|
-|replied_to_id|integer|no|
-|direct_to_id|integer|no|
-|broadcast|boolean|no|
-|topic1|string|no|
-|topic2|string|no|
-|topic3|string|no|
-|topic4|string|no|
-|topic5|string|no|
-|topic6|string|no|
-|topic7|string|no|
-|topic8|string|no|
-|topic9|string|no|
-|topic10|string|no|
-|topic11|string|no|
-|topic12|string|no|
-|topic13|string|no|
-|topic14|string|no|
-|topic15|string|no|
-|topic16|string|no|
-|topic17|string|no|
-|topic18|string|no|
-|topic19|string|no|
-|topic20|string|no|
+|body|字串|yes|
+|group\_id|integer|no|
+|replied\_to\_id|integer|no|
+|direct\_to\_id|integer|no|
+|broadcast|布林值|no|
+|topic1|字串|no|
+|topic2|字串|no|
+|topic3|字串|no|
+|topic4|字串|no|
+|topic5|字串|no|
+|topic6|字串|no|
+|topic7|字串|no|
+|topic8|字串|no|
+|topic9|字串|no|
+|topic10|字串|no|
+|topic11|字串|no|
+|topic12|字串|no|
+|topic13|字串|no|
+|topic14|字串|no|
+|topic15|字串|no|
+|topic16|字串|no|
+|topic17|字串|no|
+|topic18|字串|no|
+|topic19|字串|no|
+|topic20|字串|no|
 
-#### <a name="messagelist:-list-of-messages"></a>MessageList: List of messages
+#### MessageList：訊息的清單
 
-| Name | Data Type | Required |
+| 名稱 | 資料類型 | 必要 |
 |---|---| --- | 
 |messages|array|no|
 
 
-#### <a name="messagebody:-message-body"></a>MessageBody: Message Body
+#### MessageBody：訊息內文
 
-| Name | Data Type | Required |
+| 名稱 | 資料類型 | 必要 |
 |---|---| --- | 
-|parsed|string|no|
-|plain|string|no|
-|rich|string|no|
+|parsed|字串|no|
+|plain|字串|no|
+|rich|字串|no|
 
-#### <a name="likedby:-liked-by"></a>LikedBy: Liked By
+#### LikedBy：設為喜歡的人
 
-| Name | Data Type | Required |
+| 名稱 | 資料類型 | 必要 |
 |---|---| --- | 
-|count|integer|no|
+|計數|integer|no|
 |names|array|no|
 
-#### <a name="yammmerentity:-liked-by"></a>YammmerEntity: Liked By
+#### YammmerEntity：設為喜歡的人
 
-| Name | Data Type | Required |
+| 名稱 | 資料類型 | 必要 |
 |---|---| --- | 
-|type|string|no|
+|類型|字串|no|
 |id|integer|no|
-|full_name|string|no|
+|full\_name|字串|no|
 
 
-## <a name="next-steps"></a>Next Steps
-[Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md).
+## 後續步驟
+[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
 [1]: ./media/connectors-create-api-yammer/connectionconfig1.png
-[2]: ./media/connectors-create-api-yammer/connectionconfig2.png 
+[2]: ./media/connectors-create-api-yammer/connectionconfig2.png
 [3]: ./media/connectors-create-api-yammer/connectionconfig3.png
 [4]: ./media/connectors-create-api-yammer/connectionconfig4.png
 [5]: ./media/connectors-create-api-yammer/connectionconfig5.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0525_2016-->

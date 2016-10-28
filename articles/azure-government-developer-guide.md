@@ -1,121 +1,120 @@
 <properties 
-    pageTitle="Azure Government Developers Guide" 
-    description="This provides a comparision of features and guidance on developing applications for Azure Government" 
-    services="" 
-    cloud="gov"
-    documentationCenter="" 
-    authors="Joharve2" 
-    manager="Chrisnie" 
-    editor=""/>
+	pageTitle="Azure Government 開發人員指南" 
+	description="這為 Azure Government 的開發應用程式提供功能和指引的比較" 
+	services="" 
+	cloud="gov"
+	documentationCenter="" 
+	authors="Joharve2" 
+	manager="Chrisnie" 
+	editor=""/>
 
 <tags 
-    ms.service="multiple" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.tgt_pltfrm="na" 
-    ms.workload="azure-government" 
-    ms.date="10/29/2015" 
-    ms.author="jharve"/>
+	ms.service="multiple" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.tgt_pltfrm="na" 
+	ms.workload="azure-government" 
+	ms.date="10/29/2015" 
+	ms.author="jharve"/>
 
 
+#  Microsoft Azure Government 開發人員指南 
 
-#  <a name="microsoft-azure-government-developer-guide"></a>Microsoft Azure Government Developer Guide 
-
-<p> Microsoft Azure Government is a physically and network isolated instance of Microsoft Azure.  This developers guide will provide details on the differences that application developers and administrators would need to interact and work with these seperate regions of Azure.
+<p> Microsoft Azure Government 是 Microsoft Azure 的實體及網路隔離執行個體。此開發人員指南將針對應用程式開發人員和系統管理員需要與這些 Azure 個別區域互動及處理的差異，提供相關提供詳細資料。
 
 <!--Table of contents for topic, the words in brackets must match the heading wording exactly-->
 
 
-## <a name="in-this-topic"></a>In this topic
+## 本主題內容
 
 
-+ [Overview](#Overview)
-+ [Guidance for Developers](#Guidance)
-+ [Features currently available in Microsoft Azure Government](#Features)
-+ [Endpoint Mapping](#Endpoint)
-+ [Next Steps](#next)
++ [概觀](#Overview)
++ [開發人員指導方針](#Guidance)
++ [Microsoft Azure Government 中目前可用的功能](#Features)
++ [端點對應](#Endpoint)
++ [後續步驟](#next)
 
 
-## <a name="<a-name="overview"></a>overview"></a><a name="Overview"></a>Overview
+## <a name="Overview"></a>概觀
 
-Microsoft Azure Government is a separate instance of the Microsoft Azure service addressing the security and compliance needs of U.S. federal agencies, state and local governments and their solutions providers. Azure Government offers physical and network isolation from non-U.S. government deployments and provides screened U.S. personnel. 
+Microsoft Azure Government 是 Microsoft Azure 的獨立執行個體，用來處理美國聯邦機構、州和地方政府及其解決方案提供者的的安全性和法規遵循需求。Azure Government 提供與非美國政府部署隔離的實體及網路環境，並提供遴選過的美國工作人員。
 
-Microsoft provides a number of tools to create and deploy cloud applications to Microsoft’s global Microsoft Azure service (“Global Service”) and Microsoft Azure Government services.
+Microsoft 提供一些工具來建立雲端應用程式並部署至 Microsoft 的全域 Microsoft Azure 服務 (全域服務) 及 Microsoft Azure Government 服務。
 
-When creating and deploying applications to the Azure Government Services, as opposed to the Global Service, developers need to know the key differences of the two services.  Specifically around setting up and configuring their programming environment, configuring endpoints, writing applications, and deploying them as services to Azure Government.
+建立應用程式並部署至 Azure Government 服務時，由於這與全域服務相反，因此開發人員必須知道這兩種服務的主要差異。特別是針對安裝及設定其程式設計環境、設定端點、撰寫應用程式，以及將其部署為 Azure Government 的服務等方面。
 
-The information in this document summarizes those differences and supplements the information available on the [Azure Government](http://www.azure.com/gov "Azure Government") site and the [Microsoft Azure Technical Library](http://msdn.microsoft.com/cloud-app-development-msdn "MSDN") on MSDN. Official information may also be available in many other locations such as the [Microsoft Azure Trust Center](https://azure.microsoft.com/support/trust-center/ "Microsoft Azure Trust Center"/), [Azure Documentation Center](https://azure.microsoft.com/documentation/) and in [Azure Blogs](https://azure.microsoft.com/blog/ "Azure Blogs"/). 
+本文件中的資訊將概述這些差異，並以 [Azure Government](http://www.azure.com/gov "Azure Government") 站台及 MSDN 上 [Microsoft Azure 技術文件庫](http://msdn.microsoft.com/cloud-app-development-msdn "MSDN")中提供的資訊做補充。正式資訊也可以在其他許多位置中找到，例如 [Microsoft Azure 信任中心](https://azure.microsoft.com/support/trust-center/ "Microsoft Azure 信任中心"/)、[Azure 文件中心](https://azure.microsoft.com/documentation/)及 [Azure 部落格](https://azure.microsoft.com/blog/ "Azure 部落格"/)。
 
-This content is intended for partners and developers who are deploying to Microsoft Azure Government.
-
-
-
-## <a name="<a-name="guidance"></a>guidance-for-developers"></a><a name="Guidance"></a>Guidance for Developers
-Because most of the technical content that is available currently assumes that applications are being developed for the Global Service rather than for Microsoft Azure Government, it’s important for you to ensure that developers are aware of key differences for applications developed to be hosted in Azure Government.
-
-- First, there are services and feature differences, this means that certain features that are in specific regions of the Global Service may not be available in Azure Government.
-
-- Second, for features that are offered in Azure Government, there are configuration differences from the Global Service.  Therefore, you should review your sample code, configurations and steps to ensure that you are building and executing within the Azure Government Cloud Services environment.
+此內容的適用對象是要對 Microsoft Azure Government 進行部署的合作夥伴和開發人員。
 
 
-## <a name="<a-name="features"></a>-features-currently-available-in-microsoft-azure-government"></a><a name="Features"></a> Features currently available in Microsoft Azure Government
-Azure Government currently has the following services available in both US GOV IOWA and US GOV VIRGINIA regions:
 
-- Virtual Machines
-- Cloud Services
-- Storage
+## <a name="Guidance"></a>開發人員指導方針
+由於大部分目前可用的技術內容皆假設應用程式是針對「全域服務」開發，而不是針對 Microsoft Azure Government，因此確保開發人員知道為裝載於 Azure Government 而開發的應用程式有何主要差異，便相當重要。
+
+- 首先，有服務和功能差異，這表示「全域服務」特定區域中的某些功能可能無法在 Azure Government 中提供。
+
+- 其次，Azure Government 中所提供的功能與「全域服務」有組態差異。因此，您應該檢閱您的範例程式碼、組態及步驟，以確保您是在「Azure Government 雲端服務」環境內建置和執行。
+
+
+## <a name="Features"></a> Microsoft Azure Government 中目前可用的功能
+Azure Government 目前在在「美國政府愛荷華州」(US GOV IOWA) 及「美國政府維吉尼亞州 (US GOV VIRGINIA)」區域有下列可用的服務：
+
+- 虛擬機器
+- 雲端服務
+- 儲存體
 - Active Directory
-- Scheduler
-- Virtual Networking
+- 排程器
+- 虛擬網路
 - SQL Database
-- Azure Files
-- Media Services
-- Traffic Manager
-- Service Bus
+- Azure 檔案
+- 媒體服務
+- 流量管理員
+- 服務匯流排
 - StorSimple
-- Redis Cache
-- Azure Backup
-- Automation
+- Redis 快取
+- Azure 備份
+- 自動化
 - ExpressRoute
-- etc.
+- 等
 
-Other services are available, and more services will be added on a continuous basis.  For the most current list of services, please see the [regions page](https://azure.microsoft.com/regions/#services) which will highlight each available region and their services.  
+有其他服務可用，並且會持續新增更多服務。如需最新的服務清單，請參閱[區域頁面](https://azure.microsoft.com/regions/#services)，當中將醒目提示每個可用的區域及其服務。
 
-Currently, US GOV Iowa and US GOV Virginia are the data centers supporting Azure Government.  Please refer to the regions page above for current data centers and services available.
+目前，「美國政府愛荷華州」和「美國政府維吉尼亞州」是支援 Azure Government 的資料中心。如需目前的資料中心及可用的服務，請參閱上述區域頁面。
 
-## <a name="<a-name="endpoint"></a>endpoint-mapping"></a><a name="Endpoint"></a>Endpoint Mapping
+## <a name="Endpoint"></a>端點對應
 
-Use the following table to guide you when mapping public Microsoft Azure and SQL Database endpoints to Azure Government specific endpoints.
+將公用 Microsoft Azure 與 SQL Database 端點對應至 Azure Government 特定端點時，可使用下表做為指南。
 
 
-Service Type|Azure Public|Azure Government
+服務類型|Azure 公用|Azure Government
 ---|---|---
-Management Portal|manage.windowsazure.com|manage.windowsazure.us
-General|*.windows.net|*.usgovcloudapi.net
-Core|*.core.windows.net|*.core.usgovcloudapi.net
-Compute|*.cloudapp.net|*.usgovcloudapp.net
-Blob Storage|*.blob.core.windows.net|   *.blob.core.usgovcloudapi.net
-Queue Storage|*.queue.core.windows.net|*.queue.core.usgovcloudapi.net
-Table Storage|*.table.core.windows.net|*.table.core.usgovcloudapi.net
-Service Management|management.core.windows.net|management.core.usgovcloudapi.net
+管理入口網站|manage.windowsazure.com|manage.windowsazure.us
+一般|*.windows.net|*.usgovcloudapi.net
+核心|*.core.windows.net|*.core.usgovcloudapi.net
+計算|*.cloudapp.net|*.usgovcloudapp.net
+Blob 儲存體|*.blob.core.windows.net|	*.blob.core.usgovcloudapi.net
+佇列儲存體|*.queue.core.windows.net|*.queue.core.usgovcloudapi.net
+資料表儲存體|*.table.core.windows.net|*.table.core.usgovcloudapi.net
+服務管理|management.core.windows.net|management.core.usgovcloudapi.net
 SQL Database|*.database.windows.net|*.database.usgovcloudapi.net
-ARM Load balanced Endpoint|https://management.windows.net|https://management.usgovcloudapi.net  
+ARM 負載平衡端點|https://management.windows.net|https://management.usgovcloudapi.net  
 
-* For ARM authentication via Azure AD, please reference [Authenticating Azure Resource Manager Requests](https://msdn.microsoft.com/library/azure/dn790557.aspx)
+* 如需透過 Azure AD 進行 ARM 驗證，請參閱[驗證 Azure 資源管理員要求](https://msdn.microsoft.com/library/azure/dn790557.aspx)
 
-## <a name="<a-name="next"></a>next-steps"></a><a name="next"></a>Next steps
+## <a name="next"></a>接續步驟
 
-If you are interested in learning more and about Azure Government please leverage some of the links below.
+如果您有興趣深入了解 Azure Government，請利用下面的連結。
 
-- **[Sign up for a trial](https://azuregov.microsoft.com/trial/azuregovtrial)**
+- **[註冊試用版](https://azuregov.microsoft.com/trial/azuregovtrial)**
 
-- **[Acquiring and accessing Azure Government](http://azure.com/gov)**
+- **[取得和存取 Azure Government](http://azure.com/gov)**
 
-- **[Azure Government Overview](/azure-government-overview)**
+- **[Azure Government 概觀](/azure-government-overview)**
 
-- **[Azure Government Blog](http://blogs.msdn.com/b/azuregov/)**
+- **[Azure Government 部落格](http://blogs.msdn.com/b/azuregov/)**
 
-- **[Azure Compliance](https://azure.microsoft.com/support/trust-center/compliance/)**
+- **[Azure 法規遵循](https://azure.microsoft.com/support/trust-center/compliance/)**
 
 <!--Anchors-->
 
@@ -131,8 +130,4 @@ If you are interested in learning more and about Azure Government please leverag
 [Link 2 to another azure.microsoft.com documentation topic]: web-sites-custom-domain-name.md
 [Link 3 to another azure.microsoft.com documentation topic]: storage-whatis-account.md
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

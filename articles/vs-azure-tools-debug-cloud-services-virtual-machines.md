@@ -1,199 +1,194 @@
 <properties 
-    pageTitle="Debugging an Azure cloud service or virtual machine in Visual Studio | Microsoft Azure"
-    description="Debugging a Cloud Service or Virtual Machine in Visual Studio"
-    services="visual-studio-online"
-    documentationCenter="na"
-    authors="TomArcher"
-    manager="douge"
-    editor="" />
+	pageTitle="在 Visual Studio 中進行 Azure 雲端服務或虛擬機器的偵錯 | Microsoft Azure"
+	description="在 Visual Studio 中進行雲端服務或虛擬機器的偵錯"
+	services="visual-studio-online"
+	documentationCenter="na"
+	authors="TomArcher"
+	manager="douge"
+	editor="" />
 <tags 
-    ms.service="visual-studio-online"
-    ms.devlang="multiple"
-    ms.topic="article"
-    ms.tgt_pltfrm="multiple"
-    ms.workload="na"
-    ms.date="08/15/2016"
-    ms.author="tarcher" />
+	ms.service="visual-studio-online"
+	ms.devlang="multiple"
+	ms.topic="article"
+	ms.tgt_pltfrm="multiple"
+	ms.workload="na"
+	ms.date="08/15/2016"
+	ms.author="tarcher" />
 
+# 在 Visual Studio 中進行 Azure 雲端服務或虛擬機器的偵錯
 
-# <a name="debugging-an-azure-cloud-service-or-virtual-machine-in-visual-studio"></a>Debugging an Azure cloud service or virtual machine in Visual Studio
+Visual Studio 提供您偵錯 Azure 雲端服務和虛擬機器的不同選項。
 
-Visual Studio gives you different options for debugging Azure cloud services and virtual machines.
 
 
+## 在您的本機電腦上偵錯您的雲端服務
 
-## <a name="debug-your-cloud-service-on-your-local-computer"></a>Debug your cloud service on your local computer
+使用 Azure 計算模擬器在本機電腦上偵錯您的雲端服務可以節省時間和金錢。透過在部署服務之前於本機偵錯服務，您可以改善可靠性和效能，而不需支付運算時間。不過，某些錯誤可能只有當您在 Azure 中執行雲端服務本身時才會發生。如果在發佈您的服務時啟用遠端偵錯，接著將偵錯工具附加至角色執行個體，則可以偵錯這些錯誤。
 
-You can save time and money by using the Azure compute emulator to debug your cloud service on a local machine. By debugging a service locally before you deploy it, you can improve reliability and performance without paying for compute time. However, some errors might occur only when you run a cloud service in Azure itself. You can debug these errors if you enable remote debugging when you publish your service and then attach the debugger to a role instance.
+模擬器會模擬 Azure 運算服務，並在您的本機環境中執行，使得您可以在部署雲端服務之前對其測試和偵錯。模擬器會處理您的角色執行個體的生命週期，並可讓您存取模擬的資源，例如本機儲存體。當您從 Visual Studio 偵錯或執行您的服務時，它會自動啟動模擬器做為背景應用程式，然後將服務部署至模擬器。當服務在本機環境中執行時，您可以使用模擬器來檢視服矛。您可以執行完整版或精簡版的模擬器。(從 Azure 2.3 起，精簡版的模擬器是預設值。) 請參閱[使用 Emulator Express 在本機執行雲端服務並進行偵錯](https://msdn.microsoft.com/library/dn339018.aspx)。
 
-The emulator simulates the Azure Compute service and runs in your local environment so that you can test and debug your cloud service before you deploy it. The emulator handles the lifecycle of your role instances and provides access to simulated resources, such as local storage. When you debug or run your service from Visual Studio, it automatically starts the emulator as a background application and then deploys your service to the emulator. You can use the emulator to view your service when it runs in the local environment. You can run the full version or the express version of the emulator. (Starting with Azure 2.3, the express version of the emulator is the default.) See [Using Emulator Express to Run and Debug a Cloud Service Locally](https://msdn.microsoft.com/library/dn339018.aspx).
+### 在您的本機電腦上偵錯您的雲端服務
 
-### <a name="to-debug-your-cloud-service-on-your-local-computer"></a>To debug your cloud service on your local computer
+1. 在功能表列上，選擇 [偵錯]、[開始偵錯] 來執行您的 Azure 雲端服務專案。或者，您可以按 F5。您會看到正在啟動計算模擬器的訊息。當模擬器啟動時，系統匣圖示可加以確認。
 
-1. On the menu bar, choose **Debug**, **Start Debugging** to run your Azure cloud service project. As an alternative, you can press F5. You’ll see a message that the Compute Emulator is starting. When the emulator starts, the system tray icon confirms it.
+    ![系統匣中的 Azure 模擬器](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC783828.png)
 
-    ![Azure emulator in the system tray](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC783828.png)
+1. 開啟通知區域中 Azure 圖示的捷徑功能表，然後選取 [顯示計算模擬器 UI]，來顯示計算模擬器的使用者介面。
 
-1. Display the user interface for the compute emulator by opening the shortcut menu for the Azure icon in the notification area, and then select **Show Compute Emulator UI**.
+    UI 的左方窗格會顯示目前已部署至計算模擬器的服務，以及每個服務正在執行的角色執行個體。您可以選擇將在右窗格中顯示生命週期、記錄和診斷資訊的服務或角色。如果您將焦點放在包含視窗的上邊界時，它會展開以填滿右方窗格。
 
-    The left pane of the UI shows the services that are currently deployed to the compute emulator and the role instances that each service is running. You can choose the service or roles to display lifecycle, logging, and diagnostic information in the right pane. If you put the focus in the top margin of an included window, it expands to fill the right pane.
+1. 選取 [偵錯] 功能表中的命令，並在您的程式碼中設定中斷點，來逐步執行應用程式。在偵錯工具中逐步執行應用程式時，窗格會隨著應用程式的目前狀態而更新。停止偵錯時，即會刪除應用程式部署。如果您的應用程式包含 Web 角色，並且已經將 [啟動] 動作屬性設定為啟動 Web 瀏覽器，Visual Studio 會在瀏覽器中啟動 Web 應用程式。如果您變更服務組態中角色執行個體的數目，您必須停止雲端服務，然後重新啟動偵錯，以便您可以偵錯角色的這些新執行個體。
 
-1. Step through the application by selecting commands on the **Debug** menu and setting breakpoints in your code. As you step through the application in the debugger, the panes are updated with the current status of the application. When you stop debugging, the application deployment is deleted.If your application includes a web role and you've set the Startup action property to start the web browser, Visual Studio starts your web application in the browser.If you change the number of instances of a role in the service configuration, you must stop your cloud service and then restart debugging so that you can debug these new instances of the role.
+    **附註：**停止執行或偵錯您的服務時，不會停止本機計算模擬器和儲存體模擬器。您必須從通知區域明確停止它們。
 
-    **Note:** When you stop running or debugging your service, the local compute emulator and storage emulator aren't stopped. You must stop them explicitly from the notification area.
 
+## 在 Azure 中偵錯雲端服務
 
-## <a name="debug-a-cloud-service-in-azure"></a>Debug a cloud service in Azure
+若要從遠端電腦偵錯雲端服務，您必須在部署雲端服務時明確啟用該功能，使得需要的服務 (例如 msvsmon.exe) 會安裝在執行您的角色執行個體的虛擬機器上。發佈服務時如果您未啟用遠端偵錯，您必須在啟用遠端偵錯的情況鑑重新發佈服務。
 
-To debug a cloud service from a remote machine, you must enable that functionality explicitly when you deploy your cloud service so that required services (msvsmon.exe, for example) are installed on the virtual machines that run your role instances. If you didn't enable remote debugging when you published the service, you have to republish the service with remote debugging enabled.
+如果您啟用雲端服務的遠端偵錯，它不會出現效能降低或產生其他費用。您不應該對生產環境服務使用遠端偵錯，因為可能會對使用服務的用戶端造成不良影響。
 
-If you enable remote debugging for a cloud service, it doesn't exhibit degraded performance or incur additional charges. You shouldn't use remote debugging on a production service, because clients who use the service might be adversely affected.
+>[AZURE.NOTE] 從 Visual Studio 發佈雲端服務時，您可以為該服務中以 .NET Framework 4 或 .NET Framework 4.5 為目標的任何角色啟用 **IntelliTrace**。藉由使用 **IntelliTrace**，您可以檢查角色執行個體在過去發生的事件，並重現當時的情況。請參閱[使用 IntelliTrace 和 Visual Studio 偵錯發佈的雲端服務](http://go.microsoft.com/fwlink/?LinkID=623016)和[使用 IntelliTrace](https://msdn.microsoft.com/library/dd264915.aspx)。
 
->[AZURE.NOTE] When you publish a cloud service from Visual Studio, you can enable **IntelliTrace** for any roles in that service that target the .NET Framework 4 or the .NET Framework 4.5. By using **IntelliTrace**, you can examine events that occurred in a role instance in the past and reproduce the context from that time. See [Debugging a published cloud service with IntelliTrace and Visual Studio](http://go.microsoft.com/fwlink/?LinkID=623016) and [Using IntelliTrace](https://msdn.microsoft.com/library/dd264915.aspx).
+### 啟用雲端服務的遠端偵錯
 
-### <a name="to-enable-remote-debugging-for-a-cloud-service"></a>To enable remote debugging for a cloud service
+1. 開啟 Azure 專案的捷徑功能表，然後選取 [發佈]。
 
-1. Open the shortcut menu for the Azure project, and then select **Publish**.
+1. 選取 [預備] 環境和 [偵錯] 組態。
 
-1. Select the **Staging** environment and the **Debug** configuration.
+    這只是指導方針。您可以選擇在生產環境中執行測試環境。不過，如果您在生產環境上啟用遠端偵錯，可能會對使用者造成不良影響。您可以選擇 [發行] 組態，但 [偵錯] 組態會讓偵錯更容易。
 
-    This is only a guideline. You can opt to run your test environments in a Production environment. However, you may adversely affect users if you enable remote debugging on the Production environment. You can choose the Release configuration, but the Debug configuration makes debugging easier.
+    ![選擇偵錯組態](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746717.gif)
 
-    ![Choose the Debug configuration](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746717.gif)
+1. 遵循往常的步驟，但在 [進階設定] 索引標籤上選取 [啟用所有角色的遠端偵錯工具] 核取方塊。
 
-1. Follow the usual steps, but select the **Enable Remote Debugger for all roles** check box on the **Advanced Settings** tab.
+    ![偵錯組態](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746718.gif)
 
-    ![Debug Configuration](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746718.gif)
+### 將偵錯工具附加至在 Azure 中的雲端服務
 
-### <a name="to-attach-the-debugger-to-a-cloud-service-in-azure"></a>To attach the debugger to a cloud service in Azure
+1. 在伺服器總管中，展開雲端服務的節點。
 
-1. In Server Explorer, expand the node for your cloud service.
+1. 開啟您要附加的角色或角色執行個體的捷徑功能表，然後選取 [附加偵錯工具]。
 
-1. Open the shortcut menu for the role or role instance to which you want to attach, and then select **Attach Debugger**.
+    如果您偵錯角色，Visual Studio 偵錯工具會附加至該角色的每個執行個體。偵錯工具會在執行該行程式碼並符合中斷點任何條件的第一個角色執行個體的中斷點上中斷。如果您偵錯某個執行個體，偵錯工具僅會附加至該執行個體，並只有在該特定執行個體執行該行程式碼並符合中斷點的條件時在某個中斷點上中斷。
 
-    If you debug a role, the Visual Studio debugger attaches to each instance of that role. The debugger will break on a breakpoint for the first role instance that runs that line of code and meets any conditions of that breakpoint. If you debug an instance, the debugger attaches to only that instance and breaks on a breakpoint only when that specific instance runs that line of code and meets the breakpoint's conditions.
+    ![附加偵錯工具](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746719.gif)
 
-    ![Attach Debugger](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746719.gif)
+1. 將偵錯工具附加至執行個體之後，如往常般進行偵錯。偵錯工具會自動附加至您的角色的適當的主機程序。根據角色，偵錯工具會附加至 w3wp.exe、WaWorkerHost.exe 或 WaIISHost.exe。若要確認偵錯工具附加的程序，請展開 [伺服器總管] 中的執行個體節點。如需有關 Azure 程序的詳細資訊，請參閱 [Azure 角色架構](http://blogs.msdn.com/b/kwill/archive/2011/05/05/windows-azure-role-architecture.aspx)。
 
-1. After the debugger attaches to an instance, debug as usual.The debugger automatically attaches to the appropriate host process for your role. Depending on what the role is, the debugger attaches to w3wp.exe, WaWorkerHost.exe, or WaIISHost.exe. To verify the process to which the debugger is attached, expand the instance node in Server Explorer. See [Azure Role Architecture](http://blogs.msdn.com/b/kwill/archive/2011/05/05/windows-azure-role-architecture.aspx) for more information about Azure processes.
+    ![選取程式碼類型對話方塊](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC718346.png)
 
-    ![Select code type dialog box](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC718346.png)
+1. 若要識別附加偵錯工具的處理序，請開啟 [處理序] 對話方塊，在功能表列上依序選擇 [偵錯] > [Windows]、[處理序]。(鍵盤：Ctrl+Alt+Z) 若要中斷連結特定處理序，請開啟其捷徑功能表，然後選取 [中斷處理序連結]。或者，在「伺服器總管」中找出執行個體節點、尋找處理序、開啟其捷徑功能表，然後選取 [中斷處理序連結]。
 
-1. To identify the processes to which the debugger is attached, open the Processes dialog box by, on the menu bar, choosing Debug, Windows, Processes. (Keyboard: Ctrl+Alt+Z)To detach a specific process, open its shortcut menu, and then select **Detach Process**. Or, locate the instance node in Server Explorer, find the process, open its shortcut menu, and then select **Detach Process**.
+    ![偵錯處理序](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC690787.gif)
 
-    ![Debug Processes](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC690787.gif)
+>[AZURE.WARNING] 進行遠端偵錯時，避免長時間在中斷點停止運作。Azure 會將停止超過幾分鐘時間的程序視為沒有回應，並停止將流量傳送到該執行個體。如果您停止太久，msvsmon.exe 會從處理序中斷連結。
 
->[AZURE.WARNING] Avoid long stops at breakpoints when remote debugging. Azure treats a process that's stopped for longer than a few minutes as unresponsive and stops sending traffic to that instance. If you stop for too long, msvsmon.exe detaches from the process.
+若要將偵錯工具與您執行個體或角色中的所有處理序中斷連結，請開啟您要偵錯的角色或執行個體的捷徑功能表，然後選取 [中斷連結偵錯工具]。
 
-To detach the debugger from all processes in your instance or role, open the shortcut menu for the role or instance that you're debugging, and then select **Detach Debugger**.
+## 在 Azure 中遠端偵錯的限制
 
-## <a name="limitations-of-remote-debugging-in-azure"></a>Limitations of remote debugging in Azure
+自 Azure SDK 2.3 起，遠端偵錯具有下列限制。
 
-From Azure SDK 2.3, remote debugging has the following limitations.
+- 若啟用遠端偵錯，您無法在具有超過 25 個執行個體的任何角色中發佈雲端服務。
 
-- With remote debugging enabled, you can't publish a cloud service in which any role has more than 25 instances.
+- 偵錯工具會使用連接埠 30400 至 30424、31400 至 31424，以及 32400 至 32424。如果您嘗試使用這些任一連接埠，將無法發佈您的服務，Azure 的活動記錄檔中將會出現下列其中一個錯誤訊息：
 
-- The debugger uses ports 30400 to 30424, 31400 to 31424 and 32400 to 32424. If you try to use any of these ports, you won't be able to publish your service, and one of the following error messages will appear in the activity log for Azure: 
+    - 根據 .csdef 檔案驗證 .cscfg 檔案時發生錯誤。
+     角色 'role' 端點 Microsoft.WindowsAzure.Plugins.RemoteDebugger.Connector 保留的連接埠範圍 'range' 與已定義的連接埠或範圍重疊。
+    - 配置失敗。請稍後重試、試著減少 VM 大小或角色執行個體的數目，或試著部署到不同的區域。
 
-    - Error validating the .cscfg file against the .csdef file. 
-    The reserved port range 'range' for endpoint Microsoft.WindowsAzure.Plugins.RemoteDebugger.Connector of role 'role' overlaps with an already defined port or range.
-    - Allocation failed. Please retry later, try reducing the VM size or number of role instances, or try deploying to a different region.
 
+## 偵錯 Azure 虛擬機器
 
-## <a name="debugging-azure-virtual-machines"></a>Debugging Azure virtual machines
+您可以在 Visual Studio 中使用伺服器總管偵錯 Azure 虛擬機器上執行的程式。當您在 Azure 虛擬機器上啟用遠端偵錯時，Azure 會在虛擬機器上安裝遠端偵錯擴充功能。然後，您可以附加至虛擬機器上的處理序，並像平常一樣偵錯。
 
-You can debug programs that run on Azure virtual machines by using Server Explorer in Visual Studio. When you enable remote debugging on an Azure virtual machine, Azure installs the remote debugging extension on the virtual machine. Then, you can attach to processes on the virtual machine and debug as you normally would.
+>[AZURE.NOTE] 透過 Azure 資源管理員堆疊建立的虛擬機器可以使用 Visual Studio 2015 中的雲端總管進行遠端偵錯。如需詳細資訊，請參閱[使用雲端總管管理 Azure 資源](http://go.microsoft.com/fwlink/?LinkId=623031)。
 
->[AZURE.NOTE] Virtual machines created through the Azure resource manager stack can be remotely debugged by using Cloud Explorer in Visual Studio 2015. For more information, see [Managing Azure Resources with Cloud Explorer](http://go.microsoft.com/fwlink/?LinkId=623031).
+### 偵錯 Azure 虛擬機器
 
-### <a name="to-debug-an-azure-virtual-machine"></a>To debug an Azure virtual machine
+1. 在伺服器總管中，展開 [虛擬機器] 節點並選取您要偵錯的虛擬機器節點。
 
-1. In Server Explorer, expand the Virtual Machines node and select the node of the virtual machine that you want to debug.
+1. 開啟操作功能表，然後選取 [啟用偵錯功能]。當詢問您是否確定要在虛擬機器上啟用偵錯時，請按一下 [是]。
 
-1. Open the context menu and select **Enable Debugging**. When asked if you're sure if you want to enable debugging on the virtual machine, select **Yes**.
+    Azure 會將遠端偵錯擴充功能安裝到虛擬機器以啟用偵錯。
 
-    Azure installs the remote debugging extension on the virtual machine to enable debugging.
+    ![虛擬機器啟用偵錯命令](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746720.png)
 
-    ![Virtual machine enable debugging command](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746720.png)
+    ![Azure 活動記錄檔](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746721.png)
 
-    ![Azure activity log](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746721.png)
+1. 遠端偵錯擴充功能安裝完成後，開啟虛擬機器的操作功能表，然後選取 [附加偵錯工具...]。
 
-1. After the remote debugging extension finishes installing, open the virtual machine's context menu and select **Attach Debugger...**
+    Azure 會取得虛擬機器上處理序的清單，並將清單顯示在 [附加至處理序] 對話方塊。
 
-    Azure gets a list of the processes on the virtual machine and shows them in the Attach to Process dialog box.
+    ![附加偵錯工具命令](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746722.png)
 
-    ![Attach debugger command](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746722.png)
+1. 在 [附加至處理序] 對話方塊中，選取 [選取] 以將結果清單限制為只顯示您要偵錯的程式碼類型。您可以偵錯 32 或 64 位元 Managed 程式碼、原生程式碼或兩者。
 
-1. In the **Attach to Process** dialog box, select **Select** to limit the results list to show only the types of code you want to debug. You can debug 32- or 64-bit managed code, native code, or both.
+    ![選取程式碼類型對話方塊](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC718346.png)
 
-    ![Select code type dialog box](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC718346.png)
+1. 選取您想要在虛擬機器上偵錯的處理序，然後選取 [附加]。例如，如果您想要在虛擬機器上偵錯 Web 應用程式，可以選擇 w3wp.exe 處理序。如需詳細資訊，請參閱[在 Visual Studio 中偵錯一或多個處理序](http://blogs.msdn.com/b/kwill/archive/2011/05/05/windows-azure-role-architecture.aspx)和 [Azure 角色架構](https://msdn.microsoft.com/library/jj919165.aspx)。
 
-1. Select the processes you want to debug on the virtual machine and then select **Attach**. For example, you might choose the w3wp.exe process if you wanted to debug a web app on the virtual machine. See [Debug One or More Processes in Visual Studio](https://msdn.microsoft.com/library/jj919165.aspx) and [Azure Role Architecture](http://blogs.msdn.com/b/kwill/archive/2011/05/05/windows-azure-role-architecture.aspx) for more information.
+## 建立 Web 專案和虛擬機器進行偵錯
 
-## <a name="create-a-web-project-and-a-virtual-machine-for-debugging"></a>Create a web project and a virtual machine for debugging
+發佈 Azure 專案之前，您可能會發現，在支援偵錯和測試案例，以及您可以在其中安裝測試和監視程式的受控制環境中測試它很有用。這樣做的方法之一是在虛擬機器上遠端偵錯您的應用程式。
 
-Before publishing your Azure project, you might find it useful to test it in a contained environment that supports debugging and testing scenarios, and where you can install testing and monitoring programs. One way to do this is to remotely debug your app on a virtual machine.
+Visual Studio ASP.NET 專案提供選項，讓您建立可用於測試應用程式的實用虛擬機器。虛擬機器包含經常需要的端點，例如 PowerShell、遠端桌面和 WebDeploy。
 
-Visual Studio ASP.NET projects offer an option to create a handy virtual machine that you can use for app testing. The virtual machine includes commonly-needed endpoints such as PowerShell, remote desktop, and WebDeploy.
+### 建立 Web 專案和虛擬機器進行偵錯
 
-### <a name="to-create-a-web-project-and-a-virtual-machine-for-debugging"></a>To create a web project and a virtual machine for debugging
+1. 在 Visual Studio 中，建立新的 ASP.NET Web 應用程式。
 
-1. In Visual Studio, create a new ASP.NET Web Application.
+1. 在 [新增 ASP.NET 專案] 對話方塊中，於 [Azure] 區段的下拉式清單方塊中選擇 [虛擬機器]。維持選取 [建立遠端資源] 核取方塊。選取 [確定] 以繼續操作。
 
-1. In the New ASP.NET Project dialog, in the Azure section, choose **Virtual Machine** in the dropdown list box. Leave the **Create remote resources** check box selected. Select **OK** to proceed.
+    [在 Azure 上建立虛擬機器] 對話方塊隨即出現。
 
-    The **Create virtual machine on Azure** dialog box appears.
 
+    ![建立 ASP.NET Web 專案對話方塊](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746723.png)
 
-    ![Create ASP.NET web project dialog box](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746723.png)
+    **附註：**如果您還沒登入，將會要求您登入 Azure 帳戶。
 
-    **Note:** You'll be asked to sign in to your Azure account if you're not already signed in.
+1. 選取虛擬機器的各種設定，然後選取 [確定]。如需詳細資訊，請參閱[虛擬機器](http://go.microsoft.com/fwlink/?LinkId=623033)。
 
-1. Select the various settings for the virtual machine and then select **OK**. See [Virtual Machines]( http://go.microsoft.com/fwlink/?LinkId=623033) for more information.
+    您輸入的 DNS 名稱會成為虛擬機器的名稱。
 
-    The name you enter for DNS name will be the name of the virtual machine. 
+    ![在 Azure 上建立虛擬機器對話方塊](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746724.png)
 
-    ![Create virtual machine on Azure dialog box](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746724.png)
+    Azure 會建立虛擬機器，然後佈建及設定端點，例如遠端桌面和 Web Deploy
 
-    Azure creates the virtual machine and then provisions and configures the endpoints, such as Remote Desktop and Web Deploy
 
 
+1. 虛擬機器完全設定好之後，請在伺服器總管中選取虛擬機器的節點。
 
-1. After the virtual machine is fully configured, select the virtual machine’s node in Server Explorer.
+1. 開啟操作功能表，然後選取 [啟用偵錯功能]。當詢問您是否確定要在虛擬機器上啟用偵錯時，請按一下 [是]。
 
-1. Open the context menu and select **Enable Debugging**. When asked if you're sure if you want to enable debugging on the virtual machine, select **Yes**. 
+    Azure 會將遠端偵錯擴充功能安裝到虛擬機器以啟用偵錯。
 
-    Azure installs the remote debugging extension to the virtual machine to enable debugging.
+    ![虛擬機器啟用偵錯命令](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746720.png)
 
-    ![Virtual machine enable debugging command](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746720.png)
+    ![Azure 活動記錄檔](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746721.png)
 
-    ![Azure activity log](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746721.png)
+1. 如[HOW TO：在 Visual Studio 中使用單鍵發佈來部署 Web 專案](https://msdn.microsoft.com/library/dd465337.aspx)所述，發佈您的專案。因為您要在虛擬機器上偵錯，請在 [發佈 Web]精靈的 [設定] 頁面上，選取 [偵錯] 做為組態。這樣可確保程式碼符號在偵錯時可供使用。
 
-1. Publish your project as outlined in [How to: Deploy a Web Project Using One-Click Publish in Visual Studio](https://msdn.microsoft.com/library/dd465337.aspx). Because you want to debug on the virtual machine, on the **Settings** page of the **Publish Web** wizard, select **Debug** as the configuration. This makes sure that code symbols are available while debugging.
+    ![發佈設定](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC718349.png)
 
-    ![Publish settings](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC718349.png)
+1. 如果稍早已部署專案，請在 [檔案發佈選項] 中，選取 [移除目的地的額外檔案]。
 
-1. In the **File Publish Options**, select **Remove additional files at destination** if the project was already deployed at an earlier time.
+1. 專案發佈之後，在「伺服器總管」中的虛擬機器操作功能表上，選取 [附加偵錯工具...]。
 
-1. After the project publishes, on the virtual machine's context menu in Server Explorer, select **Attach Debugger...**
+    Azure 會取得虛擬機器上處理序的清單，並將清單顯示在 [附加至處理序] 對話方塊。
 
-    Azure gets a list of the processes on the virtual machine and shows them in the Attach to Process dialog box.
+    ![附加偵錯工具命令](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746722.png)
 
-    ![Attach debugger command](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746722.png)
+1. 在 [附加至處理序] 對話方塊中，選取 [選取] 以將結果清單限制為只顯示您要偵錯的程式碼類型。您可以偵錯 32 或 64 位元 Managed 程式碼、原生程式碼或兩者。
 
-1. In the **Attach to Process** dialog box, select **Select** to limit the results list to show only the types of code you want to debug. You can debug 32- or 64-bit managed code, native code, or both.
+    ![選取程式碼類型對話方塊](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC718346.png)
 
-    ![Select code type dialog box](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC718346.png)
+1. 選取您想要在虛擬機器上偵錯的處理序，然後選取 [附加]。例如，如果您想要在虛擬機器上偵錯 Web 應用程式，可以選擇 w3wp.exe 處理序。如需詳細資訊，請參閱[在 Visual Studio 中偵錯一或多個處理序](https://msdn.microsoft.com/library/jj919165.aspx)。
 
-1. Select the processes you want to debug on the virtual machine and then select **Attach**. For example, you might choose the w3wp.exe process if you wanted to debug a web app on the virtual machine. See [Debug One or More Processes in Visual Studio](https://msdn.microsoft.com/library/jj919165.aspx) for more information.
+## 後續步驟
 
-## <a name="next-steps"></a>Next steps
+- 使用 **Intellitrace** 從發行伺服器收集呼叫和事件的記錄檔。請參閱[使用 IntelliTrace 和 Visual Studio 偵錯發佈的雲端服務](http://go.microsoft.com/fwlink/?LinkID=623016)。
+- 不論角色是在開發環境中或在 Azure 中執行，請使用 **Azure 診斷**來記錄在角色內執行的程式碼的詳細資訊。請參閱[使用 Azure 診斷收集記錄資料](http://go.microsoft.com/fwlink/p/?LinkId=400450)。
 
-- Use **Intellitrace** to collect a log of calls and events from a release server. See [Debugging a Published Cloud Service with IntelliTrace and Visual Studio](http://go.microsoft.com/fwlink/?LinkID=623016).
-- Use **Azure Diagnostics** to log detailed information from code running within roles, whether the roles are running in the development environment or in Azure. See [Collecting logging data by using Azure Diagnostics](http://go.microsoft.com/fwlink/p/?LinkId=400450).
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

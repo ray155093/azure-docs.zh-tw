@@ -1,96 +1,89 @@
 <properties 
-    pageTitle="How to configure a cloud service (classic portal) | Microsoft Azure" 
-    description="Learn how to configure cloud services in Azure. Learn to update the cloud service configuration and configure remote access to role instances." 
-    services="cloud-services" 
-    documentationCenter="" 
-    authors="Thraka" 
-    manager="timlt" 
-    editor=""/>
+	pageTitle="如何設定雲端服務 (傳統入口網站) | Microsoft Azure" 
+	description="了解如何在 Azure 中設定雲端服務。了解更新雲端服務組態和設定角色執行個體的遠端存取。" 
+	services="cloud-services" 
+	documentationCenter="" 
+	authors="Thraka" 
+	manager="timlt" 
+	editor=""/>
 
 <tags 
-    ms.service="cloud-services" 
-    ms.workload="tbd" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="10/11/2016"
-    ms.author="adegeo"/>
+	ms.service="cloud-services" 
+	ms.workload="tbd" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="07/27/2016"
+	ms.author="adegeo"/>
 
 
 
 
-
-# <a name="how-to-configure-cloud-services"></a>How to Configure Cloud Services
+# 如何設定雲端服務
 
 > [AZURE.SELECTOR]
-- [Azure portal](cloud-services-how-to-configure-portal.md)
-- [Azure classic portal](cloud-services-how-to-configure.md)
+- [Azure 入口網站](cloud-services-how-to-configure-portal.md)
+- [Azure 傳統入口網站](cloud-services-how-to-configure.md)
 
-You can configure the most commonly used settings for a cloud service in the Azure classic portal. Or, if you like to update your configuration files directly, download a service configuration file to update, and then upload the updated file and update the cloud service with the configuration changes. Either way, the configuration updates are pushed out to all role instances.
+您可以在 Azure 傳統入口網站中設定雲端服務的最常用設定。或者，如果您想要直接更新組態檔，可以下載要更新的服務組態檔、上傳更新過的檔案，然後將雲端服務更新為使用這些組態變更。使用上述任一種方式，都會將組態更新推送到所有角色執行個體。
 
-The Azure classic portal also allows you to [enable Remote Desktop Connection for a Role in Azure Cloud Services](cloud-services-role-enable-remote-desktop.md)
+Azure 傳統入口網站也可讓您[啟用 Azure 雲端服務中角色的遠端桌面連線](cloud-services-role-enable-remote-desktop.md)。
 
-Azure can only ensure 99.95 percent service availability during the configuration updates if you have at least two role instances for every role. That enables one virtual machine to process client requests while the other is being updated. For more information, see [Service Level Agreements](https://azure.microsoft.com/support/legal/sla/).
+每個角色至少必須有兩個角色執行個體，Azure 才能確保服務在組態更新期間有 99.95% 的可用性。如此才能讓一個虛擬機器在受到更新時，還有另一個虛擬機器可以處理用戶端要求。如需詳細資訊，請參閱[服務等級協定](https://azure.microsoft.com/support/legal/sla/)。
 
-## <a name="change-a-cloud-service"></a>Change a cloud service
+## 變更雲端服務
 
-1. In the [Azure classic portal](http://manage.windowsazure.com/), click **Cloud Services**, click the name of the cloud service, and then click **Configure**.
+1. 在 [Azure 傳統入口網站](http://manage.windowsazure.com/)中，依序按一下 [雲端服務]、雲端服務的名稱及 [設定]。
 
     ![Configuration Page](./media/cloud-services-how-to-configure/CloudServices_ConfigurePage1.png)
     
-    On the **Configure** page, you can configure monitoring, update role settings, and choose the guest operating system and family for role instances. 
+    在 [設定] 頁面上，您可以設定監視、更新角色設定，以及選擇角色執行個體的客體作業系統和系列。
 
-2. In **monitoring**, set the monitoring level to Verbose or Minimal, and configure the diagnostics connection strings that are required for verbose monitoring.
+2. 在 [監視] 中，將監視層級設定為 [詳細資訊] 或 [最小]，並設定進行詳細資訊監視時所需的診斷連接字串。
 
-3. For service roles (grouped by role), you can update the following settings:
+3. 針對服務角色 (依角色分組)，您可以更新下列設定：
     
-    >**Settings**  
-    >Modify the values of miscellaneous configuration settings that are specified in the *ConfigurationSettings* elements of the service configuration (.cscfg) file.
+    >**設定** 修改服務組態檔 (.cscfg) 之 *ConfigurationSettings* 元素中所指定的其他組態設定值。
     >
-    >**Certificates**  
-    >Change the certificate thumbprint that's being used in SSL encryption for a role. To change a certificate, you must first upload the new certificate (on the **Certificates** page). Then update the thumbprint in the certificate string displayed in the role settings.
+    >**憑證** 變更要在角色之 SSL 加密中使用的憑證指紋。若要變更憑證，您必須先上傳新的憑證 (在 [憑證] 頁面上)。然後，更新角色設定中所顯示憑證字串中的指紋。
 
-4. In **operating system**, you can change the operating system family or version for role instances, or choose **Automatic** to enable automatic updates of the current operating system version. The operating system settings apply to web roles and worker roles, but do not affect Virtual Machines.
+4. 在 [作業系統] 中，您可以變更角色執行個體的作業系統系列或版本，或選擇 [自動] 以啟用自動更新目前的作業系統版本。作業系統設定會套用於 Web 角色和背景工作角色，但不影響虛擬機器。
 
-    During deployment, the most recent operating system version is installed on all role instances, and the operating systems are updated automatically by default. 
+    部署期間會在所有角色執行個體上安裝最新作業系統版本，而且預設會自動更新作業系統。
     
-    If you need for your cloud service to run on a different operating system version because of compatibility requirements in your code, you can choose an operating system family and version. When you choose a specific operating system version, automatic operating system updates for the cloud service are suspended. You will need to ensure the operating systems receive updates.
+    如果您因為程式碼中的相容性需求而需要在不同的作業系統版本上執行雲端服務，則可以選擇作業系統系列和版本。當您選擇特定作業系統版本時，雲端服務的自動作業系統更新會暫停。您需要確保作業系統收到更新。
     
-    If you resolve all compatibility issues that your apps have with the most recent operating system version, you can enable automatic operating system updates by setting the operating system version to **Automatic**. 
+    如果您解決了應用程式對最新作業系統版本的所有相容性問題，則可以將作業系統版本設定為 [自動]，以啟用自動更新作業系統。
     
     ![OS Settings](./media/cloud-services-how-to-configure/CloudServices_ConfigurePage_OSSettings.png)
 
-5. To save your configuration settings, and push them to the role instances, click **Save**. (Click **Discard** to cancel the changes.) **Save** and **Discard** are added to the command bar after you change a setting.
+5. 若要儲存組態設定，並將之推送到角色執行個體中，請按一下 [儲存]。(按一下 [捨棄] 可取消變更。) 在您變更設定之後，命令列中即會新增 [儲存] 和 [捨棄]。
 
-## <a name="update-a-cloud-service-configuration-file"></a>Update a cloud service configuration file
+## 更新雲端服務組態檔
 
-1. Download a cloud service configuration file (.cscfg) with the current configuration. On the **Configure** page for the cloud service, click **Download**. Then click **Save**, or click **Save As** to save the file.
+1. 下載含有最新組態的雲端服務組態檔 (.cscfg)。在雲端服務的 [設定] 頁面上，按 [下載]。然後按一下 [儲存]，或按一下 [另存新檔] 儲存檔案。
 
-2. After you update the service configuration file, upload and apply the configuration updates:
+2. 在您更新服務組態檔之後，請上傳和套用組態更新：
 
-    1. On the **Configure** page, click **Upload**.
+    1. 在 [**設定**]頁面上，按一下 [**上傳**]。
     
         ![Upload Configuration](./media/cloud-services-how-to-configure/CloudServices_UploadConfigFile.png)
     
-    2. In **Configuration file**, use **Browse** to select the updated .cscfg file.
+    2. 在 [**組態檔**] 中，使用 [**瀏覽**] 來選取已更新的.cscfg 檔案。
     
-    3. If your cloud service contains any roles that have only one instance, select the **Apply configuration even if one or more roles contain a single instance** check box to enable the configuration updates for the roles to proceed.
+    3. 如果您的雲端服務包含任何只有一個執行個體的角色，請選取 [**套用組態，即使有一或多個角色包含單一執行個體**] 核取方塊，讓角色的組態更新能夠繼續。
     
-        Unless you define at least two instances of every role, Azure cannot guarantee at least 99.95 percent availability of your cloud service during service configuration updates. For more information, see [Service Level Agreements](https://azure.microsoft.com/support/legal/sla/).
+        除非每個角色都定義至少兩個執行個體，否則 Azure 無法保證雲端服務在服務組態更新期間至少有 99.95% 的可用性。如需詳細資訊，請參閱[服務等級協定](https://azure.microsoft.com/support/legal/sla/)。
     
-    4. Click **OK** (checkmark). 
+    4. 按一下 [確定] \(勾選記號)。
 
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-* Learn how to [deploy a cloud service](cloud-services-how-to-create-deploy.md).
-* Configure a [custom domain name](cloud-services-custom-domain-name.md).
-* [Manage your cloud service](cloud-services-how-to-manage.md).
-* [Enable Remote Desktop Connection for a Role in Azure Cloud Services](cloud-services-role-enable-remote-desktop.md)
-* Configure [ssl certificates](cloud-services-configure-ssl-certificate.md).
+* 了解如何[部署雲端服務](cloud-services-how-to-create-deploy.md)。
+* 設定[自訂網域名稱](cloud-services-custom-domain-name.md)。
+* [管理您的雲端服務](cloud-services-how-to-manage.md)。
+* [啟用 Azure 雲端服務中角色的遠端桌面連線](cloud-services-role-enable-remote-desktop.md)
+* 設定 [SSL 憑證](cloud-services-configure-ssl-certificate.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

@@ -1,120 +1,115 @@
 <properties 
-    pageTitle="Use Logic App features | Microsoft Azure" 
-    description="Learn how to use the advanced features of logic apps." 
-    authors="stepsic-microsoft-com" 
-    manager="erikre" 
-    editor="" 
-    services="logic-apps" 
-    documentationCenter=""/>
+	pageTitle="使用邏輯應用程式功能 |Microsoft Azure" 
+	description="了解如何使用邏輯應用程式的進階功能。" 
+	authors="stepsic-microsoft-com" 
+	manager="erikre" 
+	editor="" 
+	services="logic-apps" 
+	documentationCenter=""/>
 
 <tags
-    ms.service="logic-apps"
-    ms.workload="integration"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="03/28/2016"
-    ms.author="stepsic"/> 
-    
+	ms.service="logic-apps"
+	ms.workload="integration"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="03/28/2016"
+	ms.author="stepsic"/>
+	
+# 使用 Logic Apps 功能
 
-# <a name="use-logic-apps-features"></a>Use Logic Apps features
+在[上一個主題](app-service-logic-create-a-logic-app.md)中，您已建立第一個邏輯應用程式。現在我們將說明如何使用 App Services Logic Apps，來建立更完整的程序。本主題將介紹下列新的 Logic Apps 概念：
 
-In the [previous topic](app-service-logic-create-a-logic-app.md), you created your first logic app. Now we will show you how to build a more complete process using App Services Logic Apps. This topic introduces the following new Logic Apps concepts:
+- 條件式邏輯，只有在符合特定條件時，才會執行動作。
+- 用以編輯現有邏輯應用程式的程式碼檢視。
+- 啟動工作流程的選項。
 
-- Conditional logic, which executes an action only when a certain condition is met.
-- Code view to edit an existing logic app.
-- Options for starting a workflow.
+在完成本主題之前，您應先完成[建立新的邏輯應用程式](app-service-logic-create-a-logic-app.md)中的步驟。在 [Azure 入口網站] 中，瀏覽至您的邏輯應用程式，然後按一下摘要中的 [觸發程序和動作]，以編輯邏輯應用程式定義。
 
-Before you complete this topic, you should complete the steps in [Create a new logic app](app-service-logic-create-a-logic-app.md). In the [Azure portal], browse to your logic app and click **Triggers and Actions** in the summary to edit the logic app definition.
+## 參考資料
 
-## <a name="reference-material"></a>Reference material
+您可能會發現下列文件很有用：
 
-You may find the following documents useful:
+- [管理和執行階段 REST API](https://msdn.microsoft.com/library/azure/mt643787.aspx) - 包括如何直接叫用邏輯應用程式
+- [語言參考](https://msdn.microsoft.com/library/azure/mt643789.aspx) - 所有支援的函式/運算式完整清單
+- [觸發程序和動作類型](https://msdn.microsoft.com/library/azure/mt643939.aspx) - 不同類型的動作及其採用的輸入
+- [App Service 概觀](../app-service/app-service-value-prop-what-is.md) - 說明建置方案時可選擇哪些元件
 
-- [Management and runtime REST APIs](https://msdn.microsoft.com/library/azure/mt643787.aspx) - including how to invoke Logic apps directly
-- [Language reference](https://msdn.microsoft.com/library/azure/mt643789.aspx) - a comprehensive list of all supported functions/expressions
-- [Trigger and action types](https://msdn.microsoft.com/library/azure/mt643939.aspx) - the different types of actions and the inputs they take
-- [Overview of App Service](../app-service/app-service-value-prop-what-is.md) - description of what components to choose when to build a solution
+## 新增條件式邏輯
 
-## <a name="adding-conditional-logic"></a>Adding conditional logic
-
-Although the original flow works, there are some areas that could be improved. 
+雖然原始流程也可運作，但有某些區域是可以改善的。
 
 
-### <a name="conditional"></a>Conditional
-This logic app may result in you getting a lot of emails. The following steps add logic to make sure that you only receive an email when the tweet comes from someone with a certain number of followers. 
+### 條件式
+此邏輯應用程式可能會導致您收到許多電子郵件。下列步驟會加入邏輯，以確定您只有在推文是來自有特定粉絲人數的某人時，才會收到電子郵件。
 
-1. Click the plus and find the action *Get User* for Twitter.
+1. 按一下加號，然後尋找 Twitter 的 [取得使用者] 動作。
 
-2. Pass in the **Tweeted by** field from the trigger to get the information about the Twitter user.
+2. 從觸發程序傳入 [推文者] 欄位，以取得 Twitter 使用者的相關資訊。
 
-    ![Get user](./media/app-service-logic-use-logic-app-features/getuser.png)
+	![取得使用者](./media/app-service-logic-use-logic-app-features/getuser.png)
 
-3. Click the plus again, but this time select **Add Condition**
+3. 同樣按一下加號，但這次請選取 [新增條件]
 
-4. In the first box, click the **...** underneath **Get User** to find the **Followers count** field.
+4. 在第一個方塊中，按一下 [取得使用者] 下方的 [...]，以尋找 [粉絲計數] 欄位。
 
-5. In the dropdown, select **Greater than**
+5. 在下拉式清單中，選取 [大於]
 
-6. In the second box type the number of followers you want users to have.
+6. 在第二個方塊中，輸入您希望使用者擁有的粉絲數目。
 
-    ![Conditional](./media/app-service-logic-use-logic-app-features/conditional.png)
+	![條件式](./media/app-service-logic-use-logic-app-features/conditional.png)
 
-7.  Finally, drag-and-drop the email box into the **If Yes** box. This will mean you'll only get emails when the follower count is met.
+7.  最後，將電子郵件方塊拖放到 [如果是] 方塊中。這表示您只會在符合粉絲計數時收到電子郵件。
 
-## <a name="repeating-over-a-list-with-foreach"></a>Repeating over a list with forEach
+## 使用 forEach 對清單重複執行
 
-The forEach loop specifies an array to repeat an action over. If it is not an array the flow fails. As an example, if you have action1 that outputs an array of messages, and you want to send each message, you can include this forEach statement in the properties of your action: forEach : "@action('action1').outputs.messages"
+forEach 迴圈會指定要用來重複執行某動作的陣列。如果它不是陣列，流程便會失敗。舉例來說，如果 action1 會輸出訊息陣列，而您想要傳送每則訊息，則可以在動作的屬性中包含這個 forEach 陳述式︰forEach : "@action('action1').outputs.messages"
  
 
-## <a name="using-the-code-view-to-edit-a-logic-app"></a>Using the code view to edit a Logic App
+## 使用程式碼檢視編輯邏輯應用程式
 
-In addition to the designer, you can directly edit the code that defines a logic app, as follows. 
+除了設計工具以外，您也可以直接編輯定義邏輯應用程式的程式碼，如下所示。
 
-1. Click on the **Code view** button in the command bar. 
+1. 按一下命令列中的 [程式碼檢視] 按鈕。
 
-    This opens a full editor that shows the definition you just edited.
+	這會開啟一個完整的編輯器，顯示您剛建立的定義。
 
-    ![Code view](./media/app-service-logic-use-logic-app-features/codeview.png)
+	![程式碼檢視](./media/app-service-logic-use-logic-app-features/codeview.png)
 
-    By using the text editor, you can copy and paste any number of actions within the same logic app or between logic apps. You can also easily add or remove entire sections from the definition, and you can also share definitions with others.
+    藉由使用文字編輯器，您可以在相同的邏輯應用程式或邏輯應用程式之間複製並貼上任何數量的動作。您也可以輕鬆地在定義中新增或移除整個區段，以及與其他人共用定義。
 
-2. After you make your changes in code view, simply click **Save**. 
+2. 在程式碼檢視中進行變更之後，請直接按一下 [儲存]。
 
-### <a name="parameters"></a>Parameters
-There are some capabilities of Logic Apps that can only be used in the code view. One example of these is parameters. Parameters make it easy to re-use values throughout your logic app. For example, if you have an email address that you want use in several actions, you should define it as a parameter.
+### 參數
+Logic Apps 的某些功能只能在程式碼檢視中使用。例如，參數就是其中之一。參數可讓您輕鬆地在整個邏輯應用程式中重複使用值。例如，如果您想要在數個動作中使用同一個電子郵件地址，您應將該地址定義為參數。
 
-The following updates your existing logic app to use parameters for the query term.
+下列作業會更新您現有的邏輯應用程式，而將參數用於查詢詞彙。
 
-1. In the code view, locate the `parameters : {}` object and insert the following topic object:
+1. 在程式碼檢視中找出 `parameters : {}` 物件，並插入下列主題物件：
 
-        "topic" : {
-            "type" : "string",
-            "defaultValue" : "MicrosoftAzure"
-        }
+	    "topic" : {
+		    "type" : "string",
+		    "defaultValue" : "MicrosoftAzure"
+	    }
     
-2. Scroll to the `twitterconnector` action, locate the query value, and replace it with `#@{parameters('topic')}`.
-    You could also use the  **concat** function to join together two or more strings, for example: `@concat('#',parameters('topic'))` is identical to the above. 
+2. 捲動至 `twitterconnector` 動作、找出查詢值，並使用 `#@{parameters('topic')}` 來取代它。您也可以使用 **concat** 函式來結合兩個或多個字串，例如：`@concat('#',parameters('topic'))` 等同於上述程式碼。
  
-Parameters are a good way to pull out values that you are likely to change a lot. They are especially useful when you need to override parameters in different environments. For more information on how to override parameters based on environment, see our [REST API documentation](https://msdn.microsoft.com/library/mt643787.aspx).
+參數很適合用來提取您很可能經常變更的值。當您需要在不同環境中覆寫參數時，參數特別有用。如需有關如何根據環境覆寫參數的詳細資訊，請參閱我們的 [REST API 文件](https://msdn.microsoft.com/library/mt643787.aspx)。
 
-Now, when you click **Save**, every hour you get any new tweets that have more than 5 retweets delivered to a folder called **tweets** in your Dropbox.
+現在，當您按一下 [儲存] 時，每小時都會有回推數超過 5 個的新推文傳遞到您 Dropbox 中名為 [推文] 的資料夾。
 
-To learn more about Logic App definitions, see [author Logic App definitions](app-service-logic-author-definitions.md).
+若要深入了解邏輯應用程式定義，請參閱[撰寫邏輯應用程式定義](app-service-logic-author-definitions.md)。
 
-## <a name="starting-a-logic-app-workflow"></a>Starting a logic app workflow
-There are several different options for starting the workflow defined in you logic app. A workflow can always be started on-demand in the [Azure portal].
+## 啟動邏輯應用程式工作流程
+有數個不同的選項可用來啟動您的邏輯應用程式中定義的工作流程。工作流程一律可在 [Azure 入口網站]中隨選啟動。
 
-### <a name="recurrence-triggers"></a>Recurrence triggers
-A recurrence trigger runs at an interval that you specify. When the trigger has conditional logic, the trigger determines whether or not the workflow needs to run. A trigger indicates it should run by returning a `200` status code. When it does not need to run, it returns a `202` status code.
+### 循環觸發程序
+循環觸發程序會依照您指定的間隔執行。當觸發程序具有條件式邏輯時，觸發程序會判斷工作流程是否需要執行。觸發程序透過傳回 `200` 狀態碼，表示應執行。如果不需要執行，則會傳回 `202` 狀態碼。
 
-### <a name="callback-using-rest-apis"></a>Callback using REST APIs
-Services can call a logic app endpoint to start a workflow. See [Logic apps as callable endpoints](app-service-logic-connector-http.md) for more information. To start that kind of logic app on-demand, click the **Run now** button on the command bar. 
+### 使用 REST API 回呼
+服務可以呼叫邏輯應用程式端點以啟動工作流程。如需詳細資訊，請參閱[作為可呼叫端點的邏輯應用程式](app-service-logic-connector-http.md)。若要隨選啟動該種邏輯應用程式，請按一下命令列上的 [立即執行] 按鈕。
 
 <!-- Shared links -->
-[Azure portal]: https://portal.azure.com 
+[Azure 入口網站]: https://portal.azure.com
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

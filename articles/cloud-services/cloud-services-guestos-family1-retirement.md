@@ -1,9 +1,9 @@
 <properties
-   pageTitle="Guest OS family 1 retirement notice | Microsoft Azure"
-   description="Provides information about when the Azure Guest OS Family 1 retirement happened and how to determine if you are affected"
+   pageTitle="客體 OS 系列 1 淘汰通知 | Microsoft Azure"
+   description="提供客體作業系統系列 1 淘汰時間及如何自行判斷是否受影響等相關資訊"
    services="cloud-services"
    documentationCenter="na"
-   authors="raiye"
+   authors="yuemlu"
    manager="timlt"
    editor=""/>
 
@@ -13,34 +13,33 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="tbd"
-   ms.date="10/24/2016"
-   ms.author="raiye"/>
+   ms.date="06/10/2016"
+   ms.author="yuemlu"/>
+
+
+
+# 客體作業系統系列 1 淘汰通知
+
+我們早在 2013 年 6 月 1 日宣佈客體作業系統系列 1 的淘汰資訊。
+
+**2014 年 9 月 2 日** 以 Windows Server 2008 作業系統為基礎的 Azure 客體作業系統 (客體 OS) 系列 1.x 已正式淘汰。所有使用系列 1 部署新服務或升級現有服務的嘗試均會失敗並且會出現錯誤訊息，通知您客體作業系統系列 1 已遭到淘汰。
+
+**2014 年 11 月 3 日** 客體 OS 系列 1 的延伸支援已結束，並且已完全淘汰。所有仍以系列 1 為基礎的服務都將受到影響。我們可能會隨時停止這些服務。除非您以手動方式自行升級服務，否則我們不保證您的服務能繼續運作。
+
+如果您有其他問題，請造訪[雲端服務論壇](http://social.msdn.microsoft.com/Forums/home?forum=windowsazuredevelopment&filter=alltypes&sort=lastpostdesc)或[連絡 Azure 支援](https://azure.microsoft.com/support/options/)。
 
 
 
 
-# <a name="guest-os-family-1-retirement-notice"></a>Guest OS Family 1 retirement notice
+## 您受到影響了嗎？
 
-The retirement of OS Family 1 was first announced on June 1, 2013.
+如果以下任一情況成立，表示您的雲端服務已受到影響：
 
-**Sept 2, 2014** The Azure Guest operating system (Guest OS) Family 1.x, which is based on the Windows Server 2008 operating system, was officially retired. All attempts to deploy new services or upgrade existing services using Family 1 will fail with an error message informing you that the Guest OS Family 1 has been retired.
+1. 雲端服務之 ServiceConfiguration.cscfg 檔案明確地指定 "osFamily = "1" 值。
+2. 雲端服務之 ServiceConfiguration.cscfg 檔案未明確指定 osFamily 的值。在本案例中，系統目前使用預設值 "1" 。
+3. Azure 傳統入口網站列出您的客體作業系統系列值為「Windows Server 2008」。
 
-**November 3, 2014** Extended support for Guest OS Family 1 ended and it is fully retired. All services still on Family 1 will be impacted. We may stop those services at any time. There is no guarantee your services will continue to run unless you manually upgrade them yourself.
-
-If you have additional questions, please visit the [Cloud Services Forums](http://social.msdn.microsoft.com/Forums/home?forum=windowsazuredevelopment&filter=alltypes&sort=lastpostdesc) or [contact Azure support](https://azure.microsoft.com/support/options/).
-
-
-
-
-## <a name="are-you-affected?"></a>Are you affected?
-
-Your Cloud Services are affected if any one of the following applies:
-
-1. You have a value of "osFamily = "1" explicitly specified in the ServiceConfiguration.cscfg file for your Cloud Service.
-2. You do not have a value for osFamily explicitly specified in the ServiceConfiguration.cscfg file for your Cloud Service. Currently, the system uses the default value of "1" in this case.
-3. The Azure classic portal lists your Guest Operating System family value as "Windows Server 2008".
-
-To find which of your cloud services are running which OS Family, you can run the script below in Azure PowerShell, though you must [set up Azure PowerShell](../powershell-install-configure.md) first. For additional details on the script, see [Azure Guest OS Family 1 End of Life: June 2014](http://blogs.msdn.com/b/ryberry/archive/2014/04/02/azure-guest-os-family-1-end-of-life-june-2014.aspx). 
+若要找出每個雲端服務執行的 OS 系列，您可以在 Azure PowerShell 中執行以下程式碼，但請先[設定 Azure PowerShell](../powershell-install-configure.md)。如需指令碼的其他詳細資料，請參閱「[Azure 客體 OS 系列 1 生命週期結束：2014 年 6 月](http://blogs.msdn.com/b/ryberry/archive/2014/04/02/azure-guest-os-family-1-end-of-life-june-2014.aspx)」(英文)
 
 ```Powershell
 foreach($subscription in Get-AzureSubscription) {
@@ -52,38 +51,34 @@ foreach($subscription in Get-AzureSubscription) {
 }
 ```
 
-Your cloud services will be impacted by OS Family 1 retirement if the osFamily column in the script output is empty or contains a "1".
+如果指令碼輸出中 osFamily 資料行為空白或含有 "1"，代表您的雲端服務將受到作業系統系列 1 淘汰所影響。
 
-## <a name="recommendations-if-you-are-affected"></a>Recommendations if you are affected
+## 受影響時的建議
 
-We recommend you migrate your Cloud Service roles to one of the supported Guest OS Families:
+我們建議您將雲端服務角色移轉到任一個受支援的客體作業系統系列：
 
-**Guest OS family 4.x** - Windows Server 2012 R2 *(recommended)*
+**客體 OS 系列 4.x** - Windows Server 2012 R2 *(建議選項)*
 
-1. Ensure that your application is using SDK 2.1 or later with .NET framework 4.0, 4.5 or 4.5.1.
-2. Set the osFamily attribute to “4” in the ServiceConfiguration.cscfg file, and redeploy your cloud service.
-
-
-**Guest OS family 3.x** - Windows Server 2012
-
-1. Ensure that your application is using SDK 1.8 or later with .NET framework 4.0 or 4.5.
-2. Set the osFamily attribute to “3” in the ServiceConfiguration.cscfg file, and redeploy your cloud service.
+1. 請確認您的應用程式使用 SDK 2.1 或更新版本，搭配 .NET Framework 4.0、4.5 或 4.5.1。
+2. 在 ServiceConfiguration.cscfg 檔案中將 osFamily 屬性設定為 "4" 的，然後重新部署雲端服務。
 
 
-**Guest OS family 2.x** - Windows Server 2008 R2
+**客體 OS 系列 3.x** - Windows Server 2012
 
-1. Ensure that your application is using SDK 1.3 and above with .NET framework 3.5 or 4.0.
-2. Set the osFamily attribute to "2" in the ServiceConfiguration.cscfg file, and redeploy your cloud service.
-
-
-## <a name="extended-support-for-guest-os-family-1-ended-nov-3,-2014"></a>Extended Support for Guest OS Family 1 ended Nov 3, 2014
-Cloud services on Guest OS family 1 are no longer supported. Please migrate off family 1 as soon as possible to avoid service disruption.  
-
-## <a name="next-steps"></a>Next steps
-Review the latest [Guest OS releases](cloud-services-guestos-update-matrix.md).
+1. 請確認您的應用程式使用 SDK 1.8 或更新版本，搭配 .NET Framework 4.0 或 4.5。
+2. 在 ServiceConfiguration.cscfg 檔案中將 osFamily 屬性設定為「3」，然後重新部署雲端服務。
 
 
+**客體 OS 系列 2.x** - Windows Server 2008 R2
 
-<!--HONumber=Oct16_HO2-->
+1. 請確認您的應用程式使用 SDK 1.3 和更新版本，搭配 .NET Framework 3.5 或 4.0。
+2. 在 ServiceConfiguration.cscfg 檔案中將 osFamily 屬性設定為 "2" 的，然後重新部署雲端服務。
 
 
+## 客體作業系統系列 1 的延長支援已在 2014 年 11 月 3 日結束。
+以客體作業系統系列 1 為基礎的雲端服務將不再受到支援。請儘早移轉系列 1 以避免服務中斷。
+
+## 後續步驟
+檢閱最新的[客體作業系統版本](cloud-services-guestos-update-matrix.md)。
+
+<!---HONumber=AcomDC_0615_2016-->

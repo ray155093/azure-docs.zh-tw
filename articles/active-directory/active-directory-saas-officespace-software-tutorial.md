@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="Tutorial: Azure Active Directory integration with OfficeSpace Software | Microsoft Azure" 
-    description="Learn how to use OfficeSpace Software with Azure Active Directory to enable single sign-on, automated provisioning, and more!" 
+    pageTitle="教學課程：Azure Active Directory 與 OfficeSpace Software 整合 | Microsoft Azure" 
+    description="了解如何使用 OfficeSpace Software 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -11,136 +11,127 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="09/29/2016" 
+    ms.date="07/08/2016" 
     ms.author="jeedes" />
 
-
-#<a name="tutorial:-azure-active-directory-integration-with-officespace-software"></a>Tutorial: Azure Active Directory integration with OfficeSpace Software
+#教學課程：Azure Active Directory 與 OfficeSpace Software 整合
   
-The objective of this tutorial is to show the integration of Azure and OfficeSpace Software.  
-The scenario outlined in this tutorial assumes that you already have the following items:
+本教學課程的目的是要示範 Azure 與 OfficeSpace Software 的整合。本教學課程中說明的案例假設您已經具有下列項目：
 
--   A valid Azure subscription
--   An OfficeSpace Software single sign-on enabled subscription
+-   有效的 Azure 訂閱
+-   啟用 OfficeSpace Software 單一登入的訂閱
   
-After completing this tutorial, the Azure AD users you have assigned to OfficeSpace Software will be able to single sign into the application at your OfficeSpace Software company site (service provider initiated sign on), or using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+完成本教學課程之後，您指派給 OfficeSpace Software 的 Azure AD 使用者就能夠單一登入您 OfficeSpace Software 公司網站 (服務提供者起始登入) 的應用程式，或是使用[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
   
-The scenario outlined in this tutorial consists of the following building blocks:
+本教學課程中說明的案例由下列建置組塊組成：
 
-1.  Enabling the application integration for OfficeSpace Software
-2.  Configuring single sign-on
-3.  Configuring user provisioning
-4.  Assigning users
+1.  啟用 OfficeSpace Software 的應用程式整合
+2.  設定單一登入
+3.  設定使用者佈建
+4.  指派使用者
 
-![Scenario](./media/active-directory-saas-officespace-software-tutorial/IC777764.png "Scenario")
-##<a name="enabling-the-application-integration-for-officespace-software"></a>Enabling the application integration for OfficeSpace Software
+![案例](./media/active-directory-saas-officespace-software-tutorial/IC777764.png "案例")
+##啟用 OfficeSpace Software 的應用程式整合
   
-The objective of this section is to outline how to enable the application integration for OfficeSpace Software.
+本節的目的是要說明如何啟用 OfficeSpace Software 的應用程式整合。
 
-###<a name="to-enable-the-application-integration-for-officespace-software,-perform-the-following-steps:"></a>To enable the application integration for OfficeSpace Software, perform the following steps:
+###若要啟用 OfficeSpace Software 的應用程式整合，請執行下列步驟：
 
-1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-officespace-software-tutorial/IC700993.png "Active Directory")
 
-2.  From the **Directory** list, select the directory for which you want to enable directory integration.
+2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3.  To open the applications view, in the directory view, click **Applications** in the top menu.
+3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
 
-    ![Applications](./media/active-directory-saas-officespace-software-tutorial/IC700994.png "Applications")
+    ![應用程式](./media/active-directory-saas-officespace-software-tutorial/IC700994.png "應用程式")
 
-4.  Click **Add** at the bottom of the page.
+4.  按一下頁面底部的 [新增]。
 
-    ![Add application](./media/active-directory-saas-officespace-software-tutorial/IC749321.png "Add application")
+    ![新增應用程式](./media/active-directory-saas-officespace-software-tutorial/IC749321.png "新增應用程式")
 
-5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
-    ![Add an application from gallerry](./media/active-directory-saas-officespace-software-tutorial/IC749322.png "Add an application from gallerry")
+    ![從組件庫新增應用程式](./media/active-directory-saas-officespace-software-tutorial/IC749322.png "從組件庫新增應用程式")
 
-6.  In the **search box**, type **OfficeSpace Software**.
+6.  在**搜尋方塊**中輸入 **OfficeSpace Software**。
 
-    ![Application gallery](./media/active-directory-saas-officespace-software-tutorial/IC777765.png "Application gallery")
+    ![應用程式庫](./media/active-directory-saas-officespace-software-tutorial/IC777765.png "應用程式庫")
 
-7.  In the results pane, select **OfficeSpace Software**, and then click **Complete** to add the application.
+7.  在結果窗格中，選取 [OfficeSpace Software]，然後按一下 [完成] 以新增應用程式。
 
     ![OfficeSpace Software](./media/active-directory-saas-officespace-software-tutorial/IC781007.png "OfficeSpace Software")
-##<a name="configuring-single-sign-on"></a>Configuring single sign-on
+##設定單一登入
   
-The objective of this section is to outline how to enable users to authenticate to OfficeSpace Software with their account in Azure AD using federation based on the SAML protocol.  
-Configuring single sign-on for OfficeSpace Software requires you to retrieve a thumbprint value from a certificate.  
-If you are not familiar with this procedure, see [How to retrieve a certificate's thumbprint value](http://youtu.be/YKQF266SAxI).
+本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶在 OfficeSpace Software 中進行驗證。設定 OfficeSpace Software 的單一登入需要您從憑證抓取指紋值。如果您不熟悉這個程序，請參閱[如何抓取憑證的指紋值](http://youtu.be/YKQF266SAxI)。
 
-###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
+###若要設定單一登入，請執行下列步驟：
 
-1.  In the Azure classic portal, on the **OfficeSpace Software** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
+1.  在 Azure 傳統入口網站的 [OfficeSpace Software] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
-    ![Configure single sign=on](./media/active-directory-saas-officespace-software-tutorial/IC777766.png "Configure single sign=on")
+    ![設定單一登入](./media/active-directory-saas-officespace-software-tutorial/IC777766.png "設定單一登入")
 
-2.  On the **How would you like users to sign on to OfficeSpace Software** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
+2.  在 [要如何讓使用者登入 OfficeSpace Software] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按一下 [下一步]。
 
-    ![Configure single sign-on](./media/active-directory-saas-officespace-software-tutorial/IC777767.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-officespace-software-tutorial/IC777767.png "設定單一登入")
 
-3.  On the **Configure App URL** page, in the **OfficeSpace Software Sign On URL** textbox, type the URL used by your users to sign on to your OfficeSpace Software application (e.g.: "*https://company.officespacesoftware.com*"), and then click **Next**.
+3.  在 [設定應用程式 URL] 頁面的 [OfficeSpace Software 登入 URL] 文字方塊中，輸入使用者用來登入 OfficeSpace Software 應用程式的 URL (例如："*https://company.officespacesoftware.com*")，然後按一下 *[下一步]*。
 
-    ![Configure App URL](./media/active-directory-saas-officespace-software-tutorial/IC775556.png "Configure App URL")
+    ![設定應用程式 URL](./media/active-directory-saas-officespace-software-tutorial/IC775556.png "設定應用程式 URL")
 
-4.  On the **Configure single sign-on at OfficeSpace Software** page, to download your certificate, click **Download certificate**, and then save the certificate file locally on your computer.
+4.  在 [設定在 OfficeSpace Software 單一登入] 頁面上，按一下 [下載憑證] 以下載您的憑證，然後將憑證檔案儲存在本機電腦上。
 
-    ![Configure single sign-on](./media/active-directory-saas-officespace-software-tutorial/IC793769.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-officespace-software-tutorial/IC793769.png "設定單一登入")
 
-5.  In a different web browser window, log into your OfficeSpace Software company site as an administrator.
+5.  在不同的 Web 瀏覽器視窗中，以系統管理員身分登入您的 OfficeSpace Software 公司網站。
 
-6.  Go to **Admin \> Connectors**.
+6.  移至 [管理] > [連接器]。
 
     ![Admin](./media/active-directory-saas-officespace-software-tutorial/IC777769.png "Admin")
 
-7.  Click **SAML Authorization**.
+7.  按一下 [SAML 授權]。
 
-    ![Connectors](./media/active-directory-saas-officespace-software-tutorial/IC777770.png "Connectors")
+    ![連接器](./media/active-directory-saas-officespace-software-tutorial/IC777770.png "連接器")
 
-8.  In the **SAML Authorization** section, perform the following steps:
+8.  在 [SAML 授權] 區段中，執行下列步驟：
 
-    ![SAML configuration](./media/active-directory-saas-officespace-software-tutorial/IC777771.png "SAML configuration")
+    ![SAML 設定](./media/active-directory-saas-officespace-software-tutorial/IC777771.png "SAML 設定")
 
-    1.  In the Azure classic portal, on the **Configure single sign-on at OfficeSpace Software** dialogue page, copy the **Remote Login URL** value, and then paste it into the **Logout provider url** textbox.
-    2.  In the Azure classic portal, on the **Configure single sign-on at OfficeSpace Software** dialogue page, copy the **Remote Logout URL** value, and then paste it into the **Client idp target url** textbox.
-    3.  Copy the **Thumbprint** value from the exported certificate, and then paste it into the **Client idp cert fingerprint** textbox.  
+    1.  在 Azure 傳統入口網站上的 [設定在 OfficeSpace Software 單一登入] 對話頁面，複製 [遠端登入 URL] 值，然後將它貼至 [登出提供者 URL] 文字方塊中。
+    2.  在 Azure 傳統入口網站上的 [設定在 OfficeSpace Software 單一登入] 對話頁面，複製 [遠端登出 URL] 值，然後將它貼至 [用戶端 IDP 目標 URL] 文字方塊中。
+    3.  從匯出的憑證複製**指紋值**，然後將它貼至 [用戶端 IDP 憑證指紋] 文字方塊中。
 
         >[AZURE.TIP]
-        For more details, see [How to retrieve a certificate's thumbprint value](http://youtu.be/YKQF266SAxI)
+        如需詳細資訊，請參閱[如何抓取憑證的指紋值](http://youtu.be/YKQF266SAxI)
 
-    4.  Click **Save Settings**.
+    4.  按一下 [儲存設定]。
 
-9.  On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
+9.  在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
-    ![Configure single sign-on](./media/active-directory-saas-officespace-software-tutorial/IC777772.png "Configure single sign-on")
-##<a name="configuring-user-provisioning"></a>Configuring user provisioning
+    ![設定單一登入](./media/active-directory-saas-officespace-software-tutorial/IC777772.png "設定單一登入")
+##設定使用者佈建
   
-In order to enable Azure AD users to log into OfficeSpace Software, they must be provisioned into OfficeSpace Software. In the case of OfficeSpace Software, provisioning is an automated task.  
-There is no action item for you.  
-Users are automatically created if necessary during the first single sign-on attempt.
+為了讓 Azure AD 使用者能夠登入 OfficeSpace Software，必須將他們佈建到 OfficeSpace Software 中。在 OfficeSpace Software 的情況下，佈建是自動化工作。沒有您需要使用的動作項目。在第一次單一登入嘗試時會自動建立使用者 (如有必要)。
 
->[AZURE.NOTE]You can use any other OfficeSpace Software user account creation tools or APIs provided by OfficeSpace Software to provision AAD user accounts.
+>[AZURE.NOTE]您可以使用任何其他的 OfficeSpace Software 使用者帳戶建立工具或 OfficeSpace Software 提供的 API 來佈建 AAD 使用者帳戶。
 
-##<a name="assigning-users"></a>Assigning users
+##指派使用者
   
-To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
+若要測試您的設定，您需要指派使用者，授予存取權給您想要允許其使用您的應用程式存取設定的 Azure AD 使用者。
 
-###<a name="to-assign-users-to-officespace-software,-perform-the-following-steps:"></a>To assign users to OfficeSpace Software, perform the following steps:
+###若要將使用者指派給 OfficeSpace Software，請執行下列步驟：
 
-1.  In the Azure classic portal, create a test account.
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
-2.  On the **OfficeSpace Software **application integration page, click **Assign users**.
+2.  在 [OfficeSpace Software] 應用程式整合頁面上，按一下 [指派使用者]。
 
-    ![Assign users](./media/active-directory-saas-officespace-software-tutorial/IC777773.png "Assign users")
+    ![指派使用者](./media/active-directory-saas-officespace-software-tutorial/IC777773.png "指派使用者")
 
-3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
+3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
 
-    ![Yes](./media/active-directory-saas-officespace-software-tutorial/IC767830.png "Yes")
+    ![是](./media/active-directory-saas-officespace-software-tutorial/IC767830.png "是")
   
-If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0713_2016-->

@@ -1,43 +1,38 @@
 <properties 
-    pageTitle="Azure Multi-Factor Authentication - Learn More"
-    description="This is the Azure Multi-factor authentication page that provides links to additional content for Azure Multi-Factor Authentication.  From here you can learn about additional topics on Multi-Factor Authentication."
-    services="multi-factor-authentication"
-    documentationCenter=""
-    authors="kgremban"
-    manager="femila"
-    editor="curtland"/>
+	pageTitle="Azure Multi-Factor Authentication - 詳細資訊"
+	description="這是提供 Azure Multi-Factor Authentication 額外內容之連結的 Azure Multi-Factor Authentication 頁面。您可以從這裡了解其他有關 Multi-Factor Authentication 的主題。"
+	services="multi-factor-authentication"
+	documentationCenter=""
+	authors="kgremban"
+	manager="femila"
+	editor="curtland"/>
 
 <tags
-    ms.service="multi-factor-authentication"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/04/2016"
-    ms.author="kgremban"/>
+	ms.service="multi-factor-authentication"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/04/2016"
+	ms.author="kgremban"/>
+
+# 深入了解 Azure Multi-Factor Authentication
 
 
-# <a name="learn-more-about-azure-multi-factor-authentication"></a>Learn more about Azure Multi-Factor Authentication
+以下是其他資源的集合，它們能幫助您充分利用 Azure Multi-Factor Authentication 提供的所有功能
 
+## 文件
 
-The following is a collection of additional resources that will help you take full advantage of all the features available in Azure Multi-Factor Authentication
+[設定 MFA Server 以與 IIS 驗證搭配使用。](https://msdn.microsoft.com/library/azure/dn394291.aspx)
 
-## <a name="documentation"></a>Documentation
+[設定 MFA Server 以與 Radius 驗證搭配使用。](https://msdn.microsoft.com/library/azure/dn394299.aspx)
 
-[Configure MFA Server for use with IIS Authentication.](https://msdn.microsoft.com/library/azure/dn394291.aspx)
+[設定 MFA Server 以與 LDAP 驗證搭配使用。](https://msdn.microsoft.com/library/azure/dn394286.aspx)
 
-[Configure MFA Server for use with Radius Authentication.](https://msdn.microsoft.com/library/azure/dn394299.aspx)
+[設定 MFA Server 以與 Windows 驗證搭配使用。](https://msdn.microsoft.com/library/azure/dn394278.aspx)
 
-[Configure MFA Server for use with LDAP Authentication.](https://msdn.microsoft.com/library/azure/dn394286.aspx)
+[使用 RADIUS 的遠端桌面閘道和 Azure Multi-Factor Authentication Server](https://msdn.microsoft.com/library/azure/dn394287.aspx)
 
-[Configure MFA Server for use with Windows Authentication.](https://msdn.microsoft.com/library/azure/dn394278.aspx)
+[在自訂應用程式中建置 Multi-Factor Authentication (SDK)](https://msdn.microsoft.com/library/azure/dn249464.aspx)
 
-[Remote Desktop Gateway and Azure Multi-Factor Authentication Server using RADIUS](https://msdn.microsoft.com/library/azure/dn394287.aspx)
-
-[Building Multi-Factor Authentication into Custom Apps (SDK)](https://msdn.microsoft.com/library/azure/dn249464.aspx)
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

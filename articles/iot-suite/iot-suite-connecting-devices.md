@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Connect a device using C on Windows | Microsoft Azure"
-   description="Describes how to connect a device to the Azure IoT Suite preconfigured remote monitoring solution using an application written in C running on Windows."
+   pageTitle="在 Windows 上使用 C 連接裝置 | Microsoft Azure"
+   description="描述如何在 Windows 上使用已寫入 C 的應用程式，將裝置連接至 Azure IoT Suite 預先設定遠端監視方案。"
    services=""
    suite="iot-suite"
    documentationCenter="na"
@@ -14,46 +14,45 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="10/05/2016"
+   ms.date="07/14/2016"
    ms.author="dobett"/>
 
 
-
-# <a name="connect-your-device-to-the-remote-monitoring-preconfigured-solution-(windows)"></a>Connect your device to the remote monitoring preconfigured solution (Windows)
+# 將裝置連接至遠端監視預先設定方案 (Windows)
 
 [AZURE.INCLUDE [iot-suite-selector-connecting](../../includes/iot-suite-selector-connecting.md)]
 
-## <a name="create-a-c-sample-solution-on-windows"></a>Create a C sample solution on Windows
+## 在 Windows 上建立 C 範例方案
 
-The following steps show you how to use Visual Studio to create a client application written in C that communicates with the Remote Monitoring preconfigured solution.
+下列步驟示範如何使用 Visual Studio 建立以 C 撰寫的簡單用戶端應用程式，來與遠端監視預先設定的方案進行通訊。
 
-Create a starter project in Visual Studio 2015 and add the IoT Hub device client NuGet packages:
+在 Visual Studio 2015 中建立入門專案，並新增 IoT 中樞的裝置用戶端 NuGet 封裝︰
 
-1. In Visual Studio 2015, create a C console application using the Visual C++ **Win32 Console Application** template. Name the project **RMDevice**.
+1. 在 Visual Studio 2015 中使用 Visual C++ **Win32 主控台應用程式**範本建立新的 C 主控台應用程式。將專案命名為 **RMDevice**。
 
-2. On the **Applications Settings** page in the **Win32 Application Wizard**, ensure that **Console application** is selected, and uncheck **Precompiled header** and **Security Development Lifecycle (SDL) checks**.
+2. 在 [Win32 應用程式精靈] 的 [應用程式設定] 頁面中，確定已選取 [主控台應用程式]，並取消核取 [預先編譯的標頭] 和 [安全性開發生命週期 (SDL) 檢查]。
 
-3. In **Solution Explorer**, delete the files stdafx.h, targetver.h, and stdafx.cpp.
+3. 在 [方案總管] 中刪除檔案 stdafx.h、targetver.h 和 stdafx.cpp。
 
-4. In **Solution Explorer**, rename the file RMDevice.cpp to RMDevice.c.
+4. 在 [方案總管] 中將檔案 RMDevice.cpp 重新命名為 RMDevice.c。
 
-5. In **Solution Explorer**, right-click on the **RMDevice** project and then click **Manage NuGet packages**. Click **Browse**, then search for and install the following NuGet packages into the project:
+5. 在 [方案總管] 中以滑鼠右鍵按一下 [RMDevice] 專案，然後按一下 [管理 NuGet 封裝]。按一下 [瀏覽]，然後搜尋下列 NuGet 封裝並將其安裝到專案中︰
 
     - Microsoft.Azure.IoTHub.Serializer
     - Microsoft.Azure.IoTHub.IoTHubClient
     - Microsoft.Azure.IoTHub.HttpTransport
 
-6. In **Solution Explorer**, right-click on the **RMDevice** project and then click **Properties** to open the project's **Property Pages** dialog box. For details, see [Setting Visual C++ Project Properties][lnk-c-project-properties]. 
+6. 在 [方案總管] 中，以滑鼠右鍵按一下 [RMDevice] 專案，然後按一下 [屬性] 開啟專案的 [屬性頁] 對話方塊。如需詳細資訊，請參閱[設定 Visual C++ 專案屬性][lnk-c-project-properties]。
 
-7. Click the **Linker** folder, then click the **Input** property page.
+7. 按一下 [連結器] 資料夾，然後按一下 [輸入] 屬性頁。
 
-8. Add **crypt32.lib** to the **Additional Dependencies** property. Click **OK** and then **OK** again to save the project property values.
+8. 將 **crypt32.lib** 新增至 [其他相依性] 屬性。按一下 [確定]，然後再按一下 [確定] 以儲存專案屬性值。
 
-## <a name="specify-the-behavior-of-the-iot-hub-device"></a>Specify the behavior of the IoT Hub device
+## 指定 IoT 中樞裝置的行為
 
-The IoT Hub client libraries use a model to specify the format of the messages the device sends to IoT Hub and the commands it receives from IoT Hub.
+IoT 中樞用戶端程式庫使用模型來指定裝置傳送至 IoT 中樞之訊息，或裝置所回應之 IoT 中樞命令的格式。
 
-1. In Visual Studio, open the RMDevice.c file. Replace the existing `#include` statements with the following code:
+1. 在 Visual Studio 中，開啟 RMDevice.c 檔案。以下列程式碼取代現有 `#include` 陳述式：
 
     ```
     #include "iothubtransporthttp.h"
@@ -65,7 +64,7 @@ The IoT Hub client libraries use a model to specify the format of the messages t
     #include "azure_c_shared_utility/platform.h"
     ```
 
-2. Add the following variable declarations after the `#include` statements. Replace the placeholder values [Device Id] and [Device Key] with values for your device from the remote monitoring solution dashboard. Use the IoT Hub Hostname from the dashboard to replace [IoTHub Name]. For example, if your IoT Hub Hostname is **contoso.azure-devices.net**, replace [IoTHub Name] with **contoso**:
+2. 在 `#include` 陳述式之後新增下列變數宣告。從遠端監視方案的儀表板將 [Device Id] 和 [Device Key] 這兩個預留位置值取代為裝置的值。使用儀表板中的 IoT 中樞主機名稱取代 [IoTHub Name]。例如，若您的 IoT 中樞主機名稱是 **contoso.azure-devices.net**，請使用 **contoso** 取代 [IoTHub Name]：
 
     ```
     static const char* deviceId = "[Device Id]";
@@ -74,7 +73,7 @@ The IoT Hub client libraries use a model to specify the format of the messages t
     static const char* hubSuffix = "azure-devices.net";
     ```
 
-3. Add the following code to define the model that enables the device to communicate with IoT Hub. This model specifies that the device sends temperature, external temperature, humidity, and a device id as telemetry. The device also sends metadata about the device to IoT Hub, including a list of commands that the device supports. This device responds to the commands **SetTemperature** and **SetHumidity**:
+3. 新增下列程式碼以定義可讓裝置與 IoT 中樞通訊的模型。此模型指定裝置會傳送溫度、外部溫度、濕度和裝置識別碼做為遙測。裝置也會傳送與該裝置有關的中繼資料到 IoT 中樞，包括裝置支援的命令清單。這個裝置會回應 **SetTemperature** 和 **SetHumidity** 命令：
 
     ```
     // Define the Model
@@ -113,11 +112,11 @@ The IoT Hub client libraries use a model to specify the format of the messages t
     END_NAMESPACE(Contoso);
     ```
 
-## <a name="implement-the-behavior-of-the-device"></a>Implement the behavior of the device
+## 實作裝置的行為
 
-Now add code that implements the behavior defined in the model.
+您現在必須新增程式碼來實作模型中所定義的行為。
 
-1. Add the following functions that execute when the device receives the **SetTemperature** and **SetHumidity** commands from IoT Hub:
+1. 新增下列當裝置收到來自 IoT 中樞的 **SetTemperature** 和 **SetHumidity** 命令時執行的函式：
 
     ```
     EXECUTE_COMMAND_RESULT SetTemperature(Thermostat* thermostat, int temperature)
@@ -135,7 +134,7 @@ Now add code that implements the behavior defined in the model.
     }
     ```
 
-2. Add the following function that sends a message to IoT Hub:
+2. 新增下列會傳送訊息到 IoT 中樞的函式︰
 
     ```
     static void sendMessage(IOTHUB_CLIENT_HANDLE iotHubClientHandle, const unsigned char* buffer, size_t size)
@@ -162,7 +161,7 @@ Now add code that implements the behavior defined in the model.
     }
     ```
 
-3. Add the following function that hooks up the serialization library in the SDK:
+3. 新增下列會連結到 SDK 中序列化程式庫的函式︰
 
     ```
     static IOTHUBMESSAGE_DISPOSITION_RESULT IoTHubMessage(IOTHUB_MESSAGE_HANDLE message, void* userContextCallback)
@@ -200,7 +199,7 @@ Now add code that implements the behavior defined in the model.
     }
     ```
 
-4. Add the following function to connect to IoT Hub, send and receive messages, and disconnect from the hub. Notice how the device sends metadata about itself, including the commands it supports, to IoT Hub when it connects. This metadata enables the solution to update the status of the device to **Running** on the dashboard:
+4. 新增下列函式以連線到 IoT 中樞、傳送和接收訊息，以及與中樞中斷連線。請注意，裝置一旦連線就會將與本身有關的中繼資料 (包括其支援的命令) 傳送到 IoT 中樞 - 這可讓方案將儀表板上的裝置狀態更新為 [執行中]：
 
     ```
     void remote_monitoring_run(void)
@@ -319,7 +318,7 @@ Now add code that implements the behavior defined in the model.
     }
     ```
     
-    For reference, here is a sample **DeviceInfo** message sent to IoT Hub at startup:
+    以下是啟動時會傳送到 IoT 中樞的範例 **DeviceInfo** 訊息做為參考：
 
     ```
     {
@@ -338,13 +337,13 @@ Now add code that implements the behavior defined in the model.
     }
     ```
     
-    For reference, here is a sample **Telemetry** message sent to IoT Hub:
+    以下是傳送到 IoT 中樞的範例 **Telemetry** 訊息做為參考：
 
     ```
     {"DeviceId":"mydevice01", "Temperature":50, "Humidity":50, "ExternalTemperature":55}
     ```
     
-    For reference, here is a sample **Command** received from IoT Hub:
+    以下是從 IoT 中樞收到的範例 **Command** 做為參考：
     
     ```
     {
@@ -355,7 +354,7 @@ Now add code that implements the behavior defined in the model.
     }
     ```
 
-5. Replace the **main** function with following code to invoke the **remote_monitoring_run** function:
+5. 將 **main** 函式取代為下列程式碼以叫用 **remote\_monitoring\_run** 函式︰
 
     ```
     int main()
@@ -365,16 +364,13 @@ Now add code that implements the behavior defined in the model.
     }
     ```
 
-6. Click **Build** and then **Build Solution** to build the device application.
+6. 依序按一下 [建置] 和 [建置方案] 以建置裝置應用程式。
 
-7. In **Solution Explorer**, right-click the **RMDevice** project, click **Debug**, and then click **Start new instance** to run the sample. The console displays messages as the application sends sample telemetry to IoT Hub and receives commands.
+7. 在 [方案總管] 中，以滑鼠右鍵按一下 **RMDevice** 專案，按一下 [偵錯]，然後按一下 [開始新執行個體] 來執行範例。當應用程式將範例遙測傳送到 IoT 中樞並收到命令時，主控台會顯示訊息。
 
 [AZURE.INCLUDE [iot-suite-visualize-connecting](../../includes/iot-suite-visualize-connecting.md)]
 
 
 [lnk-c-project-properties]: https://msdn.microsoft.com/library/669zx6zc.aspx
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0720_2016-->

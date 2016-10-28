@@ -1,6 +1,6 @@
 <properties
-    pageTitle="Enable Session Affinity using the Azure Toolkit for Eclipse"
-    description="Learn how to enable session affinity using the Azure Toolkit for Eclipse."
+    pageTitle="使用 Azure Toolkit for Eclipse 啟用工作階段同質"
+    description="了解如何使用 Azure Toolkit for Eclipse 來啟用工作階段同質。"
     services=""
     documentationCenter="java"
     authors="rmcmurray"
@@ -16,62 +16,57 @@
     ms.date="08/11/2016" 
     ms.author="robmcm"/>
 
-
 <!-- Legacy MSDN URL = https://msdn.microsoft.com/library/azure/hh690950.aspx -->
 
-# <a name="enable-session-affinity"></a>Enable Session Affinity #
+# 啟用工作階段同質 #
 
-Within the Azure Toolkit for Eclipse, you can enable HTTP session affinity, or "sticky sessions", for your roles. The following image shows the **Load Balancing** properties dialog used to enable the session affinity feature:
+在 Azure Toolkit for Eclipse 中，您可以為角色啟用 HTTP 工作階段同質 (或「黏性工作階段」)。下圖顯示用來啟用工作階段同質功能的 [負載平衡] 屬性對話方塊：
 
 ![][ic719492]
 
-## <a name="to-enable-session-affinity-for-your-role"></a>To enable session affinity for your role ##
+## 為角色啟用工作階段同質 ##
 
-1. Right-click the role in Eclipse's Project Explorer, click **Azure**, and then click **Load Balancing**.
-1. In the **Properties for WorkerRole1 Load Balancing** dialog:
-    1. Check **Enable HTTP session affinity (sticky sessions) for this role.**
-    1. For **Input endpoint to use**, select an input endpoint to use, for example, **http (public:80, private:8080)**. Your application must use this endpoint as its HTTP endpoint. You can enable multiple endpoints for your role, but you can select only one of them to support sticky sessions.
-    1. Rebuild your application.
+1. 以滑鼠右鍵按一下 Eclipse 專案總管中的角色，然後依序按一下 [Azure] 和 [負載平衡]。
+1. 在 [WorkerRole1 的屬性] 的 [負載平衡] 對話方塊中：
+    1. 核取 [為這個角色啟用 HTTP 工作階段同質 (黏性工作階段)]。
+    1. 針對 [要使用的輸入端點]，選取要使用的輸入端點，例如 **http (public:80, private:8080)**。您的應用程式必須使用這個端點作為其 HTTP 端點。您可以為角色啟用多個端點，但只能選取其中一個端點來支援黏性工作階段。
+    1. 重建您的應用程式
 
-Once enabled, if you have more than one role instance, HTTP requests coming from a particular client will continue being handled by the same role instance.
+啟用後，如果您有多個角色執行個體，來自特定用戶端的 HTTP 要求會繼續由相同的角色執行個體來處理。
 
-The Eclipse Toolkit enables this by installing a special IIS module called Application Request Routing (ARR) into each of your role instances. ARR reroutes HTTP requests to the appropriate role instance. The toolkit automatically reconfigures the selected endpoint so that the incoming HTTP traffic is first routed to the ARR software. The toolkit also creates a new internal endpoint that your Java server is configured to listen to. That is the endpoint used by ARR to reroute the HTTP traffic to the appropriate role instance. This way, each role instance in your multi-instance deployment serves as a reverse proxy for all the other instances, enabling sticky sessions.
+Eclipse Toolkit 藉由將稱為應用程式要求路由 (ARR) 的特殊 IIS 模組安裝到每個角色執行個體，來完成這項作業。ARR 會將 HTTP 要求重新路由傳送至適當的角色執行個體。此工具組會自動重新設定選取的端點，因此傳入 HTTP 流量會先路由傳送至 ARR 軟體。此工具組也會建立可設定您的 Java 伺服器接聽的新內部端點。這是 ARR 將 HTTP 流量的端點重新路由傳送至適當角色執行個體時所用的端點。如此一來，多個執行個體部署中的每個角色執行個體可作為其他所有執行個體的反向 Proxy，以啟用黏性工作階段。
 
-## <a name="notes-about-session-affinity"></a>Notes about session affinity ##
+## 工作階段同質的相關注意事項 ##
 
-* Session affinity does not work in the compute emulator. The settings can be applied in the compute emulator without interfering with your build process or compute emulator execution, but the feature itself does not function within the compute emulator.
-* Enabling session affinity will result in an increase in the amount of disk space taken up by your deployment in Azure, as additional software will be downloaded and installed into your role instances when your service is started in the Azure cloud.
-* The time to initialize each role will take longer.
-* An internal endpoint, to function as a traffic rerouter as mentioned above, will be added.
+* 工作階段同質不會在計算模擬器中執行。您可以在不干擾建置流程或計算模擬器執行的情況下，將這些設定套用至計算模擬器，但功能本身不會在計算模擬器中執行。
+* 啟用工作階段同質會導致 Azure 中的部署所佔用的磁碟空間量增加，因為當您在 Azure 雲端中啟動服務時，會下載額外的軟體並安裝到您的角色執行個體。
+* 初始化每個角色的時間會比較長。
+* 系統會加入一個內部端點，如上所述作為路由器來重新路由傳送流量。
 
-For an example of how to maintain session data when session affinity is enabled, see [How to Maintain Session Data with Session Affinity][].
+如需在啟用工作階段同質時如何維護工作階段資料的範例，請參閱[如何使用工作階段同質來維護工作階段資料][]。
 
-## <a name="see-also"></a>See Also ##
+## 另請參閱 ##
 
-[Azure Toolkit for Eclipse][]
+[適用於 Eclipse 的 Azure 工具組][]
 
-[Creating a Hello World Application for Azure in Eclipse][]
+[在 Eclipse 中建立適用於 Azure 的 Hello World 應用程式][]
 
-[Installing the Azure Toolkit for Eclipse][] 
+[安裝 Azure Toolkit for Eclipse][]
 
-[How to Maintain Session Data with Session Affinity][]
+[如何使用工作階段同質來維護工作階段資料][]
 
-For more information about using Azure with Java, see the [Azure Java Developer Center][].
+如需如何搭配使用 Azure 與 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心][]。
 
 <!-- URL List -->
 
-[Azure Java Developer Center]: http://go.microsoft.com/fwlink/?LinkID=699547
-[Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699529
-[Creating a Hello World Application for Azure in Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699533
-[How to Maintain Session Data with Session Affinity]: http://go.microsoft.com/fwlink/?LinkID=699539
-[Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
+[Azure Java 開發人員中心]: http://go.microsoft.com/fwlink/?LinkID=699547
+[適用於 Eclipse 的 Azure 工具組]: http://go.microsoft.com/fwlink/?LinkID=699529
+[在 Eclipse 中建立適用於 Azure 的 Hello World 應用程式]: http://go.microsoft.com/fwlink/?LinkID=699533
+[如何使用工作階段同質來維護工作階段資料]: http://go.microsoft.com/fwlink/?LinkID=699539
+[安裝 Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
 
 <!-- IMG List -->
 
 [ic719492]: ./media/azure-toolkit-for-eclipse-enable-session-affinity/ic719492.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

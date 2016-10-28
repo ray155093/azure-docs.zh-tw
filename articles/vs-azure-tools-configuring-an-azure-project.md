@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Configure an Azure Cloud Service Project with Visual Studio | Microsoft Azure"
-   description="Learn how to configure an Azure cloud service project in Visual Studio, depending on your requirements for that project."
+   pageTitle="使用 Visual Studio 設定 Azure 雲端服務專案 | Microsoft Azure"
+   description="了解如何在 Visual Studio 中根據 Azure 雲端服務專案的需求來設定專案。"
    services="visual-studio-online"
    documentationCenter="na"
    authors="TomArcher"
@@ -15,55 +15,50 @@
    ms.date="08/15/2016"
    ms.author="tarcher" />
 
+# 使用 Visual Studio 設定 Azure 雲端服務專案
 
-# <a name="configure-an-azure-cloud-service-project-with-visual-studio"></a>Configure an Azure Cloud Service Project with Visual Studio
+您可以根據 Azure 雲端服務專案的需求來設定專案。您可以設定下列類別的專案的屬性：
 
-You can configure an Azure cloud service project, depending on your requirements for that project. You can set properties for the project for the following categories:
+- **將雲端服務發佈至 Azure**
 
-- **Publish a cloud service to Azure**
+  您可以設定屬性以確保部署至 Azure 的現有雲端服務不會被意外刪除。
 
-  You can set a property to make sure that an existing cloud service deployed to Azure is not accidentally deleted.
+- **執行或偵錯本機電腦上的雲端服務**
 
-- **Run or debug a cloud service on the local computer**
+  您可以選取一個要使用的服務組態，並指示是否要啟動 Azure 儲存體模擬器。
 
-  You can select a service configuration to use and indicate whether you want to start the Azure storage emulator.
+- **在建立雲端服務封裝時進行驗證**
 
-- **Validate a cloud service package when it is created**
+  您可以決定將任何警告均視為錯誤，這樣便能確保雲端服務封裝部署時不會發生錯誤。若您部署後發現有失敗情形發生，這會減少等候時間。
 
-  You can decide to treat any warnings as errors so that you can make sure that the cloud service package will deploy without any issues. This reduces your wait time if you deploy and then discover that a failure occurred.
+下圖顯示如何選取在本機執行或偵錯雲端服務時要使用的組態。如圖所示，您可以從此視窗中設定您需要的任一專案屬性。
 
-The following illustration shows how to select a configuration to use when you run or debug your cloud service locally. You can set any of the project properties that you require from this window, as shown in the illustration.
+![設定 Microsoft Azure 專案](./media/vs-azure-tools-configuring-an-azure-project/IC713462.png)
 
-![Configure a Microsoft Azure Project](./media/vs-azure-tools-configuring-an-azure-project/IC713462.png)
+## 設定 Azure 雲端服務專案
 
-## <a name="to-configure-an-azure-cloud-service-project"></a>To configure an Azure cloud service project
+1. 若要從 [方案總管] 設定雲端服務專案，請開啟雲端服務專案的捷徑功能表，然後選擇 [屬性]。
 
-1. To configure a cloud service project from **Solution Explorer**, open the shortcut menu for the cloud service project and then choose **Properties**.
+  Visual Studio 編輯器中會顯示具有該雲端服務專案名稱的頁面。
 
-  A page with the name of the cloud service project appears in the Visual Studio editor.
+1. 選擇 [開發] 索引標籤。
 
-1. Choose the **Development** tab.
+1. 為確保您不會意外刪除 Azure 中現有的部署，請在 [刪除現有部署前先提示] 清單中選擇 **True**。
 
-1. To make sure that you don't accidentally delete an existing deployment in Azure, in the prompt before deleting an existing deployment list, choose **True**.
+1. 如果要選取在本機執行或偵錯雲端服務時要使用的服務組態，請在 [服務組態] 清單中選擇該服務組態。
 
-1. To select the service configuration that you want to use when you run or debug your cloud service locally, in the **Service configuration** list choose the service configuration.
+  >[AZURE.NOTE] 如果您想建立一個服務組態來使用，請參閱＜如何管理服務組態和設定檔＞。如果您想要修改某個角色的服務組態，請參閱[如何使用 Visual Studio 設定 Azure 雲端服務的角色](vs-azure-tools-configure-roles-for-cloud-service.md)。
 
-  >[AZURE.NOTE] If you want to create a service configuration to use, see How to: Manage Service Configurations and Profiles. If you want to modify a service configuration for a role, see [How to configure the roles for an Azure cloud service with Visual Studio](vs-azure-tools-configure-roles-for-cloud-service.md).
+1. 如果要在您於本機執行或偵錯雲端服務時啟動 Azure 儲存體模擬器，請在 [啟動 Azure 儲存體模擬器] 中選擇 **True**。
 
-1. To start the Azure storage emulator when you run or debug your cloud service locally, in the **Start Azure storage emulator**, choose **True**.
+1. 為確保發生封裝驗證錯誤時無法發佈，請在 [將警告視為錯誤] 中選擇 **True**。
 
-1. To make sure that you cannot publish if there are package validation errors, in **Treat warnings as errors**, choose **True**.
+1. 為確保您的 Web 角色每次於 IIS Express 本機啟動時均使用相同的連接埠，請在 [使用 Web 專案連接埠] 中選擇 **True**。如果要為特定 Web 專案使用特定的連接埠，請開啟該 Web 專案的捷徑功能表，依序選擇 [屬性] 索引標籤、[Web] 索引標籤，然後在 [IIS Express] 區段的 [專案 URL] 設定中變更連接埠號碼。例如，輸入 `http://localhost:14020` 做為專案 URL。
 
-1. To make sure that your web role uses the same port each time it starts locally in IIS Express, in **Use web project ports**, choose **True**. To use a specific port for a particular web project, open the shortcut menu for the web project, choose the **Properties** tab, choose the **Web** tab, and change the port number in the **Project Url** setting in the **IIS Express** section. For example, enter `http://localhost:14020` as the project URL.
+1. 如果要儲存您對雲端服務專案屬性所做的任何變更，請選擇工具列上的 [儲存] 按鈕。
 
-1. To save any changes that you have made to the properties of the cloud service project, choose the **Save** button on the toolbar.
+## 後續步驟
 
-## <a name="next-steps"></a>Next steps
+若要深入了解如何在 Visual Studio 中設定 Azure 雲端服務專案，請參閱[使用多個服務組態設定 Azure 專案](vs-azure-tools-multiple-services-project-configurations.md)。
 
-To learn more about how to configure Azure cloud service projects in Visual Studio, see [Configuring Your Azure project using multiple service configurations](vs-azure-tools-multiple-services-project-configurations.md).
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

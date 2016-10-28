@@ -1,326 +1,321 @@
 <properties
-    pageTitle="Use Script Action to install Spark on Hadoop cluster | Microsoft Azure"
-    description="Learn how to customize an HDInsight cluster with Spark using Script Action."
-    services="hdinsight"
-    documentationCenter=""
-    authors="nitinme"
-    manager="jhubbard"
-    editor="cgronlun"/>
+	pageTitle="使用指令碼動作在 Hadoop 叢集上安裝 Spark | Microsoft Azure"
+	description="了解如何使用指令碼動作來以 Spark 自訂 HDInsight 叢集。"
+	services="hdinsight"
+	documentationCenter=""
+	authors="nitinme"
+	manager="jhubbard"
+	editor="cgronlun"/>
 
 <tags
-    ms.service="hdinsight"
-    ms.workload="big-data"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="02/05/2016"
-    ms.author="nitinme"/>
+	ms.service="hdinsight"
+	ms.workload="big-data"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="02/05/2016"
+	ms.author="nitinme"/>
 
+# 使用指令碼動作在 HDInsight Hadoop 叢集上安裝和使用 Spark
 
-# <a name="install-and-use-spark-on-hdinsight-hadoop-clusters-using-script-action"></a>Install and use Spark on HDInsight Hadoop clusters using Script Action
+> [AZURE.IMPORTANT] 這篇文章目前已過時。現在 HDInsight 為以 Windows 為基礎的叢集，提供 Spark 做為第一級叢集類型，這表示您現在可以使用指令碼動作，直接建立 Spark 叢集而不必修改 Hadoop 叢集。使用 Spark 叢集類型時，您會取得具備 Spark 1.3.1 版的 HDInsight 3.2 版叢集。若要安裝不同版本的 Spark，您可以使用指令碼動作。HDInsight 提供指令碼動作指令碼的範例。
 
-> [AZURE.IMPORTANT] This article is now deprecated. HDInsight now provides Spark as a first-class cluster type for Windows-based clusters, which means you can now directly create a Spark cluster without modifying a Hadoop cluster using Script action. Using the Spark cluster type, you get an HDInsight version 3.2 cluster with Spark version 1.3.1.  To install different versions of Spark, you can use Script action. HDInsight provides a sample Script Action script.
+了解如何使用指令碼動作在以 Windows 為基礎的 HDInsight 上安裝 Spark，以及如何在 HDInsight 叢集上執行 Spark 查詢。
 
-Learn how to install Spark on Windows based HDInsight using Script Action, and how to run Spark queries on HDInsight clusters.
 
+**相關文章**
 
-**Related articles**
+- [在 HDInsight 叢集中建立 Hadoop](hdinsight-provision-clusters.md)：建立 HDInsight 叢集的一般資訊。
 
-- [Create Hadoop clusters in HDInsight](hdinsight-provision-clusters.md): general information on creating HDInsight clusters.
+- [開始使用 HDInsight 上的 Apache Spark](hdinsight-apache-spark-jupyter-spark-sql.md)：建立 HDInsight Spark 叢集。
 
-- [Get Started with Apache Spark on HDInsight](hdinsight-apache-spark-jupyter-spark-sql.md): create an HDInsight Spark cluster.
+- [使用指令碼動作自訂 HDInsight 叢集][hdinsight-cluster-customize]：使用指令碼動作自訂 HDInsight 叢集的一般資訊。
 
-- [Customize HDInsight cluster using Script Action][hdinsight-cluster-customize]: general information on customizing HDInsight clusters using Script Action.
+- [開發 HDInsight 的指令碼動作指令碼](hdinsight-hadoop-script-actions.md)
 
-- [Develop Script Action scripts for HDInsight](hdinsight-hadoop-script-actions.md).
+## 什麼是 Spark？
 
-## <a name="what-is-spark?"></a>What is Spark?
+<a href="http://spark.apache.org/docs/latest/index.html" target="_blank">Apache Spark</a> 是一個開放原始碼平行處理架構，可支援記憶體內部處理，大幅提升巨量資料分析應用程式的效能。Spark 的記憶體內計算功能，使其成為機器學習和圖表計算中反覆演算法的絕佳選擇 。
 
-<a href="http://spark.apache.org/docs/latest/index.html" target="_blank">Apache Spark</a> is an open-source parallel processing framework that supports in-memory processing to boost the performance of big-data analytic applications. Spark's in-memory computation capabilities make it a good choice for iterative algorithms in machine learning and graph computations.
+Spark 也可用來執行傳統的磁碟型資料處理。Spark 以避免在中繼階段寫入磁碟的方式，改善傳統的 MapReduce 架構。此外，Spark 與 Hadoop 分散式檔案系統 (HDFS) 和 Azure Blob 儲存體相容，因此可以輕鬆地透過 Spark 來處理現有的資料。
 
-Spark can also be used to perform conventional disk-based data processing. Spark improves the traditional MapReduce framework by avoiding writes to disk in the intermediate stages. Also, Spark is compatible with the Hadoop Distributed File System (HDFS) and Azure Blob storage so the existing data can easily be processed via Spark.
+本主題提供如何自訂 HDInsight 叢集以安裝 Spark 的指示。
 
-This topic provides instructions on how to customize an HDInsight cluster to install Spark.
+## 使用 Azure 入口網站安裝 Spark
 
-## <a name="install-spark-using-the-azure-portal"></a>Install Spark using the Azure Portal
+您可以從唯讀的 Azure 儲存體 Blob 取得在 HDInsight 叢集上安裝 Spark 的範例指令碼，網址為 [https://hdiconfigactions.blob.core.windows.net/sparkconfigactionv03/spark-installer-v03.ps1](https://hdiconfigactions.blob.core.windows.net/sparkconfigactionv03/spark-installer-v03.ps1)。根據您建立的 HDInsight 叢集版本，此指令碼可安裝 Spark 1.2.0 或 Spark 1.0.2。
 
-A sample script to install Spark on an HDInsight cluster is available from a read-only Azure storage blob at [https://hdiconfigactions.blob.core.windows.net/sparkconfigactionv03/spark-installer-v03.ps1](https://hdiconfigactions.blob.core.windows.net/sparkconfigactionv03/spark-installer-v03.ps1). This script can install Spark 1.2.0 or Spark 1.0.2 depending on the version of the HDInsight cluster you create.
+- 如果您在建立 **HDInsight 3.2** 叢集時使用此指令碼，它會安裝 **Spark 1.2.0**。
+- 如果您在建立 **HDInsight 3.1** 叢集時使用此指令碼，它會安裝 **Spark 1.0.2**。
 
-- If you use the script while creating an **HDInsight 3.2** cluster, it installs **Spark 1.2.0**.
-- If you use the script while creating an **HDInsight 3.1** cluster, it installs **Spark 1.0.2**.
+您可以修改此指令碼或建立自有指令碼，以安裝其他版本的 Spark。
 
-You can modify this script or create your own script to install other versions of Spark.
+> [AZURE.NOTE] 範例指令碼只能與 HDInsight 3.1 和 3.2 叢集搭配使用。如需 HDInsight 叢集版本的詳細資訊，請參閱 [HDInsight 叢集版本](hdinsight-component-versioning.md)。
 
-> [AZURE.NOTE] The sample script works only with HDInsight 3.1 and 3.2 clusters. For more information on HDInsight cluster versions, see [HDInsight cluster versions](hdinsight-component-versioning.md).
+1. 使用 [自訂建立] 選項，依[在 HDInsight 中建立 Hadoop 叢集](hdinsight-provision-clusters.md#portal)中的描述開始建立叢集。根據下列原則挑選叢集版本：
 
-1. Start creating a cluster by using the **CUSTOM CREATE** option, as described at [Create Hadoop clusters in HDInsight](hdinsight-provision-clusters.md#portal). Pick the cluster version depending on the following:
+	- 如果您想要安裝 **Spark 1.2.0**，請建立 HDInsight 3.2 叢集。
+	- 如果您想要安裝 **Spark 1.0.2**，請建立 HDInsight 3.1 叢集。
 
-    - If you want to install **Spark 1.2.0**, create an HDInsight 3.2 cluster.
-    - If you want to install **Spark 1.0.2**, create an HDInsight 3.1 cluster.
 
+2. 在精靈的 [**指令碼動作**] 頁面上，按一下 [**加入指令碼動作**] 以提供有關指令碼動作的詳細資料，如下所示：
 
-2. On the **Script Actions** page of the wizard, click **add script action** to provide details about the script action, as shown below:
+	![使用指令碼動作以自訂叢集](./media/hdinsight-hadoop-spark-install/HDI.CustomProvision.Page6.png "使用指令碼動作以自訂叢集")
 
-    ![Use Script Action to customize a cluster](./media/hdinsight-hadoop-spark-install/HDI.CustomProvision.Page6.png "Use Script Action to customize a cluster")
+	<table border='1'>
+		<tr><th>屬性</th><th>值</th></tr>
+		<tr><td>名稱</td>
+			<td>指定指令碼動作的名稱。例如，<b>安裝 Spark</b>。</td></tr>
+		<tr><td>指令碼 URI</td>
+			<td>指定為自訂叢集叫用的指令碼統一資源識別項 (URI)。例如，<i>https://hdiconfigactions.blob.core.windows.net/sparkconfigactionv03/spark-installer-v03.ps1</i></td></tr>
+		<tr><td>節點類型</td>
+			<td>指定執行自訂指令碼的節點。您可以選擇 [<b>所有節點</b>]、[<b>僅限前端節點</b>] 或 [<b>僅限背景工作節點</b>]。
+		<tr><td>參數</td>
+			<td>如果指令碼要求，請指定參數。用來安裝 Spark 的指令碼不需要任何參數，因此可以讓此處空白。</td></tr>
+	</table>
 
-    <table border='1'>
-        <tr><th>Property</th><th>Value</th></tr>
-        <tr><td>Name</td>
-            <td>Specify a name for the script action. For example, <b>Install Spark</b>.</td></tr>
-        <tr><td>Script URI</td>
-            <td>Specify the Uniform Resource Identifier (URI) to the script that is invoked to customize the cluster. For example, <i>https://hdiconfigactions.blob.core.windows.net/sparkconfigactionv03/spark-installer-v03.ps1</i></td></tr>
-        <tr><td>Node Type</td>
-            <td>Specify the nodes on which the customization script is run. You can choose <b>All nodes</b>, <b>Head nodes only</b>, or <b>Worker nodes only</b>.
-        <tr><td>Parameters</td>
-            <td>Specify the parameters, if required by the script. The script to install Spark does not require any parameters so you can leave this blank.</td></tr>
-    </table>
+	您可以加入一個以上的指令碼動作，以在叢集上安裝多個元件。加入指令碼之後，請按一下核取記號以開始建立叢集。
 
-    You can add more than one script action to install multiple components on the cluster. After you have added the scripts, click the checkmark to start creating the cluster.
+您也可以使用 Azure PowerShell 或 HDInsight .NET SDK，在 HDInsight 上使用指令碼安裝 Spark。本主題稍後會提供這些程序的指示。
 
-You can also use the script to install Spark on HDInsight by using Azure PowerShell or the HDInsight .NET SDK. Instructions for these procedures are provided later in this topic.
+## 在 HDInsight 中使用 Spark
+Spark 提供以 Scala、Python 及 Java 撰寫的 API。您也可以使用互動式 Spark 殼層來執行 Spark 查詢。本節說明如何透過不同方法來使用 Spark：
 
-## <a name="use-spark-in-hdinsight"></a>Use Spark in HDInsight
-Spark provides APIs in Scala, Python, and Java. You can also use the interactive Spark shell to run Spark queries. This section provides instructions on how to use the different approaches to work with Spark:
+- [使用 Spark 殼層來執行互動式查詢](#sparkshell)
+- [使用 Spark 殼層來執行 Spark SQL 查詢](#sparksql)
+- [使用獨立 Scala 程式](#standalone)
 
-- [Use the Spark shell to run interactive queries](#sparkshell)
-- [Use the Spark shell to run Spark SQL queries](#sparksql)
-- [Use a standalone Scala program](#standalone)
+###<a name="sparkshell"></a>使用 Spark 殼層來執行互動式查詢
+請執行下列步驟以從互動式 Spark 殼層執行 Spark 查詢。在本節中，我們將對 HDInsight 叢集上預設提供的範例資料檔案 (/example/data/gutenberg/davinci.txt) 執行 Spark 查詢。
 
-###<a name="<a-name="sparkshell"></a>use-the-spark-shell-to-run-interactive-queries"></a><a name="sparkshell"></a>Use the Spark shell to run interactive queries
-Perform the following steps to run Spark queries from an interactive Spark shell. In this section, we run a Spark query on a sample data file (/example/data/gutenberg/davinci.txt) that is available on HDInsight clusters by default.
+1. 從 Azure 入口網站，針對您所建立且已安裝 Spark 的叢集啟用遠端桌面，然後遠端登入到叢集。如需指示，請參閱[使用 RDP 連接至 HDInsight 叢集](hdinsight-administer-use-management-portal.md#rdp)。
 
-1. From the Azure portal, enable Remote Desktop for the cluster you created with Spark installed, and then remote into the cluster. For instructions, see [Connect to HDInsight clusters using RDP](hdinsight-administer-use-management-portal.md#rdp).
+2. 在遠端桌面通訊協定 (RDP) 工作階段中，從桌面開啟 Hadoop 命令列 (從桌面捷徑)，然後瀏覽至 Spark 的安裝位置；例如 **C:\\apps\\dist\\spark-1.2.0**。
 
-2. In the Remote Desktop Protocol (RDP) session, from the desktop, open the Hadoop command line (from a desktop shortcut), and navigate to the location where Spark is installed; for example, **C:\apps\dist\spark-1.2.0**.
 
+3. 執行下列命令以啟動 Spark 殼層：
 
-3. Run the following command to start the Spark shell:
+		 .\bin\spark-shell --master yarn
 
-         .\bin\spark-shell --master yarn
+	在命令完成執行之後，您應該會看到 Scala 提示：
 
-    After the command finishes running, you should get a Scala prompt:
+		 scala>
 
-         scala>
+5. 出現 Scala 提示時，輸入下方所示的 Spark 查詢。此查詢會計算 davinci.txt 檔案中每個單字的出現次數，該檔案位於與叢集關聯之 Azure Blob 儲存體上的 /example/data/gutenberg/ 位置中。
 
-5. On the Scala prompt, enter the Spark query shown below. This query counts the occurrence of each word in the davinci.txt file that is available at the /example/data/gutenberg/ location on the Azure Blob storage associated with the cluster.
+		val file = sc.textFile("/example/data/gutenberg/davinci.txt")
+		val counts = file.flatMap(line => line.split(" ")).map(word => (word, 1)).reduceByKey(_ + _)
+		counts.toArray().foreach(println)
 
-        val file = sc.textFile("/example/data/gutenberg/davinci.txt")
-        val counts = file.flatMap(line => line.split(" ")).map(word => (word, 1)).reduceByKey(_ + _)
-        counts.toArray().foreach(println)
+6. 輸出應該如以下所示：
 
-6. The output should resemble the following:
+	![在 HDInsight 叢集中執行 Scala 互動式殼層所得到的輸出](./media/hdinsight-hadoop-spark-install/hdi-scala-interactive.png)
 
-    ![Output from running Scala interactive shell in an HDInsight cluster](./media/hdinsight-hadoop-spark-install/hdi-scala-interactive.png)
 
+7. 輸入 :q 以結束 Scala 提示。
 
-7. Enter :q to exit the Scala prompt.
+		:q
 
-        :q
+###<a name="sparksql"></a>使用 Spark 殼層來執行 Spark SQL 查詢
 
-###<a name="<a-name="sparksql"></a>use-the-spark-shell-to-run-spark-sql-queries"></a><a name="sparksql"></a>Use the Spark shell to run Spark SQL queries
+Spark SQL 可讓您使用 Spark 來執行以結構化查詢語言 (SQL)、HiveQL 或 Scala 表示的關聯式查詢。在本節中，我們要來看看如何使用 Spark 對範例 Hive 資料表執行 Hive 查詢。本節所用的 Hive 資料表 (稱為 **hivesampletable**) 依預設可在建立叢集時取得。
 
-Spark SQL allows you to use Spark to run relational queries expressed in Structured Query Language (SQL), HiveQL, or Scala. In this section, we look at using Spark to run a Hive query on a sample Hive table. The Hive table used in this section (called **hivesampletable**) is available by default when you create a cluster.
+>[AZURE.NOTE] 下面的範例是針對 **Spark 1.2.0** 所建立，若您在建立 HDInsight 3.2 叢集時執行指令碼動作，便會安裝 Spark 1.2.0。
 
->[AZURE.NOTE] The sample below was created against **Spark 1.2.0**, which is installed if you run the script action while creating HDInsight 3.2 cluster.
+1. 從 Azure 入口網站，針對您所建立且已安裝 Spark 的叢集啟用遠端桌面，然後遠端登入到叢集。如需指示，請參閱[使用 RDP 連接至 HDInsight 叢集](hdinsight-administer-use-management-portal.md#rdp)。
 
-1. From the Azure portal, enable Remote Desktop for the cluster you created with Spark installed, and then remote into the cluster. For instructions, see [Connect to HDInsight clusters using RDP](hdinsight-administer-use-management-portal.md#rdp).
+2. 在 RDP 工作階段中，從桌面開啟 Hadoop 命令列 (從桌面捷徑)，然後瀏覽至 Spark 的安裝位置；例如 **C:\\apps\\dist\\spark-1.2.0**。
 
-2. In the RDP session, from the desktop, open the Hadoop command line (from a desktop shortcut), and navigate to the location where Spark is installed; for example, **C:\apps\dist\spark-1.2.0**.
 
+3. 執行下列命令以啟動 Spark 殼層：
 
-3. Run the following command to start the Spark shell:
+		 .\bin\spark-shell --master yarn
 
-         .\bin\spark-shell --master yarn
+	在命令完成執行之後，您應該會看到 Scala 提示：
 
-    After the command finishes running, you should get a Scala prompt:
+		 scala>
 
-         scala>
+4. 在 Scala 提示設定 Hive 內容。必須執行此動作，才能透過 Spark 使用 Hive 查詢。
 
-4. On the Scala prompt, set the Hive context. This is required to work with Hive queries by using Spark.
+		val hiveContext = new org.apache.spark.sql.hive.HiveContext(sc)
 
-        val hiveContext = new org.apache.spark.sql.hive.HiveContext(sc)
+	請注意，**sc** 是您啟動 Spark 殼層時所設定的預設 Spark 內容。
 
-    Note that **sc** is default Spark context that is set when you start the Spark shell.
+5. 使用 Hive 內容執行 Hive 查詢，並將輸出列印到主控台。查詢會擷取特定型號裝置的資料，並將所擷取的記錄數限制在 20 個內。
 
-5. Run a Hive query by using the Hive context and print the output to the console. The query retrieves data on devices of a specific make and limits the number of records retrieved to 20.
+		hiveContext.sql("""SELECT * FROM hivesampletable WHERE devicemake LIKE "HTC%" LIMIT 20""").collect().foreach(println)
 
-        hiveContext.sql("""SELECT * FROM hivesampletable WHERE devicemake LIKE "HTC%" LIMIT 20""").collect().foreach(println)
+6. 您應該會看到如下的輸出：
 
-6. You should see an output like the following:
+	![在 HDInsight 叢集中執行 Spark SQL 所得到的輸出](./media/hdinsight-hadoop-spark-install/hdi-spark-sql.png)
 
-    ![Output from running Spark SQL on an HDInsight cluster](./media/hdinsight-hadoop-spark-install/hdi-spark-sql.png)
+7. 輸入 :q 以結束 Scala 提示。
 
-7. Enter :q to exit the Scala prompt.
+		:q
 
-        :q
+### <a name="standalone"></a>使用獨立 Scala 程式
 
-### <a name="<a-name="standalone"></a>use-a-standalone-scala-program"></a><a name="standalone"></a>Use a standalone Scala program
+在本節中，我們將撰寫一個 Scala 應用程式，用來計算 HDInsight 叢集上預設提供的範例資料檔案 (/example/data/gutenberg/davinci.txt) 中含有字母 'a' 和 'b' 的行數。若要撰寫獨立 Scala 程式並與已安裝 Spark 的自訂叢集搭配使用，您必須執行下列步驟：
 
-In this section, we write a Scala application that counts the number of lines containing the letters 'a' and 'b' in a sample data file (/example/data/gutenberg/davinci.txt) that is available on HDInsight clusters by default. To write and use a standalone Scala program with a cluster customized with Spark installation, you must perform the following steps:
+- 撰寫 Scala 程式
+- 建置 Scala 程式以取得 .jar 檔案
+- 在叢集上執行工作
 
-- Write a Scala program
-- Build the Scala program to get the .jar file
-- Run the job on the cluster
+#### 撰寫 Scala 程式
+在本節中，您將撰寫一個 Scala 應用程式，用來計算範例資料檔案中含有 'a' 和 'b' 的行數。
 
-#### <a name="write-a-scala-program"></a>Write a Scala program
-In this section, you write a Scala program that counts the number of lines containing 'a' and 'b' in the sample data file.
+1. 開啟文字編輯器，並貼上下列程式碼：
 
-1. Open a text editor and paste the following code:
 
+		/* SimpleApp.scala */
+		import org.apache.spark.SparkContext
+		import org.apache.spark.SparkContext._
+		import org.apache.spark.SparkConf
 
-        /* SimpleApp.scala */
-        import org.apache.spark.SparkContext
-        import org.apache.spark.SparkContext._
-        import org.apache.spark.SparkConf
+		object SimpleApp {
+		  def main(args: Array[String]) {
+		    val logFile = "/example/data/gutenberg/davinci.txt"			//Location of the sample data file on Azure Blob storage
+		    val conf = new SparkConf().setAppName("SimpleApplication")
+		    val sc = new SparkContext(conf)
+		    val logData = sc.textFile(logFile, 2).cache()
+		    val numAs = logData.filter(line => line.contains("a")).count()
+		    val numBs = logData.filter(line => line.contains("b")).count()
+		    println("Lines with a: %s, Lines with b: %s".format(numAs, numBs))
+		  }
+		}
 
-        object SimpleApp {
-          def main(args: Array[String]) {
-            val logFile = "/example/data/gutenberg/davinci.txt"         //Location of the sample data file on Azure Blob storage
-            val conf = new SparkConf().setAppName("SimpleApplication")
-            val sc = new SparkContext(conf)
-            val logData = sc.textFile(logFile, 2).cache()
-            val numAs = logData.filter(line => line.contains("a")).count()
-            val numBs = logData.filter(line => line.contains("b")).count()
-            println("Lines with a: %s, Lines with b: %s".format(numAs, numBs))
-          }
-        }
+2. 以 **SimpleApp.scala** 的名稱儲存檔案。
 
-2. Save the file with the name **SimpleApp.scala**.
+#### 建置 Scala 程式
+在本節中，您將使用<a href="http://www.scala-sbt.org/0.13/docs/index.html" target="_blank">簡單建置工具</a> (或稱 sbt) 來建置 Scala 程式。sbt 需要 Java 1.6 或更新版本，因此請先確定您已安裝正確版本的 Java，再繼續進行本節。
 
-#### <a name="build-the-scala-program"></a>Build the Scala program
-In this section, you use the <a href="http://www.scala-sbt.org/0.13/docs/index.html" target="_blank">Simple Build Tool</a> (or sbt) to build the Scala program. sbt requires Java 1.6 or later, so make sure you have the right version of Java installed before continuing with this section.
+1. 從 http://www.scala-sbt.org/0.13/tutorial/Installing-sbt-on-Windows.html 安裝 sbt。
+2. 建立一個稱為 **SimpleScalaApp** 的資料夾，並在此資料夾中建立一個稱為 **simple.sbt** 的檔案。這是包含 Scala 版本、程式庫相依性等相關資訊的組態檔。將下列程式碼貼到 simple.sbt 檔案中並加以儲存：
 
-1. Install sbt from http://www.scala-sbt.org/0.13/tutorial/Installing-sbt-on-Windows.html.
-2. Create a folder called **SimpleScalaApp**, and within this folder create a file called **simple.sbt**. This is a configuration file that contains information about the Scala version, library dependencies, etc. Paste the following into the simple.sbt file and save it:
 
+		name := "SimpleApp"
 
-        name := "SimpleApp"
+		version := "1.0"
 
-        version := "1.0"
+		scalaVersion := "2.10.4"
 
-        scalaVersion := "2.10.4"
+		libraryDependencies += "org.apache.spark" %% "spark-core" % "1.2.0"
 
-        libraryDependencies += "org.apache.spark" %% "spark-core" % "1.2.0"
 
 
+	>[AZURE.NOTE] 請確定在檔案中保留那些空白行。
 
-    >[AZURE.NOTE] Make sure you retain the empty lines in the file.
 
+3. 在 **SimpleScalaApp** 資料夾下，建立目錄結構 **\\src\\main\\scala**，然後將您稍早建立的 Scala 程式 (**SimpleApp.scala**) 貼到 \\src\\main\\scala 資料夾下。
+4. 開啟命令提示字元，瀏覽至 SimpleScalaApp 目錄，並輸入下列命令：
 
-3. Under the **SimpleScalaApp** folder, create a directory structure **\src\main\scala** and paste the Scala program (**SimpleApp.scala**) you created earlier under the \src\main\scala folder.
-4. Open a command prompt, navigate to the SimpleScalaApp directory, and enter the following command:
 
+		sbt package
 
-        sbt package
 
+	在編譯應用程式之後，您會看到 **simpleapp\_2.10-1.0.jar** 檔案建立在根 SimpleScalaApp 資料夾內的 **\\target\\scala-2.10** 目錄下。
 
-    Once the application is compiled, you will see a **simpleapp_2.10-1.0.jar** file created under the **\target\scala-2.10** directory within the root SimpleScalaApp folder.
 
+#### 在叢集上執行工作
+在本節中，您將從遠端連線至已安裝 Spark 的叢集，然後複製 SimpleScalaApp 專案的目標資料夾。接著，您將使用 **spark-submit** 命令在叢集上提交工作。
 
-#### <a name="run-the-job-on-the-cluster"></a>Run the job on the cluster
-In this section, you remote into the cluster that has Spark installed and then copy the SimpleScalaApp project's target folder. You then use the **spark-submit** command to submit the job on the cluster.
+1. 從遠端連線至已安裝 Spark 的叢集。從您撰寫並建置 SimpleApp.scala 程式的電腦上複製 **SimpleScalaApp\\target** 資料夾，並將它貼到叢集上的位置。
+2. 在 RDP 工作階段中，從桌面開啟 Hadoop 命令列，然後瀏覽至您貼上 **target** 資料夾的位置。
+3. 輸入下列命令來執行 SimpleApp.scala 程式：
 
-1. Remote into the cluster that has Spark installed. From the computer where you wrote and built the SimpleApp.scala program, copy the **SimpleScalaApp\target** folder and paste it to a location on the cluster.
-2. In the RDP session, from the desktop, open the Hadoop command line, and navigate to the location where you pasted the **target** folder.
-3. Enter the following command to run the SimpleApp.scala program:
 
+		C:\apps\dist\spark-1.2.0\bin\spark-submit --class "SimpleApp" --master local target/scala-2.10/simpleapp_2.10-1.0.jar
 
-        C:\apps\dist\spark-1.2.0\bin\spark-submit --class "SimpleApp" --master local target/scala-2.10/simpleapp_2.10-1.0.jar
+4. 當程式執行完成時，輸出會顯示在主控台上。
 
-4. When the program finishes running, the output is displayed on the console.
 
+		Lines with a: 21374, Lines with b: 11430
 
-        Lines with a: 21374, Lines with b: 11430
+## 使用 Azure PowerShell 安裝 Spark
 
-## <a name="install-spark-using-azure-powershell"></a>Install Spark using Azure PowerShell
+本節中，我們使用 **<a href = "http://msdn.microsoft.com/library/dn858088.aspx" target="_blank">Add-AzureHDInsightScriptAction</a>** Cmdlet，使用指令碼動作叫用指令碼以自訂叢集。在繼續之前，請確認您已安裝和設定 Azure PowerShell。如需設定工作站以執行適用於 HDInsight 的 Azure Powershell Cmdlet 的相關資訊，請參閱[安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 
-In this section, we use the **<a href = "http://msdn.microsoft.com/library/dn858088.aspx" target="_blank">Add-AzureHDInsightScriptAction</a>** cmdlet to invoke scripts by using Script Action to customize a cluster. Before proceeding, make sure you have installed and configured Azure PowerShell. For information on configuring a workstation to run Azure PowerShell cmdlets for HDInsight, see [Install and configure Azure PowerShell](../powershell-install-configure.md).
+執行下列步驟：
 
-Perform the following steps:
+1. 開啟 Azure PowerShell 視窗，並宣告下列變數：
 
-1. Open an Azure PowerShell window and declare the following variables:
+		# Provide values for these variables
+		$subscriptionName = "<SubscriptionName>"		# Name of the Azure subscription
+		$clusterName = "<HDInsightClusterName>"			# HDInsight cluster name
+		$storageAccountName = "<StorageAccountName>"	# Azure Storage account that hosts the default container
+		$storageAccountKey = "<StorageAccountKey>"      # Key for the Storage account
+		$containerName = $clusterName
+		$location = "<MicrosoftDataCenter>"				# Location of the HDInsight cluster. It must be in the same data center as the Storage account.
+		$clusterNodes = <ClusterSizeInNumbers>			# Number of nodes in the HDInsight cluster
+		$version = "<HDInsightClusterVersion>"          # For example, "3.2"
 
-        # Provide values for these variables
-        $subscriptionName = "<SubscriptionName>"        # Name of the Azure subscription
-        $clusterName = "<HDInsightClusterName>"         # HDInsight cluster name
-        $storageAccountName = "<StorageAccountName>"    # Azure Storage account that hosts the default container
-        $storageAccountKey = "<StorageAccountKey>"      # Key for the Storage account
-        $containerName = $clusterName
-        $location = "<MicrosoftDataCenter>"             # Location of the HDInsight cluster. It must be in the same data center as the Storage account.
-        $clusterNodes = <ClusterSizeInNumbers>          # Number of nodes in the HDInsight cluster
-        $version = "<HDInsightClusterVersion>"          # For example, "3.2"
+2. 指定設定值，例如要使用的叢集中節點和預設儲存體。
 
-2. Specify the configuration values such as nodes in the cluster and the default storage to be used.
+		# Specify the configuration options
+		Select-AzureSubscription $subscriptionName
+		$config = New-AzureHDInsightClusterConfig -ClusterSizeInNodes $clusterNodes
+		$config.DefaultStorageAccount.StorageAccountName="$storageAccountName.blob.core.windows.net"
+		$config.DefaultStorageAccount.StorageAccountKey=$storageAccountKey
+		$config.DefaultStorageAccount.StorageContainerName=$containerName
 
-        # Specify the configuration options
-        Select-AzureSubscription $subscriptionName
-        $config = New-AzureHDInsightClusterConfig -ClusterSizeInNodes $clusterNodes
-        $config.DefaultStorageAccount.StorageAccountName="$storageAccountName.blob.core.windows.net"
-        $config.DefaultStorageAccount.StorageAccountKey=$storageAccountKey
-        $config.DefaultStorageAccount.StorageContainerName=$containerName
+3. 使用 **Add-AzureHDInsightScriptAction** Cmdlet 將指令碼動作加入叢集組態。稍後在建立叢集時，將會執行指令碼動作。
 
-3. Use the **Add-AzureHDInsightScriptAction** cmdlet to add a script action to cluster configuration. Later, when the cluster is being created, the script action gets executed.
+		# Add a script action to the cluster configuration
+		$config = Add-AzureHDInsightScriptAction -Config $config -Name "Install Spark" -ClusterRoleCollection HeadNode -Uri https://hdiconfigactions.blob.core.windows.net/sparkconfigactionv03/spark-installer-v03.ps1
 
-        # Add a script action to the cluster configuration
-        $config = Add-AzureHDInsightScriptAction -Config $config -Name "Install Spark" -ClusterRoleCollection HeadNode -Uri https://hdiconfigactions.blob.core.windows.net/sparkconfigactionv03/spark-installer-v03.ps1
+	**Add-AzureHDInsightScriptAction** Cmdlet 可接受下列參數：
 
-    **Add-AzureHDInsightScriptAction** cmdlet takes the following parameters:
+	<table style="border-color: #c6c6c6; border-width: 2px; border-style: solid; border-collapse: collapse;">
+	<tr>
+	<th style="border-color: #c6c6c6; border-width: 2px; border-style: solid; border-collapse: collapse; width:90px; padding-left:5px; padding-right:5px;">參數</th>
+	<th style="border-color: #c6c6c6; border-width: 2px; border-style: solid; border-collapse: collapse; width:550px; padding-left:5px; padding-right:5px;">定義</th></tr>
+	<tr>
+	<td style="border-color: #c6c6c6; border-width: 2px; border-style: solid; border-collapse: collapse; padding-left:5px;">設定</td>
+	<td style="border-color: #c6c6c6; border-width: 2px; border-style: solid; border-collapse: collapse; padding-left:5px; padding-right:5px;">要在其中新增指令碼動作資訊的設定物件。</td></tr>
+	<tr>
+	<td style="border-color: #c6c6c6; border-width: 2px; border-style: solid; border-collapse: collapse; padding-left:5px;">名稱</td>
+	<td style="border-color: #c6c6c6; border-width: 2px; border-style: solid; border-collapse: collapse; padding-left:5px;">指令碼動作的名稱。</td></tr>
+	<tr>
+	<td style="border-color: #c6c6c6; border-width: 2px; border-style: solid; border-collapse: collapse; padding-left:5px;">ClusterRoleCollection</td>
+	<td style="border-color: #c6c6c6; border-width: 2px; border-style: solid; border-collapse: collapse; padding-left:5px;">指定執行自訂指定碼的節點。有效值為 HeadNode (在前端節點上安裝) 或 DataNode (在所有資料節點上安裝)。您可以使用其中一個或兩個值。</td></tr>
+	<tr>
+	<td style="border-color: #c6c6c6; border-width: 2px; border-style: solid; border-collapse: collapse; padding-left:5px;">Uri</td>
+	<td style="border-color: #c6c6c6; border-width: 2px; border-style: solid; border-collapse: collapse; padding-left:5px;">指定所執行之指令碼的 URI。</td></tr>
+	<tr>
+	<td style="border-color: #c6c6c6; border-width: 2px; border-style: solid; border-collapse: collapse; padding-left:5px;">參數</td>
+	<td style="border-color: #c6c6c6; border-width: 2px; border-style: solid; border-collapse: collapse; padding-left:5px;">指令碼所需的參數。本主題中使用的範例指令碼不需要任何參數，因此您不會在上述程式碼片段中看到此參數。
+	</td></tr>
+	</table>
 
-    <table style="border-color: #c6c6c6; border-width: 2px; border-style: solid; border-collapse: collapse;">
-    <tr>
-    <th style="border-color: #c6c6c6; border-width: 2px; border-style: solid; border-collapse: collapse; width:90px; padding-left:5px; padding-right:5px;">Parameter</th>
-    <th style="border-color: #c6c6c6; border-width: 2px; border-style: solid; border-collapse: collapse; width:550px; padding-left:5px; padding-right:5px;">Definition</th></tr>
-    <tr>
-    <td style="border-color: #c6c6c6; border-width: 2px; border-style: solid; border-collapse: collapse; padding-left:5px;">Config</td>
-    <td style="border-color: #c6c6c6; border-width: 2px; border-style: solid; border-collapse: collapse; padding-left:5px; padding-right:5px;">The configuration object to which script action information is added.</td></tr>
-    <tr>
-    <td style="border-color: #c6c6c6; border-width: 2px; border-style: solid; border-collapse: collapse; padding-left:5px;">Name</td>
-    <td style="border-color: #c6c6c6; border-width: 2px; border-style: solid; border-collapse: collapse; padding-left:5px;">Name of the script action.</td></tr>
-    <tr>
-    <td style="border-color: #c6c6c6; border-width: 2px; border-style: solid; border-collapse: collapse; padding-left:5px;">ClusterRoleCollection</td>
-    <td style="border-color: #c6c6c6; border-width: 2px; border-style: solid; border-collapse: collapse; padding-left:5px;">Specifies the nodes on which the customization script is run. The valid values are HeadNode (to install on the head node) or DataNode (to install on all the data nodes). You can use either or both values.</td></tr>
-    <tr>
-    <td style="border-color: #c6c6c6; border-width: 2px; border-style: solid; border-collapse: collapse; padding-left:5px;">Uri</td>
-    <td style="border-color: #c6c6c6; border-width: 2px; border-style: solid; border-collapse: collapse; padding-left:5px;">Specifies the URI to the script that is executed.</td></tr>
-    <tr>
-    <td style="border-color: #c6c6c6; border-width: 2px; border-style: solid; border-collapse: collapse; padding-left:5px;">Parameters</td>
-    <td style="border-color: #c6c6c6; border-width: 2px; border-style: solid; border-collapse: collapse; padding-left:5px;">Parameters required by the script. The sample script used in this topic does not require any parameters, and hence you do not see this parameter in the snippet above.
-    </td></tr>
-    </table>
+4. 最後，開始建立已安裝 Spark 的自訂叢集。
 
-4. Finally, start creating a customized cluster with Spark installed.  
+		# Start creating a cluster with Spark installed
+		New-AzureHDInsightCluster -Config $config -Name $clusterName -Location $location -Version $version
 
-        # Start creating a cluster with Spark installed
-        New-AzureHDInsightCluster -Config $config -Name $clusterName -Location $location -Version $version
+出現提示時，請輸入叢集的認證。建立叢集可能需要幾分鐘的時間。
 
-When prompted, enter the credentials for the cluster. It can take several minutes before the cluster is created.
+## 使用 PowerShell 安裝 Spark
 
-## <a name="install-spark-using-powershell"></a>Install Spark using PowerShell
+請參閱[使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster.md#call_scripts_using_powershell)。
 
-See [Customize HDInsight clusters using Script Action](hdinsight-hadoop-customize-cluster.md#call_scripts_using_powershell).
+## 使用 .NET SDK 安裝 Spark
 
-## <a name="install-spark-using-.net-sdk"></a>Install Spark using .NET SDK
+請參閱[使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster.md#call_scripts_using_azure_powershell)。
 
-See [Customize HDInsight clusters using Script Action](hdinsight-hadoop-customize-cluster.md#call_scripts_using_azure_powershell).
 
+## 另請參閱
 
-## <a name="see-also"></a>See also
-
-- [Create Hadoop clusters in HDInsight](hdinsight-provision-clusters.md): create HDInsight clusters.
-- [Get Started with Apache Spark on HDInsight](hdinsight-apache-spark-jupyter-spark-sql.md): get started with Spark on HDInsight.
-- [Customize HDInsight cluster using Script Action][hdinsight-cluster-customize]: customize HDInsight clusters using Script Action.
-- [Develop Script Action scripts for HDInsight](hdinsight-hadoop-script-actions.md): develop Script Action scripts.
-- [Install R on HDInsight clusters][hdinsight-install-r] provides instructions on how to use cluster customization to install and use R on HDInsight Hadoop clusters. R is an open-source language and environment for statistical computing. It provides hundreds of built-in statistical functions and its own programming language that combines aspects of functional and object-oriented programming. It also provides extensive graphical capabilities.
-- [Install Giraph on HDInsight clusters](hdinsight-hadoop-giraph-install.md). Use cluster customization to install Giraph on HDInsight Hadoop clusters. Giraph allows you to perform graph processing by using Hadoop, and can be used with Azure HDInsight.
-- [Install Solr on HDInsight clusters](hdinsight-hadoop-solr-install.md). Use cluster customization to install Solr on HDInsight Hadoop clusters. Solr allows you to perform powerful search operations on data stored.
+- [在 HDInsight 中建立 Hadoop 叢集](hdinsight-provision-clusters.md)：建立 HDInsight 叢集。
+- [開始使用 HDInsight 上的 Apache Spark](hdinsight-apache-spark-jupyter-spark-sql.md)：開始在 HDInsight 上使用 Spark。
+- [使用指令碼動作自訂 HDInsight 叢集][hdinsight-cluster-customize]：使用指令碼動作自訂 HDInsight 叢集。
+- [開發 HDInsight 的指令碼動作指令碼](hdinsight-hadoop-script-actions.md)：開發指令碼動作指令碼。
+- [在 HDInsight 叢集上安裝 R][hdinsight-install-r] 說明如何使用叢集自訂，以在 HDinsight Hadoop 叢集上安裝和使用 R。R 是一個用於統計計算的開放原始碼語言和環境。它提供數百個內建的統計函式及它自己的程式設計語言，此語言結合了函式型和物件導向程式設計的層面。它也提供廣泛的圖形功能。
+- [在 HDInsight 叢集上安裝 Giraph](hdinsight-hadoop-giraph-install.md)。在 HDInsight Hadoop 叢集上使用叢集自訂安裝 Giraph。Giraph 可讓您利用 Hadoop 執行圖形處理，且可以搭配 Azure HDInsight 一起使用。
+- [在 HDInsight 叢集上安裝 Solr](hdinsight-hadoop-solr-install.md)。在 HDInsight Hadoop 叢集上使用叢集自訂安裝 Solr。Solr 可讓您對儲存的資料執行功能強大的搜尋作業。
 
 [hdinsight-provision]: hdinsight-provision-clusters.md
 [hdinsight-install-r]: hdinsight-hadoop-r-scripts.md
 [hdinsight-cluster-customize]: hdinsight-hadoop-customize-cluster.md
 [powershell-install-configure]: powershell-install-configure.md
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

@@ -1,12 +1,9 @@
-An Azure load balancer is a Layer-4 (TCP, UDP) load balancer. The load balancer provides high availability by distributing incoming traffic among healthy service instances in cloud services or virtual machines in a load balancer set. Azure Load Balancer can also present those services on multiple ports, multiple IP addresses, or both.
+Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。此負載平衡器可藉由在負載平衡器集合中，將連入流量分散於雲端服務或虛擬機器中狀況良好的服務執行個體之間，來提供高可用性。Azure Load Balancer 也會在多個連接埠、多個 IP 位址或兩者上顯示這些服務。
 
-You can configure a load balancer to:
+您可以設定負載平衡器：
 
-* Load balance incoming Internet traffic to virtual machines (VMs). We refer to a load balancer in this scenario as an [Internet-facing load balancer](../articles/load-balancer/load-balancer-internet-overview.md).
-* Load balance traffic between VMs in a virtual network (VNet), between VMs in cloud services, or between on-premises computers and VMs in a cross-premises virtual network. We refer to a load balancer in this scenario as an [internal load balancer (ILB)](../articles/load-balancer/load-balancer-internal-overview.md).
-* Forward external traffic to a specific VM instance.
+* 對虛擬機器 (VM) 的連入網際網路流量進行負載平衡。我們將此案例中的負載平衡器稱為[網際網路面向的負載平衡器](../articles/load-balancer/load-balancer-internet-overview.md)。
+* 對虛擬網路 (VNet) 中的 VM 之間、雲端服務中的 VM 之間，或內部部署電腦與跨單位虛擬網路中的 VM 之間的流量進行負載平衡。我們將此案例中的負載平衡器稱為[內部負載平衡器 (ILB)](../articles/load-balancer/load-balancer-internal-overview.md)。
+* 將外部流量轉送到特定的 VM 執行個體。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

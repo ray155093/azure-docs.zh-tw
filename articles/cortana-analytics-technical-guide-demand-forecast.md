@@ -1,309 +1,299 @@
 <properties
-    pageTitle="Demand Forecast in Energy Technical Guide | Microsoft Azure"
-    description="A technical guide to the Solution Template with Microsoft Cortana Intelligence for demand forecast in energy."
-    services="cortana-analytics"
-    documentationCenter=""
-    authors="yijichen"
-    manager="ilanr9"
-    editor="yijichen"/>
+	pageTitle="能源需求預測技術指南 | Microsoft Azure"
+	description="具有能源需求預測之 Microsoft Cortana Intelligence 的解決方案範本技術指南。"
+	services="cortana-analytics"
+	documentationCenter=""
+	authors="yijichen"
+	manager="ilanr9"
+	editor="yijichen"/>
 
 <tags
-    ms.service="cortana-analytics"
-    ms.workload="data-services"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="05/16/2016"
-    ms.author="inqiu;yijichen;ilanr9"/>
+	ms.service="cortana-analytics"
+	ms.workload="data-services"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="05/16/2016"
+	ms.author="inqiu;yijichen;ilanr9"/>
 
+# 能源需求預測之 Cortana Intelligence 解決方案範本的技術指南
 
-# <a name="technical-guide-to-the-cortana-intelligence-solution-template-for-demand-forecast-in-energy"></a>Technical guide to the Cortana Intelligence Solution Template for demand forecast in energy
+## **概觀**
 
-## <a name="**overview**"></a>**Overview**
+解決方案範本的設計是要加速在 Cortana Intelligence 套件之上建置 E2E 示範的程序。已部署的範本會以所需的 Cortana Intelligence 元件佈建您的訂用帳戶，並建立兩者間的關聯性。它也會在資料管線上植入從資料模擬應用程式所產生的範例資料。從提供的連結下載資料模擬器並將它安裝在本機電腦上；如需使用模擬器的指示，請參閱 readme.txt 檔案。由模擬器產生的資料將會產生資料管線，並開始產生機器學習服務預測，然後您可以在 Power BI 儀表板上將其視覺化。
 
-Solution Templates are designed to accelerate the process of building an E2E demo on top of Cortana Intelligence Suite. A deployed template will provision your subscription with necessary Cortana Intelligence component and build the relationships between. It also seeds the data pipeline with sample data getting generated from a data simulation application. Download the data simulator from the link provided and install it on your local machine, refer to the readme.txt file for instruction on using the simulator. Data generated from the simulator will hydrate the data pipeline and start generating machine learning prediction which can then be visualized on the Power BI dashboard.
+您可以在[這裡](https://gallery.cortanaintelligence.com/SolutionTemplate/Demand-Forecasting-for-Energy-1)找到解決方案範本
 
-The solution template can be found [here](https://gallery.cortanaintelligence.com/SolutionTemplate/Demand-Forecasting-for-Energy-1) 
+部署程序將引導您完成數個步驟來設定解決方案的認證。務必記錄這些認證，例如您在部署期間提供的解決方案名稱、使用者名稱和密碼。
 
-The deployment process will guide you through several steps to set up your solution credentials. Make sure you record these credentials such as solution name, username, and password you provide during the deployment.
+這份文件的目標在於說明參考架構與隨著此方案範本佈建在您的訂用帳戶的不同元件。文件也會示範如何使用您自己的實際資料來取代範例資料，以便看到您自己的資料的見解/預測。此外，文件將說明如果想要以您自己的資料自訂解決方案，您需要修改的解決方案範本部份。最後會提供如何建置此方案範本的 Power BI 儀表板的指示。
 
-The goal of this document is to explain the reference architecture and different components provisioned in your subscription as part of this Solution Template. The document also talks about how to replace the sample data, with real data of your own to be able to see insights/predictions from you won data. Additionally, the document talks about the parts of the Solution Template that would need to be modified if you want to customize the solution with your own data. Instructions on how to build the Power BI dashboard for this Solution Template are provided at the end.
-
-## <a name="**big-picture**"></a>**Big Picture**
+## **概觀**
 
 ![](media\cortana-analytics-technical-guide-demand-forecast\ca-topologies-energy-forecasting.png)
 
-### <a name="architecture-explained"></a>Architecture Explained
-When the solution is deployed, various Azure services within Cortana Analytics Suite are activated (*i.e.* Event Hub, Stream Analytics, HDInsight, Data Factory, Machine Learning, *etc.*). The architecture diagram above shows, at a high level, how the Demand Forecasting for Energy Solution Template is constructed from end-to-end. You will be able to investigate these services by clicking on them on the solution template diagram created with the deployment of the solution. The following sections describe each piece.
+### 所說明的架構
+部署方案時，會啟動 Cortana Analytics 套件中的各種 Azure 服務 (*也就是* 事件中樞、串流分析、HDInsight、Data Factory，機器學習服務等)。上述架構圖顯示概括而言如何從端對端建構能源需求預測解決方案範本。您將可以調查這些服務，方法是在隨著解決方案部署而建立的解決方案範本圖表上按一下。下列章節說明每個片段。
 
-## <a name="**data-source-and-ingestion**"></a>**Data Source and Ingestion**
+## **資料來源及擷取**
 
-### <a name="synthetic-data-source"></a>Synthetic Data Source
+### 綜合資料來源
 
-For this template the data source used is generated from a desktop application that you will download and run locally after successful deployment. You will find the instructions to download and install this application in the properties bar when you select the first node called Energy Forecasting Data Simulator on the solution template diagram. This application feeds the [Azure Event Hub](#azure-event-hub) service with data points, or events, that will be used in the rest of the solution flow.
+針對此範本，使用的資料來源是從桌面應用程式產生，您將會下載應用程式並於部署成功後在本機執行。當您在解決方案範本圖表上選取稱為「能源預測資料模擬器」的第一個節點時，可以在屬性列中找到下載及安裝此應用程式的指示。此應用程式會將在解決方案流程的其餘部分使用的資料點或事件送入 [Azure 事件中樞](#azure-event-hub)服務。
 
-The event generation application will populate the Azure Event Hub only while it's executing on your computer.
+只有當它在您的電腦上執行時，事件產生應用程式才會填入 Azure 事件中樞。
 
-### <a name="azure-event-hub"></a>Azure Event Hub
+### Azure 事件中樞
 
-The [Azure Event Hub](https://azure.microsoft.com/services/event-hubs/) service is the recipient of the input provided by the Synthetic Data Source described above.
+[Azure 事件中樞](https://azure.microsoft.com/services/event-hubs/)服務是上述的綜合資料來源所提供的輸入收件者。
 
-## <a name="**data-preparation-and-analysis**"></a>**Data Preparation and Analysis**
-
-
-### <a name="azure-stream-analytics"></a>Azure Stream Analytics
-
-The [Azure Stream Analytics](https://azure.microsoft.com/services/stream-analytics/) service is used to provide near real-time analytics on the input stream from the [Azure Event Hub](#azure-event-hub) service and publish results onto a [Power BI](https://powerbi.microsoft.com) dashboard as well as archiving all raw incoming events to the [Azure Storage](https://azure.microsoft.com/services/storage/) service for later processing by the [Azure Data Factory](https://azure.microsoft.com/documentation/services/data-factory/) service.
-
-### <a name="hd-insights-custom-aggregation"></a>HD Insights Custom Aggregation
-
-The Azure HD Insight service is used to run [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) scripts (orchestrated by Azure Data Factory) to provide aggregations on the raw events that were archived using the Azure Stream Analytics service.
-
-### <a name="azure-machine-learning"></a>Azure Machine Learning
-
-The [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) service is used (orchestrated by Azure Data Factory) to make forecast on future power consumption of a particular region given the inputs received.
-
-## <a name="**data-publishing**"></a>**Data Publishing**
+## **資料準備和分析**
 
 
-### <a name="azure-sql-database-service"></a>Azure SQL Database Service
+### Azure 串流分析
 
-The [Azure SQL Database](https://azure.microsoft.com/services/sql-database/) service is used to store (managed by Azure Data Factory) the predictions received by the Azure Machine Learning service that will be consumed in the [Power BI](https://powerbi.microsoft.com) dashboard.
+[Azure 串流分析](https://azure.microsoft.com/services/stream-analytics/) 服務用來為來自 [Azure 事件中樞](#azure-event-hub)服務的輸入串流提供近乎即時的分析，並將結果發佈到 [Power BI](https://powerbi.microsoft.com) 儀表板，以及保存所有未經處理的內送事件 [Azure 儲存體](https://azure.microsoft.com/services/storage/) 服務，供 [Azure Data Factory](https://azure.microsoft.com/documentation/services/data-factory/) 服務後續處理。
 
-## <a name="**data-consumption**"></a>**Data Consumption**
+### HD Insights 自訂彙總
 
-### <a name="power-bi"></a>Power BI
+Azure HD Insight 服務用來執行 [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) 指令碼 (由 Azure Data Factory 協調)，以提供使用 Azure 串流分析服務封存的原始事件的彙總。
 
-The [Power BI](https://powerbi.microsoft.com) service is used to show a dashboard that contains aggregations provided by the [Azure Stream Analytics](https://azure.microsoft.com/services/stream-analytics/) service as well as demand forecast results stored in [Azure SQL Database](https://azure.microsoft.com/services/sql-database/) that were produced using the [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) service. For Instructions on how to build the Power BI dashboard for this Solution Template, refer to the section below.
+### Azure Machine Learning
 
-## <a name="**how-to-bring-in-your-own-data**"></a>**How to bring in your own data**
+使用 [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) 服務 (由 Azure Data Factory 協調) 預測特定區域 (提供所收到輸入資料) 的未來用電量。
 
-This section describes how to bring your own data to Azure, and what areas would require changes for the data you bring into this architecture.
-
-It's unlikely that any dataset you bring would match the dataset used for this solution template. Understanding your data and the requirements will be crucial in how you modify this template to work with your own data. If this is your first exposure to the Azure Machine Learning service, you can get an introduction to it by using the example in [How to create your first experiment](machine-learning\machine-learning-create-experiment.md).
-
-The following sections will discuss the sections of the template that will require modifications when a new dataset is introduced.
-
-### <a name="azure-event-hub"></a>Azure Event Hub
-
-The [Azure Event Hub](https://azure.microsoft.com/services/event-hubs/) service is very generic, such that data can be posted to the hub in either CSV or JSON format. No special processing occurs in the Azure Event Hub, but it is important you understand the data that is fed into it.
-
-This document does not describe how to ingest your data, but one can easily send events or data to an Azure Event Hub, using the [Event Hub API](event-hubs\event-hubs-programming-guide.md).
-
-### <a name="azure-stream-analytics"></a>Azure Stream Analytics
-
-The [Azure Stream Analytics](https://azure.microsoft.com/services/stream-analytics/) service is used to provide near real-time analytics by reading from data streams and outputting data to any number of sources.
-
-For the Demand Forecasting for Energy Solution Template, the Azure Stream Analytics query consists of two sub-queries, each consuming events from the Azure Event Hub service as inputs and having outputs to two distinct locations. These outputs consist of one Power BI dataset and one Azure Storage location.
-
-The [Azure Stream Analytics](https://azure.microsoft.com/services/stream-analytics/) query can be found by:
-
--   Logging into the [Azure management portal](https://manage.windowsazure.com/)
-
--   Locating the stream analytics jobs ![](media\cortana-analytics-technical-guide-demand-forecast\icon-stream-analytics.png) that were generated when the solution was deployed. One is for pushing data to blob storage (e.g. mytest1streaming432822asablob) and the other one is for pushing data to Power BI (e.g. mytest1streaming432822asapbi).
+## **資料發佈**
 
 
--   Selecting
+### Azure SQL Database 服務
 
-    -   ***INPUTS*** to view the query input
+[Azure SQL Database](https://azure.microsoft.com/services/sql-database/) 服務用來儲存 (由 Azure Data Factory 管理) 將 [Power BI](https://powerbi.microsoft.com) 儀表板取用之 Azure Machine Learning 服務收到的預測。
 
-    -   ***QUERY*** to view the query itself
+## **資料耗用量**
 
-    -   ***OUTPUTS*** to view the different outputs
+### Power BI
 
-Information about Azure Stream Analytics query construction can be found in the [Stream Analytics Query Reference](https://msdn.microsoft.com/library/azure/dn834998.aspx) on MSDN.
+[Power BI](https://powerbi.microsoft.com) 服務用來顯示儀表板，其中包含 [Azure 串流分析](https://azure.microsoft.com/services/stream-analytics/) 服務提供的彙總，以及 [Azure SQL Database](https://azure.microsoft.com/services/sql-database/) 中所儲存之使用 [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) 服務產生的需求預測結果。如需如何建置此方案範本的 Power BI 儀表板的指示，請參閱下一節。
 
-In this solution, the Azure Stream Analytics job which outputs dataset with near real-time analytics information about the incoming data stream to a Power BI dashboard is provided as part of this solution template. Because there's implicit knowledge about the incoming data format, these queries would need to be altered based on your data format.
+## **如何帶入您自己的資料**
 
-The other Azure Stream Analytics job outputs all [Event Hub](https://azure.microsoft.com/services/event-hubs/) events to [Azure Storage](https://azure.microsoft.com/services/storage/) and hence requires no alteration regardless of your data format as the full event information is streamed to storage.
+本節說明如何將您自己的資料帶入 Azure，以及對於您放入這個架構的資料，需要變更哪些區域。
 
-### <a name="azure-data-factory"></a>Azure Data Factory
+您放入的任何資料集不太可能會符合用於這個解決方案範本的資料集。了解您的資料與需求對於您如何修改此範本以搭配您自己的資料非常重要。如果這是您第一次使用 Azure Machine Learning 服務，您可以使用[如何建立您的第一個實驗](machine-learning\machine-learning-create-experiment.md)中的範例來取得簡介。
 
-The [Azure Data Factory](https://azure.microsoft.com/documentation/services/data-factory/) service orchestrates the movement and processing of data. In the Demand Forecasting for Energy Solution Template the data factory is made up of twelve [pipelines](data-factory\data-factory-create-pipelines.md) that move and process the data using various technologies.
+下列各節將討論推出新資料集將需要修改的範本區段。
 
-  You can access your data factory by opening the Data Factory node at the bottom of the solution template diagram created with the deployment of the solution. This will take you to the data factory on your Azure management portal. If you see errors under your datasets, you can ignore those as they are due to data factory being deployed before the data generator was started. Those errors do not prevent your data factory from functioning.
+### Azure 事件中樞
 
-This section discusses the necessary [pipelines](data-factory\data-factory-create-pipelines.md) and [activities](data-factory\data-factory-create-pipelines.md) contained in the [Azure Data Factory](https://azure.microsoft.com/documentation/services/data-factory/). Below is the diagram view of the solution.
+[Azure 事件中樞](https://azure.microsoft.com/services/event-hubs/)服務非常廣泛，因而資料可以以 CSV 或 JSON 格式張貼至中樞。Azure 事件中樞中未發生任何特殊處理，但務必了解提供給它的資料。
+
+這份文件不會描述如何內嵌您的資料，但您可以使用[事件中樞 API](event-hubs\event-hubs-programming-guide.md)，輕鬆地傳送事件或資料到 Azure 事件中樞。
+
+### Azure 串流分析
+
+[Azure 串流分析](https://azure.microsoft.com/services/stream-analytics/)服務用來提供近乎即時分析，方法是從資料串流讀取並輸出資料至任意數目的來源。
+
+針對能源需求預測的解決方案範本，Azure 串流分析查詢包含兩個子查詢，每個均從 Azure 事件中樞服務取用事件做為輸入，並且輸出至兩個不同的位置。這些輸出包含一個 Power BI 資料集和一個 Azure 儲存體位置。
+
+可以透過以下方式找到 [Azure 串流分析](https://azure.microsoft.com/services/stream-analytics/)查詢：
+
+-   登入 [Azure 管理入口網站](https://manage.windowsazure.com/)
+
+-   找出部署解決方案時所產生的串流分析作業 ![](media\cortana-analytics-technical-guide-demand-forecast\icon-stream-analytics.png)。一個用於將資料推送至 Blob 儲存體 (例如 mytest1streaming432822asablob)，另一種用於將資料推送至 Power BI (例如 mytest1streaming432822asapbi)。
+
+
+-   選取
+
+    -   **輸入**以檢視查詢輸入
+
+    -   **查詢**以檢視查詢本身
+
+    -   **輸出**以檢視不同的輸出
+
+Azure 串流分析查詢建構的相關資訊可在 MSDN 上的[串流分析查詢參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)中找到。
+
+在此解決方案中，會將資料集 (具有近乎即時的內送資料串流相關分析資訊) 輸出到 Power BI 儀表板的 Azure 串流分析作業會在這個解決方案範本中提供。因為對於內送資料格式具有隱含知識，必須根據您的資料格式變更這些查詢。
+
+其他 Azure 串流分析作業會將所有[事件中樞](https://azure.microsoft.com/services/event-hubs/)事件輸出到 [Azure 儲存體](https://azure.microsoft.com/services/storage/)，因為會將完整的事件資訊串流至儲存體，因此不論資料格式為何都不需進行修改。
+
+### Azure Data Factory
+
+[Azure Data Factory](https://azure.microsoft.com/documentation/services/data-factory/) 服務會協調資料的移動和處理。在能源需求預測解決方案範本中，Data Factory 包含十二個[管線](data-factory\data-factory-create-pipelines.md)，會使用各種技術移動和處理資料。
+
+  您可以開啟隨著解決方案部署建立的解決方案範本圖表底端的 Data Factory 節點，以存取您的 Data Factory。這樣會帶您前往 Azure 管理入口網站上的 Data Factory。如果您在您的資料集下看到錯誤，您可以忽略這些，錯誤是因為在啟動資料產生器之前即已部署 Data Factory。這些錯誤不會防止您的 Data Factory 運作。
+
+本章節將討論 [Azure Data Factory](https://azure.microsoft.com/documentation/services/data-factory/) 中包含的必要[管線](data-factory\data-factory-create-pipelines.md)和[活動](data-factory\data-factory-create-pipelines.md)。以下是解決方案的圖表檢視。
 
 ![](media\cortana-analytics-technical-guide-demand-forecast\ADF2.png)
 
-Five of the pipelines of this factory contain [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) scripts that are used to partition and aggregate the data. When noted, the scripts will be located in the [Azure Storage](https://azure.microsoft.com/services/storage/) account created during setup. Their location will be: demandforecasting\\\\script\\\\hive\\\\ (or https://[Your solution name].blob.core.windows.net/demandforecasting).
+此 Factory 的五個管線包含 [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) 指令碼，用來分割及彙總資料。如上述，指令碼將會位在安裝期間建立的 [Azure 儲存體](https://azure.microsoft.com/services/storage/)帳戶中。其位置會是：demandforecasting\\\script\\\hive\\\ (或 https://[Your 解決方案名稱].blob.core.windows.net/demandforecasting)。
 
-Similar to the [Azure Stream Analytics](#azure-stream-analytics-1) queries, the [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) scripts have implicit knowledge about the incoming data format, these queries would need to be altered based on your data format and [feature engineering](machine-learning\machine-learning-feature-selection-and-engineering.md) requirements.
+類似於 [Azure 串流分析](#azure-stream-analytics-1)查詢，[Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) 指令碼的對於內送資料格式具有隱含知識，必須根據您的資料格式和[特徵設計](machine-learning\machine-learning-feature-selection-and-engineering.md)需求變更這些查詢。
 
-#### <a name="*aggregatedemanddatato1hrpipeline*"></a>*AggregateDemandDataTo1HrPipeline*
+#### *AggregateDemandDataTo1HrPipeline*
 
-This [pipeline](data-factory\data-factory-create-pipelines.md) pipeline contains a single activity - an [HDInsightHive](data-factory\data-factory-hive-activity.md) activity using a [HDInsightLinkedService](https://msdn.microsoft.com/library/azure/dn893526.aspx) that runs a [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) script to aggregate the every 10 seconds streamed in demand data in substation level to hourly region level and put in [Azure Storage](https://azure.microsoft.com/services/storage/) through the Azure Stream Analytics job.
+這個[管線](data-factory\data-factory-create-pipelines.md)管線包含單一活動 - 使用 [HDInsightLinkedService](https://msdn.microsoft.com/library/azure/dn893526.aspx) 的 [HDInsightHive](data-factory\data-factory-hive-activity.md) 活動，它會執行 [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) 指令碼，透過 Azure 串流分析作業將變電站層級中的需求資料所串流的每 10 秒彙總到每小時區域層級，並放入 [Azure 儲存體](https://azure.microsoft.com/services/storage/)中。
 
-The [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) script for this partitioning task is ***AggregateDemandRegion1Hr.hql***
+此資料分割工作的 [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) 指令碼為 AggregateDemandRegion1Hr.hql
 
 
-#### <a name="*loadhistorydemanddatapipeline*"></a>*LoadHistoryDemandDataPipeline*
+#### *LoadHistoryDemandDataPipeline*
 
-This [pipeline](data-factory\data-factory-create-pipelines.md) contains two activities:
-- [HDInsightHive](data-factory\data-factory-hive-activity.md) activity using a [HDInsightLinkedService](https://msdn.microsoft.com/library/azure/dn893526.aspx) that runs a  Hive script to aggregate the hourly history demand data in substation level to hourly region level and put in Azure Storage during the Azure Stream Analytics job
+這個[管線](data-factory\data-factory-create-pipelines.md)包含兩個活動︰
+- 使用 [HDInsightLinkedService](https://msdn.microsoft.com/library/azure/dn893526.aspx) 的 [HDInsightHive](data-factory\data-factory-hive-activity.md) 活動，它會執行 Hive 指令碼，在 Azure 串流分析作業期間將變電站層級中的每小時歷史需求資料彙總到每小時區域層級，並放入 Azure 儲存體中
 
-- [Copy](https://msdn.microsoft.com/library/azure/dn835035.aspx) activity that moves the aggregated data from Azure Storage blob to the Azure SQL Database that was provisioned as part of the solution template installation.
+- [複製](https://msdn.microsoft.com/library/azure/dn835035.aspx)活動，會將彙總資料從 Azure 儲存體 Blob 移至解決方案範本安裝期間所佈建的 Azure SQL Database。
 
-The [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) script for this task is ***AggregateDemandHistoryRegion.hql***.
+此工作的 [Hive](http://blogs.msdn.com/b/bigdatasupport/archive/2013/11/11/get-started-with-hive-on-hdinsight.aspx) 指令碼是 AggregateDemandHistoryRegion.hql。
 
 
-#### <a name="*mlscoringregionxpipeline*"></a>*MLScoringRegionXPipeline*
+#### *MLScoringRegionXPipeline*
 
-These [pipelines](data-factory\data-factory-create-pipelines.md) contain several activities and whose end result is the scored predictions from the Azure Machine Learning experiment associated with this solution template. They are almost identical except each of them only handles the different region which is being done by different RegionID passed in the ADF pipeline and the hive script for each region.  
-The activities contained in this are:
--   [HDInsightHive](data-factory\data-factory-hive-activity.md) activity using a [HDInsightLinkedService](https://msdn.microsoft.com/library/azure/dn893526.aspx) that runs a  Hive script to perform aggregations and feature engineering necessary for the Azure Machine Learning experiment. The Hive scripts for this task are respective ***PrepareMLInputRegionX.hql***.
+這些[管線](data-factory\data-factory-create-pipelines.md)包含數個活動，而且其最終結果為來自與這個方案範本相關聯的 Azure Machine Learning 實驗評分的預測。這些管線幾乎完全相同，差別在於它們各自只會處理不同區域 (由傳入 ADF 管線的不同 RegionID 所完成) 以及每個區域的 hive 指令碼。包含在此的活動為：
+-	使用 [HDInsightLinkedService](https://msdn.microsoft.com/library/azure/dn893526.aspx) 的[HDInsightHive](data-factory\data-factory-hive-activity.md) 活動會執行 Hive 指令碼來執行 Azure Machine Learning 實驗所需的彙總及特徵設計。此工作的 Hive 指令碼是個別的 PrepareMLInputRegionX.hql。
 
--   [Copy](https://msdn.microsoft.com/library/azure/dn835035.aspx) activity that moves the results from the [HDInsightHive](data-factory\data-factory-hive-activity.md) activity to a single Azure Storage blob that can be access by the  [AzureMLBatchScoring](https://msdn.microsoft.com/library/azure/dn894009.aspx) activity.
+-	[複製](https://msdn.microsoft.com/library/azure/dn835035.aspx)活動會將來自 [HDInsightHive](data-factory\data-factory-hive-activity.md) 活動的結果移動至可供 [AzureMLBatchScoring](https://msdn.microsoft.com/library/azure/dn894009.aspx) 活動存取的單一 Azure 儲存體 Blob。
 
--   [AzureMLBatchScoring](https://msdn.microsoft.com/library/azure/dn894009.aspx) activity that calls the Azure Machine Learning experiment which results in the results being put in a single Azure Storage blob.
+-	呼叫 Azure Machine Learning 實驗的 [AzureMLBatchScoring](https://msdn.microsoft.com/library/azure/dn894009.aspx) 活動會導致將結果放入單一 Azure 儲存體 Blob。
 
-#### <a name="*copyscoredresultregionxpipeline*"></a>*CopyScoredResultRegionXPipeline*
-These [pipelines](data-factory\data-factory-create-pipelines.md) contain a single activity - a [Copy](https://msdn.microsoft.com/library/azure/dn835035.aspx) activity that moves the results of the Azure Machine Learning experiment from the respective ***MLScoringRegionXPipeline*** to the Azure SQL Database that was provisioned as part of the solution template installation.
+#### *CopyScoredResultRegionXPipeline*
+這些[管線](data-factory\data-factory-create-pipelines.md)包含單一活動 - [複製](https://msdn.microsoft.com/library/azure/dn835035.aspx)活動，會將 Azure Machine Learning 實驗的結果從個別 MLScoringRegionXPipeline 移動至隨著解決方案範本安裝佈建的 Azure SQL Database。
 
-#### <a name="*copyaggdemandpipeline*"></a>*CopyAggDemandPipeline*
-This [pipelines](data-factory\data-factory-create-pipelines.md) contain a single activity - a [Copy](https://msdn.microsoft.com/library/azure/dn835035.aspx) activity that moves the aggregated ongoing demand data from ***LoadHistoryDemandDataPipeline*** to the Azure SQL Database that was provisioned as part of the solution template installation.
+#### *CopyAggDemandPipeline*
+這個[管線](data-factory\data-factory-create-pipelines.md)包含單一活動 - [複製](https://msdn.microsoft.com/library/azure/dn835035.aspx)活動，會將彙總的持續需求資料從 LoadHistoryDemandDataPipeline 移動至隨著解決方案範本安裝佈建的 Azure SQL Database。
 
-#### <a name="*copyregiondatapipeline,-copysubstationdatapipeline,-copytopologydatapipeline*"></a>*CopyRegionDataPipeline, CopySubstationDataPipeline, CopyTopologyDataPipeline*
-These [pipelines](data-factory\data-factory-create-pipelines.md) contain a single activity - a [Copy](https://msdn.microsoft.com/library/azure/dn835035.aspx) activity that moves the reference data of Region/Substation/Topologygeo that are uploaded to Azure Storage blob as part of the solution template installation to the Azure SQL Database that was provisioned as part of the solution template installation.
+#### *CopyRegionDataPipeline、CopySubstationDataPipeline、CopyTopologyDataPipeline*
+這些[管線](data-factory\data-factory-create-pipelines.md)包含單一活動 - [複製](https://msdn.microsoft.com/library/azure/dn835035.aspx)活動，會將安裝解決方案範本時上傳至 Azure 儲存體 Blob 的區域/變電站/Topologygeo 參考資料移動到安裝解決方案範本時所佈建的 Azure SQL Database。
 
-### <a name="azure-machine-learning"></a>Azure Machine Learning
-The [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) experiment used for this solution template provides the prediction of demand of region. The experiment is specific to the data set consumed and therefore will require modification or replacement specific to the data that is brought in.
+### Azure Machine Learning
+用於此解決方案範本的 [Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) 實驗會提供區域需求預測。實驗因取用的資料集而不同，因而需要特別針對帶入的資料進行修改或取代。
 
-## <a name="**monitor-progress**"></a>**Monitor Progress**
-Once the Data Generator is launched, the pipeline begins to get hydrated and the different components of your solution start kicking into action following the commands issued by the Data Factory. There are two ways you can monitor the pipeline.
+## **監視進度**
+一旦資料產生器啟動，管線會開始合成，解決方案的不同元件會遵循 Data Factory 發出的命令開始動作。您有兩種方式可以監視管線。
 
-1. Check the data from Azure Blob Storage.
+1. 檢查 Azure Blob 儲存體中的資料。
 
-    One of the Stream Analytics job writes the raw incoming data to blob storage. If you click on **Azure Blob Storage** component of your solution from the screen you successfully deployed the solution and then click **Open** in the right panel, it will take you to the [Azure management portal](https://portal.azure.com). Once there, click on **Blobs**. In the next panel, you will see a list of Containers. Click on **"energysadata"**. In the next panel, you will see the **"demandongoing"** folder. Inside the rawdata folder, you will see folders with names such as date=2016-01-28 etc. If you see these folders, it indicates that the raw data is successfully being generated on your computer and stored in blob storage. You should see files that should have finite sizes in MB in those folders.
+	其中一個串流分析作業會將原始內送資料寫入 blob 儲存體。如果您從成功部署解決方案的畫面按一下解決方案的 Azure Blob 儲存體元件，然後在右窗格中按一下 [開啟]，系統會帶您前往 [Azure 管理入口網站](https://portal.azure.com)。一旦在該網站中，按一下 [Blob]。在接下來的面板中，您會看到容器的清單。按一下 [energysadata]。在接下來的面板中，您會看到 **[demandongoing]** 資料夾。在 rawdata 資料夾內，您會看到具有如 date=2016-01-28 等等名稱的資料夾。如果您看到這些資料夾，則表示原始資料已經成功在您的電腦上產生並儲存在 blob 儲存體。您應該會在這些資料夾中看到具有有限大小 (MB) 的檔案。
 
-2. Check the data from Azure SQL Database.
+2. 檢查 Azure SQL Database 中的資料。
 
-    The last step of the pipeline is to write data (e.g. predictions from machine learning) into SQL Database. You might have to wait a maximum of 2 hours for the data to appear in SQL Database. One way to monitor how much data is available in your SQL Database is through [Azure management portal](https://manage.windowsazure.com/). On the left panel locate SQL DATABASES![](media\cortana-analytics-technical-guide-demand-forecast\SQLicon2.png)  and click it. Then locate your database (i.e. demo123456db) and click on it. On the next page under **"Connect to your database"** section, click **"Run Transact-SQL queries against your SQL database"**.
+	管線的最後一個步驟是將資料 (例如從機器學習的預測) 寫入至 SQL Database。您可能必須等候最多 2 個小時，資料才會出現在 SQL Database。監視您的 SQL Database 中有多少資料可用的其中一個方法是透過 [Azure 管理入口網站](https://manage.windowsazure.com/)。在左側面板找到 SQL DATABASES![](media\cortana-analytics-technical-guide-demand-forecast\SQLicon2.png) 並且按一下它。然後找到您的資料庫 (亦即 demo123456db) 並且按一下它。在下一個頁面的 **[連接至您的資料庫]** 區段下方，按一下 [對您的 SQL Database 執行 Transact-SQL 查詢]。
 
-    Here, you can click on New Query and query for the number of rows (e.g. "select count(*) from DemandRealHourly)" As your database grows, the number of rows in the table should increase.)
+	在這裡，您可以按一下 [新增查詢] 並查詢資料列數目 (例如，從 DemandRealHourly 選取 count(*)。隨著資料庫成長，資料表中的資料列數目應該會增加)。
 
-3. Check the data from Power BI dashboard.
+3. 檢查 Power BI 儀表板中的資料。
 
-    You can set up Power BI hot path dashboard to monitor the raw incoming data. Please follow the instruction in the "Power BI Dashboard" section.
+	您可以設定 Power BI 最忙碌路徑儀表板以監視未經處理的內送資料。請遵循＜Power BI 儀表板＞一節中的指示。
 
 
 
-## <a name="**power-bi-dashboard**"></a>**Power BI Dashboard**
+## **Power BI 儀表板**
 
-### <a name="overview"></a>Overview
+### Overview
 
-This section describes how to set up Power BI dashboard to visualize your real time data from Azure stream analytics (hot path), as well as forecast results from Azure machine learning (cold path).
+本節說明如何設定 Power BI 儀表板，以視覺化方式檢視來自 Azure 串流分析 (熱路徑) 的即時資料，以及來自 Azure 機器學習 (冷路徑) 的預測結果。
 
 
-### <a name="setup-hot-path-dashboard"></a>Setup Hot Path Dashboard
+### 設定最忙碌路徑儀表板
 
-The following steps will guide you how to visualize real time data output from Stream Analytics jobs that were generated at the time of solution deployment. A [Power BI online](http://www.powerbi.com/) account is required to perform the following steps. If you don't have an account, you can [create one](https://powerbi.microsoft.com/pricing).
+下列步驟將引導您如何以視覺化方式檢視解決方案部署時所產生串流分析作業的即時資料輸出。需要 [Power BI 線上版](http://www.powerbi.com/)帳戶，才能執行下列步驟。如果您沒有帳戶，您可以[建立一個](https://powerbi.microsoft.com/pricing)。
 
-1.  Add Power BI output in Azure Stream Analytics (ASA).
+1.  在 Azure 串流分析 (ASA) 中加入 Power BI 輸出。
 
-    -  You will need to follow the instructions in [Azure Stream Analytics & Power BI: A real-time analytics dashboard for real-time visibility of streaming data](stream-analytics-power-bi-dashboard.md) to set up the output of your Azure Stream Analytics job as your Power BI dashboard.
+    -  您必須依照 [Azure 串流分析及 Power BI：適用於串流資料即時可見度的即時分析儀表板](stream-analytics-power-bi-dashboard.md)中的指示來將 Azure 串流分析作業的輸出設定為 Power BI 儀表板。
 
-    - Locate the stream analytics job in your [Azure management portal](https://manage.windowsazure.com). The name of the job should be: YourSolutionName+"streamingjob"+random number+"asapbi" (i.e. demostreamingjob123456asapbi).
+	- 找出 [Azure 管理入口網站](https://manage.windowsazure.com)中的串流分析作業。作業名稱應該是︰您的解決方案名稱+"streamingjob"+隨機數字+"asapbi" (也就是 demostreamingjob123456asapbi)。
 
-    - Add a PowerBI output for the ASA job. Set the **Output Alias** as **‘PBIoutput’**. Set your **Dataset Name** and **Table Name** as **‘EnergyStreamData’**. Once you have added the output, click **"Start"** at the bottom of the page to start the Stream Analytics job. You should get a confirmation message (*e.g.*, "Starting stream analytics job myteststreamingjob12345asablob succeeded").
+	- 針對 ASA 工作加入 PowerBI 輸出。將 **[輸出別名]** 設定為 **‘PBIoutput’**。將 **[資料集名稱]** 和 **[資料表名稱]** 命名為 **‘EnergyStreamData’**。新增了輸出之後，按一下頁面底部的 [啟動] 以啟動串流分析作業。您應該會收到確認訊息 (例如，「串流分析作業 myteststreamingjob12345asablob 啟動成功」)。
 
-2. Log in to [Power BI online](http://www.powerbi.com)
+2. 登入 [Power BI 線上版](http://www.powerbi.com)
 
-    -   On the left panel Datasets section in My Workspace, you should be able to see a new dataset showing on the left panel of Power BI. This is the streaming data you pushed from Azure Stream Analytics in the previous step.
+    -   在 [我的工作區] 中的左側面板 [資料集] 區段中，您應該可以看到新的資料集出現在 Power BI 的左面板上。這是您在上一個步驟中從 Azure 串流分析推入的串流資料。
 
-    -   Make sure the ***Visualizations*** pane is open and is shown on the right side of the screen.
+    -   請確定 [視覺效果] 窗格開啟，並顯示在螢幕的右邊。
 
-3. Create the "Demand by Timestamp" tile:
-    -   Click dataset **‘EnergyStreamData’** on the left panel Datasets section.
+3. 建立 [依時間戳記的需求] 磚︰
+	-	在左側面板 [資料集] 區段中按一下資料集 ‘EnergyStreamData’。
 
-    -   Click **"Line Chart"** icon ![](media\cortana-analytics-technical-guide-demand-forecast\PowerBIpic8.png).
+	-	按一下 [折線圖] 圖示 ![](media\cortana-analytics-technical-guide-demand-forecast\PowerBIpic8.png)。
 
-    -   Click ‘EnergyStreamData’ in **Fields** panel.
+	-	按一下 [欄位] 面板中的 ’EnergyStreamData’。
 
-    -   Click **“Timestamp”** and make sure it shows under "Axis". Click **“Load”** and make sure it shows under "Values".
+	-	按一下 [時間戳記]，並確定它顯示在 [座標軸] 底下。按一下 [載入]，並確定它顯示在 [值] 底下。
 
-    -   Click **SAVE** on the top and name the report as “EnergyStreamDataReport”. The report named “EnergyStreamDataReport” will be shown in Reports section in the Navigator pane on left.
+	-	按一下上方的 [儲存] 並將報告命名為 “EnergyStreamDataReport”。名為 “EnergyStreamDataReport” 的報告會顯示在左側 [導覽] 窗格的 [報告] 區段中。
 
-    -   Click **“Pin Visual”**![](media\cortana-analytics-technical-guide-demand-forecast\PowerBIpic6.png) icon on top right corner of this line chart, a "Pin to Dashboard" window may show up for you to choose a dashboard. Please select "EnergyStreamDataReport", then click "Pin".
+	-	按一下此折線圖右上角的 [釘選視覺]![](media\cortana-analytics-technical-guide-demand-forecast\PowerBIpic6.png) 圖示，[釘選至儀表板] 視窗就會出現以供您選擇儀表板。請選取 [EnergyStreamDataReport]，然後按一下 [釘選]。
 
-    -   Hover the mouse over this tile on the dashboard, click "edit" icon on top right corner to change its title as "Demand by Timestamp"
+	-	在儀表板上將滑鼠停留在此磚中，按一下右上角的 [編輯] 圖示可將其標題變更為「依時間戳記的需求」
 
-4.  Create other dashboard tiles based on appropriate datasets. The final dashboard view is shown below.
-        ![](media\cortana-analytics-technical-guide-demand-forecast\PBIFullScreen.png)
+4.	根據適當的資料集建立其他儀表板圖格。最終的儀表板檢視如下所示。![](media\cortana-analytics-technical-guide-demand-forecast\PBIFullScreen.png)
 
 
-### <a name="setup-cold-path-dashboard"></a>Setup Cold Path Dashboard
-In cold path data pipeline, the essential goal is to get the demand forecast of each region. Power BI connects to an Azure SQL database as its data source, where the prediction results are stored.
+### 設定冷路徑儀表板
+在冷路徑資料管線中，基本目標是取得每個區域的需求預測。Power BI 會連接到 Azure SQL Database 做為其資料來源，即預測結果的儲存位置。
 
-> [AZURE.NOTE] 1) It takes few hours to collect enough forecast results for the dashboard. We recommend you start this process 2-3 hours after you lunch the data generator. 2) In this step, the prerequisite is to download and install the free software [Power BI desktop](https://powerbi.microsoft.com/desktop).
+> [AZURE.NOTE] 1) 需要幾個小時的時間才能收集足夠用於儀表板的預測結果。建議您在啟動資料產生器後的 2 到 3 個小時再開始此程序。2) 在此步驟中，必要條件就是下載並安裝免費版軟體 [Power BI 桌面版](https://powerbi.microsoft.com/desktop)。
 
 
 
-1.  Get the database credentials.
+1.  取得資料庫認證。
 
-    You will need **database server name, database name, user name and password** before moving to next steps. Here are the steps to guide you how to find them.
+    在移至後續步驟之前，您將需要**資料庫伺服器名稱、資料庫名稱、使用者名稱和密碼**。以下是引導您如何尋找的步驟。
 
-    -   Once **"Azure SQL Database"** on your solution template diagram turns green, click it and then click **"Open"**. You will be guided to Azure management portal and your database information page will be opened as well.
+    -   一旦您的解決方案範本圖表上的 **Azure SQL Database** 變成綠色，請按一下它，然後按一下 [開啟]。您將會前往 Azure 管理入口網站，而且您的資料庫資訊頁面也會開啟。
 
-    -   On the page, you can find a "Database" section. It lists out the database you have created. The name of your database should be **"Your Solution Name + Random Number + 'db'"** (e.g. "mytest12345db").
+    -   在該頁面上，您可以找到 [資料庫] 區段。它會列出您已建立的資料庫。您的資料庫名稱應該是**「您的解決方案名稱 + 隨機數字 + 'db'」**(例如 "mytest12345db")。
 
-    -   Click your database, in the new pop out pannel, you can find your database server name on the top. Your database server name name shoud be **"Your Solution Name + Random Number + 'database.windows.net,1433'"** (e.g. "mytest12345.database.windows.net,1433").
+	-	按一下您的資料庫，然後您就可以在新的快顯面板上方找到您的資料庫伺服器名稱。您的資料庫伺服器名稱應該是**「您的解決方案名稱 + 隨機數字 + 'database.windows.net,1433'」**(例如 "mytest12345.database.windows.net,1433")。
 
-    -   Your database **username** and **password** are the same as the username and password previously recorded during deployment of the solution.
+	-   您的資料庫**使用者名稱**和**密碼**使用解決方案部署期間記錄的相同使用者名稱和密碼。
 
-2.  Update the data source of the cold path Power BI file
-    -  Make sure you have installed the latest version of [Power BI desktop](https://powerbi.microsoft.com/desktop).
+2.	更新冷路徑 Power BI 檔案的資料來源
+	-  確定您已安裝最新版本的 [Power BI Desktop](https://powerbi.microsoft.com/desktop)。
 
-    -   In the **"DemandForecastingDataGeneratorv1.0"** folder you downloaded, double click the **‘Power BI Template\DemandForecastPowerBI.pbix’** file. The initial visualizations are based on dummy data. **Note:** If you see an error massage, please make sure you have installed the latest version of Power BI Desktop.
+	-	在您下載的 **"DemandForecastingDataGeneratorv1.0"** 資料夾中，按兩下 ‘Power BI Template\\DemandForecastPowerBI.pbix’ 檔案。初始的視覺效果是根據虛擬資料所形成。**注意：**如果您看到錯誤訊息，請確定您已安裝最新版本的 Power BI Desktop。
 
-        Once you open it, on the top of the file, click **‘Edit Queries’**. In the pop out window, double click **‘Source’** on the right panel.
-    ![](media\cortana-analytics-technical-guide-demand-forecast\PowerBIpic1.png)
+		一旦開啟，請在檔案的頂端按一下 [編輯查詢]。在快顯視窗中，按兩下右面板上的 [來源]。![](media\cortana-analytics-technical-guide-demand-forecast\PowerBIpic1.png)
 
-    -   In the pop out window, replace **"Server"** and **"Database"** with your own server and database names, and then click **"OK"**. For server name, make sure you specify the port 1433 (**YourSolutionName.database.windows.net, 1433**). Ignore the warning messages that appear on the screen.
+	-   在快顯視窗中，將 **[伺服器]** 和 **[資料庫]** 取代為您自己的伺服器和資料庫名稱，然後按一下 [確定]。針對伺服器名稱，請確定您指定連接埠 1433 (**YourSoutionName.database.windows.net, 1433**)。忽略畫面上出現的警告訊息。
 
-    -   In the next pop out window, you'll see two options on the left pane (**Windows** and **Database**). Click **"Database"**, fill in your **"Username"** and **"Password"** (this is the username and password you entered when you first deployed the solution and created an Azure SQL database). In ***Select which level to apply these settings to***, check database level option. Then click **"Connect"**.
+	-   在下一個快顯視窗中，您會在左側窗格上看到兩個選項 (**Windows** 和**資料庫**)。按一下 [資料庫]，填入您的 **[使用者名稱]** 和 **[密碼]** (這是當您首次部署解決方案並建立 Azure SQL Database 時輸入的使用者名稱和密碼)。在 [選取要套用這些設定的層級] 中，請勾選資料庫層級選項。然後按一下 [連接]。
 
-    -   Once you're guided back to the previous page, close the window. A message will pop out - click **Apply**. Lastly, click the **Save** button to save the changes. Your Power BI file has now established connection to the server. If your visualizations are empty, make sure you clear the selections on the visualizations to visualize all the data by clicking the eraser icon on the upper right corner of the legends. Use the refresh button to reflect new data on the visualizations. Initially, you will only see the seed data on your visualizations as the data factory is scheduled to refresh every 3 hours. After 3 hours, you will see new predictions reflected in your visualizations when you refresh the data.
+	-   一旦引導您回到上一頁，請關閉視窗。訊息將會蹦現 - 按一下 [套用]。最後，按一下 [儲存] 按鈕以儲存變更。您的 Power BI 檔案現在已建立與伺服器的連線。如果視覺效果是空的，請確定將視覺效果上的選取範圍都清除，以將所有資料視覺化，成法是按一下圖例右上角的橡皮擦圖示。使用重新整理按鈕在視覺效果上反映新的資料。最初，您只會在視覺效果上看到種子資料，因為 Data Factory 排定為每 3 個小時重新整理。3 小時後，當您重新整理資料時，您會看到新的預測反映在視覺效果中。
 
-3. (Optional) Publish the cold path dashboard to [Power BI online](http://www.powerbi.com/). Note that this step needs a Power BI account (or Office 365 account).
+3. (選擇性) 將冷路徑儀表板發佈至 [Power BI 線上版](http://www.powerbi.com/)。請注意，這個步驟需要 Power BI 帳戶 (或 Office 365 帳戶)。
 
-    -   Click **"Publish"** and few seconds later a window appears displaying "Publishing to Power BI Success!" with a green check mark. Click the link below "Open demoprediction.pbix in Power BI". To find detailed instructions, see [Publish from Power BI Desktop](https://support.powerbi.com/knowledgebase/articles/461278-publish-from-power-bi-desktop).
+	-   按一下 [發佈]，幾秒鐘後會出現一個視窗顯示帶有綠色核取記號的「發佈至 Power BI 成功!」。按一下 [在 Power BI 中開啟 demoprediction.pbix] 下方的連結。若要尋找詳細的指示，請參閱[從 Power BI Desktop 桌面版發佈](https://support.powerbi.com/knowledgebase/articles/461278-publish-from-power-bi-desktop)。
 
-    -   To create a new dashboard: click the **+** sign next to the **Dashboards** section on the left pane. Enter the name "Demand Forecasting Demo" for this new dashboard.
+	-   若要建立新儀表板：在左側窗格中按一下 [儀表板] 區段旁的 **+** 號。為這個新的儀表板輸入名稱「需求預測示範」。
 
-    -   Once you open the report, click ![](media\cortana-analytics-technical-guide-demand-forecast\PowerBIpic6.png) to pin all the visualizations to your dashboard. To find detailed instructions, see [Pin a tile to a Power BI dashboard from a report](https://support.powerbi.com/knowledgebase/articles/430323-pin-a-tile-to-a-power-bi-dashboard-from-a-report).
-        Go to the dashboard page and adjust the size and location of your visualizations and edit their titles. To find detailed instructions on how to edit your tiles, see [Edit a tile -- resize, move, rename, pin, delete, add hyperlink](https://powerbi.microsoft.com/documentation/powerbi-service-edit-a-tile-in-a-dashboard/#rename). Here is an example dashboard with some cold path visualizations pinned to it.
+	-   一旦您開啟報告，請按一下 ![](media\cortana-analytics-technical-guide-demand-forecast\PowerBIpic6.png)，將所有視覺效果釘選到儀表板。若要尋找詳細的指示，請參閱[從報告將磚釘選至 Power BI 儀表板](https://support.powerbi.com/knowledgebase/articles/430323-pin-a-tile-to-a-power-bi-dashboard-from-a-report)。前往儀表板頁面並調整視覺效果的大小和位置，以及編輯其標題。若要尋找如何編輯您的磚的詳細說明，請參閱[編輯磚 -- 調整大小、移動、重新命名、釘選、刪除、加入超連結](https://powerbi.microsoft.com/documentation/powerbi-service-edit-a-tile-in-a-dashboard/#rename)。以下是具有釘選了一些冷路徑視覺效果的範例儀表板。
 
-        ![](media\cortana-analytics-technical-guide-demand-forecast\PowerBIpic7.png)
+		![](media\cortana-analytics-technical-guide-demand-forecast\PowerBIpic7.png)
 
-4. (Optional) Schedule refresh of the data source.
-    -     To schedule refresh of the data, hover your mouse over the **EnergyBPI-Final** dataset, click ![](media\cortana-analytics-technical-guide-demand-forecast\PowerBIpic3.png) and then choose **Schedule Refresh**.
-    **Note:** If you see a warning massage, click **Edit Credentials** and make sure your database credentials are the same as those described in step 1.
+4. (選擇性) 排程資料來源的重新整理。
+	-	  若要排程資料的重新整理，請將滑鼠移到 **EnergyBPI-Final** 資料集，按一下 ![](media\cortana-analytics-technical-guide-demand-forecast\PowerBIpic3.png)，然後選擇 [排程重新整理]。**附註：**如果您看到警告訊息，請按一下 [編輯認證]，並確定您的資料庫認證與步驟 1 中所述相同。
 
-    ![](media\cortana-analytics-technical-guide-demand-forecast\PowerBIpic4.png)
+	![](media\cortana-analytics-technical-guide-demand-forecast\PowerBIpic4.png)
 
-    -   Expand the **Schedule Refresh** section. Turn on "keep your data up-to-date".
+	-   展開**排程重新整理**一節。開啟 [將您的資料保持最新]。
 
-    -   Schedule the refresh based on your needs. To find more information, see [Data refresh in Power BI](https://powerbi.microsoft.com/documentation/powerbi-refresh-data/).
+	-   根據您的需求排程重新整理。若要尋找詳細資訊，請參閱 [Power BI 中的資料重新整理](https://powerbi.microsoft.com/documentation/powerbi-refresh-data/)。
 
 
-## <a name="**how-to-delete-your-solution**"></a>**How to delete your solution**
-Please ensure that you stop the data generator when not actively using the solution as running the data generator will incur higher costs. Please delete the solution if you are not using it. Deleting your solution will delete all the components provisioned in your subscription when you deployed the solution. To delete the solution click on your solution name in the left panel of the solution template and click on delete.
+## **如何刪除解決方案**
+請確定您在未積極使用解決方案時有停止資料產生器，因為執行資料產生器將會產生較高的成本。如果不使用解決方案，請將其刪除。刪除解決方案時，將會刪除您在部署解決方案時於訂用帳戶中佈建的所有元件。如果要刪除解決方案，請在解決方案範本左側面板中按一下該解決方案的名稱，然後按一下 [刪除]。
 
-## <a name="**cost-estimation-tools**"></a>**Cost Estimation Tools**
+## **成本估計工具**
 
-The following two tools are available to help you better understand the total costs involved in running the Demand Forecasting for Energy Solution Template in your subscription:
+下列兩項工具可協助您進一步了解在您的訂用帳戶中執行能源需求預測解決方案範本所牽涉的總成本：
 
--   [Microsoft Azure Cost Estimator Tool (online)](https://azure.microsoft.com/pricing/calculator/)
+-   [Microsoft Azure Cost Estimator Tool (線上版)](https://azure.microsoft.com/pricing/calculator/)
 
--   [Microsoft Azure Cost Estimator Tool (desktop)](http://www.microsoft.com/download/details.aspx?id=43376)
+-   [Microsoft Azure Cost Estimator Tool (桌面版)](http://www.microsoft.com/download/details.aspx?id=43376)
 
-## <a name="**acknowledgements**"></a>**Acknowledgements**
-This article is authored by data scientist Yijing Chen and software engineer Qiu Min at Microsoft.
+## **通知**
+本文是 Microsoft 的資料科學家 Yijing Chen 與軟體工程師 Qiu Min 所撰寫。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

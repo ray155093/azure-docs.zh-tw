@@ -1,287 +1,280 @@
 <properties 
-    pageTitle="Live streaming with on-premise encoders that create multi-bitrate streams | Microsoft Azure" 
-    description="This topic describes how to set up a Channel that receives a multi-bitrate live stream from an on-premises encoder. The stream can then be delivered to client playback applications through one or more Streaming Endpoints, using one of the following adaptive streaming protocols: HLS, Smooth Stream, MPEG DASH, HDS." 
-    services="media-services" 
-    documentationCenter="" 
-    authors="Juliako" 
-    manager="erikre" 
-    editor=""/>
+	pageTitle="使用會建立多位元速率串流的內部部署編碼器執行即時串流 | Microsoft Azure" 
+	description="本主題描述如何讓通道接收內部部署編碼器的多位元速率即時資料流。串流可以隨即透過一或多個串流端點傳遞給用戶端播放應用程式，使用下列其中一個自動調整串流通訊協定：HLS、Smooth Streaming、MPEG DASH、HDS。" 
+	services="media-services" 
+	documentationCenter="" 
+	authors="Juliako" 
+	manager="erikre" 
+	editor=""/>
 
 <tags 
-    ms.service="media-services" 
-    ms.workload="media" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="ne" 
-    ms.topic="article" 
-    ms.date="10/12/2016" 
-    ms.author="cenkdin;juliako"/>
+	ms.service="media-services" 
+	ms.workload="media" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="ne" 
+	ms.topic="article" 
+	ms.date="09/19/2016" 
+	ms.author="cenkdin;juliako"/>
+
+#使用會建立多位元速率串流的內部部署編碼器執行即時串流
+
+##Overview
+
+在 Azure 媒體服務中，**通道**代表處理即時串流內容的管線。**通道** 會以兩種方式之一收到即時輸入串流：
 
 
-#<a name="live-streaming-with-on-premise-encoders-that-create-multi-bitrate-streams"></a>Live streaming with on-premise encoders that create multi-bitrate streams
+- 內部部署即時編碼器會將多位元速率 **RTMP** 或 **Smooth Streaming** (分散式 MP4) 傳送到未啟用執行 AMS 即時編碼的通道。內嵌的串流會通過**通道**，而不需任何進一步處理。此方法稱為**傳遞**。您可以使用下列輸出多位元速率 Smooth Streaming 的即時編碼器：Elemental、Envivio、Cisco。下列即時編碼器會輸出 RTMP：Adobe Flash Live、Telestream Wirecast 和 Tricaster 轉錄器。即時編碼器也會將單一位元速率串流傳送至無法用於即時編碼的通道，但是不建議您使用此方法。接到要求時，媒體服務會傳遞串流給客戶。
 
-##<a name="overview"></a>Overview
+	>[AZURE.NOTE] 使用傳遞方法是進行即時串流的最經濟實惠方式。
+	
+- 內部部署即時編碼器會傳送單一位元速率串流至通道，可以使用下列格式之一，以媒體服務執行即時編碼：RTP (MPEG-TS)、RTMP 或 Smooth Streaming (分散的 MP4) 。通道接著會執行即時編碼，將連入的單一位元速率串流編碼成多位元速率 (自動調整) 視訊串流。接到要求時，媒體服務會傳遞串流給客戶。
 
-In Azure Media Services, a **Channel** represents a pipeline for processing live streaming content. A **Channel** receives live input streams in one of two ways:
+自媒體服務 2.10 版起，當您建立通道時，您可以指定您希望通道接收輸入串流的方式，以及您是否想要通道執行串流的即時編碼。您有兩個選擇：
 
+- **無** – 如果您想要使用會輸出多位元速率串流 (傳遞串流) 的內部部署即時編碼器，請指定這個值。在此情況下，連入的串流會傳遞至輸出，無須任何編碼。這是在 2.10 版以前的通道行為。本主題提供有關使用此類型通道的詳細資訊。
 
-- An on-premises live encoder sends a multi-bitrate **RTMP** or **Smooth Streaming** (Fragmented MP4) to the Channel that is not enabled to perform live encoding with AMS. The ingested streams pass through **Channel**s without any further processing. This method is called **pass-through**. You can use the following live encoders that output multi-bitrate Smooth Streaming: Elemental, Envivio, Cisco.  The following live encoders output RTMP: Adobe Flash Live, Telestream Wirecast, and Tricaster transcoders.  A live encoder can also send a single bitrate stream to a channel that is not enabled for live encoding, but that is not recommended. When requested, Media Services delivers the stream to customers.
+- **標準** – 如果您打算使用媒體服務將單一位元速率即時串流編碼成多位元速率串流，請選擇這個值。請注意即時編碼有計費影響，而且您應該記住將即時編碼通道保持在「執行中」狀態會產生費用。建議您在即時串流事件完成之後立即停止執行的通道，以避免額外的每小時費用。接到要求時，媒體服務會傳遞串流給客戶。
 
-    >[AZURE.NOTE] Using a pass-through method is the most economical way to do live streaming.
-    
-- An on-premises live encoder sends a single-bitrate stream to the Channel that is enabled to perform live encoding with Media Services in one of the following formats: RTP (MPEG-TS), RTMP, or Smooth Streaming (Fragmented MP4). The Channel then performs live encoding of the incoming single bitrate stream to a multi-bitrate (adaptive) video stream. When requested, Media Services delivers the stream to customers.
+>[AZURE.NOTE]本主題討論通道的屬性，這些為未啟用執行即時編碼 (**未**編碼類型) 的通道。如需使用已啟用執行即時編碼通道的相關資訊，請參閱[使用 Azure 媒體服務建立多位元速率串流的即時串流](media-services-manage-live-encoder-enabled-channels.md)。
 
-Starting with the Media Services 2.10 release, when you create a Channel, you can specify in which way you want for your channel to receive the input stream and whether or not you want for the channel to perform live encoding of your stream. You have two options:
+下圖顯示一個即時資料流工作流程，這個流程利用即時編碼器輸出多位元速率 RTMP 或 Fragmented MP4 (Smooth Streaming) 資料流。
 
-- **None** – Specify this value, if you plan to use an on-premises live encoder which will output multi-bitrate stream (a pass-through stream). In this case, the incoming stream passed through to the output without any encoding. This is the behavior of a Channel prior to 2.10 release.  This topic gives details about working with channels of this type.
+![即時工作流程][live-overview]
 
-- **Standard** – Choose this value, if you plan to use Media Services to encode your single bitrate live stream to multi-bitrate stream. Be aware that there is a billing impact for live encoding and you should remember that leaving a live encoding channel in the "Running" state will incur billing charges.  It is recommended that you immediately stop your running channels after your live streaming event is complete to avoid extra hourly charges.
-When requested, Media Services delivers the stream to customers. 
+本主題包含下列項目：
 
->[AZURE.NOTE]This topic discusses attributes of channels that are not enabled to perform live encoding (**None** encoding type). For information about working with channels that are enabled to perform live encoding, see [Live streaming using Azure Media Services to create multi-bitrate streams](media-services-manage-live-encoder-enabled-channels.md).
+- [常見即時串流案例](media-services-live-streaming-with-onprem-encoders.md#scenario)
+- [通道和其相關元件的說明](media-services-live-streaming-with-onprem-encoders.md#channel)
+- [考量](media-services-live-streaming-with-onprem-encoders.md#considerations)
 
-The following diagram represents a live streaming workflow that uses an on-premises live encoder to output multi-bitrate RTMP or Fragmented MP4 (Smooth Streaming) streams.
+##<a id="scenario"></a>常見即時串流案例
+下列步驟描述當我們建立一般即時資料流應用程式時，會涉及到的各種工作。
 
-![Live workflow][live-overview]
+1. 將攝影機連接到電腦。啟動並設定內部部署即時編碼器，讓它輸出多位元速率 RTMP 或 Fragmented MP4 (Smooth Streaming) 資料流。如需詳細資訊，請參閱 [Azure 媒體服務 RTMP 支援和即時編碼器](http://go.microsoft.com/fwlink/?LinkId=532824)。
+	
+	此步驟也可以在您建立通道之後執行。
 
-This topic covers the following:
+1. 建立並啟動通道。
+1. 擷取通道內嵌 URL。
 
-- [Common live streaming scenario](media-services-live-streaming-with-onprem-encoders.md#scenario)
-- [Description of a Channel and its related components](media-services-live-streaming-with-onprem-encoders.md#channel)
-- [Considerations](media-services-live-streaming-with-onprem-encoders.md#considerations)
+	內嵌 URL 可供即時編碼器用來傳送串流到通道。
+1. 擷取通道預覽 URL。
 
-##<a name="<a-id="scenario"></a>common-live-streaming-scenario"></a><a id="scenario"></a>Common live streaming scenario
-The following steps describe tasks involved in creating common live streaming applications.
+	使用此 URL 來確認您的通道會正確接收即時串流。
 
-1. Connect a video camera to a computer. Launch and configure an on-premises live encoder that outputs a multi-bitrate RTMP or Fragmented MP4 (Smooth Streaming) stream. For more information, see [Azure Media Services RTMP Support and Live Encoders](http://go.microsoft.com/fwlink/?LinkId=532824).
-    
-    This step could also be performed after you create your Channel.
+3. 建立程式。
 
-1. Create and start a Channel.
-1. Retrieve the Channel ingest URL. 
+	使用 Azure 傳統入口網站時，建立程式也會建立資產。
 
-    The ingest URL is used by the live encoder to send the stream to the Channel.
-1. Retrieve the Channel preview URL. 
+	使用 .NET SDK 或 REST 時，您必須建立資產並指定要在建立程式時使用此資產。
+1. 發行與程式相關聯的資產。
 
-    Use this URL to verify that your channel is properly receiving the live stream.
+	確定負責傳送內容的串流端點上，至少有一個串流保留單位。
+1. 當您準備好開始串流和封存時，請啟動程式。
+2. 即時編碼器會收到啟動公告的信號 (選擇性)。公告會插入輸出串流中。
+1. 每當您想要停止串流處理和封存事件時，請停止程式。
+1. 刪除程式 (並選擇性地刪除資產)。
 
-3. Create a program. 
+##<a id="channel"></a>通道和其相關元件的說明
 
-    When using the Azure portal, creating a program also creates an asset. 
+###<a id="channel_input"></a>頻道輸入 (內嵌) 組態
 
-    When using .NET SDK or REST you need to create an asset and specify to use this asset when creating a Program. 
-1. Publish the asset associated with the program.   
+####<a id="ingest_protocols"></a>嵌入串流通訊協定
 
-    Make sure to have at least one streaming reserved unit on the streaming endpoint from which you want to stream content.
-1. Start the program when you are ready to start streaming and archiving.
-2. Optionally, the live encoder can be signaled to start an advertisement. The advertisement is inserted in the output stream.
-1. Stop the program whenever you want to stop streaming and archiving the event.
-1. Delete the Program (and optionally delete the asset).     
+媒體服務支援各種採用下列資料流通訊協定的內嵌即時訊息來源：
 
-##<a name="<a-id="channel"></a>description-of-a-channel-and-its-related-components"></a><a id="channel"></a>Description of a Channel and its related components
-
-###<a name="<a-id="channel_input"></a>channel-input-(ingest)-configurations"></a><a id="channel_input"></a>Channel input (ingest) configurations
-
-####<a name="<a-id="ingest_protocols"></a>ingest-streaming-protocol"></a><a id="ingest_protocols"></a>Ingest streaming protocol
-
-Media Services supports ingesting live feeds using the following streaming protocol: 
-
-- **Multi-bitrate Fragmented MP4**
+- **多位元速率分散 MP4**
  
-- **Multi-bitrate RTMP** 
+- **多位元速率 RTMP**
 
-    When the **RTMP** ingest streaming protocol is selected, two ingest(input) endpoints are created for the channel: 
-    
-    **Primary URL**: Specifies the fully qualified URL of the channel's primary RTMP ingest endpoint.
+	選取 **RTMP** 內嵌串流通訊協定時，會為通道建立兩個 ingest(input) 端點：
+	
+	**主要 URL**：指定通道主要 RTMP 內嵌端點的完整 URL。
 
-    **Secondary URL** (optional): Specifies the fully qualified URL of the channel's secondary RTMP ingest endpoint. 
+	**次要 URL** (選用)：指定通道次要 RTMP 內嵌端點的完整 URL。
 
 
-    Use the secondary URL if you want to improve the durability and fault tolerance of your ingest stream as well as encoder failover and fault-tolerance, especially for the following scenarios.
+	如果您想要改善內嵌串流的持久性、容錯以及編碼器容錯移轉和容錯，特別是針對下列案例，請使用次要 URL。
 
-    - Single encoder double pushing to both Primary and Secondary URLs:
-    
-        The main purpose of this is to provide more resiliency to network fluctuations and jitters. Some RTMP encoders do not handle network disconnects well. When a network disconnect happens, an encoder may stop encoding and will not send the buffered data when reconnect happens, this causes discontinuities and data lost. Network disconnects can happen because of a bad network or a maintenance on Azure side. Primary/secondary URLs reduce the network issues and also provide a controlled upgrade process. Each time a scheduled network disconnect happens, Media Services manages the primary and secondary disconnect and provides a delayed disconnect between the two which gives time for encoders to keep sending data and reconnect again. The order of the disconnects can be random, but there will be always a delay between primary/secondary or secondary/primary. In this scenario encoder is still the single point of failure.
-     
-    - Multiple encoders each encoder pushing to dedicated point:
-        
-        This scenario provides both encoder and ingest redundancy. In this scenario encoder1 pushes to the primary URL and encoder2 pushes to secondary URL. When there is an encoder failure other encoder can still keep sending data. Data redundancy can still be maintained because Media Services does not disconnect primary and secondary at the same time. This scenario assumes encoders are time sync and provides exactly same data.  
+	- 單一編碼器雙重推送至主要和次要 URL：
+	
+		這個做法的主要目的是為網路變動起伏和快速變換提供恢復功能。部分 RTMP 編碼器無法妥善處理網路中斷連線。當發生網路中斷連線時，編碼器可能會停止編碼，而且在重新連線時不會傳送緩衝處理過的資料，這會導致不連續和資料遺失。網路中斷連線會因為網路不佳或 Azure 端正在進行維護而發生。主要/次要 URL 會減少網路問題，同時提供受控制的升級程序。每次已排程的網路發生中斷連線時，媒體服務會管理主要和次要中斷連線，並提供兩者之間的延遲中斷連線，給予編碼器時間可以持續傳送資料，以及再次重新連線。中斷連線的順序可以是隨機的，但是主要/次要或次要/主要之間一定會有延遲。在這種情況下，編碼器仍是單一失敗點。
+	 
+	- 多個編碼器的情況下，每個編碼器會推送到專用點：
+		
+		這種情況下會提供兩個編碼器和擷取備援。在這個案例中，encoder1 會推送至主要 URL，而 encoder2 會推送至次要 URL。當有編碼器失敗時，其他編碼器仍然可以持續傳送資料。仍然可以維持資料備援，因為媒體服務不會同時中斷主要和次要的連線。此案例假設編碼器是時間同步處理，並提供完全相同的資料。
  
-    - Multiple encoder double pushing to both primary and secondary URLs:
-    
-        In this scenario both encoders push data to both primary and secondary URLs. This provides the best reliability and fault tolerance as well as data redundancy. It can tolerate both encoder failures and also disconnects even if one encoder stops working. This scenario assumes encoders are time sync and provides exactly same data.  
+	- 多個編碼器雙重推送至主要和次要 URL：
+	
+		在此案例中，兩個編碼器會將資料推送至主要和次要 URL。這提供最佳的可靠性及容錯功能，以及資料備援。它可容許兩個編碼器皆失敗並且中斷連線，即使一個編碼器停止運作。此案例假設編碼器是時間同步處理，並提供完全相同的資料。
 
-For information about RTMP live encoders, see [Azure Media Services RTMP Support and Live Encoders](http://go.microsoft.com/fwlink/?LinkId=532824).
+如需 RTMP 即時編碼器的詳細資訊，請參閱 [Azure 媒體服務 RTMP 支援和即時編碼器](http://go.microsoft.com/fwlink/?LinkId=532824)。
 
-The following considerations apply:
+您必須考量下列事項：
 
-- Make sure you have sufficient free Internet connectivity to send data to the ingest points. 
-- Using secondary ingest URL requires additional bandwidth. 
-- The incoming multi-bitrate stream can have a maximum of 10 video quality levels (aka layers), and a maximum of 5 audio tracks.
-- The highest average bitrate for any of the video quality levels or layers should be below 10 Mbps.
-- The aggregate of the average bitrates for all the video and audio streams should be below 25 Mbps.
-- You cannot change the input protocol while the Channel or its associated programs are running. If you require different protocols, you should create separate channels for each input protocol. 
-- You can ingest a single bitrate into your channel, but since the stream is not processed by the channel, the client applications will also receive a single bitrate stream (this option is not recommended).
+- 確定您的網際網路速度夠快，足以將資料傳送至內嵌點。
+- 使用次要內嵌 URL 時會佔用額外的頻寬。
+- 內送的多位元速率資料流最多可以有 10 個視訊品質等級 (也稱為圖層)，以及最多 5 個音軌。
+- 任何視訊品質等級或圖層的最高平均位元速率，應低於 10 Mbps。
+- 所有視訊和音訊串流的平均位元速率彙總，應低於 25 Mbps。
+- 通道或其相關聯程式正在執行時，您無法變更輸入通訊協定。如果您需要不同的通訊協定，則應該為每個輸入通訊協定建立個別的通道。
+- 您可以內嵌單一位元速率至您的通道，不過由於通道尚未處理串流，所以用戶端應用程式也會收到單一位元速率串流 (不建議這個選項)。
 
-####<a name="ingest-urls-(endpoints)"></a>Ingest URLs (endpoints) 
+####內嵌 URL (端點) 
 
-A Channel provides an input endpoint (ingest URL) that you specify in the live encoder, so the encoder can push streams to your channels.   
+通道提供一個輸入端點 (內嵌 URL)，您可以在即時編碼器中指定這個端點，這樣編碼器就可以將資料流推播到您的通道。
 
-You can get the ingest URLs when you create the channel. To get these URLs, the channel does not have to be in the **Running** state. When you are ready to start pushing data into the channel, the channel must be in the **Running** state. Once the channel starts ingesting data, you can preview your stream through the preview URL.
+當您建立通道時，您可以取得內嵌 URL。若要取得這些 URL，通道不一定要在**執行**狀態。當您準備好開始將資料推入通道，通道必須處於**執行**狀態。一旦通道開始內嵌資料後，您可以透過預覽 URL 來預覽資料流。
 
-You have an option of ingesting Fragmented MP4 (Smooth Streaming) live stream over an SSL connection. To ingest over SSL, make sure to update the ingest URL to HTTPS. Currently, you cannot ingest RTMP over SSL. 
+您可以選擇透過 SSL 連線來內嵌 Fragmented MP4 (Smooth Streaming) 即時資料流。若要透過 SSL 擷取，請務必將擷取 URL 更新為 HTTPS。目前，您無法內嵌 RTMP over SSL。
 
-####<a name="<a-id="keyframe_interval"></a>keyframe-interval"></a><a id="keyframe_interval"></a>Keyframe interval
+####<a id="keyframe_interval"></a>主要畫面格間隔
 
-When using an on-premises live encoder to generate multi-bitrate stream, the keyframe interval specifies GOP duration (as used by that external encoder). Once this incoming stream is received by the Channel, you can then deliver your live stream to client playback applications in any of the following formats: Smooth Streaming, DASH and HLS. When doing live streaming, HLS is always packaged dynamically. By default, Media Services automatically calculates HLS segment packaging ratio (fragments per segment) based on the keyframe interval, also referred to as Group of Pictures – GOP, that is received from the live encoder. 
+當使用內部部署即時編碼器來產生多位元速率資料流時，主要畫面格間隔會指定 GOP 持續期間 (供該外部編碼器使用)。一旦通道收到此內送串流時，然後您可以再將即時串流傳遞至下列任一形式的用戶端播放應用程式：Smooth Streaming、DASH 及 HLS。在執行即時資料流時，會一律動態封裝 HLS。依預設，媒體服務會根據從即時編碼器收到的主要畫面格間隔 (也稱為圖片群組 – GOP)，自動計算 HLS 區段封裝比例 (每一個區段的片段)。
 
-The following table shows how the segment duration is being calculated:
+下表顯示如何計算區段持續時間：
 
-Keyframe Interval|HLS segment packaging ratio (FragmentsPerSegment)|Example
+主要畫面格間隔|HLS 區段封裝比例 (FragmentsPerSegment)|範例
 ---|---|---
-less than or equal to 3 seconds|3:1|If the KeyFrameInterval (or GOP) is 2 seconds long, the default HLS segment packaging ratio will be 3 to 1, which will create a 6 seconds HLS segment.
-3 to 5  seconds|2:1|If the KeyFrameInterval (or GOP) is 4 seconds long, the default HLS segment packaging ratio will be 2 to 1, which will create a 8 seconds HLS segment.
-greater than 5 seconds|1:1|If the KeyFrameInterval (or GOP) is 6 seconds long, the default HLS segment packaging ratio will be 1 to 1, which will create a 6 second long HLS segment.
+小於或等於 3 秒|3:1|如果 KeyFrameInterval (或 GOP) 為 2 秒鐘，則預設 HLS 區段封裝比例就會是 3 比 1，這將會建立 6 秒鐘的 HLS 區段。
+3 到 5 秒|2:1|如果 KeyFrameInterval (或 GOP) 為 4 秒鐘，則預設 HLS 區段封裝比例就會是 2 比 1，這將會建立 8 秒鐘的 HLS 區段。
+大於 5 秒|1:1|如果 KeyFrameInterval (或 GOP) 為 6 秒鐘，則預設 HLS 區段封裝比例就會是 1 比 1，這將會建立 6 秒鐘的 HLS 區段。
 
 
-You can change the fragments per segment ratio by configuring channel’s output and setting FragmentsPerSegment on ChannelOutputHls. 
+您可以設定通道的輸出並在 ChannelOutputHls 上設定 FragmentsPerSegment，即可變更每個區段比例的片段。
 
-You can also change the keyframe interval value, by setting the KeyFrameInterval property on ChanneInput. 
+您也可以在 ChanneInput 上設定 KeyFrameInterval 屬性，即可變更主要畫面格間隔值。
 
-If you explicitly set the KeyFrameInterval, the HLS segment packaging ratio FragmentsPerSegment is calculated using the rules described above.  
+如果您明確設定 KeyFrameInterval，就會使用上述的規則計算 FragmentsPerSegment HLS 區段封裝比率。
 
-If you explicitly set both KeyFrameInterval and FragmentsPerSegment, Media Services will use the values set by you. 
-
-
-####<a name="allowed-ip-addresses"></a>Allowed IP addresses
-
-You can define the IP addresses that are allowed to publish video to this channel. Allowed IP addresses can be specified as either a single IP address (e.g. ‘10.0.0.1’), an IP range using an IP address and a CIDR subnet mask (e.g. ‘10.0.0.1/22’), or an IP range using an IP address and a dotted decimal subnet mask (e.g. ‘10.0.0.1(255.255.252.0)’). 
-
-If no IP addresses are specified and there is no rule definition, then no IP address will be allowed. To allow any IP address, create a rule and set 0.0.0.0/0.
-
-###<a name="channel-preview"></a>Channel preview 
-
-####<a name="preview-urls"></a>Preview URLs
-
-Channels provide a preview endpoint (preview URL) that you use to preview and validate your stream before further processing and delivery.
-
-You can get the preview URL when you create the channel. To get the URL, the channel does not have to be in the **Running** state. 
-
-Once the Channel starts ingesting data, you can preview your stream.
-
-Note that currently the preview stream can only be delivered in Fragmented MP4 (Smooth Streaming) format regardless of the specified input type. You can use the [http://smf.cloudapp.net/healthmonitor](http://smf.cloudapp.net/healthmonitor) player to test the Smooth Stream. You can also use a player hosted in the Azure portal to view your stream.
+如果您明確設定 KeyFrameInterval 和 FragmentsPerSegment，媒體服務會使用您所設定的值。
 
 
-####<a name="allowed-ip-addresses"></a>Allowed IP Addresses
+####允許的 IP 位址
 
-You can define the IP addresses that are allowed to connect to the preview endpoint. If no IP addresses are specified any IP address will be allowed. Allowed IP addresses can be specified as either a single IP address (e.g. ‘10.0.0.1’), an IP range using an IP address and a CIDR subnet mask (e.g. ‘10.0.0.1/22’), or an IP range using an IP address and a dotted decimal subnet mask (e.g. ‘10.0.0.1(255.255.252.0)’).
+您可以定義允許將視訊發行到這個通道的 IP 位址。允許的 IP 位址可以指定為單一 IP 位址 (例如'10.0.0.1')、使用 IP 位址和 CIDR 子網路遮罩的 IP 範圍 (例如'10.0.0.1/22’)，或使用 IP 位址和以點分隔十進位子網路遮罩的 IP 範圍 (例如‘10.0.0.1(255.255.252.0)’)。
 
-###<a name="channel-output"></a>Channel output
+如果未指定 IP 位址而且也未定義規則，則任何 IP 位址都不允許。若要允許任何 IP 位址，請建立規則，並設定 0.0.0.0/0。
 
-For more information see the [setting keyframe interval](#keyframe_interval) section.
+###通道預覽 
+
+####預覽 URL
+
+通道會在進一步處理和傳遞之前，提供您用來預覽及驗證串流的預覽端點 (預覽 URL)。
+
+當您建立通道時，您可以取得預覽 URL。若要取得此 URL，通道不一定要在**執行**狀態。
+
+通道開始內嵌資料後，您就可以預覽您的資料流。
+
+請注意，無論指定的輸入類型為何，預覽資料流目前只能利用 Fragmented MP4 (Smooth Streaming) 格式傳遞。您可以使用 [http://smf.cloudapp.net/healthmonitor](http://smf.cloudapp.net/healthmonitor) 播放器測試 Smooth Stream。您也可以使用裝載於 Azure 傳統入口網站中的播放器來檢視您的串流。
 
 
-###<a name="channel's-programs"></a>Channel's programs
+####允許的 IP 位址
 
-A channel is associated with programs that enable you to control the publishing and storage of segments in a live stream. Channels manage Programs. The Channel and Program relationship is very similar to traditional media where a channel has a constant stream of content and a program is scoped to some timed event on that channel.
+您可以定義允許連接到預覽端點的 IP 位址。如果沒有指定 IP 位址，將會允許任何 IP 位址。允許的 IP 位址可以指定為單一 IP 位址 (例如'10.0.0.1')、使用 IP 位址和 CIDR 子網路遮罩的 IP 範圍 (例如'10.0.0.1/22’)，或使用 IP 位址和以點分隔十進位子網路遮罩的 IP 範圍 (例如‘10.0.0.1(255.255.252.0)’)。
 
-You can specify the number of hours you want to retain the recorded content for the program by setting the **Archive Window** length. This value can be set from a minimum of 5 minutes to a maximum of 25 hours. Archive window length also dictates the maximum amount of time clients can seek back in time from the current live position. Programs can run over the specified amount of time, but content that falls behind the window length is continuously discarded. This value of this property also determines how long the client manifests can grow.
+###通道輸出
 
-Each program is associated with an Asset which stores the streamed content. An asset is mapped to a blob container in the Azure Storage account and the files in the asset are stored as blobs in that container. To publish the program so your customers can view the stream you must create an OnDemand locator for the associated asset. Having this locator will enable you to build a streaming URL that you can provide to your clients.
+如需詳細資訊，請參閱[設定主要畫面格間隔](#keyframe_interval)章節。
 
-A channel supports up to three concurrently running programs so you can create multiple archives of the same incoming stream. This allows you to publish and archive different parts of an event as needed. For example, your business requirement is to archive 6 hours of a program, but to broadcast only last 10 minutes. To accomplish this, you need to create two concurrently running programs. One program is set to archive 6 hours of the event but the program is not published. The other program is set to archive for 10 minutes and this program is published.
 
-You should not reuse existing programs for new events. Instead, create and start a new program for each event as described in the Programming Live Streaming Applications section.
+###通道的程式
 
-Start the program when you are ready to start streaming and archiving. Stop the program whenever you want to stop streaming and archiving the event. 
+通道與程式相關聯，而程式可讓您控制即時串流中區段的發行和儲存。「通道」會管理「程式」。「通道」與「程式」的關係與傳統媒體十分類似，其中，通道具有固定的內容串流，而且程式的範圍是該通道上的某個計時事件。
 
-To delete archived content, stop and delete the program and then delete the associated asset. An asset cannot be deleted if it is used by a program; the program must be deleted first. 
+設定 [**封存時間範圍**] 長度，即可指定您想要保留程式之錄製內容的時數。此值可以設為最少 5 分鐘到最多 25 個小時。封存時間範圍長度也會指出用戶端可以從目前即時位置及時往回搜尋的最大時間量。程式在超過指定的時間量後還是可以執行，但是會持續捨棄落後時間範圍長度的內容。此屬性的這個值也會決定用戶端資訊清單可以成長為多長的時間。
 
-Even after you stop and delete the program, the users would be able to stream your archived content as a video on demand, for as long as you do not delete the asset.
+每個程式都與儲存串流內容的資產相關聯。資產會對應到 Azure 儲存體帳戶中的 blob 容器，且資產中的檔案會儲存為該容器中的 blob。若要發行程式讓您的客戶檢視串流，您必須建立相關聯資產的隨選定位器。擁有此定位器，可讓您建置可提供給用戶端的串流 URL。
 
-If you do want to retain the archived content, but not have it available for streaming, delete the streaming locator.
+通道支援最多三個同時執行的程式，因此您可以建立相同內送串流的多個封存。這可讓您視需要發行和封存事件的不同部分。例如，您的商務需求是封存 6 小時的程式，但只廣播最後 10 分鐘。為了達成此目的，您必須建立兩個同時執行的程式。其中一個程式設定為封存 6 小時的事件，但是未發行該程式。另一個程式則設定為封存 10 分鐘，並發行程式。
 
-##<a name="<a-id="states"></a>channel-states-and-how-states-map-to-the-billing-mode"></a><a id="states"></a>Channel states and how states map to the billing mode 
+您不應該將現有程式重複用於新的事件。而是為每個事件建立並啟動新的程式 (如＜程式設計即時串流應用程式＞一節中所述)。
 
-The current state of a Channel. Possible values include:
+當您準備好開始串流和封存時，請啟動程式。每當您想要停止串流處理和封存事件時，請停止程式。
 
-- **Stopped**. This is the initial state of the Channel after its creation. In this state, the Channel properties can be updated but streaming is not allowed.
-- **Starting**. The Channel is being started. No updates or streaming is allowed during this state. If an error occurs, the Channel returns to the Stopped state.
-- **Running**. The Channel is capable of processing live streams.
-- **Stopping**. The Channel is being stopped. No updates or streaming is allowed during this state.
-- **Deleting**. The Channel is being deleted. No updates or streaming is allowed during this state.
+若要刪除封存的內容，請停止並刪除程式，然後刪除相關聯的資產。如果程式使用資產，則無法刪除資產；必須先刪除程式。
 
-The following table shows how Channel states map to the billing mode. 
+只要您未刪除資產，即使在停止並刪除程式之後，使用者還是可以視需求將封存的內容串流為視訊。
+
+如果想要保留封存的內容，但不要讓它可進行串流處理，請刪除串流定位器。
+
+##<a id="states"></a>通道狀態和狀態如何對應至計費模式 
+
+通道的目前狀態。可能的值包括：
+
+- **已停止**。這是通道建立後的初始狀態。在此狀態下，通道屬性可以更新，但是不允許串流。
+- **啟動中**。正在啟動通道。在此狀態期間允許任何更新或串流。如果發生錯誤，通道會回到已停止狀態。
+- **執行中**。通道能夠處理即時串流。
+- **停止中**。正在停止通道。在此狀態期間允許任何更新或串流。
+- **刪除中**。正在刪除通道。在此狀態期間允許任何更新或串流。
+
+下表顯示通道狀態如何對應至計費模式。
  
-Channel state|Portal UI Indicators|Billed?
+通道狀態|入口網站 UI 指標|是否計費？
 ---|---|---|---
-Starting|Starting|No (transient state)
-Running|Ready (no running programs)<p>or<p>Streaming (at least one running program)|Yes
-Stopping|Stopping|No (transient state)
-Stopped|Stopped|No
+啟動中|啟動中|無 (暫時性狀態)
+執行中|就緒 (沒有執行中的程式)<p>或<p>串流 (至少一個執行中的程式)|是
+停止中|停止中|無 (暫時性狀態)
+已停止|已停止|否
 
-##<a name="<a-id="cc_and_ads"></a>closed-captioning-and-ad-insertion"></a><a id="cc_and_ads"></a>Closed Captioning and Ad Insertion 
+##<a id="cc_and_ads"></a>隱藏式字幕和廣告插入 
 
-The following table demonstrates supported closed captioning and ad insertion standards.
+下表示範支援的隱藏式字幕和廣告插入標準。
 
-Standard|Notes
+標準|注意事項
 ---|---
-CEA-708 and EIA-608 (708/608)|CEA-708 and EIA-608 are closed captioning standards for the United States and Canada.<p><p>Currently, captioning is only supported if carried in the encoded input stream. You need to use a live media encoder that can insert 608 or 708 captions into the encoded stream which is sent to Media Services. Media Services will deliver the content with inserted captions to your viewers.
-TTML inside ismt (Smooth Streaming Text Tracks)|Media Services dynamic packaging enables your clients to stream content in any of the following formats: MPEG DASH, HLS or Smooth Streaming. However, if you ingest fragmented MP4 (Smooth Streaming) with captions inside .ismt (Smooth Streaming text tracks), you would only be able to deliver the stream to Smooth Streaming clients.
-SCTE-35|Digital signaling system used to cue advertising insertion. Downstream receivers use the signal to splice advertising into the stream for the allotted time. SCTE-35 must be sent as a sparse track in the input stream.<p><p>Note that currently, the only supported input stream format that carries ad signals is fragmented MP4 (Smooth Streaming). The only supported output format is also Smooth Streaming.
+CEA-708 和 EIA-608 (708/608)|CEA-708 和 EIA-608 是美國和加拿大的隱藏式字幕標準。<p><p>目前只有編碼的輸入資料流附帶字幕時，才能播放字幕。您使用的即時媒體編碼器，必須可以將 608 或 708 字幕插入至已傳送至媒體服務的已編碼資料流。媒體服務會將內含字幕的內容傳遞給您的檢視器。
+.ismt 裡面附帶字幕 (Smooth Streaming 文字播放軌)|媒體服務動態封裝功能可讓您的用戶端傳送以下任何格式的內容：MPEG DASH、HLS 或 Smooth Streaming。不過，如果您內嵌 Fragmented MP4 (Smooth Streaming) 而且在 .ismt 裡面附帶字幕 (Smooth Streaming 文字播放軌)，您就只能將資料流傳遞至 Smooth Streaming 用戶端。
+SCTE-35|數位訊號系統，用來提示廣告插入。下游接收端會使用信號並根據分配的時間，將廣告切割成資料流。SCTE 35 必須以鬆散播放軌的形式傳送至輸入資料流中。<p><p>請注意，目前唯一支援的附帶廣告訊號之輸入資料流格式為分散 MP4 (平滑串流)。唯一支援的輸出格式也是 Smooth Streaming。
 
 
-##<a name="<a-id="considerations"></a>considerations"></a><a id="Considerations"></a>Considerations
+##<a id="Considerations"></a>考量
 
-When using an on-premises live encoder to send a multi-bitrate stream into a Channel, the following constraints apply:
+使用內部部署即時編碼器並將多位元速率資料流傳送到通道時，請注意以下限制：
 
-- Make sure you have sufficient free internet connectivity to send data to the ingest points.
-- The incoming multi-bitrate stream can have a maximum of 10 video quality levels (10 layers), and maximum of 5 audio tracks.
-- The highest average bitrate for any of the video quality levels or layers should be below 10 Mbps
-- The aggregate of the average bitrates for all the video and audio streams should be below 25 Mbps
-- You cannot change the input protocol while the Channel or its associated programs are running. If you require different protocols, you should create separate channels for each input protocol.
+- 確定您的網際網路速度夠快，足以將資料傳送至內嵌點。
+- 內送的多位元速率資料流最多可以有 10 個視訊品質等級 (10 個圖層)，以及最多 5 個音軌。
+- 任何視訊品質等級或圖層的最高平均位元速率，應低於 10 Mbps。
+- 所有視訊和音訊串流的平均位元速率彙總，應低於 25 Mbps。
+- 通道或其相關聯程式正在執行時，您無法變更輸入通訊協定。如果您需要不同的通訊協定，則應該為每個輸入通訊協定建立個別的通道。
 
 
-Other considerations related to working with channels and related components:
+以下是其他與通道和相關元件應用有關的注意事項：
 
-- Every time you reconfigure the live encoder, call the **Reset** method on the channel. Before you reset the channel, you have to stop the program. After you reset the channel, restart the program.
-- A channel can be stopped only when it is in the Running state, and all programs on the channel have been stopped.
-- By default you can only add 5 channels to your Media Services account. For more information, see [Quotas and Limitations](media-services-quotas-and-limitations.md).
-- You cannot change the input protocol while the Channel or its associated programs are running. If you require different protocols, you should create separate channels for each input protocol.
-- You are only billed when your Channel is in the **Running** state. For more information, refer to [this](media-services-live-streaming-with-onprem-encoders.md#states) section.
+- 每當您重新設定即時編碼器，請呼叫通道上的**重設**方法。重設通道之前，您必須停止程式。重設通道之後，請重新啟動程式。
+- 只有當通道處於執行中的狀態，且通道上的所有程式皆已停止時，才能停止通道。
+- 依預設，您最多可以在媒體服務帳戶中新增 5 個通道。如需詳細資訊，請參閱[配額和限制](media-services-quotas-and-limitations.md)。
+- 通道或其相關聯程式正在執行時，您無法變更輸入通訊協定。如果您需要不同的通訊協定，則應該為每個輸入通訊協定建立個別的通道。
+- 只有當您的通道處於**執行中**狀態時，才會向您計費。若需詳細資訊，請參閱[這個](media-services-live-streaming-with-onprem-encoders.md#states)章節。
 
-##<a name="how-to-create-channels-that-receive-multi-bitrate-live-stream-from-on-premises-encoders"></a>How to create channels that receive multi-bitrate live stream from on-premises encoders
+##如何建立從內部部署編碼器接收多位元速率即時串流的通道
 
-For more information about on-premises live encoders, see [Using 3rd Party Live Encoders with Azure Media Services](https://azure.microsoft.com/blog/azure-media-services-rtmp-support-and-live-encoders/).
+如需內部部署即時編碼器的詳細資訊，請參閱[搭配使用協力廠商即時編碼器與 Azure 媒體服務](https://azure.microsoft.com/blog/azure-media-services-rtmp-support-and-live-encoders/)。
 
-Choose **Portal**, **.NET**, **REST API** to see how to create and manage channels and programs.
+選擇**入口網站**、**.NET**、**REST API** 以了解如何建立及管理通道和程式。
 
 [AZURE.INCLUDE [media-services-selector-manage-channels](../../includes/media-services-selector-manage-channels.md)]
 
 
 
-##<a name="media-services-learning-paths"></a>Media Services learning paths
+##媒體服務學習路徑
 
 [AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-##<a name="provide-feedback"></a>Provide feedback
+##提供意見反應
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 
 
-##<a name="related-topics"></a>Related topics
+##相關主題
 
-[Azure Media Services Fragmented MP4 Live Ingest Specification](media-services-fmp4-live-ingest-overview.md)
+[Azure 媒體服務的分散 MP4 即時內嵌規格](media-services-fmp4-live-ingest-overview.md)
 
-[Delivering Live Streaming Events with Azure Media Services](media-services-overview.md)
+[使用 Azure 媒體服務傳遞即時串流事件](media-services-overview.md)
 
-[Media Services Concepts](media-services-concepts.md)
+[媒體服務概念](media-services-concepts.md)
 
 [live-overview]: ./media/media-services-manage-channels-overview/media-services-live-streaming-current.png
 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

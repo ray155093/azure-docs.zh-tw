@@ -1,64 +1,59 @@
 
 <properties
-    pageTitle="Using a group to manage access to SaaS Applications | Microsoft Azure"
-    description="How to use groups in Azure Active Directory Premium or Basic to assign access to SaaS applications that are integrated with Azure Active Directory."
-    services="active-directory"
-    documentationCenter=""
-    authors="curtand"
-    manager="femila"
-    editor=""/>
+	pageTitle="使用群組管理 SaaS 應用程式的存取權 | Microsoft Azure"
+	description="如何使用 Azure Active Directory Premium 或 Basic 中的群組指派與 Azure Active Directory 整合的 SaaS 應用程式存取權。"
+	services="active-directory"
+	documentationCenter=""
+	authors="curtand"
+	manager="femila"
+	editor=""/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/10/2016"
-    ms.author="curtand"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/10/2016"
+	ms.author="curtand"/>
 
 
+# 使用群組管理 SaaS 應用程式的存取權
 
-# <a name="using-a-group-to-manage-access-to-saas-applications"></a>Using a group to manage access to SaaS applications
+使用 Azure Active Directory (Azure AD) 搭配 Azure AD Premium 或 Azure AD Basic 授權，您可以使用群組指派與 Azure AD 整合之 SaaS 應用程式的存取權。例如，如果您想要指派行銷部門使用五個不同 SaaS 應用程式的存取權，可以建立一個包含行銷部門中的使用者的群組，然後將該群組指派給行銷部門需要的這五個 SaaS 應用程式。如此一來，您可以在同一個地方管理行銷部門的成員資格以節省時間。接著當使用者新增為行銷群組的成員時，會將這些使用者指派給應用程式，並在使用者從行銷群組中移除時，從應用程式中移除其指派。
 
-Using Azure Active Directory (Azure AD) with an Azure AD Premium or Azure AD Basic license, you can use groups to assign access to a SaaS application that's integrated with Azure AD. For example, if you want to assign access for the marketing department to use five different SaaS applications, you can create a group that contains the users in the marketing department, and then assign that group to these five SaaS applications that are needed by the marketing department. This way you can save time by managing the membership of the marketing department in one place. Users then are assigned to the application when they are added as members of the marketing group, and have their assignments removed from the application when they are removed from the marketing group.
+此功能可以搭配您能夠從 Azure AD 應用程式庫中新增的數百種應用程式使用。
 
-This capability can be used with hundreds of applications that you can add from within the Azure AD Application Gallery.
+**將群組存取權指派給 SaaS 應用程式**
 
-**To assign access for a group to a SaaS application**
+1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com)中，於左側導覽列上選取 [Active Directory]。
 
-1. In the [Azure classic portal](https://manage.windowsazure.com), select **Active Directory** on the navigation bar on the left hand side.
+2. 選取 [目錄] 索引標籤，然後開啟您要將群組存取權指派給 Saas 應用程式所在的目錄。
 
-2. Select the **Directory** tab, and then open the directory in which you want to assign access for a group to a SaaS application.
+3. 選取 [應用程式] 索引標籤。選取您從應用程式資源庫中新增的應用程式，然後按一下 **[使用者和群組]** 索引標籤。
 
-3. Select the **Applications** tab. Select an application that you added from the Application Gallery, and then click  the **Users and Groups** tab.
+4. 在 **[使用者和群組]** 索引標籤的 **[開頭是]** 欄位中，輸入您要為其指派存取權的群組的名稱，然後選取右上角的核取記號。您只需要輸入群組名稱的第一個部分。
 
-4. On the **Users and Groups** tab, in the **Starting with** field, enter the name of the group to which you want to assign access, and then select the check mark in the upper right. You only need to type the first part of a group's name.
+5. 選取群組，然後選取 [指派存取權] 按鈕。在看到確認訊息時選取 [是]。目前對應用程式的群組式指派並不支援巢狀群組成員資格。
 
-5. Select the group, then then select the **Assign Access** button. Select **Yes** when you see the confirmation message. Nested group memberships are not supported for group-based assignment to applications at this time.
-
-6. You can also see which users are assigned to the application, either directly or by membership in a group. To do this, change the **Show dropdown from 'Groups'** to **'All Users'**. The list shows users in the directory and whether or not each user is assigned to the application. The list also shows whether the assigned users are assigned to the application directly (assignment type shown as 'Direct'), or by virtue of group membership (assignment type shown as 'Inherited.')
+6. 您也可以直接或透過群組中的成員資格，查看哪些使用者指派給應用程式。若要這樣做，請將 **[顯示下拉式清單] 從 [群組]** 變更為 [**所有使用者**]。此清單會顯示目錄中的使用者，以及每個使用者是否指派給應用程式。此清單也會顯示獲指派的使用者是直接 (指派類型顯示為 [直接])，還是透過群組成員資格 (指派類型顯示為 [繼承]) 指派給應用程式。
 
 
 > [AZURE.NOTE]
->You can see the Users and Groups tab only after you have enabled Azure AD Premium or Azure AD Basic.
+只有在啟用 Azure AD Premium 或 Azure AD Basic 之後，您才可以看到 [使用者和群組] 索引標籤。
 
-##<a name="related-articles"></a>Related Articles
+##相關文章
 
-These articles provide additional information on Azure Active Directory.
+這些文章提供有關 Azure Active Directory 的其他資訊。
 
-* [Managing access to resources with Azure Active Directory groups](active-directory-manage-groups.md)
+* [使用 Azure Active Directory 群組管理資源的存取權](active-directory-manage-groups.md)
 
-* [Article Index for Application Management in Azure Active Directory](active-directory-apps-index.md)
+* [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
-* [Azure Active Directory cmdlets for configuring group settings](active-directory-accessmanagement-groups-settings-cmdlets.md)
+* [設定群組設定的 Azure Active Directory Cmdlet](active-directory-accessmanagement-groups-settings-cmdlets.md)
 
-* [What is Azure Active Directory?](active-directory-whatis.md)
+* [什麼是 Azure Active Directory？](active-directory-whatis.md)
 
-* [Integrating your on-premises identities with Azure Active Directory](active-directory-aadconnect.md)
+* [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

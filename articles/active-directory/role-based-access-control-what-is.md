@@ -1,73 +1,68 @@
 <properties
-    pageTitle="Role-Based Access Control | Microsoft Azure"
-    description="Get started in access management with Azure role-based access control in the Azure Portal. Use role assignments to assign permissions in your directory."
-    services="active-directory"
-    documentationCenter=""
-    authors="kgremban"
-    manager="femila"
-    editor=""/>
+	pageTitle="角色型存取控制 | Microsoft Azure"
+	description="在 Azure 入口網站中使用 Azure 角色型存取控制開始進行存取管理。使用角色指派在您的目錄中指派權限。"
+	services="active-directory"
+	documentationCenter=""
+	authors="kgremban"
+	manager="femila"
+	editor=""/>
 
 <tags
-    ms.service="active-directory"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.tgt_pltfrm="na"
-    ms.workload="identity"
-    ms.date="08/03/2016"
-    ms.author="kgremban"/>
+	ms.service="active-directory"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.tgt_pltfrm="na"
+	ms.workload="identity"
+	ms.date="08/03/2016"
+	ms.author="kgremban"/>
 
+# 開始在 Azure 入口網站中使用存取管理
 
-# <a name="get-started-with-access-management-in-the-azure-portal"></a>Get started with access management in the Azure portal
+安全性導向公司應該將焦點放在提供員工所需的確切權限。權限太多會讓帳戶暴露在攻擊者的威脅下。權限太少則會讓員工無法有效率地完成工作。Azure「角色型存取控制」(RBAC) 可以為 Azure 提供更細緻的存取管理來協助解決這個問題。
 
-Security-oriented companies should focus on giving employees the exact permissions they need. Too many permissions exposes an account to attackers. Too few permissions means that employees can't get their work done efficiently. Azure Role-Based Access Control (RBAC) helps address this problem by offering fine-grained access management for Azure.
+RBAC 可讓您區隔小組內的職責，而僅授與使用者執行作業所需的存取權。您可以不授與每個人 Azure 訂用帳戶或資源中無限制的權限，而是只允許執行特定的動作。例如，使用 RBAC 讓一位員工管理某個訂用帳戶中的虛擬機器，而讓另一位員工管理相同訂用帳戶中的 SQL 資料庫。
 
-Using RBAC, you can segregate duties within your team and grant only the amount of access to users that they need to perform their jobs. Instead of giving everybody unrestricted permissions in your Azure subscription or resources, you can allow only certain actions. For example, use RBAC to let one employee manage virtual machines in a subscription, while another can manage SQL databases within the same subscription.
+## Azure 存取權管理的基礎
+每個 Azure 訂用帳戶都會與一個 Azure Active Directory (AD) 目錄相關聯。該目錄中的使用者、群組和應用程式可以管理 Azure 訂用帳戶中的資源。請使用 Azure 入口網站、Azure 命令列工具或「Azure 管理」API 來指派這些存取權限。
 
-## <a name="basics-of-access-management-in-azure"></a>Basics of access management in Azure
-Each Azure subscription is associated with one Azure Active Directory (AD) directory. Users, groups, and applications from that directory can manage resources in the Azure subscription. Assign these access rights using the Azure portal, Azure command-line tools, and Azure Management APIs.
+您可以藉由在特定範圍將適當的 RBAC 角色指派給使用者、群組及應用程式，來授與存取權。角色指派的範圍可以是訂用帳戶、資源群組或單一資源。在父範圍指派的角色也會授與其內含子系的存取權。例如，具有資源群組存取權的使用者可以管理其內含的所有資源，例如網站、虛擬機器和子網路。
 
-Grant access by assigning the appropriate RBAC role to users, groups, and applications at a certain scope. The scope of a role assignment can be a subscription, a resource group, or a single resource. A role assigned at a parent scope also grants access to the children contained within it. For example, a user with access to a resource group can manage all the resources it contains, like websites, virtual machines, and subnets.
+![Azure Active Directory 元素之間的關聯性 - 圖表](./media/role-based-access-control-what-is/rbac_aad.png)
 
-![Relationship between Azure Active Directory elements - diagram](./media/role-based-access-control-what-is/rbac_aad.png)
+您指派的 RBAC 角色，指定使用者、群組或應用程式可以在該範圍內管理的資源。
 
-The RBAC role that you assign dictates what resources the user, group, or application can manage within that scope.
+## 內建角色
+Azure RBAC 有適用於所有資源類型的三個基本角色：
 
-## <a name="built-in-roles"></a>Built-in roles
-Azure RBAC has three basic roles that apply to all resource types:
+- **擁有者**具有所有資源的完整存取權，包括將存取權委派給其他人的權限。
+- **參與者**可以建立和管理所有類型的 Azure 資源，但是不能將存取權授與其他人。
+- **讀者**可以檢視現有的 Azure 資源。
 
-- **Owner** has full access to all resources including the right to delegate access to others.
-- **Contributor** can create and manage all types of Azure resources but can’t grant access to others.
-- **Reader** can view existing Azure resources.
+Azure 中其餘的 RBAC 角色可以管理特定 Azure 資源。例如，「虛擬機器參與者」角色可讓使用者建立和管理虛擬機器。但不會授予他們存取虛擬機器所連接的虛擬網路或子網路的存取權。
 
-The rest of the RBAC roles in Azure allow management of specific Azure resources. For example, the Virtual Machine Contributor role allows the user to create and manage virtual machines. It does not give them access to the virtual network or the subnet that the virtual machine connects to.
+[RBAC 內建角色](role-based-access-built-in-roles.md)會列出 Azure 中可用的角色。它會指定每個內建角色授與使用者的作業和範圍。如果您想要定義自己的角色，獲得更進一步控制，請參閱如何建立 [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)。
 
-[RBAC built-in roles](role-based-access-built-in-roles.md) lists the roles available in Azure. It specifies the operations and scope that each built-in role grants to users. If you're looking to define your own roles for even more control, see how to build [Custom roles in Azure RBAC](role-based-access-control-custom-roles.md).
+## 資源階層和存取繼承
+- Azure 中的每個**訂用帳戶**只屬於一個目錄。
+- 每個**資源群組**只屬於一個訂用帳戶。
+- 每個**資源**只屬於一個資源群組。
 
-## <a name="resource-hierarchy-and-access-inheritance"></a>Resource hierarchy and access inheritance
-- Each **subscription** in Azure belongs to only one directory.
-- Each **resource group** belongs to only one subscription.
-- Each **resource** belongs to only one resource group.
+您在父範圍授與的存取權會在子範圍繼承。例如：
 
-Access that you grant at parent scopes is inherited at child scopes. For example:
+- 您可將讀者角色指派給訂用帳戶範圍內的 Azure AD 群組。該群組的成員可以檢視訂用帳戶中的每個資源群組和資源。
+- 您可將參與者角色指派給資源群組範圍內的應用程式。它可以管理該資源群組中所有類型的資源，但是無法管理訂用帳戶中的其他資源群組。
 
-- You assign the Reader role to an Azure AD group at the subscription scope. The members of that group can view every resource group and resource in the subscription.
-- You assign the Contributor role to an application at the resource group scope. It can manage resources of all types in that resource group, but not other resource groups in the subscription.
+## Azure RBAC 與傳統訂用帳戶系統管理員
+傳統訂用帳戶系統管理員和共同管理員具有 Azure 訂用帳戶的完整存取權。他們可以使用 [Azure 入口網站](https://portal.azure.com)搭配 Azure Resource Manager API，或是使用 [Azure 傳統入口網站](https://manage.windowsazure.com)和 Azure 傳統部署模型，來管理資源。在 RBAC 模型中，傳統系統管理員會獲指派訂用帳戶範圍的擁有者角色。
 
-## <a name="azure-rbac-vs.-classic-subscription-administrators"></a>Azure RBAC vs. classic subscription administrators
-Classic subscription administrators and co-admins have full access to the Azure subscription. They can manage resources using the [Azure portal](https://portal.azure.com) with Azure Resource Manager APIs, or the [Azure classic portal](https://manage.windowsazure.com) and Azure classic deployment model. In the RBAC model, classic administrators are assigned the Owner role at the subscription scope.
+只有 Azure 入口網站和新的 Azure Resource Manager API 支援 Azure RBAC。獲指派 RBAC 角色的使用者和應用程式無法使用傳統管理入口網站和 Azure 傳統部署模型。
 
-Only the Azure portal and the new Azure Resource Manager APIs support Azure RBAC. Users and applications that are assigned RBAC roles cannot use the classic management portal and the Azure classic deployment model.
+## 管理與資料作業的授權
+Azure RBAC 僅支援在 Azure 入口網站和 Azure Resource Manager API 中的 Azure 資源管理作業。它無法授權 Azure 資源的所有資料層級作業。例如，您可以授權某個人管理「儲存體帳戶」，但無法授權他管理「儲存體帳戶」內的 Blob 或資料表。同樣地，可以管理 SQL Database，但無法管理其中的資料表。
 
-## <a name="authorization-for-management-vs.-data-operations"></a>Authorization for management vs. data operations
-Azure RBAC only supports management operations of the Azure resources in the Azure portal and Azure Resource Manager APIs. It cannot authorize all data level operations for Azure resources. For example, you can authorize someone to manage Storage Accounts, but not to the blobs or tables within a Storage Account cannot. Similarly, a SQL database can be managed, but not the tables within it.
+## 後續步驟
+- 在 Azure 入口網站中開始使用 [Azure 角色型存取控制](role-based-access-control-configure.md)。
+- 參閱 [RBAC 內建角色](role-based-access-built-in-roles.md)
+- 定義您自己的 [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)
 
-## <a name="next-steps"></a>Next Steps
-- Get started with [Role-Based Access Control in the Azure portal](role-based-access-control-configure.md).
-- See the [RBAC built-in roles](role-based-access-built-in-roles.md)
-- Define your own [Custom roles in Azure RBAC](role-based-access-control-custom-roles.md)
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0810_2016------>

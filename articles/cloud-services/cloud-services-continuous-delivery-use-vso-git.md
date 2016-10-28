@@ -1,232 +1,230 @@
 <properties
-    pageTitle="Continuous delivery with Git and Visual Studio Team Services in Azure | Microsoft Azure"
-    description="Learn how to configure your Visual Studio Team Services team projects to use Git to automatically build and deploy to the Web App feature in Azure App Service or cloud services."
-    services="cloud-services"
-    documentationCenter=".net"
-    authors="mlearned"
-    manager="douge"
-    editor=""/>
+	pageTitle="在 Azure 中使用 Git 和 Visual Studio Team Services 來連續傳遞 | Microsoft Azure"
+	description="了解如何設定 Visual Studio Team Services 的 Team 專案，以使用 Git 自動建置和部署至 Azure App Service 或雲端服務中的 Web 應用程式功能。"
+	services="cloud-services"
+	documentationCenter=".net"
+	authors="mlearned"
+	manager="douge"
+	editor=""/>
 
 <tags
-    ms.service="cloud-services"
-    ms.workload="tbd"
-    ms.tgt_pltfrm="na"
-    ms.devlang="dotnet"
-    ms.topic="article"
-    ms.date="07/06/2016"
-    ms.author="mlearned"/>
+	ms.service="cloud-services"
+	ms.workload="tbd"
+	ms.tgt_pltfrm="na"
+	ms.devlang="dotnet"
+	ms.topic="article"
+	ms.date="07/06/2016"
+	ms.author="mlearned"/>
 
+# 使用 Visual Studio Team Services 和 Git 連續傳遞至 Azure
 
-# <a name="continuous-delivery-to-azure-using-visual-studio-team-services-and-git"></a>Continuous delivery to Azure using Visual Studio Team Services and Git
+您可以使用 Visual Studio Team Services 的 Team 專案託管原始程式碼的 Git 儲存機制，並在每次將認可推送至儲存機制時，自動建置該機制並部署至 Azure Web 應用程式或雲端服務。
 
-You can use Visual Studio Team Services team projects to host a Git repository for your source code, and automatically build and deploy to Azure web apps or cloud services whenever you push a commit to the repository.
+您需要安裝 Visual Studio 2013 和 Azure SDK。如果尚無 Visual Studio 2013，請至 **www.visualstudio.com** 選擇 [免費開始用](http://www.visualstudio.com) 連結來下載。從[這裡](http://go.microsoft.com/fwlink/?LinkId=239540)安裝 Azure SDK。
 
-You'll need Visual Studio 2013 and the Azure SDK installed. If you don't already have Visual Studio 2013, download it by choosing the **Get started for free** link at [www.visualstudio.com](http://www.visualstudio.com). Install the Azure SDK from [here](http://go.microsoft.com/fwlink/?LinkId=239540).
 
+> [AZURE.NOTE] 您需要 Visual Studio Team Services 帳戶，才能完成本教學課程：您可以[開啟免費的 Visual Studio Team Services 帳戶](http://go.microsoft.com/fwlink/p/?LinkId=512979)。
 
-> [AZURE.NOTE] You need an Visual Studio Team Services account to complete this tutorial: You can [open a Visual Studio Team Services account for free](http://go.microsoft.com/fwlink/p/?LinkId=512979).
+若要使用 Visual Studio Team Services 將雲端服務設定為自動建立和部署至 Azure，請依照下列步驟進行。
 
-To set up a cloud service to automatically build and deploy to Azure by using Visual Studio Team Services, follow these steps.
+## 1：建立 Git 儲存機制。
 
-## <a name="1:-create-a-git-repository"></a>1: Create a Git repository
+1. 如果您還沒有 Visual Studio Team Services 帳戶，請在[這裡](http://go.microsoft.com/fwlink/?LinkId=397665)取得。建立小組專案時，請選擇 Git 作為原始檔控制系統。依照指示將 Visual Studio 連接至小組專案。
 
-1. If you don’t already have a Visual Studio Team Services account, you can get one  [here](http://go.microsoft.com/fwlink/?LinkId=397665). When you create your team project, choose Git as your source control system. Follow the instructions to connect Visual Studio to your team project.
+2. 在 **Team Explorer** 中，選擇 [複製這個儲存機制] 連結。
 
-2. In **Team Explorer**, choose the **Clone this repository** link.
+	![][3]
 
-    ![][3]
+3. 指定本機複本的位置，然後選擇 [複製] 按鈕。
 
-3. Specify the location of the local copy and then choose the **Clone** button.
+## 2：建立專案並認可至儲存機制
 
-## <a name="2:-create-a-project-and-commit-it-to-the-repository"></a>2: Create a project and commit it to the repository
+1. 在 **Team Explorer** 中，在 [方案] 區段中選擇 [新增] 連結，在本機儲存機制中建立新專案。
 
-1. In **Team Explorer**, in the **Solutions** section, choose the **New** link to create a new project in the local repository.
+	![][4]
 
-    ![][4]
+2. 您可以依照此逐步解說的步驟部署 Web 應用程式或雲端服務 (Azure 應用程式)。建立新的 Azure 雲端服務專案，或建立新的 ASP.NET MVC 專案。請確認專案以 .NET Framework 4 或更新版本為目標。如果是建立雲端服務專案，請加入 ASP.NET MVC Web 角色與背景工作角色。如果要建立 Web 應用程式，請選擇 **ASP.NET Web 應用程式**專案範本，然後選擇 [MVC]。如需詳細資訊，請參閱[在 Azure App Service 中建立 ASP.NET Web 應用程式](../app-service-web/web-sites-dotnet-get-started.md)。
 
-2. You can deploy a web app or a cloud service (Azure Application) by following the steps in this walkthrough. Create a new Azure Cloud Service project, or a new ASP.NET MVC project. Make sure that the project targets the .NET Framework 4 or later. If you are creating a cloud service project, add an ASP.NET MVC web role and a worker role.
-If you want to create a web app, choose the **ASP.NET Web Application** project template, and then choose **MVC**. See [Create an ASP.NET web app in Azure App Service](../app-service-web/web-sites-dotnet-get-started.md) for more information.
+3. 開啟方案的捷徑功能表，選擇 [認可]。
 
-3. Open the shortcut menu for the solution, and choose **Commit**.
+	![][7]
 
-    ![][7]
+4. 如果是第一次在 Visual Studio Team Services 中使用 Git，您需要提供一些資訊在 Git 中識別您的身分。在 **Team Explorer** 的 [暫止的變更] 區域中，輸入您的使用者名稱和電子郵件地址。輸入認可的註解，然後選擇 [認可] 按鈕。
 
-4. If this is the first time you've used Git in Visual Studio Team Services, you'll need to provide some information to identify yourself in Git. In the **Pending Changes** area of **Team Explorer**, enter your username and email address. Enter a comment for the commit and then choose the **Commit** button.
+	![][8]
 
-    ![][8]
+5. 請注意簽入時用來包含或排除特定變更的選項。如果已排除您要的變更，請選擇 [全部包含]。
 
-5. Note the options to include or exclude specific changes when you check in. If the changes you want are excluded, choose **Include All**.
+6. 您現在已在儲存機制的本機複本中認可變更。接下來，選擇 [同步處理] 連結，將這些變更同步至伺服器。
 
-6. You've now committed the changes in your local copy of the repository. Next, sync those changes with the server by choosing the **Sync** link.
+## 3：將專案連線至 Azure
 
-## <a name="3:-connect-the-project-to-azure"></a>3: Connect the project to Azure
+1. 現在，您在 Visual Studio Team Services 中有一個 Git 儲存機制，裡面還有一些原始程式碼，您可以準備將 Git 儲存機制連接至 Azure。在 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)中，選取您的雲端服務或 Web 應用程式，或選取左下方的 + 圖示並選擇 [雲端服務] 或 [Web 應用程式]，然後選取 [快速建立]，建立新的雲端服務或 Web 應用程式。
 
-1. Now that you have a Git repository in Visual Studio Team Services with some source code in it, you are ready to connect your git repository to Azure.  In the [Azure classic portal](http://go.microsoft.com/fwlink/?LinkID=213885), select your cloud service or web app, or create a new one by choosing the + icon at the bottom left and choosing **Cloud Service** or **Web App** and then **Quick Create**.
+	![][9]
 
-    ![][9]
+3. 若是雲端服務，請擇 [使用 Visual Studio Team Services 設定發行] 連結。若是 Web 應用程式，請選擇 [設定從原始檔控制進行部署] 連結。
 
-3. For cloud services, choose the **Set up publishing with Visual Studio Team Services** link. For web apps, choose the **Set up deployment from source control** link.
+	![][10]
 
-    ![][10]
+2. 在精靈中，於文字方塊中輸入 Visual Studio Team Services 帳戶的名稱，然後選擇 [立即授權] 連結。可能會要求您登入。
 
-2. In the wizard, type the name of your Visual Studio Team Services account in the textbox and choose the **Authorize Now** link. You might be asked to sign in.
+	![][11]
 
-    ![][11]
+3. 在 [連線要求] 快顯對話方塊中，選擇 [接受]，授權 Azure 在 Visual Studio Team Services 中設定 Team 專案。
 
-3. In the **Connection Request** pop-up dialog, choose **Accept** to authorize Azure to configure your team project in Visual Studio Team Services.
+	![][12]
 
-    ![][12]
+4. 授權成功後，將出現含有 Visual Studio Team Services 之 Team 專案的下拉式清單。選取您在先前步驟中建立的小組專案，然後選擇精靈的勾選記號按鈕。
 
-4. After authorization succeeds, you see a dropdown list that contains your Visual Studio Team Services team projects.  Select the name of team project that you created in the previous steps, and choose the wizard's checkmark button.
+	![][13]
 
-    ![][13]
+	您下次將認可推送至儲存機制時，Visual Studio Team Services 將會建置專案並部署至 Azure。
 
-    The next time you push a commit to your repository, Visual Studio Team Services will build and deploy your project to Azure.
+## 4：觸發重建和重新部署專案
 
-## <a name="4:-trigger-a-rebuild-and-redeploy-your-project"></a>4: Trigger a rebuild and redeploy your project
+1. 在 Visual Studio 中，開啟檔案進行變更。例如，在 MVC Web 角色中，變更 Views\\Shared 資料夾下的 `_Layout.cshtml` 檔案。
 
-1. In Visual Studio, open up a file and change it. For example, change the file `_Layout.cshtml` under the Views\\Shared folder in an MVC web role.
+	![][17]
 
-    ![][17]
+2. 編輯網站的頁尾文字，然後儲存檔案。
 
-2. Edit the footer text for the site and save the file.
+	![][18]
 
-    ![][18]
+3. 在 [方案總管] 中，開啟方案節點、專案節點或您變更之檔案的快顯功能表，然後選擇 [認可]。
 
-3. In **Solution Explorer**, open the shortcut menu for the solution node, project node, or the file you changed, and then choose **Commit**.
+4. 輸入註解並選擇 [認可]。
 
-4. Type in a comment and choose **Commit**.
+	![][20]
 
-    ![][20]
+5. 選擇 [**同步處理**] 連結。
 
-5. Choose the **Sync** link.
+	![][38]
 
-    ![][38]
+6. 選擇 [推送] 連結，將認可推送至 Visual Studio Team Services 中的儲存機制。(您也可以使用 [同步處理] 按鈕，將認可複製到儲存機制。差別在於 [同步處理] 還會從儲存機制中提取最新的變更)。
 
-6. Choose the **Push** link to push your commit to the repository in Visual Studio Team Services. (You can also use the **Sync** button to copy your commits to the repository. The difference is that **Sync** also pulls the latest changes from the repository.)
+	![][39]
 
-    ![][39]
+7. 選擇 [首頁] 按鈕回到 [Team Explorer] 首頁。
 
-7. Choose the **Home** button to return to the **Team Explorer** home page.
+	![][21]
 
-    ![][21]
+8. 選擇 [組建] 來檢視進行中的組建。
 
-8. Choose **Builds** to view the builds in progress.
+	![][22]
 
-    ![][22]
+	**Team Explorer** 會顯示簽入已觸發的組建。
 
-    **Team Explorer** shows that a build has been triggered for your check-in.
+	![][23]
 
-    ![][23]
+9. 若要在組建進行時檢視詳細記錄，請按兩下進行中組建的名稱。
 
-9. To view a detailed log as the build progresses, double-click the name of the build in progress.
+10. 當組建進行時，查看您使用精靈連結至 Azure 時所建立的組建定義。開啟組建定義的捷徑功能表，然後選擇 [編輯組建定義]。
 
-10. While the build is in-progress, take a look at the build definition that was created when you used the wizard to link to Azure.  Open the shortcut menu for the build definition and choose **Edit Build Definition**.
+	![][25]
 
-    ![][25]
+11. 在 [觸發程序] 索引標籤中，您會看到組建定義已設為依預設每次簽入時建置。(若是雲端服務，Visual Studio Team Services 會自動建置主要分支並部署至預備環境。您仍然必須執行手動步驟來部署至即時網站。對於沒有預備環境的 Web 應用程式，它會將主要分支直接部署到即時網站。
 
-11. In the **Trigger** tab, you will see that the build definition is set to build on every check-in, by default. (For a cloud service, Visual Studio Team Services builds and deploys the master branch to the staging environment automatically. You still have to do a manual step to deploy to the live site. For a web app that doesn't have staging environment, it deploys the master branch directly to the live site.
+	![][26]
 
-    ![][26]
+1. 在 [處理序] 索引標籤中，您可以看到部署環境已設為您的雲端服務或 Web 應用程式的名稱。
 
-1. In the **Process** tab, you can see the deployment environment is set to the name of your cloud service or web app.
+	![][27]
 
-    ![][27]
+1. 如果不想要使用預設值，請指定屬性的值。Azure 發佈屬性在 [部署] 區段中，您也可能需要設定 MSBuild 參數。例如，在雲端服務專案中，若要指定 "Cloud" 以外的服務組態，請將 MSbuild 參數設為 `/p:TargetProfile=[YourProfile]`，其中，*[YourProfile]* 符合一個以 ServiceConfiguration.*YourProfile*.cscfg 命名的服務組態檔。
 
-1. Specify values for the properties if you want different values than the defaults. The properties for Azure publishing are in the **Deployment** section, and you might also need to set MSBuild parameters. For example, in a cloud service project, to specify a service configuration other than "Cloud", set the MSbuild parameters to `/p:TargetProfile=[YourProfile]` where *[YourProfile]* matches a service configuration file with a name like ServiceConfiguration.*YourProfile*.cscfg.
+	下表顯示 [部署] 區段中可用的屬性：
 
-    The following table shows the available properties in the **Deployment** section:
+	|屬性|預設值|
+	|---|---|
+	|允許未受信任的憑證|如果為 false，SSL 憑證必須經過根授權單位簽署。|
+	|允許升級|允許部署更新現有的部署而非建立新的部署。保留 IP 位址。|
+	|不要刪除|如果為 true，則不要覆寫現有不相關的部署 (允許升級)。|
+	|部署設定的路徑|Web 應用程式的 .pubxml 檔的路徑，這是儲存機制之根資料夾的相對路徑。雲端服務則會忽略。|
+	|SharePoint 部署環境|與服務名稱相同。|
+	|Azure 部署環境|Web 應用程式或雲端服務的名稱。|
 
-  	|Property|Default Value|
-  	|---|---|
-  	|Allow Untrusted Certificates|If false, SSL certificates must be signed by a root authority.|
-  	|Allow Upgrade|Allows the deployment to update an existing deployment instead of creating a new one. Preserves the IP address.|
-  	|Do Not Delete|If true, do not overwrite an existing unrelated deployment (upgrade is allowed).|
-  	|Path to Deployment Settings|The path to your .pubxml file for a web app, relative to the root folder of the repo. Ignored for cloud services.|
-  	|Sharepoint Deployment Environment|The same as the service name.|
-  	|Azure Deployment Environment|The web app or cloud service name.|
+1. 現在應該已順利完成您的組建。
 
-1. By this time, your build should be completed successfully.
+	![][28]
 
-    ![][28]
+1. 如果按兩下組建名稱，Visual Studio 會顯示 [組建摘要]，包括與單元測試專案相關聯的任何測試結果。
 
-1. If you double-click the build name, Visual Studio shows a **Build Summary**, including any test results from associated unit test projects.
+	![][29]
 
-    ![][29]
+1. 在 [Azure 傳統入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)中，選取預備環境之後，您可以在 [部署] 索引標籤上檢視相關聯的部署。
 
-1. In the [Azure classic portal](http://go.microsoft.com/fwlink/?LinkID=213885), you can view the associated deployment on the **Deployments** tab when the staging environment is selected.
+	![][30]
 
-    ![][30]
+1.	瀏覽至網站的 URL。若是 Web 應用程式，請選擇入口網站中的 [**瀏覽**] 按鈕。若是雲端服務，請在 [**儀表板**] 頁面的 [**快速概覽**] 區段中選擇 URL，以顯示預備環境。
 
-1.  Browse to your site's URL. For a web app, just choose  the **Browse** button in the portal. For a cloud service, choose the URL in the **Quick Glance** section of the **Dashboard** page that shows the Staging environment.
+	依預設，來自雲端服務連續整合的部署會發佈至預備環境。您可以將 [替代雲端服務環境] 屬性設為 [生產] 來變更此設定。以下是網站 URL 在雲端服務儀表板頁面上的位置。
 
-    Deployments from continuous integration for cloud services are published to the Staging environment by default. You can change this by setting the **Alternate Cloud Service Environment** property to **Production**. Here's where the site URL is on the cloud service's dashboard page.
+	![][31]
 
-    ![][31]
+	新的瀏覽器索引標籤會開啟來顯示您執行中的網站。
 
-    A new browser tab will open to reveal your running site.
+	![][32]
 
-    ![][32]
+1.	如果對專案進行其他變更，則會觸發更多組建，將累積多個部署。最後一個會標示為「作用中」。
 
-1.  If you make other changes to your project, you trigger more builds, and you will accumulate multiple deployments. The latest one is marked as Active.
+	![][33]
 
-    ![][33]
+## 5：重新部署舊版組建
 
-## <a name="5:-redeploy-an-earlier-build"></a>5: Redeploy an earlier build
-
-This step is optional. In the Azure classic portal, choose an earlier deployment and choose **Redeploy** to rewind your site to an earlier check-in. Note that this will trigger a new build in TFS and create a new entry in your deployment history.
+此為選用步驟。在 Azure 傳統入口網站中，選擇先前的部署，然後選擇 [重新部署]，將網站倒回到更早的簽入。請注意，這會在 TFS 中觸發新的組建，並在部署歷程記錄中建立新的項目。
 
 ![][34]
 
-## <a name="6:-change-the-production-deployment"></a>6: Change the Production deployment
+## 6：變更生產部署
 
-When you are ready, you can promote the Staging environment to the Production environment by choosing **Swap** in the Azure classic portal. The newly deployed Staging environment is promoted to Production, and the previous Production environment, if any, becomes a Staging environment. The Active deployment may be different for the Production and Staging environments, but the deployment history of recent builds is the same regardless of environment.
+準備就緒後，您可以在 Azure 傳統入口網站中選擇 [交換] 按鈕，將預備環境升級至生產環境。新部署的預備環境會升級至「生產」，而先前的生產環境 (若有的話) 會變成預備環境。「作用中」部署可能與生產和預備環境不同，但最近組建的部署歷程記錄都一樣，與環境無關。
 
 ![][35]
 
-## <a name="7:-deploy-from-a-working-branch."></a>7: Deploy from a working branch.
+## 7：從工作分支部署。
 
-When you use Git, you usually make changes in a working branch and integrate into the master branch when your development reaches a finished state. During the development phase of a project, you'll want to build and deploy the working branch to Azure.
+使用 Git 時，您通常會在工作分支中進行變更，等到開發達到完成狀態時，再整合至主要分支。在專案的開發階段期間，您可以建置工作分支並部署至 Azure。
 
-1. In **Team Explorer**, choose the **Home** button and then choose the **Branches** button.
+1. 在 **Team Explorer** 中，選擇 [首頁] 按鈕，然後選擇 [分支] 按鈕。
 
-    ![][40]
+	![][40]
 
-2. Choose the **New Branch** link.
+2. 選擇 [新增分支] 連結。
 
-    ![][41]
+	![][41]
 
-3. Enter the name of the branch, such as "working," and choose **Create Branch**. This creates a new local branch.
+3. 輸入分支的名稱，例如 "working"，然後選擇 [建立分支]。這樣會建立新的本機分支。
 
-    ![][42]
+	![][42]
 
-4. Publish the branch. Choose the branch name in **Unpublished branches**, and choose **Publish**.
+4. 發佈分支。在 [取消發佈的分支] 中選擇分支名稱，然後選擇 [發佈]。
 
-    ![][44]
+	![][44]
 
-6. By default, only changes to the master branch trigger a continuous build. To set up continuous build for a working branch, choose the **Builds** page in **Team Explorer**, and choose **Edit Build Definition**.
+6. 依預設，只有主要分支的變更才會觸發連續組建。若要設定工作分支的連續組建，請在 **Team Explorer** 中選擇 [組建] 頁面，然後選擇 [編輯組建定義]。
 
-7. Open the **Source Settings** tab. Under **Monitored branches for continuous integration and build**, choose **Click here to add a new row**.
+7. 開啟 [來源設定] 索引標籤。在 [監視連續整合和組建的分支] 下，選擇 [按一下這裡加入新的列]。
 
-    ![][47]
+	![][47]
 
-8. Specify the branch you created, such as refs/heads/working.
+8. 指定您建立的分支，例如 refs/heads/working。
 
-    ![][48]
+	![][48]
 
-9. Make a change in the code, open the shortcut menu for the changed file, and then choose **Commit**.
+9. 變更程式碼，開啟已變更之檔案的快顯功能表，然後選擇 [認可]。
 
-    ![][43]
+	![][43]
 
-10. Choose the **Unsynced Commits** link, and choose  the **Sync** button or the **Push** link to copy the changes to the copy of the working branch in Visual Studio Team Services.
+10. 選擇 [未同步處理的認可] 連結，再選擇 [同步處理] 按鈕或 [推送] 連結，將變更複製到 Visual Studio Team Services 中工作分支的複本。
 
-    ![][45]
+	![][45]
 
-11. Navigate to the **Builds** view and find the build that just got triggered for the working branch.
+11. 瀏覽至 [組建] 檢視，找出工作分支剛觸發的組建。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-To learn more tips on using Git with Visual Studio Team Services, see [Develop and share your code in Git using Visual Studio](http://www.visualstudio.com/get-started/share-your-code-in-git-vs.aspx) and for information about using a Git repository that's not managed by Visual Studio Team Services to publish to Azure, see [Continuous Deployment to Azure App Service](../app-service-web/app-service-continuous-deployment.md). For more information on Visual Studio Team Services, see [Visual Studio Team Services](http://go.microsoft.com/fwlink/?LinkId=253861).
+如需深入了解有關使用 Git 搭配 Visual Studio Team Services 的祕訣，請參閱[使用 Visual Studio 在 Git 中開發和共用程式碼](http://www.visualstudio.com/get-started/share-your-code-in-git-vs.aspx)；關於使用未受 Visual Studio Team Services 管理的 Git 儲存機制來發佈至 Azure 的詳細資訊，請參閱[持續部署至 Azure App Service](../app-service-web/app-service-continuous-deployment.md)。如需 Visual Studio Team Services 的詳細資訊，請參閱 [Visual Studio Team Services](http://go.microsoft.com/fwlink/?LinkId=253861)。
 
 [0]: ./media/cloud-services-continuous-delivery-use-vso/tfs0.PNG
 [1]: ./media/cloud-services-continuous-delivery-use-vso-git/CreateTeamProjectInGit.PNG
@@ -274,8 +272,4 @@ To learn more tips on using Git with Visual Studio Team Services, see [Develop a
 [47]: ./media/cloud-services-continuous-delivery-use-vso-git/SourceSettingsPage.PNG
 [48]: ./media/cloud-services-continuous-delivery-use-vso-git/IncludeWorkingBranch.PNG
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

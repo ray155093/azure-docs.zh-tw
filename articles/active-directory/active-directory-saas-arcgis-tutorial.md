@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="Tutorial: Azure Active Directory Integration with ArcGIS | Microsoft Azure" 
-    description="Learn how to use ArcGIS with Azure Active Directory to enable single sign-on, automated provisioning, and more!" 
+    pageTitle="教學課程：Azure Active Directory 與 ArcGIS 整合 | Microsoft Azure" 
+    description="了解如何使用 ArcGIS 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -11,156 +11,150 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="09/29/2016" 
+    ms.date="07/11/2016" 
     ms.author="jeedes" />
 
+#教學課程：Azure Active Directory 與 ArcGIS 整合
 
-#<a name="tutorial:-azure-active-directory-integration-with-arcgis"></a>Tutorial: Azure Active Directory Integration with ArcGIS
+本教學課程的目的是要示範 Azure 與 ArcGIS 的整合。本教學課程中說明的案例假設您已經具有下列項目：
 
-The objective of this tutorial is to show the integration of Azure and ArcGIS. The scenario outlined in this tutorial assumes that you already have the following items:
+-   有效的 Azure 訂閱
+-   啟用 ArcGIS 單一登入的訂用帳戶
 
--   A valid Azure subscription
--   An ArcGIS single sign-on enabled subscription
+完成本教學課程之後，您指派給 ArcGIS 的 Azure AD 使用者就能夠單一登入您 ArcGIS 公司網站 (服務提供者起始登入) 的應用程式，或是使用[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-After completing this tutorial, the Azure AD users you have assigned to ArcGIS will be able to single sign into the application at your ArcGIS company site (service provider initiated sign on), or using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+本教學課程中說明的案例由下列建置組塊組成：
 
-The scenario outlined in this tutorial consists of the following building blocks:
+1.  啟用 ArcGIS 的應用程式整合
+2.  設定單一登入
+3.  設定使用者佈建
+4.  指派使用者
 
-1.  Enabling the application integration for ArcGIS
-2.  Configuring single sign-on
-3.  Configuring user provisioning
-4.  Assigning users
+![案例](./media/active-directory-saas-arcgis-tutorial/IC784735.png "案例")
+##啟用 ArcGIS 的應用程式整合
 
-![Scenario](./media/active-directory-saas-arcgis-tutorial/IC784735.png "Scenario")
-##<a name="enabling-the-application-integration-for-arcgis"></a>Enabling the application integration for ArcGIS
+本節的目的是要說明如何啟用 ArcGIS 的應用程式整合。
 
-The objective of this section is to outline how to enable the application integration for ArcGIS.
+###若要啟用 ArcGIS 的應用程式整合，請執行下列步驟：
 
-###<a name="to-enable-the-application-integration-for-arcgis,-perform-the-following-steps:"></a>To enable the application integration for ArcGIS, perform the following steps:
-
-1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-arcgis-tutorial/IC700993.png "Active Directory")
 
-2.  From the **Directory** list, select the directory for which you want to enable directory integration.
+2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3.  To open the applications view, in the directory view, click **Applications** in the top menu.
+3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
 
-    ![Applications](./media/active-directory-saas-arcgis-tutorial/IC700994.png "Applications")
+    ![應用程式](./media/active-directory-saas-arcgis-tutorial/IC700994.png "應用程式")
 
-4.  Click **Add** at the bottom of the page.
+4.  按一下頁面底部的 [新增]。
 
-    ![Add application](./media/active-directory-saas-arcgis-tutorial/IC749321.png "Add application")
+    ![新增應用程式](./media/active-directory-saas-arcgis-tutorial/IC749321.png "新增應用程式")
 
-5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
-    ![Add an application from gallerry](./media/active-directory-saas-arcgis-tutorial/IC749322.png "Add an application from gallerry")
+    ![從組件庫新增應用程式](./media/active-directory-saas-arcgis-tutorial/IC749322.png "從組件庫新增應用程式")
 
-6.  In the **search box**, type **ArcGIS**.
+6.  在**搜尋方塊**中，輸入 **ArcGIS**。
 
-    ![Applcation Gallery](./media/active-directory-saas-arcgis-tutorial/IC784736.png "Applcation Gallery")
+    ![應用程式庫](./media/active-directory-saas-arcgis-tutorial/IC784736.png "應用程式庫")
 
-7.  In the results pane, select **ArcGIS**, and then click **Complete** to add the application.
+7.  在結果窗格中，選取 [ArcGIS]，然後按一下 [完成] 以加入應用程式。
 
     ![ArcGIS](./media/active-directory-saas-arcgis-tutorial/IC784737.png "ArcGIS")
-##<a name="configuring-single-sign-on"></a>Configuring single sign-on
+##設定單一登入
 
-The objective of this section is to outline how to enable users to authenticate to ArcGIS with their account in Azure AD using federation based on the SAML protocol.
+本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶驗證至 ArcGIS。
 
-###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
+###若要設定單一登入，請執行下列步驟：
 
-1.  In the Azure classic portal, on the **ArcGIS** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
+1.  在 Azure 傳統入口網站的 [ArcGIS] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-arcgis-tutorial/IC784738.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-arcgis-tutorial/IC784738.png "設定單一登入")
 
-2.  On the **How would you like users to sign on to ArcGIS** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
+2.  在 [要如何讓使用者登入 ArcGIS] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-arcgis-tutorial/IC784739.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-arcgis-tutorial/IC784739.png "設定單一登入")
 
-3.  On the **Configure App URL** page, in the **ArcGIS Sign In URL** textbox, type the URL used by your users to sign in using the following pattern "*https://company.maps.arcgis.com*", and then click **Next**.
+3.  在 [設定應用程式 URL] 頁面的 [ArcGIS 登入 URL] 文字方塊中，使用下列模式輸入您的使用者用來登入的 URL："*https://company.maps.arcgis.com*"，然後按一下 *[下一步]*。
 
-    ![Configure App URL](./media/active-directory-saas-arcgis-tutorial/IC784740.png "Configure App URL")
+    ![設定應用程式 URL](./media/active-directory-saas-arcgis-tutorial/IC784740.png "設定應用程式 URL")
 
-4.  On the **Configure single sign-on at ArcGIS** page, click **Download metadata**, and then save the metadata file locally on your computer.
+4.  於 [在 ArcGIS 設定單一登入] 頁面上，按 [下載中繼資料]，然後將中繼資料檔儲存在您的本機電腦中。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-arcgis-tutorial/IC784741.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-arcgis-tutorial/IC784741.png "設定單一登入")
 
-5.  In a different web browser window, log into your ArcGIS company site as an administrator.
+5.  在不同的網頁瀏覽器視窗中，以系統管理員身分登入您的 ArcGIS 公司網站。
 
-6.  Click **Edit Settings**.
+6.  按一下 [編輯設定]。
 
-    ![Edit Settings](./media/active-directory-saas-arcgis-tutorial/IC784742.png "Edit Settings")
+    ![編輯設定](./media/active-directory-saas-arcgis-tutorial/IC784742.png "編輯設定")
 
-7.  Click **Security**.
+7.  按一下 [安全性]。
 
-    ![Security](./media/active-directory-saas-arcgis-tutorial/IC784743.png "Security")
+    ![安全性](./media/active-directory-saas-arcgis-tutorial/IC784743.png "安全性")
 
-8.  Under **Enterprise Logins**, click **Set Identity Provider**.
+8.  在 [企業登入] 下方，按一下 [設定識別提供者]。
 
-    ![Enterprise Logins](./media/active-directory-saas-arcgis-tutorial/IC784744.png "Enterprise Logins")
+    ![企業登入](./media/active-directory-saas-arcgis-tutorial/IC784744.png "企業登入")
 
-9.  On the **Set Identity Provider** configuration page, perform the following steps:
+9.  在 [設定識別提供者] 組態頁面上，執行下列步驟：
 
-    ![Set Identity Provider](./media/active-directory-saas-arcgis-tutorial/IC784745.png "Set Identity Provider")
+    ![設定識別提供者](./media/active-directory-saas-arcgis-tutorial/IC784745.png "設定識別提供者")
 
-    1.  In the Name textbox, type your organization’s name.
-    2.  For **Metadata for the Enterprise Identity Provider will be supplied using**, select **A File**.
-    3.  To upload your downloaded metadata file, click **Choose file**.
-    4.  Click **Set Identity Provider**.
+    1.  在 [名稱] 文字方塊中，輸入您的組織名稱。
+    2.  針對 [用來提供企業識別提供者之中繼資料的方法]，選取 [檔案]。
+    3.  若要上傳您下載的中繼資料檔，請按一下 [選擇檔案]。
+    4.  按一下 [設定識別提供者]。
 
-10. On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
+10. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-arcgis-tutorial/IC784746.png "Configure Single Sign-On")
-##<a name="configuring-user-provisioning"></a>Configuring user provisioning
+    ![設定單一登入](./media/active-directory-saas-arcgis-tutorial/IC784746.png "設定單一登入")
+##設定使用者佈建
 
-In order to enable Azure AD users to log into ArcGIS, they must be provisioned into ArcGIS.  
-In the case of ArcGIS, provisioning is a manual task.
+若要讓 Azure AD 使用者可以登入 ArcGIS，必須將他們佈建到 ArcGIS。ArcGIS 需以手動方式佈建。
 
-###<a name="to-configure-user-provisioning,-perform-the-following-steps:"></a>To configure user provisioning, perform the following steps:
+###若要設定使用者佈建，請執行下列步驟：
 
-1.  Log in to your **ArcGIS** tenant.
+1.  登入您的 **ArcGIS** 租用戶。
 
-2.  Click **Invite Members**.
+2.  按一下 [邀請成員]。
 
-    ![Invite Members](./media/active-directory-saas-arcgis-tutorial/IC784747.png "Invite Members")
+    ![邀請成員](./media/active-directory-saas-arcgis-tutorial/IC784747.png "邀請成員")
 
-3.  Select **Add members automatically without sending an email**, and then click **Next**.
+3.  選取 [自動加入成員而不傳送電子郵件]，然後按 [下一步]。
 
-    ![Add Members Automatically](./media/active-directory-saas-arcgis-tutorial/IC784748.png "Add Members Automatically")
+    ![自動加入成員](./media/active-directory-saas-arcgis-tutorial/IC784748.png "自動加入成員")
 
-4.  On the **Members** dialog page, perform the following steps:
+4.  在 [成員] 對話頁面上，執行下列步驟：
 
-    ![Add and review](./media/active-directory-saas-arcgis-tutorial/IC784749.png "Add and review")
+    ![加入並檢閱](./media/active-directory-saas-arcgis-tutorial/IC784749.png "加入並檢閱")
 
-    1.  Enter the **First Name**, **Last Name** and **Email** of a valid AAD account you want to provision.
-    2.  Click **Add And Review**.
+    1.  輸入您想要佈建之有效 AAD 帳戶的 [名字]、[姓氏] 和 [電子郵件]。
+    2.  按一下 [加入並檢閱]。
 
-5.  Review the data you have entered, and then click **Add Members**.
+5.  檢閱您輸入的資料，然後按一下 [加入成員]。
 
-    ![Add member](./media/active-directory-saas-arcgis-tutorial/IC784750.png "Add member")
+    ![加入成員](./media/active-directory-saas-arcgis-tutorial/IC784750.png "加入成員")
 
->[AZURE.NOTE] You can use any other ArcGIS user account creation tools or APIs provided by ArcGIS to provision AAD user accounts.
+>[AZURE.NOTE] 您可以使用任何其他的 ArcGIS 使用者帳戶建立工具或 ArcGIS 提供的 API 來佈建AAD 使用者帳戶。
 
-##<a name="assigning-users"></a>Assigning users
+##指派使用者
 
-To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
+若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-###<a name="to-assign-users-to-arcgis,-perform-the-following-steps:"></a>To assign users to ArcGIS, perform the following steps:
+###若要將使用者指派給 ArcGIS，請執行下列步驟：
 
-1.  In the Azure classic portal, create a test account.
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
-2.  On the **ArcGIS **application integration page, click **Assign users**.
+2.  在 [ArcGIS] 應用程式整合頁面上，按一下 [指派使用者]。
 
-    ![Assign Users](./media/active-directory-saas-arcgis-tutorial/IC784751.png "Assign Users")
+    ![指派使用者](./media/active-directory-saas-arcgis-tutorial/IC784751.png "指派使用者")
 
-3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
+3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
 
-    ![Yes](./media/active-directory-saas-arcgis-tutorial/IC767830.png "Yes")
+    ![是](./media/active-directory-saas-arcgis-tutorial/IC767830.png "是")
 
-If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0713_2016-->

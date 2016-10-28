@@ -1,86 +1,81 @@
 <properties 
-    pageTitle="How to add encoding units" 
-    description="Learn how to how to add encoding units with .NET"  
-    services="media-services" 
-    documentationCenter="" 
-    authors="juliako" 
-    manager="erikre" 
-    editor=""/>
+	pageTitle="如何新增編碼單元" 
+	description="了解如何使用 .NET 新增編碼單元"  
+	services="media-services" 
+	documentationCenter="" 
+	authors="juliako" 
+	manager="erikre" 
+	editor=""/>
 
 <tags 
-    ms.service="media-services" 
-    ms.workload="media" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="09/01/2016"
-    ms.author="juliako;milangada;gtrifonov"/>
+	ms.service="media-services" 
+	ms.workload="media" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="article" 
+ 	ms.date="09/01/2016"
+	ms.author="juliako;milangada;gtrifonov"/>
 
 
-
-#<a name="how-to-scale-encoding-with-.net-sdk"></a>How to scale encoding with .NET SDK
+#如何使用 .NET SDK 調整編碼
 
 > [AZURE.SELECTOR]
-- [Portal](media-services-portal-scale-media-processing.md )
+- [入口網站](media-services-portal-scale-media-processing.md)
 - [.NET](media-services-dotnet-encoding-units.md)
 - [REST](https://msdn.microsoft.com/library/azure/dn859236.aspx)
 - [Java](https://github.com/southworkscom/azure-sdk-for-media-services-java-samples)
 - [PHP](https://github.com/Azure/azure-sdk-for-php/tree/master/examples/MediaServices)
 
-##<a name="overview"></a>Overview
+##Overview
 
->[AZURE.IMPORTANT] Make sure to review the [overview](media-services-scale-media-processing-overview.md) topic to get more information about scaling media processing topic.
+>[AZURE.IMPORTANT] 請務必檢閱[概觀](media-services-scale-media-processing-overview.md)主題，以取得調整媒體處理主題的詳細資訊。
  
-To change the reserved unit type and the number of encoding reserved units using .NET SDK, do the following:
+若要使用 .NET SDK　變更保留單元類型以及編碼保留單元數目，請執行下列動作：
 
-    IEncodingReservedUnit encodingS1ReservedUnit = _context.EncodingReservedUnits.FirstOrDefault();
-    encodingS1ReservedUnit.ReservedUnitType = ReservedUnitType.Basic; // Corresponds to S1
-    encodingS1ReservedUnit.Update();
-    Console.WriteLine("Reserved Unit Type: {0}", encodingS1ReservedUnit.ReservedUnitType);
-    
-    encodingS1ReservedUnit.CurrentReservedUnits = 2;
-    encodingS1ReservedUnit.Update();
-    
-    Console.WriteLine("Number of reserved units: {0}", encodingS1ReservedUnit.CurrentReservedUnits);
+	IEncodingReservedUnit encodingS1ReservedUnit = _context.EncodingReservedUnits.FirstOrDefault();
+	encodingS1ReservedUnit.ReservedUnitType = ReservedUnitType.Basic; // Corresponds to S1
+	encodingS1ReservedUnit.Update();
+	Console.WriteLine("Reserved Unit Type: {0}", encodingS1ReservedUnit.ReservedUnitType);
+	
+	encodingS1ReservedUnit.CurrentReservedUnits = 2;
+	encodingS1ReservedUnit.Update();
+	
+	Console.WriteLine("Number of reserved units: {0}", encodingS1ReservedUnit.CurrentReservedUnits);
 
-##<a name="opening-a-support-ticket"></a>Opening a Support Ticket
+##建立支援票證
 
-By default every Media Services account can scale to up to 25 Encoding and 5 On-Demand Streaming Reserved Units. You can request a higher limit by opening a support ticket.
+依預設，每一個媒體服務帳戶可調整為最多 25 個編碼保留單元和 5 個隨選串流保留單元。您可以建立支援票證來要求更高的限制。
 
-###<a name="open-a-support-ticket"></a>Open a support ticket
+###開啟支援票證
 
-To open a support ticket do the following:
+若要建立支援票證，請執行下列動作：
 
-1. Click [Get Support](https://manage.windowsazure.com/?getsupport=true). If you are not logged in, you will be prompted to enter your credentials.
+1. 按一下[取得支援](https://manage.windowsazure.com/?getsupport=true)。如果您未登入，系統會提示您輸入認證。
 
-1. Select your subscription.
+1. 選取您的訂用帳戶。
 
-1. Under support type, select "Technical".
+1. 在支援類型下，選取 [技術]。
 
-1. Click on "Create Ticket".
+1. 按一下 [建立票證]。
 
-1. Select "Azure Media Services" in the product list presented on the next page.
+1. 在下一頁顯示的產品清單中，選取 [Azure 媒體服務]。
 
-1. Select a "Problem type" that is appropriate for your issue.
+1. 選取適合您的問題的 [問題類型]。
 
-1. Click Continue.
+1. 按一下 [繼續]。
 
-1. Follow instructions on next page and then enter details about your issue.
+1. 遵循下一頁的指示，然後輸入問題的詳細資訊。
 
-1. Click submit to open the ticket.
+1. 按一下 [提交] 來建立票證。
 
 
 
-##<a name="media-services-learning-paths"></a>Media Services learning paths
+##媒體服務學習路徑
 
 [AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-##<a name="provide-feedback"></a>Provide feedback
+##提供意見反應
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!----HONumber=AcomDC_0907_2016-->

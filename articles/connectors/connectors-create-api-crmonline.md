@@ -1,12 +1,12 @@
 <properties
-    pageTitle="Add the Dynamics CRM Online connector to your Logic Apps | Microsoft Azure"
-    description="Create Logic apps with Azure App service. The Dynamics CRM Online Connection Provider provides an API to work with entities on Dynamics CRM Online."
-    services="logic-apps"    
-    documentationCenter=""     
-    authors="MandiOhlinger"    
-    manager="erikre"    
-    editor="" 
-    tags="connectors" />
+	pageTitle="將 Dynamics CRM Online 連接器新增到 Logic Apps | Microsoft Azure"
+	description="使用 Azure App Service 建立邏輯應用程式。Dynamics CRM Online 連接提供者提供 API，以便使用 Dynamics CRM Online 上的實體。"
+	services="logic-apps"    
+	documentationCenter=""     
+	authors="MandiOhlinger"    
+	manager="erikre"    
+	editor="" 
+	tags="connectors" />
 
 <tags
 ms.service="logic-apps"
@@ -17,268 +17,262 @@ ms.workload="integration"
 ms.date="08/15/2016"
 ms.author="mandia"/>
 
+# 開始使用 Dynamics CRM Online 連接器
+連線到 Dynamics CRM Online 來建立新的記錄、更新項目等等。您可以利用 CRM Online 來：
 
-# <a name="get-started-with-the-dynamics-crm-online-connector"></a>Get started with the Dynamics CRM Online connector
-Connect to Dynamics CRM Online to create a new record, update an item, and more. With CRM Online, you can:
+- 根據您從 CRM Online 所取得的資料，來建置您的商務流程。
+- 使用會刪除檔案、取得實體等等的動作。這些動作會收到回應，然後輸出能讓其他動作使用的資料。舉例來說，當 CRM 中有項目更新時，您可以利用 Office 365 來傳送電子郵件。
 
-- Build your business flow based on the data you get from CRM Online. 
-- Use actions that delete a record, get entities, and more. These actions get a response, and then make the output available for other actions. For example, when an item is updated in CRM, you can send an email using Office 365.
+本主題說明如何在邏輯應用程式中使用 Dynamics CRM Online 連接器，並且也列出觸發程序和動作。
 
-This topic shows you how to use the Dynamics CRM Online connector in a logic app, and also lists the triggers and actions.
+>[AZURE.NOTE] 這個版本的文章適用於 Logic Apps 公開上市版本 (GA)。
 
->[AZURE.NOTE] This version of the article applies to Logic Apps general availability (GA).
+若要深入瞭解 Logic Apps，請參閱[什麼是邏輯應用程式](../app-service-logic/app-service-logic-what-are-logic-apps.md)以及[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。
 
-To learn more about Logic Apps, see [What are logic apps](../app-service-logic/app-service-logic-what-are-logic-apps.md) and [create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md).
+## 連接至 Dynamics CRM Online
 
-## <a name="connect-to-dynamics-crm-online"></a>Connect to Dynamics CRM Online
-
-Before your logic app can access any service, you first create a *connection* to the service. A connection provides connectivity between a logic app and another service. For example, to connect to Dynamics, you first need a Dynamics CRM Online *connection*. To create a connection, enter the credentials you normally use to access the service you wish to connect to. So with Dynamics, enter the credentials to your Dynamics CRM Online account to create the connection.
-
-
-### <a name="create-the-connection"></a>Create the connection
-
->[AZURE.INCLUDE [Steps to create a connection to Dynamics CRM Online Connection Provider](../../includes/connectors-create-api-crmonline.md)]
-
-## <a name="use-a-trigger"></a>Use a trigger
-
-A trigger is an event that can be used to start the workflow defined in a logic app. Triggers "poll" the service at an interval and frequency that you want. [Learn more about triggers](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts).
-
-1. In the logic app, type "dynamics" to get a list of the triggers:  
-
-    ![](./media/connectors-create-api-crmonline/dynamics-triggers.png)
-
-2. Select **Dynamics CRM Online - When a record is created**. If a connection already exists, then select an organization and entity from the drop-down list.
-
-    ![](./media/connectors-create-api-crmonline/select-organization.png)
-
-    If you are prompted to sign in, then enter the sign in details to create the connection. [Create the connection](connectors-create-api-crmonline.md#create-the-connection) in this topic lists the steps. 
-
-    > [AZURE.NOTE] In this example, the logic app runs when a record is created. To see the results of this trigger, add another action that sends you an email. For example, add the Office 365 *Send an email* action that emails you when the new record is added. 
-
-3. Select the **Edit** button and set the **Frequency** and **Interval** values. For example, if you want the trigger to poll every 15 minutes, then set the **Frequency** to **Minute**, and set the **Interval** to **15**. 
-
-    ![](./media/connectors-create-api-crmonline/edit-properties.png)
-
-4. **Save** your changes (top left corner of the toolbar). Your logic app is saved and may be automatically enabled.
+您必須先建立與服務的「連線」，才能透過邏輯應用程式存取任何服務。連線可讓邏輯應用程式與另一個服務連線。例如，若要連線到 Dynamics，您必須先有 Dynamics CRM Online「連線」。若要建立連線，請輸入平常用來存取所要連線之服務的認證。因此，在 Dynamics 中，請輸入 Dynamics CRM Online 帳戶的認證以建立連線。
 
 
-## <a name="use-an-action"></a>Use an action
+### 建立連線
 
-An action is an operation carried out by the workflow defined in a logic app. [Learn more about actions](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts).
+>[AZURE.INCLUDE [建立 Dynamics CRM Online 連接提供者之連線的步驟](../../includes/connectors-create-api-crmonline.md)]
 
-1. Select the plus sign. You see several choices: **Add an action**, **Add a condition**, or one of the **More** options.
+## 使用觸發程序
 
-    ![](./media/connectors-create-api-crmonline/add-action.png)
+觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。觸發程序會以您想要的間隔和頻率「輪詢」服務。[深入了解觸發程序](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
 
-2. Choose **Add an action**.
+1. 在邏輯應用程式中，輸入 "dynamics" 以取得觸發程序的清單︰
 
-3. In the text box, type “dynamics” to get a list of all the available actions.
+	![](./media/connectors-create-api-crmonline/dynamics-triggers.png)
 
-    ![](./media/connectors-create-api-crmonline/dynamics-actions.png)
+2. 選取 [Dynamics CRM Online - 建立記錄時]。如果連線已存在，則選取下拉式清單中的組織和實體。
 
-4. In our example, choose **Dynamics CRM Online - Update a record**. If a connection already exists, then choose the **Organization Name**, **Entity Name**, and other properties:  
+	![](./media/connectors-create-api-crmonline/select-organization.png)
 
-    ![](./media/connectors-create-api-crmonline/sample-action.png)
+	如果系統提示您登入，則輸入登入詳細資料來建立連線。本主題中的[建立連線](connectors-create-api-crmonline.md#create-the-connection)一節會列出步驟。
 
-    If you are prompted for the connection information, then enter the details to create the connection. [Create the connection](connectors-create-api-crmonline.md#create-the-connection) in this topic describes these properties. 
+	> [AZURE.NOTE] 在此範例中，邏輯應用程式會在建立記錄時執行。若要查看此觸發程序的結果，請新增另一個動作，以傳送電子郵件給您。例如，新增 Office 365「傳送電子郵件」動作，以在加入新記錄時傳送電子郵件給您。
 
-    > [AZURE.NOTE] In this example, we update an existing record in CRM Online. You can use output from another trigger to update the record. For example, add the SharePoint *When an existing item is modified* trigger. Then add the CRM Online *Update a record* action that uses the SharePoint fields to update the existing record in CRM Online. 
+3. 選取 [編輯] 按鈕，然後設定 [頻率] 和 [間隔] 值。例如，如果您希望觸發程序每隔 15 分鐘輪詢一次，則將 [頻率] 設定為 [分鐘] 並將 [**間隔]** 設定為 [15]。
 
-5. **Save** your changes (top left corner of the toolbar). Your logic app is saved and may be automatically enabled.
+	![](./media/connectors-create-api-crmonline/edit-properties.png)
+
+4. **儲存**您的變更 (工具列的左上角)。邏輯應用程式將會儲存，而且可能會自動啟用。
 
 
-## <a name="technical-details"></a>Technical Details
+## 使用動作
 
-## <a name="triggers"></a>Triggers
+動作是由邏輯應用程式中定義的工作流程所執行的作業。[深入了解動作](../app-service-logic/app-service-logic-what-are-logic-apps.md#logic-app-concepts)。
 
-|Trigger | Description|
+1. 選取加號。您會看到幾個選擇︰[新增動作]、[新增條件] 或其中一個 [其他] 選項。
+
+	![](./media/connectors-create-api-crmonline/add-action.png)
+
+2. 選擇 [新增動作]。
+
+3. 在文字方塊中，輸入 “dynamics” 以取得所有可用動作的清單。
+
+	![](./media/connectors-create-api-crmonline/dynamics-actions.png)
+
+4. 在本例中，選擇 [Dynamics CRM Online - 更新記錄]。如果連線已存在，則選擇 [組織名稱]、[實體名字] 和其他屬性︰
+
+	![](./media/connectors-create-api-crmonline/sample-action.png)
+
+	如果系統提示您輸入連線資訊，請輸入詳細資料以建立連線。本主題的[建立連線](connectors-create-api-crmonline.md#create-the-connection)一節會說明這些屬性。
+
+	> [AZURE.NOTE] 在此範例中，我們會更新 CRM Online 中的現有記錄。您可以使用另一個觸發程序的輸出來更新記錄。例如，新增 SharePoint「當現有項目遭到修改時」觸發程序。然後新增 CRM Online「更新資料錄」動作，以使用 SharePoint 欄位來更新 CRM Online 中的現有記錄。
+
+5. **儲存**您的變更 (工具列的左上角)。邏輯應用程式將會儲存，而且可能會自動啟用。
+
+
+## 技術詳細資料
+
+## 觸發程序
+
+|觸發程序 | 說明|
 |--- | ---|
-|[When a record is created](connectors-create-api-crmonline.md#when-a-record-is-created)|Triggers a flow when an object is created in CRM.|
-|[When a record is updated](connectors-create-api-crmonline.md#when-a-record-is-updated)|Triggers a flow when an object is modified in CRM.|
-|[When a record is deleted](connectors-create-api-crmonline.md#when-a-record-is-deleted)|Triggers a flow when an object is deleted in CRM.|
+|[當檔案建立時](connectors-create-api-crmonline.md#when-a-record-is-created)|當 CRM 中有物件建立時，就會觸發某個流程。|
+|[當記錄更新時](connectors-create-api-crmonline.md#when-a-record-is-updated)|當 CRM 中有物件遭到修改時，就會觸發某個流程。|
+|[當記錄刪除時](connectors-create-api-crmonline.md#when-a-record-is-deleted)|當 CRM 中有物件刪除時，就會觸發某個流程。|
 
 
-## <a name="actions"></a>Actions
+## 動作
 
-|Action|Description|
+|動作|說明|
 |--- | ---|
-|[List records](connectors-create-api-crmonline.md#list-records)|This operation gets the records for an entity.|
-|[Create a new record](connectors-create-api-crmonline.md#create-a-new-record)|This operation creates a new record of an entity.|
-|[Get record](connectors-create-api-crmonline.md#get-record)|This operation gets the specified record for an entity.|
-|[Delete a record](connectors-create-api-crmonline.md#delete-a-record)|This operation deletes a record from an entity collection.|
-|[Update a record](connectors-create-api-crmonline.md#update-a-record)|This operation updates an existing record for an entity.|
+|[列出記錄](connectors-create-api-crmonline.md#list-records)|這項作業會取得實體的記錄。|
+|[建立新的記錄](connectors-create-api-crmonline.md#create-a-new-record)|這項作業會建立實體的新記錄。|
+|[取得記錄](connectors-create-api-crmonline.md#get-record)|這項作業會取得實體的指定記錄。|
+|[刪除記錄](connectors-create-api-crmonline.md#delete-a-record)|這項作業會從實體集合中刪除記錄。|
+|[更新記錄](connectors-create-api-crmonline.md#update-a-record)|這項作業會更新實體的現有記錄。|
 
-### <a name="trigger-and-action-details"></a>Trigger and Action details
+### 觸發程序和動作詳細資料
 
-In this section, see the specific details about each trigger and action, including any required or optional input properties, and any corresponding output associated with the connector.
+在本節中，請查看每個觸發程序和動作的特定詳細資料，包括任何必要或選擇性的輸入屬性，以及任何與連接器相關聯的對應輸出。
 
-#### <a name="when-a-record-is-created"></a>When a record is created
-Triggers a flow when an object is created in CRM. 
+#### 當檔案建立時
+當 CRM 中有物件建立時，就會觸發某個流程。
 
-|Property name| Display name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|dataset*|Organization Name|Name of the CRM organization like Contoso|
-|table*|Entity Name|Name of the entity|
-|$skip|Skip Count|Number of entries to skip (default = 0)|
-|$top|Maximum Get Count|Maximum number of entries to get (default = 256)|
-|$filter|Filter Query|An ODATA filter query to restrict the entries returned|
-|$orderby|Order By|An ODATA orderBy query for specifying the order of entries|
+|資料集*|組織名稱|CRM 組織的名稱 (例如 Contoso)|
+|資料表 *|實體名稱|實體的名稱|
+|$skip|略過計數|要略過的項目數目 (預設值 = 0)|
+|$top|最大取得計數|要取得的項目數目上限 (預設值 = 256)|
+|$filter|篩選查詢|用來限制傳回項目的 ODATA 篩選查詢|
+|$orderby|排序依據|用來指定項目順序的 ODATA orderBy 查詢|
 
-An asterisk (*) means the property is required.
+星號 (*) 代表必要屬性。
 
-##### <a name="output-details"></a>Output Details
+##### 輸出詳細資料
 ItemsList
 
-| Property Name | Data Type |
+| 屬性名稱 | 資料類型 |
 |---|---|
 |value|array|
 
 
-#### <a name="when-a-record-is-updated"></a>When a record is updated
-Triggers a flow when an object is modified in CRM. 
+#### 當記錄更新時
+當 CRM 中有物件遭到修改時，就會觸發某個流程。
 
-|Property name| Display name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|dataset*|Organization Name|Name of the CRM organization like Contoso|
-|table*|Entity Name|Name of the entity|
-|$skip|Skip Count|Number of entries to skip (default = 0)|
-|$top|Maximum Get Count|Maximum number of entries to get (default = 256)|
-|$filter|Filter Query|An ODATA filter query to restrict the entries returned|
-|$orderby|Order By|An ODATA orderBy query for specifying the order of entries|
+|資料集*|組織名稱|CRM 組織的名稱 (例如 Contoso)|
+|資料表 *|實體名稱|實體的名稱|
+|$skip|略過計數|要略過的項目數目 (預設值 = 0)|
+|$top|最大取得計數|要取得的項目數目上限 (預設值 = 256)|
+|$filter|篩選查詢|用來限制傳回項目的 ODATA 篩選查詢|
+|$orderby|排序依據|用來指定項目順序的 ODATA orderBy 查詢|
 
-An asterisk (*) means the property is required.
+星號 (*) 代表必要屬性。
 
-##### <a name="output-details"></a>Output Details
+##### 輸出詳細資料
 ItemsList
 
-| Property Name | Data Type |
+| 屬性名稱 | 資料類型 |
 |---|---|
 |value|array|
 
 
-#### <a name="when-a-record-is-deleted"></a>When a record is deleted
-Triggers a flow when an object is deleted in CRM. 
+#### 當記錄刪除時
+當 CRM 中有物件刪除時，就會觸發某個流程。
 
-|Property name| Display name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|dataset*|Organization Name|Name of the CRM organization like Contoso|
-|table*|Entity Name|Name of the entity|
-|$skip|Skip Count|Number of entries to skip (default = 0)|
-|$top|Maximum Get Count|Maximum number of entries to get (default = 256)|
-|$filter|Filter Query|An ODATA filter query to restrict the entries returned|
-|$orderby|Order By|An ODATA orderBy query for specifying the order of entries|
+|資料集*|組織名稱|CRM 組織的名稱 (例如 Contoso)|
+|資料表 *|實體名稱|實體的名稱|
+|$skip|略過計數|要略過的項目數目 (預設值 = 0)|
+|$top|最大取得計數|要取得的項目數目上限 (預設值 = 256)|
+|$filter|篩選查詢|用來限制傳回項目的 ODATA 篩選查詢|
+|$orderby|排序依據|用來指定項目順序的 ODATA orderBy 查詢|
 
-An asterisk (*) means the property is required.
+星號 (*) 代表必要屬性。
 
-##### <a name="output-details"></a>Output Details
+##### 輸出詳細資料
 ItemsList
 
-| Property Name | Data Type |
+| 屬性名稱 | 資料類型 |
 |---|---|
 |value|array|
 
 
-#### <a name="list-records"></a>List records
-This operation gets the records for an entity. 
+#### 列出記錄
+這項作業會取得實體的記錄。
 
-|Property name| Display name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|dataset*|Organization Name|Name of the CRM organization like Contoso|
-|table*|Entity Name|Name of the entity|
-|$skip|Skip Count|Number of entries to skip (default = 0)|
-|$top|Maximum Get Count|Maximum number of entries to get (default = 256)|
-|$filter|Filter Query|An ODATA filter query to restrict the entries returned|
-|$orderby|Order By|An ODATA orderBy query for specifying the order of entries|
+|資料集*|組織名稱|CRM 組織的名稱 (例如 Contoso)|
+|資料表 *|實體名稱|實體的名稱|
+|$skip|略過計數|要略過的項目數目 (預設值 = 0)|
+|$top|最大取得計數|要取得的項目數目上限 (預設值 = 256)|
+|$filter|篩選查詢|用來限制傳回項目的 ODATA 篩選查詢|
+|$orderby|排序依據|用來指定項目順序的 ODATA orderBy 查詢|
 
-An asterisk (*) means the property is required.
+星號 (*) 代表必要屬性。
 
-##### <a name="output-details"></a>Output Details
+##### 輸出詳細資料
 ItemsList
 
-| Property Name | Data Type |
+| 屬性名稱 | 資料類型 |
 |---|---|
 |value|array|
 
 
-#### <a name="create-a-new-record"></a>Create a new record
-This operation creates a new record of an entity. 
+#### 建立新的記錄
+這項作業會建立實體的新記錄。
 
-|Property name| Display name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|dataset*|Organization Name|Name of the CRM organization like Contoso|
-|table*|Entity Name|Name of the entity|
+|資料集*|組織名稱|CRM 組織的名稱 (例如 Contoso)|
+|資料表 *|實體名稱|實體的名稱|
 
-An asterisk (*) means the property is required.
+星號 (*) 代表必要屬性。
 
-##### <a name="output-details"></a>Output Details
-None.
+##### 輸出詳細資料
+無。
 
 
-#### <a name="get-record"></a>Get record
-This operation gets the specified record for an entity. 
+#### 取得記錄
+這項作業會取得實體的指定記錄。
 
-|Property name| Display name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|dataset*|Organization Name|Name of the CRM organization like Contoso|
-|table*|Entity Name|Name of the entity|
-|id*|Item identifier|Specify the Identifier for the record|
+|資料集*|組織名稱|CRM 組織的名稱 (例如 Contoso)|
+|資料表 *|實體名稱|實體的名稱|
+|識別碼*|項目識別碼|指定記錄的識別碼|
 
-An asterisk (*) means the property is required.
+星號 (*) 代表必要屬性。
 
-##### <a name="output-details"></a>Output Details
-None.
+##### 輸出詳細資料
+無。
 
 
-#### <a name="delete-a-record"></a>Delete a record
-This operation deletes a record from an entity collection. 
+#### 刪除記錄
+這項作業會從實體集合中刪除記錄。
 
-|Property name| Display name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|dataset*|Organization Name|Name of the CRM organization like Contoso|
-|table*|Entity Name|Name of the entity|
-|id*|Item identifier|Specify the identifier for the record|
+|資料集*|組織名稱|CRM 組織的名稱 (例如 Contoso)|
+|資料表 *|實體名稱|實體的名稱|
+|識別碼*|項目識別碼|指定記錄的識別碼|
 
-An asterisk (*) means the property is required.
+星號 (*) 代表必要屬性。
 
 
-#### <a name="update-a-record"></a>Update a record
-This operation updates an existing record for an entity. 
+#### 更新記錄
+這項作業會更新實體的現有記錄。
 
-|Property name| Display name|Description|
+|屬性名稱| 顯示名稱|說明|
 | ---|---|---|
-|dataset*|Organization Name|Name of the CRM organization like Contoso|
-|table*|Entity Name|Name of the entity|
-|id*|Record identifier|Specify the identifier for the record|
+|資料集*|組織名稱|CRM 組織的名稱 (例如 Contoso)|
+|資料表 *|實體名稱|實體的名稱|
+|識別碼*|記錄識別碼|指定記錄的識別碼|
 
-An asterisk (*) means the property is required.
+星號 (*) 代表必要屬性。
 
-##### <a name="output-details"></a>Output Details
-None.
+##### 輸出詳細資料
+無。
 
 
-## <a name="http-responses"></a>HTTP responses
+## HTTP 回應
 
-The actions and triggers can return one or more of the following HTTP status codes: 
+動作和觸發程序可以傳回一或多個下列的 HTTP 狀態碼︰
 
-|Name|Description|
+|名稱|說明|
 |---|---|
 |200|OK|
-|202|Accepted|
-|400|Bad Request|
-|401|Unauthorized|
-|403|Forbidden|
-|404|Not Found|
-|500|Internal Server Error. Unknown error occurred.|
-|default|Operation Failed.|
+|202|已接受|
+|400|不正確的要求|
+|401|未經授權|
+|403|禁止|
+|404|找不到|
+|500|內部伺服器錯誤。發生未知錯誤。|
+|預設值|作業失敗。|
 
 
-## <a name="next-steps"></a>Next Steps
+## 後續步驟
 
-[Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md). Explore the other available connectors in Logic Apps at our [APIs list](apis-list.md).
+[建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md)。請到我們的 [API 清單](apis-list.md)探索 Logic Apps 中其他可用的連接器。
 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

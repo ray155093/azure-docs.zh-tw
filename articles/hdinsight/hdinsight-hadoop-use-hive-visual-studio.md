@@ -1,12 +1,12 @@
 <properties
-   pageTitle="Hive query with Hadoop tools for Visual Studio | Microsoft Azure"
-   description="Learn how to use Hive with Hadoop in HDInsight using Visual Studio Hadoop tools."
+   pageTitle="使用適用於 Visual Studio 的 Hadoop 工具執行 HIVE 查詢 | Microsoft Azure"
+   description="了解如何利用 Visual Studio Hadoop 工具搭配使用 Hive 與 HDInsight 中的 Hadoop。"
    services="hdinsight"
    documentationCenter=""
    authors="Blackmist"
    manager="jhubbard"
    editor="cgronlun"
-    tags="azure-portal"/>
+	tags="azure-portal"/>
 
 <tags
    ms.service="hdinsight"
@@ -17,34 +17,33 @@
    ms.date="09/06/2016"
    ms.author="larryfr"/>
 
+#使用 HDInsight Tools for Visual Studio 執行 Hive 查詢
 
-#<a name="run-hive-queries-using-the-hdinsight-tools-for-visual-studio"></a>Run Hive queries using the HDInsight tools for Visual Studio
+[AZURE.INCLUDE [Hive 選取器](../../includes/hdinsight-selector-use-hive.md)]
 
-[AZURE.INCLUDE [hive-selector](../../includes/hdinsight-selector-use-hive.md)]
+在本文中，您將學習如何使用 HDInsight Tools for Visual Studio，將 Hive 查詢提交至 HDInsight 叢集。
 
-In this article, you will learn how to submit Hive queries to an HDInsight cluster using the HDInsight tools for Visual Studio.
+> [AZURE.NOTE] 本文件不提供範例中使用的 HiveQL 陳述式所執行的工作詳細的描述。如需此範例中使用的 HiveQL 的相關資訊，請參閱[在 HDInsight 上搭配 Hadoop 使用 Hive](hdinsight-use-hive.md)。
 
-> [AZURE.NOTE] This document does not provide a detailed description of what the HiveQL statements used in the examples do. For information about the HiveQL that is used in this example, see [Use Hive with Hadoop on HDInsight](hdinsight-use-hive.md).
+##<a id="prereq"></a>必要條件
 
-##<a name="<a-id="prereq"></a>prerequisites"></a><a id="prereq"></a>Prerequisites
+若要完成本文中的步驟，您需要下列項目。
 
-To complete the steps in this article, you will need the following.
+* Azure HDInsight (HDInsight 上的 Hadoop) 叢集 (Linux 或 Windows 型)
 
-* An Azure HDInsight (Hadoop on HDInsight) cluster (Linux or Windows-based)
+* Visual Studio (下列其中一個版本)：
 
-* Visual Studio (one of the following versions):
-
-    Visual Studio 2013 Community/Professional/Premium/Ultimate with [Update 4](https://www.microsoft.com/download/details.aspx?id=44921)
+    Visual Studio 2013 Community/Professional/Premium/Ultimate，含 [Update 4](https://www.microsoft.com/download/details.aspx?id=44921)
 
     Visual Studio 2015 (Community/Enterprise)
 
-- HDInsight tools for Visual studio. See [Get started using Visual Studio Hadoop tools for HDInsight](hdinsight-hadoop-visual-studio-tools-get-started.md) for information on installing and configuring the tools.
+- HDInsight Tools for Visual Studio。如需有關安裝和設定工具的資訊，請參閱[開始使用 Visual Studio Hadoop Tools for HDInsight](hdinsight-hadoop-visual-studio-tools-get-started.md)。
 
-##<a name="<a-id="run"></a>-run-hive-queries-using-the-hdinsight-tools-for-visual-studio"></a><a id="run"></a> Run Hive queries using the HDInsight tools for Visual Studio
+##<a id="run"></a>使用 HDInsight Tools for Visual Studio 執行 Hive 查詢
 
-1. Open **Visual Studio** and select **New** > **Project** > **HDInsight** > **Hive Application**. Provide a name for this project.
+1. 開啟 **Visual Studio**，然後選取 [**新增**] > [**專案**] > [**HDInsight**] > [**Hive 應用程式**]。提供此專案的名稱。
 
-2. Open the **Script.hql** file that is created with this project, and paste in the following HiveQL statements:
+2. 開啟使用此專案所建立的 **Script.hql** 檔案，並貼入下列 HiveQL 陳述式中：
 
         set hive.execution.engine=tez;
         DROP TABLE log4jLogs;
@@ -53,64 +52,64 @@ To complete the steps in this article, you will need the following.
         STORED AS TEXTFILE LOCATION 'wasbs:///example/data/';
         SELECT t4 AS sev, COUNT(*) AS count FROM log4jLogs WHERE t4 = '[ERROR]' AND INPUT__FILE__NAME LIKE '%.log' GROUP BY t4;
 
-    These statements perform the following actions:
+    這些陳述式會執行下列動作：
 
-    * **DROP TABLE**: Deletes the table and the data file if the table already exists.
-    * **CREATE EXTERNAL TABLE**: Creates a new 'external' table in Hive. External tables only store the table definition in Hive (the data is left in the original location).
+    * **DROP TABLE**：刪除資料表和資料檔 (如果資料表已存在)。
+    * **CREATE EXTERNAL TABLE**：在 Hive 中建立新的「外部」資料表。外部資料表只會在 Hive 中儲存資料表定義 (資料會保留在原始位置)。
 
-        > [AZURE.NOTE] External tables should be used when you expect the underlying data to be updated by an external source (such as an automated data upload process) or by another MapReduce operation, but you always want Hive queries to use the latest data.
+        > [AZURE.NOTE] 當您預期以外部來源更新基礎資料 (例如自動化資料上傳程序)，或以其他 MapReduce 作業更新基礎資料，但希望 Hive 查詢一律使用最新資料時，必須使用外部資料表。
         >
-        > Dropping an external table does **not** delete the data, only the table definition.
+        > 捨棄外部資料表並**不會**刪除資料，只會刪除資料表定義。
 
-    * **ROW FORMAT**: Tells Hive how the data is formatted. In this case, the fields in each log are separated by a space.
-    * **STORED AS TEXTFILE LOCATION**: Tells Hive where the data is stored (the example/data directory) and that it is stored as text.
-    * **SELECT**: Select a count of all rows where column **t4** contain the value **[ERROR]**. This should return a value of **3** because there are three rows that contain this value.
-    * **INPUT__FILE__NAME LIKE '%.log'** - Tells Hive that we should only return data from files ending in .log. This restricts the search to the sample.log file that contains the data, and keeps it from returning data from other example data files that do not match the schema we defined.
+    * **ROW FORMAT**：告訴 Hive 如何格式化資料。在此情況下，每個記錄中的欄位會以空格隔開。
+    * **STORED AS TEXTFILE LOCATION**：告訴 Hive 資料的儲存位置 (example/data 目錄) 且資料儲存為文字。
+    * **SELECT**：選擇其資料欄 **t4** 包含值 **[ERROR]** 的所有資料列計數。這應該會傳回值 **3**，因為有三個資料列包含此值。
+    * **INPUT\_\_FILE\_\_NAME LIKE '%.log'** - 告訴 Hive 我們只應該從檔名以 log 結尾的檔案中傳回資料。這將限制包含此資料的 sample.log 檔案搜尋，對於不符合我們所定義結構描述的其他範例資料檔案，會防止其傳回資料。
 
-3. From the toolbar, select the **HDInsight Cluster** that you want to use for this query, and then select **Submit to WebHCat** to run the statements as a Hive job using WebHCat. You can also submit the job using the __Execute via HiveServer2__ button if HiveServer2 is available on your cluster version. The **Hive Job Summary** appears and displays information about the running job. Use the **Refresh** link to refresh the job information, until the **Job Status** changes to **Completed**.
+3. 從工具列中，選取您要用於此查詢的 [HDInsight 叢集]，然後選取 [提交至 WebHCat]，使用 WebHCat 以 Hive 作業形式執行陳述式。如果您的叢集版本可使用 HiveServer2，您也可以使用 [透過 HiveServer2 執行] 按鈕來提交作業。[**Hive 工作摘要**] 將會出現並顯示執行中工作的相關資訊。使用 [**重新整理**] 連結來重新整理工作資訊，直到 [**工作狀態**] 變更為 [**已完成**] 為止。
 
-4. Use the **Job Output** link to view the output of this job. It should display `[ERROR] 3`, which is the value returned by the SELECT statement.
+4. 使用 [**工作輸出**] 連結檢視此工作的輸出。它應該會顯示 `[ERROR] 3`，這是 SELECT 陳述式所傳回的值。
 
-5. You can also run Hive queries without creating a project. Using **Server Explorer**, expand **Azure** > **HDInsight**, right-click your HDInsight server, and then select **Write a Hive Query**.
+5. 您也可以執行 Hive 查詢，而不需建立專案。使用 [**伺服器總管**]，展開 [**Azure**] > [**HDInsight**]，在 HDInsight 伺服器上按一下滑鼠右鍵，然後選取 [**撰寫 Hive 查詢**]。
 
-6. In the **temp.hql** document that appears, add the following HiveQL statements:
+6. 在出現的 **temp.hql** 文件，新增下列 HiveQL 陳述式：
 
         set hive.execution.engine=tez;
         CREATE TABLE IF NOT EXISTS errorLogs (t1 string, t2 string, t3 string, t4 string, t5 string, t6 string, t7 string) STORED AS ORC;
         INSERT OVERWRITE TABLE errorLogs SELECT t1, t2, t3, t4, t5, t6, t7 FROM log4jLogs WHERE t4 = '[ERROR]' AND INPUT__FILE__NAME LIKE '%.log';
 
-    These statements perform the following actions:
+    這些陳述式會執行下列動作：
 
-    * **CREATE TABLE IF NOT EXISTS**: Creates a table if it does not already exist. Because the **EXTERNAL** keyword is not used, this is an internal table, which is stored in the Hive data warehouse and is managed completely by Hive.
+    * **CREATE TABLE IF NOT EXISTS**：建立資料表 (如果不存在)。因為未使用 **EXTERNAL** 關鍵字，所以這是內部資料表，而內部資料表儲存在 Hive 資料倉儲中，並完全透過 Hive 來管理。
 
-        > [AZURE.NOTE] Unlike **EXTERNAL** tables, dropping an internal table also deletes the underlying data.
+        > [AZURE.NOTE] 與 **EXTERNAL** 資料表不同之處在於，捨棄內部資料表也會刪除基礎資料。
 
-    * **STORED AS ORC**: Stores the data in optimized row columnar (ORC) format. This is a highly optimized and efficient format for storing Hive data.
-    * **INSERT OVERWRITE ... SELECT**: Selects rows from the **log4jLogs** table that contain **[ERROR]**, then inserts the data into the **errorLogs** table.
+    * **STORED AS ORC**：以最佳化資料列單欄式 (Optimized Row Columnar, ORC) 格式儲存資料。這是高度最佳化且有效率的 Hive 資料儲存格式。
+    * **INSERT OVERWRITE ...SELECT**：從包含 **[ERROR]** 的 **log4jLogs** 資料表選取資料列，然後將資料插入 **errorLogs** 資料表
 
-7. From the toolbar, select **Submit** to run the job. Use the **Job Status** to determine that the job has completed successfully.
+7. 從工具列中，選取 [**提交**] 來執行工作。使用 [**工作狀態**] 來判斷工作是否已順利完成。
 
-8. To verify that the job completed and created a new table, use **Server Explorer** and expand **Azure** > **HDInsight** > your HDInsight cluster > **Hive Databases** > and **default**. You should see the **errorLogs** table and the **log4jLogs** table.
+8. 若要確認工作已完成並已建立新的資料表，請使用 [**伺服器總管**] 並展開 [**Azure**] > [**HDInsight**] > 您的 HDInsight 叢集 > [**Hive 資料庫**] > [**預設**]。您應該會看到 **errorLogs** 資料表和 **log4jLogs** 資料表。
 
-##<a name="<a-id="summary"></a>summary"></a><a id="summary"></a>Summary
+##<a id="summary"></a>摘要
 
-As you can see, the the HDInsight tools for Visual Studio provide an easy way to run Hive queries on an HDInsight cluster, monitor the job status, and retrieve the output.
+如您所見，HDInsight Tools for Visual Studio 提供簡單的方法，在 HDInsight 叢集上執行 Hive 查詢、監視工作狀態，以及擷取輸出。
 
-##<a name="<a-id="nextsteps"></a>next-steps"></a><a id="nextsteps"></a>Next steps
+##<a id="nextsteps"></a>接續步驟
 
-For general information about Hive in HDInsight:
+如需 HDInsight 中 Hive 的一般資訊：
 
-* [Use Hive with Hadoop on HDInsight](hdinsight-use-hive.md)
+* [搭配使用 Hive 與 HDInsight 上的 Hadoop](hdinsight-use-hive.md)
 
-For information about other ways you can work with Hadoop on HDInsight:
+如需您可以在 HDInsight 上使用 Hadoop 之其他方式的詳細資訊：
 
-* [Use Pig with Hadoop on HDInsight](hdinsight-use-pig.md)
+* [搭配使用 Pig 與 HDInsight 上的 Hadoop](hdinsight-use-pig.md)
 
-* [Use MapReduce with Hadoop on HDInsight](hdinsight-use-mapreduce.md)
+* [搭配使用 MapReduce 與 HDInsight 上的 Hadoop](hdinsight-use-mapreduce.md)
 
-For more information about the HDInsight tools for Visual Studio:
+如需 HDInsight Tools for Visual Studio 的詳細資訊：
 
-* [Getting started with HDInsight tools for Visual Studio](../HDInsight/hdinsight-hadoop-visual-studio-tools-get-started.md)
+* [開始使用 HDInsight Tools for Visual Studio](../HDInsight/hdinsight-hadoop-visual-studio-tools-get-started.md)
 
 
 [hdinsight-sdk-documentation]: http://msdnstage.redmond.corp.microsoft.com/library/dn479185.aspx
@@ -144,8 +143,4 @@ For more information about the HDInsight tools for Visual Studio:
 [img-hdi-hive-powershell-output]: ./media/hdinsight-use-hive/HDI.Hive.PowerShell.Output.png
 [image-hdi-hive-architecture]: ./media/hdinsight-use-hive/HDI.Hive.Architecture.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

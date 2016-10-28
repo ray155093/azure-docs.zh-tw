@@ -1,160 +1,156 @@
 <properties 
-    pageTitle="Starting and stopping virtual machines - Graph | Microsoft Azure"
-    description="PowerShell Workflow version of Azure Automation scenario including runbooks to start and stop classic virtual machines."
-    services="automation"
-    documentationCenter=""
-    authors="mgoedtel"
-    manager="jwhit"
-    editor="tysonn" />
+	pageTitle="啟動和停止虛擬機器 - Graph | Microsoft Azure"
+	description="Azure 自動化案例的 PowerShell 工作流程版本，包含可啟動和停止傳統虛擬機器的 Runbook。"
+	services="automation"
+	documentationCenter=""
+	authors="mgoedtel"
+	manager="jwhit"
+	editor="tysonn" />
 <tags 
-    ms.service="automation"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.tgt_pltfrm="na"
-    ms.workload="infrastructure-services"
-    ms.date="07/06/2016"
-    ms.author="bwren" />
+	ms.service="automation"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.tgt_pltfrm="na"
+	ms.workload="infrastructure-services"
+	ms.date="07/06/2016"
+	ms.author="bwren" />
 
+# Azure 自動化案例 - 啟動和停止虛擬機器
 
-# <a name="azure-automation-scenario---starting-and-stopping-virtual-machines"></a>Azure Automation scenario - starting and stopping virtual machines
+此 Azure 自動化案例包含可啟動和停止傳統虛擬機器的 Runbook。此案例可用來做為下列任何用途：
 
-This Azure Automation scenario includes runbooks to start and stop classic virtual machines.  You can use this scenario for any of the following:  
-
-- Use the runbooks without modification in your own environment. 
-- Modify the runbooks to perform customized functionality.  
-- Call the runbooks from another runbook as part of an overall solution. 
-- Use the runbooks as tutorials to learn runbook authoring concepts. 
+- 在您自己的環境中不修改而直接使用 Runbook。
+- 修改 Runbook 來執行自訂的功能。
+- 在整個解決方案中從另一個 Runbook 呼叫 Runbook。
+- 將 Runbook 當作教學課程來了解 Runbook 撰寫概念。
 
 > [AZURE.SELECTOR]
-- [Graphical](automation-solution-startstopvm-graphical.md)
-- [PowerShell Workflow](automation-solution-startstopvm-psworkflow.md)
+- [圖形化](automation-solution-startstopvm-graphical.md)
+- [PowerShell 工作流程](automation-solution-startstopvm-psworkflow.md)
 
-This is the graphical runbook version of this scenario. It is also available using [PowerShell Workflow runbooks](automation-solution-startstopvm-psworkflow.md).
+這是此案例的圖形化 Runbook 版本。也可以使用 [PowerShell 工作流程 Runbook](automation-solution-startstopvm-psworkflow.md) 取得。
 
-## <a name="getting-the-scenario"></a>Getting the scenario
+## 取得案例
 
-This scenario consists of two two graphical runbooks that you can download from the following links.  See the [PowerShell Workflow version](automation-solution-startstopvm-psworkflow.md) of this scenario for links to the PowerShell Workflow runbooks.
+此案例包含兩個可以從下列連結下載的圖形化 Runbook。請參閱此案例的 [PowerShell 工作流程版本](automation-solution-startstopvm-psworkflow.md)，以取得 PowerShell 工作流程 Runbook 的連結。
 
 
-| Runbook | Link | Type | Description |
+| Runbook | 連結 | 類型 | 說明 |
 |:---|:---|:---|:---|
-| StartAzureClassicVM | [Start Azure Classic VM Graphical Runbook](https://gallery.technet.microsoft.com/scriptcenter/Start-Azure-Classic-VM-c6067b3d) | Graphical | Starts all classic virtual machines in an Azure subscription or all virtual machines with a particular service name. |
-| StopAzureClassicVM | [Stop Azure Classic VM Graphical Runbook](https://gallery.technet.microsoft.com/scriptcenter/Stop-Azure-Classic-VM-397819bd) | Graphical | Stops all virtual machines in an automation account or all virtual machines with a particular service name.  |
+| StartAzureClassicVM | [啟動 Azure 傳統 VM 圖形化 Runbook](https://gallery.technet.microsoft.com/scriptcenter/Start-Azure-Classic-VM-c6067b3d) | 圖形化 | 啟動 Azure 訂用帳戶中的所有傳統虛擬機器，或具有特定服務名稱的所有虛擬機器。 |
+| StopAzureClassicVM | [停止 Azure 傳統 VM 圖形化 Runbook](https://gallery.technet.microsoft.com/scriptcenter/Stop-Azure-Classic-VM-397819bd) | 圖形化 | 停止自動化帳戶中的所有虛擬機器，或具有特定服務名稱的所有虛擬機器。 |
 
 
-## <a name="installing-and-configuring-the-scenario"></a>Installing and configuring the scenario
+## 安裝和設定案例
 
-### <a name="1.-install-the-runbooks"></a>1. Install the runbooks
+### 1\.安裝 Runbook
 
-After downloading the runbooks, you can import them using the procedure in [Graphical runbook procedures](automation-graphical-authoring-intro.md#graphical-runbook-procedures).
+下載 Runbook 之後，您可以使用[圖形化 Runbook 程序](automation-graphical-authoring-intro.md#graphical-runbook-procedures)中的程序匯入它們。
 
-### <a name="2.-review-the-description-and-requirements"></a>2. Review the description and requirements
-The runbooks include an activity called **Read Me** that includes a description and required assets.  You can view this information by selecting the **Read Me** activity and then the **Workflow Script** parameter.  You can also get the same information from this article. 
+### 2\.檢閱描述和需求
+Runbook 包含一個稱為**讀我檔案**的活動，其中含有描述和所需的資產。您可以選取 [讀我檔案] 活動，再選取 [工作流程指令碼] 參數，即可檢視這項資訊。您也可以從這份文件取得相同的資訊。
 
-### <a name="3.-configure-assets"></a>3. Configure assets
-The runbooks require the following assets that you must create and populate with appropriate values.  The names are default.  You can use assets with different names if you specify those names in the [input parameters](#using-the-runbooks) when you start the runbook.
+### 3\.設定資產
+Runbook 需要下列資產，您必須建立這些資產並填入適當的值。名稱是預設值。您可以用不同的名稱來使用這些資產，但必須於啟動 Runbook 時，先在[輸入參數](#using-the-runbooks)中指定這些名稱。
 
-| Asset Type | Default Name | Description |
+| 資產類型 | 預設名稱 | 說明 |
 |:---|:---|:---|:---|
-| [Credential](automation-credentials.md) | AzureCredential | Contains credentials for an account that has authority to start and stop virtual machines in the Azure subscription.  |
-| [Variable](automation-variables.md) | AzureSubscriptionId | Contains the subscription ID of your Azure subscription. |
+| [認證](automation-credentials.md) | AzureCredential | 包含帳戶的認證，此帳戶有權啟動和停止 Azure 訂用帳戶中的虛擬機器。 |
+| [變數](automation-variables.md) | AzureSubscriptionId | 包含 Azure 訂用帳戶的訂用帳戶識別碼。 |
 
-## <a name="using-the-scenario"></a>Using the scenario
+## 使用案例
 
-### <a name="parameters"></a>Parameters
+### 參數
 
-The runbooks each have the following [input parameters](automation-starting-a-runbook.md#runbook-parameters).  You must provide values for any mandatory parameters and can optionally provide values for other parameters depending on your requirements.
+每個 Runbook 都有下列[輸入參數](automation-starting-a-runbook.md#runbook-parameters)。您必須提供任何必要參數的值，另外可根據您的需求，選擇性地提供其他參數的值。
 
-| Parameter | Type | Mandatory | Description |
+| 參數 | 類型 | 強制 | 說明 |
 |:---|:---|:---|:---|
-| ServiceName | string | No | If a value is provided, then all virtual machines with that service name are started or stopped.  If no value is provided, then all classic virtual machines in the Azure subscription are started or stopped. |
-| AzureSubscriptionIdAssetName | string | No | Contains the name of the [variable asset](#installing-and-configuring-the-scenario) that contains the subscription ID of your Azure subscription.  If you don't specify a value, *AzureSubscriptionId* is used.  |
-| AzureCredentialAssetName | string | No | Contains the name of the [credential asset](#installing-and-configuring-the-scenario) that contains the credentials for the runbook to use.  If you don't specify a value, *AzureCredential* is used.  |
+| ServiceName | 字串 | 否 | 如果提供一個值，則會啟動或停止具有該服務名稱的所有虛擬機器。如果不提供任何值，則會啟動或停止 Azure 訂用帳戶中的所有傳統虛擬機器。 |
+| AzureSubscriptionIdAssetName | 字串 | 否 | 包含[變數資產](#installing-and-configuring-the-scenario)的名稱，此資產含有 Azure 訂用帳戶的訂用帳戶識別碼。如果不指定任何值，則會使用 *AzureSubscriptionId*。 |
+| AzureCredentialAssetName | 字串 | 否 | 包含[認證資產](#installing-and-configuring-the-scenario)的名稱，此資產含有要使用的 Runbook 認證。如果不指定任何值，則會使用 *AzureCredential*。 |
 
-### <a name="starting-the-runbooks"></a>Starting the runbooks
+### 啟動 Runbook
 
-You can use any of the methods in [Starting a runbook in Azure Automation](automation-starting-a-runbook.md) to start either of the runbooks in this article.
+您可以使用[在 Azure 自動化中啟動 Runbook](automation-starting-a-runbook.md) 中的任何方法，啟動此文章中的任一個 Runbook。
 
-The following sample commands uses Windows PowerShell to run **StartAzureClassicVM** to start all virtual machines with the service name *MyVMService*.
+下列範例命令使用 Windows PowerShell 執行 **StartAzureClassicVM**，以啟動服務名稱為 *MyVMService* 的所有虛擬機器。
 
-    $params = @{"ServiceName"="MyVMService"}
-    Start-AzureAutomationRunbook –AutomationAccountName "MyAutomationAccount" –Name "StartAzureClassicVM" –Parameters $params
+	$params = @{"ServiceName"="MyVMService"}
+	Start-AzureAutomationRunbook –AutomationAccountName "MyAutomationAccount" –Name "StartAzureClassicVM" –Parameters $params
 
-### <a name="output"></a>Output
+### 輸出
 
-The runbooks will [output a message](automation-runbook-output-and-messages.md) for each virtual machine indicating whether or not the start or stop instruction was successfully submitted.  You can look for a specific string in the output to determine the result for each runbook.  The possible output strings are listed in the following table.
+Runbook 將為每部虛擬機器[輸出訊息](automation-runbook-output-and-messages.md)，指出是否已成功提交啟動或停止指令。您可以在輸出中尋找特定的字串，以判斷每一個 Runbook 的結果。下表列出可能的輸出字串。
 
-| Runbook | Condition | Message |
+| Runbook | 條件 | 訊息 |
 |:---|:---|:---|
-| StartAzureClassicVM | Virtual machine is already running  | MyVM is already running |
-| StartAzureClassicVM | Start request for virtual machine successfully submitted | MyVM has been started |
-| StartAzureClassicVM | Start request for virtual machine failed  | MyVM failed to start |
-| StopAzureClassicVM | Virtual machine is already running  | MyVM is already stopped |
-| StopAzureClassicVM | Start request for virtual machine successfully submitted | MyVM has been started |
-| StopAzureClassicVM | Start request for virtual machine failed  | MyVM failed to start |
+| StartAzureClassicVM | 虛擬機器已在執行中 | MyVM 已在執行中 |
+| StartAzureClassicVM | 成功提交虛擬機器的啟動要求 | MyVM 已啟動 |
+| StartAzureClassicVM | 虛擬機器的啟動要求失敗 | MyVM 無法啟動 |
+| StopAzureClassicVM | 虛擬機器已在執行中 | MyVM 已停止 |
+| StopAzureClassicVM | 成功提交虛擬機器的啟動要求 | MyVM 已啟動 |
+| StopAzureClassicVM | 虛擬機器的啟動要求失敗 | MyVM 無法啟動 |
 
 
-Following is an image of using the **StartAzureClassicVM** as a [child runbook](automation-child-runbooks.md) in a sample graphical runbook.  This uses the conditional links in the following table.
+下圖顯示在範例圖形化 Runbook 中使用 **StartAzureClassicVM** 作為[子 Runbook](automation-child-runbooks.md)。這使用下表中的條件式連結。
 
-| Link | Criteria |
+| 連結 | 準則 |
 |:---|:---|
-| Success link | $ActivityOutput['StartAzureClassicVM'] -like "\* has been started"    |
-| Error link   | $ActivityOutput['StartAzureClassicVM'] -notlike "\* has been started" |
+| 成功連結 | $ActivityOutput['StartAzureClassicVM'] -like "* has been started" |
+| 錯誤連結 | $ActivityOutput['StartAzureClassicVM'] -notlike "* has been started" |
 
-![Child runbook example](media/automation-solution-startstopvm/graphical-childrunbook-example.png)
+![子 Runbook 範例](media/automation-solution-startstopvm/graphical-childrunbook-example.png)
 
 
-## <a name="detailed-breakdown"></a>Detailed breakdown
+## 詳細分解圖
 
-Following is a detailed breakdown of the runbooks in this scenario.  You can use this information to either customize the runbooks or just to learn from them for authoring your own automation scenarios.
+以下是此案例中所有 Runbook 的詳細分解圖。您可以使用這項資訊來自訂 Runbook，或只是從中學習撰寫您自己的自動化案例。
  
 
-### <a name="authentication"></a>Authentication
+### 驗證
 
-![Authentication](media/automation-solution-startstopvm/graphical-authentication.png)
+![驗證](media/automation-solution-startstopvm/graphical-authentication.png)
 
-The runbook starts with activities to set the [credentials](automation-configuring.md#configuring-authentication-to-azure-resources) and Azure subscription that will be used for the rest of the runbook.
+Runbook 一開始的活動先設定將用於 Runbook 其餘部分的[認證](automation-configuring.md#configuring-authentication-to-azure-resources)和 Azure 訂用帳戶。
 
-The first two activities, **Get Subscription Id** and **Get Azure Credential**, retrieve the [assets](#installing-the-runbook) that are used by the next two activities.  Those activities could directly specify the assets, but they need the asset names.  Since we are allowing the user to specify those names in the [input parameters](#using-the-runbooks), we need these activities to retrieve the assets with a name specified by an input parameter.
+前兩個活動是**取得訂用帳戶識別碼**和**取得 Azure 認證**，負責擷取供後續兩個活動使用的[資產](#installing-the-runbook)。這些活動可以直接指定資產，但需要資產名稱。因為我們允許使用者在[輸入參數](#using-the-runbooks)中指定這些名稱，我們需要這些活動，以根據輸入參數所指定的名稱來擷取資產。
 
-**Add-AzureAccount** sets the credentials that will be used for the rest of the runbook.  The credential asset that it retrieves from **Get Azure Credential** must have access to start and stop virtual machines in the Azure subscription.  The subscription that's used is selected by **Select-AzureSubscription** which uses the subscription Id from **Get Subscription Id**.
+**Add-AzureAccount** 設定將用於 Runbook 其餘部分的認證。它從**取得 Azure 認證**中擷取的認證資產，必須有權啟動和停止 Azure 訂用帳戶中的虛擬機器。所使用的訂用帳戶由 **Select-AzureSubscription** 選取，此活動使用來自**取得訂用帳戶識別碼**的訂用帳戶識別碼。
 
-### <a name="get-virtual-machines"></a>Get virtual machines
+### 取得虛擬機器
 
-![Get VMs](media/automation-solution-startstopvm/graphical-getvms.png)
+![取得 VM](media/automation-solution-startstopvm/graphical-getvms.png)
 
-The runbook needs to determine which virtual machines it will be working with and whether they are already started or stopped (depending on the runbook).   One of two activities will retrieve the VMs.  **Get VMs in Service** will run if the *ServiceName* input parameter for the runbook contains a value.  **Get All VMs** will run if the *ServiceName* input parameter for the runbook does not contain a value.  This logic is performed by the conditional links preceding each activity.
+Runbook 必須決定將會使用的虛擬機器，以及這些虛擬機器是否已啟動或停止 (取決於 Runbook)。這兩個活動中，其中一個會擷取 VM。如果 Runbook 的 *ServiceName* 輸入參數中有值，**取得服務中的 VM** 將會執行。如果 Runbook 的 *ServiceName* 輸入參數中沒有值，**取得所有 VM** 將會執行。每個活動之前的條件式連結會執行此邏輯。
 
-Both activities use the **Get-AzureVM** cmdlet.  **Get All VMs** uses the **ListAllVMs** parameter set to return all virtual machines.  **Get VMs in Service** uses the **GetVMByServiceAndVMName** parameter set and provides the **ServiceName** input parameter for the **ServiceName** parameter.  
+這兩個活動都使用 **Get-AzureVM** Cmdlet。**取得所有 VM** 使用 **ListAllVMs** 參數集來傳回所有虛擬機器。**取得服務中的 VM** 使用 **GetVMByServiceAndVMName** 參數集，並提供 **ServiceName** 輸入參數作為 **ServiceName** 參數。
 
-### <a name="merge-vms"></a>Merge VMs
+### 合併 VM
 
-![Merge VMs](media/automation-solution-startstopvm/graphical-mergevms.png)
+![合併 VM](media/automation-solution-startstopvm/graphical-mergevms.png)
 
-The **Merge VMs** activity is required to provide input to **Start-AzureVM** which needs the name and service name of the vm(s) to start.  That input could come from either **Get All VMs** or **Get VMs in Service**, but **Start-AzureVM** can only specify one activity for its input.   
+**合併 VM** 活動需要提供輸入給 **Start-AzureVM**，後者需要取得要啟動的 VM 的名稱和服務名稱。輸入可能來自**取得所有 VM** 或**取得服務中的 VM**, ，但 **Start-AzureVM** 只能指定一個活動作為輸入。
 
-The scenario is to create **Merge VMs** which runs the **Write-Output** cmdlet.  The **InputObject** parameter for that cmdlet is a PowerShell Expression that combines the input of the previous two activities.  Only one of those activities will run, so only one set of output is expected.  **Start-AzureVM** can use that output for its input parameters. 
+此案例是建立**合併 VM** 來執行 **Write-Output** Cmdlet。該 Cmdlet 的 **InputObject** 參數是結合先前兩個活動的輸入所形成的 PowerShell 運算式。其中只有一個活動會執行，因此只會有一組輸出。**Start-AzureVM** 可以使用該輸出作為輸入參數。
 
-### <a name="start/stop-virtual-machines"></a>Start/Stop virtual machines
+### 啟動/停止虛擬機器
 
-![Start VMs](media/automation-solution-startstopvm/graphical-startvm.png) ![Stop VMs](media/automation-solution-startstopvm/graphical-stopvm.png)
+![啟動 VM](media/automation-solution-startstopvm/graphical-startvm.png) ![停止 VM](media/automation-solution-startstopvm/graphical-stopvm.png)
 
-Depending on the runbook, the next activities attempt to start or stop the runbook using **Start-AzureVM** or **Stop-AzureVM**.  Since the activity is preceded by a pipeline link, it will run once for each object returned from **Merge VMs**.  The link is conditional so that the activity will only run if the *RunningState* of the virtual machine is *Stopped* for **Start-AzureVM** and *Started* for **Stop-AzureVM**. If this condition is not met, then **Notify Already Started** or **Notify Already Stopped** is run to send a message using **Write-Output**.
+根據 Runkbook 而定，接下來的活動會使用 **Start-AzureVM** 或 **Stop-AzureVM**，嘗試啟動或停止 Runbook。由於活動的前面都有管線連結，所以會對 **合併 VM** 傳回的每個物件執行一次。連結依條件而定，只有當虛擬機器的 *RunningState* 在 **Start-AzureVM** 中是 *Stopped*，而在 **Stop-AzureVM** 中是 *Started* 時，活動才會執行。如果不符合此條件，則會執行**通知已啟動**或**通知已停止**，以使用 **Write-Output** 傳送訊息。
 
-### <a name="send-output"></a>Send output
+### 傳送輸出
 
-![Notify Start VMs](media/automation-solution-startstopvm/graphical-notifystart.png) ![Notify Stop VMs](media/automation-solution-startstopvm/graphical-notifystop.png)
+![通知啟動 VM](media/automation-solution-startstopvm/graphical-notifystart.png) ![通知停止 VM](media/automation-solution-startstopvm/graphical-notifystop.png)
 
-The final step in the runbook is to send output whether the start or stop request for each virtual machine was successfully submitted. There is a separate **Write-Output** activity for each, and we determine which one to run with conditional links.  **Notify VM Started** or **Notify VM Stopped** is run if *OperationStatus* is *Succeeded*.  If *OperationStatus* is any other value, then **Notify Failed To Start** or **Notify Failed to Stop** is run.
-
-
-## <a name="next-steps"></a>Next steps
-
-- [Graphical authoring in Azure Automation](automation-graphical-authoring-intro.md)
-- [Child runbooks in Azure Automation](automation-child-runbooks.md) 
-- [Runbook output and messages in Azure Automation](automation-runbook-output-and-messages.md)
+Runbook 的最後一個步驟是傳送輸出，而不論是否成功提交每個虛擬機器的啟動或停止要求。由於各自有一個 **Write-Output** 活動，我們根據條件式連結決定執行何者。如果 *OperationStatus* 是 *Succeeded*，則會執行**通知 VM 已啟動**或**通知 VM 已停止**。如果 *OperationStatus* 是任何其他值，會執行**通知無法啟動**或**通知無法停止**。
 
 
-<!--HONumber=Oct16_HO2-->
+## 後續步驟
 
+- [Azure 自動化中的圖形化編寫](automation-graphical-authoring-intro.md)
+- [Azure 自動化中的子 Runbook](automation-child-runbooks.md)
+- [Azure 自動化中的 Runbook 輸出與訊息](automation-runbook-output-and-messages.md)
 
+<!---HONumber=AcomDC_0713_2016-->

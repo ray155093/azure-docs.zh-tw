@@ -1,7 +1,7 @@
 
-### <a name="cacheskuname"></a>cacheSKUName
+### cacheSKUName
 
-The pricing tier of the new Azure Redis Cache.
+新的 Azure Redis 快取的定價層。
 
     "cacheSKUName": {
       "type": "string",
@@ -15,12 +15,11 @@ The pricing tier of the new Azure Redis Cache.
       }
     },
 
-The template defines the values that are permitted for this parameter (Basic or Standard), and assigns a default value (Basic) if no value is specified. Basic provides a single node with multiple sizes available up to 53 GB.
-Standard provides two-node Primary/Replica with multiple sizes available up to 53 GB and 99.9% SLA.
+此範本定義此參數允許的值 (基本或標準)，並指派未指定任何值時的預設值 (基本)。「基本」提供單一節點，有多種大小可用，最大為 53 GB。「標準」提供雙節點「主要/複本」，有多種大小可用，最大為 53 GB，還有高達 99.9% 的 SLA。
 
-### <a name="cacheskufamily"></a>cacheSKUFamily
+### cacheSKUFamily
 
-The family for the sku.
+Sku 系列。
 
     "cacheSKUFamily": {
       "type": "string",
@@ -34,9 +33,9 @@ The family for the sku.
     },
 
 
-### <a name="cacheskucapacity"></a>cacheSKUCapacity
+### cacheSKUCapacity
 
-The size of the new Azure Redis Cache instance. 
+新的 Azure Redis 快取執行個體的大小。
 
     "cacheSKUCapacity": {
       "type": "int",
@@ -56,10 +55,5 @@ The size of the new Azure Redis Cache instance.
     }
 
 
-The template defines the values that are permitted for this parameter (0, 1, 2, 3, 4, 5 or 6), and assigns a default value (1) if no value is specified. Those numbers correspond to following cache sizes: 0 = 250 MB, 1 = 1 GB, 2 = 2.5 GB, 3 = 6 GB, 4 = 13 GB, 5 = 26 GB, 6 = 53 GB
-
-
-
-<!--HONumber=Oct16_HO2-->
-
+此範本定義此參數允許的值 (0、1、2、3、4、5 或 6)，並指派未指定任何值時的預設值 (1)。這些數字對應到下列快取大小：0 = 250 MB、1 = 1 GB、2 = 2.5 GB、3 = 6 GB、4 = 13 GB、5 = 26 GB、6 = 53 GB
 

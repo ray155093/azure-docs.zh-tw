@@ -1,162 +1,157 @@
 <properties
-    pageTitle="Install and use Giraph on Linux-based HDInsight (Hadoop) | Microsoft Azure"
-    description="Learn how to install Giraph on Linux-based HDInsight clusters using Script Actions. Script Actions allow you to customize the cluster during creation, by changing cluster configuration or installing services and utilities."
-    services="hdinsight"
-    documentationCenter=""
-    authors="Blackmist"
-    manager="jhubbard"
-    editor="cgronlun"
-    tags="azure-portal"/>
+	pageTitle="安裝並使用以 Linux 為基礎之 HDInsight (Hadoop) 上的 Giraph | Microsoft Azure"
+	description="在本主題中，您將學習如何使用指令碼動作在以 Linux 為基礎的 HDInsight 叢集上安裝 Giraph。透過變更叢集組態或自訂安裝服務與公用程式，指令碼動作可讓您在叢集建立期間自訂叢集。"
+	services="hdinsight"
+	documentationCenter=""
+	authors="Blackmist"
+	manager="jhubbard"
+	editor="cgronlun"
+	tags="azure-portal"/>
 
 <tags
-    ms.service="hdinsight"
-    ms.workload="big-data"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/02/2016"
-    ms.author="larryfr"/>
+	ms.service="hdinsight"
+	ms.workload="big-data"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/02/2016"
+	ms.author="larryfr"/>
 
+# 在 HDInsight Hadoop 叢集上安裝 Giraph，以及使用 Giraph 來處理大規模圖形
 
-# <a name="install-giraph-on-hdinsight-hadoop-clusters,-and-use-giraph-to-process-large-scale-graphs"></a>Install Giraph on HDInsight Hadoop clusters, and use Giraph to process large-scale graphs
+您也可以使用 [指令碼動作] 來自訂叢集，在 Azure HDInsight 上 Hadoop 中的任何一種叢集上安裝 Giraph。
 
-You can install Giraph on any type of cluster in Hadoop on Azure HDInsight by using **Script Action** to customize a cluster.
+在本主題中，您將了解如何使用指令碼動作來安裝 Giraph。一旦您已安裝 Giraph，您也將了解如何將 Giraph 用於大部分的一般應用程式，也就是處理大型的圖形。
 
-In this topic, you will learn how to install Giraph by using Script Action. Once you have installed Giraph, you'll also learn how to use Giraph for most typical applications, which is to process large-scale graphs.
+> [AZURE.NOTE] 本文的資訊是以 Linux 為基礎的 HDInsight 叢集的特定資訊。如需使用以 Windows 為基礎的叢集的詳細資訊，請參閱[在 HDInsight Hadoop 叢集上安裝 Giraph (Windows)](hdinsight-hadoop-giraph-install.md)。
 
-> [AZURE.NOTE] The information in this article is specific to Linux-based HDInsight clusters. For information on working with Windows-based clusters, see [Install Giraph on HDInsight Hadoop clusters (Windows)](hdinsight-hadoop-giraph-install.md)
+## <a name="whatis"></a>什麼是 Giraph？
 
-## <a name="<a-name="whatis"></a>what-is-giraph?"></a><a name="whatis"></a>What is Giraph?
+[Apache Giraph](http://giraph.apache.org/) 可讓您利用 Hadoop 執行圖形處理，且可以搭配 Azure HDInsight 一起使用。圖形可以模型化物件之間的關聯，例如大型網路 (像是網際網路) 上的路由器之間的連線，或社交網路上的人際關係 (有時稱為社交圖形)。圖形處理可讓您分析圖形中物件之間的關聯，例如：
 
-[Apache Giraph](http://giraph.apache.org/) allows you to perform graph processing by using Hadoop, and can be used with Azure HDInsight. Graphs model relationships between objects, such as the connections between routers on a large network like the Internet, or relationships between people on social networks (sometimes referred to as a social graph). Graph processing allows you to reason about the relationships between objects in a graph, such as:
+- 根據目前的人際關係找出可能的朋友。
+- 識別網路中兩台電腦之間的最短路線。
+- 計算網頁的頁面排名。
 
-- Identifying potential friends based on your current relationships.
-- Identifying the shortest route between two computers in a network.
-- Calculating the page rank of webpages.
-
-> [AZURE.WARNING] Components provided with the HDInsight cluster are fully supported and Microsoft Support will help to isolate and resolve issues related to these components.
+> [AZURE.WARNING] 透過 HDInsight 叢集提供的元件會受到完整支援，且 Microsoft 支援服務將協助釐清與解決這些元件的相關問題。
 >
-> Custom components, such as Giraph, receive commercially reasonable support to help you to further troubleshoot the issue. This might result in resolving the issue OR asking you to engage available channels for the open source technologies where deep expertise for that technology is found. For example, there are many community sites that can be used, like: [MSDN forum for HDInsight](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=hdinsight), [http://stackoverflow.com](http://stackoverflow.com). Also Apache projects have project sites on [http://apache.org](http://apache.org), for example: [Hadoop](http://hadoop.apache.org/).
+> 自訂元件 (例如 Giraph) 則獲得商務上合理的支援，協助您進一步對問題進行疑難排解。如此可能會進而解決問題，或要求您利用可用管道，以找出開放原始碼技術，從中了解該技術的深度專業知識。例如，有許多社群網站可以使用，像是：[HDInsight 的 MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/zh-TW/home?forum=hdinsight)、[http://stackoverflow.com](http://stackoverflow.com)。另外，Apache 專案在 [http://apache.org](http://apache.org) 上有專案網站，例如 [Hadoop](http://hadoop.apache.org/)。
 
-##<a name="what-the-script-does"></a>What the script does
+##指令碼會執行哪些作業
 
-This script performs the following actions:
+此指令碼會執行下列動作：
 
-* Installs Giraph to `/usr/hdp/current/giraph`
-* Copies the `giraph-examples.jar` file to default storage (WASB) for your cluster: `/example/jars/giraph-examples.jar`
+* 將 Giraph 安裝至 `/usr/hdp/current/giraph`
+* 將 `giraph-examples.jar` 檔案複製到您的叢集的預設儲存體 (WASB)：`/example/jars/giraph-examples.jar`
 
-## <a name="<a-name="install"></a>install-giraph-using-script-actions"></a><a name="install"></a>Install Giraph using Script Actions
+## <a name="install"></a>使用指令碼動作安裝 Giraph
 
-A sample script to install Giraph on an HDInsight cluster is available at the following location.
+在 HDInsight 叢集上安裝 Giraph 的範例指令碼位於下列位置。
 
     https://hdiconfigactions.blob.core.windows.net/linuxgiraphconfigactionv01/giraph-installer-v01.sh
 
-This section provides instructions on how to use the sample script while creating the cluster by using the Azure Portal. 
+本節提供如何在使用 Azure 入口網站建立叢集時使用範例指令碼的指示。
 
-> [AZURE.NOTE] Azure PowerShell, the Azure CLI, the HDInsight .NET SDK, or Azure Resource Manager templates can also be used to apply script actions. You can also apply script actions to already running clusters. For more information, see [Customize HDInsight clusters with Script Actions](hdinsight-hadoop-customize-cluster-linux.md).
+> [AZURE.NOTE] Azure PowerShell、Azure CLI、HDInsight .NET SDK 或 Azure Resource Manager 範本也可用來套用指令碼動作。您也可以將指令碼動作套用到執行中的叢集上。如需詳細資訊，請參閱[使用指令碼動作自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)。
 
-1. Start creating a cluster by using the steps in [Create Linux-based HDInsight clusters](hdinsight-provision-linux-clusters.md#portal), but do not complete creation.
+1. 使用[建立以 Linux 為基礎的 HDInsight 叢集](hdinsight-provision-linux-clusters.md#portal)中的步驟開始建立叢集，但是不完成建立。
 
-2. On the **Optional Configuration** blade, select **Script Actions**, and provide the information below:
+2. 在 [選用設定] 刀鋒視窗中，選取 [指令碼動作]，並提供下列資訊：
 
-    * __NAME__: Enter a friendly name for the script action.
-    * __SCRIPT URI__: https://hdiconfigactions.blob.core.windows.net/linuxgiraphconfigactionv01/giraph-installer-v01.sh
-    * __HEAD__: Check this option
-    * __WORKER__: Check this option
-    * __ZOOKEEPER__: Check this option to install on the Zookeeper node.
-    * __PARAMETERS__: Leave this field blank
+	* __名稱__：輸入指令碼動作的易記名稱。
+	* __指令碼 URI__：https://hdiconfigactions.blob.core.windows.net/linuxgiraphconfigactionv01/giraph-installer-v01.sh
+	* __HEAD__：勾選此選項
+	* __WORKER__：勾選此選項
+	* __ZOOKEEPER__：勾選此選項以在 Zookeeper 節點上安裝。
+	* __參數__：將此欄位保留空白
 
-3. At the bottom of the **Script Actions**, use the **Select** button to save the configuration. Finally, use the **Select** button at the bottom of the **Optional Configuration** blade to save the optional configuration information.
+3. 在 [指令碼動作] 底部，使用 [選取] 按鈕以儲存組態。最後，使用 [選用組態] 刀鋒視窗底部的 [選取] 按鈕，儲存選用組態資訊。
 
-4. Continue creating the cluster as described in [Create Linux-based HDInsight clusters](hdinsight-hadoop-create-linux-clusters-portal.md).
+4. 繼續如[建立以 Linux 為基礎的 HDInsight 叢集](hdinsight-hadoop-create-linux-clusters-portal.md)中所述建立叢集。
 
-## <a name="<a-name="usegiraph"></a>how-do-i-use-giraph-in-hdinsight?"></a><a name="usegiraph"></a>How do I use Giraph in HDInsight?
+## <a name="usegiraph"></a>如何在 HDInsight 中使用 Giraph？
 
-Once the cluster has finished creating, use the following steps to run the SimpleShortestPathsComputation example included with Giraph. This implements the basic <a href = "http://people.apache.org/~edwardyoon/documents/pregel.pdf">Pregel</a> implementation for finding the shortest path between objects in a graph.
+一旦完成建立叢集之後，請使用下列步驟以執行 Giraph 隨附的 SimpleShortestPathsComputation 範例。這會實作基本 <a href = "http://people.apache.org/~edwardyoon/documents/pregel.pdf">Pregel</a> 實作，用於尋找圖表中物件之間最短的路徑。
 
-1. Connect to the HDInsight cluster using SSH:
+1. 使用 SSH 連線到 HDInsight 叢集
 
-        ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
+		ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
 
-    For more information on using SSH with HDInsight, see the following:
+	如需搭配 HDInsight 使用 SSH 的詳細資訊，請參閱下列文章：
 
-    * [Use SSH with Linux-based Hadoop on HDInsight from Linux, Unix, or OS X](hdinsight-hadoop-linux-use-ssh-unix.md)
+	* [從 Linux、Unix 或 OS X 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)
 
-    * [Use SSH with Linux-based Hadoop on HDInsight from Windows](hdinsight-hadoop-linux-use-ssh-windows.md)
+	* [從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md)
 
-1. Use the following to create a new file named __tiny_graph.txt__:
+1. 使用以下命令建立名為 __tiny\_graph.txt__ 的新檔案：
 
-        nano tiny_graph.txt
+		nano tiny_graph.txt
 
-    Use the following as the contents of this file:
+	使用下列項目做為此檔案的內容：
 
-        [0,0,[[1,1],[3,3]]]
-        [1,0,[[0,1],[2,2],[3,1]]]
-        [2,0,[[1,2],[4,4]]]
-        [3,0,[[0,3],[1,1],[4,4]]]
-        [4,0,[[3,4],[2,4]]]
+		[0,0,[[1,1],[3,3]]]
+		[1,0,[[0,1],[2,2],[3,1]]]
+		[2,0,[[1,2],[4,4]]]
+		[3,0,[[0,3],[1,1],[4,4]]]
+		[4,0,[[3,4],[2,4]]]
 
-    This data describes a relationship between objects in a directed graph, by using the format [source\_id, source\_value,[[dest\_id], [edge\_value],...]]. Each line represents a relationship between a **source\_id** object and one or more **dest\_id** objects. The **edge\_value** (or weight) can be thought of as the strength or distance of the connection between **source_id** and **dest\_id**.
+	這項資料會使用 [source\_id, source\_value,[[dest\_id], [edge\_value],...]] 格式，描述一個有向圖形中物件之間的關聯性。每一行代表 **source\_id** 物件和一或多個 **dest\_id** 物件之間的關聯性。**edge\_value** (或權數) 可以視為 **source\_id** 和 **dest\_id** 之間的連線強度或距離。
 
-    Drawn out, and using the value (or weight) as the distance between objects, the above data might look like this:
+	如果使用值 (或權數) 當做物件之間的距離繪製出來，上述資料可能如下圖所示：
 
-    ![tiny_graph.txt drawn as circles with lines of varying distance between](./media/hdinsight-hadoop-giraph-install-linux/giraph-graph.png)
+	![tiny\_graph.txt drawn as circles with lines of varying distance between](./media/hdinsight-hadoop-giraph-install-linux/giraph-graph.png)
 
-2. To save the file, use __Ctrl+X__, then __Y__, and finally __Enter__ to accept the file name.
+2. 若要儲存檔案，依序使用 __Ctrl+X__、__Y__，最後按 __Enter__ 以接受檔案名稱。
 
-3. Use the following to store the data into primary storage for your HDInsight cluster:
+3. 使用下列項目以將資料儲存至您的 HDInsight 叢集的主要儲存體：
 
-        hdfs dfs -put tiny_graph.txt /example/data/tiny_graph.txt
+		hdfs dfs -put tiny_graph.txt /example/data/tiny_graph.txt
 
-4. Run the SimpleShortestPathsComputation example using the following command.
+4. 使用下列命令執行 SimpleShortestPathsComputation 範例。
 
-         yarn jar /usr/hdp/current/giraph/giraph-examples.jar org.apache.giraph.GiraphRunner org.apache.giraph.examples.SimpleShortestPathsComputation -ca mapred.job.tracker=headnodehost:9010 -vif org.apache.giraph.io.formats.JsonLongDoubleFloatDoubleVertexInputFormat -vip /example/data/tiny_graph.txt -vof org.apache.giraph.io.formats.IdWithValueTextOutputFormat -op /example/output/shortestpaths -w 2
+		 yarn jar /usr/hdp/current/giraph/giraph-examples.jar org.apache.giraph.GiraphRunner org.apache.giraph.examples.SimpleShortestPathsComputation -ca mapred.job.tracker=headnodehost:9010 -vif org.apache.giraph.io.formats.JsonLongDoubleFloatDoubleVertexInputFormat -vip /example/data/tiny_graph.txt -vof org.apache.giraph.io.formats.IdWithValueTextOutputFormat -op /example/output/shortestpaths -w 2
 
-    The parameters used with this command are described in the following table.
+	與此命令搭配使用的參數會在下表中說明：
 
-  	| Parameter | What it does |
-  	| --------- | ------------ |
-  	| `jar /usr/hdp/current/giraph/giraph-examples.jar` | The jar file containing the examples. |
-  	| `org.apache.giraph.GiraphRunner` | The class used to start the examples. |
-  	| `org.apache.giraph.examples.SimpleShortestPathsCoputation` | The example that will be ran. In this case, it will compute the shortest path between ID 1 and all other IDs in the graph. |
-  	| `-ca mapred.job.tracker=headnodehost:9010` | The headnode for the cluster. |
-  	| `-vif org.apache.giraph.io.formats.JsonLongDoubleFloatDoubleVertexInputFromat` | The input format to use for the input data. |
-  	| `-vip /example/data/tiny_graph.txt` | The input data file. |
-  	| `-vof org.apache.giraph.io.formats.IdWithValueTextOutputFormat` | The output format. In this case, ID and value as plain text. |
-  	| `-op /example/output/shortestpaths` | The output location. |
-  	| `-w 2` | The number of workers to use. In this case, 2. |
+	| 參數 | 作用 |
+	| --------- | ------------ |
+	| `jar /usr/hdp/current/giraph/giraph-examples.jar` | 包含範例的 jar 檔案。 |
+	| `org.apache.giraph.GiraphRunner` | 用於啟動範例的類別。 |
+	| `org.apache.giraph.examples.SimpleShortestPathsCoputation` | 將會執行的範例。在此案例中，它會計算圖形中識別碼 1 和所有其他識別碼之間的最短路徑。 |
+	| `-ca mapred.job.tracker=headnodehost:9010` | 叢集的前端節點。 |
+	| `-vif org.apache.giraph.io.formats.JsonLongDoubleFloatDoubleVertexInputFromat` | 用於輸入資料的輸入格式。 |
+	| `-vip /example/data/tiny_graph.txt` | 輸入資料檔案。 |
+	| `-vof org.apache.giraph.io.formats.IdWithValueTextOutputFormat` | 輸出格式。在此案例中，識別碼和值是純文字。 |
+	| `-op /example/output/shortestpaths` | 輸出位置。 |
+	| `-w 2` | 要使用的背景工作角色數目。在此案例中為 2。 |
 
-    For more information on these, and other parameters used with Giraph samples, see the [Giraph quickstart](http://giraph.apache.org/quick_start.html).
+	如需這些項目以及與 Giraph 範例搭配使用之其他參數的詳細資訊，請參閱 [Giraph 快速入門](http://giraph.apache.org/quick_start.html)。
 
-5. Once the job has finished, the results will be stored in the __wasbs:///example/out/shotestpaths__ directory. The files created will begin with __part-m-__ and end with a number indicating the first, second, etc. file. Use the following to view the output:
+5. 一旦完成作業，結果會儲存在 __wasbs:///example/out/shotestpaths__ 目錄中。建立的檔案會以 __part-m-\_\_ 開頭，結束的數字表示是第一個、第二個檔案，依此類推。使用下列項目以檢視輸出：
 
-        hdfs dfs -text /example/output/shortestpaths/*
+		hdfs dfs -text /example/output/shortestpaths/*
 
-    The output should appear similar to the following:
+	輸出應該如下所示：
 
-        0   1.0
-        4   5.0
-        2   2.0
-        1   0.0
-        3   1.0
+		0	1.0
+		4	5.0
+		2	2.0
+		1	0.0
+		3	1.0
 
-    The SimpleShortestPathComputation example is hard coded to start with object ID 1 and find the shortest path to other objects. So the output should be read as `destination_id distance`, where distance is the value (or weight) of the edges traveled between object ID 1 and the target ID.
+	SimpleShortestPathComputation 範例已刻意設計成從物件識別碼 1 開始，尋找前往其他物件的最短路徑。因此，輸出應該會顯示 `destination_id distance`，其中 distance 是物件識別碼 1 與目標識別碼之間經過的邊緣的值 (或權數)。
 
-    Visualizing this, you can verify the results by traveling the shortest paths between ID 1 and all other objects. Note that the shortest path between ID 1 and ID 4 is 5. This is the total distance between <span style="color:orange">ID 1 and 3</span>, and then <span style="color:red">ID 3 and 4</span>.
+	顯現為圖形後，您可以走過識別碼 1 與其他所有物件之間的最短路徑來驗證結果。請注意，識別碼 1 和識別碼 4 之間的最短路徑為 5。這是<span style="color:orange">識別碼 1 和 3 之間</span>加上<span style="color:red">識別碼 3 和 4 之間</span>的總距離。
 
-    ![Drawing of objects as circles with shortest paths drawn between](./media/hdinsight-hadoop-giraph-install-linux/giraph-graph-out.png)
-
-
-## <a name="next-steps"></a>Next steps
-
-- [Install and use Hue on HDInsight clusters](hdinsight-hadoop-hue-linux.md). Hue is a web UI that makes it easy to create, run and save Pig and Hive jobs, as well as browse the default storage for your HDInsight cluster.
-
-- [Install R on HDInsight clusters](hdinsight-hadoop-r-scripts-linux.md): Instructions on how to use cluster customization to install and use R on HDInsight Hadoop clusters. R is an open-source language and environment for statistical computing. It provides hundreds of built-in statistical functions and its own programming language that combines aspects of functional and object-oriented programming. It also provides extensive graphical capabilities.
-
-- [Install Solr on HDInsight clusters](hdinsight-hadoop-solr-install-linux.md). Use cluster customization to install Solr on HDInsight Hadoop clusters. Solr allows you to perform powerful search operations on data stored.
+	![Drawing of objects as circles with shortest paths drawn between](./media/hdinsight-hadoop-giraph-install-linux/giraph-graph-out.png)
 
 
+## 後續步驟
 
-<!--HONumber=Oct16_HO2-->
+- [在 HDInsight 叢集上安裝及使用色調](hdinsight-hadoop-hue-linux.md)。Hue 是 Web UI，可讓您更輕鬆地建立、執行及儲存 Pig 和 Hive 工作，以及瀏覽您的 HDInsight 叢集的預設儲存體。
 
+- [在 HDInsight 叢集上安裝 R](hdinsight-hadoop-r-scripts-linux.md)：如何使用叢集自訂，以在 HDInsight Hadoop 叢集上安裝和使用 R 的指示。R 是一個用於統計計算的開放原始碼語言和環境。它提供數百個內建的統計函式及它自己的程式設計語言，此語言結合了函式型和物件導向程式設計的層面。它也提供廣泛的圖形功能。
 
+- [在 HDInsight 叢集上安裝 Solr](hdinsight-hadoop-solr-install-linux.md)。在 HDInsight Hadoop 叢集上使用叢集自訂安裝 Solr。Solr 可讓您在儲存的資料上執行功能強大的搜尋作業。
+
+<!---HONumber=AcomDC_0914_2016-->

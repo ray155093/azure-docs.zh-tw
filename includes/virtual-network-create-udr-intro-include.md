@@ -1,13 +1,10 @@
-Although the use of system routes facilitates traffic automatically for your deployment, there are cases in which you want to control the routing of packets through a virtual appliance. You can do so by creating user defined routes that specify the next hop for packets flowing to a specific subnet to go to your virtual appliance instead, and enabling IP forwarding for the VM running as the virtual appliance.
+雖然使用系統路由可自動加速您部署的流量，但是也有一些您希望透過虛擬設備控制封包路由的情況。您可以透過建立使用者定義的路由 (其指定流向指定子網路之封包的下個躍點，改為流向您的虛擬設備)，並啟用做為虛擬設備執行之 VM 的 IP 轉送。
 
-Some of the cases where virtual appliances can be used include:
+以下提供一些可使用虛擬應用裝置的案例：
 
-- Monitoring traffic with an intrusion detection system (IDS)
-- Controlling traffic with a firewall
+- 使用入侵偵測系統 (IDS) 監視流量
+- 使用防火牆控制流量
 
-For more information about UDR and IP forwarding, visit [User Defined Routes and IP Forwarding](../articles/virtual-network/virtual-networks-udr-overview.md).
+如需 UDR 和 IP 轉送的詳細資訊，請參閱[使用者定義的路由和 IP 轉送](../articles/virtual-network/virtual-networks-udr-overview.md)。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0224_2016-->

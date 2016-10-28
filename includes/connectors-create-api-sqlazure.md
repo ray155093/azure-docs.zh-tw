@@ -1,48 +1,46 @@
-### <a name="prerequisites"></a>Prerequisites
-- An Azure account; you can create a [free account](https://azure.microsoft.com/free)
-- An [Azure SQL Database](../articles/sql-database/sql-database-get-started.md) with its connection information, including the server name, database name, and username/password. This information is included in the SQL Database connection string:
+### 必要條件
+- Azure 帳戶；您可以建立一個[免費帳戶](https://azure.microsoft.com/free)
+- 包含此連線資訊 (伺服器名稱、資料庫名稱和使用者名稱/密碼) 的 [Azure SQL Database](../articles/sql-database/sql-database-get-started.md)。此資訊包含在 SQL Database 連接字串中：
   
-    Server=tcp:*yoursqlservername*.database.windows.net,1433;Initial Catalog=*yourqldbname*;Persist Security Info=False;User ID={your_username};Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
+	Server=tcp:*yoursqlservername*.database.windows.net,1433;Initial Catalog=*yourqldbname*;Persist Security Info=False;User ID={your\_username};Password={your\_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
 
-    Read more about [Azure SQL Databases](https://azure.microsoft.com/services/sql-database).
+	深入了解 [Azure SQL Database](https://azure.microsoft.com/services/sql-database)。
 
-> [AZURE.NOTE] When you create an Azure SQL Database, you can also create the sample databases included with SQL. 
+> [AZURE.NOTE] 當您建立 Azure SQL Database 時，您也可以建立 SQL 包含的範本資料庫。
 
 
 
-Before using your Azure SQL Database in a logic app, connect to your SQL Database. You can do this easily within your logic app on the Azure portal.  
+在於邏輯應用程式中使用您的 Azure SQL Database 之前，請先連線到您的 SQL Database。您可以在 Azure 入口網站上，從邏輯應用程式內輕鬆完成此操作。
 
-Connect to your Azure SQL Database using the following steps:  
+請使用下列步驟來連線到您的 Azure SQL Database：
 
-1. Create a logic app. In the Logic Apps designer, add a trigger, and then add an action. Select **Show Microsoft managed APIs** in the drop down list, and then enter "sql" in the search box. Select one of the actions:  
+1. 建立邏輯應用程式。在 Logic Apps 設計工具中，新增一個觸發程序，然後新增一個動作。從下拉式清單中選取 [顯示 Microsoft Managed API]，然後在搜尋方塊中輸入 "sql"。選取其中一個動作︰
 
-    ![SQL Azure connection creation step](./media/connectors-create-api-sqlazure/sql-actions.png)
+	![SQL Azure 連接建立步驟](./media/connectors-create-api-sqlazure/sql-actions.png)
 
-2. If you haven't previously created any connections to SQL Database, you are prompted for the connection details:  
+2. 如果您之前尚未建立與 SQL Database 的任何連線，系統將會提示您輸入連線詳細資料：
 
-    ![SQL Azure connection creation step](./media/connectors-create-api-sqlazure/connection-details.png) 
+	![SQL Azure 連接建立步驟](./media/connectors-create-api-sqlazure/connection-details.png)
 
-3. Enter the SQL Database details. Properties with an asterisk are required.
+3. 輸入 SQL Database 詳細資料。具有星號的屬性為必要項目。
 
-    | Property | Details |
+	| 屬性 | 詳細資料 |
 |---|---|
-| Connect via Gateway | Leave this unchecked. This is used when connecting to an on-premises SQL Server. |
-| Connection Name * | Enter any name for your connection. | 
-| SQL Server Name * | Enter the server name; which is something like *servername.database.windows.net*. The server name is displayed in the SQL Database properties in the Azure portal, and also displayed in the connection string. | 
-| SQL Database Name * | Enter the name you gave your SQL Database. This is listed in the SQL Database properties in the connection string: Initial Catalog=*yoursqldbname*. | 
-| Username * | Enter the username you created when the SQL Database was created. This is listed in the SQL Database properties in the Azure portal. | 
-| Password * | Enter the password you created when the SQL Database was created. | 
+| 透過閘道連線 | 讓此屬性保持未核取狀態。連線到內部部署 SQL Server 時會使用此屬性。 |
+| 連線名稱 * | 為連接器輸入任何名稱。 | 
+| SQL Server 名稱 * | 輸入伺服器名稱；也就是類似 *servername.database.windows.net* 的名稱。伺服器名稱會顯示在 Azure 入口網站的 SQL Database 屬性中，並且也會顯示在連接字串中。 | 
+| SQL Database 名稱 * | 輸入提供給 SQL Database 的名稱。這會列在連接字串的 SQL Database 屬性中︰Initial Catalog=*yoursqldbname*。 | 
+| 使用者名稱 * | 輸入 SQL Database 建立時所建立的使用者名稱。這會列在 Azure 入口網站的 SQL Database 屬性中。 | 
+| 密碼 * | 輸入 SQL Database 建立時所建立的密碼。 | 
 
-    These credentials are used to authorize your logic app to connect, and access your SQL data. Once complete, your connection details look similar to the following:  
+	這些認證會用來授權邏輯應用程式連線並存取 SQL 資料。完成後，連線詳細資料看起來類似下圖︰
 
-    ![SQL Azure connection creation step](./media/connectors-create-api-sqlazure/sample-connection.png) 
+	![SQL Azure 連接建立步驟](./media/connectors-create-api-sqlazure/sample-connection.png)
 
-4. Select **Create**. 
+4. 選取 [建立]。
 
-5. Notice the connection has been created. Now, proceed with the other steps in your logic app: 
+5. 請注意，已建立連線。現在，請繼續進行您邏輯應用程式中的其他步驟：
 
-    ![SQL Azure connection creation step](./media/connectors-create-api-sqlazure/table.png)
+	![SQL Azure 連接建立步驟](./media/connectors-create-api-sqlazure/table.png)
 
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0727_2016-->

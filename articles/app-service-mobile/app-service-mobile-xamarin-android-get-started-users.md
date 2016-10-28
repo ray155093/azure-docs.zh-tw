@@ -1,69 +1,68 @@
 <properties
-    pageTitle="Get Started with authentication for Mobile Apps in Xamarin Android"
-    description="Learn how to use Mobile Apps to authenticate users of your Xamarin Android app through a variety of identity providers, including AAD, Google, Facebook, Twitter, and Microsoft."
-    services="app-service\mobile"
-    documentationCenter="xamarin"
-    authors="adrianhall"
-    manager="dwrede"
-    editor=""/>
+	pageTitle="開始在 Xamarin Android 中使用行動應用程式的驗證"
+	description="了解如何使用行動應用程式透過眾多識別提供者驗證 Xamarin Android 應用程式使用者，包括 AAD、Google、Facebook、Twitter 和 Microsoft。"
+	services="app-service\mobile"
+	documentationCenter="xamarin"
+	authors="mattchenderson"
+	manager="dwrede"
+	editor=""/>
 
 <tags
-    ms.service="app-service-mobile"
-    ms.workload="mobile"
-    ms.tgt_pltfrm="mobile-xamarin-android"
-    ms.devlang="dotnet"
-    ms.topic="article"
-    ms.date="10/01/2016"
-    ms.author="adrianha"/>
+	ms.service="app-service-mobile"
+	ms.workload="mobile"
+	ms.tgt_pltfrm="mobile-xamarin-android"
+	ms.devlang="dotnet"
+	ms.topic="article"
+	ms.date="06/28/2016"
+	ms.author="mahender"/>
 
-
-# <a name="add-authentication-to-your-xamarin.android-app"></a>Add authentication to your Xamarin.Android app
+# 將驗證新增至 Xamarin.Android 應用程式
 
 [AZURE.INCLUDE [app-service-mobile-selector-get-started-users](../../includes/app-service-mobile-selector-get-started-users.md)]
 
-This topic shows you how to authenticate users of a Mobile App from your client application. In this tutorial, you add authentication to the quickstart project using an identity provider that is supported by Azure Mobile Apps. After being successfully authenticated and authorized in the Mobile App, the user ID value is displayed.
+本主題說明如何從用戶端應用程式驗證行動應用程式的使用者。在本教學課程中，您會使用 Azure 行動應用程式所支援的身分識別提供者將驗證新增至快速入門專案。在行動應用程式中成功驗證並授權之後，就會顯示使用者識別碼值。
 
-This tutorial is based on the Mobile App quickstart. You must also first complete the tutorial [Create a Xamarin.Android app]. If you do not use the downloaded quick start server project, you must add the authentication extension package to your project. For more information about server extension packages, see [Work with the .NET backend server SDK for Azure Mobile Apps](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md).
+本教學課程以行動應用程式快速入門為基礎。您也必須先完成[建立 Xamarin.Android 應用程式教學課程]。如果您不要使用下載的快速入門伺服器專案，必須將驗證擴充套件新增至您的專案。如需伺服器擴充套件的詳細資訊，請參閱[使用 Azure 行動應用程式的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
 
-##<a name="<a-name="register"></a>register-your-app-for-authentication-and-configure-app-services"></a><a name="register"></a>Register your app for authentication and configure App Services
+##<a name="register"></a>註冊應用程式進行驗證，並設定應用程式服務
 
 [AZURE.INCLUDE [app-service-mobile-register-authentication](../../includes/app-service-mobile-register-authentication.md)]
 
-##<a name="<a-name="permissions"></a>restrict-permissions-to-authenticated-users"></a><a name="permissions"></a>Restrict permissions to authenticated users
+##<a name="permissions"></a>限制只有通過驗證的使用者具有權限
 
 [AZURE.INCLUDE [app-service-mobile-restrict-permissions-dotnet-backend](../../includes/app-service-mobile-restrict-permissions-dotnet-backend.md)]
 
-In Visual Studio or Xamarin Studio, run the client project on a device or emulator. Verify that an unhandled exception with a status code of 401 (Unauthorized) is raised after the app starts. This happens because the app attempts to access your Mobile App backend as an unauthenticated user. The *TodoItem* table now requires authentication.
+在 Visual Studio 或 Xamarin Studio 中，在裝置或模擬器上執行用戶端專案。確認在應用程式啟動後，發生狀態代碼 401 (未經授權) 的未處理例外狀況。這是因為應用程式嘗試以未驗證的使用者身分存取您的行動應用程式程式碼。*TodoItem* 資料表現在需要驗證。
 
-Next, you will update the client app to request resources from the Mobile App backend with an authenticated user.
+接下來，您將會更新用戶端應用程式，利用已驗證的使用者身分來要求行動應用程式後端的資源。
 
-##<a name="<a-name="add-authentication"></a>add-authentication-to-the-app"></a><a name="add-authentication"></a>Add authentication to the app
+##<a name="add-authentication"></a>將驗證新增至應用程式
 
-The app is updated to require users to tap the **Sign in** button and authenticate before data is displayed.
+應用程式已更新，要求使用者在資料顯示前點選 [登入] 按鈕並驗證。
 
-1. Add the following code to the **TodoActivity** class:
+1. 將下列程式碼加入 **TodoActivity** 類別：
 
-        // Define a authenticated user.
-        private MobileServiceUser user;
-        private async Task<bool> Authenticate()
-        {
-                var success = false;
-                try
-                {
-                    // Sign in with Facebook login using a server-managed flow.
-                    user = await client.LoginAsync(this,
-                        MobileServiceAuthenticationProvider.Facebook);
-                    CreateAndShowDialog(string.Format("you are now logged in - {0}",
-                        user.UserId), "Logged in!");
+	    // Define a authenticated user.
+	    private MobileServiceUser user;
+	    private async Task<bool> Authenticate()
+	    {
+	            var success = false;
+	            try
+	            {
+	                // Sign in with Facebook login using a server-managed flow.
+	                user = await client.LoginAsync(this,
+	                    MobileServiceAuthenticationProvider.Facebook);
+	                CreateAndShowDialog(string.Format("you are now logged in - {0}",
+	                    user.UserId), "Logged in!");
 
-                    success = true;
-                }
-                catch (Exception ex)
-                {
-                    CreateAndShowDialog(ex, "Authentication failed");
-                }
-                return success;
-        }
+	                success = true;
+	            }
+	            catch (Exception ex)
+	            {
+	                CreateAndShowDialog(ex, "Authentication failed");
+	            }
+	            return success;
+	    }
 
         [Java.Interop.Export()]
         public async void LoginUser(View view)
@@ -79,37 +78,33 @@ The app is updated to require users to tap the **Sign in** button and authentica
             }
         }
 
-    This creates a new method to authenticate a user and a method handler for a new **Sign in** button. The user in the example code above is authenticated by using a Facebook login. A dialog is used to display the user ID once authenticated.
+    這會建立一個新方法以驗證使用者，以及建立新 [登入] 按鈕的方法處理常式。上述範例程式碼中的使用者是使用 Facebook 登入進行驗證。對話方塊會在驗證後用來顯示使用者識別碼。
 
-    > [AZURE.NOTE] If you are using an identity provider other than Facebook, change the value passed to **LoginAsync** above to one of the following: _MicrosoftAccount_, _Twitter_, _Google_, or _WindowsAzureActiveDirectory_.
+    > [AZURE.NOTE] 如果您使用的身分識別提供者不是 Facebook，請將傳遞給上述 **LoginAsync** 的值變更為下列其中之一：_MicrosoftAccount_、_Twitter_、_Google_ 或 _WindowsAzureActiveDirectory_。
 
-3. In the **OnCreate** method, delete or comment-out the following line of code:
+3. 在 **OnCreate** 方法中，刪除或註解下列程式碼行：
 
-        OnRefreshItemsSelected ();
+		OnRefreshItemsSelected ();
 
-4. In the Activity_To_Do.axml file, add the following *LoginUser* button definition before the existing *AddItem* button:
+4. 在 Activity\_To\_Do.axml 檔案中，在現有的*AddItem* 按鈕之前加入下列 *LoginUser* 按鈕定義：
 
-        <Button
+      	<Button
             android:id="@+id/buttonLoginUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="LoginUser"
             android:text="@string/login_button_text" />
 
-5. Add the following element to the Strings.xml resources file:
+5. 將下列元素新增到 Strings.xml 資源檔：
 
-        <string name="login_button_text">Sign in</string>
+		<string name="login_button_text">Sign in</string>
 
-6. In Visual Studio or Xamarin Studio, run the client project on a device or emulator and sign in with your chosen identity provider.
+6. 在 Visual Studio 或 Xamarin Studio 中，在裝置或模擬器上執行用戶端專案，並使用您選擇的身分識別提供者登入。
 
-    When you are successfully logged-in, the app will display your login ID and the list of todo items, and you can make updates to the data.
+   	當您成功登入後，應用程式將會顯示您的登入識別碼以及 todo 項目的清單，您可以對資料進行更新。
 
 
 <!-- URLs. -->
-[Create a Xamarin.Android app]: app-service-mobile-xamarin-android-get-started.md
+[建立 Xamarin.Android 應用程式教學課程]: app-service-mobile-xamarin-android-get-started.md
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0706_2016-->

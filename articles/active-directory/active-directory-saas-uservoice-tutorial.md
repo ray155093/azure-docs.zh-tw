@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="Tutorial: Azure Active Directory Integration with UserVoice | Microsoft Azure" 
-    description="Learn how to use UserVoice with Azure Active Directory to enable single sign-on, automated provisioning, and more!." 
+    pageTitle="教學課程：Azure Active Directory 與 UserVoice 整合 | Microsoft Azure" 
+    description="了解如何使用 UserVoice 搭配 Azure Active Directory 來啟用單一登入、自動佈建和更多功能！" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -14,160 +14,152 @@
     ms.date="09/11/2016" 
     ms.author="jeedes" />
 
-
-#<a name="tutorial:-azure-active-directory-integration-with-uservoice"></a>Tutorial: Azure Active Directory Integration with UserVoice
+#教學課程：Azure Active Directory 與 UserVoice 整合
   
-The objective of this tutorial is to show the integration of Azure and UserVoice.  
-The scenario outlined in this tutorial assumes that you already have the following items:
+本教學課程的目的是要示範 Azure 與 UserVoice 的整合。本教學課程中說明的案例假設您已經具有下列項目：
 
--   A valid Azure subscription
--   A UserVoice tenant
+-   有效的 Azure 訂用帳戶
+-   UserVoice 租用戶
   
-After completing this tutorial, the Azure AD users you have assigned to UserVoice will be able to single sign into the application at your UserVoice company site (service provider initiated sign on), or using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+完成本教學課程之後，您指派給 UserVoice 的 Azure AD 使用者就能夠從您的 UserVoice 公司網站 (服務提供者起始登入)，或使用[存取面板](active-directory-saas-access-panel-introduction.md)來單一登入應用程式。
   
-The scenario outlined in this tutorial consists of the following building blocks:
+本教學課程中說明的案例由下列建置組塊組成：
 
-1.  Enabling the application integration for UserVoice
-2.  Configuring single sign-on
-3.  Configuring user provisioning
-4.  Assigning users
+1.  啟用 UserVoice 的應用程式整合
+2.  設定單一登入
+3.  設定使用者佈建
+4.  指派使用者
 
-![Scenario](./media/active-directory-saas-uservoice-tutorial/IC777514.png "Scenario")
+![案例](./media/active-directory-saas-uservoice-tutorial/IC777514.png "案例")
 
-##<a name="enabling-the-application-integration-for-uservoice"></a>Enabling the application integration for UserVoice
+##啟用 UserVoice 的應用程式整合
   
-The objective of this section is to outline how to enable the application integration for UserVoice.
+本節的目的是要說明如何啟用 UserVoice 的應用程式整合。
 
-###<a name="to-enable-the-application-integration-for-uservoice,-perform-the-following-steps:"></a>To enable the application integration for UserVoice, perform the following steps:
+###若要啟用 UserVoice 的應用程式整合，請執行下列步驟：
 
-1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-uservoice-tutorial/IC700993.png "Active Directory")
 
-2.  From the **Directory** list, select the directory for which you want to enable directory integration.
+2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3.  To open the applications view, in the directory view, click **Applications** in the top menu.
+3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
 
-    ![Applications](./media/active-directory-saas-uservoice-tutorial/IC700994.png "Applications")
+    ![應用程式](./media/active-directory-saas-uservoice-tutorial/IC700994.png "應用程式")
 
-4.  Click **Add** at the bottom of the page.
+4.  按一下頁面底部的 [新增]。
 
-    ![Add application](./media/active-directory-saas-uservoice-tutorial/IC749321.png "Add application")
+    ![新增應用程式](./media/active-directory-saas-uservoice-tutorial/IC749321.png "新增應用程式")
 
-5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
-    ![Add an application from gallerry](./media/active-directory-saas-uservoice-tutorial/IC749322.png "Add an application from gallerry")
+    ![從資源庫新增應用程式](./media/active-directory-saas-uservoice-tutorial/IC749322.png "從資源庫新增應用程式")
 
-6.  In the **search box**, type **UserVoice**.
+6.  在 [搜尋方塊] 中，輸入 **UserVoice**。
 
-    ![Application gallery](./media/active-directory-saas-uservoice-tutorial/IC777513.png "Application gallery")
+    ![應用程式庫](./media/active-directory-saas-uservoice-tutorial/IC777513.png "應用程式庫")
 
-7.  In the results pane, select **UserVoice**, and then click **Complete** to add the application.
+7.  在結果窗格中，選取 [UserVoice]，然後按一下 [完成] 以新增應用程式。
 
     ![UserVoice](./media/active-directory-saas-uservoice-tutorial/IC777810.png "UserVoice")
 
-##<a name="configuring-single-sign-on"></a>Configuring single sign-on
+##設定單一登入
   
-The objective of this section is to outline how to enable users to authenticate to UserVoice with their account in Azure AD using federation based on the SAML protocol.  
-Configuring single sign-on for UserVoice requires you to retrieve a thumbprint value from a certificate.  
-If you are not familiar with this procedure, see [How to retrieve a certificate's thumbprint value](http://youtu.be/YKQF266SAxI).
+本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶驗證至 UserVoice。設定 UserVoice 的單一登入需要您從憑證擷取指紋值。如果您不熟悉這個程序，請參閱[如何抓取憑證的指紋值](http://youtu.be/YKQF266SAxI)。
 
-###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
+###若要設定單一登入，請執行下列步驟：
 
-1.  In the Azure classic portal, on the **UserVoice** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
+1.  在 Azure 傳統入口網站的 [UserVoice] 應用程式整合頁面上，按一下 [設定單一登入] 以開啟 [設定單一登入] 對話方塊。
 
-    ![Configure single sign-on](./media/active-directory-saas-uservoice-tutorial/IC777515.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-uservoice-tutorial/IC777515.png "設定單一登入")
 
-2.  On the **How would you like users to sign on to UserVoice** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
+2.  在 [您希望使用者如何登入 UserVoice] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
 
-    ![Configure single sign-on](./media/active-directory-saas-uservoice-tutorial/IC777516.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-uservoice-tutorial/IC777516.png "設定單一登入")
 
-3.  On the **Configure App URL** page, in the **UserVoice Sign In URL** textbox, type your URL using the following pattern "*https://\<tenant-name\>.UserVoice.com*", and then click **Next**.
+3.  在 [設定應用程式 URL] 頁面的 [UserVoice 登入 URL] 文字方塊中，使用下列模式輸入您的 URL："*https://\<租用戶名稱>.UserVoice.com*"，然後按 [下一步]。
 
-    ![Configure App URL](./media/active-directory-saas-uservoice-tutorial/IC777517.png "Configure App URL")
+    ![設定應用程式 URL](./media/active-directory-saas-uservoice-tutorial/IC777517.png "設定應用程式 URL")
 
-4.  On the **Configure single sign-on at UserVoice** page, to download your certificate, click **Download certificate**, and then save the certificate file locally as **c:\\UserVoice.cer**.
+4.  在 [設定在 UserVoice 單一登入] 頁面上，若要下載您的憑證，請按一下 [下載憑證]，然後將憑證檔案以 **c:\\UserVoice.cer** 方式儲存在本機。
 
-    ![Configure single sign-on](./media/active-directory-saas-uservoice-tutorial/IC777518.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-uservoice-tutorial/IC777518.png "設定單一登入")
 
-5.  In a different web browser window, log into your UserVoice company site as an administrator.
+5.  在不同的網頁瀏覽器視窗中，以系統管理員身分登入您的 UserVoice 公司網站。
 
-6.  In the toolbar on the top, click Settings, and then select Web portal from the menu.
+6.  在頂端工具列中，按一下 [設定]，然後從功能表選取 [Web 入口網站]。
 
     ![Settings](./media/active-directory-saas-uservoice-tutorial/IC777519.png "Settings")
 
-7.  On the **Web portal** tab, in the **User authentication** section, click **Edit** to open the **Edit User Authentication** dialog page
+7.  在 [Web 入口網站] 索引標籤的 [使用者驗證] 區段中，按一下 [編輯]，以開啟 [編輯使用者驗證] 對話頁面。
 
-    ![Web portal](./media/active-directory-saas-uservoice-tutorial/IC777520.png "Web portal")
+    ![Web 入口網站](./media/active-directory-saas-uservoice-tutorial/IC777520.png "Web 入口網站")
 
-8.  On the **Edit User Authentication** dialog page, perform the following steps:
+8.  在 [編輯使用者驗證] 對話頁面上執行下列步驟：
 
-    ![Edit user authentication](./media/active-directory-saas-uservoice-tutorial/IC777521.png "Edit user authentication")
+    ![編輯使用者驗證](./media/active-directory-saas-uservoice-tutorial/IC777521.png "編輯使用者驗證")
 
-    1.  Click **Single Sign-On (SSO)**.
-    2.  In the Azure classic portal, on the **Configure single sign-on at UserVoice** dialog page, copy the **Remote Login URL** value, and then paste it into the **SSO Remote Sign-In** textbox.
-    3.  In the Azure classic portal, on the **Configure single sign-on at UserVoice** dialog page, copy the **Remote Logout URL** value, and then paste it into the **SSO Remote Sign-Out textbox**.
-    4.  Copy the **Thumbprint** value from the exported certificate, and then paste it into the **Current certificate SHA1 fingerprint** textbox.  
+    1.  按一下 [單一登入 (SSO)]。
+    2.  在 Azure 傳統入口網站的 [設定在 UserVoice 單一登入] 對話方塊頁面上，複製 [遠端登入 URL] 值，然後將它貼到 [SSO 遠端登入] 文字方塊中。
+    3.  在 Azure 傳統入口網站的 [設定在 UserVoice 單一登入] 對話方塊頁面上，複製 [遠端登出 URL] 值，然後將它貼到 [SSO 遠端登出] 文字方塊中。
+    4.  從匯出的憑證複製**指紋** 值，然後將它貼入 [目前憑證 SHA1 指紋] 文字方塊。
 
-        >[AZURE.TIP] For more details, see [How to retrieve a certificate's thumbprint value](http://youtu.be/YKQF266SAxI)
+        >[AZURE.TIP] 如需詳細資訊，請參閱[如何擷取憑證的指紋值](http://youtu.be/YKQF266SAxI)。
 
-    5.  Click **Save authentication settings**.
+    5.  按一下 [儲存驗證設定]。
 
-9.  On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
+9.  在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
-    ![Configure single sign-on](./media/active-directory-saas-uservoice-tutorial/IC777522.png "Configure single sign-on")
+    ![設定單一登入](./media/active-directory-saas-uservoice-tutorial/IC777522.png "設定單一登入")
 
-##<a name="configuring-user-provisioning"></a>Configuring user provisioning
+##設定使用者佈建
   
-In order to enable Azure AD users to log into UserVoice, they must be provisioned into UserVoice.  
-In the case of UserVoice, provisioning is a manual task.
+若要讓 Azure AD 使用者可以登入 UserVoice，則必須將他們佈建到 UserVoice。UserVoice 需以手動的方式佈建。
 
-###<a name="to-provision-a-user-accounts,-perform-the-following-steps:"></a>To provision a user accounts, perform the following steps:
+###若要佈建使用者帳戶，請執行下列步驟：
 
-1.  Log in to your **UserVoice** tenant.
+1.  登入您的 **UserVoice** 租用戶。
 
-2.  Go to **Settings**.
+2.  移至 [設定]。
 
     ![Settings](./media/active-directory-saas-uservoice-tutorial/IC777811.png "Settings")
 
-3.  Click **General**.
+3.  按一下 [一般]。
 
-4.  Click **Agents and permissions**.
+4.  按一下 [代理程式和權限]。
 
-    ![Agents and permissions](./media/active-directory-saas-uservoice-tutorial/IC777812.png "Agents and permissions")
+    ![代理程式和權限](./media/active-directory-saas-uservoice-tutorial/IC777812.png "代理程式和權限")
 
-5.  Click **Add admins**.
+5.  按一下 [加入管理員]。
 
-    ![Add admins](./media/active-directory-saas-uservoice-tutorial/IC777813.png "Add admins")
+    ![加入管理員](./media/active-directory-saas-uservoice-tutorial/IC777813.png "加入管理員")
 
-6.  On the **Invite admins** dialog, perform the following steps:
+6.  在 [邀請管理員] 對話方塊中，執行下列步驟：
 
-    ![Invite admins](./media/active-directory-saas-uservoice-tutorial/IC777814.png "Invite admins")
+    ![邀請管理員](./media/active-directory-saas-uservoice-tutorial/IC777814.png "邀請管理員")
 
-    1.  In the Emails texbox, type the email address of the account you want to provision, and then click **Add**.
-    2.  Click **Invite**.
+    1.  在 [電子郵件] 文字方塊中，輸入您要佈建之帳戶的電子郵件地址，然後按一下 [加入]。
+    2.  按一下 [邀請]。
 
->[AZURE.NOTE] You can use any other UserVoice user account creation tools or APIs provided by UserVoice to provision AAD user accounts.
+>[AZURE.NOTE] 您可以使用任何其他的 UserVoice 使用者帳戶建立工具或 UserVoice 提供的 API 來佈建 AAD 使用者帳戶。
 
-##<a name="assigning-users"></a>Assigning users
+##指派使用者
   
-To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
+若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-###<a name="to-assign-users-to-uservoice,-perform-the-following-steps:"></a>To assign users to UserVoice, perform the following steps:
+###若要指派使用者給 UserVoice，請執行下列步驟：
 
-1.  In the Azure classic portal, create a test account.
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
-2.  On the **UserVoice **application integration page, click **Assign users**.
+2.  在 [UserVoice] 應用程式整合頁面上，按一下 [指派使用者]。
 
-    ![Assign users](./media/active-directory-saas-uservoice-tutorial/IC777523.png "Assign users")
+    ![指派使用者](./media/active-directory-saas-uservoice-tutorial/IC777523.png "指派使用者")
 
-3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
+3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
 
-    ![Yes](./media/active-directory-saas-uservoice-tutorial/IC767830.png "Yes")
+    ![是](./media/active-directory-saas-uservoice-tutorial/IC767830.png "是")
   
-If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

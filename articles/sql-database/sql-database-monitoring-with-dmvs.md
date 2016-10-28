@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Monitoring Azure SQL Database Using Dynamic Management Views | Microsoft Azure"
-   description="Learn how to detect and diagnose common performance problems by using dynamic management views to monitor Microsoft Azure SQL Database."
+   pageTitle="使用動態管理檢視監視 Azure SQL Database | Microsoft Azure"
+   description="了解如何使用動態管理檢視監視 Microsoft Azure SQL Database 來偵測和診斷常見的效能問題。"
    services="sql-database"
    documentationCenter=""
    authors="CarlRabeler"
@@ -17,31 +17,29 @@
    ms.date="09/20/2016"
    ms.author="carlrab"/>
 
+# 使用動態管理檢視監視 Azure SQL Database
 
-# <a name="monitoring-azure-sql-database-using-dynamic-management-views"></a>Monitoring Azure SQL Database using dynamic management views
+Microsoft Azure SQL Database 可使用動態管理檢視的子集來診斷可能因為封鎖或長時間執行的查詢、資源瓶頸、不佳的查詢計畫等等所造成的效能問題。本主題提供有關如何使用動態管理檢視來偵測常見效能問題的資訊。
 
-Microsoft Azure SQL Database enables a subset of dynamic management views to diagnose performance problems, which might be caused by blocked or long-running queries, resource bottlenecks, poor query plans, and so on. This topic provides information on how to detect common performance problems by using dynamic management views.
+SQL Database 部分支援動態管理檢視的三個類別目錄：
 
-SQL Database partially supports three categories of dynamic management views:
+- 資料庫相關的動態管理檢視。
+- 執行相關的動態管理檢視。
+- 交易相關的動態管理檢視。
 
-- Database-related dynamic management views.
-- Execution-related dynamic management views.
-- Transaction-related dynamic management views.
+如需動態管理檢視的詳細資訊，請參閱《SQL Server 線上叢書》中的[動態管理檢視和函數 (Transact-SQL)](https://msdn.microsoft.com/library/ms188754.aspx)。
 
-For detailed information on dynamic management views, see [Dynamic Management Views and Functions (Transact-SQL)](https://msdn.microsoft.com/library/ms188754.aspx) in SQL Server Books Online.
+## 權限
 
-## <a name="permissions"></a>Permissions
-
-In SQL Database, querying a dynamic management view requires **VIEW DATABASE STATE** permissions. The **VIEW DATABASE STATE** permission returns information about all objects within the current database.
-To grant the **VIEW DATABASE STATE** permission to a specific database user, run the following query:
+在 SQL Database 中，查詢動態管理檢視需要 **VIEW DATABASE STATE** 權限。**VIEW DATABASE STATE** 權限會傳回目前資料庫中所有物件的相關資訊。若要授與 **VIEW DATABASE STATE** 權限給特定的資料庫使用者，請執行下列查詢：
 
 ```GRANT VIEW DATABASE STATE TO database_user; ```
 
-In an instance of on-premises SQL Server, dynamic management views return server state information. In SQL Database, they return information regarding your current logical database only.
+在內部部署 SQL Server 的執行個體中，動態管理檢視會傳回伺服器狀態資訊。在 SQL Database 中，僅會傳回與您目前的邏輯資料庫相關的資訊。
 
-## <a name="calculating-database-size"></a>Calculating database size
+## 正在計算資料庫大小
 
-The following query returns the size of your database (in megabytes):
+下列查詢會傳回資料庫的大小 (以 MB 為單位)：
 
 ```
 -- Calculates the size of the database.
@@ -50,7 +48,7 @@ FROM sys.dm_db_partition_stats;
 GO
 ```
 
-The following query returns the size of individual objects (in megabytes) in your database:
+下列查詢會傳回您資料庫中個別物件的大小 (以 MB 為單位)：
 
 ```
 -- Calculates the size of individual database objects.
@@ -61,10 +59,9 @@ GROUP BY sys.objects.name;
 GO
 ```
 
-## <a name="monitoring-connections"></a>Monitoring connections
+## 監視連線
 
-You can use the [sys.dm_exec_connections](https://msdn.microsoft.com/library/ms181509.aspx) view to retrieve information about the connections established to a specific Azure SQL Database server and the details of each connection. In addition, the [sys.dm_exec_sessions](https://msdn.microsoft.com/library/ms176013.aspx) view is helpful when retrieving information about all active user connections and internal tasks.
-The following query retrieves information on the current connection:
+您可以使用 [sys.dm\_exec\_connections](https://msdn.microsoft.com/library/ms181509.aspx) 檢視，擷取與特定 Azure SQL Database 伺服器建立之連接和每個連接之詳細資料的相關資訊。此外，[sys.dm\_exec\_sessions](https://msdn.microsoft.com/library/ms176013.aspx) 檢視有助於擷取所有作用中使用者的連接資訊和內部工作。下列查詢可擷取目前的連接資訊：
 
 ```
 SELECT
@@ -79,15 +76,15 @@ JOIN sys.dm_exec_sessions AS s
 WHERE c.session_id = @@SPID;
 ```
 
-> [AZURE.NOTE] When executing the **sys.dm_exec_requests** and **sys.dm_exec_sessions views**, if you have **VIEW DATABASE STATE** permission on the database, you see all executing sessions on the database; otherwise, you see only the current session.
+> [AZURE.NOTE] 執行 **sys.dm\_exec\_requests** 和 **sys.dm\_exec\_sessions views** 時，如果您具備資料庫的 **VIEW DATABASE STATE** 權限，您就會看到該資料庫上所有正在執行的工作階段；否則您只會看到目前的工作階段。
 
-## <a name="monitoring-query-performance"></a>Monitoring query performance
+## 監視查詢效能
 
-Slow or long running queries can consume significant system resources. This section demonstrates how to use dynamic management views to detect a few common query performance problems. An older but still helpful reference for troubleshooting, is the [Troubleshooting Performance Problems in SQL Server 2008](http://download.microsoft.com/download/D/B/D/DBDE7972-1EB9-470A-BA18-58849DB3EB3B/TShootPerfProbs2008.docx) article on Microsoft TechNet.
+速度慢或長時間執行的查詢可能會耗用大量系統資源。本節示範如何使用動態管理檢視偵測幾個常見的查詢效能問題。在 Microsoft TechNet 上的文章[疑難排解 SQL Server 2008 的效能問題](http://download.microsoft.com/download/D/B/D/DBDE7972-1EB9-470A-BA18-58849DB3EB3B/TShootPerfProbs2008.docx)雖然較舊，但仍是針對疑難排解相當有用的參考資料。
 
-### <a name="finding-top-n-queries"></a>Finding top N queries
+### 尋找前 N 個查詢
 
-The following example returns information about the top five queries ranked by average CPU time. This example aggregates the queries according to their query hash, so that logically equivalent queries are grouped by their cumulative resource consumption.
+下列範例會傳回以平均 CPU 時間排名的前五個查詢的相關資訊。此範例會根據查詢雜湊來彙總查詢，使在邏輯上等同的查詢依其累積資源耗用量進行分組。
 
 ```
 SELECT TOP 5 query_stats.query_hash AS "Query Hash",
@@ -106,13 +103,13 @@ GROUP BY query_stats.query_hash
 ORDER BY 2 DESC;
 ```
 
-### <a name="monitoring-blocked-queries"></a>Monitoring blocked queries
+### 監視封鎖的查詢
 
-Slow or long-running queries can contribute to excessive resource consumption and be the consequence of blocked queries. The cause of the blocking can be poor application design, bad query plans, the lack of useful indexes, and so on. You can use the sys.dm_tran_locks view to get information about the current locking activity in your Azure SQL Database. For example code, see [sys.dm_tran_locks (Transact-SQL)](https://msdn.microsoft.com/library/ms190345.aspx) in SQL Server Books Online.
+速度慢或長時間執行的查詢會造成過度的資源耗用，並且會導致封鎖查詢的後果。導致封鎖的原因可能是不佳的應用程式設計、不良的查詢計畫、缺乏有用的索引等等。您可以使用 sys.dm\_tran\_locks 檢視，取得在您的 Azure SQL Database 中目前正鎖定之活動的相關資訊。如需範例程式碼，請參閱《SQL Server 線上叢書》中的 [sys.dm\_tran\_locks (Transact-SQL)](https://msdn.microsoft.com/library/ms190345.aspx)。
 
-### <a name="monitoring-query-plans"></a>Monitoring query plans
+### 監視查詢計畫
 
-An inefficient query plan also may increase CPU consumption. The following example uses the [sys.dm_exec_query_stats](https://msdn.microsoft.com/library/ms189741.aspx) view to determine which query uses the most cumulative CPU.
+效率不佳的查詢計畫也可能會增加 CPU 耗用量。下列範例使用 [sys.dm\_exec\_query\_stats](https://msdn.microsoft.com/library/ms189741.aspx) 檢視來判斷哪一個查詢使用最多的累計 CPU。
 
 ```
 SELECT
@@ -134,12 +131,8 @@ FROM
 ORDER BY highest_cpu_queries.total_worker_time DESC;
 ```
 
-## <a name="see-also"></a>See also
+## 另請參閱
 
-[Introduction to SQL Database](sql-database-technical-overview.md)
+[SQL Database 簡介](sql-database-technical-overview.md)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

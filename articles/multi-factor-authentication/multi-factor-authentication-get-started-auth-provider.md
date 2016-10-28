@@ -1,63 +1,52 @@
 <properties
-    pageTitle="Getting started with Microsoft Azure Multi-Factor Auth Provider"
-    description="Learn how to create an Azure Multi-Factor Auth Provider."
-    services="multi-factor-authentication"
-    documentationCenter=""
-    authors="kgremban"
-    manager="femila"
-    editor="curtand"/>
+	pageTitle="開始使用 Microsoft Azure Multi-Factor Auth Provider"
+	description="了解如何建立 Azure Multi-Factor Auth Provider。"
+	services="multi-factor-authentication"
+	documentationCenter=""
+	authors="kgremban"
+	manager="femila"
+	editor="curtand"/>
 
 <tags
-    ms.service="multi-factor-authentication"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="get-started-article"
-    ms.date="08/04/2016"
-    ms.author="kgremban"/>
+	ms.service="multi-factor-authentication"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="get-started-article"
+	ms.date="08/04/2016"
+	ms.author="kgremban"/>
 
 
 
+# 開始使用 Azure Multi-Factor Auth Provider
+依預設，擁有 Azure Active Directory 和 Office 365 使用者的全域管理員可以使用 Multi-Factor Authentication。不過，如果您想要充分利用[進階功能](multi-factor-authentication-whats-next.md)，則必須購買完整版的 Azure MFA。
 
-# <a name="getting-started-with-an-azure-multi-factor-auth-provider"></a>Getting started with an Azure Multi-Factor Auth Provider
-Multi-factor authentication is available by default for global administrators who have Azure Active Directory and Office 365 users. However, if you wish to take advantage of [advanced features](multi-factor-authentication-whats-next.md) then you must purchase the full version of Azure MFA.
+> [AZURE.NOTE]  Azure Multi-Factor Auth Provider 可用來充分利用完整版 Azure MFA 所提供的功能。它的適用對象是**未透過 Azure MFA、Azure AD Premium 或 EMS 取得授權**的使用者。Azure MFA、Azure AD Premium 和 EMS 預設會包含完整版 Azure MFA。如果您有授權，則不需要 Azure Multi-Factor Auth Provider。
 
-> [AZURE.NOTE]  An Azure Multi-Factor Auth Provider is used to take advantage of features provided by the full version of Azure MFA. It is for users who **do not have licenses through Azure MFA, Azure AD Premium, or EMS**.  Azure MFA, Azure AD Premium, and EMS include the full version of Azure MFA by default.  If you have licenses then you do not need an Azure Multi-Factor Auth Provider.
+如果您想要下載 SDK，則需要 Azure Multi-Factor Auth Provider。
 
-An Azure Multi-Factor Auth provider is required if you wish to download the SDK.
+> [AZURE.IMPORTANT]  如果您想要下載 SDK，您必須建立 Azure Multi-Factor Auth Provider，即使您有 Azure MFA、AAD Premium 或 EMS 授權。如果您基於此目的建立 Azure Multi-Factor Auth Provider 並已擁有授權，則必須建立採用 [每個啟用的使用者] 模型的 Provider，並將 Provider 連結至包含 Azure MFA、Azure AD Premium 或 EMS 授權的目錄。這可確保您不須付費，除非使用 SDK 的唯一使用者超過您所擁有的授權數目。
 
-> [AZURE.IMPORTANT]  If you wish to download the SDK, you will need to create an Azure Multi-Factor Auth Provider even if you have Azure MFA, AAD Premium, or EMS licenses.  If you create an Azure Multi-Factor Auth Provider for this purpose and already have licenses, it is required to create the Provider with the **Per Enabled User** model and link the Provider to the directory that contains the Azure MFA, Azure AD Premium, or EMS licenses.  This will ensure that you are not billed unless you have more unique users using the SDK than the number of licenses you own.
+使用下列步驟，建立 Azure Multi-Factor Auth Provider。
 
-Use the following steps to create an Azure Multi-Factor Auth Provider.
-
-## <a name="to-create-a-multi-factor-auth-provider"></a>To create a Multi-Factor Auth Provider
+## 建立 Multi-Factor Auth Provider
 --------------------------------------------------------------------------------
 
-1. Log on to the **Azure classic portal** as an Administrator.
-2. On the left, select **Active Directory**.
-3. On the Active Directory page, at the top, select **Multi-Factor Authentication Providers**.
-![Creating an MFA Provider](./media/multi-factor-authentication-get-started-auth-provider/authprovider1.png)
-4. At the bottom, click **New**.
-![Creating an MFA Provider](./media/multi-factor-authentication-get-started-auth-provider/authprovider2.png)
-5. Under **App Services**, select **Multi-Factor Auth Provider**
-![Creating an MFA Provider](./media/multi-factor-authentication-get-started-auth-provider/authprovider3.png)
-6. Select **Quick Create**.
-![Creating an MFA Provider](./media/multi-factor-authentication-get-started-auth-provider/authprovider4.png)
-5. Fill in the following fields and select **Create**.
-    1. **Name** – The name of the Multi-Factor Auth Provider.
-    2. **Usage Model** – The usage model of the Multi-Factor Authentication Provider.
-        - Per Authentication – purchasing model that charges per authentication. Typically used for scenarios that use Azure Multi-Factor Authentication in a consumer-facing application.
-        - Per Enabled User – purchasing model that charges per enabled user. Typically used for employee access to applications such as Office 365.
-    2. **Directory** – The Azure Active Directory tenant that the Multi-Factor Authentication Provider is associated with. Please be aware of the following:
-        - You do not need an Azure AD directory to create a Multi-Factor Auth Provider.  Simply leave the box blank if you are only planning to use the Azure Multi-Factor Authentication Server or SDK.
-        - The Multi-Factor Auth Provider must be associated with an Azure AD directory to take advantage of the advanced features.
-        - Azure AD Connect, AAD Sync, or DirSync are only a requirement if you are synchronizing your on-premises Active Directory environment with an Azure AD directory.  If you only use an Azure AD directory that is not synchronized, then this is not required.
-![Creating an MFA Provider](./media/multi-factor-authentication-get-started-auth-provider/authprovider5.png)
-5. Once you click create, the Multi-Factor Authentication Provider is created and you should see a message stating: **Successfully created Multi-Factor Authentication Provider**. Click **Ok**.
-![Creating an MFA Provider](./media/multi-factor-authentication-get-started-auth-provider/authprovider6.png)
+1. 以系統管理員身分登入 **Azure 傳統入口網站**。
+2. 選取左邊的 [Active Directory]。
+3. 在 [Active Directory] 頁面頂端，選取 [Multi-Factor Authentication Provider]。![建立 MFA Provider](./media/multi-factor-authentication-get-started-auth-provider/authprovider1.png)
+4. 在底部按一下 [新增]。![建立 MFA Provider](./media/multi-factor-authentication-get-started-auth-provider/authprovider2.png)
+5. 在 [應用程式服務] 之下選取 [Multi-Factor Auth Provider]。![建立 MFA Provider](./media/multi-factor-authentication-get-started-auth-provider/authprovider3.png)
+6. 選取 [快速建立]。![建立 MFA Provider](./media/multi-factor-authentication-get-started-auth-provider/authprovider4.png)
+5. 填寫下列欄位並選取 [建立]。
+	1. **名稱** – Multi-Factor Auth Provider 的名稱。
+	2. **使用模式** – Multi-Factor Authentication Provider 的使用模式。
+		- 每次驗證 – 購買依每次驗證付費的模式。通常用於在取用者導向應用程式中使用 Azure Multi-factor Authentication 的案例。
+		- 每個啟用的使用者 – 購買依每個啟用使用者付費的模式。通常用於員工存取 Office 365 之類的應用程式。
+	2. **目錄** – 與 Multi-Factor Authentication Provider 相關聯的 Azure Active Directory 租用戶。請注意以下事項：
+		- 您不需要 Azure AD 目錄即可建立 Multi-Factor Auth Provider。如果您只打算使用 Azure Multi-Factor Authentication Server 或 SDK，只需將方塊保留空白。
+		- Multi-Factor Auth Provider 必須與 Azure AD 目錄產生關聯，才能利用進階功能。
+		- 如果您要讓內部部署 Active Directory 環境與 Azure AD 目錄同步處理，Azure AD Connect、AAD Sync 或 DirSync 或 AAD Sync 只是一項需求。如果您只使用未同步的 Azure AD 目錄，則不需要此項。![建立 MFA Provider](./media/multi-factor-authentication-get-started-auth-provider/authprovider5.png)
+5. 一旦按一下建立，系統便會建立 Multi-Factor Authentication Provider，而且您應該會看到一則指出「已成功建立 Multi-Factor Authentication Provider」的訊息。按一下 [確定]。![建立 MFA Provider](./media/multi-factor-authentication-get-started-auth-provider/authprovider6.png)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0921_2016-->

@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="Learning PowerShell Workflow"
-   description="This article is intended as a quick lesson for authors familiar with PowerShell to understand the specific differences between PowerShell and PowerShell Workflow."
+   pageTitle="了解 PowerShell 工作流程"
+   description="本文旨在做為熟悉 PowerShell 的作者的快速課程，以了解 PowerShell 和 PowerShell 工作流程的特定差異。"
    services="automation"
    documentationCenter=""
    authors="mgoedtel"
@@ -15,144 +15,143 @@
    ms.date="09/12/2016"
    ms.author="bwren" />
 
+# 了解 Windows PowerShell 工作流程
 
-# <a name="learning-windows-powershell-workflow"></a>Learning Windows PowerShell Workflow
+Azure 自動化中的 Runbook 會實作為 Windows PowerShell 工作流程。Windows PowerShell 工作流程類似於 Windows PowerShell 指令碼，但有一些顯著的差異可能會對新使用者造成混淆。本文章的適用對象是已經熟悉 PowerShell 的使用者，並簡短說明要將 PowerShell 指令碼轉換成在 Runbook 中使用的 PowerShell 工作流程，您所需的概念。
 
-Runbooks in Azure Automation are implemented as Windows PowerShell Workflows.  A Windows PowerShell Workflow is similar to a Windows PowerShell script but has some significant differences that can be confusing to a new user.  This article is intended for users already familiar with PowerShell and briefly explains concepts that you require if you are converting a PowerShell script to a PowerShell Workflow for use in a runbook.  
+工作流程是一連串的程式化、連接步驟，執行長時間執行的工作，或是需要跨多個裝置或受管理節點協調多個步驟。透過標準的指令碼工作流程的好處包括能夠同時對多個裝置執行動作，以及可自動從失敗復原的能力。Windows PowerShell 工作流程是運用 Windows Workflow Foundation 的 Windows PowerShell 指令碼。雖然工作流程是使用 Windows PowerShell 語法編寫，並由 Windows PowerShell 啟動，它是由 Windows Workflow Foundation 來處理。
 
-A workflow is a sequence of programmed, connected steps that perform long-running tasks or require the coordination of multiple steps across multiple devices or managed nodes. The benefits of a workflow over a normal script include the ability to simultaneously perform an action against multiple devices and the ability to automatically recover from failures. A Windows PowerShell Workflow is a Windows PowerShell script that leverages Windows Workflow Foundation. While the workflow is written with Windows PowerShell syntax and launched by Windows PowerShell, it is processed by Windows Workflow Foundation.
+如需這篇文章中的主題的完整詳細資訊，請參閱[開始使用 Windows PowerShell 工作流程](http://technet.microsoft.com/library/jj134242.aspx)。
 
-For complete details on the topics in this article, see [Getting Started with Windows PowerShell Workflow](http://technet.microsoft.com/library/jj134242.aspx).
+## Runbook 的類型
 
-## <a name="types-of-runbook"></a>Types of runbook
+Azure 自動化中有三種類型的 Runbook：*PowerShell 工作流程*、*PowerShell* 和*圖形*。當您建立 Runbook 而且在建立後無法將 Runbook 轉換為其他類型時，您會定義 Runbook 類型。
 
-There are three types of runbook in Azure Automation, *PowerShell Workflow*, *PowerShell* and *graphical*.  You define the runbook type when you create the runbook, and you can't convert a runbook to the other type once it's been created.
+PowerShell 工作流程 Runbook 和 PowerShell Runbook 適用於想要直接使用 PowerShell 程式碼的使用者，無論是使用 Azure 自動化中的文字編輯器或離線編輯器 (例如 PowerShell ISE)。如果您要建立 PowerShell 工作流程 Runbook，您應該了解這篇文章中的資訊。
 
-PowerShell workflow runbooks and PowerShell runbooks are for users who prefer to work directly with the PowerShell code either using the textual editor in Azure Automation or an offline editor such as PowerShell ISE. You should understand the information in this article if you are creating a PowerShell Workflow runbook. 
+圖形化 Runbook 可讓您使用相同的活動和 Cmdlet 建立 Runbook，但使用會隱藏基礎的 PowerShell 工作流程複雜度的圖形介面。本文章中的概念，例如檢查點和平行執行仍適用圖形化 Runbook，但是您不必擔心詳細的語法。
 
-Graphical runbooks allow you to create a runbook using the same activities and cmdlets but using a graphical interface that hides the complexities of the underlying PowerShell workflow.  Concepts in this article such as checkpoints and parallel execution still apply to graphical runbooks, but you won't have to worry about the detailed syntax. 
+## 工作流程的基本結構
 
-## <a name="basic-structure-of-a-workflow"></a>Basic structure of a workflow
-
-The first step to converting a PowerShell script to a PowerShell workflow is enclosing it with the **Workflow** keyword.  A workflow starts with the **Workflow** keyword followed by the body of the script enclosed in braces. The name of the workflow follows the **Workflow** keyword as shown in the following syntax. 
+將 PowerShell 指令碼轉換成 PowerShell 工作流程的第一個步驟是將它使用 **Workflow** 關鍵字含括。一種工作流程，以 **Workflow** 關鍵字為開頭，後面接著括在大括弧中的指令碼主體。工作流程的名稱會遵循 **Workflow** 關鍵字，如下列語法所示。
 
     Workflow Test-Workflow
     {
        <Commands>
     }
 
-The name of the workflow must match the name of the Automation runbook. If the runbook is being imported, then the filename must match the workflow name and must end in .ps1.
+工作流程的名稱必須符合自動化 Runbook 的名稱。如果正在匯入 Runbook，檔案名稱必須符合工作流程名稱，並必須以 .ps1 結尾。
 
-To add parameters to the workflow, use the **Param** keyword just as you would to a script. 
+若要將參數加入至工作流程，請使用 **Param** 關鍵字，如同您會對指令碼執行的動作。
 
-## <a name="code-changes"></a>Code changes
+## 程式碼變更
 
-PowerShell workflow code looks almost identical to PowerShell script code except for a few significant changes.  The following sections describe changes that you will need to make to a PowerShell script for it to run in a workflow.
+PowerShell 工作流程程式碼看起來幾乎類似於 PowerShell 指令碼，除了少數幾個重大變更。下列各節說明您必須對 PowerShell 指令碼進行的變更，以讓它在工作流程中執行。
 
-### <a name="activities"></a>Activities
+### 活動
 
-An activity is a specific task in a workflow. Just as a script is composed of one or more commands, a workflow is composed of one or more activities that are carried out in a sequence. Windows PowerShell Workflow automatically converts many of the Windows PowerShell cmdlets to activities when it runs a workflow. When you specify one of these cmdlets in your runbook, the corresponding activity is actually run by Windows Workflow Foundation. For those cmdlets without a corresponding activity, Windows PowerShell Workflow automatically runs the cmdlet within an [InlineScript](#inlinescript) activity. There is a set of cmdlets that are excluded and cannot be used in a workflow unless you explicitly include them in an InlineScript block. For further details on these concepts, see [Using Activities in Script Workflows](http://technet.microsoft.com/library/jj574194.aspx).
+活動是工作流程中的特定工作。就像指令碼是由一或多個命令所組成，工作流程是由序列中執行的一或多個活動所組成。執行工作流程時，Windows PowerShell 工作流程會自動將許多 Windows PowerShell Cmdlet 轉換為活動。在 Runbook 中指定其中一個 Cmdlet 時，對應的活動實際上是由 Windows Workflow Foundation 執行。針對沒有對應活動的 Cmdlet，Windows PowerShell 工作流程會自動在 [InlineScript](#inlinescript) 活動內執行 Cmdlet。有一組 Cmdlet 被排除，除非您明確在 InlineScript 區塊中將其納入，否則無法用在工作流程中。如需這些概念的詳細資訊，請參閱[在指令碼工作流程中使用活動](http://technet.microsoft.com/library/jj574194.aspx)。
 
-Workflow activities share a set of common parameters to configure their operation. For details about the workflow common parameters, see [about_WorkflowCommonParameters](http://technet.microsoft.com/library/jj129719.aspx).
+工作流程活動共用一組通用參數來設定其作業。如需有關工作流程通用參數的詳細資訊，請參閱[about\_WorkflowCommonParameters](http://technet.microsoft.com/library/jj129719.aspx)。
 
-### <a name="positional-parameters"></a>Positional parameters
+### 位置參數
 
-You can't use positional parameters with activities and cmdlets in a workflow.  All this means is that you must use parameter names.
+您無法對活動和工作流程中的 Cmdlet 使用位置參數。這都表示您必須使用參數名稱。
 
-For example, consider the following code that gets all running services.
+例如，請考慮會取得所有執行中服務的下列程式碼。
 
-     Get-Service | Where-Object {$_.Status -eq "Running"}
+	 Get-Service | Where-Object {$_.Status -eq "Running"}
 
-If you try to run this same code in a workflow, you'll get a message like "Parameter set cannot be resolved using the specified named parameters."  To correct this, simply provide the parameter name as in the following.
+如果您嘗試在工作流程中執行這個相同的程式碼，您會得到像「無法使用指定的具名參數解析參數集」的訊息。 若要修正這個問題，只需提供參數名稱，如下所示。
 
-    Workflow Get-RunningServices
-    {
-        Get-Service | Where-Object -FilterScript {$_.Status -eq "Running"}
-    }
+	Workflow Get-RunningServices
+	{
+		Get-Service | Where-Object -FilterScript {$_.Status -eq "Running"}
+	}
 
-### <a name="deserialized-objects"></a>Deserialized objects
+### 已還原序列化的物件
 
-Objects in workflows are deserialized.  This means that their properties are still available, but not their methods.  For example, consider the following PowerShell code that stops a service using the Stop method of the Service object.
+工作流程中的物件會還原序列化。這表示其屬性都仍然可用，而不是它們的方法。例如，請考慮下列 PowerShell 程式碼，它會使用 Service 物件的 Stop 方法來停止服務。
 
-    $Service = Get-Service -Name MyService
-    $Service.Stop()
+	$Service = Get-Service -Name MyService
+	$Service.Stop()
 
-If you try to run this in a workflow, you'll get an error saying "Method invocation is not supported in a Windows PowerShell Workflow".  
+如果您嘗試執行此工作流程，您會取得錯誤，指出「Windows PowerShell 工作流程不支援方法引動過程」。
 
-One option is to wrap these two lines of code in an [InlineScript](#InlineScript) block in which case $Service would be a service object within the block. 
+其中一個選項是將這兩行程式碼中包裝在 [InlineScript](#InlineScript) 區塊中，在此情況下 $Service 會是區塊內的服務物件。
 
-    Workflow Stop-Service
-    {
-        InlineScript {
-            $Service = Get-Service -Name MyService
-            $Service.Stop()
-        }
-    } 
+	Workflow Stop-Service
+	{
+		InlineScript {
+			$Service = Get-Service -Name MyService
+			$Service.Stop()
+		}
+	} 
 
-Another option is to use another cmdlet that performs the same functionality as the method, if one is available.  In the case of our sample, the Stop-Service cmdlet provides the same functionality as the Stop method, and you could use the following for a workflow.
+另一個選項是使用會與方法執行相同功能的另一個 Cmdlet，如果有的話。在我們的範例中，Stop-Service Cmdlet 會提供與 Stop 方法相同的功能，並且您可以使用下面工作流程。
 
-    Workflow Stop-MyService
-    {
-        $Service = Get-Service -Name MyService
-        Stop-Service -Name $Service.Name
-    }
+	Workflow Stop-MyService
+	{
+		$Service = Get-Service -Name MyService
+		Stop-Service -Name $Service.Name
+	}
 
 
-## <a name="inlinescript"></a>InlineScript
+## InlineScript
 
-The **InlineScript** activity is useful when you need to run one or more commands as traditional PowerShell script instead of PowerShell workflow.  While commands in a workflow are sent to Windows Workflow Foundation for processing, commands in an InlineScript block are processed by Windows PowerShell. 
+當您需要執行一或多個命令做為傳統的 PowerShell 指令碼 (而不是 PowerShell 工作流程) 時，**InlineScript** 活動很實用。在工作流程中的命令會傳送至 Windows Workflow Foundation 進行處理，而 Windows PowerShell 會處理 InlineScript 區塊中的命令。
 
-InlineScript uses the syntax shown below.
+InlineScript 使用如下所示的語法。
 
     InlineScript
     {
       <Script Block>
     } <Common Parameters>
 
-You can return output from an InlineScript by assigning the output to a variable. The following example stops a service and then outputs the service name.
+透過將輸出指派給變數，您可以從 InlineScript 傳回輸出。下列範例會停止服務，然後輸出服務名稱。
 
-    Workflow Stop-MyService
-    {
-        $Output = InlineScript {
-            $Service = Get-Service -Name MyService
-            $Service.Stop()
-            $Service
-        }
+	Workflow Stop-MyService
+	{
+		$Output = InlineScript {
+			$Service = Get-Service -Name MyService
+			$Service.Stop()
+			$Service
+		}
 
-        $Output.Name
-    }
-
-
-You can pass values into an InlineScript block, but you must use **$Using** scope modifier.  The following example is identical to the previous example except that the service name is provided by a variable. 
-
-    Workflow Stop-MyService
-    {
-        $ServiceName = "MyService"
-    
-        $Output = InlineScript {
-            $Service = Get-Service -Name $Using:ServiceName
-            $Service.Stop()
-            $Service
-        }
-
-        $Output.Name
-    }
+		$Output.Name
+	}
 
 
-While InlineScript activities may be critical in certain workflows, they do not support workflow constructs and should only be used when necessary for the following reasons:
+您可以將值傳入 InlineScript 區塊，但必須使用 **$Using** 範圍修飾詞。下列範例與前一個範例相同，不同之處在於服務名稱是由變數所提供。
 
-- You cannot use [checkpoints](#Checkpoints) inside of an InlineScript block. If a failure occurs within the block, it must be resumed from the beginning of the block.
-- You cannot use [parallel execution](#parallel-execution) inside of an InlineScriptBlock.
-- InlineScript affects scalability of the workflow since it holds the Windows PowerShell session for the entire length of the InlineScript block.
+	Workflow Stop-MyService
+	{
+		$ServiceName = "MyService"
+	
+		$Output = InlineScript {
+			$Service = Get-Service -Name $Using:ServiceName
+			$Service.Stop()
+			$Service
+		}
 
-For further details on using InlineScript, see [Running Windows PowerShell Commands in a Workflow](http://technet.microsoft.com/library/jj574197.aspx) and [about_InlineScript](http://technet.microsoft.com/library/jj649082.aspx).
+		$Output.Name
+	}
 
 
-## <a name="parallel-processing"></a>Parallel processing
+雖然 InlineScript 活動在特定工作流程中可能是關鍵，它們不支援工作流程建構，而且應該基於以下原因時使用：
 
-One advantage of Windows PowerShell Workflows is the ability to perform a set of commands in parallel instead of sequentially as with a typical script. 
+- 您不能在 InlineScript 區塊內使用[檢查點](#Checkpoints)。如果失敗發生在區塊內，它必須從區塊的開頭繼續。
+- 您不能在 InlineScriptBlock 內使用[平行執行](#parallel-execution)。
+- InlineScript 會影響工作流程的延展性，因為它會保留 InlineScript 區塊的整個長度的 Windows PowerShell 工作階段。
 
-You can use the **Parallel** keyword to create a script block with multiple commands that will run concurrently. This uses the syntax shown below. In this case, Activity1 and Activity2 will start at the same time. Activity3 will start only after both Activity1 and Activity2 have completed.
+如需使用 InlineScript 的進一步詳細資訊，請參閱[在工作流程中執行 Windows PowerShell 命令](http://technet.microsoft.com/library/jj574197.aspx)和[about\_InlineScript](http://technet.microsoft.com/library/jj649082.aspx)。
+
+
+## 平行處理
+
+Windows PowerShell 工作流程的優點之一是可平行執行一組命令，而不是如同一般的指令碼以循序方式執行。
+
+您可以使用 **Parallel** 關鍵字來建立具有多個同時執行的命令的指令碼區塊。這會使用如下所示的語法。在此情況下，Activity1 和 Activity2 將同時開始。只有在 Activity1 和 Activity2 都已完成之後，Activity3 才會開始。
 
     Parallel
     {
@@ -162,28 +161,28 @@ You can use the **Parallel** keyword to create a script block with multiple comm
     <Activity3>
 
 
-For example, consider the following PowerShell commands that copy multiple files to a network destination.  These commands are run sequentially so that one file must finish copying before the next is started.     
+例如，考慮下列 PowerShell 命令，它會將多個檔案複製到網路目的地。這些命令會循序執行，因此一個檔案必須完成複製才能開始複製下一個。
 
-    $Copy-Item -Path C:\LocalPath\File1.txt -Destination \\NetworkPath\File1.txt
-    $Copy-Item -Path C:\LocalPath\File2.txt -Destination \\NetworkPath\File2.txt
-    $Copy-Item -Path C:\LocalPath\File3.txt -Destination \\NetworkPath\File3.txt
+	$Copy-Item -Path C:\LocalPath\File1.txt -Destination \\NetworkPath\File1.txt
+	$Copy-Item -Path C:\LocalPath\File2.txt -Destination \\NetworkPath\File2.txt
+	$Copy-Item -Path C:\LocalPath\File3.txt -Destination \\NetworkPath\File3.txt
 
-The following workflow runs these same commands in parallel so that they all start copying at the same time.  Only after they are all completely copied is the completion message displayed.
+下列工作流程會平行執行這些相同的命令，讓它們在相同的時間全部開始複製。只有在全部完全複製之後，才會顯示完成訊息。
 
-    Workflow Copy-Files
-    {
-        Parallel 
-        {
-            $Copy-Item -Path "C:\LocalPath\File1.txt" -Destination "\\NetworkPath"
-            $Copy-Item -Path "C:\LocalPath\File2.txt" -Destination "\\NetworkPath"
-            $Copy-Item -Path "C:\LocalPath\File3.txt" -Destination "\\NetworkPath"
-        }
+	Workflow Copy-Files
+	{
+		Parallel 
+		{
+			$Copy-Item -Path "C:\LocalPath\File1.txt" -Destination "\\NetworkPath"
+			$Copy-Item -Path "C:\LocalPath\File2.txt" -Destination "\\NetworkPath"
+			$Copy-Item -Path "C:\LocalPath\File3.txt" -Destination "\\NetworkPath"
+		}
 
-        Write-Output "Files copied."
-    }
+		Write-Output "Files copied."
+	}
 
 
-You can use the **ForEach -Parallel** construct to process commands for each item in a collection concurrently. The items in the collection are processed in parallel while the commands in the script block run sequentially. This uses the syntax shown below. In this case, Activity1 will start at the same time for all items in the collection. For each item, Activity2 will start after Activity1 is complete. Activity3 will start only after both Activity1 and Activity2 have completed for all items.
+您可以使用 **ForEach-Parallel** 建構來並行處理集合中每個項目的命令。會以平行方式處理集合中的項目，而循序執行指令碼區塊中的命令。這會使用如下所示的語法。在此情況下，Activity1 將與集合中的所有項目同時開始。針對每個項目，Activity2 會在 Activity1 完成之後開始 。只有在 Activity1 和 Activity2 已完成所有項目之後，Activity3 才會開始。
 
     ForEach -Parallel ($<item> in $<collection>)
     {
@@ -192,29 +191,29 @@ You can use the **ForEach -Parallel** construct to process commands for each ite
     }
     <Activity3>
 
-The following example is similar to the previous example copying files in parallel.  In this case, a message is displayed for each file after it copies.  Only after they are all completely copied is the final completion message displayed.
+下列範例類似於先前的平行複製檔案範例。在此情況下，複製之後會對每個檔案顯示訊息。只有在全部完成複製之後，才會顯示最終完成訊息。
 
-    Workflow Copy-Files
-    {
-        $files = @("C:\LocalPath\File1.txt","C:\LocalPath\File2.txt","C:\LocalPath\File3.txt")
+	Workflow Copy-Files
+	{
+		$files = @("C:\LocalPath\File1.txt","C:\LocalPath\File2.txt","C:\LocalPath\File3.txt")
 
-        ForEach -Parallel ($File in $Files) 
-        {
-            $Copy-Item -Path $File -Destination \\NetworkPath
-            Write-Output "$File copied."
-        }
-        
-        Write-Output "All files copied."
-    }
+		ForEach -Parallel ($File in $Files) 
+		{
+			$Copy-Item -Path $File -Destination \\NetworkPath
+			Write-Output "$File copied."
+		}
+		
+		Write-Output "All files copied."
+	}
 
-> [AZURE.NOTE]  We do not recommend running child runbooks in parallel since this has been shown to give unreliable results.  The output from the child runbook sometimes will not show up, and settings in one child runbook can affect the other parallel child runbooks 
+> [AZURE.NOTE]  我們不建議並行執行子 Runbook，因為這可能會提供不可靠的結果。有時候子 Runbook 的輸出不會出現，並且一個子 Runbook 中的設定會影響其他平行子 Runbook
 
 
-## <a name="checkpoints"></a>Checkpoints
+## 檢查點
 
-A *checkpoint* is a snapshot of the current state of the workflow that includes the current value for variables and any output generated to that point. If a workflow ends in error or is suspended, then the next time it is run it will start from its last checkpoint instead of the start of the worfklow.  You can set a checkpoint in a workflow with the **Checkpoint-Workflow** activity.
+*檢查點*是包含變數的目前值和在該點產生的任何輸出的工作流程的目前狀態的快照。如果工作流程結束時發生錯誤或是擱置，則下次執行時就會從其最後一個檢查點開始，而不是工作流程的開頭開始。您可以使用 **Checkpoint-Workflow** 活動來設定工作流程中的檢查點。
 
-In the following sample code, an exception occurs after Activity2 causing the workflow to end. When the workflow is run again, it starts by running Activity2 since this was just after the last checkpoint set.
+在下列範例程式碼中，Activity2 之後發生的例外狀況造成工作流程結束。工作流程再次執行時，它會先執行 Activity2，因為這是緊接在設定的最後一個檢查點之後。
 
     <Activity1>
     Checkpoint-Workflow
@@ -222,27 +221,27 @@ In the following sample code, an exception occurs after Activity2 causing the wo
     <Exception>
     <Activity3>
 
-You should set checkpoints in a workflow after activities that may be prone to exception and should not be repeated if the workflow is resumed. For example, your workflow may create a virtual machine. You could set a checkpoint both before and after the commands to create the virtual machine. If the creation fails, then the commands would be repeated if the workflow is started again. If the the worfklow fails after the creation succeeds, then the virtual machine will not be created again when the workflow is resumed.
+在活動可能容易發生例外狀況，且不應在工作流程繼續執行之後重複執行時，您應該在工作流程中設定檢查點。例如，您的工作流程可能會建立虛擬機器。您可以在建立虛擬機器命令的前面和後面設定檢查點。如果建立失敗，若再次開始工作流程，命令可能會重複。如果建立成功之後工作流程失敗，當工作流程繼續時，將不會再次建立虛擬機器。
 
-The following example copies multiple files to a network location and sets a checkpoint after each file.  If the network location is lost, then the workflow will end in error.  When it is started again, it will resume at the last checkpoint meaning that only the files that have already been copied will be skipped.
+下列範例會將多個檔案複製到網路位置，並在每個檔案後設定檢查點。如果遺失網路位置，工作流程結束時會發生錯誤。當重新啟動時，它會從最後一個檢查點繼續，表示只會略過已複製的檔案。
 
-    Workflow Copy-Files
-    {
-        $files = @("C:\LocalPath\File1.txt","C:\LocalPath\File2.txt","C:\LocalPath\File3.txt")
+	Workflow Copy-Files
+	{
+		$files = @("C:\LocalPath\File1.txt","C:\LocalPath\File2.txt","C:\LocalPath\File3.txt")
 
-        ForEach ($File in $Files) 
-        {
-            $Copy-Item -Path $File -Destination \\NetworkPath
-            Write-Output "$File copied."
-            Checkpoint-Workflow
-        }
-        
-        Write-Output "All files copied."
-    }
+		ForEach ($File in $Files) 
+		{
+			$Copy-Item -Path $File -Destination \\NetworkPath
+			Write-Output "$File copied."
+			Checkpoint-Workflow
+		}
+		
+		Write-Output "All files copied."
+	}
 
-Because username credentials are not persisted after you call the [Suspend-Workflow](https://technet.microsoft.com/library/jj733586.aspx) activity or after the last checkpoint, you need to set the credentials to null and then retrieve them again from the asset store after **Suspend-Workflow** or checkpoint is called.  Otherwise, you may receive the following error message: *The workflow job cannot be resumed, either because persistence data could not be saved completely, or saved persistence data has been corrupted. You must restart the workflow.*
+在您呼叫 [Suspend-Workflow](https://technet.microsoft.com/library/jj733586.aspx) 活動或最後一個檢查點之後，使用者名稱認證就不會保存下來，因此您必須將認證設定為 null，然後在呼叫 **Suspend-Workflow** 或檢查點後再次從資產存放區擷取認證。否則，您可能會收到下列錯誤訊息︰工作流程作業無法繼續，原因是無法完整儲存持續性資料或儲存的持續性資料已損毀。您必須重新啟動工作流程。
 
-The following same code demonstrates how to handle this in your PowerShell Workflow runbooks.
+下列同一個程式碼會示範如何在 PowerShell 工作流程 Runbook 中處理此問題。
 
        
     workflow CreateTestVms
@@ -268,17 +267,13 @@ The following same code demonstrates how to handle this in your PowerShell Workf
      } 
 
 
-This is not required if you are authenticating using a Run As account configured with a service principal.  
+如果您使用以服務主體設定的執行身分帳戶進行驗證，則不必這麼做。
 
-For more information about checkpoints, see [Adding Checkpoints to a Script Workflow](http://technet.microsoft.com/library/jj574114.aspx).
-
-
-## <a name="next-steps"></a>Next Steps
-
-- To get started with PowerShell workflow runbooks, see [My first PowerShell workflow runbook](automation-first-runbook-textual.md) 
+如需有關檢查點的詳細資訊，請參閱 [加入檢查點至指令碼工作流程](http://technet.microsoft.com/library/jj574114.aspx)。
 
 
+## 後續步驟
 
-<!--HONumber=Oct16_HO2-->
+- 若要開始使用 PowerShell 工作流程 Runbook，請參閱[我的第一個 PowerShell 工作流程 Runbook](automation-first-runbook-textual.md)
 
-
+<!---HONumber=AcomDC_0914_2016-->

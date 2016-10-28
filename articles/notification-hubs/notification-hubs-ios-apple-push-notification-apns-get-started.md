@@ -1,472 +1,471 @@
 <properties
-    pageTitle="Sending push notifications to iOS with Azure Notification Hubs | Microsoft Azure"
-    description="In this tutorial, you learn how to use Azure Notification Hubs to send push notifications to an iOS application."
-    services="notification-hubs"
-    documentationCenter="ios"
-    keywords="push notification,push notifications,ios push notifications"
-    authors="wesmc7777"
-    manager="erikre"
-    editor=""/>
+	pageTitle="使用 Azure 通知中樞將推播通知傳送至 iOS | Microsoft Azure"
+	description="在本教學課程中，您將了解如何使用 Azure 通知中樞，將推播通知傳送至 iOS 應用程式。"
+	services="notification-hubs"
+	documentationCenter="ios"
+    keywords="推播通知,推播通知,ios 推播通知"
+	authors="wesmc7777"
+	manager="erikre"
+	editor=""/>
 
 <tags
-    ms.service="notification-hubs"
-    ms.workload="mobile"
-    ms.tgt_pltfrm="mobile-ios"
-    ms.devlang="objective-c"
-    ms.topic="hero-article"
-    ms.date="10/03/2016"
-    ms.author="wesmc"/>
+	ms.service="notification-hubs"
+	ms.workload="mobile"
+	ms.tgt_pltfrm="mobile-ios"
+	ms.devlang="objective-c"
+	ms.topic="hero-article"
+	ms.date="10/03/2016"
+	ms.author="wesmc"/>
 
-
-# <a name="sending-push-notifications-to-ios-with-azure-notification-hubs"></a>Sending push notifications to iOS with Azure Notification Hubs
+# 使用 Azure 通知中樞將推播通知傳送至 iOS
 
 [AZURE.INCLUDE [notification-hubs-selector-get-started](../../includes/notification-hubs-selector-get-started.md)]
 
-##<a name="overview"></a>Overview
+##Overview
 
-> [AZURE.NOTE] To complete this tutorial, you must have an active Azure account. If you don't have an account, you can create a free trial account in just a couple of minutes. For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fnotification-hubs-ios-get-started).
+> [AZURE.NOTE] 若要完成此教學課程，您必須具備有效的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fzh-TW%2Fdocumentation%2Farticles%2Fnotification-hubs-ios-get-started)。
 
-This tutorial shows you how to use Azure Notification Hubs to send push notifications to an iOS application. You'll create a blank iOS app that receives push notifications by using the [Apple Push Notification service (APNs)](https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/ApplePushService.html). 
+本教學課程示範如何使用 Azure 通知中樞將推播通知傳送至 iOS 應用程式。您將使用 [Apple Push Notification Service (APNs)](https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/ApplePushService.html)，建立可接收推播通知的空白 iOS 應用程式。
 
-When you're finished, you'll be able to use your notification hub to broadcast push notifications to all the devices running your app.
+完成時，您便能夠使用通知中樞，將推播通知廣播到所有執行您 app 的裝置。
 
-## <a name="before-you-begin"></a>Before you begin
+## 開始之前
 
 [AZURE.INCLUDE [notification-hubs-hero-slug](../../includes/notification-hubs-hero-slug.md)]
 
-The completed code for this tutorial can be found [on GitHub](https://github.com/Azure/azure-notificationhubs-samples/tree/master/iOS/GetStartedNH/GetStarted). 
+您可以在 [GitHub](https://github.com/Azure/azure-notificationhubs-samples/tree/master/iOS/GetStartedNH/GetStarted) 上找到本教學課程的完整程式碼。
 
-##<a name="prerequisites"></a>Prerequisites
+##必要條件
 
-This tutorial requires the following:
+本教學課程需要下列各項：
 
-+ [Mobile Services iOS SDK version 1.2.4]
-+ Latest version of [Xcode]
-+ An iOS 8 (or later version)-capable device
-+ [Apple Developer Program](https://developer.apple.com/programs/) membership.
++ [行動服務 iOS SDK 1.2.4 版]
++ 最新版的 [Xcode]
++ 支援 iOS 8 (或更新版本) 的裝置
++ [Apple Developer Program](https://developer.apple.com/programs/) 成員資格。
 
-   > [AZURE.NOTE] Because of configuration requirements for push notifications, you must deploy and test push notifications on a physical iOS device (iPhone or iPad) instead of the iOS Simulator.
+   > [AZURE.NOTE] 基於推播通知的組態需求，您必須在實體 iOS 裝置 (iPhone 或 iPad)，而不是在 iOS 模擬器上部署和測試推播通知。
 
-Completing this tutorial is a prerequisite for all other Notification Hubs tutorials for iOS apps.
+完成本教學課程是參加 iOS app 所有其他通知中樞教學課程的先決條件。
 
-[AZURE.INCLUDE [Notification Hubs Enable Apple Push Notifications](../../includes/notification-hubs-enable-apple-push-notifications.md)]
+[AZURE.INCLUDE [通知中樞會啟用 Apple 推播通知](../../includes/notification-hubs-enable-apple-push-notifications.md)]
 
-##<a name="configure-your-notification-hub-for-ios-push-notifications"></a>Configure your Notification Hub for iOS push notifications
+##針對 iOS 推播通知設定您的通知中樞
 
-This section walks you through creating a new notification hub and configuring authentication with APNS using the **.p12** push certificate that you created. If you want to use a notification hub that you have already created, you can skip to step 5.
+本節將引導您利用所建立的 **.p12** 推播憑證，建立新的通知中樞，並設定搭配 APNS 進行驗證。如果您想要使用已經建立的通知中樞，可以跳至步驟 5。
 
 [AZURE.INCLUDE [notification-hubs-portal-create-new-hub](../../includes/notification-hubs-portal-create-new-hub.md)]
 
 <ol start="6">
 <li>
-<p>Click the <b>Notification Services</b> button in the <b>Settings</b> blade, then select <b>Apple (APNS)</b>. Click on <b>Upload Certificate</b> and select the <b>.p12</b> file that you exported earlier. Make sure you also specify the correct password.</p>
-<p>Make sure to select <b>Sandbox</b> mode since this is for development. Only use the <b>Production</b> if you want to send push notifications to users who purchased your app from the store.</p>
+<p>按一下 [設定]<b></b> 刀鋒視窗中的 [通知服務]<b></b> 按鈕，然後選取 [Apple (APNS)]<b></b>。按一下 [上傳憑證]<b></b>，然後選取您稍早匯出的 .p12<b></b> 檔案。確定您同時指定正確的密碼。</p>
+<p>因為這是用於開發，請務必選取 [沙箱]<b></b> 模式。只有在您想傳送推播通知給從市集購買 App 的使用者時，才使用 [生產]<b></b> 模式。</p>
 </li>
 </ol>
-&emsp;&emsp;![Configure APNS in Azure Portal](./media/notification-hubs-ios-get-started/notification-hubs-apple-config.png)
+&emsp;&emsp;![在 Azure 入口網站中設定 APNS](./media/notification-hubs-ios-get-started/notification-hubs-apple-config.png)
 
-&emsp;&emsp;![Configure APNS certification in Azure Portal](./media/notification-hubs-ios-get-started/notification-hubs-apple-config-cert.png)
+&emsp;&emsp;![在 Azure 入口網站中設定 APNS 憑證](./media/notification-hubs-ios-get-started/notification-hubs-apple-config-cert.png)
 
 
 
-Your notification hub is now configured to work with APNS, and you have the connection strings to register your app and send push notifications.
+現在已將您的通知中心設定成使用 APNS，而且您有可用來註冊應用程式和傳送推播通知的連接字串。
 
-##<a name="connect-your-ios-app-to-notification-hubs"></a>Connect your iOS app to Notification Hubs
+##將您的 iOS 應用程式連接到通知中樞
 
-1. In Xcode, create a new iOS project and select the **Single View Application** template.
+1. 在 Xcode 中建立新的 iOS 專案，並選取 [單一檢視應用程式] 範本。
 
-    ![Xcode - Single View Application][8]
+   	![Xcode - 單一檢視應用程式][8]
 
-2. When setting the options for your new project, make sure to use the same **Product Name** and **Organization Identifier** that you used when you previously set the bundle ID on the Apple Developer portal.
+2. 設定新專案的選項時，請務必使用您先前在 Apple 開發人員入口網站上設定套件組合識別碼時使用的相同**產品名稱**和**組織識別碼**。
 
-    ![Xcode - project options][11]
+	![Xcode - 專案選項][11]
 
-3. Under **Targets**, click your project name, click the **Build Settings** tab and expand **Code Signing Identity**, and then under **Debug**, set your code-signing identity. Toggle **Levels** from **Basic** to **All**, and set **Provisioning Profile** to the provisioning profile that you created previously.
+3. 在 [目標] 下按一下您的專案名稱，然後按一下 [組建設定] 索引標籤並展開 [程式碼簽署身分識別]，接著在 [偵錯] 下設定您的程式碼簽署身分識別。將 [層級] 從 [基本] 切換成 [全部]，然後將 [佈建設定檔] 設為您先前建立的佈建設定檔。
 
-    If you don't see the new provisioning profile that you created in Xcode, try refreshing the profiles for your signing identity. Click **Xcode** on the menu bar, click **Preferences**, click the **Account** tab, click the **View Details** button, click your signing identity, and then click the refresh button in the bottom-right corner.
+	如果畫面未顯示您在 Xcode 中建立的新佈建設定檔，請嘗試重新整理簽署身分識別的設定檔。按一下功能表列上的 \[Xcode]，再依序按一下 [喜好設定]、[帳號] 索引標籤、[檢視詳細資料] 按鈕、您的簽署身分識別，然後按一下右下角的 [重新整理] 按鈕。
 
-    ![Xcode - provisioning profile][9]
+   	![Xcode - 佈建設定檔][9]
 
-4. Download the [Mobile Services iOS SDK version 1.2.4] and unzip the file. In Xcode, right-click your project and click the **Add Files to** option to add the **WindowsAzureMessaging.framework** folder to your Xcode project. Select **Copy items if needed**, and then click **Add**.
+4. 下載 [行動服務 iOS SDK 1.2.4 版]，然後將檔案解壓縮。在 Xcode 中，以滑鼠右鍵按一下您的專案，然後按一下 [新增檔案至] 選項，將 **WindowsAzureMessaging.framework** 資料夾加入至 Xcode 專案。選取 [必要時複製項目]，然後按一下 [新增]。
 
-    >[AZURE.NOTE] The notification hubs SDK does not currently support bitcode on Xcode 7.  You must set **Enable Bitcode** to **No** in the **Build Options** for your project.
+	>[AZURE.NOTE] 通知中樞 SDK 目前不支援 Xcode 7 上的 Bitcode。您必須在專案的 [建置選項] 中將 [啟用 Bitcode] 設定為 [否]。
 
-    ![Unzip Azure SDK][10]
+   	![解壓縮 Azure SDK][10]
 
-5. Add a new header file to your project named `HubInfo.h`. This file will hold the constants for your notification hub.  Add the following definitions and replace the string literal placeholders with your *hub name* and the *DefaultListenSharedAccessSignature* that you noted earlier.
+5. 將新的標頭檔新增至名為 `HubInfo.h` 的專案。這個檔案會保留通知中心的常數。新增下列定義，然後以您的*中樞名稱*以及先前記下的 *DefaultListenSharedAccessSignature* 取代字串常值預留位置。
 
-        #ifndef HubInfo_h
-        #define HubInfo_h
-        
-            #define HUBNAME @"<Enter the name of your hub>"
-            #define HUBLISTENACCESS @"<Enter your DefaultListenSharedAccess connection string"
-        
-        #endif /* HubInfo_h */
+		#ifndef HubInfo_h
+		#define HubInfo_h
+		
+			#define HUBNAME @"<Enter the name of your hub>"
+			#define HUBLISTENACCESS @"<Enter your DefaultListenSharedAccess connection string"
+		
+		#endif /* HubInfo_h */
 
-6. Open your `AppDelegate.h` file add the following import directives:
+6. 開啟 `AppDelegate.h` 檔案並新增下列 import 指示詞：
 
          #import <WindowsAzureMessaging/WindowsAzureMessaging.h> 
-         #import "HubInfo.h"
-        
-7. In your `AppDelegate.m file`, add the following code in the `didFinishLaunchingWithOptions` method based on your version of iOS. This code registers your device handle with APNs:
+		 #import "HubInfo.h"
+		
+7. 根據您的 iOS 版本，在 `AppDelegate.m file` 的 `didFinishLaunchingWithOptions` 方法中新增下列程式碼。此程式碼會向 APN 註冊裝置控制代碼：
 
-    For iOS 8:
+	對於 iOS 8：
 
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeSound |
-                                                UIUserNotificationTypeAlert | UIUserNotificationTypeBadge categories:nil];
+	 	UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeSound |
+												UIUserNotificationTypeAlert | UIUserNotificationTypeBadge categories:nil];
 
-        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    	[[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    	[[UIApplication sharedApplication] registerForRemoteNotifications];
 
-    For iOS versions prior to 8:
+	iOS 8 之前的版本：
 
          [[UIApplication sharedApplication] registerForRemoteNotificationTypes: UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound];
 
 
-8. In the same file, add the following methods. This code connects to the notification hub using the connection information you specified in HubInfo.h. It then gives the device token to the notification hub so that the notification hub can send notifications:
+8. 在相同檔案中新增下列方法。此程式碼會使用您在 HubInfo.h 中指定的連接資訊連接到通知中心。然後，它可提供裝置權杖給通知中樞，讓通知中樞能夠傳送通知：
 
-        - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *) deviceToken {
-            SBNotificationHub* hub = [[SBNotificationHub alloc] initWithConnectionString:HUBLISTENACCESS
-                                        notificationHubPath:HUBNAME];
+	    - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *) deviceToken {
+		    SBNotificationHub* hub = [[SBNotificationHub alloc] initWithConnectionString:HUBLISTENACCESS
+										notificationHubPath:HUBNAME];
 
-            [hub registerNativeWithDeviceToken:deviceToken tags:nil completion:^(NSError* error) {
-                if (error != nil) {
-                    NSLog(@"Error registering for notifications: %@", error);
-                }
-                else {
-                    [self MessageBox:@"Registration Status" message:@"Registered"];
-                }
-            }];
-        }
+		    [hub registerNativeWithDeviceToken:deviceToken tags:nil completion:^(NSError* error) {
+		        if (error != nil) {
+		            NSLog(@"Error registering for notifications: %@", error);
+		        }
+				else {
+				    [self MessageBox:@"Registration Status" message:@"Registered"];
+				}
+	    	}];
+		}
 
-        -(void)MessageBox:(NSString *)title message:(NSString *)messageText
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:messageText delegate:self
-                cancelButtonTitle:@"OK" otherButtonTitles: nil];
-            [alert show];
-        }
+		-(void)MessageBox:(NSString *)title message:(NSString *)messageText
+		{
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:messageText delegate:self
+				cancelButtonTitle:@"OK" otherButtonTitles: nil];
+			[alert show];
+		}
 
 
-9. In the same file, add the following method to display a **UIAlert** if the notification is received while the app is active:
+9. 如果應用程式在作用中時收到通知，您可以在相同檔案中新增下列方法以顯示 **UIAlert**：
 
 
         - (void)application:(UIApplication *)application didReceiveRemoteNotification: (NSDictionary *)userInfo {
-            NSLog(@"%@", userInfo);
-            [self MessageBox:@"Notification" message:[[userInfo objectForKey:@"aps"] valueForKey:@"alert"]];
-        }
+		    NSLog(@"%@", userInfo);
+		    [self MessageBox:@"Notification" message:[[userInfo objectForKey:@"aps"] valueForKey:@"alert"]];
+		}
 
-10. Build and run the app on your device to verify that there are no failures.
+10. 在裝置上建置並執行 app，以確認 app 能夠順利運作。
 
-## <a name="send-test-push-notifications"></a>Send test push notifications
+## 傳送測試推播通知
 
 
-You can test receiving notifications in your app by sending push notifications in the [Azure Portal] via the **Troubleshooting** section in the hub blade (use the *Test Send* option).
+您可以在 [Azure 入口網站]中透過中樞刀鋒視窗中的 [疑難排解] 區段 (使用 [測試傳送] 選項) 傳送推播通知，以在您的應用程式中測試接收推播通知。
 
-![Azure Portal - Test Send][30]
+![Azure 入口網站 - 測試傳送][30]
 
 [AZURE.INCLUDE [notification-hubs-sending-notifications-from-the-portal](../../includes/notification-hubs-sending-notifications-from-the-portal.md)]
 
 
-## <a name="(optional)-send-push-notifications-from-the-app"></a>(Optional) Send push notifications from the app
+## (選擇性) 從應用程式傳送推播通知
 
->[AZURE.IMPORTANT] This example of sending notifications from the client app is provided for learning purposes only. Since this will require the `DefaultFullSharedAccessSignature` to be present on the client app, it exposes your notification hub to the risk that a user may gain access to send unauthorized notifications to your clients.
+>[AZURE.IMPORTANT] 此從用戶端應用程式傳送通知的範例僅供學習之用。由於這需要 `DefaultFullSharedAccessSignature` 存在用戶端應用程式上，通知中樞可能的風險為使用者可以取得存取傳送未經授權的通知至您的用戶端。
 
-If you want to send push notifications from within an app, this section provides an example of how to do this using the REST interface.
+如果您要從應用程式中傳送推播通知，本節提供使用 REST 介面執行此操作的範例。
 
-1. In Xcode, open `Main.storyboard` and add the following UI components from the object library to allow the user to send push notifications in the app:
+1. 在 XCode 中，開啟 `Main.storyboard` 並從物件程式庫加入下列 UI 元件，以允許使用者在應用程式中傳送推播通知：
 
-    - A label with no label text. It will be used to report errors in sending notifications. The **Lines** property should be set to **0** so that it will automatically size constrained to the right and left margins and the top of the view.
-    - A text field with **Placeholder** text set to **Enter Notification Message**. Constrain the field just below the label as shown below. Set the View Controller as the outlet delegate.
-    - A button titled **Send Notification** constrained just below the text field and in the horizontal center.
+	- 沒有標籤文字的標籤。這將用來回報傳送通知時發生的錯誤。**Lines** 屬性應該設為 **0**，如此才會自動根據左右邊界和檢視頂端的限制來調整大小。
+	- 具有**預留位置**文字的文字欄位會設為**輸入通知訊息**。將欄位限制在標籤的下方，如下所示。將檢視控制器設為輸出委派。
+	- 標題為**傳送通知**的按鈕會限制在文字欄位的下方，並在水平置中的位置。
 
-    The view should look as follows:
+	檢視應如下所示：
 
-    ![Xcode designer][32]
-
-
-2. [Add outlets](https://developer.apple.com/library/ios/recipes/xcode_help-IB_connections/chapters/CreatingOutlet.html) for the label and text field connected your view, and update your `interface` definition to support `UITextFieldDelegate` and `NSXMLParserDelegate`. Add the three property declarations shown below to help support calling the REST API and parsing the response.
-
-    Your ViewController.h file should look as follows:
-
-        #import <UIKit/UIKit.h>
-
-        @interface ViewController : UIViewController <UITextFieldDelegate, NSXMLParserDelegate>
-        {
-            NSXMLParser *xmlParser;
-        }
-
-        // Make sure these outlets are connected to your UI by ctrl+dragging
-        @property (weak, nonatomic) IBOutlet UITextField *notificationMessage;
-        @property (weak, nonatomic) IBOutlet UILabel *sendResults;
-
-        @property (copy, nonatomic) NSString *statusResult;
-        @property (copy, nonatomic) NSString *currentElement;
-
-        @end
-
-3. Open `HubInfo.h` and add the following constants which will be used for sending notifications to your hub. Replace the placeholder string literal with your actual *DefaultFullSharedAccessSignature* connection string.
-
-        #define API_VERSION @"?api-version=2015-01"
-        #define HUBFULLACCESS @"<Enter Your DefaultFullSharedAccess Connection string>"
-
-4. Add the following `#import` statements to your `ViewController.h` file.
-
-        #import <CommonCrypto/CommonHMAC.h>
-        #import "HubInfo.h"
-
-5. In `ViewController.m` add the following code to the interface implementation. This code will parse your *DefaultFullSharedAccessSignature* connection string. As mentioned in the [REST API reference](http://msdn.microsoft.com/library/azure/dn495627.aspx), this parsed information will be used to generate a SaS token for the **Authorization** request header.
-
-        NSString *HubEndpoint;
-        NSString *HubSasKeyName;
-        NSString *HubSasKeyValue;
-
-        -(void)ParseConnectionString
-        {
-            NSArray *parts = [HUBFULLACCESS componentsSeparatedByString:@";"];
-            NSString *part;
-
-            if ([parts count] != 3)
-            {
-                NSException* parseException = [NSException exceptionWithName:@"ConnectionStringParseException"
-                    reason:@"Invalid full shared access connection string" userInfo:nil];
-
-                @throw parseException;
-            }
-
-            for (part in parts)
-            {
-                if ([part hasPrefix:@"Endpoint"])
-                {
-                    HubEndpoint = [NSString stringWithFormat:@"https%@",[part substringFromIndex:11]];
-                }
-                else if ([part hasPrefix:@"SharedAccessKeyName"])
-                {
-                    HubSasKeyName = [part substringFromIndex:20];
-                }
-                else if ([part hasPrefix:@"SharedAccessKey"])
-                {
-                    HubSasKeyValue = [part substringFromIndex:16];
-                }
-            }
-        }
-
-6. In `ViewController.m`, update the `viewDidLoad` method to parse the connection string when the view loads. Also add the utility methods, shown below, to the interface implementation.  
+	![Xcode 設計工具][32]
 
 
-        - (void)viewDidLoad
-        {
-            [super viewDidLoad];
-            [self ParseConnectionString];
-            [_notificationMessage setDelegate:self];
-        }
+2. 為與您的檢視相連接的標籤和文字欄位[新增輸出](https://developer.apple.com/library/ios/recipes/xcode_help-IB_connections/chapters/CreatingOutlet.html)，並更新您的 `interface` 定義，以支援 `UITextFieldDelegate` 和 `NSXMLParserDelegate`。新增以下所示的三個屬性宣告，以協助呼叫 REST API 及剖析回應。
 
-        -(NSString *)CF_URLEncodedString:(NSString *)inputString
-        {
-           return (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)inputString,
-                NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
-        }
+	您的 ViewController.h 檔案應該類似下列內容：
 
-        -(void)MessageBox:(NSString *)title message:(NSString *)messageText
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:messageText delegate:self
-                cancelButtonTitle:@"OK" otherButtonTitles: nil];
-            [alert show];
-        }
+		#import <UIKit/UIKit.h>
+
+		@interface ViewController : UIViewController <UITextFieldDelegate, NSXMLParserDelegate>
+		{
+			NSXMLParser *xmlParser;
+		}
+
+		// Make sure these outlets are connected to your UI by ctrl+dragging
+		@property (weak, nonatomic) IBOutlet UITextField *notificationMessage;
+		@property (weak, nonatomic) IBOutlet UILabel *sendResults;
+
+		@property (copy, nonatomic) NSString *statusResult;
+		@property (copy, nonatomic) NSString *currentElement;
+
+		@end
+
+3. 開啟 `HubInfo.h` 並新增下列常數，它們將用於傳送通知給您的中樞。使用實際的 *DefaultFullSharedAccessSignature* 連接字串，取代預留位置字串常值。
+
+		#define API_VERSION @"?api-version=2015-01"
+		#define HUBFULLACCESS @"<Enter Your DefaultFullSharedAccess Connection string>"
+
+4. 將下列 `#import` 陳述式新增至 `ViewController.h` 檔案。
+
+		#import <CommonCrypto/CommonHMAC.h>
+		#import "HubInfo.h"
+
+5. 在 `ViewController.m` 中，將下列程式碼新增至介面實作。此程式碼將會剖析您的 *DefaultFullSharedAccessSignature* 連接字串。如同 [REST API 參考](http://msdn.microsoft.com/library/azure/dn495627.aspx)中所述，這類已剖析的資訊將用來產生**授權**要求標頭的 SaS 權杖。
+
+		NSString *HubEndpoint;
+		NSString *HubSasKeyName;
+		NSString *HubSasKeyValue;
+
+		-(void)ParseConnectionString
+		{
+			NSArray *parts = [HUBFULLACCESS componentsSeparatedByString:@";"];
+			NSString *part;
+
+			if ([parts count] != 3)
+			{
+				NSException* parseException = [NSException exceptionWithName:@"ConnectionStringParseException"
+					reason:@"Invalid full shared access connection string" userInfo:nil];
+
+				@throw parseException;
+			}
+
+			for (part in parts)
+			{
+				if ([part hasPrefix:@"Endpoint"])
+				{
+					HubEndpoint = [NSString stringWithFormat:@"https%@",[part substringFromIndex:11]];
+				}
+				else if ([part hasPrefix:@"SharedAccessKeyName"])
+				{
+					HubSasKeyName = [part substringFromIndex:20];
+				}
+				else if ([part hasPrefix:@"SharedAccessKey"])
+				{
+					HubSasKeyValue = [part substringFromIndex:16];
+				}
+			}
+		}
+
+6. 在 `ViewController.m` 中，於檢視載入時更新 `viewDidLoad` 方法以剖析連接字串。也將公用程式方法新增至介面實作，如下所示。
 
 
+		- (void)viewDidLoad
+		{
+			[super viewDidLoad];
+			[self ParseConnectionString];
+			[_notificationMessage setDelegate:self];
+		}
+
+		-(NSString *)CF_URLEncodedString:(NSString *)inputString
+		{
+		   return (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)inputString,
+				NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
+		}
+
+		-(void)MessageBox:(NSString *)title message:(NSString *)messageText
+		{
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:messageText delegate:self
+				cancelButtonTitle:@"OK" otherButtonTitles: nil];
+			[alert show];
+		}
 
 
 
-7. In `ViewController.m`, add the following code to the interface implementation to generate the SaS authorization token that will be provided in the **Authorization** header, as mentioned in the [REST API Reference](http://msdn.microsoft.com/library/azure/dn495627.aspx).
-
-        -(NSString*) generateSasToken:(NSString*)uri
-        {
-            NSString *targetUri;
-            NSString* utf8LowercasedUri = NULL;
-            NSString *signature = NULL;
-            NSString *token = NULL;
-
-            @try
-            {
-                // Add expiration
-                uri = [uri lowercaseString];
-                utf8LowercasedUri = [self CF_URLEncodedString:uri];
-                targetUri = [utf8LowercasedUri lowercaseString];
-                NSTimeInterval expiresOnDate = [[NSDate date] timeIntervalSince1970];
-                int expiresInMins = 60; // 1 hour
-                expiresOnDate += expiresInMins * 60;
-                UInt64 expires = trunc(expiresOnDate);
-                NSString* toSign = [NSString stringWithFormat:@"%@\n%qu", targetUri, expires];
-
-                // Get an hmac_sha1 Mac instance and initialize with the signing key
-                const char *cKey  = [HubSasKeyValue cStringUsingEncoding:NSUTF8StringEncoding];
-                const char *cData = [toSign cStringUsingEncoding:NSUTF8StringEncoding];
-                unsigned char cHMAC[CC_SHA256_DIGEST_LENGTH];
-                CCHmac(kCCHmacAlgSHA256, cKey, strlen(cKey), cData, strlen(cData), cHMAC);
-                NSData *rawHmac = [[NSData alloc] initWithBytes:cHMAC length:sizeof(cHMAC)];
-                signature = [self CF_URLEncodedString:[rawHmac base64EncodedStringWithOptions:0]];
-
-                // Construct authorization token string
-                token = [NSString stringWithFormat:@"SharedAccessSignature sig=%@&se=%qu&skn=%@&sr=%@",
-                    signature, expires, HubSasKeyName, targetUri];
-            }
-            @catch (NSException *exception)
-            {
-                [self MessageBox:@"Exception Generating SaS Token" message:[exception reason]];
-            }
-            @finally
-            {
-                if (utf8LowercasedUri != NULL)
-                    CFRelease((CFStringRef)utf8LowercasedUri);
-                if (signature != NULL)
-                CFRelease((CFStringRef)signature);
-            }
-
-            return token;
-        }
 
 
-8. Ctrl+drag from the **Send Notification** button to `ViewController.m` to add an action named **SendNotificationMessage** for the **Touch Down** event. Update method with the following code to send the notification using the REST API.
+7. 如 [REST API 參考](http://msdn.microsoft.com/library/azure/dn495627.aspx) 所述，在 `ViewController.m` 中，將下列程式碼新增至介面實作，以產生將在 **Authorization** 標頭中提供的 SaS 授權權杖。
 
-        - (IBAction)SendNotificationMessage:(id)sender
-        {
-            self.sendResults.text = @"";
-            [self SendNotificationRESTAPI];
-        }
+		-(NSString*) generateSasToken:(NSString*)uri
+		{
+			NSString *targetUri;
+			NSString* utf8LowercasedUri = NULL;
+			NSString *signature = NULL;
+			NSString *token = NULL;
 
-        - (void)SendNotificationRESTAPI
-        {
-            NSURLSession* session = [NSURLSession
+			@try
+			{
+				// Add expiration
+				uri = [uri lowercaseString];
+				utf8LowercasedUri = [self CF_URLEncodedString:uri];
+				targetUri = [utf8LowercasedUri lowercaseString];
+				NSTimeInterval expiresOnDate = [[NSDate date] timeIntervalSince1970];
+				int expiresInMins = 60; // 1 hour
+				expiresOnDate += expiresInMins * 60;
+				UInt64 expires = trunc(expiresOnDate);
+				NSString* toSign = [NSString stringWithFormat:@"%@\n%qu", targetUri, expires];
+
+				// Get an hmac_sha1 Mac instance and initialize with the signing key
+				const char *cKey  = [HubSasKeyValue cStringUsingEncoding:NSUTF8StringEncoding];
+				const char *cData = [toSign cStringUsingEncoding:NSUTF8StringEncoding];
+				unsigned char cHMAC[CC_SHA256_DIGEST_LENGTH];
+				CCHmac(kCCHmacAlgSHA256, cKey, strlen(cKey), cData, strlen(cData), cHMAC);
+				NSData *rawHmac = [[NSData alloc] initWithBytes:cHMAC length:sizeof(cHMAC)];
+				signature = [self CF_URLEncodedString:[rawHmac base64EncodedStringWithOptions:0]];
+
+				// Construct authorization token string
+				token = [NSString stringWithFormat:@"SharedAccessSignature sig=%@&se=%qu&skn=%@&sr=%@",
+					signature, expires, HubSasKeyName, targetUri];
+			}
+			@catch (NSException *exception)
+			{
+				[self MessageBox:@"Exception Generating SaS Token" message:[exception reason]];
+			}
+			@finally
+			{
+				if (utf8LowercasedUri != NULL)
+					CFRelease((CFStringRef)utf8LowercasedUri);
+				if (signature != NULL)
+				CFRelease((CFStringRef)signature);
+			}
+
+			return token;
+		}
+
+
+8. 按住 Ctrl 並從 [傳送通知] 按鈕拖曳至 `ViewController.m`，為 **Touch Down** 事件新增名為 **SendNotificationMessage** 的動作。以下列程式碼更新方法，來使用 REST API 通知傳送。
+
+		- (IBAction)SendNotificationMessage:(id)sender
+		{
+			self.sendResults.text = @"";
+			[self SendNotificationRESTAPI];
+		}
+
+		- (void)SendNotificationRESTAPI
+		{
+		    NSURLSession* session = [NSURLSession
                              sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
                              delegate:nil delegateQueue:nil];
 
-            // Apple Notification format of the notification message
-            NSString *json = [NSString stringWithFormat:@"{\"aps\":{\"alert\":\"%@\"}}",
-                                self.notificationMessage.text];
+			// Apple Notification format of the notification message
+		    NSString *json = [NSString stringWithFormat:@"{"aps":{"alert":"%@"}}",
+								self.notificationMessage.text];
 
-            // Construct the message's REST endpoint
-            NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/messages/%@", HubEndpoint,
-                                                HUBNAME, API_VERSION]];
+			// Construct the message's REST endpoint
+			NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/messages/%@", HubEndpoint,
+												HUBNAME, API_VERSION]];
 
-            // Generate the token to be used in the authorization header
-            NSString* authorizationToken = [self generateSasToken:[url absoluteString]];
+			// Generate the token to be used in the authorization header
+			NSString* authorizationToken = [self generateSasToken:[url absoluteString]];
 
-            //Create the request to add the APNs notification message to the hub
-            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-            [request setHTTPMethod:@"POST"];
-            [request setValue:@"application/json;charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+			//Create the request to add the APNs notification message to the hub
+			NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+			[request setHTTPMethod:@"POST"];
+			[request setValue:@"application/json;charset=utf-8" forHTTPHeaderField:@"Content-Type"];
 
-            // Signify Apple notification format
-            [request setValue:@"apple" forHTTPHeaderField:@"ServiceBusNotification-Format"];
+			// Signify Apple notification format
+			[request setValue:@"apple" forHTTPHeaderField:@"ServiceBusNotification-Format"];
 
-            //Authenticate the notification message POST request with the SaS token
-            [request setValue:authorizationToken forHTTPHeaderField:@"Authorization"];
+			//Authenticate the notification message POST request with the SaS token
+			[request setValue:authorizationToken forHTTPHeaderField:@"Authorization"];
 
-            //Add the notification message body
-            [request setHTTPBody:[json dataUsingEncoding:NSUTF8StringEncoding]];
+			//Add the notification message body
+			[request setHTTPBody:[json dataUsingEncoding:NSUTF8StringEncoding]];
 
-            // Send the REST request
-            NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request
-                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
-            {
-                NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*) response;
-                if (error || (httpResponse.statusCode != 200 && httpResponse.statusCode != 201))
-                {
-                    NSLog(@"\nError status: %d\nError: %@", httpResponse.statusCode, error);
-                }
-                if (data != NULL)
-                {
-                    xmlParser = [[NSXMLParser alloc] initWithData:data];
-                    [xmlParser setDelegate:self];
-                    [xmlParser parse];
-                }
-            }];
-            [dataTask resume];
-        }
-
-
-9. In `ViewController.m`, add the following delegate method to support closing the keyboard for the text field. Ctrl+drag from the text field to the View Controller icon in the interface designer to set the view controller as the outlet delegate.
-
-        //===[ Implement UITextFieldDelegate methods ]===
-
-        -(BOOL)textFieldShouldReturn:(UITextField *)textField
-        {
-            [textField resignFirstResponder];
-            return YES;
-        }
+			// Send the REST request
+		    NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request
+				completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
+			{
+		        NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*) response;
+		        if (error || (httpResponse.statusCode != 200 && httpResponse.statusCode != 201))
+		        {
+		            NSLog(@"\nError status: %d\nError: %@", httpResponse.statusCode, error);
+		        }
+				if (data != NULL)
+				{
+		        	xmlParser = [[NSXMLParser alloc] initWithData:data];
+		        	[xmlParser setDelegate:self];
+		       		[xmlParser parse];
+		    	}
+		    }];
+		    [dataTask resume];
+		}
 
 
-10. In `ViewController.m`, add the following delegate methods to support parsing the response by using `NSXMLParser`.
+9. 在 `ViewController.m` 中，加入下列委派方法，以支援關閉文字欄位的鍵盤。按住 Ctrl 並從文字欄位拖曳至介面設計工具中的檢視控制器圖示，以將檢視控制器設為輸出委派。
 
-        //===[ Implement NSXMLParserDelegate methods ]===
+		//===[ Implement UITextFieldDelegate methods ]===
 
-        -(void)parserDidStartDocument:(NSXMLParser *)parser
-        {
-            self.statusResult = @"";
-        }
-
-        -(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName
-            namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
-            attributes:(NSDictionary *)attributeDict
-        {
-            NSString * element = [elementName lowercaseString];
-            NSLog(@"*** New element parsed : %@ ***",element);
-
-            if ([element isEqualToString:@"code"] | [element isEqualToString:@"detail"])
-            {
-                self.currentElement = element;
-            }
-        }
-
-        -(void) parser:(NSXMLParser *)parser foundCharacters:(NSString *)parsedString
-        {
-            self.statusResult = [self.statusResult stringByAppendingString:
-                [NSString stringWithFormat:@"%@ : %@\n", self.currentElement, parsedString]];
-        }
-
-        -(void)parserDidEndDocument:(NSXMLParser *)parser
-        {
-            // Set the status label text on the UI thread
-            dispatch_async(dispatch_get_main_queue(),
-            ^{
-                [self.sendResults setText:self.statusResult];
-            });
-        }
+		-(BOOL)textFieldShouldReturn:(UITextField *)textField
+		{
+			[textField resignFirstResponder];
+			return YES;
+		}
 
 
+10. 在 `ViewController.m` 中，加入下列委派方法，以支援使用 `NSXMLParser` 剖析回應。
 
-11. Build the project and verify that there are no errors.
+		//===[ Implement NSXMLParserDelegate methods ]===
+
+		-(void)parserDidStartDocument:(NSXMLParser *)parser
+		{
+		    self.statusResult = @"";
+		}
+
+		-(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName
+			namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
+			attributes:(NSDictionary *)attributeDict
+		{
+		    NSString * element = [elementName lowercaseString];
+		    NSLog(@"*** New element parsed : %@ ***",element);
+
+		    if ([element isEqualToString:@"code"] | [element isEqualToString:@"detail"])
+		    {
+		        self.currentElement = element;
+		    }
+		}
+
+		-(void) parser:(NSXMLParser *)parser foundCharacters:(NSString *)parsedString
+		{
+		    self.statusResult = [self.statusResult stringByAppendingString:
+		        [NSString stringWithFormat:@"%@ : %@\n", self.currentElement, parsedString]];
+		}
+
+		-(void)parserDidEndDocument:(NSXMLParser *)parser
+		{
+			// Set the status label text on the UI thread
+			dispatch_async(dispatch_get_main_queue(),
+			^{
+				[self.sendResults setText:self.statusResult];
+			});
+		}
 
 
-> [AZURE.NOTE] If you encounter a build error in Xcode7 about bitcode support, you should change the **Build Settings** > **Enable Bitcode (ENABLE_BITCODE)** to **NO** in Xcode. The Notification Hubs SDK does not currently support bitcode. 
 
-You can find all the possible notification payloads in the Apple [Local and Push Notification Programming Guide].
-
-
-##<a name="checking-if-your-app-can-receive-push-notifications"></a>Checking if your app can receive push notifications
-
-To test push notifications on iOS, you must deploy the app to a physical iOS device. You cannot send Apple push notifications by using the iOS Simulator.
-
-1. Run the app and verify that registration succeeds, and then press **OK**.
-
-    ![iOS App Push Notification Registration Test][33]
-
-2. You can send a test push notification from the [Azure Portal], as described above. If you added code for sending push notifications in the app, touch inside the text field to enter a notification message. Then press the **Send** button on the keyboard or the **Send Notification** button in the view to send the notification message.
-
-    ![iOS App Push Notification Send Test][34]
-
-3. The push notification is sent to all devices that are registered to receive the notifications from the particular Notification Hub.
-
-    ![iOS App Push Notification Receive Test][35]
+11. 建置專案並確認一切正確無誤。
 
 
-##<a name="next-steps"></a>Next steps
+> [AZURE.NOTE] 如果您在 Xcode7 中遇到有關 Bitcode 支援的建置錯誤，您應該在 Xcode 中將 [建置設定] > [啟用 Bitcode] \(ENABLE\_BITCODE) 變更為 [否]。通知中樞 SDK 目前不支援 Bitcode。
 
-In this simple example, you broadcasted push notifications to all your registered iOS devices. We suggest as a next step in your learning that you proceed to the [Azure Notification Hubs Notify Users for iOS with .NET backend] tutorial, which will walk you through creating a backend to send push notifications using tags. 
+您可以在 Apple [本機和推播通知程式設計指南]中找到所有可能的通知承載。
 
-If you want to segment your users by interest groups, you can additionally move on to the [Use Notification Hubs to send breaking news] tutorial. 
 
-For general information about Notification Hubs, see [Notification Hubs Guidance].
+##檢查您的應用程式是否可接收推播通知
+
+若要在 iOS 上測試推播通知，您必須將應用程式部署至實體 iOS 裝置。您無法利用 iOS 模擬器傳送 Apple 推播通知。
+
+1. 執行應用程式並確認註冊成功，然後按下 [確定]。
+
+	![iOS 應用程式推播通知註冊測試][33]
+
+2. 如上所述，您可以從 [Azure 入口網站] 傳送測試推播通知。如果您已在應用程式中加入傳送推播通知的程式碼，在文字欄位中觸控以輸入通知訊息。接著，按下鍵盤上的 [傳送] 按鈕或檢視中的 [傳送通知] 按鈕，以傳送通知訊息。
+
+	![iOS 應用程式推播通知傳送測試][34]
+
+3. 推播通知會從特定通知中樞傳送至所有已註冊要接收通知的所有裝置。
+
+	![iOS 應用程式推播通知接收測試][35]
+
+
+##後續步驟
+
+在此簡單範例中，您會將推播通知廣播到您已註冊的所有 iOS 裝置。我們建議您繼續進行 [Azure 通知中樞透過 .NET 後端通知 iOS 使用者] 教學課程作為學習的下一步，該教學課程將逐步引導您使用標記，建立後端以傳送推播通知。
+
+如果您想要按興趣群組分隔使用者，您可以額外移至 [使用通知中樞傳送即時新聞] 教學課程。
+
+如需有關通知中樞的一般資訊，請參閱 [通知中樞指引]。
 
 
 
@@ -489,7 +488,7 @@ For general information about Notification Hubs, see [Notification Hubs Guidance
 
 
 <!-- URLs. -->
-[Mobile Services iOS SDK version 1.2.4]: http://aka.ms/kymw2g
+[行動服務 iOS SDK 1.2.4 版]: http://aka.ms/kymw2g
 [Mobile Services iOS SDK]: http://go.microsoft.com/fwLink/?LinkID=266533
 [Submit an app page]: http://go.microsoft.com/fwlink/p/?LinkID=266582
 [My Applications]: http://go.microsoft.com/fwlink/p/?LinkId=262039
@@ -497,18 +496,15 @@ For general information about Notification Hubs, see [Notification Hubs Guidance
 
 [Get started with Mobile Services]: /develop/mobile/tutorials/get-started-ios
 [Azure Classic Portal]: https://manage.windowsazure.com/
-[Notification Hubs Guidance]: http://msdn.microsoft.com/library/jj927170.aspx
+[通知中樞指引]: http://msdn.microsoft.com/library/jj927170.aspx
 [Xcode]: https://go.microsoft.com/fwLink/p/?LinkID=266532
 [iOS Provisioning Portal]: http://go.microsoft.com/fwlink/p/?LinkId=272456
 
 [Get started with push notifications in Mobile Services]: ../mobile-services-javascript-backend-ios-get-started-push.md
-[Azure Notification Hubs Notify Users for iOS with .NET backend]: notification-hubs-aspnet-backend-ios-apple-apns-notification.md
-[Use Notification Hubs to send breaking news]: notification-hubs-ios-xplat-segmented-apns-push-notification.md
+[Azure 通知中樞透過 .NET 後端通知 iOS 使用者]: notification-hubs-aspnet-backend-ios-apple-apns-notification.md
+[使用通知中樞傳送即時新聞]: notification-hubs-ios-xplat-segmented-apns-push-notification.md
 
-[Local and Push Notification Programming Guide]: http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100-SW1
-[Azure Portal]: https://portal.azure.com
+[本機和推播通知程式設計指南]: http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100-SW1
+[Azure 入口網站]: https://portal.azure.com
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!----HONumber=AcomDC_1005_2016-->

@@ -1,69 +1,62 @@
 <properties
-    pageTitle="Encode an asset using Media Encoder Standard with the Azure portal | Microsoft Azure"
-    description="This tutorial walks you through the steps of encoding an asset using Media Encoder Standard with the Azure portal."
-    services="media-services"
-    documentationCenter=""
-    authors="Juliako"
-    manager="erikre"
-    editor=""/>
+	pageTitle="透過 Azure 入口網站使用 Media Encoder Standard 為資產編碼 | Microsoft Azure"
+	description="本教學課程將逐步引導您完成透過 Azure 入口網站使用 Media Encoder Standard 為資產編碼的步驟。"
+	services="media-services"
+	documentationCenter=""
+	authors="Juliako"
+	manager="erikre"
+	editor=""/>
 
 <tags
-    ms.service="media-services"
-    ms.workload="media"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/29/2016"
-    ms.author="juliako"/>
+	ms.service="media-services"
+	ms.workload="media"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/29/2016"
+	ms.author="juliako"/>
 
 
+# 透過 Azure 入口網站使用 Media Encoder Standard 為資產編碼
 
-# <a name="encode-an-asset-using-media-encoder-standard-with-the-azure-portal"></a>Encode an asset using Media Encoder Standard with the Azure portal
+> [AZURE.NOTE] 若要完成此教學課程，您需要 Azure 帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
-> [AZURE.NOTE] To complete this tutorial, you need an Azure account. For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/). 
+使用 Azure 媒體服務時，其中一個最常見案例是提供自適性串流給您的用戶端。媒體服務支援下列調適性位元速率串流技術：HTTP 即時串流 (HLS)、Smooth Streaming、MPEG DASH 和 HDS (僅適用於 Adobe PrimeTime/Access 授權)。若要針對自適性串流準備您的視訊，您必須將來源視訊編碼為多位元速率檔案。您應該使用 [媒體編碼器標準] 編碼器來為您的視訊編碼。
 
-When working with Azure Media Services one of the most common scenarios is delivering adaptive bitrate streaming to your clients. Media Services supports the following adaptive bitrate streaming technologies: HTTP Live Streaming (HLS), Smooth Streaming, MPEG DASH, and HDS (for Adobe PrimeTime/Access licensees only). To prepare your videos for adaptive bitrate streaming, you need to encode your source video into multi-bitrate files. You should use the **Media Encoder Standard** encoder to encode your videos.  
+媒體服務也提供動態封裝，這讓您以下列串流格式 (MPEG DASH、HLS、Smooth Streaming 或 HDS) 提供多位元速率 MP4，而不必重新封裝成這些串流格式。使用動態封裝，您只需要以單一儲存格式儲存及播放檔案，媒體服務會根據來自用戶端的要求建置及傳遞適當的回應。
 
-Media Services also provides dynamic packaging which allows you to deliver your multi-bitrate MP4s in the following streaming formats: MPEG DASH, HLS, Smooth Streaming, or HDS, without you having to re-package into these streaming formats. With dynamic packaging you only need to store and pay for the files in single storage format and Media Services will build and serve the appropriate response based on requests from a client.
+若要利用動態封裝，您需要執行下列動作：
 
-To take advantage of dynamic packaging, you need to do the following:
+- 將您的來源檔編碼為一組多位元速率 MP4 檔案 (編碼步驟稍後示範於本節中)。
+- 為您計畫從該處傳遞內容的串流端點至少取得一個串流單元。如需詳細資訊，請參閱[設定串流端點](media-services-portal-vod-get-started.md#configure-streaming-endpoints)。
 
-- Encode your source file into a set of multi-bitrate MP4 files (the encoding steps are demonstrated later in this section).
-- Get at least one streaming unit for the streaming endpoint from which you plan to delivery your content. For more information, see [configuring streaming endpoints](media-services-portal-vod-get-started.md#configure-streaming-endpoints). 
+若要調整媒體處理，請參閱[這個](media-services-portal-scale-media-processing.md)主題。
 
-To scale media processing, see [this](media-services-portal-scale-media-processing.md) topic.
+## 使用 Azure 入口網站進行編碼
 
-## <a name="encode-with-the-azure-portal"></a>Encode with the Azure portal
+本節說明當您利用媒體編碼器標準為您的內容編碼時，可以採取的步驟。
 
-This section describes the steps you can take to encode your content with Media Encoder Standard.
-
-1.  In the **Settings** window, select **Assets**.  
-2.  In the **Assets** window, select the asset that you would like to encode.
-3.  Press the **Encode** button.
-4.  In the **Encode an asset** window, select the "Media Encoder Standard" processor and a preset. For example, if you know your input video has a resolution of 1920x1080 pixels, then you could use the "H264 Multiple Bitrate 1080p" preset. For more information about presets, see [this](https://msdn.microsoft.com/library/azure/mt269960.aspx) article – it is important to select the preset that is most appropriate for your input video. If you have a low resolution (640x360) video, then you should not be using the default "H264 Multiple Bitrate 1080p" preset.
-    
-    For easier management, you have an option of editing the name of the output asset, and the name of the job.
-        
-    ![Encode assets](./media/media-services-portal-vod-get-started/media-services-encode1.png)
-5. Press **Create**.
+1.  在 [設定] 視窗中，選取 [資產]。
+2.  在 [資產] 視窗中，選取您想要編碼的資產。
+3.  按 [編碼] 按鈕。
+4.  在 [為資產編碼] 視窗中，選取 [媒體編碼器標準] 處理器和預設值。例如，如果您知道您的輸入視訊的解析度為 1920x1080 像素，您則可使用 [H264 多位元速率 1080p] 預設值。如需預設值的詳細資訊，請參閱[這篇](https://msdn.microsoft.com/library/azure/mt269960.aspx)文章 – 務必選取最適合您的輸入視訊的預設值。如果您有低解析度 (640x360) 視訊，則不應該使用預設 [H264 多位元速率 1080p] 預設值。
+	
+	為了方便管理，您可以選擇編輯輸出資產的名稱和作業的名稱。
+		
+	![為資產編碼](./media/media-services-portal-vod-get-started/media-services-encode1.png)
+5. 按下 [建立]。
 
 
-##<a name="next-step"></a>Next step
+##後續步驟
 
-You can monitor encoding job progress with the Azure portal, as described in [this](media-services-portal-check-job-progress.md) article.  
+您可以透過 Azure 入口網站監視編碼作業進度，如[這篇](media-services-portal-check-job-progress.md)文章所述。
 
-##<a name="media-services-learning-paths"></a>Media Services learning paths
+##媒體服務學習路徑
 
 [AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-##<a name="provide-feedback"></a>Provide feedback
+##提供意見反應
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0831_2016-->

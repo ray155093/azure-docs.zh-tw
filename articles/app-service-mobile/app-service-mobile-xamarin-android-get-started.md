@@ -1,80 +1,78 @@
 <properties
-    pageTitle="Get Started with Azure Mobile Apps for Xamarin.Android apps"
-    description="Follow this tutorial to get started using Azure Mobile Apps for Xamarin Android development"
-    services="app-service\mobile"
-    documentationCenter="xamarin"
-    authors="adrianhall"
-    manager="erikre"
-    editor="" />
+	pageTitle="開始使用適用於 Xamarin.Android 應用程式的Azure 行動應用程式"
+	description="遵循此教學課程，可開始使用 Azure Mobile Apps 進行 Xamarin Android 開發。"
+	services="app-service\mobile"
+	documentationCenter="xamarin"
+	authors="adrianhall"
+	manager="erikre"
+	editor="" />
 
 <tags
-    ms.service="app-service-mobile"
-    ms.workload="mobile"
-    ms.tgt_pltfrm="mobile-xamarin-android"
-    ms.devlang="dotnet"
-    ms.topic="hero-article"
-    ms.date="10/01/2016"
-    ms.author="adrianha" />
+	ms.service="app-service-mobile"
+	ms.workload="mobile"
+	ms.tgt_pltfrm="mobile-xamarin-android"
+	ms.devlang="dotnet"
+	ms.topic="hero-article"
+	ms.date="10/01/2016"
+	ms.author="adrianha" />
 
-
-#<a name="create-a-xamarin.android-app"></a>Create a Xamarin.Android App
+#建立 Xamarin.Android 應用程式
 
 [AZURE.INCLUDE [app-service-mobile-selector-get-started](../../includes/app-service-mobile-selector-get-started.md)]
 
-##<a name="overview"></a>Overview
+##Overview
 
-This tutorial shows you how to add a cloud-based backend service to a Xamarin.Android app. For more information, see [What are Mobile Apps](app-service-mobile-value-prop.md).
+本教學課程將示範如何將雲端後端服務加入至 Xamarin.Android 應用程式。如需詳細資訊，請參閱[什麼是 Mobile Apps？](app-service-mobile-value-prop.md)。
 
-A screenshot from the completed app is below:
+以下是完成之應用程式的螢幕擷取畫面：
 
 ![][0]
 
-Completing this tutorial is a prerequisite for all other Mobile Apps tutorials for Xamarin.Android apps.
+完成本教學課程是 Xamarin Android 應用程式所有其他行動應用程式教學課程的必要條件。
 
-##<a name="prerequisites"></a>Prerequisites
+##必要條件
 
-To complete this tutorial, you need the following prerequisites:
+若要完成此教學課程，您需要下列項目：
 
-* An active Azure account. If you don't have an account, sign up for an Azure trial and get up to 10 free Mobile Apps. For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/).
+* 使用中的 Azure 帳戶。如果您沒有帳戶，可以註冊 Azure 試用版並取得最多 10 個免費的行動應用程式，即使在試用期結束之後仍可繼續使用這些應用程式。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
-* Visual Studio with Xamarin. See [Setup and install for Visual Studio and Xamarin](https://msdn.microsoft.com/library/mt613162.aspx) for instructions.
+* Visual Studio 和 Xamarin。如需相關指示，請參閱[設定和安裝 Visual Studio 和 Xamarin](https://msdn.microsoft.com/library/mt613162.aspx)。
+ 
+>[AZURE.NOTE] 如果您想在註冊 Azure 帳戶之前先開始使用 Azure App Service，請前往[試用 App Service](https://tryappservice.azure.com/?appServiceName=mobile)，讓您能立刻在 App Service 中建立短期的入門行動應用程式。不需要信用卡；無需承諾。
 
->[AZURE.NOTE] If you want to get started with Azure App Service before signing up for an Azure account, go to [Try App Service](https://tryappservice.azure.com/?appServiceName=mobile).  You can immediately create a short-lived starter Mobile App in App Service. No credit cards required; no commitments.
+## 建立新的 Azure 行動應用程式後端
 
-## <a name="create-an-azure-mobile-app-backend"></a>Create an Azure Mobile App backend
-
-Follow these steps to create a Mobile App backend.
+依照下列步驟建立新的行動應用程式後端。
 
 [AZURE.INCLUDE [app-service-mobile-dotnet-backend-create-new-service](../../includes/app-service-mobile-dotnet-backend-create-new-service.md)]
 
-You have now provisioned an Azure Mobile App backend that can be used by your mobile client applications. Next, download a server project for a simple "todo list" backend and publish it to Azure.
+您現在已佈建 Azure 行動應用程式後端，可供您的行動用戶端應用程式使用。接下來，您將下載簡易「待辦事項清單」後端的伺服器專案，然後將專案發佈至 Azure。
 
-## <a name="configure-the-server-project"></a>Configure the server project
+## 設定伺服器專案
 
 [AZURE.INCLUDE [app-service-mobile-configure-new-backend.md](../../includes/app-service-mobile-configure-new-backend.md)]
 
-## <a name="download-and-run-the-xamarin.android-app"></a>Download and run the Xamarin.Android app
+## 下載並執行 Xamarin.Android 應用程式
 
-1. Under **Download and run your Xamarin.Android project**, click the **Download** button.
+1. 在 [下載並執行 Xamarin.Android 專案] 底下，按一下 [下載] 按鈕。
 
-    Save the compressed project file to your local computer, and make a note of where you save it.
+  	這會下載包含連線到您行動應用程式之用戶端應用程式的專案。將此壓縮專案檔案儲存到您的本機電腦，並記錄儲存位置。
 
-2. Press the **F5** key to build the project and start the app.
+2. 按 **F5** 鍵，以重建專案並啟動應用程式。
 
-3. In the app, type meaningful text, such as _Complete the tutorial_ and then click the **Add** button.
+3. 在應用程式中輸入有意義的文字 (例如 _Complete the tutorial_)，然後按一下 [加入] 按鈕。
 
-    ![][10]
+	![][10]
 
-    Data from the request is inserted into the TodoItem table. Items stored in the table are returned by the mobile app backend, and the data appears in the list.
+	如此會傳送 POST 要求到 Azure 中代管的新行動應用程式後端。要求中的資料會插入 TodoItem 資料表中。行動應用程式後端會傳回資料表中儲存的項目，而該資料會顯示在清單中。
 
-    > [AZURE.NOTE] You can review the code that accesses your mobile app backend to query and insert data, which is found in the ToDoActivity.cs C# file.
+	> [AZURE.NOTE] 您可以檢閱存取行動應用程式後端以查詢與插入資料的程式碼，您可在 ToDoActivity.cs C# 檔案中找到此程式碼。
 
-##<a name="next-steps"></a>Next steps
+##後續步驟
 
-* [Add Offline Sync to your app](app-service-mobile-xamarin-android-get-started-offline-data.md)
-* [Add authentication to your app ](app-service-mobile-xamarin-android-get-started-users.md)
-* [Add push notifications to your Xamarin.Android app](app-service-mobile-xamarin-android-get-started-push.md)
-* [How to use the managed client for Azure Mobile Apps](app-service-mobile-dotnet-how-to-use-client-library.md)
+* [加入驗證至應用程式](app-service-mobile-xamarin-android-get-started-users.md) 了解如何使用身分識別提供者驗證應用程式的使用者。
+* [將推播通知新增至您的 Xamarin.Android 應用程式](app-service-mobile-xamarin-android-get-started-push.md) 了解如何在應用程式中新增推播通知。
+* [如何針對 Azure Mobile Apps 使用受管理的用戶端](app-service-mobile-dotnet-how-to-use-client-library.md) 了解如何在 Xamarin 應用程式中使用受管理的用戶端 SDK。
 
 
 <!-- Images. -->
@@ -88,8 +86,4 @@ You have now provisioned an Azure Mobile App backend that can be used by your mo
 [Azure Portal]: https://azure.portal.com/
 [Visual Studio]: https://go.microsoft.com/fwLink/p/?LinkID=534203
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_1005_2016-->

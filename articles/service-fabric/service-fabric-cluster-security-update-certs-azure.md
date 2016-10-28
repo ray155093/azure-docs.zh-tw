@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Add , rollover and remove certificates used in a Service Fabric cluster in Azure | Microsoft Azure"
-   description="Describes how to upload a secondary cluster certificate and then rollover the old primary certificate."
+   pageTitle="新增、變換和移除在 Azure 中 Service Fabric 叢集使用的憑證 | Microsoft Azure"
+   description="說明如何上傳次要叢集憑證，然後變換舊的主要憑證。"
    services="service-fabric"
    documentationCenter=".net"
    authors="ChackDan"
@@ -16,61 +16,60 @@
    ms.date="08/15/2016"
    ms.author="chackdan"/>
 
+# 新增或移除 Azure 中 Service Fabric 叢集的憑證
 
-# <a name="add-or-remove-certificates-for-a-service-fabric-cluster-in-azure"></a>Add or remove certificates for a Service Fabric cluster in Azure
+建議您熟悉 Service Fabric 使用 X.509 憑證的方式，並參閱[叢集安全性案例](service-fabric-cluster-security.md)。您必須瞭解什麼是叢集憑證及其用途，方可繼續進行後續作業。
 
-It is recommended that you familiarize yourself with how Service Fabric uses X.509 certificates, read [Cluster security scenarios](service-fabric-cluster-security.md). You must understand what a cluster certificate is and what is used for, before you proceed further.
+您在叢集建立期間設定憑證安全性時，Service Fabric 可讓您指定兩個叢集憑證：主要與次要。如需詳細資訊，請參閱[透過入口網站建立 Azure 叢集](service-fabric-cluster-creation-via-portal.md)或是 [透過 Azure Resource Manager 建立 Azure 叢集](service-fabric-cluster-creation-via-Resource Manager.md)。若您是透過 Resource Manager 部署，且僅指定一個叢集憑證，則會使用該憑證做為主要憑證。在叢集建立完成後，您可新增憑證做為次要憑證。
 
-Service fabric lets you specify two cluster certificates, a primary and a secondary, when you configure certificate security during cluster creation. Refer to [creating an azure cluster via portal](service-fabric-cluster-creation-via-portal.md) or [creating an azure cluster via Azure Resource Manager](service-fabric-cluster-creation-via-arm.md) for details. If deploying via Resource Manager, and you specify only one cluster certificate, then that is used as the primary certificate. After cluster creation, you can add a new certificate as a secondary.
-
->[AZURE.NOTE] For a secure cluster, you will always need at least one valid (not revoked and not expired) certificate (primary or secondary) deployed if not, the cluster stops functioning. 90 days before all valid certificates reach expiration, the system generates a warning trace and also a warning health event on the node. There is currently no email or any other notification that service fabric sends out on this topic. 
-
-
-## <a name="add-a-secondary-certificate-using-the-portal"></a>Add a secondary certificate using the portal
-To add another certificate as a secondary, you must upload the certificate to an Azure key vault and then deploy it to the VMs in the cluster. For additional information, see [Deploy certificates to VMs from a customer-managed key vault](http://blogs.technet.com/b/kv/archive/2015/07/14/vm_2d00_certificates.aspx).
-
-1. Refer to [Add certificates to Key Vault](service-fabric-cluster-creation-via-arm.md#add-certificate-to-key-vault) on how to.
-
-2. Sign in to the [Azure portal](https://portal.azure.com/) and browse to the cluster resource that you want add this certificate to.
-3. Under **SETTINGS**, click on **Security** to bring up the Cluster Security Blade.
-4. Click on the **"+Certificate"** Button on top of the blade to get to the **"Add Certificate"** blade.
-5. Select "Secondary certificate thumbprint" from the dropdown and fill out the certificate thumbprint of the secondary certificate you uploaded to the keyvault.
-
->[AZURE.NOTE]
-Unlike during the cluster creation workflow, We do not take in the details on the keyvault information here, because, it is assumed that by the time you are on this blade, you have already deployed the certificate to the VMs and the certificate is already available in the local cert store in the VMSS instance.
-
-Click **Certificate**. A deployment gets started, and a blue Status bar will show up on the Cluster Security Blade.
-
-![Screen shot of certificate thumbprints in the portal][SecurityConfigurations_02]
-
-And on successful completion of that deployment, you will be able to use either the primary or the secondary certificate to perform management operations on the cluster.
-
-![Screen shot of certificate deployment in progress][SecurityConfigurations_03]
-
-Here is a screen shot on how the security blade looks once the deployment is complete.
-
-![Screen shot of certificate thumbprints after deployment][SecurityConfigurations_08]
+>[AZURE.NOTE] 針對安全叢集，您一律必須至少部署一個有效 (未撤銷或過期) 的憑證 (主要或次要)，否則叢集將停止運作。在所有有效憑證到達到期日的 90 天前，系統會針對節點產生警告追蹤與警告健康狀態事件。目前並無 Service Fabric 針對此主題送出的電子郵件或其他任何通知。
 
 
-You can now use the new certificate you just added to connect and perform operations on the cluster.
+## 使用入口網站新增次要憑證
+若要新增另一個憑證做為次要憑證，您必須將該憑證上傳到 Azure 金鑰保存庫，然後將它部署到叢集中的 VM。如需其他資訊，請參閱 [Deploy certificates to VMs from a customer-managed Key Vault (將憑證從客戶管理的金鑰保存庫部署到 VM)](http://blogs.technet.com/b/kv/archive/2015/07/14/vm_2d00_certificates.aspx)。
+
+1. 如需操作方式，請參閱[將 X.509 憑證上傳至金鑰保存庫](service-fabric-secure-azure-cluster-with-certs.md#step-2-upload-the-x509-certificate-to-the-key-vault)。
+
+2. 登入 [Azure 入口網站](https://portal.azure.com/)，然後瀏覽至您想要新增此憑證的叢集資源。
+3. 在 [設定] 下方，按一下 [安全性] 以顯示 [叢集安全性] 刀鋒視窗。
+4. 按一下刀鋒視窗頂端的 [新增憑證]按鈕，以前往 [新增憑證] 刀鋒視窗。
+5. 從下拉式清單中選取「次要憑證指紋」，並為您上傳至金鑰保存庫的次要憑證填寫憑證指紋。
 
 >[AZURE.NOTE]
-Currently there is no way to swap the primary and secondary certificates on the portal, that feature is in the works. As long as there is a valid cluster certificate, the cluster will operate fine.
+與叢集建立工作流程期間不同之處，在於我們不會在此記錄金鑰保存庫的詳細資訊，因為它會假設您當時已位於此刀鋒視窗並已將憑證部署至 VM，且憑證已在 VMSS 執行個體的本機憑證存放區中提供。
 
-## <a name="add-a-secondary-certificate-and-swap-it-to-be-the-primary-using-resource-manager-powershell"></a>Add a secondary certificate and swap it to be the primary using Resource Manager Powershell
+按一下 [憑證]。系統會開始執行部署，且會在叢集安全性刀鋒視窗顯示藍色狀態列。
 
-These steps assume that you are familiar with how Resource Manager works and have deployed atleast one Service Fabric cluster using an Resource Manager template, and have the template that you used to set up the cluster handy. it is also assumed that you are comfortable using JSON.
+![入口網站中的憑證指紋螢幕擷取畫面][SecurityConfigurations_02]
+
+在部署順利完成後，您就可以使用主要或次要憑證在叢集上執行管理作業。
+
+![正在進行憑證部署的螢幕擷取畫面][SecurityConfigurations_03]
+
+以下螢幕擷取畫面顯示完成部署後的安全性刀鋒視窗外觀。
+
+![部署完成後的憑證指紋螢幕擷取畫面][SecurityConfigurations_08]
+
+
+您現可使用剛剛新增的憑證來連線，並在叢集上執行作業。
 
 >[AZURE.NOTE]
-If you are looking for a sample template and parameters that you can use to follow along or as a starting point, then download it from this [git-repo]. (https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/Cert%20Rollover%20Sample). 
+目前無法在入口網站上交換主要與次要憑證，此功能正在研發中。只要具備有效的叢集憑證，叢集就會正常運作。
 
-#### <a name="edit-your-resource-manager-template"></a>Edit your Resource Manager template 
+## 新增次要憑證，並使用資源管理員 Powershell 將其交換為主要憑證
 
-If you were using the sample from the [git-repo](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/Cert%20Rollover%20Sample) to follow along, you will find these changes in The sample 5-VM-1-NodeTypes-Secure_Step2.JSON . Use 5-VM-1-NodeTypes-Secure_Step1.JSON to deploy a secure cluster
+這些步驟假設您已熟悉資源管理員的運作方式，並已使用 Resource Manager 範本部署至少一個 Service Fabric 叢集，且已備妥用來設定叢集的範本。此外亦假設您可輕鬆自如地使用 JSON。
 
-1. Open up the Resource Manager template you used to deploy you Cluster.
-2. Add a new parameter "secCertificateThumbprint" of type "string". If you are using the Resource Manager template that you downloaded from the portal during the creation time or from the quickstart templates, then just search for that parameter, you should find it already defined.  
-3. Locate the "Microsoft.ServiceFabric/clusters" Resource definition. Under properties, you will find "Certificate" JSON tag, which should look something like the following JSON snippet.
+>[AZURE.NOTE]
+若您正在尋找可用來遵循或做為起點的範例範本和參數，可自此 [git-儲存機制] 下載。(https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/Cert%20Rollover%20Sample)。
+
+#### 編輯您的 Resource Manager 範本 
+
+若您曾使用來自 [git-儲存機制](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/Cert%20Rollover%20Sample)的範例遵循操作，將會在範例 5-VM-1-NodeTypes-Secure\_Step2.JSON 中找到這些變更。使用 5-VM-1-NodeTypes-Secure\_Step1.JSON 部署安全叢集
+
+1. 開啟您用來部署叢集的 Resource Manager 範本。
+2. 加入「字串」類型的新參數「secCertificateThumbprint」。若您使用在建立時透過入口網站下載，或是透過快速入門範本取得的 Resource Manager 範本，則只要搜尋該參數，應會發現它已經定義。
+3. 尋找「Microsoft.ServiceFabric/clusters」資源定義。您會在屬性下方找到「憑證」JSON 標籤，看起來應該會像以下 JSON 片段。
 ```JSON
       "properties": {
         "certificate": {
@@ -79,9 +78,9 @@ If you were using the sample from the [git-repo](https://github.com/ChackDan/Ser
         }
 ``` 
 
-4. Add a new tag "thumbprintSecondary" and give it a value "[parameters('secCertificateThumbprint')]".  
+4. 加入新標籤「thumbprintSecondary」，並為它提供值「[parameters('secCertificateThumbprint')]」。
 
-So now the resource definition should look like this (depending on your source of the template, it may not be exactly like the snippet below). As you can see below what you are doing here is specifying a new cert as primary and moving the current primary as secondary.  This results in the rollover of your current certificate to the new certificate in one deployment step.
+資源定義現在看起來應該像這樣 (視您的範本來源而定，它看起來可能不會和下面的片段完全相同)。您可在下方看到目前在此執行的作業，是指定新憑證做為主要憑證，並將目前的主要憑證移作次要憑證。這可讓您在單一部署步驟中，將目前的憑證變換為新憑證。
 
 ```JSON
 
@@ -94,12 +93,12 @@ So now the resource definition should look like this (depending on your source o
 
 ```
 
-#### <a name="edit-your-template-file-to-reflect-the-new-parameters-you-added-above"></a>Edit your template file to reflect the new parameters you added above
+#### 編輯您的範本檔案，以反映先前加入的新參數
 
-If you were using the sample from the [git-repo](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/Cert%20Rollover%20Sample) to follow along, you can start to make changes in The sample 5-VM-1-NodeTypes-Secure.paramters_Step2.JSON 
+若您曾使用來自 [git-儲存機制](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/Cert%20Rollover%20Sample)的範例遵循操作，就可開始在範例 5-VM-1-NodeTypes-Secure.paramters\_Step2.JSON 中進行變更
 
 
-Edit the Resource Manager Template parameter File, add the new parameters for the secCertificate and swap the existing primary cert details with the secondary and replace the primary cert details with the new cert details. 
+編輯 Resource Manager 範本參數檔案，為 secCertificate 加入新參數，然後將現有的主要憑證詳細資料與次要憑證交換，並使用新的憑證詳細資料取代主要憑證詳細資料。
 
 ```JSON
     "secCertificateThumbprint": {
@@ -123,10 +122,10 @@ Edit the Resource Manager Template parameter File, add the new parameters for th
 
 ```
 
-### <a name="deploy-the-template-to-azure"></a>Deploy the template to Azure
+### 將範本部署到 Azure
 
-1. You are now ready to deploy your template to Azure. Open an Azure PS version 1+ command prompt.
-2. Login to your Azure Account and select the specific azure subscription. This is an important step for folks who have access to more than one azure subscription.
+1. 您現在已可將範本部署至 Azure。開啟 Azure PS 版本 1+ 命令提示字元。
+2. 登入您的 Azure 帳戶，並選取特定的 Azure 訂用帳戶。對於擁有多個 Azure 訂用帳戶存取權的使用者而言，這是一個重要步驟。
 
 
 ```powershell
@@ -135,24 +134,24 @@ Select-AzureRmSubscription -SubscriptionId <Subcription ID>
 
 ```
 
-Test the template prior to deploying it. Use the same Resource Group that your cluster is currently deployed to.
+部署範本前先進行測試。使用您目前在其中部署叢集的同一個資源群組。
 
 ```powershell
 Test-AzureRmResourceGroupDeployment -ResourceGroupName <Resource Group that your cluster is currently deployed to> -TemplateFile <PathToTemplate>
 
 ```
 
-Deploy the template to your resource group. Use the same Resource Group that your cluster is currently deployed to. Run the New-AzureRmResourceGroupDeployment command. You do not need to specify the mode, since the default value is **incremental**.
+將範本部署至您的資源群組。使用您目前在其中部署叢集的同一個資源群組。執行 New-AzureRmResourceGroupDeployment 命令。您無須指定模式，因為預設值為**增量**。
 
 >[AZURE.NOTE]
-If you set Mode to Complete, you can inadvertently delete resources that are not in your template. So do not use it in this scenario.
+若您將 [模式] 設為 [完整]，您可能會無意間刪除不在您範本中的資源。因此請勿在此案例中使用該模式。
    
 
 ```powershell
 New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName <Resource Group that your cluster is currently deployed to> -TemplateFile <PathToTemplate>
 ```
 
-Here is a filled out example of the same powershell.
+以下是已填入資料的相同 Powershell 範例。
 
 ```powershell
 $ResouceGroup2 = "chackosecure5"
@@ -163,9 +162,9 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName $ResouceGroup2 -TemplatePa
 
 ```
 
-Once the deployment is complete, connect to your cluster using the new Certificate and perform some queries. If you are able to do. Then you can delete the old primary certificate. 
+部署完成之後，使用新的憑證連線至叢集，並執行一些查詢。若您可執行動作。然後您可以刪除舊的主要憑證。
 
-If you are using a self-signed certificate, do not forget to import them into your local TrustedPeople cert store.
+若您是使用自我簽署憑證，請務必將它們匯入至本機 TrustedPeople 憑證存放區。
 
 ```powershell
 ######## Set up the certs on your local box
@@ -173,7 +172,7 @@ Import-PfxCertificate -Exportable -CertStoreLocation Cert:\CurrentUser\TrustedPe
 Import-PfxCertificate -Exportable -CertStoreLocation Cert:\CurrentUser\My -FilePath c:\Mycertificates\chackdanTestCertificate9.pfx -Password (ConvertTo-SecureString -String abcd123 -AsPlainText -Force)
 
 ```
-For quick reference here is the command to connect to a secure cluster 
+以下提供連線至安全叢集的命令的快速參考
 ```powershell
 $ClusterName= "chackosecure5.westus.cloudapp.azure.com:19000"
 $CertThumbprint= "70EF5E22ADB649799DA3C8B6A6BF7SD1D630F8F3" 
@@ -186,26 +185,26 @@ Connect-serviceFabricCluster -ConnectionEndpoint $ClusterName -KeepAliveInterval
     -StoreLocation CurrentUser `
     -StoreName My
 ```
-For quick reference here is the command to get cluster health
+以下提供取得叢集健康情況的命令的快速參考
 ```powershell
 Get-ServiceFabricClusterHealth 
 ```
  
-## <a name="remove-the-old-certificate-using-the-portal"></a>Remove the old certificate using the portal
-Here is the process to remove an old certificate so that the cluster does not use it:
+## 使用入口網站移除舊憑證
+以下是移除舊憑證的程序，以讓叢集不會使用它：
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and navigate to your cluster's security settings.
-2. Right Click on the certificate you want to remove
-3. Select Delete and follow the prompts. 
+1. 登入 [Azure 入口網站](https://portal.azure.com/)，然後瀏覽至您叢集的安全性設定。
+2. 以滑鼠右鍵按一下您想要移除的憑證
+3. 選取 [刪除] 並依照提示執行。
 
 [SecurityConfigurations_05]: ./media/service-fabric-cluster-security-update-certs-azure/SecurityConfigurations_05.png
 
 
-## <a name="next-steps"></a>Next steps
-Read these articles for more information on cluster management:
+## 後續步驟
+如需有關叢集管理的詳細資訊，請參閱下列文件︰
 
-- [Service Fabric Cluster upgrade process and expectations from you](service-fabric-cluster-upgrade.md)
-- [Setup role-based access for clients](service-fabric-cluster-security-roles.md)
+- [Service Fabric 叢集升級程序與您的期望](service-fabric-cluster-upgrade.md)
+- [設定用戶端的角色型存取](service-fabric-cluster-security-roles.md)
 
 
 <!--Image references-->
@@ -214,8 +213,5 @@ Read these articles for more information on cluster management:
 [SecurityConfigurations_05]: ./media/service-fabric-cluster-security-update-certs-azure/SecurityConfigurations_05.png
 [SecurityConfigurations_08]: ./media/service-fabric-cluster-security-update-certs-azure/SecurityConfigurations_08.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
+<!---HONumber=AcomDC_0817_2016-->
 

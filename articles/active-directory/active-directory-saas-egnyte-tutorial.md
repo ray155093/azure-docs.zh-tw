@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="Tutorial: Azure Active Directory integration with Egnyte | Microsoft Azure" 
-    description="Learn how to use Egnyte with Azure Active Directory to enable single sign-on, automated provisioning, and more!" 
+    pageTitle="教學課程：Azure Active Directory 與 Egnyte 整合 | Microsoft Azure" 
+    description="了解如何使用 Egnyte 搭配 Azure Active Directory 來啟用單一登入、自動化佈建和更多功能！" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -11,162 +11,158 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="09/29/2016" 
+    ms.date="07/11/2016" 
     ms.author="jeedes" />
 
-
-#<a name="tutorial:-azure-active-directory-integration-with-egnyte"></a>Tutorial: Azure Active Directory integration with Egnyte
+#教學課程：Azure Active Directory 與 Egnyte 整合
   
-The objective of this tutorial is to show the integration of Azure and Egnyte.  
-The scenario outlined in this tutorial assumes that you already have the following items:
+本教學課程的目的是要示範 Azure 與 Egnyte 的整合。  
+本教學課程中說明的案例假設您已經具有下列項目：
 
--   A valid Azure subscription
--   An Egnyte single sign-on enabled subscription
+-   有效的 Azure 訂閱
+-   已啟用 Egnyte 單一登入的訂用帳戶
   
-After completing this tutorial, the Azure AD users you have assigned to Egnyte will be able to single sign into the application at your Egnyte company site (service provider initiated sign on), or using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md)
+完成本教學課程之後，您指派給 Egnyte 的 Azure AD 使用者就能夠單一登入您 Egnyte 公司網站 (服務提供者起始登入) 的應用程式，或是使用[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
   
-The scenario outlined in this tutorial consists of the following building blocks:
+本教學課程中說明的案例由下列建置組塊組成：
 
-1.  Enabling the application integration for Egnyte
-2.  Configuring single sign-on
-3.  Configuring user provisioning
-4.  Assigning users
+1.  啟用 Egnyte 的應用程式整合
+2.  設定單一登入
+3.  設定使用者佈建
+4.  指派使用者
 
-![Scenario](./media/active-directory-saas-egnyte-tutorial/IC787812.png "Scenario")
-##<a name="enabling-the-application-integration-for-egnyte"></a>Enabling the application integration for Egnyte
+![案例](./media/active-directory-saas-egnyte-tutorial/IC787812.png "案例")
+##啟用 Egnyte 的應用程式整合
   
-The objective of this section is to outline how to enable the application integration for Egnyte.
+本節的目的是要說明如何啟用 Egnyte 的應用程式整合。
 
-###<a name="to-enable-the-application-integration-for-egnyte,-perform-the-following-steps:"></a>To enable the application integration for Egnyte, perform the following steps:
+###若要啟用 Egnyte 的應用程式整合，請執行下列步驟：
 
-1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-egnyte-tutorial/IC700993.png "Active Directory")
 
-2.  From the **Directory** list, select the directory for which you want to enable directory integration.
+2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3.  To open the applications view, in the directory view, click **Applications** in the top menu.
+3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
 
-    ![Applications](./media/active-directory-saas-egnyte-tutorial/IC700994.png "Applications")
+    ![應用程式](./media/active-directory-saas-egnyte-tutorial/IC700994.png "應用程式")
 
-4.  Click **Add** at the bottom of the page.
+4.  按一下頁面底部的 [新增]。
 
-    ![Add application](./media/active-directory-saas-egnyte-tutorial/IC749321.png "Add application")
+    ![新增應用程式](./media/active-directory-saas-egnyte-tutorial/IC749321.png "新增應用程式")
 
-5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
-    ![Add an application from gallerry](./media/active-directory-saas-egnyte-tutorial/IC749322.png "Add an application from gallerry")
+    ![從組件庫新增應用程式](./media/active-directory-saas-egnyte-tutorial/IC749322.png "從組件庫新增應用程式")
 
-6.  In the **search box**, type **egnyte**.
+6.  在**搜尋方塊**中，輸入 **egnyte**。
 
-    ![Application Gallery](./media/active-directory-saas-egnyte-tutorial/IC787813.png "Application Gallery")
+    ![應用程式庫](./media/active-directory-saas-egnyte-tutorial/IC787813.png "應用程式庫")
 
-7.  In the results pane, select **Egnyte**, and then click **Complete** to add the application.
+7.  在結果窗格中，選取 [Egnyte]，然後按一下 [完成] 來加入應用程式。
 
     ![Egnyte](./media/active-directory-saas-egnyte-tutorial/IC787814.png "Egnyte")
-##<a name="configuring-single-sign-on"></a>Configuring single sign-on
+##設定單一登入
   
-The objective of this section is to outline how to enable users to authenticate to Egnyte with their account in Azure AD using federation based on the SAML protocol.  
-As part of this procedure, you are required to create a base-64 encoded certificate file.  
-If you are not familiar with this procedure, see [How to convert a binary certificate into a text file](http://youtu.be/PlgrzUZ-Y1o).
+本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己的 Azure AD 帳戶驗證到 Egnyte。  
+在此程序中，您必須建立 base-64 編碼的憑證檔案。  
+如果您不熟悉這個程序，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
 
-###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
+###若要設定單一登入，請執行下列步驟：
 
-1.  In the Azure classic portal, on the **Egnyte** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
+1.  在 Azure 傳統入口網站的 [Egnyte] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-egnyte-tutorial/IC787815.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-egnyte-tutorial/IC787815.png "設定單一登入")
 
-2.  On the **How would you like users to sign on to Egnyte** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
+2.  在 [要如何讓使用者登入 Egnyte] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按一下 [下一步]。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-egnyte-tutorial/IC787816.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-egnyte-tutorial/IC787816.png "設定單一登入")
 
-3.  On the **Configure App URL** page, in the **Egnyte Sign In URL** textbox, type your URL using the following pattern "*https://company.egnyte.com*", and then click **Next**.
+3.  在 [設定應用程式 URL] 頁面的 [Egnyte 登入 URL] 文字方塊中，使用下列模式輸入您的 URL："*https://company.egnyte.com*"，然後按一下 *[下一步]*。
 
-    ![Configure App URL](./media/active-directory-saas-egnyte-tutorial/IC787817.png "Configure App URL")
+    ![設定應用程式 URL](./media/active-directory-saas-egnyte-tutorial/IC787817.png "設定應用程式 URL")
 
-4.  On the **Configure single sign-on at Egnyte** page, click **Download certificate**, and then save the certificate file on your computer.
+4.  在 [設定在 Egnyte 單一登入] 頁面上，按一下 [下載憑證]，然後在您的電腦上儲存憑證檔案。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-egnyte-tutorial/IC787818.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-egnyte-tutorial/IC787818.png "設定單一登入")
 
-5.  In a different web browser window, log into your Egnyte company site as an administrator.
+5.  在不同的 Web 瀏覽器視窗中，以系統管理員身分登入您的 Egnyte 公司網站。
 
-6.  Click **Settings**.
+6.  按一下 [設定]。
 
-    ![Settings](./media/active-directory-saas-egnyte-tutorial/IC787819.png "Settings")
+    ![設定](./media/active-directory-saas-egnyte-tutorial/IC787819.png "Settings")
 
-7.  In the menu, click **Settings**.
+7.  在功能表中按一下 [設定]。
 
-    ![Settings](./media/active-directory-saas-egnyte-tutorial/IC787820.png "Settings")
+    ![Settings](./media/active-directory-saas-egnyte-tutorial/IC787820.png "設定")
 
-8.  Click the **Configuration** tab, and then click **Security**.
+8.  按一下 [組態] 索引標籤，然後按一下 [安全性]。
 
-    ![Security](./media/active-directory-saas-egnyte-tutorial/IC787821.png "Security")
+    ![安全性](./media/active-directory-saas-egnyte-tutorial/IC787821.png "安全性")
 
-9.  In the **Single Sign-On Authentication** section, perform the following steps:
+9.  在 [單一登入驗證] 區段中，執行下列步驟：
 
-    ![Single Sign On Authentication](./media/active-directory-saas-egnyte-tutorial/IC787822.png "Single Sign On Authentication")
+    ![單一登入驗證](./media/active-directory-saas-egnyte-tutorial/IC787822.png "單一登入驗證")
 
-    1.  As **Single sign-on authentication**, select **SAML 2.0**.
-    2.  As **Identity provider**, select **AzureAD**.
-    3.  In the Azure classic portal, on the **Configure single sign-on at Egnyte** dialog page, copy the **Remote Login URL** value, and then paste it into the **Identity provider login URL ** textbox.
-    4.  In the Azure classic portal, on the **Configure single sign-on at Egnyte** dialog page, copy the **Entity ID** value, and then paste it into the **Identity provider entity ID** textbox.
-    5.  Create a **base-64 encoded** file from your downloaded certificate.  
+    1.  針對 [單一登入驗證]，選取 **SAML 2.0**。
+    2.  針對 [識別提供者]，選取 [AzureAD]。
+    3.  在 Azure 傳統入口網站中的 [設定在 Egnyte 單一登入] 對話頁面上，複製 [遠端登入 URL] 值，然後將其貼至 [識別提供者登入 URL] 文字方塊中。
+    4.  在 Azure 傳統入口網站中的 [設定在 Egnyte 單一登入] 對話頁面上，複製 [實體識別碼] 值，然後將其貼至 [識別提供者實體識別碼] 文字方塊中。
+    5.  從您下載的憑證建立「Base-64 編碼」檔案。
 
-        >[AZURE.TIP]For more details, see [How to convert a binary certificate into a text file](http://youtu.be/PlgrzUZ-Y1o)
+        >[AZURE.TIP]如需詳細資訊，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)
 
-    6.  Open your base-64 encoded certificate in notepad, copy the content of it into your clipboard, and then paste it to the **Identity provider certificate** textbox.
-    7.  As **Default user mapping**, select **Email address**.
-    8.  As **Use domain-specific issuer value**, select **disabled**.
-    9.  Click **Save**.
+    6.  在記事本中開啟您的 base-64 編碼的憑證，將其內容複製到您的剪貼簿，然後貼到 [識別提供者憑證] 文字方塊中。
+    7.  針對 [預設使用者對應]，選取 [電子郵件地址]。
+    8.  針對 [使用網域指定的簽發者值]，選取 [停用]。
+    9.  按一下 [儲存]。
 
-10. On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
+10. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-egnyte-tutorial/IC787823.png "Configure Single Sign-On")
-##<a name="configuring-user-provisioning"></a>Configuring user provisioning
+    ![設定單一登入](./media/active-directory-saas-egnyte-tutorial/IC787823.png "設定單一登入")
+##設定使用者佈建
   
-In order to enable Azure AD users to log into Egnyte, they must be provisioned into Egnyte.  
-In the case of Egnyte, provisioning is a manual task.
+若要讓 Azure AD 使用者可以登入 Egnyte，則必須將他們佈建到 Egnyte。
+Egnyte 需以手動的方式佈建。
 
-###<a name="to-provision-a-user-accounts,-perform-the-following-steps:"></a>To provision a user accounts, perform the following steps:
+###若要佈建使用者帳戶，請執行下列步驟：
 
-1.  Log in to your **Egnyte** Egnyte company site as administrator.
+1.  以系統管理員身分登入您的 **Egnyte** 公司網站。
 
-2.  Go to **Settings \> Users & Groups**.
+2.  移至 [設定] > [使用者和群組]。
 
-3.  Click **Add New User**, and then select the type of user you want to add.
+3.  按一下 [新增使用者]，然後選取您想要加入的使用者類型。
 
-    ![Users](./media/active-directory-saas-egnyte-tutorial/IC787824.png "Users")
+    ![使用者](./media/active-directory-saas-egnyte-tutorial/IC787824.png "使用者")
 
-4.  In the **New Standard User** section, perform the following steps:
+4.  在 [新的標準使用者] 區段中，執行下列步驟：
 
-    ![New Standard User](./media/active-directory-saas-egnyte-tutorial/IC787825.png "New Standard User")
+    ![新的標準使用者](./media/active-directory-saas-egnyte-tutorial/IC787825.png "新的標準使用者")
 
-    1.  Type the **Email**, **Username** and other details of a valid Azure Active Directory account you want to provision.
-    2.  Click **Save**.
+    1.  輸入您要佈建之有效 Azure Active Directory 帳戶的 [電子郵件]、[使用者名稱] 以及其他詳細資料。
+    2.  按一下 [儲存]。
 
-    >[AZURE.NOTE] The Azure Active Directory account holder will receive a notification email.
+    >[AZURE.NOTE] Azure Active Directory 帳戶持有者將會收到電子郵件通知。
 
->[AZURE.NOTE] You can use any other Egnyte user account creation tools or APIs provided by Egnyte to provision AAD user accounts.
+>[AZURE.NOTE] 您可以使用任何其他的 Egnyte 使用者帳戶建立工具或 Egnyte 提供的 API 來佈建 AAD 使用者帳戶。
 
-##<a name="assigning-users"></a>Assigning users
+##指派使用者
   
-To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
+若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-###<a name="to-assign-users-to-egnyte,-perform-the-following-steps:"></a>To assign users to Egnyte, perform the following steps:
+###若要將使用者指派給 Egnyte，請執行下列步驟：
 
-1.  In the Azure classic portal, create a test account.
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
-2.  On the **Egnyte **application integration page, click **Assign users**.
+2.  在 [Egnyte] 應用程式整合頁面上，按一下 [指派使用者]。
 
-    ![Assign Users](./media/active-directory-saas-egnyte-tutorial/IC787826.png "Assign Users")
+    ![指派使用者](./media/active-directory-saas-egnyte-tutorial/IC787826.png "指派使用者")
 
-3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
+3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
 
-    ![Yes](./media/active-directory-saas-egnyte-tutorial/IC767830.png "Yes")
+    ![是](./media/active-directory-saas-egnyte-tutorial/IC767830.png "是")
   
-If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0713_2016-->

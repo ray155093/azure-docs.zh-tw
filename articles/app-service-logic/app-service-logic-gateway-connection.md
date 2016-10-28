@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Logic Apps on-premises data gateway connection | Microsoft Azure"
-   description="Information on how to create a connection to the on-premises data gateway from a logic app."
+   pageTitle="Logic Apps 內部部署資料閘道連接 | Microsoft Azure"
+   description="如何從邏輯應用程式建立內部部署資料閘道連接的相關資訊。"
    services="logic-apps"
    documentationCenter=".net,nodejs,java"
    authors="jeffhollan"
@@ -16,62 +16,58 @@
    ms.date="07/05/2016"
    ms.author="jehollan"/>
 
+# 連接至 Logic Apps 的內部部署資料閘道
 
-# <a name="connect-to-the-on-premises-data-gateway-for-logic-apps"></a>Connect to the on-premises data gateway for Logic Apps
+支援的邏輯應用程式連接器可讓您設定連接，透過內部部署資料閘道存取內部部署資料。下列步驟將引導您了解如何安裝和設定內部部署資料閘道，以搭配邏輯應用程式使用。
 
-Supported logic apps connectors allow you to configure your connection to access on-premises data via the on-premises data gateway.  The following steps will walk you through how to install and configure the on-premises data gateway to work with a logic app.
+## 必要條件
 
-## <a name="prerequisites"></a>Prerequisites
+* 必須在 Azure 中使用工作或學校電子郵件地址將內部部署資料閘道與您的帳戶 (Azure Active Directory 帳戶) 相關聯
+    * 如果您使用 Microsoft 帳戶 (例如 @outlook.com、@live.com)，可以[依照這裡的步驟](../virtual-machines/virtual-machines-windows-create-aad-work-id.md#locate-your-default-directory-in-the-azure-classic-portal)使用您的 Azure 帳戶建立一個工作或學校的電子郵件地址
 
-* Must be using a work or school email address in Azure to associate the on-premises data gateway with your account (Azure Active Directory based account)
-    * If you are using a Microsoft Account (e.g. @outlook.com, @live.com) you can use your Azure account to create a work or school email address by [following the steps here](../virtual-machines/virtual-machines-windows-create-aad-work-id.md#locate-your-default-directory-in-the-azure-classic-portal)
+> [AZURE.WARNING] 目前限制內部部署閘道的安裝只會在使用已向 Power BI 註冊的帳戶時才會完成。在此同時，請向 Power BI Free 註冊任何帳戶以順利完成安裝。
 
-> [AZURE.WARNING] There is a limitation currently that on-premises gateway install will only complete when using an account that has been registered with Power BI.  In the meantime please register any account with "Power BI Free" to complete the installation successfully.
+* 必須[在本機電腦上安裝](app-service-logic-gateway-install.md)內部部署資料閘道。
+* 閘道必須未被另一個 Azure 內部部署資料閘道宣告 ([宣告會在下面建立步驟 2 時進行](#2-create-an-azure-on-premises-data-gateway-resource)) - 一個安裝只能與一個閘道資源相關聯。
 
-* Must have the on-premises data gateway [installed on a local machine](app-service-logic-gateway-install.md).
-* Gateway must not have been claimed by another Azure on-premises data gateway ([claim happens with creation of step 2 below](#2-create-an-azure-on-premises-data-gateway-resource)) - an installation can only be associated to one gateway resource.
+## 安裝和設定連接
 
-## <a name="installing-and-configuring-the-connection"></a>Installing and configuring the connection
+### 1\.安裝內部部署資料閘道
 
-### <a name="1.-install-the-on-premises-data-gateway"></a>1. Install the on-premises data gateway
+安裝內部部署資料閘道的資訊可參閱[本文](app-service-logic-gateway-install.md)。必須先在內部部署機器上安裝閘道，才能繼續執行其餘的步驟。
 
-Information on installing the on-premises data gateway can be found [in this article](app-service-logic-gateway-install.md).  The gateway must be installed on an on-premises machine before you can continue with the rest of the steps.
+### 2\.建立 Azure 內部部署資料閘道資源
 
-### <a name="2.-create-an-azure-on-premises-data-gateway-resource"></a>2. Create an Azure on-premises data gateway resource
+安裝之後，您必須將您的 Azure 訂用帳戶與內部部署資料閘道相關聯。
 
-Once installed, you must associate your Azure subscription with the on-premises data gateway.
+1. 使用安裝閘道期間所使用的工作或學校電子郵件地址登入 Azure
+1. 按一下 [新增] 資源按鈕
+1. 搜尋並選取 [內部部署資料閘道]
+1. 完成資訊，將閘道與您的帳戶相關聯 - 包括選取適當的 [安裝名稱]
 
-1. Login to Azure using the same work or school email address that was used during installation of the gateway
-1. Click **New** resource button
-1. Search and select the **On-premises data gateway**
-1. Complete the information to associate the gateway with your account - including selecting the appropriate **Installation Name**
+    ![內部部署資料閘道連接][1]
+1. 按一下 [建立] 按鈕以建立資源
 
-    ![On-Premises Data Gateway Connection][1]
-1. Click the **Create** button to create the resource
+### 3\.在設計工具中建立邏輯應用程式連接
 
-### <a name="3.-create-a-logic-app-connection-in-the-designer"></a>3. Create a logic app connection in the designer
+現在，您的 Azure 訂用帳戶已經與內部部署資料閘道的執行個體相關聯，您可以從邏輯應用程式內建立連接。
 
-Now that your Azure subscription is associated with an instance of the on-premises data gateway, you can create a connection to it from within a logic app.
+1. 開啟邏輯應用程式，然後選擇支援內部部署連接的連接器 (撰寫本文時為 SQL Server)
+1. 選取 [透過內部部署資料閘道連接] 的核取方塊
 
-1. Open a logic app and choose a connector that supports on-premises connectivity (as of this writing, SQL Server)
-1. Select the checkbox for **Connect via on-premises data gateway**
+    ![邏輯應用程式設計工具閘道建立][2]
+1. 選取 [閘道] 來連接並完成所需的任何其他連接資訊
+1. 按一下 [建立] 來建立連接
 
-    ![Logic App Designer Gateway Creation][2]
-1. Select the **Gateway** to connect to and complete any other connection information required
-1. Click **Create** to create the connection
+連接現在應該已成功設定，可在邏輯應用程式中使用。
 
-The connection should now be successfully configured for use in your logic app.  
-
-## <a name="next-steps"></a>Next Steps
-- [Common examples and scenarios for logic apps](app-service-logic-examples-and-scenarios.md)
-- [Enterprise integration features](app-service-logic-enterprise-integration-overview.md)
+## 後續步驟
+- [Logic Apps 範例和常見案例](app-service-logic-examples-and-scenarios.md)
+- [企業整合功能](app-service-logic-enterprise-integration-overview.md)
 
 <!-- Image references -->
 [1]: ./media/app-service-logic-gateway-connection/createblade.PNG
 [2]: ./media/app-service-logic-gateway-connection/blankconnection.PNG
 [3]: ./media/app-service-logic-gateway-connection/checkbox.PNG
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->

@@ -1,69 +1,64 @@
 <properties
-    pageTitle="Azure Active Directory B2C: Production-scale vs. preview B2C tenants | Microsoft Azure"
-    description="A topic on the types of Azure Active Directory B2C tenants"
-    services="active-directory-b2c"
-    documentationCenter=""
-    authors="swkrish"
-    manager="mbaldwin"
-    editor="bryanla"/>
+	pageTitle="Azure Active Directory B2C︰生產級別租用戶與預覽 B2C 租用戶 | Microsoft Azure"
+	description="有關 Azure Active Directory B2C 租用戶類型的主題"
+	services="active-directory-b2c"
+	documentationCenter=""
+	authors="swkrish"
+	manager="msmbaldwin"
+	editor="bryanla"/>
 
 <tags
-    ms.service="active-directory-b2c"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/30/2016"
-    ms.author="swkrish"/>
+	ms.service="active-directory-b2c"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/30/2016"
+	ms.author="swkrish"/>
 
+# Azure Active Directory B2C︰生產級別租用戶與預覽 B2C 租用戶
 
-# <a name="azure-active-directory-b2c:-production-scale-vs.-preview-b2c-tenants"></a>Azure Active Directory B2C: Production-scale vs. preview B2C tenants
+如果您打算在 Azure Active Directory (Azure AD) B2C 上編寫生產應用程式，您必須確定您有可供其上線運作的正確租用戶「類型」。若要查看您擁有的類型，請在 Azure 入口網站上遵循下列步驟以[瀏覽至 B2C 功能刀鋒視窗](active-directory-b2c-app-registration.md#navigate-to-the-b2c-features-blade)，並查看 [租用戶類型] 底下的內容。
 
-If you are planning to write a production app on Azure Active Directory (Azure AD) B2C, you'll need to be certain that you have the right tenant "type" to go live on. To see what you have, follow these steps to [navigate to the B2C features blade](active-directory-b2c-app-registration.md#navigate-to-the-b2c-features-blade) on the Azure portal and look under **Tenant type**.
+## 摘要
 
-## <a name="summary"></a>Summary
+Azure AD B2C 只在北美洲的 [生產級別] B2C 租用戶上支援生產應用程式。
 
-Azure AD B2C supports production apps ONLY on **Production-scale** B2C tenants in North America.
-
-| Tenant type | Countries/regions | Generally-available? |
+| 租用戶類型 | 國家/區域 | 已正式推出？ |
 | ----------- | -------------- | --------------------- |
-| **Production-scale tenant** | North American countries/regions | Yes |
-| **Production-scale tenant** | All countries/regions except North America | No |
-| **Preview tenant** | All countries/regions | No |
+| **生產級別租用戶** | 北美洲國家/區域 | 是 |
+| **生產級別租用戶** | 所有國家/區域 (北美洲除外) | 否 |
+| **預覽租用戶** | 所有國家/區域 | 否 |
 
 > [AZURE.NOTE]
-Azure AD B2C tenants (for consumers) are currently unavailable in a few countries or regions where Azure AD tenants (for employees) are available. Read the following sections for more details.
+少數已推出 Azure AD 租用戶 (適用於員工) 的國家或區域目前並未推出 Azure AD B2C 租用戶 (適用於消費者)。如需詳細資訊，請閱讀後面幾節。
 
-## <a name="production-scale-b2c-tenant-in-north-america"></a>Production-scale B2C tenant in North America
+## 北美洲的生產級別 B2C 租用戶
 
-If you [created your B2C tenant](active-directory-b2c-get-started.md) in North America, i.e., in one of the following countries or regions: United States, Canada, Costa Rica, Dominican Republic, El Salvador, Guatemala, Mexico, Panama, Puerto Rico and Trinidad & Tobago, AND the **Tenant type** on your B2C Admin UI says **Production-scale**, your tenant can be used for production apps.
+如果您在北美洲[建立了 B2C 租用戶](active-directory-b2c-get-started.md)，亦即，在下列其中一個國家或區域︰美國、加拿大、哥斯大黎加、多明尼加共和國、薩爾瓦多、瓜地馬拉、墨西哥、巴拿馬、波多黎各和千里達及托巴哥，而且您的 B2C 管理 UI 上的 [租用戶類型] 顯示為 [生產級別]，則您的租用戶可以用於生產應用程式。
 
 > [AZURE.NOTE]
-Production-scale tenants are capable of scaling to 100s of millions of consumer identities per tenant.
+生產級別租用戶可以調整為每個租用戶有數億個消費者身分識別。
 
-![Screen shot of a production-scale tenant](./media/active-directory-b2c-reference-tenant-type/production-scale-b2c-tenant.png)
+![生產級別租用戶的螢幕擷取畫面](./media/active-directory-b2c-reference-tenant-type/production-scale-b2c-tenant.png)
 
-## <a name="preview-b2c-tenant-in-any-country/region"></a>Preview B2C tenant in any country/region
+## 任何國家/區域中的預覽 B2C 租用戶
 
-If you had created a B2C tenant during Azure AD B2C's preview period, it is likely that your **Tenant type** says **Preview tenant**. If this is the case, you MUST use your tenant only for development and testing purposes, and NOT for production apps.
+如果您已在 Azure AD B2C 的預覽期間建立 B2C 租用戶，您的 [租用戶類型] 可能會顯示為 [預覽租用戶]。如果情況如此，您只能將租用戶用於開發和測試用途，而不能用於生產應用程式。
 
 > [AZURE.IMPORTANT]
-There is no migration path from a preview B2C tenant to a production-scale B2C tenant. Note that there are known issues when you delete a preview B2C tenant and re-create a production-scale B2C tenant with the same domain name. You have to create a production-scale B2C tenant with a different domain name.
+預覽 B2C 租用戶沒有任何途徑可以移轉到生產級別 B2C 租用戶。請注意，當您刪除預覽 B2C 租用戶並使用相同的網域名稱重建生產級別 B2C 租用戶時，會發生已知的問題。您必須使用不同的網域名稱建立生產級別 B2C 租用戶。
 
-![Screen shot of a preview tenant](./media/active-directory-b2c-reference-tenant-type/preview-b2c-tenant.png)
+![預覽租用戶的螢幕擷取畫面](./media/active-directory-b2c-reference-tenant-type/preview-b2c-tenant.png)
 
-## <a name="production-scale-b2c-tenant-outside-of-north-america"></a>Production-scale B2C tenant outside of North America
+## 北美洲以外的生產級別 B2C 租用戶
 
-Azure AD B2C is currently NOT generally-available outside of North America. However you can create and use production-scale tenants, for development and testing purposes, in one of the following countries or regions: Algeria, Austria, Azerbaijan, Bahrain, Belarus, Belgium, Bulgaria, Croatia, Cyprus, Czech Republic, Denmark, Egypt, Estonia, Finland, France, Germany, Greece, Hungary, Iceland, Ireland, Israel, Italy, Jordan, Kazakhstan, Kenya, Kuwait, Lativa, Lebanon, Liechtenstein, Lituania, Luxembourg, Macedonia FYRO, Malta, Montenegro, Morocco, Netherlands, Nigeria, Norway, Oman, Pakistan, Poland, Portugal, Qatar, Romania, Russia, Saudi Arabia, Serbia, Slovakia, Slovenia, South Africa, Spain, Sweden, Switzerland, Tunisia, Turkey, Ukraine, United Arab Emirates and United Kingdom.
+北美洲以外的區域目前並未正式推出 Azure AD B2C。不過，您可以在下列其中一個國家或區域建立並使用生產級別租用戶，以便進行開發和測試︰阿爾及利亞、奧地利、亞塞拜然、巴林、白俄羅斯、比利時、保加利亞、克羅埃西亞、賽普勒斯、捷克共和國、丹麥、埃及、愛沙尼亞、芬蘭、法國、德國、希臘、匈牙利、冰島、愛爾蘭、以色列、義大利、約旦、哈薩克、肯亞、科威特、拉脫維亞、黎巴嫩、列支敦斯登、立陶宛、盧森堡、馬其頓 (FYRO)、馬爾他、蒙特內哥羅、摩洛哥、荷蘭、奈及利亞、挪威、阿曼、巴基斯坦、波蘭、葡萄牙、卡達、羅馬尼亞、俄羅斯、沙烏地阿拉伯、塞爾維亞、斯洛伐克、斯洛維尼亞、南非、西班牙、瑞典、瑞士、突尼西亞、土耳其、烏克蘭、阿拉伯聯合大公國和英國。
 
-Once Azure AD B2C announces general availability in above countries or regions, you can continue to use these production-scale tenants and go-live with your production apps without any data loss.
+一旦 Azure AD B2C 宣佈在上面的國家或地區公開上市，您即可繼續使用這些生產級別租用戶並且讓您的生產應用程式上線，而不會遺失任何資料。
 
-## <a name="availability-of-b2c-tenants"></a>Availability of B2C tenants
+## B2C 租用戶的可用性
 
-B2C tenants are currently unavailable in the following countries or regions: Afghanistan, Argentina, Australia, Brazil, Chile, Colombia, Ecuador, Hong Kong SAR, India, Indonesia, Iraq, Japan, Korea, Malaysia, New Zealand, Paraguay, Peru, Philippines, Singapore, Sri Lanka, Taiwan, Thailand, Uruguay and Venezuela. We plan to include them in the future.
+下列國家或區域目前並未推出 B2C 租用戶︰阿富汗、阿根廷、澳洲、巴西、智利、哥倫比亞、厄瓜多、香港特別行政區、印度、印尼、伊拉克、日本、韓國、馬來西亞、紐西蘭、巴拉圭、祕魯、菲律賓、新加坡、斯里蘭卡、台灣、泰國、烏拉圭和委內瑞拉。我們計劃在未來納入這些國家/區域。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0831_2016-->

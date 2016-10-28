@@ -1,131 +1,126 @@
 <properties 
-    pageTitle="Manage streaming endpoints with the Azure portal | Microsoft Azure" 
-    description="This topic shows how to manage streaming endpoints with the Azure portal." 
-    services="media-services" 
-    documentationCenter="" 
-    authors="Juliako" 
-    writer="juliako" 
-    manager="erikre" 
-    editor=""/>
+	pageTitle="透過 Azure 入口網站管理串流端點 | Microsoft Azure" 
+	description="本主題說明如何透過 Azure 入口網站管理串流端點。" 
+	services="media-services" 
+	documentationCenter="" 
+	authors="Juliako" 
+	writer="juliako" 
+	manager="erikre" 
+	editor=""/>
 
 <tags 
-    ms.service="media-services" 
-    ms.workload="media" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="08/29/2016"
-    ms.author="juliako"/>
+	ms.service="media-services" 
+	ms.workload="media" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="na" 
+	ms.topic="article" 
+	ms.date="08/29/2016"
+	ms.author="juliako"/>
 
 
+#透過 Azure 入口網站管理串流端點
 
-#<a name="manage-streaming-endpoints-with-the-azure-portal"></a>Manage streaming endpoints with the Azure portal
+## Overview
 
-## <a name="overview"></a>Overview
+> [AZURE.NOTE] 若要完成此教學課程，您需要 Azure 帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
-> [AZURE.NOTE] To complete this tutorial, you need an Azure account. For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/). 
+在 Microsoft Azure 媒體服務中，「串流端點」代表可以直接將內容傳遞給用戶端播放程式應用程式，或傳遞給內容傳遞網路 (CDN) 進行進一步發佈的串流服務。媒體服務也提供順暢的 Azure CDN 整合。來自 StreamingEndpoint 服務的輸出資料流可以是即時資料流，也可以是媒體服務帳戶中的隨選視訊資產。
 
-In Microsoft Azure Media Services, a **Streaming Endpoint** represents a streaming service that can deliver content directly to a client player application, or to a Content Delivery Network (CDN) for further distribution. Media Services also provides seamless Azure CDN integration. The outbound stream from a StreamingEndpoint service can be a live stream, or a video on demand Asset in your Media Services account.
+此外，您可以藉由調整串流單位，控制串流端點服務如何應付不斷增加的頻寬需求。建議您為生產環境中的應用程式配置一個或多個縮放單位。利用串流單位，我們可以購買專用的流出容量 (以 200 Mbps 為單位逐次增加) 以及其他包含以下幾點的功能：[動態封裝](media-services-dynamic-packaging-overview.md)、CDN 整合及進階組態。
 
-In addition, you can control the capacity of the Streaming Endpoint service to handle growing bandwidth needs by adjusting streaming units. It is recommended to allocate one or more scale units for applications in production environment. Streaming units provide you with both dedicated egress capacity that can be purchased in increments of 200 Mbps and additional functionality, which includes: [dynamic packaging](media-services-dynamic-packaging-overview.md), CDN integration, and advanced configuration.
+>[AZURE.NOTE]只有當串流端點處於執行中狀態時，才會向您收取費用。
 
->[AZURE.NOTE]You are only billed when your Streaming Endpoint is in running state.
+本主題簡介串流端點提供的主要功能。本主題也會示範如何使用 Azure 入口網站來管理串流端點。如需調整串流端點的相關資訊，請參閱[這個](media-services-portal-scale-streaming-endpoints.md)主題。
 
-This topic gives an overview of the main functionalities that are provided by Streaming Endpoints. The topic also shows how to use the Azure portal to manage streaming endpoints. For information about how to scale the streaming endpoint, see [this](media-services-portal-scale-streaming-endpoints.md) topic.
+## 開始管理串流端點
 
-## <a name="start-managing-streaming-endpoints"></a>Start managing streaming endpoints
+若要開始管理您帳戶的串流端點，請執行下列作業。
 
-To start managing streaming endpoints for your account, do the following.
+1. 登入 [Azure 入口網站](https://portal.azure.com/)。
+2. 在 [設定] 視窗中，選取 [串流端點]。
 
-1. Log in at the [Azure portal](https://portal.azure.com/).
-2. In the **Settings** window, select **Streaming endpoints**.
+	![串流端點](./media/media-services-portal-manage-streaming-endpoints/media-services-manage-streaming-endpoints1.png)
 
-    ![Streaming endpoint](./media/media-services-portal-manage-streaming-endpoints/media-services-manage-streaming-endpoints1.png)
+##新增/移除串流端點
 
-##<a name="add/delete-a-streaming-endpoint"></a>Add/delete a streaming endpoint
+若要使用 Azure 入口網站來新增或移除串流端點，以執行下列作業：
 
-To add/delete streaming endpoint using the Azure portal, do the following:
+1. 若要新增串流端點，請按一下頁面頂端的 [+端點]。
+2. 若要刪除串流端點，請按下 [刪除] 按鈕。
 
-1. To add a streaming endpoint, click the **+ Endpoint** at the top of the page. 
-2. To delete a streaming endpoint, press **Delete** button. 
+	預設串流端點不可刪除。
+2. 按一下 [啟動] 按鈕以啟動串流端點。
 
-    The default streaming endpoint cannot be deleted.
-2. Click the **Start** button to start the streaming endpoint.
+	![串流端點](./media/media-services-portal-manage-streaming-endpoints/media-services-manage-streaming-endpoints2.png)
 
-    ![Streaming endpoint](./media/media-services-portal-manage-streaming-endpoints/media-services-manage-streaming-endpoints2.png)
+根據預設，您可以建立兩個串流端點。如果您需要更多串流端點，請參閱[配額和限制](media-services-quotas-and-limitations.md)。
+	
+##<a id="configure_streaming_endpoints"></a>設定串流端點
 
-By default you can have up to two streaming endpoints. If you need to request more, see [Quotas and limitations](media-services-quotas-and-limitations.md).
-    
-##<a name="<a-id="configure_streaming_endpoints"></a>configuring-the-streaming-endpoint"></a><a id="configure_streaming_endpoints"></a>Configuring the Streaming Endpoint
+當您至少擁有一個調整單位時，串流端點可讓您設定下列屬性：
 
-Streaming Endpoint enables you to configure the following properties when you have at least 1 scale unit: 
+- 存取控制
+- 快取控制
+- 跨站台存取原則
 
-- Access control
-- Cache control
-- Cross site access policies
+如需這些屬性的詳細資訊，請參閱 [StreamingEndpoint](https://msdn.microsoft.com/library/azure/dn783468.aspx)。
 
-For detailed information about these properties, see [StreamingEndpoint](https://msdn.microsoft.com/library/azure/dn783468.aspx).
+若要設定串流端點，請執行以下作業：
 
-You can configure streaming endpoint by doing the following:
-
-1. Select the streaming endpoint that you want to configure.
-1. Click **Settings**.
+1. 選取您想要設定的串流端點。
+1. 按一下 [設定]。
   
-A brief description of the fields follows.
+隨時顯示簡要的欄位說明。
 
-![Streaming endpoint](./media/media-services-portal-manage-streaming-endpoints/media-services-manage-streaming-endpoints4.png)
+![串流端點](./media/media-services-portal-manage-streaming-endpoints/media-services-manage-streaming-endpoints4.png)
   
-1. Maximum cache policy: used to configure cache lifetime for assets served through this streaming endpoint. If no value is set, the default is used. The default values can also be defined directly in Azure storage. If Azure CDN is enabled for the streaming endpoint, you should not set the cache policy value to less than 600 seconds.  
+1. 最大快取原則：用來設定透過此串流端點所提供的資源快取存留期。如果沒有設定任何值，則會使用預設值。預設值也可以直接在 Azure 儲存體中定義。如果 Azure CDN 已針對串流端點啟用，您便不應該將快取原則值設定成少於 600 秒。
 
-2. Allowed IP addresses: used to specify IP addresses that would be allowed to connect to the published streaming endpoint. If no IP addresses specified, any IP address would be able to connect. IP addresses can be specified as either a single IP address (for example, '10.0.0.1'), an IP range using an IP address and a CIDR subnet mask (for example, '10.0.0.1/22'), or an IP range using IP address and a dotted decimal subnet mask (for example, '10.0.0.1(255.255.255.0)').
+2. 允許的 IP 位址：用來指定能夠連接到已發佈之串流端點的 IP 位址。若未指定 IP 位址，則任何 IP 位址都可連接。IP 位址可以指定為單一 IP 位址 (例如 ‘10.0.0.1’)、使用 IP 位址和 CIDR 子網路遮罩的 IP 範圍 (例如 ‘10.0.0.1/22’)，或是使用 IP 位址和小數點十進位子網路遮罩的 IP 範圍 (例如 ‘10.0.0.1(255.255.255.0)’)。
 
-3. Configuration for Akamai signature header authentication: used to specify how signature header authentication request from Akamai servers is configured. Expiration is in UTC.
+3. 針對 Akamai 簽章標頭驗證的設定：用來指定來自 Akamai 伺服器的簽章標頭驗證的設定方式。到期時間的格式為 UTC。
 
 
 
-##<a name="<a-id="enable_cdn"></a>enable-azure-cdn-integration"></a><a id="enable_cdn"></a>Enable Azure CDN integration
+##<a id="enable_cdn"></a>啟用 Azure CDN 整合
 
-You can specify to enable the Azure CDN integration for a Streaming Endpoint (it is disabled by default.)
+您可以為串流端點指定 Azure CDN 整合 (預設為停用)。
 
-To set the Azure CDN integration to true:
+若要將 Azure CDN 整合設定成 true：
 
-- The streaming endpoint must have at least one streaming unit. If later you want to set scale units to 0, you must first disable the CDN integration. By default when you create a new streaming endpoint one streaming unit is automatically set.
+- 串流端點必須具有至少一個串流單位。如果以後想要將調整單位設定為 0，請先停用 CDN 整合。根據預設，當您建立新的串流端點時也會自動設定一個串流單位。
 
-- The streaming endpoint must be in a stopped state. Once the CDN gets enabled, you can start the streaming endpoint. 
+- 串流端點必須處於停止狀態。啟用 CDN 之後，您可以啟動串流端點。
 
-It could take up to 90 min for the Azure CDN integration to get enabled.  It takes up to two hours for the changes to be active across all the CDN POPs.
+您可能需要等候 90 分鐘的時間，才能啟用 Azure CDN 整合。它需要兩個小時才能讓變更跨所有 CDN POP 生效。
 
-CDN integration is enabled in all the Azure data centers: US West, US East, North Europe, West Europe, Japan West, Japan East, South East Asia, and East Asia.
+CDN 整合已在所有 Azure 資料中心啟用：美國西部、美國東部、北歐、西歐、日本西部、日本東部、東南亞和東亞。
 
-Once it is enabled, the **Access Control** configuration gets disabled.
+一旦啟用，[存取控制] 設定將會停用。
 
-![Streaming endpoint](./media/media-services-portal-manage-streaming-endpoints/media-services-manage-streaming-endpoints5.png)
+![串流端點](./media/media-services-portal-manage-streaming-endpoints/media-services-manage-streaming-endpoints5.png)
 
->[AZURE.IMPORTANT] Azure Media Services integration with Azure CDN is implemented on **Azure CDN from Verizon**.  If you wish to use **Azure CDN from Akamai** for Azure Media Services, you must [configure the endpoint manually](../cdn/cdn-create-new-endpoint.md).  For more information about Azure CDN features, see the [CDN overview](../cdn/cdn-overview.md).
+>[AZURE.IMPORTANT] Azure 媒體服務與 Azure CDN 的整合會在「來自 Verizon 的 Azure CDN」上實作。如果您想要將「來自 Akamai 的 Azure CDN」用於 Azure 媒體服務，您必須[手動設定端點](../cdn/cdn-create-new-endpoint.md)。如需 Azure CDN 功能的詳細資訊，請參閱 [CDN 概觀](../cdn/cdn-overview.md)。
 
-###<a name="additional-considerations"></a>Additional considerations
+###其他考量
 
-- When CDN is enabled for a streaming endpoint, clients cannot request content directly from the origin. If you need the ability to test your content with or without CDN, you can create another streaming endpoint that isn't CDN enabled.
-- Your streaming endpoint hostname remains the same after enabling CDN. You don’t need to make any changes to your media services workflow after CDN is enabled. For example, if your streaming endpoint hostname is strasbourg.streaming.mediaservices.windows.net, after enabling CDN, the exact same hostname is used.
-- For new streaming endpoints, you can enable CDN simply by creating a new endpoint; for existing streaming endpoints, you need to first stop the endpoint and then enable the CDN.
+- 對串流端點啟用 CDN 時，用戶端無法直接從來源要求內容。如果您需要在具有 CDN 或不具有 CDN 的情況下測試您內容的能力，您可以建立另一個未啟用 CDN 的串流端點。
+- 您的串流端點主機名稱在啟用 CDN 之後維持不變。您在啟用 CDN 之後不需要對您的媒體服務工作流程進行任何變更。例如，如果您的串流端點主機名稱是 strasbourg.streaming.mediaservices.windows.net，則在啟用 CDN 之後，會使用完全相同的主機名稱。
+- 對於新的串流端點，您可以藉由建立新的端點來啟用 CDN；對於現有的串流端點，您必須先停止端點，然後再啟用 CDN。
  
 
-For more information see, [Announcing Azure Media Services integration with Azure CDN (Content Delivery Network)](http://azure.microsoft.com/blog/2015/03/17/announcing-azure-media-services-integration-with-azure-cdn-content-delivery-network/).
+如需詳細資訊，請參閱[宣佈 Azure 媒體服務與 Azure CDN (內容傳遞網路) 的整合](http://azure.microsoft.com/blog/2015/03/17/announcing-azure-media-services-integration-with-azure-cdn-content-delivery-network/)。
 
 
-##<a name="next-steps"></a>Next steps
+##後續步驟
 
-Review Media Services learning paths.
+檢閱媒體服務學習路徑。
 
 [AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-##<a name="provide-feedback"></a>Provide feedback
+##提供意見反應
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
  
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0831_2016-->

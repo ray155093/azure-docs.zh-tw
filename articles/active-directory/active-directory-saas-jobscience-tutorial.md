@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="Tutorial: Azure Active Directory integration with Jobscience | Microsoft Azure" 
-    description="Learn how to use Jobscience with Azure Active Directory to enable single sign-on, automated provisioning, and more!" 
+    pageTitle="教學課程：Azure Active Directory 與 Jobscience 整合 | Microsoft Azure" 
+    description="了解如何使用 Jobscience 搭配 Azure Active Directory 來啟用單一登入、自動化佈建及更多功能！" 
     services="active-directory" 
     authors="jeevansd"  
     documentationCenter="na" 
@@ -11,197 +11,193 @@
     ms.topic="article" 
     ms.tgt_pltfrm="na" 
     ms.workload="identity" 
-    ms.date="09/29/2016" 
+    ms.date="07/09/2016" 
     ms.author="jeedes" />
 
-
-#<a name="tutorial:-azure-active-directory-integration-with-jobscience"></a>Tutorial: Azure Active Directory integration with Jobscience
+#教學課程：Azure Active Directory 與 Jobscience 整合
   
-The objective of this tutorial is to show the integration of Azure and Jobscience.  
-The scenario outlined in this tutorial assumes that you already have the following items:
+本教學課程的目的是要示範 Azure 與 Jobscience 的整合。  
+本教學課程中說明的案例假設您已經具有下列項目：
 
--   A valid Azure subscription
--   A Jobscience Single Sign-On enabled subscription
+-   有效的 Azure 訂閱
+-   啟用 Jobscience 單一登入的訂用帳戶
   
-After completing this tutorial, the Azure AD users you have assigned to Jobscience will be able to single sign into the application at your Jobscience company site (service provider initiated sign on), or using the [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+完成本教學課程之後，您指派給 Jobscience 的 Azure AD 使用者將能夠單一登入 Jobscience 公司網站 (服務提供者起始登入) 的應用程式，或是使用[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
   
-The scenario outlined in this tutorial consists of the following building blocks:
+本教學課程中說明的案例由下列建置組塊組成：
 
-1.  Enabling the application integration for Jobscience
-2.  Configuring single sign-on
-3.  Configuring user provisioning
-4.  Assigning users
+1.  啟用 Jobscience 的應用程式整合
+2.  設定單一登入
+3.  設定使用者佈建
+4.  指派使用者
 
-![Scenario](./media/active-directory-saas-jobscience-tutorial/IC784341.png "Scenario")
-##<a name="enabling-the-application-integration-for-jobscience"></a>Enabling the application integration for Jobscience
+![案例](./media/active-directory-saas-jobscience-tutorial/IC784341.png "案例")
+##啟用 Jobscience 的應用程式整合
   
-The objective of this section is to outline how to enable the application integration for Jobscience.
+本節的目的是要說明如何啟用 Jobscience 的應用程式整合。
 
-###<a name="to-enable-the-application-integration-for-jobscience,-perform-the-following-steps:"></a>To enable the application integration for Jobscience, perform the following steps:
+###若要啟用 Jobscience 的應用程式整合，請執行下列步驟：
 
-1.  In the Azure classic portal, on the left navigation pane, click **Active Directory**.
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
 
     ![Active Directory](./media/active-directory-saas-jobscience-tutorial/IC700993.png "Active Directory")
 
-2.  From the **Directory** list, select the directory for which you want to enable directory integration.
+2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
 
-3.  To open the applications view, in the directory view, click **Applications** in the top menu.
+3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
 
-    ![Applications](./media/active-directory-saas-jobscience-tutorial/IC700994.png "Applications")
+    ![應用程式](./media/active-directory-saas-jobscience-tutorial/IC700994.png "應用程式")
 
-4.  Click **Add** at the bottom of the page.
+4.  按一下頁面底部的 [新增]。
 
-    ![Add application](./media/active-directory-saas-jobscience-tutorial/IC749321.png "Add application")
+    ![新增應用程式](./media/active-directory-saas-jobscience-tutorial/IC749321.png "新增應用程式")
 
-5.  On the **What do you want to do** dialog, click **Add an application from the gallery**.
+5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
 
-    ![Add an application from gallerry](./media/active-directory-saas-jobscience-tutorial/IC749322.png "Add an application from gallerry")
+    ![從組件庫新增應用程式](./media/active-directory-saas-jobscience-tutorial/IC749322.png "從組件庫新增應用程式")
 
-6.  In the **search box**, type **jobscience**.
+6.  在**搜尋方塊**中，輸入 **jobscience**。
 
-    ![Application Gallery](./media/active-directory-saas-jobscience-tutorial/IC784342.png "Application Gallery")
+    ![應用程式庫](./media/active-directory-saas-jobscience-tutorial/IC784342.png "應用程式庫")
 
-7.  In the results pane, select **Jobscience**, and then click **Complete** to add the application.
+7.  在結果窗格中，選取 [Jobscience]，然後按一下 [完成] 以新增應用程式。
 
     ![Jobscience](./media/active-directory-saas-jobscience-tutorial/IC784357.png "Jobscience")
-##<a name="configuring-single-sign-on"></a>Configuring single sign-on
+##設定單一登入
   
-The objective of this section is to outline how to enable users to authenticate to Jobscience with their account in Azure AD using federation based on the SAML protocol.  
-Configuring single sign-on for Jobscience requires you to retrieve a thumbprint value from a certificate.  
-If you are not familiar with this procedure, see [How to retrieve a certificate's thumbprint value](http://youtu.be/YKQF266SAxI).
+本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶在 Jobscience 中進行驗證。
+設定 Jobscience 的單一登入需要您從憑證抓取指紋值。
+如果您不熟悉這個程序，請參閱[如何抓取憑證的指紋值](http://youtu.be/YKQF266SAxI)。
 
-###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>To configure single sign-on, perform the following steps:
+###若要設定單一登入，請執行下列步驟：
 
-1.  Log in to your Jobscience company site as an administrator.
+1.  以系統管理員身分登入您的 Jobscience 公司網站。
 
-2.  Go to **Setup**.
+2.  移到 [設定]。
 
-    ![Setup](./media/active-directory-saas-jobscience-tutorial/IC784358.png "Setup")
+    ![設定](./media/active-directory-saas-jobscience-tutorial/IC784358.png "設定")
 
-3.  On the left navigation pane, in the **Administer** section, click **Domain Management** to expand the related section, and then click **My Domain** to open the **My Domain** page. 
+3.  在 [系統管理員] 區段的左方導覽窗格中，按一下 [定義域管理] 展開相關的區段，然後按一下 [我的網域] 來開啟 [我的網域] 頁面。
 
-    ![My Domain](./media/active-directory-saas-jobscience-tutorial/IC767825.png "My Domain")
+    ![我的網域](./media/active-directory-saas-jobscience-tutorial/IC767825.png "我的網域")
 
-4.  To verify that your domain has been setup correctly, make sure that it is in “**Step 4 Deployed to Users**” and review your “**My Domain Settings**”.
+4.  若要確認已正確設定您的網域，請確定其在 [步驟 4：部署至使用者] 中，並檢閱 [我的網域設定]。
 
-    ![Doman Deployed to User](./media/active-directory-saas-jobscience-tutorial/IC784377.png "Doman Deployed to User")
+    ![已部署到使用者的網域](./media/active-directory-saas-jobscience-tutorial/IC784377.png "已部署到使用者的網域")
 
-5.  In a different web browser window, log in to your Azure classic portal.
+5.  在不同的 Web 瀏覽器視窗中，登入您的 Azure 傳統入口網站。
 
-6.  On the **Jobscience** application integration page, click **Configure single sign-on** to open the **Configure Single Sign On ** dialog.
+6.  在 [Jobscience] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-jobscience-tutorial/IC784360.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-jobscience-tutorial/IC784360.png "設定單一登入")
 
-7.  On the **How would you like users to sign on to Jobscience** page, select **Microsoft Azure AD Single Sign-On**, and then click **Next**.
+7.  在 [您希望使用者如何登入 Jobscience] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按一下 [下一步]。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-jobscience-tutorial/IC784361.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-jobscience-tutorial/IC784361.png "設定單一登入")
 
-8.  On the **Configure App URL** page, in the **Jobscience Sign In URL** textbox, type your URL using the following pattern "*http://company.my.salesforce.com*", and then click **Next**.
+8.  在 [設定應用程式 URL] 頁面的 [Jobscience 登入 URL] 文字方塊中，使用下列模式輸入您的 URL："*http://company.my.salesforce.com*"，然後按一下 *[下一步]*。
 
-    ![Configure App URL](./media/active-directory-saas-jobscience-tutorial/IC784362.png "Configure App URL")
+    ![設定應用程式 URL](./media/active-directory-saas-jobscience-tutorial/IC784362.png "設定應用程式 URL")
 
-9.  On the **Configure single sign-on at Jobscience** page, to download your certificate, click **Download certificate**, and then save the certificate file locally on your computer.
+9.  在 [設定在 Jobscience 單一登入] 頁面上，按一下 [下載憑證] 來下載您的憑證，然後將憑證檔案儲存在您的本機電腦中。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-jobscience-tutorial/IC784363.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-jobscience-tutorial/IC784363.png "設定單一登入")
 
-10. On the Jobscience company site, click **Security Controls**, and then click **Single Sign-On Settings**.
+10. 在 Jobscience 公司網站上，按一下 [安全性控制項]，然後按一下 [單一登入設定]。
 
-    ![Security Controls](./media/active-directory-saas-jobscience-tutorial/IC784364.png "Security Controls")
+    ![安全性控制項](./media/active-directory-saas-jobscience-tutorial/IC784364.png "安全性控制項")
 
-11. In the **Single Sign-On Settings** section, perform the following steps:
+11. 在 [單一登入設定] 區段中，執行下列步驟：
 
-    ![Single Sign-On Settings](./media/active-directory-saas-jobscience-tutorial/IC781026.png "Single Sign-On Settings")
+    ![單一登入設定](./media/active-directory-saas-jobscience-tutorial/IC781026.png "單一登入設定")
 
-    1.  Select **SAML Enabled**.
-    2.  Click **New**.
+    1.  選取 [已啟用 SAML]。
+    2.  按一下 [新增]。
 
-12. On the **SAML Single Sign-On Setting Edit** dialog, perform the following steps:
+12. 在 [SAML 單一登入設定編輯] 對話方塊中，執行下列步驟：
 
-    ![SAML Single Sign-On Setting](./media/active-directory-saas-jobscience-tutorial/IC784365.png "SAML Single Sign-On Setting")
+    ![SAML 單一登入設定](./media/active-directory-saas-jobscience-tutorial/IC784365.png "SAML 單一登入設定")
 
-    1.  In the **Name** textbox, type a name for your configuration.
-    2.  In the Azure classic portal, on the **Configure single sign-on at Jobscience** dialogue page, copy the **Issuer URL** value, and then paste it into the **Issuer** textbox
-    3.  In the **Entity Id** textbox, type **https://salesforce-jobscience.com**
-    4.  Click **Browse** to upload your Azure AD certificate.
-    5.  As **SAML Identity Type**, select **Assertion contains the Federation ID from the User object**.
-    6.  As **SAML Identity Location**, select **Identity is in the NameIdentfier element of the Subject statement**.
-    7.  In the Azure classic portal, on the **Configure single sign-on at Jobscience** dialogue page, copy the **Remote Login URL** value, and then paste it into the **Identity Provider Login URL** textbox
-    8.  In the Azure classic portal, on the **Configure single sign-on at Jobscience** dialogue page, copy the **Remote Logout URL** value, and then paste it into the **Identity Provider Logout URL** textbox
-    9.  Click **Save**.
+    1.  在 [名稱] 文字方塊中，輸入您的組態名稱。
+    2.  在 Azure 傳統入口網站中的 [設定在 Jobscience 單一登入] 對話頁面上，複製 [簽發者 URL] 值，然後將它貼至 [簽發者] 文字方塊中
+    3.  在 [實體識別碼] 文字方塊中，輸入 **https://salesforce-jobscience.com**
+    4.  按一下 [瀏覽] 來上傳您的 Azure AD 憑證。
+    5.  在 [SAML 識別類型] 中選取 [判斷提示包含來自使用者物件的同盟識別碼]。
+    6.  在 [SAML 識別位置]，請選取 [識別位於 Subject 陳述式的 NameIdentifier 元素中]。
+    7.  在 Azure 傳統入口網站中的 [設定在 Jobscience 單一登入] 對話頁面上，複製 [遠端登入 URL] 值，然後將它貼至 [識別提供者登入 URL] 文字方塊中
+    8.  在 Azure 傳統入口網站中的 [設定在 Jobscience 單一登入] 對話頁面上，複製 [遠端登出 URL] 值，然後將它貼至 [識別提供者登出 URL] 文字方塊中
+    9.  按一下 [儲存]。
 
-13. On the left navigation pane, in the **Administer** section, click **Domain Management** to expand the related section, and then click **My Domain** to open the **My Domain** page. 
+13. 在 [系統管理員] 區段的左側導覽窗格中，按一下 [網域管理] 展開相關區段，然後按一下 [我的網域] 來開啟 [我的網域] 頁面。
 
-    ![My Domain](./media/active-directory-saas-jobscience-tutorial/IC767825.png "My Domain")
+    ![我的網域](./media/active-directory-saas-jobscience-tutorial/IC767825.png "我的網域")
 
-14. On the **My Domain** page, in the **Login Page Branding** section, click **Edit**.
+14. 在 [我的網域] 頁面的 [登入頁面商標] 區段中，按一下 [編輯]。
 
-    ![Login Page Branding](./media/active-directory-saas-jobscience-tutorial/IC767826.png "Login Page Branding")
+    ![登入頁面商標](./media/active-directory-saas-jobscience-tutorial/IC767826.png "登入頁面商標")
 
-15. On the **Login Page Branding** page, in the **Authentication Service** section, the name of your **SAML SSO Settings** is displayed. Select it, and then click **Save**.
+15. [登入頁面商標] 頁面的 [驗證服務] 區段中，就會顯示您的 [SAML SSO 設定] 的名稱。請選取該名稱，然後按一下 [儲存]。
 
-    ![Login Page Branding](./media/active-directory-saas-jobscience-tutorial/IC784366.png "Login Page Branding")
+    ![登入頁面商標](./media/active-directory-saas-jobscience-tutorial/IC784366.png "登入頁面商標")
 
-16. On the Azure classic portal, select the single sign-on configuration confirmation, and then click **Complete** to close the **Configure Single Sign On** dialog.
+16. 在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
-    ![Configure Single Sign-On](./media/active-directory-saas-jobscience-tutorial/IC784367.png "Configure Single Sign-On")
+    ![設定單一登入](./media/active-directory-saas-jobscience-tutorial/IC784367.png "設定單一登入")
   
-To get the SP initiated Single Sign on Login URL click on the **Single Sign On settings** in the **Security Controls** menu section.
+若要取得 SP 初始化的單一登入 URL，請按一下 [安全性控制項] 功能表區段中的 [單一登入設定]。
 
-![Security Controls](./media/active-directory-saas-jobscience-tutorial/IC784368.png "Security Controls")
+![安全性控制項](./media/active-directory-saas-jobscience-tutorial/IC784368.png "安全性控制項")
   
-Click the SSO profile you have created in the step above.  
-This page shows the Single Sign on URL for your company (e.g. *https://companyname.my.salesforce.com?so=companyid*).
-##<a name="configuring-user-provisioning"></a>Configuring user provisioning
+按一下您已經在上述步驟中建立的 SSO 設定檔。
+此頁面會顯示公司的單一登入 URL (例如 *https://companyname.my.salesforce.com?so=companyid*)。
+##設定使用者佈建
   
-In order to enable Azure AD users to log into Jobscience, they must be provisioned into Jobscience.  
-In the case of Jobscience, provisioning is a manual task.
+若要讓 Azure AD 使用者能夠登入 Jobscience，必須將他們佈建到 Jobscience。
+Jobscience 需以手動的方式佈建。
 
-###<a name="to-configure-user-provisioning,-perform-the-following-steps:"></a>To configure user provisioning, perform the following steps:
+###若要設定使用者佈建，請執行下列步驟：
 
-1.  Log in to your **Jobscience** company site as administrator.
+1.  以系統管理員身分登入您的 **Jobscience** 公司網站。
 
-2.  Go to Setup
+2.  移到 [設定]
 
-    ![Setup](./media/active-directory-saas-jobscience-tutorial/IC784358.png "Setup")
+    ![設定](./media/active-directory-saas-jobscience-tutorial/IC784358.png "設定")
 
-3.  Go to **Manage Users \> Users**.
+3.  移至 [管理使用者 > 使用者]。
 
-    ![Users](./media/active-directory-saas-jobscience-tutorial/IC784369.png "Users")
+    ![使用者](./media/active-directory-saas-jobscience-tutorial/IC784369.png "使用者")
 
-4.  Click **New User**.
+4.  按一下 [新使用者]。
 
-    ![All Users](./media/active-directory-saas-jobscience-tutorial/IC784370.png "All Users")
+    ![所有使用者](./media/active-directory-saas-jobscience-tutorial/IC784370.png "所有使用者")
 
-5.  On the **Edit User** dialog, perform the following steps:
+5.  在 [編輯使用者] 對話頁面上，執行下列步驟：
 
-    ![User Edit](./media/active-directory-saas-jobscience-tutorial/IC784371.png "User Edit")
+    ![使用者編輯](./media/active-directory-saas-jobscience-tutorial/IC784371.png "使用者編輯")
 
-    1.  Type the first name, last name, alias, email, user name and nickname properties of the Azure AD user you want to provision into the related textboxes.
-    2.  Click **Save**.
+    1.  在相關的文字方塊中輸入您想要佈建之 Azure AD 使用者的名字、姓氏、別名、電子郵件、使用者名稱與暱稱屬性。
+    2.  按一下 [儲存]。
 
-    >[AZURE.NOTE] The Azure AD account holder will get an email that includes a link to confirm the account before it is activated.
+    >[AZURE.NOTE] Azure AD 帳戶的持有者將會收到一封電子郵件，郵件中包含在啟用帳戶之前先行確認帳戶的連結。
 
->[AZURE.NOTE] You can use any other Jobscience user account creation tools or APIs provided by Jobscience to provision AAD user accounts.
+>[AZURE.NOTE] 您可以使用 Jobscience 提供的任何其他 Jobscience 使用者帳戶建立工具或 API，藉此佈建 AAD 使用者帳戶。
 
-##<a name="assigning-users"></a>Assigning users
+##指派使用者
   
-To test your configuration, you need to grant the Azure AD users you want to allow using your application access to it by assigning them.
+若要測試您的設定，您需要指派使用者，授予存取權給您想要允許其使用您的應用程式存取設定的 Azure AD 使用者。
 
-###<a name="to-assign-users-to-jobscience,-perform-the-following-steps:"></a>To assign users to Jobscience, perform the following steps:
+###若要指派使用者給 Jobscience，請執行下列步驟：
 
-1.  In the Azure classic portal, create a test account.
+1.  在 Azure 傳統入口網站中建立測試帳戶。
 
-2.  On the **Jobscience **application integration page, click **Assign users**.
+2.  在 [Jobscience] 應用程式整合頁面中，按一下 [指派使用者]。
 
-    ![Assign Users](./media/active-directory-saas-jobscience-tutorial/IC784372.png "Assign Users")
+    ![指派使用者](./media/active-directory-saas-jobscience-tutorial/IC784372.png "指派使用者")
 
-3.  Select your test user, click **Assign**, and then click **Yes** to confirm your assignment.
+3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
 
-    ![Yes](./media/active-directory-saas-jobscience-tutorial/IC767830.png "Yes")
+    ![是](./media/active-directory-saas-jobscience-tutorial/IC767830.png "是")
   
-If you want to test your single sign-on settings, open the Access Panel. For more details about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).
+如果要測試您的單一登入設定，請開啟存取面板。如需 [存取面板] 的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0713_2016-->

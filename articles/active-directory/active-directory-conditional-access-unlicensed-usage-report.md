@@ -1,56 +1,49 @@
 <properties
-    pageTitle="Unlicensed Usage Report | Microsoft Azure"
-    description="The unlicensed usage report helps you identify unlicensed users that are using paid Azure AD features."
-    services="active-directory"
-    documentationCenter=""
-    authors="MarkusVi"
-    manager="femila"
-    editor=""/>
+	pageTitle="未經授權的使用報告 | Microsoft Azure"
+	description="未經授權的使用報告可協助您識別使用 Azure AD 付費功能的未經授權使用者。"
+	services="active-directory"
+	documentationCenter=""
+	authors="markusvi"
+	manager="femila"
+	editor=""/>
 
 <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="10/20/2016"
-    ms.author="markvi"/>
+	ms.service="active-directory"
+	ms.workload="identity"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/25/2016"
+	ms.author="markvi"/>
 
+# 未經授權的使用報告
 
-# <a name="unlicensed-usage-report"></a>Unlicensed usage report
+未經授權的使用報告可協助您識別使用 Azure AD 付費功能的未經授權使用者。這可讓您充分利用您已購買的授權，以及確認您知道何時可能需要額外的授權。
 
-The unlicensed usage report helps you identify unlicensed users that are using paid Azure AD features. This allows you to make better use of licenses that you have purchased and to identify you know when you may need additional licenses. 
+此報告會顯示過去 30 天內有使用付費功能的情形。
 
-The report shows active usage of the paid features in the last 30 days. 
-
-## <a name="report-structure"></a>Report structure
+## 報告結構
  
-| Column name          |    Description |
+| 資料行名稱 |	說明 |
 | :--                  | :--         |
-| Unlicensed User      |    Name of the user |
-| Feature              | The feature name. For example: conditional access |
-| Application Accessed | The name of the application that is being accessed with the feature. For example: Office 365 SharePoint Online |
+| 未經授權的使用者 |	使用者名稱 |
+| 功能 | 功能名稱。例如：條件式存取 |
+| 存取的應用程式 | 使用功能存取的應用程式名稱。例如︰Office 365 SharePoint Online |
 
  
-> [AZURE.NOTE] If a user account has been deleted the ‘Unlicensed User’ column will be populated with an ID, like 1003000090D8B285
+> [AZURE.NOTE] 如果使用者帳戶已遭刪除，「未經授權的使用者」資料行將會填入識別碼，例如 1003000090D8B285
 
 
-## <a name="conditional-access-feature"></a>Conditional access feature
+## 條件式存取功能
 
-Unlicensed users will be flagged when they access a service that has conditional access policy applied if they do not have an Azure AD Premium license. 
+未經授權的使用者如果沒有 Azure AD Premium 授權，則會在存取已套用條件式存取原則的服務時遭到標示。
 
-This applies to MFA / Location policies as well as device polices that use Intune.
+這適用於 MFA/位置原則以及使用 Intune 的裝置原則。
  
 
-## <a name="see-also"></a>See also
+## 另請參閱
 
-- [Using Conditional Access with Office 365 and other Azure Active Directory connected apps](active-directory-conditional-access.md)
-- [Getting started with conditional access to Azure AD](active-directory-conditional-access-azuread-connected-apps.md) 
+- [搭配使用條件式存取與 Office 365 和其他 Azure Active Directory 連線應用程式](active-directory-conditional-access.md)
+- [開始使用 Azure AD 的條件式存取](active-directory-conditional-access-azuread-connected-apps.md)
 
-
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0727_2016-->

@@ -1,6 +1,6 @@
 <properties 
-    pageTitle="Configure Geo-Replication for Azure SQL Database with the Azure portal | Microsoft Azure" 
-    description="Configure Geo-Replication for Azure SQL Database using the Azure portal" 
+    pageTitle="使用 Azure 入口網站為 Azure SQL Database 設定異地複寫 | Microsoft Azure" 
+    description="使用 Azure 入口網站為 Azure SQL Database 設定異地複寫" 
     services="sql-database" 
     documentationCenter="" 
     authors="stevestein" 
@@ -16,91 +16,90 @@
     ms.date="07/14/2016"
     ms.author="sstein"/>
 
-
-# <a name="configure-geo-replication-for-azure-sql-database-with-the-azure-portal"></a>Configure Geo-Replication for Azure SQL Database with the Azure portal
+# 使用 Azure 入口網站為 Azure SQL Database 設定異地複寫
 
 
 > [AZURE.SELECTOR]
-- [Overview](sql-database-geo-replication-overview.md)
-- [Azure Portal](sql-database-geo-replication-portal.md)
+- [概觀](sql-database-geo-replication-overview.md)
+- [Azure 入口網站](sql-database-geo-replication-portal.md)
 - [PowerShell](sql-database-geo-replication-powershell.md)
 - [T-SQL](sql-database-geo-replication-transact-sql.md)
 
-This article shows you how to configure Active Geo-Replication for SQL Database with the [Azure portal](http://portal.azure.com).
+本文說明如何使用 [Azure 入口網站](http://portal.azure.com)為 SQL Database 設定「主動式異地複寫」。
 
-To initiate failover with the Azure portal, see [Initiate a planned or unplanned failover for Azure SQL Database with the Azure portal](sql-database-geo-replication-failover-portal.md).
+若要使用 Azure 入口網站起始容錯移轉，請參閱[使用 Azure 入口網站為 Azure SQL Database 起始計劃性或非計劃性容錯移轉](sql-database-geo-replication-failover-portal.md)。
 
->[AZURE.NOTE] Active Geo-Replication (readable secondaries) is now available for all databases in all service tiers. In April 2017 the non-readable secondary type will be retired and existing non-readable databases will automatically be upgraded to readable secondaries.
+>[AZURE.NOTE] 主動式異地複寫 (可讀取次要複本) 現在可供所有服務層中的所有資料庫使用。在 2017 年 4 月，不可讀取的次要類型將淘汰，而現有不可讀取的資料庫將自動升級為可讀取的次要複本。
 
-To configure Geo-Replication using the Azure portal, you need the following:
+若要使用 Azure 入口網站設定異地複寫，您需要下列項目：
 
-- An Azure subscription. 
-- An Azure SQL Database database - The primary database that you want to replicate to a different geographical region.
+- Azure 訂用帳戶。
+- Azure SQL Database 資料庫 - 您想要複寫到不同地理區域的主要資料庫。
 
-## <a name="add-secondary-database"></a>Add secondary database
+## 加入次要資料庫
 
-The following steps create a new secondary database in a Geo-Replication partnership.  
+下列步驟會在「異地複寫」合作關係中建立新的次要資料庫。
 
-To add a secondary you must be the subscription owner or co-owner. 
+若要加入次要資料庫，您必須是訂閱擁有者或共同擁有者。
 
-The secondary database will have the same name as the primary database and will, by default, have the same service level. The secondary database can be readable or non-readable, and can be a single database or an elastic database. For more information, see [Service Tiers](sql-database-service-tiers.md).
-After the secondary is created and seeded, data will begin replicating from the primary database to the new secondary database. 
+次要資料庫的名稱會與主要資料庫相同，並且預設會具有相同的服務層級。次要資料庫可以是可讀取或不可讀取，並且可以是單一資料庫或彈性資料庫。如需詳細資訊，請參閱[服務層](sql-database-service-tiers.md)。
+建立並植入次要複本之後，就會開始從主要資料庫將資料複寫到新的次要資料庫。
 
-> [AZURE.NOTE] If the partner database already exists (for example - as a result of terminating a previous Geo-Replication relationship) the command will fail.
+> [AZURE.NOTE] 如果夥伴資料庫已經存在 (例如，因終止先前的「異地複寫」關聯性所導致)，命令將會失敗。
 
-### <a name="add-secondary"></a>Add secondary
+### 加入次要
 
-1. In the [Azure portal](http://portal.azure.com) browse to the database that you want to setup for Geo-Replication.
-2. On the SQL Database blade, select **All settings** > **Geo-Replication**.
-3. Select the region to create the secondary database.
-
-
-    ![Add secondary][1]
+1. 在 [Azure 入口網站](http://portal.azure.com)中，瀏覽至您想要為「異地複寫」設定的資料庫。
+2. 在 [SQL Database] 刀鋒視窗上，選取 [所有設定] > [異地複寫]。
+3. 選取要建立次要資料庫的區域。
 
 
-4. Configure the **Secondary type** (**Readable**, or **Non-readable**).
-5. Select or configure the server for the secondary database.
+    ![加入次要][1]
 
-    ![Create Secondary][3]
 
-5. Optionally, you can add a secondary database to an elastic database pool:
+4. 設定 [次要類型] \([可讀取] 或 [不可讀取])。
+5. 選取或設定次要資料庫的伺服器。
 
-       - Click **Elastic database pool** and select a pool on the target server to create the secondary database in. A pool must already exist on the target server as this workflow does not create a new pool.
+    ![建立次要][3]
 
-6. Click **Create** to add the secondary.
+5. (選擇性) 您可以將次要資料庫加入彈性資料庫集區中：
+
+       - 按一下 [彈性資料庫集區]，然後選取目標伺服器上要在其中建立次要資料庫的集區。集區必須已經存在於目標伺服器上，因為此工作流程並不會建立新集區。
+
+6. 按一下 [建立] 以加入次要資料庫。
  
-6. The secondary database is created and the seeding process begins. 
+6. 將會建立次要資料庫並開始植入程序。
  
-    ![seeding][6]
+    ![植入][6]
 
-7. When the seeding process is complete the secondary database displays its status (non-readable.
+7. 當植入程序完成時，次要資料庫會顯示其狀態 (不可讀取)。
 
-    ![secondary ready][9]
-
-
-
-## <a name="remove-secondary-database"></a>Remove secondary database
-
-The operation permanently terminates the replication to the secondary database and change the role of the secondary to a regular read-write database. If the connectivity to the secondary database is broken the command succeeds but the secondary will not become read-write until after connectivity is restored.  
-
-1. In the [Azure portal](http://portal.azure.com) browse to the primary database in the Geo-Replication partnership.
-2. On the SQL Database blade, select **All settings** > **Geo-Replication**.
-3. In the **SECONDARIES** list select the database you want to remove from the Geo-Replication partnership.
-4. Click **Stop Replication**.
-
-    ![remove secondary][7]
+    ![次要就緒][9]
 
 
-5. Clicking **Stop Replication** opens a confirmation window so click **Yes** to remove the database from the Geo-Replication partnership (set it to a read-write database not part of any replication).
+
+## 移除次要資料庫
+
+此作業會永久終止對次要資料庫的複寫，並將次要資料庫的角色變更為一般讀寫資料庫。如果與次要資料庫的連線中斷，命令將會成功，但次要資料庫必須等到連線恢復後才會變成讀寫資料庫。
+
+1. 在 [Azure 入口網站](http://portal.azure.com)中，瀏覽至「異地複寫」合作關係中的主要資料庫。
+2. 在 [SQL Database] 刀鋒視窗上，選取 [所有設定] > [異地複寫]。
+3. 在 [次要] 清單中，選取您想要從「異地複寫」合作關係中移除的資料庫。
+4. 按一下 [**停止複寫**]。
+
+    ![移除次要][7]
 
 
-    ![confirm removal][8]
+5. 按一下 [停止複寫] 會開啟一個確認視窗，請按一下 [是] 以將資料庫從「異地複寫」合作關係中移除 (將它設定為不屬於任何複寫的讀寫資料庫)。
 
 
-## <a name="next-steps"></a>Next steps
+    ![確認移除][8]
 
-- To learn more about Active Geo-Replication, see - [Active Geo-Replication](sql-database-geo-replication-overview.md)
-- For a business continuity overview and scenarios, see [Business continuity overview](sql-database-business-continuity.md)
+
+## 後續步驟
+
+- 若要深入了解主動式異地複寫，請參閱[主動式異地複寫](sql-database-geo-replication-overview.md)
+- 如需商務持續性概觀和案例，請參閱[商務持續性概觀](sql-database-business-continuity.md)
 
 
 <!--Image references-->
@@ -115,9 +114,4 @@ The operation permanently terminates the replication to the secondary database a
 [9]: ./media/sql-database-geo-replication-portal/seeding-complete.png
 [10]: ./media/sql-database-geo-replication-portal/failover.png
 
-
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0727_2016-->

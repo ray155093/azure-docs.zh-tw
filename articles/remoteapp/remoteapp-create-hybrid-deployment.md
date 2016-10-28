@@ -1,160 +1,155 @@
 <properties
-    pageTitle="How to create a hybrid collection for Azure RemoteApp | Microsoft Azure"
-    description="Learn how to create a deployment of RemoteApp that connects to your internal network."
-    services="remoteapp"
-    documentationCenter=""
-    authors="lizap"
-    manager="mbaldwin"
-    editor=""/>
+	pageTitle="如何建立 Azure RemoteApp 的混合式收藏 | Microsoft Azure"
+	description="了解如何建立連接內部網路的 RemoteApp 部署。"
+	services="remoteapp"
+	documentationCenter=""
+	authors="lizap"
+	manager="mbaldwin"
+	editor=""/>
 
 <tags
-    ms.service="remoteapp"
-    ms.workload="compute"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/15/2016"
-    ms.author="elizapo"/>
+	ms.service="remoteapp"
+	ms.workload="compute"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="08/15/2016"
+	ms.author="elizapo"/>
 
-
-# <a name="how-to-create-a-hybrid-collection-for-azure-remoteapp"></a>How to create a hybrid collection for Azure RemoteApp
+# 如何建立 Azure RemoteApp 的混合式收藏
 
 > [AZURE.IMPORTANT]
-> Azure RemoteApp is being discontinued. Read the [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
-There are two kinds of Azure RemoteApp collections:
+Azure RemoteApp 收藏分成兩種：
 
-- Cloud: resides completely in Azure. You can choose to save all data in the cloud (so a cloud-only collection) or to connect your collection to a VNET and save data there.   
-- Hybrid: includes a virtual network for on-premises access - this requires the use of Azure AD and an on-premises Active Directory environment.
+- 雲端：完全位於 Azure 中。您可以選擇在雲端儲存所有資料 (也就是僅限雲端的集合) 或將您的集合連線到 VNET，並於該處儲存資料。
+- 混合式：包含可內部存取的虛擬網路，這需要使用 Azure AD 和內部部署的 Active Directory 環境。
 
-Don't know which you need? Check out [Which kind of collection do you need for Azure RemoteApp](remoteapp-collections.md).
+不知道您需要什麼嗎? 請查看 [Azure RemoteApp 需要何種集合](remoteapp-collections.md)。
 
-This tutorial walks you through the process of creating a hybrid collection. There are eight steps:
+本教學課程將逐步引導您完成建立混合式收藏的程序。有八個步驟：
 
-1.  Decide what [image](remoteapp-imageoptions.md) to use for your collection. You can create a custom image or use one of the Microsoft images included with your subscription.
-2. Set up your virtual network. Check out the [VNET planning](remoteapp-planvnet.md) and [sizing](remoteapp-vnetsizing.md) information.
-2.  Create a collection.
-2.  Join your collection to your local domain.
-3.  Add a template image to your collection.
-4.  Configure directory synchronization. Azure RemoteApp requires that you integrate with Azure Active Directory by either 1) configuring Azure Active Directory Sync with the Password Sync option, or 2) configuring Azure Active Directory Sync without the Password Sync option but using a domain that is federated to AD FS. Check out the [configuration info for Active Directory with RemoteApp](remoteapp-ad.md).
-5.  Publish RemoteApp apps.
-6.  Configure user access.
+1.	決定您的集合所要使用的[映像](remoteapp-imageoptions.md)。您可以建立自訂映像，或使用您的訂用帳戶隨附的其中一個 Microsoft 映像。
+2. 設定虛擬網路。請參閱 [VNET 規劃](remoteapp-planvnet.md)和[大小](remoteapp-vnetsizing.md)資訊。
+2.	建立收藏。
+2.	將您的集合加入本機網域。
+3.	將範本映像新增到您的收藏。
+4.	設定目錄同步處理。RemoteApp 要求用下列方式與 Azure Active Directory 整合：1) 設定具有 [密碼同步] 選項的 Azure Active Directory 同步作業，或 2) 設定不具 [密碼同步] 選項的 Azure Active Directory 同步作業，但使用同盟至 AD FS 的網域。查看 [Active Directory 搭配 RemoteApp 的組態資訊](remoteapp-ad.md)。
+5.	發佈 RemoteApp 應用程式。
+6.	設定使用者存取。
 
-**Before you begin**
+**開始之前**
 
-You need to do the following before creating the collection:
+在建立收藏之前，您必須執行下列作業：
 
-- [Sign up](https://azure.microsoft.com/services/remoteapp/) for Azure RemoteApp.
-- Create a user account in Active Directory to use as the Azure RemoteApp service account. Restrict the permissions for this account so that it can only join machines to the domain.
-- Gather information about your on-premises network: IP address information and VPN device details.
-- Install the [Azure PowerShell](../powershell-install-configure.md) module.
-- Gather information about the users that you want to grant access to. You will need the Azure Active Directory user principal name (for example, name@contoso.com) for each user. Make sure that the UPN matches between Azure AD and Active Directory.
-- Choose your template image. An Azure RemoteApp template image contains the apps and programs that you want to publish for your users. See [Azure RemoteApp image options](remoteapp-imageoptions.md) for more information.
-- Want to use the Office 365 ProPlus image? Check out info [here](remoteapp-officesubscription.md).
-- [Configure Active Directory for RemoteApp](remoteapp-ad.md).
-
-
-
-## <a name="step-1:-set-up-your-virtual-network"></a>Step 1: Set up your virtual network
-You can deploy a hybrid collection that uses an existing Azure virtual network, or you can create a new virtual network. A virtual network lets your users access data on your local network through RemoteApp remote resources. Using an Azure virtual network gives your collection direct network access to other Azure services and virtual machines deployed to that virtual network.
-
-Make sure you review the [VNET planning](remoteapp-planvnet.md) and [VNET size](remoteapp-vnetsizing.md) information before you create your VNET.
-
-### <a name="create-an-azure-vnet-and-join-it-to-your-active-directory-deployment"></a>Create an Azure VNET and join it to your Active Directory deployment
-
-Start by creating a [virtual network](../virtual-network/virtual-networks-create-vnet-arm-pportal.md). This is done on the **Network** tab in the Azure portal. You need to connect your virtual network to the Active Directory deployment that is synchronized to your Azure Active Directory tenant.
-
-See [Create a virtual network using the Azure portal](../virtual-network/virtual-networks-create-vnet-arm-pportal.md) for more information.
-
-### <a name="make-sure-your-virtual-network-is-ready-for-azure-remoteapp"></a>Make sure your virtual network is ready for Azure RemoteApp
-Before you create your collection, let's make sure that your new virtual network is ready. You can validate this by doing the following:
-
-1. Create an Azure virtual machine inside the subnet of the virtual network you just created for RemoteApp.
-2. Use Remote Desktop to connect to the virtual machine. (Click **Connect**.)
-3. Join it to the same Active Directory deployment that you want to use for RemoteApp.
-
-Did that work? Your virtual network and subnet are ready for Azure RemoteApp!
-
-You can find more information about creating Azure virtual machines and connecting to them with Remote Desktop [here](https://msdn.microsoft.com/library/azure/jj156003.aspx).
-
-## <a name="step-2:-create-an-azure-remoteapp-collection"></a>Step 2: Create an Azure RemoteApp collection ##
+- [註冊](https://azure.microsoft.com/services/remoteapp/) Azure RemoteApp。
+- 在 Active Directory 中建立使用者帳戶，做為 Azure RemoteApp 服務的帳戶。限制此帳戶的權限，使其只能將機器加入網域中。
+- 收集內部部署網路的相關資訊：IP 位址資訊和 VPN 裝置詳細資料。
+- 安裝 [Azure PowerShell](../powershell-install-configure.md) 模組。
+- 收集您想授與存取權之使用者的相關資訊。您將需要每個使用者的 Azure Active Directory 使用者主體名稱 (例如，name@contoso.com)。請確定 UPN 符合 Azure AD 和 Active Directory。
+- 選擇範本映像。Azure RemoteApp 範本映像包含您要為使用者發佈的應用程式與程式。如需詳細資訊，請參閱 [Azure RemoteApp 映像選項](remoteapp-imageoptions.md)。
+- 想要使用 Office 365 ProPlus 的映像嗎？ 請在[這裡](remoteapp-officesubscription.md)查看資訊。
+- [設定 RemoteApp 的 Azure Active Directory](remoteapp-ad.md)。
 
 
 
-1. In the [Azure portal](http://manage.windowsazure.com), go to the Azure RemoteApp page.
-2. Click **New > Create with VNET**.
-3. Enter a name for your collection.
-4. Choose the plan that you want to use - standard or basic.
-5. Choose your VNET from the drop down list and then your subnet.
-6. Choose to join it to your domain.
-5. Click **Create RemoteApp collection**.
+## 步驟 1：設定虛擬網路
+您可以部署使用現有 Azure 虛擬網路的混合式集合，也可以建立新的虛擬網路。虛擬網路可讓您的使用者透過 RemoteApp 遠端資源存取您本機網路上的資料。使用 Azure 虛擬網路可以讓您的收藏直接從網路存取其他 Azure 服務和部署到該虛擬網路的虛擬機器。
 
-After your Azure RemoteApp collection has been created, double-click the name of the collection. That will bring up the **Quick Start** page - this is where you finish configuring the collection.
+請確定您在建立 VNET 之前，先檢閱過 [VNET 規劃](remoteapp-planvnet.md)和 [VNET 大小](remoteapp-vnetsizing.md)。
 
-Did something go wrong? Check out the [hybrid collection troubleshooting information](remoteapp-hybridtrouble.md).
+### 建立 Azure VNET 並將它加入您的 Active Directory 部署
 
-## <a name="step-3:-link-your-collection-to-the-local-domain"></a>Step 3: Link your collection to the local domain ##
+首先，建立[虛擬網路](../virtual-network/virtual-networks-create-vnet-arm-pportal.md)。您可以在 Azure 入口網站的 [網路] 索引標籤上進行。您必須將虛擬網路連線到同步到您 Azure Active Directory 租用戶的 Active Directory 部署。
 
+如需詳細資訊，請參閱[使用 Azure 入口網站建立虛擬網路](../virtual-network/virtual-networks-create-vnet-arm-pportal.md)。
 
-1. On the **Quick Start** page, click **join a local domain**.
-2. Add the Azure RemoteApp service account to your local Active Directory domain. You will need the domain name, organizational unit, service account user name and password.
+### 確定您的虛擬網路已經為 Azure RemoteApp 準備就緒
+請在建立集合之前，先確定您的虛擬網路已準備就緒。您可以執行下列動作來驗證：
 
-    This is the information you gathered if you followed the steps in [Configure Active Directory for Azure RemoteApp](remoteapp-ad.md).
+1. 在您剛才為 RemoteApp 建立的虛擬網路子網路內建立 Azure 虛擬機器。
+2. 使用遠端桌面連線到虛擬機器。(按一下 [連線])。
+3. 將虛擬機器加入您要用於 RemoteApp 的同一個 Active Directory 部署。
 
+有作用嗎？ 您的虛擬網路和子網路已針對 Azure RemoteApp 準備就緒！
 
-## <a name="step-4:-link-to-an-azure-remoteapp-image"></a>Step 4: Link to an Azure RemoteApp image ##
+您可以在[這裡](https://msdn.microsoft.com/library/azure/jj156003.aspx)找到有關建立 Azure 虛擬機器並將它們連線到 RemoteApp 的詳細資訊。
 
-An Azure RemoteApp template image contains the programs that you want to share with users. You can either create a new [template image](remoteapp-imageoptions.md) or link to an existing image (one already imported or uploaded to Azure RemoteApp). You can also link to one of the Azure RemoteApp [template images](remoteapp-images.md) that contain Office 365 or Office 2013 (for trial use) programs.
-
-If you are uploading the new image, you need to enter the name and choose the location for the image. On the next page of the wizard, you'll see a set of PowerShell cmdlets - copy and run these cmdlets from an elevated Windows PowerShell prompt to upload the specified image.
-
-If you are linking to an existing template image, simply specify the image name, location, and associated Azure subscription.
+## 步驟 2：建立 Azure RemoteApp 集合 ##
 
 
 
-## <a name="step-5:-configure-active-directory-directory-synchronization"></a>Step 5: Configure Active Directory directory synchronization ##
+1. 在 [Azure 入口網站](http://manage.windowsazure.com)中，前往 [Azure RemoteApp] 頁面。
+2. 按一下 [新增] > [使用 VNET 建立]。
+3. 輸入收藏的名稱。
+4. 選擇您要使用的方案 - 標準或基本。
+5. 從下拉式清單中依序選擇您的 VNET 和子網路。
+6. 選擇加入至您的網域。
+5. 按一下 [建立 RemoteApp 收藏]。
 
-Azure RemoteApp requires that you integrate with Azure Active Directory by either 1) configuring Azure Active Directory Sync with the Password Sync option, or 2) configuring Azure Active Directory Sync without the Password Sync option but using a domain that is federated to AD FS.
+建立了 Azure RemoteApp 集合之後，請按兩下集合的名稱。這時會顯示 [快速入門] 頁面，您可以在這裡完成設定集合。
 
-Check out [AD Connect](https://blogs.technet.microsoft.com/enterprisemobility/2014/08/04/connecting-ad-and-azure-ad-only-4-clicks-with-azure-ad-connect/) - this article helps you set up directory integration in 4 steps.
+發生錯誤了嗎？ 查看[混合式集合疑難排解資訊](remoteapp-hybridtrouble.md)。
 
-See [Directory synchronization roadmap](http://msdn.microsoft.com//library/azure/hh967642.aspx) for planning information and detailed steps.
-
-## <a name="step-6:-publish-apps"></a>Step 6: Publish apps ##
-
-An Azure RemoteApp app is the app or program that you provide to your users. It is located in the template image you uploaded for the collection. When a user accesses an app, it appears to run in their local environment, but it is really running in Azure.
-
-Before your users can access apps, you need to publish them – this lets your users access the apps through the Remote Desktop client.
-
-You can publish multiple apps to your collection. From the publishing page, click **Publish** to add an app. You can either publish from the **Start** menu of the template image or by specifying the path on the template image for the app. If you choose to add from the **Start** menu, choose the program to add. If you choose to provide the path to the app, provide a name for the app and the path to where it is installed on the template image.
-
-## <a name="step-7:-configure-user-access"></a>Step 7: Configure user access ##
-
-Now that you have created your collection, you need to add the users that you want to be able to use your remote resources. The users that you provide access to need to exist in the Active Directory tenant associated with the subscription you used to create this Azure RemoteApp collection.
-
-1.  From the Quick Start page, click **Configure user access**.
-2.  Enter the work account (from Active Directory) or Microsoft account that you want to grant access for.
-
-    **Notes:**
-
-    Make sure that you use the “user@domain.com” format.
-
-    If you are using Office 365 ProPlus in your collection, you must use the Active Directory identities for your users. This helps validate licensing.
+## 步驟 3：將您的集合連結到本機網域 ##
 
 
-3.  Once the users are validated, click **Save**.
+1. 在 [快速入門] 頁面上，按一下 [加入本機網域]。
+2. 將 Azure RemoteApp 服務帳戶新增至您的本機 Active Directory 網域。您將需要網域名稱、組織單位、服務帳戶的使用者名稱和密碼。
+
+	這是您按照[設定 Azure RemoteApp 的 Active Directory](remoteapp-ad.md) 中的步驟所收集到的資訊。
 
 
-## <a name="next-steps"></a>Next steps ##
-That's it - you have successfully created and deployed your Azure RemoteApp hybrid collection. The next step is to have your users download and install the Remote Desktop client. You can find the URL for the client on the Azure RemoteApp Quick Start page. Then, have users log into the client and access the apps you published.
+## 步驟 4：連結至 Azure RemoteApp 映像 ##
+
+Asure RemoteApp 範本映像包含您要與使用者共用的程式。您可以建立新的[範本映像](remoteapp-imageoptions.md)，或連結到現有的映像 (已匯入或上傳至 Azure RemoteApp 的映像)。您也可以連結到包含 Office 365 或 Office 2013 (僅供試用) 程式的某一個 Azure RemoteApp [範本映像](remoteapp-images.md)。
+
+如果您要上傳新映像，您必須輸入名稱，並選擇映像的位置。在精靈的下一頁，您會看見一組 PowerShell Cmdlet - 從提高權限的 Windows PowerShell 提示複製並執行這些 Cmdlet，可上傳指定的映像。
+
+如果您要連結至現有的範本映像，請直接指定映像名稱、位置和相關聯的 Azure 訂閱。
 
 
 
-### <a name="help-us-help-you"></a>Help us help you
-Did you know that in addition to rating this article and making comments down below, you can make changes to the article itself? Something missing? Something wrong? Did I write something that's just confusing? Scroll up and click **Edit on GitHub** to make changes - those will come to us for review, and then, once we sign off on them, you'll see your changes and improvements right here.
+## 步驟 5：設定 Active Directory 目錄同步處理 ##
+
+RemoteApp 要求用下列方式與 Azure Active Directory 整合：1) 設定具有 [密碼同步] 選項的 Azure Active Directory 同步作業，或 2) 設定不具 [密碼同步] 選項的 Azure Active Directory 同步作業，但使用同盟至 AD FS 的網域。
+
+請參閱 [AD Connect](https://blogs.technet.microsoft.com/enterprisemobility/2014/08/04/connecting-ad-and-azure-ad-only-4-clicks-with-azure-ad-connect/) - 本文會協助您以 4 個步驟設定目錄整合。
+
+如需規劃資訊和詳細步驟，請參閱[目錄同步處理藍圖](http://msdn.microsoft.com//library/azure/hh967642.aspx)。
+
+## 步驟 6：發佈應用程式 ##
+
+Azure RemoteApp 應用程式就是您提供給使用者的應用程式或程式。此程式位於您為收藏上傳的範本映像中。當使用者存取應用程式時，應用程式看似會在其本機環境中執行，但實際上是在 Azure 中執行。
+
+您必須先發佈應用程式，您的使用者才能存取應用程式 – 發佈應用程式可讓您的使用者透過遠端桌面用戶端存取應用程式。
+
+您可以將多個應用程式發佈到自己的集合。請在發佈頁面中按一下 [發佈] 來新增應用程式。您可以從範本映像的 [開始] 功能表發佈，或藉由為 App 指定範本映像的路徑來發佈。如果您選擇從 [開始] 功能表新增，請選擇要加入的程式。如果您選擇提供應用程式的路徑，請提供應用程式的名稱，以及應用程式在範本映像上的安裝路徑。
+
+## 步驟 7：設定使用者存取 ##
+
+您已經建立集合，現在您必須新增可使用您遠端資源的使用者。您要給予存取權的使用者，必須存在於與您用來建立此 Azure RemoteApp 集合的訂用帳戶相關聯的 Active Directory 租用戶中。
+
+1.	在 [快速入門] 頁面上，按一下 [Configure user access]。
+2.	輸入工作帳戶 (來自於 Active Directory)，或是您要為其授與存取權的 Microsoft 帳戶。
+
+	**注意：**
+
+	確定您使用的是 “user@domain.com” 格式。
+
+	如果您的收藏中使用 Office 365 ProPlus，您必須為使用者使用 Active Directory 身分識別。這有助於驗證授權。
+
+
+3.	在驗證使用者之後，按一下 [儲存]。
+
+
+## 後續步驟 ##
+您已經成功建立並部署了自己的 Azure RemoteApp 混合式集合。下一個步驟是要讓使用者下載並安裝遠端桌面用戶端。您可以在 Azure RemoteApp 的 [快速啟動] 頁面上找到用戶端的 URL。接著，請讓使用者登入用戶端，並存取您所發佈的應用程式。
 
 
 
-<!--HONumber=Oct16_HO2-->
+### 幫我們來協助您
+您知道除了評比這篇文章以及在下面留言以外，您可以變更文件本身嗎？ 有所遺漏？ 有所錯誤？ 我是否撰寫了令人混淆的內容？ 向上捲動並按一下 [在 GitHub 上編輯] 以進行變更 - 系統會顯示這些變更以供我們檢閱，而我們簽核後，您就會在這裡看到您所進行的變更和改良。
 
-
+<!---HONumber=AcomDC_0817_2016-->

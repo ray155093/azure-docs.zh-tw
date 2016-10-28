@@ -1,94 +1,93 @@
 <properties 
-    pageTitle="How to Use Twilio for Voice and SMS (Ruby) | Microsoft Azure" 
-    description="Learn how to make a phone call and send a SMS message with the Twilio API service on Azure. Code samples written in Ruby." 
-    services="" 
-    documentationCenter="ruby" 
-    authors="devinrader" 
-    manager="twilio" 
-    editor=""/>
+	pageTitle="如何使用 Twilio for Voice and SMS (Ruby) | Microsoft Azure" 
+	description="了解如何在 Azure 上使用 Twilio API 服務撥打電話及傳送簡訊。程式碼範例以 Ruby 撰寫。" 
+	services="" 
+	documentationCenter="ruby" 
+	authors="devinrader" 
+	manager="twilio" 
+	editor=""/>
 
 <tags 
-    ms.service="multiple" 
-    ms.workload="na" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="ruby" 
-    ms.topic="article" 
-    ms.date="11/25/2014" 
-    ms.author="MicrosoftHelp@twilio.com"/>
+	ms.service="multiple" 
+	ms.workload="na" 
+	ms.tgt_pltfrm="na" 
+	ms.devlang="ruby" 
+	ms.topic="article" 
+	ms.date="11/25/2014" 
+	ms.author="MicrosoftHelp@twilio.com"/>
 
 
 
 
 
+# 如何在 Ruby 中透過 Twilio 使用語音和簡訊功能
+本指南示範如何在 Azure 上透過 Twilio API 服務執行常見的程式設計工作。涵蓋的案例包括打電話和傳送簡訊 (SMS)。如需有關如何在應用程式中使用 Twilio 語音和 SMS 的詳細資訊，請參閱[後續步驟](#NextSteps)一節。
 
-# <a name="how-to-use-twilio-for-voice-and-sms-capabilities-in-ruby"></a>How to Use Twilio for Voice and SMS Capabilities in Ruby
-This guide demonstrates how to perform common programming tasks with the Twilio API service on Azure. The scenarios covered include making a phone call and sending a Short Message Service (SMS) message. For more information on Twilio and using voice and SMS in your applications, see the [Next Steps](#NextSteps) section.
+## <a id="WhatIs"></a>什麼是 Twilio？
+Twilio 是一種電話語音 Web 服務 API，能夠讓您使用現有的 Web 語言和技術建立語音和 SMS 應用程式。Twilio 算是協力廠商服務 (並非 Azure 功能，也並非 Microsoft 產品)。
 
-## <a name="<a-id="whatis"></a>what-is-twilio?"></a><a id="WhatIs"></a>What is Twilio?
-Twilio is a telephony web-service API that lets you use your existing web languages and skills to build voice and SMS applications. Twilio is a third-party service (not an Azure feature and not a Microsoft product).
+**Twilio 語音**可讓應用程式撥打和接聽電話。**Twilio SMS** 可以讓您的應用程式撰寫和接收 SMS 訊息。**Twilio Client** 可以讓您的應用程式在現有網際網路連線 (包括行動連線) 中啟用語音通訊。
 
-**Twilio Voice** allows your applications to make and receive phone calls. **Twilio SMS** allows your applications to make and receive SMS messages. **Twilio Client** allows your applications to enable voice communication using existing Internet connections, including mobile connections.
+## <a id="Pricing"></a>Twilio 定價和特別優惠
+[Twilio 定價][twilio_pricing] \(英文) 提供 Twilio 的定價資訊。Azure 客戶享有[特殊優惠][special_offer]：免費1000 則文字簡訊或接聽1000 分鐘電話。若要註冊獲得這項優惠或取得詳細資訊，請造訪 [http://ahoy.twilio.com/azure][special_offer] \(英文)。
 
-## <a name="<a-id="pricing"></a>twilio-pricing-and-special-offers"></a><a id="Pricing"></a>Twilio Pricing and Special Offers
-Information about Twilio pricing is available at [Twilio Pricing] [twilio_pricing]. Azure customers receive a [special offer][special_offer]: a free credit of 1000 texts or 1000 inbound minutes. To sign up for this offer or get more information, please visit [http://ahoy.twilio.com/azure][special_offer].  
+## <a id="Concepts"></a>概念
+Twilio API 是一套為應用程式提供語音和簡訊功能的 RESTful API。用戶端程式庫有多種語言版本，相關清單請參閱＜[Twilio API 程式庫][twilio_libraries]＞(英文)。
 
-## <a name="<a-id="concepts"></a>concepts"></a><a id="Concepts"></a>Concepts
-The Twilio API is a RESTful API that provides voice and SMS functionality for applications. Client libraries are available in multiple languages; for a list, see [Twilio API Libraries] [twilio_libraries].
+### <a id="TwiML"></a>TwiML
+TwiML 是一組以 XML 為基礎的指令，可指示 Twilio 如何處理來電或簡訊。
 
-### <a name="<a-id="twiml"></a>twiml"></a><a id="TwiML"></a>TwiML
-TwiML is a set of XML-based instructions that inform Twilio of how to process a call or SMS.
-
-As an example, the following TwiML would convert the text **Hello World** to speech.
+例如，下列 TwiML 會將 **Hello World** 文字轉換成語音。
 
     <?xml version="1.0" encoding="UTF-8" ?>
     <Response>
        <Say>Hello World</Say>
     </Response>
 
-All TwiML documents have `<Response>` as their root element. From there, you use Twilio Verbs to define the behavior of your application.
+所有 TwiML 文件皆會以 `<Response>` 作為其根元素。您可以由此處使用 Twilio 動詞定義應用程式的行為。
 
-### <a name="<a-id="verbs"></a>twiml-verbs"></a><a id="Verbs"></a>TwiML Verbs
-Twilio Verbs are XML tags that tell Twilio what to **do**. For example, the **&lt;Say&gt;** verb instructs Twilio to audibly deliver a message on a call. 
+### <a id="Verbs"></a>TwiML 動詞
+Twilio 動詞是指示 Twilio 應執行哪些**動作**的 XML 標籤。例如，**&lt;Say&gt;** 動詞會指示 Twilio 在通話中用語音傳遞訊息。
 
-The following is a list of Twilio verbs.
+以下是 Twilio 動詞清單。
 
-* **&lt;Dial&gt;**: Connects the caller to another phone.
-* **&lt;Gather&gt;**: Collects numeric digits entered on the telephone keypad.
-* **&lt;Hangup&gt;**: Ends a call.
-* **&lt;Play&gt;**: Plays an audio file.
-* **&lt;Pause&gt;**: Waits silently for a specified number of seconds.
-* **&lt;Record&gt;**: Records the caller's voice and returns a URL of a file that contains the recording.
-* **&lt;Redirect&gt;**: Transfers control of a call or SMS to the TwiML at a different URL.
-* **&lt;Reject&gt;**: Rejects an incoming call to your Twilio number without billing you
-* **&lt;Say&gt;**: Converts text to speech that is made on a call.
-* **&lt;Sms&gt;**: Sends an SMS message.
+* **&lt;Dial&gt;**：使撥號者接通另一支電話。
+* **&lt;Gather&gt;**：收集電話按鍵上輸入的號碼。
+* **&lt;Hangup&gt;**：結束通話。
+* **&lt;Play&gt;**：播放音訊檔案。
+* **&lt;Pause&gt;**：靜候一段指定的秒數。
+* **&lt;Record&gt;**：錄製來電者的語音並傳回含有錄音的檔案 URL。
+* **&lt;Redirect&gt;**：將通話或簡訊的控制權移轉至不同 URL 的 TwiML。
+* **&lt;Reject&gt;**：拒絕 Twilio 號碼的來電而不計費
+* **&lt;Say&gt;**：將來電的文字轉換成語音。
+* **&lt;Sms&gt;**：傳送簡訊。
 
-For more information about Twilio verbs, their attributes, and TwiML, see [TwiML] [twiml]. For additional information about the Twilio API, see [Twilio API] [twilio_api].
+如需 Twilio 動詞、屬性和 TwiML 的詳細資訊，請參閱 [TwiML][twiml]。如需 Twilio API 的詳細資訊，請參閱 [Twilio API][twilio_api]。
 
-## <a name="<a-id="createaccount"></a>create-a-twilio-account"></a><a id="CreateAccount"></a>Create a Twilio Account
-When you're ready to get a Twilio account, sign up at [Try Twilio] [try_twilio]. You can start with a free account, and upgrade your account later.
+## <a id="CreateAccount"></a>建立 Twilio 帳戶
+準備取得 Twilio 帳戶時，請至[試用 Twilio][try_twilio] 註冊。您可以先使用免費帳戶，稍後再升級帳戶。
 
-When you sign up for a Twilio account, you'll get a free phone number for your application. You'll also receive an account SID and an auth token. Both will be needed to make Twilio API calls. To prevent unauthorized access to your account, keep your authentication token secure. Your account SID and auth token are viewable at the [Twilio account page][twilio_account], in the fields labeled **ACCOUNT SID** and **AUTH TOKEN**, respectively.
+註冊 Twilio 帳戶時，您會獲得可供應用程式使用的免費電話號碼。您也會獲得帳戶 SID 和驗證權杖。兩者皆為呼叫 Twilio API 所需。為了防止未經授權存取您的帳戶，您妥善保管驗證權杖。在 [Twilio 帳戶頁面][twilio_account]的 **ACCOUNT SID** 和 **AUTH TOKEN** 欄位中，分別可檢視您的帳戶 SID 和驗證權杖。
 
-### <a name="<a-id="verifyphonenumbers"></a>verify-phone-numbers"></a><a id="VerifyPhoneNumbers"></a>Verify Phone Numbers
-In addition to the number you are given by Twilio, you can also verify numbers that you control (i.e. your cell phone or home phone number) for use in your applications. 
+### <a id="VerifyPhoneNumbers"></a>驗證電話號碼
+除了 Twilio 提供給您的號碼以外，您也可以驗證您在應用程式中控管使用性的號碼 (也就是您的行動電話或家用電話號碼)。
 
-For information on how to verify a phone number, see [Manage Numbers] [verify_phone].
+如需如何驗證電話號碼的詳細資訊，請參閱[管理電話號碼][verify_phone]。
 
-## <a name="<a-id="create_app"></a>create-a-ruby-application"></a><a id="create_app"></a>Create a Ruby Application
-A Ruby application that uses the Twilio service and is running in Azure is no different than any other Ruby application that uses the Twilio service. While Twilio services are RESTful and can be called from Ruby in several ways, this article will focus on how to use Twilio services with [Twilio helper library for Ruby][twilio_ruby].
+## <a id="create_app"></a>建立 Ruby 應用程式
+使用 Twilio 服務且執行於 Azure 的 Ruby 應用程式，與其他使用 Twilio 服務的 Ruby 應用程式並無不同。雖然 Twilio 服務是以 REST 為基礎，並且可透過數種方式從 Ruby 撥打，但本文的重點是要說明如何搭配使用 Twilio 服務與 [適用於 Ruby 的 Twilio 協助程式程式庫][twilio_ruby]。
 
-First, [set-up a new Azure Linux VM][azure_vm_setup] to act as a host for your new Ruby web application. Ignore the steps involving the creation of a Rails app, just set-up the VM. Make sure you create an Endpoint with an external port of 80 and an internal port of 5000.
+首先，請[設定新的 Azure Linux VM][azure_vm_setup]，以作為新的 Ruby Web 應用程式的主機。請忽略建立 Rails 應用程式的相關步驟，直接設定 VM。請確實建立具有外部連接埠 80 和內部連接埠 5000 的端點。
 
-In the examples below, we will be using [Sinatra][sinatra], a very simple web framework for Ruby. But you can certainly use the Twilio helper library for Ruby with any other web framework, including Ruby on Rails.
+我們在下列範例中將使用 [Sinatra][sinatra]，這對 Ruby 而言是非常簡單的 Web 架構。但適用於 Ruby 的 Twilio 協助程式程式庫是可以與任何其他 Web 架構搭配運作的，包括 Rails 上的 Ruby。
 
-SSH into your new VM and create a directory for your new app. Inside that directory, create a file called Gemfile and copy the following code into it:
+在您新的 VM 中加入 SSH，並為新的應用程式建立目錄。請在該目錄中建立名為 Gemfile 的檔案，並將下列程式碼複製到檔案中：
 
     source 'https://rubygems.org'
     gem 'sinatra'
     gem 'thin'
 
-On the command line run `bundle install`. This will install the dependencies above. Next create a file called `web.rb`. This will be where the code for your web app lives. Paste the following code into it:
+在命令列上執行 `bundle install`。這會安裝前述的相依性。接著，建立名為 `web.rb` 的檔案。Web 應用程式的程式碼會存留於該處。請將下列程式碼貼到檔案中：
 
     require 'sinatra'
 
@@ -96,41 +95,41 @@ On the command line run `bundle install`. This will install the dependencies abo
         "Hello Monkey!"
     end
 
-At this point you should be able the run the command `ruby web.rb -p 5000`. This will spin-up a small web server on port 5000. You should be able to browse to this app in your browser by visiting the URL you set-up for your Azure VM. Once you can reach your web app in the browser, you're ready to start building a Twilio app.
+此時，您應可執行 `ruby web.rb -p 5000` 命令。這會在連接埠 5000 上啟動小型 Web 伺服器。您應可在瀏覽器中造訪您為 Azure VM 設定的 URL，而瀏覽至此應用程式。只要您可在瀏覽器中存取您的 Web 應用程式，您即可開始建置 Twilio 應用程式。
 
-## <a name="<a-id="configure_app"></a>configure-your-application-to-use-twilio"></a><a id="configure_app"></a>Configure Your Application to Use Twilio
-You can configure your web app to use the Twilio library by updating your `Gemfile` to include this line:
+## <a id="configure_app"></a>設定應用程式以使用 Twilio
+您可以更新 `Gemfile` 以加入下一行程式碼，將 Web 應用程式設為使用 Twilio 程式庫：
 
     gem 'twilio-ruby'
 
-On the command line, run `bundle install`. Now open `web.rb` and including this line at the top:
+在命令列上執行 `bundle install`。接著，開啟 `web.rb`，並將此行加入至頂端：
 
     require 'twilio-ruby'
 
-You're now all set to use the Twilio helper library for Ruby in your web app.
+至此一切皆已就緒，您可以在 Web 應用程式中使用適用於 Ruby 的 Twilio 協助程式程式庫。
 
-## <a name="<a-id="howto_make_call"></a>how-to:-make-an-outgoing-call"></a><a id="howto_make_call"></a>How to: Make an outgoing call
-The following shows how to make an outgoing call. Key concepts include using the Twilio helper library for Ruby to make REST API calls and rendering TwiML. Substitute your values for the **From** and **To** phone numbers, and ensure that you verify the **From** phone number for your Twilio account prior to running the code.
+## <a id="howto_make_call"></a>作法：撥出電話
+下列程式碼將說明如何向外撥打電話。主要的概念包括使用適用於 Ruby 的 Twilio 協助程式程式庫，來撥打 REST API 電話以及轉譯 TwiML。請將 **From** 和 **To** 電話號碼換成您的值，在執行程式碼之前，請記得先驗證 Twilio 帳戶的 **From** 電話號碼。
 
-Add this function to `web.md`:
+將此函數新增至 `web.md`：
 
     # Set your account ID and authentication token.
-    sid = "your_twilio_account_sid";
-    token = "your_twilio_authentication_token";
+	sid = "your_twilio_account_sid";
+	token = "your_twilio_authentication_token";
 
-    # The number of the phone initiating the the call.
+	# The number of the phone initiating the the call.
     # This should either be a Twilio number or a number that you've verified
-    from = "NNNNNNNNNNN";
+	from = "NNNNNNNNNNN";
 
-    # The number of the phone receiving call.
-    to = "NNNNNNNNNNN";
+	# The number of the phone receiving call.
+	to = "NNNNNNNNNNN";
 
-    # Use the Twilio-provided site for the TwiML response.
+	# Use the Twilio-provided site for the TwiML response.
     url = "http://yourdomain.cloudapp.net/voice_url";
       
     get '/make_call' do
-      # Create the call client.
-      client = Twilio::REST::Client.new(sid, token);
+	  # Create the call client.
+	  client = Twilio::REST::Client.new(sid, token);
       
       # Make the call
       client.account.calls.create(to: to, from: from, url: url)
@@ -142,16 +141,16 @@ Add this function to `web.md`:
        </Response>"
     end
     
-If you open-up `http://yourdomain.cloudapp.net/make_call` in a browser, that will trigger the call to the Twilio API to make the phone call. The first two parameters in `client.account.calls.create` are fairly self-explanatory: the number the call is `from` and the number the call is `to`. 
+您在瀏覽器中開啟 `http://yourdomain.cloudapp.net/make_call` 時，將觸發對 Twilio API 的呼叫來撥打電話。`client.account.calls.create` 中的前兩個參數很容易理解：來電 (`from`) 號碼和去電 (`to`) 號碼。
 
-The third parameter (`url`) is the URL that Twilio requests to get instructions on what to do once the call is connected. In this case we set-up a URL (`http://yourdomain.cloudapp.net`) that returns a simple TwiML document and uses the `<Say>` verb to do some text-to-speech and say "Hello Monkey" to the person recieving the call.
+第三個參數 (`url`) 是 Twilio 要求取得相關指示以得知在電話接通時應執行何種動作的 URL。在此案例中，我們設定的 URL (`http://yourdomain.cloudapp.net`) 會傳回簡易的 TwiML 文件，並使用 `<Say>` 動詞來執行文字轉換成語音的動作，對接聽電話的人說出 "Hello Monkey"。
 
-## <a name="<a-id="howto_recieve_sms"></a>how-to:-recieve-an-sms-message"></a><a id="howto_recieve_sms"></a>How to: Recieve an SMS message
-In the previous example we initiated an **outgoing** phone call. This time, let's use the phone number that Twilio gave us during sign-up to process an **incoming** SMS message.
+## <a id="howto_recieve_sms"></a>如何：接收 SMS 簡訊
+在前述範例中，我們撥打了**外撥**電話。現在，我們要使用 Twilio 在註冊期間提供給我們的電話號碼來處理**傳入的**簡訊。
 
-First, log-in to your [Twilio dashboard][twilio_account]. Click on "Numbers" in the top nav and then click on the Twilio number you were provided. You'll see two URLs that you can configure. A Voice Request URL and an SMS Request URL. These are the URLs that Twilio calls whenever a phone call is made or an SMS is sent to your number. The URLs are also known as "web hooks".
+首先，請登入您的 [Twilio 儀表板][twilio_account]。在頂端的導覽區中按一下「號碼」，然後按一下 Twilio 提供給您的號碼。您會看見兩個可以設定的 URL。語音要求 URL 和簡訊要求 URL。這是在撥打電話或傳送簡訊至您的號碼時，Twilio 所將呼叫的 URL。這些 URL 也稱為 "Web hook"。
 
-We would like to process incoming SMS messages, so let's update the URL to `http://yourdomain.cloudapp.net/sms_url`. Go ahead and click Save Changes at the bottom of the page. Now, back in `web.rb` let's program our application to handle this:
+我們想要處理傳入的 SMS 簡訊，因此，要將 URL 更新為 `http://yourdomain.cloudapp.net/sms_url`。接著，按一下頁面底部的 [儲存變更]。現在，要在 `web.rb` 中將應用程式程式化，以進行相關處理：
 
     post '/sms_url' do
       "<Response>
@@ -159,19 +158,19 @@ We would like to process incoming SMS messages, so let's update the URL to `http
        </Response>"
     end
 
-After making the change, make sure to re-start your web app. Now, take out your phone and send an SMS to your Twilio number. You should promptly get an SMS response that says "Hey, thanks for the ping! Twilio and Azure rock!".
+進行變更後，請確實重新啟動 Web 應用程式。現在，請拿起電話，傳送簡訊至您的 Twilio 號碼。您應會立即收到簡訊回應，顯示 "Hey, thanks for the ping! Twilio and Azure rock!"。
 
-## <a name="<a-id="additional_services"></a>how-to:-use-additional-twilio-services"></a><a id="additional_services"></a>How to: Use Additional Twilio Services
-In addition to the examples shown here, Twilio offers web-based APIs that you can use to leverage additional Twilio functionality from your Azure application. For full details, see the [Twilio API documentation] [twilio_api_documentation].
+## <a id="additional_services"></a>如何：使用其他 Twilio 服務
+除了此處所示的範例以外，Twilio 還提供網頁式 API，方便您從 Azure 應用程式中充份利用其他 Twilio 功能。如需完整詳細資料，請參閱[Twilio API 文件][twilio_api_documentation]。
 
-### <a name="<a-id="nextsteps"></a>next-steps"></a><a id="NextSteps"></a>Next Steps
-Now that you've learned the basics of the Twilio service, follow these links to learn more:
+### <a id="NextSteps"></a>後續步驟
+了解基本的 Twilio 服務之後，請參考下列連結以取得更多資訊：
 
-* [Twilio Security Guidelines] [twilio_security_guidelines]
-* [Twilio HowTos and Example Code] [twilio_howtos]
-* [Twilio Quickstart Tutorials][twilio_quickstarts] 
-* [Twilio on GitHub] [twilio_on_github]
-* [Talk to Twilio Support] [twilio_support]
+* [Twilio 安全性方針][twilio_security_guidelines]
+* [Twilio 作法與範例程式碼][twilio_howtos]
+* [Twilio 快速入門教學課程][twilio_quickstarts] 
+* [GitHub 上的 Twilio][twilio_on_github]
+* [洽詢 Twilio 支援][twilio_support]
 
 [twilio_ruby]: https://www.twilio.com/docs/ruby/install
 
@@ -185,7 +184,7 @@ Now that you've learned the basics of the Twilio service, follow these links to 
 [twiml]: http://www.twilio.com/docs/api/twiml
 [twilio_api]: http://www.twilio.com/api
 [try_twilio]: https://www.twilio.com/try-twilio
-[twilio_account]:  https://www.twilio.com/user/account
+[twilio_account]: https://www.twilio.com/user/account
 [verify_phone]: https://www.twilio.com/user/account/phone-numbers/verified#
 [twilio_api_documentation]: http://www.twilio.com/api
 [twilio_security_guidelines]: http://www.twilio.com/docs/security
@@ -196,8 +195,4 @@ Now that you've learned the basics of the Twilio service, follow these links to 
 [sinatra]: http://www.sinatrarb.com/
 [azure_vm_setup]: http://www.windowsazure.com/develop/ruby/tutorials/web-app-with-linux-vm/
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=Oct15_HO3-->

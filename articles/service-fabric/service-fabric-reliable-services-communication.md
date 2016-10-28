@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Reliable Services communication overview | Microsoft Azure"
-   description="Overview of the Reliable Services communication model, including opening listeners on services, resolving endpoints, and communicating between services."
+   pageTitle="Reliable Services 通訊概觀 | Microsoft Azure"
+   description="Reliable Services 通訊模型概觀，其中包括開啟服務的接聽程式、解析端點和服務間通訊。"
    services="service-fabric"
    documentationCenter=".net"
    authors="vturecek"
@@ -13,17 +13,16 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="required"
-   ms.date="10/19/2016"
+   ms.date="07/06/2016"
    ms.author="vturecek"/>
 
+# 如何使用 Reliable Services 通訊 API
 
-# <a name="how-to-use-the-reliable-services-communication-apis"></a>How to use the Reliable Services communication APIs
+「Azure Service Fabric 即平台」完全不受服務間的通訊影響。所有通訊協定和堆疊 (從 UDP 到 HTTP) 都可接受。它是由服務開發人員選擇服務應有的通訊方式。Reliable Services 應用程式架構會提供內建的通訊堆疊以及 API，讓您可用來建置自訂通訊元件。
 
-Azure Service Fabric as a platform is completely agnostic about communication between services. All protocols and stacks are acceptable, from UDP to HTTP. It's up to the service developer to choose how services should communicate. The Reliable Services application framework provides built-in communication stacks as well as APIs that you can use to build your custom communication components. 
+## 設定服務通訊
 
-## <a name="set-up-service-communication"></a>Set up service communication
-
-The Reliable Services API uses a simple interface for service communication. To open an endpoint for your service, simply implement this interface:
+Reliable Services API 使用一個簡單的服務通訊介面。若要開啟服務的端點，只要實作此介面即可：
 
 ```csharp
 
@@ -38,9 +37,9 @@ public interface ICommunicationListener
 
 ```
 
-You can then add your communication listener implementation by returning it in a service-based class method override.
+然後，您可以在服務基底類別方法覆寫項中傳回您的通訊接聽程式實作來新增該實作。
 
-For stateless services:
+對於無狀態服務：
 
 ```csharp
 class MyStatelessService : StatelessService
@@ -53,7 +52,7 @@ class MyStatelessService : StatelessService
 }
 ```
 
-For stateful services:
+對於具狀態服務：
 
 ```csharp
 class MyStatefulService : StatefulService
@@ -66,11 +65,11 @@ class MyStatefulService : StatefulService
 }
 ```
 
-In both cases, you return a collection of listeners. This allows your service to listen on multiple endpoints, potentially using different protocols, by using multiple listeners. For example, you may have an HTTP listener and a separate WebSocket listener. Each listener gets a name, and the resulting collection of *name : address* pairs is represented as a JSON object when a client requests the listening addresses for a service instance or a partition.
+在這兩種情況下，您會傳回接聽程式的集合。這可讓您的服務透過多個接聽程式，可能使使用不同的通訊協定，在多個端點上接聽。例如，您可能有 HTTP 接聽程式和個別的 WebSocket 接聽程式。每個接聽程式都會獲得一個名稱及所產生的名稱集合：當用戶端要求服務執行個體或資料分割的接聽位址時，系統會以 JSON 物件的形式呈現位址配對。
 
-In a stateless service, the override returns a collection of ServiceInstanceListeners. A ServiceInstanceListener contains a function to create an ICommunicationListener and gives it a name. For stateful services, the override returns a collection of ServiceReplicaListeners. This is slightly different from its stateless counterpart, because a ServiceReplicaListener has an option to open an ICommunicationListener on secondary replicas. Not only can you use multiple communication listeners in a service, but you can also specify which listeners accept requests on secondary replicas and which ones listen only on primary replicas.
+在無狀態服務中，覆寫項會傳回 ServiceInstanceListeners 的集合。ServiceInstanceListener 包含一個用來建立 ICommunicationListener 並賦予其名稱的函式。就具狀態服務而言，覆寫項則會傳回 ServiceReplicaListeners 集合。這與其無狀態的對應項稍有不同，因為 ServiceReplicaListener 可以選擇在次要複本上開啟 ICommunicationListener。您不僅可以在服務中使用多個通訊接聽程式，也可以指定哪些接聽程式要在次要複本上接受要求，以及哪些接聽程式只在主要複本上進行接聽。
 
-For example, you can have a ServiceRemotingListener that takes RPC calls only on primary replicas, and a second, custom listener that takes read requests on secondary replicas over HTTP:
+例如，您可以有一個只在主要複本上接受 RPC 呼叫的 ServiceRemotingListener，以及一個透過 HTTP 在次要複本上接受讀取要求的第二、自訂接聽程式：
 
 ```csharp
 protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
@@ -90,9 +89,9 @@ protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListe
 }
 ```
 
-> [AZURE.NOTE] When creating multiple listeners for a service, each listener **must** be given a unique name.
+> [AZURE.NOTE] 建立服務的多個接聽程式時，**必須**為每個接聽程式提供唯一的名稱。
 
-Finally, describe the endpoints that are required for the service in the [service manifest](service-fabric-application-model.md) under the section on endpoints.
+最後，在[服務資訊清單](service-fabric-application-model.md)中有關端點的區段下方說明服務所需的端點。
 
 ```xml
 <Resources>
@@ -104,7 +103,7 @@ Finally, describe the endpoints that are required for the service in the [servic
 
 ```
 
-The communication listener can access the endpoint resources allocated to it from the `CodePackageActivationContext` in the `ServiceContext`. The listener can then start listening for requests when it is opened.
+通訊接聽程式可以從 `ServiceContext` 中的 `CodePackageActivationContext` 存取配置給它的端點資源。然後接聽程式會在開啟時開始接聽要求。
 
 ```csharp
 var codePackageActivationContext = serviceContext.CodePackageActivationContext;
@@ -112,11 +111,11 @@ var port = codePackageActivationContext.GetEndpoint("ServiceEndpoint").Port;
 
 ```
 
-> [AZURE.NOTE] Endpoint resources are common to the entire service package, and they are allocated by Service Fabric when the service package is activated. Multiple service replicas hosted in the same ServiceHost may share the same port. This means that the communication listener should support port sharing. The recommended way of doing this is for the communication listener to use the partition ID and replica/instance ID when it generates the listen address.
+> [AZURE.NOTE] 端點資源通用於整個服務封裝，並在服務封裝啟動時由 Service Fabric 配置。裝載於相同 ServiceHost 的多個服務複本可能會共用相同的連接埠。這表示通訊接聽程式應該支援連接埠共用。建議做法是讓通訊接聽程式在產生接聽位址時，使用資料分割識別碼和複本/執行個體識別碼。
 
-### <a name="service-address-registration"></a>Service address registration
+### 服務位址註冊
 
-A system service called the *Naming Service* runs on Service Fabric clusters. The Naming Service is a registrar for services and their addresses that each instance or replica of the service is listening on. When the `OpenAsync` method of an `ICommunicationListener` completes, its return value gets registered in the Naming Service. This return value that gets published in the Naming Service is a string whose value can be anything at all. This string value is what clients will see when they ask for an address for the service from the Naming Service.
+名為「命名服務」的系統服務會在 Service Fabric 叢集上執行。命名服務是適用於服務及其位址的註冊機構，而服務的每個執行個體或複本正在其上接聽。當 `ICommunicationListener` 的 `OpenAsync` 方法完成時，它的傳回值會在命名服務中註冊。這個在命名服務中發佈的傳回值是一個字串，其值完全可以是任何項目。這個字串值是當用戶端向命名服務要求服務的位址時將看見的內容。
 
 ```csharp
 public Task<string> OpenAsync(CancellationToken cancellationToken)
@@ -138,41 +137,41 @@ public Task<string> OpenAsync(CancellationToken cancellationToken)
 }
 ```
 
-Service Fabric provides APIs that allows clients and other services to then ask for this address by service name. This is important because the service address is not static. Services are moved around in the cluster for resource balancing and availability purposes. This is the mechanism that allows clients to resolve the listening address for a service.
+Service Fabric 提供 API，讓用戶端和其他服務之後能夠依服務名稱來要求這個位址。這一點很重要，因為服務位址不是靜態的。服務會為了資源平衡和可用性目的在叢集中移動。這是可讓用戶端解析服務接聽位址的機制。
 
-> [AZURE.NOTE] For a complete walk-through of how to write an `ICommunicationListener`, see [Service Fabric Web API services with OWIN self-hosting](service-fabric-reliable-services-communication-webapi.md)
+> [AZURE.NOTE] 如需如何撰寫 `ICommunicationListener` 的完整逐步解說，請參閱 [Service Fabric Web API 服務與 OWIN 自我裝載](service-fabric-reliable-services-communication-webapi.md)
 
-## <a name="communicating-with-a-service"></a>Communicating with a service
-The Reliable Services API provides the following libraries to write clients that communicate with services.
+## 與服務通訊
+Reliable Services API 提供下列程式庫來撰寫與服務通訊的用戶端。
 
-### <a name="service-endpoint-resolution"></a>Service endpoint resolution
-The first step to communication with a service is to resolve an endpoint address of the partition or instance of the service you want to talk to. The `ServicePartitionResolver` utility class is a basic primitive that helps clients determine the endpoint of a service at runtime. In Service Fabric terminology, the process of determining the endpoint of a service is referred to as the *service endpoint resolution*.
+### 服務端點解析
+與服務通訊的第一個步驟是，解析您想要通訊之服務的分割區或執行個體的端點位址。`ServicePartitionResolver` 公用程式類別是一個基本類型，可協助用戶端在執行階段判斷服務的端點。在 Service Fabric 術語中，判斷服務端點的程序稱為「服務端點解析」。
 
-To connect to services within a cluster, `ServicePartitionResolver` can be created using default settings. This is the recommended usage for most situations:
+若要連接到叢集內的服務，可以使用預設設定建立 `ServicePartitionResolver`。這是大多數情況的建議用法︰
 
 ```csharp
 ServicePartitionResolver resolver = ServicePartitionResolver.GetDefault();
 ```
 
-To connect to services in a different cluster, a `ServicePartitionResolver` can be created with a set of cluster gateway endpoints. Note that gateway endpoints are just different endpoints for connecting to the same cluster. For example:
+若要連接到不同叢集中的服務，可利用一組叢集閘道端點來建立 `ServicePartitionResolver`。請注意，閘道端點就只是可用來連接到相同叢集的不同端點。例如：
 
 ```csharp
 ServicePartitionResolver resolver = new  ServicePartitionResolver("mycluster.cloudapp.azure.com:19000", "mycluster.cloudapp.azure.com:19001");
 ```
 
-Alternatively, `ServicePartitionResolver` can be given a function for creating a `FabricClient` to use internally: 
+另外，可為 `ServicePartitionResolver` 指定一個函式來建立 `FabricClient`，以便在內部使用：
  
 ```csharp
 public delegate FabricClient CreateFabricClientDelegate();
 ```
 
-`FabricClient` is the object that is used to communicate with the Service Fabric cluster for various management operations on the cluster. This is useful when you want more control over how `ServicePartitionResolver` interacts with your cluster. `FabricClient` performs caching internally and is generally expensive to create, so it is important to reuse `FabricClient` instances as much as possible. 
+`FabricClient` 是為了叢集上各種管理作業而用來與 Service Fabric 叢集通訊的物件。當您想要更充分掌控 `ServicePartitionResolver` 與叢集互動的方式時，這非常實用。`FabricClient` 會在內部執行快取但建立的成本通常很高，因此一定要儘可能重複使用 `FabricClient` 執行個體。
 
 ```csharp
 ServicePartitionResolver resolver = new  ServicePartitionResolver(() => CreateMyFabricClient());
 ```
 
-A resolve method is then used to retrieve the address of a service or a service partition for partitioned services.
+解析方法接著可用於擷取服務或已資料分割之服務的服務分割區的位址。
 
 ```csharp
 ServicePartitionResolver resolver = ServicePartitionResolver.GetDefault();
@@ -181,17 +180,17 @@ ResolvedServicePartition partition =
     await resolver.ResolveAsync(new Uri("fabric:/MyApp/MyService"), new ServicePartitionKey(), cancellationToken);
 ```
 
-A service address can be resolved easily using a `ServicePartitionResolver`, but more work is required to ensure the resolved address can be used correctly. Your client will need to detect whether the connection attempt failed because of a transient error and can be retried (e.g., service moved or is temporarily unavailable), or a permanent error (e.g., service was deleted or the requested resource no longer exists). Service instances or replicas can move around from node to node at any time for multiple reasons. The service address resolved through `ServicePartitionResolver` may be stale by the time your client code attempts to connect. In that case again the client will need to re-resolve the address. Providing the previous `ResolvedServicePartition` indicates that the resolver needs to try again rather than simply retrieve a cached address.
+服務位址可以使用 `ServicePartitionResolver` 輕鬆地加以解析，但需要執行更多工作，才能確保解析的位址可正確使用。您的用戶端必須偵測連接嘗試是否因為暫時性錯誤而失敗且可重試 (例如，服務已移動或暫時無法使用)，或因永久錯誤而失敗 (例如，已刪除服務，或要求的資源不存在)。服務執行個體或複本隨時都可基於多重因素在節點間移動。透過 `ServicePartitionResolver` 解析的服務位址，可能會在您的用戶端程式碼嘗試連接之前過時。再回到該情況，用戶端必須重新解析位址。提供先前的 `ResolvedServicePartition`，表示解析程式需要再試一次，而不只是擷取快取的位址。
 
-Typically, the client code need not work with the `ServicePartitionResolver` directly. It is created and passed on to communication client factories in the Reliable Services API. The factories use the resolver internally to generate a client object that can be used to communicate with services.
+通常用戶端程式碼不需要直接搭配 `ServicePartitionResolver` 使用。它已建立並傳遞給 Reliable Services API 中的通訊用戶端 Factory。Factory 會在內部使用解析程式來產生可用來與服務通訊的用戶端物件。
 
-### <a name="communication-clients-and-factories"></a>Communication clients and factories
+### 通訊用戶端和 Factory
 
-The communication factory library implements a typical fault-handling retry pattern that makes retrying connections to resolved service endpoints easier. The factory library provides the retry mechanism while you provide the error handlers.
+通訊 Factory 程式庫會實作典型的錯誤處理重試模式，更容易重試與已解析服務端點的連接。儘管您提供錯誤處理常式，Factory 程式庫還是會提供重試機制。
 
-`ICommunicationClientFactory` defines the base interface implemented by a communication client factory that produces clients that can talk to a Service Fabric service. The implementation of the CommunicationClientFactory depends on the communication stack used by the Service Fabric service where the client wants to communicate. The Reliable Services API provides a `CommunicationClientFactoryBase<TCommunicationClient>`. This provides a base implementation of the `ICommunicationClientFactory` interface and performs tasks that are common to all the communication stacks. (These tasks include using a `ServicePartitionResolver` to determine the service endpoint). Clients usually implement the abstract CommunicationClientFactoryBase class to handle logic that is specific to the communication stack.
+`ICommunicationClientFactory` 定義通訊用戶端 Factory 所實作的基底介面，並產生可以與 Service Fabric 服務通訊的用戶端。CommunicationClientFactory 的實作取決於用戶端想要通訊的 Service Fabric 服務所使用的通訊堆疊。Reliable Services API 提供 `CommunicationClientFactoryBase<TCommunicationClient>`。這樣可以提供 `ICommunicationClientFactory` 介面的基底實作，並執行所有通訊堆疊都通用的工作。(這些工作包括使用 `ServicePartitionResolver` 來判斷服務端點)。用戶端通常會實作 CommunicationClientFactoryBase 抽象類別來處理通訊堆疊專用的邏輯。
 
-The communication client just receives an address and uses it to connect to a service. The client can use whatever protocol it wants.
+通訊用戶端只會接收位址，並使用它來連接到服務。用戶端可以使用它想要的任何通訊協定。
 
 ```csharp
 class MyCommunicationClient : ICommunicationClient
@@ -204,7 +203,7 @@ class MyCommunicationClient : ICommunicationClient
 }
 ```
 
-The client factory is primarily responsible for creating communication clients. For clients that don't maintain a persistent connection, such as an HTTP client, the factory only needs to create and return the client. Other protocols that maintain a persistent connection, such as some binary protocols, should also be validated by the factory to determine whether or not the connection needs to be re-created.  
+用戶端 Factory 主要是負責建立通訊用戶端。對於不會維持持續連線的用戶端 (例如 HTTP 用戶端)，用戶端 Factory 只需建立並傳回用戶端。其他會維持持續連線的通訊協定 (例如某些二進位通訊協定) 也應該由 Factory 驗證，以判斷是否需要重新建立連接。
 
 ```csharp
 public class MyCommunicationClientFactory : CommunicationClientFactoryBase<MyCommunicationClient>
@@ -227,14 +226,14 @@ public class MyCommunicationClientFactory : CommunicationClientFactoryBase<MyCom
 }
 ```
 
-Finally, an exception handler is reponsible for determining what action to take when an exception occurs. Exceptions are categorized into **retriable** and **non retriable**. 
+最後，例外狀況處理常式會負責判斷發生例外狀況時要採取什麼動作。例外狀況會分類為**可重試**和**不可重試**。
 
- - **Non retriable** exceptions simply get re-thrown back to the caller. 
- - **Retriable** exceptions are further categorized into **transient** and **non-transient**.
-  - **Transient** exceptions are those that can simply be retried without re-resolving the service endpoint address. These will include transient network problems or service error responses other than those that indicate the service endpoint address does not exist. 
-  - **Non-transient** exceptions are those that require the service endpoint address to be re-resolved. These include exceptions that indicate the service endpoint could not be reached, indicating the service has moved to a different node. 
+ - **不可重試**的例外狀況只會重新擲回給呼叫端。
+ - **不可重試**的例外狀況會進一步分類為**暫時性**和**非暫時性**。
+  - **暫時性**例外狀況是只會重試而不會重新解析服務端點位址的例外狀況。這類例外狀況包括暫時性網路問題或服務錯誤回應，但不包括指出服務端點位址不存在的錯誤回應。
+  - **非暫時性**例外狀況是需要重新解析服務端點位址的例外狀況。這類例外狀況包括指出無法連上服務端點 (表示服務已移至其他節點) 的例外狀況。
 
-The `TryHandleException` makes a decision about a given exception. If it **does not know** what decisions to make about an exception, it should return **false**. If it **does know** what decision to make, it should set the result accordingly and return **true**.
+`TryHandleException` 會做出有關特定例外狀況的決定。如果它**不知道**要對例外狀況做出哪些決定，則應傳回 **false**。如果它**知道**如何做決定，則應該據以設定結果並傳回 **true**。
  
 ```csharp
 class MyExceptionHandler : IExceptionHandler
@@ -256,8 +255,8 @@ class MyExceptionHandler : IExceptionHandler
     }
 }
 ```
-### <a name="putting-it-all-together"></a>Putting it all together
-With an `ICommunicationClient`, `ICommunicationClientFactory`, and `IExceptionHandler` built around a communication protocol, a `ServicePartitionClient` is wraps it all together and provides the fault-handling and service partition address resolution loop around these components.
+### 總整理
+使用以通訊協定建構的 `ICommunicationClient`、`ICommunicationClientFactory` 和 `IExceptionHandler`，`ServicePartitionClient` 會將它全部包裝在一起，並為這些元件提供錯誤處理和服務分割區位址解析迴圈。
 
 ```csharp
 private MyCommunicationClientFactory myCommunicationClientFactory;
@@ -276,17 +275,13 @@ var result = await myServicePartitionClient.InvokeWithRetryAsync(async (client) 
 
 ```
 
-## <a name="next-steps"></a>Next steps
- - See an example of HTTP communication between services in a [sample project on GitHUb](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/master/Services/WordCount).
+## 後續步驟
+ - 請參閱 [GitHUb 上的範例專案](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/master/Services/WordCount)中服務之間的 HTTP 通訊範例。
 
- - [Remote procedure calls with Reliable Services remoting](service-fabric-reliable-services-communication-remoting.md)
+ - [使用 Reliable Services 遠端服務進行遠端程序呼叫](service-fabric-reliable-services-communication-remoting.md)
 
- - [Web API that uses OWIN in Reliable Services](service-fabric-reliable-services-communication-webapi.md)
+ - [在 Reliable Services 中使用 OWIN 的 Web API](service-fabric-reliable-services-communication-webapi.md)
 
- - [WCF communication by using Reliable Services](service-fabric-reliable-services-communication-wcf.md)
+ - [使用 Reliable Services 的 WCF 通訊](service-fabric-reliable-services-communication-wcf.md)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0713_2016-->

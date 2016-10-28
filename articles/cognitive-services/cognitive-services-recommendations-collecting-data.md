@@ -1,134 +1,130 @@
 <properties
-    pageTitle="Collecting Data to Train your Model: Machine Learning Recommendations API | Microsoft Azure"
-    description="Azure Machine Learning Recommendations - Collecting Data to Train your Model"
-    services="cognitive-services"
-    documentationCenter=""
-    authors="luiscabrer"
-    manager="jhubbard"
-    editor="cgronlun"/>
+	pageTitle="收集資料以訓練您的模型：Machine Learning 建議 API | Microsoft Azure"
+	description="Azure Machine Learning 建議 - 收集資料以訓練您的模型"
+	services="cognitive-services"
+	documentationCenter=""
+	authors="luiscabrer"
+	manager="jhubbard"
+	editor="cgronlun"/>
 
 <tags
-    ms.service="cognitive-services"
-    ms.workload="data-services"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/06/2016"
-    ms.author="luisca"/>
+	ms.service="cognitive-services"
+	ms.workload="data-services"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="09/06/2016"
+	ms.author="luisca"/>
+
+#  收集資料以訓練您的模型 #
+
+建議 API 會從您過去的交易進行學習，以找出應該為特定使用者建立哪些項目。
+
+建立模型之後，您必須先提供兩部分的資訊，才能進行任何訓練︰目錄檔案和使用狀況資料。
+
+>   如果您尚未這樣做，我們建議您先完成[快速入門指南](cognitive-services-recommendations-quick-start.md)。
 
 
-#  <a name="collecting-data-to-train-your-model"></a>Collecting Data to Train your Model #
+## 目錄資料 ##
 
-The Recommendations API learns from your past transactions to find what items should be recommended to a particular user.
+### 目錄檔案格式 ###
 
-After you have created a model, you will need to provide two piece of information before you can do any training: a catalog file, and usage data.
+目錄檔案包含您要提供給客戶之項目的相關資訊。目錄資料應該遵循下列格式：
 
->   If you have not done so already, we encourage you to complete the [quick start guide](cognitive-services-recommendations-quick-start.md).
+- 沒有功能 - `<Item Id>,<Item Name>,<Item Category>[,<Description>]`
 
+- 具有功能 - `<Item Id>,<Item Name>,<Item Category>,[<Description>],<Features list>`
 
-## <a name="catalog-data"></a>Catalog Data ##
+#### 目錄檔案中的範例資料列
 
-### <a name="catalog-file-format"></a>Catalog file format ###
-
-The catalog file contains information about the items you are offering to your customer.
-The catalog data should follow the following format:
-
-- Without features - `<Item Id>,<Item Name>,<Item Category>[,<Description>]`
-
-- With features - `<Item Id>,<Item Name>,<Item Category>,[<Description>],<Features list>`
-
-#### <a name="sample-rows-in-a-catalog-file"></a>Sample Rows in a Catalog File
-
-Without features:
+沒有功能：
 
     AAA04294,Office Language Pack Online DwnLd,Office
     AAA04303,Minecraft Download Game,Games
     C9F00168,Kiruna Flip Cover,Accessories
 
-With features:
+具有功能：
 
     AAA04294,Office Language Pack Online DwnLd,Office,, softwaretype=productivity, compatibility=Windows
     BAB04303,Minecraft DwnLd,Games, softwaretype=gaming,, compatibility=iOS, agegroup=all
     C9F00168,Kiruna Flip Cover,Accessories, compatibility=lumia,, hardwaretype=mobile
 
-#### <a name="format-details"></a>Format details
+#### 格式詳細資料
 
-| Name | Mandatory | Type |  Description |
+| 名稱 | 強制 | 類型 | 說明 |
 |:---|:---|:---|:---|
-| Item Id |Yes | [A-z], [a-z], [0-9], [_] &#40;Underscore&#41;, [-] &#40;Dash&#41;<br> Max length: 50 | Unique identifier of an item. |
-| Item Name | Yes | Any alphanumeric characters<br> Max length: 255 | Item name. |
-| Item Category | Yes | Any alphanumeric characters <br> Max length: 255 | Category to which this item belongs (e.g. Cooking Books, Drama…); can be empty. |
-| Description | No, unless features are present (but can be empty) | Any alphanumeric characters <br> Max length: 4000 | Description of this item. |
-| Features list | No | Any alphanumeric characters <br> Max length: 4000; Max number of features:20 | Comma-separated list of feature name=feature value that can be used to enhance model recommendation.|
+| 項目識別碼 |是 | [A-z]、[a-z]、[0-9]、[\_] &#40;底線&#41;、[-] &#40;虛線&#41;<br> 最大長度：50 | 項目的唯一識別碼。 |
+| 項目名稱 | 是 | 任何英數字元<br> 最大長度：255 | 項目名稱。 |
+| 項目類別 | 是 | 任何英數字元 <br> 最大長度：255 | 此項目所屬類別 (例如烹飪書籍、劇本...) 可以是空的。 |
+| 說明 | 否，除非顯示功能 (但可能是空的) | 任何英數字元 <br> 最大長度：4000 | 此項目的說明。 |
+| 功能清單 | 否 | 任何英數字元 <br> 最大長度：4000；功能數目上限：20 | 以逗號分隔的「功能名稱=功能值」清單，可用來增強模型建議。|
 
-#### <a name="uploading-a-catalog-file"></a>Uploading a Catalog file
+#### 新增目錄檔案
 
-Look at the [API reference](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f316efeda5650db055a3e1) for uploading a catalog file.  
+請參閱可用來上傳目錄檔案的 [API 參考](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f316efeda5650db055a3e1)。
 
-Note that the content of the catalog file should be passed as the request body.
+請注意，目錄檔案的內容應該以要求主體來傳遞。
 
-If you upload several catalog files to the same model with several calls, we will insert only the new catalog items. Existing items will remain with the original values. You cannot update catalog data by using this method.
+如果您將數個目錄檔案上傳至具有多個呼叫的相同模型，我們只會插入新的目錄項目。現有的項目會保留原始值。您無法使用這個方法更新目錄資料。
 
->   Note: The maximum file size is 200MB.
->   The maximum number of items in the catalog supported is 100,000 items.
-
-
-## <a name="why-add-features-to-the-catalog?"></a>Why add features to the catalog?
-
-The recommendations engine creates a statistical model that tells you what items are likely to be liked or purchased by a customer. When you have a new product that has never been interacted with it is not possible to create a model on co-occurrences alone. Let's say you start offering a new "children's violin" in your store, since you have never sold that violin before you cannot tell what other items to recommend with that violin.
-
-That said, if the engine knows information about that violin (i.e. It's a musical instrument, it is for children ages 7-10, it is not an expensive violin, etc.), then the engine can learn from other products with similar features. For instance, you have sold violin's in the past and usually people that buy violins tend to buy classical music CDs and sheet music stands.  The system can find these connections between the features and provide recommendations based on the features while your new violin has little usage.
-
-Features are imported as part of the catalog data, and then their rank (or the importance of the feature in the model) is associated when a rank build is done. Feature rank can change according to the pattern of usage data and type of items. But for consistent usage/items, the rank should have only small fluctuations. The rank of features is a non-negative number. The number 0 means that the feature was not ranked (happens if you invoke this API prior to the completion of the first rank build). The date at which the rank was attributed is called the score freshness.
+>   注意：檔案大小上限為 200 MB。在支援的目錄中，項目數目上限是 100,000 個項目。
 
 
-###<a name="features-are-categorical"></a>Features are Categorical
+## 為什麼要將功能加入至目錄？
 
-This means that you should create features that resemble a category. For instance, price=9.34 is not a categorical feature. On the other hand, a feature like priceRange=Under5Dollars is a categorical feature. Another common mistake is to use the name of the item as a feature. This would cause the name of an item to be unique so it would not describe a category. Make sure the features represent categories of items.
+建議引擎會建立統計模型，告知您客戶可能喜歡或可能購買的項目。當您有未曾與其互動過的新產品時，就無法根據共同出現的次數單獨建立模型。假設您在商店中開始提供新的「孩童用的小提琴」，由於您先前未曾銷售過該小提琴，因此無法告知是否有任何其他項目可與該小提琴一起建議。
 
+也就是說，如果引擎知道關於該小提琴的資訊 (例如，它是一種樂器、它適用於年齡 7-10 歲的孩童、這把小提琴的價格不高等)，則引擎可以從其他具有類似功能的產品中進行學習。例如，您過去曾銷售過小提琴，而購買小提琴的人通常都會傾向購買古典樂 CD 和樂譜架。儘管新小提琴的使用狀況很低，但系統可以在功能之間找到這些關聯，並根據功能提供建議。
 
-###<a name="how-many/which-features-should-i-use?"></a>How many/which features should I use?
-
-
-Ultimately the Recommendations build supports building a model with up to 20 features. You could assign more than 20 features to the items in your catalog, but you are expected to do a ranking build and pick only the features that rank high. (A feature with a rank of 2.0 or more is a really good feature to use!). 
+匯入功能做為目錄資料的一部分，然後在排名組建完成時建立與其排名 (或模型中功能的重要性) 的關聯。功能排名可根據使用狀況資料和項目類型而變更。但是對於一致的使用量/項目，排名只能有小幅的起伏。功能的排名為非負數的數字。編號 0 表示未排名功能 (如果您在第一個排名組建完成之前叫用這個 API，就會發生這個情形)。配置排名的日期稱為分數有效時間。
 
 
-###<a name="when-are-features-actually-used?"></a>When are features actually used?
+###功能具有類別性質
 
-Features are used by the model when there is not enough transaction data to provide recommendations on transaction information alone. So features will have the greatest impact on “cold items” – items with few transactions. If all your items have sufficient transaction information you may not need to enrich your model with features.
+這表示您應該建立類似於類別的功能。例如，price=9.34 不是類別功能。另一方面，priceRange=Under5Dollars 之類的功能則是類別功能。另一個常見錯誤是使用項目名稱做為功能。這會導致項目名稱具有唯一性，因此不會描述類別。請確定功能代表項目的類別。
 
 
-###<a name="using-product-features"></a>Using product features
+###應該使用多少功能以及哪些功能？
 
-To use features as part of your build you need to:
 
-1. Make sure your catalog has features when you upload it.
+Recommendations 組建最終會支援建置具有最多 20 個功能的模型。您可以對目錄中的項目指派超過 20 個功能，但您應該進行排名組建，並只挑選高排名的功能 (排名 2.0 以上的功能是真的可使用的好功能)。
 
-2. Trigger a ranking build. This will do the analysis on the importance/rank of the features.
 
-3. Trigger a recommendations build, setting the following build parameters: Set useFeaturesInModel to true, allowColdItemPlacement to true, and modelingFeatureList should be set to the comma separated list of features that you want to use to enhance your model. See [Recommendations build type parameters](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3d0) for more information.
+###何時會實際使用功能？
 
+當沒有足夠的交易資料可單獨提供有關交易資訊的建議時，模型就會使用功能。因此功能對「冷項目」具有最大影響 (冷項目是只具有少數交易的項目)。如果所有項目都有足夠的交易資訊，您可能就不需要使用功能來擴充模型。
+
+
+###使用產品功能
+
+若要使用功能做為組建的一部分，您需要：
+
+1. 當您上傳目錄時，確定您的目錄具有功能。
+
+2. 觸發排名組建。這將會針對功能的重要性/排名進行分析。
+
+3. 觸發建議組建，設定下列組建參數︰將 useFeaturesInModel 設為 true、將 allowColdItemPlacement 設為 true，並且應將 modelingFeatureList 設為以逗號分隔的功能清單，而您想要使用此清單來增強您的模組。如需詳細資訊，請參閱[建議組建類型參數](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3d0)。
 
 
 
 
-## <a name="usage-data"></a>Usage Data ##
-A usage file contains information about how those items are used, or the transactions from your business.
 
-#### <a name="usage-format-details"></a>Usage Format details
-A usage file is a CSV (comma separated value) file where each row in a usage file represents an interaction between a user and an item. Each row is formatted as follows:<br>
-`<User Id>,<Item Id>,<Time>,[<Event>]`
+## 使用狀況資料 ##
+使用狀況檔案包含這些項目的使用方式，或者您商務交易的相關資訊。
+
+#### 使用狀況格式詳細資料
+使用狀況檔案是一個 CSV (逗號分隔值) 檔案，使用狀況檔案中的每一列都代表使用者和項目之間的互動。每一列的格式如下：<br>`<User Id>,<Item Id>,<Time>,[<Event>]`
 
 
 
-| Name  | Mandatory | Type | Description
+| 名稱 | 強制 | 類型 | 說明
 |-------|------------|------|---------------
-|User Id|         Yes|[A-z], [a-z], [0-9], [_] &#40;Underscore&#41;, [-] &#40;Dash&#41;<br> Max length: 255 |Unique identifier of a user.
-|Item Id|Yes|[A-z], [a-z], [0-9], [&#95;] &#40;Underscore&#41;, [-] &#40;Dash&#41;<br> Max length: 50|Unique identifier of an item.
-|Time|Yes|Date in format: YYYY/MM/DDTHH:MM:SS (e.g. 2013/06/20T10:00:00)|Time of data.
-|Event|No | One of the following:<br>• Click<br>• RecommendationClick<br>•  AddShopCart<br>• RemoveShopCart<br>• Purchase| The type of transaction. |
+|使用者識別碼| 是|[A-z]、[a-z]、[0-9]、[\_] &#40;底線&#41;、[-] &#40;虛線&#41;<br> 最大長度：255 |使用者的唯一識別碼。
+|項目識別碼|是|[A-z]、[a-z]、[0-9]、[&#95;] &#40;底線&#41;、[-] &#40;虛線&#41;<br> 最大長度：50|項目的唯一識別碼。
+|時間|是|日期格式：YYYY/MM/DDTHH:MM:SS (例如 2013/06/20T10:00:00)|資料的時間。
+|Event|否 | 下列其中之一︰<br>• 按一下<br>• RecommendationClick<br>• AddShopCart<br>• RemoveShopCart<br>• 購買| 交易的類型。 |
 
-#### <a name="sample-rows-in-a-usage-file"></a>Sample Rows in a Usage File
+#### 使用狀況檔案中的範例資料列
 
     00037FFEA61FCA16,288186200,2015/08/04T11:02:52,Purchase
     0003BFFDD4C2148C,297833400,2015/08/04T11:02:50,Purchase
@@ -137,28 +133,22 @@ A usage file is a CSV (comma separated value) file where each row in a usage fil
     0003BFFDD4C20B63,297833400,2015/08/04T11:02:12,Purchase
     00037FFEC8567FB8,297833400,2015/08/04T11:02:04,Purchase
 
-#### <a name="uploading-a-usage-file"></a>Uploading a usage file
+#### 上傳使用狀況檔案
 
-Look at the [API reference](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f316efeda5650db055a3e2) for uploading usage files.
-Note that you need to pass the content of the usage file as the body of the HTTP call.
+請參閱可用來上傳使用狀況檔案的 [API 參考](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f316efeda5650db055a3e2)。請注意，您必須將使用狀況檔案的內容做為 HTTP 呼叫的主體來傳遞。
 
->  Note:
+>  注意：
 
->  Maximum file size: 200MB. You may upload several usage files.
+>  檔案大小上限：200 MB。您可能會上傳數個使用狀況檔案。
 
->  You need to upload a catalog file before you start adding usage data to your model. Only items in the catalog file will be used during the training phase. All other items will be ignored.
+>  您需要先上傳目錄檔案，然後才能開始將使用狀況資料加入至模型。在訓練階段期間，只會使用目錄檔案中的項目。所有其他項目都會被忽略。
 
-## <a name="how-much-data-do-you-need?"></a>How much data do you need?
+## 您需要多少資料？
 
-The quality of your model is heavily dependent on the quality and quantity of your data.
-The system learns when users buy different items (We call this co-occurrences). For FBT builds, it is also important to know which items are purchased in the same transactions. 
+模型品質非常依賴資料的品質和數量。系統會在使用者購買不同項目時進行學習 (我們稱之為共同出現次數)。針對 FBT 組建，也請務必了解在相同交易中購買了哪些項目。
 
-A good rule of thumb is to have most items be in 20 transactions or more, so if you had 10,000 items in your catalog, we would recommend that you have at least 20 times that number of transactions or about 200,000 transactions. Once again, this is a rule of thumb. You will need to experiment with your data.
+好的經驗法則是讓大部分的項目位於 20 個以上的交易中，因此，如果您的類別目錄中有 10,000 個項目，我們建議您擁有的至少是該交易數目的 20 倍或大約 200,000 個交易。再次強調，此為經驗法則。您必須使用您的資料來試驗。
 
-Once you have created a model, you can perform an [offline evaluation](cognitive-services-recommendations-buildtypes.md) to check how well your model is likely to perform.
+一旦建立模型之後，就可以執行[離線評估](cognitive-services-recommendations-buildtypes.md)來檢查您的模型可能執行的程度。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0914_2016-->

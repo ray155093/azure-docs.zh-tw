@@ -1,6 +1,6 @@
 <properties 
-   pageTitle="Azure Mobile Engagement User Interface - Dashboard" 
-   description="Learn how to view and manage charts of data about your application using Azure Mobile Engagement" 
+   pageTitle="Azure Mobile Engagement 使用者介面 - 儀表板" 
+   description="了解如何使用 Azure Mobile Engagement 檢視和管理應用程式的資料圖表" 
    services="mobile-engagement" 
    documentationCenter="" 
    authors="piyushjo" 
@@ -16,21 +16,20 @@
    ms.date="08/19/2016"
    ms.author="piyushjo"/>
 
+# 如何檢視和管理應用程式的資料圖表
+UI 的 [儀表板] 區段可讓客戶藉由提供想要的確切資訊，而不是在 [分析] 區段中搜尋，來建立自訂的圖表以節省時間。儀表板會顯示在指定的一段時間內 (小時/日/週/月/自訂)，應用程式和不同應用程式版本的 [作用中使用者計數] 趨勢。顯示的趨勢是以過去 7 天為基礎。
 
-# <a name="how-to-view-and-manage-charts-of-data-about-your-application"></a>How to view and manage charts of data about your application
-The Dashboard section of the UI allows customers to create customized charts to maximize their time by providing the exact information they want instead of searching for it in the analytics section. A dashboard shows the trends of your application and the Active User Counts for the different versions of your application during a given time (hour/day/week/month/customized). The trends shown are based on the last 7 days.
+### 另請參閱
+-  [疑難排解指南 - 分析][Link 21]
 
-### <a name="see-also"></a>See also
--  [Troubleshooting Guide - Analytics][Link 21]
-
-## <a name="dashboard"></a>Dashboard
-- You can add charts to an empty dashboard by choosing the "Send to dashboard" action from the gear menu of any chart in the Analytics section of the UI that you'd like to see on a dashboard.
+## 儀表板
+- 您可以在 UI 的 [分析] 區段中，於任何圖表的齒輪功能表選擇 [傳送至儀表板] 動作，將想要在儀表板上看到的圖表新增至空白儀表板。
  
-## <a name="+-(add-a-dashboard)"></a>+ (Add a Dashboard)
-- You can use the "+" ribbon menu item to create a new dashboard that will show on the ribbon menu.
+## + (新增儀表板)
+- 您可以使用 "+" 功能區功能表項目，建立顯示在功能區功能表上的新儀表板。
  
-## <a name="gear-menu"></a>Gear Menu
-- You can use the gear menu of a dashboard to Delete, Rename, Share, or Schedule (E-mail Reception) of your dashboard. You can use the Schedule option to define the schedule at which you would like to receive your custom dashboard by email. You can schedule to receive it daily, weekly, or monthly. You can choose the time of the day, and the day of the week, or day of the month when you would like to receive the e-mail. Your e-mail address and time zone are based on the settings you have configured in the My Account section of the UI.
+## 齒輪功能表
+- 您可以使用儀表板的齒輪功能表來刪除、重新命名、共用或排程 (以電子郵件接收) 儀表板。您可以使用 [排程] 選項來定義想要透過電子郵件接收自訂儀表板的排程。您可以排程每日、每週或每個月接收它。您可以選擇要在一天的幾點、一週的星期幾或一個月的哪一天接收電子郵件。您的電子郵件地址和時區會取決於您在 UI 上 [我的帳戶] 區段中的設定。
  
  ![dashboard1][34]
 
@@ -130,8 +129,4 @@ The Dashboard section of the UI allows customers to create customized charts to 
 [Link 33]: ../mobile-engagement-how-tos-web-view.md
  
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0824_2016-->

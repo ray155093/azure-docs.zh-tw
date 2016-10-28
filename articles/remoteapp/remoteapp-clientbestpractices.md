@@ -1,7 +1,7 @@
 
 <properties
-    pageTitle="Best practices for Azure RemoteApp clients | Microsoft Azure"
-    description="Learn about best practices for using the RemoteApp clients"
+    pageTitle="Azure RemoteApp 用戶端的最佳作法 | Microsoft Azure"
+    description="了解有關使用 RemoteApp 用戶端的最佳作法"
     services="remoteapp"
     documentationCenter=""
     authors="lizap"
@@ -18,20 +18,15 @@
 
 
 
-
-# <a name="best-practices-for-azure-remoteapp-clients"></a>Best practices for Azure RemoteApp clients
+# Azure RemoteApp 用戶端的最佳作法
 
 > [AZURE.IMPORTANT]
-> Azure RemoteApp is being discontinued. Read the [announcement](https://go.microsoft.com/fwlink/?linkid=821148) for details.
+Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
 
-The following information can help you use Azure RemoteApp clients:
+下列資訊可幫助您使用 Azure RemoteApp 用戶端：
 
-- Always use the latest client. This ensures that the client version you are running has the latest bug fixes, improvements and features. You might need to sign up to automatically receive updates for the client in the appropriate Store.
+- 請一律使用最新的用戶端。這樣才能確保您執行的用戶端版本有最新的錯誤修正、改進及功能。您必須登入，才能在適當的市集中自動接收用戶端的更新。
 
-- RemoteApp will automatically log you off if you are inactive for a certain period of time. In order to prevent data loss, we recommend closing your applications when you finish using the service.
+- 如果您有段時間都沒有活動，RemoteApp 就會自動將您登出。為了防止資料遺失，建議您完成使用服務時，就將您的應用程式關閉。
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

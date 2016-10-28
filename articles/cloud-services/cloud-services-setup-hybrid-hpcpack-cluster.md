@@ -1,314 +1,313 @@
 <properties
-    pageTitle="Set up a hybrid HPC cluster with Microsoft HPC Pack | Microsoft Azure"
-    description="Learn how to use Microsoft HPC Pack and Azure to set up a small, hybrid high performance computing (HPC) cluster"
-    services="cloud-services"
-    documentationCenter=""
-    authors="dlepow"
-    manager="timlt"
-    editor=""
-    tags="azure-service-management,hpc-pack"/>
+	pageTitle="使用 Microsoft HPC Pack 設定混合式運算叢集 | Microsoft Azure"
+	description="了解如何使用 Microsoft HPC Pack 和 Azure 設定一個小型的混合式高效能運算 (HPC) 叢集"
+	services="cloud-services"
+	documentationCenter=""
+	authors="dlepow"
+	manager="timlt"
+	editor=""
+	tags="azure-service-management,hpc-pack"/>
 
 <tags
-    ms.service="cloud-services"
-    ms.workload="big-compute"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="07/14/2016"
-    ms.author="danlep"/>
+	ms.service="cloud-services"
+	ms.workload="big-compute"
+	ms.tgt_pltfrm="na"
+	ms.devlang="na"
+	ms.topic="article"
+	ms.date="07/14/2016"
+	ms.author="danlep"/>
 
 
+# 使用 Microsoft HPC Pack 和隨選 Azure 計算節點設定混合式高效能計算 (HPC) 叢集
 
-# <a name="set-up-a-hybrid-high-performance-computing-(hpc)-cluster-with-microsoft-hpc-pack-and-on-demand-azure-compute-nodes"></a>Set up a hybrid high performance computing (HPC) cluster with Microsoft HPC Pack and on-demand Azure compute nodes
+使用 Microsoft HPC Pack 2012 R2 和 Azure 設定小型的混合式高效能運算 (HPC) 叢集。此叢集將包含一個內部部署的前端節點 (一部執行 Windows Server 作業系統和 HPC Pack 的電腦)，和一些您視需要部署在 Azure 雲端服務中作為背景工作角色執行個體的計算節點。然後，您便可以在混合式叢集上執行計算作業。
 
-Use Microsoft HPC Pack 2012 R2 and Azure to set up a small, hybrid high performance computing (HPC) cluster. The cluster will consist of an on-premises head node (a computer running the Windows Server operating system and HPC Pack) and some compute nodes you deploy on-demand as worker role instances in an Azure cloud service. You can then run compute jobs on the hybrid cluster.
+![Hybrid HPC cluster][Overview]
 
-![Hybrid HPC cluster][Overview] 
+本教學課程示範一個有時稱為「將量擴大到雲端」的方法，此方法使用 Azure 中可調整的隨選計算資源來執行大量計算的應用程式。
 
-This tutorial shows one approach, sometimes called cluster "burst to the cloud," to use scalable, on-demand compute resources in Azure to run compute-intensive applications.
+本教學課程假設您先前沒有使用計算叢集或 HPC Pack 的經驗。其只是要協助您快速部署一個示範性質的混合式計算叢集。如需有關在生產環境中以較大規模部署混合式 HPC Pack 叢集的考量和步驟，請參閱[詳細指引](http://go.microsoft.com/fwlink/p/?LinkID=200493) (英文)。如需使用 HPC Pack 的其他案例，包括 Azure 虛擬機器中的自動化叢集部署，請參閱[使用 Microsoft HPC Pack 在 Azure 中建立及管理 Windows 高效能運算 (HPC) 叢集的選項](../virtual-machines/virtual-machines-windows-hpcpack-cluster-options.md)。
 
-This tutorial assumes no prior experience with compute clusters or HPC Pack. It is intended only to help you deploy a hybrid compute cluster quickly for demonstration purposes. For considerations and steps to deploy a hybrid HPC Pack cluster at greater scale in a production environment, see the [detailed guidance](http://go.microsoft.com/fwlink/p/?LinkID=200493). For other scenarios with HPC Pack, including automated cluster deployment in Azure virtual machines, see [HPC cluster options with Microsoft HPC Pack in Azure](../virtual-machines/virtual-machines-windows-hpcpack-cluster-options.md).
 
+## 必要條件
 
-## <a name="prerequisites"></a>Prerequisites
+* **Azure 訂用帳戶** - 如果您沒有 Azure 訂用帳戶，只需要幾分鐘就可以建立[免費帳戶](https://azure.microsoft.com/free/)。
 
-* **Azure subscription** - If you don't have an Azure subscription, you can create a [free account](https://azure.microsoft.com/free/) in just a couple of minutes.
+* **一部執行 Windows Server 2012 R2 或 Windows Server 2012 的內部部署電腦** - 這部電腦將作為 HPC 叢集的前端節點。如果您目前執行的不是 Windows Server，可以下載並安裝[評估版](https://www.microsoft.com/evalcenter/evaluate-windows-server-2012-r2)。
 
-* **An on-premises computer running Windows Server 2012 R2 or Windows Server 2012** - This computer will be the head node of the HPC cluster. If you aren't already running Windows Server, you can download and install an [evaluation version](https://www.microsoft.com/evalcenter/evaluate-windows-server-2012-r2).
+	* 電腦必須加入 Active Directory 網域。若為全新安裝 Windows Server 的測試案例，您可以加入 Active Directory 網域服務伺服器角色，並將前端節點電腦升級為新的網域樹系的網域控制站 (請參閱 Windows Server 的文件)。
 
-    * The computer must be joined to an Active Directory domain. For a test scenario with a fresh installation of Windows Server, you can add the Active Directory Domain Services server role and promote the head node computer as a domain controller in a new domain forest (see the documentation for Windows Server).
+	* 為了支援 HPC Pack，作業系統必須以下列其中一種語言安裝：英文、日文或簡體中心。
 
-    * To support HPC Pack, the operating system must be installed in one of these languages: English, Japanese, or Chinese (Simplified).
+	* 確認已安裝重要及重大更新。
 
-    * Verify that important and critical updates are installed.
+* **HPC Pack 2012 R2** - [下載](http://go.microsoft.com/fwlink/p/?linkid=328024)最新版本的免費版安裝套件，並將檔案複製到前端節點電腦或網路位置。選擇與安裝的 Windows Server 語言相同語言的安裝檔。
 
-* **HPC Pack 2012 R2** - [Download](http://go.microsoft.com/fwlink/p/?linkid=328024) the installation package for the latest version free of charge and copy the files to the head node computer or to a network location. Choose installation files in the same language as your installation of Windows Server.
+* **網域帳戶** - 必須在前端節點上以本機系統管理員權限設定此帳戶，才能安裝 HPC Pack。
 
-* **Domain account** - This account must be configured with local Administrator permissions on the head node to install HPC Pack.
+* 從前端節點至 Azure 的**連接埠 443 上的 TCP 連線**。
 
-* **TCP connectivity on port 443** from the head node to Azure.
+## 在前端節點安裝 HPC Pack
 
-## <a name="install-hpc-pack-on-the-head-node"></a>Install HPC Pack on the head node
+您需先在將作為叢集前端節點、執行 Windows Server 的內部部署電腦上安裝 Microsoft HPC Pack。
 
-You first install Microsoft HPC Pack on your on-premises computer running Windows Server that will be the head node of the cluster.
+1. 使用具備本機系統管理員權限的網域帳戶登入前端節點。
 
-1. Log on to the head node by using a domain account that has local Administrator permissions.
+2. 執行 HPC Pack 安裝檔中的 Setup.exe 來啟動 HPC Pack 安裝精靈。
 
-2. Start the HPC Pack Installation Wizard by running Setup.exe from the HPC Pack installation files.
+3. 在 [HPC Pack 2012 R2 Setup] 畫面上，按一下 [New installation or add new features to an existing installation]。
 
-3. On the **HPC Pack 2012 R2 Setup** screen, click **New installation or add new features to an existing installation**.
+	![HPC Pack 2012 Setup][install_hpc1]
 
-    ![HPC Pack 2012 Setup][install_hpc1]
+4. 在 [Microsoft Software User Agreement] 頁面上，按 [下一步]。
 
-4. On the **Microsoft Software User Agreement page**, click **Next**.
+5. 在 [選取安裝類型] 頁面上，按一下 [Create a new HPC cluster by creating a head node]，然後按 [下一步]。
 
-5. On the **Select Installation Type** page, click **Create a new HPC cluster by creating a head node**, and then click **Next**.
+	![Select Installation Type][install_hpc2]
 
-    ![Select Installation Type][install_hpc2]
+6. 精靈會執行數項安裝前的測試。如果所有測試皆通過，請在 [安裝規則] 頁面上按 [下一步]。否則，請檢閱系統提供的資訊，並在您的環境中進行任何必要的變更。然後重新執行測試，或是視需要重新啟動安裝精靈。
 
-6. The wizard runs several pre-installation tests. Click **Next** on the **Installation Rules** page if all tests pass. Otherwise, review the information provided and make any necessary changes in your environment. Then run the tests again or if necessary start the Installation Wizard again.
+	![Installation Rules][install_hpc3]
 
-    ![Installation Rules][install_hpc3]
+7. 在 [HPC DB Configuration] 頁面上，確定已為所有 HPC 資料庫選取 [前端節點]，然後按 [下一步]。
 
-7. On the **HPC DB Configuration** page, make sure **Head Node** is selected for all HPC databases, and then click **Next**.
+	![DB Configuration][install_hpc4]
 
-    ![DB Configuration][install_hpc4]
+8. 接受精靈剩餘頁面上的預設選項。在 [安裝必要元件] 頁面上，按一下 [安裝]。
 
-8. Accept default selections on the remaining pages of the wizard. On the **Install Required Components** page, click **Install**.
+	![安裝][install_hpc6]
 
-    ![Install][install_hpc6]
+9. 安裝完成之後，請取消核取 [Start HPC Cluster Manager]，然後按一下 [完成]。(您將在稍後的步驟中啟動 HPC 叢集管理員。)
 
-9. After the installation completes, uncheck **Start HPC Cluster Manager** and then click **Finish**. (You will start HPC Cluster Manager in a later step.)
+	![完成][install_hpc7]
 
-    ![Finish][install_hpc7]
+## 準備 Azure 訂閱
+使用 [Azure 傳統入口網站](https://manage.windowsazure.com)對您的 Azure 訂用帳戶執行下列步驟。您必須執行這些步驟，稍後才能從內部部署前端節點部署 Azure 節點。詳細程序位於後續幾節。
 
-## <a name="prepare-the-azure-subscription"></a>Prepare the Azure subscription
-Use the [Azure classic portal](https://manage.windowsazure.com) to perform the following steps with your Azure subscription. These are needed so you can later deploy Azure nodes from the on-premises head node. Detailed procedures are in the next sections.
+- 上傳管理憑證 (前端節點與 Azure 服務之間的安全連線所需)
 
-- Upload a management certificate (needed for secure connections between the head node and the Azure services)
+- 建立要在其中執行 Azure 節點 (背景工作角色執行個體) 的 Azure 雲端服務
 
-- Create an Azure cloud service in which Azure nodes (worker role instances) will run
+- 建立 Azure 儲存體帳戶
 
-- Create an Azure storage account
+	>[AZURE.NOTE]請一併記下您的 Azure 訂用帳戶識別碼，稍後將需要用到。按一下 [設定] > [訂用帳戶]，即可在傳統入口網站中找到此項目。
 
-    >[AZURE.NOTE]Also make a note of your Azure subscription ID, which you will need later. Find this in the classic portal by clicking **Settings** > **Subscriptions**.
+### 上傳預設管理憑證
+HPC Pack 會在前端節點安裝一個自我簽署憑證 (稱為 Default Microsoft HPC Azure Management 憑證)，您可以將它上傳作為 Azure 管理憑證。這個憑證是為了方便進行測試及概念證明部署而提供。
 
-### <a name="upload-the-default-management-certificate"></a>Upload the default management certificate
-HPC Pack installs a self-signed certificate on the head node, called the Default Microsoft HPC Azure Management certificate, that you can upload as an Azure management certificate. This certificate is provided for testing purposes and proof-of-concept deployments.
+1. 從前端節點電腦登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
 
-1. From the head node computer, sign in to the [Azure classic portal](https://manage.windowsazure.com).
+2. 按一下 [設定] > [管理憑證]。
 
-2. Click **Settings** > **Management Certificates**.
+3. 在命令列上，按一下 [上傳]。
 
-3. On the command bar, click **Upload**.
+	![Certificate Settings][upload_cert1]
 
-    ![Certificate Settings][upload_cert1]
+4. 瀏覽前端節點以找出 C:\\Program Files\\Microsoft HPC Pack 2012\\Bin\\hpccert.cer 檔案。然後按一下 [**檢查**] 按鈕。
 
-4. Browse on the head node for the file C:\Program Files\Microsoft HPC Pack 2012\Bin\hpccert.cer. Then, click the **Check** button.
+	![Upload Certificate][install_hpc10]
 
-    ![Upload Certificate][install_hpc10]
+您將在管理憑證清單中看到 **Default HPC Azure Management**。
 
-You will see **Default HPC Azure Management** in the list of management certificates.
+### 建立 Azure 雲端服務
 
-### <a name="create-an-azure-cloud-service"></a>Create an Azure cloud service
+>[AZURE.NOTE]為了獲得最佳效能，請在稍後的步驟中，將雲端服務和儲存體帳戶建立在同一個地理區域中。
 
->[AZURE.NOTE]For best performance, create the cloud service and the storage account (in a later step) in the same geographic region.
+1. 在傳統入口網站的命令列上，按一下 [新增]。
 
-1. In the classic portal, on the command bar, click **New**.
+2. 按一下 [計算] > [雲端服務] > [快速建立]。
 
-2. Click **Compute** > **Cloud Service** > **Quick Create**.
+3. 輸入雲端服務的 URL，然後按一下 [建立雲端服務]。
 
-3. Type a URL for the cloud service, and then click **Create Cloud Service**.
+	![Create Service][createservice1]
 
-    ![Create Service][createservice1]
+### 建立 Azure 儲存體帳戶
 
-### <a name="create-an-azure-storage-account"></a>Create an Azure storage account
+1. 在傳統入口網站的命令列上，按一下 [新增]。
 
-1. In the classic portal, on the command bar, click **New**.
+2. 依序按一下 [資料服務] > [儲存體] > [快速建立]。
 
-2. Click **Data Services** > **Storage** > **Quick Create**.
+3. 輸入帳戶的 URL，然後按一下 [建立儲存體帳戶]。
 
-3. Type a URL for the account, and then click **Create Storage Account**.
+	![Create Storage][createstorage1]
 
-    ![Create Storage][createstorage1]
+## 設定前端節點
 
-## <a name="configure-the-head-node"></a>Configure the head node
+若要使用 HPC 叢集管理員來部署 Azure 節點及提交工作，請先執行一些必要的叢集設定步驟。
 
-To use HPC Cluster Manager to deploy Azure nodes and to submit jobs, first perform some required cluster configuration steps.
+1. 在前端節點上，啟動 HPC 叢集管理員。如果顯示 [Select Head Node] 對話方塊，請按一下 [本機電腦]。[Deployment To-do List] 隨即出現。
 
-1. On the head node, start HPC Cluster Manager. If the **Select Head Node** dialog box appears, click **Local Computer**. The **Deployment To-do List** appears.
+2. 在 [Required deployment tasks] 底下，按一下 [Configure your network]。
 
-2. Under **Required deployment tasks**, click **Configure your network**.
+	![Configure Network][config_hpc2]
 
-    ![Configure Network][config_hpc2]
+3. 在 [網路設定精靈] 中，選取 [All nodes only on an enterprise network] \(拓撲 5)。
 
-3. In the Network Configuration Wizard, select **All nodes only on an enterprise network** (Topology 5).
+	![Topology 5][config_hpc3]
 
-    ![Topology 5][config_hpc3]
+	>[AZURE.NOTE]這是示範性質的最簡單組態，因為前端節點只需要一張網路介面卡，即可連線到 Active Directory 和網際網路。本教學課程並未涵蓋需要更多網路的叢集案例。
 
-    >[AZURE.NOTE]This is the simplest configuration for demonstration purposes, because the head node only needs a single network adapter to connect to Active Directory and the Internet. This tutorial does not cover cluster scenarios that require additional networks.
+4. 按 [下一步] 以接受精靈剩餘頁面上的預設值。然後，在 [檢閱] 索引標籤上，按一下 [設定] 以完成網路設定。
 
-4. Click **Next** to accept default values on the remaining pages of the wizard. Then, on the **Review** tab, click **Configure** to complete the network configuration.
+5. 在 [Deployment To-do List] 中，按一下 [Provide installation credentials]。
 
-5. In the **Deployment To-do List**, click **Provide installation credentials**.
+6. 在 [Installation Credentials] 對話方塊中，輸入您用來安裝 HPC Pack 之網域帳戶的認證。然後按一下 [確定]。
 
-6. In the **Installation Credentials** dialog box, type the credentials of the domain account that you used to install HPC Pack. Then click **OK**.
+	![Installation Credentials][config_hpc6]
 
-    ![Installation Credentials][config_hpc6]
+	>[AZURE.NOTE]HPC Pack 服務只會將安裝認證用於部署已加入網域的計算節點。您在本教學課程中新增的 Azure 節點未加入網域。
 
-    >[AZURE.NOTE]HPC Pack services only use installation credentials to deploy domain-joined compute nodes. The Azure nodes you add in this tutorial are not domain-joined.
+7. 在 [Deployment To-do List] 中，按一下 [Configure the naming of new nodes]。
 
-7. In the **Deployment To-do List**, click **Configure the naming of new nodes**.
+8. 在 [Specify Node Naming Series] 對話方塊中，接受預設的命名序列，然後按一下 [確定]。
 
-8. In the **Specify Node Naming Series** dialog box, accept the default naming series and click **OK**.
+	![Node Naming][config_hpc8]
 
-    ![Node Naming][config_hpc8]
+	>[AZURE.NOTE]命名序列只會為加入網域的計算節點產生名稱。Azure 背景工作節點的名稱是自動產生的。
 
-    >[AZURE.NOTE]The naming series only generates names for domain-joined compute nodes. Azure worker nodes are named automatically.
+9. 在 [Deployment To-do List] 中，按一下 [Create a node template]。您將使用節點範本將 Azure 節點新增至叢集。
 
-9. In the **Deployment To-do List**, click **Create a node template**. You will use the node template to add Azure nodes to the cluster.
+10. 在 [Create Node Template Wizard] 中，執行下列動作：
 
-10. In the Create Node Template Wizard, do the following:
+	a.在 [**選擇節點範本類型**] 頁面上，按一下 [**Azure 節點範本**]，然後按 [**下一步**]。
 
-    a. On the **Choose Node Template Type** page, click **Azure node template**, and then click **Next**.
+	![Node Template][config_hpc10]
 
-    ![Node Template][config_hpc10]
+	b.按 [**下一步**] 以接受預設範本名稱。
 
-    b. Click **Next** to accept the default template name.
+	c.在 [提供訂用帳戶資訊] 頁面上，輸入您的 Azure 訂用帳戶識別碼 (可從您的 Azure 帳戶資訊取得)。然後，在 [管理憑證] 中，按一下 [瀏覽] 並選取 [Default HPC Azure Management]。 然後按 [下一步]。
 
-    c. On the **Provide Subscription Information** page, enter your Azure subscription ID (available in your Azure account information). Then, in **Management certificate**, click **Browse** and select **Default HPC Azure Management.** Then click **Next**.
+	![Node Template][config_hpc12]
 
-    ![Node Template][config_hpc12]
+	d.在 [**提供服務資訊**] 頁面上，選取您在先前步驟中建立的雲端服務和儲存體帳戶。然後按 [下一步]。
 
-    d. On the **Provide Service Information** page, select the cloud service and the storage account that you created in a previous step. Then click **Next**.
+	![Node Template][config_hpc13]
 
-    ![Node Template][config_hpc13]
+	e.按 [下一步] 以接受精靈剩餘頁面上的預設值。然後，在 [檢閱] 索引標籤上，按一下 [建立] 以建立節點範本。
 
-    e. Click **Next** to accept default values on the remaining pages of the wizard. Then, on the **Review** tab, click **Create** to create the node template.
+	>[AZURE.NOTE]根據預設，Azure 節點範本包含可讓您使用 HPC 叢集管理員手動啟動 (佈建) 和停止節點的設定。您可以選擇性地設定排程來自動啟動和停止 Azure 節點。
 
-    >[AZURE.NOTE]By default, the Azure node template includes settings for you to start (provision) and stop the nodes manually, using HPC Cluster Manager. You can optionally configure a schedule to start and stop the Azure nodes automatically.
+## 將 Azure 節點新增至叢集
 
-## <a name="add-azure-nodes-to-the-cluster"></a>Add Azure nodes to the cluster
+您現在可以使用節點範本將 Azure 節點新增至叢集。將節點新增至叢集會儲存其組態資訊，讓您可以隨時在雲端服務中啟動 (佈建) 這些節點作為角色執行個體。在角色執行個體於雲端服務中執行之後，您的訂閱才須為 Azure 節點付費。
 
-You now use the node template to add Azure nodes to the cluster. Adding the nodes to the cluster stores their configuration information so that you can start (provision) them at any time as role instances in the cloud service. Your subscription only gets charged for Azure nodes after the role instances are running in the cloud service.
+在本教學課程中，您將需要新增兩個小型節點。
 
-For this tutorial you will add two Small nodes.
+1. 在 HPC 叢集管理員中，於 [節點管理] \(在最新版本的 HPC Pack 中稱為**資源管理**) 的 [動作] 窗格中，按一下 [加入節點]。
 
-1. In HPC Cluster Manager, in **Node Management** (called **Resource Management** in recent versions of HPC Pack), in the **Actions** pane, click **Add Node**.
+	![Add Node][add_node1]
 
-    ![Add Node][add_node1]
+2. 在 [新增節點精靈] 中，於 [選取部署方法] 頁面上，按一下 [Add Azure nodes]，然後按 [下一步]。
 
-2. In the Add Node Wizard, on the **Select Deployment Method** page, click **Add Azure nodes**, and then click **Next**.
+	![Add Azure Node][add_node1_1]
 
-    ![Add Azure Node][add_node1_1]
+3. 在 [Specify New Nodes] 頁面上，選取您先前建立的 Azure 節點範本 (預設稱為 [Default AzureNode Template])。接著，指定 [2] 個大小為 [小型] 的節點，然後按 **[下一步]**。
 
-3. On the **Specify New Nodes** page, select the Azure node template you created previously (called by default **Default AzureNode Template**). Then specify **2** nodes of size **Small**, and then click **Next**.
+	![Specify Nodes][add_node2]
 
-    ![Specify Nodes][add_node2]
+	如需可用大小的詳細資訊，請參閱[雲端服務的大小](cloud-services-sizes-specs.md)。
 
-    For details about the available sizes, see [Sizes for Cloud Services](cloud-services-sizes-specs.md).
+4. 在 [Completing the Add Node Wizard] 頁面上，按一下 [完成]。
 
-4. On the **Completing the Add Node Wizard** page, click **Finish**.
+	 HPC 叢集管理員中現在會出現兩個 Azure 節點，名為 **AzureCN-0001** 和 **AzureCN-0002**。兩者皆處於 [未部署] 狀態。
 
-     Two Azure nodes, named **AzureCN-0001** and **AzureCN-0002**, now appear in HPC Cluster Manager. Both are in the **Not-Deployed** state.
+	![Added Nodes][add_node3]
 
-    ![Added Nodes][add_node3]
+## 啟動 Azure 節點
+當您想要使用 Azure 中的叢集資源時，請使用 HPC 叢集管理員來啟動 (佈建) Azure 節點並讓節點上線。
 
-## <a name="start-the-azure-nodes"></a>Start the Azure nodes
-When you want to use the cluster resources in Azure, use HPC Cluster Manager to start (provision) the Azure nodes and bring them online.
+1.	在 HPC 叢集管理員中，於 [節點管理] \(在最新版本的 HPC Pack 中稱為**資源管理**) 中按一或兩個節點，然後在 [動作] 窗格中按一下 [啟動]。
 
-1.  In HPC Cluster Manager, in **Node Management** (called **Resource Management** in recent versions of HPC Pack), click one or both nodes and then, in the **Actions** pane, click **Start**.
+	![Start Nodes][add_node4]
 
-    ![Start Nodes][add_node4]
+2. 在 [Start Azure Nodes] 對話方塊中，按一下 [啟動]。
 
-2. In the **Start Azure Nodes** dialog box, click **Start**.
+	![Start Nodes][add_node5]
 
-    ![Start Nodes][add_node5]
+	節點會轉換至 [正在佈建] 狀態。檢視佈建記錄檔以追蹤佈建進度。
 
-    The nodes transition to the **Provisioning** state. View the provisioning log to track the provisioning progress.
+	![Provision Nodes][add_node6]
 
-    ![Provision Nodes][add_node6]
+3. 幾分鐘之後，Azure 節點就會完成佈建並處於 [離線] 狀態。在此狀態下，角色執行個體已在執行，但還沒準備要接受叢集工作。
 
-3. After a few minutes, the Azure nodes finish provisioning and are in the **Offline** state. In this state the role instances are running but will not yet accept cluster jobs.
+4. 若要確認角色執行個體已在執行，請在[傳統入口網站](https://manage.windowsazure.com)中按一下 [雲端服務] >「您雲端服務的名稱」> [執行個體]。
 
-4. To confirm that the role instances are running, in the [classic portal](https://manage.windowsazure.com), click **Cloud Services** > *your_cloud_service_name* > **Instances**.
+	![Running Instances][view_instances1]
 
-    ![Running Instances][view_instances1]
+	您會看到服務中有兩個執行中的背景工作角色執行個體。HPC Pack 也會自動部署兩個 **HpcProxy** 執行個體 (中型大小) 以處理前端節點與 Azure 之間的通訊。
 
-    You will see two worker role instances are running in the service. HPC Pack also automatically deploys two **HpcProxy** instances (size Medium) to handle communication between the head node and Azure.
+5. 若要讓 Azure 節點上線以執行叢集工作，請選取節點，按一下滑鼠右鍵，然後按一下 [上線]。
 
-5. To bring the Azure nodes online to run cluster jobs, select the nodes, right-click, and then click **Bring Online**.
+	![Offline Nodes][add_node7]
 
-    ![Offline Nodes][add_node7]
+	HPC 叢集管理員會指出節點處於 [線上] 狀態。
 
-    HPC Cluster Manager indicates that the nodes are in the **Online** state.
+## 在叢集執行命令
 
-## <a name="run-a-command-across-the-cluster"></a>Run a command across the cluster
+若要追蹤安裝，請使用 HPC Pack **clusrun** 命令在一或多個叢集節點上執行命令或應用程式。其中一個簡單的範例就是使用 **clusrun** 來取得 Azure 節點的 IP 設定。
 
-To check the installation, use the HPC Pack **clusrun** command to run a command or application on one or more cluster nodes. As a simple example, use **clusrun** to get the IP configuration of the Azure nodes.
+1. 在前端節點上，開啟命令提示字元。
 
-1. On the head node, open a command prompt.
+2. 輸入以下命令：
 
-2. Type the following command:
+	`clusrun /nodes:azurecn* ipconfig`
 
-    `clusrun /nodes:azurecn* ipconfig`
+3. 您將看到類似以下的輸出：
 
-3. You will see output similar to the following.
+	![Clusrun][clusrun1]
 
-    ![Clusrun][clusrun1]
+## 執行測試工作
 
-## <a name="run-a-test-job"></a>Run a test job
+現在提交一個在混合式叢集上執行的測試作業。這個範例是非常簡單的參數式掃掠作業 (一種本質平行計算)。本例會執行使用 **set /a** 命令將整數加入自己本身的子工作。叢集中的所有節點皆參與完成從 1 到 100 之整數的子工作。
 
-Now submit a test job that runs on the hybrid cluster. This example is a very simple parametric sweep job (a type of intrinsically parallel computation). This example runs subtasks that add an integer to itself by using the **set /a** command. All the nodes in the cluster contribute to finishing the subtasks for integers from 1 to 100.
+1. 在 HPC 叢集管理員中，於 [工作管理] 的 [動作] 窗格中，按一下 [New Parametric Sweep Job]。
 
-1. In HPC Cluster Manager, in **Job Management**, in the **Actions** pane, click **New Parametric Sweep Job**.
+	![New Job][test_job1]
 
-    ![New Job][test_job1]
+2. 在 [**新增參數整理工作**] 對話方塊中，於 [**命令列**] 中輸入 `set /a *+*` (覆寫出現的預設命令行)。保留其餘設定的預設值，然後按一下 [提交] 提交工作。
 
-2. In the **New Parametric Sweep Job** dialog box, in **Command line**, type `set /a *+*` (overwriting the default command line that appears). Leave default values for the remaining settings, and then click **Submit** to submit the job.
+	![Parametric Sweep][param_sweep1]
 
-    ![Parametric Sweep][param_sweep1]
+3. 當工作完成時，按兩下 [My Sweep Task] 工作。
 
-3. When the job is finished, double-click the **My Sweep Task** job.
+4. 按一下 [檢視工作]，然後按一下子工作以檢視該子工作的計算結果輸出。
 
-4. Click **View Tasks**, and then click a subtask to view the calculated output of that subtask.
+	![Task Results][view_job361]
 
-    ![Task Results][view_job361]
+5. 若要查看是哪個節點執行該子工作的計算，請按一下 [Allocated Nodes]。(您的叢集可能會顯示不同的節點名稱。)
 
-5. To see which node performed the calculation for that subtask, click **Allocated Nodes**. (Your cluster might show a different node name.)
+	![Task Results][view_job362]
 
-    ![Task Results][view_job362]
+## 停止 Azure 節點
 
-## <a name="stop-the-azure-nodes"></a>Stop the Azure nodes
+試驗完叢集之後，請停止 Azure 節點，以避免給您的帳戶產生不必要的費用。這樣會停止雲端服務並移除 Azure 角色執行個體。
 
-After you try out the cluster, stop the Azure nodes to avoid unnecessary charges to your account. This stops the cloud service and removes the Azure role instances.
+1. 在 HPC 叢集管理員中，於 [節點管理] \(在最新版本的 HPC Pack 中稱為**資源管理**) 中，選取這兩個 Azure 節點。然後，在 [動作] 窗格中，按一下 [停止]。
 
-1. In HPC Cluster Manager, in **Node Management** (called **Resource Management** in recent versions of HPC Pack), select both Azure nodes. Then, in the **Actions** pane, click **Stop**.
+	![Stop Nodes][stop_node1]
 
-    ![Stop Nodes][stop_node1]
+2. 在 [Stop Azure Nodes] 對話方塊中，按一下 [停止]。
 
-2. In the **Stop Azure Nodes** dialog box, click **Stop**.
+	![Stop Nodes][stop_node2]
 
-    ![Stop Nodes][stop_node2]
+3. 節點會轉換至 [正在停止] 狀態。幾分鐘之後，HPC 叢集管理員就會顯示這些節點為 [未部署] 狀態。
 
-3. The nodes transition to the **Stopping** state. After a few minutes, HPC Cluster Manager shows that the nodes are **Not-Deployed**.
+	![Not Deployed Nodes][stop_node4]
 
-    ![Not Deployed Nodes][stop_node4]
+4. 若要確認角色執行個體已不再於 Azure 中執行，請在[傳統入口網站](https://manage.windowsazure.com)中按一下 [雲端服務] >「您雲端服務的名稱」> [執行個體]。將不會有任何執行個體部署於生產環境中。
 
-4. To confirm that the role instances are no longer running in Azure, in the [classic portal](https://manage.windowsazure.com), click **Cloud Services** > *your_cloud_service_name* > **Instances**. No instances will be deployed in the production environment.
+	![No Instances][view_instances2]
 
-    ![No Instances][view_instances2]
+	這樣就完成了教學課程。
 
-    This completes the tutorial.
+## 後續步驟
 
-## <a name="next-steps"></a>Next steps
+* 請參閱 [Microsoft HPC Pack 2012 R2 and HPC Pack 2012 (Microsoft HPC Pack 2012 R2 和 HPC Pack 2012)](http://go.microsoft.com/fwlink/p/?LinkID=263697) 文件。
 
-* Explore the documentation for [HPC Pack 2012 R2 and HPC Pack 2012](http://go.microsoft.com/fwlink/p/?LinkID=263697).
+* 若要設定較大規模的混合式 HPC Pack 叢集部署，請參閱 [Burst to Azure with Microsoft HPC Pack (使用 Microsoft HPC Pack 高載至 Azure 背景工作角色執行個體)](http://go.microsoft.com/fwlink/p/?LinkID=200493)。
 
-* To set up a hybrid HPC Pack cluster deployment at greater scale, see [Burst to Azure Worker Role Instances with Microsoft HPC Pack](http://go.microsoft.com/fwlink/p/?LinkID=200493).
-
-* For other ways to create an HPC Pack cluster in Azure, including using Azure Resource Manager templates, see [HPC cluster options with Microsoft HPC Pack in Azure](../virtual-machines/virtual-machines-windows-hpcpack-cluster-options.md).
-* See [Big Compute in Azure: Technical Resources for Batch and High Performance Computing (HPC)](../batch/big-compute-resources.md) for more about the range of Big Compute and HPC cloud solutions in Azure.
+* 如需在 Azure 中建立 HPC Pack 叢集的其他方式，包括使用 Azure Resource Manager 範本，請參閱[使用 Microsoft HPC Pack 在 Azure 中建立及管理 Windows 高效能運算 (HPC) 叢集的選項](../virtual-machines/virtual-machines-windows-hpcpack-cluster-options.md)。
+* 如需 Azure 中大量計算範圍和 HPC 雲端方案的詳細資訊，請參閱 [Azure 中的大量計算：Batch 和高效能計算 (HPC) 的技術資源](../batch/big-compute-resources.md)。
 
 
 [Overview]: ./media/cloud-services-setup-hybrid-hpcpack-cluster/hybrid_cluster_overview.png
@@ -348,8 +347,4 @@ After you try out the cluster, stop the Azure nodes to avoid unnecessary charges
 [stop_node4]: ./media/cloud-services-setup-hybrid-hpcpack-cluster/stop_node4.png
 [view_instances2]: ./media/cloud-services-setup-hybrid-hpcpack-cluster/view_instances2.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!----HONumber=AcomDC_0720_2016-->

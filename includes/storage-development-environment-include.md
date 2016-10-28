@@ -1,75 +1,71 @@
-## <a name="set-up-your-development-environment"></a>Set up your development environment
+## 設定開發環境
 
-Next, set up your development environment in Visual Studio so that you are ready to try the code examples provided in this guide.
+接下來，在 Visual Studio 中設定您的開發環境，以便您開始嘗試本指南中提供的程式碼範例。
 
-### <a name="create-a-windows-console-application-project"></a>Create a Windows console application project
+### 建立 Windows 主控台應用程式專案
 
-In Visual Studio, create a new Windows console application, as shown:
+在 Visual Studio 中，建立新的 Windows 主控台應用程式，如下所示：
 
-![Create Windows console application](./media/storage-development-environment-include/storage-development-environment-include-1.png)
+![建立 Windows 主控台應用程式](./media/storage-development-environment-include/storage-development-environment-include-1.png)
 
-All of the code examples in this tutorial can be added to the **Main()** method in `program.cs` in your console application.
+本教學課程中的所有程式碼範例均可加入至您的主控台應用程式的 `program.cs` 中的 **Main()** 方法。
 
-Note that you can use the Azure Storage Client Library from any type of .NET application, including an Azure cloud service, an Azure web app, a desktop application, or a mobile application. In this guide, we use a console application for simplicity.
+請注意，您可以在任何類型的 .NET 應用程式 (包括 Azure 雲端服務、Azure Web 應用程式、桌面應用程式或行動應用程式) 中使用 Azure 儲存體用戶端程式庫。在本指南中，為求簡化，我們會使用主控台應用程式。
 
-### <a name="use-nuget-to-install-the-required-packages"></a>Use NuGet to install the required packages
+### 使用 NuGet 來安裝必要的封裝
 
-There are two packages that you'll need to install to your project to complete this tutorial:
+您必須將下列兩個封裝安裝至您的專案，才能完成本教學課程︰
 
-- [Microsoft Azure Storage Client Library for .NET](https://www.nuget.org/packages/WindowsAzure.Storage/): This package provides programmatic access to data resources in your storage account.
-- [Microsoft Azure Configuration Manager library for .NET](https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager/): This package provides a class for parsing a connection string from a configuration file, regardless of where your application is running.
+- [適用於 .NET 的 Microsoft Azure 儲存體用戶端資源庫](https://www.nuget.org/packages/WindowsAzure.Storage/)︰此封裝可供以程式設計方式存取儲存體帳戶中的資料資源。
+- [適用於 .NET 的 Microsoft Azure Configuration Manager 程式庫](https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager/)︰此封裝提供一個類別，無論您的應用程式於何處執行，均可用來剖析組態檔中的連接字串。
 
-You can use NuGet to obtain both packages. Follow these steps:
+您可以使用 NuGet 來取得這兩個封裝。請遵循下列步驟：
 
-1. Right-click your project in **Solution Explorer** and choose **Manage NuGet Packages**.
-2. Search online for "WindowsAzure.Storage" and click **Install** to install the Storage Client Library and its dependencies.
-3. Search online for "ConfigurationManager" and click **Install** to install the Azure Configuration Manager.
+1. 在 [方案總管] 中以滑鼠右鍵按一下專案，然後選擇 [管理 NuGet 封裝]。
+2. 在線上搜尋 "WindowsAzure.Storage"，然後按一下 [安裝] 以安裝 Storage Client Library 與其相依項目。
+3. 在線上搜尋 "ConfigurationManager"，然後按一下 [安裝] 以安裝 Azure Configuration Manager。
 
->[AZURE.NOTE] The Storage Client Library package is also included in the [Azure SDK for .NET](https://azure.microsoft.com/downloads/). However, we recommend that you also install the Storage Client Library from NuGet to ensure that you always have the latest version of the client library.
+>[AZURE.NOTE] Storage Client Library 封裝也包含在 [適用於 .NET 的 Azure SDK](https://azure.microsoft.com/downloads/) 中。不過，我們建議您也從 NuGet 安裝 Storage Client Library，以確保永遠有最新版的用戶端程式庫。
 >
->The ODataLib dependencies in the Storage Client Library for .NET are resolved through the ODataLib (version 5.0.2 and greater) packages available through NuGet, and not through WCF Data Services. The ODataLib libraries can be downloaded directly or referenced by your code project through NuGet. The specific ODataLib packages used by the Storage Client Library are [OData](http://nuget.org/packages/Microsoft.Data.OData/5.0.2), [Edm](http://nuget.org/packages/Microsoft.Data.Edm/5.0.2), and [Spatial](http://nuget.org/packages/System.Spatial/5.0.2). While these libraries are used by the Azure Table storage classes, they are required dependencies for programming with the Storage Client Library.
+>Storage Client Library for .NET 中的 ODataLib 相依性現已透過 ODataLib (5.0.2 版和更新版本) 封裝解決，該封裝是由 NuGet 而非透過 WCF Data Services 提供。您可以直接下載 ODataLib 程式庫，或是由您的程式碼專案透過 NuGet 參照這些程式庫。Storage Client Library 使用的特定 ODataLib 封裝有 [OData](http://nuget.org/packages/Microsoft.Data.OData/5.0.2)、[Edm](http://nuget.org/packages/Microsoft.Data.Edm/5.0.2)，以及 [Spatial](http://nuget.org/packages/System.Spatial/5.0.2)。這些程式庫雖由 Azure 資料表儲存體類別使用，它們同時也是使用 Storage Client Library 進行程式設計的必要相依項目。
 
 
-### <a name="determine-your-target-environment"></a>Determine your target environment
+### 決定您的目標環境
 
-You have two environment options for running the examples in this guide:
+有兩個環境選項可供您執行本指南中的範例︰
 
-- You can run your code against an Azure Storage account in the cloud. 
-- You can run your code against the Azure storage emulator. The storage emulator is a local environment that emulates an Azure Storage account in the cloud. The emulator is a free option for testing and debugging your code while your application is under development. The emulator uses a well-known account and key. For more details, see [Use the Azure Storage Emulator for Development and Testing](../articles/storage/storage-use-emulator.md)
+- 您可以對雲端中的 Azure 儲存體帳戶執行您的程式碼。 
+- 您可以對 Azure 儲存體模擬器執行您的程式碼。儲存體模擬器是模擬雲端中 Azure 儲存體帳戶的本機環境。模擬器是一個免費選項，在開發您的應用程式時可用於測試和偵錯您的程式碼。模擬器會使用已知的帳戶和金鑰。如需詳細資訊，請參閱[使用 Azure 儲存體模擬器進行開發和測試](../articles/storage/storage-use-emulator.md)。
 
-If you are targeting a storage account in the cloud, copy the primary access key for your storage account from the Azure Portal. For more information, see [View and copy storage access keys](../articles/storage/storage-create-storage-account.md#view-and-copy-storage-access-keys).
+如果您要選擇以雲端中的儲存體帳戶為目標，請從 Azure 入口網站複製您的儲存體帳戶的主要存取金鑰。如需詳細資訊，請參閱[檢視和複製儲存體存取金鑰](../articles/storage/storage-create-storage-account.md#view-and-copy-storage-access-keys)。
 
-> [AZURE.NOTE] You can target the storage emulator to avoid incurring any costs associated with Azure Storage. However, if you do choose to target an Azure storage account in the cloud, costs for performing this tutorial will be negligible.
+> [AZURE.NOTE] 您可以選擇以儲存體模擬器為目標，以避免產生與 Azure 儲存體相關聯的任何費用。不過，如果您選擇以雲端中的 Azure 儲存體帳戶為目標，則執行本教學課程的費用可以忽略不計。
 
-### <a name="configure-your-storage-connection-string"></a>Configure your storage connection string
+### 設定儲存體連接字串
 
-The Azure Storage Client Library for .NET supports using a storage connection string to configure endpoints and credentials for accessing storage services. The best way to maintain your storage connection string is in a configuration file. 
+Azure Storage Client Library for .NET 可支援使用儲存體連接字串，來設定存取儲存服務時所需的端點與認證。在組態檔中維護儲存體連接字串是最佳方式。
 
-For more information about connection strings, see [Configure a Connection String to Azure Storage](../articles/storage/storage-configure-connection-string.md).
+如需有關連接字串的詳細資訊，請參閱[設定 Azure 儲存體的連接字串](../articles/storage/storage-configure-connection-string.md)。
 
-> [AZURE.NOTE] Your storage account key is similar to the root password for your storage account. Always be careful to protect your storage account key. Avoid distributing it to other users, hard-coding it, or saving it in a plain-text file that is accessible to others. Regenerate your key using the Azure Portal if you believe it may have been compromised.
+> [AZURE.NOTE] 儲存體帳戶金鑰很類似儲存體帳戶的根密碼。請務必小心保護您的儲存體帳戶金鑰。請避免轉發給其他使用者、進行硬式編碼，或將它儲存在其他人可以存取的純文字檔案。如果您認為金鑰可能遭到破解，請使用 Azure 入口網站重新產生金鑰。
 
-To configure your connection string, open the `app.config` file from Solution Explorer in Visual Studio. Add the contents of the `<appSettings>` element shown below. Replace `account-name` with the name of your storage account, and `account-key` with your account access key:
+若要設定連接字串，請從 Visual Studio 中的 [方案總管] 開啟 `app.config` 檔案。如下所示，加入 `<appSettings>` 元素的內容。以您的儲存體帳戶名稱取代 `account-name`，並以您的帳戶存取金鑰取代 `account-key`：
 
-    <configuration>
-        <startup> 
-            <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5.2" />
-        </startup>
-        <appSettings>
-            <add key="StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=account-name;AccountKey=account-key" />
-        </appSettings>
-    </configuration>
+	<configuration>
+	    <startup> 
+	        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5.2" />
+	    </startup>
+  		<appSettings>
+    		<add key="StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=account-name;AccountKey=account-key" />
+  		</appSettings>
+	</configuration>
 
-For example, your configuration setting will be similar to:
+例如，組態設定會如下所示：
 
-    <add key="StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=storagesample;AccountKey=nYV0gln6fT7mvY+rxu2iWAEyzPKITGkhM88J8HUoyofvK7C6fHcZc2kRZp6cKgYRUM74lHI84L50Iau1+9hPjB==" />
+	<add key="StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=storagesample;AccountKey=nYV0gln6fT7mvY+rxu2iWAEyzPKITGkhM88J8HUoyofvK7C6fHcZc2kRZp6cKgYRUM74lHI84L50Iau1+9hPjB==" />
 
-To target the storage emulator, you can use a shortcut that maps to the well-known account name and key. In that case, your connection string setting will be:
+若要以儲存體模擬器為目標，您可以使用對應到已知帳戶名稱和金鑰的捷徑。在此情況下，您的連接字串設定會是︰
 
-    <add key="StorageConnectionString" value="UseDevelopmentStorage=true;" />
+	<add key="StorageConnectionString" value="UseDevelopmentStorage=true;" />
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0601_2016-->

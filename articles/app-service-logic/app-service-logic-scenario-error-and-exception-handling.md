@@ -1,6 +1,6 @@
 <properties
-    pageTitle="Logging and error handling in Logic Apps | Microsoft Azure"
-    description="View a real-life use case of advanced error handling and logging with Logic Apps"
+    pageTitle="Logic Apps 中的記錄和錯誤處理 | Microsoft Azure"
+    description="檢視 Logic Apps 之進階錯誤處理和記錄的現實生活使用案例"
     keywords=""
     services="logic-apps"
     authors="hedidin"
@@ -17,44 +17,41 @@
     ms.date="07/29/2016"
     ms.author="b-hoedid"/>
 
+# Logic Apps 中的記錄和錯誤處理
 
-# <a name="logging-and-error-handling-in-logic-apps"></a>Logging and error handling in Logic Apps
+本文說明如何擴充邏輯應用程式以提升對於例外狀況處理的支援。文中的內容取材自現實生活的使用案例，而這也是我們對於「Logic Apps 是否支援例外狀況和錯誤處理？」此一問題的回答。
 
-This article describes how you can extend a logic app to better support exception handling. It is a real-life use case and our answer to the question of, "Does Logic Apps support exception and error handling?"
+>[AZURE.NOTE] Microsoft Azure App Service 目前的 Logic Apps 功能版本提供標準的動作回應範本。這包括內部驗證和 API 應用程式所傳回的錯誤回應。
 
->[AZURE.NOTE] The current version of the Logic Apps feature of Microsoft Azure App Service provides a standard template for action responses.
->This includes both internal validation and error responses returned from an API app.
+## 使用案例和情節的概觀
 
-## <a name="overview-of-the-use-case-and-scenario"></a>Overview of the use case and scenario
+下列案例是這篇文章的使用案例。知名的醫療保健組織找到了我們，他們想要開發 Azure 解決方案，以使用 Microsoft Dynamics CRM Online 建立病患入口網站。他們需要在 Dynamics CRM Online 病患入口網站和 Salesforce 之間傳送預約記錄。因此要求我們對所有病患記錄使用 [HL7 FHIR](http://www.hl7.org/implement/standards/fhir/) 標準。
 
-The following story is the use case for this article.
-A well-known healthcare organization engaged us to develop an Azure solution that would create a patient portal by using Microsoft Dynamics CRM Online. They needed to send appointment records between the Dynamics CRM Online patient portal and Salesforce.  We were asked to use the [HL7 FHIR](http://www.hl7.org/implement/standards/fhir/) standard for all patient records.
+此專案有兩大需求︰
 
-The project had two major requirements:  
-
- -  A method to log records sent from the Dynamics CRM Online portal
- -  A way to view any errors that occurred within the workflow
+ -  用來記錄從 Dynamics CRM Online 入口網站傳送過來之記錄的方法
+ -  用來檢視工作流程中所發生之任何錯誤的方法
 
 
-## <a name="how-we-solved-the-problem"></a>How we solved the problem
+## 問題解決方式
 
->[AZURE.TIP] You can view a high-level video of the project at the [Integration User Group](http://www.integrationusergroup.com/do-logic-apps-support-error-handling/ "Integration User Group").
+>[AZURE.TIP] 您可以在[整合使用者群組](http://www.integrationusergroup.com/do-logic-apps-support-error-handling/ "Integration User Group")觀賞此專案的高階影片。
 
-We chose [Azure DocumentDB](https://azure.microsoft.com/services/documentdb/ "Azure DocumentDB") as a repository for the log and error records (DocumentDB refers to records as documents). Because Logic Apps has a standard template for all responses, we would not have to create a custom schema. We could create an API app to **Insert** and **Query** for both error and log records. We could also define a schema for each within the API app.  
+我們選擇以 [Azure DocumentDB](https://azure.microsoft.com/services/documentdb/ "Azure DocumentDB") 做為記錄檔和錯誤記錄的儲存機制 (DocumentDB 會將記錄當做文件)。Logic Apps 具有適用於所有回應的標準範本，因此我們不需要建立自訂結構描述。我們可以建立 API 應用程式來**插入**及**查詢**錯誤和記錄檔記錄。我們也可以為 API 應用程式中的每個項目定義結構描述。
 
-Another requirement was to purge records after a certain date. DocumentDB has a property called  [Time to Live](https://azure.microsoft.com/blog/documentdb-now-supports-time-to-live-ttl/ "Time to Live") (TTL), which allowed us to set a **Time to Live** value for each record or collection. This eliminated the need to manually delete records in DocumentDB.
+另一個需求是要在特定日期之後清除記錄。DocumentDB 具有稱為[存留時間](https://azure.microsoft.com/blog/documentdb-now-supports-time-to-live-ttl/ "存留時間") (TTL) 的屬性，這可讓我們設定每一筆記錄或每一個集合的**存留時間**值。因此，我們不需要手動在 DocumentDB 中刪除記錄。
 
-### <a name="creation-of-the-logic-app"></a>Creation of the logic app
+### 建立邏輯應用程式
 
-The first step is to create the logic app and load it in the designer. In this example, we are using parent-child logic apps. Let's assume that we have already created the parent and are going to create one child logic app.
+第一個步驟是建立邏輯應用程式，並在設計工具中予以載入。在此範例中，我們會使用父子邏輯應用程式。假設我們已建立父項，而且將要建立一個子邏輯應用程式。
 
-Because we are going to be logging the record coming out of Dynamics CRM Online, let's start at the top. We need to use a Request trigger because the parent logic app triggers this child.
+我們將會記錄來自 Dynamics CRM Online 的記錄，所以讓我們從最上層開始。我們需要使用要求觸發程序，因為父邏輯應用程式將會觸發這個子項。
 
-> [AZURE.IMPORTANT] To complete this tutorial, you will need to create a DocumentDB database and two collections (Logging and Errors).
+> [AZURE.IMPORTANT] 為了完成本教學課程，您必須建立 DocumentDB 資料庫和兩個集合 (記錄和錯誤)。
 
-### <a name="logic-app-trigger"></a>Logic app trigger
+### 邏輯應用程式觸發程序
 
-We are using a Request trigger as shown in the following example.
+我們將會使用如下列範例所示的要求觸發程序。
 
 ```` json
 "triggers": {
@@ -92,37 +89,35 @@ We are using a Request trigger as shown in the following example.
 ````
 
 
-### <a name="steps"></a>Steps
+### 步驟
 
-We need to log the source (request) of the patient record from the Dynamics CRM Online portal.
+我們必須記錄來自 Dynamics CRM Online 入口網站的病患記錄來源 (要求)。
 
-1. We need to get a new appointment record from Dynamics CRM Online.
-    The trigger coming from CRM provides us with the **CRM PatentId**, **record type**, **New or Updated Record** (new or update Boolean value), and **SalesforceId**. The **SalesforceId** can be null because it's only used for an update.
-    We will get the CRM record by using the CRM **PatientID** and the **Record Type**.
-1. Next, we need to add our DocumentDB API app **InsertLogEntry** operation as shown in the following figures.
+1. 我們必須從 Dynamics CRM Online 取得新的預約記錄。來自 CRM 的觸發程序會提供我們 **CRM PatentId**、**記錄類型**、**新的或更新的記錄** (新增或更新布林值) 和 **SalesforceId**。**SalesforceId** 可以是 null，因為它只會用於更新。我們會使用 CRM **PatientID** 和**記錄類型**來取得 CRM 記錄。
+1. 接下來，我們必須新增 DocumentDB API 應用程式 **InsertLogEntry** 作業，如下圖所示。
 
 
-#### <a name="insert-log-entry-designer-view"></a>Insert log entry designer view
+#### 插入記錄檔項目設計工具檢視
 
-![Insert Log Entry](./media/app-service-logic-scenario-error-and-exception-handling/lognewpatient.png)
+![插入記錄檔項目](./media/app-service-logic-scenario-error-and-exception-handling/lognewpatient.png)
 
-#### <a name="insert-error-entry-designer-view"></a>Insert error entry designer view
-![Insert Log Entry](./media/app-service-logic-scenario-error-and-exception-handling/insertlogentry.png)
+#### 插入錯誤項目設計工具檢視
+![插入記錄檔項目](./media/app-service-logic-scenario-error-and-exception-handling/insertlogentry.png)
 
-#### <a name="check-for-create-record-failure"></a>Check for create record failure
+#### 檢查建立記錄失敗
 
-![Condition](./media/app-service-logic-scenario-error-and-exception-handling/condition.png)
+![條件](./media/app-service-logic-scenario-error-and-exception-handling/condition.png)
 
 
-## <a name="logic-app-source-code"></a>Logic app source code
+## 邏輯應用程式原始程式碼
 
->[AZURE.NOTE]  The following are samples only. Because this tutorial is based on an implementation currently in production, the value of a **Source Node** might not display properties that are related to scheduling an appointment.
+>[AZURE.NOTE]  以下僅是範例。由於此教學課程是以目前在生產環境中的實作為基礎，**來源節點**的值可能不會顯示與安排預約相關的屬性。
 
-### <a name="logging"></a>Logging
-The following logic app code sample shows how to handle logging.
+### 記錄
+下列邏輯應用程式的程式碼範例示範如何處理記錄。
 
-#### <a name="log-entry"></a>Log entry
-This is the logic app source code for inserting a log entry.
+#### 記錄檔項目
+這是用來插入記錄檔項目的邏輯應用程式原始程式碼。
 
 ``` json
 "InsertLogEntry": {
@@ -148,72 +143,72 @@ This is the logic app source code for inserting a log entry.
 }
 ```
 
-#### <a name="log-request"></a>Log request
+#### 記錄檔要求
 
-This is the log request message posted to the API app.
+這是張貼至 API 應用程式的記錄檔要求訊息。
 
 ``` json
     {
     "uri": "https://.../api/Log",
     "method": "post",
     "body": {
-        "date": "Fri, 10 Jun 2016 22:31:56 GMT",
-        "operation": "New Patient",
-        "patientId": "6b115f6d-a7ee-e511-80f5-3863bb2eb2d0",
-        "providerId": "",
-        "source": "{\"Pragma\":\"no-cache\",\"x-ms-request-id\":\"e750c9a9-bd48-44c4-bbba-1688b6f8a132\",\"OData-Version\":\"4.0\",\"Cache-Control\":\"no-cache\",\"Date\":\"Fri, 10 Jun 2016 22:31:56 GMT\",\"Set-Cookie\":\"ARRAffinity=785f4334b5e64d2db0b84edcc1b84f1bf37319679aefce206b51510e56fd9770;Path=/;Domain=127.0.0.1\",\"Server\":\"Microsoft-IIS/8.0,Microsoft-HTTPAPI/2.0\",\"X-AspNet-Version\":\"4.0.30319\",\"X-Powered-By\":\"ASP.NET\",\"Content-Length\":\"1935\",\"Content-Type\":\"application/json; odata.metadata=minimal; odata.streaming=true\",\"Expires\":\"-1\"}"
-        }
+	    "date": "Fri, 10 Jun 2016 22:31:56 GMT",
+	    "operation": "New Patient",
+	    "patientId": "6b115f6d-a7ee-e511-80f5-3863bb2eb2d0",
+	    "providerId": "",
+	    "source": "{"Pragma":"no-cache","x-ms-request-id":"e750c9a9-bd48-44c4-bbba-1688b6f8a132","OData-Version":"4.0","Cache-Control":"no-cache","Date":"Fri, 10 Jun 2016 22:31:56 GMT","Set-Cookie":"ARRAffinity=785f4334b5e64d2db0b84edcc1b84f1bf37319679aefce206b51510e56fd9770;Path=/;Domain=127.0.0.1","Server":"Microsoft-IIS/8.0,Microsoft-HTTPAPI/2.0","X-AspNet-Version":"4.0.30319","X-Powered-By":"ASP.NET","Content-Length":"1935","Content-Type":"application/json; odata.metadata=minimal; odata.streaming=true","Expires":"-1"}"
+    	}
     }
 
 ```
 
 
-#### <a name="log-response"></a>Log response
+#### 記錄檔回應
 
-This is the log response message from the API app.
+這是來自 API 應用程式的記錄檔回應訊息。
 
 ``` json
 {
     "statusCode": 200,
     "headers": {
-        "Pragma": "no-cache",
-        "Cache-Control": "no-cache",
-        "Date": "Fri, 10 Jun 2016 22:32:17 GMT",
-        "Server": "Microsoft-IIS/8.0",
-        "X-AspNet-Version": "4.0.30319",
-        "X-Powered-By": "ASP.NET",
-        "Content-Length": "964",
-        "Content-Type": "application/json; charset=utf-8",
-        "Expires": "-1"
+	    "Pragma": "no-cache",
+	    "Cache-Control": "no-cache",
+	    "Date": "Fri, 10 Jun 2016 22:32:17 GMT",
+	    "Server": "Microsoft-IIS/8.0",
+	    "X-AspNet-Version": "4.0.30319",
+	    "X-Powered-By": "ASP.NET",
+	    "Content-Length": "964",
+	    "Content-Type": "application/json; charset=utf-8",
+	    "Expires": "-1"
     },
     "body": {
-        "ttl": 2592000,
-        "id": "6b115f6d-a7ee-e511-80f5-3863bb2eb2d0_1465597937",
-        "_rid": "XngRAOT6IQEHAAAAAAAAAA==",
-        "_self": "dbs/XngRAA==/colls/XngRAOT6IQE=/docs/XngRAOT6IQEHAAAAAAAAAA==/",
-        "_ts": 1465597936,
-        "_etag": "\"0400fc2f-0000-0000-0000-575b3ff00000\"",
-        "patientID": "6b115f6d-a7ee-e511-80f5-3863bb2eb2d0",
-        "timestamp": "2016-06-10T22:31:56Z",
-        "source": "{\"Pragma\":\"no-cache\",\"x-ms-request-id\":\"e750c9a9-bd48-44c4-bbba-1688b6f8a132\",\"OData-Version\":\"4.0\",\"Cache-Control\":\"no-cache\",\"Date\":\"Fri, 10 Jun 2016 22:31:56 GMT\",\"Set-Cookie\":\"ARRAffinity=785f4334b5e64d2db0b84edcc1b84f1bf37319679aefce206b51510e56fd9770;Path=/;Domain=127.0.0.1\",\"Server\":\"Microsoft-IIS/8.0,Microsoft-HTTPAPI/2.0\",\"X-AspNet-Version\":\"4.0.30319\",\"X-Powered-By\":\"ASP.NET\",\"Content-Length\":\"1935\",\"Content-Type\":\"application/json; odata.metadata=minimal; odata.streaming=true\",\"Expires\":\"-1\"}",
-        "operation": "New Patient",
-        "salesforceId": "",
-        "expired": false
+	    "ttl": 2592000,
+	    "id": "6b115f6d-a7ee-e511-80f5-3863bb2eb2d0_1465597937",
+	    "_rid": "XngRAOT6IQEHAAAAAAAAAA==",
+	    "_self": "dbs/XngRAA==/colls/XngRAOT6IQE=/docs/XngRAOT6IQEHAAAAAAAAAA==/",
+	    "_ts": 1465597936,
+	    "_etag": ""0400fc2f-0000-0000-0000-575b3ff00000"",
+	    "patientID": "6b115f6d-a7ee-e511-80f5-3863bb2eb2d0",
+	    "timestamp": "2016-06-10T22:31:56Z",
+	    "source": "{"Pragma":"no-cache","x-ms-request-id":"e750c9a9-bd48-44c4-bbba-1688b6f8a132","OData-Version":"4.0","Cache-Control":"no-cache","Date":"Fri, 10 Jun 2016 22:31:56 GMT","Set-Cookie":"ARRAffinity=785f4334b5e64d2db0b84edcc1b84f1bf37319679aefce206b51510e56fd9770;Path=/;Domain=127.0.0.1","Server":"Microsoft-IIS/8.0,Microsoft-HTTPAPI/2.0","X-AspNet-Version":"4.0.30319","X-Powered-By":"ASP.NET","Content-Length":"1935","Content-Type":"application/json; odata.metadata=minimal; odata.streaming=true","Expires":"-1"}",
+	    "operation": "New Patient",
+	    "salesforceId": "",
+	    "expired": false
     }
 }
 
 ```
 
-Now let's look at the error handling steps.
+現在讓我們看看錯誤處理步驟。
 
 
-### <a name="error-handling"></a>Error handling
+### 錯誤處理
 
-The following Logic Apps code sample shows how you can implement error handling.
+下列 Logic Apps 的程式碼範例示範如何實作錯誤處理。
 
-#### <a name="create-error-record"></a>Create error record
+#### 建立錯誤記錄
 
-This is the Logic Apps source code for creating an error record.
+這是用來建立錯誤記錄的 Logic Apps 原始程式碼。
 
 ``` json
 "actions": {
@@ -245,10 +240,10 @@ This is the Logic Apps source code for creating an error record.
             "Create_NewPatientRecord": ["Failed" ]
         }
     }
-}          
+}  	       
 ```
 
-#### <a name="insert-error-into-documentdb--request"></a>Insert error into DocumentDB--request
+#### 將錯誤插入至 DocumentDB--要求
 
 ``` json
 
@@ -265,13 +260,13 @@ This is the Logic Apps source code for creating an error record.
         "severity": 4,
         "salesforceId": "",
         "update": false,
-        "source": "{\"Account_Class_vod__c\":\"PRAC\",\"Account_Status_MED__c\":\"I\",\"CRM_HUB_ID__c\":\"6b115f6d-a7ee-e511-80f5-3863bb2eb2d0\",\"Credentials_vod__c\",\"DTC_ID_MED__c\":\"\",\"Fax\":\"\",\"FirstName\":\"A\",\"Gender_vod__c\":\"\",\"IMS_ID__c\":\"\",\"LastName\":\"BAILEY\",\"MasterID_mp__c\":\"\",\"C_ID_MED__c\":\"851588\",\"Middle_vod__c\":\"\",\"NPI_vod__c\":\"\",\"PDRP_MED__c\":false,\"PersonDoNotCall\":false,\"PersonEmail\":\"\",\"PersonHasOptedOutOfEmail\":false,\"PersonHasOptedOutOfFax\":false,\"PersonMobilePhone\":\"\",\"Phone\":\"\",\"Practicing_Specialty__c\":\"FM - FAMILY MEDICINE\",\"Primary_City__c\":\"\",\"Primary_State__c\":\"\",\"Primary_Street_Line2__c\":\"\",\"Primary_Street__c\":\"\",\"Primary_Zip__c\":\"\",\"RecordTypeId\":\"012U0000000JaPWIA0\",\"Request_Date__c\":\"2016-06-10T22:31:55.9647467Z\",\"ONY_ID__c\":\"\",\"Specialty_1_vod__c\":\"\",\"Suffix_vod__c\":\"\",\"Website\":\"\"}",
+        "source": "{"Account_Class_vod__c":"PRAC","Account_Status_MED__c":"I","CRM_HUB_ID__c":"6b115f6d-a7ee-e511-80f5-3863bb2eb2d0","Credentials_vod__c","DTC_ID_MED__c":"","Fax":"","FirstName":"A","Gender_vod__c":"","IMS_ID__c":"","LastName":"BAILEY","MasterID_mp__c":"","C_ID_MED__c":"851588","Middle_vod__c":"","NPI_vod__c":"","PDRP_MED__c":false,"PersonDoNotCall":false,"PersonEmail":"","PersonHasOptedOutOfEmail":false,"PersonHasOptedOutOfFax":false,"PersonMobilePhone":"","Phone":"","Practicing_Specialty__c":"FM - FAMILY MEDICINE","Primary_City__c":"","Primary_State__c":"","Primary_Street_Line2__c":"","Primary_Street__c":"","Primary_Zip__c":"","RecordTypeId":"012U0000000JaPWIA0","Request_Date__c":"2016-06-10T22:31:55.9647467Z","ONY_ID__c":"","Specialty_1_vod__c":"","Suffix_vod__c":"","Website":""}",
         "statusCode": "400"
     }
 }
 ```
 
-#### <a name="insert-error-into-documentdb--response"></a>Insert error into DocumentDB--response
+#### 將錯誤插入至 DocumentDB--回應
 
 
 ``` json
@@ -293,14 +288,14 @@ This is the Logic Apps source code for creating an error record.
         "_rid": "sQx2APhVzAA8AAAAAAAAAA==",
         "_self": "dbs/sQx2AA==/colls/sQx2APhVzAA=/docs/sQx2APhVzAA8AAAAAAAAAA==/",
         "_ts": 1465597912,
-        "_etag": "\"0c00eaac-0000-0000-0000-575b3fdc0000\"",
+        "_etag": ""0c00eaac-0000-0000-0000-575b3fdc0000"",
         "prescriberId": "6b115f6d-a7ee-e511-80f5-3863bb2eb2d0",
         "timestamp": "2016-06-10T22:31:57.3651027Z",
         "action": "New_Patient",
         "salesforceId": "",
         "update": false,
         "body": "CRM failed to complete task: Message: duplicate value found: CRM_HUB_ID__c duplicates value on record with id: 001U000001c83gK",
-        "source": "{\"Account_Class_vod__c\":\"PRAC\",\"Account_Status_MED__c\":\"I\",\"CRM_HUB_ID__c\":\"6b115f6d-a7ee-e511-80f5-3863bb2eb2d0\",\"Credentials_vod__c\":\"DO - Degree level is DO\",\"DTC_ID_MED__c\":\"\",\"Fax\":\"\",\"FirstName\":\"A\",\"Gender_vod__c\":\"\",\"IMS_ID__c\":\"\",\"LastName\":\"BAILEY\",\"MterID_mp__c\":\"\",\"Medicis_ID_MED__c\":\"851588\",\"Middle_vod__c\":\"\",\"NPI_vod__c\":\"\",\"PDRP_MED__c\":false,\"PersonDoNotCall\":false,\"PersonEmail\":\"\",\"PersonHasOptedOutOfEmail\":false,\"PersonHasOptedOutOfFax\":false,\"PersonMobilePhone\":\"\",\"Phone\":\"\",\"Practicing_Specialty__c\":\"FM - FAMILY MEDICINE\",\"Primary_City__c\":\"\",\"Primary_State__c\":\"\",\"Primary_Street_Line2__c\":\"\",\"Primary_Street__c\":\"\",\"Primary_Zip__c\":\"\",\"RecordTypeId\":\"012U0000000JaPWIA0\",\"Request_Date__c\":\"2016-06-10T22:31:55.9647467Z\",\"XXXXXXX\":\"\",\"Specialty_1_vod__c\":\"\",\"Suffix_vod__c\":\"\",\"Website\":\"\"}",
+        "source": "{"Account_Class_vod__c":"PRAC","Account_Status_MED__c":"I","CRM_HUB_ID__c":"6b115f6d-a7ee-e511-80f5-3863bb2eb2d0","Credentials_vod__c":"DO - Degree level is DO","DTC_ID_MED__c":"","Fax":"","FirstName":"A","Gender_vod__c":"","IMS_ID__c":"","LastName":"BAILEY","MterID_mp__c":"","Medicis_ID_MED__c":"851588","Middle_vod__c":"","NPI_vod__c":"","PDRP_MED__c":false,"PersonDoNotCall":false,"PersonEmail":"","PersonHasOptedOutOfEmail":false,"PersonHasOptedOutOfFax":false,"PersonMobilePhone":"","Phone":"","Practicing_Specialty__c":"FM - FAMILY MEDICINE","Primary_City__c":"","Primary_State__c":"","Primary_Street_Line2__c":"","Primary_Street__c":"","Primary_Zip__c":"","RecordTypeId":"012U0000000JaPWIA0","Request_Date__c":"2016-06-10T22:31:55.9647467Z","XXXXXXX":"","Specialty_1_vod__c":"","Suffix_vod__c":"","Website":""}",
         "code": 400,
         "errors": null,
         "isError": true,
@@ -311,7 +306,7 @@ This is the Logic Apps source code for creating an error record.
 }
 ```
 
-#### <a name="salesforce-error-response"></a>Salesforce error response
+#### Salesforce 錯誤回應
 
 ``` json
 {
@@ -340,11 +335,11 @@ This is the Logic Apps source code for creating an error record.
 
 ```
 
-### <a name="returning-the-response-back-to-the-parent-logic-app"></a>Returning the response back to the parent logic app
+### 將回應傳回父邏輯應用程式
 
-After you have the response, you can pass it back to the parent logic app.
+取得回應之後，您可以將它傳遞回父邏輯應用程式。
 
-#### <a name="return-success-response-to-the-parent-logic-app"></a>Return success response to the parent logic app
+#### 將成功回應傳回給父邏輯應用程式
 
 ``` json
 "SuccessResponse": {
@@ -357,7 +352,7 @@ After you have the response, you can pass it back to the parent logic app.
             "status": "Success"
     },
     "headers": {
-    "   Content-type": "application/json",
+    "	Content-type": "application/json",
         "x-ms-date": "@utcnow()"
     },
     "statusCode": 200
@@ -366,7 +361,7 @@ After you have the response, you can pass it back to the parent logic app.
 }
 ```
 
-#### <a name="return-error-response-to-the-parent-logic-app"></a>Return error response to the parent logic app
+#### 將錯誤回應傳回給父邏輯應用程式
 
 ``` json
 "ErrorResponse": {
@@ -390,53 +385,52 @@ After you have the response, you can pass it back to the parent logic app.
 ```
 
 
-## <a name="documentdb-repository-and-portal"></a>DocumentDB repository and portal
+## DocumentDB 儲存機制和入口網站
 
-Our solution added additional capabilities with [DocumentDB](https://azure.microsoft.com/services/documentdb).
+我們的解決方案使用 [DocumentDB](https://azure.microsoft.com/services/documentdb) 加入了額外功能。
 
-### <a name="error-management-portal"></a>Error management portal
+### 錯誤管理入口網站
 
-To view the errors, you can create an MVC web app to display the error records from DocumentDB. **List**, **Details**, **Edit**, and **Delete** operations are included in the current version.
+若要檢視錯誤，您可以建立 MVC Web 應用程式，以顯示來自 DocumentDB 的錯誤記錄。目前的版本中包含了**清單**、**詳細資料**、**編輯**和**刪除**作業。
 
-> [AZURE.NOTE] Edit operation: DocumentDB does a replace of the entire document.
-> The records shown in the **List** and **Detail** views are samples only. They are not actual patient appointment records.
+> [AZURE.NOTE] 編輯作業︰DocumentDB 會執行整個文件的取代工作。**清單**和**詳細資料**檢視所顯示的記錄僅是範例，而非實際的病患預約記錄。
 
-Following are examples of our MVC app details created with the previously described approach.
+以下是使用先前所述方法所建立之 MVC 應用程式詳細資料的範例。
 
-#### <a name="error-management-list"></a>Error management list
+#### 錯誤管理清單
 
-![Error List](./media/app-service-logic-scenario-error-and-exception-handling/errorlist.png)
+![錯誤清單](./media/app-service-logic-scenario-error-and-exception-handling/errorlist.png)
 
-#### <a name="error-management-detail-view"></a>Error management detail view
+#### 錯誤管理詳細資料檢視
 
-![Error Details](./media/app-service-logic-scenario-error-and-exception-handling/errordetails.png)
+![錯誤詳細資料](./media/app-service-logic-scenario-error-and-exception-handling/errordetails.png)
 
-### <a name="log-management-portal"></a>Log management portal
+### 記錄檔管理入口網站
 
-To view the logs, we also created an MVC web app.  Following are examples of our MVC app details created with the previously described approach.
+為了檢視記錄檔，我們還建立了 MVC Web 應用程式。以下是使用先前所述方法所建立之 MVC 應用程式詳細資料的範例。
 
-#### <a name="sample-log-detail-view"></a>Sample log detail view
+#### 範例記錄檔詳細資料檢視
 
-![Log Detail View](./media/app-service-logic-scenario-error-and-exception-handling/samplelogdetail.png)
+![記錄檔詳細資料檢視](./media/app-service-logic-scenario-error-and-exception-handling/samplelogdetail.png)
 
-### <a name="api-app-details"></a>API app details
+### API 應用程式詳細資料
 
-#### <a name="logic-apps-exception-management-api"></a>Logic Apps exception management API
+#### Logic Apps 例外狀況管理 API
 
-Our open-source Logic Apps exception management API app provides the following functionality.
+我們的開放原始碼 Logic Apps 例外狀況管理 API 應用程式提供了下列功能。
 
-There are two controllers:
+有兩個控制器：
 
-- **ErrorController** inserts an error record (document) in a DocumentDB collection.
-- **LogController** Inserts a log record (document) in a DocumentDB collection.
+- **ErrorController** 會在 DocumentDB 集合中插入錯誤記錄 (文件)。
+- **LogController** 會在 DocumentDB 集合中插入記錄檔記錄 (文件)。
 
-> [AZURE.TIP] Both controllers use `async Task<dynamic>` operations. This allows operations to be resolved at runtime, so we can create the DocumentDB schema in the body of the operation.
+> [AZURE.TIP] 這兩個控制器都使用 `async Task<dynamic>` 作業。這可讓作業在執行階段解析，讓我們可以在作業的主體中建立 DocumentDB 結構描述。
 
-Every document in DocumentDB must have a unique ID. We are using `PatientId` and adding a timestamp that is converted to a Unix timestamp value (double). We truncate it to remove the fractional value.
+DocumentDB 中的每個文件都必須具有唯一識別碼。我們將會使用 `PatientId`，並加入轉換為 Unix 時間戳記值 (雙精確度) 的時間戳記。我們會將此值截斷以移除小數值。
 
-You can view the source code of our error controller API [from GitHub](https://github.com/HEDIDIN/LogicAppsExceptionManagementApi/blob/master/Logic App Exception Management API/Controllers/ErrorController.cs).
+您可以 [從 GitHub](https://github.com/HEDIDIN/LogicAppsExceptionManagementApi/blob/master/Logic App Exception Management API/Controllers/ErrorController.cs) 檢視錯誤控制器 API 的原始程式碼。
 
-We call the API from a logic app by using the following syntax.
+我們使用下列語法從邏輯應用程式呼叫 API。
 
 ``` json
  "actions": {
@@ -469,25 +463,21 @@ We call the API from a logic app by using the following syntax.
  }
 ```
 
-The expression in the preceding code sample is checking for the *Create_NewPatientRecord* status of **Failed**.
+上述程式碼範例的運算式會檢查「Create\_NewPatientRecord」狀態是否為 **Failed**。
 
-## <a name="summary"></a>Summary
+## 摘要
 
-- You can easily implement logging and error handling in a logic app.
-- You can use DocumentDB as the repository for log and error records (documents).
-- You can use MVC to create a portal to display log and error records.
+- 您可以在邏輯應用程式中輕鬆地實作記錄和錯誤處理。
+- 您可以使用 DocumentDB 做為記錄檔和錯誤記錄 (文件) 的儲存機制。
+- 您可以使用 MVC 建立入口網站，以顯示記錄檔和錯誤記錄。
 
-### <a name="source-code"></a>Source code
-The source code for the Logic Apps exception management API application is available in this [GitHub repository](https://github.com/HEDIDIN/LogicAppsExceptionManagementApi "Logic App Exception Management API").
-
-
-## <a name="next-steps"></a>Next steps
-- [View more Logic Apps examples and scenarios](app-service-logic-examples-and-scenarios.md)
-- [Learn about Logic Apps monitoring tools](app-service-logic-monitor-your-logic-apps.md)
-- [Create a Logic App automated deployment template](app-service-logic-create-deploy-template.md)
+### 原始程式碼
+Logic Apps 例外狀況管理 API 應用程式的原始程式碼可在此 [GitHub 儲存機制](https://github.com/HEDIDIN/LogicAppsExceptionManagementApi "邏輯應用程式例外狀況管理 API")取得。
 
 
+## 後續步驟
+- [檢視其他 Logic Apps 範例和案例](app-service-logic-examples-and-scenarios.md)
+- [了解 Logic Apps 監視工具](app-service-logic-monitor-your-logic-apps.md)
+- [建立邏輯應用程式的自動部署範本](app-service-logic-create-deploy-template.md)
 
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->
