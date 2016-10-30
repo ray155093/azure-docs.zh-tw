@@ -1,5 +1,5 @@
 <properties
-    pageTitle="BizTalk 服務的管理與開發工作清單 | Microsoft Azure" 
+    pageTitle="BizTalk 服務的管理與開發工作清單 | Microsoft Azure"
     description="部署 Azure BizTalk 服務的規劃和作業協助。"
     services="biztalk-services"
     documentationCenter=""
@@ -24,7 +24,7 @@
 
 |步驟|負責人|工作|相關連結|
 |----|----|----|----|
-1.|系統管理員|使用 Microsoft 帳戶或組織帳戶建立 Microsoft Azure 訂用帳戶|[Azure 傳統入口網站](http://go.microsoft.com/fwlink/p/?LinkID=213885)|
+|1.|系統管理員|使用 Microsoft 帳戶或組織帳戶建立 Microsoft Azure 訂用帳戶|[Azure 傳統入口網站](http://go.microsoft.com/fwlink/p/?LinkID=213885)|
 |2.|系統管理員|建立或佈建「BizTalk 服務」。|[使用 Azure 傳統入口網站建立「BizTalk 服務」](http://go.microsoft.com/fwlink/p/?LinkID=302280)|
 |3.|系統管理員|註冊您或貴公司的「BizTalk 服務」部署|[在 BizTalk 服務入口網站註冊和更新 BizTalk 服務部署](https://msdn.microsoft.com/library/azure/hh689837.aspx)|
 |4.|系統管理員|適用於應用程式採用「BizTalk 配接器服務」連線至內部部署的「企業營運」(LOB) 系統，或是使用「佇列」或「主題目的地」。  建立 Azure 服務匯流排命名空間。 向開發人員提供此命名空間、「服務匯流排簽發者名稱」和「服務匯流排簽發者金鑰」值。|[作法：建立或修改服務匯流排服務命名空間](../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md)與[取得簽發者名稱和簽發者金鑰值](biztalk-issuer-name-issuer-key.md)|

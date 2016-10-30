@@ -1,79 +1,85 @@
 <properties
-	pageTitle="使用 Azure 入口網站建立 Azure 搜尋服務 | Microsoft Azure | 雲端託管搜尋服務"
-	description="了解如何使用 Azure 入口網站佈建 Azure 搜尋服務。"
-	services="search"
-	authors="ashmaka"
-	documentationCenter=""/>
+    pageTitle="Create an Azure Search service using the Azure Portal | Microsoft Azure | Hosted cloud search service"
+    description="Learn how to provision an Azure Search service using the Azure Portal."
+    services="search"
+    manager="jhubbard"
+    authors="ashmaka"
+    documentationCenter=""/>
 
 <tags
-	ms.service="search"
-	ms.devlang="NA"
-	ms.workload="search"
-	ms.topic="article"
-	ms.tgt_pltfrm="na"
-	ms.date="08/29/2016"
-	ms.author="ashmaka"/>
+    ms.service="search"
+    ms.devlang="NA"
+    ms.workload="search"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.date="08/29/2016"
+    ms.author="ashmaka"/>
 
-# 使用 Azure 入口網站建立 Azure 搜尋服務
 
-本指南將逐步引導您完成使用 [Azure 入口網站](https://portal.azure.com/)建立 (或佈建) Azure 搜尋服務的程序。
+# <a name="create-an-azure-search-service-using-the-azure-portal"></a>Create an Azure Search service using the Azure Portal
 
-本指南假設您已經有 Azure 訂用帳戶，可以登入 Azure 入口網站。
+This guide will walk you through the process of creating (or provisioning) an Azure Search service using the [Azure Portal](https://portal.azure.com/).
 
-## 在 Azure 入口網站中尋找 Azure 搜尋服務
-1. 前往 [Azure 入口網站](https://portal.azure.com/)並登入。
-1. 按一下左上角的加號 ("+")。
-2. 選取 [資料 + 儲存體]。
-3. 選取 [Azure 搜尋服務]。
+This guide assumes that you already have an Azure Subscription and can log into the Azure Portal.
+
+## <a name="find-azure-search-in-the-azure-portal"></a>Find Azure Search in the Azure Portal
+1. Go to the [Azure Portal](https://portal.azure.com/) and log in.
+1. Click on the plus sign ("+") in the top left corner.
+2. Select **Data + Storage**.
+3. Select **Azure Search**.
 
 ![](./media/search-create-service-portal/find-search.png)
 
-## 選取服務名稱和您服務的 URL 端點
-1. 您的服務名稱會是 Azure 搜尋服務端點 URL 的一部分，您將依據它進行 API 呼叫，以便管理和使用搜尋服務。
-2. 在 [URL] 欄位中輸入您的服務名稱。服務名稱：
-  * 只能包含小寫字母、數字或連字號 ("-")
-  * 不能使用連字號 ("-") 作為前 2 個字元或最後一個字元
-  * 不能包含連續的連字號 ("--")
-  * 長度限制在 2 到 60 個字元之間
+## <a name="pick-a-service-name-and-url-endpoint-for-your-service"></a>Pick a service name and URL endpoint for your service
+1. Your service name will be part of your Azure Search service's endpoint URL against which you will make your API calls to manage and use the search service.
+2. Type your service name in the **URL** field. The service name:
+  * must only contain lowercase letters, digits or dashes ("-")
+  * cannot use a dash ("-") as the first 2 characters or last single character
+  * cannot contain consecutive dashes ("--")
+  * is limited between 2 and 60 characters in length
 
 
-## 選取您將保留服務的訂用帳戶
-如果您有多個訂用帳戶，您可以選取哪一個訂用帳戶將包含此 Azure 搜尋服務。
+## <a name="select-a-subscription-where-you-will-keep-your-service"></a>Select a subscription where you will keep your service
+If you have more than one subscription, you can select which one will include this Azure Search service.
 
-## 選取服務的資源群組
-建立新的資源群組或選取現有的資源群組。資源群組是 Azure 服務和一起使用之資源的集合。例如，如果您使用 Azure 搜尋服務來編製 SQL 資料庫的索引，那麼這兩個服務都應該是相同資源群組的一部分。
+## <a name="select-a-resource-group-for-your-service"></a>Select a resource group for your service
+Create a new resource group or select an existing one. A resource group is a collection of Azure services and resources that are used together. For example, if you are using Azure Search to index a SQL database, then both of these services should be part of the same resource group.
 
-## 選取將裝載您服務的位置
-作為 Azure 服務，Azure 搜尋服務可以裝載在世界各地的資料中心。請注意，各地理位置的[價格可能不同](https://azure.microsoft.com/pricing/details/search/)。
+## <a name="select-the-location-where-your-service-will-be-hosted"></a>Select the location where your service will be hosted
+As an Azure service, Azure Search is available to be hosted in datacenters around the world. Please note that [prices can differ](https://azure.microsoft.com/pricing/details/search/) by geography.
 
-## 選擇定價層
-[Azure 搜尋服務目前提供多個定價層](https://azure.microsoft.com/pricing/details/search/)︰免費、基本或標準。每一層都有自己的[容量和限制](search-limits-quotas-capacity.md)。請參閱 [選擇定價層或 SKU](search-sku-tier.md) 以取得指引。
+## <a name="select-your-pricing-tier"></a>Select your pricing tier
+[Azure Search is currently offered in multiple pricing tiers](https://azure.microsoft.com/pricing/details/search/): Free, Basic, or Standard. Each tier has its own [capacity and limits](search-limits-quotas-capacity.md). See [Choose a pricing tier or SKU](search-sku-tier.md) for guidance.
 
-在此情況下，我們已為服務選擇標準層。
+In this case, we have chosen the Standard tier for our service.
 
-## 選取 [建立] 按鈕，以佈建您的服務
+## <a name="select-the-"create"-button-to-provision-your-service"></a>Select the "Create" button to provision your service
 
 ![](./media/search-create-service-portal/create-service.png)
 
-## 調整您的服務
+## <a name="scale-your-service"></a>Scale your service
 
-佈建完您的服務之後，您可以調整它以符合您的需求。如果您為 Azure 搜尋服務選擇標準層，則您可以在兩個維度調整服務︰複本和資料分割。如果您選擇基本層，則只能新增複本。
+After your service is provisioned, you can scale it to meet your needs. If you have chosen the Standard tier for your Azure Search service, you can scale your service in two dimensions: replicas and partitions. If you have chosen the Basic tier, you can only add replicas.
 
-*__資料分割__*允許您的服務儲存及搜尋更多文件。
+*__Partitions__* allow your service to store and search through more documents.
 
-*__複本__*允許服務處理更高的搜尋查詢負載 - [服務需要 2 個複本才能達到唯讀 SLA，需要 3 個複本才能達到讀寫 SLA](https://azure.microsoft.com/support/legal/sla/search/v1_0/)。
+*__Replicas__* allow your service to handle a higher load of search queries - [a service requires 2 replicas to achieve a read-only SLA and requires 3 replicas to achieve a read/write SLA](https://azure.microsoft.com/support/legal/sla/search/v1_0/).
 
-1. 在「Azure 入口網站」中，前往「Azure 搜尋服務」的管理刀鋒視窗。
-2. 在 [設定] 刀鋒視窗中，選取 [調整]。
-3. 您可以藉由加入複本或資料分割來調整您的服務。
-  * 您無法將服務調整超過 36 個搜尋單位。您的搜尋單位總數是您的複本和資料分割的乘積 (複本 * 資料分割 = 搜尋單位總數)。
-  * 如果您選擇基本層，則只能調整到 3 個複本。基本的服務繫結至單一資料分割。
+1. Go to your Azure Search service's management blade in the Azure Portal.
+2. In the **Settings** blade, select **Scale**.
+3. You can scale your service by adding Replicas or Partitions.
+  * You cannot scale your service past 36 search units. Your total number of search units is the product of your replicas and partitions (Replicas * Partitions = Total Search Units).
+  * If you have chosen the Basic tier, you can only scale to 3 replicas. Basic services are bound to a single partition.
 
 ![](./media/search-create-service-portal/scale-service.png)
 
-## 下一步
-佈建 Azure 搜尋服務之後，您就可以[定義 Azure 搜尋服務索引](search-what-is-an-index.md)，以便上傳和搜尋您的資料。
+## <a name="next"></a>Next
+After provisioning an Azure Search service, you will be ready to [define an Azure Search index](search-what-is-an-index.md) so you can upload and search your data.
 
-如需快速教學課程，請參閱[開始在入口網站中使用 Azure 搜尋服務](search-get-started-portal.md)。
+See [Get started with Azure Search in the portal](search-get-started-portal.md) for a quick tutorial.
 
-<!---HONumber=AcomDC_0831_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

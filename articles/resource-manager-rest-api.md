@@ -1,10 +1,10 @@
 <properties
-   pageTitle="資源管理員 REST API | Microsoft Azure"
-   description="資源管理員 REST API 驗證和使用方式範例的概觀"
+   pageTitle="Resource Manager REST APIs| Microsoft Azure"
+   description="An overview of the Resource Manager REST APIs authentication and usage examples"
    services="azure-resource-manager"
    documentationCenter="na"
    authors="navalev"
-   manager=""
+   manager="timlt"
    editor=""/>
 
 <tags
@@ -16,31 +16,33 @@
    ms.date="06/23/2016"
    ms.author="navale;tomfitz;"/>
    
-# 資源管理員 REST API
+
+# <a name="resource-manager-rest-apis"></a>Resource Manager REST APIs
 
 > [AZURE.SELECTOR]
 - [Azure PowerShell](powershell-azure-resource-manager.md)
 - [Azure CLI](xplat-cli-azure-resource-manager.md)
-- [入口網站](./azure-portal/resource-group-portal.md)
+- [Portal](./azure-portal/resource-group-portal.md) 
 - [REST API](resource-manager-rest-api.md)
 
-在每次對 Azure Resource Manager 的呼叫之後、每個部署的範本之後、每個設定的儲存體帳戶之後，都有一或數次對 Azure Resource Manager 之 Rest API 的呼叫。本主題專門討論這些 API 以及如何在完全不使用任何 SDK 的情況下呼叫它們。如果您想要完全控制對 Azure 的所有要求，或如果您偏好語言的 SDK 無法使用或不支援您要執行的作業，這可能非常有用。
+Behind every call to Azure Resource Manager, behind every deployed template, behind every configured storage account there is one or several calls to the Azure Resource Manager’s RESTful API. This topic is devoted to those APIs and how you can call them without using any SDK at all. This can be very useful if you want full control of all requests to Azure or if the SDK for your preferred language is not available or doesn’t support the operations you want to perform.
 
-本文並不會逐一介紹 Azure 中公開的每個 API，而會以某些 API 為例，說明如何繼續進行並連線到這些 API。如果您了解基本概念，您即可繼續進行並閱讀 [Azure Resource Manager REST API 參考](https://msdn.microsoft.com/library/azure/dn790568.aspx)，以尋找如何使用其餘 API 的詳細資訊。
+This article will not go through every API that is exposed in Azure, but will rather use some as an example how you go ahead and connect to them. If you understand the basics you can then go ahead and read the [Azure Resource Manager REST API Reference](https://msdn.microsoft.com/library/azure/dn790568.aspx) to find detailed information on how to use the rest of the APIs.
 
-## 驗證
-ARM 的驗證由 Azure Active Directory (AD) 處理。為了連接到任何 API，您必須先向 Azure AD 進行驗證，以接收可以傳遞給每個要求的驗證權杖。由於我們要說明直接對 REST API 的純呼叫，所以我們也會假設當快顯畫面提示您輸入使用者名稱和密碼時，或者甚至是在雙因素驗證案例中使用的其他驗證機制中，您不想使用一般使用者名稱和密碼進行驗證。因此，我們將建立所謂的 Azure AD 應用程式和服務主體，以便用來進行登入。但請記住，Azure AD 支援數個驗證程序，而這些程序全都可以用來擷取後續 API 要求所需的驗證權杖。請依照建立 [Azure AD 應用程式和服務主體](./resource-group-create-service-principal-portal.md)的逐步指示。
+## <a name="authentication"></a>Authentication
+Authentication for ARM is handled by Azure Active Directory (AD). In order to connect to any API you first need to authenticate with Azure AD to receive an authentication token that you can pass on to every request. As we are describing a pure call directly to the REST APIs, we will also assume that you don’t want to authenticate with a normal username password where a pop-up-screen might prompt you for username and password and perhaps even other authentication mechanisms used in two factor authentication scenarios. Therefore, we will create what is called an Azure AD Application and a Service Principal that will be used to login with. But remember that Azure AD support several authentication procedures and all of them could be used to retrieve that authentication token that we need for subsequent API requests.
+Follow [Create Azure AD Application and Service Principle](./resource-group-create-service-principal-portal.md) for step by step instructions.
 
-### 產生存取權杖 
-向外呼叫位於 login.microsoftonline.com 的 Azure AD，集合完成對 Azure AD 驗證。若要驗證，您必須具有下列資訊︰
+### <a name="generating-an-access-token"></a>Generating an Access Token 
+Authentication against Azure AD is done by calling out to Azure AD, located at login.microsoftonline.com. In order to authenticate you need to have the following information:
 
-* Azure AD 租用戶識別碼 (您用來登入的 Azure AD 名稱，通常與您的公司名稱相關，但不一定如此)
-* 應用程式識別碼 (在 Azure AD 應用程式建立步驟期間取得)
-* 密碼 (在建立 Azure AD 應用程式時選取）
+* Azure AD Tenant ID (the name of that Azure AD you are using to login, often the same as your company but not necessary)
+* Application ID (taken during the Azure AD application creation step)
+* Password (that you selected while creating the Azure AD Application)
 
-在下面的 HTTP 要求中，確定以正確的值取代 "Azure AD Tenant ID"、"Application ID" 和 "Password"。
+In the below HTTP request make sure to replace "Azure AD Tenant ID", "Application ID" and "Password" with the correct values.
 
-**一般 HTTP 要求︰**
+**Generic HTTP Request:**
 
 ```HTTP
 POST /<Azure AD Tenant ID>/oauth2/token?api-version=1.0 HTTP/1.1 HTTP/1.1
@@ -51,7 +53,7 @@ Content-Type: application/x-www-form-urlencoded
 grant_type=client_credentials&resource=https%3A%2F%2Fmanagement.core.windows.net%2F&client_id=<Application ID>&client_secret=<Password>
 ```
 
-... 將 (如果驗證成功) 導致類似下面的回應：
+... will (if authentication succeeds) result in a similar response to this:
 
 ```json
 {
@@ -63,34 +65,35 @@ grant_type=client_credentials&resource=https%3A%2F%2Fmanagement.core.windows.net
   "access_token": "eyJ0eXAiOiJKV1QiLCJhb...86U3JI_0InPUk_lZqWvKiEWsayA"
 }
 ```
-(已縮短上面回應中的 access\_token，以提高可讀性)
+(The access_token in the above response have been shortened to increase readability)
 
-**使用 Bash 產生存取權杖：**
+**Generating access token using Bash:**
 
 ```console
 curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "grant_type=client_credentials&resource=https://management.core.windows.net&client_id=<application id>&client_secret=<password you selected for authentication>" https://login.microsoftonline.com/<Azure AD Tenant ID>/oauth2/token?api-version=1.0
 ```
 
-**使用 PowerShell 產生存取權杖：**
+**Generating access token using PowerShell:**
 
 ```powershell
 Invoke-RestMethod -Uri https://login.microsoftonline.com/<Azure AD Tenant ID>/oauth2/token?api-version=1.0 -Method Post
  -Body @{"grant_type" = "client_credentials"; "resource" = "https://management.core.windows.net/"; "client_id" = "<application id>"; "client_secret" = "<password you selected for authentication>" }
 ```
 
-此回應包含存取權杖、該權杖有效期間的相關資訊，以及您可以將該權杖用於哪項資源的相關資訊。您在先前的 HTTP 呼叫中收到的存取權杖必須針對所有要求傳遞至 ARM API，做為名稱為 "Authorization" 且具有 "Bearer YOUR\_ACCESS\_TOKEN" 值的標頭。請注意 "Bearer" 與您的存取權杖之間的間距。
+The response contains an Access Token, information about how long that token is valid and information about what resource you can use that token for.
+The access token you received in the previous HTTP call must be passed in for all request to the ARM API as a header named "Authorization" with the value "Bearer YOUR_ACCESS_TOKEN". Notice the space between "Bearer" and your Access Token.
 
-您可以從上面的 HTTP 結果看到，權杖會在特定一段時間內保持有效狀態，而您應在這段期間內快取並重複使用該相同權杖。即使可以對 Azure AD 進行每個 API 呼叫的驗證，但是會很沒效率。
+As you can see from the above HTTP Result, the token is valid for a specific period of time during which you should cache and re-use that same token. Even if it is possible to authenticate against Azure AD for each API call, it would be highly inefficient.
 
-## 呼叫 ARM REST API
+## <a name="calling-arm-rest-apis"></a>Calling ARM REST APIs
 
-[Azure Resource Manager REST API 記載於此](https://msdn.microsoft.com/library/azure/dn790568.aspx)，而詳細記載每個 API 的使用方式則超出本教學課程的範圍。本文件只會使用幾個 API 來說明 API 的基本使用方式，之後我們會指引您參閱正式文件。
+[Azure Resource Manager REST APIs are documented here](https://msdn.microsoft.com/library/azure/dn790568.aspx) and it's out of scope for this tutorial to document the usage of each and every. This documentation will only use a few APIs to explain the basic usage of the APIs and after that we refer you to the official documentation.
 
-### 列出所有訂用帳戶
+### <a name="list-all-subscriptions"></a>List all subscriptions
 
-您可以執行的最簡單作業之一，就是列出您可以存取的可用訂用帳戶。在以下要求中，您可以看見如何傳入存取權杖做為標頭。
+One of the simplest operations you can do is to list the available subscriptions that you can access. In the below request you can see how the Access Token is passed in as a header.
 
-(以您實際的存取權杖取代 YOUR\_ACCESS\_TOKEN。)
+(Replace YOUR_ACCESS_TOKEN with your actual Access Token.)
 
 ```HTTP
 GET /subscriptions?api-version=2015-01-01 HTTP/1.1
@@ -99,9 +102,9 @@ Authorization: Bearer YOUR_ACCESS_TOKEN
 Content-Type: application/json
 ```
 
-...因此，您將收到此服務主體可以存取的訂用帳戶清單
+... and as a result, you'll get a list of subscriptions that this Service Principal is allowed to access
 
-(為了便於閱讀，以下的訂用帳戶識別碼已縮短)
+(Subscription IDs below have been shortened for readability)
 
 ```json
 {
@@ -120,11 +123,11 @@ Content-Type: application/json
 }
 ```
 
-### 列出特定訂用帳戶中的所有資源群組
+### <a name="list-all-resource-groups-in-a-specific-subscription"></a>List all resource groups in a specific subscription
 
-適用於 ARM API 的所有資源都放在資源群組中。我們將使用下列 HTTP GET 要求，向 ARM 查詢我們的訂用帳戶中現有的資源群組。請注意，這次訂用帳戶識別碼是如何當作 URL 的一部分而傳入。
+All resources available with the ARM APIs are nested inside a Resource Group. We are going to query ARM for existing Resource Groups in our subscription using the below HTTP GET Request. Notice how the Subscription ID is passed in as part of the URL this time.
 
-(以您實際的存取權杖和訂用帳戶識別碼取代 YOUR\_ACCESS\_TOKEN 和 SUBSCRIPTION\_ID。)
+(Replace YOUR_ACCESS_TOKEN and SUBSCRIPTION_ID with your actual Access Token and Subscription ID)
 
 ```HTTP
 GET /subscriptions/SUBSCRIPTION_ID/resourcegroups?api-version=2015-01-01 HTTP/1.1
@@ -133,9 +136,9 @@ Authorization: Bearer YOUR_ACCESS_TOKEN
 Content-Type: application/json
 ```
 
-您收到的回應將取決於您是否已定義任何資源群組，若已定義，則會多少個。
+The response you get will depend whether you have any resource groups defined and if so, how many.
 
-(為了便於閱讀，以下的訂用帳戶識別碼已縮短)
+(Subscription IDs below have been shortened for readability)
 
 ```json
 {
@@ -163,11 +166,11 @@ Content-Type: application/json
 }
 ```
 
-### 建立資源群組
+### <a name="create-a-resource-group"></a>Create a resource group
 
-到目前為止，我們只向 ARM API 查詢了資訊，我們現在可以開始建立一些資源，讓我們從最簡單的資源群組著手。下列 HTTP 要求會在您選擇的區域/位置建立新的資源群組並在其中新增一或多個標記 (下列範例實際上只新增一個標記）。
+So far we've only been querying the ARM APIs for information, it's time we create some resources instead and let's start by the simplest of them all, a resource group. The following HTTP request creates a new Resource Group in a region/location of your choice and adds one or more tags to it (the sample below actually only adds one tag).
 
-(以您實際的存取權杖、訂用帳戶識別碼和您要建立的資源群組名稱取代 YOUR\_ACCESS\_TOKEN、SUBSCRIPTION\_ID、RESOURCE\_GROUP\_NAME)
+(Replace YOUR_ACCESS_TOKEN, SUBSCRIPTION_ID, RESOURCE_GROUP_NAME with your actual Access Token, Subscription ID and name of the Resource Group you want to create)
 
 ```HTTP
 PUT /subscriptions/SUBSCRIPTION_ID/resourcegroups/RESOURCE_GROUP_NAME?api-version=2015-01-01 HTTP/1.1
@@ -183,7 +186,7 @@ Content-Type: application/json
 }
 ```
 
-如果成功，您會得到如下的回應
+If successful, you'll get a similar response to this
 
 ```json
 {
@@ -199,17 +202,17 @@ Content-Type: application/json
 }
 ```
 
-您已在 Azure 中成功建立資源群組。恭喜！
+You've successfully created a Resource Group in Azure. Congratulations!
 
-### 使用 ARM 範本將資源部署到資源群組
+### <a name="deploy-resources-to-a-resource-group-using-an-arm-template"></a>Deploy resources to a Resource Group using an ARM Template
 
-使用 ARM，您可以使用 ARM 範本部署您的資源。ARM 範本會定義數個資源與其相依性。在本節中，我們只是假設您熟悉 ARM 範本，我們只會示範如何進行 API 呼叫以便開始部署資源。在這裡可以找到 ARM 範本的詳細文件。
+With ARM, you can deploy your resources using ARM Templates. An ARM Template defines several resources and their dependencies. For this section we will just assume you are familiar with ARM Templates and we will just show you how to make the API call to start deployment of one. A detailed documentation of ARM Templates can be found here.
 
-ARM 範本的部署與您呼叫其他 API 的方式沒有太大差異。其中一個重要層面就是範本部署需要相當長的時間 (視此範本的內容而定)，而 API 呼叫只會返回並由身為開發人員的您決定查詢部署狀態，以便了解何時完成部署。
+Deployment of an ARM template doesn't differ much to how you call other APIs. One important aspect is that deployment of a template can take quite a long time, depending on what's inside of the template, and the API call will just return and it's up to you as developer to query for status of the deployment in order to find out when the deployment is done.
 
-在此範例中，我們將使用 [GitHub](https://github.com/Azure/azure-quickstart-templates) 上提供的公開 ARM 範本。我們即將使用的範本會將 Linux VM 部署到美國西部區域。即使此範本會在公開儲存機制 (如 GitHub) 中提供，您也可以選擇傳遞整個範本做為要求的一部分。請注意，我們將提供參數值做為要求的一部分，而這些參數值將使用於所用的範本內。
+For this example, we'll use a publicly exposed ARM Template available on [GitHub](https://github.com/Azure/azure-quickstart-templates). The template we are going to use will deploy a Linux VM to the West US region. Even though this template will have the template available in a public repository like GitHub, you can also select to pass the full template as part of the request. Note that we provide parameter values as part of the request that will be used inside the used template.
 
-(將 SUBSCRIPTION\_ID、RESOURCE\_GROUP\_NAME、DEPLOYMENT\_NAME、YOUR\_ACCESS\_TOKEN、GLOBALY\_UNIQUE\_STORAGE\_ACCOUNT\_NAME、ADMIN\_USER\_NAME、ADMIN\_PASSWORD 和 DNS\_NAME\_FOR\_PUBLIC\_IP 取代為您的要求適用的值)
+(Replace SUBSCRIPTION_ID, RESOURCE_GROUP_NAME, DEPLOYMENT_NAME, YOUR_ACCESS_TOKEN, GLOBALY_UNIQUE_STORAGE_ACCOUNT_NAME, ADMIN_USER_NAME,ADMIN_PASSWORD and DNS_NAME_FOR_PUBLIC_IP to values appropriate for your request)
 
 ```HTTP
 PUT /subscriptions/SUBSCRIPTION_ID/resourcegroups/RESOURCE_GROUP_NAME/providers/microsoft.resources/deployments/DEPLOYMENT_NAME?api-version=2015-01-01 HTTP/1.1
@@ -245,6 +248,11 @@ Content-Type: application/json
 }
 ```
 
-省略了此要求的較長 JSON 回應，以便改善這份文件的可讀性。回應將會包含您剛建立的樣板化部署相關資訊。
+The quite long JSON response for this request have been omitted in order to improve readability of this documentation. The response will contain information about the templated deployment that you just created.
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -3,7 +3,7 @@
     description="如何使用適用於 Azure Mobile Apps 的 Android 用戶端 SDK"
     services="app-service\mobile"
     documentationCenter="android"
-    authors="yuaxu"
+    authors="ysxu"
     manager="erikre"
     editor=""/>
 

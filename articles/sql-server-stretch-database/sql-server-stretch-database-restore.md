@@ -1,86 +1,91 @@
 <properties
-	pageTitle="還原已啟用延展功能的資料庫 |Microsoft Azure"
-	description="了解如何還原已啟用延展功能的資料庫。"
-	services="sql-server-stretch-database"
-	documentationCenter=""
-	authors="douglaslMS"
-	manager=""
-	editor=""/>
+    pageTitle="Restore Stretch-enabled databases | Microsoft Azure"
+    description="Learn how to restore Stretch\-enabled databases."
+    services="sql-server-stretch-database"
+    documentationCenter=""
+    authors="douglaslMS"
+    manager="jhubbard"
+    editor=""/>
 
 <tags
-	ms.service="sql-server-stretch-database"
-	ms.workload="data-management"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/01/2016"
-	ms.author="douglasl"/>
+    ms.service="sql-server-stretch-database"
+    ms.workload="data-management"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="08/01/2016"
+    ms.author="douglasl"/>
 
-# 還原已啟用延展功能的資料庫
 
-視需要還原已備份的資料庫，以從眾多類型的失敗、錯誤及災害進行復原。
+# <a name="restore-stretch-enabled-databases"></a>Restore Stretch-enabled databases
 
-如需有關備份的詳細資訊，請參閱[備份已啟用延展功能的資料庫](sql-server-stretch-database-backup.md)。
+Restore a backed up database when necessary to recover from many types of failures, errors, and disasters.
 
->   [AZURE.NOTE] 備份只是完整的高可用性及商務持續性解決方案的一部分。如需有關高可用性的詳細資訊，請參閱[高可用性解決方案](https://msdn.microsoft.com/library/ms190202.aspx)。
+For more info about backup, see [Backup Stretch-enabled databases](sql-server-stretch-database-backup.md).
 
-## 還原 SQL Server 資料
-若要從硬體故障或損毀復原，請從備份還原已啟用延展功能的 SQL Server 資料庫。您可以繼續使用您目前使用的 SQL Server 還原方法。如需詳細資訊，請參閱[還原和復原概觀](https://msdn.microsoft.com/library/ms191253.aspx)。
+>   [AZURE.NOTE] Backup is only one part of a complete high availability and business continuity solution. For more info about high availability, see [High Availability Solutions](https://msdn.microsoft.com/library/ms190202.aspx).
 
-還原 SQL Server 資料庫之後，您必須執行 **sys.sp\_rda\_reauthorize\_db** 預存程序來重新建立已啟用延展功能之 SQL Server 資料庫與遠端 Azure 資料庫之間的連線。如需詳細資訊，請參閱[還原 SQL Server 資料庫與遠端 Azure 資料庫之間的連線](#restore-the-connection-between-the-sql-server-database-and-the-remote-azure-database)。
+## <a name="restore-your-sql-server-data"></a>Restore your SQL Server data
+To recover from hardware failure or corruption, restore the Stretch\-enabled SQL Server database from a backup. You can continue to use the SQL Server restore methods that you currently use. For more info, see [Restore and Recovery Overview](https://msdn.microsoft.com/library/ms191253.aspx).
 
-## 還原您的遠端 Azure 資料
+After you restore the SQL Server database, you have to run the stored procedure **sys.sp_rda_reauthorize_db** to re-establish the connection between the Stretch\-enabled SQL Server database and the remote Azure database. For more info, see [Restore the connection between the SQL Server database and the remote Azure database](#restore-the-connection-between-the-sql-server-database-and-the-remote-azure-database).
 
-### 復原即時 Azure 資料庫
-Azure 上的 SQL Server Stretch Database 服務會使用「Azure 儲存體快照」，至少每 8 小時建立一次所有即時資料的快照。這些快照會保留 7 天。這可讓您在擷取最新快照集的過去 7 天內，就有一個至少 21 個時間點可用來還原資料。
+## <a name="restore-your-remote-azure-data"></a>Restore your remote Azure data
 
-若要使用 Azure 入口網站將即時 Azure 資料庫還原到先前的時間點，請執行下列操作。
+### <a name="recover-a-live-azure-database"></a>Recover a live Azure database
+The SQL Server Stretch Database service on Azure snapshots all live data at least every 8 hours using Azure Storage Snapshots. These snapshots are maintained for 7 days. This allows you to restore the data to one of at least 21 points in time within the past 7 days up to the time when the last snapshot was taken.
 
-1. 登入 Azure 管理入口網站。
-2. 在畫面左側選取 [瀏覽]，然後選取 [SQL Database]。
-3. 瀏覽至您的資料庫，然後選取它。
-4. 在資料庫刀鋒視窗頂端，按一下 [還原]。
-5. 指定新的 [資料庫名稱]、選取 [還原點]，然後按一下 [建立]。
-6. 資料庫還原程序將會開始，您可以使用 [通知] 來監視此程序。
+To restore a live Azure database to an earlier point in time by using the Azure portal, do the following things.
 
-### 復原已刪除的 Azure 資料庫
-Azure 上的 SQL Server Stretch Database 會在卸除資料庫前建立資料庫快照，並將其保留 7 天。在此之後，就不會再保留來自即時資料庫的快照。這可讓您將已刪除的資料庫還原到其被刪除時的時間點。
+1. Log in to the Azure portal.
+2. On the left side of the screen select **BROWSE** and then select **SQL Databases**.
+3. Navigate to your database and select it.
+4. At the top of the database blade, click **Restore**.
+5. Specify a new **Database name**, select a **Restore Point** and then click **Create**.
+6. The database restore process will begin and can be monitored using **NOTIFICATIONS**.
 
-若要使用 Azure 入口網站將已刪除的 Azure 資料庫還原到其被刪除時的時間點，請執行下列操作。
+### <a name="recover-a-deleted-azure-database"></a>Recover a deleted Azure database
+The SQL Server Stretch Database service on Azure takes a database snapshot before a database is dropped and retains it for 7 days. After this occurs, it no longer retains snapshots from the live database. This lets you restore a deleted database to the point when it was deleted.
 
-1. 登入 Azure 管理入口網站。
-2. 在畫面左側選取 [瀏覽]，然後選取 [SQL Server]。
-3. 瀏覽至您的伺服器，然後選取它。
-4. 在伺服器的刀鋒視窗上，向下捲動至 [作業]，然後按一下 [已刪除的資料庫] 圖格。
-5. 按一下您想要還原的已刪除資料庫。
-5. 指定新的 [資料庫名稱]，然後按一下 [建立]。
-6. 資料庫還原程序將會開始，您可以使用 [通知] 來監視此程序。
+To restore a deleted Azure database to the point when it was deleted by using the Azure portal, do the following things.
 
-## 還原 SQL Server 資料庫與遠端 Azure 資料庫之間的連線
+1. Log in to the Azure portal.
+2. On the left side of the screen select **BROWSE** and then select **SQL Servers**.
+3. Navigate to your server and select it.
+4. Scroll down to Operations on your server's blade, click the **Deleted Databases** tile.
+5. Select the deleted database you want to restore.
+5. Specify a new **Database name** and click **Create**.
+6. The database restore process will begin and can be monitored using **NOTIFICATIONS**.
 
-1.  如果您即將連接到已還原但名稱不同或在不同區域中的 Azure 資料庫，請執行 [sys.sp\_rda\_deauthorize\_db](https://msdn.microsoft.com/library/mt703716.aspx) 預存程序以與先前的 Azure 資料庫中斷連線。
+## <a name="restore-the-connection-between-the-sql-server-database-and-the-remote-azure-database"></a>Restore the connection between the SQL Server database and the remote Azure database
 
-2.  執行 [sys.sp\_rda\_reauthorize\_db](https://msdn.microsoft.com/library/mt131016.aspx) 預存程序，以將已啟用延展功能的本機資料庫重新連接到 Azure 資料庫。
+1.  If you're going to connect to a restored Azure database with a different name or in a different region, run the stored procedure [sys.sp_rda_deauthorize_db](https://msdn.microsoft.com/library/mt703716.aspx) to disconnect from the previous Azure database.  
 
-	-   請以 sysname 或 varchar(128) 值提供現有資料庫範圍認證。(請勿使用 varchar(max))。 您可以在 **sys.database\_scoped\_credentials** 檢視中查閱認證名稱。
+2.  Run the stored procedure [sys.sp_rda_reauthorize_db](https://msdn.microsoft.com/library/mt131016.aspx) to reconnect the local Stretch\-enabled database to the Azure database.  
 
-	-   指定是否要建立遠端資料的複本，並連接到該複本 (建議)。
+    -   Provide the existing database scoped credential as a sysname or a varchar\(128\) value. \(Don't use varchar\(max\).\) You can look up the credential name in the view **sys.database\_scoped\_credentials**.  
+
+    -   Specify whether to make a copy of the remote data and connect to the copy (recommended).  
 
     ```tsql  
     USE <Stretch-enabled database name>;
-	GO
-	EXEC sp_rda_reauthorize_db
-	    @credential = N'<existing_database_scoped_credential_name>',
-		@with_copy = 1 ;  
-	GO
-	```  
+    GO
+    EXEC sp_rda_reauthorize_db
+        @credential = N'<existing_database_scoped_credential_name>',
+        @with_copy = 1 ;  
+    GO
+    ```  
 
-## 另請參閱
+## <a name="see-also"></a>See also
 
-[Manage and troubleshoot Stretch Database (Stretch Database 的管理和疑難排解)](sql-server-stretch-database-manage.md)
+[Manage and troubleshoot Stretch Database](sql-server-stretch-database-manage.md)
 
-[sys.sp\_rda\_reauthorize\_db (Transact-SQL)](https://msdn.microsoft.com/library/mt131016.aspx)
+[sys.sp_rda_reauthorize_db (Transact-SQL)](https://msdn.microsoft.com/library/mt131016.aspx)
 
-[備份和還原 SQL Server 資料庫](https://msdn.microsoft.com/library/ms187048.aspx)
+[Back Up and Restore of SQL Server Databases](https://msdn.microsoft.com/library/ms187048.aspx)
 
-<!---HONumber=AcomDC_0803_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

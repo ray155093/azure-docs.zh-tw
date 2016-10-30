@@ -1,10 +1,10 @@
 <properties
-   pageTitle="建立 Azure Marketplace 的虛擬機器映像 | Microsoft Azure"
-   description="如何建立 Azure Marketplace 的虛擬機器映像以讓其他人購買的詳細指示。"
+   pageTitle="Creating a virtual machine image for the Azure Marketplace | Microsoft Azure"
+   description="Detailed instructions on how to create a virtual machine image for the Azure Marketplace for others to purchase."
    services="Azure Marketplace"
    documentationCenter=""
    authors="HannibalSII"
-   manager=""
+   manager="hascipio"
    editor=""/>
 
 <tags
@@ -16,176 +16,177 @@
    ms.date="07/13/2016"
    ms.author="hascipio; v-divte"/>
 
-# 建立 Azure Marketplace 的虛擬機器映像的指南
 
-本文的**步驟 2** 會逐步引導您準備您將部署到 Azure Marketplace 的虛擬硬碟 (VHD)。您的 VHD 是 SKU 的基礎。這個程序會因為您是否提供以 Linux 或 Windows 為基礎的 SKU 而有所不同。本文將探討這兩種狀況。這個程序可與[帳戶建立和註冊][link-acct-creation]同步執行。
+# <a name="guide-to-create-a-virtual-machine-image-for-the-azure-marketplace"></a>Guide to create a virtual machine image for the Azure Marketplace
 
-## 1\.定義供應項目和 SKU
+This article, **Step 2**, walks you through preparing the virtual hard disks (VHDs) that you will deploy to the Azure Marketplace. Your VHDs are the foundation of your SKU. The process differs depending on whether you are providing a Linux-based or Windows-based SKU. This article covers both scenarios. This process can be performed in parallel with [Account creation and registration][link-acct-creation].
 
-在本節中，您會了解如何定義供應項目與其相關聯的 SKU。
+## <a name="1.-define-offers-and-skus"></a>1. Define Offers and SKUs
 
-供應項目是其所有 SKU 的「上層」。您可以擁有多個供應項目。您可以隨意決定供應項目的建構方式。當供應項目進入預備環境，它的所有 SKU 也會一起進入。細心考量您的 SKU 識別碼，因為這些識別碼會顯示於 URL 中：
+In this section, you learn to define the offers and their associated SKUs.
 
-- Azure.com：http://azure.microsoft.com/marketplace/partners/{PartnerNamespace}/{OfferIdentifier}-{SKUidentifier}
+An offer is a "parent" to all of its SKUs. You can have multiple offers. How you decide to structure your offers is up to you. When an offer is pushed to staging, it is pushed along with all of its SKUs. Carefully consider your SKU identifiers, because they will be visible in the URL:
 
-- Azure Preview 入口網站：https://portal.azure.com/#gallery/{PublisherNamespace}.{OfferIdentifier}{SKUIDdentifier}
+- Azure.com: http://azure.microsoft.com/marketplace/partners/{PartnerNamespace}/{OfferIdentifier}-{SKUidentifier}
 
-SKU 是 VM 映像的商務名稱。VM 映像包含一個作業系統磁碟以及零或多個資料磁碟。它在本質上是虛擬機器的完整儲存體設定檔。每個磁碟都需要一個 VHD。即使空的資料磁碟也需要建立一個 VHD。
+- Azure preview portal: https://portal.azure.com/#gallery/{PublisherNamespace}.{OfferIdentifier}{SKUIDdentifier}  
 
-無論您使用哪一種作業系統，您只能加入 SKU 所需的最少數目資料磁碟。客戶無法在部署時移除屬於映像一部分的磁碟，但是可隨時在必要時於部署期間或之後加入磁碟。
+A SKU is the commercial name for a VM image. A VM image contains one operating system disk and zero or more data disks. It is essentially the complete storage profile for a virtual machine. One VHD is needed per disk. Even blank data disks require a VHD to be created.
 
->[AZURE.IMPORTANT] **請勿變更新映像版本中的磁碟計數。** 如果您必須重新設定映像中的資料磁碟，請定義新的 SKU。對於自動調整大小、透過 ARM 範本自動部署解決方案和其他案例來說，發行磁碟計數相異的新映像版本有可能會毀損以新映像版本為基礎的新部署。
+Regardless of which operating system you use, add only the minimum number of data disks needed by the SKU. Customers cannot remove disks that are part of an image at the time of deployment but can always add disks during or after deployment if they need them.
 
-### 1\.1 加入供應項目
+>[AZURE.IMPORTANT] **Do not change disk count in a new image version.** If you must reconfigure Data disks in the image, define a new SKU. Publishing a new image version with different disk counts will have the potential of breaking new deployment based on the new image version in cases of auto-scaling, automatic deployments of solutions through ARM templates and other scenarios.
 
-1. 使用您的賣方帳戶登入[發佈入口網站][link-pubportal]。
-2. 選取發佈入口網站的 [虛擬機器] 索引標籤。在提示的輸入欄位中輸入您的供應項目名稱。供應項目名稱通常是您計劃在 Azure Marketplace 中銷售的產品或服務的名稱。
-3. 選取 [**建立**]。
+### <a name="1.1-add-an-offer"></a>1.1 Add an offer
 
-### 1\.2 定義 SKU
-在您加入供應項目之後，您必須定義及識別您的 SKU。您可以有多個供應項目，每個供應項目在其下可以有多個 SKU。當供應項目進入預備環境，它的所有 SKU 也會一起進入。
+1. Sign in to the [Publishing Portal][link-pubportal] by using your seller account.
+2. Select the **Virtual Machines** tab of the Publishing Portal. In the prompted entry field, enter your offer name. The offer name is typically the name of the product or service that you plan to sell in the Azure Marketplace.
+3. Select **Create**.
 
-1. **加入 SKU。** SKU 必須具備用於 URL 中的識別碼。此識別碼必須是發行設定檔中的唯一識別碼，但是若與其他發行者發生識別碼衝突，並不會有任何風險。
+### <a name="1.2-define-a-sku"></a>1.2 Define a SKU
+After you have added an offer, you need to define and identify your SKUs. You can have multiple offers, and each offer can have multiple SKUs under it. When an offer is pushed to staging, it is pushed along with all of its SKUs.
 
-    > [AZURE.NOTE] 供應項目和 SKU 識別項會顯示在 Marketplace 中的供應項目 URL。
+1. **Add a SKU.** The SKU requires an identifier, which is used in the URL. The identifier must be unique within your publishing profile, but there is no risk of identifier collision with other publishers.
 
-2. **為 SKU 加入摘要描述。** 客戶可以看見摘要說明，所以您應讓說明可容易閱讀。此資訊在「進入預備環境」階段之前都不需要鎖定。在那之前，您都可以任意編輯。
-3. 如果您正在使用以 Windows 為基礎的 SKU，請遵循建議的連結，要求使用核准的 Windows Server 版本。
+    > [AZURE.NOTE] The offer and SKU identifiers are displayed in the offer URL in the Marketplace.
 
-## 2\.建立與 Azure 相容的 VHD (以 Linux 為基礎)
-本節的焦點在於為 Azure Marketplace 建立以 Linux 為基礎的 VM 映像所採行的最佳作法。若需逐步解說，請參考下列文件：[建立與上傳包含 Linux 作業系統的虛擬硬碟](../virtual-machines/virtual-machines-linux-classic-create-upload-vhd.md)
+2. **Add a summary description for your SKU.** Summary descriptions are visible to customers, so you should make them easily readable. This information does not need to be locked until the "Push to Staging" phase. Until then, you are free to edit it.
+3. If you are using Windows-based SKUs, follow the suggested links to acquire the approved versions of Windows Server.
 
-## 3\.建立與 Azure 相容的 VHD (以 Windows 為基礎)
-本節的焦點在於為 Azure Marketplace 建立以 Windows Server 為基礎的 SKU 所採行的步驟。
+## <a name="2.-create-an-azure-compatible-vhd-(linux-based)"></a>2. Create an Azure-compatible VHD (Linux-based)
+This section focuses on best practices for creating a Linux-based VM image for the Azure Marketplace. For a step-by-step walkthrough, refer to the following documentation: [Creating and Uploading a Virtual Hard Disk that Contains the Linux Operating System](../virtual-machines/virtual-machines-linux-classic-create-upload-vhd.md)
 
-### 3\.1 確認您使用的是正確的基底 VHD
-VM 映像的作業系統 VHD 必須以獲得 Azure 核准的基底映像為基礎，包含 Windows Server 或 SQL Server。
+## <a name="3.-create-an-azure-compatible-vhd-(windows-based)"></a>3. Create an Azure-compatible VHD (Windows-based)
+This section focuses on the steps to create a SKU based on Windows Server for the Azure Marketplace.
 
-若要開始，請從下列其中一個映像建立 VM，位於 [Microsoft Azure 入口網站][link-azure-portal]：
+### <a name="3.1-ensure-that-you-are-using-the-correct-base-vhds"></a>3.1 Ensure that you are using the correct base VHDs
+The operating system VHD for your VM image must be based on an Azure-approved base image that contains Windows Server or SQL Server.
 
-- Windows Server ([2012 R2 Datacenter][link-datactr-2012-r2]、[2012 Datacenter][link-datactr-2012]、[2008 R2 SP1][link-datactr-2008-r2])
-- SQL Server 2014 ([Enterprise][link-sql-2014-ent]、[Standard][link-sql-2014-std]、[Web][link-sql-2014-web])
-- SQL Server 2012 SP2 ([Enterprise][link-sql-2012-ent]、[Standard][link-sql-2012-std]、[Web][link-sql-2012-web])
+To begin, create a VM from one of the following images, located at the [Microsoft Azure portal][link-azure-portal]:
 
-這些連結也可以在 SKU 頁面下的發佈入口網站中找到。
+- Windows Server ([2012 R2 Datacenter][link-datactr-2012-r2], [2012 Datacenter][link-datactr-2012], [2008 R2 SP1][link-datactr-2008-r2])
+- SQL Server 2014 ([Enterprise][link-sql-2014-ent], [Standard][link-sql-2014-std], [Web][link-sql-2014-web])
+- SQL Server 2012 SP2 ([Enterprise][link-sql-2012-ent], [Standard][link-sql-2012-std], [Web][link-sql-2012-web])
 
-> [AZURE.TIP] 如果您使用的是最新的 Azure 入口網站或 PowerShell，2014 年 9 月 8 日之後發行的 Windows Server 映像都會獲得核准。
+These links can also be found in the Publishing Portal under the SKU page.
 
-
-### 3\.2 建立您的 Windows 型 VM
-從 Microsoft Azure 入口網站，您可以利用幾個簡單的步驟，根據核准的基底映像建立您的 VM。下列內容是程序概觀：
-
-1. 從基底映像頁面，選取 [建立虛擬機器] 以導向新的 [Microsoft Azure 入口網站][link-azure-portal]。
-
-    ![繪圖][img-acom-1]
-
-2. 利用您想使用的 Azure 訂用帳戶之 Microsoft 帳戶和密碼登入入口網站。
-3. 遵循提示以使用您已選取的基底映像建立 VM。您必須提供主機名稱 (電腦的名稱)、使用者名稱 (以系統管理員身分註冊) 和 VM 的密碼。
-
-    ![繪圖][img-portal-vm-create]
-
-4. 選取要部署之 VM 的大小：
-
-    a.如果您打算開發 VHD 內部部署，大小不會造成影響。請考慮使用其中一個較小的 VM。
-
-    b.如果您打算在 Azure 中開發映像，請考慮使用其中一個建議的 VM 大小做為選取的映像。
-
-    c.關於價格資訊，請參考入口網站中顯示的**建議定價層**選取器。它將提供三個由發行者提供的建議大小。(在這個案例中，發行者為 Microsoft。)
-
-    ![繪圖][img-portal-vm-size]
-
-5. 設定屬性：
-
-    a.若要快速部署，您可以保留 [選用設定] 與 [資源群組] 下的預設值。
-
-    b.在 [儲存體帳戶] 之下，您可以視情況選取要儲存作業系統 VHD 的儲存體帳戶。
-
-    c.在 [資源群組] 之下，您可以視情況選取要放置 VM 的邏輯群組。
-6. 選取部署的 [位置]：
-
-    a.如果您打算開發 VHD 內部部署，位置不會造成影響，因為您稍後會將映像上傳至 Azure。
-
-    b.如果您打算在 Azure 中開發映像，請考慮從一開始就使用其中一個位於美國的 Microsoft Azure 區域。這樣可以在您提交映像以進行認證時，加速 Microsoft 代表您執行的 VHD 複製程序。
-
-    ![繪圖][img-portal-vm-location]
-
-7. 按一下 [建立]。開始部署 VM。在數分鐘內，您將成功完成部署，並且可以開始為您的 SKU 建立映像。
-
-### 3\.3 在雲端開發您的 VHD
-強烈建議您在使用遠端桌面通訊協定 (RDP)，在雲端開發您的 VHD。您會利用在佈建期間指定的使用者名稱和密碼連接到 RDP。
-
-> [AZURE.IMPORTANT] 如果您開發 VHD 內部部署 (不建議)，請參閱[建立虛擬機器映像內部部署](marketplace-publishing-vm-image-creation-on-premise.md)。如果您在雲端中開發，就不必下載您的 VHD。
+> [AZURE.TIP] If you are using the current Azure portal or PowerShell, Windows Server images published on September 8, 2014 and later are approved.
 
 
-**使用 [Microsoft Azure 入口網站][link-azure-portal]，透過 RDP 連接**
+### <a name="3.2-create-your-windows-based-vm"></a>3.2 Create your Windows-based VM
+From the Microsoft Azure portal, you can create your VM based on an approved base image in just a few simple steps. The following is an overview of the process:
 
-1. 選取 [瀏覽] > [VM]。
-2. [虛擬機器] 刀鋒視窗隨即開啟。確認您要連接的 VM 正在運作，然後從已部署的 VM 清單中選取該 VM。
-3. 描述選取之 VM 的刀鋒視窗隨即開啟。在頂端，按一下 [連接]。
-4. 系統會提示您輸入在佈建期間指定的使用者名稱和密碼。
+1. From the base image page, select **Create Virtual Machine** to be directed to the new [Microsoft Azure portal][link-azure-portal].
 
-**使用 PowerShell，透過 RDP 連接**
+    ![drawing][img-acom-1]
 
-若要將遠端桌面檔案下載至本機電腦，請使用 [Get-AzureRemoteDesktopFile Cmdlet][link-technet-2]。為了使用這個 Cmdlet，您必須知道服務名稱和 VM 的名稱。如果您已從 [Microsoft Azure 入口網站][link-azure-portal]建立 VM，您可以在 VM 屬性下找到此資訊：
+2. Sign in to the portal with the Microsoft account and password for the Azure subscription you want to use.
+3. Follow the prompts to create a VM by using the base image you have selected. You need to provide a host name (name of the computer), user name (registered as an administrator), and password for the VM.
 
-1. 在 Microsoft Azure 入口網站中，選取 [瀏覽] > [VM]。
-2. [虛擬機器] 刀鋒視窗隨即開啟。選取您部署的 VM。
-3. 描述選取之 VM 的刀鋒視窗隨即開啟。
-4. 按一下 [內容]。
-5. 網域名稱的第一個部份是服務名稱。主機名稱是 VM 名稱。
+    ![drawing][img-portal-vm-create]
 
-    ![繪圖][img-portal-vm-rdp]
+4. Select the size of the VM to deploy:
 
-6. 要將已建立之 VM 的 RDP 檔案下載至系統管理員的本機桌面之 Cmdlet 如下所示。
+    a.  If you plan to develop the VHD on-premises, the size does not matter. Consider using one of the smaller VMs.
+
+    b.  If you plan to develop the image in Azure, consider using one of the recommended VM sizes for the selected image.
+
+    c.  For pricing information, refer to the **Recommended pricing tiers** selector displayed on the portal. It will provide the three recommended sizes provided by the publisher. (In this case, the publisher is Microsoft.)
+
+    ![drawing][img-portal-vm-size]
+
+5. Set properties:
+
+    a.  For quick deployment, you can leave the default values for the properties under **Optional Configuration** and **Resource Group**.
+
+    b.  Under **Storage Account**, you can optionally select the storage account in which the operating system VHD will be stored.
+
+    c.  Under **Resource Group**, you can optionally select the logical group in which to place the VM.
+6. Select the **Location** for deployment:
+
+    a.  If you plan to develop the VHD on-premises, the location does not matter because you will upload the image to Azure later.
+
+    b.  If you plan to develop the image in Azure, consider using one of the US-based Microsoft Azure regions from the beginning. This speeds up the VHD copying process that Microsoft performs on your behalf when you submit your image for certification.
+
+    ![drawing][img-portal-vm-location]
+
+7. Click **Create**. The VM starts to deploy. Within minutes, you will have a successful deployment and can begin to create the image for your SKU.
+
+### <a name="3.3-develop-your-vhd-in-the-cloud"></a>3.3 Develop your VHD in the cloud
+We strongly recommend that you develop your VHD in the cloud by using Remote Desktop Protocol (RDP). You connect to RDP with the user name and password specified during provisioning.
+
+> [AZURE.IMPORTANT] If you develop your VHD on-premises (which is not recommended), see [Creating a virtual machine image on-premises](marketplace-publishing-vm-image-creation-on-premise.md). Downloading your VHD is not necessary if you are developing in the cloud.
+
+
+**Connect via RDP using the [Microsoft Azure portal][link-azure-portal]**
+
+1. Select **Browse** > **VMs**.
+2. The Virtual machines blade opens. Ensure that the VM that you want to connect with is running, and then select it from the list of deployed VMs.
+3. A blade opens that describes the selected VM. At the top, click **Connect**.
+4. You are prompted to enter the user name and password that you specified during provisioning.
+
+**Connect via RDP using PowerShell**
+
+To download a remote desktop file to a local machine, use the [Get-AzureRemoteDesktopFile cmdlet][link-technet-2]. In order to use this cmdlet, you need to know the name of the service and name of the VM. If you created the VM from the [Microsoft Azure portal][link-azure-portal], you can find this information under VM properties:
+
+1. In the Microsoft Azure portal, select **Browse** > **VMs**.
+2. The Virtual machines blade opens. Select the VM that you deployed.
+3. A blade opens that describes the selected VM.
+4. Click **Properties**.
+5. The first portion of the domain name is the service name. The host name is the VM name.
+
+    ![drawing][img-portal-vm-rdp]
+
+6. The cmdlet to download the RDP file for the created VM to the administrator's local desktop is as follows.
 
         Get‐AzureRemoteDesktopFile ‐ServiceName “baseimagevm‐6820cq00” ‐Name “BaseImageVM” –LocalPath “C:\Users\Administrator\Desktop\BaseImageVM.rdp”
 
-在 MSDN 的文章＜[透過 RDP 或 SSH 連接至 Azure VM](http://msdn.microsoft.com/library/azure/dn535788.aspx)＞中可找到 RDP 的相關詳細資訊。
+More information about RDP can be found on MSDN in the article [Connect to an Azure VM with RDP or SSH](http://msdn.microsoft.com/library/azure/dn535788.aspx).
 
-**設定 VM 並建立您的 SKU**
+**Configure a VM and create your SKU**
 
-下載作業系統 VHD 之後，請使用 Hyper-V 並將 VM 設定為開始建立您的 SKU。詳細步驟可在下列 TechNet 連結中找到：[安裝 Hyper-V 和設定 VM](http://technet.microsoft.com/library/hh846766.aspx)。
+After the operating system VHD is downloaded, use Hyper­V and configure a VM to begin creating your SKU. Detailed steps can be found at the following TechNet link: [Install Hyper­V and Configure a VM](http://technet.microsoft.com/library/hh846766.aspx).
 
-### 3\.4 選擇正確的 VHD 大小
-您 VM 映像中的 Windows 作業系統 VHD 應建立為 128 GB 固定格式 VHD。
+### <a name="3.4-choose-the-correct-vhd-size"></a>3.4 Choose the correct VHD size
+The Windows operating system VHD in your VM image should be created as a 128-GB fixed-format VHD.  
 
-如果實體大小小於 128 GB，此 VHD 應為疏鬆 VHD。所提供的基底 Windows 和 SQL Server 映像皆符合這些需求；所以請勿變更所取得之 VHD 的格式或大小。
+If the physical size is less than 128 GB, the VHD should be sparse. The base Windows and SQL Server images provided already meet these requirements, so do not change the format or the size of the VHD obtained.  
 
-資料磁碟的大小可高達 1 TB。決定磁碟大小時，請記得客戶無法於部署時在映像中調整 VHD 大小。資料磁碟 VHD 應建立為固定格式 VHD。也可以是疏鬆 VHD。資料磁碟可以空白或包含資料。
+Data disks can be as large as 1 TB. When deciding on the disk size, remember that customers cannot resize VHDs within an image at the time of deployment. Data disk VHDs should be created as a fixed-format VHD. They should also be sparse. Data disks can be empty or contain data.
 
 
-### 3\.5 安裝最新的 Windows 補充程式
-基底映像包含至其發佈日期為止的最新補充程式。在您發行您已建立的作業系統 VHD 之前，請確認 Windows Update 已執行，且已安裝最新的「關鍵」和「重要」安全性更新。
+### <a name="3.5-install-the-latest-windows-patches"></a>3.5 Install the latest Windows patches
+The base images contain the latest patches up to their published date. Before publishing the operating system VHD you have created, ensure that Windows Update has been run and that all the latest Critical and Important security updates have been installed.
 
-### 3\.6 必要時執行其他設定並排程工作
-如果需要進行其他設定，請在部署 VM 後，考慮使用在啟動時執行的已排程工作，進行最終的 VM 變更：
+### <a name="3.6-perform-additional-configuration-and-schedule-tasks-as-necessary"></a>3.6 Perform additional configuration and schedule tasks as necessary
+If additional configuration is needed, consider using a scheduled task that runs at startup to make any final changes to the VM after it has been deployed:
 
-- 讓工作在成功執行時將自己刪除是最佳作法。
-- 所有設定都應該依靠磁碟機 C 或 D，因為它們是唯二保證隨時都存在的磁碟機。磁碟機 C 是作業系統磁碟，而磁碟機 D 是暫存本機磁碟。
+- It is a best practice to have the task delete itself upon successful execution.
+- No configuration should rely on drives other than drives C or D, because these are the only two drives that are always guaranteed to exist. Drive C is the operating system disk, and drive D is the temporary local disk.
 
-### 3\.7 一般化映像
-Azure Marketplace 中的所有映像通常都必須能夠重複使用。也就是說，作業系統 VHD 必須一般化：
+### <a name="3.7-generalize-the-image"></a>3.7 Generalize the image
+All images in the Azure Marketplace must be reusable in a generic fashion. In other words, the operating system VHD must be generalized:
 
-- 對 Windows 而言，此映像應該是 "sysprepped"，而且所有設定都應該在支援 **sysprep** 命令的狀態下進行。
-- 您可以從目錄 %windir%\\System32\\Sysprep 執行以下命令。
+- For Windows, the image should be "sysprepped," and no configurations should be done that do not support the **sysprep** command.
+- You can run the following command from the directory %windir%\System32\Sysprep.
 
         sysprep.exe /generalize /oobe /shutdown
 
-  下列 MSDN 文章的「步驟」提供如何 sysprep 作業系統的指導：[建立 Windows Server VHD 並將其上傳至 Azure](../virtual-machines/virtual-machines-windows-classic-createupload-vhd.md)。
+  Guidance on how to sysprep the operating system is provided in Step of the following MSDN article: [Create and upload a Windows Server VHD to Azure](../virtual-machines/virtual-machines-windows-classic-createupload-vhd.md).
 
-## 4\.從您的 VHD 部署 VM
-在您將 VHD (一般化作業系統 VHD 和零或更多個資料磁碟 VHD) 上傳至 Azure 儲存體帳戶之後，您就可以將它們註冊為使用者 VM 映像。您可以接著測試該映像。請注意，因為您的作業系統 VHD 已一般化，所以您無法藉由提供 VHD URL 來直接部署 VM。
+## <a name="4.-deploy-a-vm-from-your-vhds"></a>4. Deploy a VM from your VHDs
+After you have uploaded your VHDs (the generalized operating system VHD and zero or more data disk VHDs) to an Azure storage account, you can register them as a user VM image. Then you can test that image. Note that because your operating system VHD is generalized, you cannot directly deploy the VM by providing the VHD URL.
 
-若要深入了解 VM 映像，請檢閱下列部落格文章：
+To learn more about VM images, review the following blog posts:
 
-- [VM 映像](https://azure.microsoft.com/blog/vm-image-blog-post/)
-- [VM 映像 PowerShell 如何](https://azure.microsoft.com/blog/vm-image-powershell-how-to-blog-post/)
-- [關於 Azure 中的 VM 映像](https://msdn.microsoft.com/library/azure/dn790290.aspx)
+- [VM Image](https://azure.microsoft.com/blog/vm-image-blog-post/)
+- [VM Image PowerShell How To](https://azure.microsoft.com/blog/vm-image-powershell-how-to-blog-post/)
+- [About VM images in Azure](https://msdn.microsoft.com/library/azure/dn790290.aspx)
 
-### 4\.1 建立使用者 VM 映像
-若要從您的 SKU 建立使用者 VM 映像以開始部署多個 VM，您必須使用[建立 VM 映像 Rest API](http://msdn.microsoft.com/library/azure/dn775054.aspx)，將 VHD 註冊為 VM 映像。
+### <a name="4.1-create-a-user-vm-image"></a>4.1 Create a user VM image
+To create a user VM image from your SKU to begin deploying multiple VMs, you need to use the [Create VM Image Rest API](http://msdn.microsoft.com/library/azure/dn775054.aspx) to register VHDs as a VM image.
 
-您可以使用 **Invoke-WebRequest** Cmdlet 從 PowerShell 建立 VM 映像。以下的 PowerShell 指令碼說明如何利用一個作業系統磁碟和一個資料磁碟建立 VM 映像。請注意，訂用帳戶和 PowerShell 區段應該已完成設定。
+You can use the **Invoke-WebRequest** cmdlet to create a VM image from PowerShell. The following PowerShell script shows how to create a VM image with an operating system disk and one data disk. Note that a subscription and the PowerShell session should already be set up.
 
         # Image Parameters to Specify
         $ImageName=’ENTER-YOUR-OWN-IMAGE-NAME-HERE’
@@ -234,15 +235,15 @@ Azure Marketplace 中的所有映像通常都必須能夠重複使用。也就�
         $response2.RawContent
 
 
-藉由執行這個指令碼，您可利用您提供給 ImageName 參數的名稱 myVMImage 建立使用者 VM 映像。它包含一個作業系統磁碟和一個資料磁碟。
+By running this script, you create a user VM image with the name you provided to the ImageName parameter, myVMImage. It consists of one operating system disk and one data disk.
 
-這個 API 是個非同步作業並且會以 202「已接受」回應。為了查看 VM 映像是否已建立，您必須查詢作業狀態。傳回回應中的 x-ms-request-id 是作業識別碼。這個識別碼應該在下方的 $opId 中設定。
+This API is an asynchronous operation and responds with a 202 "Accepted" code. In order to see whether the VM image has been created, you need to query for operation status. The x-ms-request-id in the return response is the operation ID. This ID should be set in $opId below.
 
         $opId = #Fill In With Operation ID
         $uri2 = $SrvMngtEndPoint + "/" + $SubId + "/" + "operations" + "/" + "opId"
         $response2 = Invoke‐WebRequest ‐Uri $uri2 ‐ContentType "application/xml" ‐Certificate $certificate ‐Headers $headers ‐Method GET
 
-若要利用「建立 VM 映像 API」從作業系統 VHD 和其他空的資料磁碟 (您沒有這個已建立磁碟的 VHD) 建立 VM 映像，請使用下列指令碼。
+To create a VM image from an operating system VHD and an additional empty data disks (you do not have the VHD for this disk created) by using the Create VM Image API, use the following script.
 
         # Image Parameters to Specify
         $ImageName=’myVMImage’
@@ -292,15 +293,15 @@ Azure Marketplace 中的所有映像通常都必須能夠重複使用。也就�
         echo "Not Accepted"
         }
 
-藉由執行這個指令碼，您可利用您提供給 ImageName 參數的名稱 myVMImage 建立使用者 VM 映像。它包含一個作業系統磁碟和一個資料磁碟。
+By running this script, you create a user VM image with the name you provided to the ImageName parameter, myVMImage. It consists of one operating system disk and one data disk.
 
-這個 API 是個非同步作業並且會以 202「已接受」回應。為了查看 VM 映像是否已建立，您必須查詢作業狀態。傳回回應中的 x-ms-request-id 是作業識別碼。這個識別碼應該在下方的 $opId 中設定。
+This API is an asynchronous operation and responds with a 202 "Accepted" code. In order to see whether the VM image has been created, you need to query for operation status.  The x-ms-request-id in the return response is the operation ID. This ID should be set in $opId below.
 
         $opId = #Fill In With Operation ID
         $uri2 = $SrvMngtEndPoint + "/" + $SubId + "/" + "operations" + "/" + "$opId"
         $response2 = Invoke-WebRequest -Uri $uri2 -ContentType "application/xml" Certificate $certificate -Headers $headers -Method GET
 
-若要利用「建立 VM 映像 API」從作業系統 VHD 和其他空的資料磁碟 (您沒有這個已建立磁碟的 VHD) 建立 VM 映像，請使用下列指令碼。
+To create a VM image from an operating system VHD and an additional empty data disks (you do not have the VHD for this disk created) by using the Create VM Image API, use the following script.
 
         # Image Parameters to Specify
         $ImageName=’myVMImage’
@@ -345,28 +346,28 @@ Azure Marketplace 中的所有映像通常都必須能夠重複使用。也就�
         { echo "Not Accepted"
         }
 
-藉由執行這個指令碼，您可利用您提供給 ImageName 參數的名稱 myVMImage 建立使用者 VM 映像。它包含一個作業系統磁碟 (以您傳遞的 VHD 為基礎) 和一個空的 32 GB 資料磁碟。
+By running this script, you create a user VM image with the name you provided to the ImageName parameter, myVMImage.  It consists of one operating system disk, based on the VHD you passed, and one empty 32-GB data disk.
 
-### 4\.2 從使用者 VM 映像部署 VM
-若要從使用者 VM 映像部署 VM，您可以使用最新的 [Azure 入口網站](https://manage.windowsazure.com)或 PowerShell。
+### <a name="4.2-deploy-a-vm-from-a-user-vm-image"></a>4.2 Deploy a VM from a user VM image
+To deploy a VM from a user VM image, you can use the current [Azure portal](https://manage.windowsazure.com) or PowerShell.
 
-**從最新的 Azure 入口網站部署 VM**
+**Deploy a VM from the current Azure portal**
 
-1. 移至 [新增] > [計算] > [虛擬機器] > [從資源庫]。
+1. Go to **New** > **Compute** > **Virtual machine** > **From gallery**.
 
-    ![繪圖][img-manage-vm-new]
+    ![drawing][img-manage-vm-new]
 
-2. 移至 [我的映像]，然後選取要從其中部署 VM 的 VM 映像：
-  1. 密切注意您選取的映像，因為 [我的映像] 檢視會同時列出作業系統映像和 VM 映像。
-  2. 查看磁碟數目有助於判斷您正在部署的映像類型，因為大部分的 VM 映像都具有一個以上的磁碟。然而，VM 映像還是可能只有一個作業系統磁碟，然後會將 [磁碟數目] 設定為 1。
+2. Go to **My images**, and then select the VM image from which to deploy a VM:
+  1. Pay close attention to which image you select, because the **My images** view lists both operating system images and VM images.
+  2. Looking at the number of disks can help determine what type of image you are deploying, because the majority of VM images have more than one disk. However, it is still possible to have a VM image with only a single operating system disk, which would then have **Number of disks** set to 1.
 
-    ![繪圖][img-manage-vm-select]
+    ![drawing][img-manage-vm-select]
 
-3. 遵循 VM 建立精靈，並指定 VM 名稱、VM 大小、位置、使用者名稱和密碼。
+3. Follow the VM creation wizard and specify the VM name, VM size, location, user name, and password.
 
-**從 PowerShell 部署 VM**
+**Deploy a VM from PowerShell**
 
-若要從剛才建立的一般化 VM 映像部署大型 VM，您可使用下列 Cmdlet。
+To deploy a large VM from the generalized VM image just created, you can use the following cmdlets.
 
     $img = Get‐AzureVMImage ‐ImageName "myVMImage"
     $user = "user123"
@@ -374,199 +375,203 @@ Azure Marketplace 中的所有映像通常都必須能夠重複使用。也就�
     $myVM = New‐AzureVMConfig ‐Name "VMImageVM" ‐InstanceSize "Large" ‐ImageName $img.ImageName | Add‐AzureProvisioningConfig ‐Windows ‐AdminUsername $user ‐Password $pass
     New‐AzureVM ‐ServiceName "VMImageCloudService" ‐VMs $myVM ‐Location "West US" ‐WaitForBoot
 
-## 5\.取得 VM 映像的認證
-為您的 VM 映像做好進入 Azure Marketplace 之準備的下一個步驟是為它取得認證。
+## <a name="5.-obtain-certification-for-your-vm-image"></a>5. Obtain certification for your VM image
+The next step in preparing your VM image for the Azure Marketplace is to have it certified.
 
-這個程序包含執行特殊的認證工具、將認證結果上傳至您的 VHD 所在的 Azure 容器、加入供應項目、定義您的 SKU、以及提交您的 VM 映像以取得認證。
+This process includes running a special certification tool, uploading the verification results to the Azure container where your VHDs reside, adding an offer, defining your SKU, and submitting your VM image for certification.
 
-### 5\.1 下載並執行適用於 Azure 認證的認證測試工具
-此認證工具會在運作中的 VM (從您的使用者 VM 映像佈建) 上執行，以確保 VM 映像與 Microsoft Azure 相容。它將驗證是否已符合為 VHD 做準備的指導和需求。工具的輸出是相容性報告，應該在要求憑證時於發佈入口網站上傳。
+### <a name="5.1-download-and-run-the-certification-test-tool-for-azure-certified"></a>5.1 Download and run the Certification Test Tool for Azure Certified
+The certification tool runs on a running VM, provisioned from your user VM image, to ensure that the VM image is compatible with Microsoft Azure. It will verify that the guidance and requirements about preparing your VHD have been met. The output of the tool is a compatibility report, which should be uploaded on the Publishing Portal while requesting certification.
 
-認證工具可使用於 Windows 和 Linux VM。它會透過 PowerShell 連接至 Windows 型 VM，並透過 SSH.Net 連接至 Linux VM：
+The certification tool can be used with both Windows and Linux VMs. It connects to Windows-based VMs via PowerShell and connects to Linux VMs via SSH.Net:
 
-1. 首先，請在 [Microsoft 下載網站][link-msft-download]下載認證工具。
-2. 開啟認證工具，然後按一下 [啟動新測試] 按鈕。
-3. 從 [測試資訊] 畫面，輸入執行測試的名稱。
-4. 選擇您的 VM 位於 Linux 或 Windows。根據您的選擇，選取後續選項。
+1. First, download the certification tool at the [Microsoft download site][link-msft-download].
+2. Open the certification tool, and then click the **Start New Test** button.
+3. From the **Test Information** screen, enter a name for the test run.
+4. Choose whether your VM is on Linux or Windows. Depending on which you choose, select the subsequent options.
 
-### **將認證工具連接到 Linux VM 映像**
+### <a name="**connect-the-certification-tool-to-a-linux-vm-image**"></a>**Connect the certification tool to a Linux VM image**
 
-1. 選取 SSH 驗證模式：密碼或金鑰檔案。
-2. 如果使用以密碼為基礎的驗證，請輸入網域名稱系統 (DNS) 名稱、使用者名稱和密碼。
-3. 如果使用金鑰檔案驗證，請輸入 DNS 名稱、使用者名稱和私密金鑰位置。
+1. Select the SSH authentication mode: password or key file.
+2. If using password-­based authentication, enter the Domain Name System (DNS) name, user name, and password.
+3. If using key file authentication, enter the DNS name, user name, and private key location.
 
-  ![Linux VM 映像的密碼驗證][img-cert-vm-pswd-lnx]
+  ![Password authentication of Linux VM Image][img-cert-vm-pswd-lnx]
 
-  ![Linux VM 映像的金鑰檔案驗證][img-cert-vm-key-lnx]
+  ![Key file authentication of Linux VM Image][img-cert-vm-key-lnx]
 
-### **將認證工具連接到 Windows 型 VM 映像**
+### <a name="**connect-the-certification-tool-to-a-windows-based-vm-image**"></a>**Connect the certification tool to a Windows-based VM image**
 
-1. 輸入完整 VM DNS 名稱 (例如 MyVMName.Cloudapp.net)。
-2. 輸入使用者名稱和密碼。
+1. Enter the fully qualified VM DNS name (for example, MyVMName.Cloudapp.net).
+2. Enter the user name and password.
 
-  ![Windows VM 映像的密碼驗證][img-cert-vm-pswd-win]
+  ![Password authentication of Windows VM Image][img-cert-vm-pswd-win]
 
-在您選取了 Linux 型或 Windows 型 VM 映像的正確選項之後，請選取 [測試連接] 以確認 SSH.Net 或 PowerShell 是否具有有效的連接以供測試用途。建立連接之後，選取 [下一步] 啟動測試。
+After you have selected the correct options for your Linux or Windows-based VM image, select **Test Connection** to ensure that SSH.Net or PowerShell has a valid connection for testing purposes. After a connection is established, select **Next** to start the test.
 
-測試完成時，您將收到每個測試項目的結果 (通過/失敗/警告)。
+When the test is complete, you will receive the results (Pass/Fail/Warning) for each test element.
 
-![Linux VM 映像的測試案例][img-cert-vm-test-lnx]
+![Test cases for Linux VM Image][img-cert-vm-test-lnx]
 
-![Windows VM 映像的測試案例][img-cert-vm-test-win]
+![Test cases for Windows VM Image][img-cert-vm-test-win]
 
-如果任何測試失敗，您的映像就不會獲得認證。如果發生這種情況，請檢閱需求並進行任何必要的變更。
+If any of the tests fail, your image will not be certified. If this occurs, review the requirements and make any necessary changes.
 
-在自動化測試之後，系統會要求您透過問卷螢幕提供您的 VM 映像的額外輸入。完成問題，然後選取 [下一步]。
+After the automated test, you are asked to provide additional input on your VM image via a questionnaire screen.  Complete the questions, and then select **Next**.
 
-![認證工具問卷][img-cert-vm-questionnaire]
+![Certification Tool Questionnaire][img-cert-vm-questionnaire]
 
-![認證工具問卷][img-cert-vm-questionnaire-2]
+![Certification Tool Questionnaire][img-cert-vm-questionnaire-2]
 
-在您完成問卷調查之後，您可以提供其他資訊，例如 Linux VM 映像的 SSH 存取資訊以及失敗評估的說明。除了問卷調查的答案以外，您可以下載已執行測試案例的測試結果和記錄檔。將結果儲存在與您的 VHD 相同的容器中。
+After you have completed the questionnaire, you can provide additional information such as SSH access information for the Linux VM image and an explanation for any failed assessments. You can download the test results and log files for the executed test cases in addition to your answers to the questionnaire. Save the results in the same container as your VHDs.
 
-![儲存認證測試結果][img-cert-vm-results]
+![Save certification test results][img-cert-vm-results]
 
-### 5\.2 取得 VM 映像的共用存取簽章 URI
+### <a name="5.2-get-the-shared-access-signature-uri-for-your-vm-images"></a>5.2 Get the shared access signature URI for your VM images
 
-在發行期間，您會指定統一資源識別項 (URI)，這些 URI 會指向您為 SKU 所建立的每個 VHD。Microsoft 需要在認證程序期間存取這些 VHD。因此，您必須建立每個 VHD 的共用存取簽章 URI。此為要在發佈入口網站的 [映像] 標籤中輸入的 URI。
+During the publishing process, you specify the uniform resource identifiers (URIs) that lead to each of the VHDs you have created for your SKU. Microsoft needs access to these VHDs during the certification process. Therefore, you need to create a shared access signature URI for each VHD. This is the URI that should be entered in the **Images** tab in the Publishing Portal.
 
-建立的共用存取簽章 URI 應符合下列需求：
+The shared access signature URI created should adhere to the following requirements:
 
-- 為 VHD 產生共用存取簽章 URI 時，必須有足夠的列出和讀取權限。不提供寫入或刪除存取權。
-- 存取期間應為建立共用存取簽章 URI 起至少 7 個工作天。
-- 為了避免時鐘誤差所造成的即時錯誤，請指定目前時間的前 15 分鐘。
+- When generating shared access signature URIs for your VHDs, List and Read­ permissions are sufficient. Do not provide Write or Delete access.
+- The duration for access should be a minimum of seven business days from when the shared access signature URI is created.
+- To avoid immediate errors due to clock skews, specify a time 15 minutes before the current time.
 
-若要建立共用存取簽章 URI，您可以遵循[共用存取簽章，第 1 部分：了解 SAS 模型][link-azure-1]或[共用存取簽章，第 2 部分：透過 Blob 服務來建立與使用 SAS][link-azure-2]中提供的指示。
+To create a shared access signature URI, you can follow the instructions provided in [Shared access signatures, Part 1: Understanding the SAS model][link-azure-1] and [Shared access signatures, Part 2: Create and use a SAS with the Azure Blob service][link-azure-2].
 
-除了使用程式碼產生共用存取金鑰，您也可以使用儲存體工具，例如 [Azure 儲存體總管][link-azure-codeplex]。
+Instead of generating a shared access key by using code, you can also use storage tools, such as [Azure Storage Explorer][link-azure-codeplex].
 
-**使用 Azure 儲存體總管來產生共用存取金鑰**
+**Use Azure Storage Explorer to generate a shared access key**
 
-1. 從 CodePlex 下載 [Azure 儲存體總管][link-azure-codeplex] 6 或更新版本。
-2. 安裝之後，請開啟應用程式。
-3. 按一下 [加入帳戶]。
+1. Download [Azure Storage Explorer][link-azure-codeplex] 6 and above from CodePlex.
+2. After it is installed, open the application.
+3. Click **Add Account**.
 
-    ![繪圖][img-azstg-add]
+    ![drawing][img-azstg-add]
 
-4. 指定儲存體帳戶名稱、儲存體帳戶金鑰和儲存體端點網域。請勿選取 [使用 HTTPS]。
+4. Specify the storage account name, storage account key, and storage endpoints domain. Don’t select **Use HTTPS**.
 
-    ![繪圖][img-azstg-setup-1]
+    ![drawing][img-azstg-setup-1]
 
-5. Azure 儲存體總管現在會連接到您的特定儲存體帳戶。就會開始顯示儲存體帳戶內的所有容器。選取您已複製作業系統磁碟 VHD 檔案 (如果適用於您的案例，同時也複製資料磁碟) 所在的容器。
+5. Azure Storage Explorer is now connected to your specific storage account. It will start showing all the containers within the storage account. Select the container where you have copied the operating system disk VHD file (also data disks if they are applicable for your scenario).
 
-    ![繪圖][img-azstg-setup-2]
+    ![drawing][img-azstg-setup-2]
 
-6. 選取 Blob 容器之後，Azure 儲存體總管會開始顯示容器內的檔案。選取需要提交的影像檔案 (.vhd)。
+6. After selecting the blob container, Azure Storage Explorer starts showing the files within the container. Select the image file (.vhd) that needs to be submitted.
 
-    ![繪圖][img-azstg-setup-3]
+    ![drawing][img-azstg-setup-3]
 
-7. 選取容器中的 .vhd 檔案之後，按一下 [安全性] 索引標籤。
+7. After selecting the .vhd file in the container, click the **Security** tab.
 
-    ![繪圖][img-azstg-setup-4]
+    ![drawing][img-azstg-setup-4]
 
-8. 在 [Blob 容器安全性] 對話方塊中，保留 [存取層級] 索引標籤上的預設值，然後按一下 [共用存取簽章] 索引標籤
+8. In the **Blob Container Security** dialog box, leave the defaults on the **Access Level** tab, and then click the **Shared Access Signatures** tab.
 
-    ![繪圖][img-azstg-setup-5]
+    ![drawing][img-azstg-setup-5]
 
-9. 遵循下列步驟來產生 .vhd 映像的共用存取簽章 URI：
+9. Follow the steps below to generate a shared access signature URI for the .vhd image:
 
-    ![繪圖][img-azstg-setup-6]
+    ![drawing][img-azstg-setup-6]
 
-    a.**允許存取開始日期**：為了確保使用 UTC 時間，請選取目前日期之前的日期。例如，如果目前日期為 2014 年 10 月 6 日，則選取 10/5/2014。
+    a.  **Access permitted from**: To safeguard for UTC time, select the day before the current date. For example, if the current date is October 6, 2014, select 10/5/2014.
 
-    b.**允許存取結束日期**：選取至少在 [允許存取開始日期] 之後 7 到 8 天的日期。
+    b.  **Access permitted to**: Select a date that is at least 7 to 8 days after the **Access permitted from** date.
 
-    c.**允許動作**：選取 [列出] 和 [讀取] 權限。
+    c.  **Actions permitted**: Select the **List** and **Read** permissions.
 
-    d.如果您已正確選取 .vhd 檔案，則您的檔案會出現在 [要存取的 Blob 名稱] 中且副檔名為 .vhd。
+    d.  If you have selected your .vhd file correctly, then your file appears in **Blob name to access** with extension .vhd.
 
-    e.按一下 [產生簽章]。
+    e.  Click **Generate Signature**.
 
-    f.在 [此容器產生的共用存取簽章 URI] 中，在下列項目中檢查上方反白顯示的項目：
+    f.  In **Generated Shared Access Signature URI of this container**, check for the following as highlighted above:
 
-    - 	確定 URL 不會以 "https" 開頭。
-    - 	確定您的映像檔案名稱和 ".vhd" 位於 URI 中。
-    - 	確定 "= rl" 出現在簽章的結尾。這表明已成功提供 [讀取] 和 [列出] 存取權。
+    -   Make sure that the URL doesn't start with "https".
+    -   Make sure that your image file name and ".vhd" are in the URI.
+    -   At the end of the signature, make sure that "=rl" appears. This demonstrates that Read and List access was provided successfully.
 
-    g.若要確認產生的共用存取簽章 URI 有效，請按一下 [在瀏覽器中測試]。應該會啟動下載程序。
-10. 複製共用存取簽章 URI。此為要貼入發佈入口網站的 URI。
-11. 為 SKU 中的每個 VHD 重複這些步驟。
+    g.  To ensure that the generated shared access signature URI works, click **Test in Browser**. It should start the download process.
+10. Copy the shared access signature URI. This is the URI to paste into the Publishing Portal.
+11. Repeat these steps for each VHD in the SKU.
 
-### 5\.3 在發佈入口網站中提供 VM 映像和要求認證的相關資訊。
-在您已建立供應項目和 SKU 之後，您應該輸入和該 SKU 相關聯的映像詳細資料：
+### <a name="5.3-provide-information-about-the-vm-image-and-request-certification-in-the-publishing-portal"></a>5.3 Provide information about the VM image and request certification in the Publishing Portal
+After you have created your offer and SKU, you should enter the image details associated with that SKU:
 
-1. 移至[發佈入口網站][link-pubportal]，然後以您的賣方帳戶登入。
-2. 選取 [VM 映像] 索引標籤。
-3. 列在頁面頂端的識別碼其實是供應項目識別碼，而不是 SKU 識別碼。
-4. 在 [SKU] 區段中填入屬性。
-5. 在 [作業系統系列] 下，選取與作業系統 VHD 相關聯的作業系統類型。
-6. 在 [作業系統] 方塊中，描述作業系統。請考慮使用作業系統系列、類型、版本和更新等格式。其中一個範例為 "Windows Server Datacenter 2014 R2"。
-7. 最多選取六個建議的虛擬機器大小。當客戶決定購買與部署您的映像時，這些大小是在 Azure 入口網站的 [定價層] 刀鋒視窗中對其顯示的建議大小。**這些只是建議大小。客戶可以選取任何可容納您映像中指定之磁碟的 VM 大小。**
-8. 輸入版本。[版本] 欄位會封裝語意版本來識別產品及其更新：
-  -	版本格式應該是 X.Y.Z，其中 X、Y 和 Z 是整數。
-  -	不同 SKU 中的映像可以有不同的主要和次要版本。
-  -	SKU 中的版本應該是累加變更，增加修補程式版本 (X.Y.Z 中的 Z)。
-9. 在 [OS VHD URL] 方塊中輸入為作業系統 VHD 建立的共用存取簽章 URI。
-10. 如果有和這個 SKU 相關聯的資料磁碟，請選取您希望在部署時於其中裝載這個資料磁碟的邏輯單元編號 (LUN)。
-11. 在 [LUN X VHD URL] 方塊中輸入為第一個資料 VHD 建立的共用存取簽章 URI。
+1. Go to the [Publishing Portal][link-pubportal], and then sign in with your seller account.
+2. Select the **VM images** tab.
+3. The identifier listed at the top of the page is actually the offer identifier and not the SKU identifier.
+4. Fill out the properties under the **SKUs** section.
+5. Under **Operating system family**, click the operating system type associated with the operating system VHD.
+6. In the **Operating system** box, describe the operating system. Consider a format such as operating system family, type, version, and updates. An example is "Windows Server Datacenter 2014 R2."
+7. Select up to six recommended virtual machine sizes. These are recommendations that get displayed to the customer in the Pricing tier blade in the Azure Portal when they decide to purchase and deploy your image. **These are only recommendations. The customer is able to select any VM size that accommodates the disks specified in your image.**
+8. Enter the version. The version field encapsulates a semantic version to identify the product and its updates:
+  - Versions should be of the form X.Y.Z, where X, Y, and Z are integers.
+  - Images in different SKUs can have different major and minor versions.
+  - Versions within a SKU should only be incremental changes, which increase the patch version (Z from X.Y.Z).
+9. In the **OS VHD URL** box, enter the shared access signature URI created for the operating system VHD.
+10. If there are data disks associated with this SKU, select the logical unit number (LUN) to which you would like this data disk to be mounted upon deployment.
+11. In the **LUN X VHD URL** box, enter the shared access signature URI created for the first data VHD.
 
-    ![繪圖](media/marketplace-publishing-vm-image-creation/vm-image-pubportal-skus-3.png)
+    ![drawing](media/marketplace-publishing-vm-image-creation/vm-image-pubportal-skus-3.png)
 
-## 後續步驟
-完成 SKU 詳細資料之後，您可以移至 [Azure Marketplace 行銷內容指南][link-pushstaging]。在發佈程序的該步驟中，您會在**步驟 3：在預備環境中測試您的 VM 供應項目**之前提供行銷內容、價格和其他必要資訊，而您會在該步驟中測試各種使用案例，然後再將供應項目部署到 Azure Marketplace 以供公開查看和購買。
+## <a name="next-step"></a>Next step
+After you are done with the SKU details, you can move forward to the [Azure Marketplace marketing content guide][link-pushstaging]. In that step of the publishing process, you provide the marketing content, pricing, and other information necessary prior to **Step 3: Testing your VM offer in staging**, where you test various use-case scenarios before deploying the offer to the Azure Marketplace for public visibility and purchase.  
 
-## 另請參閱
-- [使用者入門：如何將供應項目發佈至 Azure Marketplace](marketplace-publishing-getting-started.md)
+## <a name="see-also"></a>See also
+- [Getting started: How to publish an offer to the Azure Marketplace](marketplace-publishing-getting-started.md)
 
-[img-acom-1]: media/marketplace-publishing-vm-image-creation/vm-image-acom-datacenter.png
-[img-portal-vm-size]: media/marketplace-publishing-vm-image-creation/vm-image-portal-size.png
-[img-portal-vm-create]: media/marketplace-publishing-vm-image-creation/vm-image-portal-create-vm.png
-[img-portal-vm-location]: media/marketplace-publishing-vm-image-creation/vm-image-portal-location.png
-[img-portal-vm-rdp]: media/marketplace-publishing-vm-image-creation/vm-image-portal-rdp.png
-[img-azstg-add]: media/marketplace-publishing-vm-image-creation/vm-image-storage-add.png
-[img-azstg-setup-1]: media/marketplace-publishing-vm-image-creation/vm-image-storage-setup.png
-[img-azstg-setup-2]: media/marketplace-publishing-vm-image-creation/vm-image-storage-setup-2.png
-[img-azstg-setup-3]: media/marketplace-publishing-vm-image-creation/vm-image-storage-setup-3.png
-[img-azstg-setup-4]: media/marketplace-publishing-vm-image-creation/vm-image-storage-setup-4.png
-[img-azstg-setup-5]: media/marketplace-publishing-vm-image-creation/vm-image-storage-setup-5.png
-[img-azstg-setup-6]: media/marketplace-publishing-vm-image-creation/vm-image-storage-setup-6.png
-[img-manage-vm-new]: media/marketplace-publishing-vm-image-creation/vm-image-manage-new.png
-[img-manage-vm-select]: media/marketplace-publishing-vm-image-creation/vm-image-manage-select.png
-[img-cert-vm-key-lnx]: media/marketplace-publishing-vm-image-creation/vm-image-certification-keyfile-linux.png
-[img-cert-vm-pswd-lnx]: media/marketplace-publishing-vm-image-creation/vm-image-certification-password-linux.png
-[img-cert-vm-pswd-win]: media/marketplace-publishing-vm-image-creation/vm-image-certification-password-win.png
-[img-cert-vm-test-lnx]: media/marketplace-publishing-vm-image-creation/vm-image-certification-test-sample-linux.png
-[img-cert-vm-test-win]: media/marketplace-publishing-vm-image-creation/vm-image-certification-test-sample-win.png
-[img-cert-vm-results]: media/marketplace-publishing-vm-image-creation/vm-image-certification-results.png
-[img-cert-vm-questionnaire]: media/marketplace-publishing-vm-image-creation/vm-image-certification-questionnaire.png
-[img-cert-vm-questionnaire-2]: media/marketplace-publishing-vm-image-creation/vm-image-certification-questionnaire-2.png
-[img-pubportal-vm-skus]: media/marketplace-publishing-vm-image-creation/vm-image-pubportal-skus.png
-[img-pubportal-vm-skus-2]: media/marketplace-publishing-vm-image-creation/vm-image-pubportal-skus-2.png
+[img-acom-1]:media/marketplace-publishing-vm-image-creation/vm-image-acom-datacenter.png
+[img-portal-vm-size]:media/marketplace-publishing-vm-image-creation/vm-image-portal-size.png
+[img-portal-vm-create]:media/marketplace-publishing-vm-image-creation/vm-image-portal-create-vm.png
+[img-portal-vm-location]:media/marketplace-publishing-vm-image-creation/vm-image-portal-location.png
+[img-portal-vm-rdp]:media/marketplace-publishing-vm-image-creation/vm-image-portal-rdp.png
+[img-azstg-add]:media/marketplace-publishing-vm-image-creation/vm-image-storage-add.png
+[img-azstg-setup-1]:media/marketplace-publishing-vm-image-creation/vm-image-storage-setup.png
+[img-azstg-setup-2]:media/marketplace-publishing-vm-image-creation/vm-image-storage-setup-2.png
+[img-azstg-setup-3]:media/marketplace-publishing-vm-image-creation/vm-image-storage-setup-3.png
+[img-azstg-setup-4]:media/marketplace-publishing-vm-image-creation/vm-image-storage-setup-4.png
+[img-azstg-setup-5]:media/marketplace-publishing-vm-image-creation/vm-image-storage-setup-5.png
+[img-azstg-setup-6]:media/marketplace-publishing-vm-image-creation/vm-image-storage-setup-6.png
+[img-manage-vm-new]:media/marketplace-publishing-vm-image-creation/vm-image-manage-new.png
+[img-manage-vm-select]:media/marketplace-publishing-vm-image-creation/vm-image-manage-select.png
+[img-cert-vm-key-lnx]:media/marketplace-publishing-vm-image-creation/vm-image-certification-keyfile-linux.png
+[img-cert-vm-pswd-lnx]:media/marketplace-publishing-vm-image-creation/vm-image-certification-password-linux.png
+[img-cert-vm-pswd-win]:media/marketplace-publishing-vm-image-creation/vm-image-certification-password-win.png
+[img-cert-vm-test-lnx]:media/marketplace-publishing-vm-image-creation/vm-image-certification-test-sample-linux.png
+[img-cert-vm-test-win]:media/marketplace-publishing-vm-image-creation/vm-image-certification-test-sample-win.png
+[img-cert-vm-results]:media/marketplace-publishing-vm-image-creation/vm-image-certification-results.png
+[img-cert-vm-questionnaire]:media/marketplace-publishing-vm-image-creation/vm-image-certification-questionnaire.png
+[img-cert-vm-questionnaire-2]:media/marketplace-publishing-vm-image-creation/vm-image-certification-questionnaire-2.png
+[img-pubportal-vm-skus]:media/marketplace-publishing-vm-image-creation/vm-image-pubportal-skus.png
+[img-pubportal-vm-skus-2]:media/marketplace-publishing-vm-image-creation/vm-image-pubportal-skus-2.png
 
-[link-pushstaging]: marketplace-publishing-push-to-staging.md
-[link-github-waagent]: https://github.com/Azure/WALinuxAgent
-[link-azure-codeplex]: https://azurestorageexplorer.codeplex.com/
+[link-pushstaging]:marketplace-publishing-push-to-staging.md
+[link-github-waagent]:https://github.com/Azure/WALinuxAgent
+[link-azure-codeplex]:https://azurestorageexplorer.codeplex.com/
 [link-azure-2]: ../storage/storage-dotnet-shared-access-signature-part-2.md
 [link-azure-1]: ../storage/storage-dotnet-shared-access-signature-part-1.md
-[link-msft-download]: http://www.microsoft.com/download/details.aspx?id=44299
-[link-technet-3]: https://technet.microsoft.com/library/hh846766.aspx
-[link-technet-2]: https://msdn.microsoft.com/library/dn495261.aspx
-[link-azure-portal]: https://portal.azure.com
-[link-pubportal]: https://publish.windowsazure.com
-[link-sql-2014-ent]: http://azure.microsoft.com/marketplace/partners/microsoft/sqlserver2014enterprisewindowsserver2012r2/
-[link-sql-2014-std]: http://azure.microsoft.com/marketplace/partners/microsoft/sqlserver2014standardwindowsserver2012r2/
-[link-sql-2014-web]: http://azure.microsoft.com/marketplace/partners/microsoft/sqlserver2014webwindowsserver2012r2/
-[link-sql-2012-ent]: http://azure.microsoft.com/marketplace/partners/microsoft/sqlserver2012sp2enterprisewindowsserver2012/
-[link-sql-2012-std]: http://azure.microsoft.com/marketplace/partners/microsoft/sqlserver2012sp2standardwindowsserver2012/
-[link-sql-2012-web]: http://azure.microsoft.com/marketplace/partners/microsoft/sqlserver2012sp2webwindowsserver2012/
-[link-datactr-2012-r2]: http://azure.microsoft.com/marketplace/partners/microsoft/windowsserver2012r2datacenter/
-[link-datactr-2012]: http://azure.microsoft.com/marketplace/partners/microsoft/windowsserver2012datacenter/
-[link-datactr-2008-r2]: http://azure.microsoft.com/marketplace/partners/microsoft/windowsserver2008r2sp1/
-[link-acct-creation]: marketplace-publishing-accounts-creation-registration.md
-[link-technet-1]: https://technet.microsoft.com/library/hh848454.aspx
-[link-azure-vm-2]: ./virtual-machines-linux-agent-user-guide/
-[link-openssl]: https://www.openssl.org/
-[link-intsvc]: http://www.microsoft.com/download/details.aspx?id=41554
-[link-python]: https://www.python.org/
+[link-msft-download]:http://www.microsoft.com/download/details.aspx?id=44299
+[link-technet-3]:https://technet.microsoft.com/library/hh846766.aspx
+[link-technet-2]:https://msdn.microsoft.com/library/dn495261.aspx
+[link-azure-portal]:https://portal.azure.com
+[link-pubportal]:https://publish.windowsazure.com
+[link-sql-2014-ent]:http://azure.microsoft.com/marketplace/partners/microsoft/sqlserver2014enterprisewindowsserver2012r2/
+[link-sql-2014-std]:http://azure.microsoft.com/marketplace/partners/microsoft/sqlserver2014standardwindowsserver2012r2/
+[link-sql-2014-web]:http://azure.microsoft.com/marketplace/partners/microsoft/sqlserver2014webwindowsserver2012r2/
+[link-sql-2012-ent]:http://azure.microsoft.com/marketplace/partners/microsoft/sqlserver2012sp2enterprisewindowsserver2012/
+[link-sql-2012-std]:http://azure.microsoft.com/marketplace/partners/microsoft/sqlserver2012sp2standardwindowsserver2012/
+[link-sql-2012-web]:http://azure.microsoft.com/marketplace/partners/microsoft/sqlserver2012sp2webwindowsserver2012/
+[link-datactr-2012-r2]:http://azure.microsoft.com/marketplace/partners/microsoft/windowsserver2012r2datacenter/
+[link-datactr-2012]:http://azure.microsoft.com/marketplace/partners/microsoft/windowsserver2012datacenter/
+[link-datactr-2008-r2]:http://azure.microsoft.com/marketplace/partners/microsoft/windowsserver2008r2sp1/
+[link-acct-creation]:marketplace-publishing-accounts-creation-registration.md
+[link-technet-1]:https://technet.microsoft.com/library/hh848454.aspx
+[link-azure-vm-2]:./virtual-machines-linux-agent-user-guide/
+[link-openssl]:https://www.openssl.org/
+[link-intsvc]:http://www.microsoft.com/download/details.aspx?id=41554
+[link-python]:https://www.python.org/
 
-<!---HONumber=AcomDC_0713_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

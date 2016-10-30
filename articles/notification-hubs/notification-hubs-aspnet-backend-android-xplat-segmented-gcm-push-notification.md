@@ -1,257 +1,258 @@
 <properties
-	pageTitle="通知中樞即時新聞教學課程 - Android"
-	description="了解如何使用 Azure 服務匯流排通知中樞將本地化重大新聞通知傳送至 Android 裝置。"
-	services="notification-hubs"
-	documentationCenter="android"
-	authors="wesmc7777"
-	manager="erikre"
-	editor=""/>
+    pageTitle="Notification Hubs Breaking News Tutorial - Android"
+    description="Learn how to use Azure Service Bus Notification Hubs to send breaking news notifications to Android devices."
+    services="notification-hubs"
+    documentationCenter="android"
+    authors="ysxu"
+    manager="erikre"
+    editor=""/>
 
 <tags
-	ms.service="notification-hubs"
-	ms.workload="mobile"
-	ms.tgt_pltfrm="mobile-android"
-	ms.devlang="java"
-	ms.topic="article"
-	ms.date="06/29/2016" 
-	ms.author="wesmc"/>
+    ms.service="notification-hubs"
+    ms.workload="mobile"
+    ms.tgt_pltfrm="mobile-android"
+    ms.devlang="java"
+    ms.topic="article"
+    ms.date="06/29/2016" 
+    ms.author="yuaxu"/>
 
 
-# 使用通知中心傳送即時新聞
+
+# <a name="use-notification-hubs-to-send-breaking-news"></a>Use Notification Hubs to send breaking news
 
 [AZURE.INCLUDE [notification-hubs-selector-breaking-news](../../includes/notification-hubs-selector-breaking-news.md)]
 
-##概觀
+##<a name="overview"></a>Overview
 
-本主題將說明如何使用 Azure 通知中心，將即時新聞通知廣播至 Android 應用程式。完成時，您便能夠註冊您所感興趣的即時新聞類別，並僅接收這些類別的推播通知。此情況是許多應用程式的共同模式，這些應用程式必須將通知傳送給先前宣告對通知有興趣的使用者群組，例如，RSS 閱讀程式、供樂迷使用的應用程式等等。
+This topic shows you how to use Azure Notification Hubs to broadcast breaking news notifications to an Android app. When complete, you will be able to register for breaking news categories you are interested in, and receive only push notifications for those categories. This scenario is a common pattern for many apps where notifications have to be sent to groups of users that have previously declared interest in them, e.g. RSS reader, apps for music fans, etc.
 
-在通知中心內建立註冊時，您可以透過包含一或多個 _tags_ 來啟用廣播案例。當標籤收到通知時，所有已註冊此標籤的裝置都會收到通知。由於標籤只是簡單的字串而已，您無需預先佈建標籤。如需標籤的詳細資訊，請參閱[通知中樞路由與標記運算式](notification-hubs-tags-segment-push-message.md)。
-
-
-##必要條件
-
-本主題會以您在[開始使用通知中心][get-started]中所建立的應用程式為基礎。開始本教學課程之前，您必須已完成[開始使用通知中心][get-started]。
-
-##在應用程式中新增類別選項
-
-第一個步驟是在您現有的主要活動上新增 UI 元素，以便使用者選取要註冊的類別。使用者所選取的類別會儲存在裝置上。啟動應用程式時，您的通知中心內會建立以所選取類別作為標籤的裝置註冊。
-
-1. 開啟您的 res/layout/activity\_main.xml 檔案，並將內容取代為下列項目：
-
-		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		    xmlns:tools="http://schemas.android.com/tools"
-		    android:layout_width="match_parent"
-		    android:layout_height="match_parent"
-		    android:paddingBottom="@dimen/activity_vertical_margin"
-		    android:paddingLeft="@dimen/activity_horizontal_margin"
-		    android:paddingRight="@dimen/activity_horizontal_margin"
-		    android:paddingTop="@dimen/activity_vertical_margin"
-		    tools:context="com.example.breakingnews.MainActivity"
-		    android:orientation="vertical">
-
-		        <CheckBox
-		            android:id="@+id/worldBox"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:text="@string/label_world" />
-		        <CheckBox
-		            android:id="@+id/politicsBox"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:text="@string/label_politics" />
-		        <CheckBox
-		            android:id="@+id/businessBox"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:text="@string/label_business" />
-		        <CheckBox
-		            android:id="@+id/technologyBox"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:text="@string/label_technology" />
-		        <CheckBox
-		            android:id="@+id/scienceBox"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:text="@string/label_science" />
-		        <CheckBox
-		            android:id="@+id/sportsBox"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:text="@string/label_sports" />
-			    <Button
-			        android:layout_width="wrap_content"
-			        android:layout_height="wrap_content"
-			        android:onClick="subscribe"
-			        android:text="@string/button_subscribe" />
-		</LinearLayout>
-
-2. 開啟您的 res/values/strings.xml 檔案，並新增以下幾行：
-
-	    <string name="button_subscribe">Subscribe</string>
-	    <string name="label_world">World</string>
-	    <string name="label_politics">Politics</string>
-	    <string name="label_business">Business</string>
-	    <string name="label_technology">Technology</string>
-	    <string name="label_science">Science</string>
-	    <string name="label_sports">Sports</string>
-
-	您的 main\_activity.xml 圖形配置看起來應該如下所示：
-
-	![][A1]
-
-3. 現在，在與 [MainActivity] 類別相同的封裝中建立類別 [通知]。
-
-		import java.util.HashSet;
-		import java.util.Set;
-
-		import android.content.Context;
-		import android.content.SharedPreferences;
-		import android.os.AsyncTask;
-		import android.util.Log;
-		import android.widget.Toast;
-
-		import com.google.android.gms.gcm.GoogleCloudMessaging;
-		import com.microsoft.windowsazure.messaging.NotificationHub;
-
-		public class Notifications {
-			private static final String PREFS_NAME = "BreakingNewsCategories";
-			private GoogleCloudMessaging gcm;
-			private NotificationHub hub;
-			private Context context;
-			private String senderId;
-
-		    public Notifications(Context context, String senderId, String hubName, 
-									String listenConnectionString) {
-		        this.context = context;
-		        this.senderId = senderId;
-		
-		        gcm = GoogleCloudMessaging.getInstance(context);
-		        hub = new NotificationHub(hubName, listenConnectionString, context);
-		    }
-
-			public void storeCategoriesAndSubscribe(Set<String> categories)
-			{
-				SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, 0);
-			    settings.edit().putStringSet("categories", categories).commit();
-			    subscribeToCategories(categories);
-			}
-
-			public Set<String> retrieveCategories() {
-				SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, 0);
-				return settings.getStringSet("categories", new HashSet<String>());
-			}
-
-		    public void subscribeToCategories(final Set<String> categories) {
-		        new AsyncTask<Object, Object, Object>() {
-		            @Override
-		            protected Object doInBackground(Object... params) {
-		                try {
-		                    String regid = gcm.register(senderId);
-		
-		                    String templateBodyGCM = "{"data":{"message":"$(messageParam)"}}";
-		
-		                    hub.registerTemplate(regid,"simpleGCMTemplate", templateBodyGCM, 
-								categories.toArray(new String[categories.size()]));
-		                } catch (Exception e) {
-		                    Log.e("MainActivity", "Failed to register - " + e.getMessage());
-		                    return e;
-		                }
-		                return null;
-		            }
-		
-		            protected void onPostExecute(Object result) {
-		                String message = "Subscribed for categories: "
-		                        + categories.toString();
-		                Toast.makeText(context, message,
-		                        Toast.LENGTH_LONG).show();
-		            }
-		        }.execute(null, null, null);
-		    }
-
-		}
-
-	本類別會使用本機儲存體來儲存此裝置必須接收的新聞類別。它也包含註冊這些類別的方法。
+Broadcast scenarios are enabled by including one or more _tags_ when creating a registration in the notification hub. When notifications are sent to a tag, all devices that have registered for the tag will receive the notification. Because tags are simply strings, they do not have to be provisioned in advance. For more information about tags, refer to [Notification Hubs Routing and Tag Expressions](notification-hubs-tags-segment-push-message.md).
 
 
-4. 在您的 [MainActivity] 類別中，移除您 [NotificationHub] 和 [GoogleCloudMessaging] 的私人欄位，並新增 [通知] 的欄位：
+##<a name="prerequisites"></a>Prerequisites
 
-		// private GoogleCloudMessaging gcm;
-		// private NotificationHub hub;
-		private Notifications notifications;
+This topic builds on the app you created in [Get started with Notification Hubs][get-started]. Before starting this tutorial, you must have already completed [Get started with Notification Hubs][get-started].
 
-5. 接著，在 **onCreate** 方法中，將 **hub** 欄位的初始設定和 **registerWithNotificationHubs** 方法移除。接著，新增以下幾行以初始化 [通知] 類別的執行個體。
+##<a name="add-category-selection-to-the-app"></a>Add category selection to the app
+
+The first step is to add the UI elements to your existing main activity that enable the user to select categories to register. The categories selected by a user are stored on the device. When the app starts, a device registration is created in your notification hub with the selected categories as tags.
+
+1. Open your res/layout/activity_main.xml file, and substitute the content with the following:
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            tools:context="com.example.breakingnews.MainActivity"
+            android:orientation="vertical">
+
+                <CheckBox
+                    android:id="@+id/worldBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_world" />
+                <CheckBox
+                    android:id="@+id/politicsBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_politics" />
+                <CheckBox
+                    android:id="@+id/businessBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_business" />
+                <CheckBox
+                    android:id="@+id/technologyBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_technology" />
+                <CheckBox
+                    android:id="@+id/scienceBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_science" />
+                <CheckBox
+                    android:id="@+id/sportsBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_sports" />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="subscribe"
+                    android:text="@string/button_subscribe" />
+        </LinearLayout>
+
+2. Open your res/values/strings.xml file and add the following lines:
+
+        <string name="button_subscribe">Subscribe</string>
+        <string name="label_world">World</string>
+        <string name="label_politics">Politics</string>
+        <string name="label_business">Business</string>
+        <string name="label_technology">Technology</string>
+        <string name="label_science">Science</string>
+        <string name="label_sports">Sports</string>
+
+    Your main_activity.xml graphical layout should now look like this:
+
+    ![][A1]
+
+3. Now create a class **Notifications** in the same package as your **MainActivity** class.
+
+        import java.util.HashSet;
+        import java.util.Set;
+
+        import android.content.Context;
+        import android.content.SharedPreferences;
+        import android.os.AsyncTask;
+        import android.util.Log;
+        import android.widget.Toast;
+
+        import com.google.android.gms.gcm.GoogleCloudMessaging;
+        import com.microsoft.windowsazure.messaging.NotificationHub;
+
+        public class Notifications {
+            private static final String PREFS_NAME = "BreakingNewsCategories";
+            private GoogleCloudMessaging gcm;
+            private NotificationHub hub;
+            private Context context;
+            private String senderId;
+
+            public Notifications(Context context, String senderId, String hubName, 
+                                    String listenConnectionString) {
+                this.context = context;
+                this.senderId = senderId;
+        
+                gcm = GoogleCloudMessaging.getInstance(context);
+                hub = new NotificationHub(hubName, listenConnectionString, context);
+            }
+
+            public void storeCategoriesAndSubscribe(Set<String> categories)
+            {
+                SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, 0);
+                settings.edit().putStringSet("categories", categories).commit();
+                subscribeToCategories(categories);
+            }
+
+            public Set<String> retrieveCategories() {
+                SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, 0);
+                return settings.getStringSet("categories", new HashSet<String>());
+            }
+
+            public void subscribeToCategories(final Set<String> categories) {
+                new AsyncTask<Object, Object, Object>() {
+                    @Override
+                    protected Object doInBackground(Object... params) {
+                        try {
+                            String regid = gcm.register(senderId);
+        
+                            String templateBodyGCM = "{\"data\":{\"message\":\"$(messageParam)\"}}";
+        
+                            hub.registerTemplate(regid,"simpleGCMTemplate", templateBodyGCM, 
+                                categories.toArray(new String[categories.size()]));
+                        } catch (Exception e) {
+                            Log.e("MainActivity", "Failed to register - " + e.getMessage());
+                            return e;
+                        }
+                        return null;
+                    }
+        
+                    protected void onPostExecute(Object result) {
+                        String message = "Subscribed for categories: "
+                                + categories.toString();
+                        Toast.makeText(context, message,
+                                Toast.LENGTH_LONG).show();
+                    }
+                }.execute(null, null, null);
+            }
+
+        }
+
+    This class uses the local storage to store the categories of news that this device has to receive. It also contains methods to register for these categories.
 
 
-	    protected void onCreate(Bundle savedInstanceState) {
-	        super.onCreate(savedInstanceState);
-	        setContentView(R.layout.activity_main);
-	        MyHandler.mainActivity = this;
-	
-	        NotificationsManager.handleNotifications(this, SENDER_ID,
-	                MyHandler.class);
-	
-	        notifications = new Notifications(this, SENDER_ID, HubName, HubListenConnectionString);
-	
-	        notifications.subscribeToCategories(notifications.retrieveCategories());
-	    }
+4. In your **MainActivity** class remove your private fields for **NotificationHub** and **GoogleCloudMessaging**, and add a field for **Notifications**:
 
-	`HubName` 與 `HubListenConnectionString` 應已經設定有 `<hub name>` 及 `<connection string with listen access>` 預留位置，以及您稍早取得之 *DefaultListenSharedAccessSignature* 的通知中樞名稱及連接字串。
+        // private GoogleCloudMessaging gcm;
+        // private NotificationHub hub;
+        private Notifications notifications;
 
-	> [AZURE.NOTE] 因為隨用戶端應用程式散佈的憑證通常不安全，您應只將接聽存取權的金鑰隨用戶端應用程式散佈。您的應用程式可透過接聽存取權來註冊通知，但無法修改現有的註冊或無法傳送通知。在安全的後端服務中，會使用完整存取金鑰來傳送通知和變更現有的註冊。
+5. Then, in the **onCreate** method, remove the initialization of the **hub** field and the **registerWithNotificationHubs** method. Then add the following lines which initialize an instance of the **Notifications** class. 
 
 
-6. 然後，加入下列匯入及 `subscribe` 方法，以處理 [訂閱] 按鈕的 Click 事件：
-		
-		import android.widget.CheckBox;
-		import java.util.HashSet;
-		import java.util.Set;
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
+            MyHandler.mainActivity = this;
+    
+            NotificationsManager.handleNotifications(this, SENDER_ID,
+                    MyHandler.class);
+    
+            notifications = new Notifications(this, SENDER_ID, HubName, HubListenConnectionString);
+    
+            notifications.subscribeToCategories(notifications.retrieveCategories());
+        }
 
-	    public void subscribe(View sender) {
-			final Set<String> categories = new HashSet<String>();
+    `HubName` and `HubListenConnectionString` should already be set with the `<hub name>` and `<connection string with listen access>` placeholders with your notification hub name and the connection string for *DefaultListenSharedAccessSignature* that you obtained earlier.
 
-			CheckBox world = (CheckBox) findViewById(R.id.worldBox);
-			if (world.isChecked())
-				categories.add("world");
-			CheckBox politics = (CheckBox) findViewById(R.id.politicsBox);
-			if (politics.isChecked())
-				categories.add("politics");
-			CheckBox business = (CheckBox) findViewById(R.id.businessBox);
-			if (business.isChecked())
-				categories.add("business");
-			CheckBox technology = (CheckBox) findViewById(R.id.technologyBox);
-			if (technology.isChecked())
-				categories.add("technology");
-			CheckBox science = (CheckBox) findViewById(R.id.scienceBox);
-			if (science.isChecked())
-				categories.add("science");
-			CheckBox sports = (CheckBox) findViewById(R.id.sportsBox);
-			if (sports.isChecked())
-				categories.add("sports");
-
-			notifications.storeCategoriesAndSubscribe(categories);
-	    }
-
-	此方法會建立一份類別清單，並使用 **Notifications** 類別在本機儲存體中儲存清單，並在通知中心註冊對應標籤。變更類別時，系統會使用新類別重新建立註冊。
-
-您的應用程式現在可以在裝置上的本機儲存體中儲存一組類別，並在使用者每次變更類別選項時在通知中心註冊。
-
-##註冊通知
-
-這些步驟會在啟動時，使用已儲存在本機儲存體中的類別在通知中心註冊。
-
-> [AZURE.NOTE] 由於 Google 雲端通訊 (GCM) 所指派的 registrationId 可以隨時變更，您應經常註冊通知以避免通知失敗。此範例會在應用程式每次啟動時註冊通知。若是經常執行 (一天多次) 的應用程式，如果距離上次註冊的時間不到一天，則您可能可以略過註冊以保留頻寬。
+    > [AZURE.NOTE] Because credentials that are distributed with a client app are not generally secure, you should only distribute the key for listen access with your client app. Listen access enables your app to register for notifications, but existing registrations cannot be modified and notifications cannot be sent. The full access key is used in a secured backend service for sending notifications and changing existing registrations.
 
 
-1. 在 **MainActivity** 類別的 **onCreate** 方法結尾處，加入下列程式碼：
+6. Then, add the following imports and `subscribe` method to handle the subscribe button click event:
+        
+        import android.widget.CheckBox;
+        import java.util.HashSet;
+        import java.util.Set;
 
-		notifications.subscribeToCategories(notifications.retrieveCategories());
+        public void subscribe(View sender) {
+            final Set<String> categories = new HashSet<String>();
 
-	這會確保應用程式每次啟動時都會從本機儲存體擷取類別，並要求這些類別的註冊。
+            CheckBox world = (CheckBox) findViewById(R.id.worldBox);
+            if (world.isChecked())
+                categories.add("world");
+            CheckBox politics = (CheckBox) findViewById(R.id.politicsBox);
+            if (politics.isChecked())
+                categories.add("politics");
+            CheckBox business = (CheckBox) findViewById(R.id.businessBox);
+            if (business.isChecked())
+                categories.add("business");
+            CheckBox technology = (CheckBox) findViewById(R.id.technologyBox);
+            if (technology.isChecked())
+                categories.add("technology");
+            CheckBox science = (CheckBox) findViewById(R.id.scienceBox);
+            if (science.isChecked())
+                categories.add("science");
+            CheckBox sports = (CheckBox) findViewById(R.id.sportsBox);
+            if (sports.isChecked())
+                categories.add("sports");
 
-2. 然後如下所示，更新 `MainActivity` 類別的 `onStart()` 方法：
+            notifications.storeCategoriesAndSubscribe(categories);
+        }
 
-    @Override protected void onStart() { super.onStart(); isVisible = true;
+    This method creates a list of categories and uses the **Notifications** class to store the list in the local storage and register the corresponding tags with your notification hub. When categories are changed, the registration is recreated with the new categories.
+
+Your app is now able to store a set of categories in local storage on the device and register with the notification hub whenever the user changes the selection of categories.
+
+##<a name="register-for-notifications"></a>Register for notifications
+
+These steps register with the notification hub on startup using the categories that have been stored in local storage.
+
+> [AZURE.NOTE] Because the registrationId assigned by Google Cloud Messaging (GCM) can change at any time, you should register for notifications frequently to avoid notification failures. This example registers for notification every time that the app starts. For apps that are run frequently, more than once a day, you can probably skip registration to preserve bandwidth if less than a day has passed since the previous registration.
+
+
+1. Add the following code at the end of the **onCreate** method in the **MainActivity** class:
+
+        notifications.subscribeToCategories(notifications.retrieveCategories());
+
+    This makes sure that every time the app starts it retrieves the categories from local storage and requests a registeration for these categories. 
+
+2. Then update the `onStart()` method of the `MainActivity` class as follows:
+
+    @Override  protected void onStart() {      super.onStart();      isVisible = true;
 
         Set<String> categories = notifications.retrieveCategories();
 
@@ -269,35 +270,35 @@
         sports.setChecked(categories.contains("sports"));
     }
 
-	這會根據原先儲存的類別狀態更新主要活動。
+    This updates the main activity based on the status of previously saved categories.
 
-現在已完成此應用程式，且可在裝置本機儲存體中儲存一組類別，以供每次使用者變更類別選項在通知中心註冊時使用。接著，我們會定義可將類別通知傳送至此應用程式的後端。
+The app is now complete and can store a set of categories in the device local storage used to register with the notification hub whenever the user changes the selection of categories. Next, we will define a backend that can send category notifications to this app.
 
-##傳送加註標記的通知
+##<a name="sending-tagged-notifications"></a>Sending tagged notifications
 
 [AZURE.INCLUDE [notification-hubs-send-categories-template](../../includes/notification-hubs-send-categories-template.md)]
 
-##執行應用程式並產生通知
+##<a name="run-the-app-and-generate-notifications"></a>Run the app and generate notifications
 
-1. 在 Android Studio 中建置應用程式，並在裝置或模擬器上加以啟動。
+1. In Android Studio, build the app and start it on a device or emulator.
 
-	請注意，應用程式 UI 提供一組切換，可讓您選擇要訂閱的類別。
+    Note that the app UI provides a set of toggles that lets you choose the categories to subscribe to.
 
-2. 啟用一或多個類別切換，然後按一下 [訂閱]。
+2. Enable one or more categories toggles, then click **Subscribe**.
 
-	應用程式會將選取的類別轉換成標籤，並在通知中心內為選取的標籤要求新裝置註冊。隨即會傳回已註冊的類別，且會顯示在快顯通知中。
+    The app converts the selected categories into tags and requests a new device registration for the selected tags from the notification hub. The registered categories are returned and displayed in a toast notification.
 
-4. 執行 .NET 主控台應用程式以傳送新的通知。或者，可以使用 [Azure 傳統入口網站]中通知中樞的 [偵錯] 索引標籤，傳送加註標記的範本通知。
+4. Send a new notification by running the .NET Console app.  Alternatively, you can send tagged template notifications using the debug tab of your notification hub in the [Azure Classic Portal].
 
-	選取的類別通知會以快顯通知方式出現。
+    Notifications for the selected categories appear as toast notifications.
 
-##後續步驟
+##<a name="next-steps"></a>Next steps
 
-在本教學課程中，我們了解到如何按類別廣播即時新聞。請考慮完成下列其中一個強調其他進階通知中心案例的教學課程：
+In this tutorial we learned how to broadcast breaking news by category. Consider completing one of the following tutorials that highlight other advanced Notification Hubs scenarios:
 
-+ [使用通知中樞廣播已當地語系化的即時新聞]
++ [Use Notification Hubs to broadcast localized breaking news]
 
-	了解如何擴充即時新聞應用程式，以啟用傳送已當地語系化的通知。
+    Learn how to expand the breaking news app to enable sending localized notifications.
 
 
 
@@ -308,7 +309,7 @@
 
 <!-- URLs.-->
 [get-started]: notification-hubs-android-push-notification-google-gcm-get-started.md
-[使用通知中樞廣播已當地語系化的即時新聞]: /manage/services/notification-hubs/breaking-news-localized-dotnet/
+[Use Notification Hubs to broadcast localized breaking news]: /manage/services/notification-hubs/breaking-news-localized-dotnet/
 [Notify users with Notification Hubs]: /manage/services/notification-hubs/notify-users
 [Mobile Service]: /develop/mobile/tutorials/get-started/
 [Notification Hubs Guidance]: http://msdn.microsoft.com/library/jj927170.aspx
@@ -316,7 +317,11 @@
 [Submit an app page]: http://go.microsoft.com/fwlink/p/?LinkID=266582
 [My Applications]: http://go.microsoft.com/fwlink/p/?LinkId=262039
 [Live SDK for Windows]: http://go.microsoft.com/fwlink/p/?LinkId=262253
-[Azure 傳統入口網站]: https://manage.windowsazure.com
+[Azure Classic Portal]: https://manage.windowsazure.com
 [wns object]: http://go.microsoft.com/fwlink/p/?LinkId=260591
 
-<!---HONumber=AcomDC_0706_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+
