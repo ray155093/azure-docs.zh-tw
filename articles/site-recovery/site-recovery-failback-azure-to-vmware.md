@@ -39,7 +39,7 @@
 
 當處理序伺服器在 Azure 上，而且您有 VPN 或 ExpressRoute 連接，請使用此架構。
 
-![VPN 的架構圖](./media/site-recovery-failback-azure-to-vmware-classic/architecture2.png)
+![VPN 的架構圖](./media/site-recovery-failback-azure-to-vmware-classic/architecture2.PNG)
 
 若要查看完整的連接埠清單及容錯回復架構圖，請參閱下圖
 

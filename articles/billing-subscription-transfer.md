@@ -53,9 +53,9 @@
 
 6.  接受者按一下連結並遵循指示進行，包括輸入他們的付款資訊。
 
-    ![第一個訂用帳戶移轉網頁](./media/billing-subscription-transfer/image4.png)
+    ![第一個訂用帳戶移轉網頁](./media/billing-subscription-transfer/image4.PNG)
 
-    ![第二個訂用帳戶移轉網頁](./media/billing-subscription-transfer/image5.png)
+    ![第二個訂用帳戶移轉網頁](./media/billing-subscription-transfer/image5.PNG)
 
 7. 成功！ 現在已移轉訂用帳戶。
 
