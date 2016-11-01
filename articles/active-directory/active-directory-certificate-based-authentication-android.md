@@ -2,7 +2,7 @@
     pageTitle="在 Android 上開始使用憑證式驗證 | Microsoft Azure" 
     description="了解如何使用 Android 裝置設定方案中的憑證式驗證" 
     services="active-directory" 
-    authors="markusvi"  
+    authors="MarkusVi"  
     documentationCenter="na" 
     manager="femila"/>
 <tags 
@@ -17,7 +17,7 @@
 
 
 
-# <a name="get-started-with-certificate-based-authentication-on-android---public-preview"></a>在 Android 上開始使用憑證式驗證 - 公開預覽  
+# <a name="get-started-with-certificate-based-authentication-on-android-public-preview"></a>在 Android 上開始使用憑證式驗證 - 公開預覽  
 
 > [AZURE.SELECTOR]
 - [iOS](active-directory-certificate-based-authentication-ios.md)

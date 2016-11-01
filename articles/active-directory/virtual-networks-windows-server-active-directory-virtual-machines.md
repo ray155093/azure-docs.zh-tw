@@ -3,7 +3,7 @@
     description="您可以在 Azure 虛擬機器上執行 Windows Server Active Directory 網域服務 (AD DS) 或 Active Directory 同盟服務 (AD FS)。"
     services="active-directory"
     documentationCenter=""
-    authors="markusvi"
+    authors="MarkusVi"
     manager="femila"
     tags="azure-classic-portal"/>
 

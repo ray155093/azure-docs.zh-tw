@@ -14,7 +14,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="08/01/2016"
+    ms.date="10/31/2016"
     ms.author="anandy"/>
 
 
@@ -38,7 +38,7 @@
 
 Azure AD Connect 提供可以使用 Azure AD Connect 精靈，以最少使用者介入的形式執行的各種 AD FS 相關工作。 執行精靈來完成安裝 Azure AD Connect 之後，您可以再次執行精靈，以執行其他工作。
 
-### <a name="repair-the-trust-<a-name=repairthetrust></a>"></a>修復信任 <a name=repairthetrust></a>
+### <a name="repair-the-trust-a-namerepairthetrusta"></a>修復信任 <a name=repairthetrust></a>
 
 Azure AD Connect 可以檢查 AD FS 和 Azure Active Directory 信任目前的健全狀況，並採取適當的動作來修復信任。 請遵循下列步驟來修復您的 Azure AD 和 AD FS 信任。
 
@@ -63,7 +63,7 @@ Azure AD Connect 可以檢查 AD FS 和 Azure Active Directory 信任目前的�
 
 >[AZURE.NOTE] Azure AD Connect 只可以對自我簽署的憑證進行修復或採取動作。 Azure AD Connect 無法修復協力廠商憑證。
 
-### <a name="add-an-ad-fs-server-<a-name=addadfsserver></a>"></a>新增 AD FS 伺服器 <a name=addadfsserver></a>
+### <a name="add-an-ad-fs-server-a-nameaddadfsservera"></a>新增 AD FS 伺服器 <a name=addadfsserver></a>
 
 > [AZURE.NOTE] Azure AD Connect 需要 PFX 憑證檔案，才能新增 AD FS 伺服器。 因此，只有當您使用 Azure AD Connect 來設定 AD FS 伺服器陣列時，才可以執行這項作業。
 
@@ -89,7 +89,7 @@ Azure AD Connect 可以檢查 AD FS 和 Azure Active Directory 信任目前的�
 
     ![安裝完成](media\active-directory-aadconnect-federation-management\AddNewADFSServer8.PNG)
 
-### <a name="add-an-ad-fs-web-application-proxy-server-<a-name=addwapserver></a>"></a>新增 AD FS Web 應用程式 Proxy 伺服器 <a name=addwapserver></a>
+### <a name="add-an-ad-fs-web-application-proxy-server-a-nameaddwapservera"></a>新增 AD FS Web 應用程式 Proxy 伺服器 <a name=addwapserver></a>
 
 > [AZURE.NOTE] Azure AD Connect 需要 PFX 憑證檔案，才能新增 Web 應用程式 Proxy 伺服器。 因此，只有當您使用 Azure AD Connect 來設定 AD FS 伺服器陣列時，才可以執行這項作業。
 
@@ -116,7 +116,7 @@ Azure AD Connect 可以檢查 AD FS 和 Azure Active Directory 信任目前的�
 7. 按一下 [安裝]  以完成組態。 組態完成之後，精靈會提供您選項，來驗證與伺服器的連線。 按一下 [驗證]  來檢查連線能力。
 ![安裝完成](media\active-directory-aadconnect-federation-management\WapServer8.PNG)
 
-### <a name="add-a-federated-domain-<a-name=addfeddomain></a>"></a>新增同盟網域 <a name=addfeddomain></a>
+### <a name="add-a-federated-domain-a-nameaddfeddomaina"></a>新增同盟網域 <a name=addfeddomain></a>
 
 您可以使用 Azure AD Connect 輕鬆地新增要與 Azure AD 同盟的網域。 Azure AD Connect 會新增同盟的網域並修改宣告規則，以在您有與 Azure AD 同盟的多個網域時正確反映發行者。
 
@@ -141,7 +141,7 @@ Azure AD Connect 可以檢查 AD FS 和 Azure Active Directory 信任目前的�
 
 下列各節提供在自訂 AD FS 登入頁面時，可能必須執行之某些常見工作的詳細資料。
 
-### <a name="add-a-custom-company-logo-or-illustration-<a-name=customlogo></a>"></a>新增自訂公司標誌或圖例 <a name=customlogo></a>
+### <a name="add-a-custom-company-logo-or-illustration-a-namecustomlogoa"></a>新增自訂公司標誌或圖例 <a name=customlogo></a>
 
 若要變更 [登入]  頁面上顯示的公司標誌，請使用下列 Windows PowerShell Cmdlet 和語法。
 
@@ -152,13 +152,13 @@ Azure AD Connect 可以檢查 AD FS 和 Azure Active Directory 信任目前的�
 > [AZURE.NOTE] *TargetName* 是必要參數。 隨著 AD FS 釋出的預設佈景主題為指定的預設值。
 
 
-### <a name="add-a-sign-in-description-<a-name=addsignindescription></a>"></a>新增登入說明 <a name=addsignindescription></a>
+### <a name="add-a-signin-description-a-nameaddsignindescriptiona"></a>新增登入說明 <a name=addsignindescription></a>
 
 若要在 [登入] 頁面中新增登入頁面描述，請使用下列 Windows PowerShell Cmdlet 和語法。
 
     Set-AdfsGlobalWebContent -SignInPageDescriptionText "<p>Sign-in to Contoso requires device registration. Click <A href='http://fs1.contoso.com/deviceregistration/'>here</A> for more information.</p>"
 
-### <a name="modify-ad-fs-claim-rules-<a-name=modclaims></a>"></a>修改 AD FS 宣告規則 <a name=modclaims></a>
+### <a name="modify-ad-fs-claim-rules-a-namemodclaimsa"></a>修改 AD FS 宣告規則 <a name=modclaims></a>
 
 AD FS 支援豐富的宣告語言，您可以用它來建立自訂宣告規則。 如需詳細資訊，請參閱 [宣告規則語言的角色](https://technet.microsoft.com/library/dd807118.aspx)。
 

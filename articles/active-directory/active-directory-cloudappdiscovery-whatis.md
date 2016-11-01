@@ -4,7 +4,7 @@
     services="active-directory"
     keywords="雲端應用程式探索, 管理應用程式"
     documentationCenter=""
-    authors="markusvi"
+    authors="MarkusVi"
     manager="femila"
     editor=""/>
 

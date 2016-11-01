@@ -13,8 +13,8 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="10/10/2016"
-   ms.author="cakarst;barbkess;sonyama"/>
+   ms.date="10/31/2016"
+   ms.author="cakarst;barbkess"/>
 
 
 
@@ -45,11 +45,11 @@
     ![Azure 儲存體工具](./media/sql-data-warehouse-get-started-load-with-polybase/install-azcopy.png)
 
 
-## <a name="step-1:-add-sample-data-to-azure-blob-storage"></a>步驟 1：將範例資料新增至 Azure Blob 儲存體
+## <a name="step-1-add-sample-data-to-azure-blob-storage"></a>步驟 1：將範例資料新增至 Azure Blob 儲存體
 
 為了載入資料，我們需要在 Azure Blob 儲存體中放入一些範例資料。 在此步驟中，我們會在 Azure 儲存體 Blob 中填入範例資料。 稍後，我們將使用 PolyBase 將此範例資料載入 SQL 資料倉儲資料庫。
 
-### <a name="a.-prepare-a-sample-text-file"></a>A. 準備範例文字檔
+### <a name="a-prepare-a-sample-text-file"></a>A. 準備範例文字檔
 
 若要準備範例文字檔：
 
@@ -70,7 +70,7 @@
 20150101,1,3
 ```
 
-### <a name="b.-find-your-blob-service-endpoint"></a>B. 尋找您的 Blob 服務端點
+### <a name="b-find-your-blob-service-endpoint"></a>B. 尋找您的 Blob 服務端點
 
 若要尋找您的 Blob 服務端點：
 
@@ -84,7 +84,7 @@
 
     ![Blob 服務端點](./media/sql-data-warehouse-get-started-load-with-polybase/blob-service.png)
 
-### <a name="c.-find-your-azure-storage-key"></a>C. 找出您的 Azure 儲存體金鑰
+### <a name="c-find-your-azure-storage-key"></a>C. 找出您的 Azure 儲存體金鑰
 
 若要找出您的 Azure 儲存體金鑰：
 
@@ -95,7 +95,7 @@
 
     ![複製 Azure 儲存體金鑰](./media/sql-data-warehouse-get-started-load-with-polybase/access-key.png)
 
-### <a name="d.-copy-the-sample-file-to-azure-blob-storage"></a>D. 將範例檔案複製到 Azure Blob 儲存體
+### <a name="d-copy-the-sample-file-to-azure-blob-storage"></a>D. 將範例檔案複製到 Azure Blob 儲存體
 
 若要將資料複製到 Azure Blob 儲存體：
 
@@ -113,7 +113,7 @@
 
 另請參閱 [開始使用 AzCopy 命令列公用程式][]。
 
-### <a name="e.-explore-your-blob-storage-container"></a>E. 瀏覽 Blob 儲存體容器
+### <a name="e-explore-your-blob-storage-container"></a>E. 瀏覽 Blob 儲存體容器
 
 若要查看您上傳至 Blob 儲存體的檔案：
 
@@ -126,7 +126,7 @@
     ![檢視 Azure 儲存體 Blob](./media/sql-data-warehouse-get-started-load-with-polybase/view-blob.png)
 
 
-## <a name="step-2:-create-an-external-table-for-the-sample-data"></a>步驟 2：為範例資料建立外部資料表
+## <a name="step-2-create-an-external-table-for-the-sample-data"></a>步驟 2：為範例資料建立外部資料表
 
 本節中，我們會建立外部資料表來定義範例資料。
 
@@ -216,7 +216,7 @@ SELECT count(*) FROM dbo.DimDate2External;
 
 ![檢視外部資料表](./media/sql-data-warehouse-get-started-load-with-polybase/external-table.png)
 
-## <a name="step-3:-load-data-into-sql-data-warehouse"></a>步驟 3：將資料載入 SQL 資料倉儲
+## <a name="step-3-load-data-into-sql-data-warehouse"></a>步驟 3：將資料載入 SQL 資料倉儲
 
 外部資料表建立好後，您可以將資料載入至新資料表，或將其插入到現有資料表。
 
@@ -236,7 +236,7 @@ AS
 SELECT * FROM [dbo].[DimDate2External];
 ```
 
-## <a name="step-4:-create-statistics-on-your-newly-loaded-data"></a>步驟 4：建立新載入資料的統計資料
+## <a name="step-4-create-statistics-on-your-newly-loaded-data"></a>步驟 4：建立新載入資料的統計資料
 
 SQL 資料倉儲不會自動建立或自動更新統計資料。 因此，若要達到高查詢效能，請務必在第一次載入後，於每個資料表的每個資料行上建立統計資料。 另外，也請務必在大幅變更資料後更新統計資料。
 

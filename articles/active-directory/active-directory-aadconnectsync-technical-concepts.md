@@ -3,7 +3,7 @@
     description="說明 Azure AD Connect 同步的技術概念。"
     services="active-directory"
     documentationCenter=""
-    authors="markusvi"
+    authors="MarkusVi"
     manager="femila"
     editor=""/>
 
@@ -18,7 +18,7 @@
 
 
 
-# <a name="azure-ad-connect-sync:-technical-concepts"></a>Azure AD Connect 同步處理：技術概念
+# <a name="azure-ad-connect-sync-technical-concepts"></a>Azure AD Connect 同步處理：技術概念
 本文是 [了解架構](active-directory-aadconnectsync-technical-concepts.md)主題的摘要。
 
 Azure AD Connect 同步建置在一個穩固的中繼目錄同步處理平台上。

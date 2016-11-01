@@ -3,7 +3,7 @@
     description="了解如何使用工作或學校帳戶，來運用您已有的現有使用者帳戶、原則、設定或內部部署伺服器部署，而提升您的組織在內部部署身分識別基礎結構與 Azure AD 之間的效率。"
     services="active-directory"
     documentationCenter=""
-    authors="markusvi"
+    authors="MarkusVi"
     manager="femila"
     editor=""/>
 

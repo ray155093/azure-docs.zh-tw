@@ -4,7 +4,7 @@
    services="sql-data-warehouse"
    documentationCenter=""
    authors="ronortloff"
-   manager="barbkess"
+   manager="jhubbard"
    editor=""/>
 
 <tags
@@ -13,8 +13,8 @@
    ms.tgt_pltfrm="na"
    ms.devlang="na"
    ms.topic="article"
-   ms.date="09/24/2016" 
-   ms.author="rortloff;barbkess;sonyama"/>
+   ms.date="10/31/2016" 
+   ms.author="rortloff;barbkess"/>
 
 
 # <a name="auditing-in-azure-sql-data-warehouse"></a>Azure SQL 資料倉儲中的稽核
@@ -31,7 +31,7 @@ SQL 資料倉儲稽核可讓您將資料庫中的事件記錄到 Azure 儲存體
 + [設定資料庫的稽核]
 + [分析稽核記錄和報告]
 
-##<a name="<a-id="subheading-1"></a>azure-sql-data-warehouse-database-auditing-basics"></a><a id="subheading-1"></a>Azure SQL 資料倉儲資料庫稽核基本概念
+##<a name="a-idsubheading1aazure-sql-data-warehouse-database-auditing-basics"></a><a id="subheading-1"></a>Azure SQL 資料倉儲資料庫稽核基本概念
 
 
 SQL 資料倉儲資料庫稽核可讓您：
@@ -61,7 +61,7 @@ SQL 資料倉儲資料庫稽核可讓您：
 在設定稽核之前，請檢查您是否正在使用 [「下層用戶端」](sql-data-warehouse-auditing-downlevel-clients.md)。
 
 
-##<a name="<a-id="subheading-2"></a>set-up-auditing-for-your-database"></a><a id="subheading-2"></a>設定資料庫的稽核
+##<a name="a-idsubheading2aset-up-auditing-for-your-database"></a><a id="subheading-2"></a>設定資料庫的稽核
 
 1. 啟動 <a href="https://portal.azure.com" target="_blank">Azure 入口網站</a>。
 
@@ -92,7 +92,7 @@ SQL 資料倉儲資料庫稽核可讓您：
 9. 按一下 [確定] 。
 
 
-##<a name="<a-id="subheading-3">analyze-audit-logs-and-reports</a>"></a><a id="subheading-3">分析稽核記錄和報告</a>
+##<a name="a-idsubheading3analyze-audit-logs-and-reportsa"></a><a id="subheading-3">分析稽核記錄和報告</a>
 
 在安裝期間，會在所選擇的 Azure 儲存體帳戶之具有 **SQLDBAuditLogs** 首碼的 [儲存資料表] 集合中彙總稽核記錄。 您可以使用工具 (例如 <a href="http://azurestorageexplorer.codeplex.com/" target="_blank">Azure 儲存體總管</a>) 來檢視記錄檔。
 
@@ -105,11 +105,11 @@ SQL 資料倉儲資料庫稽核可讓您：
 ![][5]
 
 
-##<a name="<a-id="subheading-4">practices-for-usage-in-production</a>"></a><a id="subheading-4">生產環境中的使用方式作法</a>
+##<a name="a-idsubheading4practices-for-usage-in-productiona"></a><a id="subheading-4">生產環境中的使用方式作法</a>
 本節的說明與以上的畫面截圖有關。 可以使用 <a href="https://portal.azure.com" target="_blank">Azure 入口網站</a>或<a href= "https://manage.windowsazure.com/" target="_bank">Azure 傳統入口網站</a>。
 
 
-##<a name="<a-id="subheading-5"></a>storage-key-regeneration"></a><a id="subheading-5"></a>儲存體金鑰重新產生
+##<a name="a-idsubheading5astorage-key-regeneration"></a><a id="subheading-5"></a>儲存體金鑰重新產生
 
 在生產中，您可能會定期重新整理儲存體金鑰。 重新整理金鑰時，您需要重新儲存該原則。 程序如下：
 
@@ -122,7 +122,7 @@ SQL 資料倉儲資料庫稽核可讓您：
 
 4. 返回儲存體 UI 並**重新產生**「次要存取金鑰」 (為了下一個金鑰重新整理週期做準備)。
 
-##<a name="<a-id="subheading-6"></a>automation"></a><a id="subheading-6"></a>自動化
+##<a name="a-idsubheading6aautomation"></a><a id="subheading-6"></a>自動化
 有數個 PowerShell 指令程式可用來設定 Azure SQL Database 中的稽核。 若要存取稽核 Cmdlet，您必須在 [Azure 資源管理員] 模式中執行 PowerShell。
 
 > [AZURE.NOTE] [Azure Resource Manager](https://msdn.microsoft.com/library/dn654592.aspx) 模組目前為預覽版。 它可能沒有如 Azure 模組所提供的相同管理功能。

@@ -4,7 +4,7 @@
    services="sql-data-warehouse"
    documentationCenter=""
    authors="byham"
-   manager="barbkess"
+   manager="jhubbard"
    editor=""
    tags=""/>
 
@@ -15,7 +15,7 @@
    ms.tgt_pltfrm="na"
    ms.workload="data-management"
    ms.date="09/24/2016"
-   ms.author="rickbyh;barbkess;sonyama"/>
+   ms.author="rickbyh;barbkess"/>
 
 
 # <a name="authentication-to-azure-sql-data-warehouse"></a>適用於 Azure SQL 資料倉儲的驗證
@@ -46,7 +46,7 @@
 
 > [AZURE.NOTE] 變更連線的資料庫時，Transact-SQL 陳述式 **USE MyDatabase;** 不受支援。 如需使用 SSDT 連線到 SQL 資料倉儲的指引，請參閱 [使用 Visual Studio 查詢][] 文章。
 
-## <a name="azure-active-directory-(aad)-authentication"></a>Azure Active Directory (AAD) 驗證
+## <a name="azure-active-directory-aad-authentication"></a>Azure Active Directory (AAD) 驗證
 
 [Azure Active Directory][什麼是 Azure Active Directory] 驗證是 Azure Active Directory (Azure AD) 中使用身分識別連接到 Microsoft Azure SQL 資料倉儲的機制。 您可以使用 Azure Active Directory 驗證，在單一中央位置集中管理資料庫使用者和其他 Microsoft 服務的身分識別。 中央識別碼管理提供單一位置以管理 SQL 資料倉儲使用者並簡化權限管理。 
 

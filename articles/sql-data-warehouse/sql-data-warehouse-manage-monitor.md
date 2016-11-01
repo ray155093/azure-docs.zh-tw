@@ -3,8 +3,8 @@
    description="了解如何使用 DMV 監視工作負載。"
    services="sql-data-warehouse"
    documentationCenter="NA"
-   authors="sonyam"
-   manager="barbkess"
+   authors="barbkess"
+   manager="jhubbard"
    editor=""/>
 
 <tags
@@ -13,8 +13,8 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="10/08/2016"
-   ms.author="sonyama;barbkess"/>
+   ms.date="10/31/2016"
+   ms.author="barbkess"/>
 
 
 # <a name="monitor-your-workload-using-dmvs"></a>使用 DMV 監視工作負載
@@ -46,7 +46,7 @@ SQL 資料倉儲上執行的所有查詢會都記錄到 [sys.dm_pdw_exec_request
 
 請遵循以下步驟來調查特定查詢的查詢執行計畫和時間。
 
-### <a name="step-1:-identify-the-query-you-wish-to-investigate"></a>步驟 1︰識別您想要調查的查詢
+### <a name="step-1-identify-the-query-you-wish-to-investigate"></a>步驟 1︰識別您想要調查的查詢
 
 ```sql
 -- Monitor active queries
@@ -82,7 +82,7 @@ OPTION (LABEL = 'My Query')
 ;
 ```
 
-### <a name="step-2:-investigate-the-query-plan"></a>步驟 2︰ 調查查詢計劃
+### <a name="step-2-investigate-the-query-plan"></a>步驟 2︰ 調查查詢計劃
 
 使用要求 ID，從 [sys.dm_pdw_request_steps][] 擷取查詢的分散式 SQL (DSQL) 計劃。
 
@@ -102,7 +102,7 @@ ORDER BY step_index;
 - 針對下列 **SQL 作業**繼續執行步驟 3a：OnOperation、RemoteOperation、ReturnOperation。
 - 針對下列 **資料移動作業**繼續執行步驟 3b：ShuffleMoveOperation、BroadcastMoveOperation、TrimMoveOperation、PartitionMoveOperation、MoveOperation、CopyOperation。
 
-### <a name="step-3a:-investigate-sql-on-the-distributed-databases"></a>步驟 3a︰調查分散式資料庫上的 SQL
+### <a name="step-3a-investigate-sql-on-the-distributed-databases"></a>步驟 3a︰調查分散式資料庫上的 SQL
 
 使用要求 ID 及步驟索引，從 [sys.dm_pdw_sql_requests][] 擷取詳細資料，其中包含所有分散式資料庫上查詢步驟的執行資訊。
 
@@ -123,7 +123,7 @@ WHERE request_id = 'QID####' AND step_index = 2;
 DBCC PDW_SHOWEXECUTIONPLAN(1, 78);
 ```
 
-### <a name="step-3b:-investigate-data-movement-on-the-distributed-databases"></a>步驟 3b︰調查分散式資料庫的資料移動
+### <a name="step-3b-investigate-data-movement-on-the-distributed-databases"></a>步驟 3b︰調查分散式資料庫的資料移動
 
 使用要求 ID 和步驟索引，從 [sys.dm_pdw_dms_workers][] 擷取在每個散發上執行的資料移動步驟的相關資訊。
 

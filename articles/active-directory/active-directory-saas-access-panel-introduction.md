@@ -3,7 +3,7 @@
     description="了解如何使用各種類別的存取面板 (網頁瀏覽器、Android App、iPhone 和 iPad App) 存取已指派給您的 SaaS App。"
     services="active-directory"
     documentationCenter=""
-    authors="markusvi"
+    authors="MarkusVi"
     manager="femila"
     editor=""/>
 
@@ -150,13 +150,13 @@ Azure AD 可以直接驗證使用者。 <br>
 
 當使用者按一下 Office 365 應用程式的應用程式磚時，會將他們重新導向至該應用程式，並自動登入。
 
-### <a name="microsoft-and-third-party-applications-configured-with-federation-based-sso"></a>以同盟 SSO 設定的 Microsoft 及協力廠商應用程式
+### <a name="microsoft-and-thirdparty-applications-configured-with-federationbased-sso"></a>以同盟 SSO 設定的 Microsoft 及協力廠商應用程式
 
 這些是系統管理員在單一登入模式設定為 [Azure AD 單一登入]的情況下，新增到 Azure 管理入口網站的 Active Directory 區段中的應用程式。 只有在系統管理員明確地為使用者授與應用程式的存取權時，他們才會看到這些應用程式。
 
 當使用者按一下這些其中一個應用程式的應用程式磚時，會將他們重新導向至該應用程式，並自動登入。
 
-### <a name="password-based-sso-without-identity-provisioning"></a>不含身分識別佈建的密碼 SSO
+### <a name="passwordbased-sso-without-identity-provisioning"></a>不含身分識別佈建的密碼 SSO
 
 這些是系統管理員在單一登入模式設定為 [密碼單一登入]的情況下，新增到 Azure 管理入口網站的 Active Directory 區段中的應用程式。 <br> 目錄中的所有使用者都會看到已在此模式下設定的所有應用程式。
 
@@ -166,7 +166,7 @@ Azure AD 可以直接驗證使用者。 <br>
 
 如果使用者的認證在目標協力廠商應用程式中已變更，則使用者也必須更新他們儲存在 Azure AD 中的認證。 若要更新認證，使用者必須選取應用程式磚右下方的圖示，然後選取 [更新認證] 以重新輸入該應用程式的使用者名稱與密碼。
 
-### <a name="password-based-sso-with-identity-provisioning"></a>含身分識別佈建的密碼 SSO
+### <a name="passwordbased-sso-with-identity-provisioning"></a>含身分識別佈建的密碼 SSO
 
 這些是系統管理員在單一登入模式設定為 [密碼單一登入]以及身分識別佈建的情況下，新增到 Azure 管理入口網站的 Active Directory 區段中的應用程式。
 

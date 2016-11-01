@@ -3,7 +3,7 @@
     description="藉由設定已知的網路，您可以避免貴組織擁有的 IP 位址包含在「從多個地理區域登入」和「從具有可疑活動的 IP 位址登入」報告中。" 
     services="active-directory" 
     documentationCenter="" 
-    authors="markusvi" 
+    authors="MarkusVi" 
     manager="femila"  
     editor=""/>
 
@@ -33,7 +33,7 @@
 若要避免這些情況下產生誤導的安全性報告，您應該在貴組織的公用 IP 位址清單中新增已知的 IP 位址範圍。    
 
 
-###<a name="to-add-your-organization’s-public-ip-address-ranges,-perform-the-following-steps:"></a>若要新增貴組織的公用 IP 位址範圍，請執行下列步驟： 
+###<a name="to-add-your-organizations-public-ip-address-ranges-perform-the-following-steps"></a>若要新增貴組織的公用 IP 位址範圍，請執行下列步驟： 
 
 1.  登入 [Azure 管理入口網站](https://manage.windowsazure.com)。
 

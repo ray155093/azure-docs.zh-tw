@@ -4,7 +4,7 @@
     services="active-directory"
     keywords="azure active directory identity protection, cloud app discovery, 管理應用程式, 安全性, 風險, 風險層級, 弱點, 安全性原則"
     documentationCenter=""
-    authors="markusvi"
+    authors="MarkusVi"
     manager="femila"
     editor=""/>
 
@@ -27,7 +27,7 @@
 
 下列各節概述 Identity Protection 所報告的弱點。
 
-## <a name="multi-factor-authentication-registration-not-configured"></a>未設定 Multi-Factor Authentication 註冊 
+## <a name="multifactor-authentication-registration-not-configured"></a>未設定 Multi-Factor Authentication 註冊 
 
 此弱點可協助您控制組織中部署的 Azure Multi-Factor Authentication。 
 

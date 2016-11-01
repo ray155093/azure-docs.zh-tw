@@ -3,7 +3,7 @@
     description="IT 管理員可以選擇以自動和無訊息方式向 Azure Active Directory (Azure AD) 註冊加入網域的 Windows 裝置。"
     services="active-directory"
     documentationCenter=""
-    authors="markusvi"
+    authors="MarkusVi"
     manager="femila"
     editor=""/>
 
@@ -17,7 +17,7 @@
     ms.author="markvi"/>
 
 
-# <a name="automatic-device-registration-with-azure-active-directory-for-windows-domain-joined-devices"></a>自動向 Azure Active Directory 註冊加入網域的 Windows 裝置
+# <a name="automatic-device-registration-with-azure-active-directory-for-windows-domainjoined-devices"></a>自動向 Azure Active Directory 註冊加入網域的 Windows 裝置
 
 身為 IT 管理員，您可以選擇以自動和無訊息方式向 Azure Active Directory (Azure AD) 註冊加入網域的 Windows 裝置。 如果您已經設定裝置型條件式存取原則給 Office365 應用程式或由 AD FS 在內部部署管理的應用程式，這非常有用。 您可以閱讀 [Azure Active Directory 裝置註冊概觀](active-directory-conditional-access-device-registration-overview.md)，進一步了解裝置註冊案例。
 
@@ -82,7 +82,7 @@ Windows 7 和 Windows 8.1 裝置會藉由結合使用者帳戶名稱與知名裝
 | enterpriseregistration.contoso.com        | CNAME | enterpriseregistration.windows.net |
 | enterpriseregistration.region.contoso.com | CNAME | enterpriseregistration.windows.net |
 
-##<a name="configure-automatic-device-registration-for-windows-7-and-windows-8.1-domain-joined-devices"></a>為加入網域的 Windows 7 和 Windows 8.1 裝置設定自動註冊裝置
+##<a name="configure-automatic-device-registration-for-windows-7-and-windows-81-domain-joined-devices"></a>為加入網域的 Windows 7 和 Windows 8.1 裝置設定自動註冊裝置
 
 使用下列連結為加入網域的 Windows 7 和 Windows 8.1 裝置設定自動註冊裝置。 繼續之前，請確定您已完成上述必要條件。
 

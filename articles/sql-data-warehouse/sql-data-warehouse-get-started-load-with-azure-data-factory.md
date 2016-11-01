@@ -4,7 +4,7 @@
    services="sql-data-warehouse"
    documentationCenter="NA"
    authors="twounder"
-   manager="barbkess"
+   manager="jhubbard"
    editor=""
    tags="azure-sql-data-warehouse"/>
 <tags
@@ -13,7 +13,7 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="10/13/2016"
+   ms.date="10/31/2016"
    ms.author="mausher;barbkess"/>
 
 
@@ -50,7 +50,7 @@
 
    + **AZCopy**：您需要有 AZCopy 將本機用戶端的範例資料複製到您的 Azure 儲存體 Blob。 如需安裝指示，請參閱 [AZCopy 文件][]。
 
-## <a name="step-1:-copy-sample-data-to-azure-storage-blob"></a>步驟 1：將範例資料複製到 Azure 儲存體 Blob
+## <a name="step-1-copy-sample-data-to-azure-storage-blob"></a>步驟 1：將範例資料複製到 Azure 儲存體 Blob
 
 一切就緒時，您就可以開始將範例資料複製到您的 Azure 儲存體 Blob。
 
@@ -63,13 +63,13 @@
     ````
 
 
-## <a name="step-2:-connect-resources-to-azure-data-factory"></a>步驟 2：將資源連接到 Azure Data Factory
+## <a name="step-2-connect-resources-to-azure-data-factory"></a>步驟 2：將資源連接到 Azure Data Factory
 
 既然已備妥資料，我們可以開始建立 Azure Data Factory 管線，將資料從 Azure Blob 儲存體移至 SQL 資料倉儲。
 
 首先，請開啟 [Azure 入口網站][] ，從左側功能表中選取您的 Data Factory。
 
-### <a name="step-2.1:-create-linked-service"></a>步驟 2.1：建立連結服務
+### <a name="step-21-create-linked-service"></a>步驟 2.1：建立連結服務
 
 將您的 Azure 儲存體帳戶和 SQL 資料倉儲連結到您的 Data Factory。  
 
@@ -90,7 +90,7 @@
     }
     ```
 
-### <a name="step-2.2:-define-the-dataset"></a>步驟 2.2：定義資料集
+### <a name="step-22-define-the-dataset"></a>步驟 2.2：定義資料集
 
 建立連結服務之後，我們必須定義資料集。  在這裡，此舉表示將定義要從儲存體移至資料倉儲的資料結構。  您可以閱讀如何建立的相關資訊。
 
@@ -148,7 +148,7 @@
     }
     ```
 
-## <a name="step-3:-create-and-run-your-pipeline"></a>步驟 3：建立和執行管線
+## <a name="step-3-create-and-run-your-pipeline"></a>步驟 3：建立和執行管線
 
 最後，我們要在 Azure Data Factory 中安裝並執行管線。  這是會完成實際資料移動的作業。  您可以在[這裡][使用 Azure Data Factory 從 Azure SQL 資料倉儲來回移動資料]找到您可以使用 SQL 資料倉儲和 Azure Data Factory 完成之作業的完整檢視。
 

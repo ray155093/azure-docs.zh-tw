@@ -3,7 +3,7 @@
     description="說明 Azure AD 租用戶是什麼，以及如何透過 Azure Active Directory 管理 Azure"
     services="active-directory"
     documentationCenter=""
-    authors="markusvi"
+    authors="MarkusVi"
     writer="markvi"
     manager="femila"
     editor=""/>
@@ -20,7 +20,7 @@
 
 # <a name="administer-your-azure-ad-directory"></a>管理 Azure AD 目錄
 
-## <a name="what-is-an-azure-ad-tenant?"></a>什麼是 Azure AD 租用戶？
+## <a name="what-is-an-azure-ad-tenant"></a>什麼是 Azure AD 租用戶？
 
 在實際工作地點，「租用戶」這個字可以定義為進駐建築物的群組或公司。 例如，您的組織可能擁有建築物中的辦公區域。 這棟建築物可能位在有其他數個組織的街道上。 您的組織將會視為該建築物的租用戶。 這棟建築物是您組織的資產，以及提供安全性並確保您可以安全地執行業務。 它也會與您所在街道上的其他企業分開。 這確保您的組織和資產與其他組織隔離。
 
@@ -30,7 +30,7 @@
 
 ![管理 Azure Active Directory][1]
 
-## <a name="how-can-i-get-an-azure-ad-directory?"></a>如何取得 Azure AD 目錄？
+## <a name="how-can-i-get-an-azure-ad-directory"></a>如何取得 Azure AD 目錄？
 
 Azure AD 提供大部分 Microsoft 雲端服務的核心目錄和身分識別管理功能，包括：
 
@@ -66,7 +66,7 @@ Azure AD 提供大部分 Microsoft 雲端服務的核心目錄和身分識別管
 - [Office 365](http://products.office.com/business/compare-office-365-for-business-plans/)
 - [Microsoft Intune](https://account.manage.microsoft.com/Signup/MainSignUp.aspx?OfferId=40BE278A-DFD1-470a-9EF7-9F2596EA7FF9&ali=1)
 
-### <a name="manage-an-azure-provisioned-default-directory"></a>管理 Azure 所佈建的預設目錄
+### <a name="manage-an-azureprovisioned-default-directory"></a>管理 Azure 所佈建的預設目錄
 
 現在，如果註冊 Azure 而且您的訂用帳戶與該目錄相關聯，則會自動建立目錄。 但是，如果您在 2013 年 10 月前第一次註冊 Azure，則不會自動建立目錄。 在該情況下，Azure 可能已透過佈建您帳戶的預設目錄，以針對帳戶進行「回填」。 您的訂用帳戶之後會與該預設目錄相關聯。
 
@@ -95,7 +95,7 @@ Azure 管理入口網站、Office 365 系統管理中心、Microsoft Intune 帳�
 如果利用其中一個服務身分登入時使用任何入口網站 (或 Cmdlet) 變更組織資料，則變更也會在您下次使用該服務身分登入時顯示在其他入口網站中，因為這項資料會在您所訂閱的 Microsoft 雲端服務之間共用。
 例如，如果您已使用 Office 365 系統管理中心封鎖使用者登入，該動作將封鎖使用者登入您組織目前所訂閱的任何其他服務。 如果您是使用 Microsoft Intune 帳戶入口網站身分提取該相同使用者的帳戶，則會封鎖該使用者。
 
-## <a name="how-can-i-add-and-manage-multiple-directories?"></a>如何新增和管理多個目錄？
+## <a name="how-can-i-add-and-manage-multiple-directories"></a>如何新增和管理多個目錄？
 
 您可以在 Azure 管理入口網站中新增 Azure AD 目錄。 選取左方的 [Active Directory] 延伸模組，然後按一下 [新增]。
 
@@ -115,7 +115,7 @@ Azure 管理入口網站、Office 365 系統管理中心、Microsoft Intune 帳�
 
 也請注意，與其他 Azure 資源不同，您的目錄不是 Azure 訂用帳戶的子資源。 因此，如果您取消或允許 Azure 訂用帳戶到期，則還是可以使用 Azure AD PowerShell、Azure Graph API 或其他介面 (例如 Office 365 系統管理中心) 存取目錄資料。 您也可以關聯另一個訂用帳戶與目錄。
 
-## <a name="how-can-i-delete-an-azure-ad-directory?"></a>如何刪除 Azure AD 目錄？
+## <a name="how-can-i-delete-an-azure-ad-directory"></a>如何刪除 Azure AD 目錄？
 全域管理員可以從入口網站刪除 Azure AD 目錄。 刪除目錄時，也會一併刪除目錄中所含的所有資源；因此，您應該確定不需要該目錄之後再予以刪除。
 
 > [AZURE.NOTE]

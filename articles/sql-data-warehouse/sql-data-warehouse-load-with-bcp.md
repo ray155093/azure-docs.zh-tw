@@ -13,8 +13,8 @@
    ms.topic="get-started-article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="10/10/2016"
-   ms.author="mausher;barbkess;sonyama"/>
+   ms.date="10/31/2016"
+   ms.author="mausher;barbkess"/>
 
 
 
@@ -57,7 +57,7 @@ bcp 是將較小的資料集移入和移出 SQL 資料倉儲資料庫的一種�
 
 在本教學課程中，您將在 Azure SQL 資料倉儲中建立資料表，並將資料匯入資料表。
 
-### <a name="step-1:-create-a-table-in-azure-sql-data-warehouse"></a>步驟 1：在 Azure SQL 資料倉儲中建立資料表
+### <a name="step-1-create-a-table-in-azure-sql-data-warehouse"></a>步驟 1：在 Azure SQL 資料倉儲中建立資料表
 
 從命令提示字元，使用 sqlcmd 執行下列查詢，以在您的執行個體上建立資料表︰
 
@@ -79,7 +79,7 @@ sqlcmd.exe -S <server name> -d <database name> -U <username> -P <password> -I -Q
 
 >[AZURE.NOTE] 如需有關在 SQL 資料倉儲上建立資料表和 WITH 子句中可用選項的詳細資訊，請參閱[資料表概觀][]或 [CREATE TABLE 語法][]。
 
-### <a name="step-2:-create-a-source-data-file"></a>步驟 2：建立來源資料檔
+### <a name="step-2-create-a-source-data-file"></a>步驟 2：建立來源資料檔
 
 開啟 [記事本]，將下列幾行資料複製到新的文字檔，然後將此檔案儲存到本機暫存目錄 C:\Temp\DimDate2.txt。
 
@@ -100,7 +100,7 @@ sqlcmd.exe -S <server name> -d <database name> -U <username> -P <password> -I -Q
 
 > [AZURE.NOTE] 請務必記得 bcp.exe 不支援 UTF-8 檔案編碼。 使用 bcp.exe 時，請使用 ASCII 檔案或 UTF-16 編碼的檔案。
 
-### <a name="step-3:-connect-and-import-the-data"></a>步驟 3：連接並匯入資料
+### <a name="step-3-connect-and-import-the-data"></a>步驟 3：連接並匯入資料
 在 bcp 中，您可以使用下列命令來連接並匯入資料 (請適當地取代其中的值)：
 
 ```sql
@@ -130,7 +130,7 @@ DateId |CalendarQuarter |FiscalQuarter
 20151101 |4 |2
 20151201 |4 |2
 
-### <a name="step-4:-create-statistics-on-your-newly-loaded-data"></a>步驟 4：建立新載入資料的統計資料
+### <a name="step-4-create-statistics-on-your-newly-loaded-data"></a>步驟 4：建立新載入資料的統計資料
 
 Azure 資料倉儲尚未支援自動建立或自動更新統計資料。 為了獲得查詢的最佳效能，在首次載入資料，或是資料中發生重大變更之後，建立所有資料表的所有資料行統計資料非常重要。 如需統計資料的詳細說明，請參閱「開發」主題群組中的「 [統計資料][] 」主題。 以下是快速範例，說明如何在此範例中建立載入資料表的統計資料
 
@@ -147,7 +147,7 @@ sqlcmd.exe -S <server name> -d <database name> -U <username> -P <password> -I -Q
 ## <a name="export-data-from-sql-data-warehouse"></a>從 SQL 資料倉儲匯出資料
 在本教學課程中，您將從 Azure SQL 資料倉儲中的資料表建立資料檔案。 我們會將上面建立的資料匯出至新的資料檔案，稱為 DimDate2_export.txt。
 
-### <a name="step-1:-export-the-data"></a>步驟 1：匯出資料
+### <a name="step-1-export-the-data"></a>步驟 1：匯出資料
 
 在 bcp 公用程式中，您可以使用下列命令來連接並匯出資料 (請適當地取代其中的值)：
 

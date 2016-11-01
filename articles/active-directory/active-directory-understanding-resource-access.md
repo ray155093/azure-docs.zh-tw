@@ -3,7 +3,7 @@
     description="本主題說明有關使用訂用帳戶管理員來控制整個 Azure 入口網站中資源存取的概念。"
     services="active-directory"
     documentationCenter=""
-    authors="markusvi"
+    authors="MarkusVi"
     manager="femila"
     editor=""/>
 

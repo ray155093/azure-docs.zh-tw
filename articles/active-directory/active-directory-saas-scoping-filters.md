@@ -3,7 +3,7 @@
     description="了解如果某個物件無法滿足您的業務需求，如何使用範圍篩選器來防止實際佈建 App 中支援使用者佈建自動化的物件。"
     services="active-directory"
     documentationCenter=""
-    authors="markusvi"
+    authors="MarkusVi"
     manager="femila"
     editor=""/>
 
@@ -18,7 +18,7 @@
 
 
 
-# <a name="attribute-based-app-provisioning-with-scoping-filters"></a>含範圍篩選器的屬性型 App 佈建
+# <a name="attributebased-app-provisioning-with-scoping-filters"></a>含範圍篩選器的屬性型 App 佈建
 
 本節的目標在於說明如何使用範圍篩選器定義將會決定哪些使用者將佈建到應用程式的屬性型規則。
 

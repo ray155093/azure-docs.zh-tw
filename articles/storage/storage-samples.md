@@ -1,93 +1,98 @@
 <properties
-	pageTitle="Azure 儲存體範例 | Microsoft Azure"
-	description="檢視、下載及執行 Azure 儲存體的範例程式碼和應用程式。探索使用 .NET、Java、Node.js 和 C++ 的儲存體用戶端程式庫之 Blob、佇列、資料表和檔案的入門範例。"
-	services="storage"
-	documentationCenter="na"
-	authors="tamram"
-	manager="carmonm"
-	editor="tysonn" />
+    pageTitle="Azure Storage samples | Microsoft Azure"
+    description="View, download, and run sample code and applications for Azure Storage. Discover getting started samples for blobs, queues, tables, and files, using the .NET, Java, Node.js, and C++ storage client libraries."
+    services="storage"
+    documentationCenter="na"
+    authors="tamram"
+    manager="carmonm"
+    editor="tysonn" />
 <tags
-	ms.service="storage"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.tgt_pltfrm="na"
-	ms.workload="storage"
-	ms.date="09/21/2016"
-	ms.author="micurd;tamram" />
+    ms.service="storage"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.workload="storage"
+    ms.date="10/31/2016"
+    ms.author="tamram" />
 
-# Azure 儲存體範例
 
-## Overview
-您可以使用下列連結檢視和下載使用 Azure 儲存體的範例。
+# <a name="azure-storage-samples"></a>Azure Storage samples
 
-## Azure 程式碼範例程式庫
+## <a name="overview"></a>Overview
+Use the links below to view and download working Azure Storage samples.
 
-[Azure 程式碼範例程式庫](https://azure.microsoft.com/documentation/samples/?service=storage)包含您可以下載並在本機執行的 Azure 儲存體的範例。程式碼範例程式庫會提供 .zip 格式的範例程式碼。或者，您可以瀏覽並複製每個範例的 GitHub 儲存機制。
+## <a name="azure-code-sample-library"></a>Azure Code Sample Library
 
-## 開始使用範例
+The [Azure Code Sample Library](https://azure.microsoft.com/documentation/samples/?service=storage) includes samples for Azure Storage that you can download and run locally. The Code Sample Library provides sample code in .zip format. Alternatively, you can browse and clone the GitHub repository for each sample.
 
-* [在五分鐘內開始使用 Azure 儲存體](storage-getting-started-guide.md)
-* [適用於 Azure 儲存體的 Visual Studio 快速入門](https://github.com/Azure/azure-storage-net/tree/master/Samples/GettingStarted/VisualStudioQuickStarts)
+## <a name="getting-started-samples"></a>Getting started samples
 
-## .NET 範例
+* [Get started with Azure Storage in five minutes](storage-getting-started-guide.md)
+* [Visual Studio Quick Starts for Azure Storage](https://github.com/Azure/azure-storage-net/tree/master/Samples/GettingStarted/VisualStudioQuickStarts)
 
-若要瀏覽 .NET 範例，請從 NuGet 下載 [.NET 儲存體用戶端程式庫](https://www.nuget.org/packages/WindowsAzure.Storage/)。您也可以在 [適用於 .NET 的 Azure SDK](https://azure.microsoft.com/downloads/) 中找到 .NET 儲存體用戶端程式庫。
+## <a name="net-samples"></a>.NET samples
 
-* [Getting Started with Azure Blob Service in .NET (開始使用 .NET 中的 Azure Blob 服務)](https://azure.microsoft.com/documentation/samples/storage-blob-dotnet-getting-started/)
-* [Getting Started with Azure Queue Service in .NET (開始使用 .NET 中的 Azure 佇列服務)](https://azure.microsoft.com/documentation/samples/storage-queue-dotnet-getting-started/)
-* [Getting Started with Azure Table Service in .NET (開始使用 .NET 中的 Azure 表格服務)](https://azure.microsoft.com/documentation/samples/storage-table-dotnet-getting-started/)
-* [Getting Started with Azure File Service in .NET (開始使用 .NET 中的 Azure 檔案服務)](https://azure.microsoft.com/documentation/samples/storage-file-dotnet-getting-started/)
-* [Azure Blob Storage Photo Gallery Web Application (Azure Blob 儲存體影像中心 Web 應用程式)](https://azure.microsoft.com/documentation/samples/storage-blobs-dotnet-webapp/)
-* [Managing concurrency using Azure Storage (使用 Azure 儲存體管理並行存取)](https://code.msdn.microsoft.com/Managing-Concurrency-using-56018114)
+To explore the .NET samples, download the [.NET Storage Client Library](https://www.nuget.org/packages/WindowsAzure.Storage/) from NuGet. The .NET storage client library is also available in the [Azure SDK for .NET](https://azure.microsoft.com/downloads/).
 
-## Java 範例
+* [Getting Started with Azure Blob Service in .NET](https://azure.microsoft.com/documentation/samples/storage-blob-dotnet-getting-started/)
+* [Getting Started with Azure Queue Service in .NET](https://azure.microsoft.com/documentation/samples/storage-queue-dotnet-getting-started/)
+* [Getting Started with Azure Table Service in .NET](https://azure.microsoft.com/documentation/samples/storage-table-dotnet-getting-started/)
+* [Getting Started with Azure File Service in .NET](https://azure.microsoft.com/documentation/samples/storage-file-dotnet-getting-started/)
+* [Azure Blob Storage Photo Gallery Web Application](https://azure.microsoft.com/documentation/samples/storage-blobs-dotnet-webapp/)
+* [Managing concurrency using Azure Storage](https://code.msdn.microsoft.com/Managing-Concurrency-using-56018114)
 
-若要瀏覽 Java 範例，請下載 [Java 儲存體用戶端程式庫](https://github.com/azure/azure-storage-java)。
+## <a name="java-samples"></a>Java samples
 
-* [開始使用 Blob](https://github.com/Azure/azure-storage-java/tree/master/microsoft-azure-storage-samples/src/com/microsoft/azure/storage/blob/gettingstarted)
-* [開始使用資料表](https://github.com/Azure/azure-storage-java/tree/master/microsoft-azure-storage-samples/src/com/microsoft/azure/storage/table/gettingtstarted)
-* [開始使用佇列](https://github.com/Azure/azure-storage-java/tree/master/microsoft-azure-storage-samples/src/com/microsoft/azure/storage/queue/gettingstarted)
+To explore the Java samples, download the [Java Storage Client Library](https://github.com/azure/azure-storage-java).
 
-## Node.js 範例
+* [Get started with blobs](https://github.com/Azure/azure-storage-java/tree/master/microsoft-azure-storage-samples/src/com/microsoft/azure/storage/blob/gettingstarted)
+* [Get started with tables](https://github.com/Azure/azure-storage-java/tree/master/microsoft-azure-storage-samples/src/com/microsoft/azure/storage/table/gettingtstarted)
+* [Get started with queues](https://github.com/Azure/azure-storage-java/tree/master/microsoft-azure-storage-samples/src/com/microsoft/azure/storage/queue/gettingstarted)
 
-若要瀏覽 Node.js 範例，請下載 [Node.js 儲存體用戶端程式庫](https://github.com/Azure/azure-storage-node)。
+## <a name="nodejs-samples"></a>Node.js samples
 
-* [Blob 上載程式](https://github.com/Azure/azure-storage-node/tree/master/examples/blobuploader)
-* [上傳及下載 Blob](https://github.com/Azure/azure-storage-node/blob/master/examples/samples/blobuploaddownloadsample.js)
-* [接續權杖](https://github.com/Azure/azure-storage-node/blob/master/examples/samples/continuationsample.js)
-* [重試原則](https://github.com/Azure/azure-storage-node/blob/master/examples/samples/retrypolicysample.js)
-* [共用存取簽章](https://github.com/Azure/azure-storage-node/blob/master/examples/samples/sassample.js)
-* [快照集](https://github.com/Azure/azure-storage-node/blob/master/examples/samples/snapshotsample.js)
-* [資料表查詢](https://github.com/Azure/azure-storage-node/blob/master/examples/samples/tablequerysample.js)
+To explore the Node.js samples, download the [Node.js Storage Client Library](https://github.com/Azure/azure-storage-node).
 
-## C++ 範例
+* [Blob uploader](https://github.com/Azure/azure-storage-node/tree/master/examples/blobuploader)
+* [Upload and download blob](https://github.com/Azure/azure-storage-node/blob/master/examples/samples/blobuploaddownloadsample.js)
+* [Continuation token](https://github.com/Azure/azure-storage-node/blob/master/examples/samples/continuationsample.js)
+* [Retry policy](https://github.com/Azure/azure-storage-node/blob/master/examples/samples/retrypolicysample.js)
+* [Shared access signature](https://github.com/Azure/azure-storage-node/blob/master/examples/samples/sassample.js)
+* [Snapshot](https://github.com/Azure/azure-storage-node/blob/master/examples/samples/snapshotsample.js)
+* [Table query](https://github.com/Azure/azure-storage-node/blob/master/examples/samples/tablequerysample.js)
 
-若要瀏覽 C++ 範例，請從 NuGet 下載 [C++ 儲存體用戶端程式庫](https://www.nuget.org/packages/wastorage/)。
+## <a name="c-samples"></a>C++ samples
 
-* [開始使用 Blob](https://github.com/Azure/azure-storage-cpp/tree/master/Microsoft.WindowsAzure.Storage/samples/BlobsGettingStarted)
-* [開始使用資料表](https://github.com/Azure/azure-storage-cpp/tree/master/Microsoft.WindowsAzure.Storage/samples/TablesGettingStarted)
-* [開始使用佇列](https://github.com/Azure/azure-storage-cpp/tree/master/Microsoft.WindowsAzure.Storage/samples/QueuesGettingStarted)
+To explore the C++ samples, download the [C++ Storage Client Library](https://www.nuget.org/packages/wastorage/) from NuGet.
 
-## 另請參閱
+* [Get started with blobs](https://github.com/Azure/azure-storage-cpp/tree/master/Microsoft.WindowsAzure.Storage/samples/BlobsGettingStarted)
+* [Get started with tables](https://github.com/Azure/azure-storage-cpp/tree/master/Microsoft.WindowsAzure.Storage/samples/TablesGettingStarted)
+* [Get started with queues](https://github.com/Azure/azure-storage-cpp/tree/master/Microsoft.WindowsAzure.Storage/samples/QueuesGettingStarted)
 
-### .NET 資源
+## <a name="see-also"></a>See also
 
-- [.NET 儲存體用戶端程式庫的原始程式碼](https://github.com/Azure/azure-storage-net)
-- [.NET 用戶端程式庫參考](https://msdn.microsoft.com/library/azure/dn261237.aspx)
+### <a name="net-resources"></a>.NET resources
 
-### Java 資源
+- [Source code for the .NET storage client library](https://github.com/Azure/azure-storage-net)
+- [.NET Client Library Reference](https://msdn.microsoft.com/library/azure/dn261237.aspx)
 
-- [Java 儲存體用戶端程式庫的原始程式碼](https://github.com/azure/azure-storage-java)
-- [Java 用戶端程式庫參考](http://dl.windowsazure.com/storage/javadoc/)
+### <a name="java-resources"></a>Java resources
 
-### Node.js 資源
+- [Source code for the Java storage client library](https://github.com/azure/azure-storage-java)
+- [Java Client Library Reference](http://dl.windowsazure.com/storage/javadoc/)
 
-- [Node.js 儲存體用戶端程式庫的原始程式碼](https://github.com/Azure/azure-storage-node)
-- [Node.js 用戶端程式庫參考](http://dl.windowsazure.com/nodestoragedocs/index.html)
+### <a name="nodejs-resources"></a>Node.js resources
 
-### C++ 資源
+- [Source code for the Node.js storage client library](https://github.com/Azure/azure-storage-node)
+- [Node.js Client Library Reference](http://dl.windowsazure.com/nodestoragedocs/index.html)
 
-- [C++ 儲存體用戶端程式庫的原始程式碼](https://github.com/Azure/azure-storage-cpp)
-- [C++ 用戶端程式庫參考](http://azure.github.io/azure-storage-cpp/)
+### <a name="c-resources"></a>C++ resources
 
-<!---HONumber=AcomDC_0921_2016-->
+- [Source code for the C++ storage client library](https://github.com/Azure/azure-storage-cpp)
+- [C++ Client Library Reference](http://azure.github.io/azure-storage-cpp/)
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

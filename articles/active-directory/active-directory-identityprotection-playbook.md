@@ -4,7 +4,7 @@
     services="active-directory"
     keywords="azure active directory identity protection, cloud app discovery, 管理應用程式, 安全性, 風險, 風險層級, 弱點, 安全性原則"
     documentationCenter=""
-    authors="markusvi"
+    authors="MarkusVi"
     manager="femila"
     editor=""/>
 
@@ -37,7 +37,7 @@
 無法以安全的方式模擬其他風險事件。
 
 
-### <a name="sign-ins-from-anonymous-ip-addresses"></a>從匿名 IP 位址登入
+### <a name="signins-from-anonymous-ip-addresses"></a>從匿名 IP 位址登入
 
 此風險事件類型會識別從被視為匿名 Proxy IP 位址的 IP 位址成功登入的使用者。 這些 Proxy 通常由想要隱藏其裝置 IP 位址的人員使用，而且可能用於惡意意圖。
 
@@ -50,7 +50,7 @@
 登入將會在 5 分鐘內顯示於 Identity Protection 儀表板上。 
 
 
-###<a name="sign-ins-from-unfamiliar-locations"></a>從不熟悉的位置登入
+###<a name="signins-from-unfamiliar-locations"></a>從不熟悉的位置登入
 
 不熟悉的位置風險是一種即時登入評估機制，它會考量過去的登入位置 (IP、經緯度和 ASN) 以判斷新的 / 不熟悉的位置。 系統會儲存使用者先前的 IP、經緯度和 ASN，並將這些視為熟悉的位置。 如果登入位置不符合任何現有的熟悉位置，此登入位置會被視為不熟悉。
 
@@ -138,7 +138,7 @@ Azure Active Directory Identity Protection：
 <br>
 
  
-##<a name="sign-in-risk"></a>登入風險
+##<a name="signin-risk"></a>登入風險
 
  
 **若要測試登入風險，請執行下列步驟：**

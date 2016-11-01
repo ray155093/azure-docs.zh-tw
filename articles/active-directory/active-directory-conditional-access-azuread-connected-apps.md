@@ -3,7 +3,7 @@
     description="Azure AD 中的條件式存取可讓您設定每個應用程式的多重要素驗證存取規則，且能夠封鎖不在受信任網路上的使用者存取。 "
     services="active-directory"
     documentationCenter=""
-    authors="markusvi"
+    authors="MarkusVi"
     manager="femila"
     editor=""/>
 
@@ -32,7 +32,7 @@
 
 * 同盟租用戶需要啟用多重要素驗證。
 
-## <a name="configure-per-application-access-rules"></a>設定每個應用程式的存取規則
+## <a name="configure-perapplication-access-rules"></a>設定每個應用程式的存取規則
 
 本節描述如何設定每個應用程式的存取規則。
 
@@ -78,7 +78,7 @@
 
 當使用者存取使用 OAuth 2.0、OpenID Connect、SAML 或 WS-同盟的同盟應用程式時，就會評估存取規則。 此外，當 OAuth 2.0 和 OpenID Connect 使用重新整理權杖來取得存取權杖時，也會評估存取規則。 如果使用重新整理權杖時原則評估失敗，將會傳回 **invalid_grant** 錯誤，這表示使用者必須向用戶端重新進行驗證。
 
-###<a name="configure-federation-services-to-provide-multi-factor-authentication"></a>設定同盟服務以提供多重要素驗證
+###<a name="configure-federation-services-to-provide-multifactor-authentication"></a>設定同盟服務以提供多重要素驗證
 
 就同盟的租用戶而言，MFA 可由 Azure Active Directory 或內部部署 AD FS 伺服器執行。
 

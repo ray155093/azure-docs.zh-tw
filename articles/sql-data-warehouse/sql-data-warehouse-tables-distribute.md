@@ -1,6 +1,6 @@
 <properties
-   pageTitle="在 SQL 資料倉儲中散發資料表 | Microsoft Azure"
-   description="開始在 Azure SQL 資料倉儲中散發資料表。"
+   pageTitle="Distributing tables in SQL Data Warehouse | Microsoft Azure"
+   description="Getting started with distributing tables in Azure SQL Data Warehouse."
    services="sql-data-warehouse"
    documentationCenter="NA"
    authors="jrowlandjones"
@@ -13,55 +13,56 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="08/30/2016"
-   ms.author="jrj;barbkess;sonyama"/>
+   ms.date="10/31/2016"
+   ms.author="jrj;barbkess"/>
 
-# 在 SQL 資料倉儲中散發資料表
+
+# <a name="distributing-tables-in-sql-data-warehouse"></a>Distributing tables in SQL Data Warehouse
 
 > [AZURE.SELECTOR]
-- [概觀][]
-- [資料類型][]
-- [散發][]
+- [Overview][]
+- [Data Types][]
+- [Distribute][]
 - [Index][]
-- [資料分割][]
-- [統計資料][]
-- [暫存][]
+- [Partition][]
+- [Statistics][]
+- [Temporary][]
 
-SQL 資料倉儲是大量平行處理 (MPP) 分散式資料庫系統。將資料和處理能力分割於多個節點之間，SQL 資料倉儲就能夠提供極大的延展性 - 遠超過任何單一系統。決定如何在 SQL 資料倉儲內散發資料是達到最佳效能的最重要因素之一。要達到最佳效能的關鍵是將資料移動降至最低，而將資料移動降至最低的關鍵是選取正確的散發策略。
+SQL Data Warehouse is a massively parallel processing (MPP) distributed database system.  By dividing data and processing capability across multiple nodes, SQL Data Warehouse can offer huge scalability - far beyond any single system.  Deciding how to distribute your data within your SQL Data Warehouse is one of the most important factors to achieving optimal performance.   The key to optimal performance is minimizing data movement and in turn the key to minimizing data movement is selecting the right distribution strategy.
 
-## 了解資料移動
+## <a name="understanding-data-movement"></a>Understanding data movement
 
-在 MPP 系統中，每個資料表中的資料會被分到數個基礎資料庫。MPP 系統上最佳化的查詢可以只傳遞到個別分散式資料庫上執行，與其他資料庫之間不需要互動。例如，假設您的銷售資料的資料庫有「銷售」和「客戶」兩個資料表。如果您的查詢需要將銷售資料表和客戶資料表聯結，而您將銷售和客戶資料表都依客戶編號分開，將每個客戶放在不同的資料庫，則任何聯結銷售和客戶的查詢皆可以在各個資料庫中解決，不需要知道其他資料庫的存在。相較之下，如果您將銷售資料依訂單編號分開，將客戶資料依客戶編號分開，則任何一個資料庫皆不會有每位客戶的相對應資料，因此，如果您想要將銷售資料聯結至客戶資料，便需要從其他資料庫取得每位客戶的資料。在這第二個範例中，需要移動資料，將客戶資料移至銷售資料，如此才可以聯結兩個資料表。
+In an MPP system, the data from each table is divided across several underlying databases.  The most optimized queries on an MPP system can simply be passed through to execute on the individual distributed databases with no interaction between the other databases.  For example, let's say you have a database with sales data which contains two tables, sales and customers.  If you have a query that needs to join your sales table to your customer table and you divide both your sales and customer tables up by customer number, putting each customer in a separate database, any queries which join sales and customer can be solved within each database with no knowledge of the other databases.  In contrast, if you divided your sales data by order number and your customer data by customer number, then any given database will not have the corresponding data for each customer and thus if you wanted to join your sales data to your customer data, you would need to get the data for each customer from the other databases.  In this second example, data movement would need to occur to move the customer data to the sales data, so that the two tables can be joined.  
 
-資料移動不一定是一件壞事，有時候是要解決查詢的必要手段。但當您可以避免這個額外的步驟，自然地查詢的執行速度會更快。資料移動最常發生於聯結資料表或執行彙總時。通常您兩種都需要做，因此即使您可以最佳化其中一種情況，例如聯結，您仍需要資料移動來幫您解決其他案例，例如彙總。訣竅是找出哪一個較少工作。大多數情況下，在通常聯結的資料行上散發大型事實資料表，是將資料移動降至最低的最有效方法。相較於散發彙總牽涉到的資料行資料，散發聯結資料行上的資料，是減少資料移動更為普遍的方法。
+Data movement isn't always a bad thing, sometimes it's necessary to solve a query.  But when this extra step can be avoided, naturally your query will run faster.  Data Movement most commonly arises when tables are joined or aggregations are performed.  Often you need to do both, so while you may be able to optimize for one scenario, like a join, you still need data movement to help you solve for the other scenario, like an aggregation.  The trick is figuring out which is less work.  In most cases, distributing large fact tables on a commonly joined column is the most effective method for reducing the most data movement.  Distributing data on join columns is a much more common method to reduce data movement than distributing data on columns involved in an aggregation.
 
-## 選擇散發方法
+## <a name="select-distribution-method"></a>Select distribution method
 
-SQL 資料倉儲會在幕後將您的資料分成 60 個資料庫。每個個別的資料庫都稱為**散發**。當資料載入每個資料表時，SQL 資料倉儲必須知道如何將資料分成這 60 個散發。
+Behind the scenes, SQL Data Warehouse divides your data into 60 databases.  Each individual database is referred to as a **distribution**.  When data is loaded into each table, SQL Data Warehouse has to know how to divide your data across these 60 distributions.  
 
-散發方法會定義於資料表層級，目前有兩個選擇︰
+The distribution method is defined at the table level and currently there are two choices:
 
-1. **循環配置資源**會平均但隨機散發資料。
-2. **雜湊散發**會根據單一資料行的雜湊值散發資料
+1. **Round robin** which distribute data evenly but randomly.
+2. **Hash Distributed** which distributes data based on hashing values from a single column
 
-根據預設，如果未定義資料散發方式，您的資料表會使用**循環配置資源**散發方法進行散發。不過，當您日益熟練實作，您會考慮使用**雜湊散發**資料表將資料移動降至最低，進而使查詢效能達到最佳化。
+By default, when you do not define a data distribution method, your table will be distributed using the **round robin** distribution method.  However, as you become more sophisticated in your implementation, you will want to consider using **hash distributed** tables to minimize data movement which will in turn optimize query performance.
 
-### 循環配置資源資料表
+### <a name="round-robin-tables"></a>Round Robin Tables
 
-使用循環配置資源方法來散發資料名符其實。載入資料後，每個資料列只會傳送到下一個散發。此種資料散發方法一律會將資料非常平均地隨機散發到所有的散發。也就是說，在放置資料的循環配置資源處理期間，不會進行任何排序。基於這個理由，循環配置資源散發有時稱為隨機雜湊。使用循環配置資源分散式資料表，不需要了解資料。基於這個理由，循環配置資源資料表通常具有良好的載入目標。
+Using the Round Robin method of distributing data is very much how it sounds.  As your data is loaded, each row is simply sent to the next distribution.  This method of distributing the data will always randomly distribute the data very evenly across all of the distributions.  That is, there is no sorting done during the round robin process which places your data.  A round robin distribution is sometimes called a random hash for this reason.  With a round-robin distributed table there is no need to understand the data.  For this reason, Round-Robin tables often make good loading targets.
 
-根據預設，如果未選擇散發方法，則會使用循環配置資源散發方法。不過，雖然循環配置資源資料表很容易使用，但因為資料會隨機分散於系統，這表示系統無法保證每個資料列位於哪個發散。因此，系統有時候需要叫用資料移動作業，才能在解析查詢前，更加妥善地組織您的資料。此額外步驟會使您的查詢變慢。
+By default, if no distribution method is chosen, the round robin distribution method will be used.  However, while round robin tables are easy to use, because data is randomly distributed across the system it means that the system can't guarantee which distribution each row is on.  As a result, the system sometimes needs to invoke a data movement operation to better organize your data before it can resolve a query.  This extra step can slow down your queries.
 
-在下列情況下，請考慮對資料表使用循環配置資源散發：
+Consider using Round Robin distribution for your table in the following scenarios:
 
-- 以簡單的起點開始使用時
-- 如果沒有明顯的聯結索引鍵
-- 如果沒有合適的候選資料行可供雜湊散發資料表
-- 如果資料表並未與其他資料表共用常見的聯結索引鍵
-- 如果此聯結比查詢中的其他聯結較不重要
-- 當資料表是暫存預備資料表時
+- When getting started as a simple starting point
+- If there is no obvious joining key
+- If there is not good candidate column for hash distributing the table
+- If the table does not share a common join key with other tables
+- If the join is less significant than other joins in the query
+- When the table is a temporary staging table
 
-兩個範例都會建立循環配置資源資料表︰
+Both of these examples will create a Round Robin Table:
 
 ```SQL
 -- Round Robin created by default
@@ -95,13 +96,13 @@ WITH
 ;
 ```
 
-> [AZURE.NOTE] 雖然循環配置資源是預設資料表類型，但以您的 DDL 明確表示被視為最佳做法，讓其他人能夠清楚了解您的資料表配置的意圖。
+> [AZURE.NOTE] While round robin is the default table type being explicit in your DDL is considered a best practice so that the intentions of your table layout are clear to others.
 
-### 雜湊散發資料表
+### <a name="hash-distributed-tables"></a>Hash Distributed Tables
 
-使用**雜湊散發**演算法來散發您的資料表，可減少查詢時的資料移動，進而改善許多案例的效能。雜湊散發資料表是在您選取的單一資料行上使用雜湊演算法，分配於分散式資料庫間的資料表。散發資料行可決定如何將資料分配於您的分散式資料庫。雜湊函式會使用散發資料行將資料列指派給散發。雜湊演算法與所產生的散發具決定性。也就是，相同資料類型的相同值永遠都使用相同的散發。
+Using a **Hash distributed** algorithm to distribute your tables can improve performance for many scenarios by reducing data movement at query time.  Hash distributed tables are tables which are divided between the distributed databases using a hashing algorithm on a single column which you select.  The distribution column is what determines how the data is divided across your distributed databases.  The hash function uses the distribution column to assign rows to distributions.  The hashing algorithm and resulting distribution is deterministic.  That is the same value with the same data type will always has to the same distribution.    
 
-這個範例會建立依照識別碼散發的資料表︰
+This example will create a table distributed on id:
 
 ```SQL
 CREATE TABLE [dbo].[FactInternetSales]
@@ -121,69 +122,69 @@ WITH
 ;
 ```
 
-## 選擇散發資料行
+## <a name="select-distribution-column"></a>Select distribution column
 
-當您選擇**雜湊散發**資料表時，您必須選取單一散發資料行。選取散發資料行時，需要考量三個主要因素。
+When you choose to **hash distribute** a table, you will need to select a single distribution column.  When selecting a distribution column, there are three major factors to consider.  
 
-選取具有下列特性的單一資料行︰
+Select a single column which will:
 
-1. 不會更新
-2. 平均散發資料，以避免資料扭曲
-3. 最小化資料移動
+1. Not be updated
+2. Distribute data evenly, avoiding data skew
+3. Minimize data movement
 
-### 選取不會更新的散發資料行
+### <a name="select-distribution-column-which-will-not-be-updated"></a>Select distribution column which will not be updated
 
-散發資料行不可更新，因此，選取具靜態值的資料行。如果資料行需要更新，該資料行通常不是理想的散發候選項目。如果您必須更新散發資料行，做法是先刪除資料列，然後插入新的資料列。
+Distribution columns are not updatable, therefore, select a column with static values.  If a column will need to be updated, it is generally not a good distribution candidate.  If there is a case where you must update a distribution column, this can be done by first deleting the row and then inserting a new row.
 
-### 選取將平均散發資料的散發資料行
+### <a name="select-distribution-column-which-will-distribute-data-evenly"></a>Select distribution column which will distribute data evenly
 
-分散式系統的執行速度只與其最慢的散發一樣快，所以務必將工作平均分配於各散發，以便讓系統達到平衡的執行。工作會根據每個散發的資料所在位置，分配於分散式系統。這對於選取正確的散發資料行來散發資料非常重要，如此一來，每個散發都有相等的工作，而且完成其工作部分所需的時間相同。當工作在系統中分配良好時，資料的散發就會平衡。當資料不平衡時，我們將此稱為**資料扭曲**。
+Since a distributed system performs only as fast as its slowest distribution, it is important to divide the work evenly across the distributions in order to achieve balanced execution across the system.  The way the work is divided on a distributed system is based on where the data for each distribution lives.  This makes it very important to select the right distribution column for distributing the data so that each distribution has equal work and will take the same time to complete its portion of the work.  When work is well divided across the system, the data is balanced across the distributions.  When data is not evenly balanced, we call this **data skew**.  
 
-若要平均分配資料以避免資料扭曲，請在選取散發資料行時考量下列各項︰
+To divide data evenly and avoid data skew, consider the following when selecting your distribution column:
 
-1. 選取包含大量相異值的資料行。
-2. 避免將資料散發於含有少許相異值的資料行。
-3. 避免將資料散發於 null 頻繁出現的資料行。
-4. 避免在日期資料行上散發資料。
+1. Select a column which contains a significant number of distinct values.
+2. Avoid distributing data on columns with a few distinct values. 
+3. Avoid distributing data on columns with a high frequency of nulls.
+4. Avoid distributing data on date columns.
 
-因為每個值會雜湊至 60 個散發之一，若要達到平均散發，您要選取極為獨特並包含超過 60 個唯一值的資料行。為了方便解說，請考慮資料行只有 40 個唯一值的案例。如果選取此資料行做為散發索引鍵，則該資料表的資料最多會落在 40 個散發，以致 20 個散發不含任何資料，而且沒有要進行的處理。相反地，如果資料平均分散於 60 個散發，則其他 40 個散發有更多工作需要進行。這個案例就是資料扭曲的範例。
+Since each value is hashed to 1 of 60 distributions, to achieve even distribution you will want to select a column that is highly unique and contains more than 60 unique values.  To illustrate, consider a case where a column only has 40 unique values.  If this column was selected as the distribution key, the data for that table would land on 40 distributions at most, leaving 20 distributions with no data and no processing to do.  Conversely, the other 40 distributions would have more work to do that if the data was evenly spread over 60 distributions.  This scenario is an example of data skew.
 
-在 MPP 系統中，每個查詢步驟會等待所有散發完成它們的工作部分。若某個散發進行的工作較其他散發多，則其他散發的資源會因為等待該忙碌的散發而浪費。當所有散發的工作分配不均時，我們將此稱為**處理誤差**。處理誤差將造成查詢的執行速度比工作負載平均分配於散發時更慢。資料扭曲將導致處理誤差。
+In MPP system, each query step waits for all distributions to complete their share of the work.  If one distribution is doing more work than the others, then the resource of the other distributions are essentially wasted just waiting on the busy distribution.  When work is not evenly spread across all distributions, we call this **processing skew**.  Processing skew will cause queries to run slower than if the workload can be evenly spread across the distributions.  Data skew will lead to processing skew.
 
-避免散發於高度可為 null 的資料行，因為 null 值將全部落在相同的散發。散發於日期資料行也可能造成處理誤差，因為指定日期的所有資料將落在相同的散發。如果數個使用者正在執行的查詢均篩選相同日期，則 60 個散發中只有 1 個會執行所有工作，因為一個指定日期只會在一個散發中。在此案例中，查詢的執行速度可能比資料平均分配於所有散發時慢 60 倍。
+Avoid distributing on highly nullable column as the null values will all land on the same distribution. Distributing on a date column can also cause processing skew because all data for a given date will land on the same distribution. If several users are executing queries all filtering on the same date, then only 1 of the 60 distributions will be doing all of the work since a given date will only be on one distribution. In this scenario, the queries will likely run 60 times slower than if the data were equally spread over all of the distributions. 
 
-若沒有理想的候選資料行存在，則考慮使用循環配置資源做為散發方法。
+When no good candidate columns exist, then consider using round robin as the distribution method.
 
-### 選取會將資料移動降至最低的散發資料行
+### <a name="select-distribution-column-which-will-minimize-data-movement"></a>Select distribution column which will minimize data movement
 
-藉由選取適當散發資料行來將資料移動降至最低，是讓 SQL 資料倉儲的效能達到最佳化的最重要策略之一。資料移動最常發生於聯結資料表或執行彙總時。用於 `JOIN`、`GROUP BY`、`DISTINCT`、`OVER`、`HAVING` 子句的資料行全都是**理想**的雜湊散發候選項目。
+Minimizing data movement by selecting the right distribution column is one of the most important strategies for optimizing performance of your SQL Data Warehouse.  Data Movement most commonly arises when tables are joined or aggregations are performed.  Columns used in `JOIN`, `GROUP BY`, `DISTINCT`, `OVER` and `HAVING` clauses all make for **good** hash distribution candidates. 
 
-另一方面，用於 `WHERE` 子句的資料行**不是**理想的雜湊資料行候選項目，因為它們會限制哪些散發參與查詢，因而導致處理誤差。可能適合用於散發但通常會造成此處理誤差的資料行範例，就是日期資料行。
+On the other hand, columns in the `WHERE` clause do **not** make for good hash column candidates because they limit which distributions participate in the query, causing processing skew.  A good example of a column which might be tempting to distribute on, but often can cause this processing skew is a date column.
 
-一般而言，如果您有兩個經常涉入聯結的大型事實資料表，將兩個資料表散發在其中一個聯結資料行上可得到最佳效能。如果您有永遠不會聯結到另一個大型事實資料表的資料表，則尋找經常出現在 `GROUP BY` 子句中的資料行。
+Generally speaking, if you have two large fact tables frequently involved in a join, you will gain the most performance by distributing both tables on one of the join columns.  If you have a table that is never joined to another large fact table, then look to columns that are frequently in the `GROUP BY` clause.
 
-有幾個關鍵條件必須符合，以避免聯結期間的資料移動︰
+There are a few key criteria which must be met to avoid data movement during a join:
 
-1. 參與聯結之資料行的相關資料表必須雜湊散發於其中**一個**聯結資料行上。
-2. 兩個資料表間聯結資料行的資料類型必須相符。
-3. 資料行必須以 equals 運算子聯結。
-4. 聯結類型可能不是 `CROSS JOIN`。
+1. The tables involved in the join must be hash distributed on **one** of the columns participating in the join.
+2. The data types of the join columns must match between both tables.
+3. The columns must be joined with an equals operator.
+4. The join type may not be a `CROSS JOIN`.
 
 
-## 資料扭曲疑難排解
+## <a name="troubleshooting-data-skew"></a>Troubleshooting data skew
 
-資料表的資料是使用雜湊散發方法來散發時，有些散發可能會扭曲，會比其他資料表具有更多資料。過多資料扭曲可能會影響查詢效能，因為散發查詢的最終結果必須等待執行時間最長的散發完成。視資料扭曲的程度而定，您可能需要處理它。
+When table data is distributed using the hash distribution method there is a chance that some distributions will be skewed to have disproportionately more data than others. Excessive data skew can impact query performance because the final result of a distributed query must wait for the longest running distribution to finish. Depending on the degree of the data skew you might need to address it.
 
-### 識別扭曲
+### <a name="identifying-skew"></a>Identifying skew
 
-識別資料表扭曲的簡單方法是使用 `DBCC PDW_SHOWSPACEUSED`。這個非常快速且簡單的方式，用來查看儲存在您資料庫中每 60 個散發內的資料表資料列數目。請記住，為了達到最平衡的效能，分散式資料表中的資料列應該平均分散到所有散發中。
+A simple way to identify a table as skewed is to use `DBCC PDW_SHOWSPACEUSED`.  This is a very quick and simple way to see the number of table rows that are stored in each of the 60 distributions of your database.  Remember that for the most balanced performance, the rows in your distributed table should be spread evenly across all the distributions.
 
 ```sql
 -- Find data skew for a distributed table
 DBCC PDW_SHOWSPACEUSED('dbo.FactInternetSales');
 ```
 
-不過，如果您查詢 Azure SQL 資料倉儲動態管理檢視 (DMV)，則可以執行更詳細的分析。若要開始，請使用[資料表概觀][Overview]一文中的 SQL 建立 [dbo.vTableSizes][] 檢視。建立檢視後，請執行此查詢來識別哪些資料表有 10% 以上的資料扭曲。
+However, if you query the Azure SQL Data Warehouse dynamic management views (DMV) you can perform a more detailed analysis.  To start, create the view [dbo.vTableSizes][] view using the SQL from [Table Overview][Overview] article.  Once the view is created, run this query to identify which tables have more than 10% data skew.
 
 ```sql
 select *
@@ -195,22 +196,22 @@ where two_part_name in
     where row_count > 0
     group by two_part_name
     having min(row_count * 1.000)/max(row_count * 1.000) > .10
-	)
+    )
 order by two_part_name, row_count
 ;
 ```
 
-### 解決資料扭曲
+### <a name="resolving-data-skew"></a>Resolving data skew
 
-並非所有的扭曲都足以批准修正。在某些情況下，某些查詢中的資料表效能可以超越資料扭曲的傷害。若要決定是否應該解決資料表中的資料扭曲，您應該盡可能了解工作負載中的資料磁區和查詢。查看扭曲影響的方法之一是使用[查詢監視][]一文中的步驟，監視扭曲對於查詢效能的影響，尤其是在個別散發上完成查詢所需時間的影響。
+Not all skew is enough to warrant a fix.  In some cases, the performance of a table in some queries can outweigh the harm of data skew.  To decide if you should resolve data skew in a table, you should understand as much as possible about the data volumes and queries in your workload.   One way to look at the impact of skew is to use the steps in the [Query Monitoring][] article to monitor the impact of skew on query performance and specifically the impact to how long queries take to complete on the individual distributions.
 
-散發資料就是找出將資料扭曲降至最低與將資料移動降至最低兩者之間的正確平衡點。這些可能是相反的目標，有時候您會想要保留資料扭曲，以減少資料移動。比方說，當散發資料行經常是聯結和彙總中的共用資料行時，您便會將資料移動降至最低。擁有最少的資料移動，所帶來的好處可能勝過具有資料扭曲的影響。
+Distributing data is a matter of finding the right balance between minimizing data skew and minimizing data movement. These can be opposing goals, and sometimes you will want to keep data skew in order to reduce data movement. For example, when the distribution column is frequently the shared column in joins and aggregations, you will be minimizing data movement. The benefit of having the minimal data movement might outweigh the impact of having data skew. 
 
-解決資料扭曲的一般方式，是重新建立具有不同散發資料行的資料表。沒有任何方法可變更現有資料表上的散發資料行，所以變更資料表散發的方法是使用 [CTAS][] 重建資料表。以下是解決資料扭曲的兩個範例：
+The typical way to resolve data skew is to re-create the table with a different distribution column. Since there is no way to change the distribution column on an existing table, the way to change the distribution of a table it to recreate it with a [CTAS][].  Here are two examples of how resolve data skew:
 
-### 範例 1︰重建具有新散發資料行的資料表
+### <a name="example-1-recreate-the-table-with-a-new-distribution-column"></a>Example 1: Re-create the table with a new distribution column
 
-此範例會使用 [CTAS][] 來重建具有不同雜湊資料行的資料表。
+This example uses [CTAS][] to re-create a table with a different hash distribution column. 
 
 ```sql
 CREATE TABLE [dbo].[FactInternetSales_CustomerKey] 
@@ -248,9 +249,9 @@ RENAME OBJECT [dbo].[FactInternetSales] TO [FactInternetSales_ProductKey];
 RENAME OBJECT [dbo].[FactInternetSales_CustomerKey] TO [FactInternetSales];
 ```
 
-### 範例 2︰使用循環配置資源散發重建資料表
+### <a name="example-2-recreate-the-table-using-round-robin-distribution"></a>Example 2: Re-create the table using round robin distribution
 
-此範例會使用 [CTAS][] 來重建具有循環配置資源 (而非雜湊散發) 的資料表。這項變更將會產生平均的資料散發，但代價是資料移動增加。
+This example uses [CTAS][] to re-create a table with round robin instead of a hash distribution. This change will produce even data distribution at the cost of increased data movement. 
 
 ```sql
 CREATE TABLE [dbo].[FactInternetSales_ROUND_ROBIN] 
@@ -288,28 +289,25 @@ RENAME OBJECT [dbo].[FactInternetSales] TO [FactInternetSales_HASH];
 RENAME OBJECT [dbo].[FactInternetSales_ROUND_ROBIN] TO [FactInternetSales];
 ```
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-若要深入了解資料表設計，請參閱[散發][]、[索引][]、[資料分割][]、[資料類型][]、[統計資料][]、[暫存資料表][Temporary]等文章。
+To learn more about table design, see the [Distribute][], [Index][], [Partition][], [Data Types][], [Statistics][] and [Temporary Tables][Temporary] articles.
 
-如需最佳做法的概觀，請參閱 [SQL 資料倉儲最佳做法][]。
+For an overview of best practices, see [SQL Data Warehouse Best Practices][].
 
 
 <!--Image references-->
 
 <!--Article references-->
 [Overview]: ./sql-data-warehouse-tables-overview.md
-[概觀]: ./sql-data-warehouse-tables-overview.md
-[資料類型]: ./sql-data-warehouse-tables-data-types.md
-[散發]: ./sql-data-warehouse-tables-distribute.md
+[Data Types]: ./sql-data-warehouse-tables-data-types.md
+[Distribute]: ./sql-data-warehouse-tables-distribute.md
 [Index]: ./sql-data-warehouse-tables-index.md
-[索引]: ./sql-data-warehouse-tables-index.md
-[資料分割]: ./sql-data-warehouse-tables-partition.md
-[統計資料]: ./sql-data-warehouse-tables-statistics.md
+[Partition]: ./sql-data-warehouse-tables-partition.md
+[Statistics]: ./sql-data-warehouse-tables-statistics.md
 [Temporary]: ./sql-data-warehouse-tables-temporary.md
-[暫存]: ./sql-data-warehouse-tables-temporary.md
-[SQL 資料倉儲最佳做法]: ./sql-data-warehouse-best-practices.md
-[查詢監視]: ./sql-data-warehouse-manage-monitor.md
+[SQL Data Warehouse Best Practices]: ./sql-data-warehouse-best-practices.md
+[Query Monitoring]: ./sql-data-warehouse-manage-monitor.md
 [dbo.vTableSizes]: ./sql-data-warehouse-tables-overview.md#querying-table-sizes
 
 <!--MSDN references-->
@@ -317,4 +315,8 @@ RENAME OBJECT [dbo].[FactInternetSales_ROUND_ROBIN] TO [FactInternetSales];
 
 <!--Other Web references-->
 
-<!---HONumber=AcomDC_0831_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

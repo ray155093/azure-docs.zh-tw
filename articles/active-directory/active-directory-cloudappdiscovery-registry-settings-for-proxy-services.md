@@ -3,7 +3,7 @@
     description="本主題的目標是為您提供在執行 Cloud App Discovery 代理程式的電腦上設定必要連接埠所需的步驟。" 
     services="active-directory" 
     documentationCenter="" 
-    authors="markusvi" 
+    authors="MarkusVi" 
     manager="femila"/>
 
 <tags 

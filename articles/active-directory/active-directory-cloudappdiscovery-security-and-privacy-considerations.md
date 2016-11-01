@@ -3,7 +3,7 @@
     description="本主題描述與 Cloud App Discovery 相關的安全性和隱私權考量。"
     services="active-directory"
     documentationCenter=""
-    authors="markusvi"
+    authors="MarkusVi"
     manager="femila"
     editor=""/>
 
@@ -147,7 +147,7 @@ Azure Active Directory 租用戶 (或其委派) 的系統管理員可以從 Azur
 Cloud App Discovery Endpoint Agent 只會收集上列 **代理程式收集的資料** 一節所述資訊。
 
 
-### <a name="intercepting-data-from-encrypted-connections-(deep-inspection)"></a>攔截來自加密連線的資料 (深度檢查)
+### <a name="intercepting-data-from-encrypted-connections-deep-inspection"></a>攔截來自加密連線的資料 (深度檢查)
 如先前所述，系統管理員可以設定代理程式，監視來自加密連線的資料 (「深度檢查」)。 TLS ([傳輸層安全性](https://msdn.microsoft.com/library/windows/desktop/aa380516%28v=vs.85%29.aspx)) 是目前在網際網路上使用的最常見通訊協定之一。 藉由使用 TLS 加密通訊，用戶端可以建立與 Web 伺服器之間安全且私人的通訊通道；TLS 為傳遞驗證認證提供基本保護，防止機密資訊遭到洩漏。
 
 雖然透過 TLS 提供的端對端安全加密通道能夠啟用重要的安全性和隱私權保護，但是通訊協定通常會基於惡意或邪惡目的而遭到濫用。 事實上，這導致人們常將 TLS 稱作「略過防火牆的通用通訊協定」。 問題根源是因為應用程式層級的資料是使用 SSL 來加密，所以大部分的防火牆都無法檢查 TLS 通訊。 知道這一點之後，攻擊者通常會利用 TLS 來傳遞惡意承載給確信即使是最高程度的智慧型應用程式層防火牆，對於 TLS 也會完全視而不見，而且必須只在主機之間轉送 TLS 通訊的使用者。 使用者經常會利用 TLS 來略過其公司防火牆和 Proxy 伺服器強制執行的存取控制，使用它連線到公用 Proxy，以及透過可能遭到原則封鎖的防火牆來打開非 TLS通訊協定的通道。

@@ -3,7 +3,7 @@
     description="本文章說明整合 Azure Active Directory 與您的內部部署、雲端和 SaaS 應用程式的優點。"
     services="active-directory"
     documentationCenter=""
-    authors="markusvi"
+    authors="MarkusVi"
     manager="femila"
     editor=""/>
 
@@ -116,7 +116,7 @@ SSO 程序有兩個步驟：
 
 使用 Azure AD，您可以使用個別或規則驅動指派來管理對應用程式的存取。 您也可以將存取管理委派給組織中適當的人員，以獲得確保最佳的監督並減少技術服務人員的負擔。
 
-## <a name="on-premises-applications"></a>內部應用程式
+## <a name="onpremises-applications"></a>內部應用程式
 
 內建的應用程式 Proxy 可讓您將內部部署應用程式發佈給使用者，以獲得對現代化雲端應用程式一致的存取經驗以及 Azure AD 監視、報告和安全性功能的優點。
 

@@ -4,7 +4,7 @@
     services="active-directory"
     documentationCenter=""
     keywords="設定 Microsoft Passport、Microsoft Windows Hello 企業版部署"
-    authors="markusvi"
+    authors="MarkusVi"
     manager="femila"
     editor=""
     tags="azure-classic-portal"/>
