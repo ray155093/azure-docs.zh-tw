@@ -24,7 +24,7 @@ Azure AD Connect 會整合您的內部部署目錄與 Azure Active Directory。 
 
 <!-- The hardcoded link is a workaround for campaign ids not working in acom links-->
 
-> [AZURE.IMPORTANT] [Azure AD Connect 是連接內部部署目錄與 Azure AD 和 Office 365 的最佳方式。 這是將 Azure AD Connect 從 Windows Azure Active Directory Sync (DirSync) 或 Azure AD Sync 升級的最佳時機，因為這些工具現在已淘汰，而且會在 2017 年 4 月 13 日結束支援。]active-directory-aadconnect-dirsync-deprecated.md)
+> [AZURE.IMPORTANT] [Azure AD Connect 是連接內部部署目錄與 Azure AD 和 Office 365 的最佳方式。 這是將 Azure AD Connect 從 Microsoft Azure Active Directory Sync (DirSync) 或 Azure AD Sync 升級的最佳時機，因為這些工具現在已淘汰，而且會在 2017 年 4 月 13 日結束支援。]active-directory-aadconnect-dirsync-deprecated.md)
 
 ![何謂 Azure AD Connect](./media/active-directory-aadconnect/arch.png)
 
