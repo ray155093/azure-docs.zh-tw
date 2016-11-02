@@ -1,6 +1,6 @@
 <properties
-   pageTitle="在 Azure 資訊安全中心啟用網路安全性群組 | Microsoft Azure"
-   description="本文件說明如何實作 Azure 資訊安全中心建議的「啟用網路安全性群組」。"
+   pageTitle="Enable Network Security Groups in Azure Security Center | Microsoft Azure"
+   description="This document shows you how to implement the Azure Security Center recommendation **Enable Network Security Groups**."
    services="security-center"
    documentationCenter="na"
    authors="TerryLanfear"
@@ -13,54 +13,60 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="07/29/2016"
+   ms.date="11/01/2016"
    ms.author="terrylan"/>
 
-# 在 Azure 資訊安全中心啟用網路安全性群組
 
-如果尚未啟用網路安全性群組 (NSG)，Azure 資訊安全中心將建議您啟用。NSG 包含存取控制清單 (ACL) 規則的清單，可允許或拒絕虛擬網路中 VM 執行個體的網路流量。NSG 可與子網路或該子網路內的個別 VM 執行個體相關聯。當 NSG 與子網路相關聯時，ACL 規則便會套用至該子網路中的所有 VM 執行個體。此外，將 NSG 直接關聯至該 VM 即可進一步限制個別 VM 的流量。若要深入了解，請參閱[什麼是網路安全性群組 (NSG)？](../virtual-network/virtual-networks-nsg.md)
+# <a name="enable-network-security-groups-in-azure-security-center"></a>Enable Network Security Groups in Azure Security Center
 
-如果您尚未啟用 NSG，資訊安全中心會為您呈現兩個建議︰在子網路啟用網路安全性群組和在虛擬機器上啟用網路安全性群組。您選擇哪個層級、子網路或 VM 要套用 NSG。
+Azure Security Center will recommend that you enable a network security group (NSG) if one is not already enabled. NSGs contain a list of Access Control List (ACL) rules that allow or deny network traffic to your VM instances in a Virtual Network. NSGs can be associated with either subnets or individual VM instances within that subnet. When a NSG is associated with a subnet, the ACL rules apply to all the VM instances in that subnet. In addition, traffic to an individual VM can be restricted further by associating a NSG directly to that VM. To learn more see [What is a Network Security Group (NSG)?](../virtual-network/virtual-networks-nsg.md)
+
+If you do not have NSGs enabled, Security Center will present two recommendations to you: Enable Network Security Groups on subnets and Enable Network Security Groups on virtual machines. You choose which level, subnet or VM, to apply NSGs.
 
 
-> [AZURE.NOTE] 本文件將使用範例部署來介紹服務。這不是逐步指南。
+> [AZURE.NOTE] This document introduces the service by using an example deployment.  This is not a step-by-step guide.
 
-## 實作建議
+## <a name="implement-the-recommendation"></a>Implement the recommendation
 
-1. 在 [建議] 刀鋒視窗中，選取在子網路或虛擬機器上 [啟用網路安全性群組]。![啟用網路安全性群組][1]
+1. In the **Recommendations** blade, select **Enable Network Security Groups** on subnets or on virtual machines.
+![Enable Network Security Groups][1]
 
-2. 這會開啟針對子網路或虛擬機器 [設定遺漏的網路安全性群組] 刀鋒視窗，取決於您選取的建議。選取要設定 NSG 的子網路或虛擬機器。
+2. This opens the blade **Configure Missing Network Security Groups** for subnets or for virtual machines, depending on the recommendation that you selected. Select a subnet or a virtual machine to configure a NSG on.
 
-  ![針對子網路設定 NSG][2]
+  ![Configure NSG for subnet][2]
 
-  ![針對 VM 設定 NSG][3]
-3. 在 [選擇網路安全性群組] 刀鋒視窗中，選取現有的 NSG 或選取建立新的 NSG。
+  ![Configure NSG for VM][3]
+3. On the **Choose network security group** blade select an existing NSG or select to create a new NSG.
 
-  ![選擇網路安全性群組][4]
+  ![Choose Network Security Group][4]
 
-如果您建立新的 NSG，請依照[如何使用 Azure 入口網站管理 NSG](../virtual-network/virtual-networks-create-nsg-arm-pportal.md) 中的步驟，建立 NSG 並設定安全性規則。
+If you create a new NSG, follow the steps in [How to manage NSGs using the Azure portal](../virtual-network/virtual-networks-create-nsg-arm-pportal.md) to create a NSG and set security rules.
 
-## 另請參閱
+## <a name="see-also"></a>See also
 
-本文說明了如何實作資訊安全中心建議的針對子網路或虛擬機器「啟用網路安全性群組」。若要深入了解啟用 NSG，請參閱下列項目：
+This article showed you how to implement the Security Center recommendation "Enable Network Security Groups" for subnets or virtual machines. To learn more about enabling NSGs, see the following:
 
-- [什麼是網路安全性群組 (NSG)？](../virtual-network/virtual-networks-nsg.md)
-- [如何使用 Azure 入口網站管理 NSG](../virtual-network/virtual-networks-create-nsg-arm-pportal.md)
+- [What is a Network Security Group (NSG)?](../virtual-network/virtual-networks-nsg.md)
+- [How to manage NSGs using the Azure portal](../virtual-network/virtual-networks-create-nsg-arm-pportal.md)
 
-如要深入了解資訊安全中心，請參閱下列主題：
+To learn more about Security Center, see the following:
 
-- [在 Azure 資訊安全中心設定安全性原則](security-center-policies.md) --了解如何為您的 Azure 訂用帳戶及資源群組設定安全性原則。
-- [管理 Azure 資訊安全中心的安全性建議](security-center-recommendations.md) -- 了解建議如何協助保護您的 Azure 資源。
-- [Azure 資訊安全中心的安全性健全狀況監視](security-center-monitoring.md) -- 了解如何監視 Azure 資源的健全狀況。
-- [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) -- 了解如何管理與回應安全性警示。
-- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健康狀態。
-- [Azure 資訊安全中心常見問題集](security-center-faq.md) -- 尋找有關使用服務的常見問題。
-- [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) -- 取得最新的 Azure 安全性新聞和資訊。
+- [Setting security policies in Azure Security Center](security-center-policies.md) -- Learn how to configure security policies for your Azure subscriptions and resource groups.
+- [Managing security recommendations in Azure Security Center](security-center-recommendations.md) -- Learn how recommendations help you protect your Azure resources.
+- [Security health monitoring in Azure Security Center](security-center-monitoring.md) -- Learn how to monitor the health of your Azure resources.
+- [Managing and responding to security alerts in Azure Security Center](security-center-managing-and-responding-alerts.md) -- Learn how to manage and respond to security alerts.
+- [Monitoring partner solutions with Azure Security Center](security-center-partner-solutions.md) -- Learn how to monitor the health status of your partner solutions.
+- [Azure Security Center FAQ](security-center-faq.md) -- Find frequently asked questions about using the service.
+- [Azure Security blog](http://blogs.msdn.com/b/azuresecurity/) -- Get the latest Azure security news and information.
 
 <!--Image references-->
 [1]: ./media/security-center-enable-nsg/enable-nsg.png
-[2]: ./media/security-center-enable-nsg/configure-nsg-for-subnet.png
+[2]:./media/security-center-enable-nsg/configure-nsg-for-subnet.png
 [3]: ./media/security-center-enable-nsg/configure-nsg-for-vm.png
 [4]: ./media/security-center-enable-nsg/choose-nsg.png
 
-<!---HONumber=AcomDC_0803_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

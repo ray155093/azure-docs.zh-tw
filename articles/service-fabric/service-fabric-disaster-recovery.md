@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Azure Service Fabric 災害復原 | Microsoft Azure"
-   description="Azure Service Fabric 提供處理各類型災害所需的功能。本文說明可能會發生的災害類型以及如何加以處理。"
+   pageTitle="Azure Service Fabric disaster recovery | Microsoft Azure"
+   description="Azure Service Fabric offers the capabilities necessary to deal with all types of disasters. This article describes the types of disasters that can occur and how to deal with them."
    services="service-fabric"
    documentationCenter=".net"
    authors="seanmck"
@@ -13,95 +13,96 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="08/10/2016"
+   ms.date="10/29/2016"
    ms.author="seanmck"/>
 
-# Azure Service Fabric 中的災害復原
 
-提供高可用性雲端應用程式的關鍵就是確保它可以從各類型失敗中存留下來，包括那些不受您控制的失敗。本文說明在潛在災害內容中 Azure Service Fabric 叢集的實體配置，並提供有關如何處理這類災害以便限制或消除停機或資料遺失風險的指引。
+# <a name="disaster-recovery-in-azure-service-fabric"></a>Disaster recovery in Azure Service Fabric
 
-## Azure 中 Service Fabric 叢集的實體配置
+A critical part of delivering a high-availability cloud application is ensuring that it can survive all different types of failures, including those that are outside of your control. This article describes the physical layout of an Azure Service Fabric cluster in the context of potential disasters and provides guidance on how to deal with such disasters to limit or eliminate the risk of downtime or data loss.
 
-若要瞭解不同類型的失敗所造成的風險，知道 Azure 中叢集實際的配置方式很有幫助。
+## <a name="physical-layout-of-service-fabric-clusters-in-azure"></a>Physical layout of Service Fabric clusters in Azure
 
-當您在 Azure 中建立 Service Fabric 叢集時，您必須選擇要裝載叢集的區域。Azure 基礎結構會接著在區域中為該叢集佈建資源，最明顯的是要求的虛擬機器 (VM) 數目。讓我們更仔細看看這些 VM 的佈建方式和位置。
+To understand the risk posed by different types of failures, it is useful to know how clusters are physically laid out in Azure.
 
-### 容錯網域
+When you create a Service Fabric cluster in Azure, you are required to choose a region where it will be hosted. The Azure infrastructure then provisions the resources for that cluster within the region, most notably the number of virtual machines (VMs) requested. Let's look more closely at how and where those VMs are provisioned.
 
-根據預設，叢集中的 VM 會平均分散於稱為容錯網域 (FD) 的邏輯群組，其根據主機硬體中的潛在失敗將機器分段。具體來說，如果有兩個 VM 位於兩個不同的 FD 中，您可以確定它們並未共用相同的電源或網路交換器。因此，影響一個 VM 的區域網路或電源中斷不會影響到另一個 VM，讓 Service Fabric 得以重新平衡叢集中無回應電腦的工作負載。
+### <a name="fault-domains"></a>Fault domains
 
-您可以使用 [Service Fabric 總管](service-fabric-visualizing-your-cluster.md)中提供的叢集對應，將各容錯網域中您叢集的配置視覺化：
+By default, the VMs in the cluster are evenly spread across logical groups known as fault domains (FDs), which segment the machines based on potential failures in the host hardware. Specifically, if two VMs reside in two distinct FDs, you can be sure that they do not share the same power source or network switch. As a result, a local network or power failure affecting one VM will not affect the other, allowing Service Fabric to rebalance the work load of the unresponsive machine within the cluster.
 
-![節點散佈於 Service Fabric 總管中的容錯網域][sfx-cluster-map]
+You can visualize the layout of your cluster across fault domains using the cluster map provided in [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md):
 
->[AZURE.NOTE] 叢集對應中的另一個軸會顯示升級網域，其以邏輯方式根據計劃性維護活動將節點分組。Azure 中的 Service Fabric 叢集一律配置於五個升級網域。
+![Nodes spread across fault domains in Service Fabric Explorer][sfx-cluster-map]
 
-### 地理分佈
+>[AZURE.NOTE] The other axis in the cluster map shows upgrade domains, which logically group nodes based on planned maintenance activities. Service Fabric clusters in Azure are always laid out across five upgrade domains.
 
-[全世界目前有 26 個 Azure 區域][azure-regions]，已宣佈更多個。視需求和適當位置的可用性 (還有其他因素) 而定，個別區域可以包含一或多個實體資料中心。但請注意，即使在包含多個實體資料中心的區域中，也不能保證您叢集的 VM 會平均分散於這些實體位置。事實上，指定叢集的所有 VM 目前都佈建在單一實體站台內。
+### <a name="geographic-distribution"></a>Geographic distribution
 
-## 處理失敗
+There are currently [26 Azure regions throughout the world][azure-regions], with several more announced. An individual region can contain one or more physical data centers depending on demand and the availability of suitable locations, among other factors. Note, however, that even in regions that contain multiple physical data centers, there is no guarantee that your cluster's VMs will be evenly spread across those physical locations. Indeed, currently, all VMs for a given cluster are provisioned within a single physical site.
 
-有數種類型的失敗可能會影響您的叢集，而每種類型都有其自己的緩和方式。我們將依照其發生的可能性順序進行探討。
+## <a name="dealing-with-failures"></a>Dealing with failures
 
-### 個別機器失敗
+There are several types of failures that can impact your cluster, each with its own mitigation. We will look at them in order of likelihood to occur.
 
-如前所述，個別機器失敗 (在 VM 內或在容錯網域內裝載機器的硬體或軟體中) 會本身不會造成風險。Service Fabric 通常會在數秒內偵測到失敗，並根據叢集的狀態予以回應。比方說，如果節點裝載某個磁碟分割的主要複本，則會從資料分割的次要複本中選擇新的主要複本。當 Azure 恢復失敗的機器時，它會自動重新加入叢集並再次承擔起自己的工作負載。
+### <a name="individual-machine-failures"></a>Individual machine failures
 
-### 多個並行機器失敗
+As mentioned, individual machine failures, either within the VM or in the hardware or software hosting it within a fault domain, pose no risk on their own. Service Fabric will typically detect the failure within seconds and respond accordingly based on the state of the cluster. For instance, if the node was hosting the primary replicas for a partition, a new primary is elected from the partition's secondary replicas. When Azure brings the failed machine back up, it will rejoin the cluster automatically and once again take on its share of the workload.
 
-雖然容錯網域可大幅減少並行機器失敗的風險，但是多個隨機失敗永遠有可能同時關閉叢集中的多部機器。
+### <a name="multiple-concurrent-machine-failures"></a>Multiple concurrent machine failures
 
-一般而言，只要大多數的節點保持可用狀態，叢集將會繼續運作，儘管因為具狀態複本會封裝成比較小的一組機器以致容量較低，而且可供分散負載的無狀態執行個體比較少。
+While fault domains significantly reduce the risk of concurrent machine failures, there is always the potential for multiple random failures to bring down several machines in a cluster simultaneously.
 
-#### 仲裁遺失
+In general, as long as a majority of the nodes remain available, the cluster will continue to operate, albeit at lower capacity as stateful replicas get packed into a smaller set of machines and fewer stateless instances are available to spread load.
 
-如果具狀態服務的資料分割的大多數複本關閉，則該資料分割會進入所謂的「仲裁遺失」狀態。 此時，Service Fabric 會停止允許寫入該資料分割，以確保其狀態保持一致且可靠。實際上，我們會選擇接受一段無法使用的期間，以確保用戶端不會獲告知已儲存資料 (但事實並非如此)。請注意，如果您選擇允許從該具狀態服務的次要複本讀取，您可以在此狀態中繼續執行讀取作業。資料分割會保持仲裁遺失的狀態，直到恢復足量的複本，或直到叢集系統管理員強迫系統繼續使用 [Repair-ServiceFabricPartition API][repair-partition-ps] 為止。
+#### <a name="quorum-loss"></a>Quorum loss
 
->[AZURE.WARNING] 在主要複本關閉時執行修復動作，將會導致資料遺失。
+If a majority of the replicas for a stateful service's partition go down, that partition enters a state known as "quorum loss." At this point, Service Fabric stops allowing writes to that partition to ensure that its state remains consistent and reliable. In effect, we are choosing to accept a period of unavailability to ensure that clients are not told that their data was saved when in fact it was not. Note that if you have opted in to allowing reads from secondary replicas for that stateful service, you can continue to perform those read operations while in this state. A partition remains in quorum loss until a sufficient number of replicas come back or until the cluster administrator forces the system to move on using the [Repair-ServiceFabricPartition API][repair-partition-ps].
 
-系統服務也會遭受遺失仲裁，而且會對有問題的服務造成特定影響。比方說，具名服務的仲裁遺失將會影響名稱解析，而容錯移轉管理員服務的仲裁遺失會封鎖新服務的建立與容錯移轉。請注意，不同於您自己的服務，並不建議嘗試修復系統服務。相反地，最好是單純地等候，直到關閉的複本恢復為止。
+>[AZURE.WARNING] Performing a repair action while the primary replica is down will result in data loss.
 
-#### 將仲裁遺失的風險降至最低
+System services can also suffer quorum loss, with the impact being specific to the service in question. For instance, quorum loss in the naming service will impact name resolution, whereas quorum loss in the failover manager service will block new service creation and failovers. Note that unlike for your own services, attempting to repair system services is *not* recommended. Instead, it is preferable to simply wait until the down replicas return.
 
-您可以增加您服務的目標複本集大小，進而將仲裁遺失的風險降至最低。依據您一次可容忍的無法使用節點數目 (仍可用於寫入) 來思考您需要的複本數目將有所幫助，但請記住除了硬體故障以外，應用程式或叢集升級也可能讓節點暫時無法使用。
+#### <a name="minimizing-the-risk-of-quorum-loss"></a>Minimizing the risk of quorum loss
 
-請考慮下列範例，其假設您已設定您服務的 MinReplicaSetSize 為 3，也就是實際執行服務的建議最小數目。TargetReplicaSetSize 若為 3 (一個主要複本和兩個次要複本)，升級期間的硬體失敗 (兩個複本關閉) 將會導致仲裁遺失，而且您的服務會變成唯讀狀態。或者，如果您有 5 個複本，您就能夠在升級期間承受兩次失敗 (三個複本關閉)，因為剩餘的兩個複本仍可在最小的複本集中構成仲裁。
+You can minimize your risk of quorum loss by increasing the target replica set size for your service. It is helpful to think of the number of replicas you need in terms of the number of unavailable nodes you can tolerate at once while remaining available for writes, keeping in mind that application or cluster upgrades can make nodes temporarily unavailable, in addition to hardware failures.
 
-### 資料中心中斷服務或毀損
+Consider the following examples assuming that you've configured your services to have a MinReplicaSetSize of three, the smallest number recommended for production services. With a TargetReplicaSetSize of three (one primary and two secondaries), a hardware failure during an upgrade (two replicas down) will result in quorum loss and your service will become read-only. Alternatively, if you have five replicas, you would be able to withstand two failures during upgrade (three replicas down) as the remaining two replicas can still form a quorum within the minimum replica set.
 
-在少數情況下，實體資料中心可能會因為電源或網路連線中斷而暫時無法使用。在這些情況下，Service Fabric 叢集和應用程式同樣會無法使用，但會保留您的資料。對於在 Azure 中執行的叢集，您可以在 [Azure 狀態頁面][azure-status-dashboard]上檢視中斷的更新。
+### <a name="data-center-outages-or-destruction"></a>Data center outages or destruction
 
-在不太可能發生的整個實體資料中心毀損事件中，將會遺失其裝載的所有 Service Fabric 叢集以及其狀態。
+In rare cases, physical data centers can become temporarily unavailable due to loss of power or network connectivity. In these cases, your Service Fabric clusters and applications will likewise be unavailable but your data will be preserved. For clusters running in Azure, you can view updates on outages on the [Azure status page][azure-status-dashboard].
 
-若要抵擋這種可能性，請務必定期[備份您的狀態](service-fabric-reliable-services-backup-restore.md)到異地備援存放區，並確保您已驗證將它還原的能力。您執行備份的頻率將取決於您的復原點目標 (RPO)。即使尚未完全實作備份和還原，您還是應該實作 `OnDataLoss` 事件的處理常式，以便在發生事件時進行記錄，如下所示︰
+In the highly unlikely event that an entire physical data center is destroyed, any Service Fabric clusters hosted there will be lost, along with their state.
+
+To protect against this possibility, it is critically important to periodically [backup your state](service-fabric-reliable-services-backup-restore.md) to a geo-redundant store and ensure that you have validated the ability to restore it. How often you perform a backup will be dependent on your recovery point objective (RPO). Even if you have not fully implemented backup and restore yet, you should implement a handler for the `OnDataLoss` event so that you can log when it occurs as follows:
 
 ```c#
 protected virtual Task<bool> OnDataLoss(CancellationToken cancellationToken)
 {
   ServiceEventSource.Current.ServiceMessage(this, "OnDataLoss event received.");
-  return Task.FromResult(true);
+  return Task.FromResult(false);
 }
 ```
 
 
-### 軟體失敗和資料遺失的其他來源
+### <a name="software-failures-and-other-sources-of-data-loss"></a>Software failures and other sources of data loss
 
-在資料遺失的原因中，服務的程式碼瑕疵、人為操作錯誤和安全性缺口比廣泛的資料中心失敗更為常見。不過，在所有情況下，復原策略都一樣︰定期備份所有的具狀態服務並發揮您還原該狀態的能力。
+As a cause of data loss, code defects in services, human operational errors, and security breaches are more common than widespread data center failures. However, in all cases, the recovery strategy is the same: take regular backups of all stateful services and exercise your ability to restore that state.
 
-## 後續步驟
+## <a name="next-steps"></a>Next Steps
 
-- 了解如何使用 [Testability 架構](service-fabric-testability-overview.md)模擬各種失敗狀況
-- 閱讀其他災害復原和高可用性的資源。Microsoft 已發佈大量有關這些主題的指引。雖然其中有些文件提到其他產品中使用的特定技術，但還是包含許多您可在 Service Fabric 內容中應用的一般最佳作法︰
- - [可用性檢查清單](../best-practices-availability-checklist.md)
- - [執行災害復原演練](../sql-database/sql-database-disaster-recovery-drills.md)
- - [Azure 應用程式的災害復原和高可用性][dr-ha-guide]
+- Learn how to simulate various failures using the [testability framework](service-fabric-testability-overview.md)
+- Read other disaster-recovery and high-availability resources. Microsoft has published a large amount of guidance on these topics. While some of these documents refer to specific techniques for use in other products, they contain many general best practices you can apply in the Service Fabric context as well:
+ - [Availability checklist](../best-practices-availability-checklist.md)
+ - [Performing a disaster recovery drill](../sql-database/sql-database-disaster-recovery-drills.md)
+ - [Disaster recovery and high availability for Azure applications][dr-ha-guide]
 
 
 <!-- External links -->
 
 [repair-partition-ps]: https://msdn.microsoft.com/library/mt163522.aspx
-[azure-status-dashboard]: https://azure.microsoft.com/status/
+[azure-status-dashboard]:https://azure.microsoft.com/status/
 [azure-regions]: https://azure.microsoft.com/regions/
 [dr-ha-guide]: https://msdn.microsoft.com/library/azure/dn251004.aspx
 
@@ -110,4 +111,8 @@ protected virtual Task<bool> OnDataLoss(CancellationToken cancellationToken)
 
 [sfx-cluster-map]: ./media/service-fabric-disaster-recovery/sfx-clustermap.png
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+
