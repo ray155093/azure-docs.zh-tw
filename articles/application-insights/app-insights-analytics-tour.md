@@ -1,50 +1,51 @@
 <properties 
-	pageTitle="Application Insights 中分析的完整教學課程 | Microsoft Azure" 
-	description="分析 (Application Insights 的強大搜尋工具) 中所有主要查詢的簡短範例。" 
-	services="application-insights" 
+    pageTitle="Application Insights 中分析的完整教學課程 | Microsoft Azure" 
+    description="分析 (Application Insights 的強大搜尋工具) 中所有主要查詢的簡短範例。" 
+    services="application-insights" 
     documentationCenter=""
-	authors="alancameronwills" 
-	manager="douge"/>
+    authors="alancameronwills" 
+    manager="douge"/>
 
 <tags 
-	ms.service="application-insights" 
-	ms.workload="tbd" 
-	ms.tgt_pltfrm="ibiza" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="07/29/2016" 
-	ms.author="awills"/>
+    ms.service="application-insights" 
+    ms.workload="tbd" 
+    ms.tgt_pltfrm="ibiza" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="10/03/2016" 
+    ms.author="awills"/>
 
 
  
-# Application Insights 中分析的教學課程
+
+# <a name="a-tour-of-analytics-in-application-insights"></a>Application Insights 中分析的教學課程
 
 
-[分析](app-insights-analytics.md) 是 [Application Insights](app-insights-overview.md) 的強大搜尋功能。這些頁面說明 Analytics 查詢語言。
+[分析](app-insights-analytics.md)是 [Application Insights](app-insights-overview.md) 的強大搜尋功能。 這些頁面說明分析查詢語言。
 
 
 * **[觀看簡介影片](https://applicationanalytics-media.azureedge.net/home_page_video.mp4)**。
-* **[在我們的模擬資料上測試分析](https://analytics.applicationinsights.io/demo)**，如果您的應用程式還未傳送資料至 Application Insights。
+* 如果您的應用程式還未將資料傳送至 Application Insights，則**[在我們的模擬資料上測試分析](https://analytics.applicationinsights.io/demo)**。
 
 
 讓我們逐步解說可讓您快速入門的一些基本查詢。
 
-## 連接到您的 Application Insights 資料
+## <a name="connect-to-your-application-insights-data"></a>連接到您的 Application Insights 資料
 
-在 Application Insights 中，從應用程式的[概觀刀鋒視窗](app-insights-dashboards.md)開啟 [分析]：
+在 Application Insights 中，從 app 的 [概觀刀鋒視窗](app-insights-dashboards.md) 開啟 [分析]：
 
 ![開啟 portal.azure.com，開啟您的 Application Insights 資源，然後按一下 [分析]。](./media/app-insights-analytics-tour/001.png)
 
-	
-## [Take](app-insights-analytics-reference.md#take-operator)：顯示 n 個資料列
+    
+## <a name="[take](app-insights-analytics-reference.md#take-operator):-show-me-n-rows"></a>[Take](app-insights-analytics-reference.md#take-operator)：顯示 n 個資料列
 
-記錄使用者作業的資料點 (通常是 Web 應用程式收到的 HTTP 要求) 會儲存在名為 `requests` 的資料表。每個資料列都是從應用程式中的 Application Insights SDK 接收的遙測資料點。
+記錄使用者作業的資料點 (通常是 Web 應用程式收到的 HTTP 要求) 會儲存在名為 `requests`的資料表。 每個資料列都是從應用程式中的 Application Insights SDK 接收的遙測資料點。
 
 讓我們先檢查資料表的幾個範例資料列︰
 
 ![results](./media/app-insights-analytics-tour/010.png)
 
-> [AZURE.NOTE] 先將游標置於陳述式中的某處，再按一下 [執行]。您可以將陳述式分割成多行，但不要在單一陳述式中放置空白行。空白行可方便您在視窗中保有數個不同的查詢。
+> [AZURE.NOTE] 先將游標置於陳述式中的某處，再按一下 [執行]。 您可以將陳述式分割成多行，但不要在單一陳述式中放置空白行。 空白行可方便您在視窗中保有數個不同的查詢。
 
 
 選擇資料行並調整其位置︰
@@ -56,17 +57,17 @@
  
 ![選擇 [資料表]，並使用 [設定資料行]](./media/app-insights-analytics-tour/040.png)
 
-> [AZURE.NOTE] 按一下資料行的標頭，以重新排列網頁瀏覽器中可用的結果。但請注意，對大型結果集而言，下載至瀏覽器的資料列數目有限。請注意，以這種方式排序並不一定會顯示實際的最高或最低項目。為此，您應該使用 `top` 或 `sort` 運算子。
+> [AZURE.NOTE] 按一下資料行的標頭，以重新排列網頁瀏覽器中可用的結果。 但請注意，對大型結果集而言，下載至瀏覽器的資料列數目有限。 請注意，以這種方式排序並不一定會顯示實際的最高或最低項目。 為此，您應該使用 `top` 或 `sort` 運算子。 
 
-## [Top](app-insights-analytics-reference.md#top-operator) 和 [sort](app-insights-analytics-reference.md#sort-operator)
+## <a name="[top](app-insights-analytics-reference.md#top-operator)-and-[sort](app-insights-analytics-reference.md#sort-operator)"></a>[Top](app-insights-analytics-reference.md#top-operator) 和 [sort](app-insights-analytics-reference.md#sort-operator)
 
-`take` 可用來取得快速的結果範例，但它不會依特定順序顯示資料表中的資料列。若要取得已排序的檢視，請使用 `top` (適用於某個範例) 或 `sort` (整個資料表)。
+`take` 可用來取得快速的結果範例，但它不會依特定順序顯示資料表中的資料列。 若要取得已排序的檢視，請使用 `top` (適用於某個範例) 或 `sort` (整個資料表)。
 
 顯示前 n 個資料列 (依特定資料行排序)︰
 
 ```AIQL
 
-	requests | top 10 by timestamp desc 
+    requests | top 10 by timestamp desc 
 ```
 
 * 語法︰大部分運算子都有關鍵字參數 (例如 `by`)。
@@ -74,21 +75,21 @@
 
 ![](./media/app-insights-analytics-tour/260.png)
 
-`top...` 是 `sort ... | take...` 比較有效率的說法。我們可以撰寫︰
+`top...` 是 `sort ... | take...` 比較有效率的說法。 我們可以撰寫︰
 
 ```AIQL
 
-	requests | sort by timestamp desc | take 10
+    requests | sort by timestamp desc | take 10
 ```
 
-結果會相同，但執行速度比較慢一點 (您也可以撰寫 `order`，這是 `sort` 的別名)。
+結果會相同，但執行速度比較慢一點  (您也可以撰寫 `order`，這是 `sort` 的別名)。
 
-資料表檢視中的資料行標頭也可用來排序畫面上的結果。當然，如果您已使用 `take` 或 `top` 只擷取部分的資料表，您只會重新排列您所擷取的記錄。
+資料表檢視中的資料行標頭也可用來排序畫面上的結果。 當然，如果您已使用 `take` 或 `top` 只擷取部分的資料表，您只會重新排列您所擷取的記錄。
 
 
-## [Project](app-insights-analytics-reference.md#project-operator)：選取、重新命名和計算資料行
+## <a name="[project](app-insights-analytics-reference.md#project-operator):-select,-rename-and-compute-columns"></a>[Project](app-insights-analytics-reference.md#project-operator)：選取、重新命名和計算資料行
 
-使用 [`project`](app-insights-analytics-reference.md#project-operator)，只挑出您想要的資料行：
+使用 [`project`](app-insights-analytics-reference.md#project-operator) ，只挑出您想要的資料行：
 
 ```AIQL
 
@@ -104,8 +105,8 @@
 ```AIQL
 
     requests 
-    | top 10 by timestamp desc 
-    | project  
+  	| top 10 by timestamp desc 
+  	| project  
             name, 
             response = resultCode,
             timestamp, 
@@ -115,78 +116,33 @@
 ![結果](./media/app-insights-analytics-tour/270.png)
 
 * 如果[資料行名稱](app-insights-analytics-reference.md#names)是以括號括起來 (如下所示)，就可以包含空格或符號︰`['...']` 或 `["..."]`
-* `%` 是很常見的模數運算子。
-* `1d` (這是數字 1，再加上 'd') 是一個時間範圍常值，表示一天。以下是其他一些時間範圍常值︰`12h`、`30m`、`10s`、`0.01s`。
-* `floor` (別名 `bin`) 會將一個值無條件捨去為您提供之基值的最近倍數。所以 `floor(aTime, 1s)` 會將時間無條件捨去為最接近的秒數。
+* `%` 是很常見的模數運算子。 
+* `1d` (這是數字 1，再加上 'd') 是一個時間範圍常值，表示一天。 以下是其他一些時間範圍常值︰`12h`、`30m`、`10s`、`0.01s`。
+* `floor` (別名 `bin`) 會將一個值無條件捨去為您提供之基值的最近倍數。 所以 `floor(aTime, 1s)` 會將時間無條件捨去為最接近的秒數。
 
 [運算式](app-insights-analytics-reference.md#scalars)可以包含所有常見的運算子 (`+`、`-`...)，而且有一系列的實用函式。
 
     
 
-## [Extend](app-insights-analytics-reference.md#extend-operator)：計算資料行
+## <a name="[extend](app-insights-analytics-reference.md#extend-operator):-compute-columns"></a>[Extend](app-insights-analytics-reference.md#extend-operator)：計算資料行
 
 如果您只要將資料行加入現有的資料行，請使用 [`extend`](app-insights-analytics-reference.md#extend-operator)：
 
 ```AIQL
 
     requests 
-    | top 10 by timestamp desc
-    | extend timeOfDay = floor(timestamp % 1d, 1s)
+  	| top 10 by timestamp desc
+  	| extend timeOfDay = floor(timestamp % 1d, 1s)
 ```
 
 如果您要保留所有現有的資料行，使用 [`extend`](app-insights-analytics-reference.md#extend-operator) 比 [`project`](app-insights-analytics-reference.md#project-operator) 精簡。
 
 
-## 存取巢狀物件
+## <a name="[summarize](app-insights-analytics-reference.md#summarize-operator):-aggregate-groups-of-rows"></a>[Summarize](app-insights-analytics-reference.md#summarize-operator)：彙總資料列群組
 
-巢狀物件可以輕鬆地存取。例如，在例外狀況串流中，您會看到如下的結構化物件︰
+`Summarize` 會對資料列群組套用指定的「彙總函式」。 
 
-![結果](./media/app-insights-analytics-tour/520.png)
-
-您可以選擇您感興趣的屬性來將它平面化︰
-
-```AIQL
-
-    exceptions | take 10
-    | extend method1 = tostring(details[0].parsedStack[1].method)
-```
-
-請注意，您必須使用[轉換](app-insights-analytics-reference.md#casts)到適當類型。
-
-## 自訂屬性和測量
-
-如果您的應用程式要將[自訂維度 (屬性) 和自訂測量](app-insights-api-custom-events-metrics.md#properties)附加到事件，則您會在 `customDimensions` 和 `customMeasurements` 物件看到它們。
-
-
-例如，如果您的應用程式包括︰
-
-```C#
-
-    var dimensions = new Dictionary<string, string> 
-                     {{"p1", "v1"},{"p2", "v2"}};
-    var measurements = new Dictionary<string, double>
-                     {{"m1", 42.0}, {"m2", 43.2}};
-	telemetryClient.TrackEvent("myEvent", dimensions, measurements);
-```
-
-若要在分析中擷取這些值︰
-
-```AIQL
-
-    customEvents
-    | extend p1 = customDimensions.p1, 
-      m1 = todouble(customMeasurements.m1) // cast to expected type
-
-``` 
-
-> [AZURE.NOTE] 在[計量瀏覽器](app-insights-metrics-explorer.md)中，附加到任何遙測類型的所有自訂度量，會連同使用 `TrackMetric()` 傳送的計量一起出現在 [計量] 刀鋒視窗中。但在分析中，自訂度量仍會附加到其所執行的任何一種遙測類型，而且計量會出現在自己的 `metrics` 串流中。
-
-
-## [Summarize](app-insights-analytics-reference.md#summarize-operator)：彙總資料列群組
-
-`Summarize` 會對資料列群組套用指定的「彙總函式」。
-
-例如，Web 應用程式回應要求所花的時間會在 `duration` 欄位中報告。我們來看看所有要求的平均回應時間︰
+例如，Web 應用程式回應要求所花的時間會在 `duration`欄位中報告。 我們來看看所有要求的平均回應時間︰
 
 ![](./media/app-insights-analytics-tour/410.png)
 
@@ -195,13 +151,13 @@
 
 ![](./media/app-insights-analytics-tour/420.png)
 
-`Summarize` 會將串流中的資料點收集到 `by` 子句評估為相同的群組中。`by` 運算式中的每個值 (即上述範例中的各個運算名稱) 會在結果資料表中各產生一個資料列。
+`Summarize` 會將串流中的資料點收集到 `by` 子句評估為相同的群組中。 `by` 運算式中的每個值 (即上述範例中的各個運算名稱) 會在結果資料表中各產生一個資料列。 
 
 或者，我們可以依一天當中的時間將結果分組︰
 
 ![](./media/app-insights-analytics-tour/430.png)
 
-請注意我們如何使用 `bin` 函式 (也稱為 `floor`)。如果我們只使用 `by timestamp`，每個輸入資料列最終都會在它自己的小群組內。針對任何連續純量 (如時間或數字)，我們必須將連續範圍分成可管理的離散值數目，而 `bin` (實際上就只是我們所熟悉的無條件捨去 `floor` 函式) 是最簡單的作業方式。
+請注意我們如何使用 `bin` 函式 (也稱為 `floor`)。 如果我們只使用 `by timestamp`，每個輸入資料列最終都會在它自己的小群組內。 針對任何連續純量 (如時間或數字)，我們必須將連續範圍分成可管理的離散值數目，而 `bin` (實際上就只是我們所熟悉的無條件捨去 `floor` 函式) 是最簡單的作業方式。
 
 我們可以使用相同的技巧來減少字串的範圍︰
 
@@ -210,11 +166,11 @@
 
 請注意，您可以在彙總運算式或 by 子句中使用 `name=` 設定結果資料行的名稱。
 
-## 計算取樣的資料
+## <a name="counting-sampled-data"></a>計算取樣的資料
 
-`sum(itemCount)` 是用來計算事件的建議彙總。在許多情況下，itemCount==1，因此函式只會計算群組中的資料列數目。但是在運算中進行[取樣](app-insights-sampling.md)時，只有一小部分的原始事件會保留做為 Application Insights 中的資料點，因此您看到的每一個資料點會有 `itemCount` 個事件。
+`sum(itemCount)` 是用來計算事件的建議彙總。 在許多情況下，itemCount==1，因此函式只會計算群組中的資料列數目。 但是在運算中進行[取樣](app-insights-sampling.md)時，只有一小部分的原始事件會保留做為 Application Insights 中的資料點，因此您看到的每一個資料點會有 `itemCount` 個事件。 
 
-例如，如果取樣捨棄了 75%的原始事件，則在保留的記錄中 itemCount==4 - 也就是，針對每筆保留的記錄，會有四筆原始記錄。
+例如，如果取樣捨棄了 75%的原始事件，則在保留的記錄中 itemCount==4 - 也就是，針對每筆保留的記錄，會有四筆原始記錄。 
 
 調適性取樣在您的應用程式大量使用期間會導致 itemCount 變得更高。
 
@@ -226,10 +182,10 @@
 另外還有 `count()` 彙總 (以及計數運算)，適用於您確實想要計算群組中的資料列數目的情況。
 
 
-目前提供一系列的[彙總函式](app-insights-analytics-reference.md#aggregations)。
+目前提供一系列的 [彙總函式](app-insights-analytics-reference.md#aggregations)。
 
 
-## 製作結果圖表
+## <a name="charting-the-results"></a>製作結果圖表
 
 
 ```AIQL
@@ -244,60 +200,60 @@
 ![](./media/app-insights-analytics-tour/225.png)
 
 
-有比資料表檢視更好的顯示方式。讓我們使用直條圖選項來看看圖表檢視中的結果︰
+有比資料表檢視更好的顯示方式。 讓我們使用直條圖選項來看看圖表檢視中的結果︰
 
 ![按一下 [圖表]，然後選擇 [直條圖] 並指派 x 和 y 軸](./media/app-insights-analytics-tour/230.png)
 
 請注意，雖然我們並未依時間排序結果 (如資料表顯示中所示），但圖表顯示一律會以正確的順序顯示日期時間。
 
 
-## [Where](app-insights-analytics-reference.md#where-operator)︰篩選條件
+## <a name="[where](app-insights-analytics-reference.md#where-operator):-filtering-on-a-condition"></a>[Where](app-insights-analytics-reference.md#where-operator)︰篩選條件
 
-如果您已針對應用程式的[用戶端](app-insights-javascript.md)與伺服器端設定 Application Insights 監視，則資料庫中的某些遙測資料會來自瀏覽器。
+如果您已針對應用程式的 [用戶端](app-insights-javascript.md) 與伺服器端設定 Application Insights 監視，則資料庫中的某些遙測資料會來自瀏覽器。
 
 我們看看從瀏覽器報告的例外狀況︰
 
 ```AIQL
 
     exceptions 
-    | where device_Id == "browser" 
-    |  summarize count() 
+  	| where device_Id == "browser" 
+  	|  summarize count() 
        by device_BrowserVersion, outerExceptionMessage 
 ```
 
 ![](./media/app-insights-analytics-tour/250.png)
 
-`where` 運算子會採用布林運算式。以下是其相關的一些重點︰
+`where` 運算子會採用布林運算式。 以下是其相關的一些重點︰
 
  * `and`、`or`：布林運算子
  * `==`、`<>`︰等於和不等於
- * `=~`、`!=`︰不區分大小寫的字串等於和不等於。有更多的字串比較運算子。
+ * `=~`、`!=`︰不區分大小寫的字串等於和不等於。 有更多的字串比較運算子。
 
-深入了解[純量運算式](app-insights-analytics-reference.md#scalars)。
+深入了解 [純量運算式](app-insights-analytics-reference.md#scalars)。
 
-### 篩選事件
+### <a name="filtering-events"></a>篩選事件
 
 尋找失敗的要求︰
 
 ```AIQL
 
     requests 
-    | where isnotempty(resultCode) and toint(resultCode) >= 400
+  	| where isnotempty(resultCode) and toint(resultCode) >= 400
 ```
 
-`responseCode` 具有字串類型，所以我們必須[將它轉換](app-insights-analytics-reference.md#casts)以進行數值比較。
+`responseCode` 具有字串類型，所以我們必須 [將它轉換](app-insights-analytics-reference.md#casts) 以進行數值比較。
 
 彙整不同的回應︰
 
 ```AIQL
 
     requests
-    | where isnotempty(resultCode) and toint(resultCode) >= 400
-    | summarize count() 
+  	| where isnotempty(resultCode) and toint(resultCode) >= 400
+  	| summarize count() 
       by resultCode
 ```
 
-## 時間表
+## <a name="timecharts"></a>時間表
 
 顯示每天有多少個事件︰
 
@@ -312,9 +268,9 @@
 
 ![時間圖](./media/app-insights-analytics-tour/080.png)
 
-折線圖的 x 軸必須是 DateTime 類型。
+折線圖的 x 軸必須是 DateTime 類型。 
 
-## 多個系列 
+## <a name="multiple-series"></a>多個系列 
 
 在 `summarize by` 子句中使用多個值，為每組值建立個別的資料列：
 
@@ -327,13 +283,13 @@
 
 ![](./media/app-insights-analytics-tour/090.png)
 
-若要在圖表上顯示多行，請按一下 [分割依據] 並選擇一個資料行。
+若要在圖表上顯示多行，請按一下 [分割依據]  並選擇一個資料行。
 
 ![](./media/app-insights-analytics-tour/100.png)
 
 
 
-## 每日平均週期
+## <a name="daily-average-cycle"></a>每日平均週期
 
 平均一天的使用量如何變化？
 
@@ -342,9 +298,9 @@
 ```AIQL
 
     requests
-    | extend hour = floor(timestamp % 1d , 1h) 
+  	| extend hour = floor(timestamp % 1d , 1h) 
           + datetime("2016-01-01")
-    | summarize event_count=count() by hour
+  	| summarize event_count=count() by hour
 ```
 
 ![平均一天的時數折線圖](./media/app-insights-analytics-tour/120.png)
@@ -352,7 +308,7 @@
 >[AZURE.NOTE] 請注意，我們目前必須將持續時間轉換成日期時間，才能顯示於圖表上。
 
 
-## 比較多個每日系列
+## <a name="compare-multiple-daily-series"></a>比較多個每日系列
 
 在不同州內一天當中的使用量如何變化？
 
@@ -366,23 +322,23 @@
 
 依州別分割圖表︰
 
-![依 client\_StateOrProvince 分割](./media/app-insights-analytics-tour/130.png)
+![依 client_StateOrProvince 分割](./media/app-insights-analytics-tour/130.png)
 
 
-## 繪製分佈圖
+## <a name="plot-a-distribution"></a>繪製分佈圖
 
 有多少個不同長度的工作階段？
 
 ```AIQL
 
     requests 
-    | where isnotnull(session_Id) and isnotempty(session_Id) 
-    | summarize min(timestamp), max(timestamp) 
+  	| where isnotnull(session_Id) and isnotempty(session_Id) 
+  	| summarize min(timestamp), max(timestamp) 
       by session_Id 
-    | extend sessionDuration = max_timestamp - min_timestamp 
-    | where sessionDuration > 1s and sessionDuration < 3m 
-    | summarize count() by floor(sessionDuration, 3s) 
-    | project d = sessionDuration + datetime("2016-01-01"), count_
+  	| extend sessionDuration = max_timestamp - min_timestamp 
+  	| where sessionDuration > 1s and sessionDuration < 3m 
+  	| summarize count() by floor(sessionDuration, 3s) 
+  	| project d = sessionDuration + datetime("2016-01-01"), count_
 ```
 
 需要最後一行才能轉換成日期時間 - 折線圖的 x 軸目前只能是日期時間。
@@ -394,7 +350,7 @@
 
 
 
-## [百分位數](app-insights-analytics-reference.md#percentiles)
+## <a name="[percentiles](app-insights-analytics-reference.md#percentiles)"></a>[百分位數](app-insights-analytics-reference.md#percentiles)
 
 哪些持續時間範圍涵蓋不同的工作階段百分比？
 
@@ -403,13 +359,13 @@
 ```AIQL
 
     requests 
-    | where isnotnull(session_Id) and isnotempty(session_Id) 
-    | summarize min(timestamp), max(timestamp) 
+  	| where isnotnull(session_Id) and isnotempty(session_Id) 
+  	| summarize min(timestamp), max(timestamp) 
       by session_Id 
-    | extend sesh = max_timestamp - min_timestamp 
-    | where sesh > 1s
-    | summarize count() by floor(sesh, 3s) 
-    | summarize percentiles(sesh, 5, 20, 50, 80, 95)
+  	| extend sesh = max_timestamp - min_timestamp 
+  	| where sesh > 1s
+  	| summarize count() by floor(sesh, 3s) 
+  	| summarize percentiles(sesh, 5, 20, 50, 80, 95)
 ```
 
 我們也移除了 where 子句中的上限，以便取得正確的數據，包括有多個要求的所有工作階段︰
@@ -418,50 +374,51 @@
 
 我們可以從中看到︰
 
-* 5% 的工作階段的持續時間小於 3 分鐘 34 秒；
+* 5% 的工作階段的持續時間小於 3 分鐘 34 秒； 
 * 50% 的工作階段的持續時間小於 36 分鐘；
 * 5% 的工作階段的持續時間超過 7 天
 
-若要取得每個國家/地區的個別分解圖，我們只需透過兩個 summarize運算子個別地帶入 client\_CountryOrRegion 資料行︰
+若要取得每個國家/地區的個別分解圖，我們只需透過兩個 summarize運算子個別地帶入 client_CountryOrRegion 資料行︰
 
 ```AIQL
 
     requests 
-    | where isnotnull(session_Id) and isnotempty(session_Id) 
-    | summarize min(timestamp), max(timestamp) 
+  	| where isnotnull(session_Id) and isnotempty(session_Id) 
+  	| summarize min(timestamp), max(timestamp) 
       by session_Id, client_CountryOrRegion
-    | extend sesh = max_timestamp - min_timestamp 
-    | where sesh > 1s
-    | summarize count() by floor(sesh, 3s), client_CountryOrRegion
-    | summarize percentiles(sesh, 5, 20, 50, 80, 95)
-	  by client_CountryOrRegion
+  	| extend sesh = max_timestamp - min_timestamp 
+  	| where sesh > 1s
+  	| summarize count() by floor(sesh, 3s), client_CountryOrRegion
+  	| summarize percentiles(sesh, 5, 20, 50, 80, 95)
+      by client_CountryOrRegion
 ```
 
 ![](./media/app-insights-analytics-tour/190.png)
 
 
-## [Join](app-insights-analytics-reference.md#join)
+## <a name="[join](app-insights-analytics-reference.md#join)"></a>[Join](app-insights-analytics-reference.md#join)
 
 我們可以存取數個資料表，包括要求和例外狀況。
 
-若要尋找傳回失敗回應之要求的相關例外狀況，我們可以聯結 `session_Id` 上的資料表：
+若要尋找傳回失敗回應之要求的相關例外狀況，我們可以聯結 `session_Id`上的資料表：
 
 ```AIQL
 
     requests 
-    | where toint(responseCode) >= 500 
-    | join (exceptions) on operation_Id 
-    | take 30
+  	| where toint(responseCode) >= 500 
+  	| join (exceptions) on operation_Id 
+  	| take 30
 ```
 
 
-在執行聯結之前，使用 `project` 只選取我們需要的資料行是相當好的做法。在相同的子句中，我們會將時間戳記資料行重新命名。
+在執行聯結之前，使用 `project` 只選取我們需要的資料行是相當好的做法。
+在相同的子句中，我們會將時間戳記資料行重新命名。
 
 
 
-## [Let](app-insights-analytics-reference.md#let-clause)︰將結果指派給變數
+## <a name="[let](app-insights-analytics-reference.md#let-clause):-assign-a-result-to-a-variable"></a>[Let](app-insights-analytics-reference.md#let-clause)︰將結果指派給變數
 
-使用 [let](./app-insights-analytics-reference.md#let-statements) 來分隔前一個運算式的各個部分。結果不變：
+使用 [let](./app-insights-analytics-reference.md#let-statements) 來分隔前一個運算式的各個部分。 結果不變：
 
 ```AIQL
 
@@ -469,16 +426,166 @@
       requests
         | where  toint(resultCode) >= 500  ;
     bad_requests
-    | join (exceptions) on session_Id 
-    | take 30
+  	| join (exceptions) on session_Id 
+  	| take 30
 ```
 
-> 秘訣︰在分析用戶端中，不要在這些部分之間放入空白行。務必執行所有一切。
+> 秘訣︰在分析用戶端中，不要在這些部分之間放入空白行。 務必執行所有一切。
 
 
-* **[在我們的模擬資料上測試分析](https://analytics.applicationinsights.io/demo)**，如果您的應用程式還未傳送資料至 Application Insights。
+## <a name="accessing-nested-objects"></a>存取巢狀物件
+
+巢狀物件可以輕鬆地存取。 例如，在例外狀況串流中，您會看到如下的結構化物件︰
+
+![結果](./media/app-insights-analytics-tour/520.png)
+
+您可以選擇您感興趣的屬性來將它平面化︰
+
+```AIQL
+
+    exceptions | take 10
+  	| extend method1 = tostring(details[0].parsedStack[1].method)
+```
+
+請注意，您必須使用 [轉換](app-insights-analytics-reference.md#casts) 到適當類型。
+
+## <a name="custom-properties-and-measurements"></a>自訂屬性和測量
+
+如果您的應用程式要將[自訂維度 (屬性) 和自訂測量](app-insights-api-custom-events-metrics.md#properties)附加到事件，則您會在 `customDimensions` 和 `customMeasurements` 物件看到它們。
+
+
+例如，如果您的應用程式包括︰
+
+```C#
+
+    var dimensions = new Dictionary<string, string> 
+                     {{"p1", "v1"},{"p2", "v2"}};
+    var measurements = new Dictionary<string, double>
+                     {{"m1", 42.0}, {"m2", 43.2}};
+    telemetryClient.TrackEvent("myEvent", dimensions, measurements);
+```
+
+若要在分析中擷取這些值︰
+
+```AIQL
+
+    customEvents
+  	| extend p1 = customDimensions.p1, 
+      m1 = todouble(customMeasurements.m1) // cast to expected type
+
+``` 
+
+## <a name="tables"></a>資料表
+
+從應用程式收到的遙測串流可透過數個資料表來存取。 每個資料表可用的屬性結構描述會顯示在視窗左邊。
+
+### <a name="requests-table"></a>要求資料表
+
+計算 Web 應用程式的 HTTP 要求數量並依頁面名稱分割︰
+
+![計算要求數量，依名稱分割](./media/app-insights-analytics-tour/analytics-count-requests.png)
+
+尋找最失敗的要求︰
+
+![計算要求數量，依名稱分割](./media/app-insights-analytics-tour/analytics-failed-requests.png)
+
+### <a name="custom-events-table"></a>自訂事件資料表
+
+如果您使用 [TrackEvent()](app-insights-api-custom-events-metrics.md#track-event) 傳送您自己的事件，則可以從這個資料表查看事件。 
+
+讓我們舉包含下列程式行的應用程式程式碼為例︰
+
+```C#
+
+    telemetry.TrackEvent("Query", 
+       new Dictionary<string,string> {{"query", sqlCmd}},
+       new Dictionary<string,double> {
+           {"retry", retryCount},
+           {"querytime", totalTime}})
+```
+
+顯示這些事件的頻率︰
+ 
+![顯示自訂事件的速率](./media/app-insights-analytics-tour/analytics-custom-events-rate.png)
+
+擷取事件的度量值和維度︰
+
+![顯示自訂事件的速率](./media/app-insights-analytics-tour/analytics-custom-events-dimensions.png)
+
+### <a name="custom-metrics-table"></a>自訂度量表
+
+如果您使用 [TrackMetric()](app-insights-api-custom-events-metrics.md#track-metric) 傳送您自己的度量值，您會在 **customMetrics** 串流中發現它的結果。 例如：  
+
+![Application Insights 分析中的自訂度量](./media/app-insights-analytics-tour/analytics-custom-metrics.png)
+
+
+> [AZURE.NOTE] 在[計量瀏覽器](app-insights-metrics-explorer.md)中，附加到任何遙測類型的所有自訂度量，會連同使用 `TrackMetric()` 傳送的計量一起出現在 [計量] 刀鋒視窗中。 但在分析中，自訂度量仍會附加到其所執行的任何一種遙測類型 (事件或要求等)，而且 TrackMetric 所傳送的度量會出現在自己的串流中。
+
+### <a name="performance-counters-table"></a>效能計數器資料表
+
+[效能計數器](app-insights-web-monitor-performance.md#system-performance-counters)會對您顯示應用程式的基本系統度量，例如 CPU、記憶體和網路使用率。 您可以設定 SDK 來傳送其他計數器，包括您自己的自訂計數器。
+
+**PerformanceCounters** 結構描述會公開每個效能計數器的 `category`、`counter` 名稱和 `instance` 名稱。 計數器執行個體名稱只適用於某些效能計數器，而且通常會指出與計數相關的處理程序名稱。 在每個應用程式的遙測中，您只會看到該應用程式的計數器。 例如，若要查看哪些計數器可用︰ 
+
+![Application Insights 分析中的效能計數器](./media/app-insights-analytics-tour/analytics-performance-counters.png)
+
+若要取得可用記憶體在最近一段時間的圖表︰ 
+
+![Application Insights 分析中的記憶體時間圖表](./media/app-insights-analytics-tour/analytics-available-memory.png)
+
+
+和其他遙測一樣，**performanceCounters** 也有 `cloud_RoleInstance` 資料行會指出應用程式執行所在主機機器的身分識別。 例如，若要比較不同機器上的應用程式效能︰ 
+
+
+![Application Insights 分析中依角色執行個體分割的效能](./media/app-insights-analytics-tour/analytics-metrics-role-instance.png)
+
+### <a name="exceptions-table"></a>例外狀況資料表
+
+此資料表中有提供[應用程式所報告的例外狀況](app-insights-asp-net-exceptions.md)。 
+
+若要尋找例外狀況引發時應用程式正在處理的 HTTP 要求，請聯結 operation_Id︰
+
+![在 operation_Id 聯結例外狀況與要求](./media/app-insights-analytics-tour/analytics-exception-request.png)
+
+
+### <a name="browser-timings-table"></a>瀏覽器計時資料表
+
+`browserTimings` 會顯示使用者的瀏覽器所收集到的頁面載入資料。
+
+[為應用程式設定用戶端遙測](app-insights-javascript.md)才能看到這些度量。 
+
+結構描述包含[指出頁面載入處理程序之不同階段長度的度量](app-insights-javascript.md#page-load-performance) (這些度量不會指出使用者讀取頁面的時間長度)。  
+
+顯示不同頁面的熱門度以及每個頁面的載入時間︰
+
+![分析中的頁面載入時間](./media/app-insights-analytics-tour/analytics-page-load.png)
+
+### <a name="availbility-results-table"></a>可用性結果資料表
+
+`availabilityResults` 會顯示 [Web 測試](app-insights-monitor-web-app-availability.md)的結果。 每個測試位置每次執行的測試會分開報告。 
+
+
+![分析中的頁面載入時間](./media/app-insights-analytics-tour/analytics-availability.png)
+
+### <a name="dependencies-table"></a>相依性資料表
+
+包含應用程式對資料庫和 REST API 所發出呼叫的結果，以及對 TrackDependency() 所發出的其他呼叫結果。
+
+### <a name="traces-table"></a>追蹤資料表
+
+包含應用程式使用 TrackTrace() 或[其他記錄架構](app-insights-asp-net-trace-logs.md)傳送的遙測。
+
+## <a name="try-it!"></a>試試看！
+
+* 如果您的應用程式還未將資料傳送至 Application Insights，則**[在我們的模擬資料上測試分析](https://analytics.applicationinsights.io/demo)**。
 
 
 [AZURE.INCLUDE [app-insights-analytics-footer](../../includes/app-insights-analytics-footer.md)]
 
-<!---HONumber=AcomDC_0803_2016-->
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

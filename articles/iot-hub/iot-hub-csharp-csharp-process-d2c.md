@@ -1,11 +1,11 @@
 <properties
-	pageTitle="處理 IoT 中樞的裝置到雲端訊息 (.Net) | Microsoft Azure"
-	description="請依照此教學課程來學習處理 IoT 中心裝置到雲端訊息的有用模式。"
-	services="iot-hub"
-	documentationCenter=".net"
-	authors="dominicbetts"
-	manager="timlt"
-	editor=""/>
+    pageTitle="處理 IoT 中樞的裝置到雲端訊息 (.Net) | Microsoft Azure"
+    description="請依照此教學課程來學習處理 IoT 中心裝置到雲端訊息的有用模式。"
+    services="iot-hub"
+    documentationCenter=".net"
+    authors="dominicbetts"
+    manager="timlt"
+    editor=""/>
 
 <tags
      ms.service="iot-hub"
@@ -13,56 +13,57 @@
      ms.topic="article"
      ms.tgt_pltfrm="na"
      ms.workload="na"
-     ms.date="07/19/2016"
+     ms.date="10/05/2016"
      ms.author="dobett"/>
 
-# 教學課程：如何使用 .Net 來處理 IoT 中樞的裝置到雲端訊息
+
+# <a name="tutorial:-how-to-process-iot-hub-device-to-cloud-messages-using-.net"></a>教學課程：如何使用 .Net 來處理 IoT 中樞的裝置到雲端訊息
 
 [AZURE.INCLUDE [iot-hub-selector-process-d2c](../../includes/iot-hub-selector-process-d2c.md)]
 
-## 簡介
+## <a name="introduction"></a>簡介
 
-Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝置和一個應用程式後端進行可靠且安全的雙向通訊。其他教學課程 ([IoT 中樞入門]和[使用 IoT 中樞傳送雲端到裝置訊息][lnk-c2d]) 說明如何使用 IoT 中樞的裝置到雲端和雲端到裝置的基本傳訊功能。
+Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝置和一個應用程式後端進行可靠且安全的雙向通訊。 其他教學課程 ([IoT 中樞入門]和[使用 IoT 中樞傳送雲端到裝置訊息][lnk-c2d]) 說明如何使用 IoT 中樞的裝置到雲端和雲端到裝置的基本傳訊功能。
 
-本教學課程是以 [IoT 中樞入門]中顯示的程式碼為基礎，以呈現兩種可用來處理裝置到雲端訊息的可調整模式：
+本教學課程是以 [IoT 中樞入門] 中顯示的程式碼為基礎，以呈現兩種可用來處理裝置到雲端訊息的可調整模式：
 
-- [Azure Blob 儲存體]中的可靠儲存體，用來儲存裝置到雲端的訊息。有一個常見的案例是「冷路徑」分析，在這項分析中，您可將遙測資料儲存在 Blob 中，以用來作為分析程序的輸入。這些程序是衍生自 [Azure Data Factory] 或 [HDInsight (Hadoop)] 堆疊等工具。
+- [Azure Blob 儲存體]中的可靠儲存體，用來儲存裝置到雲端的訊息。 有一個常見的案例是「冷路徑」  分析，在這項分析中，您可將遙測資料儲存在 Blob 中，以用來作為分析程序的輸入。 這些程序是衍生自 [Azure Data Factory] 或 [HDInsight (Hadoop)] 堆疊等工具。
 
-- 「互動式」裝置到雲端訊息的可靠處理。當裝置到雲端訊息因為應用程式後端的一組動作而立即觸發時，這類訊息會是互動式的。例如，裝置可能會傳送一則警示訊息，以觸發將票證插入 CRM 系統的作業。相較之下，「資料點」訊息只會饋送至分析引擎。例如，來自裝置且儲存來以供日後分析使用的溫度遙測就是資料點訊息。
+- 「互動式」  裝置到雲端訊息的可靠處理。 當裝置到雲端訊息因為應用程式後端的一組動作而立即觸發時，這類訊息會是互動式的。 例如，裝置可能會傳送一則警示訊息，以觸發將票證插入 CRM 系統的作業。 相較之下，「資料點」  訊息只會饋送至分析引擎。 例如，來自裝置且儲存來以供日後分析使用的溫度遙測就是資料點訊息。
 
-由於 IoT 中樞會公開[事件中樞][lnk-event-hubs]相容端點以接收裝置到雲端訊息，因此本教學課程會使用 [EventProcessorHost] 執行個體。這個執行個體會：
+由於 IoT 中樞會公開[事件中樞][lnk-event-hubs]相容端點以接收裝置到雲端訊息，因此本教學課程會使用 [EventProcessorHost] 執行個體。 這個執行個體會：
 
-* 在 Azure Blob 儲存體中可靠地儲存「資料點」訊息。
-* 將「互動式」裝置到雲端訊息轉寄到 Azure [服務匯流排佇列]，以立即處理。
+* 在 Azure Blob 儲存體中可靠地儲存「資料點」  訊息。
+* 將「互動式」  裝置到雲端訊息轉寄到 Azure [服務匯流排佇列] ，以立即處理。
 
 服務匯流排有助於確保能可靠地處理互動式訊息，因為它提供了各個訊息的檢查點，以及以時間範圍為基礎的重複資料刪除。
 
-> [AZURE.NOTE] **EventProcessorHost** 執行個體是用來處理互動式訊息的唯一方式。其他選項包括 [Azure Service Fabric][lnk-service-fabric] 和 [Azure 串流分析][lnk-stream-analytics]。
+> [AZURE.NOTE] **EventProcessorHost** 執行個體是用來處理互動式訊息的唯一方式。 其他選項包括 [Azure Service Fabric][lnk-service-fabric] 和 [Azure 串流分析][lnk-stream-analytics]。
 
 在本教學課程結尾，您會執行三個 Windows 主控台應用程式：
 
-* **SimulatedDevice**，這是在 [IoT 中樞入門]教學課程中建立之應用程式的已修改版本、每秒可傳送資料點裝置到雲端訊息，而且每 10 秒可傳送互動式裝置到雲端訊息。此應用程式會使用 AMQPS 通訊協定與 IoT 中樞進行通訊。
-* **ProcessDeviceToCloudMessages** 會使用 [EventProcessorHost] 類別來擷取事件中樞相容端點的訊息。接著，可靠地將資料點訊息儲存於 Azure Blob 儲存體，並將互動式訊息轉送到服務匯流排佇列。
+* **SimulatedDevice**，這是在 [IoT 中樞入門] 教學課程中建立之應用程式的已修改版本、每秒可傳送資料點裝置到雲端訊息，而且每 10 秒可傳送互動式裝置到雲端訊息。 此應用程式會使用 AMQPS 通訊協定與 IoT 中樞進行通訊。
+* **ProcessDeviceToCloudMessages** 會使用 [EventProcessorHost] 類別來擷取事件中樞相容端點的訊息。 接著，可靠地將資料點訊息儲存於 Azure Blob 儲存體，並將互動式訊息轉送到服務匯流排佇列。
 * **ProcessD2CInteractiveMessages** 可將互動式訊息從服務匯流排佇列中清除。
 
-> [AZURE.NOTE] IoT 中樞對於許多裝置平台和語言 (包括 C、Java 和 JavaScript) 提供 SDK 支援。如需了解如何以實體裝置取代本教學課程中的模擬裝置，以及如何將裝置連接到「IoT 中樞」，請參閱 [Azure IoT 開發人員中心]。
+> [AZURE.NOTE] IoT 中樞對於許多裝置平台和語言 (包括 C、Java 和 JavaScript) 提供 SDK 支援。 若要了解如何以實體裝置取代本教學課程中的模擬裝置，以及如何將裝置連接到「IoT 中樞」，請參閱 [Azure IoT 開發人員中心]。
 
-本教學課程可直接套用至事件中樞相容訊息的其他使用方式，例如 [HDInsight (Hadoop)] 專案。如需詳細資訊，請參閱 [Azure IoT 中樞開發人員指南 - 裝置到雲端]。
+本教學課程可直接套用至事件中樞相容訊息的其他使用方式，例如 [HDInsight (Hadoop)] 專案。 如需詳細資訊，請參閱 [Azure IoT 中樞開發人員指南 - 裝置到雲端]。
 
 若要完成此教學課程，您需要下列項目：
 
 + Microsoft Visual Studio 2015。
 
-+ 使用中的 Azure 帳戶。<br/>如果您沒有 Azure 訂用帳戶，則只需要幾分鐘的時間就可以建立[免費帳戶](https://azure.microsoft.com/free/)。
++ 使用中的 Azure 帳戶。 <br/>如果您沒有 Azure 訂用帳戶，則只需要幾分鐘的時間就可以建立 [免費帳戶](https://azure.microsoft.com/free/) 。
 
 您應具備 [Azure 儲存體]和 [Azure 服務匯流排]的基本知識。
 
 
-## 從模擬裝置傳送互動式訊息
+## <a name="send-interactive-messages-from-a-simulated-device"></a>從模擬裝置傳送互動式訊息
 
-在本節中，您會修改您在[開始使用 IoT 中樞]教學課程中建立的模擬裝置應用程式，使其將互動式裝置到雲端訊息傳送給 IoT 中樞。
+在本節中，您會修改您在 [開始使用 IoT 中樞] 教學課程中建立的模擬裝置應用程式，使其將互動式裝置到雲端訊息傳送給 IoT 中樞。
 
-1. 在 Visual Studio 的 **SimulatedDevice** 專案中，將下列方法加入 [程式] 類別。
+1. 在 Visual Studio 的 **SimulatedDevice** 專案中，將下列方法新增 [程式] 類別。
 
     ```
     private static async void SendDeviceToCloudInteractiveMessagesAsync()
@@ -82,9 +83,10 @@ Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝�
     }
     ```
 
-    此方法與 **SimulatedDevice** 專案中的 **SendDeviceToCloudMessagesAsync** 方法類似。唯一的差異是您現在是設定 **MessageId** 系統屬性，以及稱為 **messageType** 的使用者屬性。程式碼會指派一個全域唯一識別碼 (GUID) 給 **MessageId** 屬性。「服務匯流排」可以使用這個識別碼來刪除所接收的重複訊息。範例是使用 **messageType** 屬性來區別來自資料點訊息的互動式訊息。應用程式會在訊息屬性中傳遞此資訊，而不是在訊息主體中傳遞，因此事件處理器不需要將訊息還原序列化來執行訊息路由。
+    此方法與 **SimulatedDevice** 專案中的 **SendDeviceToCloudMessagesAsync** 方法類似。 唯一的差異是您現在是設定 **MessageId** 系統屬性，以及稱為 **messageType** 的使用者屬性。
+    程式碼會指派一個全域唯一識別碼 (GUID) 給 **MessageId** 屬性。 「服務匯流排」可以使用這個識別碼來刪除所接收的重複訊息。 範例是使用 **messageType** 屬性來區別來自資料點訊息的互動式訊息。 應用程式會在訊息屬性中傳遞此資訊，而不是在訊息主體中傳遞，因此事件處理器不需要將訊息還原序列化來執行訊息路由。
 
-    > [AZURE.NOTE] 在裝置程式碼中建立用來刪除重複互動式訊息的 **MessageId** 很重要。斷斷續續的網路通訊或其他失敗可能會導致從該裝置多次重新傳輸相同的訊息。您也可以使用語意式訊息識別碼 (例如相關訊息資料欄位的雜湊) 來取代 GUID。
+    > [AZURE.NOTE] 在裝置程式碼中建立用來刪除重複互動式訊息的 **MessageId** 很重要。 斷斷續續的網路通訊或其他失敗可能會導致從該裝置多次重新傳輸相同的訊息。 您也可以使用語意式訊息識別碼 (例如相關訊息資料欄位的雜湊) 來取代 GUID。
 
 2. 將下列方法新增到 **Main** 方法中緊接在 `Console.ReadLine()` 行前面：
 
@@ -92,58 +94,58 @@ Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝�
     SendDeviceToCloudInteractiveMessagesAsync();
     ````
 
-    > [AZURE.NOTE] 為了簡單起見，本教學課程不會實作任何重試原則。在實際程式碼中，您應該如 MSDN 文章 [Transient Fault Handling (暫時性錯誤處理)] 所建議來實作重試原則 (例如指數型輪詢)。
+    > [AZURE.NOTE] 為了簡單起見，本教學課程不會實作任何重試原則。 在實際程式碼中，您應該如 MSDN 文章 [Transient Fault Handling (暫時性錯誤處理)]所建議來實作重試原則 (例如指數型輪詢)。
 
-## 處理裝置到雲端的訊息
+## <a name="process-device-to-cloud-messages"></a>處理裝置到雲端的訊息
 
-在本節中，您會建立 Windows 主控台應用程式，以處理來自「IoT 中樞」的裝置到雲端訊息。IoT 中樞會公開與[事件中樞]相容的端點，以讓應用程式讀取裝置對雲端訊息。本教學課程使用 [EventProcessorHost] 類別來處理主控台應用程式中的這些訊息。如需有關如何處理來自「事件中樞」之訊息的詳細資訊，請參閱[開始使用事件中樞]教學課程。
+在本節中，您會建立 Windows 主控台應用程式，以處理來自「IoT 中樞」的裝置到雲端訊息。 IoT 中樞會公開與 [事件中樞]相容的端點，以讓應用程式讀取裝置對雲端訊息。 本教學課程使用 [EventProcessorHost] 類別來處理主控台應用程式中的這些訊息。 如需有關如何處理來自「事件中樞」之訊息的詳細資訊，請參閱 [開始使用事件中樞] 教學課程。
 
-實作可靠的資料點訊息儲存或互動式訊息轉送時，挑戰在於事件處理會倚賴訊息取用者提供其進度的檢查點。此外，為了達到高輸送量，當您從「事件中樞」讀取時，應該以大批方式提供檢查點。如果發生失敗而您還原至先前的檢查點，此方法可能會導致發生重複處理大量訊息的情況。在本教學課程中，您將了解如何將 Azure 儲存體寫入及「服務匯流排」重複資料刪除時間範圍與 **EventProcessorHost** 檢查點同步。
+實作可靠的資料點訊息儲存或互動式訊息轉送時，挑戰在於事件處理會倚賴訊息取用者提供其進度的檢查點。 此外，為了達到高輸送量，當您從「事件中樞」讀取時，應該以大批方式提供檢查點。 如果發生失敗而您還原至先前的檢查點，此方法可能會導致發生重複處理大量訊息的情況。 在本教學課程中，您將了解如何將 Azure 儲存體寫入及「服務匯流排」重複資料刪除時間範圍與 **EventProcessorHost** 檢查點同步。
 
-為了能可靠地將訊息寫入至 Azure 儲存體，範例會使用[區塊 Blob][Azure Block Blobs] 的個別區塊認可功能。事件處理器會將訊息累積在記憶體中，直到達到提供檢查點的時間為止。例如，在累積的訊息緩衝區達到 4 MB 的區塊大小上限之後，或在超過「服務匯流排」重複資料刪除時間範圍之後。然後，程式碼會在檢查點之前，先將新區塊認可至 Blob。
+為了能可靠地將訊息寫入至 Azure 儲存體，範例會使用[區塊 Blob][Azure 區塊 Blob] 的個別區塊認可功能。 事件處理器會將訊息累積在記憶體中，直到達到提供檢查點的時間為止。 例如，在累積的訊息緩衝區達到 4 MB 的區塊大小上限之後，或在超過「服務匯流排」重複資料刪除時間範圍之後。 然後，程式碼會在檢查點之前，先將新區塊認可至 Blob。
 
-事件處理器會使用「事件中樞」訊息位移做為區塊識別碼。這個機制可讓事件處理器在將新區塊認可至儲存體之前，先執行重複資料刪除檢查，以處理在認可區塊與檢查點之間可能發生的損毀。
+事件處理器會使用「事件中樞」訊息位移做為區塊識別碼。 這個機制可讓事件處理器在將新區塊認可至儲存體之前，先執行重複資料刪除檢查，以處理在認可區塊與檢查點之間可能發生的損毀。
 
-> [AZURE.NOTE] 本教學課程使用單一儲存體帳戶來寫入從 IoT 中樞擷取的所有訊息。若要判斷您的解決方案中是否需要使用多個「Azure 儲存體」帳戶，請參閱 [Azure 儲存體延展性指導方針]。
+> [AZURE.NOTE] 本教學課程使用單一儲存體帳戶來寫入從 IoT 中樞擷取的所有訊息。 若要判斷您的解決方案中是否需要使用多個「Azure 儲存體」帳戶，請參閱 [Azure 儲存體延展性指導方針]。
 
-應用程式會使用「服務匯流排」重複資料刪除功能，以在處理互動式訊息時避免有重複項目。模擬的裝置會為每個互動式訊息加上一個獨特的 **MessageId** 戳記。這些識別碼可讓「服務匯流排」確保在指定的重複資料刪除時間範圍內，不會有兩個具有相同 **MessageId** 的訊息被傳遞給接收者。此重複資料刪除功能連同「服務匯流排」佇列所提供的每一訊息完成語意，使得實作可靠的互動式訊息處理變得相當容易。
+應用程式會使用「服務匯流排」重複資料刪除功能，以在處理互動式訊息時避免有重複項目。 模擬的裝置會為每個互動式訊息加上一個獨特的 **MessageId**戳記。 這些識別碼可讓「服務匯流排」確保在指定的重複資料刪除時間範圍內，不會有兩個具有相同 **MessageId** 的訊息被傳遞給接收者。 此重複資料刪除功能連同「服務匯流排」佇列所提供的每一訊息完成語意，使得實作可靠的互動式訊息處理變得相當容易。
 
-為了確保不會在重複資料刪除時間範圍外重新提交任何訊息，程式碼會將 **EventProcessorHost** 檢查點機制與「服務匯流排」佇列重複資料刪除時間範圍同步。此同步處理的執行方式是在每次重複資料刪除時間範圍過去時 (在本教學課程中為一小時)，至少強制執行一次檢查點。
+為了確保不會在重複資料刪除時間範圍外重新提交任何訊息，程式碼會將 **EventProcessorHost** 檢查點機制與「服務匯流排」佇列重複資料刪除時間範圍同步。 此同步處理的執行方式是在每次重複資料刪除時間範圍過去時 (在本教學課程中為一小時)，至少強制執行一次檢查點。
 
-> [AZURE.NOTE] 本教學課程使用單一分割服務匯流排佇列來處理所有擷取自 IoT 中樞的互動式訊息。如需有關如何使用「服務匯流排」佇列來滿足您解決方案之延展性需求的詳細資訊，請參閱 [Azure 服務匯流排]文件。
+> [AZURE.NOTE] 本教學課程使用單一分割服務匯流排佇列來處理所有擷取自 IoT 中樞的互動式訊息。 如需有關如何使用「服務匯流排」佇列來滿足您解決方案之延展性需求的詳細資訊，請參閱 [Azure 服務匯流排] 文件。
 
-### 佈建 Azure 儲存體帳戶和服務匯流排佇列
-若要使用 [EventProcessorHost] 類別，您必須擁有「Azure 儲存體」帳戶，才能讓 **EventProcessorHost** 記錄檢查點資訊。您可以使用現有的儲存體帳戶，或是依照[關於 Azure 儲存體]中的指示建立新的帳戶。請記下儲存體帳戶連接字串。
+### <a name="provision-an-azure-storage-account-and-a-service-bus-queue"></a>佈建 Azure 儲存體帳戶和服務匯流排佇列
+若要使用 [EventProcessorHost] 類別，您必須擁有「Azure 儲存體」帳戶，才能讓 **EventProcessorHost** 記錄檢查點資訊。 您可以使用現有的儲存體帳戶，或是依照 [關於 Azure 儲存體] 中的指示建立新的帳戶。 請記下儲存體帳戶連接字串。
 
 > [AZURE.NOTE] 當您複製並貼上儲存體帳戶連接字串時，請確定當中未包含任何空格。
 
-您也需要服務匯流排佇列以可靠地處理互動式訊息。您可以透過程式設計方式，建立一個重複資料刪除時間範圍為一小時的佇列，如[如何使用服務匯流排佇列][Service Bus queue]所述。或者，您也可以依照下列步驟使用 [Azure 傳統入口網站][lnk-classic-portal]：
+您也需要服務匯流排佇列以可靠地處理互動式訊息。 您可以透過程式設計方式，建立一個重複資料刪除時間範圍為一小時的佇列，如 [如何使用服務匯流排佇列][服務匯流排佇列]中的可靠儲存體，用來儲存裝置到雲端的訊息。 或者，您也可以依照下列步驟，使用 [Azure 傳統入口網站][lnk-classic-portal]：
 
-1. 按一下左下角的 [新增]。接著，按一下 [應用程式服務] > [服務匯流排] > [佇列] > [自訂建立]。輸入名稱 **d2ctutorial**，選取區域，然後使用現有命名空間或建立一個新命名空間。在下一個頁面上，選取 [啟用重複偵測]，然後將 [重複的偵測記錄期間] 設定為一小時。接著，按一下右下角的勾選記號來儲存您的佇列組態。
+1. 按一下左下角的 [新增]。 然後按一下 [應用程式服務] > [服務匯流排] > [佇列] > [自訂建立]。 輸入名稱 **d2ctutorial**，選取區域，然後使用現有命名空間或建立一個新命名空間。 在下一個頁面上，選取 [啟用重複偵測]，然後將 [重複的偵測記錄期間] 設定為一小時。 接著，按一下右下角的勾選記號來儲存您的佇列組態。
 
     ![在 Azure 入口網站中建立佇列][30]
 
-2. 在服務匯流排佇列清單中，按一下 [d2ctutorial]，然後按一下 [設定]。建立兩個共用的存取原則，一個名為**傳送**，具備**傳送**權限，而另一個名為**接聽**，具備**接聽**權限。完成時，請按一下底部的 [儲存]。
+2. 在服務匯流排佇列清單中，按一下 [d2ctutorial]，然後按一下 [設定]。 建立兩個共用的存取原則，一個名為**傳送**，具備**傳送**權限，而另一個名為**接聽**，具備**接聽**權限。 完成時，請按一下底部的 [儲存]。
 
     ![在 Azure 入口網站中設定佇列][31]
 
-3. 按一下頂端的 [儀表板]，然後按一下底部的 [連接資訊]。記下這兩個連接字串。
+3. 按一下頂端的 [儀表板]，然後按一下底部的 [連接資訊]。 記下這兩個連接字串。
 
     ![Azure 入口網站中的「佇列」儀表板][32]
 
-### 建立事件處理器
+### <a name="create-the-event-processor"></a>建立事件處理器
 
-1. 在目前的 Visual Studio 方案中，若要使用 [主控台應用程式] 專案範本來建立 Visual C# Windows 專案，請按一下 [檔案] > [加入] > [新增專案]。確定 .NET Framework 為 4.5.1 或更新版本。將專案命名為 **ProcessDeviceToCloudMessages**，然後按一下 [確定]。
+1. 在目前的 Visual Studio 方案中，若要使用 [主控台應用程式] 專案範本來建立 Visual C# Windows 專案，請按一下 [檔案]  >  [新增]  >  [新增專案]。 確定 .NET Framework 為 4.5.1 或更新版本。 將專案命名為 **ProcessDeviceToCloudMessages**，然後按一下 [確定]。
 
     ![Visual Studio 中的新專案][10]
 
-2. 在 [方案總管] 中，於 [ProcessDeviceToCloudMessages] 專案上按一下滑鼠右鍵，然後按一下 [管理 NuGet 套件]。此時會顯示 [NuGet 套件管理員] 對話方塊。
+2. 在 [方案總管] 中，於 [ProcessDeviceToCloudMessages] 專案上按一下滑鼠右鍵，然後按一下 [管理 NuGet 套件]。 此時會顯示 [NuGet 封裝管理員]  對話方塊。
 
-3. 搜尋 **WindowsAzure.ServiceBus**，按一下 [安裝]，然後接受使用規定。此操作會對 [Azure 服務匯流排 NuGet 套件](https://www.nuget.org/packages/WindowsAzure.ServiceBus)及其所有相依性進行下載、安裝和新增參考。
+3. 搜尋 **WindowsAzure.ServiceBus**，按一下 [安裝]，然後接受使用規定。 此操作會對 [Azure 服務匯流排 NuGet 套件](https://www.nuget.org/packages/WindowsAzure.ServiceBus)及其所有相依性進行下載、安裝和新增參考。
 
-4. 搜尋 **Microsoft Azure 服務匯流排事件中樞 - EventProcessorHost**，按一下 [安裝]，然後接受使用規定。此操作會對 [Azure 服務匯流排事件中樞 - EventProcessorHost NuGet 套件](https://www.nuget.org/packages/Microsoft.Azure.ServiceBus.EventProcessorHost)及其所有相依性進行下載、安裝和新增參考。
+4. 搜尋 **Microsoft.Azure.ServiceBus.EventProcessorHost**，按一下 [安裝]，然後接受使用規定。 此操作會對 [Azure 服務匯流排事件中樞 - EventProcessorHost NuGet 套件](https://www.nuget.org/packages/Microsoft.Azure.ServiceBus.EventProcessorHost)及其所有相依性進行下載、安裝和新增參考。
 
-5. 以滑鼠右鍵按一下 **ProcessDeviceToCloudMessages** 專案、按一下 [新增]，然後按一下 [類別]。將新類別命名為 **StoreEventProcessor**，然後按一下 [確定] 以建立該類別。
+5. 以滑鼠右鍵按一下 **ProcessDeviceToCloudMessages** 專案、按一下 [新增]，然後按一下 [類別]。 將新類別命名為 **StoreEventProcessor**，然後按一下 [確定] 以建立該類別。
 
 6. 在 StoreEventProcessor.cs 檔案開頭處新增下列陳述式：
 
@@ -292,15 +294,15 @@ Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝�
     }
     ```
 
-    **EventProcessorHost** 類別會呼叫此類別以處理從「IoT 中樞」收到的「裝置到雲端」訊息。此類別中的程式碼會實作邏輯以在 Blob 容器中可靠地儲存訊息，然後將互動式訊息轉送至「服務匯流排」佇列。
+    **EventProcessorHost** 類別會呼叫此類別以處理從「IoT 中樞」收到的「裝置到雲端」訊息。 此類別中的程式碼會實作邏輯以在 Blob 容器中可靠地儲存訊息，然後將互動式訊息轉送至「服務匯流排」佇列。
 
-    **OpenAsync** 方法會將 **currentBlockInitOffset** 變數初始化，此變數可追蹤此事件處理器所讀取第一個訊息的目前位移。請記住，每個處理器都會負責單一分割區。
+    **OpenAsync** 方法會將 **currentBlockInitOffset** 變數初始化，此變數可追蹤此事件處理器所讀取第一個訊息的目前位移。 請記住，每個處理器都會負責單一分割區。
 
-    **ProcessEventsAsync** 方法可從「IoT 中樞」接收一批訊息，並依照以下方式處理這些訊息：它會將互動式訊息傳送到「服務匯流排」佇列，並將資料點訊息附加到名為 **toAppend** 的記憶體緩衝區。如果記憶體緩衝區達到 4 MB 限制，或已超過重複資料刪除時間範圍 (在本教學課程中為檢查點之後一小時)，則應用程式都會觸發檢查點。
+    **ProcessEventsAsync** 方法可從「IoT 中樞」接收一批訊息，並依照以下方式處理這些訊息：它會將互動式訊息傳送到「服務匯流排」佇列，並將資料點訊息附加到名為 **toAppend** 的記憶體緩衝區。 如果記憶體緩衝區達到 4 MB 限制，或已超過重複資料刪除時間範圍 (在本教學課程中為檢查點之後一小時)，則應用程式都會觸發檢查點。
 
-    **AppendAndCheckpoint** 方法會先為要附加的區塊產生 blockId。Azure 儲存體會要求所有區塊識別碼都具有相同的長度，因此這個方法會以前置的零來填補位移 - `currentBlockInitOffset.ToString("0000000000000000000000000")`。接著，如果 Blob 中已經有具有此識別碼的區塊，此方法就會以緩衝區目前的內容覆寫它。
+    **AppendAndCheckpoint** 方法會先為要附加的區塊產生 blockId。 Azure 儲存體會要求所有區塊識別碼都具有相同的長度，因此這個方法會以前置的零來填補位移 - `currentBlockInitOffset.ToString("0000000000000000000000000")`。 接著，如果 Blob 中已經有具有此識別碼的區塊，此方法就會以緩衝區目前的內容覆寫它。
 
-    > [AZURE.NOTE] 若要簡化程式碼，本教學課程會使用每個分割的單一 blob 檔案來儲存訊息。實際的解決方案會藉由在一段特定的時間之後，或在檔案達到特定大小時，建立其他檔案，來實作檔案輪替。請記住，Azure 區塊 Blob 最多可包含 195 GB 的資料。
+    > [AZURE.NOTE] 若要簡化程式碼，本教學課程會使用每個分割的單一 blob 檔案來儲存訊息。 實際的解決方案會藉由在一段特定的時間之後，或在檔案達到特定大小時，建立其他檔案，來實作檔案輪替。 請記住，Azure 區塊 Blob 最多可包含 195 GB 的資料。
 
 8. 在 **Program** 類別中，於最上方新增下列 **using** 陳述式：
 
@@ -308,7 +310,7 @@ Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝�
     using Microsoft.ServiceBus.Messaging;
     ```
 
-9. 依下列方式修改 **Program** 類別中的 **Main** 方法。使用[開始使用 IoT 中樞]教學課程中的 **iothubowner** 連接字串來取代 **{iot hub connection string}**。使用您在本節開頭提到的連接字串來取代儲存體連接字串。使用您在本節開頭所提到名為 **d2ctutorial** 之佇列的「傳送」 權限來取代「服務匯流排」連接字串：
+9. 依下列方式修改 **Program** 類別中的 **Main** 方法。 使用[開始使用 IoT 中樞]教學課程中的 **iothubowner** 連接字串來取代 **{iot hub connection string}**。 使用您在本節開頭提到的連接字串來取代儲存體連接字串。 使用您在本節開頭所提到名為 **d2ctutorial** 之佇列的「傳送」權限來取代「服務匯流排」連接字串：
 
     ```
     static void Main(string[] args)
@@ -329,16 +331,16 @@ Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝�
     }
     ```
 
-    > [AZURE.NOTE] 為了簡單起見，本教學課程使用單一的 [EventProcessorHost] 類別執行個體。如需詳細資訊，請參閱[事件中樞程式設計指南]。
+    > [AZURE.NOTE] 為了簡單起見，本教學課程使用單一的 [EventProcessorHost] 類別執行個體。 如需詳細資訊，請參閱 [事件中樞程式設計指南]。
 
-## 接收互動式訊息
-在本節中，您將撰寫會從「服務匯流排」佇列接收互動式訊息的 Windows 主控台應用程式。如需有關如何使用「服務匯流排」來建構解決方案的詳細資訊，請參閱[使用服務匯流排建置多層式應用程式][]。
+## <a name="receive-interactive-messages"></a>接收互動式訊息
+在本節中，您將撰寫會從「服務匯流排」佇列接收互動式訊息的 Windows 主控台應用程式。 如需有關如何使用「服務匯流排」來建構解決方案的詳細資訊，請參閱 [使用服務匯流排建置多層式應用程式][]。
 
-1. 在目前的 Visual Studio 方案中，使用 [主控台應用程式] 專案範本來建立 Visual C# Windows 專案。將專案命名為 **ProcessD2CInteractiveMessages**。
+1. 在目前的 Visual Studio 方案中，使用 [主控台應用程式] 專案範本來建立 Visual C# Windows 專案。 將專案命名為 **ProcessD2CInteractiveMessages**。
 
-2. 在 [方案總管] 中，於 [ProcessD2CInteractiveMessages] 專案上按一下滑鼠右鍵，然後按一下 [管理 NuGet 套件]。此操作會顯示 [NuGet 套件管理員] 視窗。
+2. 在 [方案總管] 中，於 [ProcessD2CInteractiveMessages] 專案上按一下滑鼠右鍵，然後按一下 [管理 NuGet 套件]。 此操作會顯示 [NuGet 套件管理員]  視窗。
 
-3. 搜尋 **WindowsAzure.ServiceBus**，按一下 [安裝]，然後接受使用規定。此操作會對 [Azure 服務匯流排](https://www.nuget.org/packages/WindowsAzure.ServiceBus)及其所有相依性進行下載、安裝和新增參考。
+3. 搜尋 **WindowsAzure.ServiceBus**，按一下 [安裝]，然後接受使用規定。 此操作會對 [Azure 服務匯流排](https://www.nuget.org/packages/WindowsAzure.ServiceBus)及其所有相依性進行下載、安裝和新增參考。
 
 4. 在 **Program.cs** 檔案的最上方，新增下列 **using** 陳述式：
 
@@ -347,7 +349,7 @@ Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝�
     using Microsoft.ServiceBus.Messaging;
     ```
 
-5. 最後，將下列幾行加入至 **Main** 方法。以名為 **d2ctutorial** 之佇列的**接聽**權限取代連接字串：
+5. 最後，將下列幾行新增到 **Main** 方法中。 以名為 **d2ctutorial** 之佇列的**接聽**權限取代連接字串：
 
     ```
     Console.WriteLine("Process D2C Interactive Messages app\n");
@@ -382,19 +384,19 @@ Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝�
     Console.ReadLine();
     ```
 
-## 執行應用程式
+## <a name="run-the-applications"></a>執行應用程式
 
 現在您已經準備好執行應用程式。
 
-1.	在 Visual Studio 的方案總管中，以滑鼠右鍵按一下您的方案，然後選取 [設定啟始專案]。選取 [多個啟始專案]，然後針對 **ProcessDeviceToCloudMessages**、**SimulatedDevice** 和 **ProcessD2CInteractiveMessages** 專案選取 [啟動] 動作。
+1.  在 Visual Studio 的方案總管中，以滑鼠右鍵按一下您的方案，然後選取 [設定啟始專案]。 選取 [多個啟始專案]，然後針對 **ProcessDeviceToCloudMessages**、**SimulatedDevice** 和 **ProcessD2CInteractiveMessages** 專案選取 [啟動] 動作。
 
-2.	按 **F5** 啟動三個主控台應用程式。**ProcessD2CInteractiveMessages** 應用程式應處理從 **SimulatedDevice** 應用程式傳送的每則互動式訊息。
+2.  按 **F5** 啟動三個主控台應用程式。 **ProcessD2CInteractiveMessages** 應用程式應處理從 **SimulatedDevice** 應用程式傳送的每則互動式訊息。
 
   ![三個主控台應用程式][50]
 
-> [AZURE.NOTE] 若要查看您 Blob 檔案中的更新，您可能需要將 **StoreEventProcessor** 類別中的 **MAX\_BLOCK\_SIZE** 常數降低為較小的值，例如 **1024**。這項變更相當有用，因為要讓模擬裝置所傳送的資料達到區塊大小限制需要一些時間。如果使用較小的區塊大小，您就不需要等待這麼久才能看到 Blob 的建立和更新。不過，使用比較大的區塊大小可讓應用程式更有彈性。
+> [AZURE.NOTE] 若要查看您 Blob 檔案中的更新，您可能需要將 **StoreEventProcessor** 類別中的 **MAX_BLOCK_SIZE** 常數降低為較小的值，例如 **1024**。 這項變更相當有用，因為要讓模擬裝置所傳送的資料達到區塊大小限制需要一些時間。 如果使用較小的區塊大小，您就不需要等待這麼久才能看到 Blob 的建立和更新。 不過，使用比較大的區塊大小可讓應用程式更有彈性。
 
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 
 在本教學課程中，您學到如何使用 [EventProcessorHost] 類別，可靠地處理資料點與互動式裝置到雲端訊息。
 
@@ -417,36 +419,38 @@ Azure IoT 中樞是一項完全受管理的服務，可讓數百萬個 IoT 裝�
 [Azure Blob 儲存體]: ../storage/storage-dotnet-how-to-use-blobs.md
 [Azure Data Factory]: https://azure.microsoft.com/documentation/services/data-factory/
 [HDInsight (Hadoop)]: https://azure.microsoft.com/documentation/services/hdinsight/
-[Service Bus queue]: ../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md
 [服務匯流排佇列]: ../service-bus-messaging/service-bus-dotnet-get-started-with-queues.md
 
-[Azure IoT 中樞開發人員指南 - 裝置到雲端]: iot-hub-devguide.md#d2c
+[Azure IoT 中樞開發人員指南 - 裝置到雲端]: iot-hub-devguide-messaging.md
 
 [Azure 儲存體]: https://azure.microsoft.com/documentation/services/storage/
 [Azure 服務匯流排]: https://azure.microsoft.com/documentation/services/service-bus/
 
 [IoT 中樞開發人員指南]: iot-hub-devguide.md
 [IoT 中樞入門]: iot-hub-csharp-csharp-getstarted.md
-[開始使用 IoT 中樞]: iot-hub-csharp-csharp-getstarted.md
 [Azure IoT 開發人員中心]: https://azure.microsoft.com/develop/iot
 [lnk-service-fabric]: https://azure.microsoft.com/documentation/services/service-fabric/
 [lnk-stream-analytics]: https://azure.microsoft.com/documentation/services/stream-analytics/
 [lnk-event-hubs]: https://azure.microsoft.com/documentation/services/event-hubs/
-[Transient Fault Handling]: https://msdn.microsoft.com/library/hh675232.aspx
+[Transient Fault Handling (暫時性錯誤處理) (暫時性錯誤處理)]: https://msdn.microsoft.com/library/hh675232.aspx
 
 <!-- Links -->
 [關於 Azure 儲存體]: ../storage/storage-create-storage-account.md#create-a-storage-account
 [開始使用事件中樞]: ../event-hubs/event-hubs-csharp-ephcs-getstarted.md
 [Azure 儲存體延展性指導方針]: ../storage/storage-scalability-targets.md
-[Azure Block Blobs]: https://msdn.microsoft.com/library/azure/ee691964.aspx
+[Azure 區塊 Blob]: https://msdn.microsoft.com/library/azure/ee691964.aspx
 [事件中樞]: ../event-hubs/event-hubs-overview.md
 [EventProcessorHost]: http://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.eventprocessorhost(v=azure.95).aspx
 [事件中樞程式設計指南]: ../event-hubs/event-hubs-programming-guide.md
-[Transient Fault Handling (暫時性錯誤處理)]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
-[使用服務匯流排建置多層式應用程式]: ../service-bus/service-bus-dotnet-multi-tier-app-using-service-bus-queues.md
+[Transient Fault Handling (暫時性錯誤處理) (暫時性錯誤處理)]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
+[使用服務匯流排建置多層式應用程式]: ../service-bus-messaging/service-bus-dotnet-multi-tier-app-using-service-bus-queues.md
 
 [lnk-classic-portal]: https://manage.windowsazure.com
 [lnk-c2d]: iot-hub-csharp-csharp-process-d2c.md
 [lnk-suite]: https://azure.microsoft.com/documentation/suites/iot-suite/
 
-<!---HONumber=AcomDC_0928_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

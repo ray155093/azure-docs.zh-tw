@@ -1,36 +1,37 @@
 <properties
-	pageTitle="在虛擬機器擴展集上部署應用程式 | Microsoft Azure"
-	description="在虛擬機器擴展集上部署應用程式"
-	services="virtual-machine-scale-sets"
-	documentationCenter=""
-	authors="gbowerman"
-	manager="timlt"
-	editor=""
-	tags="azure-resource-manager"/>
+    pageTitle="在虛擬機器擴展集上部署應用程式 | Microsoft Azure"
+    description="在虛擬機器擴展集上部署應用程式"
+    services="virtual-machine-scale-sets"
+    documentationCenter=""
+    authors="gbowerman"
+    manager="timlt"
+    editor=""
+    tags="azure-resource-manager"/>
 
 <tags
-	ms.service="virtual-machine-scale-sets"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/13/2016"
-	ms.author="guybo"/>
+    ms.service="virtual-machine-scale-sets"
+    ms.workload="na"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="09/13/2016"
+    ms.author="guybo"/>
 
 
-# 升級虛擬機器擴展集
 
-本文說明如何在不需停機的情況下，對 Azure 虛擬機器擴展集推出 OS 更新。在此背景環境下，OS 更新包括變更 OS 的版本或 SKU，或是變更自訂映像的 URI。在不需停機的情況下進行更新意謂著一次更新一部虛擬機器，或依群組 (例如一次一個容錯網域) 更新虛擬機器，而不是全部一起更新。透過這種方式，任何非升級中的虛擬機器都可繼續執行。
+# <a name="upgrade-a-virtual-machine-scale-set"></a>升級虛擬機器擴展集
+
+本文說明如何在不需停機的情況下，對 Azure 虛擬機器擴展集推出 OS 更新。 在此背景環境下，OS 更新包括變更 OS 的版本或 SKU，或是變更自訂映像的 URI。 在不需停機的情況下進行更新意謂著一次更新一部虛擬機器，或依群組 (例如一次一個容錯網域) 更新虛擬機器，而不是全部一起更新。 透過這種方式，任何非升級中的虛擬機器都可繼續執行。
 
 為了避免混淆不清，讓我們區分您可能會想要執行的三種 OS 更新：
 
-- 變更平台映像的版本或 SKU。例如，將 Ubuntu 14.04.2-LTS 版本從 14.04.201506100 變更為 14.04.201507060，或將 Ubuntu 15.10/最新 SKU 變更為 16.04.0-LTS/最新 SKU。本文涵蓋此案例。
+- 變更平台映像的版本或 SKU。 例如，將 Ubuntu 14.04.2-LTS 版本從 14.04.201506100 變更為 14.04.201507060，或將 Ubuntu 15.10/最新 SKU 變更為 16.04.0-LTS/最新 SKU。 本文涵蓋此案例。
 
-- 變更指向您所建立的新版本自訂映像的 URI (**properties** > **virtualMachineProfile** > **storageProfile** > **osDisk** > **image** > **uri**)。本文涵蓋此案例。
+- 變更指向您所建立的新版本自訂映像的 URI (**properties** > **virtualMachineProfile** > **storageProfile** > **osDisk** > **image** > **uri**)。 本文涵蓋此案例。
 
-- 從虛擬機器內修補 OS (範例包括安裝安全性修補程式並執行 Windows Update)。支援此案例，但本文並未涵蓋此案例。
+- 從虛擬機器內修補 OS (範例包括安裝安全性修補程式並執行 Windows Update)。 支援此案例，但本文並未涵蓋此案例。
 
-前兩個選項為本文所涵蓋的支援需求。您必須建立新擴展集以執行第三個選項。
+前兩個選項為本文所涵蓋的支援需求。 您必須建立新擴展集以執行第三個選項。
 
 這裡未涵蓋隨 [Azure Service Fabric](https://azure.microsoft.com/services/service-fabric/) 一起部署的虛擬機器擴展集。
 
@@ -42,14 +43,14 @@
 
 3. 更新模型。
 
-4. 對擴展集中的虛擬機器進行 *manualUpgrade* 呼叫。只有當您擴展集中的 [upgradePolicy] 設定為 [手動] 時，此步驟才相關。如果它是設定為 [自動]，則會同時升級所有虛擬機器，因而造成停機。
+4. 對擴展集中的虛擬機器進行 *manualUpgrade* 呼叫。 只有當您擴展集中的 *upgradePolicy* 設定為 [手動] 時，此步驟才相關。 如果它是設定為 [自動] ，則會同時升級所有虛擬機器，因而造成停機。
 
 
-將此背景資訊謹記在心，讓我們看看如何在 PowerShell 中使用 REST API 來更新擴展集的版本。這些範例涵蓋平台映像的案例，但本文所提供的資訊已足以讓您將此程序應用在自訂映像上。
+將此背景資訊謹記在心，讓我們看看如何在 PowerShell 中使用 REST API 來更新擴展集的版本。 這些範例涵蓋平台映像的案例，但本文所提供的資訊已足以讓您將此程序應用在自訂映像上。
 
-## PowerShell##
+## <a name="powershell##"></a>PowerShell##
 
-此範例會將 Windows 虛擬機器擴展集更新成新版本 4.0.20160229。更新完模型之後，它會一次更新一個虛擬機器執行個體。
+此範例會將 Windows 虛擬機器擴展集更新成新版本 4.0.20160229。 更新完模型之後，它會一次更新一個虛擬機器執行個體。
 
 ```powershell
 $rgname = "myrg"
@@ -78,23 +79,23 @@ $vmss.virtualMachineProfile.storageProfile.osDisk.image.uri= $newURI
 ```
 
 
-## REST API
+## <a name="the-rest-api"></a>REST API
 
-以下是幾個使用 Azure REST API 來推出 OS 版本更新的 Python 範例。兩者都使用 Azure REST API 包裝函式的輕量型 [azurerm](https://pypi.python.org/pypi/azurerm) 程式庫對擴展集模型執行 GET，然後搭配更新的模型執行 PUT。它們也會查看虛擬機器執行個體檢視，以依據更新網域識別虛擬機器。
+以下是幾個使用 Azure REST API 來推出 OS 版本更新的 Python 範例。 兩者都使用 Azure REST API 包裝函式的輕量型 [azurerm](https://pypi.python.org/pypi/azurerm) 程式庫對擴展集模型執行 GET，然後搭配更新的模型執行 PUT。 它們也會查看虛擬機器執行個體檢視，以依據更新網域識別虛擬機器。
 
-### Vmssupgrade
+### <a name="vmssupgrade"></a>Vmssupgrade
 
  [Vmssupgrade](https://github.com/gbowerman/vmsstools) 是一個 Python 指令碼，能夠用來一次以一個更新網域為範圍，對執行中的虛擬機器擴展集推出 OS 升級。
 
 ![選擇虛擬機器或更新網域的 vmssupgrade 指令碼](./media/virtual-machine-scale-sets-upgrade-scale-set/vmssupgrade-screenshot.png)
 
-此指令碼能讓您選擇要更新的特定虛擬機器，或是指定更新網域。它支援變更平台映像版本，或變更自訂映像的 URI。
+此指令碼能讓您選擇要更新的特定虛擬機器，或是指定更新網域。 它支援變更平台映像版本，或變更自訂映像的 URI。
 
-### Vmsseditor
+### <a name="vmsseditor"></a>Vmsseditor
 
-[Vmsseditor](https://github.com/gbowerman/vmssdashboard) 是虛擬機器擴展集的一般用途編輯器，能夠以熱力圖的形式顯示虛擬機器狀態，其中一個資料列代表一個更新網域。除此之外，您還可以使用新的版本、SKU 或自訂映像 URI 來更新擴展集的模型，然後選擇要升級的容錯網域。當您這麼做時，該更新網域中的所有虛擬機器都會升級成新模型。或者，您也可以根據所選的批次大小執行輪流升級。
+[Vmsseditor](https://github.com/gbowerman/vmssdashboard) 是虛擬機器擴展集的一般用途編輯器，能夠以熱力圖的形式顯示虛擬機器狀態，其中一個資料列代表一個更新網域。 除此之外，您還可以使用新的版本、SKU 或自訂映像 URI 來更新擴展集的模型，然後選擇要升級的容錯網域。 當您這麼做時，該更新網域中的所有虛擬機器都會升級成新模型。 或者，您也可以根據所選的批次大小執行輪流升級。  
 
-下列螢幕擷取畫面顯示 Ubuntu 14.04-2LTS 版本 14.04.201507060 的擴展集模型。自從拍攝此螢幕擷取畫面之後，有許多其他選項已經新增到此工具中。
+下列螢幕擷取畫面顯示 Ubuntu 14.04-2LTS 版本 14.04.201507060 的擴展集模型。 自從拍攝此螢幕擷取畫面之後，有許多其他選項已經新增到此工具中。
 
 ![Ubuntu 14.04-2LTS 的擴展集 vmsseditor 模型](./media/virtual-machine-scale-sets-upgrade-scale-set/vmssEditor1.png)
 
@@ -102,4 +103,8 @@ $vmss.virtualMachineProfile.storageProfile.osDisk.image.uri= $newURI
 
 ![顯示更新進行中的 vmsseditor](./media/virtual-machine-scale-sets-upgrade-scale-set/vmssEditor2.png)
 
-<!---HONumber=AcomDC_0928_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,103 +1,108 @@
 <properties
-	pageTitle="適用於 SQL Server VM 的 SQL Server 代理程式擴充功能 (Resource Manager) | Microsoft Azure"
-	description="本主題說明如何管理 SQL Server 代理程式擴充功能，其可將特定的 SQL Server 管理工作自動化。其中包括自動備份、自動修補和 Azure 金鑰保存庫整合。這個主題會使用 Resource Manager 部署模型。"
-	services="virtual-machines-windows"
-	documentationCenter=""
-	authors="rothja"
-	manager="jhubbard"
-	editor=""
-	tags="azure-resource-manager"/>
+    pageTitle="SQL Server Agent Extension for SQL Server VMs (Resource Manager) | Microsoft Azure"
+    description="This topic describes how to manage the SQL Server agent extension, which automates specific SQL Server administration tasks. These include Automated Backup, Automated Patching, and Azure Key Vault Integration. This topic uses the Resource Manager deployment mode."
+    services="virtual-machines-windows"
+    documentationCenter=""
+    authors="rothja"
+    manager="jhubbard"
+    editor=""
+    tags="azure-resource-manager"/>
 
 <tags
-	ms.service="virtual-machines-windows"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.tgt_pltfrm="vm-windows-sql-server"
-	ms.workload="infrastructure-services"
-	ms.date="07/14/2016"
-	ms.author="jroth"/>
+    ms.service="virtual-machines-windows"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="vm-windows-sql-server"
+    ms.workload="infrastructure-services"
+    ms.date="10/27/2016"
+    ms.author="jroth"/>
 
-# 適用於 SQL Server VM 的 SQL Server 代理程式擴充功能 (Resource Manager)
+
+# <a name="sql-server-agent-extension-for-sql-server-vms-(resource-manager)"></a>SQL Server Agent Extension for SQL Server VMs (Resource Manager)
 
 > [AZURE.SELECTOR]
-- [資源管理員](virtual-machines-windows-sql-server-agent-extension.md)
-- [傳統](virtual-machines-windows-classic-sql-server-agent-extension.md)
+- [Resource Manager](virtual-machines-windows-sql-server-agent-extension.md)
+- [Classic](virtual-machines-windows-classic-sql-server-agent-extension.md)
 
-SQL Server IaaS 代理程式擴充功能 (SQLIaaSExtension) 會在 Azure 虛擬機器上執行，以將管理工作自動化。本主題概述擴充功能支援的服務以及安裝、狀態及移除相關指示。
+The SQL Server IaaS Agent Extension (SQLIaaSExtension) runs on Azure virtual machines to automate administration tasks. This topic provides an overview of the services supported by the extension as well as instructions for installation, status, and removal.
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)] 傳統部署模型。如需檢視這篇文章的精簡版本，請參閱 [SQL Server IaaS 代理程式擴充功能 傳統](virtual-machines-windows-classic-sql-server-agent-extension.md)。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)] classic deployment model. To view the classic version of this article, see [SQL Server Agent Extension for SQL Server VMs Classic](virtual-machines-windows-classic-sql-server-agent-extension.md).
 
-## 支援的服務
+## <a name="supported-services"></a>Supported services
 
-SQL Server IaaS 代理程式擴充功能支援下列管理工作︰
+The SQL Server IaaS Agent Extension supports the following administration tasks:
 
-| 系統管理功能 | 說明 |
+| Administration feature | Description |
 |---------------------|-------------------------------|
-| **SQL 自動備份** | 針對 VM 中 SQL Server 的預設執行個體，將所有資料庫的備份排程自動化。如需詳細資訊，請參閱 [Azure 虛擬機器中的 SQL Server 自動備份 (Resource Manager)](virtual-machines-windows-sql-automated-backup.md)。|
-| **SQL 自動修補** | 設定維護期間 (在此期間會進行 VM 的更新)，以避免在工作負載尖峰時段進行更新。如需詳細資訊，請參閱 [Azure 虛擬機器中的 SQL Server 自動修補 (Resource Manager)](virtual-machines-windows-sql-automated-patching.md)。|
-| **Azure 金鑰保存庫整合** | 讓您在 SQL Server VM 上自動安裝和設定 Azure 金鑰保存庫。如需詳細資訊，請參閱[在 Azure VM (Resource Manager) 上設定 SQL Server 的 Azure 金鑰保存庫整合](virtual-machines-windows-ps-sql-keyvault.md)。|
+| **SQL Automated Backup** | Automates the scheduling of backups for all databases for the default instance of SQL Server in the VM. For more information, see [Automated backup for SQL Server in Azure Virtual Machines (Resource Manager)](virtual-machines-windows-sql-automated-backup.md).|
+| **SQL Automated Patching** | Configures a maintenance window during which updates to your VM can take place, so  you can avoid updates during peak times for your workload. For more information, see [Automated patching for SQL Server in Azure Virtual Machines (Resource Manager)](virtual-machines-windows-sql-automated-patching.md).|
+| **Azure Key Vault Integration** | Enables you to automatically install and configure Azure Key Vault on your SQL Server VM. For more information, see [Configure Azure Key Vault Integration for SQL Server on Azure VMs (Resource Manager)](virtual-machines-windows-ps-sql-keyvault.md).|
 
-## 必要條件
+## <a name="prerequisites"></a>Prerequisites
 
-在 VM 上使用 SQL Server IaaS 代理程式擴充功能的需求：
+Requirements to use the SQL Server IaaS Agent Extension on your VM:
 
-**作業系統**：
+**Operating System**:
 
 - Windows Server 2012
 - Windows Server 2012 R2
 
-**SQL Server 版本**：
+**SQL Server versions**:
 
 - SQL Server 2012
 - SQL Server 2014
 - SQL Server 2016
 
-**Azure PowerShell**：
+**Azure PowerShell**:
 
-- [下載及設定最新的 Azure PowerShell 命令](../powershell-install-configure.md)
+- [Download and configure the latest Azure PowerShell commands](../powershell-install-configure.md)
 
-## 安裝
+## <a name="installation"></a>Installation
 
-當您佈建其中一個 SQL Server 虛擬機器資源庫映像時，系統會自動安裝 SQL Server IaaS 代理程式擴充功能。
+The SQL Server IaaS Agent Extension is automatically installed when you provision one of the SQL Server virtual machine gallery images.
 
-如果您建立 OS 專用的 Windows Server 虛擬機器，您可以使用 **Set-AzureVMSqlServerExtension** PowerShell Cmdlet 手動安裝擴充。例如，下列命令會在 OS 專用的 Windows Server VM 上安裝擴充功能，並將它命名為 "SQLIaaSExtension"。
+If you create an OS-only Windows Server virtual machine, you can install the extension manually by using the **Set-AzureVMSqlServerExtension** PowerShell cmdlet. For example, the following command installs the extension on an OS-only Windows Server VM and names it "SQLIaaSExtension".
 
-	Set-AzureRmVMSqlServerExtension -ResourceGroupName "resourcegroupname" -VMName "vmname" -Name "SQLIaasExtension" -Version "1.2"
+    Set-AzureRmVMSqlServerExtension -ResourceGroupName "resourcegroupname" -VMName "vmname" -Name "SQLIaasExtension" -Version "1.2"
 
-如果更新到最新版的 SQL IaaS 代理程式擴充，您必須在更新擴充之後重新啟動虛擬機器。
+If you update to the latest version of the SQL IaaS Agent Extension, you must restart your virtual machine after updating the extension.
 
->[AZURE.NOTE] 如果您手動在 Windows Server VM 上安裝 SQL Server IaaS Agent 擴充功能，您就必須使用 PowerShell 命令，才能使用和管理其功能。入口網站介面僅適用於 SQL Server 資源庫映像。
+>[AZURE.NOTE] If you install the SQL Server IaaS Agent Extension manually on a Windows Server VM, you must use and manage its features using PowerShell commands. The portal interface is available only for SQL Server gallery images.
 
-## 狀態
+## <a name="status"></a>Status
 
-驗證已安裝擴充功能的其中一項方法，是在 Azure 入口網站中檢視代理程式狀態。選取虛擬機器刀鋒視窗中的 [所有設定]，然後按一下 [擴充功能]。您應該會看到列出 **SQLIaaSExtension** 擴充功能。
+One way to verify that the extension is installed is to view the agent status in the Azure Portal. Select **All settings** in the virtual machine blade, and then click on **Extensions**. You should see the **SQLIaaSExtension** extension listed.
 
-![Azure 入口網站中的 SQL Server IaaS 代理程式擴充功能](./media/virtual-machines-windows-sql-server-agent-extension/azure-rm-sql-server-iaas-agent-portal.png)
+![SQL Server IaaS Agent Extension in Azure Portal](./media/virtual-machines-windows-sql-server-agent-extension/azure-rm-sql-server-iaas-agent-portal.png)
 
-您也可以使用 **Get-AzureVMSqlServerExtension** Azure Powershell Cmdlet。
+You can also use the **Get-AzureVMSqlServerExtension** Azure Powershell cmdlet.
 
-	Get-AzureRmVMSqlServerExtension -VMName "vmname" -ResourceGroupName "resourcegroupname"
+    Get-AzureRmVMSqlServerExtension -VMName "vmname" -ResourceGroupName "resourcegroupname"
 
-前一個命令會確認已安裝代理程式，並提供一般狀態資訊。您也可以使用下列命令取得有關自動備份和修補的特定狀態資訊。
+The previous command confirms the agent is installed and provides general status information. You can also get specific status information about Automated Backup and Patching with the following commands.
 
-	$sqlext = Get-AzureRmVMSqlServerExtension -VMName "vmname" -ResourceGroupName "resourcegroupname"
-	$sqlext.AutoPatchingSettings
-	$sqlext.AutoBackupSettings
+    $sqlext = Get-AzureRmVMSqlServerExtension -VMName "vmname" -ResourceGroupName "resourcegroupname"
+    $sqlext.AutoPatchingSettings
+    $sqlext.AutoBackupSettings
 
-## 移除   
+## <a name="removal"></a>Removal   
 
-在「Azure 入口網站」中，您可以按一下虛擬機器屬性 [擴充功能] 刀鋒視窗上的省略符號，來將擴充功能解除安裝。然後按一下 [刪除]。
+In the Azure Portal, you can uninstall the extension by clicking the ellipsis on the **Extensions** blade of your virtual machine properties. Then click **Delete**.
 
-![將 Azure 入口網站中的 SQL Server IaaS 代理程式擴充功能解除安裝](./media/virtual-machines-windows-sql-server-agent-extension/azure-rm-sql-server-iaas-agent-uninstall.png)
+![Uninstall the SQL Server IaaS Agent Extension in Azure Portal](./media/virtual-machines-windows-sql-server-agent-extension/azure-rm-sql-server-iaas-agent-uninstall.png)
 
-您也可以使用 **Remove-AzureRmVMSqlServerExtension** Powershell Cmdlet。
+You can also use the **Remove-AzureRmVMSqlServerExtension** Powershell cmdlet.
 
-	Remove-AzureRmVMSqlServerExtension -ResourceGroupName "resourcegroupname" -VMName "vmname" -Name "SQLIaasExtension"
+    Remove-AzureRmVMSqlServerExtension -ResourceGroupName "resourcegroupname" -VMName "vmname" -Name "SQLIaasExtension"
 
-## 後續步驟
+## <a name="next-steps"></a>Next Steps
 
-開始使用擴充功能所支援的其中一項服務。如需詳細資訊，請參閱本文[支援的服務](#supported-services)一節中參考的主題。
+Begin using one of the services supported by the extension. For more details, see the topics referenced in the [Supported services](#supported-services) section of this article.
 
-如需在 Azure 虛擬機器上執行 SQL Server 的詳細資訊，請參閱 [Azure 虛擬機器上的 SQL Server 概觀](virtual-machines-windows-sql-server-iaas-overview.md)。
+For more information about running SQL Server on Azure Virtual Machines, see [SQL Server on Azure Virtual Machines overview](virtual-machines-windows-sql-server-iaas-overview.md).
 
-<!-----HONumber=AcomDC_0720_2016--->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

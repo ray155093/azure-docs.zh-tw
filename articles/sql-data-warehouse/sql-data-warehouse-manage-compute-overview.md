@@ -1,10 +1,10 @@
 <properties
-   pageTitle="管理 Azure SQL 資料倉儲中的計算能力 (概觀) | Microsoft Azure"
-   description="Azure SQL 資料倉儲中的效能相應放大功能。藉由調整 DWU 以相應放大或暫停和繼續計算資源來節省成本。"
+   pageTitle="Manage compute power in Azure SQL Data Warehouse (Overview) | Microsoft Azure"
+   description="Performance scale out capabilities in Azure SQL Data Warehouse. Scale out by adjusting DWUs or pause and resume compute resources to save costs."
    services="sql-data-warehouse"
    documentationCenter="NA"
    authors="barbkess"
-   manager="barbkess"
+   manager="jhubbard"
    editor=""/>
 
 <tags
@@ -13,138 +13,139 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="09/03/2016"
-   ms.author="barbkess;sonyama"/>
+   ms.date="10/31/2016"
+   ms.author="barbkess"/>
 
-# 管理 Azure SQL 資料倉儲中的計算能力 (概觀)
+
+# <a name="manage-compute-power-in-azure-sql-data-warehouse-overview"></a>Manage compute power in Azure SQL Data Warehouse (Overview)
 
 > [AZURE.SELECTOR]
-- [概觀](sql-data-warehouse-manage-compute-overview.md)
-- [入口網站](sql-data-warehouse-manage-compute-portal.md)
+- [Overview](sql-data-warehouse-manage-compute-overview.md)
+- [Portal](sql-data-warehouse-manage-compute-portal.md)
 - [PowerShell](sql-data-warehouse-manage-compute-powershell.md)
 - [REST](sql-data-warehouse-manage-compute-rest-api.md)
 - [TSQL](sql-data-warehouse-manage-compute-tsql.md)
 
-SQL 資料倉儲的架構分隔儲存體和計算功能，可單獨進行調整。如此一來，您可以相應放大效能，同時只有在需要時支付效能以便節省成本。
+The architecture of SQL Data Warehouse separates storage and compute, allowing each to scale independently. As a result, you can scale out performance while saving costs by only paying for performance when you need it. 
 
-本概觀說明 SQL 資料倉儲的下列效能相應放大功能，並提供如何及何時使用它們的建議。
+This overview describes the following performance scale-out capabilities of SQL Data Warehouse and gives recommendations on how and when to use them. 
 
-- 藉由調整[資料倉儲單位 (DWU)][] 來調整計算能力
-- 暫停或繼續計算資源
+- Scale compute power by adjusting [data warehouse units (DWUs)][]
+- Pause or resume compute resources
 
 <a name="scale-performance-bk"></a>
 
-## 調整效能
+## <a name="scale-performance"></a>Scale performance
 
-在 SQL 資料倉儲中，您可以快速地將效能相應放大或調整回來，方法是增加或減少 CPU、記憶體和 I/O 頻寬的計算資源。若要調整效能，您只需要調整 SQL 資料倉儲配置給您的資料庫的[資料倉儲單位 (DWU)][] 數目。SQL 資料倉儲會快速進行變更，並處理硬體或軟體的所有基礎變更。
+In SQL Data Warehouse, you can quickly scale performance out or back by increasing or decreasing compute resources of CPU, memory, and I/O bandwidth. To scale performance, all you need to do is adjust the number of [data warehouse units (DWUs)][] that SQL Data Warehouse allocates to your database. SQL Data Warehouse quickly makes the change and handles all the underlying changes to hardware or software.
 
-您再也不需要為了獲得優異的資料倉儲效能，而研究處理器類型、需要的記憶體容量或儲存空間類型。將您的資料倉儲放在雲端，就不再需要處理低階的硬體問題。相反地，SQL 資料倉儲要問您：您想要多快的資料分析速度？
+Gone are the days where you need to research what type of processors, how much memory or what type of storage you need to have great performance in your data warehouse. By putting your Data Warehouse in the cloud, you no longer have to deal with low-level hardware issues. Instead, SQL Data Warehouse asks you this question: how fast do you want to analyze your data? 
 
-### 如何調整效能？
+### <a name="how-do-i-scale-performance"></a>How do I scale performance?
 
-若要彈性增加或減少計算能力，只要變更您的資料庫的[資料倉儲單位 (DWU)][]。隨著您新增更多 DWU，效能將呈線性比例上升。在更高的 DWU 層級，您需要加入超過 100 個 DWU，才能注意到顯著的效能改善。為了協助您在 DWU 中選取有意義的跳躍點，我們提供的 DWU 層級可提供最佳的結果。
+To elastically increase or decrease your compute power, simply change the [data warehouse units (DWUs)][] setting for your database. Performance will increase linearly as you add more DWU.  At higher DWU levels, you need to add more than 100 DWUs to notice a significant improvement in performance. To help you select meaningful jumps in DWUs, we offer the DWU levels that will give the best results.
  
-若要調整 DWU，您可以使用任何一種個別的方法。
+To adjust DWUs, you can use any of these individual methods.
 
-- [使用 Azure 入口網站調整計算能力][]
-- [使用 PowerShell 調整計算能力][]
-- [使用 REST API 調整計算能力][]
-- [使用 TSQL 調整計算能力][]
+- [Scale compute power with Azure portal][]
+- [Scale compute power with PowerShell][]
+- [Scale compute power with REST APIs][]
+- [Scale compute power with TSQL][]
 
-### 應該使用多少 DWU 呢？
+### <a name="how-many-dwus-should-i-use"></a>How many DWUs should I use?
  
-SQL 資料倉儲的效能是以線性方式調整，在幾秒內就能從某個計算比例變更為另一個 (例如從 100 個 DWU 至 2000 個 DWU)。這可讓您彈性地試驗不同的 DWU 設定，直到您決定最適合您的案例的設定。
+Performance in SQL Data Warehouse scales linearly, and changing from one compute scale to another (say from 100 DWUs to 2000 DWUs) happens in seconds. This gives you the flexibility to experiment with different DWU settings until you determine your scenario's best fit.
 
-為了要了解您理想的 DWU 值，嘗試在載入您的資料之後相應增加和相應減少並執行幾個查詢。由於調整很快速，您可以在一小時內嘗試一些不同層級的效能。請記住，SQL 資料倉儲是設計用來處理大量資料，以及查看其真正的調整功能 (尤其是我們所提供的較大規模)，所以您會想要使用接近或超過 1 TB 的大型資料集。
+To understand what your ideal DWU value is, try scaling up and down, and running a few queries after loading your data. Since scaling is quick, you can try a number of different levels of performance in an hour or less. Do keep in mind, that SQL Data Warehouse is designed to process large amounts of data and to see its true capabilities for scaling, especially at the larger scales we offer, you'll want to use a large data set which approaches or exceeds 1 TB.
 
-尋找您的工作負載的最佳 DWU 的建議事項︰
+Recommendations for finding the best DWU for your workload:
 
-1. 若是開發過程中的資料倉儲，可從少量的 DWU 開始。DW400 或 DW200 是不錯的起點。
-2. 監視應用程式效能，觀察比較所選 DWU 數目與您觀察到的效能。
-3. 透過假設線性標尺，判斷需要將效能加快或減慢多少才能達到您需求的最佳效能等級。
-4. 增加或減少 DWU 數目與您想要讓您的工作負載更快或更慢執行成正比。服務會迅速回應並調整計算資源，以符合新的 DWU 需求。
-5. 繼續進行調整，直到達到您業務需求的最佳效能為止。
+1. For a data warehouse in development, begin by selecting a small number of DWUs.  A good starting point is DW400 or DW200.
+2. Monitor your application performance, observing the number of DWUs selected compared to the performance you observe.
+3. Determine how much faster or slower performance should be for you to reach the optimum performance level for your requirements by assuming linear scale.
+4. Increase or decrease the number of DWUs in proportion to how much faster or slower you want your workload to perform. The service will respond quickly and adjust the compute resources to meet the new DWU requirements.
+5. Continue making adjustments until you reach an optimum performance level for your business requirements.
 
-### 何時調整 DWU？
+### <a name="when-should-i-scale-dwus"></a>When should I scale DWUs?
 
-當您需要更快的結果時，提升您的 DWU 並且為較高的效能支付款項。當您需要較小的計算能力時，減少您的 DWU 並且僅針對您需要的項目支付款項。
+When you need faster results, increase your DWUs and pay for greater performance.  When you need less compute power, decrease your DWUs and pay only for what you need. 
 
-DWU 調整時機的建議︰
+Recommendations for when to scale DWUs:
 
-1. 如果應用程式的工作負載持續變動，請將 DWU 等級上移或下移，以配合尖峰和離峰點。例如，如果工作負載尖峰通常落在月底，可規劃在尖峰天數期間新增更多 DWU，然後在尖峰期間結束之後相應減少。
-2. 執行大量資料載入或轉換作業之前，相應增加 DWU 以使您的資料更快速可供使用。
+1. If your application has a fluctuating workload, scale DWU levels up or down to accommodate peaks and low points. For example, if your workload typically peaks at the end of the month, plan to add more DWUs during those peak days, then scale down once the peak period is over.
+2. Before you perform a heavy data loading or transformation operation, scale up DWUs so that your data is available more quickly.
 
 <a name="pause-compute-bk"></a>
 
-## 暫停計算
+## <a name="pause-compute"></a>Pause compute
 
-[AZURE.INCLUDE [SQL 資料倉儲暫停描述](../../includes/sql-data-warehouse-pause-description.md)]
+[AZURE.INCLUDE [SQL Data Warehouse pause description](../../includes/sql-data-warehouse-pause-description.md)]
 
-若要暫停資料庫，您可以使用任何一種個別的方法。
+To pause a database, use any of these individual methods.
 
-- [使用 Azure 入口網站暫停計算][]
-- [使用 PowerShell 暫停計算][]
-- [使用 REST API 暫停計算][]
+- [Pause compute with Azure portal][]
+- [Pause compute with PowerShell][]
+- [Pause compute with REST APIs][]
 
 <a name="resume-compute-bk"></a>
 
-## 繼續計算
+## <a name="resume-compute"></a>Resume compute
 
-[AZURE.INCLUDE [SQL 資料倉儲繼續描述](../../includes/sql-data-warehouse-resume-description.md)]
+[AZURE.INCLUDE [SQL Data Warehouse resume description](../../includes/sql-data-warehouse-resume-description.md)]
 
-若要繼續資料庫，您可以使用任何一種個別的方法。
+To resume a database, use any of these individual methods.
 
-- [使用 Azure 入口網站繼續計算][]
-- [使用 PowerShell 繼續計算][]
-- [使用 REST API 繼續計算][]
+- [Resume compute with Azure portal][]
+- [Resume compute with PowerShell][]
+- [Resume compute with REST APIs][]
 
-## 權限
+## <a name="permissions"></a>Permissions
 
-調整資料庫需要 [ALTER DATABASE][] 所述的權限。暫停和繼續需要 [SQL DB 參與者][]權限，特別是 Microsoft.Sql/servers/databases/action。
+Scaling the database will require the permissions described in [ALTER DATABASE][].  Pause and Resume will require the [SQL DB Contributor][] permission, specifically Microsoft.Sql/servers/databases/action.
 
 <a name="next-steps-bk"></a>
 
-## 後續步驟
-請參閱下列文章，以瞭解其他一些關鍵效能概念：
+## <a name="next-steps"></a>Next steps
+Please refer to the following articles to help you understand some additional key performance concepts:
 
-- [工作負載和並行存取管理][]
-- [資料表設計概觀][]
-- [資料表散發][]
-- [索引資料表的編製][]
-- [資料表分割][]
-- [資料表統計資料][]
-- [最佳作法][]
+- [Workload and concurrency managment][]
+- [Table design overview][]
+- [Table distribution][]
+- [Table indexing][]
+- [Table partitioning][]
+- [Table statistics][]
+- [Best practices][]
 
 <!--Image reference-->
 
 <!--Article references-->
-[資料倉儲單位 (DWU)]: ./sql-data-warehouse-overview-what-is.md#data-warehouse-units
+[data warehouse units (DWUs)]: ./sql-data-warehouse-overview-what-is.md#data-warehouse-units
 
-[使用 Azure 入口網站調整計算能力]: ./sql-data-warehouse-manage-compute-portal.md#scale-compute-bk
-[使用 PowerShell 調整計算能力]: ./sql-data-warehouse-manage-compute-powershell.md#scale-compute-bk
-[使用 REST API 調整計算能力]: ./sql-data-warehouse-manage-compute-rest-api.md#scale-compute-bk
-[使用 TSQL 調整計算能力]: ./sql-data-warehouse-manage-compute-tsql.md#scale-compute-bk
+[Scale compute power with Azure portal]: ./sql-data-warehouse-manage-compute-portal.md#scale-compute-bk
+[Scale compute power with PowerShell]: ./sql-data-warehouse-manage-compute-powershell.md#scale-compute-bk
+[Scale compute power with REST APIs]: ./sql-data-warehouse-manage-compute-rest-api.md#scale-compute-bk
+[Scale compute power with TSQL]: ./sql-data-warehouse-manage-compute-tsql.md#scale-compute-bk
 
 [capacity limits]: ./sql-data-warehouse-service-capacity-limits.md
 
-[使用 Azure 入口網站暫停計算]: ./sql-data-warehouse-manage-compute-portal.md#pause-compute-bk
-[使用 PowerShell 暫停計算]: ./sql-data-warehouse-manage-compute-powershell.md#pause-compute-bk
-[使用 REST API 暫停計算]: ./sql-data-warehouse-manage-compute-rest-api.md#pause-compute-bk
+[Pause compute with Azure portal]:  ./sql-data-warehouse-manage-compute-portal.md#pause-compute-bk
+[Pause compute with PowerShell]: ./sql-data-warehouse-manage-compute-powershell.md#pause-compute-bk
+[Pause compute with REST APIs]: ./sql-data-warehouse-manage-compute-rest-api.md#pause-compute-bk
 
-[使用 Azure 入口網站繼續計算]: ./sql-data-warehouse-manage-compute-portal.md#resume-compute-bk
-[使用 PowerShell 繼續計算]: ./sql-data-warehouse-manage-compute-powershell.md#resume-compute-bk
-[使用 REST API 繼續計算]: ./sql-data-warehouse-manage-compute-rest-api.md#resume-compute-bk
+[Resume compute with Azure portal]:  ./sql-data-warehouse-manage-compute-portal.md#resume-compute-bk
+[Resume compute with PowerShell]: ./sql-data-warehouse-manage-compute-powershell.md#resume-compute-bk
+[Resume compute with REST APIs]: ./sql-data-warehouse-manage-compute-rest-api.md#resume-compute-bk
 
-[工作負載和並行存取管理]: ./sql-data-warehouse-develop-concurrency.md
-[資料表設計概觀]: ./sql-data-warehouse-tables-overview.md
-[資料表散發]: ./sql-data-warehouse-tables-distribute.md
-[索引資料表的編製]: ./sql-data-warehouse-tables-index.md
-[資料表分割]: ./sql-data-warehouse-tables-partition.md
-[資料表統計資料]: ./sql-data-warehouse-tables-statistics.md
-[最佳作法]: ./sql-data-warehouse-best-practices.md
+[Workload and concurrency managment]: ./sql-data-warehouse-develop-concurrency.md
+[Table design overview]: ./sql-data-warehouse-tables-overview.md
+[Table distribution]: ./sql-data-warehouse-tables-distribute.md
+[Table indexing]: ./sql-data-warehouse-tables-index.md
+[Table partitioning]: ./sql-data-warehouse-tables-partition.md
+[Table statistics]: ./sql-data-warehouse-tables-statistics.md
+[Best practices]: ./sql-data-warehouse-best-practices.md 
 [development overview]: ./sql-data-warehouse-overview-develop.md
 
-[SQL DB 參與者]: ../active-directory/role-based-access-built-in-roles.md#sql-db-contributor
+[SQL DB Contributor]: ../active-directory/role-based-access-built-in-roles.md#sql-db-contributor
 
 <!--MSDN references-->
 [ALTER DATABASE]: https://msdn.microsoft.com/library/mt204042.aspx
@@ -152,4 +153,8 @@ DWU 調整時機的建議︰
 <!--Other Web references-->
 [Azure portal]: http://portal.azure.com/
 
-<!----HONumber=AcomDC_0907_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

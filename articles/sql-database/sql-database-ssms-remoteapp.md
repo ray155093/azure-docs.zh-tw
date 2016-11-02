@@ -1,152 +1,153 @@
 <properties
-	pageTitle="在 Azure RemoteApp 中使用 SQL Server Management Studio 連接到 SQL Database | Microsoft Azure"
-	description="使用本教學課程來了解如何在連線到 SQL Database 時，在 Azure RemoteApp 中使用 SQL Server Management Studio 以維護安全性和效能"
-	services="sql-database"
-	documentationCenter=""
-	authors="adhurwit"
-	manager=""/>
+    pageTitle="Connect to SQL Database using SQL Server Management Studio in Azure RemoteApp | Microsoft Azure"
+    description="Use this tutorial to learn how to use SQL Server Management Studio in Azure RemoteApp for security and performance when connecting to SQL Database"
+    services="sql-database"
+    documentationCenter=""
+    authors="adhurwit"
+    manager="jhubbard"/>
 
 <tags
-	ms.service="sql-database"
-	ms.workload="data"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="07/05/2016"
-	ms.author="adhurwit"/>
+    ms.service="sql-database"
+    ms.workload="data"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="07/05/2016"
+    ms.author="adhurwit"/>
 
-# 在 Azure RemoteApp 中使用 SQL Server Management Studio 來連接到 SQL Database
 
-## 簡介  
-本教學課程會示範如何在 Azure RemoteApp 中使用 SQL Server Management Studio (SSMS) 連接到 SQL Database。它將逐步說明在 Azure RemoteApp 中設定 SQL Server Management Studio 的程序、說明優點，並示範您可以在 Azure Active Directory 中使用的安全性功能。
+# <a name="use-sql-server-management-studio-in-azure-remoteapp-to-connect-to-sql-database"></a>Use SQL Server Management Studio in Azure RemoteApp to connect to SQL Database
 
-**預估完成時間：**45 分鐘
+## <a name="introduction"></a>Introduction  
+This tutorial shows you how to use SQL Server Management Studio (SSMS) in Azure RemoteApp to connect to SQL Database. It walks you through the process of setting up SQL Server Management Studio in Azure RemoteApp, explains the benefits, and shows security features that you can use in Azure Active Directory.
 
-## Azure RemoteApp 中的 SSMS
+**Estimated time to complete:** 45 minutes
 
-Azure RemoteApp 是在 Azure 中的一項 RDS 服務，可提供應用程式。您可以在此處深入了解：[什麼是 RemoteApp？](../remoteapp/remoteapp-whatis.md)
+## <a name="ssms-in-azure-remoteapp"></a>SSMS in Azure RemoteApp
 
-在 Azure RemoteApp 中執行的 SSMS 可提供您與在本機執行 SSMS 相同的體驗。
+Azure RemoteApp is an RDS service in Azure that delivers applications. You can learn more about it here: [What is RemoteApp?](../remoteapp/remoteapp-whatis.md)
 
-![螢幕擷取畫面顯示正在 Azure RemoteApp 中執行的 SSMS][1]
+SSMS running in Azure RemoteApp gives you the same experience as running SSMS locally.
 
+![Screenshot showing SSMS running in Azure RemoteApp][1]
 
 
-## 優點
 
-在 Azure RemoteApp 中使用 SSMS 有許多好處，包括：
+## <a name="benefits"></a>Benefits
 
-- Azure SQL Server 上的連接埠 1433 不需要對外 (Azure 之外) 公開 。
-- 不需要在 Azure SQL Server 防火牆中不斷新增和移除 IP 位址。
-- 所有 Azure RemoteApp 連線都會使用加密的遠端桌面通訊協定，透過 HTTPS 在連接埠 443 上進行
-- 這是多使用者功能，且可以調整。
-- 在與 SQL Database 相同的區域中擁有 SSMS 可增進效能。
-- 您可以利用擁有使用者活動報告的 Azure Active Directory Premium Edition 來稽核 Azure RemoteApp 的使用狀況。
-- 您可以啟用 Multi-Factor Authentication (MFA)。
-- 使用任一種支援的 Azure RemoteApp 用戶端 (包括 iOS、Android、Mac、Windows Phone，和 Windows 電腦) 時，即可隨處存取 SSMS。
+There are many benefits to using SSMS in Azure RemoteApp, including:
 
+- Port 1433 on Azure SQL Server does not have to be exposed externally (outside of Azure).
+- No need to keep adding and removing IP addresses in the Azure SQL Server firewall.
+- All Azure RemoteApp connections occur over HTTPS on port 443 using encrypted Remote Desktop protocol
+- It is multi-user and can scale.
+- There is a performance gain from having SSMS in the same region as the SQL Database.
+- You can audit use of Azure RemoteApp with the Premium edition of Azure Active Directory which has user activity reports.
+- You can enable multi-factor authentication (MFA).
+- Access SSMS anywhere when using any of the supported Azure RemoteApp clients which includes iOS, Android, Mac, Windows Phone, and Windows PC’s.
 
-## 建立 Azure RemoteApp 集合
 
-以下是使用 SSMS 建立 Azure RemoteApp 集合的步驟：
+## <a name="create-the-azure-remoteapp-collection"></a>Create the Azure RemoteApp collection
 
+Here are the steps to create your Azure RemoteApp collection with SSMS:
 
-### 1\.從映像建立新的 Windows VM
-從資源庫中使用「Windows Server 遠端桌面工作階段主機 Windows Server 2012 R2」映像來建立您的新 VM。
 
+### <a name="1.-create-a-new-windows-vm-from-image"></a>1. Create a new Windows VM from Image
+Use the "Windows Server Remote Desktop Session Host Windows Server 2012 R2" Image from the Gallery to make your new VM.
 
-### 2\.從 SQL Express 安裝 SSMS
 
-移至新的 VM 並瀏覽到此下載頁面：[Microsoft® SQL Server® 2014 Express](https://www.microsoft.com/zh-TW/download/details.aspx?id=42299)
+### <a name="2.-install-ssms-from-sql-express"></a>2. Install SSMS from SQL Express
 
-有一個僅下載 SSMS 的選項。下載之後，移至安裝目錄，並執行安裝程式以安裝 SSMS。
+Go onto the new VM and navigate to this download page: [Microsoft® SQL Server® 2014 Express](https://www.microsoft.com/en-us/download/details.aspx?id=42299)
 
-您同時需要安裝 SQL Server 2014 Service Pack 1。您可以在這裡下載：[Microsoft SQL Server 2014 Service Pack 1 (SP1)](https://www.microsoft.com/zh-TW/download/details.aspx?id=46694)
+There is an option to only download SSMS. After download, go into the install directory and run Setup to install SSMS.
 
-SQL Server 2014 Service Pack 1 包含和 Azure SQL Database 搭配使用的基本功能。
+You also need to install SQL Server 2014 Service Pack 1. You can download it here: [Microsoft SQL Server 2014 Service Pack 1 (SP1)](https://www.microsoft.com/en-us/download/details.aspx?id=46694)
 
+SQL Server 2014 Service Pack 1 includes essential functionality for working with Azure SQL Database.
 
-### 3\.執行「驗證」指令碼和 SysPrep
 
-VM 桌面上的是稱為「驗證」的 PowerShell 指令碼。按兩下以執行此指令碼。它會確認 VM 已準備好用於遠端裝載應用程式。驗證完成時，它會要求執行 Sysprep - 請選擇執行它。
+### <a name="3.-run-validate-script-and-sysprep"></a>3. Run Validate script and Sysprep
 
-Sysprep 完成時，它會關閉 VM。
+On the desktop of the VM is a PowerShell script called Validate. Run this by double-clicking. It will verify that the VM is ready to be used for remote hosting of applications. When verification is complete, it will ask to run sysprep - choose to run it.
 
-若要深入了解建立 Azure RemoteApp 映像，請參閱：[How to create a RemoteApp template image in Azure (如何在 Azure 中建立 RemoteApp 範本映像)](http://blogs.msdn.com/b/rds/archive/2015/03/17/how-to-create-a-remoteapp-template-image-in-azure.aspx)
+When sysprep completes, it will shut down the VM.
 
+To learn more about creating a Azure RemoteApp image, see: [How to create a RemoteApp template image in Azure](http://blogs.msdn.com/b/rds/archive/2015/03/17/how-to-create-a-remoteapp-template-image-in-azure.aspx)
 
-### 4\.擷取映像
 
-當 VM 已經停止執行時，請在目前的入口網站尋找並擷取它。
+### <a name="4.-capture-image"></a>4. Capture image
 
-若要深入了解擷取映像，請參閱[擷取以傳統部署模型建立之 Azure Windows 虛擬機器的映像](../virtual-machines/virtual-machines-windows-classic-capture-image.md)
+When the VM has stopped running, find it in the current portal and capture it.
 
+To learn more about capturing an image, see [Capture an image of an Azure Windows virtual machine created with the classic deployment model](../virtual-machines/virtual-machines-windows-classic-capture-image.md)
 
-### 5\.新增至 Azure RemoteApp 範本映像
 
-在目前入口網站的 [Azure RemoteApp] 區段中，移至 [範本映像] 索引標籤然後按一下 [新增]。在快顯方塊中，選取 [從您的虛擬機器映像庫匯入映像] 然後選擇您剛才建立的映像。
+### <a name="5.-add-to-azure-remoteapp-template-images"></a>5. Add to Azure RemoteApp Template images
 
+In the Azure RemoteApp section of the current portal, go to the Template Images tab and click Add. In the pop-up box, select "Import an image from your Virtual Machines library" and then choose the Image that you just created.
 
 
-### 6\.建立雲端集合
 
-在目前的入口網站中，建立新的 Azure RemoteApp 雲端集合。選擇您剛才匯入之已安裝 SSMS 的範本映像。
+### <a name="6.-create-cloud-collection"></a>6. Create cloud collection
 
-![建立新的雲端集合][2]
+In the current portal, create a new Azure RemoteApp Cloud Collection. Choose the Template Image that you just imported with SSMS installed on it.
 
+![Create new cloud collection][2]
 
-### 7\.發佈 SSMS
 
-在新雲端集合的 [發佈] 索引標籤上，從 [開始] 功能表選取 [發佈應用程式]，然後從清單中選擇 SSMS。
+### <a name="7.-publish-ssms"></a>7. Publish SSMS
 
-![發佈應用程式][5]
+On the Publishing tab of your new cloud collection, select Publish an application from the Start Menu and then choose SSMS from the list.
 
-### 8\.新增使用者
+![Publish App][5]
 
-您可以在 [使用者存取] 索引標籤上，選取將能存取這個只包含 SSMS 之 Azure RemoteApp 集合的使用者。
+### <a name="8.-add-users"></a>8. Add users
 
-![新增使用者][6]
+On the User Access tab you can select the users that will have access to this Azure RemoteApp collection which only includes SSMS.
 
+![Add User][6]
 
-### 9\.安裝 Azure RemoteApp 用戶端應用程式
 
-您可以在這裡下載並安裝 Azure RemoteApp 用戶端：[下載 | Azure RemoteApp](https://www.remoteapp.windowsazure.com/en/clients.aspx)
+### <a name="9.-install-the-azure-remoteapp-client-application"></a>9. Install the Azure RemoteApp client application
 
+You can download and install a Azure RemoteApp client here: [Download | Azure RemoteApp](https://www.remoteapp.windowsazure.com/en/clients.aspx)
 
 
-## 設定 Azure SQL Server
 
-所需的唯一設定是確保已針對防火牆啟用 Azure 服務。如果您使用此方案，就不需要新增任何的 IP 位址來開啟防火牆。允許進入 SQL Server 的網路流量來自於其他 Azure 服務。
+## <a name="configure-azure-sql-server"></a>Configure Azure SQL Server
 
+The only configuration needed is to ensure that Azure Services is enabled for the firewall. If you use this solution, then you do not need to add any IP addresses to open the firewall. The network traffic that is allowed to the SQL Server is from other Azure services.
 
-![Azure 允許][4]
 
+![Azure Allow][4]
 
 
-## Multi-Factor Authentication (MFA)
 
-可特別為此應用程式啟用 MFA。移至 Azure Active Directory 的 [應用程式] 索引標籤。您會發現 Microsoft Azure RemoteApp 的項目。如果您按一下該應用程式然後設定，您將會看到以下頁面，您可以在頁面中為此應用程式啟用 MFA。
+## <a name="multi-factor-authentication-(mfa)"></a>Multi-Factor Authentication (MFA)
 
-![啟用 MFA][3]
+MFA can be enabled for this application specifically. Go to the Applications tab of your Azure Active Directory. You will find an entry for Microsoft Azure RemoteApp. If you click that application and then configure, you will see the page below where you can enable MFA for this application.
 
+![Enable MFA][3]
 
 
-## 使用 Azure Active Directory Premium 稽核使用者活動
 
-如果您沒有 Azure AD Premium，那麼您必須在您目錄的 [授權] 區段中將它開啟。啟用 Premium 之後，您可以將使用者指派到 Premium 層級。
+## <a name="audit-user-activity-with-azure-active-directory-premium"></a>Audit user activity with Azure Active Directory Premium
 
-當您移至 Azure Active Directory 中的使用者時，您接著可以移至 [活動] 索引標籤來查看 Azure RemoteApp 的登入資訊。
+If you do not have Azure AD Premium, then you have to turn it on in the Licenses section of your directory. With Premium enabled, you can assign users to the Premium level.
 
+When you go to a user in your Azure Active Directory, you can then go to the Activity tab to see login information to Azure RemoteApp.
 
 
-## 後續步驟
 
-完成上述的所有步驟之後，您將可以執行 Azure RemoteApp 用戶端，並使用已指派的使用者登入。您將會看到 SSMS 是您其中的一個應用程式，並且執行時就如同它是安裝在您的電腦上存取 Azure SQL Server 一樣。
+## <a name="next-steps"></a>Next steps
 
-如需有關如何連接到 SQL Database 的詳細資訊，請參閱[使用 SQL Server Management Studio 連接到 SQL Database 並執行範例 T-SQL 查詢](sql-database-connect-query-ssms.md)。
+After completing all the above steps, you will be able to run the Azure RemoteApp client and log-in with an assigned user. You will be presented with SSMS as one of your applications, and you can run it as you would if it were installed on your computer with access to Azure SQL Server.
 
+For more information on how to make the connection to SQL Database, see [Connect to SQL Database with SQL Server Management Studio and perform a sample T-SQL query](sql-database-connect-query-ssms.md).
 
-以上為目前的所有內容。盡情享受！
+
+That's everything for now. Enjoy!
 
 
 
@@ -158,4 +159,8 @@ Sysprep 完成時，它會關閉 VM。
 [5]: ./media/sql-database-ssms-remoteapp/publish.png
 [6]: ./media/sql-database-ssms-remoteapp/user.png
 
-<!---HONumber=AcomDC_0713_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,29 +1,30 @@
 <properties
-	pageTitle="Log Analytics 中的容量管理方案 | Microsoft Azure"
-	description="您可以使用 Log Analytics 中的容量規劃方案，協助您瞭解 System Center Virtual Machine Manager 所管理的 Hyper-V 伺服器的容量"
-	services="log-analytics"
-	documentationCenter=""
-	authors="bandersmsft"
-	manager="jwhit"
-	editor=""/>
+    pageTitle="Log Analytics 中的容量管理方案 | Microsoft Azure"
+    description="您可以使用 Log Analytics 中的容量規劃方案，協助您瞭解 System Center Virtual Machine Manager 所管理的 Hyper-V 伺服器的容量"
+    services="log-analytics"
+    documentationCenter=""
+    authors="bandersmsft"
+    manager="jwhit"
+    editor=""/>
 
 <tags
-	ms.service="log-analytics"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="05/11/2016"
-	ms.author="banders"/>
-
-# Log Analytics 中的容量管理方案
+    ms.service="log-analytics"
+    ms.workload="na"
+    ms.tgt_pltfrm="na"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.date="10/10/2016"
+    ms.author="banders"/>
 
 
-您可以使用 Log Analytics 中的容量規劃方案，協助您瞭解 System Center Virtual Machine Manager 所管理的 Hyper-V 伺服器的容量。此方案需要 System Center Operations Manager 和 System Center Virtual Machine Manager。如果您只使用直接連接的代理程式，則無法使用容量規劃。您需要安裝此方案以更新 Operations Manager 代理程式。此方案會讀取受監視伺服器上的效能計數器，並將使用量資料傳送至雲端中的 OMS 服務進行處理。會將邏輯套用至使用量資料，且雲端服務會記錄資料。經過一段時間，會根據目前的耗用量識別使用模式和規劃容量。
+# <a name="capacity-management-solution-in-log-analytics"></a>Log Analytics 中的容量管理方案
 
-比方說，當個別伺服器會需要額外的處理器核心或額外的記憶體時，可能會識別投影。在此範例中，投影可能表示在 30 天內，伺服器將需要額外的記憶體。這可協助您規劃在伺服器的下一段維護期間升級記憶體，這可能會每隔兩週發生一次。
 
->[AZURE.NOTE] 容量管理方案無法加入至工作區。已安裝容量管理方案的客戶可以繼續使用該解決方案。
+您可以使用 Log Analytics 中的容量規劃方案，協助您瞭解 System Center Virtual Machine Manager 所管理的 Hyper-V 伺服器的容量。 此方案需要 System Center Operations Manager 和 System Center Virtual Machine Manager。 如果您只使用直接連接的代理程式，則無法使用容量規劃。 您需要安裝此方案以更新 Operations Manager 代理程式。 此方案會讀取受監視伺服器上的效能計數器，並將使用量資料傳送至雲端中的 OMS 服務進行處理。 會將邏輯套用至使用量資料，且雲端服務會記錄資料。 經過一段時間，會根據目前的耗用量識別使用模式和規劃容量。
+
+比方說，當個別伺服器會需要額外的處理器核心或額外的記憶體時，可能會識別投影。 在此範例中，投影可能表示在 30 天內，伺服器將需要額外的記憶體。 這可協助您規劃在伺服器的下一段維護期間升級記憶體，這可能會每隔兩週發生一次。
+
+>[AZURE.NOTE] 容量管理方案無法加入至工作區。 已安裝容量管理方案的客戶可以繼續使用該解決方案。  
 
 正在更新容量規劃方案來解決下列客戶回報的挑戰︰
 
@@ -41,33 +42,42 @@
 - VM 層級使用率的深入資訊
 
 
-## 安裝和設定方案
+## <a name="installing-and-configuring-the-solution"></a>安裝和設定方案
 請使用下列資訊來安裝和設定方案。
 
 - 容量管理方案需要 Operations Manager。
 - 容量管理方案需要 Virtual Machine Manager。
-- Operations Manager 與 Virtual Machine Manager (VMM) 之間的連線是必要的。如需連接系統的詳細資訊，請參閱[如何連接 VMM 與 Operations Manager](http://technet.microsoft.com/library/hh882396.aspx)。
+- Operations Manager 與 Virtual Machine Manager (VMM) 之間的連線是必要的。 如需連接系統的詳細資訊，請參閱 [如何連接 VMM 與 Operations Manager](http://technet.microsoft.com/library/hh882396.aspx)。
 - Operations Manager 必須連接到 Log Analytics。
-- 使用[從方案庫加入 Log Analytics 方案](log-analytics-add-solutions.md)所述的程序，將容量管理方案加入您的 OMS 工作區。不需要進一步的組態。
+- 使用 [從方案庫加入 Log Analytics 方案](log-analytics-add-solutions.md)所述的程序，將容量管理方案加入您的 OMS 工作區。  不需要進一步的組態。
 
 
-## 「容量管理」資料收集詳細資訊
+## <a name="capacity-management-data-collection-details"></a>「容量管理」資料收集詳細資訊
+
+容量管理會使用您已啟用的代理程式，來收集效能資料、中繼資料及狀態資料。
 
 下表顯示容量管理的資料收集方法及如何收集資料的其他詳細資料。
 
 | 平台 | 直接代理程式 | SCOM 代理程式 | Azure 儲存體 | SCOM 是否為必要項目？ | 透過管理群組傳送的 SCOM 代理程式資料 | 收集頻率 |
 |---|---|---|---|---|---|---|
-|Windows|![否](./media/log-analytics-capacity/oms-bullet-red.png)|![是](./media/log-analytics-capacity/oms-bullet-green.png)|![否](./media/log-analytics-capacity/oms-bullet-red.png)| ![是](./media/log-analytics-capacity/oms-bullet-green.png)|![是](./media/log-analytics-capacity/oms-bullet-green.png)| 每小時|
+|Windows|![否](./media/log-analytics-capacity/oms-bullet-red.png)|![是](./media/log-analytics-capacity/oms-bullet-green.png)|![否](./media/log-analytics-capacity/oms-bullet-red.png)|            ![是](./media/log-analytics-capacity/oms-bullet-green.png)|![是](./media/log-analytics-capacity/oms-bullet-green.png)| 每小時|
 
+下表顯示由容量管理所收集的資料類型範例︰
 
-## 容量管理頁面
+|**資料類型**|**欄位**|
+|---|---|
+|中繼資料|BaseManagedEntityId、ObjectStatus、OrganizationalUnit、ActiveDirectoryObjectSid、PhysicalProcessors、NetworkName、IPAddress、ForestDNSName、NetbiosComputerName、VirtualMachineName、LastInventoryDate、HostServerNameIsVirtualMachine、IP 位址、NetbiosDomainName、LogicalProcessors、DNSName、DisplayName、DomainDnsName、ActiveDirectorySite、PrincipalName、OffsetInMinuteFromGreenwichTime|
+|效能|ObjectName、CounterName、PerfmonInstanceName、PerformanceDataId、PerformanceSourceInternalID、SampleValue、TimeSampled、TimeAdded|
+|狀況|StateChangeEventId、StateId、NewHealthState、OldHealthState、Context、TimeGenerated、TimeAdded、StateId2、BaseManagedEntityId、MonitorId、HealthState、LastModified、LastGreenAlertGenerated、DatabaseTimeModified|
+
+## <a name="capacity-management-page"></a>容量管理頁面
 
 
  安裝容量規劃方案後，您可以在 OMS 中使用 [概觀] 頁面上的 [容量規劃] 圖格，檢視受監視伺服器的容量。
 
 ![image of Capacity Planning tile](./media/log-analytics-capacity/oms-capacity01.png)
 
-該磚會開啟 [**容量管理**] 儀表板，您可以在其中檢視伺服器容量的摘要。頁面會顯示以下可點擊的磚：
+該磚會開啟 [ **容量管理** ] 儀表板，您可以在其中檢視伺服器容量的摘要。 頁面會顯示以下可點擊的磚：
 
 - *虛擬機器計數*：顯示虛擬機器容量的剩餘天數
 - *計算*：顯示處理器核心和可用記憶體
@@ -77,13 +87,13 @@
 ![image of Capacity Management dashboard](./media/log-analytics-capacity/oms-capacity02.png)
 
 
-### 檢視產能頁面
+### <a name="to-view-a-capacity-page"></a>檢視產能頁面
 
-- 在 [**概觀**] 頁面上按一下 [**容量管理**]，然後按一下 [**計算**] 或 [**儲存體**]。
+- 在 [概觀] 頁面上按一下 [容量管理]，然後按一下 [計算] 或 [儲存體]。
 
-## 計算頁面
+## <a name="compute-page"></a>計算頁面
 
-您可以使用 Microsoft Azure OMS 中的 [計算] 儀表板來檢視有關使用率、預測容量天數及基礎結構相關效率等容量資訊。您可以使用 [**使用率**] 區域來檢視虛擬機器主機中的 CPU 核心和記憶體使用率。您可以使用預測工具來預估指定日期範圍內的可用產能。您可以使用 [**效率**] 區域來查看虛擬機器主機的效率。按一下連結項目可以檢視它們的相關詳細資料。
+您可以使用 Microsoft Azure OMS 中的 [計算] 儀表板，檢視有關使用量、預測容量天數及基礎結構相關效率等容量資訊。 您可以使用 [使用率] 區域來檢視虛擬機器主機中的 CPU 核心和記憶體使用率。 您可以使用預測工具來預估指定日期範圍內的可用產能。 您可以使用 [效率] 區域來查看虛擬機器主機的效率。 按一下連結項目可以檢視它們的相關詳細資料。
 
 您可以產生以下類別的 Excel 活頁簿：
 
@@ -96,7 +106,7 @@
 ![image of Capacity Management Compute page](./media/log-analytics-capacity/oms-capacity03.png)
 
 
-以下區域會顯示在 [**計算**] 儀表板中：
+以下區域會顯示在 [ **計算** ] 儀表板中：
 
 **使用率**：檢視虛擬機器主機的 CPU 核心和記憶體使用率。
 
@@ -115,7 +125,7 @@
 
 **預測工具**
 
-透過預測工具，您可以檢視資源使用率的歷史趨勢。這包括虛擬機器、記憶體、核心和存放裝置的使用率趨勢。預測功能使用預測演算法來協助您了解每項資源耗盡的時間。這有助於計算出適當的產能規劃，讓您知道何時該添購更多產能 (如記憶體、核心或存放裝置)。
+透過預測工具，您可以檢視資源使用率的歷史趨勢。 這包括虛擬機器、記憶體、核心和存放裝置的使用率趨勢。 預測功能使用預測演算法來協助您了解每項資源耗盡的時間。 這有助於計算出適當的產能規劃，讓您知道何時該添購更多產能 (如記憶體、核心或存放裝置)。
 
 **效率**
 
@@ -124,23 +134,23 @@
 - *閒置主機*：在指定期間內，CPU 使用率低於 10% 且記憶體使用率低於 10%。
 - *使用量過高的主機*：在指定期間內，CPU 使用率高於 90% 且記憶體使用率高於 90%。
 
-### 操作計算頁面中的項目
+### <a name="to-work-with-items-on-the-compute-page"></a>操作計算頁面中的項目
 
-1. 在 [**使用率**] 區域的 [**計算**] 儀表板中，您可以檢視有關 CPU 核心和使用中記憶體的容量資訊。
-2. 按一下項目可在 [**搜尋**] 頁面中予以開啟，以及檢視相關的詳細資訊。
-3. 在 [**預測**] 工具中，移動日期滑桿可顯示基礎結構在選定日期將使用的容量預測。
-4. 在 [**效率**] 區域中，您可以檢視虛擬機器和虛擬機器主機的容量效率資訊。
+1. 在 [使用率] 區域的 [計算] 儀表板中，您可以檢視有關 CPU 核心和使用中記憶體的容量資訊。
+2. 按一下項目可在 [ **搜尋** ] 頁面中予以開啟，以及檢視相關的詳細資訊。
+3. 在 [ **預測** ] 工具中，移動日期滑桿可顯示基礎結構在選定日期將使用的容量預測。
+4. 在 [ **效率** ] 區域中，您可以檢視虛擬機器和虛擬機器主機的容量效率資訊。
 
-## 直接連結存放裝置頁面
+## <a name="direct-attached-storage-page"></a>直接連結存放裝置頁面
 
-在 OMS 中，您可以使用 [直接連結存放裝置] 儀表板來檢視有關存放裝置使用率、磁碟效能及磁碟容量預測天數等容量資訊。您可以使用 [**使用率**] 區域來檢視虛擬機器主機中的磁碟空間使用率。您可以使用 [**磁碟效能**] 區域來檢視虛擬機器主機中的磁碟輸送量和延遲。您也可以使用預測工具來預估指定日期範圍內的可用產能。按一下連結項目可以檢視它們的相關詳細資料。
+在 OMS 中，您可以使用 [直接連結存放裝置] 儀表板，檢視有關儲存體使用量、磁碟效能及磁碟容量的預測天數等容量資訊。 您可以使用 [使用率] 區域來檢視虛擬機器主機中的磁碟空間使用率。 您可以使用 [磁碟效能] 區域來檢視虛擬機器主機中的磁碟輸送量和延遲。 您也可以使用預測工具來預估指定日期範圍內的可用產能。 按一下連結項目可以檢視它們的相關詳細資料。
 
 您可以根據上述產能資訊產生以下類別的 Excel 活頁簿：
 
 - 磁碟空間使用率最高的主機
 - 平均延遲最高的主機
 
-以下區域會顯示在 [**儲存體**] 頁面中：
+以下區域會顯示在 [ **儲存體** ] 頁面中：
 
 - *使用率*：檢視虛擬機器主機中的磁碟空間使用率。
 - *總磁碟空間*：所有主機的總和 (邏輯磁碟空間)
@@ -153,22 +163,26 @@
 
 **磁碟效能**
 
-透過 OMS，您可以檢視磁碟空間使用率的歷史趨勢。預測功能會使用演算法來預測未來使用率。針對空間使用率，預測功能可讓您預測磁碟空間何時會耗盡。這將有助於您規劃適當的存放裝置，以及得知何時該添購更多存放裝置。
+透過 OMS，您可以檢視磁碟空間使用率的歷史趨勢。 預測功能會使用演算法來預測未來使用率。 針對空間使用率，預測功能可讓您預測磁碟空間何時會耗盡。 這將有助於您規劃適當的存放裝置，以及得知何時該添購更多存放裝置。
 
 **預測工具**
 
-透過預測工具，您可以檢視磁碟空間使用率的歷史趨勢。預測功能也能讓您預測磁碟空間何時耗盡。這將有助於您規劃適當的容量，以及得知何時該添購更多儲存容量。
+透過預測工具，您可以檢視磁碟空間使用率的歷史趨勢。 預測功能也能讓您預測磁碟空間何時耗盡。 這將有助於您規劃適當的容量，以及得知何時該添購更多儲存容量。
 
-### 操作直接連結存放裝置頁面中的項目
+### <a name="to-work-with-items-on-the-direct-attached-storage-page"></a>操作直接連結存放裝置頁面中的項目
 
-1. 在 [**使用率**] 區域的 [**直接連結存放裝置**] 儀表板中，您可以檢視磁碟使用率資訊。
-2. 按一下連結項目可在 [**搜尋**] 頁面中予以開啟，以及檢視相關的詳細資訊。
-3. 在 [**磁碟效能**] 區域中，您可以檢視磁碟輸送量和延遲資訊。
-4. 在 [**預測工具**] 中，移動日期滑桿可顯示基礎結構在選定日期將使用的容量預測。
+1. 在 [使用率] 區域的 [直接連結存放裝置] 儀表板中，您可以檢視磁碟使用率資訊。
+2. 按一下連結項目可在 [ **搜尋** ] 頁面中予以開啟，以及檢視相關的詳細資訊。
+3. 在 [ **磁碟效能** ] 區域中，您可以檢視磁碟輸送量和延遲資訊。
+4. 在 [ **預測工具**] 中，移動日期滑桿可顯示基礎結構在選定日期將使用的容量預測。
 
 
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 
-- 使用 [Log Analytics 中的記錄檔搜尋](log-analytics-log-searches.md)，檢視詳細的容量管理資料。
+- 使用 [Log Analytics 中的記錄檔搜尋](log-analytics-log-searches.md) ，檢視詳細的容量管理資料。
 
-<!---HONumber=AcomDC_0518_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

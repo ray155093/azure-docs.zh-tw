@@ -17,7 +17,8 @@
    ms.date="09/13/2016"
    ms.author="kundanap"/>
 
-# Linux VM 延伸模組組態範例
+
+# <a name="linux-vm-extension-configuration-samples"></a>Linux VM 延伸模組組態範例
 
 > [AZURE.SELECTOR]
 - [PowerShell - 範本](virtual-machines-windows-extensions-configuration-samples.md)
@@ -27,13 +28,13 @@
 
 本文提供範例組態，可用來設定 Linux VM 的 Azure VM 延伸模組。
 
-若要深入了解這些延伸模組，請按一下這裡：[Azure VM 延伸模組概觀](virtual-machines-windows-extensions-features.md)。
+若要深入了解這些延伸模組，請按一下這裡： [Azure VM 延伸模組概觀](virtual-machines-windows-extensions-features.md)
 
-若要深入了解如何撰寫延伸模組範本，請按一下這裡：[撰寫延伸模組範本](virtual-machines-windows-extensions-authoring-templates.md)。
+若要深入了解如何撰寫延伸模組範本，請按一下這裡： [撰寫延伸模組範本](virtual-machines-windows-extensions-authoring-templates.md)
 
 本文列出部分 Linux 延伸模組所需的組態值。
 
-## VM 延伸模組的範例範本程式碼片段。
+## <a name="sample-template-snippet-for-vm-extensions."></a>VM 延伸模組的範例範本程式碼片段。
 用於部署延伸模組的範本程式碼片段如下所示：
 
       {
@@ -54,7 +55,7 @@
       }
       }
 
-## VM 擴充功能與 VM 調整集的範例範本程式碼片段。
+## <a name="sample-template-snippet-for-vm-extensions-with-vm-scale-sets."></a>VM 擴充功能與 VM 調整集的範例範本程式碼片段。
 
           {
            "type":"Microsoft.Compute/virtualMachineScaleSets",
@@ -80,7 +81,7 @@
 
 本文其餘部分提供 Linux VM 延伸模組的範例組態。
 
-### CloudLink SecureVM Agent
+### <a name="cloudlink-securevm-agent"></a>CloudLink SecureVM Agent
           {
             "publisher": "CloudLinkEMC.SecureVM",
             "type": "CloudLinkSecureVMLinuxAgent",
@@ -90,7 +91,7 @@
             }
           }
 
-### CustomScript Extension for Linux
+### <a name="customscript-extension-for-linux."></a>CustomScript Extension for Linux
     {
         "publisher": " Microsoft.Azure.Extensions",
         "type": "CustomScript",
@@ -105,7 +106,7 @@
     }
 
 
-### Datadog Agent
+### <a name="datadog-agent"></a>Datadog Agent
         {
           "publisher": "Datadog.Agent",
           "type": "DatadogLinuxAgent",
@@ -115,7 +116,7 @@
           }
         }
 
-### Chef Agent
+### <a name="chef-agent"></a>Chef Agent
         {
           "publisher": "Chef.Bootstrap.WindowsAzure",
           "type": "CentosChefClient|LinuxChefClient",
@@ -127,7 +128,7 @@
           }
         }
 
-### VM 存取延伸模組 (密碼重設)
+### <a name="vm-access-extension-(password-reset)"></a>VM 存取延伸模組 (密碼重設)
 關於更新的結構描述，請參閱 [VMAccessForLinux 文件](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess)
 
         {
@@ -143,7 +144,7 @@
           }
         }
 
-### OS 修補
+### <a name="os-patching"></a>OS 修補
 關於更新的結構描述，請參閱 [OSPatching 文件](https://github.com/Azure/azure-linux-extensions/tree/master/OSPatching)
 
         {
@@ -168,7 +169,7 @@
         }
         }
 
-### Docker 延伸模組
+### <a name="docker-extension"></a>Docker 延伸模組
 關於更新的結構描述，請參閱 [Docker 延伸模組文件](https://github.com/Azure/azure-docker-extension/blob/master/README.md#1-configuration-schema)
 
         {
@@ -217,4 +218,8 @@
 
 [Linux VM 上的自訂指令碼延伸模組](https://github.com/Azure/azure-quickstart-templates/blob/b1908e74259da56a92800cace97350af1f1fc32b/mongodb-on-ubuntu/azuredeploy.json/)
 
-<!---HONumber=AcomDC_0928_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

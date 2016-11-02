@@ -16,16 +16,17 @@
    ms.date="09/21/2016"
    ms.author="cherylmc"/>
 
-# 規劃與設計 VPN 閘道
 
-跨單位及 VNet 對 VNet 組態的規劃與設計有可能很簡單，也可能很複雜，需視您的網路需求而定。本文將逐步引導您完成基本的規劃和設計考量。
+# <a name="planning-and-design-for-vpn-gateway"></a>規劃與設計 VPN 閘道
 
-## 規劃
+跨單位及 VNet 對 VNet 組態的規劃與設計有可能很簡單，也可能很複雜，需視您的網路需求而定。 本文將逐步引導您完成基本的規劃和設計考量。
+
+## <a name="planning"></a>規劃
 
 
-### <a name="compare"></a>跨單位連線選項
+### <a name="<a-name="compare"></a>cross-premises-connectivity-options"></a><a name="compare"></a>跨單位連線選項
 
-如果您想要將內部部署站台安全地連接到虛擬網路，可以使用下列三種不同方法：站對站、點對站及 ExpressRoute。比較可使用的不同跨單位連線。您選擇的選項可能取決於各種不同的考量，例如：
+如果您想要將內部部署站台安全地連接到虛擬網路，可以使用下列三種不同方法：站對站、點對站及 ExpressRoute。 比較可使用的不同跨單位連線。 您選擇的選項可能取決於各種不同的考量，例如：
 
 
 - 您的方案需要哪種輸送量?
@@ -44,67 +45,69 @@
 
 
 
-### <a name="gwrequire"></a>依據 VPN 類型和 SKU 的閘道需求
+### <a name="<a-name="gwrequire"></a>gateway-requirements-by-vpn-type-and-sku"></a><a name="gwrequire"></a>依據 VPN 類型和 SKU 的閘道需求
 
 [AZURE.INCLUDE [vpn-gateway-gwsku](../../includes/vpn-gateway-gwsku-include.md)]
 
 如需關於閘道器 SKU 的資訊，請參閱 [VPN 閘道設定](vpn-gateway-about-vpn-gateway-settings.md#gwsku)。
 
-[AZURE.INCLUDE [vpn-gateway-table-requirements](../../includes/vpn-gateway-table-requirements-include.md)]
+[AZURE.INCLUDE [vpn-gateway-table-requirements](../../includes/vpn-gateway-table-requirements-include.md)] 
 
-<br>下表顯示閘道類型和預估的彙總輸送量。估計的彙總輸送量可能是您的設計決定因素。閘道 SKU 之間的定價並不相同。如需定價資訊，請參閱＜[VPN 閘道定價](https://azure.microsoft.com/pricing/details/vpn-gateway/)＞。此資料表適用於資源管理員與傳統部署模型。
+<br>
+下表顯示閘道類型和預估的彙總輸送量。 估計的彙總輸送量可能是您的設計決定因素。
+閘道 SKU 之間的定價並不相同。 如需定價資訊，請參閱＜ [VPN 閘道定價](https://azure.microsoft.com/pricing/details/vpn-gateway/)＞。 此資料表適用於資源管理員與傳統部署模型。
 
-[AZURE.INCLUDE [vpn-gateway-table-gwtype-aggtput](../../includes/vpn-gateway-table-gwtype-aggtput-include.md)]
+[AZURE.INCLUDE [vpn-gateway-table-gwtype-aggtput](../../includes/vpn-gateway-table-gwtype-aggtput-include.md)] 
 
 
 
-### <a name="wf"></a>工作流程
+### <a name="<a-name="wf"></a>workflow"></a><a name="wf"></a>工作流程
 
 下列清單列出常見的雲端連線工作流程：
 
-1.	設計和規劃連線的拓撲，列出所有您想要連接的網路位址空間。
-2.	建立 Azure 虛擬網路。
-3.	建立虛擬網路的 VPN 閘道。
-4.	建立及設定連接至內部網路或其他虛擬網路的連線 (視需要)。
-5.	建立並設定 Azure VPN 閘道的點對站連線 (視需要)。
+1.  設計和規劃連線的拓撲，列出所有您想要連接的網路位址空間。
+2.  建立 Azure 虛擬網路。 
+3.  建立虛擬網路的 VPN 閘道。
+4.  建立及設定連接至內部網路或其他虛擬網路的連線 (視需要)。
+5.  建立並設定 Azure VPN 閘道的點對站連線 (視需要)。
  
 
-## 設計
+## <a name="design"></a>設計
 
-### <a name="topologies"></a>連線拓撲
+### <a name="<a-name="topologies"></a>connection-topologies"></a><a name="topologies"></a>連線拓撲
 
-先來看看[關於 VPN 閘道](vpn-gateway-about-vpngateways.md)一文中的圖表。本文包含基本圖表、每種拓撲的部署模型 (Resource Manager 或傳統)，並說明您可以使用哪種部署工具來部署組態。
+先來看看 [關於 VPN 閘道](vpn-gateway-about-vpngateways.md) 一文中的圖表。 本文包含基本圖表、每種拓撲的部署模型 (Resource Manager 或傳統)，並說明您可以使用哪種部署工具來部署組態。   
 
-### <a name="designbasics"></a>設計基本概念
+### <a name="<a-name="designbasics"></a>design-basics"></a><a name="designbasics"></a>設計基本概念
 
-下列各節將討論 VPN 閘道的基本概念。另外，也請考量[網路服務限制](../articles/azure-subscription-service-limits.md#networking-limits)。
-
-
-#### <a name="subnets"></a>關於子網路
-
-當您建立連線時，必須考量您的子網路範圍。子網路位址範圍不能重疊。當一個虛擬網路或內部部署位置包含的位址空間與其他位置重複時，就會發生子網路重疊的情況。這表示您需要請本機內部部署網路的網路工程師為您切割出一個範圍，以供您用於 Azure IP 位址空間/子網路。您需要本機內部部署網路並未使用的位址空間。
-
-使用 VNet 對 VNet 連線時，也要注意避免重疊的子網路。如果您的子網路重疊且 IP 位址同時存在於傳送端和目的地 VNet，VNet 對 VNet 連線就會失敗。Azure 無法將資料路由傳送到另一個 VNet，因為目的地位址是傳送端 VNet 的一部分。
-
-「VPN 閘道」需要名為閘道子網路的特定子網路。所有閘道子網路都必須命名為 GatewaySubnet 才能正常運作。因此，請不要將閘道子網路命名為不同的名稱，也不要將 VM 或任何其他項目部署至閘道子網路。請參閱[閘道子網路](vpn-gateway-about-vpn-gateway-settings.md#gwsub)。
-
-#### <a name="local"></a>關於區域網路閘道
-
-區域網路閘道通常是指您的內部部署位置。在傳統部署模型中，區域網路閘道被稱為「區域網路站台」。當您設定區域網路閘道時，您會賦予它名稱、指定內部部署 VPN 裝置的公用 IP 位址，以及指定位於內部部署位置中的位址首碼。Azure 會查看網路流量的目的地位址首碼、查閱您為區域網路閘道指定的組態，然後根據這些來路由傳送封包。您可以視需要修改這些位址首碼。如需詳細資訊，請參閱[區域網路閘道](vpn-gateway-about-vpn-gateway-settings.md#lng)。
+下列各節將討論 VPN 閘道的基本概念。 另外，也請考量 [網路服務限制](../articles/azure-subscription-service-limits.md#networking-limits)。
 
 
-#### <a name="gwtype"></a>關於閘道類型
+#### <a name="<a-name="subnets"></a>about-subnets"></a><a name="subnets"></a>關於子網路
 
-為拓撲選取正確的閘道類型相當重要。如果您選取錯誤的類型，您的閘道將無法正常運作。閘道類型會指定閘道本身如何連接以及為何它是 Resource Manager 部署模型的必要組態設定。
+當您建立連線時，必須考量您的子網路範圍。 子網路位址範圍不能重疊。 當一個虛擬網路或內部部署位置包含的位址空間與其他位置重複時，就會發生子網路重疊的情況。 這表示您需要請本機內部部署網路的網路工程師為您切割出一個範圍，以供您用於 Azure IP 位址空間/子網路。 您需要本機內部部署網路並未使用的位址空間。 
+
+使用 VNet 對 VNet 連線時，也要注意避免重疊的子網路。 如果您的子網路重疊且 IP 位址同時存在於傳送端和目的地 VNet，VNet 對 VNet 連線就會失敗。 Azure 無法將資料路由傳送到另一個 VNet，因為目的地位址是傳送端 VNet 的一部分。 
+
+「VPN 閘道」需要名為閘道子網路的特定子網路。 所有閘道子網路都必須命名為 GatewaySubnet 才能正常運作。 因此，請不要將閘道子網路命名為不同的名稱，也不要將 VM 或任何其他項目部署至閘道子網路。 請參閱 [閘道子網路](vpn-gateway-about-vpn-gateway-settings.md#gwsub)。
+
+#### <a name="<a-name="local"></a>about-local-network-gateways"></a><a name="local"></a>關於區域網路閘道
+
+區域網路閘道通常是指您的內部部署位置。 在傳統部署模型中，區域網路閘道被稱為「區域網路站台」。 當您設定區域網路閘道時，您會賦予它名稱、指定內部部署 VPN 裝置的公用 IP 位址，以及指定位於內部部署位置中的位址首碼。 Azure 會查看網路流量的目的地位址首碼、查閱您為區域網路閘道指定的組態，然後根據這些來路由傳送封包。 您可以視需要修改這些位址首碼。 如需詳細資訊，請參閱 [區域網路閘道](vpn-gateway-about-vpn-gateway-settings.md#lng)。
+
+
+#### <a name="<a-name="gwtype"></a>about-gateway-types"></a><a name="gwtype"></a>關於閘道類型
+
+為拓撲選取正確的閘道類型相當重要。 如果您選取錯誤的類型，您的閘道將無法正常運作。 閘道類型會指定閘道本身如何連接以及為何它是 Resource Manager 部署模型的必要組態設定。
 
 閘道類型如下：
 
 - Vpn
 - ExpressRoute
 
-#### <a name="connectiontype"></a>關於連線類型
+#### <a name="<a-name="connectiontype"></a>about-connection-types"></a><a name="connectiontype"></a>關於連線類型
 
-每個組態皆需要特定的連線類型。連線類型如下：
+每個組態皆需要特定的連線類型。 連線類型如下：
 
 - IPsec
 - Vnet2Vnet
@@ -112,46 +115,54 @@
 - VPNClient
 
 
-#### <a name="vpntype"></a>關於 VPN 類型
+#### <a name="<a-name="vpntype"></a>about-vpn-types"></a><a name="vpntype"></a>關於 VPN 類型
 
-每個組態都需要特定 VPN 類型。如果您要結合兩個組態，例如建立連往相同 VNet 的站對站連線和點對站連線，您必須使用同時符合這兩個連線需求的 VPN 類型。
+每個組態都需要特定 VPN 類型。 如果您要結合兩個組態，例如建立連往相同 VNet 的站對站連線和點對站連線，您必須使用同時符合這兩個連線需求的 VPN 類型。
 
-[AZURE.INCLUDE [vpn-gateway-vpntype](../../includes/vpn-gateway-vpntype-include.md)]
+[AZURE.INCLUDE [vpn-gateway-vpntype](../../includes/vpn-gateway-vpntype-include.md)] 
 
-下表顯示 VPN 類型所對應的每一種連線組態。請確定閘道的 VPN 類型符合您想要建立的組態。
+下表顯示 VPN 類型所對應的每一種連線組態。 請確定閘道的 VPN 類型符合您想要建立的組態。 
 
 
-[AZURE.INCLUDE [vpn-gateway-table-vpntype](../../includes/vpn-gateway-table-vpntype-include.md)]
+[AZURE.INCLUDE [vpn-gateway-table-vpntype](../../includes/vpn-gateway-table-vpntype-include.md)] 
 
-### <a name="devices"></a>站對站連線的 VPN 裝置
+### <a name="<a-name="devices"></a>vpn-devices-for-site-to-site-connections"></a><a name="devices"></a>站對站連線的 VPN 裝置
 
 不論部署模型為何，若要設定站對站連線，您都需要下列項目︰
 
 - 與 Azure VPN 閘道相容的 VPN 裝置
 - 不在 NAT 後方的公開 IPv4 IP 位址
 
-您必須具備設定 VPN 裝置的經驗，或是有人可以為您設定裝置。如需有關 VPN 裝置的詳細資訊，請參閱[關於 VPN 裝置](vpn-gateway-about-vpn-devices.md)。VPN 裝置文章包含下列各項的相關資訊：已驗證的裝置、尚未驗證之裝置的需求，以及裝置組態文件的連結 (如果有的話)。
+您必須具備設定 VPN 裝置的經驗，或是有人可以為您設定裝置。 如需有關 VPN 裝置的詳細資訊，請參閱 [關於 VPN 裝置](vpn-gateway-about-vpn-devices.md)。 VPN 裝置文章包含下列各項的相關資訊：已驗證的裝置、尚未驗證之裝置的需求，以及裝置組態文件的連結 (如果有的話)。
 
-### <a name="forcedtunnel"></a>考量強制通道路由
+### <a name="<a-name="forcedtunnel"></a>consider-forced-tunnel-routing"></a><a name="forcedtunnel"></a>考量強制通道路由
 
-對於多數組態，您可以設定強制通道。強制通道可讓您透過站對站 VPN 通道，重新導向或「強制」所有網際網路繫結流量傳回內部部署位置，以便進行檢查和稽核。這是多數企業 IT 原則的重要安全性需求。
+對於多數組態，您可以設定強制通道。 強制通道可讓您透過站對站 VPN 通道，重新導向或「強制」所有網際網路繫結流量傳回內部部署位置，以便進行檢查和稽核。 這是多數企業 IT 原則的重要安全性需求。 
 
-若不使用強制通道，則 Azure 中來自 VM 的網際網路繫結流量會永遠從 Azure 網路基礎結構直接向外周遊到網際網路，而您無法選擇檢查或稽核流量。未經授權的網際網路存取可能會導致資訊洩漏或其他類型的安全性漏洞。
+若不使用強制通道，則 Azure 中來自 VM 的網際網路繫結流量會永遠從 Azure 網路基礎結構直接向外周遊到網際網路，而您無法選擇檢查或稽核流量。 未經授權的網際網路存取可能會導致資訊洩漏或其他類型的安全性漏洞。
 
 **強制通道圖表**
 
-![強制通道連線](./media/vpn-gateway-plan-design/forced-tunnel.png "強制通道")
+![強制通道連線](./media/vpn-gateway-plan-design/forced-tunnel.png "forced tunneling")
 
-可以在這兩種部署模型中使用不同的工具，設定強制通道的連線。如需詳細資訊，請參閱下列表格。當此組態有新文章、新的部署模型和額外工具可以使用時，我們就會更新此資料表。當文章可用時，我們會直接從資料表連結至該文章。
+可以在這兩種部署模型中使用不同的工具，設定強制通道的連線。 如需詳細資訊，請參閱下列表格。 當此組態有新文章、新的部署模型和額外工具可以使用時，我們就會更新此資料表。 當文章可用時，我們會直接從資料表連結至該文章。
 
-[AZURE.INCLUDE [vpn-gateway-table-forcedtunnel](../../includes/vpn-gateway-table-forcedtunnel-include.md)]
+[AZURE.INCLUDE [vpn-gateway-table-forcedtunnel](../../includes/vpn-gateway-table-forcedtunnel-include.md)] 
 
 
 
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 
 如需可協助您進行設計的詳細資訊，請參閱 [VPN 閘道常見問題集](vpn-gateway-vpn-faq.md)一文和[關於 VPN 閘道](vpn-gateway-about-vpngateways.md)一文。
 
-如需有關特定閘道設定的詳細資訊，請參閱[關於 VPN 閘道設定](vpn-gateway-about-vpn-gateway-settings.md)。
+如需有關特定閘道設定的詳細資訊，請參閱 [關於 VPN 閘道設定](vpn-gateway-about-vpn-gateway-settings.md)。
 
-<!---HONumber=AcomDC_0928_2016-->
+
+
+
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

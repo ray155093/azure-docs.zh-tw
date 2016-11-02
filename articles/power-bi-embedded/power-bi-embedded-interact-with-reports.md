@@ -3,8 +3,8 @@
    description="Power BI Embedded, 使用 JavaScript API 與報告進行互動"
    services="power-bi-embedded"
    documentationCenter=""
-   authors="mgblythe"
-   manager="NA"
+   authors="guyinacube"
+   manager="erikre"
    editor=""
    tags=""/>
 <tags
@@ -13,52 +13,53 @@
    ms.topic="hero-article"
    ms.tgt_pltfrm="NA"
    ms.workload="powerbi"
-   ms.date="08/26/2016"
-   ms.author="mblythe"/>
+   ms.date="10/04/2016"
+   ms.author="asaxton"/>
 
-# 使用 JavaScript API 與 Power BI 報告進行互動
 
-Power BI JavaScript API 可讓您輕鬆地將 Power BI 報告內嵌到您的應用程式中。使用此 API，您的應用程式可以程式設計方式與不同的報告元素 (例如頁面和篩選器) 互動。此互動功能可讓 Power BI 報告更能夠融合到您的應用程式中。
+# <a name="interact-with-power-bi-reports-using-the-javascript-api"></a>使用 JavaScript API 與 Power BI 報告進行互動
 
-您可使用應用程式中裝載的 iframe，在應用程式中內嵌 Power BI 報告。如下圖所示，iframe 可做為應用程式與報告之間的界限。
+Power BI JavaScript API 可讓您輕鬆地將 Power BI 報告內嵌到您的應用程式中。 使用此 API，您的應用程式可以程式設計方式與不同的報告元素 (例如頁面和篩選器) 互動。 此互動功能可讓 Power BI 報告更能夠融合到您的應用程式中。
+
+您可使用應用程式中裝載的 iframe，在應用程式中內嵌 Power BI 報告。 如下圖所示，iframe 可做為應用程式與報告之間的界限。 
 
 ![不具 JavaScript API 的 Power BI Embedded iframe](media\powerbi-embedded-interact-with-reports\powerbi-embedded-interact-report-1.png)
 
-iframe 可以讓內嵌程序變得簡單多了，但是若沒有 JavaScript API，報告和應用程式便無法彼此互動。欠缺這種互動會讓您覺得報告其實不是應用程式的一部分。報告和應用程式真的需要往來通訊，如下圖所示。
+iframe 可以讓內嵌程序變得簡單多了，但是若沒有 JavaScript API，報告和應用程式便無法彼此互動。 欠缺這種互動會讓您覺得報告其實不是應用程式的一部分。 報告和應用程式真的需要往來通訊，如下圖所示。
 
 ![具有 JavaScript API 的 Power BI Embedded iframe](media\powerbi-embedded-interact-with-reports\powerbi-embedded-interact-report-2.png)
 
-Power BI JavaScript API 可讓您撰寫可安全地通過 iframe 界限的程式碼。這可讓應用程式以程式設計方式在報告中執行動作，以及從使用者在報告中所進行的動作接聽事件。
+Power BI JavaScript API 可讓您撰寫可安全地通過 iframe 界限的程式碼。 這可讓應用程式以程式設計方式在報告中執行動作，以及從使用者在報告中所進行的動作接聽事件。
 
-## 您可以使用 Power BI JavaScript API 來做什麼？
-利用 JavaScript API，您可以管理報告、瀏覽至報告中的頁面、篩選報告，以及處理內嵌事件。下圖顯示 API 的結構。
+## <a name="what-can-you-do-with-the-power-bi-javascript-api?"></a>您可以使用 Power BI JavaScript API 來做什麼？
+利用 JavaScript API，您可以管理報告、瀏覽至報告中的頁面、篩選報告，以及處理內嵌事件。 下圖顯示 API 的結構。
 
 ![Power BI JavaScript API 圖表](media\powerbi-embedded-interact-with-reports\powerbi-embedded-interact-report-3.png)
 
 
-### 管理報告
+### <a name="manage-reports"></a>管理報告
 Javascript API 可讓您管理報告和頁面層級的行為︰
 
-- 在應用程式中安全地內嵌特定 Power BI 報告 - 試用[內嵌示範應用程式](http://azure-samples.github.io/powerbi-angular-client/#/scenario1)
+- 在應用程式中安全地內嵌特定 Power BI 報告 - 試用 [內嵌示範應用程式](http://azure-samples.github.io/powerbi-angular-client/#/scenario1)
   - 設定存取權杖
 - 設定報告
-  - 啟用和停用篩選器窗格和頁面導覽窗格 - 試用[更新設定示範應用程式](http://azure-samples.github.io/powerbi-angular-client/#/scenario6)
-  - 設定頁面和篩選器的預設值 - 試用[預設值示範](http://azure-samples.github.io/powerbi-angular-client/#/scenario5)
+  - 啟用和停用篩選器窗格和頁面導覽窗格 - 試用 [更新設定示範應用程式](http://azure-samples.github.io/powerbi-angular-client/#/scenario6)
+  - 設定頁面和篩選器的預設值 - 試用 [預設值示範](http://azure-samples.github.io/powerbi-angular-client/#/scenario5)
 - 進入或離開全螢幕模式
 
 [深入了解內嵌報告](https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embedding-Basics)
 
 
-### 瀏覽至報告中的頁面
-JavaScript API enbales 可讓您探索報告中的所有頁面，以及設定目前的頁面。試用[瀏覽示範應用程式](http://azure-samples.github.io/powerbi-angular-client/#/scenario3)。
+### <a name="navigate-to-pages-in-a-report"></a>瀏覽至報告中的頁面
+JavaScript API enbales 可讓您探索報告中的所有頁面，以及設定目前的頁面。 試用 [瀏覽示範應用程式](http://azure-samples.github.io/powerbi-angular-client/#/scenario3)。
 
 [深入了解頁面瀏覽](https://github.com/Microsoft/PowerBI-JavaScript/wiki/Page-Navigation)
 
-### 篩選報告
-JavaScript API 會提供內嵌報告和報告頁面的基本和進階篩選功能。試用[篩選示範應用程式](http://azure-samples.github.io/powerbi-angular-client/#/scenario4)，並檢閱以下一些入門程式碼。
+### <a name="filter-a-report"></a>篩選報告
+JavaScript API 會提供內嵌報告和報告頁面的基本和進階篩選功能。 試用 [篩選示範應用程式](http://azure-samples.github.io/powerbi-angular-client/#/scenario4)，並檢閱以下一些入門程式碼。  
 
 
-#### 基本篩選器
+#### <a name="basic-filters"></a>基本篩選器
 基本篩選器置於資料行或階層層級，而且包含一份要包含或排除的值清單。
 
 ```
@@ -74,8 +75,8 @@ const basicFilter: pbi.models.IBasicFilter = {
 ```
 
 
-#### 進階篩選器
-進階篩選器使用邏輯運算子 AND 或 OR，並接受一或兩個條件，而每個條件都有自己的運算子和值。支援的條件如下︰
+#### <a name="advanced-filters"></a>進階篩選器
+進階篩選器使用邏輯運算子 AND 或 OR，並接受一或兩個條件，而每個條件都有自己的運算子和值。 支援的條件如下︰
 
 - None
 - LessThan
@@ -114,7 +115,7 @@ const advancedFilter: pbi.models.IAdvancedFilter = {
 [深入了解篩選](https://github.com/Microsoft/PowerBI-JavaScript/wiki/Filters)
 
 
-### 錯誤事件
+### <a name="handling-events"></a>錯誤事件
 除了將資訊傳送到 iframe，您的應用程式也可以接收來自 iframe 的下列事件相關資訊︰
 
 - 內嵌
@@ -127,7 +128,7 @@ const advancedFilter: pbi.models.IAdvancedFilter = {
 [深入了解處理事件](https://github.com/Microsoft/PowerBI-JavaScript/wiki/Handling-Events)
 
 
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 如需 Power BI JavaScript API 的詳細資訊，請查看下列連結：
 
 - [JavaScript API Wiki](https://github.com/Microsoft/PowerBI-JavaScript/wiki)
@@ -137,4 +138,8 @@ const advancedFilter: pbi.models.IAdvancedFilter = {
   - [Ember](https://github.com/Microsoft/powerbi-ember)
 - [實況示範](https://microsoft.github.io/PowerBI-JavaScript/demo/)
 
-<!---HONumber=AcomDC_0907_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

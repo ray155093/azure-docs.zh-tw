@@ -1,41 +1,42 @@
 <properties
-	pageTitle="使用通知中樞傳送即時新聞 (Windows Phone)"
-	description="使用 Azure 通知中樞在註冊中使用標籤，將重大新聞傳送至通用 Windows Phone 應用程式。"
-	services="notification-hubs"
-	documentationCenter="windows"
-	authors="wesmc7777"
-	manager="erikre"
-	editor=""/>
+    pageTitle="Use Notification Hubs to send breaking news (Windows Phone)"
+    description="Use  Azure Notification Hubs to use tag in registrations to send breaking news to a Windows Phone app."
+    services="notification-hubs"
+    documentationCenter="windows"
+    authors="ysxu"
+    manager="erikre"
+    editor=""/>
 
 <tags
-	ms.service="notification-hubs"
-	ms.workload="mobile"
-	ms.tgt_pltfrm="mobile-windows-phone"
-	ms.devlang="dotnet"
-	ms.topic="article"
-	ms.date="06/29/2016" 
-	ms.author="wesmc"/>
+    ms.service="notification-hubs"
+    ms.workload="mobile"
+    ms.tgt_pltfrm="mobile-windows-phone"
+    ms.devlang="dotnet"
+    ms.topic="article"
+    ms.date="06/29/2016" 
+    ms.author="yuaxu"/>
 
-# 使用通知中心傳送即時新聞
+
+# <a name="use-notification-hubs-to-send-breaking-news"></a>Use Notification Hubs to send breaking news
 
 [AZURE.INCLUDE [notification-hubs-selector-breaking-news](../../includes/notification-hubs-selector-breaking-news.md)]
 
 
-##Overview
+##<a name="overview"></a>Overview
 
-本主題將說明如何使用 Azure 通知中樞，將即時新聞通知廣播至 Windows Phone 8.0/8.1 Silverlight 應用程式。如果您的目標是 Windows Store 或 Windows Phone 8.1 應用程式，請參閱 [Windows Universal](notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md) 版本。完成時，您便能夠註冊您所感興趣的即時新聞類別，並僅接收這些類別的推播通知。此情況是許多應用程式的共同模式，這些應用程式必須將通知傳送給先前宣告對通知有興趣的使用者群組，例如，RSS 閱讀程式、供樂迷使用的應用程式等等。
+This topic shows you how to use Azure Notification Hubs to broadcast breaking news notifications to a Windows Phone 8.0/8.1 Silverlight app. If you are targeting Windows Store or Windows Phone 8.1 app, please refer to to the [Windows Universal](notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md) version. When complete, you will be able to register for breaking news categories you are interested in, and receive only push notifications for those categories. This scenario is a common pattern for many apps where notifications have to be sent to groups of users that have previously declared interest in them, e.g. RSS reader, apps for music fans, etc.
 
-在通知中心內建立註冊時，您可以透過包含一或多個 _tags_ 來啟用廣播案例。當標籤收到通知時，所有已註冊此標籤的裝置都會收到通知。由於標籤只是簡單的字串而已，您無需預先佈建標籤。如需標籤的詳細資訊，請參閱[通知中樞路由與標記運算式](notification-hubs-tags-segment-push-message.md)。
+Broadcast scenarios are enabled by including one or more _tags_ when creating a registration in the notification hub. When notifications are sent to a tag, all devices that have registered for the tag will receive the notification. Because tags are simply strings, they do not have to be provisioned in advance. For more information about tags, refer to [Notification Hubs Routing and Tag Expressions](notification-hubs-tags-segment-push-message.md).
 
-##必要條件
+##<a name="prerequisites"></a>Prerequisites
 
-本主題會以您在[開始使用通知中樞]中所建立的應用程式為基礎。開始本教學課程之前，您必須已完成[開始使用通知中心]。
+This topic builds on the app you created in [Get started with Notification Hubs]. Before starting this tutorial, you must have already completed [Get started with Notification Hubs].
 
-##在應用程式中新增類別選項
+##<a name="add-category-selection-to-the-app"></a>Add category selection to the app
 
-第一個步驟是在您的現有主頁面上新增 UI 元素，以便使用者選取要註冊的類別。使用者所選取的類別會儲存在裝置上。啟動應用程式時，您的通知中心內會建立以所選取類別作為標籤的裝置註冊。
+The first step is to add the UI elements to your existing main page that enable the user to select categories to register. The categories selected by a user are stored on the device. When the app starts, a device registration is created in your notification hub with the selected categories as tags.
 
-1. 開啟 MainPage.xaml 專案檔，然後使用下列程式碼來取代名為 `TitlePanel` 和 `ContentPanel` 的 **Grid** 元素：
+1. Open the MainPage.xaml project file, then replace the **Grid** elements named `TitlePanel` and `ContentPanel` with the following code:
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="Breaking News" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
@@ -62,14 +63,14 @@
             <Button Name="SubscribeButton" Content="Subscribe" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Click="SubscribeButton_Click" />
         </Grid>
 
-2. 在此專案中，建立名為 **Notifications** 的新類別，將 **public** 修飾詞新增至類別定義，然後在新的程式碼檔案中新增下列 **using** 陳述式：
+2. In the project, create a new class named **Notifications**, add the **public** modifier to the class definition, then add the following **using** statements to the new code file:
 
-		using Microsoft.Phone.Notification;
-		using Microsoft.WindowsAzure.Messaging;
-		using System.IO.IsolatedStorage;
-		using System.Windows;
+        using Microsoft.Phone.Notification;
+        using Microsoft.WindowsAzure.Messaging;
+        using System.IO.IsolatedStorage;
+        using System.Windows;
 
-3. 將下列程式碼複製到新的 **Notifications** 類別：
+3. Copy the following code into the new **Notifications** class:
 
         private NotificationHub hub;
 
@@ -117,12 +118,12 @@
                 channel.BindToShellToast();
                 channel.ChannelUriUpdated += channel_ChannelUriUpdated;
 
-				// This is optional, used to receive notifications while the app is running.
+                // This is optional, used to receive notifications while the app is running.
                 channel.ShellToastNotificationReceived += channel_ShellToastNotificationReceived;
             }
 
             // If channel.ChannelUri is not null, we will complete the registrationTask here.  
-			// If it is null, the registrationTask will be completed in the ChannelUriUpdated event handler.
+            // If it is null, the registrationTask will be completed in the ChannelUriUpdated event handler.
             if (channel.ChannelUri != null)
             {
                 await RegisterTemplate(channel.ChannelUri);
@@ -142,21 +143,21 @@
             // Any template notifications that contain messageParam and a corresponding tag expression
             // will be delivered for this registration.
 
-            const string templateBodyMPNS = "<wp:Notification xmlns:wp="WPNotification">" +
+            const string templateBodyMPNS = "<wp:Notification xmlns:wp=\"WPNotification\">" +
                                                 "<wp:Toast>" +
                                                     "<wp:Text1>$(messageParam)</wp:Text1>" +
                                                 "</wp:Toast>" +
                                             "</wp:Notification>";
 
-			// The stored categories tags are passed with the template registration.
+            // The stored categories tags are passed with the template registration.
 
             registrationTask.SetResult(await hub.RegisterTemplateAsync(channelUri.ToString(), 
-				templateBodyMPNS, "simpleMPNSTemplateExample", this.RetrieveCategories()));
+                templateBodyMPNS, "simpleMPNSTemplateExample", this.RetrieveCategories()));
 
             return await registrationTask.Task;
         }
 
-		// This is optional. It is used to receive notifications while the app is running.
+        // This is optional. It is used to receive notifications while the app is running.
         void channel_ShellToastNotificationReceived(object sender, NotificationEventArgs e)
         {
             StringBuilder message = new StringBuilder();
@@ -187,49 +188,49 @@
         }
 
 
-    本類別使用獨立儲存體，來儲存此裝置接收的新聞類別。它也包含使用[範本](notification-hubs-templates-cross-platform-push-messages.md)通知來註冊這些類別的方法。
+    This class uses the isolated storage to store the categories of news that this device is to receive. It also contains methods to register for these categories using a [template](notification-hubs-templates-cross-platform-push-messages.md) notification registration.
 
 
-4. 在 App.xaml.cs 專案檔案中，對 **App** 類別加入下列屬性：以您的通知中樞名稱與先前取得的 *DefaultListenSharedAccessSignature* 連接字串，取代 `<hub name>` 與 `<connection string with listen access>` 預留位置。
+4. In the App.xaml.cs project file, add the following property to the **App** class. Replace the `<hub name>` and `<connection string with listen access>` placeholders with your notification hub name and the connection string for *DefaultListenSharedAccessSignature* that you obtained earlier.
 
-		public Notifications notifications = new Notifications("<hub name>", "<connection string with listen access>");
+        public Notifications notifications = new Notifications("<hub name>", "<connection string with listen access>");
 
-	> [AZURE.NOTE] 因為隨用戶端應用程式散佈的憑證通常不安全，您應只將接聽存取權的金鑰隨用戶端應用程式散佈。您的應用程式可透過接聽存取權來註冊通知，但無法修改現有的註冊或無法傳送通知。在安全的後端服務中，會使用完整存取金鑰來傳送通知和變更現有的註冊。
+    > [AZURE.NOTE] Because credentials that are distributed with a client app are not generally secure, you should only distribute the key for listen access with your client app. Listen access enables your app to register for notifications, but existing registrations cannot be modified and notifications cannot be sent. The full access key is used in a secured backend service for sending notifications and changing existing registrations.
 
-5. 在 MainPage.xaml.cs 中新增下列程式碼行：
+5. In your MainPage.xaml.cs, add the following line:
 
-		using Windows.UI.Popups;
+        using Windows.UI.Popups;
 
-6. 在 MainPage.xaml.cs 專案檔案中新增下列方法：
+6. In the MainPage.xaml.cs project file, add the following method:
 
-		private async void SubscribeButton_Click(object sender, RoutedEventArgs e)
-		{
-		  var categories = new HashSet<string>();
-		  if (WorldCheckBox.IsChecked == true) categories.Add("World");
-		  if (PoliticsCheckBox.IsChecked == true) categories.Add("Politics");
-		  if (BusinessCheckBox.IsChecked == true) categories.Add("Business");
-		  if (TechnologyCheckBox.IsChecked == true) categories.Add("Technology");
-		  if (ScienceCheckBox.IsChecked == true) categories.Add("Science");
-		  if (SportsCheckBox.IsChecked == true) categories.Add("Sports");
-	
-		  var result = await ((App)Application.Current).notifications.StoreCategoriesAndSubscribe(categories);
-	
-		  MessageBox.Show("Subscribed to: " + string.Join(",", categories) + " on registration id : " +
-			 result.RegistrationId);
-		}
+        private async void SubscribeButton_Click(object sender, RoutedEventArgs e)
+        {
+          var categories = new HashSet<string>();
+          if (WorldCheckBox.IsChecked == true) categories.Add("World");
+          if (PoliticsCheckBox.IsChecked == true) categories.Add("Politics");
+          if (BusinessCheckBox.IsChecked == true) categories.Add("Business");
+          if (TechnologyCheckBox.IsChecked == true) categories.Add("Technology");
+          if (ScienceCheckBox.IsChecked == true) categories.Add("Science");
+          if (SportsCheckBox.IsChecked == true) categories.Add("Sports");
+    
+          var result = await ((App)Application.Current).notifications.StoreCategoriesAndSubscribe(categories);
+    
+          MessageBox.Show("Subscribed to: " + string.Join(",", categories) + " on registration id : " +
+             result.RegistrationId);
+        }
 
-	此方法會建立一份類別清單，並使用 **Notifications** 類別在本機儲存體中儲存清單，並在通知中心註冊對應標籤。變更類別時，系統會使用新類別重新建立註冊。
+    This method creates a list of categories and uses the **Notifications** class to store the list in the local storage and register the corresponding tags with your notification hub. When categories are changed, the registration is recreated with the new categories.
 
-您的應用程式現在可以在裝置上的本機儲存體中儲存一組類別，並在使用者每次變更類別選項時在通知中心註冊。
+Your app is now able to store a set of categories in local storage on the device and register with the notification hub whenever the user changes the selection of categories.
 
-##註冊通知
+##<a name="register-for-notifications"></a>Register for notifications
 
-這些步驟會在啟動時，使用已儲存在本機儲存體中的類別在通知中心註冊。
+These steps register with the notification hub on startup using the categories that have been stored in local storage.
 
-> [AZURE.NOTE] 由於 Microsoft 推播通知服務 (WPNS) 所指派的通道 URI 可能隨時會變更，因此您應經常註冊通知以避免通知失敗。此範例會在應用程式每次啟動時註冊通知。若是經常執行 (一天多次) 的應用程式，如果距離上次註冊的時間不到一天，則您可能可以略過註冊以保留頻寬。
+> [AZURE.NOTE] Because the channel URI assigned by the Microsoft Push Notification Service (MPNS) can change at any time, you should register for notifications frequently to avoid notification failures. This example registers for notifications every time that the app starts. For apps that are run frequently, more than once a day, you can probably skip registration to preserve bandwidth if less than a day has passed since the previous registration.
 
 
-1. 開啟 App.xaml.cs 檔案，並將 **async** 修飾詞加入 **Application\_Launching** 方法，同時使用以下代碼，取代您加入[開始使用通知中樞]中的通知中樞註冊代碼：
+1. Open the App.xaml.cs file and add the **async** modifier to **Application_Launching** method and replace the Notification Hubs registration code that you added in [Get started with Notification Hubs] with the following code:
 
         private async void Application_Launching(object sender, LaunchingEventArgs e)
         {
@@ -242,49 +243,49 @@
                 });
         }
 
-	這會確保應用程式每次啟動時都會從本機儲存體擷取類別，並要求這些類別的註冊。
+    This makes sure that every time the app starts it retrieves the categories from local storage and requests a registration for these categories.
 
-2. 在 MainPage.xaml.cs 專案檔案中，新增下列實作 **OnNavigatedTo** 方法的程式碼：
+2. In the MainPage.xaml.cs project file, add the following code that implements the **OnNavigatedTo** method:
 
-		protected override void OnNavigatedTo(NavigationEventArgs e)
-		{
-		    var categories = ((App)Application.Current).notifications.RetrieveCategories();
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var categories = ((App)Application.Current).notifications.RetrieveCategories();
 
-		    if (categories.Contains("World")) WorldCheckBox.IsChecked = true;
-		    if (categories.Contains("Politics")) PoliticsCheckBox.IsChecked = true;
-		    if (categories.Contains("Business")) BusinessCheckBox.IsChecked = true;
-		    if (categories.Contains("Technology")) TechnologyCheckBox.IsChecked = true;
-		    if (categories.Contains("Science")) ScienceCheckBox.IsChecked = true;
-		    if (categories.Contains("Sports")) SportsCheckBox.IsChecked = true;
-		}
+            if (categories.Contains("World")) WorldCheckBox.IsChecked = true;
+            if (categories.Contains("Politics")) PoliticsCheckBox.IsChecked = true;
+            if (categories.Contains("Business")) BusinessCheckBox.IsChecked = true;
+            if (categories.Contains("Technology")) TechnologyCheckBox.IsChecked = true;
+            if (categories.Contains("Science")) ScienceCheckBox.IsChecked = true;
+            if (categories.Contains("Sports")) SportsCheckBox.IsChecked = true;
+        }
 
-	這會根據原先儲存的類別狀態更新主頁面。
+    This updates the main page based on the status of previously saved categories.
 
-現在已完成此應用程式，且可在裝置本機儲存體中儲存一組類別，以供每次使用者變更類別選項在通知中心註冊時使用。接著，我們會定義可將類別通知傳送至此應用程式的後端。
+The app is now complete and can store a set of categories in the device local storage used to register with the notification hub whenever the user changes the selection of categories. Next, we will define a backend that can send category notifications to this app.
 
-##傳送加註標記的通知
+##<a name="sending-tagged-notifications"></a>Sending tagged notifications
 
 [AZURE.INCLUDE [notification-hubs-send-categories-template](../../includes/notification-hubs-send-categories-template.md)]
 
-##執行應用程式並產生通知
+##<a name="run-the-app-and-generate-notifications"></a>Run the app and generate notifications
 
-1. 在 Visual Studio 中，按 F5 以編譯並啟動應用程式。
+1. In Visual Studio, press F5 to compile and start the app.
 
-	![][1]
+    ![][1]
 
-	請注意，應用程式 UI 提供一組切換，可讓您選擇要訂閱的類別。
+    Note that the app UI provides a set of toggles that lets you choose the categories to subscribe to.
 
-2. 啟用一或多個類別切換，然後按一下 [訂閱]。
+2. Enable one or more categories toggles, then click **Subscribe**.
 
-	應用程式會將選取的類別轉換成標籤，並在通知中心內為選取的標籤要求新裝置註冊。系統會傳回已註冊類別並顯示在對話方塊中。
+    The app converts the selected categories into tags and requests a new device registration for the selected tags from the notification hub. The registered categories are returned and displayed in a dialog.
 
-	![][2]
+    ![][2]
 
-3. 收到確認已完成您各項類別的訂用帳戶之後，執行主控台應用程式，傳送每種類別的通知。請確認您只會收到所訂閱類別的通知。
+3. After receiving a confirmation that your categories were subscription completed, run the console app to send notifications for each categories. Verify you only receive a notification for the categories you have subscribed to.
 
-	![][3]
+    ![][3]
 
-您已完成本主題。
+You have completed this topic.
 
 <!--##Next steps
 
@@ -292,11 +293,11 @@ In this tutorial we learned how to broadcast breaking news by category. Consider
 
 + [Use Notification Hubs to broadcast localized breaking news]
 
-	Learn how to expand the breaking news app to enable sending localized notifications.
+    Learn how to expand the breaking news app to enable sending localized notifications.
 
 + [Notify users with Notification Hubs]
 
-	Learn how to push notifications to specific authenticated users. This is a good solution for sending notifications only to specific users.
+    Learn how to push notifications to specific authenticated users. This is a good solution for sending notifications only to specific users.
 -->
 
 <!-- Anchors. -->
@@ -314,12 +315,16 @@ In this tutorial we learned how to broadcast breaking news by category. Consider
 
 
 <!-- URLs.-->
-[開始使用通知中心]: /manage/services/notification-hubs/get-started-notification-hubs-wp8/
-[開始使用通知中樞]: /manage/services/notification-hubs/get-started-notification-hubs-wp8/
+[Get started with Notification Hubs]: /manage/services/notification-hubs/get-started-notification-hubs-wp8/
 [Use Notification Hubs to broadcast localized breaking news]: ../breakingnews-localized-wp8.md
 [Notify users with Notification Hubs]: /manage/services/notification-hubs/notify-users/
 [Mobile Service]: /develop/mobile/tutorials/get-started
 [Notification Hubs Guidance]: http://msdn.microsoft.com/library/jj927170.aspx
 [Notification Hubs How-To for Windows Phone]: ??
 
-<!----HONumber=AcomDC_0907_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+

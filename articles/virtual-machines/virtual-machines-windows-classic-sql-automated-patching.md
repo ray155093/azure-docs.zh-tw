@@ -1,33 +1,33 @@
 <properties
-	pageTitle="SQL Server VM 的自動修補 (傳統) | Microsoft Azure"
-	description="針對 Azure 中以傳統部署模式執行的 SQL Server 虛擬機器，說明自動修補功能。"
-	services="virtual-machines-windows"
-	documentationCenter="na"
-	authors="rothja"
-	manager="jhubbard"
-	editor=""
-	tags="azure-service-management" />
+    pageTitle="SQL Server VM 的自動修補 (傳統) | Microsoft Azure"
+    description="針對 Azure 中以傳統部署模式執行的 SQL Server 虛擬機器，說明自動修補功能。"
+    services="virtual-machines-windows"
+    documentationCenter="na"
+    authors="rothja"
+    manager="jhubbard"
+    editor=""
+    tags="azure-service-management" />
 <tags
-	ms.service="virtual-machines-windows"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.tgt_pltfrm="vm-windows-sql-server"
-	ms.workload="infrastructure-services"
-	ms.date="09/26/2016"
-	ms.author="jroth" />
+    ms.service="virtual-machines-windows"
+    ms.devlang="na"
+    ms.topic="article"
+    ms.tgt_pltfrm="vm-windows-sql-server"
+    ms.workload="infrastructure-services"
+    ms.date="09/26/2016"
+    ms.author="jroth" />
 
-# Azure 虛擬機器中的 SQL Server 自動修補 (傳統)
+
+# <a name="automated-patching-for-sql-server-in-azure-virtual-machines-(classic)"></a>Azure 虛擬機器中的 SQL Server 自動修補 (傳統)
 
 > [AZURE.SELECTOR]
 - [資源管理員](virtual-machines-windows-sql-automated-patching.md)
 - [傳統](virtual-machines-windows-classic-sql-automated-patching.md)
 
-自動修補會針對執行 SQL Server 的 Azure 虛擬機器建立維護時間範圍。自動更新只能在此維護時間範圍內安裝。對於 SQL Server，這可以確保系統更新和任何相關聯的重新啟動會在對資料庫最好的時間發生。自動修補相依於 [SQL Server IaaS 代理程式擴充](virtual-machines-windows-classic-sql-server-agent-extension.md)。
+自動修補會針對執行 SQL Server 的 Azure 虛擬機器建立維護時間範圍。 自動更新只能在此維護時間範圍內安裝。 對於 SQL Server，這可以確保系統更新和任何相關聯的重新啟動會在對資料庫最好的時間發生。 自動修補相依於 [SQL Server IaaS 代理程式擴充](virtual-machines-windows-classic-sql-server-agent-extension.md)。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]  
-若要檢視這篇文章的 Resource Manager 版本，請參閱 [Automated Patching for SQL Server in Azure Virtual Machines (Resource Manager)](virtual-machines-windows-sql-automated-patching.md) (Azure 虛擬機器的 SQL Server 自動修補 (Resource Manager))。
+[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)] 若要檢視這篇文章的 Resource Manager 版本，請參閱 [Automated Patching for SQL Server in Azure Virtual Machines (Resource Manager)](virtual-machines-windows-sql-automated-patching.md)(Azure 虛擬機器的 SQL Server 自動修補 (Resource Manager))。
 
-## 必要條件
+## <a name="prerequisites"></a>必要條件
 
 若要使用自動修補，請考慮下列必要條件︰
 
@@ -50,9 +50,9 @@
 
 - [安裝 SQL Server IaaS 擴充功能](virtual-machines-windows-classic-sql-server-agent-extension.md)。
 
-## Settings
+## <a name="settings"></a>Settings
 
-下表說明可以為自動修補設定的選項。針對傳統 VM，您必須使用 PowerShell 來設定這些設定。
+下表說明可以為自動修補設定的選項。 針對傳統 VM，您必須使用 PowerShell 來設定這些設定。
 
 |設定|可能的值|說明|
 |---|---|---|
@@ -62,9 +62,9 @@
 |**維護時間範圍**|30-180|允許完成下載和安裝更新的分鐘數。|
 |**PATCH 類別**|重要事項|要下載並安裝的更新類別。|
 
-## 使用 PowerShell 進行設定
+## <a name="configuration-with-powershell"></a>使用 PowerShell 進行設定
 
-在下列範例中，會使用 PowerShell 在現有的 SQL Server VM 上設定自動修補。**New-AzureVMSqlServerAutoPatchingConfig** 命令會設定自動更新的維護時間範圍。
+在下列範例中，會使用 PowerShell 在現有的 SQL Server VM 上設定自動修補。 **New-AzureVMSqlServerAutoPatchingConfig** 命令會設定自動更新的維護時間範圍。
 
     $aps = New-AzureVMSqlServerAutoPatchingConfig -Enable -DayOfWeek "Thursday" -MaintenanceWindowStartingHour 11 -MaintenanceWindowDuration 120  -PatchCategory "Important"
 
@@ -76,17 +76,21 @@
 |---|---|
 |**DayOfWeek**|在每個星期四安裝修補程式。|
 |**MaintenanceWindowStartingHour**|在上午 11:00 開始更新。|
-|**MaintenanceWindowsDuration**|必須在 120 分鐘內安裝修補程式。根據開始時間，其必須在下午 1:00 之前完成。|
+|**MaintenanceWindowsDuration**|必須在 120 分鐘內安裝修補程式。 根據開始時間，其必須在下午 1:00 之前完成。|
 |**PatchCategory**|此參數唯一可能的設定是 "Important"。|
 
 可能需要幾分鐘的時間來安裝及設定 SQL Server IaaS 代理程式。
 
-若要停用自動修補，請執行相同的指令碼，但不要對 New-AzureVMSqlServerAutoPatchingConfig 使用 -Enable 參數。和安裝一樣，可能需要幾分鐘的時間來停用自動修補。
+若要停用自動修補，請執行相同的指令碼，但不要對 New-AzureVMSqlServerAutoPatchingConfig 使用 -Enable 參數。 和安裝一樣，可能需要幾分鐘的時間來停用自動修補。
 
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 
 如需有關其他可用之自動化工作的資訊，請參閱 [SQL Server IaaS 代理程式擴充功能](virtual-machines-windows-classic-sql-server-agent-extension.md)。
 
 如需有關在 Azure VM 上執行 SQL Server 的詳細資訊，請參閱 [Azure 虛擬機器上的 SQL Server 概觀](virtual-machines-windows-sql-server-iaas-overview.md)。
 
-<!---HONumber=AcomDC_0928_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -16,7 +16,8 @@
    ms.date="09/21/2016"
    ms.author="lakshmir;barbkess;sonyama"/>
 
-# 還原 Azure SQL 資料倉儲 (入口網站)
+
+# <a name="restore-an-azure-sql-data-warehouse-(portal)"></a>還原 Azure SQL 資料倉儲 (入口網站)
 
 > [AZURE.SELECTOR]
 - [概觀][]
@@ -26,12 +27,12 @@
 
 在本文中，您將了解如何使用 Azure 入口網站來還原 Azure SQL 資料倉儲。
 
-## 開始之前
+## <a name="before-you-begin"></a>開始之前
 
-**請驗證您的 DTU 容量。** 每個 SQL 資料倉儲均由具有預設 DTU 配額的 SQL 伺服器裝載 (例如 myserver.database.windows.net)。在您還原 SQL 資料倉儲之前，請確認您的 SQL 伺服器有足夠的剩餘 DTU 配額供要還原的資料庫使用。若要了解如何計算所需 DTU 或要求更多 DTU，請參閱[要求 DTU 配額變更][]。
+**請驗證您的 DTU 容量。**  每個 SQL 資料倉儲均由具有預設 DTU 配額的 SQL 伺服器裝載 (例如 myserver.database.windows.net)。  在您還原 SQL 資料倉儲之前，請確認您的 SQL 伺服器有足夠的剩餘 DTU 配額供要還原的資料庫使用。 若要了解如何計算所需 DTU 或要求更多 DTU，請參閱 [要求 DTU 配額變更][]。
 
 
-## 還原作用中或已暫停的資料庫
+## <a name="restore-an-active-or-paused-database"></a>還原作用中或已暫停的資料庫
 
 還原資料庫：
 
@@ -47,23 +48,23 @@
 4. 尋找您想要還原的 SQL 資料倉儲，然後選取它
     
     ![](./media/sql-data-warehouse-restore-database-portal/01-select-active-dw.png)
-5. 在 [資料倉儲] 刀鋒視窗頂端，按一下 [還原]
+5. 在 [資料倉儲] 刀鋒視窗頂端，按一下 [還原] 
     
     ![](./media/sql-data-warehouse-restore-database-portal/01-select-restore-from-active.png)
 
-6. 指定新的**資料庫名稱**
-7. 選取最新的**還原點**
-    1. 確定您選擇了最新的還原點。由於還原點是以 UTC 格式顯示，因此，所顯示的預設選項有時不是最新的還原點。
+6. 指定新的 **資料庫名稱**
+7. 選取最新的 **還原點**
+    1. 確定您選擇了最新的還原點。  由於還原點是以 UTC 格式顯示，因此，所顯示的預設選項有時不是最新的還原點。
     
     ![](./media/sql-data-warehouse-restore-database-portal/01-restore-blade-from-active.png)
 
-8. 按一下 [確定]。
-9. 資料庫還原程序將會開始，您可以使用 [通知] 來監視此程序
+8. 按一下 [確定] 
+9. 資料庫還原程序將會開始，您可以使用 [通知] 
 
->[AZURE.NOTE] 還原完成後，您可以遵循[在復原之後設定資料庫][]來設定復原的資料庫。
+>[AZURE.NOTE] 還原完成後，您可以遵循 [在復原之後設定資料庫][]來設定復原的資料庫。
 
 
-## 還原已刪除的資料庫
+## <a name="restore-a-deleted-database"></a>還原已刪除的資料庫
 
 還原已刪除的資料庫：
 
@@ -77,7 +78,7 @@
     ![](./media/sql-data-warehouse-restore-database-portal/02-select-server.png)
 
 4. 在伺服器的刀鋒視窗上捲動至 [作業] 區段
-5. 按一下 [已刪除的資料庫] 圖格
+5. 按一下 [已刪除的資料庫]  圖格
     
     ![](./media/sql-data-warehouse-restore-database-portal/02-select-deleted-dws.png)
 
@@ -85,16 +86,16 @@
     
     ![](./media/sql-data-warehouse-restore-database-portal/02-select-deleted-dw.png)
 
-7. 指定新的**資料庫名稱**
+7. 指定新的 **資料庫名稱**
     
     ![](./media/sql-data-warehouse-restore-database-portal/02-restore-blade-from-deleted.png)
     
-8. 按一下 [確定]。
-9. 資料庫還原程序將會開始，您可以使用 [通知] 來監視此程序
+8. 按一下 [確定] 
+9. 資料庫還原程序將會開始，您可以使用 [通知] 
 
->[AZURE.NOTE] 若要在還原完成之後設定資料庫，請參閱[在復原之後設定資料庫][]。
+>[AZURE.NOTE] 若要在還原完成之後設定資料庫，請參閱 [在復原之後設定資料庫][]。 
 
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 若要深入了解 Azure SQL Database 版本的商務持續性功能，請閱讀 [Azure SQL Database 商務持續性概觀][]。
 
 <!--Image references-->
@@ -115,4 +116,8 @@
 <!--Other Web references-->
 [Azure 入口網站]: https://portal.azure.com/
 
-<!---HONumber=AcomDC_0928_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

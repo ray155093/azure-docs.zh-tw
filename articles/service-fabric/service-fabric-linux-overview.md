@@ -16,25 +16,26 @@
    ms.date="09/26/2016"
    ms.author="SubramaR"/>
 
-# Linux 上的 Service Fabric
 
-Linux 上的 Service Fabric 預覽版可讓您如同在 Windows 上一樣，在 Linux 上建置、部署和管理高可用性、可高度調整的應用程式。Service Fabric 架構 (Reliable Services 和 Reliable Actors) 除了可在 C# (.NET Core) 中使用，也能在 Java on Linux 中使用。您也可以使用任何語言或架構來建置[來賓可執行檔服務](service-fabric-deploy-existing-app.md)。此外，預覽也支援協調 Docker 容器。Docker 容器可以執行使用 Service Fabric 架構的來賓可執行檔或原生 Service Fabric 服務。
+# <a name="service-fabric-on-linux"></a>Linux 上的 Service Fabric
 
-Linux 上的 Service Fabric 在概念上相當於 Windows 上的 Service Fabric (除了作業系統細節和程式設計語言支援)。因此，我們大部分的[現有文件](http://aka.ms/servicefabricdocs)都可協助您熟悉這項技術。
+Linux 上的 Service Fabric 預覽版可讓您如同在 Windows 上一樣，在 Linux 上建置、部署和管理高可用性、可高度調整的應用程式。 Service Fabric 架構 (Reliable Services 和 Reliable Actors) 除了可在 C# (.NET Core) 中使用，也能在 Java on Linux 中使用。  您也可以使用任何語言或架構來建置 [來賓可執行檔服務](service-fabric-deploy-existing-app.md) 。 此外，預覽也支援協調 Docker 容器。 Docker 容器可以執行使用 Service Fabric 架構的來賓可執行檔或原生 Service Fabric 服務。
+
+Linux 上的 Service Fabric 在概念上相當於 Windows 上的 Service Fabric (除了作業系統細節和程式設計語言支援)。 因此，我們大部分的 [現有文件](http://aka.ms/servicefabricdocs) 都可協助您熟悉這項技術。
 
 > [AZURE.VIDEO service-fabric-linux-preview]
 
-## 支援的作業系統和程式設計語言
+## <a name="supported-operating-systems-and-programming-languages"></a>支援的作業系統和程式設計語言
 
-有限預覽版除了支援在 Azure 中執行 Ubuntu Server 16.04 的多部電腦叢集，還支援建立一整體開發叢集。除了來賓可執行檔和協調 Docker 容器，預覽在 Java 和 C# 中還支援 Reliable Actors 和 Reliable Stateless Services 架構。
+有限預覽版除了支援在 Azure 中執行 Ubuntu Server 16.04 的多部電腦叢集，還支援建立一整體開發叢集。 除了來賓可執行檔和協調 Docker 容器，預覽在 Java 和 C# 中還支援 Reliable Actors 和 Reliable Stateless Services 架構。  
 
->[AZURE.NOTE] Linux 尚未支援 Reliable Collections。也不支援獨立叢集 - 預覽中僅支援單機和 Azure Linux 多電腦叢集。
+>[AZURE.NOTE] Linux 尚未支援 Reliable Collections。 也不支援獨立叢集 - 預覽中僅支援單機和 Azure Linux 多電腦叢集。
 
-## 支援的工具
+## <a name="supported-tooling"></a>支援的工具
 
-預覽支援透過 Azure CLI 來與叢集進行互動。針對 Java 開發人員，透過 Linux 和 OSX 上支援的 Eclipse，就能與 Eclipse 和 Yeoman 整合。OSX 整合透過 vagrant 在幕後使用 Linux VM。針對 C# 開發人員，支援與 Yeoman 整合來產生應用程式範本。
+預覽支援透過 Azure CLI 來與叢集進行互動。 針對 Java 開發人員，透過 Linux 和 OSX 上支援的 Eclipse，就能與 Eclipse 和 Yeoman 整合。 OSX 整合透過 vagrant 在幕後使用 Linux VM。 針對 C# 開發人員，支援與 Yeoman 整合來產生應用程式範本。
 
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 
 
 1. 請熟悉 [Reliable Actors](service-fabric-reliable-actors-introduction.md) 和 [Reliable Services](service-fabric-reliable-services-introduction.md) 程式設計架構。
@@ -45,4 +46,8 @@ Linux 上的 Service Fabric 在概念上相當於 Windows 上的 Service Fabric 
 
 4. [在 Linux 上建立第一個 Service Fabric Java 應用程式](service-fabric-create-your-first-linux-application-with-java.md)
 
-<!---HONumber=AcomDC_0928_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

@@ -1,6 +1,6 @@
 <properties
-   pageTitle="使用入口網站為應用程式閘道建立路徑型規則 | Microsoft Azure"
-   description="了解如何使用入口網站為應用程式閘道建立路徑型規則"
+   pageTitle="Create a Path-based rule for an application gateway by using the portal | Microsoft Azure"
+   description="Learn how to create a Path-based rule for an application gateway by using the portal"
    services="application-gateway"
    documentationCenter="na"
    authors="georgewallace"
@@ -14,74 +14,77 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="infrastructure-services"
-   ms.date="08/18/2016"
+   ms.date="10/25/2016"
    ms.author="gwallace" />
 
-# 使用入口網站為應用程式閘道建立路徑型規則
+
+# <a name="create-a-path-based-rule-for-an-application-gateway-by-using-the-portal"></a>Create a Path-based rule for an application gateway by using the portal
 
 > [AZURE.SELECTOR]
-- [Azure 入口網站](application-gateway-create-url-route-portal.md)
+- [Azure portal](application-gateway-create-url-route-portal.md)
 - [Azure Resource Manager PowerShell](application-gateway-create-url-route-arm-ps.md)
 
-URL 路徑型路由可讓您根據 Http 要求的 URL 路徑來關聯路由。它會檢查是否有路由連至針對應用程式閘道中的 URL 清單設定的後端集區，並將網路流量傳送至定義的後端集區。URL 型路由的常見用法是將不同內容類型的要求負載平衡至不同的後端伺服器集區。
+URL Path-based routing enables you to associate routes based on the URL path of Http request. It checks if there is a route to a back-end pool configured for the URL lists in Application Gateway and send the network traffic to the defined back-end pool. A common use for URL-based routing is to load balance requests for different content types to different back-end server pools.
 
-URL 型路由會將新的規則類型引進應用程式閘道。應用程式閘道具有 2 種規則類型：基本和路徑型規則。基本規則類型會針對後端集區提供循環配置資源服務，而路徑型規則除了循環配置資源發佈之外，也會在選擇後端集區時將要求 URL 的路徑模式納入考慮。
+URL-based routing introduces a new rule type to application gateway. Application gateway has two rule types: basic and Path-Based rules. Basic rule type provides round-robin service for the back-end pools while Path-Based rules in addition to round robin distribution, also takes path pattern of the request URL into account while choosing the backend pool.
 
+## <a name="scenario"></a>Scenario
 
+The following scenario goes through creating a Path-based rule in an existing application gateway.
+The scenario assumes that you have already followed the steps to [Create an Application Gateway](application-gateway-create-gateway-portal.md).
 
-## 案例
+![url route][scenario]
 
-下列案例會完成在現有應用程式閘道中建立路徑型規則的程序。此案例假設您已經依照步驟[建立應用程式閘道](application-gateway-create-gateway-portal.md)。
+## <a name="<a-name="createrule"></a>create-the-path-based-rule"></a><a name="createrule"></a>Create the Path-based rule
 
-![URL 路由][scenario]
+A Path-based rule requires its own listener, before creating the rule be sure to verify you have an available listener to use.
 
-## <a name="createrule"></a>建立路徑型規則
+### <a name="step-1"></a>Step 1
 
-路徑型規則需要自己的接聽程式，在建立此規則之前，請務必確認您有接聽程式可供使用。
+Navigate to http://portal.azure.com and select an existing application gateway. Click **Rules**
 
-### 步驟 1
+![Application Gateway overview][1]
 
-瀏覽至 http://portal.azure.com，然後選取現有的應用程式閘道。按一下 [規則]
+### <a name="step-2"></a>Step 2
 
-![應用程式閘道概觀][1]
+Click **Path-based** button to add a new Path-based rule.
 
-### 步驟 2
+### <a name="step-3"></a>Step 3
 
-按一下 [路徑型] 按鈕來新增路徑型規則。
+The **Add path-based rule** blade has two sections. The first section is where you defined the listener, the name of the rule and the default path settings. The default path settings are for routes that do not fall under the custom path-based route. The second section of the **Add path-based rule** blade is where you define the path-based rules themselves.
 
-### 步驟 3
+**Basic Settings**
 
-[新增路徑型規則] 刀鋒視窗有兩個區段。您會在第一個區段中，定義接聽程式、規則的名稱和預設路徑設定。預設路徑設定適用於未落在自訂路徑型路由之下的路由。您會在 [新增路徑型規則] 刀鋒視窗的第二個區段中，定義路徑型規則本身。
+- **Name** - This is a friendly name to the rule that is accessible in the portal.
+- **Listener** - This is the listener that is used for the rule.
+- **Default backend pool** - This setting is the setting that defines the back-end to be used for the default rule
+- **Default HTTP settings** - This setting is the setting that defines the HTTP settings to be used for the default rule.
 
-**基本設定**
+**Path-based rules**
 
-- **名稱** - 這是可在入口網站中存取的易記規則名稱。
-- **接聽程式** - 這是用於規則的接聽程式。
-- **預設後端集區** - 此設定可定義要用於預設規則的後端
-- **預設 HTTP 設定** - 此設定可定義要用於預設規則的 HTTP 設定。
+- **Name** - This is a friendly name to path-based rule.
+- **Paths** - This setting defines the path the rule will look for when forwarding traffic
+- **Backend Pool** - This setting is the setting that defines the back-end to be used for the rule
+- **HTTP setting** - This setting is the setting that defines the HTTP settings to be used for the rule.
 
-**路徑型規則**
+>[AZURE.IMPORTANT] Paths: The list of path patterns to match. Each must start with / and the only place a "\*" is allowed is at the end. Valid examples are /xyz, /xyz* or /xyz/*.  
 
-- **名稱** - 這是路徑型規則的易記名稱。
-- **路徑** -此設定可定義規則在轉送流量時將要尋找的路徑
-- **後端集區** - 此設定可定義要用於規則的後端
-- **HTTP 設定** - 此設定可定義要用於規則的 HTTP 設定。
+![Add path-based rule blade with information filled out][2]
 
->[AZURE.IMPORTANT] 路徑︰要比對的路徑模式清單。每個路徑都必須以 / 開頭，而且只有結尾允許使用 "*"。有效範例包括 /xyz、/xyz* 或 /xyz/*。
+Adding a path-based rule to an existing application gateway is an easy process through the portal. Once a path-based rule has been created, it can be edited to add additional rules easily. 
 
-![已填入資訊的新增路徑型規則刀鋒視窗][2]
+![adding additional path-based rules][3]
 
-將路徑型規則新增至現有應用程式閘道是在入口網站中進行的簡單程序。建立路徑型規則後，即可加以編輯以便輕鬆地新增其他規則。
+## <a name="next-steps"></a>Next steps
 
-![新增其他路徑型規則][3]
-
-## 後續步驟
-
-若要了解如何設定與「Azure 應用程式閘道」搭配運作的「SSL 卸載」，請參閱[設定 SSL 卸載](application-gateway-ssl-portal.md)。
+To learn how to configure SSL Offloading with Azure Application Gateway see [Configure SSL Offload](application-gateway-ssl-portal.md)
 
 [1]: ./media/application-gateway-create-url-route-portal/figure1.png
 [2]: ./media/application-gateway-create-url-route-portal/figure2.png
 [3]: ./media/application-gateway-create-url-route-portal/figure3.png
 [scenario]: ./media/application-gateway-create-url-route-portal/scenario.png
 
-<!---HONumber=AcomDC_0824_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

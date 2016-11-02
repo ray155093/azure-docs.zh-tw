@@ -12,18 +12,24 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="TBD"
-   ms.date="04/07/2016"
+   ms.date="10/05/2016"
    ms.author="alkohli" />
 
 
-# StorSimple Virtual Array 限制
 
-##Overview
+# <a name="storsimple-virtual-array-limits"></a>StorSimple Virtual Array 限制
 
-當您規劃、部署和操作 Microsoft Azure StorSimple Virtual Array 時，請考慮這些限制。下表描述虛擬裝置的這些限制。
+##<a name="overview"></a>Overview
 
-## StorSimple Virtual Array 限制 
+當您規劃、部署和操作 Microsoft Azure StorSimple Virtual Array 時，請考慮這些限制。 下表描述虛擬裝置的這些限制。
+
+## <a name="storsimple-virtual-array-limits"></a>StorSimple Virtual Array 限制 
 
 [AZURE.INCLUDE [storsimple-virtual-array-limits](../../includes/storsimple-virtual-array-limits.md)]
 
-<!---HONumber=AcomDC_0810_2016-->
+
+
+
+<!--HONumber=Oct16_HO2-->
+
+
