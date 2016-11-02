@@ -1,86 +1,92 @@
 <properties
-	pageTitle="適用於機器學習 Web 服務的 Excel 增益集 | Microsoft Azure"
-	description="如何在 Excel 中直接使用 Azure Machine Learning Web 服務，而不需要撰寫任何程式碼。"
-	services="machine-learning"
-	documentationCenter=""
-	authors="tedway"
-	manager="jhubbard"
-	editor="cgronlun"
+    pageTitle="適用於 Machine Learning Web 服務的 Excel 增益集 | Microsoft Azure"
+    description="如何在 Excel 中直接使用 Azure Machine Learning Web 服務，而不需要撰寫任何程式碼。"
+    services="machine-learning"
+    documentationCenter=""
+    authors="tedway"
+    manager="jhubbard"
+    editor="cgronlun"
     tags=""/>
 
 <tags
-	ms.service="machine-learning"
+    ms.service="machine-learning"
     ms.devlang="na"
-	ms.topic="article"
-	ms.tgt_pltfrm="na"
-	ms.workload="data-services"
-	ms.date="07/06/2016"
-	ms.author="tedway;garye" />
+    ms.topic="article"
+    ms.tgt_pltfrm="na"
+    ms.workload="data-services"
+    ms.date="10/05/2016"
+    ms.author="tedway;garye" />
 
-# 適用於 Azure Machine Learning Web 服務的 Excel 增益集
+
+# <a name="excel-add-in-for-azure-machine-learning-web-services"></a>適用於 Azure Machine Learning Web 服務的 Excel 增益集
 
 Excel 可以讓您直接輕鬆呼叫 Web 服務，而不需要撰寫任何程式碼。
 
-## 使用活頁簿中現有 Web 服務的步驟
+## <a name="steps-to-use-an-existing-web-service-in-the-workbook"></a>使用活頁簿中現有 Web 服務的步驟
 
 1. 開啟 [範例 Excel 檔案](http://aka.ms/amlexcel-sample-2)，其中包含 Excel 增益集和鐵達尼號乘客的相關資料。
 2. 按一下 Web 服務加以選擇，在此範例中為「鐵達尼號存活者預測工具 (Excel 增益集範例) [分數]」。
 
     ![選取 Web 服務][01]
 
-3. 這將帶領您到 [預測] 區段。此活頁簿已經包含範例資料，但若為空白的活頁簿，您可在 Excel 中選取一個儲存格並按一下 [使用範例資料]。
-4. 選取含有標頭的資料並按一下輸入資料範圍圖示。請確定已核取 [我的資料有標頭] 方塊。
-5. 在 [輸出] 之下，輸入您想要輸出所在的儲存格編號，例如此觸的 "H1"。
-6. 按一下 [預測]。
+3. 這將帶領您到 [預測]  區段。  此活頁簿已經包含範例資料，但若為空白的活頁簿，您可在 Excel 中選取一個儲存格並按一下 [使用範例資料] 。
+4. 選取含有標頭的資料並按一下輸入資料範圍圖示。  請確定已核取 [我的資料有標頭] 方塊。
+5. 在 [輸出] 之下，輸入您想要輸出所在的儲存格編號，例如此處的 "H1"。
+6. 按一下 [預測] 。
 
-	![預測區段][02]
+    ![預測區段][02]
 
-## 加入新的 Web 服務的步驟
+## <a name="steps-to-add-a-new-web-service"></a>新增新 Web 服務的步驟
 
-發佈 Web 服務 ([本頁面](machine-learning-walkthrough-5-publish-web-service.md) 會說明做法) 或尋找現有的 Web 服務。
+部署 Web 服務或使用現有 Web 服務。 如需部署 Web 服務的詳細資訊，請參閱[逐步解說步驟 5：部署 Azure Machine Learning Web 服務](machine-learning-walkthrough-5-publish-web-service.md)。
 
-取得 Web 服務的 API 金鑰。您在哪執行取決於您發佈的是傳統 Web 服務或新的 Web 服務。
+取得 Web 服務的 API 金鑰。 在哪裡執行這項操作取決於您發佈的是傳統 Machine Learning Web 服務或新式 Machine Learning Web 服務。
 
-**傳統 Web 服務**
+**使用傳統 Web 服務** 
 
-1. 在 Machine Learning Studio 中，按一下左窗格中的 [WEB 服務] 區段，然後選取 web 服務。
+1. 在 Machine Learning Studio 中，按一下左窗格中的 [WEB 服務] 區段，然後選取 Web 服務。
 
-	![Studio 選取 Web 服務][04]
+    ![Studio 選取 Web 服務][04]
 
-2. 複製 web 服務的 API 金鑰。
+2. 複製 Web 服務的 API 金鑰。
 
-	![Studio API 金鑰][05]
+    ![Studio API 金鑰][05]
 
-3. 在 web 服務的 [儀表板] 索引標籤上，按一下**要求/回應**連結。
-4. 尋找 [要求 URI] 區段。複製並儲存 URL。
+3. 在 Web 服務的 [儀表板] 索引標籤上，按一下 [要求/回應] 連結。
+4. 尋找 [要求 URI]  區段。  複製並儲存 URL。
 
-**新的 Web 服務**
+>[AZURE.NOTE] 現在便可以登入 [Microsoft Azure Machine Learning Web 服務](https://services.azureml.net)入口網站取得傳統 Machine Learning Web 服務的 API 金鑰。
 
-1. 在 Azure Machine Learning Web Services 入口網站中，按一下 [Web 服務]，然後選取您的 Web 服務。
-2. 按一下 [取用]。
-3. 尋找 [基本使用資訊] 區段。複製並儲存 [主要金鑰] 和 [要求-回應] URL。
+**使用新式 Web 服務**
+
+1. 在 [Azure Machine Learning Web 服務](https://services.azureml.net)入口網站中，按一下 [Web 服務]，然後選取您的 Web 服務。 
+2. 按一下 [取用] 。
+3. 尋找 [基本使用資訊]  區段。 複製並儲存 [主要金鑰] 和 [要求-回應] URL。
 
 
-## 加入新的 Web 服務的步驟
+## <a name="steps-to-add-a-new-web-service"></a>新增新 Web 服務的步驟
 
-1. 發佈 Web 服務 ([本頁面](machine-learning-walkthrough-5-publish-web-service.md) 會說明做法) 或尋找現有的 Web 服務。
-2. 在 Excel 中，移至 [Web 服務] 區段 (如果您是在 [預測] 區段中，請按一下 [向後鍵] 前往 Web 服務的清單)。
+1. 部署 Web 服務或使用現有 Web 服務。 如需部署 Web 服務的詳細資訊，請參閱[逐步解說步驟 5：部署 Azure Machine Learning Web 服務](machine-learning-walkthrough-5-publish-web-service.md)。
+2. 按一下 [取用] 。
+3. 尋找 [基本使用資訊]  區段。 複製並儲存 [主要金鑰] 和 [要求-回應] URL。
+2. 在 Excel 中，前往 [Web 服務] 區段 (如果您是在 [預測] 區段中，請按一下「向後鍵」前往 Web 服務的清單)。
 
-	![移至 web 服務選取][03]
-3. 按一下 [新增 Web 服務]。
+    ![前往 Web 服務][03]
+    
+3. 按一下 [新增 Web 服務] 。
 4. 將 URL 貼到標示為 [URL] 的 Excel 增益集文字方塊中。
 5. 將 API/主要金鑰貼到標示為 [API 金鑰] 的文字方塊中。
-6. 按一下 [新增]。
+6. 按一下 [新增] 。
 
-	![傳統 Web 服務的 URL 和 API 金鑰。][06]
+    ![傳統 Web 服務的 URL 和 API 金鑰。][06]
 
-10.	若要使用 Web 服務，請遵循上述指示「使用現有 Web 服務的步驟」。
+10. 若要使用 Web 服務，請遵循前述「使用現有 Web 服務的步驟」的指示。
 
-## 共用活頁簿
+## <a name="sharing-your-workbook"></a>共用活頁簿
 
-如果您儲存您的活頁簿，則您為 Web 服務加入的 API/主要金鑰也會一併儲存。這表示您應該只與您信任的人共用活頁簿。
+如果您儲存您的活頁簿，則您為 Web 服務新增的 API/主要金鑰也會一併儲存。 這表示您應該只與您信任的人共用活頁簿。
 
-請在下方或我們的[論壇](http://go.microsoft.com/fwlink/?LinkID=403669&clcid=0x409)上提出任何問題。
+如果有任何問題，請在下方的註解區或在我們 [論壇](http://go.microsoft.com/fwlink/?LinkID=403669&clcid=0x409)中提出。
 
 [01]: ./media/machine-learning-excel-add-in-for-web-services/image1.png
 [02]: ./media/machine-learning-excel-add-in-for-web-services/image2.png
@@ -89,4 +95,8 @@ Excel 可以讓您直接輕鬆呼叫 Web 服務，而不需要撰寫任何程式
 [05]: ./media/machine-learning-excel-add-in-for-web-services/image5.png
 [06]: ./media/machine-learning-excel-add-in-for-web-services/image6.png
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

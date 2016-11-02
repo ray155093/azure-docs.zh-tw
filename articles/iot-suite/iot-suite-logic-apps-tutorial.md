@@ -1,6 +1,6 @@
 <properties
-  pageTitle="Azure IoT 套件和 Logic Apps | Microsoft Azure"
-  description="如何將 Logic Apps 連結至 Azure IoT 套件以執行商務程序的教學課程。"
+  pageTitle="Azure IoT Suite and Logic Apps | Microsoft Azure"
+  description="A tutorial on how to hook up Logic Apps to Azure IoT Suite for business process."
   services=""
   suite="iot-suite"
   documentationCenter=""
@@ -14,46 +14,47 @@
   ms.topic="article"
   ms.tgt_pltfrm="na"
   ms.workload="na"
-  ms.date="08/16/2016"
+  ms.date="10/31/2016"
   ms.author="araguila"/>
   
-# 教學課程：將邏輯應用程式連接至 Azure IoT 套件遠端監視預先設定解決方案
 
-[Microsoft Azure IoT 套件][lnk-internetofthings] 遠端監視預先設定解決方案以一套端對端功能集示範 IoT 方案，是快速入門的好工具。本教學課程逐步引導您將邏輯應用程式連接至 Microsoft Azure IoT 套件遠端監視預先設定解決方案。這些步驟示範如何將 IoT 解決方案連接至商務程序，以進一步發展此 IoT 解決方案。
+# <a name="tutorial-connect-logic-app-to-your-azure-iot-suite-remote-monitoring-preconfigured-solution"></a>Tutorial: Connect Logic App to your Azure IoT Suite Remote Monitoring preconfigured solution
 
-_如果您要尋找有關如何佈建遠端監視預先設定解決方案的逐步解說，請參閱[教學課程：IoT 預先設定解決方案入門][lnk-getstarted]。_
+The [Microsoft Azure IoT Suite][lnk-internetofthings] remote monitoring preconfigured solution is a great way to get started quickly with an end-to-end feature set that exemplifies an IoT solution. This tutorial walks you through how to add Logic App to your Microsoft Azure IoT Suite remote monitoring preconfigured solution. These steps demonstrate how you can take your IoT solution even further by connecting it to a business process.
 
-在開始本教學課程之前，您應該：
+_If you’re looking for a walkthrough on how to provision a remote monitoring preconfigured solution, see [Tutorial: Get started with the IoT preconfigured solutions][lnk-getstarted]._
 
-- 在您的 Azure 訂用帳戶中佈建遠端監視預先設定的解決方案
+Before you start this tutorial, you should:
 
-- 建立 SendGrid 帳戶，用來讓您傳送可觸發商務程序的電子郵件。您可以在 [SendGrid](https://sendgrid.com/) 按一下 [免費試用]，註冊免費試用帳戶。註冊免費試用帳戶後，您必須在 SendGrid 中建立 [API 金鑰](https://sendgrid.com/docs/User_Guide/Settings/api_keys.html)來授權傳送郵件。稍後在教學課程中需要此 API 金鑰。
+- Provision the remote monitoring preconfigured solution in your Azure subscription.
 
-假設您已佈建遠端監視預先設定解決方案，請在 [Azure 入口網站][lnk-azureportal]中瀏覽至該解決方案的資源群組。資源群組的名稱與您在佈建遠端監視解決方案時所選擇的解決方案名稱相同。在資源群組中，您可以看到解決方案已佈建的所有 Azure 資源，但在 Azure 傳統入口網站中可找到的 Azure Active Directory 應用程式除外。下列螢幕擷取畫面顯示遠端監視預先設定解決方案的 [資源群組] 刀鋒視窗範例︰
+- Create a SendGrid account to enable you to send an email that triggers your business process. You can sign up for a free trial account at [SendGrid](https://sendgrid.com/) by clicking **Try for Free**. After you have registered for your free trial account, you need to create an [API key](https://sendgrid.com/docs/User_Guide/Settings/api_keys.html) in SendGrid that grants permissions to send mail. You need this API key later in the tutorial.
+
+Assuming you’ve already provisioned your remote monitoring preconfigured solution, navigate to the resource group for that solution in the [Azure portal][lnk-azureportal]. The resource group has the same name as the solution name you chose when you provisioned your remote monitoring solution. In the resource group, you can see all the provisioned Azure resources for your solution except for the Azure Active Directory application that you can find in the Azure Classic Portal. The following screenshot shows an example **Resource group** blade for a remote monitoring preconfigured solution:
 
 ![](media/iot-suite-logic-apps-tutorial/resourcegroup.png)
 
-若要開始，請設定邏輯應用程式來使用預先設定的解決方案。
+To begin, set up the logic app to use with the preconfigured solution.
 
-## 設定邏輯應用程式
+## <a name="set-up-the-logic-app"></a>Set up the Logic App
 
-1. 在 Azure 入口網站中，按一下資源群組刀鋒視窗頂端的 [加入]。
+1. Click __Add__ at the top of your resource group blade in the Azure portal.
 
-2. 搜尋 [邏輯應用程式]，選取它，然後按一下 [建立]。
+2. Search for __Logic App__, select it and then click **Create**.
 
-3. 填寫 [名稱]，並使用您佈建遠端監視解決方案時使用的相同 [訂用帳戶] 和 [資源群組]。按一下 [建立]。
+3. Fill out the __Name__ and use the same **Subscription** and **Resource group** that you used when you provisioned your remote monitoring solution. Click __Create__.
 
     ![](media/iot-suite-logic-apps-tutorial/createlogicapp.png)
 
-4. 部署完成時，您會看到邏輯應用程式列為資源群組中的資源。
+4. When your deployment completes, you can see the Logic App is listed as a resource in your resource group.
 
-5. 按一下邏輯應用程式來瀏覽至 [邏輯應用程式] 刀鋒視窗，選取 [空白邏輯應用程式] 範本以開啟 [Logic Apps 設計工具]。
+5. Click the Logic App to navigate to the Logic App blade, select the **Blank Logic App** template to open the **Logic Apps Designer**.
 
     ![](media/iot-suite-logic-apps-tutorial/logicappsdesigner.png)
 
-6. 選取 [要求]。這個動作會指定以內送 HTTP 要求加上特定 JSON 格式化承載做為觸發程序。
+6. Select __Request__. This action specifies that an incoming HTTP request with a specific JSON formatted payload acts as a trigger.
 
-7. 將下列內容貼到 [要求本文 JSON 結構描述] 中：
+7. Paste the following into the Request Body JSON Schema:
 
     ```
     {
@@ -82,45 +83,45 @@ _如果您要尋找有關如何佈建遠端監視預先設定解決方案的逐�
     }
     ```
     
-    > [AZURE.NOTE] 您可以在儲存邏輯應用程式之後複製 HTTP post 要求的 URL，但必須先新增動作。
+    > [AZURE.NOTE] You can copy the URL for the HTTP post after you save the logic app, but first you must add an action.
 
-8. 按一下手動觸發程序下的 [+ 新增步驟]。然後按一下 [加入動作]。
+8. Click __+ New step__ under your manual trigger. Then click **Add an action**.
 
     ![](media/iot-suite-logic-apps-tutorial/logicappcode.png)
 
-9. 搜尋 [SendGrid - 傳送電子郵件] 並按一下它。
+9. Search for **SendGrid - Send email** and click it.
 
     ![](media/iot-suite-logic-apps-tutorial/logicappaction.png)
 
-10. 輸入連線的名稱，例如 **SendGridConnection**，輸入您設定 SendGrid 帳戶時設定的 **SendGrid API 金鑰**，然後按一下 [建立]。
+10. Enter a name for the connection, such as **SendGridConnection**, enter the **SendGrid API Key** you created when you set up your SendGrid account, and click **Create**.
 
     ![](media/iot-suite-logic-apps-tutorial/sendgridconnection.png)
 
-11. 將您擁有的電子郵件地址加入至 [寄件者] 和 [收件者] 欄位。將**遠端監視警示 [DeviceId]** 加入至 [主旨] 欄位。在 [電子郵件內文] 欄位中加入 **裝置 [DeviceId] 已報告 [measurementName] 與 [measuredValue] 值**。 您可以按一下 [您可以從先前步驟中插入資料] 區段，以加入 **[DeviceId]**、**[measurementName]** 和 **[measuredValue]**。
+11. Add email addresses you own to both the **From** and **To** fields. Add **Remote monitoring alert [DeviceId]** to the **Subject** field. In the **Email Body** field, add **Device [DeviceId] has reported [measurementName] with value [measuredValue].** You can add **[DeviceId]**, **[measurementName]**, and **[measuredValue]** by clicking in the **You can insert data from previous steps** section.
 
     ![](media/iot-suite-logic-apps-tutorial/sendgridaction.png)
 
-12. 按一下頂端功能表中的 [儲存]。
+12. Click __Save__ in the top menu.
 
-13. 按一下 [要求] 觸發程序，複製__此 URL 的 Http Post__ 值。稍後在本教學課程中需要此 URL。
+13. Click the **Request** trigger and copy the __Http Post to this URL__ value. You need this URL later in this tutorial.
 
-> [AZURE.NOTE] Logic Apps 可讓您執行[許多不同類型的動作][lnk-logic-apps-actions]，包括 Office 365 中的動作。
+> [AZURE.NOTE] Logic Apps enable you to run [many different types of action][lnk-logic-apps-actions] including actions in Office 365. 
 
-## 設定 EventProcessor Web 作業
+## <a name="set-up-the-eventprocessor-web-job"></a>Set up the EventProcessor Web Job
 
-在本節中，您會將您預先設定的解決方案連接到您建立的邏輯應用程式。為了完成此工作，您要將用於觸發邏輯應用程式的 URL，加入當裝置感應器值超過臨界值時引發的動作。
+In this section, you connect your preconfigured solution to the Logic App you created. To complete this task, you add the URL to trigger the Logic App to the action that fires when a device sensor value exceeds a threshold.
 
-1. 使用您的 git 用戶端複製最新版的 [azure-iot-remote-monitoring github 儲存機制][lnk-rmgithub]。例如：
+1. Use your git client to clone the latest version of the [azure-iot-remote-monitoring github repository][lnk-rmgithub]. For example:
 
     ```
     git clone https://github.com/Azure/azure-iot-remote-monitoring.git
     ```
 
-2. 在 Visual Studio 中，從儲存機制的本機複本開啟 __RemoteMonitoring.sln__。
+2. In Visual Studio, open the __RemoteMonitoring.sln__ from the local copy of the repository.
 
-3. 開啟 **Infrastructure\\Repository** 資料夾中的 __ActionRepository.cs__ 檔案。
+3. Open the __ActionRepository.cs__ file in the **Infrastructure\\Repository** folder.
 
-4. 使用您從邏輯應用程式記下的__此 URL 的 Http Post__ 更新 **actionIds** 字典，如下所示︰
+4. Update the **actionIds** dictionary with the __Http Post to this URL__ you noted from your Logic App as follows:
 
     ```
     private Dictionary<string,string> actionIds = new Dictionary<string, string>()
@@ -130,45 +131,45 @@ _如果您要尋找有關如何佈建遠端監視預先設定解決方案的逐�
     };
     ```
 
-5. 在方案中儲存所做的變更並結束 Visual Studio。
+5. Save the changes in solution and exit Visual Studio.
 
-## 從命令列部署
+## <a name="deploy-from-the-command-line"></a>Deploy from the command line
 
-本節中，您要部署已更新的遠端監視解決方案，取代目前在 Azure 中執行的版本。
+In this section, you deploy your updated version of the remote monitoring solution to replace the version currently running in Azure.
 
-1. 遵循[開發設定][lnk-devsetup]的指示，設定您的環境準備部署。
+1. Following the [dev set-up][lnk-devsetup] instructions to set up your environment for deployment.
 
-2.  若要在本機部署，請遵循[本機部署][lnk-localdeploy]指示。
+2.  To deploy locally, follow the [local deployment][lnk-localdeploy] instructions.
 
-3.  若要部署到雲端並更新現有的雲端部署，請遵循[雲端部署][lnk-clouddeploy]指示。使用原始部署的名稱做為部署名稱。例如，如果原始部署為 **demologicapp**，請使用下列命令︰
+3.  To deploy to the cloud and update your existing cloud deployment, follow the [cloud deployment][lnk-clouddeploy] instructions. Use the name of your original deployment as the deployment name. For example if the original deployment was called **demologicapp**, use the following command:
 
     ``
     build.cmd cloud release demologicapp
     ``
     
-    當建置指令碼執行時，請務必使用您佈建解決方案時所使用的相同 Azure 帳戶、訂用帳戶、區域和 Active Directory 執行個體。
+    When the build script runs, be sure to use the same Azure account, subscription, region, and Active Directory instance you used when you provisioned the solution.
 
-## 了解邏輯應用程式的實際運作
+## <a name="see-your-logic-app-in-action"></a>See your Logic App in action
 
-當您佈建解決方案時，根據預設，遠端監視預先設定的解決方案會設定兩個規則。這兩個規則都在 **SampleDevice001** 裝置上︰
+The remote monitoring preconfigured solution has two rules set up by default when you provision a solution. Both rules are on the **SampleDevice001** device:
 
-* 溫度 > 38.00
-* 溼度 > 48.00
+* Temperature > 38.00
+* Humidity > 48.00
 
-溫度規則會觸發 **Raise Alarm** 動作，溼度規則會觸發 **SendMessage** 動作。假設您在 **ActionRepository** 類別中對這兩個動作使用相同的 URL，邏輯應用程式將會觸發其中一條規則。兩條規則皆使用 SendGrid 將警示的詳細資料透過電子郵件傳送至 [收件者] 地址。
+The temperature rule triggers the **Raise Alarm** action and the Humidity rule triggers the **SendMessage** action. Assuming you used the same URL for both actions the **ActionRepository** class, your logic app triggers for either rule. Both rules use SendGrid to send an email to the **To** address with details of the alert.
 
-> [AZURE.NOTE] 邏輯應用程式會在每次達到臨界值時繼續觸發。若要避免不必要的電子郵件，您可以在方案入口網站中停用規則，或在 [Azure 入口網站][lnk-azureportal]中停用邏輯應用程式。
+> [AZURE.NOTE] The Logic App continues to trigger every time the threshold is met. To avoid unnecessary emails, you can either disable the rules in your solution portal or disable the Logic App in the [Azure portal][lnk-azureportal].
 
-除了接收電子郵件，您也可以查看邏輯應用程式在入口網站中運作情形︰
+In addition to receiving emails, you can also see when the Logic App runs in the portal:
 
 ![](media/iot-suite-logic-apps-tutorial/logicapprun.png)
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-既然您已使用邏輯應用程式將預先設定的解決方案連接到商務程序，您可以深入了解自訂預先設定的解決方案的選項。
+Now that you've used a Logic App to connect the preconfigured solution to a business process, you can learn more about the options for customizing the preconfigured solutions:
 
-- [搭配使用動態遙測與遠端監視預先設定解決方案][lnk-dynamic]
-- [遠端監視預先設定方案中的裝置資訊中繼資料][lnk-devinfo]
+- [Use dynamic telemetry with the remote monitoring preconfigured solution][lnk-dynamic]
+- [Device information metadata in the remote monitoring preconfigured solution][lnk-devinfo]
 
 [lnk-dynamic]: iot-suite-dynamic-telemetry.md
 [lnk-devinfo]: iot-suite-remote-monitoring-device-info.md
@@ -182,4 +183,8 @@ _如果您要尋找有關如何佈建遠端監視預先設定解決方案的逐�
 [lnk-localdeploy]: https://github.com/Azure/azure-iot-remote-monitoring/blob/master/Docs/local-deployment.md
 [lnk-clouddeploy]: https://github.com/Azure/azure-iot-remote-monitoring/blob/master/Docs/cloud-deployment.md
 
-<!---HONumber=AcomDC_0824_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

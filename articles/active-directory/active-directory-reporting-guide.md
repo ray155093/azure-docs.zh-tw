@@ -13,11 +13,16 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="identity"
-   ms.date="09/27/2016"
+   ms.date="09/30/2016"
    ms.author="femila"/>
 
 
-# Azure Active Directory 報告指南
+
+# <a name="azure-active-directory-reporting-guide"></a>Azure Active Directory 報告指南
+
+> [AZURE.SELECTOR]
+- [Azure 入口網站](active-directory-reporting-azure-portal.md)
+- [Azure 傳統入口網站](active-directory-reporting-guide.md)
 
  - [Azure Active Directory 報告 - 預覽版](active-directory-reporting-azure-portal.md)
  - [開始使用 Azure AD 報告 API](active-directory-reporting-api-getting-started.md)
@@ -29,4 +34,8 @@
  - [Azure Active Directory 報告「未知的執行者」事件](active-directory-reporting-unknown-actor.md)
  - [檢視存取和使用情況報告](active-directory-view-access-usage-reports.md)
 
-<!---HONumber=AcomDC_0928_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

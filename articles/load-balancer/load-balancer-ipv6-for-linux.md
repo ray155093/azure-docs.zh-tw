@@ -6,6 +6,7 @@
     authors="sdwheeler"
     manager="carmonm"
     editor=""
+    keywords="ipv6, azure load balancer, 雙重堆疊, 公用 ip, 原生 ipv6, 行動, iot"
 />
 <tags
     ms.service="load-balancer"
@@ -17,17 +18,18 @@
     ms.author="sewhee"
 />
 
-# 設定 Linux VM 的 DHCPv6
 
-Azure Marketplace 中的一些 Linux 虛擬機器映像沒有預設的 DHCPv6 設定。若要支援 IPv6，在您使用的 Linux OS 散發套件內必須設定 DHCPv6。不同 Linux 散發套件的 DHCPv6 設定方式不同，因為它們使用不同的套件。
+# <a name="configuring-dhcpv6-for-linux-vms"></a>設定 Linux VM 的 DHCPv6
 
->[AZURE.NOTE] Azure Marketplace 中最新的 SUSE Linux 和 CoreOS 映像已有預先設定 DHCPv6。使用這些映像不需要再進行額外的變更。
+Azure Marketplace 中的一些 Linux 虛擬機器映像沒有預設的 DHCPv6 設定。 若要支援 IPv6，在您使用的 Linux OS 散發套件內必須設定 DHCPv6。 不同 Linux 散發套件的 DHCPv6 設定方式不同，因為它們使用不同的套件。
+
+>[AZURE.NOTE] Azure Marketplace 中最新的 SUSE Linux 和 CoreOS 映像已有預先設定 DHCPv6。 使用這些映像不需要再進行額外的變更。
 
 本文件說明如何啟用 DHCPv6 使您的 Linux 虛擬機器取得 IPv6 位址。
 
->[AZURE.WARNING] 不當編輯網路組態檔可能會導致您失去 VM 的網路存取權。我們建議您先在非生產系統上測試組態變更。本文中的指示已經過在 Azure Marketplace 中最新版 Linux 映像上測試過。如需您所用 Linux 版本的詳細指示，請參閱其文件。
+>[AZURE.WARNING] 不當編輯網路組態檔可能會導致您失去 VM 的網路存取權。 我們建議您先在非生產系統上測試組態變更。 本文中的指示已經過在 Azure Marketplace 中最新版 Linux 映像上測試過。 如需您所用 Linux 版本的詳細指示，請參閱其文件。
 
-## Ubuntu
+## <a name="ubuntu"></a>Ubuntu
 
 1. 編輯 `/etc/dhcp/dhclient6.conf` 檔案，新增以下這一行：
 
@@ -50,7 +52,7 @@ Azure Marketplace 中的一些 Linux 虛擬機器映像沒有預設的 DHCPv6 �
     # sudo ifdown eth0 && sudo ifup eth0
     ```
 
-## Debian
+## <a name="debian"></a>Debian
 
 1. 編輯 `/etc/dhcp/dhclient6.conf` 檔案，新增以下這一行：
 
@@ -68,7 +70,7 @@ Azure Marketplace 中的一些 Linux 虛擬機器映像沒有預設的 DHCPv6 �
     # sudo ifdown eth0 && sudo ifup eth0
     ```
 
-## RHEL / CentOS / Oracle Linux
+## <a name="rhel-/-centos-/-oracle-linux"></a>RHEL / CentOS / Oracle Linux
 
 1. 編輯 `/etc/sysconfig/network` 檔案，新增以下參數：
 
@@ -85,9 +87,9 @@ Azure Marketplace 中的一些 Linux 虛擬機器映像沒有預設的 DHCPv6 �
     # sudo ifdown eth0 && sudo ifup eth0
     ```
 
-## SLES 11 & openSUSE 13
+## <a name="sles-11-&-opensuse-13"></a>SLES 11 & openSUSE 13
 
-在 Azure 中最新的 SLES 和 openSUSE 映像已預先設定 DHCPv6。使用這些映像不需要再進行額外的變更。如果您的 VM 是以較舊或自訂 SUSE 映像建置而成，請使用下列步驟︰
+在 Azure 中最新的 SLES 和 openSUSE 映像已預先設定 DHCPv6。 使用這些映像不需要再進行額外的變更。 如果您的 VM 是以較舊或自訂 SUSE 映像建置而成，請使用下列步驟︰
 
 1. 如有需要，安裝 `dhcp-client` 套件：
 
@@ -105,9 +107,9 @@ Azure Marketplace 中的一些 Linux 虛擬機器映像沒有預設的 DHCPv6 �
     # sudo ifdown eth0 && sudo ifup eth0
     ```
 
-## SLES 12 和 openSUSE Leap
+## <a name="sles-12-and-opensuse-leap"></a>SLES 12 和 openSUSE Leap
 
-在 Azure 中最新的 SLES 和 openSUSE 映像已預先設定 DHCPv6。使用這些映像不需要再進行額外的變更。如果您的 VM 是以較舊或自訂 SUSE 映像建置而成，請使用下列步驟︰
+在 Azure 中最新的 SLES 和 openSUSE 映像已預先設定 DHCPv6。 使用這些映像不需要再進行額外的變更。 如果您的 VM 是以較舊或自訂 SUSE 映像建置而成，請使用下列步驟︰
 
 1. 編輯 `/etc/sysconfig/network/ifcfg-eth0` 檔案，取代此參數
 
@@ -127,11 +129,11 @@ Azure Marketplace 中的一些 Linux 虛擬機器映像沒有預設的 DHCPv6 �
     # sudo ifdown eth0 && sudo ifup eth0
     ```
 
-## CoreOS
+## <a name="coreos"></a>CoreOS
 
-在 Azure 中最新的 SLES 映像已預先設定 DHCPv6。使用這些映像不需要再進行額外的變更。如果您的 VM 是以較舊或自訂 CoreOS 映像建置而成，請使用下列步驟︰
+在 Azure 中最新的 SLES 映像已預先設定 DHCPv6。 使用這些映像不需要再進行額外的變更。 如果您的 VM 是以較舊或自訂 CoreOS 映像建置而成，請使用下列步驟︰
 
-1. 編輯 `/etc/systemd/network/10_dhcp.network` 檔案
+1. 編輯 `/etc/systemd/network/10_dhcp.network`
 
         [Match]
         eth0
@@ -145,4 +147,8 @@ Azure Marketplace 中的一些 Linux 虛擬機器映像沒有預設的 DHCPv6 �
     # sudo systemctl restart systemd-networkd
     ```
 
-<!---HONumber=AcomDC_0928_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

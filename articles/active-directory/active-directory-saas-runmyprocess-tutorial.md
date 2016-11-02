@@ -14,14 +14,16 @@
     ms.date="09/26/2016" 
     ms.author="jeedes" />
 
-#教學課程：Azure Active Directory 與 RunMyProcess 整合
+
+#<a name="tutorial:-azure-active-directory-integration-with-runmyprocess"></a>教學課程：Azure Active Directory 與 RunMyProcess 整合
   
-本教學課程的目的是要示範 Azure 與 RunMyProcess 的整合。本教學課程中說明的案例假設您已經具有下列項目：
+本教學課程的目的是要示範 Azure 與 RunMyProcess 的整合。  
+本教學課程中說明的案例假設您已經具有下列項目：
 
 -   有效的 Azure 訂用帳戶
 -   RunMyProcess 租用戶
   
-完成本教學課程之後，您指派給 RunMyProcess 的 Azure AD 使用者就能夠從您的 RunMyProcess 公司網站 (服務提供者起始登入)，或使用[存取面板](active-directory-saas-access-panel-introduction.md)來單一登入應用程式。
+完成本教學課程之後，您指派給 RunMyProcess 的 Azure AD 使用者就能夠從您的 RunMyProcess 公司網站 (服務提供者起始登入)，或使用 [存取面板](active-directory-saas-access-panel-introduction.md)來單一登入應用程式。
   
 本教學課程中說明的案例由下列建置組塊組成：
 
@@ -30,69 +32,71 @@
 3.  設定使用者佈建
 4.  指派使用者
 
-![案例](./media/active-directory-saas-runmyprocess-tutorial/IC789614.png "案例")
-##啟用 RunMyProcess 的應用程式整合
+![案例](./media/active-directory-saas-runmyprocess-tutorial/IC789614.png "Scenario")
+##<a name="enabling-the-application-integration-for-runmyprocess"></a>啟用 RunMyProcess 的應用程式整合
   
 本節的目的是要說明如何啟用 RunMyProcess 的應用程式整合。
 
-###若要啟用 RunMyProcess 的應用程式整合，請執行下列步驟：
+###<a name="to-enable-the-application-integration-for-runmyprocess,-perform-the-following-steps:"></a>若要啟用 RunMyProcess 的應用程式整合，請執行下列步驟：
 
-1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory]。
+1.  在 Azure 傳統入口網站中，按一下左方瀏覽窗格的 [Active Directory] 。
 
     ![Active Directory](./media/active-directory-saas-runmyprocess-tutorial/IC700993.png "Active Directory")
 
-2.  從 [目錄] 清單中，選取要啟用目錄整合的目錄。
+2.  從 [目錄]  清單中，選取要啟用目錄整合的目錄。
 
-3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
+3.  若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
 
-    ![應用程式](./media/active-directory-saas-runmyprocess-tutorial/IC700994.png "應用程式")
+    ![應用程式](./media/active-directory-saas-runmyprocess-tutorial/IC700994.png "Applications")
 
-4.  按一下頁面底部的 [新增]。
+4.  按一下頁面底部的 [新增]  。
 
-    ![新增應用程式](./media/active-directory-saas-runmyprocess-tutorial/IC749321.png "新增應用程式")
+    ![新增應用程式](./media/active-directory-saas-runmyprocess-tutorial/IC749321.png "Add application")
 
-5.  在 [欲執行動作] 對話方塊中，按一下 [從資源庫加入應用程式]。
+5.  在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
 
-    ![從資源庫新增應用程式](./media/active-directory-saas-runmyprocess-tutorial/IC749322.png "從資源庫新增應用程式")
+    ![從組件庫新增應用程式](./media/active-directory-saas-runmyprocess-tutorial/IC749322.png "Add an application from gallerry")
 
 6.  在 [搜尋方塊] 中，輸入 [RunMyProcess]。
 
-    ![應用程式庫](./media/active-directory-saas-runmyprocess-tutorial/IC789615.png "應用程式庫")
+    ![應用程式庫](./media/active-directory-saas-runmyprocess-tutorial/IC789615.png "Application Gallery")
 
 7.  在結果窗格中選取 [RunMyProcess]，然後按一下 [完成] 來新增應用程式。
 
     ![RunMyProcess](./media/active-directory-saas-runmyprocess-tutorial/IC789616.png "RunMyProcess")
-##設定單一登入
+##<a name="configuring-single-sign-on"></a>設定單一登入
   
-本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶在 RunMyProcess 中進行驗證。在此程序中，您必須建立 Base-64 編碼的憑證檔案。如果您不熟悉此程序，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
+本節的目的是要說明如何依據 SAML 通訊協定來使用同盟，讓使用者能夠用自己在 Azure AD 中的帳戶在 RunMyProcess 中進行驗證。  
+在此程序中，您必須建立 Base-64 編碼的憑證檔案。  
+如果您不熟悉此程序，請參閱 [如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)。
 
-###若要設定單一登入，請執行下列步驟：
+###<a name="to-configure-single-sign-on,-perform-the-following-steps:"></a>若要設定單一登入，請執行下列步驟：
 
 1.  在 Azure 傳統入口網站的 [RunMyProcess] 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
 
-    ![設定單一登入](./media/active-directory-saas-runmyprocess-tutorial/IC789617.png "設定單一登入")
+    ![設定單一登入](./media/active-directory-saas-runmyprocess-tutorial/IC789617.png "Configure Single Sign-On")
 
-2.  在 [要如何讓使用者登入 RunMyProcess] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按一下 [下一步]。
+2.  在 [要如何讓使用者登入 RunMyProcess] 頁面上，選取 [Microsoft Azure AD 單一登入]，然後按 [下一步]。
 
-    ![設定單一登入](./media/active-directory-saas-runmyprocess-tutorial/IC789622.png "設定單一登入")
+    ![設定單一登入](./media/active-directory-saas-runmyprocess-tutorial/IC789622.png "Configure Single Sign-On")
 
-3.  在 [設定應用程式 URL] 頁面的 [RunMyProcess 登入 URL] 文字方塊中，使用下列模式輸入您的 URL："*http://company.runmyprocess.com*"，然後按一下 *[下一步]*。
+3.  在 [設定應用程式 URL] 頁面的 [RunMyProcess 登入 URL] 文字方塊中，使用下列模式輸入您的 URL："http://company.runmyprocess.com"，然後按 [下一步]。
 
-    ![設定應用程式 URL](./media/active-directory-saas-runmyprocess-tutorial/IC789623.png "設定應用程式 URL")
+    ![設定應用程式 URL](./media/active-directory-saas-runmyprocess-tutorial/IC789623.png "Configure App URL")
 
 4.  在 [設定在 RunMyProcess 單一登入] 頁面上，按一下 [下載憑證]，然後將中繼資料檔儲存在您的電腦中。
 
-    ![設定單一登入](./media/active-directory-saas-runmyprocess-tutorial/IC789624.png "設定單一登入")
+    ![設定單一登入](./media/active-directory-saas-runmyprocess-tutorial/IC789624.png "Configure Single Sign-On")
 
 5.  在不同的 Web 瀏覽器視窗中，以系統管理員身分登入您的 RunMyProcess 公司網站。
 
-6.  移至 [帳戶] > [組態]。
+6.  移至 [帳戶] \> [組態]。
 
-    ![帳戶](./media/active-directory-saas-runmyprocess-tutorial/IC789625.png "帳戶")
+    ![帳戶](./media/active-directory-saas-runmyprocess-tutorial/IC789625.png "Account")
 
-7.  按一下 [驗證方法] 索引標籤。
+7.  按一下 [驗證方法]  索引標籤。
 
-8.  在 [驗證方法] 區段中，執行下列步驟：
+8.  在 [驗證方法]  區段中，執行下列步驟：
 
     ![SSO](./media/active-directory-saas-runmyprocess-tutorial/IC789626.png "SSO")
 
@@ -100,55 +104,59 @@
     2.  在 Azure 傳統入口網站中的 [設定在 RunMyProcess 單一登入] 對話頁面上，複製 [SAML SSO URL] 值，然後將它貼至 [SSO 重新導向] 文字方塊中。
     3.  在 Azure 傳統入口網站的 [設定在 RunMyProcess 單一登入] 對話頁面上，複製 [單一登出服務 URL] 值，然後將它貼至 [登出重新導向] 文字方塊中。
     4.  在 [名稱識別碼格式] 文字方塊中，輸入 **urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress**。
-    5.  從您下載的憑證建立「Base-64 編碼」檔案。
+    5.  從您下載的憑證建立「Base-64 編碼」  檔案。  
 
-        >[AZURE.TIP] 如需詳細資訊，請參閱[如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)
+        >[AZURE.TIP] 如需詳細資訊，請參閱 [如何將二進位憑證轉換成文字檔](http://youtu.be/PlgrzUZ-Y1o)
 
-    6.  在記事本中開啟您的 Base-64 編碼的憑證，將其內容複製到您的剪貼簿，然後貼到 [憑證] 文字方塊中。
-    7.  按一下 [儲存]。
+    6.  在記事本中開啟您的 Base-64 編碼的憑證，將其內容複製到您的剪貼簿，然後貼到 [憑證]  文字方塊中。
+    7.  按一下 [儲存] 。
 
 9.  在 Azure 傳統入口網站上，選取單一登入設定確認，然後按一下 [完成] 來關閉 [設定單一登入] 對話方塊。
 
-    ![設定單一登入](./media/active-directory-saas-runmyprocess-tutorial/IC789627.png "設定單一登入")
-##設定使用者佈建
+    ![設定單一登入](./media/active-directory-saas-runmyprocess-tutorial/IC789627.png "Configure Single Sign-On")
+##<a name="configuring-user-provisioning"></a>設定使用者佈建
   
-若要讓 Azure AD 使用者可以登入 RunMyProcess，必須將他們佈建到 RunMyProcess。RunMyProcess 需以手動的方式佈建。
+若要讓 Azure AD 使用者可以登入 RunMyProcess，必須將他們佈建到 RunMyProcess。  
+RunMyProcess 需以手動的方式佈建。
 
-###若要佈建使用者帳戶，請執行下列步驟：
+###<a name="to-provision-a-user-accounts,-perform-the-following-steps:"></a>若要佈建使用者帳戶，請執行下列步驟：
 
 1.  以系統管理員身分登入您的 **RunMyProcess** 公司網站。
 
-2.  移至 [帳戶] > [使用者]，然後按一下 [新增使用者]。
+2.  移至 [帳戶] \> [使用者]，然後按一下 [新增使用者]。
 
-    ![新增使用者](./media/active-directory-saas-runmyprocess-tutorial/IC789631.png "新使用者")
+    ![新使用者](./media/active-directory-saas-runmyprocess-tutorial/IC789631.png "New User")
 
-3.  在 [使用者設定] 區段中，執行下列步驟：
+3.  在 [使用者設定]  區段中，執行下列步驟：
 
-    ![設定檔](./media/active-directory-saas-runmyprocess-tutorial/IC789632.png "設定檔")
+    ![設定檔](./media/active-directory-saas-runmyprocess-tutorial/IC789632.png "Profile")
 
     1.  在相關的文字方塊中，輸入您想要佈建之有效 AAD 帳戶的 [名稱] 與 [電子郵件]。
     2.  選取 [IDE 語言]、[語言] 和 [設定檔]。
-    3.  選取 [傳送帳戶建立電子郵件給我]。
-    4.  按一下 [儲存]。
+    3.  選取 [傳送帳戶建立電子郵件給我] 。
+    4.  按一下 [儲存] 。
 
 >[AZURE.NOTE]您可以使用任何其他的 RunMyProcess 使用者帳戶建立工具或 RunMyProcess 提供的 API 來佈建 Azure Active Directory 使用者帳戶。
 
-##指派使用者
+##<a name="assigning-users"></a>指派使用者
   
 若要測試您的組態，則需指派您所允許使用您應用程式的 Azure AD 使用者，藉此授予其存取組態的權限。
 
-###若要指派使用者給 RunMyProcess，請執行下列步驟：
+###<a name="to-assign-users-to-runmyprocess,-perform-the-following-steps:"></a>若要指派使用者給 RunMyProcess，請執行下列步驟：
 
 1.  在 Azure 傳統入口網站中建立測試帳戶。
 
 2.  在 [RunMyProcess] 應用程式整合頁面上，按一下 [指派使用者]。
 
-    ![指派使用者](./media/active-directory-saas-runmyprocess-tutorial/IC789633.png "指派使用者")
+    ![指派使用者](./media/active-directory-saas-runmyprocess-tutorial/IC789633.png "Assign Users")
 
 3.  選取測試使用者，按一下 [指派]，然後按一下 [是] 以確認指派。
 
-    ![是](./media/active-directory-saas-runmyprocess-tutorial/IC767830.png "是")
+    ![是](./media/active-directory-saas-runmyprocess-tutorial/IC767830.png "Yes")
   
-如果要測試您的單一登入設定，請開啟存取面板。如需存取面板的詳細資訊，請參閱[存取面板簡介](active-directory-saas-access-panel-introduction.md)。
+如果要測試您的單一登入設定，請開啟存取面板。 如需 [存取面板] 的詳細資訊，請參閱 [存取面板簡介](active-directory-saas-access-panel-introduction.md)。
 
-<!---HONumber=AcomDC_0928_2016-->
+
+<!--HONumber=Oct16_HO2-->
+
+

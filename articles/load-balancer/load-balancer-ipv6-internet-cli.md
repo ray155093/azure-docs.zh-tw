@@ -7,6 +7,7 @@
     manager="carmonm"
     editor=""
     tags="azure-resource-manager"
+    keywords="ipv6, azure load balancer, 雙重堆疊, 公用 ip, 原生 ipv6, 行動, iot"
 />
 <tags
     ms.service="load-balancer"
@@ -18,16 +19,17 @@
     ms.author="sewhee"
 />
 
-# 使用 Azure CLI 在 Azure Resource Manager 中建立配置有 IPv6 的網際網路面向負載平衡器
+
+# <a name="create-an-internet-facing-load-balancer-with-ipv6-in-azure-resource-manager-using-the-azure-cli"></a>使用 Azure CLI 在 Azure Resource Manager 中建立配置有 IPv6 的網際網路面向負載平衡器
 
 > [AZURE.SELECTOR]
-- [PowerShell](load-balancer-IPv6-internet-ps.md)
-- [Azure CLI](load-balancer-IPv6-internet-cli.md)
-- [範本](load-balancer-IPv6-internet-template.md)
+- [PowerShell](./load-balancer-ipv6-internet-ps.md)
+- [Azure CLI](./load-balancer-ipv6-internet-cli.md)
+- [範本](./load-balancer-ipv6-internet-template.md)
 
-Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。此負載平衡器可藉由在負載平衡器集合中，將連入流量分散於雲端服務或虛擬機器中狀況良好的服務執行個體之間，來提供高可用性。Azure Load Balancer 也會在多個連接埠、多個 IP 位址或兩者上顯示這些服務。
+Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。 此負載平衡器可藉由在負載平衡器集合中，將連入流量分散於雲端服務或虛擬機器中狀況良好的服務執行個體之間，來提供高可用性。 Azure Load Balancer 也會在多個連接埠、多個 IP 位址或兩者上顯示這些服務。
 
-## 範例部署案例
+## <a name="example-deployment-scenario"></a>範例部署案例
 
 下圖說明使用本文所述範例範本部署的負載平衡解決方案。
 
@@ -41,9 +43,9 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。此負載平衡�
 - 包含兩個 VM 的可用性設定組
 - 兩個負載平衡規則，用以對應公用 VIP 至私人端點
 
-## 使用 Azure CLI 來部署方案
+## <a name="deploying-the-solution-using-the-azure-cli"></a>使用 Azure CLI 來部署方案
 
-下列步驟說明如何搭配 CLI 使用 Azure Resource Manager，來建立網際網路對向負載平衡器。使用 Azure Resource Manager 時，會個別建立並設定每項資源，然後放在一起來建立一項資源。
+下列步驟說明如何搭配 CLI 使用 Azure Resource Manager，來建立網際網路對向負載平衡器。 使用 Azure Resource Manager 時，會個別建立並設定每項資源，然後放在一起來建立一項資源。
 
 若要部署負載平衡器，請建立並設定下列物件：
 
@@ -55,11 +57,11 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。此負載平衡�
 
 如需詳細資料，請參閱 [Azure Resource Manager 的負載平衡器支援](load-balancer-arm.md)。
 
-## 設定 CLI 環境為使用 Azure Resource Manager
+## <a name="set-up-your-cli-environment-to-use-azure-resource-manager"></a>設定 CLI 環境為使用 Azure Resource Manager
 
-在此範例中，我們會在 PowerShell 命令視窗中執行 CLI 工具。我們沒有使用 Azure PowerShell Cmdlet，但使用 PowerShell 的指令碼處理功能來改善可讀性與重複使用。
+在此範例中，我們會在 PowerShell 命令視窗中執行 CLI 工具。 我們沒有使用 Azure PowerShell Cmdlet，但使用 PowerShell 的指令碼處理功能來改善可讀性與重複使用。
 
-1. 如果您從未使用過 Azure CLI，請參閱[安裝和設定 Azure CLI](../../articles/xplat-cli-install.md)，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶為止。
+1. 如果您從未使用過 Azure CLI，請參閱 [安裝和設定 Azure CLI](../../articles/xplat-cli-install.md) ，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶為止。
 
 2. 執行 **azure config mode** 命令切換為 Resource Manager 模式。
 
@@ -77,7 +79,7 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。此負載平衡�
 
         azure account list
 
-    選出您想要使用的訂用帳戶。記下訂用帳戶識別碼在下一步驟使用。
+    選出您想要使用的訂用帳戶。 記下訂用帳戶識別碼在下一步驟使用。
 
 4. 設定 PowerShell 變數以搭配使用 CLI 命令。
 
@@ -95,7 +97,7 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。此負載平衡�
         $lbName = "myIPv4IPv6Lb"
         ```
 
-## 建立資源群組、負載平衡器、虛擬網路和子網路
+## <a name="create-a-resource-group,-a-load-balancer,-a-virtual-network,-and-subnets"></a>建立資源群組、負載平衡器、虛擬網路和子網路
 
 1. 建立資源群組
 
@@ -114,7 +116,7 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。此負載平衡�
         $subnet1 = azure network vnet subnet create --resource-group $rgname --name $subnet1Name --address-prefix $subnet1Prefix --vnet-name $vnetName
         $subnet2 = azure network vnet subnet create --resource-group $rgname --name $subnet2Name --address-prefix $subnet2Prefix --vnet-name $vnetName
 
-## 建立前端集區的公用 IP 位址
+## <a name="create-public-ip-addresses-for-the-front-end-pool"></a>建立前端集區的公用 IP 位址
 
 1. 設定 PowerShell 變數
 
@@ -126,9 +128,10 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。此負載平衡�
         $publicipV4 = azure network public-ip create --resource-group $rgname --name $publicIpv4Name --location $location --ip-version IPv4 --allocation-method Dynamic --domain-name-label $dnsLabel
         $publicipV6 = azure network public-ip create --resource-group $rgname --name $publicIpv6Name --location $location --ip-version IPv6 --allocation-method Dynamic --domain-name-label $dnsLabel
 
-    >[AZURE.IMPORTANT] 負載平衡器會使用公用 IP 的網域標籤作為其 FQDN。這是一項來自傳統部署的變更，該部署使用雲端服務名稱作為負載平衡器 FQDN。在此範例中，FQDN 是 *contoso09152016.southcentralus.cloudapp.azure.com*。
+    >[AZURE.IMPORTANT] 負載平衡器會使用公用 IP 的網域標籤作為其 FQDN。 這是一項來自傳統部署的變更，該部署使用雲端服務名稱作為負載平衡器 FQDN。
+    >在此範例中，FQDN 是 *contoso09152016.southcentralus.cloudapp.azure.com*。
 
-## 建立前端和後端集區
+## <a name="create-front-end-and-back-end-pools"></a>建立前端和後端集區
 
 此範例會建立前端 IP 集區來接收負載平衡器上的傳入網路流量，以及建立後端 IP 集區，供前端集區傳送已負載平衡的網路流量。
 
@@ -146,7 +149,7 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。此負載平衡�
         $backendAddressPoolV4 = azure network lb address-pool create --resource-group $rgname --name $backendAddressPoolV4Name --lb-name $lbName
         $backendAddressPoolV6 = azure network lb address-pool create --resource-group $rgname --name $backendAddressPoolV6Name --lb-name $lbName
 
-## 建立探查、NAT 規則和 LB 規則
+## <a name="create-the-probe,-nat-rules,-and-lb-rules"></a>建立探查、NAT 規則和 LB 規則
 
 此範例會建立下列項目：
 
@@ -155,7 +158,7 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。此負載平衡�
 - NAT 規則，用以將連接埠 3391 上的所有傳入流量轉譯為 RDP 的連接埠 3389<sup>1</sup>
 - 一個可將連接埠 80 上所有傳入流量負載平衡至後端集區中位址上連接埠 80 的負載平衡器規則。
 
-<sup>1</sup> NAT 規則會關聯到負載平衡器後方的特定虛擬機器執行個體。系統會將抵達連接埠 3389 的網路流量傳送給特定虛擬機器和與 NAT 規則關聯的連接埠 3389。您必須為 NAT 規則指定通訊協定 (UDP 或 TCP)。無法將兩種通訊協定指派到相同的連接埠。
+<sup>1</sup> NAT 規則會關聯到負載平衡器後方的特定虛擬機器執行個體。 系統會將抵達連接埠 3389 的網路流量傳送給特定虛擬機器和與 NAT 規則關聯的連接埠 3389。 您必須為 NAT 規則指定通訊協定 (UDP 或 TCP)。 無法將兩種通訊協定指派到相同的連接埠。
 
 1. 設定 PowerShell 變數
 
@@ -167,7 +170,7 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。此負載平衡�
 
 2. 建立探查
 
-    下列範例會建立 TCP 探查，它每隔 15 秒會檢查與後端 TCP 連接埠 80 的連線。連續兩次失敗後，它會標記無法使用的後端資源。
+    下列範例會建立 TCP 探查，它每隔 15 秒會檢查與後端 TCP 連接埠 80 的連線。 連續兩次失敗後，它會標記無法使用的後端資源。
 
         $probeV4V6 = azure network lb probe create --resource-group $rgname --name $probeV4V6Name --protocol tcp --port 80 --interval 15 --count 2 --lb-name $lbName
 
@@ -226,7 +229,7 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。此負載平衡�
         info:    network lb show
 
 
-## 建立 NIC
+## <a name="create-nics"></a>建立 NIC
 
 建立 NIC，並將它們關聯至 NAT 規則、負載平衡器規則和探查。
 
@@ -249,9 +252,9 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。此負載平衡�
         $nic2 = azure network nic create --name $nic2Name --resource-group $rgname --location $location --subnet-id $subnet1Id --lb-address-pool-ids $backendAddressPoolV4Id --lb-inbound-nat-rule-ids $natRule1V4Id
         $nic2IPv6 = azure network nic ip-config create --resource-group $rgname --name "IPv6IPConfig" --private-ip-version "IPv6" --lb-address-pool-ids $backendAddressPoolV6Id --nic-name $nic2Name
 
-## 建立後端 VM 資源並連接每個 NIC
+## <a name="create-the-back-end-vm-resources-and-attach-each-nic"></a>建立後端 VM 資源並連接每個 NIC
 
-若要建立 VM，您必須有儲存體帳戶。為了負載平衡，VM 必須是可用性設定組的成員。如需建立 VM 的詳細資訊，請參閱[使用 PowerShell 建立 Azure VM](../virtual-machines/virtual-machines-windows-ps-create.md)。
+若要建立 VM，您必須有儲存體帳戶。 為了負載平衡，VM 必須是可用性設定組的成員。 如需建立 VM 的詳細資訊，請參閱 [使用 PowerShell 建立 Azure VM](../virtual-machines/virtual-machines-windows-ps-create.md)
 
 1. 設定 PowerShell 變數
 
@@ -269,11 +272,11 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。此負載平衡�
         $vmUserName = "vmUser"
         $mySecurePassword = "PlainTextPassword*1"
 
-    >[AZURE.WARNING] 此範例使用純文字的 VM 使用者名稱和密碼。使用純文字的認證時，請務必謹慎。如需在 PowerShell 中更安全處理認證的做法，請參閱 [Get-Credential](https://technet.microsoft.com/library/hh849815.aspx) Cmdlet。
+    >[AZURE.WARNING] 此範例使用純文字的 VM 使用者名稱和密碼。 使用純文字的認證時，請務必謹慎。 如需在 PowerShell 中更安全處理認證的做法，請參閱 [Get-Credential](https://technet.microsoft.com/library/hh849815.aspx) Cmdlet。
 
 2. 建立儲存體帳戶杏可用性設定組
 
-    建立 VM時，可以使用現有的儲存體帳戶。下列命令會建立新的儲存體帳戶。
+    建立 VM時，可以使用現有的儲存體帳戶。 下列命令會建立新的儲存體帳戶。
 
         $storageAcc = azure storage account create $storageAccountName --resource-group $rgName --location $location --sku-name "LRS" --kind "Storage"
 
@@ -287,7 +290,7 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。此負載平衡�
 
         $vm2 = azure vm create --resource-group $rgname --location $location --availset-name $availabilitySetName --name $vm2Name --nic-id $nic2Id --os-disk-vhd $osDisk2Uri --os-type "Windows" --admin-username $vmUserName --admin-password $mySecurePassword --vm-size "Standard_A1" --image-urn $imageurn  --storage-account-name $storageAccountName --disable-bginfo-extension
 
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 
 [開始設定內部負載平衡器](load-balancer-get-started-ilb-arm-cli.md)
 
@@ -295,4 +298,8 @@ Azure 負載平衡器是第 4 層 (TCP、UDP) 負載平衡器。此負載平衡�
 
 [設定負載平衡器的閒置 TCP 逾時設定](load-balancer-tcp-idle-timeout.md)
 
-<!---HONumber=AcomDC_0928_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

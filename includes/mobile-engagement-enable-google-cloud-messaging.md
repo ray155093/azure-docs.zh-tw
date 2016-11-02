@@ -1,34 +1,21 @@
 
-###利用 API 金鑰建立 Google 雲端通訊專案
+###<a name="create-a-google-firebase-project-with-api-key"></a>利用 API 金鑰建立 Google Firebase 專案
 
->[AZURE.NOTE] 若要完成此程序，您必須要有已通過電子郵件地址驗證的 Google 帳戶。若要建立新的 Google 帳戶，請前往 <a href="http://go.microsoft.com/fwlink/p/?LinkId=268302" target="_blank">accounts.google.com</a>。
+>[AZURE.NOTE] 若要完成此程序，您必須要有已通過電子郵件地址驗證的 Google 帳戶。 若要建立新的 Google 帳戶，請前往 <a href="http://go.microsoft.com/fwlink/p/?LinkId=268302" target="_blank">accounts.google.com</a>。
 
-1. 瀏覽至 [Google 雲端主控台](https://console.developers.google.com/project)，然後使用您的 Google 帳戶認證登入。
+1. 瀏覽至 [Firebase 主控台](https://console.firebase.google.com/)，然後使用您的 Google 帳戶認證登入。
 
-2. 前往 [所有專案]，然後按一下 [建立專案]。
+2. 按一下 [建立新專案] 按鈕，建立新的專案。 或者，您也可以按一下 [匯入 Google 專案] 以匯入現有的專案。 
 
-3. 輸入 [專案名稱]，然後按一下 [建立]
+3. 如果您選擇建立新的專案，則提供 [專案名稱] 選擇 [國家/區域]。
 
-4. 建立專案後，然後務必記下**專案編號** (會是很長的數值)。您可以在您專案的 [設定] 中的 [IAM 與系統管理] 區段中找到此編號，您稍後會需要此編號。
+4. 在您的專案頁面上，按一下左上方的 [設定] 齒輪。 在功能表中按一下 [專案設定]。  
  
-	![](./media/mobile-engagement-enable-google-cloud-messaging/project-number.png)
+5. 按一下頂端的 [雲端通訊] 索引標籤。 
 
-5. 現在我們將 為Google 雲端通訊平台建立金鑰，而我們的平台會使用該金鑰將通知傳送至 Android 裝置。移至 [API 管理員] 區段，然後按一下 [行動 API] 底下的 [Google 雲端通訊]。
+6. 請記下您稍後會在 *Android 資訊清單檔案*中使用的 [伺服器金鑰] 和 [寄件者識別碼]。  
 
-	![](./media/mobile-engagement-enable-google-cloud-messaging/gcm.png)
 
-6. 在下一頁上，按一下 [啟用] 按鈕。儀表板會提示您建立認證。所以按一下 [前往認證] 按鈕。
+<!--HONumber=Oct16_HO2-->
 
-	![](./media/mobile-engagement-enable-google-cloud-messaging/enable-GCM.png)
 
-6. 從第一個下拉式方塊中選取 [Google 雲端通訊]，然後從第二個下拉式方塊中選取 [網路伺服器]，接著按一下 [我需要哪些憑證？]
-
-   	![](./media/mobile-engagement-enable-google-cloud-messaging/create-server-key.png)
-
-7. 在 [將憑證新增至您的專案] 頁面上，按一下 [建立 API 金鑰]。
-
-   	![](./media/mobile-engagement-enable-google-cloud-messaging/create-server-key5.png)
-
-8. 記下 [API 金鑰] 的值。您稍後會使用此 API 金鑰值來設定 [原生推送] 區段。現在按一下 [完成]。
-
-<!---HONumber=AcomDC_0622_2016-->

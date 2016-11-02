@@ -1,10 +1,10 @@
 <properties
-   pageTitle="將資料從 SQL Server 載入 Azure SQL 資料倉儲 (SSIS) | Microsoft Azure"
-   description="示範如何建立 SQL Server Integration Services (SSIS) 封裝，以將資料從各種資料來源移至 SQL 資料倉儲。"
+   pageTitle="Load data from SQL Server into Azure SQL Data Warehouse (SSIS) | Microsoft Azure"
+   description="Shows you how to create a SQL Server Integration Services (SSIS) package to move data from a wide variety of data sources to SQL Data Warehouse."
    services="sql-data-warehouse"
    documentationCenter="NA"
-   authors="lodipalm"
-   manager="barbkess"
+   authors="barbkess"
+   manager="jhubbard"
    editor=""/>
 
 <tags
@@ -13,10 +13,11 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="08/08/2016"
-   ms.author="lodipalm;sonyama;barbkess"/>
+   ms.date="10/31/2016"
+   ms.author="barbkess"/>
 
-# 將資料從 SQL Server 載入 Azure SQL 資料倉儲 (SSIS)
+
+# <a name="load-data-from-sql-server-into-azure-sql-data-warehouse-ssis"></a>Load data from SQL Server into Azure SQL Data Warehouse (SSIS)
 
 > [AZURE.SELECTOR]
 - [SSIS](sql-data-warehouse-load-from-sql-server-with-integration-services.md)
@@ -24,204 +25,208 @@
 - [bcp](sql-data-warehouse-load-from-sql-server-with-bcp.md)
 
 
-建立 SQL Server Integration Services (SSIS) 來將資料從 SQL Server 載入 Azure SQL 資料倉儲。您可以選擇性地重建、轉換和清理通過 SSIS 資料流程傳遞的資料。
+Create a SQL Server Integration Services (SSIS) package to load data from SQL Server into Azure SQL Data Warehouse. You can optionally restructure, transform, and cleanse the data as it passes through the SSIS data flow.
 
-在本教學課程中，您將：
+In this tutorial, you will:
 
-- 在 Visual Studio 中建立新的整合服務專案
-- 連接到資料來源，包括 SQL Server (做為來源) 和 SQL 資料倉儲 (做為目的地)。
-- 設計 SSIS 封裝，用來將資料從來源載入目的地。
-- 執行 SSIS 封裝載入資料。
+- Create a new Integration Services project in Visual Studio.
+- Connect to data sources, including SQL Server (as a source) and SQL Data Warehouse (as a destination).
+- Design an SSIS package that loads data from the source into the destination.
+- Run the SSIS package to load the data.
 
-本教學課程中使用 SQL Server 做為資料來源。SQL Server 可在內部部署或在 Azure 虛擬機器上執行。
+This tutorial uses SQL Server as the data source. SQL Server could be running on premises or in an Azure virtual machine.
 
-## 基本概念
+## <a name="basic-concepts"></a>Basic concepts
 
-封裝是 SSIS 的工作單位。相關的封裝集成群組則為專案。在 Visual Studio 中使用 SQL Server Data Tools 建立專案和設計封裝。設計程序是視覺化的程序，您可從工具箱拖曳元件至設計介面、連接這些元件、並設定其屬性。完成您的封裝之後，您可以選擇性地將它部署到 SQL Server 以獲得完整管理、監視和安全性。
+The package is the unit of work in SSIS. Related packages are grouped in projects. You create projects and design packages in Visual Studio with SQL Server Data Tools. The design process is a visual process in which you drag and drop components from the Toolbox to the design surface, connect them, and set their properties. After you finish your package, you can optionally deploy it to SQL Server for comprehensive management, monitoring, and security.
 
-## 以 SSIS 載入資料的選項
+## <a name="options-for-loading-data-with-ssis"></a>Options for loading data with SSIS
 
-SQL Server Integration Services (SSIS) 是彈性的工具組合，提供連接至 SQL 資料倉儲、並將資料載入 SQL 資料倉儲的各種選項。
+SQL Server Integration Services (SSIS) is a flexible set of tools that provides a variety of options for connecting to, and loading data into, SQL Data Warehouse.
 
-1. 使用「ADO NET 目的地」連接到 SQL 資料倉儲。本教學課程使用 ADO NET 目的地，因為它的設定選項最少。
-2. 使用「OLE DB 目的地」連接到 SQL 資料倉儲。此選項可能會提供比 ADO NET 目的地稍好的效能。
-3. 使用「Azure Blob 上傳」工作在 Azure Blob 儲存體中預備資料。然後使用「SSIS 執行 SQL」工作來啟動可將資料載入 SQL 資料倉儲的 Polybase 指令碼。此選項提供此處所列三個選項中最佳的效能。若要取得 Azure Blob 上傳工作，請下載[適用於 Azure 的 Microsoft SQL Server 2016 Integration Services Feature Pack][]。若要深入了解 Polybase，請參閱 [PolyBase 指南][]。
+1. Use an ADO NET Destination to connect to SQL Data Warehouse. This tutorial uses an ADO NET Destination because it has the fewest configuration options.
+2. Use an OLE DB Destination to connect to SQL Data Warehouse. This option may provide slightly better performance than the ADO NET Destination.
+3. Use the Azure Blob Upload Task to stage the data in Azure Blob Storage. Then use the SSIS Execute SQL task to launch a Polybase script that loads the data into SQL Data Warehouse. This option provides the best performance of the three options listed here. To get the Azure Blob Upload task, download the [Microsoft SQL Server 2016 Integration Services Feature Pack for Azure][]. To learn more about Polybase, see [PolyBase Guide][].
 
-## 開始之前
+## <a name="before-you-start"></a>Before you start
 
-若要逐步執行本教學課程，您需要：
+To step through this tutorial, you need:
 
-1. **SQL Server Integration Services (SSIS)**。SSIS 是 SQL Server 的元件，需有試用版或授權版的 SQL Server。若要取得 SQL Server 2016 Preview 的評估版，請參閱 [SQL Server 評估版][]。
-2. **Visual Studio**。若要取得免費的 Visual Studio 2015 Community 版本，請參閱 [Visual Studio Community][]。
-3. **SQL Server Data Tools for Visual Studio (SSDT)**。若要取得 SQL Server Data Tools for Visual Studio 2015，請參閱[下載 SQL Server Data Tools (SSDT)][]。
-4. **範例資料**。本教學課程會使用 AdventureWorks 範例資料庫中儲存在 SQL Server 中的範例資料，做為要載入 SQL 資料倉儲的來源資料。若要取得 AdventureWorks 範例資料庫，請參閱 [Adventure Works 2014 Sample Databases (Adventure Works 2014 範例資料庫)][]。
-5. **SQL 資料倉儲資料庫和權限**。本教學課程會連接到 SQL 資料倉儲執行個體，並載入資料至執行個體。您必須具有建立資料表以及載入資料的權限。
-6. **防火牆規則**。您必須先在使用您本機電腦 IP 位址的 SQL 資料倉儲上建立防火牆規則，才您可以將資料上傳到此 SQL 資料倉儲。
+1. **SQL Server Integration Services (SSIS)**. SSIS is a component of SQL Server and requires an evaluation version or a licensed version of SQL Server. To get an evaluation version of SQL Server 2016 Preview, see [SQL Server Evaluations][].
+2. **Visual Studio**. To get the free Visual Studio 2015 Community Edition, see [Visual Studio Community][].
+3. **SQL Server Data Tools for Visual Studio (SSDT)**. To get SQL Server Data Tools for Visual Studio 2015, see [Download SQL Server Data Tools (SSDT)][].
+4. **Sample data**. This tutorial uses sample data stored in SQL Server in the AdventureWorks sample database as the source data to be loaded into SQL Data Warehouse. To get the AdventureWorks sample database, see [AdventureWorks 2014 Sample Databases][].
+5. **A SQL Data Warehouse database and permissions**. This tutorial connects to a SQL Data Warehouse instance and loads data into it. You have to have permissions to create a table and to load data.
+6. **A firewall rule**. You have to create a firewall rule on SQL Data Warehouse with the IP address of your local computer before you can upload data to the SQL Data Warehouse.
 
-## 步驟 1：建立新的 Integration Services 專案
+## <a name="step-1-create-a-new-integration-services-project"></a>Step 1: Create a new Integration Services project
 
-1. 啟動 Visual Studio 2015。
-2. 在 [檔案] 功能表上，選取 [新增]| Project**.
-3. 導覽至 [已安裝]| Templates | Business Intelligence | Integration Services** project types.
-4. 選取 [整合服務專案]。提供 [名稱] 和 [位置] 的值，然後選取 [確定]。
+1. Launch Visual Studio 2015.
+2. On the **File** menu, select **New | Project**.
+3. Navigate to the **Installed | Templates | Business Intelligence | Integration Services** project types.
+4. Select **Integration Services Project**. Provide values for **Name** and **Location**, and then select **OK**.
 
-Visual Studio 隨即開啟，並建立新的整合服務 (SSIS) 專案。然後 Visual Studio 會在專案中開啟一個新的 SSIS 封裝 (Package.dtsx) 的設計工具。您會看到下列畫面區域：
+Visual Studio opens and creates a new Integration Services (SSIS) project. Then Visual Studio opens the designer for the single new SSIS package (Package.dtsx) in the project. You see the following screen areas:
 
-- 左側是 SSIS 元件的 [工具箱]。
-- 中間是設計介面，有多個索引標籤。您通常至少會使用 [控制流程] 和 \[資料流程] 索引標籤。
-- 右側是 [方案總管] 和 [屬性] 窗格。
+- On the left, the **Toolbox** of SSIS components.
+- In the middle, the design surface, with multiple tabs. You typically use at least the **Control Flow** and the **Data Flow** tabs.
+- On the right, the **Solution Explorer** and the **Properties** panes.
 
     ![][01]
 
-## 步驟 2：建立基本資料流程
+## <a name="step-2-create-the-basic-data-flow"></a>Step 2: Create the basic data flow
 
-1. 將 [資料流程工作] 從 [工具箱] 拖曳至設計介面 (位於 [控制流程] 索引標籤上) 的中央。
+1. Drag a Data Flow Task from the Toolbox to the center of the design surface (on the **Control Flow** tab).
 
     ![][02]
 
-2. 按兩下 [資料流程工作] 以切換到 \[資料流程] 索引標籤。
-3. 從 [工具箱] 中的 [其他來源] 清單中，將 ADO.NET 來源拖曳至設計介面。在來源配接器仍選取的狀態下，在 [屬性] 窗格中將其名稱變更為 [SQL Server 來源]。
-4. 從 [工具箱] 中的 [其他目的地] 清單中將 ADO.NET 目的地拖曳至 ADO.NET 來源下方的設計介面。在目的地配接器仍選取的狀態下，在 [屬性] 窗格中將其名稱變更為 [SQL DW 目的地]。
+2. Double-click the Data Flow Task to switch to the Data Flow tab.
+3. From the Other Sources list in the Toolbox, drag an ADO.NET Source to the design surface. With the source adapter still selected, change its name to **SQL Server source** in the **Properties** pane.
+4. From the Other Destinations list in the Toolbox, drag an ADO.NET Destination to the design surface under the ADO.NET Source. With the destination adapter still selected, change its name to **SQL DW destination** in the **Properties** pane.
 
     ![][09]
 
-## 步驟 3︰ 設定來源配接器
+## <a name="step-3-configure-the-source-adapter"></a>Step 3: Configure the source adapter
 
-1. 按兩下來源配接器以開啟 [ADO.NET 來源編輯器]。
+1. Double-click the source adapter to open the **ADO.NET Source Editor**.
 
     ![][03]
 
-2. 在 [ADO.NET 來源編輯器] 的 [連接管理員] 索引標籤上，按一下 [ADO.NET 連接管理員] 清單旁的 [新增] 按鈕開啟 [設定 ADO.NET 連接管理員] 對話方塊，並針對本教學課程會從之載入資料的 SQL Server 資料庫建立連接設定。
+2. On the **Connection Manager** tab of the **ADO.NET Source Editor**, click the **New** button next to the **ADO.NET connection manager** list to open the **Configure ADO.NET Connection Manager** dialog box and create connection settings for the SQL Server database from which this tutorial loads data.
 
     ![][04]
 
-3. 在 [設定 ADO.NET 連接管理員] 對話方塊中，按一下 [新增] 按鈕以開啟 [連接管理員] 對話方塊並建立新的資料連接。
+3. In the **Configure ADO.NET Connection Manager** dialog box, click the **New** button to open the **Connection Manager** dialog box and create a new data connection.
 
     ![][05]
 
-4. 在 [連接管理員] 對話方塊中，執行下列動作。
+4. In the **Connection Manager** dialog box, do the following things.
 
-    1. 針對 [提供者] 選取 [SqlClient 資料提供者]。
-    2. 針對 [伺服器名稱] 輸入 SQL Server 名稱。
-    3. 在 [登入伺服器] 區段中，選取或輸入驗證資訊。
-    4. 在 [連接到資料庫] 區段，選取 AdventureWorks 範例資料庫。
-    5. 按一下 [測試連接]。
+    1. For **Provider**, select the SqlClient Data Provider.
+    2. For **Server name**, enter the SQL Server name.
+    3. In the **Log on to the server** section, select or enter authentication information.
+    4. In the **Connect to a database** section, select the AdventureWorks sample database.
+    5. Click **Test Connection**.
     
         ![][06]
     
-    6. 在報告連接測試結果的對話方塊中，按一下 [確定] 以回到 [連接管理員] 對話方塊。
-    7. 在 [連接管理員] 對話方塊中，按一下 [確定] 以回到 [設定 ADO.NET 連接管理員] 對話方塊。
+    6. In the dialog box that reports the results of the connection test, click **OK** to return to the **Connection Manager** dialog box.
+    7. In the **Connection Manager** dialog box, click **OK** to return to the **Configure ADO.NET Connection Manager** dialog box.
  
-5. 在 [設定 ADO.NET 連接管理員] 對話方塊中，按一下 [確定] 以回到 [ADO.NET 來源編輯器]。
-6. 在 [ADO.NET 來源編輯器] 的 [資料表或檢視的名稱] 清單中，選取 [Sales.SalesOrderDetail] 資料表。
+5. In the **Configure ADO.NET Connection Manager** dialog box, click **OK** to return to the **ADO.NET Source Editor**.
+6. In the **ADO.NET Source Editor**, in the **Name of the table or the view** list, select the **Sales.SalesOrderDetail** table.
 
     ![][07]
 
-7. 按一下 [預覽] 以在 [預覽查詢結果] 對話方塊中查看來源資料表前 200 個資料列的資料。
+7. Click **Preview** to see the first 200 rows of data in the source table in the **Preview Query Results** dialog box.
 
     ![][08]
 
-8. 在 [預覽查詢結果] 對話方塊中，按一下 [關閉] 以回到 [ADO.NET 來源編輯器]。
-9. 在 [ADO.NET 來源編輯器] 中，按一下 [確定] 以完成資料來源設定。
+8. In the **Preview Query Results** dialog box, click **Close** to return to the **ADO.NET Source Editor**.
+9. In the **ADO.NET Source Editor**, click **OK** to finish configuring the data source.
 
-## 步驟 4︰將目的地配接器連接到來源配接器
+## <a name="step-4-connect-the-source-adapter-to-the-destination-adapter"></a>Step 4: Connect the source adapter to the destination adapter
 
-1. 在設計介面上選取來源配接器。
-2. 選取從來源配接器延伸出來的藍色箭號，將它拖曳到目的地編輯器直到它扣住定位。
+1. Select the source adapter on the design surface.
+2. Select the blue arrow that extends from the source adapter and drag it to the destination editor until it snaps into place.
 
     ![][10]
 
-    在典型 SSIS 封裝中，您可以在來源和目的地之間使用 SSIS 工具箱中的多個其他元件，在資料通過 SSIS 資料流程時重新建構、轉換、清理資料。為了讓這個範例盡可能簡單，我們直接將來源連接到目的地。
+    In a typical SSIS package, you use a number of other components from the SSIS Toolbox in between the source and the destination to restructure, transform, and cleanse your data as it passes through the SSIS data flow. To keep this example as simple as possible, we’re connecting the source directly to the destination.
 
-## 步驟 5︰設定目的地配接器
+## <a name="step-5-configure-the-destination-adapter"></a>Step 5: Configure the destination adapter
 
-1. 按兩下目的地配接器以開啟 [ADO.NET 目的地編輯器]。
+1. Double-click the destination adapter to open the **ADO.NET Destination Editor**.
 
     ![][11]
 
-2. 在 [ADO.NET 目的地編輯器] 的 [連接管理員] 索引標籤上，按一下 [連接管理員] 清單旁的 [新增] 按鈕，以開啟 [設定 ADO.NET 連接管理員] 對話方塊，並針對本教學課程會將資料載入的 Azure SQL 資料倉儲資料庫建立連接設定。
-3. 在 [設定 ADO.NET 連接管理員] 對話方塊中，按一下 [新增] 按鈕以開啟 [連接管理員] 對話方塊並建立新的資料連接。
-4. 在 [連接管理員] 對話方塊中，執行下列動作。
-    1. 針對 [提供者] 選取 [SqlClient 資料提供者]。
-    2. 針對 [伺服器名稱] 輸入 SQL 資料倉儲名稱。
-    3. 在 [登入伺服器] 區段，選取 [使用 SQL Server 驗證] 並輸入驗證資訊。
-    4. 在 [連接到資料庫] 區段，選取現有的 SQL 資料倉儲資料庫。
-    5. 按一下 [測試連接]。
-    6. 在報告連接測試結果的對話方塊中，按一下 [確定] 以回到 [連接管理員] 對話方塊。
-    7. 在 [連接管理員] 對話方塊中，按一下 [確定] 以回到 [設定 ADO.NET 連接管理員] 對話方塊。
-5. 在 [設定 ADO.NET 連接管理員] 對話方塊中，按一下 [確定] 以回到 [ADO.NET 目的地編輯器]。
-6. 在 [ADO.NET 目的地編輯器] 中，按一下 [使用資料表或檢視] 清單旁的 [新增] 按鈕以開啟 [建立資料表] 對話方塊，建立具有符合來源資料表之資料行清單的新目的地資料表。
+2. On the **Connection Manager** tab of the **ADO.NET Destination Editor**, click the **New** button next to the **Connection manager** list to open the **Configure ADO.NET Connection Manager** dialog box and create connection settings for the Azure SQL Data Warehouse database into which this tutorial loads data.
+3. In the **Configure ADO.NET Connection Manager** dialog box, click the **New** button to open the **Connection Manager** dialog box and create a new data connection.
+4. In the **Connection Manager** dialog box, do the following things.
+    1. For **Provider**, select the SqlClient Data Provider.
+    2. For **Server name**, enter the SQL Data Warehouse name.
+    3. In the **Log on to the server** section, select **Use SQL Server authentication** and enter authentication information.
+    4. In the **Connect to a database** section, select an existing SQL Data Warehouse database.
+    5. Click **Test Connection**.
+    6. In the dialog box that reports the results of the connection test, click **OK** to return to the **Connection Manager** dialog box.
+    7. In the **Connection Manager** dialog box, click **OK** to return to the **Configure ADO.NET Connection Manager** dialog box.
+5. In the **Configure ADO.NET Connection Manager** dialog box, click **OK** to return to the **ADO.NET Destination Editor**.
+6. In the **ADO.NET Destination Editor**, click **New** next to the **Use a table or view** list to open the **Create Table** dialog box to create a new destination table with a column list that matches the source table.
 
     ![][12a]
 
-7. 在 [建立資料表] 對話方塊中，執行下列動作。
+7. In the **Create Table** dialog box, do the following things.
 
-    1. 將目的地資料表的名稱變更為 **SalesOrderDetail**。
-    2. 移除 **rowguid** 資料行。SQL 資料倉儲不支援 **uniqueidentifier** 資料類型。
-    3. 將 **LineTotal** 資料行的資料類型變更為 [money]。SQL 資料倉儲不支援 **decimal** 資料類型。如需支援的資料類型資訊，請參閱 [CREATE TABLE (Azure SQL Data Warehouse, Parallel Data Warehouse) (建立資料表 (Azure SQL 資料倉儲，平行資料倉儲))][]。
+    1. Change the name of the destination table to **SalesOrderDetail**.
+    2. Remove the **rowguid** column. The **uniqueidentifier** data type is not supported in SQL Data Warehouse.
+    3. Change the data type of the **LineTotal** column to **money**. The **decimal** data type is not supported in SQL Data Warehouse. For info about supported data types, see [CREATE TABLE (Azure SQL Data Warehouse, Parallel Data Warehouse)][].
     
         ![][12b]
     
-    4. 按一下 [確定] 以建立資料表，並回到 [ADO.NET 目的地編輯器]。
+    4. Click **OK** to create the table and return to the **ADO.NET Destination Editor**.
 
-8. 在 [ADO.NET 目的地編輯器] 中選取 [對應] 索引標籤，以查看來源資料行對應到目的地資料行的方式。
+8. In the **ADO.NET Destination Editor**, select the **Mappings** tab to see how columns in the source are mapped to columns in the destination.
 
     ![][13]
 
-9. 按一下 [確定] 以完成資料來源設定。
+9. Click **OK** to finish configuring the data source.
 
-## 步驟 6︰執行封裝以載入資料
+## <a name="step-6-run-the-package-to-load-the-data"></a>Step 6: Run the package to load the data
 
-按一下工具列上的 [開始] 按鈕，或選取 [偵錯] 功能表上其中一個 [執行] 選項以執行封裝。
+Run the package by clicking the **Start** button on the toolbar or by selecting one of the **Run** options on the **Debug** menu.
 
-當封裝開始執行時，您會看到用來表示活動的黃色旋轉滾輪以及目前已處理的資料列數。
+As the package begins to run, you see yellow spinning wheels to indicate activity as well as the number of rows processed so far.
 
 ![][14]
 
-封裝執行完成時，您會看到用來表示成功的綠色打勾記號，以及從來源載入到目的地的資料列總數。
+When the package has finished running, you see green check marks to indicate success as well as the total number of rows of data loaded from the source to the destination.
 
 ![][15]
 
-恭喜！ 您已使用 SQL Server Integration Services 成功將資料載入 Azure SQL 資料倉儲。
+Congratulations! You’ve successfully used SQL Server Integration Services to load data into Azure SQL Data Warehouse.
 
-## 後續步驟
+## <a name="next-steps"></a>Next steps
 
-- 深入了解 SSIS 資料流程。從這裡開始：[資料流程][]。
-- 了解如何在設計環境中進行封裝的偵錯和疑難排解。從這裡開始：[封裝開發的工具進行疑難排解][]。
-- 了解如何將 SSIS 專案和封裝部署到 Integration Services 伺服器或其他儲存位置。從這裡開始：[部署專案和封裝][]。
+- Learn more about the SSIS data flow. Start here: [Data Flow][].
+- Learn how to debug and troubleshoot your packages right in the design environment. Start here: [Troubleshooting Tools for Package Development][].
+- Learn how to deploy your SSIS projects and packages to Integration Services Server or to another storage location. Start here: [Deployment of Projects and Packages][].
 
 <!-- Image references -->
-[01]: ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/ssis-designer-01.png
-[02]: ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/ssis-data-flow-task-02.png
-[03]: ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/ado-net-source-03.png
-[04]: ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/ado-net-connection-manager-04.png
-[05]: ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/ado-net-connection-05.png
-[06]: ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/test-connection-06.png
-[07]: ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/ado-net-source-07.png
-[08]: ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/preview-data-08.png
-[09]: ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/source-destination-09.png
-[10]: ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/connect-source-destination-10.png
-[11]: ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/ado-net-destination-11.png
+[01]:  ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/ssis-designer-01.png
+[02]:  ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/ssis-data-flow-task-02.png
+[03]:  ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/ado-net-source-03.png
+[04]:  ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/ado-net-connection-manager-04.png
+[05]:  ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/ado-net-connection-05.png
+[06]:  ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/test-connection-06.png
+[07]:  ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/ado-net-source-07.png
+[08]:  ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/preview-data-08.png
+[09]:  ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/source-destination-09.png
+[10]:  ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/connect-source-destination-10.png
+[11]:  ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/ado-net-destination-11.png
 [12a]: ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/destination-query-before-12a.png
 [12b]: ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/destination-query-after-12b.png
-[13]: ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/column-mapping-13.png
-[14]: ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/package-running-14.png
-[15]: ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/package-success-15.png
+[13]:  ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/column-mapping-13.png
+[14]:  ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/package-running-14.png
+[15]:  ./media/sql-data-warehouse-load-from-sql-server-with-integration-services/package-success-15.png
 
 <!-- Article references -->
 
 <!-- MSDN references -->
-[PolyBase 指南]: https://msdn.microsoft.com/library/mt143171.aspx
-[下載 SQL Server Data Tools (SSDT)]: https://msdn.microsoft.com/library/mt204009.aspx
-[CREATE TABLE (Azure SQL Data Warehouse, Parallel Data Warehouse) (建立資料表 (Azure SQL 資料倉儲，平行資料倉儲))]: https://msdn.microsoft.com/library/mt203953.aspx
-[資料流程]: https://msdn.microsoft.com/library/ms140080.aspx
-[封裝開發的工具進行疑難排解]: https://msdn.microsoft.com/library/ms137625.aspx
-[部署專案和封裝]: https://msdn.microsoft.com/library/hh213290.aspx
+[PolyBase Guide]: https://msdn.microsoft.com/library/mt143171.aspx
+[Download SQL Server Data Tools (SSDT)]: https://msdn.microsoft.com/library/mt204009.aspx
+[CREATE TABLE (Azure SQL Data Warehouse, Parallel Data Warehouse)]: https://msdn.microsoft.com/library/mt203953.aspx
+[Data Flow]: https://msdn.microsoft.com/library/ms140080.aspx
+[Troubleshooting Tools for Package Development]: https://msdn.microsoft.com/library/ms137625.aspx
+[Deployment of Projects and Packages]: https://msdn.microsoft.com/library/hh213290.aspx
 
 <!--Other Web references-->
-[適用於 Azure 的 Microsoft SQL Server 2016 Integration Services Feature Pack]: http://go.microsoft.com/fwlink/?LinkID=626967
-[SQL Server 評估版]: https://www.microsoft.com/zh-TW/evalcenter/evaluate-sql-server-2016
-[Visual Studio Community]: https://www.visualstudio.com/zh-TW/products/visual-studio-community-vs.aspx
-[Adventure Works 2014 Sample Databases (Adventure Works 2014 範例資料庫)]: https://msftdbprodsamples.codeplex.com/releases/view/125550
+[Microsoft SQL Server 2016 Integration Services Feature Pack for Azure]: http://go.microsoft.com/fwlink/?LinkID=626967
+[SQL Server Evaluations]: https://www.microsoft.com/en-us/evalcenter/evaluate-sql-server-2016
+[Visual Studio Community]: https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx
+[AdventureWorks 2014 Sample Databases]: https://msftdbprodsamples.codeplex.com/releases/view/125550
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+<!--HONumber=Oct16_HO2-->
+
+

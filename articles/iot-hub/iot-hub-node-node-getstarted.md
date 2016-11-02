@@ -1,11 +1,11 @@
 <properties
-	pageTitle="適用於 Node.js 的 Azure IoT 中樞快速入門 | Microsoft Azure"
-	description="採用 Node.js 的 Azure IoT 中樞快速入門教學課程。使用 Azure IoT 中樞與 Node.js 搭配 Microsoft Azure IoT SDK 來實作物聯網解決方案。"
-	services="iot-hub"
-	documentationCenter="nodejs"
-	authors="dominicbetts"
-	manager="timlt"
-	editor=""/>
+    pageTitle="適用於 Node.js 的 Azure IoT 中樞快速入門 | Microsoft Azure"
+    description="採用 Node.js 的 Azure IoT 中樞快速入門教學課程。 使用 Azure IoT 中樞與 Node.js 搭配 Microsoft Azure IoT SDK 來實作物聯網解決方案。"
+    services="iot-hub"
+    documentationCenter="nodejs"
+    authors="dominicbetts"
+    manager="timlt"
+    editor=""/>
 
 <tags
      ms.service="iot-hub"
@@ -16,7 +16,8 @@
      ms.date="09/12/2016"
      ms.author="dobett"/>
 
-# 開始使用適用於 Node.js 的 Azure IoT 中樞
+
+# <a name="get-started-with-azure-iot-hub-for-node.js"></a>開始使用適用於 Node.js 的 Azure IoT 中樞
 
 [AZURE.INCLUDE [iot-hub-selector-get-started](../../includes/iot-hub-selector-get-started.md)]
 
@@ -30,19 +31,19 @@
 
 若要完成此教學課程，您需要下列項目：
 
-+ Node.js 0.12.x 版或更新版本。<br/> [準備您的開發環境][lnk-dev-setup]說明如何在 Windows 或 Linux 上安裝本教學課程的 Node.js。
++ Node.js 0.10.x 版或更新版本。
 
-+ 使用中的 Azure 帳戶。(如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用][lnk-free-trial]。)
++ 使用中的 Azure 帳戶。 (如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資訊，請參閱 [Azure 免費試用][lnk-free-trial]。)
 
 [AZURE.INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
-您現在已經建立 IoT 中樞。您具有完成本教學課程的其餘部分所需的 IoT 中樞主機名稱和連接字串。
+您現在已經建立 IoT 中樞。 您具有完成本教學課程的其餘部分所需的 IoT 中樞主機名稱和連接字串。
 
-## 建立裝置識別
+## <a name="create-a-device-identity"></a>建立裝置識別
 
-在本節中，您會建立 Node.js 主控台應用程式，而它會在 IoT 中樞的識別登錄中建立裝置識別。裝置無法連線到 IoT 中樞，除非它在裝置識別登錄中具有項目。如需詳細資訊，請參閱 [IoT 中樞開發人員指南][lnk-devguide-identity]的**裝置識別登錄**一節。執行這個主控台應用程式時，它會產生唯一的裝置識別碼及金鑰，當裝置向 IoT 中樞傳送裝置對雲端訊息時，可以用來識別裝置本身。
+在本節中，您會建立 Node.js 主控台應用程式，而它會在 IoT 中樞的識別登錄中建立裝置識別。 裝置無法連線到 IoT 中樞，除非它在裝置識別登錄中具有項目。 如需詳細資訊，請參閱 [IoT 中樞開發人員指南][lnk-devguide-identity]的**裝置識別登錄**一節。 執行這個主控台應用程式時，它會產生唯一的裝置識別碼及金鑰，當裝置向 IoT 中樞傳送裝置對雲端訊息時，可以用來識別裝置本身。
 
-1. 建立稱為 **createdeviceidentity** 的新的空資料夾。在 **createdeviceidentity** 資料夾中，於命令提示字元使用下列命令建立 package.json 檔案。接受所有預設值：
+1. 建立稱為 **createdeviceidentity**的新的空資料夾。 在 **createdeviceidentity** 資料夾中，於命令提示字元使用下列命令建立 package.json 檔案。 接受所有預設值：
 
     ```
     npm init
@@ -64,7 +65,7 @@
     var iothub = require('azure-iothub');
     ```
 
-5. 將下列程式碼加入至 **CreateDeviceIdentity.js** 檔案，並將預留位置的值替換為您在上一節中為 IoT 中樞所建立的連接字串：
+5. 將下列程式碼加入至 **CreateDeviceIdentity.js** 檔案，並將預留位置的值替換為您在上一節中為 IoT 中樞所建立的連接字串： 
 
     ```
     var connectionString = '{iothub connection string}';
@@ -72,7 +73,7 @@
     var registry = iothub.Registry.fromConnectionString(connectionString);
     ```
 
-6. 新增下列程式碼以在 IoT 中樞的裝置識別登錄建立裝置定義。如果登錄中沒有該裝置識別碼，此程式碼會建立裝置，否則會傳回現有裝置的金鑰：
+6. 新增下列程式碼以在 IoT 中樞的裝置識別登錄建立裝置定義。 如果登錄中沒有該裝置識別碼，此程式碼會建立裝置，否則會傳回現有裝置的金鑰：
 
     ```
     var device = new iothub.Device(null);
@@ -102,23 +103,23 @@
     node CreateDeviceIdentity.js 
     ```
 
-9. 記下**裝置識別碼**和**裝置金鑰**。稍後在建立連線至做為裝置之 IoT 中樞的應用程式時，您會需要這些值。
+9. 記下**裝置識別碼**和**裝置金鑰**。 稍後在建立連線至做為裝置之 IoT 中樞的應用程式時，您會需要這些值。
 
-> [AZURE.NOTE] IoT 中樞身分識別登錄只會儲存裝置識別，以啟用對中樞的安全存取。它會儲存裝置識別碼和金鑰來做為安全性認證，以及啟用或停用旗標，讓您用來停用個別裝置的存取。如果您的應用程式需要儲存其他裝置特定的中繼資料，它應該使用應用程式專用的存放區。如需詳細資訊，請參閱 [IoT 中樞開發人員指南][lnk-devguide-identity]。
+> [AZURE.NOTE] IoT 中樞身分識別登錄只會儲存裝置識別，以啟用對中樞的安全存取。 它會儲存裝置識別碼和金鑰來做為安全性認證，以及啟用或停用旗標，讓您用來停用個別裝置的存取。 如果您的應用程式需要儲存其他裝置特定的中繼資料，它應該使用應用程式專用的存放區。 如需詳細資訊，請參閱 [IoT 中樞開發人員指南][lnk-devguide-identity]。
 
-## 接收裝置到雲端的訊息
+## <a name="receive-device-to-cloud-messages"></a>接收裝置到雲端的訊息
 
-在本節中，您會建立 Node.js 主控台應用程式，以讀取來自 IoT 中樞的裝置到雲端訊息。IoT 中樞會公開與[事件中樞][lnk-event-hubs-overview]相容的端點以讓您讀取裝置到雲端訊息。為了簡單起見，本教學課程會建立的基本讀取器不適合用於高輸送量部署。[處理裝置到雲端的訊息][lnk-process-d2c-tutorial]教學課程會說明如何大規模處理裝置到雲端的訊息。[開始使用事件中樞][lnk-eventhubs-tutorial]教學課程則會提供進一步資訊，說明如何處理來自事件中樞的訊息，而且此教學課程也適用於 IoT 中樞事件中樞相容端點。
+在本節中，您會建立 Node.js 主控台應用程式，以讀取來自 IoT 中樞的裝置到雲端訊息。 IoT 中樞會公開與[事件中樞][lnk-event-hubs-overview]相容的端點以讓您讀取裝置到雲端訊息。 為了簡單起見，本教學課程會建立的基本讀取器不適合用於高輸送量部署。 [處理裝置到雲端的訊息][lnk-process-d2c-tutorial]教學課程會說明如何大規模處理裝置到雲端的訊息。 [開始使用事件中樞][lnk-eventhubs-tutorial]教學課程則會提供進一步資訊，說明如何處理來自事件中樞的訊息，而且此教學課程也適用於 IoT 中樞事件中樞相容端點。
 
 > [AZURE.NOTE] 用於讀取裝置到雲端訊息的事件中樞相容端點一律會使用 AMQPS 通訊協定。
 
-1. 建立稱為 **readdevicetocloudmessages** 的新的空資料夾。在 **readdevicetocloudmessages** 資料夾中，於命令提示字元使用下列命令建立 package.json 檔案。接受所有預設值：
+1. 建立稱為 **readdevicetocloudmessages**的新的空資料夾。 在 **readdevicetocloudmessages** 資料夾中，於命令提示字元使用下列命令建立 package.json 檔案。 接受所有預設值：
 
     ```
     npm init
     ```
 
-2. 在 **readdevicetocloudmessages** 資料夾的命令提示字元中，執行下列命令以安裝 **azure-event-hubs** 封裝：
+2. 在 **readdevicetocloudmessages** 資料夾的命令提示字元中，執行下列命令以安裝 **azure-event-hubs** 套件：
 
     ```
     npm install azure-event-hubs --save
@@ -154,7 +155,7 @@
     };
     ```
 
-7. 加入下列程式碼以建立 **EventHubClient**、開啟您的 IoT 中樞的連線，並建立每個資料分割的接收者。在建立開始執行後只會讀取傳送到 IoT 中樞之訊息的收件者時，此應用程式會使用篩選器。此篩選器很適合測試環境，如此一來您即可看到目前的訊息集。在生產環境中，您的程式碼應該要確定它能處理所有訊息；如需詳細資訊，請參閱[如何處理 IoT 中樞裝置到雲端的訊息][lnk-process-d2c-tutorial]教學課程：
+7. 加入下列程式碼以建立 **EventHubClient**、開啟您的 IoT 中樞的連線，並建立每個資料分割的接收者。 在建立開始執行後只會讀取傳送到 IoT 中樞之訊息的收件者時，此應用程式會使用篩選器。 此篩選器很適合測試環境，如此一來您即可看到目前的訊息集。 在生產環境中，您的程式碼應該要確定它能處理所有訊息；如需詳細資訊，請參閱[如何處理 IoT 中樞裝置到雲端的訊息][lnk-process-d2c-tutorial]教學課程：
 
     ```
     var client = EventHubClient.fromConnectionString(connectionString);
@@ -174,11 +175,11 @@
 
 8. 儲存並關閉 **ReadDeviceToCloudMessages.js** 檔案。
 
-## 建立模擬裝置應用程式
+## <a name="create-a-simulated-device-app"></a>建立模擬裝置應用程式
 
 在本節中，您會撰寫 Node.js 主控台應用程式，模擬裝置傳送裝置對雲端訊息至 IoT 中樞。
 
-1. 建立稱為 **simulateddevice** 的新的空資料夾。在 **simulateddevice** 資料夾中，於命令提示字元使用下列命令建立 package.json 檔案。接受所有預設值：
+1. 建立稱為 **simulateddevice**的新的空資料夾。 在 **simulateddevice** 資料夾中，於命令提示字元使用下列命令建立 package.json 檔案。 接受所有預設值：
 
     ```
     npm init
@@ -201,7 +202,7 @@
     var Message = require('azure-iot-device').Message;
     ```
 
-5. 新增 **connectionString** 變數，並用它來建立裝置用戶端。以您在＜建立 IoT 中樞＞一節中建立的 IoT 中樞名稱取代 **{youriothostname}**。以您在＜建立裝置識別＞一節中產生的裝置金鑰值取代 **{yourdevicekey}**：
+5. 新增 **connectionString** 變數，並用它來建立裝置用戶端。 以您在＜建立 IoT 中樞＞  一節中建立的 IoT 中樞名稱取代 *{youriothostname}* 。 以您在＜建立裝置識別＞  一節中產生的裝置金鑰值取代 *{yourdevicekey}* ：
 
     ```
     var connectionString = 'HostName={youriothostname};DeviceId=myFirstNodeDevice;SharedAccessKey={yourdevicekey}';
@@ -249,10 +250,10 @@
 
 9. 儲存並關閉 **SimulatedDevice.js** 檔案。
 
-> [AZURE.NOTE] 為了簡單起見，本教學課程不會實作任何重試原則。在實際程式碼中，您應該如 MSDN 文章[暫時性錯誤處理][lnk-transient-faults]所建議，實作重試原則 (例如指數型輪詢)。
+> [AZURE.NOTE] 為了簡單起見，本教學課程不會實作任何重試原則。 在實際程式碼中，您應該如 MSDN 文章[暫時性錯誤處理][lnk-transient-faults]所建議，實作重試原則 (例如指數型輪詢)。
 
 
-## 執行應用程式
+## <a name="run-the-applications"></a>執行應用程式
 
 現在您已經準備好執行應用程式。
 
@@ -276,9 +277,9 @@
 
     ![顯示傳送到 IoT 中樞之訊息數目的 Azure 入口網站使用量圖格][43]
 
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 
-在本教學課程中，您在入口網站中設定了新的 IoT 中樞，然後在中樞的身分識別登錄中建立了裝置識別。您會將此裝置識別用於啟用模擬的裝置應用程式，以將裝置對雲端訊息傳送至中樞。您也會建立一個應用程式來顯示中樞所接收的訊息。
+在本教學課程中，您在入口網站中設定了新的 IoT 中樞，然後在中樞的身分識別登錄中建立了裝置識別。 您會將此裝置識別用於啟用模擬的裝置應用程式，以將裝置對雲端訊息傳送至中樞。 您也會建立一個應用程式來顯示中樞所接收的訊息。 
 
 若要繼續開始使用 IoT 中樞並瀏覽其他 IoT 案例，請參閱︰
 
@@ -311,4 +312,8 @@
 [lnk-gateway-SDK]: iot-hub-linux-gateway-sdk-get-started.md
 [lnk-connect-device]: https://azure.microsoft.com/develop/iot/
 
-<!---HONumber=AcomDC_1005_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

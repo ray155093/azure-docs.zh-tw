@@ -1,27 +1,28 @@
 <properties 
-	pageTitle="媒體編碼器高階工作流程格式和轉碼器 | Microsoft Azure" 
-	description="本主題提供 Media Encoder Premium Workflow 格式和轉碼器的概觀" 
-	services="media-services" 
-	documentationCenter="" 
-	authors="juliako" 
-	manager="erik43" 
-	editor=""/>
+    pageTitle="媒體編碼器高階工作流程格式和轉碼器 | Microsoft Azure" 
+    description="本主題提供 Media Encoder Premium Workflow 格式和轉碼器的概觀" 
+    services="media-services" 
+    documentationCenter="" 
+    authors="juliako" 
+    manager="erik43" 
+    editor=""/>
 
 <tags 
-	ms.service="media-services" 
-	ms.workload="media" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="09/26/2016"    
-	ms.author="juliako;anilmur"/>
+    ms.service="media-services" 
+    ms.workload="media" 
+    ms.tgt_pltfrm="na" 
+    ms.devlang="na" 
+    ms.topic="article" 
+    ms.date="09/26/2016"    
+    ms.author="juliako;anilmur"/>
 
-#媒體編碼器高階工作流程格式和轉碼器
+
+#<a name="media-encoder-premium-workflow-formats-and-codecs"></a>媒體編碼器高階工作流程格式和轉碼器
 
 
 >[AZURE.NOTE]如有進階編碼器的問題，請傳送電子郵件到 mepd@Microsoft.com。
 >
->本主題中討論的媒體編碼器高階工作流程媒體處理器無法在中國使用。
+>本主題中討論的媒體編碼器高階工作流程媒體處理器無法在中國使用。 
 
 本文包含 **Media Encoder Premium Workflow** 編碼器公開預覽版本支援的輸入與輸出檔案格式以及轉碼器清單。
 
@@ -29,14 +30,14 @@
 
 [Media Encoder Premium Worflow 輸出格式和轉碼器](#output_formats)
 
-**Media Encoder Premium Workflow** 支援[本](#closed_captioning)章節所述的隱藏式字幕。
+**Media Encoder Premium Workflow** 支援 [本](#closed_captioning) 章節所述的隱藏式字幕。 
 
 
-##<a id="input_formats"></a>Media Encoder Premium Worflow 輸入格式和轉碼器
+##<a name="<a-id="input_formats"></a>media-encoder-premium-workflow-input-formats-and-codecs"></a><a id="input_formats"></a>Media Encoder Premium Worflow 輸入格式和轉碼器
 
 下節列出此媒體處理器支援做為輸入的轉碼器和檔案格式。
 
-###輸入容器/檔案格式
+###<a name="input-container/file-formats"></a>輸入容器/檔案格式
 
 - Adobe® Flash® F4V
 - MXF/SMPTE 377M
@@ -47,7 +48,7 @@
 - Windows Media/ASF
 - AVI (未壓縮 8 位元/10 位元)
 
-###輸入視訊轉碼器
+###<a name="input-video-codecs"></a>輸入視訊轉碼器
 
 - AVC 8 位元/10 位元，高達 4:2:2，包括 AVCIntra
 - Avid DNxHD (使用 MXF)
@@ -57,7 +58,7 @@
 - MPEG-1
 - Windows Media 視訊/VC-1
 
-###輸入音訊轉碼器
+###<a name="input-audio-codecs"></a>輸入音訊轉碼器
 
 - AES (SMPTE 331M 和 302M，AES3-2003)
 - Dolby® E
@@ -68,11 +69,11 @@
 - Windows Media 音訊
 - WAV/PCM
  
-##<a id="output_format"></a>Media Encoder Premium Worflow 輸出格式和轉碼器
+##<a name="<a-id="output_format"></a>media-encoder-premium-workflow-output-formats-and-codecs"></a><a id="output_format"></a>Media Encoder Premium Worflow 輸出格式和轉碼器
 
 下節列出此媒體處理器支援做為輸出的轉碼器和檔案格式。
 
-###輸出容器/檔案格式
+###<a name="output-container/file-formats"></a>輸出容器/檔案格式
 
 - Adobe® Flash® F4V
 - MXF (OP1a、XDCAM 和 AS02)
@@ -82,10 +83,10 @@
 - Windows Media/ASF
 - AVI (未壓縮 8 位元/10 位元)
 - Smooth Streaming 檔案格式 (PIFF 1.3)
-- MPEG-TS
+- MPEG-TS 
 
 
-###輸出視訊轉碼器
+###<a name="output-video-codecs"></a>輸出視訊轉碼器
 
 - AVC (H.264；8 位元；高達 High Profile、Level 5.2；4K Ultra HD；AVC Intra)
 - Avid DNxHD (使用 MXF)
@@ -95,7 +96,7 @@
 - Windows Media 視訊/VC-1
 - JPEG 縮圖建立
 
-###輸出音訊轉碼器
+###<a name="output-audio-codecs"></a>輸出音訊轉碼器
 
 - AES (SMPTE 331M 和 302M，AES3-2003)
 - Dolby® Digital (AC3)
@@ -105,9 +106,9 @@
 - MP3 (MPEG-1 音訊層 3)
 - Windows Media 音訊
 
-##<a id="closed_captioning"></a>支援隱藏式字幕
+##<a name="<a-id="closed_captioning"></a>support-for-closed-captioning"></a><a id="closed_captioning"></a>支援隱藏式字幕
 
-內嵌時，**Media Encoder Premium Workflow** 支援：
+內嵌時， **Media Encoder Premium Workflow** 支援：
 
 1. SCC 檔案
 1. SMPTE-TT 檔案
@@ -125,17 +126,21 @@
 
 注意：Azure 媒體服務並不支援透過串流傳遞上述所有的輸出格式。
 
-##已知問題
+##<a name="known-issues"></a>已知問題
 
-如果您的輸入視訊不包含隱藏式字幕，輸出資產仍然會包含空白 TTML 檔案。
+如果您的輸入視訊不包含隱藏式字幕，輸出資產仍然會包含空白 TTML 檔案。 
 
 
-##媒體服務學習路徑
+##<a name="media-services-learning-paths"></a>媒體服務學習路徑
 
 [AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-##提供意見反應
+##<a name="provide-feedback"></a>提供意見反應
 
 [AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<!---HONumber=AcomDC_0928_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

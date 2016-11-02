@@ -1,10 +1,10 @@
 <properties
-   pageTitle="SQL 資料倉儲容量限制 | Microsoft Azure"
-   description="SQL 資料倉儲的連接、資料庫、資料表及查詢最大值。"
+   pageTitle="SQL Data Warehouse capacity limits | Microsoft Azure"
+   description="Maximum values for connections, databases, tables and queries for SQL Data Warehouse."
    services="sql-data-warehouse"
    documentationCenter="NA"
-   authors="sonyam"
-   manager="barbkess"
+   authors="barbkess"
+   manager="jhubbard"
    editor=""/>
 
 <tags
@@ -13,103 +13,108 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="data-services"
-   ms.date="09/01/2016"
-   ms.author="sonyama;barbkess;jrj"/>
-
-# SQL 資料倉儲容量限制
-
-下表包含 Azure SQL 資料倉儲各種元件的最大允許值。
+   ms.date="10/31/2016"
+   ms.author="barbkess;jrj"/>
 
 
-## 工作負載管理
+# <a name="sql-data-warehouse-capacity-limits"></a>SQL Data Warehouse capacity limits
 
-| 類別 | 說明 | 最大值 |
+The following tables contain the maximum values allowed for various components of Azure SQL Data Warehouse.
+
+
+## <a name="workload-management"></a>Workload management
+
+| Category            | Description                                       | Maximum            |
 | :------------------ | :------------------------------------------------ | :----------------- |
-| [資料倉儲單位 (DWU)][]| 單一 SQL 資料倉儲的最大 DWU | 6000 |
-| [資料倉儲單位 (DWU)][]| 單一 SQL Server 的最大 DWU | 預設為 6000<br/><br/>每個 SQL Server (例如 myserver.database.windows.net) 的 DTU 配額為 45,000，最多允許 6000 DWU。此配額僅是安全限制。您可以藉由[建立支援票證][]，並選取 [配額] 做為要求類型來增加配額。若要計算 DTU 需求，將所需的總 DWU 乘以 7.5。您可以在入口網站的 [SQL Server] 刀鋒視窗中檢視目前的 DTU 耗用量。已暫停和未暫停的資料庫都會計入 DTU 配額。 |
-| 資料庫連接 | 同時開啟的工作階段 | 1024<br/><br/>我們支援最多 1024 個使用中的連線，每個連線可以同時針對一個 SQL 資料倉儲資料庫提交要求。請注意，實際可以並行執行的查詢數是有限的。超過並行存取限制時，要求會進入內部佇列以等待處理。|
-| 資料庫連接 | 準備陳述式的最大記憶體 | 20 MB |
-| [工作負載管理][] | 並行查詢上限 | 32<br/><br/> 根據預設，SQL 資料倉儲最多可執行 32 個併行查詢，並將剩餘的查詢納入佇列。<br/><br/>當使用者被指派到更高的資源類別或 SQL 資料倉儲設定低的 DWU 時，並行存取層級可能會降低。系統總是會允許某些查詢 (例如 DMV 查詢) 執行。|
-| [Tempdb][] | Tempdb 的大小上限 | 每一 DW100 399 GB。因此，DWU1000 Tempdb 大小為 3.99 TB |
+| [Data Warehouse Units (DWU)][]| Max DWU for a single SQL Data Warehouse | 6000               |
+| [Data Warehouse Units (DWU)][]| Max DWU for a single SQL server         | 6000 by default<br/><br/> By default, each SQL server (e.g. myserver.database.windows.net) has a DTU Quota of 45,000 which allows up to 6000 DWU. This quota is simply a safety limit. You can increase your quota by [creating a support ticket][] and selecting *Quota* as the request type.  To calculate your DTU needs, multiply the 7.5 by the total DWU needed. You can view your current DTU consumption from the SQL server blade in the portal. Both paused and un-paused databases count toward the DTU quota. |
+| Database connection | Concurrent open sessions                          | 1024<br/><br/>We support a maximum of 1024 active connections, each of which can submit requests to a SQL Data Warehouse database at the same time. Note, that there are limits on the number of queries that can actually execute concurrently. When the concurrency limit is exceeded, the request goes into an internal queue where it waits to be processed.|
+| Database connection | Maximum memory for prepared statements            | 20 MB              |
+| [Workload management][] | Maximum concurrent queries                    | 32<br/><br/> By default, SQL Data Warehouse can execute a maximum of 32 concurrent queries and queues remaining queries.<br/><br/>The concurrency level may decrease when users are assigned to a higher resource class or when SQL Data Warehouse is configured with low DWU. Some queries, like DMV queries, are always allowed to run.|
+| [Tempdb][]          | Max size of Tempdb                                | 399 GB per DW100. Therefore at DWU1000 Tempdb is sized to 3.99 TB |
 
 
-## 資料庫物件
+## <a name="database-objects"></a>Database objects
 
-| 類別 | 說明 | 最大值 |
+| Category          | Description                                  | Maximum            |
 | :---------------- | :------------------------------------------- | :----------------- |
-| 資料庫 | 大小上限 | 在磁碟上壓縮後 240 TB<br/><br/>此空間與 tempdb 或記錄檔空間無關，因此此空間為供永久資料表專用。叢集資料行存放區壓縮估計為 5 X。當所有資料表都是叢集資料行存放區 (預設的資料表類型) 時，這個壓縮可讓資料庫成長約 1 PB。|
-| 資料表 | 大小上限 | 磁碟上壓縮後 60 TB |
-| 資料表 | 每個資料庫的資料表 | 20 億 |
-| 資料表 | 每個資料表的資料行 | 1024 個資料行 |
-| 資料表 | 每個資料行的位元組 | 相依於資料行[資料類型][]。char 資料類型的限制為 8000、nvarchar 為 4000 或 MAX 資料類型為 2 GB。|
-| 資料表 | 每個資料列的位元組，已定義的大小 | 8060 個位元組<br/><br/>每個資料列的位元組數目計算方式和使用頁面壓縮的 SQL Server 所使用的方式相同。就像 SQL Server，SQL 資料倉儲支援資料列溢位儲存，讓**可變長度的資料行**能發送至超出資料列。可變長度的資料列會發送至超出資料列，只有 24 位元組的根會儲存在主要記錄中。如需詳細資訊，請參閱[超過 8 KB 的資料列溢位資料][] MSDN 文章。|
-| 資料表 | 每個資料表的資料分割 | 15,000<br/><br/>為了獲得高效能，建議在仍能支援業務需求的情況下，將您需要的資料分割數目降至最低。隨著資料分割數目增加，資料定義語言 (DDL) 和資料操作語言 (DML) 作業的負荷會加重，導致效能變慢。|
-| 資料表 | 每個資料分割界限值的字元。| 4000 |
-| 索引 | 每個資料表的非叢集索引。 | 999<br/><br/>僅適用於資料列存放區資料表。|
-| 索引 | 每個資料表的叢集索引。 | 1<br><br/>適用於資料列存放區資料表和資料行存放區資料表。|
-| 索引 | 索引鍵的大小。 | 900 個位元組。<br/><br/>僅適用於資料列存放區索引。<br/><br/>建立索引時，如果資料行中的現有資料沒有超過 900 個位元組，就可以在 varchar 資料行上建立大小上限超過 900 個位元組的索引。不過，後續在資料行上執行 INSERT 或 UPDATE 動作時，如果總計大小超過 900 個位元組，將會失敗。|
-| 索引 | 每個索引的索引鍵資料行。 | 16<br/><br/>僅適用於資料列存放區索引。叢集資料行存放區索引包含所有資料行。|
-| 統計資料 | 結合資料行值的大小。 | 900 個位元組。 |
-| 統計資料 | 每個統計資料物件的資料行。 | 32 |
-| 統計資料 | 每個資料表的資料行上建立的統計資料。 | 30,000 |
-| 預存程序 | 最大巢狀層級。 | 8 |
-| 檢視 | 每個檢視表的資料行 | 1,024 |
+| Database          | Max size                                     | 240 TB compressed on disk<br/><br/>This space is independent of tempdb or log space, and therefore this space is dedicated to permanent tables.  Clustered columnstore compression is estimated at 5X.  This compression allows the database to grow to approximately 1 PB when all tables are clustered columnstore (the default table type).|
+| Table             | Max size                                     | 60 TB compressed on disk   |
+| Table             | Tables per database                          | 2 billion          |
+| Table             | Columns per table                            | 1024 columns       |
+| Table             | Bytes per column                             | Dependent on column [data type][].  Limit is 8000 for char data types, 4000 for nvarchar, or 2 GB for MAX data types.|
+| Table             | Bytes per row, defined size                  | 8060 bytes<br/><br/>The number of bytes per row is calculated in the same manner as it is for SQL Server with page compression. Like SQL Server, SQL Data Warehouse supports row-overflow storage which enables **variable length columns** to be pushed off-row. When variable length rows are pushed off-row, only 24-byte root is stored in the main record. For more information, see the [Row-Overflow Data Exceeding 8 KB][] MSDN article.|
+| Table             | Partitions per table                    | 15,000<br/><br/>For high performance, we recommend minimizing the number of partitions you need while still supporting your business requirements. As the number of partitions grows, the overhead for Data Definition Language (DDL) and Data Manipulation Language (DML) operations grows and causes slower performance.|
+| Table             | Characters per partition boundary value.| 4000 |
+| Index             | Non-clustered indexes per table.        | 999<br/><br/>Applies to rowstore tables only.|
+| Index             | Clustered indexes per table.            | 1<br><br/>Applies to both rowstore and columnstore tables.|
+| Index             | Index key size.                          | 900 bytes.<br/><br/>Applies to rowstore indexes only.<br/><br/>Indexes on varchar columns with a maximum size of more than 900 bytes can be created if the existing data in the columns does not exceed 900 bytes when the index is created. However, later INSERT or UPDATE actions on the columns that cause the total size to exceed 900 bytes will fail.|
+| Index             | Key columns per index.                   | 16<br/><br/>Applies to rowstore indexes only. Clustered columnstore indexes include all columns.|
+| Statistics        | Size of the combined column values.      | 900 bytes.         |
+| Statistics        | Columns per statistics object.           | 32                 |
+| Statistics        | Statistics created on columns per table. | 30,000            |
+| Stored Procedures | Maximum levels of nesting.               | 8                 |
+| View              | Columns per view                         | 1,024             |
 
 
-## 載入
+## <a name="loads"></a>Loads
 
-| 類別 | 說明 | 最大值 |
+| Category          | Description                                  | Maximum            |
 | :---------------- | :------------------------------------------- | :----------------- |
-| PolyBase 載入 | 每個資料列的位元組 | 32,768<br/><br/>PolyBase 載入被限制為只能載入小於 32K 的資料列，且不能載入至 VARCHR(MAX)、NVARCHAR(MAX) 或 VARBINARY(MAX)。雖然目前尚有此限制，但將會在不久之後移除。<br/><br/>
+| Polybase Loads    | Bytes per row                                | 32,768<br/><br/>Polybase loads are limited to loading rows both smaller than 32K and cannot load to VARCHR(MAX), NVARCHAR(MAX) or VARBINARY(MAX).  While this limit exists today, it will be removed fairly soon.<br/><br/>
 
 
-## 查詢
+## <a name="queries"></a>Queries
 
-| 類別 | 說明 | 最大值 |
+| Category          | Description                                  | Maximum            |
 | :---------------- | :------------------------------------------- | :----------------- |
-| 查詢 | 使用者資料表上已排入佇列的查詢。 | 1000 |
-| 查詢 | 系統檢視表上的並行查詢。 | 100 |
-| 查詢 | 系統檢視表上已排入佇列的查詢 | 1000 |
-| 查詢 | 參數個數上限 | 2098 |
-| 批次 | 大小上限 | 65,536*4096 |
-| SELECT 結果 | 每個資料列的資料行 | 4096<br/><br/>在 SELECT 結果中，每個資料列一律不超過 4096 個資料行。不保證一定可以有 4096 個。如果查詢計畫需要暫存資料表，可能會限定每個資料表最多 1024 個資料行。|
-| SELECT | 巢狀子查詢 | 32<br/><br/>SELECT 陳述式中一律不超過 32 個巢狀子查詢。不保證一定可以有 32 個。例如，JOIN 可以將子查詢加入查詢計畫中。子查詢的數目也受限於可用記憶體。|
-| SELECT | 每個 JOIN 的資料行 | 1024 個資料行<br/><br/>JOIN 中一律不超過 1024 個資料行。不保證一定可以有 1024 個。如果 JOIN 計畫需要比 JOIN 結果更多資料行的暫存資料表，暫存資料表會受限於 1024 的限制。 |
-| SELECT | 每個 GROUP BY 資料行的位元組。 | 8060<br/><br/>GROUP BY 子句中的資料行最多可以有 8060 個位元組。|
-| SELECT | 每個 ORDER BY 資料行的位元組 | 8060 個位元組。<br/><br/>ORDER BY 子句中的資料行最多可以有 8060 個位元組。|
-| 每個陳述式的識別項和常數 | 參考的識別項和常數個數。 | 65,535<br/><br/>SQL 資料倉儲會限制查詢的單一運算式中可包含的識別項和常數個數。此限制為 65,535。超過此數字會導致 SQL Server 錯誤 8632。如需詳細資訊，請參閱[內部錯誤：到達運算式服務的限制][]。|
+| Query             | Queued queries on user tables.               | 1000               |
+| Query             | Concurrent queries on system views.          | 100                |
+| Query             | Queued queries on system views               | 1000               |
+| Query             | Maximum parameters                           | 2098               |
+| Batch             | Maximum size                                 | 65,536*4096        |
+| SELECT results    | Columns per row                              | 4096<br/><br/>You can never have more than 4096 columns per row in the SELECT result. There is no guarantee that you can always have 4096. If the query plan requires a temporary table, the 1024 columns per table maximum might apply.|
+| SELECT            | Nested subqueries                            | 32<br/><br/>You can never have more than 32 nested subqueries in a SELECT statement. There is no guarantee that you can always have 32. For example, a JOIN can introduce a subquery into the query plan. The number of subqueries can also be limited by available memory.|
+| SELECT            | Columns per JOIN                             | 1024 columns<br/><br/>You can never have more than 1024 columns in the JOIN. There is no guarantee that you can always have 1024. If the JOIN plan requires a temporary table with more columns than the JOIN result, the 1024 limit applies to the temporary table. |
+| SELECT            | Bytes per GROUP BY columns.                  | 8060<br/><br/>The columns in the GROUP BY clause can have a maximum of 8060 bytes.|
+| SELECT            | Bytes per ORDER BY columns                   | 8060 bytes.<br/><br/>The columns in the ORDER BY clause can have a maximum of 8060 bytes.|
+| Identifiers and constants per statement | Number of referenced identifiers and constants. | 65,535<br/><br/>SQL Data Warehouse limits the number of identifiers and constants that can be contained in a single expression of a query. This limit is 65,535. Exceeding this number results in SQL Server error 8632. For more information, see [Internal error: An expression services limit has been reached][].|
 
 
-## 中繼資料
+## <a name="metadata"></a>Metadata
 
-| 系統檢視表 | 最大資料列數 |
+| System view                        | Maximum rows |
 | :--------------------------------- | :------------|
-| sys.dm\_pdw\_component\_health\_alerts | 10,000 |
-| sys.dm\_pdw\_dms\_cores | 100 |
-| sys.dm\_pdw\_dms\_workers | 最近 1000 個 SQL 要求的 DMS 背景工作角色總數。 |
-| sys.dm\_pdw\_errors | 10,000 |
-| sys.dm\_pdw\_exec\_requests | 10,000 |
-| sys.dm\_pdw\_exec\_sessions | 10,000 |
-| sys.dm\_pdw\_request\_steps | 儲存在 sys.dm\_pdw\_exec\_requests 中的最近 1000 個 SQL 要求的步驟總數。 |
-| sys.dm\_pdw\_os\_event\_logs | 10,000 |
-| sys.dm\_pdw\_sql\_requests | 儲存在 sys.dm\_pdw\_exec\_requests 中的最近 1000 個 SQL 要求。 |
+| sys.dm_pdw_component_health_alerts | 10,000       |
+| sys.dm_pdw_dms_cores               | 100          |
+| sys.dm_pdw_dms_workers             | Total number of DMS workers for the most recent 1000 SQL requests. |
+| sys.dm_pdw_errors                  | 10,000       |
+| sys.dm_pdw_exec_requests           | 10,000       |
+| sys.dm_pdw_exec_sessions           | 10,000       |
+| sys.dm_pdw_request_steps           | Total number of steps for the most recent 1000 SQL requests that are stored in sys.dm_pdw_exec_requests. |
+| sys.dm_pdw_os_event_logs           | 10,000       |
+| sys.dm_pdw_sql_requests            | The most recent 1000 SQL requests that are stored in sys.dm_pdw_exec_requests. |
 
 
-## 後續步驟
-如需更多的參考資訊，請參閱 [SQL 資料倉儲參考概觀][]。
+## <a name="next-steps"></a>Next steps
+For more reference information, see [SQL Data Warehouse reference overview][].
 
 <!--Image references-->
 
 <!--Article references-->
-[資料倉儲單位 (DWU)]: ./sql-data-warehouse-overview-what-is.md#data-warehouse-units
-[SQL 資料倉儲參考概觀]: ./sql-data-warehouse-overview-reference.md
-[工作負載管理]: ./sql-data-warehouse-develop-concurrency.md
+[Data Warehouse Units (DWU)]: ./sql-data-warehouse-overview-what-is.md#data-warehouse-units
+[SQL Data Warehouse reference overview]: ./sql-data-warehouse-overview-reference.md
+[Workload management]: ./sql-data-warehouse-develop-concurrency.md
 [Tempdb]: ./sql-data-warehouse-tables-temporary.md
-[資料類型]: ./sql-data-warehouse-tables-data-types.md
-[建立支援票證]: /sql-data-warehouse-get-started-create-support-ticket.md
+[data type]: ./sql-data-warehouse-tables-data-types.md
+[creating a support ticket]: /sql-data-warehouse-get-started-create-support-ticket.md
 
 <!--MSDN references-->
-[超過 8 KB 的資料列溢位資料]: https://msdn.microsoft.com/library/ms186981.aspx
-[內部錯誤：到達運算式服務的限制]: https://support.microsoft.com/kb/913050
+[Row-Overflow Data Exceeding 8 KB]: https://msdn.microsoft.com/library/ms186981.aspx
+[Internal error: An expression services limit has been reached]: https://support.microsoft.com/kb/913050
 
-<!----HONumber=AcomDC_0907_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+

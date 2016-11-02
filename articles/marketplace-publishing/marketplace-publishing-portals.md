@@ -1,10 +1,10 @@
 <properties
-   pageTitle="建立 Marketplace 供應項目所需的各種入口網站概觀 | Microsoft Azure"
-   description="建立 Marketplace 供應項目所需的各種入口網站概觀"
+   pageTitle="Overview of the various portals needed to create an offer for the Marketplace | Microsoft Azure"
+   description="Overview of the various portals needed to create an offer for the Marketplace"
    services="marketplace-publishing"
    documentationCenter=""
    authors="HannibalSII"
-   manager=""
+   manager="hascipio"
    editor=""/>
 
 <tags
@@ -17,37 +17,42 @@
    ms.author="hascipio" />
 
 
-# 您需要的入口網站
-在您開始發行供應項目程序之前，讓我們簡介您所需的各種入口網站。以下是有關入口網站的簡短摘要，包括：開發人員中心、Azure 發佈入口網站和 Azure 入口網站 (依您將與之互動的順序顯示)。
-## 開發人員中心
+
+# <a name="portals-you-will-need"></a>Portals you will need
+Before you start the process of publishing an offer, let’s get you introduced to the various portals that you will need. Below is the short summary about the portals--Developer Center, Azure Publishing Portal, and Azure Portal--in the order that you will interact with them.                                                                            
+## <a name="developer-center"></a>Developer Center
 [http://dev.windows.com/registration?accountprogram=azure](http://dev.windows.com/registration?accountprogram=azure)
-### 說明
-建立您的 Microsoft 開發人員中心帳戶是一次性的工作。當您嘗試建立開發人員中心帳戶之前，請確認公司確實未曾擁有開發人員中心帳戶。在這個程序期間，我們會收集銀行帳戶資訊、稅務資訊和公司地址資訊。
+### <a name="description"></a>Description
+Creating your Microsoft Developer Center account is a one-time task. Make sure that the company does not already have a Developer Center account before you attempt to create one. During the process, we collect bank account information, tax information, and company address information.
 
-> [AZURE.NOTE] 如果您只要發佈免費的供應項目 (或自備授權)，即不需要稅捐和銀行資訊。
+> [AZURE.NOTE] If you are publishing only free offers (or bring-your-own-license offers), we do not require tax and bank information.
 
-### 使用的身分識別/帳戶
-在理想情況下，這是通訊群組清單或安全性群組 (例如 azurepublishing@*partnercompany*.com)。此通訊群組清單或安全性群組**必須**已註冊為 Microsoft 帳戶。
+### <a name="identity/account-used"></a>Identity/account used
+Ideally, this is a distribution list or a security group (e.g., azurepublishing@*partnercompany*.com). The distribution list or security group **must** be registered as a Microsoft account.
 
-> [AZURE.TIP] 建議使用通訊群組清單或安全性群組，因為它會移除任何個別帳戶的相依性；雖然也會使用個別帳戶。
+> [AZURE.TIP] We recommend using a distribution list or a security group because it removes the dependency on any individual, although an individual account can be used as well.
 
-## 發佈入口網站
+## <a name="publishing-portal"></a>Publishing portal
 [https://publish.windowsazure.com](https://publish.windowsazure.com)
 
-### 說明
-此入口網站可讓您處理供應項目並加以發佈 (不論是行銷、價格、發佈憑證等)。
+### <a name="description"></a>Description
+This is the portal that you use to work on the offer and to publish it (marketing, pricing, publishing, certification if applicable, etc.).
 
-### 使用的身分識別/帳戶
-第一次登入發佈入口網站時必須使用上述的通訊群組清單或安全性群組。稍後，即可將其他使用者新增為共同管理員。這就是對應至開發人員中心註冊資料的方式。
+### <a name="identity/account-used"></a>Identity/account used
+The above distribution list or security group must be used for the first time to sign in to the publishing portal. Later, other users can be added as co-admins. This is how it gets mapped to the Developer Center registration data.
 
-## Azure 入口網站
+## <a name="azure-portal"></a>Azure Portal
 [https://portal.azure.com](https://portal.azure.com)
-### 說明
-在此入口網站中，您可於 Azure Marketplace 中檢視您預備與發佈的供應項目 (適用於 VM、方案範本和以 Azure 資源管理員為基礎的開發人員服務)。
-### 使用的身分識別/帳戶
-從發佈入口網站預備供應項目時，必須將訂用帳戶識別碼列入允許清單。登入此入口網站來測試預備的供應項目時，必須使用相同的訂用帳戶 (具有相關聯的使用者名稱和密碼)。
+### <a name="description"></a>Description
+This is the portal where you can view your staged and published offers in the Azure Marketplace (applicable for VMs, solution templates, and Azure Resource Manager-based developer services).
+### <a name="identity/account-used"></a>Identity/account used
+While you're staging an offer from the publishing portal, a subscription ID needs to be whitelisted. The same subscription (there is a user name and password associated with it) needs to be used for signing in to this portal to test the staged offer.
 
-## 另請參閱
-- [使用者入門：如何將供應項目發佈至 Azure Marketplace](marketplace-publishing-getting-started.md)
+## <a name="see-also"></a>See also
+- [Getting started: How to publish an offer for the Azure Marketplace](marketplace-publishing-getting-started.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+
+
+<!--HONumber=Oct16_HO2-->
+
+
