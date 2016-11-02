@@ -13,7 +13,7 @@
     ms.tgt_pltfrm="na"
     ms.devlang="na"
     ms.topic="article"
-    ms.date="11/01/2016"
+    ms.date="06/27/2016"
     ms.author="billmath"/>
 
 
@@ -167,13 +167,13 @@ Azure AD 目錄找不到或無法解析。 可能是您嘗試以未驗證網域�
 ### <a name="retrievedomains"></a>RetrieveDomains
 驗證成功。 無法從 Azure AD 擷取網域資訊。
 
-## <a name="troubleshooting-steps-for-previous-releases"></a>舊版的疑難排解步驟
+## <a name="troubleshooting-steps-for-previous-releases."></a>舊版的疑難排解步驟
 從組建編號 1.1.105.0 (於 2016 年 2 月發行) 的版本開始即已淘汰登入小幫手。 應該已不再需要本節及組態設定，但仍保留供參考之用。
 
 若要讓登入小幫手能夠運作，必須設定 winhttp。 透過 [**netsh**](active-directory-aadconnect-prerequisites.md#connectivity)中。  
 ![netsh](./media/active-directory-aadconnect-troubleshoot-connectivity/netsh.png)
 
-### <a name="the-signin-assistant-has-not-been-correctly-configured"></a>登入小幫手未正確設定
+### <a name="the-sign-in-assistant-has-not-been-correctly-configured"></a>登入小幫手未正確設定
 當登入小幫手無法連線 Proxy 或 Proxy 不允許該要求時，就會出現此錯誤。
 ![nonetsh](./media/active-directory-aadconnect-troubleshoot-connectivity/nonetsh.png)
 

@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Troubleshoot your local Service Fabric cluster setup | Microsoft Azure"
-   description="This article covers a set of suggestions for troubleshooting your local development cluster"
+   pageTitle="疑難排解您的本機 Service Fabric 叢集設定 | Microsoft Azure"
+   description="本文涵蓋了一組疑難排解本機開發叢集的建議"
    services="service-fabric"
    documentationCenter=".net"
    authors="seanmck"
@@ -13,21 +13,20 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="10/29/2016"
+   ms.date="07/08/2016"
    ms.author="seanmck"/>
 
+# 疑難排解本機開發叢集設定
 
-# <a name="troubleshoot-your-local-development-cluster-setup"></a>Troubleshoot your local development cluster setup
+如果您在與本機 Azure Service Fabric 開發叢集互動時遇到問題，請檢閱下列建議，以尋求可能的解決方法。
 
-If you run into an issue while interacting with your local Azure Service Fabric development cluster, review the following suggestions for potential solutions.
+## 叢集設定失敗
 
-## <a name="cluster-setup-failures"></a>Cluster setup failures
+### 無法清除 Service Fabric 記錄檔
 
-### <a name="cannot-clean-up-service-fabric-logs"></a>Cannot clean up Service Fabric logs
+#### 問題
 
-#### <a name="problem"></a>Problem
-
-While running the DevClusterSetup script, you see an error like this:
+執行 DevClusterSetup 指令碼時，看到類似以下錯誤：
 
     Cannot clean up C:\SfDevCluster\Log fully as references are likely being held to items in it. Please remove those and run this script again.
     At line:1 char:1 + .\DevClusterSetup.ps1
@@ -36,39 +35,39 @@ While running the DevClusterSetup script, you see an error like this:
     + FullyQualifiedErrorId : Microsoft.PowerShell.Commands.WriteErrorException,DevClusterSetup.ps1
 
 
-#### <a name="solution"></a>Solution
+#### 方案
 
-Close the current PowerShell window and open a new PowerShell window as an administrator. You should now be able to successfully run the script.
+關閉目前的 Powershell 視窗，並以系統管理員身分開啟新的 Powershell 視窗。您現在應該能夠成功執行指令碼。
 
-## <a name="cluster-connection-failures"></a>Cluster connection failures
+## 叢集連接失敗
 
-### <a name="service-fabric-powershell-cmdlets-are-not-recognized-in-azure-powershell"></a>Service Fabric PowerShell cmdlets are not recognized in Azure PowerShell
+### 在 Azure PowerShell 中無法辨識 Service Fabric PowerShell Cmdlet
 
-#### <a name="problem"></a>Problem
+#### 問題
 
-If you try to run any of the Service Fabric PowerShell cmdlets, such as `Connect-ServiceFabricCluster` in an Azure PowerShell window, it fails, saying that the cmdlet is not recognized. The reason for this is that Azure PowerShell uses the 32-bit version of Windows PowerShell (even on 64-bit OS versions), whereas the Service Fabric cmdlets only work in 64-bit environments.
+如果您嘗試執行任何 Service Fabric PowerShell Cmdlet (例如，在 Azure PowerShell 視窗中執行 `Connect-ServiceFabricCluster`)，它將會失敗，並指出無法辨識此 Cmdlet。這是因為 Azure PowerShell 使用 32 位元版本的 Windows PowerShell (即使是在 64 位元作業系統版本上)，而 Service Fabric Cmdlet 只能在 64 位元環境中運作。
 
-#### <a name="solution"></a>Solution
+#### 方案
 
-Always run Service Fabric cmdlets directly from Windows PowerShell.
+一律直接從 Windows PowerShell 執行 Service Fabric Cmdlet。
 
->[AZURE.NOTE] The latest version of Azure PowerShell does not create a special shortcut, so this should no longer occur.
+>[AZURE.NOTE] 最新版的 Azure PowerShell 不會建立特殊捷徑，因此這不會再出現。
 
-### <a name="type-initialization-exception"></a>Type Initialization exception
+### 類型初始化例外狀況
 
-#### <a name="problem"></a>Problem
+#### 問題
 
-When you are connecting to the cluster in PowerShell, you see the error TypeInitializationException for System.Fabric.Common.AppTrace.
+在 PowerShell 中連線到叢集時，看到 System.Fabric.Common.AppTrace 的 TypeInitializationException 錯誤。
 
-#### <a name="solution"></a>Solution
+#### 方案
 
-Your path variable was not correctly set during installation. Please sign out of Windows and sign back in. This will fully refresh your path.
+在安裝期間未正確設定路徑變數。請登出 Windows，再重新登入。這樣會完全重新整理您的路徑。
 
-### <a name="cluster-connection-fails-with-object-is-closed"></a>Cluster connection fails with "Object is closed"
+### 叢集連接失敗，且出現「物件已關閉」
 
-#### <a name="problem"></a>Problem
+#### 問題
 
-A call to Connect-ServiceFabricCluster fails with an error like this:
+呼叫 Connect-ServiceFabricCluster 失敗，且出現類似以下錯誤：
 
     Connect-ServiceFabricCluster : The object is closed.
     At line:1 char:1
@@ -77,31 +76,27 @@ A call to Connect-ServiceFabricCluster fails with an error like this:
     + CategoryInfo : InvalidOperation: (:) [Connect-ServiceFabricCluster], FabricObjectClosedException
     + FullyQualifiedErrorId : CreateClusterConnectionErrorId,Microsoft.ServiceFabric.Powershell.ConnectCluster
 
-#### <a name="solution"></a>Solution
+#### 方案
 
-Close the current PowerShell window and open a new PowerShell window as an administrator. You should now be able to successfully connect.
+關閉目前的 Powershell 視窗，並以系統管理員身分開啟新的 Powershell 視窗。您現在應該能夠成功連接。
 
-### <a name="fabric-connection-denied-exception"></a>Fabric Connection Denied exception
+### 拒絕網狀架構連線例外狀況
 
-#### <a name="problem"></a>Problem
+#### 問題
 
-When debugging from Visual Studio, you get a FabricConnectionDeniedException error.
+從 Visual Studio 進行偵錯時，看見 FabricConnectionDeniedException 錯誤。
 
-#### <a name="solution"></a>Solution
+#### 方案
 
-This error usually occurs when you try to try to start a service host process manually, rather than allowing the Service Fabric runtime to start it for you.
+當您嘗試以手動方式啟動服務主機處理序，而非讓 Service Fabric 執行階段啟動時，通常會發生這個錯誤。
 
-Ensure that you do not have any service projects set as startup projects in your solution. Only Service Fabric application projects should be set as startup projects.
+請確定您的解決方法中沒有任何設定為啟始專案的服務專案。只有 Service Fabric 應用程式專案才可設為啟始專案。
 
->[AZURE.TIP] If, following setup, your local cluster begins to behave abnormally, you can reset it using the local cluster manager system tray application. This will remove the existing cluster and set up a new one. Please note that all deployed applications and associated data will be removed.
+>[AZURE.TIP] 如果在安裝之後，您的本機叢集開始行為異常，您可以使用本機叢集管理員系統匣應用程式將其重設。這麼做會移除現有叢集，並設定新的叢集。請注意，所有已部署的應用程式和相關聯的資料都會被移除。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-- [Understand and troubleshoot your cluster with system health reports](service-fabric-understand-and-troubleshoot-with-system-health-reports.md)
-- [Visualize your cluster with Service Fabric Explorer](service-fabric-visualizing-your-cluster.md)
+- [透過系統健康情況報告了解及疑難排解您的叢集](service-fabric-understand-and-troubleshoot-with-system-health-reports.md)
+- [使用 Service Fabric 總管視覺化叢集](service-fabric-visualizing-your-cluster.md)
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0713_2016-->

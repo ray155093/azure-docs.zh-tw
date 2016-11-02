@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Service Fabric application model | Microsoft Azure"
-   description="How to model and describe applications and services in Service Fabric."
+   pageTitle="Service Fabric 應用程式模型 | Microsoft Azure"
+   description="如何在 Service Fabric 中建立模型和描述應用程式與服務。"
    services="service-fabric"
    documentationCenter=".net"
    authors="rwike77"
@@ -13,43 +13,42 @@
    ms.topic="article"
    ms.tgt_pltfrm="NA"
    ms.workload="NA"
-   ms.date="10/29/2016"   
+   ms.date="08/10/2016"   
    ms.author="seanmck"/>
 
+# 在 Service Fabric 中模型化應用程式
 
-# <a name="model-an-application-in-service-fabric"></a>Model an application in Service Fabric
+本文提供 Azure Service Fabric 應用程式模型概觀。也說明如何透過資訊清單檔案定義應用程式和服務，並讓應用程式封裝準備好進行部署。
 
-This article provides an overview of the Azure Service Fabric application model. It also describes how to define an application and service via manifest files and get the application packaged and ready for deployment.
+## 了解應用程式模型
 
-## <a name="understand-the-application-model"></a>Understand the application model
+應用程式是組成服務的集合，這些服務會執行特定函數。服務會執行完整且獨立的函數 (其可獨立於其他服務啟動和執行)，並且是由程式碼、組態和資料組成。針對每個服務，程式碼由可執行檔二進位檔組成、組態由可在執行階段載入的服務設定組成，而資料由讓服務使用的任意靜態資料組成。此階層應用程式模型中的每個元件都可以獨立建立版本和升級。
 
-An application is a collection of constituent services that perform a certain function or functions. A service performs a complete and standalone function (it can start and run independently of other services) and is composed of code, configuration, and data. For each service, code consists of the executable binaries, configuration consists of service settings that can be loaded at run time, and data consists of arbitrary static data to be consumed by the service. Each component in this hierarchical application model can be versioned and upgraded independently.
-
-![The Service Fabric application model][appmodel-diagram]
-
-
-An application type is a categorization of an application and consists of a bundle of service types. A service type is a categorization of a service. The categorization can have different settings and configurations, but the core functionality remains the same. The instances of a service are the different service configuration variations of the same service type.  
-
-Classes (or "types") of applications and services are described through XML files (application manifests and service manifests) that are the templates against which applications can be instantiated from the cluster's image store. The schema definition for the ServiceManifest.xml and ApplicationManifest.xml file is installed with the Service Fabric SDK and tools to *C:\Program Files\Microsoft SDKs\Service Fabric\schemas\ServiceFabricServiceModel.xsd*.
-
-The code for different application instances will run as separate processes even when hosted by the same Service Fabric node. Furthermore, the lifecycle of each application instance can be managed (i.e. upgraded) independently. The following diagram shows how application types are composed of service types, which in turn are composed of code, configuration, and packages. To simplify the diagram, only the code/config/data packages for `ServiceType4` are shown, though each service type would include some or all of those package types.
-
-![Service Fabric application types and service types][cluster-imagestore-apptypes]
-
-Two different manifest files are used to describe applications and services: the service manifest and application manifest. These are covered in detail in the ensuing sections.
-
-There can be one or more instances of a service type active in the cluster. For example, stateful service instances, or replicas, achieve high reliability by replicating state between replicas located on different nodes in the cluster. This replication essentially provides redundancy for the service to be available even if one node in a cluster fails. A [partitioned service](service-fabric-concepts-partitioning.md) further divides its state (and access patterns to that state) across nodes in the cluster.
-
-The following diagram shows the relationship between applications and service instances, partitions, and replicas.
-
-![Partitions and replicas within a service][cluster-application-instances]
+![Service Fabric 應用程式模型][appmodel-diagram]
 
 
->[AZURE.TIP] You can view the layout of applications in a cluster using the Service Fabric Explorer tool available at http://&lt;yourclusteraddress&gt;:19080/Explorer. For more details, see [Visualizing your cluster with Service Fabric Explorer](service-fabric-visualizing-your-cluster.md).
+應用程式類型是應用程式的分類，由服務類型的組合所組成。服務類型是一項服務分類。分類可以有不同的設定和組態，但是核心功能保持不變。服務的執行個體是相同服務類型的不同服務組態變形。
 
-## <a name="describe-a-service"></a>Describe a service
+應用程式和服務的類別 (或「類型」) 是透過 XML 檔案 (應用程式資訊清單和服務資訊清單) 來說明，這類檔案是應用程式可針對它從叢集的映像存放區具現化的範本。ServiceManifest.xml 和 ApplicationManifest.xml 檔案的結構描述定義是和 Service Fabric SDK 及工具一起安裝在 *C:\\Program Files\\Microsoft SDKs\\Service Fabric\\schemas\\ServiceFabricServiceModel.xsd*。
 
-The service manifest declaratively defines the service type and version. It specifies service metadata such as service type, health properties, load-balancing metrics, service binaries, and configuration files.  Put another way, it describes the code, configuration, and data packages that compose a service package to support one or more service types. Here is a simple example service manifest:
+不同應用程式執行個體的程式碼會執行為個別的程序，即使是由相同的 Service Fabric 節點所裝載。此外，每個應用程式執行個體的生命週期可以獨立進行管理 (也就是升級)。下圖顯示應用程式類型如何由服務類型組成，依序分別為程式碼、組態和封裝的組成。為了簡化此圖，只會顯示 `ServiceType4` 的程式碼/組態/資料封裝，但每個服務類型都包含這其中部分或所有的封裝類型。
+
+![Service Fabric 應用程式類型和服務類型][cluster-imagestore-apptypes]
+
+兩個用來說明應用程式和服務的不同資訊清單檔案：服務資訊清單和應用程式資訊清單。後續章節將詳細說明這些先決條件。
+
+叢集中可以有一或多個使用中的服務類型執行個體。例如，可設定狀態的服務執行個體或複本，藉由複寫叢集中不同節點上複本之間的狀態達到高可靠性。即使叢集中有一個節點失敗，這個複寫基本上會提供備援讓服務可供使用。[分割服務](service-fabric-concepts-partitioning.md)進一步在叢集中的節點之間分割其狀態 (並且存取該狀態的模式)。
+
+下圖顯示應用程式和服務執行個體、分割和複本之間的關聯性。
+
+![服務內的分割和複本][cluster-application-instances]
+
+
+>[AZURE.TIP] 您可以使用 Service Fabric Explorer 工具，在叢集中檢視應用程式的配置，該工具可以在 http://&lt;yourclusteraddress&gt;:19080/Explorer 上取得。如需詳細資訊，請參閱[使用 Service Fabric Explorer 視覺化叢集](service-fabric-visualizing-your-cluster.md)。
+
+## 描述服務
+
+服務資訊清單以宣告方式定義服務類型和版本。它會指定如服務類型的服務中繼資料、健康狀態屬性、負載平衡度量、服務二進位檔和組態檔。換句話說，它會描述組成服務封裝的程式碼、組態和資料封裝，以支援一或多個服務類型。以下是簡單的範例服務資訊清單：
 
 ~~~
 <?xml version="1.0" encoding="utf-8" ?>
@@ -75,15 +74,15 @@ The service manifest declaratively defines the service type and version. It spec
 </ServiceManifest>
 ~~~
 
-**Version** attributes are unstructured strings and not parsed by the system. These are used to version each component for upgrades.
+**版本**屬性為非結構化字串，不是由系統剖析。這些是用於每個元件的版本以進行升級。
 
-**ServiceTypes** declares what service types are supported by **CodePackages** in this manifest. When a service is instantiated against one of these service types, all code packages declared in this manifest are activated by running their entry points. The resulting processes are expected to register the supported service types at run time. Note that service types are declared at the manifest level and not the code package level. So when there are multiple code packages, they are all activated whenever the system looks for any one of the declared service types.
+**ServiceTypes** 會宣告此資訊清單中 **CodePackages** 支援哪些服務類型。當針對其中一種服務類型來具現化服務時，會藉由執行其進入點來啟動此資訊清單中宣告的所有程式碼封裝。產生的處理程序預期在執行階段註冊支援的服務類型。請注意，服務類型是在資訊清單層級而非程式碼封裝層級宣告。因此如果有多個程式碼封裝，每當系統尋找任何一個宣告的服務類型時，它們都會啟動。
 
-**SetupEntryPoint** is a privileged entry point that runs with the same credentials as Service Fabric (typically the *LocalSystem* account) before any other entry point. The executable specified by **EntryPoint** is typically the long-running service host. The presence of a separate setup entry point avoids having to run the service host with high privileges for extended periods of time. The executable specified by **EntryPoint** is run after **SetupEntryPoint** exits successfully. The resulting process is monitored and restarted (beginning again with **SetupEntryPoint**) if it ever terminates or crashes.
+**SetupEntryPoint** 是以與 Service Fabric 相同的認證執行的特殊權限進入點 (通常 *LocalSystem* 帳戶)，優先於任何其他進入點。**EntryPoint** 指定的可執行檔通常是長時間執行的服務主機。有個別設定的進入點，就不需要使用較高權限來長時間執行服務主機。**EntryPoint** 指定的可執行檔是在 **SetupEntryPoint** 成功結束之後執行。如果曾經終止或當機，產生的程序會監視並重新啟動 (以 **SetupEntryPoint** 再次開始)。
 
-**DataPackage** declares a folder, named by the **Name** attribute, that contains arbitrary static data to be consumed by the process at run time.
+**DataPackage** 宣告 **Name** 屬性所命名的資料夾，包含由程序在執行階段使用的任意靜態資料。
 
-**ConfigPackage** declares a folder, named by the **Name** attribute, that contains a *Settings.xml* file. This file contains sections of user-defined, key-value pair settings that the process can read back at run time. During an upgrade, if only the **ConfigPackage** **version** has changed, then the running process is not restarted. Instead, a callback notifies the process that configuration settings have changed so they can be reloaded dynamically. Here is an example *Settings.xml*  file:
+**ConfigPackage** 宣告 **Name** 屬性所命名的資料夾，其中包含 *Settings.xml* 檔案。此檔案包含程序可以在執行階段讀回的使用者定義、成對的索引鍵/值設定等區段。在升級期間，如果只有 **ConfigPackage** **版本**已變更，則不會重新啟動執行中程序。相反地，回呼會通知程序組態設定已變更，因此它們可以動態方式重新載入。以下是 *Settings.xml* 檔案的範例：
 
 ~~~
 <Settings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/2011/01/fabric">
@@ -94,7 +93,7 @@ The service manifest declaratively defines the service type and version. It spec
 </Settings>
 ~~~
 
-> [AZURE.NOTE] A service manifest can contain multiple code, configuration, and data packages. Each of those can be versioned independently.
+> [AZURE.NOTE] 服務資訊清單可以包含多個程式碼、組態和資料封裝。每個皆可獨立建立版本。
 
 <!--
 For more information about other features supported by service manifests, refer to the following articles:
@@ -106,12 +105,12 @@ For more information about other features supported by service manifests, refer 
 *TODO: Configuration overrides
 -->
 
-## <a name="describe-an-application"></a>Describe an application
+## 描述應用程式
 
 
-The application manifest declaratively describes the application type and version. It specifies service composition metadata such as stable names, partitioning scheme, instance count/replication factor, security/isolation policy, placement constraints, configuration overrides, and constituent service types. The load-balancing domains into which the application is placed are also described.
+應用程式資訊清單以宣告方式描述應用程式類型和版本。它指定服務組成中繼資料，例如穩定的名稱、分割配置、執行個體計數/複寫因數、安全性/隔離原則、安置限制、組態覆寫和組成服務類型。也說明要放置應用程式的負載平衡網域。
 
-Thus, an application manifest describes elements at the application level and references one or more service manifests to compose an application type. Here is a simple example application manifest:
+因此，應用程式資訊清單描述應用程式層級的元素，並參考用來組成應用程式類型的一個或多個服務資訊清單。以下是簡單的範例應用程式資訊清單：
 
 ~~~
 <?xml version="1.0" encoding="utf-8" ?>
@@ -134,15 +133,15 @@ Thus, an application manifest describes elements at the application level and re
 </ApplicationManifest>
 ~~~
 
-Like service manifests, **Version** attributes are unstructured strings and are not parsed by the system. These are also used to version each component for upgrades.
+如同服務資訊清單，**版本**屬性為非結構化字串，不是由系統剖析。這些也用於每個元件的版本以進行升級。
 
-**ServiceManifestImport** contains references to service manifests that compose this application type. Imported service manifests determine what service types are valid within this application type.
+**ServiceManifestImport** 包含組成此應用程式類型之服務資訊清單的參考。匯入的服務資訊清單會決定此應用程式類型中哪些服務類型有效。
 
-**DefaultServices** declares service instances that are automatically created whenever an application is instantiated against this application type. Default services are just a convenience and behave like normal services in every respect after they have been created. They are upgraded along with any other services in the application instance and can be removed as well.
+**DefaultServices** 宣告服務執行個體，該執行個體會在每次應用程式針對此應用程式類型具現化時建立。預設服務只是為了方便起見，在建立之後，其行為在每個方面就像正常的服務。它們會與應用程式執行個體中的其他任何服務一起升級，也可以一起移除。
 
-> [AZURE.NOTE] An application manifest can contain multiple service manifest imports and default services. Each service manifest import can be versioned independently.
+> [AZURE.NOTE] 應用程式資訊清單可以包含多個服務資訊清單匯入和預設服務。每個服務資訊清單匯入都可以獨立建立版本。
 
-To learn how to maintain different application and service parameters for individual environments, see [Managing application parameters for multiple environments](service-fabric-manage-multiple-environment-app-configuration.md).
+若要了解如何針對個別環境維護不同的應用程式和服務參數，請參閱[管理多個環境的應用程式參數](service-fabric-manage-multiple-environment-app-configuration.md)
 
 <!--
 For more information about other features supported by application manifests, refer to the following articles:
@@ -152,11 +151,11 @@ For more information about other features supported by application manifests, re
 *TODO: Service Templates
 -->
 
-## <a name="package-an-application"></a>Package an application
+## 封裝應用程式
 
-### <a name="package-layout"></a>Package layout
+### 封裝版面配置
 
-The application manifest, service manifest(s), and other necessary package files must be organized in a specific layout for deployment into a Service Fabric cluster. The example manifests in this article would need to be organized in the following directory structure:
+應用程式資訊清單、服務資訊清單和其他必要封裝檔案必須以特定版面配置組織，才能部署至 Service Fabric 叢集。在本文中的範例資訊清單必須組織成下列目錄結構：
 
 ~~~
 PS D:\temp> tree /f .\MyApplicationType
@@ -177,29 +176,29 @@ D:\TEMP\MYAPPLICATIONTYPE
             init.dat
 ~~~
 
-The folders are named to match the **Name** attributes of each corresponding element. For example, if the service manifest contained two code packages with the names **MyCodeA** and **MyCodeB**, then two folders with the same names would contain the necessary binaries for each code package.
+命名資料夾以符合每個對應元素的**名稱**屬性。例如，如果服務資訊清單包含名稱為 **MyCodeA** 和 **MyCodeB** 的兩個程式碼封裝，則同名的兩個資料夾會包含每個程式碼封裝所需的二進位檔。
 
-### <a name="use-setupentrypoint"></a>Use SetupEntryPoint
+### 使用 SetupEntryPoint
 
-Typical scenarios for using **SetupEntryPoint** are when you need to run an executable before the service starts or you need to perform an operation with elevated privileges. For example:
+使用 **SetupEntryPoint** 的一般案例，是當您必須在服務啟動之前執行可執行檔，或必須使用提高的權限來執行作業時。例如：
 
-- Setting up and initializing environment variables that the service executable needs. This is not limited to only executables written via the Service Fabric programming models. For example, npm.exe needs some environment variables configured for deploying a node.js application.
+- 設定及初始化服務可執行檔需要的環境變數。這不限於透過 Service Fabric 程式設計模型撰寫的執行檔。例如，npm.exe 部署 node.js 應用程式，需要設定某些環境變數。
 
-- Setting up access control by installing security certificates.
+- 透過安裝安全性憑證設定存取控制。
 
-### <a name="build-a-package-by-using-visual-studio"></a>Build a package by using Visual Studio
+### 使用 Visual Studio 建置封裝
 
-If you use Visual Studio 2015 to create your application, you can use the Package command to automatically create a package that matches the layout described above.
+如果您使用 Visual Studio 2015 來建立您的應用程式，您可以使用 [封裝] 命令來自動建立符合上述版面配置的封裝。
 
-To create a package, right-click the application project in Solution Explorer and choose the Package command, as shown below:
+若要建立封裝，請以滑鼠右鍵按一下方案總管中的應用程式專案，然後選擇 [封裝] 命令，如下所示：
 
-![Packaging an application with Visual Studio][vs-package-command]
+![使用 Visual Studio 封裝應用程式][vs-package-command]
 
-When packaging is complete, you will find the location of the package in the **Output** window. Note that the packaging step occurs automatically when you deploy or debug your application in Visual Studio.
+封裝完成時，您會在 [輸出] 視窗中發現封裝的位置。請注意，當您在 Visual Studio 中部署或偵錯應用程式時，封裝步驟會自動進行。
 
-### <a name="test-the-package"></a>Test the package
+### 測試封裝
 
-You can verify the package structure locally through PowerShell by using the **Test-ServiceFabricApplicationPackage** command. This command will check for manifest parsing issues and verify all references. Note that this command only verifies the structural correctness of the directories and files in the package. It will not verify any of the code or data package contents beyond checking that all necessary files are present.
+您可以使用 **Test-ServiceFabricApplicationPackage** 命令，透過 PowerShell 在本機上驗證封裝結構。這個命令會檢查有無資訊清單剖析問題，並驗證所有參考。請注意，這個命令只會驗證封裝中檔案與目錄的結構正確性。除了檢查所有必要檔案都在之外，它不會驗證任何程式碼或資料封裝內容。
 
 ~~~
 PS D:\temp> Test-ServiceFabricApplicationPackage .\MyApplicationType
@@ -208,7 +207,7 @@ Test-ServiceFabricApplicationPackage : The EntryPoint MySetup.bat is not found.
 FileName: C:\Users\servicefabric\AppData\Local\Temp\TestApplicationPackage_7195781181\nrri205a.e2h\MyApplicationType\MyServiceManifest\ServiceManifest.xml
 ~~~
 
-This error shows that the *MySetup.bat* file referenced in the service manifest **SetupEntryPoint** is missing from the code package. After the missing file is added, the application verification passes:
+這個錯誤顯示程式碼封裝中遺漏服務資訊清單 **SetupEntryPoint** 中參考的 *MySetup.bat* 檔案。加入遺漏的檔案之後，應用程式驗證就會通過：
 
 ~~~
 PS D:\temp> tree /f .\MyApplicationType
@@ -234,15 +233,15 @@ True
 PS D:\temp>
 ~~~
 
-Once the application is packaged correctly and passes verification, then it's ready for deployment.
+一旦應用程式正確封裝並通過驗證，就可供部署。
 
-## <a name="next-steps"></a>Next steps
+## 後續步驟
 
-[Deploy and remove applications][10]
+[部署與移除應用程式][10]
 
-[Managing application parameters for multiple environments][11]
+[管理多個環境的應用程式參數][11]
 
-[RunAs: Running a Service Fabric application with different security permissions][12]
+[RunAs：使用不同的安全性權限執行 Service Fabric 應用程式][12]
 
 <!--Image references-->
 [appmodel-diagram]: ./media/service-fabric-application-model/application-model.png
@@ -255,8 +254,4 @@ Once the application is packaged correctly and passes verification, then it's re
 [11]: service-fabric-manage-multiple-environment-app-configuration.md
 [12]: service-fabric-application-runas-security.md
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0817_2016-->

@@ -1,6 +1,6 @@
 <properties
-   pageTitle="Enable auditing on SQL servers in Azure Security Center | Microsoft Azure"
-   description="This document shows you how to implement the Azure Security Center recommendation **Enable auditing on SQL servers**."
+   pageTitle="在 Azure 資訊安全中心的 SQL Server 上啟用稽核 | Microsoft Azure"
+   description="本文件說明如何實作 Azure 資訊安全中心建議的「在 SQL Server 上啟用稽核」。"
    services="security-center"
    documentationCenter="na"
    authors="TerryLanfear"
@@ -13,57 +13,49 @@
    ms.topic="article"
    ms.tgt_pltfrm="na"
    ms.workload="na"
-   ms.date="11/01/2016"
+   ms.date="07/29/2016"
    ms.author="terrylan"/>
 
+# 在 Azure 資訊安全中心的 SQL Server 上啟用稽核
 
-# <a name="enable-auditing-on-sql-servers-in-azure-security-center"></a>Enable auditing on SQL servers in Azure Security Center
+如果尚未啟用稽核，Azure 資訊安全中心將建議您針對 Azure SQL Server 上的所有資料庫開啟稽核。稽核可協助您保持法規遵循、了解資料庫活動，以及深入了解可指出商務考量或疑似安全違規的不一致和異常。
 
-Azure Security Center will recommend that you turn on auditing for all databases on your Azure SQL servers if auditing is not already enabled. Auditing can help you maintain regulatory compliance, understand database activity, and gain insight into discrepancies and anomalies that could indicate business concerns or suspected security violations.
+一旦開啟稽核之後，您就可以設定威脅偵測設定和電子郵件來接收安全性警示。威脅偵測會偵測異常資料庫活動，指出資料庫有潛在的安全性威脅。這可讓您在發生潛在威脅時偵測到它們並加以回應。
 
-Once you’ve turned on auditing you can configure Threat Detection settings and emails to receive security alerts. Threat Detection detects anomalous database activities indicating potential security threats to the database. This enables you to detect and respond to potential threats as they occur.
+此建議僅適用於 Azure SQL 服務；不包含在 Azure 基礎結構服務 (Azure IaaS) 中虛擬機器上執行的 SQL Server。
 
-This recommendation applies to the Azure SQL service only; it doesn’t include SQL Server running on your virtual machines in Azure Infrastructure Services (Azure IaaS).
+> [AZURE.NOTE] 本文件將使用範例部署來介紹服務。這不是逐步指南。
 
-> [AZURE.NOTE] This document introduces the service by using an example deployment.  This is not a step-by-step guide.
+## 實作建議
 
-## <a name="implement-the-recommendation"></a>Implement the recommendation
+1. 在 [建議] 刀鋒視窗中，選取 [在 SQL Server 上啟用稽核]。這會開啟 [在 SQL Server 上啟用稽核] 刀鋒視窗。![在 SQL Server 上啟用稽核][1]
 
-1. In the **Recommendations** blade, select **Enable Auditing on SQL servers**.  This opens the **Enable Auditing on SQL servers** blade.
-![Enable auditing on SQL servers][1]
+2. 選取要在其上啟用稽核的 SQL Server。這會開啟 [稽核設定] 刀鋒視窗。![稽核設定][2]
+3. 在 [稽核設定] 刀鋒視窗中，選取 [稽核] 下方的 [開啟]。![開啟稽核設定][3]
 
-2. Select a SQL server to enable auditing on. This opens the **Auditing Settings** blade.
-![Auditing settings][2]
-3. On the **Auditing Settings** blade, select **ON** under **Auditing**.
-![Turn on auditing settings][3]
+4. 遵循[開始使用 SQL Database 稽核](../sql-database/sql-database-auditing-get-started.md)，設定將儲存稽核記錄的儲存體。適用於資料收集的訂用帳戶儲存體帳戶是預設儲存體帳戶。
 
-4. Follow the steps in [Get started with SQL database auditing](../sql-database/sql-database-auditing-get-started.md) to configure storage where your audit logs will be stored. The subscription's storage account for data collection is the default storage account.
+5. 遵循[開始使用 SQL Database 威脅偵測](../sql-database/sql-database-threat-detection-get-started.md)，開啟並設定威脅偵測，以及設定將在偵測到異常活動時接收到安全性警示的電子郵件清單。
 
-5. Follow the steps in [Get started with SQL Database Threat Detection](../sql-database/sql-database-threat-detection-get-started.md) to turn on and configure Threat Detection and to configure the list of emails that will receive security alerts upon detection of anomalous activities.
+## 另請參閱
 
-## <a name="see-also"></a>See also
+本文說明了如何實作資訊安全中心建議的「在 SQL Server 上啟用稽核」。 若要深入了解如何保護您的 SQL Database，請參閱下列主題：
 
-This article showed you how to implement the Security Center recommendation "Enable auditing on SQL servers." To learn more about securing your SQL database, see the following:
+- [保護您的 SQL Database](../sql-database/sql-database-security.md)
 
-- [Securing your SQL Database](../sql-database/sql-database-security.md)
+如要深入了解資訊安全中心，請參閱下列主題：
 
-To learn more about Security Center, see the following:
-
-- [Setting security policies in Azure Security Center](security-center-policies.md) -- Learn how to configure security policies for your Azure subscriptions and resource groups.
-- [Managing security recommendations in Azure Security Center](security-center-recommendations.md) -- Learn how recommendations help you protect your Azure resources.
-- [Security health monitoring in Azure Security Center](security-center-monitoring.md) -- Learn how to monitor the health of your Azure resources.
-- [Managing and responding to security alerts in Azure Security Center](security-center-managing-and-responding-alerts.md) -- Learn how to manage and respond to security alerts.
-- [Monitoring partner solutions with Azure Security Center](security-center-partner-solutions.md) -- Learn how to monitor the health status of your partner solutions.
-- [Azure Security Center FAQ](security-center-faq.md) -- Find frequently asked questions about using the service.
-- [Azure Security blog](http://blogs.msdn.com/b/azuresecurity/) -- Get the latest Azure security news and information.
+- [在 Azure 資訊安全中心設定安全性原則](security-center-policies.md) --了解如何為您的 Azure 訂用帳戶及資源群組設定安全性原則。
+- [管理 Azure 資訊安全中心的安全性建議](security-center-recommendations.md) -- 了解建議如何協助保護您的 Azure 資源。
+- [Azure 資訊安全中心的安全性健康狀態監視](security-center-monitoring.md)--了解如何監視 Azure 資源的健康狀態。
+- [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) -- 了解如何管理與回應安全性警示。
+- [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健康狀態。
+- [Azure 資訊安全中心常見問題集](security-center-faq.md) -- 尋找使用服務的常見問題。
+- [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/)--取得最新的 Azure 安全性新聞和資訊。
 
 <!--Image references-->
 [1]: ./media/security-center-enable-auditing-on-sql-server/enable-auditing-on-sql-servers.png
-[2]:./media/security-center-enable-auditing-on-sql-server/enable-auditing.png
+[2]: ./media/security-center-enable-auditing-on-sql-server/enable-auditing.png
 [3]: ./media/security-center-enable-auditing-on-sql-server/auditing-settings-blade.png
 
-
-
-<!--HONumber=Oct16_HO2-->
-
-
+<!---HONumber=AcomDC_0803_2016-->
