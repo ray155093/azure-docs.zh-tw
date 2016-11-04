@@ -1,21 +1,21 @@
-<properties
-   pageTitle="使用 Azure Service Fabric 叢集資源管理員管理度量 | Microsoft Azure"
-   description="深入了解如何在 Service Fabric 中設定及使用度量。"
-   services="service-fabric"
-   documentationCenter=".net"
-   authors="masnider"
-   manager="timlt"
-   editor=""/>
+---
+title: 使用 Azure Service Fabric 叢集資源管理員管理度量 | Microsoft Docs
+description: 深入了解如何在 Service Fabric 中設定及使用度量。
+services: service-fabric
+documentationcenter: .net
+author: masnider
+manager: timlt
+editor: ''
 
-<tags
-   ms.service="Service-Fabric"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="NA"
-   ms.date="08/19/2016"
-   ms.author="masnider"/>
+ms.service: Service-Fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 08/19/2016
+ms.author: masnider
 
+---
 # 在 Service Fabric 中使用度量管理資源耗用量和負載
 度量是 Service Fabric 中您的服務所關切的資源的通用詞彙，且是由叢集中的節點提供。一般而言，度量就是任何您想要管理，以便處理您的服務效能的項目。
 
@@ -24,21 +24,22 @@
 ## 預設度量
 假設您只想要開始使用，但不知道您即將取用哪些資源，或甚至哪些資源對您很重要。所以您進行實作，然後建立您的服務，但未指定任何度量。沒關係！ 我們將為您挑選一些度量。如果您未指定任何自己的度量，我們今天為您使用的預設度量就稱為 PrimaryCount、ReplicaCount 和 (我們知道有點模糊) Count。下表顯示這些度量各有多少負載與每個服務物件有關聯︰
 
-| 度量 | 無狀態執行個體負載 |	具狀態次要負載 |	具狀態主要負載 |
-|--------|--------------------------|-------------------------|-----------------------|
-| PrimaryCount | 0 |	0 |	1 |
-| ReplicaCount | 0 | 1 | 1 |
-| Count |	1 |	1 |	1 |
+| 度量 | 無狀態執行個體負載 | 具狀態次要負載 | 具狀態主要負載 |
+| --- | --- | --- | --- |
+| PrimaryCount |0 |0 |1 |
+| ReplicaCount |0 |1 |1 |
+| Count |1 |1 |1 |
 
 好了，透過這些預設度量，您得到什麼？ 結果就是，對於基本工作負載，您得到相當不錯的工作分配。在下列範例中，我們來看看當我們建立一個包含三個資料分割且目標複本集大小為 3 的具狀態服務，以及一個執行個體計數為 3 的無狀態服務時，會發生什麼狀況 - 您會得到如下的內容！
 
 ![使用預設度量的叢集配置][Image1]
 
 在此範例中，我們看到：
--	具狀態服務的主要複本並未堆疊於單一節點上
--	相同資料分割的複本不在相同節點上
--	主要複本與次要複本的總數均勻地分佈於叢集中
--	服務物件 (無狀態與具狀態) 的總數平均配置於每個節點
+
+* 具狀態服務的主要複本並未堆疊於單一節點上
+* 相同資料分割的複本不在相同節點上
+* 主要複本與次要複本的總數均勻地分佈於叢集中
+* 服務物件 (無狀態與具狀態) 的總數平均配置於每個節點
 
 相當不錯！
 
@@ -101,13 +102,13 @@ New-ServiceFabricService -ApplicationName $applicationName -ServiceName $service
 
 我們已示範如何定義您自己的度量，接著來討論度量可具有的各種屬性。我們已向您展示過這些屬性，現在讓我們來討論它們的實質意義！ 一個度量目前可有四個不同的屬性
 
--	度量名稱︰這是度量的名稱。從資源管理員的觀點來看，這是叢集內度量的唯一識別碼。
-- 預設負載：預設負載會依據服務是無狀態或具狀態服務來以不同方式表示。
-  - 對於無狀態服務，每個度量都只會有名為「預設負載」的單一屬性
-  - 對於具狀態服務，您可以定義
-    -	PrimaryDefaultLoad：此服務將為此度量 (當作主要度量) 行使的預設負載量
-    -	SecondaryDefaultLoad：此服務將為此度量 (當作次要度量) 行使的預設負載量
--	權數︰這是度量對於此服務的重要程度 (相對於其他設定的度量)。
+* 度量名稱︰這是度量的名稱。從資源管理員的觀點來看，這是叢集內度量的唯一識別碼。
+* 預設負載：預設負載會依據服務是無狀態或具狀態服務來以不同方式表示。
+  * 對於無狀態服務，每個度量都只會有名為「預設負載」的單一屬性
+  * 對於具狀態服務，您可以定義
+    * PrimaryDefaultLoad：此服務將為此度量 (當作主要度量) 行使的預設負載量
+    * SecondaryDefaultLoad：此服務將為此度量 (當作次要度量) 行使的預設負載量
+* 權數︰這是度量對於此服務的重要程度 (相對於其他設定的度量)。
 
 ## 載入
 負載是特定節點上的某個服務執行個體或複本取用多少特定度量的一般概念。
@@ -151,15 +152,15 @@ New-ServiceFabricService -ApplicationName $applicationName -ServiceName $service
 
 有幾件事值得一提：
 
--	由於複本或執行個體在報告自己的負載前，會使用服務的預設負載，我們知道具狀態服務的資料分割 1 內的複本尚未自行報告負載
--	資料分割內的次要複本可以有自己的負載
--	整體度量看起來很不錯，節點上最大和最小負載之間的差異 (對於記憶體 – 我們說過是最在意的自訂度量) 比率只有 1.75 (具有最多記憶體負載的節點是 N3，最少是 N2，而 28/16 = 1.75) – 相當平衡！
+* 由於複本或執行個體在報告自己的負載前，會使用服務的預設負載，我們知道具狀態服務的資料分割 1 內的複本尚未自行報告負載
+* 資料分割內的次要複本可以有自己的負載
+* 整體度量看起來很不錯，節點上最大和最小負載之間的差異 (對於記憶體 – 我們說過是最在意的自訂度量) 比率只有 1.75 (具有最多記憶體負載的節點是 N3，最少是 N2，而 28/16 = 1.75) – 相當平衡！
 
 我們仍必須說明下列事項：
 
--	何者決定 1.75 的比率是否合理？ 我們如何知道這是否夠好，或者還需要再做些什麼？
--	何時發生平衡？
--	記憶體的權數「很高」是什麼意思？
+* 何者決定 1.75 的比率是否合理？ 我們如何知道這是否夠好，或者還需要再做些什麼？
+* 何時發生平衡？
+* 記憶體的權數「很高」是什麼意思？
 
 ## 度量權數
 度量權數允許兩個不同的服務報告相同的度量，但不得以不同方式看待平衡該度量的重要性。例如，請考慮記憶體內部分析引擎和持續性資料庫；兩者可能都很在意「記憶體」度量，但記憶體中服務可能不太在意「磁碟」度量 – 它可能會少量使用，但並非服務效能的關鍵，因此可能甚至不會報告它。能夠跨越不同的服務來追蹤相同的度量真的很棒，因為此功能可讓叢集資源管理員追蹤叢集中的實際耗用量，確保節點不會超過容量等。
@@ -190,11 +191,11 @@ New-ServiceFabricService -ApplicationName $applicationName -ServiceName $service
 將度量權數納入考量，全域平衡會根據針對每項服務所設定度量權數的平均值計算。我們會平衡服務與其自己的已定義度量權數。
 
 ## 後續步驟
-- 如需可用來設定服務的其他選項的詳細資訊，請查看[深入了解設定服務](service-fabric-cluster-resource-manager-configure-services.md)中提供的其他叢集資源管理員組態的相關主題
-- 定義重組度量是合併 (而不是擴增) 節點上負載的一種方式。若要了解如何設定重組，請參閱[這篇文章](service-fabric-cluster-resource-manager-defragmentation-metrics.md)
-- 若要了解叢集資源管理員如何管理並平衡叢集中的負載，請查看關於[平衡負載](service-fabric-cluster-resource-manager-balancing.md)的文章
-- 從頭開始，並[取得 Service Fabric 叢集資源管理員的簡介](service-fabric-cluster-resource-manager-introduction.md)
-- 移動成本是向叢集資源管理員發出訊號，表示移動某些服務會比較貴的其中一種方式。若要深入了解移動成本，請參閱[這篇文章](service-fabric-cluster-resource-manager-movement-cost.md)
+* 如需可用來設定服務的其他選項的詳細資訊，請查看[深入了解設定服務](service-fabric-cluster-resource-manager-configure-services.md)中提供的其他叢集資源管理員組態的相關主題
+* 定義重組度量是合併 (而不是擴增) 節點上負載的一種方式。若要了解如何設定重組，請參閱[這篇文章](service-fabric-cluster-resource-manager-defragmentation-metrics.md)
+* 若要了解叢集資源管理員如何管理並平衡叢集中的負載，請查看關於[平衡負載](service-fabric-cluster-resource-manager-balancing.md)的文章
+* 從頭開始，並[取得 Service Fabric 叢集資源管理員的簡介](service-fabric-cluster-resource-manager-introduction.md)
+* 移動成本是向叢集資源管理員發出訊號，表示移動某些服務會比較貴的其中一種方式。若要深入了解移動成本，請參閱[這篇文章](service-fabric-cluster-resource-manager-movement-cost.md)
 
 [Image1]: ./media/service-fabric-cluster-resource-manager-metrics/cluster-resource-manager-cluster-layout-with-default-metrics.png
 [Image2]: ./media/service-fabric-cluster-resource-manager-metrics/Service-Fabric-Resource-Manager-Dynamic-Load-Reports.png

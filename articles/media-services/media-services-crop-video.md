@@ -1,24 +1,22 @@
-<properties
-    pageTitle="如何裁剪影片 | Microsoft Azure"
-    description="本文說明如何利用 Media Encoder Standard 裁剪影片。"
-    services="media-services"
-    documentationCenter=""
-    authors="anilmur"
-    manager="erikre"
-    editor=""/>
+---
+title: 如何裁剪影片 | Microsoft Docs
+description: 本文說明如何利用 Media Encoder Standard 裁剪影片。
+services: media-services
+documentationcenter: ''
+author: anilmur
+manager: erikre
+editor: ''
 
-<tags
-    ms.service="media-services"
-    ms.workload="media"
-    ms.tgt_pltfrm="na"
-    ms.devlang="dotnet"
-    ms.topic="article"
-    ms.date="09/26/2016"  
-    ms.author="anilmur;juliako;"/>
+ms.service: media-services
+ms.workload: media
+ms.tgt_pltfrm: na
+ms.devlang: dotnet
+ms.topic: article
+ms.date: 09/26/2016
+ms.author: anilmur;juliako;
 
-
+---
 # <a name="crop-videos-with-media-encoder-standard"></a>以 Media Encoder Standard 裁剪影片
-
 若要裁剪輸入影片，您可以使用 Media Encoder Standard (MES)。 裁剪是指在視訊畫面內選取矩形視窗，並只編碼該視窗內之像素的程序。 下圖有助於說明此程序。
 
 ![裁剪影片](./media/media-services-crop-video/media-services-crop-video01.png)
@@ -30,18 +28,15 @@ MES 中的裁剪是前置處理階段，因此編碼預設值中的裁剪參數�
 [下列](media-services-advanced-encoding-with-mes.md#encoding_with_dotnet) 主題說明如何使用 MES 建立編碼編碼，以及如何為編碼編碼指定自訂預設值。 
 
 ## <a name="creating-a-custom-preset"></a>建立自訂預設值
-
 在下圖所示的範例中：
 
 1. 原始輸入為 1920x1080
-1. 我們需要將影片裁剪為 1440x1080，使其能位於輸入畫面的中央
-1. 這表示 X 位移為 (1920 – 1440)/2 = 240，Y 位移為零
-1. 裁剪矩形的高度和寬度分別為 1440 和 1080
-1. 在編碼階段中，我們的任務是產生三層分別為 1440x1080、960x720 和 480x360 的解析度
+2. 我們需要將影片裁剪為 1440x1080，使其能位於輸入畫面的中央
+3. 這表示 X 位移為 (1920 – 1440)/2 = 240，Y 位移為零
+4. 裁剪矩形的高度和寬度分別為 1440 和 1080
+5. 在編碼階段中，我們的任務是產生三層分別為 1440x1080、960x720 和 480x360 的解析度
 
-###<a name="json-preset"></a>JSON 預設值
-
-
+### <a name="json-preset"></a>JSON 預設值
     {
       "Version": 1.0,
       "Sources": [
@@ -126,28 +121,23 @@ MES 中的裁剪是前置處理階段，因此編碼預設值中的裁剪參數�
     }
 
 
-##<a name="restrictions-on-cropping"></a>裁剪的限制
-
+## <a name="restrictions-on-cropping"></a>裁剪的限制
 裁剪功能僅供手動操作。 您需要將輸入影片載入適當的編輯工具，以便選取感興趣的畫面、放置游標以判斷裁剪矩形的位移、判斷針對特定影片微調的編碼預設值等。這項功能的本意並非實現如自動偵測及移除輸入影片之黑邊等這類功能。
 
 裁剪功能受到以下限制的約束。 如果不符合以下情況，編碼工作可能會失敗或產生非預期的輸出。
 
 1. 裁剪矩形的座標和大小不得超出輸入影片
-1. 如前文所述，編碼設定的寬度和高度必須與裁剪後的影片對應
-1. 裁剪適用於以橫向模式擷取的影片 (亦即，不適用於以垂直方向或直立模式手持之智慧型手機錄製的影片)
-1. 最適合用於以方形像素擷取的漸進式影片
+2. 如前文所述，編碼設定的寬度和高度必須與裁剪後的影片對應
+3. 裁剪適用於以橫向模式擷取的影片 (亦即，不適用於以垂直方向或直立模式手持之智慧型手機錄製的影片)
+4. 最適合用於以方形像素擷取的漸進式影片
 
-##<a name="provide-feedback"></a>提供意見反應
+## <a name="provide-feedback"></a>提供意見反應
+[!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-[AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
-
-##<a name="next-step"></a>後續步驟
- 
+## <a name="next-step"></a>後續步驟
 請參閱 Azure 媒體服務學習途徑，以了解 AMS 所提供的強大功能。  
 
-[AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
-
-
+[!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
 <!--HONumber=Oct16_HO2-->
 

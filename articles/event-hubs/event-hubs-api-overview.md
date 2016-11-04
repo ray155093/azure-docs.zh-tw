@@ -1,32 +1,30 @@
-<properties 
-    pageTitle="Azure 事件中樞 API 概觀 | Microsoft Azure"
-    description="一些主要事件中樞 .NET 用戶端 API 的摘要。"
-    services="event-hubs"
-    documentationCenter="na"
-    authors="sethmanheim"
-    manager="timlt"
-    editor="" />
-<tags 
-    ms.service="event-hubs"
-    ms.devlang="dotnet"
-    ms.topic="article"
-    ms.tgt_pltfrm="na"
-    ms.workload="na"
-    ms.date="08/16/2016"
-    ms.author="sethm" />
+---
+title: Azure 事件中樞 API 概觀 | Microsoft Docs
+description: 一些主要事件中樞 .NET 用戶端 API 的摘要。
+services: event-hubs
+documentationcenter: na
+author: sethmanheim
+manager: timlt
+editor: ''
 
+ms.service: event-hubs
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 08/16/2016
+ms.author: sethm
+
+---
 # 事件中樞 API 概觀
-
 本文將摘要列出一些主要事件中樞 .NET 用戶端 API。分為兩種類別：管理和執行階段 API。執行階段 API 是由傳送和接收訊息所需的所有作業組成。管理作業可讓您管理事件中樞實體狀態，方法是建立、更新和刪除實體。
 
 監視案例跨越管理和執行階段。如需 .NET API 的詳細參考文件，請參閱[服務匯流排 .NET](https://msdn.microsoft.com/library/azure/mt419900.aspx) 和 [EventProcessorHost API](https://msdn.microsoft.com/library/azure/mt445521.aspx) 參考。
 
 ## 管理 API
-
 若要執行下列管理作業，您必須擁有事件中樞命名空間的**管理**權限：
 
 ### 建立
-
 ```
 // Create the Event Hub
 EventHubDescription ehd = new EventHubDescription(eventHubName);
@@ -35,7 +33,6 @@ namespaceManager.CreateEventHubAsync(ehd).Wait();
 ```
 
 ### 更新
-
 ```
 EventHubDescription ehd = await namespaceManager.GetEventHubAsync(eventHubName);
 
@@ -48,22 +45,18 @@ namespaceManager.UpdateEventHubAsync(ehd).Wait();
 ```
 
 ### 刪除
-
 ```
 namespaceManager.DeleteEventHubAsync("Event Hub name").Wait();
 ```
 
 ## 執行階段 API
-
 ### 建立發佈者
-
 ```
 // EventHubClient model (uses implicit factory instance, so all links on same connection)
 EventHubClient eventHubClient = EventHubClient.Create("Event Hub name");
 ```
 
 ### 發佈訊息
-
 ```
 // Create the device/temperature metric
 MetricEvent info = new MetricEvent() { DeviceId = random.Next(SampleManager.NumDevices), Temperature = random.Next(100) };
@@ -82,7 +75,6 @@ await client.SendAsync(data);
 ```
 
 ### 建立取用者
-
 ```
 // Create the Event Hubs client
 EventHubClient eventHubClient = EventHubClient.Create(EventHubName);
@@ -95,26 +87,24 @@ EventHubReceiver consumer = await defaultConsumerGroup.CreateReceiverAsync(shard
 
 // From one day ago
 EventHubReceiver consumer = await defaultConsumerGroup.CreateReceiverAsync(shardId: index, startingDateTimeUtc:DateTime.Now.AddDays(-1));
-                        
+
 // From specific offset, -1 means oldest
 EventHubReceiver consumer = await defaultConsumerGroup.CreateReceiverAsync(shardId: index,startingOffset:-1); 
 ```
 
 ### 取用訊息
-
 ```
 var message = await consumer.ReceiveAsync();
 
 // Provide a serializer
 var info = message.GetBody<Type>(Serializer)
-                                    
+
 // Get a byte[]
 var info = message.GetBytes(); 
 msg = UnicodeEncoding.UTF8.GetString(info);
 ```
 
 ## 事件處理器主機 API
-
 這些 API 會透過在可用的背景工作之間散佈分區，提供恢復功能給可能會變成無法使用的背景工作角色處理序。
 
 ```
@@ -158,7 +148,7 @@ public class SimpleEventProcessor : IEventProcessor
         {
             Process messages here
         }
-        
+
         // Checkpoint when appropriate
         await context.CheckpointAsync();
 
@@ -176,17 +166,16 @@ public class SimpleEventProcessor : IEventProcessor
 ```
 
 ## 後續步驟
-
 若要深入了解事件中樞案例，請造訪下列連結：
 
-- [Azure 事件中樞是什麼？](event-hubs-what-is-event-hubs.md)
-- [事件中心概觀](event-hubs-overview.md)
-- [事件中樞程式設計指南](event-hubs-programming-guide.md)
-- [Event Hubs code samples](http://code.msdn.microsoft.com/site/search?query=event hub&f[0].Value=event hubs&f[0].Type=SearchText&ac=5)
+* [Azure 事件中樞是什麼？](event-hubs-what-is-event-hubs.md)
+* [事件中心概觀](event-hubs-overview.md)
+* [事件中樞程式設計指南](event-hubs-programming-guide.md)
+* [Event Hubs code samples](http://code.msdn.microsoft.com/site/search?query=event hub&f\[0\].Value=event hubs&f\[0\].Type=SearchText&ac=5)
 
 .NET API 參考如下：
 
-- [服務匯流排和事件中樞 .NET API 參考](https://msdn.microsoft.com/library/azure/mt419900.aspx)
-- [事件處理器主機 API 參考](https://msdn.microsoft.com/library/azure/mt445521.aspx)
+* [服務匯流排和事件中樞 .NET API 參考](https://msdn.microsoft.com/library/azure/mt419900.aspx)
+* [事件處理器主機 API 參考](https://msdn.microsoft.com/library/azure/mt445521.aspx)
 
 <!---HONumber=AcomDC_0817_2016-->

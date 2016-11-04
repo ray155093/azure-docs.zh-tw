@@ -1,45 +1,46 @@
-<properties
-   pageTitle="Azure Service Fabric Reliable Actors 的 ReliableDictionaryActorStateProvider 組態概觀 | Microsoft Azure"
-   description="了解設定 ReliableDictionaryActorStateProvider 類型的 Azure Service Fabric 可設定狀態的動作項目。"
-   services="Service-Fabric"
-   documentationCenter=".net"
-   authors="sumukhs"
-   manager="timlt"
-   editor=""/>
+---
+title: Azure Service Fabric Reliable Actors 的 ReliableDictionaryActorStateProvider 組態概觀 | Microsoft Docs
+description: 了解設定 ReliableDictionaryActorStateProvider 類型的 Azure Service Fabric 可設定狀態的動作項目。
+services: Service-Fabric
+documentationcenter: .net
+author: sumukhs
+manager: timlt
+editor: ''
 
-<tags
-   ms.service="Service-Fabric"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="NA"
-   ms.date="07/18/2016"
-   ms.author="sumukhs"/>
+ms.service: Service-Fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 07/18/2016
+ms.author: sumukhs
 
+---
 # 設定 Reliable Actors - ReliableDictionaryActorStateProvider
 您可以在指定之動作項目的 Config 資料夾下，變更 Visual Studio 封裝根中所產生的 settings.xml，來修改 ReliableDictionaryActorStateProvider 的預設組態。
 
 Azure Service Fabric 執行階段會在建立基礎執行階段元件時，在 settings.xml 檔案中尋找預先定義的區段名稱，並使用組態值。
 
->[AZURE.NOTE] 請**不要**刪除或修改在 Visual Studio 方案中產生之 settings.xml 檔案中的下列組態區段名稱。
+> [!NOTE]
+> 請**不要**刪除或修改在 Visual Studio 方案中產生之 settings.xml 檔案中的下列組態區段名稱。
+> 
+> 
 
 也有一些全域設定會影響 ReliableDictionaryActorStateProvider 的組態。
 
 ## 全域組態
-
 在 KtlLogger 區段下，叢集的叢集資訊清單中所指定的全域組態。它可設定共用記錄檔位置和大小，加上記錄器所使用的全域記憶體限制。請注意，叢集資訊清單中的變更會影響使用 ReliableDictionaryActorStateProvider 的所有服務，以及可靠的可設定狀態服務。
 
 叢集資訊清單是單一 XML 檔案，可保留套用至叢集中所有節點和服務態的設定與組態。此檔案通常稱為 ClusterManifest.xml。您可以查看叢集的叢集資訊清單使用 Get-ServiceFabricClusterManifest powershell 命令。
 
 ### 組態名稱
-
-|名稱|單位|預設值|備註|
-|----|----|-------------|-------|
-|WriteBufferMemoryPoolMinimumInKB|KB|8388608|以核心模式配置給記錄器寫入緩衝區記憶體集區的最小 KB 數。此記憶體集區用於在寫入至磁碟之前快取狀態資訊。|
-|WriteBufferMemoryPoolMaximumInKB|KB|沒有限制|記錄器寫入緩衝區記憶體集區可以成長的的大小上限。|
-|SharedLogId|GUID|""|指定用來識別預設共用記錄檔的唯一 GUID，用於叢集中所有節點上的所有 Reliable Services (不會在其服務特定組態中指定 SharedLogId)。如果有指定 SharedLogId，則也必須指定 SharedLogPath。|
-|SharedLogPath|完整路徑名稱|""|指定完整路徑，其中共用記錄檔用於叢集中所有節點上的所有 Reliable Services (不會在其服務特定組態中指定 SharedLogPath)。不過，如果有指定 SharedLogPath，則也必須指定 SharedLogId。|
-|SharedLogSizeInMB|MB|8192|指定以靜態方式配置給共用記錄檔的磁碟空間 MB 數。此值必須是 2048 或更大。|
+| 名稱 | 單位 | 預設值 | 備註 |
+| --- | --- | --- | --- |
+| WriteBufferMemoryPoolMinimumInKB |KB |8388608 |以核心模式配置給記錄器寫入緩衝區記憶體集區的最小 KB 數。此記憶體集區用於在寫入至磁碟之前快取狀態資訊。 |
+| WriteBufferMemoryPoolMaximumInKB |KB |沒有限制 |記錄器寫入緩衝區記憶體集區可以成長的的大小上限。 |
+| SharedLogId |GUID |"" |指定用來識別預設共用記錄檔的唯一 GUID，用於叢集中所有節點上的所有 Reliable Services (不會在其服務特定組態中指定 SharedLogId)。如果有指定 SharedLogId，則也必須指定 SharedLogPath。 |
+| SharedLogPath |完整路徑名稱 |"" |指定完整路徑，其中共用記錄檔用於叢集中所有節點上的所有 Reliable Services (不會在其服務特定組態中指定 SharedLogPath)。不過，如果有指定 SharedLogPath，則也必須指定 SharedLogId。 |
+| SharedLogSizeInMB |MB |8192 |指定以靜態方式配置給共用記錄檔的磁碟空間 MB 數。此值必須是 2048 或更大。 |
 
 ### 範例叢集資訊清單一節
 ```xml
@@ -72,23 +73,20 @@ SharedLogSizeInMB 會指定要預先配置給所有節點上之預設共用記�
 &lt;ActorName&gt;ServiceReplicatorConfig
 
 ### 組態名稱
-
-|名稱|單位|預設值|備註|
-|----|----|-------------|-------|
-|BatchAcknowledgementInterval|秒|0\.015|次要複寫器收到作業後，將通知傳回給主要複寫器前所等待的時間間隔。任何要在此間隔內傳送給作業處理的其他通知，會集中以一個回應傳送。||
-|ReplicatorEndpoint|N/A|無預設值--必要的參數|主要/次要複寫器將用於與複本集中其他複寫器通訊的 IP 位址與連接埠。這應該參考服務資訊清單中的 TCP 資源端點。請參閱[服務資訊清單資源](service-fabric-service-manifest-resources.md)，深入了解如何在服務資訊清單中定義端點資源。 |
-|MaxReplicationMessageSize|位元組|50 MB|單一訊息可傳輸的複寫資料大小上限。|
-|MaxPrimaryReplicationQueueSize|作業數目|8192|主要佇列中作業數目上限。主要複寫器收到所有次要複寫器的通知後，系統便會釋放作業。此值必須大於 64 且為 2 的乘冪。|
-|MaxSecondaryReplicationQueueSize|作業數目|16384|次要佇列中作業數目上限。透過持續性讓狀態成為高可用性後，系統便會釋放作業。此值必須大於 64 且為 2 的乘冪。|
-|CheckpointThresholdInMB|MB|200|狀態完成檢查點作業後的記錄檔空間量。|
-|MaxRecordSizeInKB|KB|1024|複寫器可以寫入記錄檔中的最大記錄大小。此值必須是 4 的倍數且大於 16。|
-|OptimizeLogForLowerDiskUsage|Boolean|true|為 true 時會設定記錄檔，以便使用 NTFS 疏鬆檔案來建立複本的專用記錄檔。這會降低檔案實際使用的磁碟空間量。為 false 時，將以固定配置建立檔案，以提供最佳寫入效能。|
-|SharedLogId|guid|""|指定用於識別此複本共用記錄檔的唯一 GUID。服務通常不應使用此設定。不過，如果有指定 SharedLogId，則也必須指定 SharedLogPath。|
-|SharedLogPath|完整路徑名稱|""|指定建立此複本共用記錄檔的完整路徑。服務通常不應使用此設定。不過，如果有指定 SharedLogPath，則也必須指定 SharedLogId。|
-
+| 名稱 | 單位 | 預設值 | 備註 |
+| --- | --- | --- | --- |
+| BatchAcknowledgementInterval |秒 |0\.015 |次要複寫器收到作業後，將通知傳回給主要複寫器前所等待的時間間隔。任何要在此間隔內傳送給作業處理的其他通知，會集中以一個回應傳送。 |
+| ReplicatorEndpoint |N/A |無預設值--必要的參數 |主要/次要複寫器將用於與複本集中其他複寫器通訊的 IP 位址與連接埠。這應該參考服務資訊清單中的 TCP 資源端點。請參閱[服務資訊清單資源](service-fabric-service-manifest-resources.md)，深入了解如何在服務資訊清單中定義端點資源。 |
+| MaxReplicationMessageSize |位元組 |50 MB |單一訊息可傳輸的複寫資料大小上限。 |
+| MaxPrimaryReplicationQueueSize |作業數目 |8192 |主要佇列中作業數目上限。主要複寫器收到所有次要複寫器的通知後，系統便會釋放作業。此值必須大於 64 且為 2 的乘冪。 |
+| MaxSecondaryReplicationQueueSize |作業數目 |16384 |次要佇列中作業數目上限。透過持續性讓狀態成為高可用性後，系統便會釋放作業。此值必須大於 64 且為 2 的乘冪。 |
+| CheckpointThresholdInMB |MB |200 |狀態完成檢查點作業後的記錄檔空間量。 |
+| MaxRecordSizeInKB |KB |1024 |複寫器可以寫入記錄檔中的最大記錄大小。此值必須是 4 的倍數且大於 16。 |
+| OptimizeLogForLowerDiskUsage |Boolean |true |為 true 時會設定記錄檔，以便使用 NTFS 疏鬆檔案來建立複本的專用記錄檔。這會降低檔案實際使用的磁碟空間量。為 false 時，將以固定配置建立檔案，以提供最佳寫入效能。 |
+| SharedLogId |guid |"" |指定用於識別此複本共用記錄檔的唯一 GUID。服務通常不應使用此設定。不過，如果有指定 SharedLogId，則也必須指定 SharedLogPath。 |
+| SharedLogPath |完整路徑名稱 |"" |指定建立此複本共用記錄檔的完整路徑。服務通常不應使用此設定。不過，如果有指定 SharedLogPath，則也必須指定 SharedLogId。 |
 
 ## 範例組態檔
-
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <Settings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/2011/01/fabric">

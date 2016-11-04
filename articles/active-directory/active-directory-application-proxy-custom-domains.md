@@ -1,27 +1,25 @@
-<properties
-	pageTitle="使用 Azure AD 應用程式 Proxy 中的自訂網域 | Microsoft Azure"
-	description="說明如何使用 Azure AD 應用程式 Proxy 中的自訂網域。"
-	services="active-directory"
-	documentationCenter=""
-	authors="kgremban"
-	manager="femila"
-	editor=""/>
+---
+title: 使用 Azure AD 應用程式 Proxy 中的自訂網域 | Microsoft Docs
+description: 說明如何使用 Azure AD 應用程式 Proxy 中的自訂網域。
+services: active-directory
+documentationcenter: ''
+author: kgremban
+manager: femila
+editor: ''
 
-<tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="06/22/2016"
-	ms.author="kgremban"/>
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 06/22/2016
+ms.author: kgremban
 
+---
 # 使用 Azure AD 應用程式 Proxy 中的自訂網域
-
 使用預設網域，可讓您將相同的 URL 設為可供存取應用程式的內部或外部 URL，而您的使用者在存取應用程式時只需記住一個 URL (不論他們是從哪裡進行存取)。這也讓您可以在應用程式的 [存取面板] 中建立單一捷徑。如果您使用 Azure AD 應用程式 Proxy 所提供的預設網域，則無需進行其他設定來啟用您的網域。在使用自訂網域的情況下，您需要執行一些動作，以確保應用程式 Proxy 能辨識您的網域並驗證其憑證。
 
 ## 選取自訂網域
-
 1. 根據[使用應用程式 Proxy 發佈應用程式](active-directory-application-proxy-publish.md)中的指示，發佈您的應用程式。
 2. 在應用程式出現在應用程式清單後，加以選取並按一下 [設定]。
 3. 在 [外部 URL] 之下，輸入您的自訂網域。
@@ -29,7 +27,6 @@
 5. 請務必新增可將內部 URL 路由傳送至應用程式的 DNS 記錄，讓您有相同的 URL 以供內部和外部存取，以及在使用者的應用程式清單中有應用程式的單一捷徑。
 
 ## 有關使用自訂網域的常見問題
-
 問：是否可以選取已上傳的憑證，而不再重新上載？ 答︰先前已上傳的憑證會自動繫結至應用程式，而只會有一個符合應用程式主機名稱的憑證。
 
 問：如何加入憑證，而已匯出的憑證應以何種格式上傳？ 答：憑證應從應用程式組態頁面進行上傳。此憑證應該是 PFX 檔案。
@@ -56,13 +53,11 @@
 
 問：是否有地方可以查看我的租用戶的所有憑證？ 答︰目前的版本不支援此功能。
 
-
 ## 另請參閱
-
-- [使用應用程式 Proxy 發行應用程式](active-directory-application-proxy-publish.md)
-- [啟用單一登入](active-directory-application-proxy-sso-using-kcd.md)
-- [啟用條件式存取](active-directory-application-proxy-conditional-access.md)
-- [將自訂網域名稱新增至 Azure AD](active-directory-add-domain.md)
+* [使用應用程式 Proxy 發行應用程式](active-directory-application-proxy-publish.md)
+* [啟用單一登入](active-directory-application-proxy-sso-using-kcd.md)
+* [啟用條件式存取](active-directory-application-proxy-conditional-access.md)
+* [將自訂網域名稱新增至 Azure AD](active-directory-add-domain.md)
 
 如需最新消息，請查閱[應用程式 Proxy 部落格](http://blogs.technet.com/b/applicationproxyblog/)
 

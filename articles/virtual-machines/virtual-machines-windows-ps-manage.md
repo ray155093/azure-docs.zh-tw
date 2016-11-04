@@ -1,39 +1,35 @@
-<properties
-	pageTitle="使用 Resource Manager 和 PowerShell 管理 VM | Microsoft Azure"
-	description="使用 Azure Resource Manager 和 PowerShell 管理虛擬機器。"
-	services="virtual-machines-windows"
-	documentationCenter=""
-	authors="davidmu1"
-	manager="timlt"
-	editor=""
-	tags="azure-resource-manager"/>
+---
+title: 使用 Resource Manager 和 PowerShell 管理 VM | Microsoft Docs
+description: 使用 Azure Resource Manager 和 PowerShell 管理虛擬機器。
+services: virtual-machines-windows
+documentationcenter: ''
+author: davidmu1
+manager: timlt
+editor: ''
+tags: azure-resource-manager
 
-<tags
-	ms.service="virtual-machines-windows"
-	ms.workload="na"
-	ms.tgt_pltfrm="vm-windows"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="06/07/2016"
-	ms.author="davidmu"/>
+ms.service: virtual-machines-windows
+ms.workload: na
+ms.tgt_pltfrm: vm-windows
+ms.devlang: na
+ms.topic: article
+ms.date: 06/07/2016
+ms.author: davidmu
 
+---
 # 使用 Resource Manager 和 PowerShell 管理 Azure 虛擬機器
-
 ## 安裝 Azure PowerShell
- 
 如需如何安裝最新版 Azure PowerShell、選取要使用的訂用帳戶，以及登入 Azure 帳戶的相關資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 
 ## 設定變數
-
 本文中的所有命令都需要虛擬機器所在資源群組的名稱以及要管理之虛擬機器的名稱。使用包含虛擬機器之資源群組的名稱取代 **$rgName** 的值。使用 VM 名稱取代 **$vmName** 的值。建立變數。
 
     $rgName = "resource-group-name"
     $vmName = "VM-name"
 
 ## 顯示虛擬機器的相關資訊
-
 取得虛擬機器資訊。
-  
+
     Get-AzureRmVM -ResourceGroupName $rgName -Name $vmName
 
 它會傳回類似下列畫面：
@@ -105,7 +101,6 @@
                                 rg1/providers/Microsoft.Network/networkInterfaces/nc1}
 
 ## 啟動虛擬機器
-
 啟動虛擬機器。
 
     Start-AzureRmVM -ResourceGroupName $rgName -Name $vmName
@@ -117,7 +112,6 @@
                               True          OK  OK
 
 ## 停止虛擬機器
-
 停止虛擬機器。
 
     Stop-AzureRmVM -ResourceGroupName $rgName -Name $vmName
@@ -127,7 +121,7 @@
     Virtual machine stopping operation
     This cmdlet will stop the specified virtual machine. Do you want to continue?
     [Y] Yes  [N] No  [S] Suspend  [?] Help (default is "Y"):
-        
+
 輸入 **Y** 停止虛擬機器。
 
 數分鐘之後，它會傳回類似下列畫面：
@@ -137,7 +131,6 @@
                               True          OK  OK
 
 ## 重新啟動虛擬機器
-
 重新啟動虛擬機器。
 
     Restart-AzureRmVM -ResourceGroupName $rgName -Name $vmName
@@ -149,12 +142,14 @@
                               True          OK  OK
 
 ## 刪除虛擬機器
-
 刪除虛擬機器。
 
     Remove-AzureRmVM -ResourceGroupName $rgName –Name $vmName
 
-> [AZURE.NOTE] 您可以使用 **– Force** 參數，略過確認提示。
+> [!NOTE]
+> 您可以使用 **– Force** 參數，略過確認提示。
+> 
+> 
 
 系統會要您確認是否沒有使用 -Force 參數：
 
@@ -169,24 +164,22 @@
                               True          OK  OK
 
 ## 調整虛擬機器大小
-
 此範例示範如何更新虛擬機器的大小。
-        
+
     $vmSize = "Standard_A1"
     $vm = Get-AzureRmVM -ResourceGroupName $rgName -Name $vmName
     $vm.HardwareProfile.vmSize = $vmSize
     Update-AzureRmVM -ResourceGroupName $rgName -VM $vm
-    
+
 它會傳回類似下列畫面：
 
     RequestId  IsSuccessStatusCode  StatusCode  ReasonPhrase
     ---------  -------------------  ----------  ------------
                               True          OK  OK
-                              
+
 如需虛擬機器的可用大小清單，請參閱 [Azure 中的虛擬機器大小](virtual-machines-windows-sizes.md)。
 
 ## 將資料磁碟新增至虛擬機器
-
 這個範例示範如何將資料磁碟新增至現有的虛擬機器。
 
     $vm = Get-AzureRmVM -ResourceGroupName $rgName -Name $vmName
@@ -219,7 +212,6 @@
     }
 
 ## 後續步驟
-
 如果部署發生問題，請查看[使用 Azure 入口網站針對資源群組部署進行疑難排解](../resource-manager-troubleshoot-deployments-portal.md)
 
 <!----HONumber=AcomDC_0907_2016-->

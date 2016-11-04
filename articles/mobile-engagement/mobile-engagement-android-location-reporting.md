@@ -1,38 +1,36 @@
-<properties
-	pageTitle="Azure Mobile Engagement Android SDK 位置報告"
-	description="描述如何設定 Azure Mobile Engagement Android SDK 位置報告"
-	services="mobile-engagement"
-	documentationCenter="mobile"
-	authors="piyushjo"
-	manager="erikre"
-	editor="" />
+---
+title: Azure Mobile Engagement Android SDK 位置報告
+description: 描述如何設定 Azure Mobile Engagement Android SDK 位置報告
+services: mobile-engagement
+documentationcenter: mobile
+author: piyushjo
+manager: erikre
+editor: ''
 
-<tags
-	ms.service="mobile-engagement"
-	ms.workload="mobile"
-	ms.tgt_pltfrm="mobile-android"
-	ms.devlang="Java"
-	ms.topic="article"
-	ms.date="08/12/2016"
-	ms.author="piyushjo;ricksal" />
+ms.service: mobile-engagement
+ms.workload: mobile
+ms.tgt_pltfrm: mobile-android
+ms.devlang: Java
+ms.topic: article
+ms.date: 08/12/2016
+ms.author: piyushjo;ricksal
 
+---
 # Azure Mobile Engagement Android SDK 位置報告
-
-> [AZURE.SELECTOR]
-- [Android](mobile-engagement-android-integrate-engagement.md)
+> [!div class="op_single_selector"]
+> * [Android](mobile-engagement-android-integrate-engagement.md)
+> 
+> 
 
 本主題說明如何為您的 Android 應用程式進行位置報告。
 
 ## 必要條件
-
-[AZURE.INCLUDE [必要條件](../../includes/mobile-engagement-android-prereqs.md)]
+[!INCLUDE [必要條件](../../includes/mobile-engagement-android-prereqs.md)]
 
 ## 位置報告
-
 如果想要報告位置，您需要加入幾行組態 (在 `<application>` 和 `</application>` 標記之間)。
 
 ### 簡易區域位置報告
-
 簡易區域位置報告可報告國家、地區以及與裝置相關聯的位置。這類位置報告只會使用網路位置 (根據基地台識別碼或 WIFI)。每個工作階段最多報告一次裝置區域。絕不會使用 GPS，因此這類位置報告對於電池的影響很小。
 
 報告的區域用來計算關於使用者、工作階段、事件與錯誤的地理統計資料。它們也可用來做為觸達活動的準則。
@@ -46,12 +44,11 @@
 
 您也必須指定位置權限。此程式碼使用 ``COARSE`` 權限︰
 
-	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
 如果您的應用程式需要，可以改用 ``ACCESS_FINE_LOCATION``。
 
 ### 即時位置報告
-
 即時位置報告可報告與裝置相關聯的緯度和經度。這類位置報告預設只會根據基地台識別碼或 WIFI 使用網路位置。報告只在應用程式在前景 (例如在工作階段) 中執行時才會為作用中。
 
 即時位置「不會」用來計算統計資料。其唯一用途，是允許在觸達活動中使用即時地理圍欄 <Reach-Audience-geofencing> 準則。
@@ -63,14 +60,13 @@
     engagementConfiguration.setRealtimeLocationReport(true);
     EngagementAgent.getInstance(this).init(engagementConfiguration);
 
-		You also need to specify a location permission. This code uses ``COARSE`` permission:
+        You also need to specify a location permission. This code uses ``COARSE`` permission:
 
-			<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
-		If your app requires it, you can use ``ACCESS_FINE_LOCATION`` instead.
+        If your app requires it, you can use ``ACCESS_FINE_LOCATION`` instead.
 
 #### GPS 式報告
-
 根據預設，即時位置報告只會使用網路位置。若要啟用 GPS 位置 (精準度大為提高)，請使用組態物件：
 
     EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
@@ -81,10 +77,9 @@
 
 您還需要新增下列權限 (如果未有此權限)：
 
-	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
 #### 背景報告
-
 根據預設，即時位置報告只在應用程式在前景 (例如在工作階段) 中執行時才會為作用中。若也要在背景中啟用報告，請使用此組態物件：
 
     EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
@@ -93,23 +88,25 @@
     engagementConfiguration.setBackgroundRealtimeLocationReport(true);
     EngagementAgent.getInstance(this).init(engagementConfiguration);
 
-> [AZURE.NOTE] 當應用程式在背景中執行，即使啟用 GPS，也只會報告網路位置。
+> [!NOTE]
+> 當應用程式在背景中執行，即使啟用 GPS，也只會報告網路位置。
+> 
+> 
 
 如果使用者重新啟動他們的裝置，則會停止背景位置報告。若要在開機時自動重新啟動，請加入下列程式碼。
 
-	<receiver android:name="com.microsoft.azure.engagement.EngagementLocationBootReceiver"
-		   android:exported="false">
-		<intent-filter>
-		    <action android:name="android.intent.action.BOOT_COMPLETED" />
-		</intent-filter>
-	</receiver>
+    <receiver android:name="com.microsoft.azure.engagement.EngagementLocationBootReceiver"
+           android:exported="false">
+        <intent-filter>
+            <action android:name="android.intent.action.BOOT_COMPLETED" />
+        </intent-filter>
+    </receiver>
 
 您還需要新增下列權限 (如果未有此權限)：
 
-	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
 ## Android M 權限
-
 從 Android M 開始，某些權限會在執行階段管理，而且需要使用者核准。
 
 如果您針對 Android API 層級 23，新的應用程式安裝預設會關閉執行階段權限。否則預設會開啟。
@@ -118,8 +115,8 @@
 
 在 Mobile Engagement 位置報告的環境中，需要在執行階段核准的權限為：
 
-- `ACCESS_COARSE_LOCATION`
-- `ACCESS_FINE_LOCATION`
+* `ACCESS_COARSE_LOCATION`
+* `ACCESS_FINE_LOCATION`
 
 使用標準系統對話方塊向使用者要求權限。如果使用者核准，告訴 ``EngagementAgent`` 即時列入這項變更。否則變更會在下次使用者啟動應用程式時處理。
 

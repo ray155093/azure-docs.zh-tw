@@ -1,53 +1,50 @@
-<properties 
-	pageTitle="Application Insights 使用的 IP 位址 | Microsoft Azure"
-	description="Application Insights 所需的伺服器防火牆例外狀況" 
-	services="application-insights"
-    documentationCenter=".net"
-	authors="alancameronwills" 
-	manager="douge"/>
+---
+title: Application Insights 使用的 IP 位址 | Microsoft Docs
+description: Application Insights 所需的伺服器防火牆例外狀況
+services: application-insights
+documentationcenter: .net
+author: alancameronwills
+manager: douge
 
-<tags 
-	ms.service="application-insights" 
-	ms.workload="tbd" 
-	ms.tgt_pltfrm="ibiza" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="08/24/2016" 
-	ms.author="awills"/>
- 
+ms.service: application-insights
+ms.workload: tbd
+ms.tgt_pltfrm: ibiza
+ms.devlang: na
+ms.topic: article
+ms.date: 08/24/2016
+ms.author: awills
+
+---
 # Application Insights 使用的 IP 位址
-
 [Visual Studio Application Insights](app-insights-overview.md) 服務會使用許多 IP 位址。如果您所監視的應用程式裝載於防火牆後面，您可能需要知道這些位址。
 
-> [AZURE.NOTE] 雖然這些位址是靜態的，但可能隨時需要變更。
-
+> [!NOTE]
+> 雖然這些位址是靜態的，但可能隨時需要變更。
+> 
+> 
 
 ## 連出連接埠
-
 您需要在伺服器防火牆開啟某些連出連接埠，以允許 Application Insights SDK 和/或狀態監視器將資料傳送至入口網站：
 
-|目的|URL|IP|連接埠
-|---|---|---|---
-| 遙測|dc.services.visualstudio.com<br/>dc.applicationinsights.microsoft.com| 40\.114.241.141<br/>104.45.136.42<br/>40.84.189.107<br/>168.63.242.221|443
-|LiveStream|rt.services.visualstudio.com<br/>rt.applicationinsights.microsoft.com |變動|443
+| 目的 | URL | IP | 連接埠 |
+| --- | --- | --- | --- |
+| 遙測 |dc.services.visualstudio.com<br/>dc.applicationinsights.microsoft.com |40\.114.241.141<br/>104.45.136.42<br/>40.84.189.107<br/>168.63.242.221 |443 |
+| LiveStream |rt.services.visualstudio.com<br/>rt.applicationinsights.microsoft.com |變動 |443 |
 
-
-
-+ 狀態監視器組態 - 進行變更時才需要：
- -	`management.core.windows.net:443`
- -	`management.azure.com:443`
- -	`login.windows.net:443`
- -	`login.microsoftonline.com:443`
- -	`secure.aadcdn.microsoftonline-p.com:443`
- -	`auth.gfx.ms:443`
- -	`login.live.com:443`
-+ 狀態監視器安裝：
- +	`packages.nuget.org:443`
+* 狀態監視器組態 - 進行變更時才需要：
+  * `management.core.windows.net:443`
+  * `management.azure.com:443`
+  * `login.windows.net:443`
+  * `login.microsoftonline.com:443`
+  * `secure.aadcdn.microsoftonline-p.com:443`
+  * `auth.gfx.ms:443`
+  * `login.live.com:443`
+* 狀態監視器安裝：
+  * `packages.nuget.org:443`
 
 這份清單可能會隨時變更。
 
 ## 可用性集合
-
 這是用來執行[可用性 Web 測試](app-insights-monitor-web-app-availability.md)的位址清單。如果您想要在您的應用程式上執行 Web 測試，但您的 Web 伺服器限於為特定用戶端提供服務，則您必須允許來自我們的可用性測試伺服器的連入流量。
 
 為來自這些位址的連入流量開啟連接埠 80 (http) 和 443 (https)︰
@@ -170,18 +167,9 @@
 ```  
 
 ## 資料存取 API
-
-
-
-|URI|IP|連接埠
-|---|---|---
-|api.applicationinsights.io<br/>api1.applicationinsights.io<br/>api2.applicationinsights.io<br/>api3.applicationinsights.io<br/>api4.applicationinsights.io<br/>api5.applicationinsights.io|13\.82.26.252<br/>40.76.213.73|80,443
-|dev.applicationinsights.io<br/>dev.applicationinsights.microsoft.com<br/>dev.aisvc.visualstudio.com<br/>www.applicationinsights.io<br/>www.applicationinsights.microsoft.com<br/>www.aisvc.visualstudio.com|13\.82.24.149<br/>40.114.82.10|80,443
-
-
-
-
-
- 
+| URI | IP | 連接埠 |
+| --- | --- | --- |
+| api.applicationinsights.io<br/>api1.applicationinsights.io<br/>api2.applicationinsights.io<br/>api3.applicationinsights.io<br/>api4.applicationinsights.io<br/>api5.applicationinsights.io |13\.82.26.252<br/>40.76.213.73 |80,443 |
+| dev.applicationinsights.io<br/>dev.applicationinsights.microsoft.com<br/>dev.aisvc.visualstudio.com<br/>www.applicationinsights.io<br/>www.applicationinsights.microsoft.com<br/>www.aisvc.visualstudio.com |13\.82.24.149<br/>40.114.82.10 |80,443 |
 
 <!---HONumber=AcomDC_0824_2016-->

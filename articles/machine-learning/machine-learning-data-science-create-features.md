@@ -1,46 +1,40 @@
-<properties
-	pageTitle="Cortana 分析程序的特性工程設計 | Microsoft Azure" 
-	description="說明機器學習服務的資料增強程序中特性工程設計的目的，並提供其角色的範例。"
-	services="machine-learning"
-	documentationCenter=""
-	authors="bradsev"
-	manager="jhubbard"
-	editor="cgronlun"/>
+---
+title: Cortana 分析程序的特性工程設計 | Microsoft Docs
+description: 說明機器學習服務的資料增強程序中特性工程設計的目的，並提供其角色的範例。
+services: machine-learning
+documentationcenter: ''
+author: bradsev
+manager: jhubbard
+editor: cgronlun
 
-<tags
-	ms.service="machine-learning"
-	ms.workload="data-services"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/19/2016"
-	ms.author="zhangya;bradsev" />
+ms.service: machine-learning
+ms.workload: data-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/19/2016
+ms.author: zhangya;bradsev
 
-
-# Cortana 分析程序的特性工程設計 
-
+---
+# Cortana 分析程序的特性工程設計
 本主題說明在機器學習服務的資料增強程序中特徵工程設計的目的，並提供其角色的範例。用來說明此程序的範例是取自 Azure Machine Learning Studio。
 
-[AZURE.INCLUDE [cap-create-features-data-selector](../../includes/cap-create-features-selector.md)]
+[!INCLUDE [cap-create-features-data-selector](../../includes/cap-create-features-selector.md)]
 
 這個**功能表**所連結的主題會說明如何在各種環境中建立資料的特徵。此工作是 [Team Data Science Process (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) 中的一個步驟。
 
 特徵工程設計藉由以協助學習程序的原始資料來建立特徵，以嘗試增加學習演算法的預測能力。特徵的工程設計與選取是[何謂 Team Data Science Process？](data-science-process-overview.md)中所概述 TDSP 程序的其中一部分。 特徵工程設計和選取屬於 TDSP 的**開發特徵**步驟。
 
 * **特性工程設計**：此程序嘗試從資料中的現有原始特性建立其他相關特性，以及增加學習演算法的預測功效。
-
 * **特性選取**：此程序嘗試選取主要的原始資料特性子集，以縮小定型問題的維度。
 
 通常會先套用**功能工程設計**以產生其他功能，然後執行**功能選取**步驟以排除不相關、多餘或高度相關的功能。
 
 從收集的原始資料擷取特性，通常可以增強機器學習服務中使用的定型資料。學習環境中工程設計特性範例，分類手寫字元的影像的方式是是建立從原始位元分配資料建構的位元密度對應。相較於直接使用原始分配，此對應有助於更有效地找出字元的界限。
 
-
-[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
-
+[!INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
 
 ## 從您的資料建立特性 - 特性工程設計
-
 定型資料包含由範例所組成的矩陣 (資料列中儲存的記錄或 觀察)，而每個範例都有一組特性 (資料行中儲存的變數或欄位)。在實驗設計中指定的特性預計會將資料中的模式特性化。儘管許多原始資料欄位都可以直接包含在選取用來將模型定型的特性集中，但通常還是需要從原始資料中的特性建構其他 (經過工程設計的) 特性，才能產生增強的定型資料集。
 
 應建立何種特性，才能在模型定型時增強資料集？ 經過工程設計的特性可增強定型，還會提供用以區分資料中模式的資訊。我們期望新特性可提供原始或現有特性集中未清楚擷取或顯而易見的其他資訊。但此程序是一種藝術。健全且有建設性的決策通常需要一些網域.專業知識。
@@ -50,8 +44,7 @@
 * 在已知目標值的監督實驗中的[單車租用數量預測](http://gallery.cortanaintelligence.com/Experiment/Regression-Demand-estimation-4)迴歸範例
 * 使用[特性雜湊](https://msdn.microsoft.com/library/azure/c9a82660-2d9c-411d-8122-4d9e0b3ce92a/)的文字採礦分類範例
 
-### 範例 1：新增迴歸模型的暫時特性 ###
-
+### 範例 1：新增迴歸模型的暫時特性
 讓我們在 Azure Machine Learning Studio 中使用「單車的需求預測」實驗，示範如何設計迴歸工作的特性。這項實驗的目標在於預測單車需求，也就是再特定月份/日期/小時內單車租用的數量。資料集「單車租用 UCI 資料集」作為原始輸入資料使用。此資料集是以在美國華盛頓特區維護單車出租網路的 Capital Bikeshare 公司所提供的實際資料為基礎。此資料集代表 2011 年和 2012 年中特定一個小時內的單車租用數量，總共包含 17379 個資料列和 17 個資料行。原始特性集包含天氣條件 (溫度/溼度/風速) 和當天的類型 (假日/工作日)。要預測的欄位為 "cnt"，代表特定小時內單位租用的計數，其範圍是 1 至 977。
 
 為了達到在定型資料中建構有效特性的目的，會使用相同的演算法建立四個各有不同定型資料集的迴歸模型，這四個資料集代表相同的原始輸入資料，但設定的特性數量增加。這些特性可分為四類：
@@ -71,8 +64,7 @@
 
 ![結果比較](./media/machine-learning-data-science-create-features/result1.png)
 
-### <a name="example2"></a> 範例 2：在文字採礦中建立特性  
-
+### <a name="example2"></a> 範例 2：在文字採礦中建立特性
 特性工程設計廣泛運用於文字採礦的相關工作，例如文件分類和情感分析。例如，當我們想要將文件分為數個類別時，通常會假設包含在一個文件類別中的文字/片語比較不可能出現在其他文件類別中。換言之，文字/片語分配的次數能夠描述不同的文件類別。在文字採礦應用程式中，因為個別的文字內容通常可作為輸入資料，所以建立文字/片語次數相關特性時需要特性工程設計程序。
 
 為了達成此工作，會套用名為**特性雜湊**的技術，有效地將任意文字特性變成索引。此方法不會將每個文字特性 (文字/片語) 關聯至特定索引，而是將雜湊函數套用至特性並直接使用其雜湊值作為索引。
@@ -89,12 +81,9 @@ Azure 機器學習中有一個[特性雜湊](https://msdn.microsoft.com/library/
 
 ![「特性雜湊」範例](./media/machine-learning-data-science-create-features/feature-Hashing2.png)
 
-
 ## 結論
-
 工程設計和選取的特性可提高下列定型程序的效率：嘗試擷取資料中內含的重要資訊。此外，還可改善這些模型的功效，正確地分類輸入資料以及更精確地預測感興趣的結果。特性工程設計和選取也可結合起來，讓學習更易於以運算方式處理。其作法是提高而後減少校正或定型模型所需的特性數量。從數學的角度來看，選取用來定型模型的特性是極小的一組獨立變數，可供解釋資料中的模式，然後成功地預測結果。
 
 請注意，不一定要執行特性工程設計和特性選取。需要與否取決於我們所擁有或收集的資料、我們挑選的演算法，以及實驗的目標。
- 
 
 <!---HONumber=AcomDC_0921_2016-->

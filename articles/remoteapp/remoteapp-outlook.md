@@ -1,25 +1,25 @@
-<properties
-    pageTitle="在 Azure RemoteApp 中使用 Outlook | Microsoft Azure" 
-    description="了解如何在 Azure RemoteApp 中設定和使用 Outlook | Microsoft Azure"
-    services="remoteapp"
-    documentationCenter=""
-    authors="pavithir"
-    manager="mbaldwin" />
+---
+title: 在 Azure RemoteApp 中使用 Outlook | Microsoft Docs
+description: 了解如何在 Azure RemoteApp 中設定和使用 Outlook | Microsoft Azure
+services: remoteapp
+documentationcenter: ''
+author: pavithir
+manager: mbaldwin
 
-<tags
-    ms.service="remoteapp"
-    ms.workload="compute"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="hero-article"
-    ms.date="08/15/2016"
-    ms.author="elizapo" />
+ms.service: remoteapp
+ms.workload: compute
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: hero-article
+ms.date: 08/15/2016
+ms.author: elizapo
 
-
+---
 # <a name="using-microsoft-outlook-in-azure-remoteapp"></a>在 Azure RemoteApp 中使用 Microsoft Outlook
-
-> [AZURE.IMPORTANT]
+> [!IMPORTANT]
 > Azure RemoteApp 即將中止。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> 
+> 
 
 Azure RemoteApp 支援 Microsoft Outlook O365。 深入了解 [Office 在 Azure RemoteApp 中運作](remoteapp-officesubscription.md)的方式。 在 Azure RemoteApp 中使用 Outlook 時，有幾個建議的設定。
 
@@ -32,8 +32,6 @@ Azure RemoteApp 支援 Microsoft Outlook O365。 深入了解 [Office 在 Azure 
 
 ## <a name="search"></a>搜尋
 在 Azure RemoteApp 中，使用 Outlook 中的搜尋有限制。 Azure RemoteApp 會使用集區的 VM，以配合使用者工作階段。 搜尋索引取決於電腦識別碼，不同 VM 的識別碼有差異。 每次使用者登入 Azure RemoteApp 時，有可能被導向至新的 VM。 這表示，如果我們啟用本機搜尋，每次電腦識別碼變更 (當使用者在不同的 VM 上) 時，將會執行索引子。 視 .OST 檔案的大小而定，索引子可能需要很長的時間完成，並且用盡其他應用程式所需的資源。 搜尋不只很慢，而且可能不會產生結果。 使用「線上模式」帳戶設定檔會解決此問題，但整體效能會因為缺少本機快取而降低 (如需有關快取與線上模式之間差異的詳細資訊，請參閱上方的連結)。 不幸的是，在 Outlook 2013 中無法停用已編製索引/本機搜尋，且預設無法啟用線上搜尋。
-
-
 
 <!--HONumber=Oct16_HO2-->
 

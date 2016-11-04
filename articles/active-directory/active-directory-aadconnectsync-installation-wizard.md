@@ -1,23 +1,22 @@
-<properties
-	pageTitle="Azure AD Connect 同步處理︰第二次執行安裝精靈 | Microsoft Azure"
-	description="說明安裝精靈在第二次執行時的運作方式。"
-	keywords="Azure AD Connect 安裝精靈可讓您在第二次執行時設定維護設定"
-	services="active-directory"
-	documentationCenter=""
-	authors="andkjell"
-	manager="femila"
-	editor=""/>
+---
+title: Azure AD Connect 同步處理︰第二次執行安裝精靈 | Microsoft Docs
+description: 說明安裝精靈在第二次執行時的運作方式。
+keywords: Azure AD Connect 安裝精靈可讓您在第二次執行時設定維護設定
+services: active-directory
+documentationcenter: ''
+author: andkjell
+manager: femila
+editor: ''
 
-<tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/31/2016"
-	ms.author="andkjell"/>
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/31/2016
+ms.author: andkjell
 
-
+---
 # Azure AD Connect 同步處理︰第二次執行安裝精靈
 第一次執行 Azure AD Connect 安裝精靈時，它會逐步引導您設定安裝。如果您再次執行安裝精靈，它則會提供維護選項。
 
@@ -33,7 +32,10 @@
 
 請選取其中一項工作，然後按 [下一步] 繼續。
 
-> [AZURE.IMPORTANT] 當您開啟安裝精靈時，同步處理引擎中的所有作業都會暫停。請確定您有在完成組態變更後，就馬上關閉安裝精靈。
+> [!IMPORTANT]
+> 當您開啟安裝精靈時，同步處理引擎中的所有作業都會暫停。請確定您有在完成組態變更後，就馬上關閉安裝精靈。
+> 
+> 
 
 ## 檢視目前的組態
 此選項可讓您快速檢視目前設定的選項。
@@ -45,16 +47,16 @@
 ## 自訂同步處理選項
 此選項可用來變更同步處理組態。您會在自訂組態安裝路徑中看到選項子集。即使您一開始是使用快速安裝也會看到此選項。
 
-- [新增其他目錄](active-directory-aadconnect-get-started-custom.md#connect-your-directories)。若要移除目錄，請參閱[刪除連接器](active-directory-aadconnectsync-service-manager-ui-connectors.md#delete)。
-- [變更網域和 OU 篩選](active-directory-aadconnect-get-started-custom.md#domain-and-ou-filtering)。
-- 移除群組篩選。
-- [變更選用功能](active-directory-aadconnect-get-started-custom.md#optional-features)。
+* [新增其他目錄](active-directory-aadconnect-get-started-custom.md#connect-your-directories)。若要移除目錄，請參閱[刪除連接器](active-directory-aadconnectsync-service-manager-ui-connectors.md#delete)。
+* [變更網域和 OU 篩選](active-directory-aadconnect-get-started-custom.md#domain-and-ou-filtering)。
+* 移除群組篩選。
+* [變更選用功能](active-directory-aadconnect-get-started-custom.md#optional-features)。
 
 初始安裝中的其他選項既無法變更，也不能使用。這些選項包括：
 
-- 變更用於 userPrincipalName 和 sourceAnchor 的屬性。
-- 變更不同樹系之物件的聯結方法。
-- 啟用群組式篩選。
+* 變更用於 userPrincipalName 和 sourceAnchor 的屬性。
+* 變更不同樹系之物件的聯結方法。
+* 啟用群組式篩選。
 
 ## 重新整理目錄結構描述
 如果您已變更其中一個內部部署 AD DS 樹系中的結構描述，則會使用這個選項。例如，您可能已安裝 Exchange，或升級至 Windows Server 2012 結構描述 (含裝置物件)。在此情況下，您必須指示 Azure AD Connect，讓其從 AD DS 再次讀取結構描述並更新其快取。此動作也會重新產生同步處理規則。舉例來說，如果您新增 Exchange 結構描述，組態中就會新增 Exchange 的同步處理規則。
@@ -76,12 +78,11 @@
 如需此選項的詳細資訊，請參閱[使用者登入](active-directory-aadconnect-user-signin.md#changing-user-sign-in-method)。
 
 ## 後續步驟
-
-- 如需 Azure AD Connect 同步處理所用的組態模型的詳細資訊，請參閱[了解宣告式佈建](active-directory-aadconnectsync-understanding-declarative-provisioning.md)。
+* 如需 Azure AD Connect 同步處理所用的組態模型的詳細資訊，請參閱[了解宣告式佈建](active-directory-aadconnectsync-understanding-declarative-provisioning.md)。
 
 **概觀主題**
 
-- [Azure AD Connect 同步處理：了解及自訂同步處理](active-directory-aadconnectsync-whatis.md)
-- [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
+* [Azure AD Connect 同步處理：了解及自訂同步處理](active-directory-aadconnectsync-whatis.md)
+* [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
 <!----HONumber=AcomDC_0907_2016-->

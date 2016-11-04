@@ -1,27 +1,25 @@
-<properties
-   pageTitle="開始使用 Azure SQL Database 中的時態表 | Microsoft Azure"
-   description="了解如何開始使用 Azure SQL Database 中的時態表。"
-   services="sql-database"
-   documentationCenter=""
-   authors="CarlRabeler"
-   manager="jhubbard"
-   editor=""/>
+---
+title: 開始使用 Azure SQL Database 中的時態表 | Microsoft Docs
+description: 了解如何開始使用 Azure SQL Database 中的時態表。
+services: sql-database
+documentationcenter: ''
+author: CarlRabeler
+manager: jhubbard
+editor: ''
 
-<tags
-   ms.service="sql-database"
-   ms.devlang="NA"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="sql-database"
-   ms.date="08/29/2016"
-   ms.author="carlrab"/>
+ms.service: sql-database
+ms.devlang: NA
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: sql-database
+ms.date: 08/29/2016
+ms.author: carlrab
 
-#開始使用 Azure SQL Database 中的時態表
-
+---
+# 開始使用 Azure SQL Database 中的時態表
 時態表是 Azure SQL Database 的一個新的可程式性功能，可讓您追蹤和分析資料變更的完整歷程記錄，而不需要撰寫自訂程式碼。時態表會保持資料與時間內容之間的密切關係，因此只有在特定期間內，才會將預存的事實解譯為有效。時態表的這個屬性允許進行以有效時間為基礎的分析，並可從資料演進中取得獨到見解。
 
-##時態表案例
-
+## 時態表案例
 本文說明在應用程式案例中使用時態表的步驟。假設您想要從頭開始追蹤正在開發的新網站上的使用者活動，或您想要使用使用者活動分析擴充的現有網站上的使用者活動。在這個簡化的範例中，我們假設在一段時間內瀏覽過的網頁數目是必須在裝載於 Azure SQL Database 的網站資料庫中擷取和監視的指標。使用者活動歷史分析的目標是要獲得重新設計網站的意見，並為訪客提供更好的經驗。
 
 此案例的資料庫模型非常簡單：使用者活動度量以一個整數欄位 **PageVisited** 表示，而且會與使用者設定檔上的基本資訊一起擷取。此外，對於以時間為基礎的分析，您要為每個使用者保留一連串的資料列，其中每個資料列都代表特定的一段時間內特定使用者瀏覽過的頁數。
@@ -30,16 +28,15 @@
 
 幸運的是，您不需要在您的 app 上花太多精力，就可以維護此活動資訊。您可以使用時態表，將此程序自動化：讓您在網站設計期間有完整的彈性以及更多的時間，得以將重點放在資料分析本身。您只需要確保將 **WebSiteInfo** 資料表設定為[時態系統設定版本](https://msdn.microsoft.com/library/dn935015.aspx#Anchor_0)。在此案例中使用時態表的確切步驟如下所述。
 
-##步驟 1︰將資料表設定為時態表
-
+## 步驟 1︰將資料表設定為時態表
 根據您要開始新的開發工作，還是升級現有的應用程式，您將會建立時態表，或透過新增時態屬性來修改現有的資料表。在一般情況下，您的案例可能會混用這兩個選項。使用 [SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx) (SSMS)、[SQL Server Data Tools](https://msdn.microsoft.com/library/mt204009.aspx) (SSDT) 或其他任何 Transact-SQL 開發工具執行下列動作。
 
+> [!IMPORTANT]
+> 建議您一律使用最新版本的 Management Studio 保持與 Microsoft Azure 及 SQL Database 更新同步。[更新 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)。
+> 
+> 
 
-> [AZURE.IMPORTANT] 建議您一律使用最新版本的 Management Studio 保持與 Microsoft Azure 及 SQL Database 更新同步。[更新 SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx)。
-
-
-###建立新資料表
-
+### 建立新資料表
 在 SSMS 的 [物件總管] 中使用內容功能表項目 [新系統設定版本的資料表] 開啟查詢編輯器與時態表範本指令碼，然後使用 [指定範本參數的值] \(Ctrl + Shift + M) 填入範本：
 
 ![SSMSNewTable](./media/sql-database-temporal-tables/AzureTemporal2.png)
@@ -81,8 +78,7 @@ WITH (DROP_EXISTING = ON);
 
 ![AlterTable](./media/sql-database-temporal-tables/AzureTemporal4.png)
 
-###將現有的資料表變更為時態表
-
+### 將現有的資料表變更為時態表
 讓我們來看看替代案例，其中 WebsiteUserInfo 資料表已存在，但不是針對保留變更的歷程記錄而設計。在此情況下，您只能擴充現有的資料表，使其成為時態表，如以下範例所示︰
 
 ````
@@ -103,8 +99,7 @@ ON dbo.WebsiteUserInfoHistory
 WITH (DROP_EXISTING = ON); 
 ````
 
-##步驟 2：定期執行您的工作負載
-
+## 步驟 2：定期執行您的工作負載
 時態表的主要優點是您不需要以任何方式變更或調整您的網站，就可以執行變更追蹤。一旦建立時態表之後，當您每次對資料進行修改時，便會自動保存先前的資料列版本。
 
 若要為這個特定案例使用自動變更追蹤功能，我們只需要在每次使用者結束網站上的工作階段時，更新資料行 **PagesVisited** 即可︰
@@ -118,8 +113,7 @@ WHERE [UserID] = 1;
 
 ![TemporalArchitecture](./media/sql-database-temporal-tables/AzureTemporal5.png)
 
-##步驟 3︰執行歷史資料分析
-
+## 步驟 3︰執行歷史資料分析
 現在當時態系統設定版本功能啟用時，您只需要一個查詢，就可以進行歷史資料分析。在本文中，我們將提供一些解決常見分析案例的範例。若要了解所有詳細資料，請瀏覽使用 [FOR SYSTEM\_TIME](https://msdn.microsoft.com/library/dn935015.aspx#Anchor_3) 子句所導入的各種選項。
 
 若要查看依瀏覽網頁次數排序的前 10 名使用者，請執行以下查詢︰
@@ -160,8 +154,7 @@ WHERE [UserID] = 1;
 
 ![TemporalGraph](./media/sql-database-temporal-tables/AzureTemporal6.png)
 
-##不斷演進的資料表結構描述
-
+## 不斷演進的資料表結構描述
 一般而言，您必須在開發 app 的同時，變更時態表結構描述。因此，只要執行一般 ALTER TABLE 陳述式，Azure SQL Database 就會適當地傳播歷程記錄資料表的變更。下列指令碼示範如何新增要追蹤的其他屬性︰
 
 ````
@@ -185,18 +178,16 @@ ALTER TABLE dbo.WebsiteUserInfo
 ALTER TABLE dbo.WebsiteUserInfo 
     DROP COLUMN TemporaryColumn; 
 ````
-    
+
 或者，當您連線到資料庫 (線上模式)，或您屬於資料庫專案的一部分 (離線模式) 時，使用最新的 [SSDT](https://msdn.microsoft.com/library/mt204009.aspx) 變更時態表結構描述。
 
-##控制歷史資料的保留期
-
+## 控制歷史資料的保留期
 透過系統設定版本的時態表，歷程記錄資料表可以將資料庫大小增加到超過一般資料表。一個大型且不斷成長的歷程記錄表格可能會因為單純的儲存體成本，以及對時態查詢效能所徵收的稅額而變成一個問題。因此，開發資料保留原則來管理歷程記錄資料表中的資料是規劃及管理每個時態表生命週期的重要環節。使用 Azure SQL Database 時，您有下列方法可以管理時態表中的歷史資料︰
 
-- [資料表分割](https://msdn.microsoft.com/library/mt637341.aspx#Anchor_2)
-- [自訂清除指令碼](https://msdn.microsoft.com/library/mt637341.aspx#Anchor_3)
+* [資料表分割](https://msdn.microsoft.com/library/mt637341.aspx#Anchor_2)
+* [自訂清除指令碼](https://msdn.microsoft.com/library/mt637341.aspx#Anchor_3)
 
-##後續步驟
-
+## 後續步驟
 如需有關時態表的詳細資訊，請參閱 [MSDN 文件](https://msdn.microsoft.com/library/dn935015.aspx)。瀏覽 Channel 9，聽聽[真實客戶的時態表實作成功案例](https://channel9.msdn.com/Blogs/jsturtevant/Azure-SQL-Temporal-Tables-with-RockStep-Solutions)，並觀看[時態表的即時示範](https://channel9.msdn.com/Shows/Data-Exposed/Temporal-in-SQL-Server-2016)。
 
 <!---HONumber=AcomDC_0831_2016-->

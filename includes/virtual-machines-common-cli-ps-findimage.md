@@ -1,8 +1,10 @@
 
 
 ## Azure CLI
-
-> [AZURE.NOTE] 本文說明如何使用最近安裝的 Azure CLI 或 Azure PowerShell，來瀏覽並選取虛擬機器映像。有一個必要條件是您必須變更為資源管理員模式。搭配 Azure CLI 時，請輸入 `azure config mode arm` 來進入該模式。
+> [!NOTE]
+> 本文說明如何使用最近安裝的 Azure CLI 或 Azure PowerShell，來瀏覽並選取虛擬機器映像。有一個必要條件是您必須變更為資源管理員模式。搭配 Azure CLI 時，請輸入 `azure config mode arm` 來進入該模式。
+> 
+> 
 
 尋找要與 `azure vm quick-create` 搭配使用之映像或建立資源群組範本檔案的最簡單且最快速方式是呼叫 `azure vm image list` 命令，並傳遞位置、發佈者名稱 (不區分大小寫！) 和提供項目 (如果您知道提供項目)。例如，如果您知道 "Canonical" 是 "UbuntuServer" 提供項目的發佈者，則下列清單只是簡短範例 (許多清單相當長)。
 
@@ -115,14 +117,16 @@
 現在，您可以精確地選擇想要使用的映像。若要使用您剛找到的 URN 資訊快速地建立虛擬機器，或使用具有該 URN 資訊的範本，請參閱[搭配使用適用於 Mac、Linux 和 Windows 的 Azure CLI 與 Azure 資源管理員](../articles/xplat-cli-azure-resource-manager.md)。
 
 ## PowerShell
-
-> [AZURE.NOTE] 安裝及設定[最新的 Azure PowerShell](../articles/powershell-install-configure.md)。如果您使用 1.0 以下的 Azure PowerShell 模組，您仍可以使用下列命令，但您必須先 `Switch-AzureMode AzureResourceManager`。
+> [!NOTE]
+> 安裝及設定[最新的 Azure PowerShell](../articles/powershell-install-configure.md)。如果您使用 1.0 以下的 Azure PowerShell 模組，您仍可以使用下列命令，但您必須先 `Switch-AzureMode AzureResourceManager`。
+> 
+> 
 
 使用 Azure 資源管理員建立新的虛擬機器時，在某些情況下，您需要使用下列映像屬性組合來指定映像：
 
-- 發佈者
-- 提供項目
-- SKU
+* 發佈者
+* 提供項目
+* SKU
 
 例如，`Set-AzureRMVMSourceImage` PowerShell Cmdlet 或資源群組範本檔案需要這些值，而在此檔案中，您必須指定要建立的虛擬機器類型。
 
@@ -131,7 +135,6 @@
 1. 列出映像發行者。
 2. 針對指定的發行者，列出其提供項目。
 3. 針對指定的提供項目，列出其 SKU。
-
 
 首先，使用以下命令列出發行者：
 
@@ -205,7 +208,6 @@ Windows-Server-Technical-Preview
 ```
 
 從這個清單中，複製選擇的 SKU 名稱，您就可以取得 `Set-AzureRMVMSourceImage` PowerShell Cmdlet 或資源群組範本的所有資訊。
-
 
 <!--Image references-->
 [5]: ./media/markdown-template-for-new-articles/octocats.png

@@ -1,50 +1,47 @@
-<properties
-   pageTitle="利用簡單模型預測答案 - 迴歸模型 | Microsoft Azure"
-   description="如何在「適用於初學者的資料科學」影片 4 中，建立簡單模型來預測鑽石價格。包含基本線性迴歸以及目標資料。"                                  
-   keywords="建立模型, 簡單模型, 簡單資料模型, 價格預測, 簡單迴歸模型"
-   services="machine-learning"
-   documentationCenter="na"
-   authors="brohrer-ms"
-   manager="jhubbard"
-   editor="cjgronlund"/>
+---
+title: 利用簡單模型預測答案 - 迴歸模型 | Microsoft Docs
+description: 如何在「適用於初學者的資料科學」影片 4 中，建立簡單模型來預測鑽石價格。包含基本線性迴歸以及目標資料。
+keywords: 建立模型, 簡單模型, 簡單資料模型, 價格預測, 簡單迴歸模型
+services: machine-learning
+documentationcenter: na
+author: brohrer-ms
+manager: jhubbard
+editor: cjgronlund
 
-<tags
-   ms.service="machine-learning"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="07/15/2016"
-   ms.author="cgronlun;brohrer;garye"/>
+ms.service: machine-learning
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 07/15/2016
+ms.author: cgronlun;brohrer;garye
 
+---
 # 利用簡單模型預測答案
-
 ## 影片 4：適用於初學者的資料科學系列
-
 在「適用於初學者的資料科學」影片 4 中，了解如何建立簡單模型來預測鑽石價格。我們將利用目標資料來繪製迴歸模型。
 
 若要充分運用這系列影片，請依序觀賞它們。[瀏覽影片清單](#other-videos-in-this-series)
 
-> [AZURE.VIDEO data-science-for-beginners-series-predict-an-answer-with-a-simple-model]
+> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/data-science-for-beginners-series-predict-an-answer-with-a-simple-model/player]
+> 
+> 
 
 ## 系列中的其他影片
-
 「適用於初學者的資料科學」是一個資料科學的快速簡介，包含五個簡短影片。
 
-  * 影片 1：[資料科學可以回答的 5 個問題](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) (5 分 14 秒)
-  * 影片 2：[您的資料已經可以進行資料科學了嗎？](machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science.md) *(4 分 56 秒)*
-  * 影片 3：[詢問您可以使用資料回答的問題](machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data.md) (4 分 17 秒)
-  * 影片 4：利用簡單模型預測答案
-  * 影片 5：[複製其他人的工作進行資料科學](machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md) (3 分 18 秒)
+* 影片 1：[資料科學可以回答的 5 個問題](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) (5 分 14 秒)
+* 影片 2：[您的資料已經可以進行資料科學了嗎？](machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science.md) *(4 分 56 秒)*
+* 影片 3：[詢問您可以使用資料回答的問題](machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data.md) (4 分 17 秒)
+* 影片 4：利用簡單模型預測答案
+* 影片 5：[複製其他人的工作進行資料科學](machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md) (3 分 18 秒)
 
 ## 文字記錄：利用簡單模型預測答案
-
 歡迎觀賞「適用於初學者的資料科學」系列的第四個影片。在這個影片中，我們將建置簡單模型並進行預測。
 
 「模型」是我們相關資料的簡化敘述。我將告訴您我的意思。
 
 ## 收集相關、精確、連貫、足夠的資料
-
 假設我想要購買鑽石。我有一只戒指，它屬於我的祖母，其中鑲嵌了一個 1.35 克拉的鑽石，而我想要了解它的價值。我帶著筆記本和筆到珠寶店，並記下架上所有鑽石的價格，以及它們的重量有多少克拉數。從第一顆鑽石開始 - 它是 1.01 克拉，美金 7,366 元。
 
 現在我已順利完成，並針對店內的所有其他鑽石執行此動作。
@@ -61,13 +58,11 @@
 * 此外，誠如所見，有**足夠**的資料可回答我們的問題
 
 ## 詢問明確的問題
-
 現在我們將以明確的方式提出問題：「要花多少費用才能購買 1.35 克拉的鑽石？」
 
 我們的清單中沒有 1.35 克拉的鑽石，因此，必須使用剩餘的資料來取得問題的答案。
 
 ## 繪製現有的資料
-
 我們要做的第一件事是繪製一條水平數線 (稱為軸) 來繪製重量的圖表。重量的範圍從 0 到 2，因此，我們將繪製一條涵蓋此範圍的線，並針對每半克拉劃上刻度。
 
 接下來，我們將繪製一條垂直軸來記錄價格，並將它連接到水平的重量軸。這將以美元為單位。現在我們有一組座標軸。
@@ -83,7 +78,6 @@
 ![散佈圖](./media/machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model/scatter-plot.png)
 
 ## 通過資料點繪製模型
-
 現在如果您查看點與傾向，集合看起來就像一條很模糊的粗線。我們可以記上標記，並通過它繪製一條直線。
 
 藉由繪製一條線，我們建立了一個「模型」。將此想像為現實世界，並為它建立一個極度簡化的草圖版本。現在草圖有誤 - 這條線並未通過所有資料點。但它是非常實用的簡化。
@@ -95,7 +89,6 @@
 因為我們正試著回答「多少？」的問題，這就稱為「迴歸」。而且由於我們使用直線，所以它是「線性迴歸」。
 
 ## 使用模型尋找答案
-
 現在我們已有模型，接著詢問它一個問題：1.35 克拉的鑽石價值多少？
 
 為了回答問題，我們仔細打量出 1.35 克拉的所在位置，並繪製一條垂直線。在它與模型線交會的地方，我們繪製了一條垂直線到美元軸。它正好命中 10,000。碰！ 這就是答案了︰一顆 1.35 克拉的鑽石價值約 10,000 美元。
@@ -103,7 +96,6 @@
 ![在模型中尋找答案](./media/machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model/find-the-answer.png)
 
 ## 建立信賴區間
-
 很自然地就想要知道此預測的精確度為何。了解 1.35 克拉的鑽石是否非常接近 10,000 美元，抑或高出許多或低很多，是非常實用的。為了理解這一點，讓我們在迴歸線四周畫一條包絡線，其中包含大部分的點。這條包絡線就稱為「信賴區間」︰我們非常確信價格會落在此包絡線內，因為在過去它們大多數都是這樣。我們可以從 1.35 克拉線與此包絡線頂端和底部交會的地方繪製兩條以上的垂直線。
 
 ![信賴區間](./media/machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model/confidence-interval.png)
@@ -111,7 +103,6 @@
 現在讓我們來談論關於信賴區間的資訊：我們可以很有自信地表示 1.35 克拉鑽石的價格大約是 10,000 美元，但它最低可能是 8,000 美元，最高可能是 12,000 美元。
 
 ## 我們不需用到任何數學或電腦就能完成
-
 我們完成了資料科學家需要報酬才會進行的工作，而且只需繪製下列動作就能完成：
 
 * 我們詢問可以使用資料回答的問題
@@ -134,11 +125,8 @@
 
 請務必查看 Microsoft Azure Machine Learning 中「適用於初學者的資料科學」的其他影片。
 
-
-
 ## 後續步驟
-
-  * [嘗試使用 Azure Machine Learning 進行您的第一個資料科學實驗](machine-learning-create-experiment.md)
-  * [在 Microsoft Azure 上取得 Machine Learning 簡介](machine-learning-what-is-machine-learning.md)
+* [嘗試使用 Azure Machine Learning 進行您的第一個資料科學實驗](machine-learning-create-experiment.md)
+* [在 Microsoft Azure 上取得 Machine Learning 簡介](machine-learning-what-is-machine-learning.md)
 
 <!---HONumber=AcomDC_0914_2016-->

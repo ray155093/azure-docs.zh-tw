@@ -1,29 +1,27 @@
-<properties
-   pageTitle="在本機監視和診斷使用 Azure Service Fabric 所撰寫的服務 | Microsoft Azure"
-   description="了解如何監視和診斷在本機開發電腦上使用 Microsoft Azure Service Fabric 所撰寫的服務。"
-   services="service-fabric"
-   documentationCenter=".net"
-   authors="ms-toddabel"
-   manager="timlt"
-   editor=""/>
+---
+title: 在本機監視和診斷使用 Azure Service Fabric 所撰寫的服務 | Microsoft Docs
+description: 了解如何監視和診斷在本機開發電腦上使用 Microsoft Azure Service Fabric 所撰寫的服務。
+services: service-fabric
+documentationcenter: .net
+author: ms-toddabel
+manager: timlt
+editor: ''
 
-<tags
-   ms.service="service-fabric"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="NA"
-   ms.date="09/06/2016"
-   ms.author="toddabel"/>
+ms.service: service-fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 09/06/2016
+ms.author: toddabel
 
-
-
+---
 # <a name="monitor-and-diagnose-services-in-a-local-machine-development-setup"></a>監視和診斷本機開發設定中的服務
-
-
-> [AZURE.SELECTOR]
-- [Windows](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)
-- [Linux](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally-linux.md)
+> [!div class="op_single_selector"]
+> * [Windows](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)
+> * [Linux](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally-linux.md)
+> 
+> 
 
 監視、偵測、診斷和疑難排解可讓服務繼續順利執行，盡可能減少服務中斷的使用者經驗。 雖然監視和診斷在實際部署的生產環境中相當重要，然而效率將取決於服務開發期間所採用的類似模型服務，以便在您移動至實際設定時能確保其正常運作。 Service Fabric 可讓服務開發人員輕鬆實作診斷，可以在單一電腦本機開發設定和實際生產叢集設定上順暢地工作。
 
@@ -35,16 +33,13 @@
 * **Service Fabric 系統程式碼也會將 ETW 用於內部追蹤。**  這可讓您檢視與 Service Fabric 系統追蹤交錯的應用程式追蹤。 同時協助您更輕鬆了解在基礎系統中應用程式程式碼與事件之間的序列和相互關係。
 * **內建支援的 Service Fabric Visual Studio 工具可供您檢視 ETW 事件。**
 
-
 ## <a name="view-service-fabric-system-events-in-visual-studio"></a>在 Visual Studio 中檢視 Service Fabric 系統事件
-
 Service Fabric 會發出 ETW 事件，以協助應用程式開發人員了解平台中發生的事情。 如果您還沒有這麼做，請繼續遵循 [在 Visual Studio 中建立第一個應用程式](service-fabric-create-your-first-application-in-visual-studio.md)中的步驟。 此資訊將協助您啟動應用程式，並執行可顯示追蹤訊息的 [診斷事件檢視器]。
 
 1. 若 [診斷事件] 視窗不會自動顯示，請移至 Visual Studio 中的 [檢視] 索引標籤，選擇 [其他視窗]，然後選擇 [診斷事件檢視器]。
-
 2. 每個事件皆有標準的中繼資料資訊，可告訴您事件所來自的節點、應用程式和服務。 您也可以使用事件視窗頂端的 [篩選事件] 方塊來篩選事件清單。 例如，您可以依 [節點名稱] 或 [服務名稱] 進行篩選。 而當您查看事件詳細資料時，您也可以使用事件視窗頂端的 [暫停] 按鈕來暫停並於稍後繼續，而不會遺失任何事件。
-
-  ![Visual Studio 診斷事件檢視器](./media/service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally/DiagEventsExamples2.png)
+   
+   ![Visual Studio 診斷事件檢視器](./media/service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally/DiagEventsExamples2.png)
 
 ## <a name="add-your-own-custom-traces-to-the-application-code"></a>將您自己自訂的追蹤新增至應用程式程式碼
 Service Fabric Visual Studio 專案範本包含範例程式碼。 程式碼示範如何新增自訂的應用程式程式碼 ETW 追蹤，其會與來自 Service Fabric 的系統追蹤一併顯示在 Visual Studio ETW 檢視器中。 這個方法的優點是中繼資料會自動新增至追蹤，且 Visual Studio 診斷事件檢視器已設定為顯示追蹤。
@@ -64,10 +59,9 @@ Service Fabric Visual Studio 專案範本包含範例程式碼。 程式碼示�
 
 ## <a name="next-steps"></a>後續步驟
 在 Azure 叢集上執行應用程式時，您針對本機診斷在上方應用程式所新增的相同追蹤程式碼，將會使用可以用來檢視這些事件的工具。 請參閱下列文章，其中討論各種適用於工具的選項，並說明如何設定它們。
+
 * [如何利用 Azure 診斷收集記錄檔](service-fabric-diagnostics-how-to-setup-wad.md)
 * [使用 ElasticSearch 做為 Service Fabric 應用程式追蹤存放區](service-fabric-diagnostic-how-to-use-elasticsearch.md)
-
-
 
 <!--HONumber=Oct16_HO2-->
 

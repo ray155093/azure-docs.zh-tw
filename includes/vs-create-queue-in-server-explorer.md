@@ -7,7 +7,6 @@
 3. 選取 [**佇列**] 節點，然後從內容功能表中選擇 [**建立佇列**]。
 4. 輸入佇列的名稱，然後選擇 [**確定**]。   
 
-
 [Image1]: ./media/vs-create-queue-in-server-explorer/vs-storage-queues-create-in-server-explorer.png
 
 <!---HONumber=Oct15_HO3-->

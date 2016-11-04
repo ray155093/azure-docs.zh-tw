@@ -1,24 +1,26 @@
-<properties
-	pageTitle="疑難排解：Azure AD 密碼管理 |Microsoft Azure"
-	description="Azure AD 密碼管理的常見疑難排解步驟，包括重設、變更、回寫、註冊，以及尋求協助時應包含的資訊。"
-	services="active-directory"
-	documentationCenter=""
-	authors="asteen"
-	manager="femila"
-	editor="curtand"/>
+---
+title: 疑難排解：Azure AD 密碼管理 | Microsoft Docs
+description: Azure AD 密碼管理的常見疑難排解步驟，包括重設、變更、回寫、註冊，以及尋求協助時應包含的資訊。
+services: active-directory
+documentationcenter: ''
+author: asteen
+manager: femila
+editor: curtand
 
-<tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/12/2016"
-	ms.author="asteen"/>
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/12/2016
+ms.author: asteen
 
+---
 # 如何疑難排解密碼管理
-
-> [AZURE.IMPORTANT] **您來到此處是因為有登入問題嗎？** 若是如此，[以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
+> [!IMPORTANT]
+> **您來到此處是因為有登入問題嗎？** 若是如此，[以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
+> 
+> 
 
 如果您有密碼管理方面的問題，我們在此提供協助。您可能會碰到的大多數問題都可以透過以下幾個簡單的疑難排解步驟來加以解決，請閱讀其內容來疑難排解您的部署：
 
@@ -28,29 +30,27 @@
 * [**密碼重設註冊入口網站的問題**](#troubleshoot-the-password-reset-registration-portal)
 * [**密碼重設入口網站的問題**](#troubleshoot-the-password-reset-portal)
 * [**密碼回寫的問題**](#troubleshoot-password-writeback)
-  - [密碼回寫事件記錄檔錯誤碼](#password-writeback-event-log-error-codes)
-  - [密碼回寫連線的問題](#troubleshoot-password-writeback-connectivity)
+  * [密碼回寫事件記錄檔錯誤碼](#password-writeback-event-log-error-codes)
+  * [密碼回寫連線的問題](#troubleshoot-password-writeback-connectivity)
 
 如果您已試過下列疑難排解步驟，但仍遇到問題，請將問題張貼在 [Azure AD 論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=WindowsAzureAD)或連絡支援人員，我們將會儘快了解您的問題。
 
 ## 您需要協助時應包含的資訊
-
 如果在進行過下列指導方針後仍無法解決問題，請連絡我們的支援工程師。當您與他們連絡時，建議您包含下列資訊：
 
- - **錯誤的一般描述** – 使用者實際看到的錯誤訊息。 如果沒有任何錯誤訊息，請詳細說明您所注意到的未預期行為。
- - **頁面** – 您看到錯誤時的所在頁面 (包含 URL)。
- - **日期/時間/時區** – 您看到錯誤時的精確日期和時間 (包含時區)。
- - **支援碼** – 使用者看到錯誤時所產生的支援碼 (若要找到支援碼，請重現錯誤，然後按一下畫面底部的 [支援碼] 連結，將所產生的 GUID 傳送給支援工程師)。
-   - 如果您所在的頁面底部沒有支援碼，請按 F12，搜尋 SID 和 CID，然後將這兩個結果傳送給支援工程師。
-
+* **錯誤的一般描述** – 使用者實際看到的錯誤訊息。 如果沒有任何錯誤訊息，請詳細說明您所注意到的未預期行為。
+* **頁面** – 您看到錯誤時的所在頁面 (包含 URL)。
+* **日期/時間/時區** – 您看到錯誤時的精確日期和時間 (包含時區)。
+* **支援碼** – 使用者看到錯誤時所產生的支援碼 (若要找到支援碼，請重現錯誤，然後按一下畫面底部的 [支援碼] 連結，將所產生的 GUID 傳送給支援工程師)。
+  
+  * 如果您所在的頁面底部沒有支援碼，請按 F12，搜尋 SID 和 CID，然後將這兩個結果傳送給支援工程師。
+    
     ![][001]
-
- - **使用者識別碼** – 看到錯誤的使用者其識別碼為何 (例如 user@contoso.com)？
- - **使用者的相關資訊** – 使用者已同盟、密碼雜湊同步處理、只在雲端嗎？ 使用者是否已獲得 AAD Premium 或 AAD Basic 授權？
- - **應用程式事件記錄檔** – 如果您使用密碼回寫，而且錯誤位於您的內部部署基礎結構中，請將 Azure AD Connect 伺服器中的應用程式事件記錄檔複本進行壓縮，然後連同要求一起送出。
+* **使用者識別碼** – 看到錯誤的使用者其識別碼為何 (例如 user@contoso.com)？
+* **使用者的相關資訊** – 使用者已同盟、密碼雜湊同步處理、只在雲端嗎？ 使用者是否已獲得 AAD Premium 或 AAD Basic 授權？
+* **應用程式事件記錄檔** – 如果您使用密碼回寫，而且錯誤位於您的內部部署基礎結構中，請將 Azure AD Connect 伺服器中的應用程式事件記錄檔複本進行壓縮，然後連同要求一起送出。
 
 包含這些資訊將有助於我們儘快為您解決問題。
-
 
 ## 疑難排解 Azure 管理入口網站中的密碼重設設定
 如果您在設定密碼重設時遇到錯誤，您可以遵循下列疑難排解步驟來加以解決：
@@ -375,11 +375,11 @@
               <p>我們實作了自動節流機制來避免使用者在短時間內嘗試重設密碼太多次。其發生條件如下：</p>
               <ol class="ordered">
                 <li>
-										使用者嘗試在一個小時內驗證電話號碼 5 次。<br\><br\></li>
+                                        使用者嘗試在一個小時內驗證電話號碼 5 次。<br\><br\></li>
                 <li>
-										使用者嘗試在一個小時內使用安全性問題關卡 5 次。<br\><br\></li>
+                                        使用者嘗試在一個小時內使用安全性問題關卡 5 次。<br\><br\></li>
                 <li>
-										使用者嘗試在一個小時內重設相同使用者帳戶的密碼 5 次。<br\><br\></li>
+                                        使用者嘗試在一個小時內重設相同使用者帳戶的密碼 5 次。<br\><br\></li>
               </ol>
               <p>若要修正此問題，請指示使用者在最後一次嘗試後等候 24 小時，之後使用者就能重設其密碼。</p>
             </td>
@@ -456,21 +456,21 @@
               <p>在 ADSync 服務重新啟動期間若已設定回寫，將會啟動 WCF 端點。不過，如果端點啟動失敗，我們只會記錄事件 6800，並讓同步處理服務啟動。出現此事件表示密碼回寫端點並未啟動。此事件 (6800) 的事件記錄檔詳細資料以及 PasswordResetService 元件所產生的事件記錄檔項目會指出為何無法啟動端點。如果密碼回寫仍然無法運作，請檢閱這些事件記錄檔錯誤，並嘗試重新啟動 Azure AD Connect。如果此問題持續發生，請嘗試先停用再重新啟用密碼回寫。</p>
             </td>
           </tr>
-					<tr>
+                    <tr>
             <td>
               <p>當使用者嘗試在已啟用密碼回寫時重設密碼或解除鎖定帳戶，作業會失敗。此外，在解除鎖定作業發生之後，您會在 Azure AD Connect 事件記錄檔中看到事件，其中包含：「Synchronization Engine returned an error hr=800700CE, message=The filename or extension is too long」。
-							</p>
+                            </p>
             </td>
             <td>
               <p>如果您從舊版 Azure AD Connect 或 DirSync 升級，就可能發生此事件。升級至較舊版本的 Azure AD Connect 會為 Azure AD 管理代理程式帳戶設定 254 個字元的密碼 (較新版本則會設定長度為 127 個字元的密碼)。這類長密碼適用於 AD Connector 匯入和匯出作業，但解除鎖定作業則不支援。
-							</p>
+                            </p>
             </td>
             <td>
               <p>[尋找 Azure AD Connect 的 Active Directory 帳戶](active-directory-aadconnect-accounts-permissions.md#active-directory-account)，並重設密碼以包含不超過 127 個字元。然後從 [開始] 功能表開啟 [同步處理服務]。瀏覽至 [連接器]，然後尋找 [Active Directory 連接器]。選取它，然後按一下 [屬性]。瀏覽至頁面 [認證]，然後輸入新密碼。選取 [確定] 以關閉頁面。
-							</p>
+                            </p>
             </td>
           </tr>
-					<tr>
+                    <tr>
             <td>
               <p>在 Azure AD Connect 安裝期間設定回寫時發生錯誤。</p>
             </td>
@@ -485,11 +485,11 @@
               <p>下列兩種情況會發生此錯誤：</p>
               <ul>
                 <li class="unordered">
-										針對在 Azure AD Connect 安裝程序開始時所指定的全域系統管理員帳戶，指定了錯誤的密碼。<br\><br\></li>
+                                        針對在 Azure AD Connect 安裝程序開始時所指定的全域系統管理員帳戶，指定了錯誤的密碼。<br\><br\></li>
               </ul>
               <ul>
                 <li class="unordered">
-										針對在 Azure AD Connect 安裝程序開始時所指定的全域系統管理員帳戶，嘗試使用已同盟的使用者。<br\><br\></li>
+                                        針對在 Azure AD Connect 安裝程序開始時所指定的全域系統管理員帳戶，嘗試使用已同盟的使用者。<br\><br\></li>
               </ul>
               <p>若要修正此錯誤，請確定您並未針對在 Azure AD Connect 安裝程序開始時所指定的全域系統管理員使用已同盟的帳戶，而且所指定的密碼正確無誤。</p>
             </td>
@@ -516,11 +516,11 @@
               <p>請確定您的防火牆允許下列項目的輸出連線：</p>
               <ul>
                 <li class="unordered">
-										所有透過 TCP 443 (HTTPS) 的流量<br\><br\></li>
+                                        所有透過 TCP 443 (HTTPS) 的流量<br\><br\></li>
               </ul>
               <ul>
                 <li class="unordered">
-										輸出連線<br\><br\></li>
+                                        輸出連線<br\><br\></li>
               </ul>
               <p>
 
@@ -574,11 +574,11 @@
               <p>發行版本的 Azure AD Connect 中已知會在下列情況時發生錯誤：</p>
               <ol class="ordered">
                 <li>
-										使用認證針對租用戶 abc.com (已驗證的網域) 設定 Azure AD Connect。這會導致建立名稱為 “abc.com – AAD” 的 AAD 連接器。<br\><br\></li>
+                                        使用認證針對租用戶 abc.com (已驗證的網域) 設定 Azure AD Connect。這會導致建立名稱為 “abc.com – AAD” 的 AAD 連接器。<br\><br\></li>
                 <li>
-										然後 (使用舊版的同步處理 UI) 將連接器的 AAD 認證變更為 (請注意，它是相同的租用戶但網域名稱不同)。<br\><br\></li>
+                                        然後 (使用舊版的同步處理 UI) 將連接器的 AAD 認證變更為 (請注意，它是相同的租用戶但網域名稱不同)。<br\><br\></li>
                 <li>
-										現在您嘗試啟用/停用密碼回寫。精靈會使用認證將連接器的名稱建構為 “abc.onmicrosoft.com – AAD”，並傳遞給密碼回寫 Cmdlet。此作業會失敗，因為沒有使用此名稱建立的連接器。<br\><br\></li>
+                                        現在您嘗試啟用/停用密碼回寫。精靈會使用認證將連接器的名稱建構為 “abc.onmicrosoft.com – AAD”，並傳遞給密碼回寫 Cmdlet。此作業會失敗，因為沒有使用此名稱建立的連接器。<br\><br\></li>
               </ol>
               <p>最新的組建已修正此問題。如果您有較舊的組建，有一個解決方法是使用 PowerShell Cmdlet 來啟用/停用此功能。如需如何執行此作業的詳細資訊，請參閱<a href="active-directory-passwords-getting-started.md#enable-users-to-reset-or-change-their-ad-passwords">如何啟用/停用密碼回寫</a>中的「步驟 2：在目錄同步處理電腦上啟用密碼回寫和設定防火牆規則」。</p>
             </td>
@@ -701,19 +701,19 @@
               <p>當密碼回寫服務嘗試在本機目錄上設定不符合密碼使用期限、歷程記錄、複雜度或網域篩選需求的密碼時，就會發生此錯誤。</p>
               <ul>
                 <li class="unordered">
-										如果您有最短的密碼使用期限，且最近在該時段內變更過密碼，則必須在到達網域中指定的使用期限後，才能再次變更密碼。若要進行測試，最短使用期限應該設定為 0。<br\><br\></li>
+                                        如果您有最短的密碼使用期限，且最近在該時段內變更過密碼，則必須在到達網域中指定的使用期限後，才能再次變更密碼。若要進行測試，最短使用期限應該設定為 0。<br\><br\></li>
               </ul>
               <ul>
                 <li class="unordered">
-										如果已啟用密碼歷程記錄需求，則必須選取最近 N 次未用過的密碼，其中 N 是密碼歷程記錄設定。如果您選取最近 N 次用過的密碼，則會在此案例中看到失敗。若要進行測試，歷程記錄應該設定為 0。<br\><br\></li>
+                                        如果已啟用密碼歷程記錄需求，則必須選取最近 N 次未用過的密碼，其中 N 是密碼歷程記錄設定。如果您選取最近 N 次用過的密碼，則會在此案例中看到失敗。若要進行測試，歷程記錄應該設定為 0。<br\><br\></li>
               </ul>
               <ul>
                 <li class="unordered">
-										如果您有密碼複雜度需求，則會在使用者嘗試變更或重設密碼時強制執行這些需求。<br\><br\></li>
+                                        如果您有密碼複雜度需求，則會在使用者嘗試變更或重設密碼時強制執行這些需求。<br\><br\></li>
               </ul>
               <ul>
                 <li class="unordered">
-										如果您啟用密碼篩選器，且使用者選取的密碼不符合篩選準則，則重設或變更作業將會失敗。<br\><br\></li>
+                                        如果您啟用密碼篩選器，且使用者選取的密碼不符合篩選準則，則重設或變更作業將會失敗。<br\><br\></li>
               </ul>
             </td>
           </tr>
@@ -775,15 +775,15 @@
               <p>這個事件表示使用者選取了密碼，該密碼已成功抵達內部部署環境，但是當我們嘗試在本機 AD 環境中設定密碼時，發生了失敗狀況。此狀況有幾個可能原因：</p>
               <ul>
                 <li class="unordered">
-										使用者的密碼不符合使用期限、歷程記錄、複雜度或網域篩選需求。請嘗試使用全新密碼以解決此問題。<br\><br\></li>
+                                        使用者的密碼不符合使用期限、歷程記錄、複雜度或網域篩選需求。請嘗試使用全新密碼以解決此問題。<br\><br\></li>
               </ul>
               <ul>
                 <li class="unordered">
-										MA 服務帳戶沒有適當權限，因此無法在指定的使用者帳戶設定新密碼。<br\><br\></li>
+                                        MA 服務帳戶沒有適當權限，因此無法在指定的使用者帳戶設定新密碼。<br\><br\></li>
               </ul>
               <ul>
                 <li class="unordered">
-										使用者的帳戶位於不允許密碼設定作業的受保護群組中，例如網域或企業系統管理員。<br\><br\></li>
+                                        使用者的帳戶位於不允許密碼設定作業的受保護群組中，例如網域或企業系統管理員。<br\><br\></li>
               </ul>
               <p>請參閱<a href="#troubleshoot-password-writeback">疑難排解密碼回寫</a>，以深入了解可能造成這個錯誤的其他狀況。</p>
             </td>
@@ -858,15 +858,15 @@
               <p>這個事件表示使用者選取了密碼，該密碼已成功抵達內部部署環境，但是當我們嘗試在本機 AD 環境中設定密碼時，發生了失敗狀況。此狀況有幾個可能原因：</p>
               <ul>
                 <li class="unordered">
-										使用者的密碼不符合使用期限、歷程記錄、複雜度或網域篩選需求。請嘗試使用全新密碼以解決此問題。<br\><br\></li>
+                                        使用者的密碼不符合使用期限、歷程記錄、複雜度或網域篩選需求。請嘗試使用全新密碼以解決此問題。<br\><br\></li>
               </ul>
               <ul>
                 <li class="unordered">
-										MA 服務帳戶沒有適當權限，因此無法在指定的使用者帳戶設定新密碼。<br\><br\></li>
+                                        MA 服務帳戶沒有適當權限，因此無法在指定的使用者帳戶設定新密碼。<br\><br\></li>
               </ul>
               <ul>
                 <li class="unordered">
-										使用者的帳戶位於不允許密碼設定作業的受保護群組中，例如網域或企業系統管理員。<br\><br\></li>
+                                        使用者的帳戶位於不允許密碼設定作業的受保護群組中，例如網域或企業系統管理員。<br\><br\></li>
               </ul>
               <p>請參閱<a href="#troubleshoot-password-writeback">疑難排解密碼回寫</a>，以深入了解可能造成這個錯誤的其他狀況。</p>
             </td>
@@ -913,15 +913,15 @@
               <p>系統管理員代表使用者選取了密碼，該密碼已成功抵達內部部署環境，但是當我們嘗試在本機 AD 環境中設定密碼時，發生了失敗狀況。此狀況有幾個可能原因：</p>
               <ul>
                 <li class="unordered">
-										使用者的密碼不符合使用期限、歷程記錄、複雜度或網域篩選需求。請嘗試使用全新密碼以解決此問題。<br\><br\></li>
+                                        使用者的密碼不符合使用期限、歷程記錄、複雜度或網域篩選需求。請嘗試使用全新密碼以解決此問題。<br\><br\></li>
               </ul>
               <ul>
                 <li class="unordered">
-										MA 服務帳戶沒有適當權限，因此無法在指定的使用者帳戶設定新密碼。<br\><br\></li>
+                                        MA 服務帳戶沒有適當權限，因此無法在指定的使用者帳戶設定新密碼。<br\><br\></li>
               </ul>
               <ul>
                 <li class="unordered">
-										使用者的帳戶位於不允許密碼設定作業的受保護群組中，例如網域或企業系統管理員。<br\><br\></li>
+                                        使用者的帳戶位於不允許密碼設定作業的受保護群組中，例如網域或企業系統管理員。<br\><br\></li>
               </ul>
               <p>請參閱<a href="#troubleshoot-password-writeback">疑難排解密碼回寫</a>，以深入了解可能造成這個錯誤的其他狀況。</p>
             </td>
@@ -1360,19 +1360,19 @@
               <p>當密碼回寫服務嘗試在本機目錄上設定不符合密碼使用期限、歷程記錄、複雜度或網域篩選需求的密碼時，就會發生此錯誤。</p>
               <ul>
                 <li class="unordered">
-										如果您有最短的密碼使用期限，且最近在該時段內變更過密碼，則必須在到達網域中指定的使用期限後，才能再次變更密碼。若要進行測試，最短使用期限應該設定為 0。<br\><br\></li>
+                                        如果您有最短的密碼使用期限，且最近在該時段內變更過密碼，則必須在到達網域中指定的使用期限後，才能再次變更密碼。若要進行測試，最短使用期限應該設定為 0。<br\><br\></li>
               </ul>
               <ul>
                 <li class="unordered">
-										如果已啟用密碼歷程記錄需求，則必須選取最近 N 次未用過的密碼，其中 N 是密碼歷程記錄設定。如果您選取最近 N 次用過的密碼，則會在此案例中看到失敗。若要進行測試，歷程記錄應該設定為 0。<br\><br\></li>
+                                        如果已啟用密碼歷程記錄需求，則必須選取最近 N 次未用過的密碼，其中 N 是密碼歷程記錄設定。如果您選取最近 N 次用過的密碼，則會在此案例中看到失敗。若要進行測試，歷程記錄應該設定為 0。<br\><br\></li>
               </ul>
               <ul>
                 <li class="unordered">
-										如果您有密碼複雜度需求，則會在使用者嘗試變更或重設密碼時強制執行這些需求。<br\><br\></li>
+                                        如果您有密碼複雜度需求，則會在使用者嘗試變更或重設密碼時強制執行這些需求。<br\><br\></li>
               </ul>
               <ul>
                 <li class="unordered">
-										如果您啟用密碼篩選器，且使用者選取的密碼不符合篩選準則，則重設或變更作業將會失敗。<br\><br\></li>
+                                        如果您啟用密碼篩選器，且使用者選取的密碼不符合篩選準則，則重設或變更作業將會失敗。<br\><br\></li>
               </ul>
             </td>
           </tr>
@@ -1435,45 +1435,43 @@
         </tbody></table>
 
 ## 疑難排解密碼回寫連線
-
 如果 Azure AD Connect 的密碼回寫元件發生服務中斷，以下是可供用來解決此問題的一些快速步驟：
 
- - [重新啟動 Azure AD Connect 同步處理服務](#restart-the-azure-AD-Connect-sync-service)
- - [停用再重新啟用密碼回寫功能](#disable-and-re-enable-the-password-writeback-feature)
- - [安裝最新版的 Azure AD Connect](#install-the-latest-azure-ad-connect-release)
- - [疑難排解密碼回寫](#troubleshoot-password-writeback)
+* [重新啟動 Azure AD Connect 同步處理服務](#restart-the-azure-AD-Connect-sync-service)
+* [停用再重新啟用密碼回寫功能](#disable-and-re-enable-the-password-writeback-feature)
+* [安裝最新版的 Azure AD Connect](#install-the-latest-azure-ad-connect-release)
+* [疑難排解密碼回寫](#troubleshoot-password-writeback)
 
 一般而言，我們會建議您依上述順序執行這些步驟，以便以最快速的方式復原服務。
 
 ### 重新啟動 Azure AD Connect 同步處理服務
 重新啟動 Azure AD Connect 同步處理服務有助於解決服務的連線問題或其他暫時性問題。
 
- 1.	以系統管理員身分，在執行 **Azure AD Connect** 的伺服器上按一下 [**開始**]。
- 2.	在搜尋方塊中輸入 **“services.msc”**，然後按 **Enter**。
- 3.	找出 **Microsoft Azure AD Connect** 項目。
- 4.	以滑鼠右鍵按一下服務項目，然後按一下 [**重新啟動**]，並等候作業完成。
-
-    ![][002]
+1. 以系統管理員身分，在執行 **Azure AD Connect** 的伺服器上按一下 [**開始**]。
+2. 在搜尋方塊中輸入 **“services.msc”**，然後按 **Enter**。
+3. 找出 **Microsoft Azure AD Connect** 項目。
+4. 以滑鼠右鍵按一下服務項目，然後按一下 [**重新啟動**]，並等候作業完成。
+   
+   ![][002]
 
 這些步驟將會重新建立您與雲端服務的連線，解決您可能會遇到的任何中斷問題。如果重新啟動同步處理服務無法解決您的問題，建議您接下來試著停用再重新啟用密碼回寫功能。
 
 ### 停用再重新啟用密碼回寫功能
 停用再重新啟用密碼回寫功能有助於解決連線問題。
 
- 1.	以系統管理員身分，開啟 [**Azure AD Connect 設定精靈**]。
- 2.	在 [**連線到 Azure AD**] 對話方塊中，輸入您的 **Azure AD 全域系統管理員認證**
- 3.	在 [**連線到 AD DS**] 對話方塊中，輸入您的 **AD 網域服務系統管理員認證**。
- 4.	在 [**唯一識別您的使用者**] 對話方塊中，按 [**下一步**] 按鈕。
- 5.	在 [**選用功能**] 對話方塊中，取消核取 [**密碼回寫**] 核取方塊。
-
-    ![][003]
-
- 6.	在其餘的對話方塊頁面按 [**下一步**]，不要變更任何項目，直到到達 [**準備好設定**] 頁面。
- 7.	確認設定頁面顯示 [**密碼回寫選項為停用**]，然後按一下綠色 [**設定**] 按鈕認可變更。
- 8.	在 [**已完成**] 對話方塊中，取消選取 [**立即同步處理**] 選項，然後按一下 [**完成**] 關閉精靈。
- 9.	重新開啟 [**Azure AD Connect 設定精靈**]。
- 10.	**重複步驟 2-8**，但請確定您有在 [**選用功能**] 畫面上勾選 [**密碼回寫選項**] 來重新啟用服務。
-
+1. 以系統管理員身分，開啟 [**Azure AD Connect 設定精靈**]。
+2. 在 [**連線到 Azure AD**] 對話方塊中，輸入您的 **Azure AD 全域系統管理員認證**
+3. 在 [**連線到 AD DS**] 對話方塊中，輸入您的 **AD 網域服務系統管理員認證**。
+4. 在 [**唯一識別您的使用者**] 對話方塊中，按 [**下一步**] 按鈕。
+5. 在 [**選用功能**] 對話方塊中，取消核取 [**密碼回寫**] 核取方塊。
+   
+   ![][003]
+6. 在其餘的對話方塊頁面按 [**下一步**]，不要變更任何項目，直到到達 [**準備好設定**] 頁面。
+7. 確認設定頁面顯示 [**密碼回寫選項為停用**]，然後按一下綠色 [**設定**] 按鈕認可變更。
+8. 在 [**已完成**] 對話方塊中，取消選取 [**立即同步處理**] 選項，然後按一下 [**完成**] 關閉精靈。
+9. 重新開啟 [**Azure AD Connect 設定精靈**]。
+10. **重複步驟 2-8**，但請確定您有在 [**選用功能**] 畫面上勾選 [**密碼回寫選項**] 來重新啟用服務。
+    
     ![][004]
 
 這些步驟將會重新建立您與雲端服務的連線，解決您可能會遇到的任何中斷問題。
@@ -1483,16 +1481,15 @@
 ### 安裝最新版的 Azure AD Connect
 重新安裝 Azure AD Connect 封裝將可解決任何可能會影響您能否連線到雲端服務或能否管理本機 AD 環境中密碼的設定問題。建議您只在嘗試過上述前兩個步驟後，才執行此步驟。
 
- 1.	在[這裡](active-directory-aadconnect.md#install-azure-ad-connect)下載最新版的 Azure AD Connect。
- 2.	由於您已安裝 Azure AD Connect，您只需要執行就地升級，即可將 Azure AD Connect 安裝更新為最新版。
- 3.	執行下載的封裝，並遵循螢幕上的指示來更新您的 Azure AD Connect 電腦。過程中不需手動執行任何額外步驟，除非您已自訂現成可用的同步處理規則，在此情況下，您就應該**先備份這些規則，然後再繼續進行升級，並於完成後以手動方式重新部署這些規則**。
+1. 在[這裡](active-directory-aadconnect.md#install-azure-ad-connect)下載最新版的 Azure AD Connect。
+2. 由於您已安裝 Azure AD Connect，您只需要執行就地升級，即可將 Azure AD Connect 安裝更新為最新版。
+3. 執行下載的封裝，並遵循螢幕上的指示來更新您的 Azure AD Connect 電腦。過程中不需手動執行任何額外步驟，除非您已自訂現成可用的同步處理規則，在此情況下，您就應該**先備份這些規則，然後再繼續進行升級，並於完成後以手動方式重新部署這些規則**。
 
 這些步驟將會重新建立您與雲端服務的連線，解決您可能會遇到的任何中斷問題。
 
 如果安裝最新版的 Azure AD Connect 伺服器無法解決您的問題，建議您最後在安裝最新版的同補處理 QFE 後試著停用再重新啟用密碼回寫。
 
 如果這麼做無法解決您的問題，建議您閱讀[疑難排解密碼回寫](#troubleshoot-password-writeback)和 [Azure AD 密碼管理常見問題集](active-directory-passwords-faq.md)，看看其中是否有討論到您的問題。
-
 
 <br/> 
 <br/> 
@@ -1509,8 +1506,6 @@
 * [**深入探索**](active-directory-passwords-get-insights.md) - 了解整合式報告功能
 * [**常見問題集**](active-directory-passwords-faq.md) - 取得常見問題的解答
 * [**深入了解**](active-directory-passwords-learn-more.md) - 深入探索服務運作方式的技術細節
-
-
 
 [001]: ./media/active-directory-passwords-troubleshoot/001.jpg "Image_001.jpg"
 [002]: ./media/active-directory-passwords-troubleshoot/002.jpg "Image_002.jpg"

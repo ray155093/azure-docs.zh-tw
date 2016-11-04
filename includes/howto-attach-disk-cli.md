@@ -1,7 +1,7 @@
 
 如需有關磁碟的詳細資訊，請參閱[關於 Azure 中的虛擬機器磁碟](http://go.microsoft.com/fwlink/p/?LinkId=403697)。
 
-##<a id="cliattachempty"></a>做法：連接空的磁碟
+## <a id="cliattachempty"></a>做法：連接空的磁碟
 連接空的磁碟是新增資料磁碟較為簡易的方式。執行下列命令連接空的新磁碟：
 
     vm disk attach-new <vm-name> <size-in-gb> [blob-url]

@@ -1,26 +1,23 @@
-<properties 
-    pageTitle="什麼是連接器和 BizTalk API 應用程式" 
-    description="了解 API 應用程式、連接器和 BizTalk API 應用程式" 
-    services="logic-apps" 
-    documentationCenter="" 
-    authors="MandiOhlinger" 
-    manager="erikre" 
-    editor=""/>
+---
+title: 什麼是連接器和 BizTalk API 應用程式
+description: 了解 API 應用程式、連接器和 BizTalk API 應用程式
+services: logic-apps
+documentationcenter: ''
+author: MandiOhlinger
+manager: erikre
+editor: ''
 
-<tags 
-    ms.service="logic-apps" 
-    ms.workload="integration" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="get-started-article" 
-    ms.date="09/01/2016" 
-    ms.author="mandia"/>
+ms.service: logic-apps
+ms.workload: integration
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: get-started-article
+ms.date: 09/01/2016
+ms.author: mandia
 
-
+---
 # <a name="what-are-connectors-and-biztalk-api-apps"></a>什麼是連接器和 BizTalk API 應用程式
-
-[AZURE.INCLUDE [app-service-logic-version-message](../../includes/app-service-logic-version-message.md)]
-
+[!INCLUDE [app-service-logic-version-message](../../includes/app-service-logic-version-message.md)]
 
 連接器  是一種著重於連線性的 API 應用程式。 連接器 (例如任何其他 API 應用程式) 是從 Web 應用程式、行動應用程式和邏輯應用程式使用的。 連接器可讓您輕鬆地連接到現有的服務並協助您管理驗證、提供監視、分析功能等等。
 
@@ -34,8 +31,7 @@
 
 [應用程式服務定價](https://azure.microsoft.com/pricing/details/app-service/) 會描述這些服務層，也會列出這些層內含的項目。 下列各節描述 BizTalk API 應用程式和連接器的各種類別。
 
-
-## <a name="hybrid-connectors"></a>混合式連接器 
+## <a name="hybrid-connectors"></a>混合式連接器
 混合式連接器可透過 [DB2](app-service-logic-connector-db2.md)、[Informix](app-service-logic-connector-informix.md) 和 WebSphere MQ 的連線，進一步延伸至企業中。 
 
 其他資源：[企業對企業連接器和 API Apps](app-service-logic-b2b-connectors.md)  
@@ -43,15 +39,11 @@
 [建立貿易夥伴合約](app-service-logic-create-a-trading-partner-agreement.md)  
 [追蹤 B2B 訊息](app-service-logic-track-b2b-messages.md)  
 
-
 ## <a name="rules"></a>規則
 商務規則包含可控制商務程序的原則和決策。 規則通常屬動態並因為不同原因而隨著時間改變，包括業務規劃、法規和其他原因。 [BizTalk 規則](app-service-logic-use-biztalk-rules.md) 可讓您將這些原則與您的應用程式碼分離，使變更程序更簡單、更快速。
 
 ## <a name="connector-and-api-app-list"></a>連接器和 API 應用程式清單
 請參閱 [連接器和 API 應用程式清單](app-service-logic-connectors-list.md) ，以取得各類別內含的完整連接器和 API 應用程式清單，包括標準連接器、BizTalk EAI、高階連接器等。
- 
-
-
 
 <!--HONumber=Oct16_HO2-->
 

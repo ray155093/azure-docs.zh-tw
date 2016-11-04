@@ -1,36 +1,35 @@
-<properties
-   pageTitle="Azure AD Connect：從舊版升級 | Microsoft Azure"
-   description="說明把 Azure Active Direcotry Connect 升級至最新版本的不同方法，包括就地升級和變換移轉。"
-   services="active-directory"
-   documentationCenter=""
-   authors="AndKjell"
-   manager="femila"
-   editor=""/>
+---
+title: Azure AD Connect：從舊版升級 | Microsoft Docs
+description: 說明把 Azure Active Direcotry Connect 升級至最新版本的不同方法，包括就地升級和變換移轉。
+services: active-directory
+documentationcenter: ''
+author: AndKjell
+manager: femila
+editor: ''
 
-<tags
-   ms.service="active-directory"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="Identity"
-   ms.date="06/27/2016"
-   ms.author="billmath"/>
+ms.service: active-directory
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: Identity
+ms.date: 06/27/2016
+ms.author: billmath
 
-
+---
 # <a name="azure-ad-connect:-upgrade-from-a-previous-version-to-the-latest"></a>Azure AD Connect：從舊版升級到最新版本
 本主題說明各種能夠把您的 Azure AD Connect 安裝升級到最新版本的方法。 我們建議您讓 Azure AD Connect 保持在最新版本。
 
-如果您想要從 DirSync 升級，請改為參閱[從 Azure AD 同步作業工具 (DirSync) 升級](./aad-connect/active-directory-aadconnect-dirsync-upgrade-get-started.md)。
+如果您想要從 DirSync 升級，請改為參閱[從 Azure AD 同步作業工具 (DirSync) 升級](active-directory-aadconnect-dirsync-upgrade-get-started.md)。
 
 您可以採用幾種不同的策略來升級 Azure AD Connect。
 
-方法 | 說明
---- | ---
-[自動升級](active-directory-aadconnect-feature-automatic-upgrade.md) | 對於使用快速安裝的客戶，這是最簡單的方法。
-[就地升級](#in-place-upgrade) | 如果您只有一台伺服器，請在該伺服器上就地升級安裝。
-[變換移轉](#swing-migration) | 如果您有兩台伺服器，可以把其中一台升級成最新版本，然後在您準備好時變更作用中的伺服器。
+| 方法 | 說明 |
+| --- | --- |
+| [自動升級](active-directory-aadconnect-feature-automatic-upgrade.md) |對於使用快速安裝的客戶，這是最簡單的方法。 |
+| [就地升級](#in-place-upgrade) |如果您只有一台伺服器，請在該伺服器上就地升級安裝。 |
+| [變換移轉](#swing-migration) |如果您有兩台伺服器，可以把其中一台升級成最新版本，然後在您準備好時變更作用中的伺服器。 |
 
-如需必要權限的相關資訊，請參閱[升級所需的權限](./aad-connect/active-directory-aadconnect-accounts-permissions.md#upgrade)。
+如需必要權限的相關資訊，請參閱[升級所需的權限](active-directory-aadconnect-accounts-permissions.md#upgrade)。
 
 ## <a name="in-place-upgrade"></a>就地升級
 就地升級適用於 Azure AD Sync 或 Azure AD Connect， 但不適用於 DirSync，也不適用於任何利用 FIM + Azure AD 連接器的解決方案。
@@ -52,10 +51,9 @@
 
 請注意：我們注意到有些客戶在進行變換移轉時，會使用三或四台伺服器。 因為預備伺服器正在升級，萬一您在這段期間有 [災害復原](active-directory-aadconnectsync-operations.md#disaster-recovery)的需求，將會沒有備用伺服器可用。 如果您使用最多四台伺服器，就能準備一組有新版本系統的主要/待命伺服器，以確保您永遠都有預備伺服器來接收工作。
 
-下列步驟也適用於從 Azure AD Sync 升級的案例，或是利用 FIM + Azure AD 連接器的解決方案。 但這些步驟並不適用於 DirSync，不過您可以在[升級 Azure Active Directory 同步作業 (DirSync)](./aad-connect/active-directory-aadconnect-dirsync-upgrade-get-started.md) 一文中，找到 DirSync 適用的相同變換移轉 (也稱為平行部署) 方法的步驟。
+下列步驟也適用於從 Azure AD Sync 升級的案例，或是利用 FIM + Azure AD 連接器的解決方案。 但這些步驟並不適用於 DirSync，不過您可以在[升級 Azure Active Directory 同步作業 (DirSync)](active-directory-aadconnect-dirsync-upgrade-get-started.md) 一文中，找到 DirSync 適用的相同變換移轉 (也稱為平行部署) 方法的步驟。
 
 ### <a name="swing-migration-steps"></a>變換移轉的步驟
-
 1. 如果兩部伺服器都使用 Azure AD Connect，請在開始升級之前，確認作用中伺服器和預備伺服器兩者都使用相同版本。 這樣一來，您稍後更容易比較出差異。 如果您從 Azure AD 同步進行升級，這些伺服器會有不同的版本。
 2. 如果您已經建立了些自訂組態，但預備伺服器並沒有這些組態，請遵循 [把自訂組態從作用中伺服器移動到預備伺服器](#move-custom-configuration-from-active-to-staging-server)一節中的步驟進行。
 3. 如果您要從舊版的 Azure AD Connect 升級，請將預備伺服器升級到最新版本。 如果您要從 Azure AD 同步進行移動，請在預備伺服器上安裝 Azure AD Connect。
@@ -71,24 +69,22 @@
 
 在兩台伺服器上都必須以相同方式設定的項目：
 
-- 至相同樹系的連線。
-- 所有網域及 OU 篩選
-- 相同的選用功能，例如密碼同步處理及密碼回寫功能。
+* 至相同樹系的連線。
+* 所有網域及 OU 篩選
+* 相同的選用功能，例如密碼同步處理及密碼回寫功能。
 
 **移動同步處理規則**  
 ：如要移動自訂的同步處理規則，請執行下列步驟：
 
 1. 開啟作用中伺服器上的 [同步處理規則編輯器]  。
 2. 選取您的自訂規則。 按一下 [匯出] 。 此時會出現一個記事本視窗。 把暫存檔案儲存成副檔名為 PS1 的檔案，這會讓該檔案變成 PowerShell 指令碼。 將該 PS1 檔案複製到預備伺服器上。
-![同步處理規則匯出](./media/active-directory-aadconnect-upgrade-previous-version/exportrule.png)
+   ![同步處理規則匯出](./media/active-directory-aadconnect-upgrade-previous-version/exportrule.png)
 3. 預備伺服器的連接器 GUID 會跟作用中伺服器的不一樣。 如要取得 GUID，請啟動 [同步處理規則編輯器]、選取某個代表相同的已連接系統之預設規則，然後按一下 [匯出]。 請用預備伺服器的 GUID 取代 PS1 檔中的 GUID。
 4. 在 PowerShell 命令提示字元中執行 PS1 檔， 以便在預備伺服器上建立自訂的同步處理規則。
 5. 如果您有多個自訂規則，請為所有自訂規則重複上述步驟。
 
 ## <a name="next-steps"></a>後續步驟
 深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
-
-
 
 <!--HONumber=Oct16_HO2-->
 

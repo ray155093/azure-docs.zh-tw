@@ -1,24 +1,22 @@
-<properties
-    pageTitle="在 Azure HDInsight Hive 資料表中進行資料取樣 | Microsoft Azure"
-    description="在 Azure HDInsight (Hadopop) Hive 資料表中進行資料向下取樣"
-    services="machine-learning,hdinsight"
-    documentationCenter=""
-    authors="bradsev"
-    manager="jhubbard"
-    editor="cgronlun"  />
+---
+title: 在 Azure HDInsight Hive 資料表中進行資料取樣 | Microsoft Docs
+description: 在 Azure HDInsight (Hadopop) Hive 資料表中進行資料向下取樣
+services: machine-learning,hdinsight
+documentationcenter: ''
+author: bradsev
+manager: jhubbard
+editor: cgronlun
 
-<tags
-    ms.service="machine-learning"
-    ms.workload="data-services"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/19/2016"
-    ms.author="hangzh;bradsev" />
+ms.service: machine-learning
+ms.workload: data-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/19/2016
+ms.author: hangzh;bradsev
 
-
+---
 # <a name="sample-data-in-azure-hdinsight-hive-tables"></a>在 Azure HDInsight Hive 資料表中進行資料取樣
-
 本文將說明如何使用 Hive 查詢，對 Azure HDInsight Hive 資料表中儲存的資料進行向下取樣。 我們將討論三個普遍使用的取樣方法：
 
 * 統一隨機取樣
@@ -30,10 +28,9 @@
 
 以下 **功能表** 所連結的主題會說明如何從各種不同儲存體環境進行資料取樣。
 
-[AZURE.INCLUDE [cap-sample-data-selector](../../includes/cap-sample-data-selector.md)]
+[!INCLUDE [cap-sample-data-selector](../../includes/cap-sample-data-selector.md)]
 
 這個取樣工作是 [Team Data Science Process (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/)中的一個步驟。
-
 
 ## <a name="how-to-submit-hive-queries"></a>如何提交 Hive 查詢
 Hive 查詢可以從 Hadoop 叢集前端節點上的 Hadoop 命令列主控台提交。 若要執行這個動作，請登入 Hadoop 叢集的前端節點、開啟 Hadoop 命令列主控台，然後從該處提交 Hive 查詢。 如需在 Hadoop 命令列主控台中提交 Hive 查詢的相關指示，請參閱[如何提交 Hive 查詢](machine-learning-data-science-move-hive-tables.md#submit)。
@@ -57,7 +54,6 @@ Hive 查詢可以從 Hadoop 叢集前端節點上的 Hadoop 命令列主控台�
 在此處， `<sample rate, 0-1>` 會指定使用者想要取樣的記錄比例。
 
 ## <a name="<a-name="group"></a>-random-sampling-by-groups"></a><a name="group"></a> 依群組隨機取樣
-
 對類別資料進行取樣時，您可能想要包含或排除類別變數中某些特殊值的所有執行個體。 這就是「依群組取樣」的意思。
 例如，如果您有一個類別變數 "State"，其擁有 NY、MA、CA、NJ、PA 等值，則您會想要讓相同狀態的記錄一律在一起，而不論是否要對它們進行取樣。
 
@@ -88,7 +84,6 @@ Hive 查詢可以從 Hadoop 叢集前端節點上的 Hadoop 命令列主控台�
     on b.catfield=c.catfield
 
 ## <a name="<a-name="stratified"></a>stratified-sampling"></a><a name="stratified"></a>分層取樣
-
 在類別變數方面，若取得的樣本具有該類別的值，而這些值的比率與從中取得樣本的母體相同，則隨機取樣就會進行分層。 使用上述同一個範例，假設您的資料擁有依狀態分層的子母體，例如 NJ 具有 100 個觀察、NY 具有 60 個觀察，而 WA 具有 300 個觀察。 如果您將分層取樣的比率指定為 0.5，則針對 NJ、NY 及 WA 所獲得的樣本分別應大約有 50、30 及 150 個觀察。
 
 查詢範例如下：
@@ -108,8 +103,6 @@ Hive 查詢可以從 Hadoop 叢集前端節點上的 Hadoop 命令列主控台�
 
 
 如需可在 Hive 中使用的進一步進階取樣方法相關資訊，請參閱 [LanguageManual 取樣](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Sampling)。
-
-
 
 <!--HONumber=Oct16_HO2-->
 

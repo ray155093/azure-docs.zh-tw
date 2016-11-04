@@ -1,28 +1,26 @@
-<properties
-   pageTitle="Windows VM 上使用範本的自訂指令碼 | Microsoft Azure"
-   description="使用自訂指令碼擴充功能搭配資源管理員範本，將 Windows VM 組態工作自動化"
-   services="virtual-machines-windows"
-   documentationCenter=""
-   authors="kundanap"
-   manager="timlt"
-   editor=""
-   tags="azure-resource-manager"/>
+---
+title: Windows VM 上使用範本的自訂指令碼 | Microsoft Docs
+description: 使用自訂指令碼擴充功能搭配資源管理員範本，將 Windows VM 組態工作自動化
+services: virtual-machines-windows
+documentationcenter: ''
+author: kundanap
+manager: timlt
+editor: ''
+tags: azure-resource-manager
 
-<tags
-   ms.service="virtual-machines-windows"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="vm-windows"
-   ms.workload="infrastructure-services"
-   ms.date="03/29/2016"
-   ms.author="kundanap"/>
+ms.service: virtual-machines-windows
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: vm-windows
+ms.workload: infrastructure-services
+ms.date: 03/29/2016
+ms.author: kundanap
 
+---
 # 與 Azure Resource Manager 範本搭配的 Windows VM 自訂指令碼擴充功能
-
-[AZURE.INCLUDE [virtual-machines-common-extensions-customscript](../../includes/virtual-machines-common-extensions-customscript.md)]
+[!INCLUDE [virtual-machines-common-extensions-customscript](../../includes/virtual-machines-common-extensions-customscript.md)]
 
 ## Windows VM 的範本範例
-
 在範本的「資源」區段中定義下列資源。
 
        {
@@ -52,7 +50,6 @@
 如果您想要將指令碼 URL 和參數保持為私用，您可以將指令碼 URL 設定為 **private**。如果將指令碼 URL 設定為 **private**，將只有使用儲存體帳戶名稱和金鑰 (以受保護的設定形式傳送) 才能存取它。使用 1.7 版或更新版的「自訂指令碼」擴充功能時，也可以用受保護的設定形式來提供指令碼參數。
 
 ## 搭配受保護設定的 Windows VM 範本範例
-
         {
         "publisher": "Microsoft.Compute",
         "type": "CustomScriptExtension",

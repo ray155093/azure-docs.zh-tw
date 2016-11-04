@@ -1,23 +1,22 @@
-<properties
-	pageTitle="建立存取權變更歷程記錄報告 | Microsoft Azure"
-	description="產生一份報告，其中列出您的 Azure 訂用帳戶 (採用角色型存取控制) 在過去 90 天內的所有存取權變更。"
-	services="active-directory"
-	documentationCenter=""
-	authors="kgremban"
-	manager="femila"
-	editor=""/>
+---
+title: 建立存取權變更歷程記錄報告 | Microsoft Docs
+description: 產生一份報告，其中列出您的 Azure 訂用帳戶 (採用角色型存取控制) 在過去 90 天內的所有存取權變更。
+services: active-directory
+documentationcenter: ''
+author: kgremban
+manager: femila
+editor: ''
 
-<tags
-	ms.service="active-directory"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.tgt_pltfrm="na"
-	ms.workload="identity"
-	ms.date="08/03/2016"
-	ms.author="kgremban"/>
+ms.service: active-directory
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: identity
+ms.date: 08/03/2016
+ms.author: kgremban
 
+---
 # 建立存取權變更歷程記錄報告
-
 每當有人授與或撤銷您訂用帳戶中的存取權時，變更就會記錄在 Azure 事件中。您可以建立存取權變更歷程記錄報告，以查看過去 90 天內的所有變更。
 
 ## 使用 Azure PowerShell 建立報告
@@ -26,19 +25,19 @@
 呼叫此命令時，您可以指定要列出哪一個指派屬性，其中包括下列屬性︰
 
 | 屬性 | 說明 |
-| -------- | ----------- |
-| **Action** | 已授與或已撤銷存取權 |
-| **Caller** | 負責存取權變更的擁有者 |
-| **Date** | 變更存取權的日期和時間 |
-| **DirectoryName** | Azure Active Directory 目錄 |
-| **PrincipalName** | 使用者、群組或應用程式的名稱 |
-| **PrincipalType** | 指派對象為使用者、群組或應用程式 |
-| **RoleId** | 已授與或已撤銷之角色的 GUID |
-| **RoleName** | 已授與或已撤銷的角色 |
-| **ScopeName** | 訂用帳戶、資源群組或資源的名稱 |
-| **ScopeType** | 指派的範圍是訂用帳戶、資源群組或資源 |
-| **SubscriptionId** | Azure 訂用帳戶的 GUID |
-| **SubscriptionName** | Azure 訂用帳戶的名稱 |
+| --- | --- |
+| **Action** |已授與或已撤銷存取權 |
+| **Caller** |負責存取權變更的擁有者 |
+| **Date** |變更存取權的日期和時間 |
+| **DirectoryName** |Azure Active Directory 目錄 |
+| **PrincipalName** |使用者、群組或應用程式的名稱 |
+| **PrincipalType** |指派對象為使用者、群組或應用程式 |
+| **RoleId** |已授與或已撤銷之角色的 GUID |
+| **RoleName** |已授與或已撤銷的角色 |
+| **ScopeName** |訂用帳戶、資源群組或資源的名稱 |
+| **ScopeType** |指派的範圍是訂用帳戶、資源群組或資源 |
+| **SubscriptionId** |Azure 訂用帳戶的 GUID |
+| **SubscriptionName** |Azure 訂用帳戶的名稱 |
 
 此範例命令會列出過去 7 天訂用帳戶中的所有存取權變更：
 
@@ -57,7 +56,7 @@ Get-AzureRMAuthorizationChangeLog -StartTime ([DateTime]::Now - [TimeSpan]::From
 ![以試算表形式來檢視的變更記錄 - 螢幕擷取畫面](./media/role-based-access-control-configure/change-history-spreadsheet.png)
 
 ## 另請參閱
-- 開始使用 [Azure 角色型存取控制](role-based-access-control-configure.md)
-- 使用 [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)
+* 開始使用 [Azure 角色型存取控制](role-based-access-control-configure.md)
+* 使用 [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)
 
 <!---HONumber=AcomDC_0810_2016------>

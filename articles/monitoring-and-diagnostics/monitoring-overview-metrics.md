@@ -1,59 +1,54 @@
-<properties
-    pageTitle="Microsoft Azure 中的度量概觀 | Microsoft Azure"
-    description="Microsoft Azure 中的度量及其用法概觀"
-    authors="kamathashwin"
-    manager=""
-    editor=""
-    services="monitoring-and-diagnostics"
-    documentationCenter="monitoring-and-diagnostics"/>
+---
+title: Microsoft Azure 中的度量概觀 | Microsoft Docs
+description: Microsoft Azure 中的度量及其用法概觀
+author: kamathashwin
+manager: ''
+editor: ''
+services: monitoring-and-diagnostics
+documentationcenter: monitoring-and-diagnostics
 
-<tags
-    ms.service="monitoring-and-diagnostics"
-    ms.workload="na"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/26/2016"
-    ms.author="ashwink"/>
+ms.service: monitoring-and-diagnostics
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/26/2016
+ms.author: ashwink
 
-
-# <a name="overview-of-metrics-in-microsoft-azure"></a>Microsoft Azure 中的度量概觀 
-
+---
+# <a name="overview-of-metrics-in-microsoft-azure"></a>Microsoft Azure 中的度量概觀
 本文章說明何謂 Microsoft Azure 中的度量、其優點，以及如何開始使用它們。  
 
 ## <a name="what-are-metrics?"></a>何謂度量？
-
 Azure 監視器可讓您取用遙測來查看您 Azure 工作負載的效能與健全狀況。 Azure 遙測資料最重要的類型是由大多數 Azure 資源所發出的度量 (也稱為效能計數器)。 Azure 監視器提供數種方式可設定及取用這些度量進行監視與疑難排解。
 
-
 ## <a name="what-can-you-do-with-metrics?"></a>度量能讓您做什麼？
-
 度量是遙測的寶貴來源，可讓您執行下列動作：
 
-- **追蹤資源** (例如 VM、網站或邏輯應用程式) 的效能，方法是在入口網站圖表上繪製其度量，並將該圖表釘選到儀表板。
-- **取得問題的通知** ，該問題在度量超出特定的閾值時會影響資源的效能。
-- **設定自動化動作**，例如自動調整資源，或在度量超出特定的閾值時觸發 Runbook。
-- **執行進階分析** 或報告您資源的效能或使用量趨勢。
-- **封存**您資源的效能或健全狀況歷程記錄以用於**相容性/稽核**。
+* **追蹤資源** (例如 VM、網站或邏輯應用程式) 的效能，方法是在入口網站圖表上繪製其度量，並將該圖表釘選到儀表板。
+* **取得問題的通知** ，該問題在度量超出特定的閾值時會影響資源的效能。
+* **設定自動化動作**，例如自動調整資源，或在度量超出特定的閾值時觸發 Runbook。
+* **執行進階分析** 或報告您資源的效能或使用量趨勢。
+* **封存**您資源的效能或健全狀況歷程記錄以用於**相容性/稽核**。
 
-##  <a name="metric-characteristics"></a>度量特性
+## <a name="metric-characteristics"></a>度量特性
 度量具有下列特性︰
 
-- 所有度量皆有 **1 分鐘的頻率**。 您每分鐘會從您的資源收到度量值，讓您可幾乎即時地看到資源的狀態和健全狀況。
-- 度量是 **現成可用的，不需要選擇加入** 或設定額外的診斷。
-- 您可以針對每個度量存取 **30 天的歷程記錄** 。 您可以快速查看最近和每個月的資源效能或健全狀況趨勢。
+* 所有度量皆有 **1 分鐘的頻率**。 您每分鐘會從您的資源收到度量值，讓您可幾乎即時地看到資源的狀態和健全狀況。
+* 度量是 **現成可用的，不需要選擇加入** 或設定額外的診斷。
+* 您可以針對每個度量存取 **30 天的歷程記錄** 。 您可以快速查看最近和每個月的資源效能或健全狀況趨勢。
 
 您可以：
 
-- 當您選取資源並將資源繪製在圖表上時，透過 Azure 入口網站輕鬆探索、存取及 **檢視所有度量** 。 
-- 設定當度量超出您設定的閾值時， **會傳送通知或採取自動化動作的度量警示規則** 。 自動調整是一種特殊的自動化動作，可讓您相應放大資源來符合您網站或計算資源的連入要求或負載。 您可以設定自動調整設定規則，根據超出閾值的度量相應放大/縮小。
-- **封存** 度量來延長時間或用於離線報告。 當您設定資源的診斷設定時，可以將度量路由至 Blob 儲存體。
-- **串流** 度量到事件中樞，可讓您將它們路由至 Azure 串流分析或自訂應用程式，以進行近乎即時的分析。 您可以使用診斷設定。
-- **路由** 所有度量至 OMS Log Analytics，以解除鎖定即時分析、搜尋及自訂來自您資源的度量資料警示。
-- **取用** 度量。
-- **查詢** 度量。
-
- ![Azure 監視器中的度量路由](./media/monitoring-overview-metrics/MetricsOverview0.png)
+* 當您選取資源並將資源繪製在圖表上時，透過 Azure 入口網站輕鬆探索、存取及 **檢視所有度量** 。 
+* 設定當度量超出您設定的閾值時， **會傳送通知或採取自動化動作的度量警示規則** 。 自動調整是一種特殊的自動化動作，可讓您相應放大資源來符合您網站或計算資源的連入要求或負載。 您可以設定自動調整設定規則，根據超出閾值的度量相應放大/縮小。
+* **封存** 度量來延長時間或用於離線報告。 當您設定資源的診斷設定時，可以將度量路由至 Blob 儲存體。
+* **串流** 度量到事件中樞，可讓您將它們路由至 Azure 串流分析或自訂應用程式，以進行近乎即時的分析。 您可以使用診斷設定。
+* **路由** 所有度量至 OMS Log Analytics，以解除鎖定即時分析、搜尋及自訂來自您資源的度量資料警示。
+* **取用** 度量。
+* **查詢** 度量。
+  
+  ![Azure 監視器中的度量路由](./media/monitoring-overview-metrics/MetricsOverview0.png)
 
 ## <a name="access-metrics-via-portal"></a>透過入口網站存取度量
 以下是透過 Azure 入口網站建立度量圖表的快速逐步解說
@@ -63,8 +58,8 @@ Azure 監視器可讓您取用遙測來查看您 Azure 工作負載的效能與�
 2. 建立新的 App Service - 網站。
 3. 建立網站之後，請移至網站的 [概觀] 刀鋒視窗。
 4. 您可以「監視」圖格檢視新度量。 您可以編輯圖格並選取更多度量
-
- ![Azure 監視器中的資源度量](./media/monitoring-overview-metrics/MetricsOverview1.png)    
+   
+   ![Azure 監視器中的資源度量](./media/monitoring-overview-metrics/MetricsOverview1.png)    
 
 ### <a name="access-all-metrics-in-a-single-place"></a>在單一位置存取所有度量
 1. 開啟 Azure 入口網站 
@@ -73,19 +68,24 @@ Azure 監視器可讓您取用遙測來查看您 Azure 工作負載的效能與�
 4. 您現在可以檢視可用的度量清單。 
 5. 選取您感興趣的度量並繪製它。 
 6. 您可以按一下右上角的 [釘選]，將它釘選至儀表板。
+   
+   ![在 Azure 監視器中的單一位置存取所有度量](./media/monitoring-overview-metrics/MetricsOverview2.png) 
 
- ![在 Azure 監視器中的單一位置存取所有度量](./media/monitoring-overview-metrics/MetricsOverview2.png) 
-
-
->[AZURE.NOTE] 您可以從 VM (以 Azure Resource Manager 為基礎) 存取主機層級的度量和 VM 擴展集，而不需要任何額外的診斷設定。 這些新的主機層級度量可供 Windows 和 Linux 執行個體使用。 這些度量不會與您在 VM 或 VMSS 上開啟 Azure 診斷時具有存取權的客體 OS 層級度量混淆。 若要深入了解設定 Azure 診斷，請參閱 [什麼是 Microsoft Azure 診斷](../azure-diagnostics.md)。
+> [!NOTE]
+> 您可以從 VM (以 Azure Resource Manager 為基礎) 存取主機層級的度量和 VM 擴展集，而不需要任何額外的診斷設定。 這些新的主機層級度量可供 Windows 和 Linux 執行個體使用。 這些度量不會與您在 VM 或 VMSS 上開啟 Azure 診斷時具有存取權的客體 OS 層級度量混淆。 若要深入了解設定 Azure 診斷，請參閱 [什麼是 Microsoft Azure 診斷](../azure-diagnostics.md)。
+> 
+> 
 
 ## <a name="access-metrics-via-rest-api"></a>透過 REST API 存取度量
 可以透過 Azure 監視器 API 存取 Azure 度量。 有兩個 API 可協助您探索及存取度量。 使用： 
 
-- [Azure 監視器度量定義 REST API](https://msdn.microsoft.com/library/mt743621.aspx) 來存取可供服務使用的度量清單。
-- [Azure 監視器度量 REST API](https://msdn.microsoft.com/library/mt743622.aspx) 來存取實際的度量資料
+* [Azure 監視器度量定義 REST API](https://msdn.microsoft.com/library/mt743621.aspx) 來存取可供服務使用的度量清單。
+* [Azure 監視器度量 REST API](https://msdn.microsoft.com/library/mt743622.aspx) 來存取實際的度量資料
 
->[AZURE.NOTE] 本文章透過 Azure 資源的 [新度量 API](https://msdn.microsoft.com/library/dn931930.aspx) 涵蓋度量。 新度量定義 API 的 API 版本為 2016-03-01，度量 API 的版本為 2016-09-01。 可以使用 API 版本 2014-04-01 存取舊版的度量定義和度量。
+> [!NOTE]
+> 本文章透過 Azure 資源的 [新度量 API](https://msdn.microsoft.com/library/dn931930.aspx) 涵蓋度量。 新度量定義 API 的 API 版本為 2016-03-01，度量 API 的版本為 2016-09-01。 可以使用 API 版本 2014-04-01 存取舊版的度量定義和度量。
+> 
+> 
 
 如需使用 Azure 監視器 REST API 的更詳細逐步解說，請參閱 [Azure 監視器 REST API 逐步解說](monitoring-rest-api-walkthrough.md)。
 
@@ -112,36 +112,28 @@ Azure 監視器可讓您取用遙測來查看您 Azure 工作負載的效能與�
 ## <a name="supported-services-and-metrics"></a>支援的服務和度量
 Azure 監視器是新的度量基礎結構。 它支援下列 Azure 入口網站中的 Azure 服務和新版本的 Azure 監視器 API︰
 
-- VM (以 Azure Resource Manager 為基礎)
-- VM 擴展集
-- 批次
-- 事件中樞命名空間 
-- 服務匯流排命名空間 (僅限進階 SKU)
-- SQL (版本 12)
-- SQL 彈性集區
-- 網站
-- Web 伺服器陣列
-- Logic Apps
-- IoT 中樞
-- Redis 快取
-- 網路：應用程式閘道
-- 搜尋
+* VM (以 Azure Resource Manager 為基礎)
+* VM 擴展集
+* 批次
+* 事件中樞命名空間 
+* 服務匯流排命名空間 (僅限進階 SKU)
+* SQL (版本 12)
+* SQL 彈性集區
+* 網站
+* Web 伺服器陣列
+* Logic Apps
+* IoT 中樞
+* Redis 快取
+* 網路：應用程式閘道
+* 搜尋
 
 您可以在 [Azure 監視器度量 - 每個資源類型支援的度量](monitoring-supported-metrics.md)檢視所有支援服務及其度量的詳細清單。 
 
-
 ## <a name="next-steps"></a>後續步驟
-
 請參閱這整篇文章的連結。 此外，了解：  
 
-- 關於 [自動調整的常用度量](insights-autoscale-common-metrics.md)
-- 如何 [建立警示規則](insights-alerts-portal.md)
-
-
-
-
-
-
+* 關於 [自動調整的常用度量](insights-autoscale-common-metrics.md)
+* 如何 [建立警示規則](insights-alerts-portal.md)
 
 <!--HONumber=Oct16_HO2-->
 

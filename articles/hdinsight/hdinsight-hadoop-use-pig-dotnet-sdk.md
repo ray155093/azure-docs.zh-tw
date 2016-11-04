@@ -1,104 +1,99 @@
-<properties
-   pageTitle="在 HDInsight 中搭配使用 Hadoop Pig 與 .NET | Microsoft Azure"
-   description="了解如何使用 .NET SDK for Hadoop 將 Pig 工作提交至 HDInsight 上的 Hadoop。"
-   services="hdinsight"
-   documentationCenter=".net"
-   authors="Blackmist"
-   manager="jhubbard"
-   editor="cgronlun"
-   tags="azure-portal"/>
+---
+title: 在 HDInsight 中搭配使用 Hadoop Pig 與 .NET | Microsoft Docs
+description: 了解如何使用 .NET SDK for Hadoop 將 Pig 工作提交至 HDInsight 上的 Hadoop。
+services: hdinsight
+documentationcenter: .net
+author: Blackmist
+manager: jhubbard
+editor: cgronlun
+tags: azure-portal
 
-<tags
-   ms.service="hdinsight"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="big-data"
-   ms.date="09/06/2016"
-   ms.author="larryfr"/>
+ms.service: hdinsight
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: big-data
+ms.date: 09/06/2016
+ms.author: larryfr
 
-#在 HDInsight 中使用 .NET SDK for Hadoop 執行 Pig 工作
-
-[AZURE.INCLUDE [pig-selector](../../includes/hdinsight-selector-use-pig.md)]
+---
+# 在 HDInsight 中使用 .NET SDK for Hadoop 執行 Pig 工作
+[!INCLUDE [pig-selector](../../includes/hdinsight-selector-use-pig.md)]
 
 本文件提供使用 .NET SDK for Hadoop 將 Pig 工作提交至 HDInsight 叢集上的 Hadoop 的範例。
 
 HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使用 HDInsight 叢集。Pig 可讓您透過建立一系列資料轉換的模型，來建立 MapReduce 作業。您將學習如何使用基本 C# 應用程式將 Pig 工作提交至 HDInsight 叢集。
 
-[AZURE.INCLUDE [azure-portal](../../includes/hdinsight-azure-portal.md)]
+[!INCLUDE [azure-portal](../../includes/hdinsight-azure-portal.md)]
 
 * [在 HDInsight 中使用 .NET SDK for Hadoop 執行 Pig 工作](hdinsight-hadoop-use-pig-dotnet-sdk-v1.md)
 
 ## 必要條件
-
 若要完成本文中的步驟，您需要下列項目。
 
 * Azure HDInsight (HDInsight 上的 Hadoop) 叢集 (Windows 或 Linux 型)。
 * Visual Studio 2012、2013 或 2015。
 
 ## 建立應用程式
-
 HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使用 HDInsight 叢集。
-
 
 1. 開啟 Visual Studio 2012 或 2013
 2. 從 [**檔案**] 功能表中，選取 [**新增**]，然後選取 [**專案**]。
 3. 對於新的專案，輸入或選取下列值。
-
-	<table>
-	<tr>
-	<th>屬性</th>
-	<th>值</th>
-	</tr>
-	<tr>
-	<th>類別</th>
-	<th>範本/Visual C#/Windows</th>
-	</tr>
-	<tr>
-	<th>範本</th>
-	<th>主控台應用程式</th>
-	</tr>
-	<tr>
-	<th>名稱</th>
-	<th>SubmitPigJob</th>
-	</tr>
-	</table>
+   
+    <table>
+    <tr>
+    <th>屬性</th>
+    <th>值</th>
+    </tr>
+    <tr>
+    <th>類別</th>
+    <th>範本/Visual C#/Windows</th>
+    </tr>
+    <tr>
+    <th>範本</th>
+    <th>主控台應用程式</th>
+    </tr>
+    <tr>
+    <th>名稱</th>
+    <th>SubmitPigJob</th>
+    </tr>
+    </table>
 4. 按一下 [確定] 以建立專案。
 5. 從 [**工具**] 功能表中，選取 [**程式庫封裝管理員**] 或 [**Nuget 封裝管理員**]，然後選取 [**封裝管理員主控台**]。
 6. 在主控台中執行下列命令，以安裝 .NET SDK 封裝。
-
+   
         Install-Package Microsoft.Azure.Management.HDInsight.Job
-
 7. 在 [方案總管] 中，按兩下 **Program.cs** 加以開啟。將現有程式碼取代為下者。
-
+   
         using Microsoft.Azure.Management.HDInsight.Job;
         using Microsoft.Azure.Management.HDInsight.Job.Models;
         using Hyak.Common;
-
+   
         namespace SubmitHDInsightJobDotNet
         {
             class Program
             {
                 private static HDInsightJobManagementClient _hdiJobManagementClient;
-
+   
                 private const string ExistingClusterName = "<Your HDInsight Cluster Name>";
                 private const string ExistingClusterUri = ExistingClusterName + ".azurehdinsight.net";
                 private const string ExistingClusterUsername = "<Cluster Username>";
                 private const string ExistingClusterPassword = "<Cluster User Password>";
-
+   
                 static void Main(string[] args)
                 {
                     System.Console.WriteLine("The application is running ...");
-
+   
                     var clusterCredentials = new BasicAuthenticationCloudCredentials { Username = ExistingClusterUsername, Password = ExistingClusterPassword };
                     _hdiJobManagementClient = new HDInsightJobManagementClient(ExistingClusterUri, clusterCredentials);
-
+   
                     SubmitPigJob();
-
+   
                     System.Console.WriteLine("Press ENTER to continue ...");
                     System.Console.ReadLine();
                 }
-
+   
                 private static void SubmitPigJob()
                 {
                     var parameters = new PigJobSubmissionParameters
@@ -111,7 +106,7 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
                                     RESULT = order FREQUENCIES by COUNT desc;
                                     DUMP RESULT;"
                     };
-
+   
                     System.Console.WriteLine("Submitting the Pig job to the cluster...");
                     var response = _hdiJobManagementClient.JobManagement.SubmitPigJob(parameters);
                     System.Console.WriteLine("Validating that the response is as expected...");
@@ -121,17 +116,13 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
                 }
             }
         }
-
-
-7. 按 **F5** 啟動應用程式。
-8. 按 **ENTER** 結束應用程式。
+8. 按 **F5** 啟動應用程式。
+9. 按 **ENTER** 結束應用程式。
 
 ## 摘要
-
 如您所見，.NET SDK for Hadoop 可讓您建立 .NET 應用程式，以將 Pig 作業提交至 HDInsight 叢集，以及監視作業狀態。
 
 ## 後續步驟
-
 如需 HDInsight 中 Pig 的一般資訊。
 
 * [搭配使用 Pig 與 HDInsight 上的 Hadoop](hdinsight-use-pig.md)
@@ -139,8 +130,8 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使�
 如需您可以在 HDInsight 上使用 Hadoop 之其他方式的詳細資訊。
 
 * [搭配使用 Hive 與 HDInsight 上的 Hadoop](hdinsight-use-hive.md)
-
 * [搭配使用 MapReduce 與 HDInsight 上的 Hadoop](hdinsight-use-mapreduce.md)
+
 [preview-portal]: https://portal.azure.com/
 
 <!---HONumber=AcomDC_0914_2016-->

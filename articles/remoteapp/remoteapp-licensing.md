@@ -1,25 +1,25 @@
-<properties
-    pageTitle="Azure RemoteApp 授權 | Microsoft Azure"
-    description="了解 Azure RemoteApp 中的授權如何運作。"
-    services="remoteapp"
-    documentationCenter=""
-    authors="lizap"
-    manager="mbaldwin" />
+---
+title: Azure RemoteApp 授權 | Microsoft Docs
+description: 了解 Azure RemoteApp 中的授權如何運作。
+services: remoteapp
+documentationcenter: ''
+author: lizap
+manager: mbaldwin
 
-<tags
-    ms.service="remoteapp"
-    ms.workload="compute"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="get-started-article"
-    ms.date="08/15/2016"
-    ms.author="elizapo" />
+ms.service: remoteapp
+ms.workload: compute
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: get-started-article
+ms.date: 08/15/2016
+ms.author: elizapo
 
-
+---
 # Azure RemoteApp 中的授權如何運作？
-
-> [AZURE.IMPORTANT]
-Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+> [!IMPORTANT]
+> Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+> 
+> 
 
 您已設定好 Azure RemoteApp 服務和建立範本，準備向使用者發佈應用程式。但還有最後一件事必須解決：授權。只是，如何為 RemoteApp 和您透過 RemoteApp 共用的應用程式使用授權？
 

@@ -1,37 +1,33 @@
-<properties
-    pageTitle="在 Log Analytics 中使用 Service Fabric 解決方案進行環境最佳化 | Microsoft Azure"
-    description="您可以使用 Service Fabric 解決方案評估 Service Fabric 應用程式、微服務、節點和叢集的風險和健全狀況。"
-    services="log-analytics"
-    documentationCenter=""
-    authors="niniikhena"
-    manager="jochan"
-    editor=""/>
+---
+title: 在 Log Analytics 中使用 Service Fabric 解決方案進行環境最佳化 | Microsoft Docs
+description: 您可以使用 Service Fabric 解決方案評估 Service Fabric 應用程式、微服務、節點和叢集的風險和健全狀況。
+services: log-analytics
+documentationcenter: ''
+author: niniikhena
+manager: jochan
+editor: ''
 
-<tags
-    ms.service="log-analytics"
-    ms.workload="na"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/21/2016"
-    ms.author="nini"/>
+ms.service: log-analytics
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/21/2016
+ms.author: nini
 
-
-
-
-
+---
 # <a name="service-fabric-solution-in-log-analytics"></a>Service Fabric Solution in Log Analytics (Log Analytics 中的 Service Fabric 方案)
-
-> [AZURE.SELECTOR]
-- [Resource Manager](log-analytics-service-fabric-azure-resource-manager.md)
-- [PowerShell](log-analytics-service-fabric.md)
+> [!div class="op_single_selector"]
+> * [Resource Manager](log-analytics-service-fabric-azure-resource-manager.md)
+> * [PowerShell](log-analytics-service-fabric.md)
+> 
+> 
 
 本文說明如何在 Log Analytics 中使用 Service Fabric 解決方案，來協助識別 Service Fabric 叢集中的問題並且進行疑難排解，方法是取得 Service Fabric 節點如何執行，以及您的應用程式和微服務如何執行的可見度。
 
 Service Fabric 解決方案會從 Service Fabric VM 使用 Azure 診斷資料，方法是從 Azure WAD 資料表收集此資料。 然後 Log Analytics 會讀取 Service Fabric 架構事件，包括**可靠的服務事件**、**動作項目事件**、**操作事件**和**自訂 ETW 事件**。 Service Fabric 解決方案儀表板會向您顯示 Service Fabric 環境中值得注意的問題和相關事件。
 
 ## <a name="installing-and-configuring-the-solution"></a>安裝和設定方案
-
 請遵循這三個簡單步驟以安裝及設定解決方案︰
 
 1. 請確定您使用的 OMS 工作區與您用來建立所有叢集資源 (包括儲存體帳戶) 的相同 Azure 訂用帳戶相關聯。 請參閱[開始使用 Log Analytics](log-analytics-get-started.md)建立 OMS 工作區的詳細資訊。
@@ -41,17 +37,19 @@ Service Fabric 解決方案會從 Service Fabric VM 使用 Azure 診斷資料，
 ## <a name="configure-oms-to-collect-and-view-service-fabric-logs"></a>設定 OMS 以收集及檢視 Service Fabric 記錄檔
 在本節中，您將學習如何設定 OMS 以擷取 Service Fabric 記錄檔。 記錄檔可讓您使用 OMS 入口網站，檢視、分析您的叢集或該叢集中執行之應用程式與服務的問題，並且進行疑難排解。
 
->[AZURE.NOTE] Azure 診斷延伸模組必須設定為將記錄檔上傳至與 OMS 搜尋目標相符的儲存體資料表。 如需如何收集記錄檔的詳細資訊，請參閱[如何使用 Azure 診斷收集記錄檔](../service-fabric/service-fabric-diagnostics-how-to-setup-wad.md)。 這份文章中的組態設定範例將顯示儲存體資料表的名稱。 一旦在叢集上設定診斷，並且將記錄檔上傳至儲存體帳戶，下一個步驟是設定 OMS 來收集這些記錄檔。
+> [!NOTE]
+> Azure 診斷延伸模組必須設定為將記錄檔上傳至與 OMS 搜尋目標相符的儲存體資料表。 如需如何收集記錄檔的詳細資訊，請參閱[如何使用 Azure 診斷收集記錄檔](../service-fabric/service-fabric-diagnostics-how-to-setup-wad.md)。 這份文章中的組態設定範例將顯示儲存體資料表的名稱。 一旦在叢集上設定診斷，並且將記錄檔上傳至儲存體帳戶，下一個步驟是設定 OMS 來收集這些記錄檔。
+> 
+> 
 
 確定您更新 **template.json** 檔案中的 **EtwEventSourceProviderConfiguration** 區段，以在藉由執行 **deploy.ps1** EventSources 的項目。 要上傳的資料表與 (ETWEventTable) 相同。 目前，OMS 只能讀取該資料表的應用程式 ETW 事件。 不過，支援自訂 ETW 資料表正在開發中。
 
 下列工具是用來執行此章節中的某些作業：
 
--   Azure PowerShell
--   [Operations Management Suite](http://www.microsoft.com/oms)
+* Azure PowerShell
+* [Operations Management Suite](http://www.microsoft.com/oms)
 
 ### <a name="configure-an-oms-workspace-to-show-the-cluster-logs"></a>設定 OMS 工作區來顯示叢集記錄檔
-
 如上所述建立 OMS 工作區之後，接下來就是設定工作區，從 Azure 儲存體資料表中提取診斷延伸模組從叢集上傳的記錄檔。 若要這樣做，請執行下列 PowerShell 指令碼：
 
 ```
@@ -345,34 +343,32 @@ Set-AzureRmOperationalInsightsIntelligencePack -ResourceGroupName $workspace.Res
 ![Service Fabric 圖格](./media/log-analytics-service-fabric/sf2.png)
 
 ### <a name="view-service-fabric-events"></a>檢視 Service Fabric 事件
-
 按一下 [Service Fabric] 圖格以開啟 Service Fabric 儀表板。 此儀表板包含下表中的資料行。 每個資料行依計數列出前十個事件，這幾個事件符合該資料行中指定時間範圍的準則。 您可以按一下每個資料行右下角的 [查看全部] ，或按一下資料行標頭，以執行記錄搜尋來提供完整清單。
 
 | **Service Fabric 事件** | **description** |
 | --- | --- |
-| 值得注意的問題 | 顯示問題，例如 RunAsyncFailures RunAsynCancellations 和節點關閉。 |
-| 運作事件 | 值得注意的運作事件，例如應用程式升級和部署。 |
-| 可靠的服務事件 | 值得注意的可靠服務事件，例如 Runasyncinvocations。 |
-| 動作項目事件 | 您的微服務產生的值得注意動作項目事件，例如動作項目方法、動作項目啟用和停用等等所擲回的例外狀況。 |
-| 應用程式事件 | 您的應用程式產生的所有自訂 ETW 事件。 |
+| 值得注意的問題 |顯示問題，例如 RunAsyncFailures RunAsynCancellations 和節點關閉。 |
+| 運作事件 |值得注意的運作事件，例如應用程式升級和部署。 |
+| 可靠的服務事件 |值得注意的可靠服務事件，例如 Runasyncinvocations。 |
+| 動作項目事件 |您的微服務產生的值得注意動作項目事件，例如動作項目方法、動作項目啟用和停用等等所擲回的例外狀況。 |
+| 應用程式事件 |您的應用程式產生的所有自訂 ETW 事件。 |
 
 ![Service Fabric 儀表板](./media/log-analytics-service-fabric/sf3.png)
 
 ![Service Fabric 儀表板](./media/log-analytics-service-fabric/sf4.png)
 
-
 下表顯示 Service Fabric 的資料收集方法及如何收集資料的其他詳細資料。
 
 | 平台 | 直接代理程式 | SCOM 代理程式 | Azure 儲存體 | SCOM 是否為必要項目？ | 透過管理群組傳送的 SCOM 代理程式資料 | 收集頻率 |
-|---|---|---|---|---|---|---|
-|Windows|![否](./media/log-analytics-malware/oms-bullet-red.png)|![否](./media/log-analytics-malware/oms-bullet-red.png)| ![是](./media/log-analytics-malware/oms-bullet-green.png)|            ![否](./media/log-analytics-malware/oms-bullet-red.png)|![否](./media/log-analytics-malware/oms-bullet-red.png)|10 分鐘 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Windows |![否](./media/log-analytics-malware/oms-bullet-red.png) |![否](./media/log-analytics-malware/oms-bullet-red.png) |![是](./media/log-analytics-malware/oms-bullet-green.png) |![否](./media/log-analytics-malware/oms-bullet-red.png) |![否](./media/log-analytics-malware/oms-bullet-red.png) |10 分鐘 |
 
-
->[AZURE.NOTE] 您可以按一下儀表板頂端的 [根據最近 7 天的資料]，變更 Service Fabric 解決方案中這些事件的範圍。 您也可以顯示過去 7 天、1 天或 6 個小時內產生的事件。 或者，也可以選取 [自訂]，以指定自訂日期範圍。
-
+> [!NOTE]
+> 您可以按一下儀表板頂端的 [根據最近 7 天的資料]，變更 Service Fabric 解決方案中這些事件的範圍。 您也可以顯示過去 7 天、1 天或 6 個小時內產生的事件。 或者，也可以選取 [自訂]，以指定自訂日期範圍。
+> 
+> 
 
 ## <a name="troubleshoot-your-service-fabric-and-oms-configuration"></a>針對 Service Fabric 和 OMS 組態進行疑難排解
-
 如果您需要確認 OMS 組態，因為您無法在 OMS 中檢視事件資料，請使用下列指令碼。 它會讀取您的 Service Fabric 診斷組態，檢查有無資料寫入至資料表，並確認 OMS 已設定為從資料表讀取。
 
 ```
@@ -635,10 +631,7 @@ foreach($storageAccount in $storageAccountsToCheck)
 
 
 ## <a name="next-steps"></a>後續步驟
-
-- 使用 [Log Analytics 中的記錄檔搜尋](log-analytics-log-searches.md)，檢視詳細的 Service Fabric 事件資料。
-
-
+* 使用 [Log Analytics 中的記錄檔搜尋](log-analytics-log-searches.md)，檢視詳細的 Service Fabric 事件資料。
 
 <!--HONumber=Oct16_HO2-->
 

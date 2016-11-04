@@ -1,40 +1,37 @@
-<properties
-   pageTitle="針對 Linux VM 部署-RM 進行疑難排解 | Microsoft Azure"
-   description="針對在 Azure 中建立新 Linux 虛擬機器的 Resource Manager 部署問題進行疑難排解"
-   services="virtual-machines-linux, azure-resource-manager"
-   documentationCenter=""
-   authors="JiangChen79"
-   manager="felixwu"
-   editor=""
-   tags="top-support-issue, azure-resource-manager"/>
+---
+title: 針對 Linux VM 部署-RM 進行疑難排解 | Microsoft Docs
+description: 針對在 Azure 中建立新 Linux 虛擬機器的 Resource Manager 部署問題進行疑難排解
+services: virtual-machines-linux, azure-resource-manager
+documentationcenter: ''
+author: JiangChen79
+manager: felixwu
+editor: ''
+tags: top-support-issue, azure-resource-manager
 
-<tags
-  ms.service="virtual-machines-linux"
-  ms.workload="na"
-  ms.tgt_pltfrm="vm-linux"
-  ms.devlang="na"
-  ms.topic="article"
-  ms.date="09/09/2016"
-  ms.author="cjiang"/>
+ms.service: virtual-machines-linux
+ms.workload: na
+ms.tgt_pltfrm: vm-linux
+ms.devlang: na
+ms.topic: article
+ms.date: 09/09/2016
+ms.author: cjiang
 
-
+---
 # <a name="troubleshoot-resource-manager-deployment-issues-with-creating-a-new-linux-virtual-machine-in-azure"></a>針對在 Azure 中建立新 Linux 虛擬機器的 Resource Manager 部署問題進行疑難排解
+[!INCLUDE [virtual-machines-troubleshoot-deployment-new-vm-opening](../../includes/virtual-machines-troubleshoot-deployment-new-vm-opening-include.md)]
 
-[AZURE.INCLUDE [virtual-machines-troubleshoot-deployment-new-vm-opening](../../includes/virtual-machines-troubleshoot-deployment-new-vm-opening-include.md)]
-
-[AZURE.INCLUDE [support-disclaimer](../../includes/support-disclaimer.md)]
+[!INCLUDE [support-disclaimer](../../includes/support-disclaimer.md)]
 
 ## <a name="collect-audit-logs"></a>收集稽核記錄檔
-
 若要開始進行排解疑難，請收集稽核記錄，識別與問題相關的錯誤。 下列連結提供此程序該遵循的更多詳細資訊。
 
 [使用 Azure 入口網站針對資源群組部署進行疑難排解](../resource-manager-troubleshoot-deployments-portal.md)
 
 [使用 Resource Manager 來稽核作業](../resource-group-audit.md)
 
-[AZURE.INCLUDE [virtual-machines-troubleshoot-deployment-new-vm-issue1](../../includes/virtual-machines-troubleshoot-deployment-new-vm-issue1-include.md)]
+[!INCLUDE [virtual-machines-troubleshoot-deployment-new-vm-issue1](../../includes/virtual-machines-troubleshoot-deployment-new-vm-issue1-include.md)]
 
-[AZURE.INCLUDE [virtual-machines-linux-troubleshoot-deployment-new-vm-table](../../includes/virtual-machines-linux-troubleshoot-deployment-new-vm-table.md)]
+[!INCLUDE [virtual-machines-linux-troubleshoot-deployment-new-vm-table](../../includes/virtual-machines-linux-troubleshoot-deployment-new-vm-table.md)]
 
 **Y：** 如果作業系統是一般化的 Linux，且上傳和 (或) 擷取它時使用的是一般化設定，就不會有任何錯誤。 同樣地，如果作業系統是特殊化的 Linux，且上傳和 (或) 擷取它時使用的是特殊化設定，就不會有任何錯誤。
 
@@ -65,26 +62,24 @@
 
 **解決方式 1：**
 
-- 以較小的 VM 大小重試要求。
-- 如果無法變更要求的 VM 的大小︰
-  - 停止可用性設定組中的所有 VM。
-  按一下 [資源群組] > [您的資源群組] > [資源] > [您的可用性設定組] > [虛擬機器] > [您的虛擬機器] > [停止]。
-  - 所有 VM 都停止後，建立所需大小的新 VM。
-  - 先啟動新 VM，然後選取每個已停止的 VM 並按一下 [啟動] 。
+* 以較小的 VM 大小重試要求。
+* 如果無法變更要求的 VM 的大小︰
+  * 停止可用性設定組中的所有 VM。
+    按一下 [資源群組] > [您的資源群組] > [資源] > [您的可用性設定組] > [虛擬機器] > [您的虛擬機器] > [停止]。
+  * 所有 VM 都停止後，建立所需大小的新 VM。
+  * 先啟動新 VM，然後選取每個已停止的 VM 並按一下 [啟動] 。
 
 **原因 2：** 叢集沒有可用的資源。
 
 **解決方式 2：**
 
-- 稍後再重試要求。
-- 如果新的 VM 可以屬於不同的可用性設定組
-  - 在不同的可用性設定組 (位於相同區域) 中建立新的 VM。
-  - 將新的 VM 加入相同的虛擬網路。
+* 稍後再重試要求。
+* 如果新的 VM 可以屬於不同的可用性設定組
+  * 在不同的可用性設定組 (位於相同區域) 中建立新的 VM。
+  * 將新的 VM 加入相同的虛擬網路。
 
 ## <a name="next-steps"></a>後續步驟
 如果您在啟動已停止的 Linux VM，或重新調整 Azure 中現有的 Linux VM 大小時遇到問題，請參閱 [針對在 Azure 中重新啟動或調整現有 Linux 虛擬機器大小的 Resource Manager 部署問題進行疑難排解](virtual-machines-linux-restart-resize-error-troubleshooting.md)。
-
-
 
 <!--HONumber=Oct16_HO2-->
 

@@ -1,21 +1,21 @@
-<properties
-   pageTitle="在 SQL 資料倉儲中使用標籤來檢測查詢 | Microsoft Azure"
-   description="在 Azure SQL 資料倉儲中使用標籤來檢測查詢以開發解決方案的秘訣。"
-   services="sql-data-warehouse"
-   documentationCenter="NA"
-   authors="jrowlandjones"
-   manager="barbkess"
-   editor=""/>
+---
+title: 在 SQL 資料倉儲中使用標籤來檢測查詢 | Microsoft Docs
+description: 在 Azure SQL 資料倉儲中使用標籤來檢測查詢以開發解決方案的秘訣。
+services: sql-data-warehouse
+documentationcenter: NA
+author: jrowlandjones
+manager: barbkess
+editor: ''
 
-<tags
-   ms.service="sql-data-warehouse"
-   ms.devlang="NA"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="data-services"
-   ms.date="06/14/2016"
-   ms.author="jrj;barbkess;sonyama"/>
+ms.service: sql-data-warehouse
+ms.devlang: NA
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: data-services
+ms.date: 06/14/2016
+ms.author: jrj;barbkess;sonyama
 
+---
 # 在 SQL 資料倉儲中使用標籤來檢測查詢
 SQL 資料倉儲支援稱為查詢標籤的概念。繼續進行之前，讓我們看看一個範例：
 
@@ -39,11 +39,13 @@ WHERE   r.[label] = 'My Query Label'
 ;
 ```
 
-> [AZURE.NOTE] 請務必在查詢時以方括弧或雙引號括住文字標籤。標籤是一個保留的文字，而且如果未分隔，就會造成錯誤。
-
+> [!NOTE]
+> 請務必在查詢時以方括弧或雙引號括住文字標籤。標籤是一個保留的文字，而且如果未分隔，就會造成錯誤。
+> 
+> 
 
 ## 後續步驟
-如需更多開發祕訣，請參閱[開發概觀][]。
+如需更多開發祕訣，請參閱[開發概觀][開發概觀]。
 
 <!--Image references-->
 

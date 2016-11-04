@@ -1,30 +1,28 @@
-<properties
-    pageTitle="Azure Monitor 合作夥伴整合 | Microsoft Azure"
-    description="了解 Azure Monitor 的監視合作夥伴以及如何存取與合作夥伴進行整合的文件。"
-    authors="johnkemnetz"
-    manager="rboucher"
-    editor=""
-    services="monitoring-and-diagnostics"
-    documentationCenter="monitoring-and-diagnostics"/>
+---
+title: Azure Monitor 合作夥伴整合 | Microsoft Docs
+description: 了解 Azure Monitor 的監視合作夥伴以及如何存取與合作夥伴進行整合的文件。
+author: johnkemnetz
+manager: rboucher
+editor: ''
+services: monitoring-and-diagnostics
+documentationcenter: monitoring-and-diagnostics
 
-<tags
-    ms.service="monitoring-and-diagnostics"
-    ms.workload="na"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/26/2016"
-    ms.author="johnkem"/>
+ms.service: monitoring-and-diagnostics
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/26/2016
+ms.author: johnkem
 
-
+---
 # <a name="azure-monitor-partner-integrations"></a>Azure 監視器合作夥伴整合
-
-|合作夥伴|||
-|-----------|-----------|-----------|
-| [![合作夥伴標誌][alertlogic-logo]<br/>**AlertLogic**][alertlogic-anchor] | [![合作夥伴標誌][appdynamics-logo]<br/>**AppDynamics**][appdynamics-anchor] | [![合作夥伴標誌][atlassian-logo]<br/>**Atlassian**][atlassian-anchor] |
-| [![合作夥伴標誌][cloudmonix-logo]<br/>**CloudMonix**][cloudmonix-anchor] | [![合作夥伴標誌][cloudyn-logo]<br/>**Cloudyn**][cloudyn-anchor] | [![合作夥伴標誌][datadog-logo]<br/>**DataDog**][datadog-anchor] |
-| [![合作夥伴標誌][dynatrace-logo]<br/>**Dynatrace**][dynatrace-anchor] | [![合作夥伴標誌][newrelic-logo]<br/>**NewRelic**][newrelic-anchor] | [![合作夥伴標誌][opsgenie-logo]<br/>**OpsGenie**][opsgenie-anchor] |
-| [![合作夥伴標誌][pagerduty-logo]<br/>**PagerDuty**][pagerduty-anchor] | [![合作夥伴標誌][splunk-logo]<br/>**Splunk**][splunk-anchor] | [![合作夥伴標誌][sumologic-logo]<br/>**Sumo Logic**][sumologic-anchor] |
+| 合作夥伴 |  |  |
+| --- | --- | --- |
+| [![合作夥伴標誌][alertlogic-logo]<br/>**AlertLogic**][alertlogic-anchor] |[![合作夥伴標誌][appdynamics-logo]<br/>**AppDynamics**][appdynamics-anchor] |[![合作夥伴標誌][atlassian-logo]<br/>**Atlassian**][atlassian-anchor] |
+| [![合作夥伴標誌][cloudmonix-logo]<br/>**CloudMonix**][cloudmonix-anchor] |[![合作夥伴標誌][cloudyn-logo]<br/>**Cloudyn**][cloudyn-anchor] |[![合作夥伴標誌][datadog-logo]<br/>**DataDog**][datadog-anchor] |
+| [![合作夥伴標誌][dynatrace-logo]<br/>**Dynatrace**][dynatrace-anchor] |[![合作夥伴標誌][newrelic-logo]<br/>**NewRelic**][newrelic-anchor] |[![合作夥伴標誌][opsgenie-logo]<br/>**OpsGenie**][opsgenie-anchor] |
+| [![合作夥伴標誌][pagerduty-logo]<br/>**PagerDuty**][pagerduty-anchor] |[![合作夥伴標誌][splunk-logo]<br/>**Splunk**][splunk-anchor] |[![合作夥伴標誌][sumologic-logo]<br/>**Sumo Logic**][sumologic-anchor] |
 
 ## <a name="alertlogic-log-manager"></a>AlertLogic Log Manager
 Alert Logic Log Manager 會收集 VM、應用程式和 Azure 平台記錄檔以進行安全分析和保留。 這包括透過 Azure Insights API 的 Azure 稽核記錄檔。  這項資訊用於偵測 malfeasance 及符合法務遵循需求。
@@ -62,7 +60,6 @@ Dynatrace OneAgent 透過所依據的 Azure 擴充機制與 Azure VM 和應用�
 [請移至文件。][dynatrace-doc]
 
 ## <a name="newrelic"></a>NewRelic
-
 [深入了解。][newrelic-doc]
 
 ## <a name="opsgenie"></a>OpsGenie
@@ -83,12 +80,11 @@ Microsoft Azure 的 Splunk 附加元件會針對基礎結構和 Microsoft Azure 
 [請移至文件。][splunk-doc]
 
 ## <a name="sumo-logic"></a>Sumo Logic
-
 [深入了解。][sumologic-doc]
 
 ## <a name="next-steps"></a>後續步驟
-- [深入了解活動記錄檔 (之前的稽核記錄檔)](../resource-group-audit.md)
-- [將 Azure 活動記錄檔串流至事件中樞](./monitoring-stream-activity-logs-event-hubs.md)
+* [深入了解活動記錄檔 (之前的稽核記錄檔)](../resource-group-audit.md)
+* [將 Azure 活動記錄檔串流至事件中樞](monitoring-stream-activity-logs-event-hubs.md)
 
 <!--Connectors Documentation-->
 [alertlogic-anchor]: #alertlogic-log-manager "AlertLogic"

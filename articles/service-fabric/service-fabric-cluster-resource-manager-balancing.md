@@ -1,29 +1,29 @@
-<properties
-   pageTitle="使用 Azure Service Fabric 叢集資源管理員平衡叢集 | Microsoft Azure"
-   description="使用 Azure Service Fabric 叢集資源管理員平衡叢集的簡介。"
-   services="service-fabric"
-   documentationCenter=".net"
-   authors="masnider"
-   manager="timlt"
-   editor=""/>
+---
+title: 使用 Azure Service Fabric 叢集資源管理員平衡叢集 | Microsoft Docs
+description: 使用 Azure Service Fabric 叢集資源管理員平衡叢集的簡介。
+services: service-fabric
+documentationcenter: .net
+author: masnider
+manager: timlt
+editor: ''
 
-<tags
-   ms.service="Service-Fabric"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="NA"
-   ms.date="08/19/2016"
-   ms.author="masnider"/>
+ms.service: Service-Fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 08/19/2016
+ms.author: masnider
 
+---
 # 平衡 Service Fabric 叢集
 Service Fabric 叢集資源管理員允許報告動態負載、對叢集中的變更做出反應、修正條件約束違規，以及在必要時重新平衡叢集。但它執行這些工作的頻率為何？這些工作又是如何觸發的？ 有數個與此相關的控制項。
 
 與平衡相關的第一組控制項是一組計時器。這些計時器控管叢集資源管理員針對需要處理的事項來檢查叢集狀態的頻率。一共有三種不同的作業類別，每一個都有相對應的計時器。如下：
 
-1.	放置 - 這個階段負責安置任何遺漏的具狀態複本或無狀態執行個體。這同時涵蓋新服務，以及處理已失敗且需要重建的具狀態複本或無狀態執行個體。刪除與捨棄複本或執行個體也在這裡處理。
-2.	條件約束檢查 – 這個階段會檢查並更正系統內不同放置條件約束 (規則) 的違規情形。規則範例包括確保節點不會超出容量，以及符合服務的放置條件約束 (稍後會詳細說明)。
-3.	平衡 - 這個階段會根據為不同度量設定的所需平衡層級查看是否需要主動式重新平衡，而如果需要，則會嘗試尋找叢集中更平衡的排列方式。
+1. 放置 - 這個階段負責安置任何遺漏的具狀態複本或無狀態執行個體。這同時涵蓋新服務，以及處理已失敗且需要重建的具狀態複本或無狀態執行個體。刪除與捨棄複本或執行個體也在這裡處理。
+2. 條件約束檢查 – 這個階段會檢查並更正系統內不同放置條件約束 (規則) 的違規情形。規則範例包括確保節點不會超出容量，以及符合服務的放置條件約束 (稍後會詳細說明)。
+3. 平衡 - 這個階段會根據為不同度量設定的所需平衡層級查看是否需要主動式重新平衡，而如果需要，則會嘗試尋找叢集中更平衡的排列方式。
 
 ## 設定叢集資源管理員的步驟和計時器
 叢集資源管理員可以執行的每個不同類型修正，都是由不同的計時器所控制，並能控管修正頻率。比方說，如果您只想處理每小時在叢集中的放置新服務工作負載 (以進行分批處理)，但又想要每隔幾秒鐘定期執行平衡檢查，您可以設定該行為。當每個計時器啟動時，便會排程工作。根據預設，資源管理員會每 1/10 秒掃描其狀態並套用更新 (針對所有於上次掃描後所發生的變更進行批次處理，例如察覺到節點已關閉)、每秒設定放置和條件約束檢查旗標，並於每 5 秒設定平衡旗標。
@@ -104,10 +104,9 @@ ClusterManifest.xml
 ![一起平衡服務][Image5]
 
 ## 後續步驟
-- 度量是 Service Fabric 叢集資源管理員管理叢集中的耗用量和容量的方式。若要深入了解度量及其設定方式，請查看[這篇文章](service-fabric-cluster-resource-manager-metrics.md)
-- 移動成本是向叢集資源管理員發出訊號，表示移動某些服務會比較貴的其中一種方式。若要深入了解移動成本，請參閱[這篇文章](service-fabric-cluster-resource-manager-movement-cost.md)
-- 叢集資源管理員有數個為減緩叢集的流失而可以設定的節流。這些節流通常不是必要的，但若有需要，您可以參閱[這裡](service-fabric-cluster-resource-manager-advanced-throttling.md)
-
+* 度量是 Service Fabric 叢集資源管理員管理叢集中的耗用量和容量的方式。若要深入了解度量及其設定方式，請查看[這篇文章](service-fabric-cluster-resource-manager-metrics.md)
+* 移動成本是向叢集資源管理員發出訊號，表示移動某些服務會比較貴的其中一種方式。若要深入了解移動成本，請參閱[這篇文章](service-fabric-cluster-resource-manager-movement-cost.md)
+* 叢集資源管理員有數個為減緩叢集的流失而可以設定的節流。這些節流通常不是必要的，但若有需要，您可以參閱[這裡](service-fabric-cluster-resource-manager-advanced-throttling.md)
 
 [Image1]: ./media/service-fabric-cluster-resource-manager-balancing/cluster-resrouce-manager-balancing-thresholds.png
 [Image2]: ./media/service-fabric-cluster-resource-manager-balancing/cluster-resource-manager-balancing-threshold-triggered-results.png

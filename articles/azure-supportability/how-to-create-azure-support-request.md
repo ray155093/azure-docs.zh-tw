@@ -1,29 +1,28 @@
-<properties
-	 pageTitle="如何建立 Azure 支援要求 | Microsoft Azure"
-	 description="如何建立 Azure 支援要求。"
-	 services="Azure Supportability"
-	 documentationCenter=""
-	 authors="ganganarayanan"
-	 manager="scotthit"
-	 editor=""/>
+---
+title: 如何建立 Azure 支援要求 | Microsoft Docs
+description: 如何建立 Azure 支援要求。
+services: Azure Supportability
+documentationcenter: ''
+author: ganganarayanan
+manager: scotthit
+editor: ''
 
-<tags
-	 ms.service="azure-supportability"
-	 ms.workload="na"
-	 ms.tgt_pltfrm="na"
-	 ms.devlang="na"
-	 ms.topic="article"
-	 ms.date="07/25/2016"
-	 ms.author="gangan"/>
+ms.service: azure-supportability
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 07/25/2016
+ms.author: gangan
 
+---
 # 如何建立 Azure 支援要求
-
 ## 摘要
 Azure 客戶可以在 Azure 入口網站 ([https://portal.azure.com](https://portal.azure.com)) 中建立和管理支援要求。根據客戶的意見反應，我們已更新支援要求體驗，著重在三個主要目標︰
 
-- **流暢**︰減少點按次數以及讓刀鋒視窗提交支援要求的程序更簡單。
-- **整合**︰當您在疑難排解 Azure 資源的問題時，很輕易就能開啟該資源的支援要求，而不需要切換內容。
-- **有效**︰收集支援工程師所需的重要資訊，有效率地解決問題。
+* **流暢**︰減少點按次數以及讓刀鋒視窗提交支援要求的程序更簡單。
+* **整合**︰當您在疑難排解 Azure 資源的問題時，很輕易就能開啟該資源的支援要求，而不需要切換內容。
+* **有效**︰收集支援工程師所需的重要資訊，有效率地解決問題。
 
 ## 開始使用
 您可以從頂端導覽功能表或直接從資源刀鋒視窗中建立支援要求。
@@ -43,7 +42,10 @@ Azure 客戶可以在 Azure 入口網站 ([https://portal.azure.com](https://por
 
 ![基本概念刀鋒視窗](./media/how-to-create-azure-support-request/Basics.png)
 
->[AZURE.NOTE] Azure 提供無限制的訂用帳戶管理支援 (例如帳單、配額調整和帳戶轉換)。如需技術支援，您必須加入支援計劃。[深入了解支援計劃](https://azure.microsoft.com/support/plans)。
+> [!NOTE]
+> Azure 提供無限制的訂用帳戶管理支援 (例如帳單、配額調整和帳戶轉換)。如需技術支援，您必須加入支援計劃。[深入了解支援計劃](https://azure.microsoft.com/support/plans)。
+> 
+> 
 
 ## 問題
 精靈的第二個步驟會收集問題的相關額外詳細資料。在此步驟中提供精確的詳細資料，可讓我們將您的案例路由傳送至最佳的問題支援工程師，並且儘速開始診斷問題。
@@ -75,7 +77,10 @@ Azure 客戶可以在 Azure 入口網站 ([https://portal.azure.com](https://por
 
 按一下圖格會顯示可以指派給開啟支援要求的嚴重性清單。
 
->[AZURE.NOTE] 最高嚴重性層級取決於您的支援計劃。[深入了解支援計劃](https://azure.microsoft.com/support/plans)。
+> [!NOTE]
+> 最高嚴重性層級取決於您的支援計劃。[深入了解支援計劃](https://azure.microsoft.com/support/plans)。
+> 
+> 
 
 ![VID-2](./media/how-to-create-azure-support-request/VID-2.png)
 

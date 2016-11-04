@@ -1,27 +1,26 @@
 
-<properties
-    pageTitle="只需 3 分鐘或以下的時間便可在您的裝置上嘗試 Azure RemoteApp | Microsoft Azure"
-    description="在無需安裝服務的情況下測試磁碟機 Azure RemoteApp 功能。"
-    services="remoteapp"
-    documentationCenter=""
-    authors="lizap"
-    manager="mbaldwin" />
+---
+title: 只需 3 分鐘或以下的時間便可在您的裝置上嘗試 Azure RemoteApp | Microsoft Docs
+description: 在無需安裝服務的情況下測試磁碟機 Azure RemoteApp 功能。
+services: remoteapp
+documentationcenter: ''
+author: lizap
+manager: mbaldwin
 
-<tags
-    ms.service="remoteapp"
-    ms.workload="compute"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="hero-article"
-    ms.date="08/15/2016"
-    ms.author="mbaldwin" />
+ms.service: remoteapp
+ms.workload: compute
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: hero-article
+ms.date: 08/15/2016
+ms.author: mbaldwin
 
-
-
+---
 # 只需 3 分鐘或以下的時間便可在您的裝置上嘗試 Azure RemoteApp
-
-> [AZURE.IMPORTANT]
-Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+> [!IMPORTANT]
+> Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+> 
+> 
 
 想要在您的裝置上看到 Azure RemoteApp 嗎？ 只要您有 Microsoft 帳戶，您便有 10 分鐘的時間可以存取我們的示範部署。我們有 Office 和一些其他可用的應用程式。若要在 3 分鐘內測試與體驗 Azure RemoteApp 的使用者經驗，這會是一個很好的方法。
 
@@ -36,6 +35,9 @@ Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go
 
 我們非常重視您的意見。在每個工作階段結束時，您會看到一個可填寫您寶貴意見的對話方塊。如果您有空的話，請告訴我們您的想法，並讓我們知道 Microsoft 是否可以與您連絡以取得額外資訊。
 
->[AZURE.NOTE] 因為這是個可供示範使用的受控制環境，我們尚未提供從已發佈的示範應用程式的外部網際網路存取。因此，您無法存取如 OneDrive 的服務。此外，我們還將剪貼簿共用 (複製和貼上) 及 USB 和印表機重新導向停用。
+> [!NOTE]
+> 因為這是個可供示範使用的受控制環境，我們尚未提供從已發佈的示範應用程式的外部網際網路存取。因此，您無法存取如 OneDrive 的服務。此外，我們還將剪貼簿共用 (複製和貼上) 及 USB 和印表機重新導向停用。
+> 
+> 
 
 <!---HONumber=AcomDC_0817_2016-->

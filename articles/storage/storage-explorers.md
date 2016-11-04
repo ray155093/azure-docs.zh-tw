@@ -1,24 +1,22 @@
-<properties
-    pageTitle="Azure 儲存體用戶端工具 | Microsoft Azure"
-    description="可讓您檢視 Azure 儲存體資料並與其互動的工具清單。"
-    services="storage"
-    documentationCenter=""
-    authors="micurd"
-    manager="jahogg"
-    editor="tysonn"/>
+---
+title: Azure 儲存體用戶端工具 | Microsoft Docs
+description: 可讓您檢視 Azure 儲存體資料並與其互動的工具清單。
+services: storage
+documentationcenter: ''
+author: micurd
+manager: jahogg
+editor: tysonn
 
-<tags
-    ms.service="storage"
-    ms.workload="storage"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="10/18/2016"
-    ms.author="micurd"/>
+ms.service: storage
+ms.workload: storage
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 10/18/2016
+ms.author: micurd
 
-
+---
 # <a name="azure-storage-client-tools"></a>Azure 儲存體用戶端工具
-
 Azure 儲存體的使用者經常想要能夠使用 Azure 儲存體用戶端工具，檢視他們資料或與其互動。 我們在下表中列出幾個可讓您這麼做的工具。 如果該工具可以列舉及/或存取資料抽象，我們便在該區塊中放一個 "X"。 下表也會顯示該工具是否免費提供。 「試用」表示有免費試用版，但不是免費提供完整的產品。 「Y/N」表示該版本可供免費使用，而其他版本則需購買使用。
 
 我們只提供可用的 Azure 儲存體用戶端工具的快照。 這些工具在功能上可能會繼續發展及成長。 如果有修正或更新，請留言讓我們知道。 如果您知道有應該在這裡的工具，也請留言讓我們知道，我們很榮幸能將它們加入。

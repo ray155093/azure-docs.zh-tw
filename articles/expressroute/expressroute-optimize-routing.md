@@ -1,21 +1,21 @@
-<properties
-   pageTitle="最佳化 ExpressRoute 路由 | Microsoft"
-   description="此頁面提供當客戶有一個以上的 ExpressRoute 線路連接 Microsoft 與客戶的公司網路時，如何最佳化路由的詳細資訊。"
-   documentationCenter="na"
-   services="expressroute"
-   authors="charwen"
-   manager="carmonm"
-   editor=""/>
-<tags
-   ms.service="expressroute"
-   ms.devlang="na"
-   ms.topic="get-started-article"
-   ms.tgt_pltfrm="na"
-   ms.workload="infrastructure-services"
-   ms.date="10/10/2016"
-   ms.author="charwen"/>
+---
+title: 最佳化 ExpressRoute 路由 | Microsoft Docs
+description: 此頁面提供當客戶有一個以上的 ExpressRoute 線路連接 Microsoft 與客戶的公司網路時，如何最佳化路由的詳細資訊。
+documentationcenter: na
+services: expressroute
+author: charwen
+manager: carmonm
+editor: ''
 
+ms.service: expressroute
+ms.devlang: na
+ms.topic: get-started-article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 10/10/2016
+ms.author: charwen
 
+---
 # <a name="optimize-expressroute-routing"></a>最佳化 ExpressRoute 路由
 當您有多個 ExpressRoute 線路時，會有一個以上的路徑來連線到 Microsoft。 因此，可能會產生次佳的路由 - 也就是，您的流量可能會經由較長的路徑連到 Microsoft，而 Microsoft 也可能會經由較長的路徑連到您的網路。 網路路徑愈常，延遲愈久。 延遲對於應用程式效能和使用者體驗有直接的影響。 本文將說明這個問題，並說明如何使用標準路由技術來最佳化路由。
 
@@ -39,13 +39,17 @@
 
 第二個解決方案是您繼續告知兩個 ExpressRoute 線路上的兩個前置詞，此外請提供哪個前置詞接近哪個辦公室的提示。 因為我們支援 BGP AS PATH 前置，所以您可以設定前置詞的 AS PATH 來影響路由。 在此範例中，您可以延長美國東部 172.2.0.0/31 的 AS PATH，以致我們偏好將美國西部的 ExpressRoute 線路用於以此前置詞為目的地的流量 (因為我們的網路會認為此前置詞的路徑在西部比較短)。 同樣地，您可以延長美國西部 172.2.0.2/31 的 AS PATH，以致我們偏好美國東部的 ExpressRoute 線路。 這兩個辦公室的路由均已最佳化。 採用這個設計，如果一個 ExpressRoute 路線已中斷，Exchange Online 仍可透過另一個 ExpressRoute 線路和您的 WAN 來觸達您。 
 
->[AZURE.IMPORTANT] 我們會針對在 Microsoft 對等上收到的前置詞，移除 AS PATH 中的私用 AS 編號。 您必須在 AS PATH 中附加公用 AS 編號，才能影響 Microsoft 對等的路由。
+> [!IMPORTANT]
+> 我們會針對在 Microsoft 對等上收到的前置詞，移除 AS PATH 中的私用 AS 編號。 您必須在 AS PATH 中附加公用 AS 編號，才能影響 Microsoft 對等的路由。
+> 
+> 
 
 ![](./media/expressroute-optimize-routing/expressroute-case2-solution.png)
 
->[AZURE.IMPORTANT] 雖然此處提供的範例適用於 Microsoft 和公用對等互連，但我們仍支援私人對等互連的相同功能。 此外，AS 路徑前置可在單一 ExpressRoute 路線內運作，以影響主要和次要路徑的選取範圍。
-
-
+> [!IMPORTANT]
+> 雖然此處提供的範例適用於 Microsoft 和公用對等互連，但我們仍支援私人對等互連的相同功能。 此外，AS 路徑前置可在單一 ExpressRoute 路線內運作，以影響主要和次要路徑的選取範圍。
+> 
+> 
 
 <!--HONumber=Oct16_HO2-->
 

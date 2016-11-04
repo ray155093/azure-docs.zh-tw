@@ -1,25 +1,23 @@
-<properties 
-   pageTitle="關於 ExpressRoute 虛擬網路閘道 | Microsoft Azure"
-   description="了解 ExpressRoute 的虛擬網路閘道。"
-   services="expressroute"
-   documentationCenter="na"
-   authors="cherylmc"
-   manager="carmonm"
-   editor=""
-   tags="azure-resource-manager, azure-service-management"/>
-<tags 
-   ms.service="expressroute"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="infrastructure-services"
-   ms.date="10/03/2016"
-   ms.author="cherylmc" />
+---
+title: 關於 ExpressRoute 虛擬網路閘道 | Microsoft Docs
+description: 了解 ExpressRoute 的虛擬網路閘道。
+services: expressroute
+documentationcenter: na
+author: cherylmc
+manager: carmonm
+editor: ''
+tags: azure-resource-manager, azure-service-management
 
+ms.service: expressroute
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 10/03/2016
+ms.author: cherylmc
 
+---
 # <a name="about-virtual-network-gateways-for-expressroute"></a>關於 ExpressRoute 的虛擬網路閘道
-
-
 虛擬網路閘道可用來傳送 Azure 虛擬網路和內部部署位置之間的網路流量。 當您設定 ExpressRoute 連線時，您必須建立及設定虛擬網路閘道和虛擬網路閘道連線。
 
 當您建立虛擬網路閘道時，需要指定數個設定。 其中一個必要設定會指定是否要對 ExpressRoute 或站對站 VPN 閘道流量使用閘道。 在 Resource Manager 部署模型中，此設定是「-GatewayType」。
@@ -29,42 +27,25 @@
 對於每種閘道類型，每個虛擬網路只能有一個虛擬網路閘道。 例如，您可以有一個使用 -GatewayType Vpn 的虛擬網路閘道，以及一個使用 -GatewayType ExpressRoute 的虛擬網路閘道。 本文著重於 ExpressRoute 虛擬網路閘道。
 
 ## <a name="<a-name="gwsku"></a>gateway-skus"></a><a name="gwsku"></a>閘道 SKU
-
-[AZURE.INCLUDE [expressroute-gwsku-include](../../includes/expressroute-gwsku-include.md)]
+[!INCLUDE [expressroute-gwsku-include](../../includes/expressroute-gwsku-include.md)]
 
 如果您想要將閘道器升級至更強大的閘道 SKU，在大部分情況下，您可以使用 'Resize-AzureRmVirtualNetworkGateway' PowerShell Cmdlet。 這適用於升級至 Standard 和 HighPerformance SKU。 不過，若要升級至 UltraPerformance SKU，您必須重新建立閘道器。
 
-###  <a name="<a-name="aggthroughput"></a>estimated-aggregate-throughput-by-gateway-sku"></a><a name="aggthroughput"></a>依閘道 SKU 列出的估計彙總輸送量
-
-
+### <a name="<a-name="aggthroughput"></a>estimated-aggregate-throughput-by-gateway-sku"></a><a name="aggthroughput"></a>依閘道 SKU 列出的估計彙總輸送量
 下表顯示閘道類型和預估的彙總輸送量。 此資料表適用於資源管理員與傳統部署模型。
 
-[AZURE.INCLUDE [expressroute-table-aggthroughput](../../includes/expressroute-table-aggtput-include.md)] 
-
+[!INCLUDE [expressroute-table-aggthroughput](../../includes/expressroute-table-aggtput-include.md)]
 
 ## <a name="<a-name="resources"></a>rest-apis-and-powershell-cmdlets"></a><a name="resources"></a>REST API 和 PowerShell Cmdlet
-
 如需將 REST API 和 PowerShell Cmdlet 使用於虛擬網路閘道組態時的其他技術資源和特定語法需求，請參閱下列頁面︰
 
-|**傳統** | **資源管理員**|
-|-----|----|
-|[PowerShell](https://msdn.microsoft.com/library/mt270335.aspx)|[PowerShell](https://msdn.microsoft.com/library/mt163510.aspx)|
-|[REST API](https://msdn.microsoft.com/library/jj154113.aspx)|[REST API](https://msdn.microsoft.com/library/mt163859.aspx)|
-
+| **傳統** | **資源管理員** |
+| --- | --- |
+| [PowerShell](https://msdn.microsoft.com/library/mt270335.aspx) |[PowerShell](https://msdn.microsoft.com/library/mt163510.aspx) |
+| [REST API](https://msdn.microsoft.com/library/jj154113.aspx) |[REST API](https://msdn.microsoft.com/library/mt163859.aspx) |
 
 ## <a name="next-steps"></a>後續步驟
-
 如需有關可用連線組態的詳細資訊，請參閱 [ExpressRoute 概觀](expressroute-introduction.md) 。 
-
-
-
-
-
-
-
- 
-
-
 
 <!--HONumber=Oct16_HO2-->
 

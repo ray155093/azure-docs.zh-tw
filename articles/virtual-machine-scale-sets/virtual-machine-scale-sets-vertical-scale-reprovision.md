@@ -1,34 +1,33 @@
-<properties
-	pageTitle="垂直調整 Azure 虛擬機器擴展集 | Microsoft Azure"
-	description="如何垂直調整虛擬機器大小以回應 Azure 自動化的監視警示"
-	services="virtual-machine-scale-sets"
-	documentationCenter=""
-	authors="gbowerman"
-	manager="madhana"
-	editor=""
-	tags="azure-resource-manager"/>
+---
+title: 垂直調整 Azure 虛擬機器擴展集 | Microsoft Docs
+description: 如何垂直調整虛擬機器大小以回應 Azure 自動化的監視警示
+services: virtual-machine-scale-sets
+documentationcenter: ''
+author: gbowerman
+manager: madhana
+editor: ''
+tags: azure-resource-manager
 
-<tags
-	ms.service="virtual-machine-scale-sets"
-	ms.workload="infrastructure-services"
-	ms.tgt_pltfrm="vm-multiple"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/03/2016"
-	ms.author="guybo"/>
+ms.service: virtual-machine-scale-sets
+ms.workload: infrastructure-services
+ms.tgt_pltfrm: vm-multiple
+ms.devlang: na
+ms.topic: article
+ms.date: 08/03/2016
+ms.author: guybo
 
+---
 # 使用虛擬機器擴展集垂直自動調整
-
 這篇文章描述如何使用或不使用重新佈建以垂直調整 Azure [虛擬機器擴充集](https://azure.microsoft.com/services/virtual-machine-scale-sets/)。若為垂直調整不在擴展集中的 VM，請參閱[使用 Azure 自動化垂直調整 Azure 虛擬機器](../virtual-machines/virtual-machines-windows-vertical-scaling-automation.md)。
 
-垂直調整也稱為向相應增加和相應減少，意味增加或減少虛擬機器 (VM) 大小以回應工作負載。將其與[水平調整](./virtual-machine-scale-sets-autoscale-overview.md) (也稱為相應放大和相應縮小) 做比較，會根據工作負載改變 VM 數目。
+垂直調整也稱為向相應增加和相應減少，意味增加或減少虛擬機器 (VM) 大小以回應工作負載。將其與[水平調整](virtual-machine-scale-sets-autoscale-overview.md) (也稱為相應放大和相應縮小) 做比較，會根據工作負載改變 VM 數目。
 
 重新佈建表示移除現有的 VM，並以新的 VM 取代它。當您增加或減少 VM 擴展集中的 VM 大小時，在某些情況下您想要調整現有 VM 的大小並保留資料，而在其他情況下您需要部署具有新大小的新 VM。本文件涵蓋這兩種情況。
 
 在下列情況下，垂直調整可能十分有用︰
 
-- 內建在虛擬機器上的服務使用量過低 (例如在週末)。減少 VM 大小可以降低每月成本。
-- 增加 VM 大小以應付更大的需求，而不需要建立額外的 VM。
+* 內建在虛擬機器上的服務使用量過低 (例如在週末)。減少 VM 大小可以降低每月成本。
+* 增加 VM 大小以應付更大的需求，而不需要建立額外的 VM。
 
 您可以根據 VM 擴展集的度量型警示來設定要觸發的垂直調整。啟動警示時它就會引發 Webhook 來觸發 Runbook，可讓您調整相應增加和相應減少設定。您可以依照下列步驟來設定垂直調整︰
 
@@ -37,25 +36,26 @@
 3. 將 Webhook 加入您的 Runbook 中。
 4. 使用 Webhook 通知將警示加入至您的 VM 擴展集。
 
-> [AZURE.NOTE] 垂直自動調整只能在特定範圍的 VM 大小內進行。先比較各種大小的規格，然後再決定從一種大小調整成另一種大小 (數字較大並不一定代表 VM 大小較大)。您可以在以下大小配對之間選擇調整︰
-
->| 成對的調整 VM 大小 | |
-|---|---|
-| Standard\_A0 | Standard\_A11 |
-| 標準\_D1 | 標準\_D14 |
-| Standard\_DS1 | Standard\_DS14 |
-| Standard\_D1v2 | Standard\_D15v2 |
-| Standard\_G1 | Standard\_G5 |
-| Standard\_GS1 | Standard\_GS5 |
+> [!NOTE]
+> 垂直自動調整只能在特定範圍的 VM 大小內進行。先比較各種大小的規格，然後再決定從一種大小調整成另一種大小 (數字較大並不一定代表 VM 大小較大)。您可以在以下大小配對之間選擇調整︰
+> 
+> | 成對的調整 VM 大小 |  |
+> | --- | --- |
+> | Standard\_A0 |Standard\_A11 |
+> | 標準\_D1 |標準\_D14 |
+> | Standard\_DS1 |Standard\_DS14 |
+> | Standard\_D1v2 |Standard\_D15v2 |
+> | Standard\_G1 |Standard\_G5 |
+> | Standard\_GS1 |Standard\_GS5 |
+> 
+> 
 
 ## 使用執行身分功能來建立 Azure 自動化帳戶
-
 您需要做的第一件事是建立將裝載 Runbook 的 Azure 自動化帳戶，而 Runbook 用來調整 VM 調整集執行個體。最近，[Azure 自動化](https://azure.microsoft.com/services/automation/)引進「執行身分帳戶」功能，極輕鬆即可代表使用者設定服務主體自動執行 Runbook。您可以在下文中閱讀更多相關資訊：
 
 * [使用 Azure 執行身分帳戶驗證 Runbook](../automation/automation-sec-configure-azure-runas-account.md)
 
 ## 將 Azure 自動化垂直調整大小 Runbook 匯入訂用帳戶
-
 Azure 自動化 Runbook 資源庫已發佈垂直調整 VM 擴展集所需之 Runbook。若要將其匯入到您的訂用帳戶，請依照這篇文章的步驟︰
 
 * [Azure 自動化的 Runbook 和模組資源庫](../automation/automation-runbook-gallery.md)
@@ -69,16 +69,17 @@ Azure 自動化 Runbook 資源庫已發佈垂直調整 VM 擴展集所需之 Run
 ![Runbook 資源庫][gallery]
 
 ## 將 Webhook 加入您的 Runbook 中
-
 匯入 Runbook 之後，需要將 Webhook 加入 Runbook 中，如此即可從 VM 擴展集發出的警示加以觸發。本文說明如何為 Runbook 建立 Webhook 的詳細資訊：
 
 * [Azure 自動化 Webhook](../automation/automation-webhooks.md)
 
-> [AZURE.NOTE] 關閉 Webhook 對話方塊之前，請務必複製 Webhook URI，因為在下一節中將需要此 Webhook。
+> [!NOTE]
+> 關閉 Webhook 對話方塊之前，請務必複製 Webhook URI，因為在下一節中將需要此 Webhook。
+> 
+> 
 
 ## 將警示加入至 VM 擴展集
-
-下面是顯示如何將警示新增至 VM 擴展集的 PowerShell 指令碼。請參閱下列文章，取得度量名稱以引發警示︰[Azure Insights 自動調整的常用度量](../azure-portal/insights-autoscale-common-metrics.md)。
+下面是顯示如何將警示新增至 VM 擴展集的 PowerShell 指令碼。請參閱下列文章，取得度量名稱以引發警示︰[Azure Insights 自動調整的常用度量](../monitoring-and-diagnostics/insights-autoscale-common-metrics.md)。
 
 ```
 $actionEmail = New-AzureRmAlertRuleEmail -CustomEmail user@contoso.com
@@ -106,15 +107,17 @@ Add-AzureRmMetricAlertRule  -Name  $alertName `
                             -Description $description
 ```
 
-> [AZURE.NOTE] 建議您設定合理的警示時間範圍以避免頻繁觸發垂直調整，及任何相關聯的服務中斷。請考慮至少 20-30 分鐘以上的時段。如果需要避免任何中斷，請考慮水平調整。
+> [!NOTE]
+> 建議您設定合理的警示時間範圍以避免頻繁觸發垂直調整，及任何相關聯的服務中斷。請考慮至少 20-30 分鐘以上的時段。如果需要避免任何中斷，請考慮水平調整。
+> 
+> 
 
 如需如何建立警示的詳細資訊，請參閱下列文章：
 
-* [Azure Insights PowerShell 快速入門範例](../azure-portal/insights-powershell-samples.md)
-* [Azure Insights 跨平台 CLI 快速入門範例](../azure-portal/insights-cli-samples.md)
+* [Azure Insights PowerShell 快速入門範例](../monitoring-and-diagnostics/insights-powershell-samples.md)
+* [Azure Insights 跨平台 CLI 快速入門範例](../monitoring-and-diagnostics/insights-cli-samples.md)
 
 ## Summary
-
 這篇文章示範簡單的垂直調整範例。藉助這些建置組塊 (自動化帳戶、Runbook、Webhook、警示)，您可以連接各式各樣的事件與一組自訂的動作。
 
 [runbooks]: ./media/virtual-machine-scale-sets-vertical-scale-reprovision/runbooks.png

@@ -1,62 +1,57 @@
-<properties
-   pageTitle="已備妥資料來進行資料科學嗎？ 資料評估 | Microsoft Azure"
-   description="了解已備妥資料來進行資料科學的 4 個準則。適用於初學者的資料科學影片 2 提供具體範例，可協助進行基本的資料評估。"
-   keywords="資料評估, 相關的資料, 評估資料, 準備資料, 資料準則, 備妥資料"
-   services="machine-learning"
-   documentationCenter="na"
-   authors="brohrer-ms"
-   manager="jhubbard"
-   editor="cjgronlund"/>
+---
+title: 已備妥資料來進行資料科學嗎？ 資料評估 | Microsoft Docs
+description: 了解已備妥資料來進行資料科學的 4 個準則。適用於初學者的資料科學影片 2 提供具體範例，可協助進行基本的資料評估。
+keywords: 資料評估, 相關的資料, 評估資料, 準備資料, 資料準則, 備妥資料
+services: machine-learning
+documentationcenter: na
+author: brohrer-ms
+manager: jhubbard
+editor: cjgronlund
 
-<tags
-   ms.service="machine-learning"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="07/15/2016"
-   ms.author="cgronlun;brohrer;garye"/>
+ms.service: machine-learning
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 07/15/2016
+ms.author: cgronlun;brohrer;garye
 
-
+---
 # 已備妥資料來進行資料科學嗎？
-
 ## 影片 2：適用於初學者的資料科學系列
-
 了解如何評估您的資料，以確定它符合進行資料科學的基本準則。
 
 若要充分運用這系列影片，請依序觀賞它們。[瀏覽影片清單](#other-videos-in-this-series)
 
-> [AZURE.VIDEO data-science-for-beginners-series-is-your-data-ready-for-data-science]
+> [!VIDEO https://channel9.msdn.com/Shows/SupervisionNotRequired/9/player]
+> 
+> 
 
 ## 系列中的其他影片
-
 「適用於初學者的資料科學」是一個資料科學的快速簡介，包含五個簡短影片。
 
-  * 影片 1：[資料科學可以回答的 5 個問題](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) (5 分 14 秒)
-  * 影片 2：您的資料已經可以進行資料科學了嗎？
-  * 影片 3：[詢問您可以使用資料回答的問題](machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data.md) (4 分 17 秒)
-  * 影片 4：[利用簡單模型預測答案](machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model.md) (7 分 42 秒)
-  * 影片 5：[複製其他人的工作進行資料科學](machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md) (3 分 18 秒)
+* 影片 1：[資料科學可以回答的 5 個問題](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) (5 分 14 秒)
+* 影片 2：您的資料已經可以進行資料科學了嗎？
+* 影片 3：[詢問您可以使用資料回答的問題](machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data.md) (4 分 17 秒)
+* 影片 4：[利用簡單模型預測答案](machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model.md) (7 分 42 秒)
+* 影片 5：[複製其他人的工作進行資料科學](machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md) (3 分 18 秒)
 
 ## 文字記錄：已備妥資料來進行資料科學嗎？
-
 歡迎觀賞「適用於初學者的資料科學」系列的第二部影片「您的資料已經可以進行資料科學了嗎？」。
 
 您必須先提供一些可運用的高品質原始資料，資料科學才能提供您想要的答案。就像製作比薩，您一開始使用的原料越好，最終產品就越好。
 
 ## 資料準則
-
 因此，就資料科學來說，有一些我們需要合併在一起的要素。
 
 我們所需的資料是：
 
-  *	相關
-  *	連線
-  *	精確
-  *	足以使用
+* 相關
+* 連線
+* 精確
+* 足以使用
 
 ## 您的資料有相關性嗎？
-
 因此第一個要素 - 我們需要相關的資料。
 
 ![相關的資料與無關的資料 - 評估資料](./media/machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science/machine-learning-data-science-relevant-and-irrelevant-data.png)
@@ -68,7 +63,6 @@
 現在看看右邊表格。這次我們測量了每個人的身高體重，並計算了他們喝了多少飲料。現在每一列的數字都彼此相關。如果我提供了我的身高體重以及我已喝了多少瑪格麗特，您就可以猜出我的血液酒精濃度。
 
 ## 是否有連貫的資料？
-
 下一個要素是連貫的資料。
 
 ![連接的資料與中斷連接的資料 - 資料準則、備妥資料](./media/machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science/machine-learning-data-science-connected-vs-disconnected-data.png)
@@ -82,7 +76,6 @@
 不過，右邊是完整且完全的表格 - 連貫的資料範例。
 
 ## 是您的資料精確嗎？
-
 下一個我們所需的要素是精確度。以下是我們想要用箭射中的 4 個目標。
 
 ![準確的資料與不準確的資料 - 資料準則](./media/machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science/machine-learning-data-science-inaccurate-vs-accurate-data.png)
@@ -94,7 +87,6 @@
 現在看一下左上方的目標。此處，我們的箭射中得非常接近，是一個緊密的群組。它們是準確的，但並不精確，因為中心偏離了靶心。當然，左下方目標中的箭號就是不準確且不精確。這位弓箭手需要多加練習。
 
 ## 您是否有足夠資料可供使用？
-
 最後，要素 4 - 我們需要有足夠的資料。
 
 ![您是否有足夠資料可進行分析？ 資料評估](./media/machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science/machine-learning-data-science-barely-enough-data.png)
@@ -111,12 +103,8 @@
 
 請務必查看 Microsoft Azure Machine Learning 中「適用於初學者的資料科學」的其他 4 個影片。
 
-
-
-
 ## 後續步驟
-
-  * [嘗試使用 Azure Machine Learning 進行您的第一個資料科學實驗](machine-learning-create-experiment.md)
-  * [在 Microsoft Azure 上取得 Machine Learning 簡介](machine-learning-what-is-machine-learning.md)
+* [嘗試使用 Azure Machine Learning 進行您的第一個資料科學實驗](machine-learning-create-experiment.md)
+* [在 Microsoft Azure 上取得 Machine Learning 簡介](machine-learning-what-is-machine-learning.md)
 
 <!---HONumber=AcomDC_0914_2016-->

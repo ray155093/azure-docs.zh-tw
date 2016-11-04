@@ -1,60 +1,58 @@
-<properties
-    pageTitle="步驟 4：定型和評估預測分析模型 | Microsoft Azure"
-    description="開發預測解決方案逐步解說的步驟 4：在 Azure Machine Learning Studio 中定型、計分和評估多個模型。"
-    services="machine-learning"
-    documentationCenter=""
-    authors="garyericson"
-    manager="jhubbard"
-    editor="cgronlun"/>
+---
+title: 步驟 4：定型和評估預測分析模型 | Microsoft Docs
+description: 開發預測解決方案逐步解說的步驟 4：在 Azure Machine Learning Studio 中定型、計分和評估多個模型。
+services: machine-learning
+documentationcenter: ''
+author: garyericson
+manager: jhubbard
+editor: cgronlun
 
-<tags
-    ms.service="machine-learning"
-    ms.workload="data-services"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="10/04/2016"
-    ms.author="garye"/>
+ms.service: machine-learning
+ms.workload: data-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 10/04/2016
+ms.author: garye
 
-
-
+---
 # <a name="walkthrough-step-4:-train-and-evaluate-the-predictive-analytic-models"></a>逐步解說步驟 4：定型和評估預測分析模型
-
 此主題包含[在 Azure Machine Learning 中開發預測性分析解決方案](machine-learning-walkthrough-develop-predictive-solution.md)逐步解說的第四個步驟
 
+1. [建立機器學習服務工作區](machine-learning-walkthrough-1-create-ml-workspace.md)
+2. [上傳現有資料](machine-learning-walkthrough-2-upload-data.md)
+3. [建立新實驗](machine-learning-walkthrough-3-create-new-experiment.md)
+4. **訓練及評估模型**
+5. [部署 Web 服務](machine-learning-walkthrough-5-publish-web-service.md)
+6. [存取 Web 服務](machine-learning-walkthrough-6-access-web-service.md)
 
-1.  [建立機器學習服務工作區](machine-learning-walkthrough-1-create-ml-workspace.md)
-2.  [上傳現有資料](machine-learning-walkthrough-2-upload-data.md)
-3.  [建立新實驗](machine-learning-walkthrough-3-create-new-experiment.md)
-4.  **訓練及評估模型**
-5.  [部署 Web 服務](machine-learning-walkthrough-5-publish-web-service.md)
-6.  [存取 Web 服務](machine-learning-walkthrough-6-access-web-service.md)
-
-----------
-
+- - -
 使用 Azure Machine Learning Studio 來建立機器學習服務模型的優點之一，是能夠在實驗中，一次嘗試多個模型類型，並比較結果。 這類實驗可協助您針對問題找到最佳解決方案。
 
 在我們正於這個逐步解說中開發的實驗內，將會建立兩種不同的模型，然後比較其計分結果，以決定要用於最終實驗的演算法。  
 
 有各種不同的模型可供我們選擇。 若要查看可用的模型，請在模組選擇區展開 [機器學習] 節點，然後展開 [初始化模型]，再選擇其下方的節點。 基於本實驗的目的，我們將選取「支援向量機器 (SVM)」和「二元促進式決策樹」模組。    
 
-> [AZURE.TIP] 如需取得說明以決定哪一種機器學習服務演算法最適合您正在嘗試解決的特定問題，請參閱 [如何選擇 Microsoft Azure Machine Learning 的演算法](machine-learning-algorithm-choice.md)。
+> [!TIP]
+> 如需取得說明以決定哪一種機器學習服務演算法最適合您正在嘗試解決的特定問題，請參閱 [如何選擇 Microsoft Azure Machine Learning 的演算法](machine-learning-algorithm-choice.md)。
+> 
+> 
 
-##<a name="train-the-models"></a>訓練模型
+## <a name="train-the-models"></a>訓練模型
 首先，讓我們設定推進式決策樹模型：  
 
-1.  在模組選擇區中找到[二元推進式決策樹][two-class-boosted-decision-tree]模組，並將其拖曳到畫布上。
-2.  找出[訓練模型][train-model]模組，將它拖曳到畫布上，然後將推進式決策樹模組的輸出連接到[訓練模型][train-model]模組的右側輸入埠 (「未訓練模型」)。
-    
-    [二元推進式決策樹][two-class-boosted-decision-tree]模組會將一般模組初始化，而[訓練模型][train-model]則會使用訓練資料來訓練模型。 
-     
-3.  將左側[執行 R 指令碼][execute-r-script]模組的左側輸出 (「結果資料集」) 連接到[訓練模型][train-model]模組的右側輸入連接埠 (「資料集」)。
-
-    > [AZURE.TIP] 在這項實驗中，我們不需要[執行 R 指令碼][execute-r-script]模組的其中兩個輸入和一個輸出，因此讓它們保持未連接。 
-
-4.  選取[訓練模型][train-model]模組。 在 [屬性] 窗格中，按一下 [啟動資料行選取器]，在 [可用的資料行] 下方的下拉式清單中選取 [所有類型]，然後在文字欄位中輸入「信用風險」。 在 [選取的資料行] 下方的下拉式清單中，選取 [所有類型]。 選取 [信用風險]，然後按一下醒目提示的箭號按鈕，將它移至 [選取的資料行]。 
-5.  按一下 [儲存] 。
-
+1. 在模組選擇區中找到[二元推進式決策樹][two-class-boosted-decision-tree]模組，並將其拖曳到畫布上。
+2. 找出[訓練模型][train-model]模組，將它拖曳到畫布上，然後將推進式決策樹模組的輸出連接到[訓練模型][train-model]模組的右側輸入埠 (「未訓練模型」)。
+   
+   [二元推進式決策樹][two-class-boosted-decision-tree]模組會將一般模組初始化，而[訓練模型][train-model]則會使用訓練資料來訓練模型。 
+3. 將左側[執行 R 指令碼][execute-r-script]模組的左側輸出 (「結果資料集」) 連接到[訓練模型][train-model]模組的右側輸入連接埠 (「資料集」)。
+   
+   > [!TIP]
+   > 在這項實驗中，我們不需要[執行 R 指令碼][execute-r-script]模組的其中兩個輸入和一個輸出，因此讓它們保持未連接。 
+   > 
+   > 
+4. 選取[訓練模型][train-model]模組。 在 [屬性] 窗格中，按一下 [啟動資料行選取器]，在 [可用的資料行] 下方的下拉式清單中選取 [所有類型]，然後在文字欄位中輸入「信用風險」。 在 [選取的資料行] 下方的下拉式清單中，選取 [所有類型]。 選取 [信用風險]，然後按一下醒目提示的箭號按鈕，將它移至 [選取的資料行]。 
+5. 按一下 [儲存] 。
 
 實驗的這部分目前看起來如下：  
 
@@ -66,17 +64,16 @@
 
 若要設定 SVM 模型，請執行下列動作：
 
-1.  在模組選擇區找出[二元支援向量機器][two-class-support-vector-machine]模組，將它拖曳到畫布上。
-2.  以滑鼠右鍵按一下[訓練模型][train-model]模組，選取 [複製]，然後以滑鼠右鍵按一下畫布並選取 [貼上]。 [訓練模型][train-model]模組複本的資料行選擇與原始模組相同。
-3.  將 SVM 模組的輸出連接到第二個[訓練模型][train-model]模組的左側輸入連接埠 (「未訓練模型」)。
-4.  找到[標準化資料][normalize-data]模組，將它拖曳到畫布上。
-5.  將此模組的輸入連接到左邊[執行 R 指令碼][execute-r-script]模組的左側輸出 (請注意，模組的輸出連接埠可能連接到多個其他模組)。
-6.  將[標準化資料][normalize-data]模組的左側輸出連接埠 (「轉換資料集」)，連接到第二個[訓練模型][train-model]模組的右側輸入連接埠 (「資料集」)。
-7.  在[標準化資料][normalize-data]模組的 [屬性] 窗格中，選取 [Tanh] 做為 [轉換方法] 參數。
-8.  按一下 [啟動資料行選取器]，選取 [開始於] 的 [無資料行]，在第一個下拉式清單中選取 [包含]，在第二個下拉式清單中選取 [資料行類型]，然後在第三個下拉式清單中選取 [數值]。 這樣會指定轉換所有數值資料行 (且僅限數值)。
-9.  按一下此資料列右側的加號 (+) - 這會建立一排下拉式清單。 在第一個下拉式清單中選取 [排除]，在第二個下拉式清單中選取 [資料行名稱]，然後按一下文字欄位並從資料行清單中選取 [信用風險]。 這會指定應忽略 [信用風險] 資料行 (需要這麼做是因為此資料行為數值，因此要另外轉換)。
+1. 在模組選擇區找出[二元支援向量機器][two-class-support-vector-machine]模組，將它拖曳到畫布上。
+2. 以滑鼠右鍵按一下[訓練模型][train-model]模組，選取 [複製]，然後以滑鼠右鍵按一下畫布並選取 [貼上]。 [訓練模型][train-model]模組複本的資料行選擇與原始模組相同。
+3. 將 SVM 模組的輸出連接到第二個[訓練模型][train-model]模組的左側輸入連接埠 (「未訓練模型」)。
+4. 找到[標準化資料][normalize-data]模組，將它拖曳到畫布上。
+5. 將此模組的輸入連接到左邊[執行 R 指令碼][execute-r-script]模組的左側輸出 (請注意，模組的輸出連接埠可能連接到多個其他模組)。
+6. 將[標準化資料][normalize-data]模組的左側輸出連接埠 (「轉換資料集」)，連接到第二個[訓練模型][train-model]模組的右側輸入連接埠 (「資料集」)。
+7. 在[標準化資料][normalize-data]模組的 [屬性] 窗格中，選取 [Tanh] 做為 [轉換方法] 參數。
+8. 按一下 [啟動資料行選取器]，選取 [開始於] 的 [無資料行]，在第一個下拉式清單中選取 [包含]，在第二個下拉式清單中選取 [資料行類型]，然後在第三個下拉式清單中選取 [數值]。 這樣會指定轉換所有數值資料行 (且僅限數值)。
+9. 按一下此資料列右側的加號 (+) - 這會建立一排下拉式清單。 在第一個下拉式清單中選取 [排除]，在第二個下拉式清單中選取 [資料行名稱]，然後按一下文字欄位並從資料行清單中選取 [信用風險]。 這會指定應忽略 [信用風險] 資料行 (需要這麼做是因為此資料行為數值，因此要另外轉換)。
 10. 按一下 [確定] 。  
-
 
 [標準化資料][normalize-data]模組現在已設定為在所有數值資料行上執行 Tanh 轉換 ([信用風險] 資料行除外)。  
 
@@ -84,26 +81,24 @@
 
 ![Training the second model][2]  
 
-##<a name="score-and-evaluate-the-models"></a>計分及評估模型
-
+## <a name="score-and-evaluate-the-models"></a>計分及評估模型
 我們使用由[分割資料][split]模組所分開的測試資料，給我們訓練的模型評分。 然後，我們就可以比較兩個模型的結果，了解何者產生的結果較佳。  
 
-1.  找出[評分模型][score-model]模組並拖曳到畫布上。
-2.  將[訓練模型][train-model]模組 (已連接至[二元推進式決策樹][two-class-boosted-decision-tree]模組) 連接到[評分模型][score-model]模組的左側輸入連接埠。
-3.  將[評分模型][score-model]模組的右側輸入連接埠，連接到右邊[執行 R 指令碼][execute-r-script]模組的左側輸出。
-
-    [評分模型][score-model]模組現在可以立即從測試資料中取得信用資訊，並且將模型產生的預測情況與測試資料中的實際信用風險資料行進行比較。
-
-4.  複製並貼上[評分模型][score-model]模組來建立第二個複本，或將新的模組拖曳到畫布上。
-5.  將此模組的左側輸入連接埠，連接到 SVM 模型 (亦即，連接到[訓練模型][train-model]模組的輸出連接埠，而後者又連接到[二元支援向量機器][two-class-support-vector-machine]模組)。
-6.  在 SVM 模型中，我們必須像是轉換定型資料一樣，對測試資料進行相同的轉換。 因此，請複製並貼上[標準化資料][normalize-data]模組來建立第二個複本，再將其連接到右邊[執行 R 指令碼][execute-r-script]模組的左側輸出。
-7.  將[評分模型][score-model]模組的右側輸入連接埠，連接到[標準化資料][normalize-data]模組的左側輸出。  
+1. 找出[評分模型][score-model]模組並拖曳到畫布上。
+2. 將[訓練模型][train-model]模組 (已連接至[二元推進式決策樹][two-class-boosted-decision-tree]模組) 連接到[評分模型][score-model]模組的左側輸入連接埠。
+3. 將[評分模型][score-model]模組的右側輸入連接埠，連接到右邊[執行 R 指令碼][execute-r-script]模組的左側輸出。
+   
+   [評分模型][score-model]模組現在可以立即從測試資料中取得信用資訊，並且將模型產生的預測情況與測試資料中的實際信用風險資料行進行比較。
+4. 複製並貼上[評分模型][score-model]模組來建立第二個複本，或將新的模組拖曳到畫布上。
+5. 將此模組的左側輸入連接埠，連接到 SVM 模型 (亦即，連接到[訓練模型][train-model]模組的輸出連接埠，而後者又連接到[二元支援向量機器][two-class-support-vector-machine]模組)。
+6. 在 SVM 模型中，我們必須像是轉換定型資料一樣，對測試資料進行相同的轉換。 因此，請複製並貼上[標準化資料][normalize-data]模組來建立第二個複本，再將其連接到右邊[執行 R 指令碼][execute-r-script]模組的左側輸出。
+7. 將[評分模型][score-model]模組的右側輸入連接埠，連接到[標準化資料][normalize-data]模組的左側輸出。  
 
 為了評估兩個計分結果，我們使用[評估模型][evaluate-model]模組。  
 
-1.  找出[評估模型][evaluate-model]模組並拖曳到畫布上。
-2.  將左側輸入連接埠連接到與推進式決策樹模型相關聯的[評分模型][score-model]模組的輸出連接埠。
-3.  將右側輸入連接埠連接到另一個[評分模型][score-model]模組。  
+1. 找出[評估模型][evaluate-model]模組並拖曳到畫布上。
+2. 將左側輸入連接埠連接到與推進式決策樹模型相關聯的[評分模型][score-model]模組的輸出連接埠。
+3. 將右側輸入連接埠連接到另一個[評分模型][score-model]模組。  
 
 若要執行實驗，請按一下畫布下方的 [執行] 按鈕。 可能需要數分鐘的時間。 每個模組上的旋轉指示器表示正在執行，而模組完成時會出現綠色核取記號。 當所有模組都出現核取記號時，表示實驗執行完成。
 
@@ -121,15 +116,16 @@
 
 您可以檢查這些值，以判斷哪個模型最可能提供您想要的結果。 您可以返回並變更不同模型中的值，以反覆執行實驗。 
 
-> [AZURE.TIP] 每次執行實驗，[執行歷程記錄] 中就會保留該筆逐一查看的記錄。 您可以檢視這些反覆運算，按一下畫布下方的 [檢視執行歷程記錄]  即可回到其中任何一個。 您也可以按一下 [屬性] 窗格中的 [先前執行]，回到您目前開啟的反覆運算之前的那一個反覆運算。
+> [!TIP]
+> 每次執行實驗，[執行歷程記錄] 中就會保留該筆逐一查看的記錄。 您可以檢視這些反覆運算，按一下畫布下方的 [檢視執行歷程記錄]  即可回到其中任何一個。 您也可以按一下 [屬性] 窗格中的 [先前執行]，回到您目前開啟的反覆運算之前的那一個反覆運算。
 > 
-您可以按一下畫布下方的 [另存新檔]  ，為實驗的任何反覆項目製作一個複本。 使用實驗的 [摘要] 和 [描述] 屬性，以記錄在您實驗反覆運算中已嘗試的動作。
+> 您可以按一下畫布下方的 [另存新檔]  ，為實驗的任何反覆項目製作一個複本。 使用實驗的 [摘要] 和 [描述] 屬性，以記錄在您實驗反覆運算中已嘗試的動作。
+> 
+> 如需詳細資訊，請參閱 [在 Azure Machine Learning Studio 中管理實驗逐一查看](machine-learning-manage-experiment-iterations.md)。  
+> 
+> 
 
->  如需詳細資訊，請參閱 [在 Azure Machine Learning Studio 中管理實驗逐一查看](machine-learning-manage-experiment-iterations.md)。  
-
-
-----------
-
+- - -
 **下一步：[部署 Web 服務](machine-learning-walkthrough-5-publish-web-service.md)**
 
 [1]: ./media/machine-learning-walkthrough-4-train-and-evaluate-models/train1.png

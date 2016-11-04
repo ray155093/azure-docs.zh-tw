@@ -1,64 +1,58 @@
-<properties 
-   pageTitle="在 Azure 應用程式服務中建立交易夥伴協議 | Microsoft Azure" 
-   description="建立交易夥伴協議" 
-   services="logic-apps" 
-   documentationCenter=".net,nodejs,java" 
-   authors="rajram" 
-   manager="erikre" 
-   editor=""/>
+---
+title: 在 Azure 應用程式服務中建立交易夥伴協議 | Microsoft Docs
+description: 建立交易夥伴協議
+services: logic-apps
+documentationcenter: .net,nodejs,java
+author: rajram
+manager: erikre
+editor: ''
 
-<tags
-   ms.service="logic-apps"
-   ms.devlang="multiple"
-	ms.topic="get-started-article"
-   ms.tgt_pltfrm="na"
-   ms.workload="integration" 
-   ms.date="08/23/2016"
-   ms.author="rajram"/>
+ms.service: logic-apps
+ms.devlang: multiple
+ms.topic: get-started-article
+ms.tgt_pltfrm: na
+ms.workload: integration
+ms.date: 08/23/2016
+ms.author: rajram
 
-# 建立交易夥伴協議   
-
-[AZURE.INCLUDE [app-service-logic-version-message](../../includes/app-service-logic-version-message.md)]
+---
+# 建立交易夥伴協議
+[!INCLUDE [app-service-logic-version-message](../../includes/app-service-logic-version-message.md)]
 
 交易夥伴是指涉及 B2B (企業對企業) 通訊的實體。當兩個夥伴建立關係時，這稱為協議。定義的協議會以這兩個夥伴想要達成的通訊為基礎，且是特定的通訊協定或傳輸。Azure App Service 支援的各種 B2B 通訊協定和傳輸包括：
 
-- AS2 (Applicability Statement 2)
-- EDIFACT (聯合國/行政、商業、傳輸的電子資料交換 (UN/EDIFACT))
-- X12 (ASC X12)
+* AS2 (Applicability Statement 2)
+* EDIFACT (聯合國/行政、商業、傳輸的電子資料交換 (UN/EDIFACT))
+* X12 (ASC X12)
 
 ### 支援 B2B 案例的 BizTalk API 應用程式
 下列 API 應用程式會啟用這些使用 Azure 入口網站中豐富且直覺化體驗的功能：
 
-
 ## BizTalk 交易夥伴管理 (TPM)
-- 建立和管理夥伴、設定檔與身分識別
-- 儲存和管理 EDI 結構描述
-- 儲存和管理憑證 (用於 AS2 通訊協定)
-- 建立和管理 AS2 協議
-- 建立和管理 EDIFACT 協議 (包含傳送端上的批次處理)
-- 建立和管理 X12 協議 (包含傳送端上的批次處理)
+* 建立和管理夥伴、設定檔與身分識別
+* 儲存和管理 EDI 結構描述
+* 儲存和管理憑證 (用於 AS2 通訊協定)
+* 建立和管理 AS2 協議
+* 建立和管理 EDIFACT 協議 (包含傳送端上的批次處理)
+* 建立和管理 X12 協議 (包含傳送端上的批次處理)
 
 ![][1]
 
-
 ## AS2 連接器
-- 執行如相關 TPM API 應用程式執行個體中所定義的 AS2 協議
-- 瀏覽 AS2 處理/追蹤資訊以進行疑難排解
-
+* 執行如相關 TPM API 應用程式執行個體中所定義的 AS2 協議
+* 瀏覽 AS2 處理/追蹤資訊以進行疑難排解
 
 ## BizTalk EDIFACT
-- 執行如相關 TPM API 應用程式執行個體中所定義的 EDIFACT 協議
-- 瀏覽 EDIFACT 處理/追蹤資訊以進行疑難排解
-- 提供如相關 TPM API 應用程式執行個體中 EDIFACT 協議所定義的批次狀態管理 (「開始」和「停止」)
-
+* 執行如相關 TPM API 應用程式執行個體中所定義的 EDIFACT 協議
+* 瀏覽 EDIFACT 處理/追蹤資訊以進行疑難排解
+* 提供如相關 TPM API 應用程式執行個體中 EDIFACT 協議所定義的批次狀態管理 (「開始」和「停止」)
 
 ## BizTalk X12
-- 執行如相關 TPM API 應用程式執行個體中所定義的 X12 協議
-- 瀏覽 X12 處理/追蹤資訊以進行疑難排解
-- 提供如相關 TPM API 應用程式執行個體中 X12 協議所定義的批次狀態管理 (「開始」和「停止」)
+* 執行如相關 TPM API 應用程式執行個體中所定義的 X12 協議
+* 瀏覽 X12 處理/追蹤資訊以進行疑難排解
+* 提供如相關 TPM API 應用程式執行個體中 X12 協議所定義的批次狀態管理 (「開始」和「停止」)
 
 如前所述，AS2、x12 和 EDIFACT API 應用程式都需要 TPM API 應用程式，才能如預期般運作。
-
 
 ## 開始使用
 建立交易夥伴協議：
@@ -77,6 +71,6 @@
 [1]: ./media/app-service-logic-create-a-trading-partner-agreement/TPMResourceView.png
 [2]: ./media/app-service-logic-create-a-trading-partner-agreement/ProtocolSelection.png
 [3]: ./media/app-service-logic-create-a-trading-partner-agreement/X12AgreementCreation.png
- 
+
 
 <!---HONumber=AcomDC_0824_2016-->

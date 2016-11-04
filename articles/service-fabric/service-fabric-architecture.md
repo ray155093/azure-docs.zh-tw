@@ -1,23 +1,22 @@
-<properties
-   pageTitle="Service Fabric 架構 | Microsoft Azure"
-   description="Service Fabric 是一種分散式系統平台，用來建置可調整、可靠且輕鬆管理的雲端應用程式。本文章說明 Service Fabric 的架構。"
-   services="service-fabric"
-   documentationCenter=".net"
-   authors="rishirsinha"
-   manager="timlt"
-   editor="rishirsinha"/>
+---
+title: Service Fabric 架構 | Microsoft Docs
+description: Service Fabric 是一種分散式系統平台，用來建置可調整、可靠且輕鬆管理的雲端應用程式。本文章說明 Service Fabric 的架構。
+services: service-fabric
+documentationcenter: .net
+author: rishirsinha
+manager: timlt
+editor: rishirsinha
 
-<tags
-   ms.service="service-fabric"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="NA"
-   ms.date="06/09/2016"
-   ms.author="rsinha"/>
+ms.service: service-fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 06/09/2016
+ms.author: rsinha
 
+---
 # Service Fabric 架構
-
 Service Fabric 是使用分層的子系統所建置。這些子系統可讓您撰寫的應用程式為：
 
 * 高可用性
@@ -50,7 +49,6 @@ Service Fabric 是使用分層的子系統所建置。這些子系統可讓您�
 * **叢集管理員**：這是用來與容錯移轉管理員互動的主要服務，從可靠性到根據服務放置條件約束將應用程式放置在節點上。容錯移轉子系統中的 Resource Manager 可確保永遠遵循條件約束。叢集管理員會在從佈建到解除佈建的範圍內，管理應用程式的生命週期。它會與健康狀態管理員整合，以便從語意上的健康狀態觀點，確保在升級期間不會減損應用程式的可用性。
 * **健康狀態管理員**：此服務會啟用應用程式、服務和叢集實體的健康狀態監視。叢集實體 (例如節點、服務分割和複本) 可以報告健康狀態資訊，然後彙總至集中式健康狀態資料存放區。此健康狀態資訊可提供服務的整體時間點健康狀態快照和分散在叢集中多個節點的節點，可讓您採取任何需要的修正動作。健康狀態查詢 API 可讓您查詢向健康狀態子系統報告的健康狀態事件。健康狀態查詢 API 會傳回儲存在健康狀態資料存放區中的原始健康狀態資料，或針對特定叢集實體傳回經過彙總、解譯的健康狀態資料。
 * **映像存放區**：此服務會提供應用程式二進位檔的儲存體和發佈。此服務會提供簡易的分散式檔案存放區，應用程式可在其中進行上傳和下載。
-
 
 ## 主控子系統
 叢集管理員會通知主控子系統 (在每個節點上執行) 需要針對特定節點進行管理的服務。主控子系統接著會管理該節點上的應用程式生命週期。其會與可靠性和健康狀態元件互動，以確保複本放置於正確位置且健康狀態良好。

@@ -1,24 +1,22 @@
-<properties
-    pageTitle="Log Analytics 中的記錄檔搜尋 | Microsoft Azure"
-    description="記錄檔搜尋可讓您結合和相互關聯您環境內多個來源的任何電腦資料。"
-    services="log-analytics"
-    documentationCenter=""
-    authors="bandersmsft"
-    manager="jwhit"
-    editor=""/>
+---
+title: Log Analytics 中的記錄檔搜尋 | Microsoft Docs
+description: 記錄檔搜尋可讓您結合和相互關聯您環境內多個來源的任何電腦資料。
+services: log-analytics
+documentationcenter: ''
+author: bandersmsft
+manager: jwhit
+editor: ''
 
-<tags
-    ms.service="log-analytics"
-    ms.workload="na"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="10/10/2016"
-    ms.author="banders"/>
+ms.service: log-analytics
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 10/10/2016
+ms.author: banders
 
-
+---
 # <a name="log-searches-in-log-analytics"></a>Log Analytics 中的記錄檔搜尋
-
 Log Analytics 的核心是記錄檔搜尋功能，可讓您結合和相互關聯您環境內多個來源的任何電腦資料。 解決方案也是由記錄搜尋發動，可讓您針對特定問題領域進行度量。
 
 在 [搜尋] 頁面上，您可以建立查詢，然後在搜尋時，您可以使用 Facet 控制篩選結果。 您也可以建立進階查詢來轉換、篩選和報告結果。
@@ -32,11 +30,9 @@ Log Analytics 的核心是記錄檔搜尋功能，可讓您結合和相互關聯
 在熟悉搜尋技術之後，您可以檢閱 [Log Analytics 記錄檔搜尋參考資料](log-analytics-search-reference.md)。
 
 ## <a name="use-basic-filters"></a>使用基本篩選器
-
 首先要知道的事情是搜尋查詢的第一個部分，在任何 "|" 分隔號字元之前，一律為「篩選器」 。 您可以將它當做 TSQL 中的 WHERE 子句--它會判斷要從 OMS 資料存放區提取「哪個」  資料子集。 在資料存放區中搜尋主要是有關指定您想要擷取的資料特性，因此查詢會很自然地以 WHERE 子句開頭。
 
 您可以使用之最基本的篩選器為「關鍵字」 ，例如 'error' 或 'timeout' 或電腦名稱。 這些簡單的查詢類型通常會在相同的結果集內傳回各種資料圖形。 這是因為 Log Analytics 在系統中有不同「類型」  的資料。
-
 
 ### <a name="to-conduct-a-simple-search"></a>進行簡單搜尋
 1. 在 OMS 入口網站中，按一下 [記錄檔搜尋] 。  
@@ -57,7 +53,7 @@ Log Analytics 的核心是記錄檔搜尋功能，可讓您結合和相互關聯
 如此可以只提供您效能資料，其中的效能計數器名稱是"%Processor Time"。
 
 ### <a name="to-search-for-processor-time-performance-data"></a>搜尋處理器時間效能資料
-- 在搜尋查詢欄位中，輸入 `Type=Perf CounterName="% Processor Time"`
+* 在搜尋查詢欄位中，輸入 `Type=Perf CounterName="% Processor Time"`
 
 您也可以更明確地在查詢中使用 **InstanceName=_'Total'**，此為 Windows 效能計數器。 您也可以選取 facet 和另一個 **field:value**。 篩選器會自動加入至查詢列的篩選器中。 您可以在下列映像中看到此情況。 其中向您顯示在哪裡按一下，以將 **InstanceName:’_Total’** 新增至查詢，而不需要輸入任何項目。
 
@@ -66,6 +62,7 @@ Log Analytics 的核心是記錄檔搜尋功能，可讓您結合和相互關聯
 您的查詢現在已成為 `Type=Perf CounterName="% Processor Time" InstanceName="_Total"`
 
 在此範例中，您不必指定 **Type=Perf** 來取得這個結果。 因為 CounterName 和 InstanceName 欄位只會為 Type=Perf 的記錄而存在，所以特定的查詢會傳回的結果和先前較長的結果相同：
+
 ```
 CounterName="% Processor Time" InstanceName="_Total"
 ```
@@ -94,7 +91,6 @@ EventLog=Application EventLog=System
 
 
 ## <a name="use-additional-filters"></a>使用其他篩選器
-
 下列查詢會傳回已傳送資料的所有電腦的 2 個事件記錄的項目。
 
 ```
@@ -137,7 +133,6 @@ CounterName="% Processor Time"  AND InstanceName="_Total" AND (Computer=SERVER1.
 ### <a name="boolean-operators"></a>布林運算子
 在日期時間和數字欄位中，您可以使用「大於」、「小於」和「小於或等於」來搜尋值。 您可以使用簡單的運算子，例如查詢搜尋列中的 >、<、>=、<=、!=。
 
-
 您可以查詢特定一段時間的特定事件記錄。 例如，過去 24 小時會使用下列助憶鍵運算式表示。
 
 ```
@@ -146,7 +141,7 @@ EventLog=System TimeGenerated>NOW-24HOURS
 
 
 #### <a name="to-search-using-a-boolean-operator"></a>使用布林運算子來搜尋
-- 在搜尋查詢欄位中，輸入 `EventLog=System TimeGenerated>NOW-24HOURS"`  
+* 在搜尋查詢欄位中，輸入 `EventLog=System TimeGenerated>NOW-24HOURS"`  
     ![使用布林值來搜尋](./media/log-analytics-log-searches/oms-search-boolean.png)
 
 雖然您可以以圖形方式控制時間間隔，而且大多數時候您可能會想這麼做，但是將時間篩選器直接包含在查詢中還是有其優點。 例如，這非常適合儀表板，無論儀表板頁面上的「全域」  時間選取器為何，您都可以在其中覆寫每個磚的時間。 如需詳細資訊，請參閱 [時間對儀表板很重要](http://cloudadministrator.wordpress.com/2014/10/19/system-center-advisor-restarted-time-matters-in-dashboard-part-6/)。
@@ -161,9 +156,9 @@ EventLog=System TimeGenerated>NOW-24HOURS
 
 例如，假設組態評估的警示有下列嚴重性值：
 
-- 0 = 資訊
-- 1 = 警告
-- 2 = 重大
+* 0 = 資訊
+* 1 = 警告
+* 2 = 重大
 
 您可以查詢警告和重大警示，並且排除具備下列查詢的資訊警示：
 
@@ -179,10 +174,12 @@ Type=Event EventLog="Operations Manager" EventID:[2100..2199]
 ```
 
 
->[AZURE.NOTE] 您必須使用的範圍語法是冒號 (:) field:value 分隔符號，「不」是等號 (=)。 用方括號括住範圍的下限和上限結尾，並使用兩個句點 (..) 隔開它們。
+> [!NOTE]
+> 您必須使用的範圍語法是冒號 (:) field:value 分隔符號，「不」是等號 (=)。 用方括號括住範圍的下限和上限結尾，並使用兩個句點 (..) 隔開它們。
+> 
+> 
 
 ## <a name="manipulate-search-results"></a>操控搜尋結果
-
 當您在搜尋資料時，您會想要精簡搜尋查詢，並已經對結果有相當程度的控制。 擷取結果時，您可以套用命令以將其轉換。
 
 Log Analytics 搜尋中的命令「必須」  跟在分隔號字元 (|) 之後。 篩選器一律為查詢字串的第一個部分。 它會定義您正在使用的資料集，然後將那些結果「輸送」入命令。 然後您可以使用管道來新增其他命令。 這樣有點類似 Windows PowerShell 管線。
@@ -192,7 +189,6 @@ Log Analytics 搜尋中的命令「必須」  跟在分隔號字元 (|) 之後�
 命令具有動詞的名稱，因此您可以輕易地分辨它們執行的動作。  
 
 ### <a name="sort"></a>排序
-
 sort 命令可讓您利用一或多個欄位來定義排序順序。 即使您不使用它，根據預設，會強制執行時間遞減順序。 最新的結果永遠在搜尋結果的頂端。 這表示當您執行搜尋時，真正利用 `Type=Event EventID=1234` 執行的內容如下：
 
 ```
@@ -231,17 +227,15 @@ Type=Event EventID=600 | Top 1
 
 
 #### <a name="to-search-using-top"></a>使用 top 搜尋
-- 在搜尋查詢欄位中，輸入 `Type=Event EventID=600 | Top 1`   
+* 在搜尋查詢欄位中，輸入 `Type=Event EventID=600 | Top 1`   
     ![搜尋 top](./media/log-analytics-log-searches/oms-search-top.png)
 
 在上圖中，有 358 個記錄含有 EventID=600。 左邊的欄位、facet 和篩選器永遠會顯示查詢的「篩選器部分」  所傳回的結果資訊，也就是任何縱線字元之前的部分。 [結果]  窗格只會傳回最新的 1 個結果，因為範例命令會圖形化和轉換結果。
 
 ### <a name="select"></a>選取
-
 SELECT 命令的行為類似 PowerShell 中的 Select-Object。 它會傳回不包含所有原始屬性的篩選結果。 相反地，它只會選取您所指定的屬性。
 
 #### <a name="to-run-a-search-using-the-select-command"></a>使用 select 命令執行搜尋
-
 1. 在 [搜尋] 中，輸入 `Type=Event`，然後按一下 [搜尋]。
 2. 按一下其中一種結果中的 [+ 顯示更多]  ，以檢視結果具有的屬性。
 3. 明確地選取部分，查詢會變更為 `Type=Event | Select Computer,EventID,RenderedDescription`。  
@@ -249,14 +243,10 @@ SELECT 命令的行為類似 PowerShell 中的 Select-Object。 它會傳回不�
 
 當您想要控制搜尋輸出，並且只選擇對探索真的很重要的資料部分 (通常不是完整記錄)，這會是特別有用的命令。 當不同類型的記錄有「部分」通用屬性，但不是「所有」屬性都共用時，這也非常有用。 然後，您可以產生看起來就像資料表一般自然的輸出，或在匯出至 CSV 檔案，然後傳遞訊息至 Excel 中時正常運作。
 
-
-
 ## <a name="use-the-measure-command"></a>使用 measure 命令
-
 MEASURE 是 Log Analytics 搜尋中最具彈性的命令之一。 它可讓您將統計「函數」  套用至資料，並依照指定的欄位分組來彙總結果。 Measure 支援多個統計函數。
 
 ### <a name="measure-count()"></a>Measure count()
-
 第一個要使用的統計函數，也是最容易了解的統計函數就是「count()」  函數。
 
 來自任何搜尋查詢 (例如 `Type=Event`) 的結果會在搜尋結果的左邊顯示篩選，又稱為 Facet。 篩選器會在執行的搜尋中透過指定的結果欄位顯示值的分佈。
@@ -264,7 +254,6 @@ MEASURE 是 Log Analytics 搜尋中最具彈性的命令之一。 它可讓您�
 ![搜尋 measure count](./media/log-analytics-log-searches/oms-search-measure-count01.png)
 
 例如，在上圖中，您會看到 **Computer** 欄位，它指出在結果中將近 73 萬 9 千個事件內，那些記錄中的 **Computer** 欄位有 68 個唯一且不同的值。 磚只會顯示前 5 個値 (也就是最常寫入 **Computer** 欄位中的 5 個值)，依據在該欄位中含有該特定値的文件數目來排序。 在圖中，您可以看到 – 在將近 36 萬 9 千個事件之中 - 9 萬個事件來自 OpsInsights04.contoso.com 電腦，8 萬 3 千個事件來自 DB03.contoso.com 電腦，諸如此類。
-
 
 由於磚只會顯示前 5 個値，如果要查看所有的值怎麼辦？
 
@@ -293,11 +282,9 @@ Type=Event | Measure count() by EventID | Select EventID | Sort EventID asc
 ```
 
 #### <a name="to-search-using-measure-count"></a>使用 measure count 搜尋
-
-- 在搜尋查詢欄位中，輸入 `Type=Event | Measure count() by EventID`
-- 將 `| Select EventID` 附加至查詢的結尾。
-- 最後，將 `| Sort EventID asc` 附加至查詢的結尾。
-
+* 在搜尋查詢欄位中，輸入 `Type=Event | Measure count() by EventID`
+* 將 `| Select EventID` 附加至查詢的結尾。
+* 最後，將 `| Sort EventID asc` 附加至查詢的結尾。
 
 有一些要注意與強調的重點：
 
@@ -306,7 +293,6 @@ Type=Event | Measure count() by EventID | Select EventID | Sort EventID asc
 第二， **Measure count** 目前只會傳回前 100 個不同結果。 這項限制不適用於其他統計函數。 因此，您通常必須先使用更精確的篩選器來搜尋特定項目，然後再套用 measure count()。
 
 ## <a name="use-the-max-and-min-functions-with-the-measure-command"></a>透過 measure 命令使用 max 和 min 函數
-
 有 **Measure Max()** 和 **Measure Min()** 在其中很有用的各種案例。 不過，由於每個函數彼此相反，我們將說明 Max ()，而您可以自己實驗 Min ()。
 
 如果您查詢安全性事件，它們會有不同的**層級**屬性。 例如：
@@ -340,7 +326,6 @@ Type=ConfigurationChange | Measure Max(TimeGenerated) by Computer
 ```
 
 ## <a name="use-the-avg-function-with-the-measure-command"></a>透過 measure 命令使用avg 函數
-
 和 measure 搭配使用的 Avg () 統計函數可讓您計算某些欄位的平均值，並且根據相同或其他欄位將結果分組。 這適用於各種情況，例如效能資料。
 
 我們將從效能等級開始介紹。 請注意，OMS 目前會收集 Windows 和 Linux 機器的效能計數器。
@@ -357,9 +342,9 @@ Type=Perf
 
 在上述映像中，有兩組標示的欄位，指出下列事項：
 
-- 第一組會識別查詢篩選器中的 Windows 效能計數器名稱、物件名稱和執行個體名稱。 這些是您可能會最常用來做為 facet/篩選器的欄位
-- **CounterValue** 是計數器的實際值。 在此範例中，值是 *75*。
-- **TimeGenerated** 為 12:51，採用 24 小時制的時間格式。
+* 第一組會識別查詢篩選器中的 Windows 效能計數器名稱、物件名稱和執行個體名稱。 這些是您可能會最常用來做為 facet/篩選器的欄位
+* **CounterValue** 是計數器的實際值。 在此範例中，值是 *75*。
+* **TimeGenerated** 為 12:51，採用 24 小時制的時間格式。
 
 以下是圖形中的度量檢視。
 
@@ -382,8 +367,7 @@ Type=Perf  ObjectName:Processor  InstanceName:_Total  CounterName:"% Processor T
 ```
 
 ### <a name="to-search-using-the-avg-function-with-the-measure-command"></a>搭配使用 avg 函數和 measure 命令進行搜尋
-- 在 [搜尋查詢] 方塊中，輸入 `Type=Perf  ObjectName:Processor  InstanceName:_Total  CounterName:"% Processor Time" TimeGenerated>NOW-6HOURS | Measure Avg(CounterValue) by Computer`。
-
+* 在 [搜尋查詢] 方塊中，輸入 `Type=Perf  ObjectName:Processor  InstanceName:_Total  CounterName:"% Processor Time" TimeGenerated>NOW-6HOURS | Measure Avg(CounterValue) by Computer`。
 
 您可以「跨」  電腦彙總資料，並將其相互關聯。 例如，假設您有一組某種伺服器陣列的主機，其中的節點彼此相等，而且它們執行的工作類型完全相同，負載也應該大致平衡。 您可以利用下列查詢一次取得所有計數器，並取得整個伺服器陣列的平均。 您可以藉由選擇電腦，以下列範例開頭：
 
@@ -413,13 +397,11 @@ Type=Perf  InstanceName:_Total  ((ObjectName:Processor AND CounterName:"% Proces
 
 ![搜尋 avg grouping](./media/log-analytics-log-searches/oms-search-avg04.png)
 
-
 您可以在儀表板中輕鬆使用搜尋查詢。 例如，您可以儲存搜尋查詢，再利用它來建立名為 *Web 伺服陣列 KPI* 的儀表板。 若要深入了解如何使用儀表板，請參閱 [在 Log Analytics 中建立自訂的儀表板](log-analytics-dashboards.md)。
 
 ![搜尋 avg 儀表板](./media/log-analytics-log-searches/oms-search-avg05.png)
 
 ### <a name="use-the-sum-function-with-the-measure-command"></a>透過 measure 命令使用 sum 函數
-
 sum 函數和 measure 命令的他函數類似。 您可以在 [Microsoft Azure Operational Insights 中的 W3C IIS 記錄搜尋](http://blogs.msdn.com/b/dmuscett/archive/2014/09/20/w3c-iis-logs-search-in-system-center-advisor-limited-preview.aspx)看到如何使用 sum 函數的範例。
 
 您可以搭配使用 Max() 和 Min() 與數字、日期時間和文字字串。 透過文字字串，它們會依字母順序排序，而您會取得第一個和最後一個。
@@ -427,7 +409,6 @@ sum 函數和 measure 命令的他函數類似。 您可以在 [Microsoft Azure 
 不過，您無法搭配使用 Sum() 與數值欄位以外的任何項目。 這也適用於 Avg()。
 
 ### <a name="use-the-percentile-function-with-the-measure-command"></a>搭配使用 percentile 函數與 measure 命令
-
 percentile 函數與 Avg() 和 Sum() 的類似之處在於，您只能將它用在數值欄位。 您可以在數值欄位中使用 1 到 99 之間的任何百分位數。 您也可以同時使用 **percentile** 和 **pct** 命令。 以下提供一些範例：  
 
 ```
@@ -438,7 +419,6 @@ Type:Perf ObjectName=LogicalDisk CounterName="Current Disk Queue Length" Compute
 ```
 
 ## <a name="use-the-where-command"></a>使用 where 命令
-
 where 命令的運作方式和篩選器類似，但它可以套用在管線中，以進一步篩選由 Measure 命令產生的彙總結果 - 而不是在查詢開頭篩選過的未經處理的結果。
 
 例如：
@@ -460,7 +440,6 @@ Type=Perf  CounterName="% Processor Time"  InstanceName="_Total" | Measure Avg(C
 ![行動儀表板](./media/log-analytics-log-searches/oms-search-mobile.png)
 
 ## <a name="use-the-in-operator"></a>使用 in 運算子
-
 *IN* 運算子以及 *NOT IN* 可讓您使用子搜尋，也就是包含另一個搜尋來做為引數的搜尋。 它們會以大括號 {} 包含在另一個「主要」或「外部」搜尋內。 子搜尋的結果 (通常是不同結果的清單) 接著會做為其主要搜尋中的引數。
 
 您可以使用子搜尋來比對無法在搜尋運算式中直接描述，但可以透過搜尋來產生的資料子集。 例如，如果您想要使用某個搜尋來尋找「遺漏安全性更新的電腦」中的所有事件，則您必須設計子搜尋來先識別「遺漏安全性更新的電腦」，再找到隸屬於這些主機的事件。
@@ -480,7 +459,6 @@ Type=Event Computer IN {Type:Update UpdateState=Needed Optional=false Classifica
 ```
 ![IN 搜尋範例](./media/log-analytics-log-searches/oms-search-in02-revised.png)
 
-
 也請注意內部搜尋中使用的時間篩選條件，因為「系統更新評估」每隔 24 小時就會擷取所有電腦的快照。 您可以藉由只搜尋一天來讓內部查詢變得更輕巧精確。 外部搜尋則會使用使用者介面中的時間選項，擷取過去 7 天的事件。 如需時間運算子的詳細資訊，請參閱 [布林運算子](#boolean-operators) 。
 
 由於您實際上只會使用內部搜尋結果做為外部搜尋的篩選條件值，因此您仍然可以在外部搜尋中套用命令。 例如，您仍然可以使用另一個 measure 命令來分組上述事件︰
@@ -490,7 +468,6 @@ Type=Event Computer IN {Type:Update UpdateState=Needed Optional=false Classifica
 ```
 
 ![IN 搜尋範例](./media/log-analytics-log-searches/oms-search-in03-revised.png)
-
 
 一般而言，因為 Log Analytics 對內部查詢設定了服務端逾時，因此您會希望它快速執行，並且您也會希望它傳回少量的結果。 如果內部查詢傳回較多個結果，結果清單會遭到截斷，這可能會導致外部搜尋傳回不正確的結果。
 
@@ -525,7 +502,6 @@ Type=SecurityEvent EventID=4624   Account!="BACONLAND\\jochan" Computer IN { Typ
 ```
 
 ## <a name="use-the-distinct-command"></a>使用 distinct 命令
-
 正如其名，此命令會提供欄位的相異值清單。 它出乎意料地簡單，但卻相當實用。 使用 measure count() 命令也可達到相同結果，如下所示。
 
 ```
@@ -583,19 +559,17 @@ Type=WireData | measure avg(ReceivedBytes), avg(SentBytes) by Direction interval
 ![OMS-multiaggregates1](./media/log-analytics-log-searches/oms-multiaggregates1.png)
 
 以下是另一個範例︰
+
  ```
 * | measure countdistinct(Computer) as Computers, count() as TotalRecords by Type
 ```
 
 
 ## <a name="next-steps"></a>後續步驟
-
 如需關於記錄檔搜尋的其他資訊，請參閱：
 
-- 使用 [Log Analytics 中的自訂欄位](log-analytics-custom-fields.md) 來延伸記錄檔搜尋。
-- 檢閱 [Log Analytics 記錄檔搜尋參考資料](log-analytics-search-reference.md) ，以檢視 Log Analytics 中提供的所有搜尋欄位和 Facet。
-
-
+* 使用 [Log Analytics 中的自訂欄位](log-analytics-custom-fields.md) 來延伸記錄檔搜尋。
+* 檢閱 [Log Analytics 記錄檔搜尋參考資料](log-analytics-search-reference.md) ，以檢視 Log Analytics 中提供的所有搜尋欄位和 Facet。
 
 <!--HONumber=Oct16_HO2-->
 

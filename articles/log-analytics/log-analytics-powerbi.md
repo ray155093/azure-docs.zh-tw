@@ -1,23 +1,22 @@
-<properties
-   pageTitle="將 Log Analytics 資料匯出至 Power BI | Microsoft Azure"
-   description="Power BI 是 Microsoft 的雲端架構商務分析服務，能提供豐富的視覺效果和不同資料集的分析報告。  Log Analytics 可以持續將資料從 OMS 儲存機制匯出到 Power BI，讓您可以利用其視覺效果和分析工具。  本文說明如何在 Log Analytics 中設定查詢，自動定期匯出至 Power BI。"
-   services="log-analytics"
-   documentationCenter=""
-   authors="bwren"
-   manager="jwhit"
-   editor="tysonn" />
-<tags
-   ms.service="log-analytics"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="infrastructure-services"
-   ms.date="10/18/2016"
-   ms.author="bwren" />
+---
+title: 將 Log Analytics 資料匯出至 Power BI | Microsoft Docs
+description: Power BI 是 Microsoft 的雲端架構商務分析服務，能提供豐富的視覺效果和不同資料集的分析報告。  Log Analytics 可以持續將資料從 OMS 儲存機制匯出到 Power BI，讓您可以利用其視覺效果和分析工具。  本文說明如何在 Log Analytics 中設定查詢，自動定期匯出至 Power BI。
+services: log-analytics
+documentationcenter: ''
+author: bwren
+manager: jwhit
+editor: tysonn
 
+ms.service: log-analytics
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 10/18/2016
+ms.author: bwren
 
+---
 # <a name="export-log-analytics-data-to-power-bi"></a>將 Log Analytics 資料匯出至 Power BI
-
 [Power BI](https://powerbi.microsoft.com/documentation/powerbi-service-get-started/) 是 Microsoft 的雲端架構商務分析服務，能提供豐富的視覺效果和不同資料集的分析報告。  Log Analytics 可以自動將資料從 OMS 儲存機制匯出到 Power BI，讓您可以利用其視覺效果和分析工具。
 
 當您使用 Log Analytics 設定 Power BI 時，會建立記錄查詢，以將結果匯出至 Power BI 中的對應資料集。  查詢和匯出會繼續自動依您定義的排程執行，讓資料集與 Log Analytics 收集的最新資料保持一致。
@@ -25,15 +24,16 @@
 ![Log Analytics 到 Power BI](media/log-analytics-powerbi/overview.png)
 
 ## <a name="power-bi-schedules"></a>Power BI 排程
-
 「Power BI 排程」  包含將一組資料從 OMS 儲存機制匯出至 Power BI 中對應資料集的記錄搜尋，還有定義這項搜尋執行頻率的排程，以維持資料集為最新狀態。
 
 資料集中的欄位會符合記錄搜尋所傳回記錄的屬性。  如果搜尋傳回不同類型的記錄，則資料集將包含來自每個包含之記錄類型的所有屬性。  
 
-> [AZURE.NOTE] 最佳做法是使用會傳回原始資料的記錄搜尋查詢，而不要使用命令執行任何彙總，例如 [量值](log-analytics-search-reference.md#measure)。  您可以在 Power BI 中從原始資料執行任何彙總與計算。
+> [!NOTE]
+> 最佳做法是使用會傳回原始資料的記錄搜尋查詢，而不要使用命令執行任何彙總，例如 [量值](log-analytics-search-reference.md#measure)。  您可以在 Power BI 中從原始資料執行任何彙總與計算。
+> 
+> 
 
 ## <a name="connecting-oms-workspace-to-power-bi"></a>將 OMS 工作區連接到 Power BI
-
 您必須使用下列程序將 OMS 工作區連接到 Power BI 帳戶，才能從 Log Analytics 匯出至 Power BI。  
 
 1. 在 OMS 主控台中，按一下 [設定]  圖格。
@@ -42,7 +42,6 @@
 4. 輸入 Power BI 帳戶的認證。
 
 ## <a name="create-a-power-bi-schedule"></a>建立 Power BI 排程
-
 使用下列程序為每個資料集建立 Power BI 排程。
 
 1. 在 OMS 主控台中，按一下 [記錄檔搜尋]  圖格。
@@ -51,14 +50,13 @@
 4. 提供下列資料表中的資訊，並按一下 [儲存] 。
 
 | 屬性 | 說明 |
-|:--|:--|
-| 名稱 | 當您檢視 Power BI 排程清單時，用來識別排程的名稱。 |
-| 已儲存的搜尋 | 要執行的記錄搜尋。  您可以選取目前的查詢，或從下拉式清單方塊中選取現有的已儲存搜尋。 |
-| 排程 | 執行已儲存的搜尋，並匯出至 Power BI 資料集的頻率。  值必須介於 15 分鐘到 24 小時之間。 |
-| 資料集名稱 | Power BI 中的資料集名稱。  如果不存在便會建立，如果存在則會更新。 |
+|:--- |:--- |
+| 名稱 |當您檢視 Power BI 排程清單時，用來識別排程的名稱。 |
+| 已儲存的搜尋 |要執行的記錄搜尋。  您可以選取目前的查詢，或從下拉式清單方塊中選取現有的已儲存搜尋。 |
+| 排程 |執行已儲存的搜尋，並匯出至 Power BI 資料集的頻率。  值必須介於 15 分鐘到 24 小時之間。 |
+| 資料集名稱 |Power BI 中的資料集名稱。  如果不存在便會建立，如果存在則會更新。 |
 
 ## <a name="viewing-and-removing-power-bi-schedules"></a>檢視和移除 Power BI 排程
-
 使用下列程序檢視現有 Power BI 排程的清單。
 
 1. 在 OMS 主控台中，按一下 [設定]  圖格。
@@ -113,11 +111,8 @@
 ![Power BI 報表](media/log-analytics-powerbi/walkthrough-report.png)
 
 ## <a name="next-steps"></a>後續步驟
-
-- 深入了解 [記錄檔搜尋](log-analytics-log-searches.md) ，建置可以匯出至 Power BI 的查詢。
-- 深入了解 [Power BI](http://powerbi.microsoft.com)，建置以 Log Analytics 匯出為基礎的視覺效果。
-
-
+* 深入了解 [記錄檔搜尋](log-analytics-log-searches.md) ，建置可以匯出至 Power BI 的查詢。
+* 深入了解 [Power BI](http://powerbi.microsoft.com)，建置以 Log Analytics 匯出為基礎的視覺效果。
 
 <!--HONumber=Oct16_HO2-->
 

@@ -1,22 +1,21 @@
-<properties
-   pageTitle="了解 Service Fabric 應用程式和服務安全性原則 | Microsoft Azure"
-   description="如何以系統和本機安全性帳戶執行 Service Fabric 應用程式的概觀，包括應用程式在啟動前需要執行某些特殊權限動作的 SetupEntry 點"
-   services="service-fabric"
-   documentationCenter=".net"
-   authors="msfussell"
-   manager="timlt"
-   editor=""/>
+---
+title: 了解 Service Fabric 應用程式和服務安全性原則 | Microsoft Docs
+description: 如何以系統和本機安全性帳戶執行 Service Fabric 應用程式的概觀，包括應用程式在啟動前需要執行某些特殊權限動作的 SetupEntry 點
+services: service-fabric
+documentationcenter: .net
+author: msfussell
+manager: timlt
+editor: ''
 
-<tags
-   ms.service="service-fabric"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="NA"
-   ms.date="09/22/2016"
-   ms.author="mfussell"/>
+ms.service: service-fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 09/22/2016
+ms.author: mfussell
 
-
+---
 # <a name="configure-security-policies-for-your-application"></a>設定應用程式的安全性原則
 Azure Service Fabric 能夠保護叢集中以不同使用者帳戶執行的應用程式。 在以該使用者帳戶部署時，Service Fabric 也會保護應用程式所使用的資源，例如檔案、目錄和憑證。 如此一來，即使在共用主控環境中，執行中的應用程式就不會彼此干擾。 
 
@@ -27,7 +26,6 @@ Azure Service Fabric 能夠保護叢集中以不同使用者帳戶執行的應�
 您可以定義和建立使用者群組，以便將一或多個使用者新增至每個群組一起管理。 當不同的服務進入點有多個使用者，而且他們需要具備可在群組層級取得的某些常見權限時，這會很有用。
 
 ## <a name="configure-the-policy-for-service-setupentrypoint"></a>設定服務 SetupEntryPoint 的原則
-
 如 [應用程式模型](service-fabric-application-model.md) 所述， **SetupEntryPoint** 是以與 Service Fabric 相同的認證執行的特殊權限進入點 (通常為 *NetworkService* 帳戶)，優先於其他任何進入點。 **EntryPoint** 指定的可執行檔通常是長時間執行的服務主機，因此，擁有個別的安裝進入點，可避免長時間以高權限執行服務主機執行檔。 **EntryPoint** 指定的可執行檔是在 **SetupEntryPoint** 成功結束之後執行。 產生的程序會受到監視，萬一終止或當機，則會同樣從 **SetupEntryPoint**開始來重新啟動。
 
 以下簡單的服務資訊清單範例會顯示服務的 SetupEntryPoint 和主要的 EntryPoint。
@@ -57,7 +55,6 @@ Azure Service Fabric 能夠保護叢集中以不同使用者帳戶執行的應�
 ~~~
 
 ### <a name="configure-the-policy-using-a-local-account"></a>使用本機帳戶設定原則
-
 在您設定服務以擁有安裝進入點之後，就能在應用程式資訊清單中變更用以執行的安全性權限。 下列範例示範如何將服務設定成以使用者系統管理員帳戶權限執行。
 
 ~~~
@@ -117,7 +114,7 @@ MyValue
 C:\SfDevCluster\Data\_App\Node.2\MyApplicationType_App\work\out.txt
 ~~~
 
-###  <a name="configure-the-policy-using-local-system-accounts"></a>使用本機系統帳戶設定原則
+### <a name="configure-the-policy-using-local-system-accounts"></a>使用本機系統帳戶設定原則
 通常最好是使用本機系統帳戶 (而不是如先前所示的系統管理員帳戶) 執行啟動指令碼。 使用系統管理員的身分執行 RunAs 原則通常沒有作用，因為電腦預設啟用使用者存取控制 (UAC)。 在此情況下， **建議是以 LocalSystem 身分 (而不是以新增到系統管理員群組的本機使用者身分) 執行 SetupEntryPoint**。 下列範例示範如何設定 SetupEntryPoint 以 LocalSystem 身分執行。
 
 ~~~
@@ -138,9 +135,8 @@ C:\SfDevCluster\Data\_App\Node.2\MyApplicationType_App\work\out.txt
 </ApplicationManifest>
 ~~~
 
-##  <a name="launch-powershell-commands-from-a-setupentrypoint"></a>從 SetupEntryPoint 啟動 PowerShell 命令
+## <a name="launch-powershell-commands-from-a-setupentrypoint"></a>從 SetupEntryPoint 啟動 PowerShell 命令
 若要從 **SetupEntryPoint** 點執行 PowerShell，您可以在指向 PowerShell 檔案的批次檔中執行 **PowerShell.exe**。 首先，將 PowerShell 檔案新增至服務專案 (例如 **MySetup.ps1**)。 請記得設定 [有更新時才複製]  屬性，讓這個檔案也會包含於服務封裝內。 下列範例顯示的範例批次檔可啟動名為 MySetup.ps1 的 PowerShell 檔案，以設定名為 **TestVariable**的系統環境變數。
-
 
 MySetup.bat 可啟動 PowerShell 檔案。
 
@@ -191,7 +187,7 @@ Echo "Test console redirection which writes to the application log folder on the
 
 **一旦您已經為您的指令碼偵錯之後，請立即移除這個主控台重新導向原則**
 
-## <a name="configure-policy-for-service-code-packages"></a>設定服務程式碼封裝的原則 
+## <a name="configure-policy-for-service-code-packages"></a>設定服務程式碼封裝的原則
 在前述步驟中，您看到了如何將 RunAs 原則套用到 SetupEntryPoint。 讓我們深入了解如何建立可當作服務原則套用的不同主體。
 
 ### <a name="create-local-user-groups"></a>建立本機使用者群組
@@ -365,7 +361,6 @@ Echo "Test console redirection which writes to the application log folder on the
 
 <!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
 ## <a name="next-steps"></a>後續步驟
-
 * [了解應用程式模型](service-fabric-application-model.md)
 * [在服務資訊清單中指定資源](service-fabric-service-manifest-resources.md)
 * [部署應用程式](service-fabric-deploy-remove-applications.md)

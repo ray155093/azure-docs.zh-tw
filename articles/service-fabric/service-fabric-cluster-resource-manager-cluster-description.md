@@ -1,31 +1,31 @@
-<properties
-   pageTitle="資源平衡器叢集描述 | Microsoft Azure"
-   description="將容錯網域、升級網域、節點屬性和節點容量指定給叢集資源管理員以描述 Service Fabric 叢集。"
-   services="service-fabric"
-   documentationCenter=".net"
-   authors="masnider"
-   manager="timlt"
-   editor=""/>
+---
+title: 資源平衡器叢集描述 | Microsoft Docs
+description: 將容錯網域、升級網域、節點屬性和節點容量指定給叢集資源管理員以描述 Service Fabric 叢集。
+services: service-fabric
+documentationcenter: .net
+author: masnider
+manager: timlt
+editor: ''
 
-<tags
-   ms.service="Service-Fabric"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="NA"
-   ms.date="08/19/2016"
-   ms.author="masnider"/>
+ms.service: Service-Fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 08/19/2016
+ms.author: masnider
 
+---
 # 描述 Service Fabric 叢集
 Service Fabric 叢集資源管理員提供數種機制，來描述叢集。在執行階段，叢集資源管理員會使用此資訊以確保叢集中執行之服務的高可用性，同時也確保能適當地使用叢集中的資源。
 
 ## 重要概念
 叢集資源管理員支援數個描述叢集的功能︰
 
-- 容錯網域
-- 升級網域
-- 節點屬性
-- 節點容量
+* 容錯網域
+* 升級網域
+* 節點屬性
+* 節點容量
 
 ## 容錯網域
 容錯網域是協調失敗的任何區域。單一機器是容錯網域 (因為它有很多會造成當機的理由，從電源供應器故障，到磁碟機失敗，到 NIC 韌體不正確)。連接到相同乙太網路交換器的許多機器會位於相同的容錯網域，連接到單一電力來源的機器也是如此。由於這些項目本身就很容易重疊，容錯網域本身就具備階層性，並在 Service Fabric 中以 URI 表示。
@@ -70,8 +70,8 @@ Service Fabric 叢集資源管理員提供數種機制，來描述叢集。在�
 
 讓我們來看看一個範例。假設我們有一個具有 6 個節點的叢集，並已設定有 5 個容錯網域和 5 個升級網域。
 
-| |FD0 |FD1 |FD2 |FD3 |FD4 |
-|-------|:-----:|:-----:|:-----:|:-----:|:-----:|
+|  | FD0 | FD1 | FD2 | FD3 | FD4 |
+| --- |:---:|:---:|:---:|:---:|:---:|
 | UD0 |N1 | | | | |
 | UD1 |N6 |N2 | | | |
 | UD2 | | |N3 | | |
@@ -82,39 +82,38 @@ Service Fabric 叢集資源管理員提供數種機制，來描述叢集。在�
 
 以下是我們的配置，以及每個容錯和升級網域的複本總數。
 
-
-| |FD0 |FD1 |FD2 |FD3 |FD4 |UDTotal|
-|-------|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
+|  | FD0 | FD1 | FD2 | FD3 | FD4 | UDTotal |
+| --- |:---:|:---:|:---:|:---:|:---:|:---:|
 | UD0 |R1 | | | | |1 |
 | UD1 | |R2 | | | |1 |
 | UD2 | | |R3 | | |1 |
 | UD3 | | | |R4 | |1 |
 | UD4 | | | | |R5 |1 |
-|FDTotal|1 |1 |1 |1 |1 |- |
+| FDTotal |1 |1 |1 |1 |1 |- |
 
 請注意到，此配置在每個容錯網域和升級網域的節點數上是平衡的，而在每個容錯和升級網域的複本數目上也一樣是平衡的。每個網域都擁有相同數量的節點，以及相同數量的複本。
 
 現在讓我們看看如果我們不使用 N2 並改為使用 N6 會發生什麼情況。複本將會如何散佈？ 它們看起來應該會類似這樣：
 
-| |FD0 |FD1 |FD2 |FD3 |FD4 |UDTotal|
-|-------|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
+|  | FD0 | FD1 | FD2 | FD3 | FD4 | UDTotal |
+| --- |:---:|:---:|:---:|:---:|:---:|:---:|
 | UD0 |R1 | | | | |1 |
 | UD1 |R5 | | | | |1 |
 | UD2 | | |R2 | | |1 |
 | UD3 | | | |R3 | |1 |
 | UD4 | | | | |R4 |1 |
-|FDTotal|2 |0 |1 |1 |1 |- |
+| FDTotal |2 |0 |1 |1 |1 |- |
 
 這將會違反我們針對容錯網域條件約束的定義，因為 FD0 具有 2 個複本，而 FD1 則有 0 個，使得總差異為 2，因此叢集資源管理員將不會允許這種排列方式。類似地，如果我們選擇 N2-6，便會得到：
 
-| |FD0 |FD1 |FD2 |FD3 |FD4 |UDTotal|
-|-------|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
+|  | FD0 | FD1 | FD2 | FD3 | FD4 | UDTotal |
+| --- |:---:|:---:|:---:|:---:|:---:|:---:|
 | UD0 | | | | | |0 |
 | UD1 |R5 |R1 | | | |2 |
 | UD2 | | |R2 | | |1 |
 | UD3 | | | |R3 | |1 |
 | UD4 | | | | |R4 |1 |
-|FDTotal|1 |1 |1 |1 |1 |- |
+| FDTotal |1 |1 |1 |1 |1 |- |
 
 雖然這就容錯網域而言是平衡的，但這卻違反了升級網域的條件約束 (因為 UD0 具有 0 個複本，而 UD1 具有 2 個)，因此這也是無效的。
 
@@ -143,14 +142,17 @@ ClusterManifest.xml
     </WindowsServer>
   </Infrastructure>
 ```
-> [AZURE.NOTE] 在 Azure 部署中，容錯網域和升級網域是由 Azure 指派。因此，您適用的節點與 Azure 基礎結構選項中的角色定義不包含容錯網域或升級網域資訊。
+> [!NOTE]
+> 在 Azure 部署中，容錯網域和升級網域是由 Azure 指派。因此，您適用的節點與 Azure 基礎結構選項中的角色定義不包含容錯網域或升級網域資訊。
+> 
+> 
 
 ## 放置條件約束和節點屬性
 有時候 (事實上是大部分的情況下) 您會想要確保工作負載只在叢集中的特定節點或一組特定的節點上執行。例如，某些工作負載可能需要 GPU 或 SSD，而有些則不用。幾乎每個多層式架構都是此情況的絕佳範例，其中特定機器會做為應用程式的前端/介面服務端 (因此通常會公開至網際網路)，而另一個不同的集合 (通常是使用不同的硬體資源) 會處理計算或儲存體層級的工作 (因此通常不會公開至網際網路)。Service Fabric 預期甚至在微服務的世界中有特定工作負載，需要在特定硬體組態上執行，例如︰
 
-- 現有的多層式架構應用程式已「提升並移轉」到 Service Fabric 環境
-- 針對效能、級別或安全性隔離原因而想要在特定硬體上執行的工作負載
--	針對原則或資源耗用量原因而需要從其他工作負載隔離的工作負載
+* 現有的多層式架構應用程式已「提升並移轉」到 Service Fabric 環境
+* 針對效能、級別或安全性隔離原因而想要在特定硬體上執行的工作負載
+* 針對原則或資源耗用量原因而需要從其他工作負載隔離的工作負載
 
 為了支援這種組態，Service Fabric 有我們稱為放置條件約束的第一級概念。放置條件約束可以用於指出特定服務應在何處執行。條件約束的集合可由使用者延伸，表示人員可以使用自訂屬性標記節點，然後也針對這些項目進行選取。
 
@@ -158,26 +160,26 @@ ClusterManifest.xml
 
 節點上的不同索引鍵/值標記即為節點放置「屬性」(或僅稱為節點屬性)，而服務的陳述式則稱為放置「條件約束」。節點屬性中指定的值可以是字串、bool，或帶正負號長值。條件約束可以是任何在叢集中於不同節點上運作的布林值陳述式。這些布林值陳述式 (也就是字串) 中的有效選取器是：
 
-- 建立特定陳述式的條件式檢查
-  - 「等於」==
-  - 「大於」>
-  - 「小於」<
-  - 「不等於」!=
-  - 「大於或等於」>=
-  - 「小於或等於」<=
-- 群組和否定的布林值陳述式
-  - 「和」&&
-  - 「或」||
-  - 「非」!
-- 群組作業的括號
-  - ()
-
+* 建立特定陳述式的條件式檢查
+  * 「等於」==
+  * 「大於」>
+  * 「小於」<
+  * 「不等於」!=
+  * 「大於或等於」>=
+  * 「小於或等於」<=
+* 群組和否定的布林值陳述式
+  * 「和」&&
+  * 「或」||
+  * 「非」!
+* 群組作業的括號
+  
+  * ()
+  
   以下是一些使用上述部分符號的基本條件約束陳述式範例。請注意，節點屬性可以是字串、布林值或數值。
-
-  - "Foo >= 5"
-  - "NodeColor != green"
-  - "((OneProperty < 100) || ((AnotherProperty == false) && (OneProperty >= 100)))"
-
+  
+  * "Foo >= 5"
+  * "NodeColor != green"
+  * "((OneProperty < 100) || ((AnotherProperty == false) && (OneProperty >= 100)))"
 
 服務只能放置在整體陳述式評估為 "True" 的節點上。未定義屬性的節點不符合包含該屬性的任何放置條件約束。
 
@@ -334,10 +336,10 @@ LoadMetricInformation     :
 ```
 
 ## 後續步驟
-- 如需叢集資源管理員內的架構和資訊流程的相關資訊，請查看[這篇文章](service-fabric-cluster-resource-manager-architecture.md)
-- 定義重組度量是合併 (而不是擴增) 節點上負載的一種方式。若要了解如何設定重組，請參閱[這篇文章](service-fabric-cluster-resource-manager-defragmentation-metrics.md)
-- 從頭開始，並[取得 Service Fabric 叢集資源管理員的簡介](service-fabric-cluster-resource-manager-introduction.md)
-- 若要了解叢集資源管理員如何管理並平衡叢集中的負載，請查看關於[平衡負載](service-fabric-cluster-resource-manager-balancing.md)的文章
+* 如需叢集資源管理員內的架構和資訊流程的相關資訊，請查看[這篇文章](service-fabric-cluster-resource-manager-architecture.md)
+* 定義重組度量是合併 (而不是擴增) 節點上負載的一種方式。若要了解如何設定重組，請參閱[這篇文章](service-fabric-cluster-resource-manager-defragmentation-metrics.md)
+* 從頭開始，並[取得 Service Fabric 叢集資源管理員的簡介](service-fabric-cluster-resource-manager-introduction.md)
+* 若要了解叢集資源管理員如何管理並平衡叢集中的負載，請查看關於[平衡負載](service-fabric-cluster-resource-manager-balancing.md)的文章
 
 [Image1]: ./media/service-fabric-cluster-resource-manager-cluster-description/cluster-fault-domains.png
 [Image2]: ./media/service-fabric-cluster-resource-manager-cluster-description/cluster-uneven-fault-domain-layout.png

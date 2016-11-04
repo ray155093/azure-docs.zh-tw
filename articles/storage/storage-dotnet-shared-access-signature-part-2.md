@@ -1,46 +1,40 @@
-<properties
-    pageTitle="透過 Blob 儲存體來建立與使用 SAS | Microsoft Azure"
-    description="本教學課程說明如何建立搭配 Blob 儲存體使用的共用存取簽章，以及如何從用戶端應用程式使用共用存取簽章。"
-    services="storage"
-    documentationCenter=""
-    authors="tamram"
-    manager="carmonm"
-    editor="tysonn"/>
+---
+title: 透過 Blob 儲存體來建立與使用 SAS | Microsoft Docs
+description: 本教學課程說明如何建立搭配 Blob 儲存體使用的共用存取簽章，以及如何從用戶端應用程式使用共用存取簽章。
+services: storage
+documentationcenter: ''
+author: tamram
+manager: carmonm
+editor: tysonn
 
-<tags
-    ms.service="storage"
-    ms.workload="storage"
-    ms.tgt_pltfrm="na"
-    ms.devlang="dotnet"
-    ms.topic="article"
-    ms.date="10/18/2016"
-    ms.author="tamram"/>
+ms.service: storage
+ms.workload: storage
+ms.tgt_pltfrm: na
+ms.devlang: dotnet
+ms.topic: article
+ms.date: 10/18/2016
+ms.author: tamram
 
-
-
+---
 # <a name="shared-access-signatures,-part-2:-create-and-use-a-sas-with-blob-storage"></a>共用存取簽章，第 2 部分：透過 Blob 儲存體來建立與使用 SAS
-
 ## <a name="overview"></a>Overview
-
 [第 1 部分](storage-dotnet-shared-access-signature-part-1.md) 探討了共用存取簽章 (SAS)，並說明使用它們的最佳作法。 第 2 部分顯示如何使用 Blob 儲存體產生共用存取簽章並使用。 這些範例均以 C# 撰寫，並使用 Azure Storage Client Library for .NET。 所涵蓋的案例包括使用共用存取簽章的以下層面：
 
-- 在容器上產生共用存取簽章
-- 在 blob 上產生共用存取簽章
-- 建立預存存取原則，以管理容器資源上的簽章
-- 從用戶端應用程式測試共用存取簽章
+* 在容器上產生共用存取簽章
+* 在 blob 上產生共用存取簽章
+* 建立預存存取原則，以管理容器資源上的簽章
+* 從用戶端應用程式測試共用存取簽章
 
 ## <a name="about-this-tutorial"></a>關於本教學課程
-
 在本教學課程中，我們將專注於藉由建立兩個主控台應用程式，以為容器和 blob 建立共用存取簽章。 第一個主控台應用程式會在容器及 blob 上產生共用存取簽章。 這個應用程式知曉儲存體帳戶金鑰。 第二個主控台應用程式將擔任用戶端應用程式，它會使用第一個應用程式所建立的共用存取簽章，來存取容器及 blob 資源。 這個應用程式只會使用共用存取簽章來向容器及 blob 資源驗證其存取 - 它不知曉帳戶金鑰。
 
 ## <a name="part-1:-create-a-console-application-to-generate-shared-access-signatures"></a>第 1 部份：建立主控台應用程式以產生共用存取簽章
-
 首先，請確定您已安裝 Azure Storage Client Library for .NET。 您可以安裝包含最新用戶端程式庫組件的 [NuGet 封裝](http://nuget.org/packages/WindowsAzure.Storage/ "NuGet 封裝") ，這是確定您具有最新修正程式的建議方法。 您也可以在最新版 [Azure SDK for .NET](https://azure.microsoft.com/downloads/)中一起下載用戶端程式庫。
 
 在 Visual Studio 中，建立新的 Windows 主控台應用程式，並將它命名為 **GenerateSharedAccessSignatures**。 使用下列任一種方法，新增對 **Microsoft.WindowsAzure.Configuration.dll** 及 **Microsoft.WindowsAzure.Storage.dll** 的參照：
 
--   如果要安裝 NuGet 封裝，請先安裝 [NuGet 用戶端](https://docs.nuget.org/consume/installing-nuget)。 在 Visual Studio 中，選取 [Project | Manage NuGet Packages]、在線上搜尋 [Azure 儲存體]，並遵循安裝指示。
--   或者，在您的 Azure SDK 安裝中找到組件，並新增對它們的參照。
+* 如果要安裝 NuGet 封裝，請先安裝 [NuGet 用戶端](https://docs.nuget.org/consume/installing-nuget)。 在 Visual Studio 中，選取 [Project | Manage NuGet Packages]、在線上搜尋 [Azure 儲存體]，並遵循安裝指示。
+* 或者，在您的 Azure SDK 安裝中找到組件，並新增對它們的參照。
 
 在 Program.cs 檔的頂端，新增下列 **using** 陳述式：
 
@@ -61,7 +55,6 @@
     </configuration>
 
 ### <a name="generate-a-shared-access-signature-uri-for-a-container"></a>為容器產生共用存取簽章 URI
-
 一開始，我們將新增方法以在新容器上產生共用存取簽章。 在此情況中，簽章不與預存存取原則相關，因此它在 URI 上攜帶了資訊，以指出其到期時間與授與權限。
 
 首先，將程式碼新增至 **Main()** 方法，以驗證對儲存體帳戶的存取，並建立新的容器：
@@ -114,7 +107,6 @@
 執行程式碼之後，您在容器上建立的共用存取簽章將在接下來的 24 小時內有效。 簽章會授與用戶端權限以列出容器中的 blob，以及將新的 blob 寫入容器。
 
 ### <a name="generate-a-shared-access-signature-uri-for-a-blob"></a>產生 Blob 的共用存取簽章 URI
-
 接下來，我們將撰寫類似的程式碼以在容器內建立新的 blob，並為它產生共用存取簽章。 此共用存取簽章不與預存存取原則相關，因此它在 URI 上包含了開始時間、到期時間及權限資訊。
 
 新增新方法以建立新的 blob 並在其中寫入一些文字，然後產生共用存取簽章並傳回簽章 URI：
@@ -161,7 +153,6 @@
     https://storageaccount.blob.core.windows.net/sascontainer/sasblob.txt?sv=2012-02-12&st=2013-04-12T23%3A37%3A08Z&se=2013-04-13T00%3A12%3A08Z&sr=b&sp=rw&sig=dF2064yHtc8RusQLvkQFPItYdeOz3zR8zHsDMBi4S30%3D
 
 ### <a name="create-a-stored-access-policy-on-the-container"></a>在容器上建立預存存取原則
-
 現在，讓我們在容器上建立預存存取原則，這將為與它相關的任何共用存取簽章定義限制。
 
 在前面的範例中，我們指定了開始時間 (隱含或明確)、到期時間，以及對共用存取簽章 URI 本身的權限。 在接下來的範例中，我們將在預存存取原則上指定這些，而不在共用存取簽章上指定。 如此做讓我們能變更這些限制，而不必重新發出共用存取簽章。
@@ -205,7 +196,6 @@
 請注意，當您清除容器的存取原則時，您必須先取得容器的現有權限、清除權限，然後再次設定權限。
 
 ### <a name="generate-a-shared-access-signature-uri-on-the-container-that-uses-an-access-policy"></a>在使用存取原則的容器上產生共用存取簽章 URI
-
 接下來，我們將在稍早建立的容器上建立另一個共用存取簽章，但這次我們將會把簽章與我們在前面範例中建立的存取原則相關聯。
 
 新增新方法以在容器上產生另一個共用存取簽章：
@@ -227,7 +217,6 @@
     Console.WriteLine();
 
 ### <a name="generate-a-shared-access-signature-uri-on-the-blob-that-uses-an-access-policy"></a>在使用存取原則的 Blob 上產生共用存取簽章 URI
-
 最後，我們將新增類似的方法建立另一個 blob，並產生與存取原則相關的共用存取簽章。
 
 新增新方法以建立 blob 並產生共用存取簽章：
@@ -309,10 +298,12 @@
 ![sas-console-output-1][sas-console-output-1]
 
 ## <a name="part-2:-create-a-console-application-to-test-the-shared-access-signatures"></a>第 2 部份：建立主控台應用程式以測試共用存取簽章
-
 為了測試前面範例中建立的共用存取簽章，我們將建立第二個主控台應用程式，使用簽章以在容器和 blob 上執行操作。
 
-> [AZURE.NOTE] 如果在您完成本教學課程的第一個部分之後已超過 24 小時，您所產生的簽章將不再有效。 在此情況下，您應該在第一個主控台應用程式中執行程式碼以產生新的共用存取簽章，並在第二個部分的教學課程中使用。
+> [!NOTE]
+> 如果在您完成本教學課程的第一個部分之後已超過 24 小時，您所產生的簽章將不再有效。 在此情況下，您應該在第一個主控台應用程式中執行程式碼以產生新的共用存取簽章，並在第二個部分的教學課程中使用。
+> 
+> 
 
 在 Visual Studio 中，建立新的 Windows 主控台應用程式，並將它命名為 **ConsumeSharedAccessSignatures**。 如您前面作法一樣，新增對 **Microsoft.WindowsAzure.Configuration.dll** 及 **Microsoft.WindowsAzure.Storage.dll** 的參照。
 
@@ -333,7 +324,6 @@
     }
 
 ### <a name="add-a-method-to-try-container-operations-using-a-shared-access-signature"></a>新增方法以嘗試使用共用存取簽章的容器操作
-
 接下來，我們將新增使用容器上的共用存取簽章，測試部分代表性容器操作的方法。 請注意，共用存取簽章用來傳回對容器的參照，並單獨根據簽章向容器驗證存取。
 
 將下列方法新增至 Program.cs：
@@ -443,7 +433,6 @@
 
 
 ### <a name="add-a-method-to-try-blob-operations-using-a-shared-access-signature"></a>新增方法以嘗試使用共用存取簽章的 Blob 操作
-
 最後，我們將新增使用 blob 上的共用存取簽章，測試部分代表性 blob 操作的方法。 在此案例中，我們使用建構函式 **CloudBlockBlob(String)**，並傳入共用存取簽章，以傳回 blob 的參照。 不需要其他驗證；只有根據簽章。
 
 將下列方法新增至 Program.cs：
@@ -543,7 +532,6 @@
 ![sas-console-output-2][sas-console-output-2]
 
 ## <a name="next-steps"></a>後續步驟
-
 [共用存取簽章，第 1 部分：了解 SAS 模型](storage-dotnet-shared-access-signature-part-1.md)
 
 [管理對容器與 Blob 的匿名讀取權限。](storage-manage-access-to-resources.md)

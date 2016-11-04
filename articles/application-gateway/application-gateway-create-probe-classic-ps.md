@@ -1,40 +1,41 @@
-<properties
-   pageTitle="在傳統部署模型中使用 PowerShell 建立應用程式閘道的自訂探查 | Microsoft Azure"
-   description="了解如何在傳統部署模型中使用 PowerShell 建立應用程式閘道的自訂探查"
-   services="application-gateway"
-   documentationCenter="na"
-   authors="georgewallace"
-   manager="carmonm"
-   editor=""
-   tags="azure-service-management"
-/>
-<tags  
-   ms.service="application-gateway"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="infrastructure-services"
-   ms.date="08/09/2016"
-   ms.author="gwallace" />
+---
+title: 在傳統部署模型中使用 PowerShell 建立應用程式閘道的自訂探查 | Microsoft Docs
+description: 了解如何在傳統部署模型中使用 PowerShell 建立應用程式閘道的自訂探查
+services: application-gateway
+documentationcenter: na
+author: georgewallace
+manager: carmonm
+editor: ''
+tags: azure-service-management
 
+ms.service: application-gateway
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 08/09/2016
+ms.author: gwallace
+
+---
 # 使用 PowerShell 建立 Azure 應用程式閘道 (傳統) 的自訂探查
-
-> [AZURE.SELECTOR]
-- [Azure 入口網站](application-gateway-create-probe-portal.md)
-- [Azure Resource Manager PowerShell](application-gateway-create-probe-ps.md)
-- [Azure 傳統 PowerShell](application-gateway-create-probe-classic-ps.md)
+> [!div class="op_single_selector"]
+> * [Azure 入口網站](application-gateway-create-probe-portal.md)
+> * [Azure Resource Manager PowerShell](application-gateway-create-probe-ps.md)
+> * [Azure 傳統 PowerShell](application-gateway-create-probe-classic-ps.md)
+> 
+> 
 
 <BR>
 
-[AZURE.INCLUDE [azure-probe-intro-include](../../includes/application-gateway-create-probe-intro-include.md)]
+[!INCLUDE [azure-probe-intro-include](../../includes/application-gateway-create-probe-intro-include.md)]
 
-[AZURE.INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-classic-include.md)] 了解如何[使用 Resource Manager 模型執行這些步驟](application-gateway-create-probe-ps.md)。
+[!INCLUDE [azure-arm-classic-important-include](../../includes/learn-about-deployment-models-classic-include.md)]
 
-[AZURE.INCLUDE [azure-ps-prerequisites-include.md](../../includes/azure-ps-prerequisites-include.md)]
+了解如何[使用 Resource Manager 模型執行這些步驟](application-gateway-create-probe-ps.md)。
 
+[!INCLUDE [azure-ps-prerequisites-include.md](../../includes/azure-ps-prerequisites-include.md)]
 
 ## 建立應用程式閘道
-
 建立應用程式閘道：
 
 1. 建立應用程式閘道資源。
@@ -42,41 +43,40 @@
 3. 認可新建立應用程式閘道資源的設定。
 
 ### 建立應用程式閘道資源
-
 若要建立閘道，請使用 **New-AzureApplicationGateway** Cmdlet，並將值取代為您自己的值。此時還不會開始對閘道計費。會在稍後的步驟中於成功啟動閘道之後開始計費。
 
 下列範例會使用名為 "testvnet1" 的虛擬網路和名為 "subnet-1" 的子網路來建立應用程式閘道。
 
-	New-AzureApplicationGateway -Name AppGwTest -VnetName testvnet1 -Subnets @("Subnet-1")
+    New-AzureApplicationGateway -Name AppGwTest -VnetName testvnet1 -Subnets @("Subnet-1")
 
 若要驗證是否已建立閘道，您可以使用 **Get-AzureApplicationGateway** Cmdlet。
 
-	Get-AzureApplicationGateway AppGwTest
+    Get-AzureApplicationGateway AppGwTest
 
->[AZURE.NOTE]  InstanceCount 的預設值是 2，最大值是 10。GatewaySize 的預設值是 Medium。您可以選擇 Small、Medium 和 Large。
+> [!NOTE]
+> InstanceCount 的預設值是 2，最大值是 10。GatewaySize 的預設值是 Medium。您可以選擇 Small、Medium 和 Large。
+> 
+> 
 
  因為尚未啟動閘道，所以 *VirtualIPs* 和 *DnsName* 會顯示為空白。閘道處於執行中狀態之後，就會建立這些項目。
 
 ## 設定應用程式閘道
-
 您可以使用 XML 或設定物件來設定應用程式閘道。
 
 ## 使用 XML 設定應用程式閘道
-
 在下列範例中，您將使用 XML 檔案來設定所有應用程式閘道設定，並將它們認可到應用程式閘道資源。
 
 ### 步驟 1
-
 將下列文字複製到 [記事本]。
 
-	<ApplicationGatewayConfiguration xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/windowsazure">
+    <ApplicationGatewayConfiguration xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/windowsazure">
     <FrontendIPConfigurations>
         <FrontendIPConfiguration>
             <Name>fip1</Name>
             <Type>Private</Type>
         </FrontendIPConfiguration>
     </FrontendIPConfigurations>    
-	<FrontendPorts>
+    <FrontendPorts>
         <FrontendPort>
             <Name>port1</Name>
             <Port>80</Port>
@@ -98,7 +98,7 @@
             <Name>pool1</Name>
             <IPAddresses>
                 <IPAddress>1.1.1.1</IPAddress>
-				<IPAddress>2.2.2.2</IPAddress>
+                <IPAddress>2.2.2.2</IPAddress>
             </IPAddresses>
         </BackendAddressPool>
     </BackendAddressPools>
@@ -116,7 +116,7 @@
         <HttpListener>
             <Name>listener1</Name>
             <FrontendIP>fip1</FrontendIP>
-	    <FrontendPort>port1</FrontendPort>
+        <FrontendPort>port1</FrontendPort>
             <Protocol>Http</Protocol>
         </HttpListener>
     </HttpListeners>
@@ -129,25 +129,28 @@
             <BackendAddressPool>pool1</BackendAddressPool>
         </HttpLoadBalancingRule>
     </HttpLoadBalancingRules>
-	</ApplicationGatewayConfiguration>
+    </ApplicationGatewayConfiguration>
 
 
 編輯設定項目括號間的值。以 .xml 副檔名儲存檔案。
 
 下列範例示範如何使用組態檔來設定應用程式閘道、使公用連接埠 80 上的 HTTP 流量達到負載平衡，以及使用自訂探查將網路流量傳送到兩個 IP 位址之間的後端連接埠 80。
 
->[AZURE.IMPORTANT] 通訊協定項目 Http 或 Https 會區分大小寫。
+> [!IMPORTANT]
+> 通訊協定項目 Http 或 Https 會區分大小寫。
+> 
+> 
 
 已新增用來設定自訂探查的新組態項目 <Probe>。
 
 組態參數如下：
 
-- **Name** - 自訂探查的參考名稱。
-- **Protocol** - 所使用的通訊協定 (可能的值為 HTTP 或 HTTPS)。
-- **Host** 和 **Path** - 應用程式閘道所叫用以判斷執行個體健康狀態的完整 URL 路徑。例如，若您擁有網站 http://contoso.com/，則可以為 "http://contoso.com/path/custompath.htm" 設定自訂探查，以便讓探查檢查有成功的 HTTP 回應。
-- **Interval** - 以秒為單位設定探查間隔檢查。
-- **Timeout** - 定義 HTTP 回應檢查的探查逾時。
-- **UnhealthyThreshold** - 要將後端執行個體標記為「狀況不良」所需的失敗 HTTP 回應次數。
+* **Name** - 自訂探查的參考名稱。
+* **Protocol** - 所使用的通訊協定 (可能的值為 HTTP 或 HTTPS)。
+* **Host** 和 **Path** - 應用程式閘道所叫用以判斷執行個體健康狀態的完整 URL 路徑。例如，若您擁有網站 http://contoso.com/，則可以為 "http://contoso.com/path/custompath.htm" 設定自訂探查，以便讓探查檢查有成功的 HTTP 回應。
+* **Interval** - 以秒為單位設定探查間隔檢查。
+* **Timeout** - 定義 HTTP 回應檢查的探查逾時。
+* **UnhealthyThreshold** - 要將後端執行個體標記為「狀況不良」所需的失敗 HTTP 回應次數。
 
 <BackendHttpSettings> 組態中會參考探查名稱，以指派哪個後端集區會使用自訂探查設定。
 
@@ -159,14 +162,14 @@
 
 使用 get-AzureApplicationGatewayConfig 取得 XML 檔案。這會匯出要修改的組態 XML 以新增探查設定。
 
-	Get-AzureApplicationGatewayConfig -Name "<application gateway name>" -Exporttofile "<path to file>"
+    Get-AzureApplicationGatewayConfig -Name "<application gateway name>" -Exporttofile "<path to file>"
 
 
 ### 步驟 2
 
 在文字編輯器中開啟 XML 檔案。在 `<frontendport>` 之後新增 `<probe>` 區段。
 
-	<Probes>
+    <Probes>
         <Probe>
             <Name>Probe01</Name>
             <Protocol>Http</Protocol>
@@ -192,14 +195,12 @@
 儲存 XML 檔案。
 
 ### 步驟 3
-
 使用 **Set-AzureApplicationGatewayConfig** 以新的 XML 檔案更新應用程式閘道組態。這會以新組態更新您的應用程式閘道。
 
-	Set-AzureApplicationGatewayConfig -Name "<application gateway name>" -Configfile "<path to file>"
+    Set-AzureApplicationGatewayConfig -Name "<application gateway name>" -Configfile "<path to file>"
 
 
 ## 後續步驟
-
 如果您想要設定「安全通訊端層」(SSL) 卸載，請參閱[設定適用於 SSL 卸載的應用程式閘道](application-gateway-ssl.md)。
 
 如果您想要設定要與內部負載平衡器搭配使用的應用程式閘道，請參閱[建立具有內部負載平衡器 (ILB) 的應用程式閘道](application-gateway-ilb.md)。

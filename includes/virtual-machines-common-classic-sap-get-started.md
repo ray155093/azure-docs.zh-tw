@@ -1,6 +1,5 @@
 
 ## 規劃和實作
-
 標題：Azure 虛擬機器上的 SAP NetWeaver – 規劃和實作指南
 
 摘要：如果您考慮在 Azure 虛擬機器中執行 SAP NetWeaver，那麼請先閱讀此白皮書。此規劃和實作指南將協助您評估是否可以將現有或已規劃的 SAP NetWeaver 架構系統部署到 Azure 虛擬機器環境。其內容涵蓋多個 SAP NetWeaver 部署案例，並包含 Azure 特有的 SAP 組態。本白皮書列出並描述若要執行混合式 SAP 環境，SAP/Azure 端所需的所有必要設定資訊。另外也會說明為確保 IaaS 上的 SAP NetWeaver 架構系統擁有高可用性，您所能採取的措施。
@@ -8,6 +7,7 @@
 更新時間：2015 年 8 月
 
 [立即下載此指南](http://go.microsoft.com/fwlink/?LinkId=397963)
+
 ## Deployment
 標題：Azure 虛擬機器上的 SAP NetWeaver – 部署指南
 
@@ -27,7 +27,6 @@
 [立即下載此指南](http://go.microsoft.com/fwlink/?LinkId=397965)
 
 ## Azure 上的 SAP NetWeaver
-
 標題：SAP NetWeaver - 建置 Azure 災害復原解決方案
 
 摘要：本文件提供的逐步指引可用來建置適用於 SAP NetWeaver 的 Azure 災害復原解決方案。所描述的解決方案假設 SAP 環境正在執行以 Hyper-V 為基礎的虛擬化內部部署。本文件的第一個部分會在 Azure Site Recovery (ASR) 元件中導入其服務。本文件的第二個部分描述 SAP NetWeaver 架構環境的細節，另外也會探討並描述搭配使用 ASR 與 SAP NetWeaver 應用程式執行個體及 SAP Central Services 的可能性。第二個部分的重點是將 ASR 用於受 Windows Server 容錯移轉叢集組態所保護的 SAP Central Services。

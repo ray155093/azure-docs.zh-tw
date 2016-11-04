@@ -1,5 +1,5 @@
 ### 必要條件
-- [Trello](http://trello.com) 帳戶 
+* [Trello](http://trello.com) 帳戶 
 
 您必須先授與邏輯應用程式連接到 Trello 帳戶的權限，之後才能在邏輯應用程式中使用您的 Trello 帳戶。所幸，您可以使用 Azure 入口網站在邏輯應用程式內輕易達成這項作業。
 
@@ -10,3 +10,4 @@
 3. 現在即可連接至 Trello：![](./media/connectors-create-api-trello/trello-3.png)   
 4. 提供您的 Trello 使用者名稱和密碼以授與邏輯應用程式權限：![](./media/connectors-create-api-trello/trello-4.png)  
 5. 請注意，此時已建立連線，您現可進行邏輯應用程式中的其他步驟：![](./media/connectors-create-api-trello/trello-5.png)
+

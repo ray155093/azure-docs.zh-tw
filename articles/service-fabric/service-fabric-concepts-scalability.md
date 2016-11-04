@@ -1,28 +1,27 @@
-<properties
-   pageTitle="Service Fabric 服務的延展性 | Microsoft Azure"
-   description="描述如何調整 Service Fabric 服務"
-   services="service-fabric"
-   documentationCenter=".net"
-   authors="appi101"
-   manager="timlt"
-   editor=""/>
+---
+title: Service Fabric 服務的延展性 | Microsoft Docs
+description: 描述如何調整 Service Fabric 服務
+services: service-fabric
+documentationcenter: .net
+author: appi101
+manager: timlt
+editor: ''
 
-<tags
-   ms.service="service-fabric"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="NA"
-   ms.date="08/10/2016"
-   ms.author="aprameyr"/>
+ms.service: service-fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 08/10/2016
+ms.author: aprameyr
 
+---
 # 調整 Service Fabric 應用程式
 Azure Service Fabric 可讓您透過負載平衡服務、資料分割和叢集中所有節點上的複本，輕鬆建置可調整的應用程式。這可最大化資源使用率。
 
 Service Fabric 應用程式的高延展性可以透過兩種方式來達成：
 
 1. 調整資料分割層級
-
 2. 調整服務名稱層級
 
 ## 調整資料分割層級
@@ -46,18 +45,14 @@ Service Fabric 支援將個別服務分割為多個小型的資料分割。[資�
 
 不過，此方法是根據使用應用程式特定命名資訊的用戶端，超出 Service Fabric 的知識領域之外。
 
-- *使用命名慣例*：當您在 2013 年啟動應用程式時，將建立一個稱為 fabric:/app/service2013 的服務。接近到 2013 年的第二季時，則將建立另一個稱為 fabric:/app/service2014 的服務。這兩個服務都屬於相同的服務類型。在此方法中，您的用戶端必須根據年份運用邏輯來建構適當的服務名稱。
-
-- *使用查閱服務*：另一個模式是提供次要的「查閱服務」，可提供所需索引鍵的服務名稱。接著新的服務執行個體可透過查閱服務來建立。查閱服務本身不會保留任何應用程式資料，僅保留其所建立的服務名稱相關資料。因此在以上的年份範例中，用戶端會先連絡查閱服務以針對特定年份找出服務處理資料的名稱，然後使用該服務名稱以執行實際的作業。第一次的查閱結果可以進行快取。
+* *使用命名慣例*：當您在 2013 年啟動應用程式時，將建立一個稱為 fabric:/app/service2013 的服務。接近到 2013 年的第二季時，則將建立另一個稱為 fabric:/app/service2014 的服務。這兩個服務都屬於相同的服務類型。在此方法中，您的用戶端必須根據年份運用邏輯來建構適當的服務名稱。
+* *使用查閱服務*：另一個模式是提供次要的「查閱服務」，可提供所需索引鍵的服務名稱。接著新的服務執行個體可透過查閱服務來建立。查閱服務本身不會保留任何應用程式資料，僅保留其所建立的服務名稱相關資料。因此在以上的年份範例中，用戶端會先連絡查閱服務以針對特定年份找出服務處理資料的名稱，然後使用該服務名稱以執行實際的作業。第一次的查閱結果可以進行快取。
 
 ## 後續步驟
-
 如需 Service Fabric 概念的詳細資訊，請參閱：
 
-- [Service Fabric 服務的可用性](service-fabric-availability-services.md)
-
-- [分割 Service Fabric 服務](service-fabric-concepts-partitioning.md)
-
-- [定義和管理狀態](service-fabric-concepts-state.md)
+* [Service Fabric 服務的可用性](service-fabric-availability-services.md)
+* [分割 Service Fabric 服務](service-fabric-concepts-partitioning.md)
+* [定義和管理狀態](service-fabric-concepts-state.md)
 
 <!---HONumber=AcomDC_0810_2016------>

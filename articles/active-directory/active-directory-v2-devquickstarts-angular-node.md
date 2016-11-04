@@ -1,33 +1,32 @@
-<properties
-	pageTitle="開始使用 Azure AD v2.0 AngularJS | Microsoft Azure"
-	description="如何建置可在個人 Microsoft 帳戶及工作或學校帳戶登入使用者的 Angular JS 單一頁面應用程式。"
-	services="active-directory"
-	documentationCenter=""
-	authors="dstrockis"
-	manager="mbaldwin"
-	editor=""/>
+---
+title: 開始使用 Azure AD v2.0 AngularJS | Microsoft Docs
+description: 如何建置可在個人 Microsoft 帳戶及工作或學校帳戶登入使用者的 Angular JS 單一頁面應用程式。
+services: active-directory
+documentationcenter: ''
+author: dstrockis
+manager: mbaldwin
+editor: ''
 
-<tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="javascript"
-	ms.topic="article"
-	ms.date="09/16/2016"
-	ms.author="dastrock"/>
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: javascript
+ms.topic: article
+ms.date: 09/16/2016
+ms.author: dastrock
 
-
+---
 # 將登入新增至 AngularJS 單一頁面應用程式 - NodeJS
-
 在本文中，我們將使用 Azure Active Directory v2.0 端點，將 Microsoft 帳戶登入新增至 AngularJS 應用程式。v2.0 端點可讓您在您的應用程式中執行單一的整合，以及以個人和工作/學校帳戶驗證使用者。
 
 這個範例是簡單的待辦事項清單單一頁面應用程式，在後端 REST API 儲存工作、使用 NodeJS 撰寫，並且使用 Azure AD 的 OAuth 持有人權杖進行保護。AngularJS 應用程式會使用我們的開放原始碼 JavaScript 驗證程式庫 [adal.js](https://github.com/AzureAD/azure-activedirectory-library-for-js) 以處理整個登入程序，並且取得用以呼叫 REST API 的權杖。相同的模式可以套用以驗證其他 REST API，例如 [Microsoft Graph](https://graph.microsoft.com) 或 Azure Resource Manager API。
 
-> [AZURE.NOTE]
-	v2.0 端點並非支援每個 Azure Active Directory 案例和功能。如果要判斷是否應該使用 v2.0 端點，請閱讀 [v2.0 限制](active-directory-v2-limitations.md)。
+> [!NOTE]
+> v2.0 端點並非支援每個 Azure Active Directory 案例和功能。如果要判斷是否應該使用 v2.0 端點，請閱讀 [v2.0 限制](active-directory-v2-limitations.md)。
+> 
+> 
 
 ## 下載
-
 若要開始，您必須下載並安裝 [node.js](https://nodejs.org)。然後您可以複製或[下載](https://github.com/AzureADQuickStarts/AppModelv2-SinglePageApp-AngularJS-NodeJS/archive/skeleton.zip)基本架構應用程式：
 
 ```
@@ -41,17 +40,17 @@ git clone https://github.com/AzureADSamples/SinglePageApp-AngularJS-NodeJS.git
 ```
 
 ## 註冊應用程式
-
 首先，在[應用程式註冊入口網站](https://apps.dev.microsoft.com)中建立應用程式，或者遵循下列[詳細步驟](active-directory-v2-app-registration.md)。請確定：
 
-- 為您的應用程式新增 **Web** 平台。
-- 輸入正確的**重新導向 URI**。此範例的預設值是 `http://localhost:8080`。
-- 保留 [允許隱含流程] 核取方塊啟用。
+* 為您的應用程式新增 **Web** 平台。
+* 輸入正確的**重新導向 URI**。此範例的預設值是 `http://localhost:8080`。
+* 保留 [允許隱含流程] 核取方塊啟用。
 
 將指派給您應用程式的「應用程式識別碼」複製起來，您很快會需要用到這些識別碼。
 
 ## 安裝 adal.js
 若要開始，請瀏覽至您下載並安裝 adal.js 的專案。如果您已安裝 [bower](http://bower.io/)，您只要執行這個命令即可。對於任何相依性版本不符，請選擇較高的版本。
+
 ```
 bower install adal-angular#experimental
 ```
@@ -72,7 +71,6 @@ bower install adal-angular#experimental
 ```
 
 ## 設定 REST API
-
 在我們進行設定的同時，讓後端 REST API 運作。在命令提示字元中執行下列命令，安裝所有必要的封裝 (請確定您在專案的最上層目錄)：
 
 ```
@@ -83,11 +81,11 @@ npm install
 
 ```js
 exports.creds = {
-     
+
      // TODO: Replace this value with the Application ID from the registration portal
      audience: '<Your-application-id>',
-	 
-	 ...
+
+     ...
 }
 ```
 
@@ -116,19 +114,19 @@ angular.module('todoApp', ['ngRoute','AdalAngular'])
 ...
 
 adalProvider.init({
-        
+
         // Use this value for the public instance of Azure AD
         instance: 'https://login.microsoftonline.com/', 
-        
+
         // The 'common' endpoint is used for multi-tenant applications like this one
         tenant: 'common',
-        
+
         // Your application id from the registration portal
         clientId: '<Your-application-id>',
-        
+
         // If you're using IE, uncommment this line - the default HTML5 sessionStorage does not work for localhost.
         //cacheLocation: 'localStorage',
-         
+
     }, $httpProvider);
 ```
 
@@ -157,16 +155,16 @@ angular.module('todoApp')
 // Load adal.js the same way for use in controllers and views   
 .controller('homeCtrl', ['$scope', 'adalAuthenticationService','$location', function ($scope, adalService, $location) {
     $scope.login = function () {
-        
+
         // Redirect the user to sign in
         adalService.login();
-        
+
     };
     $scope.logout = function () {
-        
+
         // Redirect the user to log out    
         adalService.logOut();
-    
+
     };
 ...
 ```
@@ -237,12 +235,11 @@ node server.js
 
 如果要繼續了解 v2.0 端點，請返回我們的《[v2.0 開發人員指南](active-directory-appmodel-v2-overview.md)》。如需其他資源，請參閱：
 
-- [GitHub 上的 Azure 範例 >>](https://github.com/Azure-Samples)
-- [堆疊溢位上的 Azure AD >>](http://stackoverflow.com/questions/tagged/azure-active-directory)
-- [Azure.com 上的 Azure AD 文件 >>](https://azure.microsoft.com/documentation/services/active-directory/)
+* [GitHub 上的 Azure 範例 >>](https://github.com/Azure-Samples)
+* [堆疊溢位上的 Azure AD >>](http://stackoverflow.com/questions/tagged/azure-active-directory)
+* [Azure.com 上的 Azure AD 文件 >>](https://azure.microsoft.com/documentation/services/active-directory/)
 
 ## 取得產品的安全性更新
-
 我們鼓勵您造訪[此頁面](https://technet.microsoft.com/security/dd252948)並訂閱資訊安全摘要報告警示，以在安全性事件發生時收到通知。
 
 <!---HONumber=AcomDC_0921_2016-->

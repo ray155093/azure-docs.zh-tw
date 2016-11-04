@@ -1,24 +1,22 @@
-<properties
-	pageTitle="使用 API 管理服務產生 HTTP 要求"
-	description="了解如何使用 API 管理中的要求和回應原則，從您的 API 呼叫外部服務"
-	services="api-management"
-	documentationCenter=""
-	authors="darrelmiller"
-	manager=""
-	editor=""/>
+---
+title: 使用 API 管理服務產生 HTTP 要求
+description: 了解如何使用 API 管理中的要求和回應原則，從您的 API 呼叫外部服務
+services: api-management
+documentationcenter: ''
+author: darrelmiller
+manager: ''
+editor: ''
 
-<tags
-	ms.service="api-management"
-	ms.devlang="dotnet"
-	ms.topic="article"
-	ms.tgt_pltfrm="na"
-	ms.workload="na"
-	ms.date="08/09/2016"
-	ms.author="darrmi"/>
+ms.service: api-management
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 08/09/2016
+ms.author: darrmi
 
-
+---
 # 使用來自 Azure API 管理服務的外部服務
-
 Azure API 管理服務中可用的原則可純粹根據連入要求、傳出回應及基本組態資訊來進行各式各樣的有用工作。不過，能夠與來自 API 管理原則的外部服務進行互動，可開啟更多的機會。
 
 我們先前曾討論過如何與[適用於記錄、監視及分析的 Azure 事件中樞服務](api-management-log-to-eventhub-sample.md)互動的方式。在本文中，我們將示範可讓您與任何以 HTTP 為基礎之外部服務進行互動的原則。這些原則可用來觸發遠端事件，或用來擷取將以某種方式用於操作原始要求和回應的資訊。
@@ -130,17 +128,17 @@ API 管理的主要功能是保護後端資源。如果您的 API 所使用的�
       </send-request>
 
       <choose>
-  			<!-- Check active property in response -->
-  			<when condition="@((bool)((IResponse)context.Variables["tokenstate"]).Body.As<JObject>()["active"] == false)">
-  				<!-- Return 401 Unauthorized with http-problem payload -->
-  				<return-response response-variable-name="existing response variable">
-  					<set-status code="401" reason="Unauthorized" />
-  					<set-header name="WWW-Authenticate" exists-action="override">
-  						<value>Bearer error="invalid_token"</value>
-  					</set-header>
-  				</return-response>
-  			</when>
-  		</choose>
+              <!-- Check active property in response -->
+              <when condition="@((bool)((IResponse)context.Variables["tokenstate"]).Body.As<JObject>()["active"] == false)">
+                  <!-- Return 401 Unauthorized with http-problem payload -->
+                  <return-response response-variable-name="existing response variable">
+                      <set-status code="401" reason="Unauthorized" />
+                      <set-header name="WWW-Authenticate" exists-action="override">
+                          <value>Bearer error="invalid_token"</value>
+                      </set-header>
+                  </return-response>
+              </when>
+          </choose>
       <base />
     </inbound>
 
@@ -149,7 +147,7 @@ API 管理的主要功能是保護後端資源。如果您的 API 所使用的�
 ## 回應組合
 `send-request` 原則可用來增強對後端系統的主要要求 (如同我們在上述範例中所見)，或者它可用來完全取代後端呼叫。使用這項技術，我們可以輕鬆地建立複合資源，這些資源彙總自多個不同的系統。
 
-### 建置儀表板   
+### 建置儀表板
 有時您想要能夠公開存在於多個後端系統中的資訊，例如，驅動儀表板。KPI 來自所有不同的後端，但是您習慣不提供它們的直接存取權，而且如果所有資訊都是擷取自單一要求，這就非常有用。或許有一些後端資訊需要進行某些切割與細分，需要先稍微處理一下！ 當您知道使用者習慣按 F5 鍵來查看其效能不佳的指標是否可能變更時，若要降低後端負載，能夠快取該複合資源就非常實用。
 
 ### 假造資源
@@ -192,7 +190,6 @@ API 管理的主要功能是保護後端資源。如果您的 API 所使用的�
 這些要求將會依序執行，但這並不理想。在即將推出的版本中，我們將導入稱為 `wait` 的新原則，讓所有的這些要求都能以平行方式執行。
 
 ### 回應
-
 若要建構複合回應，我們可以使用 [return-response](https://msdn.microsoft.com/library/azure/dn894085.aspx#ReturnResponse) 原則。`set-body` 元素可以使用運算式，來建構新的 `JObject` 以及內嵌為屬性的所有元件表示法。
 
     <return-response response-variable-name="existing response variable">
@@ -212,7 +209,7 @@ API 管理的主要功能是保護後端資源。如果您的 API 所使用的�
 完整的原則看起來如下：
 
     <policies>
-    	<inbound>
+        <inbound>
 
       <set-variable name="fromDate" value="@(context.Request.Url.Query["fromDate"].Last())">
       <set-variable name="toDate" value="@(context.Request.Url.Query["toDate"].Last())">
@@ -250,13 +247,13 @@ API 管理的主要功能是保護後端資源。如果您的 API 所使用的�
                           ).ToString())
           </set-body>
         </return-response>
-    	</inbound>
-    	<backend>
-    		<base />
-    	</backend>
-    	<outbound>
-    		<base />
-    	</outbound>
+        </inbound>
+        <backend>
+            <base />
+        </backend>
+        <outbound>
+            <base />
+        </outbound>
     </policies>
 
 在預留位置作業的組態中，我們可以將儀表板資源設定為至少快取一個小時，因為我們了解資料的本質意味著即使它在一個小時之後就會過期，仍然可以充分有效傳達重要資訊給使用者。
@@ -267,6 +264,8 @@ Azure API 管理服務提供彈性的原則，可以選擇性地套用到 HTTP �
 ## 觀看這些原則的影片概觀
 如需本文所介紹之 [send-one-way-request](https://msdn.microsoft.com/library/azure/dn894085.aspx#SendOneWayRequest)、[send-request](https://msdn.microsoft.com/library/azure/dn894085.aspx#SendRequest) 和 [return-response](https://msdn.microsoft.com/library/azure/dn894085.aspx#ReturnResponse) 原則的詳細資訊，請觀看以下影片。
 
-> [AZURE.VIDEO send-request-and-return-response-policies]
+> [!VIDEO https://channel9.msdn.com/Blogs/AzureApiMgmt/Send-Request-and-Return-Response-Policies/player]
+> 
+> 
 
 <!---HONumber=AcomDC_0810_2016------>

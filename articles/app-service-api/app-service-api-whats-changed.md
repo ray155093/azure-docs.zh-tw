@@ -1,23 +1,22 @@
-<properties
-	pageTitle="App Service API Apps - 變更的項目 | Microsoft Azure"
-	description="了解 Azure App Service 中 API Apps 的新功能"
-	services="app-service\api"
-	documentationCenter=".net"
-	authors="mohitsriv"
-	manager="wpickett"
-	editor="tdykstra"/>
+---
+title: App Service API Apps - 變更的項目 | Microsoft Docs
+description: 了解 Azure App Service 中 API Apps 的新功能
+services: app-service\api
+documentationcenter: .net
+author: mohitsriv
+manager: wpickett
+editor: tdykstra
 
-<tags
-	ms.service="app-service-api"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="06/29/2016"
-	ms.author="rachelap"/>
+ms.service: app-service-api
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 06/29/2016
+ms.author: rachelap
 
+---
 # App Service API Apps - 變更的項目
-
 在 2015 年 11 月的 Connect () 事件中，[宣告](https://azure.microsoft.com/blog/azure-app-service-updates-november-2015/)了許多 Azure App Service 的改進功能。這些改進功能包括 API Apps 的基礎變更，以進一步配合行動和 Web Apps、減少概念計數以及改善部署和執行階段效能。從 2015 年 11 月 30 日起，您使用 Azure 管理入口網站或最新的工具建立的新的 API 應用程式將會反映這些變更。本文說明這些變更，以及如何重新部署現有的應用程式，以充分利用功能。
 
 ## 功能變更
@@ -32,12 +31,12 @@ API Apps 更新的主要設計原則是讓您可以使用您選擇的語言，�
 
 對於 API 案例，有一些相關的新功能：
 
-- **支援直接使用 Azure Active Directory**，而不需要用戶端程式碼交換工作階段權杖的 AAD 權杖：您的用戶端可以根據持有人權杖規格，在 Authorization 標頭只包含 AAD 權杖。這也表示用戶端或伺服器端上不需要有任何 App Service 專用 SDK。
-- **服務對服務或「內部」存取**：如果您有精靈處理序或某些需要存取沒有介面之 API 的其他用戶端，可以使用 AAD 服務主體來要求權杖，並將它傳遞至 App Service 來驗證您的應用程式。
-- **延遲授權**：許多應用程式對於應用程式的不同部分有各種不同的存取限制。也許您想要讓某些 API 可供公開使用，而有些則需要登入。原始的驗證/授權功能是孤注一擲，整個網站都需要登入。此選項仍然存在，但是您也可以選擇允許您的應用程式程式碼在 App Service 驗證使用者之後，呈現存取決策。
- 
+* **支援直接使用 Azure Active Directory**，而不需要用戶端程式碼交換工作階段權杖的 AAD 權杖：您的用戶端可以根據持有人權杖規格，在 Authorization 標頭只包含 AAD 權杖。這也表示用戶端或伺服器端上不需要有任何 App Service 專用 SDK。
+* **服務對服務或「內部」存取**：如果您有精靈處理序或某些需要存取沒有介面之 API 的其他用戶端，可以使用 AAD 服務主體來要求權杖，並將它傳遞至 App Service 來驗證您的應用程式。
+* **延遲授權**：許多應用程式對於應用程式的不同部分有各種不同的存取限制。也許您想要讓某些 API 可供公開使用，而有些則需要登入。原始的驗證/授權功能是孤注一擲，整個網站都需要登入。此選項仍然存在，但是您也可以選擇允許您的應用程式程式碼在 App Service 驗證使用者之後，呈現存取決策。
+
 如需新驗證功能的詳細資訊，請參閱 [Azure App Service 中 API Apps 的驗證和授權](app-service-api-authentication.md)。如需如何將現有 API 應用程式從先前的 API 應用程式模型的轉到新模型的詳細資訊，請參閱本文章稍後的[移轉現有的 API 應用程式](#migrating-existing-api-apps)。
- 
+
 ### CORS
 不是以逗號分隔的 **MS\_CrossDomainOrigins** 應用程式設定，現在在 Azure 管理入口網站會有一個刀鋒視窗可供設定 CORS。或者，可以使用資源管理員工具，例如 Azure PowerShell、CLI 或[資源總管](https://resources.azure.com/)來進行設定。在您的 **&lt;site name&gt;/web** 資源的 **Microsoft.Web/sites/config** 資源類型上設定 **cors** 屬性。例如：
 
@@ -67,7 +66,6 @@ API 定義刀鋒視窗可以透過 Web、行動及 API Apps 使用。在管理�
 現有的 API 應用程式 (或從 Logic Apps 建立的 Marketplace API 應用程式) 與先前的預覽功能仍會在 Logic Apps 設計工具中以及於瀏覽資源群組中的所有資源時顯示。
 
 ## Visual Studio
-
 大部分的 Web Apps 工具將會使用新的 API 應用程式，因為它們會共用相同的基礎 **Microsoft.Web/sites** 資源類型。但是，Azure Visual Studio 工具應該升級為版本 2.8.1 或更新版本，因為它會公開一些特定的 API 功能。從 [Azure 下載頁面](https://azure.microsoft.com/downloads/)下載 SDK。
 
 隨著 App Service 類型的合理化，發佈也會在 [發佈] > [Microsoft Azure App Service] 底下統一：
@@ -86,17 +84,17 @@ API 定義刀鋒視窗可以透過 Web、行動及 API Apps 使用。在管理�
 
 1. 建立空的 API 應用程式。做法是在入口網站中使用 [新增] > [API 應用程式]，在 Visual Studio 中使用 [發佈]，或使用資源管理員工具。如果是使用資源管理員工具或範本，在 **Microsoft.Web/sites** 資源類型上將 [種類] 值設為 **api**，將管理入口網站中的快速入門和設定導向 API 案例。
 2. 使用 App Service 支援的任何部署機制，連接及部署專案到空的 API 應用程式。如需詳細資訊，請參閱 [Azure App Service 部署文件](../app-service-web/web-sites-deploy.md)。
-  
+
 ### 驗證
 App Service 驗證服務支援相同的功能，這些功能可用於先前的 API 應用程式模型。如果您使用工作階段權杖並且需要 SDK，請使用下列用戶端與伺服器 SDK：
 
-- 用戶端：[Azure 行動用戶端 SDK](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Client/)
-- 伺服器：[Microsoft Azure 行動應用程式 .NET 驗證延伸模組](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Authentication/)
+* 用戶端：[Azure 行動用戶端 SDK](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Client/)
+* 伺服器：[Microsoft Azure 行動應用程式 .NET 驗證延伸模組](http://www.nuget.org/packages/Microsoft.Azure.Mobile.Server.Authentication/)
 
 如果您改為使用 App Service alpha SDK，這些項目目前已被取代：
 
-- 用戶端：[Microsoft Azure AppService SDK](http://www.nuget.org/packages/Microsoft.Azure.AppService)
-- 伺服器：[Microsoft.Azure.AppService.ApiApps.Service](http://www.nuget.org/packages/Microsoft.Azure.AppService.ApiApps.Service)
+* 用戶端：[Microsoft Azure AppService SDK](http://www.nuget.org/packages/Microsoft.Azure.AppService)
+* 伺服器：[Microsoft.Azure.AppService.ApiApps.Service](http://www.nuget.org/packages/Microsoft.Azure.AppService.ApiApps.Service)
 
 但是，特別是使用 Azure Active Directory，如果您直接使用 AAD 權杖，則不需要任何 App Service 特定項目。
 
@@ -112,14 +110,12 @@ App Service 驗證服務支援相同的功能，這些功能可用於先前的 A
 4. 在部署階段，以其他 API 應用程式的端點填入所有 API 應用程式 (和用戶端) 的應用程式設定。這是可行的範本部署，因為 API Apps 現在提供您 URL 的控制權。
 
 ## 搭配使用 API Apps 與 Logic Apps
-
 新的 API 應用程式模型非常適合 [結Logic Apps 構描述版本 2015-08-01](../app-service-logic/app-service-logic-schema-2015-08-01.md)。
 
 ## 後續步驟
-
 若要深入了解，請參閱 [API Apps 文件小節](https://azure.microsoft.com/documentation/services/app-service/api/)中的文章。這些文章已更新以反映 API Apps 的新模型。此外，務必造訪論壇以取得其他詳細資料或移轉的指引：
 
-- [MSDN 論壇](https://social.msdn.microsoft.com/Forums/zh-TW/home?forum=AzureAPIApps)
-- [堆疊溢位](http://stackoverflow.com/questions/tagged/azure-api-apps)
+* [MSDN 論壇](https://social.msdn.microsoft.com/Forums/zh-TW/home?forum=AzureAPIApps)
+* [堆疊溢位](http://stackoverflow.com/questions/tagged/azure-api-apps)
 
 <!---HONumber=AcomDC_0713_2016-->

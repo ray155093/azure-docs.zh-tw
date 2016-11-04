@@ -1,28 +1,24 @@
-<properties 
-  pageTitle="在 Azure 上部署您自己的私用 Docker Registry | Microsoft Azure"
-  description="描述如何使用 Docker Registry 裝載 Azure Blob 儲存體服務上的容器映像。"
-  services="virtual-machines-linux"
-  documentationCenter="virtual-machines"
-  authors="ahmetalpbalkan"
-  editor="squillace"
-  manager="timlt"
-  tags="azure-service-management,azure-resource-manager" />
+---
+title: 在 Azure 上部署您自己的私用 Docker Registry | Microsoft Docs
+description: 描述如何使用 Docker Registry 裝載 Azure Blob 儲存體服務上的容器映像。
+services: virtual-machines-linux
+documentationcenter: virtual-machines
+author: ahmetalpbalkan
+editor: squillace
+manager: timlt
+tags: azure-service-management,azure-resource-manager
 
-<tags
-  ms.service="virtual-machines-linux"
-  ms.devlang="multiple"
-  ms.topic="article"
-  ms.tgt_pltfrm="vm-linux"
-  ms.workload="infrastructure-services"
-  ms.date="09/27/2016" 
-  ms.author="ahmetb" />
+ms.service: virtual-machines-linux
+ms.devlang: multiple
+ms.topic: article
+ms.tgt_pltfrm: vm-linux
+ms.workload: infrastructure-services
+ms.date: 09/27/2016
+ms.author: ahmetb
 
-
+---
 # <a name="deploying-your-own-private-docker-registry-on-azure"></a>在 Azure 上部署您自己的私用 Docker Registry
-
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
-
-
+[!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
 本文件描述何謂 Docker 私用登錄，並顯示如何使用 Azure Blob 儲存體將 Docker Registry 2.0 容器映像部署至 Microsoft Azure 上的 Docker 私用登錄。
 
@@ -31,9 +27,7 @@
 1. 您知道如何使用 Docker，並具備要儲存的 Docker 映像。 (您不知道嗎？ [了解 Docker](https://www.docker.com))
 2. 您具有已安裝 Docker 引擎的伺服器。 (您不知道嗎？ [快速在 Azure 上執行。](https://azure.microsoft.com/documentation/templates/docker-simple-on-ubuntu/))
 
-
 ## <a name="what-is-a-private-docker-registry?"></a>什麼是私用 Docker Registry？
-
 若要將容器化的應用程式傳送至雲端，您需建構 Docker 容器映像，並將其儲存到某個位置，以便自己和其他人使用。 
 
 建立容器映像並將其傳送至雲端並不困難，但是要可靠地儲存產生的映像卻是個挑戰。 基於這個理由，Docker 提供集中式的服務 (稱為 [Docker Hub][docker-hub])，可將容器映像儲存在雲端上，並可讓您隨時使用這些映像建立容器。
@@ -42,17 +36,15 @@
 Azure Blob 儲存體可輕鬆受到保護，所以您可以快速地使用它，在您自行控制的 Azure 中建立並使用私用 Docker 登錄。
 
 ## <a name="why-should-you-host-a-docker-registry-on-azure?"></a>為什麼應該在 Azure 上裝載 Docker Registry？
-
 藉由在 Microsoft Azure 上裝載 Docker Registry 執行個體，並將您的映像儲存在 Azure Blob 儲存體上，您可以享有數個優點：
 
 **安全性：**您的 Docker 映像不會離開 Azure 資料中心，因此它們不會跨越公用網際網路，如果您使用 Docker Hub 就有可能跨越。
-  
+
 **效能：** 您的 Docker 影像會儲存在和應用程式相同的資料中心或區域內。 這表示將會比 Docker Hub 更快速、更可靠地提取映像。
 
 **可靠性：** 藉由使用 Microsoft Azure Blob 儲存體，您可使用許多儲存體屬性，例如高可用性、備援、進階儲存體 (SSD) 等等。
 
 ## <a name="configuring-docker-registry-to-use-azure-blob-storage"></a>將 Docker Registry 設定為使用 Azure Blob 儲存體
-
 (建議您先閱讀 [Docker Registry 2.0 文件][registry-docs]再繼續進行。)
 
 您可以利用兩種不同的方式[設定][registry-config] Docker Registry。
@@ -89,19 +81,21 @@ CONTAINER ID        IMAGE               COMMAND                CREATED          
 3698ddfebc6f        registry:2          "registry cmd/regist   2 seconds ago       Up 1 seconds        0.0.0.0:5000->5000/tcp   registry
 ```
 
-> [AZURE.IMPORTANT] 本文件未涵蓋設定 Docker Registry 的安全性，如果您開啟連接至虛擬機器端點上登錄連接埠的連接埠，根據預設，任何未經驗證的人都可以存取您的登錄，如果您使用上述的部署命令，則可存取負載平衡器。
->
+> [!IMPORTANT]
+> 本文件未涵蓋設定 Docker Registry 的安全性，如果您開啟連接至虛擬機器端點上登錄連接埠的連接埠，根據預設，任何未經驗證的人都可以存取您的登錄，如果您使用上述的部署命令，則可存取負載平衡器。
+> 
 > 請參閱[設定 Docker Registry][registry-config] 文件，以了解如何保護登錄執行個體和您的映像。
+> 
+> 
 
 ## <a name="next-steps"></a>後續步驟
-
 一旦您設定了登錄，就可以使用它的其他功能。 以 docker [registry-docs]開頭。 
 
 [docker-hub]: https://hub.docker.com/
 [registry]: https://github.com/docker/distribution
 [registry-docs]: http://docs.docker.com/registry/
 [registry-config]: http://docs.docker.com/registry/configuration/
- 
+
 
 
 

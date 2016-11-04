@@ -1,50 +1,44 @@
-<properties
-   pageTitle="Azure SQL Database 會以隔離和高效率方式建置多租用戶應用程式"
-   description="了解 Azure SQL Database 如何建置多租用戶的應用程式"
-   keywords=""
-   services="sql-database"
-   documentationCenter=""
-   authors="CarlRabeler"
-   manager="jhubbard"
-   editor=""/>
+---
+title: Azure SQL Database 會以隔離和高效率方式建置多租用戶應用程式
+description: 了解 Azure SQL Database 如何建置多租用戶的應用程式
+keywords: ''
+services: sql-database
+documentationcenter: ''
+author: CarlRabeler
+manager: jhubbard
+editor: ''
 
-<tags
-   ms.service="sql-database"
-   ms.devlang="NA"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="data-management"
-   ms.date="07/19/2016"
-   ms.author="carlrab"/>
+ms.service: sql-database
+ms.devlang: NA
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: data-management
+ms.date: 07/19/2016
+ms.author: carlrab
 
+---
 # 使用 Azure SQL Database 以隔離和高效率方式建置多租用戶應用程式
-
 ## 利用彈性集區及建置更有效率的多租用戶應用程式
-
 如果您是負責撰寫多租用戶應用程式並處理多位客戶的 SaaS 開發人員，通常會面臨在客戶效能、管理與安全性方面的取捨。但有了 Azure SQL Database 的彈性資料庫集區之後，您再也不必面對這樣的兩難情況了。這些集區可協助您管理及監視多租用戶應用程式，並獲得一位客戶一個資料庫的隔離優點。請參閱[多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)。
 
 ![build-multi-tenant-apps](./media/sql-database-build-multi-tenant-apps/sql-database-build-multi-tenant-apps.png)
 
 ## 自動調整控制
-
 集區會即時自動調整彈性資料庫的效能和儲存體容量。您可以控制指派給集區的效能、依照需求新增或移除彈性資料庫，以及定義彈性資料庫的效能，但不會影響集區的整體成本。這表示您不需要擔心個別資料庫的使用管理。
 
 [閱讀文件](sql-database-elastic-pool.md)
 
 ## 您的環境的智慧型管理
-
 內建大小建議會主動識別因集區而獲益的資料庫。這些建議可讓「假設」分析快速最佳化，以符合您的效能目標。豐富的效能監視和疑難排解儀表板可協助您視覺化過去的集區使用率。
 
 [閱讀文件](sql-database-elastic-pool-guidance.md)
 
 ## 符合您的需求的效能和價格
-
 基本、標準和進階集區會提供廣泛的效能、儲存體和價格選項。集區最多可以包含 400 個彈性資料庫。彈性資料庫可以自動相應增加至 1000 個彈性資料庫交易單位 (eDTU)。
 
 [閱讀文件](https://azure.microsoft.com/pricing/details/sql-database/?b=16.50)
 
 ## 彈性工具
-
 除了彈性集區，還有 SQL Database 功能可協助管理跨多個資料庫的作業活動︰
 
 ** 執行跨資料庫的查詢和報告。** [彈性資料庫查詢](sql-database-elastic-query-overview.md)可讓您在彈性集區中執行跨資料庫的查詢或報告，以及一次存取多個資料庫中儲存的遠端資料。
@@ -56,13 +50,11 @@
 請移至首頁，查看 SQL Database 還提供哪些項目。[了解相關資訊](https://azure.microsoft.com/services/sql-database/)
 
 ## 後續步驟
-
 取得[免費 Azure 訂用帳戶](https://azure.microsoft.com/get-started/)並[建立您的第一個 Azure SQL Database](sql-database-get-started.md)。
 
 ## 其他資源
-
 瀏覽 [SQL Database 的所有功能](https://azure.microsoft.com/services/sql-database/)。
- 
+
 檢閱 [SQL Database 的技術概觀](sql-database-technical-overview.md)。
 
 <!---HONumber=AcomDC_0803_2016-->

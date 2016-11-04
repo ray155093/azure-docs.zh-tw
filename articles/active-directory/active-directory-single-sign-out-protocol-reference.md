@@ -1,25 +1,22 @@
-<properties
-    pageTitle="Azure 單一登出 SAML 通訊協定 | Microsoft Azure"
-    description="本文說明 Azure Active Directory 中的單一登出 SAML 通訊協定"
-    services="active-directory"
-    documentationCenter=".net"
-    authors="priyamohanram"
-    manager="mbaldwin"
-    editor=""/>
+---
+title: Azure 單一登出 SAML 通訊協定 | Microsoft Docs
+description: 本文說明 Azure Active Directory 中的單一登出 SAML 通訊協定
+services: active-directory
+documentationcenter: .net
+author: priyamohanram
+manager: mbaldwin
+editor: ''
 
-<tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="10/03/2016"
-    ms.author="priyamo"/>
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 10/03/2016
+ms.author: priyamo
 
-
-
+---
 # <a name="single-sign-out-saml-protocol"></a>單一登出 SAML 通訊協定
-
 Azure Active Directory (Azure AD) 支援 SAML 2.0 Web 瀏覽器單一登出設定檔。 若要讓單一登出正常運作，Azure AD 必須在應用程式註冊期間註冊其中繼資料 URL。 Azure AD 會從中繼資料取得雲端服務的登出 URL 和簽署金鑰。 Azure AD 會使用簽署金鑰來驗證連入 LogoutRequest 上的簽章，並且將在使用者登出之後使用 LogoutURL 來重新導向使用者。
 
 如果雲端服務不支援中繼資料端點，在應用程式註冊之後，開發人員必須連絡 Microsoft 支援服務以提供登出 URL 和簽署金鑰。
@@ -29,7 +26,6 @@ Azure Active Directory (Azure AD) 支援 SAML 2.0 Web 瀏覽器單一登出設�
 ![單一登出工作流程](media/active-directory-single-sign-out-protocol-reference/active-directory-saml-single-sign-out-workflow.png)
 
 ## <a name="logoutrequest"></a>LogoutRequest
-
 雲端服務會傳送 `LogoutRequest` 訊息至 Azure AD，指出工作階段已終止。 下列摘錄顯示範例 `LogoutRequest` 元素。
 
 ```
@@ -40,26 +36,20 @@ Azure Active Directory (Azure AD) 支援 SAML 2.0 Web 瀏覽器單一登出設�
 ```
 
 ### <a name="logoutrequest"></a>LogoutRequest
-
 傳送至 Azure AD 的 `LogoutRequest` 元素需要下列屬性：
 
-- `ID` ：這會識別登出要求。 `ID` 的值不應該以數字開頭。 一般的做法是附加 **id** 至 GUID 的字串表示法。
-
-- `Version` ：將此元素的值設定為 **2.0**。 需要此值。
-
-- `IssueInstant`：這是具有國際標準時間 (UTC) 值和[來回行程格式 ("o")](https://msdn.microsoft.com/library/az4se3k1.aspx) 的 `DateTime` 字串。 Azure AD 會預期此類型的值，但不會強制。
-
-- 如果 `Consent`、`Destination`、`NotOnOrAfter` 和 `Reason` 屬性包含在 `LogoutRequest` 元素中，則會加以忽略。
+* `ID` ：這會識別登出要求。 `ID` 的值不應該以數字開頭。 一般的做法是附加 **id** 至 GUID 的字串表示法。
+* `Version` ：將此元素的值設定為 **2.0**。 需要此值。
+* `IssueInstant`：這是具有國際標準時間 (UTC) 值和[來回行程格式 ("o")](https://msdn.microsoft.com/library/az4se3k1.aspx) 的 `DateTime` 字串。 Azure AD 會預期此類型的值，但不會強制。
+* 如果 `Consent`、`Destination`、`NotOnOrAfter` 和 `Reason` 屬性包含在 `LogoutRequest` 元素中，則會加以忽略。
 
 ### <a name="issuer"></a>簽發者
-
 `LogoutRequest` 中的 `Issuer` 元素必須完全符合 Azure AD 中雲端服務的其中一個 **ServicePrincipalNames**。 一般而言，這會設定為應用程式註冊期間指定的 **應用程式識別碼 URI** 。
 
 ### <a name="nameid"></a>NameID
-
 `NameID` 元素的值必須完全符合正在登出的使用者的 `NameID`。
-## <a name="logoutresponse"></a>LogoutResponse
 
+## <a name="logoutresponse"></a>LogoutResponse
 Azure AD 會傳送 `LogoutResponse` 以回應 `LogoutRequest` 元素。 下列摘錄顯示範例 `LogoutResponse`。
 
 ```
@@ -72,20 +62,15 @@ Azure AD 會傳送 `LogoutResponse` 以回應 `LogoutRequest` 元素。 下列�
 ```
 
 ### <a name="logoutresponse"></a>LogoutResponse
-
 Azure AD 會設定 `LogoutResponse` 元素中的 `ID`、`Version` 和 `IssueInstant` 值。 它也會將 `InResponseTo` 元素設定為導出回應的 `LogoutRequest` 的 `ID` 屬性值。
 
 ### <a name="issuer"></a>簽發者
-
 Azure AD 會將此值設為 `https://login.microsoftonline.com/<TenantIdGUID>/`，其中，<TenantIdGUID> 是 Azure AD 租用戶的租用戶識別碼。
 
 若要評估 `Issuer` 元素的值，請使用應用程式註冊期間提供的 **應用程式識別碼 URI** 的值。
 
 ### <a name="status"></a>狀態
-
 Azure AD 使用 `Status` 元素中的 `StatusCode` 元素，來指出登出成功或失敗。 登出嘗試失敗時， `StatusCode` 元素也可包含自訂錯誤訊息。
-
-
 
 <!--HONumber=Oct16_HO2-->
 

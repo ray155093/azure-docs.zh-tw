@@ -1,45 +1,45 @@
-<properties
-    pageTitle="自訂：Azure AD 密碼管理 |Microsoft Azure"
-    description="如何自訂 Azure AD 中的密碼管理外觀、行為和通知，以符合您的需求。"
-    services="active-directory"
-    documentationCenter=""
-    authors="asteen"
-    manager="femila"
-    editor="curtand"/>
+---
+title: 自訂：Azure AD 密碼管理 | Microsoft Docs
+description: 如何自訂 Azure AD 中的密碼管理外觀、行為和通知，以符合您的需求。
+services: active-directory
+documentationcenter: ''
+author: asteen
+manager: femila
+editor: curtand
 
-<tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/03/2016"
-    ms.author="asteen"/>
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/03/2016
+ms.author: asteen
 
-
+---
 # <a name="customizing-password-management-to-fit-your-organization's-needs"></a>自訂密碼管理以符合您的組織的需求
-
-> [AZURE.IMPORTANT] **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
+> [!IMPORTANT]
+> **您來到此處是因為有登入問題嗎？** 若是如此， [以下是如何變更和重設密碼的說明](active-directory-passwords-update-your-own-password.md)。
+> 
+> 
 
 為了給予您的使用者最佳的體驗，我們建議您探索和試驗您可以使用的所有密碼管理組態選項。 事實上，您可以前往 **Azure 傳統入口網站** 的 [Active Directory 延伸模組] [](https://manage.windowsazure.com)中的組態索引標籤，立即開始探索。 本主題會引導您從 **Azure 傳統入口網站** 中目錄的 [設定] [](https://manage.windowsazure.com)索引標籤，完成身為系統管理員可以進行的不同密碼管理自訂，包括：
 
 | 主題 |  |
-| --------- | --------- |
-| 如何啟用或停用密碼重設？ | [設定：啟用使用者的密碼重設](#users-enabled-for-password-reset) |
-| 如何將密碼重設的範圍限定為一組特定的使用者？ | [將密碼重設限定於特定使用者](#restrict-access-to-password-reset) |
-| 如何變更支援的驗證方法？ | [設定：使用者可用的驗證方法](#authentication-methods-available-to-users) |
-| 如何變更必要驗證方法數目？ | [設定：必要驗證方法數目](#number-of-authentication-methods-required) |
-| 如何設定自訂安全性問題？ | [設定：自訂安全性問題](#custom-security-questions) |
-| 如何設定預先定義的當地語系化安全性問題？ | [設定：以知識為基礎的安全性問題](#knowledge-based-security-questions) |
-| 如何變更必要的安全性問題數目？ | [設定：註冊或重設的安全性問題數目](#number-of-questions-required-to-register) |
-| 如何促使我的使用者在登入時註冊？ | [以強制註冊的方式推動密碼重設](#require-users-to-register-when-signing-in) |
-| 如何促使我的使用者定期重新確認他們的註冊？ | [設定：幾天後使用者必須重新確認其驗證資料](#number-of-days-before-users-must-confirm-their-contact-data) |
-| 如何自訂使用者聯繫系統管理員的方式？ | [設定：自訂「連絡您的系統管理員」連結](#customize-the-contact-your-administrator-link) |
-| 如何讓使用者直接解除鎖定 AD 帳戶而不必重設密碼？ | [設定：讓使用者直接解除鎖定 AD 帳戶而不必重設密碼](#allow-users-to-unlock-accounts-without-resetting-their-password) |
-| 如何為使用者啟用密碼重設通知？ | [設定：在使用者的密碼重設時通知使用者](#notify-users-and-admins-when-their-own-password-has-been-reset) |
-| 如何為系統管理員啟用密碼重設通知？ | [設定：在系統管理員重設其密碼時通知其他系統管理員](#notify-admins-when-other-admins-reset-their-own-passwords) |
-| 如何自訂密碼重設的外觀及操作？ | [設定：公司名稱、商標和標誌 ](#password-management-look-and-feel) |
-
+| --- | --- |
+| 如何啟用或停用密碼重設？ |[設定：啟用使用者的密碼重設](#users-enabled-for-password-reset) |
+| 如何將密碼重設的範圍限定為一組特定的使用者？ |[將密碼重設限定於特定使用者](#restrict-access-to-password-reset) |
+| 如何變更支援的驗證方法？ |[設定：使用者可用的驗證方法](#authentication-methods-available-to-users) |
+| 如何變更必要驗證方法數目？ |[設定：必要驗證方法數目](#number-of-authentication-methods-required) |
+| 如何設定自訂安全性問題？ |[設定：自訂安全性問題](#custom-security-questions) |
+| 如何設定預先定義的當地語系化安全性問題？ |[設定：以知識為基礎的安全性問題](#knowledge-based-security-questions) |
+| 如何變更必要的安全性問題數目？ |[設定：註冊或重設的安全性問題數目](#number-of-questions-required-to-register) |
+| 如何促使我的使用者在登入時註冊？ |[以強制註冊的方式推動密碼重設](#require-users-to-register-when-signing-in) |
+| 如何促使我的使用者定期重新確認他們的註冊？ |[設定：幾天後使用者必須重新確認其驗證資料](#number-of-days-before-users-must-confirm-their-contact-data) |
+| 如何自訂使用者聯繫系統管理員的方式？ |[設定：自訂「連絡您的系統管理員」連結](#customize-the-contact-your-administrator-link) |
+| 如何讓使用者直接解除鎖定 AD 帳戶而不必重設密碼？ |[設定：讓使用者直接解除鎖定 AD 帳戶而不必重設密碼](#allow-users-to-unlock-accounts-without-resetting-their-password) |
+| 如何為使用者啟用密碼重設通知？ |[設定：在使用者的密碼重設時通知使用者](#notify-users-and-admins-when-their-own-password-has-been-reset) |
+| 如何為系統管理員啟用密碼重設通知？ |[設定：在系統管理員重設其密碼時通知其他系統管理員](#notify-admins-when-other-admins-reset-their-own-passwords) |
+| 如何自訂密碼重設的外觀及操作？ |[設定：公司名稱、商標和標誌 ](#password-management-look-and-feel) |
 
 ## <a name="password-management-look-and-feel"></a>密碼管理外觀與風格
 下表描述每個控制項如何影響使用者註冊密碼重設及重設其密碼的體驗。  您可以在 [Azure 管理入口網站](https://manage.windowsazure.com)中目錄的 [設定] 索引標籤的 [目錄內容] 區段底下，設定這些選項。
@@ -134,7 +134,10 @@
 ## <a name="password-management-behavior"></a>密碼管理行為
 下表描述每個控制項如何影響使用者註冊密碼重設及重設其密碼的體驗。  您可以在 [Azure 管理入口網站](https://manage.windowsazure.com)中目錄的 [設定] 索引標籤的 [使用者密碼重設原則] 區段底下，設定這些選項。
 
-> [AZURE.NOTE] 您使用的系統管理員帳戶必須具有指派的 AAD Premium 授權，才能看到這些原則控制項。<br><br>這些原則控制項只適用於使用者重設其密碼，不適用於系統管理員。  **系統管理員擁有備用電子郵件和/或行動電話的預設原則，由 Microsoft 為其指定且無法變更。**
+> [!NOTE]
+> 您使用的系統管理員帳戶必須具有指派的 AAD Premium 授權，才能看到這些原則控制項。<br><br>這些原則控制項只適用於使用者重設其密碼，不適用於系統管理員。  **系統管理員擁有備用電子郵件和/或行動電話的預設原則，由 Microsoft 為其指定且無法變更。**
+> 
+> 
 
 <table>
             <tbody><tr>
@@ -868,7 +871,6 @@
 * [**常見問題集**](active-directory-passwords-faq.md) - 取得常見問題的解答
 * [**疑難排解**](active-directory-passwords-troubleshoot.md) - 了解如何快速移難排解服務的問題
 * [**深入了解**](active-directory-passwords-learn-more.md) - 深入探索服務運作方式的技術細節
-
 
 [001]: ./media/active-directory-passwords-customize/001.jpg "Image_001.jpg"
 

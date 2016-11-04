@@ -1,25 +1,23 @@
-<properties 
-	pageTitle="具有 App Service 環境的多層式安全性架構" 
-	description="實作具有 App Service 環境的多層式安全性架構。" 
-	services="app-service" 
-	documentationCenter="" 
-	authors="stefsch" 
-	manager="wpickett" 
-	editor=""/>
+---
+title: 具有 App Service 環境的多層式安全性架構
+description: 實作具有 App Service 環境的多層式安全性架構。
+services: app-service
+documentationcenter: ''
+author: stefsch
+manager: wpickett
+editor: ''
 
-<tags 
-	ms.service="app-service" 
-	ms.workload="na" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="08/30/2016" 
-	ms.author="stefsch"/>
+ms.service: app-service
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/30/2016
+ms.author: stefsch
 
+---
 # 實作具有 App Service 環境的多層式安全性架構。
-
-## Overview ##
- 
+## Overview
 由於 App Service 環境提供部署至虛擬網路的隔離執行階段環境，因此開發人員能夠建立多層式安全性架構，針對每個實體應用程式層提供不同層級的網路存取。
 
 常見的需求之一，是要隱藏對 API 後端的一般網際網路存取，而只允許由上游 Web 應用程式呼叫 API。[網路安全性群組 (NSG)][NetworkSecurityGroups] 可用於包含 App Service 環境的子網路，用以限制對 API 應用程式的公用存取。
@@ -32,15 +30,15 @@
 
 此主題的其餘部分將逐步解說在包含 "apiase" 的子網路上設定網路安全群組所需的步驟。
 
-## 判斷網路行為 ##
+## 判斷網路行為
 若要知道需要哪些網路安全性規則，您必須判斷哪些網路用戶端將能夠聯繫包含 API 應用程式的 App Service 服務環境，而哪些用戶端將遭到封鎖。
 
 由於[網路安全性群組 (NSG)][NetworkSecurityGroups] 會套用至子網路，而 App Service 環境部署在子網路中，因此 NSG 中包含的規則將會套用至**所有**在 App Service 環境上執行的應用程式。舊本文的範例架構而言，一旦將網路安全性群組套用至包含 "apiase" 的子網路後，所有在 "apiase" App Service 環境上執行的應用程式都將受到相同安全性規則集的保護。
 
-- **判斷上游呼叫端的輸出 IP 位址：**上游呼叫端的 IP 位址為何？ 這些位址在 NSG 中必須明確地允許存取。由於 App Service 環境之間的呼叫會被視為「網際網路」呼叫，因此這表示指派給這三個上游 App Service 環境的輸出 IP 位址，在 "apiase" 子網路的 NSG 中必須是允許存取的。若想進一步了解如何判斷在 App Service 環境中執行之應用程式的輸出 IP 位址，請參閱[網路架構][NetworkArchitecture]概觀文章。
-- **後端 API 應用程式是否需要呼叫本身？** 後端應用程式有時候需要呼叫本身，這是常會被忽略而難以察覺的情況。如果 App Service 環境上的後端 API 應用程式需要呼叫本身，我們也會將其視為「網際網路」呼叫。在範例架構中，這必須允許 "apiase" App Service 環境的輸出 IP 位址進行存取。
+* **判斷上游呼叫端的輸出 IP 位址：**上游呼叫端的 IP 位址為何？ 這些位址在 NSG 中必須明確地允許存取。由於 App Service 環境之間的呼叫會被視為「網際網路」呼叫，因此這表示指派給這三個上游 App Service 環境的輸出 IP 位址，在 "apiase" 子網路的 NSG 中必須是允許存取的。若想進一步了解如何判斷在 App Service 環境中執行之應用程式的輸出 IP 位址，請參閱[網路架構][NetworkArchitecture]概觀文章。
+* **後端 API 應用程式是否需要呼叫本身？** 後端應用程式有時候需要呼叫本身，這是常會被忽略而難以察覺的情況。如果 App Service 環境上的後端 API 應用程式需要呼叫本身，我們也會將其視為「網際網路」呼叫。在範例架構中，這必須允許 "apiase" App Service 環境的輸出 IP 位址進行存取。
 
-## 設定網路安全性群組 ##
+## 設定網路安全性群組
 得知輸出 IP 位址集後，下一步是要建構網路安全群組。您可以針對以 Resource Manager 為基礎的虛擬網路以及傳統虛擬網路建立網路安全性群組。下列範例說明如何在傳統虛擬網路上使用 Powershell 建立和設定 NSG。
 
 在範例架構中，環境位於美國中南部，因此會在該區域中建立空的 NSG：
@@ -51,7 +49,7 @@
 
     #Open ports for access by Azure management infrastructure
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW AzureMngmt" -Type Inbound -Priority 100 -Action Allow -SourceAddressPrefix 'INTERNET' -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '454-455' -Protocol TCP
-    
+
 接著要新增兩個規則，以允許從第一個上游 App Service 環境 ("fe1ase") 進行 HTTP 和 HTTPS 呼叫。
 
     #Grant access to requests from the first upstream web front-end
@@ -63,7 +61,7 @@
     #Grant access to requests from the second upstream web front-end
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW HTTP fe2ase" -Type Inbound -Priority 400 -Action Allow -SourceAddressPrefix '191.238.xyz.abc'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '80' -Protocol TCP
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW HTTPS fe2ase" -Type Inbound -Priority 500 -Action Allow -SourceAddressPrefix '191.238.xyz.abc'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '443' -Protocol TCP
-    
+
     #Grant access to requests from the third upstream web front-end
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW HTTP fe3ase" -Type Inbound -Priority 600 -Action Allow -SourceAddressPrefix '23.98.abc.xyz'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '80' -Protocol TCP
     Get-AzureNetworkSecurityGroup -Name "RestrictBackendApi" | Set-AzureNetworkSecurityRule -Name "ALLOW HTTPS fe3ase" -Type Inbound -Priority 700 -Action Allow -SourceAddressPrefix '23.98.abc.xyz'  -SourcePortRange '*' -DestinationAddressPrefix '*' -DestinationPortRange '443' -Protocol TCP
@@ -87,8 +85,7 @@
 
 NSG 套用至子網路後，將只有三個上游 App Service 環境以及包含 API 後端的 App Service 環境能夠呼叫 "apiase" 環境。
 
-
-## 其他連結和資訊 ##
+## 其他連結和資訊
 您可以在 [應用程式服務環境的讀我檔案](../app-service/app-service-app-service-environments-readme.md)中取得 App Service 環境的所有相關文章與做法。
 
 關於[網路安全性群組](../virtual-network/virtual-networks-nsg.md)的資訊。
@@ -97,9 +94,9 @@ NSG 套用至子網路後，將只有三個上游 App Service 環境以及包含
 
 App Service 環境所使用的[網路連接埠][InboundTraffic]
 
-[AZURE.INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
+[!INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
 
-[AZURE.INCLUDE [app-service-web-try-app-service](../../includes/app-service-web-try-app-service.md)]
+[!INCLUDE [app-service-web-try-app-service](../../includes/app-service-web-try-app-service.md)]
 
 <!-- LINKS -->
 [NetworkSecurityGroups]: https://azure.microsoft.com/documentation/articles/virtual-networks-nsg/

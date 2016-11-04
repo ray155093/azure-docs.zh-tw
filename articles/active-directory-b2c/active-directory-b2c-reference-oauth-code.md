@@ -1,24 +1,22 @@
-<properties
-    pageTitle="Azure Active Directory B2C | Microsoft Azure"
-    description="使用 Azure Active Directory 的 OpenID Connect 驗證通訊協定實作來建置 Web 應用程式。"
-    services="active-directory-b2c"
-    documentationCenter=""
-    authors="dstrockis"
-    manager="mbaldwin"
-    editor=""/>
+---
+title: Azure Active Directory B2C | Microsoft Docs
+description: 使用 Azure Active Directory 的 OpenID Connect 驗證通訊協定實作來建置 Web 應用程式。
+services: active-directory-b2c
+documentationcenter: ''
+author: dstrockis
+manager: mbaldwin
+editor: ''
 
-<tags
-    ms.service="active-directory-b2c"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="07/22/2016"
-    ms.author="dastrock"/>
+ms.service: active-directory-b2c
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 07/22/2016
+ms.author: dastrock
 
-
+---
 # <a name="azure-active-directory-b2c:-oauth-2.0-authorization-code-flow"></a>Azure Active Directory B2C：OAuth 2.0 授權碼流程
-
 OAuth 2.0 授權碼授與可用於裝置上所安裝的應用程式中，以存取受保護的資源，例如 Web API。 只要使用 Azure Active Directory (Azure AD) B2C 的 OAuth 2.0 實作，您就可以在自己的行動及桌面應用程式中，新增註冊、登入及其他身分識別管理工作。 本指南與語言無關， 而是在說明如何傳送和接收 HTTP 訊息，但不使用我們的任何開放原始碼程式庫。
 
 <!-- TODO: Need link to libraries -->
@@ -36,7 +34,6 @@ Azure AD B2C 擴充標準的 OAuth 2.0 流程，功能更強大，而不僅止�
 授權碼流程始於用戶端將使用者導向 `/authorize` 端點。 這是流程的互動部分，使用者將會實際地採取動作。 在這項要求中，用戶端會在 `scope` 參數中指出它需要向使用者要求的權限，以及在 `p` 參數中指出它要執行的原則。 以下提供三個範例 (插入換行以提高可讀性)，各使用不同的原則。
 
 #### <a name="use-a-sign-in-policy"></a>使用登入原則
-
 ```
 GET https://login.microsoftonline.com/fabrikamb2c.onmicrosoft.com/oauth2/v2.0/authorize?
 client_id=90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6
@@ -49,7 +46,6 @@ client_id=90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6
 ```
 
 #### <a name="use-a-sign-up-policy"></a>使用註冊原則
-
 ```
 GET https://login.microsoftonline.com/fabrikamb2c.onmicrosoft.com/oauth2/v2.0/authorize?
 client_id=90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6
@@ -62,7 +58,6 @@ client_id=90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6
 ```
 
 #### <a name="use-an-edit-profile-policy"></a>使用編輯設定檔原則
-
 ```
 GET https://login.microsoftonline.com/fabrikamb2c.onmicrosoft.com/oauth2/v2.0/authorize?
 client_id=90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6
@@ -75,15 +70,15 @@ client_id=90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6
 ```
 
 | 參數 | 必要？ | 說明 |
-| ----------------------- | ------------------------------- | ----------------------- |
-| client_id | 必要 | [Azure 入口網站](https://portal.azure.com) 指派給您應用程式的應用程式識別碼。 |
-| response_type | 必要 | 回應類型，必須針對授權碼流程來加入 `code`。 |
-| redirect_uri | 必要 | 應用程式的 redirect_uri，您的應用程式可在此傳送及接收驗證回應。 它必須與您在入口網站中註冊的某個 redirect_uris 完全符合，不過它必須是 URL 編碼的。 |
-| scope | 必要 | 範圍的空格分隔清單。 單一範圍值，向 Azure AD 指出受到要求的兩個權限。 使用用戶端識別碼做為範圍表示您的應用程式需要可針對您自己的服務或 Web API 使用的 **存取權杖** (以相同的用戶端識別碼表示)。  `offline_access` 範圍表示您的應用程式將需要 **refresh_token**，才能長久存取資源。  您也可以使用 `openid` 範圍從 Azure AD B2C 要求 **id_token**。 |
-| response_mode | 建議 | 必須用來將所得的 authorization_code 傳回至應用程式的方法， 可以是 'query'、'form_post' 或 'fragment'。
-| state | 建議 | 同樣會隨權杖回應傳回之要求中所包含的值。 它可以是您所想要內容中的字串。 隨機產生的唯一值通常用於防止跨站台要求偽造攻擊。 驗證要求出現前，也會先使用此狀態為使用者在應用程式中的狀態資訊編碼，例如他們先前所在的網頁或正在執行的原則。 |
-| p | 必要 | 系統將會執行的原則。 這是在您的 B2C 目錄中所建立的原則名稱。 原則名稱值的開頭必須是「b2c\_1\_」。 如需深入了解原則，請參閱 [可延伸的原則架構](active-directory-b2c-reference-policies.md)。 |
-| prompt | 選用 | 需要的使用者互動類型。 此時唯一有效的值是 'login'，強制使用者針對該要求輸入其認證。 單一登入將沒有作用。 |
+| --- | --- | --- |
+| client_id |必要 |[Azure 入口網站](https://portal.azure.com) 指派給您應用程式的應用程式識別碼。 |
+| response_type |必要 |回應類型，必須針對授權碼流程來加入 `code`。 |
+| redirect_uri |必要 |應用程式的 redirect_uri，您的應用程式可在此傳送及接收驗證回應。 它必須與您在入口網站中註冊的某個 redirect_uris 完全符合，不過它必須是 URL 編碼的。 |
+| scope |必要 |範圍的空格分隔清單。 單一範圍值，向 Azure AD 指出受到要求的兩個權限。 使用用戶端識別碼做為範圍表示您的應用程式需要可針對您自己的服務或 Web API 使用的 **存取權杖** (以相同的用戶端識別碼表示)。  `offline_access` 範圍表示您的應用程式將需要 **refresh_token**，才能長久存取資源。  您也可以使用 `openid` 範圍從 Azure AD B2C 要求 **id_token**。 |
+| response_mode |建議 |必須用來將所得的 authorization_code 傳回至應用程式的方法， 可以是 'query'、'form_post' 或 'fragment'。 |
+| state |建議 |同樣會隨權杖回應傳回之要求中所包含的值。 它可以是您所想要內容中的字串。 隨機產生的唯一值通常用於防止跨站台要求偽造攻擊。 驗證要求出現前，也會先使用此狀態為使用者在應用程式中的狀態資訊編碼，例如他們先前所在的網頁或正在執行的原則。 |
+| p |必要 |系統將會執行的原則。 這是在您的 B2C 目錄中所建立的原則名稱。 原則名稱值的開頭必須是「b2c\_1\_」。 如需深入了解原則，請參閱 [可延伸的原則架構](active-directory-b2c-reference-policies.md)。 |
+| prompt |選用 |需要的使用者互動類型。 此時唯一有效的值是 'login'，強制使用者針對該要求輸入其認證。 單一登入將沒有作用。 |
 
 此時會要求使用者完成原則的工作流程。 視原則的定義方式，這可能會牽涉到讓使用者輸入自己的使用者名稱及密碼、以社交身分識別登入、註冊目錄，或是其他任何數目的步驟。
 
@@ -98,9 +93,9 @@ code=AwABAAAAvPM1KaPlrEqdFSBzjqfTGBCmLdgfSTLEMPGYuNHSUYBrq...        // the auth
 ```
 
 | 參數 | 說明 |
-| ----------------------- | ------------------------------- |
-| code | 應用程式要求的 authorization_code。 應用程式可以使用授權碼來要求目標資源的 access_token。 Authorization_codes 的存在時間很短， 通常會在大約 10 分鐘後過期。 |
-| state | 如需完整說明，請參閱前一個表格。 如果要求中包含狀態參數，回應中就應該出現相同的值。 應用程式應該要確認要求中的狀態值，與回應中的完全相同。 |
+| --- | --- |
+| code |應用程式要求的 authorization_code。 應用程式可以使用授權碼來要求目標資源的 access_token。 Authorization_codes 的存在時間很短， 通常會在大約 10 分鐘後過期。 |
+| state |如需完整說明，請參閱前一個表格。 如果要求中包含狀態參數，回應中就應該出現相同的值。 應用程式應該要確認要求中的狀態值，與回應中的完全相同。 |
 
 錯誤回應也可以傳送到 `redirect_uri` ，讓應用程式能適當地處理：
 
@@ -112,11 +107,10 @@ error=access_denied
 ```
 
 | 參數 | 說明 |
-| ----------------------- | ------------------------------- |
-| 錯誤 | 錯誤碼字串，可用來為發生的錯誤類型分類，以針對錯誤做出反應。 |
-| error_description | 特定的錯誤訊息，可協助開發人員辨識驗證錯誤的根本原因。 |
-| state | 如需完整說明，請參閱本節的第一個表格。 如果要求中包含狀態參數，回應中就應該出現相同的值。 應用程式應該要確認要求中的狀態值，與回應中的完全相同。 |
-
+| --- | --- |
+| 錯誤 |錯誤碼字串，可用來為發生的錯誤類型分類，以針對錯誤做出反應。 |
+| error_description |特定的錯誤訊息，可協助開發人員辨識驗證錯誤的根本原因。 |
+| state |如需完整說明，請參閱本節的第一個表格。 如果要求中包含狀態參數，回應中就應該出現相同的值。 應用程式應該要確認要求中的狀態值，與回應中的完全相同。 |
 
 ## <a name="2.-get-a-token"></a>2.取得權杖
 您已經取得 authorization_code，因此可以藉由傳送 `POST` 要求給 `/token` 端點，把權杖的 `code` 兌換成所需的資源。 在 Azure AD B2C 中，您唯一可以要求權杖的資源，就是應用程式本身的後端 Web API。 用來為您自己要求權杖的慣例是使用應用程式的用戶端識別碼做為範圍：
@@ -131,13 +125,13 @@ grant_type=authorization_code&client_id=90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6&sco
 ```
 
 | 參數 | 必要？ | 說明 |
-| ----------------------- | ------------------------------- | --------------------- |
-| p | 必要 | 用來取得授權碼的原則。 您無法在此要求中使用不同的原則。 請注意，您要把這個參數新增到「查詢字串」 ，而不是 POST 主體中。 |
-| client_id | 必要 | [Azure 入口網站](https://portal.azure.com) 指派給您應用程式的應用程式識別碼。 |
-| grant_type | 必要 | 授與的類型，針對授權碼流程來說，必須是 `authorization_code` 。 |
-| scope | 建議 | 範圍的空格分隔清單。 單一範圍值，向 Azure AD 指出受到要求的兩個權限。 使用用戶端識別碼做為範圍表示您的應用程式需要可針對您自己的服務或 Web API 使用的 **存取權杖** (以相同的用戶端識別碼表示)。  `offline_access` 範圍表示您的應用程式將需要 **refresh_token**，才能長久存取資源。  您也可以使用 `openid` 範圍從 Azure AD B2C 要求 **id_token**。 |
-| code | 必要 | 您在流程的第一個階段中取得的 authorization_code。 |
-| redirect_uri | 必要 | 應用程式的 redirect_uri，指出您在此處收到 authorization_code。 |
+| --- | --- | --- |
+| p |必要 |用來取得授權碼的原則。 您無法在此要求中使用不同的原則。 請注意，您要把這個參數新增到「查詢字串」 ，而不是 POST 主體中。 |
+| client_id |必要 |[Azure 入口網站](https://portal.azure.com) 指派給您應用程式的應用程式識別碼。 |
+| grant_type |必要 |授與的類型，針對授權碼流程來說，必須是 `authorization_code` 。 |
+| scope |建議 |範圍的空格分隔清單。 單一範圍值，向 Azure AD 指出受到要求的兩個權限。 使用用戶端識別碼做為範圍表示您的應用程式需要可針對您自己的服務或 Web API 使用的 **存取權杖** (以相同的用戶端識別碼表示)。  `offline_access` 範圍表示您的應用程式將需要 **refresh_token**，才能長久存取資源。  您也可以使用 `openid` 範圍從 Azure AD B2C 要求 **id_token**。 |
+| code |必要 |您在流程的第一個階段中取得的 authorization_code。 |
+| redirect_uri |必要 |應用程式的 redirect_uri，指出您在此處收到 authorization_code。 |
 
 成功的權杖回應如下：
 
@@ -152,13 +146,13 @@ grant_type=authorization_code&client_id=90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6&sco
 }
 ```
 | 參數 | 說明 |
-| ----------------------- | ------------------------------- |
-| not_before | 權杖生效的時間 (以新紀元 (Epoch) 時間表示)。 |
-| token_type | 權杖類型值。 Azure AD 唯一支援的類型是 Bearer。 |
-| access_token | 您所要求的已簽署 JSON Web Token (JWT)。 |
-| scope | 權杖有效的範圍，可用於快取權杖供以後使用。 |
-| expires_in | 權杖的有效時間長度 (以秒為單位)。 |
-| refresh_token | OAuth 2.0 refresh_token。 應用程式在目前的權杖過期之後，可以使用這個權杖來取得其他權杖。 Refresh_token 的存在時間很長，且可以用來長期保留資源存取權。 如需詳細資訊，請參閱 [B2C 權杖參考](active-directory-b2c-reference-tokens.md)。 |
+| --- | --- |
+| not_before |權杖生效的時間 (以新紀元 (Epoch) 時間表示)。 |
+| token_type |權杖類型值。 Azure AD 唯一支援的類型是 Bearer。 |
+| access_token |您所要求的已簽署 JSON Web Token (JWT)。 |
+| scope |權杖有效的範圍，可用於快取權杖供以後使用。 |
+| expires_in |權杖的有效時間長度 (以秒為單位)。 |
+| refresh_token |OAuth 2.0 refresh_token。 應用程式在目前的權杖過期之後，可以使用這個權杖來取得其他權杖。 Refresh_token 的存在時間很長，且可以用來長期保留資源存取權。 如需詳細資訊，請參閱 [B2C 權杖參考](active-directory-b2c-reference-tokens.md)。 |
 
 錯誤回應格式如下：
 
@@ -170,9 +164,9 @@ grant_type=authorization_code&client_id=90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6&sco
 ```
 
 | 參數 | 說明 |
-| ----------------------- | ------------------------------- |
-| 錯誤 | 錯誤碼字串，可用來為發生的錯誤類型分類，以針對錯誤做出反應。 |
-| error_description | 特定的錯誤訊息，可協助開發人員辨識驗證錯誤的根本原因。 |
+| --- | --- |
+| 錯誤 |錯誤碼字串，可用來為發生的錯誤類型分類，以針對錯誤做出反應。 |
+| error_description |特定的錯誤訊息，可協助開發人員辨識驗證錯誤的根本原因。 |
 
 ## <a name="3.-use-the-token"></a>3.使用權杖
 您已經成功取得 `access_token`，因此您可以在對後端 Web API 發出的要求中使用該權杖，方法是在 `Authorization` 標頭中加入該權杖：
@@ -195,13 +189,13 @@ grant_type=refresh_token&client_id=90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6&scope=90
 ```
 
 | 參數 | 必要？ | 說明 |
-| ----------------------- | ------------------------------- | -------- |
-| p | 必要 | 用來取得原始 refresh_token 的原則。 您無法在此要求中使用不同的原則。 請注意，您要把這個參數新增到「查詢字串」 ，而不是 POST 主體中。 |
-| client_id | 建議 | [Azure 入口網站](https://portal.azure.com) 指派給您應用程式的應用程式識別碼。 |
-| grant_type | 必要 | 授與的類型，針對授權碼流程的這部分來說，必須是 `refresh_token` 。 |
-| scope | 建議 | 範圍的空格分隔清單。 單一範圍值，向 Azure AD 指出受到要求的兩個權限。 使用用戶端識別碼做為範圍表示您的應用程式需要可針對您自己的服務或 Web API 使用的 **存取權杖** (以相同的用戶端識別碼表示)。  `offline_access` 範圍表示您的應用程式將需要 **refresh_token**，才能長久存取資源。  您也可以使用 `openid` 範圍從 Azure AD B2C 要求 **id_token**。 |
-| redirect_uri | 選用 | 應用程式的 redirect_uri，指出您在此處收到 authorization_code。 |
-| refresh_token | 必要 | 您在流程的第二個階段中取得的原始 refresh_token。 |
+| --- | --- | --- |
+| p |必要 |用來取得原始 refresh_token 的原則。 您無法在此要求中使用不同的原則。 請注意，您要把這個參數新增到「查詢字串」 ，而不是 POST 主體中。 |
+| client_id |建議 |[Azure 入口網站](https://portal.azure.com) 指派給您應用程式的應用程式識別碼。 |
+| grant_type |必要 |授與的類型，針對授權碼流程的這部分來說，必須是 `refresh_token` 。 |
+| scope |建議 |範圍的空格分隔清單。 單一範圍值，向 Azure AD 指出受到要求的兩個權限。 使用用戶端識別碼做為範圍表示您的應用程式需要可針對您自己的服務或 Web API 使用的 **存取權杖** (以相同的用戶端識別碼表示)。  `offline_access` 範圍表示您的應用程式將需要 **refresh_token**，才能長久存取資源。  您也可以使用 `openid` 範圍從 Azure AD B2C 要求 **id_token**。 |
+| redirect_uri |選用 |應用程式的 redirect_uri，指出您在此處收到 authorization_code。 |
+| refresh_token |必要 |您在流程的第二個階段中取得的原始 refresh_token。 |
 
 成功的權杖回應如下：
 
@@ -216,13 +210,13 @@ grant_type=refresh_token&client_id=90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6&scope=90
 }
 ```
 | 參數 | 說明 |
-| ----------------------- | ------------------------------- |
-| not_before | 權杖生效的時間 (以新紀元 (Epoch) 時間表示)。 |
-| token_type | 權杖類型值。 Azure AD 唯一支援的類型是 Bearer。 |
-| access_token | 您所要求的已簽署 JSON Web Token (JWT)。 |
-| scope | 權杖有效的範圍，可用於快取權杖供以後使用。 |
-| expires_in | 權杖的有效時間長度 (以秒為單位)。 |
-| refresh_token | OAuth 2.0 refresh_token。 應用程式在目前的權杖過期之後，可以使用這個權杖來取得其他權杖。 Refresh_token 的存在時間很長，且可以用來長期保留資源存取權。 如需詳細資訊，請參閱 [B2C 權杖參考](active-directory-b2c-reference-tokens.md)。 |
+| --- | --- |
+| not_before |權杖生效的時間 (以新紀元 (Epoch) 時間表示)。 |
+| token_type |權杖類型值。 Azure AD 唯一支援的類型是 Bearer。 |
+| access_token |您所要求的已簽署 JSON Web Token (JWT)。 |
+| scope |權杖有效的範圍，可用於快取權杖供以後使用。 |
+| expires_in |權杖的有效時間長度 (以秒為單位)。 |
+| refresh_token |OAuth 2.0 refresh_token。 應用程式在目前的權杖過期之後，可以使用這個權杖來取得其他權杖。 Refresh_token 的存在時間很長，且可以用來長期保留資源存取權。 如需詳細資訊，請參閱 [B2C 權杖參考](active-directory-b2c-reference-tokens.md)。 |
 
 錯誤回應格式如下：
 
@@ -234,19 +228,16 @@ grant_type=refresh_token&client_id=90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6&scope=90
 ```
 
 | 參數 | 說明 |
-| ----------------------- | ------------------------------- |
-| 錯誤 | 用以分類發生的錯誤類型與回應錯誤的錯誤碼字串。 |
-| error_description | 協助開發人員識別驗證錯誤根本原因的特定錯誤訊息。 |
+| --- | --- |
+| 錯誤 |用以分類發生的錯誤類型與回應錯誤的錯誤碼字串。 |
+| error_description |協助開發人員識別驗證錯誤根本原因的特定錯誤訊息。 |
 
 ## <a name="use-your-own-b2c-directory"></a>使用您自己 B2C 目錄
-
 如果您想要親自嘗試這些要求，您必須先執行下列三個步驟，然後用您自己值來取代上面的範例值：
 
-- [建立 B2C 目錄](active-directory-b2c-get-started.md) ，並在要求中使用您目錄的名稱。
-- [建立應用程式](active-directory-b2c-app-registration.md)來取得應用程式識別碼和 redirect_uri。 您可以在應用程式中加入 **原生用戶端** 。
-- [建立您的原則](active-directory-b2c-reference-policies.md) 來取得原則名稱。
-
-
+* [建立 B2C 目錄](active-directory-b2c-get-started.md) ，並在要求中使用您目錄的名稱。
+* [建立應用程式](active-directory-b2c-app-registration.md)來取得應用程式識別碼和 redirect_uri。 您可以在應用程式中加入 **原生用戶端** 。
+* [建立您的原則](active-directory-b2c-reference-policies.md) 來取得原則名稱。
 
 <!--HONumber=Oct16_HO2-->
 

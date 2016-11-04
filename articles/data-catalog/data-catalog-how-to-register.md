@@ -1,27 +1,26 @@
-<properties
-   pageTitle="如何註冊資料來源 | Microsoft Azure"
-   description="專門說明如何使用 Azure 資料目錄註冊資料來源 (包括註冊期間擷取的中繼資料欄位) 的操作說明文章。"
-   services="data-catalog"
-   documentationCenter=""
-   authors="steelanddata"
-   manager="NA"
-   editor=""
-   tags=""/>
-<tags
-   ms.service="data-catalog"
-   ms.devlang="NA"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="data-catalog"
-   ms.date="10/04/2016"
-   ms.author="maroche"/>
+---
+title: 如何註冊資料來源 | Microsoft Docs
+description: 專門說明如何使用 Azure 資料目錄註冊資料來源 (包括註冊期間擷取的中繼資料欄位) 的操作說明文章。
+services: data-catalog
+documentationcenter: ''
+author: steelanddata
+manager: NA
+editor: ''
+tags: ''
 
+ms.service: data-catalog
+ms.devlang: NA
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: data-catalog
+ms.date: 10/04/2016
+ms.author: maroche
 
-
+---
 # <a name="how-to-register-data-sources"></a>如何註冊資料來源
-
 ## <a name="introduction"></a>簡介
  是全面管理的雲端服務，可作為企業資料來源的註冊系統和探索系統。 換句話說，[Azure 資料目錄]  的重點在於協助人們探索、了解，以及使用資料來源，並可協助組織從現有的資料獲得更多價值。 而透過 **Azure 資料目錄**讓資料來源得以被探索的第一步是註冊該資料來源。
+
 ## <a name="registering-data-sources"></a>註冊資料來源
 註冊是指從資料來源擷取中繼資料並將該資料複製到 **Azure 資料目錄** 服務的程序。 資料會保留在它目前的位置，並且仍然在目前系統的系統管理員及原則的控制之下。
 
@@ -34,7 +33,6 @@
 請參閱 [資料目錄 DSR](data-catalog-dsr.md) 以取得目前支援的資料來源清單。
 <br/>
 
-
 ## <a name="structural-metadata"></a>結構化中繼資料
 當註冊資料來源時，註冊工具會擷取您所選物件之結構的相關資訊，這些資訊稱為結構化中繼資料。
 
@@ -46,17 +44,16 @@
 除了從資料來源擷取的描述性中繼資料之外，使用者也可以使用資料來源註冊工具來輸入描述性中繼資料。 使用者可以新增標記，並識別所註冊之物件的專家。 所有的描述性中繼資料會與結構化中繼資料一同複製到 **Azure 資料目錄** 服務。
 
 ## <a name="including-previews"></a>包括預覽
-
 根據預設，系統只會從資料來源擷取中繼資料，並複製到 **Azure 資料目錄** 服務，但看看其中所包含資料的範例，通常能更輕鬆地了解資料來源。
 
 **Azure 資料目錄** 資料來源註冊工具可讓使用者在每個已註冊的資料表和檢視中，加入資料的快照預覽。 若使用者選擇要在註冊期間包含預覽，註冊工具將包含每個資料表和檢視最多 20 筆記錄。 此快照之後會與結構化和描述性中繼資料一同複製到 [目錄]。
 
-
-> [AZURE.NOTE]  含有大量資料行的寬型資料表可能會在預覽中包含少於 20 筆的記錄。
-
+> [!NOTE]
+> 含有大量資料行的寬型資料表可能會在預覽中包含少於 20 筆的記錄。
+> 
+> 
 
 ## <a name="including-data-profiles"></a>包含資料設定檔
-
 包含預覽可為在 **Azure 資料目錄**中搜尋資料來源的使用者提供有用的內容，同樣地，包含資料設定檔也能讓使用者更輕鬆了解已探索的資料來源。
 
 **Azure 資料目錄** 資料來源註冊工具可讓使用者為每個已註冊的資料表和檢視包含資料設定檔。 若使用者選擇在註冊期間包含資料設定檔，則註冊工具會在每個資料表和檢視中包含關於資料的彙總統計資料，包括：
@@ -68,10 +65,12 @@
 
 這些統計資料之後會與結構化和描述性中繼資料一同複製到「目錄」。
 
-> [AZURE.NOTE]  文字和日期資料行不會包含其資料設定檔中的平均值或標準差值統計資料。
+> [!NOTE]
+> 文字和日期資料行不會包含其資料設定檔中的平均值或標準差值統計資料。
+> 
+> 
 
 ## <a name="updating-registrations"></a>更新註冊
-
 註冊資料來源讓您得以使用註冊期間擷取的中繼資料和選擇性預覽，藉此在 **Azure 資料目錄** 中探索資料來源。 如果在 [目錄] 中的資料來源需要更新 (例如，如果物件的結構描述已經變更、或應包含原先排除的資料表，或使用者想要更新在預覽中所包含的資料)，可以重新執行資料來源註冊工具。
 
 重新註冊已註冊的資料來源會執行合併 “upsert” 作業：將會更新現有的物件，同時建立新的物件。 使用者透過 **Azure 資料目錄** 入口網站所提供的任何中繼資料都將會保留。
@@ -80,9 +79,7 @@
 利用 **Azure 資料目錄** 註冊資料來源，會將結構化和描述性中繼資料從資料來源複製到目錄服務中，讓您能更輕鬆地探索及了解資料來源。 資料來源經過註冊之後，便能利用 **Azure 資料目錄** 入口網站來加以註解、管理及探索。
 
 ## <a name="see-also"></a>另請參閱
-- [開始使用 Azure 資料目錄](data-catalog-get-started.md) 教學課程，取得如何註冊資料來源的逐步詳細資料。
-
-
+* [開始使用 Azure 資料目錄](data-catalog-get-started.md) 教學課程，取得如何註冊資料來源的逐步詳細資料。
 
 <!--HONumber=Oct16_HO2-->
 

@@ -1,29 +1,31 @@
-<properties
-	pageTitle="在 PowerApps Enterprise 中開發或建立 App Service 環境代管的 API |Microsoft Azure"
-	description="了解如何在 Azure 入口網站中註冊 App Service 環境代管的自訂 API"
-	services=""
-    suite="powerapps"
-	documentationCenter="" 
-	authors="MandiOhlinger"
-	manager="dwrede"
-	editor=""/>
+---
+title: 在 PowerApps Enterprise 中開發或建立 App Service 環境代管的 API | Microsoft Docs
+description: 了解如何在 Azure 入口網站中註冊 App Service 環境代管的自訂 API
+services: ''
+suite: powerapps
+documentationcenter: ''
+author: MandiOhlinger
+manager: dwrede
+editor: ''
 
-<tags
-   ms.service="powerapps"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na" 
-   ms.date="05/02/2016"
-   ms.author="guayan"/>
+ms.service: powerapps
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 05/02/2016
+ms.author: guayan
 
+---
 # 註冊 App Service 環境代管的 API
-
-> [AZURE.IMPORTANT] 本主題已經封存，並且很快就會移除。請到全新的 [PowerApps](https://powerapps.microsoft.com) 來看看我們在忙些什麼。
+> [!IMPORTANT]
+> 本主題已經封存，並且很快就會移除。請到全新的 [PowerApps](https://powerapps.microsoft.com) 來看看我們在忙些什麼。
 > 
-> - 若要深入了解 PowerApps 並開始使用，請移至 [PowerApps](https://powerapps.microsoft.com)。  
-> - 若要深入了解 PowerApps 中可用的連線，請瀏覽 [List of available connections (可用連線清單)](https://powerapps.microsoft.com/tutorials/connections-list/)。  
-> - 若要深入了解 PowerApps 中的自訂 API，請前往 [What are Custom APIs (什麼是自訂 API)](https://powerapps.microsoft.com/tutorials/register-custom-api/)。 
+> * 若要深入了解 PowerApps 並開始使用，請移至 [PowerApps](https://powerapps.microsoft.com)。  
+> * 若要深入了解 PowerApps 中可用的連線，請瀏覽 [List of available connections (可用連線清單)](https://powerapps.microsoft.com/tutorials/connections-list/)。  
+> * 若要深入了解 PowerApps 中的自訂 API，請前往 [What are Custom APIs (什麼是自訂 API)](https://powerapps.microsoft.com/tutorials/register-custom-api/)。 
+> 
+> 
 
 <!--Archived
 PowerApps supports registering existing APIs hosted anywhere in the cloud or on-premises, which is really powerful. In some scenarios, you may want to develop or create some new APIs. For example, you may want to:
@@ -68,9 +70,9 @@ After the API is deployed to your app service environment, use the following ste
 ![][12]  
 3. In **Add API**, enter the API properties:  
 
-	- In **Name**, enter a name for your API. Notice that the name you enter is included in the runtime URL of the API. Make the name meaningful and unique within your organization.	
-	- In **Source**, select **Import from APIs hosted in App Service Environment**:  
-	![][13]
+    - In **Name**, enter a name for your API. Notice that the name you enter is included in the runtime URL of the API. Make the name meaningful and unique within your organization.    
+    - In **Source**, select **Import from APIs hosted in App Service Environment**:  
+    ![][13]
 4. In **API hosted in App Service Environment**, select the API you want to import. This list shows every web app, API app, and mobile app in your app service environment  that has its **apiDefinition.url** property configured. To import the API, it uses the Swagger 2.0 API definition exposed using this property. Make sure this URL is publicly accessible when you register the API:  
 ![][14]
 5. Select **ADD** to complete these steps.

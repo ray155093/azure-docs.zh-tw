@@ -1,183 +1,152 @@
 
-<properties
-	pageTitle="在 Azure Active Directory 預覽版中使用屬性來建立群組成員資格的進階規則 | Microsoft Azure"
-	description="如何建立動態群組成員資格的進階規則，包括支援的運算式規則運算子和參數。"
-	services="active-directory"
-	documentationCenter=""
-	authors="curtand"
-	manager="femila"
-	editor=""/>
+---
+title: 在 Azure Active Directory 預覽版中使用屬性來建立群組成員資格的進階規則 | Microsoft Docs
+description: 如何建立動態群組成員資格的進階規則，包括支援的運算式規則運算子和參數。
+services: active-directory
+documentationcenter: ''
+author: curtand
+manager: femila
+editor: ''
 
-<tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/12/2016"
-	ms.author="curtand"/>
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/12/2016
+ms.author: curtand
 
-
+---
 # 在 Azure Active Directory 預覽版中使用屬性來建立群組成員資格的進階規則
-
 Azure 入口網站可讓您建立進階規則，來為 Azure Active Directory (Azure AD) 預覽版群組啟用更複雜的屬性型動態成員資格。[預覽版有何功能？](active-directory-preview-explainer.md) 本文將詳細說明用以建立這些進階規則的規則屬性和語法。
 
 ## 建立進階規則
-
-1.  使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com)。
-
-2.  選取 [更多服務]，在文字方塊中輸入「使用者和群組」，然後選取 **Enter**。
-
-  ![開啟使用者管理](./media/active-directory-groups-dynamic-membership-azure-portal/search-user-management.png)
-
-3.  在 [使用者和群組] 刀鋒視窗上，選取 [所有群組]。
-
-  ![開啟群組刀鋒視窗](./media/active-directory-groups-dynamic-membership-azure-portal/view-groups-blade.png)
-
+1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com)。
+2. 選取 [更多服務]，在文字方塊中輸入「使用者和群組」，然後選取 **Enter**。
+   
+   ![開啟使用者管理](./media/active-directory-groups-dynamic-membership-azure-portal/search-user-management.png)
+3. 在 [使用者和群組] 刀鋒視窗上，選取 [所有群組]。
+   
+   ![開啟群組刀鋒視窗](./media/active-directory-groups-dynamic-membership-azure-portal/view-groups-blade.png)
 4. 在 [使用者和群組 - 所有群組] 刀鋒視窗上，選取 [新增]。
-
-  ![Add new group](./media/active-directory-groups-dynamic-membership-azure-portal/add-group-type.png)
-
+   
+   ![Add new group](./media/active-directory-groups-dynamic-membership-azure-portal/add-group-type.png)
 5. 在 [群組] 刀鋒視窗上，輸入新群組的名稱和描述。依據您是要為使用者還是裝置建立規則，在 [成員資格類型] 選取 [動態使用者] 或 [動態裝置]，然後選取 [新增動態查詢]。如需了解有哪些用於裝置規則的屬性，請參閱[使用屬性來建立裝置物件的規則](#using-attributes-to-create-rules-for-device-objects)。
-
-  ![新增動態成員資格規則](./media/active-directory-groups-dynamic-membership-azure-portal/add-dynamic-group-rule.png)
-
+   
+   ![新增動態成員資格規則](./media/active-directory-groups-dynamic-membership-azure-portal/add-dynamic-group-rule.png)
 6. 在 [動態成員資格規則] 刀鋒視窗上，於 [新增動態成員資格進階規則] 方塊中輸入您的規則，然後選取刀鋒視窗底部的 [建立]。
-
 7. 在 [群組] 刀鋒視窗上，選取 [建立] 來建立群組。
 
 ## 建構進階規則的主體
-
 您可以為群組的動態成員資格建立的進階規則基本上是一個二進位運算式，其中包含三個部分，且會產生 true 或 false 的結果。這三個部分包括：
 
-- 左側的參數
-- 二進位運算子
-- 右側的常數
+* 左側的參數
+* 二進位運算子
+* 右側的常數
 
 完整的進階規則外觀如下：(leftParameter binaryOperator "RightConstant")，其中需要左右括號括住整個二進位運算式、需要雙引號括住右側的常數，且左側參數的語法是 user.property。進階規則可以包含多個二進位運算式，並以 -and、 -or 和 -not 邏輯運算子分隔。
 
 以下是正確建構的進階規則的範例：
 
-- (user.department -eq "Sales") -or (user.department -eq "Marketing")
-- (user.department -eq "Sales") -and -not (user.jobTitle -contains "SDE")
+* (user.department -eq "Sales") -or (user.department -eq "Marketing")
+* (user.department -eq "Sales") -and -not (user.jobTitle -contains "SDE")
 
 如需支援的參數和運算式規則運算子的完整清單，請參閱下列各節。如需了解有哪些用於裝置規則的屬性，請參閱[使用屬性來建立裝置物件的規則](#using-attributes-to-create-rules-for-device-objects)。
 
 進階規則主體的總長度不得超過 2048 個字元。
 
-> [AZURE.NOTE]
-字串和 regex 運算都不區分大小寫。您也可以使用 $null 做為常數，執行 Null 檢查，例如，user.department-eq $null。包含引號 " 的字串應該使用 ' 字元逸出，例如 user.department -eq `"Sales"。
+> [!NOTE]
+> 字串和 regex 運算都不區分大小寫。您也可以使用 $null 做為常數，執行 Null 檢查，例如，user.department-eq $null。包含引號 " 的字串應該使用 ' 字元逸出，例如 user.department -eq `"Sales"。
+> 
+> 
 
 ## 支援的運算式規則運算子
 下表列出所有支援的運算式規則運算子及其用於進階規則主體中的語法：
 
 | 運算子 | 語法 |
-|-----------------|----------------|
-| Not Equals | -ne |
-| Equals | -eq |
-| Not Starts With | -notStartsWith |
-| 開頭為 | -startsWith |
-| Not Contains | -notContains |
-| Contains | -contains |
-| Not Match | -notMatch |
-| Match | -match |
-
+| --- | --- |
+| Not Equals |-ne |
+| Equals |-eq |
+| Not Starts With |-notStartsWith |
+| 開頭為 |-startsWith |
+| Not Contains |-notContains |
+| Contains |-contains |
+| Not Match |-notMatch |
+| Match |-match |
 
 ## 查詢錯誤補救
 下表列出可能的錯誤以及其更正方式
 
 | 查詢剖析錯誤 | 錯誤的使用方式 | 更正的使用方式 |
-|-----------------------|-------------------|-----------------------------|
-| 錯誤：不支援屬性。 | (user.invalidProperty -eq "Value") | (user.department -eq "value")<br/> 屬性應該符合[支援的屬性清單](#supported-properties)中的一個屬性。 |
-| 錯誤：屬性不支援運算子。 | (user.accountEnabled -contains true) | (user.accountEnabled -eq true)<br/> 屬性屬於布林類型。使用上述清單中的布林型別支援的運算子 (-eq 或-ne)。 |
-| 錯誤：查詢編譯錯誤。 | (user.department -eq "Sales") -and (user.department -eq "Marketing")(user.userPrincipalName -match "*@domain.ext") | (user.department -eq "Sales") -and (user.department -eq "Marketing")<br/>邏輯運算子應該符合上述支援的屬性清單中的一個屬性。(user.userPrincipalName -match ".*@domain.ext")or(user.userPrincipalName -match "@domain.ext$") 規則運算式中發生錯誤。 |
-| 錯誤：二進位運算式不是正確的格式。 | (user.department –eq “Sales”) (user.department -eq "Sales")(user.department-eq"Sales") | (user.accountEnabled -eq true) -and (user.userPrincipalName -contains "alias@domain")<br/>查詢有多個錯誤。括號不在正確的位置。 |
-| 錯誤：設定動態成員資格時發生未知的錯誤。 | (user.accountEnabled -eq "True" AND user.userPrincipalName -contains "alias@domain") | (user.accountEnabled -eq true) -and (user.userPrincipalName -contains "alias@domain")<br/>查詢有多個錯誤。括號不在正確的位置。 |
+| --- | --- | --- |
+| 錯誤：不支援屬性。 |(user.invalidProperty -eq "Value") |(user.department -eq "value")<br/> 屬性應該符合[支援的屬性清單](#supported-properties)中的一個屬性。 |
+| 錯誤：屬性不支援運算子。 |(user.accountEnabled -contains true) |(user.accountEnabled -eq true)<br/> 屬性屬於布林類型。使用上述清單中的布林型別支援的運算子 (-eq 或-ne)。 |
+| 錯誤：查詢編譯錯誤。 |(user.department -eq "Sales") -and (user.department -eq "Marketing")(user.userPrincipalName -match "*@domain.ext") |(user.department -eq "Sales") -and (user.department -eq "Marketing")<br/>邏輯運算子應該符合上述支援的屬性清單中的一個屬性。(user.userPrincipalName -match ".*@domain.ext")or(user.userPrincipalName -match "@domain.ext$") 規則運算式中發生錯誤。 |
+| 錯誤：二進位運算式不是正確的格式。 |(user.department –eq “Sales”) (user.department -eq "Sales")(user.department-eq"Sales") |(user.accountEnabled -eq true) -and (user.userPrincipalName -contains "alias@domain")<br/>查詢有多個錯誤。括號不在正確的位置。 |
+| 錯誤：設定動態成員資格時發生未知的錯誤。 |(user.accountEnabled -eq "True" AND user.userPrincipalName -contains "alias@domain") |(user.accountEnabled -eq true) -and (user.userPrincipalName -contains "alias@domain")<br/>查詢有多個錯誤。括號不在正確的位置。 |
 
 ## 支援的屬性
 以下是您可以在進階規則中使用的所有使用者屬性：
 
 ### 布林型別的屬性
-
 允許的運算子
 
 * -eq
-
-
 * -ne
-
 
 | 屬性 | 允許的值 | 使用量 |
-|----------------|-----------------|--------------------------------|
-| accountEnabled | true false | user.accountEnabled -eq true) |
-| dirSyncEnabled | true false null | (user.dirSyncEnabled -eq true) |
+| --- | --- | --- |
+| accountEnabled |true false |user.accountEnabled -eq true) |
+| dirSyncEnabled |true false null |(user.dirSyncEnabled -eq true) |
 
 ### 字串類型的屬性
-
 允許的運算子
 
 * -eq
-
-
 * -ne
-
-
 * -notStartsWith
-
-
 * -StartsWith
-
-
 * -contains
-
-
 * -notContains
-
-
 * -match
-
-
 * -notMatch
 
 | 屬性 | 允許的值 | 使用量 |
-|----------------------------|-------------------------------------------------------------------------------------------------------|-----------------------------------------------------------|
-| city | 任何字串值或 $null | (user.city -eq "value") |
-| country | 任何字串值或 $null | (user.country -eq "value") |
-| department | 任何字串值或 $null | (user.department -eq "value") |
-| displayName | 任何字串值 | (user.displayName -eq "value") |
-| facsimileTelephoneNumber | 任何字串值或 $null | (user.facsimileTelephoneNumber -eq "value") |
-| givenName | 任何字串值或 $null | (user.givenName -eq "value") |
-| jobTitle | 任何字串值或 $null | (user.jobTitle -eq "value") |
-| mail | 任何字串值或 $null (使用者的 SMTP 位址) | (user.mail -eq "value") |
-| mailNickName | 任何字串值 (使用者的郵件別名) | (user.mailNickName -eq "value") |
-| mobile | 任何字串值或 $null | (user.mobile -eq "value") |
-| objectId | 使用者物件的 GUID | (user.objectId -eq "1111111-1111-1111-1111-111111111111") |
-| passwordPolicies | None DisableStrongPassword DisablePasswordExpiration DisablePasswordExpiration, DisableStrongPassword | (user.passwordPolicies -eq "DisableStrongPassword") |
-| physicalDeliveryOfficeName | 任何字串值或 $null | (user.physicalDeliveryOfficeName -eq "value") |
-| postalCode | 任何字串值或 $null | (user.postalCode -eq "value") |
-| preferredLanguage | ISO 639-1 code | (user.preferredLanguage -eq "zh-TW") |
-| sipProxyAddress | 任何字串值或 $null | (user.sipProxyAddress -eq "value") |
-| state | 任何字串值或 $null | (user.state -eq "value") |
-| streetAddress | 任何字串值或 $null | (user.streetAddress -eq "value") |
-| surname | 任何字串值或 $null | (user.surname -eq "value") |
-| telephoneNumber | 任何字串值或 $null | (user.telephoneNumber -eq "value") |
-| usageLocation | 兩個字母的國家 (地區) 代碼 | (user.usageLocation -eq "US") |
-| userPrincipalName | 任何字串值 | (user.userPrincipalName -eq "alias@domain") |
-| userType | member guest $null | (user.userType -eq "Member") |
+| --- | --- | --- |
+| city |任何字串值或 $null |(user.city -eq "value") |
+| country |任何字串值或 $null |(user.country -eq "value") |
+| department |任何字串值或 $null |(user.department -eq "value") |
+| displayName |任何字串值 |(user.displayName -eq "value") |
+| facsimileTelephoneNumber |任何字串值或 $null |(user.facsimileTelephoneNumber -eq "value") |
+| givenName |任何字串值或 $null |(user.givenName -eq "value") |
+| jobTitle |任何字串值或 $null |(user.jobTitle -eq "value") |
+| mail |任何字串值或 $null (使用者的 SMTP 位址) |(user.mail -eq "value") |
+| mailNickName |任何字串值 (使用者的郵件別名) |(user.mailNickName -eq "value") |
+| mobile |任何字串值或 $null |(user.mobile -eq "value") |
+| objectId |使用者物件的 GUID |(user.objectId -eq "1111111-1111-1111-1111-111111111111") |
+| passwordPolicies |None DisableStrongPassword DisablePasswordExpiration DisablePasswordExpiration, DisableStrongPassword |(user.passwordPolicies -eq "DisableStrongPassword") |
+| physicalDeliveryOfficeName |任何字串值或 $null |(user.physicalDeliveryOfficeName -eq "value") |
+| postalCode |任何字串值或 $null |(user.postalCode -eq "value") |
+| preferredLanguage |ISO 639-1 code |(user.preferredLanguage -eq "zh-TW") |
+| sipProxyAddress |任何字串值或 $null |(user.sipProxyAddress -eq "value") |
+| state |任何字串值或 $null |(user.state -eq "value") |
+| streetAddress |任何字串值或 $null |(user.streetAddress -eq "value") |
+| surname |任何字串值或 $null |(user.surname -eq "value") |
+| telephoneNumber |任何字串值或 $null |(user.telephoneNumber -eq "value") |
+| usageLocation |兩個字母的國家 (地區) 代碼 |(user.usageLocation -eq "US") |
+| userPrincipalName |任何字串值 |(user.userPrincipalName -eq "alias@domain") |
+| userType |member guest $null |(user.userType -eq "Member") |
 
 ### 字串集合類型的屬性
-
 允許的運算子
 
 * -contains
-
-
 * -notContains
 
 | 屬性 | 允許的值 | 使用量 |
-|----------------|---------------------------------------|------------------------------------------------------|
-| otherMails | 任何字串值 | (user.otherMails -contains "alias@domain") |
-| proxyAddresses | SMTP: alias@domain smtp: alias@domain | (user.proxyAddresses -contains "SMTP: alias@domain") |
+| --- | --- | --- |
+| otherMails |任何字串值 |(user.otherMails -contains "alias@domain") |
+| proxyAddresses |SMTP: alias@domain smtp: alias@domain |(user.proxyAddresses -contains "SMTP: alias@domain") |
 
 ## 擴充屬性和自訂屬性
 動態成員資格規則支援擴充屬性和自訂屬性。
@@ -198,31 +167,26 @@ user.extension\_c272a57b722d4eb29bfe327874ae79cb\_\_OfficeNumber
 **設定群組為「經理」群組**
 
 1. 依照[建立進階規則](#to-create-the-advanced-rule)中的步驟 1-5 操作，然後在 [成員資格類型] 選取 [動態使用者]。
-
 2. 在 [動態成員資格規則] 刀鋒視窗上，使用下列語法來輸入規則：
-
-	Direct Reports for {obectID\_of\_manager} 的 Direct Reports。以下是 Direct Reports 的有效規則範例：
-
-					Direct Reports for "62e19b97-8b3d-4d4a-a106-4ce66896a863”
-
-	其中 “62e19b97-8b3d-4d4a-a106-4ce66896a863” 為管理員的 objectID。您可以在 Azure AD 中，身為管理員之使用者的使用者頁面的 [設定檔] 索引標籤上找到物件識別碼。
-
+   
+    Direct Reports for {obectID\_of\_manager} 的 Direct Reports。以下是 Direct Reports 的有效規則範例：
+   
+                    Direct Reports for "62e19b97-8b3d-4d4a-a106-4ce66896a863”
+   
+    其中 “62e19b97-8b3d-4d4a-a106-4ce66896a863” 為管理員的 objectID。您可以在 Azure AD 中，身為管理員之使用者的使用者頁面的 [設定檔] 索引標籤上找到物件識別碼。
 3. 儲存這項規則時，符合規則的所有使用者都會加入成為群組的成員。一開始填入群組可能需要幾分鐘的時間。
 
-
 ## 使用屬性來建立裝置物件的規則
-
 您也可以建立規則以在群組中選取成員資格的裝置物件。可以使用下列裝置屬性︰
 
 | 屬性 | 允許的值 | 使用量 |
-|----------------------|---------------------------------|------------------------------------------------------|
-| displayName | 任何字串值 | (device.displayName -eq "Rob Iphone”) |
-| deviceOSType | 任何字串值 | (device.deviceOSType -eq "IOS") |
-| deviceOSVersion | 任何字串值 | (device.OSVersion -eq "9.1") |
-| isDirSynced | true false null | (device.isDirSynced -eq "true") |
-| isManaged | true false null | (device.isManaged -eq "false") |
-| isCompliant | true false null | (device.isCompliant -eq "true") |
-
+| --- | --- | --- |
+| displayName |任何字串值 |(device.displayName -eq "Rob Iphone”) |
+| deviceOSType |任何字串值 |(device.deviceOSType -eq "IOS") |
+| deviceOSVersion |任何字串值 |(device.OSVersion -eq "9.1") |
+| isDirSynced |true false null |(device.isDirSynced -eq "true") |
+| isManaged |true false null |(device.isManaged -eq "false") |
+| isCompliant |true false null |(device.isCompliant -eq "true") |
 
 ## 其他資訊
 這些文章提供有關 Azure Active Directory 中群組的其他資訊。

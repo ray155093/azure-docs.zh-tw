@@ -1,31 +1,28 @@
-<properties
-    pageTitle="Azure Active Directory 混合式身分識別設計考量 - 定義資料保護策略 | Microsoft Azure"
-    description="您將為混合式身分識別解決方案定義資料保護策略，以符合您已定義的商務需求："
-    documentationCenter=""
-    services="active-directory"
-    authors="billmath"
-    manager="femila"
-    editor=""/>
+---
+title: Azure Active Directory 混合式身分識別設計考量 - 定義資料保護策略 | Microsoft Docs
+description: 您將為混合式身分識別解決方案定義資料保護策略，以符合您已定義的商務需求：
+documentationcenter: ''
+services: active-directory
+author: billmath
+manager: femila
+editor: ''
 
-<tags
-    ms.service="active-directory"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.tgt_pltfrm="na"
-    ms.workload="identity"
-    ms.date="08/08/2016"
-    ms.author="billmath"/>
+ms.service: active-directory
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: identity
+ms.date: 08/08/2016
+ms.author: billmath
 
-
-
+---
 # <a name="define-data-protection-strategy-for-your-hybrid-identity-solution"></a>定義混合式身分識別解決方案的資料保護策略
-
 在這項工作中，您將為混合式身分識別解決方案定義資料保護策略，以符合您已定義的商務需求：
 
-- [判斷資料保護需求](active-directory-hybrid-identity-design-considerations-dataprotection-requirements.md)
-- [判斷內容管理需求](active-directory-hybrid-identity-design-considerations-contentmgt-requirements.md)
-- [判斷存取控制需求](active-directory-hybrid-identity-design-considerations-accesscontrol-requirements.md)
-- [判斷事件因應需求](active-directory-hybrid-identity-design-considerations-incident-response-requirements.md)
+* [判斷資料保護需求](active-directory-hybrid-identity-design-considerations-dataprotection-requirements.md)
+* [判斷內容管理需求](active-directory-hybrid-identity-design-considerations-contentmgt-requirements.md)
+* [判斷存取控制需求](active-directory-hybrid-identity-design-considerations-accesscontrol-requirements.md)
+* [判斷事件因應需求](active-directory-hybrid-identity-design-considerations-incident-response-requirements.md)
 
 ## <a name="define-data-protection-options"></a>定義資料保護選項
 如 [判斷目錄同步處理需求](active-directory-hybrid-identity-design-considerations-directory-sync-requirements.md)中所述，Microsoft Azure AD 可以與您內部部署的 Active Directory 網域服務 (AD DS) 同步處理。 這項整合可讓組織在使用者嘗試存取公司資源時，利用 Azure AD 來驗證使用者的認證。 下列兩種案例都適用此作法：內部部署和雲端中的待用資料。  要存取 Azure AD 中的資料，必須透過 Security Token Service (STS) 進行使用者驗證。
@@ -38,19 +35,19 @@
 
 根據您在 [判斷資料保護需求](active-directory-hybrid-identity-design-considerations-dataprotection-requirements.md)中回答問題的情形，您應該能夠判斷如何保護您的資料，以及混合式身分識別解決方案如何協助您保護資料。 下表顯示 Azure 所支援並且可用於各種資料保護案例的選項。
 
+| 資料保護選項 | 在雲端中待用 | 在內部部署中待用 | 傳輸中 |
+| --- | --- | --- | --- |
+| BitLocker 磁碟機加密 |X |X | |
+| 要加密資料庫的 SQL Server |X |X | |
+| VM 對 VM 加密 | | |X |
+| SSL/TLS | | |X |
+| VPN | | |X |
 
-| 資料保護選項         | 在雲端中待用 | 在內部部署中待用 | 傳輸中 |
-|---------------------------------|----------------------|---------------------|------------|
-| BitLocker 磁碟機加密      | X                    | X                   |            |
-| 要加密資料庫的 SQL Server | X                    | X                   |            |
-| VM 對 VM 加密             |                      |                     | X          |
-| SSL/TLS                         |                      |                     | X          |
-| VPN                             |                      |                     | X          |
-
-
->[AZURE.NOTE]
-請閱讀 [Microsoft Azure 信任中心](https://azure.microsoft.com/support/trust-center/)的依功能[遵循法規](https://azure.microsoft.com/support/trust-center/services/)，以深入了解每個 Azure 服務的相容憑證。
-由於資料保護的選項採用多層式方法，因此在執行這項工作時無法比較這些選項。 請確實針對資料所處的各種狀態，運用所有可用的選項。
+> [!NOTE]
+> 請閱讀 [Microsoft Azure 信任中心](https://azure.microsoft.com/support/trust-center/)的依功能[遵循法規](https://azure.microsoft.com/support/trust-center/services/)，以深入了解每個 Azure 服務的相容憑證。
+> 由於資料保護的選項採用多層式方法，因此在執行這項工作時無法比較這些選項。 請確實針對資料所處的各種狀態，運用所有可用的選項。
+> 
+> 
 
 ## <a name="define-content-management-options"></a>定義內容管理選項
 使用 Azure AD 來管理混合式身分識別基礎結構的優點之一，是整個程序對使用者而言是完全透明的。 使用者會嘗試存取共用資源，而資源需要驗證，因此使用者必須將驗證要求傳送至 Azure AD，才能夠取得權杖並存取資源。 整個程序都會在背景執行，使用者無須動作。 您也可授與權限給某個使用者 [群組](active-directory-manage-groups.md#getting-started-with-access-management) ，使其能夠執行某些常用的動作。
@@ -61,22 +58,24 @@
 
 了解誰正在存取哪個資源，是內容管理很重要的一部分，因此強大的記錄功能對於身分識別管理解決方案而言，是很重要的。 Azure AD 提供超過 30 天的記錄，其中包括：
 
-- 角色成員資格的變更 (例如：新增至全域管理員角色的使用者)
-- 認證更新 (例如：密碼變更)
-- 網域管理 (例如：驗證自訂網域、移除網域)
-- 新增或移除應用程式
-- 使用者管理 (例如：新增、移除、更新使用者)
-- 新增或移除授權
+* 角色成員資格的變更 (例如：新增至全域管理員角色的使用者)
+* 認證更新 (例如：密碼變更)
+* 網域管理 (例如：驗證自訂網域、移除網域)
+* 新增或移除應用程式
+* 使用者管理 (例如：新增、移除、更新使用者)
+* 新增或移除授權
 
->[AZURE.NOTE]
-請閱讀 [Microsoft Azure 安全性和稽核記錄管理](http://download.microsoft.com/download/B/6/C/B6C0A98B-D34A-417C-826E-3EA28CDFC9DD/AzureSecurityandAuditLogManagement_11132014.pdf) ，以深入了解 Azure 中的記錄功能。
-根據您在 [判斷內容管理需求](active-directory-hybrid-identity-design-considerations-contentmgt-requirements.md)中回答問題的情形，您應該能夠判斷在混合式身分識別解決方案中要如何保護您的內容。 雖然表 6 中顯示的所有選項都都能夠與 Azure AD 整合，但請務必定義何者較適用於您的商務需求。
+> [!NOTE]
+> 請閱讀 [Microsoft Azure 安全性和稽核記錄管理](http://download.microsoft.com/download/B/6/C/B6C0A98B-D34A-417C-826E-3EA28CDFC9DD/AzureSecurityandAuditLogManagement_11132014.pdf) ，以深入了解 Azure 中的記錄功能。
+> 根據您在 [判斷內容管理需求](active-directory-hybrid-identity-design-considerations-contentmgt-requirements.md)中回答問題的情形，您應該能夠判斷在混合式身分識別解決方案中要如何保護您的內容。 雖然表 6 中顯示的所有選項都都能夠與 Azure AD 整合，但請務必定義何者較適用於您的商務需求。
+> 
+> 
 
-| 內容管理選項                                                               | 優點                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | 缺點                                                                                                                                                                                                                               |
-|------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 集中式的內部部署 (Active Directory Rights Management Server)                      | 完全掌控負責分類資料的伺服器基礎結構  <br> Windows Server 中內建功能，不需要取得額外授權或訂用帳戶 <br> 可以與混合式案例中的 Azure AD 整合 <br> 支援 Microsoft Online Services，例如 Exchange Online 和 SharePoint Online 以及 Office 365 中的資訊版權管理 (IRM) 功能 <br>  支援內部部署 Microsoft 伺服器產品，例如 Exchange Server、SharePoint Server，以及執行 Windows Server 和檔案分類基礎結構 (FCI) 的檔案伺服器。 | 需要較多維護 (隨時進行更新、設定與潛在升級)，因為 IT 擁有伺服器  <br> 需要內部部署的伺服器基礎結構<br>  在原生狀態下不會使用 Azure 功能                                     |
-| 集中於雲端 (Azure RMS)                                                     | 比內部部署解決方案容易管理  <br> 可以與混合式案例中的 AD DS 整合 <br>  完全與 Azure AD 整合 <br> 不需要內部部署伺服器，即可部署服務 <br> 支援內部部署 Microsoft 伺服器產品，例如 Exchange Server、SharePoint Server，以及執行 Windows Server 和檔案分類基礎結構 (FCI) 的檔案伺服器 <br>  IT 可透過 BYOK 功能完全控制其租用戶的金鑰。                                                                                    | 組織必須具有支援 RMS 的雲端訂用帳戶  <br>  組織必須具有 Azure AD 目錄以支援 RMS 的使用者驗證                                                                                  |
-| 混合式 (Azure RMS 與內部部署 Active Directory Rights Management Server 整合) | 這種情況下結合了集中式內部部署和雲端兩者的優點。                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | 組織必須具有支援 RMS 的雲端訂用帳戶  <br> 組織必須具有 Azure AD 目錄以支援 RMS 的使用者驗證， <br>  Azure 雲端服務與內部部署基礎結構之間必須要有連線 |
+| 內容管理選項 | 優點 | 缺點 |
+| --- | --- | --- |
+| 集中式的內部部署 (Active Directory Rights Management Server) |完全掌控負責分類資料的伺服器基礎結構  <br> Windows Server 中內建功能，不需要取得額外授權或訂用帳戶 <br> 可以與混合式案例中的 Azure AD 整合 <br> 支援 Microsoft Online Services，例如 Exchange Online 和 SharePoint Online 以及 Office 365 中的資訊版權管理 (IRM) 功能 <br>  支援內部部署 Microsoft 伺服器產品，例如 Exchange Server、SharePoint Server，以及執行 Windows Server 和檔案分類基礎結構 (FCI) 的檔案伺服器。 |需要較多維護 (隨時進行更新、設定與潛在升級)，因為 IT 擁有伺服器  <br> 需要內部部署的伺服器基礎結構<br>  在原生狀態下不會使用 Azure 功能 |
+| 集中於雲端 (Azure RMS) |比內部部署解決方案容易管理  <br> 可以與混合式案例中的 AD DS 整合 <br>  完全與 Azure AD 整合 <br> 不需要內部部署伺服器，即可部署服務 <br> 支援內部部署 Microsoft 伺服器產品，例如 Exchange Server、SharePoint Server，以及執行 Windows Server 和檔案分類基礎結構 (FCI) 的檔案伺服器 <br>  IT 可透過 BYOK 功能完全控制其租用戶的金鑰。 |組織必須具有支援 RMS 的雲端訂用帳戶  <br>  組織必須具有 Azure AD 目錄以支援 RMS 的使用者驗證 |
+| 混合式 (Azure RMS 與內部部署 Active Directory Rights Management Server 整合) |這種情況下結合了集中式內部部署和雲端兩者的優點。 |組織必須具有支援 RMS 的雲端訂用帳戶  <br> 組織必須具有 Azure AD 目錄以支援 RMS 的使用者驗證， <br>  Azure 雲端服務與內部部署基礎結構之間必須要有連線 |
 
 ## <a name="define-access-control-options"></a>定義存取控制選項
 利用 Azure AD 中提供的驗證、授權和存取控制功能，您將能夠讓公司使用中央身分識別儲存機制，同時允許使用者和合作夥伴使用單一登入 (SSO)，如下圖所示：
@@ -87,79 +86,83 @@
 
 Azure Active Directory 可為數千個 SaaS 應用程式和內部部署 Web 應用程式提供單一登入。 如需經過 Microsoft 測試之 SSO 協力廠商的詳細資訊，請參閱 [Azure Active Directory 同盟相容性清單：可用來實作單一登入的協力廠商身分識別提供者](https://msdn.microsoft.com/library/azure/jj679342.aspx) 一文。 這項功能可讓組織實作各種 B2B 案例，同時得以控制身分識別和存取管理。 不過，在 B2B 期間，要了解合作夥伴所將使用的驗證方法驗證，並驗證 Azure 是否支援此方法，設計程序是很重要的。 以下是 Azure AD 目前支援的方法：
 
-- 安全性判斷提示標記語言 (SAML)
-- OAuth
-- Kerberos
-- 權杖
-- 憑證
+* 安全性判斷提示標記語言 (SAML)
+* OAuth
+* Kerberos
+* 權杖
+* 憑證
 
-
->[AZURE.NOTE] 請閱讀 [Azure Active Directory 驗證通訊協定](https://msdn.microsoft.com/library/azure/dn151124.aspx) ，以深入了解 Azure 中的每個通訊協定及其功能。
+> [!NOTE]
+> 請閱讀 [Azure Active Directory 驗證通訊協定](https://msdn.microsoft.com/library/azure/dn151124.aspx) ，以深入了解 Azure 中的每個通訊協定及其功能。
+> 
+> 
 
 藉由 Azure AD 支援，行動商業應用程式可使用相同的簡單行動服務驗證功能，讓員工利用公司的 Active Directory 認證登入其行動應用程式。 透過這項功能，Azure AD 可受到支援作為行動服務中的身分識別提供者，與我們已支援的其他身分識別提供者 (包括 Microsoft 帳戶、Facebook ID、Google ID 和 Twitter ID) 搭配運作。 如果內部部署應用程式使用位於公司 AD DS 的使用者認證，則來自雲端的協力廠商和使用者所做的存取應該是透明的。 您可以管理使用者對 (以雲端為基礎的) Web 應用程式、Web API、Microsoft 雲端服務、協力廠商 SaaS 應用程式和原生 (行動) 用戶端應用程式的條件式存取控制，並且可因為安全性、稽核和報告全都集中在同一處而獲益。 不過，建議您在非生產環境中或使用者數量有限的環境中進行此驗證。
 
-
->[AZURE.TIP] 務必要提到的是，Azure AD 不像 AD DS 一樣具有群組原則。 若要為裝置強制執行原則，您必須要有行動裝置管理解決方案，例如 [Microsoft Intune](https://technet.microsoft.com/library/jj676587.aspx)。
+> [!TIP]
+> 務必要提到的是，Azure AD 不像 AD DS 一樣具有群組原則。 若要為裝置強制執行原則，您必須要有行動裝置管理解決方案，例如 [Microsoft Intune](https://technet.microsoft.com/library/jj676587.aspx)。
+> 
+> 
 
 使用 Azure AD 驗證使用者之後，務必要評估使用者所將擁有的存取層級。 使用者對於資源的存取層級可能會改變，因為 Azure AD 可藉由控制對某些資源的存取而增加額外的安全性層級，因此您必須謹記，資源本身也可能有其本身的存取控制清單，例如，對位於檔案伺服器中之檔案的存取控制。 下圖摘要說明您在混合式案例中可以有的存取控制層級：
 
 ![](./media/hybrid-id-design-considerations/accesscontrol.png)
 
-
 圖 X 中顯示的每個互動，分別代表 Azure AD 可以涵蓋的一個存取控制案例。 每個案例的說明如下：
 
 1. 內部部署裝載之應用程式的條件式存取：您可以使用已註冊的裝置搭配適用於已設定為使用 AD FS with Windows Server 2012 R2 之應用程式的存取原則。 如需有關設定內部部署之條件式存取的詳細資訊，請參閱 [使用 Azure Active Directory 裝置註冊設定內部部署條件式存取](active-directory-conditional-access-on-premises-setup.md)。
 2. Azure 管理入口網站的存取控制：Azure 也能夠使用 RBAC (角色型存取控制) 來控制對管理入口網站的存取。 此方法可讓公司限制個人存取 Azure 管理入口網站之後可執行的作業數量。 使用 RBAC 來控制存取入口網站時，IT 系統管理員可以利用下列存取管理方法來委派存取：
+   
+   * 群組型角色指派：您可以指派存取權給可從本機 Active Directory 同步處理的 Azure AD 群組。 這可讓您運用組織目前在群組管理工具和程序方面所做的投資。 您也可以使用 Azure AD Premium 的委派群組管理功能。
+   * 運用 Azure 中內建的角色：您可以使用三個角色 — 擁有者、參與者和讀者，以確保使用者和群組只擁有他們執行工作所需的權限。
+   * 細微控制資源的存取：您可以針對特定的訂用帳戶、資源群組或個別 Azure 資源 (例如網站或資料庫)，將角色指派給使用者和群組。 如此一來，您可以確保使用者能夠存取他們需要的資源，但不能存取他們不需要管理的資源。
 
- - 群組型角色指派：您可以指派存取權給可從本機 Active Directory 同步處理的 Azure AD 群組。 這可讓您運用組織目前在群組管理工具和程序方面所做的投資。 您也可以使用 Azure AD Premium 的委派群組管理功能。
- - 運用 Azure 中內建的角色：您可以使用三個角色 — 擁有者、參與者和讀者，以確保使用者和群組只擁有他們執行工作所需的權限。
- - 細微控制資源的存取：您可以針對特定的訂用帳戶、資源群組或個別 Azure 資源 (例如網站或資料庫)，將角色指派給使用者和群組。 如此一來，您可以確保使用者能夠存取他們需要的資源，但不能存取他們不需要管理的資源。
+> [!NOTE]
+> 請閱讀 [Azure 的角色存取控制](https://azure.microsoft.com/updates/role-based-access-control-in-azure-preview-portal/) ，以深入了解此功能。 如果是建置應用程式並想要自訂其存取控制的開發人員，可以使用 Azure AD 應用程式角色來進行授權。 請參閱 [WebApp-RoleClaims-DotNet 範例](https://github.com/AzureADSamples/WebApp-RoleClaims-DotNet) ，了解如何建置您的應用程式以使用這項功能。
+> 
+> 
 
->[AZURE.NOTE] 請閱讀 [Azure 的角色存取控制](https://azure.microsoft.com/updates/role-based-access-control-in-azure-preview-portal/) ，以深入了解此功能。 如果是建置應用程式並想要自訂其存取控制的開發人員，可以使用 Azure AD 應用程式角色來進行授權。 請參閱 [WebApp-RoleClaims-DotNet 範例](https://github.com/AzureADSamples/WebApp-RoleClaims-DotNet) ，了解如何建置您的應用程式以使用這項功能。
-
-3. 適用於包含 Microsoft Intune 的 Office 365 應用程式條件式存取 ：IT 管理員可以佈建條件式存取裝置原則來保護公司資源，同時允許相容裝置上的資訊工作者存取服務。 如需詳細資訊，請參閱 [Office 365 服務的條件式存取裝置原則](active-directory-conditional-access-device-policies.md)。
-
-4. Saas 應用程式的條件式存取：[此功能](http://blogs.technet.com/b/ad/archive/2015/06/25/azure-ad-conditional-access-preview-update-more-apps-and-blocking-access-for-users-not-at-work.aspx)可讓您設定每個應用程式的多重要素驗證存取規則，且能夠封鎖不在受信任網路上的使用者存取。 您可以將多因素驗證規則套用至所有已指派給應用程式的使用者，或只套用至指定的安全性群組內的使用者。 如果使用者是從組織網路內的 IP 位址存取應用程式，則可從多因素驗證需求中排除這些使用者。
+1. 適用於包含 Microsoft Intune 的 Office 365 應用程式條件式存取 ：IT 管理員可以佈建條件式存取裝置原則來保護公司資源，同時允許相容裝置上的資訊工作者存取服務。 如需詳細資訊，請參閱 [Office 365 服務的條件式存取裝置原則](active-directory-conditional-access-device-policies.md)。
+2. Saas 應用程式的條件式存取：[此功能](http://blogs.technet.com/b/ad/archive/2015/06/25/azure-ad-conditional-access-preview-update-more-apps-and-blocking-access-for-users-not-at-work.aspx)可讓您設定每個應用程式的多重要素驗證存取規則，且能夠封鎖不在受信任網路上的使用者存取。 您可以將多因素驗證規則套用至所有已指派給應用程式的使用者，或只套用至指定的安全性群組內的使用者。 如果使用者是從組織網路內的 IP 位址存取應用程式，則可從多因素驗證需求中排除這些使用者。
 
 由於存取控制的選項採用多層式方法，因此在執行這項工作時無法比較這些選項。 請確實針對每個要求您控制資源存取權的案例，使用所有適用的選項。
 
 ## <a name="define-incident-response-options"></a>定義事件回應選項
 Azure AD 可藉由監視使用者活動，協助 IT 人員識別環境中潛在的安全性風險；IT 人員可利用 Azure AD 存取和使用量報告深入了解組織目錄的完整性與安全性。 利用此資訊，IT 管理員更能夠判斷可能發生安全性風險的位置，以便適當地規劃來減輕這些風險。  [Azure AD Premium 訂用帳戶](active-directory-get-started-premium.md) 有一組安全性報告可讓 IT 人員取得這項資訊。 [Azure AD 報告](active-directory-view-access-usage-reports.md) 歸類如下：
 
-- **異常報告**：包含我們發現異常的登入事件。 我們的目標在於使您注意這類活動，並讓您能夠判斷事件是否可疑。
-- **整合式應用程式報告**：可供深入了解雲端應用程式在組織中的使用方式。 Azure Active Directory 提供與數千個雲端應用程式的整合。
-- **錯誤報告**：指出將帳戶佈建至外部應用程式時可能發生的錯誤。
-- **使用者特定報告**：顯示特定使用者的裝置/登入活動資料。
-- **活動記錄檔**：包含過去 24 小時、過去 7 天或過去 30 天內所有稽核事件的記錄，以及群組活動變更、密碼重設和登錄活動。
+* **異常報告**：包含我們發現異常的登入事件。 我們的目標在於使您注意這類活動，並讓您能夠判斷事件是否可疑。
+* **整合式應用程式報告**：可供深入了解雲端應用程式在組織中的使用方式。 Azure Active Directory 提供與數千個雲端應用程式的整合。
+* **錯誤報告**：指出將帳戶佈建至外部應用程式時可能發生的錯誤。
+* **使用者特定報告**：顯示特定使用者的裝置/登入活動資料。
+* **活動記錄檔**：包含過去 24 小時、過去 7 天或過去 30 天內所有稽核事件的記錄，以及群組活動變更、密碼重設和登錄活動。
 
->[AZURE.TIP]
-也有助於事件回應小組處理案例的另一份報告，是 [認證外洩的使用者](http://blogs.technet.com/b/ad/archive/2015/06/15/azure-active-directory-premium-reporting-now-detects-leaked-credentials.aspx) 報告。  此報告會呈現這些外洩的認證清單與您的租用戶之間的任何相符項目。
+> [!TIP]
+> 也有助於事件回應小組處理案例的另一份報告，是 [認證外洩的使用者](http://blogs.technet.com/b/ad/archive/2015/06/15/azure-active-directory-premium-reporting-now-detects-leaked-credentials.aspx) 報告。  此報告會呈現這些外洩的認證清單與您的租用戶之間的任何相符項目。
+> 
+> 
 
 Azure AD 中還有其他可在事件回應調查期間使用的重要內建報告，包括：
 
-- **密碼重設活動**：可讓系統管理員深入了解組織中使用密碼重設的頻率。
-- **密碼重設註冊活動**：可讓您深入了解哪些使用者註冊了密碼重設方法，以及他們選取了哪些方法。
-- **群組活動**：提供在 [存取面板] 中對群組起始之變更的歷程記錄 (例如：新增或移除使用者)。
+* **密碼重設活動**：可讓系統管理員深入了解組織中使用密碼重設的頻率。
+* **密碼重設註冊活動**：可讓您深入了解哪些使用者註冊了密碼重設方法，以及他們選取了哪些方法。
+* **群組活動**：提供在 [存取面板] 中對群組起始之變更的歷程記錄 (例如：新增或移除使用者)。
 
 除了 Azure AD Premium 中可在事件回應調查程序期間使用的核心報告功能以外，IT 人員也可使用稽核報告取得資訊，例如：
 
-- 角色成員資格的變更 (例如：新增至全域管理員角色的使用者)
-- 認證更新 (例如：密碼變更)
-- 網域管理 (例如：驗證自訂網域、移除網域)
-- 新增或移除應用程式
-- 使用者管理 (例如：新增、移除、更新使用者)
-- 新增或移除授權
+* 角色成員資格的變更 (例如：新增至全域管理員角色的使用者)
+* 認證更新 (例如：密碼變更)
+* 網域管理 (例如：驗證自訂網域、移除網域)
+* 新增或移除應用程式
+* 使用者管理 (例如：新增、移除、更新使用者)
+* 新增或移除授權
 
 由於事件回應的選項採用多層式方法，因此在執行這項工作時無法比較這些選項。 請確實針對每個要求您在公司的事件回應程序中使用 Azure AD 報告功能的案例，使用所有適用的選項。
 
 ## <a name="next-steps"></a>後續步驟
 [判斷混合式身分識別管理工作](active-directory-hybrid-identity-design-considerations-hybrid-id-management-tasks.md)
 
-
 ## <a name="see-also"></a>另請參閱
 [設計考量概觀](active-directory-hybrid-identity-design-considerations-overview.md)
-
-
 
 <!--HONumber=Oct16_HO2-->
 

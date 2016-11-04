@@ -1,22 +1,21 @@
-<properties
-	pageTitle="從可能受感染的裝置登入"
-	description="包含從可能正在執行某些惡意程式碼 (惡意軟體) 的裝置執行的登入嘗試的報告。"
-	services="active-directory"
-	documentationCenter=""
-	authors="SSalahAhmed"
-	manager="gchander"
-	editor=""/>
+---
+title: 從可能受感染的裝置登入
+description: 包含從可能正在執行某些惡意程式碼 (惡意軟體) 的裝置執行的登入嘗試的報告。
+services: active-directory
+documentationcenter: ''
+author: SSalahAhmed
+manager: gchander
+editor: ''
 
-<tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="03/04/2016"
-	ms.author="saah;kenhoff"/>
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 03/04/2016
+ms.author: saah;kenhoff
 
-
+---
 # 從可能受感染的裝置登入
 這份報告會嘗試識別已變成受感染且現在為殭屍網路一部分的使用者裝置。我們會讓使用者登入的 IP 位址和我們知道與殭屍網路伺服器聯繫的 IP 位址相互關聯。
 

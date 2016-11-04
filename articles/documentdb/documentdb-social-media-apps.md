@@ -1,25 +1,23 @@
-<properties 
-    pageTitle="DocumentDB 的設計模式：社交媒體應用程式 | Microsoft Azure" 
-    description="了解具有 DocumentDB 與其他 Azure 服務之儲存體彈性的社交網路設計模式。" 
-    keywords="社交媒體應用程式"
-    services="documentdb" 
-    authors="ealsur" 
-    manager="jhubbard" 
-    editor="" 
-    documentationCenter=""/>
+---
+title: DocumentDB 的設計模式：社交媒體應用程式 | Microsoft Docs
+description: 了解具有 DocumentDB 與其他 Azure 服務之儲存體彈性的社交網路設計模式。
+keywords: 社交媒體應用程式
+services: documentdb
+author: ealsur
+manager: jhubbard
+editor: ''
+documentationcenter: ''
 
-<tags 
-    ms.service="documentdb" 
-    ms.workload="data-services" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="09/27/2016" 
-    ms.author="mimig"/>
+ms.service: documentdb
+ms.workload: data-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/27/2016
+ms.author: mimig
 
-
+---
 # <a name="going-social-with-documentdb"></a>使用 DocumentDB 進行社交活動
-
 在當今大幅互連的社會當中，我們的生活或多或少都成為 **社交網路**的一部分。 我們會使用社交網路與朋友、同事、家人保持聯絡，有時候還可以跟擁有共同興趣的人交流這份愛好。
 
 身為工程師或開發人員的我們，可能會好奇這些網路如何儲存我們的資料以及與其互連，或可能已針對本身的特定利基市場，建立或建構新的社交網路。 這時候，最大的問題出現了︰該如何儲存這些所有資料？
@@ -41,7 +39,6 @@
 當然，我們還是可以使用一個龐大的 SQL 執行個體，來求解含有眾多聯結的數千個查詢並提供內容，但如果有一個比較簡單的解決方案，為什麼還要這麼大費周章？
 
 ## <a name="the-nosql-road"></a>NoSQL 的方法
-
 您可以 [在 Azure 上執行](http://neo4j.com/developer/guide-cloud-deployment/#_windows_azure) 一種特殊的圖表資料庫，但這種資料庫很昂貴，而且需要 IaaS 服務 (基礎結構即服務，主要是虛擬機器) 以及進行維護。 因此，我會將這篇文章的重點放在適用於大多數案例且成本低廉，同時可在 Azure 的 NoSQL 資料庫 [DocumentDB](https://azure.microsoft.com/services/documentdb/)上執行的解決方案。 如果使用 [NoSQL](https://en.wikipedia.org/wiki/NoSQL) 方法，將資料以 JSON 格式儲存，並套用[反正規化](https://en.wikipedia.org/wiki/Denormalization)，即可將之前複雜的貼文轉換成單一[文件](https://en.wikipedia.org/wiki/Document-oriented_database)：
 
     {
@@ -135,7 +132,6 @@ Azure DocumentDB 可以其[自動索引編製作業](documentdb-indexing.md)來�
 接著使用 [擴充功能](https://github.com/richorama/AzureStorageExtensions#azuregraphstore) ，將實際的粉絲圖表儲存於 Azure 儲存體資料表，以允許進行簡單的「A-跟隨-B」儲存和擷取。 如此一來，我們就可將確切粉絲清單的擷取程序 (當我們需要它時) 委派給 Azure 儲存體資料表，但對於快速號碼查閱，我們仍會繼續使用 DocumentDB。
 
 ## <a name="the-“ladder”-pattern-and-data-duplication"></a>「階梯」模式與資料複製
-
 您可能已經注意到，參考貼文的 JSON 文件中，有一位使用者出現多次。 您猜的沒錯，這意謂著在使用這種反正規化的情況下，代表使用者的資訊可能會出現在多個位置。
 
 為了能更快速地查詢，所以產生了資料重複的情況。 這個副作用產生的問題是，如果某些動作導致使用者的資料變更，我們就得尋找該使用者進行過的所有活動，並全數更新。 聽起來不太實際，對吧？
@@ -157,7 +153,7 @@ Azure DocumentDB 可以其[自動索引編製作業](documentdb-indexing.md)來�
         "totalPoints":100,
         "totalPosts":24
     }
-    
+
 查看此資訊可以快速偵測出哪些是重要資訊而哪些不是，以建立出一道「階梯」：
 
 ![階梯模式的圖表](./media/documentdb-social-media-apps/social-media-apps-ladder.png)
@@ -194,19 +190,17 @@ Azure DocumentDB 可以其[自動索引編製作業](documentdb-indexing.md)來�
 如果影響到其中一個區塊屬性之處發生編輯，您也可以使用指向索引屬性的查詢 (SELECT * FROM posts p WHERE p.createdBy.id == “edited_user_id”)，然後更新區塊，即可輕鬆找到受影響的文件。
 
 ## <a name="the-search-box"></a>搜尋方塊
-
 一般來說，使用者都能很幸運地產生許多內容。 即使內容不是直接在本身的內容串流中，我們也應該可以提供搜尋及尋找這些內容的功能，因為有時我們可能不想關注建立者，或只是想要尋找 6 個月前的舊貼文。
 
 幸好，我們使用的是 Azure DocumentDB，因此可以透過 [Azure 搜尋服務](https://azure.microsoft.com/services/search/) ，輕鬆地在幾分鐘的時間內實作搜尋引擎，而不需要輸入任何一行程式碼 (當然除了搜尋程序和 UI 以外)。
 
 為什麼可以這麼輕鬆？
 
-Azure 搜尋服務會實作[索引子](https://msdn.microsoft.com/library/azure/dn946891.aspx) (這是與您資料儲存機制連結的背景處理序)，並會自動新增、更新或移除您在索引中的物件。 它們支援 [Azure SQL Database 索引子](https://blogs.msdn.microsoft.com/kaevans/2015/03/06/indexing-azure-sql-database-with-azure-search/)、[Azure Blob 索引子](../search/search-howto-indexing-azure-blob-storage.md)，很幸運地也支援 [Azure DocumentDB 索引子](../documentdb/documentdb-search-indexer.md)。 從 DocumentDB 到 Azure 搜尋服務的資訊轉換相當簡單，因為兩者皆是以 JSON 格式儲存，我們只需要[建立索引](../search/search-create-index-portal.md)，並從我們要編製索引的文件來對應屬性即可。短短幾分鐘內 (取決於資料大小而定)，即可透過雲端基礎結構中的最佳搜尋即服務解決方案來搜尋所有內容。 
+Azure 搜尋服務會實作[索引子](https://msdn.microsoft.com/library/azure/dn946891.aspx) (這是與您資料儲存機制連結的背景處理序)，並會自動新增、更新或移除您在索引中的物件。 它們支援 [Azure SQL Database 索引子](https://blogs.msdn.microsoft.com/kaevans/2015/03/06/indexing-azure-sql-database-with-azure-search/)、[Azure Blob 索引子](../search/search-howto-indexing-azure-blob-storage.md)，很幸運地也支援 [Azure DocumentDB 索引子](documentdb-search-indexer.md)。 從 DocumentDB 到 Azure 搜尋服務的資訊轉換相當簡單，因為兩者皆是以 JSON 格式儲存，我們只需要[建立索引](../search/search-create-index-portal.md)，並從我們要編製索引的文件來對應屬性即可。短短幾分鐘內 (取決於資料大小而定)，即可透過雲端基礎結構中的最佳搜尋即服務解決方案來搜尋所有內容。 
 
 如需 Azure 搜尋服務的詳細資訊，請瀏覽 [搜尋漫遊指南](https://blogs.msdn.microsoft.com/mvpawardprogram/2016/02/02/a-hitchhikers-guide-to-search/)。
 
 ## <a name="the-underlying-knowledge"></a>基礎知識
-
 儲存這些所有內容之後，隨著內容每天不斷增長，我們可能會考慮到該怎麼運用這些使用者的資訊的串流？
 
 答案很簡單：讓這些內容發揮效益，並從中學習。
@@ -215,14 +209,13 @@ Azure 搜尋服務會實作[索引子](https://msdn.microsoft.com/library/azure/
 
 現在，大家一定更感興趣了吧？您一定以為要有數學的博士學位，才能從簡單的資料庫和檔案中擷取這些模式和資訊，但您錯了。
 
-[Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) 是一項完全受管理的雲端服務，其隨附於 [Cortana Intelligence Suite](https://www.microsoft.com/en/server-cloud/cortana-analytics-suite/overview.aspx)，可讓您透過簡單的拖放介面使用演算法來建立工作流程、以 [R](https://en.wikipedia.org/wiki/R_(programming_language)) 撰寫自己的演算法程式碼，或使用一些內建和現成的 API，例如︰[文字分析](https://gallery.cortanaanalytics.com/MachineLearningAPI/Text-Analytics-2)、[內容仲裁者](https://www.microsoft.com/moderator)或[建議](https://gallery.cortanaanalytics.com/MachineLearningAPI/Recommendations-2)。
+[Azure Machine Learning](https://azure.microsoft.com/services/machine-learning/) 是一項完全受管理的雲端服務，其隨附於 [Cortana Intelligence Suite](https://www.microsoft.com/en/server-cloud/cortana-analytics-suite/overview.aspx)，可讓您透過簡單的拖放介面使用演算法來建立工作流程、以 [R](https://en.wikipedia.org/wiki/R_\(programming_language\)) 撰寫自己的演算法程式碼，或使用一些內建和現成的 API，例如︰[文字分析](https://gallery.cortanaanalytics.com/MachineLearningAPI/Text-Analytics-2)、[內容仲裁者](https://www.microsoft.com/moderator)或[建議](https://gallery.cortanaanalytics.com/MachineLearningAPI/Recommendations-2)。
 
 為了達成上述任一個機器學習服務案例，我們可以使用 [Azure Data Lake](https://azure.microsoft.com/services/data-lake-store/) 內嵌不同來源的資訊，並使用 [U-SQL](https://azure.microsoft.com/documentation/videos/data-lake-u-sql-query-execution/) 來處理資訊，並產生可由 Azure Machine Learning 處理的輸出。
 
 另一個可行的做法是使用 [Microsoft 辨識服務](https://www.microsoft.com/cognitive-services)來分析使用者內容；我們不但可以更了解它們 (以[文字分析 API](https://www.microsoft.com/cognitive-services/en-us/text-analytics-api) 分析它們撰寫的東西)，也可以利用[電腦願景 API](https://www.microsoft.com/cognitive-services/en-us/computer-vision-api) 偵測到不想要或成熟的內容，並採取適當動作。 辨識服務中有許多現成的解決方案，不需要任何機器學習的知識也能使用。
 
 ## <a name="conclusion"></a>結論
-
 本篇文章嘗試探討以低成本的服務在 Azure 上完整建立社交網路的替代方案，並鼓勵使用多層次儲存體解決方案和稱為「階梯」的資料分散方式，提供更好的結果。
 
 ![Azure 服務之間社交網路互動的圖表](./media/documentdb-social-media-apps/social-media-apps-azure-solution.png)
@@ -230,12 +223,9 @@ Azure 搜尋服務會實作[索引子](https://msdn.microsoft.com/library/azure/
 事實上，這類案例並沒有萬靈丹，而是靠下列強大服務組合所建立的綜效，它們可讓我們建立絕佳體驗：Azure DocumentDB 的高速和自由性，可提供強大的社交應用程式；Azure 搜尋服務這類頂級搜尋解決方案背後蘊藏的智慧；靈活的 Azure App Service，不只能主控不限語言的應用程式，還可主控功能強大的背景處理序；可儲存大量資料的可擴充 Azure 儲存體和 Azure SQL Database；具分析功能的 Azure Machine Learning，可建立知識與智慧，以提供處理序的意見反應並協助我們將正確的內容傳遞給適當的使用者。
 
 ## <a name="next-steps"></a>後續步驟
-
 請閱讀 [在 DocumentDB 中模型化資料](documentdb-modeling-data.md) ，以深入了解資料模型化。 如果您想了解 DocumentDB 的其他使用案例，請參閱 [常見的 DocumentDB 使用案例](documentdb-use-cases.md)。
 
 或者，您可以遵循 [DocumentDB 的學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)以深入了解 DocumentDB。
-
-
 
 <!--HONumber=Oct16_HO2-->
 

@@ -1,34 +1,30 @@
-<properties 
-	pageTitle="常見問題集：在 Azure Marketplace 中發佈和使用 Machine Learning 應用程式 | Microsoft Azure" 
-	description="常見問題集" 
-	services="machine-learning" 
-	documentationCenter="" 
-	authors="bharaths" 
-	manager="jhubbard" 
-	editor="cgronlun"/>
+---
+title: 常見問題集：在 Azure Marketplace 中發佈和使用 Machine Learning 應用程式 | Microsoft Docs
+description: 常見問題集
+services: machine-learning
+documentationcenter: ''
+author: bharaths
+manager: jhubbard
+editor: cgronlun
 
-<tags 
-	ms.service="machine-learning" 
-	ms.workload="data-services" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="09/11/2016" 
-	ms.author="bharaths"/>
+ms.service: machine-learning
+ms.workload: data-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/11/2016
+ms.author: bharaths
 
-#在 Azure Marketplace 中發佈和使用 Machine Learning 應用程式：常見問題集
-
-##從 Marketplace 取用的相關問題
-
-
+---
+# 在 Azure Marketplace 中發佈和使用 Machine Learning 應用程式：常見問題集
+## 從 Marketplace 取用的相關問題
 **1.為什麼我輸入 Web 服務的輸入之後，得到下列錯誤訊息：**
 
 **要求導致後端逾時或後端錯誤。小組正在調查這個問題。很抱歉造成您的不便。(500)**
 
 您的輸入參數可能不符合特定 Web 服務所需的格式。請參閱對應的文件連結，來尋找輸入參數的正確格式以及此 Web 服務的限制。
 
-
-[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
+[!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 **2.如果我將 [探索這個資料集] 頁面上顯示之 Web 服務的 API 連結，複製並貼到另一個瀏覽器視窗中，我應該使用哪些認證來存取結果，又該如何查看這些結果？**
 
@@ -44,9 +40,7 @@
 
 這是 Azure 傳統入口網站 Marketplace 的已知問題。小組正著手解決這個問題。
 
-
-##透過 Azure Machine Learning 在 Marketplace 上發佈的相關問題
-
+## 透過 Azure Machine Learning 在 Marketplace 上發佈的相關問題
 **1.為什麼我的 Web 服務不會重新整理標誌或影像的異動？**
 
 標誌和影像是在發佈入口網站中快取，新的標誌或影像最多可能需要 10 天才能在入口網站上更新。
@@ -69,12 +63,6 @@ Marketplace Web 服務目前不支援批次輸入模式。
 
 **6.如果我有關於成為資料發行者的問題，或在發佈過程中發生問題，我應該與誰連絡以取得協助？**
 
-如需詳細資訊，請連絡 Azure Marketplace 小組 (<datamarketbd@microsoft.com>)。
-
-
-
-
-
- 
+如需詳細資訊，請連絡 Azure Marketplace 小組 (<mailto:datamarketbd@microsoft.com>)。
 
 <!---HONumber=AcomDC_0914_2016-->

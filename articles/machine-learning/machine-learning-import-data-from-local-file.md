@@ -1,33 +1,28 @@
-<properties
-	pageTitle="將本機檔案的資料匯入 Machine Learning Studio | Microsoft Azure"
-	description="如何從本機檔案將訓練資料匯入 Azure Machine Learning Studio。"
-	keywords="匯入資料、資料格式、資料類型、資料來源、定型資料"
-	services="machine-learning"
-	documentationCenter=""
-	authors="garyericson"
-	manager="jhubbard"
-	editor="cgronlun"/>
+---
+title: 將本機檔案的資料匯入 Machine Learning Studio | Microsoft Docs
+description: 如何從本機檔案將訓練資料匯入 Azure Machine Learning Studio。
+keywords: 匯入資料、資料格式、資料類型、資料來源、定型資料
+services: machine-learning
+documentationcenter: ''
+author: garyericson
+manager: jhubbard
+editor: cgronlun
 
-<tags
-	ms.service="machine-learning"
-	ms.workload="data-services"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/16/2016"
-	ms.author="garye;bradsev" />
+ms.service: machine-learning
+ms.workload: data-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/16/2016
+ms.author: garye;bradsev
 
-
+---
 # 從本機檔案將訓練資料匯入至 Azure Machine Learning Studio
-
-[AZURE.INCLUDE [import-data-into-aml-studio-selector](../../includes/machine-learning-import-data-into-aml-studio.md)]
-
+[!INCLUDE [import-data-into-aml-studio-selector](../../includes/machine-learning-import-data-into-aml-studio.md)]
 
 若要在 Machine Learning Studio 中使用您自己的資料，您可以事先從本機硬碟上傳資料檔案，以在工作區建立資料集模組。
 
-
 ## 從本機檔案匯入資料
-
 您可以透過執行下列動作，從本機硬碟匯入資料：
 
 1. 在 [Machine Learning Studio] 視窗底部，按一下 [**+新增**]。

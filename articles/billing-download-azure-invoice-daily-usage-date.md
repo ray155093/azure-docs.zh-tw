@@ -1,33 +1,36 @@
-<properties
-	pageTitle="如何下載您的 Azure 帳單發票和每日使用量資料 | Microsoft Azure"
-	description="說明如何下載您的 Azure 帳單發票和每日使用量資料"
-	services=""
-	documentationCenter=""
-	authors="genlin"
-	manager="mbaldwin"
-	editor=""
-	tags="billing"
-	/>
+---
+title: 如何下載您的 Azure 帳單發票和每日使用量資料 | Microsoft Docs
+description: 說明如何下載您的 Azure 帳單發票和每日使用量資料
+services: ''
+documentationcenter: ''
+author: genlin
+manager: mbaldwin
+editor: ''
+tags: billing
 
-<tags
-	ms.service="billing"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/17/2016"
-	ms.author="genli"/>
+ms.service: billing
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/17/2016
+ms.author: genli
 
+---
 # 如何下載您的 Azure 帳單發票和每日使用量資料
-
-> [AZURE.NOTE] 如果您對於本文任何內容有需要進一步的協助，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
+> [!NOTE]
+> 如果您對於本文任何內容有需要進一步的協助，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
+> 
+> 
 
 身為 Azure 帳戶管理員，您可以在 Azure 帳戶中心檢視目前的帳單，以及下載過去六個計費週期的明細。方式如下：
 
 1. 以帳戶管理員身分登入 [Azure 帳戶中心](https://account.windowsazure.com/subscriptions)。在 [Azure 入口網站](https://portal.azure.com)，您可以藉由選取 [訂用帳戶] > 訂用帳戶名稱 > [管理] 來存取帳戶中心。
-
-	> [AZURE.NOTE] 只有帳戶管理員有權存取帳戶中心。如需有關如何找出訂用帳戶管理員的詳細資訊，請參閱[常見問題集](billing-subscription-transfer.md#faq)。
-
+   
+   > [!NOTE]
+   > 只有帳戶管理員有權存取帳戶中心。如需有關如何找出訂用帳戶管理員的詳細資訊，請參閱[常見問題集](billing-subscription-transfer.md#faq)。
+   > 
+   > 
 2. 選取您需要發票和使用資訊的訂用帳戶。
 3. 選取 [帳單記錄]。</br>![billinghistory](./media/billing-download-azure-invoice-daily-usage-date/Billinghisotry.png)
 4. 您可以查看過去六個計費週期連同目前未收帳週期的明細。</br>![billingsum](./media/billing-download-azure-invoice-daily-usage-date/billingSum.png)</br>
@@ -35,6 +38,9 @@
 6. 選取 [下載發票] 來查看您的最後一個帳單的副本。</br>![DLInvoice](./media/billing-download-azure-invoice-daily-usage-date/DLInvoice1.png)
 7. 選取 [下載使用量]，以 CSV 檔案形式下載每日使用量資料。</br>![DLusage](./media/billing-download-azure-invoice-daily-usage-date/DLusage.png)
 
-> [AZURE.NOTE] 如果您仍有其他問題，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
+> [!NOTE]
+> 如果您仍有其他問題，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
+> 
+> 
 
 <!---HONumber=AcomDC_0824_2016-->

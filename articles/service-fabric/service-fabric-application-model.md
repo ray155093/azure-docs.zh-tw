@@ -1,31 +1,28 @@
-<properties
-   pageTitle="Service Fabric 應用程式模型 | Microsoft Azure"
-   description="如何在 Service Fabric 中建立模型和描述應用程式與服務。"
-   services="service-fabric"
-   documentationCenter=".net"
-   authors="rwike77"
-   manager="timlt"
-   editor="mani-ramaswamy"/>
+---
+title: Service Fabric 應用程式模型 | Microsoft Docs
+description: 如何在 Service Fabric 中建立模型和描述應用程式與服務。
+services: service-fabric
+documentationcenter: .net
+author: rwike77
+manager: timlt
+editor: mani-ramaswamy
 
-<tags
-   ms.service="service-fabric"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="NA"
-   ms.date="08/10/2016"   
-   ms.author="seanmck"/>
+ms.service: service-fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 08/10/2016
+ms.author: seanmck
 
+---
 # 在 Service Fabric 中模型化應用程式
-
 本文提供 Azure Service Fabric 應用程式模型概觀。也說明如何透過資訊清單檔案定義應用程式和服務，並讓應用程式封裝準備好進行部署。
 
 ## 了解應用程式模型
-
 應用程式是組成服務的集合，這些服務會執行特定函數。服務會執行完整且獨立的函數 (其可獨立於其他服務啟動和執行)，並且是由程式碼、組態和資料組成。針對每個服務，程式碼由可執行檔二進位檔組成、組態由可在執行階段載入的服務設定組成，而資料由讓服務使用的任意靜態資料組成。此階層應用程式模型中的每個元件都可以獨立建立版本和升級。
 
 ![Service Fabric 應用程式模型][appmodel-diagram]
-
 
 應用程式類型是應用程式的分類，由服務類型的組合所組成。服務類型是一項服務分類。分類可以有不同的設定和組態，但是核心功能保持不變。服務的執行個體是相同服務類型的不同服務組態變形。
 
@@ -43,11 +40,12 @@
 
 ![服務內的分割和複本][cluster-application-instances]
 
-
->[AZURE.TIP] 您可以使用 Service Fabric Explorer 工具，在叢集中檢視應用程式的配置，該工具可以在 http://&lt;yourclusteraddress&gt;:19080/Explorer 上取得。如需詳細資訊，請參閱[使用 Service Fabric Explorer 視覺化叢集](service-fabric-visualizing-your-cluster.md)。
+> [!TIP]
+> 您可以使用 Service Fabric Explorer 工具，在叢集中檢視應用程式的配置，該工具可以在 http://&lt;yourclusteraddress&gt;:19080/Explorer 上取得。如需詳細資訊，請參閱[使用 Service Fabric Explorer 視覺化叢集](service-fabric-visualizing-your-cluster.md)。
+> 
+> 
 
 ## 描述服務
-
 服務資訊清單以宣告方式定義服務類型和版本。它會指定如服務類型的服務中繼資料、健康狀態屬性、負載平衡度量、服務二進位檔和組態檔。換句話說，它會描述組成服務封裝的程式碼、組態和資料封裝，以支援一或多個服務類型。以下是簡單的範例服務資訊清單：
 
 ~~~
@@ -93,7 +91,10 @@
 </Settings>
 ~~~
 
-> [AZURE.NOTE] 服務資訊清單可以包含多個程式碼、組態和資料封裝。每個皆可獨立建立版本。
+> [!NOTE]
+> 服務資訊清單可以包含多個程式碼、組態和資料封裝。每個皆可獨立建立版本。
+> 
+> 
 
 <!--
 For more information about other features supported by service manifests, refer to the following articles:
@@ -106,8 +107,6 @@ For more information about other features supported by service manifests, refer 
 -->
 
 ## 描述應用程式
-
-
 應用程式資訊清單以宣告方式描述應用程式類型和版本。它指定服務組成中繼資料，例如穩定的名稱、分割配置、執行個體計數/複寫因數、安全性/隔離原則、安置限制、組態覆寫和組成服務類型。也說明要放置應用程式的負載平衡網域。
 
 因此，應用程式資訊清單描述應用程式層級的元素，並參考用來組成應用程式類型的一個或多個服務資訊清單。以下是簡單的範例應用程式資訊清單：
@@ -139,7 +138,10 @@ For more information about other features supported by service manifests, refer 
 
 **DefaultServices** 宣告服務執行個體，該執行個體會在每次應用程式針對此應用程式類型具現化時建立。預設服務只是為了方便起見，在建立之後，其行為在每個方面就像正常的服務。它們會與應用程式執行個體中的其他任何服務一起升級，也可以一起移除。
 
-> [AZURE.NOTE] 應用程式資訊清單可以包含多個服務資訊清單匯入和預設服務。每個服務資訊清單匯入都可以獨立建立版本。
+> [!NOTE]
+> 應用程式資訊清單可以包含多個服務資訊清單匯入和預設服務。每個服務資訊清單匯入都可以獨立建立版本。
+> 
+> 
 
 若要了解如何針對個別環境維護不同的應用程式和服務參數，請參閱[管理多個環境的應用程式參數](service-fabric-manage-multiple-environment-app-configuration.md)
 
@@ -152,9 +154,7 @@ For more information about other features supported by application manifests, re
 -->
 
 ## 封裝應用程式
-
 ### 封裝版面配置
-
 應用程式資訊清單、服務資訊清單和其他必要封裝檔案必須以特定版面配置組織，才能部署至 Service Fabric 叢集。在本文中的範例資訊清單必須組織成下列目錄結構：
 
 ~~~
@@ -179,15 +179,12 @@ D:\TEMP\MYAPPLICATIONTYPE
 命名資料夾以符合每個對應元素的**名稱**屬性。例如，如果服務資訊清單包含名稱為 **MyCodeA** 和 **MyCodeB** 的兩個程式碼封裝，則同名的兩個資料夾會包含每個程式碼封裝所需的二進位檔。
 
 ### 使用 SetupEntryPoint
-
 使用 **SetupEntryPoint** 的一般案例，是當您必須在服務啟動之前執行可執行檔，或必須使用提高的權限來執行作業時。例如：
 
-- 設定及初始化服務可執行檔需要的環境變數。這不限於透過 Service Fabric 程式設計模型撰寫的執行檔。例如，npm.exe 部署 node.js 應用程式，需要設定某些環境變數。
-
-- 透過安裝安全性憑證設定存取控制。
+* 設定及初始化服務可執行檔需要的環境變數。這不限於透過 Service Fabric 程式設計模型撰寫的執行檔。例如，npm.exe 部署 node.js 應用程式，需要設定某些環境變數。
+* 透過安裝安全性憑證設定存取控制。
 
 ### 使用 Visual Studio 建置封裝
-
 如果您使用 Visual Studio 2015 來建立您的應用程式，您可以使用 [封裝] 命令來自動建立符合上述版面配置的封裝。
 
 若要建立封裝，請以滑鼠右鍵按一下方案總管中的應用程式專案，然後選擇 [封裝] 命令，如下所示：
@@ -197,7 +194,6 @@ D:\TEMP\MYAPPLICATIONTYPE
 封裝完成時，您會在 [輸出] 視窗中發現封裝的位置。請注意，當您在 Visual Studio 中部署或偵錯應用程式時，封裝步驟會自動進行。
 
 ### 測試封裝
-
 您可以使用 **Test-ServiceFabricApplicationPackage** 命令，透過 PowerShell 在本機上驗證封裝結構。這個命令會檢查有無資訊清單剖析問題，並驗證所有參考。請注意，這個命令只會驗證封裝中檔案與目錄的結構正確性。除了檢查所有必要檔案都在之外，它不會驗證任何程式碼或資料封裝內容。
 
 ~~~
@@ -236,7 +232,6 @@ PS D:\temp>
 一旦應用程式正確封裝並通過驗證，就可供部署。
 
 ## 後續步驟
-
 [部署與移除應用程式][10]
 
 [管理多個環境的應用程式參數][11]

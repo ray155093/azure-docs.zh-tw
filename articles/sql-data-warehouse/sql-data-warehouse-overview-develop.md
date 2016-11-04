@@ -1,52 +1,51 @@
-<properties
-   pageTitle="SQL 資料倉儲的設計決策和程式碼撰寫技術開發 | Microsoft Azure"
-   description="SQL 資料倉儲的開發概念、設計決策、建議和程式碼撰寫技巧。"
-   services="sql-data-warehouse"
-   documentationCenter="NA"
-   authors="jrowlandjones"
-   manager="barbkess"
-   editor=""/>
+---
+title: SQL 資料倉儲的設計決策和程式碼撰寫技術開發 | Microsoft Docs
+description: SQL 資料倉儲的開發概念、設計決策、建議和程式碼撰寫技巧。
+services: sql-data-warehouse
+documentationcenter: NA
+author: jrowlandjones
+manager: barbkess
+editor: ''
 
-<tags
-   ms.service="sql-data-warehouse"
-   ms.devlang="NA"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="data-services"
-   ms.date="08/16/2016"
-   ms.author="jrj;barbkess;sonyama"/>
+ms.service: sql-data-warehouse
+ms.devlang: NA
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: data-services
+ms.date: 08/16/2016
+ms.author: jrj;barbkess;sonyama
 
+---
 # SQL 資料倉儲的設計決策和程式碼撰寫技術
-
 若要進一步瞭解 SQL 資料倉儲的重要的設計決策、建議和程式碼撰寫技術，請參閱這些開發文章。
 
 ## 主要的設計決策
 下列文章的重點在於使用 SQL 資料倉儲開發分散式資料倉儲時，必須了瞭解的一些重要概念和設計決策：
 
-- [連接][]
-- [並行][]
-- [交易][]
-- [使用者定義的結構描述][]
-- [資料表散發][]
-- [資料表索引][]
-- [資料表分割][]
-- [CTAS][]
-- [統計資料][]
+* [連接][連接]
+* [並行][並行]
+* [交易][交易]
+* [使用者定義的結構描述][使用者定義的結構描述]
+* [資料表散發][資料表散發]
+* [資料表索引][資料表索引]
+* [資料表分割][資料表分割]
+* [CTAS][CTAS]
+* [統計資料][統計資料]
 
 ## 開發建議和程式碼撰寫技術
 這些文章會強調特定的程式碼撰寫技術、秘訣和建議，用於開發您的 SQL 資料倉儲：
 
-- [預存程序][]
-- [標籤][]
-- [檢視][]
-- [暫存資料表][]
-- [動態 SQL][]
-- [迴圈][]
-- [依據選項分組][]
-- [變數指派][]
+* [預存程序][預存程序]
+* [標籤][標籤]
+* [檢視][檢視]
+* [暫存資料表][暫存資料表]
+* [動態 SQL][動態 SQL]
+* [迴圈][迴圈]
+* [依據選項分組][依據選項分組]
+* [變數指派][變數指派]
 
 ## 後續步驟
-仔細閱讀開發文章之後，請查看 [Transact-SQL 參考資料][]頁面，以取得 SQL 資料倉儲支援的語法的詳細資料。
+仔細閱讀開發文章之後，請查看 [Transact-SQL 參考資料][Transact-SQL 參考資料]頁面，以取得 SQL 資料倉儲支援的語法的詳細資料。
 
 <!--Image references-->
 

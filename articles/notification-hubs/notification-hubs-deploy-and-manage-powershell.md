@@ -1,49 +1,40 @@
-<properties 
-    pageTitle="使用 PowerShell 來部署和管理通知中樞" 
-    description="如何使用 PowerShell 來進行自動化的通知中樞建立和管理" 
-    services="notification-hubs" 
-    documentationCenter="" 
-    authors="ysxu" 
-    manager="erikre" 
-    editor="" />
+---
+title: 使用 PowerShell 來部署和管理通知中樞
+description: 如何使用 PowerShell 來進行自動化的通知中樞建立和管理
+services: notification-hubs
+documentationcenter: ''
+author: ysxu
+manager: erikre
+editor: ''
 
-<tags 
-    ms.service="notification-hubs" 
-    ms.workload="mobile" 
-    ms.tgt_pltfrm="powershell" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="06/29/2016" 
-    ms.author="yuaxu"/>
+ms.service: notification-hubs
+ms.workload: mobile
+ms.tgt_pltfrm: powershell
+ms.devlang: na
+ms.topic: article
+ms.date: 06/29/2016
+ms.author: yuaxu
 
-
+---
 # <a name="deploy-and-manage-notification-hubs-using-powershell"></a>使用 PowerShell 來部署和管理通知中樞
-
-##<a name="overview"></a>概觀
-
+## <a name="overview"></a>概觀
 本文將說明如何使用 PowerShell 來建立和管理 Azure 通知中樞。 本主題示範下列一般自動化工作。
 
-+ 建立通知中樞
-+ 設定認證
+* 建立通知中樞
+* 設定認證
 
-如果您也需要為通知中樞建立新服務匯流排命名空間，請參閱 [使用 PowerShell 管理服務匯流排](../service-bus-messaging/service-bus-powershell-how-to-provision.md)。
+如果您也需要為通知中樞建立新服務匯流排命名空間，請參閱 [使用 PowerShell 管理服務匯流排](../service-bus/service-bus-powershell-how-to-provision.md)。
 
 Azure PowerShell 隨附的 Cmdlet 無法直接支援「管理通知中樞」。 從 PowerShell 進行的最佳方法，是參考 Microsoft.Azure.NotificationHubs.dll 組件。 組件隨附於 [Microsoft Azure 通知中樞 NuGet 套件](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/)。
 
-
 ## <a name="prerequisites"></a>必要條件
-
 開始閱讀本文之前，您必須符合下列必要條件：
 
-- Azure 訂用帳戶。 Azure 是訂用帳戶型平台。 如需取得訂用帳戶的詳細資訊，請參閱[購買選項]、[成員優惠]或[免費使用]。
-
-- 具備 Azure PowerShell 的電腦。 如需指示，請參閱 [安裝並設定 Azure PowerShell]。
-
-- 大致了解 PowerShell 指令碼、NuGet 封裝和 .NET Framework。
-
+* Azure 訂用帳戶。 Azure 是訂用帳戶型平台。 如需取得訂用帳戶的詳細資訊，請參閱[購買選項]、[成員優惠]或[免費使用]。
+* 具備 Azure PowerShell 的電腦。 如需指示，請參閱 [安裝並設定 Azure PowerShell]。
+* 大致了解 PowerShell 指令碼、NuGet 封裝和 .NET Framework。
 
 ## <a name="including-a-reference-to-the-.net-assembly-for-service-bus"></a>包括對服務匯流排之 .NET 組件的參考
-
 Azure PowerShell 中的 PowerShell Cmdlet 尚未提供「管理 Azure 通知中樞」。 若要佈建通知中樞，可以使用 [Microsoft Azure 通知中樞 NuGet 套件](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/)中所提供的 .NET 用戶端。
 
 首先，請確定指令碼可以找到 **Microsoft.Azure.NotificationHubs.dll** 組件，其在 Visual Studio 專案中會以 NuGet 套件的形式安裝。 為了要有使用彈性，指令碼會執行這些步驟：
@@ -76,7 +67,6 @@ catch [System.Exception]
 ```
 
 ## <a name="create-the-namespacemanager-class"></a>建立 NamespaceManager 類別
-
 若要佈建通知中樞，請從 SDK 建立 [NamespaceManager](https://msdn.microsoft.com/library/azure/microsoft.azure.notificationhubs.namespacemanager.aspx) 類別的執行個體。 
 
 您可以使用 Azure PowerShell 隨附的 [Get-AzureSBAuthorizationRule] Cmdlet 來擷取用來提供連接字串的授權規則。 我們將會在 `$NamespaceManager` 變數中儲存對 `NamespaceManager` 執行個體的參照。 我們將使用 `$NamespaceManager` 佈建通知中樞。
@@ -90,8 +80,7 @@ Write-Output "NamespaceManager object for the [$Namespace] namespace has been su
 ```
 
 
-## <a name="provisioning-a-new-notification-hub"></a>佈建新的通知中樞 
-
+## <a name="provisioning-a-new-notification-hub"></a>佈建新的通知中樞
 若要佈建新的通知中樞，請使用 [通知中樞的 .NET API]。
 
 您會在指令碼的這個部分設定四個本機變數。 
@@ -103,9 +92,8 @@ Write-Output "NamespaceManager object for the [$Namespace] namespace has been su
 
 這些變數可用以連接命名空間，以及建立新的通知中樞，並將其設定為利用 WNS 認證，為 Windows 應用程式處理 Windows Notification Services (WNS) 通知。 如需取得封裝 SID 與祕密金鑰的相關資訊，請參閱 [開始使用通知中樞](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md) 教學課程。 
 
-+ 指令碼片段使用 `NamespaceManager` 物件來查看 `$Path` 所識別的通知中樞是否存在。
-
-+ 如果不存在，指令碼會使用 WNS 認證建立 `NotificationHubDescription`，並將其傳遞至 `NamespaceManager` 類別 `CreateNotificationHub` 方法。
+* 指令碼片段使用 `NamespaceManager` 物件來查看 `$Path` 所識別的通知中樞是否存在。
+* 如果不存在，指令碼會使用 WNS 認證建立 `NotificationHubDescription`，並將其傳遞至 `NamespaceManager` 類別 `CreateNotificationHub` 方法。
 
 ``` powershell
 
@@ -154,14 +142,13 @@ else
 
 
 ## <a name="additional-resources"></a>其他資源
-
-- [使用 PowerShell 管理服務匯流排](../service-bus-messaging/service-bus-powershell-how-to-provision.md)
-- [如何使用 PowerShell 指令碼來建立服務匯流排佇列、主題及訂用帳戶](http://blogs.msdn.com/b/paolos/archive/2014/12/02/how-to-create-a-service-bus-queues-topics-and-subscriptions-using-a-powershell-script.aspx)
-- [如何使用 PowerShell 指令碼來建立服務匯流排命名空間與事件中樞](http://blogs.msdn.com/b/paolos/archive/2014/12/01/how-to-create-a-service-bus-namespace-and-an-event-hub-using-a-powershell-script.aspx)
+* [使用 PowerShell 管理服務匯流排](../service-bus/service-bus-powershell-how-to-provision.md)
+* [如何使用 PowerShell 指令碼來建立服務匯流排佇列、主題及訂用帳戶](http://blogs.msdn.com/b/paolos/archive/2014/12/02/how-to-create-a-service-bus-queues-topics-and-subscriptions-using-a-powershell-script.aspx)
+* [如何使用 PowerShell 指令碼來建立服務匯流排命名空間與事件中樞](http://blogs.msdn.com/b/paolos/archive/2014/12/01/how-to-create-a-service-bus-namespace-and-an-event-hub-using-a-powershell-script.aspx)
 
 也有一些現成的指令碼可供下載：
-- [服務匯流排 PowerShell 指令碼](https://code.msdn.microsoft.com/windowsazure/Service-Bus-PowerShell-a46b7059)
- 
+
+* [服務匯流排 PowerShell 指令碼](https://code.msdn.microsoft.com/windowsazure/Service-Bus-PowerShell-a46b7059)
 
 [購買選項]: http://azure.microsoft.com/pricing/purchase-options/
 [成員優惠]: http://azure.microsoft.com/pricing/member-offers/
@@ -171,7 +158,7 @@ else
 [Get-AzureSBNamespace]: https://msdn.microsoft.com/library/azure/dn495122.aspx
 [New-AzureSBNamespace]: https://msdn.microsoft.com/library/azure/dn495165.aspx
 [Get-AzureSBAuthorizationRule]: https://msdn.microsoft.com/library/azure/dn495113.aspx
- 
+
 
 
 

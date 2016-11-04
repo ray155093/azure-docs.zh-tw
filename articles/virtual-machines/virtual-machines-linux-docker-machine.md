@@ -1,28 +1,25 @@
-<properties
-	pageTitle="用 Docker 電腦在 Azure 中建立 Docker 主機 | Microsoft Azure"
-	description="說明如何使用 Docker 電腦在 Azure 中建立 Docker 主機。"
-	services="virtual-machines-linux"
-	documentationCenter=""
-	authors="squillace"
-	manager="timlt"
-	editor="tysonn"/>
+---
+title: 用 Docker 電腦在 Azure 中建立 Docker 主機 | Microsoft Docs
+description: 說明如何使用 Docker 電腦在 Azure 中建立 Docker 主機。
+services: virtual-machines-linux
+documentationcenter: ''
+author: squillace
+manager: timlt
+editor: tysonn
 
-<tags
-	ms.service="virtual-machines-linux"
-	ms.devlang="multiple"
-	ms.topic="article"
-	ms.tgt_pltfrm="vm-linux"
-	ms.workload="infrastructure-services"
-	ms.date="07/22/2016"
-	ms.author="rasquill"/>
+ms.service: virtual-machines-linux
+ms.devlang: multiple
+ms.topic: article
+ms.tgt_pltfrm: vm-linux
+ms.workload: infrastructure-services
+ms.date: 07/22/2016
+ms.author: rasquill
 
+---
 # 使用 Docker 電腦搭配 Azure 驅動程式
-
 [Docker](https://www.docker.com/) 是最常用的虛擬化方式之一，它不使用虛擬機器，而是使用 Linux 容器，作為在共用資源上隔離應用程式資料和執行計算的方法。本主題說明何時及如何使用 [Docker 電腦](https://docs.docker.com/machine/) (`docker-machine` 命令) 在 Azure 中建立新的 Linux VM，啟用為 Linux 容器的 Docker 主機。
 
-
 ## 使用 Docker 電腦建立 VM
-
 使用驅動程式選項 (`-d`) 的 `azure` 驅動程式引數和任何其他引數，以 `docker-machine create` 命令在 Azure 中建立 Docker 主機 VM。
 
 下例依賴預設值，但它確實會開啟連接網際網路的 VM 連接埠 80 以使用 nginx 容器來進行測試、讓 `ops` 成為 SSH 的登入使用者，以及呼叫新的 VM `machine`。
@@ -71,7 +68,6 @@ To see how to connect your Docker Client to the Docker Engine running on this vi
 ```
 
 ## 設定您的 Docker 介面
-
 現在請輸入 `docker-machine env <VM name>`，看看設定介面需要做些什麼。
 
 ```bash
@@ -92,7 +88,6 @@ export DOCKER_MACHINE_NAME="machine"
 您可以執行建議的組態命令，或自行設定環境變數。
 
 ## 執行容器
-
 現在，您可以執行簡單的 Web 伺服器，測試所有項目是否都運作正常。我們在此使用標準的 nginx 映像，指定它應接聽連接埠 80，而且若 VM 重新啟動，則容器也應該重新啟動 (`--restart=always`)。
 
 ```bash
@@ -114,7 +109,6 @@ Status: Downloaded newer image for nginx:latest
 ```
 
 ## 測試容器
-
 使用 `docker ps` 檢查執行中的容器：
 
 ```bash
@@ -127,7 +121,6 @@ d5b78f27b335        nginx               "nginx -g 'daemon off"   5 minutes ago  
 ![執行 ngnix 容器](./media/virtual-machines-linux-docker-machine/nginxsuccess.png)
 
 ## 後續步驟
-
 如果有興趣，您可以試用 Azure [Docker VM 擴充功能](virtual-machines-linux-dockerextension.md)，用 Azure CLI 或 Azure Resource Manager 範本執行相同的作業。
 
 如需更多使用 Docker 的範例，請參閱來自 [HealthClinic.biz](https://github.com/Microsoft/HealthClinic.biz) 2015 Connect [示範](https://blogs.msdn.microsoft.com/visualstudio/2015/12/08/connectdemos-2015-healthclinic-biz/)的 [Working with Docker (使用 Docker)](https://github.com/Microsoft/HealthClinic.biz/wiki/Working-with-Docker)。如需來自 HealthClinic.biz 示範的更多快速入門，請參閱 [Azure Developer Tools Quickstarts (Azure 開發人員工具快速入門)](https://github.com/Microsoft/HealthClinic.biz/wiki/Azure-Developer-Tools-Quickstarts)。

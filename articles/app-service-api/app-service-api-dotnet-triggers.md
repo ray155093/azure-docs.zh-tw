@@ -1,28 +1,28 @@
-<properties 
-	pageTitle="App Service API 應用程式觸發程序 | Microsoft Azure" 
-	description="如何在 Azure App Service 的 API 應用程式中實作觸發程序" 
-	services="logic-apps" 
-	documentationCenter=".net" 
-	authors="guangyang"
-	manager="wpickett" 
-	editor="jimbe"/>
+---
+title: App Service API 應用程式觸發程序 | Microsoft Docs
+description: 如何在 Azure App Service 的 API 應用程式中實作觸發程序
+services: logic-apps
+documentationcenter: .net
+author: guangyang
+manager: wpickett
+editor: jimbe
 
-<tags 
-	ms.service="logic-apps" 
-	ms.workload="na" 
-	ms.tgt_pltfrm="dotnet" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="08/25/2016" 
-	ms.author="rachelap"/>
+ms.service: logic-apps
+ms.workload: na
+ms.tgt_pltfrm: dotnet
+ms.devlang: na
+ms.topic: article
+ms.date: 08/25/2016
+ms.author: rachelap
 
+---
 # Azure App Service API 應用程式觸發程序
-
->[AZURE.NOTE] 這一版的文章適用於 API Apps 2014-12-01-preview 結構描述版本。
-
+> [!NOTE]
+> 這一版的文章適用於 API Apps 2014-12-01-preview 結構描述版本。
+> 
+> 
 
 ## Overview
-
 本文說明如何實作 API 應用程式觸發程序，並從邏輯應用程式加以使用。
 
 本主題中所有程式碼片段的複製來源為 [FileWatcher API 應用程式的程式碼範例](http://go.microsoft.com/fwlink/?LinkId=534802)。
@@ -30,34 +30,31 @@
 請注意，您將需要下載下列 nuget 封裝，以取得本文中建置與執行所需的程式碼：[http://www.nuget.org/packages/Microsoft.Azure.AppService.ApiApps.Service/](http://www.nuget.org/packages/Microsoft.Azure.AppService.ApiApps.Service/)。
 
 ## 何謂 API 應用程式觸發程序？
-
 API 應用程式常會需要引發事件，以讓 API 應用程式用戶端採取適當的動作來回應事件。支援此案例的REST API 型機制稱為 API 應用程式觸發程序。
 
 例如，假設用戶端程式碼使用 [Twitter 連接器 API 應用程式](../app-service-logic/app-service-logic-connector-twitter.md)，且您的程式碼必須根據其中包含特定文字的新推文來執行動作。在此情況下，您可以設定輪詢或推入觸發程序來加速處理這項需求。
 
 ## 輪詢觸發程序與推入觸發程序
-
 目前支援兩種類型的觸發程序：
 
-- 輪詢觸發程序 - 用戶端會輪詢 API 應用程式以取得已引發事件的通知
-- 推入觸發程序 - 當事件引發時，API 應用程式會通知用戶端
+* 輪詢觸發程序 - 用戶端會輪詢 API 應用程式以取得已引發事件的通知
+* 推入觸發程序 - 當事件引發時，API 應用程式會通知用戶端
 
 ### 輪詢觸發程序
-
 輪詢觸發程序實作為一般的 REST API，並預期它的用戶端 (例如邏輯應用程式) 輪詢它以取得通知。用戶端可能會維持狀態，而輪詢觸發程序本身是無狀態的。
 
 有關要求和回應封包的下列資訊，說明輪詢觸發程序合約的一些重要層面：
 
-- 要求
-    - HTTP 方法：GET
-    - 參數
-        - triggerState - 此選用參數可讓用戶端指定其狀態，以便輪詢觸發程序可以根據指定的狀態，正確決定是否要傳回通知。
-        - API 特有的參數
-- Response
-    - 狀態碼 **200** - 要求有效，而且沒有觸發程序的通知。通知的內容成為回應主體。回應中的 "Retry-After" 標頭會指出，必須透過後續要求呼叫擷取其他通知資料。
-    - 狀態碼 **202** - 要求有效，但沒有新的觸發程序通知。
-    - 狀態碼 **4xx** - 要求無效。用戶端不應該重試要求。
-    - 狀態碼 **5xx** - 要求導致內部伺服器錯誤及/或暫時性問題。用戶端應該重試要求。
+* 要求
+  * HTTP 方法：GET
+  * 參數
+    * triggerState - 此選用參數可讓用戶端指定其狀態，以便輪詢觸發程序可以根據指定的狀態，正確決定是否要傳回通知。
+    * API 特有的參數
+* Response
+  * 狀態碼 **200** - 要求有效，而且沒有觸發程序的通知。通知的內容成為回應主體。回應中的 "Retry-After" 標頭會指出，必須透過後續要求呼叫擷取其他通知資料。
+  * 狀態碼 **202** - 要求有效，但沒有新的觸發程序通知。
+  * 狀態碼 **4xx** - 要求無效。用戶端不應該重試要求。
+  * 狀態碼 **5xx** - 要求導致內部伺服器錯誤及/或暫時性問題。用戶端應該重試要求。
 
 下列程式碼片段是如何實作輪詢觸發程序的範例。
 
@@ -97,24 +94,23 @@ API 應用程式常會需要引發事件，以讓 API 應用程式用戶端採�
 3. 以在步驟 2 之前設定為時間戳記的 **triggerState** 參數，呼叫輪詢觸發程序。下圖顯示透過 Postman 的範例要求。![透過 Postman 呼叫輪詢觸發程序](./media/app-service-api-dotnet-triggers/callpolltriggerfrompostman.PNG)
 
 ### 推入觸發程序
-
 推入觸發程序會實作為一般的 REST API，將通知推入已註冊為希望在引發特定事件時收到通知的用戶端。
 
 下列資訊關於要求和回應封包，說明推入觸發程序合約的一些重要層面。
 
-- 要求
-    - HTTP 方法：PUT
-    - 參數
-        - 觸發程式識別碼：必要項 - 不透明字串 (例如 GUID)，表示推入觸發程序的註冊。
-        - callbackUrl：必要項 - 當事件引發時所叫用回呼的 URL。叫用是一個簡單的 POST HTTP 呼叫。
-        - API 特有的參數
-- Response
-    - 狀態碼 **200** - 註冊用戶端的要求成功。
-    - 狀態碼 **4xx** - 要求無效。用戶端不應該重試要求。
-    - 狀態碼 **5xx** - 要求導致內部伺服器錯誤及/或暫時性問題。用戶端應該重試要求。
-- 回呼
-    - HTTP 方法：POST
-    - 要求內文： 通知內容。
+* 要求
+  * HTTP 方法：PUT
+  * 參數
+    * 觸發程式識別碼：必要項 - 不透明字串 (例如 GUID)，表示推入觸發程序的註冊。
+    * callbackUrl：必要項 - 當事件引發時所叫用回呼的 URL。叫用是一個簡單的 POST HTTP 呼叫。
+    * API 特有的參數
+* Response
+  * 狀態碼 **200** - 註冊用戶端的要求成功。
+  * 狀態碼 **4xx** - 要求無效。用戶端不應該重試要求。
+  * 狀態碼 **5xx** - 要求導致內部伺服器錯誤及/或暫時性問題。用戶端應該重試要求。
+* 回呼
+  * HTTP 方法：POST
+  * 要求內文： 通知內容。
 
 下列程式碼片段是如何實作推入觸發程序的範例：
 
@@ -202,7 +198,6 @@ API 應用程式常會需要引發事件，以讓 API 應用程式用戶端採�
 5. 請檢查 RequestBin，以確認屬性輸出會叫用推入觸發程序回呼。![透過 Postman 呼叫輪詢觸發程序](./media/app-service-api-dotnet-triggers/pushtriggercallbackinrequestbin.PNG)
 
 ### 在 API 定義中描述觸發程序
-
 實作觸發程序，並將您的 API 應用程式部署至 Azure 之後，瀏覽至 Azure Preview 入口網站中的 [**API 定義**] 刀鋒視窗，然後您會看到 UI 已自動辨識觸發程序 (這是由 API 應用程式的 Swagger 2.0 API 定義所驅動)。
 
 ![API 定義刀鋒視窗](./media/app-service-api-dotnet-triggers/apidefinitionblade.PNG)
@@ -226,19 +221,17 @@ API 應用程式常會需要引發事件，以讓 API 應用程式用戶端採�
 
 延伸模組屬性 **x-ms-schedular-trigger** 是 API 定義中所描述的觸發程序，而且當您要求透過閘道要求 API 定義時，若要求符合以下其中一個準則時，API 應用程式閘道會自動加入它。(您也可以手動加入這個屬性。)
 
-- 輪詢觸發程序
-    - 如果 HTTP 方法為 **GET**。
-    - 如果 **operationId** 屬性包含字串 **trigger**。
-    - 如果 **parameters** 屬性所包含參數的 **name** 屬性設定為 **triggerState**。
-- 推入觸發程序
-    - 如果 HTTP 方法為 **PUT**。
-    - 如果 **operationId** 屬性包含字串 **trigger**。
-    - 如果 **parameters** 屬性所包含參數的 **name** 屬性設定為 **triggerId**。
+* 輪詢觸發程序
+  * 如果 HTTP 方法為 **GET**。
+  * 如果 **operationId** 屬性包含字串 **trigger**。
+  * 如果 **parameters** 屬性所包含參數的 **name** 屬性設定為 **triggerState**。
+* 推入觸發程序
+  * 如果 HTTP 方法為 **PUT**。
+  * 如果 **operationId** 屬性包含字串 **trigger**。
+  * 如果 **parameters** 屬性所包含參數的 **name** 屬性設定為 **triggerId**。
 
 ## 在邏輯應用程式中使用 API 應用程式觸發程序
-
 ### 在邏輯應用程式設計工具中，列出與設定 API 應用程式觸發程序
-
 如果您在 API 應用程式的相同資源群組中建立邏輯應用程式，您只要按一下它，即可將它加入至設計工具的畫布中。請見下圖說明：
 
 ![邏輯應用程式設計工具中的觸發程序](./media/app-service-api-dotnet-triggers/triggersinlogicappdesigner.PNG)
@@ -248,12 +241,11 @@ API 應用程式常會需要引發事件，以讓 API 應用程式用戶端採�
 ![在邏輯應用程式設計工具中設定推入觸發程序](./media/app-service-api-dotnet-triggers/configurepushtriggerinlogicappdesigner.PNG)
 
 ## 為邏輯應用程式最佳化 API 應用程式觸發程序
-
 將觸發程序加入至 API 應用程式之後，您可以透過幾種方式來改善在邏輯應用程式中使用 API 應用程式的體驗。
 
 比方說，輪詢觸發程序的 **triggerState** 參數應該在邏輯應用程式中設定為下列運算式。此運算式應該評估邏輯應用程式之觸發程序的最後一個叫用，並傳回該值。
 
-	@coalesce(triggers()?.outputs?.body?['triggerState'], '')
+    @coalesce(triggers()?.outputs?.body?['triggerState'], '')
 
 注意：如需上述運算式中所使用函式的說明，請參閱[邏輯應用程式工作流程定義語言](https://msdn.microsoft.com/library/azure/dn948512.aspx)的文件。
 
@@ -261,7 +253,7 @@ API 應用程式常會需要引發事件，以讓 API 應用程式用戶端採�
 
     "/api/Messages/poll": {
       "get": {
-	    "operationId": "Messages_NewMessageTrigger",
+        "operationId": "Messages_NewMessageTrigger",
         "parameters": [
           {
             "name": "triggerState",
@@ -295,7 +287,6 @@ API 應用程式常會需要引發事件，以讓 API 應用程式用戶端採�
 
 
 ### 在 API 定義中加入延伸模組屬性
-
 其他中繼資料資訊 (例如延伸模組屬性 **x-ms-scheduler-recommendation** 和 **x-ms-visibility**) 可以透過以下兩種方式加入 API 定義：靜態或動態。
 
 對於靜態的中繼資料，您可以直接編輯專案中的 */metadata/apiDefinition.swagger.json* 檔案，並手動加入屬性。
@@ -340,6 +331,6 @@ API 應用程式常會需要引發事件，以讓 API 應用程式用戶端採�
             }
         }
     }
- 
+
 
 <!---HONumber=AcomDC_0831_2016-->

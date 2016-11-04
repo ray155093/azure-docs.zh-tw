@@ -13,7 +13,6 @@
 1. 無法將資料磁碟連接至擴展集中的 VM 執行個體。相反地，必須使用 Blob 儲存體、Azure 檔案、Azure 資料表或其他儲存體解決方案。
 
 ## 使用 Azure CLI 快速建立
-
 如果您尚未這麼做，可以取得 [Azure 訂用帳戶免費試用](https://azure.microsoft.com/pricing/free-trial/)以及[連線至 Azure 帳戶](../articles/xplat-cli-connect.md)的 [Azure CLI](../articles/xplat-cli-install.md)。這麼做之後，即可執行下列命令，以快速建立 VM 擴展集︰
 
 ```bash
@@ -71,7 +70,6 @@ ssh -p 50000 $FQDN
 ```
 
 ## 後續步驟
-
 如需一般資訊，請參閱 [VM 擴展集的主要登陸頁面](https://azure.microsoft.com/services/virtual-machine-scale-sets/)。
 
 如需文件，請參閱 [VM 擴展集的主要文件頁面](https://azure.microsoft.com/documentation/services/virtual-machines-scale-sets/)。

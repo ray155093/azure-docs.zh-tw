@@ -1,45 +1,45 @@
-<properties
-	pageTitle="Azure 活動記錄檔概觀 | Microsoft Azure"
-	description="認識 Azure 活動記錄檔，並了解如何使用它來了解您的 Azure 訂用帳戶內發生的事件。"
-	authors="johnkemnetz"
-	manager="rboucher"
-	editor=""
-	services="monitoring-and-diagnostics"
-	documentationCenter="monitoring-and-diagnostics"/>
+---
+title: Azure 活動記錄檔概觀 | Microsoft Docs
+description: 認識 Azure 活動記錄檔，並了解如何使用它來了解您的 Azure 訂用帳戶內發生的事件。
+author: johnkemnetz
+manager: rboucher
+editor: ''
+services: monitoring-and-diagnostics
+documentationcenter: monitoring-and-diagnostics
 
-<tags
-	ms.service="monitoring-and-diagnostics"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/17/2016"
-	ms.author="johnkem"/>
+ms.service: monitoring-and-diagnostics
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/17/2016
+ms.author: johnkem
 
+---
 # Azure 活動記錄檔概觀
 **Azure 活動記錄檔** (Activity Log) 能為您提供訂用帳戶中的資源所執行之作業的深入解析。活動記錄檔之前叫做「稽核記錄」或「作業記錄」，因為它會報告訂用帳戶中控制層面的事件。您可以使用活動記錄檔來判斷訂用帳戶中的資源上執行的所有寫入作業 (PUT、POST、DELETE) 的人、事、時，了解作業狀態和其他相關屬性。活動記錄檔不包含讀取作業 (GET)。
 
-活動記錄檔不同於[診斷記錄](./monitoring-overview-of-diagnostic-logs.md)，是由資源發出的所有記錄檔。這些記錄檔提供有關該資源的作業資料，而不是該資源上的作業。
+活動記錄檔不同於[診斷記錄](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md)，是由資源發出的所有記錄檔。這些記錄檔提供有關該資源的作業資料，而不是該資源上的作業。
 
 您可以使用 Azure 入口網站、CLI、PowerShell Cmdlet 、Insights REST API 從活動記錄檔擷取事件。
 
 ## Azure 活動記錄檔的用途
 以下是您可以利用活動記錄檔進行的事：
 
-- 在 **Azure 入口網站**中查詢和檢視活動記錄檔。
-- 透過 REST API、PowerShell Cmdlet 或 CLI 查詢活動記錄檔。
-- [建立電子郵件或可觸發關閉活動記錄檔事件的 webhook 警示。](./insights-auditlog-to-webhook-email.md)
-- [將活動記錄檔儲存到**儲存體帳戶**以供封存或手動檢查](./monitoring-archive-activity-log.md)。您可以使用**記錄檔設定檔**指定保留時間 (以天為單位)。
-- 使用 [**PowerBI 內容套件**](https://powerbi.microsoft.com/zh-TW/documentation/powerbi-content-pack-azure-audit-logs/)在 PowerBI 中分析活動記錄檔。
-- [將活動記錄檔串流至**事件中樞**](./monitoring-stream-activity-logs-event-hubs.md)，以利第三方服務或自訂的分析解決方案 (如 PowerBI) 擷取。
+* 在 **Azure 入口網站**中查詢和檢視活動記錄檔。
+* 透過 REST API、PowerShell Cmdlet 或 CLI 查詢活動記錄檔。
+* [建立電子郵件或可觸發關閉活動記錄檔事件的 webhook 警示。](../monitoring-and-diagnostics/insights-auditlog-to-webhook-email.md)
+* [將活動記錄檔儲存到**儲存體帳戶**以供封存或手動檢查](../monitoring-and-diagnostics/monitoring-archive-activity-log.md)。您可以使用**記錄檔設定檔**指定保留時間 (以天為單位)。
+* 使用 [**PowerBI 內容套件**](https://powerbi.microsoft.com/zh-TW/documentation/powerbi-content-pack-azure-audit-logs/)在 PowerBI 中分析活動記錄檔。
+* [將活動記錄檔串流至**事件中樞**](../monitoring-and-diagnostics/monitoring-stream-activity-logs-event-hubs.md)，以利第三方服務或自訂的分析解決方案 (如 PowerBI) 擷取。
 
 ## 匯出活動記錄檔與記錄檔設定檔
 **記錄檔設定檔**控制活動記錄檔的匯出方式。使用記錄檔設定檔，您可以設定︰
 
-- 活動記錄檔應該要傳送至何處 (儲存體帳戶或事件中樞)
-- 應該要傳送何種事件分類 (例如 Write、Delete、Action)
-- 應該要匯出哪一個區域 (Locations)
-- 活動記錄檔應該在儲存體帳戶中保留多久 – 保留期零天表示要永遠保留記錄檔。否則，此值可以是 1 到 2147483647 之間的任意天數。如果有設定保留原則，但將儲存體帳戶的記錄檔儲存停用 (例如，如果只選取事件中樞或 OMS 選項)，保留原則不會有任何作用。
+* 活動記錄檔應該要傳送至何處 (儲存體帳戶或事件中樞)
+* 應該要傳送何種事件分類 (例如 Write、Delete、Action)
+* 應該要匯出哪一個區域 (Locations)
+* 活動記錄檔應該在儲存體帳戶中保留多久 – 保留期零天表示要永遠保留記錄檔。否則，此值可以是 1 到 2147483647 之間的任意天數。如果有設定保留原則，但將儲存體帳戶的記錄檔儲存停用 (例如，如果只選取事件中樞或 OMS 選項)，保留原則不會有任何作用。
 
 這些設定可透過入口網站中 [活動記錄檔] 刀鋒視窗中的 [匯出] 選項來設定，或[使用 REST API](https://msdn.microsoft.com/library/azure/dn931927.aspx)、PowerShell Cmdlet 或 CLI 以程式設計方式設定。一個訂用帳戶只能有一個記錄檔的設定檔。
 
@@ -47,13 +47,13 @@
 您可以將活動記錄檔串流至事件中樞，或在 Azure 入口網站中使用 [匯出] 選項將它們儲存在儲存體帳戶。
 
 1. 使用入口網站左側的功能表，瀏覽至 [活動記錄檔] 刀鋒視窗。
-
+   
     ![在入口網站中瀏覽至活動記錄檔](./media/monitoring-overview-activity-logs/activity-logs-portal-navigate.png)
 2. 按一下刀鋒視窗頂端的 [匯出] 按鈕。
-
+   
     ![入口網站中的匯出按鈕](./media/monitoring-overview-activity-logs/activity-logs-portal-export.png)
 3. 在出現的刀鋒視窗中，您可以選擇您要匯出事件的區域、您想要儲存事件的儲存體帳戶 (以及您想要在儲存體中保留這些事件的天數--0 天會永遠保留記錄檔)、您想要在哪一個服務匯流排命名空間中建立事件中樞以便進行這些事件的串流。
-
+   
     ![匯出活動記錄檔刀鋒視窗](./media/monitoring-overview-activity-logs/activity-logs-portal-export-blade.png)
 4. 按一下 [儲存] 來儲存這些設定。您的訂用帳戶時會立即套用設定。
 
@@ -69,13 +69,13 @@ Add-AzureRmLogProfile -Name my_log_profile -StorageAccountId /subscriptions/s1/r
 ```
 
 | 屬性 | 必要 | 說明 |
-|------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Name | 是 | 記錄檔設定檔的名稱。 |
-| StorageAccountId | 否 | 資源識別碼，活動記錄檔應該要儲存至此儲存體帳戶。 |
-| serviceBusRuleId | 否 | 服務匯流排規則識別碼，您想要在其中建立事件中樞的服務匯流排命名空間。將會是此格式的字串︰`{service bus resource ID}/authorizationrules/{key name}`。 |
-| 位置 | 是 | 以逗號分隔的區域清單，其中列出您要收集的活動記錄檔事件的區域。 |
-| RetentionInDays | 是 | 事件應保留的天數，1 到 2147483647 之間。值為 0 會無限期地 (永遠) 儲存記錄檔。 |
-| 類別 | 否 | 以逗號分隔的類別清單，其中列出應該收集的事件類別。可能的值有 Write、Delete、Action。 |
+| --- | --- | --- |
+| Name |是 |記錄檔設定檔的名稱。 |
+| StorageAccountId |否 |資源識別碼，活動記錄檔應該要儲存至此儲存體帳戶。 |
+| serviceBusRuleId |否 |服務匯流排規則識別碼，您想要在其中建立事件中樞的服務匯流排命名空間。將會是此格式的字串︰`{service bus resource ID}/authorizationrules/{key name}`。 |
+| 位置 |是 |以逗號分隔的區域清單，其中列出您要收集的活動記錄檔事件的區域。 |
+| RetentionInDays |是 |事件應保留的天數，1 到 2147483647 之間。值為 0 會無限期地 (永遠) 儲存記錄檔。 |
+| 類別 |否 |以逗號分隔的類別清單，其中列出應該收集的事件類別。可能的值有 Write、Delete、Action。 |
 
 #### 移除記錄檔設定檔
 ```
@@ -98,13 +98,13 @@ azure insights logprofile add --name my_log_profile --storageId /subscriptions/s
 ```
 
 | 屬性 | 必要 | 說明 |
-|------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 名稱 | 是 | 記錄檔設定檔的名稱。 |
-| storageId | 否 | 資源識別碼，活動記錄檔應該要儲存至此儲存體帳戶。 |
-| serviceBusRuleId | 否 | 服務匯流排規則識別碼，您想要在其中建立事件中樞的服務匯流排命名空間。將會是此格式的字串︰`{service bus resource ID}/authorizationrules/{key name}`。 |
-| 位置 | 是 | 以逗號分隔的區域清單，其中列出您要收集的活動記錄檔事件的區域。 |
-| retentionInDays | 是 | 事件應保留的天數，1 到 2147483647 之間。值為 0 會無限期地 (永遠) 儲存記錄檔。 |
-| categories | 否 | 以逗號分隔的類別清單，其中列出應該收集的事件類別。可能的值有 Write、Delete、Action。 |
+| --- | --- | --- |
+| 名稱 |是 |記錄檔設定檔的名稱。 |
+| storageId |否 |資源識別碼，活動記錄檔應該要儲存至此儲存體帳戶。 |
+| serviceBusRuleId |否 |服務匯流排規則識別碼，您想要在其中建立事件中樞的服務匯流排命名空間。將會是此格式的字串︰`{service bus resource ID}/authorizationrules/{key name}`。 |
+| 位置 |是 |以逗號分隔的區域清單，其中列出您要收集的活動記錄檔事件的區域。 |
+| retentionInDays |是 |事件應保留的天數，1 到 2147483647 之間。值為 0 會無限期地 (永遠) 儲存記錄檔。 |
+| categories |否 |以逗號分隔的類別清單，其中列出應該收集的事件類別。可能的值有 Write、Delete、Action。 |
 
 #### 移除記錄檔設定檔
 ```
@@ -196,31 +196,31 @@ azure insights logprofile delete --name my_log_profile
 ```
 
 | 元素名稱 | 說明 |
-|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 授權 | 事件的 RBAC 屬性的 blob。通常包括 action、role 和 scope 屬性。 |
-| 呼叫者 | 已執行作業的使用者的電子郵件地址，根據可用性的 UPN 宣告或 SPN 宣告。 |
-| 通道 | 為下列其中一個值：Admin、Operation |
-| correlationId | 通常是字串格式的 GUID。具有相同 correlationId、屬於同一 uber 動作的事件。 |
-| 說明 | 事件的靜態文字描述。 |
-| eventDataId | 事件的唯一識別碼。 |
-| eventSource | 產生此事件的 Azure 服務或基礎結構的名稱。 |
-| httpRequest | 描述 HTTP 要求的 blob。通常包括 “clientRequestId”、“clientIpAddress” 和 “method” (HTTP 方法，例如 PUT)。 |
-| 層級 | 事件的層級。下列其中一個值：重大、錯誤、警告、資訊和詳細資訊 |
-| resourceGroupName | 受影響資源的資源群組的名稱。 |
-| resourceProviderName | 受影響資源的資源提供者的名稱。 |
-| resourceUri | 受影響資源的資源識別碼。 |
-| operationId | 對應至單一作業的事件共用的 GUID。 |
-| operationName | 作業名稱。 |
-| properties | 描述事件詳細資料的一組 `<Key, Value>` 配對 (也就是字典)。 |
-| status | 字串，描述作業的狀態。常見的值包括︰Started、In Progress、Succeeded、Failed、Active、Resolved。 |
-| 子狀態 | 通常包含對應 REST 呼叫的 HTTP 狀態碼，但也可以包含其他描述子狀態的字串，常見的值包括：確定 (HTTP 狀態碼︰200)，已建立 (HTTP 狀態碼︰201)、接受 (HTTP 狀態碼︰202)、沒有內容 (HTTP 狀態碼︰204)、不正確的要求 (HTTP 狀態碼︰400)、找不到 (HTTP 狀態碼︰404)，衝突 (HTTP 狀態碼︰409)、內部伺服器錯誤 (HTTP 狀態碼︰500)、服務無法使用 (HTTP 狀態碼︰503)、閘道逾時 (HTTP 狀態碼︰504)。 |
-| eventTimestamp | 處理與事件對應之要求的Azure 服務產生事件時的時間戳記。 |
-| submissionTimestamp | 當事件變成可供查詢時的時間戳記。 |
-| subscriptionId | Azure 訂用帳戶識別碼。 |
-| nextLink | 結果被分成多個回應時，用於提取下一組結果的接續權杖。通常是超過 200 個記錄的情況。 |
+| --- | --- |
+| 授權 |事件的 RBAC 屬性的 blob。通常包括 action、role 和 scope 屬性。 |
+| 呼叫者 |已執行作業的使用者的電子郵件地址，根據可用性的 UPN 宣告或 SPN 宣告。 |
+| 通道 |為下列其中一個值：Admin、Operation |
+| correlationId |通常是字串格式的 GUID。具有相同 correlationId、屬於同一 uber 動作的事件。 |
+| 說明 |事件的靜態文字描述。 |
+| eventDataId |事件的唯一識別碼。 |
+| eventSource |產生此事件的 Azure 服務或基礎結構的名稱。 |
+| httpRequest |描述 HTTP 要求的 blob。通常包括 “clientRequestId”、“clientIpAddress” 和 “method” (HTTP 方法，例如 PUT)。 |
+| 層級 |事件的層級。下列其中一個值：重大、錯誤、警告、資訊和詳細資訊 |
+| resourceGroupName |受影響資源的資源群組的名稱。 |
+| resourceProviderName |受影響資源的資源提供者的名稱。 |
+| resourceUri |受影響資源的資源識別碼。 |
+| operationId |對應至單一作業的事件共用的 GUID。 |
+| operationName |作業名稱。 |
+| properties |描述事件詳細資料的一組 `<Key, Value>` 配對 (也就是字典)。 |
+| status |字串，描述作業的狀態。常見的值包括︰Started、In Progress、Succeeded、Failed、Active、Resolved。 |
+| 子狀態 |通常包含對應 REST 呼叫的 HTTP 狀態碼，但也可以包含其他描述子狀態的字串，常見的值包括：確定 (HTTP 狀態碼︰200)，已建立 (HTTP 狀態碼︰201)、接受 (HTTP 狀態碼︰202)、沒有內容 (HTTP 狀態碼︰204)、不正確的要求 (HTTP 狀態碼︰400)、找不到 (HTTP 狀態碼︰404)，衝突 (HTTP 狀態碼︰409)、內部伺服器錯誤 (HTTP 狀態碼︰500)、服務無法使用 (HTTP 狀態碼︰503)、閘道逾時 (HTTP 狀態碼︰504)。 |
+| eventTimestamp |處理與事件對應之要求的Azure 服務產生事件時的時間戳記。 |
+| submissionTimestamp |當事件變成可供查詢時的時間戳記。 |
+| subscriptionId |Azure 訂用帳戶識別碼。 |
+| nextLink |結果被分成多個回應時，用於提取下一組結果的接續權杖。通常是超過 200 個記錄的情況。 |
 
 ## 後續步驟
-- [深入了解活動記錄檔 (之前的稽核記錄檔)](../resource-group-audit.md)
-- [將 Azure 活動記錄檔串流至事件中樞](./monitoring-stream-activity-logs-event-hubs.md)
+* [深入了解活動記錄檔 (之前的稽核記錄檔)](../resource-group-audit.md)
+* [將 Azure 活動記錄檔串流至事件中樞](../monitoring-and-diagnostics/monitoring-stream-activity-logs-event-hubs.md)
 
 <!----HONumber=AcomDC_0907_2016-->

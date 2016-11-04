@@ -1,28 +1,26 @@
-<properties 
-   pageTitle="Microsoft 監視產品比較 | Microsoft Azure"
-   description="Microsoft Operations Management Suite (OMS) 是 Microsoft 的雲端型 IT 管理解決方案，可協助您管理並保護內部部署和雲端基礎結構。  本文會說明 OMS 中包含的各種服務，並提供其詳細內容的連結。"
-   services="operations-management-suite"
-   documentationCenter=""
-   authors="bwren"
-   manager="jwhit"
-   editor="tysonn" />
-<tags 
-   ms.service="operations-management-suite"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="infrastructure-services"
-   ms.date="10/27/2016"
-   ms.author="bwren" />
+---
+title: Microsoft 監視產品比較 | Microsoft Docs
+description: Microsoft Operations Management Suite (OMS) 是 Microsoft 的雲端型 IT 管理解決方案，可協助您管理並保護內部部署和雲端基礎結構。  本文會說明 OMS 中包含的各種服務，並提供其詳細內容的連結。
+services: operations-management-suite
+documentationcenter: ''
+author: bwren
+manager: jwhit
+editor: tysonn
 
+ms.service: operations-management-suite
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 10/27/2016
+ms.author: bwren
 
+---
 # <a name="microsoft-monitoring-product-comparison"></a>Microsoft 監視產品比較
-
 本文根據產品架構、監視資源的邏輯，以及執行所收集資料分析的方式，提供 System Center Operations Manager (SCOM) 與 Operations Management Suite (OMS) 中 Log Analytics 之間的比較。  這是為了讓您對其差異和相對優點有基本的了解。  
 
 ## <a name="basic-architecture"></a>基本架構
 ### <a name="system-center-operations-manager"></a>System Center Operations Manager
-
 所有 SCOM 元件都已安裝在您的資料中心。  [代理程式已安裝](http://technet.microsoft.com/library/hh551142.aspx) 於 SCOM 所管理的 Windows 和 Linux 機器上。  代理程式會連接到與 SCOM 資料庫和資料倉儲通訊的 [管理伺服器](https://technet.microsoft.com/library/hh301922.aspx) 。  代理程式依賴網域驗證來連接到管理伺服器。  受信任網域以外的代理程式可以執行憑證驗證或連接到 [閘道伺服器](https://technet.microsoft.com/library/hh212823.aspx)。
 
 SCOM 需要兩個 SQL Database，一個用於作業資料，另一個做為資料倉儲，以支援報告和資料分析。  [報告伺服器](https://technet.microsoft.com/library/hh298611.aspx) 會執行 SQL Reporting 服務以報告資料倉儲中的資料。 
@@ -34,27 +32,25 @@ Operations 主控台是連接到其中一部管理伺服器的 Windows 應用程
 ![SCOM 架構](media/operations-management-suite-monitoring-product-comparison/scom-architecture.png)
 
 ### <a name="log-analytics"></a>Log Analytics
-
 大部分的 OMS 元件位於 Azure 雲端，因此您可以用最低的成本與系統管理投入來進行部署和管理。  Log Analytics 收集的所有資料都會儲存在 OMS 儲存機制中。
 
 Log Analytics 也可以從下列三個來源收集資料：
 
-- 執行 Windows 和 [Microsoft Monitoring Agent (MMA)](https://technet.microsoft.com/library/mt484108.aspx) 或 Linux 和[適用於 Linux 的 Operations Management Suite 代理程式](https://technet.microsoft.com/library/mt622052.aspx)的實體和虛擬機器。  這些電腦可以是 Azure 或其他雲端中的內部部署或虛擬機器。
-- Azure 儲存體帳戶，其具有 Azure 背景工作角色、Web 角色或虛擬機器所收集的 [Azure 診斷](../cloud-services/cloud-services-dotnet-diagnostics.md) 資料。
-- [SCOM 管理群組的連線](https://technet.microsoft.com/library/mt484104.aspx)。  在此組態中，代理程式會與 SCOM 管理伺服器通訊，而這些伺服器會將資料傳遞至 SCOM 資料庫，而後資料會傳遞至 OMS 資料存放區。
-系統管理員會分析所收集的資料，並透過裝載於 Azure 並可從任何瀏覽器存取的 OMS 入口網站設定 Log Analytics。  用來存取此資料的行動應用程式適用於標準平台。
+* 執行 Windows 和 [Microsoft Monitoring Agent (MMA)](https://technet.microsoft.com/library/mt484108.aspx) 或 Linux 和[適用於 Linux 的 Operations Management Suite 代理程式](https://technet.microsoft.com/library/mt622052.aspx)的實體和虛擬機器。  這些電腦可以是 Azure 或其他雲端中的內部部署或虛擬機器。
+* Azure 儲存體帳戶，其具有 Azure 背景工作角色、Web 角色或虛擬機器所收集的 [Azure 診斷](../cloud-services/cloud-services-dotnet-diagnostics.md) 資料。
+* [SCOM 管理群組的連線](https://technet.microsoft.com/library/mt484104.aspx)。  在此組態中，代理程式會與 SCOM 管理伺服器通訊，而這些伺服器會將資料傳遞至 SCOM 資料庫，而後資料會傳遞至 OMS 資料存放區。
+  系統管理員會分析所收集的資料，並透過裝載於 Azure 並可從任何瀏覽器存取的 OMS 入口網站設定 Log Analytics。  用來存取此資料的行動應用程式適用於標準平台。
 
 ![Log Analytics 架構](media/operations-management-suite-monitoring-product-comparison/log-analytics-architecture.png)
 
 ### <a name="integrating-scom-and-log-analytics"></a>整合 SCOM 與 Log Analytics
-
 SCOM 使用做為 Log Analytics 的資料來源時，您可以在混合式監視環境中利用這兩種產品的功能。  除了繼續從 SCOM 執行管理組件以外，您可以透過 OMS 即將管理的 Operations 主控台來設定現有的 SCOM 代理程式，  
 已連線 SCOM 管理群組的資料會利用下列四個方法之一傳遞至 Log Analytics︰
 
-- 代理程式會收集事件和效能資料並傳遞至 SCOM。  而後 SCOM 中的管理伺服器會將資料傳遞至 Log Analytics。
-- 某些事件 (例如 IIS 記錄檔和安全性事件) 會繼續從代理程式直接傳遞至 Log Analytics。
-- 有些解決方案會將其他軟體傳遞至代理程式，或要求即將安裝的軟體收集其他資料。  此資料通常會直接傳送到 Log Analytics。
-- 有些解決方案會直接從 SCOM 管理伺服器收集不是源自代理程式的資料。  例如， [警示管理解決方案](https://technet.microsoft.com/library/mt484092.aspx) 會在警示建立後，從 SCOM 收集警示。
+* 代理程式會收集事件和效能資料並傳遞至 SCOM。  而後 SCOM 中的管理伺服器會將資料傳遞至 Log Analytics。
+* 某些事件 (例如 IIS 記錄檔和安全性事件) 會繼續從代理程式直接傳遞至 Log Analytics。
+* 有些解決方案會將其他軟體傳遞至代理程式，或要求即將安裝的軟體收集其他資料。  此資料通常會直接傳送到 Log Analytics。
+* 有些解決方案會直接從 SCOM 管理伺服器收集不是源自代理程式的資料。  例如， [警示管理解決方案](https://technet.microsoft.com/library/mt484092.aspx) 會在警示建立後，從 SCOM 收集警示。
 
 ## <a name="monitoring-logic"></a>監視邏輯
 SCOM 和 Log Analytics 使用從代理程式收集的類似資料，但它們定義和實作其資料收集邏輯的方式，以及它們分析所收集資料的方式基本上有所差異。
@@ -91,7 +87,6 @@ Log Analytics 會從使用 Windows 事件記錄檔、IIS 記錄檔和 Syslog 等
 
 例如， [變更追蹤解決方案](https://technet.microsoft.com/library/mt484099.aspx) 會偵測代理程式系統的組態變更，並將事件寫入至 OMS 儲存機制，以便利用數個可彙總所偵測變更的圖形化檢視進行分析。  您可以從已彙總的檢視向下鑽研至可顯示方案所收集之詳細資料的記錄查詢。
 
-
 雖然您可以選取將哪些解決方案加入至您的訂用帳戶，但您目前無法建立自己的解決方案。  您可以選取事件和效能計數器，根據您自己的記錄查詢收集並建立自訂檢視。
 
 下圖摘要顯示 Log Analytics 的監視邏輯。
@@ -127,7 +122,6 @@ OMS 不包含可製作應用程式模型或測量其即時健康狀態的通用�
 SCOM 和 Log Analytics 各自提供不同的功能來分析所收集的資料。  SCOM 在 Operations 主控台中有檢視和儀表板可供分析各種格式和報告中的近期資料，進而以表格式形式呈現資料倉儲中的資料。  Log Analytics 提供完整的記錄檔查詢語言和介面，以便分析 OMS 儲存機制中的資料。  SCOM 做為 Log Analytics 的資料來源時，儲存機制包含 SCOM 所收集的資料，因此 Log Analytics 工具可用來分析來自這兩個系統的資料。
 
 ### <a name="operations-manager"></a>Operations Manager
-
 #### <a name="views"></a>Views
 Operations 主控台中的檢視可讓您以不同的格式檢視 SCOM 所收集的各種資料類型，通常表格式適用於事件、警示和狀態資料，而折線圖適用於效能資料。  檢視會執行最少的資料分析或彙總，但確實可讓您根據特定準則進行篩選。 
 
@@ -171,11 +165,8 @@ Log Analytics 中的查詢也是其他功能的基礎。  您可以儲存查詢�
 ![OMS 儀表板](media/operations-management-suite-monitoring-product-comparison/log-analytics-dashboard.png)
 
 ## <a name="next-steps"></a>後續步驟
-
-- 部署 [System Center Operations Manager (SCOM)](https://technet.microsoft.com/library/hh205987.aspx)。
-- 註冊 [Log Analytics](https://azure.microsoft.com/documentation/services/log-analytics)。  
-
-
+* 部署 [System Center Operations Manager (SCOM)](https://technet.microsoft.com/library/hh205987.aspx)。
+* 註冊 [Log Analytics](https://azure.microsoft.com/documentation/services/log-analytics)。  
 
 <!--HONumber=Oct16_HO2-->
 

@@ -1,23 +1,22 @@
-<properties
-   pageTitle="Log Analytics 中的自訂欄位 | Microsoft Azure"
-   description="Log Analytics 的自訂欄位功能，可讓您從新增到所收集記錄之屬性的 OMS 資料建立自己的可搜尋欄位。  本文說明用來建立自訂欄位的程序，並透過範例事件提供詳細的逐步解說。"
-   services="log-analytics"
-   documentationCenter=""
-   authors="bwren"
-   manager="jwhit"
-   editor="tysonn" />
-<tags
-   ms.service="log-analytics"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="infrastructure-services"
-   ms.date="10/18/2016"
-   ms.author="bwren" />
+---
+title: Log Analytics 中的自訂欄位 | Microsoft Docs
+description: Log Analytics 的自訂欄位功能，可讓您從新增到所收集記錄之屬性的 OMS 資料建立自己的可搜尋欄位。  本文說明用來建立自訂欄位的程序，並透過範例事件提供詳細的逐步解說。
+services: log-analytics
+documentationcenter: ''
+author: bwren
+manager: jwhit
+editor: tysonn
 
+ms.service: log-analytics
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 10/18/2016
+ms.author: bwren
 
+---
 # <a name="custom-fields-in-log-analytics"></a>Log Analytics 中的自訂欄位
-
 Log Analytics 的 **自訂欄位** 功能可讓您透過新增自己的可搜尋欄位來擴充 OMS 儲存機制中的現有記錄。  自訂欄位會自動填入擷取自同一筆記錄中其他屬性的資料。
 
 ![自訂欄位概觀](media/log-analytics-custom-fields/overview.png)
@@ -26,20 +25,25 @@ Log Analytics 的 **自訂欄位** 功能可讓您透過新增自己的可搜尋
 
 ![記錄檔搜尋按鈕](media/log-analytics-custom-fields/sample-extract.png)
 
->[AZURE.NOTE] 在預覽版中，工作區限制只能有 100 個自訂欄位。  這項功能正式上市時，此限制數量將會擴大。
+> [!NOTE]
+> 在預覽版中，工作區限制只能有 100 個自訂欄位。  這項功能正式上市時，此限制數量將會擴大。
+> 
+> 
 
 ## <a name="creating-a-custom-field"></a>建立自訂欄位
-
 當您在建立自訂欄位時，Log Analytics 必須了解要用來填入其值的資料。  它會使用來自 Microsoft Research 稱為 FlashExtract 的技術快速識別此資料。  Log Analytics 不會要求您提供明確的指示，而是會了解您想要從提供的範例中擷取的資料。
 
 下列各節提供用於建立自訂欄位的程序。  本文最後會逐步解說範例擷取作業。
 
->[AZURE.NOTE] 當 OMS 資料存放區新增符合指定準則的記錄時便會填入自訂欄位，因此自訂欄位只會出現在建立自訂欄位之後所收集的記錄上。  建立自訂欄位時便已存在於資料存放區的記錄不會新增自訂欄位。
+> [!NOTE]
+> 當 OMS 資料存放區新增符合指定準則的記錄時便會填入自訂欄位，因此自訂欄位只會出現在建立自訂欄位之後所收集的記錄上。  建立自訂欄位時便已存在於資料存放區的記錄不會新增自訂欄位。
+> 
+> 
 
 ### <a name="step-1-identify-records-that-will-have-the-custom-field"></a>步驟 1 – 識別將會具有自訂欄位的記錄
 第一個步驟是識別會取得自訂欄位的記錄。  一開始您可以先進行 [標準的記錄檔搜尋](log-analytics-log-searches.md) ，然後再選取要做為 Log Analytics 將從中了解之模型的記錄。  當您指定您要將資料擷取到自訂欄位時，便會開啟 [欄位擷取精靈]  供您驗證及精簡準則。
 
-2. 移至 [記錄檔搜尋]  ，然後使用 [查詢來擷取將會具有自訂欄位的記錄](log-analytics-log-searches.md) 。
+1. 移至 [記錄檔搜尋]  ，然後使用 [查詢來擷取將會具有自訂欄位的記錄](log-analytics-log-searches.md) 。
 2. 選取 Log Analytics 將用來做為模型以擷取資料來填入自訂欄位的記錄。  您會識別您想要從這筆記錄擷取的資料，Log Analytics 會使用這項資訊來判斷要為所有類似記錄填入自訂欄位的邏輯。
 3. 按一下記錄的任何文字屬性左邊的按鈕，然後選取 [擷取欄位來源] 。
 4. [欄位擷取精靈] 會隨即開啟，而您選取的記錄會顯示在 [主要範例] 資料行。  這些記錄的自訂欄位將會以所選屬性中的相同值來定義。  
@@ -52,19 +56,16 @@ Log Analytics 的 **自訂欄位** 功能可讓您透過新增自己的可搜尋
 2. 按一下 [擷取]  以對收集的記錄進行分析。  
 3. [摘要] 和 [搜尋結果] 區段會顯示擷取結果，以供您檢查其正確性。   會顯示用來識別記錄的準則，以及每個所識別之資料值的計數。   會提供符合準則之記錄的詳細清單。
 
-
 ### <a name="step-3-verify-accuracy-of-the-extract-and-create-custom-field"></a>步驟 3 – 驗證擷取的正確性並建立自訂欄位
-
 一旦您執行過初始擷取，Log Analytics 就會根據收集到的資料顯示其結果。  如果結果看起來是正確的，您就可以建立自訂欄位，無須再進行其他工作。  如果不正確，則可以精簡結果以便讓 Log Analytics 提升其邏輯。
 
-2.  如果初始擷取中有任何值不正確，則請按一下錯誤記錄旁的 [編輯] 圖示，然後選取 [修改此醒目提示] 以修改選取項目。
-3.  項目會複製到 [主要範例] 底下的 [其他範例] 區段。  您可以在此調整醒目提示來協助 Log Analytics 了解其應該選取的項目。
-4.  按一下 [擷取]  ，使用這項新資訊來評估所有現有記錄。  根據這個新情報，記錄的結果可能會有所修改，而不同於您剛才修改的記錄。
-5.  繼續加入修正，直到擷取中的所有記錄正確識別要填入新自訂欄位的資料。
-6. 當您滿意結果時，按一下 [儲存擷取]  。  自訂欄位現已定義完成，但還不會新增到任何記錄中。
-7.  請等候符合指定準則的新記錄收集完成，然後再次執行記錄檔搜尋。 新的記錄應該會有自訂欄位。
-8.  和任何其他記錄屬性一樣地使用自訂欄位。  您可以使用它來彙總與群組資料，甚至用它來產生新的見解。
-
+1. 如果初始擷取中有任何值不正確，則請按一下錯誤記錄旁的 [編輯] 圖示，然後選取 [修改此醒目提示] 以修改選取項目。
+2. 項目會複製到 [主要範例] 底下的 [其他範例] 區段。  您可以在此調整醒目提示來協助 Log Analytics 了解其應該選取的項目。
+3. 按一下 [擷取]  ，使用這項新資訊來評估所有現有記錄。  根據這個新情報，記錄的結果可能會有所修改，而不同於您剛才修改的記錄。
+4. 繼續加入修正，直到擷取中的所有記錄正確識別要填入新自訂欄位的資料。
+5. 當您滿意結果時，按一下 [儲存擷取]  。  自訂欄位現已定義完成，但還不會新增到任何記錄中。
+6. 請等候符合指定準則的新記錄收集完成，然後再次執行記錄檔搜尋。 新的記錄應該會有自訂欄位。
+7. 和任何其他記錄屬性一樣地使用自訂欄位。  您可以使用它來彙總與群組資料，甚至用它來產生新的見解。
 
 ## <a name="viewing-custom-fields"></a>檢視自訂欄位
 您可以從 OMS 儀表板的 [設定]  圖格，檢視您的管理群組中所有自訂欄位的清單。  依序選取 [資料] 和 [自訂欄位]，可取得工作區中所有自訂欄位的清單。  
@@ -75,7 +76,6 @@ Log Analytics 的 **自訂欄位** 功能可讓您透過新增自己的可搜尋
 有兩種方式可移除自訂欄位。  第一個方式是在檢視如上所述的完整清單時，每個欄位所具有的 [移除]  選項。  另一個方式是擷取一筆記錄，然後按一下欄位左邊的按鈕。  功能表中會有可供移除自訂欄位的選項。
 
 ## <a name="sample-walkthrough"></a>範例逐步解說
-
 下面的章節會逐步解說建立自訂欄位的完整範例。  這個範例會擷取 Windows 事件中指出變更狀態之服務的服務名稱。  這個動作必須仰賴服務控制管理員在 Windows 電腦的系統記錄檔中建立的事件。  如果您想要跟隨此範例，您必須 [收集系統記錄檔的資訊事件](log-analytics-data-sources-windows-events.md)。
 
 我們輸入下列查詢，以從服務控制管理員傳回事件識別碼為 7036，且為指出服務正在啟動或停止之事件的所有事件。
@@ -135,11 +135,8 @@ Log Analytics 的 **自訂欄位** 功能可讓您透過新增自己的可搜尋
 ![以查詢分組](media/log-analytics-custom-fields/query-group.png)
 
 ## <a name="next-steps"></a>後續步驟
-
-- 了解 [記錄搜尋](log-analytics-log-searches.md) ，以使用自訂欄位作為準則來建立查詢。
-- 監視可利用自訂欄位來剖析的[自訂記錄檔](log-analytics-data-sources-custom-logs.md)。
-
-
+* 了解 [記錄搜尋](log-analytics-log-searches.md) ，以使用自訂欄位作為準則來建立查詢。
+* 監視可利用自訂欄位來剖析的[自訂記錄檔](log-analytics-data-sources-custom-logs.md)。
 
 <!--HONumber=Oct16_HO2-->
 

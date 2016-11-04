@@ -1,26 +1,25 @@
-<properties
-	pageTitle="Azure AD Connect 同步處理︰Synchronization Service Manager UI | Microsoft Azure"
-	description="了解 Azure AD Connect 的 Synchronization Service Manager 中的 [作業] 索引標籤。"
-	services="active-directory"
-	documentationCenter=""
-	authors="andkjell"
-	manager="femila"
-	editor=""/>
+---
+title: Azure AD Connect 同步處理︰Synchronization Service Manager UI | Microsoft Docs
+description: 了解 Azure AD Connect 的 Synchronization Service Manager 中的 [作業] 索引標籤。
+services: active-directory
+documentationcenter: ''
+author: andkjell
+manager: femila
+editor: ''
 
-<tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/07/2016"
-	ms.author="andkjell"/>
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/07/2016
+ms.author: andkjell
 
-
+---
 # Azure AD Connect 同步處理︰Synchronization Service Manager
-
-[作業](active-directory-aadconnectsync-service-manager-ui-operations.md) | [連接器](active-directory-aadconnectsync-service-manager-ui-connectors.md) | [Metaverse 設計工具](active-directory-aadconnectsync-service-manager-ui-mvdesigner.md) | [Metaverse 搜尋](active-directory-aadconnectsync-service-manager-ui-mvsearch.md)
---- | --- | --- | ---
+| [作業](active-directory-aadconnectsync-service-manager-ui-operations.md) | [連接器](active-directory-aadconnectsync-service-manager-ui-connectors.md) | [Metaverse 設計工具](active-directory-aadconnectsync-service-manager-ui-mvdesigner.md) | [Metaverse 搜尋](active-directory-aadconnectsync-service-manager-ui-mvsearch.md) |
+| --- | --- | --- | --- |
+|  | | | |
 
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/operations.png)
 
@@ -31,13 +30,13 @@
 
 [狀態] 欄位是最重要的資訊，並顯示最嚴重的執行問題。以下快速摘要依照優先順序來調查的最常見狀態 (其中 * 表示數個可能的錯誤字串)。
 
-狀態 | 註解
---- | ---
-stopped-* | 執行無法完成。例如，如果遠端系統已關閉且無法聯繫。
-stopped-error-limit | 有 5,000 個以上的錯誤。執行因錯誤數量過多而自動停止。
-completed-*-errors | 執行已完成，但發生應調查的錯誤 (數量少於 5,000 個)。
-completed-*-warnings | 執行完成，但某些資料並未處於預期的狀態。如果您遇到錯誤，則此訊息通常只是一個徵狀。在您解決錯誤之前，不應該調查警告。
-成功 | 沒有問題。
+| 狀態 | 註解 |
+| --- | --- |
+| stopped-* |執行無法完成。例如，如果遠端系統已關閉且無法聯繫。 |
+| stopped-error-limit |有 5,000 個以上的錯誤。執行因錯誤數量過多而自動停止。 |
+| completed-*-errors |執行已完成，但發生應調查的錯誤 (數量少於 5,000 個)。 |
+| completed-*-warnings |執行完成，但某些資料並未處於預期的狀態。如果您遇到錯誤，則此訊息通常只是一個徵狀。在您解決錯誤之前，不應該調查警告。 |
+| 成功 |沒有問題。 |
 
 當您選取某個資料列時，底部會更新以顯示該執行的詳細資料。在底部的最左邊，可能會有一份顯示 [步驟 #] 的清單。如果您的樹系中有多個網域，而每個網域都以一個步驟來代表，則只會顯示此清單。您可以在 [分割區] 標題下方找到網域名稱。在 [同步處理統計資料] 下方，您可以找到關於已處理的變更次數詳細資訊。您可以按一下連結，以取得變更的物件清單。如果您有物件發生錯誤，這些會顯示於 [同步處理錯誤] 下方。
 
@@ -48,7 +47,7 @@ completed-*-warnings | 執行完成，但某些資料並未處於預期的狀態
 
 **秘訣︰**您可以使用滑鼠右鍵按一下 [呼叫堆疊資訊] 方塊、選擇 [全選]，然後按一下 [複製]。您接著可以複製堆疊，並在您喜好的編輯器 (例如 [記事本]) 中查看此錯誤。
 
-- 如果錯誤來自 **SyncRulesEngine**，則呼叫堆疊資訊首先具備物件上所有屬性的清單。向下捲動，直到您看到 **InnerException =>** 標題為止。![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/errorinnerexception.png) 下一行會顯示錯誤。在上圖中，錯誤是來自所建立的自訂同步處理規則 Fabrikam。
+* 如果錯誤來自 **SyncRulesEngine**，則呼叫堆疊資訊首先具備物件上所有屬性的清單。向下捲動，直到您看到 **InnerException =>** 標題為止。![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/errorinnerexception.png) 下一行會顯示錯誤。在上圖中，錯誤是來自所建立的自訂同步處理規則 Fabrikam。
 
 如果錯誤本身未提供足夠的資訊，則請查看資料本身。您可以按一下物件識別碼的連結，然後[在整個系統中追蹤物件及其資料](active-directory-aadconnectsync-service-manager-ui-connectors.md#follow-an-object-and-its-data-through-the-system)。
 

@@ -1,143 +1,152 @@
-<properties 
-	pageTitle="如何使用 Azure Redis 快取 | Microsoft Azure" 
-	description="了解如何改善與 Azure Redis 快取的 Azure 應用程式的效能" 
-	services="redis-cache,app-service" 
-	documentationCenter="" 
-	authors="steved0x" 
-	manager="douge" 
-	editor=""/>
+---
+title: 如何使用 Azure Redis 快取 | Microsoft Docs
+description: 了解如何改善與 Azure Redis 快取的 Azure 應用程式的效能
+services: redis-cache,app-service
+documentationcenter: ''
+author: steved0x
+manager: douge
+editor: ''
 
-<tags 
-	ms.service="cache" 
-	ms.workload="tbd" 
-	ms.tgt_pltfrm="cache-redis" 
-	ms.devlang="dotnet" 
-	ms.topic="hero-article" 
-	ms.date="08/25/2016" 
-	ms.author="sdanie"/>
+ms.service: cache
+ms.workload: tbd
+ms.tgt_pltfrm: cache-redis
+ms.devlang: dotnet
+ms.topic: hero-article
+ms.date: 08/25/2016
+ms.author: sdanie
 
+---
 # 如何使用 Azure Redis 快取
-
-> [AZURE.SELECTOR]
-- [.NET](cache-dotnet-how-to-use-azure-redis-cache.md)
-- [ASP.NET](cache-web-app-howto.md)
-- [Node.js](cache-nodejs-get-started.md)
-- [Java](cache-java-get-started.md)
-- [Python](cache-python-get-started.md)
+> [!div class="op_single_selector"]
+> * [.NET](cache-dotnet-how-to-use-azure-redis-cache.md)
+> * [ASP.NET](cache-web-app-howto.md)
+> * [Node.js](cache-nodejs-get-started.md)
+> * [Java](cache-java-get-started.md)
+> * [Python](cache-python-get-started.md)
+> 
+> 
 
 本指南示範如何開始使用 **Azure Redis 快取**。Microsoft Azure Redis 快取是基於受歡迎的開放原始碼 Redis 快取。它可讓您存取由 Microsoft 管理的安全、專用 Redis 快取。使用 Azure Redis 快取建立的快取，可透過 Microsoft Azure 內的任何應用程式加以存取。
 
 Microsoft Azure Redis 快取有下列階層：
 
--	**基本** - 單一節點。多種大小，最高為 53 GB。
--	**標準** – 兩個節點 (主要/從屬)。多種大小，最高為 53 GB。99.9% SLA。
--	**進階** – 兩個節點的主要/從屬，最多具有 10 個分區。從 6 GB 到 530 GB 的多種大小 (如需詳細資訊，請與我們連絡)。所有「標準」層級的功能以及更多功能，可支援 [Redis 叢集](cache-how-to-premium-clustering.md)、[Redis 持續性](cache-how-to-premium-persistence.md)和 [Azure 虛擬網路](cache-how-to-premium-vnet.md)。99.9% SLA。
+* **基本** - 單一節點。多種大小，最高為 53 GB。
+* **標準** – 兩個節點 (主要/從屬)。多種大小，最高為 53 GB。99.9% SLA。
+* **進階** – 兩個節點的主要/從屬，最多具有 10 個分區。從 6 GB 到 530 GB 的多種大小 (如需詳細資訊，請與我們連絡)。所有「標準」層級的功能以及更多功能，可支援 [Redis 叢集](cache-how-to-premium-clustering.md)、[Redis 持續性](cache-how-to-premium-persistence.md)和 [Azure 虛擬網路](cache-how-to-premium-vnet.md)。99.9% SLA。
 
-每一個階層都有不同的功能和價格。如需價格的相關資訊，請參閱[快取價格詳細資料][]。
+每一個階層都有不同的功能和價格。如需價格的相關資訊，請參閱[快取價格詳細資料][快取價格詳細資料]。
 
-本指南說明如何使用採用 C# 程式碼的 [StackExchange.Redis][] 用戶端。涵蓋的案例包括**建立和設定快取**、**設定快取用戶端**，以及**加入和移除快取中的物件**。如需使用 Azure Redis 快取的詳細資訊，請參閱[後續步驟][]一節。如需使用 Redis 快取建置 ASP.NET MVC Web 應用程式的逐步教學課程，請參閱[如何使用 Redis 快取建立 Web 應用程式](cache-web-app-howto.md)。
+本指南說明如何使用採用 C# 程式碼的 [StackExchange.Redis][StackExchange.Redis] 用戶端。涵蓋的案例包括**建立和設定快取**、**設定快取用戶端**，以及**加入和移除快取中的物件**。如需使用 Azure Redis 快取的詳細資訊，請參閱[後續步驟][後續步驟]一節。如需使用 Redis 快取建置 ASP.NET MVC Web 應用程式的逐步教學課程，請參閱[如何使用 Redis 快取建立 Web 應用程式](cache-web-app-howto.md)。
 
 <a name="getting-started-cache-service"></a>
-## 開始使用 Azure Redis 快取
 
+## 開始使用 Azure Redis 快取
 開始使用 Azure Redis 快取相當簡單。若要開始，請佈建並設定快取。接著，設定快取用戶端，以便它們可以存取快取。一旦設定了快取用戶端，就可以開始使用它們。
 
--	[建立快取][]
--	[設定快取用戶端][]
+* [建立快取][建立快取]
+* [設定快取用戶端][設定快取用戶端]
 
 <a name="create-cache"></a>
-## 建立快取
 
-[AZURE.INCLUDE [redis-cache-create](../../includes/redis-cache-create.md)]
+## 建立快取
+[!INCLUDE [redis-cache-create](../../includes/redis-cache-create.md)]
 
 ### 在建立好之後存取快取
-
-[AZURE.INCLUDE [redis-cache-create](../../includes/redis-cache-browse.md)]
+[!INCLUDE [redis-cache-create](../../includes/redis-cache-browse.md)]
 
 如需設定快取的詳細資訊，請參閱[如何設定 Azure Redis 快取](cache-configure.md)。
 
 <a name="NuGet"></a>
-## 設定快取用戶端
 
-[AZURE.INCLUDE [redis-cache-configure](../../includes/redis-cache-configure-stackexchange-redis-nuget.md)]
+## 設定快取用戶端
+[!INCLUDE [redis-cache-configure](../../includes/redis-cache-configure-stackexchange-redis-nuget.md)]
 
 一旦設定用戶端專案的快取功能，您就可以使用下列幾節中描述的技術來使用快取。
 
 <a name="working-with-caches"></a>
-## 使用快取
 
+## 使用快取
 本節中的步驟描述如何利用快取執行常見工作。
 
--	[連接到快取][]
--   [從快取新增和擷取物件][]
--   [使用快取中的 .NET 物件](#work-with-net-objects-in-the-cache)
+* [連接到快取][連接到快取]
+* [從快取新增和擷取物件][從快取新增和擷取物件]
+* [使用快取中的 .NET 物件](#work-with-net-objects-in-the-cache)
 
 <a name="connect-to-cache"></a>
-## 連接到快取
 
+## 連接到快取
 為了能夠以程式設計方式使用快取，您需要快取的參考。將下面這一行加入至您想要從中使用 StackExchange.Redis 用戶端來存取 Azure Redis 快取之檔案的頂端。
 
     using StackExchange.Redis;
 
->[AZURE.NOTE] StackExchange.Redis 用戶端需要 .NET Framework 4 或更高版本。
+> [!NOTE]
+> StackExchange.Redis 用戶端需要 .NET Framework 4 或更高版本。
+> 
+> 
 
 與 Azure Redis 快取的連線是由 `ConnectionMultiplexer` 類別所管理。此類別的設計是要在用戶端應用程式中共用和重複使用，而不需要依據每個作業加以建立。
 
 若要連線至 Azure Redis 快取，並傳回已連線 `ConnectionMultiplexer` 的執行個體，請呼叫靜態 `Connect` 方法，並傳入快取端點和金鑰，如以下範例所示。使用從 Azure 入口網站產生的金鑰做為密碼參數。
 
-	ConnectionMultiplexer connection = ConnectionMultiplexer.Connect("contoso5.redis.cache.windows.net,abortConnect=false,ssl=true,password=...");
+    ConnectionMultiplexer connection = ConnectionMultiplexer.Connect("contoso5.redis.cache.windows.net,abortConnect=false,ssl=true,password=...");
 
->[AZURE.IMPORTANT] 警告：請勿將認證儲存在原始程式碼中。為了讓這個範例簡單明瞭，我會以原始程式碼來呈現認證內容。如需如何儲存認證的相關資訊，請參閱[應用程式字串與連接字串的運作方式][]。
+> [!IMPORTANT]
+> 警告：請勿將認證儲存在原始程式碼中。為了讓這個範例簡單明瞭，我會以原始程式碼來呈現認證內容。如需如何儲存認證的相關資訊，請參閱[應用程式字串與連接字串的運作方式][應用程式字串與連接字串的運作方式]。
+> 
+> 
 
 如果您不想使用 SSL，請設定 `ssl=false` 或省略 `ssl` 參數。
 
->[AZURE.NOTE] 預設會為新快取停用非 SSL 連接埠。如需啟用非 SSL 連接埠的指示，請參閱[存取連接埠](cache-configure.md#access-ports)。
+> [!NOTE]
+> 預設會為新快取停用非 SSL 連接埠。如需啟用非 SSL 連接埠的指示，請參閱[存取連接埠](cache-configure.md#access-ports)。
+> 
+> 
 
 在您的應用程式中共用 `ConnectionMultiplexer` 執行個體的其中一種方法，就是擁有可傳回已連接執行個體的靜態屬性，類似下列範例。這會提供安全執行緒方式，只初始化單一已連接的 `ConnectionMultiplexer` 執行個體。在這些範例中，`abortConnect` 已設為 false，這表示即使無法建立與 Azure Redis 快取的連線，呼叫也會成功。`ConnectionMultiplexer` 的主要功能之一就是一旦解決網路問題或其他原因，它就會自動還原快取的連線能力。
 
-	private static Lazy<ConnectionMultiplexer> lazyConnection = new Lazy<ConnectionMultiplexer>(() =>
-	{
-	    return ConnectionMultiplexer.Connect("contoso5.redis.cache.windows.net,abortConnect=false,ssl=true,password=...");
-	});
-	
-	public static ConnectionMultiplexer Connection
-	{
-	    get
-	    {
-	        return lazyConnection.Value;
-	    }
-	}
+    private static Lazy<ConnectionMultiplexer> lazyConnection = new Lazy<ConnectionMultiplexer>(() =>
+    {
+        return ConnectionMultiplexer.Connect("contoso5.redis.cache.windows.net,abortConnect=false,ssl=true,password=...");
+    });
 
-如需進階連線組態選項的詳細資訊，請參閱 [StackExchange.Redis 組態模型][] \(英文)。
+    public static ConnectionMultiplexer Connection
+    {
+        get
+        {
+            return lazyConnection.Value;
+        }
+    }
 
-[AZURE.INCLUDE [redis-cache-create](../../includes/redis-cache-access-keys.md)]
+如需進階連線組態選項的詳細資訊，請參閱 [StackExchange.Redis 組態模型][StackExchange.Redis 組態模型] \(英文)。
+
+[!INCLUDE [redis-cache-create](../../includes/redis-cache-access-keys.md)]
 
 一旦建立連線，即會透過呼叫 `ConnectionMultiplexer.GetDatabase` 方法傳回 Redis 快取資料庫的參考。透過 `GetDatabase` 方法傳回的物件是輕量型傳遞物件，而且不需要儲存。
 
-	// Connection refers to a property that returns a ConnectionMultiplexer
-	// as shown in the previous example.
-	IDatabase cache = Connection.GetDatabase();
+    // Connection refers to a property that returns a ConnectionMultiplexer
+    // as shown in the previous example.
+    IDatabase cache = Connection.GetDatabase();
 
-	// Perform cache operations using the cache object...
-	// Simple put of integral data types into the cache
-	cache.StringSet("key1", "value");
-	cache.StringSet("key2", 25);
+    // Perform cache operations using the cache object...
+    // Simple put of integral data types into the cache
+    cache.StringSet("key1", "value");
+    cache.StringSet("key2", 25);
 
-	// Simple get of data types from the cache
-	string key1 = cache.StringGet("key1");
-	int key2 = (int)cache.StringGet("key2");
+    // Simple get of data types from the cache
+    string key1 = cache.StringGet("key1");
+    int key2 = (int)cache.StringGet("key2");
 
 現在您知道如何連線至 Azure Redis 快取執行個體，並傳回快取資料庫的參考，讓我們看看如何使用快取。
 
 <a name="add-object"></a>
-## 從快取加入和擷取物件
 
+## 從快取加入和擷取物件
 您可以使用 `StringSet` 和 `StringGet` 方法，在快取中儲存或擷取項目。
 
-	// If key1 exists, it is overwritten.
-	cache.StringSet("key1", "value1");
+    // If key1 exists, it is overwritten.
+    cache.StringSet("key1", "value1");
 
-	string value = cache.StringGet("key1");
+    string value = cache.StringGet("key1");
 
 Redis 會將多數資料儲存為 Redis 字串，但這些字串可能包含許多類型的資料，包括序列化的二進位資料 (在快取中儲存 .NET 物件時可能會用到)。
 
@@ -155,26 +164,24 @@ Redis 會將多數資料儲存為 Redis 字串，但這些字串可能包含許�
 
 若要指定快取中項目的到期時間，請使用 `StringSet` 的 `TimeSpan` 參數。
 
-	cache.StringSet("key1", "value1", TimeSpan.FromMinutes(90));
+    cache.StringSet("key1", "value1", TimeSpan.FromMinutes(90));
 
 ## 使用快取中的 .NET 物件
-
 Azure Redis 快取可以快取 .NET 物件及基本資料類型，但必須先將 .NET 物件序列化，才能加以快取。這是應用程式開發人員的責任，同時賦與開發人員選擇序列化程式的彈性。
 
 將物件序列化的其中一個簡單方法就是使用 [Newtonsoft.Json.NET](https://www.nuget.org/packages/Newtonsoft.Json/8.0.1-beta1) 中的 `JsonConvert` 序列化方法並進行 JSON 的雙向序列化。下列範例使用 `Employee` 物件執行個體顯示 get 和 set。
 
+    class Employee
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
 
-	class Employee
-	{
-	    public int Id { get; set; }
-	    public string Name { get; set; }
-	
-	    public Employee(int EmployeeId, string Name)
-	    {
-	        this.Id = EmployeeId;
-	        this.Name = Name;
-	    }
-	}
+        public Employee(int EmployeeId, string Name)
+        {
+            this.Id = EmployeeId;
+            this.Name = Name;
+        }
+    }
 
     // Store to cache
     cache.StringSet("e25", JsonConvert.SerializeObject(new Employee(25, "Clayton Gragg")));
@@ -183,22 +190,20 @@ Azure Redis 快取可以快取 .NET 物件及基本資料類型，但必須先�
     Employee e25 = JsonConvert.DeserializeObject<Employee>(cache.StringGet("e25"));
 
 <a name="next-steps"></a>
-## 後續步驟
 
+## 後續步驟
 了解基礎概念之後，請依照下列連結深入了解 Azure Redis 快取。
 
--	查看 Azure Redis 快取的 ASP.NET 提供者。
-	-	[Azure Redis 工作階段狀態提供者](cache-aspnet-session-state-provider.md)
-	-	[Azure Redis 快取 ASP.NET 輸出快取提供者](cache-aspnet-output-cache-provider.md)
--	[啟用快取診斷](cache-how-to-monitor.md#enable-cache-diagnostics)，以[監視](cache-how-to-monitor.md)您快取的健全狀況。您可以在 Azure 入口網站中檢視度量，也可以使用您選擇的工具[下載並檢閱](https://github.com/rustd/RedisSamples/tree/master/CustomMonitoring)它們。
--	請參閱 [StackExchange.Redis 快取用戶端文件][]。
-	-	Azure Redis 快取可以透過許多 Redis 用戶端和開發語言進行存取。如需詳細資訊，請參閱 [http://redis.io/clients][]。
--	Azure Redis 快取也可以與協力廠商服務和工具搭配使用 (例如 Redsmin 和 Redis Desktop Manager)。
-	-	如需 Redsmin 的詳細資訊，請參閱[如何擷取 Azure Redis 連接字串並將它與 Redsmin 搭配使用][]。
-	-	使用 [RedisDesktopManager](https://github.com/uglide/RedisDesktopManager)，透過 GUI 存取和檢查 Azure Redis 快取中的資料。
--	請參閱 [Redis][] \(英文) 文件，並閱讀有關 [Redis 資料類型][] \(英文) 和 [Redis 資料類型的 15 分鐘簡介][] \(英文)。
-
-
+* 查看 Azure Redis 快取的 ASP.NET 提供者。
+  * [Azure Redis 工作階段狀態提供者](cache-aspnet-session-state-provider.md)
+  * [Azure Redis 快取 ASP.NET 輸出快取提供者](cache-aspnet-output-cache-provider.md)
+* [啟用快取診斷](cache-how-to-monitor.md#enable-cache-diagnostics)，以[監視](cache-how-to-monitor.md)您快取的健全狀況。您可以在 Azure 入口網站中檢視度量，也可以使用您選擇的工具[下載並檢閱](https://github.com/rustd/RedisSamples/tree/master/CustomMonitoring)它們。
+* 請參閱 [StackExchange.Redis 快取用戶端文件][StackExchange.Redis 快取用戶端文件]。
+  * Azure Redis 快取可以透過許多 Redis 用戶端和開發語言進行存取。如需詳細資訊，請參閱 [http://redis.io/clients][http://redis.io/clients]。
+* Azure Redis 快取也可以與協力廠商服務和工具搭配使用 (例如 Redsmin 和 Redis Desktop Manager)。
+  * 如需 Redsmin 的詳細資訊，請參閱[如何擷取 Azure Redis 連接字串並將它與 Redsmin 搭配使用][如何擷取 Azure Redis 連接字串並將它與 Redsmin 搭配使用]。
+  * 使用 [RedisDesktopManager](https://github.com/uglide/RedisDesktopManager)，透過 GUI 存取和檢查 Azure Redis 快取中的資料。
+* 請參閱 [Redis][Redis] \(英文) 文件，並閱讀有關 [Redis 資料類型][Redis 資料類型] \(英文) 和 [Redis 資料類型的 15 分鐘簡介][Redis 資料類型的 15 分鐘簡介] \(英文)。
 
 <!-- INTRA-TOPIC LINKS -->
 [後續步驟]: #next-steps
@@ -218,7 +223,7 @@ Azure Redis 快取可以快取 .NET 物件及基本資料類型，但必須先�
 [Specify the expiration of an object in the cache]: #specify-expiration
 [Store ASP.NET session state in the cache]: #store-session
 
-  
+
 <!-- IMAGES -->
 
 
@@ -241,7 +246,7 @@ Azure Redis 快取可以快取 .NET 物件及基本資料類型，但必須先�
 
 
 
-   
+
 <!-- LINKS -->
 [http://redis.io/clients]: http://redis.io/clients
 [Develop in other languages for Azure Redis Cache]: http://msdn.microsoft.com/library/azure/dn690470.aspx

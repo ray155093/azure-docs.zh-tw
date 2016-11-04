@@ -1,47 +1,47 @@
-<properties
-	pageTitle="將推播通知新增至應用程式 (iOS) | JavaScript 後端"
-	description="了解如何使用 Azure 行動服務傳送推播通知至 iOS 應用程式。"
-	services="mobile-services,notification-hubs"
-	documentationCenter="ios"
-	manager="dwrede"
-	editor=""
-	authors="krisragh"/>
+---
+title: 將推播通知新增至應用程式 (iOS) | Microsoft Docs
+description: 了解如何使用 Azure 行動服務傳送推播通知至 iOS 應用程式。
+services: mobile-services,notification-hubs
+documentationcenter: ios
+manager: dwrede
+editor: ''
+author: krisragh
 
-<tags
-	ms.service="mobile-services"
-	ms.workload="mobile"
-	ms.tgt_pltfrm="ios"
-	ms.devlang="objective-c"
-	ms.topic="article"
-	ms.date="07/21/2016"
-	ms.author="krisragh"/>
+ms.service: mobile-services
+ms.workload: mobile
+ms.tgt_pltfrm: ios
+ms.devlang: objective-c
+ms.topic: article
+ms.date: 07/21/2016
+ms.author: krisragh
 
+---
 # 將推播通知新增至 iOS 應用程式和 JavaScript 後端
-
-[AZURE.INCLUDE [mobile-services-selector-get-started-push](../../includes/mobile-services-selector-get-started-push.md)]
+[!INCLUDE [mobile-services-selector-get-started-push](../../includes/mobile-services-selector-get-started-push.md)]
 
 &nbsp;
 
-[AZURE.INCLUDE [mobile-service-note-mobile-apps](../../includes/mobile-services-note-mobile-apps.md)]
+[!INCLUDE [mobile-service-note-mobile-apps](../../includes/mobile-services-note-mobile-apps.md)]
+
 > 如需本主題的對等 Mobile Apps 版本，請參閱[將推播通知新增至您的 iOS 應用程式](../app-service-mobile/app-service-mobile-ios-get-started-push.md)。
+> 
+> 
 
 本主題說明如何新增推播通知給[快速入門專案](mobile-services-ios-get-started.md)，以讓行動服務在每次插入一筆記錄時傳送推播通知。您必須先完成[開始使用行動服務]。
 
-> [AZURE.NOTE] [IOS 模擬器不支援推播通知](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/iOS_Simulator_Guide/TestingontheiOSSimulator.html)，所以您必須使用實體 iOS 裝置。您也必須註冊付費 [Apple Developer Program 成員資格](https://developer.apple.com/programs/ios/)。
+> [!NOTE]
+> [IOS 模擬器不支援推播通知](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/iOS_Simulator_Guide/TestingontheiOSSimulator.html)，所以您必須使用實體 iOS 裝置。您也必須註冊付費 [Apple Developer Program 成員資格](https://developer.apple.com/programs/ios/)。
+> 
+> 
 
-[AZURE.INCLUDE [啟用 Apple 推播通知](../../includes/enable-apple-push-notifications.md)]
-
+[!INCLUDE [啟用 Apple 推播通知](../../includes/enable-apple-push-notifications.md)]
 
 ## <a id="configure"></a>設定 Azure 來傳送推播通知
-
-[AZURE.INCLUDE [在 Azure 行動服務中設定推播通知](../../includes/mobile-services-apns-configure-push.md)]
+[!INCLUDE [在 Azure 行動服務中設定推播通知](../../includes/mobile-services-apns-configure-push.md)]
 
 ## <a id="update-scripts"></a>更新後端指令碼以傳送推播通知
-
 * 在 [Azure 傳入口網站]中，按一下 [資料] 索引標籤，再按一下 [TodoItem]。在 [TodoItem] 中，按一下 [指令碼] 索引標籤，然後選取 [插入]。這會顯示 [TodoItem] 資料表中發生插入時所叫用的函數。
-
 * 使用下列程式碼來取代 insert 函數，然後按一下 [儲存]。如此即會註冊新的 insert 指令碼，該指令碼會使用 [apns 物件]將推播通知 (插入的文字) 傳送給插入要求中所提供的裝置。此指令碼會延遲通知的傳送，讓您有時間關閉應用程式來接收推播通知。
-
 
 ```
         function insert(item, user, request) {
@@ -59,10 +59,9 @@
         }
 ```
 
-[AZURE.INCLUDE [新增推播通知至應用程式](../../includes/add-push-notifications-to-app.md)]
+[!INCLUDE [新增推播通知至應用程式](../../includes/add-push-notifications-to-app.md)]
 
-[AZURE.INCLUDE [在應用程式中測試推播通知](../../includes/test-push-notifications-in-app.md)]
-
+[!INCLUDE [在應用程式中測試推播通知](../../includes/test-push-notifications-in-app.md)]
 
 <!-- Anchors. -->
 

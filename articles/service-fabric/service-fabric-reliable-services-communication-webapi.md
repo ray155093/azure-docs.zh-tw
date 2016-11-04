@@ -1,40 +1,35 @@
-<properties
-   pageTitle="使用 ASP.NET Web API 的服務通訊 |Microsoft Azure"
-   description="了解如何藉由使用 ASP.NET Web API 與 OWIN 自我裝載，在 Reliable Services API 中逐步實作服務通訊。"
-   services="service-fabric"
-   documentationCenter=".net"
-   authors="vturecek"
-   manager="timlt"
-   editor=""/>
+---
+title: 使用 ASP.NET Web API 的服務通訊 | Microsoft Docs
+description: 了解如何藉由使用 ASP.NET Web API 與 OWIN 自我裝載，在 Reliable Services API 中逐步實作服務通訊。
+services: service-fabric
+documentationcenter: .net
+author: vturecek
+manager: timlt
+editor: ''
 
-<tags
-   ms.service="service-fabric"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="required"
-   ms.date="07/29/2016"
-   ms.author="vturecek"/>
+ms.service: service-fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: required
+ms.date: 07/29/2016
+ms.author: vturecek
 
+---
 # 開始使用：Service Fabric Web API 服務與 OWIN 自我裝載 | Microsoft Azure
-
 Azure Service Fabric 讓您能決定您的服務與使用者以及服務彼此之間如何進行通訊。本教學課程著重於使用 ASP.NET Web API 與 Open Web Interface for .NET (OWIN) 自我裝載在 Service Fabric 的 Reliable Services API 中實作服務通訊。我們將深入探討 Reliable Services 隨插即用的通訊 API。我們也將在逐步範例中使用 Web API，示範如何設定自訂通訊接聽程式。
 
-
 ## Service Fabric 中的 Web API 簡介
-
 ASP.NET Web API 是在 .NET Framework 建置 HTTP API 的常用且功能強大的架構。如果您不熟悉此架構，請參閱[開始使用 ASP.NET Web API 2](http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api) 以深入了解。
 
 Service Fabric 中的 Web API 是您熟知而且喜愛的相同 ASP.NET Web API。不同之處在於您如何裝載 Web API 應用程式。您不會使用 Microsoft Internet Information Services (IIS)。若要進一步了解差異，讓我們將它分成兩個部分：
 
- 1. Web API 應用程式 (包括控制器和模型)
- 2. 主機 (Web 伺服器，通常是 IIS)
+1. Web API 應用程式 (包括控制器和模型)
+2. 主機 (Web 伺服器，通常是 IIS)
 
 Web API 應用程式本身不會變更。它與您過去撰寫的 Web API 應用程式並無不同，您應該能夠直接搬移大部分的應用程式程式碼。但是如果您裝載在 IIS 上，裝載應用程式的位置可能會與您過去習慣的稍有不同。在我們進入裝載部分之前，讓我們從較熟悉的部分開始：Web API 應用程式。
 
-
 ## 建立應用程式
-
 從在 Visual Studio 2015 中，使用單一無狀態服務建立新的 Service Fabric 應用程式開始：
 
 ![建立新的 Service Fabric 應用程式](media/service-fabric-reliable-services-communication-webapi/webapi-newproject.png)
@@ -56,7 +51,7 @@ Web API 應用程式本身不會變更。它與您過去撰寫的 Web API 應用
 ```csharp
 using System.Collections.Generic;
 using System.Web.Http;
-    
+
 namespace WebService.Controllers
 {
     public class ValuesController : ApiController
@@ -126,7 +121,6 @@ namespace WebService
 現在我們怎麼辦才能實際執行裝載？
 
 ## 服務裝載
-
 在 Service Fabric 中，您的服務會在服務主機處理序中執行，這是執行您的服務程式碼的可執行檔。當您使用 Reliable Services API 撰寫服務時，您的服務專案只會編譯註冊您的服務類型並執行程式碼的可執行檔。當您在 .NET 中的 Service Fabric 上撰寫服務時，在大部分情況下都是如此。當您在無狀態服務專案中開啟 Program.cs，您應該會看到：
 
 ```csharp
@@ -164,16 +158,16 @@ internal static class Program
 關於服務裝載處理序和服務註冊的進一步詳細資料已超出本文的範圍。但是現在請務必了解您的服務程式碼已在自己的處理序中執行。
 
 ## 自我裝載 Web API 與 OWIN 主機
-
 假設您的 Web API 應用程式程式碼裝載在自己的處理序中，您如何將它連結到 Web 伺服器？ 輸入 [OWIN](http://owin.org/)。OWIN 只是 .NET Web 應用程式和 Web 伺服器之間的合約。傳統上使用 ASP.NET (直到 MVC 5) 時，Web 應用程式已透過 System.Web 緊密結合至 IIS。不過，Web API 會實作 OWIN，所以您可以撰寫獨立於裝載它的 Web 伺服器的 Web 應用程式。因此，您可以使用可在自己的程序中啟動的自我裝載 OWIN web 伺服器。這樣完全符合我們先前所提到的 Service Fabric 裝載模型。
 
 在本文中，我們將使用 Katana 做為 Web API 應用程式的 OWIN 主機。Katana 是開放原始碼 OWIN 主機實作，建置在 [System.Net.HttpListener](https://msdn.microsoft.com/library/system.net.httplistener.aspx) 和 Windows [HTTP 伺服器 API](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx) 上。
 
-> [AZURE.NOTE] 若要深入了解 Katana，請移至 [Katana 網站](http://www.asp.net/aspnet/overview/owin-and-katana/an-overview-of-project-katana)。如需如何使用 Katana 自我裝載 Web API 的快速概觀，請參閱[使用 OWIN 自我裝載 ASP.NET Web API 2](http://www.asp.net/web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api)。
-
+> [!NOTE]
+> 若要深入了解 Katana，請移至 [Katana 網站](http://www.asp.net/aspnet/overview/owin-and-katana/an-overview-of-project-katana)。如需如何使用 Katana 自我裝載 Web API 的快速概觀，請參閱[使用 OWIN 自我裝載 ASP.NET Web API 2](http://www.asp.net/web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api)。
+> 
+> 
 
 ## 設定 Web 伺服器
-
 Reliable Services API 提供通訊進入點，您可在其中插入通訊堆疊，讓使用者和用戶端連線到服務：
 
 ```csharp
@@ -222,9 +216,9 @@ namespace WebService
 
 ICommunicationListener 介面提供三個方法來管理服務的通訊接聽程式：
 
- - OpenAsync。開始接聽要求。
- - CloseAsync。停止接聽要求，完成任何進行中的要求，並正常關機。
- - 中止。取消所有項目，並立即停止。
+* OpenAsync。開始接聽要求。
+* CloseAsync。停止接聽要求，完成任何進行中的要求，並正常關機。
+* 中止。取消所有項目，並立即停止。
 
 若要開始，請為接聽程式運作所需的項目新增私用類別成員。這些會透過建構函式初始化，並在您稍後設定接聽 URL 時使用。
 
@@ -274,18 +268,17 @@ public class OwinCommunicationListener : ICommunicationListener
         this.eventSource = eventSource;
         this.appRoot = appRoot;
     }
-   
+
 
     ...
 
 ```
 
 ## 實作 OpenAsync
-
 若要設定 Web 伺服器，您需要兩項資訊：
 
- - *URL 路徑前置詞*。雖然這是選擇性的，但您最好現在就設定，以便您能安全地在應用程式中裝載多個 Web 服務。
- - *連接埠*。
+* *URL 路徑前置詞*。雖然這是選擇性的，但您最好現在就設定，以便您能安全地在應用程式中裝載多個 Web 服務。
+* *連接埠*。
 
 在您抓取 Web 伺服器的連接埠之前，必須了解 Service Fabric 提供一個應用程式層，做為您的應用程式與其執行所在之基礎作業系統之間的緩衝區。因此，Service Fabric 讓您能夠設定服務的端點。Service Fabric 可確保端點可供您的服務使用。如此一來，您就不用在基礎作業系統環境中自行設定它們。您可以輕易在不同環境中裝載 Service Fabric 應用程式，而不必對您的應用程式進行任何變更。(例如，您可以在 Azure 或您自己的資料中心內裝載相同的應用程式。)
 
@@ -302,7 +295,6 @@ public class OwinCommunicationListener : ICommunicationListener
 ```
 
 這個步驟很重要，因為服務裝載處理序要在受限制的認證 (在 Windows 上的網路服務) 之下執行。這表示您的服務並沒有自行設定 HTTP 端點的存取權。藉由使用端點組態，Service Fabric 會知道要為服務將接聽的 URL 設定適當的存取控制清單 (ACL)。Service Fabric 也會提供標準位置來設定端點。
-
 
 返回 OwinCommunicationListener.cs 中，您可以開始實作 OpenAsync。您會從此處啟動 Web 伺服器。首先，取得端點資訊，並建立服務將接聽的 URL。視接聽程式使用於無狀態服務或具狀態服務而定，URL 會有所不同。若為具狀態服務，接聽程式必須針對它所接聽的每個具狀態服務複本建立唯一的位址。若為無狀態服務，此位址可以更簡單。
 
@@ -344,7 +336,7 @@ public Task<string> OpenAsync(CancellationToken cancellationToken)
     {
         throw new InvalidOperationException();
     }
-    
+
     ...
 
 ```
@@ -387,14 +379,13 @@ OpenAsync 實作是 Web 伺服器 (或任何通訊堆疊) 之所以實作為 ICo
 稍後當您執行應用程式時，`ServiceEventSource.Current.Message()` 列會出現在 [診斷事件] 視窗，確認已成功啟動 Web 伺服器。
 
 ## 實作 CloseAsync 和 Abort
-
 最後，實作 CloseAsync 和 Abort 可停止 Web 伺服器。處置 OpenAsync 時所建立的伺服器控制代碼，可以停止 Web 伺服器。
 
 ```csharp
 public Task CloseAsync(CancellationToken cancellationToken)
 {
     this.eventSource.Message("Closing web server on endpoint {0}", this.endpointName);
-            
+
     this.StopWebServer();
 
     return Task.FromResult(true);
@@ -403,7 +394,7 @@ public Task CloseAsync(CancellationToken cancellationToken)
 public void Abort()
 {
     this.eventSource.Message("Aborting web server on endpoint {0}", this.endpointName);
-    
+
     this.StopWebServer();
 }
 
@@ -426,7 +417,6 @@ private void StopWebServer()
 在此實作範例中，CloseAsync 和 Abort 只會停止 Web 伺服器。您也可以選擇在 CloseAsync 中執行更妥善協調的 web 伺服器關閉。例如，關閉可以等候進行中的要求，在傳回之前完成。
 
 ## 啟動 Web 伺服器
-
 您現在可以開始建立並傳回 OwinCommunicationListener 的執行個體以啟動 Web 伺服器。回到 Service 類別 (Service.cs)，覆寫 `CreateServiceInstanceListeners()` 方法：
 
 ```csharp
@@ -444,7 +434,6 @@ protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceLis
 這正是 Web API 應用程式和 OWIN 主機最後相會之處。透過 Startup 類別提供應用程式的執行個體 (Web API) 給主機 (OwinCommunicationListener)。然後 Service Fabric 會管理其生命週期。通常可以針對任何通訊堆疊運用相同的模式。
 
 ## 組合在一起
-
 在此範例中，您不需要在 `RunAsync()` 方法中執行任何動作，因此可以移除覆寫。
 
 最終的服務實作應該非常簡單。它只需要建立通訊接聽程式：
@@ -636,26 +625,23 @@ namespace WebService
 
 所有細節就緒之後，您的專案看起來應該像一般 Web API 應用程式，並且具有 Reliable Services API 進入點與 OWIN 主機：
 
-
 ![包含 Reliable Services API 輸入點和 OWIN 主機的 Web API](media/service-fabric-reliable-services-communication-webapi/webapi-projectstructure.png)
 
 ## 透過 Web 瀏覽器執行並連線
-
 如果您尚未這麼做，請[設定開發環境](service-fabric-get-started.md)。
-
 
 您現在可以建置並部署您的服務。在 Visual Studio 中按 **F5** 以建置及部署應用程式。在 [診斷事件] 視窗中，您應該會看到一則訊息指出 Web 伺服器在 http://localhost:8281/ 中開啟。
 
-
 ![Visual Studio 診斷事件視窗](media/service-fabric-reliable-services-communication-webapi/webapi-diagnostics.png)
 
-> [AZURE.NOTE] 如果電腦上的另一個處理序已經開啟連接埠，您可能會在此看到錯誤訊息。這就表示無法開啟接聽程式。如果是這種情況，請嘗試在 ServiceManifest.xml 中的端點組態使用不同的通訊埠。
-
+> [!NOTE]
+> 如果電腦上的另一個處理序已經開啟連接埠，您可能會在此看到錯誤訊息。這就表示無法開啟接聽程式。如果是這種情況，請嘗試在 ServiceManifest.xml 中的端點組態使用不同的通訊埠。
+> 
+> 
 
 一旦服務正常執行，請開啟瀏覽器並瀏覽至 [http://localhost:8281/api/values](http://localhost:8281/api/values) 進行測試。
 
 ## 相應放大
-
 相應放大無狀態的 Web 應用程式通常表示加入更多電腦，並加快其上的 Web 應用程式。每當新的節點加入至叢集時，Service Fabric 的協調流程引擎便可以為您完成。當您建立無狀態服務的執行個體時，您可以指定要建立的執行個體數目。Service Fabric 會在叢集中放置執行個體的數目在節點上。它可確保所有節點上都只會建立一個執行個體。您也可以指定 **-1** 的執行個體計數，指示 Service Fabric，一定要在每個節點上建立執行個體。這樣可保證每當您加入節點相應放大您的叢集，便會在新節點上建立無狀態服務的執行個體。這個值是服務執行個體的屬性，因此它會在您建立服務執行個體時設定：您可以透過 PowerShell 設定：
 
 ```powershell
@@ -681,7 +667,6 @@ New-ServiceFabricService -ApplicationName "fabric:/WebServiceApplication" -Servi
 如需如何建立應用程式和服務執行個體的詳細資訊，請參閱[部署應用程式](service-fabric-deploy-remove-applications.md)。
 
 ## 後續步驟
-
 [使用 Visual Studio 偵錯 Service Fabric 應用程式](service-fabric-debugging-your-application.md)
 
 <!---HONumber=AcomDC_0914_2016-->

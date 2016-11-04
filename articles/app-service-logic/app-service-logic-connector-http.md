@@ -1,31 +1,32 @@
-<properties
-   pageTitle="在 Logic Apps 中使用 HTTP 接聽程式和連接器 | Microsoft Azure App Service "
-   description="如何建立並設定 HTTP 接聽程式和 HTTP 動作連接器或 API 應用程式，並在 Azure App Service 的邏輯應用程式中使用它"
-   services="logic-apps"
-   documentationCenter=".net,nodejs,java"
-   authors="anuragdalmia"
-   manager="erikre"
-   editor=""/>
+---
+title: 在 Logic Apps 中使用 HTTP 接聽程式和連接器 | Microsoft Docs
+description: 如何建立並設定 HTTP 接聽程式和 HTTP 動作連接器或 API 應用程式，並在 Azure App Service 的邏輯應用程式中使用它
+services: logic-apps
+documentationcenter: .net,nodejs,java
+author: anuragdalmia
+manager: erikre
+editor: ''
 
-<tags
-   ms.service="logic-apps"
-   ms.devlang="multiple"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="integration"
-   ms.date="08/31/2016"
-   ms.author="prkumar"/>
+ms.service: logic-apps
+ms.devlang: multiple
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: integration
+ms.date: 08/31/2016
+ms.author: prkumar
 
-
+---
 # 開始使用 HTTP 接聽程式和 HTTP 動作，並將它加入您的邏輯應用程式
-
-> [AZURE.NOTE] 我們即將結束對這個連接器的支援，因為當您建立新的邏輯應用程式時，它的功能現在預設包含為**手動觸發程序**。建議您升級所有使用這個連接器的邏輯應用程式。這一版文章適用於邏輯應用程式 2014-12-01-preview 結構描述版本。
+> [!NOTE]
+> 我們即將結束對這個連接器的支援，因為當您建立新的邏輯應用程式時，它的功能現在預設包含為**手動觸發程序**。建議您升級所有使用這個連接器的邏輯應用程式。這一版文章適用於邏輯應用程式 2014-12-01-preview 結構描述版本。
+> 
+> 
 
 直接連線到 HTTP 資源以接聽 HTTP 要求和設定 HTTP Web 要求。在某些情況下，您可能需要使用直接 HTTP 連線，包括：
 
-1.	若要開發支援 Web 或行動使用者互動前端的邏輯應用程式。
-2.	若要取得並處理沒有現成連接器之 Web 服務的資料。
-3.	若要執行已公開為 web 服務，但無法當做 API 應用程式使用的動作。
+1. 若要開發支援 Web 或行動使用者互動前端的邏輯應用程式。
+2. 若要取得並處理沒有現成連接器之 Web 服務的資料。
+3. 若要執行已公開為 web 服務，但無法當做 API 應用程式使用的動作。
 
 對於這些案例，有兩個選項：
 
@@ -39,15 +40,12 @@
 
 1. 在 Azure 開始面板中，選取 [Marketplace]。
 2. 搜尋 "HTTP"，選取 HTTP 接聽程式，然後選取 [建立]。
-3.	設定 HTTP 接聽程式，如下所示：![][1]
-
-4.	進行封裝設定時，您會看到下列有關接聽程式是否應該自動回應或要求您傳送明確回應的選項。將此選項設為 **False** 以傳送自己的回應︰![][2]
-
-5.	按一下 [確定] 以建立。
-6.	建立 API 應用程式執行個體後，請開啟設定以設定安全性。HTTP 接聽程式目前支援基本驗證。開啟 HTTP 接聽程式時，您可以使用 [安全性] 選項進行設定︰![][3]
-  
-	**已知問題** *安全性設定會顯示 [無] 做為預設值，但是它還未定義。您必須將設定變更為 [基本]，然後在儲存它之前變回 [無]，以確定正確地設定 HTTP 接聽程式。*
-
+3. 設定 HTTP 接聽程式，如下所示：![][1]
+4. 進行封裝設定時，您會看到下列有關接聽程式是否應該自動回應或要求您傳送明確回應的選項。將此選項設為 **False** 以傳送自己的回應︰![][2]
+5. 按一下 [確定] 以建立。
+6. 建立 API 應用程式執行個體後，請開啟設定以設定安全性。HTTP 接聽程式目前支援基本驗證。開啟 HTTP 接聽程式時，您可以使用 [安全性] 選項進行設定︰![][3]
+   
+   **已知問題** *安全性設定會顯示 [無] 做為預設值，但是它還未定義。您必須將設定變更為 [基本]，然後在儲存它之前變回 [無]，以確定正確地設定 HTTP 接聽程式。*
 7. 最後，將 API 應用程式的安全性設定設為 [公用 (匿名)]，以允許外部用戶端存取端點。在 HTTP 接聽程式 API 應用程式的 [所有設定] > [應用程式設定] 下可取得此設定︰![][10]
 
 一旦完成，您立即可建立邏輯應用程式來使用 HTTP 接聽程式。
@@ -55,13 +53,12 @@
 ## 在邏輯應用程式中使用 HTTP 接聽程式
 建立 API 應用程式之後，您現在可以使用 HTTP 接聽程式做為邏輯應用程式的觸發程序。若要這樣做，您需要：
 
-4.	建立新的邏輯應用程式。
-5.	開啟 [觸發程序和動作] 以開啟 Logic Apps 設計工具，並設定您的流程。HTTP 接聽程式會列在資源庫中。請選取它。
-6.	您現在可以設定 HTTP 方法以及需要接聽程式在其上觸發流程的相對 URL︰![][4] ![][5]
-
-7.	若要取得完整的 URI，請按兩下 [HTTP 接聽程式] 以檢視其組態設定，並複製 API 應用程式的「主機」URL︰![][6]
-8.	您現在可以在流程的其他動作中使用 HTTP 要求中所接收的資料，如下所示：![][7] ![][8]
-9.	最後，若要傳送回應，請新增另一個 HTTP 接聽程式，並選取 [傳送 HTTP 回應] 動作。將要求識別碼設定為從 HTTP 接聽程式取得的 RequestID，並填入您想要傳回的回應本文和 HTTP 狀態：![][9]
+1. 建立新的邏輯應用程式。
+2. 開啟 [觸發程序和動作] 以開啟 Logic Apps 設計工具，並設定您的流程。HTTP 接聽程式會列在資源庫中。請選取它。
+3. 您現在可以設定 HTTP 方法以及需要接聽程式在其上觸發流程的相對 URL︰![][4] ![][5]
+4. 若要取得完整的 URI，請按兩下 [HTTP 接聽程式] 以檢視其組態設定，並複製 API 應用程式的「主機」URL︰![][6]
+5. 您現在可以在流程的其他動作中使用 HTTP 要求中所接收的資料，如下所示：![][7] ![][8]
+6. 最後，若要傳送回應，請新增另一個 HTTP 接聽程式，並選取 [傳送 HTTP 回應] 動作。將要求識別碼設定為從 HTTP 接聽程式取得的 RequestID，並填入您想要傳回的回應本文和 HTTP 狀態：![][9]
 
 ## 使用 HTTP 動作
 Logic Apps 原生支援 HTTP 動作，而且無需建立 API 應用程式即可使用。您可以在應用程式邏輯的任何位置插入 HTTP 動作，並選擇呼叫的 URI、標頭和主體。HTTP 動作支援多個用戶端安全性選項。請參閱[用戶端的安全性選項](../scheduler/scheduler-outbound-authentication.md)。
@@ -75,7 +72,10 @@ HTTP 動作的輸出會是標頭和主體，可進一步在流程的下游中使
 
 您也可以檢閱連接器的效能統計資料及控制安全性。請參閱〈[管理和監視內建 API Apps 和連接器](app-service-logic-monitor-your-connectors.md)〉。
 
-> [AZURE.NOTE] 如果您想要在註冊 Azure 帳戶之前先開始使用 Azure 邏輯應用程式，請移至[試用邏輯應用程式](https://tryappservice.azure.com/?appservice=logic)。您可以在 App Service 中立即建立短期的入門邏輯應用程式。不需要信用卡；無需承諾。
+> [!NOTE]
+> 如果您想要在註冊 Azure 帳戶之前先開始使用 Azure 邏輯應用程式，請移至[試用邏輯應用程式](https://tryappservice.azure.com/?appservice=logic)。您可以在 App Service 中立即建立短期的入門邏輯應用程式。不需要信用卡；無需承諾。
+> 
+> 
 
 <!--Image references-->
 [1]: ./media/app-service-logic-connector-http/1.png

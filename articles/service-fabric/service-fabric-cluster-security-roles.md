@@ -1,38 +1,31 @@
 
-<properties
-   pageTitle="Service Fabric 叢集安全性：用戶端角色 |Microsoft Azure"
-   description="本文說明兩個用戶端角色及提供給這些角色的權限。"
-   services="service-fabric"
-   documentationCenter=".net"
-   authors="mani-ramaswamy"
-   manager="coreysa"
-   editor=""/>
+---
+title: Service Fabric 叢集安全性：用戶端角色 | Microsoft Docs
+description: 本文說明兩個用戶端角色及提供給這些角色的權限。
+services: service-fabric
+documentationcenter: .net
+author: mani-ramaswamy
+manager: coreysa
+editor: ''
 
-<tags
-   ms.service="service-fabric"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="NA"
-   ms.date="09/14/2016"
-   ms.author="subramar"/>
+ms.service: service-fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 09/14/2016
+ms.author: subramar
 
-
-
+---
 # 角色型存取控制 (適用於 Service Fabric 用戶端)
-
 Azure Service Fabric 針對連線到 Service Fabric 叢集的用戶端，支援兩種不同的存取控制類型：系統管理員和使用者。存取控制可讓叢集系統管理員針對不同的使用者群組限制特定叢集作業的存取權，讓叢集更加安全。
 
 可以完整存取管理功能 (包括讀取/寫入功能)。**使用者**預設只具有管理功能的讀取存取權 (例如查詢功能)，以及解析應用程式和服務的能力。
 
 您可在建立叢集時為每個角色提供個別的憑證，以指定兩個用戶端角色 (系統管理員和用戶端)。如需有關設定安全 Service Fabric 叢集的詳細資訊，請參閱 [Service Fabric 叢集安全性](service-fabric-cluster-security.md)。
 
-
 ## 預設存取控制設定
-
-
 系統管理員存取控制類型可以完整存取所有的 FabricClient API。它可以在 Service Fabric 叢集上執行任何讀取和寫入，包括下列作業：
-
 
 ### 應用程式和服務作業
 * **CreateService**：建立服務
@@ -53,7 +46,6 @@ Azure Service Fabric 針對連線到 Service Fabric 叢集的用戶端，支援�
 * **RecoverPartitions**：復原多個資料分割
 * **RecoverServicePartitions**：復原服務分割
 * **RecoverSystemPartitions**：復原系統服務分割
-
 
 ### 叢集作業
 * **ProvisionFabric**：佈建 MSI 和/或叢集資訊清單
@@ -84,8 +76,6 @@ Azure Service Fabric 針對連線到 Service Fabric 叢集的用戶端，支援�
 * **Query**：所有允許的查詢
 * **NameExists**：檢查命名 URI 是否存在
 
-
-
 使用者存取控制類型預設限制為下列作業：
 
 * **EnumerateSubnames**：列舉命名 URI
@@ -106,11 +96,9 @@ Azure Service Fabric 針對連線到 Service Fabric 叢集的用戶端，支援�
 系統管理員存取控制也可存取上述作業。
 
 ## 變更用戶端角色的預設設定
-
 在叢集資訊清單檔案中，您可以視需要提供系統管理員功能給用戶端。您可以在[建立叢集](service-fabric-cluster-creation-via-portal.md)時，前往 [Fabric 設定] 選項，並在 [名稱]、[系統管理員]、[使用者] 和 [值] 欄位中提供上述設定來變更預設值。
 
 ## 後續步驟
-
 [Service Fabric 叢集安全性](service-fabric-cluster-security.md)
 
 [Service Fabric 叢集建立](service-fabric-cluster-creation-via-portal.md)

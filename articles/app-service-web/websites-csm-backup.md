@@ -1,37 +1,41 @@
-<properties
-	pageTitle="使用 REST 來備份及還原 App Service 應用程式"
-	description="了解如何使用 RESTful API 呼叫來備份和還原 Azure App Service 中的 Web 應用程式"
-	services="app-service"
-	documentationCenter=""
-	authors="NKing92"
-	manager="wpickett"
-    editor="" />
+---
+title: 使用 REST 來備份及還原 App Service 應用程式
+description: 了解如何使用 RESTful API 呼叫來備份和還原 Azure App Service 中的 Web 應用程式
+services: app-service
+documentationcenter: ''
+author: NKing92
+manager: wpickett
+editor: ''
 
-<tags
-	ms.service="app-service"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/10/2016"
-	ms.author="nicking"/>
+ms.service: app-service
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/10/2016
+ms.author: nicking
+
+---
 # 使用 REST 來備份及還原 App Service 應用程式
-
-> [AZURE.SELECTOR]
-- [PowerShell](../app-service/app-service-powershell-backup.md)
-- [REST API](websites-csm-backup.md)
+> [!div class="op_single_selector"]
+> * [PowerShell](../app-service/app-service-powershell-backup.md)
+> * [REST API](websites-csm-backup.md)
+> 
+> 
 
 [App Service 應用程式](https://azure.microsoft.com/services/app-service/web/) 可以備份成 Azure 儲存體中的 blob。此備份中也可以包含應用程式的資料庫。如果不小心刪除應用程式，或需要將應用程式還原成先前的版本，則可以從任何先前的備份加以還原。您可以視需要隨時進行備份，或排定在間隔適當時間後進行備份。
 
 本文說明如何透過 RESTful API 要求，來備份和還原應用程式。如果您想要透過 Azure 入口網站以圖形方式建立和管理 Web 應用程式的備份，請參閱[在 Azure App Service 中備份 Web 應用程式](web-sites-backup.md)
 
 <a name="gettingstarted"></a>
+
 ## 開始使用
 若要傳送 REST 要求，您必須知道應用程式的**名稱**、**資源群組**和**訂用帳戶識別碼**。如要尋找這些資訊，請在 [Azure 入口網站](https://portal.azure.com)的 [App Service] 刀鋒視窗中按一下您的應用程式。在本文的範例中，我們會設定 **backuprestoreapiexamples.azurewebsites.net** 網站。它儲存在 Default-Web-WestUS 資源群組中，並在識別碼為 00001111-2222-3333-4444-555566667777 的訂用帳戶上執行。
 
 ![範例網站資訊][SampleWebsiteInformation]
 
 <a name="backup-restore-rest-api"></a>
+
 ## 備份和還原 REST API
 現在我們要討論幾個範例，說明如何使用 REST API 來備份和還原應用程式。每個範例都包含 URL 和 HTTP 要求本文。範例 URL 中包含以大括號括住的預留位置，例如 {subscription-id}。請以對應的應用程式資訊來取代預留位置。以下有範例 URL 中會出現之預留位置的說明可供您參考。
 
@@ -43,6 +47,7 @@
 如需 API 的完整說明文件，包括可在 HTTP 要求內加入的幾個選用參數，請參閱 [Azure 資源總管](https://resources.azure.com/)。
 
 <a name="backup-on-demand"></a>
+
 ## 視需求備份應用程式
 若要立即備份應用程式，請將 **POST** 要求傳送到 **https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backup/**。
 
@@ -96,9 +101,13 @@
 }
 ```
 
->[AZURE.NOTE] 在 HTTP 回應的記錄檔屬性中可以找到錯誤訊息。
+> [!NOTE]
+> 在 HTTP 回應的記錄檔屬性中可以找到錯誤訊息。
+> 
+> 
 
 <a name="schedule-automatic-backups"></a>
+
 ## 排程自動備份
 除了視需要備份應用程式，您也可以建立排程來自動備份。
 
@@ -137,6 +146,7 @@
 範例網站的 URL 是 **https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/config/backup/list**。
 
 <a name="get-backup-status"></a>
+
 ## 取得備份狀態
 視應用程式的大小而定，備份程序可能需要一些時間才能完成。備份程序也可能失敗、逾時或是部分成功。若要查看所有應用程式的備份狀態，請傳送 **GET** 要求到以下 URL：**https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backups**。
 
@@ -179,6 +189,7 @@
 * 9 - 已刪除：已成功刪除備份。
 
 <a name="restore-app"></a>
+
 ## 從備份還原應用程式
 如果應用程式遭到刪除，或是當您想要把應用程式還原為較舊的版本時，您可以從備份還原應用程式。若要叫用還原，請傳送 **POST** 要求到以下 URL：**https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backups/{backup-id}/restore**。
 
@@ -207,12 +218,14 @@
 當您在還原備份時，可能有時您會想要建立新的 Web 應用程式，而非覆寫現有的應用程式。方法是變更要求 URL 來指向您要建立的新應用程式，然後把 JSON 中的 **overwrite** 屬性變更為 **false**。
 
 <a name="delete-app-backup"></a>
+
 ## 刪除應用程式備份
 如果您想要刪除備份，請傳送 **DELETE** 要求給以下 URL：**https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backups/{backup-id}**。
 
 範例網站的 URL 看起來就像這樣：**https://management.azure.com/subscriptions/00001111-2222-3333-4444-555566667777/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/sites/backuprestoreapiexamples/backups/1**
 
 <a name="manage-sas-url"></a>
+
 ## 管理備份的 SAS URL
 Azure App Service 會嘗試使用備份建立時所提供的 SAS URL，來刪除 Azure 儲存體中的備份。如果此 SAS URL 不再有效，就無法透過 REST API 刪除備份。不過，您可以傳送 **POST** 要求給以下 URL 來更新與備份相關聯的 SAS URL：**https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Web/sites/{name}/backups/{backup-id}/list**。
 
@@ -229,7 +242,10 @@ Azure App Service 會嘗試使用備份建立時所提供的 SAS URL，來刪除
 }
 ```
 
->[AZURE.NOTE] 為了確保安全，在傳送特定備份的 GET 要求時，並不會傳回與該備份相關聯的 SAS URL。如果您想要檢視與備份相關聯的 SAS URL，請傳送 POST 要求給上述的同一個 URL。在要求本文中包含空的 JSON 物件。伺服器所傳回的回應中便會包含該備份的所有資訊，包括其 SAS URL。
+> [!NOTE]
+> 為了確保安全，在傳送特定備份的 GET 要求時，並不會傳回與該備份相關聯的 SAS URL。如果您想要檢視與備份相關聯的 SAS URL，請傳送 POST 要求給上述的同一個 URL。在要求本文中包含空的 JSON 物件。伺服器所傳回的回應中便會包含該備份的所有資訊，包括其 SAS URL。
+> 
+> 
 
 <!-- IMAGES -->
 [SampleWebsiteInformation]: ./media/websites-csm-backup/01siteconfig.png

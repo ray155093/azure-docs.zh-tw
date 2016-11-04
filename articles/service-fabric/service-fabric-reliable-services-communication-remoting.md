@@ -1,21 +1,21 @@
-<properties
-   pageTitle="Service Fabric 的服務遠端處理 | Microsoft Azure"
-   description="Service Fabric 遠端處理可讓用戶端和服務使用遠端程序呼叫與服務進行通訊。"
-   services="service-fabric"
-   documentationCenter=".net"
-   authors="vturecek"
-   manager="timlt"
-   editor="BharatNarasimman"/>
+---
+title: Service Fabric 的服務遠端處理 | Microsoft Docs
+description: Service Fabric 遠端處理可讓用戶端和服務使用遠端程序呼叫與服務進行通訊。
+services: service-fabric
+documentationcenter: .net
+author: vturecek
+manager: timlt
+editor: BharatNarasimman
 
-<tags
-   ms.service="service-fabric"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="required"
-   ms.date="07/06/2016"
-   ms.author="vturecek"/>
+ms.service: service-fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: required
+ms.date: 07/06/2016
+ms.author: vturecek
 
+---
 # 使用 Reliable Services 的遠端服務
 對於未繫結至特定通訊協定或堆疊 (例如 WebAPI、Windows Communication Foundation (WCF) 或其他項目) 的服務，Reliable Services 架構會提供遠端機制，以便快速且輕鬆設定服務遠端程序呼叫。
 
@@ -57,12 +57,13 @@ class MyService : StatelessService, IMyService
     }
 }
 ```
-> [AZURE.NOTE] 服務介面中的引數和傳回類型可以是任何簡單、複雜或自訂的類型，但必須可由 .NET [DataContractSerializer](https://msdn.microsoft.com/library/ms731923.aspx) 序列化。
-
+> [!NOTE]
+> 服務介面中的引數和傳回類型可以是任何簡單、複雜或自訂的類型，但必須可由 .NET [DataContractSerializer](https://msdn.microsoft.com/library/ms731923.aspx) 序列化。
+> 
+> 
 
 ## 呼叫遠端服務方法
 透過 `Microsoft.ServiceFabric.Services.Remoting.Client.ServiceProxy` 類別使用連至服務的本機 Proxy，可以在服務上使用遠端堆疊呼叫方法。`ServiceProxy` 方法會使用該服務所實作的相同介面，建立本機 Proxy。您可以使用該 Proxy 直接在介面上遠端呼叫方法。
-
 
 ```csharp
 
@@ -75,11 +76,8 @@ string message = await helloWorldClient.GetHelloWorld();
 遠端架構會將在服務擲回的例外狀況傳播給用戶端。因此在用戶端使用 `ServiceProxy` 的例外狀況處理邏輯，可以直接處理服務擲回的例外狀況。
 
 ## 後續步驟
-
 * [在 Reliable Services 中搭配 OWIN 使用 Web API](service-fabric-reliable-services-communication-webapi.md)
-
 * [使用 Reliable Services 的 WCF 通訊](service-fabric-reliable-services-communication-wcf.md)
-
 * [Reliable Services 的安全通訊](service-fabric-reliable-services-secure-communication.md)
 
 <!---HONumber=AcomDC_0713_2016-->

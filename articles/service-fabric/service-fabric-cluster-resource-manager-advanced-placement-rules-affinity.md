@@ -1,23 +1,22 @@
-<properties
-   pageTitle="Service Fabric 叢集資源管理員 - 同質性 | Microsoft Azure"
-   description="Service Fabric 服務的設定同質性概觀"
-   services="service-fabric"
-   documentationCenter=".net"
-   authors="masnider"
-   manager="timlt"
-   editor=""/>
+---
+title: Service Fabric 叢集資源管理員 - 同質性 | Microsoft Docs
+description: Service Fabric 服務的設定同質性概觀
+services: service-fabric
+documentationcenter: .net
+author: masnider
+manager: timlt
+editor: ''
 
-<tags
-   ms.service="Service-Fabric"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="NA"
-   ms.date="08/19/2016"
-   ms.author="masnider"/>
+ms.service: Service-Fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 08/19/2016
+ms.author: masnider
 
+---
 # 在 Service Fabric 中設定並使用服務同質性
-
 同質性是一個控制項，主要提供來協助簡化將較大型的單體式應用程式轉換到雲端和微服務世界的程序。也就是說，在某些情況下它也可當做提升服務效能的合法最佳化，雖然這可能會有副作用。
 
 假設您正在將較大型 app，或只是設計時未將微服務納入考量的 app 引進到 Service Fabric。此轉換實際上很常見，所以我們曾經有數個客戶 (內部和外部) 處於此情況。一開始先將整個 app 提升到該環境，將它封裝並執行。接著，開始將其分解成不同的較小服務，使其可彼此通訊。
@@ -25,8 +24,8 @@
 然後就是「糟糕」了。「糟糕」通常屬於下列其中一個類別︰
 
 1. 部分單體式 app 中的元件 X 和元件 Y 之間具有未記載的相依性，而我們剛剛讓它們變成了個別服務。因為這些現在都是在叢集中不同的節點上執行，所以它們是中斷的。
-2.	這些項目會透過 (本機具名管道| 共用記憶體 | 磁碟上的檔案) 進行通訊，但我真的很需要能夠個別更新它，好讓速度能夠稍微加快些。我稍後將移除硬式相依性。
-3.	一切都沒問題，但事實上，這兩個元件具有非常多對話/效能敏感的內容。當我將它們移到個別服務時，整體應用程式效能會遭到重挫或導致延遲增加。如此一來，整體應用程式就不會符合預期。
+2. 這些項目會透過 (本機具名管道| 共用記憶體 | 磁碟上的檔案) 進行通訊，但我真的很需要能夠個別更新它，好讓速度能夠稍微加快些。我稍後將移除硬式相依性。
+3. 一切都沒問題，但事實上，這兩個元件具有非常多對話/效能敏感的內容。當我將它們移到個別服務時，整體應用程式效能會遭到重挫或導致延遲增加。如此一來，整體應用程式就不會符合預期。
 
 在這些情況下，我們不想要失去重構工作，也不想要回到單體，但我們確實需要某種意義上的位置。這將會保留到我們可以重新設計元件來像服務一樣自然地運作，或保留到我們可以透過某些其他方式解決效能預期問題 (如果可以的話)。
 
@@ -62,8 +61,8 @@ await fabricClient.ServiceManager.CreateServiceAsync(serviceDescription);
 請注意，關於同質性要注意的最後一點是，分割父系的地方不支援同質關聯性。我們最終可能會支援這一點，但目前並不允許。
 
 ## 後續步驟
-- 如需可用來設定服務的其他選項的詳細資訊，請查看[深入了解設定服務](service-fabric-cluster-resource-manager-configure-services.md)中提供的其他叢集資源管理員組態的相關主題
-- 使用者使用同質性的許多原因，例如限制服務在小的機器集合上執行，以及嘗試彙總服務集合的負載，透過應用程式群組能獲得更佳的支援。請參閱[應用程式群組](service-fabric-cluster-resource-manager-application-groups.md)
+* 如需可用來設定服務的其他選項的詳細資訊，請查看[深入了解設定服務](service-fabric-cluster-resource-manager-configure-services.md)中提供的其他叢集資源管理員組態的相關主題
+* 使用者使用同質性的許多原因，例如限制服務在小的機器集合上執行，以及嘗試彙總服務集合的負載，透過應用程式群組能獲得更佳的支援。請參閱[應用程式群組](service-fabric-cluster-resource-manager-application-groups.md)
 
 [Image1]: ./media/service-fabric-cluster-resource-manager-advanced-placement-rules-affinity/cluster-resrouce-manager-affinity-modes.png
 [Image2]: ./media/service-fabric-cluster-resource-manager-advanced-placement-rules-affinity/cluster-resource-manager-chains-vs-stars.png

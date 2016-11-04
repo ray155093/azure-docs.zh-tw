@@ -1,20 +1,21 @@
-<properties
-    pageTitle="Azure AD Connect 同步處理：了解預設組態 | Microsoft Azure"
-    description="本文說明 Azure AD Connect Sync 的預設組態。"
-    services="active-directory"
-    documentationCenter=""
-    authors="andkjell"
-    manager="femila"
-    editor=""/>
-<tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-	ms.topic="article"
-    ms.date="09/01/2016"
-    ms.author="andkjell"/>
+---
+title: Azure AD Connect 同步處理：了解預設組態 | Microsoft Docs
+description: 本文說明 Azure AD Connect Sync 的預設組態。
+services: active-directory
+documentationcenter: ''
+author: andkjell
+manager: femila
+editor: ''
 
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/01/2016
+ms.author: andkjell
+
+---
 # Azure AD Connect 同步處理：了解預設組態
 本文說明現成可用的組態規則。其中說明這些規則以及這些規則對組態有何影響。本文也會引導您完成 Azure AD Connect 同步處理的預設組態。其目的是讓讀者了解組態模型 (名為宣告式佈建) 在實際範例中的運作情形。本文假設您已使用安裝精靈安裝並設定 Azure AD Connect Sync。
 
@@ -28,72 +29,72 @@
 
 使用者物件必須符合下列條件，才會進行同步處理：
 
-- 必須具有 sourceAnchor。
-- 在 Azure AD 中建立物件之後，即無法變更 sourceAnchor。如果值在內部部署中變更，則物件會停止同步處理，直到 sourceAnchor 重新變更為原先的值。
-- 必須有已填入的 accountEnabled (userAccountControl) 屬性。在內部部署 Active Directory 中，一律會存在並填入此屬性。
+* 必須具有 sourceAnchor。
+* 在 Azure AD 中建立物件之後，即無法變更 sourceAnchor。如果值在內部部署中變更，則物件會停止同步處理，直到 sourceAnchor 重新變更為原先的值。
+* 必須有已填入的 accountEnabled (userAccountControl) 屬性。在內部部署 Active Directory 中，一律會存在並填入此屬性。
 
 下列使用者物件**不會**同步處理至 Azure AD：
 
-- `IsPresent([isCriticalSystemObject])`。請確定 Active Directory 中多項現成可用的物件 (例如內建的系統管理員帳戶) 不會同步處理。
-- `IsPresent([sAMAccountName]) = False`。請確定沒有 sAMAccountName 屬性的使用者物件不會同步處理。這種情況實際上只會發生在從 NT4 升級的網域中。
-- `Left([sAMAccountName], 4) = "AAD_"`，`Left([sAMAccountName], 5) = "MSOL_"`。不要同步處理 Azure AD Connect Sync 和較早版本所使用的服務帳戶。
-- 請勿同步處理不會在 Exchange Online 中運作的 Exchange 帳戶。
-    - `[sAMAccountName] = "SUPPORT_388945a0"`
-    - `Left([mailNickname], 14) = "SystemMailbox{"`
-    - `(Left([mailNickname], 4) = "CAS_" && (InStr([mailNickname], "}") > 0))`
-    - `(Left([sAMAccountName], 4) = "CAS_" && (InStr([sAMAccountName], "}")> 0))`
-- 請勿同步處理不會在 Exchange Online 中運作的物件。`CBool(IIF(IsPresent([msExchRecipientTypeDetails]),BitAnd([msExchRecipientTypeDetails],&H21C07000) > 0,NULL))` 此位元遮罩 (&H21C07000) 會篩選掉下列物件：
-    - 擁有郵件功能的公用資料夾
-    - 系統服務員信箱
-    - 信箱資料庫信箱 (系統信箱)
-    - 萬用安全性群組 (不會對使用者套用，但因舊版因素而存在)
-    - 非萬用群組 (不會對使用者套用，但因舊版因素而存在)
-    - 信箱計劃
-    - 探索信箱
-- `CBool(InStr(DNComponent(CRef([dn]),1),"\\0ACNF:")>0)`。請不要同步處理任何複寫犧牲者物件。
+* `IsPresent([isCriticalSystemObject])`。請確定 Active Directory 中多項現成可用的物件 (例如內建的系統管理員帳戶) 不會同步處理。
+* `IsPresent([sAMAccountName]) = False`。請確定沒有 sAMAccountName 屬性的使用者物件不會同步處理。這種情況實際上只會發生在從 NT4 升級的網域中。
+* `Left([sAMAccountName], 4) = "AAD_"`，`Left([sAMAccountName], 5) = "MSOL_"`。不要同步處理 Azure AD Connect Sync 和較早版本所使用的服務帳戶。
+* 請勿同步處理不會在 Exchange Online 中運作的 Exchange 帳戶。
+  * `[sAMAccountName] = "SUPPORT_388945a0"`
+  * `Left([mailNickname], 14) = "SystemMailbox{"`
+  * `(Left([mailNickname], 4) = "CAS_" && (InStr([mailNickname], "}") > 0))`
+  * `(Left([sAMAccountName], 4) = "CAS_" && (InStr([sAMAccountName], "}")> 0))`
+* 請勿同步處理不會在 Exchange Online 中運作的物件。`CBool(IIF(IsPresent([msExchRecipientTypeDetails]),BitAnd([msExchRecipientTypeDetails],&H21C07000) > 0,NULL))` 此位元遮罩 (&H21C07000) 會篩選掉下列物件：
+  * 擁有郵件功能的公用資料夾
+  * 系統服務員信箱
+  * 信箱資料庫信箱 (系統信箱)
+  * 萬用安全性群組 (不會對使用者套用，但因舊版因素而存在)
+  * 非萬用群組 (不會對使用者套用，但因舊版因素而存在)
+  * 信箱計劃
+  * 探索信箱
+* `CBool(InStr(DNComponent(CRef([dn]),1),"\\0ACNF:")>0)`。請不要同步處理任何複寫犧牲者物件。
 
 適用的屬性規則如下：
 
-- `sourceAnchor <- IIF([msExchRecipientTypeDetails]=2,NULL,..)`。不會從連結的信箱提供 SourceAnchor 屬性。根據假設，如果已找到連結的信箱，實際的帳戶會在稍後加入。
-- 只有在屬性 **mailNickName** 具有值時，才會同步處理 Exchange 的相關屬性。
-- 如果有多個樹系，則會依下列順序使用屬性：
-    1. 會從具有已啟用帳戶的樹系提供登入的相關屬性 (例如 userPrincipalName)。
-    2. 可以在 Exchange GAL (全域通訊清單) 中找到的屬性，則會從具有 Exchange 信箱的樹系提供。
-    3. 如果找不到信箱，則這些屬性可來自於任何樹系。
-    4. Exchange 相關屬性 (技術屬性不會顯示在 GAL 中) 會從 `mailNickname ISNOTNULL` 的樹系提供。
-    5. 如果有多個樹系會符合其中一個規則，則會使用連接器 (樹系) 的建立順序 (日期/時間) 來決定由哪個樹系提供屬性。
+* `sourceAnchor <- IIF([msExchRecipientTypeDetails]=2,NULL,..)`。不會從連結的信箱提供 SourceAnchor 屬性。根據假設，如果已找到連結的信箱，實際的帳戶會在稍後加入。
+* 只有在屬性 **mailNickName** 具有值時，才會同步處理 Exchange 的相關屬性。
+* 如果有多個樹系，則會依下列順序使用屬性：
+  1. 會從具有已啟用帳戶的樹系提供登入的相關屬性 (例如 userPrincipalName)。
+  2. 可以在 Exchange GAL (全域通訊清單) 中找到的屬性，則會從具有 Exchange 信箱的樹系提供。
+  3. 如果找不到信箱，則這些屬性可來自於任何樹系。
+  4. Exchange 相關屬性 (技術屬性不會顯示在 GAL 中) 會從 `mailNickname ISNOTNULL` 的樹系提供。
+  5. 如果有多個樹系會符合其中一個規則，則會使用連接器 (樹系) 的建立順序 (日期/時間) 來決定由哪個樹系提供屬性。
 
 ### 連絡人現成可用的規則
 連絡人物件必須符合下列條件，才會進行同步處理：
 
-- 連絡人必須擁有郵件功能。這會使用下列規則來驗證：
-    - `IsPresent([proxyAddresses]) = True)`。必須填入 proxyAddresses 屬性。
-    - 可在 proxyAddresses 屬性或郵件屬性中找到主要電子郵件地址。存在的 @ 可用來證實內容是電子郵件地址。下列其中一個規則必須評估為 True。
-        - `(Contains([proxyAddresses], "SMTP:") > 0) && (InStr(Item([proxyAddresses], Contains([proxyAddresses], "SMTP:")), "@") > 0))`。是否有含有 "SMTP:" 的項目，如果有，是否可在字串中找到 @？
-        - `(IsPresent([mail]) = True && (InStr([mail], "@") > 0)`。是否已填入郵件屬性，如果是，是否可在字串中找到 @？
+* 連絡人必須擁有郵件功能。這會使用下列規則來驗證：
+  * `IsPresent([proxyAddresses]) = True)`。必須填入 proxyAddresses 屬性。
+  * 可在 proxyAddresses 屬性或郵件屬性中找到主要電子郵件地址。存在的 @ 可用來證實內容是電子郵件地址。下列其中一個規則必須評估為 True。
+    * `(Contains([proxyAddresses], "SMTP:") > 0) && (InStr(Item([proxyAddresses], Contains([proxyAddresses], "SMTP:")), "@") > 0))`。是否有含有 "SMTP:" 的項目，如果有，是否可在字串中找到 @？
+    * `(IsPresent([mail]) = True && (InStr([mail], "@") > 0)`。是否已填入郵件屬性，如果是，是否可在字串中找到 @？
 
 下列連絡人物件**不會**同步處理至 Azure AD：
 
-- `IsPresent([isCriticalSystemObject])`。請確定沒有標記為重要的連絡人物件進行同步處理。不應該是任何使用預設組態的項目。
-- `((InStr([displayName], "(MSOL)") > 0) && (CBool([msExchHideFromAddressLists])))`。
-- `(Left([mailNickname], 4) = "CAS_" && (InStr([mailNickname], "}") > 0))`。這些物件無法在 Exchange Online 中運作。
-- `CBool(InStr(DNComponent(CRef([dn]),1),"\\0ACNF:")>0)`。請不要同步處理任何複寫犧牲者物件。
+* `IsPresent([isCriticalSystemObject])`。請確定沒有標記為重要的連絡人物件進行同步處理。不應該是任何使用預設組態的項目。
+* `((InStr([displayName], "(MSOL)") > 0) && (CBool([msExchHideFromAddressLists])))`。
+* `(Left([mailNickname], 4) = "CAS_" && (InStr([mailNickname], "}") > 0))`。這些物件無法在 Exchange Online 中運作。
+* `CBool(InStr(DNComponent(CRef([dn]),1),"\\0ACNF:")>0)`。請不要同步處理任何複寫犧牲者物件。
 
 ### 群組現成可用的規則
 群組物件必須符合下列條件，才會進行同步處理：
 
-- 擁有的成員必須少於 50,000 個。此計數為內部部署群組中的成員數目。
-    - 如果在第一次開始同步處理之前擁有較多成員，則不會同步處理群組。
-    - 如果成員數目在它最初建立之後有所成長，在達到 50,000 個成員時，它會停止同步處理，直到成員資格計數再次低於 50,000。
-    - 注意：Azure AD 也會強制執行 50,000 個成員資格計數。您無法同步處理具有更多個成員的群組，即使您修改或移除此規則亦然。
-- 如果群組是**通訊群組**，則也必須擁有郵件功能。請參閱[連絡人現成可用的規則](#contact-out-of-box-rules)，以了解強制執行此規則的情形。
+* 擁有的成員必須少於 50,000 個。此計數為內部部署群組中的成員數目。
+  * 如果在第一次開始同步處理之前擁有較多成員，則不會同步處理群組。
+  * 如果成員數目在它最初建立之後有所成長，在達到 50,000 個成員時，它會停止同步處理，直到成員資格計數再次低於 50,000。
+  * 注意：Azure AD 也會強制執行 50,000 個成員資格計數。您無法同步處理具有更多個成員的群組，即使您修改或移除此規則亦然。
+* 如果群組是**通訊群組**，則也必須擁有郵件功能。請參閱[連絡人現成可用的規則](#contact-out-of-box-rules)，以了解強制執行此規則的情形。
 
 下列群組物件**不會**同步處理至 Azure AD：
 
-- `IsPresent([isCriticalSystemObject])`。請確定 Active Directory 中多項現成可用的物件 (例如內建的系統管理員群組) 不會同步處理。
-- `[sAMAccountName] = "MSOL_AD_Sync_RichCoexistence"`。DirSync 所使用的舊版群組。
-- `BitAnd([msExchRecipientTypeDetails],&amp;H40000000)`。角色群組。
-- `CBool(InStr(DNComponent(CRef([dn]),1),"\\0ACNF:")>0)`。請不要同步處理任何複寫犧牲者物件。
+* `IsPresent([isCriticalSystemObject])`。請確定 Active Directory 中多項現成可用的物件 (例如內建的系統管理員群組) 不會同步處理。
+* `[sAMAccountName] = "MSOL_AD_Sync_RichCoexistence"`。DirSync 所使用的舊版群組。
+* `BitAnd([msExchRecipientTypeDetails],&amp;H40000000)`。角色群組。
+* `CBool(InStr(DNComponent(CRef([dn]),1),"\\0ACNF:")>0)`。請不要同步處理任何複寫犧牲者物件。
 
 ### ForeignSecurityPrincipal 現成可用的規則
 FSP 會聯結至 Metaverse 中的「任何」(*) 物件。實際上，此聯結只會針對使用者和安全性群組執行。此組態可確保跨樹系成員資格會進行解析，並正確地顯示在 Azure AD 中。
@@ -101,7 +102,7 @@ FSP 會聯結至 Metaverse 中的「任何」(*) 物件。實際上，此聯結�
 ### 電腦現成可用的規則
 電腦物件必須符合下列條件，才會進行同步處理：
 
-- `userCertificate ISNOTNULL`。只有 Windows 10 電腦會填入此屬性。所有具有此屬性值的電腦物件都會進行同步處理。
+* `userCertificate ISNOTNULL`。只有 Windows 10 電腦會填入此屬性。所有具有此屬性值的電腦物件都會進行同步處理。
 
 ## 了解現成可用的規則案例
 在此範例中，我們會使用具有一個帳戶樹系 (A)、一個資源樹系 (R) 和一個 Azure AD 目錄的部署。
@@ -112,9 +113,9 @@ FSP 會聯結至 Metaverse 中的「任何」(*) 物件。實際上，此聯結�
 
 我們使用預設組態的目的是：
 
-- 登入的相關屬性會從具有已啟用帳戶的樹系進行同步處理。
-- 可以在 GAL (全域通訊清單) 中找到的屬性，會從具有信箱的樹系進行同步處理。如果找不到信箱，則會使用任何其他樹系。
-- 如果找到連結的信箱，則要匯出至 Azure AD 的物件必須有已連結並啟用的帳戶。
+* 登入的相關屬性會從具有已啟用帳戶的樹系進行同步處理。
+* 可以在 GAL (全域通訊清單) 中找到的屬性，會從具有信箱的樹系進行同步處理。如果找不到信箱，則會使用任何其他樹系。
+* 如果找到連結的信箱，則要匯出至 Azure AD 的物件必須有已連結並啟用的帳戶。
 
 ### 同步處理規則編輯器
 您可以使用同步處理規則編輯器 (SRE) 這項工具來檢視及變更組態，並且可在 [開始] 功能表中找到其捷徑。
@@ -180,9 +181,9 @@ SRE 是一項資源套件工具，會隨 Azure AD Connect Sync 一起安裝。�
 
 轉換可具有不同類型：Constant、Direct 和 Expression。
 
-- Constant 流程會一律流送硬式編碼值。在上述例子中，一律會在名為 **accountEnabled** 的 Metaverse 屬性中設定 **True** 值。
-- Direct 流程一律會將來源中的屬性值依現狀流動至目標屬性。
-- 第三個流程類型是 Expression，可讓您使用更為進階的組態。
+* Constant 流程會一律流送硬式編碼值。在上述例子中，一律會在名為 **accountEnabled** 的 Metaverse 屬性中設定 **True** 值。
+* Direct 流程一律會將來源中的屬性值依現狀流動至目標屬性。
+* 第三個流程類型是 Expression，可讓您使用更為進階的組態。
 
 由於運算式語言為 VBA (Visual Basic for Applications)，因此具有 Microsoft Office 或 VBScript 使用經驗的人員就能辨認其格式。屬性會包在方括號之中，例如 [attributeName]。屬性名稱與函數名稱有區分大小寫，但是當運算式無效時，同步處理規則編輯器會評估運算式並且發出警告。所有運算式將會以具有巢狀函式的單一行表示。若要發揮組態語言的功能，請使用插入其他註解的 pwdLastSet 流程：
 
@@ -210,25 +211,24 @@ NULL
 ### 總整理
 我們現在對同步處理規則已有足夠的認識，而能夠了解組態如何在不同的同步處理規則下運作。如果您觀察某個使用者以及提供給 Metaverse 的屬性，則會以下列順序套用規則：
 
-名稱 | 註解
-:------------- | :-------------
-In from AD – User Join | 聯結連接器空間物件與 Metaverse 的規則。
-In from AD – UserAccount Enabled | 登入 Azure AD 和 Office 365 所需的屬性。我們想從已啟用的帳戶取得這些屬性。
-In from AD – User Common from Exchange | 在全域通訊清單中找到的屬性。我們假設在使用者信箱所在的樹系中，具有最佳的資料品質。
-In from AD – User Common | 在全域通訊清單中找到的屬性。如果找不到信箱，則可由任何其他聯結物件提供屬性值。
-In from AD – User Exchange | 只有在偵測到 Exchange 後才存在。它會流送所有基礎結構 Exchange 屬性。
-In from AD – User Lync | 只有在偵測到 Lync 後才存在。它會流送所有基礎結構 Lync 屬性。
+| 名稱 | 註解 |
+|:--- |:--- |
+| In from AD – User Join |聯結連接器空間物件與 Metaverse 的規則。 |
+| In from AD – UserAccount Enabled |登入 Azure AD 和 Office 365 所需的屬性。我們想從已啟用的帳戶取得這些屬性。 |
+| In from AD – User Common from Exchange |在全域通訊清單中找到的屬性。我們假設在使用者信箱所在的樹系中，具有最佳的資料品質。 |
+| In from AD – User Common |在全域通訊清單中找到的屬性。如果找不到信箱，則可由任何其他聯結物件提供屬性值。 |
+| In from AD – User Exchange |只有在偵測到 Exchange 後才存在。它會流送所有基礎結構 Exchange 屬性。 |
+| In from AD – User Lync |只有在偵測到 Lync 後才存在。它會流送所有基礎結構 Lync 屬性。 |
 
 ## 後續步驟
-
-- 如需組態模型的詳細資訊，請參閱[了解宣告式佈建](active-directory-aadconnectsync-understanding-declarative-provisioning.md)。
-- 如需運算式語言的詳細資訊，請參閱[了解宣告式佈建運算式](active-directory-aadconnectsync-understanding-declarative-provisioning-expressions.md)。
-- 如需了解現成可用組態的運作方式，請繼續閱讀[了解使用者和連絡人](active-directory-aadconnectsync-understanding-users-and-contacts.md)
-- 如需了解如何使用宣告式佈建進行實際變更，請參閱[如何變更預設組態](active-directory-aadconnectsync-change-the-configuration.md)。
+* 如需組態模型的詳細資訊，請參閱[了解宣告式佈建](active-directory-aadconnectsync-understanding-declarative-provisioning.md)。
+* 如需運算式語言的詳細資訊，請參閱[了解宣告式佈建運算式](active-directory-aadconnectsync-understanding-declarative-provisioning-expressions.md)。
+* 如需了解現成可用組態的運作方式，請繼續閱讀[了解使用者和連絡人](active-directory-aadconnectsync-understanding-users-and-contacts.md)
+* 如需了解如何使用宣告式佈建進行實際變更，請參閱[如何變更預設組態](active-directory-aadconnectsync-change-the-configuration.md)。
 
 **概觀主題**
 
-- [Azure AD Connect 同步處理：了解及自訂同步處理](active-directory-aadconnectsync-whatis.md)
-- [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
+* [Azure AD Connect 同步處理：了解及自訂同步處理](active-directory-aadconnectsync-whatis.md)
+* [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
 <!----HONumber=AcomDC_0907_2016-->

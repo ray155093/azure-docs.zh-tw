@@ -1,27 +1,25 @@
-<properties
-   pageTitle="疑難排解應用程式升級 | Microsoft Azure"
-   description="本文涵蓋升級 Service Fabric 應用程式的一些常見問題，以及解決方式。"
-   services="service-fabric"
-   documentationCenter=".net"
-   authors="mani-ramaswamy"
-   manager="timlt"
-   editor=""/>
+---
+title: 疑難排解應用程式升級 | Microsoft Docs
+description: 本文涵蓋升級 Service Fabric 應用程式的一些常見問題，以及解決方式。
+services: service-fabric
+documentationcenter: .net
+author: mani-ramaswamy
+manager: timlt
+editor: ''
 
-<tags
-   ms.service="service-fabric"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="NA"
-   ms.date="09/14/2016"
-   ms.author="subramar"/>
+ms.service: service-fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 09/14/2016
+ms.author: subramar
 
+---
 # 疑難排解應用程式升級
-
 本文涵蓋升級 Azure Service Fabric 應用程式的一些常見問題，以及解決方式。
 
 ## 疑難排解失敗的應用程式升級
-
 當升級失敗時，**Get-ServiceFabricApplicationUpgrade** 命令的輸出會包含偵錯失敗的其他資訊。下列清單指定如何使用其他資訊︰
 
 1. 識別失敗類型。
@@ -31,7 +29,6 @@
 當 Service Fabric 偵測到失敗，就會提供此資訊，不論 **FailureAction** 是回復或暫停升級。
 
 ### 識別失敗類型
-
 在 **Get-ServiceFabricApplicationUpgrade** 的輸出中，**FailureTimestampUtc** 會識別 Service Fabric 偵測升級失敗以及觸發 **FailureAction** 的時間戳記 (UTC)。**FailureReason** 會識別失敗的三個可能高階原因之一：
 
 1. UpgradeDomainTimeout - 指出特定的升級網域花太多時間完成且 **UpgradeDomainTimeout** 過期。
@@ -41,7 +38,6 @@
 這些項目只有在升級失敗且啟動回復時，才會出現在輸出中。視失敗的類型而定，會顯示進一步的資訊。
 
 ### 調查升級逾時
-
 升級逾時失敗通常是由服務可用性問題造成的。本段落下面的輸出是典型的升級，其中服務複本或執行個體無法在新的程式碼版本中啟動。**UpgradeDomainProgressAtFailure** 欄位在失敗時擷取任何擱置中升級工作的快照集。
 
 ~~~
@@ -87,7 +83,6 @@ UpgradeReplicaSetCheckTimeout  : 00:00:00
 目前的 **UpgradeState** 是 *RollingBackCompleted*，因此原始升級必須以回復 **FailureAction** 執行，這樣會自動在失敗時回復升級。如果原始升級以手動 **FailureAction** 執行，則升級會處於暫止狀態，以允許應用程式的即時偵錯。
 
 ### 調查健康狀態檢查失敗
-
 升級網域中的所有節點完成升級並通過所有安全檢查之後，各種問題都可能觸發健康狀態檢查失敗。本段落下面的輸出是由於失敗的健康狀態檢查的典型升級失敗。**UnhealthyEvaluations** 欄位會根據指定的[健康狀態原則](service-fabric-health-introduction.md)，擷取升級時失敗的健康狀態檢查的快照集。
 
 ~~~
@@ -147,7 +142,6 @@ ServiceTypeHealthPolicyMap              :
 升級是因啟動升級時手動指定 **FailureAction** 失敗而暫止。此模式可讓我們在採取任何進一步動作之前，在失敗的狀態下調查即時系統。
 
 ### 從暫止升級復原
-
 使用回復的 **FailureAction**，因為升級會自動在失敗時回復，所以不需要復原。使用手動 **FailureAction**，有數個復原選項：
 
 1. 手動觸發回復
@@ -185,12 +179,10 @@ PS D:\temp>
 升級會從上一次暫止的升級網域繼續，並使用相同的升級參數和健康狀態原則。如有需要，繼續升級時，上述輸出中顯示的任何升級參數和健康狀態原則都可以在相同命令中變更。在此範例中，升級以監視模式繼續，參數和健康狀態原則維持不變。
 
 ## 進一步疑難排解
-
 ### Service Fabric 不遵循指定的健康狀態原則。
-
 可能的原因 1：
 
-Service Fabric 將所有百分比轉譯為健康狀態評估的實體 (例如複本、資料分割和服務) 實際數目，並且一律無條件進位到實體整數。例如，如果最大值 _MaxPercentUnhealthyReplicasPerPartition_ 是 21%，而有 5 個複本，則 Service Fabric 可允許最多 2 個健康狀態不良的複本 (亦即 `Math.Ceiling (5*0.21))。因此，健康狀態原則應該據此設定。
+Service Fabric 將所有百分比轉譯為健康狀態評估的實體 (例如複本、資料分割和服務) 實際數目，並且一律無條件進位到實體整數。例如，如果最大值 *MaxPercentUnhealthyReplicasPerPartition* 是 21%，而有 5 個複本，則 Service Fabric 可允許最多 2 個健康狀態不良的複本 (亦即 `Math.Ceiling (5*0.21))。因此，健康狀態原則應該據此設定。
 
 可能的原因 2：
 
@@ -199,15 +191,12 @@ Service Fabric 將所有百分比轉譯為健康狀態評估的實體 (例如複
 不過，在升級期間，D 會在 C 健康狀態不良時變成健康狀態良好。升級仍然會成功，因為只有 25% 的服務是健康狀態不良。但是，由於是 C 意外變成健康狀態不良而不是 D，所以可能會造成非預期的錯誤。在此情況下，D 應該被模式化為與 A、B 和 C 不同的服務類型。因為健康狀態原則是根據每個服務類型指定，所以可以對不同的服務套用不同的健康狀態不良百分比臨界值。
 
 ### 我未對應用程式升級指定健康狀態原則，但是升級還是因為我從未指定的逾時而失敗
-
 當未對升級要求提供健康狀態原則時，會從目前應用程式版本的 *ApplicationManifest.xml* 取用。例如，如果將應用程式 X 從 1.0 版升級至 2.0 版，則會使用為 1.0 版指定的應用程式健康狀態原則。如果應該對升級使用不同的健康狀態原則，則需要指定原則做為應用程式升級 API 呼叫的一部分。指定為 API 呼叫一部分的原則只適用於升級期間。完成升級後，會使用 *ApplicationManifest.xml* 中指定的原則。
 
 ### 指定了不正確的逾時
-
 您可能想要知道當逾時設定不一致時會發生什麼情況。例如，您的 *UpgradeTimeout* 小於 *UpgradeDomainTimeout*。答案是會傳回錯誤。如果 *UpgradeDomainTimeout* 小於 *HealthCheckWaitDuration* 和 *HealthCheckRetryTimeout* 的總和，或如果 *UpgradeDomainTimeout* 小於 *HealthCheckWaitDuration* 和 *HealthCheckStableDuration* 的總和，則會傳回錯誤。
 
 ### 我的升級耗費太多時間
-
 升級完成的時間取決於健康狀態檢查和指定的逾時。健康狀態檢查和逾時則取決於花多少時間來複製、部署及穩定應用程式。使用逾時太過激烈，可能表示會有更多失敗的升級，因此建議保守地從較長的逾時開始。
 
 以下是逾時與升級時間之間的互動方式快速複習：
@@ -219,7 +208,6 @@ Service Fabric 將所有百分比轉譯為健康狀態評估的實體 (例如複
 升級網域的升級時間受到 *UpgradeDomainTimeout* 限制。如果 *HealthCheckRetryTimeout* 和 *HealthCheckStableDuration* 兩者都為非零且應用程式的健康狀態會保持來回切換，則升級最終會在 *UpgradeDomainTimeout* 逾時。目前升級網域的升級開始時，*UpgradeDomainTimeout* 就會開始倒數計時。
 
 ## 後續步驟
-
 [使用 Visual Studio 升級您的應用程式](service-fabric-application-upgrade-tutorial.md)將引導您完成使用 Visual Studio 進行應用程式升級的步驟。
 
 [使用 PowerShell 升級您的應用程式](service-fabric-application-upgrade-tutorial-powershell.md)將引導您完成使用 PowerShell 進行應用程式升級的步驟。
@@ -231,6 +219,5 @@ Service Fabric 將所有百分比轉譯為健康狀態評估的實體 (例如複
 參考[進階主題](service-fabric-application-upgrade-advanced.md)，以了解如何在升級您的應用程式時使用進階功能。
 
 參考[疑難排解應用程式升級](service-fabric-application-upgrade-troubleshooting.md)中的步驟，以修正應用程式升級中常見的問題。
- 
 
 <!---HONumber=AcomDC_0921_2016-->

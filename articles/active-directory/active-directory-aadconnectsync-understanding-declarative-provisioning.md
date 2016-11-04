@@ -1,23 +1,21 @@
-<properties
-    pageTitle="Azure AD Connect 同步處理：了解宣告式佈建 | Microsoft Azure"
-    description="說明 Azure AD Connect 中的宣告式佈建組態模型。"
-    services="active-directory"
-    documentationCenter=""
-    authors="andkjell"
-    manager="femila"
-    editor=""/>
+---
+title: Azure AD Connect 同步處理：了解宣告式佈建 | Microsoft Docs
+description: 說明 Azure AD Connect 中的宣告式佈建組態模型。
+services: active-directory
+documentationcenter: ''
+author: andkjell
+manager: femila
+editor: ''
 
-<tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/29/2016"
-    ms.author="billmath"/>
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/29/2016
+ms.author: billmath
 
-
-
+---
 # <a name="azure-ad-connect-sync:-understanding-declarative-provisioning"></a>Azure AD Connect 同步處理：了解宣告式佈建
 本主題說明 Azure AD Connect 中的組態模型。 此模型稱為宣告式佈建，它可讓您輕鬆地進行組態變更。 本主題中所述的許多項目都是進階的，而且在大部分客戶案例中並非必要。
 
@@ -30,12 +28,12 @@
 
 ![同步處理管線](./media/active-directory-aadconnectsync-understanding-declarative-provisioning/pipeline.png)  
 
-- 資料：來源物件
-- [範圍](#scope)：尋找所有適用的同步處理規則
-- [聯結](#join)：判斷連接器空間和 Metaverse 之間的關聯性
-- [轉換](#transform)：計算屬性應如何轉換和流動
-- [優先順序](#precedence)：解決衝突的屬性貢獻
-- 目標：目標物件
+* 資料：來源物件
+* [範圍](#scope)：尋找所有適用的同步處理規則
+* [聯結](#join)：判斷連接器空間和 Metaverse 之間的關聯性
+* [轉換](#transform)：計算屬性應如何轉換和流動
+* [優先順序](#precedence)：解決衝突的屬性貢獻
+* 目標：目標物件
 
 ## <a name="scope"></a>範圍
 範圍模組會評估物件，並判斷在範圍中且應納入處理的規則。 視物件上的屬性值而定，不同的同步處理規則會評估為在範圍中。 例如，沒有 Exchange 信箱的已停用使用者會有不同於具有信箱的已啟用使用者的規則。  
@@ -48,18 +46,18 @@
 
 範圍模組支援下列作業。
 
-作業 | 說明
---- | ---
-EQUAL、NOTEQUAL | 評估此值是否等於屬性值的字串比較。 若為多重值屬性，請參閱 ISIN 和 ISNOTIN。
-LESSTHAN、LESSTHAN_OR_EQUAL | 評估此值是否小於屬性值的字串比較。
-CONTAINS、NOTCONTAINS | 評估是否可在屬性值中找到此值的字串比較。
-STARTSWITH、NOTSTARTSWITH | 評估此值是否在屬性值開頭的字串比較。
-ENDSWITH、NOTENDSWITH | 評估此值是否在屬性值結尾的字串比較。
-GREATERTHAN、GREATERTHAN_OR_EQUAL | 評估此值是否大於屬性值的字串比較。
-ISNULL、ISNOTNULL | 評估物件是否不存在此屬性。 如果屬性不存在，因而為 null，規則便在範圍中。
-ISIN、ISNOTIN | 判斷此值是否存在於定義的屬性中。 此作業是 EQUAL 和 NOTEQUAL 的多重值變化。 屬性應該是多重值的屬性，而如果可以在任何屬性值中找到此值，規則便在範圍中。
-ISBITSET、ISNOTBITSET | 評估是否已設定特定的位元。 例如，可用來評估 userAccountControl 中的位元，以查看使用者已啟用或停用。
-ISMEMBEROF、ISNOTMEMBEROF | 此值應該包含連接器空間中群組的 DN。 如果物件是指定群組的成員，規則便在範圍中。
+| 作業 | 說明 |
+| --- | --- |
+| EQUAL、NOTEQUAL |評估此值是否等於屬性值的字串比較。 若為多重值屬性，請參閱 ISIN 和 ISNOTIN。 |
+| LESSTHAN、LESSTHAN_OR_EQUAL |評估此值是否小於屬性值的字串比較。 |
+| CONTAINS、NOTCONTAINS |評估是否可在屬性值中找到此值的字串比較。 |
+| STARTSWITH、NOTSTARTSWITH |評估此值是否在屬性值開頭的字串比較。 |
+| ENDSWITH、NOTENDSWITH |評估此值是否在屬性值結尾的字串比較。 |
+| GREATERTHAN、GREATERTHAN_OR_EQUAL |評估此值是否大於屬性值的字串比較。 |
+| ISNULL、ISNOTNULL |評估物件是否不存在此屬性。 如果屬性不存在，因而為 null，規則便在範圍中。 |
+| ISIN、ISNOTIN |判斷此值是否存在於定義的屬性中。 此作業是 EQUAL 和 NOTEQUAL 的多重值變化。 屬性應該是多重值的屬性，而如果可以在任何屬性值中找到此值，規則便在範圍中。 |
+| ISBITSET、ISNOTBITSET |評估是否已設定特定的位元。 例如，可用來評估 userAccountControl 中的位元，以查看使用者已啟用或停用。 |
+| ISMEMBEROF、ISNOTMEMBEROF |此值應該包含連接器空間中群組的 DN。 如果物件是指定群組的成員，規則便在範圍中。 |
 
 ## <a name="join"></a>聯結
 同步處理管線中的聯結模組負責尋找來源中物件和目標中物件之間的關聯性。 在輸入規則上，此關聯性是連接器空間中的物件找到對 Metaverse 中物件的關聯性。  
@@ -147,22 +145,19 @@ ISMEMBEROF、ISNOTMEMBEROF | 此值應該包含連接器空間中群組的 DN。
 ![多個物件聯結至相同的 mv 物件](./media/active-directory-aadconnectsync-understanding-declarative-provisioning/multiple2.png)  
 
 ## <a name="next-steps"></a>後續步驟
-
-- 如需運算式語言的詳細資訊，請參閱 [了解宣告式佈建運算式](active-directory-aadconnectsync-understanding-declarative-provisioning-expressions.md)。
-- 如需了解如何立即使用宣告式佈建，請參閱 [了解預設組態](active-directory-aadconnectsync-understanding-default-configuration.md)。
-- 如需了解如何使用宣告式佈建進行實際變更，請參閱 [如何變更預設組態](active-directory-aadconnectsync-change-the-configuration.md)。
-- 如需了解使用者與連絡人的共同運作方式，請繼續閱讀 [了解使用者和連絡人](active-directory-aadconnectsync-understanding-users-and-contacts.md)。
+* 如需運算式語言的詳細資訊，請參閱 [了解宣告式佈建運算式](active-directory-aadconnectsync-understanding-declarative-provisioning-expressions.md)。
+* 如需了解如何立即使用宣告式佈建，請參閱 [了解預設組態](active-directory-aadconnectsync-understanding-default-configuration.md)。
+* 如需了解如何使用宣告式佈建進行實際變更，請參閱 [如何變更預設組態](active-directory-aadconnectsync-change-the-configuration.md)。
+* 如需了解使用者與連絡人的共同運作方式，請繼續閱讀 [了解使用者和連絡人](active-directory-aadconnectsync-understanding-users-and-contacts.md)。
 
 **概觀主題**
 
-- [Azure AD Connect 同步處理：了解及自訂同步處理](active-directory-aadconnectsync-whatis.md)
-- [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
+* [Azure AD Connect 同步處理：了解及自訂同步處理](active-directory-aadconnectsync-whatis.md)
+* [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
 **參考主題**
 
-- [Azure AD Connect 同步處理：函式參考](active-directory-aadconnectsync-functions-reference.md)
-
-
+* [Azure AD Connect 同步處理：函式參考](active-directory-aadconnectsync-functions-reference.md)
 
 <!--HONumber=Oct16_HO2-->
 

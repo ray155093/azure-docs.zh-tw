@@ -1,35 +1,32 @@
-<properties 
-	pageTitle="如何在 Azure API 管理原則中使用屬性" 
-	description="了解如何在 Azure API 管理原則中使用屬性。" 
-	services="api-management" 
-	documentationCenter="" 
-	authors="steved0x" 
-	manager="erikre" 
-	editor=""/>
+---
+title: 如何在 Azure API 管理原則中使用屬性
+description: 了解如何在 Azure API 管理原則中使用屬性。
+services: api-management
+documentationcenter: ''
+author: steved0x
+manager: erikre
+editor: ''
 
-<tags 
-	ms.service="api-management" 
-	ms.workload="mobile" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="08/09/2016" 
-	ms.author="sdanie"/>
+ms.service: api-management
+ms.workload: mobile
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/09/2016
+ms.author: sdanie
 
-
+---
 # 如何在 Azure API 管理原則中使用屬性
-
 API 管理原則是系統的強大功能，可讓發行者透過設定來變更 API 的行為。原則是陳述式的集合，會因 API 的要求或回應循序執行。原則陳述可以使用引述的文字、值、原則運算式及屬性來建構。
 
 每個 API 管理服務執行個體都有服務執行個體全域適用的之鍵/值組的屬性集合。這個屬性可用來管理所有 API 組態及原則的常數字串值。每個屬性都有下列屬性。
 
-
 | 屬性 | 類型 | 說明 |
-|-----------|-----------------|---------------------------------------------------------------------------------------------------------|
-| Name | string | 屬性的名稱。只能包含字母、數字、句點、破折號和底線字元。 |
-| 值 | string | 屬性的值。不能是空白或只由空白字元組成。 |
-| Secret | 布林值 | 決定該值是否為密碼且是否應該加密。 |
-| 標記 | 字串陣列 | 若有提供選用的標記，則可用來篩選屬性清單。 |
+| --- | --- | --- |
+| Name |string |屬性的名稱。只能包含字母、數字、句點、破折號和底線字元。 |
+| 值 |string |屬性的值。不能是空白或只由空白字元組成。 |
+| Secret |布林值 |決定該值是否為密碼且是否應該加密。 |
+| 標記 |字串陣列 |若有提供選用的標記，則可用來篩選屬性清單。 |
 
 屬性是在發行者入口網站上的 [屬性] 索引標籤中設定。在以下範例中，設定了三個屬性。
 
@@ -38,16 +35,15 @@ API 管理原則是系統的強大功能，可讓發行者透過設定來變更 
 屬性值可以包含常值字串及[原則運算式](https://msdn.microsoft.com/library/azure/dn910913.aspx)。下表顯示之前的三個範例屬性和其屬性。`ExpressionProperty` 的值是會傳回包含目前日期與時間之字串的運算式。`ContosoHeaderValue` 屬性已標記為密碼，所以未顯示其值。
 
 | Name | 值 | Secret | 標記 |
-|--------------------|----------------------------|--------|---------|
-| ContosoHeader | TrackingId | False | Contoso |
-| ContosoHeaderValue | •••••••••••••••••••••• | True | Contoso |
-| ExpressionProperty | @(DateTime.Now.ToString()) | False | |
+| --- | --- | --- | --- |
+| ContosoHeader |TrackingId |False |Contoso |
+| ContosoHeaderValue |•••••••••••••••••••••• |True |Contoso |
+| ExpressionProperty |@(DateTime.Now.ToString()) |False | |
 
 ## 使用屬性
-
 若要在原則中使用屬性，請將屬性名稱放在雙大括號 (如 `{{ContosoHeader}}`) 內，如以下範例所示。
 
-	<set-header name="{{ContosoHeader}}" exists-action="override">
+    <set-header name="{{ContosoHeader}}" exists-action="override">
       <value>{{ContosoHeaderValue}}</value>
     </set-header>
 
@@ -57,9 +53,9 @@ API 管理原則是系統的強大功能，可讓發行者透過設定來變更 
 
 屬性也可以包含原則運算式。以下範例使用 `ExpressionProperty`。
 
-	<set-header name="CustomHeader" exists-action="override">
-		<value>{{ExpressionProperty}}</value>
-	</set-header>
+    <set-header name="CustomHeader" exists-action="override">
+        <value>{{ExpressionProperty}}</value>
+    </set-header>
 
 當評估此原則時，`{{ExpressionProperty}}` 會替代為其值 `@(DateTime.Now.ToString())`。因為該值是原則運算式，所以會評估運算式，且原則會繼續執行。
 
@@ -74,7 +70,6 @@ API 管理原則是系統的強大功能，可讓發行者透過設定來變更 
 請注意，雖然屬性值可以包含原則運算式，但屬性值不能包含其他屬性。如果文字包含做為屬性值的屬性參照 (例如 `Property value text {{MyProperty}}`)，該屬性參照不會被取代，且將會包含做為屬性值的一部分。
 
 ## 建立屬性
-
 若要建立屬性，請按一下 [屬性] 索引標籤 上的 [新增屬性]。
 
 ![新增屬性][api-management-properties-add-property-menu]
@@ -90,7 +85,6 @@ API 管理原則是系統的強大功能，可讓發行者透過設定來變更 
 如需使用 REST API 建立屬性的詳細資訊，請參閱[使用 REST API 建立屬性](https://msdn.microsoft.com/library/azure/mt651775.aspx#Put)。
 
 ## 編輯屬性
-
 若要編輯屬性，請按一下屬性旁邊的 [編輯] 來編輯。
 
 ![編輯屬性][api-management-properties-edit]
@@ -102,7 +96,6 @@ API 管理原則是系統的強大功能，可讓發行者透過設定來變更 
 如需使用 REST API 編輯屬性的詳細資訊，請參閱[使用 REST API 編輯屬性](https://msdn.microsoft.com/library/azure/mt651775.aspx#Patch)。
 
 ## 刪除屬性
-
 若要刪除屬性，請按一下屬性旁邊的 [刪除] 來刪除。
 
 ![刪除屬性][api-management-properties-delete]
@@ -111,12 +104,14 @@ API 管理原則是系統的強大功能，可讓發行者透過設定來變更 
 
 ![Confirm delete][api-management-delete-confirm]
 
->[AZURE.IMPORTANT] 如有任何原則參照該屬性，則您必須將該屬性從所有使用它的原則中移除，才能成功刪除該屬性。
+> [!IMPORTANT]
+> 如有任何原則參照該屬性，則您必須將該屬性從所有使用它的原則中移除，才能成功刪除該屬性。
+> 
+> 
 
 如需使用 REST API 刪除屬性的詳細資訊，請參閱[使用 REST API 刪除屬性](https://msdn.microsoft.com/library/azure/mt651775.aspx#Delete)。
 
 ## 搜尋與篩選屬性
-
 [屬性] 索引標籤包括可協助您管理屬性的搜尋與篩選功能。若要按照屬性名稱篩選屬性清單，請在 [搜尋屬性] 文字方塊中輸入搜尋字詞。若要顯示所有屬性，請清除 [搜尋屬性] 文字方塊並按一下 Enter。
 
 ![搜尋][api-management-properties-search]
@@ -126,15 +121,15 @@ API 管理原則是系統的強大功能，可讓發行者透過設定來變更 
 ![篩選器][api-management-properties-filter]
 
 ## 後續步驟
-
--	深入了解原則的使用方式
-	-	[API 管理中的原則](api-management-howto-policies.md)
-	-	[原則參考文件](https://msdn.microsoft.com/library/azure/dn894081.aspx)
-	-	[原則運算式](https://msdn.microsoft.com/library/azure/dn910913.aspx)
+* 深入了解原則的使用方式
+  * [API 管理中的原則](api-management-howto-policies.md)
+  * [原則參考文件](https://msdn.microsoft.com/library/azure/dn894081.aspx)
+  * [原則運算式](https://msdn.microsoft.com/library/azure/dn910913.aspx)
 
 ## 觀看影片概觀
-
-> [AZURE.VIDEO use-properties-in-policies]
+> [!VIDEO https://channel9.msdn.com/Blogs/AzureApiMgmt/Use-Properties-in-Policies/player]
+> 
+> 
 
 [api-management-properties]: ./media/api-management-howto-properties/api-management-properties.png
 [api-management-properties-add-property]: ./media/api-management-howto-properties/api-management-properties-add-property.png

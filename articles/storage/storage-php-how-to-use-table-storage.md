@@ -1,49 +1,42 @@
-<properties
-    pageTitle="如何使用 PHP 中的資料表儲存體 | Microsoft Azure"
-    description="了解如何使用 PHP 的資料表服務來建立和刪除資料表，以及插入、刪除和查詢資料表。"
-    services="storage"
-    documentationCenter="php"
-    authors="tamram"
-    manager="carmonm"
-    editor="tysonn"/>
+---
+title: 如何使用 PHP 中的資料表儲存體 | Microsoft Docs
+description: 了解如何使用 PHP 的資料表服務來建立和刪除資料表，以及插入、刪除和查詢資料表。
+services: storage
+documentationcenter: php
+author: tamram
+manager: carmonm
+editor: tysonn
 
-<tags
-    ms.service="storage"
-    ms.workload="storage"
-    ms.tgt_pltfrm="na"
-    ms.devlang="php"
-    ms.topic="article"
-    ms.date="10/18/2016"
-    ms.author="tamram"/>
+ms.service: storage
+ms.workload: storage
+ms.tgt_pltfrm: na
+ms.devlang: php
+ms.topic: article
+ms.date: 10/18/2016
+ms.author: tamram
 
-
-
+---
 # <a name="how-to-use-table-storage-from-php"></a>如何使用 PHP 的資料表儲存體
+[!INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)]
 
-[AZURE.INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)]
-<br/>
-[AZURE.INCLUDE [storage-try-azure-tools-queues](../../includes/storage-try-azure-tools-tables.md)]
+[!INCLUDE [storage-try-azure-tools-queues](../../includes/storage-try-azure-tools-tables.md)]
 
 ## <a name="overview"></a>Overview
-
 本指南說明如何使用 Azure 資料表服務執行一般案例。 這些範例均是以 PHP 撰寫，並使用 [Azure SDK for PHP] [下載]。 所涵蓋的案例包括「建立和刪除資料表」以及「在資料表中插入、刪除及查詢實體」 。 如需有關 Azure 資料表服務的詳細資訊，請參閱 [後續步驟](#next-steps) 一節。
 
-[AZURE.INCLUDE [storage-table-concepts-include](../../includes/storage-table-concepts-include.md)]
+[!INCLUDE [storage-table-concepts-include](../../includes/storage-table-concepts-include.md)]
 
-[AZURE.INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
+[!INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
 
 ## <a name="create-a-php-application"></a>建立 PHP 應用程式
-
 若要建立一個存取 Azure 資料表服務的 PHP 應用程式，唯一的要求就是從您的程式碼內參考 Azure SDK for PHP 中的類別。 您可以使用任何開發工具來建立應用程式 (包括 [記事本])。
 
 在本指南中，您將使用可從 PHP 應用程式內本機呼叫的資料表服務功能，或可從 Azure Web 角色、背景工作角色或網站內執行的程式碼中呼叫的資料表服務功能。
 
 ## <a name="get-the-azure-client-libraries"></a>取得 Azure 用戶端程式庫
-
-[AZURE.INCLUDE [get-client-libraries](../../includes/get-client-libraries.md)]
+[!INCLUDE [get-client-libraries](../../includes/get-client-libraries.md)]
 
 ## <a name="configure-your-application-to-access-the-table-service"></a>設定讓您的應用程式存取資料表服務
-
 若要使用 Azure 資料表服務 API，您必須：
 
 1. 參考使用 [require_once][require_once] 陳述式的自動換片器檔案，以及
@@ -51,7 +44,10 @@
 
 下列範例顯示如何納入自動載入器檔案及參考 **ServicesBuilder** 類別。
 
-> [AZURE.NOTE] 此範例 (和本文中的其他範例) 假設您已透過 Composer 安裝 PHP Client Libraries for Azure。 如果您是以手動方式安裝程式庫，則必須參考 <code>WindowsAzure.php</code> 自動載入器檔案。
+> [!NOTE]
+> 此範例 (和本文中的其他範例) 假設您已透過 Composer 安裝 PHP Client Libraries for Azure。 如果您是以手動方式安裝程式庫，則必須參考 <code>WindowsAzure.php</code> 自動載入器檔案。
+> 
+> 
 
     require_once 'vendor/autoload.php';
     use WindowsAzure\Common\ServicesBuilder;
@@ -60,7 +56,6 @@
 在下列各範例中，一律會顯示 `require_once` 陳述式，但只會參考要執行之範例所需的類別。
 
 ## <a name="set-up-an-azure-storage-connection"></a>設定 Azure 儲存體連接
-
 若要具現化 Azure 資料表服務用戶端，您必須先具備一個有效的連接字串。 資料表服務的連接字串格式為：
 
 用於存取即時服務：
@@ -76,8 +71,8 @@
 
 * 直接將連接字串傳遞給它，或
 * 使用 **CloudConfigurationManager (CCM)** 到多種外部來源檢查連接字串：
-    * 預設已支援一種外部來源，即環境變數
-    * 您可以擴充 **ConnectionStringSource** 類別以加入新來源
+  * 預設已支援一種外部來源，即環境變數
+  * 您可以擴充 **ConnectionStringSource** 類別以加入新來源
 
 在本文的各範例中，將會直接傳遞連接字串。
 
@@ -89,7 +84,6 @@
 
 
 ## <a name="create-a-table"></a>建立資料表
-
 **TableRestProxy** 物件可讓您以 **createTable** 方法建立資料表。 建立資料表時，您可以設定資料表服務逾時值。 (如需有關資料表服務逾時值的詳細資訊，請參閱[設定表格服務作業的逾時值][table-service-timeouts]。)
 
     require_once 'vendor\autoload.php';
@@ -115,7 +109,6 @@
 如需有關資料表名稱限制的資訊，請參閱[了解表格服務資料模型][table-data-model]。
 
 ## <a name="add-an-entity-to-a-table"></a>將實體加入至資料表
-
 若要將實體新增至資料表，請建立一個新的 **Entity** 物件，然後將它傳遞給 **TableRestProxy->insertEntity**。 請注意，建立實體時，您必須指定 `PartitionKey` 和 `RowKey`。 這些是實體的唯一識別碼，且其值的查詢速度比其他屬性快上許多。 系統使用 `PartitionKey` 自動將資料表的實體散發在許多儲存體節點上。 具有相同 `PartitionKey` 的實體會儲存在相同節點上。 (對儲存在同一節點上的多個實體執行作業，會比對儲存在不同節點上的實體執行作業有更佳的執行效果。)`RowKey` 是實體在分割內的唯一識別碼。
 
     require_once 'vendor/autoload.php';
@@ -192,7 +185,6 @@
 
 
 ## <a name="retrieve-a-single-entity"></a>擷取單一實體
-
 **TableRestProxy->getEntity`RowKey` 方法可讓您透過查詢其 ** 和 `PartitionKey` 來擷取單一實體。 在以下範例中，會將分割區索引鍵 `tasksSeattle` 和資料列索引鍵 `1` 傳遞給 **getEntity** 方法。
 
     require_once 'vendor/autoload.php';
@@ -220,7 +212,6 @@
     echo $entity->getPartitionKey().":".$entity->getRowKey();
 
 ## <a name="retrieve-all-entities-in-a-partition"></a>擷取資料分割中的所有實體
-
 實體查詢使用篩選條件建構而成 (如需詳細資訊，請參閱[查詢資料表和實體][filters])。 若要擷取資料分割中的所有實體，請使用 "PartitionKey eq *partition_name*" 篩選條件。 下列範例示範如何透過將篩選條件傳遞給 **queryEntities** 方法來擷取 `tasksSeattle` 分割中的所有實體。
 
     require_once 'vendor/autoload.php';
@@ -252,7 +243,6 @@
     }
 
 ## <a name="retrieve-a-subset-of-entities-in-a-partition"></a>擷取資料分割中實體的子集
-
 前面範例中所使用的相同模式可用來擷取資料分割中的任何實體子集。 您所擷取的實體子集將取決於您使用的篩選條件 (如需詳細資訊，請參閱[查詢資料表和實體][filters])。下列範例示範如何使用篩選條件來擷取位於特定 `Location` 且 `DueDate` 在指定日期之前的所有實體。
 
     require_once 'vendor/autoload.php';
@@ -284,7 +274,6 @@
     }
 
 ## <a name="retrieve-a-subset-of-entity-properties"></a>擷取實體屬性的子集
-
 查詢可以擷取實體屬性的子集。 這項稱為「投射」 的技術可減少頻寬並提高查詢效能 (尤其是對大型實體而言)。 若要指定要擷取的屬性，請將屬性的名稱傳遞給 **Query->addSelectField** 方法。 您可以呼叫此方法許多次以新增其他屬性。 執行 **TableRestProxy->queryEntities** 之後，傳回的實體將只具有選取的屬性。 (如果您想要傳回資料表實體的子集，請使用篩選條件，如上面的查詢所示。)
 
     require_once 'vendor/autoload.php';
@@ -322,7 +311,6 @@
     }
 
 ## <a name="update-an-entity"></a>更新實體
-
 若要更新現有的實體，可以對實體使用 **Entity->setProperty** 和 **Entity->addProperty** 方法，然後呼叫 **TableRestProxy->updateEntity**。 下列範例會擷取一個實體、修改一個屬性、移除另一個屬性，以及新增一個屬性。 請注意，移除屬性的方式是將它的值設定成 **null**。
 
     require_once 'vendor/autoload.php';
@@ -358,7 +346,6 @@
     }
 
 ## <a name="delete-an-entity"></a>刪除實體
-
 若要刪除實體，請將資料表名稱以及實體的 `PartitionKey` 和 `RowKey` 傳遞給 **TableRestProxy->deleteEntity** 方法。
 
     require_once 'vendor/autoload.php';
@@ -385,7 +372,6 @@
 請注意，針對並行檢查，您可以使用 **DeleteEntityOptions->setEtag** 方法為要刪除的實體設定 Etag，並將 **DeleteEntityOptions** 物件傳遞給 **deleteEntity** 做為第四個參數。
 
 ## <a name="batch-table-operations"></a>批次資料表作業
-
 **TableRestProxy->batch** 方法可讓您以單一要求執行多項作業。 這裡的模式涉及將作業新增至 **BatchRequest** 物件，然後將 **BatchRequest** 物件傳遞給 **TableRestProxy->batch** 方法。 若要將作業新增至 **BatchRequest** 物件，您可以呼叫下列任一方法許多次：
 
 * **addInsertEntity** (新增 insertEntity 作業)
@@ -441,7 +427,6 @@
 如需有關批次處理資料表作業的詳細資訊，請參閱[執行實體群組交易][entity-group-transactions]。
 
 ## <a name="delete-a-table"></a>刪除資料表
-
 最後，若要刪除資料表，請將資料表名稱傳遞給 **TableRestProxy->deleteTable** 方法。
 
     require_once 'vendor/autoload.php';
@@ -466,10 +451,9 @@
     }
 
 ## <a name="next-steps"></a>後續步驟
-
 了解 Azure 資料表服務的基礎概念之後，請參考下列連結以深入了解更複雜的儲存工作。
 
-- 造訪 [Azure 儲存體團隊部落格](http://blogs.msdn.com/b/windowsazurestorage/)
+* 造訪 [Azure 儲存體團隊部落格](http://blogs.msdn.com/b/windowsazurestorage/)
 
 如需詳細資訊，另請參閱 [PHP 開發人員中心](/develop/php/)。
 

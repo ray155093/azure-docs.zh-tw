@@ -1,38 +1,37 @@
-<properties 
-	pageTitle="如何在 Azure API 管理中使用用戶端憑證驗證來保護後端服務" 
-	description="了解如何在 Azure API 管理中使用用戶端憑證驗證來保護後端服務。" 
-	services="api-management" 
-	documentationCenter="" 
-	authors="steved0x" 
-	manager="erikre" 
-	editor=""/>
+---
+title: 如何在 Azure API 管理中使用用戶端憑證驗證來保護後端服務
+description: 了解如何在 Azure API 管理中使用用戶端憑證驗證來保護後端服務。
+services: api-management
+documentationcenter: ''
+author: steved0x
+manager: erikre
+editor: ''
 
-<tags 
-	ms.service="api-management" 
-	ms.workload="mobile" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="08/24/2016" 
-	ms.author="sdanie"/>
+ms.service: api-management
+ms.workload: mobile
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/24/2016
+ms.author: sdanie
 
+---
 # 如何在 Azure API 管理中使用用戶端憑證驗證來保護後端服務
-
 API 管理提供以用戶端憑證保護 API 後端服務之存取的功能。本指南將示範如何在 API 發行者入口網站內管理憑證，以及如何設定 API 以使用憑證來存取其後端服務。
 
-如需使用 API 管理 REST API 來管理憑證的詳細資訊，請參閱 [Azure API 管理 REST API 憑證實體][]。
+如需使用 API 管理 REST API 來管理憑證的詳細資訊，請參閱 [Azure API 管理 REST API 憑證實體][Azure API 管理 REST API 憑證實體]。
 
 ## <a name="prerequisites"> </a>必要條件
-
-本指南將示範如何設定 API 管理服務執行個體，以使用用戶端憑證驗證來存取 API 的後端服務。在遵循本主題中的步驟之前，請先設定後端服務以進行用戶端憑證驗證 ([若要在 Azure WebSites 中設定憑證驗證，請參閱此文章][])，以及取得憑證的存取權限和憑證密碼，以在 API 管理發行者入口網站內上傳。
+本指南將示範如何設定 API 管理服務執行個體，以使用用戶端憑證驗證來存取 API 的後端服務。在遵循本主題中的步驟之前，請先設定後端服務以進行用戶端憑證驗證 ([若要在 Azure WebSites 中設定憑證驗證，請參閱此文章][若要在 Azure WebSites 中設定憑證驗證，請參閱此文章])，以及取得憑證的存取權限和憑證密碼，以在 API 管理發行者入口網站內上傳。
 
 ## <a name="step1"> </a>上傳用戶端憑證
-
 若要開始，請在 Azure 傳統入口網站中，針對您的 API 管理服務按一下 [管理]。這會帶您前往 API 管理發行者入口網站。
 
 ![API 發行者入口網站][api-management-management-console]
 
->如果您尚未建立 API 管理服務執行個體，請參閱[開始使用 Azure API 管理][]教學課程中的[建立 API 管理服務執行個體][]。
+> 如果您尚未建立 API 管理服務執行個體，請參閱[開始使用 Azure API 管理][開始使用 Azure API 管理]教學課程中的[建立 API 管理服務執行個體][建立 API 管理服務執行個體]。
+> 
+> 
 
 從左側的 [API 管理] 功能表按一下 [安全性]，然後按一下 [用戶端憑證]。
 
@@ -44,20 +43,23 @@ API 管理提供以用戶端憑證保護 API 後端服務之存取的功能。�
 
 瀏覽至憑證的所在位置，然後輸入憑證密碼。
 
->憑證必須是 **.pfx** 格式。可接受自我簽署憑證。
+> 憑證必須是 **.pfx** 格式。可接受自我簽署憑證。
+> 
+> 
 
 ![Upload certificate][api-management-upload-certificate-form]
 
 按一下 [上傳] 以上傳憑證。
 
->此時，系統會驗證憑證密碼。如果密碼不正確，系統會顯示錯誤訊息。
+> 此時，系統會驗證憑證密碼。如果密碼不正確，系統會顯示錯誤訊息。
+> 
+> 
 
 ![Certificate uploaded][api-management-certificate-uploaded]
 
-待憑證上傳完畢後，它會顯示在 [用戶端憑證] 索引標籤中。如果您擁有多個憑證，請記下主體或指紋的最後四個字元，因為在設定 API 以使用憑證時，您可以利用它們來選取憑證，如下文中的＜[設定 API 以使用用戶端憑證來驗證閘道][]＞一節所述。
+待憑證上傳完畢後，它會顯示在 [用戶端憑證] 索引標籤中。如果您擁有多個憑證，請記下主體或指紋的最後四個字元，因為在設定 API 以使用憑證時，您可以利用它們來選取憑證，如下文中的＜[設定 API 以使用用戶端憑證來驗證閘道][設定 API 以使用用戶端憑證來驗證閘道]＞一節所述。
 
 ## <a name="step1a"> </a>刪除用戶端憑證
-
 若要刪除憑證，請按一下目標憑證旁的 [刪除]。
 
 ![Delete certificate][api-management-certificate-delete]
@@ -71,7 +73,6 @@ API 管理提供以用戶端憑證保護 API 後端服務之存取的功能。�
 ![Confirm delete][api-management-confirm-delete-policy]
 
 ## <a name="step2"> </a>設定 API 以使用用戶端憑證來驗證閘道
-
 從左側的 [API 管理] 功能表按一下 [API]，再依序按一下所需之 API 的名稱和 [安全性] 索引標籤。
 
 ![API security][api-management-api-security]
@@ -86,19 +87,24 @@ API 管理提供以用戶端憑證保護 API 後端服務之存取的功能。�
 
 按一下 [儲存] 以將組態變更儲存至 API。
 
->此變更將立即生效，且該 API 之作業的呼叫將使用憑證以在後端伺服器上進行驗證。
+> 此變更將立即生效，且該 API 之作業的呼叫將使用憑證以在後端伺服器上進行驗證。
+> 
+> 
 
 ![Save API changes][api-management-save-api]
 
->當您將憑證指定用於 API 後端服務的閘道驗證時，憑證遂成為該 API 之原則的一部分，因此可以在原則編輯器中檢視。
+> 當您將憑證指定用於 API 後端服務的閘道驗證時，憑證遂成為該 API 之原則的一部分，因此可以在原則編輯器中檢視。
+> 
+> 
 
 ![Certificate policy][api-management-certificate-policy]
 
 ## 後續步驟
-
 如需其他用來保護您後端服務方式的詳細資訊，例如 HTTP Basic 或共用密碼驗證，請參閱下列影片。
 
-> [AZURE.VIDEO last-mile-security]
+> [!VIDEO https://channel9.msdn.com/Blogs/AzureApiMgmt/Last-mile-Security/player]
+> 
+> 
 
 [api-management-management-console]: ./media/api-management-howto-mutual-certificates/api-management-management-console.png
 [api-management-security-client-certificates]: ./media/api-management-howto-mutual-certificates/api-management-security-client-certificates.png
@@ -138,6 +144,6 @@ API 管理提供以用戶端憑證保護 API 後端服務之存取的功能。�
 [Next steps]: #next-steps
 
 
- 
+
 
 <!---HONumber=AcomDC_0831_2016-->

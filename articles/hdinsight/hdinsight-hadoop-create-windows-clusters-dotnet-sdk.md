@@ -1,41 +1,36 @@
-<properties
-   pageTitle="使用 .NET SDK 在 HDInsight 中建立 Windows 型 Hadoop 叢集 | Microsoft Azure"
-   	description="了解如何使用 .NET SDK 建立 Azure HDInsight 的 HDInsight 叢集。"
-   services="hdinsight"
-   documentationCenter=""
-   tags="azure-portal"
-   authors="mumian"
-   manager="jhubbard"
-   editor="cgronlun"/>
+---
+title: 使用 .NET SDK 在 HDInsight 中建立 Windows 型 Hadoop 叢集 | Microsoft Docs
+description: 了解如何使用 .NET SDK 建立 Azure HDInsight 的 HDInsight 叢集。
+services: hdinsight
+documentationcenter: ''
+tags: azure-portal
+author: mumian
+manager: jhubbard
+editor: cgronlun
 
-<tags
-   ms.service="hdinsight"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="big-data"
-   ms.date="09/02/2016"
-   ms.author="jgao"/>
+ms.service: hdinsight
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: big-data
+ms.date: 09/02/2016
+ms.author: jgao
 
+---
 # 使用 .NET SDK 在 HDInsight 中建立 Windows 型 Hadoop 叢集
-
-[AZURE.INCLUDE [選取器](../../includes/hdinsight-selector-create-clusters.md)]
-
+[!INCLUDE [選取器](../../includes/hdinsight-selector-create-clusters.md)]
 
 了解如何使用 .NET SDK 建立 HDInsight 叢集。如需其他叢集建立工具和功能的資訊，請按一下此頁面頂端的索引標籤，或參閱[叢集建立方法](hdinsight-provision-clusters.md#cluster-creation-methods)。
 
-
-##必要條件：
-
-[AZURE.INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
+## 必要條件：
+[!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
 開始執行本文中的指示之前，您必須擁有以下項目：
 
-- Azure 訂用帳戶。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-- Visual Studio 2013 或 2015。
+* Azure 訂用帳戶。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
+* Visual Studio 2013 或 2015。
 
 ## 建立叢集
-
 HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您能夠輕鬆地從 .NET Framework 應用程式使用 HDInsight。請遵循下列指示建立 Visual Studio 主控台應用程式，並貼上建立叢集的程式碼。
 
 應用程式需要 Azure 資源群組，以及預設儲存體帳戶。[附錄 A](#appx-a-create-dependent-components) 提供用來建立相依元件的 PowerShell 指令碼。
@@ -44,14 +39,13 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您能夠輕鬆地從 .NE
 
 1. 在 Visual Studio 中，建立新的 C# 主控台應用程式。
 2. 在 Nuget 封裝管理主控台中執行下列的 Nuget 命令。
-
-		Install-Package Microsoft.Rest.ClientRuntime.Azure.Authentication -Pre
+   
+        Install-Package Microsoft.Rest.ClientRuntime.Azure.Authentication -Pre
         Install-Package Microsoft.Azure.Management.ResourceManager -Pre
         Install-Package Microsoft.Azure.Management.HDInsight
-
-6. 在 [方案總管] 中按兩下 **Program.cs** 來開啟該檔案、貼上下列程式碼，然後提供變數的值：
-
-		using System;
+3. 在 [方案總管] 中按兩下 **Program.cs** 來開啟該檔案、貼上下列程式碼，然後提供變數的值：
+   
+        using System;
         using System.Threading;
         using System.Threading.Tasks;
         using Microsoft.Rest;
@@ -62,38 +56,36 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您能夠輕鬆地從 .NE
         using Microsoft.Azure.Management.ResourceManager;
         using Microsoft.IdentityModel.Clients.ActiveDirectory;
         using System.Net.Http;
-		
-		namespace CreateHDInsightCluster
-		{
-			class Program
-			{
+   
+        namespace CreateHDInsightCluster
+        {
+            class Program
+            {
                 // The client for managing HDInsight
-				private static HDInsightManagementClient _hdiManagementClient;
-		        // Replace with your AAD tenant ID if necessary
+                private static HDInsightManagementClient _hdiManagementClient;
+                // Replace with your AAD tenant ID if necessary
                 private const string TenantId = UserTokenProvider.CommonTenantId; 
                 private const string SubscriptionId = "<Your Azure Subscription ID>";
                 // This is the GUID for the PowerShell client. Used for interactive logins in this example.
                 private const string ClientId = "1950a258-227b-4e31-a9cf-717495945fc2";
-				private const string ExistingResourceGroupName = "<Azure Resource Group Name>";
-				private const string ExistingStorageName = "<Default Storage Account Name>.blob.core.windows.net";
-				private const string ExistingStorageKey = "<Default Storage Account Key>";
-				private const string ExistingBlobContainer = "<Default Blob Container Name>";
-				private const string NewClusterName = "<HDInsight Cluster Name>";
-				private const int NewClusterNumWorkerNodes = 2;
-				private const string NewClusterLocation = "EAST US 2";     // Must be the same as the default Storage account
-				private const OSType NewClusterOsType = OSType.Windows;
-				private const string NewClusterType = "Hadoop";
-				private const string NewClusterVersion = "3.2";
-				private const string NewClusterUsername = "admin";
-				private const string NewClusterPassword = "<HTTP User password>";
-                
+                private const string ExistingResourceGroupName = "<Azure Resource Group Name>";
+                private const string ExistingStorageName = "<Default Storage Account Name>.blob.core.windows.net";
+                private const string ExistingStorageKey = "<Default Storage Account Key>";
+                private const string ExistingBlobContainer = "<Default Blob Container Name>";
+                private const string NewClusterName = "<HDInsight Cluster Name>";
+                private const int NewClusterNumWorkerNodes = 2;
+                private const string NewClusterLocation = "EAST US 2";     // Must be the same as the default Storage account
+                private const OSType NewClusterOsType = OSType.Windows;
+                private const string NewClusterType = "Hadoop";
+                private const string NewClusterVersion = "3.2";
+                private const string NewClusterUsername = "admin";
+                private const string NewClusterPassword = "<HTTP User password>";
 
-		
-				static void Main(string[] args)
-				{
-					System.Console.WriteLine("Creating a cluster.  The process takes 10 to 20 minutes ...");
-		
-					// Authenticate and get a token
+                static void Main(string[] args)
+                {
+                    System.Console.WriteLine("Creating a cluster.  The process takes 10 to 20 minutes ...");
+
+                    // Authenticate and get a token
                     var authToken = Authenticate(TenantId, ClientId, SubscriptionId);
                     // Flag subscription for HDInsight, if it isn't already.
                     EnableHDInsight(authToken);
@@ -116,9 +108,9 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您能夠輕鬆地從 .NE
                     // Create the cluster
                     _hdiManagementClient.Clusters.Create(ExistingResourceGroupName, NewClusterName, parameters);
 
-					System.Console.WriteLine("The cluster has been created. Press ENTER to continue ...");
-					System.Console.ReadLine();
-				}
+                    System.Console.WriteLine("The cluster has been created. Press ENTER to continue ...");
+                    System.Console.ReadLine();
+                }
 
                 /// <summary>
                 /// Authenticate to an Azure subscription and retrieve an authentication token
@@ -151,22 +143,20 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您能夠輕鬆地從 .NE
                     // Register the HDInsight provider
                     var rpResult = resourceManagementClient.Providers.Register("Microsoft.HDInsight");
                 }
-			}
-		}
+            }
+        }
 
-7. 按 **F5** 鍵執行應用程式。主控台視窗會開啟並顯示應用程式的狀態。系統也會提示您輸入 Azure 帳戶認證。建立 HDInsight 叢集可能需要幾分鐘的時間。
+1. 按 **F5** 鍵執行應用程式。主控台視窗會開啟並顯示應用程式的狀態。系統也會提示您輸入 Azure 帳戶認證。建立 HDInsight 叢集可能需要幾分鐘的時間。
 
-
-
-##後續步驟
+## 後續步驟
 在本文中，您學到幾種建立 HDInsight 叢集的方法。若要深入了解，請參閱下列文章：
 
-- [開始使用 Azure HDInsight](hdinsight-hadoop-linux-tutorial-get-started.md) - 了解如何開始使用 HDInsight 叢集
-- [使用 .NET SDK 在 HDInsight 中執行 Hive 工作](hdinsight-hadoop-use-hive-dotnet-sdk.md)
-- [使用 .NET SDK 在 HDInsight 中執行 Pig 工作](hdinsight-hadoop-use-pig-dotnet-sdk.md)
-- [使用 .NET SDK 在 HDInsight 中執行 Sqoop 工作](hdinsight-hadoop-use-sqoop-dotnet-sdk.md)
-- [在 HDInsight 中執行 Oozie 工作](hdinsight-use-oozie.md)
-- [Azure HDInsight SDK 文件][hdinsight-sdk-documentation] - 探索 HDInsight SDK
+* [開始使用 Azure HDInsight](hdinsight-hadoop-linux-tutorial-get-started.md) - 了解如何開始使用 HDInsight 叢集
+* [使用 .NET SDK 在 HDInsight 中執行 Hive 工作](hdinsight-hadoop-use-hive-dotnet-sdk.md)
+* [使用 .NET SDK 在 HDInsight 中執行 Pig 工作](hdinsight-hadoop-use-pig-dotnet-sdk.md)
+* [使用 .NET SDK 在 HDInsight 中執行 Sqoop 工作](hdinsight-hadoop-use-sqoop-dotnet-sdk.md)
+* [在 HDInsight 中執行 Oozie 工作](hdinsight-use-oozie.md)
+* [Azure HDInsight SDK 文件][hdinsight-sdk-documentation] - 探索 HDInsight SDK
 
 [hdinsight-sdk-documentation]: http://msdn.microsoft.com/library/dn479185.aspx
 [azure-preview-portal]: https://manage.windowsazure.com
@@ -176,11 +166,10 @@ HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您能夠輕鬆地從 .NE
 [ssisclusterdelete]: http://msdn.microsoft.com/library/mt146778(v=sql.120).aspx
 
 
-##附錄 A：建立相依元件
-
+## 附錄 A：建立相依元件
 下列 PowerShell 指令碼可用來建立本教學課程中的 .NET 應用程式所需的相依元件。
 
-[AZURE.INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
+[!INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
     ####################################
     # Set these variables

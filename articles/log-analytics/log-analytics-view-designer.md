@@ -1,39 +1,37 @@
-<properties
-    pageTitle="Log Analytics 檢視設計工具 | Microsoft Azure"
-    description="Log Analytics 中的檢視設計工具可讓您在 OMS 主控台中建立自訂檢視，其中包含 OMS 存放庫中不同資料的視覺效果。 本文包含檢視設計工具的概觀以及建立和編輯自訂檢視的程序。"
-    services="log-analytics"
-    documentationCenter=""
-    authors="bwren"
-    manager="jwhit"
-    editor=""/>
+---
+title: Log Analytics 檢視設計工具 | Microsoft Docs
+description: Log Analytics 中的檢視設計工具可讓您在 OMS 主控台中建立自訂檢視，其中包含 OMS 存放庫中不同資料的視覺效果。 本文包含檢視設計工具的概觀以及建立和編輯自訂檢視的程序。
+services: log-analytics
+documentationcenter: ''
+author: bwren
+manager: jwhit
+editor: ''
 
-<tags
-    ms.service="log-analytics"
-    ms.workload="na"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/27/2016"
-    ms.author="bwren"/>
+ms.service: log-analytics
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/27/2016
+ms.author: bwren
 
-
+---
 # <a name="log-analytics-view-designer"></a>Log Analytics 檢視設計工具
 Log Analytics 中的檢視設計工具可讓您在 OMS 主控台中建立自訂檢視，其中包含 OMS 存放庫中不同資料的視覺效果。 本文包含檢視設計工具的概觀以及建立和編輯自訂檢視的程序。
 
 其他與檢視設計工具相關的文章︰
 
-- [圖格參考](log-analytics-view-designer-tiles.md) - 可用於自訂檢視之每個圖格的設定參考。 
-- [視覺效果組件參考](log-analytics-view-designer-parts.md) - 可用於自訂檢視之每個圖格的設定參考。 
-
+* [圖格參考](log-analytics-view-designer-tiles.md) - 可用於自訂檢視之每個圖格的設定參考。 
+* [視覺效果組件參考](log-analytics-view-designer-parts.md) - 可用於自訂檢視之每個圖格的設定參考。 
 
 ## <a name="concepts"></a>概念
 以檢視設計工具建立的檢視包含下表中的各部分。
 
 | 部分 | 說明 |
-|:--|:--|
-| 圖格 | 顯示在主要 Log Analytics 概觀儀表板上。  是自訂檢視包含之資訊的視覺化摘要。  不同的圖格類型提供 OMS 存放庫中不同記錄的視覺效果。  按一下圖格即可開啟其自訂檢視。 |
-| 自訂檢視 | 會在使用者按一下圖格時顯示。  包含一或多個視覺效果組件。 |
-| 視覺效果組件 | 根據一或多個針對 OMS 存放庫中資料進行[記錄搜尋](log-analytics-log-searches.md)，所得結果的視覺效果。  大部分組件包含標頭 (提供高階的視覺效果) 和前幾名搜尋結果清單。  不同的組件類型提供 OMS 存放庫中不同記錄的視覺效果。  按一下組件中的項目可執行記錄檔搜尋以提供詳細的記錄。 |
+|:--- |:--- |
+| 圖格 |顯示在主要 Log Analytics 概觀儀表板上。  是自訂檢視包含之資訊的視覺化摘要。  不同的圖格類型提供 OMS 存放庫中不同記錄的視覺效果。  按一下圖格即可開啟其自訂檢視。 |
+| 自訂檢視 |會在使用者按一下圖格時顯示。  包含一或多個視覺效果組件。 |
+| 視覺效果組件 |根據一或多個針對 OMS 存放庫中資料進行[記錄搜尋](log-analytics-log-searches.md)，所得結果的視覺效果。  大部分組件包含標頭 (提供高階的視覺效果) 和前幾名搜尋結果清單。  不同的組件類型提供 OMS 存放庫中不同記錄的視覺效果。  按一下組件中的項目可執行記錄檔搜尋以提供詳細的記錄。 |
 
 ![檢視設計工具概觀](media/log-analytics-view-designer/overview.png)
 
@@ -43,7 +41,6 @@ Log Analytics 中的檢視設計工具可讓您在 OMS 主控台中建立自訂�
 ![啟用預覽](media/log-analytics-view-designer/preview.png)
 
 ## <a name="creating-and-editing-views"></a>建立和編輯檢視
-
 ### <a name="create-a-new-view"></a>建立新的檢視
 按一下主要 OMS 儀表板中的 [檢視表設計工具] 圖格，即可在**檢視表設計工具**中開啟新的檢視。
 
@@ -91,13 +88,9 @@ Log Analytics 中的檢視設計工具可讓您在 OMS 主控台中建立自訂�
 ### <a name="rearrange-visualization-parts"></a>重新整理視覺效果組件
 檢視只有一列視覺效果組件。  按一下現有組件並拖曳至新的位置，即可重新排列檢視中的組件。
 
-
 ## <a name="next-steps"></a>後續步驟
-
-- 將[圖格](log-analytics-view-designer-tiles.md)新增至您的自訂檢視。
-- 將[視覺效果組件](log-analytics-view-designer-parts.md)新增至您的自訂檢視。
-
-
+* 將[圖格](log-analytics-view-designer-tiles.md)新增至您的自訂檢視。
+* 將[視覺效果組件](log-analytics-view-designer-parts.md)新增至您的自訂檢視。
 
 <!--HONumber=Oct16_HO2-->
 

@@ -1,27 +1,26 @@
 
-<properties
-    pageTitle="變更 Azure RemoteApp 計費 | Microsoft Azure"
-    description="了解如何停止支付 Azure RemoteApp。"
-    services="remoteapp"
-    documentationCenter=""
-    authors="lizap"
-    manager="mbaldwin" />
+---
+title: 變更 Azure RemoteApp 計費 | Microsoft Docs
+description: 了解如何停止支付 Azure RemoteApp。
+services: remoteapp
+documentationcenter: ''
+author: lizap
+manager: mbaldwin
 
-<tags
-    ms.service="remoteapp"
-    ms.workload="compute"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/15/2016"
-    ms.author="elizapo" />
+ms.service: remoteapp
+ms.workload: compute
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/15/2016
+ms.author: elizapo
 
-
-
+---
 # 如何停止支付 Azure RemoteApp
-
-> [AZURE.IMPORTANT]
-Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+> [!IMPORTANT]
+> Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+> 
+> 
 
 只要您擁有 Azure RemoteApp 集合，即使未指派使用者，您都需支付 RemoteApp。若要停止此計費，請刪除您所有的集合。
 

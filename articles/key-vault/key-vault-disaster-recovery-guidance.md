@@ -1,24 +1,22 @@
-<properties
-	pageTitle="發生影響 Azure 金鑰保存庫的 Azure 服務中斷事件時該怎麼辦 | Microsoft Azure"
-	description="了解發生影響 Azure 金鑰保存庫的 Azure 服務中斷事件時該怎麼辦。"
-	services="key-vault"
-	documentationCenter=""
-	authors="adamglick"
-	manager="mbaldwin"
-	editor=""/>
+---
+title: 發生影響 Azure 金鑰保存庫的 Azure 服務中斷事件時該怎麼辦 | Microsoft Docs
+description: 了解發生影響 Azure 金鑰保存庫的 Azure 服務中斷事件時該怎麼辦。
+services: key-vault
+documentationcenter: ''
+author: adamglick
+manager: mbaldwin
+editor: ''
 
-<tags
-	ms.service="key-vault"
-	ms.workload="key-vault"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/26/2016"
-	ms.author="sumedhb;aglick"/>
+ms.service: key-vault
+ms.workload: key-vault
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/26/2016
+ms.author: sumedhb;aglick
 
-
+---
 # Azure 金鑰保存庫的可用性與備援
-
 Azure 金鑰保存庫具備多層備援功能，以確保您的金鑰和密碼會保持可供應用程式使用，甚至在服務的個別元件失敗時也是如此。
 
 金鑰保存庫的內容會在區域內複寫，以及複寫到至少有 150 英哩距離，但位於相同地理位置內的次要地區。這可維持您金鑰和密碼的高持久性。
@@ -31,19 +29,19 @@ Azure 金鑰保存庫具備多層備援功能，以確保您的金鑰和密碼�
 
 * 若發生區域容錯移轉，可能需要幾分鐘，服務才能進行容錯移轉。在這段期間所做的要求，在容錯移轉完成之前可能會失敗。
 * 容錯移轉完成之後，金鑰保存庫會處於__唯讀__模式。在此模式中支援的要求是：
- * 列出金鑰保存庫
- * 取得金鑰保存庫的屬性
- * 列出密碼
- * 取得密碼
- * 列出金鑰
- * 取得金鑰 (的屬性)
- * 加密
- * 解密
- * 包裝
- * 解除包裝
- * 驗證
- * 簽署
- * backup
+  * 列出金鑰保存庫
+  * 取得金鑰保存庫的屬性
+  * 列出密碼
+  * 取得密碼
+  * 列出金鑰
+  * 取得金鑰 (的屬性)
+  * 加密
+  * 解密
+  * 包裝
+  * 解除包裝
+  * 驗證
+  * 簽署
+  * backup
 * 容錯移轉回復之後，所有要求的類型 (即讀取__和__寫入要求) 均可供使用。
 
 <!---HONumber=AcomDC_0831_2016-->

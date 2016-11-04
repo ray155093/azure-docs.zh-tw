@@ -1,29 +1,27 @@
-<properties
-	pageTitle="在 Linux VM 中新增磁碟 | Microsoft Azure"
-	description="了解如何在 Linux VM 中新增永續性磁碟"
-	keywords="linux 虛擬機器,新增資源磁碟"
-	services="virtual-machines-linux"
-	documentationCenter=""
-	authors="rickstercdn"
-	manager="timlt"
-	editor="tysonn"
-	tags="azure-resource-manager" />
+---
+title: 在 Linux VM 中新增磁碟 | Microsoft Docs
+description: 了解如何在 Linux VM 中新增永續性磁碟
+keywords: linux 虛擬機器,新增資源磁碟
+services: virtual-machines-linux
+documentationcenter: ''
+author: rickstercdn
+manager: timlt
+editor: tysonn
+tags: azure-resource-manager
 
-<tags
-	ms.service="virtual-machines-linux"
-	ms.topic="article"
-	ms.workload="infrastructure-services"
-	ms.tgt_pltfrm="vm-linux"
-	ms.devlang="na"
-	ms.date="09/06/2016"
-	ms.author="rclaus"/>
+ms.service: virtual-machines-linux
+ms.topic: article
+ms.workload: infrastructure-services
+ms.tgt_pltfrm: vm-linux
+ms.devlang: na
+ms.date: 09/06/2016
+ms.author: rclaus
 
+---
 # 在 Linux VM 中新增磁碟
-
 本文說明如何將持續性磁碟連接到您的 VM，以便您保留資料 - 即使您的 VM 會由於維護或調整大小而重新佈建。若要新增磁碟，您需要在 Resource Manager 模式中設定的 [Azure CLI](../xplat-cli-install.md) (`azure config mode arm`)。
 
 ## 快速命令
-
 在下列命令範例中，請將 &lt; 和 &gt; 之間的值取代為您自己環境中的值。
 
 ```bash
@@ -31,7 +29,6 @@ azure vm disk attach-new <myuniquegroupname> <myuniquevmname> <size-in-GB>
 ```
 
 ## 連接磁碟
-
 連接新磁碟很快。輸入 `azure vm disk attach-new <myuniquegroupname> <myuniquevmname> <size-in-GB>`，就能為 VM 建立並連接新的 GB 磁碟。如果您未明確識別儲存體帳戶，則您所建立的任何磁碟都會放在作業系統磁碟所在的相同儲存體帳戶中。您應該會看到如下的內容：
 
 ```bash
@@ -49,8 +46,10 @@ info:    vm disk attach-new command OK
 ```
 
 ## 連接到 Linux VM 以掛接新磁碟
-
-> [AZURE.NOTE] 本主題會利用使用者名稱和密碼連線到 VM。若要使用公開和私密金鑰組來與您的 VM 通訊，請參閱[如何搭配使用 SSH 與 Azure 上的 Linux](virtual-machines-linux-mac-create-ssh-keys.md)。您可以修改利用 `azure vm quick-create` 命令建立之 VM 的 **SSH** 連線能力，方法為使用 `azure vm reset-access` 命令來完全地重設 **SSH** 存取、新增或移除使用者，或新增公開金鑰檔案來保護存取安全。
+> [!NOTE]
+> 本主題會利用使用者名稱和密碼連線到 VM。若要使用公開和私密金鑰組來與您的 VM 通訊，請參閱[如何搭配使用 SSH 與 Azure 上的 Linux](virtual-machines-linux-mac-create-ssh-keys.md)。您可以修改利用 `azure vm quick-create` 命令建立之 VM 的 **SSH** 連線能力，方法為使用 `azure vm reset-access` 命令來完全地重設 **SSH** 存取、新增或移除使用者，或新增公開金鑰檔案來保護存取安全。
+> 
+> 
 
 您必須使用 SSH 登入 Azure VM 來分割、格式化和掛接新磁碟，以供 Linux VM 使用。如果您不熟悉使用 **ssh** 進行連接，此命令會採用 `ssh <username>@<FQDNofAzureVM> -p <the ssh port>` 形式，如下所示：
 
@@ -184,7 +183,7 @@ Maximum filesystem blocks=1342177280
 32768 blocks per group, 32768 fragments per group
 8192 inodes per group
 Superblock backups stored on blocks:
-	32768, 98304, 163840, 229376, 294912, 819200, 884736
+    32768, 98304, 163840, 229376, 294912, 819200, 884736
 Allocating group tables: done
 Writing inode tables: done
 Creating journal (32768 blocks): done
@@ -230,7 +229,10 @@ sudo -i blkid
 /dev/sdc1: UUID="33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e" TYPE="ext4"
 ```
 
->[AZURE.NOTE] 不當編輯 **/etc/fstab** 檔案會導致系統無法開機。如果不確定，請參閱散發套件的文件，以取得如何適當編輯此檔案的相關資訊。在編輯之前，也建議先備份 /etc/fstab 檔案。
+> [!NOTE]
+> 不當編輯 **/etc/fstab** 檔案會導致系統無法開機。如果不確定，請參閱散發套件的文件，以取得如何適當編輯此檔案的相關資訊。在編輯之前，也建議先備份 /etc/fstab 檔案。
+> 
+> 
 
 接下來，在文字編輯器中開啟 **/etc/fstab** 檔案：
 
@@ -244,37 +246,37 @@ sudo vi /etc/fstab
 UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults   1   2
 ```
 
->[AZURE.NOTE] 稍後移除資料磁碟而不編輯 fstab，可能會造成 VM 無法開機。大多數的散發套件會提供 `nofail` 和/或 `nobootwait` fstab 選項。即使磁碟在開機時無法掛接，這些選項也能讓系統開機。請查閱散發套件的文件，以取得這些參數的相關資訊。
-
+> [!NOTE]
+> 稍後移除資料磁碟而不編輯 fstab，可能會造成 VM 無法開機。大多數的散發套件會提供 `nofail` 和/或 `nobootwait` fstab 選項。即使磁碟在開機時無法掛接，這些選項也能讓系統開機。請查閱散發套件的文件，以取得這些參數的相關資訊。
+> 
+> 
 
 ### Azure 中 Linux 的 TRIM/UNMAP 支援
 有些 Linux 核心會支援 TRIM/UNMAP 作業以捨棄磁碟上未使用的區塊。這主要是在標準儲存體中相當實用，可用來通知 Azure 已刪除的頁面已不再有效而可予以捨棄。如果您建立大型檔案，然後再將它們刪除，這便可節省成本。
 
 有兩種方式可在 Linux VM 中啟用 TRIM 支援。像往常一樣，請參閱您的散發套件以了解建議的方法︰
 
-- 在 `/etc/fstab` 中使用 `discard` 掛接選項，例如：
-
-		UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults,discard   1   2
-
-- 或者，您也可以從命令列手動執行 `fstrim` 命令，或將它新增到 crontab 來定期執行︰
-
-	**Ubuntu**
-
-		# sudo apt-get install util-linux
-		# sudo fstrim /datadrive
-
-	**RHEL/CentOS**
-
-		# sudo yum install util-linux
-		# sudo fstrim /datadrive
+* 在 `/etc/fstab` 中使用 `discard` 掛接選項，例如：
+  
+        UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults,discard   1   2
+* 或者，您也可以從命令列手動執行 `fstrim` 命令，或將它新增到 crontab 來定期執行︰
+  
+    **Ubuntu**
+  
+        # sudo apt-get install util-linux
+        # sudo fstrim /datadrive
+  
+    **RHEL/CentOS**
+  
+        # sudo yum install util-linux
+        # sudo fstrim /datadrive
 
 ## 疑難排解
-[AZURE.INCLUDE [virtual-machines-linux-lunzero](../../includes/virtual-machines-linux-lunzero.md)]
+[!INCLUDE [virtual-machines-linux-lunzero](../../includes/virtual-machines-linux-lunzero.md)]
 
 ## 後續步驟
-
-- 請記住，如果將新磁碟重新開機，除非您將該資訊寫入 [/etc/fstab](http://en.wikipedia.org/wiki/Fstab) 檔案，否則該磁碟無法供 VM 使用。
-- 若要確保您的 Linux VM 已正確設定，請檢閱[最佳化您的 Linux 機器效能](virtual-machines-linux-optimization.md)建議。
-- 新增其他磁碟以擴充儲存體容量，並[設定 RAID](virtual-machines-linux-configure-raid.md) 以提升效能。
+* 請記住，如果將新磁碟重新開機，除非您將該資訊寫入 [/etc/fstab](http://en.wikipedia.org/wiki/Fstab) 檔案，否則該磁碟無法供 VM 使用。
+* 若要確保您的 Linux VM 已正確設定，請檢閱[最佳化您的 Linux 機器效能](virtual-machines-linux-optimization.md)建議。
+* 新增其他磁碟以擴充儲存體容量，並[設定 RAID](virtual-machines-linux-configure-raid.md) 以提升效能。
 
 <!---HONumber=AcomDC_0914_2016-->

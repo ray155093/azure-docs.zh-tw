@@ -1,30 +1,26 @@
-<properties 
-    pageTitle="輪詢長時間執行的作業 | Microsoft Azure" 
-    description="本主題說明如何輪詢長時間執行的作業。" 
-    services="media-services" 
-    documentationCenter="" 
-    authors="juliako" 
-    manager="erikre" 
-    editor=""/>
+---
+title: 輪詢長時間執行的作業 | Microsoft Docs
+description: 本主題說明如何輪詢長時間執行的作業。
+services: media-services
+documentationcenter: ''
+author: juliako
+manager: erikre
+editor: ''
 
-<tags 
-    ms.service="media-services" 
-    ms.workload="media" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="09/26/2016" 
-    ms.author="juliako"/>
+ms.service: media-services
+ms.workload: media
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/26/2016
+ms.author: juliako
 
-
-
-#<a name="delivering-live-streaming-with-azure-media-services"></a>利用 Azure 媒體服務提供即時資料流
-
-##<a name="overview"></a>Overview
-
+---
+# <a name="delivering-live-streaming-with-azure-media-services"></a>利用 Azure 媒體服務提供即時資料流
+## <a name="overview"></a>Overview
 Microsoft Azure 媒體服務提供將要求傳送至媒體服務以啟動作業 (如建立、啟動、停止或刪除頻道) 的 API。 這些作業屬於長時間執行的作業。
 
-Media Services .NET SDK 提供能傳送要求並等候作業完成的 API (API 會在內部依照某些間隔輪詢作業進度). 例如，當您呼叫 channel.Start() 時，方法會在通道啟動後返回。 您也可以使用非同步的 version: await channel.StartAsync() (如需以工作為基礎的非同步模式，請參閱 [TAP](https://msdn.microsoft.com/library/hh873175(v=vs.110).aspx))。 傳送作業要求並輪詢狀態，直到作業完成為止的 API 稱為「輪詢方法」。 我們建議豐富型用戶端應用程式和/或可設定狀態的服務使用這些方法 (尤其是非同步版本)。
+Media Services .NET SDK 提供能傳送要求並等候作業完成的 API (API 會在內部依照某些間隔輪詢作業進度). 例如，當您呼叫 channel.Start() 時，方法會在通道啟動後返回。 您也可以使用非同步的 version: await channel.StartAsync() (如需以工作為基礎的非同步模式，請參閱 [TAP](https://msdn.microsoft.com/library/hh873175\(v=vs.110\).aspx))。 傳送作業要求並輪詢狀態，直到作業完成為止的 API 稱為「輪詢方法」。 我們建議豐富型用戶端應用程式和/或可設定狀態的服務使用這些方法 (尤其是非同步版本)。
 
 我們有一些無法等候長時間執行之 http 要求，並想要的手動輪詢作業進度之應用程式的案例。 與無狀態 Web 服務互動之瀏覽器是典型的範例：當瀏覽器要求建立通道時，Web 服務會起始長時間執行的作業，並將作業識別碼傳回瀏覽器。 接著，瀏覽器會要求 Web 服務來根據識別碼取得作業狀態。 Media Services .NET SDK 提供適用於此案例的 API。 這些 API 稱為「非輪詢方法」。
 「非輪詢方法」的命名模式如下：SendOperationNameOperation (例如，SendCreateOperation)。 SendOperationNameOperation 方法會傳回 **IOperation** 物件；傳回的物件含有可用來追蹤作業的資訊。 Send*OperationName*OperationAsync 方法會傳回 **Task<IOperation>**。
@@ -33,15 +29,12 @@ Media Services .NET SDK 提供能傳送要求並等候作業完成的 API (API �
 
 若要輪詢作業狀態，請針對 **OperationBaseCollection** 類別使用 **GetOperation** 方法。 請使用下列間隔來檢查作業狀態：對於**通道**和 **StreamingEndpoint** 作業，使用 30 秒；對於**程式**作業，使用 10 秒。
 
-
-##<a name="example"></a>範例
-
+## <a name="example"></a>範例
 以下範例定義名為 **ChannelOperations**的類別。 此類別定義可能是 Web 服務類別定義的起始點。 為了簡單起見，以下範例使用非同步版本的方法。
 
 此範例也示範用戶端如何使用這個類別。
 
-###<a name="channeloperations-class-definition"></a>ChannelOperations class definition
-
+### <a name="channeloperations-class-definition"></a>ChannelOperations class definition
     /// <summary> 
     /// The ChannelOperations class only implements 
     /// the Channel’s creation operation. 
@@ -53,18 +46,18 @@ Media Services .NET SDK 提供能傳送要求並等候作業完成的 API (API �
             ConfigurationManager.AppSettings["MediaServicesAccountName"];
         private static readonly string _mediaServicesAccountKey =
             ConfigurationManager.AppSettings["MediaServicesAccountKey"];
-    
+
         // Field for service context.
         private static CloudMediaContext _context = null;
         private static MediaServicesCredentials _cachedCredentials = null;
-    
+
         public ChannelOperations()
         {
                 _cachedCredentials = new MediaServicesCredentials(_mediaServicesAccountName,
                     _mediaServicesAccountKey);
-    
+
                 _context = new CloudMediaContext(_cachedCredentials);    }
-    
+
         /// <summary>  
         /// Initiates the creation of a new channel.  
         /// </summary>  
@@ -83,10 +76,10 @@ Media Services .NET SDK 提供能傳送要求並等候作業完成的 API (API �
                     Preview = CreateChannelPreview(),
                     Output = CreateChannelOutput()
                 });
-    
+
             return operation.Id;
         }
-    
+
         /// <summary> 
         /// Checks if the operation has been completed. 
         /// If the operation succeeded, the created channel Id is returned in the out parameter.
@@ -100,9 +93,9 @@ Media Services .NET SDK 提供能傳送要求並等候作業完成的 API (API �
         {
             IOperation operation = _context.Operations.GetOperation(operationId);
             bool completed = false;
-    
+
             channelId = null;
-    
+
             switch (operation.State)
             {
                 case OperationState.Failed:
@@ -120,8 +113,8 @@ Media Services .NET SDK 提供能傳送要求並等候作業完成的 API (API �
             }
             return completed;
         }
-    
-    
+
+
         private static ChannelInput CreateChannelInput()
         {
             return new ChannelInput
@@ -141,7 +134,7 @@ Media Services .NET SDK 提供能傳送要求並等候作業完成的 API (API �
                 }
             };
         }
-    
+
         private static ChannelPreview CreateChannelPreview()
         {
             return new ChannelPreview
@@ -160,7 +153,7 @@ Media Services .NET SDK 提供能傳送要求並等候作業完成的 API (API �
                 }
             };
         }
-    
+
         private static ChannelOutput CreateChannelOutput()
         {
             return new ChannelOutput
@@ -170,34 +163,29 @@ Media Services .NET SDK 提供能傳送要求並等候作業完成的 API (API �
         }
     }
 
-###<a name="the-client-code"></a>The client code
-
+### <a name="the-client-code"></a>The client code
     ChannelOperations channelOperations = new ChannelOperations();
     string opId = channelOperations.StartChannelCreation("MyChannel001");
-    
+
     string channelId = null;
     bool isCompleted = false;
-    
+
     while (isCompleted == false)
     {
         System.Threading.Thread.Sleep(TimeSpan.FromSeconds(30));
         isCompleted = channelOperations.IsCompleted(opId, out channelId);
     }
-    
+
     // If we got here, we should have the newly created channel id.
     Console.WriteLine(channelId);
- 
 
 
-##<a name="media-services-learning-paths"></a>媒體服務學習路徑
 
-[AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
+## <a name="media-services-learning-paths"></a>媒體服務學習路徑
+[!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-##<a name="provide-feedback"></a>提供意見反應
-
-[AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
-
-
+## <a name="provide-feedback"></a>提供意見反應
+[!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 <!--HONumber=Oct16_HO2-->
 

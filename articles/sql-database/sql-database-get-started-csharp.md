@@ -1,52 +1,53 @@
-<properties
-    pageTitle="試用 SQL Database：使用 C# 建立 SQL Database | Microsoft Azure"
-    description="嘗試用 SQL Database 開發 SQL 和 C# 應用程式，然後使用 SQL Database Library for .NET 以 C# 建立 Azure SQL Database。"
-    keywords="試用 sql、sql c#"   
-    services="sql-database"
-    documentationCenter=""
-    authors="stevestein"
-    manager="jhubbard"
-    editor="cgronlun"/>
+---
+title: 試用 SQL Database：使用 C# 建立 SQL Database | Microsoft Docs
+description: 嘗試用 SQL Database 開發 SQL 和 C# 應用程式，然後使用 SQL Database Library for .NET 以 C# 建立 Azure SQL Database。
+keywords: 試用 sql、sql c#
+services: sql-database
+documentationcenter: ''
+author: stevestein
+manager: jhubbard
+editor: cgronlun
 
-<tags
-   ms.service="sql-database"
-   ms.devlang="NA"
-   ms.topic="hero-article"
-   ms.tgt_pltfrm="csharp"
-   ms.workload="data-management"
-   ms.date="10/04/2016"
-   ms.author="sstein"/>
+ms.service: sql-database
+ms.devlang: NA
+ms.topic: hero-article
+ms.tgt_pltfrm: csharp
+ms.workload: data-management
+ms.date: 10/04/2016
+ms.author: sstein
 
-
+---
 # <a name="try-sql-database:-use-c#-to-create-a-sql-database-with-the-sql-database-library-for-.net"></a>試用 SQL Database：透過 SQL Database Library for .NET 使用 C#; 建立 SQL Database
-
-
-> [AZURE.SELECTOR]
-- [Azure 入口網站](sql-database-get-started.md)
-- [C#](sql-database-get-started-csharp.md)
-- [PowerShell](sql-database-get-started-powershell.md)
+> [!div class="op_single_selector"]
+> * [Azure 入口網站](sql-database-get-started.md)
+> * [C#](sql-database-get-started-csharp.md)
+> * [PowerShell](sql-database-get-started-powershell.md)
+> 
+> 
 
 了解如何使用 C# 透過 [Microsoft Azure SQL Management Library for .NET](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql) 建立 Azure SQL Database。 本文說明如何使用 SQL 和 C# 建立單一資料庫。 若要建立彈性資料庫集區，請參閱 [建立彈性資料庫集區](sql-database-elastic-pool-create-csharp.md)。
 
 Azure SQL Database Management Library for .NET 提供 [Azure Resource Manager](../resource-group-overview.md) 式 API，它會包裝 [Resource Manager 式 SQL Database REST API](https://msdn.microsoft.com/library/azure/mt163571.aspx)。
 
->[AZURE.NOTE] SQL Database 的許多新功能只有在使用 [Azure Resource Manager 部署模型](../resource-group-overview.md)時才支援，所以您應該一律使用最新的**適用於 .NET ([docs](https://msdn.microsoft.com/library/azure/mt349017.aspx) | [NuGet Package](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql)) 的 Azure SQL Database Management Library**。 支援較舊的[以傳統部署模型為基礎的程式庫](https://www.nuget.org/packages/Microsoft.WindowsAzure.Management.Sql)，以提供回溯相容性，因此我們建議您使用較新的以 Resource Manager 為基礎的程式庫。
+> [!NOTE]
+> SQL Database 的許多新功能只有在使用 [Azure Resource Manager 部署模型](../resource-group-overview.md)時才支援，所以您應該一律使用最新的**適用於 .NET ([docs](https://msdn.microsoft.com/library/azure/mt349017.aspx) | [NuGet Package](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql)) 的 Azure SQL Database Management Library**。 支援較舊的[以傳統部署模型為基礎的程式庫](https://www.nuget.org/packages/Microsoft.WindowsAzure.Management.Sql)，以提供回溯相容性，因此我們建議您使用較新的以 Resource Manager 為基礎的程式庫。
+> 
+> 
 
 若要完成這篇文章中的步驟，您需要下列項目︰
 
-- Azure 訂用帳戶。 如果需要 Azure 訂用帳戶，可以先按一下此頁面頂端的 [免費帳戶]  ，然後再回來完成這篇文章。
-- 。 如需免費的 Visual Studio，請參閱 [Visual Studio 下載](https://www.visualstudio.com/downloads/download-visual-studio-vs) 頁面。
+* Azure 訂用帳戶。 如果需要 Azure 訂用帳戶，可以先按一下此頁面頂端的 [免費帳戶]  ，然後再回來完成這篇文章。
+* 。 如需免費的 Visual Studio，請參閱 [Visual Studio 下載](https://www.visualstudio.com/downloads/download-visual-studio-vs) 頁面。
 
->[AZURE.NOTE] 本文會建立一個新的空白 SQL Database。 在下列範例中修改 *CreateOrUpdateDatabase(...)* 方法，以複製資料庫、調整資料庫大小、在集區中建立資料庫等等。如需詳細資訊，請參閱 [DatabaseCreateMode](https://msdn.microsoft.com/library/microsoft.azure.management.sql.models.databasecreatemode.aspx) 和 [DatabaseProperties](https://msdn.microsoft.com/library/microsoft.azure.management.sql.models.databaseproperties.aspx) 類別。
-
-
+> [!NOTE]
+> 本文會建立一個新的空白 SQL Database。 在下列範例中修改 *CreateOrUpdateDatabase(...)* 方法，以複製資料庫、調整資料庫大小、在集區中建立資料庫等等。如需詳細資訊，請參閱 [DatabaseCreateMode](https://msdn.microsoft.com/library/microsoft.azure.management.sql.models.databasecreatemode.aspx) 和 [DatabaseProperties](https://msdn.microsoft.com/library/microsoft.azure.management.sql.models.databaseproperties.aspx) 類別。
+> 
+> 
 
 ## <a name="create-a-console-app-and-install-the-required-libraries"></a>建立主控台應用程式並安裝必要的程式庫
-
 1. 啟動 Visual Studio。
 2. 按一下 [檔案] > [新增] > [專案]。
 3. 建立 C# **主控台應用程式** 並將其命名為︰ *SqlDbConsoleApp*
-
 
 若要使用 C# 建立 SQL Database，請載入必要的管理程式庫 (使用 [封裝管理員主控台](http://docs.nuget.org/Consume/Package-Manager-Console))：
 
@@ -55,17 +56,15 @@ Azure SQL Database Management Library for .NET 提供 [Azure Resource Manager](.
 3. 輸入 `Install-Package Microsoft.Azure.Management.ResourceManager –Pre` 以安裝 [Microsoft Azure Resource Manager 程式庫](https://www.nuget.org/packages/Microsoft.Azure.Management.ResourceManager)。
 4. 輸入 `Install-Package Microsoft.Azure.Common.Authentication –Pre` 以安裝 [Microsoft Azure 通用驗證程式庫](https://www.nuget.org/packages/Microsoft.Azure.Common.Authentication)。 
 
-
-
-> [AZURE.NOTE] 這篇文章中的範例使用每個 API 要求的同步表單，並且封鎖直到基礎服務上的 REST 呼叫完成。 有可用的非同步方法。
-
+> [!NOTE]
+> 這篇文章中的範例使用每個 API 要求的同步表單，並且封鎖直到基礎服務上的 REST 呼叫完成。 有可用的非同步方法。
+> 
+> 
 
 ## <a name="create-a-sql-database-server,-firewall-rule,-and-sql-database---c#-example"></a>建立 SQL Database 伺服器、防火牆規則和 SQL Database - C# 範例
-
 下列範例會建立資源群組、伺服器、防火牆規則和 SQL Database。 請參閱[建立用來存取資源的服務主體](#create-a-service-principal-to-access-resources)以取得 `_subscriptionId, _tenantId, _applicationId, and _applicationSecret` 變數。
 
 以下列內容取代 **Program.cs** 的內容，並以您應用程式的值更新 `{variables}` (請勿包含 `{}`)。
-
 
     using Microsoft.Azure;
     using Microsoft.Azure.Management.ResourceManager;
@@ -74,7 +73,7 @@ Azure SQL Database Management Library for .NET 提供 [Azure Resource Manager](.
     using Microsoft.Azure.Management.Sql.Models;
     using Microsoft.IdentityModel.Clients.ActiveDirectory;
     using System;
-    
+
     namespace SqlDbConsoleApp
     {
     class Program
@@ -225,43 +224,41 @@ Azure SQL Database Management Library for .NET 提供 [Azure Resource Manager](.
 
 
 ## <a name="create-a-service-principal-to-access-resources"></a>建立用來存取資源的服務主體
-
 下列 PowerShell 指令碼會建立 Active Directory (AD) 應用程式以及驗證 C# 應用程式所需的服務主體。 指令碼會輸出先前 C# 範例所需的值。 如需詳細資訊，請參閱 [使用 Azure PowerShell 建立用來存取資源的服務主體](../resource-group-authenticate-service-principal.md)。
 
-   
     # Sign in to Azure.
     Add-AzureRmAccount
-    
+
     # If you have multiple subscriptions, uncomment and set to the subscription you want to work with.
     #$subscriptionId = "{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}"
     #Set-AzureRmContext -SubscriptionId $subscriptionId
-    
+
     # Provide these values for your new AAD app.
     # $appName is the display name for your app, must be unique in your directory.
     # $uri does not need to be a real uri.
     # $secret is a password you create.
-    
+
     $appName = "{app-name}"
     $uri = "http://{app-name}"
     $secret = "{app-password}"
-    
+
     # Create a AAD app
     $azureAdApplication = New-AzureRmADApplication -DisplayName $appName -HomePage $Uri -IdentifierUris $Uri -Password $secret
-    
+
     # Create a Service Principal for the app
     $svcprincipal = New-AzureRmADServicePrincipal -ApplicationId $azureAdApplication.ApplicationId
-    
+
     # To avoid a PrincipalNotFound error, I pause here for 15 seconds.
     Start-Sleep -s 15
-    
+
     # If you still get a PrincipalNotFound error, then rerun the following until successful. 
     $roleassignment = New-AzureRmRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $azureAdApplication.ApplicationId.Guid
-    
-    
+
+
     # Output the values we need for our C# application to successfully authenticate
-    
+
     Write-Output "Copy these values into the C# sample app"
-    
+
     Write-Output "_subscriptionId:" (Get-AzureRmContext).Subscription.SubscriptionId
     Write-Output "_tenantId:" (Get-AzureRmContext).Tenant.TenantId
     Write-Output "_applicationId:" $azureAdApplication.ApplicationId.Guid
@@ -272,15 +269,11 @@ Azure SQL Database Management Library for .NET 提供 [Azure Resource Manager](.
 ## <a name="next-steps"></a>後續步驟
 既然您已試用 SQL Database 並以 C# 設定資料庫，您就可以進行下列文章：
 
-- [使用 SQL Server Management Studio 連接到 SQL Database 並執行範例 T-SQL 查詢](sql-database-connect-query-ssms.md)
+* [使用 SQL Server Management Studio 連接到 SQL Database 並執行範例 T-SQL 查詢](sql-database-connect-query-ssms.md)
 
 ## <a name="additional-resources"></a>其他資源
-
-- [SQL Database](https://azure.microsoft.com/documentation/services/sql-database/)
-- [資料庫類別](https://msdn.microsoft.com/library/azure/microsoft.azure.management.sql.models.database.aspx)
-
-
-
+* [SQL Database](https://azure.microsoft.com/documentation/services/sql-database/)
+* [資料庫類別](https://msdn.microsoft.com/library/azure/microsoft.azure.management.sql.models.database.aspx)
 
 <!--Image references-->
 [1]: ./media/sql-database-get-started-csharp/aad.png

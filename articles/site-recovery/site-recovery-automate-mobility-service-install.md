@@ -1,23 +1,22 @@
-<properties
-	pageTitle="使用 Site Recovery 搭配 Azure Automation DSC 將 VMWare 虛擬機器複寫到 Azure | Microsoft Azure"
-	description="說明如何使用 Azure Automation DSC 將 Azure Site Recovery 行動服務和虛擬/實體機器的 Azure 代理程式自動部署到 Azure 。"
-	services="site-recovery"
-	documentationCenter=""
-	authors="krnese"
-	manager="lorenr"
-	editor=""/>
+---
+title: 使用 Site Recovery 搭配 Azure Automation DSC 將 VMWare 虛擬機器複寫到 Azure | Microsoft Docs
+description: 說明如何使用 Azure Automation DSC 將 Azure Site Recovery 行動服務和虛擬/實體機器的 Azure 代理程式自動部署到 Azure 。
+services: site-recovery
+documentationcenter: ''
+author: krnese
+manager: lorenr
+editor: ''
 
-<tags
-	ms.service="site-recovery"
-	ms.workload="backup-recovery"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="07/26/2016"
-	ms.author="krnese"/>
+ms.service: site-recovery
+ms.workload: backup-recovery
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 07/26/2016
+ms.author: krnese
 
+---
 # 使用 Site Recovery 搭配 Azure Automation DSC 將 VMWare 虛擬機器複寫到 Azure
-
 在 Operations Management Suite 中，我們提供您一個全方位的備份和災害復原解決方案，可供您融入到您的商務持續性計畫中。
 
 我們使用「Hyper-V 複本」來與 Hyper-V 一起展開這個旅程。但是我們已擴大到支援異質性設定，因為客戶在其雲端中擁有多個 Hypervisor 與平台。
@@ -41,42 +40,43 @@
 
 本文提供範例來說明如何使用「Azure 自動化預期狀態設定」(DSC) 搭配 Site Recovery 來確保︰
 
-- 將行動服務和 Azure VM 代理程式部署到您想要保護 Windows 機器。
-- 當 Azure 是複寫目標時，行動服務和 Azure VM 代理程式一律都會處於執行狀態。
+* 將行動服務和 Azure VM 代理程式部署到您想要保護 Windows 機器。
+* 當 Azure 是複寫目標時，行動服務和 Azure VM 代理程式一律都會處於執行狀態。
 
 ## 必要條件
-
-- 用來儲存必要安裝程式的儲存機制
-- 用來儲存必要複雜密碼以向管理伺服器註冊的儲存機制
-
- > [AZURE.NOTE] 系統會為每一部管理伺服器產生一個唯一的複雜密碼。如果您將部署多部管理伺服器，您就必須確保 passphrase.txt 檔案中儲存了正確的複雜密碼。
-
-- 安裝在您想要啟用保護功能之機器上的 Windows Management Framework (WMF) 5.0 (Automation DSC 的需求)
-
- > [AZURE.NOTE] 如果您想要針對已安裝 WMF 4.0 的 Windows 機器使用 DSC，請參閱＜在中斷連線的環境中使用 DSC＞(#在中斷連線的環境中使用 DSC) 一節。
+* 用來儲存必要安裝程式的儲存機制
+* 用來儲存必要複雜密碼以向管理伺服器註冊的儲存機制
+  
+  > [!NOTE]
+  > 系統會為每一部管理伺服器產生一個唯一的複雜密碼。如果您將部署多部管理伺服器，您就必須確保 passphrase.txt 檔案中儲存了正確的複雜密碼。
+  > 
+  > 
+* 安裝在您想要啟用保護功能之機器上的 Windows Management Framework (WMF) 5.0 (Automation DSC 的需求)
+  
+  > [!NOTE]
+  > 如果您想要針對已安裝 WMF 4.0 的 Windows 機器使用 DSC，請參閱＜在中斷連線的環境中使用 DSC＞(#在中斷連線的環境中使用 DSC) 一節。
+  > 
+  > 
 
 行動服務可以透過命令列來安裝並接受數個引數。這就是為什麼您需要有二進位檔 (在從您的設定擷取它們之後)，並將它們儲存在您能夠使用 DSC 組態進行擷取的地方。
 
 ## 步驟 1：擷取二進位檔
-
 1. 若要擷取此設定所需的檔案，請瀏覽至管理伺服器上的下列目錄︰
-
-	**\\Microsoft Azure Site Recovery\\home\\svsystems\\pushinstallsvc\\repository**
-
+   
+    **\\Microsoft Azure Site Recovery\\home\\svsystems\\pushinstallsvc\\repository**
+   
     在此資料夾中，您應該會看到具有下列名稱的 MSI 檔案：
-
+   
     **Microsoft-ASR\_UA\_version\_Windows\_GA\_date\_Release.exe**
-
+   
     使用下列命令來擷取安裝程式：
-
+   
     **.\\Microsoft-ASR\_UA\_9.1.0.0_Windows\_GA_02May2016\_release.exe /q /x:C:\\Users\\Administrator\\Desktop\\Mobility\_Service\\Extract**
-
 2. 選取所有檔案並將它們傳送到壓縮的資料夾。
 
 您現在已擁有使用 Automation DSC 來自動執行行動服務設定所需的二進位檔。
 
 ### 複雜密碼
-
 接著，您必須決定要放置此壓縮資料夾的位置。您可以使用 Azure 儲存體帳戶 (如稍後所示) 來儲存設定所需的複雜密碼。接著，代理程式會在此過程中向管理伺服器註冊。
 
 您在部署管理伺服器時取得的複雜密碼可以儲存為 passphrase.txt 文字檔。
@@ -88,7 +88,6 @@
 如果您偏好將這些檔案保留在您網路中的共用上，您也可以這樣做。您只需要確保稍後將會使用的 DSC 資源具有存取權，而且可以取得設定和複雜密碼。
 
 ## 步驟 2：建立 DSC 組態
-
 此設定需倚賴 WMF 5.0。為了讓機器能夠順利透過 Automation DSC 套用組態，必須要有 WMF 5.0。
 
 此環境使用下列範例 DSC 組態︰
@@ -190,20 +189,22 @@ configuration ASRMobilityService {
 ```
 此組態將會執行下列各項操作：
 
-- 變數會告訴組態可在哪裡取得行動服務和 Azure VM 代理程式的二進位檔、可在哪裡取得複雜密碼，以及可在哪裡儲存輸出。
-- 組態會匯入 xPSDesiredStateConfiguration DSC 資源，以便讓您可以使用 `xRemoteFile` 從儲存機制下載檔案。
-- 組態會建立您想要用來儲存二進位檔的目錄。
-- 封存資源會將從壓縮的資料夾中擷取檔案。
-- 套件 Install 資源會使用特定的引數從 UNIFIEDAGENT.EXE 安裝程式安裝行動服務。(您必須變更建構引數的變數以反映您的環境)。
-- 套件 AzureAgent 資源會安裝 Azure VM 代理程式，這是針對在 Azure 中執行的每部 VM 建議安裝的代理程式。Azure VM 代理程式也可讓您在容錯移轉之後，在 VM 上新增擴充功能。
-- 服務資源將會確保相關的行動服務與 Azure 服務一律都處於執行狀態。
+* 變數會告訴組態可在哪裡取得行動服務和 Azure VM 代理程式的二進位檔、可在哪裡取得複雜密碼，以及可在哪裡儲存輸出。
+* 組態會匯入 xPSDesiredStateConfiguration DSC 資源，以便讓您可以使用 `xRemoteFile` 從儲存機制下載檔案。
+* 組態會建立您想要用來儲存二進位檔的目錄。
+* 封存資源會將從壓縮的資料夾中擷取檔案。
+* 套件 Install 資源會使用特定的引數從 UNIFIEDAGENT.EXE 安裝程式安裝行動服務。(您必須變更建構引數的變數以反映您的環境)。
+* 套件 AzureAgent 資源會安裝 Azure VM 代理程式，這是針對在 Azure 中執行的每部 VM 建議安裝的代理程式。Azure VM 代理程式也可讓您在容錯移轉之後，在 VM 上新增擴充功能。
+* 服務資源將會確保相關的行動服務與 Azure 服務一律都處於執行狀態。
 
 將組態儲存為 **ASRMobilityService**。
 
->[AZURE.NOTE] 請記得取代組態中的 CSIP 以反映實際的管理伺服器，以便代理程式能夠正確連線並使用正確的複雜密碼。
+> [!NOTE]
+> 請記得取代組態中的 CSIP 以反映實際的管理伺服器，以便代理程式能夠正確連線並使用正確的複雜密碼。
+> 
+> 
 
 ## 步驟 3：上傳至 Automation DSC
-
 由於您所產生的 DSC 組態會匯入必要的 DSC 資源模組 (xPSDesiredStateConfiguration)，因此在上傳 DSC 組態之前，您必須先在 Automation 中匯入該模組。
 
 登入您的「自動化」帳戶、瀏覽至 [資產] > [模組]，然後按一下 [瀏覽資源庫]。
@@ -215,7 +216,6 @@ configuration ASRMobilityService {
 完成此動作之後，請前往已安裝 Azure Resource Manager 模組的機器，然後繼續匯入新建立的 DSC 組態。
 
 ### 匯入 Cmdlet
-
 在 PowerShell 中，登入您的 Azure 訂用帳戶。修改 Cmdlet 以反映您的環境，並擷取變數中的「自動化」帳戶資訊：
 
 ```powershell
@@ -234,7 +234,6 @@ $AAAccount | Import-AzureRmAutomationDscConfiguration @ImportArgs
 ```
 
 ### 在 Automation DSC 中編譯組態
-
 接下來，您必須在 Automation DSC 中編譯組態，以便開始向它註冊節點。您將透過執行下列 Cmdlet 來達成目的：
 
 ```powershell
@@ -250,7 +249,10 @@ $AAAccount | Start-AzureRmAutomationDscCompilationJob -ConfigurationName ASRMobi
 您現在已成功發佈 DSC 組態並將它上傳到 Automation DSC。
 
 ## 步驟 4：讓機器在 Automation DSC 上線
->[AZURE.NOTE] 完成此案例的其中一個必要條件是使用最新版的 WMF 更新您的 Windows 機器。您可以從[下載中心](https://www.microsoft.com/download/details.aspx?id=50395)下載並安裝適用於您平台的正確版本。
+> [!NOTE]
+> 完成此案例的其中一個必要條件是使用最新版的 WMF 更新您的 Windows 機器。您可以從[下載中心](https://www.microsoft.com/download/details.aspx?id=50395)下載並安裝適用於您平台的正確版本。
+> 
+> 
 
 現在，您將為 DSC 建立將套用至節點的 metaconfig。若要順利完成此作業，您必須針對在 Azure 中選取的自動化帳戶擷取端點 URL 和主要金鑰。您可以在「自動化」帳戶 [所有設定] 刀鋒視窗上的 [金鑰] 底下找到這些值。
 
@@ -259,7 +261,6 @@ $AAAccount | Start-AzureRmAutomationDscCompilationJob -ConfigurationName ASRMobi
 在此範例中，您有一部想要使用 Site Recovery 來保護的 Windows Server 2012 R2 實體伺服器。
 
 ### 檢查登錄中是否有任何擱置的檔案重新命名作業
-
 在您開始將伺服器與 Automation DSC 端點建立關聯之前，建議您檢查登錄中是否有任何擱置的檔案重新命名作業。因為若有擱置的重新開機，它們可能會讓設定無法完成。
 
 執行下列 Cmdlet 以確認伺服器上沒有擱置的重新開機︰
@@ -345,7 +346,6 @@ Get-DscConfigurationStatus
 在管理伺服器偵測到部署成功之後，您可以使用 Site Recovery 在機器上設定保護及啟用複寫。
 
 ## 在中斷連線的環境中使用 DSC
-
 如果您的機器未連線到網際網路，您仍然可依賴 DSC 在您想要保護的工作負載上部署和設定行動服務。
 
 您可以在您的環境中將自己的 DSC 具現化，以基本上提供與從 Automation DSC 取得之功能相同的功能。亦即，用戶端會將組態 (在註冊後) 提取到 DSC 端點。不過，另一個選項是將 DSC 組態手動推送到您的機器 (不論是在本機還是遠端)。
@@ -353,7 +353,6 @@ Get-DscConfigurationStatus
 請注意，在此範例中，為電腦名稱新增了一個參數。遠端檔案現在位於您想要保護之機器應可存取的遠端共用上。指令碼的最後會頒布組態，然後開始將 DSC 組態套用到目標電腦。
 
 ### 必要條件
-
 確定已安裝 xPSDesiredStateConfiguration PowerShell 模組。針對已安裝 WMF 5.0 的 Windows 電腦，您可以在目標機器上執行下列 Cmdlet 來安裝 xPSDesiredStateConfiguration 模組：
 
 ```powershell
@@ -472,7 +471,6 @@ Start-DscConfiguration .\ASRMobilityService -Wait -Force -Verbose
 如果您想要在公司網路上將自己的 DSC 提取伺服器具現化，以模擬您可以從 Automation DSC 取得的相同功能，請參閱[設定 DSC Web 提取伺服器](https://msdn.microsoft.com/powershell/dsc/pullserver?f=255&MSPPError=-2147217396)。
 
 ## 選擇性：使用 Azure Resource Manager 範本來部署 DSC 組態
-
 本文的重點在於如何建立您自己的 DSC 組態，以自動部署行動服務和 Azure VM 代理程式，並確保它們在您想要保護的電腦上執行。我們也有會將此 DSC 組態部署到新的或現有 Automation DSC 帳戶的 Azure Resource Manager 範本。此範本會使用輸入參數來建立將包含您環境之變數的「自動化」資產。
 
 部署範本之後，您可以直接參考本指南中的步驟 4 來讓您的機器上線。
@@ -481,9 +479,9 @@ Start-DscConfiguration .\ASRMobilityService -Wait -Force -Verbose
 
 1. 使用現有的「自動化」帳戶或建立一個新帳戶
 2. 採用下列各項的輸入參數︰
-	- ASRRemoteFile -- 您儲存行動服務設定的位置
-	- ASRPassphrase -- 您儲存 passphrase.txt 檔案的位置
-	- ASRCSEndpoint -- 您管理伺服器的 IP 位址
+   * ASRRemoteFile -- 您儲存行動服務設定的位置
+   * ASRPassphrase -- 您儲存 passphrase.txt 檔案的位置
+   * ASRCSEndpoint -- 您管理伺服器的 IP 位址
 3. 匯入 xPSDesiredStateConfiguration PowerShell 模組
 4. 建立及編譯 DSC 組態
 
@@ -508,7 +506,6 @@ New-AzureRmResourceGroupDeployment @RGDeployArgs -Verbose
 ```
 
 ## 後續步驟
-
 部署行動服務代理程式之後，您可以為虛擬機器[啟用複寫](site-recovery-vmware-to-azure.md#step-6-replicate-applications)。
 
 <!---HONumber=AcomDC_0831_2016-->

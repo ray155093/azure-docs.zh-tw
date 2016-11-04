@@ -1,22 +1,21 @@
-<properties
-	pageTitle="開發人員分析"
-	description="使用 Visual Studio、Application Insights 和 HockeyApp 的 DevOps"
-	authors="alancameronwills"
-	services="application-insights"
-    documentationCenter=""
-	manager="douge"/>
+---
+title: 開發人員分析
+description: 使用 Visual Studio、Application Insights 和 HockeyApp 的 DevOps
+author: alancameronwills
+services: application-insights
+documentationcenter: ''
+manager: douge
 
-<tags
-	ms.service="application-insights"
-	ms.workload="tbd"
-	ms.tgt_pltfrm="ibiza"
-	ms.devlang="na"
-	ms.topic="article" 
-	ms.date="05/18/2016"
-	ms.author="awills"/>
+ms.service: application-insights
+ms.workload: tbd
+ms.tgt_pltfrm: ibiza
+ms.devlang: na
+ms.topic: article
+ms.date: 05/18/2016
+ms.author: awills
 
+---
 # 使用 Application Insights 和 HockeyApp 的開發人員分析
-
 *Application Insights 目前僅供預覽。*
 
 許多專案是以快速的 [DevOps](https://en.wikipedia.org/wiki/DevOps) 週期進行運作。他們會建置和散發其應用程式、取得有關其執行方式和使用者使用方式的意見反應，然後使用該知識進一步規劃開發週期。
@@ -34,7 +33,6 @@
 如果您想要查看特定範例，有一個含有多個用戶端和伺服器元件的[有趣案例研究](http://aka.ms/mydrivingdocs)。
 
 ## DevOps 週期
-
 Visual Studio 和開發人員分析工具提供良好的 devOps 體驗。例如，以下是 Web 應用程式 (這可以是 Java、Node.js 或 ASP.NET) 的一般週期︰
 
 ![Web 應用程式 DevOps 週期](./media/app-insights-developer-analytics/040.png)
@@ -46,9 +44,7 @@ Visual Studio 和開發人員分析工具提供良好的 devOps 體驗。例如�
 * 您的下一個開發週期是透過您的即時遙測分析來通知。
 
 ### 裝置和傳統型應用程式
-
 針對裝置和傳統型應用程式，週期的散發部分會稍有不同，因為我們不只上傳到一或兩部伺服器。相反地，成功的組建和單元測試可以[觸發上傳至 HockeyApp](https://support.hockeyapp.net/kb/third-party-bug-trackers-services-and-webhooks/how-to-use-hockeyapp-with-visual-studio-team-services-vsts-or-team-foundation-server-tfs)。HockeyApp 會管理要給測試使用者 (或一般大眾，如果您偏好的話) 的散發套件。
-
 
 ![裝置 DevOps 週期](./media/app-insights-developer-analytics/030.png)
 
@@ -60,26 +56,20 @@ HockeyApp 也會以下列形式收集效能和使用資料︰
 
 再次提醒，當您按照取得的意見反應來擬定未來開發計劃時，即會完成 devOps 週期。
 
-
 ## 設定開發人員分析
-
 針對應用程式的每個元件 (行動、Web 或傳統型)，步驟基本上都一樣。對於許多類型的 App，Visual Studio 會自動執行這其中的一些步驟。
 
 1. 將適當的 SDK 新增至您的 App。針對裝置應用程式，它是 HockeyApp，針對 Web 服務則是 Application Insights。每個對於不同的平台都有數個變化。(可以使用任一個適用於傳統型應用程式的 SDK，不過我們建議使用 HockeyApp)。
 2. 根據您使用的 SDK，利用 Application Insights 或 HockeyApp 入口網站註冊您的 App。您將能在此處查看來自您即時 App 的分析。您會取得您設定至 App 的檢測金鑰或識別碼，如此一來，SDK 就會知道要將其遙測傳送到何處。
 3. 新增自訂程式碼 (如有需要) 來記錄事件或度量，以協助您診斷或分析效能或使用方式。有許多內建的監視功能，因此您不需要在第一個週期中使用此功能。
-3. 針對裝置應用程式：
- * 將偵錯組建上傳至 HockeyApp。您可以從該處將它散發給測試使用者小組。每當您上傳後續的組建之後，該小組將會收到通知。
- * 當您設定持續建置服務時，請建立發行定義，使用外掛程式步驟來上傳至 HockeyApp。
+4. 針對裝置應用程式：
+   * 將偵錯組建上傳至 HockeyApp。您可以從該處將它散發給測試使用者小組。每當您上傳後續的組建之後，該小組將會收到通知。
+   * 當您設定持續建置服務時，請建立發行定義，使用外掛程式步驟來上傳至 HockeyApp。
 
 ### 分析和匯出 HockeyApp 遙測
-
 您可以[設定橋接器](app-insights-hockeyapp-bridge-app.md)，以使用 Application Insights 的分析和連續匯出功能來調查 HockeyApp 自訂和記錄遙測。
 
-
-
 ## 後續步驟
- 
 以下是適用於不同 App 類型的詳細指示︰
 
 * [ASP.NET Web 應用程式](app-insights-asp-net.md)

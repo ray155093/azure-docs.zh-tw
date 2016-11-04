@@ -1,34 +1,33 @@
-<properties
-	pageTitle="Data Factory 複製精靈 | Microsoft Azure"
-	description="了解如何使用 Data Factory 複製精靈，將資料從支援的資料來源複製到接收。"
-	services="data-factory"
-	documentationCenter=""
-	authors="spelluru"
-	manager="jhubbard"
-	editor="monicar"/>
+---
+title: Data Factory 複製精靈 | Microsoft Docs
+description: 了解如何使用 Data Factory 複製精靈，將資料從支援的資料來源複製到接收。
+services: data-factory
+documentationcenter: ''
+author: spelluru
+manager: jhubbard
+editor: monicar
 
-<tags
-	ms.service="data-factory"
-	ms.workload="data-services"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="07/27/2016"
-	ms.author="spelluru"/>
+ms.service: data-factory
+ms.workload: data-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 07/27/2016
+ms.author: spelluru
 
+---
 # Data Factory 複製精靈
 Azure Data Factory 複製精靈可讓您建立管線，以在不需要撰寫連結服務、資料集和管線之 JSON 定義的情況下，將資料從支援的來源複製到目的地。若要啟動複製精靈，請在 Data Factory 首頁按一下 [複製資料] 圖格。
 
 ![複製精靈](./media/data-factory-copy-wizard/copy-data-wizard.png)
 
 ## 特性
-
 ### 用法直覺且操作流暢的資料複製精靈
 此精靈可讓您在幾分鐘內輕鬆地將資料從來源移動到目的地，只需要完成以下簡單的步驟即可︰
 
-1.	選取原始檔。
-2.	選取目的地。
-3.	配置設定。
+1. 選取原始檔。
+2. 選取目的地。
+3. 配置設定。
 
 ![選取資料來源](./media/data-factory-copy-wizard/select-data-source-page.png)
 
@@ -63,10 +62,10 @@ Azure Data Factory 複製精靈可讓您建立管線，以在不需要撰寫連�
 
 假設您的輸入資料夾格式如下︰
 
-	2016/03/01/01
-	2016/03/01/02
-	2016/03/01/03
-	...
+    2016/03/01/01
+    2016/03/01/02
+    2016/03/01/03
+    ...
 
 按一下 [瀏覽] 按鈕以取用 [檔案或資料夾]，瀏覽至其中一個資料夾 (例如 2016->03->01->02)，然後按一下 [選擇]。您應該會在文字方塊中看到 **2016/03/01/02**。現在，請將 **2016** 取代為 **{year}**、**03** 取代為 **{month}**、**01** 取代為 **{day}**、**02** 取代為 **{hour}**，然後按 Tab 鍵。您應該會看到選取這四個變數之格式的下拉式清單︰
 

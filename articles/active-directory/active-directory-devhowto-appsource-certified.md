@@ -1,24 +1,22 @@
-<properties
-   pageTitle="如何讓 AppSource 取得 Azure Active Directory (AD) 認證 | Microsoft Azure"
-   description="有關如何讓應用程式 AppSource 取得 Azure Active Directory 認證的詳細資料。"
-   services="active-directory"
-   documentationCenter=""
-   authors="skwan"
-   manager="mbaldwin"
-   editor=""/>
+---
+title: 如何讓 AppSource 取得 Azure Active Directory (AD) 認證 | Microsoft Docs
+description: 有關如何讓應用程式 AppSource 取得 Azure Active Directory 認證的詳細資料。
+services: active-directory
+documentationcenter: ''
+author: skwan
+manager: mbaldwin
+editor: ''
 
-<tags
-   ms.service="active-directory"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="identity"
-   ms.date="09/22/2016"
-   ms.author="skwan;bryanla"/>
+ms.service: active-directory
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: identity
+ms.date: 09/22/2016
+ms.author: skwan;bryanla
 
-
-#<a name="how-to-get-appsource-certified-for-azure-active-directory-(ad)"></a>如何讓 AppSource 取得 Azure Active Directory (AD) 認證 
-
+---
+# <a name="how-to-get-appsource-certified-for-azure-active-directory-(ad)"></a>如何讓 AppSource 取得 Azure Active Directory (AD) 認證
 若要得到 Azure AD 的 AppSource 認證，您的應用程式必須使用 OpenID Connect、OAuth 2.0 或 SAML 2.0 通訊協定來實作與 Azure AD 搭配運作的多租用戶登入模式。 
 
 如果您不熟悉 Azure AD 登入或多租用戶應用程式開發：

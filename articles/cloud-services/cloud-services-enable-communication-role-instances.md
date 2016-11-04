@@ -1,24 +1,23 @@
-<properties 
-pageTitle="雲端服務中角色的通訊 | Microsoft Azure" 
-description="您可以為雲端服務中的角色執行個體定義端點 (http、https、tcp、udp)，以便與外部或在其他角色執行個體之間通訊。" 
-services="cloud-services" 
-documentationCenter="" 
-authors="Thraka" 
-manager="timlt" 
-editor=""/>
-<tags 
-ms.service="cloud-services" 
-ms.workload="tbd" 
-ms.tgt_pltfrm="na" 
-ms.devlang="na" 
-ms.topic="article" 
-ms.date="09/06/2016" 
-ms.author="adegeo"/>
+---
+title: 雲端服務中角色的通訊 | Microsoft Docs
+description: 您可以為雲端服務中的角色執行個體定義端點 (http、https、tcp、udp)，以便與外部或在其他角色執行個體之間通訊。
+services: cloud-services
+documentationcenter: ''
+author: Thraka
+manager: timlt
+editor: ''
 
+ms.service: cloud-services
+ms.workload: tbd
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/06/2016
+ms.author: adegeo
+
+---
 # 啟用 Azure 中角色執行個體的通訊
-
 雲端服務角色透過內部和外部連線通訊。外部連線稱為「輸入端點」，而內部連線稱為「內部端點」。本主題描述如何修改[服務定義](cloud-services-model-and-package.md#csdef)以建立端點。
-
 
 ## 輸入端點
 輸入端點是在您要對外公開連接埠時使用。您可以指定通訊協定類型端點連接埠，稍後這些連接埠將套用至端點的外部和內部連接埠。您也可以使用 [localPort](https://msdn.microsoft.com/library/azure/gg557552.aspx#InputEndpoint) 屬性為端點指定不同的內部連接埠。
@@ -75,9 +74,7 @@ ms.author="adegeo"/>
 
 
 ## 背景工作角色與Web 角色
-
 使用背景工作角色和 Web 角色二者時端點會有一個很小的差異。Web 角色必須至少要有一個輸入端點使用 **HTTP** 通訊協定。
-
 
 ```xml
 <Endpoints>
@@ -89,7 +86,10 @@ ms.author="adegeo"/>
 ## 使用 .NET SDK 存取端點
 Azure 受管理程式庫提供讓角色執行個體在執行階段通訊的方法。藉由在角色執行個體內執行的程式碼，您可以抓取角色執行個體及其端點之存在的相關資訊，以及目前角色執行個體的相關資訊。
 
-> [AZURE.NOTE] 您只能抓取在您的雲端服務中執行，且至少定義一個內部端點之角色執行個體的相關資訊。您無法取得在其他服務中執行之角色執行個體的相關資料。
+> [!NOTE]
+> 您只能抓取在您的雲端服務中執行，且至少定義一個內部端點之角色執行個體的相關資訊。您無法取得在其他服務中執行之角色執行個體的相關資料。
+> 
+> 
 
 您可以使用 [Instances](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.role.instances.aspx) 屬性抓取角色的執行個體。先使用 [CurrentRoleInstance](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.currentroleinstance.aspx) 以傳回對目前角色執行個體的參照，然後使用 [Role](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleinstance.role.aspx) 屬性來傳回對角色本身的參照。
 
@@ -101,7 +101,10 @@ int port = RoleEnvironment.CurrentRoleInstance.InstanceEndpoints["StandardWeb"].
 
 **Instances** 屬性會傳回 **RoleInstance** 物件的集合。這個集合一律會包含目前的執行個體。如果該角色沒有定義內部端點，則該集合只包含目前的執行個體，沒有其他執行個體。在沒有為角色定義內部端點的情況下，集合中的角色執行個體數量一律為 1。如果該角色定義了一個內部端點，就可以在執行階段中探索其執行個體，而且集合中執行個體的數量將與服務組態檔中為該角色指定的執行個體數量相對應。
 
-> [AZURE.NOTE] Azure 設管理程式庫沒有提供判斷其他角色執行個體健康狀態的方法，但是如果您的服務需要這類功能，您可以自行實作此健康狀態評估。您可以使用 [Azure 診斷](cloud-services-dotnet-diagnostics.md)來取得執行中角色執行個體的相關資訊。
+> [!NOTE]
+> Azure 設管理程式庫沒有提供判斷其他角色執行個體健康狀態的方法，但是如果您的服務需要這類功能，您可以自行實作此健康狀態評估。您可以使用 [Azure 診斷](cloud-services-dotnet-diagnostics.md)來取得執行中角色執行個體的相關資訊。
+> 
+> 
 
 若要判斷角色執行個體上內部端點的連接埠號碼，您可以使用 [InstanceEndpoints](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleinstance.instanceendpoints.aspx) 屬性，以傳回包含端點名稱及其對應 IP 位址與連接埠的 Dictionary 物件。[IPEndpoint](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleinstanceendpoint.ipendpoint.aspx) 屬性會傳回指定端點的 IP 位址和連接埠。**PublicIPEndpoint** 屬性會傳回負載平衡端點的連接埠。未使用 **PublicIPEndpoint** 屬性的 IP 位址部分。
 
@@ -120,7 +123,10 @@ foreach (RoleInstance roleInst in RoleEnvironment.CurrentRoleInstance.Role.Insta
 
 以下是可取得透過服務定義所公開的端點並開始接聽連線之背景工作角色的範例。
 
-> [AZURE.WARNING] 這個程式碼只適用於已部署的服務。在 Azure 計算模擬器中執行時，會忽略建立直接連接埠 (**InstanceInputEndpoint** 元素) 的服務組態元素。
+> [!WARNING]
+> 這個程式碼只適用於已部署的服務。在 Azure 計算模擬器中執行時，會忽略建立直接連接埠 (**InstanceInputEndpoint** 元素) 的服務組態元素。
+> 
+> 
 
 ```csharp
 using System;
@@ -145,18 +151,18 @@ namespace WorkerRole1
         // Initialize method-wide variables
         var epName = "Endpoint1";
         var roleInstance = RoleEnvironment.CurrentRoleInstance;
-        
+
         // Identify direct communication port
         var myPublicEp = roleInstance.InstanceEndpoints[epName].PublicIPEndpoint;
         Trace.TraceInformation("IP:{0}, Port:{1}", myPublicEp.Address, myPublicEp.Port);
 
         // Identify public endpoint
         var myInternalEp = roleInstance.InstanceEndpoints[epName].IPEndpoint;
-                
+
         // Create socket listener
         var listener = new Socket(
           myInternalEp.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-                
+
         // Bind socket listener to internal endpoint and listen
         listener.Bind(myInternalEp);
         listener.Listen(10);
@@ -242,7 +248,10 @@ namespace WorkerRole1
 </ServiceDefinition>
 ```
 
-> [AZURE.NOTE] 固定和自動指派之連接埠二者的內部端點都可能會在角色之間產生通訊限制。
+> [!NOTE]
+> 固定和自動指派之連接埠二者的內部端點都可能會在角色之間產生通訊限制。
+> 
+> 
 
 根據預設，定義內部端點之後，來自任何角色的通訊都可以在沒有任何限制的情況下流向角色的內部端點。若要限制通訊，您必須在服務定義檔中將 **NetworkTrafficRules** 元素新增至 **ServiceDefinition** 元素。
 

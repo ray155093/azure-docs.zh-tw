@@ -1,15 +1,14 @@
 ## 將訊息傳送至事件中心
-
 適用於事件中樞的 Java 用戶端程式庫可以在來自 [Maven 中央儲存機制](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-eventhubs%22)的 Maven 專案中使用，而且可在您的 Maven 專案檔內使用下列相依性宣告來參考：
 
 ``` XML
 <dependency>
-	<groupId>com.microsoft.azure</groupId>
-	<artifactId>azure-eventhubs</artifactId>
-	<version>{VERSION}</version>
+    <groupId>com.microsoft.azure</groupId>
+    <artifactId>azure-eventhubs</artifactId>
+    <version>{VERSION}</version>
 </dependency>
 ```
- 
+
 對於不同類型的組建環境，您可以明確地從 [Maven 中央儲存機制](https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-eventhubs%22)或 [GitHub 上的版本發佈點](https://github.com/Azure/azure-event-hubs/releases)取得最新發行的 JAR 檔案。
 
 如果是簡單事件發行者，請針對事件中樞用戶端類別匯入 *com.microsoft.azure.eventhubs* 封裝，以及針對公用程式類別匯入 *com.microsoft.azure.servicebus* 封裝，例如，與 Azure 服務匯流排訊息用戶端共用的常見例外狀況。
@@ -28,31 +27,31 @@ import com.microsoft.azure.servicebus.*;
 
 public class Send
 {
-	public static void main(String[] args) 
-			throws ServiceBusException, ExecutionException, InterruptedException, IOException
-	{
+    public static void main(String[] args) 
+            throws ServiceBusException, ExecutionException, InterruptedException, IOException
+    {
 ```
 
 使用您建立事件中樞時所使用的值，來取代命名空間和事件中樞名稱。
 
 ``` Java
-	final String namespaceName = "----ServiceBusNamespaceName-----";
-	final String eventHubName = "----EventHubName-----";
-	final String sasKeyName = "-----SharedAccessSignatureKeyName-----";
-	final String sasKey = "---SharedAccessSignatureKey----";
-	ConnectionStringBuilder connStr = new ConnectionStringBuilder(namespaceName, eventHubName, sasKeyName, sasKey);
+    final String namespaceName = "----ServiceBusNamespaceName-----";
+    final String eventHubName = "----EventHubName-----";
+    final String sasKeyName = "-----SharedAccessSignatureKeyName-----";
+    final String sasKey = "---SharedAccessSignatureKey----";
+    ConnectionStringBuilder connStr = new ConnectionStringBuilder(namespaceName, eventHubName, sasKeyName, sasKey);
 ```
 
 接著將字串轉換為它的 utf-8 位元組編碼方式，藉以建立單一事件。然後我們會從連接字串建立新的事件中樞用戶端執行個體，然後傳送訊息。
 
 ``` Java 
-				
-	byte[] payloadBytes = "Test AMQP message from JMS".getBytes("UTF-8");
-	EventData sendEvent = new EventData(payloadBytes);
-	
-	EventHubClient ehClient = EventHubClient.createFromConnectionStringSync(connStr.toString());
-	ehClient.sendSync(sendEvent);
-	}
+
+    byte[] payloadBytes = "Test AMQP message from JMS".getBytes("UTF-8");
+    EventData sendEvent = new EventData(payloadBytes);
+
+    EventHubClient ehClient = EventHubClient.createFromConnectionStringSync(connStr.toString());
+    ehClient.sendSync(sendEvent);
+    }
 }
 
 ``` 

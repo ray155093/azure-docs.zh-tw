@@ -1,43 +1,40 @@
-<properties
-   pageTitle="還原 Azure SQL 資料倉儲 (PowerShell) | Microsoft Azure"
-   description="還原 Azure SQL 資料倉儲的 PowerShell 工作。"
-   services="sql-data-warehouse"
-   documentationCenter="NA"
-   authors="Lakshmi1812"
-   manager="jhubbard"
-   editor=""/>
+---
+title: 還原 Azure SQL 資料倉儲 (PowerShell) | Microsoft Docs
+description: 還原 Azure SQL 資料倉儲的 PowerShell 工作。
+services: sql-data-warehouse
+documentationcenter: NA
+author: Lakshmi1812
+manager: jhubbard
+editor: ''
 
-<tags
-   ms.service="sql-data-warehouse"
-   ms.devlang="NA"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="data-services"
-   ms.date="10/31/2016"
-   ms.author="lakshmir;barbkess"/>
+ms.service: sql-data-warehouse
+ms.devlang: NA
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: data-services
+ms.date: 10/31/2016
+ms.author: lakshmir;barbkess
 
-
+---
 # <a name="restore-an-azure-sql-data-warehouse-powershell"></a>還原 Azure SQL 資料倉儲 (PowerShell)
-
-> [AZURE.SELECTOR]
-- [概觀][]
-- [入口網站][]
-- [PowerShell][]
-- [REST][]
+> [!div class="op_single_selector"]
+> * [概觀][概觀]
+> * [入口網站][入口網站]
+> * [PowerShell][PowerShell]
+> * [REST][REST]
+> 
+> 
 
 在本文中，您將了解如何使用 PowerShell 來還原 Azure SQL 資料倉儲。
 
 ## <a name="before-you-begin"></a>開始之前
-
-**請驗證您的 DTU 容量。**  每個 SQL 資料倉儲均由具有預設 DTU 配額的 SQL 伺服器裝載 (例如 myserver.database.windows.net)。  在您還原 SQL 資料倉儲之前，請確認您的 SQL 伺服器有足夠的剩餘 DTU 配額供要還原的資料庫使用。 若要了解如何計算所需 DTU 或要求更多 DTU，請參閱 [要求 DTU 配額變更][]。
+**請驗證您的 DTU 容量。**  每個 SQL 資料倉儲均由具有預設 DTU 配額的 SQL 伺服器裝載 (例如 myserver.database.windows.net)。  在您還原 SQL 資料倉儲之前，請確認您的 SQL 伺服器有足夠的剩餘 DTU 配額供要還原的資料庫使用。 若要了解如何計算所需 DTU 或要求更多 DTU，請參閱 [要求 DTU 配額變更][要求 DTU 配額變更]。
 
 ### <a name="install-powershell"></a>安裝 PowerShell
-
-若要搭配使用 Azure Powershell 與 SQL 資料倉儲，您需要安裝 Azure PowerShell 1.0 版或更高版本。  您可以執行 **Get-Module -ListAvailable -Name AzureRM**來檢查您的版本。  可透過 [Microsoft Web Platform Installer][]安裝最新的版本。  如需安裝最新版本的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell][]。
+若要搭配使用 Azure Powershell 與 SQL 資料倉儲，您需要安裝 Azure PowerShell 1.0 版或更高版本。  您可以執行 **Get-Module -ListAvailable -Name AzureRM**來檢查您的版本。  可透過 [Microsoft Web Platform Installer][Microsoft Web Platform Installer]安裝最新的版本。  如需安裝最新版本的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell][如何安裝和設定 Azure PowerShell]。
 
 ## <a name="restore-an-active-or-paused-database"></a>還原作用中或已暫停的資料庫
-
-若要從快照還原資料庫，請使用 [Restore-AzureRmSqlDatabase][] PowerShell Cmdlet。
+若要從快照還原資料庫，請使用 [Restore-AzureRmSqlDatabase][Restore-AzureRmSqlDatabase] PowerShell Cmdlet。
 
 1. 開啟 Windows PowerShell。
 2. 連接到您的 Azure 帳戶，然後列出與您帳戶關聯的所有訂用帳戶。
@@ -79,12 +76,13 @@ $RestoredDatabase.status
 
 ```
 
->[AZURE.NOTE] 還原完成後，您可以遵循 [在復原之後設定資料庫][]來設定復原的資料庫。
-
+> [!NOTE]
+> 還原完成後，您可以遵循 [在復原之後設定資料庫][在復原之後設定資料庫]來設定復原的資料庫。
+> 
+> 
 
 ## <a name="restore-a-deleted-database"></a>還原已刪除的資料庫
-
-若要還原已刪除的資料庫，請使用 [Restore-AzureRmSqlDatabase][] Cmdlet。
+若要還原已刪除的資料庫，請使用 [Restore-AzureRmSqlDatabase][Restore-AzureRmSqlDatabase] Cmdlet。
 
 1. 開啟 Windows PowerShell。
 2. 連接到您的 Azure 帳戶，然後列出與您帳戶關聯的所有訂用帳戶。
@@ -114,12 +112,13 @@ $RestoredDatabase = Restore-AzureRmSqlDatabase –FromDeletedDatabaseBackup –D
 $RestoredDatabase.status
 ```
 
->[AZURE.NOTE] 還原完成後，您可以遵循 [在復原之後設定資料庫][]來設定復原的資料庫。
-
+> [!NOTE]
+> 還原完成後，您可以遵循 [在復原之後設定資料庫][在復原之後設定資料庫]來設定復原的資料庫。
+> 
+> 
 
 ## <a name="restore-from-an-azure-geographical-region"></a>從 Azure 地理區域還原
-
-若要復原資料庫，請使用 [Restore-AzureRmSqlDatabase][] Cmdlet。
+若要復原資料庫，請使用 [Restore-AzureRmSqlDatabase][Restore-AzureRmSqlDatabase] Cmdlet。
 
 1. 開啟 Windows PowerShell。
 2. 連接到您的 Azure 帳戶，然後列出與您帳戶關聯的所有訂用帳戶。
@@ -143,14 +142,15 @@ $GeoRestoredDatabase = Restore-AzureRmSqlDatabase –FromGeoBackup -ResourceGrou
 $GeoRestoredDatabase.status
 ```
 
->[AZURE.NOTE] 若要在還原完成之後設定資料庫，請參閱 [在復原之後設定資料庫][]。 
-
+> [!NOTE]
+> 若要在還原完成之後設定資料庫，請參閱 [在復原之後設定資料庫][在復原之後設定資料庫]。 
+> 
+> 
 
 如果來源資料庫是啟用 TDE，則復原的資料庫將是啟用 TDE。
 
-
 ## <a name="next-steps"></a>後續步驟
-若要深入了解 Azure SQL Database 版本的商務持續性功能，請閱讀 [Azure SQL Database 商務持續性概觀][]。
+若要深入了解 Azure SQL Database 版本的商務持續性功能，請閱讀 [Azure SQL Database 商務持續性概觀][Azure SQL Database 商務持續性概觀]。
 
 <!--Image references-->
 

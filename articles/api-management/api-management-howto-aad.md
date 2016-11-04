@@ -1,36 +1,37 @@
-<properties 
-	pageTitle="如何在 Azure API 管理中使用 Azure Active Directory 授權開發人員帳戶" 
-	description="了解如何在 API 管理中使用 Azure Active Directory 授權使用者" 
-	services="api-management" 
-	documentationCenter="API Management" 
-	authors="steved0x" 
-	manager="erikre" 
-	editor=""/>
+---
+title: 如何在 Azure API 管理中使用 Azure Active Directory 授權開發人員帳戶
+description: 了解如何在 API 管理中使用 Azure Active Directory 授權使用者
+services: api-management
+documentationcenter: API Management
+author: steved0x
+manager: erikre
+editor: ''
 
-<tags 
-	ms.service="api-management" 
-	ms.workload="mobile" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="08/24/2016" 
-	ms.author="sdanie"/>
+ms.service: api-management
+ms.workload: mobile
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/24/2016
+ms.author: sdanie
 
+---
 # 如何在 Azure API 管理中使用 Azure Active Directory 授權開發人員帳戶
-
-
 ## Overview
 本指南說明如何為一或多個 Azure Active Directory 中的所有使用者啟用開發人員入口網站的存取。本指南也說明如何管理 Azure Active Directory 的使用者，方法是加入包含 Azure Active Directory 的使用者的外部群組。
 
->若要完成本指南中的步驟，您必須先具備要在其中建立應用程式的 Azure Active Directory。
+> 若要完成本指南中的步驟，您必須先具備要在其中建立應用程式的 Azure Active Directory。
+> 
+> 
 
 ## 如何使用 Azure Active Directory 授權開發人員帳戶
-
 若要開始，請在 Azure 傳統入口網站中，針對您的 API 管理服務按一下 [管理]。這會帶您前往 API 管理發行者入口網站。
 
 ![發行者入口網站][api-management-management-console]
 
->如果您尚未建立 API 管理服務執行個體，請參閱[開始使用 Azure API 管理][]教學課程中的[建立 API 管理服務執行個體][]。
+> 如果您尚未建立 API 管理服務執行個體，請參閱[開始使用 Azure API 管理][開始使用 Azure API 管理]教學課程中的[建立 API 管理服務執行個體][建立 API 管理服務執行個體]。
+> 
+> 
 
 從左側的 [**API 管理**] 功能表按一下 [**安全性**]，然後按一下 [**外部身分識別**]。
 
@@ -74,7 +75,9 @@
 
 ![委派的權限][api-management-aad-delegated-permissions]
 
->如需應用程式和委派的權限的詳細資訊，請參閱[存取 Graph API][]。
+> 如需應用程式和委派的權限的詳細資訊，請參閱[存取 Graph API][存取 Graph API]。
+> 
+> 
 
 複製 [**用戶端識別碼**] 至剪貼簿。
 
@@ -90,7 +93,9 @@
 
 按一下 [**儲存**] 以儲存組態並顯示金鑰。複製金鑰至剪貼簿。
 
->記下此金鑰。關閉 Azure Active Directory 組態視窗之後，即無法再次顯示金鑰。
+> 記下此金鑰。關閉 Azure Active Directory 組態視窗之後，即無法再次顯示金鑰。
+> 
+> 
 
 ![金鑰][api-management-aad-key-after-save]
 
@@ -106,19 +111,22 @@
 
 ![權限][api-management-permissions-form]
 
->如果非全域管理員在全域管理員授與其權限之前便嘗試登入，登入嘗試會失敗，並且顯示錯誤畫面。
+> 如果非全域管理員在全域管理員授與其權限之前便嘗試登入，登入嘗試會失敗，並且顯示錯誤畫面。
+> 
+> 
 
 指定需要的組態之後，按一下 [**儲存**]。
 
 ![Save][api-management-client-allowed-tenants-save]
 
-儲存變更之後，在指定 Azure Active Directory 中的使用者透過遵循[使用 Azure Active Directory 帳戶登入開發人員入口網站][]中的步驟，即可登入開發人員入口網站。
+儲存變更之後，在指定 Azure Active Directory 中的使用者透過遵循[使用 Azure Active Directory 帳戶登入開發人員入口網站][使用 Azure Active Directory 帳戶登入開發人員入口網站]中的步驟，即可登入開發人員入口網站。
 
 ## 如何加入外部 Azure Active Directory 群組
-
 為 Azure Active Directory 中的使用者啟用存取之後，您可以將 Azure Active Directory 群組加入至 API 管理，以更輕鬆管理所需產品的群組中開發人員的關聯。
 
 > 為了設定外部 Azure Active Directory 群組，必須先遵循上一節中的程序，在 [身分識別] 索引標籤中設定 Azure Active Directory。
+> 
+> 
 
 外部 Azure Active Directory 群組是從您要授與群組存取之產品的 [**可見性**] 索引標籤中加入。按一下 [**產品**]，然後按一下所需產品的名稱。
 
@@ -155,7 +163,6 @@
 來自所設定 Azure Active Directory 的使用者可以登入開發人員入口網站，並透過下一節中的指示，以檢視及訂閱他們看的見的任何群組。
 
 ## 如何使用 Azure Active Directory 帳戶登入開發人員入口網站
-
 若要使用前一節設定的 Azure Active Directory 帳戶登入開發人員入口網站，請使用來自 Active Directory 應用程式組態的 [**登入 URL**] 開啟新瀏覽器視窗，然後按一下 [**Azure Active Directory**]。
 
 ![開發人員入口網站][api-management-dev-portal-signin]
@@ -171,8 +178,6 @@
 您的使用者現在已登入您的 API 服務執行個體的開發人員入口網站。
 
 ![註冊完成][api-management-registration-complete]
-
-
 
 [api-management-management-console]: ./media/api-management-howto-aad/api-management-management-console.png
 [api-management-security-external-identities]: ./media/api-management-howto-aad/api-management-security-external-identities.png

@@ -1,28 +1,26 @@
-<properties
-    pageTitle="資料目錄開發人員概念 | Microsoft Azure"
-    description="Azure 資料目錄概念模型的重要概念簡介，以透過目錄 REST API 的形式公開。"
-    services="data-catalog"
-    documentationCenter=""
-    authors="spelluru"
-    manager="jhubbard"
-    editor=""
-    tags=""/>
-<tags
-    ms.service="data-catalog"
-    ms.devlang="NA"
-    ms.topic="article"
-    ms.tgt_pltfrm="NA"
-    ms.workload="data-catalog"
-    ms.date="10/11/2016"
-    ms.author="spelluru"/>  
+---
+title: 資料目錄開發人員概念 | Microsoft Docs
+description: Azure 資料目錄概念模型的重要概念簡介，以透過目錄 REST API 的形式公開。
+services: data-catalog
+documentationcenter: ''
+author: spelluru
+manager: jhubbard
+editor: ''
+tags: ''
 
+ms.service: data-catalog
+ms.devlang: NA
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: data-catalog
+ms.date: 10/11/2016
+ms.author: spelluru
 
+---
 # <a name="azure-data-catalog-developer-concepts"></a>Azure 資料目錄開發人員概念
-
 Microsoft **Azure 資料目錄** 是全面管理的雲端服務，能夠進行資料來源探索，以及讓群眾外包資料來源中繼資料。 開發人員可以透過 REST API 來使用此服務。 開發人員必須了解服務中所實作的概念，才能成功地與 **Azure 資料目錄**整合。
 
 ## <a name="key-concepts"></a>重要概念
-
 **Azure 資料目錄**概念模型根據四個主要概念：**目錄**、**使用者**、**資產**和**註解**。
 
 ![概念][1]
@@ -30,13 +28,11 @@ Microsoft **Azure 資料目錄** 是全面管理的雲端服務，能夠進行�
 *圖 1 - Azure 資料目錄簡易概念模型*
 
 ### <a name="catalog"></a>目錄
-
 **目錄** 是組織所儲存之所有中繼資料的最上層容器。 每個 Azure 帳戶只能一個 **目錄** 。 目錄與 Azure 訂用帳戶密切相關，即使一個帳戶可以有多個訂用帳戶，但任一特定 Azure 帳戶只能建立一個 **目錄** 。
 
 目錄包含**使用者**和**資產**。
 
 ### <a name="users"></a>使用者
-
 使用者是有權在目錄中執行動作的安全性主體 (搜尋目錄、新增、編輯或移除項目等等)。
 
 一個使用者可能扮演多個不同的角色。 如需角色的相關資訊，請參閱＜角色和授權＞一節。
@@ -46,7 +42,6 @@ Microsoft **Azure 資料目錄** 是全面管理的雲端服務，能夠進行�
 Azure 資料目錄使用 Azure Active Directory 來管理身分識別和存取權。 每個目錄使用者必須是帳戶 Active Directory 的成員。
 
 ### <a name="assets"></a>資產
-
 **目錄** 包含資料資產。 **資產** 是由目錄管理的細微度單位。
 
 資產的細微度隨資料來源而異。 對於 SQL Server 或 Oracle 資料庫，資產可以是資料表或檢視。 對於 SQL Server Analysis Services，資產可以是量值、維度或關鍵效能指標 (KPI)。 對於 SQL Server Reporting Services，資產是報表。
@@ -56,20 +51,18 @@ Azure 資料目錄使用 Azure Active Directory 來管理身分識別和存取�
 **資產** 由其名稱、位置和類型，以及進一步描述它的註解所組成。
 
 ### <a name="annotations"></a>註解
-
 註解是代表資產中繼資料的項目。
 
 註解的範例為描述、標籤、結構描述、文件等等。＜資產物件模型＞一節中有資產類型和註解類型的完整清單。
 
 ## <a name="crowdsourcing-annotations-and-user-perspective-(multiplicity-of-opinion)"></a>群眾外包註解和使用者觀點 (多樣性意見)
-
 Azure 資料目錄的重點在於如何支援由群眾外包系統中的中繼資料。 與 Wiki 的作法不同 – 其中只有一個意見，以最後一個寫入者為準 – Azure 資料目錄模型允許多種意見並存於系統中。
 
 這種作法反映出企業資料的真實情況，不同的使用者對特定的資產可以有不同的觀點：
 
--   資料庫管理員可以提供服務等級協定或可用於處理大量 ETL 作業的時段的相關資訊
--   資料負責人可以提供資產適用的商務程序或企業採用的分類辦法的相關資訊
--   財務分析師可以提供期末報告工作期間如何使用資料的相關資訊
+* 資料庫管理員可以提供服務等級協定或可用於處理大量 ETL 作業的時段的相關資訊
+* 資料負責人可以提供資產適用的商務程序或企業採用的分類辦法的相關資訊
+* 財務分析師可以提供期末報告工作期間如何使用資料的相關資訊
 
 為了支援這個例子，每位使用者 (DBA、資料負責人和分析師) 可以將描述加入至目錄中已註冊的資料表。 所有描述會都保留在系統中，Azure 資料目錄入口網站會顯示所有的描述。
 
@@ -79,20 +72,17 @@ Azure 資料目錄的重點在於如何支援由群眾外包系統中的中繼�
 
 然後 UX 可以選擇如何顯示組合。 有三種不同的顯示模式。
 
--   最簡單的模式為 [全部顯示]。 在此模式下，所有物件會以清單檢視來顯示。 Azure 資料目錄入口網站 UX 會對描述使用此模式。
--   另一種模式是「合併」。 在此模式下，不同使用者提供的所有值會合併在一起，並移除重複項目。 Azure 資料目錄入口網站 UX 中的 tags 和 experts 屬性，即為此模式的例子。
--   第三種模式為「最後寫入者為準」。 在此模式下，只會顯示最後輸入的值。 friendlyName 是這種模式的一個例子。
+* 最簡單的模式為 [全部顯示]。 在此模式下，所有物件會以清單檢視來顯示。 Azure 資料目錄入口網站 UX 會對描述使用此模式。
+* 另一種模式是「合併」。 在此模式下，不同使用者提供的所有值會合併在一起，並移除重複項目。 Azure 資料目錄入口網站 UX 中的 tags 和 experts 屬性，即為此模式的例子。
+* 第三種模式為「最後寫入者為準」。 在此模式下，只會顯示最後輸入的值。 friendlyName 是這種模式的一個例子。
 
 ## <a name="asset-object-model"></a>資產物件模型
-
 ＜重要概念＞一節介紹的 **Azure 資料目錄** 物件模型所包含的項目，可以是資產或註解。 項目具有選用或必要的屬性。 某些屬性會套用至所有項目。 某些屬性會套用至所有資產。 某些屬性只套用至特定的資產類型。
 
 ### <a name="system-properties"></a>系統屬性
-
 <table><tr><td><b>屬性名稱</b></td><td><b>資料類型</b></td><td><b>註解</b></td></tr><tr><td>timestamp</td><td>DateTime</td><td>上次修改項目的時間。 伺服器會在插入項目時以及每次更新項目時產生此欄位。 此屬性值會在輸入發佈作業時遭到忽略。</td></tr><tr><td>id</td><td>Uri</td><td>項目的絕對 URL (唯讀)。 它是項目的唯一可定址 URI。  此屬性值會在輸入發佈作業時遭到忽略。</td></tr><tr><td>類型</td><td>String</td><td>資產的類型 (唯讀)。</td></tr><tr><td>etag</td><td>String</td><td>對應到項目版本的字串，在執行會更新目錄中項目的作業時可用於開放式並行存取控制。 "*" 可用來比對任何值。</td></tr></table>
 
 ### <a name="common-properties"></a>通用屬性
-
 這些屬性套用至所有根資產類型和所有註解類型。
 
 <table>
@@ -103,10 +93,10 @@ Azure 資料目錄的重點在於如何支援由群眾外包系統中的中繼�
 ### <a name="common-root-properties"></a>通用根屬性
 <p>
 這些屬性套用至所有根資產類型。
+
 <table><tr><td><b>屬性名稱</b></td><td><b>資料類型</b></td><td><b>註解</b></td></tr><tr><td>名稱</td><td>String</td><td>衍生自資料來源位置資訊的名稱</td></tr><tr><td>dsl</td><td>DataSourceLocation</td><td>可唯一描述資料來源，為資產的其中一個識別碼 (請參閱＜雙重識別＞一節)。  dsl 的結構隨通訊協定和來源類型而異。</td></tr><tr><td>dataSource</td><td>DataSourceInfo</td><td>資產類型的詳細資料。</td></tr><tr><td>lastRegisteredBy</td><td>SecurityPrincipal</td><td>描述最近註冊此資產的使用者。  包含使用者的唯一識別碼 (upn) 和顯示名稱 (lastName 和 firstName)。</td></tr><tr><td>containerId</td><td>String</td><td>資料來源的容器資產識別碼。 容器類型不支援這個屬性。</td></tr></table>
 
 ### <a name="common-non-singleton-annotation-properties"></a>一般的非單一註解屬性
-
 這些屬性套用至所有非單一註解類型 (每個資產允許有多個的註解)。
 
 <table>
@@ -115,14 +105,12 @@ Azure 資料目錄的重點在於如何支援由群眾外包系統中的中繼�
 </table>
 
 ### <a name="root-asset-types"></a>根資產類型
-
 根資產類型所指的類型代表可以註冊在目錄中的各種資料資產。 每個根類型都有一個檢視，可描述檢視中包含的資產和註解。 使用 REST API 發佈資產時，檢視名稱應用於對應 {view_name} url 區段。
 
 <table><tr><td><b>資產類型 (檢視名稱)</b></td><td><b>其他屬性</b></td><td><b>資料類型</b></td><td><b>允許的註解</b></td><td><b>註解</b></td></tr><tr><td>資料表 ("tables")</td><td></td><td></td><td>說明<p>FriendlyName<p>Tag<p>結構描述<p>ColumnDescription<p>ColumnTag<p> 專家<p>預覽<p>AccessInstruction<p>TableDataProfile<p>ColumnDataProfile<p>ColumnDataClassification<p>文件<p></td><td>資料表代表任何表格式資料。  例如：SQL 資料表、SQL 檢視、Analysis Services 表格式資料表、Analysis Services 多維度的維度、Oracle 資料表等等。   </td></tr><tr><td>量值 ("measures")</td><td></td><td></td><td>說明<p>FriendlyName<p>Tag<p>專家<p>AccessInstruction<p>文件<p></td><td>此類型代表 Analysis Services 量值。</td></tr><tr><td></td><td>measure</td><td>資料欄</td><td></td><td>描述量值的中繼資料</td></tr><tr><td></td><td>isCalculated </td><td>Boolean</td><td></td><td>指定是否計算量值。</td></tr><tr><td></td><td>measureGroup</td><td>String</td><td></td><td>量值的實體容器</td></tr><td>KPI ("kpis")</td><td></td><td></td><td>說明<p>FriendlyName<p>Tag<p>專家<p>AccessInstruction<p>文件</td><td></td></tr><tr><td></td><td>measureGroup</td><td>String</td><td></td><td>量值的實體容器</td></tr><tr><td></td><td>goalExpression</td><td>String</td><td></td><td>會傳回 KPI 目標值的 MDX 數值運算式或計算。</td></tr><tr><td></td><td>valueExpression</td><td>String</td><td></td><td>會傳回 KPI 實際值的 MDX 數值運算式。</td></tr><tr><td></td><td>statusExpression</td><td>String</td><td></td><td>代表指定時間點之 KPI 狀態的 MDX 運算式。</td></tr><tr><td></td><td>trendExpression</td><td>String</td><td></td><td>評估一段時間的 KPI 值的 MDX 運算式。 趨勢可以是特定商務情況下適用的任何時間性準則。</td>
 <tr><td>報表 ("reports")</td><td></td><td></td><td>說明<p>FriendlyName<p>Tag<p>專家<p>AccessInstruction<p>文件<p></td><td>此類型代表 SQL Server Reporting Services 報表 </td></tr><tr><td></td><td>assetCreatedDate</td><td>String</td><td></td><td></td></tr><tr><td></td><td>assetCreatedBy</td><td>String</td><td></td><td></td></tr><tr><td></td><td>assetModifiedDate</td><td>String</td><td></td><td></td></tr><tr><td></td><td>assetModifiedBy</td><td>String</td><td></td><td></td></tr><tr><td>容器 ("containers")</td><td></td><td></td><td>說明<p>FriendlyName<p>Tag<p>專家<p>AccessInstruction<p>文件<p></td><td>此類型代表其他資產 (例如 SQL database、Azure Blob 容器或 Analysis Services 模型) 的容器 。</td></tr></table>
 
 ### <a name="annotation-types"></a>註解類型
-
 註解類型代表可以指派給目錄內其他類型的中繼資料類型。
 
 <table>
@@ -178,8 +166,8 @@ Azure 資料目錄的重點在於如何支援由群眾外包系統中的中繼�
 </table>
 
 ### <a name="common-types"></a>常見的類型
-
 常見類型可作為屬性的類型，而不是項目的類型。
+
 <table>
 <tr><td><b>常見類型</b></td><td><b>屬性</b></td><td><b>資料類型</b></td><td><b>註解</b></td></tr>
 <tr><td>DataSourceInfo</td><td></td><td></td><td></td></tr>
@@ -248,18 +236,15 @@ Azure 資料目錄提供數個內建資料來源通訊協定，列在 [資料來
 </table>
 
 ## <a name="roles-and-authorization"></a>角色和授權
-
 Microsoft Azure 資料目錄對資產和註解的 CRUD 作業提供授權功能。
 
 ## <a name="key-concepts"></a>重要概念
-
 Azure 資料目錄使用兩種授權機制：
 
-- 以角色為基礎的授權
-- 以權限為基礎的授權
+* 以角色為基礎的授權
+* 以權限為基礎的授權
 
 ### <a name="roles"></a>角色
-
 有 3 個角色：**系統管理員**、**擁有者**和**參與者**。  每個角色有其範圍和權限，於下表中摘要說明。
 
 <table><tr><td><b>角色</b></td><td><b>Scope</b></td><td><b>權限</b></td></tr><tr><td>系統管理員</td><td>目錄 (目錄中的所有資產/註解)</td><td>Read Delete ViewRoles
@@ -268,12 +253,14 @@ ChangeOwnership ChangeVisibility ViewPermissions</td></tr><tr><td>擁有者</td>
 
 ChangeOwnership ChangeVisibility ViewPermissions</td></tr><tr><td>參與者</td><td>每個個別的資產和註解</td><td>Read Update Delete ViewRoles 注意事項：如果撤銷 Contributor 在項目上的 Read 權限，則會撤鎖所有權限</td></tr></table>
 
-> [AZURE.NOTE] **Read**、**Update**、**Delete**、**ViewRoles** 權限適用於任何項目 (資產或註解)，而 **TakeOwnership**、**ChangeOwnership**、**ChangeVisibility**、**ViewPermissions** 只適用於根資產。
->
->**Delete** 權限適用於項目及其底下的任何子項目或單一項目。 例如，刪除資產時，也會刪除該資產的任何註解。
+> [!NOTE]
+> **Read**、**Update**、**Delete**、**ViewRoles** 權限適用於任何項目 (資產或註解)，而 **TakeOwnership**、**ChangeOwnership**、**ChangeVisibility**、**ViewPermissions** 只適用於根資產。
+> 
+> **Delete** 權限適用於項目及其底下的任何子項目或單一項目。 例如，刪除資產時，也會刪除該資產的任何註解。
+> 
+> 
 
 ### <a name="permissions"></a>權限
-
 權限是存取控制項目的清單。 每個存取控制項目指派一組權限給安全性主體。 權限只能在資產 (也就是根項目) 上指定，可套用至資產和任何子項目。
 
 在 **Azure 資料目錄**預覽期間，僅支援權限清單中的 **Read** 權限，以便該情況下限制資產的可見性。
@@ -281,23 +268,26 @@ ChangeOwnership ChangeVisibility ViewPermissions</td></tr><tr><td>參與者</td>
 根據預設，任何已驗證的使用者對目錄中的任何項目都具有 **Read** 權限，除非權限中已限制只能看到某一組主體。
 
 ## <a name="rest-api"></a>REST API
-
 **PUT** 和 **POST** 檢視項目要求可用於控制角色和權限：除了項目承載，還可指定兩個系統屬性 **roles** 和 **permissions**。
 
-> [AZURE.NOTE]
->
+> [!NOTE]
 > **permissions** 僅適用於根項目。
->
+> 
 > **擁有者** 角色僅適用於根項目。
->
+> 
 > 根據預設，在目錄中建立項目時，其 **參與者** 會設定為目前已驗證的使用者。 如果每個人都能更新項目，則第一次發佈項目時，應該在 **roles** 屬性中，將**參與者**設定為 &lt;Everyone&gt; 特殊安全性主體 (請參閱下列範例)。 **參與者**無法變更，而且在項目存留期間都維持不變 (即使**系統管理員**或**擁有者**都沒有權限變更**參與者**)。 明確設定**參與者**時，唯一支援的值是 &lt;Everyone&gt;：**參與者**只能是建立項目的使用者，或是 &lt;Everyone&gt;。
+> 
+> 
 
-###<a name="examples"></a>範例
+### <a name="examples"></a>範例
 **發佈項目時將參與者設定為 &lt;Everyone&gt;。**
 特殊安全性主體 &lt;Everyone&gt; 具有 objectId "00000000-0000-0000-0000-000000000201"。
   **POST** https://api.azuredatacatalog.com/catalogs/default/views/tables/?api-version=2016-03-30
 
-  > [AZURE.NOTE] 某些 HTTP 用戶端實作可能會自動重新發出要求，以從伺服器回應 302，但通常會從要求中刪除 Authorization 標頭。 因為需要有 Authorization 標頭才能對 Azure 資料目錄提出要求，所以您必須確定在對 Azure 資料目錄所指定的重新導向位置重新發出要求時，仍然會提供 Authorization 標頭。 下列範例程式碼使用 .NET HttpWebRequest 物件進行示範。
+> [!NOTE]
+> 某些 HTTP 用戶端實作可能會自動重新發出要求，以從伺服器回應 302，但通常會從要求中刪除 Authorization 標頭。 因為需要有 Authorization 標頭才能對 Azure 資料目錄提出要求，所以您必須確定在對 Azure 資料目錄所指定的重新導向位置重新發出要求時，仍然會提供 Authorization 標頭。 下列範例程式碼使用 .NET HttpWebRequest 物件進行示範。
+> 
+> 
 
 **內文**
 
@@ -358,7 +348,10 @@ ChangeOwnership ChangeVisibility ViewPermissions</td></tr><tr><td>參與者</td>
         ]
     }
 
-> [AZURE.NOTE] 在 PUT 中，不需要在內文中指定項目裝載：PUT 可以用來直接更新角色和 (或) 權限。
+> [!NOTE]
+> 在 PUT 中，不需要在內文中指定項目裝載：PUT 可以用來直接更新角色和 (或) 權限。
+> 
+> 
 
 <!--Image references-->
 [1]: ./media/data-catalog-developer-concepts/concept2.png

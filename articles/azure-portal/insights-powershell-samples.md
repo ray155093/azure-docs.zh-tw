@@ -1,35 +1,31 @@
-<properties
-	pageTitle="Azure Insights：Azure Insights PowerShell 快速入門範例。| Microsoft Azure"
-	description="Azure Insights 快速入門範例中的 PowerShell 命令可協助您快速存取 Azure Insights 監視功能。"
-	authors="kamathashwin"
-	manager=""
-	editor=""
-	services="monitoring-and-diagnostics"
-	documentationCenter="monitoring-and-diagnostics"/>
+---
+title: Azure Insights：Azure Insights PowerShell 快速入門範例。| Microsoft Docs
+description: Azure Insights 快速入門範例中的 PowerShell 命令可協助您快速存取 Azure Insights 監視功能。
+author: kamathashwin
+manager: ''
+editor: ''
+services: monitoring-and-diagnostics
+documentationcenter: monitoring-and-diagnostics
 
-<tags
-	ms.service="monitoring-and-diagnostics"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/30/2016"
-	ms.author="ashwink"/>
+ms.service: monitoring-and-diagnostics
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/30/2016
+ms.author: ashwink
 
+---
 # Azure Insights PowerShell 快速入門範例
-
 本文顯示 PowerShell 命令範例來協助您快速存取 Azure Insights 監視功能。Azure Insights 可讓您根據設定的遙測資料值，自動調整雲端服務、虛擬機器和 Web Apps，以及傳送警示通知，或呼叫 Web URL。
 
 ## 設定 PowerShell
 設定要在電腦上執行的 PowerShell (如果您還未設定)。如需詳細資訊，請參閱[如何安裝和設定 PowerShell](../powershell-install-configure.md)。
 
 ## 本文中的範例
-
 本文中的範例將說明如何使用 Azure Insights Cmdlet。您也可以在 [Azure Insights Cmdlet](https://msdn.microsoft.com/library/azure/mt282452#40v=azure.200#41.aspx) 檢閱整個 Azure Insights (監視) PowerShell Cmdlet 清單。
 
-
 ## 登入和使用訂用帳戶
-
 首先，登入您的 Azure 訂用帳戶。
 
 ```
@@ -90,7 +86,10 @@ Get-AzureRmLog -MaxEvents 1000
 
 `Get-AzureRmLog` 支援其他許多參數。如需詳細資訊，請參閱 `Get-AzureRmLog` 參考。
 
->[AZURE.NOTE] `Get-AzureRmLog` 只提供 15 天的歷程記錄。使用 **-MaxEvents** 參數可讓您查詢超過 15 天的前 N 個事件。若要存取 15 天前的事件，請使用 REST API 或 SDK (使用 SDK 的 C# 範例)。如果您未包含 **StartTime**，則預設值是 **EndTime** 減去一小時。如果您未包含 **EndTime**，則預設值是目前的時間。所有時間都是採用 UTC 格式。
+> [!NOTE]
+> `Get-AzureRmLog` 只提供 15 天的歷程記錄。使用 **-MaxEvents** 參數可讓您查詢超過 15 天的前 N 個事件。若要存取 15 天前的事件，請使用 REST API 或 SDK (使用 SDK 的 C# 範例)。如果您未包含 **StartTime**，則預設值是 **EndTime** 減去一小時。如果您未包含 **EndTime**，則預設值是目前的時間。所有時間都是採用 UTC 格式。
+> 
+> 
 
 ## 擷取警示歷程記錄
 若要檢視所有警示事件，您可以使用下列範例查詢 Azure Resource Manager (ARM) 記錄檔。
@@ -106,7 +105,6 @@ Get-AzureRmAlertHistory -ResourceId /subscriptions/s1/resourceGroups/rg1/provide
 ```
 
 `Get-AzureRmAlertHistory` Cmdlet 支援多各種參數。如需詳細資訊，請參閱 [Get AlertHistory](https://msdn.microsoft.com/library/mt282453.aspx)。
-
 
 ## 擷取警示規則的相關資訊
 下列所有命令都會處理一個名為 "montest" 的資源群組。
@@ -141,20 +139,19 @@ Get-AzureRmAlertRule -ResourceGroup montest -TargetResourceId /subscriptions/s1/
 ### 計量的警示規則
 下表描述使用計量建立警示所使用的參數和值。
 
-
-|參數|value|
-|---|---|
-|名稱|	simpletestdiskwrite|
-|此警示規則的位置|	美國東部|
-|ResourceGroup|	montest|
-|TargetResourceId|	/subscriptions/s1/resourceGroups/montest/providers/Microsoft.Compute/virtualMachines/testconfig|
-|所建立警示的 MetricName|	\\PhysicalDisk(\_Total)\\Disk Writes/sec。請參閱下面的 `Get-MetricDefinitions` Cmdlet 以了解如何擷取確切的計量名稱|
-|operator|	GreaterThan|
-|臨界值 (此計量的計數/秒）|	1|
-|WindowSize (hh:mm:ss 格式)|	00:05:00|
-|彙總工具 (在此情況為計量的統計資料，其使用平均計數)|	平均值|
-|自訂電子郵件 (字串陣列)|'foo@example.com'、'bar@example.com'|
-|傳送電子郵件給擁有者、參與者和讀者|	-SendToServiceOwners|
+| 參數 | value |
+| --- | --- |
+| 名稱 |simpletestdiskwrite |
+| 此警示規則的位置 |美國東部 |
+| ResourceGroup |montest |
+| TargetResourceId |/subscriptions/s1/resourceGroups/montest/providers/Microsoft.Compute/virtualMachines/testconfig |
+| 所建立警示的 MetricName |\\PhysicalDisk(\_Total)\\Disk Writes/sec。請參閱下面的 `Get-MetricDefinitions` Cmdlet 以了解如何擷取確切的計量名稱 |
+| operator |GreaterThan |
+| 臨界值 (此計量的計數/秒） |1 |
+| WindowSize (hh:mm:ss 格式) |00:05:00 |
+| 彙總工具 (在此情況為計量的統計資料，其使用平均計數) |平均值 |
+| 自訂電子郵件 (字串陣列) |'foo@example.com'、'bar@example.com' |
+| 傳送電子郵件給擁有者、參與者和讀者 |-SendToServiceOwners |
 
 建立電子郵件動作
 
@@ -183,8 +180,10 @@ Get-AzureRmAlertRule -Name vmcpu_gt_1 -ResourceGroup myrg1 -DetailedOutput
 如果指定屬性的警示規則已存在，Add alert Cmdlet 也會更新規則。若要停用警示規則，請加上參數 **-DisableRule**。
 
 ### 稽核記錄檔事件的警示
-
->[AZURE.NOTE] 此功能仍然處於預覽狀態。
+> [!NOTE]
+> 此功能仍然處於預覽狀態。
+> 
+> 
 
 在此案例中，當我的訂用帳戶中的網站在資源群組「abhingrgtest123」中成功啟動時，您將會傳送電子郵件。
 
@@ -229,7 +228,6 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
 
 `Get-AzureRmMetricDefinition` 的可用選項完整清單可在 [Get MetricDefinitions](https://msdn.microsoft.com/library/mt282458.aspx) 取得。
 
-
 ## 建立和管理自動調整設定
 諸如 Web app、VM、雲端服務或 VM 調整集之類的資源只能設定一個自動調整設定。不過，每個自動調整設定都可以有多個設定檔。例如，一個用於以效能為基礎的調整設定檔，以及一個用於以排程為基礎的設定檔。每個設定檔都可以設定多個規則。如需有關自動調整的詳細資訊，請參閱[如何自動調整應用程式](../cloud-services/cloud-services-how-to-scale.md)。
 
@@ -246,7 +244,7 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
 
 ```
 $rule1 = New-AzureRmAutoscaleRule -MetricName "\Processor(_Total)\% Processor Time" -MetricResourceId /subscriptions/s1/resourceGroups/big2/providers/Microsoft.Compute/virtualMachineScaleSets/big2 -Operator GreaterThan -MetricStatistic Average -Threshold 0.01 -TimeGrain 00:01:00 -TimeWindow 00:10:00 -ScaleActionCooldown 00:10:00 -ScaleActionDirection Increase -ScaleActionScaleType ChangeCount -ScaleActionValue 1
-```		
+```        
 
 接著，建立相應縮小的規則，讓執行個體計數減少。
 
@@ -318,26 +316,22 @@ Remove-AzureRmAutoscalesetting -ResourceGroup myrg1 -Name MyScaleVMSSSetting
 ```
 
 ## 管理稽核記錄檔的記錄檔設定檔
-
 您可以建立記錄檔設定檔，並將資料從稽核記錄檔匯出至儲存體帳戶，而且您可以為其設定資料保留期。或者，您也可以將資料串流至事件中樞。請注意，此功能目前處於預覽狀態，而且每個訂用帳戶只能建立一個記錄檔設定檔。您可以使用下列 Cmdlet 搭配您目前的訂用帳戶來建立和管理記錄檔設定檔。您也可以選擇特定的訂用帳戶。PowerShell 預設為目前的訂用帳戶，但是您隨時可以使用 `Set-AzureRmContext` 加以變更。您可以設定稽核記錄檔，將資料路由至任何儲存體帳戶或該訂用帳戶內的事件中樞。資料會以 JSON 格式的 Blob 檔案寫入。
 
 ### 取得記錄檔設定檔
 若要擷取現有的記錄檔設定檔，請使用 `Get-AzureRmLogProfile` Cmdlet。
 
 ### 新增沒有資料保留期的記錄檔設定檔
-
 ```
 Add-AzureRmLogProfile -Name my_log_profile_s1 -StorageAccountId /subscriptions/s1/resourceGroups/myrg1/providers/Microsoft.Storage/storageAccounts/my_storage -Locations global,westus,eastus,northeurope,westeurope,eastasia,southeastasia,japaneast,japanwest,northcentralus,southcentralus,eastus2,centralus,australiaeast,australiasoutheast,brazilsouth,centralindia,southindia,westindia
 ```
 
 ### 移除記錄檔設定檔
-
 ```
 Remove-AzureRmLogProfile -name my_log_profile_s1
 ```
 
 ### 新增包含資料保留期的記錄檔設定檔
-
 您可以使用保留資料的天數，以正整數指定 **-RetentionInDays** 屬性。
 
 ```
@@ -355,7 +349,6 @@ Add-AzureRmLogProfile -Name my_log_profile_s1 -StorageAccountId /subscriptions/s
 許多 Azure 服務都會提供額外的記錄檔和遙測，包括 Azure 網路安全性群組、軟體負載平衡器、金鑰保存庫、Azure 搜尋服務，以及 Logic Apps，而且它們可以設定為將資料儲存在 Azure 儲存體帳戶中。該作業只能在資源層級執行，而且儲存體帳戶應該存在於進行診斷設定所在目標資源的相同區域中。
 
 ### 取得診斷設定
-
 ```
 Get-AzureRmDiagnosticSetting -ResourceId /subscriptions/s1/resourceGroups/myrg1/providers/Microsoft.Logic/workflows/andy0315logicapp
 ```

@@ -1,30 +1,28 @@
-<properties
-	pageTitle="在 Myapps 入口網站中建立 Azure Multi-Factor Authentication 的應用程式密碼"
-	description="此頁面會顯示使用者如何在 Myapps 入口網站中建立其他應用程式密碼。"
-	services="multi-factor-authentication"
-	documentationCenter=""
-	authors="kgremban"
-	manager="femila"
-	editor="curtland"/>
+---
+title: 在 Myapps 入口網站中建立 Azure Multi-Factor Authentication 的應用程式密碼
+description: 此頁面會顯示使用者如何在 Myapps 入口網站中建立其他應用程式密碼。
+services: multi-factor-authentication
+documentationcenter: ''
+author: kgremban
+manager: femila
+editor: curtland
 
-<tags
-	ms.service="multi-factor-authentication"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/04/2016"
-	ms.author="kgremban"/>
+ms.service: multi-factor-authentication
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/04/2016
+ms.author: kgremban
 
+---
 # 在 myapps 365 入口網站中建立 Azure Multi-Factor Authentication 的應用程式密碼
-
-
-
 如果您有 Azure 訂用帳戶而未搭配 Office 365 使用 Multi-Factor Authentication，則您要透過 myapps 入口網站建立應用程式密碼。
 
 ## 在沒有 Office 365 或 Azure 訂用帳戶的情況下建立應用程式密碼
---------------------------------------------------------------------------------
+- - -
 <ol>
+
 <li>登入 [https://myapps.microsoft.com](https://myapps.microsoft.com)</li>
 <li>在頂端，選取 [設定檔]。</li>
 

@@ -1,21 +1,21 @@
-<properties
-   pageTitle="Azure AD Connect 同步處理：防止意外刪除 |Microsoft Azure"
-   description="本主題說明 Azure AD Connect 中的防止意外刪除 (可防止意外刪除) 功能。"
-   services="active-directory"
-   documentationCenter=""
-   authors="AndKjell"
-   manager="femila"
-   editor=""/>
+---
+title: Azure AD Connect 同步處理：防止意外刪除 | Microsoft Docs
+description: 本主題說明 Azure AD Connect 中的防止意外刪除 (可防止意外刪除) 功能。
+services: active-directory
+documentationcenter: ''
+author: AndKjell
+manager: femila
+editor: ''
 
-<tags
-   ms.service="active-directory"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="identity"
-   ms.date="09/01/2016"
-   ms.author="andkjell"/>
+ms.service: active-directory
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: identity
+ms.date: 09/01/2016
+ms.author: andkjell
 
+---
 # Azure AD Connect 同步處理：防止意外刪除
 本主題說明 Azure AD Connect 中的防止意外刪除 (可防止意外刪除) 功能。
 
@@ -23,9 +23,9 @@
 
 會看到多項刪除的常見案例包括：
 
-- 要變更未選取整個 [OU](active-directory-aadconnectsync-configure-filtering.md#organizational-unitbased-filtering) 或[網域](active-directory-aadconnectsync-configure-filtering.md#domain-based-filtering)的[篩選](active-directory-aadconnectsync-configure-filtering.md)。
-- OU 中的所有物件遭到刪除。
-- 重新命名 OU，結果使得其中的所有物件被視為不在同步處理範圍內。
+* 要變更未選取整個 [OU](active-directory-aadconnectsync-configure-filtering.md#organizational-unitbased-filtering) 或[網域](active-directory-aadconnectsync-configure-filtering.md#domain-based-filtering)的[篩選](active-directory-aadconnectsync-configure-filtering.md)。
+* OU 中的所有物件遭到刪除。
+* 重新命名 OU，結果使得其中的所有物件被視為不在同步處理範圍內。
 
 可以使用 PowerShell 的 `Enable-ADSyncExportDeletionThreshold` 進行變更的預設值是 500 個物件。您應該將此值設定為符合您組織的大小。由於同步排程器會每隔 30 分鐘執行一次，因此該值是 30 分鐘內看到的刪除數目。
 
@@ -34,6 +34,8 @@
 ![防止意外刪除電子郵件](./media/active-directory-aadconnectsync-feature-prevent-accidental-deletes/email.png)
 
 > *Hello (技術連絡人)。有時身分識別同步處理服務偵測到的刪除數目會超過 (組織名稱) 所設定的刪除閾值。本次執行身分識別同步處理時，共傳送 (數目) 個物件進行刪除。這已到達或超過設定的 (數目) 個物件的刪除閾值。您需先確認要刪除這些項目，才可繼續進行。若要深入了解此電子郵件中列出的錯誤，請參見防止意外刪除。*
+> 
+> 
 
 當您查看匯出設定檔的 **Synchronization Service Manager** UI，您也會看到狀態 `stopped-deletion-threshold-exceeded`。 ![防止意外刪除 Sync Service Manager UI](./media/active-directory-aadconnectsync-feature-prevent-accidental-deletes/syncservicemanager.png)
 
@@ -54,10 +56,9 @@
 3. 若要重新啟用此保護功能，請執行 PowerShell Cmdlet：`Enable-ADSyncExportDeletionThreshold`。
 
 ## 後續步驟
-
 **概觀主題**
 
-- [Azure AD Connect 同步處理：了解及自訂同步處理](active-directory-aadconnectsync-whatis.md)
-- [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
+* [Azure AD Connect 同步處理：了解及自訂同步處理](active-directory-aadconnectsync-whatis.md)
+* [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
 <!----HONumber=AcomDC_0907_2016-->

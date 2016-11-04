@@ -1,22 +1,21 @@
-<properties 
-	pageTitle="在 Application Insights SDK 中篩選及前置處理 | Microsoft Azure" 
-	description="撰寫 SDK 的遙測處理器和遙測初始設定式來篩選屬性或將屬性新增至資料，再將遙測傳送至 Application Insights 入口網站。" 
-	services="application-insights"
-    documentationCenter="" 
-	authors="beckylino" 
-	manager="douge"/>
- 
-<tags 
-	ms.service="application-insights" 
-	ms.workload="tbd" 
-	ms.tgt_pltfrm="ibiza" 
-	ms.devlang="multiple" 
-	ms.topic="article" 
-	ms.date="08/30/2016" 
-	ms.author="borooji"/>
+---
+title: 在 Application Insights SDK 中篩選及前置處理 | Microsoft Docs
+description: 撰寫 SDK 的遙測處理器和遙測初始設定式來篩選屬性或將屬性新增至資料，再將遙測傳送至 Application Insights 入口網站。
+services: application-insights
+documentationcenter: ''
+author: beckylino
+manager: douge
 
+ms.service: application-insights
+ms.workload: tbd
+ms.tgt_pltfrm: ibiza
+ms.devlang: multiple
+ms.topic: article
+ms.date: 08/30/2016
+ms.author: borooji
+
+---
 # 在 Application Insights SDK 中篩選及前置處理遙測
-
 *Application Insights 目前僅供預覽。*
 
 您可以針對 Application Insights SDK 撰寫與設定外掛程式，以自訂在遙測傳送至 Application Insights 服務之前，擷取與處理它的方式。
@@ -28,43 +27,43 @@
 * [遙測初始設定式會新增屬性](#add-properties)至任何從應用程式傳送出來的遙測，包括從標準模組傳送出來的遙測。例如，您可以新增計算好的值，或是用來在入口網站中篩選資料的版本號碼。
 * [SDK API](app-insights-api-custom-events-metrics.md) 可用來傳送自訂事件和計量。
 
-
 開始之前：
 
 * 在應用程式中安裝 [ASP.NET v2 的 Application Insights SDK](app-insights-asp-net.md)。
 
-
 <a name="filtering"></a>
-## 篩選︰ITelemetryProcessor
 
+## 篩選︰ITelemetryProcessor
 這項技術可讓您更直接地控制包含在遙測串流中或排除於遙測串流外的內容。您可以將它與取樣搭配使用或分開使用。
 
 若要篩選遙測，請撰寫遙測處理器，並將它向 SDK 註冊。所有遙測都會通過處理器，您可以選擇從串流中卸除或加入屬性。這包括來自標準模組 (例如 HTTP 要求收集器和相依性收集器) 的遙測，以及您自己撰寫的遙測。比方說，您可以篩選出有關來自傀儡程式要求或成功的相依性呼叫的遙測。
 
-> [AZURE.WARNING] 篩選傳送自使用處理器的 SDK 的遙測可能會曲解您在入口網站中看到的統計資料，並且難以追蹤相關的項目。
+> [!WARNING]
+> 篩選傳送自使用處理器的 SDK 的遙測可能會曲解您在入口網站中看到的統計資料，並且難以追蹤相關的項目。
 > 
 > 請考慮改用[取樣](app-insights-sampling.md)。
+> 
+> 
 
 ### 建立遙測處理器
-
 1. 確認專案中的 Application Insights SDK 為 2.0.0 版或更新版本。在 Visual Studio 方案總管中以滑鼠右鍵按一下專案，然後選擇 [管理 NuGet 封裝]。檢查 NuGet 封裝管理員中的 Microsoft.ApplicationInsights.Web。
-
-1. 若要建立篩選器，請實作 ITelemetryProcessor。這是遙測模組、遙測初始設定式和遙測通道之類的另一個擴充點。
-
+2. 若要建立篩選器，請實作 ITelemetryProcessor。這是遙測模組、遙測初始設定式和遙測通道之類的另一個擴充點。
+   
     請注意，遙測處理器建構一連串的處理。當您具現化遙測處理器時，您會傳遞連結至鏈結中的下一個處理器。遙測資料點傳遞至處理序方法時，它會完成其工作並接著呼叫鏈結中的下一個遙測處理器。
-
+   
     ``` C#
-
+   
     using Microsoft.ApplicationInsights.Channel;
     using Microsoft.ApplicationInsights.Extensibility;
-
+   
     public class SuccessfulDependencyFilter : ITelemetryProcessor
       {
+   
         private ITelemetryProcessor Next { get; set; }
-
+   
         // You can pass values from .config
         public string MyParamFromConfigFile { get; set; }
-
+   
         // Link processors to each other in a chain.
         public SuccessfulDependencyFilter(ITelemetryProcessor next)
         {
@@ -76,29 +75,28 @@
             if (!OKtoSend(item)) { return; }
             // Modify the item if required 
             ModifyItem(item);
-
+   
             this.Next.Process(item);
         }
-
+   
         // Example: replace with your own criteria.
         private bool OKtoSend (ITelemetry item)
         {
             var dependency = item as DependencyTelemetry;
             if (dependency == null) return true;
-
+   
             return dependency.Success != true;
         }
-
+   
         // Example: replace with your own modifiers.
         private void ModifyItem (ITelemetry item)
         {
             item.Context.Properties.Add("app-version", "1." + MyParamFromConfigFile);
         }
     }
-    
 
     ```
-2. 在 ApplicationInsights.config 中插入：
+1. 在 ApplicationInsights.config 中插入：
 
 ```XML
 
@@ -115,9 +113,11 @@
 
 您可以在類別中提供公開具名屬性，以從 .config 檔案傳遞字串值。
 
-> [AZURE.WARNING] 仔細地將 .config 檔案中的類型名稱和任何屬性名稱與程式碼中的類別和屬性名稱做比對。如果 .config 檔案參考不存在的類型或屬性，SDK 可能無法傳送任何遙測，而且不會產生任何訊息。
+> [!WARNING]
+> 仔細地將 .config 檔案中的類型名稱和任何屬性名稱與程式碼中的類別和屬性名稱做比對。如果 .config 檔案參考不存在的類型或屬性，SDK 可能無法傳送任何遙測，而且不會產生任何訊息。
+> 
+> 
 
- 
 或者，您也可以在程式碼中初始化篩選。在適當的初始化類別中 - 例如在 Global.asax.cs 中的 AppStart - 插入您的處理器至鏈結：
 
 ```C#
@@ -135,9 +135,7 @@
 在這個點之後建立的 TelemetryClients 會使用您的處理器。
 
 ### 範例篩選器
-
 #### 綜合要求
-
 篩選出 bot 和 Web 測試。雖然計量瀏覽器可讓您篩選出綜合來源，此選項會藉由在 SDK 篩選它們以降低流量。
 
 ``` C#
@@ -153,7 +151,6 @@
 ```
 
 #### 驗證失敗
-
 篩選出具有 "401" 回應的要求。
 
 ```C#
@@ -175,17 +172,19 @@ public void Process(ITelemetry item)
 ```
 
 #### 篩選出快速遠端相依性呼叫
-
 如果您只想要診斷速度很慢的呼叫，請篩選出快的項目。
 
-> [AZURE.NOTE] 這樣會曲解您在入口網站上看到的統計資料。相依性圖表將看起來好像相依性呼叫均失敗。
+> [!NOTE]
+> 這樣會曲解您在入口網站上看到的統計資料。相依性圖表將看起來好像相依性呼叫均失敗。
+> 
+> 
 
 ``` C#
 
 public void Process(ITelemetry item)
 {
     var request = item as DependencyTelemetry;
-            
+
     if (request != null && request.Duration.Milliseconds < 100)
     {
         return;
@@ -196,13 +195,11 @@ public void Process(ITelemetry item)
 ```
 
 #### 診斷相依性問題
-
 [這篇部落格文章](https://azure.microsoft.com/blog/implement-an-application-insights-telemetry-processor/)描述可自動傳送定期的 Ping 給相依項目，藉以診斷相依性問題的專案。
 
-
 <a name="add-properties"></a>
-## 新增屬性︰ITelemetryInitializer
 
+## 新增屬性︰ITelemetryInitializer
 使用遙測初始設定式來定義與所有遙測一起傳送的全域屬性；並覆寫選取的標準遙測模組行為。
 
 例如，Web 封裝的 Application Insights 會收集有關 HTTP 要求的遙測。根據預設，它會將所有含 >= 400 回應碼的要求標記為失敗。但如果您想將 400 視為成功，您可以提供設定 Success 屬性的遙測初始設定式。
@@ -264,7 +261,6 @@ public void Process(ITelemetry item)
 
 *或者*，您也可以在程式碼 (如 Global.aspx.cs) 中具現化初始設定式：
 
-
 ```C#
     protected void Application_Start()
     {
@@ -278,8 +274,8 @@ public void Process(ITelemetry item)
 [詳細查看此範例。](https://github.com/Microsoft/ApplicationInsights-Home/tree/master/Samples/AzureEmailService/MvcWebRole)
 
 <a name="js-initializer"></a>
-### JavaScript 遙測初始設定式
 
+### JavaScript 遙測初始設定式
 *JavaScript*
 
 在您從入口網站取得的初始化程式碼之後立即插入遙測初始設定式：
@@ -328,9 +324,7 @@ public void Process(ITelemetry item)
 
 您可以依需要加入多個初始設定式。
 
-
 ## ITelemetryProcessor 和 ITelemetryInitializer
-
 遙測處理器與遙測初始設定式之間有何差異？
 
 * 它們的用途有部分重疊︰兩者都可以用來在遙測中新增屬性。
@@ -338,10 +332,7 @@ public void Process(ITelemetry item)
 * TelemetryProcessors 可讓您完全取代或捨棄遙測項目。
 * TelemetryProcessors 不會處理效能計數器遙測。
 
-
-
-## 持續性通道 
-
+## 持續性通道
 如果您的應用程式在不一定有網際網路連線或速度很慢的地方執行，請考慮使用持續性通道，而不使用預設的記憶體中通道。
 
 預設的記憶體中通道將會在應用程式關閉時遺失任何尚未傳送的遙測。雖然您可以使用 `Flush()` 嘗試傳送緩衝區中剩餘的任何資料，但如果沒有網際網路連線，或者如果在完成傳輸之前關閉了應用程式，它還是會遺失資料。
@@ -349,58 +340,54 @@ public void Process(ITelemetry item)
 相較之下，持續性通道會緩衝處理檔案中的遙測，再將它傳送至入口網站。`Flush()` 可確保資料會儲存在檔案中。如果任何資料未在應用程式關閉時傳送，它會保留在檔案中。當應用程式重新啟動時，即使沒有網際網路連線，資料也會傳送。在連線可用之前，資料會視需求累積在檔案中。
 
 ### 使用持續性通道
-
 1. 匯入 NuGet 封裝 [Microsoft.ApplicationInsights.PersistenceChannel](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PersistenceChannel/1.2.3)。
 2. 在適當的初始化位置，將此程式碼納入您的應用程式中：
- 
+   
     ```C# 
-
+   
       using Microsoft.ApplicationInsights.Channel;
       using Microsoft.ApplicationInsights.Extensibility;
       ...
-
+   
       // Set up 
       TelemetryConfiguration.Active.InstrumentationKey = "YOUR INSTRUMENTATION KEY";
- 
+   
       TelemetryConfiguration.Active.TelemetryChannel = new PersistenceChannel();
-    
+   
     ``` 
 3. 在您的應用程式關閉之前使用 `telemetryClient.Flush()`，以確定資料已傳送至入口網站或儲存至檔案。
-
+   
     請注意，flush () 對於持續性通道而言是同步的，但對其他通道而言是非同步的。
 
- 
 持續性通道最適合裝置的案例，其中應用程式所產生的事件數目相對較少，而連線通常不可靠。這個通道會先將磁碟的事件寫入到可靠的儲存空間，然後嘗試傳送它。
 
 #### 範例
-
 假設您想要監視未處理的例外狀況。您訂閱 `UnhandledException` 事件。在回呼中，您可以包含對排清的呼叫，以確定會保存遙測。
- 
+
 ```C# 
 
 AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException; 
- 
+
 ... 
- 
+
 private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e) 
 { 
     ExceptionTelemetry excTelemetry = new ExceptionTelemetry((Exception)e.ExceptionObject); 
     excTelemetry.SeverityLevel = SeverityLevel.Critical; 
     excTelemetry.HandledAt = ExceptionHandledAt.Unhandled; 
- 
+
     telemetryClient.TrackException(excTelemetry); 
- 
+
     telemetryClient.Flush(); 
 } 
 
 ``` 
 
 當應用程式關閉時，您會看到 `%LocalAppData%\Microsoft\ApplicationInsights` 中的檔案，其中包含壓縮的事件。
- 
+
 下次您啟動此應用程式時，通道將盡可能找出此檔案並傳送遙測至 Application Insights。
 
 #### 測試範例
-
 ```C#
 
 using Microsoft.ApplicationInsights;
@@ -443,28 +430,19 @@ namespace ConsoleApplication1
 
 持續性通道的程式碼位於 [github](https://github.com/Microsoft/ApplicationInsights-dotnet/tree/v1.2.3/src/TelemetryChannels/PersistenceChannel) 上。
 
-
 ## 參考文件
-
 * [API 概觀](app-insights-api-custom-events-metrics.md)
-
 * [ASP.NET 參考](https://msdn.microsoft.com/library/dn817570.aspx)
 
-
 ## SDK 程式碼
-
 * [ASP.NET 核心 SDK](https://github.com/Microsoft/ApplicationInsights-dotnet)
 * [ASP.NET 5](https://github.com/Microsoft/ApplicationInsights-aspnet5)
 * [JavaScript SDK](https://github.com/Microsoft/ApplicationInsights-JS)
 
-
 ## <a name="next"></a>接續步驟
-
-
 * [搜尋事件和記錄檔][diagnostic]
 * [取樣](app-insights-sampling.md)
 * [疑難排解][qna]
-
 
 <!--Link references-->
 
@@ -481,6 +459,6 @@ namespace ConsoleApplication1
 [trace]: app-insights-search-diagnostic-logs.md
 [windows]: app-insights-windows-get-started.md
 
- 
+
 
 <!----HONumber=AcomDC_0907_2016-->

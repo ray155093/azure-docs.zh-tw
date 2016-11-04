@@ -1,46 +1,49 @@
-<properties
-   pageTitle="Service Fabric 和部署容器 | Microsoft Azure"
-   description="Service Fabric 及使用容器來部署微服務應用程式。 本文說明 Service Fabric 為容器提供的功能，以及如何將容器映像部署至叢集"
-   services="service-fabric"
-   documentationCenter=".net"
-   authors="msfussell"
-   manager=""
-   editor=""/>
+---
+title: Service Fabric 和部署容器 | Microsoft Docs
+description: Service Fabric 及使用容器來部署微服務應用程式。 本文說明 Service Fabric 為容器提供的功能，以及如何將容器映像部署至叢集
+services: service-fabric
+documentationcenter: .net
+author: msfussell
+manager: ''
+editor: ''
 
-<tags
-   ms.service="service-fabric"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="NA"
-   ms.date="09/25/2016"
-   ms.author="msfussell"/>
+ms.service: service-fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 09/25/2016
+ms.author: msfussell
 
-
+---
 # <a name="preview:-deploy-a-container-to-service-fabric"></a>預覽︰將容器部署至 Service Fabric
-
->[AZURE.NOTE] 這項功能在 Linux 上處於預覽階段，在 Windows Server 上目前無法使用。 在 Windows Server 2016 GA 之後的下一版 Service Fabric 上，這將於 Windows Server 中進入預覽階段，之後在後續版本中就會開始支援。
+> [!NOTE]
+> 這項功能在 Linux 上處於預覽階段，在 Windows Server 上目前無法使用。 在 Windows Server 2016 GA 之後的下一版 Service Fabric 上，這將於 Windows Server 中進入預覽階段，之後在後續版本中就會開始支援。
+> 
+> 
 
 Service Fabric 有數個容器功能可協助您建置由容器化微服務組成的應用程式。 這些稱為容器化服務。 功能包括：
 
-- 容器映像部署和啟用
-- 資源管理
-- 儲存機制驗證
-- 容器連接埠至主機連接埠的對應
-- 容器至容器的探索及通訊
-- 能夠設定環境變數
+* 容器映像部署和啟用
+* 資源管理
+* 儲存機制驗證
+* 容器連接埠至主機連接埠的對應
+* 容器至容器的探索及通訊
+* 能夠設定環境變數
 
 讓我們逐一檢視將容器化服務封裝納入到應用程式時的每一項功能。
 
 ## <a name="packaging-a-container"></a>封裝容器
-
 在封裝容器時，您可以選擇使用 Visual Studio 專案範本，或是 [手動建立應用程式封裝](#manually)。 使用 Visual Studio，就可讓新增專案精靈為您建立應用程式封裝的結構和資訊清單檔案。
 
 ## <a name="using-visual-studio-to-package-an-existing-executable"></a>使用 Visual Studio 封裝現有的可執行檔
-
->[AZURE.NOTE] 在 Visual Studio 工具 SDK 的未來版本中，您將能夠將容器新增至應用程式，就好像現在新增來賓可執行檔一樣。 請參閱 [將來賓可執行檔部署至 Service Fabric](service-fabric-deploy-existing-app.md) 主題。 目前，您必須執行手動封裝，如下所述。
+> [!NOTE]
+> 在 Visual Studio 工具 SDK 的未來版本中，您將能夠將容器新增至應用程式，就好像現在新增來賓可執行檔一樣。 請參閱 [將來賓可執行檔部署至 Service Fabric](service-fabric-deploy-existing-app.md) 主題。 目前，您必須執行手動封裝，如下所述。
+> 
+> 
 
 <a id="manually"></a>
+
 ## <a name="manually-packaging-and-deploying-container"></a>手動封裝和部署容器
 手動封裝容器化服務的程序是基於下列步驟：
 
@@ -68,14 +71,16 @@ Service Fabric 有數個容器功能可協助您建置由容器化微服務組�
 ## <a name="resource-governance"></a>資源管理
 資源控管是容器的功能，可限制容器在主機上可使用的資源。 應用程式資訊清單中指定的 `ResourceGovernancePolicy`可讓您宣告服務程式碼封裝的資源限制。 可設定的資源限制如下：
 
-- 記憶體
-- MemorySwap
-- CpuShares (CPU 相對權數)
-- MemoryReservationInMB  
-- BlkioWeight (BlockIO 相對權數)。 
+* 記憶體
+* MemorySwap
+* CpuShares (CPU 相對權數)
+* MemoryReservationInMB  
+* BlkioWeight (BlockIO 相對權數)。 
 
->[AZURE.NOTE] 在未來版本中，可能會支援指定特定的區塊 IO 限制，例如 IOP、讀取/寫入 BPS 及其他限制。
-
+> [!NOTE]
+> 在未來版本中，可能會支援指定特定的區塊 IO 限制，例如 IOP、讀取/寫入 BPS 及其他限制。
+> 
+> 
 
     <ServiceManifestImport>
         <ServiceManifestRef ServiceManifestName="FrontendServicePackage" ServiceManifestVersion="1.0"/>
@@ -89,7 +94,6 @@ Service Fabric 有數個容器功能可協助您建置由容器化微服務組�
 ## <a name="repository-authentication"></a>儲存機制驗證
 若要下載容器，您可能必須向容器儲存機制提供登入認證。 application  資訊清單中指定的登入認證，用於指定從映像儲存機制下載容器映像所需的登入資訊或 SSH 金鑰。  下列範例顯示名為 TestUser  的帳戶及純文字密碼。 **不** 建議使用。
 
-
     <ServiceManifestImport>
         <ServiceManifestRef ServiceManifestName="FrontendServicePackage" ServiceManifestVersion="1.0"/>
         <Policies>
@@ -102,7 +106,6 @@ Service Fabric 有數個容器功能可協助您建置由容器化微服務組�
 密碼可以且應該使用部署至電腦的憑證來加密。
 
 下列範例顯示名為 *TestUser* 的帳戶，其密碼以稱為 *MyCert* 的憑證加密。 您可以使用 `Invoke-ServiceFabricEncryptText` Powershell 命令來建立密碼的加密文字。 相關作法的詳細資訊，請參閱 [管理 Service Fabric 應用程式中的密碼](service-fabric-application-secret-management.md) 一文。 將密碼解密的憑證私密金鑰必須以頻外方法部署到本機電腦 (在 Azure 中，這是透過 Resource Manager)。 然後，當 Service Fabric 將服務封裝部署到電腦時，它就能夠將密碼解密，並連同使用者名稱，利用這些認證向容器儲存機制進行驗證。
-
 
     <ServiceManifestImport>
         <ServiceManifestRef ServiceManifestName="FrontendServicePackage" ServiceManifestVersion="1.0"/>
@@ -118,7 +121,6 @@ Service Fabric 有數個容器功能可協助您建置由容器化微服務組�
 
 ## <a name="container-port-to-host-port-mapping"></a>容器連接埠至主機連接埠的對應
 您可以在應用程式資訊清單中指定 `PortBinding` ，以設定用來與容器通訊的主機連接埠。 連接埠繫結會將服務在容器內接聽的連接埠，對應至主機上的連接埠
-
 
     <ServiceManifestImport>
         <ServiceManifestRef ServiceManifestName="FrontendServicePackage" ServiceManifestVersion="1.0"/>
@@ -184,7 +186,6 @@ Service Fabric 有數個容器功能可協助您建置由容器化微服務組�
 
 ## <a name="complete-examples-for-application-and-service-manifest"></a>應用程式和服務資訊清單的完整範例
 以下是顯示容器功能的應用程式資訊清單範例。
-
 
     <ApplicationManifest ApplicationTypeName="SimpleContainerApp" ApplicationTypeVersion="1.0" xmlns="http://schemas.microsoft.com/2011/01/fabric" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <Description>A simple service container application</Description>

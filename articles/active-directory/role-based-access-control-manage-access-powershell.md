@@ -1,39 +1,37 @@
-<properties
-	pageTitle="使用 Azure PowerShell 管理角色型存取控制 (RBAC) | Microsoft Azure"
-	description="如何使用 Azure PowerShell 管理 RBAC，包括列出角色、指派角色，以及刪除角色指派。"
-	services="active-directory"
-	documentationCenter=""
-	authors="kgremban"
-	manager="femila"
-	editor=""/>
+---
+title: 使用 Azure PowerShell 管理角色型存取控制 (RBAC) | Microsoft Docs
+description: 如何使用 Azure PowerShell 管理 RBAC，包括列出角色、指派角色，以及刪除角色指派。
+services: active-directory
+documentationcenter: ''
+author: kgremban
+manager: femila
+editor: ''
 
-<tags
-	ms.service="active-directory"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.tgt_pltfrm="na"
-	ms.workload="identity"
-	ms.date="07/22/2016"
-	ms.author="kgremban"/>
+ms.service: active-directory
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: identity
+ms.date: 07/22/2016
+ms.author: kgremban
 
+---
 # 使用 Azure PowerShell 管理角色型存取控制
-
-> [AZURE.SELECTOR]
-- [PowerShell](role-based-access-control-manage-access-powershell.md)
-- [Azure CLI](role-based-access-control-manage-access-azure-cli.md)
-- [REST API](role-based-access-control-manage-access-rest.md)
-
+> [!div class="op_single_selector"]
+> * [PowerShell](role-based-access-control-manage-access-powershell.md)
+> * [Azure CLI](role-based-access-control-manage-access-azure-cli.md)
+> * [REST API](role-based-access-control-manage-access-rest.md)
+> 
+> 
 
 您可以使用 Azure 入口網站和「Azure 資源管理」API 中的「角色型存取控制」(RBAC) 來精確地管理對訂用帳戶的存取。透過這項功能，您可以為 Active Directory 使用者、群組或是服務主體指派特定範圍的一些角色，藉此賦予其存取權限。
 
 在使用 PowerShell 來管理 RBAC 之前，您必須具備下列項目：
 
-- Azure PowerShell 0.8.8 或更新版本。若要安裝最新版本，並將它與 Azure 訂用帳戶建立關聯，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
-
-- Azure Resource Manager Cmdlet。在 PowerShell 中，安裝 [Azure Resource Manager Cmdlet](https://msdn.microsoft.com/library/mt125356.aspx)。
+* Azure PowerShell 0.8.8 或更新版本。若要安裝最新版本，並將它與 Azure 訂用帳戶建立關聯，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+* Azure Resource Manager Cmdlet。在 PowerShell 中，安裝 [Azure Resource Manager Cmdlet](https://msdn.microsoft.com/library/mt125356.aspx)。
 
 ## 列出角色
-
 ### 列出所有可用的角色
 若要列出可供指派的 RBAC 角色，以及若要檢查它們授與存取權的作業，請使用 `Get-AzureRmRoleDefinition`。
 
@@ -57,7 +55,7 @@ Get-AzureRmRoleDefinition Contributor | FL Actions, NotActions
 ## 查看誰具有存取權
 若要列出 RBAC 存取權指派，請使用 `Get-AzureRmRoleAssignment`。
 
-###	列出特定範圍的角色指派
+### 列出特定範圍的角色指派
 您可以查看指定訂用帳戶、資源群組或資源的所有存取權指派。例如，若要查看某個資源群組的所有使用中指派，請使用 `Get-AzureRmRoleAssignment -ResourceGroupName <resource group name>`。
 
 ```
@@ -180,7 +178,6 @@ Set-AzureRmRoleDefinition -Role $role)
 ![RBAC PowerShell - Set-AzureRmRoleDefinition - 螢幕擷取畫面](./media/role-based-access-control-manage-access-powershell/3-set-azurermroledefinition-2.png)
 
 ## 刪除自訂角色
-
 若要刪除自訂角色，請使用 `Remove-AzureRmRoleDefinition` 命令。
 
 下列範例會移除 *Virtual Machine Operator* 自訂角色
@@ -209,7 +206,7 @@ Get-AzureRmRoleDefinition | FT Name, IsCustom
 ![RBAC PowerShell - Get-AzureRmRoleDefinition - 螢幕擷取畫面](./media/role-based-access-control-manage-access-powershell/5-get-azurermroledefinition2.png)
 
 ## 另請參閱
-- [搭配使用 Azure PowerShell 與 Azure 資源管理員](../powershell-azure-resource-manager.md)
-[AZURE.INCLUDE [role-based-access-control-toc.md](../../includes/role-based-access-control-toc.md)]
+* [搭配使用 Azure PowerShell 與 Azure 資源管理員](../powershell-azure-resource-manager.md)
+  [!INCLUDE [role-based-access-control-toc.md](../../includes/role-based-access-control-toc.md)]
 
 <!---HONumber=AcomDC_0810_2016------>

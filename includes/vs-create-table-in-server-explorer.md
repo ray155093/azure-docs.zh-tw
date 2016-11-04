@@ -7,9 +7,6 @@
 3. 選取 [**資料表**] 節點，然後從內容功能表中選擇 [**建立資料表**]。
 4. 輸入資料表的名稱，然後選擇 [**確定**]。   
 
-
-
-
 [Image1]: ./media/vs-storage-getting-started-tables-include/vs-storage-create-tables-in-Server-Explorer.png
 
 <!---HONumber=Oct15_HO3-->

@@ -1,41 +1,35 @@
-<properties
-	pageTitle="升級到第 2 版文字分析 API | Microsoft Azure"
-	description="Azure Machine Learning 文字分析 - 升級到第 2 版"
-	services="cognitive-services"
-	documentationCenter=""
-	authors="onewth"
-	manager="jhubbard"
-	editor="cgronlun"/>
+---
+title: 升級到第 2 版文字分析 API | Microsoft Docs
+description: Azure Machine Learning 文字分析 - 升級到第 2 版
+services: cognitive-services
+documentationcenter: ''
+author: onewth
+manager: jhubbard
+editor: cgronlun
 
-<tags
-	ms.service="cognitive-services"
-	ms.workload="data-services"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="07/05/2016"
-	ms.author="onewth"/>
+ms.service: cognitive-services
+ms.workload: data-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 07/05/2016
+ms.author: onewth
 
-# 升級到第 2 版文字分析 API #
-
+---
+# 升級到第 2 版文字分析 API
 本指南將引導您從使用[第一版的 API](../machine-learning/machine-learning-apps-text-analytics.md) 改為使用第二版，來更新您的程式碼。
 
 如果您未曾使用過 API，並且想要進一步了解，您可以**[在這裡深入了解 API](//go.microsoft.com/fwlink/?LinkID=759711)**，或**[遵循快速啟動指南](//go.microsoft.com/fwlink/?LinkID=760860)**。如需技術參考，請參閱 **[API 定義](//go.microsoft.com/fwlink/?LinkID=759346)**。
 
-### 第 1 部分。取得新的金鑰 ###
-
+### 第 1 部分。取得新的金鑰
 首先，您必須從 **Azure 入口網站**取得新的 API 金鑰：
 
 1. 透過 [Cortana Intelligence 資源庫](//gallery.cortanaintelligence.com/MachineLearningAPI/Text-Analytics-2)瀏覽至文字分析服務。您也會在這裡找到文件和程式碼範例的連結。
+2. 按一下 [登入]。此連結會帶您前往 Azure 管理入口網站，您可以在其中註冊服務。
+3. 選取方案。您可以選取 **5000 次交易/月的免費層**。因為這是免費方案，您不需要為使用服務支付費用。您必須登入您的 Azure 訂用帳戶。
+4. 註冊文字分析後，就會提供 **API 金鑰**給您。複製這個金鑰，您在使用 API 服務時需要它。
 
-1. 按一下 [登入]。此連結會帶您前往 Azure 管理入口網站，您可以在其中註冊服務。
-
-1. 選取方案。您可以選取 **5000 次交易/月的免費層**。因為這是免費方案，您不需要為使用服務支付費用。您必須登入您的 Azure 訂用帳戶。
-
-1. 註冊文字分析後，就會提供 **API 金鑰**給您。複製這個金鑰，您在使用 API 服務時需要它。
-
-### 第 2 部分。更新標頭 ###
-
+### 第 2 部分。更新標頭
 更新已提交的標頭值，如下所示。請注意，已不再編碼帳戶金鑰。
 
 **第 1 版**
@@ -50,8 +44,7 @@
     Ocp-Apim-Subscription-Key: <your Azure Portal account key>
 
 
-### 第 3 部分。更新基底 URL ###
-
+### 第 3 部分。更新基底 URL
 **第 1 版**
 
     https://api.datamarket.azure.com/data.ashx/amla/text-analytics/v1/
@@ -60,21 +53,18 @@
 
     https://westus.api.cognitive.microsoft.com/text/analytics/v2.0/
 
-### 第 4a 部分。更新的情感、主要片語和語言的格式 ###
-
-#### 端點 ####
-
+### 第 4a 部分。更新的情感、主要片語和語言的格式
+#### 端點
 GET 端點現在已被取代，所以所有輸入應該提交為 POST 要求。將端點更新為如下所示的端點。
 
-| |第 1 版單一端點|第 1 版批次端點|第 2 版端點|
-|---|---|---|---|
-|呼叫類型|GET|POST|POST|
-|情感|```GetSentiment```|```GetSentimentBatch```|```sentiment```|
-|主要片語|```GetKeyPhrases```|```GetKeyPhrasesBatch```|```keyPhrases```|
-|語言|```GetLanguage```|```GetLanguageBatch```|```languages```|
+|  | 第 1 版單一端點 | 第 1 版批次端點 | 第 2 版端點 |
+| --- | --- | --- | --- |
+| 呼叫類型 |GET |POST |POST |
+| 情感 |```GetSentiment``` |```GetSentimentBatch``` |```sentiment``` |
+| 主要片語 |```GetKeyPhrases``` |```GetKeyPhrasesBatch``` |```keyPhrases``` |
+| 語言 |```GetLanguage``` |```GetLanguageBatch``` |```languages``` |
 
-#### 輸入格式 ####
-
+#### 輸入格式
 請注意，現在僅接受 POST 格式，因此您應該重新格式化先前使用單一文件端點的任何輸入。輸入不區分大小寫。
 
 **第 1 版 (批次)**
@@ -99,8 +89,7 @@ GET 端點現在已被取代，所以所有輸入應該提交為 POST 要求。�
       ]
     }
 
-#### 情感的輸出 ####
-
+#### 情感的輸出
 **第 1 版**
 
     {
@@ -127,8 +116,7 @@ GET 端點現在已被取代，所以所有輸入應該提交為 POST 要求。�
       }]
     }
 
-#### 主要片語的輸出 ####
-
+#### 主要片語的輸出
 **第 1 版**
 
     {
@@ -155,9 +143,7 @@ GET 端點現在已被取代，所以所有輸入應該提交為 POST 要求。�
       }]
     }
 
-#### 語言的輸出 ####
-
-
+#### 語言的輸出
 **第 1 版**
 
     {
@@ -193,17 +179,14 @@ GET 端點現在已被取代，所以所有輸入應該提交為 POST 要求。�
     }
 
 
-### 第 4b 部分。更新主題的格式 ###
+### 第 4b 部分。更新主題的格式
+#### 端點
+|  | 第 1 版端點 | 第 2 版端點 |
+| --- | --- | --- |
+| 提交主題偵測 (POST) |```StartTopicDetection``` |```topics``` |
+| 擷取主題結果 (GET) |```GetTopicDetectionResult?JobId=<jobId>``` |```operations/<operationId>``` |
 
-#### 端點 ####
-
-| |第 1 版端點 | 第 2 版端點|
-|---|---|---|
-|提交主題偵測 (POST)|```StartTopicDetection```|```topics```|
-|擷取主題結果 (GET)|```GetTopicDetectionResult?JobId=<jobId>```|```operations/<operationId>```|
-
-#### 輸入格式 ####
-
+#### 輸入格式
 **第 1 版**
 
     {
@@ -238,8 +221,7 @@ GET 端點現在已被取代，所以所有輸入應該提交為 POST 要求。�
       ]
     }
 
-#### 提交結果 ####
-
+#### 提交結果
 **第 1 版 (POST)**
 
 先前，當作業完成時，您會收到下列 JSON 輸出，其中 jobId 會附加至 URL，以擷取輸出。
@@ -255,8 +237,7 @@ GET 端點現在已被取代，所以所有輸入應該提交為 POST 要求。�
 
     'operation-location': 'https://westus.api.cognitive.microsoft.com/text/analytics/v2.0/operations/<operationId>'
 
-#### Operation results ####
-
+#### Operation results
 **第 1 版 (GET)**
 
     {
@@ -304,8 +285,7 @@ GET 端點現在已被取代，所以所有輸入應該提交為 POST 要求。�
         }
     }
 
-### 第 5 部分。測試它！ ###
-
+### 第 5 部分。測試它！
 您現在應已準備就緒！ 使用小型範例測試您的程式碼，以確保您可以成功處理資料。
 
 <!---HONumber=AcomDC_0914_2016-->

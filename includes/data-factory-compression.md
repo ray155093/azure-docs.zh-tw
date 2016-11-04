@@ -1,7 +1,10 @@
-### <a name="compression-support"></a>壓縮支援  
+### <a name="compression-support"></a>壓縮支援
 處理大型資料集可能會導致 I/O 和網路瓶頸。 因此，存放區中的壓縮資料不但可以跨網路加速資料傳輸和節省磁碟空間，也能在處理巨量資料時帶來顯著的效能提升。 目前，Azure Blob 或內部部署檔案系統等以檔案為基礎的資料存放區支援壓縮。  
 
-> [AZURE.NOTE] 不支援 **AvroFormat**、**OrcFormat** 或 **ParquetFormat** 的資料壓縮設定。 
+> [!NOTE]
+> 不支援 **AvroFormat**、**OrcFormat** 或 **ParquetFormat** 的資料壓縮設定。 
+> 
+> 
 
 若要指定資料集的壓縮，請使用資料集 JSON 中的 **壓縮** 屬性，如下列範例所示：   
 
@@ -24,13 +27,14 @@
             }  
         }  
     }  
- 
+
 [壓縮]  區段有兩個屬性：  
+
+* **類型：**壓縮轉碼器，它可以是 **GZIP**、**Deflate** 或 **BZIP2**。  
+* **層級：**壓縮比，它可以是**最佳**或**最快**。 
   
-- **類型：**壓縮轉碼器，它可以是 **GZIP**、**Deflate** 或 **BZIP2**。  
-- **層級：**壓縮比，它可以是**最佳**或**最快**。 
-    - **最快：** 即使未以最佳方式壓縮所產生的檔案，壓縮作業也應儘速完成。 
-    - **最佳**：即使作業耗費較長的時間才能完成，壓縮作業也應以最佳方式壓縮。 
+  * **最快：** 即使未以最佳方式壓縮所產生的檔案，壓縮作業也應儘速完成。 
+  * **最佳**：即使作業耗費較長的時間才能完成，壓縮作業也應以最佳方式壓縮。 
     
     如需詳細資訊，請參閱 [壓縮層級](https://msdn.microsoft.com/library/system.io.compression.compressionlevel.aspx) 主題。 
 
@@ -38,10 +42,9 @@
 
 當您在輸入資料集 JSON 中指定壓縮屬性，管線可以從來源讀取壓縮的資料，當您在輸出資料集 JSON 中指定屬性，複製活動可以將壓縮的資料寫入到目的地。 以下是一些範例案例： 
 
-- 從 Azure blob 讀取 GZIP 壓縮資料，將其解壓縮，並將結果資料寫入到 Azure SQL Database。 您可以在此情況下利用壓縮 JSON 屬性定義輸入 Azure Blob 資料集。 
-- 從來自內部部署檔案系統之純文字檔案讀取資料、使用 GZip 格式加以壓縮並將壓縮的資料寫入到 Azure blob。 您可以在此情況下利用壓縮 JSON 屬性定義輸出 Azure Blob 資料集。  
-- 從 Azure blob 讀取 GZIP 壓縮資料，將其解壓縮、使用 BZIP2 將其壓縮，並將結果資料寫入到 Azure blob。 您會在此情況下利用設為 GZIP 的壓縮類型定義輸入 Azure Blob 資料集，並利用設為 BZIP2 的壓縮類型定義輸出資料集。   
-
+* 從 Azure blob 讀取 GZIP 壓縮資料，將其解壓縮，並將結果資料寫入到 Azure SQL Database。 您可以在此情況下利用壓縮 JSON 屬性定義輸入 Azure Blob 資料集。 
+* 從來自內部部署檔案系統之純文字檔案讀取資料、使用 GZip 格式加以壓縮並將壓縮的資料寫入到 Azure blob。 您可以在此情況下利用壓縮 JSON 屬性定義輸出 Azure Blob 資料集。  
+* 從 Azure blob 讀取 GZIP 壓縮資料，將其解壓縮、使用 BZIP2 將其壓縮，並將結果資料寫入到 Azure blob。 您會在此情況下利用設為 GZIP 的壓縮類型定義輸入 Azure Blob 資料集，並利用設為 BZIP2 的壓縮類型定義輸出資料集。   
 
 <!--HONumber=Oct16_HO2-->
 

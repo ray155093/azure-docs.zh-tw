@@ -1,27 +1,25 @@
-<properties
-   pageTitle="如何管理角色啟用設定 | Microsoft Azure"
-   description="了解如何利用 Azure AD Privileged Identity Management 擴充功能，變更特殊權限身分識別的預設設定。"
-   services="active-directory"
-   documentationCenter=""
-   authors="kgremban"
-   manager="femila"
-   editor=""/>
+---
+title: 如何管理角色啟用設定 | Microsoft Docs
+description: 了解如何利用 Azure AD Privileged Identity Management 擴充功能，變更特殊權限身分識別的預設設定。
+services: active-directory
+documentationcenter: ''
+author: kgremban
+manager: femila
+editor: ''
 
-<tags
-   ms.service="active-directory"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="identity"
-   ms.date="06/30/2016"
-   ms.author="kgremban"/>
+ms.service: active-directory
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: identity
+ms.date: 06/30/2016
+ms.author: kgremban
 
+---
 # 如何管理 Azure AD Privileged Identity Management 的角色啟用設定
-
 特殊權限角色管理員可以自訂其組織中的 Azure AD Privileged Identity Management (PIM)，包括變更啟用合格角色指派之使用者的體驗。
 
 ## 管理角色啟用設定
-
 1. 移至 [Azure 入口網站](https://portal.azure.com)，在儀表板上選取 [Azure AD Privileged Identity Management] 應用程式。
 2. 選取 [管理特殊權限角色] > [設定] > [特殊權限角色]。
 3. 選擇您想要管理其設定的角色。
@@ -36,28 +34,27 @@
 
 **Multi-Factor Authentication**：您可以選擇是否要要求使用者在啟用其角色之前，先以 MFA 驗證其身分識別。他們只需在每一工作階段進行一次驗證，而不需在每次啟用角色時都進行驗證。啟用 MFA 時，需要記住兩個秘訣：
 
-- 使用 Microsoft 帳戶做為其電子郵件地址 (通常是 @outlook.com，但不一定) 的使用者無法註冊 Azure MFA。如果您想要將角色指派給使用 Microsoft 帳戶的使用者，您應該將他們設為永久系統管理員，或是停用該角色的 MFA。
-
-- 您無法將 Azure AD 和 Office365 中高特殊權限角色的 MFA 停用。這是一項安全功能，因為這些角色應該嚴密地受到保護：
-
-    - 應用程式管理員
-    - 應用程式 Proxy 伺服器管理員
-    - 計費管理員
-    - 規範管理員
-    - CRM 服務管理員
-    - 客戶 LockBox 存取核准者
-    - 目錄寫入器
-    - Exchange 系統管理員
-    - 全域管理員
-    - Intune 服務管理員
-    - 信箱管理員
-    - 合作夥伴第 1 層支援
-    - 合作夥伴第 2 層支援
-    - 特殊權限角色管理員
-    - 安全性系統管理員
-    - SharePoint 管理員
-    - 商務用 Skype 的管理員
-    - 使用者帳戶管理員
+* 使用 Microsoft 帳戶做為其電子郵件地址 (通常是 @outlook.com，但不一定) 的使用者無法註冊 Azure MFA。如果您想要將角色指派給使用 Microsoft 帳戶的使用者，您應該將他們設為永久系統管理員，或是停用該角色的 MFA。
+* 您無法將 Azure AD 和 Office365 中高特殊權限角色的 MFA 停用。這是一項安全功能，因為這些角色應該嚴密地受到保護：
+  
+  * 應用程式管理員
+  * 應用程式 Proxy 伺服器管理員
+  * 計費管理員
+  * 規範管理員
+  * CRM 服務管理員
+  * 客戶 LockBox 存取核准者
+  * 目錄寫入器
+  * Exchange 系統管理員
+  * 全域管理員
+  * Intune 服務管理員
+  * 信箱管理員
+  * 合作夥伴第 1 層支援
+  * 合作夥伴第 2 層支援
+  * 特殊權限角色管理員
+  * 安全性系統管理員
+  * SharePoint 管理員
+  * 商務用 Skype 的管理員
+  * 使用者帳戶管理員
 
 如需關於搭配 PIM 使用 MFA 的詳細資訊，請參閱[如何要求 MFA](active-directory-privileged-identity-management-how-to-require-mfa.md)。
 
@@ -65,6 +62,6 @@
 
 <!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
 ## 後續步驟
-[AZURE.INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
+[!INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
 
 <!----HONumber=AcomDC_0907_2016-->

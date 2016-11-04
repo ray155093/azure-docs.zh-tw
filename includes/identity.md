@@ -1,31 +1,20 @@
 身分識別管理在公用雲端與內部部署中同等重要。Azure 支援數種不同的雲端身分識別技術，協助進行身分識別管理。這些選項包括：
 
-- 您可以使用以 Azure 虛擬機器建立的虛擬機器，在雲端中執行 Windows Server Active Directory (通常簡稱為 AD)。當您使用 Azure 將內部部署資料中心擴充到雲端時，這是合理的方法。
-
-
-- 您可以使用 Azure Active Directory，為使用者提供[軟體即服務 (SaaS)](https://azure.microsoft.com/overview/what-is-saas/) 應用程式的單一登入。例如，Microsoft Office 365 會使用這項技術，而且在 Azure 或其他雲端平台中執行的應用程式也可以使用此技術。
-
-
-- 在雲端或內部部署中執行的應用程式可以使用 Azure Active Directory 存取控制，讓使用者使用來自 Facebook、Google、Microsoft 和其他身分識別提供者的身分識別進行登入。
-
+* 您可以使用以 Azure 虛擬機器建立的虛擬機器，在雲端中執行 Windows Server Active Directory (通常簡稱為 AD)。當您使用 Azure 將內部部署資料中心擴充到雲端時，這是合理的方法。
+* 您可以使用 Azure Active Directory，為使用者提供[軟體即服務 (SaaS)](https://azure.microsoft.com/overview/what-is-saas/) 應用程式的單一登入。例如，Microsoft Office 365 會使用這項技術，而且在 Azure 或其他雲端平台中執行的應用程式也可以使用此技術。
+* 在雲端或內部部署中執行的應用程式可以使用 Azure Active Directory 存取控制，讓使用者使用來自 Facebook、Google、Microsoft 和其他身分識別提供者的身分識別進行登入。
 
 本文詳細說明下列三個選項。
 
 ## 目錄
-
-- [在虛擬機器中執行 Windows Server Active Directory](#adinvm)
-
-- [使用 Azure Active Directory](#ad)
-
-- [使用 Azure Active Directory 存取控制](#ac)
-
+* [在虛擬機器中執行 Windows Server Active Directory](#adinvm)
+* [使用 Azure Active Directory](#ad)
+* [使用 Azure Active Directory 存取控制](#ac)
 
 ## <a name="adinvm"></a>在虛擬機器中執行 Windows Server Active Directory
-
 在 Azure 虛擬機器中執行 Windows Server AD，與在內部部署中執行 Windows Server AD 非常類似。[圖 1](#fig1) 顯示其外觀的典型範例。
 
 ![虛擬機器中的 Azure Active Directory](./media/identity/identity_01_ADinVM.png)
-
 
 <a name="Fig1"></a>圖 1：Windows Server Active Directory 可以在連接到使用 Azure 虛擬網路的組織內部部署資料中心的 Azure 虛擬機器中執行。
 
@@ -33,34 +22,27 @@
 
 有數個選項可用來連接雲端中的網域控制站與在內部部署執行的網域控制站：
 
-- 讓這些網域控制站全都屬於單一 Active Directory 網域。
-
-- 在屬於相同樹系的內部部署和雲端建立個別的 AD 網域。
-
-- 在雲端和內部部署中建立獨立的 AD 樹系，然後使用跨樹系信任或也可以在 Azure 上的虛擬機器中執行 Windows Server Active Directory 同盟服務 (AD FS) 連接這些樹系。
+* 讓這些網域控制站全都屬於單一 Active Directory 網域。
+* 在屬於相同樹系的內部部署和雲端建立個別的 AD 網域。
+* 在雲端和內部部署中建立獨立的 AD 樹系，然後使用跨樹系信任或也可以在 Azure 上的虛擬機器中執行 Windows Server Active Directory 同盟服務 (AD FS) 連接這些樹系。
 
 不論選擇哪個選項，系統管理員都必須確定只有在必要時，內部部署使用者所提出的驗證要求才會移至雲端網域控制站，因為雲端的連結可能比內部部署網路的連結還要慢。考慮連接雲端和內部部署網域控制站的另一個因素就是複寫所產生的流量。雲端的網域控制站通常位於自己的 AD 站台中，以便系統管理員安排複寫的頻率。Azure 會列計從 Azure 資料中心送出的流量 (雖然不會列計送入的位元組)，這可能會影響系統管理員的複寫選擇。此外，值得一提的是，雖然 Azure 會提供自己的網域名稱系統 (DNS) 支援，但此服務是 Active Directory 所需的遺漏功能 (例如 Dynamic DNS 和 SRV 記錄支援)。因此，在 Azure 上執行 Windows Server AD 時，需要在雲端設定自己的 DNS 伺服器。
 
 在幾個不同的情況下，於 Azure VM 中執行 Windows Server AD 是合理的。這裡有一些範例：
 
-- 如果您使用 Azure 虛擬機器作為自有資料中心的延伸模組，則可能在需要本機網域控制站的雲端執行應用程式，以處理 Windows 整合式驗證要求或 LDAP 查詢等作業。例如，SharePoint 會與 Active Directory 頻繁互動，雖然可能在 Azure 上執行使用內部部署目錄的 SharePoint 伺服器陣列，但在雲端設定網域控制站將會大幅改善效能。(不過請務必了解，未必需要這麼做；許多應用程式可以在僅使用內部部署網域控制站的雲端中順利執行)。
-
-- 假設遠處分公司缺乏執行自己的網域控制站的資源。現在，其使用者必須在世界的另一端進行網域控制站驗證 - 登入速度很慢。在較近的 Microsoft 資料中心的 Azure 上執行 Active Directory，分公司不需要有更多的伺服器，即可加速處理。
-
-- 使用 Azure 進行災害復原的組織可能會在雲端維護一小組作用中 VM (包括網域控制站)。然後即可視需要準備擴充此站台，以接管其他位置失敗的站台。
+* 如果您使用 Azure 虛擬機器作為自有資料中心的延伸模組，則可能在需要本機網域控制站的雲端執行應用程式，以處理 Windows 整合式驗證要求或 LDAP 查詢等作業。例如，SharePoint 會與 Active Directory 頻繁互動，雖然可能在 Azure 上執行使用內部部署目錄的 SharePoint 伺服器陣列，但在雲端設定網域控制站將會大幅改善效能。(不過請務必了解，未必需要這麼做；許多應用程式可以在僅使用內部部署網域控制站的雲端中順利執行)。
+* 假設遠處分公司缺乏執行自己的網域控制站的資源。現在，其使用者必須在世界的另一端進行網域控制站驗證 - 登入速度很慢。在較近的 Microsoft 資料中心的 Azure 上執行 Active Directory，分公司不需要有更多的伺服器，即可加速處理。
+* 使用 Azure 進行災害復原的組織可能會在雲端維護一小組作用中 VM (包括網域控制站)。然後即可視需要準備擴充此站台，以接管其他位置失敗的站台。
 
 此外，還有其他可能性。例如，您不需要將雲端的 Windows Server AD 連線到內部部署資料中心。如果您要執行為特定一組使用者 (例如，他們全都以雲端型身分識別單獨登入) 提供服務的 SharePoint 伺服器陣列，您可以在 Azure 上建立一個獨立樹系。您使用此技術的方式取決於您的目的。(如需使用 Windows Server AD 搭配 Azure 的詳細指引，[請參閱這裡](http://msdn.microsoft.com/library/windowsazure/jj156090.aspx))。
 
 ## <a name="ad"></a>使用 Azure Active Directory
-
 隨著 SaaS 應用程式日益普及，因而引發一個明顯的問題：這些雲端型應用程式應使用哪種目錄服務？ Azure Active Directory 是 Microsoft 對於該問題的解決之道。
 
 在雲端使用此目錄服務的主要選項有兩個：
 
-- 僅使用 SaaS 應用程式的個人和組織可以依賴 Azure Active Directory 作為其唯一目錄服務。
-
-- 執行 Windows Server Active Directory 的組織可以將其內部部署目錄連線到 Azure Active Directory，然後用它來將 SaaS 應用程式的單一登入提供給其使用者。
-
+* 僅使用 SaaS 應用程式的個人和組織可以依賴 Azure Active Directory 作為其唯一目錄服務。
+* 執行 Windows Server Active Directory 的組織可以將其內部部署目錄連線到 Azure Active Directory，然後用它來將 SaaS 應用程式的單一登入提供給其使用者。
 
 [圖 2](#fig2) 說明僅需要 Azure Active Directory 的第一個選項。
 
@@ -91,7 +73,6 @@
 Azure AD 目前並未完全取代內部部署 Windows Server AD。如先前所述，雲端目錄的架構簡單許多，但也有所欠缺，例如群組原則、儲存電腦相關資訊的功能，以及對 LDAP 的支援。(事實上，無法將 Windows 電腦設定成讓使用者僅使用 Azure AD 進行登入 - 不支援此案例)。 Azure AD 的最初目標包括讓企業使用者不需維護個別的登入，並且讓內部部署目錄管理員不需手動同步處理其內部部署目錄與其組織所用的每個 SaaS 應用程式，即可存取雲端的應用程式。但是，過一段時間後，便期望此雲端目錄服務能處理更廣泛的案例。
 
 ## <a name="ac"></a>使用 Azure Active Directory 存取控制
-
 雲端型身分識別技術可用於解決各種問題。舉例來說，Azure Active Directory 可將多個 SaaS 應用程式的單一登入提供給組織的使用者。但雲端的身分識別技術也可用於其他層面。
 
 假設有應用程式希望讓使用者使用多個「身分識別提供者 (IdP)」所簽發的權杖進行登入。現今有為數眾多的身分識別提供者，包括 Facebook、Google、Microsoft 和其他提供者，而應用程式經常讓使用者使用上述其中一個身分識別進行登入。既然可以依賴已經存在的身分識別，應用程式為何還要麻煩地維護自己的使用者和密碼清單？ 對於要記住不只一個使用者名稱和密碼的使用者，以及建立應用程式且不必再維護自己的使用者名稱和密碼清單的人而言，接受現有的身分識別比較方便。
@@ -116,8 +97,7 @@ Azure AD 目前並未完全取代內部部署 Windows Server AD。如先前所�
 
 對於幾乎所有應用程式而言，處理身分識別是相當重要的。存取控制的目的在於讓開發人員能夠更輕鬆地建立可接受各種身分識別提供者所提供之身分識別的應用程式。Microsoft 將此服務放在雲端，以供在任何平台上執行的任何應用程式使用。
 
-##關於作者
-
+## 關於作者
 David Chappell 是 Chappell & Associates [www.davidchappell.com](http://www.davidchappell.com) (位於美國加州舊金山) 的主席。
 
 <!---HONumber=AcomDC_0727_2016-->

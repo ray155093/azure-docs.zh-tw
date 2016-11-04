@@ -1,23 +1,23 @@
-<properties
-   pageTitle="使用 PowerShell 對 VM 開啟連接埠 | Microsoft Azure"
-   description="了解如何使用 Azure Resource Manager 部署模式和 Azure PowerShell 對 Windows VM 開啟連接埠 / 建立端點"
-   services="virtual-machines-windows"
-   documentationCenter=""
-   authors="iainfoulds"
-   manager="timlt"
-   editor=""/>
+---
+title: 使用 PowerShell 對 VM 開啟連接埠 | Microsoft Docs
+description: 了解如何使用 Azure Resource Manager 部署模式和 Azure PowerShell 對 Windows VM 開啟連接埠 / 建立端點
+services: virtual-machines-windows
+documentationcenter: ''
+author: iainfoulds
+manager: timlt
+editor: ''
 
-<tags
-   ms.service="virtual-machines-windows"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="vm-windows"
-   ms.workload="infrastructure-services"
-   ms.date="08/08/2016"
-   ms.author="iainfou"/>
+ms.service: virtual-machines-windows
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: vm-windows
+ms.workload: infrastructure-services
+ms.date: 08/08/2016
+ms.author: iainfou
 
+---
 # 使用 PowerShell 對 Azure 中的 VM 開啟連接埠
-[AZURE.INCLUDE [virtual-machines-common-nsg-quickstart](../../includes/virtual-machines-common-nsg-quickstart.md)]
+[!INCLUDE [virtual-machines-common-nsg-quickstart](../../includes/virtual-machines-common-nsg-quickstart.md)]
 
 ## 快速命令
 若要建立網路安全性群組和 ACL 規則，您需要[安裝最新版的 Azure PowerShell](../powershell-install-configure.md)。您也可以[使用 Azure 入口網站來執行這些步驟](virtual-machines-windows-nsg-quickstart-portal.md)。
@@ -68,8 +68,8 @@ Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
 ## 後續步驟
 在此範例中，您建立了簡單的規則來允許 HTTP 流量。您可以從下列文章中，找到有關建立更詳細環境的資訊︰
 
-- [Azure 資源管理員概觀](../resource-group-overview.md)
-- [什麼是網路安全性群組 (NSG)？](../virtual-network/virtual-networks-nsg.md)
-- [負載平衡器的 Azure Resource Manager 概觀](../load-balancer/load-balancer-arm.md)
+* [Azure 資源管理員概觀](../resource-group-overview.md)
+* [什麼是網路安全性群組 (NSG)？](../virtual-network/virtual-networks-nsg.md)
+* [負載平衡器的 Azure Resource Manager 概觀](../load-balancer/load-balancer-arm.md)
 
 <!----HONumber=AcomDC_0907_2016-->

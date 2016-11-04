@@ -1,23 +1,22 @@
-<properties
-   pageTitle="REST 應用程式生命週期範例 | Microsoft Azure"
-   description="Microsoft Azure Service Fabric 範例，其中示範使用 Service Fabric REST 介面顯示應用程式生命週期。"
-   services="service-fabric"
-   documentationCenter=".net"
-   authors="rwike77"
-   manager="timlt"
-   editor=""/>
+---
+title: REST 應用程式生命週期範例 | Microsoft Docs
+description: Microsoft Azure Service Fabric 範例，其中示範使用 Service Fabric REST 介面顯示應用程式生命週期。
+services: service-fabric
+documentationcenter: .net
+author: rwike77
+manager: timlt
+editor: ''
 
-<tags
-   ms.service="service-fabric"
-   ms.devlang="rest-api"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="08/25/2016"
-   ms.author="ryanwi"/>
+ms.service: service-fabric
+ms.devlang: rest-api
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 08/25/2016
+ms.author: ryanwi
 
+---
 # REST 架構應用程式生命週期範例
-
 這個範例會透過 REST API 呼叫示範 Service Fabric 應用程式生命週期。如需 Service Fabric 應用程式生命週期的詳細資訊，請參閱 [Service Fabric 應用程式生命週期](service-fabric-application-lifecycle.md)。
 
 這個範例會執行下列作業：
@@ -37,15 +36,13 @@
 * 解除佈建 WordCount 1.0.0 版範例。
 * 顯示不再包含 WordCount 的應用程式類型清單。
 
-
 ## 必要條件
-
 此範例使用 [WordCount 範本](http://aka.ms/servicefabricsamples) (可在**入門**範本中找到)。必須先建置 WordCount 範例，再兩個應用程式封裝複製到映像存放區。
 
-|資料夾|說明|
-|------|-----------|
-|WordCount|WordCount 範例應用程式。**ApplicationManifest.xml** 包含 **ApplicationTypeVersion ="1.0.0"**。|
-|WordCountUpgrade|WordCount 範例應用程式。ApplicationManifest.xml 檔案必須變更為 **ApplicationTypeVersion ="1.1.0"**，應用程式才能升級。|
+| 資料夾 | 說明 |
+| --- | --- |
+| WordCount |WordCount 範例應用程式。**ApplicationManifest.xml** 包含 **ApplicationTypeVersion ="1.0.0"**。 |
+| WordCountUpgrade |WordCount 範例應用程式。ApplicationManifest.xml 檔案必須變更為 **ApplicationTypeVersion ="1.1.0"**，應用程式才能升級。 |
 
 若要建立應用程式封裝，並將其複製到映像存放區，請執行下列步驟：
 
@@ -74,7 +71,6 @@ Copy-ServiceFabricApplicationPackage -ApplicationPackagePath $applicationPathUpg
 當 PowerShell 指令碼完成時，應用程式也已就緒，可以開始執行的。
 
 ## 範例
-
 下列範例示範 Service Fabric 應用程式生命週期。
 
 ```csharp
@@ -706,7 +702,6 @@ namespace ServiceFabricRestCaller
 
 <!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
 ## 後續步驟
-
 [Service Fabric 應用程式生命週期](service-fabric-application-lifecycle.md)
 
 <!---HONumber=AcomDC_0831_2016-->

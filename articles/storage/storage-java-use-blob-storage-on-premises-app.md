@@ -1,40 +1,35 @@
-<properties
-	pageTitle="搭配 Blob 儲存體 (Java) 的內部部署應用程式 | Microsoft Azure"
-	description="了解如何建立可將影像上傳至 Azure，然後在瀏覽器中顯示此影像的主控台應用程式。程式碼範例以 Java 撰寫。"
-	services="storage"
-	documentationCenter="java"
-	authors="rmcmurray"
-	manager="wpickett"
-	editor="tysonn"/>
+---
+title: 搭配 Blob 儲存體 (Java) 的內部部署應用程式 | Microsoft Docs
+description: 了解如何建立可將影像上傳至 Azure，然後在瀏覽器中顯示此影像的主控台應用程式。程式碼範例以 Java 撰寫。
+services: storage
+documentationcenter: java
+author: rmcmurray
+manager: wpickett
+editor: tysonn
 
-<tags
-	ms.service="storage"
-	ms.workload="storage"
-	ms.tgt_pltfrm="na"
-	ms.devlang="Java"
-	ms.topic="article"
-	ms.date="08/11/2016"
-	ms.author="jwillis;rmcmurray"/>
+ms.service: storage
+ms.workload: storage
+ms.tgt_pltfrm: na
+ms.devlang: Java
+ms.topic: article
+ms.date: 08/11/2016
+ms.author: jwillis;rmcmurray
 
+---
 # 搭配 Blob 儲存體的內部部署應用程式
-
 ## Overview
-
 下列範例說明如何使用 Azure 儲存體，在 Azure 中儲存影像。本文中的程式碼適用於主控台應用程式，可將影像上傳至 Azure，然後建立可在瀏覽器中顯示此影像的 HTML 檔案。
 
 ## 必要條件
+* 已安裝 Java Developer Kit (JDK) 1.6 版或更新版本。
+* 已安裝 Azure SDK。
+* 已安裝 Azure Libraries for Java 的 JAR 和任何適用的相依性 JAR，且位於 Java 編輯器所使用的組建路徑中。如需安裝 Azure Libraries for Java 的詳細資訊，請參閱[下載 Azure SDK for Java](../java-download-azure-sdk.md)。
+* 已設定 Azure 儲存體帳戶。本文中的程式碼將會使用此儲存體帳戶的帳戶名稱和帳戶金鑰。如需建立儲存體帳戶的詳細資訊，請參閱[如何建立儲存體帳戶](storage-create-storage-account.md#create-a-storage-account)，如需擷取帳戶金鑰的詳細資訊，請參閱[如何檢視並複製儲存體存取金鑰](storage-create-storage-account.md#view-and-copy-storage-access-keys)。
+* 您已建立一個已命名並儲存於路徑 c:\\myimages\\image1.jpg 中的本機影像檔案。或者，修改範例中的 **FileInputStream** 建構函式以使用其他影像路徑和檔案名稱。
 
-- 已安裝 Java Developer Kit (JDK) 1.6 版或更新版本。
-- 已安裝 Azure SDK。
-- 已安裝 Azure Libraries for Java 的 JAR 和任何適用的相依性 JAR，且位於 Java 編輯器所使用的組建路徑中。如需安裝 Azure Libraries for Java 的詳細資訊，請參閱[下載 Azure SDK for Java](../../articles/java-download-azure-sdk.md)。
-- 已設定 Azure 儲存體帳戶。本文中的程式碼將會使用此儲存體帳戶的帳戶名稱和帳戶金鑰。如需建立儲存體帳戶的詳細資訊，請參閱[如何建立儲存體帳戶](storage-create-storage-account.md#create-a-storage-account)，如需擷取帳戶金鑰的詳細資訊，請參閱[如何檢視並複製儲存體存取金鑰](storage-create-storage-account.md#view-and-copy-storage-access-keys)。
-
-- 您已建立一個已命名並儲存於路徑 c:\\myimages\\image1.jpg 中的本機影像檔案。或者，修改範例中的 **FileInputStream** 建構函式以使用其他影像路徑和檔案名稱。
-
-[AZURE.INCLUDE [create-account-note](../../includes/create-account-note.md)]
+[!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
 ## 使用 Azure Blob 儲存體上傳檔案
-
 以下為逐步程序。如果您希望跳過此程序，也能在本文後續內容中看到完整的程式碼。
 
 透過包含匯入 Azure 核心儲存體類別、Azure Blob 用戶端類別、Java IO 類別和 **URISyntaxException** 類別來開始程式碼。
@@ -64,10 +59,10 @@
 
 宣告下列類型的變數 (以下說明乃是針對他們在此範例中的用途)：
 
--   **CloudStorageAccount**：可用來以 Azure 儲存體帳戶名稱和金鑰初始化帳戶物件，並可用來建立 Blob 用戶端物件。
--   **CloudBlobClient**：可用來存取 Blob 服務。
--   **CloudBlobContainer**：可用來建立 Blob 容器、列出容器中的 Blob，和刪除容器。
--   **CloudBlockBlob**：可用來將本機影像檔案上傳至容器。
+* **CloudStorageAccount**：可用來以 Azure 儲存體帳戶名稱和金鑰初始化帳戶物件，並可用來建立 Blob 用戶端物件。
+* **CloudBlobClient**：可用來存取 Blob 服務。
+* **CloudBlobContainer**：可用來建立 Blob 容器、列出容器中的 Blob，和刪除容器。
+* **CloudBlockBlob**：可用來將本機影像檔案上傳至容器。
 
 <!-- -->
 
@@ -126,10 +121,10 @@
 
 處理下列例外狀況：
 
--   **FileNotFoundException**：**FileInputStream** 或 **FileOutputStream** 建構函式可能擲回的例外狀況。
--   **StorageException**：Azure 用戶端儲存體程式庫可能擲回的例外狀況。
--   **URISyntaxException**：**ListBlobItem.getUri** 方法可能擲回的例外狀況。
--   **Exception**：一般例外狀況處理。
+* **FileNotFoundException**：**FileInputStream** 或 **FileOutputStream** 建構函式可能擲回的例外狀況。
+* **StorageException**：Azure 用戶端儲存體程式庫可能擲回的例外狀況。
+* **URISyntaxException**：**ListBlobItem.getUri** 方法可能擲回的例外狀況。
+* **Exception**：一般例外狀況處理。
 
 <!-- -->
 
@@ -298,7 +293,6 @@
 因為此程式碼包含您的帳戶名稱和帳戶金鑰，請確定您的來源程式碼安全無虞。
 
 ## 刪除容器
-
 由於您需支付儲存體的費用，因此，在您完成體驗此範例之後，您可能會想要刪除 **gettingstarted** 容器。若要刪除容器，請使用 **CloudBlobContainer.delete** 方法。
 
     container = serviceClient.getContainerReference("gettingstarted");
@@ -351,12 +345,11 @@
 如需其他 Blob 儲存體類別和方法的概觀，請參閱[如何使用 Java 的 Blob 儲存體](storage-java-how-to-use-blob-storage.md)。
 
 ## 後續步驟
-
 請遵循下列連結以深入了解更複雜的儲存體工作。
 
-- [Azure Storage SDK for Java](https://github.com/azure/azure-storage-java)
-- [Azure 儲存體用戶端 SDK 參考](http://dl.windowsazure.com/storage/javadoc/)
-- [Azure 儲存體服務 REST API](https://msdn.microsoft.com/library/azure/dd179355.aspx)
-- [Azure 儲存體團隊部落格](http://blogs.msdn.com/b/windowsazurestorage/)
+* [Azure Storage SDK for Java](https://github.com/azure/azure-storage-java)
+* [Azure 儲存體用戶端 SDK 參考](http://dl.windowsazure.com/storage/javadoc/)
+* [Azure 儲存體服務 REST API](https://msdn.microsoft.com/library/azure/dd179355.aspx)
+* [Azure 儲存體團隊部落格](http://blogs.msdn.com/b/windowsazurestorage/)
 
 <!---HONumber=AcomDC_0928_2016-->

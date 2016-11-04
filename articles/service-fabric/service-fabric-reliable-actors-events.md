@@ -1,22 +1,21 @@
-<properties
-   pageTitle="Reliable Actors 事件 | Microsoft Azure"
-   description="Service Fabric Reliable Actor 事件簡介。"
-   services="service-fabric"
-   documentationCenter=".net"
-   authors="vturecek"
-   manager="timlt"
-   editor=""/>
+---
+title: Reliable Actors 事件 | Microsoft Docs
+description: Service Fabric Reliable Actor 事件簡介。
+services: service-fabric
+documentationcenter: .net
+author: vturecek
+manager: timlt
+editor: ''
 
-<tags
-   ms.service="service-fabric"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="NA"
-   ms.date="08/30/2016"
-   ms.author="amanbha"/>
+ms.service: service-fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 08/30/2016
+ms.author: amanbha
 
-
+---
 # 動作項目事件
 動作項目事件會將最佳效果通知從動作項目傳送到用戶端。動作項目事件是為了動作項目與用戶端之間的通訊而設計，不應用於動作項目與動作項目之間的通訊。
 
@@ -73,9 +72,9 @@ ev.GameScoreUpdated(Id.GetGuidId(), score);
 ```
 
 ## 後續步驟
- - [動作項目重新進入](service-fabric-reliable-actors-reentrancy.md)
- - [動作項目診斷與效能監視](service-fabric-reliable-actors-diagnostics.md)
- - [動作項目 API 參考文件](https://msdn.microsoft.com/library/azure/dn971626.aspx)
- - [範例程式碼](https://github.com/Azure/servicefabric-samples)
+* [動作項目重新進入](service-fabric-reliable-actors-reentrancy.md)
+* [動作項目診斷與效能監視](service-fabric-reliable-actors-diagnostics.md)
+* [動作項目 API 參考文件](https://msdn.microsoft.com/library/azure/dn971626.aspx)
+* [範例程式碼](https://github.com/Azure/servicefabric-samples)
 
 <!----HONumber=AcomDC_0907_2016-->

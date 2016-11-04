@@ -1,24 +1,23 @@
-<properties
-	pageTitle="使用 PowerShell Cmdlet 建立虛擬機器擴展集 | Microsoft Azure"
-	description="使用 Azure PowerShell Cmdlet 開始建立及管理您的第一個 Azure 虛擬機器擴展集"
-	services="virtual-machines-windows"
-	documentationCenter=""
-	authors="danielsollondon"
-	manager="timlt"
-	editor=""
-	tags="azure-resource-manager"/>
+---
+title: 使用 PowerShell Cmdlet 建立虛擬機器擴展集 | Microsoft Docs
+description: 使用 Azure PowerShell Cmdlet 開始建立及管理您的第一個 Azure 虛擬機器擴展集
+services: virtual-machines-windows
+documentationcenter: ''
+author: danielsollondon
+manager: timlt
+editor: ''
+tags: azure-resource-manager
 
-<tags
-	ms.service="virtual-machines-windows"
-	ms.workload="infrastructure-services"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="03/30/2016"
-	ms.author="danielsollondon"/>
+ms.service: virtual-machines-windows
+ms.workload: infrastructure-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 03/30/2016
+ms.author: danielsollondon
 
+---
 # 使用 PowerShell Cmdlet 建立虛擬機器擴展集
-
 此範例示範如何建立虛擬機器擴展集 (VMSS)，它會建立具有 3 個節點的 VMSS，並包含所有相關聯的網路和儲存體。
 
 ## 第一個步驟
@@ -27,9 +26,7 @@
 若要尋找 VMSS 相關的 Cmdlet，請使用搜尋字串 *VMSS*。
 
 ## 建立 VMSS
-
 ##### 建立資源群組
-
 ```
 $loc = 'westus';
 $rgname = 'mynewrgwu';
@@ -37,7 +34,6 @@ $rgname = 'mynewrgwu';
 ```
 
 ##### 建立儲存體帳戶
-
 設定儲存體帳戶類型/名稱。
 
 ```
@@ -49,16 +45,13 @@ $stoaccount = Get-AzureRmStorageAccount -ResourceGroupName $rgname -Name $stonam
 ```
 
 #### 建立網路 (VNET/子網路)
-
 ##### 子網路規格
-
 ```
 $subnetName = 'websubnet'
   $subnet = New-AzureRmVirtualNetworkSubnetConfig -Name $subnetName -AddressPrefix "10.0.0.0/24";
 ```
 
 ##### VNET 規格
-
 ```
 $vnet = New-AzureRmVirtualNetwork -Force -Name ('vnet' + $rgname) -ResourceGroupName $rgname -Location $loc -AddressPrefix "10.0.0.0/16" -DnsServer "10.1.1.1" -Subnet $subnet;
 $vnet = Get-AzureRmVirtualNetwork -Name ('vnet' + $rgname) -ResourceGroupName $rgname;
@@ -68,7 +61,6 @@ $subnetId = $vnet.Subnets[0].Id;
 ```
 
 ##### 建立允許外部存取的公用 IP 資源
-
 這會繫結至負載平衡器。
 
 ```
@@ -77,7 +69,6 @@ $pubip = Get-AzureRmPublicIpAddress -Name ('pubip' + $rgname) -ResourceGroupName
 ```
 
 ##### 建立並設定負載平衡器
-
 ```
 $frontendName = 'fe' + $rgname
 $backendAddressPoolName = 'bepool' + $rgname
@@ -141,7 +132,6 @@ $expectedLb = Get-AzureRmLoadBalancer -Name $lbName -ResourceGroupName $rgname
 ```
 
 ##### 設定並建立 VMSS
-
 請注意，此基礎結構範例示範如何在 VMSS 內設定散發及調整網路流量，但此處指定的 VM 映像並未安裝任何 Web 服務。
 
 ```

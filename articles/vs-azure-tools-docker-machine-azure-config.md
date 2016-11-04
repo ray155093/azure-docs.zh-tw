@@ -1,39 +1,41 @@
-<properties
-   pageTitle="用 Docker 電腦在 Azure 中建立 Docker 主機 | Microsoft Azure"
-   description="說明如何使用 Docker 電腦在 Azure 中建立 Docker 主機。"
-   services="azure-container-service"
-   documentationCenter="na"
-   authors="mlearned"
-   manager="douge"
-   editor="" />
-<tags
-   ms.service="multiple"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="multiple"
-   ms.date="06/08/2016"
-   ms.author="mlearned" />
+---
+title: 用 Docker 電腦在 Azure 中建立 Docker 主機 | Microsoft Docs
+description: 說明如何使用 Docker 電腦在 Azure 中建立 Docker 主機。
+services: azure-container-service
+documentationcenter: na
+author: mlearned
+manager: douge
+editor: ''
 
+ms.service: multiple
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: multiple
+ms.date: 06/08/2016
+ms.author: mlearned
+
+---
 # 使用 Docker-Machine 在 Azure 中建立 Docker 主機
-
 執行 [Docker](https://www.docker.com/) 容器時需要執行 Docker 精靈的主機 VM。本主題說明如何使用 [docker-machine](https://docs.docker.com/machine/) 命令，來建立在 Azure 中執行並使用 Docker 精靈所設定的新 Linux VM。
 
 **注意：**
-- *本文根據 docker-machine 0.7.0 版或更新版本*
-- *在不久的未來，將透過 docker-machine 支援 Windows Containers*
+
+* *本文根據 docker-machine 0.7.0 版或更新版本*
+* *在不久的未來，將透過 docker-machine 支援 Windows Containers*
 
 ## 使用 Docker 電腦建立 VM
-
 搭配使用 `docker-machine create` 命令與 `azure` 驅動程式，在 Azure 中建立 Docker 主機 VM。
 
 Azure 驅動程式將需要您的訂用帳戶識別碼。您可以使用 [Azure CLI](xplat-cli-install.md) 或 [Azure 入口網站](https://portal.azure.com)來擷取您的「Azure 訂用帳戶」。
 
 **使用 Azure 入口網站**
-- 從左導覽頁面中選取 [訂用帳戶]，並複製到訂用帳戶識別碼。
+
+* 從左導覽頁面中選取 [訂用帳戶]，並複製到訂用帳戶識別碼。
 
 **使用 Azure CLI**
-- 輸入 ```azure account list```，並複製訂用帳戶識別碼。
+
+* 輸入 ```azure account list```，並複製訂用帳戶識別碼。
 
 輸入 `docker-machine create --driver azure` 以查看選項和其預設值。您也可以查看 [Docker Azure 驅動程式文件](https://docs.docker.com/machine/drivers/azure/)，以取得詳細資訊。
 
@@ -45,14 +47,13 @@ docker-machine create -d azure --azure-subscription-id <Your AZURE_SUBSCRIPTION_
 
 ## 使用 docker-machine 選擇 Docker 主機
 docker-machine 中有您主機的項目之後，即可在執行 docker 命令時設定預設主機。
-##使用 PowerShell
 
+## 使用 PowerShell
 ```powershell
 docker-machine env MyDockerHost | Invoke-Expression 
 ```
 
-##使用 Bash
-
+## 使用 Bash
 ```bash
 eval $(docker-machine env MyDockerHost)
 ```
@@ -65,7 +66,6 @@ docker info
 ```
 
 ## 執行容器
-
 設定主機之後，您現在可以執行簡單的 Web 伺服器，來測試是否已正確設定主機。我們在此使用標準 nginx 映像，指定它應該接聽連接埠 80，而且如果主機 VM 重新啟動，則容器也會重新啟動 (`--restart=always`)。
 
 ```bash
@@ -87,7 +87,6 @@ Status: Downloaded newer image for nginx:latest
 ```
 
 ## 測試容器
-
 使用 `docker ps` 檢查執行中容器：
 
 ```bash
@@ -104,7 +103,7 @@ PS C:\> docker-machine ip MyDockerHost
 
 ![執行 ngnix 容器](./media/vs-azure-tools-docker-machine-azure-config/nginxsuccess.png)
 
-##摘要
+## 摘要
 運用 docker-machine，您可以在 Azure 中輕鬆地佈建 docker 主機來進行個別 docker 主機驗證。如需實際執行裝載容器，請參閱 [Azure Container Service](http://aka.ms/AzureContainerService)
 
 若要使用 Visual Studio 開發 .NET Core 應用程式，請參閱 [Docker Tools for Visual Studio](http://aka.ms/DockerToolsForVS)

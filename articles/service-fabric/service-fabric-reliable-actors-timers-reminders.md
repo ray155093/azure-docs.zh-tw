@@ -1,22 +1,21 @@
-<properties
-   pageTitle="Reliable Actors 計時器和提醒 | Microsoft Azure"
-   description="Service Fabric Reliable Actors 計時器和提醒簡介。"
-   services="service-fabric"
-   documentationCenter=".net"
-   authors="vturecek"
-   manager="timlt"
-   editor="amanbha"/>
+---
+title: Reliable Actors 計時器和提醒 | Microsoft Docs
+description: Service Fabric Reliable Actors 計時器和提醒簡介。
+services: service-fabric
+documentationcenter: .net
+author: vturecek
+manager: timlt
+editor: amanbha
 
-<tags
-   ms.service="service-fabric"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="NA"
-   ms.date="07/06/2016"
-   ms.author="vturecek"/>
+ms.service: service-fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 07/06/2016
+ms.author: vturecek
 
-
+---
 # 動作項目計時器和提醒
 動作項目可藉由註冊計時器或提醒來排程本身的週期性工作。本文示範如何使用計時器和提醒，以及說明它們之間的差異。
 
@@ -119,10 +118,10 @@ Task reminderUnregistration = UnregisterReminder(reminder);
 如上所示，`UnregisterReminder` 方法會接受 `IActorReminder` 介面。動作項目基底類別支援 `GetReminder` 方法，在傳遞進提醒名稱時可以用來擷取 `IActorReminder` 介面。這很方便，因為動作項目不需保存從 `RegisterReminder` 方法呼叫傳回的 `IActorReminder` 介面。
 
 ## 後續步驟
- - [動作項目事件](service-fabric-reliable-actors-events.md)
- - [動作項目重新進入](service-fabric-reliable-actors-reentrancy.md)
- - [動作項目診斷與效能監視](service-fabric-reliable-actors-diagnostics.md)
- - [動作項目 API 參考文件](https://msdn.microsoft.com/library/azure/dn971626.aspx)
- - [範例程式碼](https://github.com/Azure/servicefabric-samples)
+* [動作項目事件](service-fabric-reliable-actors-events.md)
+* [動作項目重新進入](service-fabric-reliable-actors-reentrancy.md)
+* [動作項目診斷與效能監視](service-fabric-reliable-actors-diagnostics.md)
+* [動作項目 API 參考文件](https://msdn.microsoft.com/library/azure/dn971626.aspx)
+* [範例程式碼](https://github.com/Azure/servicefabric-samples)
 
 <!---HONumber=AcomDC_0713_2016-->

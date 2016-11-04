@@ -1,25 +1,23 @@
-<properties
-   pageTitle="在 Logic Apps 中使用 BizTalk JSON 編碼器連接器 | Microsoft Azure App Service "
-   description="如何建立並設定 BizTalk JSON 編碼器連接器或 API 應用程式，並在 Azure App Service 的邏輯應用程式中使用它"
-   services="logic-apps"
-   documentationCenter=".net,nodejs,java"
-   authors="rajeshramabathiran"
-   manager="erikre"
-   editor=""/>
+---
+title: 在 Logic Apps 中使用 BizTalk JSON 編碼器連接器 | Microsoft Docs
+description: 如何建立並設定 BizTalk JSON 編碼器連接器或 API 應用程式，並在 Azure App Service 的邏輯應用程式中使用它
+services: logic-apps
+documentationcenter: .net,nodejs,java
+author: rajeshramabathiran
+manager: erikre
+editor: ''
 
-<tags
-   ms.service="logic-apps"
-   ms.devlang="multiple"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="integration"
-   ms.date="04/20/2016"
-   ms.author="rajram"/>
+ms.service: logic-apps
+ms.devlang: multiple
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: integration
+ms.date: 04/20/2016
+ms.author: rajram
 
-# 開始使用 BizTalk JSON 編碼器並將它加入您的邏輯應用程式 
-
-[AZURE.INCLUDE [app-service-logic-version-message](../../includes/app-service-logic-version-message.md)]
-
+---
+# 開始使用 BizTalk JSON 編碼器並將它加入您的邏輯應用程式
+[!INCLUDE [app-service-logic-version-message](../../includes/app-service-logic-version-message.md)]
 
 BizTalk JSON 編碼器解碼器連接器協助您的應用程式在 JSON 和 XML 資料之間轉換。它可以將指定的 JSON 執行個體轉換成 XML，反之亦然。
 
@@ -32,34 +30,35 @@ BizTalk JSON 編碼器解碼器連接器協助您的應用程式在 JSON 和 XML
 請遵循[建立邏輯應用程式]的步驟。BizTalk JSON 編碼器可用來作為動作。它並沒有任何觸發程序。
 
 ### 動作
-- 從右窗格中按一下 [BizTalk JSON 編碼器]
+* 從右窗格中按一下 [BizTalk JSON 編碼器]
+  
+    ![動作設定][3]
+* 按一下 ->
+  
+    ![動作清單][4]
+* BizTalk JSON 編碼器支援兩個動作。選取 *XML 對 JSON*
+  
+    ![Xml 對 JSON 輸入][5]
+* 提供動作的輸入，並進行設定
+  
+    ![編碼和傳送已設定][6]
 
-	![動作設定][3]
-- 按一下 ->
-
-	![動作清單][4]
-- BizTalk JSON 編碼器支援兩個動作。選取 *XML 對 JSON*
-
-	![Xml 對 JSON 輸入][5]
-- 提供動作的輸入，並進行設定
-
-	![編碼和傳送已設定][6]
-
-參數|類型|參數說明
----|---|---
-輸入 Xml|物件|輸入 Xml 內容
-移除外部信封|字串|旗標設為從 Xml 內容移除根節點
+| 參數 | 類型 | 參數說明 |
+| --- | --- | --- |
+| 輸入 Xml |物件 |輸入 Xml 內容 |
+| 移除外部信封 |字串 |旗標設為從 Xml 內容移除根節點 |
 
 動作傳回輸入內容的 json 表示法。
 
 ## 進一步運用您的連接器
 現在已建立連接器，您可以使用邏輯應用程式將它加入商務流程。請參閱[什麼是 Logic Apps？](app-service-logic-what-are-logic-apps.md)。
 
->[AZURE.NOTE] 如果您想在註冊 Azure 帳戶前開始使用 Azure Logic Apps，請移至[試用 Logic App](https://tryappservice.azure.com/?appservice=logic)，即可在 App Service 中立即建立短期入門邏輯應用程式。不需要信用卡，無需承諾。
+> [!NOTE]
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure Logic Apps，請移至[試用 Logic App](https://tryappservice.azure.com/?appservice=logic)，即可在 App Service 中立即建立短期入門邏輯應用程式。不需要信用卡，無需承諾。
+> 
+> 
 
 檢視位於[連接器和 API Apps 參考](http://go.microsoft.com/fwlink/p/?LinkId=529766)的 Swagger REST API 參考。
-
- 
 
 <!--References -->
 [1]: app-service-logic-connector-tpm

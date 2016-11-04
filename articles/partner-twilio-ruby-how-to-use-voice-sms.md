@@ -1,25 +1,21 @@
-<properties 
-	pageTitle="如何使用 Twilio for Voice and SMS (Ruby) | Microsoft Azure" 
-	description="了解如何在 Azure 上使用 Twilio API 服務撥打電話及傳送簡訊。程式碼範例以 Ruby 撰寫。" 
-	services="" 
-	documentationCenter="ruby" 
-	authors="devinrader" 
-	manager="twilio" 
-	editor=""/>
+---
+title: 如何使用 Twilio for Voice and SMS (Ruby) | Microsoft Docs
+description: 了解如何在 Azure 上使用 Twilio API 服務撥打電話及傳送簡訊。程式碼範例以 Ruby 撰寫。
+services: ''
+documentationcenter: ruby
+author: devinrader
+manager: twilio
+editor: ''
 
-<tags 
-	ms.service="multiple" 
-	ms.workload="na" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="ruby" 
-	ms.topic="article" 
-	ms.date="11/25/2014" 
-	ms.author="MicrosoftHelp@twilio.com"/>
+ms.service: multiple
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: ruby
+ms.topic: article
+ms.date: 11/25/2014
+ms.author: MicrosoftHelp@twilio.com
 
-
-
-
-
+---
 # 如何在 Ruby 中透過 Twilio 使用語音和簡訊功能
 本指南示範如何在 Azure 上透過 Twilio API 服務執行常見的程式設計工作。涵蓋的案例包括打電話和傳送簡訊 (SMS)。如需有關如何在應用程式中使用 Twilio 語音和 SMS 的詳細資訊，請參閱[後續步驟](#NextSteps)一節。
 
@@ -114,23 +110,23 @@ Twilio 動詞是指示 Twilio 應執行哪些**動作**的 XML 標籤。例如�
 將此函數新增至 `web.md`：
 
     # Set your account ID and authentication token.
-	sid = "your_twilio_account_sid";
-	token = "your_twilio_authentication_token";
+    sid = "your_twilio_account_sid";
+    token = "your_twilio_authentication_token";
 
-	# The number of the phone initiating the the call.
+    # The number of the phone initiating the the call.
     # This should either be a Twilio number or a number that you've verified
-	from = "NNNNNNNNNNN";
+    from = "NNNNNNNNNNN";
 
-	# The number of the phone receiving call.
-	to = "NNNNNNNNNNN";
+    # The number of the phone receiving call.
+    to = "NNNNNNNNNNN";
 
-	# Use the Twilio-provided site for the TwiML response.
+    # Use the Twilio-provided site for the TwiML response.
     url = "http://yourdomain.cloudapp.net/voice_url";
-      
+
     get '/make_call' do
-	  # Create the call client.
-	  client = Twilio::REST::Client.new(sid, token);
-      
+      # Create the call client.
+      client = Twilio::REST::Client.new(sid, token);
+
       # Make the call
       client.account.calls.create(to: to, from: from, url: url)
     end
@@ -140,7 +136,7 @@ Twilio 動詞是指示 Twilio 應執行哪些**動作**的 XML 標籤。例如�
          <Say>Hello Monkey!</Say>
        </Response>"
     end
-    
+
 您在瀏覽器中開啟 `http://yourdomain.cloudapp.net/make_call` 時，將觸發對 Twilio API 的呼叫來撥打電話。`client.account.calls.create` 中的前兩個參數很容易理解：來電 (`from`) 號碼和去電 (`to`) 號碼。
 
 第三個參數 (`url`) 是 Twilio 要求取得相關指示以得知在電話接通時應執行何種動作的 URL。在此案例中，我們設定的 URL (`http://yourdomain.cloudapp.net`) 會傳回簡易的 TwiML 文件，並使用 `<Say>` 動詞來執行文字轉換成語音的動作，對接聽電話的人說出 "Hello Monkey"。

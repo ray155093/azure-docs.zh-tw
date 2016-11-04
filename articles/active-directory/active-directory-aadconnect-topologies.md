@@ -1,38 +1,36 @@
-<properties
-    pageTitle="Azure AD Connect：支援的拓撲 | Microsoft Azure"
-    description="本主題詳細說明 Azure AD Connect 的受支援和不受支援拓撲"
-    services="active-directory"
-    documentationCenter=""
-    authors="AndKjell"
-    manager="femila"
-    editor=""/>
-<tags
-    ms.service="active-directory"
-    ms.devlang="na"
-    ms.tgt_pltfrm="na"
-    ms.workload="identity"
-    ms.topic="article"
-    ms.date="06/27/2016"
-    ms.author="billmath"/>
+---
+title: Azure AD Connect：支援的拓撲 | Microsoft Docs
+description: 本主題詳細說明 Azure AD Connect 的受支援和不受支援拓撲
+services: active-directory
+documentationcenter: ''
+author: AndKjell
+manager: femila
+editor: ''
 
+ms.service: active-directory
+ms.devlang: na
+ms.tgt_pltfrm: na
+ms.workload: identity
+ms.topic: article
+ms.date: 06/27/2016
+ms.author: billmath
 
+---
 # <a name="topologies-for-azure-ad-connect"></a>Azure AD Connect 的拓撲
-
 本主題的目標在於利用 Azure AD Connect 同步處理做為重要的整合方案，說明不同的內部部署和 Azure AD 拓撲。 它會描述受支援和不受支援的組態。
 
 文件中的圖片圖例：
 
-說明 | 圖示
------|-----
-內部部署 Active Directory 樹系| ![AD](./media/active-directory-aadconnect-topologies/LegendAD1.png)
-內含篩選匯入的 Active Directory| ![AD](./media/active-directory-aadconnect-topologies/LegendAD2.png)
-Azure AD Connect 同步處理伺服器| ![Sync](./media/active-directory-aadconnect-topologies/LegendSync1.png)
-Azure AD Connect 同步處理伺服器「預備模式」| ![Sync](./media/active-directory-aadconnect-topologies/LegendSync2.png)
-內含 FIM2010 或 MIM2016 的 GALSync| ![Sync](./media/active-directory-aadconnect-topologies/LegendSync3.png)
-Azure AD Connect 同步處理伺服器，詳細說明| ![Sync](./media/active-directory-aadconnect-topologies/LegendSync4.png)
-Azure AD 目錄 |![AAD](./media/active-directory-aadconnect-topologies/LegendAAD.png)
-不受支援的案例 | ![不支援](./media/active-directory-aadconnect-topologies/LegendUnsupported.png)
-
+| 說明 | 圖示 |
+| --- | --- |
+| 內部部署 Active Directory 樹系 |![AD](./media/active-directory-aadconnect-topologies/LegendAD1.png) |
+| 內含篩選匯入的 Active Directory |![AD](./media/active-directory-aadconnect-topologies/LegendAD2.png) |
+| Azure AD Connect 同步處理伺服器 |![Sync](./media/active-directory-aadconnect-topologies/LegendSync1.png) |
+| Azure AD Connect 同步處理伺服器「預備模式」 |![Sync](./media/active-directory-aadconnect-topologies/LegendSync2.png) |
+| 內含 FIM2010 或 MIM2016 的 GALSync |![Sync](./media/active-directory-aadconnect-topologies/LegendSync3.png) |
+| Azure AD Connect 同步處理伺服器，詳細說明 |![Sync](./media/active-directory-aadconnect-topologies/LegendSync4.png) |
+| Azure AD 目錄 |![AAD](./media/active-directory-aadconnect-topologies/LegendAAD.png) |
+| 不受支援的案例 |![不支援](./media/active-directory-aadconnect-topologies/LegendUnsupported.png) |
 
 ## <a name="single-forest,-single-azure-ad-directory"></a>單一樹系、單一 Azure AD 目錄
 ![單一樹系單一目錄](./media/active-directory-aadconnect-topologies/SingleForestSingleDirectory.png)
@@ -64,8 +62,8 @@ Azure AD Connect 同步處理中的預設組態假設：
 
 如果您的環境不符合這些假設，則會發生下列情況：
 
-- 如果您有多個使用中的帳戶或多個信箱，同步處理引擎會挑選其中一個，其他全部忽略。
-- 沒有使用中帳戶的已連結的信箱不會匯出至 Azure AD。 使用者帳戶不會顯示為任何群組中的成員。 DirSync 中已連結的信箱一律會顯示為一般信箱，因此這個變更是刻意的不同行為，可更有效支援多個樹系案例。
+* 如果您有多個使用中的帳戶或多個信箱，同步處理引擎會挑選其中一個，其他全部忽略。
+* 沒有使用中帳戶的已連結的信箱不會匯出至 Azure AD。 使用者帳戶不會顯示為任何群組中的成員。 DirSync 中已連結的信箱一律會顯示為一般信箱，因此這個變更是刻意的不同行為，可更有效支援多個樹系案例。
 
 可以在 [了解預設組態](active-directory-aadconnectsync-understanding-default-configuration.md)中找到更多詳細資料。
 
@@ -119,10 +117,10 @@ FSP 可在 ADDS 中用來代表安全性群組中來自其他樹系的成員。 
 ## <a name="office-365-and-topology-considerations"></a>Office 365 和拓撲考量
 有些 Office 365 工作負載對受支援的拓撲有某些限制。 如果您打算使用其中任何一項，請參閱工作負載的受支援拓撲主題。
 
-工作負載 |  
---------- | ---------
-Exchange Online | 如果有一個以上的 Exchange 組織內部部署 (也就是 Exchange 已部署至一個以上的樹系)，則您必須使用 Exchange 2013 SP1 或更新版本。 您可以在此找到詳細資料： [內含多個 Active Directory 樹系的混合式部署](https://technet.microsoft.com/library/jj873754.aspx)
-商務用 Skype | 使用多個樹系內部部署時，只會支援帳戶資源樹系拓撲。 您可以在此找到所支援拓撲的詳細資料： [商務用 Skype Server 2015 的環境需求](https://technet.microsoft.com/library/dn933910.aspx)
+| 工作負載 |
+| --- | --- |
+| Exchange Online |
+| 商務用 Skype |
 
 ## <a name="staging-server"></a>預備伺服器
 ![預備伺服器](./media/active-directory-aadconnect-topologies/MultiForestStaging.png)
@@ -139,9 +137,9 @@ Azure AD Connect 支援以「預備模式」 安裝第二部伺服器。 在此�
 Microsoft 建議一個組織在 Azure AD 中有單一的目錄。
 在您打算使用多個 Azure AD 目錄之前，這些主題涵蓋了常見的案例，可讓您使用單一目錄。
 
-主題 |  
---------- | ---------
-使用管理單位的委派 | [在 Azure AD 中的管理單位管理 ](active-directory-administrative-units-management.md)
+| 主題 |
+| --- | --- |
+| 使用管理單位的委派 |
 
 ![多樹系多個目錄](./media/active-directory-aadconnect-topologies/MultiForestMultiDirectory.png)
 
@@ -156,28 +154,28 @@ Azure AD 目錄執行個體之間沒有 GALsync。 Exchange Online 和商務用 
 
 對於另外支援的案例，此拓撲具有下列限制︰
 
-- 只有其中一個 Azure AD 目錄可以啟用 Exchange 與內部部署 Active Directory 的混合。
-- Windows 10 裝置只能與一個 Azure AD 目錄相關聯。
+* 只有其中一個 Azure AD 目錄可以啟用 Exchange 與內部部署 Active Directory 的混合。
+* Windows 10 裝置只能與一個 Azure AD 目錄相關聯。
 
 物件互斥集的需求也適用於寫回。 此拓撲不支援部分寫回功能，因為這些功能假設單一組態內部部署：
 
--   使用預設組態的群組回寫
--   裝置回寫
+* 使用預設組態的群組回寫
+* 裝置回寫
 
 ### <a name="each-object-multiple-times-in-an-azure-ad-directory"></a>每個物件在 Azure AD 目錄運作多次
 ![不支援單一樹系多個目錄](./media/active-directory-aadconnect-topologies/SingleForestMultiDirectoryUnsupported.png) ![不支援單一樹系多個連接器](./media/active-directory-aadconnect-topologies/SingleForestMultiConnectorsUnsupported.png)
 
-- 它不支援同步處理相同使用者至多個 Azure AD 目錄。
-- 不支援進行組態變更，讓一個 Azure AD 中的使用者顯示為另一個 Azure AD 目錄中的連絡人。
-- 不支援將 Azure AD Connect 同步處理修改為連接到多個 Azure AD 目錄。
+* 它不支援同步處理相同使用者至多個 Azure AD 目錄。
+* 不支援進行組態變更，讓一個 Azure AD 中的使用者顯示為另一個 Azure AD 目錄中的連絡人。
+* 不支援將 Azure AD Connect 同步處理修改為連接到多個 Azure AD 目錄。
 
 ### <a name="galsync-by-using-writeback"></a>使用回寫 GALsync
 ![MultiForestMultiDirectoryGALSync1Unsupported](./media/active-directory-aadconnect-topologies/MultiForestMultiDirectoryGALSync1Unsupported.png) ![MultiForestMultiDirectoryGALSync2Unsupported](./media/active-directory-aadconnect-topologies/MultiForestMultiDirectoryGALSync2Unsupported.png)
 
 Azure AD 目錄在設計上是隔離的。
 
-- 它不支援將 Azure AD Connect 同步處理變更為從另一個 Azure AD 目錄讀取資料。
-- 不支援使用 Azure AD Connect 同步處理將使用者匯出為另一個內部部署 AD的連絡人。
+* 它不支援將 Azure AD Connect 同步處理變更為從另一個 Azure AD 目錄讀取資料。
+* 不支援使用 Azure AD Connect 同步處理將使用者匯出為另一個內部部署 AD的連絡人。
 
 ### <a name="galsync-with-on-premises-sync-server"></a>具備內部部署同步處理伺服器的 GALsync
 ![MultiForestMultiDirectoryGALSync](./media/active-directory-aadconnect-topologies/MultiForestMultiDirectoryGALSync.png)
@@ -185,13 +183,11 @@ Azure AD 目錄在設計上是隔離的。
 它支援使用 FIM2010/MIM2016 內部部署至兩個 Exchange 組織之間的 GALsync 使用者。 一個組織中的使用者將會顯示為其他組織中的外部使用者/連絡人。 這些不同的內部部署 AD 可同步處理至它們自己的 Azure AD 目錄。
 
 ## <a name="next-steps"></a>後續步驟
-若要了解如何安裝這些案例的 Azure AD Connect，請參閱[自訂 Azure AD Connect 安裝](./aad-connect/active-directory-aadconnect-get-started-custom.md)。
+若要了解如何安裝這些案例的 Azure AD Connect，請參閱[自訂 Azure AD Connect 安裝](active-directory-aadconnect-get-started-custom.md)。
 
 深入了解 [Azure AD Connect 同步](active-directory-aadconnectsync-whatis.md) 組態。
 
 深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
-
-
 
 <!--HONumber=Oct16_HO2-->
 

@@ -1,23 +1,22 @@
-<properties 
-   pageTitle="Microsoft 監視產品中的警示管理 | Microsoft Azure"
-   description="警示表示有一些需要系統管理員注意的問題。  本文說明如何在 System Center Operations Manager (SCOM) 和 Log Analytics 中建立和管理警示的差異，並提供運用這兩項產品做為混合式警示管理策略的最佳作法。" 
-   services="operations-management-suite"
-   documentationCenter=""
-   authors="bwren"
-   manager="jwhit"
-   editor="tysonn" />
-<tags 
-   ms.service="operations-management-suite"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="infrastructure-services"
-   ms.date="09/06/2016"
-   ms.author="bwren" />
+---
+title: Microsoft 監視產品中的警示管理 | Microsoft Docs
+description: 警示表示有一些需要系統管理員注意的問題。  本文說明如何在 System Center Operations Manager (SCOM) 和 Log Analytics 中建立和管理警示的差異，並提供運用這兩項產品做為混合式警示管理策略的最佳作法。
+services: operations-management-suite
+documentationcenter: ''
+author: bwren
+manager: jwhit
+editor: tysonn
 
+ms.service: operations-management-suite
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 09/06/2016
+ms.author: bwren
 
-# <a name="managing-alerts-with-microsoft-monitoring"></a>使用 Microsoft 監視管理警示 
-
+---
+# <a name="managing-alerts-with-microsoft-monitoring"></a>使用 Microsoft 監視管理警示
 警示表示有一些需要系統管理員注意的問題。  在如何建立警示、如何管理和分析警示以及在偵測到嚴重問題時如何通知您的方面，System Center Operations Manager (SCOM) 與 Operations Management Suite (OMS) 中的 Log Analytics 之間有一些顯著的差異。
 
 ## <a name="alerts-in-operations-manager"></a>Operations Manager 中的警示
@@ -59,7 +58,7 @@ SCOM 中的通知會將郵件或文字傳送給您，以回應符合特定準則
 
 ## <a name="alert-remediation"></a>警示補救
 [補救](http://technet.microsoft.com/library/mt614775.aspx) 指的是嘗試自動更正警示所識別的問題。
-  
+
 SCOM 可讓您執行診斷和復原，以回應監視器進入狀況不良狀態。  這與建立警示的監視器同時發生。  診斷和復原通常實作為代理程式上所執行的指令碼。  診斷會嘗試收集有關偵測到問題的詳細資訊，復原則會嘗試更正問題。
 
 Log Analytics 可讓您啟動 [Azure 自動化 Runbook](https://azure.microsoft.com/documentation/services/automation/) 或呼叫 webhook，以回應 Log Analytics 警示。  Runbook 可以包含 PowerShell 中所實作的複雜邏輯。  指令碼是在 Azure 中執行，而且可以從雲端存取任何 Azure 資源或外部資源。  Azure 自動化確實可以在本機資料中心的伺服器上執行 Runbook，但是啟動 Runbook 以回應 Log Analytics 警示時，目前無法使用這項功能。
@@ -69,9 +68,7 @@ SCOM 中的復原以及 OMS 中的 Runbook 都可以包含 PowerShell 指令碼�
 如果您使用 SCOM 做為 Log Analytics 的資料來源，則可以使用記錄檔查詢來建立 Log Analytics 警示，以擷取 OMS 儲存機制中所儲存的 SCOM 警示。  這可讓您執行 Azure 自動化 Runbook，以回應 SCOM 警示。  當然，因為 Runbook 是在 Azure 中執行，所以這不是復原內部部署問題的可行策略。
 
 ## <a name="next-steps"></a>後續步驟
-
-- 了解 [System Center Operations Manager (SCOM) 中警示](https://technet.microsoft.com/library/hh212913.aspx)的詳細資料。
-
+* 了解 [System Center Operations Manager (SCOM) 中警示](https://technet.microsoft.com/library/hh212913.aspx)的詳細資料。
 
 <!--HONumber=Oct16_HO2-->
 

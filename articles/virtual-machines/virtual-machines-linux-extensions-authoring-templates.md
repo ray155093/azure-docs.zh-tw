@@ -1,25 +1,24 @@
-<properties
-   pageTitle="使用 Linux VM 擴充功能編寫範本 | Microsoft Azure"
-   description="了解如何使用 Linux VM 擴充功能編寫 Azure Resource Manager 範本"
-   services="virtual-machines-linux"
-   documentationCenter=""
-   authors="kundanap"
-   manager="timlt"
-   editor=""
-   tags="azure-resource-manager"/>
+---
+title: 使用 Linux VM 擴充功能編寫範本 | Microsoft Docs
+description: 了解如何使用 Linux VM 擴充功能編寫 Azure Resource Manager 範本
+services: virtual-machines-linux
+documentationcenter: ''
+author: kundanap
+manager: timlt
+editor: ''
+tags: azure-resource-manager
 
-<tags
-   ms.service="virtual-machines-linux"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="vm-linux"
-   ms.workload="infrastructure-services"
-   ms.date="03/29/2016"
-   ms.author="kundanap"/>
+ms.service: virtual-machines-linux
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: vm-linux
+ms.workload: infrastructure-services
+ms.date: 03/29/2016
+ms.author: kundanap
 
+---
 # 使用 Linux VM 擴充功能編寫 Azure Resource Manager 範本
-
-[AZURE.INCLUDE [virtual-machines-common-extensions-authoring-templates](../../includes/virtual-machines-common-extensions-authoring-templates.md)]
+[!INCLUDE [virtual-machines-common-extensions-authoring-templates](../../includes/virtual-machines-common-extensions-authoring-templates.md)]
 
 從 Azure CLI，執行下列命令︰
 
@@ -33,10 +32,12 @@
 
 這三個屬性分別對應至上述範本程式碼片段中的 "publisher"、"type" 和 "typeHandlerVersion"。
 
->[AZURE.NOTE]建議一律使用最新的擴充功能版本，以取得最新的功能。
+> [!NOTE]
+> 建議一律使用最新的擴充功能版本，以取得最新的功能。
+> 
+> 
 
 ## 識別擴充功能組態參數的結構描述
-
 編寫擴充功能範本的下一個步驟是識別用於提供組態參數的格式。每個延伸模組都支援自己的參數集。
 
 若要查看 Linux 擴充功能的範例組態，請按一下 [Linux 擴充功能範例](virtual-machines-linux-extensions-configuration-samples.md)文件。

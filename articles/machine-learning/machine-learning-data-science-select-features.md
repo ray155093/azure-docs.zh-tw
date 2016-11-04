@@ -1,42 +1,36 @@
-<properties
-	pageTitle="Team Data Science Process 中的特徵選取 | Microsoft Azure" 
-	description="說明機器學習服務的資料增強程序中功能選取的目的，並提供其角色的範例。"
-	services="machine-learning"
-	documentationCenter=""
-	authors="bradsev"
-	manager="jhubbard"
-	editor="cgronlun"/>
+---
+title: Team Data Science Process 中的特徵選取 | Microsoft Docs
+description: 說明機器學習服務的資料增強程序中功能選取的目的，並提供其角色的範例。
+services: machine-learning
+documentationcenter: ''
+author: bradsev
+manager: jhubbard
+editor: cgronlun
 
-<tags
-	ms.service="machine-learning"
-	ms.workload="data-services"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/19/2016"
-	ms.author="zhangya;bradsev" />
+ms.service: machine-learning
+ms.workload: data-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/19/2016
+ms.author: zhangya;bradsev
 
-
+---
 # Team Data Science Process (TDSP) 中的特徵選取
-
 本文說明機器學習服務的資料增強程序中特徵選取的目的，並提供其角色的範例。這些範例是根據 Azure Machine Learning Studio 繪製。
 
-[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
-
+[!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 本主題說明機器學習服務的資料增強程序中特徵選取的目的，並提供其角色的範例。這些範例是根據 Azure Machine Learning Studio 繪製。
 
 特徵的工程設計與選取是[何謂 Team Data Science Process？](data-science-process-overview.md)中所概述 TDSP 程序的其中一部分。特徵工程設計和選取屬於 TDSP 的**開發特徵**步驟。
 
 * **特性工程設計**：此程序嘗試從資料中的現有原始特性建立其他相關特性，以及增加學習演算法的預測功效。
-
 * **特性選取**：此程序嘗試選取主要的原始資料特性子集，以縮小定型問題的維度。
 
 通常會先套用**功能工程設計**以產生其他功能，然後執行**功能選取**步驟以排除不相關、多餘或高度相關的功能。
 
-
-## 從您的資料篩選特性 - 特性選取 
-
+## 從您的資料篩選特性 - 特性選取
 特性選取程序通常適用於定型資料集的建構，以便進行預測性建模工作，例如分類或迴歸工作。其目的在於從原始資料集中選取一小組特性，使用極小一組的特性來代表資料中的最大變異量，藉此縮小其維度。因此，此特性子集是要用於定型模型的唯一特性。特性選取有兩個主要目的。
 
 * 第一，特性選取通常會排除不相關、多餘或高度相關的特性，進而提高分類正確性。
@@ -49,7 +43,6 @@
 Azure Machine Learning Studio 中有針對特性選取而提供的模組。如下圖所示，這些模組包含[以篩選為基礎的特性選取][filter-based-feature-selection]和[費雪線性判別分析][fisher-linear-discriminant-analysis]。
 
 ![特性選取範例](./media/machine-learning-data-science-select-features/feature-Selection.png)
-
 
 例如，請考慮使用[以篩選為基礎的特性選取][filter-based-feature-selection]模組。為了方便起見，我們繼續使用上述的文字採礦範例。假設在透過[特性雜湊][feature-hashing]模組建立一組 256 個特性之後，我們想要建立一個迴歸模型，其應變數為 "Col1" 並代表 1 至 5 的書籍評論評比。將 [特性評分方法] 設定為 [皮耳森相關]，則 [目標欄] 會是 "Col1"，而 [所需的特性數] 會是 50。然後，[以篩選為基礎的特性選取][filter-based-feature-selection]模組會產生一個包含 50 個特性且目標屬性為 "Col1" 的資料集。下圖顯示此實驗的流程以及我們剛才描述的輸入參數。
 
@@ -74,6 +67,6 @@ Azure Machine Learning Studio 中有針對特性選取而提供的模組。如�
 [feature-hashing]: https://msdn.microsoft.com/library/azure/c9a82660-2d9c-411d-8122-4d9e0b3ce92a/
 [filter-based-feature-selection]: https://msdn.microsoft.com/library/azure/918b356b-045c-412b-aa12-94a1d2dad90f/
 [fisher-linear-discriminant-analysis]: https://msdn.microsoft.com/library/azure/dcaab0b2-59ca-4bec-bb66-79fd23540080/
- 
+
 
 <!---HONumber=AcomDC_0921_2016-->

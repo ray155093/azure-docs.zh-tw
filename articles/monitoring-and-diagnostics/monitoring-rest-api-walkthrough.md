@@ -1,22 +1,21 @@
-<properties
-    pageTitle="Azure 監視 REST API 逐步解說 | Microsoft Azure"
-    description="如何驗證 Azure 監視 REST API 的要求，並使用 Azure 監視 REST API。"
-    authors="mcollier, rboucher"
-    manager=""
-    editor=""
-    services="monitoring-and-diagnostics"
-    documentationCenter="monitoring-and-diagnostics"/>
+---
+title: Azure 監視 REST API 逐步解說 | Microsoft Docs
+description: 如何驗證 Azure 監視 REST API 的要求，並使用 Azure 監視 REST API。
+author: mcollier
+manager: ''
+editor: ''
+services: monitoring-and-diagnostics
+documentationcenter: monitoring-and-diagnostics
 
-<tags
-    ms.service="monitoring-and-diagnostics"
-    ms.workload="na"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/27/2016"
-    ms.author="mcollier"/>
+ms.service: monitoring-and-diagnostics
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/27/2016
+ms.author: mcollier
 
-
+---
 # <a name="azure-monitoring-rest-api-walkthrough"></a>Azure 監視 REST API 逐步解說
 本文將說明如何執行驗證，讓您的程式碼可以使用 [Microsoft Azure 監視器 REST API 參考](https://msdn.microsoft.com/library/azure/dn931943.aspx)。         
 
@@ -25,7 +24,6 @@ Azure 監視器 API 讓您能夠以程式設計方式擷取可用的預設度量
 除了使用不同的度量資料點之外，如本文所示範，監視 API 讓您能夠列出警示規則、檢視活動記錄檔等等。 如需可用作業的完整清單，請參閱 [Microsoft Azure 監視器 REST API 參考](https://msdn.microsoft.com/library/azure/dn931943.aspx)。
 
 ## <a name="authenticating-azure-monitor-requests"></a>驗證 Azure 監視器要求
-
 第一步是驗證要求。
 
 針對 Azure 監視器 API 執行的所有工作都會使用 Azure Resource Manager 驗證模型。 因此，所有要求都必須使用 Azure Active Directory (Azure AD) 進行驗證。 驗證用戶端應用程式的其中一個方法是建立 Azure AD 服務主體，並擷取驗證 (JWT) 權杖。 下列範例指令碼會示範透過 PowerShell 建立 Azure AD 服務主體的方法。 如需更詳細的逐步解說中，請參閱 [使用 Azure PowerShell 建立用來存取資源的服務主體](../resource-group-authenticate-service-principal.md#authenticate-service-principal-with-password—powershell)上的文件。 它也可以 [透過 Azure 入口網站建立服務原則](../resource-group-create-service-principal-portal.md)。
@@ -70,7 +68,7 @@ $authUrl = "https://login.windows.net/${tenantId}"
 
 $AuthContext = [Microsoft.IdentityModel.Clients.ActiveDirectory.AuthenticationContext]$authUrl
 $cred = New-Object -TypeName Microsoft.IdentityModel.Clients.ActiveDirectory.ClientCredential -ArgumentList ($clientId, $pwd)
- 
+
 $result = $AuthContext.AcquireToken("https://management.core.windows.net/", $cred)
 
 # Build an array of HTTP header values 
@@ -84,12 +82,13 @@ $authHeader = @{
 一旦驗證設定步驟完成後，即可針對 Azure 監視器 REST API 執行查詢。 有兩個實用的查詢︰
 
 1. 列出資源的度量定義
-
 2. 擷取度量值
 
-
 ## <a name="retrieve-metric-definitions"></a>擷取度量定義
->[AZURE.NOTE] 若要使用 Azure 監視器 REST API 擷取度量定義，請使用 "2016-03-01" 做為 API 版本。
+> [!NOTE]
+> 若要使用 Azure 監視器 REST API 擷取度量定義，請使用 "2016-03-01" 做為 API 版本。
+> 
+> 
 
 ```PowerShell
 $apiVersion = "2016-03-01"
@@ -109,11 +108,14 @@ Invoke-RestMethod -Uri $request `
 ## <a name="retrieve-metric-values"></a>擷取度量值
 一旦已知可用的度量定義後，便可擷取相關的度量值。 將度量名稱 ‘value’ (而非 ‘localizedValue’) 用於任何篩選要求 (例如，擷取 ‘CpuTime’ 和 ‘Requests’ 度量資料點)。 如果未指定篩選器，則會傳回預設度量。
 
->[AZURE.NOTE] 若要使用 Azure 監視器 REST API 擷取度量值，請使用 "2016-06-01" 做為 API 版本。
+> [!NOTE]
+> 若要使用 Azure 監視器 REST API 擷取度量值，請使用 "2016-06-01" 做為 API 版本。
+> 
+> 
 
 **方法**：GET
 
-**要求 URI**：https://management.azure.com/subscriptions/_{subscription-id}_/resourceGroups/_{resource-group-name}_/providers/_{resource-provider-namespace}_/_{resource-type}_/_{resource-name}_/providers/microsoft.insights/metrics?$filter=_{filter}_&api-version=_{apiVersion}_
+**要求 URI**：https://management.azure.com/subscriptions/*{subscription-id}*/resourceGroups/*{resource-group-name}*/providers/*{resource-provider-namespace}*/*{resource-type}*/*{resource-name}*/providers/microsoft.insights/metrics?$filter=*{filter}*&api-version=*{apiVersion}*
 
 例如，若要擷取給定時間範圍及時間粒紋為 1 小時的 RunsSucceeded 度量資料點，要求如下所示︰
 
@@ -147,16 +149,11 @@ $request = "https://management.azure.com/subscriptions/${subscriptionId}/resourc
 使用 PowerShell (如上所示) 的替代方案，是使用 Windows 電腦上的 [ARMClient](https://github.com/projectkudu/ARMClient) 。 ARMClient 會自動處理 Azure AD 驗證 (以及產生的 JWT 權杖)。 下列步驟概述使用 ARMClient 來擷取度量資料︰
 
 1. 安裝 [Chocolatey](https://chocolatey.org/) 和 [ARMClient](https://github.com/projectkudu/ARMClient)。
-
 2. 在終端機視窗中，輸入 armclient.exe login 。 這會提示您登入 Azure。
-
-3. 輸入 _armclient GET [your_resource_id]/providers/microsoft.insights/metricdefinitions?api-version=2016-03-01_
-
-4. 輸入 _armclient GET [your_resource_id]/providers/microsoft.insights/metrics?api-version=2016-06-01_
-
+3. 輸入 *armclient GET [your_resource_id]/providers/microsoft.insights/metricdefinitions?api-version=2016-03-01*
+4. 輸入 *armclient GET [your_resource_id]/providers/microsoft.insights/metrics?api-version=2016-06-01*
 
 ![替代「使用 ARMClient 來使用 Azure 監視 REST API」](./media/monitoring-rest-api-walkthrough/armclient_metricdefinitions.png)
-
 
 ## <a name="retrieve-the-resource-id"></a>擷取資源識別碼
 使用 REST API 可實際協助了解可用的度量定義、細微度以及相關值。 使用 [Azure Management Library](https://msdn.microsoft.com/library/azure/mt417623.aspx)時，該資訊會很實用。
@@ -167,20 +164,13 @@ $request = "https://management.azure.com/subscriptions/${subscriptionId}/resourc
 
 下列範例清單包含各種 Azure 資源的資源識別碼格式︰
 
-* **IoT 中樞** - /subscriptions/_{subscription-id}_/resourceGroups/_{resource-group-name}_/providers/Microsoft.Devices/IotHubs/_{iot-hub-name}_
-
-* **SQL 彈性集區** - /subscriptions/_{subscription-id}_/resourceGroups/_{resource-group-name}_/providers/Microsoft.Sql/servers/_{pool-db}_/elasticpools/_{sql-pool-name}_
-
-* **SQL Database (v12)** - /subscriptions/_{subscription-id}_/resourceGroups/_{resource-group-name}_/providers/Microsoft.Sql/servers/_{server-name}_/databases/_{database-name}_
-
-* **服務匯流排** - /subscriptions/_{subscription-id}_/resourceGroups/_{resource-group-name}_/providers/Microsoft.ServiceBus/_{namespace}_/_{servicebus-name}_
-
-* **VM 擴展集** - /subscriptions/_{subscription-id}_/resourceGroups/_{resource-group-name}_/providers/Microsoft.Compute/virtualMachineScaleSets/_{vm-name}_
-
-* **VM** - /subscriptions/_{subscription-id}_/resourceGroups/_{resource-group-name}_/providers/Microsoft.Compute/virtualMachines/_{vm-name}_
-
-* **事件中樞** - /subscriptions/_{subscription-id}_/resourceGroups/_{resource-group-name}_/providers/Microsoft.EventHub/namespaces/_{eventhub-namespace}_
-
+* **IoT 中樞** - /subscriptions/*{subscription-id}*/resourceGroups/*{resource-group-name}*/providers/Microsoft.Devices/IotHubs/*{iot-hub-name}*
+* **SQL 彈性集區** - /subscriptions/*{subscription-id}*/resourceGroups/*{resource-group-name}*/providers/Microsoft.Sql/servers/*{pool-db}*/elasticpools/*{sql-pool-name}*
+* **SQL Database (v12)** - /subscriptions/*{subscription-id}*/resourceGroups/*{resource-group-name}*/providers/Microsoft.Sql/servers/*{server-name}*/databases/*{database-name}*
+* **服務匯流排** - /subscriptions/*{subscription-id}*/resourceGroups/*{resource-group-name}*/providers/Microsoft.ServiceBus/*{namespace}*/*{servicebus-name}*
+* **VM 擴展集** - /subscriptions/*{subscription-id}*/resourceGroups/*{resource-group-name}*/providers/Microsoft.Compute/virtualMachineScaleSets/*{vm-name}*
+* **VM** - /subscriptions/*{subscription-id}*/resourceGroups/*{resource-group-name}*/providers/Microsoft.Compute/virtualMachines/*{vm-name}*
+* **事件中樞** - /subscriptions/*{subscription-id}*/resourceGroups/*{resource-group-name}*/providers/Microsoft.EventHub/namespaces/*{eventhub-namespace}*
 
 還有其他方法可擷取資源識別碼，包括使用 Azure 資源總管、在 Azure 入口網站中以及透過 PowerShell 或 Azure CLI 檢視所需的資源。
 
@@ -197,12 +187,12 @@ $request = "https://management.azure.com/subscriptions/${subscriptionId}/resourc
 ### <a name="azure-powershell"></a>Azure PowerShell
 可以使用 Azure PowerShell Cmdlet 來擷取資源識別碼。 例如，若要取得 Azure Web 應用程式的資源識別碼，請執行 Get-AzureRmWebApp Cmdlet，如下列螢幕擷取畫面所示︰
 
-![替代「透過 PowerShell 取得的資源識別碼」](./media\monitoring-rest-api-walkthrough\resourceid_powershell.png)
+![替代「透過 PowerShell 取得的資源識別碼」](./media\\monitoring-rest-api-walkthrough\\resourceid_powershell.png)
 
 ### <a name="azure-cli"></a>Azure CLI
 若要使用 Azure CLI 擷取資源識別碼，請執行 'azure webapp show' 命令，指定 '-json' 選項，如下列螢幕擷取畫面所示︰
 
-![替代「透過 PowerShell 取得的資源識別碼」](./media\monitoring-rest-api-walkthrough\resourceid_azurecli.png)
+![替代「透過 PowerShell 取得的資源識別碼」](./media\\monitoring-rest-api-walkthrough\\resourceid_azurecli.png)
 
 ## <a name="retrieve-activity-log-data"></a>擷取活動記錄檔資料
 除了使用度量定義及相關值，也可以擷取關於 Azure 資源的其他有趣深入見解。 例如，可以查詢 [活動記錄檔](https://msdn.microsoft.com/library/azure/dn931934.aspx) 資料。 下列範例示範使用 Azure 監視器 REST API 查詢 Azure 訂用帳戶特定日期範圍內的活動記錄檔資料︰ 
@@ -222,8 +212,6 @@ $request = "https://management.azure.com/subscriptions/${subscriptionId}/provide
 * 檢視 [支援 Azure 監視器的度量](monitoring-supported-metrics.md)。
 * 檢閱 [Microsoft Azure 監視器 REST API 參考](https://msdn.microsoft.com/library/azure/dn931943.aspx)。
 * 檢閱 [Azure Management Library](https://msdn.microsoft.com/library/azure/mt417623.aspx)。
-
-
 
 <!--HONumber=Oct16_HO2-->
 

@@ -1,29 +1,26 @@
-<properties
-   pageTitle="在 Linux 上使用 C 連接裝置| Microsoft Azure"
-   description="描述如何在 Linux 上使用已寫入 C 的應用程式，將裝置連接至 Azure IoT Suite 預先設定遠端監視方案。"
-   services=""
-   suite="iot-suite"
-   documentationCenter="na"
-   authors="dominicbetts"
-   manager="timlt"
-   editor=""/>
+---
+title: 在 Linux 上使用 C 連接裝置| Microsoft Docs
+description: 描述如何在 Linux 上使用已寫入 C 的應用程式，將裝置連接至 Azure IoT Suite 預先設定遠端監視方案。
+services: ''
+suite: iot-suite
+documentationcenter: na
+author: dominicbetts
+manager: timlt
+editor: ''
 
-<tags
-   ms.service="iot-suite"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="07/14/2016"
-   ms.author="dobett"/>
+ms.service: iot-suite
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 07/14/2016
+ms.author: dobett
 
-
+---
 # 將裝置連接至遠端監視預先設定方案 (Linux)
-
-[AZURE.INCLUDE [iot-suite-selector-connecting](../../includes/iot-suite-selector-connecting.md)]
+[!INCLUDE [iot-suite-selector-connecting](../../includes/iot-suite-selector-connecting.md)]
 
 ## 建置並執行範例 C 用戶端 Linux
-
 下列程序示範如何以 C 撰寫來建立簡單的用戶端應用程式，在 Ubuntu Linux 上建置並執行，與遠端監視預先設定的方案通訊。若要完成這些步驟，您需要執行 Ubuntu 版本 15.04 或 15.10 的裝置。繼續之前，使用下列命令在 Ubuntu 裝置上安裝的必要條件封裝：
 
 ```
@@ -31,30 +28,27 @@ sudo apt-get install cmake gcc g++
 ```
 
 ## 在裝置上安裝用戶端程式庫
-
 Azure IoT 中樞用戶端程式庫可當成封裝來使用，而您可以使用 **apt get** 命令在 Ubuntu 裝置上安裝這類封裝。完成下列步驟來安裝封裝，其中包含您 Ubuntu 電腦上的 IoT 中樞用戶端程式庫和標頭檔：
 
 1. 將 AzureIoT 儲存機制新增至電腦：
-
+   
     ```
     sudo add-apt-repository ppa:aziotsdklinux/ppa-azureiot
     sudo apt-get update
     ```
-
 2. 安裝 azure-iot-sdk-c-dev 封裝
-
+   
     ```
     sudo apt-get install -y azure-iot-sdk-c-dev
     ```
 
 ## 新增程式碼以指定裝置的行為
-
 在 Ubuntu 電腦上，建立名為 **remote\_monitoring** 的資料夾。在 **remote\_monitoring** 資料夾中建立四個檔案︰**main.c**、**remote\_monitoring.c**、**remote\_monitoring.h** 和 **CMakeLists.txt**。
 
 IoT 中樞序列化程式用戶端程式庫使用模型，來指定裝置傳送到 IoT 中樞的訊息格式，或裝置所回應的 IoT 中樞命令格式。
 
 1. 在文字編輯器中，開啟 **remote\_monitoring.c** 檔案。新增下列 `#include` 陳述式：
-
+   
     ```
     #include "iothubtransportamqp.h"
     #include "schemalib.h"
@@ -64,61 +58,58 @@ IoT 中樞序列化程式用戶端程式庫使用模型，來指定裝置傳送�
     #include "azure_c_shared_utility/threadapi.h"
     #include "azure_c_shared_utility/platform.h"
     ```
-
 2. 在 `#include` 陳述式之後新增下列變數宣告。從遠端監視方案的儀表板將 [Device Id] 和 [Device Key] 這兩個預留位置值取代為裝置的值。使用儀表板中的 IoT 中樞主機名稱取代 [IoTHub Name]。例如，若您的 IoT 中樞主機名稱是 **contoso.azure-devices.net**，請使用 **contoso** 取代 [IoTHub Name]：
-
+   
     ```
     static const char* deviceId = "[Device Id]";
     static const char* deviceKey = "[Device Key]";
     static const char* hubName = "IoTHub Name]";
     static const char* hubSuffix = "azure-devices.net";
     ```
-
 3. 新增下列程式碼以定義可讓裝置與 IoT 中樞通訊的模型。此模型指定裝置會傳送溫度、外部溫度、濕度和裝置識別碼做為遙測。裝置也會傳送與該裝置有關的中繼資料到 IoT 中樞，包括裝置支援的命令清單。這個裝置會回應 **SetTemperature** 和 **SetHumidity** 命令：
-
+   
     ```
     // Define the Model
     BEGIN_NAMESPACE(Contoso);
-
+   
     DECLARE_STRUCT(SystemProperties,
       ascii_char_ptr, DeviceID,
       _Bool, Enabled
     );
-
+   
     DECLARE_STRUCT(DeviceProperties,
       ascii_char_ptr, DeviceID,
       _Bool, HubEnabledState
     );
-
+   
     DECLARE_MODEL(Thermostat,
-
+   
       /* Event data (temperature, external temperature and humidity) */
       WITH_DATA(int, Temperature),
       WITH_DATA(int, ExternalTemperature),
       WITH_DATA(int, Humidity),
       WITH_DATA(ascii_char_ptr, DeviceId),
-
+   
       /* Device Info - This is command metadata + some extra fields */
       WITH_DATA(ascii_char_ptr, ObjectType),
       WITH_DATA(_Bool, IsSimulatedDevice),
       WITH_DATA(ascii_char_ptr, Version),
       WITH_DATA(DeviceProperties, DeviceProperties),
       WITH_DATA(ascii_char_ptr_no_quotes, Commands),
-
+   
       /* Commands implemented by the device */
       WITH_ACTION(SetTemperature, int, temperature),
       WITH_ACTION(SetHumidity, int, humidity)
     );
-
+   
     END_NAMESPACE(Contoso);
     ```
 
 ### 新增程式碼以實作裝置的行為
-
 新增裝置收到中樞傳來的命令時要執行的函式，以及用來將模擬遙測傳送到中樞的程式碼。
 
 1. 新增下列會在裝置收到模型中所定義的 **SetTemperature** 和 **SetHumidity** 命令時執行的函式：
-
+   
     ```
     EXECUTE_COMMAND_RESULT SetTemperature(Thermostat* thermostat, int temperature)
     {
@@ -126,7 +117,7 @@ IoT 中樞序列化程式用戶端程式庫使用模型，來指定裝置傳送�
       thermostat->Temperature = temperature;
       return EXECUTE_COMMAND_SUCCESS;
     }
-
+   
     EXECUTE_COMMAND_RESULT SetHumidity(Thermostat* thermostat, int humidity)
     {
       (void)printf("Received humidity %d\r\n", humidity);
@@ -134,9 +125,8 @@ IoT 中樞序列化程式用戶端程式庫使用模型，來指定裝置傳送�
       return EXECUTE_COMMAND_SUCCESS;
     }
     ```
-
 2. 新增下列會傳送訊息到 IoT 中樞的函式︰
-
+   
     ```
     static void sendMessage(IOTHUB_CLIENT_HANDLE iotHubClientHandle, const unsigned char* buffer, size_t size)
     {
@@ -155,15 +145,14 @@ IoT 中樞序列化程式用戶端程式庫使用模型，來指定裝置傳送�
         {
           printf("IoTHubClient accepted the message for delivery\r\n");
         }
-
+   
         IoTHubMessage_Destroy(messageHandle);
       }
     free((void*)buffer);
     }
     ```
-
 3. 新增下列會連結到 SDK 中序列化程式庫的函式︰
-
+   
     ```
     static IOTHUBMESSAGE_DISPOSITION_RESULT IoTHubMessage(IOTHUB_MESSAGE_HANDLE message, void* userContextCallback)
     {
@@ -199,9 +188,8 @@ IoT 中樞序列化程式用戶端程式庫使用模型，來指定裝置傳送�
       return result;
     }
     ```
-
 4. 新增下列函式以連線到 IoT 中樞、傳送和接收訊息，以及與中樞中斷連線。請注意，裝置一旦連線就會將與本身有關的中繼資料 (包括其支援的命令) 傳送到 IoT 中樞 - 這可讓方案將儀表板上的裝置狀態更新為 [執行中]：
-
+   
     ```
     void remote_monitoring_run(void)
     {
@@ -219,7 +207,7 @@ IoT 中樞序列化程式用戶端程式庫使用模型，來指定裝置傳送�
         {
           IOTHUB_CLIENT_CONFIG config;
           IOTHUB_CLIENT_HANDLE iotHubClientHandle;
-
+   
           config.deviceId = deviceId;
           config.deviceKey = deviceKey;
           config.deviceSasToken = NULL;
@@ -241,14 +229,14 @@ IoT 中樞序列化程式用戶端程式庫使用模型，來指定裝置傳送�
             else
             {
               STRING_HANDLE commandsMetadata;
-
+   
               if (IoTHubClient_SetMessageCallback(iotHubClientHandle, IoTHubMessage, thermostat) != IOTHUB_CLIENT_OK)
               {
                 printf("unable to IoTHubClient_SetMessageCallback\r\n");
               }
               else
               {
-
+   
                 /* send the device info upon startup so that the cloud app knows
                    what commands are available and the fact that the device is up */
                 thermostat->ObjectType = "DeviceInfo";
@@ -256,7 +244,7 @@ IoT 中樞序列化程式用戶端程式庫使用模型，來指定裝置傳送�
                 thermostat->Version = "1.0";
                 thermostat->DeviceProperties.HubEnabledState = true;
                 thermostat->DeviceProperties.DeviceID = (char*)deviceId;
-
+   
                 commandsMetadata = STRING_new();
                 if (commandsMetadata == NULL)
                 {
@@ -274,7 +262,7 @@ IoT 中樞序列化程式用戶端程式庫使用模型，來指定裝置傳送�
                     unsigned char* buffer;
                     size_t bufferSize;
                     thermostat->Commands = (char*)STRING_c_str(commandsMetadata);
-
+   
                     /* Here is the actual send of the Device Info */
                     if (SERIALIZE(&buffer, &bufferSize, thermostat->ObjectType, thermostat->Version, thermostat->IsSimulatedDevice, thermostat->DeviceProperties, thermostat->Commands) != IOT_AGENT_OK)
                     {
@@ -284,24 +272,24 @@ IoT 中樞序列化程式用戶端程式庫使用模型，來指定裝置傳送�
                     {
                       sendMessage(iotHubClientHandle, buffer, bufferSize);
                     }
-
+   
                   }
-
+   
                   STRING_delete(commandsMetadata);
                 }
-
+   
                 thermostat->Temperature = 50;
                 thermostat->ExternalTemperature = 55;
                 thermostat->Humidity = 50;
                 thermostat->DeviceId = (char*)deviceId;
-
+   
                 while (1)
                 {
                   unsigned char*buffer;
                   size_t bufferSize;
-
+   
                   (void)printf("Sending sensor value Temperature = %d, Humidity = %d\r\n", thermostat->Temperature, thermostat->Humidity);
-
+   
                   if (SERIALIZE(&buffer, &bufferSize, thermostat->DeviceId, thermostat->Temperature, thermostat->Humidity, thermostat->ExternalTemperature) != IOT_AGENT_OK)
                   {
                     (void)printf("Failed sending sensor value\r\n");
@@ -310,11 +298,11 @@ IoT 中樞序列化程式用戶端程式庫使用模型，來指定裝置傳送�
                   {
                     sendMessage(iotHubClientHandle, buffer, bufferSize);
                   }
-
+   
                   ThreadAPI_Sleep(1000);
                 }
               }
-
+   
               DESTROY_MODEL_INSTANCE(thermostat);
             }
             IoTHubClient_Destroy(iotHubClientHandle);
@@ -325,9 +313,9 @@ IoT 中樞序列化程式用戶端程式庫使用模型，來指定裝置傳送�
       }
     }
     ```
-    
+   
     以下是啟動時會傳送到 IoT 中樞的範例 **DeviceInfo** 訊息做為參考：
-
+   
     ```
     {
       "ObjectType":"DeviceInfo",
@@ -344,15 +332,15 @@ IoT 中樞序列化程式用戶端程式庫使用模型，來指定裝置傳送�
       ]
     }
     ```
-    
+   
     以下是傳送到 IoT 中樞的範例 **Telemetry** 訊息做為參考：
-
+   
     ```
     {"DeviceId":"mydevice01", "Temperature":50, "Humidity":50, "ExternalTemperature":55}
     ```
-    
+   
     以下是從 IoT 中樞收到的範例 **Command** 做為參考：
-    
+   
     ```
     {
       "Name":"SetHumidity",
@@ -363,7 +351,6 @@ IoT 中樞序列化程式用戶端程式庫使用模型，來指定裝置傳送�
     ```
 
 ### 新增程式碼來叫用 remote\_monitoring\_run 函式
-
 在文字編輯器中，開啟 **remote\_monitoring.h** 檔案。新增下列程式碼：
 
 ```
@@ -384,31 +371,29 @@ int main(void)
 ```
 
 ## 使用 CMake 建置用戶端應用程式
-
 下列步驟說明如何使用 *CMake* 建置用戶端應用程式。
 
 1. 在文字編輯器中，開啟 **remote\_monitoring** 資料夾中的 **CMakeLists.txt** 檔案。
-
 2. 新增下列指示來定義如何建置用戶端應用程式：
-
+   
     ```
     cmake_minimum_required(VERSION 2.8.11)
-
+   
     set(AZUREIOT_INC_FOLDER ".." "/usr/include/azureiot")
-
+   
     include_directories(${AZUREIOT_INC_FOLDER})
-
+   
     set(sample_application_c_files
         ./remote_monitoring.c
         ./main.c
     )
-
+   
     set(sample_application_h_files
         ./remote_monitoring.h
     )
-
+   
     add_executable(sample_app ${sample_application_c_files} ${sample_application_h_files})
-
+   
     target_link_libraries(sample_app
         serializer
         iothub_client
@@ -421,22 +406,20 @@ int main(void)
         crypto
     )
     ```
-
 3. 在 **remote\_monitoring** 資料夾中，建立資料夾來儲存 CMake 產生的 *make* 檔案，然後執行 **cmake** 和 **make** 命令，如下所示：
-
+   
     ```
     mkdir cmake
     cd cmake
     cmake ../
     make
     ```
-
 4. 執行用戶端應用程式，並將遙測傳送至 IoT 中樞：
-
+   
     ```
     ./sample_app
     ```
 
-[AZURE.INCLUDE [iot-suite-visualize-connecting](../../includes/iot-suite-visualize-connecting.md)]
+[!INCLUDE [iot-suite-visualize-connecting](../../includes/iot-suite-visualize-connecting.md)]
 
 <!---HONumber=AcomDC_0720_2016-->

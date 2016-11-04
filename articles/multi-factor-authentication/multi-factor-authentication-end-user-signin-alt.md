@@ -1,28 +1,25 @@
-<properties 
-	pageTitle="搭配 Azure Multi-factor Authentication 使用替代方法進行登入"
-	description="此頁面將會說明使用者如何搭配 Azure MFA 使用替代方法進行登入。"
-	services="multi-factor-authentication"
-	documentationCenter=""
-	authors="kgremban"
-	manager="femilao"
-	editor="curtland"/>
+---
+title: 搭配 Azure Multi-factor Authentication 使用替代方法進行登入
+description: 此頁面將會說明使用者如何搭配 Azure MFA 使用替代方法進行登入。
+services: multi-factor-authentication
+documentationcenter: ''
+author: kgremban
+manager: femilao
+editor: curtland
 
-<tags
-	ms.service="multi-factor-authentication"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/04/2016"
-	ms.author="kgremban"/>
+ms.service: multi-factor-authentication
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/04/2016
+ms.author: kgremban
 
+---
 # 搭配 Azure Multi-factor Authentication 使用替代方法進行登入
-
-
 下一節將說明當主要方法無法使用時，如何使用替代方法進行登入。
 
 ## 使用替代方法進行登入
-
 <ol>
 
 <li>使用您的使用者名稱和密碼登入應用程式或服務，例如 Office 365。</li>

@@ -1,21 +1,21 @@
-<properties
-	pageTitle="具有異常登入活動的使用者"
-	description="指出已識別出異常登入活動的所有使用者帳戶的報告。"
-	services="active-directory"
-	documentationCenter=""
-	authors="SSalahAhmed"
-	manager="gchander"
-	editor=""/>
+---
+title: 具有異常登入活動的使用者
+description: 指出已識別出異常登入活動的所有使用者帳戶的報告。
+services: active-directory
+documentationcenter: ''
+author: SSalahAhmed
+manager: gchander
+editor: ''
 
-<tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="03/04/2016"
-	ms.author="saah;kenhoff"/>
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 03/04/2016
+ms.author: saah;kenhoff
 
+---
 # 具有異常登入活動的使用者
 這份彙總報告會將來自下列報告的可疑登入合併為一份報告：
 

@@ -1,31 +1,28 @@
-<properties
- pageTitle="邏輯應用程式範本 | Microsoft Azure"
- description="了解如何使用預先建立的邏輯應用程式範本來協助您開始著手"
- authors="kevinlam1"
- manager="dwrede"
- editor=""
- services="app-service\logic"
- documentationCenter=""/>
+---
+title: 邏輯應用程式範本 | Microsoft Docs
+description: 了解如何使用預先建立的邏輯應用程式範本來協助您開始著手
+author: kevinlam1
+manager: dwrede
+editor: ''
+services: app-service\logic
+documentationcenter: ''
 
-<tags
-	ms.service="app-service-logic"
-	ms.workload="integration"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/24/2016"
-	ms.author="klam"/>
+ms.service: app-service-logic
+ms.workload: integration
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/24/2016
+ms.author: klam
 
+---
 # 邏輯應用程式範本
-
 ## 何謂邏輯應用程式範本
-
 邏輯應用程式範本是預先建置的邏輯應用程式，可供您快速開始建立自己的工作流程。
 
 這些範本非常適合用來探索各種可使用邏輯應用程式建置的模式。您可以直接使用這些範本，或者修改它們以符合您的案例。
 
 ## 可用範本概觀
-
 邏輯應用程式平台目前已發佈了許多可用的範本。以下列出一些範例類別以及其中所使用的連接器類型。
 
 ### 企業雲端範本
@@ -43,8 +40,7 @@ VETER (驗證、擷取、轉換、擴充、路由) 管線的組態、透過 AS2 
 ### 取用者雲端範本
 與社交媒體服務 (如 Twitter、Slack 和電子郵件) 整合的簡單範本，最終能夠強化社交媒體行銷計劃。其中也包含多雲複製之類的範本，其可透過節省花在傳統重複性工作的時間來協助提高生產力。
 
-## 使用範本建立邏輯應用程式的方式 
-
+## 使用範本建立邏輯應用程式的方式
 若要開始使用邏輯應用程式範本，請進入邏輯應用程式設計工具。如果您透過開啟現有邏輯應用程式來進入設計工具，邏輯應用程式會自動載入設計工具檢視中。不過，如果您要建立新的邏輯應用程式，您會看到下列畫面。![](../../includes/media/app-service-logic-templates/template7.png)
 
 在此畫面中，您可以選擇以空白邏輯應用程式或預先建置的範本來開始著手。如果您選取其中一個範本，系統會提供其他資訊給您。在此範例中，我們使用「在 Dropbox 中建立新檔案時，將它複製到 OneDrive」範本。![](../../includes/media/app-service-logic-templates/template2.png)
@@ -58,7 +54,6 @@ VETER (驗證、擷取、轉換、擴充、路由) 管線的組態、透過 AS2 
 如果您想要返回範本檢視器，請選取頂端導覽列中的 [範本] 按鈕。切換回範本檢視器將會讓您遺失任何未儲存的進度。在切換回範本檢視器之前，您會看到警告訊息來告知您這一點。![](../../includes/media/app-service-logic-templates/template5.png)
 
 ## 如何部署從範本建立的邏輯應用程式
-
 載入範本並進行所需的任何變更之後，請選取左上角的 [儲存] 按鈕。這可儲存並發佈邏輯應用程式。![](../../includes/media/app-service-logic-templates/template6.png)
 
 如果您需要如何對現有邏輯應用程式範本新增更多步驟或進行一般編輯的詳細資訊，請參閱[建立邏輯應用程式](app-service-logic-create-a-logic-app.md)。

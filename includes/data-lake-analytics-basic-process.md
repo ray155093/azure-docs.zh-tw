@@ -1,7 +1,7 @@
 **基本資料湖分析程序：**
-	
+
 ![Azure 資料湖分析程序流程圖](./media/data-lake-analytics-basic-process-include/data-lake-analytics-process.png)
-	
+
 1. 建立資料湖分析帳戶。
 2. 準備來源資料。資料湖分析工作可讀取 Azure 資料湖存放區帳戶或 Azure Blob 儲存體帳戶資料中的資料。
 3. 開發 U SQL 指令碼。

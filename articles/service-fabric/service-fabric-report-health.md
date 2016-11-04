@@ -1,22 +1,21 @@
-<properties
-   pageTitle="加入自訂 Service Fabric 健康狀態報告 | Microsoft Azure"
-   description="描述如何將自訂健康狀態報告傳送給 Azure Service Fabric 健康狀態實體。 提供設計和實作高品質健康狀態報告的建議。"
-   services="service-fabric"
-   documentationCenter=".net"
-   authors="oanapl"
-   manager="timlt"
-   editor=""/>
+---
+title: 加入自訂 Service Fabric 健康狀態報告 | Microsoft Docs
+description: 描述如何將自訂健康狀態報告傳送給 Azure Service Fabric 健康狀態實體。 提供設計和實作高品質健康狀態報告的建議。
+services: service-fabric
+documentationcenter: .net
+author: oanapl
+manager: timlt
+editor: ''
 
-<tags
-   ms.service="service-fabric"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="09/28/2016"
-   ms.author="oanapl"/>
+ms.service: service-fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 09/28/2016
+ms.author: oanapl
 
-
+---
 # <a name="add-custom-service-fabric-health-reports"></a>新增自訂 Service Fabric 健康狀態報告
 Azure Service Fabric 引入了 [健康狀態模型](service-fabric-health-introduction.md) ，主要用於在特定實體上標示狀況不良的叢集和應用程式條件。 健康狀態模型使用 **健康狀態報告程式** (系統元件及看門狗)。 目標為輕易迅速的診斷並修復問題。 服務寫入器必須預先考慮到健康狀態。 任何可能會影響到健康狀態的條件都需加以回報，尤其是如果它有助標示出接近根目錄的問題。 一旦在雲端 (不論是私人或 Azure) 啟動並執行服務，健康狀態資訊可大幅減少偵錯和調查所需的時間和工作量。
 
@@ -24,44 +23,43 @@ Service Fabric 報告程式可監控感興趣的已識別條件。 它們會依�
 
 若要設計與實作健康狀態的報告，監視程式及系統元件必須：
 
-- 定義它們感興趣的條件，受監視的方式，以及對叢集或應用程式功能的影響。 根據這項資訊，決定健康狀態報告的屬性和健康狀態。
-
-- 決定報告適用的 [實體](service-fabric-health-introduction.md#health-entities-and-hierarchy) 。
-
-- 決定完成報告的位置，從服務內部或從內部或外部監視程式。
-
-- 定義用於識別報告程式的來源。
-
-- 選擇報告策略是定期或是轉換時。 建議以定期的方式，因為它只需較簡單的程式碼，因此較不容易發生錯誤。
-
-- 決定健康狀態不良條件的報告，可在健康狀態存放區中停留多久，以及應該如何清除。 使用這項資訊，決定報告的存留時間和到期移除行為。
+* 定義它們感興趣的條件，受監視的方式，以及對叢集或應用程式功能的影響。 根據這項資訊，決定健康狀態報告的屬性和健康狀態。
+* 決定報告適用的 [實體](service-fabric-health-introduction.md#health-entities-and-hierarchy) 。
+* 決定完成報告的位置，從服務內部或從內部或外部監視程式。
+* 定義用於識別報告程式的來源。
+* 選擇報告策略是定期或是轉換時。 建議以定期的方式，因為它只需較簡單的程式碼，因此較不容易發生錯誤。
+* 決定健康狀態不良條件的報告，可在健康狀態存放區中停留多久，以及應該如何清除。 使用這項資訊，決定報告的存留時間和到期移除行為。
 
 如前所述，報告可以從以下項目完成：
 
-- 受監視的 Service Fabric 服務複本。
+* 受監視的 Service Fabric 服務複本。
+* 內部監視程式會部署為 Service Fabric 服務 (例如，可監視條件和問題報告的 Service Fabric 無狀態服務)。 可以將監視程式部署為所有節點，或可以與受監視的服務相關。
+* 在 Service Fabric 節點上執行，但未  以 Service Fabric 服務實作的內部監視程式。
+* 從 Service Fabric 叢集「外」  探查資源的外部看門狗 (例如，監視 Gomez 等服務)。
 
-- 內部監視程式會部署為 Service Fabric 服務 (例如，可監視條件和問題報告的 Service Fabric 無狀態服務)。 可以將監視程式部署為所有節點，或可以與受監視的服務相關。
-
-- 在 Service Fabric 節點上執行，但未  以 Service Fabric 服務實作的內部監視程式。
-
-- 從 Service Fabric 叢集「外」  探查資源的外部看門狗 (例如，監視 Gomez 等服務)。
-
-> [AZURE.NOTE] 根據現有設定，叢集會填入系統元件傳送的健康狀態報告。 在此閱讀更多 [使用系統健康狀態報告進行疑難排解](service-fabric-understand-and-troubleshoot-with-system-health-reports.md)的相關資訊。 必須在系統所建立的 [健康狀態實體](service-fabric-health-introduction.md#health-entities-and-hierarchy) 上傳送使用者報告。
+> [!NOTE]
+> 根據現有設定，叢集會填入系統元件傳送的健康狀態報告。 在此閱讀更多 [使用系統健康狀態報告進行疑難排解](service-fabric-understand-and-troubleshoot-with-system-health-reports.md)的相關資訊。 必須在系統所建立的 [健康狀態實體](service-fabric-health-introduction.md#health-entities-and-hierarchy) 上傳送使用者報告。
+> 
+> 
 
 一旦健康狀態報告設計清楚，即可輕鬆傳送健康狀態報告。 如果叢集不[安全](service-fabric-cluster-security.md)，或者網狀架構用戶端有系統管理員權限，您就可以使用 [FabricClient](https://msdn.microsoft.com/library/azure/system.fabric.fabricclient.aspx) 來回報健康狀態。 透過 API (使用 [FabricClient.HealthManager.ReportHealth](https://msdn.microsoft.com/library/system.fabric.fabricclient.healthclient.reporthealth.aspx))、透過 Powershell 或透過 REST 即可完成。 組態旋鈕批次報告可提升效能。
 
-> [AZURE.NOTE] 報告健康狀態會同步處理，且只代表用戶端上的驗證工作。 健康狀態用戶端或是 `Partition` 或 `CodePackageActivationContext` 物件接受報告的這項事實，並不表示該報告會在存放區中套用。 它會以非同步方式傳送並可能與其他報告進行批次處理。 在伺服器上處理仍可能會失敗：序號過時、必須套用報告的實體已被刪除等。
+> [!NOTE]
+> 報告健康狀態會同步處理，且只代表用戶端上的驗證工作。 健康狀態用戶端或是 `Partition` 或 `CodePackageActivationContext` 物件接受報告的這項事實，並不表示該報告會在存放區中套用。 它會以非同步方式傳送並可能與其他報告進行批次處理。 在伺服器上處理仍可能會失敗：序號過時、必須套用報告的實體已被刪除等。
+> 
+> 
 
 ## <a name="health-client"></a>健康狀態用戶端
 健康狀態報告會透過存在於該網狀架構用戶端內的健康狀態用戶端來傳送至健康狀態存放區。 可以使用下列來設定健康狀態用戶端：
 
-- **HealthReportSendInterval**：報告新增至該用戶端，與其傳送至健康狀態存放區之間的時間延遲。 用於將報告批次處理為單一訊息，而不是針對每份報告傳送一則訊息。 批次處理可改善效能。 預設值：30 秒。
+* **HealthReportSendInterval**：報告新增至該用戶端，與其傳送至健康狀態存放區之間的時間延遲。 用於將報告批次處理為單一訊息，而不是針對每份報告傳送一則訊息。 批次處理可改善效能。 預設值：30 秒。
+* **HealthReportRetrySendInterval**：健康狀態用戶端重新傳送累積的健康狀態報告至健康狀態存放區的間隔時間。 預設值：30 秒。
+* **HealthOperationTimeout**：報告訊息傳送至健康狀態存放區的逾時期間。 如果訊息逾時，健康狀態用戶端就會不斷重試，直到健康狀態存放區確認報告已處理。 預設值：兩分鐘。
 
-- **HealthReportRetrySendInterval**：健康狀態用戶端重新傳送累積的健康狀態報告至健康狀態存放區的間隔時間。 預設值：30 秒。
-
-- **HealthOperationTimeout**：報告訊息傳送至健康狀態存放區的逾時期間。 如果訊息逾時，健康狀態用戶端就會不斷重試，直到健康狀態存放區確認報告已處理。 預設值：兩分鐘。
-
-> [AZURE.NOTE] 批次處理報告時，網狀架構用戶端必須至少保持運作長達 HealthReportSendInterval，以確保報告已傳送。 如果訊息遺失或健康狀態存放區因為暫時性錯誤而無法套用它們，則網狀架構用戶端必須保持運作久一點，讓其有再試一次的機會。
+> [!NOTE]
+> 批次處理報告時，網狀架構用戶端必須至少保持運作長達 HealthReportSendInterval，以確保報告已傳送。 如果訊息遺失或健康狀態存放區因為暫時性錯誤而無法套用它們，則網狀架構用戶端必須保持運作久一點，讓其有再試一次的機會。
+> 
+> 
 
 用戶端上的緩衝會將報告的唯一性納入考量。 例如，如果特定的錯誤報告程式在相同實體的相同屬性上每秒產生 100 個報告，則會以最後一個版本取代報告。 最多只有一份這類報告存在於用戶端佇列中。 如果設定批次處理，則傳送至健康狀態存放區的報告數目為每次傳送間隔一份報告。 這是最後新增的報告，可反映實體的最新狀態。
 建立 `FabricClient` 時，藉由傳遞 [FabricClientSettings](https://msdn.microsoft.com/library/azure/system.fabric.fabricclientsettings.aspx) 以及健康狀態相關項目所需的值，即可指定所有組態參數。
@@ -106,24 +104,25 @@ GatewayInformation   : {
                        }
 ```
 
-> [AZURE.NOTE] 若要確保未授權的服務無法針對叢集中的實體回報健康狀態，則可將伺服器設定為只接受來自受保護用戶端的要求。 用於報告的 `FabricClient` 必須啟用安全性，才能與叢集通訊 (例如，利用 Kerberos 或憑證驗證)。 深入了解 [叢集安全性](service-fabric-cluster-security.md)。
+> [!NOTE]
+> 若要確保未授權的服務無法針對叢集中的實體回報健康狀態，則可將伺服器設定為只接受來自受保護用戶端的要求。 用於報告的 `FabricClient` 必須啟用安全性，才能與叢集通訊 (例如，利用 Kerberos 或憑證驗證)。 深入了解 [叢集安全性](service-fabric-cluster-security.md)。
+> 
+> 
 
 ## <a name="report-from-within-low-privilege-services"></a>在低權限的服務內進行報告
 在不具叢集系統管理員存取權限的 Service Fabric 服務內，您可以透過 `Partition` 或 `CodePackageActivationContext`，回報來自目前內容之實體的健康狀態。
 
-- 針對無狀態服務，使用 [IStatelessServicePartition.ReportInstanceHealth](https://msdn.microsoft.com/library/system.fabric.istatelessservicepartition.reportinstancehealth.aspx) 來回報目前服務執行個體的健康狀態。
+* 針對無狀態服務，使用 [IStatelessServicePartition.ReportInstanceHealth](https://msdn.microsoft.com/library/system.fabric.istatelessservicepartition.reportinstancehealth.aspx) 來回報目前服務執行個體的健康狀態。
+* 針對具狀態服務，使用 [IStatefulServicePartition.ReportReplicaHealth](https://msdn.microsoft.com/library/system.fabric.istatefulservicepartition.reportreplicahealth.aspx) 來回報目前複本的健康狀態。
+* 使用 [IServicePartition.ReportPartitionHealth](https://msdn.microsoft.com//library/system.fabric.iservicepartition.reportpartitionhealth.aspx) 來回報目前分割區實體的健康狀態。
+* 使用 [CodePackageActivationContext.ReportApplicationHealth](https://msdn.microsoft.com/library/system.fabric.codepackageactivationcontext.reportapplicationhealth.aspx) 來回報目前應用程式的健康狀態。
+* 使用 [CodePackageActivationContext.ReportDeployedApplicationHealth](https://msdn.microsoft.com/library/system.fabric.codepackageactivationcontext.reportdeployedapplicationhealth.aspx) ，來回報現在部署於目前節點上的應用程式健康狀態。
+* 使用 [CodePackageActivationContext.ReportDeployedServicePackageHealth](https://msdn.microsoft.com/library/system.fabric.codepackageactivationcontext.reportdeployedservicepackagehealth.aspx) ，來回報現在部署於目前節點上之應用程式的服務封裝健康狀態。
 
-- 針對具狀態服務，使用 [IStatefulServicePartition.ReportReplicaHealth](https://msdn.microsoft.com/library/system.fabric.istatefulservicepartition.reportreplicahealth.aspx) 來回報目前複本的健康狀態。
-
-- 使用 [IServicePartition.ReportPartitionHealth](https://msdn.microsoft.com//library/system.fabric.iservicepartition.reportpartitionhealth.aspx) 來回報目前分割區實體的健康狀態。
-
-- 使用 [CodePackageActivationContext.ReportApplicationHealth](https://msdn.microsoft.com/library/system.fabric.codepackageactivationcontext.reportapplicationhealth.aspx) 來回報目前應用程式的健康狀態。
-
-- 使用 [CodePackageActivationContext.ReportDeployedApplicationHealth](https://msdn.microsoft.com/library/system.fabric.codepackageactivationcontext.reportdeployedapplicationhealth.aspx) ，來回報現在部署於目前節點上的應用程式健康狀態。
-
-- 使用 [CodePackageActivationContext.ReportDeployedServicePackageHealth](https://msdn.microsoft.com/library/system.fabric.codepackageactivationcontext.reportdeployedservicepackagehealth.aspx) ，來回報現在部署於目前節點上之應用程式的服務封裝健康狀態。
-
-> [AZURE.NOTE] 就內部而言，`Partition` 和 `CodePackageActivationContext` 會保存使用預設值設定的健康狀態用戶端。 適用針對 [健康狀態用戶端](service-fabric-report-health.md#health-client) 所說明的相同考量 - 要求會在計時器上進行批次處理並加以傳送，因此物件應該保持運作，以便有機會傳送報告。
+> [!NOTE]
+> 就內部而言，`Partition` 和 `CodePackageActivationContext` 會保存使用預設值設定的健康狀態用戶端。 適用針對 [健康狀態用戶端](service-fabric-report-health.md#health-client) 所說明的相同考量 - 要求會在計時器上進行批次處理並加以傳送，因此物件應該保持運作，以便有機會傳送報告。
+> 
+> 
 
 ## <a name="design-health-reporting"></a>設計健康狀態報告
 產生高品質報告的第一個步驟，是識別可能影響該服務健康狀態的條件。 在條件啟動或甚至在發生之前，任何有助於在服務或在叢集中標示問題的條件，都有可能替您省下數十億元。 好處包含停機時間變少，花在調查和修復問題的夜間時間也變少，且客戶滿意度變高。
@@ -138,7 +137,10 @@ GatewayInformation   : {
 
 一旦確定監視程式詳細資料，您應決定可識別它的唯一來源 ID。 如果叢集中有多個相同類型的監視程式在運作，它們必須報告不同的實體，如果它們報告相同的實體，則必須確定來源 ID 或屬性皆不相同。 如此一來，其報告才可並存。 健康狀態報告的屬性應該能擷取受監視的條件。 (針對上述範例，該屬性可能是 **ShareSize**)。如果多份報告套用至相同的條件，該屬性應該包含一些動態資訊，才可讓報告共存。 例如，如果需要監視多個共用，該屬性名稱可以是 **ShareSize-sharename**。
 
-> [AZURE.NOTE] 健康狀態存放區 *不* 應該用來保留狀態資訊。 只有與健康狀態相關的資訊才該回報健康狀態，因為此資訊會影響實體的健康狀態評估資訊。 健康狀態存放區並非設計做為一般用途存放區。 它會使用健康狀態評估邏輯來彙總健康狀態的所有資料。 傳送與健康狀態不相關的資訊 (例如在健康狀態良好下報告狀態) 不會影響到彙總的健康狀態，但可能對健康狀態存放區的效能造成負面影響。
+> [!NOTE]
+> 健康狀態存放區 *不* 應該用來保留狀態資訊。 只有與健康狀態相關的資訊才該回報健康狀態，因為此資訊會影響實體的健康狀態評估資訊。 健康狀態存放區並非設計做為一般用途存放區。 它會使用健康狀態評估邏輯來彙總健康狀態的所有資料。 傳送與健康狀態不相關的資訊 (例如在健康狀態良好下報告狀態) 不會影響到彙總的健康狀態，但可能對健康狀態存放區的效能造成負面影響。
+> 
+> 
 
 下一個決策點是在報告哪個實體。 大部分的情況下，顯然是依據條件而定。 您應選擇可能具最佳資料粒度的實體。 如果條件在分割中會影響到所有複本，則在分割中回報，而非在服務中回報。 以下為需要仔細考量的極端例子。 如果條件影響到實體 (例如複本)，但所需標示條件要比複本存留期間更久，則應該要在資料分割上回報。 否則當刪除複本時，與其相關的所有報告都會從存放區中清除。 這表示監視程式寫入器也必須將實體和報告的存留期納入考量。 報告需從存放區中清除的時間點必須清楚說明 (例如，當實體上回報的錯誤不再適用時)。
 
@@ -148,11 +150,9 @@ GatewayInformation   : {
 
 如果工作未於一定時間內完成 (**t1**，例如 10 分鐘)，受監視的條件可能轉換成警告。 如果工作未及時完成 (**t2**，例如 20 分鐘)，受監視的條件可能轉換為「錯誤」。 此報告可以多種方式完成：
 
-- 主要服務的主要複本本身會定期回報。 針對在佇列中的所有暫止工作可以有一個屬性。 如果至少有一個工作耗時較久，則 **PendingTasks** 屬性的報告狀態為警告或錯誤 (視情況而定)。 如果沒有暫止的工作或所有工作已開始執行，則報告狀態為「正常」。 工作會持續進行。 如果主要服務停止時，新升級的主要服務即可繼續適當地回報。
-
-- 在雲端或外部的另一個監視程式處理序會檢查工作 (根據所需的工作結果從外部檢查)，以查看它們是否已完成。 如果它們不採用臨界值，則會傳送主要服務的報告。 也會傳送每個工作的報告，其中包含工作識別碼，例如 **PendingTask+taskId**。 只有在狀況不良的狀態才需傳送報告。 將存留時間設為幾分鐘，並將報告標記為過期時移除，以確保完成清除動作。
-
-- 如果執行時間超過預期時間，執行工作的次要服務就會回報。 它會回報 **PendingTasks**屬性上的服務執行個體。 報告會指出服務執行個體有問題，但它不會擷取執行個體停止的情況。 接著就會清除報告。 它可以回報次要服務。 如果次要服務完成工作，則次要執行個體會從存放區清除報告。 報告並不會擷取到認可訊息遺失的情況，而從主要服務觀點看來，工作並未完成。
+* 主要服務的主要複本本身會定期回報。 針對在佇列中的所有暫止工作可以有一個屬性。 如果至少有一個工作耗時較久，則 **PendingTasks** 屬性的報告狀態為警告或錯誤 (視情況而定)。 如果沒有暫止的工作或所有工作已開始執行，則報告狀態為「正常」。 工作會持續進行。 如果主要服務停止時，新升級的主要服務即可繼續適當地回報。
+* 在雲端或外部的另一個監視程式處理序會檢查工作 (根據所需的工作結果從外部檢查)，以查看它們是否已完成。 如果它們不採用臨界值，則會傳送主要服務的報告。 也會傳送每個工作的報告，其中包含工作識別碼，例如 **PendingTask+taskId**。 只有在狀況不良的狀態才需傳送報告。 將存留時間設為幾分鐘，並將報告標記為過期時移除，以確保完成清除動作。
+* 如果執行時間超過預期時間，執行工作的次要服務就會回報。 它會回報 **PendingTasks**屬性上的服務執行個體。 報告會指出服務執行個體有問題，但它不會擷取執行個體停止的情況。 接著就會清除報告。 它可以回報次要服務。 如果次要服務完成工作，則次要執行個體會從存放區清除報告。 報告並不會擷取到認可訊息遺失的情況，而從主要服務觀點看來，工作並未完成。
 
 不過，在上述情況報告已完成，則評估過健康狀態後，會擷取應用程式健康狀態的報告。
 
@@ -289,7 +289,6 @@ HealthEvents          :
 透過 REST 並利用 POST 要求傳送健康狀態報告，這些要求會傳送至所需的實體，且其本文中含有健康狀態報告描述。 例如，請參閱如何傳送 REST [叢集健康狀態報告](https://msdn.microsoft.com/library/azure/dn707640.aspx)或[服務健康狀態報告](https://msdn.microsoft.com/library/azure/dn707640.aspx)。 支援所有實體。
 
 ## <a name="next-steps"></a>後續步驟
-
 根據健康狀態資料，服務寫入器和叢集/應用程式管理員可想出使用該資訊的多種方式。 例如，他們可以依據健康狀態為基礎設定警示，以便於嚴重問題誘發中斷前加以攔截。 系統管理員也可以設定修復系統來自動修復問題。
 
 [Service Fabric 健康狀態監視簡介](service-fabric-health-introduction.md)
@@ -303,8 +302,6 @@ HealthEvents          :
 [在本機上監視及診斷服務](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)
 
 [Service Fabric 應用程式升級](service-fabric-application-upgrade.md)
-
-
 
 <!--HONumber=Oct16_HO2-->
 

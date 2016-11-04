@@ -1,5 +1,4 @@
 ## WordPress 與 Azure App Service
-
 * [什麼是 WordPress？](https://wordpress.org/)
 * [如何設定企業級的 WordPress Web 應用程式](../articles/app-service-web/web-sites-php-enterprise-wordpress.md)
 * [如何為 WordPress 應用程式購買 ClearDB 共用 MySQL 主機](http://blog.syntaxc4.net/post/2012/12/03/provisioning-a-mysql-database-from-the-windows-azure-store.aspx)
@@ -8,9 +7,8 @@
 * [使用 Percona 叢集建立自己的主要-主要 MySQL 叢集](/documentation/templates/mysql-ha-pxc/)，並[深入了解如何管理叢集](https://github.com/fanjeffrey/axiom.articles/tree/master/pxc)
 * [使用包含主要-附屬組態之 MySQL 複寫叢集部署 WordPress 後端](/documentation/templates/mysql-replication/)
 * [使用 ProjectNami 管理的 SQL Azure DB 部署 WordPress 應用程式後端](/marketplace/partners/projectnami/projectnami/)
-  
-## 疑難排解 WordPress 應用程式
 
+## 疑難排解 WordPress 應用程式
 * [如何疑難排解 WordPress 應用程式](https://sunithamk.wordpress.com/2014/09/04/wordpress-troubleshooting-techniques-on-azure-websites/)
 * [使用 Azure Application Insights 服務收集使用量遙測資料](https://azure.microsoft.com/blog/usage-analytics-for-wordpress-with-azure-app-insights/)
 * [針對 Web 應用程式執行 Zend Zray 分析工具以診斷問題及效能](https://sunithamk.wordpress.com/2015/08/04/profiling-php-application-on-azure-web-apps/)
@@ -19,7 +17,6 @@
 * [如何備份 Web 應用程式](../articles/app-service-web/web-sites-backup.md)和[如何還原 Web 應用程式](../articles/app-service-web/web-sites-restore.md)
 
 ## 效能
-
 * [如何提升 WordPress Web 應用程式的速度](https://sunithamk.wordpress.com/2014/08/01/10-ways-to-speed-up-your-wordpress-site-on-azure-websites/)
 * 如何使用 [Redis 快取外掛程式](https://wordpress.org/plugins/wp-redis/)來[啟用 Redis 快取](../articles/redis-cache/cache-dotnet-how-to-use-azure-redis-cache.md)
 * 如何使用 [Memcached 外掛程式](https://wordpress.org/plugins/memcached/)來[啟用 WordPress 的 Memcached 物件快取](../articles/app-service-web/web-sites-connect-to-redis-using-memcache-protocol.md)

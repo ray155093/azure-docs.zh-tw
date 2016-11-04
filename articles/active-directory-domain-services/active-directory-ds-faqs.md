@@ -1,32 +1,28 @@
-<properties
-    pageTitle="常見問題集 - Azure Active Directory Domain Services | Microsoft Azure"
-    description="關於「Azure Active Directory 網域服務」的常見問題集"
-    services="active-directory-ds"
-    documentationCenter=""
-    authors="mahesh-unnikrishnan"
-    manager="stevenpo"
-    editor="curtand"/>
+---
+title: 常見問題集 - Azure Active Directory Domain Services | Microsoft Docs
+description: 關於「Azure Active Directory 網域服務」的常見問題集
+services: active-directory-ds
+documentationcenter: ''
+author: mahesh-unnikrishnan
+manager: stevenpo
+editor: curtand
 
-<tags
-    ms.service="active-directory-ds"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="10/07/2016"
-    ms.author="maheshu"/>
+ms.service: active-directory-ds
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 10/07/2016
+ms.author: maheshu
 
-
+---
 # <a name="azure-active-directory-domain-services:-frequently-asked-questions-(faqs)"></a>Azure Active Directory Domain Services：常見問題集 (FAQ)
-
 此頁面會回答有關 Azure Active Directory Domain Services 的常見問題。 請隨時回來查看最新消息。
 
 ### <a name="troubleshooting-guide"></a>疑難排解指南
 如需設定或管理「Azure AD 網域服務」時會發生之常見問題的解決方式，請參閱 [疑難排解指南](active-directory-ds-troubleshooting.md) 。
 
-
 ### <a name="configuration"></a>組態
-
 #### <a name="can-i-create-multiple-domains-for-a-single-azure-ad-directory?"></a>我可以針對單一 Azure AD 目錄建立多個網域嗎？
 否。 您只能針對單一 Azure AD 目錄，建立由 Azure AD 網域服務所服務的單一網域服務 。  
 
@@ -43,7 +39,6 @@
 否。 Azure AD 網域服務所提供的網域是受管理的網域。 您不需要佈建、設定或管理此網域的網域控制站 - Microsoft 會以服務形式提供這些管理活動。 因此，您無法為受管理的網域新增其他網域控制站 (讀寫或唯讀)。
 
 ### <a name="administration-and-operations"></a>管理和作業
-
 #### <a name="can-i-connect-to-the-domain-controller-for-my-managed-domain-using-remote-desktop?"></a>我可以使用遠端桌面連線到我的受管理網域的網域控制站嗎？
 否。 您沒有權限透過遠端桌面連接至受管理網域上的網域控制站。 「AAD DC 系統管理員」群組的成員可以使用 AD 系統管理工具，例如 Active Directory 管理中心 (ADAC) 或 AD PowerShell 來管理受管理網域。 這些工具會在加入受管理網域的 Windows 伺服器上，使用「遠端伺服器管理工具」功能安裝。
 
@@ -63,7 +58,6 @@
 是。 屬於「AAD DC 系統管理員」群組的使用者會被授與「DNS 系統管理」權限，以在受管理網域中修改 DNS 記錄。 這些使用者可以在加入受管理網域且執行 Windows Server 的電腦上，使用 DNS 管理員主控台以管理 DNS。 若要使用 DNS 管理員主控台，請安裝 DNS 伺服器工具，這是伺服器上的「遠端伺服器管理工具」選擇性功能的一部分。 如需 [管理、監視及疑難排解 DNS 的公用程式](https://technet.microsoft.com/library/cc753579.aspx) 詳細資訊，可在 TechNet 上取得。
 
 ### <a name="billing-and-availability"></a>計費與可用性
-
 #### <a name="is-azure-ad-domain-services-a-paid-service?"></a>Azure AD 網域服務是付費服務嗎？
 是。 如需詳細資訊，請參閱 [價格頁面](https://azure.microsoft.com/pricing/details/active-directory-ds/)。
 
@@ -75,8 +69,6 @@
 
 #### <a name="what-azure-regions-is-the-service-available-in?"></a>哪些 Azure 區域提供此服務？
 如需可使用「Azure AD 網域服務」的 Azure 區域清單，請參閱 [區域頁面](active-directory-ds-regions.md) 。
-
-
 
 <!--HONumber=Oct16_HO2-->
 

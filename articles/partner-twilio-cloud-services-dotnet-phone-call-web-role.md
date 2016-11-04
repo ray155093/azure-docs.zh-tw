@@ -1,32 +1,27 @@
-<properties 
-	pageTitle="如何從 Twilio 撥打電話 (.NET) | Microsoft Azure" 
-	description="了解如何在 Azure 上使用 Twilio API 服務撥打電話及傳送簡訊。程式碼範例以 .NET 撰寫。" 
-	services="" 
-	documentationCenter=".net" 
-	authors="devinrader" 
-	manager="timlt" 
-	editor=""/>
+---
+title: 如何從 Twilio 撥打電話 (.NET) | Microsoft Docs
+description: 了解如何在 Azure 上使用 Twilio API 服務撥打電話及傳送簡訊。程式碼範例以 .NET 撰寫。
+services: ''
+documentationcenter: .net
+author: devinrader
+manager: timlt
+editor: ''
 
-<tags 
-	ms.service="cloud-services" 
-	ms.workload="tbd" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="dotnet" 
-	ms.topic="article" 
-	ms.date="05/04/2016" 
-	ms.author="microsofthelp@twilio.com"/>
+ms.service: cloud-services
+ms.workload: tbd
+ms.tgt_pltfrm: na
+ms.devlang: dotnet
+ms.topic: article
+ms.date: 05/04/2016
+ms.author: microsofthelp@twilio.com
 
-
-
-
+---
 # 如何在 Azure 上的 Web 角色中使用 Twilio 撥打電話
-
 本指南將說明如何從 Azure 代管的網頁上使用 Twilio 撥打電話。產生的應用程式會提示使用者提供電話值，如下列螢幕擷取畫面所示。
 
 ![Azure call form using Twilio and ASP.NET][twilio_dotnet_basic_form]
 
 ## <a name="twilio-prereqs"></a>必要條件
-
 您必須執行下列動作才能使用本主題中的程式碼：
 
 1. 取得 Twilio 帳戶和驗證權杖。若要開始使用 Twilio，請在 [https://www.twilio.com/try-twilio][try_twilio] 上註冊。您可以在 [http://www.twilio.com/pricing][twilio_pricing] 上評估價格。如需 Twilio 所提供之 API 的相關資訊，請參閱 [http://www.twilio.com/voice/api][twilio_api]。
@@ -35,15 +30,14 @@
 您應知悉如何在 Azure 上建立基本 Web 角色。
 
 ## <a name="howtocreateform"></a>作法：建立用以撥打電話的 Web 表單
-
 <a id="use_nuget"></a>將 Twilio 程式庫新增至 Web 角色專案：
 
-1.  在 Visual Studio 中開啟方案。
-2.  以滑鼠右鍵按一下 [參考]。
-3.  按一下 [管理 NuGet 封裝]。
-4.  按一下 [線上]。
-5.  在搜尋線上方塊中，輸入 *twilio*。
-6.  在 Twilio 套件上按一下 [安裝]。
+1. 在 Visual Studio 中開啟方案。
+2. 以滑鼠右鍵按一下 [參考]。
+3. 按一下 [管理 NuGet 封裝]。
+4. 按一下 [線上]。
+5. 在搜尋線上方塊中，輸入 *twilio*。
+6. 在 Twilio 套件上按一下 [安裝]。
 
 下列程式碼將說明如何建立 Web 表單，以擷取撥打電話所需的使用者資料。在此範例中，會建立名為 **TwilioCloud** 的 ASP.NET Web 角色。
 
@@ -163,7 +157,7 @@
 * 閱讀 [https://www.twilio.com/docs/security][twilio_docs_security] 上的 Twilio 安全性指引。
 * 在 [https://www.twilio.com/docs][twilio_docs] 上深入了解 Twilio。
 
-##<a name="seealso"></a>另請參閱
+## <a name="seealso"></a>另請參閱
 * [如何透過 Twilio 來使用 Azure 的語音和簡訊功能](twilio-dotnet-how-to-use-for-voice-sms.md)
 
 [twilio_pricing]: http://www.twilio.com/pricing

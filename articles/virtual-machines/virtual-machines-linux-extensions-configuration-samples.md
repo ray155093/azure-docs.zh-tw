@@ -1,28 +1,28 @@
-<properties
-   pageTitle="Linux VM 延伸模組的範例組態 | Microsoft Azure"
-   description="編寫 Linux VM 之延伸模組與範本的範例組態"
-   services="virtual-machines-linux"
-   documentationCenter=""
-   authors="kundanap"
-   manager="timlt"
-   editor=""
-   tags="azure-resource-manager"/>
+---
+title: Linux VM 延伸模組的範例組態 | Microsoft Docs
+description: 編寫 Linux VM 之延伸模組與範本的範例組態
+services: virtual-machines-linux
+documentationcenter: ''
+author: kundanap
+manager: timlt
+editor: ''
+tags: azure-resource-manager
 
-<tags
-   ms.service="virtual-machines-linux"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="vm-linux"
-   ms.workload="infrastructure-services"
-   ms.date="09/13/2016"
-   ms.author="kundanap"/>
+ms.service: virtual-machines-linux
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: vm-linux
+ms.workload: infrastructure-services
+ms.date: 09/13/2016
+ms.author: kundanap
 
-
+---
 # <a name="linux-vm-extension-configuration-samples"></a>Linux VM 延伸模組組態範例
-
-> [AZURE.SELECTOR]
-- [PowerShell - 範本](virtual-machines-windows-extensions-configuration-samples.md)
-- [CLI - 範本](virtual-machines-linux-extensions-configuration-samples.md)
+> [!div class="op_single_selector"]
+> * [PowerShell - 範本](virtual-machines-windows-extensions-configuration-samples.md)
+> * [CLI - 範本](virtual-machines-linux-extensions-configuration-samples.md)
+> 
+> 
 
 <br>
 
@@ -56,7 +56,6 @@
       }
 
 ## <a name="sample-template-snippet-for-vm-extensions-with-vm-scale-sets."></a>VM 擴充功能與 VM 調整集的範例範本程式碼片段。
-
           {
            "type":"Microsoft.Compute/virtualMachineScaleSets",
           ....
@@ -217,8 +216,6 @@
 以下是使用延伸模組建立 Linux VM 的完整 VM 範本：
 
 [Linux VM 上的自訂指令碼延伸模組](https://github.com/Azure/azure-quickstart-templates/blob/b1908e74259da56a92800cace97350af1f1fc32b/mongodb-on-ubuntu/azuredeploy.json/)
-
-
 
 <!--HONumber=Oct16_HO2-->
 

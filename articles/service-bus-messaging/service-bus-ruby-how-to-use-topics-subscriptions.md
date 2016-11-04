@@ -1,30 +1,27 @@
-<properties
-    pageTitle="如何使用服務匯流排主題 (Ruby) | Microsoft Azure"
-    description="了解如何在 Azure 使用服務匯流排主題及訂用帳戶。 程式碼範例專為 Ruby 應用程式撰寫。"
-    services="service-bus"
-    documentationCenter="ruby"
-    authors="sethmanheim"
-    manager="timlt"
-    editor=""/>
+---
+title: 如何使用服務匯流排主題 (Ruby) | Microsoft Docs
+description: 了解如何在 Azure 使用服務匯流排主題及訂用帳戶。 程式碼範例專為 Ruby 應用程式撰寫。
+services: service-bus
+documentationcenter: ruby
+author: sethmanheim
+manager: timlt
+editor: ''
 
-<tags
-    ms.service="service-bus"
-    ms.workload="na"
-    ms.tgt_pltfrm="na"
-    ms.devlang="ruby"
-    ms.topic="article"
-    ms.date="10/04/2016"
-    ms.author="sethm"/>
+ms.service: service-bus
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: ruby
+ms.topic: article
+ms.date: 10/04/2016
+ms.author: sethm
 
-
+---
 # <a name="how-to-use-service-bus-topics/subscriptions"></a>如何使用服務匯流排主題/訂用帳戶
-
-[AZURE.INCLUDE [service-bus-selector-topics](../../includes/service-bus-selector-topics.md)]
+[!INCLUDE [service-bus-selector-topics](../../includes/service-bus-selector-topics.md)]
 
 本文說明如何從 Ruby 應用程式使用服務匯流排主題和訂用帳戶。 涵蓋的案例包括**建立主題和訂用帳戶、建立訂用帳戶篩選器、傳送訊息**至主題、**接收訂用帳戶的訊息**，以及**刪除主題和訂用帳戶**。 如需主題和訂用帳戶的詳細資訊，請參閱[後續步驟](#next-steps)一節。
 
 ## <a name="service-bus-topics-and-subscriptions"></a>服務匯流排主題和訂用帳戶
-
 服務匯流排主題和訂用帳戶支援 *發佈/訂用帳戶* 訊息通訊模型。 使用主題和訂用帳戶時，分散式應用程式的元件彼此不直接通訊，而是透過扮演中繼角色的主題來交換訊息。
 
 ![主題概念](./media/service-bus-ruby-how-to-use-topics-subscriptions/sb-topics-01.png)
@@ -36,48 +33,42 @@
 服務匯流排主題和訂用帳戶可讓您擴大處理非常多使用者和應用程式上大量的訊息。
 
 ## <a name="create-a-namespace"></a>建立命名空間
-
-若要開始在 Azure 中使用服務匯流排佇列，必須先建立命名空間。 命名空間提供範圍容器，可在應用程式內定址服務匯流排資源。 由於 [Azure 入口網站][]不會使用 ACS 連線建立命名空間，因此您必須透過命令列介面建立命名空間。
+若要開始在 Azure 中使用服務匯流排佇列，必須先建立命名空間。 命名空間提供範圍容器，可在應用程式內定址服務匯流排資源。 由於 [Azure 入口網站][Azure 入口網站]不會使用 ACS 連線建立命名空間，因此您必須透過命令列介面建立命名空間。
 
 若要建立命名空間：
 
 1. 開啟 Azure PowerShell 主控台視窗。
-
 2. 輸入以下命令以建立命名空間。 提供您自己的命名空間值，並指定與您的應用程式相同的區域。
-
+   
     ```
     New-AzureSBNamespace -Name 'yourexamplenamespace' -Location 'West US' -NamespaceType 'Messaging' -CreateACSNamespace $true
     ```
-
+   
     ![建立命名空間](./media/service-bus-ruby-how-to-use-topics-subscriptions/showcmdcreate.png)
 
 ## <a name="obtain-default-management-credentials-for-the-namespace"></a>取得命名空間的預設管理認證
-
 若要在新的命名空間上執行管理作業，例如建立佇列，您必須取得命名空間的管理認證。
 
 您執行以建立服務匯流排命名空間的 PowerShell Cmdlet 會顯示您可以用來管理命名空間的金鑰。 複製 **DefaultKey** 值。 您將會在本教學課程稍後的程式碼中使用此值。
 
 ![複製金鑰](./media/service-bus-ruby-how-to-use-topics-subscriptions/defaultkey.png)
 
-> [AZURE.NOTE]
-> 如果您登入 [Azure 入口網站][]，並瀏覽至您命名空間的連接資訊，也可以找到此機碼。
+> [!NOTE]
+> 如果您登入 [Azure 入口網站][Azure 入口網站]，並瀏覽至您命名空間的連接資訊，也可以找到此機碼。
+> 
+> 
 
 ## <a name="create-a-ruby-application"></a>建立 Ruby 應用程式
-
 如需指示，請參閱[在 Azure 上建立 Ruby 應用程式](../virtual-machines/virtual-machines-linux-classic-ruby-rails-web-app.md)。
 
 ## <a name="configure-your-application-to-use-service-bus"></a>設定應用程式以使用服務匯流排
-
 若要使用服務匯流排，請下載並使用 Ruby Azure 套件，其中包含一組能與儲存體 REST 服務通訊的便利程式庫。
 
 ### <a name="use-rubygems-to-obtain-the-package"></a>使用 RubyGems 來取得套件
-
 1. 使用命令列介面，例如 **PowerShell** (Windows)、**Terminal** (Mac) 或 **Bash** (Unix)。
-
 2. 在命令視窗中鍵入 "gem install azure" 以安裝 Gem 和相依性。
 
 ### <a name="import-the-package"></a>匯入封裝
-
 使用您偏好的文字編輯器，將以下內容加入至您打算使用儲存體的 Ruby 檔案頂端：
 
 ```
@@ -85,7 +76,6 @@ require "azure"
 ```
 
 ## <a name="set-up-a-service-bus-connection"></a>設定服務匯流排連接
-
 Azure 模組會讀取環境變數 **AZURE\_SERVICEBUS\_NAMESPACE** 和 **AZURE\_SERVICEBUS\_ACCESS\_KEY**，以取得連接您的命名空間所需的資訊。 若未設定這些環境變數，您必須使用下列程式碼，在使用 **Azure::ServiceBusService** 之前指定命名空間資訊：
 
 ```
@@ -96,7 +86,6 @@ Azure.config.sb_access_key = "<your azure service bus access key>"
 將命名空間值設為您建立的值而非整個 URL。 例如，使用 **"yourexamplenamespace"** 而非 "yourexamplenamespace.servicebus.windows.net"。
 
 ## <a name="create-a-topic"></a>建立主題
-
 **Azure::ServiceBusService** 物件可讓您使用主題。 下列程式碼將建立 **Azure::ServiceBusService** 物件。 若要建立主題，請使用 **create\_topic()** 方法。 下列範例將建立主題或列印出錯誤 (若有的話)。
 
 ```
@@ -119,13 +108,11 @@ topic = azure_service_bus_service.create_topic(topic)
 ```
 
 ## <a name="create-subscriptions"></a>建立訂用帳戶
-
 **Azure::ServiceBusService** 物件也能用來建立主題訂用帳戶。 訂閱是具名的，它們能擁有選用的篩選器，以限制傳遞至訂閱之虛擬佇列的訊息集合。
 
 訂用帳戶是持續性的，它們會持續存在，直到本身或相關的主題遭到刪除為止。 如果應用程式含有建立訂用帳戶的邏輯，它應該會先使用 getSubscription 方法檢查訂用帳戶是否存在。
 
 ### <a name="create-a-subscription-with-the-default-(matchall)-filter"></a>使用預設 (MatchAll) 篩選器建立訂用帳戶
-
 如果在建立新的訂用帳戶時沒有指定篩選器，**MatchAll** 篩選器就會是預設使用的篩選器。 使用 **MatchAll** 篩選器時，所有發佈至主題的訊息都會被置於訂用帳戶的虛擬佇列中。 下列範例將建立名為「all-messages」的訂用帳戶，並使用預設的 **MatchAll** 篩選器。
 
 ```
@@ -133,7 +120,6 @@ subscription = azure_service_bus_service.create_subscription("test-topic", "all-
 ```
 
 ### <a name="create-subscriptions-with-filters"></a>使用篩選器建立訂用帳戶
-
 您也可以定義篩選器，讓您指定傳送至主題的哪些訊息應顯示在特定訂用帳戶中。
 
 在訂用帳戶支援的篩選器中，實作 SQL92 子集的 **Azure::ServiceBus::SqlFilter** 是最具彈性的類型。 SQL 篩選器會對發佈至主題之訊息的屬性運作。 如需可與 SQL 篩選器搭配使用的運算式詳細資料，請檢閱 [SqlFilter.SqlExpression](http://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.sqlfilter.sqlexpression.aspx) 語法。
@@ -173,7 +159,6 @@ rule = azure_service_bus_service.create_rule(rule)
 現在，當訊息傳送至 "test-topic" 時，一律會將該訊息傳遞至已訂閱 "all-messages" 主題訂用帳戶的接收者，並選擇性地傳遞至已訂閱 "high-messages" 和 "low-messages" 主題訂用帳戶的接收者 (視訊息內容而定)。
 
 ## <a name="send-messages-to-a-topic"></a>傳送訊息至主題
-
 若要將訊息傳送至服務匯流排主題，應用程式必須使用 **Azure::ServiceBusService** 物件的 **send\_topic\_message()** 方法。 傳送至服務匯流排主題的訊息是 **Azure::ServiceBus::BrokeredMessage** 物件的執行個體。 **Azure::ServiceBus::BrokeredMessage** 物件具有一組標準屬性 (例如 **label** 和 **time\_to\_live**)、一個用來保存自訂應用程式特定屬性的字典，以及一堆字串資料。 應用程式能將字串值傳遞至 **send\_topic\_message()** 以設定訊息本文，系統會將預設值填入任何需要的標準屬性中。
 
 下列範例說明如何將五個測試訊息傳送至 "test-topic"。 請注意，迴圈反覆運算上每個訊息的 **message_number** 自訂屬性值會有變化 (這可判斷接收訊息的訂用帳戶為何)：
@@ -189,7 +174,6 @@ end
 服務匯流排主題支援的訊息大小上限：在[標準層](service-bus-premium-messaging.md)中為 256 KB 以及在[進階層](service-bus-premium-messaging.md)中為 1 MB。 標頭 (包含標準和自訂應用程式屬性) 可以容納 64 KB 的大小上限。 主題中所保存的訊息數目沒有限制，但主題所保存的訊息大小總計會有最高限制。 此主題大小會在建立時定義，上限是 5 GB。
 
 ## <a name="receive-messages-from-a-subscription"></a>自訂用帳戶接收訊息
-
 您可以使用 **Azure::ServiceBusService** 物件的 **receive\_subscription\_message()** 方法接收來自訂用帳戶的訊息。 根據預設，在讀取 (查看) 及鎖定訊息後，並不會從訂用帳戶中刪除訊息。 您可以將 **peek\_lock** 選項設為 **false**，而在讀取訊息後從訂用帳戶中刪除訊息。
 
 預設行為會使讀取和刪除變成兩階段作業，因此也可以支援無法容許遺漏訊息的應用程式。 當服務匯流排收到要求時，它會尋找要取用的下一個訊息、將其鎖定以防止其他取用者接收此訊息，然後將它傳回應用程式。 在應用程式完成處理訊息 (或可靠地儲存此訊息以供未來處理) 之後，它可呼叫 **delete\_subscription\_message()** 方法，並將要刪除的訊息提供做為參數，以完成接收程序的第二個階段。 **delete\_subscription\_message()** 方法會將訊息標示為已取用，並從訂用帳戶中移除訊息。
@@ -207,7 +191,6 @@ azure_service_bus_service.delete_subscription_message(message)
 ```
 
 ## <a name="handle-application-crashes-and-unreadable-messages"></a>處理應用程式當機與無法讀取的訊息
-
 服務匯流排提供一種功能，可協助您從應用程式的錯誤或處理訊息的問題中順利復原。 如果接收者應用程式因故無法處理訊息，它可以呼叫 **Azure::ServiceBusService** 物件的 **unlock\_subscription\_message()** 方法。 這導致服務匯流排將訂閱中的訊息解除鎖定，讓此訊息可以被相同取用應用程式或其他取用應用程式重新接收。
 
 與訂用帳戶內鎖定訊息相關的還有逾時，如果應用程式無法在鎖定逾時到期之前處理訊息 (例如，如果應用程式當機)，則服務匯流排會自動解除鎖定訊息，讓訊息可以再次被接收。
@@ -215,8 +198,7 @@ azure_service_bus_service.delete_subscription_message(message)
 如果應用程式在處理訊息之後，尚未呼叫 **delete\_subscription\_message()** 方法時當機，則會在應用程式重新啟動時將訊息重新傳遞給該應用程式。 這通常稱為**至少處理一次**；也就是說，每個訊息至少會被處理一次，但在特定狀況下，可能會重新傳遞相同訊息。 如果案例無法容許重複處理，則應用程式開發人員應在其應用程式中加入其他邏輯，以處理重複的訊息傳遞。 通常您可使用訊息的 **Message\_id** 屬性來達到此邏輯，該屬性將在各個傳遞嘗試中會保持不變。
 
 ## <a name="delete-topics-and-subscriptions"></a>刪除主題和訂用帳戶
-
-主題和訂用帳戶是持續性的，您必須透過 [Azure 入口網站][]或程式設計明確地加以刪除。 下列範例說明如何刪除名為 "test-topic" 的主題。
+主題和訂用帳戶是持續性的，您必須透過 [Azure 入口網站][Azure 入口網站]或程式設計明確地加以刪除。 下列範例說明如何刪除名為 "test-topic" 的主題。
 
 ```
 azure_service_bus_service.delete_topic("test-topic")
@@ -229,13 +211,12 @@ azure_service_bus_service.delete_subscription("test-topic", "high-messages")
 ```
 
 ## <a name="next-steps"></a>後續步驟
-
 了解基本的服務匯流排主題之後，請參考下列連結以取得更多資訊。
 
-- 請參閱[佇列、主題和訂用帳戶](service-bus-queues-topics-subscriptions.md)。
-- [SqlFilter](http://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.sqlfilter.aspx) 的 API 參考資料。
-- 請造訪 GitHub 上的 [Azure SDK for Ruby](https://github.com/Azure/azure-sdk-for-ruby) 儲存機制。
- 
+* 請參閱[佇列、主題和訂用帳戶](service-bus-queues-topics-subscriptions.md)。
+* [SqlFilter](http://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.sqlfilter.aspx) 的 API 參考資料。
+* 請造訪 GitHub 上的 [Azure SDK for Ruby](https://github.com/Azure/azure-sdk-for-ruby) 儲存機制。
+
 [Azure 入口網站]: https://portal.azure.com
 
 

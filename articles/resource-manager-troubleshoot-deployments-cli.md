@@ -1,50 +1,49 @@
-<properties
-   pageTitle="使用 Azure CLI 來檢視部署作業 | Microsoft Azure"
-   description="描述如何使用 Azure CLI 來偵測源自「資源管理員」部署的問題。"
-   services="azure-resource-manager,virtual-machines"
-   documentationCenter=""
-   tags="top-support-issue"
-   authors="tfitzmac"
-   manager="timlt"
-   editor="tysonn"/>
+---
+title: 使用 Azure CLI 來檢視部署作業 | Microsoft Docs
+description: 描述如何使用 Azure CLI 來偵測源自「資源管理員」部署的問題。
+services: azure-resource-manager,virtual-machines
+documentationcenter: ''
+tags: top-support-issue
+author: tfitzmac
+manager: timlt
+editor: tysonn
 
-<tags
-   ms.service="azure-resource-manager"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="vm-multiple"
-   ms.workload="infrastructure"
-   ms.date="08/15/2016"
-   ms.author="tomfitz"/>
+ms.service: azure-resource-manager
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: vm-multiple
+ms.workload: infrastructure
+ms.date: 08/15/2016
+ms.author: tomfitz
 
+---
 # 使用 Azure CLI 來檢視部署作業
-
-> [AZURE.SELECTOR]
-- [入口網站](resource-manager-troubleshoot-deployments-portal.md)
-- [PowerShell](resource-manager-troubleshoot-deployments-powershell.md)
-- [Azure CLI](resource-manager-troubleshoot-deployments-cli.md)
-- [REST API](resource-manager-troubleshoot-deployments-rest.md)
+> [!div class="op_single_selector"]
+> * [入口網站](resource-manager-troubleshoot-deployments-portal.md)
+> * [PowerShell](resource-manager-troubleshoot-deployments-powershell.md)
+> * [Azure CLI](resource-manager-troubleshoot-deployments-cli.md)
+> * [REST API](resource-manager-troubleshoot-deployments-rest.md)
+> 
+> 
 
 如果您在將資源部署到 Azure 時收到錯誤，您可能會想要查看有關所執行之部署作業的更多詳細資料。Azure CLI 提供命令，可讓您找出錯誤並判斷可能的修正方法。
 
-[AZURE.INCLUDE [resource-manager-troubleshoot-introduction](../includes/resource-manager-troubleshoot-introduction.md)]
+[!INCLUDE [resource-manager-troubleshoot-introduction](../includes/resource-manager-troubleshoot-introduction.md)]
 
 部署之前先驗證您的範本和基礎結構，即可避免發生一些錯誤。您也可以記錄部署期間的要求和回應資訊，這在後續進行疑難排解時可能會有幫助。如需了解驗證，以及記錄要求和回應資訊，請參閱[使用 Azure Resource Manager 範本部署資源群組](resource-group-template-deploy-cli.md)。
 
 ## 使用稽核記錄檔進行疑難排解
-
-[AZURE.INCLUDE [resource-manager-audit-limitations](../includes/resource-manager-audit-limitations.md)]
+[!INCLUDE [resource-manager-audit-limitations](../includes/resource-manager-audit-limitations.md)]
 
 若要查看部署相關錯誤，請使用下列步驟 ︰
 
 1. 若要查看稽核記錄檔，請執行 **azure group log show** 命令。您可以加入 **--last-deployment** 選項，就能只擷取最新部署的記錄檔。
-
+   
         azure group log show ExampleGroup --last-deployment
-
 2. **azure group log show** 命令可傳回大量資訊。在疑難排解時，您通常想要將焦點放在失敗的作業。下列指令碼會使用 **--json** 選項和 [jq](https://stedolan.github.io/jq/) JSON 公用程式來搜尋部署失敗的記錄檔。
-
+   
         azure group log show ExampleGroup --json | jq '.[] | select(.status.value == "Failed")'
-        
+   
         {
         "claims": {
           "aud": "https://management.core.windows.net/",
@@ -80,22 +79,19 @@
             "54001","MessageTemplate":"Website with given name {0} already exists.","Parameters":["mysite"],"InnerErrors":null}}],"Innererror":null}"
         },
         ...
-
+   
     您可以看到，**properties** 包含 json 中有關失敗作業的資訊。
-
+   
     您可以使用 **-verbose** 和 **-vv** 選項來查看記錄檔中的詳細資訊。使用 **--verbose** 選項可顯示作業在 `stdout` 上經歷的步驟。如需完整的要求歷程記錄，請使用 **-vv** 選項。這些訊息通常會提供任何失敗原因的重要線索。
-
 3. 若要專注於失敗項目的狀態訊息，請使用下列命令︰
-
+   
         azure group log show ExampleGroup --json | jq -r ".[] | select(.status.value == "Failed") | .properties.statusMessage"
 
-
 ## 使用部署作業進行疑難排解
-
 1. 利用 **azure group deployment show** 命令取得部署的整體狀態。下列範例中的部署失敗。
-
+   
         azure group deployment show --resource-group ExampleGroup --name ExampleDeployment
-        
+   
         info:    Executing command group deployment show
         + Getting deployments
         data:    DeploymentName     : ExampleDeployment
@@ -111,16 +107,13 @@
         data:    sku              String  Free
         data:    workerSize       String  0
         info:    group deployment show command OK
-
 2. 若要查看部署失敗作業的訊息，請使用︰
-
+   
         azure group deployment operation list --resource-group ExampleGroup --name ExampleDeployment --json  | jq ".[] | select(.properties.provisioningState == "Failed") | .properties.statusMessage.Message"
 
-
 ## 後續步驟
-
-- 如需解決特定部署錯誤的說明，請參閱[針對使用 Azure Resource Manager 將資源部署至 Azure 時常見的錯誤進行疑難排解](resource-manager-common-deployment-errors.md)。
-- 若要了解如何使用稽核記錄檔來監視其他類型的動作，請參閱[使用 Resource Manager 來稽核作業](resource-group-audit.md)。
-- 若要在執行之前驗證您的部署，請參閱[使用 Azure Resource Manager 範本部署資源群組](resource-group-template-deploy.md)。
+* 如需解決特定部署錯誤的說明，請參閱[針對使用 Azure Resource Manager 將資源部署至 Azure 時常見的錯誤進行疑難排解](resource-manager-common-deployment-errors.md)。
+* 若要了解如何使用稽核記錄檔來監視其他類型的動作，請參閱[使用 Resource Manager 來稽核作業](resource-group-audit.md)。
+* 若要在執行之前驗證您的部署，請參閱[使用 Azure Resource Manager 範本部署資源群組](resource-group-template-deploy.md)。
 
 <!---HONumber=AcomDC_0817_2016-->

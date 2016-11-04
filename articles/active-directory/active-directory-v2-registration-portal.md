@@ -1,21 +1,21 @@
-<properties
-	pageTitle="應用程式註冊入口網站說明主題 | Microsoft Azure"
-	description="Microsoft App 註冊入口網站中各種功能的說明。"
-	services="active-directory"
-	documentationCenter=""
-	authors="dstrockis"
-	manager="mbaldwin"
-	editor=""/>
+---
+title: 應用程式註冊入口網站說明主題 | Microsoft Docs
+description: Microsoft App 註冊入口網站中各種功能的說明。
+services: active-directory
+documentationcenter: ''
+author: dstrockis
+manager: mbaldwin
+editor: ''
 
-<tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/16/2016"
-	ms.author="dastrock"/>
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/16/2016
+ms.author: dastrock
 
+---
 # App 註冊參考
 本文件提供可在 Microsoft App 註冊入口網站 [https://apps.dev.microsoft.com](https://apps.dev.microsoft.com) 中找到的各種功能的內容和說明。
 

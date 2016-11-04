@@ -1,22 +1,21 @@
-<properties
-   pageTitle="Service Fabric 概觀 | Microsoft Azure"
-   description="組成多個微服務以提供調整和恢復功能的 Service Fabric 概觀。 Service Fabric 是分散式系統平台，用於建置可擴充、可靠且可輕鬆管理的雲端應用程式。"
-   services="service-fabric"
-   documentationCenter=".net"
-   authors="msfussell"
-   manager="timlt"
-   editor="masnider"/>
+---
+title: Service Fabric 概觀 | Microsoft Docs
+description: 組成多個微服務以提供調整和恢復功能的 Service Fabric 概觀。 Service Fabric 是分散式系統平台，用於建置可擴充、可靠且可輕鬆管理的雲端應用程式。
+services: service-fabric
+documentationcenter: .net
+author: msfussell
+manager: timlt
+editor: masnider
 
-<tags
-   ms.service="service-fabric"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="NA"
-   ms.date="09/22/2016"
-   ms.author="mfussell"/>
+ms.service: service-fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 09/22/2016
+ms.author: mfussell
 
-
+---
 # <a name="overview-of-service-fabric"></a>Service Fabric 概觀
 Service Fabric 是分散式系統平台，可讓您輕鬆封裝、部署及管理可調整和可信賴的微服務。 Service Fabric 也可解決開發與管理雲端應用程式時遭遇的重大挑戰。 開發人員與管理員能夠避免解決複雜的基礎結構問題，改為專注於實作關鍵且嚴格要求的工作負載，並了解其為可調整、可信賴及可管理的。 Service Fabric 代表新一代的中介軟體平台，可建置與管理這些企業級的 Tier-1 雲端規模應用程式。
 
@@ -26,7 +25,6 @@ Service Fabric 可讓您建置並管理由微服務組成的應用程式，這�
 為什麼微服務方式如此重要？ 兩個主要原因如下：
 
 1. 微服務可讓您根據其需求，調整應用程式的不同部分。
-
 2. 開發團隊能夠更敏捷地推出更動，進而更快速且更頻繁地為您的客戶提供新功能。
 
 Service Fabric 提供技術支援給目前許多的 Microsoft 服務，包括 Azure SQL Database、Azure DocumentDB、Cortana、Power BI、Microsoft Intune、Azure 事件中樞、Azure IoT、商務用 Skype 以及許多核心 Azure 服務。
@@ -47,13 +45,11 @@ Service Fabric 為由微服務組成的應用程式，提供完整的執行階�
 ![Service Fabric 平台][Image1]
 
 ## <a name="stateless-and-stateful-service-fabric-microservices"></a>無狀態與具狀態的 Service Fabric 微服務
-
 Service Fabric 可讓您建置由微服務組成的應用程式。 無狀態微服務 (通訊協定閘道器、Web Proxy 等) 不會維護該服務任何指定要求及其回應之外的可變動狀態。 Azure 雲端服務背景工作角色即為無狀態服務的範例。 可設定狀態的微服務 (使用者帳戶、資料庫、裝置、購物車、佇列等) 會維護要求及其回應外的可變動授權狀態。 現今的網際網路級別應用程式包含無狀態與可設定狀態微服務的組合。
 
 為什麼有具狀態的微服務以及無狀態的微服務？ 兩個主要原因如下：
 
 1. 為了讓程式碼和資料能夠在相同電腦上盡量靠近，以建立高輸送量、低延遲、容錯的線上交易處理 (OLTP) 服務。 其中的一些範例包括互動式店面、搜尋、物聯網 (IoT) 系統、交易系統、信用卡處理和詐欺偵測系統，以及個人記錄管理。
-
 2. 簡化應用程式的設計。 可設定狀態的微服務不需要其他佇列與快取，但傳統上為滿足純粹無狀態應用程式的可用性與延遲需求則需要這些項目。 可設定狀態服務有高可用性、低延遲性的特性，整體來說可減少需要在應用程式中管理的移動組件。
 
 如需有關使用 Service Fabric 的應用程式模式的詳細資訊，請參閱您的服務適用的[應用程式案例](service-fabric-application-scenarios.md)和[選擇程式設計模型架構](service-fabric-choose-framework.md)
@@ -70,42 +66,27 @@ Service Fabric ALM 功能讓應用程式管理員/IT 操作員能夠使用簡單
 ## <a name="key-capabilities"></a>主要功能
 藉由使用 Service Fabric，您可以：
 
-- 開發可大幅調整且自我修復的應用程式。
-
-- 使用 Service Fabric 程式設計模型開發由微服務所組成的應用程式。 或者，只是裝載您選擇的來賓可執行檔和其他應用程式架構，例如 ASP.NET Core 1 或 Node.js。
-
-- 開發高度可靠的無狀態與可設定狀態微服務。
-
-- 使用可設定狀態的微服務取代快取和佇列，以簡化應用程式的設計。
-
-- 部署至 Azure，或部署至執行 Windows Server 或 Linux 的內部部署雲端，但零程式碼變更。 只要撰寫一次，就能夠在任何地方部署至任何 Service Fabric 叢集。
-
-- 採用「機器的資料中心」法開發。 本機開發環境的程式碼與在 Azure 資料中心執行的程式碼相同。
-
-- 部署應用程式 (單位為秒)。
-
-- 部署密度比虛擬機器高的應用程式，亦即為每部機器部署數百或數千個應用程式。
-
-- 並列部署相同應用程式的不同版本，每個版本可獨立升級。
-
-- 無須停機即可管理可設定狀態應用程式的生命週期，包括即時升級與非即時升級。
-
-- 使用 .NET API、PowerShell 或 REST 介面管理應用程式。
-
-- 獨立地升級與修補應用程式內的微服務。
-
-- 監視和診斷應用程式的健全狀況，並設定用來執行自動修復的原則。
-
-- 應用程式是根據可用資源調整的，因此能輕鬆地相應增加或相應減少 Service Fabric 叢集。
-
-- 監看自我修復資源平衡器會協調整個叢集的應用程式重新發佈。 Service Fabric 會從失敗中復原，並會根據可用資源將負載分佈最佳化。
+* 開發可大幅調整且自我修復的應用程式。
+* 使用 Service Fabric 程式設計模型開發由微服務所組成的應用程式。 或者，只是裝載您選擇的來賓可執行檔和其他應用程式架構，例如 ASP.NET Core 1 或 Node.js。
+* 開發高度可靠的無狀態與可設定狀態微服務。
+* 使用可設定狀態的微服務取代快取和佇列，以簡化應用程式的設計。
+* 部署至 Azure，或部署至執行 Windows Server 或 Linux 的內部部署雲端，但零程式碼變更。 只要撰寫一次，就能夠在任何地方部署至任何 Service Fabric 叢集。
+* 採用「機器的資料中心」法開發。 本機開發環境的程式碼與在 Azure 資料中心執行的程式碼相同。
+* 部署應用程式 (單位為秒)。
+* 部署密度比虛擬機器高的應用程式，亦即為每部機器部署數百或數千個應用程式。
+* 並列部署相同應用程式的不同版本，每個版本可獨立升級。
+* 無須停機即可管理可設定狀態應用程式的生命週期，包括即時升級與非即時升級。
+* 使用 .NET API、PowerShell 或 REST 介面管理應用程式。
+* 獨立地升級與修補應用程式內的微服務。
+* 監視和診斷應用程式的健全狀況，並設定用來執行自動修復的原則。
+* 應用程式是根據可用資源調整的，因此能輕鬆地相應增加或相應減少 Service Fabric 叢集。
+* 監看自我修復資源平衡器會協調整個叢集的應用程式重新發佈。 Service Fabric 會從失敗中復原，並會根據可用資源將負載分佈最佳化。
 
 <!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
 ## <a name="next-steps"></a>後續步驟
-
 * 其他資訊：
-    * [為何要用微服務方式建置應用程式？](service-fabric-overview-microservices.md)
-    * [術語概觀](service-fabric-technical-overview.md)
+  * [為何要用微服務方式建置應用程式？](service-fabric-overview-microservices.md)
+  * [術語概觀](service-fabric-technical-overview.md)
 * 設定 Service Fabric [開發環境](service-fabric-get-started.md)  
 * [選擇程式設計模型架構](service-fabric-choose-framework.md) 做為您的服務
 

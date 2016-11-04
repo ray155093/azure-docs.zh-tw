@@ -1,26 +1,25 @@
-<properties
-   pageTitle="在 SQL 資料倉儲中的 Create table as select (CTAS) | Microsoft Azure"
-   description="在 Azure SQL 資料倉儲中利用 create table as select (CTAS) 陳述式撰寫程式碼做為開發解決方案的提示。"
-   services="sql-data-warehouse"
-   documentationCenter="NA"
-   authors="jrowlandjones"
-   manager="barbkess"
-   editor=""/>
+---
+title: 在 SQL 資料倉儲中的 Create table as select (CTAS) | Microsoft Docs
+description: 在 Azure SQL 資料倉儲中利用 create table as select (CTAS) 陳述式撰寫程式碼做為開發解決方案的提示。
+services: sql-data-warehouse
+documentationcenter: NA
+author: jrowlandjones
+manager: barbkess
+editor: ''
 
-<tags
-   ms.service="sql-data-warehouse"
-   ms.devlang="NA"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="data-services"
-   ms.date="06/14/2016"
-   ms.author="jrj;barbkess;sonyama"/>
+ms.service: sql-data-warehouse
+ms.devlang: NA
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: data-services
+ms.date: 06/14/2016
+ms.author: jrj;barbkess;sonyama
 
+---
 # 在 SQL 資料倉儲中的 Create Table As Select (CTAS)
 Create table as select 或 `CTAS` 是最重要的可用 T-SQL 功能之一。該作業與根據 SELECT 陳述式的輸出來建立新資料表的作業完全平行。`CTAS` 是建立資料表複本的最簡單且最快速方式。您可以根據意願將它視為 `SELECT..INTO` 的增強版本。本文件提供 `CTAS` 的範例和最佳做法。
 
 ## 使用 CTAS 複製資料表
-
 `CTAS` 最常見的用途之一，就是建立資料表複本，讓您可以變更 DDL。例如，您原本將資料表建立為 `ROUND_ROBIN`，而現在想變更為在資料行上散發的資料表，`CTAS` 就是您將變更散發資料行的方式。`CTAS` 也可以用來變更分割、索引或資料行類型。
 
 假設您因為在 `ROUND_ROBIN` 中沒有指定散發資料行，而使用 `CREATE TABLE` 散發的預設散發類型建立資料表。
@@ -28,29 +27,29 @@ Create table as select 或 `CTAS` 是最重要的可用 T-SQL 功能之一。該
 ```sql
 CREATE TABLE FactInternetSales
 (
-	ProductKey int NOT NULL,
-	OrderDateKey int NOT NULL,
-	DueDateKey int NOT NULL,
-	ShipDateKey int NOT NULL,
-	CustomerKey int NOT NULL,
-	PromotionKey int NOT NULL,
-	CurrencyKey int NOT NULL,
-	SalesTerritoryKey int NOT NULL,
-	SalesOrderNumber nvarchar(20) NOT NULL,
-	SalesOrderLineNumber tinyint NOT NULL,
-	RevisionNumber tinyint NOT NULL,
-	OrderQuantity smallint NOT NULL,
-	UnitPrice money NOT NULL,
-	ExtendedAmount money NOT NULL,
-	UnitPriceDiscountPct float NOT NULL,
-	DiscountAmount float NOT NULL,
-	ProductStandardCost money NOT NULL,
-	TotalProductCost money NOT NULL,
-	SalesAmount money NOT NULL,
-	TaxAmt money NOT NULL,
-	Freight money NOT NULL,
-	CarrierTrackingNumber nvarchar(25),
-	CustomerPONumber nvarchar(25)
+    ProductKey int NOT NULL,
+    OrderDateKey int NOT NULL,
+    DueDateKey int NOT NULL,
+    ShipDateKey int NOT NULL,
+    CustomerKey int NOT NULL,
+    PromotionKey int NOT NULL,
+    CurrencyKey int NOT NULL,
+    SalesTerritoryKey int NOT NULL,
+    SalesOrderNumber nvarchar(20) NOT NULL,
+    SalesOrderLineNumber tinyint NOT NULL,
+    RevisionNumber tinyint NOT NULL,
+    OrderQuantity smallint NOT NULL,
+    UnitPrice money NOT NULL,
+    ExtendedAmount money NOT NULL,
+    UnitPriceDiscountPct float NOT NULL,
+    DiscountAmount float NOT NULL,
+    ProductStandardCost money NOT NULL,
+    TotalProductCost money NOT NULL,
+    SalesAmount money NOT NULL,
+    TaxAmt money NOT NULL,
+    Freight money NOT NULL,
+    CarrierTrackingNumber nvarchar(25),
+    CustomerPONumber nvarchar(25)
 );
 ```
 
@@ -84,19 +83,23 @@ RENAME OBJECT FactInternetSales_new TO FactInternetSales;
 DROP TABLE FactInternetSales_old;
 ```
 
-> [AZURE.NOTE] Azure 資料倉儲尚未支援自動建立或自動更新統計資料。為了獲得查詢的最佳效能，在首次載入資料，或是資料中發生重大變更之後，建立所有資料表的所有資料行統計資料非常重要。如需統計資料的詳細說明，請參閱「開發」主題群組中的「[統計資料][]」主題。
+> [!NOTE]
+> Azure 資料倉儲尚未支援自動建立或自動更新統計資料。為了獲得查詢的最佳效能，在首次載入資料，或是資料中發生重大變更之後，建立所有資料表的所有資料行統計資料非常重要。如需統計資料的詳細說明，請參閱「開發」主題群組中的「[統計資料][統計資料]」主題。
+> 
+> 
 
 ## 使用 CTAS 解決不支援的功能
-
 `CTAS` 也可以用來暫時解決以下幾個不支援的功能。這通常可以證明是雙贏的情況，因為您的程式碼不但能夠相容，而且通常可以在 SQL 資料倉儲上更快速執行。這是完全平行化設計的結果。可以使用 CTAS 解決的案例包括：
 
-- SELECT..INTO
-- ANSI JOINS on UPDATEs
-- ANSI JOINs on DELETEs
-- MERGE 陳述式
+* SELECT..INTO
+* ANSI JOINS on UPDATEs
+* ANSI JOINs on DELETEs
+* MERGE 陳述式
 
-> [AZURE.NOTE] 嘗試考慮「CTAS 優先」。如果您認為您可以使用 `CTAS` 解決問題，即使您正在撰寫更多資料做為結果，這通常是最佳的解決方法。
->
+> [!NOTE]
+> 嘗試考慮「CTAS 優先」。如果您認為您可以使用 `CTAS` 解決問題，即使您正在撰寫更多資料做為結果，這通常是最佳的解決方法。
+> 
+> 
 
 ## SELECT..INTO
 您可能會發現 `SELECT..INTO` 會出現在解決方案中的幾個地方。
@@ -123,23 +126,25 @@ FROM    [dbo].[FactInternetSales]
 ;
 ```
 
-> [AZURE.NOTE] CTAS 目前需要指定散發資料行。如果您並不想要嘗試變更散發資料行，若您選取與基礎資料表相同的散發資料行作為避免資料移動的策略，則 `CTAS` 將會執行的最快。如果您正在建立小資料表，其效能並非重要因素，那麼您可以指定 `ROUND_ROBIN`，來避免必須決定散發資料行。
+> [!NOTE]
+> CTAS 目前需要指定散發資料行。如果您並不想要嘗試變更散發資料行，若您選取與基礎資料表相同的散發資料行作為避免資料移動的策略，則 `CTAS` 將會執行的最快。如果您正在建立小資料表，其效能並非重要因素，那麼您可以指定 `ROUND_ROBIN`，來避免必須決定散發資料行。
+> 
+> 
 
 ## update 陳述式的 ANSI 聯結取代
-
 您可能會發現有複雜的更新，使用 ANSI 聯結語法執行 UPDATE 或 DELETE 以將兩個以上的資料表聯結在一起。
 
 假設您必須更新此資料表：
 
 ```sql
 CREATE TABLE [dbo].[AnnualCategorySales]
-(	[EnglishProductCategoryName]	NVARCHAR(50)	NOT NULL
-,	[CalendarYear]					SMALLINT		NOT NULL
-,	[TotalSalesAmount]				MONEY			NOT NULL
+(    [EnglishProductCategoryName]    NVARCHAR(50)    NOT NULL
+,    [CalendarYear]                    SMALLINT        NOT NULL
+,    [TotalSalesAmount]                MONEY            NOT NULL
 )
 WITH
 (
-	DISTRIBUTION = ROUND_ROBIN
+    DISTRIBUTION = ROUND_ROBIN
 )
 ;
 ```
@@ -147,25 +152,25 @@ WITH
 原始的查詢看起來可能像這樣：
 
 ```sql
-UPDATE	acs
-SET		[TotalSalesAmount] = [fis].[TotalSalesAmount]
-FROM	[dbo].[AnnualCategorySales] 	AS acs
-JOIN	(
-		SELECT	[EnglishProductCategoryName]
-		,		[CalendarYear]
-		,		SUM([SalesAmount])				AS [TotalSalesAmount]
-		FROM	[dbo].[FactInternetSales]		AS s
-		JOIN	[dbo].[DimDate]					AS d	ON s.[OrderDateKey]				= d.[DateKey]
-		JOIN	[dbo].[DimProduct]				AS p	ON s.[ProductKey]				= p.[ProductKey]
-		JOIN	[dbo].[DimProductSubCategory]	AS u	ON p.[ProductSubcategoryKey]	= u.[ProductSubcategoryKey]
-		JOIN	[dbo].[DimProductCategory]		AS c	ON u.[ProductCategoryKey]		= c.[ProductCategoryKey]
-		WHERE 	[CalendarYear] = 2004
-		GROUP BY
-				[EnglishProductCategoryName]
-		,		[CalendarYear]
-		) AS fis
-ON	[acs].[EnglishProductCategoryName]	= [fis].[EnglishProductCategoryName]
-AND	[acs].[CalendarYear]				= [fis].[CalendarYear]
+UPDATE    acs
+SET        [TotalSalesAmount] = [fis].[TotalSalesAmount]
+FROM    [dbo].[AnnualCategorySales]     AS acs
+JOIN    (
+        SELECT    [EnglishProductCategoryName]
+        ,        [CalendarYear]
+        ,        SUM([SalesAmount])                AS [TotalSalesAmount]
+        FROM    [dbo].[FactInternetSales]        AS s
+        JOIN    [dbo].[DimDate]                    AS d    ON s.[OrderDateKey]                = d.[DateKey]
+        JOIN    [dbo].[DimProduct]                AS p    ON s.[ProductKey]                = p.[ProductKey]
+        JOIN    [dbo].[DimProductSubCategory]    AS u    ON p.[ProductSubcategoryKey]    = u.[ProductSubcategoryKey]
+        JOIN    [dbo].[DimProductCategory]        AS c    ON u.[ProductCategoryKey]        = c.[ProductCategoryKey]
+        WHERE     [CalendarYear] = 2004
+        GROUP BY
+                [EnglishProductCategoryName]
+        ,        [CalendarYear]
+        ) AS fis
+ON    [acs].[EnglishProductCategoryName]    = [fis].[EnglishProductCategoryName]
+AND    [acs].[CalendarYear]                = [fis].[CalendarYear]
 ;
 ```
 
@@ -178,18 +183,18 @@ AND	[acs].[CalendarYear]				= [fis].[CalendarYear]
 CREATE TABLE CTAS_acs
 WITH (DISTRIBUTION = ROUND_ROBIN)
 AS
-SELECT	ISNULL(CAST([EnglishProductCategoryName] AS NVARCHAR(50)),0)	AS [EnglishProductCategoryName]
-,		ISNULL(CAST([CalendarYear] AS SMALLINT),0) 						AS [CalendarYear]
-,		ISNULL(CAST(SUM([SalesAmount]) AS MONEY),0)						AS [TotalSalesAmount]
-FROM	[dbo].[FactInternetSales]		AS s
-JOIN	[dbo].[DimDate]					AS d	ON s.[OrderDateKey]				= d.[DateKey]
-JOIN	[dbo].[DimProduct]				AS p	ON s.[ProductKey]				= p.[ProductKey]
-JOIN	[dbo].[DimProductSubCategory]	AS u	ON p.[ProductSubcategoryKey]	= u.[ProductSubcategoryKey]
-JOIN	[dbo].[DimProductCategory]		AS c	ON u.[ProductCategoryKey]		= c.[ProductCategoryKey]
-WHERE 	[CalendarYear] = 2004
+SELECT    ISNULL(CAST([EnglishProductCategoryName] AS NVARCHAR(50)),0)    AS [EnglishProductCategoryName]
+,        ISNULL(CAST([CalendarYear] AS SMALLINT),0)                         AS [CalendarYear]
+,        ISNULL(CAST(SUM([SalesAmount]) AS MONEY),0)                        AS [TotalSalesAmount]
+FROM    [dbo].[FactInternetSales]        AS s
+JOIN    [dbo].[DimDate]                    AS d    ON s.[OrderDateKey]                = d.[DateKey]
+JOIN    [dbo].[DimProduct]                AS p    ON s.[ProductKey]                = p.[ProductKey]
+JOIN    [dbo].[DimProductSubCategory]    AS u    ON p.[ProductSubcategoryKey]    = u.[ProductSubcategoryKey]
+JOIN    [dbo].[DimProductCategory]        AS c    ON u.[ProductCategoryKey]        = c.[ProductCategoryKey]
+WHERE     [CalendarYear] = 2004
 GROUP BY
-		[EnglishProductCategoryName]
-,		[CalendarYear]
+        [EnglishProductCategoryName]
+,        [CalendarYear]
 ;
 
 -- Use an implicit join to perform the update
@@ -265,7 +270,6 @@ RENAME OBJECT dbo.[DimpProduct_upsert]  TO [DimProduct];
 ```
 
 ## CTAS 建議：明確陳述資料類型和輸出可為 null
-
 移轉程式碼時，您可能會發現自己正在跨這種類型的程式碼撰寫模式執行：
 
 ```sql
@@ -335,12 +339,16 @@ SELECT ISNULL(CAST(@d*@f AS DECIMAL(7,2)),0) as result
 ```
 
 請注意：
-- 可能已經使用 CAST 或 CONVERT
-- ISNULL 是用來強制 NULLability，而非 COALESCE
-- ISNULL 是最外層的函式
-- ISNULL 的第二個部分是常數，也就是 0
 
-> [AZURE.NOTE] 若要正確地設定可為 null，必須使用 `ISNULL` 而非 `COALESCE`。`COALESCE` 不是具決定性的函數，因此運算式的結果一律可為 Null。`ISNULL` 不同。它是具決定性的。因此當 `ISNULL` 函數的第二個部分是常數或常值，則結果值將會是 NOT NULL。
+* 可能已經使用 CAST 或 CONVERT
+* ISNULL 是用來強制 NULLability，而非 COALESCE
+* ISNULL 是最外層的函式
+* ISNULL 的第二個部分是常數，也就是 0
+
+> [!NOTE]
+> 若要正確地設定可為 null，必須使用 `ISNULL` 而非 `COALESCE`。`COALESCE` 不是具決定性的函數，因此運算式的結果一律可為 Null。`ISNULL` 不同。它是具決定性的。因此當 `ISNULL` 函數的第二個部分是常數或常值，則結果值將會是 NOT NULL。
+> 
+> 
 
 本秘訣不只適用於確保計算的完整性。它對資料表分割切換也很重要。假設您根據事實定義此資料表：
 
@@ -416,10 +424,10 @@ OPTION (LABEL = 'CTAS : Partition IN table : Create');
 
 因此，您可以查看類型一致性，且維護 CTAS 上的可為 null 屬性是很好的工程最佳作法。它有助於維護計算的完整性，並且也可確保資料分割切換的可能性。
 
-如需使用 [CTAS][] 的詳細資訊，請參閱 MSDN。它是 Azure SQL 資料倉儲中最重要的陳述式之一。請確定您已徹底了解。
+如需使用 [CTAS][CTAS] 的詳細資訊，請參閱 MSDN。它是 Azure SQL 資料倉儲中最重要的陳述式之一。請確定您已徹底了解。
 
 ## 後續步驟
-如需更多開發祕訣，請參閱[開發概觀][]。
+如需更多開發祕訣，請參閱[開發概觀][開發概觀]。
 
 <!--Image references-->
 [1]: media/sql-data-warehouse-develop-ctas/ctas-results.png

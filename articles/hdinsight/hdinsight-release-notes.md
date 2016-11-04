@@ -1,151 +1,143 @@
-<properties
-	pageTitle="Azure HDInsight 上 Hadoop 元件的版本資訊 | Microsoft Azure"
-	description="Azure HDInsight 的 Hadoop 元件的最新版本資訊與版本。取得 Hadoop、Apache Storm 及 HBase 的開發秘訣和詳細資料。"
-	services="hdinsight"
-	documentationCenter=""
-	editor="cgronlun"
-	manager="jhubbard"
-	authors="nitinme"
-	tags="azure-portal"/>
+---
+title: Azure HDInsight 上 Hadoop 元件的版本資訊 | Microsoft Docs
+description: Azure HDInsight 的 Hadoop 元件的最新版本資訊與版本。取得 Hadoop、Apache Storm 及 HBase 的開發秘訣和詳細資料。
+services: hdinsight
+documentationcenter: ''
+editor: cgronlun
+manager: jhubbard
+author: nitinme
+tags: azure-portal
 
-<tags
-	ms.service="hdinsight"
-	ms.workload="big-data"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/31/2016"
-	ms.author="nitinme"/>
+ms.service: hdinsight
+ms.workload: big-data
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/31/2016
+ms.author: nitinme
 
-
+---
 # Azure HDInsight 上 Hadoop 元件的版本資訊
-
 ## HDInsight 的 R 伺服器 2016/8/30 版本的相關資訊
-
 使用此版本部署的 Linux 型 HDInsight 叢集的完整版本號碼：
 
-|HDI |HDI 叢集版本 |HDP |HDP 組建 |Ambari 組建 |
-|----|----------------------|----|------------|-------------|
-|3\.2 |3\.2.1000.0.8268980 |2\.2 |2\.2.9.1-19 |2\.2.1.12-4 |
-|3\.3 |3\.3.1000.0.8268980 |2\.3 |2\.3.3.1-25 |2\.2.1.12-4 |
-|3\.4 |3\.4.1000.0.8269383 |2\.4 |2\.4.2.4-5 |2\.2.1.12-4 |
+| HDI | HDI 叢集版本 | HDP | HDP 組建 | Ambari 組建 |
+| --- | --- | --- | --- | --- |
+| 3\.2 |3\.2.1000.0.8268980 |2\.2 |2\.2.9.1-19 |2\.2.1.12-4 |
+| 3\.3 |3\.3.1000.0.8268980 |2\.3 |2\.3.3.1-25 |2\.2.1.12-4 |
+| 3\.4 |3\.4.1000.0.8269383 |2\.4 |2\.4.2.4-5 |2\.2.1.12-4 |
 
 使用此版本部署的 Windows 型 HDInsight 叢集的完整版本號碼：
 
-|HDI |HDI 叢集版本 |HDP |HDP 組建 |
-|----|----------------------|----|--------------|
-|2\.1 |2\.1.10.1033.2559206 |1\.3 |1\.3.12.0-01795|
-|3\.0 |3\.0.6.1033.2559206 |2\.0 |2\.0.13.0-2117 |
-|3\.1 |3\.1.4.1033.2559206 |2\.1 |2\.1.16.0-2374 |
-|3\.2 |3\.2.7.1033.2559206 |2\.2 |2\.2.9.1-11 |
-|3\.3 |3\.3.0.1033.2559206 |2\.3 |2\.3.3.1-25 |
+| HDI | HDI 叢集版本 | HDP | HDP 組建 |
+| --- | --- | --- | --- |
+| 2\.1 |2\.1.10.1033.2559206 |1\.3 |1\.3.12.0-01795 |
+| 3\.0 |3\.0.6.1033.2559206 |2\.0 |2\.0.13.0-2117 |
+| 3\.1 |3\.1.4.1033.2559206 |2\.1 |2\.1.16.0-2374 |
+| 3\.2 |3\.2.7.1033.2559206 |2\.2 |2\.2.9.1-11 |
+| 3\.3 |3\.3.0.1033.2559206 |2\.3 |2\.3.3.1-25 |
 
 ## HDInsight 的 R 伺服器 2016/8/17 版本的相關資訊
-
-- R 伺服器 8.0.5 – 主要為修正程式的版本。詳細資訊請參閱 [R 伺服器版本資訊](https://msdn.microsoft.com/microsoft-r/notes/r-server-notes)。
-- 邊緣節點上的 AzureML 套件 – [此 R 封裝](https://cran.r-project.org/web/packages/AzureML/vignettes/getting_started.html)使 R 模型可以做為 Azure ML Web 服務被發佈和取用。詳細資訊請參閱我們的 [HDInsight 上的 R 伺服器概觀](hdinsight-hadoop-r-server-overview.md)文章中的[實作模型](hdinsight-hadoop-r-server-overview.md#operationalize-a-model)一節。
-- [前 100 名熱門 R 封裝](https://github.com/metacran/cranlogs)的 Linux 相依性 – 現在，這些 Linux 封裝相依性都是預先安裝好。
-- 新增 R 封裝至資料節點時使用 CRAN 儲存機制的選項。詳細資訊請參閱我們的[開始使用 HDInsight 上的 R 伺服器](hdinsight-hadoop-r-server-get-started.md)文章中的[安裝 R 封裝](hdinsight-hadoop-r-server-get-started.md#install-r-packages)小節。
-- 改善叢集建立時 R 伺服器佈建的可靠性。
-
+* R 伺服器 8.0.5 – 主要為修正程式的版本。詳細資訊請參閱 [R 伺服器版本資訊](https://msdn.microsoft.com/microsoft-r/notes/r-server-notes)。
+* 邊緣節點上的 AzureML 套件 – [此 R 封裝](https://cran.r-project.org/web/packages/AzureML/vignettes/getting_started.html)使 R 模型可以做為 Azure ML Web 服務被發佈和取用。詳細資訊請參閱我們的 [HDInsight 上的 R 伺服器概觀](hdinsight-hadoop-r-server-overview.md)文章中的[實作模型](hdinsight-hadoop-r-server-overview.md#operationalize-a-model)一節。
+* [前 100 名熱門 R 封裝](https://github.com/metacran/cranlogs)的 Linux 相依性 – 現在，這些 Linux 封裝相依性都是預先安裝好。
+* 新增 R 封裝至資料節點時使用 CRAN 儲存機制的選項。詳細資訊請參閱我們的[開始使用 HDInsight 上的 R 伺服器](hdinsight-hadoop-r-server-get-started.md)文章中的[安裝 R 封裝](hdinsight-hadoop-r-server-get-started.md#install-r-packages)小節。
+* 改善叢集建立時 R 伺服器佈建的可靠性。
 
 ## HDInsight 2016/08/01 版本的相關資訊
-
 使用此版本部署的 Linux 型 HDInsight 叢集的完整版本號碼：
 
-|HDI |HDI 叢集版本 |HDP |HDP 組建 |Ambari 組建 |
-|----|----------------------|----|------------|-------------|
-|3\.2 |3\.2.1000.0.8028416 |2\.2 |2\.2.9.1-19 |2\.2.1.12-4 |
-|3\.3 |3\.3.1000.0.8028416 |2\.3 |2\.3.3.1-25 |2\.2.1.12-4 |
-|3\.4 |3\.4.1000.0.8053402 |2\.4 |2\.4.2.4-5 |2\.2.1.12-4 |
+| HDI | HDI 叢集版本 | HDP | HDP 組建 | Ambari 組建 |
+| --- | --- | --- | --- | --- |
+| 3\.2 |3\.2.1000.0.8028416 |2\.2 |2\.2.9.1-19 |2\.2.1.12-4 |
+| 3\.3 |3\.3.1000.0.8028416 |2\.3 |2\.3.3.1-25 |2\.2.1.12-4 |
+| 3\.4 |3\.4.1000.0.8053402 |2\.4 |2\.4.2.4-5 |2\.2.1.12-4 |
 
 使用此版本部署的 Windows 型 HDInsight 叢集的完整版本號碼：
 
-|HDI |HDI 叢集版本 |HDP |HDP 組建 |
-|----|----------------------|----|--------------|
-|2\.1 |2\.1.10.1005.2488842 |1\.3 |1\.3.12.0-01795|
-|3\.0 |3\.0.6.1005.2488842 |2\.0 |2\.0.13.0-2117 |
-|3\.1 |3\.1.4.1005.2488842 |2\.1 |2\.1.16.0-2374 |
-|3\.2 |3\.2.7.1005.2488842 |2\.2 |2\.2.9.1-11 |
-|3\.3 |3\.3.0.1005.2488842 |2\.3 |2\.3.3.1-25 |
+| HDI | HDI 叢集版本 | HDP | HDP 組建 |
+| --- | --- | --- | --- |
+| 2\.1 |2\.1.10.1005.2488842 |1\.3 |1\.3.12.0-01795 |
+| 3\.0 |3\.0.6.1005.2488842 |2\.0 |2\.0.13.0-2117 |
+| 3\.1 |3\.1.4.1005.2488842 |2\.1 |2\.1.16.0-2374 |
+| 3\.2 |3\.2.7.1005.2488842 |2\.2 |2\.2.9.1-11 |
+| 3\.3 |3\.3.0.1005.2488842 |2\.3 |2\.3.3.1-25 |
 
 此版本包含下列更新。
 
 | 課程名稱 | 說明 | 受影響的區域 (例如服務、元件或 SDK) | 叢集類型 (例如 Spark、Hadoop、HBase 或 Storm) | JIRA (如果適用) |
-|-------------------------------------------------|------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|----------------------|
-| HDInsight 3.4 叢集的變更 | 為了提升效能，下列 hive 組態的預設值已變更 <ul><li>`hive.vectorized.execution.reduce.enabled=true`</li><li>`hive.tez.min.partition.factor=1f`</li><li>`hive.tez.max.partition.factor=3f`</li><li>`tez.shuffle-vertex-manager.min-src-fraction=0.9`</li><li>`tez.shuffle-vertex-manager.max-src-fraction=0.95`</li><li>`tez.runtime.shuffle.connect.timeout= 30000`</li></ul>| 服務 | 全部| N/A|
-| 此版本包含下列修正程式 | HIVE-13632, HIVE-12897,HIVE-12907,HIVE-12908,HIVE-12988,HIVE-13510,HIVE-13572,HIVE-13716,HIVE-13726,HIVE-12505,HIVE-13632,HIVE-13661,HIVE-13705,HIVE-13743,HIVE-13810,HIVE-13857,HIVE-13902,HIVE-13911,HIVE-13933| 服務 | 全部| N/A
+| --- | --- | --- | --- | --- |
+| HDInsight 3.4 叢集的變更 |為了提升效能，下列 hive 組態的預設值已變更 <ul><li>`hive.vectorized.execution.reduce.enabled=true`</li><li>`hive.tez.min.partition.factor=1f`</li><li>`hive.tez.max.partition.factor=3f`</li><li>`tez.shuffle-vertex-manager.min-src-fraction=0.9`</li><li>`tez.shuffle-vertex-manager.max-src-fraction=0.95`</li><li>`tez.runtime.shuffle.connect.timeout= 30000`</li></ul> |服務 |全部 |N/A |
+| 此版本包含下列修正程式 |HIVE-13632, HIVE-12897,HIVE-12907,HIVE-12908,HIVE-12988,HIVE-13510,HIVE-13572,HIVE-13716,HIVE-13726,HIVE-12505,HIVE-13632,HIVE-13661,HIVE-13705,HIVE-13743,HIVE-13810,HIVE-13857,HIVE-13902,HIVE-13911,HIVE-13933 |服務 |全部 |N/A |
 
 ## HDInsight 2016/07/14 版本的相關資訊
-
 使用此版本部署的 Linux 型 HDInsight 叢集的完整版本號碼：
 
-|HDI |HDI 叢集版本 |HDP |HDP 組建 |Ambari 組建 |
-|----|----------------------|----|------------|-------------|
-|3\.2 |3\.2.1000.0.7932505 |2\.2 |2\.2.9.1-11 |2\.2.1.12-2 |
-|3\.3 |3\.3.1000.0.7932505 |2\.3 |2\.3.3.1-18 |2\.2.1.12-2 |
-|3\.4 |3\.4.1000.0.7933003 |2\.4 |2\.4.2.0 |2\.2.1.12-2 |
+| HDI | HDI 叢集版本 | HDP | HDP 組建 | Ambari 組建 |
+| --- | --- | --- | --- | --- |
+| 3\.2 |3\.2.1000.0.7932505 |2\.2 |2\.2.9.1-11 |2\.2.1.12-2 |
+| 3\.3 |3\.3.1000.0.7932505 |2\.3 |2\.3.3.1-18 |2\.2.1.12-2 |
+| 3\.4 |3\.4.1000.0.7933003 |2\.4 |2\.4.2.0 |2\.2.1.12-2 |
 
 使用此版本部署的 Windows 型 HDInsight 叢集的完整版本號碼：
 
-|HDI |HDI 叢集版本 |HDP |HDP 組建 |
-|----|----------------------|----|--------------|
-|2\.1 |2\.1.10.989.2441725 |1\.3 |1\.3.12.0-01795|
-|3\.0 |3\.0.6.989.2441725 |2\.0 |2\.0.13.0-2117 |
-|3\.1 |3\.1.4.989.2441725 |2\.1 |2\.1.16.0-2374 |
-|3\.2 |3\.2.7.989.2441725 |2\.2 |2\.2.9.1-11 |
-|3\.3 |3\.3.0.989.2441725 |2\.3 |2\.3.3.1-21 |
+| HDI | HDI 叢集版本 | HDP | HDP 組建 |
+| --- | --- | --- | --- |
+| 2\.1 |2\.1.10.989.2441725 |1\.3 |1\.3.12.0-01795 |
+| 3\.0 |3\.0.6.989.2441725 |2\.0 |2\.0.13.0-2117 |
+| 3\.1 |3\.1.4.989.2441725 |2\.1 |2\.1.16.0-2374 |
+| 3\.2 |3\.2.7.989.2441725 |2\.2 |2\.2.9.1-11 |
+| 3\.3 |3\.3.0.989.2441725 |2\.3 |2\.3.3.1-21 |
 
 ## HDInsight 2016/07/07 版本的相關資訊
-
 使用此版本部署的 Linux 型 HDInsight 叢集的完整版本號碼：
 
-|HDI |HDI 叢集版本 |HDP |HDP 組建 |
-|----|----------------------|----|------------|
-|3\.2 |3\.2.1000.0.7864996 |2\.2 |2\.2.9.1-11 |
-|3\.3 |3\.3.1000.0.7864996 |2\.3 |2\.3.3.1-18 |
-|3\.4 |3\.4.1000.0.7861906 |2\.4 |2\.4.2.0 |
+| HDI | HDI 叢集版本 | HDP | HDP 組建 |
+| --- | --- | --- | --- |
+| 3\.2 |3\.2.1000.0.7864996 |2\.2 |2\.2.9.1-11 |
+| 3\.3 |3\.3.1000.0.7864996 |2\.3 |2\.3.3.1-18 |
+| 3\.4 |3\.4.1000.0.7861906 |2\.4 |2\.4.2.0 |
 
 使用此版本部署的 Windows 型 HDInsight 叢集的完整版本號碼：
 
-|HDI |HDI 叢集版本 |HDP |HDP 組建 |
-|----|----------------------|----|--------------|
-|2\.1 |2\.1.10.977.2413853 |1\.3 |1\.3.12.0-01795|
-|3\.0 |3\.0.6.977.2413853 |2\.0 |2\.0.13.0-2117 |
-|3\.1 |3\.1.4.977.2413853 |2\.1 |2\.1.16.0-2374 |
-|3\.2 |3\.2.7.977.2413853 |2\.2 |2\.2.9.1-11 |
-|3\.3 |3\.3.0.977.2413853 |2\.3 |2\.3.3.1-21 |
+| HDI | HDI 叢集版本 | HDP | HDP 組建 |
+| --- | --- | --- | --- |
+| 2\.1 |2\.1.10.977.2413853 |1\.3 |1\.3.12.0-01795 |
+| 3\.0 |3\.0.6.977.2413853 |2\.0 |2\.0.13.0-2117 |
+| 3\.1 |3\.1.4.977.2413853 |2\.1 |2\.1.16.0-2374 |
+| 3\.2 |3\.2.7.977.2413853 |2\.2 |2\.2.9.1-11 |
+| 3\.3 |3\.3.0.977.2413853 |2\.3 |2\.3.3.1-21 |
 
 此版本包含下列更新。
 
 | 課程名稱 | 說明 | 受影響的區域 (例如服務、元件或 SDK) | 叢集類型 (例如 Spark、Hadoop、HBase 或 Storm) | JIRA (如果適用) |
-|-------------------------------------------------|------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|----------------------|
-| [HDInsight Tools for IntelliJ](hdinsight-apache-spark-intellij-tool-plugin.md) | 適用於 HDInsight Spark 叢集的 IntelliJ IDEA 外掛程式現在與適用於 IntelliJ 的 Azure 工具組整合。它支援 Azure SDK v2.9.1、最新的 Java SDK，以及包含獨立IntelliJ 之 HDInsight 外掛程式的所有功能。| 工具 | Spark| N/A|
-| [HDInsight Tools for Eclipse](hdinsight-apache-spark-eclipse-tool-plugin.md) | 適用於 Eclipse 的 Azure 工具組現在支援 HDInsight Spark 叢集。它可啟用下列功能。<ul><li>在 Scala 和 Java 中，利用對於 IntelliSense、自動格式化、錯誤檢查等絕佳撰寫支援，輕鬆地建立和編寫 Spark 應用程式。</li><li>在本機測試 Spark 應用程式。</li><li>將作業提交至 HDInsight Spark 叢集，並擷取結果。</li><li>登入 Azure，並存取與您的 Azure 訂用帳戶相關聯的所有 Spark 叢集。</li><li>瀏覽您 HDInsight Spark 叢集的所有相關聯儲存體資源。</li></ul>| 工具 | Spark| N/A
+| --- | --- | --- | --- | --- |
+| [HDInsight Tools for IntelliJ](hdinsight-apache-spark-intellij-tool-plugin.md) |適用於 HDInsight Spark 叢集的 IntelliJ IDEA 外掛程式現在與適用於 IntelliJ 的 Azure 工具組整合。它支援 Azure SDK v2.9.1、最新的 Java SDK，以及包含獨立IntelliJ 之 HDInsight 外掛程式的所有功能。 |工具 |Spark |N/A |
+| [HDInsight Tools for Eclipse](hdinsight-apache-spark-eclipse-tool-plugin.md) |適用於 Eclipse 的 Azure 工具組現在支援 HDInsight Spark 叢集。它可啟用下列功能。<ul><li>在 Scala 和 Java 中，利用對於 IntelliSense、自動格式化、錯誤檢查等絕佳撰寫支援，輕鬆地建立和編寫 Spark 應用程式。</li><li>在本機測試 Spark 應用程式。</li><li>將作業提交至 HDInsight Spark 叢集，並擷取結果。</li><li>登入 Azure，並存取與您的 Azure 訂用帳戶相關聯的所有 Spark 叢集。</li><li>瀏覽您 HDInsight Spark 叢集的所有相關聯儲存體資源。</li></ul> |工具 |Spark |N/A |
 
 從這個版本開始，我們針對以 Linux 為基礎的 HDInsight 叢集變更客體 OS 修補原則。新原則的目標是大幅減少因為修補而產生的重新開機次數。新的原則將會在每個星期一或星期四 UTC 上午 12 時開始，以交錯方式在任何指定叢集的節點之間，繼續修補 Linux 叢集上的虛擬機器 (VM)。不過，任何指定的 VM 每隔 30 天只會因為客體 OS 修補而最多重新開機一次。此外，新建立的叢集在叢集建立之後，也不會在 30 天內第一次重新開機。
 
->[AZURE.NOTE] 這些變更將只適用於等於或大於這個發行版本的新建立叢集。
+> [!NOTE]
+> 這些變更將只適用於等於或大於這個發行版本的新建立叢集。
+> 
+> 
 
 ## HDInsight 2016/06/06 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
 
-|HDP |HDI 版本 |Spark 版本 |Ambari 組建編號 |HDP 組建編號|
-|-------|---------------|---------------|-----------------------|----------------|
-|2\.3 |3\.3.1000.0.7702215|	1\.5.2|	2\.2.1.8-2|	2\.3.3.1-18|
-|2\.4 |3\.4.1000.0.7702224|	1\.6.1|	2\.2.1.8-2|	2\.4.2.0|
-
+| HDP | HDI 版本 | Spark 版本 | Ambari 組建編號 | HDP 組建編號 |
+| --- | --- | --- | --- | --- |
+| 2\.3 |3\.3.1000.0.7702215 |1\.5.2 |2\.2.1.8-2 |2\.3.3.1-18 |
+| 2\.4 |3\.4.1000.0.7702224 |1\.6.1 |2\.2.1.8-2 |2\.4.2.0 |
 
 此版本包含下列更新。
 
 | 課程名稱 | 說明 | 受影響的區域 (例如服務、元件或 SDK) | 叢集類型 (例如 Spark、Hadoop、HBase 或 Storm) | JIRA (如果適用) |
-|-------------------------------------------------|------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|----------------------|
-| HDInsight 上的 Spark 已正式推出 | 此版本會針對 HDInsight 上 Apache Spark 的開放原始碼提供改良的可用性、延展性和產能。<ul><li>業界領先的 99.9% 可用性 SLA，讓它適合用於龐大的企業工作負載。</li><li>使用 Azure Data Lake Store 的可調整儲存層。</li><li>適用於每個資料探索和開發階段的產能工具。含自訂 Spark 核心的 Jupyter 筆記本會啟用互動式資料探索，並與 BI 儀表板 (例如 Power BI、Tableau 及 Qlik) 整合，非常適合快速資料共用和連續報告；IntelliJ 外掛程式是適用於長期程式碼構件開發和偵錯的可靠方式。</li></ul>| 服務 | Spark| N/A|
-| HDInsight Tools for IntelliJ | 這是適用於 HDInsight Spark 叢集的 IntelliJ IDEA 外掛程式。它會啟用下列功能。<ul><li>在 Scala 和 Java 中，利用對於 IntelliSense、自動格式化、錯誤檢查等絕佳撰寫支援，輕鬆地建立和編寫 Spark 應用程式。</li><li>在本機測試 Spark 應用程式。</li><li>將作業提交至 HDInsight Spark 叢集，並擷取結果。</li><li>登入 Azure，並存取與您的 Azure 訂用帳戶相關聯的所有 Spark 叢集。</li><li>瀏覽您 HDInsight Spark 叢集的所有相關聯儲存體資源。</li><li>瀏覽您 HDInsight Spark 叢集的所有作業歷程記錄和作業資訊。</li><li>從您的桌上型電腦遠端為 Spark 作業進行偵錯。</li></ul>| 工具 | Spark| N/A
+| --- | --- | --- | --- | --- |
+| HDInsight 上的 Spark 已正式推出 |此版本會針對 HDInsight 上 Apache Spark 的開放原始碼提供改良的可用性、延展性和產能。<ul><li>業界領先的 99.9% 可用性 SLA，讓它適合用於龐大的企業工作負載。</li><li>使用 Azure Data Lake Store 的可調整儲存層。</li><li>適用於每個資料探索和開發階段的產能工具。含自訂 Spark 核心的 Jupyter 筆記本會啟用互動式資料探索，並與 BI 儀表板 (例如 Power BI、Tableau 及 Qlik) 整合，非常適合快速資料共用和連續報告；IntelliJ 外掛程式是適用於長期程式碼構件開發和偵錯的可靠方式。</li></ul> |服務 |Spark |N/A |
+| HDInsight Tools for IntelliJ |這是適用於 HDInsight Spark 叢集的 IntelliJ IDEA 外掛程式。它會啟用下列功能。<ul><li>在 Scala 和 Java 中，利用對於 IntelliSense、自動格式化、錯誤檢查等絕佳撰寫支援，輕鬆地建立和編寫 Spark 應用程式。</li><li>在本機測試 Spark 應用程式。</li><li>將作業提交至 HDInsight Spark 叢集，並擷取結果。</li><li>登入 Azure，並存取與您的 Azure 訂用帳戶相關聯的所有 Spark 叢集。</li><li>瀏覽您 HDInsight Spark 叢集的所有相關聯儲存體資源。</li><li>瀏覽您 HDInsight Spark 叢集的所有作業歷程記錄和作業資訊。</li><li>從您的桌上型電腦遠端為 Spark 作業進行偵錯。</li></ul> |工具 |Spark |N/A |
 
 ## HDInsight 2016/05/13 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
 
 * HDInsight (Windows) 2.1.10.875.2159884 (HDP 1.3.12.0-01795 - 未變更)
@@ -160,11 +152,10 @@
 此版本包含下列更新。
 
 | 課程名稱 | 說明 | 受影響的區域 (例如服務、元件或 SDK) | 叢集類型 (例如 Spark、Hadoop、HBase 或 Storm) | JIRA (如果適用) |
-|-------------------------------------------------|------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|----------------------|
-| Spark 版本更新和其他錯誤修正 | 此版本將 HDInsight 叢集中的 Spark 版本更新至 1.6.1，並修正其他錯誤| 服務 | Spark| N/A
+| --- | --- | --- | --- | --- |
+| Spark 版本更新和其他錯誤修正 |此版本將 HDInsight 叢集中的 Spark 版本更新至 1.6.1，並修正其他錯誤 |服務 |Spark |N/A |
 
 ## HDInsight 2016/04/11 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
 
 * HDInsight (Windows) 2.1.10.889.2191206 (HDP 1.3.12.0-01795 - 未變更)
@@ -180,15 +171,14 @@
 此版本包含下列更新。
 
 | 課程名稱 | 說明 | 受影響的區域 (例如服務、元件或 SDK) | 叢集類型 (例如 Hadoop、HBase 或 Storm) | JIRA (如果適用) |
-|-------------------------------------------------|------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|----------------------|
-| HDI 3.4 的自訂中繼存放區升級問題 | 如果您使用先前在另一個較低版本的 HDInsight 叢集上使用的自訂中繼存放區，則叢集會建立失敗。這是因為升級指令碼時發生的錯誤現在已修正| 叢集建立 | 全部 | N/A
-| Livy Crash 復原 | 為所有已透過 Livy 提交的作業提供工作狀態復原 | 可靠性 | Spark on Linux| N/A
-| Jupyter 內容 HA | 提供儲存 Jupyter 筆記本內容，以及將此內容從與叢集相關的儲存體帳戶載入的功能。如需詳細資訊，請參閱[可供 Jupyter 筆記本使用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)。| 筆記本 | Spark on Linux| N/A
-| 移除 Jupter 筆記本中的 hiveContext | 使用 `%%sql` magic，而非 `%%hive` magic。SqlContext 等於 hiveContext。如需詳細資訊，請參閱[可供 Jupyter 筆記本使用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)。| 筆記本 | Linux 上的 Spark 叢集| N/A
-| 取代了舊版的 Spark | 舊版的 Spark 1.3.1 會於 5 月 31 日從服務中移除 | 服務 | Windows 上的 Spark 叢集 | N/A
+| --- | --- | --- | --- | --- |
+| HDI 3.4 的自訂中繼存放區升級問題 |如果您使用先前在另一個較低版本的 HDInsight 叢集上使用的自訂中繼存放區，則叢集會建立失敗。這是因為升級指令碼時發生的錯誤現在已修正 |叢集建立 |全部 |N/A |
+| Livy Crash 復原 |為所有已透過 Livy 提交的作業提供工作狀態復原 |可靠性 |Spark on Linux |N/A |
+| Jupyter 內容 HA |提供儲存 Jupyter 筆記本內容，以及將此內容從與叢集相關的儲存體帳戶載入的功能。如需詳細資訊，請參閱[可供 Jupyter 筆記本使用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)。 |筆記本 |Spark on Linux |N/A |
+| 移除 Jupter 筆記本中的 hiveContext |使用 `%%sql` magic，而非 `%%hive` magic。SqlContext 等於 hiveContext。如需詳細資訊，請參閱[可供 Jupyter 筆記本使用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)。 |筆記本 |Linux 上的 Spark 叢集 |N/A |
+| 取代了舊版的 Spark |舊版的 Spark 1.3.1 會於 5 月 31 日從服務中移除 |服務 |Windows 上的 Spark 叢集 |N/A |
 
 ## HDInsight 2016/03/29 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
 
 * HDInsight (Windows) 2.1.10.875.2159884 (HDP 1.3.12.0-01795 - 未變更)
@@ -204,15 +194,14 @@
 此版本包含下列更新。
 
 | 課程名稱 | 說明 | 受影響的區域 (例如服務、元件或 SDK) | 叢集類型 (例如 Hadoop、HBase 或 Storm) | JIRA (如果適用) |
-|-------------------------------------------------|------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|----------------------|
-| 新增 HDInsight 3.4 版並更新所有 HDInsight 叢集的 HDP 版本 | 在此版本中，我們新增了 HDInsight v3.4 (以 HDP 2.4 為基礎) 並且更新了其他 HDP 版本。HDP 2.4 版本資訊可在[這裡](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.4.0/bk_HDP_RelNotes/content/ch_relnotes_v240.html)找到，而 HDInsight 版本的詳細資訊則可以在[這裡](hdinsight-component-versioning.md)找到。| 服務 | 所有 Linux 叢集| N/A
-| HDInsight Premium | HDInsight 現在有兩種類別：Standard 和 Premium。HDInsight Premium 目前為預覽版，僅適用於 Linux 上的 Hadoop 和 Spark 叢集。如需詳細資訊，請參閱[這裡](hdinsight-component-versioning.md#hdinsight-standard-and-hdinsight-premium)。| 服務 | Linux 上的 Hadoop 和 Spark| N/A
-| Microsoft R 伺服器 | HDInsight Premium 提供 Microsoft R 伺服器，它可以隨附於 Linux 上的 Hadoop 與 Spark 叢集。如需詳細資訊，請參閱 [HDInsight 中的 R 伺服器概觀](hdinsight-hadoop-r-server-overview.md)。| 服務 | Linux 上的 Hadoop 和 Spark| N/A
-| Spark 1.6.0 | HDInsight 3.4 叢集現在包含 Spark 1.6.0| 服務 | Linux 上的 Spark 叢集| N/A
-| Jupyter Notebook 增強功能 | 可用於 Spark 叢集的 Jupyter Nnotebook 現在提供額外的 Spark 核心。其中也包括增強功能，例如使用 %%magic、自動視覺化，以及與 Python 視覺化程式庫 (例如 matplotlib) 整合。如需詳細資訊，請參閱[可供 Jupyter 筆記本使用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)。 | 服務 | Linux 上的 Spark 叢集 | N/A
+| --- | --- | --- | --- | --- |
+| 新增 HDInsight 3.4 版並更新所有 HDInsight 叢集的 HDP 版本 |在此版本中，我們新增了 HDInsight v3.4 (以 HDP 2.4 為基礎) 並且更新了其他 HDP 版本。HDP 2.4 版本資訊可在[這裡](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.4.0/bk_HDP_RelNotes/content/ch_relnotes_v240.html)找到，而 HDInsight 版本的詳細資訊則可以在[這裡](hdinsight-component-versioning.md)找到。 |服務 |所有 Linux 叢集 |N/A |
+| HDInsight Premium |HDInsight 現在有兩種類別：Standard 和 Premium。HDInsight Premium 目前為預覽版，僅適用於 Linux 上的 Hadoop 和 Spark 叢集。如需詳細資訊，請參閱[這裡](hdinsight-component-versioning.md#hdinsight-standard-and-hdinsight-premium)。 |服務 |Linux 上的 Hadoop 和 Spark |N/A |
+| Microsoft R 伺服器 |HDInsight Premium 提供 Microsoft R 伺服器，它可以隨附於 Linux 上的 Hadoop 與 Spark 叢集。如需詳細資訊，請參閱 [HDInsight 中的 R 伺服器概觀](hdinsight-hadoop-r-server-overview.md)。 |服務 |Linux 上的 Hadoop 和 Spark |N/A |
+| Spark 1.6.0 |HDInsight 3.4 叢集現在包含 Spark 1.6.0 |服務 |Linux 上的 Spark 叢集 |N/A |
+| Jupyter Notebook 增強功能 |可用於 Spark 叢集的 Jupyter Nnotebook 現在提供額外的 Spark 核心。其中也包括增強功能，例如使用 %%magic、自動視覺化，以及與 Python 視覺化程式庫 (例如 matplotlib) 整合。如需詳細資訊，請參閱[可供 Jupyter 筆記本使用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)。 |服務 |Linux 上的 Spark 叢集 |N/A |
 
 ## HDInsight 2016/03/22 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
 
 * HDInsight (Windows) 2.1.10.875.2159884 (HDP 1.3.12.0-01795 - 未變更)
@@ -227,12 +216,10 @@
 此版本包含下列更新。
 
 | 課程名稱 | 說明 | 受影響的區域 (例如服務、元件或 SDK) | 叢集類型 (例如 Hadoop、HBase 或 Storm) | JIRA (如果適用) |
-|-------------------------------------------------|------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|----------------------|
-| 更新所有 HDInsight 叢集的 HDInsight 版本 | 在此版本中，我們已更新所有 HDInsight 叢集的 HDInsight 版本| 服務 | 全部| N/A
-
+| --- | --- | --- | --- | --- |
+| 更新所有 HDInsight 叢集的 HDInsight 版本 |在此版本中，我們已更新所有 HDInsight 叢集的 HDInsight 版本 |服務 |全部 |N/A |
 
 ## HDInsight 2016/03/10 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
 
 * HDInsight (Windows) 2.1.10.859.2123216 (HDP 1.3.12.0-01795 - 未變更)
@@ -247,11 +234,10 @@
 此版本包含下列更新。
 
 | 課程名稱 | 說明 | 受影響的區域 (例如服務、元件或 SDK) | 叢集類型 (例如 Hadoop、HBase 或 Storm) | JIRA (如果適用) |
-|-------------------------------------------------|------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|----------------------|
-| 更新所有 HDInsight 叢集的 HDInsight 版本 | 在此版本中，我們已更新所有 HDInsight 叢集的 HDInsight 版本| 服務 | 全部| N/A
+| --- | --- | --- | --- | --- |
+| 更新所有 HDInsight 叢集的 HDInsight 版本 |在此版本中，我們已更新所有 HDInsight 叢集的 HDInsight 版本 |服務 |全部 |N/A |
 
 ## HDInsight 2016/01/27 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
 
 * HDInsight (Windows) 2.1.10.817.2028315 (HDP 1.3.12.0-01795 - 未變更)
@@ -266,11 +252,10 @@
 此版本包含下列更新。
 
 | 課程名稱 | 說明 | 受影響的區域 (例如服務、元件或 SDK) | 叢集類型 (例如 Hadoop、HBase 或 Storm) | JIRA (如果適用) |
-|-------------------------------------------------|------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|----------------------|
-| 更新所有 HDInsight 叢集的 HDInsight 版本 | 在此版本中，我們已更新所有 HDInsight 叢集的 HDInsight 版本| 服務 | 全部| N/A
+| --- | --- | --- | --- | --- |
+| 更新所有 HDInsight 叢集的 HDInsight 版本 |在此版本中，我們已更新所有 HDInsight 叢集的 HDInsight 版本 |服務 |全部 |N/A |
 
 ## HDInsight 2015/12/02 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
 
 * HDInsight (Windows) 2.1.10.763.1931434 (HDP 1.3.12.0-01795 - 未變更)
@@ -285,11 +270,10 @@
 此版本包含下列更新。
 
 | 課程名稱 | 說明 | 受影響的區域 (例如服務、元件或 SDK) | 叢集類型 (例如 Hadoop、HBase 或 Storm) | JIRA (如果適用) |
-|-------------------------------------------------|------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|----------------------|
-| 新增 HDInsight 3.3 版並更新所有 HDInsight 叢集的 HDP 版本 | 在此版本中，我們新增了 HDInsight v3.3 (以 HDP 2.3 為基礎) 並且更新了其他 HDP 版本。HDP 2.3 版本附註可在[這裡](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.3.0/bk_HDP_RelNotes/content/ch_relnotes_v230.html)找到，而 HDInsight 版本的詳細資訊則可以在[這裡](hdinsight-component-versioning.md)找到。| 服務 | 全部| N/A
+| --- | --- | --- | --- | --- |
+| 新增 HDInsight 3.3 版並更新所有 HDInsight 叢集的 HDP 版本 |在此版本中，我們新增了 HDInsight v3.3 (以 HDP 2.3 為基礎) 並且更新了其他 HDP 版本。HDP 2.3 版本附註可在[這裡](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.3.0/bk_HDP_RelNotes/content/ch_relnotes_v230.html)找到，而 HDInsight 版本的詳細資訊則可以在[這裡](hdinsight-component-versioning.md)找到。 |服務 |全部 |N/A |
 
 ## HDInsight 2015/11/30 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
 
 * HDInsight (Windows) 2.1.10.757.1923908 (HDP 1.3.12.0-01795 - 未變更)
@@ -302,12 +286,10 @@
 此版本包含下列更新。
 
 | 課程名稱 | 說明 | 受影響的區域 (例如服務、元件或 SDK) | 叢集類型 (例如 Hadoop、HBase 或 Storm) | JIRA (如果適用) |
-|-------------------------------------------------|------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|----------------------|
-| 所有 HDInsight 叢集的已更新 HDInsight 版本和 HDInsight 3.2 叢集的 HDP 版本 (Windows 和 Linux) | 在此版本中，HDInsight 和 HDP 版本均已更新 | 服務 | 全部| N/A
-
+| --- | --- | --- | --- | --- |
+| 所有 HDInsight 叢集的已更新 HDInsight 版本和 HDInsight 3.2 叢集的 HDP 版本 (Windows 和 Linux) |在此版本中，HDInsight 和 HDP 版本均已更新 |服務 |全部 |N/A |
 
 ## HDInsight 2015/10/27 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
 
 * HDInsight (Windows) 2.1.10.726.1866228 (HDP 1.3.12.0-01795 - 未變更)
@@ -320,13 +302,11 @@
 此版本包含下列更新。
 
 | 課程名稱 | 說明 | 受影響的區域 (例如服務、元件或 SDK) | 叢集類型 (例如 Hadoop、HBase 或 Storm) | JIRA (如果適用) |
-|-------------------------------------------------|------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|----------------------|
-| 更新所有 HDInsight 叢集的 HDInsight 版本 (Windows 和 Linux) | 在此版本中，HDInsight 和 HDP 版本均已更新 | 服務 | 全部| N/A
-| 修正包含大寫字母叢集之 Windows Spark 叢集的 Jupyter | 以大寫字母指定 DNS 名稱的叢集，會因為原始要求檢查的緣故而使 Jupyter 筆記本發生問題。此修正是要將 Jupyter 之設定的 DNS 名稱變更為小寫。 | 服務 | HDInsight Spark (Windows)| N/A
-
+| --- | --- | --- | --- | --- |
+| 更新所有 HDInsight 叢集的 HDInsight 版本 (Windows 和 Linux) |在此版本中，HDInsight 和 HDP 版本均已更新 |服務 |全部 |N/A |
+| 修正包含大寫字母叢集之 Windows Spark 叢集的 Jupyter |以大寫字母指定 DNS 名稱的叢集，會因為原始要求檢查的緣故而使 Jupyter 筆記本發生問題。此修正是要將 Jupyter 之設定的 DNS 名稱變更為小寫。 |服務 |HDInsight Spark (Windows) |N/A |
 
 ## HDInsight 2015/10/20 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
 
 * HDInsight 2.1.10.716.1846990 (Windows) (HDP 1.3.12.0-01795 - 未變更)
@@ -339,14 +319,12 @@
 此版本包含下列更新。
 
 | 課程名稱 | 說明 | 受影響的區域 (例如服務、元件或 SDK) | 叢集類型 (例如 Hadoop、HBase 或 Storm) | JIRA (如果適用) |
-|-------------------------------------------------|------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|----------------------|
-| 變更為 HDP 2.2 的預設版本 HDP | HDInsight Windows 叢集的預設版本變更為 HDP 2.2。HDInsight 版本 3.2 (HDP 2.2) 自 2015 年 2 月已在公開上市。這項變更只會在使用 Azure 入口網站、PowerShell Cmdlet 或 SDK 叢集佈建的同時未進行明確選擇時，翻轉預設叢集版本。 | 服務 | 全部| N/A |
-|變更 VM 名稱格式以在單一虛擬網路中的 Linux 叢集上部署多個 HDInsight。 | 在這個版本中已加入在單一虛擬網路中部署多個 HDInsight Linux 叢集的支援。其中，叢集的虛擬機器名稱的格式已從 headnode*、workernode* 和 zookeepernode* 分別變更為 hn*、wn* 和 zk*。不建議採取虛擬機器名稱格式的直接相依性，因為這樣會受限於變更。請使用本機機器或 Ambari API 上的 "hostname -f" 以判斷主機清單和元件到主機的對應。您可以在 [https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/hosts.md](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/hosts.md) 和 [https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/host-components.md](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/host-components.md) 找到更多資訊。 | 服務 | Linux 上的 HDInsight 叢集 | N/A |
-| 組態變更 | 對於 HDInsight 3.1 叢集，現在會啟用下列組態：<ul><li>tez.yarn.ats.enabled 和 yarn.log.server.url。這可讓應用程式時間軸伺服器和記錄伺服器能夠提供記錄檔。</li></ul>對於 HDInsight 3.2 叢集，已經修改下列組態：<ul><li>mapreduce.fileoutputcommitter.algorithm.version 已設為 2。這樣就可以使用 FileOutputCommitter 的 V2 版本。</li></ul> | 服務 | 全部 | N/A |
-
+| --- | --- | --- | --- | --- |
+| 變更為 HDP 2.2 的預設版本 HDP |HDInsight Windows 叢集的預設版本變更為 HDP 2.2。HDInsight 版本 3.2 (HDP 2.2) 自 2015 年 2 月已在公開上市。這項變更只會在使用 Azure 入口網站、PowerShell Cmdlet 或 SDK 叢集佈建的同時未進行明確選擇時，翻轉預設叢集版本。 |服務 |全部 |N/A |
+| 變更 VM 名稱格式以在單一虛擬網路中的 Linux 叢集上部署多個 HDInsight。 |在這個版本中已加入在單一虛擬網路中部署多個 HDInsight Linux 叢集的支援。其中，叢集的虛擬機器名稱的格式已從 headnode*、workernode* 和 zookeepernode* 分別變更為 hn*、wn* 和 zk*。不建議採取虛擬機器名稱格式的直接相依性，因為這樣會受限於變更。請使用本機機器或 Ambari API 上的 "hostname -f" 以判斷主機清單和元件到主機的對應。您可以在 [https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/hosts.md](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/hosts.md) 和 [https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/host-components.md](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/host-components.md) 找到更多資訊。 |服務 |Linux 上的 HDInsight 叢集 |N/A |
+| 組態變更 |對於 HDInsight 3.1 叢集，現在會啟用下列組態：<ul><li>tez.yarn.ats.enabled 和 yarn.log.server.url。這可讓應用程式時間軸伺服器和記錄伺服器能夠提供記錄檔。</li></ul>對於 HDInsight 3.2 叢集，已經修改下列組態：<ul><li>mapreduce.fileoutputcommitter.algorithm.version 已設為 2。這樣就可以使用 FileOutputCommitter 的 V2 版本。</li></ul> |服務 |全部 |N/A |
 
 ## HDInsight 2015/09/09 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
 
 * HDInsight 2.1.10.675.1768697 (HDP 1.3.12.0-01795 - 未變更)
@@ -358,11 +336,10 @@
 此版本包含下列更新。
 
 | 課程名稱 | 說明 | 受影響的區域 (例如服務、元件或 SDK) | 叢集類型 (例如 Hadoop、HBase 或 Storm) | JIRA (如果適用) |
-|-------------------------------------------------|------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|----------------------|
-| 更新所有 HDInsight 叢集的 HDInsight 版本 | 在此版本中，HDInsight 版本已更新 | 服務 | 全部| N/A |
+| --- | --- | --- | --- | --- |
+| 更新所有 HDInsight 叢集的 HDInsight 版本 |在此版本中，HDInsight 版本已更新 |服務 |全部 |N/A |
 
 ## HDInsight 2015/07/31 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
 
 * HDInsight 2.1.10.640.1695824 (HDP 1.3.12.0-01795 - 未變更)
@@ -374,12 +351,10 @@
 此版本包含下列更新。
 
 | 課程名稱 | 說明 | 受影響的區域 (例如服務、元件或 SDK) | 叢集類型 (例如 Hadoop、HBase 或 Storm) | JIRA (如果適用) |
-|-------------------------------------------------|------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|----------------------|
-| 修正 Spark 叢集節點的重新製作映像工作流程 | 修正造成 Spark 叢集節點重新製作映像後不復原的錯誤 | 服務 | Spark| N/A |
-
+| --- | --- | --- | --- | --- |
+| 修正 Spark 叢集節點的重新製作映像工作流程 |修正造成 Spark 叢集節點重新製作映像後不復原的錯誤 |服務 |Spark |N/A |
 
 ## HDInsight 2015/07/31 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
 
 * HDInsight 2.1.10.635.1684502 (HDP 1.3.12.0-01795 - 未變更)
@@ -391,12 +366,10 @@
 此版本包含下列更新。
 
 | 課程名稱 | 說明 | 受影響的區域 (例如服務、元件或 SDK) | 叢集類型 (例如 Hadoop、HBase 或 Storm) | JIRA (如果適用) |
-|-------------------------------------------------|------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|----------------------|
-| 更新所有 HDInsight 叢集的 HDInsight 版本 | 在此版本中，HDInsight 版本已更新 | 服務 | 全部| N/A |
-
+| --- | --- | --- | --- | --- |
+| 更新所有 HDInsight 叢集的 HDInsight 版本 |在此版本中，HDInsight 版本已更新 |服務 |全部 |N/A |
 
 ## HDInsight 2015/07/07 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
 
 * HDInsight 2.1.10.610.1630216 (HDP 1.3.12.0-01795 - 未變更)
@@ -405,16 +378,13 @@
 * HDInsight 3.2.4.610.1630216 (HDP 2.2.6.1-0012)
 * SDK 1.5.8
 
-
 此版本包含下列更新。
 
 | 課程名稱 | 說明 | 受影響的區域 (例如服務、元件或 SDK) | 叢集類型 (例如 Hadoop、HBase 或 Storm) | JIRA (如果適用) |
-|-------------------------------------------------|------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|----------------------|
-| HDInsight 3.2 叢集的更新後 HDP 版本 | 在此版本中，HDInsight 3.2 會部署 HDP 2.2.6.1-0012 | 服務 | 全部 | N/A |
-
+| --- | --- | --- | --- | --- |
+| HDInsight 3.2 叢集的更新後 HDP 版本 |在此版本中，HDInsight 3.2 會部署 HDP 2.2.6.1-0012 |服務 |全部 |N/A |
 
 ## HDInsight 2015/06/26 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
 
 * HDInsight 2.1.10.601.1610731 (HDP 1.3.12.0-01795 - 未變更)
@@ -422,7 +392,6 @@
 * HDInsight 3.1.4.601.1610731 (HDP 2.1.15.0-2334 - 未變更)
 * HDInsight 3.2.4.601.1610731 (HDP 2.2.6.1-0011)
 * SDK 1.5.8
-
 
 此版本包含下列更新。
 
@@ -447,7 +416,6 @@
 </table>
 
 ## HDInsight 2015/06/18 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
 
 * HDInsight 2.1.10.596.1601657 (HDP 1.3.12.0-01795 - 未變更)
@@ -455,7 +423,6 @@
 * HDInsight 3.1.4.596.1601657 (HDP 2.1.15.0-2334)
 * HDInsight 3.2.4.596.1601657 (HDP 2.2.6.1-0002)
 * SDK 1.5.8
-
 
 此版本包含下列更新。
 
@@ -504,7 +471,6 @@
 </table>
 
 ## HDInsight 2015/06/04 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
 
 * HDInsight 2.1.10.583.1575584 (HDP 1.3.12.0-01795 - 未變更)
@@ -512,7 +478,6 @@
 * HDInsight 3.1.3.583.1575584 (HDP 2.1.12.1-0003 - 未變更)
 * HDInsight 3.2.4.583.1575584 (HDP 2.2.6.1-1)
 * SDK 1.5.8
-
 
 此版本包含下列更新。
 
@@ -537,7 +502,6 @@
 </table>
 
 ## HDInsight 2015/06/01 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
 
 * HDInsight 2.1.10.577.1563827 (HDP 1.3.12.0-01795 - 未變更)
@@ -545,7 +509,6 @@
 * HDInsight 3.1.3.577.1563827 (HDP 2.1.12.1-0003 - 未變更)
 * HDInsight 3.2.4.577.1563827 (HDP 2.2.6.0-2800 - 未變更)
 * SDK 1.5.8
-
 
 此版本包含下列更新。
 
@@ -570,12 +533,10 @@
 </table>
 
 ## HDInsight 2015/05/27 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
 
 * HDInsight 3.2.4.570.1554102 (HDP 2.2.6.0-2800)
 * 其他叢集版本和 SDK 不會部署為此版本的一部分。
-
 
 此版本包含下列更新。
 
@@ -616,7 +577,6 @@
 </table>
 
 ## HDInsight 2015/05/20 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
 
 * HDInsight 2.1.10.564.1542093 (HDP 1.3.12.0-01795 - 未變更)
@@ -655,7 +615,6 @@
 </table>
 
 ## HDInsight 2015/04/27 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
 
 * HDInsight 2.1.10.537.1486660 (HDP 1.3.12.0-01795 - 未變更)
@@ -694,7 +653,6 @@
 </table>
 
 ## HDInsight 2015/04/14 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
 
 * HDInsight 2.1.10.521.1453250 (HDP 1.3.12.0-01795 - 未變更)
@@ -726,7 +684,6 @@
 </table>
 
 ## HDInsight 2015/04/06 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
 
 * HDInsight 2.1.10.521.1453250 (HDP 1.3.12.0-01795 - 未變更)
@@ -738,6 +695,7 @@
 此版本包含下列更新。
 
 <table border="1">
+
 <tr>
 <th>課程名稱</th>
 <th>說明</th>
@@ -775,7 +733,6 @@
 <br>
 
 ## HDInsight 2015/04/01 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
 
 * HDInsight 2.1.10.513.1431705 (HDP 1.3.12.0-01795)
@@ -787,6 +744,7 @@
 此版本包含下列更新。
 
 <table border="1">
+
 <tr>
 <th>課程名稱</th>
 <th>說明</th>
@@ -880,7 +838,6 @@
 <br>
 
 ## HDInsight 2015/03/03 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
 
 * HDInsight 2.1.10.488.1375841 (HDP 1.3.9.0-01351 - 未變更)
@@ -892,6 +849,7 @@
 此版本包含下列更新。
 
 <table border="1">
+
 <tr>
 <th>課程名稱</th>
 <th>說明</th>
@@ -915,7 +873,6 @@
 <br>
 
 ## HDInsight 2015/02/18 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
 
 * HDInsight 2.1.10.471.1342507 (HDP 1.3.9.0-01351 - 未變更)
@@ -927,6 +884,7 @@
 此版本包含下列更新。
 
 <table border="1">
+
 <tr>
 <th>課程名稱</th>
 <th>說明</th>
@@ -1004,7 +962,6 @@
 <br>
 
 ## HDInsight 2015/02/06 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
 
 * HDInsight 2.1.10.463.1325367 (HDP 1.3.9.0-01351 - 未變更)
@@ -1015,6 +972,7 @@
 此版本包含下列更新。
 
 <table border="1">
+
 <tr>
 <th>課程名稱</th>
 <th>說明</th>
@@ -1058,7 +1016,6 @@
 <br>
 
 ## HDInsight 2015/1/29 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
 
 * HDInsight 2.1.10.455.1309616 (HDP 1.3.9.0-01351 - 未變更)
@@ -1069,6 +1026,7 @@
 此版本包含下列更新。
 
 <table border="1">
+
 <tr>
 <th>課程名稱</th>
 <th>說明</th>
@@ -1093,17 +1051,16 @@
 <br>
 
 ## HDInsight 2015/1/5 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼：
 
 * HDInsight 2.1.10.420.1246118 (HDP 1.3.9.0-01351 - 未變更)
 * HDInsight 3.0.6.420.1246118 (HDP 2.0.9.0-2097 - 未變更)
 * HDInsight 3.1.2.420.1246118 (HDP 2.1.9.0-2196 - 未變更)
 
-
 此版本包含下列更新。
 
 <table border="1">
+
 <tr>
 <th>課程名稱</th>
 <th>說明</th>
@@ -1139,7 +1096,6 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。Mahout 包含用來處理�
 <br>
 
 ## HDInsight 2014/12/23 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼為：
 
 * HDInsight 2.1.10.420.1246783 (HDP 版本未變更)
@@ -1149,6 +1105,7 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。Mahout 包含用來處理�
 此版本包含下列更新。
 
 <table border="1">
+
 <tr>
 <th>課程名稱</th>
 <th>說明</th>
@@ -1172,10 +1129,10 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。Mahout 包含用來處理�
 <br>
 
 ## HDInsight 2014/12/18 版本的相關資訊
-
 此版本包含下列元件更新。
 
 <table border="1">
+
 <tr>
 <th>課程名稱</th>
 <th>說明</th>
@@ -1197,7 +1154,6 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。Mahout 包含用來處理�
 <br>
 
 ## HDInsight 2014/12/5 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼為：
 
 * HDInsight 2.1.9.406.1221105 (HDP 1.3.9.0-01351)
@@ -1208,6 +1164,7 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。Mahout 包含用來處理�
 此版本包含下列元件更新。
 
 <table border="1">
+
 <tr>
 <th>課程名稱</th>
 <th>說明</th>
@@ -1251,9 +1208,7 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。Mahout 包含用來處理�
 </table>
 <br>
 
-
 ## HDInsight 2014/11/21 版本的相關資訊
-
 使用此版本部署的 HDInsight 叢集的完整版本號碼為：
 
 * HDInsight 2.1.9.382.1169709 (從 2014/11/14 後未變更)
@@ -1264,6 +1219,7 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。Mahout 包含用來處理�
 此版本包含下列元件更新。
 
 <table border="1">
+
 <tr>
 <th>課程名稱</th>
 <th>說明</th>
@@ -1435,52 +1391,43 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。Mahout 包含用來處理�
 關於 Azure PowerShell 和 HDInsight SDK 的錯誤訊息：「叢集未設定 HTTP 服務存取」：
 
 * 此錯誤是已知的[相容性問題](https://social.msdn.microsoft.com/Forums/azure/a7de016d-8de1-4385-b89e-d2e7a1a9d927/hdinsight-powershellsdk-error-cluster-is-not-configured-for-http-services-access?forum=hdinsight)，起因可能是 HDInsight 或 Azure PoweShell 版本和叢集版本的差異。在 8/15 或之後建立的叢集支援佈建到虛擬網路的這項新功能。但舊版的 HDInsight SDK 或 Azure PowerShell 無法正確解譯此功能。結果造成某些工作提交作業失敗。如果您使用 HDInsight SDK API 或 Azure PowerShell Cmdlet (**Use-AzureRmHDInsightCluster** 或 **Invoke-AzureRmHDInsightHiveJob**) 來提交工作，這些作業可能會失敗並傳回錯誤訊息「叢集 <叢集名稱> 未設定 HTTP 服務存取」。 或者 (根據作業而定) 傳回其他錯誤訊息，例如「無法連接到叢集」。
-
 * 最新版的 HDInsight SDK 和 Azure PowerShell 中已解決這些相容性問題。建議將 HDInsight SDK 更新到 1.3.1.6 版或更新版本，並將 Azure PowerShell 工具更新到 0.8.8 版或更新版本。您可以從 [](http://nuget.codeplex.com/wikipage?title=Getting%20Started) 取得最新的 HDInsight SDK，並從[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 取得 Azure PowerShell 工具。
 
-
-
 ## HDInsight 3.1 2014/9/12 版本的相關資訊
-
 * 此版本根據 Hortonworks Data Platform (HDP) 2.1.5。如需此版本中修正的 Bug 清單，請參閱 Hortonworks 網站上的[已在此版本修正](http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.1.5/bk_releasenotes_hdp_2.1/content/ch_relnotes-hdp-2.1.5-fixed.html)頁面。
 * 在 Pig 程式庫資料夾中，“avro-mapred-1.7.4.jar” 檔案已變更為 "avro-mapred-1.7.4-hadoop2.jar"。 此檔案的內容包含非中斷的次要 Bug 修正。建議客戶不要直接依賴 JAR 檔案的名稱，以避免檔案重新命名時中斷。
 
-
 ## 2014/8/21 版本的相關資訊
-
 * 我們加入下列 WebHCat 組態 (HIVE-7155)，其將 Templeton 控制器工作的預設記憶體限制設為 1GB。(先前的預設值是 512 MB。)
-
-	 templeton.mapper.memory.mb (=1024)
-
-	* 此變更解決了某些 Hive 查詢因為記憶體限制較低而發生的下列錯誤：「容器超過實體記憶體限制」。
-	* 若要還原成舊的預設值，您可以在建立叢集時使用下列命令以透過 Azure PowerShell 將此組態值設為 512：
-
-		Add-AzureRmHDInsightConfigValues -Core @{"templeton.mapper.memory.mb"="512";}
-
-
+  
+     templeton.mapper.memory.mb (=1024)
+  
+  * 此變更解決了某些 Hive 查詢因為記憶體限制較低而發生的下列錯誤：「容器超過實體記憶體限制」。
+  * 若要還原成舊的預設值，您可以在建立叢集時使用下列命令以透過 Azure PowerShell 將此組態值設為 512：
+    
+      Add-AzureRmHDInsightConfigValues -Core @{"templeton.mapper.memory.mb"="512";}
 * Zookeeper 角色的主機名稱已變更為 *zookeeper*。這會影響叢集內的名稱解析，但不影響外部 REST API。如果您有元件使用 *zookeepernode* 主機名稱，則必須更新元件以改用新名稱。三個 zookeeper 節點的新名稱如下：
-	* zookeeper0
-	* zookeeper1
-	* zookeeper2
+  
+  * zookeeper0
+  * zookeeper1
+  * zookeeper2
 * 已更新 HBase 版本支援矩陣。只有 HBase 工作負載的生產才能支援 HDInsight 3.1 版 (HBase 0.98 版)。將不再支援 3.0 版(之前可用於預覽)。
 
 ## 2014/8/15 之前所建立之叢集的附註
-
 因為 Azure PowerShell 或 HDInsight SDK 的版本與叢集版本不同，因此可能遇到 Azure PowerShell 或 HDInsight SDK 錯誤訊息：「HTTP 服務存取未設定叢集 <clustername>」(或者根據作業而定，可能遇到其他錯誤訊息，例如「*無法連接到叢集*」)。在 8/15 或之後建立的叢集支援佈建到虛擬網路的這項新功能。舊版的 Azure PowerShell 或 HDInsight SDK 無法正確解譯此功能，導致工作提交作業失敗。如果您使用 HDInsight SDK API 或 Azure PowerShell Cmdlet (例如 Use-AzureRmHDInsightCluster 或 Invoke-AzureRmHDInsightHiveJob) 來提交工作，這些作業可能會失敗並傳回上述其中一個錯誤訊息。
 
 最新版的 HDInsight SDK 和 Azure PowerShell 中已解決這些相容性問題。建議將 HDInsight SDK 更新到 1.3.1.6 版或更新版本，並將 Azure PowerShell 工具更新到 0.8.8 版或更新版本。您可以從 [NuGet][nuget-link] 存取最新的 HDInsight SDK。您可以使用 [Microsoft Web Platform Installer][webpi-link] 存取 Azure PowerShell 工具。
 
-
 ## 2014/7/28 版本的相關資訊
-
 * **新區域可用 HDInsight**：我們將 HDInsight 的地理位置據點擴展到三個區域。HDInsight 客戶可以在這三個區域建立叢集：
-	* 東亞
-	* 美國中北部
-	* 美國中南部
+  * 東亞
+  * 美國中北部
+  * 美國中南部
 * 正在將 HDInsight 1.6 版 (HDP 1.1 和 Hadoop 1.0.3) 和 HDInsight 2.1 版 (HDP1.3 和 Hadoop 1.2) 從 Azure 入口網站移除。您可以繼續使用 Azure PowerShell Cmdlet、[New-AzureRmHDInsightCluster](http://msdn.microsoft.com/library/dn593744.aspx) 或使用 [HDInsight SDK](http://msdn.microsoft.com/library/azure/dn469975.aspx) 來建立這些版本的 Hadoop 叢集。如需詳細資訊，請參閱 [HDInsight 所提供叢集版本的新功能](hdinsight-component-versioning.md)頁面。
 * 此版本中的 Hortonworks Data Platform (HDP) 變更：
 
 <table border="1">
+
 <tr><th>HDP</th><th>變更</th></tr>
 <tr><td>HDP 1.3 / HDI 2.1</td><td>沒有變更</td></tr>
 <tr><td>HDP 2.0 / HDI 3.0</td><td>沒有變更</td></tr>
@@ -1490,7 +1437,6 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。Mahout 包含用來處理�
 </table><br>
 
 ## 2014/6/24 版本的相關資訊
-
 此版本包含 HDInsight 服務的增強功能：
 
 * **HDP 2.1 可用性**：HDInsight 3.1 (內含 HDP 2.1) 已公開上市，且為新叢集的預設版本。
@@ -1499,33 +1445,28 @@ Apache Mahout 是 Apache Hadoop 的機器學習庫。Mahout 包含用來處理�
 HBase 可讓您在 HDInsight 上建置各種即時工作負載，包括處理大型資料集的互動式網站，甚至是將數百萬個端點的感應器和遙測資料儲存起來的服務，都沒問題。下一步是使用 Hadoop 工作來分析這些工作負載中的資料，而透過 Azure PowerShell 和 Hive 叢集儀表板，就能在 HDInsight 中進行此分析。
 
 ### Apache Mahout 預先安裝在 HDInsight 3.1
-
  [Mahout](http://hortonworks.com/hadoop/mahout/) 已預先安裝在 HDInsight 3.1 Hadoop 叢集，因此您可以執行 Mahout 工作，而不需要其他叢集組態。例如，您可以使用遠端桌面通訊協定 (RDP) 從遠端進入 Hadoop 叢集，且不需要額外的步驟就能執行下列 Hello World Mahout 命令：
 
-		mahout org.apache.mahout.classifier.df.tools.Describe -p /user/hdp/glass.data -f /user/hdp/glass.info -d I 9 N L  
+        mahout org.apache.mahout.classifier.df.tools.Describe -p /user/hdp/glass.data -f /user/hdp/glass.info -d I 9 N L  
 
-		mahout org.apache.mahout.classifier.df.BreimanExample -d /user/hdp/glass.data -ds /user/hdp/glass.info -i 10 -t 100
+        mahout org.apache.mahout.classifier.df.BreimanExample -d /user/hdp/glass.data -ds /user/hdp/glass.info -i 10 -t 100
 
 如需此程序更完整的說明，請參閱 Apache Mahout 網站上關於 [Breiman 範例](https://mahout.apache.org/users/classification/breiman-example.html)的文件。
 
-
 ### Hive 查詢可在 HDinsight 3.1 中使用 Tez
-
 Hive 0.13 可在 HDInsight 3.1 中使用，且能夠使用 Tez 來執行查詢，妥善運用可大幅提升效能。依預設不會對 Hive 查詢啟用 Tez。若要使用，您必須自行啟用。您可以執行下列程式碼片段來啟用 Tez：
 
-		set hive.execution.engine=tez;
-		select sc_status, count(*), histogram_numeric(sc_bytes,5) from website_logs_orc_local group by sc_status;
+        set hive.execution.engine=tez;
+        select sc_status, count(*), histogram_numeric(sc_bytes,5) from website_logs_orc_local group by sc_status;
 
 Hortonworks 在標準效能評比中，已發表一份關於 Hive 查詢搭配 Tez 而提升效能的詳細數據。如需詳細資訊，請參閱 [Apache Hive 13 for Enterprise Hadoop 效能評比](http://hortonworks.com/blog/benchmarking-apache-hive-13-enterprise-hadoop/) (英文)。
 
 如需搭配 Tez 使用 Hive 的詳細資料，請參閱 [Tez 上的 Hive](https://cwiki.apache.org/confluence/display/Hive/Hive+on+Tez)。
 
-###正式上市
+### 正式上市
 隨著 HDInsight 在 Hadoop 2.2 上推出，Microsoft 已在所有主要的 Azure 提供地理區提供 HDInsight。尤其，西歐和東南亞資料中心已上線運作。這可讓客戶將叢集配置在鄰近且可能位於相似符合性需求區域中的資料中心。
 
-
-###叢集版本之間的注意事項
-
+### 叢集版本之間的注意事項
 **與 HDInsight 3.1 叢集搭配使用的 Oozie 中繼存放區與舊版的 HDInsight 2.1 叢集無法回溯相容，且兩者無法與此舊版本搭配使用**。
 
 與 HDInsight 3.1 叢集一起部署的自訂 Oozie metastore 資料庫，無法在 HDInsight 2.1 叢集上重複使用。即使是源自 HDInsight 2.1 叢集的中繼存放區也是如此。不支援此案例，因為中繼存放區結構描述與 HDInsight 3.1 叢集一起使用時會升級，所以與 HDInsight 2.1 叢集所需的中繼存放區就不再相容。嘗試重複使用已在 HDInsight 3.1 叢集上使用過的 Oozie 中繼存放區，將會使 HDInsight 2.1 叢集變得無法使用。
@@ -1534,40 +1475,56 @@ Hortonworks 在標準效能評比中，已發表一份關於 Hive 查詢搭配 T
 
 Oozie 中繼存放區會連接到特定叢集，且兩者無法在叢集之間共用。
 
-###重大變更
-
+### 重大變更
 **前置詞語法**：HDInsight 3.1 和 3.0 叢集僅支援 "wasbs://" 語法。HDInsight 2.1 和 1.6 叢集支援舊的 "asv://" 語法，但在 HDInsight 3.1 或 3.0 叢集中不支援。這表示任何提交至 HDInsight 3.1 或 3.0 叢集且明確使用 “asv://” 語法的工作將會失敗。應該改用 "wasbs://" 語法。此外，如果工作提交至任何以現有中繼存放區建立的 HDInsight 3.1 或 3.0 叢集，且中繼存放區中使用 asv:// 語法來明確參考資源，則也會失敗。必須使用 wasbs:// 語法來定址資源以重新建立這些中繼存放區。
-
 
 **連接埠**：已變更 HDInsight 服務所使用的連接埠。以前所使用的連接埠號碼都在 Windows 作業系統暫時連接埠範圍內。對於短期的網際網路通訊協定通訊，會自動從預設定義的暫時範圍中配置連接埠。新的一組允許的 Hortonworks Data Platform (HDP) 服務連接埠號碼不在此範圍內，以避免與前端節點上執行的服務所使用的連接埠發生衝突。新的連接埠號碼應該不會引起任何重大變更。使用的號碼如下：
 
  **HDInsight 1.6 (HDP 1.1)** <table border="1">
+
 <tr><th>Name</th><th>值</th></tr>
+
 <tr><td>dfs.http.address</td><td>namenodehost:30070</td></tr>
+
 <tr><td>dfs.datanode.address</td><td>0.0.0.0:30010</td></tr>
+
 <tr><td>dfs.datanode.http.address</td><td>0.0.0.0:30075</td></tr>
+
 <tr><td>dfs.datanode.ipc.address</td><td>0.0.0.0:30020</td></tr>
+
 <tr><td>dfs.secondary.http.address</td><td>0.0.0.0:30090</td></tr>
+
 <tr><td>mapred.job.tracker.http.address</td><td>jobtrackerhost:30030</td></tr>
+
 <tr><td>mapred.task.tracker.http.address</td><td>0.0.0.0:30060</td></tr>
+
 <tr><td>mapreduce.history.server.http.address</td><td>0.0.0.0:31111</td></tr>
+
 <tr><td>templeton.port</td><td>30111</td></tr>
 </table><br>
 
  **HDInsight 3.1 和 3.0 (HDP 2.1 和 2.0)** <table border="1">
+
 <tr><th>Name</th><th>值</th></tr>
+
 <tr><td>dfs.namenode.http-address</td><td>namenodehost:30070</td></tr>
+
 <tr><td>dfs.namenode.https-address</td><td>headnodehost:30470</td></tr>
+
 <tr><td>dfs.datanode.address</td><td>0.0.0.0:30010</td></tr>
+
 <tr><td>dfs.datanode.http.address</td><td>0.0.0.0:30075</td></tr>
+
 <tr><td>dfs.datanode.ipc.address</td><td>0.0.0.0:30020</td></tr>
+
 <tr><td>dfs.namenode.secondary.http-address</td><td>0.0.0.0:30090</td></tr>
+
 <tr><td>yarn.nodemanager.webapp.address</td><td>0.0.0.0:30060</td></tr>
+
 <tr><td>templeton.port</td><td>30111</td></tr>
 </table><br>
 
-###相依項目
-
+### 相依項目
 HDInsight 3.x (HDP2.x) 加入下列相依項目：
 
 * guice-servlet
@@ -1641,8 +1598,7 @@ HDInsight 3.x (HDP2.x) 中已不存在下列相依項目：
 * hbase
 * snappy
 
-###版本變更
-
+### 版本變更
 HDInsight 2.x (HDP1.x) 與 HDInsight 3.x (HDP2.x) 之間有下列版本變更：
 
 * metrics-core: ['2.1.2'] -> ['3.0.0']
@@ -1664,30 +1620,22 @@ HDInsight 2.x (HDP1.x) 與 HDInsight 3.x (HDP2.x) 之間有下列版本變更：
 * bonecp: ['0.7.1.RELEASE'] -> ['
 * 0\.8.0.RELEASE']
 
-
 ### 驅動程式
 SQL Server 的 Java 資料庫連接 (JDBC) 驅動程式僅供 HDInsight 內部使用，且不適用於外部作業。如果您想要使用開放式資料庫連接 (ODBC) 連線至 HDInsight，請使用 Microsoft Hive ODBC 驅動程式。如需詳細資訊，請參閱[使用 Microsoft Hive ODBC 驅動程式將 Excel 連接到 HDInsight](hdinsight-connect-excel-hive-odbc-driver.md)。
 
-
 ### 錯誤修正
-
 在此版本中，我們使用幾個 Bug 修正來重新整理下列 HDInsight 版本：
 
 * HDInsight 2.1 (HDP 1.3)
 * HDInsight 3.0 (HDP 2.0)
 * HDInsight 3.1 (HDP 2.1)
 
-
 ## Hortonworks 版本資訊
-
 下列位置提供 HDInsight 版本叢集使用的 Hortonworks Data Platform (HDP) 的版本資訊：
 
 * HDInsight 3.1 版採用以 [Hortonworks Data Platform 2.1.7][hdp-2-1-7] 為基礎的 Hadoop 散發。這是在 2014/11/7 之後使用 Azure 入口網站時所建立的預設 Hadoop 叢集。在 2014/11/7 之前建立的 HDInsight 3.1 叢集是以 [Hortonworks Data Platform 2.1.1][hdp-2-1-1] 為基礎。
-
 * HDInsight 3.0 版採用以 [Hortonworks Data Platform 2.0][hdp-2-0-8] 為基礎的 Hadoop 散發。
-
 * HDInsight 2.1 版採用以 [Hortonworks Data Platform 1.3][hdp-1-3-0] 為基礎的 Hadoop 散發。
-
 * HDInsight 1.6 版採用以 [Hortonworks Data Platform 1.1][hdp-1-1-0] 為基礎的 Hadoop 散發。
 
 [hdp-2-1-7]: http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.1.7-Win/bk_releasenotes_HDP-Win/content/ch_relnotes-HDP-2.1.7.html
@@ -1706,6 +1654,6 @@ SQL Server 的 Java 資料庫連接 (JDBC) 驅動程式僅供 HDInsight 內部�
 
 [hdinsight-install-spark]: ../hdinsight-hadoop-spark-install/
 [hdinsight-r-scripts]: ../hdinsight-hadoop-r-scripts/
- 
+
 
 <!---HONumber=AcomDC_0914_2016-->

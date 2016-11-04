@@ -1,55 +1,51 @@
-<properties
-   pageTitle="透過 Web UI 來管理 Azure 容器服務容器 | Microsoft Azure"
-   description="使用 Marathon Web UI 將容器部署到 Azure 容器服務叢集服務。"
-   services="container-service"
-   documentationCenter=""
-   authors="neilpeterson"
-   manager="timlt"
-   editor=""
-   tags="acs, azure-container-service"
-   keywords="Docker、容器、微服務、Mesos、Azure"/>
+---
+title: 透過 Web UI 來管理 Azure 容器服務容器 | Microsoft Docs
+description: 使用 Marathon Web UI 將容器部署到 Azure 容器服務叢集服務。
+services: container-service
+documentationcenter: ''
+author: neilpeterson
+manager: timlt
+editor: ''
+tags: acs, azure-container-service
+keywords: Docker、容器、微服務、Mesos、Azure
 
-<tags
-   ms.service="container-service"
-   ms.devlang="na"
-   ms.topic="get-started-article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="09/19/2016"
-   ms.author="nepeters"/>
+ms.service: container-service
+ms.devlang: na
+ms.topic: get-started-article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 09/19/2016
+ms.author: nepeters
 
+---
 # 透過 Web UI 來管理容器
-
 DC/OS 提供環境來部署及調整叢集工作負載，同時將基礎硬體抽象化。在 DC/OS 之上有架構會管理排程和執行計算工作負載。
 
 雖然許多常見的工作負載都有可用的架構，但這份文件只說明如何使用 Marathon 來建立及調整容器部署。在練習這些範例之前，您需要 Azure 容器服務中設定的 DC/OS 叢集。您也需要有此叢集的遠端連線。如需這些項目的詳細資訊，請參閱下列文章。
 
-- [部署 Azure 容器服務叢集](container-service-deployment.md)
-- [連接到 Azure 容器服務叢集](container-service-connect.md)
+* [部署 Azure 容器服務叢集](container-service-deployment.md)
+* [連接到 Azure 容器服務叢集](container-service-connect.md)
 
 ## 探索 DC/OS UI
-
 在建立安全殼層 (SSH) 通道之後，瀏覽至 http://localhost/。這會載入 DC/OS Web UI 並顯示叢集的相關資訊，例如使用的資源、作用中代理程式和執行中的服務。
 
 ![DC/OS UI](media/dcos/dcos2.png)
 
 ## 瀏覽 Marathon UI
-
 若要查看 Marathon UI，請瀏覽至 http://localhost/Marathon。在此畫面中，您可以啟動 Azure 容器服務 DC/OS 叢集上的新容器或其他應用程式。您也可以看到有關執行容器和應用程式的資訊。
 
 ![Marathon UI](media/dcos/dcos3.png)
 
 ## 部署 Docker 格式化容器
-
 若要使用 Marathon 部署新容器，請按一下 [建立應用程式] 按鈕，並在表單中輸入下列資訊：
 
-欄位 | 值
-----------------|-----------
-ID | nginx
-映像 | nginx
-網路 | 橋接
-主機連接埠 | 80
-通訊協定 | TCP
+| 欄位 | 值 |
+| --- | --- |
+| ID |nginx |
+| 映像 |nginx |
+| 網路 |橋接 |
+| 主機連接埠 |80 |
+| 通訊協定 |TCP |
 
 ![新增應用程式 UI--一般](media/dcos/dcos4.png)
 
@@ -82,7 +78,6 @@ DC/OS 叢集會使用一組私人和公用代理程式來進行部署。若要�
 ![DC/OS Web UI--工作叢集節點](media/dcos/dcos9.png)
 
 ## 調整容器的大小
-
 您可以使用 Marathon UI 來調整容器的執行個體計數。若要這樣做，請瀏覽至 [Marathon] 頁面，選取您想要調整的容器，然後按一下 [調整] 按鈕。在 [調整應用程式] 對話方塊中，輸入您想要的容器執行個體數目，然後選取 [調整應用程式]。
 
 ![Marathon UI--調整應用程式對話方塊](media/dcos/dcos10.png)
@@ -94,11 +89,12 @@ DC/OS 叢集會使用一組私人和公用代理程式來進行部署。若要�
 ![DC/OS Web UI--節點](media/dcos/dcos12.png)
 
 ## 後續步驟
-
-- [使用 DC/OS 和 Marathon API](container-service-mesos-marathon-rest.md)
+* [使用 DC/OS 和 Marathon API](container-service-mesos-marathon-rest.md)
 
 透過 Mesos 在 Azure Container Service 上深入探索
 
 > [AZURE.VIDEO] azurecon-2015-deep-dive-on-the-azure-container-service-with-mesos]
+> 
+> 
 
 <!---HONumber=AcomDC_0921_2016-->

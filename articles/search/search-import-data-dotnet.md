@@ -1,27 +1,29 @@
-<properties
-    pageTitle="在 Azure 搜尋服務中使用 .NET SDK 上傳資料 | Microsoft Azure | 雲端託管搜尋服務"
-    description="了解如何使用 .NET SDK 將資料上傳至 Azure 搜尋服務中的索引。"
-    services="search"
-    documentationCenter=""
-    authors="brjohnstmsft"
-    manager=""
-    editor=""
-    tags=""/>
+---
+title: 在 Azure 搜尋服務中使用 .NET SDK 上傳資料 | Microsoft Docs
+description: 了解如何使用 .NET SDK 將資料上傳至 Azure 搜尋服務中的索引。
+services: search
+documentationcenter: ''
+author: brjohnstmsft
+manager: ''
+editor: ''
+tags: ''
 
-<tags
-    ms.service="search"
-    ms.devlang="dotnet"
-    ms.workload="search"
-    ms.topic="get-started-article"
-    ms.tgt_pltfrm="na"
-    ms.date="08/29/2016"
-    ms.author="brjohnst"/>
+ms.service: search
+ms.devlang: dotnet
+ms.workload: search
+ms.topic: get-started-article
+ms.tgt_pltfrm: na
+ms.date: 08/29/2016
+ms.author: brjohnst
 
+---
 # 使用 .NET SDK 將資料上傳到 Azure 搜尋服務
-> [AZURE.SELECTOR]
-- [概觀](search-what-is-data-import.md)
-- [.NET](search-import-data-dotnet.md)
-- [REST](search-import-data-rest-api.md)
+> [!div class="op_single_selector"]
+> * [概觀](search-what-is-data-import.md)
+> * [.NET](search-import-data-dotnet.md)
+> * [REST](search-import-data-rest-api.md)
+> 
+> 
 
 本文將說明如何使用 [Azure 搜尋服務 .NET SDK](https://msdn.microsoft.com/library/azure/dn951165.aspx) 將資料匯入 Azure 搜尋服務索引。
 
@@ -31,9 +33,9 @@
 
 若要使用 .NET SDK 將文件發送到您的索引中，您必須：
 
-  1. 建立 `SearchIndexClient` 物件以連接到您的搜尋索引。
-  2. 建立 `IndexBatch`，其中包含要新增、修改或刪除的文件。
-  3. 呼叫 `SearchIndexClient` 的 `Documents.Index` 方法以將 `IndexBatch` 傳送到您的搜尋索引。
+1. 建立 `SearchIndexClient` 物件以連接到您的搜尋索引。
+2. 建立 `IndexBatch`，其中包含要新增、修改或刪除的文件。
+3. 呼叫 `SearchIndexClient` 的 `Documents.Index` 方法以將 `IndexBatch` 傳送到您的搜尋索引。
 
 ## I.建立 SearchIndexClient 類別的執行個體
 若要使用 Azure 搜尋服務 .NET SDK 將資料匯入索引，您必須建立 `SearchIndexClient` 類別的執行個體。您可以自己建構此執行個體，但如果您已經有 `SearchServiceClient` 執行個體可呼叫其 `Indexes.GetClient` 方法，會更為輕鬆。例如，以下是您可從名為 `serviceClient` 的 `SearchServiceClient` 為索引 "hotels" 取得 `SearchIndexClient` 的方法：
@@ -42,19 +44,22 @@
 SearchIndexClient indexClient = serviceClient.Indexes.GetClient("hotels");
 ```
 
-> [AZURE.NOTE] 在一般搜尋應用程式中，索引的管理和填入是由搜尋查詢的個別元件所處理。使用 `Indexes.GetClient` 可以很輕易填入索引，因為可以節省提供其他 `SearchCredentials` 的時間。執行方法是將用於建立 `SearchServiceClient` 的系統管理金鑰傳遞至新的 `SearchIndexClient`。但在執行查詢的應用程式中，最好直接建立 `SearchIndexClient`，如此一來就可以傳遞查詢金鑰，而非系統管理金鑰。這不僅符合[最低權限原則](https://en.wikipedia.org/wiki/Principle_of_least_privilege)，也可以讓您的應用程式更安全。您可以在 [MSDN 上的 Azure 搜尋服務 REST API 參考](https://msdn.microsoft.com/library/azure/dn798935.aspx)找到系統管理金鑰及查詢金鑰的詳細資訊。
+> [!NOTE]
+> 在一般搜尋應用程式中，索引的管理和填入是由搜尋查詢的個別元件所處理。使用 `Indexes.GetClient` 可以很輕易填入索引，因為可以節省提供其他 `SearchCredentials` 的時間。執行方法是將用於建立 `SearchServiceClient` 的系統管理金鑰傳遞至新的 `SearchIndexClient`。但在執行查詢的應用程式中，最好直接建立 `SearchIndexClient`，如此一來就可以傳遞查詢金鑰，而非系統管理金鑰。這不僅符合[最低權限原則](https://en.wikipedia.org/wiki/Principle_of_least_privilege)，也可以讓您的應用程式更安全。您可以在 [MSDN 上的 Azure 搜尋服務 REST API 參考](https://msdn.microsoft.com/library/azure/dn798935.aspx)找到系統管理金鑰及查詢金鑰的詳細資訊。
+> 
+> 
 
 `SearchIndexClient` 具有 `Documents` 屬性。此屬性提供您新增、修改、刪除或查詢索引中文件所需的所有方法。
 
 ## II.決定要使用的索引編製動作
 若要使用 .NET SDK 匯入資料，您必須將資料封裝到 `IndexBatch` 物件中。`IndexBatch` 會封裝 `IndexAction` 物件集合，每個物件各包含一份文件和一個屬性，後者會告知 Azure 搜尋服務要對該文件執行什麼動作 (上傳、合併、刪除等)。依據您在以下動作中所做的選擇，每個文件內只需包含某些欄位：
 
-動作 | 說明 | 每個文件的必要欄位 | 注意事項
---- | --- | --- | ---
-`Upload` | `Upload` 動作類似「upsert」，如果是新文件，就會插入該文件，如果文件已經存在，就會更新/取代它。 | 索引鍵以及其他任何您想要定義的欄位 | 在更新/取代現有文件時，要求中未指定的欄位會將其欄位設定為 `null`。即使先前已將欄位設定為非 null 值也是一樣。
-`Merge` | 使用指定的欄位更新現有文件。如果文件不存在於索引中，合併就會失敗。 | 索引鍵以及其他任何您想要定義的欄位 | 您在合併中指定的任何欄位將取代文件中現有的欄位。這包括類型 `DataType.Collection(DataType.String)` 的欄位。例如，如果文件包含欄位 `tags` 且值為 `["budget"]`，而您使用值 `["economy", "pool"]` 針對 `tags` 執行合併，則 `tags` 欄位最後的值會是 `["economy", "pool"]`。而不會是 `["budget", "economy", "pool"]`。
-`MergeOrUpload` | 如果含有指定索引鍵的文件已經存在於索引中，則此動作的行為會類似 `Merge`。如果文件不存在，其行為會類似新文件的 `Upload`。| 索引鍵以及其他任何您想要定義的欄位 |-
-`Delete` | 從索引中移除指定的文件。| 僅索引鍵 | 索引鍵欄位以外的所有指定欄位都將遭到忽略。如果您想要從文件中移除個別欄位，請改用 `Merge`，而且只需明確地將該欄位設為 null。
+| 動作 | 說明 | 每個文件的必要欄位 | 注意事項 |
+| --- | --- | --- | --- |
+| `Upload` |`Upload` 動作類似「upsert」，如果是新文件，就會插入該文件，如果文件已經存在，就會更新/取代它。 |索引鍵以及其他任何您想要定義的欄位 |在更新/取代現有文件時，要求中未指定的欄位會將其欄位設定為 `null`。即使先前已將欄位設定為非 null 值也是一樣。 |
+| `Merge` |使用指定的欄位更新現有文件。如果文件不存在於索引中，合併就會失敗。 |索引鍵以及其他任何您想要定義的欄位 |您在合併中指定的任何欄位將取代文件中現有的欄位。這包括類型 `DataType.Collection(DataType.String)` 的欄位。例如，如果文件包含欄位 `tags` 且值為 `["budget"]`，而您使用值 `["economy", "pool"]` 針對 `tags` 執行合併，則 `tags` 欄位最後的值會是 `["economy", "pool"]`。而不會是 `["budget", "economy", "pool"]`。 |
+| `MergeOrUpload` |如果含有指定索引鍵的文件已經存在於索引中，則此動作的行為會類似 `Merge`。如果文件不存在，其行為會類似新文件的 `Upload`。 |索引鍵以及其他任何您想要定義的欄位 |- |
+| `Delete` |從索引中移除指定的文件。 |僅索引鍵 |索引鍵欄位以外的所有指定欄位都將遭到忽略。如果您想要從文件中移除個別欄位，請改用 `Merge`，而且只需明確地將該欄位設為 null。 |
 
 您可以指定要搭配 `IndexBatch` 不同靜態方法及 `IndexAction` 類別使用的動作，如下一節所示。
 
@@ -116,7 +121,10 @@ var batch = IndexBatch.New(actions);
 
 另請注意，每個索引編製要求中最多只能包含 1000 份文件。
 
-> [AZURE.NOTE] 在此範例中，我們在不同文件中套用了不同動作。如果您要在批次中所有文件執行相同動作，而不要呼叫 `IndexBatch.New`，則可以使用 `IndexBatch` 的其他靜態方法。例如，您可以藉由呼叫 `IndexBatch.Merge`、`IndexBatch.MergeOrUpload` 或 `IndexBatch.Delete` 來建立批次。這些方法會採用文件 (在此範例中為類型 `Hotel` 的物件) 集合，而非 `IndexAction` 物件。
+> [!NOTE]
+> 在此範例中，我們在不同文件中套用了不同動作。如果您要在批次中所有文件執行相同動作，而不要呼叫 `IndexBatch.New`，則可以使用 `IndexBatch` 的其他靜態方法。例如，您可以藉由呼叫 `IndexBatch.Merge`、`IndexBatch.MergeOrUpload` 或 `IndexBatch.Delete` 來建立批次。這些方法會採用文件 (在此範例中為類型 `Hotel` 的物件) 集合，而非 `IndexAction` 物件。
+> 
+> 
 
 ## IV.將資料匯入索引
 您現在已將 `IndexBatch` 物件初始化，便可在 `SearchIndexClient` 物件上呼叫 `Documents.Index`，將其傳送到索引。下列範例示範如何呼叫 `Index`，以及您必須執行的幾個額外步驟：
@@ -145,8 +153,8 @@ Thread.Sleep(2000);
 最後，上方範例中的程式碼會延遲兩秒。您的 Azure 搜尋服務中會發生非同步索引編製，因此範例應用程式必須稍待一會，才能確定文件已準備好可供搜尋。通常只有在示範、測試和範例應用程式中，才需要這類延遲。
 
 <a name="HotelClass"></a>
-### .NET SDK 如何處理文件
 
+### .NET SDK 如何處理文件
 您可能想知道 Azure 搜尋服務 .NET SDK 如何能夠將使用者定義的類別執行個體 (例如 `Hotel` 上傳至索引。若要協助回答該問題，請查看 `Hotel` 類別，其對應到[使用 .NET SDK 建立 Azure 搜尋服務索引](search-create-index-dotnet.md#DefineIndex)中定義的索引結構描述：
 
 ```csharp
@@ -184,13 +192,19 @@ public partial class Hotel
 
 首先要注意的是，每個 `Hotel` 的公用屬性會對應索引定義中的欄位，但這之中有一項關鍵的差異：每個欄位的名稱會以小寫字母 (「駝峰式命名法」) 為開頭，而每個 `Hotel` 的公用屬性名稱會以大小字母 (「巴斯卡命名法」) 為開頭。這在執行資料繫結、而目標結構描述在應用程式開發人員控制範圍之外的 .NET 應用程式中很常見。與其違反 .NET 命名方針，使屬性名稱為駝峰式命名法，您可以改用 `[SerializePropertyNamesAsCamelCase]` 屬性，告訴 SDK 自動將屬性名稱對應至駝峰式命名法。
 
-> [AZURE.NOTE] Azure 搜尋服務 .NET SDK 使用 [NewtonSoft JSON.NET](http://www.newtonsoft.com/json/help/html/Introduction.htm) 程式庫來將您的自訂模型物件序列化到 JSON 中，以及將您在 JSON 中的自訂模型物件還原序列化。如有需要，您可以自訂這個序列化的過程。您可以在[升級至 Azure 搜尋服務 .NET SDK 版本 1.1](search-dotnet-sdk-migration.md#WhatsNew) 找到詳細資料。其中一個範例就是上方範例程式碼中在 `DescriptionFr` 屬性使用 `[JsonProperty]` 屬性的方式。
+> [!NOTE]
+> Azure 搜尋服務 .NET SDK 使用 [NewtonSoft JSON.NET](http://www.newtonsoft.com/json/help/html/Introduction.htm) 程式庫來將您的自訂模型物件序列化到 JSON 中，以及將您在 JSON 中的自訂模型物件還原序列化。如有需要，您可以自訂這個序列化的過程。您可以在[升級至 Azure 搜尋服務 .NET SDK 版本 1.1](search-dotnet-sdk-migration.md#WhatsNew) 找到詳細資料。其中一個範例就是上方範例程式碼中在 `DescriptionFr` 屬性使用 `[JsonProperty]` 屬性的方式。
+> 
+> 
 
 第二個要注意的是，`Hotel` 類別為公用屬性的資料類型。這些屬性的 .NET 類型會對應至索引定義中，與其相當的欄位類型。例如，`Category` 字串屬性會對應至 `category` 欄位 (此欄位屬於 `DataType.String` 類型)。`bool?` 與 `DataType.Boolean`、`DateTimeOffset?` 與 `DataType.DateTimeOffset` 等，它們之間也有類似的類型對應。類型對應的特定規則和 `Documents.Get` 方法已一起記載於 [MSDN](https://msdn.microsoft.com/library/azure/dn931291.aspx)。
 
 將您自己的類別用作文件的功能雙向均適用；您也可以擷取搜尋結果，然後讓 SDK 將結果自動還原序列化為您選擇的類型，如[下一篇文章](search-query-dotnet.md)所示。
 
-> [AZURE.NOTE] Azure 搜尋服務 .NET SDK 還支援使用 `Document` 類別的動態類型文件，也就是欄位名稱與欄位值的索引鍵/值對應。當您在設計階段卻不知道索引的結構描述時，這很實用，否則要繫結到特定模型類別會很麻煩。SDK 中所有處理文件的方法，都有可搭配 `Document` 類別使用的多載，以及使用泛型類型參數的強類型多載。本文的範例程式碼只使用了後者。您可以[在 MSDN](https://msdn.microsoft.com/library/azure/microsoft.azure.search.models.document.aspx) 找到 `Document` 類別的詳細資訊。
+> [!NOTE]
+> Azure 搜尋服務 .NET SDK 還支援使用 `Document` 類別的動態類型文件，也就是欄位名稱與欄位值的索引鍵/值對應。當您在設計階段卻不知道索引的結構描述時，這很實用，否則要繫結到特定模型類別會很麻煩。SDK 中所有處理文件的方法，都有可搭配 `Document` 類別使用的多載，以及使用泛型類型參數的強類型多載。本文的範例程式碼只使用了後者。您可以[在 MSDN](https://msdn.microsoft.com/library/azure/microsoft.azure.search.models.document.aspx) 找到 `Document` 類別的詳細資訊。
+> 
+> 
 
 **資料類型的重要注意事項**
 

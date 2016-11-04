@@ -1,23 +1,22 @@
-<properties
-   pageTitle="Azure AD Connect：設計概念 |Microsoft Azure"
-   description="本主題詳細說明特定的實作設計領域"
-   services="active-directory"
-   documentationCenter=""
-   authors="billmath"
-   manager="femila"
-   editor=""/>
+---
+title: Azure AD Connect：設計概念 | Microsoft Docs
+description: 本主題詳細說明特定的實作設計領域
+services: active-directory
+documentationcenter: ''
+author: billmath
+manager: femila
+editor: ''
 
-<tags
-   ms.service="active-directory"
-   ms.custom = "azure-ad-connect"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="Identity"
-   ms.date="09/13/2016"
-   ms.author="billmath"/>
+ms.service: active-directory
+ms.custom: azure-ad-connect
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: Identity
+ms.date: 09/13/2016
+ms.author: billmath
 
-
+---
 # <a name="azure-ad-connect:-design-concepts"></a>Azure AD Connect：設計概念
 本主題旨在說明在 Azure AD Connect 實作設計期間必須考量的領域。 這個主題是特定領域的深入探討，而在其他主題中也會簡短描述這些概念。
 
@@ -28,23 +27,23 @@ sourceAnchor 屬性的定義是 *在物件存留期間不會變更的屬性*。 
 
 此屬性用於下列案例︰
 
-- 在建置新的同步處理引擎伺服器，或在災害復原案例後進行重建時，這個屬性會連結 Azure AD 中的現有物件與內部部署的物件。
-- 如果您從僅限雲端的身分識別移至已同步處理的身分識別模型，則這個屬性可讓物件「完全比對」Azure AD 中的現有物件與內部部署的物件。
-- 如果您使用同盟，則這個屬性會與 **userPrincipalName** 一起用於宣告來唯一識別使用者。
+* 在建置新的同步處理引擎伺服器，或在災害復原案例後進行重建時，這個屬性會連結 Azure AD 中的現有物件與內部部署的物件。
+* 如果您從僅限雲端的身分識別移至已同步處理的身分識別模型，則這個屬性可讓物件「完全比對」Azure AD 中的現有物件與內部部署的物件。
+* 如果您使用同盟，則這個屬性會與 **userPrincipalName** 一起用於宣告來唯一識別使用者。
 
 本主題只討論與使用者相關的 sourceAnchor。 相同的規則適用於所有的物件類型，但僅限於通常有此問題的使用者。
 
 ### <a name="selecting-a-good-sourceanchor-attribute"></a>選取良好的 sourceAnchor 屬性
 此屬性值必須遵循下列規則：
 
-- 長度小於 60 個字元
-    - 系統會將 a-z、A-Z 或 0-9 以外的字元編碼並計為 3 個字元
-- 不包含特殊字元︰&#92; ! # $ % & * + / = ? ^ &#96; { } | ~ < > ( ) ' ; : , [ ] " @ _
-- 必須是全域唯一的
-- 必須是字串、整數或二進位
-- 不應以使用者的名稱、這些變更為基礎
-- 不應區分大小寫，並避免可能會因大小寫而改變的值
-- 建立物件時應該要予以指派
+* 長度小於 60 個字元
+  * 系統會將 a-z、A-Z 或 0-9 以外的字元編碼並計為 3 個字元
+* 不包含特殊字元︰&#92; ! # $ % & * + / = ? ^ &#96; { } | ~ < > ( ) ' ; : , [ ] " @ _
+* 必須是全域唯一的
+* 必須是字串、整數或二進位
+* 不應以使用者的名稱、這些變更為基礎
+* 不應區分大小寫，並避免可能會因大小寫而改變的值
+* 建立物件時應該要予以指派
 
 如果選取的 sourceAnchor 不是字串類型，則 Azure AD Connect 會將此屬性值進行 Base64Encode 處理，以確保不會出現特殊字元。 如果您使用 ADFS 以外的其他同盟伺服器，請確定您的伺服器也能夠將此屬性進行 Base64Encode 處理。
 
@@ -63,9 +62,9 @@ sourceAnchor 屬性會區分大小寫。 "JohnDoe" 與 "johndoe" 是不同的值
 
 基於這個理由，下列限制適用於 Azure AD Connect：
 
-- 只能在初始安裝期間設定 sourceAnchor 屬性。 如果您重新執行安裝精靈，這個選項會是唯讀選項。 如果您需要變更此設定，就必須解除安裝後再重新安裝。
-- 如果您安裝其他 Azure AD Connect 伺服器，您必須選取如先前所用的相同 sourceAnchor 屬性。 如果您稍早已使用 DirSync 並移至 Azure AD Connect，則必須使用 **objectGUID** ，因為這是 DirSync 所用的屬性。
-- 如果 sourceAnchor 值在物件匯出至 Azure AD 之後變更，則 Azure AD Connect Sync 會擲回錯誤，並在修正問題且於來源目錄中將 sourceAnchor 變回之前，不允許對此物件進行任何其他變更。
+* 只能在初始安裝期間設定 sourceAnchor 屬性。 如果您重新執行安裝精靈，這個選項會是唯讀選項。 如果您需要變更此設定，就必須解除安裝後再重新安裝。
+* 如果您安裝其他 Azure AD Connect 伺服器，您必須選取如先前所用的相同 sourceAnchor 屬性。 如果您稍早已使用 DirSync 並移至 Azure AD Connect，則必須使用 **objectGUID** ，因為這是 DirSync 所用的屬性。
+* 如果 sourceAnchor 值在物件匯出至 Azure AD 之後變更，則 Azure AD Connect Sync 會擲回錯誤，並在修正問題且於來源目錄中將 sourceAnchor 變回之前，不允許對此物件進行任何其他變更。
 
 ## <a name="azure-ad-sign-in"></a>Azure AD 登入
 整合您的內部部署目錄與 Azure AD 時，請務必了解同步處理設定對使用者驗證的方式有何影響。 Azure AD 使用 userPrincipalName (UPN) 來驗證使用者。 不過，當您同步處理使用者時，必須小心選擇要用於 userPrincipalName 值的屬性。
@@ -73,8 +72,8 @@ sourceAnchor 屬性會區分大小寫。 "JohnDoe" 與 "johndoe" 是不同的值
 ### <a name="choosing-the-attribute-for-userprincipalname"></a>選擇 userPrincipalName 的屬性
 當您選取屬性以便提供要用於 Azure 的 UPN 值時，應確保
 
-- 屬性值符合 UPN 語法 (RFC 822)，其格式應該是 username@domain
-- 這些值的尾碼符合 Azure AD 中其中一個已驗證的自訂網域
+* 屬性值符合 UPN 語法 (RFC 822)，其格式應該是 username@domain
+* 這些值的尾碼符合 Azure AD 中其中一個已驗證的自訂網域
 
 在快速設定中，屬性的假定選擇會是 userPrincipalName。 如果 userprincipalname 屬性不包含您希望使用者用於登入 Azure 的值，則必須選擇 [自訂安裝] 。
 
@@ -92,8 +91,6 @@ Azure AD Connect 會偵測您是否在無法路由傳送的網域環境中執行
 
 ## <a name="next-steps"></a>後續步驟
 深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
-
-
 
 <!--HONumber=Oct16_HO2-->
 

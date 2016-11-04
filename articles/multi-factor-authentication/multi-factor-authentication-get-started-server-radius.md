@@ -1,35 +1,32 @@
-<properties 
-	pageTitle="RADIUS 驗證與 Azure Multi-Factor Authentication Server"
-	description="此 Azure Multi-Factor Authentication 頁面協助您部署 RADIUS 驗證與 Azure Multi-Factor Authentication Server。"
-	services="multi-factor-authentication"
-	documentationCenter=""
-	authors="kgremban"
-	manager="femila"
-	editor="curtand"/>
+---
+title: RADIUS 驗證與 Azure Multi-Factor Authentication Server
+description: 此 Azure Multi-Factor Authentication 頁面協助您部署 RADIUS 驗證與 Azure Multi-Factor Authentication Server。
+services: multi-factor-authentication
+documentationcenter: ''
+author: kgremban
+manager: femila
+editor: curtand
 
-<tags
-	ms.service="multi-factor-authentication"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="get-started-article"
-	ms.date="08/15/2016"
-	ms.author="kgremban"/>
+ms.service: multi-factor-authentication
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: get-started-article
+ms.date: 08/15/2016
+ms.author: kgremban
 
-
-
+---
 # RADIUS 驗證與 Azure Multi-Factor Authentication Server
-
 [RADIUS 驗證] 區段可讓您啟用及設定 Azure Multi-Factor Authentication Server 的 RADIUS 驗證。RADIUS 是接受驗證要求並處理這些要求的標準通訊協定。Azure Multi-Factor Authentication Server 做為 RADIUS 伺服器，插入在 RADIUS 用戶端 (例如 VPN 應用裝置) 和驗證目標 (可能是 Active Directory (AD)、LDAP 目錄或另一部 RADIUS 伺服器) 之間，以便新增 Azure Multi-Factor Authentication。為了讓 Azure Multi-Factor Authentication 運作，Azure Multi-Factor Authentication Server 必須設定為能夠與用戶端伺服器和驗證目標進行通訊。Azure Multi-Factor Authentication Server 接受來自 RADIUS 用戶端的要求、向驗證目標驗證認證、新增 Azure Multi-Factor Authentication，然後將回應傳回給 RADIUS 用戶端。只有當主要驗證和 Azure Multi-Factor Authentication 都成功時，整個驗證才會成功。
 
->[AZURE.NOTE]
-MFA 伺服器在做為 RADIUS 伺服器時，僅支援 PAP (密碼驗證通訊協定) 和 MSCHAPv2 (Microsoft 的 Challenge-Handshake 驗證通訊協定) RADIUS 通訊協定。當 MFA Server 做為另一部 RADIUS 伺服器的 RADIUS Proxy，而此伺服器支援 Microsoft NPS 之類的通訊協定時，可以使用 EAP (可延伸的驗證通訊協定) 之類的其他通訊協定。</br> 在此組態中使用其他通訊協定時，單向 SMS 和 OATH 權杖沒有作用，因為 MFA Server 無法使用該通訊協定來起始成功的 RADIUS 挑戰回應。
-
+> [!NOTE]
+> MFA 伺服器在做為 RADIUS 伺服器時，僅支援 PAP (密碼驗證通訊協定) 和 MSCHAPv2 (Microsoft 的 Challenge-Handshake 驗證通訊協定) RADIUS 通訊協定。當 MFA Server 做為另一部 RADIUS 伺服器的 RADIUS Proxy，而此伺服器支援 Microsoft NPS 之類的通訊協定時，可以使用 EAP (可延伸的驗證通訊協定) 之類的其他通訊協定。</br> 在此組態中使用其他通訊協定時，單向 SMS 和 OATH 權杖沒有作用，因為 MFA Server 無法使用該通訊協定來起始成功的 RADIUS 挑戰回應。
+> 
+> 
 
 ![Radius 驗證](./media/multi-factor-authentication-get-started-server-rdg/radius.png)
 
 ## RADIUS 驗證組態
-
 若要設定 RADIUS 驗證，請在 Windows 伺服器上安裝 Azure Multi-Factor Authentication Server。如果您有 Active Directory 環境，此伺服器應該加入網路內的網域。使用下列程序來設定 Azure Multi-Factor Authentication Server：
 
 1. 在 Azure Multi-Factor Authentication Server 內，按一下左功能表中的 [RADIUS 驗證] 圖示。
@@ -51,13 +48,11 @@ MFA 伺服器在做為 RADIUS 伺服器時，僅支援 PAP (密碼驗證通訊�
 17. 您必須在另一部 RADIUS 伺服器中新增 Azure Multi-Factor Authentication Server 做為 RADIUS 用戶端，它才會處理從 Azure Multi-Factor Authentication Server 送來的存取要求。您必須使用 Azure Multi-Factor Authentication Server 中設定的相同共用密碼。
 18. 您可以重複此步驟來新增其他 RADIUS 伺服器，並使用 [上移] 和 [下移] 按鈕設定「伺服器」呼叫它們的順序。如此便完成 Azure Multi-Factor Authentication Server 組態。「伺服器」正在設定的連接埠上接聽來自設定的用戶端的 RADIUS 存取要求。
 
-
 ## RADIUS 用戶端組態
-
 若要設定 RADIUS 用戶端，請遵循下列指導方針：
 
-- 將您的應用裝置/伺服器設定為透過 RADIUS 向 Azure Multi-Factor Authentication Server (將做為 RADIUS 伺服器) 的 IP 位址驗證。
-- 使用上述設定的相同共用密碼。
-- 將 RADIUS 逾時設定為 30 至 60 秒，以保留足夠的時間來驗證使用者的認證、執行多因素驗證、接收回應，然後回應 RADIUS 存取要求。
+* 將您的應用裝置/伺服器設定為透過 RADIUS 向 Azure Multi-Factor Authentication Server (將做為 RADIUS 伺服器) 的 IP 位址驗證。
+* 使用上述設定的相同共用密碼。
+* 將 RADIUS 逾時設定為 30 至 60 秒，以保留足夠的時間來驗證使用者的認證、執行多因素驗證、接收回應，然後回應 RADIUS 存取要求。
 
 <!---HONumber=AcomDC_0921_2016-->

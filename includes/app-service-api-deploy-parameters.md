@@ -3,7 +3,6 @@
 我們將說明範本中的每個參數。
 
 ### gatewayName
-
 閘道器的名稱。API 應用程式會向此閘道註冊。
 
     "gatewayName": {
@@ -11,15 +10,13 @@
     }
 
 ### apiAppName
-
 要建立之 API 應用程式的名稱。名稱必須包含至少 8 個字元，而且不能多於 50 個字元。
-    
+
     "apiAppName": {
       "type": "string"
     }
 
 ### apiAppSecret
-
 API 應用程式的密碼。此值必須是 base64 編碼的字串。它應該是具有 64 個字元的隨機字串，且僅由整數和小寫字元所組成。
 
     "apiAppSecret": {
@@ -27,7 +24,6 @@ API 應用程式的密碼。此值必須是 base64 編碼的字串。它應該�
     }
 
 ### location
-
 新 API 應用程式的位置。您可以透過執行 PowerShell 指令 `Get-AzureLocation` 或 Azure CLI 指令 `azure location list` 取得有效的位置。
 
     "location": {

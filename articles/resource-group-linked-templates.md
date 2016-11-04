@@ -1,29 +1,27 @@
-<properties
-   pageTitle="透過 Resource Manager 使用連結範本 | Microsoft Azure"
-   description="描述如何在「Azure 資源管理員」範本中使用連結的範本，以建立模組化範本方案。示範如何傳遞參數值、指定參數檔案，以及動態建立 URL。"
-   services="azure-resource-manager"
-   documentationCenter="na"
-   authors="tfitzmac"
-   manager="timlt"
-   editor="tysonn"/>
+---
+title: 透過 Resource Manager 使用連結範本 | Microsoft Docs
+description: 描述如何在「Azure 資源管理員」範本中使用連結的範本，以建立模組化範本方案。示範如何傳遞參數值、指定參數檔案，以及動態建立 URL。
+services: azure-resource-manager
+documentationcenter: na
+author: tfitzmac
+manager: timlt
+editor: tysonn
 
-<tags
-   ms.service="azure-resource-manager"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="09/02/2016"
-   ms.author="tomfitz"/>
+ms.service: azure-resource-manager
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 09/02/2016
+ms.author: tomfitz
 
+---
 # 透過 Azure Resource Manager 使用連結的範本
-
 您可以從某個 Azure Resource Manager 範本連結到另一個範本，這樣可讓您將部署分解成一組具有目標與特定目的的範本。就像將應用程式分解為數個程式碼類別，分解有利於測試、重複使用和可讀性。
 
 您可以從主要範本傳遞參數到連結的範本，且那些參數可以直接對應到由發出呼叫之範本所公開的參數或變數。連結的範本也可以將輸出變數傳遞回來源範本，讓範本之間可進行雙向資料交換。
 
 ## 連結至範本
-
 您可以透過在主要範本中新增指向連結的範本之部署資源，以在兩個範本之間建立連結。將 **templateLink** 屬性設為連結的範本之 URI。您可以透過在範本中直接指定值，或透過連結到參數檔案，以為連結的範本提供參數值。以下範例會使用 **parameters** 屬性直接指定參數值。
 
     "resources": [ 
@@ -76,7 +74,6 @@ Azure Resource Manager 服務必須能夠存取連結的範本。您無法為連
 即使該 Token 是以安全字串來傳遞，連結範本的 URI (包括 SAS Token) 還是會記錄在該資源群組的部署作業中。為了限制公開的程度，請為該 Token 設定到期日。
 
 ## 連結到參數檔案
-
 下一個範例會使用 **parametersLink** 屬性連接至參數檔案。
 
     "resources": [ 
@@ -101,7 +98,6 @@ Azure Resource Manager 服務必須能夠存取連結的範本。您無法為連
 連結參數檔案的 URI 值不能是本機檔案，而且必須包含 **http** 或 **https**。當然，也可以將參數檔案限制為透過 SAS Token 存取。
 
 ## 使用變數來連結範本
-
 先前的範例示範了範本連結的硬式編碼 URL 值。這種方法可能適用於簡單的範本，但不適合一組大型的模組化範本。不過，您可以建立一個儲存主要範本之基底 URL 的靜態變數，然後再從該基底 URL 連結動態建立連結的範本之 URL。這個方法的好處是您可以輕鬆地移動範本或建立分支範本，因為您只需要變更主要範本中的靜態變數。主要範本會於整個分解的範本傳遞正確的 URI。
 
 下列範例示範如何使用基底 URL 來為連結的範本 (**sharedTemplateUrl** 和 **vmTemplate**) 建立兩個 URL。
@@ -132,7 +128,6 @@ Azure Resource Manager 服務必須能夠存取連結的範本。您無法為連
     }
 
 ## 有條件地連結至範本
-
 您可以連結至不同的範本，方法是以建構連結範本的 URI 所用的變數值來傳遞。這個方法在部署期間需要指定要使用的連結範本時很好用。例如，您可以為現有儲存體帳戶指定一個要使用的範本，並為新的儲存體帳戶指定另一個要使用的範本。
 
 下列範例顯示的是儲存體帳戶名稱的參數以及用來指定儲存體帳戶是新的或現有的參數。
@@ -233,7 +228,6 @@ URI 會決定範本命名為 **existingStorageAccount.json** 或 **newStorageAcc
     }
 
 ## 完整範例
-
 以下範例範本顯示連結範本的簡化設定，以說明本文章中的幾個概念。範例會假設已經將範本新增到儲存體帳戶中的同一個容器，且已經關閉公開存取。連結的範本會在 **outputs** 區段中將一個值傳遞給主範本。
 
 **parent.json** 檔案的組成：
@@ -269,19 +263,19 @@ URI 會決定範本命名為 **existingStorageAccount.json** 或 **newStorageAcc
 **helloworld.json** 檔案的組成：
 
     {
-	  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-	  "contentVersion": "1.0.0.0",
-	  "parameters": {},
-	  "variables": {},
-	  "resources": [],
-	  "outputs": {
-		"result": {
-			"value": "Hello World",
-			"type" : "string"
-		}
-	  }
+      "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {},
+      "variables": {},
+      "resources": [],
+      "outputs": {
+        "result": {
+            "value": "Hello World",
+            "type" : "string"
+        }
+      }
     }
-    
+
 在 PowerShell 中，您會取得容器的 Token 並使用下列方式部署範本：
 
     Set-AzureRmCurrentStorageAccount -ResourceGroupName ManageGroup -Name storagecontosotemplates
@@ -297,7 +291,7 @@ URI 會決定範本命名為 **existingStorageAccount.json** 或 **newStorageAcc
 系統會提示您以參數提供 SAS Token。您需要在 Token 前面加上 **?**。
 
 ## 後續步驟
-- 若要了解如何定義您資源的部署順序，請參閱[定義 Azure Resource Manager 範本中的相依性](resource-group-define-dependencies.md)
-- 若要了解如何定義一個資源，但建立它的多個執行個體，請參閱[在 Azure Resource Manager 中建立資源的多個執行個體](resource-group-create-multiple.md)
+* 若要了解如何定義您資源的部署順序，請參閱[定義 Azure Resource Manager 範本中的相依性](resource-group-define-dependencies.md)
+* 若要了解如何定義一個資源，但建立它的多個執行個體，請參閱[在 Azure Resource Manager 中建立資源的多個執行個體](resource-group-create-multiple.md)
 
 <!----HONumber=AcomDC_0907_2016-->

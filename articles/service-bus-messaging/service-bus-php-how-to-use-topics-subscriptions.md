@@ -1,45 +1,42 @@
-<properties 
-    pageTitle="如何搭配使用服務匯流排主題與 PHP | Microsoft Azure" 
-    description="了解如何在 Azure 中搭配使用服務匯流排主題與 PHP。" 
-    services="service-bus" 
-    documentationCenter="php" 
-    authors="sethmanheim" 
-    manager="timlt" 
-    editor=""/>
+---
+title: 如何搭配使用服務匯流排主題與 PHP | Microsoft Docs
+description: 了解如何在 Azure 中搭配使用服務匯流排主題與 PHP。
+services: service-bus
+documentationcenter: php
+author: sethmanheim
+manager: timlt
+editor: ''
 
-<tags 
-    ms.service="service-bus" 
-    ms.workload="na" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="PHP" 
-    ms.topic="article" 
-    ms.date="05/10/2016" 
-    ms.author="sethm"/>
+ms.service: service-bus
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: PHP
+ms.topic: article
+ms.date: 05/10/2016
+ms.author: sethm
 
-
-
+---
 # <a name="how-to-use-service-bus-topics-and-subscriptions"></a>如何使用服務匯流排主題和訂用帳戶
-
-[AZURE.INCLUDE [service-bus-selector-topics](../../includes/service-bus-selector-topics.md)]
+[!INCLUDE [service-bus-selector-topics](../../includes/service-bus-selector-topics.md)]
 
 本文示範如何使用服務匯流排主題和訂用帳戶。 這些範例均是以 PHP 撰寫，並使用 [Azure SDK for PHP](../php-download-sdk.md) (英文)。 涵蓋的案例包括**建立主題和訂用帳戶**、**建立訂用帳戶篩選器**、**傳送訊息至主題**、**接收訂用帳戶的訊息**，以及**刪除主題和訂用帳戶**。
 
-[AZURE.INCLUDE [howto-service-bus-topics](../../includes/howto-service-bus-topics.md)]
+[!INCLUDE [howto-service-bus-topics](../../includes/howto-service-bus-topics.md)]
 
 ## <a name="create-a-php-application"></a>建立 PHP 應用程式
-
 若要建立 PHP 應用程式並使其存取 Azure Blob 服務，唯一要求就是在您的程式碼中參考 [Azure SDK for PHP](../php-download-sdk.md) 中的類別。 您可以使用任何開發工具來建立應用程式，或記事本。
 
-> [AZURE.NOTE] 您的 PHP 安裝也必須已安裝並啟用 [OpenSSL 延伸模組](http://php.net/openssl)。
+> [!NOTE]
+> 您的 PHP 安裝也必須已安裝並啟用 [OpenSSL 延伸模組](http://php.net/openssl)。
+> 
+> 
 
 本文說明如何使用可從 PHP 應用程式內本機呼叫的服務功能，或可在 Azure Web 角色、背景工作角色或網站內執行的程式碼中呼叫的服務功能。
 
 ## <a name="get-the-azure-client-libraries"></a>取得 Azure 用戶端程式庫
-
-[AZURE.INCLUDE [get-client-libraries](../../includes/get-client-libraries.md)]
+[!INCLUDE [get-client-libraries](../../includes/get-client-libraries.md)]
 
 ## <a name="configure-your-application-to-use-service-bus"></a>設定應用程式以使用服務匯流排
-
 若要使用服務匯流排 API：
 
 1. 參考使用 [require_once][require_once] 陳述式的自動換片器檔案。
@@ -47,7 +44,10 @@
 
 下列範例說明如何納入自動換片器檔案及參考 **ServiceBusService** 類別。
 
-> [AZURE.NOTE] 此範例 (和本文中的其他範例) 假設您已透過編輯器安裝 PHP Client Libraries for Azure。 如果您以手動方式或以 PEAR 套件方式安裝程式庫，則必須參考 **WindowsAzure.php** 自動換片器檔案。
+> [!NOTE]
+> 此範例 (和本文中的其他範例) 假設您已透過編輯器安裝 PHP Client Libraries for Azure。 如果您以手動方式或以 PEAR 套件方式安裝程式庫，則必須參考 **WindowsAzure.php** 自動換片器檔案。
+> 
+> 
 
 ```
 require_once 'vendor\autoload.php';
@@ -57,7 +57,6 @@ use WindowsAzure\Common\ServicesBuilder;
 在下列各範例中，一律會顯示 `require_once` 陳述式，但只會參考要執行之範例所需的類別。
 
 ## <a name="set-up-a-service-bus-connection"></a>設定服務匯流排連接
-
 若要具現化 Azure 服務匯流排用戶端，您必須先具備符合下列格式的有效連接字串：
 
 ```
@@ -70,8 +69,8 @@ Endpoint=[yourEndpoint];SharedSecretIssuer=[Default Issuer];SharedSecretValue=[D
 
 * 直接將連接字串傳遞給它。
 * 使用 **CloudConfigurationManager (CCM)** 到多種外部來源檢查連接字串：
-    * 預設已支援一種外部來源，即環境變數。
-    * 您可以擴充 **ConnectionStringSource** 類別以加入新來源。
+  * 預設已支援一種外部來源，即環境變數。
+  * 您可以擴充 **ConnectionStringSource** 類別以加入新來源。
 
 在本文的各範例中，將會直接傳遞連接字串。
 
@@ -79,14 +78,13 @@ Endpoint=[yourEndpoint];SharedSecretIssuer=[Default Issuer];SharedSecretValue=[D
 require_once 'vendor/autoload.php';
 
 use WindowsAzure\Common\ServicesBuilder;
-    
+
 $connectionString = "Endpoint=[yourEndpoint];SharedSecretIssuer=[Default Issuer];SharedSecretValue=[Default Key]";
 
 $serviceBusRestProxy = ServicesBuilder::getInstance()->createServiceBusService($connectionString);
 ```
 
 ## <a name="create-a-topic"></a>建立主題
-
 您可以透過 **ServiceBusRestProxy** 類別來執行服務匯流排主題的管理作業。 **ServiceBusRestProxy** 物件可透過 **ServicesBuilder::createServiceBusService** Factory 方法，使用含有權杖權限加以管理的適當連接字串來建構。
 
 下列範例將說明如何具現化 **ServiceBusRestProxy** 並呼叫 **ServiceBusRestProxy->createTopic**，在 `MySBNamespace` 命名空間內建立名為 `mytopic` 的主題：
@@ -97,10 +95,10 @@ require_once 'vendor/autoload.php';
 use WindowsAzure\Common\ServicesBuilder;
 use WindowsAzure\Common\ServiceException;
 use WindowsAzure\ServiceBus\Models\TopicInfo;
-    
+
 // Create Service Bus REST proxy.
 $serviceBusRestProxy = ServicesBuilder::getInstance()->createServiceBusService($connectionString);
-    
+
 try {       
     // Create topic.
     $topicInfo = new TopicInfo("mytopic");
@@ -116,14 +114,15 @@ catch(ServiceException $e){
 }
 ```
 
-> [AZURE.NOTE] 您可以在 `ServiceBusRestProxy` 物件上使用 `listTopics` 方法，檢查服務命名空間內是否已有指定名稱的主題存在。
+> [!NOTE]
+> 您可以在 `ServiceBusRestProxy` 物件上使用 `listTopics` 方法，檢查服務命名空間內是否已有指定名稱的主題存在。
+> 
+> 
 
 ## <a name="create-a-subscription"></a>建立訂閱
-
 **ServiceBusRestProxy->createSubscription** 方法也能用來建立主題訂用帳戶。 為訂閱命名，且能包含選擇性篩選器，以用來限制傳遞至訂閱的虛擬佇列的訊息集合。
 
 ### <a name="create-a-subscription-with-the-default-(matchall)-filter"></a>使用預設 (MatchAll) 篩選器建立訂用帳戶
-
 如果在建立新的訂用帳戶時沒有指定篩選器，**MatchAll** 篩選器就會是預設使用的篩選器。 使用 **MatchAll** 篩選器時，所有發佈至主題的訊息都會被置於訂用帳戶的虛擬佇列中。 下列範例將建立名為 'mysubscription' 的訂用帳戶，並使用預設的 **MatchAll** 篩選器。
 
 ```
@@ -135,7 +134,7 @@ use WindowsAzure\ServiceBus\Models\SubscriptionInfo;
 
 // Create Service Bus REST proxy.
 $serviceBusRestProxy = ServicesBuilder::getInstance()->createServiceBusService($connectionString);
-    
+
 try {
     // Create subscription.
     $subscriptionInfo = new SubscriptionInfo("mysubscription");
@@ -152,10 +151,12 @@ catch(ServiceException $e){
 ```
 
 ### <a name="create-subscriptions-with-filters"></a>使用篩選器建立訂用帳戶
-
 您也可以設定篩選器，讓您指定傳送至主題的哪些訊息應出現在特定主題訂用帳戶中。 訂用帳戶所支援的最具彈性篩選器類型是實作 SQL92 子集的 **SqlFilter**。 SQL 篩選器會對發佈至主題之訊息的屬性運作。 如需 SqlFilters 的詳細資訊，請參閱 [SqlFilter.SqlExpression 屬性][sqlfilter]。
 
-> [AZURE.NOTE] 訂用帳戶的每個規則可獨立處理傳入的訊息，並將其結果訊息新增至訂用帳戶。 此外，每個新訂用帳戶都有具篩選器的預設 **Rule** 物件，而篩選器會將主題中的所有訊息新增至訂用帳戶。 To receive only messages matching your filter, you must remove the default rule. 您可以使用 `ServiceBusRestProxy->deleteRule` 方法以移除預設規則。
+> [!NOTE]
+> 訂用帳戶的每個規則可獨立處理傳入的訊息，並將其結果訊息新增至訂用帳戶。 此外，每個新訂用帳戶都有具篩選器的預設 **Rule** 物件，而篩選器會將主題中的所有訊息新增至訂用帳戶。 To receive only messages matching your filter, you must remove the default rule. 您可以使用 `ServiceBusRestProxy->deleteRule` 方法以移除預設規則。
+> 
+> 
 
 以下範例將建立名為 **HighMessages** 的訂用帳戶，而且所含的 **SqlFilter** 只會選取自訂 **MessageNumber** 屬性大於 3 的訊息 (請參閱[如何將訊息傳送至主題](#send-messages-to-a-topic)，以取得將自訂屬性新增至訊息的相關資訊)：
 
@@ -188,7 +189,6 @@ $ruleResult = $serviceBusRestProxy->createRule("mytopic", "LowMessages", $ruleIn
 現在，當訊息傳送至 `mytopic` 主題時，一律會將該訊息傳遞至已訂閱 `mysubscription` 訂用帳戶的接收者，並選擇性地傳遞至已訂閱 `HighMessages` 和 `LowMessages` 訂用帳戶的接收者 (視訊息內容而定)。
 
 ## <a name="send-messages-to-a-topic"></a>傳送訊息至主題
-
 若要將訊息傳送至服務匯流排主題，應用程式會呼叫 **ServiceBusRestProxy->sendTopicMessage** 方法。 下列程式碼示範如何將訊息傳送至先前在 `MySBNamespace` 服務命名空間中建立的 `mytopic` 主題。
 
 ```
@@ -200,12 +200,12 @@ use WindowsAzure\ServiceBus\Models\BrokeredMessage;
 
 // Create Service Bus REST proxy.
 $serviceBusRestProxy = ServicesBuilder::getInstance()->createServiceBusService($connectionString);
-        
+
 try {
     // Create message.
     $message = new BrokeredMessage();
     $message->setBody("my message");
-    
+
     // Send message.
     $serviceBusRestProxy->sendTopicMessage("mytopic", $message);
 }
@@ -226,19 +226,18 @@ for($i = 0; $i < 5; $i++){
     // Create message.
     $message = new BrokeredMessage();
     $message->setBody("my message ".$i);
-            
+
     // Set custom property.
     $message->setProperty("MessageNumber", $i);
-            
+
     // Send message.
     $serviceBusRestProxy->sendTopicMessage("mytopic", $message);
 }
 ```
 
-服務匯流排主題支援的訊息大小上限：在[標準層](service-bus-premium-messaging.md)中為 256 KB 以及在[進階層](service-bus-premium-messaging.md)中為 1 MB。 標頭 (包含標準和自訂應用程式屬性) 可以容納 64 KB 的大小上限。 主題中所保存的訊息數目沒有限制，但主題所保存的訊息大小總計會有最高限制。 主題大小的這項上限為 5 GB。 如需有關配額的詳細資訊，請參閱 [服務匯流排配額][]。
+服務匯流排主題支援的訊息大小上限：在[標準層](service-bus-premium-messaging.md)中為 256 KB 以及在[進階層](service-bus-premium-messaging.md)中為 1 MB。 標頭 (包含標準和自訂應用程式屬性) 可以容納 64 KB 的大小上限。 主題中所保存的訊息數目沒有限制，但主題所保存的訊息大小總計會有最高限制。 主題大小的這項上限為 5 GB。 如需有關配額的詳細資訊，請參閱 [服務匯流排配額][服務匯流排配額]。
 
 ## <a name="receive-messages-from-a-subscription"></a>自訂用帳戶接收訊息
-
 從訂用帳戶接收訊息的最佳方式是使用 **ServiceBusRestProxy->receiveSubscriptionMessage** 方法。 接收的訊息可在兩種不同的模式下運作：**ReceiveAndDelete** (預設值) 和 **PeekLock**。
 
 使用 **ReceiveAndDelete** 模式時，接收是一次性作業；也就是說，當服務匯流排在訂用帳戶中收到訊息的讀取要求時，它會將此訊息標示為已使用，並將它傳回應用程式。 **ReceiveAndDelete** 模式是最簡單的模型，且最適合可容許在發生失敗時不處理訊息的應用程式案例。 若要了解這一點，請考慮取用者發出接收要求，接著系統在處理此要求之前當機的案例。 因為服務匯流排會將訊息標示為已取用，當應用程式重新啟動並開始重新取用訊息時，它將會遺漏當機前已取用的訊息。
@@ -256,22 +255,22 @@ use WindowsAzure\ServiceBus\Models\ReceiveMessageOptions;
 
 // Create Service Bus REST proxy.
 $serviceBusRestProxy = ServicesBuilder::getInstance()->createServiceBusService($connectionString);
-        
+
 try {
     // Set receive mode to PeekLock (default is ReceiveAndDelete)
     $options = new ReceiveMessageOptions();
     $options->setPeekLock();
-    
+
     // Get message.
     $message = $serviceBusRestProxy->receiveSubscriptionMessage("mytopic", "mysubscription", $options);
 
     echo "Body: ".$message->getBody()."<br />";
     echo "MessageID: ".$message->getMessageId()."<br />";
-        
+
     /*---------------------------
         Process message here.
     ----------------------------*/
-        
+
     // Delete message. Not necessary if peek lock is not set.
     echo "Deleting message...<br />";
     $serviceBusRestProxy->deleteMessage($message);
@@ -287,7 +286,6 @@ catch(ServiceException $e){
 ```
 
 ## <a name="how-to:-handle-application-crashes-and-unreadable-messages"></a>如何處理應用程式當機與無法讀取的訊息
-
 服務匯流排提供一種功能，可協助您從應用程式的錯誤或處理訊息的問題中順利復原。 如果接收者應用程式因為某些原因無法處理訊息，它可以在已接收的訊息上呼叫 **unlockMessage** 方法 (而不是 **deleteMessage** 方法)。 這將導致服務匯流排將佇列中的訊息解除鎖定，讓此訊息可以被相同取用應用程式或其他取用應用程式重新接收。
 
 與在佇列內鎖定之訊息相關的還有逾時，如果應用程式無法在鎖定逾時到期之前處理訊息 (例如，如果應用程式當機)，則服務匯流排會自動解除鎖定訊息，並讓訊息可以被重新接收。
@@ -295,7 +293,6 @@ catch(ServiceException $e){
 如果應用程式在處理訊息之後，尚未發出 **deleteMessage** 要求時當機，則會在應用程式重新啟動時將訊息重新傳遞給該應用程式。 這通常稱為 **至少處理一次**，也就是說，每個訊息至少會被處理一次，但在特定狀況下，可能會重新傳遞相同訊息。 如果案例無法容許重複處理，則應用程式開發人員應在應用程式中加入其他邏輯，以處理重複的訊息傳遞。 通常您可使用訊息的 **getMessageId** 方法來達到此目的，該方法將在各個傳遞嘗試中保持不變。
 
 ## <a name="delete-topics-and-subscriptions"></a>刪除主題和訂用帳戶
-
 若要刪除主題或訂用帳戶，請分別使用 **ServiceBusRestProxy->deleteTopic** 或 **ServiceBusRestProxy->deleteSubscripton** 方法。 請注意，刪除主題也將會刪除已註冊該主題的任何訂用帳戶。
 
 下列範例示範如何刪除名為 `mytopic` 的主題及其註冊的訂用帳戶。
@@ -309,7 +306,7 @@ use WindowsAzure\Common\ServiceException;
 
 // Create Service Bus REST proxy.
 $serviceBusRestProxy = ServicesBuilder::getInstance()->createServiceBusService($connectionString);
-    
+
 try {       
     // Delete topic.
     $serviceBusRestProxy->deleteTopic("mytopic");
@@ -331,8 +328,7 @@ $serviceBusRestProxy->deleteSubscription("mytopic", "mysubscription");
 ```
 
 ## <a name="next-steps"></a>後續步驟
-
-現在您已了解服務匯流排佇列的基本概念，請參閱[佇列、主題和訂用帳戶][]，以取得詳細資訊。
+現在您已了解服務匯流排佇列的基本概念，請參閱[佇列、主題和訂用帳戶][佇列、主題和訂用帳戶]，以取得詳細資訊。
 
 [佇列、主題和訂用帳戶]: service-bus-queues-topics-subscriptions.md
 [sqlfilter]: http://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.sqlfilter.sqlexpression.aspx

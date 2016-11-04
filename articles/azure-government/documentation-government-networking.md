@@ -1,26 +1,24 @@
-<properties
-	pageTitle="Azure Government 文件 | Microsoft Azure"
-	description="這會提供與 Azure Government 之私人連線的功能比較和指引"
-	services="Azure-Government"
-	cloud="gov" 
-	documentationCenter=""
-	authors="ryansoc"
-	manager="zakramer"
-	editor=""/>
+---
+title: Azure Government 文件 | Microsoft Docs
+description: 這會提供與 Azure Government 之私人連線的功能比較和指引
+services: Azure-Government
+cloud: gov
+documentationcenter: ''
+author: ryansoc
+manager: zakramer
+editor: ''
 
-<tags
-	ms.service="multiple"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.tgt_pltfrm="na"
-	ms.workload="azure-government"
-	ms.date="08/25/2016"
-	ms.author="ryansoc"/>
+ms.service: multiple
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: azure-government
+ms.date: 08/25/2016
+ms.author: ryansoc
 
-#  Azure Government 網路
-
-##  ExpressRoute (私人連線)
-
+---
+# Azure Government 網路
+## ExpressRoute (私人連線)
 有兩個基本服務會提供連往 Azure Government 的私人網路連線：VPN (一般組織為網站間) 和 ExpressRoute。
 
 Azure ExpressRoute 可用來在 Azure Government 資料中心之間、內部部署基礎結構或共置環境中建立私人連線。ExpressRoute 連線不經過公用網際網路，相較於一般網際網路連線更為可靠、速度更快且延遲更低。在某些情況下，使用 ExpressRoute 連線在內部部署系統與 Azure 之間傳輸資料，可以發揮巨大的成本效益。

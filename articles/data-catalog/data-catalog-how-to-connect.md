@@ -1,24 +1,23 @@
-<properties
-   pageTitle="如何連接到資料來源 | Microsoft Azure"
-   description="操作說明文章著重在說明如何連接到使用 Azure 資料目錄找到的資料來源。"
-   services="data-catalog"
-   documentationCenter=""
-   authors="steelanddata"
-   manager="NA"
-   editor=""
-   tags=""/>
-<tags
-   ms.service="data-catalog"
-   ms.devlang="NA"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="data-catalog"
-   ms.date="09/15/2016"
-   ms.author="maroche"/>
+---
+title: 如何連接到資料來源 | Microsoft Docs
+description: 操作說明文章著重在說明如何連接到使用 Azure 資料目錄找到的資料來源。
+services: data-catalog
+documentationcenter: ''
+author: steelanddata
+manager: NA
+editor: ''
+tags: ''
 
+ms.service: data-catalog
+ms.devlang: NA
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: data-catalog
+ms.date: 09/15/2016
+ms.author: maroche
 
+---
 # 如何連接到資料來源
-
 ## 簡介
 [Microsoft Azure 資料目錄] 是全面管理的雲端服務，可作為企業資料來源的註冊系統和探索系統。換句話說，[Azure 資料目錄] 的重點在於協助人們探索、了解，以及使用資料來源，並可協助組織從現有的資料獲得更多價值。這個背景的重點就在於使用資料，也就是使用者探索資料來源並了解其用途，然後連接到資料來源將使用其資料。
 
@@ -39,12 +38,12 @@
 
 | 在應用程式中開啟 | 副檔名/通訊協定 | 支援的應用程式版本 |
 | --- | --- | --- |
-| Excel | .odc | Excel 2010 或更新版本 |
-| Excel (前 1000 個) | .odc | Excel 2010 或更新版本 |
-| Power Query | .xlsx | 安裝了 Power Query for Excel 增益集的 Excel 2016、Excel 2010 或 Excel 2013
-| Power BI Desktop | .pbix | Power BI Desktop 2016 年 7 月或更新版本 |
-| SQL Server Data Tools | vsweb:// | 安裝了 SQL Server 工具的 Visual Studio 2013 Update 4 或更新版本 |
-| 報表管理員 | http:// | 請參閱 [SQL Server Reporting Services 的瀏覽器需求](https://technet.microsoft.com/zh-TW/library/ms156511.aspx) |
+| Excel |.odc |Excel 2010 或更新版本 |
+| Excel (前 1000 個) |.odc |Excel 2010 或更新版本 |
+| Power Query |.xlsx |安裝了 Power Query for Excel 增益集的 Excel 2016、Excel 2010 或 Excel 2013 |
+| Power BI Desktop |.pbix |Power BI Desktop 2016 年 7 月或更新版本 |
+| SQL Server Data Tools |vsweb:// |安裝了 SQL Server 工具的 Visual Studio 2013 Update 4 或更新版本 |
+| 報表管理員 |http:// |請參閱 [SQL Server Reporting Services 的瀏覽器需求](https://technet.microsoft.com/zh-TW/library/ms156511.aspx) |
 
 ## 您的資料與工具
 功能表中可用的選項取決於目前選取的資料資產的類型。當然，並非所有可能的工具都會包含在 [開啟於...] 功能表中，不過使用任何用戶端工具，仍是輕鬆連接到資料來源的方法。在 **Azure 資料目錄**入口網站選取資料資產後，完整的位置會顯示在屬性窗格中。
@@ -60,10 +59,10 @@
 
  ![具有所提供之要求存取指示的連接資訊](./media/data-catalog-how-to-connect/data-catalog-how-to-connect4.png)
 
-##摘要
+## 摘要
 使用 **Azure 資料目錄**註冊資料來源，即可藉由將資料來源的結構性和描述性中繼資料複製到「目錄」服務內，使其變成可探索的資料。資料來源一經註冊且被找到後，使用者可以從 **Azure 資料目錄**入口網站的 [開啟於...] 功能表，或使用他們選擇的資料工具，連接到資料來源。
 
 ## 另請參閱
-- [開始使用 Azure 資料目錄](data-catalog-get-started.md)教學課程，取得如何連線至資料來源的逐步詳細資料。
+* [開始使用 Azure 資料目錄](data-catalog-get-started.md)教學課程，取得如何連線至資料來源的逐步詳細資料。
 
 <!---HONumber=AcomDC_0921_2016-->

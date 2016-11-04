@@ -1,29 +1,28 @@
-<properties
-	pageTitle="在 Office 365 入口網站中建立 Azure Multi-Factor Authentication 的應用程式密碼"
-	description="此頁面會顯示使用者如何在 Office 365 入口網站中建立其他應用程式密碼。"
-	services="multi-factor-authentication"
-	documentationCenter=""
-	authors="kgremban"
-	manager="femila"
-	editor="curtland"/>
+---
+title: 在 Office 365 入口網站中建立 Azure Multi-Factor Authentication 的應用程式密碼
+description: 此頁面會顯示使用者如何在 Office 365 入口網站中建立其他應用程式密碼。
+services: multi-factor-authentication
+documentationcenter: ''
+author: kgremban
+manager: femila
+editor: curtland
 
-<tags
-	ms.service="multi-factor-authentication"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/04/2016"
-	ms.author="kgremban"/>
+ms.service: multi-factor-authentication
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/04/2016
+ms.author: kgremban
 
+---
 # 在 Office 365 入口網站中建立或刪除 Azure Multi-Factor Authentication 的應用程式密碼
-
 如果您搭配 Office 365 使用 Multi-Factor Authentication，您會透過 Office 365 入口網站建立及刪除應用程式密碼。
 
 ## 在 Office 365 入口網站中建立應用程式密碼
---------------------------------------------------------------------------------
-
+- - -
 <ol>
+
 <li>登入 Office 365 入口網站</li>
 <li>在右上角選取設定 Widget</li>
 <li>在左側選取 [其他安全性驗證]</li>
@@ -46,9 +45,9 @@
 
 
 ## 在 Office 365 入口網站中刪除應用程式密碼
---------------------------------------------------------------------------------
-
+- - -
 <ol>
+
 <li>登入 Office 365 入口網站</li>
 <li>在右上角選取 [Widget] 並選擇 [Office 365 設定]</li>
 <li>在底部，按一下 [其他安全性驗證] 並選取 [更新用於帳戶安全性的電話號碼]。3</li>

@@ -1,23 +1,22 @@
-<properties
-	pageTitle="如何從 Twilio 撥打電話 (PHP) | Microsoft Azure"
-	description="了解如何在 Azure 上使用 Twilio API 服務撥打電話及傳送簡訊。範例適用於 PHP 應用程式。"
-	documentationCenter="php"
-	services=""
-	authors="devinrader"
-	manager="twilio"
-	editor="mollybos"/>
+---
+title: 如何從 Twilio 撥打電話 (PHP) | Microsoft Docs
+description: 了解如何在 Azure 上使用 Twilio API 服務撥打電話及傳送簡訊。範例適用於 PHP 應用程式。
+documentationcenter: php
+services: ''
+author: devinrader
+manager: twilio
+editor: mollybos
 
-<tags
-	ms.service="multiple"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="PHP"
-	ms.topic="article"
-	ms.date="11/25/2014"
-	ms.author="microsofthelp@twilio.com"/>
+ms.service: multiple
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: PHP
+ms.topic: article
+ms.date: 11/25/2014
+ms.author: microsofthelp@twilio.com
 
+---
 # 如何在 Azure 上的 PHP 應用程式中使用 Twilio 撥打電話
-
 下列範例將說明如何從 Azure 代管的 PHP 網頁上使用 Twilio 撥打電話。產生的應用程式會提示使用者提供電話值，如下列螢幕擷取畫面所示。
 
 ![Azure Call Form Using Twilio and PHP][twilio_php]
@@ -29,70 +28,69 @@
 3. 安裝 Azure SDK for PHP。如需 SDK 的概觀及其安裝指示，請參閱[設定 Azure SDK for PHP][setup_php_sdk]。
 
 ## 建立用以撥打電話的 Web 表單
-
 下列 HTML 程式碼將說明如何建置網頁 (**callform.html**)，以擷取撥打電話所需的使用者資料：
 
     <html>
-	<head>
-		<title>Automated call form</title>
-	</head>
-	<body>
-	<h1>Automated Call Form</h1>
- 	<p>Fill in all fields and click <b>Make this call</b>.</p>
-  	<form action="makecall.php" method="post">
-   	<table>
-     	<tr>
-       		<td>To:</td>
-       		<td><input type="text" size=50 name="callTo" value=""></td>
-     	</tr>
-     	<tr>
-       		<td>From:</td>
-       		<td><input type="text" size=50 name="callFrom" value=""></td>
-     	</tr>
-     	<tr>
-       		<td>Call message:</td>
-       		<td><input type="text" size=100 name="callText" value="Hello. This is the call text. Good bye." /></td>
-     	</tr>
-     	<tr>
-       		<td colspan=2><input type="submit" value="Make this call"></td>
-     	</tr>
-   	</table>
- 	</form>
- 	<br/>
-	</body>
-	</html>
+    <head>
+        <title>Automated call form</title>
+    </head>
+    <body>
+    <h1>Automated Call Form</h1>
+     <p>Fill in all fields and click <b>Make this call</b>.</p>
+      <form action="makecall.php" method="post">
+       <table>
+         <tr>
+               <td>To:</td>
+               <td><input type="text" size=50 name="callTo" value=""></td>
+         </tr>
+         <tr>
+               <td>From:</td>
+               <td><input type="text" size=50 name="callFrom" value=""></td>
+         </tr>
+         <tr>
+               <td>Call message:</td>
+               <td><input type="text" size=100 name="callText" value="Hello. This is the call text. Good bye." /></td>
+         </tr>
+         <tr>
+               <td colspan=2><input type="submit" value="Make this call"></td>
+         </tr>
+       </table>
+     </form>
+     <br/>
+    </body>
+    </html>
 
 ## 建立用以撥打電話的程式碼
 下列程式碼將說明如何建置會在使用者提交 **callform.html** 所顯示的表單時受到呼叫的網頁 (**makecall.php**)。下方顯示的程式碼會建立通話訊息及產生通話。(在下方的程式碼中，請使用您的 Twilio 帳戶和驗證權杖，而不要使用指派給 **$sid** 和 **$token** 的預留位置值。)
 
     <html>
-	<head><title>Making call...</title></head>
-	<body>
-	<p>Your call is being made.</p>
+    <head><title>Making call...</title></head>
+    <body>
+    <p>Your call is being made.</p>
 
-	<?php
-	require_once 'Services/Twilio.php';
+    <?php
+    require_once 'Services/Twilio.php';
 
-	$sid = "your_account_sid";
-	$token = "your_authentication_token";
+    $sid = "your_account_sid";
+    $token = "your_authentication_token";
 
-	$from_number = $_POST['callFrom']; // Calls must be made from a registered Twilio number.
-	$to_number = $_POST['callTo'];
-	$message = $_POST['callText'];
+    $from_number = $_POST['callFrom']; // Calls must be made from a registered Twilio number.
+    $to_number = $_POST['callTo'];
+    $message = $_POST['callText'];
 
-	$client = new Services_Twilio($sid, $token, "2010-04-01");
+    $client = new Services_Twilio($sid, $token, "2010-04-01");
 
-	$call = $client->account->calls->create(
-		$from_number,
-		$to_number,
-  		'http://twimlets.com/message?Message='.urlencode($message)
-	);
+    $call = $client->account->calls->create(
+        $from_number,
+        $to_number,
+          'http://twimlets.com/message?Message='.urlencode($message)
+    );
 
-	echo "Call status: ".$call->status."<br />";
-	echo "URI resource: ".$call->uri."<br />";
-	?>
-	</body>
-	</html>
+    echo "Call status: ".$call->status."<br />";
+    echo "URI resource: ".$call->uri."<br />";
+    ?>
+    </body>
+    </html>
 
 除了撥打電話以外，**makecall.php** 也會顯示某些通話中繼資料 (範例顯示於下方的螢幕擷取畫面中)。如需通話中繼資料的詳細資訊，請參閱 [https://www.twilio.com/docs/api/rest/call#instance-properties][twilio_call_properties]。
 

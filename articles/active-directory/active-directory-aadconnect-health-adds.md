@@ -1,22 +1,22 @@
 
-<properties
-	pageTitle="使用 Azure AD Connect Health 搭配 AD DS | Microsoft Azure"
-	description="這是 Azure AD Connect Health 頁面，其中討論如何監視 AD DS。"
-	services="active-directory"
-	documentationCenter=""
-	authors="arluca"
-	manager="samueld"
-	editor="curtand"/>
+---
+title: 使用 Azure AD Connect Health 搭配 AD DS | Microsoft Docs
+description: 這是 Azure AD Connect Health 頁面，其中討論如何監視 AD DS。
+services: active-directory
+documentationcenter: ''
+author: arluca
+manager: samueld
+editor: curtand
 
-<tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="get-started-article"
-	ms.date="09/30/2016"
-	ms.author="arluca"/>
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: get-started-article
+ms.date: 09/30/2016
+ms.author: arluca
 
+---
 # 在 AD DS 使用 Azure AD Connect Health
 下列文件適用於使用 Azure AD Connect Health 來監視 Active Directory 網域服務。AD DS 支援的版本：Windows Server 2008 R2、Windows Server 2012 及 Windows Server 2012 R2。
 
@@ -51,7 +51,6 @@
 根據預設，已預先選取四個效能計數器；不過，您可以按篩選命令並選取或取消選取任何想要的效能計數器。此外，您可以連按兩下效能計數器圖形以開啟新的刀鋒視窗，其中包含每個受監視網域控制站的資料點。
 
 ## 相關連結
-
 * [Azure AD Connect Health](active-directory-aadconnect-health.md)
 * [Azure AD Connect Health 代理程式安裝](active-directory-aadconnect-health-agent-install.md)
 * [Azure AD Connect Health 操作](active-directory-aadconnect-health-operations.md)

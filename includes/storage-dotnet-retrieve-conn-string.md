@@ -6,9 +6,9 @@
 
 如果您是建立不含 Microsoft.WindowsAzure.CloudConfigurationManager 參照的應用程式，且連接字串位於 `web.config` 或 `app.config` (如上所示)，則可使用 **ConfigurationManager** 來擷取連接字串。您需要將 System.Configuration.dll 參照新增至專案，並為其新增其他命名空間宣告：
 
-	using System.Configuration;
-	...
-	CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-		ConfigurationManager.AppSettings["StorageConnectionString"]);
+    using System.Configuration;
+    ...
+    CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
+        ConfigurationManager.AppSettings["StorageConnectionString"]);
 
 <!---HONumber=AcomDC_0309_2016-->

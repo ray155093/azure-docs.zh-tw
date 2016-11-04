@@ -1,31 +1,30 @@
-<properties
- pageTitle="適用於物聯網的 Azure 解決方案 | Microsoft Azure"
- description="Azure 上的 IoT 概觀，包括架構解決方案範例，以及它如何與 Azure IoT 中樞、裝置 SDK 以及預先設定的解決方案相關聯"
- services="iot-hub"
- documentationCenter=""
- authors="dominicbetts"
- manager="timlt"
- editor=""/>
+---
+title: 適用於物聯網的 Azure 解決方案 | Microsoft Docs
+description: Azure 上的 IoT 概觀，包括架構解決方案範例，以及它如何與 Azure IoT 中樞、裝置 SDK 以及預先設定的解決方案相關聯
+services: iot-hub
+documentationcenter: ''
+author: dominicbetts
+manager: timlt
+editor: ''
 
-<tags
- ms.service="iot-hub"
- ms.devlang="na"
- ms.topic="get-started-article"
- ms.tgt_pltfrm="na"
- ms.workload="na"
- ms.date="10/05/2016"
- ms.author="dobett"/>
+ms.service: iot-hub
+ms.devlang: na
+ms.topic: get-started-article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 10/05/2016
+ms.author: dobett
 
-[AZURE.INCLUDE [iot-azure-and-iot](../../includes/iot-azure-and-iot.md)]
+---
+[!INCLUDE [iot-azure-and-iot](../../includes/iot-azure-and-iot.md)]
 
 ## 後續步驟
-
 Azure IoT 中樞是一項 Azure 服務，可讓應用程式後端與數百萬個裝置進行安全可靠的雙向通訊。它可讓應用程式後端︰
 
-- 從您的裝置接收大規模遙測。
-- 將資料從您的裝置路由傳送到串流事件處理器。
-- 從裝置接收檔案上傳。
-- 將雲端到裝置的命令傳送到特定裝置。
+* 從您的裝置接收大規模遙測。
+* 將資料從您的裝置路由傳送到串流事件處理器。
+* 從裝置接收檔案上傳。
+* 將雲端到裝置的命令傳送到特定裝置。
 
 您可以使用 IoT 中樞來實作自己的方案後端。此外，IoT 中樞還包含裝置身分識別登錄，可供用來佈建裝置、其安全性認證和其連線到中樞的權限。若要深入了解 IoT 中樞，請參閱[何謂 IoT 中樞？][lnk-iot-hub]。
 

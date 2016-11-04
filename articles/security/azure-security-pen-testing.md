@@ -1,23 +1,22 @@
-<properties
-   pageTitle="滲透測試 | Microsoft Azure"
-   description="本文提供滲透測試 (pentest) 程序和如何對 Azure 基礎結構中執行的應用程式執行滲透測試的概觀。"
-   services="security"
-   documentationCenter="na"
-   authors="YuriDio"
-   manager="swadhwa"
-   editor="TomSh"/>
+---
+title: 滲透測試 | Microsoft Docs
+description: 本文提供滲透測試 (pentest) 程序和如何對 Azure 基礎結構中執行的應用程式執行滲透測試的概觀。
+services: security
+documentationcenter: na
+author: YuriDio
+manager: swadhwa
+editor: TomSh
 
-<tags
-   ms.service="security"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="08/09/2016"
-   ms.author="yurid"/>
+ms.service: security
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 08/09/2016
+ms.author: yurid
 
+---
 # 滲透測試
-
 使用 Microsoft Azure 進行應用程式測試和部署最大的好處之一是，您不需要將內部部署基礎結構放在一起，即可開發、測試及部署應用程式。所有基礎結構都是由 Microsoft Azure 平台服務處理。您無需購置、取得和組裝自己的內部部署硬體。
 
 這很好 - 但您仍然需要確定您審慎執行一般的安全性作業。您所要做的事情之一是對您在 Azure 中部署的應用程式進行滲透測試。
@@ -32,9 +31,9 @@
 
 準備要對您的 Azure 代管應用程式進行滲透測試時，您需要讓我們知道。一旦我們知道您要執行特定測試，我們將不會不小心將您關閉 (例如封鎖您進行測試的來源 IP 位址)，只要測試符合 Azure 測試滲透條款和條件即可。您可以執行的標準測試包括：
 
-- 對端點進行測試，以發掘[開放式 Web 應用程式安全性專案 (OWASP) 的前 10 大弱點](https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project)
-- 對端點進行[模糊測試](https://blogs.microsoft.com/cybertrust/2007/09/20/fuzz-testing-at-microsoft-and-the-triage-process/)
-- 對端點進行[連接埠掃描](https://en.wikipedia.org/wiki/Port_scanner)
+* 對端點進行測試，以發掘[開放式 Web 應用程式安全性專案 (OWASP) 的前 10 大弱點](https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project)
+* 對端點進行[模糊測試](https://blogs.microsoft.com/cybertrust/2007/09/20/fuzz-testing-at-microsoft-and-the-triage-process/)
+* 對端點進行[連接埠掃描](https://en.wikipedia.org/wiki/Port_scanner)
 
 您不能執行的一種測試是任何種類的[拒絕服務 (DoS)](https://en.wikipedia.org/wiki/Denial-of-service_attack) 攻擊。這包括起始 DoS 攻擊本身，或是執行可能會決定、示範或模擬任何類型的 DoS 攻擊的相關測試。
 

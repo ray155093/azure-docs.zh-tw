@@ -1,35 +1,36 @@
-<properties
-   pageTitle="Operations Management Suite (OMS) 中的應用程式相依性監視 (ADM) | Microsoft Azure"
-   description="應用程式相依性監視 (ADM) 是一個 Operations Management Suite (OMS) 解決方案，可自動探索 Windows 和 Linux 系統上的應用程式元件，並對應服務之間的通訊。  本文會詳細說明如何在環境中部署 ADM 並將它用於各種案例。"
-   services="operations-management-suite"
-   documentationCenter=""
-   authors="daseidma"
-   manager="jwhit"
-   editor="tysonn" />
-<tags
-   ms.service="operations-management-suite"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="infrastructure-services"
-   ms.date="09/28/2016"
-   ms.author="daseidma;bwren" />
+---
+title: Operations Management Suite (OMS) 中的應用程式相依性監視 (ADM) | Microsoft Docs
+description: 應用程式相依性監視 (ADM) 是一個 Operations Management Suite (OMS) 解決方案，可自動探索 Windows 和 Linux 系統上的應用程式元件，並對應服務之間的通訊。  本文會詳細說明如何在環境中部署 ADM 並將它用於各種案例。
+services: operations-management-suite
+documentationcenter: ''
+author: daseidma
+manager: jwhit
+editor: tysonn
 
+ms.service: operations-management-suite
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 09/28/2016
+ms.author: daseidma;bwren
 
+---
 # <a name="using-application-dependency-monitor-solution-in-operations-management-suite-(oms)"></a>在 Operations Management Suite (OMS) 中使用應用程式相依性監視解決方案
 ![Alert Management icon](media/operations-management-suite-application-dependency-monitor/icon.png) 應用程式相依性監視 (ADM) 可自動探索 Windows 和 Linux 系統上的應用程式元件，並對應服務之間的通訊。 如果您想到您的伺服器，ADM 可讓您以互連系統 (提供重要服務) 的形式檢視它們。  不需要進行任何設定，只要安裝了代理程式，應用程式相依性監視就會顯示橫跨任何 TCP 連接架構的伺服器、處理程序和連接埠之間的連接。
 
 本文會說明使用應用程式相依性監視的詳細資料。  如需設定 ADM 和啟用代理程式的相關資訊，請參閱[在 Operations Management Suite (OMS) 中設定應用程式相依性監視解決方案](operations-management-suite-application-dependency-monitor-configure.md)
 
->[AZURE.NOTE]應用程式相依性監視目前僅供私人預覽。  您可以在 [https://aka.ms/getadm](https://aka.ms/getadm) 要求存取 ADM 私人預覽。
->
->在私人預覽期間，所有 OMS 帳戶都可無限制地存取 ADM。  ADM 節點是免費的，但和其他任何解決方案一樣，AdmComputer_CL 和 AdmProcess_CL 類型的 Log Analytics 資料會進行計量。
->
->當 ADM 進入公開預覽後，將會僅供 OMS 定價方案中免費和付費的深入解析與分析客戶使用。  免費層帳戶僅限使用 5 個 ADM 節點。  如果您正在參與私人預覽，而且當 ADM 進入公開預覽時並未註冊 OMS 定價方案，ADM 屆時將會停用。 
-
+> [!NOTE]
+> 應用程式相依性監視目前僅供私人預覽。  您可以在 [https://aka.ms/getadm](https://aka.ms/getadm) 要求存取 ADM 私人預覽。
+> 
+> 在私人預覽期間，所有 OMS 帳戶都可無限制地存取 ADM。  ADM 節點是免費的，但和其他任何解決方案一樣，AdmComputer_CL 和 AdmProcess_CL 類型的 Log Analytics 資料會進行計量。
+> 
+> 當 ADM 進入公開預覽後，將會僅供 OMS 定價方案中免費和付費的深入解析與分析客戶使用。  免費層帳戶僅限使用 5 個 ADM 節點。  如果您正在參與私人預覽，而且當 ADM 進入公開預覽時並未註冊 OMS 定價方案，ADM 屆時將會停用。 
+> 
+> 
 
 ## <a name="use-cases:-make-your-it-processes-dependency-aware"></a>使用案例︰讓 IT 處理程序可以感知相依性
-
 ### <a name="discovery"></a>探索
 ADM 會自動建置跨伺服器、處理程序和第 3 方服務的一般相依性參考對應。  它會探索並對應所有 TCP 相依性，進而識別非預期的連線、您仰賴的遠端第 3 方系統，以及與傳統網路暗區 (如 DNS 和 AD) 的相依性。  ADM 可探索到受管理系統嘗試進行的失敗網路連線，幫助您識別潛在的伺服器錯誤設定、服務中斷和網路問題。
 
@@ -44,7 +45,6 @@ ADM 可讓您有效地規劃、加速和驗證 Azure 移轉，確保沒有遺漏
 
 ### <a name="patch-management"></a>修補程式管理
 ADM 藉由向您指出其他哪些小組和伺服器依賴您的服務，增強了 OMS 系統更新評估的使用性，因此您可以事先通知他們，然後才關閉系統進行修補。  ADM 更藉由向您指出服務在修補並重新啟動之後是否可用並已正確連線，增強了 OMS 中的修補程式管理。 
-
 
 ## <a name="mapping-overview"></a>對應概觀
 ADM 代理程式會收集其安裝所在之伺服器上所有 TCP 連線處理程序的相關資訊，以及有關每個處理程序之輸入和輸出連線的詳細資料。  使用 ADM 解決方案左邊的 [機器清單]，即可選取具有 ADM 代理程式的機器，以便視覺化呈現這些機器在所選時間範圍內的相依性。  機器相依性對應的焦點會集中在特定機器，並顯示所有屬於該機器之直接 TCP 用戶端或伺服器的所有機器。
@@ -88,7 +88,6 @@ ADM 對應內會顯示處理程序和電腦的失敗連線，並以紅色虛線�
 以下是在選取 [在 Log Analytics 中顯示] 後組態變更事件的向下鑽研檢視。
 ![組態變更事件](media/operations-management-suite-application-dependency-monitor/configuration-change-event.png)
 
-
 ## <a name="log-analytics-records"></a>Log Analytics 記錄
 ADM 的電腦和處理程序清查資料可供在 Log Analytics 中進行[搜尋](../log-analytics/log-analytics-log-searches.md)。  這適用於包括移轉規劃、容量分析、探索和臨機操作效能疑難排解在內的案例。 
 
@@ -96,67 +95,62 @@ ADM 的電腦和處理程序清查資料可供在 Log Analytics 中進行[搜尋
 
 有可用來識別唯一處理程序和電腦的內部產生屬性︰
 
-- PersistentKey_s 會以處理程序組態 (例如命令列和使用者識別碼) 來進行唯一定義。  其為給定電腦所獨有，但可跨電腦重複。
-- ProcessId_s 和 ComputerId_s 在 ADM 模型中則是全域唯一的。
-
-
+* PersistentKey_s 會以處理程序組態 (例如命令列和使用者識別碼) 來進行唯一定義。  其為給定電腦所獨有，但可跨電腦重複。
+* ProcessId_s 和 ComputerId_s 在 ADM 模型中則是全域唯一的。
 
 ### <a name="admcomputer_cl-records"></a>AdmComputer_CL 記錄
 類型為 **AdmComputer_CL** 的記錄會有伺服器 (具有 ADM 代理程式) 的清查資料。  這些記錄具有下表中的屬性。  
 
 | 屬性 | 說明 |
-|:--|:--|
-| 類型 | AdmComputer_CL |
-| SourceSystem | *OpsManager* |
-| ComputerName_s | Windows 或 Linux 電腦名稱 |
-| CPUSpeed_d | 以 MHz 為單位的 CPU 速度 |
-| DnsNames_s | 此電腦的所有 DNS 名稱清單 |
-| IPv4s_s | 此電腦所使用的所有 IPv4 位址清單 |
-| IPv6s_s | 此電腦所使用的所有 IPv6 位址清單   (ADM 可識別 IPv6 位址，但不會探索 IPv6 相依性)。 |
-| Is64Bit_b | true 或 false (根據 OS 類型) |
-| MachineId_s | 跨 OMS 工作區唯一的內部 GUID  |
-| OperatingSystemFamily_s | Windows 或 Linux |
-| OperatingSystemVersion_s | 完整 OS 版本字串 |
-| TimeGenerated | 記錄的建立日期和時間。 |
-| TotalCPUs_d | CPU 核心數目 |
-| TotalPhysicalMemory_d | 記憶體容量 (MB) |
-| VirtualMachine_b | true 或 false (根據 OS 是否為 VM 客體) |
-| VirtualMachineID_g | Hyper-V VM 識別碼 |
-| VirtualMachineName_g | Hyper-V VM 名稱 |
-| VirtualMachineType_s | Hyperv、Vmware、Xen、Kvm、Ldom、Lpar、Virtualpc |
+|:--- |:--- |
+| 類型 |AdmComputer_CL |
+| SourceSystem |*OpsManager* |
+| ComputerName_s |Windows 或 Linux 電腦名稱 |
+| CPUSpeed_d |以 MHz 為單位的 CPU 速度 |
+| DnsNames_s |此電腦的所有 DNS 名稱清單 |
+| IPv4s_s |此電腦所使用的所有 IPv4 位址清單 |
+| IPv6s_s |此電腦所使用的所有 IPv6 位址清單   (ADM 可識別 IPv6 位址，但不會探索 IPv6 相依性)。 |
+| Is64Bit_b |true 或 false (根據 OS 類型) |
+| MachineId_s |跨 OMS 工作區唯一的內部 GUID |
+| OperatingSystemFamily_s |Windows 或 Linux |
+| OperatingSystemVersion_s |完整 OS 版本字串 |
+| TimeGenerated |記錄的建立日期和時間。 |
+| TotalCPUs_d |CPU 核心數目 |
+| TotalPhysicalMemory_d |記憶體容量 (MB) |
+| VirtualMachine_b |true 或 false (根據 OS 是否為 VM 客體) |
+| VirtualMachineID_g |Hyper-V VM 識別碼 |
+| VirtualMachineName_g |Hyper-V VM 名稱 |
+| VirtualMachineType_s |Hyperv、Vmware、Xen、Kvm、Ldom、Lpar、Virtualpc |
 
-
-### <a name="admprocess_cl-type-records"></a>AdmProcess_CL 類型記錄 
+### <a name="admprocess_cl-type-records"></a>AdmProcess_CL 類型記錄
 類型為 **AdmProcess_CL** 的記錄會有伺服器 (具有 ADM 代理程式) 上 TCP 連線處理程序的清查資料。  這些記錄具有下表中的屬性。
 
 | 屬性 | 說明 |
-|:--|:--|
-| 類型 | AdmProcess_CL |
-| SourceSystem | *OpsManager* |
-| CommandLine_s | 處理程序的完整命令列 |
-| CompanyName_s | 公司名稱 (來自 Windows PE 或 Linux RPM) |
-| Description_s | 完整處理程序描述 (來自 Windows PE 或 Linux RPM) |
-| FileVersion_s | 可執行檔版本 (僅限來自 Windows PE、Windows) |
-| FirstPid_d | OS 處理程序識別碼 |
-| InternalName_s | 可執行檔的內部名稱 (僅限來自 Windows PE、Windows) |
-| MachineId_s | 跨 OMS 工作區唯一的內部 GUID  |
-| Name_s | 處理程序可執行檔名稱 |
-| Path_s | 處理程序可執行檔的檔案系統路徑 |
-| PersistentKey_s | 在這台電腦中是唯一的內部 GUID |
-| PoolId_d | 用來根據類似命令列彙總處理程序的內部識別碼。 |
-| ProcessId_s | 跨 OMS 工作區唯一的內部 GUID  |
-| ProductName_s | 產品名稱字串 (來自 Windows PE 或 Linux RPM) |
-| ProductVersion_s | 產品版本字串 (來自 Windows PE 或 Linux RPM) |
-| StartTime_t | 本機電腦時鐘上的處理程序開始時間 |
-| TimeGenerated | 記錄的建立日期和時間。 |
-| UserDomain_s | 處理程序擁有者的網域 (僅限 Windows) |
-| UserName_s | 處理程序擁有者的名稱 (僅限 Windows) |
-| WorkingDirectory_s | 處理程序工作目錄 |
-
+|:--- |:--- |
+| 類型 |AdmProcess_CL |
+| SourceSystem |*OpsManager* |
+| CommandLine_s |處理程序的完整命令列 |
+| CompanyName_s |公司名稱 (來自 Windows PE 或 Linux RPM) |
+| Description_s |完整處理程序描述 (來自 Windows PE 或 Linux RPM) |
+| FileVersion_s |可執行檔版本 (僅限來自 Windows PE、Windows) |
+| FirstPid_d |OS 處理程序識別碼 |
+| InternalName_s |可執行檔的內部名稱 (僅限來自 Windows PE、Windows) |
+| MachineId_s |跨 OMS 工作區唯一的內部 GUID |
+| Name_s |處理程序可執行檔名稱 |
+| Path_s |處理程序可執行檔的檔案系統路徑 |
+| PersistentKey_s |在這台電腦中是唯一的內部 GUID |
+| PoolId_d |用來根據類似命令列彙總處理程序的內部識別碼。 |
+| ProcessId_s |跨 OMS 工作區唯一的內部 GUID |
+| ProductName_s |產品名稱字串 (來自 Windows PE 或 Linux RPM) |
+| ProductVersion_s |產品版本字串 (來自 Windows PE 或 Linux RPM) |
+| StartTime_t |本機電腦時鐘上的處理程序開始時間 |
+| TimeGenerated |記錄的建立日期和時間。 |
+| UserDomain_s |處理程序擁有者的網域 (僅限 Windows) |
+| UserName_s |處理程序擁有者的名稱 (僅限 Windows) |
+| WorkingDirectory_s |處理程序工作目錄 |
 
 ## <a name="sample-log-searches"></a>記錄搜尋範例
-
-### <a name="list-the-physical-memory-capacity-of-all-managed-computers."></a>列出所有受管理電腦的實體記憶體容量。 
+### <a name="list-the-physical-memory-capacity-of-all-managed-computers."></a>列出所有受管理電腦的實體記憶體容量。
 Type=AdmComputer_CL | select TotalPhysicalMemory_d, ComputerName_s | Dedup ComputerName_s
 
 ![ADM 查詢範例](media/operations-management-suite-application-dependency-monitor/adm-example-01.png)
@@ -187,22 +181,15 @@ Type=AdmProcess_CL Name_s=curl | Distinct ProductVersion_s
 ![ADM 查詢範例](media/operations-management-suite-application-dependency-monitor/adm-example-06.png)
 
 ### <a name="create-a-computer-group-of-all-computers-running-centos"></a>為所有執行 CentOS 的電腦建立電腦群組
-
 ![ADM 查詢範例](media/operations-management-suite-application-dependency-monitor/adm-example-07.png)
-
-
 
 ## <a name="diagnostic-and-usage-data"></a>診斷和使用量資料
 當您使用應用程式相依性監視服務時，Microsoft 會自動收集使用量和效能資料。 Microsoft 使用這項資料來提供和改進應用程式相依性監視服務的品質、安全性和完整性。 資料中除了包含軟體 (如作業系統) 組態和版本的相關資訊，還包含 IP 位址、DNS 名稱和工作站名稱，以便提供精確且有效率的疑難排解功能。 我們不會收集姓名、地址或其他連絡資訊。
 
 如需有關資料收集與使用方式的詳細資訊，請參閱 [Microsoft 線上服務隱私權聲明](hhttps://go.microsoft.com/fwlink/?LinkId=512132)。
 
-
-
 ## <a name="next-steps"></a>後續步驟
-- 深入了解[記錄檔搜尋](../log-analytics/log-analytics-log-searches.md] in Log Analytics to retrieve data collected by Application Dependency Monitor.)
-
-
+* 深入了解[記錄檔搜尋](../log-analytics/log-analytics-log-searches.md\] in Log Analytics to retrieve data collected by Application Dependency Monitor..md)
 
 <!--HONumber=Oct16_HO2-->
 

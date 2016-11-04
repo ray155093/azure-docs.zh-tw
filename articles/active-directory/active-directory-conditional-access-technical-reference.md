@@ -1,41 +1,38 @@
 
-<properties
-	pageTitle="Azure Active Directory 條件式存取的技術參考 | Microsoft Azure"
-	description="透過條件式存取控制，Azure Active Directory 會在驗證使用者時以及允許存取應用程式之前，檢查您挑選的特定條件。一旦符合這些條件，就會驗證使用者並允許存取應用程式。"
-    services="active-directory"
-	documentationCenter=""
-	authors="markusvi"
-	manager="femila"
-	editor=""/>
+---
+title: Azure Active Directory 條件式存取的技術參考 | Microsoft Docs
+description: 透過條件式存取控制，Azure Active Directory 會在驗證使用者時以及允許存取應用程式之前，檢查您挑選的特定條件。一旦符合這些條件，就會驗證使用者並允許存取應用程式。
+services: active-directory
+documentationcenter: ''
+author: markusvi
+manager: femila
+editor: ''
 
-<tags
-	ms.service="active-directory"
-	ms.devlang="na"
-	ms.topic="article"
-    ms.tgt_pltfrm="na"
-    ms.workload="identity" 
-	ms.date="07/26/2016"
-	ms.author="markvi"/>
+ms.service: active-directory
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: identity
+ms.date: 07/26/2016
+ms.author: markvi
 
+---
 # Azure Active Directory 條件式存取的技術參考
-
 ## 已啟用條件式存取功能的服務
 各種 Azure AD 應用程式類型都支援「條件式存取」規則。此清單包括：
 
-- 來自 Azure AD 應用程式庫的同盟應用程式
-- 來自 Azure AD 應用程式庫的密碼 SSO 應用程式
-- 已向 Azure 應用程式 Proxy 註冊的應用程式
-- 已開發並已向 Azure AD 註冊的企業營運及多租用戶應用程式
-- Visual Studio Online
-- Azure 遠端應用程式
-- 	Dynamics CRM
-- Microsoft Office 365 Yammer
-- Microsoft Office 365 Exchange Online
-- Microsoft Office 365 SharePoint Online (包括商務用 OneDrive)
-
+* 來自 Azure AD 應用程式庫的同盟應用程式
+* 來自 Azure AD 應用程式庫的密碼 SSO 應用程式
+* 已向 Azure 應用程式 Proxy 註冊的應用程式
+* 已開發並已向 Azure AD 註冊的企業營運及多租用戶應用程式
+* Visual Studio Online
+* Azure 遠端應用程式
+* Dynamics CRM
+* Microsoft Office 365 Yammer
+* Microsoft Office 365 Exchange Online
+* Microsoft Office 365 SharePoint Online (包括商務用 OneDrive)
 
 ## 啟用存取規則
-
 您可以依據個別應用程式來啟用或停用每個規則。當規則為 **ON** 時，系統將會針對存取應用程式的使用者啟用並強制執行這些規則。當規則為 **OFF** 時，系統就不會使用這些規則，也就不會影響使用者的登入體驗。
 
 ## 將規則套用到特定的使用者
@@ -46,12 +43,10 @@
 您也可以使用 [例外] 選項來免除對選取的群組套用原則。這些群組的任何成員即使出現在包含群組中，也不必套用原則。
 
 ## 「工作時」網路
-
-
 使用「工作時」網路的條件式存取規則會依賴 Azure AD 中已設定的可信任 IP 位址範圍，或者從 AD FS 中使用「公司網路內部」宣告。這些規則包含：
 
-- 不在工作時需要多重要素驗證
-- 不工作時封鎖存取
+* 不在工作時需要多重要素驗證
+* 不工作時封鎖存取
 
 用於指定「工作時」網路的選項
 
@@ -59,27 +54,23 @@
 2. 設定使用公司網路內部的宣告，您可以使用 AD FS，將此選項與同盟目錄搭配使用。[深入了解公司網路內部宣告](../multi-factor-authentication/multi-factor-authentication-whats-next.md#trusted-ips)。
 3. 設定公用 IP 位址範圍。您可以在 [設定] 索引標籤中，為您的目錄設定公用 IP 位址。條件式存取將使用這些 IP 位址做為「工作中」IP 位址，這樣就能在 MFA 設定頁面強制執行的 50 個 IP 位址限制以外設定其他的範圍。
 
-
-
 ## 根據應用程式敏感性的規則
-
 規則是依據個別應用程式來設定，以允許對高價值服務進行保護，而不影響對其他服務的存取。條件式存取規則可以在應用程式的 [設定] 索引標籤上設定。
 
 目前提供的規則︰
 
-- **需要多重要素驗證**
- - 所有套用了這個原則的使用者都必須透過 Multi-Factor Authentication 至少驗證一次。
- 
-- **不在工作時需要多重要素驗證**
- - 如果套用了這個原則，所有使用者如果是從非工作遠端位置存取服務，都必須至少執行一次 Multi-Factor Authentication。如果他們從工作位置移到遠端位置，則在存取服務時，就必須執行 Multi-Factor Authentication。
- 
-- **不工作時封鎖存取**
- - 當使用者從工作位置移至遠端位置時，如果套用了 [不工作時封鎖存取] 原則，他們就會被封鎖。當他們回到工作位置時，就會再次允許他們存取。
-
+* **需要多重要素驗證**
+  
+  * 所有套用了這個原則的使用者都必須透過 Multi-Factor Authentication 至少驗證一次。
+* **不在工作時需要多重要素驗證**
+  
+  * 如果套用了這個原則，所有使用者如果是從非工作遠端位置存取服務，都必須至少執行一次 Multi-Factor Authentication。如果他們從工作位置移到遠端位置，則在存取服務時，就必須執行 Multi-Factor Authentication。
+* **不工作時封鎖存取**
+  
+  * 當使用者從工作位置移至遠端位置時，如果套用了 [不工作時封鎖存取] 原則，他們就會被封鎖。當他們回到工作位置時，就會再次允許他們存取。
 
 ## 相關主題
-
-- [保護對 Office 365 及其他連接至 Azure Active Directory 之應用程式的存取](active-directory-conditional-access.md)
-- [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
+* [保護對 Office 365 及其他連接至 Azure Active Directory 之應用程式的存取](active-directory-conditional-access.md)
+* [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
 
 <!---HONumber=AcomDC_0727_2016-->

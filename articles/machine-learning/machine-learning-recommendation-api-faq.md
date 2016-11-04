@@ -1,31 +1,32 @@
-<properties 
-	pageTitle="設定和使用 Machine Learning Recommendations API | Microsoft Azure" 
-	description="以 Azure Machine Learning 建置之 Microsoft RECOMMENDATIONS API 的常見問題集" 
-	services="machine-learning" 
-	documentationCenter="" 
-	authors="LuisCabrer" 
-	manager="jhubbard" 
-	editor="cgronlun"/>
+---
+title: 設定和使用 Machine Learning Recommendations API | Microsoft Docs
+description: 以 Azure Machine Learning 建置之 Microsoft RECOMMENDATIONS API 的常見問題集
+services: machine-learning
+documentationcenter: ''
+author: LuisCabrer
+manager: jhubbard
+editor: cgronlun
 
-<tags 
-	ms.service="machine-learning" 
-	ms.workload="data-services" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="09/08/2016" 
-	ms.author="luisca"/>
+ms.service: machine-learning
+ms.workload: data-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/08/2016
+ms.author: luisca
 
-#設定和使用 Machine Learning Recommendations API 的常見問題集
-
-
+---
+# 設定和使用 Machine Learning Recommendations API 的常見問題集
 **什麼是 RECOMMENDATIONS？**
 
->[AZURE.NOTE] 您應該開始使用 Recommendations API 的 Cognitive Service，而不是此版本。Recommendations 的 Cognitive Service 將會取代這個服務，而所有的新特徵都會在其中進行開發。它會提供新功能，例如，批次支援、更好的 API 總管、更簡潔的 API 介面、更一致的註冊/計費體驗等。深入了解[移轉到新的 Cognitive Service](http://aka.ms/recomigrate)
+> [!NOTE]
+> 您應該開始使用 Recommendations API 的 Cognitive Service，而不是此版本。Recommendations 的 Cognitive Service 將會取代這個服務，而所有的新特徵都會在其中進行開發。它會提供新功能，例如，批次支援、更好的 API 總管、更簡潔的 API 介面、更一致的註冊/計費體驗等。深入了解[移轉到新的 Cognitive Service](http://aka.ms/recomigrate)
+> 
+> 
 
 對於依賴建議對客戶進行交叉銷售和向上銷售產品和服務的組織和企業，Azure Machine Learning 的 RECOMMENDATIONS 可提供自助建議引擎。它是協同篩選的實作，其使用矩陣分解作為核心演算法。應用程式開發人員可以使用 REST API 來存取 RECOMMENDATIONS。
 
-[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
+[!INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
 
 **我可以用 RECOMMENDATIONS 來做什麼？**
 
@@ -34,15 +35,14 @@ RECOMMENDATIONS 將一個項目或一組項目作為輸入，並傳回相關建�
 **是否有任何使用量限制？**
 
 建議項目具有下列使用限制：
+
 * 每個訂用帳戶的模型數上限：10
 * 一個目錄可保留的項目數上限：100,000
 * 保留的使用點數上限是 ~5,000,000。如果將上傳或回報新的點，就會將最舊的點刪除。
 * 電子郵件中可以傳送的資料 (例如，匯入目錄資料、匯入使用量資料) 大小上限為 200 MB
 * 未作用中之建議項目模型組建的每秒交易數 (TPS) 為 ~2 TPS。作用中 Recommendations 模型組建可以保留高達 20 TPS。
 
-##購買和計費 
-
-
+## 購買和計費
 **在推出期間，Recommendations 的價格為何？**
 
 Recommendations 是一項以訂用帳戶為基礎的服務。收費是根據每個月的交易量來進行。如需定價資訊，您可以在 Microsoft Azure Marketplace 中查看[提供項目頁面](https://datamarket.azure.com/dataset/amla/recommendations)。
@@ -93,8 +93,7 @@ Recommendations 是一項以訂用帳戶為基礎的服務。收費是根據每�
 
 如果您想要立即取消訂用帳戶，以便購買新的訂用帳戶，請透過 [Microsoft 支援](https://support.microsoft.com/oas/default.aspx?gprid=17024&st=1&wfxredirect=1&sd=gn)提出票證。
 
-##開始使用 Recommendations
-
+## 開始使用 Recommendations
 **Recommendations 是給我的嗎？**
 
 機器學習服務中的 Recommendations 適用於依賴建議向客戶進行交叉銷售和向上銷售產品或服務的組織和企業。如果您有面向客戶的網站、銷售團隊、內部銷售團隊或客服中心，而且如果您提供的目錄有好幾十項產品或服務 – 您的盈餘即可受惠於使用 Recommendations。
@@ -119,8 +118,7 @@ API 文件是 [Azure Machine Learning Recommendations - 快速入門指南](mach
 
 您有兩個選項可以上傳您的目錄和使用量資料：您可以從 CRM 系統或其他記錄檔匯出資料，並將它上傳至 Recommendations，或您可以將會追蹤使用者活動的標記加入至您的網站。如果您使用第二個方法，資料會儲存在 Azure 中。
 
-##維護與支援
-
+## 維護與支援
 **我可以有多大的資料集？**
 
 每個資料集可包含多達 100000 個目錄項目以及高達 2048 MB 的使用資料。此外，一個訂用帳戶最多可包含 10 個資料集 (模型)。
@@ -132,9 +130,5 @@ API 文件是 [Azure Machine Learning Recommendations - 快速入門指南](mach
 **哪裡可以找到使用條款？**
 
 [Microsoft Azure Machine Learning Recommendations API 服務條款](https://datamarket.azure.com/dataset/amla/recommendations#terms)。
-
-
-
- 
 
 <!---HONumber=AcomDC_0914_2016-->

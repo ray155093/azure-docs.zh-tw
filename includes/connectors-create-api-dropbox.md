@@ -1,5 +1,5 @@
 ### 必要條件
-- [Dropbox](https://www.Dropbox.com/) 帳戶 
+* [Dropbox](https://www.Dropbox.com/) 帳戶 
 
 您必須先授與邏輯應用程式連接到 Dropbox 帳戶的權限，之後才能在邏輯應用程式中使用您的 Dropbox 帳戶。所幸，您可以使用 Azure 入口網站在邏輯應用程式內輕易達成這項作業。
 
@@ -10,3 +10,4 @@
 3. 提供您的 Dropbox 使用者名稱和密碼以授與邏輯應用程式權限：![Dropbox 步驟 3](./media/connectors-create-api-dropbox/dropbox-3.png)   
 4. 授與邏輯應用程式使用 Dropbox 帳戶的權限：![Dropbox 步驟 4](./media/connectors-create-api-dropbox/dropbox-4.png)
 5. 請注意，此時已建立連線，您現可進行邏輯應用程式中的其他步驟：![Dropbox 步驟 5](./media/connectors-create-api-dropbox/dropbox-5.png)   
+

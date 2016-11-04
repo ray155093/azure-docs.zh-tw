@@ -1,27 +1,26 @@
-<properties
-    pageTitle="了解 Azure 中的資源存取 | Microsoft Azure" 
-    description="本主題說明有關使用訂用帳戶管理員來控制整個 Azure 入口網站中資源存取的概念。"
-    services="active-directory"
-    documentationCenter=""
-    authors="MarkusVi"
-    manager="femila"
-    editor=""/>
+---
+title: 了解 Azure 中的資源存取 | Microsoft Docs
+description: 本主題說明有關使用訂用帳戶管理員來控制整個 Azure 入口網站中資源存取的概念。
+services: active-directory
+documentationcenter: ''
+author: MarkusVi
+manager: femila
+editor: ''
 
-<tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="10/10/2016"
-    ms.author="markusvi"/>
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 10/10/2016
+ms.author: markusvi
 
-
-
+---
 # <a name="understanding-resource-access-in-azure"></a>了解 Azure 中的資源存取
-
-
-> [AZURE.NOTE] 本主題說明有關使用訂用帳戶管理員來控制整個 Azure 入口網站中資源存取的概念。 此外，Azure 預覽入口網站提供 [以角色為基礎的存取控制](role-based-access-control-configure.md) ，因此可以更精確地管理 Azure 資源。
+> [!NOTE]
+> 本主題說明有關使用訂用帳戶管理員來控制整個 Azure 入口網站中資源存取的概念。 此外，Azure 預覽入口網站提供 [以角色為基礎的存取控制](role-based-access-control-configure.md) ，因此可以更精確地管理 Azure 資源。
+> 
+> 
 
 為了針對改進使用者的 Azure 資源存取管理體驗奠下基礎，Azure 傳統入口網站和「服務管理」API 已在 2013 年 10 月與 Azure Active Directory 進行整合。 Azure Active Directory 已提供絕佳功能，例如使用者管理、內部部署目錄同步、Multi-Factor Authentication 和應用程式存取控制。 當然，這些也應該能夠用於全面管理 Azure 資源。
 
@@ -33,39 +32,30 @@
 
 <br><br>![Azure 中的存取控制][2]
 
-
 Azure 傳統入口網站內的功能可讓使用 Microsoft 帳戶登入的 SA 變更訂用帳戶相關聯的目錄，方法是使用 [設定] 中的 [訂用帳戶] 頁面上的 [編輯目錄] 命令。 請注意，此作業會影響該訂用帳戶的存取控制。
 
-
-
-> [AZURE.NOTE] Azure 傳統入口網站中的 [編輯目錄] 命令不適用於使用公司或學校帳戶登入的使用者，因為這些帳戶只可以登入其所屬的目錄。
+> [!NOTE]
+> Azure 傳統入口網站中的 [編輯目錄] 命令不適用於使用公司或學校帳戶登入的使用者，因為這些帳戶只可以登入其所屬的目錄。
+> 
+> 
 
 <br><br>![簡單的使用者登入流程][3]
 
 簡而言之，組織 (例如 Contoso) 將會強制執行同一組訂用帳戶的計費和存取控制。 也就是說，此目錄會與單一 Azure 帳戶所擁有的訂用帳戶相關聯。 成功登入 Azure 傳統入口網站之後，使用者會看到兩個資源集合 (在上圖中以橘色表示)：
 
-
-- 其使用者帳戶所在的目錄 (來自或加入為外部主體)。 請注意，用於登入的目錄與此計算無關，所以不論您在哪裡登入，一律會顯示您的目錄。
-
-- 屬於訂用帳戶的資源，而這些訂用帳戶會與用來登入且使用者可以存取的目錄 (他們是 SA 或 CA) 相關聯。
-
+* 其使用者帳戶所在的目錄 (來自或加入為外部主體)。 請注意，用於登入的目錄與此計算無關，所以不論您在哪裡登入，一律會顯示您的目錄。
+* 屬於訂用帳戶的資源，而這些訂用帳戶會與用來登入且使用者可以存取的目錄 (他們是 SA 或 CA) 相關聯。
 
 <br><br>![具有多個訂用帳戶和目錄的使用者][4]
-
 
 具有跨多個目錄之訂用帳戶的使用者能夠使用訂用帳戶篩選，來切換 Azure 傳統入口網站的目前內容。 實際上，這會導致個別登入到不同的目錄，但卻是使用單一登入 (SSO) 順利完成的。
 
 在訂用帳戶之間移動資源等作業，可能會因為訂用帳戶的這個單一目錄檢視而變得更加困難。 若要執行資源移轉，可能需要先在 [設定] 中的 [訂用帳戶] 頁面使用 [編輯目錄] 命令，將訂用帳戶關聯到相同的目錄。
 
 ## <a name="next-steps"></a>後續步驟
-
-- 若要深入了解如何變更 Azure 訂用帳戶的管理員，請參閱 [如何新增或變更 Azure 管理員角色](../billing-add-change-azure-subscription-administrator.md)
-
-- 如需有關 Azure Active Directory 與您的 Azure 訂用帳戶產生關聯之方式的詳細資訊，請參閱 [Azure 訂用帳戶如何與 Azure Active Directory 產生關聯](active-directory-how-subscriptions-associated-directory.md)
-
-- 如需有關如何在 Azure AD 中指派角色的詳細資訊，請參閱 [在 Azure Active Directory 中指派系統管理員角色](active-directory-assign-admin-roles.md)
-
-
+* 若要深入了解如何變更 Azure 訂用帳戶的管理員，請參閱 [如何新增或變更 Azure 管理員角色](../billing-add-change-azure-subscription-administrator.md)
+* 如需有關 Azure Active Directory 與您的 Azure 訂用帳戶產生關聯之方式的詳細資訊，請參閱 [Azure 訂用帳戶如何與 Azure Active Directory 產生關聯](active-directory-how-subscriptions-associated-directory.md)
+* 如需有關如何在 Azure AD 中指派角色的詳細資訊，請參閱 [在 Azure Active Directory 中指派系統管理員角色](active-directory-assign-admin-roles.md)
 
 <!--Image references-->
 [1]: ./media/active-directory-understanding-resource-access/IC707931.png

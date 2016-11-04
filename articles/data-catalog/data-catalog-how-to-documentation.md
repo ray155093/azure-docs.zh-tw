@@ -1,25 +1,24 @@
-<properties
-	pageTitle="如何記載資料來源 | Microsoft Azure"
-	description="專門說明如何在 Azure 資料目錄中記載資料資產的操作說明文章。"
-	services="data-catalog"
-	documentationCenter=""
-	authors="spelluru"
-	manager="NA"
-	editor=""
-	tags=""/>
-<tags
-	ms.service="data-catalog"
-	ms.devlang="NA"
-	ms.topic="article"
-	ms.tgt_pltfrm="NA"
-	ms.workload="data-catalog"
-	ms.date="09/13/2016"
-	ms.author="spelluru"/>
+---
+title: 如何記載資料來源 | Microsoft Docs
+description: 專門說明如何在 Azure 資料目錄中記載資料資產的操作說明文章。
+services: data-catalog
+documentationcenter: ''
+author: spelluru
+manager: NA
+editor: ''
+tags: ''
 
+ms.service: data-catalog
+ms.devlang: NA
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: data-catalog
+ms.date: 09/13/2016
+ms.author: spelluru
+
+---
 # 記載資料來源
-
 ## 簡介
-
 **Microsoft Azure 資料目錄**是全面管理的雲端服務，可作為企業資料來源的註冊系統和探索系統。換句話說，**Azure 資料目錄**的重點在於協助人們探索、了解，以及使用資料來源，並可協助組織從現有的資料獲得更多價值。
 
 當資料來源向 **Azure 資料目錄**註冊之後，該服務會複製其中繼資料並建立索引，但不僅止於此。**Azure 資料目錄**也可讓使用者提供自己的完整說明文件來描述資料來源的使用方式和常見案例。
@@ -28,24 +27,25 @@
 
 標記和描述非常適合用於簡單的註解。不過，為了協助資料取用者深入了解資料來源的使用方式和資料來源的商務案例，專家可以提供完整而詳細的說明文件。想要記載資料來源很容易。請選取資料資產或容器，然後選擇 [說明文件]。
 
-![](media\data-catalog-documentation\data-catalog-documentation.png)
+![](media\\data-catalog-documentation\\data-catalog-documentation.png)
 
 ## 記載資料資產
-
 **Azure 資料目錄**說明文件的優點可讓您使用資料目錄做為內容儲存機制，以建立完整的資料資產敘述。您可以探索說明容器和資料表的詳細內容。如果您在其他內容儲存機制 (例如 SharePoint 或檔案共用) 已有內容，您可以新增資產說明文件連結來參考此現有內容。此功能可讓您更容易找到現有的說明文件。
 
-> [AZURE.NOTE] 說明文件不會包含在搜尋索引中。
+> [!NOTE]
+> 說明文件不會包含在搜尋索引中。
+> 
+> 
 
-![](media\data-catalog-documentation\data-catalog-documentation2.png)
+![](media\\data-catalog-documentation\\data-catalog-documentation2.png)
 
 說明文件層級的範圍可從描述資料資產容器的特性和值，到詳細描述容器內的資料表結構描述。所提供的說明文件層級應以商務需求為準。但一般來說，記載資料資產的優缺點如下︰
 
--	只記載容器︰所有內容集中放置，但可能缺少可供使用者做出明智決策的必要詳細資料。
--	只記載資料表︰內容專用於該物件，但使用者會將文件放在多個地方。
--	記載容器和資料表︰最全面的方法，但可能需要花更多時間維護文件。
+* 只記載容器︰所有內容集中放置，但可能缺少可供使用者做出明智決策的必要詳細資料。
+* 只記載資料表︰內容專用於該物件，但使用者會將文件放在多個地方。
+* 記載容器和資料表︰最全面的方法，但可能需要花更多時間維護文件。
 
 ## 摘要
-
 在 **Azure 資料目錄**中記載資料來源可依所需詳細程度建立資料資產的相關敘述。藉由使用連結，您可以連結至現有內容儲存機制中儲存的內容，以結合您現有的文件和資料資產。一旦使用者找到合適的資料資產，就能取得一組完整的說明文件。
 
 <!---HONumber=AcomDC_0914_2016-->

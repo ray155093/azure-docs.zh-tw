@@ -1,36 +1,39 @@
-<properties
-	pageTitle="如何將 Azure API 管理服務執行個體部署到多個 Azure 區域"
-	description="瞭解如何將 Azure API 管理服務執行個體部署到多個 Azure 區域。" 
-	services="api-management"
-	documentationCenter=""
-	authors="steved0x"
-	manager="erikre"
-	editor=""/>
+---
+title: 如何將 Azure API 管理服務執行個體部署到多個 Azure 區域
+description: 瞭解如何將 Azure API 管理服務執行個體部署到多個 Azure 區域。
+services: api-management
+documentationcenter: ''
+author: steved0x
+manager: erikre
+editor: ''
 
-<tags
-	ms.service="api-management"
-	ms.workload="mobile"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/09/2016"
-	ms.author="sdanie"/>
+ms.service: api-management
+ms.workload: mobile
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/09/2016
+ms.author: sdanie
 
+---
 # 如何將 Azure API 管理服務執行個體部署到多個 Azure 區域
-
 API 管理支援多區域部署，可讓 API 發行者跨所需的任意數量 Azure 區域發佈單一 API 管理服務。這有助於降低地理上分散的 API 取用者感受到的要求延遲，並且可以改善某個區域離線時服務的可用性。
 
-最初建立 API 管理服務時，它只會包含一個[單位][]，並且位在指派做為主要區域的單一 Azure 區域中。可透過 Azure 傳統入口網站輕鬆加入其他區域。API 管理閘道伺服器會部署到每個區域，並且將呼叫流量遞送到最近的閘道。如果區域離線，流量會自動重新導向到下一個最近的閘道。
+最初建立 API 管理服務時，它只會包含一個[單位][單位]，並且位在指派做為主要區域的單一 Azure 區域中。可透過 Azure 傳統入口網站輕鬆加入其他區域。API 管理閘道伺服器會部署到每個區域，並且將呼叫流量遞送到最近的閘道。如果區域離線，流量會自動重新導向到下一個最近的閘道。
 
-> [AZURE.IMPORTANT] 多重區域部署僅供**[進階][]**層使用。
+> [!IMPORTANT]
+> 多重區域部署僅供**[進階][進階]**層使用。
+> 
+> 
 
 ## <a name="add-region"> </a>部署 API 管理服務執行個體到新區域
-
 若要開始，請在 Azure 傳統入口網站中，針對您的 API 管理服務按一下 [管理]。這會帶您前往 API 管理發行者入口網站。
 
 ![發行者入口網站][api-management-management-console]
 
->如果您尚未建立 API 管理服務執行個體，請參閱[開始使用 Azure API 管理][]教學課程中的[建立 API 管理服務執行個體][]。
+> 如果您尚未建立 API 管理服務執行個體，請參閱[開始使用 Azure API 管理][開始使用 Azure API 管理]教學課程中的[建立 API 管理服務執行個體][建立 API 管理服務執行個體]。
+> 
+> 
 
 瀏覽至 Azure 傳統入口網站中您 API 管理服務執行個體的 [調整] 索引標籤。
 
@@ -47,7 +50,6 @@ API 管理支援多區域部署，可讓 API 發行者跨所需的任意數量 A
 設定需要的區域和單位之後，請按一下 [**儲存**]。
 
 ## <a name="remove-region"> </a>從區域刪除 API 管理服務執行個體
-
 若要從區域移除 API 管理服務執行個體，請瀏覽至 Azure 傳統入口網站中您 API 管理服務執行個體的 [調整] 索引標籤。
 
 ![調整索引標籤][api-management-scale-service]
@@ -57,7 +59,6 @@ API 管理支援多區域部署，可讓 API 發行者跨所需的任意數量 A
 ![移除區域][api-management-remove-region]
 
 移除所需區域之後，按一下 [**儲存**]。
-
 
 [api-management-management-console]: ./media/api-management-howto-deploy-multi-region/api-management-management-console.png
 

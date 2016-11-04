@@ -1,47 +1,43 @@
-<properties
-    pageTitle="共用存取簽章概觀 | Microsoft Azure"
-    description="共用存取簽章為何、其如何運作，以及如何從 Node、PHP 和 C# 中使用它們。"
-    services="service-bus,event-hubs"
-    documentationCenter="na"
-    authors="djrosanova"
-    manager="timlt"
-    editor=""/>
+---
+title: 共用存取簽章概觀 | Microsoft Docs
+description: 共用存取簽章為何、其如何運作，以及如何從 Node、PHP 和 C# 中使用它們。
+services: service-bus,event-hubs
+documentationcenter: na
+author: djrosanova
+manager: timlt
+editor: ''
 
-<tags
-    ms.service="service-bus"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.tgt_pltfrm="na"
-    ms.workload="na"
-    ms.date="06/22/2016"
-    ms.author="darosa;sethm"/>
+ms.service: service-bus
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 06/22/2016
+ms.author: darosa;sethm
 
+---
 # 共用存取簽章
-
 「共用存取簽章」(SAS) 是服務匯流排的主要安全性機制，包括事件中樞、代理傳訊 (佇列和主題)，以及轉送傳訊。這篇文章討論共用存取簽章、其運作方式以及如何以平台無關的方式使用它們。
 
 ## SAS 的概觀
-
 共用存取簽章是以 SHA-256 安全雜湊或 URI 為基礎的驗證機制。SAS 是所有服務匯流排服務使用的非常強大的機制。在實際使用中，SAS 有兩個元件：*共用存取原則*和*共用存取簽章* (通常稱為*權杖*)。
 
 您可以在[使用服務匯流排的共用存取簽章驗證](service-bus-shared-access-signature-authentication.md)中，找到共用存取簽章與服務匯流排的更詳細資訊。
 
 ## 共用的存取原則
-
 對 SAS 應了解的一項重點是，一切都從原則開始。針對每個原則，您會決定三段資訊：**名稱**、**範圍**和**權限**。**名稱**只是該範圍內的唯一名稱。範圍也很簡單：它是發生問題之資源的 URI。針對服務匯流排命名空間，範圍是完整的網域名稱 (FQDN)，例如 **`https://<yournamespace>.servicebus.windows.net/`**。
 
 原則的可用權限大部分都易於理解：
 
-  + 傳送
-  + 接聽
-  + 管理
+* 傳送
+* 接聽
+* 管理
 
-建立原則之後，它會獲指派*主索引鍵*和*次要索引鍵*。這些是密碼編譯增強式金鑰。不會遺失或洩漏它們 - 它們永遠都可在 [Azure 傳統入口網站][]取得。您可以使用其中一個產生的金鑰，以及您可以隨時重新產生它們。不過，如果您重新產生或變更原則中的主索引鍵，從其建立的任何共用存取簽章將會失效。
+建立原則之後，它會獲指派*主索引鍵*和*次要索引鍵*。這些是密碼編譯增強式金鑰。不會遺失或洩漏它們 - 它們永遠都可在 [Azure 傳統入口網站][Azure 傳統入口網站]取得。您可以使用其中一個產生的金鑰，以及您可以隨時重新產生它們。不過，如果您重新產生或變更原則中的主索引鍵，從其建立的任何共用存取簽章將會失效。
 
 建立服務匯流排命名空間時，將會自動為整個命名空間建立稱為 **RootManageSharedAccessKey** 的原則，而且此原則會具備所有權限。您未以 **root** 登入，所以除非有適合的理由，請勿使用此原則。您可以在入口網站命名空間的 [設定] 索引標籤中建立額外的原則。請務必注意服務匯流排中單一樹狀目錄的層級 (命名空間、佇列、事件中樞等) 只能有最多 12 個附加至它的原則。
 
 ## 共用存取簽章 (權杖)
-
 原則本身不是服務匯流排的存取權杖。它是來自使用主要或次要索引鍵產生的存取權杖的物件。權杖是以下列格式仔細編寫字串而產生：
 
 ```
@@ -59,11 +55,9 @@ SHA-256('https://<yournamespace>.servicebus.windows.net/'+'\n'+ 1438205742)
 非雜湊值位在 **SharedAccessSignature** 字串中，如此收件者可以使用相同的參數計算雜湊，以確保它會傳回相同的結果。URI 會指定範圍，而金鑰名稱會識別要用來計算雜湊的原則。從安全性的觀點而言，這很重要。如果簽章與收件者 (服務匯流排) 所計算的不符，則會拒絕存取。此時您可以確定寄件者可存取金鑰，並且應該被授與原則中指定的權限。
 
 ## 從原則產生簽章
-
 您在程式碼中如何實際進行此動作？ 讓我們來看一下其中的一些。
 
 ### NodeJS
-
 ```
 function createSharedAccessToken(uri, saName, saKey) { 
     if (!uri || !saName || !saKey) { 
@@ -82,7 +76,6 @@ function createSharedAccessToken(uri, saName, saKey) {
 ``` 
 
 ### Java
-
 ```
 private static String GetSASToken(String resourceUri, String keyName, String key)
   {
@@ -131,26 +124,24 @@ public static String getHMAC256(String key, String input) {
 ```
 
 ### PHP
-
 ```
 function generateSasToken($uri, $sasKeyName, $sasKeyValue) 
 { 
 $targetUri = strtolower(rawurlencode(strtolower($uri))); 
-$expires = time(); 	
+$expires = time();     
 $expiresInMins = 60; 
 $week = 60*60*24*7;
 $expires = $expires + $week; 
 $toSign = $targetUri . "\n" . $expires; 
-$signature = rawurlencode(base64_encode(hash_hmac('sha256', 			
+$signature = rawurlencode(base64_encode(hash_hmac('sha256',             
  $toSign, $sasKeyValue, TRUE))); 
 
-$token = "SharedAccessSignature sr=" . $targetUri . "&sig=" . $signature . "&se=" . $expires . 		"&skn=" . $sasKeyName; 
+$token = "SharedAccessSignature sr=" . $targetUri . "&sig=" . $signature . "&se=" . $expires .         "&skn=" . $sasKeyName; 
 return $token; 
 }
 ```
- 
-### C&#35;
 
+### C&#35;
 ```
 private static string createToken(string resourceUri, string keyName, string key)
 {
@@ -166,7 +157,6 @@ private static string createToken(string resourceUri, string keyName, string key
 ```
 
 ## 使用共用存取簽章 (於 HTTP 層級)
- 
 既然知道如何為服務匯流排中的任何實體建立共用存取簽章，您可準備執行 HTTP POST：
 
 ```
@@ -175,13 +165,12 @@ Content-Type: application/json
 Authorization: SharedAccessSignature sr=https%3A%2F%2F<yournamespace>.servicebus.windows.net%2F<yourentity>&sig=<yoursignature from code above>&se=1438205742&skn=KeyName
 ContentType: application/atom+xml;type=entry;charset=utf-8
 ``` 
-	
+
 請記住，這適用於所有項目。您可以為佇列、主題、訂用帳戶、事件中樞或轉送建立 SAS。如果您對事件中樞使用每一發行者身分識別，您只需附加 `/publishers/< publisherid>`。
 
 如果您提供寄件者或用戶端 SAS 權杖，他們不會直接有金鑰，並且他們無法回復雜湊來取得它。因此，您可以控制他們可以存取的項目，以及時間長度。要記住的重點是，如果您變更原則中的主索引鍵，從其建立的任何共用存取簽章將會失效。
 
 ## 使用共用存取簽章 (於 AMQP 層級)
-
 在前一節中，說明了如何使用 SAS 權杖搭配 HTTP POST 要求傳送資料到服務匯流排。如您所了解，您可以使用進階訊息佇列通訊協定 (AMQP) 來存取服務匯流排，此通訊協定在許多案例中，都是基於效能考量而做為慣用的通訊協定。如需使用 SAS 權杖搭配 AMQP 的用法，請參閱 [AMQP 宣告型安全性 1.0 版](https://www.oasis-open.org/committees/download.php/50506/amqp-cbs-v1%200-wd02%202013-08-12.doc)文件中的說明，該文件是自 2013 年開始的工作草稿，不過現在 Azure 已經提供良好的支援。
 
 開始將資料傳送到服務匯流排之前，發行者必須在 AMQP 訊息內部將 SAS 權杖傳送至正確定義且名為 **"$cbs"** 的 AMQP 節點 (您可以將它視為一個由服務所使用的「特別」佇列，用來取得並驗證所有的 SAS 權杖)。發行者必須在 AMQP 訊息中指定 **"ReplyTo"** 欄位；這是服務將以權杖驗證結果 (發行者與服務之間的簡單要求/回覆模式) 回覆發行者的節點所在。此回覆節點是「動態」建立，如 AMQP 1.0 規格中所述的「動態建立遠端節點」。檢查 SAS 權杖有效之後，發行者可以繼續並開始將資料傳送至服務。
@@ -189,7 +178,6 @@ ContentType: application/atom+xml;type=entry;charset=utf-8
 下列步驟示範如何使用 [AMQP.Net Lite](https://github.com/Azure/amqpnetlite) 程式庫，搭配 AMQP 通訊協定來傳送 SAS 權杖。如果您不能使用以 C&#35; 開發的官方服務匯流排 SDK (例如，在 WinRT、.Net Compact Framework、.Net Micro Framework 和 Mono 上)，這就非常有用。當然，此程式庫對於了解宣告型安全性如何在 AMQP 層級運作非常有用，如同您了解其如何在 HTTP 層級運作一樣 (使用 HTTP POST 要求以及在標頭 "Authorization" 內部傳送的 SAS 權杖)。如果您不需要深入了解 AMQP，您可以搭配 .Net Framework 應用程式使用正式服務匯流排 SDK，其將為您做到這點。
 
 ### C&#35;
-
 ```
 /// <summary>
 /// Send claim-based security (CBS) token
@@ -241,7 +229,10 @@ private bool PutCbsToken(Connection connection, string sasToken)
 
 上述 `PutCbsToken()` 方法會接收代表服務之 TCP 連線的 *connection* ([AMQP .NET Lite 程式庫](https://github.com/Azure/amqpnetlite)所提供的 AMQP 連接類別執行個體) 以及要做為 SAS 權杖傳送的 *sasToken* 參數。
 
-> [AZURE.NOTE] 請務必以**設為 EXTERNAL 的 SASL 驗證機制** (而非當您不需要傳送 SAS 權杖時所使用且包含使用者名稱與密碼的預設 PLAIN) 建立連線。
+> [!NOTE]
+> 請務必以**設為 EXTERNAL 的 SASL 驗證機制** (而非當您不需要傳送 SAS 權杖時所使用且包含使用者名稱與密碼的預設 PLAIN) 建立連線。
+> 
+> 
 
 接下來，發行者會建立兩個 AMQP 連結來傳送 SAS 權杖，並接受來自服務的回覆 (權杖驗證結果)。
 
@@ -250,7 +241,6 @@ AMQP 訊息包含眾多屬性，以及比簡單訊息更多的資訊。SAS 權�
 在寄件者連結上傳送 SAS 權杖之後，發行者必須在接收者連結上讀取回覆。回覆是包含名稱為 **"status-code"** 之應用程式屬性的簡單 AMQP 訊息，可用來包含做為 HTTP 狀態碼的相同值
 
 ## 後續步驟
-
 如需有關如何使用這些 SAS 權杖的詳細資訊，請參閱[服務匯流排 REST API 參考](https://msdn.microsoft.com/library/azure/hh780717.aspx)。
 
 如需有關服務匯流排驗證的詳細資訊，請參閱[服務匯流排驗證和授權](service-bus-authentication-and-authorization.md)。

@@ -1,28 +1,27 @@
-<properties
-   pageTitle="使用 Azure 診斷收集記錄檔 | Microsoft Azure"
-   description="本文將說明如何設定 Azure 診斷從 Azure 中執行的 Service Fabric 叢集收集記錄檔"
-   services="service-fabric"
-   documentationCenter=".net"
-   authors="ms-toddabel"
-   manager="timlt"
-   editor=""/>
+---
+title: 使用 Azure 診斷收集記錄檔 | Microsoft Docs
+description: 本文將說明如何設定 Azure 診斷從 Azure 中執行的 Service Fabric 叢集收集記錄檔
+services: service-fabric
+documentationcenter: .net
+author: ms-toddabel
+manager: timlt
+editor: ''
 
-<tags
-   ms.service="service-fabric"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="NA"
-   ms.date="09/28/2016"
-   ms.author="toddabel"/>
+ms.service: service-fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 09/28/2016
+ms.author: toddabel
 
-
-
+---
 # <a name="collect-logs-by-using-azure-diagnostics"></a>使用 Azure 診斷收集記錄檔
-
-> [AZURE.SELECTOR]
-- [Windows](service-fabric-diagnostics-how-to-setup-wad.md)
-- [Linux](service-fabric-diagnostics-how-to-setup-lad.md)
+> [!div class="op_single_selector"]
+> * [Windows](service-fabric-diagnostics-how-to-setup-wad.md)
+> * [Linux](service-fabric-diagnostics-how-to-setup-lad.md)
+> 
+> 
 
 當您執行 Azure Service Fabric 叢集時，最好從中央位置的所有節點收集記錄檔。 將記錄檔集中在中央位置，可協助您分析並針對叢集或該叢集中執行之應用程式與服務的問題進行疑難排解。
 
@@ -37,20 +36,18 @@
 * [Azure Resource Manager 用戶端](https://github.com/projectkudu/ARMClient)
 * [Azure Resource Manager 範本](../virtual-machines/virtual-machines-windows-extensions-diagnostics-template.md)
 
-
 ## <a name="log-sources-that-you-might-want-to-collect"></a>您可能想要收集的記錄來源
-- **Service Fabric 記錄檔**：由平台發出到標準 Windows 事件追蹤 (ETW) 和 EventSource 通道。 記錄檔可以是下列其中一種類型：
-  - 操作事件：Service Fabric 平台所執行之作業的記錄檔。 範例包括建立應用程式和服務、節點狀態變更和升級資訊。
-  - [Reliable Actors 程式設計模型事件](service-fabric-reliable-actors-diagnostics.md)
-  - [Reliable Services 程式設計模型事件](service-fabric-reliable-services-diagnostics.md)
-- **應用程式事件**：從您的服務程式碼發出且使用 Visual Studio 範本所提供的 EventSource 協助程式類別所寫出的事件。 如需有關如何從應用程式寫入記錄檔的詳細資訊，請參閱[監視和診斷本機開發設定中的服務](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)。
-
+* **Service Fabric 記錄檔**：由平台發出到標準 Windows 事件追蹤 (ETW) 和 EventSource 通道。 記錄檔可以是下列其中一種類型：
+  * 操作事件：Service Fabric 平台所執行之作業的記錄檔。 範例包括建立應用程式和服務、節點狀態變更和升級資訊。
+  * [Reliable Actors 程式設計模型事件](service-fabric-reliable-actors-diagnostics.md)
+  * [Reliable Services 程式設計模型事件](service-fabric-reliable-services-diagnostics.md)
+* **應用程式事件**：從您的服務程式碼發出且使用 Visual Studio 範本所提供的 EventSource 協助程式類別所寫出的事件。 如需有關如何從應用程式寫入記錄檔的詳細資訊，請參閱[監視和診斷本機開發設定中的服務](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)。
 
 ## <a name="deploy-the-diagnostics-extension"></a>部署診斷擴充功能
 收集記錄檔的第一個步驟是將診斷擴充功能部署在 Service Fabric 叢集的每個 WM 上。 診斷擴充功能會收集每個 VM 上的記錄檔，並將它們上傳至您指定的儲存體帳戶。 步驟視您使用 Azure 入口網站或 Azure Resource Manager 而稍微有所不同。 步驟也會視部署為叢集建立的一部分，或是針對現有的叢集而有所不同。 讓我們看看每個案例的步驟。
 
 ### <a name="deploy-the-diagnostics-extension-as-part-of-cluster-creation-through-the-portal"></a>透過入口網站建立叢集時部署診斷擴充功能
-為了在建立叢集時將診斷擴充功能部署至叢集中的 WM，您會使用下圖所示的診斷設定面板。 若要收集 Reliable Actors 或 Reliable Services 事件，請確定已將 [診斷] 設定為 [開啟] (這是預設設定)。 建立叢集之後，您就無法使用入口網站變更這些設定。
+為了在建立叢集時將診斷擴充功能部署至叢集中的 WM，您會使用下圖所示的診斷設定面板。 若要收集 Reliable Actors 或 Reliable Services 事件，請確定已將 [診斷] 設定為 [開啟](這是預設設定.md)。 建立叢集之後，您就無法使用入口網站變更這些設定。
 
 ![入口網站中用於建立叢集的 Azure 診斷設定](./media/service-fabric-diagnostics-how-to-setup-wad/portal-cluster-creation-diagnostics-setting.png)
 
@@ -77,7 +74,6 @@ Azure 支援團隊「需要」支援記錄檔，才能盡心處理您所建立�
 2. 修改內容以反映新的組態。
 3. 啟動 PowerShell 並變更到您要解壓縮內容的資料夾。
 4. 執行 **deploy.ps1** 並填入訂用帳戶識別碼、資源群組名稱 (使用相同的名稱來更新組態) 和唯一的部署名稱。
-
 
 ### <a name="deploy-the-diagnostics-extension-as-part-of-cluster-creation-by-using-azure-resource-manager"></a>使用 Azure Resource Manager 在建立叢集時部署診斷擴充功能
 若要使用 Resource Manager 建立叢集，您需要在建立叢集之前，將診斷組態 JSON 加入至完整的叢集 Resource Manager 範本。 我們在 Resource Manager 範本範例中提供一個五 VM 叢集 Resource Manager 範本，且已在其中加入診斷設定。 您可以在 Azure 資源庫中的這個位置看到它： [具有診斷 Resource Manager 範本範例的五節點叢集](https://github.com/Azure/azure-quickstart-templates/tree/master/service-fabric-secure-cluster-5-node-1-nodetype-wad)。
@@ -193,7 +189,6 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name $
 
 如所述修改 template.json 檔案之後，將 Resource Manager 範本重新發佈。 如果已匯出範本，執行 deploy.ps1 檔案將會重新發佈範本。 部署之後，請確認 **ProvisioningState** 為 **Succeeded**。
 
-
 ## <a name="update-diagnostics-to-collect-and-upload-logs-from-new-eventsource-channels"></a>更新診斷從新的 EventSource 通道收集並上傳記錄檔
 若要更新診斷以從新的 EventSource 通道 (代表您將要部署的新應用程式) 收集記錄檔，請執行[上一節](#deploywadarm)中相同的步驟，以針對現有叢集設定診斷。
 
@@ -216,12 +211,9 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name $
 ## <a name="next-steps"></a>後續步驟
 若要更詳細了解進行問題移難排解時應該注意的事件，請查看針對 [Reliable Actors](service-fabric-reliable-actors-diagnostics.md) 和 [Reliable Services](service-fabric-reliable-services-diagnostics.md) 所發出的診斷事件。
 
-
 ## <a name="related-articles"></a>相關文章
 * [了解如何使用診斷擴充功能收集效能計數器或記錄檔](../virtual-machines/virtual-machines-windows-extensions-diagnostics-template.md)
 * [Log Analytics 中的 Service Fabric 解決方案](../log-analytics/log-analytics-service-fabric.md)
-
-
 
 <!--HONumber=Oct16_HO2-->
 

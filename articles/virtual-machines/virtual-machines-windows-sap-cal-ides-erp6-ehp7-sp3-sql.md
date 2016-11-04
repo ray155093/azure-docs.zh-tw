@@ -1,32 +1,29 @@
-<properties 
-pageTitle="在 Microsoft Azure 上部署適用於 SAP ERP 6.0 的 SAP IDES EHP7 SP3 | Microsoft Azure" 
-description="在 Microsoft Azure 上部署適用於 SAP ERP 6.0 的 SAP IDES EHP7 SP3" 
-services="virtual-machines-windows" 
-documentationCenter="" 
-authors="hermanndms" 
-manager="timlt" 
-editor="" 
-tags="azure-resource-manager" 
-keywords=""/>
-<tags  
-ms.service="virtual-machines-windows" 
-ms.devlang="na" 
-ms.topic="article" 
-ms.tgt_pltfrm="vm-windows" 
-ms.workload="infrastructure-services" 
-ms.date="09/16/2016" 
-ms.author="hermannd"/>
+---
+title: 在 Microsoft Azure 上部署適用於 SAP ERP 6.0 的 SAP IDES EHP7 SP3 | Microsoft Docs
+description: 在 Microsoft Azure 上部署適用於 SAP ERP 6.0 的 SAP IDES EHP7 SP3
+services: virtual-machines-windows
+documentationcenter: ''
+author: hermanndms
+manager: timlt
+editor: ''
+tags: azure-resource-manager
+keywords: ''
 
+ms.service: virtual-machines-windows
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: vm-windows
+ms.workload: infrastructure-services
+ms.date: 09/16/2016
+ms.author: hermannd
 
-# 在 Microsoft Azure 上部署適用於 SAP ERP 6.0 的 SAP IDES EHP7 SP3 
-
+---
+# 在 Microsoft Azure 上部署適用於 SAP ERP 6.0 的 SAP IDES EHP7 SP3
 本文說明如何透過 SAP Cloud Appliance Library 3.0 在 Microsoft Azure 上部署與 SQL Server 和 Windows OS 搭配執行的 SAP IDES。螢幕擷取畫面會逐步示範此程序。從程序觀點來看，部署清單中其他解決方案時的運作方式也相同。使用者只需選取不同的解決方案。
 
 若要開始使用 SAP Cloud Appliance Library (SAP CAL)，請前往[這裡](https://cal.sap.com/)。SAP 提供了有關全新 [SAP Cloud Appliance Library 3.0](http://scn.sap.com/community/cloud-appliance-library/blog/2016/05/27/sap-cloud-appliance-library-30-came-with-a-new-user-experience) 的部落格。
 
-
 下列螢幕擷取畫面逐步示範如何在 Microsoft Azure 上部署 SAP IDES。此程序在其他解決方案也是以相同的方式運作。
-
 
 ![](./media/virtual-machines-windows-sap-cal-ides-erp6-ehp7-sp3-sql/ides-pic1.jpg)
 

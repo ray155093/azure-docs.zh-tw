@@ -1,22 +1,22 @@
-<properties
-   pageTitle="設定負載平衡器 TCP 閒置逾時 |Microsoft Azure"
-   description="設定負載平衡器 TCP 閒置逾時"
-   services="load-balancer"
-   documentationCenter="na"
-   authors="sdwheeler"
-   manager="carmonm"
-   editor="" />
-<tags
-   ms.service="load-balancer"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="infrastructure-services"
-   ms.date="03/03/2016"
-   ms.author="sewhee" />
+---
+title: 設定負載平衡器 TCP 閒置逾時 | Microsoft Docs
+description: 設定負載平衡器 TCP 閒置逾時
+services: load-balancer
+documentationcenter: na
+author: sdwheeler
+manager: carmonm
+editor: ''
 
+ms.service: load-balancer
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 03/03/2016
+ms.author: sewhee
+
+---
 # 變更負載平衡器的 TCP 閒置逾時設定
-
 在預設組態中，Azure Load Balancer 的閒置逾時設定是 4 分鐘。
 
 這意謂著如果閒置期間超過逾時值，即無法保證用戶端與雲端服務之間的 TCP 或 HTTP 工作階段仍然存在。
@@ -35,18 +35,22 @@
 
 下列各節說明如何在虛擬機器和雲端服務中變更閒置逾時設定。
 
->[AZURE.NOTE] 若要支援設定這些設定，請確定您已安裝最新的 Azure PowerShell 套件。
+> [!NOTE]
+> 若要支援設定這些設定，請確定您已安裝最新的 Azure PowerShell 套件。
+> 
+> 
 
 ## 將執行個體層級公用 IP 的 TCP 逾時值設定為 15 分鐘
-
     Set-AzurePublicIP -PublicIPName webip -VM MyVM -IdleTimeoutInMinutes 15
 
 `IdleTimeoutInMinutes` 為選擇性。若未設定，則預設的逾時為 4 分鐘。
 
->[AZURE.NOTE] 可接受的逾時範圍為 4 到 30 分鐘。
+> [!NOTE]
+> 可接受的逾時範圍為 4 到 30 分鐘。
+> 
+> 
 
 ## 在虛擬機器上建立 Azure 端點時設定閒置逾時
-
 變更端點的逾時設定：
 
     Get-AzureVM -ServiceName "mySvc" -Name "MyVM1" | Add-AzureEndpoint -Name "HttpIn" -Protocol "tcp" -PublicPort 80 -LocalPort 8080 -IdleTimeoutInMinutes 15| Update-AzureVM
@@ -72,13 +76,11 @@
     IdleTimeoutInMinutes : 15
 
 ## 在負載平衡端點集上設定 TCP 逾時
-
 如果端點是負載平衡端點集的一部分，就必須在負載平衡端點集上設定 TCP 逾時：
 
     Set-AzureLoadBalancedEndpoint -ServiceName "MyService" -LBSetName "LBSet1" -Protocol tcp -LocalPort 80 -ProbeProtocolTCP -ProbePort 8080 -IdleTimeoutInMinutes 15
 
 ## 變更雲端服務的逾時設定
-
 您可以使用 Azure SDK for .NET 2.4 來更新雲端服務。
 
 您需在 .csdef 檔案中進行雲端服務的端點設定。若要更新雲端服務部署的 TCP 逾時，就必須進行部署升級。如果只針對公用 IP 指定 TCP 逾時，則為例外狀況。公用 IP 設定是在 .cscfg 中，而您可以透過更新和升級部署來更新這些設定。
@@ -105,7 +107,6 @@
     </NetworkConfiguration>
 
 ## REST API 範例
-
 您可以使用服務管理 API 來設定 TCP 閒置逾時。請確定 x-ms-version 標頭是設定為 2014-06-01 或更新版本。
 
 在部署中的所有虛擬機器上，更新指定負載平衡輸入端點的組態。
@@ -147,7 +148,6 @@
     </LoadBalancedEndpointList>
 
 ## 後續步驟
-
 [內部負載平衡器概觀](load-balancer-internal-overview.md)
 
 [開始設定網際網路對向負載平衡器](load-balancer-get-started-internet-arm-ps.md)

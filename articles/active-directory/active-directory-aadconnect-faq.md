@@ -1,24 +1,22 @@
-<properties
-    pageTitle="Azure AD Connect：常見問題集 |Microsoft Azure"
-    description="此頁面包含有關 Azure AD Connect 的常見問題集。"
-    services="active-directory"
-    documentationCenter=""
-    authors="billmath"
-    manager="femila"
-    editor="curtand"/>
+---
+title: Azure AD Connect：常見問題集 | Microsoft Docs
+description: 此頁面包含有關 Azure AD Connect 的常見問題集。
+services: active-directory
+documentationcenter: ''
+author: billmath
+manager: femila
+editor: curtand
 
-<tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/08/2016"
-    ms.author="billmath"/>
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/08/2016
+ms.author: billmath
 
-
+---
 # <a name="azure-ad-connect-faq"></a>Azure AD Connect 常見問題集
-
 ## <a name="general-installation"></a>一般安裝
 **問：如果 Azure AD 全域管理員已啟用 2FA，安裝是否能夠運作？**  
  從 2016 年 2 月的組建開始便提供這項支援。
@@ -59,8 +57,8 @@
 **問：Azure AD 中的 UPN (userPrincipalName) 屬性不符合內部部署的 UPN，為什麼？**  
  請參閱以下文章：
 
-- [Office 365、Azure 或 Intune 中的使用者名稱不符合內部部署的 UPN 或替代登入識別碼](https://support.microsoft.com/en-us/kb/2523192)
-- [在您將使用者帳戶的 UPN 變更為使用不同的同盟網域後，Azure Active Directory 同步作業工具未同步處理變更](https://support.microsoft.com/en-us/kb/2669550)
+* [Office 365、Azure 或 Intune 中的使用者名稱不符合內部部署的 UPN 或替代登入識別碼](https://support.microsoft.com/en-us/kb/2523192)
+* [在您將使用者帳戶的 UPN 變更為使用不同的同盟網域後，Azure Active Directory 同步作業工具未同步處理變更](https://support.microsoft.com/en-us/kb/2669550)
 
 您也可以將 Azure AD 設定為允許同步處理引擎更新 userPrincipalName，如 [Azure AD Connect 同步處理服務功能](active-directory-aadconnectsyncservice-features.md)中所述。
 
@@ -76,17 +74,15 @@
 
 [搜尋 Microsoft 知識庫 (KB)](https://www.microsoft.com/en-us/Search/result.aspx?q=azure%20active%20directory%20connect&form=mssupport)
 
-- 在 Microsoft 知識庫 (KB) 中搜尋有關 Azure AD Connect 支援的常見協助修正問題的技術解決方案。
+* 在 Microsoft 知識庫 (KB) 中搜尋有關 Azure AD Connect 支援的常見協助修正問題的技術解決方案。
 
 [Microsoft Azure Active Directory 論壇](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=WindowsAzureAD)
 
-- 按一下 [這裡](https://social.msdn.microsoft.com/Forums/azure/en-US/newthread?category=windowsazureplatform&forum=WindowsAzureAD&prof=required)，即可在社群中搜尋和瀏覽技術問題和答案，或提出自己的問題。
+* 按一下 [這裡](https://social.msdn.microsoft.com/Forums/azure/en-US/newthread?category=windowsazureplatform&forum=WindowsAzureAD&prof=required)，即可在社群中搜尋和瀏覽技術問題和答案，或提出自己的問題。
 
 [Azure AD Connect 客戶支援](https://manage.windowsazure.com/?getsupport=true)
 
-- 使用此連結透過 Azure 入口網站取得支援。
-
-
+* 使用此連結透過 Azure 入口網站取得支援。
 
 <!--HONumber=Oct16_HO2-->
 

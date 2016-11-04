@@ -1,34 +1,33 @@
 
-<properties
-   pageTitle="使用 Azure CLI 建立完整的 Linux 環境 | Microsoft Azure"
-   description="使用 Azure CLI 從頭開始建立儲存體、Linux VM、虛擬網路和子網路、負載平衡器、NIC、公用 IP 以及網路安全性群組。"
-   services="virtual-machines-linux"
-   documentationCenter="virtual-machines"
-   authors="iainfoulds"
-   manager="timlt"
-   editor=""
-   tags="azure-resource-manager"/>
+---
+title: 使用 Azure CLI 建立完整的 Linux 環境 | Microsoft Docs
+description: 使用 Azure CLI 從頭開始建立儲存體、Linux VM、虛擬網路和子網路、負載平衡器、NIC、公用 IP 以及網路安全性群組。
+services: virtual-machines-linux
+documentationcenter: virtual-machines
+author: iainfoulds
+manager: timlt
+editor: ''
+tags: azure-resource-manager
 
-<tags
-   ms.service="virtual-machines-linux"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="vm-linux"
-   ms.workload="infrastructure"
-   ms.date="08/23/2016"
-   ms.author="iainfou"/>
+ms.service: virtual-machines-linux
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: vm-linux
+ms.workload: infrastructure
+ms.date: 08/23/2016
+ms.author: iainfou
 
+---
 # 使用 Azure CLI 建立完整的 Linux 環境
-
 在這篇文章中，我們將建立一個簡單的網路，當中包含一個負載平衡器，以及一組對開發和簡單運算而言相當實用的 VM。我們將以逐個命令的方式逐步完成程序命令，直到您具備兩個可供您透過網際網路從任何地方連線的有效、安全 Linux VM 為止。然後您便可以繼續著手更複雜的網路和環境。
 
 在過程中，您將了解 Resource Manager 部署模型提供給您的相依性階層，以及它提供多少功能。在您了解系統建置的方式之後，您就可以使用 [Azure Resource Manager 範本](../resource-group-authoring-templates.md)更快地建置系統。此外，在您了解環境的組件彼此如何搭配運作之後，就可以更輕鬆地建立範本來將它們自動化。
 
 此環境包含：
 
-- 兩個位於可用性設定組內的 VM。
-- 一個在連接埠 80 有負載平衡規則的負載平衡器。
-- 可保護 VM 防止不必要流量的網路安全性群組 (NSG) 規則。
+* 兩個位於可用性設定組內的 VM。
+* 一個在連接埠 80 有負載平衡規則的負載平衡器。
+* 可保護 VM 防止不必要流量的網路安全性群組 (NSG) 規則。
 
 ![基本環境概觀](./media/virtual-machines-linux-create-cli-complete/environment_overview.png)
 
@@ -74,7 +73,6 @@ azure network vnet subnet create -g TestRG -e TestVNet -n FrontEnd -a 192.168.1.
 ```
 
 使用 JSON 剖析器來確認虛擬網路和子網路：
-
 
 ```bash
 azure network vnet show TestRG TestVNet --json | jq '.'
@@ -240,7 +238,6 @@ azure resource export TestRG
 接下來的詳細步驟將說明您建置環境時每個命令的功能。當您建置自己的自訂開發環境或生產環境時，這些概念會相當有用。
 
 ## 建立資源群組並選擇部署位置
-
 Azure 資源群組是邏輯部署實體，當中包含用來啟用資源部署邏輯管理的組態資訊和中繼資料。
 
 ```bash
@@ -264,7 +261,6 @@ info:    group create command OK
 ```
 
 ## 建立儲存體帳戶
-
 您需要儲存體帳戶來用於您的 VM 磁碟和任何您想要新增的額外資料磁碟。您幾乎是在建立資源群組之後立即建立儲存體帳戶。
 
 在這裡，我們使用 `azure storage account create` 命令，其中會傳遞帳戶的位置、控制它的資源群組，以及您想要的儲存體支援類型。
@@ -370,7 +366,6 @@ info:    storage container list command OK
 ```
 
 ## 建立虛擬網路和子網路
-
 接著，您將需要建立一個在 Azure 中執行的虛擬網路，以及一個可供您安裝 VM 的子網路。
 
 ```bash
@@ -499,7 +494,6 @@ azure network vnet show TestRG TestVNet --json | jq '.'
 ```
 
 ## 建立公用 IP 位址 (PIP)
-
 現在，讓我們建立將指派給您負載平衡器的公用 IP 位址 (PIP)。它可讓您使用 `azure network public-ip create` 命令從網際網路連線到您的 VM。由於預設位址是動態位址，因此我們將使用 `-d testsubdomain` 選項在 **cloudapp.azure.com** 網域中建立具名的 DNS 項目。
 
 ```bash
@@ -784,7 +778,6 @@ info:    network lb rule create command OK
 ```
 
 ## 建立負載平衡器健全狀況探查
-
 健全狀況探查會定期檢查受負載平衡器保護的 VM，以確定它們依定義的方式運作及回應要求。否則，就從將它們從作業中移除，以確保不會將使用者導向到它們。您可以定義健全狀況探查的自訂檢查，以及間隔和逾時值。如需有關健全狀況探查的詳細資訊，請參閱[負載平衡器探查](../load-balancer/load-balancer-custom-probe-overview.md)。
 
 ```bash
@@ -941,7 +934,6 @@ azure network lb show -g TestRG -n TestLB --json | jq '.'
 ```
 
 ## 建立要與 Linux VM 搭配使用的 NIC
-
  您可以透過程式設計方式提供 NIC，因為您可以將規則套用到 NIC 的使用上。您也可以有多個 NIC。在下列 `azure network nic create` 命令中，您會將 NIC 連結到負載後端 IP 集區，並將它與 NAT 規則建立關聯以允許 SSH 流量。若要這麼做，您需要指定您 Azure 訂用帳戶的訂用帳戶識別碼來取代 `<GUID>`：
 
 ```bash
@@ -1034,7 +1026,6 @@ azure network nic create -g TestRG -n LB-NIC2 -l westeurope --subnet-vnet-name T
 ```
 
 ## 建立網路安全性群組和規則
-
 現在，我們將建立 NSG 和管理對 NIC 之存取權的輸入規則。
 
 ```bash
@@ -1053,10 +1044,12 @@ azure network nsg rule create --protocol tcp --direction inbound --priority 1001
     --destination-port-range 80 --access allow -g TestRG -a TestNSG -n HTTPRule
 ```
 
-> [AZURE.NOTE] 輸入規則是輸入網路連線的篩選器。在此範例中，我們將 NSG 繫結至 VM 虛擬 NIC，這意謂著任何傳送給連接埠 22 的要求都會傳遞到 VM 上的 NIC。這個輸入規則與網路連線相關，而不是與端點 (在傳統部署中會相關的對象) 相關。若要開啟連接埠，您必須將 `--source-port-range` 保留設定為 '*' (預設)，才能接受來自「任何」要求連接埠的輸入要求。連接埠通常是動態的。
+> [!NOTE]
+> 輸入規則是輸入網路連線的篩選器。在此範例中，我們將 NSG 繫結至 VM 虛擬 NIC，這意謂著任何傳送給連接埠 22 的要求都會傳遞到 VM 上的 NIC。這個輸入規則與網路連線相關，而不是與端點 (在傳統部署中會相關的對象) 相關。若要開啟連接埠，您必須將 `--source-port-range` 保留設定為 '*' (預設)，才能接受來自「任何」要求連接埠的輸入要求。連接埠通常是動態的。
+> 
+> 
 
 ## 繫結至 NIC
-
 將 NSG 繫結至 NIC：
 
 ```bash
@@ -1078,18 +1071,17 @@ azure availset create -g TestRG -n TestAvailSet -l westeurope
 
 升級網域表示虛擬機器群組和可同時重新啟動的基礎實體硬體。在計劃性維護期間，可能不會循序重新啟動升級網域，而只會一次重新啟動一個升級網域。同樣地，將多個 VM 放在一個可用性設定網站中時，Azure 會自動將它們分散到升級網域。
 
-深入了解[管理 VM 的可用性](./virtual-machines-linux-manage-availability.md)。
+深入了解[管理 VM 的可用性](virtual-machines-linux-manage-availability.md)。
 
 ## 建立 Linux VM
-
 您已建立儲存體和網路資源來支援可存取網際網路的 VM。現在，讓我們建立這些 VM，並利用沒有密碼的 SSH 金鑰來保障其安全。在此情況下，我們要根據最新的 LTS 建立 Ubuntu VM。我們會使用 `azure vm image list` 來找出該映像資訊 (如[尋找 Azure VM 映像](virtual-machines-linux-cli-ps-findimage.md)所述)。
 
 我們之前使用 `azure vm image list westeurope canonical | grep LTS` 命令來選取映像。在此案例中，我們會使用 `canonical:UbuntuServer:16.04.0-LTS:16.04.201608150`。針對最後一個欄位，我們會傳遞 `latest`，如此在未來我們就一律會取得最新的組建。(我們使用的字串是 `canonical:UbuntuServer:16.04.0-LTS:16.04.201608150`)。
 
 對於任何已經使用 **ssh-keygen -t rsa -b 2048** 在 Linux 或 Mac 上建立 ssh rsa 公用和私密金鑰組的人來說，這下一個步驟都是相當熟悉的步驟。如果您的 `~/.ssh` 目錄中沒有任何憑證金鑰組，您可以建立它們︰
 
-- 藉由使用 `azure vm create --generate-ssh-keys` 選項來自動建立。
-- 藉由使用[自行建立的指示](virtual-machines-linux-mac-create-ssh-keys.md)來手動建立。
+* 藉由使用 `azure vm create --generate-ssh-keys` 選項來自動建立。
+* 藉由使用[自行建立的指示](virtual-machines-linux-mac-create-ssh-keys.md)來手動建立。
 
 或者，您也可以使用 --admin-password 方法，在 VM 建立後驗證 SSH 連線。這個方法通常較不安全。
 
@@ -1269,7 +1261,6 @@ azure group deployment create -f TestRG.json -g NewRGFromTemplate
 您可以[深入了解如何從範本進行部署](../resource-group-template-deploy-cli.md)。請了解如何以累加方式更新環境、使用參數檔案，以及從單一儲存體位置存取範本。
 
 ## 後續步驟
-
 現在您已準備好開始使用多個網路元件和 VM。您可以利用這裡介紹的核心元件，使用這個範例環境來建置您的應用程式。
 
 <!---HONumber=AcomDC_0914_2016-->

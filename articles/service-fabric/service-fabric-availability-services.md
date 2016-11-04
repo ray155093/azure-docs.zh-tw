@@ -1,21 +1,21 @@
-<properties
-   pageTitle="Service Fabric 服務的可用性 | Microsoft Azure"
-   description="描述錯誤偵測、容錯移轉與服務復原"
-   services="service-fabric"
-   documentationCenter=".net"
-   authors="appi101"
-   manager="timlt"
-   editor=""/>
+---
+title: Service Fabric 服務的可用性 | Microsoft Docs
+description: 描述錯誤偵測、容錯移轉與服務復原
+services: service-fabric
+documentationcenter: .net
+author: appi101
+manager: timlt
+editor: ''
 
-<tags
-   ms.service="service-fabric"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="NA"
-   ms.date="08/10/2016"
-   ms.author="aprameyr"/>
+ms.service: service-fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 08/10/2016
+ms.author: aprameyr
 
+---
 # Service Fabric 服務的可用性
 Azure Service Fabric 服務可能是具狀態或無狀態。本文章概述 Service Fabric 如何維護服務失敗時的可用性。
 
@@ -38,16 +38,16 @@ Azure Service Fabric 服務可能是具狀態或無狀態。本文章概述 Serv
 ### 複本角色
 複本角色用來管理由該複本管理的狀態生命週期。主要複本的角色是服務讀取要求。它同時藉由更新它的狀態，並將變更複寫到其複本集之內的作用中次要複本，來服務寫入要求。作用中次要複本角色會接收主要複本已複寫的狀態變更，並更新它的狀態檢視。
 
->[AZURE.NOTE] 更高階的程式設計模型 (例如 [Reliable Actors 架構](service-fabric-reliable-actors-introduction.md)) 會從開發人員抽離複本角色的概念。
+> [!NOTE]
+> 更高階的程式設計模型 (例如 [Reliable Actors 架構](service-fabric-reliable-actors-introduction.md)) 會從開發人員抽離複本角色的概念。
+> 
+> 
 
 ## 後續步驟
-
 如需 Service Fabric 概念的詳細資訊，請參閱：
 
-- [Service Fabric 服務的延展性](service-fabric-concepts-scalability.md)
-
-- [分割 Service Fabric 服務](service-fabric-concepts-partitioning.md)
-
-- [定義和管理狀態](service-fabric-concepts-state.md)
+* [Service Fabric 服務的延展性](service-fabric-concepts-scalability.md)
+* [分割 Service Fabric 服務](service-fabric-concepts-partitioning.md)
+* [定義和管理狀態](service-fabric-concepts-state.md)
 
 <!---HONumber=AcomDC_0810_2016------>

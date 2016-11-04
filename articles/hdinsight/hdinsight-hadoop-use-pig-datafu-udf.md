@@ -1,70 +1,71 @@
-<properties
-pageTitle="在 HDInsight 上搭配使用 DataFu 與 Pig"
-description="DataFu 是搭配 Hadoop 使用的程式庫集合。了解如何在 HDInsight 叢集上搭配使用 DataFu 與 Pig。"
-services="hdinsight"
-documentationCenter=""
-authors="Blackmist"
-manager="jhubbard"
-editor="cgronlun"/>
+---
+title: 在 HDInsight 上搭配使用 DataFu 與 Pig
+description: DataFu 是搭配 Hadoop 使用的程式庫集合。了解如何在 HDInsight 叢集上搭配使用 DataFu 與 Pig。
+services: hdinsight
+documentationcenter: ''
+author: Blackmist
+manager: jhubbard
+editor: cgronlun
 
-<tags
-ms.service="hdinsight"
-ms.devlang="na"
-ms.topic="article"
-ms.tgt_pltfrm="na"
-ms.workload="big-data"
-ms.date="08/23/2016"
-ms.author="larryfr"/>
+ms.service: hdinsight
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: big-data
+ms.date: 08/23/2016
+ms.author: larryfr
 
-#在 HDInsight 上搭配使用 DataFu 與 Pig
-
+---
+# 在 HDInsight 上搭配使用 DataFu 與 Pig
 DataFu 是搭配 Hadoop 使用的開放原始碼程式庫集合。在這份文件中，您將學習如何在 HDInsight 叢集上使用 DataFu，以及如何搭配 Pig 使用 DataFu 使用者定義函數 (UDF)。
 
-##必要條件
-
+## 必要條件
 * Azure 訂用帳戶。
-
 * Azure HDInsight 叢集 (以 Linux 或 Windows 為基礎)
-
 * [在 HDInsight 使用 Pig](hdinsight-use-pig.md) 的基本認識
 
-##在以 Linux 為基礎的 HDInsight 上安裝 DataFu
-
-> [AZURE.NOTE] DataFu 是安裝在 Linux 架構的叢集 3.3 版和更高版本上，以及在 Windows 架構的叢集上。不會安裝在比 3.3 版更早的 Linux 架構叢集上。
->
+## 在以 Linux 為基礎的 HDInsight 上安裝 DataFu
+> [!NOTE]
+> DataFu 是安裝在 Linux 架構的叢集 3.3 版和更高版本上，以及在 Windows 架構的叢集上。不會安裝在比 3.3 版更早的 Linux 架構叢集上。
+> 
 > 如果您使用 Linux 架構的叢集 3.3 版或更高版本，或是 Windows 架構的叢集，可以略過本節。
+> 
+> 
 
 可以從 Maven 儲存機制下載並安裝 DataFu。使用下列步驟將 DataFu 新增至您的 HDInsight 叢集：
 
 1. 使用 SSH 連線至以 Linux 為基礎的 HDInsight 叢集：如需搭配 HDInsight 使用 SSH 的詳細資訊，請參閱下列其中一份文件：
-
-    * [從 Linux、OS X 和 Unix 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)
-    * [從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)
-    
+   
+   * [從 Linux、OS X 和 Unix 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)
+   * [從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-unix.md)
 2. 使用下列命令以 wget 公用程式下載 DataFu jar 檔案，或複製連結並在瀏覽器中貼上來開始下載。
-
+   
         wget http://central.maven.org/maven2/com/linkedin/datafu/datafu/1.2.0/datafu-1.2.0.jar
-
 3. 接下來，將檔案上傳至 HDInsight 叢集的預設儲存體。這會使檔案可供叢集內的所有節點存取，即使刪除並重新建立叢集，檔案也會保留在儲存體中。
-
+   
         hdfs dfs -put datafu-1.2.0.jar /example/jars
-    
-    > [AZURE.NOTE] 上述範例會將 jar 儲存在 `wasbs:///example/jars`，因為叢集儲存體上已經有此目錄。您可以使用 HDInsight 叢集上任何想要的位置。
+   
+   > [!NOTE]
+   > 上述範例會將 jar 儲存在 `wasbs:///example/jars`，因為叢集儲存體上已經有此目錄。您可以使用 HDInsight 叢集上任何想要的位置。
+   > 
+   > 
 
-##搭配使用 DataFu 與 Pig
-
+## 搭配使用 DataFu 與 Pig
 本節中的步驟假設您已經熟悉在 HDInsight 上使用 Pig，且只提供 Pig Latin 陳述式，沒有提供如何搭配叢集使用它們的步驟。如需搭配使用 Pig 與 HDInsight 的詳細資訊，請參閱[搭配使用 Pig 與 HDInsight](hdinsight-use-pig.md)。
 
-> [AZURE.IMPORTANT] 在以 Linux 為基礎的 HDInsight 叢集上透過 Pig 使用 DataFu 時，您必須使用以下 Pig Latin 陳述式先註冊 jar 檔案：
->
+> [!IMPORTANT]
+> 在以 Linux 為基礎的 HDInsight 叢集上透過 Pig 使用 DataFu 時，您必須使用以下 Pig Latin 陳述式先註冊 jar 檔案：
+> 
 > ```register wasbs:///example/jars/datafu-1.2.0.jar```
->
+> 
 > 以 Windows 為基礎的 HDInsight 叢集已預設註冊 DataFu。
+> 
+> 
 
 您通常會定義 DataFu 函式的別名。例如：
 
     DEFINE SHA datafu.pig.hash.SHA();
-    
+
 這會為 SHA 雜湊函式定義名為 `SHA` 的別名。您之後可以在 Pig Latin 指令碼中使用此別名來產生輸入資料的雜湊值。例如，以下指令碼會使用雜湊值取代輸入資料中的名稱：
 
     raw = LOAD '/data/raw/' USING PigStorage(',') AS  
@@ -87,7 +88,7 @@ DataFu 是搭配 Hadoop 使用的開放原始碼程式庫集合。在這份文�
     Eva Makay,8,9,2
     Shi Liao,4,6,0
     Tjasa Zemljaric,0,2,5
-    
+
 將會產生以下輸出：
 
     (c1a743b0f34d349cfc2ce00ef98369bdc3dba1565fec92b4159a9cd5de186347,5,9,1)
@@ -101,12 +102,10 @@ DataFu 是搭配 Hadoop 使用的開放原始碼程式庫集合。在這份文�
     (fa9c436469096ff1bd297e182831f460501b826272ae97e921f5f6e3f54747e8,4,6,0)
     (bc22db7c238b86c37af79a62c78f61a304b35143f6087eb99c34040325865654,0,2,5)
 
-##後續步驟
-
+## 後續步驟
 如需 DataFu 或 Pig 的詳細資訊，請參閱下列文件：
 
 * [Apache DataFu Pig 指南](http://datafu.incubator.apache.org/docs/datafu/guide.html) (英文)。
-
 * [搭配 HDInsight 使用 Pig](hdinsight-use-pig.md)
 
 <!---HONumber=AcomDC_0914_2016-->

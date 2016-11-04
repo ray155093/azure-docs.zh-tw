@@ -1,23 +1,22 @@
-<properties
-   pageTitle="Microsoft Virtual Academy 中的 Azure 安全性課程 | Microsoft Azure"
-   description="本文提供來自 Microsoft Virtual Academy 的策劃 Azure 安全性相關課程集合。Microsoft Virtual Academy 提供免費線上訓練，協助開發人員、IT 和資料專業人員以及學生學習最新技術、發展其技能，並讓其生涯更進一步。"
-   services="security"
-   documentationCenter="na"
-   authors="TomShinder"
-   manager="MBaldwin"
-   editor="TomSh"/>
+---
+title: Microsoft Virtual Academy 中的 Azure 安全性課程 | Microsoft Docs
+description: 本文提供來自 Microsoft Virtual Academy 的策劃 Azure 安全性相關課程集合。Microsoft Virtual Academy 提供免費線上訓練，協助開發人員、IT 和資料專業人員以及學生學習最新技術、發展其技能，並讓其生涯更進一步。
+services: security
+documentationcenter: na
+author: TomShinder
+manager: MBaldwin
+editor: TomSh
 
-<tags
-   ms.service="security"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="08/09/2016"
-   ms.author="terrylan"/>
+ms.service: security
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 08/09/2016
+ms.author: terrylan
 
+---
 # Microsoft Virtual Academy 中的 Azure 安全性課程
-
 Microsoft Virtual Academy 提供免費線上訓練，協助開發人員、IT 和資料專業人員以及學生學習最新技術、發展其技能，並讓其生涯更進一步。
 
 在此頁面中，您會發現策劃的 Azure 安全性相關課程集合。請瀏覽 [Microsoft Virtual Academy](https://mva.microsoft.com/) 以查看他們可參加的所有課程。

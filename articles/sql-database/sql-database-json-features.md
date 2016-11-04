@@ -1,25 +1,22 @@
-<properties
-	pageTitle="Azure SQL Database JSON 功能 | Microsoft Azure"
-	description="Azure SQL Database 可讓您剖析、查詢及格式化採用「JavaScript 物件標記法」(JSON) 的資料。"
-	services="sql-database"
-	documentationCenter=""
-	authors="jovanpop-msft"
-	manager="jhubbard"
-	editor=""/>
+---
+title: Azure SQL Database JSON 功能 | Microsoft Docs
+description: Azure SQL Database 可讓您剖析、查詢及格式化採用「JavaScript 物件標記法」(JSON) 的資料。
+services: sql-database
+documentationcenter: ''
+author: jovanpop-msft
+manager: jhubbard
+editor: ''
 
-<tags
-	ms.service="sql-database"
-	ms.devlang="NA"
-	ms.date="08/17/2016"
-	ms.author="jovanpop"
-   ms.workload="NA"
-	ms.topic="article"
-	ms.tgt_pltfrm="NA"/>
+ms.service: sql-database
+ms.devlang: NA
+ms.date: 08/17/2016
+ms.author: jovanpop
+ms.workload: NA
+ms.topic: article
+ms.tgt_pltfrm: NA
 
-
-
+---
 # 開始使用 Azure SQL Database 中的 JSON 功能
-
 Azure SQL Database 可讓您剖析及查詢以「JavaScript 物件標記法」[(JSON)](http://www.json.org/) 格式表示的資料，然後將您的關聯式資料匯出成 JSON 文字。
 
 JSON 是一種用於在新式的 Web 與行動應用程式中交換資料的常用資料格式。JSON 也用於將半結構化的資料儲存在記錄檔或 NoSQL 資料庫 (例如 [Azure DocumentDB](https://azure.microsoft.com/services/documentdb/)) 中。許多 REST Web 服務都會傳回採用 JSON 文字格式的結果，或是接受採用 JSON 格式的資料。大多數 Azure 服務 (例如 [Azure 搜尋服務](https://azure.microsoft.com/services/search/)、[Azure 儲存體](https://azure.microsoft.com/services/storage/)及 [Azure DocumentDB](https://azure.microsoft.com/services/documentdb/)) 都有會傳回或取用 JSON 的 REST 端點。
@@ -27,7 +24,6 @@ JSON 是一種用於在新式的 Web 與行動應用程式中交換資料的常�
 Azure SQL Database 可讓您輕鬆使用 JSON 資料，並將資料庫與新式服務整合。
 
 ## 概觀
-
 Azure SQL Database 提供下列可與 JSON 資料搭配使用的函數：
 
 ![JSON 函數](./media/sql-database-json-features/image_1.png)
@@ -84,10 +80,10 @@ FOR JSON 子句的主要價值在於，它可讓您從資料庫傳回格式化�
 
 ```
 select CustomerName as Name, PhoneNumber as Phone, FaxNumber as Fax,
-		Orders.OrderID, Orders.OrderDate, Orders.ExpectedDeliveryDate
+        Orders.OrderID, Orders.OrderDate, Orders.ExpectedDeliveryDate
 from Sales.Customers Customer
-	join Sales.Orders Orders
-		on Customer.CustomerID = Orders.CustomerID
+    join Sales.Orders Orders
+        on Customer.CustomerID = Orders.CustomerID
 where Customer.CustomerID = 931
 FOR JSON AUTO, WITHOUT_ARRAY_WRAPPER
 
@@ -109,7 +105,6 @@ FOR JSON AUTO, WITHOUT_ARRAY_WRAPPER
 ```
 
 ## 使用 JSON 資料
-
 如果您沒有嚴格結構化的資料，如果您有複雜的子物件、陣列或階層式資料，或如果您的資料結構會隨時間演變，則 JSON 格式可協助您表現任何複雜的資料結構。
 
 JSON 是一種文字格式，您可以在 Azure SQL Database 中使用它，就像使用任何其他字串類型一樣。您可以用標準 NVARCHAR 形式來傳送或儲存 JSON 資料：
@@ -123,8 +118,8 @@ CREATE TABLE Products (
 go
 CREATE PROCEDURE InsertProduct(@title nvarchar(200), @json nvarchar(max))
 AS BEGIN
-	insert into Products(Title, Data)
-	values(@title, @json)
+    insert into Products(Title, Data)
+    values(@title, @json)
 END
 ```
 
@@ -137,7 +132,6 @@ EXEC InsertProduct 'Toy car', '{"Price":50,"Color":"White","tags":["toy","childr
 任何可以與 Azure SQL Database 中的字串資料搭配運作的用戶端語言或程式庫，也將可以與 JSON 資料搭配運作。JSON 可以儲存在任何支援 NVARCHAR 類型的資料表中，例如記憶體最佳化資料表或由系統控制版本的資料表。JSON 不會導入任何條件約束，不論是用戶端程式碼中還是在資料庫層中的條件約束。
 
 ## 查詢 JSON 資料
-
 如果您有格式化為 JSON 的資料儲存在 Azure SQL 資料表中，JSON 函數可讓您在任何 SQL 查詢中使用此資料。
 
 Azure SQL Database 中可用的 JSON 函數可讓您將格式化為 JSON 的資料視為任何其他 SQL 資料類型。您可以輕鬆地從 JSON 文字中擷取值，然後在任何查詢中使用 JSON 資料︰
@@ -163,13 +157,12 @@ JSON\_MODIFY 函數可讓您指定 JSON 文字中應更新的值路徑，以及�
 ```
 ALTER TABLE Products
     ADD CONSTRAINT [Data should be formatted as JSON]
-		CHECK (ISJSON(Data) > 0)
+        CHECK (ISJSON(Data) > 0)
 ```
 
 如果輸入的文字是格式正確的 JSON，ISJSON 函數就會傳回值 1。在每次插入或更新 JSON 資料行時，這個條件約束都會確認新的文字值不是格式錯誤的 JSON。
 
 ## 將 JSON 轉換成表格式格式
-
 Azure SQL Database 也可讓您將 JSON 集合轉換成表格式格式，然後再載入或查詢 JSON 資料。
 
 OPENJSON 是一個資料表值函數，可剖析 JSON 文字、找出 JSON 物件陣列、逐一查看陣列的元素，然後在輸出結果中為每個陣列元素傳回一個資料列。
@@ -184,27 +177,26 @@ OPENJSON 是一個資料表值函數，可剖析 JSON 文字、找出 JSON 物�
 CREATE PROCEDURE InsertOrders(@orders nvarchar(max))
 AS BEGIN
 
-	insert into Orders(Number, Date, Customer, Quantity)
-	select Number, Date, Customer, Quantity
-	OPENJSON (@orders)
-	 WITH (
-			Number varchar(200),
-			Date datetime,
-			Customer varchar(200),
-			Quantity int
-	 )
+    insert into Orders(Number, Date, Customer, Quantity)
+    select Number, Date, Customer, Quantity
+    OPENJSON (@orders)
+     WITH (
+            Number varchar(200),
+            Date datetime,
+            Customer varchar(200),
+            Quantity int
+     )
 
 END
 ```
 我們可以剖析採用 JSON 陣列格式並作為參數提供給預存程序的訂單集合，然後將它插入 Orders 資料表中。
 
 ## 後續步驟
-
 若要了解如何將 JSON 整合到您的應用程式中，請參閱下列資源︰
 
-- [TechNet 部落格](https://blogs.technet.microsoft.com/dataplatforminsider/2016/01/05/json-in-sql-server-2016-part-1-of-4/)
-- [MSDN 文件](https://msdn.microsoft.com/library/dn921897.aspx)
-- [Channel 9 影片](https://channel9.msdn.com/Shows/Data-Exposed/SQL-Server-2016-and-JSON-Support)
+* [TechNet 部落格](https://blogs.technet.microsoft.com/dataplatforminsider/2016/01/05/json-in-sql-server-2016-part-1-of-4/)
+* [MSDN 文件](https://msdn.microsoft.com/library/dn921897.aspx)
+* [Channel 9 影片](https://channel9.msdn.com/Shows/Data-Exposed/SQL-Server-2016-and-JSON-Support)
 
 若要了解將 JSON 整合到您應用程式中的各種案例，請參閱這個 [Channel 9 影片](https://channel9.msdn.com/Events/DataDriven/SQLServer2016/JSON-as-a-bridge-betwen-NoSQL-and-relational-worlds)中的示範，或從 [JSON 部落格文章](http://blogs.msdn.com/b/sqlserverstorageengine/archive/tags/json/)中尋找符合您使用案例的情況。
 

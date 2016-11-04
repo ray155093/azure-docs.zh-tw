@@ -1,23 +1,21 @@
-<properties 
-	pageTitle="Application Insights 的版本資訊" 
-	description="最新的更新。" 
-	services="application-insights" 
-    documentationCenter=""
-	authors="alancameronwills" 
-	manager="douge"/>
+---
+title: Application Insights 的版本資訊
+description: 最新的更新。
+services: application-insights
+documentationcenter: ''
+author: alancameronwills
+manager: douge
 
-<tags 
-	ms.service="application-insights" 
-	ms.workload="tbd" 
-	ms.tgt_pltfrm="ibiza" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="01/28/2016" 
-	ms.author="awills"/>
- 
+ms.service: application-insights
+ms.workload: tbd
+ms.tgt_pltfrm: ibiza
+ms.devlang: na
+ms.topic: article
+ms.date: 01/28/2016
+ms.author: awills
+
+---
 # SDK 版本資訊 - Application Insights
-
-
 以下是 SDK 的詳細版本資訊與更新指示：
 
 * [ASP.NET Web Server SDK](https://github.com/Microsoft/ApplicationInsights-server-dotnet/releases)

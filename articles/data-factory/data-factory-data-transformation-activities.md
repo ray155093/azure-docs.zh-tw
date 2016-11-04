@@ -1,41 +1,44 @@
-<properties 
-    pageTitle="資料轉換︰處理和轉換資料 | Microsoft Azure" 
-    description="了解如何使用 Hadoop、Machine Learning 或 Azure Data Lake Analytics 在 Azure Data Factory 中轉換資料或處理資料。" 
-    keywords="資料轉換, 處理資料, 轉換資料, 轉換活動"
-    services="data-factory" 
-    documentationCenter="" 
-    authors="sharonlo101" 
-    manager="jhubbard" 
-    editor="monicar"/>
+---
+title: 資料轉換︰處理和轉換資料 | Microsoft Docs
+description: 了解如何使用 Hadoop、Machine Learning 或 Azure Data Lake Analytics 在 Azure Data Factory 中轉換資料或處理資料。
+keywords: 資料轉換, 處理資料, 轉換資料, 轉換活動
+services: data-factory
+documentationcenter: ''
+author: sharonlo101
+manager: jhubbard
+editor: monicar
 
-<tags 
-    ms.service="data-factory" 
-    ms.workload="data-services" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="09/23/2016" 
-    ms.author="shlo"/>
+ms.service: data-factory
+ms.workload: data-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/23/2016
+ms.author: shlo
 
-
+---
 # <a name="transform-data-in-azure-data-factory"></a>Azure Data Factory 中的資料轉換
-> [AZURE.SELECTOR]
-[Hive](data-factory-hive-activity.md)  
-[Pig](data-factory-pig-activity.md)  
-[MapReduce](data-factory-map-reduce.md)  
-[Hadoop 串流](data-factory-hadoop-streaming-activity.md)
-[Machine Learning](data-factory-azure-ml-batch-execution-activity.md) 
-[預存程序](data-factory-stored-proc-activity.md)
-[Data Lake Analytics U-SQL](data-factory-usql-activity.md)
-[.NET 自訂](data-factory-use-custom-activities.md)
-   
+> [!div class="op_single_selector"]
+> [Hive](data-factory-hive-activity.md)  
+> [Pig](data-factory-pig-activity.md)  
+> [MapReduce](data-factory-map-reduce.md)  
+> [Hadoop 串流](data-factory-hadoop-streaming-activity.md)
+> [Machine Learning](data-factory-azure-ml-batch-execution-activity.md) 
+> [預存程序](data-factory-stored-proc-activity.md)
+> [Data Lake Analytics U-SQL](data-factory-usql-activity.md)
+> [.NET 自訂](data-factory-use-custom-activities.md)
+> 
+> 
 
-## <a name="overview"></a>概觀 
+## <a name="overview"></a>概觀
 本文說明 Azure Data Factory 中的資料轉換活動，您可用來轉換未經處理資料，並將其處理為預測和見解。 轉換活動會在計算環境中執行，例如 Azure HDInsight 叢集或 Azure Batch。 它會提供每個轉換活動的詳細資訊文章連結。
- 
+
 Data Factory 支援下列可個別或與其他活動鏈結而加入至 [管線](data-factory-create-pipelines.md) 的資料轉換活動。
 
-> [AZURE.NOTE] 如需逐步解說，請參閱 [建立可 Hive 轉換的管線](data-factory-build-your-first-pipeline.md) 。  
+> [!NOTE]
+> 如需逐步解說，請參閱 [建立可 Hive 轉換的管線](data-factory-build-your-first-pipeline.md) 。  
+> 
+> 
 
 ## <a name="hdinsight-hive-activity"></a>HDInsight Hive 活動
 Data Factory 管線中的 HDInsight Hive 活動會在您自己或隨選的 Windows/Linux 架構 HDInsight 叢集上執行 Hive 查詢。 如需此活動的詳細資訊，請參閱 [Hive 活動](data-factory-hive-activity.md) 。 
@@ -77,24 +80,19 @@ Data Lake Analytics U-SQL 活動會在 Azure Data Lake Analytics 叢集上執行
 
 如需了解 Data Factory 所支援的計算服務，請參閱 [計算連結服務](data-factory-compute-linked-services.md) 一文。 
 
-
 ## <a name="summary"></a>摘要
 Azure Data Factory 支援下列資料轉換活動和活動計算環境。 可將轉換活動個別加入管線，或先與其他活動鏈結再加入管線。
 
-資料轉換活動 |  計算環境 
-:----------------------- | :--------------------
-[Hive](data-factory-hive-activity.md) | HDInsight [Hadoop] 
-[Pig](data-factory-pig-activity.md) | HDInsight [Hadoop]  
-[MapReduce](data-factory-map-reduce.md) | HDInsight [Hadoop]  
-[Hadoop 串流](data-factory-hadoop-streaming-activity.md) | HDInsight [Hadoop]
-[Machine Learning 活動︰批次執行和更新資源](data-factory-azure-ml-batch-execution-activity.md) | Azure VM 
-[預存程序](data-factory-stored-proc-activity.md) | Azure SQL、Azure SQL 資料倉儲或 SQL Server |
-[資料湖分析 U-SQL](data-factory-usql-activity.md) | Azure 資料湖分析 
-[DotNet](data-factory-use-custom-activities.md) | HDInsight [Hadoop] 或 Azure Batch
-   
-
-
-
+| 資料轉換活動 | 計算環境 |
+|:--- |:--- |
+| [Hive](data-factory-hive-activity.md) |HDInsight [Hadoop] |
+| [Pig](data-factory-pig-activity.md) |HDInsight [Hadoop] |
+| [MapReduce](data-factory-map-reduce.md) |HDInsight [Hadoop] |
+| [Hadoop 串流](data-factory-hadoop-streaming-activity.md) |HDInsight [Hadoop] |
+| [Machine Learning 活動︰批次執行和更新資源](data-factory-azure-ml-batch-execution-activity.md) |Azure VM |
+| [預存程序](data-factory-stored-proc-activity.md) |Azure SQL、Azure SQL 資料倉儲或 SQL Server |
+| [資料湖分析 U-SQL](data-factory-usql-activity.md) |Azure 資料湖分析 |
+| [DotNet](data-factory-use-custom-activities.md) |HDInsight [Hadoop] 或 Azure Batch |
 
 <!--HONumber=Oct16_HO2-->
 

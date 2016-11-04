@@ -1,23 +1,22 @@
-<properties
-   pageTitle="Log Analytics 警示 REST API"
-   description="Log Analytics 警示 REST API 可讓您在 Operations Management Suite (OMS) 中建立及管理警示。  本文提供此 API 的詳細資料和幾個執行不同作業的範例。"
-   services="log-analytics"
-   documentationCenter=""
-   authors="bwren"
-   manager="jwhit"
-   editor="tysonn" />
-<tags
-   ms.service="log-analytics"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="infrastructure-services"
-   ms.date="10/18/2016"
-   ms.author="bwren" />
+---
+title: Log Analytics 警示 REST API
+description: Log Analytics 警示 REST API 可讓您在 Operations Management Suite (OMS) 中建立及管理警示。  本文提供此 API 的詳細資料和幾個執行不同作業的範例。
+services: log-analytics
+documentationcenter: ''
+author: bwren
+manager: jwhit
+editor: tysonn
 
+ms.service: log-analytics
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 10/18/2016
+ms.author: bwren
 
+---
 # <a name="log-analytics-alert-rest-api"></a>Log Analytics 警示 REST API
-
 Log Analytics 警示 REST API 可讓您在 Operations Management Suite (OMS) 中建立及管理警示。  本文提供此 API 的詳細資料和幾個執行不同作業的範例。
 
 Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager REST API 來存取。 在這份文件中，您可以找到透過 [ARMClient](https://github.com/projectkudu/ARMClient) 從 PowerShell 命令列存取 API 的範例，這是一個開放原始碼命令列工具，可簡化叫用 Azure Resource Manager API。 使用 ARMClient 和 PowerShell 是存取 Log Analytics 搜尋 API 的許多選項之一。 透過這些工具，您可以利用 RESTful Azure Resource Manager API 呼叫 OMS 工作區並在其中執行搜尋命令。 API 會以 JSON 格式向您輸出搜尋結果，讓您以程式設計方式透過許多不同的方法使用搜尋結果。
@@ -29,11 +28,11 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager REST API
 一個已儲存的搜尋可以有一或多個排程。 排程中定義搜尋的執行頻率及識別準則的時間間隔。
 排程具有下表中的屬性。
 
-| 屬性  | 說明 |
-|:--|:--|
-| 間隔 | 執行搜尋的頻率。 以分鐘為單位。 |
-| QueryTimeSpan | 準則評估的時間間隔。 必須等於或大於 Interval。 以分鐘為單位。 |
-| 版本 | 所使用的 API 版本。  目前，這應該一律設為 1。 |
+| 屬性 | 說明 |
+|:--- |:--- |
+| 間隔 |執行搜尋的頻率。 以分鐘為單位。 |
+| QueryTimeSpan |準則評估的時間間隔。 必須等於或大於 Interval。 以分鐘為單位。 |
+| 版本 |所使用的 API 版本。  目前，這應該一律設為 1。 |
 
 例如，假設事件查詢的 Interval 是 15 分鐘，而 Timespan 是 30 分鐘。 在此例子中，每隔 15 分鐘會執行查詢，如果準則在 30 分鐘內連續評估為 true，則會觸發警示。
 
@@ -81,10 +80,10 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager REST API
 所有動作具有下表中的屬性。  不同類型的警示有不同的其他屬性，如下所述。
 
 | 屬性 | 說明 |
-|:--|:--|
-| 類型 | 動作的類型。  目前可能的值為 Alert 和 Webhook。 |
-| 名稱 | 警示的顯示名稱。 |
-| 版本 | 所使用的 API 版本。  目前，這應該一律設為 1。 |
+|:--- |:--- |
+| 類型 |動作的類型。  目前可能的值為 Alert 和 Webhook。 |
+| 名稱 |警示的顯示名稱。 |
+| 版本 |所使用的 API 版本。  目前，這應該一律設為 1。 |
 
 ### <a name="retrieving-actions"></a>擷取動作
 使用 Get 方法來擷取排程的所有動作。
@@ -111,10 +110,10 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager REST API
 一個排程應該只有一個警示動作。  警示動作具有下表中的一或多個區段。  以下進一步詳細說明每一個區段。
 
 | 區段 | 說明 |
-|:--|:--|
-| 閾值 | 執行動作的準則。 |  
-| EmailNotification | 將郵件傳送給多位收件者。 |
-| 補救 | 在 Azure 自動化中啟動 Runbook，以嘗試更正識別的問題。 |
+|:--- |:--- |
+| 閾值 |執行動作的準則。 |
+| EmailNotification |將郵件傳送給多位收件者。 |
+| 補救 |在 Azure 自動化中啟動 Runbook，以嘗試更正識別的問題。 |
 
 #### <a name="thresholds"></a>臨界值
 一個警示動作應該只有一個臨界值。  當已儲存的搜尋結果符合與該搜尋相關聯動作中的臨界值時，將會執行該動作中的任何其他處理序。  動作也可以只包含臨界值，以便與不包含臨界值的其他類型動作一起搭配使用。
@@ -122,9 +121,9 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager REST API
 臨界值具有下表中的屬性。
 
 | 屬性 | 說明 |
-|:--|:--|
-| 運算子 | 用於比較臨界值的運算子。 <br> gt = 大於 <br>  lt = 小於 |
-| 值 | 臨界值。 |
+|:--- |:--- |
+| 運算子 |用於比較臨界值的運算子。 <br> gt = 大於 <br>  lt = 小於 |
+| 值 |臨界值。 |
 
 例如，假設事件查詢的間隔是 15 分鐘、時間範圍是 30 分鐘，而臨界值大於 10。 在此例子中，每隔 15 分鐘會執行查詢，如果傳回在 30 分鐘內建立的 10 個事件，則會觸發警示。
 
@@ -155,10 +154,10 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager REST API
 「電子郵件通知」會將郵件傳送給一或多位收件者。  它們包含下表中的屬性。
 
 | 屬性 | 說明 |
-|:--|:--|
-| 收件者 | 郵件地址清單。 |
-| 主旨 | 郵件的主旨。 |
-| 附件 | 目前不支援附件，這個值永遠為 “None”。 |
+|:--- |:--- |
+| 收件者 |郵件地址清單。 |
+| 主旨 |郵件的主旨。 |
+| 附件 |目前不支援附件，這個值永遠為 “None”。 |
 
 以下是一個包含臨界值的電子郵件通知動作的回應範例。  
 
@@ -197,10 +196,10 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager REST API
 「補救」包含下表中的屬性。
 
 | 屬性 | 說明 |
-|:--|:--|
-| RunbookName | Runbook 的名稱。 這必須符合自動化帳戶 (在 OMS 工作區的自動化方案中設定) 中發佈的 Runbook。 |
-| WebhookUri | Webhook 的 URI。
-| Expiry | webhook 的到期日期和時間。  如果 webhook 沒有到期日，這可以是任何有效的未來日期。 |
+|:--- |:--- |
+| RunbookName |Runbook 的名稱。 這必須符合自動化帳戶 (在 OMS 工作區的自動化方案中設定) 中發佈的 Runbook。 |
+| WebhookUri |Webhook 的 URI。 |
+| Expiry |webhook 的到期日期和時間。  如果 webhook 沒有到期日，這可以是任何有效的未來日期。 |
 
 以下是一個包含臨界值的補救動作的回應範例。
 
@@ -254,9 +253,9 @@ Webhook 動作沒有臨界值，應該加入至具有警示動作和臨界值的
 Webhook 動作包含下表中的屬性。
 
 | 屬性 | 說明 |
-|:--|:--|
-| WebhookUri | 郵件的主旨。 |
-| CustomPayload | 要傳送至 webhook 的自訂內容。  格式取決於 webhook 需要的內容。 |
+|:--- |:--- |
+| WebhookUri |郵件的主旨。 |
+| CustomPayload |要傳送至 webhook 的自訂內容。  格式取決於 webhook 需要的內容。 |
 
 以下是 webhook 動作及一個包含臨界值的相關聯警示動作的回應範例。
 
@@ -305,10 +304,7 @@ Webhook 動作包含下表中的屬性。
     armclient put /subscriptions/{Subscription ID}/resourceGroups/OI-Default-East-US/providers/Microsoft.OperationalInsights/workspaces/{Workspace Name}/savedSearches/{Search ID}/schedules/{Schedule ID}/actions/mywebhookaction?api-version=2015-03-20 $webhookAction
 
 ## <a name="next-steps"></a>後續步驟
-
-- 在 Log Analytics 中使用 [REST API 執行記錄檔搜尋](log-analytics-log-search-api.md) 。
-
-
+* 在 Log Analytics 中使用 [REST API 執行記錄檔搜尋](log-analytics-log-search-api.md) 。
 
 <!--HONumber=Oct16_HO2-->
 

@@ -1,10 +1,9 @@
-##適用於 Eclipse 的 Azure 工具組
-
+## 適用於 Eclipse 的 Azure 工具組
 必要條件：
 
 1. Windows 7、Windows 8、Windows 10、Windows Server 2008 或 Windows Server 2012。
 2. [適用於 Eclipse 的 Azure 工具組的新功能]一文中所列的 Macintosh 或 Linux 作業系統。
-2. Eclipse Indigo 或更新版本。
+3. Eclipse Indigo 或更新版本。
 
 安裝步驟：
 

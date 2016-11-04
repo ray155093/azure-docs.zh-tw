@@ -1,24 +1,23 @@
-<properties
-	pageTitle="使用複製活動來移動資料 | Microsoft Azure"
-	description="了解 Data Factory 管線中的資料移動︰雲端存放區之間和內部部署與雲端之間的資料移轉。使用「複製活動」。"
-	keywords="複製資料, 資料移動, 資料移轉, 傳輸資料"
-	services="data-factory"
-	documentationCenter=""
-	authors="linda33wj"
-	manager="jhubbard"
-	editor="monicar"/>
+---
+title: 使用複製活動來移動資料 | Microsoft Docs
+description: 了解 Data Factory 管線中的資料移動︰雲端存放區之間和內部部署與雲端之間的資料移轉。使用「複製活動」。
+keywords: 複製資料, 資料移動, 資料移轉, 傳輸資料
+services: data-factory
+documentationcenter: ''
+author: linda33wj
+manager: jhubbard
+editor: monicar
 
-<tags
-	ms.service="data-factory"
-	ms.workload="data-services"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/22/2016"
-	ms.author="jingwang"/>
+ms.service: data-factory
+ms.workload: data-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/22/2016
+ms.author: jingwang
 
+---
 # 使用複製活動來移動資料
-
 ## 概觀
 在 Azure Data Factory 中，您可以使用「複製活動」將不同型態的資料從各種內部部署和雲端資料來源複製到 Azure。複製資料之後，可以將它進一步轉換及進行分析。您也可以使用「複製活動」來發佈商業智慧 (BI) 及應用程式使用情況的轉換和分析結果。
 
@@ -28,19 +27,21 @@
 
 首先，讓我們看看在兩個雲端資料存放區之間，以及在內部部署資料存放區與雲端資料存放區之間，如何進行資料移轉。
 
-> [AZURE.NOTE] 若要了解活動的大致情況，請參閱[了解管線和活動](data-factory-create-pipelines.md)。
+> [!NOTE]
+> 若要了解活動的大致情況，請參閱[了解管線和活動](data-factory-create-pipelines.md)。
+> 
+> 
 
 ### 在兩個雲端資料存放區之間複製資料
 當來源和接收資料存放區都在雲端時，「複製活動」就會經歷下列階段，將資料從來源複製到接收資料存放區。為「複製活動」提供技術支援的雲端服務會：
 
 1. 從來源資料存放區讀取資料。
 2. 執行序列化/還原序列化、壓縮/解壓縮、資料行對應及類型轉換。它會根據輸入資料集、輸出資料集及「複製活動」的組態執行這些作業。
-3.	將資料寫入目的地資料存放區。
+3. 將資料寫入目的地資料存放區。
 
 此服務會自動選擇最佳區域來執行資料移動。此區域通常是最靠近接收資料存放區的區域。
 
 ![從雲端複製到雲端](./media/data-factory-data-movement-activities/cloud-to-cloud.png)
-
 
 ### 在內部部署資料存放區和雲端資料存放區之間複製資料
 若要安全地在內部部署資料存放區與雲端資料存放區之間移動資料，請在內部部署機器上安裝「資料管理閘道」。「資料管理閘道」是一個能夠啟用混合式資料移動及處理的代理程式。您可以將它安裝在與資料存放區本身相同的機器上，或是安裝在可存取該資料存放區的另一部機器上。
@@ -54,7 +55,7 @@
 您也可以使用「資料管理閘道」，將資料移出/移入 Azure IaaS 虛擬機器 (VM) 上所裝載的支援資料存放區。在此情況下，您可以將「資料管理閘道」安裝在與資料存放區本身相同的 VM 上，或是安裝在可存取該資料存放區的另一部 VM 上。
 
 ## 支援的資料存放區和格式
-[AZURE.INCLUDE [data-factory-supported-data-stores](../../includes/data-factory-supported-data-stores.md)]
+[!INCLUDE [data-factory-supported-data-stores](../../includes/data-factory-supported-data-stores.md)]
 
 如果您需要將資料移入/移出「複製活動」不支援的資料存放區，請在 Data Factory 中使用**自訂活動**搭配您自己的邏輯來複製/移動資料。如需有關建立及使用自訂活動的詳細資料，請參閱[在 Azure Data Factory 管線中使用自訂活動](data-factory-use-custom-activities.md)。
 
@@ -63,11 +64,9 @@
 
 複製活動也會以下列指定格式讀取和寫入檔案︰文字、Avro、ORC、Parquet 和 JSON。您可以執行下列複製活動，例如：
 
--	從 Azure Blob 複製文字 (CSV) 格式的資料，然後寫入到 Azure SQL Database 中。
--	從「檔案系統」內部部署環境複製文字 (CSV) 格式的檔案，然後以 Avro 格式寫入到 Azure Blob 中。
--	複製 Azure SQL Database 中的資料，然後以 ORC 格式寫入到 HDFS 內部部署環境中。
-
-
+* 從 Azure Blob 複製文字 (CSV) 格式的資料，然後寫入到 Azure SQL Database 中。
+* 從「檔案系統」內部部署環境複製文字 (CSV) 格式的檔案，然後以 Avro 格式寫入到 Azure Blob 中。
+* 複製 Azure SQL Database 中的資料，然後以 ORC 格式寫入到 HDFS 內部部署環境中。
 
 ## <a name="global"></a>全域可用的資料移動
 Azure Data Factory 只在美國西部、美國東部和北歐區域提供使用。不過，支援複製活動的服務可在下列區域和地理位置全域提供使用。全域可用的拓撲可確保進行有效率的資料移動，通常可避免發生跨區域躍點的情況。如需了解某區域中是否有 Data Factory 和「資料移動」可供使用，請參閱[依區域提供的服務](https://azure.microsoft.com/regions/#services)。
@@ -75,31 +74,33 @@ Azure Data Factory 只在美國西部、美國東部和北歐區域提供使用�
 ### 在雲端資料存放區之間複製資料
 當來源和接收資料存放區都位於雲端時，Data Factory 會使用區域中最接近相同地理位置之接收的服務部署來移動資料。如需對應資訊，請參閱下表︰
 
-目的地資料存放區的區域 | 用於資料移動的區域
-:----------------------------------- | :----------------------------
-美國東部 | 美國東部
-美國東部 2 | 美國東部 2
-美國西部 | 美國西部
-美國西部 2 | 美國西部
-美國中部 | 美國中部
-美國中西部 | 美國中部
-美國中北部 | 美國中北部
-美國中南部 | 美國中南部
-北歐 | 北歐
-西歐 | 西歐
-東南亞 | 東南亞
-東亞 | 東南亞
-日本東部 | 日本東部
-日本西部 | 日本東部
-巴西南部 | 巴西南部
-澳洲東部 | 澳洲東部
-澳大利亞東南部 | 澳大利亞東南部
-印度中部 | 印度中部
-印度南部 | 印度中部
-印度西部 | 印度中部
+| 目的地資料存放區的區域 | 用於資料移動的區域 |
+|:--- |:--- |
+| 美國東部 |美國東部 |
+| 美國東部 2 |美國東部 2 |
+| 美國西部 |美國西部 |
+| 美國西部 2 |美國西部 |
+| 美國中部 |美國中部 |
+| 美國中西部 |美國中部 |
+| 美國中北部 |美國中北部 |
+| 美國中南部 |美國中南部 |
+| 北歐 |北歐 |
+| 西歐 |西歐 |
+| 東南亞 |東南亞 |
+| 東亞 |東南亞 |
+| 日本東部 |日本東部 |
+| 日本西部 |日本東部 |
+| 巴西南部 |巴西南部 |
+| 澳洲東部 |澳洲東部 |
+| 澳大利亞東南部 |澳大利亞東南部 |
+| 印度中部 |印度中部 |
+| 印度南部 |印度中部 |
+| 印度西部 |印度中部 |
 
-
-> [AZURE.NOTE] 如果目的地資料存放區的區域不在上述清單中，「複製活動」將會失敗而不會搜查替代區域。
+> [!NOTE]
+> 如果目的地資料存放區的區域不在上述清單中，「複製活動」將會失敗而不會搜查替代區域。
+> 
+> 
 
 ### 在內部部署資料存放區和雲端資料存放區之間複製資料
 在內部部署存放區 (或 Azure 虛擬機器/IaaS) 與雲端存放區之間複製資料時，[資料管理閘道](data-factory-data-management-gateway.md)會在內部部署機器或虛擬機器上執行資料移動。除非您使用[分段複製](data-factory-copy-activity-performance.md#staged-copy)功能，否則資料不會流經雲端服務。在此情況下，資料會先流經預備環境 Azure Blob 儲存體，然後才寫入接收資料存放區。
@@ -119,46 +120,46 @@ JSON 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) �
 
 以下是範例 JSON 定義︰
 
-	{
-	  "name": "ADFTutorialPipeline",
-	  "properties": {
-	    "description": "Copy data from Azure blob to Azure SQL table",
-	    "activities": [
-	      {
-	        "name": "CopyFromBlobToSQL",
-	        "type": "Copy",
-	        "inputs": [
-	          {
-	            "name": "InputBlobTable"
-	          }
-	        ],
-	        "outputs": [
-	          {
-	            "name": "OutputSQLTable"
-	          }
-	        ],
-	        "typeProperties": {
-	          "source": {
-	            "type": "BlobSource"
-	          },
-	          "sink": {
-	            "type": "SqlSink",
-	            "writeBatchSize": 10000,
-	            "writeBatchTimeout": "60:00:00"
-	          }
-	        },
-	        "Policy": {
-	          "concurrency": 1,
-	          "executionPriorityOrder": "NewestFirst",
-	          "retry": 0,
-	          "timeout": "01:00:00"
-	        }
-	      }
-	    ],
-	    "start": "2016-07-12T00:00:00Z",
-	    "end": "2016-07-13T00:00:00Z"
-	  }
-	}
+    {
+      "name": "ADFTutorialPipeline",
+      "properties": {
+        "description": "Copy data from Azure blob to Azure SQL table",
+        "activities": [
+          {
+            "name": "CopyFromBlobToSQL",
+            "type": "Copy",
+            "inputs": [
+              {
+                "name": "InputBlobTable"
+              }
+            ],
+            "outputs": [
+              {
+                "name": "OutputSQLTable"
+              }
+            ],
+            "typeProperties": {
+              "source": {
+                "type": "BlobSource"
+              },
+              "sink": {
+                "type": "SqlSink",
+                "writeBatchSize": 10000,
+                "writeBatchTimeout": "60:00:00"
+              }
+            },
+            "Policy": {
+              "concurrency": 1,
+              "executionPriorityOrder": "NewestFirst",
+              "retry": 0,
+              "timeout": "01:00:00"
+            }
+          }
+        ],
+        "start": "2016-07-12T00:00:00Z",
+        "end": "2016-07-13T00:00:00Z"
+      }
+    }
 
 輸出資料集中定義的排程會決定活動的執行時間 (例如「每日」，即頻率為「日」，間隔為 **1**)。活動會將資料從輸入資料集 (**來源**) 複製到輸出資料集 (**接收**)。
 
@@ -178,9 +179,8 @@ JSON 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) �
 
 資料存放區從原生類型系統到 .NET 類型的對應，位於個別的資料存放區文章中。(按一下[支援的資料存放區](#supported-data-stores)表格中的特定連結)。您可以在建立資料表時，使用這些對應來判斷適當的類型，以便讓「複製活動」能夠執行正確的轉換。
 
-
 ## 後續步驟
-- 若要深入了解複製活動，請參閱[將資料從 Azure Blob 儲存體複製到 Azure SQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
-- 若要了解如何將資料從內部部署資料存放區移到雲端資料存放區，請參閱[將資料從內部部署資料存放區移到雲端資料存放區](data-factory-move-data-between-onprem-and-cloud.md)。
+* 若要深入了解複製活動，請參閱[將資料從 Azure Blob 儲存體複製到 Azure SQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
+* 若要了解如何將資料從內部部署資料存放區移到雲端資料存放區，請參閱[將資料從內部部署資料存放區移到雲端資料存放區](data-factory-move-data-between-onprem-and-cloud.md)。
 
 <!---HONumber=AcomDC_0928_2016-->

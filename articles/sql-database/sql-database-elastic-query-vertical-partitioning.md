@@ -1,33 +1,30 @@
-<properties
-    pageTitle="對不同結構描述的雲端資料庫執行查詢 | Microsoft Azure"
-    description="如何透過垂直資料分割設定跨資料庫查詢"    
-    services="sql-database"
-    documentationCenter=""  
-    manager="jhubbard"
-    authors="torsteng"/>
+---
+title: 對不同結構描述的雲端資料庫執行查詢 | Microsoft Docs
+description: 如何透過垂直資料分割設定跨資料庫查詢
+services: sql-database
+documentationcenter: ''
+manager: jhubbard
+author: torsteng
 
-<tags
-    ms.service="sql-database"
-    ms.workload="sql-database"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="05/27/2016"
-    ms.author="torsteng" />
+ms.service: sql-database
+ms.workload: sql-database
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 05/27/2016
+ms.author: torsteng
 
+---
 # 對不同結構描述的雲端資料庫執行查詢 (預覽)
-
 ![在不同資料庫中跨資料表查詢][1]
 
 垂直資料分割資料庫使用在不同資料庫的不同資料表集。這表示不同資料庫的結構描述不同。比方說，庫存的所有資料表都位於一個資料庫上，而所有會計相關資料表則位於另一個資料庫上。
 
 ## 必要條件
-
 * 使用者必須擁有 ALTER ANY EXTERNAL DATA SOURCE 權限。這個權限包含在 ALTER DATABASE 權限中。
 * 需有 ALTER ANY EXTERNAL DATA SOURCE 權限，才能參考基礎資料來源。
 
 ## 概觀
-
 **請注意**：與水平資料分割不同的是，這些 DDL 陳述式不會依靠透過彈性資料庫用戶端程式庫定義資料層與分區對應。
 
 1. [CREATE MASTER KEY](https://msdn.microsoft.com/library/ms174382.aspx)
@@ -35,20 +32,17 @@
 3. [CREATE EXTERNAL DATA SOURCE](https://msdn.microsoft.com/library/dn935022.aspx)
 4. [CREATE EXTERNAL TABLE](https://msdn.microsoft.com/library/dn935021.aspx) 
 
-
-## 建立資料庫範圍的主要金鑰和認證 
-
+## 建立資料庫範圍的主要金鑰和認證
 彈性查詢使用認證連接到遠端資料庫。
 
     CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'password';
     CREATE DATABASE SCOPED CREDENTIAL <credential_name>  WITH IDENTITY = '<username>',  
     SECRET = '<password>'
     [;]
- 
+
 **注意**︰請確定 *<username>* 不含任何 *"@servername"* 後置詞。
 
 ## 建立外部資料來源
-
 語法：
 
     <External_Data_Source> ::=
@@ -61,63 +55,58 @@
 
 **重要事項**：TYPE 參數必須設為 **RDBMS**。
 
-### 範例 
-
+### 範例
 下列範例說明對外部資料來源使用 CREATE 陳述式。
 
-	CREATE EXTERNAL DATA SOURCE RemoteReferenceData 
-	WITH 
-	( 
-		TYPE=RDBMS, 
-		LOCATION='myserver.database.windows.net', 
-		DATABASE_NAME='ReferenceData', 
-		CREDENTIAL= SqlUser 
-	); 
- 
+    CREATE EXTERNAL DATA SOURCE RemoteReferenceData 
+    WITH 
+    ( 
+        TYPE=RDBMS, 
+        LOCATION='myserver.database.windows.net', 
+        DATABASE_NAME='ReferenceData', 
+        CREDENTIAL= SqlUser 
+    ); 
+
 若要擷取目前的外部資料來源清單︰
 
     select * from sys.external_data_sources; 
 
-### 外部資料表 
-
+### 外部資料表
 語法：
 
-	CREATE EXTERNAL TABLE [ database_name . [ schema_name ] . | schema_name . ] table_name  
+    CREATE EXTERNAL TABLE [ database_name . [ schema_name ] . | schema_name . ] table_name  
     ( { <column_definition> } [ ,...n ])     
-	{ WITH ( <rdbms_external_table_options> ) } 
-	)[;] 
-	
-	<rdbms_external_table_options> ::= 
+    { WITH ( <rdbms_external_table_options> ) } 
+    )[;] 
+
+    <rdbms_external_table_options> ::= 
       DATA_SOURCE = <External_Data_Source>, 
       [ SCHEMA_NAME = N'nonescaped_schema_name',] 
       [ OBJECT_NAME = N'nonescaped_object_name',] 
 
-### 範例  
-
-	CREATE EXTERNAL TABLE [dbo].[customer]( 
-		[c_id] int NOT NULL, 
-		[c_firstname] nvarchar(256) NULL, 
-		[c_lastname] nvarchar(256) NOT NULL, 
-		[street] nvarchar(256) NOT NULL, 
-		[city] nvarchar(256) NOT NULL, 
-		[state] nvarchar(20) NULL, 
-		[country] nvarchar(50) NOT NULL, 
-	) 
-	WITH 
-	( 
-	       DATA_SOURCE = RemoteReferenceData 
-	); 
+### 範例
+    CREATE EXTERNAL TABLE [dbo].[customer]( 
+        [c_id] int NOT NULL, 
+        [c_firstname] nvarchar(256) NULL, 
+        [c_lastname] nvarchar(256) NOT NULL, 
+        [street] nvarchar(256) NOT NULL, 
+        [city] nvarchar(256) NOT NULL, 
+        [state] nvarchar(20) NULL, 
+        [country] nvarchar(50) NOT NULL, 
+    ) 
+    WITH 
+    ( 
+           DATA_SOURCE = RemoteReferenceData 
+    ); 
 
 下列範例顯示如何從目前資料庫擷取外部資料表清單：
 
-	select * from sys.external_tables; 
+    select * from sys.external_tables; 
 
 ### 備註
-
 彈性的查詢會延伸現有的外部資料表語法來定義使用 RDBMS 類型外部資料來源的外部資料表。垂直資料分割的外部資料表定義包含下列各方面：
 
 * **結構描述**：外部資料表 DDL 會定義您的查詢可以使用的結構描述。外部資料表定義中提供的結構描述必須符合實際資料儲存所在之遠端資料庫中資料表的結構描述。 
-
 * **遠端資料庫參考**：外部資料表 DDL 指的是外部資料來源。外部資料來源可指定邏輯伺服器名稱和實際資料表資料儲存所在之遠端資料庫的資料庫名稱。
 
 如上一節所述使用外部資料來源，建立外部資料表的語法如下：
@@ -128,35 +117,32 @@ SCHEMA\_NAME 和 OBJECT\_NAME 子句提供的功能可將外部資料表定義�
 
 下列 DDL 陳述式會從本機目錄卸除現有的外部資料表定義。它不會影響遠端資料庫。
 
-	DROP EXTERNAL TABLE [ [ schema_name ] . | schema_name. ] table_name[;]  
+    DROP EXTERNAL TABLE [ [ schema_name ] . | schema_name. ] table_name[;]  
 
 **CREATE/DROP EXTERNAL TABLE 的權限**：ALTER ANY EXTERNAL DATA SOURCE 權限對外部資料表 DDL 而言是必要的，而後者在參考基礎資料來源時也是必要的。
 
 ## 安全性考量
 可存取外部資料表的使用者可以在外部資料來源定義中所提供的認證下，自動取得基礎遠端資料表的存取權。您應該仔細管理外部資料表的存取權，以避免透過外部資料來源的認證所造成的意外權限提升。一般的 SQL 權限可用來授與或撤銷外部資料表的存取權，如同它是一般資料表那樣。
 
-
-## 範例︰查詢垂直資料分割的資料庫 
-
+## 範例︰查詢垂直資料分割的資料庫
 下列查詢會執行訂單和訂單明細的兩個本機資料表與客戶遠端資料表之間的三方聯結。這是彈性查詢的參考資料使用案例的範例：
 
-	SELECT  	
-	 c_id as customer,
-	 c_lastname as customer_name,
-	 count(*) as cnt_orderline, 
-	 max(ol_quantity) as max_quantity,
-	 avg(ol_amount) as avg_amount,
-	 min(ol_delivery_d) as min_deliv_date
-	FROM customer 
-	JOIN orders 
-	ON c_id = o_c_id
-	JOIN  order_line 
-	ON o_id = ol_o_id and o_c_id = ol_c_id
-	WHERE c_id = 100
+    SELECT      
+     c_id as customer,
+     c_lastname as customer_name,
+     count(*) as cnt_orderline, 
+     max(ol_quantity) as max_quantity,
+     avg(ol_amount) as avg_amount,
+     min(ol_delivery_d) as min_deliv_date
+    FROM customer 
+    JOIN orders 
+    ON c_id = o_c_id
+    JOIN  order_line 
+    ON o_id = ol_o_id and o_c_id = ol_c_id
+    WHERE c_id = 100
 
 
 ## 遠端 T-SQL 執行的預存程序：sp\_execute\_remote
-
 彈性查詢也會介紹可供直接存取分區的預存程序。預存程序稱為 [sp\_execute\_remote](https://msdn.microsoft.com/library/mt703714)，而且可用來在遠端資料庫上執行遠端預存程序或 T-SQL 程式碼。它需要以下參數：
 
 * 資料來源名稱 (nvarchar)：RDBMS 類型的外部資料來源名稱。 
@@ -168,29 +154,23 @@ sp\_execute\_remote 使用引動過程參數中提供的外部資料來源，在
 
 範例：
 
-	EXEC sp_execute_remote
-		N'MyExtSrc',
-		N'select count(w_id) as foo from warehouse' 
+    EXEC sp_execute_remote
+        N'MyExtSrc',
+        N'select count(w_id) as foo from warehouse' 
 
 
-  
+
 ## 工具的連線能力
-
 您可以使用一般 SQL Server 連接字串，在啟用彈性查詢及定義外部資料表的 SQL DB 伺服器上，將 BI 和資料整合工具連接到資料庫。請確定 SQL Server 可支援做為您的工具的資料來源。然後參考彈性查詢資料庫和其外部資料表，就如同您會使用您的工具連接的任何其他 SQL Server 資料庫。
 
-## 最佳作法 
- 
+## 最佳作法
 * 確保遠端資料庫已藉由在 Azure 服務的 SQL DB 防火牆組態中啟用其存取權，獲得彈性查詢端點資料庫的存取權。也請確定外部資料來源定義中提供的認證可以成功登入遠端資料庫，而且具有存取遠端資料表的權限。  
-
 * 彈性查詢最適合可在遠端資料庫上完成大部分運算的查詢。使用可在遠端資料庫上評估的選擇性篩選述詞，或可在遠端資料庫上完全執行的聯結，通常可以獲得最佳查詢效能。其他查詢模式可能需要從遠端資料庫載入大量的資料，而且執行效能可能會很差。
 
-
 ## 後續步驟
-
 若要查詢水平分割的資料庫 (也稱為分區化資料庫)，請參閱[跨分區化的雲端資料庫執行查詢 (水平分割)](sql-database-elastic-query-horizontal-partitioning.md)。
 
-[AZURE.INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
-
+[!INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
 
 <!--Image references-->
 [1]: ./media/sql-database-elastic-query-vertical-partitioning/verticalpartitioning.png

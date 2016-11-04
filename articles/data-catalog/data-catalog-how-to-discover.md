@@ -1,29 +1,27 @@
-<properties
-   pageTitle="如何探索資料來源 | Microsoft Azure"
-   description="操作說明文章著重在說明如何探索已註冊 Azure 資料目錄的資料資產，包括搜尋、篩選及使用 Azure 資料目錄入口網站的結果醒目顯示功能。"
-   services="data-catalog"
-   documentationCenter=""
-   authors="steelanddata"
-   manager="NA"
-   editor=""
-   tags=""/>
-<tags
-   ms.service="data-catalog"
-   ms.devlang="NA"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="data-catalog"
-   ms.date="10/04/2016"
-   ms.author="maroche"/>
+---
+title: 如何探索資料來源 | Microsoft Docs
+description: 操作說明文章著重在說明如何探索已註冊 Azure 資料目錄的資料資產，包括搜尋、篩選及使用 Azure 資料目錄入口網站的結果醒目顯示功能。
+services: data-catalog
+documentationcenter: ''
+author: steelanddata
+manager: NA
+editor: ''
+tags: ''
 
+ms.service: data-catalog
+ms.devlang: NA
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: data-catalog
+ms.date: 10/04/2016
+ms.author: maroche
 
+---
 # <a name="how-to-discover-data-sources"></a>如何探索資料來源
-
 ## <a name="introduction"></a>簡介
  是全面管理的雲端服務，可作為企業資料來源的註冊系統和探索系統。 換句話說，[Azure 資料目錄]  的重點在於協助人們探索、了解，以及使用資料來源，並可協助組織從現有的資料獲得更多價值。 只要在 **Azure 資料目錄**註冊資料來源之後，其中繼資料會由此服務編製索引，讓使用者可以輕鬆地搜尋以探索所需的資料。
 
 ## <a name="searching-and-filtering"></a>搜尋和篩選
-
 在 **Azure 資料目錄** 探索資料會使用兩種主要機制：搜尋和篩選。
 
 搜尋的設計兼具直覺與強大的功能，根據預設，搜尋字詞會比對目錄中的所有內容，包括使用者提供的註解。
@@ -33,23 +31,25 @@
 透過使用搜尋和篩選的組合，使用者可以快速瀏覽已經向 **Azure 資料目錄** 註冊的資料來源，以探索所需的資料來源。
 
 ## <a name="search-syntax"></a>搜尋語法
-
 雖然預設的任意文字搜尋既簡單又直覺，使用者也可以使用 **Azure 資料目錄**的搜尋語法，更充分地掌控搜尋結果。 **Azure 資料目錄** 搜尋支援下列技巧：
 
-| 技巧                 | 使用                                                                                                                                     | 範例                                                   |
-|---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------|
-| 基本搜尋              | 使用一或多個搜尋字詞的基本搜尋。 結果包含了任何與一或多個指定字詞的內容相符的資產。 | 銷售資料                                                |
-| 內容範圍          | 只會傳回搜尋字詞與指定內容相符的資料來源                                                   | name:finance                                              |
-| 布林運算子         | 使用布林值作業擴大或縮小搜尋                                                                                     | finance NOT corporate                                     |
-| 使用括號分組 | 使用括號將查詢部分分組，以達到邏輯隔離，尤其是與布林運算子結合。              | name:finance AND (tags:Q1 OR tags:Q2) |
-| 比較運算子      | 針對具有數值和日期資料類型的內容進行比較而非相等                                                | modifiedTime > "11/05/2014"                                 |
+| 技巧 | 使用 | 範例 |
+| --- | --- | --- |
+| 基本搜尋 |使用一或多個搜尋字詞的基本搜尋。 結果包含了任何與一或多個指定字詞的內容相符的資產。 |銷售資料 |
+| 內容範圍 |只會傳回搜尋字詞與指定內容相符的資料來源 |name:finance |
+| 布林運算子 |使用布林值作業擴大或縮小搜尋 |finance NOT corporate |
+| 使用括號分組 |使用括號將查詢部分分組，以達到邏輯隔離，尤其是與布林運算子結合。 |name:finance AND (tags:Q1 OR tags:Q2) |
+| 比較運算子 |針對具有數值和日期資料類型的內容進行比較而非相等 |modifiedTime > "11/05/2014" |
 
 如需 **Azure 資料目錄** 搜尋的詳細資訊，請參閱 [https://msdn.microsoft.com/library/azure/mt267594.aspx](https://msdn.microsoft.com/library/azure/mt267594.aspx)。
 
 ## <a name="hit-highlighting"></a>搜尋結果醒目提示
 當您檢視搜尋結果時，會醒目顯示符合指定搜尋字詞的內容，例如資料資產名稱、描述和標記，讓您更輕鬆地找出指定搜尋傳回指定資料資產的原因。
 
-> [AZURE.NOTE] 使用者可以依其需求，使用 **Azure 資料目錄** 入口網站中的 [醒目提示] 開關，關閉醒目提示。
+> [!NOTE]
+> 使用者可以依其需求，使用 **Azure 資料目錄** 入口網站中的 [醒目提示] 開關，關閉醒目提示。
+> 
+> 
 
 當您檢視搜尋結果時，即使已啟用醒目提示，不一定能明顯看出為何某個資料資產會包含在其中。 因為預設會搜尋所有內容，某個資料資產可能因為符合資料行層級的內容而被傳回。 此外，多位使用者可以使用他們自己的標記和描述為已註冊的資料資產加上註解，因此並非所有的中繼資料都會顯示在搜尋結果清單中。
 
@@ -61,9 +61,7 @@
 利用 **Azure 資料目錄** 註冊資料來源，可讓您透過將結構化和描述性中繼資料從資料來源複製到「目錄」服務，來更容易地探索及了解資料來源。 資料來源註冊之後，使用者可以使用篩選來探索資料來源，並且在 **Azure 資料目錄** 入口網站搜尋。
 
 ## <a name="see-also"></a>另請參閱
-- [開始使用 Azure 資料目錄](data-catalog-get-started.md) 教學課程，取得如何探索資料來源的逐步詳細資料。
-
-
+* [開始使用 Azure 資料目錄](data-catalog-get-started.md) 教學課程，取得如何探索資料來源的逐步詳細資料。
 
 <!--HONumber=Oct16_HO2-->
 

@@ -1,28 +1,30 @@
-<properties
-	pageTitle="在 PowerApps 中設定 API 連接到 Azure Active Directory 網域中的後端系統 | Microsoft Azure"
-	description="在 PowerApps 中設定 API 連接到受 AAD 保護的後端系統"
-	services=""
-    suite="powerapps"
-	documentationCenter="" 
-	authors="MandiOhlinger"
-	manager="erikre"
-	editor=""/>
+---
+title: 在 PowerApps 中設定 API 連接到 Azure Active Directory 網域中的後端系統 | Microsoft Docs
+description: 在 PowerApps 中設定 API 連接到受 AAD 保護的後端系統
+services: ''
+suite: powerapps
+documentationcenter: ''
+author: MandiOhlinger
+manager: erikre
+editor: ''
 
-<tags
-   ms.service="powerapps"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na" 
-   ms.date="05/02/2016"
-   ms.author="guayan"/>
+ms.service: powerapps
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 05/02/2016
+ms.author: guayan
 
+---
 # 設定 API 連接到 Azure Active Directory 網域上的後端資源
-
-> [AZURE.IMPORTANT] 本主題已經封存，並且很快就會移除。請到全新的 [PowerApps](https://powerapps.microsoft.com) 來看看我們在忙些什麼。
+> [!IMPORTANT]
+> 本主題已經封存，並且很快就會移除。請到全新的 [PowerApps](https://powerapps.microsoft.com) 來看看我們在忙些什麼。
 > 
-> - 若要深入了解 PowerApps 並開始使用，請移至 [PowerApps](https://powerapps.microsoft.com)。  
-> - 若要深入了解 PowerApps 中的自訂 API，請前往 [What are Custom APIs (什麼是自訂 API)](https://powerapps.microsoft.com/tutorials/register-custom-api/)。 
+> * 若要深入了解 PowerApps 並開始使用，請移至 [PowerApps](https://powerapps.microsoft.com)。  
+> * 若要深入了解 PowerApps 中的自訂 API，請前往 [What are Custom APIs (什麼是自訂 API)](https://powerapps.microsoft.com/tutorials/register-custom-api/)。 
+> 
+> 
 
 <!--Archived
 As more users are creating domains on Azure Active Directory (AAD), backend resources are also being added to these AAD domains. You can create and configure APIs to connect to these backend resources. 
@@ -42,9 +44,9 @@ To access the backend system on an AAD domain, create an AAD application, and gi
 ![][14]
 2. Select the **Add** button at the bottom. Then:  
 
-	a) Choose **Add an application my organization is developing**.  
-	b) Enter a name for your application and select **Web application and/or web API**.  
-	c) In **Sign-on URL** and **App ID URI**, enter unique URLs within your AAD and URLs that make sense to your organization. For example, you can enter http://powerappssignon.contoso.com or http://powerappsappid.contoso.com.  We recommend using a URL within your organization's AAD domain. The URLs are used as identifiers and there is no requirement that they need to exist. No one is going to browse the URLs you enter. You can enter HTTP or HTTPS.  
+    a) Choose **Add an application my organization is developing**.  
+    b) Enter a name for your application and select **Web application and/or web API**.  
+    c) In **Sign-on URL** and **App ID URI**, enter unique URLs within your AAD and URLs that make sense to your organization. For example, you can enter http://powerappssignon.contoso.com or http://powerappsappid.contoso.com.  We recommend using a URL within your organization's AAD domain. The URLs are used as identifiers and there is no requirement that they need to exist. No one is going to browse the URLs you enter. You can enter HTTP or HTTPS.  
 
 3. In the newly created AAD application page, go to the **Configure** tab:  
 ![][15]
@@ -53,11 +55,11 @@ To access the backend system on an AAD domain, create an AAD application, and gi
 5. In **single sign-on**, add ``https://<your App Service Environment name>.azure-apim.net:456/redirect`` as a **reply URL**.
 6. In **permissions to other applications**:  
 
-	1. Select **Add application**. In the pop-up window, choose the AAD application securing your existing backend:  
-	![][17]  
+    1. Select **Add application**. In the pop-up window, choose the AAD application securing your existing backend:  
+    ![][17]  
 
-	2. Use the drop-down list to add the permissions:  
-	![][18]
+    2. Use the drop-down list to add the permissions:  
+    ![][18]
 
 7. Select **Save** at the bottom. 
 8. Copy the **client ID** and **key** and store them. The key isn't shown again after you close Azure portal. 
@@ -130,22 +132,22 @@ Optionally, you can also use API policy to set the AAD token into the standard H
 
 ```xml
 <policies>
-	<inbound>
-		<base/>
-		<choose>
-			<when condition="@(context.Variables.ContainsKey(";tokens";) &amp;&amp; ((JObject)context.Variables[";tokens";])[";token";] != null &amp;&amp; !String.IsNullOrEmpty((string)((JObject)context.Variables[";tokens";])[";token";][";AccessToken";]))">
-				<set-header exists-action="override" name="Authorization">
-					<value>@("Bearer " + (string)((JObject)context.Variables["tokens"])[";token";]["AccessToken"])</value>
-				</set-header>
-			</when>
-		</choose>
-	</inbound>
-	<backend>
-		<base/>
-	</backend>
-	<outbound>
-		<base/>
-	</outbound>
+    <inbound>
+        <base/>
+        <choose>
+            <when condition="@(context.Variables.ContainsKey(";tokens";) &amp;&amp; ((JObject)context.Variables[";tokens";])[";token";] != null &amp;&amp; !String.IsNullOrEmpty((string)((JObject)context.Variables[";tokens";])[";token";][";AccessToken";]))">
+                <set-header exists-action="override" name="Authorization">
+                    <value>@("Bearer " + (string)((JObject)context.Variables["tokens"])[";token";]["AccessToken"])</value>
+                </set-header>
+            </when>
+        </choose>
+    </inbound>
+    <backend>
+        <base/>
+    </backend>
+    <outbound>
+        <base/>
+    </outbound>
 </policies>
 ```
 

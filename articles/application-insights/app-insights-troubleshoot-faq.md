@@ -1,24 +1,22 @@
-<properties 
-	pageTitle="Application Insights 的疑難排解與問題" 
-	description="Visual Studio 的 Application Insights 哪個部分不清楚或無法運作嗎？ 試試這裡。" 
-	services="application-insights" 
-    documentationCenter=".net"
-	authors="alancameronwills" 
-	manager="douge"/>
+---
+title: Application Insights 的疑難排解與問題
+description: Visual Studio 的 Application Insights 哪個部分不清楚或無法運作嗎？ 試試這裡。
+services: application-insights
+documentationcenter: .net
+author: alancameronwills
+manager: douge
 
-<tags 
-	ms.service="application-insights" 
-	ms.workload="mobile" 
-	ms.tgt_pltfrm="ibiza" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="08/24/2016" 
-	ms.author="awills"/>
- 
+ms.service: application-insights
+ms.workload: mobile
+ms.tgt_pltfrm: ibiza
+ms.devlang: na
+ms.topic: article
+ms.date: 08/24/2016
+ms.author: awills
+
+---
 # 問題 - ASP.NET 的 Application Insights
-
 ## 組態問題
-
 *我有設定下列項目的問題：*
 
 * [.NET 應用程式](app-insights-asp-net-troubleshoot-no-data.md)
@@ -33,14 +31,10 @@
 * [設定 ASP.NET 伺服器](app-insights-monitor-performance-live-website-now.md)
 * [設定 Java 伺服器](app-insights-java-agent.md)
 
-
 ## 我是否可以使用 Application Insights 搭配...？
-
 [請參閱「平台」][platforms]
 
-
 ## 它是免費的嗎？
-
 * 是的，如果您選擇免費[定價層](app-insights-pricing.md)。您會獲得大部分的功能和大量資料配額。
 * 您必須提供信用卡資料以向 Microsoft Azure 註冊，但我們不會收取任何費用，除非您使用其他付費 Azure 服務，或明確地升級至付費層。
 * 如果您的應用程式傳送的資料超過免費層的每月配額，它會停止記錄。如果發生這種情況，您可以選擇開始付費，或等到月底重設配額。
@@ -49,76 +43,50 @@
 * 每個應用程式資源都有個別的配額，其定價層的設定與其他任何資源無關。
 
 #### 付費能得到什麼？
-
 * 較大的[每月資料配額](https://azure.microsoft.com/pricing/details/application-insights/)。
 * 能夠選擇針對超額部分付費，以繼續收集超過每月配額的資料。如果您的資料超過配額，我們將會以每 Mb 來收費。
 * [連續匯出](app-insights-export-telemetry.md)
 
-
 ## <a name="q14"></a>Application Insights 在我的專案中修改什麼？
-
 詳細資料視專案類型而定。若是 Web 應用程式：
 
-
-+ 在您的專案中加入這些檔案：
-
- + ApplicationInsights.config。
- + ai.js
-
-
-+ 安裝這些 NuGet 套件：
-
- -  *Application Insights API* - 核心 API
-
- -  *Application Insights API for Web Applications* - 用來從伺服器傳送遙測
-
- -  *Application Insights API for JavaScript Applications* - 用來從用戶端傳送遙測
-
+* 在您的專案中加入這些檔案：
+  
+  * ApplicationInsights.config。
+  * ai.js
+* 安裝這些 NuGet 套件：
+  
+  * *Application Insights API* - 核心 API
+  * *Application Insights API for Web Applications* - 用來從伺服器傳送遙測
+  * *Application Insights API for JavaScript Applications* - 用來從用戶端傳送遙測
+    
     套件包含這些組件：
-
- - Microsoft.ApplicationInsights
-
- - Microsoft.ApplicationInsights.Platform
-
-+ 將項目插入至：
-
- - Web.config
-
- - packages.config
-
-+ (僅限新專案 - 如果您[將 Application Insights 加入至現有的專案][start]，則必須手動執行。) 將程式碼片段插入至用戶端和伺服器程式碼中，以使用 Application Insights 資源識別碼將這些片段初始化。例如，在 MVC 應用程式中，程式碼會插入至主版頁面 Views/Shared/\_Layout.cshtml
-
+  * Microsoft.ApplicationInsights
+  * Microsoft.ApplicationInsights.Platform
+* 將項目插入至：
+  
+  * Web.config
+  * packages.config
+* (僅限新專案 - 如果您[將 Application Insights 加入至現有的專案][start]，則必須手動執行。) 將程式碼片段插入至用戶端和伺服器程式碼中，以使用 Application Insights 資源識別碼將這些片段初始化。例如，在 MVC 應用程式中，程式碼會插入至主版頁面 Views/Shared/\_Layout.cshtml
 
 ## 如何從舊版 SDK 升級？
-
 請參閱您的應用程式類型所適用之 SDK 的[版本資訊](app-insights-release-notes.md)。
 
-
-
 ## <a name="update"></a>如何變更我的專案將資料傳送到哪一個 Azure 資源？
-
 在 [方案總管] 中，以滑鼠右鍵按一下 `ApplicationInsights.config`，然後選擇 [**更新 Application Insights**]。您可以將資料傳送至 Azure 中的現有資源或新資源。更新精靈會變更 ApplicationInsights.config 中的檢測機碼，這決定伺服器 SDK 將您的資料送往何處。除非您取消選取 [全部更新]，否則它也會變更機碼出現在您網頁中的位置。
 
-
 #### <a name="data"></a>資料會保留在入口網站多久？ 是否安全？
-
 請參閱[資料保留和隱私權][data]。
 
 ## 記錄
-
 #### <a name="post"></a>如何在診斷搜尋中查看 POST 資料？
-
 我們不會自動記錄 POST 資料，但您可以使用 TrackTrace 呼叫：將資料放置到訊息參數中。相較於字串屬性的限制，此呼叫可容許較長的大小，不過您無法篩選。
 
 ## 安全性
-
 #### 保留在入口網站上的資料安全嗎？ 會保留多久？
-
 請參閱[資料保留和隱私權][data]。
 
-
 ## <a name="q17"></a>我是否已啟用 Application Insights 中的所有項目？
-
 <table border="1">
 <tr><th>您應該會看到</th><th>如何取得</th><th>取得原因</th></tr>
 <tr><td>可用性圖表</td><td><a href="../app-insights-monitor-web-app-availability/">Web 測試</a></td><td>知道您的 Web 應用程式已啟動</td></tr>
@@ -134,13 +102,10 @@
 
 
 ## 自動化
-
 您可以[撰寫 PowerShell 指令碼](app-insights-powershell.md)來建立和更新 Application Insights 資源。
 
 ## 更多解答
-
 * [Application Insights 論壇](https://social.msdn.microsoft.com/Forums/vstudio/zh-TW/home?forum=ApplicationInsights)
-
 
 <!--Link references-->
 
@@ -149,6 +114,6 @@
 [start]: app-insights-overview.md
 [windows]: app-insights-windows-get-started.md
 
- 
+
 
 <!---HONumber=AcomDC_0824_2016-->

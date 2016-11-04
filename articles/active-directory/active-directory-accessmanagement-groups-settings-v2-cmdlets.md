@@ -1,34 +1,33 @@
-<properties
-    pageTitle="適用於在 Azure AD 中群組管理的 Azure Active Directory PowerShell Preview Cmdlet |Microsoft Azure"
-    description="此頁面會提供 PowerShell 範例以協助您管理 Azure Active Directory 中的群組"
-    keywords="Azure AD, Azure Active Directory, PowerShell, 群組, 群組管理"
-    services="active-directory"
-    documentationCenter=""
-    authors="curtand"
-    manager="femila"
-    editor=""/>
+---
+title: 適用於在 Azure AD 中群組管理的 Azure Active Directory PowerShell Preview Cmdlet | Microsoft Docs
+description: 此頁面會提供 PowerShell 範例以協助您管理 Azure Active Directory 中的群組
+keywords: Azure AD, Azure Active Directory, PowerShell, 群組, 群組管理
+services: active-directory
+documentationcenter: ''
+author: curtand
+manager: femila
+editor: ''
 
-<tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/29/2016"
-    ms.author="curtand"/>
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/29/2016
+ms.author: curtand
 
-
+---
 # <a name="azure-active-directory-preview-cmdlets-for-group-management"></a>適用於群組管理的 Azure Active Directory Preview Cmdlet
-
-> [AZURE.SELECTOR]
-- [Azure 入口網站](active-directory-groups-create-azure-portal.md)
-- [Azure 傳統入口網站](active-directory-accessmanagement-manage-groups.md)
-- [PowerShell](active-directory-accessmanagement-groups-v2-cmdlets.md)
+> [!div class="op_single_selector"]
+> * [Azure 入口網站](active-directory-groups-create-azure-portal.md)
+> * [Azure 傳統入口網站](active-directory-accessmanagement-manage-groups.md)
+> * [PowerShell](active-directory-accessmanagement-groups-v2-cmdlets.md)
+> 
+> 
 
 下列文件將提供範例，說明如何使用 PowerShell 管理 Azure Active Directory (Azure AD) 中的群組。  其中也提供有關如何使用 Azure AD PowerShell Preview 模組完成設定的資訊。 首先，您必須 [下載 Azure AD PowerShell 模組](http://go.microsoft.com/fwlink/p/?LinkId=828627)。
 
 ## <a name="installing-the-azure-ad-powershell-module"></a>安裝 Azure AD PowerShell 模組
-
 若要安裝 AzureAD PowerShell Preview 模組，請使用下列命令︰
 
     PS C:\Windows\system32> install-module azureadpreview
@@ -222,14 +221,10 @@ Cmdlet 將會傳回所指定群組的擁有者清單︰
     PS C:\Windows\system32> remove-AzureADGroupOwner -ObjectId 31f1ff6c-d48c-4f8a-b2e1-abca7fd399df -OwnerId e831b3fd-77c9-49c7-9fca-de43e109ef67
 
 ## <a name="next-steps"></a>後續步驟
-
 您可以在 [Azure Active Directory Cmdlet](http://go.microsoft.com/fwlink/p/?LinkId=808260)中找到更多 Azure Active Directory PowerShell 文件。
 
 * [使用 Azure Active Directory 群組來管理資源的存取權](active-directory-manage-groups.md)
-
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
-
-
 
 <!--HONumber=Oct16_HO2-->
 

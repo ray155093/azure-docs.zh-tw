@@ -1,24 +1,23 @@
-<properties
-pageTitle="新增 Excel 連接器 | Microsoft Azure"
-description="搭配 REST API 參數來使用 Excel 連接器的概觀"
-services=""    
-documentationCenter=""     
-authors="msftman"    
-manager="erikre"    
-editor=""
-tags="connectors"/>
+---
+title: 新增 Excel 連接器 | Microsoft Docs
+description: 搭配 REST API 參數來使用 Excel 連接器的概觀
+services: ''
+documentationcenter: ''
+author: msftman
+manager: erikre
+editor: ''
+tags: connectors
 
-<tags
-ms.service="multiple"
-ms.devlang="na"
-ms.topic="article"
-ms.tgt_pltfrm="na"
-ms.workload="na"
-ms.date="08/23/2016"
-ms.author="deonhe"/>
+ms.service: multiple
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 08/23/2016
+ms.author: deonhe
 
+---
 # 開始使用 Excel 連接器
-
 目前，Logic Apps 中沒有任何 Excel 連接器。
 
 ## 使用 Excel 資料

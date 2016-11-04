@@ -1,21 +1,21 @@
-<properties
-   pageTitle="Azure 資源總管 | Microsoft Azure"
-   description="說明 Azure 資源總管，以及說明如何透過 Azure Resource Manager 使用資源總管來檢視及更新部署。"
-   services="azure-resource-manager"
-   documentationCenter="na"
-   authors="stuartleeks"
-   manager="ankodu"
-   editor=""/>
+---
+title: Azure 資源總管 | Microsoft Docs
+description: 說明 Azure 資源總管，以及說明如何透過 Azure Resource Manager 使用資源總管來檢視及更新部署。
+services: azure-resource-manager
+documentationcenter: na
+author: stuartleeks
+manager: ankodu
+editor: ''
 
-<tags
-   ms.service="azure-resource-manager"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="08/01/2016"
-   ms.author="stuartle;tomfitz"/>
+ms.service: azure-resource-manager
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 08/01/2016
+ms.author: stuartle;tomfitz
 
+---
 # 使用 Azure 資源總管來檢視及修改資源
 [Azure 資源總管](https://resources.azure.com)是很棒的工具，可用來查看您已經在訂用帳戶中建立的資源。您可以使用此工具來了解資源結構，以及查看指派給每項資源的屬性。您可以了解可供資源類型使用的 REST API 操作和 PowerShell Cmdlet，而且您可以透過介面發出命令。在您建立資源管理員範本時，資源總管會特別好用，因為它可以讓您檢視現有資源的屬性。
 
@@ -45,7 +45,6 @@
 ![sql 資料庫](./media/resource-manager-resource-explorer/are-04-database-get.png)
 
 ## 變更資源
-
 在您可以瀏覽至資源時，可以選取 [編輯] 按鈕來讓 JSON 內容可供編輯。然後您可以使用資源總管來編輯 JSON，並傳送 PUT 要求來變更資源。例如，下面的影像顯示資料庫層已變更為 `S0`：
 
 ![資料庫 - PUT 要求](./media/resource-manager-resource-explorer/are-05-database-put.png)
@@ -57,7 +56,6 @@
 ![資料庫 - GET 要求 2](./media/resource-manager-resource-explorer/are-06-database-get2.png)
 
 ## 在資源上執行動作
-
 [動作] 索引標籤可讓您查看及執行其他 REST 操作。例如，當您已經選取網站資源時，[動作] 索引標籤會顯示含有一長串可用操作的清單，下面顯示了其中一部份。
 
 ![Web - POST 要求](./media/resource-manager-resource-explorer/are-web-post.png)

@@ -1,34 +1,32 @@
-<properties
-    pageTitle="Azure 備份 - 使用 PowerShell 部署和管理 DPM 的備份 | Microsoft Azure"
-    description="了解如何使用 PowerShell 部署和管理 Data Protection Manager (DPM) 的 Azure 備份"
-    services="backup"
-    documentationCenter=""
-    authors="Nkolli1"
-    manager="shreeshd"
-    editor=""/>
+---
+title: Azure 備份 - 使用 PowerShell 部署和管理 DPM 的備份 | Microsoft Docs
+description: 了解如何使用 PowerShell 部署和管理 Data Protection Manager (DPM) 的 Azure 備份
+services: backup
+documentationcenter: ''
+author: Nkolli1
+manager: shreeshd
+editor: ''
 
-<tags
-    ms.service="backup"
-    ms.workload="storage-backup-recovery"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/27/2016"
-    ms.author="jimpark; trinadhk; anuragm; markgal"/>
+ms.service: backup
+ms.workload: storage-backup-recovery
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/27/2016
+ms.author: jimpark; trinadhk; anuragm; markgal
 
-
-
+---
 # <a name="deploy-and-manage-backup-to-azure-for-data-protection-manager-(dpm)-servers-using-powershell"></a>使用 PowerShell 部署和管理 Data Protection Manager (DPM) 伺服器的 Azure 備份
-
-> [AZURE.SELECTOR]
-- [ARM](backup-dpm-automation.md)
-- [傳統](backup-dpm-automation-classic.md)
+> [!div class="op_single_selector"]
+> * [ARM](backup-dpm-automation.md)
+> * [傳統](backup-dpm-automation-classic.md)
+> 
+> 
 
 本文說明如何使用 PowerShell 來設定 DPM 伺服器上的 Azure 備份以及管理備份和復原。
 
 ## <a name="setting-up-the-powershell-environment"></a>設定 PowerShell 環境
-
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-include.md)]
+[!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-include.md)]
 
 在可以使用 PowerShell 來管理 Data Protection Manager 的 Azure 備份之前，您必須在 PowerShell 中具備適當的環境。 在 PowerShell 工作階段開始時，請確定您執行下列命令來匯入正確的模組並可讓您正確地參考 DPM Cmdlet：
 
@@ -57,15 +55,17 @@ PS C:\> Switch-AzureMode AzureResourceManager
 
 PowerShell 可以自動化下列設定和註冊工作：
 
-- 建立備份保存庫
-- 安裝 Azure 備份代理程式
-- 向 Azure 備份服務進行註冊
-- 網路設定
-- 加密設定
+* 建立備份保存庫
+* 安裝 Azure 備份代理程式
+* 向 Azure 備份服務進行註冊
+* 網路設定
+* 加密設定
 
 ### <a name="create-a-backup-vault"></a>建立備份保存庫
-
-> [AZURE.WARNING] 對於第一次使用 Azure 備份的客戶，您需要註冊 Azure 備份提供者以搭配您的訂用帳戶使用。 這可以透過執行下列命令來完成：Register-AzureProvider -ProviderNamespace "Microsoft.Backup"
+> [!WARNING]
+> 對於第一次使用 Azure 備份的客戶，您需要註冊 Azure 備份提供者以搭配您的訂用帳戶使用。 這可以透過執行下列命令來完成：Register-AzureProvider -ProviderNamespace "Microsoft.Backup"
+> 
+> 
 
 您可以使用 **New-AzureRMBackupVault** Cmdlet 建立新的備份保存庫。 備份保存庫是 ARM 資源，因此您必須將它放在資源群組內。 在提高權限的 Azure PowerShell 主控台中，執行下列命令：
 
@@ -75,7 +75,6 @@ PS C:\> $backupvault = New-AzureRMBackupVault –ResourceGroupName “test-rg”
 ```
 
 您可以使用 **Get-AzureRMBackupVault** Cmdlet 取得特定訂用帳戶中所有備份保存庫的清單。
-
 
 ### <a name="installing-the-azure-backup-agent-on-a-dpm-server"></a>在 DPM 伺服器上安裝 Azure 備份代理程式
 在安裝 Azure 備份代理程式之前，您必須在 Windows Server 上下載並提供安裝程式。 您可以從 [Microsoft 下載中心](http://aka.ms/azurebackup_agent) 或從備份保存庫的 [儀表板] 頁面取得最新版的安裝程式。 請將安裝程式儲存至容易存取的位置，例如 *C:\Downloads\*。
@@ -102,23 +101,23 @@ PS C:\> MARSAgentInstaller.exe /?
 可用的選項包括：
 
 | 選項 | 詳細資料 | 預設值 |
-| ---- | ----- | ----- |
-| /q | 無訊息安裝 | - |
-| /p:"location" | Azure 備份代理程式的安裝資料夾路徑。 | C:\Program Files\Microsoft Azure Recovery Services Agent |
-| /s:"location" | Azure 備份代理程式的快取資料夾路徑。 | C:\Program Files\Microsoft Azure Recovery Services Agent\Scratch |
-| /m | 選擇加入 Microsoft Update | - |
-| /nu | 安裝完成後不要檢查更新 | - |
-| /d | 解除安裝 Microsoft Azure 復原服務代理程式 | - |
-| /ph | Proxy 主機位址 | - |
-| /po | Proxy 主機連接埠號碼 | - |
-| /pu | Proxy 主機使用者名稱 | - |
-| /pw | Proxy 密碼 | - |
+| --- | --- | --- |
+| /q |無訊息安裝 |- |
+| /p:"location" |Azure 備份代理程式的安裝資料夾路徑。 |C:\Program Files\Microsoft Azure Recovery Services Agent |
+| /s:"location" |Azure 備份代理程式的快取資料夾路徑。 |C:\Program Files\Microsoft Azure Recovery Services Agent\Scratch |
+| /m |選擇加入 Microsoft Update |- |
+| /nu |安裝完成後不要檢查更新 |- |
+| /d |解除安裝 Microsoft Azure 復原服務代理程式 |- |
+| /ph |Proxy 主機位址 |- |
+| /po |Proxy 主機連接埠號碼 |- |
+| /pu |Proxy 主機使用者名稱 |- |
+| /pw |Proxy 密碼 |- |
 
 ### <a name="registering-with-the-azure-backup-service"></a>向 Azure 備份服務進行註冊
 在可註冊 Azure 備份服務之前，您必須確定已符合 [先決條件](backup-azure-dpm-introduction.md) 。 您必須：
 
-- 具備有效的 Azure 訂用帳戶
-- 具備備份保存庫
+* 具備有效的 Azure 訂用帳戶
+* 具備備份保存庫
 
 若要下載保存庫認證，請在 Azure PowerShell 主控台中執行 **Get-AzureBackupVaultCredentials**，並將其儲存在方便的位置，例如 *C:\Downloads\*。
 
@@ -138,7 +137,10 @@ PS C:\> Start-DPMCloudRegistration -DPMServerName "TestingServer" -VaultCredenti
 
 此命令會使用指定的保存庫認證向 Microsoft Azure 保存庫註冊名為 “TestingServer” 的 DPM 伺服器。
 
-> [AZURE.IMPORTANT] 請勿使用相對路徑來指定保存庫認證檔。 您必須提供絕對路徑做為 Cmdlet 的輸入。
+> [!IMPORTANT]
+> 請勿使用相對路徑來指定保存庫認證檔。 您必須提供絕對路徑做為 Cmdlet 的輸入。
+> 
+> 
 
 ### <a name="initial-configuration-settings"></a>初始組態設定
 一旦向 Azure 備份保存庫註冊 DPM 伺服器，就會使用預設的訂用帳戶設定開始。 這些訂用帳戶設定包括網路、加密和臨時區域。 若要開始變更訂用帳戶設定，您需要先使用 [Get-DPMCloudSubscriptionSetting](https://technet.microsoft.com/library/jj612793) Cmdlet 取得現有 (預設) 設定上的控制代碼：
@@ -175,7 +177,6 @@ PS C:\> Set-DPMCloudSubscriptionSetting -DPMServerName "TestingServer" -Subscrip
 
 在上述範例中，臨時區域將在 PowerShell 物件 ```$setting``` 中設定為 *C:\StagingArea*。 請確保指定的資料夾已經存在，否則訂用帳戶設定的最終認可將會失敗。
 
-
 ### <a name="encryption-settings"></a>加密設定
 傳送至 Azure 備份的備份資料會進行加密來保護資料的機密性。 加密複雜密碼是在還原時用來解密資料的「密碼」。 一旦設定，就請務必保管好這項資訊。
 
@@ -187,7 +188,10 @@ PS C:\> $Passphrase = ConvertTo-SecureString -string "passphrase123456789" -AsPl
 PS C:\> Set-DPMCloudSubscriptionSetting -DPMServerName "TestingServer" -SubscriptionSetting $setting -EncryptionPassphrase $Passphrase
 ```
 
-> [AZURE.IMPORTANT] 一旦設定，就請保管好此複雜密碼。 若沒有此複雜密碼，您將無法從 Azure 還原資料。
+> [!IMPORTANT]
+> 一旦設定，就請保管好此複雜密碼。 若沒有此複雜密碼，您將無法從 Azure 還原資料。
+> 
+> 
 
 此時，您應該已對 ```$setting``` 物件進行所有必要的變更。 記得要認可變更。
 
@@ -306,9 +310,10 @@ PS C:\> Set-DPMProtectionGroup -ProtectionGroup $MPG
 ```
 ## <a name="view-the-backup-points"></a>檢視備份點
 您可以使用 [Get-DPMRecoveryPoint](https://technet.microsoft.com/library/hh881746) Cmdlet 來取得資料來源所有復原點的清單。 在此範例中，我們將會：
-- 擷取 DPM 伺服器上將儲存在 ```$PG```
-- 取得與 ```$PG[0]```
-- 取得資料來源的所有復原點。
+
+* 擷取 DPM 伺服器上將儲存在 ```$PG```
+* 取得與 ```$PG[0]```
+* 取得資料來源的所有復原點。
 
 ```
 PS C:\> $PG = Get-DPMProtectionGroup –DPMServerName "TestingServer"
@@ -321,9 +326,9 @@ PS C:\> $RecoveryPoints = Get-DPMRecoverypoint -Datasource $DS[0] -Online
 
 在下列範例中，我們將示範如何透過結合備份點與復原目標從 Azure 備份還原 Hyper-V 虛擬機器。 其中包括：
 
-- 使用 [New-DPMRecoveryOption](https://technet.microsoft.com/library/hh881592) Cmdlet 建立復原選項。
-- 使用 ```Get-DPMRecoveryPoint``` Cmdlet 擷取備份點的陣列。
-- 選擇要從中還原的備份點。
+* 使用 [New-DPMRecoveryOption](https://technet.microsoft.com/library/hh881592) Cmdlet 建立復原選項。
+* 使用 ```Get-DPMRecoveryPoint``` Cmdlet 擷取備份點的陣列。
+* 選擇要從中還原的備份點。
 
 ```
 PS C:\> $RecoveryOption = New-DPMRecoveryOption -HyperVDatasource -TargetServer "HVDCenter02" -RecoveryLocation AlternateHyperVServer -RecoveryType Recover -TargetLocation “C:\VMRecovery”
@@ -338,10 +343,7 @@ PS C:\> Restore-DPMRecoverableItem -RecoverableItem $RecoveryPoints[0] -Recovery
 命令可以很容易地針對任何資料來源類型擴充。
 
 ## <a name="next-steps"></a>後續步驟
-
-- 如需 DPM 的 Azure 備份詳細資訊，請參閱 [DPM 備份簡介](backup-azure-dpm-introduction.md)
-
-
+* 如需 DPM 的 Azure 備份詳細資訊，請參閱 [DPM 備份簡介](backup-azure-dpm-introduction.md)
 
 <!--HONumber=Oct16_HO2-->
 

@@ -1,31 +1,27 @@
-<properties
-    pageTitle="如何使用服務匯流排轉送搭配 .NET | Microsoft Azure"
-    description="了解如何使用 Azure 服務匯流排轉送服務連接主控於相異位置的兩個應用程式。"
-    services="service-bus"
-    documentationCenter=".net"
-    authors="sethmanheim"
-    manager="timlt"
-    editor=""/>
+---
+title: 如何使用服務匯流排轉送搭配 .NET | Microsoft Docs
+description: 了解如何使用 Azure 服務匯流排轉送服務連接主控於相異位置的兩個應用程式。
+services: service-bus
+documentationcenter: .net
+author: sethmanheim
+manager: timlt
+editor: ''
 
-<tags
-    ms.service="service-bus"
-    ms.workload="na"
-    ms.tgt_pltfrm="na"
-    ms.devlang="dotnet"
-    ms.topic="article"
-    ms.date="09/16/2016"
-    ms.author="sethm"/>
+ms.service: service-bus
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: dotnet
+ms.topic: article
+ms.date: 09/16/2016
+ms.author: sethm
 
-
-
+---
 # <a name="how-to-use-the-azure-service-bus-relay-service"></a>如何使用 Azure 服務匯流排轉送服務
-
 本文說明如何使用服務匯流排轉送服務。 這些範例均以 C# 撰寫，並使用 Windows Communication Foundation (WCF) API 以及包含在服務匯流排組件中的擴充功能。 如需有關服務匯流排轉送的詳細資訊，請參閱[服務匯流排轉送傳訊](service-bus-relay-overview.md)概觀。
 
-[AZURE.INCLUDE [create-account-note](../../includes/create-account-note.md)]
+[!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
 ## <a name="what-is-the-service-bus-relay?"></a>什麼是服務匯流排轉送
-
 [服務匯流排「轉送」服務](service-bus-relay-overview.md)可讓您建立一個可在 Azure 資料中心和您自己的內部部署企業環境中執行的混合式應用程式。 服務匯流排轉送可幫助達成此目標，方法是讓您以安全的方式，向公用雲端公開位於企業網路內部的 Windows Communication Foundation (WCF) 服務，而無需開啟防火牆連線或要求對企業網路基礎結構的進行侵入式變更。
 
 ![轉送概念](./media/service-bus-dotnet-how-to-use-relay/sb-relay-01.png)
@@ -35,40 +31,36 @@
 本文章將示範如何使用服務匯流排轉送來建立 WCF Web 服務，使用可在兩端之間實作安全交談的 TCP 通道繫結來加以公開。
 
 ## <a name="create-a-service-namespace"></a>建立服務命名空間
-
 若要開始在 Azure 中使用服務匯流排轉送，您首先必須建立命名空間。 命名空間提供範圍容器，可在應用程式內定址服務匯流排資源。
 
 建立服務命名空間：
 
-[AZURE.INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
+[!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
 ## <a name="get-the-service-bus-nuget-package"></a>取得服務匯流排 NuGet 封裝
-
 [服務匯流排 NuGet 套件](https://www.nuget.org/packages/WindowsAzure.ServiceBus) 為取得服務匯流排 API，並設定具有所有服務匯流排相依性的應用程式的最容易方式。 若要在專案中安裝 NuGet 封裝，請執行下列動作：
 
-1.  在 [方案總管] 中，以滑鼠右鍵按一下 [參考]，然後按一下 [管理 NuGet 套件]。
-2.  搜尋「服務匯流排」並選取 [Microsoft Azure 服務匯流排]  項目。 按一下 [安裝] 完成安裝作業，然後關閉下列對話方塊：
-
-    ![](./media/service-bus-dotnet-how-to-use-relay/getting-started-multi-tier-13.png)
+1. 在 [方案總管] 中，以滑鼠右鍵按一下 [參考]，然後按一下 [管理 NuGet 套件]。
+2. 搜尋「服務匯流排」並選取 [Microsoft Azure 服務匯流排]  項目。 按一下 [安裝] 完成安裝作業，然後關閉下列對話方塊：
+   
+   ![](./media/service-bus-dotnet-how-to-use-relay/getting-started-multi-tier-13.png)
 
 ## <a name="use-service-bus-to-expose-and-consume-a-soap-web-service-with-tcp"></a>使用服務匯流排來公開及取用具有 TCP 的 SOAP Web 服務
-
 若要將現有的 WCF SOAP Web 服務公開給外部使用，您必須對服務繫結和位址進行變更。 這可能需要變更組態檔，或可能需要變更程式碼，視您如何設定和配置 WCF 服務而定。 請注意，WCF 可讓您對相同的服務有多個網路端點，因此您可以保留現有的內部端點，並同時新增用於外部存取的服務匯流排端點。
 
 在本工作中，您將建立一個簡單的 WCF 服務，並為它新增服務匯流排接聽程式。 本練習假設您對 Visual Studio 有一定程度的了解，因此將不會逐步解說完成建立專案的所有詳細資料。 而是會將重點放在程式碼。
 
 開始這些步驟之前，請完成下列設定環境的程序：
 
-1.  在 Visual Studio 中，建立解決方案中包含兩個專案 ("Client" 和 "Service") 的主控台應用程式。
-2.  對兩個專案新增 Microsoft Azure 服務匯流排 NuGet 封裝。 此封裝會將所有必要組件參考新增至您的專案。
+1. 在 Visual Studio 中，建立解決方案中包含兩個專案 ("Client" 和 "Service") 的主控台應用程式。
+2. 對兩個專案新增 Microsoft Azure 服務匯流排 NuGet 封裝。 此封裝會將所有必要組件參考新增至您的專案。
 
 ### <a name="how-to-create-the-service"></a>如何建立服務
-
 首先建立服務本身。 任何 WCF 服務都包含至少三個獨特部分：
 
--   說明會交換哪些訊息以及會叫用哪些作業的合約定義。
--   所述合約的實作。
--   裝載 WCF 服務並公開數個端點的主機。
+* 說明會交換哪些訊息以及會叫用哪些作業的合約定義。
+* 所述合約的實作。
+* 裝載 WCF 服務並公開數個端點的主機。
 
 本節中的程式碼範例將逐一說明這些元件。
 
@@ -100,7 +92,6 @@ class ProblemSolver : IProblemSolver
 ```
 
 ### <a name="configure-a-service-host-programmatically"></a>以程式設計方式設定服務主機
-
 在準備好合約和實作之後，您便可以開始代管服務。 代管會發生在 [System.ServiceModel.ServiceHost](https://msdn.microsoft.com/library/azure/system.servicemodel.servicehost.aspx) 物件內，此物件將負責管理服務的執行個體並代管接聽訊息的端點。 下列程式碼將設定包含一般本機端點和服務匯流排端點的服務，以緊密地說明內部和外部端點的外觀。 使用您的命名空間名稱來取代字串 *namespace*，並使用上述設定步驟中所取得的 SAS 金鑰來取代 *yourKey*。
 
 ```
@@ -127,7 +118,6 @@ sh.Close();
 在此範例中，您將建立相同合約實作的兩個端點。 一個是本機，一個透過服務匯流排投射。 它們之間的主要差異是繫結；[NetTcpBinding](https://msdn.microsoft.com/library/azure/system.servicemodel.nettcpbinding.aspx) 用於本機，而 [NetTcpRelayBinding](https://msdn.microsoft.com/library/azure/microsoft.servicebus.nettcprelaybinding.aspx) 用於服務匯流排端點和位址。 本機端點會包含具有獨特連接埠的本機網路位址。 服務匯流排端點會包含一個由字串 `sb`、您的命名空間名稱及路徑 "solver" 組合而成的端點位址。 這會產生 URI `sb://[serviceNamespace].servicebus.windows.net/solver`，指出服務端點為具有完整外部 DNS 名稱的服務匯流排 TCP 端點。 如果您將要取代預留位置的程式碼置入 **Service** 應用程式的 `Main` 函式中，您將會有一個功能性服務。 如果您想要服務專門接聽服務匯流排，請移除本機端點宣告。
 
 ### <a name="configure-a-service-host-in-the-app.config-file"></a>在 App.config 檔案中設定服務主機
-
 您也可以使用 App.config 檔案來設定主機。 此案例中的服務裝載程式碼會出現在下一個範例中。
 
 ```
@@ -169,9 +159,7 @@ sh.Close();
 在進行這些變更之後，此服務便會和以前一樣啟動，但會多了兩個即時端點：一個在本機，一個在雲端接聽。
 
 ### <a name="create-the-client"></a>建立用戶端
-
 #### <a name="configure-a-client-programmatically"></a>以程式設計方式設定用戶端
-
 若要取用此服務，您可以使用 [ChannelFactory](https://msdn.microsoft.com/library/system.servicemodel.channelfactory.aspx) 物件來建構 WCF 用戶端。 服務匯流排會使用以 SAS 所實作的權杖型安全性模型。 [TokenProvider](https://msdn.microsoft.com/library/azure/microsoft.servicebus.tokenprovider.aspx) 類別代表安全性權杖提供者，其具有內建 Factory 方法，可傳回部分已知的權杖提供者。 以下範例使用 [CreateSharedAccessSignatureTokenProvider](https://msdn.microsoft.com/library/azure/microsoft.servicebus.tokenprovider.createsharedaccesssignaturetokenprovider.aspx) 方法以處理適當 SAS 權杖的擷取。 如上一節所述，將從入口網站取得這些名稱和金鑰。
 
 首先，將 `IProblemSolver` 合約程式碼從服務中參照或複製到您的用戶端專案。
@@ -195,7 +183,6 @@ using (var ch = cf.CreateChannel())
 您現在可以建置用戶端和服務、執行它們 (先執行服務)，然後用戶端會呼叫此服務並列印 **9**。 您可以在不同機器上 (即使是在不同網路上) 執行用戶端和伺服器，通訊仍然可以運作。 您也可以在雲端或在本機上執行用戶端程式碼。
 
 #### <a name="configure-a-client-in-the-app.config-file"></a>在 App.config 檔案中設定用戶端
-
 下列程式碼示範如何使用 App.config 檔案設定用戶端。
 
 ```
@@ -229,16 +216,15 @@ using (var ch = cf.CreateChannel())
 ```
 
 ## <a name="next-steps"></a>後續步驟
-
 了解基本的服務匯流排轉送服務之後，請參考下列連結以取得更多資訊。
 
-- [服務匯流排轉送傳訊概觀](service-bus-relay-overview.md)
-- [Azure 服務匯流排架構概觀](../service-bus-messaging/service-bus-fundamentals-hybrid-solutions.md)
-- 從 [Azure 範例][]下載服務匯流排範例，或參閱[服務匯流排範例概觀][]。
+* [服務匯流排轉送傳訊概觀](service-bus-relay-overview.md)
+* [Azure 服務匯流排架構概觀](../service-bus/service-bus-fundamentals-hybrid-solutions.md)
+* 從 [Azure 範例][Azure 範例]下載服務匯流排範例，或參閱[服務匯流排範例概觀][服務匯流排範例概觀]。
 
-  [使用服務匯流排的共用存取簽章驗證]: ../service-bus-messaging/service-bus-shared-access-signature-authentication.md
-  [Azure 範例]: https://code.msdn.microsoft.com/site/search?query=service%20bus&f%5B0%5D.Value=service%20bus&f%5B0%5D.Type=SearchText&ac=2
-  [服務匯流排範例概觀]: ../service-bus-messaging/service-bus-samples.md
+[使用服務匯流排的共用存取簽章驗證]: ../service-bus-messaging/service-bus-shared-access-signature-authentication.md
+[Azure 範例]: https://code.msdn.microsoft.com/site/search?query=service%20bus&f%5B0%5D.Value=service%20bus&f%5B0%5D.Type=SearchText&ac=2
+[服務匯流排範例概觀]: ../service-bus-messaging/service-bus-samples.md
 
 
 <!--HONumber=Oct16_HO2-->

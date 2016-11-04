@@ -1,46 +1,45 @@
-<properties
-    pageTitle="使用 Powershell 指令碼來識別適用於集區的單一資料庫 | Microsoft Azure"
-    description="彈性資料庫集區是一組彈性資料庫共用的可用資源集合。 本文件提供 Powershell 指令碼，幫助您評估對一組資料庫使用彈性資料庫集區的合適性。"
-    services="sql-database"
-    documentationCenter=""
-    authors="stevestein"
-    manager="jhubbard"
-    editor=""/>
+---
+title: 使用 Powershell 指令碼來識別適用於集區的單一資料庫 | Microsoft Docs
+description: 彈性資料庫集區是一組彈性資料庫共用的可用資源集合。 本文件提供 Powershell 指令碼，幫助您評估對一組資料庫使用彈性資料庫集區的合適性。
+services: sql-database
+documentationcenter: ''
+author: stevestein
+manager: jhubbard
+editor: ''
 
-<tags
-    ms.service="sql-database"
-    ms.devlang="NA"
-    ms.date="09/28/2016"
-    ms.author="sstein"
-    ms.workload="data-management"
-    ms.topic="article"
-    ms.tgt_pltfrm="NA"/>
+ms.service: sql-database
+ms.devlang: NA
+ms.date: 09/28/2016
+ms.author: sstein
+ms.workload: data-management
+ms.topic: article
+ms.tgt_pltfrm: NA
 
-
+---
 # <a name="powershell-script-for-identifying-databases-suitable-for-an-elastic-database-pool"></a>識別適用於彈性資料庫集區的資料庫的 PowerShell 指令碼
-
 本文中的範例 PowerShell 指令碼會估計 SQL Database 伺服器中使用者資料庫的彙總 eDTU 值。 指令碼會在執行時收集資料，而且對於一般生產工作負載而言，您應該執行指令碼至少一天。 最理想的情況是，您想要對可代表您資料庫一般工作負載的時間期間執行指令碼。 請讓指令碼執行夠久的時間，以擷取代表資料庫一般與尖峰使用率的資料。 執行指令碼一個星期或更久可能會提供更精確的估計。
 
 此指令碼特別適用於評估 v11 伺服器上的資料庫以及移轉到 v12 伺服器 (支援集區)。 在 v12 伺服器上，SQL Database 擁有內建的智慧功能，可分析歷史的使用狀況遙測，並在更符合成本效益時建議集區。 如需詳細資訊，請參閱 [監視和管理彈性資料庫集區並調整大小](sql-database-elastic-pool-manage-portal.md)
 
-> [AZURE.IMPORTANT] 執行指令碼時，您必須保持 PowerShell 視窗開啟。 在您執行指令碼一段所需的時間之前，請勿關閉 PowerShell 視窗。 
+> [!IMPORTANT]
+> 執行指令碼時，您必須保持 PowerShell 視窗開啟。 在您執行指令碼一段所需的時間之前，請勿關閉 PowerShell 視窗。 
+> 
+> 
 
-## <a name="prerequisites"></a>必要條件 
-
+## <a name="prerequisites"></a>必要條件
 請在執行指令碼之前先安裝下列項目：
 
-- 最新的 Azure PowerShell。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
-- [SQL Server 2014 功能套件](https://www.microsoft.com/download/details.aspx?id=42295)。
+* 最新的 Azure PowerShell。 如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
+* [SQL Server 2014 功能套件](https://www.microsoft.com/download/details.aspx?id=42295)。
 
 ## <a name="script-details"></a>指令碼詳細資料
-
 您可以從本機電腦或雲端上的 VM 上執行指令碼。 從本機機器上執行時，因為指令碼需要從您的目標資料庫下載資料，可能會產生資料輸出費用。 以下顯示根據目標資料庫的數目和執行指令碼持續時間的資料磁碟區估計。 針對 Azure 資料傳輸成本，請參閱 [資料傳輸價格詳細資料](https://azure.microsoft.com/pricing/details/data-transfers/)。
-       
- -     1 個資料庫每小時 = 38 KB
- -     1 個資料庫每天 = 900 KB
- -     1 個資料庫每週 = 6 MB
- -     100 個資料庫每天 = 90 MB
- -     500 個資料庫每週 = 3 GB
+
+* 1 個資料庫每小時 = 38 KB
+* 1 個資料庫每天 = 900 KB
+* 1 個資料庫每週 = 6 MB
+* 100 個資料庫每天 = 90 MB
+* 500 個資料庫每週 = 3 GB
 
 指令碼不會編譯下列資料庫的資訊：
 
@@ -54,16 +53,14 @@
 指令碼需要您提供認證，才能連接到具有完整伺服器名稱 (<*dbname*>**.database.windows.net**) 的目標伺服器 (彈性資料庫集區候選項目)。 指令碼不支援一次分析多部伺服器。
 
 提交一組初始參數的值之後，會提示您登入您的 Azure 帳戶。 這是用於登入您的目標伺服器，而不是輸出資料庫伺服器。
-    
+
 如果您在執行指令碼遇到下列警告，可加以忽略：
 
-- 警告：Switch-AzureMode Cmdlet 已經過時。
-- 警告：無法取得 SQL Server 服務資訊。 嘗試連接到 'Microsoft.Azure.Commands.Sql.dll' 上的 WMI 失敗，並出現下列錯誤：RPC 伺服器無法使用。
+* 警告：Switch-AzureMode Cmdlet 已經過時。
+* 警告：無法取得 SQL Server 服務資訊。 嘗試連接到 'Microsoft.Azure.Commands.Sql.dll' 上的 WMI 失敗，並出現下列錯誤：RPC 伺服器無法使用。
 
 指令碼完成時，它會輸出集區所需的 eDTU 的估計數目，以包含目標伺服器中的所有候選資料庫。 這個估計的 eDTU 可用於建立和設定集區。 一旦建立集區並將資料庫移到集區之後，應該密切監控集區數日，並且視需要，對集區 eDTU 設定進行調整。 請參閱 [監視、管理和估量彈性資料庫集區](sql-database-elastic-pool-manage-portal.md)。
 
-
-    
 ```
 param (
 [Parameter(Mandatory=$true)][string]$AzureSubscriptionName, # Azure Subscription name - can be found on the Azure portal: https://portal.azure.com/
@@ -270,7 +267,7 @@ $data = Invoke-Sqlcmd -ServerInstance $outputServerName -Database $outputdatabas
 $data | %{'{0}' -f $_[0]}
 }
 ```
-        
+
 
 
 

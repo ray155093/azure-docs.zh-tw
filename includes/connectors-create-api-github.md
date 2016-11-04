@@ -1,5 +1,5 @@
 ### 必要條件
-- 一個 [GitHub](http://GitHub.com) 帳戶 
+* 一個 [GitHub](http://GitHub.com) 帳戶 
 
 您必須先授與邏輯應用程式連接到 GitHub 帳戶的權限，之後才能在邏輯應用程式中使用您的 GitHub 帳戶。所幸，您可以使用 Azure 入口網站在邏輯應用程式內輕易達成這項作業。
 
@@ -10,3 +10,4 @@
 3. 提供您的 GitHub 使用者名稱和密碼以授與邏輯應用程式權限：![](./media/connectors-create-api-github/github-3.png)   
 4. 確認您的意願：![](./media/connectors-create-api-github/github-4.png)   
 5. 請注意，入口網站中已建立連線。您可以繼續建立邏輯應用程式，並在其中使用 GitHub：![](./media/connectors-create-api-github/github-5.png)   
+

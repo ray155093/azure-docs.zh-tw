@@ -1,64 +1,58 @@
-<properties
-	pageTitle="Microsoft Cloud Germany 中的 Azure AD Connect"
-	description="Azure AD Connect 會整合您的內部部署目錄與 Azure Active Directory。這可讓您為與 Azure AD 整合的 Office 365、Azure 和 SaaS 應用程式提供通用身分識別。"
-    keywords="Azure AD Connect 簡介, Azure AD Connect 概觀, 何謂 Azure AD Connect, 安裝 active directory, 德國, 黑森林"
-	services="active-directory"
-	documentationCenter=""
-	authors="billmath"
-	manager="femila"
-	editor=""/>
+---
+title: Microsoft Cloud Germany 中的 Azure AD Connect
+description: Azure AD Connect 會整合您的內部部署目錄與 Azure Active Directory。這可讓您為與 Azure AD 整合的 Office 365、Azure 和 SaaS 應用程式提供通用身分識別。
+keywords: Azure AD Connect 簡介, Azure AD Connect 概觀, 何謂 Azure AD Connect, 安裝 active directory, 德國, 黑森林
+services: active-directory
+documentationcenter: ''
+author: billmath
+manager: femila
+editor: ''
 
-<tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="get-started-article"
-	ms.date="09/08/2016"
-	ms.author="billmath"/>
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: get-started-article
+ms.date: 09/08/2016
+ms.author: billmath
 
-#Microsoft Cloud Germany 中的 Azure AD Connect - 公開預覽
-
+---
+# Microsoft Cloud Germany 中的 Azure AD Connect - 公開預覽
 ## 簡介
 Azure AD Connect 可進行內部部署 Active Directory 與 Azure Active Directory 之間的同步處理。[Microsoft Cloud Germany](https://www.microsoft.com/de-de/cloud/deutschland/default.aspx) 中目前有許多案例必須由操作員來完成。使用 Microsoft Cloud Germany 時，您必須注意下列事項︰
 
-
-- 下列 URL 必須在 Proxy 伺服器上開啟，才能成功進行同步處理：
-	- *.microsoftonline.de
-	- *.windows.net
-	- + 憑證撤銷清單
-
-- 當您登入 Azure AD 目錄時，必須使用 onmicrosoft.de 網域中的帳戶。
-- 無法使用下列功能：
-	- Azure AD Connect Health
-	- 自動更新
-	- 密碼回寫
+* 下列 URL 必須在 Proxy 伺服器上開啟，才能成功進行同步處理：
+  
+  * *.microsoftonline.de
+  * *.windows.net
+  * * 憑證撤銷清單
+* 當您登入 Azure AD 目錄時，必須使用 onmicrosoft.de 網域中的帳戶。
+* 無法使用下列功能：
+  * Azure AD Connect Health
+  * 自動更新
+  * 密碼回寫
 
 ## 下載
 您可以從入口網站中的 [Azure AD Connect] 刀鋒視窗下載 Azure AD Connect。使用下列指示來尋找 Azure AD Connect 刀鋒視窗。
 
 ### Azure AD Connect 刀鋒視窗
-
 登入 Azure 入口網站後，請執行下列動作：
 
 1. 移至瀏覽
-2.	選取 Azure Active Directory
-3.	然後選取 Azure AD Connect
+2. 選取 Azure Active Directory
+3. 然後選取 Azure AD Connect
 
 您應該會看見下列內容：
 
-![Azure AD Connect 刀鋒視窗](media\active-directory-aadconnect-germany\germany1.png)
+![Azure AD Connect 刀鋒視窗](media\\active-directory-aadconnect-germany\\germany1.png)
 
- 
 下表描述刀鋒視窗中顯示的功能。
 
-
-課程名稱|說明|
------ | ----- |
-同步處理狀態|讓您知道已啟用或停用同步處理。|
-上次同步處理|上次成功完成同步處理。|
-同盟網域|顯示目前設定的同盟網域數目。|
-
+| 課程名稱 | 說明 |
+| --- | --- |
+| 同步處理狀態 |讓您知道已啟用或停用同步處理。 |
+| 上次同步處理 |上次成功完成同步處理。 |
+| 同盟網域 |顯示目前設定的同盟網域數目。 |
 
 ## 安裝
 若要安裝 Azure AD Connect，您可以使用[這裡](active-directory-aadconnect.md#install-azure-ad-connect)的文件。

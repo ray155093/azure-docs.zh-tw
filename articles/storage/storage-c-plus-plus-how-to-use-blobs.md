@@ -1,38 +1,39 @@
-<properties
-    pageTitle="如何從 C++ 使用 Blob 儲存體 (物件儲存體) | Microsoft Azure"
-    description="使用 Azure Blob 儲存體 (物件儲存體) 在雲端中儲存非結構化資料。"
-    services="storage"
-    documentationCenter=".net"
-    authors="dineshmurthy"
-    manager="jahogg"
-    editor="tysonn"/>
+---
+title: 如何從 C++ 使用 Blob 儲存體 (物件儲存體) | Microsoft Docs
+description: 使用 Azure Blob 儲存體 (物件儲存體) 在雲端中儲存非結構化資料。
+services: storage
+documentationcenter: .net
+author: dineshmurthy
+manager: jahogg
+editor: tysonn
 
-<tags
-    ms.service="storage"
-    ms.workload="storage"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="10/18/2016"
-    ms.author="dineshm"/>
+ms.service: storage
+ms.workload: storage
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 10/18/2016
+ms.author: dineshm
 
+---
+# <a name="how-to-use-blob-storage-from-c++"></a>如何使用 C++ 的 Blob 儲存體
+[!INCLUDE [storage-selector-blob-include](../../includes/storage-selector-blob-include.md)]
 
-# <a name="how-to-use-blob-storage-from-c++"></a>如何使用 C++ 的 Blob 儲存體  
-
-[AZURE.INCLUDE [storage-selector-blob-include](../../includes/storage-selector-blob-include.md)]
-<br/>
-[AZURE.INCLUDE [storage-try-azure-tools-blobs](../../includes/storage-try-azure-tools-blobs.md)]
+[!INCLUDE [storage-try-azure-tools-blobs](../../includes/storage-try-azure-tools-blobs.md)]
 
 ## <a name="overview"></a>Overview
-
 Azure Blob 儲存體是可將非結構化的資料儲存在雲端作為物件/blob 的服務。 Blob 儲存體可以儲存任何類型的文字或二進位資料，例如文件、媒體檔案或應用程式安裝程式。 Blob 儲存體也稱為物件儲存體。
 
 本指南將示範如何使用 Azure Blob 儲存體服務執行一般案例。 這些範例均以 C++ 撰寫，並使用 [Azure Storage Client Library for C++](http://github.com/Azure/azure-storage-cpp/blob/master/README.md)。 所涵蓋的案例包括**上傳**、**列出**、**下載**及**刪除** Blob。  
 
->[AZURE.NOTE] 本指南以 Azure Storage Client Library for C++ 1.0.0 版和更新版本為對象。 建議的版本是 Storage Client Library 2.2.0，可透過 [NuGet](http://www.nuget.org/packages/wastorage) 或 [GitHub](https://github.com/Azure/azure-storage-cpp) 取得。
+> [!NOTE]
+> 本指南以 Azure Storage Client Library for C++ 1.0.0 版和更新版本為對象。 建議的版本是 Storage Client Library 2.2.0，可透過 [NuGet](http://www.nuget.org/packages/wastorage) 或 [GitHub](https://github.com/Azure/azure-storage-cpp) 取得。
+> 
+> 
 
-[AZURE.INCLUDE [storage-blob-concepts-include](../../includes/storage-blob-concepts-include.md)]
-[AZURE.INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
+[!INCLUDE [storage-blob-concepts-include](../../includes/storage-blob-concepts-include.md)]
+
+[!INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
 
 ## <a name="create-a-c++-application"></a>建立 C++ 應用程式
 在本指南中，您將使用可以在 C++ 應用程式內執行的儲存體功能。  
@@ -41,12 +42,12 @@ Azure Blob 儲存體是可將非結構化的資料儲存在雲端作為物件/bl
 
 若要安裝 Azure Storage Client Library for C++，您可以使用下列方法：
 
--   **Linux：** 遵循 [Azure Storage Client Library for C++ 讀我檔案](https://github.com/Azure/azure-storage-cpp/blob/master/README.md) 頁面中提供的指示進行。  
--   **Windows：**在 Visual Studio 中，按一下 [工具] > [NuGet 套件管理員] > [套件管理員主控台]。 在 [NuGet 套件管理員主控台](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) 中輸入下列命令，然後按下 **Enter**。  
+* **Linux：** 遵循 [Azure Storage Client Library for C++ 讀我檔案](https://github.com/Azure/azure-storage-cpp/blob/master/README.md) 頁面中提供的指示進行。  
+* **Windows：**在 Visual Studio 中，按一下 [工具] > [NuGet 套件管理員] > [套件管理員主控台]。 在 [NuGet 套件管理員主控台](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) 中輸入下列命令，然後按下 **Enter**。  
+  
+      Install-Package wastorage
 
-        Install-Package wastorage
-
-## <a name="configure-your-application-to-access-blob-storage"></a>設定您的應用程式以存取 Blob 儲存體  
+## <a name="configure-your-application-to-access-blob-storage"></a>設定您的應用程式以存取 Blob 儲存體
 在您要使用 Azure 儲存體 API 來存取 Blob 的 C++ 檔案頂端，加入下列 include 陳述式：  
 
     #include "was/storage_account.h"
@@ -79,8 +80,7 @@ Azure 儲存體用戶端會使用儲存體連接字串來儲存存取資料管�
     azure::storage::cloud_blob_client blob_client = storage_account.create_cloud_blob_client();  
 
 ## <a name="how-to:-create-a-container"></a>作法：建立容器
-
-[AZURE.INCLUDE [storage-container-naming-rules-include](../../includes/storage-container-naming-rules-include.md)]
+[!INCLUDE [storage-container-naming-rules-include](../../includes/storage-container-naming-rules-include.md)]
 
 此範例說明如何建立尚不存在的容器：  
 
@@ -238,14 +238,12 @@ Azure Blob 儲存體支援區塊 Blob 和頁面 Blob。 在大多數情況下，
 ## <a name="next-steps"></a>後續步驟
 了解 Blob 儲存體的基礎概念之後，請依照下列連結深入了解 Azure 儲存體。  
 
--   [如何使用 C++ 的佇列儲存體](storage-c-plus-plus-how-to-use-queues.md)
--   [如何使用 C++ 的資料表儲存體](storage-c-plus-plus-how-to-use-tables.md)
--   [以 C++ 列出 Azure 儲存體資源](storage-c-plus-plus-enumeration.md)
--   [Storage Client Library for C++ 參考資料](http://azure.github.io/azure-storage-cpp)
--   [Azure 儲存體文件](https://azure.microsoft.com/documentation/services/storage/)
-- [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)
-
-
+* [如何使用 C++ 的佇列儲存體](storage-c-plus-plus-how-to-use-queues.md)
+* [如何使用 C++ 的資料表儲存體](storage-c-plus-plus-how-to-use-tables.md)
+* [以 C++ 列出 Azure 儲存體資源](storage-c-plus-plus-enumeration.md)
+* [Storage Client Library for C++ 參考資料](http://azure.github.io/azure-storage-cpp)
+* [Azure 儲存體文件](https://azure.microsoft.com/documentation/services/storage/)
+* [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)
 
 <!--HONumber=Oct16_HO2-->
 

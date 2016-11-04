@@ -1,40 +1,39 @@
 
-<properties
-   pageTitle="Azure 虛擬網路對等互連 | Microsoft Azure"
-   description="了解 Azure 中的 VNet 對等互連。"
-   services="virtual-network"
-   documentationCenter="na"
-   authors="NarayanAnnamalai"
-   manager="jefco"
-   editor="tysonn" />
-<tags
-   ms.service="virtual-network"
-   ms.devlang="na"
-   ms.topic="get-started-article"
-   ms.tgt_pltfrm="na"
-   ms.workload="infrastructure-services"
-   ms.date="07/28/2016"
-   ms.author="narayan" />
+---
+title: Azure 虛擬網路對等互連 | Microsoft Docs
+description: 了解 Azure 中的 VNet 對等互連。
+services: virtual-network
+documentationcenter: na
+author: NarayanAnnamalai
+manager: jefco
+editor: tysonn
 
+ms.service: virtual-network
+ms.devlang: na
+ms.topic: get-started-article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 07/28/2016
+ms.author: narayan
+
+---
 # VNet 對等互連
-
 VNet 對等互連是透過 Azure 骨幹網路來連接同一區域中兩個虛擬網路的機制。一旦對等互連，針對用作連線而言兩個虛擬網路看起來就像一個。它們仍做為不同的資源進行管理，但這些虛擬網路中的虛擬機器可以使用私人 IP 位址彼此直接通訊。
 
 在已對等互連虛擬網路中虛擬機器之間的流量會透過 Azure 基礎結構路由傳送，如同在同一虛擬網路中 VM 之間路由傳送的流量。使用 VNet 對等互連的一些優點包括︰
 
-- 不同虛擬網路的資源之間具有低延遲、高頻寬連線。
-- 可以在已對等互連的 VNet 中將網路應用裝置和 VPN 閘道等資源當做傳輸點。
-- 可以將使用 Azure Resource Manager 模型的虛擬網路連接到使用傳統部署模型的虛擬網路，並在這些虛擬網路的資源之間啟用完整連線能力。
+* 不同虛擬網路的資源之間具有低延遲、高頻寬連線。
+* 可以在已對等互連的 VNet 中將網路應用裝置和 VPN 閘道等資源當做傳輸點。
+* 可以將使用 Azure Resource Manager 模型的虛擬網路連接到使用傳統部署模型的虛擬網路，並在這些虛擬網路的資源之間啟用完整連線能力。
 
 VNet 對等互連的需求和重要層面︰
 
-- 已對等互連的兩個虛擬網路應位於相同的 Azure 區域。
-- 已對等互連的虛擬網路應該要有非重疊的 IP 位址空間。
-- VNet 對等互連的目標是兩個虛擬網路，且之間沒有任何衍生的可轉移關聯性。例如，如果虛擬網路 A 與虛擬網路 B 對等互連，同時虛擬網路 B 與虛擬網路 C 對等互連，不代表虛擬網路 A 與虛擬網路 C 對等互連。
-- 只要兩個訂用帳戶之間有一個具有權限的使用者授權對等互連，就可以建立兩個不同訂用帳戶虛擬網路之間的對等互連，而訂用帳戶會與相同的 Azure Active Directory 租用戶產生關聯。
-- 使用 Resource Manager 部署模型的虛擬網路可以與另一個使用此模型的虛擬網路對等互連，或與使用傳統部署模型的虛擬網路對等互連。然而，使用傳統部署模型的虛擬網路無法彼此對等互連。
-- 雖然在已對等互連虛擬網路中虛擬機器之間的通訊沒有其他頻寬限制，但仍然會有基於 VM 大小的頻寬上限。
-
+* 已對等互連的兩個虛擬網路應位於相同的 Azure 區域。
+* 已對等互連的虛擬網路應該要有非重疊的 IP 位址空間。
+* VNet 對等互連的目標是兩個虛擬網路，且之間沒有任何衍生的可轉移關聯性。例如，如果虛擬網路 A 與虛擬網路 B 對等互連，同時虛擬網路 B 與虛擬網路 C 對等互連，不代表虛擬網路 A 與虛擬網路 C 對等互連。
+* 只要兩個訂用帳戶之間有一個具有權限的使用者授權對等互連，就可以建立兩個不同訂用帳戶虛擬網路之間的對等互連，而訂用帳戶會與相同的 Azure Active Directory 租用戶產生關聯。
+* 使用 Resource Manager 部署模型的虛擬網路可以與另一個使用此模型的虛擬網路對等互連，或與使用傳統部署模型的虛擬網路對等互連。然而，使用傳統部署模型的虛擬網路無法彼此對等互連。
+* 雖然在已對等互連虛擬網路中虛擬機器之間的通訊沒有其他頻寬限制，但仍然會有基於 VM 大小的頻寬上限。
 
 ![基本 VNet 對等互連](./media/virtual-networks-peering-overview/figure01.png)
 
@@ -82,10 +81,9 @@ VNet 對等互連是需要權限的作業。它是 VirtualNetworks 命名空間�
 ## 價格
 VNet 對等互連在審查期間不需支付費用。發行後，我們會針對使用對等互連的輸入和輸出流量會收取少許費用。如需詳細資訊，請參閱[定價頁面](https://azure.microsoft.com/pricing/details/virtual-network)。
 
-
 ## 後續步驟
-- [設定虛擬網路之間的對等互連](virtual-networks-create-vnetpeering-arm-portal.md)。
-- 了解 [NSG](virtual-networks-nsg.md)。
-- 了解[使用者定義的路由和 IP 轉送](virtual-networks-udr-overview.md)。
+* [設定虛擬網路之間的對等互連](virtual-networks-create-vnetpeering-arm-portal.md)。
+* 了解 [NSG](virtual-networks-nsg.md)。
+* 了解[使用者定義的路由和 IP 轉送](virtual-networks-udr-overview.md)。
 
 <!---HONumber=AcomDC_0928_2016-->

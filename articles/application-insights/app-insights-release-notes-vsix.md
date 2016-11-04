@@ -1,21 +1,23 @@
-<properties
-	pageTitle="適用於 Developer Analytics 之 Visual Studio 延伸模組的版本資訊"
-	description="適用於 Developer Analytics 之 Visual Studio 工具的最新更新。"
-	services="application-insights"
-    documentationCenter=""
-	authors="acearun"
-	manager="douge"/>
-<tags
-	ms.service="application-insights"
-	ms.workload="tbd"
-	ms.tgt_pltfrm="ibiza"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="06/09/2016"
-	ms.author="acearun"/>
+---
+title: 適用於 Developer Analytics 之 Visual Studio 延伸模組的版本資訊
+description: 適用於 Developer Analytics 之 Visual Studio 工具的最新更新。
+services: application-insights
+documentationcenter: ''
+author: acearun
+manager: douge
 
+ms.service: application-insights
+ms.workload: tbd
+ms.tgt_pltfrm: ibiza
+ms.devlang: na
+ms.topic: article
+ms.date: 06/09/2016
+ms.author: acearun
+
+---
 # Developer Analytics 工具的版本資訊
 新功能：Visual Studio 中的 Application Insights 和 HockeyApp 分析
+
 ## 7\.0 版
 ### Visual Studio Application Insights 趨勢
 Visual Studio Application Insights 是 Visual Studio 中的新工具，您可用來分析應用程式在一段時間內的運作方式。若要開始使用，請在 **Application Insights** 工具列按鈕或在 [Application Insights 搜尋] 視窗中選擇 [探索遙測趨勢]。或者，在 [檢視] 功能表上，按一下 [其他視窗]，然後按一下 [Application Insights 趨勢]。選擇五種常見查詢的其中一個，以便開始使用。您可以根據遙測類型、時間範圍和其他屬性，分析不同的資料集。若要尋找資料中的異常狀況，請選擇 [檢視類型] 下拉式清單中的其中一個異常選項。視窗底部的篩選選項可讓您輕鬆地全神貫注於特定的遙測子集。
@@ -52,6 +54,7 @@ ASP.NET 5 RC1 和 ASP.NET Core RC2 專案也會在 [診斷工具] 視窗中提�
 使用 Beta 版散發套件，您可將舊版應用程式上傳至 HockeyApp，以散發給一小組選定的客戶或測試人員。Beta 版散發套件在結合了 HockeyApp 當機資訊收集和使用者意見反應功能之後，可以在您廣泛發行應用程式前提供您有關應用程式的寶貴資訊。您可以使用這項資訊來解決應用程式的問題，以避免或減少日後的問題，例如應用程式評分很低、負面意見反應等。
 
 請看看從 Visual Studio 內上傳 Beta 版散發套件的組件有多麼簡單。
+
 ### 通用 Windows 應用程式
 通用 Windows 應用程式專案節點的內容功能表現在包含將組建上傳至 HockeyApp 的選項。
 
@@ -91,6 +94,7 @@ Windows Forms 專案節點的內容功能表現在包含將組建上傳至 Hocke
 流程的其餘部分與通用 Windows 應用程式類似：在 HockeyApp 入口網站中選擇組建和發行選項、新增版本資訊、上傳及管理。
 
 整個過程就是這麼簡單。立即試試並與我們分享您的想法。
+
 ## 版本 4.3
 ### 從本機偵錯工作階段搜尋遙測
 在此版本中，您現在可以搜尋在 Visual Studio 偵錯工作階段中產生的 Application Insights 遙測。以前，您只能在向 Application Insights 註冊應用程式後才能使用搜尋。現在，您的應用程式只需要安裝 Application Insights SDK，就能搜尋本機遙測。
@@ -99,9 +103,9 @@ Windows Forms 專案節點的內容功能表現在包含將組建上傳至 Hocke
 
 1. 為您的應用程式偵錯。
 2. 使用下列其中一種方式來開啟 Application Insights 搜尋：
-	- 在 [檢視] 功能表上，按一下 [其他視窗]，然後按一下 [Application Insights 搜尋]。
-	- 按一下 [Application Insights] 工具列按鈕。
-	- 在 [方案總管] 中，展開 [ApplicationInsights.config]，然後按一下 [搜尋偵錯工作階段遙測]。
+   * 在 [檢視] 功能表上，按一下 [其他視窗]，然後按一下 [Application Insights 搜尋]。
+   * 按一下 [Application Insights] 工具列按鈕。
+   * 在 [方案總管] 中，展開 [ApplicationInsights.config]，然後按一下 [搜尋偵錯工作階段遙測]。
 3. 如果您尚未註冊 Application Insights，搜尋視窗會以偵錯工作階段遙測模式開啟。
 4. 按一下 [搜尋] 圖示，以查看您的本機遙測。
 
@@ -109,8 +113,10 @@ Windows Forms 專案節點的內容功能表現在包含將組建上傳至 Hocke
 
 ## 4\.2 版
 在此版本中，我們新增了一些功能，可讓您更容易在事件內容中搜尋資料、能夠從更多資料事件跳到程式碼，以及輕鬆將記錄資料傳送給 Application Insights。這個擴充功能會每月更新。如果您有意見反應或功能要求，請傳送至 aidevtools@microsoft.com。
+
 ### 零點選的記錄體驗
 如果您已經在使用 NLog、Log4Net 或 System.Diagnostics 追蹤功能，則不必擔心要如何將所有追蹤移到 Application Insights。在此版本中，我們已將 Application Insights 記錄配接器與標準設定體驗整合。如果您已經設定了這些記錄架構其中之一，則下一節會說明取得它的方式。**如果您已經新增 Application Insights：**
+
 1. 以滑鼠右鍵按一下專案節點，然後按一下 [Application Insights]，再按一下 [設定 Application Insights]。請確定您在設定視窗中看到可新增正確配接器的選項。
 2. 或者，當您建置方案時，請注意出現在畫面右上角的快顯視窗並按一下 [設定]。
 
@@ -165,26 +171,22 @@ Windows Forms 專案節點的內容功能表現在包含將組建上傳至 Hocke
 ![發佈完成通知](./media/app-insights-release-notes-vsix/publishtoast.png)
 
 ## 4\.0 版
-
 ### 在 Visual Studio 內搜尋 Application Insights 資料
 就像 Application Insights 入口網站中的搜尋功能，您可以依事件類型、屬性值和文字進行篩選和搜尋，然後檢查個別事件。
 
 ![[搜尋] 視窗](./media/app-insights-release-notes-vsix/search.png)
 
 ### 在診斷工具中查看來自本機電腦的資料
-
 除了其他偵錯資料，您可以在 [Visual Studio 診斷工具] 頁面上檢視您的遙測。僅支援 ASP.NET 4.5。
 
 ![診斷工具頁面](./media/app-insights-release-notes-vsix/diagtools.png)
 
 ### 將 SDK 加入您的專案，而不需登入 Azure
-
 透過 [新增專案] 對話方塊或經由專案內容功能表，您不再需要登入 Azure 即可將 Application Insights 套件加入至專案。如果您登入，就會如同過去一般安裝 SDK 並設定為將遙測傳送至入口網站。如果您不登入，則會將 SDK 加入至專案，且會產生診斷中樞的遙測。您可以稍後視需要加以設定。
 
 ![[新增專案] 對話方塊](./media/app-insights-release-notes-vsix/newproject.png)
 
 ### 裝置支援
-
 我們在 Connect(); 2015 中[宣布了](https://azure.microsoft.com/blog/deep-diagnostics-for-web-apps-with-application-insights/)裝置的行動開發人員體驗為 HockeyApp。HockeyApp 可協助您發佈 Beta 組建發佈給測試人員、從您的應用程式收集和分析所有的損毀，並直接收集客戶的意見反應。HockeyApp 可讓您在任何所選的平台上建置應用程式，無論是 iOS、Android 或 Windows，或是 Xamarin、Cordova 或 Unity 之類的跨平台解決方案上。
 
 在未來版本的 Application Insights 延伸模組中，我們會在 HockeyApp 與 Visual Studio 之間提供更為整合的體驗。現在您只要新增 NuGet 參考，即可開始使用 HockeyApp。如需詳細資訊，請參閱[文件](http://support.hockeyapp.net/kb/client-integration-windows-and-windows-phone)。

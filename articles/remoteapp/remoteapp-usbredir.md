@@ -1,26 +1,25 @@
-<properties 
-    pageTitle="如何在 Azure RemoteApp 中重新導向 USB 裝置？| Microsoft Azure" 
-    description="了解如何在 Azure RemoteApp 中對 USB 裝置使用重新導向。" 
-    services="remoteapp" 
-	documentationCenter="" 
-    authors="lizap" 
-    manager="mbaldwin" />
+---
+title: 如何在 Azure RemoteApp 中重新導向 USB 裝置？| Microsoft Docs
+description: 了解如何在 Azure RemoteApp 中對 USB 裝置使用重新導向。
+services: remoteapp
+documentationcenter: ''
+author: lizap
+manager: mbaldwin
 
-<tags 
-    ms.service="remoteapp" 
-    ms.workload="compute" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="08/15/2016" 
-    ms.author="elizapo" />
+ms.service: remoteapp
+ms.workload: compute
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/15/2016
+ms.author: elizapo
 
-
-
+---
 # 如何在 Azure RemoteApp 中重新導向 QuickBooks？
-
-> [AZURE.IMPORTANT]
-Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+> [!IMPORTANT]
+> Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+> 
+> 
 
 裝置重新導向可讓使用者在 Azure RemoteApp 中透過應用程式使用連接到電腦或平板電腦的 USB 裝置。例如，如果您透過 Azure RemoteApp 共用 Skype，您的使用者必須能夠使用其裝置相機。
 
@@ -32,11 +31,11 @@ Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go
 如同遠端桌面服務可用的機制一樣，Azure RemoteApp 會使用非常類似的機制重新導向 USB 裝置。此基礎技術可讓您為指定的裝置選擇正確的重新導向方法，以使用 **usbdevicestoredirect:s:** 命令充分發揮高層級和 RemoteFX USB 裝置重新導向。此命令有四個元素：
 
 | 處理順序 | 參數 | 說明 |
-|------------------|---------------------|----------------------------------------------------------------------------------------------------------------------------|
-| 1 | * | 選取高層級重新導向未挑選的所有裝置。附註：根據設計，* 不適用於 USB 網路攝影機。 |
-| | {Device class GUID} | 選取所有符合指定之裝置安裝類別的裝置。 |
-| | USB\\InstanceID | 選取針對指定之執行個體識別碼指定的 USB 裝置 |
-| 2 | -USB\\Instance ID | 移除指定之裝置的重新導向設定。 |
+| --- | --- | --- |
+| 1 |* |選取高層級重新導向未挑選的所有裝置。附註：根據設計，* 不適用於 USB 網路攝影機。 |
+| {Device class GUID} |選取所有符合指定之裝置安裝類別的裝置。 | |
+| USB\\InstanceID |選取針對指定之執行個體識別碼指定的 USB 裝置 | |
+| 2 |-USB\\Instance ID |移除指定之裝置的重新導向設定。 |
 
 ## 使用裝置類別 GUID 重新導向 USB 裝置
 尋找可用於重新導向的裝置類別 GUID 的方式有兩種。
@@ -51,16 +50,15 @@ Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go
 
 例如：
 
-		Set-AzureRemoteAppCollection -CollectionName <collection name> -CustomRdpProperty "nusbdevicestoredirect:s:<Class Guid value>"
+        Set-AzureRemoteAppCollection -CollectionName <collection name> -CustomRdpProperty "nusbdevicestoredirect:s:<Class Guid value>"
 
 您可以在相同 Cmdlet 中合併多個裝置重新導向。例如：若要重新導向本機儲存體和 USB 網路攝影機，Cmdlet 會如下所示：
 
-		Set-AzureRemoteAppCollection -CollectionName <collection name> -CustomRdpProperty "drivestoredirect:s:*`nusbdevicestoredirect:s:<Class Guid value>"
+        Set-AzureRemoteAppCollection -CollectionName <collection name> -CustomRdpProperty "drivestoredirect:s:*`nusbdevicestoredirect:s:<Class Guid value>"
 
 當您依類別 GUID 設定裝置重新導向時，指定的集合中符合該類別 GUID 的所有裝置都會重新導向。比方說，如果本機網路上有多部具有相同 USB 網路攝影機的電腦，您可以執行單一 Cmdlet 來重新導向所有網路攝影機。
 
 ## 使用裝置執行個體識別碼重新導向 USB 裝置
-
 如果您想要更細微的控制而且想要控制每個裝置的重新導向，您可以使用 **USB\\InstanceID** 重新導向參數。
 
 此方法最困難的部分是尋找 USB 裝置執行個體識別碼。您需要有電腦和特定 USB 裝置的存取權。接著，遵循下列步驟：
@@ -73,11 +71,11 @@ Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go
 
 現在，在下列 Cmdlet 中使用執行個體識別碼：
 
-	Set-AzureRemoteAppCollection -CollectionName <collection name> -CustomRdpProperty "nusbdevicestoredirect:s: USB<Device InstanceID value>"
+    Set-AzureRemoteAppCollection -CollectionName <collection name> -CustomRdpProperty "nusbdevicestoredirect:s: USB<Device InstanceID value>"
 
 
 
-### 幫我們來協助您 
+### 幫我們來協助您
 您知道除了評比這篇文章以及在下面留言以外，您可以變更文件本身嗎？ 有所遺漏？ 有所錯誤？ 我是否撰寫了令人混淆的內容？ 向上捲動並按一下 [在 GitHub 上編輯] 以進行變更 - 系統會顯示這些變更以供我們檢閱，而我們簽核後，您就會在這裡看到您所進行的變更和改良。
 
 <!---HONumber=AcomDC_0817_2016-->

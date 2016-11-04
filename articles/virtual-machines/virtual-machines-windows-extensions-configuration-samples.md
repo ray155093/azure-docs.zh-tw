@@ -1,27 +1,28 @@
-<properties
-   pageTitle="Windows VM 延伸模組的範例組態 | Microsoft Azure"
-   description="編寫延伸模組與範本的範例組態"
-   services="virtual-machines-windows"
-   documentationCenter=""
-   authors="kundanap"
-   manager="timlt"
-   editor=""
-   tags="azure-resource-manager"/>
+---
+title: Windows VM 延伸模組的範例組態 | Microsoft Docs
+description: 編寫延伸模組與範本的範例組態
+services: virtual-machines-windows
+documentationcenter: ''
+author: kundanap
+manager: timlt
+editor: ''
+tags: azure-resource-manager
 
-<tags
-   ms.service="virtual-machines-windows"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="vm-windows"
-   ms.workload="infrastructure-services"
-   ms.date="03/29/2016"
-   ms.author="kundanap"/>
+ms.service: virtual-machines-windows
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: vm-windows
+ms.workload: infrastructure-services
+ms.date: 03/29/2016
+ms.author: kundanap
 
+---
 # Azure Windows VM 延伸模組組態範例
-
-> [AZURE.SELECTOR]
-- [PowerShell - 範本](virtual-machines-windows-extensions-configuration-samples.md)
-- [CLI - 範本](virtual-machines-linux-extensions-configuration-samples.md)
+> [!div class="op_single_selector"]
+> * [PowerShell - 範本](virtual-machines-windows-extensions-configuration-samples.md)
+> * [CLI - 範本](virtual-machines-linux-extensions-configuration-samples.md)
+> 
+> 
 
 <br>
 
@@ -55,7 +56,6 @@
       }
 
 ## VM 擴充功能與 VM 調整集的範例範本程式碼片段。
-
     {
      "type":"Microsoft.Compute/virtualMachineScaleSets",
     ....
@@ -100,14 +100,12 @@
       }
 
 #### 參數說明︰
-
-- fileUris︰擴充功能將在 VM 上下載之檔案的 URL 清單 (以逗號分隔)。如果未指定，則不會下載任何檔案。如果檔案是在 Azure 儲存體中，則可以將 fileURLs 標示為私用，而且對應的 storageAccountName 和 storageAccountKey 可以傳遞為私用參數來存取這些檔案。
-- commandToExecute：[必要參數]：這是擴充功能將執行的命令。
-- storageAccountName：[選用參數]：用於存取 fileURLs (如果標示為私用) 的儲存體帳戶名稱。
-- storageAccountKey：[選用參數]：用於存取 fileURLs (如果標示為私用) 的儲存體帳戶金鑰。
+* fileUris︰擴充功能將在 VM 上下載之檔案的 URL 清單 (以逗號分隔)。如果未指定，則不會下載任何檔案。如果檔案是在 Azure 儲存體中，則可以將 fileURLs 標示為私用，而且對應的 storageAccountName 和 storageAccountKey 可以傳遞為私用參數來存取這些檔案。
+* commandToExecute：[必要參數]：這是擴充功能將執行的命令。
+* storageAccountName：[選用參數]：用於存取 fileURLs (如果標示為私用) 的儲存體帳戶名稱。
+* storageAccountKey：[選用參數]：用於存取 fileURLs (如果標示為私用) 的儲存體帳戶金鑰。
 
 ### CustomScript 擴充功能 1.7。
-
 請參閱 CustomScript 1.4 版的參數說明。1.7 版支援將指令碼參數 (commandToExecute) 傳送為 protectedSettings，在此情況下，它們會在傳送之前進行加密。'commandToExecute' 參數可以指定於 settings 或 protectedSettings，但不能同時指定於兩者。
 
         {
@@ -128,7 +126,6 @@
         }
 
 ### VMAccess 延伸模組。
-
       {
           "publisher": "Microsoft.Compute",
           "type": "VMAccessAgent",
@@ -340,14 +337,13 @@
           }
 
 ### Azure 診斷
-
 如需有關如何設定診斷功能的詳細資訊，請參閱 [Azure 診斷延伸模組](virtual-machines-windows-extensions-diagnostics-template.md)
 
           {
             "publisher": "Microsoft.Azure.Diagnostics",
             "type": "IaaSDiagnostics",
             "typeHandlerVersion": "1.5",
-			"autoUpgradeMinorVersion": true,
+            "autoUpgradeMinorVersion": true,
             "settings": {
               "xmlCfg": "[base64(variables('wadcfgx'))]",
               "storageAccount": "[parameters('diagnosticsStorageAccount')]"

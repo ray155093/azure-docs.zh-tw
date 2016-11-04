@@ -1,32 +1,32 @@
-<properties 
-	pageTitle="如何將操作加入至 Azure API 管理中的 API | Microsoft Azure" 
-	description="了解如何將操作加入 Azure API 管理中的 API。" 
-	services="api-management" 
-	documentationCenter="" 
-	authors="steved0x" 
-	manager="erikre" 
-	editor=""/>
+---
+title: 如何將操作加入至 Azure API 管理中的 API | Microsoft Docs
+description: 了解如何將操作加入 Azure API 管理中的 API。
+services: api-management
+documentationcenter: ''
+author: steved0x
+manager: erikre
+editor: ''
 
-<tags 
-	ms.service="api-management" 
-	ms.workload="mobile" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="08/09/2016" 
-	ms.author="sdanie"/>
+ms.service: api-management
+ms.workload: mobile
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/09/2016
+ms.author: sdanie
 
+---
 # 如何將操作加入至 Azure API 管理中的 API
-
 您必須先加入作業，才能夠使用 API 管理中的 API。本指南示範如何在 API 管理中對 API 加入和設定不同類型的作業。
 
 ## <a name="add-operation"> </a>新增作業
-
 請在發行者入口網站新增和設定 API 的作業。若要存取發佈者入口網站，請在 Azure 傳統入口網站中，針對您的 API 管理服務按一下 [管理]。
 
 ![發行者入口網站][api-management-management-console]
 
->如果您尚未建立 API 管理服務執行個體，請參閱[開始使用 Azure API 管理][]教學課程中的[建立 API 管理服務執行個體][]。
+> 如果您尚未建立 API 管理服務執行個體，請參閱[開始使用 Azure API 管理][開始使用 Azure API 管理]教學課程中的[建立 API 管理服務執行個體][建立 API 管理服務執行個體]。
+> 
+> 
 
 在發行者入口網站中選取所需的 API，然後選取 [操作] 索引標籤。
 
@@ -54,7 +54,6 @@
 
 作業的呼叫端將使用格式 `/customers?customerid=ALFKI`，而當叫用後端服務時，這會對應至 `/Customers('ALFKI')`。
 
-
 [顯示名稱] 和 [描述] 提供操作的描述，用來提供文件給在開發人員入口網站中使用此 API 的開發人員。
 
 ![說明][api-management-description]
@@ -62,7 +61,6 @@
 在 [描述] 文字方塊中，可以用純文字或 HTML 來指定操作描述。
 
 ## <a name="operation-caching"> </a>作業快取
-
 回應快取可縮短 API 取用者所感受的延遲、降低頻寬耗用量，以及減少實作 API 的 HTTP Web 服務的負載。
 
 若要輕鬆又快速地啟用操作的快取，請選取 [快取] 索引標籤並核取 [啟用] 核取方塊。
@@ -73,28 +71,29 @@
 
 快取索引鍵用來區分回應，以便讓對應至每一個不同快取索引鍵的回應取得各自的快取值。選擇性地，在 [依查詢字串參數改變] 和 [Vary by headers] 文字方塊中，分別輸入用來計算快取索引鍵值的特定查詢字串參數及/或 HTTP 標頭。未指定時，則會使用完整要求 URL 和下列 HTTP 標頭值來產生快取索引鍵：**Accept** 和 **Accept-Charset**。
 
->如需快取和快取原則的詳細資訊，請參閱[如何在 Azure API 管理中快取操作結果][]。
-
+> 如需快取和快取原則的詳細資訊，請參閱[如何在 Azure API 管理中快取操作結果][如何在 Azure API 管理中快取操作結果]。
+> 
+> 
 
 ## <a name="request-parameters"> </a>要求參數
-
 操作參數是在 [參數] 索引標籤上管理。[簽章] 索引標籤的 [URL 範本] 中指定的參數是自動加入，只能透過編輯 URL 範本才變更。可手動輸入其他參數。
 
 若要加入新的查詢參數，請按一下 [加入查詢參數] 並輸入下列資訊：
 
--	**名稱** - 參數名稱。
--	**描述** - 參數的簡短描述 (選擇性)。
--	**類型** - 參數類型，從下拉式清單中選取。
--	**值** - 可指派給此參數的值。其中一個值可標示為預設值 (選擇性)。
--	**必要** - 選取此核取方塊將參數標示為必要。
+* **名稱** - 參數名稱。
+* **描述** - 參數的簡短描述 (選擇性)。
+* **類型** - 參數類型，從下拉式清單中選取。
+* **值** - 可指派給此參數的值。其中一個值可標示為預設值 (選擇性)。
+* **必要** - 選取此核取方塊將參數標示為必要。
 
 ![要求參數][api-management-request-parameters]
 
 ## <a name="request-body"> </a>要求本文
-
 如果操作允許 (例如 PUT、POST) 且需要本文，您可以使用所有支援的表示法格式 (例如 json、XML) 來提供其範例。
 
->要求本文只作為文件說明用途，不需要驗證。
+> 要求本文只作為文件說明用途，不需要驗證。
+> 
+> 
 
 若要輸入要求本文，請切換至 [本文] 索引標籤。
 
@@ -105,7 +104,6 @@
 除了表示法，您也可以在 [描述] 文字方塊中指定選用的文字描述。
 
 ## <a name="responses"> </a>回應
-
 為作業可能產生的所有狀態碼提供回應範例是良好作法。每個狀態碼可能有不只一個回應本文範例，每個支援的內容類型則會有一個範例。
 
 若要加入回應，請按一下 [加入]，開始輸入所需的狀態碼。在此範例中，狀態碼為 **200 OK**。當代碼出現在下拉式清單時，請選取它，回應碼就會建立並加入至您的操作。
@@ -124,12 +122,10 @@
 
 設定操作之後，按一下 [儲存]。
 
-
 ## <a name="next-steps"> </a>後續步驟
-
 當操作加入至 API 之後，下一步是將 API 與產品建立關聯並發佈，讓開發人員可呼叫其操作。
 
--	[如何建立和發佈產品][]
+* [如何建立和發佈產品][如何建立和發佈產品]
 
 [api-management-management-console]: ./media/api-management-howto-add-operations/api-management-management-console.png
 [api-management-operations]: ./media/api-management-howto-add-operations/api-management-operations.png

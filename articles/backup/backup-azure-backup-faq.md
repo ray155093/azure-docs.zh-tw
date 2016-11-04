@@ -1,52 +1,52 @@
-<properties
-   pageTitle="Azure 備份常見問題集 | Microsoft Azure"
-   description="關於備份服務、備份代理程式、備份和保留、復原、安全性，以及其他關於備份和災害復原之常見問題的解答。"
-   services="backup"
-   documentationCenter=""
-   authors="markgalioto"
-   manager="jwhit"
-   editor=""
-   keywords="備份和災害復原; 備份服務"/>
+---
+title: Azure 備份常見問題集 | Microsoft Docs
+description: 關於備份服務、備份代理程式、備份和保留、復原、安全性，以及其他關於備份和災害復原之常見問題的解答。
+services: backup
+documentationcenter: ''
+author: markgalioto
+manager: jwhit
+editor: ''
+keywords: 備份和災害復原; 備份服務
 
-<tags
-   ms.service="backup"
-   ms.workload="storage-backup-recovery"
-	 ms.tgt_pltfrm="na"
-	 ms.devlang="na"
-	 ms.topic="get-started-article"
-	 ms.date="08/29/2016"
-	 ms.author="trinadhk; giridham; arunak; markgal; jimpark;"/>
+ms.service: backup
+ms.workload: storage-backup-recovery
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: get-started-article
+ms.date: 08/29/2016
+ms.author: trinadhk; giridham; arunak; markgal; jimpark;
 
+---
 # Azure 備份服務常見問題集
-
-> [AZURE.SELECTOR]
-- [傳統模式的備份常見問題集](backup-azure-backup-faq.md)
-- [Resource Manager 模式的備份常見問題集](backup-azure-backup-ibiza-faq.md)
+> [!div class="op_single_selector"]
+> * [傳統模式的備份常見問題集](backup-azure-backup-faq.md)
+> * [Resource Manager 模式的備份常見問題集](backup-azure-backup-ibiza-faq.md)
+> 
+> 
 
 這篇文章是關於 Azure 備份服務的常見問題 (和個別答案) 清單。我們的社群會快速回覆，如果是經常詢問的問題，我們會將它加入至這份文件。問題的答案通常會提供參考或支援資訊。您可以在本文件或相關文件的 Disqus 一節中詢問有關 Azure 備份的問題。您也可以在[論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazureonlinebackup)中張貼有關 Azure 備份服務的問題。
-
 
 ## 若我要使用 Azure 備份來備份至 Azure，受支援的作業系統清單為何？<br/>
 Azure 備份支援下列作業系統使用 Azure 備份伺服器和 SCDPM，進行檔案-資料夾備份和應用程式備份。
 
 | 作業系統 | 平台 | SKU |
-| :------------- |-------------| :-----|
-| Windows 8 和最新的 SP | 64 位元 | Enterprise、Pro |
-| Windows 7 和最新的 SP | 64 位元 | Ultimate、Enterprise、Professional、Home Premium、Home Basic、Starter |
-| Windows 8.1 和最新的 SP | 64 位元 | Enterprise、Pro |
-| Windows 10 | 64 位元 | 企業版、專業版、家用版 |
-|Windows Server 2012 R2 和最新的 SP|	64 位元|	Standard、Datacenter、Foundation|
-|Windows Server 2012 和最新的 SP|	64 位元|	Datacenter、Foundation、Standard|
-|Windows Storage Server 2012 R2 和最新的 SP |64 位元|	Standard、Workgroup|
-|Windows Storage Server 2012 和最新的 SP |64 位元 |Standard、Workgroup
-|Windows Server 2012 R2 和最新的 SP |64 位元|	Essential|
-|Windows Server 2008 R2 SP1 |64 位元|	Standard、Enterprise、Datacenter、Foundation|
-|Windows Server 2008 SP2 |64 位元|	Standard、Enterprise、Datacenter、Foundation|
+|:--- | --- |:--- |
+| Windows 8 和最新的 SP |64 位元 |Enterprise、Pro |
+| Windows 7 和最新的 SP |64 位元 |Ultimate、Enterprise、Professional、Home Premium、Home Basic、Starter |
+| Windows 8.1 和最新的 SP |64 位元 |Enterprise、Pro |
+| Windows 10 |64 位元 |企業版、專業版、家用版 |
+| Windows Server 2012 R2 和最新的 SP |64 位元 |Standard、Datacenter、Foundation |
+| Windows Server 2012 和最新的 SP |64 位元 |Datacenter、Foundation、Standard |
+| Windows Storage Server 2012 R2 和最新的 SP |64 位元 |Standard、Workgroup |
+| Windows Storage Server 2012 和最新的 SP |64 位元 |Standard、Workgroup |
+| Windows Server 2012 R2 和最新的 SP |64 位元 |Essential |
+| Windows Server 2008 R2 SP1 |64 位元 |Standard、Enterprise、Datacenter、Foundation |
+| Windows Server 2008 SP2 |64 位元 |Standard、Enterprise、Datacenter、Foundation |
 
 Azure VM 備份：
 
-- **Linux**：Azure 備份支援 [Azure 所背書的散發套件清單](../virtual-machines/virtual-machines-linux-endorsed-distros.md)，但核心作業系統 Linux 除外。只要虛擬機器上有 VM 代理程式並且可支援 Python，其他「攜帶您自己的 Linux」散發套件可能也可以運作。
-- **Windows Server**：不支援比 Windows Server 2008 R2 更舊的版本。
+* **Linux**：Azure 備份支援 [Azure 所背書的散發套件清單](../virtual-machines/virtual-machines-linux-endorsed-distros.md)，但核心作業系統 Linux 除外。只要虛擬機器上有 VM 代理程式並且可支援 Python，其他「攜帶您自己的 Linux」散發套件可能也可以運作。
+* **Windows Server**：不支援比 Windows Server 2008 R2 更舊的版本。
 
 ## 哪裡可以下載最新的 Azure 備份代理程式？<br/>
 您可以下載最新的代理程式，以便從[這裡](http://aka.ms/azurebackup_agent)備份 Windows Server、System Center DPM 或 Windows 用戶端。如果您想要備份虛擬機器，請使用 VM 代理程式 (這會自動安裝適當的擴充功能)。從 Azure 資源庫建立的虛擬機器上已經有 VM 代理程式。
@@ -72,26 +72,26 @@ Azure VM 備份：
 ## 我可以從何種類型的磁碟機備份檔案和資料夾？<br/>
 下列的磁碟機/磁碟區組合無法進行備份：
 
-- 卸除式媒體：必須報告為固定式磁碟機，才能作為備份項目來源使用。
-- 唯讀磁碟區：必須為可寫入磁碟區，才能使磁碟區陰影複製服務 (VSS) 正常運作。
-- 離線磁碟區：必須為線上磁碟區，才能使 VSS 正常運作。
-- 網路共用：必須為本機磁碟區，才能使用線上備份來備份伺服器。
-- 受 Bitlocker 保護的磁碟區：磁碟區必須先解除鎖定才能執行備份。
-- 檔案系統識別碼：NTFS 是唯一支援這個版本的線上備份服務的檔案系統。
+* 卸除式媒體：必須報告為固定式磁碟機，才能作為備份項目來源使用。
+* 唯讀磁碟區：必須為可寫入磁碟區，才能使磁碟區陰影複製服務 (VSS) 正常運作。
+* 離線磁碟區：必須為線上磁碟區，才能使 VSS 正常運作。
+* 網路共用：必須為本機磁碟區，才能使用線上備份來備份伺服器。
+* 受 Bitlocker 保護的磁碟區：磁碟區必須先解除鎖定才能執行備份。
+* 檔案系統識別碼：NTFS 是唯一支援這個版本的線上備份服務的檔案系統。
 
 ## 我可以從伺服器備份何種類型的檔案和資料夾？<br/>
 支援下列類型：
 
-- 已加密
-- 已壓縮
-- 疏鬆
-- 已壓縮 + 疏鬆
-- 永久連結：不支援並略過
-- 重新分析點：不支援並略過
-- 已加密 + 已壓縮：不支援並略過
-- 已加密 + 疏鬆：不支援並略過
-- 已壓縮資料流：不支援並略過
-- 疏鬆資料流：不支援並略過
+* 已加密
+* 已壓縮
+* 疏鬆
+* 已壓縮 + 疏鬆
+* 永久連結：不支援並略過
+* 重新分析點：不支援並略過
+* 已加密 + 已壓縮：不支援並略過
+* 已加密 + 疏鬆：不支援並略過
+* 已壓縮資料流：不支援並略過
+* 疏鬆資料流：不支援並略過
 
 ## 什麼是快取資料夾的最低大小需求？<br/>
 快取資料夾的大小可決定您正在備份的資料量。快取資料夾應該是資料儲存體所需空間的 5%。
@@ -116,13 +116,13 @@ Azure VM 備份：
 ## 應針對 Azure 備份設定哪些防火牆規則？<br/>
 為了妥善保護內部部署至 Azure 和工作負載至 Azure 的資料，建議您允許您的防火牆與下列 URL 通訊：
 
-- www.msftncsi.com
-- *.Microsoft.com
-- *.WindowsAzure.com
-- *.microsoftonline.com
-- *.windows.net
+* www.msftncsi.com
+* *.Microsoft.com
+* *.WindowsAzure.com
+* *.microsoftonline.com
+* *.windows.net
 
-##您可以在已由 Azure 備份服務所備份的 Azure VM 上使用 VM 擴充功能來安裝 Azure 備份代理程式嗎？<br/>
+## 您可以在已由 Azure 備份服務所備份的 Azure VM 上使用 VM 擴充功能來安裝 Azure 備份代理程式嗎？<br/>
 當然。Azure 備份使用 VM 擴充功能為 Azure VM 提供 VM 層級備份。您可以在客體 Windows 作業系統上安裝 Azure 備份代理程式，以保護該客體 OS 上的檔案和資料夾。
 
 ## 您可以在 Azure VM 上安裝 Azure 備份代理程式來備份 Azure VM 所提供的暫存儲存體中存在的檔案和資料夾嗎？<br/>
@@ -131,10 +131,10 @@ Azure VM 備份：
 ## 我已安裝 Azure 備份代理程式來保護我的檔案和資料夾。現在可以安裝 SCDPM 來與 Azure 備份代理程式搭配使用，以保護內部部署應用程式/VM 對 Azure 的工作負載嗎？<br/>
 若要搭配使用 Azure 備份與 SCDPM，建議您先安裝 SCDPM，然後只安裝 Azure 備份代理程式。這可確保 Azure 備份代理程式能與 SCDPM 緊密整合，並可讓您直接從 SCDPM 的管理主控台保護針對 Azure 的檔案/資料夾、應用程式工作負載及 VM。不建議、也不支援在安裝 Azure 備份代理程式之後，為了前述目的安裝 SCDPM。
 
-## 可以使用 Azure 備份代理程式指定為 Azure 備份原則一部分的檔案路徑的長度為何？<br/>  
+## 可以使用 Azure 備份代理程式指定為 Azure 備份原則一部分的檔案路徑的長度為何？<br/>
 Azure 備份代理程式依存於 NTFS。[檔案路徑長度規格受限於 Windows API](https://msdn.microsoft.com/library/aa365247.aspx#fully_qualified_vs._relative_paths)。在備份檔案路徑長度大於 Windows API 所指定長度的檔案時，客戶可以選擇備份備份檔案的父資料夾或磁碟機。
 
-## 使用 Azure 備份代理程式之 Azure 備份原則的檔案路徑中允許哪些字元？<br>  
+## 使用 Azure 備份代理程式之 Azure 備份原則的檔案路徑中允許哪些字元？<br>
  Azure 備份代理程式依存於 NTFS。它可讓 [NTFS 支援的字元](https://msdn.microsoft.com/library/aa365247.aspx#naming_conventions)成為檔案規格的一部分。
 
 ## 可以使用 Azure 備份伺服器來為實體伺服器建立裸機復原 (BMR) 備份嗎？<br/>
@@ -146,23 +146,23 @@ Azure 備份代理程式依存於 NTFS。[檔案路徑長度規格受限於 Wind
 ## 正在備份的每個資料來源是否有大小限制？<br/>
 雖然在保存庫層級，您可以備份的資料數量沒有限制，但 Azure 備份的確會對資料來源的大小上限設限 (就所有實際用途而言，這些限制都非常高)。截至 2015 年 8 月，適用於支援的作業系統的資料來源大小上限
 
-|S.No |	作業系統 |	資料來源的大小上限 |
-| :-------------: |:-------------| :-----|
-|1| Windows Server 2012 或更新版本| 54400 GB|
-|2| Windows 8 或更新版本| 54400 GB|
-|3| Windows Server 2008、Windows Server 2008 R2 | 1700 GB|
-|4| Windows 7 | 1700 GB|
+| S.No | 作業系統 | 資料來源的大小上限 |
+|:---:|:--- |:--- |
+| 1 |Windows Server 2012 或更新版本 |54400 GB |
+| 2 |Windows 8 或更新版本 |54400 GB |
+| 3 |Windows Server 2008、Windows Server 2008 R2 |1700 GB |
+| 4 |Windows 7 |1700 GB |
 
 下表說明如何決定每個資料來源大小。
 
-|	資料來源 |	詳細資料 |
-| :-------------: |:-------------|
-|磁碟區 |從伺服器或用戶端電腦的單一磁碟區備份的資料量。|
-|Hyper-V 虛擬機器 | 要備份的虛擬機器上所有 VHD 的資料總和|
-|Microsoft SQL Server 資料庫 | 要備份的單一 SQL 資料庫大小的大小 |
-|Microsoft SharePoint |在要備份的 SharePoint 伺服陣列中內容和組態資料庫的總和|
-|Microsoft Exchange |在要備份的 Exchange Server 中所有 Exchange 資料庫的總和|
-|BMR/系統狀態 |在要備份的電腦上 BMR 或系統狀態的每個個別複本|
+| 資料來源 | 詳細資料 |
+|:---:|:--- |
+| 磁碟區 |從伺服器或用戶端電腦的單一磁碟區備份的資料量。 |
+| Hyper-V 虛擬機器 |要備份的虛擬機器上所有 VHD 的資料總和 |
+| Microsoft SQL Server 資料庫 |要備份的單一 SQL 資料庫大小的大小 |
+| Microsoft SharePoint |在要備份的 SharePoint 伺服陣列中內容和組態資料庫的總和 |
+| Microsoft Exchange |在要備份的 Exchange Server 中所有 Exchange 資料庫的總和 |
+| BMR/系統狀態 |在要備份的電腦上 BMR 或系統狀態的每個個別複本 |
 
 ## 備份作業每日可排程的次數是否有限制？<br/>
 是，您一天可以在 Windows Server 或 Windows 用戶端上執行備份作業最多三次。您一天可以在 System Center DPM 上執行備份作業最多兩次。您一天可以執行 IaaS VM 的備份作業一次。
@@ -197,7 +197,7 @@ Azure 備份代理程式依存於 NTFS。[檔案路徑長度規格受限於 Wind
  從 Azure 備份代理程式、SCDPM 或 Azure 備份伺服器備份的所有資料都會在傳輸之前，經過壓縮和加密。一旦套用壓縮和加密，備份保存庫中的資料會縮小 30-40%。
 
 ## 是否有辦法調整備份服務所使用的頻寬量？<br/>
- 是，使用備份代理程式中的 [變更屬性] 選項來調整頻寬。調整頻寬量以及您使用該頻寬的時間。如需詳細資訊，請參閱[網路節流](../backup-configure-vault.md#enable-network-throttling)。
+ 是，使用備份代理程式中的 [變更屬性] 選項來調整頻寬。調整頻寬量以及您使用該頻寬的時間。如需詳細資訊，請參閱[網路節流](backup-configure-vault.md#enable-network-throttling)。
 
 ## 我的網際網路頻寬有限，不適用於我需要備份的資料量。是否有方法可將資料移動到網路頻寬較大的特定位置，再將該資料推送到 Azure 中？<br/>
 您可以透過標準的線上備份程序將資料備份到 Azure ，或是使用 Azure 匯入/匯出服務將資料傳輸到 Azure 中的 Blob 儲存體。沒有其他方法可將資料備份到 Azure 儲存體。如需如何搭配使用 Azure 匯入/匯出服務與 Azure 備份的相關資訊，請參閱[離線備份工作流程](backup-azure-backup-import-export.md)一文。
@@ -222,39 +222,38 @@ Azure 備份代理程式依存於 NTFS。[檔案路徑長度規格受限於 Wind
 
 ## 如何變更為 Azure 備份代理程式指定的快取位置？<br/>
  請依序查看以下項目符號清單來變更快取位置。
-- 在提高權限的命令提示字元中執行下列命令以停止備份引擎：
 
+* 在提高權限的命令提示字元中執行下列命令以停止備份引擎：
+  
   ```PS C:\> Net stop obengine```
+* 請勿移動檔案。相反地，請將快取空間資料夾複製到具有足夠空間的其他磁碟機。確認備份使用新的快取空間之後，就可以移除原始的快取空間。
+* 更新下列登錄項目，其具備新快取空間資料夾的路徑。<br/>
 
-- 請勿移動檔案。相反地，請將快取空間資料夾複製到具有足夠空間的其他磁碟機。確認備份使用新的快取空間之後，就可以移除原始的快取空間。
+| 登錄路徑 | 登錄金鑰 | 值 |
+| --- | --- | --- |
+| `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Azure Backup\Config` |ScratchLocation |*「新的快取資料夾位置」* |
+| `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Azure Backup\Config\CloudBackupProvider` |ScratchLocation |*「新的快取資料夾位置」* |
 
-- 更新下列登錄項目，其具備新快取空間資料夾的路徑。<br/>
-
-|登錄路徑 | 登錄金鑰 | 值 |
-| ------ | ------- | ------|
-| `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Azure Backup\Config` | ScratchLocation | *「新的快取資料夾位置」* |
-| `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Azure Backup\Config\CloudBackupProvider` | ScratchLocation | *「新的快取資料夾位置」* |
-
-- 在提高權限的命令提示字元中執行下列命令以重新啟動備份引擎：
-
+* 在提高權限的命令提示字元中執行下列命令以重新啟動備份引擎：
+  
   ```PS C:\> Net start obengine```
-
+  
   一旦在新的快取位置成功完成備份建立，您就可以移除原始的快取資料夾。
 
 ## 我可以把快取資料夾放在何處，以讓 Azure 備份代理程式如預期般運作？<br/>
 快取資料夾不建議使用下列位置︰
 
-- 網路共用或卸除式媒體︰快取資料夾必須是在需要使用線上備份進行備份之伺服器的本機位置。不支援網路位置或卸除式媒體，例如 USB 磁碟機。
-- 離線磁碟區︰快取資料夾必須在線上才能使用 Azure 備份代理程式進行預期的備份。
+* 網路共用或卸除式媒體︰快取資料夾必須是在需要使用線上備份進行備份之伺服器的本機位置。不支援網路位置或卸除式媒體，例如 USB 磁碟機。
+* 離線磁碟區︰快取資料夾必須在線上才能使用 Azure 備份代理程式進行預期的備份。
 
 ## 快取資料夾是否有任何不受支援的屬性？<br/>
  快取資料夾不支援下列屬性或其組合︰
 
-- 已加密
-- 已刪除重複資料
-- 已壓縮
-- 疏鬆
-- 重新分析點
+* 已加密
+* 已刪除重複資料
+* 已壓縮
+* 疏鬆
+* 重新分析點
 
 快取資料夾和中繼資料 VHD 都不建議有上述屬性，以便 Azure 備份代理程式能如預期般運作。
 

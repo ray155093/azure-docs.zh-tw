@@ -1,26 +1,23 @@
-<properties 
-	pageTitle="常見問題集 | Microsoft Azure" 
-	description="常見問題集 (FAQ)" 
-	services="media-services" 
-	documentationCenter="" 
-	authors="Juliako" 
-	manager="erikre" 
-	editor=""/>
+---
+title: 常見問題集 | Microsoft Docs
+description: 常見問題集 (FAQ)
+services: media-services
+documentationcenter: ''
+author: Juliako
+manager: erikre
+editor: ''
 
-<tags 
-	ms.service="media-services" 
-	ms.workload="media" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="09/19/2016" 
-	ms.author="juliako"/>
+ms.service: media-services
+ms.workload: media
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/19/2016
+ms.author: juliako
 
-
-#常見問題集
-
-##一般 AMS 常見問題集
-
+---
+# 常見問題集
+## 一般 AMS 常見問題集
 問：如何調整索引？
 
 答：編碼與編製索引工作的保留單位都相同。請依照[如何調整編碼保留單位](media-services-scale-media-processing-overview.md)的指示進行。**請注意**，Indexer 效能不受保留單元類型影響。
@@ -49,38 +46,34 @@
 
 答：媒體服務在建置串流內容的 URL 時會使用 IAssetFile.Name 屬性的值 (例如，http://{AMSAccount}.origin.mediaservices.windows.net/{GUID}/{IAssetFile.Name}/streamingParameters.)，基於這個理由，您不能使用百分比編碼。**Name** 屬性的值不能有下列任何 [percent-encoding-reserved 字元](http://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters)：!*'();:@&=+$,/?%#"。而且，副檔名只能有一個 ‘.’。
 
-
 問：如何使用 REST 連線？
 
 成功連線至 https://media.windows.net 後，您會收到 301 重新導向，其指定另一個媒體服務 URI。您必須依照[使用 REST API 連線至媒體服務](media-services-rest-connect-programmatically.md)所述，對新的 URI 進行後續呼叫。
 
-
 問：如何在編碼過程中旋轉影片？
 
 答：[Media Encoder Standard](media-services-dotnet-encode-with-media-encoder-standard.md) 支援 90/180/270 度的旋轉角度。預設行為是「自動」，此時它會嘗試偵測內送之 MP4/MOV 檔案的旋轉中繼資料並加以補償。包括以下 **Sources** 元素至[這裡](http://msdn.microsoft.com/library/azure/mt269960.aspx)所定義的其中一個 json 預設項目：
-	
-	"Version": 1.0,
-	"Sources": [
-	{
-	  "Streams": [],
-	  "Filters": {
-	    "Rotation": "90"
-	  }
-	}
-	],
-	"Codecs": [
-	
-	...
+
+    "Version": 1.0,
+    "Sources": [
+    {
+      "Streams": [],
+      "Filters": {
+        "Rotation": "90"
+      }
+    }
+    ],
+    "Codecs": [
+
+    ...
 
 
 
 
-##媒體服務學習路徑
+## 媒體服務學習路徑
+[!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-[AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
-
-##提供意見反應
-
-[AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
+## 提供意見反應
+[!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 <!---HONumber=AcomDC_0921_2016-->

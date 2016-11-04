@@ -1,33 +1,30 @@
-<properties 
-	pageTitle="Data Factory 使用案例 - 產品建議" 
-	description="了解使用 Azure Data Factory 以及其他服務所實作的使用案例。" 
-	services="data-factory" 
-	documentationCenter="" 
-	authors="spelluru" 
-	manager="jhubbard" 
-	editor="monicar"/>
+---
+title: Data Factory 使用案例 - 產品建議
+description: 了解使用 Azure Data Factory 以及其他服務所實作的使用案例。
+services: data-factory
+documentationcenter: ''
+author: spelluru
+manager: jhubbard
+editor: monicar
 
-<tags 
-	ms.service="data-factory" 
-	ms.workload="data-services" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="09/01/2016" 
-	ms.author="spelluru"/>
+ms.service: data-factory
+ms.workload: data-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/01/2016
+ms.author: spelluru
 
-# 使用案例 - 產品建議 
-
+---
+# 使用案例 - 產品建議
 Azure Data Factory 是許多服務之一，可用來實作解決方案加速器的 Cortana Intelligence 套件。請參閱 [Cortana Intelligence 套件](http://www.microsoft.com/cortanaanalytics) 頁面以了解這個套件的詳細資料。在本文中，我們描述 Azure 使用者已經使用 Azure Data Factory 和其他 Cortana Intelligence 元件服務解決與實作的常見使用案例。
 
 ## 案例
-
 線上零售商通常會想要向客戶呈現他們最有興趣、也因此最可能購買的產品，藉以誘使客戶購買產品。若要達成此目的，線上零售商需要使用該特定使用者的個人化產品建議來自訂使用者的線上體驗。這些個人化建議將會依據其目前和過去的購物行為資料、產品資訊、新引進的品牌以及產品和客戶區隔資料來提出。此外，它們可以根據所有使用者的結合整體使用行為分析，提供使用者產品建議。
 
 這些零售商的目標是要最佳化使用者的點選-銷售轉換並獲得更高的銷售收益。他們透過根據客戶興趣和動作提供關聯式、以行為為基礎的產品建議來達成此轉換。對於此使用案例，我們使用線上零售商做為想要最佳化客戶的企業範例。但是這些原則適用於所有想要建立客戶及產品和服務之關聯，並利用個人化產品建議強化其客戶購買體驗的所有企業。
 
 ## 挑戰
-
 在嘗試實作這種類型的使用案例時，線上零售商面臨許多挑戰。
 
 首先，必須從多個資料來源 (包括內部部署和雲端) 擷取不同大小和形狀的資料。此資料包括使用者瀏覽線上零售網站時的產品資料、過去的客戶行為資料和使用者資料。
@@ -39,7 +36,6 @@ Azure Data Factory 是許多服務之一，可用來實作解決方案加速器�
 最後，零售商需要追蹤整體的向上銷售及交叉銷售點擊轉換銷售成功等情況，以測量其方法的效率並調整未來的建議。
 
 ## 解決方案概觀
-
 此範例使用已由實際 Azure 使用者利用 Azure Data Factory 和其他 Cortana Intelligence 元件服務 (包括 [HDInsight](https://azure.microsoft.com/services/hdinsight/) 和 [Power BI](https://powerbi.microsoft.com/)) 解決及實作的案例。
 
 線上零售商使用 Azure Blob 存放區、內部部署 SQL Server、Azure SQL DB 和關聯式資料市集做為整個工作流程的資料儲存體選項。Blob 存放區包含客戶資訊、客戶行為資料和產品資訊資料。產品資訊資料包含 SQL 資料倉儲中的產品品牌資訊和產品目錄預存內部部署。
@@ -55,13 +51,8 @@ Azure Data Factory 是許多服務之一，可用來實作解決方案加速器�
 最後，個人化產品建議的結果集會移到關聯式資料市集供零售商網站使用。結果集也可由另一個應用程式直接從 Blob 儲存體存取，或移至其他存放區供其他客戶及使用案例使用。
 
 ## 優點
-
 藉由最佳化其產品建議策略並與業務目標對齊，解決方案可符合線上零售商的商務和行銷目標。此外，他們能夠以有效率、可靠且符合成本效益的方式作業化和管理產品建議工作流程。此方法讓他們能夠輕鬆地根據銷售點擊轉換成功的測量結果更新其模型並微調其有效性。藉由使用 Azure Data Factory，他們可以放棄其耗時且昂貴的手動雲端資源管理，移至隨選雲端資源管理。因此，他們能夠節省時間和金錢並減少解決方案部署的時間。資料歷程檢視和作業服務健全狀況變得容易視覺化，且 Azure 入口網站也提供利用直覺式 Data Factory 監視和管理 UI 進行的疑難排解。其解決方案可以立即排程與管理，如此可以可靠地產生完成的資料並將其傳送給使用者，並可自動管理資料和處理相依性而不需人力介入。
 
 藉由提供此個人化的購物體驗，線上零售商可建立更具競爭力、更吸引人的客戶體驗，並因此增加銷售量和整體的客戶滿意度。
-
-
-
-  
 
 <!----HONumber=AcomDC_0907_2016-->

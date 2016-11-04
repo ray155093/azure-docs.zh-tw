@@ -1,21 +1,21 @@
-<properties
-   pageTitle="Service Fabric 叢集資源管理員 - 放置原則 | Microsoft Azure"
-   description="Service Fabric 服務的其他放置原則和規則的概觀"
-   services="service-fabric"
-   documentationCenter=".net"
-   authors="masnider"
-   manager="timlt"
-   editor=""/>
+---
+title: Service Fabric 叢集資源管理員 - 放置原則 | Microsoft Docs
+description: Service Fabric 服務的其他放置原則和規則的概觀
+services: service-fabric
+documentationcenter: .net
+author: masnider
+manager: timlt
+editor: ''
 
-<tags
-   ms.service="Service-Fabric"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="NA"
-   ms.date="08/19/2016"
-   ms.author="masnider"/>
+ms.service: Service-Fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 08/19/2016
+ms.author: masnider
 
+---
 # Service Fabric 服務的放置原則
 有許多不同的額外規則，可能會在下列情況下獲得您的重視：您的 Service Fabric 叢集會跨越廣泛的地理距離 (例如多個資料中心或 Azure 區域)，或您的環境會跨越多個地緣政治控制區域 (或是某些其他情況，例如您所注重的法律或政策界線，或是距離會造成效能/延遲的影響)。這其中大部分規則都能透過節點屬性和放置條件約束來設定，但有一些規則比較複雜。為了簡化，我們提供了這些額外的命令。放置原則和其他放置條件約束一樣，都可以根據個別具名服務執行個體來設定。
 
@@ -96,7 +96,7 @@ New-ServiceFabricService -ApplicationName $applicationName -ServiceName $service
 現在，是否可針對未跨越地理區域的叢集中的服務使用這些組態？ 當然可以！ 但也沒有什麼好理由要這樣做，特別是除非您正在執行跨越地理區域的叢集，否則您應該要避免使用必要的、無效的，及慣用的網域設定。強制特定工作負載在單一軌道上執行，或是偏好本機叢集上某些區段並沒有太大的意義，除非存在不同的硬體或工作負載分割，而那些狀況也可以透過標準的放置條件約束來處理。
 
 ## 後續步驟
-- 如需可用來設定服務的其他選項的詳細資訊，請查看[深入了解設定服務](service-fabric-cluster-resource-manager-configure-services.md)中提供的其他叢集資源管理員組態的相關主題
+* 如需可用來設定服務的其他選項的詳細資訊，請查看[深入了解設定服務](service-fabric-cluster-resource-manager-configure-services.md)中提供的其他叢集資源管理員組態的相關主題
 
 [Image1]: ./media/service-fabric-cluster-resource-manager-advanced-placement-rules-placement-policies/cluster-invalid-placement-domain.png
 [Image2]: ./media/service-fabric-cluster-resource-manager-advanced-placement-rules-placement-policies/cluster-required-placement-domain.png

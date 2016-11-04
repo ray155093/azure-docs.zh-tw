@@ -1,26 +1,23 @@
-<properties
-    pageTitle="使用 Azure 媒體分析以將視訊檔案中的文字內容轉換為數位文字 | Microsoft Azure"
-    description="Azure 媒體分析 OCR (光學字元辨識) 可讓您將視訊檔中的文字內容轉換成可編輯、可搜尋的數位文字。  這可讓您從媒體的視訊訊號自動擷取有意義的中繼資料。"
-    services="media-services"
-    documentationCenter=""
-    authors="juliako"
-    manager="erikre"
-    editor=""/>
+---
+title: 使用 Azure 媒體分析以將視訊檔案中的文字內容轉換為數位文字 | Microsoft Docs
+description: Azure 媒體分析 OCR (光學字元辨識) 可讓您將視訊檔中的文字內容轉換成可編輯、可搜尋的數位文字。  這可讓您從媒體的視訊訊號自動擷取有意義的中繼資料。
+services: media-services
+documentationcenter: ''
+author: juliako
+manager: erikre
+editor: ''
 
-<tags
-    ms.service="media-services"
-    ms.workload="media"
-    ms.tgt_pltfrm="na"
-    ms.devlang="dotnet"
-    ms.topic="article"
-    ms.date="09/26/2016"   
-    ms.author="juliako"/>
- 
+ms.service: media-services
+ms.workload: media
+ms.tgt_pltfrm: na
+ms.devlang: dotnet
+ms.topic: article
+ms.date: 09/26/2016
+ms.author: juliako
 
-#<a name="use-azure-media-analytics-to-convert-text-content-in-video-files-into-digital-text"></a>使用 Azure 媒體分析以將視訊檔案中的文字內容轉換為數位文字 
-
-##<a name="overview"></a>Overview
-
+---
+# <a name="use-azure-media-analytics-to-convert-text-content-in-video-files-into-digital-text"></a>使用 Azure 媒體分析以將視訊檔案中的文字內容轉換為數位文字
+## <a name="overview"></a>Overview
 如果您需要擷取視訊檔案的文字內容，並產生可編輯、可搜尋的數位文字，您應該使用 Azure 媒體分析 OCR (光學字元辨識)。 此 Azure 媒體處理器會偵測視訊檔案的文字內容並產生文字檔案，以供您使用。 OCR 可讓您從媒體的視訊訊號自動擷取有意義的中繼資料。
 
 搭配搜尋引擎使用時，您可以輕易地依文字編製媒體的索引，並增強探索內容的能力。 這在具有大量文字的視訊 (例如視訊錄製或投影片簡報的螢幕擷取) 中非常實用。Azure OCR 媒體處理器已針對數位文字進行最佳化。
@@ -29,25 +26,21 @@
 
 本主題提供有關 **Azure 媒體 OCR** 的詳細資料，並示範如何搭配適用於 .NET 的媒體服務 SDK 來使用它。 如需詳細資訊和範例，請參閱 [這篇部落格](https://azure.microsoft.com/blog/announcing-video-ocr-public-preview-new-config/)。
 
-##<a name="ocr-input-files"></a>OCR 輸入檔案
-
+## <a name="ocr-input-files"></a>OCR 輸入檔案
 影片檔案。 目前支援下列格式：MP4、MOV 及 WMV。
 
-##<a name="task-configuration"></a>工作組態 
-
+## <a name="task-configuration"></a>工作組態
 工作組態 (預設)。 使用 **Azure 媒體 OCR** 建立工作時，您必須使用 JSON 或 XML 來指定組態預設。 
 
-###<a name="attribute-descriptions"></a>屬性描述
+### <a name="attribute-descriptions"></a>屬性描述
+| 屬性名稱 | 說明 |
+| --- | --- |
+| 語言 |(選擇性) 說明要尋找的文字語言。 下列其中一種︰AutoDetect (預設值)、Arabic、ChineseSimplified、ChineseTraditional、Czech Danish、Dutch、English、Finnish、French、German、Greek、Hungarian、Italian、Japanese、Korean、Norwegian、Polish、Portuguese、Romanian、Russian、SerbianCyrillic、SerbianLatin、Slovak、Spanish、Swedish、Turkish。 |
+| TextOrientation |(選擇性) 說明要尋找的文字方向。  "Left" 表示所有字母頂端都會指向左邊。  預設文字 (像是可在書本中找到的文字) 的方向為 "Up"。  下列其中一種︰AutoDetect (預設值)、Up、Right、Down、Left。 |
+| TimeInterval |(選擇性) 說明取樣率。  預設值為每 1/2 秒。<br/>JSON 格式 – HH:mm:ss.SSS (預設值 00:00:00.500)<br/>XML 格式 – W3C XSD 持續時間基本型別 (預設值 PT0.5) |
+| DetectRegions |(選擇性) DetectRegion 物件的陣列，指定在其中偵測文字的視訊畫面格內的區域。<br/>DetectRegion 物件是由下列四個整數值組成︰<br/>左 – 像素的左邊界<br/>上 – 像素的上邊界<br/>寬度 – 以像素為單位的區域寬度<br/>高度 – 以像素為單位的區域高度 |
 
-屬性名稱|說明
----|---
-語言|(選擇性) 說明要尋找的文字語言。 下列其中一種︰AutoDetect (預設值)、Arabic、ChineseSimplified、ChineseTraditional、Czech Danish、Dutch、English、Finnish、French、German、Greek、Hungarian、Italian、Japanese、Korean、Norwegian、Polish、Portuguese、Romanian、Russian、SerbianCyrillic、SerbianLatin、Slovak、Spanish、Swedish、Turkish。
-TextOrientation|(選擇性) 說明要尋找的文字方向。  "Left" 表示所有字母頂端都會指向左邊。  預設文字 (像是可在書本中找到的文字) 的方向為 "Up"。  下列其中一種︰AutoDetect (預設值)、Up、Right、Down、Left。
-TimeInterval|(選擇性) 說明取樣率。  預設值為每 1/2 秒。<br/>JSON 格式 – HH:mm:ss.SSS (預設值 00:00:00.500)<br/>XML 格式 – W3C XSD 持續時間基本型別 (預設值 PT0.5)
-DetectRegions|(選擇性) DetectRegion 物件的陣列，指定在其中偵測文字的視訊畫面格內的區域。<br/>DetectRegion 物件是由下列四個整數值組成︰<br/>左 – 像素的左邊界<br/>上 – 像素的上邊界<br/>寬度 – 以像素為單位的區域寬度<br/>高度 – 以像素為單位的區域高度
-
-####<a name="json-preset-example"></a>JSON 預設範例
-        
+#### <a name="json-preset-example"></a>JSON 預設範例
     {
         'Version':'1.0', 
         'Options': 
@@ -63,8 +56,7 @@ DetectRegions|(選擇性) DetectRegion 物件的陣列，指定在其中偵測�
         }
     }
 
-####<a name="xml-preset-example"></a>XML 預設範例
-
+#### <a name="xml-preset-example"></a>XML 預設範例
     <?xml version=""1.0"" encoding=""utf-16""?>
     <VideoOcrPreset xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"" Version=""1.0"" xmlns=""http://www.windowsazure.com/media/encoding/Preset/2014/03"">
       <Options>
@@ -82,36 +74,33 @@ DetectRegions|(選擇性) DetectRegion 物件的陣列，指定在其中偵測�
       </Options>
     </VideoOcrPreset>
 
-##<a name="ocr-output-files"></a>OCR 輸出檔案
-
+## <a name="ocr-output-files"></a>OCR 輸出檔案
 OCR 媒體處理器的輸出是 JSON 檔案。
 
-###<a name="elements-of-the-output-json-file"></a>輸出 JSON 檔案的元素
-
+### <a name="elements-of-the-output-json-file"></a>輸出 JSON 檔案的元素
 視訊 OCR 輸出會在可於視訊上找到的字元中提供時間分段資料。  您可以使用屬性 (例如語言或方向)，確實琢磨您有興趣進行分析的文字。 
 
 輸出包含下列屬性：
 
-元素|說明
----|---
-時幅|影片每秒的「刻度」數目
-Offset|時間戳記的時間位移。 在版本 1.0 的影片 API 中，這永遠會是 0。
-畫面播放速率|影片的每秒畫面格數
-width|視訊寬度 (以像素為單位)
-height|視訊高度 (以像素為單位)
-片段|在視訊中，將中繼資料切割為以時間為基礎的區塊陣列
-start|片段的開始時間 (以「刻度」為單位)
-duration|片段的長度 (以「刻度」為單位)
-interval|指定片段內每個事件的間隔
-events|包含區域的陣列
-region|物件，代表偵測到的單字或片語
-語言|區域內偵測到的文字語言
-orientation|區域內偵測到的文字方向
-lines|區域內偵測到的文字行陣列
-文字|實際的文字
+| 元素 | 說明 |
+| --- | --- |
+| 時幅 |影片每秒的「刻度」數目 |
+| Offset |時間戳記的時間位移。 在版本 1.0 的影片 API 中，這永遠會是 0。 |
+| 畫面播放速率 |影片的每秒畫面格數 |
+| width |視訊寬度 (以像素為單位) |
+| height |視訊高度 (以像素為單位) |
+| 片段 |在視訊中，將中繼資料切割為以時間為基礎的區塊陣列 |
+| start |片段的開始時間 (以「刻度」為單位) |
+| duration |片段的長度 (以「刻度」為單位) |
+| interval |指定片段內每個事件的間隔 |
+| events |包含區域的陣列 |
+| region |物件，代表偵測到的單字或片語 |
+| 語言 |區域內偵測到的文字語言 |
+| orientation |區域內偵測到的文字方向 |
+| lines |區域內偵測到的文字行陣列 |
+| 文字 |實際的文字 |
 
-###<a name="json-output-example"></a>JSON 輸出範例
-
+### <a name="json-output-example"></a>JSON 輸出範例
 下列輸出範例包含一般視訊資訊和數個視訊片段。 每個視訊片段都包含 OCR MP 使用語言及其文字方向偵測到的每個區域。 區域也包含這個區域中的每個文字行，以及該行的文字、該行的位置和該行中每個單字的資訊 (單字內容、位置和信賴度)。 以下是範例，而我在其中放入了一些註解。
 
     {
@@ -168,13 +157,12 @@ lines|區域內偵測到的文字行陣列
     }
 
 ## <a name="sample-code"></a>範例程式碼
-
 下列程式將示範如何：
 
 1. 建立資產並將媒體檔案上傳到資產。
-1. 使用 OCR 組態/預設檔案建立工作。
-1. 下載輸出 JSON 檔案。 
-         
+2. 使用 OCR 組態/預設檔案建立工作。
+3. 下載輸出 JSON 檔案。 
+   
         using System;
         using System.Configuration;
         using System.IO;
@@ -182,7 +170,7 @@ lines|區域內偵測到的文字行陣列
         using Microsoft.WindowsAzure.MediaServices.Client;
         using System.Threading;
         using System.Threading.Tasks;
-        
+   
         namespace OCR
         {
             class Program
@@ -192,70 +180,70 @@ lines|區域內偵測到的文字行陣列
                     ConfigurationManager.AppSettings["MediaServicesAccountName"];
                 private static readonly string _mediaServicesAccountKey =
                     ConfigurationManager.AppSettings["MediaServicesAccountKey"];
-        
+   
                 // Field for service context.
                 private static CloudMediaContext _context = null;
                 private static MediaServicesCredentials _cachedCredentials = null;
-        
+   
                 static void Main(string[] args)
                 {
-        
+   
                     // Create and cache the Media Services credentials in a static class variable.
                     _cachedCredentials = new MediaServicesCredentials(
                                     _mediaServicesAccountName,
                                     _mediaServicesAccountKey);
                     // Used the cached credentials to create CloudMediaContext.
                     _context = new CloudMediaContext(_cachedCredentials);
-        
+   
                     // Run the OCR job.
                     var asset = RunOCRJob(@"C:\supportFiles\OCR\presentation.mp4",
                                                 @"C:\supportFiles\OCR\config.json");
-        
+   
                     // Download the job output asset.
                     DownloadAsset(asset, @"C:\supportFiles\OCR\Output");
                 }
-        
+   
                 static IAsset RunOCRJob(string inputMediaFilePath, string configurationFile)
                 {
                     // Create an asset and upload the input media file to storage.
                     IAsset asset = CreateAssetAndUploadSingleFile(inputMediaFilePath,
                         "My OCR Input Asset",
                         AssetCreationOptions.None);
-        
+   
                     // Declare a new job.
                     IJob job = _context.Jobs.Create("My OCR Job");
-        
+   
                     // Get a reference to Azure Media OCR.
                     string MediaProcessorName = "Azure Media OCR";
-        
+   
                     var processor = GetLatestMediaProcessorByName(MediaProcessorName);
-        
+   
                     // Read configuration from the specified file.
                     string configuration = File.ReadAllText(configurationFile);
-        
+   
                     // Create a task with the encoding details, using a string preset.
                     ITask task = job.Tasks.AddNew("My OCR Task",
                         processor,
                         configuration,
                         TaskOptions.None);
-        
+   
                     // Specify the input asset.
                     task.InputAssets.Add(asset);
-        
+   
                     // Add an output asset to contain the results of the job.
                     task.OutputAssets.AddNew("My OCR Output Asset", AssetCreationOptions.None);
-        
+   
                     // Use the following event handler to check job progress.  
                     job.StateChanged += new EventHandler<JobStateChangedEventArgs>(StateChanged);
-        
+   
                     // Launch the job.
                     job.Submit();
-        
+   
                     // Check job execution and wait for job to finish.
                     Task progressJobTask = job.GetExecutionProgressTask(CancellationToken.None);
-        
+   
                     progressJobTask.Wait();
-        
+   
                     // If job state is Error, the event handling
                     // method for job progress should log errors.  Here we check
                     // for error state and exit if needed.
@@ -267,20 +255,20 @@ lines|區域內偵測到的文字行陣列
                                                         error.Message));
                         return null;
                     }
-        
+   
                     return job.OutputMediaAssets[0];
                 }
-        
+   
                 static IAsset CreateAssetAndUploadSingleFile(string filePath, string assetName, AssetCreationOptions options)
                 {
                     IAsset asset = _context.Assets.Create(assetName, options);
-        
+   
                     var assetFile = asset.AssetFiles.Create(Path.GetFileName(filePath));
                     assetFile.Upload(filePath);
-        
+   
                     return asset;
                 }
-        
+   
                 static void DownloadAsset(IAsset asset, string outputDirectory)
                 {
                     foreach (IAssetFile file in asset.AssetFiles)
@@ -288,7 +276,7 @@ lines|區域內偵測到的文字行陣列
                         file.Download(Path.Combine(outputDirectory, file.Name));
                     }
                 }
-        
+   
                 static IMediaProcessor GetLatestMediaProcessorByName(string mediaProcessorName)
                 {
                     var processor = _context.MediaProcessors
@@ -296,20 +284,20 @@ lines|區域內偵測到的文字行陣列
                         .ToList()
                         .OrderBy(p => new Version(p.Version))
                         .LastOrDefault();
-        
+   
                     if (processor == null)
                         throw new ArgumentException(string.Format("Unknown media processor",
                                                                    mediaProcessorName));
-        
+   
                     return processor;
                 }
-        
+   
                 static private void StateChanged(object sender, JobStateChangedEventArgs e)
                 {
                     Console.WriteLine("Job state changed event:");
                     Console.WriteLine("  Previous state: " + e.PreviousState);
                     Console.WriteLine("  Current state: " + e.CurrentState);
-        
+   
                     switch (e.CurrentState)
                     {
                         case JobState.Finished:
@@ -334,24 +322,18 @@ lines|區域內偵測到的文字行陣列
                             break;
                     }
                 }
-        
+   
             }
         }
 
+## <a name="media-services-learning-paths"></a>媒體服務學習路徑
+[!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-##<a name="media-services-learning-paths"></a>媒體服務學習路徑
+## <a name="provide-feedback"></a>提供意見反應
+[!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-[AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
-
-##<a name="provide-feedback"></a>提供意見反應
-
-[AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
-
-##<a name="related-links"></a>相關連結
-
+## <a name="related-links"></a>相關連結
 [Azure 媒體服務分析概觀](media-services-analytics-overview.md)
-
-
 
 <!--HONumber=Oct16_HO2-->
 

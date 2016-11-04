@@ -1,33 +1,29 @@
-<properties
- pageTitle="開發人員指南 - 查詢語言 | Microsoft Azure"
- description="Azure IoT 中樞開發人員指南- 說明用來從 IoT 中樞擷取對應項、方法和作業相關資訊的查詢語言"
- services="iot-hub"
- documentationCenter=".net"
- authors="fsautomata"
- manager="timlt"
- editor=""/>
+---
+title: 開發人員指南 - 查詢語言 | Microsoft Docs
+description: Azure IoT 中樞開發人員指南- 說明用來從 IoT 中樞擷取對應項、方法和作業相關資訊的查詢語言
+services: iot-hub
+documentationcenter: .net
+author: fsautomata
+manager: timlt
+editor: ''
 
-<tags
- ms.service="iot-hub"
- ms.devlang="multiple"
- ms.topic="article"
- ms.tgt_pltfrm="na"
- ms.workload="na"
- ms.date="09/30/2016" 
- ms.author="elioda"/>
+ms.service: iot-hub
+ms.devlang: multiple
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 09/30/2016
+ms.author: elioda
 
-
+---
 # <a name="reference---query-language-for-twins-and-jobs"></a>參考 - 對應項和作業的查詢語言
-
 ## <a name="overview"></a>Overview
-
 IoT 中樞提供功能強大、類似 SQL 的語言，來擷取有關[裝置對應項][lnk-twins]和[作業][lnk-jobs]的資訊。 本文提供︰
 
 * IoT 中樞查詢語言主要功能的簡介，以及
 * 語言的詳細說明。
 
 ## <a name="getting-started-with-twin-queries"></a>開始使用對應項查詢
-
 [裝置對應項][lnk-twins]可以包含標籤和屬性形式的任意 JSON 物件。 IoT 中樞允許以包含所有對應項資訊的單一 JSON 文件形式查詢裝置對應項。
 比方說，假設您的 IoT 中樞對應項有下列結構︰
 
@@ -73,7 +69,10 @@ IoT 中樞可以將裝置對應項公開為稱為**裝置**的文件集合。
 
         SELECT * FROM devices
 
-> [AZURE.NOTE] [IoT 中樞 SDK][lnk-hub-sdks] 支援將大型結果分頁。
+> [!NOTE]
+> [IoT 中樞 SDK][lnk-hub-sdks] 支援將大型結果分頁。
+> 
+> 
 
 IoT 中樞允許擷取使用任意條件進行的對應項篩選。 例如，
 
@@ -121,7 +120,6 @@ IoT 中樞允許擷取使用任意條件進行的對應項篩選。 例如，
 上述範例說明了如下情況：三個裝置回報設定成功、兩個仍在套用組態，一個回報發生錯誤。
 
 ### <a name="c#-example"></a>C# 範例
-
 查詢功能由 [C# 服務 SDK][lnk-hub-sdks] 在 **RegistryManager** 類別中公開。
 以下是簡單查詢的範例︰
 
@@ -139,7 +137,6 @@ IoT 中樞允許擷取使用任意條件進行的對應項篩選。 例如，
 請務必注意，查詢物件會公開多個 **Next\*** (視查詢所需的還原序列化選項，也就是對應項或作業物件，或使用投影時要使用的一般 Json 而定)。
 
 ### <a name="node-example"></a>節點範例
-
 查詢功能由[節點服務 SDK][lnk-hub-sdks] 在 **Registry** 物件中公開。
 以下是簡單查詢的範例︰
 
@@ -164,11 +161,9 @@ IoT 中樞允許擷取使用任意條件進行的對應項篩選。 例如，
 請務必注意，查詢物件會公開多個 **next\*** (視查詢所需的還原序列化選項，也就是對應項或作業物件，或使用投影時要使用的一般 Json 而定)。
 
 ### <a name="limitations"></a>限制
-
 目前只有在使用彙總時才支援投影，也就是說，非彙總查詢只能使用 `SELECT *`。 此外，彙總只支援與群組搭配使用。
 
 ## <a name="getting-started-with-jobs-queries"></a>開始使用作業查詢
-
 [作業][lnk-jobs]可提供方法來對裝置組執行作業。 每個裝置對應項皆包含屬於 **jobs** 集合一部分之作業的資訊。
 在邏輯上，
 
@@ -231,7 +226,6 @@ IoT 中樞允許擷取使用任意條件進行的對應項篩選。 例如，
 * 執行彙總，例如計數、平均、分組依據。
 
 ## <a name="basics-of-an-iot-hub-query"></a>IoT 中樞查詢的基本概念
-
 每一個 IoT 中樞查詢都包含 SELECT 和 FROM 子句，以及選擇性的 WHERE 和 GROUP BY 子句。 每個查詢都會在 JSON 文件的集合上執行，例如裝置對應項。 FROM 子句會指出要在其上反覆運算的文件集合 (**devices** 或 **devices.jobs**)。 然後，會套用 WHERE 子句中的篩選。 若為彙總，此步驟的結果會依照 GROUP BY 子句中所指定的方式針對每個群組進行分組，並依 SELECT 子句中所指定的方式產生一個資料列。
 
         SELECT <select_list>
@@ -240,17 +234,14 @@ IoT 中樞允許擷取使用任意條件進行的對應項篩選。 例如，
         [GROUP BY <group_specification>]
 
 ## <a name="from-clause"></a>FROM 子句
-
 **FROM <from_specification>** 子句只能採用兩個值︰**FROM devices** (用來查詢裝置對應項) 或 **FROM devices.jobs** (用來查詢作業的每一裝置詳細資料)。
 
 ## <a name="where-clause"></a>WHERE 子句
-
 **WHERE <filter_condition>** 子句是選擇性的。 它會指定條件，而且 FROM 集合中的 JSON 文件必須滿足這些條件才能併入為結果的一部分。 任何 JSON 文件都必須將指定的條件評估為 "true"，才能併入結果。
 
 [運算式和條件][lnk-query-expressions]一節中會說明允許的條件。
 
 ## <a name="select-clause"></a>SELECT 子句
-
 SELECT 子句 (**SELECT <select_list>**) 是必要子句，並可指定要從查詢擷取的值。 它會指定用來產生新 JSON 物件的 JSON 值。針對 FROM 集合已經過篩選 (及選擇性分組) 之子集的每個項目，投影階段會產生新的 JSON 物件 (以 SELECT 子句中指定的值所建構)。
 
 這是 SELECT 子句的文法︰
@@ -278,7 +269,6 @@ SELECT 子句 (**SELECT <select_list>**) 是必要子句，並可指定要從查
 與 **SELECT \*** 不同的選取範圍子句目前只支援在對應項的彙總查詢中使用。
 
 ## <a name="group-by-clause"></a>GROUP BY 子句
-
 **GROUP BY <group_specification>** 子句是選擇性步驟，可在 WHERE 子句中指定的篩選之後、SELECT 中指定的投影之前執行。 它會根據屬性值來分組文件。 這些群組可用來產生 SELECT 子句中所指定的彙總值。
 
 使用 GROUP BY 的查詢範例如下︰
@@ -300,7 +290,6 @@ GROUP BY 的正式語法如下︰
 目前，GROUP BY 子句只支援在查詢對應項時使用。
 
 ## <a name="expressions-and-conditions"></a>運算式和條件
-
 概括而言，運算式：
 
 * 會評估為 JSON 類型 (也就是布林值、數字、字串、陣列或物件) 的執行個體，以及
@@ -334,26 +323,24 @@ GROUP BY 的正式語法如下︰
 其中：
 
 | 符號 | 定義 |
-| -------------- | -----------------|
-| attribute_name | FROM 集合中 JSON 文件的任何屬性。 |
-| unary_operator | 任何一元運算子 (根據＜運算子＞一節)。 |
-| binary_operator | 任何二元運算子 (根據＜運算子＞一節)。 |
-| decimal_literal | 以小數點標記法表示的浮點數。 |
-| hexadecimal_literal | 以字串 '0x' 後面接著十六進位數字的字串所表示的數字。 |
-| string_literal | 字串常值是由零個或多個 Unicode 字元序列或逸出序列所表示的 Unicode 字串。 字串常值會以單引號 (所有格符號：') 或雙引號 (引號：") 括起來。 允許的逸出︰`\'`、`\"`、`\\`、`\uXXXX` (適用於由 4 個十六進位數字所定義的 Unicode 字元)。 |
+| --- | --- |
+| attribute_name |FROM 集合中 JSON 文件的任何屬性。 |
+| unary_operator |任何一元運算子 (根據＜運算子＞一節)。 |
+| binary_operator |任何二元運算子 (根據＜運算子＞一節)。 |
+| decimal_literal |以小數點標記法表示的浮點數。 |
+| hexadecimal_literal |以字串 '0x' 後面接著十六進位數字的字串所表示的數字。 |
+| string_literal |字串常值是由零個或多個 Unicode 字元序列或逸出序列所表示的 Unicode 字串。 字串常值會以單引號 (所有格符號：') 或雙引號 (引號：") 括起來。 允許的逸出︰`\'`、`\"`、`\\`、`\uXXXX` (適用於由 4 個十六進位數字所定義的 Unicode 字元)。 |
 
 ### <a name="operators"></a>運算子
-
 支援下列運算子：
 
 | 系列 | 運算子 |
-| -------------- | -----------------|
-| 算術 | +、-、*、/、% |
-| 邏輯 | AND、OR、NOT |
-| 比較 |  =、!=、<、>、<=、>=、<> |
+| --- | --- |
+| 算術 |+、-、*、/、% |
+| 邏輯 |AND、OR、NOT |
+| 比較 |=、!=、<、>、<=、>=、<> |
 
 ## <a name="next-steps"></a>後續步驟
-
 了解如何使用 [IoT 中樞 SDK][lnk-hub-sdks] 在應用程式中執行查詢。
 
 [lnk-query-where]: iot-hub-devguide-query-language.md#where-clause

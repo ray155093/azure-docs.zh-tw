@@ -1,37 +1,37 @@
-<properties 
-    pageTitle="Hive 活動" 
-    description="了解如何使用 Azure 資料處理站中的 Hive 活動，以在隨選/您自己的 HDInsight 叢集上執行 Hive 查詢。" 
-    services="data-factory" 
-    documentationCenter="" 
-    authors="sharonlo101" 
-    manager="jhubbard" 
-    editor="monicar"/>
+---
+title: Hive 活動
+description: 了解如何使用 Azure 資料處理站中的 Hive 活動，以在隨選/您自己的 HDInsight 叢集上執行 Hive 查詢。
+services: data-factory
+documentationcenter: ''
+author: sharonlo101
+manager: jhubbard
+editor: monicar
 
-<tags 
-    ms.service="data-factory" 
-    ms.workload="data-services" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="10/11/2016" 
-    ms.author="shlo"/>
+ms.service: data-factory
+ms.workload: data-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 10/11/2016
+ms.author: shlo
 
-
+---
 # <a name="hive-activity"></a>Hive 活動
-> [AZURE.SELECTOR]
-[Hive](data-factory-hive-activity.md)  
-[Pig](data-factory-pig-activity.md)  
-[MapReduce](data-factory-map-reduce.md)  
-[Hadoop 串流](data-factory-hadoop-streaming-activity.md)
-[Machine Learning](data-factory-azure-ml-batch-execution-activity.md) 
-[預存程序](data-factory-stored-proc-activity.md)
-[Data Lake Analytics U-SQL](data-factory-usql-activity.md)
-[.NET 自訂](data-factory-use-custom-activities.md)
+> [!div class="op_single_selector"]
+> [Hive](data-factory-hive-activity.md)  
+> [Pig](data-factory-pig-activity.md)  
+> [MapReduce](data-factory-map-reduce.md)  
+> [Hadoop 串流](data-factory-hadoop-streaming-activity.md)
+> [Machine Learning](data-factory-azure-ml-batch-execution-activity.md) 
+> [預存程序](data-factory-stored-proc-activity.md)
+> [Data Lake Analytics U-SQL](data-factory-usql-activity.md)
+> [.NET 自訂](data-factory-use-custom-activities.md)
+> 
+> 
 
 Data Factory [管線](data-factory-create-pipelines.md)中的 HDInsight Hive 活動會在[您自己](data-factory-compute-linked-services.md#azure-hdinsight-linked-service)或[隨選的](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service) Windows/Linux 架構 HDInsight 叢集上執行 Hive 查詢。 本文是根據 [資料轉換活動](data-factory-data-transformation-activities.md) 一文，它呈現資料轉換和支援的轉換活動的一般概觀。
 
 ## <a name="syntax"></a>語法
-
     {
         "name": "Hive Activity",
         "description": "description",
@@ -59,23 +59,21 @@ Data Factory [管線](data-factory-create-pipelines.md)中的 HDInsight Hive 活
           "interval": 1
         }
     }
-    
-## <a name="syntax-details"></a>語法詳細資料
 
-屬性 | 說明 | 必要
--------- | ----------- | --------
-名稱 | 活動的名稱 | 是
-說明 | 說明活動用途的文字 | 否
-類型 | HDinsightHive | 是
-輸入 | Hive 活動所耗用的輸入 | 否
-輸出 | Hive 活動所耗用的輸出 | 是 
-linkedServiceName | 參考 HDInsight 叢集註冊為 Data Factory 中的連結服務 | 是 
-script | 指定 Hive 指令碼內嵌 | 否
-指令碼路徑 | 在 Azure Blob 儲存體中儲存 Hive 指令碼，並提供檔案的路徑。 使用 'script' 或 'scriptPath' 屬性。 兩者無法同時使用。 檔案名稱有區分大小寫。 | 否 
-定義 | 在使用 'hiveconf' 的 Hive 指令碼內指定參數做為參考的金鑰/值組  | 否
+## <a name="syntax-details"></a>語法詳細資料
+| 屬性 | 說明 | 必要 |
+| --- | --- | --- |
+| 名稱 |活動的名稱 |是 |
+| 說明 |說明活動用途的文字 |否 |
+| 類型 |HDinsightHive |是 |
+| 輸入 |Hive 活動所耗用的輸入 |否 |
+| 輸出 |Hive 活動所耗用的輸出 |是 |
+| linkedServiceName |參考 HDInsight 叢集註冊為 Data Factory 中的連結服務 |是 |
+| script |指定 Hive 指令碼內嵌 |否 |
+| 指令碼路徑 |在 Azure Blob 儲存體中儲存 Hive 指令碼，並提供檔案的路徑。 使用 'script' 或 'scriptPath' 屬性。 兩者無法同時使用。 檔案名稱有區分大小寫。 |否 |
+| 定義 |在使用 'hiveconf' 的 Hive 指令碼內指定參數做為參考的金鑰/值組 |否 |
 
 ## <a name="example"></a>範例
-
 我們來看看遊戲記錄檔分析的範例，您想要識別使用者花多少時間在玩貴公司開發的遊戲。 
 
 下列記錄檔是範例遊戲記錄檔，以逗號 (`,`) 分隔，並包含下列欄位 – ProfileID、SessionStart、Duration、SrcIPAddress 和 GameType。
@@ -97,14 +95,14 @@ script | 指定 Hive 指令碼內嵌 | 否
         SrcIPAddress    string, 
         GameType        string
     ) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LINES TERMINATED BY '10' STORED AS TEXTFILE LOCATION 'wasb://adfwalkthrough@<storageaccount>.blob.core.windows.net/samplein/'; 
-    
+
     DROP TABLE IF EXISTS HiveSampleOut; 
     CREATE EXTERNAL TABLE HiveSampleOut 
     (   
         ProfileID   string, 
         Duration    int
     ) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LINES TERMINATED BY '10' STORED AS TEXTFILE LOCATION 'wasb://adfwalkthrough@<storageaccount>.blob.core.windows.net/sampleout/';
-    
+
     INSERT OVERWRITE TABLE HiveSampleOut
     Select 
         ProfileID,
@@ -117,52 +115,53 @@ script | 指定 Hive 指令碼內嵌 | 否
 2. 建立 [連結服務](data-factory-azure-blob-connector.md) 以設定裝載資料之 Azure Blob 儲存體的連接。 讓我們來呼叫此連結服務 "StorageLinkedService"
 3. 建立指向輸入和輸出資料的 [資料集](data-factory-create-datasets.md) 。 讓我們來呼叫輸入資料集 "HiveSampleIn" 和輸出資料集 "HiveSampleOut"
 4. 將 Hive 查詢作為檔案複製到步驟 #2 中設定的 Azure Blob 儲存體。 如果裝載資料的儲存體和裝載此查詢檔案的儲存體不同，請建立個別的 Azure 儲存體連結服務並在活動中參考它。 使用 **scriptPath** 指定 Hive 查詢檔案的路徑，並使用 **scriptLinkedService** 指定包含指令碼檔案的 Azure 儲存體。 
+   
+   > [!NOTE]
+   > 您也可以使用 **script** 屬性，在活動定義中以內嵌方式提供 Hive 指令碼。 不建議使用此方法，因為必須逸出 JSON 文件的指令碼中的所有特殊字元，而且可能造成偵錯問題。 最佳做法是遵循步驟 #4。
+   > 
+   > 
+5. 建立具有 HDInsightHive 活動的管線。 活動會處理/轉換資料。
+   
+       {
+         "name": "HiveActivitySamplePipeline",
+         "properties": {
+           "activities": [
+             {
+               "name": "HiveActivitySample",
+               "type": "HDInsightHive",
+               "inputs": [
+                 {
+                   "name": "HiveSampleIn"
+                 }
+               ],
+               "outputs": [
+                 {
+                   "name": "HiveSampleOut"
+                 }
+               ],
+               "linkedServiceName": "HDInsightLinkedService",
+               "typeproperties": {
+                 "scriptPath": "adfwalkthrough\\scripts\\samplehive.hql",
+                 "scriptLinkedService": "StorageLinkedService"
+               },
+               "scheduler": {
+                   "frequency": "Hour",
+                   "interval": 1
+               }
+             }
+           ]
+         }
+       }
+6. 部署管線。 如需詳細資料，請參閱〈 [建立管線](data-factory-create-pipelines.md) 〉文章。 
+7. 使用資料處理站監視和管理檢視來監視管線。 如需詳細資料，請參閱〈 [監視及管理 Data Factory 管線](data-factory-monitor-manage-pipelines.md) 〉文章。 
 
-    > [AZURE.NOTE] 您也可以使用 **script** 屬性，在活動定義中以內嵌方式提供 Hive 指令碼。 不建議使用此方法，因為必須逸出 JSON 文件的指令碼中的所有特殊字元，而且可能造成偵錯問題。 最佳做法是遵循步驟 #4。
-5.  建立具有 HDInsightHive 活動的管線。 活動會處理/轉換資料。
-
-        {
-          "name": "HiveActivitySamplePipeline",
-          "properties": {
-            "activities": [
-              {
-                "name": "HiveActivitySample",
-                "type": "HDInsightHive",
-                "inputs": [
-                  {
-                    "name": "HiveSampleIn"
-                  }
-                ],
-                "outputs": [
-                  {
-                    "name": "HiveSampleOut"
-                  }
-                ],
-                "linkedServiceName": "HDInsightLinkedService",
-                "typeproperties": {
-                  "scriptPath": "adfwalkthrough\\scripts\\samplehive.hql",
-                  "scriptLinkedService": "StorageLinkedService"
-                },
-                "scheduler": {
-                    "frequency": "Hour",
-                    "interval": 1
-                }
-              }
-            ]
-          }
-        }
-
-6.  部署管線。 如需詳細資料，請參閱〈 [建立管線](data-factory-create-pipelines.md) 〉文章。 
-7.  使用資料處理站監視和管理檢視來監視管線。 如需詳細資料，請參閱〈 [監視及管理 Data Factory 管線](data-factory-monitor-manage-pipelines.md) 〉文章。 
-
-
-## <a name="specifying-parameters-for-a-hive-script"></a>指定 Hive 指令碼的參數  
+## <a name="specifying-parameters-for-a-hive-script"></a>指定 Hive 指令碼的參數
 在此範例中，每天都會將遊戲記錄檔擷取到 Azure Blob 儲存體，並儲存在使用日期和時間分割的資料夾。 您想要參數化 Hive 指令碼，在執行階段期間以動態方式傳遞輸入資料夾位置，並且產生使用日期和時間分割的輸出。
 
 若要使用參數化的 Hive 指令碼，請執行下列動作
 
-- 定義 **defines**中的參數。
-
+* 定義 **defines**中的參數。
+  
         {
             "name": "HiveActivitySamplePipeline",
             "properties": {
@@ -197,9 +196,8 @@ script | 指定 Hive 指令碼內嵌 | 否
             ]
           }
         }
-
-- 在 Hive 指令碼中，參考使用 **${hiveconf:parameterName}**的參數。 
-
+* 在 Hive 指令碼中，參考使用 **${hiveconf:parameterName}**的參數。 
+  
         DROP TABLE IF EXISTS HiveSampleIn; 
         CREATE EXTERNAL TABLE HiveSampleIn 
         (
@@ -209,38 +207,26 @@ script | 指定 Hive 指令碼內嵌 | 否
             SrcIPAddress    string, 
             GameType    string
         ) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LINES TERMINATED BY '10' STORED AS TEXTFILE LOCATION '${hiveconf:Input}'; 
-        
+  
         DROP TABLE IF EXISTS HiveSampleOut; 
         CREATE EXTERNAL TABLE HiveSampleOut 
         (
             ProfileID   string, 
             Duration    int
         ) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LINES TERMINATED BY '10' STORED AS TEXTFILE LOCATION '${hiveconf:Output}';
-        
+  
         INSERT OVERWRITE TABLE HiveSampleOut
         Select 
             ProfileID,
             SUM(Duration)
         FROM HiveSampleIn Group by ProfileID
 
-
 ## <a name="see-also"></a>另請參閱
-- [Pig 活動](data-factory-pig-activity.md)
-- [MapReduce 活動](data-factory-map-reduce.md)
-- [Hadoop 串流活動](data-factory-hadoop-streaming-activity.md)
-- [叫用 Spark 程式](data-factory-spark.md)
-- [叫用 R 指令碼](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)
-
-
-
-
-
-
-
-
-
-
-
+* [Pig 活動](data-factory-pig-activity.md)
+* [MapReduce 活動](data-factory-map-reduce.md)
+* [Hadoop 串流活動](data-factory-hadoop-streaming-activity.md)
+* [叫用 Spark 程式](data-factory-spark.md)
+* [叫用 R 指令碼](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)
 
 <!--HONumber=Oct16_HO2-->
 

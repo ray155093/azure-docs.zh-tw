@@ -1,22 +1,22 @@
-<properties
-   pageTitle="Publish-WebApplicationVM | Microsoft Azure"
-   description="了解如何將 Web 應用程式部署到虛擬機器。此指令碼會在您的 Azure 訂用帳戶中建立所需的資源 (如果它們不存在)。"
-   services="visual-studio-online"
-   documentationCenter="na"
-   authors="TomArcher"
-   manager="douge"
-   editor="" />
-<tags
-   ms.service="multiple"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="multiple"
-   ms.date="08/15/2016"
-   ms.author="tarcher" />
+---
+title: Publish-WebApplicationVM | Microsoft Docs
+description: 了解如何將 Web 應用程式部署到虛擬機器。此指令碼會在您的 Azure 訂用帳戶中建立所需的資源 (如果它們不存在)。
+services: visual-studio-online
+documentationcenter: na
+author: TomArcher
+manager: douge
+editor: ''
 
+ms.service: multiple
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: multiple
+ms.date: 08/15/2016
+ms.author: tarcher
+
+---
 # Publish-WebApplicationVM (Windows PowerShell 指令碼)
-
 將 Web 應用程式部署到虛擬機器。指令碼會在您的 Azure 訂用帳戶中建立所需的資源 (如果它們不存在)。
 
 ```
@@ -31,91 +31,83 @@ Publish-WebApplicationVM
 ```
 
 ### 組態
-
 描述部署詳細資訊的 JSON 組態檔路徑。
 
-|別名|無|
-|---|---|
-|必要？|true|
-|位置|已命名|
-|預設值|無|
-|接受管線輸入？|false|
-|接受萬用字元？|false|
+| 別名 | 無 |
+| --- | --- |
+| 必要？ |true |
+| 位置 |已命名 |
+| 預設值 |無 |
+| 接受管線輸入？ |false |
+| 接受萬用字元？ |false |
 
 ### SubscriptionName
-
 要建立虛擬機器的 Azure 訂用帳戶名稱。
 
-|別名|無|
-|---|---|
-|必要？|false|
-|位置|已命名|
-|預設值|使用訂用帳戶檔案中的第一個訂用帳戶|
-|接受管線輸入？|false|
-|接受萬用字元？|false|
+| 別名 | 無 |
+| --- | --- |
+| 必要？ |false |
+| 位置 |已命名 |
+| 預設值 |使用訂用帳戶檔案中的第一個訂用帳戶 |
+| 接受管線輸入？ |false |
+| 接受萬用字元？ |false |
 
 ### WebDeployPackage
-
 要發佈至虛擬機器的 Web 部署封裝路徑。您可以使用 Visual Studio 的 [發佈 Web] 精靈來建立此封裝。請參閱[如何：在 Visual Studio 中建立 Web 部署封裝](https://msdn.microsoft.com/library/dd465323.aspx)。
 
-|別名|無|
-|---|---|
-|必要？|false|
-|位置|已命名|
-|預設值|無|
-|接受管線輸入？|false|
-|接受萬用字元？|false|
+| 別名 | 無 |
+| --- | --- |
+| 必要？ |false |
+| 位置 |已命名 |
+| 預設值 |無 |
+| 接受管線輸入？ |false |
+| 接受萬用字元？ |false |
 
 ### AllowUntrusted
-
 如果為 true，允許使用未受信任的根授權單位所簽署的憑證。
 
-|別名|無|
-|---|---|
-|必要？|false|
-|位置|已命名|
-|預設值|false|
-|接受管線輸入？|false|
-|接受萬用字元？|false|
+| 別名 | 無 |
+| --- | --- |
+| 必要？ |false |
+| 位置 |已命名 |
+| 預設值 |false |
+| 接受管線輸入？ |false |
+| 接受萬用字元？ |false |
 
 ### VMPassword
-
 虛擬機器帳戶的認證。範例：-VMPassword @{Name = "admin"; Password = "password"}
 
-|別名|無|
-|---|---|
-|必要？|false|
-|位置|已命名|
-|預設值|無|
-|接受管線輸入？|false|
-|接受萬用字元？|false|
+| 別名 | 無 |
+| --- | --- |
+| 必要？ |false |
+| 位置 |已命名 |
+| 預設值 |無 |
+| 接受管線輸入？ |false |
+| 接受萬用字元？ |false |
 
 ### DatabaseServerPassword
-
 Azure 中的 SQL 資料庫認證。範例：-DatabaseServerPassword @{Name = "admin"; Password = "password"}
 
-|別名|無|
-|---|---|
-|必要？|false|
-|位置|已命名|
-|預設值|無|
-|接受管線輸入？|false|
-|接受萬用字元？|false|
+| 別名 | 無 |
+| --- | --- |
+| 必要？ |false |
+| 位置 |已命名 |
+| 預設值 |無 |
+| 接受管線輸入？ |false |
+| 接受萬用字元？ |false |
 
 ### SendHostMessagesToOutput
-
 如果為 true，將訊息從指令碼列印至輸出資料流。
 
-|別名|無|
-|---|---|
-|必要？|false|
-|位置|已命名|
-|預設值|false|
-|接受管線輸入？|false|
-|接受萬用字元？|false|
+| 別名 | 無 |
+| --- | --- |
+| 必要？ |false |
+| 位置 |已命名 |
+| 預設值 |false |
+| 接受管線輸入？ |false |
+| 接受萬用字元？ |false |
 
 ## 備註
-
 如需如何使用指令碼來建立開發和測試環境的完整說明，請參閱[使用 Windows PowerShell 指令碼來發佈至開發和測試環境](vs-azure-tools-publishing-using-powershell-scripts.md)。
 
 JSON 組態檔會指定待部署項目的詳細資料。它包含您在建立專案時所指定的資訊，例如名稱、同質群組、VHD 映像和虛擬機器的大小。它也包含虛擬機器上的端點、要佈建的資料庫 (如有)，以及 Web 部署參數。下列程式碼片段將顯示一個 JSON 組態檔範例：

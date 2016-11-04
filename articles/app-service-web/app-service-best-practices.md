@@ -1,30 +1,29 @@
-<properties
-	pageTitle="Azure App Service 的最佳作法"
-	description="了解 Azure App service 的最佳作法和疑難排解。"
-	services="app-service"
-	documentationCenter=""
-	authors="dariagrigoriu"
-	manager="wpickett"
-	editor="mollybos"/>
+---
+title: Azure App Service 的最佳作法
+description: 了解 Azure App service 的最佳作法和疑難排解。
+services: app-service
+documentationcenter: ''
+author: dariagrigoriu
+manager: wpickett
+editor: mollybos
 
-<tags
-	ms.service="app-service"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="06/30/2016"
-	ms.author="dariagrigoriu"/>
-    
+ms.service: app-service
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 06/30/2016
+ms.author: dariagrigoriu
+
+---
 # Azure App Service 的最佳作法
-
 本文將摘要說明使用 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 的最佳作法。
 
 ## <a name="colocation"></a>共置
 當組成解決方案 (例如 Web 應用程式和資料庫) 的 Azure 資源位於不同區域時，可能會有下列效果︰
 
-*  資源之間的通訊延遲更久
-*  跨區域的輸出資料傳輸需要收費，如 [Azure 定價頁面](https://azure.microsoft.com/pricing/details/data-transfers)所示。
+* 資源之間的通訊延遲更久
+* 跨區域的輸出資料傳輸需要收費，如 [Azure 定價頁面](https://azure.microsoft.com/pricing/details/data-transfers)所示。
 
 相同區域中的共置最適合用於組成解決方案的 Azure 資源，例如 Web 應用程式，以及用來保存內容或資料的資料庫或儲存體帳戶。建立資源時，應該確定它們位於相同的 Azure 區域，除非有特定的商務或設計理由不要如此。您可以利用進階 App Service 方案 App 目前可用的 [App Service 複製功能](app-service-web-app-cloning-portal.md)，將 App Service App 移至資料庫所在的區域。
 

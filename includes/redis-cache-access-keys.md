@@ -3,13 +3,11 @@
 ![Redis 快取設定](media/redis-cache-access-keys/redis-cache-settings.png)
 
 ### 主機名稱和連接埠
-
 若要存取主機名稱和連接埠，請按一下 [屬性]。
 
 ![Redis 快取屬性](media/redis-cache-access-keys/redis-cache-properties.png)
 
 ### 存取金鑰
-
 若要擷取存取金鑰，請按一下 [存取金鑰]。
 
 ![Redis 快取存取金鑰](media/redis-cache-access-keys/redis-cache-access-keys.png)

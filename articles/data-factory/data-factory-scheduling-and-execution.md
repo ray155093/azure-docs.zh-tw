@@ -1,34 +1,32 @@
-<properties
-    pageTitle="使用 Data Factory 進行排程和執行 | Microsoft Azure"
-    description="了解 Azure Data Factory 應用程式模型的排程和執行層面。"
-    services="data-factory"
-    documentationCenter=""
-    authors="spelluru"
-    manager="jhubbard"
-    editor="monicar"/>
+---
+title: 使用 Data Factory 進行排程和執行 | Microsoft Docs
+description: 了解 Azure Data Factory 應用程式模型的排程和執行層面。
+services: data-factory
+documentationcenter: ''
+author: spelluru
+manager: jhubbard
+editor: monicar
 
-<tags
-    ms.service="data-factory"
-    ms.workload="data-services"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/22/2016"
-    ms.author="spelluru"/>
+ms.service: data-factory
+ms.workload: data-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/22/2016
+ms.author: spelluru
 
-
+---
 # <a name="data-factory-scheduling-and-execution"></a>Data Factory 排程和執行
 本文說明 Azure Data Factory 應用程式模型的排程和執行層面。 
 
 ## <a name="prerequisites"></a>必要條件
 本文假設您已了解 Data Factory 應用程式模型的基本概念，包括活動、管線、連結的服務和資料集。 請看下列文章，了解 Azure Data Factory 的基本概念：
 
-- [Data Factory 服務簡介](data-factory-introduction.md)
-- [管線](data-factory-create-pipelines.md)
-- [資料集](data-factory-create-datasets.md) 
+* [Data Factory 服務簡介](data-factory-introduction.md)
+* [管線](data-factory-create-pipelines.md)
+* [資料集](data-factory-create-datasets.md) 
 
 ## <a name="schedule-an-activity"></a>排程活動
-
 使用活動 JSON 的 [排程器] 區段，您可以指定活動的週期性排程。 例如，您可以排程每小時進行一次的活動，如下所示：
 
     "scheduler": {
@@ -47,7 +45,6 @@
 您可以為活動指定 **scheduler** 屬性，但此為**選擇性**動作。 如果您指定屬性，它就必須符合您在輸出資料集定義中指定的頻率。 目前，輸出資料集會影響排程，因此即使活動並未產生任何輸出，您都必須建立輸出資料集。 如果活動沒有任何輸入，您可以略過建立輸入資料集。
 
 ## <a name="time-series-datasets-and-data-slices"></a>時間序列資料集和資料配量
-
 時間序列資料是連續順序的資料點，通常包含一段時間間隔的後續度量。 時間序列資料的常見範例包括感應器資料和應用程式遙測資料。
 
 使用 Data Factory，您可以批次方式使用活動執行處理時間序列資料。 通常有週期性節奏，在該節奏下，輸入資料抵達以及產生需要的輸出資料。 這個節奏是由指定資料集的 [可用性]  而模式化，如下所示：
@@ -70,7 +67,6 @@
 如需適用於可用性區段之不同屬性的詳細資訊，請參閱 [建立資料集](data-factory-create-datasets.md)。
 
 ## <a name="move-data-from-sql-database-to-blob-storage"></a>將資料從 SQL Database 移動到 Blob 儲存體
-
 讓我們整理並且實際操作一下，方法是建立管線以便每小時將資料從 Azure SQL Database 資料表複製到 Azure Blob 儲存體。
 
 **輸入：Azure SQL Database 資料集**
@@ -154,8 +150,6 @@
 
 在 availability 區段中，**Frequency** 設為 **Hour**，**interval** 設為 **1**。
 
-
-
 **活動：複製活動**
 
     {
@@ -208,23 +202,24 @@
 
 在管線部署之後，Azure Blob 會填入如下資料：
 
--   mypath/2015/1/1/8/Data.&lt;Guid&gt;.txt 檔案包含資料
-
-            10002345,334,2,2015-01-01 08:24:00.3130000
-            10002345,347,15,2015-01-01 08:24:00.6570000
-            10991568,2,7,2015-01-01 08:56:34.5300000
-
-    > [AZURE.NOTE] 將 &lt;Guid&gt; 取代為實際的 GUID。 範例檔案名稱：Data.bcde1348-7620-4f93-bb89-0eed3455890b.txt
--   mypath/2015/1/1/9/Data.&lt;Guid&gt;.txt 檔案包含資料
-
-            10002345,334,1,2015-01-01 09:13:00.3900000
-            24379245,569,23,2015-01-01 09:25:00.3130000
-            16777799,21,115,2015-01-01 09:47:34.3130000
--   mypath/2015/1/1/10/Data.&lt;Guid&gt;.txt 檔案不含資料。
-
+* mypath/2015/1/1/8/Data.&lt;Guid&gt;.txt 檔案包含資料
+  
+          10002345,334,2,2015-01-01 08:24:00.3130000
+          10002345,347,15,2015-01-01 08:24:00.6570000
+          10991568,2,7,2015-01-01 08:56:34.5300000
+  
+  > [!NOTE]
+  > 將 &lt;Guid&gt; 取代為實際的 GUID。 範例檔案名稱：Data.bcde1348-7620-4f93-bb89-0eed3455890b.txt
+  > 
+  > 
+* mypath/2015/1/1/9/Data.&lt;Guid&gt;.txt 檔案包含資料
+  
+          10002345,334,1,2015-01-01 09:13:00.3900000
+          24379245,569,23,2015-01-01 09:25:00.3130000
+          16777799,21,115,2015-01-01 09:47:34.3130000
+* mypath/2015/1/1/10/Data.&lt;Guid&gt;.txt 檔案不含資料。
 
 ## <a name="active-period-for-pipeline"></a>管線的作用期間
-
 [建立管線](data-factory-create-pipelines.md)導入藉由設定 **start** 和 **end** 屬性來指定管線的使用中週期的概念。
 
 您可以設定過去日期的管線使用中週期的開始日期。 Data Factory 會自動計算 (回補) 過去的所有資料配量，並且開始處理。
@@ -232,7 +227,7 @@
 ## <a name="parallel-processing-of-data-slices"></a>資料配量的平行處理
 您可以將回補的資料配量設定為平行執行，只要設定 JSON 活動 policy 區段中的 **concurrency** 屬性即可。 如需有關此屬性的詳細資訊，請參閱 [建立管線](data-factory-create-pipelines.md)。
 
-## <a name="rerun-a-failed-data-slice"></a>重新執行失敗的資料配量 
+## <a name="rerun-a-failed-data-slice"></a>重新執行失敗的資料配量
 您可以使用豐富的視覺化方式監視配量的執行。 如需詳細資訊，請參閱[使用 Azure 入口網站刀鋒視窗監視和管理管線](data-factory-monitor-manage-pipelines.md)或[監視和管理應用程式](data-factory-monitor-manage-app.md)。
 
 請思考一下會顯示兩個活動的下列範例。 Activity1 會產生時間序列資料集，具有由 Activity2 做為輸入取用的輸出配量，以產生最終輸出時間序列資料集。
@@ -252,8 +247,8 @@ Data Factory 監視和管理工具可讓您深入診斷記錄以了解失敗的�
 
 例如，請考慮下列情況：
 
-1.  管線 P1 具有需要外部輸入資料集 D1 的活動 A1，並且會產生輸出資料集 D2。
-2.  管線 P2 具有需要來自資料集 D2 之輸入的活動 A2，並且會產生輸出資料集 D3。
+1. 管線 P1 具有需要外部輸入資料集 D1 的活動 A1，並且會產生輸出資料集 D2。
+2. 管線 P2 具有需要來自資料集 D2 之輸入的活動 A2，並且會產生輸出資料集 D3。
 
 在此案例中，活動 A1 和 A2 是在不同的管線中。 活動 A1 會在有外部資料可供使用且達到排定的可用性頻率時執行。 活動 A2 會在來自 D2 的排定分割可供使用且達到排定的可用性頻率時執行。 如果資料集 D2 中的其中一個分割發生錯誤，則不會針對該分割執行 A2，直到該分割可供使用為止。
 
@@ -452,17 +447,13 @@ CopyActivity2
 
 請注意，在此範例中，為第二個複製活動指定了兩個輸入資料集。 指定多個輸入時，只有第一個輸入資料集會用來複製資料，但是其他資料集會用來做為相依性。 CopyActivity2 只會在符合下列條件後才開始︰
 
-- CopyActivity1 已順利完成且 Dataset2 可供使用。 將資料複製到 Dataset4 時，不會使用此資料集。 它只會用來做為 CopyActivity2 的排程相依性。   
-- Dataset3 可供使用。 此資料集代表已複製到目的地的資料。  
-
-
+* CopyActivity1 已順利完成且 Dataset2 可供使用。 將資料複製到 Dataset4 時，不會使用此資料集。 它只會用來做為 CopyActivity2 的排程相依性。   
+* Dataset3 可供使用。 此資料集代表已複製到目的地的資料。  
 
 ## <a name="model-datasets-with-different-frequencies"></a>使用不同的頻率模型化資料集
-
 在範例中，輸入和輸出資料集和活動排程時段的頻率是相同的。 某些案例需要能夠以不同於一或多個輸入的頻率產生輸出。 Data Factory 支援模型化這些案例。
 
 ### <a name="sample-1:-produce-a-daily-output-report-for-input-data-that-is-available-every-hour"></a>範例 1：對每小時可用的輸入資料產生每日輸出報告
-
 請設想 Azure Blob 儲存體中每小時會有來自感應器的輸入測量資料的案例。 您想要為具有 [Data Factory Hive 活動](data-factory-hive-activity.md)的日子，產生具有統計資料 (例如平均值、最大值及最小值) 的每日彙總報告。
 
 以下是使用 Data Factory 模型化此案例的方式：
@@ -498,7 +489,6 @@ CopyActivity2
 **輸出資料集**
 
 每天會在當天的資料夾中建立一個輸出檔。 輸出的可用性設定為 **日** (頻率：日、間隔：1)。
-
 
     {
       "name": "AzureBlobOutput",
@@ -578,9 +568,7 @@ Hive 指令碼會收到適當的「日期時間」  資訊，做為使用 **Wind
 
 每一天的輸出配量取決於輸入資料集之 24 小時每小時的配量。 Data Factory 會自動計算這些相依性，方法是釐清落在與要產生之輸出配量相同時間期間的輸入資料配量。 如果這 24 個輸入配量中有任何一個無法使用，Data Factory 會先等待輸入配量就緒，再開始每日活動執行。
 
-
 ### <a name="sample-2:-specify-dependency-with-expressions-and-data-factory-functions"></a>範例 2：使用運算式和 Data Factory 函數指定相依性
-
 我們來看一下另一種案例。 假設您有處理兩個輸入資料集的 Hive 活動。 其中一個每日有新資料，但是另一個會每週取得新資料。 假設您想要跨兩個輸入進行聯結作業，並且每日產生輸出。
 
 Data Factory 會藉由對齊輸出資料配量的時間期間來自動找出要處理的正確輸入配量的簡單方法不會奏效。
@@ -725,12 +713,10 @@ Hive 活動接受 2 個輸入，並且每日產生輸出配量。 您可以針�
     }
 
 
-## <a name="data-factory-functions-and-system-variables"></a>Data Factory 函式與系統變數   
-
+## <a name="data-factory-functions-and-system-variables"></a>Data Factory 函式與系統變數
 如需 Data Factory 所支援的函數與系統變數清單，請參閱 [Data Factory 函式與系統變數](data-factory-functions-variables.md) 。
 
 ## <a name="data-dependency-deep-dive"></a>資料相依性的深入探討
-
 若要依據活動執行來產生資料集配量，Data Factory 會使用下列 *相依性模型* 來判斷活動取用的資料集與活動產生的資料集之間的關聯性。
 
 需要輸入資料集的時間範圍以產生稱為「相依性期間」 的輸出資料集配量。
@@ -751,7 +737,6 @@ Hive 活動接受 2 個輸入，並且每日產生輸出配量。 您可以針�
 您也可以針對相依性期間提供自己的對應，如範例所示，當中的其中一個輸入是每週，而輸出配量是每日產生。
 
 ## <a name="data-dependency-and-validation"></a>資料相依性和驗證
-
 資料集可以具有定義的驗證原則，指定配量執行所產生的資料在供取用之前如何驗證。 如需詳細資訊，請參閱 [建立資料集](data-factory-create-datasets.md) 。
 
 在這種情況下，於配量完成執行後，輸出配量狀態就會變更為**等候**，子狀態為**驗證**。 配量通過驗證之後，配量狀態會變更為 **就緒**。
@@ -761,7 +746,6 @@ Hive 活動接受 2 個輸入，並且每日產生輸出配量。 您可以針�
 [監視和管理管線](data-factory-monitor-manage-pipelines.md) 涵蓋 Data Factory 中資料配量的各種狀態。
 
 ## <a name="external-data"></a>外部資料
-
 資料集可以標示為外部 (如下列 JSON 程式碼片段所示)，意味著它尚未使用 Data Factory 產生。 在這種情況下，資料集原則可以包含一組額外的參數，描述資料集的驗證和重試原則。 如需所有屬性的描述，請參閱 [建立管線](data-factory-create-pipelines.md) 。
 
 類似於 Data Factory 產生的資料集，在可以處理相依配量之前，外部資料的資料配量必須是就緒狀態。
@@ -834,12 +818,10 @@ Hive 活動接受 2 個輸入，並且每日產生輸出配量。 您可以針�
 
 請注意：
 
-- 未指定管線的**開始**和**結束**時間。
-- 有指定輸入和輸出資料集的**可用性** (**頻率**和**間隔**)，即使 Data Factory 未使用這些值也是一樣。  
-- 圖表檢視不會顯示一次性管線。 這是設計的行為。
-- 一次性管線無法更新。 您可以複製一次性管線、將其重新命名、更新屬性，以及加以部署來建立另一個管線。
-
-
+* 未指定管線的**開始**和**結束**時間。
+* 有指定輸入和輸出資料集的**可用性** (**頻率**和**間隔**)，即使 Data Factory 未使用這些值也是一樣。  
+* 圖表檢視不會顯示一次性管線。 這是設計的行為。
+* 一次性管線無法更新。 您可以複製一次性管線、將其重新命名、更新屬性，以及加以部署來建立另一個管線。
 
 <!--HONumber=Oct16_HO2-->
 

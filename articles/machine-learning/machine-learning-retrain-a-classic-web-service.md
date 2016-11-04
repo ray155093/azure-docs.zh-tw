@@ -1,56 +1,55 @@
-<properties
-    pageTitle="重新定型傳統 Web 服務 | Microsoft Azure"
-    description="了解如何在 Azure Machine Learning 中以程式設計方式重新定型模型，以及使用新定型的模型來更新 Web 服務。"
-    services="machine-learning"
-    documentationCenter=""
-    authors="vDonGlover"
-    manager="raymondlaghaeian"
-    editor=""/>
+---
+title: 重新定型傳統 Web 服務 | Microsoft Docs
+description: 了解如何在 Azure Machine Learning 中以程式設計方式重新定型模型，以及使用新定型的模型來更新 Web 服務。
+services: machine-learning
+documentationcenter: ''
+author: vDonGlover
+manager: raymondlaghaeian
+editor: ''
 
-<tags
-    ms.service="machine-learning"
-    ms.workload="data-services"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="10/12/2016"
-    ms.author="v-donglo"/>
+ms.service: machine-learning
+ms.workload: data-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 10/12/2016
+ms.author: v-donglo
 
-
+---
 # <a name="retrain-a-classic-web-service"></a>重新定型傳統 Web 服務
-
 您部署的預測性 Web 服務是預設評分端點。 預設端點會與原始定型和計分實驗同步，因此無法取代預設端點的定型模型。 若要重新定型 Web 服務，必須在 Web 服務新增端點。 
 
->[AZURE.NOTE] 本逐步解說的步驟假設您已使用[以程式設計方式重新定型機器學習服務模型](machine-learning-retrain-models-programmatically.md)中的步驟建立 Web 服務。
-
+> [!NOTE]
+> 本逐步解說的步驟假設您已使用[以程式設計方式重新定型機器學習服務模型](machine-learning-retrain-models-programmatically.md)中的步驟建立 Web 服務。
+> 
+> 
 
 ## <a name="add-a-new-endpoint"></a>新增端點
- 
 您部署的預測性 Web 服務包含預設評分端點，它會與原始定型和評分實驗定型的模型保持同步。 若要將您的 Web 服務更新為新定型的模型，您必須建立新的評分端點。 
 
 在能以定型模型更新的預測性 Web 服務上，建立新的評分端點︰
 
->[AZURE.NOTE] 請確定您將端點新增至預測性 Web 服務，而不是定型 Web 服務。 如果您正確部署定型和預測性 Web 服務，您應該會看到列出兩個不同的 Web 服務。 預測性 Web 服務應是以 "[predictive exp.]" 結尾。
+> [!NOTE]
+> 請確定您將端點新增至預測性 Web 服務，而不是定型 Web 服務。 如果您正確部署定型和預測性 Web 服務，您應該會看到列出兩個不同的 Web 服務。 預測性 Web 服務應是以 "[predictive exp.]" 結尾。
+> 
+> 
 
 有三種方式可在 Web 服務新增端點︰
 
-3. 以程式設計方式
-1. 使用 Microsoft Azure Web 服務入口網站
-2. 使用 Azure 傳統入口網站
+1. 以程式設計方式
+2. 使用 Microsoft Azure Web 服務入口網站
+3. 使用 Azure 傳統入口網站
 
 ### <a name="programmatically-add-an-endpoint"></a>以程式設計方式新增端點
-
 您可以使用此 [GitHub 儲存機制](https://github.com/raymondlaghaeian/AML_EndpointMgmt/blob/master/Program.cs)提供的範例程式碼來新增評分端點。
 
 ### <a name="use-the-microsoft-azure-web-services-portal-to-add-an-endpoint"></a>使用 Microsoft Azure Web 服務入口網站新增端點
-
 1. 在 Machine Learning Studio 中，按一下左側的 [Web 服務]。
 2. 在 Web 服務儀表板底部，按一下 [管理端點預覽] 。
 3. 按一下 [新增] 。
 4. 輸入新端點的名稱和描述。 選取記錄層級，以及是否啟用範例資料。 如需有關記錄的詳細資訊，請參閱 [為 Machine Learning Web 服務啟用記錄](machine-learning-web-services-logging.md)。
 
 ### <a name="use-the-azure-classic-portal-to-add-an-endpoint"></a>使用 Azure 傳統入口網站新增端點
-
 1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
 2. 按一下左側功能表中的 [Machine Learning] 。
 3. 在 [名稱] 下，按一下您的工作區，然後按一下 [Web 服務] 。
@@ -58,19 +57,18 @@
 5. 按一下頁面底部的 [新增端點] 。 如需有關新增端點的詳細資訊，請參閱 [建立端點](machine-learning-create-endpoint.md)。 
 
 ## <a name="update-the-added-endpoint’s-trained-model"></a>更新新增端點的定型模型
-
 若要完成重新定型程序，您必須更新新增端點的定型模型。
 
 * 如果您是使用 Azure 傳統入口網站新增端點，可在入口網站中按一下新端點的名稱，然後按一下 **UpdateResource** 連結，以取得您更新端點模型時所需的 URL。
 * 如果您是使用範例程式碼新增端點，這會包含說明 URL 的位置 (靠輸出中的 HelpLocationURL  值識別)。
- 
+
 擷取路徑 URL：
 
-1.  將 URL 複製並貼到瀏覽器。
-2.  按一下 [更新資源] 連結。
-3.  複製 PATCH 要求的 POST URL。 例如：
-
-        PATCH URL: https://management.azureml.net/workspaces/00bf70534500b34rebfa1843d6/webservices/af3er32ad393852f9b30ac9a35b/endpoints/newendpoint2
+1. 將 URL 複製並貼到瀏覽器。
+2. 按一下 [更新資源] 連結。
+3. 複製 PATCH 要求的 POST URL。 例如：
+   
+       PATCH URL: https://management.azureml.net/workspaces/00bf70534500b34rebfa1843d6/webservices/af3er32ad393852f9b30ac9a35b/endpoints/newendpoint2
 
 您現在可以使用定型模型來更新您先前建立的評分端點。
 
@@ -94,21 +92,21 @@
                 }
             }
         };
-    
+
         using (var client = new HttpClient())
         {
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
-    
+
             using (var request = new HttpRequestMessage(new HttpMethod("PATCH"), endpointUrl))
             {
                 request.Content = new StringContent(JsonConvert.SerializeObject(resourceLocations), System.Text.Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await client.SendAsync(request);
-    
+
                 if (!response.IsSuccessStatusCode)
                 {
                     await WriteFailedResponse(response);
                 }
-    
+
                 // Do what you want with a successful response here.
             }
         }
@@ -118,20 +116,19 @@
 
 *Resources* 中 *Name* 參數的值，應該符合預測實驗中已儲存之定型模型的「資源名稱」。 取得資源名稱：
 
-1.  登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
-2.  按一下左側功能表中的 [Machine Learning] 。
-3.  在 [名稱] 下，按一下您的工作區，然後按一下 [Web 服務] 。
-4.  在 [名稱] 下，按一下 [普查模型 [predictive exp.]] 。
-5.  按一下您新增的端點。
-6.  在端點儀表板中，按一下 [更新資源] 。
-7.  在 Web 服務的 [更新資源 API 文件] 頁面，您可以在 [可更新的資源] 下找到 [資源名稱]。
+1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
+2. 按一下左側功能表中的 [Machine Learning] 。
+3. 在 [名稱] 下，按一下您的工作區，然後按一下 [Web 服務] 。
+4. 在 [名稱] 下，按一下 [普查模型 [predictive exp.]] 。
+5. 按一下您新增的端點。
+6. 在端點儀表板中，按一下 [更新資源] 。
+7. 在 Web 服務的 [更新資源 API 文件] 頁面，您可以在 [可更新的資源] 下找到 [資源名稱]。
 
 如果在您完成端點更新之前 SAS 權杖已到期，您必須執行 GET 以作業識別碼取得新的權杖。
 
 程式碼執行成功後，新的端點應該會在大約 30 秒後開始使用重新定型模型。
 
-##<a name="summary"></a>摘要
-
+## <a name="summary"></a>摘要
 使用重新定型 API 可以更新預測性 Web 服務的定型模型，運用於如下案例︰
 
 * 定期以新的資料重新定型模型。
@@ -140,7 +137,6 @@
 後續步驟
 
 [Azure Machine Learning 傳統 Web 服務的重新訓練進行疑難排解](machine-learning-troubleshooting-retraining-models.md)
-
 
 <!--HONumber=Oct16_HO2-->
 

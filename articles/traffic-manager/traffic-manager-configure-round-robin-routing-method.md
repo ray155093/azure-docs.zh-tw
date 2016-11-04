@@ -1,28 +1,30 @@
-<properties
-   pageTitle="設定流量管理員循環配置資源流量路由方法 |Microsoft Azure"
-   description="本文將協助您設定流量管理員端點的循環配置資源負載平衡。"
-   services="traffic-manager"
-   documentationCenter=""
-   authors="sdwheeler"
-   manager="carmonm"
-   editor="tysonn" />
-<tags 
-   ms.service="traffic-manager"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="infrastructure-services"
-   ms.date="03/17/2016"
-   ms.author="sewhee" />
+---
+title: 設定流量管理員循環配置資源流量路由方法 | Microsoft Docs
+description: 本文將協助您設定流量管理員端點的循環配置資源負載平衡。
+services: traffic-manager
+documentationcenter: ''
+author: sdwheeler
+manager: carmonm
+editor: tysonn
 
+ms.service: traffic-manager
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 03/17/2016
+ms.author: sewhee
+
+---
 # 設定循環配置資源路由方法
-
 常見的流量路由方法提供一組完全相同的端點 (包括雲端服務和網站)，並以循環配置資源方式將流量傳送到每一個端點。下列步驟概述如何設定流量管理員才能執行此種類型的流量路由方法。如需不同流量路由方法的詳細資訊，請參閱[關於流量管理員流量路由方法](traffic-manager-routing-methods.md)。
 
->[AZURE.NOTE] Azure 網站已為資料中心 (也稱為「區域」) 內的網站提供循環配置資源負載平衡功能。流量管理員可讓您在不同的資料中心網站中指定循環配置資源流量路由方法。
+> [!NOTE]
+> Azure 網站已為資料中心 (也稱為「區域」) 內的網站提供循環配置資源負載平衡功能。流量管理員可讓您在不同的資料中心網站中指定循環配置資源流量路由方法。
+> 
+> 
 
 ## 將流量平均地路由 (循環配置資源) 到一組端點：
-
 1. 在 Azure 傳統入口網站的左側窗格中，按一下 [流量管理員] 圖示以開啟 [流量管理員] 窗格。如果您尚未建立流量管理員設定檔，請參閱[管理流量管理員設定檔](traffic-manager-manage-profiles.md)的步驟來建立基本的流量管理員設定檔。
 2. 在 Azure 傳統入口網站的 [流量管理員] 窗格中，找出包含您要修改設定的流量管理員設定檔，然後按一下設定檔名稱右側的箭號。這會開啟設定檔的設定頁面。
 3. 在您的設定檔頁面上，按一下頁面頂端的 [端點]，並確認您要納入組態的服務端點已存在。如需加入或移除端點的步驟，請參閱[在流量管理員中管理端點](traffic-manager-endpoints.md)。
@@ -34,8 +36,6 @@
 9. 在已設定並執行流量管理員設定檔之後，您可以編輯授權 DNS 伺服器上的 DNS 記錄，以將您的公司網域名稱指向流量管理員網域名稱。如需有關如何執行這項操作的詳細資訊，請參閱[將公司網際網路網域指向流量管理員網域](traffic-manager-point-internet-domain.md)。
 
 ## 後續步驟
-
-
 [將公司網際網路網域指向流量管理員網域](traffic-manager-point-internet-domain.md)
 
 [流量管理員路由方法](traffic-manager-routing-methods.md)
@@ -49,7 +49,5 @@
 [流量管理員 - 停用、啟用或刪除設定檔](disable-enable-or-delete-a-profile.md)
 
 [流量管理員 - 停用或啟用端點](disable-or-enable-an-endpoint.md)
-
- 
 
 <!---HONumber=AcomDC_0824_2016-->

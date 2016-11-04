@@ -1,21 +1,21 @@
-<properties 
-    pageTitle="彈性資料庫工具字彙 | Microsoft Azure" 
-    description="彈性資料庫工具所用詞彙的解釋" 
-    services="sql-database" 
-    documentationCenter="" 
-    manager="jhubbard" 
-    authors="ddove" 
-    editor=""/>
+---
+title: 彈性資料庫工具字彙 | Microsoft Docs
+description: 彈性資料庫工具所用詞彙的解釋
+services: sql-database
+documentationcenter: ''
+manager: jhubbard
+author: ddove
+editor: ''
 
-<tags 
-    ms.service="sql-database" 
-    ms.workload="sql-database" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="05/27/2016" 
-    ms.author="ddove"/>
+ms.service: sql-database
+ms.workload: sql-database
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 05/27/2016
+ms.author: ddove
 
+---
 # 彈性資料庫工具字彙
 下列詞彙是針對[彈性資料庫工具](sql-database-elastic-scale-introduction.md) (Azure SQL Database的一項功能) 所定義的。這些工具是用來管理[分區對應](sql-database-elastic-scale-shard-map-management.md)，並且包含[用戶端程式庫](sql-database-elastic-database-client-library.md)、[分割合併工具](sql-database-elastic-scale-overview-split-and-merge.md)、[彈性集區](sql-database-elastic-pool.md)及[查詢](sql-database-elastic-query-overview.md)。
 
@@ -65,9 +65,7 @@
 
 ![對應][2]
 
-
-##動詞
-
+## 動詞
 **水平縮放**：藉由在分區對應中新增或移除分區而相應放大 (或縮小) 分區集合的動作，如下所示。
 
 ![水平和垂直縮放][3]
@@ -82,12 +80,12 @@
 
 **垂直縮放**：相應增加 (或減少) 個別分區之效能層級的動作。例如，將分區從 Standard 變更為 Premium (獲得更多計算資源)。
 
-[AZURE.INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
+[!INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
 
 <!--Image references-->
 [1]: ./media/sql-database-elastic-scale-glossary/glossary.png
 [2]: ./media/sql-database-elastic-scale-glossary/mappings.png
 [3]: ./media/sql-database-elastic-scale-glossary/h_versus_vert.png
- 
+
 
 <!---HONumber=AcomDC_0601_2016-->

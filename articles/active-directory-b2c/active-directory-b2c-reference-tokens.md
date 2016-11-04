@@ -1,28 +1,25 @@
-<properties
-	pageTitle="Azure Active Directory B2C | Microsoft Azure"
-	description="在 Azure Active Directory B2C 中簽發的權杖類型。"
-	services="active-directory-b2c"
-	documentationCenter=""
-	authors="dstrockis"
-	manager="msmbaldwin"
-	editor=""/>
+---
+title: Azure Active Directory B2C | Microsoft Docs
+description: 在 Azure Active Directory B2C 中簽發的權杖類型。
+services: active-directory-b2c
+documentationcenter: ''
+author: dstrockis
+manager: msmbaldwin
+editor: ''
 
-<tags
-	ms.service="active-directory-b2c"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="07/22/2016"
-	ms.author="dastrock"/>
+ms.service: active-directory-b2c
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 07/22/2016
+ms.author: dastrock
 
-
+---
 # Azure AD B2C：權杖參考
-
 Azure Active Directory (Azure AD) B2C 會在處理每個[驗證流程](active-directory-b2c-apps.md)時發出數種安全性權杖。本文件說明每種權杖的格式、安全性特性和內容。
 
 ## 權杖的類型
-
 Azure AD B2C 支援 [OAuth 2.0 授權通訊協定](active-directory-b2c-reference-protocols.md)，該通訊協定會使用存取權杖與重新整理權杖。它也支援透過 [OpenID Connect](active-directory-b2c-reference-protocols.md) 進行驗證和登入，這引進第三種類型的權杖：ID 權杖。每個權杖都是以持有人權杖表示。
 
 持有人權杖是輕巧型的安全性權杖，授權「持有人」存取受保護的資源。持有人是可出示權杖的任何一方。Azure AD 必須先驗證合作對象，才能接收持有人權杖。但若傳輸和儲存時未採取必要的步驟來保護權杖，它可能會被非預期的一方攔截和使用。某些安全性權杖有內建的機制，可防止未授權的合作對象使用它們，但持有人權杖沒有這項機制。它們必須在安全的通道 (例如傳輸層安全性 (HTTPS)) 中傳輸。
@@ -34,7 +31,6 @@ Azure AD B2C 支援 [OAuth 2.0 授權通訊協定](active-directory-b2c-referenc
 許多由 Azure AD B2C 所簽發的權杖都實作為 JSON Web 權杖 (JWT)。JWT 是一種精簡的 URL 安全方法，可在兩方之間傳輸資訊。JWT 包含稱為宣告的資訊。這些是權杖持有人及主體相關資訊的判斷提示。JWT 中的宣告是為了傳輸而編碼和序列化的 JSON 物件。因為 Azure AD B2C 所簽發的 JWT 已簽署但未加密，所以您可以輕鬆地檢查 JWT 的內容以便偵錯。有一些工具可以這樣做，包括 [calebb.net](http://calebb.net)。如需 JWT 的詳細資訊，請參閱 [JWT 規格](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html)。
 
 ### ID 權杖
-
 ID 權杖是您的應用程式從 Azure AD B2C `authorize` 和 `token` 端點接收的一種安全性權杖。ID 權杖以 [JWT](#types-of-tokens) 表示，而且包含宣告讓您用來識別應用程式中的使用者。從 `authorize` 端點取得 ID 權杖時，通常會用來讓使用者登入 Web 應用程式。從 `token` 端點取得 ID 權杖時，可在相同應用程式或服務的兩個元件之間進行通訊時在 HTTP 要求中傳送。您可以依需要在 ID 權杖中使用宣告。它們通常用來顯示帳戶資訊，或決定應用程式中的存取控制。
 
 ID 權杖已簽署，但這次不加密。當您的應用程式或 API 收到 ID 權杖時，它必須[驗證簽章](#token-validation)以證明權杖的真實性。您的應用程式或 API 也必須驗證權杖中的幾個宣告，以證明它有效。應用程式所驗證的宣告會視案例需求而有所不同，但您的應用程式必須在每一種案例中執行一些[常見的宣告驗證](#token-validation)。
@@ -58,7 +54,6 @@ CQhoFA
 ```
 
 ### 存取權杖
-
 存取權杖也是您的應用程式從 Azure AD B2C `authorize` 和 `token` 端點接收的一種安全性權杖。存取權杖也會以 [JWT](#types-of-tokens) 表示，而且其中包含宣告以供您識別 Web 服務和 API 中的使用者。
 
 存取權杖已簽署，但這次不加密 - 非常類似 ID 權杖。存取權杖應該用來提供 Web 服務和 API 的存取權，以及識別和驗證這些服務中的使用者。不過，它們不會提供這些服務之授權的任何判斷提示。也就是說，存取權杖中的 `scp` 宣告不會限制或代表已授與權杖主體的存取權。
@@ -66,29 +61,26 @@ CQhoFA
 當您的 API 收到存取權杖時，它必須[驗證簽章](#token-validation)以證明權杖的真實性。您的 API 也必須驗證權杖中的幾個宣告，以證明它有效。應用程式所驗證的宣告會視案例需求而有所不同，但您的應用程式必須在每一種案例中執行一些[常見的宣告驗證](#token-validation)。
 
 ### ID 權杖和存取權杖中的宣告
-
 當您使用 Azure AD B2C 時，您可以精確控制權杖的內容。您可以設定[原則](active-directory-b2c-reference-policies.md)，以在宣告中傳送您的應用程式運作時所需的幾組特定的使用者資料。這些宣告可以包含標準的屬性，例如使用者的 `displayName` 和 `emailAddress`。其中也可以包含您在 B2C 目錄中可定義的[自訂使用者屬性](active-directory-b2c-reference-custom-attr.md)。您收到的每個 ID 權杖和存取權杖都會包含一組特定的安全性相關宣告。您的應用程式可以使用這些宣告來安全地驗證使用者和要求。
 
 請注意，ID 權杖中的宣告不依任何特定順序傳回。此外，隨時都可以在 ID 權杖中加入新的宣告。加入新的宣告時，您的應用程式不會損壞。以下是 Azure AD B2C 所簽發的 ID 權杖和存取權杖中應該會有的宣告。其他任何宣告由原則決定。練習時，請試著將範例 ID 權杖中的宣告貼入 [calebb.net](http://calebb.net) 中進行檢查。在 [OpenID Connect 規格](http://openid.net/specs/openid-connect-core-1_0.html)中可找到進一步的詳細資料。
 
 | 名稱 | 宣告 | 範例值 | 說明 |
-| ----------------------- | ------------------------------- | ------------ | --------------------------------- |
-| 對象 | `aud` | `90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6` | 對象宣告識別權杖的預定接收者。在 Azure AD B2C 中，對象是在應用程式註冊入口網站中指派給應用程式的應用程式識別碼。您的應用程式應驗證此值並拒絕不相符的權杖。 |
-| Issuer | `iss` | `https://login.microsoftonline.com/775527ff-9a37-4307-8b3d-cc311f58d925/v2.0/` | 此宣告會識別負責建構並傳回權杖的 Security Token Service (STS)。它也會識別用於驗證使用者的 Azure AD 目錄。您的應用程式應驗證簽發者宣告，以確保權杖來自 v2.0 端點。 |
-| 發出時間 | `iat` | `1438535543` | 此宣告是簽發權杖的時間，以新紀元時間表示。 |
-| 到期時間 | `exp` | `1438539443` | 此到期時間宣告是權杖失效的時間，以新紀元時間表示。您的應用程式應使用此宣告來驗證權杖存留期的有效性。 |
-| 生效時間 | `nbf` | `1438535543` | 此宣告是權杖生效的時間，以新紀元時間表示。這通常與權杖的簽發時間相同。您的應用程式應使用此宣告來驗證權杖存留期的有效性。 |
-| 版本 | `ver` | `1.0` | 這是 Azure AD 所定義的 ID 權杖版本。 |
-| 代碼雜湊 | `c_hash` | `SGCPtt01wxwfgnYZy2VJtQ` | 只有當 ID 權杖與 OAuth 2.0 授權碼一起簽發時，權杖才會包含代碼雜湊。代碼雜湊可用來驗證授權碼的真實性。如需有關如何執行此驗證的詳細資訊，請參閱 [OpenID Connect 規格](http://openid.net/specs/openid-connect-core-1_0.html)。 |
-| 存取權杖雜湊 | `at_hash` | `SGCPtt01wxwfgnYZy2VJtQ` | 只有當 ID 權杖與 OAuth 2.0 存取權杖一起簽發時，權杖才會包含存取權杖雜湊。存取權杖雜湊可用來驗證存取權杖的真實性。如需有關如何執行此驗證的詳細資訊，請參閱 [OpenID Connect 規格](http://openid.net/specs/openid-connect-core-1_0.html)。 |
-| Nonce | `nonce` | `12345` | Nonce 是用來緩和權杖重新執行攻擊的策略。您的應用程式可以使用 `nonce` 查詢參數，在授權要求中指定 Nonce。您在要求中提供的值將只會在 ID 權杖的 `nonce` 宣告中發出 (未經修改)。這可讓您的應用程式根據在要求上指定的值驗證此值，使應用程式的工作階段與給定的 ID 權杖產生關聯。您的應用程式應在 ID 權杖驗證程序中執行這項驗證。 |
-| 主旨 | `sub` | `Not supported currently. Use oid claim.` | 這是權杖聲稱資訊時所針對的主體，例如應用程式的使用者。這個值不可變，而且無法重新指派或重複使用。它可用來安全地執行授權檢查，例如當權杖用於存取資源時。不過，尚未在 Azure AD B2C 中實作主體宣告。您應該設定原則以包含物件識別碼 `oid` 宣告及使用其值來識別使用者，而不是使用主體宣告進行授權。 |
-| 驗證內容類別參考 | `acr` | `b2c_1_sign_in` | 這是用來取得 ID 權杖的原則名稱。 |
-| 驗證期間 | `auth_time` | `1438535543` | 此宣告是使用者上次輸入認證的時間，以新紀元時間表示。 |
-
+| --- | --- | --- | --- |
+| 對象 |`aud` |`90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6` |對象宣告識別權杖的預定接收者。在 Azure AD B2C 中，對象是在應用程式註冊入口網站中指派給應用程式的應用程式識別碼。您的應用程式應驗證此值並拒絕不相符的權杖。 |
+| Issuer |`iss` |`https://login.microsoftonline.com/775527ff-9a37-4307-8b3d-cc311f58d925/v2.0/` |此宣告會識別負責建構並傳回權杖的 Security Token Service (STS)。它也會識別用於驗證使用者的 Azure AD 目錄。您的應用程式應驗證簽發者宣告，以確保權杖來自 v2.0 端點。 |
+| 發出時間 |`iat` |`1438535543` |此宣告是簽發權杖的時間，以新紀元時間表示。 |
+| 到期時間 |`exp` |`1438539443` |此到期時間宣告是權杖失效的時間，以新紀元時間表示。您的應用程式應使用此宣告來驗證權杖存留期的有效性。 |
+| 生效時間 |`nbf` |`1438535543` |此宣告是權杖生效的時間，以新紀元時間表示。這通常與權杖的簽發時間相同。您的應用程式應使用此宣告來驗證權杖存留期的有效性。 |
+| 版本 |`ver` |`1.0` |這是 Azure AD 所定義的 ID 權杖版本。 |
+| 代碼雜湊 |`c_hash` |`SGCPtt01wxwfgnYZy2VJtQ` |只有當 ID 權杖與 OAuth 2.0 授權碼一起簽發時，權杖才會包含代碼雜湊。代碼雜湊可用來驗證授權碼的真實性。如需有關如何執行此驗證的詳細資訊，請參閱 [OpenID Connect 規格](http://openid.net/specs/openid-connect-core-1_0.html)。 |
+| 存取權杖雜湊 |`at_hash` |`SGCPtt01wxwfgnYZy2VJtQ` |只有當 ID 權杖與 OAuth 2.0 存取權杖一起簽發時，權杖才會包含存取權杖雜湊。存取權杖雜湊可用來驗證存取權杖的真實性。如需有關如何執行此驗證的詳細資訊，請參閱 [OpenID Connect 規格](http://openid.net/specs/openid-connect-core-1_0.html)。 |
+| Nonce |`nonce` |`12345` |Nonce 是用來緩和權杖重新執行攻擊的策略。您的應用程式可以使用 `nonce` 查詢參數，在授權要求中指定 Nonce。您在要求中提供的值將只會在 ID 權杖的 `nonce` 宣告中發出 (未經修改)。這可讓您的應用程式根據在要求上指定的值驗證此值，使應用程式的工作階段與給定的 ID 權杖產生關聯。您的應用程式應在 ID 權杖驗證程序中執行這項驗證。 |
+| 主旨 |`sub` |`Not supported currently. Use oid claim.` |這是權杖聲稱資訊時所針對的主體，例如應用程式的使用者。這個值不可變，而且無法重新指派或重複使用。它可用來安全地執行授權檢查，例如當權杖用於存取資源時。不過，尚未在 Azure AD B2C 中實作主體宣告。您應該設定原則以包含物件識別碼 `oid` 宣告及使用其值來識別使用者，而不是使用主體宣告進行授權。 |
+| 驗證內容類別參考 |`acr` |`b2c_1_sign_in` |這是用來取得 ID 權杖的原則名稱。 |
+| 驗證期間 |`auth_time` |`1438535543` |此宣告是使用者上次輸入認證的時間，以新紀元時間表示。 |
 
 ### 重新整理權杖
-
 重新整理權杖是可供您的應用程式在 OAuth 2.0 流程中取得新的 ID 權杖和存取權杖的安全性權杖。它們可讓您的應用程式代表使用者來長期存取資源，而不需與使用者互動。
 
 若要在權杖回應中接收重新整理權杖，您的應用程式必須要求 `offline_acesss` 範圍。若要深入了解 `offline_access` 範圍，請參閱 [Azure AD B2C 通訊協定參考](active-directory-b2c-reference-protocols.md)。
@@ -98,7 +90,6 @@ CQhoFA
 當您以重新整理權杖來兌換新的權杖時 (而且如果您的應用程式已獲得 `offline_access` 範圍)，您會在權杖回應中收到新的重新整理權杖。您應儲存新簽發的重新整理權杖。它應該取代您先前使用於要求中的重新整理權杖。這有助於保證您的重新整理權杖盡可能長期保持有效。
 
 ## 權杖驗證
-
 若要驗證權杖，您的應用程式應該檢查權杖的簽章和宣告。
 
 視您偏好的語言而定，有許多開放原始碼程式庫可用來驗證 JWT。我們建議您探索這些選項，而不是實作您自己的驗證邏輯。本指南中的資訊有助於您了解如何適當使用這些程式庫。
@@ -110,9 +101,9 @@ Azure AD B2C 權杖是經由業界標準非對稱式加密演算法 (例如 RSA 
 
 ```
 {
-		"typ": "JWT",
-		"alg": "RS256",
-		"kid": "GvnPApfWMdLRi8PDmisFn7bprKg"
+        "typ": "JWT",
+        "alg": "RS256",
+        "kid": "GvnPApfWMdLRi8PDmisFn7bprKg"
 }
 ```
 
@@ -141,21 +132,20 @@ https://login.microsoftonline.com/fabrikamb2c.onmicrosoft.com/discovery/v2.0/key
 ### 驗證宣告
 當您的應用程式或 API 收到 ID 權杖時，還應該對 ID 權杖中的宣告執行幾項檢查。包含但不限於：
 
-- **對象**宣告：這會確認 ID 權杖預定要提供給您的應用程式。
-- **生效時間**和**到期時間**宣告：這些會確認 ID 權杖尚未過期。
-- **簽發者**宣告：這會確認權杖已由 Azure AD 簽發給您的應用程式。
-- **Nonce**：這是用來緩和權杖重新執行攻擊的策略。
+* **對象**宣告：這會確認 ID 權杖預定要提供給您的應用程式。
+* **生效時間**和**到期時間**宣告：這些會確認 ID 權杖尚未過期。
+* **簽發者**宣告：這會確認權杖已由 Azure AD 簽發給您的應用程式。
+* **Nonce**：這是用來緩和權杖重新執行攻擊的策略。
 
 如需您的應用程式應執行之驗證的完整清單，請參閱 [OpenID Connect 規格](https://openid.net)。先前的[權杖一節](#types-of-tokens)包含這些宣告的預期值的詳細資料。
 
 ## 權杖存留期
-
 下列權杖存留期讓您了解更透徹。當您開發及偵錯應用程式時，它們可以協助您。請注意，撰寫您的應用程式時，請不要認為任何存留期會維持不變。它們會變更。您可以在[這裡](active-directory-b2c-token-session-sso.md)閱讀更多有關在 Azure AD B2C 中自訂權杖存留期的資訊。
 
 | 權杖 | 存留期 | 說明 |
-| ----------------------- | ------------------------------- | ------------ |
-| ID 權杖 | 一小時 | ID 權杖的有效期通常為 1 小時。Web 應用程式可以使用此存留期來維持它自己與使用者之間的工作階段 (建議選項)。您也可以選擇不同的工作階段存留期。如果您的應用程式需要取得新的 ID 權杖，它只需要對 Azure AD 提出新的登入要求。如果使用者與 Azure AD 之間存在有效的瀏覽器工作階段，該使用者可能不需要再次輸入認證。 |
-| 重新整理權杖 | 最多 14 天 | 單一重新整理權杖的有效期最多 14 天。不過，重新整理權杖可能由於許多原因而隨時失效。您的應用程式應繼續嘗試使用重新整理權杖，直到要求失敗，或您的應用程式更換新的重新整理權杖為止。在使用者上次輸入認證之後經過 90 天，重新整理權杖也會失效。 |
-| 授權碼 | 五分鐘 | 授權碼是刻意設計成短期。它們應在收到時立即兌換成存取權杖、ID 權杖或重新整理權杖。 |
+| --- | --- | --- |
+| ID 權杖 |一小時 |ID 權杖的有效期通常為 1 小時。Web 應用程式可以使用此存留期來維持它自己與使用者之間的工作階段 (建議選項)。您也可以選擇不同的工作階段存留期。如果您的應用程式需要取得新的 ID 權杖，它只需要對 Azure AD 提出新的登入要求。如果使用者與 Azure AD 之間存在有效的瀏覽器工作階段，該使用者可能不需要再次輸入認證。 |
+| 重新整理權杖 |最多 14 天 |單一重新整理權杖的有效期最多 14 天。不過，重新整理權杖可能由於許多原因而隨時失效。您的應用程式應繼續嘗試使用重新整理權杖，直到要求失敗，或您的應用程式更換新的重新整理權杖為止。在使用者上次輸入認證之後經過 90 天，重新整理權杖也會失效。 |
+| 授權碼 |五分鐘 |授權碼是刻意設計成短期。它們應在收到時立即兌換成存取權杖、ID 權杖或重新整理權杖。 |
 
 <!---HONumber=AcomDC_0727_2016-->

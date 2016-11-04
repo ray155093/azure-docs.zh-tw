@@ -12,9 +12,9 @@ articles/sql-data-warehouse/sql-data-warehouse-manage-scale-out-tasks-rest-api.m
 -->
 當您繼續資料庫時︰
 
-- SQL 資料倉儲會擷取您的 DWU 設定的計算和記憶體資源。
-- 您的 DWU 繼續時計算費用。
-- 您的資料可供使用。
-- 您需要重新啟動工作負載查詢。
+* SQL 資料倉儲會擷取您的 DWU 設定的計算和記憶體資源。
+* 您的 DWU 繼續時計算費用。
+* 您的資料可供使用。
+* 您需要重新啟動工作負載查詢。
 
 <!---HONumber=AcomDC_0427_2016-->

@@ -1,46 +1,44 @@
-<properties
-	pageTitle="Azure AD Connect 同步處理︰Synchronization Service Manager UI | Microsoft Azure"
-	description="了解 Azure AD Connect 的 Synchronization Service Manager 中的 [連接器] 索引標籤。"
-	services="active-directory"
-	documentationCenter=""
-	authors="andkjell"
-	manager="femila"
-	editor=""/>
+---
+title: Azure AD Connect 同步處理︰Synchronization Service Manager UI | Microsoft Docs
+description: 了解 Azure AD Connect 的 Synchronization Service Manager 中的 [連接器] 索引標籤。
+services: active-directory
+documentationcenter: ''
+author: andkjell
+manager: femila
+editor: ''
 
-<tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/07/2016"
-	ms.author="andkjell"/>
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/07/2016
+ms.author: andkjell
 
-
+---
 # Azure AD Connect 同步處理︰Synchronization Service Manager
-
-[作業](active-directory-aadconnectsync-service-manager-ui-operations.md) | [連接器](active-directory-aadconnectsync-service-manager-ui-connectors.md) | [Metaverse 設計工具](active-directory-aadconnectsync-service-manager-ui-mvdesigner.md) | [Metaverse 搜尋](active-directory-aadconnectsync-service-manager-ui-mvsearch.md)
---- | --- | --- | ---
+| [作業](active-directory-aadconnectsync-service-manager-ui-operations.md) | [連接器](active-directory-aadconnectsync-service-manager-ui-connectors.md) | [Metaverse 設計工具](active-directory-aadconnectsync-service-manager-ui-mvdesigner.md) | [Metaverse 搜尋](active-directory-aadconnectsync-service-manager-ui-mvsearch.md) |
+| --- | --- | --- | --- |
+|  | | | |
 
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/connectors.png)
 
 [連接器] 索引標籤可用來管理同步處理引擎連接的所有系統。
 
 ## 連接器動作
-
-動作 | 註解
---- | ---
-建立 | 請勿使用。若要連接到其他的 AD 樹系，請使用安裝精靈。
-屬性 | 用於網域和 OU 篩選。
-[刪除](#delete) | 用來刪除連接器空間中的資料或刪除與樹系的連接。
-[更新執行設定檔](#configure-run-profiles) | 除了網域篩選以外，不會在此處進行任何設定。您可以使用此動作來查看已設定的執行設定檔。
-執行 | 用來啟動設定檔的一次性執行。
-停止 | 停止目前執行設定檔的連接器。
-匯出連接器 | 請勿使用。
-匯入連接器 | 請勿使用。
-更新連接器 | 請勿使用。
-重新整理結構描述 | 重新整理快取的結構描述。最好是改為在安裝精靈中使用此選項，因為其也會更新同步處理規則。
-[搜尋連接器空間](#search-connector-space) | 用來尋找物件，以及[在整個系統中追隨物件及其資料](#follow-an-object-and-its-data-through-the-system)。
+| 動作 | 註解 |
+| --- | --- |
+| 建立 |請勿使用。若要連接到其他的 AD 樹系，請使用安裝精靈。 |
+| 屬性 |用於網域和 OU 篩選。 |
+| [刪除](#delete) |用來刪除連接器空間中的資料或刪除與樹系的連接。 |
+| [更新執行設定檔](#configure-run-profiles) |除了網域篩選以外，不會在此處進行任何設定。您可以使用此動作來查看已設定的執行設定檔。 |
+| 執行 |用來啟動設定檔的一次性執行。 |
+| 停止 |停止目前執行設定檔的連接器。 |
+| 匯出連接器 |請勿使用。 |
+| 匯入連接器 |請勿使用。 |
+| 更新連接器 |請勿使用。 |
+| 重新整理結構描述 |重新整理快取的結構描述。最好是改為在安裝精靈中使用此選項，因為其也會更新同步處理規則。 |
+| [搜尋連接器空間](#search-connector-space) |用來尋找物件，以及[在整個系統中追隨物件及其資料](#follow-an-object-and-its-data-through-the-system)。 |
 
 ### 刪除
 刪除動作適用於兩個不同的用途。

@@ -1,34 +1,33 @@
-<properties
-	pageTitle="使用 PowerShell 管理 Azure CDN | Microsoft Azure"
-	description="了解如何使用 Azure PowerShell Cmdlet 管理 Azure CDN。"
-	services="cdn"
-	documentationCenter=""
-	authors="camsoper"
-	manager="erikre"
-	editor=""/>
+---
+title: 使用 PowerShell 管理 Azure CDN | Microsoft Docs
+description: 了解如何使用 Azure PowerShell Cmdlet 管理 Azure CDN。
+services: cdn
+documentationcenter: ''
+author: camsoper
+manager: erikre
+editor: ''
 
-<tags
-	ms.service="cdn"
-	ms.workload="tbd"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/17/2016"
-	ms.author="casoper"/>
+ms.service: cdn
+ms.workload: tbd
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/17/2016
+ms.author: casoper
 
-
+---
 # 使用 PowerShell 管理 Azure CDN
-
 PowerShell 提供一種最具彈性的方法，以管理您的 Azure CDN 設定檔和端點。您可以用互動方式使用 PowerShell 或透過撰寫指令碼來自動進行管理工作。本教學課程會示範數個您可透過 PowerShell 完成的最常見工作，以管理 Azure CDN 設定檔和端點。
 
 ## 必要條件
-
 若要使用 PowerShell 管理 Azure CDN 設定檔和端點，您必須安裝 Azure PowerShell 模組。若要了解如何安裝 Azure PowerShell 及使用 `Login-AzureRmAccount` Cmdlet 連接至 Azure，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 
->[AZURE.IMPORTANT] 您必須先使用 `Login-AzureRmAccount` 登入，才能執行 Azure PowerShell Cmdlet。
+> [!IMPORTANT]
+> 您必須先使用 `Login-AzureRmAccount` 登入，才能執行 Azure PowerShell Cmdlet。
+> 
+> 
 
 ## 列出 Azure CDN Cmdlet
-
 您可以使用 `Get-Command` Cmdlet 列出所有的 Azure CDN Cmdlet。
 
 ```text
@@ -59,7 +58,6 @@ Cmdlet          Unpublish-AzureRmCdnEndpointContent                2.0.0      Az
 ```
 
 ## 取得說明
-
 您可以使用 `Get-Help` Cmdlet 取得這些 Cmdlet 的說明。`Get-Help` 提供使用方式與語法，並選擇性地顯示範例。
 
 ```text
@@ -91,7 +89,6 @@ REMARKS
 ```
 
 ## 列出現有的 Azure CDN 設定檔
-
 不含任何參數的 `Get-AzureRmCdnProfile` Cmdlet 會擷取所有現有的 CDN 設定檔。
 
 ```powershell
@@ -114,10 +111,12 @@ Get-AzureRmCdnProfile | Where-Object { $_.Sku.Name -eq "StandardVerizon" }
 Get-AzureRmCdnProfile -ProfileName CdnDemo -ResourceGroupName CdnDemoRG
 ```
 
->[AZURE.TIP] 可能會有多個具有相同名稱的 CDN 設定檔，只要它們位於不同的資源群組即可。省略 `ResourceGroupName` 參數會傳回所有具有相符名稱的設定檔。
+> [!TIP]
+> 可能會有多個具有相同名稱的 CDN 設定檔，只要它們位於不同的資源群組即可。省略 `ResourceGroupName` 參數會傳回所有具有相符名稱的設定檔。
+> 
+> 
 
 ## 列出現有的 CDN 端點
-
 `Get-AzureRmCdnEndpoint` 可以擷取設定檔上的個別端點或所有端點。
 
 ```powershell
@@ -135,7 +134,6 @@ Get-AzureRmCdnProfile | Get-AzureRmCdnEndpoint | Where-Object { $_.ResourceState
 ```
 
 ## 建立 CDN 設定檔和端點
-
 `New-AzureRmCdnProfile` 和 `New-AzureRmCdnEndpoint` 用來建立 CDN 設定檔和端點。
 
 ```powershell
@@ -151,7 +149,6 @@ New-AzureRmCdnProfile -ProfileName CdnPoshDemo -ResourceGroupName CdnDemoRG -Sku
 ```
 
 ## 檢查端點名稱可用性
-
 `Get-AzureRmCdnEndpointNameAvailability` 可傳回物件，指出端點名稱是否可用。
 
 ```powershell
@@ -164,10 +161,12 @@ Else { Write-Host "No, that endpoint name is not available." }
 ```
 
 ## 新增自訂網域
-
 `New-AzureRmCdnCustomDomain` 會將自訂網域名稱新增至現有端點。
 
->[AZURE.IMPORTANT] 您必須如[如何將自訂網域對應至內容傳遞網路 (CDN) 端點](./cdn-map-content-to-custom-domain.md)中所述，透過您的DNS 提供者設定 CNAME。您可以先測試對應，然後使用 `Test-AzureRmCdnCustomDomain` 修改端點。
+> [!IMPORTANT]
+> 您必須如[如何將自訂網域對應至內容傳遞網路 (CDN) 端點](cdn-map-content-to-custom-domain.md)中所述，透過您的DNS 提供者設定 CNAME。您可以先測試對應，然後使用 `Test-AzureRmCdnCustomDomain` 修改端點。
+> 
+> 
 
 ```powershell
 # Get an existing endpoint
@@ -181,7 +180,6 @@ If($result.CustomDomainValidated){ New-AzureRmCdnCustomDomain -CustomDomainName 
 ```
 
 ## 修改端點
-
 `Set-AzureRmCdnEndpoint` 可修改現有的端點。
 
 ```powershell
@@ -197,7 +195,6 @@ Set-AzureRmCdnEndpoint -CdnEndpoint $endpoint
 ```
 
 ## 清除/預先載入 CDN 資產
-
 `Unpublish-AzureRmCdnEndpointContent` 會清除快取的資產，而 `Publish-AzureRmCdnEndpointContent` 會在支援的端點上預先載入資產。
 
 ```powershell
@@ -226,7 +223,6 @@ Get-AzureRmCdnProfile | Get-AzureRmCdnEndpoint | Start-AzureRmCdnEndpoint
 ```
 
 ## 刪除 CDN 資源
-
 `Remove-AzureRmCdnProfile` 和 `Remove-AzureRmCdnEndpoint` 可用來移除設定檔和端點。
 
 ```powershell
@@ -241,9 +237,8 @@ Remove-AzureRmCdnProfile -ProfileName CdnPoshDemo -ResourceGroupName CdnDemoRG
 ```
 
 ## 後續步驟
+了解如何透過 [.NET](cdn-app-dev-net.md) 或 [Node.js](cdn-app-dev-node.md) 自動化 Azure CDN。
 
-了解如何透過 [.NET](./cdn-app-dev-net.md) 或 [Node.js](./cdn-app-dev-node.md) 自動化 Azure CDN。
-
-若要了解 CDN 功能，請參閱 [CDN 概觀](./cdn-overview.md)。
+若要了解 CDN 功能，請參閱 [CDN 概觀](cdn-overview.md)。
 
 <!---HONumber=AcomDC_0817_2016-->

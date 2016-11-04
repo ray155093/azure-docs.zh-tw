@@ -1,21 +1,21 @@
-<properties
-   pageTitle="資源管理員架構 | Microsoft Azure"
-   description="Service Fabric 叢集資源管理員的架構概觀。"
-   services="service-fabric"
-   documentationCenter=".net"
-   authors="masnider"
-   manager="timlt"
-   editor=""/>
+---
+title: 資源管理員架構 | Microsoft Docs
+description: Service Fabric 叢集資源管理員的架構概觀。
+services: service-fabric
+documentationcenter: .net
+author: masnider
+manager: timlt
+editor: ''
 
-<tags
-   ms.service="Service-Fabric"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="NA"
-   ms.date="08/19/2016"
-   ms.author="masnider"/>
+ms.service: Service-Fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 08/19/2016
+ms.author: masnider
 
+---
 # 叢集資源管理員架構概觀
 若要管理叢集中的資源，Service Fabric 叢集資源管理員必須具備幾個部分的資訊。它必須了解目前存在哪些服務，以及那些服務正在取用的資源目前 (預設) 的數量。同時必須了解叢集中節點的實際容量，以及可整體用於叢集中和特定節點中剩餘可用的資源數量。指定服務的資源耗用量可隨時間變更，以及服務實際上通常需要一個以上的資源。在許多不同的服務中，可能會有實際資源被測量並報告像是記憶體與磁碟耗用量等等的度量，以及 (實際上更常見的) 邏輯度量 - 例如 WorkQueueDepth 或 TotalRequests 等項目。邏輯和實際度量可能會跨許多不同類型的服務使用，或可能僅特定對幾項服務使用。
 
@@ -34,7 +34,7 @@
 ![資源平衡器架構][Image2]
 
 ## 後續步驟
-- 叢集資源管理員有許多描述叢集的選項。若要深入了解這些選項，請查看關於[描述 Service Fabric 叢集](service-fabric-cluster-resource-manager-cluster-description.md)的這篇文章
+* 叢集資源管理員有許多描述叢集的選項。若要深入了解這些選項，請查看關於[描述 Service Fabric 叢集](service-fabric-cluster-resource-manager-cluster-description.md)的這篇文章
 
 [Image1]: ./media/service-fabric-cluster-resource-manager-architecture/Service-Fabric-Resource-Manager-Architecture-Activity-1.png
 [Image2]: ./media/service-fabric-cluster-resource-manager-architecture/Service-Fabric-Resource-Manager-Architecture-Activity-2.png

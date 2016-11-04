@@ -2,16 +2,15 @@
 
 VPN 閘道可以使用下列 SKU：
 
-- 基本
-- 標準
-- HighPerformance
+* 基本
+* 標準
+* HighPerformance
 
 選取 SKU 時，請考慮下列限制︰
 
-- 如果您想要使用原則式 VPN 類型，您必須使用基本閘道 SKU。 其他所有 SKU 均不支援原則式 VPN (先前稱為靜態路由)。
-- 基本 SKU 不支援 BGP。
-- 基本 SKU 不支援 ExpressRoute-VPN 閘道共存組態。
-
+* 如果您想要使用原則式 VPN 類型，您必須使用基本閘道 SKU。 其他所有 SKU 均不支援原則式 VPN (先前稱為靜態路由)。
+* 基本 SKU 不支援 BGP。
+* 基本 SKU 不支援 ExpressRoute-VPN 閘道共存組態。
 
 <!--HONumber=Oct16_HO2-->
 

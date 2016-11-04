@@ -1,28 +1,27 @@
-<properties
-   pageTitle="在 SQL 資料倉儲中指派變數 |Microsoft Azure"
-   description="在 Azure SQL 資料倉儲中指派 TRANSACT-SQL 變數以便開發解決方案的秘訣。"
-   services="sql-data-warehouse"
-   documentationCenter="NA"
-   authors="jrowlandjones"
-   manager="barbkess"
-   editor=""/>
+---
+title: 在 SQL 資料倉儲中指派變數 | Microsoft Docs
+description: 在 Azure SQL 資料倉儲中指派 TRANSACT-SQL 變數以便開發解決方案的秘訣。
+services: sql-data-warehouse
+documentationcenter: NA
+author: jrowlandjones
+manager: barbkess
+editor: ''
 
-<tags
-   ms.service="sql-data-warehouse"
-   ms.devlang="NA"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="data-services"
-   ms.date="06/14/2016"
-   ms.author="jrj;barbkess;sonyama"/>
+ms.service: sql-data-warehouse
+ms.devlang: NA
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: data-services
+ms.date: 06/14/2016
+ms.author: jrj;barbkess;sonyama
 
+---
 # 在 SQL 資料倉儲中指派變數
 SQL 資料倉儲中的變數是使用 `DECLARE` 陳述式或 `SET` 陳述式進行設定的。
 
 下列各項是設定變數值的完全有效方式：
 
 ## 使用 DECLARE 設定宣告
-
 使用 DECLARE 初始化變數是在 SQL 資料倉儲中設定變數值的其中一種最具彈性的方式。
 
 ```sql
@@ -63,9 +62,8 @@ SET     @v +=1;
 ## 限制
 您無法使用 SELECT 或 UPDATE 進行變數指派。
 
-
 ## 後續步驟
-如需更多開發祕訣，請參閱[開發概觀][]。
+如需更多開發祕訣，請參閱[開發概觀][開發概觀]。
 
 <!--Image references-->
 

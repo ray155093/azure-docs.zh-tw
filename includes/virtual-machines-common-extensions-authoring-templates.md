@@ -1,5 +1,4 @@
 ## Azure 資源管理員範本概觀
-
 Azure Resource Manager 範本可讓您藉由定義資源之間的相依性，以宣告方式指定 JSON 語言中的 Azure IaaS 基礎結構。如需 Azure Resource Manager 範本的詳細概觀，請參閱下文：
 
 [資源群組概觀](../articles/resource-group-overview.md)
@@ -30,7 +29,6 @@ Azure Resource Manager 範本可讓您藉由定義資源之間的相依性，以
 2. 延伸模組組態。
 
 ## 識別任何擴充功能的發行者、類型和 typeHandlerVersion
-
 Azure VM 擴充功能是由 Microsoft 和受信任的第 3 方發行者所發佈，每個擴充功能會依其發行者、類型和 typeHandlerVersion 進行唯一識別。其判斷方式如下：
 
 <!---HONumber=AcomDC_0330_2016-->

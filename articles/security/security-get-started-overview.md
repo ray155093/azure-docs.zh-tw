@@ -1,23 +1,22 @@
-<properties
-   pageTitle="Azure 安全性概觀 | Microsoft Azure"
-   description="Azure.com 上的 Microsoft Azure 安全性資訊網站是您 Azure 安全性問題的技術答案的位置。"
-   services="security"
-   documentationCenter="na"
-   authors="TomShinder"
-   manager="MBaldwin"
-   editor="TomSh"/>
+---
+title: Azure 安全性概觀 | Microsoft Docs
+description: Azure.com 上的 Microsoft Azure 安全性資訊網站是您 Azure 安全性問題的技術答案的位置。
+services: security
+documentationcenter: na
+author: TomShinder
+manager: MBaldwin
+editor: TomSh
 
-<tags
-   ms.service="security"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="08/09/2016"
-   ms.author="terrylan"/>
+ms.service: security
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 08/09/2016
+ms.author: terrylan
 
+---
 # Azure 安全性概觀
-
 Azure.com 上的 Microsoft Azure 安全性資訊網站是您 Azure 安全性問題的技術答案的位置。如果您對 Azure 法規遵循以及 Azure 如何保護其專屬基礎結構感興趣，請瀏覽 [Microsoft 信任中心](https://www.microsoft.com/TrustCenter/default.aspx)。
 
 我們知道安全性是雲端中的首要工作和其重要性，因為您可在其中找到精確且及時的 Azure 安全性資訊。針對您的應用程式和服務使用 Azure 的其中一個最佳原因是可以利用各種可用的安全性工具和功能。這些工具和功能可協助您在安全的 Azure 平台上建立安全的解決方案。
@@ -31,18 +30,21 @@ Azure.com 上的 Microsoft Azure 安全性資訊網站是您 Azure 安全性問�
 
 Azure 安全性資訊網站目前處理下列類別︰
 
-- 資源
-- 網路安全性
-- 儲存體安全性
-- 虛擬機器安全性
-- 端點保護
-- 安全性管理和監視
-- 身分識別管理
-- PaaS 服務
-- 產業特定
-- 架構
+* 資源
+* 網路安全性
+* 儲存體安全性
+* 虛擬機器安全性
+* 端點保護
+* 安全性管理和監視
+* 身分識別管理
+* PaaS 服務
+* 產業特定
+* 架構
 
-> [AZURE.NOTE] 我們在 Azure 安全性資訊網站中的所有文章都會出現在這個頁面左側的導覽中。如果您想要查看所有文章，請按一下或點選 [類別] 清單底部的 [更多資訊]。
+> [!NOTE]
+> 我們在 Azure 安全性資訊網站中的所有文章都會出現在這個頁面左側的導覽中。如果您想要查看所有文章，請按一下或點選 [類別] 清單底部的 [更多資訊]。
+> 
+> 
 
 我們希望您的輸入！ 如果有您想要新增的類別，請讓我們知道！ 如果有您想要新增至現有類別的文章，也請讓我們知道！ 您可以使用下面的 [註解] 區段，或寫信給我們：[azsecinfosite@microsoft.com](mailto:azsecinfosite@microsoft.com)，我們會將您的建議加入我們的計畫中。
 

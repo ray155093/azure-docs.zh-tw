@@ -1,23 +1,22 @@
-<properties 
-	pageTitle="將 PhoneFactor Agent 升級為 Azure Multi-Factor Authentication Server"
-	description="本文件說明如何開始使用 Azure MFA Server，以及如何從舊版的 PhoneFactor Agent 升級。"
-	services="multi-factor-authentication"
-	documentationCenter=""
-	authors="kgremban"
-	manager="femila"
-	editor="curtland"/>
+---
+title: 將 PhoneFactor Agent 升級為 Azure Multi-Factor Authentication Server
+description: 本文件說明如何開始使用 Azure MFA Server，以及如何從舊版的 PhoneFactor Agent 升級。
+services: multi-factor-authentication
+documentationcenter: ''
+author: kgremban
+manager: femila
+editor: curtland
 
-<tags
-	ms.service="multi-factor-authentication"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="get-started-article"
-	ms.date="08/04/2016"
-	ms.author="kgremban"/>
+ms.service: multi-factor-authentication
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: get-started-article
+ms.date: 08/04/2016
+ms.author: kgremban
 
+---
 # 將 PhoneFactor Agent 升級為 Azure Multi-Factor Authentication Server
-
 若要將 PhoneFactor Agent v5.x 或更舊版本升級為 Azure Multi-Factor Authentication Server，您需要先解除安裝 PhoneFactor Agent 和附屬元件，接著才能安裝 Multi-Factor Authentication Server 和附屬元件。
 
 ## 將 PhoneFactor Agent 升級為 Azure Multi-Factor Authentication Server
@@ -39,6 +38,7 @@
 
 
 <li>如果已安裝 Mobile App Web 服務：
+
 <ol>
 <li>移至安裝資料夾，然後備份 web.config 檔案。預設安裝位置是 C:\inetpub\wwwroot\PhoneFactorPhoneAppWebService。</li>
 <li>透過 Windows [程式和功能] 解除安裝 Mobile App Web 服務。</li></ol>
@@ -56,6 +56,7 @@
 <li>如果您之前將使用者入口網站安裝在 PhoneFactor Agent Server 上，請透過 Multi-Factor Authentication Server 使用者介面安裝新的 Multi-Factor Authentication 使用者入口網站。請注意，預設虛擬目錄名稱現在是 "MultiFactorAuth"，而非 "PhoneFactor"。如果您想要使用先前的名稱，必須在安裝期間變更虛擬目錄的名稱。否則，如果您允許安裝使用新預設名稱，應該要在 Multi-Factor Authentication Server 中按一下 [使用者入口網站] 圖示，然後更新 [設定] 索引標籤中的使用者入口網站 URL。
 
 <li>如果您之前將使用者入口網站和/或 Mobile App Web 服務安裝在 PhoneFactor Agent 之外的伺服器上：
+
 <ol>
 <li>移至安裝位置 (如 C:\Program Files\PhoneFactor)，然後將適當的安裝程式複製到其他伺服器。使用者入口網站和 Mobile App Web 服務備有 32 位元和 64 位元安裝程式。它們分別稱為 MultiFactorAuthenticationUserPortalSetupXX.msi 和 MultiFactorAuthenticationMobileAppWebServiceSetupXX.msi。</li>
 <li>若要將使用者入口網站安裝在 Web 伺服器上，請以系統管理員身分開啟命令提示字元，然後執行 MultiFactorAuthenticationUserPortalSetupXX.msi。請注意，預設虛擬目錄名稱現在是 "MultiFactorAuth"，而非 "PhoneFactor"。如果您想要使用先前的名稱，必須在安裝期間變更虛擬目錄的名稱。否則，如果您允許安裝使用新預設名稱，應該要在 Multi-Factor Authentication Server 中按一下 [使用者入口網站] 圖示，然後更新 [設定] 索引標籤中的使用者入口網站 URL。您需要通知現有使用者有關新 URL 的資訊。</li>

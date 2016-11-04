@@ -1,31 +1,34 @@
-<properties 
-	pageTitle="監視和管理 Azure Data Factory 管線" 
-	description="了解如何使用監視及管理應用程式來監視及管理 Azure 的資料處理站及管線" 
-	services="data-factory" 
-	documentationCenter="" 
-	authors="spelluru" 
-	manager="jhubbard" 
-	editor="monicar"/>
+---
+title: 監視和管理 Azure Data Factory 管線
+description: 了解如何使用監視及管理應用程式來監視及管理 Azure 的資料處理站及管線
+services: data-factory
+documentationcenter: ''
+author: spelluru
+manager: jhubbard
+editor: monicar
 
-<tags 
-	ms.service="data-factory" 
-	ms.workload="data-services" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="09/06/2016" 
-	ms.author="spelluru"/>
+ms.service: data-factory
+ms.workload: data-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/06/2016
+ms.author: spelluru
 
+---
 # 使用新的監視及管理應用程式，來監視及管理 Azure Data Factory 管線
-> [AZURE.SELECTOR]
-- [使用 Azure 入口網站/Azure PowerShell](data-factory-monitor-manage-pipelines.md)
-- [使用監視及管理應用程式](data-factory-monitor-manage-app.md)
+> [!div class="op_single_selector"]
+> * [使用 Azure 入口網站/Azure PowerShell](data-factory-monitor-manage-pipelines.md)
+> * [使用監視及管理應用程式](data-factory-monitor-manage-app.md)
+> 
+> 
 
 本文說明如何使用**監視及管理應用程式**監視管線、管理管線以及為管線偵錯；以及建立警示以在失敗時收到通知。您也可以觀看下列影片以了解如何使用監視及管理應用程式。
-   
 
-> [AZURE.VIDEO azure-data-factory-monitoring-and-managing-big-data-piplines]
-      
+> [!VIDEO https://channel9.msdn.com/Shows/Azure-Friday/Azure-Data-Factory-Monitoring-and-Managing-Big-Data-Piplines/player]
+> 
+> 
+
 ## 啟動監視及管理應用程式
 若要啟動監視及管理應用程式，請按一下您資料處理站的 [DATA FACTORY] 刀鋒視窗上的 [監視及管理] 磚。
 
@@ -35,11 +38,12 @@
 
 ![監視及管理應用程式](./media/data-factory-monitor-manage-app/AppLaunched.png)
 
-> [AZURE.NOTE] 如果您看到網頁瀏覽器停留在「授權中」，請停用/取消核取 [封鎖第三方 Cookie 和站台資料] 設定 (或) 將其保持啟用並為 **login.microsoftonline.com** 建立例外狀況，然後再次嘗試啟動應用程式。
-
+> [!NOTE]
+> 如果您看到網頁瀏覽器停留在「授權中」，請停用/取消核取 [封鎖第三方 Cookie 和站台資料] 設定 (或) 將其保持啟用並為 **login.microsoftonline.com** 建立例外狀況，然後再次嘗試啟動應用程式。
+> 
+> 
 
 如果未在底部的清單中看見活動時段，請按一下工具列上的 [重新整理] 按鈕重新整理清單。此外，為 [開始時間] 和 [結束時間] 篩選設定正確的值。
-
 
 ## 了解啟動監視及管理應用程式
 左側會有三個索引標籤 ([資源總管]、[監視檢視] 及 [警示])，而系統預設會選取第一個索引標籤 (資源總管)。
@@ -47,17 +51,17 @@
 ### 資源總管
 這時會顯示下列項目：
 
-- 左窗格中的資源總管**樹狀檢視**。
-- 頂端的**圖表檢視**。
-- 中間窗格底部的**活動時段**清單。
-- 右窗格中的**屬性**/**活動時段總管**索引標籤。
+* 左窗格中的資源總管**樹狀檢視**。
+* 頂端的**圖表檢視**。
+* 中間窗格底部的**活動時段**清單。
+* 右窗格中的**屬性**/**活動時段總管**索引標籤。
 
 在資源總管中，您可以在樹狀檢視的 Data Factory 看到所有資源 (管線、資料集、連結的服務)。當您選取 [資源總管] 中某個物件時，會看到下列情況：
 
-- 在 [圖表檢視] 中，相關聯的資料處理站實體會反白顯示。
-- 在底部的 [活動時段] 清單中，相關聯的活動時段 (請按一下[這裡](data-factory-scheduling-and-execution.md)來了解活動時段) 會反白顯示。
-- 右窗格的 [屬性] 視窗中有已選取物件的屬性。
-- 所選取物件的 JSON 定義 (如果適用)。例如︰連結服務或資料集或管線。
+* 在 [圖表檢視] 中，相關聯的資料處理站實體會反白顯示。
+* 在底部的 [活動時段] 清單中，相關聯的活動時段 (請按一下[這裡](data-factory-scheduling-and-execution.md)來了解活動時段) 會反白顯示。
+* 右窗格的 [屬性] 視窗中有已選取物件的屬性。
+* 所選取物件的 JSON 定義 (如果適用)。例如︰連結服務或資料集或管線。
 
 ![資源總管](./media/data-factory-monitor-manage-app/ResourceExplorer.png)
 
@@ -65,10 +69,10 @@
 
 ### 圖表檢視
 Data Factory 的圖表檢視提供單一窗格，可用來監視和管理 Data Factory 及其資產。當您選取圖表檢視中某個資料處理站實體 (資料集/管線) 時，您會看到下列情況：
- 
-- 在樹狀檢視中，資料處理站實體已選取。
-- 在 [活動時段] 清單中，相關聯的活動時段已反白顯示。
-- 在 [屬性] 視窗中，有已選取物件的屬性。
+
+* 在樹狀檢視中，資料處理站實體已選取。
+* 在 [活動時段] 清單中，相關聯的活動時段已反白顯示。
+* 在 [屬性] 視窗中，有已選取物件的屬性。
 
 當管線已啟用時 (不在暫停狀態)，它會顯示綠色線條。
 
@@ -112,9 +116,9 @@ Data Factory 的圖表檢視提供單一窗格，可用來監視和管理 Data F
 
 您可以在三個地方看到活動時段：
 
-- 圖表檢視 (中間窗格) 中的 [活動時段] 快顯視窗。
-- 右窗格中的 [活動時段總管]。
-- 底部窗格中的 [活動時段清單]。
+* 圖表檢視 (中間窗格) 中的 [活動時段] 快顯視窗。
+* 右窗格中的 [活動時段總管]。
+* 底部窗格中的 [活動時段清單]。
 
 在 [活動時段] 快顯視窗及 [活動時段總管] 中，您可以使用向左及向右箭號捲動到上一週及下一週。
 
@@ -124,7 +128,6 @@ Data Factory 的圖表檢視提供單一窗格，可用來監視和管理 Data F
 
 ![圖表檢視的縮放命令](./media/data-factory-monitor-manage-app/DiagramViewZoomCommands.png)
 
-
 ### 活動時段清單
 中間窗格底端的 [活動時段清單] 會顯示您在 [資源總管] 或圖表檢視中所選取資料集的所有活動時段。根據預設，清單是以遞減的順序排列，這代表清單頂端會是最新的活動時段。
 
@@ -132,15 +135,14 @@ Data Factory 的圖表檢視提供單一窗格，可用來監視和管理 Data F
 
 這份清單不會自動重新整理，因此請使用工具列上 [重新整理] 按鈕來手動重新整理。
 
-
 下列為活動時段的狀態：
 
 <table>
 <tr>
-	<th align="left">狀態</th><th align="left">子狀態</th><th align="left">說明</th>
+    <th align="left">狀態</th><th align="left">子狀態</th><th align="left">說明</th>
 </tr>
 <tr>
-	<td rowspan="8">等候</td><td>ScheduleTime</td><td>活動時段執行的時間還沒到。</td>
+    <td rowspan="8">等候</td><td>ScheduleTime</td><td>活動時段執行的時間還沒到。</td>
 </tr>
 <tr>
 <td>DatasetDependencies</td><td>上游相依項目尚未就緒。</td>
@@ -197,9 +199,8 @@ Data Factory 的圖表檢視提供單一窗格，可用來監視和管理 Data F
 
 ![活動時段總管](./media/data-factory-monitor-manage-app/ActivityWindowExplorer-2.png)
 
-### 重新整理活動時段  
+### 重新整理活動時段
 詳細資料並不會自動重新整理，因此您必須使用命令列上的 [重新整理] 按鈕 (第二個按鈕) 來手動重新整理活動時段清單。
- 
 
 ### [屬性] 視窗
 [屬性] 視窗在監視及管理應用程式最右側的窗格中。
@@ -209,7 +210,6 @@ Data Factory 的圖表檢視提供單一窗格，可用來監視和管理 Data F
 它會顯示您在 [資源總管]\(樹狀檢視) (或) 圖表檢視 (或) [活動時段清單] 中所選取項目的屬性。
 
 ### 活動時段總管
-
 [活動時段總管] 視窗在監視及管理應用程式最右側的窗格中。它會顯示您在 [活動時段] 快顯視窗或 [活動時段清單] 中所選取活動時段的詳細資料。
 
 ![活動時段總管](./media/data-factory-monitor-manage-app/ActivityWindowExplorer-3.png)
@@ -218,7 +218,7 @@ Data Factory 的圖表檢視提供單一窗格，可用來監視和管理 Data F
 
 底部窗格的工具列按鈕可讓您**重新執行**活動時段，或是**重新整理**窗格中的詳細資料。
 
-### 指令碼 
+### 指令碼
 您可以使用 [指令碼] 索引標籤，檢視所選取 Data Factory 實體 (連結服務、資料集和管線) 的 JSON 定義。
 
 ![指令碼索引標籤](./media/data-factory-monitor-manage-app/ScriptTab.png)
@@ -236,13 +236,15 @@ Data Factory 的圖表檢視提供單一窗格，可用來監視和管理 Data F
 
 您可以使用 [失敗的活動時段] 檢視，查看清單中所有失敗的活動時段。只要選取清單中某個失敗的活動時段，就能在 [屬性] 視窗 (或) [活動時段總管] 中看到該活動時段的詳細資料。您也可以下載失敗的活動時段的任何記錄檔。
 
-
 ## 排序及篩選活動時段
 您可以在命令列變更 [開始時間] 及 [結束時間] 設定來篩選活動時段。當您變更開始時間及結束時間之後，請按一下結束時間旁邊的按鈕來重新整理活動時段清單。
 
 ![開始及結束時間](./media/data-factory-monitor-manage-app/StartAndEndTimes.png)
 
-> [AZURE.NOTE] 目前，監視及管理應用程式中所有時間都是以 UTC 格式來顯示。
+> [!NOTE]
+> 目前，監視及管理應用程式中所有時間都是以 UTC 格式來顯示。
+> 
+> 
 
 請在 [活動時段清單] 中，按一下某個資料行的名稱 (例如：[狀態])。
 
@@ -250,9 +252,9 @@ Data Factory 的圖表檢視提供單一窗格，可用來監視和管理 Data F
 
 您可以執行下列動作：
 
-- 以遞增順序來排序。
-- 以遞減順序來排序。
-- 根據一或多個值 (Ready、Waiting 等) 來篩選
+* 以遞增順序來排序。
+* 以遞減順序來排序。
+* 根據一或多個值 (Ready、Waiting 等) 來篩選
 
 當您在某個資料行上指定篩選條件時，該資料行的篩選器按鈕就會啟用，以指出該資料行中的值為已經過篩選的值。
 
@@ -262,9 +264,7 @@ Data Factory 的圖表檢視提供單一窗格，可用來監視和管理 Data F
 
 ![清除活動時段清單中的所有篩選條件](./media/data-factory-monitor-manage-app/ClearAllFiltersActivityWindowsList.png)
 
-
 ## 執行批次動作
-
 ### 重新執行已選取的活動時段
 選取某個活動時段、按一下第一個命令列按鈕旁的向下箭號，然後選取 [重新執行]/[搭配管線上游來重新執行]。當您選取 [搭配管線上游來重新執行] 時，系統也會傳回所有上游的活動時段。![重新執行某個活動時段](./media/data-factory-monitor-manage-app/ReRunSlice.png)
 
@@ -275,48 +275,40 @@ Data Factory 的圖表檢視提供單一窗格，可用來監視和管理 Data F
 
 ![命令列上的暫止/繼續按鈕](./media/data-factory-monitor-manage-app/SuspendResumeOnCommandBar.png)
 
-## 建立警示 
+## 建立警示
 [警示] 頁面可讓您建立警示，以及檢視/編輯/刪除現有的警示。您也可以停用/啟用警示。若要查看 [警示] 頁面，請按一下 [警示] 索引標籤。
 
 ![[警示] 索引標籤](./media/data-factory-monitor-manage-app/AlertsTab.png)
 
 ### 如何建立警示
-
 1. 按一下 [新增警示] 來新增警示。此時您會看到 [詳細資料] 頁面。
-
-	![建立警示：[詳細資料] 頁面](./media/data-factory-monitor-manage-app/CreateAlertDetailsPage.png)
-1. 指定警示的**名稱**及**說明**，然後按 [下一步]。您應該會看到 [篩選] 頁面。
-
-	![建立警示：[篩選器] 頁面](./media/data-factory-monitor-manage-app/CreateAlertFiltersPage.png)
-
-2. 選取您想要 Data Factory 服務提醒您的**事件**、**狀態**及**子狀態** (選擇性)，然後按 [下一步]。您應該會看到 [收件者] 頁面。
-
-	![建立警示：[收件者] 頁面](./media/data-factory-monitor-manage-app/CreateAlertRecipientsPage.png)
-3. 選取 [電子郵件訂用帳戶管理員] 並/或輸入**其他管理員的電子郵件**，然後按一下 [完成]。此時您應該會看到警示清單。
-	
-	![警示清單](./media/data-factory-monitor-manage-app/AlertsList.png)
+   
+    ![建立警示：[詳細資料] 頁面](./media/data-factory-monitor-manage-app/CreateAlertDetailsPage.png)
+2. 指定警示的**名稱**及**說明**，然後按 [下一步]。您應該會看到 [篩選] 頁面。
+   
+    ![建立警示：[篩選器] 頁面](./media/data-factory-monitor-manage-app/CreateAlertFiltersPage.png)
+3. 選取您想要 Data Factory 服務提醒您的**事件**、**狀態**及**子狀態** (選擇性)，然後按 [下一步]。您應該會看到 [收件者] 頁面。
+   
+    ![建立警示：[收件者] 頁面](./media/data-factory-monitor-manage-app/CreateAlertRecipientsPage.png)
+4. 選取 [電子郵件訂用帳戶管理員] 並/或輸入**其他管理員的電子郵件**，然後按一下 [完成]。此時您應該會看到警示清單。
+   
+    ![警示清單](./media/data-factory-monitor-manage-app/AlertsList.png)
 
 請在警示清單中，使用與警示相關聯的按鈕來編輯/刪除/停用/啟用警示。
 
 ### 事件/狀態/子狀態
 下列資料表提供可用事件和狀態 (及子狀態) 的清單。
 
-事件名稱 | 狀態 | 子狀態
--------------- | ------ | ----------
-活動執行已開始 | 已啟動 | 啟動中
-活動執行已結束 | Succeeded | Succeeded 
-活動執行已結束 | Failed| 資源配置失敗<br/><br/>執行失敗<br/><br/>逾時<br/><br/>驗證失敗<br/><br/>已放棄
-已開始建立隨選 HDI 叢集 | 已啟動 | &nbsp; |
-已成功建立隨選 HDI 叢集 | Succeeded | &nbsp; |
-已刪除隨選 HDI 叢集 | Succeeded | &nbsp; |
+| 事件名稱 | 狀態 | 子狀態 |
+| --- | --- | --- |
+| 活動執行已開始 |已啟動 |啟動中 |
+| 活動執行已結束 |Succeeded |Succeeded |
+| 活動執行已結束 |Failed |資源配置失敗<br/><br/>執行失敗<br/><br/>逾時<br/><br/>驗證失敗<br/><br/>已放棄 |
+| 已開始建立隨選 HDI 叢集 |已啟動 |&nbsp; |
+| 已成功建立隨選 HDI 叢集 |Succeeded |&nbsp; |
+| 已刪除隨選 HDI 叢集 |Succeeded |&nbsp; |
+
 ### 如何編輯/刪除/停用警示
-
-
 ![警示按鈕](./media/data-factory-monitor-manage-app/AlertButtons.png)
-
-
-
-    
- 
 
 <!----HONumber=AcomDC_0907_2016-->

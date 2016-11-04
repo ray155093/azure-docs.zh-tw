@@ -1,31 +1,28 @@
-<properties
-   pageTitle="診斷邏輯應用程式錯誤 | Microsoft Azure"
-   description="用以了解邏輯應用程式失敗位置的常見方法"
-   services="logic-apps"
-   documentationCenter=".net,nodejs,java"
-   authors="jeffhollan"
-   manager="erikre"
-   editor=""/>
+---
+title: 診斷邏輯應用程式錯誤 | Microsoft Docs
+description: 用以了解邏輯應用程式失敗位置的常見方法
+services: logic-apps
+documentationcenter: .net,nodejs,java
+author: jeffhollan
+manager: erikre
+editor: ''
 
-<tags
-   ms.service="logic-apps"
-   ms.devlang="multiple"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="integration"
-   ms.date="05/18/2016"
-   ms.author="jehollan"/>
+ms.service: logic-apps
+ms.devlang: multiple
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: integration
+ms.date: 05/18/2016
+ms.author: jehollan
 
+---
 # 診斷邏輯應用程式失敗
-
 如果您遇到關於 Azure App Service 的 Logic Apps 功能的問題或該功能失敗，則有數種方法可協助您深入了解失敗所在之處。
 
 ## Azure 入口網站工具
-
 Azure 入口網站提供許多工具，在每個步驟中診斷每個邏輯應用程式。
 
 ### 觸發程序記錄
-
 每個邏輯應用程式至少會有一個觸發程序。如果您發現無法引發應用程式，首先要尋找的其他資訊是觸發程序記錄。您可以在邏輯應用程式主要刀鋒視窗上存取觸發程序記錄。
 
 ![找出觸發程序記錄][1]
@@ -39,11 +36,9 @@ Azure 入口網站提供許多工具，在每個步驟中診斷每個邏輯應�
 * **失敗**。已產生錯誤。
 
 #### 手動啟動觸發程序
-
 如果您希望邏輯應用程式立即檢查可用的觸發程序 (而不需等待下一個循環)，可以按一下主要刀鋒視窗上的 [選取觸發程序] 來強制進行檢查。例如，按一下這個包含 Dropbox 觸發程序的連結，會導致工作流程立即輪詢 Dropbox 中是否有新檔案。
 
 ### 執行記錄
-
 每個引發的觸發程序都會導致一次執行。您可以從主要刀鋒視窗中存取執行資訊，其中包含許多可協助您了解工作流程期間發生什麼事情的資訊。
 
 ![找出執行記錄][2]
@@ -58,25 +53,22 @@ Azure 入口網站提供許多工具，在每個步驟中診斷每個邏輯應�
 當您查看執行歷程記錄時，您可以向內切入來查看詳細資訊。
 
 #### 觸發程序輸出
-
 觸發程序輸出會顯示接收自觸發程序的資料。這可協助您判斷所有屬性是否如預期般傳回。
 
->[AZURE.NOTE] 如果您看見任何不了解的內容，這可能有助於了解 Logic Apps 功能如何[處理不同的內容類型](app-service-logic-content-type.md)。
+> [!NOTE]
+> 如果您看見任何不了解的內容，這可能有助於了解 Logic Apps 功能如何[處理不同的內容類型](app-service-logic-content-type.md)。
+> 
+> 
 
 ![觸發程序輸出範例][3]
 
 #### 動作輸入和輸出
-
 您可以深入探索動作所接收的輸入和輸出。這有助於了解輸出的大小和圖形，以及查看任何可能產生的錯誤訊息。
 
 ![動作輸入和輸出][4]
 
 ## 偵錯工作流程執行階段
-
 除了監視執行的輸入、輸出和觸發程序以外，在工作流程內加入一些步驟，有助於偵錯。[RequestBin](http://requestb.in) 是一個強大的工具，您可以在工作流程中將其加入為一個步驟。使用 RequestBin，您就能設定 HTTP 要求檢查器，來判斷 HTTP 要求的確切大小、圖形和格式。您可以建立新的 RequestBin 並在邏輯應用程式 HTTP POST 動作中貼上 URL，以及您想要測試的任何內文內容 (例如，運算式或另一個步驟輸出)。執行邏輯應用程式之後，您可以重新整理 RequestBin，以查看要求從 Logic Apps 引擎產生時是如何形成的。
-
-
-
 
 <!-- image references -->
 [1]: ./media/app-service-logic-diagnosing-failures/triggerHistory.PNG

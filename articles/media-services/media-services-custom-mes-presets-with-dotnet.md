@@ -1,54 +1,49 @@
-<properties 
-    pageTitle="使用 Media Encoder Standard 進行進階編碼 | Microsoft Azure" 
-    description="本主題說明如何透過自訂 Media Encoder Standard 工作預設值執行進階編碼。 本主題說明如何使用媒體服務 .NET SDK 建立編碼工作與作業。 本主題也會說明如何提供自訂預設值給編碼作業。" 
-    services="media-services" 
-    documentationCenter="" 
-    authors="juliako" 
-    manager="erikre" 
-    editor=""/>
+---
+title: 使用 Media Encoder Standard 進行進階編碼 | Microsoft Docs
+description: 本主題說明如何透過自訂 Media Encoder Standard 工作預設值執行進階編碼。 本主題說明如何使用媒體服務 .NET SDK 建立編碼工作與作業。 本主題也會說明如何提供自訂預設值給編碼作業。
+services: media-services
+documentationcenter: ''
+author: juliako
+manager: erikre
+editor: ''
 
-<tags 
-    ms.service="media-services" 
-    ms.workload="media" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="09/26/2016"    
-    ms.author="juliako"/>
+ms.service: media-services
+ms.workload: media
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/26/2016
+ms.author: juliako
 
-
-
-#<a name="advanced-encoding-with-media-encoder-standard"></a>使用 Media Encoder Standard 進行進階編碼
-
-##<a name="overview"></a>Overview
-
+---
+# <a name="advanced-encoding-with-media-encoder-standard"></a>使用 Media Encoder Standard 進行進階編碼
+## <a name="overview"></a>Overview
 本主題說明如何以 Media Encoder Standard 執行進階編碼工作。 本主題說明 [如何使用 .NET 建立編碼工作與執行此工作的作業](media-services-custom-mes-presets-with-dotnet.md#encoding_with_dotnet)。 本主題也會說明如何提供自訂預設值給編碼工作。 如需預設值所用項目的說明，請參閱 [這份文件](https://msdn.microsoft.com/library/mt269962.aspx)。 
 
 以下說明執行下列編碼工作的自訂預設值：
 
-- [產生縮圖](media-services-custom-mes-presets-with-dotnet.md#thumbnails)
-- [修剪視訊 (裁剪)](media-services-custom-mes-presets-with-dotnet.md#trim_video)
-- [建立疊加層](media-services-custom-mes-presets-with-dotnet.md#overlay)
-- [在輸入不含音訊時插入靜音曲目](media-services-custom-mes-presets-with-dotnet.md#silent_audio)
-- [停用自動去交錯](media-services-custom-mes-presets-with-dotnet.md#deinterlacing)
-- [純音訊預設值](media-services-custom-mes-presets-with-dotnet.md#audio_only)
+* [產生縮圖](media-services-custom-mes-presets-with-dotnet.md#thumbnails)
+* [修剪視訊 (裁剪)](media-services-custom-mes-presets-with-dotnet.md#trim_video)
+* [建立疊加層](media-services-custom-mes-presets-with-dotnet.md#overlay)
+* [在輸入不含音訊時插入靜音曲目](media-services-custom-mes-presets-with-dotnet.md#silent_audio)
+* [停用自動去交錯](media-services-custom-mes-presets-with-dotnet.md#deinterlacing)
+* [純音訊預設值](media-services-custom-mes-presets-with-dotnet.md#audio_only)
 
-##<a name="<a-id="encoding_with_dotnet"></a>encoding-with-media-services-.net-sdk"></a><a id="encoding_with_dotnet"></a>使用媒體服務 .NET SDK 進行編碼
-
+## <a name="<a-id="encoding_with_dotnet"></a>encoding-with-media-services-.net-sdk"></a><a id="encoding_with_dotnet"></a>使用媒體服務 .NET SDK 進行編碼
 下列程式碼範例使用媒體服務 .NET SDK 執行下列工作：
 
-- 建立編碼工作。
-- 取得對 Media Encoder Standard 編碼器的參考
-- 載入自訂 XML 或 JSON 預設值。 您可以在檔案中儲存 XML 或 JSON (例如 [XML](media-services-custom-mes-presets-with-dotnet.md#xml) 或 [JSON](media-services-custom-mes-presets-with-dotnet.md#json))，並使用下列程式碼載入檔案。
-
+* 建立編碼工作。
+* 取得對 Media Encoder Standard 編碼器的參考
+* 載入自訂 XML 或 JSON 預設值。 您可以在檔案中儲存 XML 或 JSON (例如 [XML](media-services-custom-mes-presets-with-dotnet.md#xml) 或 [JSON](media-services-custom-mes-presets-with-dotnet.md#json))，並使用下列程式碼載入檔案。
+  
             // Load the XML (or JSON) from the local file.
             string configuration = File.ReadAllText(fileName);  
-- 將編碼工作新增至作業。 
-- 指定要編碼的輸入資產。
-- 建立將包含已編碼資產的輸出資產。
-- 加入事件處理常式來檢查工作進度。
-- 提交作業。
-    
+* 將編碼工作新增至作業。 
+* 指定要編碼的輸入資產。
+* 建立將包含已編碼資產的輸出資產。
+* 加入事件處理常式來檢查工作進度。
+* 提交作業。
+  
         using System;
         using System.Collections.Generic;
         using System.Configuration;
@@ -65,7 +60,7 @@
         using Microsoft.WindowsAzure.MediaServices.Client.DynamicEncryption;
         using System.Web;
         using System.Globalization;
-        
+  
         namespace CustomizeMESPresests
         {
             class Program
@@ -75,17 +70,17 @@
                     ConfigurationManager.AppSettings["MediaServicesAccountName"];
                 private static readonly string _mediaServicesAccountKey =
                     ConfigurationManager.AppSettings["MediaServicesAccountKey"];
-        
+  
                 // Field for service context.
                 private static CloudMediaContext _context = null;
                 private static MediaServicesCredentials _cachedCredentials = null;
-        
+  
                 private static readonly string _mediaFiles =
                     Path.GetFullPath(@"../..\Media");
-        
+  
                 private static readonly string _singleMP4File =
                     Path.Combine(_mediaFiles, @"BigBuckBunny.mp4");
-        
+  
                 static void Main(string[] args)
                 {
                     // Create and cache the Media Services credentials in a static class variable.
@@ -94,16 +89,16 @@
                                     _mediaServicesAccountKey);
                     // Used the chached credentials to create CloudMediaContext.
                     _context = new CloudMediaContext(_cachedCredentials);
-        
+  
                     // Get an uploaded asset.
                     var asset = _context.Assets.FirstOrDefault();
-        
+  
                     // Encode and generate the output using custom presets.
                     EncodeToAdaptiveBitrateMP4Set(asset);
-        
+  
                     Console.ReadLine();
                 }
-        
+  
                 static public IAsset EncodeToAdaptiveBitrateMP4Set(IAsset asset)
                 {
                     // Declare a new job.
@@ -111,17 +106,16 @@
                     // Get a media processor reference, and pass to it the name of the 
                     // processor to use for the specific task.
                     IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
-                
-        
+
                     // Load the XML (or JSON) from the local file.
                     string configuration = File.ReadAllText("CustomPreset_JSON.json");
-                
+
                     // Create a task
                     ITask task = job.Tasks.AddNew("Media Encoder Standard encoding task",
                         processor,
                         configuration,
                         TaskOptions.None);
-                
+
                     // Specify the input asset to be encoded.
                     task.InputAssets.Add(asset);
                     // Add an output asset to contain the results of the job. 
@@ -129,18 +123,18 @@
                     // means the output asset is not encrypted. 
                     task.OutputAssets.AddNew("Output asset",
                         AssetCreationOptions.None);
-                
+
                     job.StateChanged += new EventHandler<JobStateChangedEventArgs>(JobStateChanged);
                     job.Submit();
                     job.GetExecutionProgressTask(CancellationToken.None).Wait();
-                
+
                     return job.OutputMediaAssets[0];
                 }
-        
+
                 static public IAsset UploadMediaFilesFromFolder(string folderPath)
                 {
                     IAsset asset = _context.Assets.CreateFromFolder(folderPath, AssetCreationOptions.None);
-        
+
                     foreach (var af in asset.AssetFiles)
                     {
                         // The following code assumes 
@@ -149,14 +143,14 @@
                             af.IsPrimary = true;
                         else
                             af.IsPrimary = false;
-        
+
                         af.Update();
                     }
-        
+
                     return asset;
                 }
-        
-        
+
+
                 static public IAsset EncodeWithOverlay(IAsset assetSource, string customPresetFileName)
                 {
                     // Declare a new job.
@@ -164,31 +158,31 @@
                     // Get a media processor reference, and pass to it the name of the 
                     // processor to use for the specific task.
                     IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
-        
+
                     // Load the XML (or JSON) from the local file.
                     string configuration = File.ReadAllText(customPresetFileName);
-        
+
                     // Create a task
                     ITask task = job.Tasks.AddNew("Media Encoder Standard encoding task",
                         processor,
                         configuration,
                         TaskOptions.None);
-        
+
                     // Specify the input assets to be encoded.
                     // This asset contains a source file and an overlay file.
                     task.InputAssets.Add(assetSource);
-        
+
                     // Add an output asset to contain the results of the job. 
                     task.OutputAssets.AddNew("Output asset",
                         AssetCreationOptions.None);
-        
+
                     job.StateChanged += new EventHandler<JobStateChangedEventArgs>(JobStateChanged);
                     job.Submit();
                     job.GetExecutionProgressTask(CancellationToken.None).Wait();
-        
+
                     return job.OutputMediaAssets[0];
                 }
-        
+
 
                 private static void JobStateChanged(object sender, JobStateChangedEventArgs e)
                 {
@@ -209,47 +203,46 @@
                             break;
                         case JobState.Canceled:
                         case JobState.Error:
-        
+
                             // Cast sender as a job.
                             IJob job = (IJob)sender;
-        
+
                             // Display or log error details as needed.
                             break;
                         default:
                             break;
                     }
                 }
-        
-        
+
+
                 private static IMediaProcessor GetLatestMediaProcessorByName(string mediaProcessorName)
                 {
                     var processor = _context.MediaProcessors.Where(p => p.Name == mediaProcessorName).
                     ToList().OrderBy(p => new Version(p.Version)).LastOrDefault();
-        
+
                     if (processor == null)
                         throw new ArgumentException(string.Format("Unknown media processor", mediaProcessorName));
-        
+
                     return processor;
                 }
-        
+
             }
         }
 
 
-##<a name="<a-id="thumbnails"></a>generate-thumbnails"></a><a id="thumbnails"></a>產生縮圖
-
+## <a name="<a-id="thumbnails"></a>generate-thumbnails"></a><a id="thumbnails"></a>產生縮圖
 本節說明如何自訂產生縮圖的預設值。 下面定義的預設值包含有關如何將檔案編碼的資訊，以及產生縮圖時所需的資訊。 您可以使用 [這裡](https://msdn.microsoft.com/library/mt269960.aspx) 記載的任何 MES 預設值，並加入可產生縮圖的程式碼。  
 
->[AZURE.NOTE]如果編碼為單一位元速率視訊，下列預設值中的 **SceneChangeDetection** 設定只能設定為 true。 如果編碼為多重位元速率視訊，並將 **SceneChangeDetection** 設為 true，編碼器會傳回錯誤。  
-
+> [!NOTE]
+> 如果編碼為單一位元速率視訊，下列預設值中的 **SceneChangeDetection** 設定只能設定為 true。 如果編碼為多重位元速率視訊，並將 **SceneChangeDetection** 設為 true，編碼器會傳回錯誤。  
+> 
+> 
 
 如需結構描述的資訊，請參閱 [這個](https://msdn.microsoft.com/library/mt269962.aspx) 主題。
 
 請務必閱讀 [考量](media-services-custom-mes-presets-with-dotnet.md#considerations) 一節。
 
-###<a name="<a-id="json"></a>json-preset"></a><a id="json"></a>JSON 預設值
-
-
+### <a name="<a-id="json"></a>json-preset"></a><a id="json"></a>JSON 預設值
     {
       "Version": 1.0,
       "Codecs": [
@@ -270,7 +263,7 @@
               "AdaptiveBFrame": true,
               "Type": "H264Layer",
               "FrameRate": "0/1"
-       
+
             }
           ],
           "Type": "H264Video"
@@ -349,9 +342,7 @@
     }
 
 
-###<a name="<a-id="xml"></a>xml-preset"></a><a id="xml"></a>XML 預設值
-
-
+### <a name="<a-id="xml"></a>xml-preset"></a><a id="xml"></a>XML 預設值
     <?xml version="1.0" encoding="utf-16"?>
     <Preset xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="1.0" xmlns="http://www.windowsazure.com/media/encoding/Preset/2014/03">
       <Encoding>
@@ -424,32 +415,28 @@
       </Outputs>
     </Preset>
 
-###<a name="considerations"></a>考量
-
+### <a name="considerations"></a>考量
 您必須考量下列事項：
 
-- 為 Start/Step/Range 使用明確的時間戳記會假設輸入來源至少為 1 分鐘的長度。
-- 具有 Start、Step 和 Range 字串屬性的 Jpg/Png/BmpImage 項目 – 這些可以解譯為：
-
-    - 畫面格數目 (如果是非負整數)，例如： "Start"："120"，
-    - 相對於持續時間 (如果以  % 尾碼表示)，例如： "Start"："15%" 或
-    - 時間戳記 (如果以 HH:MM:SS... format。 例如 "Start"："00:01:00"
-
+* 為 Start/Step/Range 使用明確的時間戳記會假設輸入來源至少為 1 分鐘的長度。
+* 具有 Start、Step 和 Range 字串屬性的 Jpg/Png/BmpImage 項目 – 這些可以解譯為：
+  
+  * 畫面格數目 (如果是非負整數)，例如： "Start"："120"，
+  * 相對於持續時間 (如果以  % 尾碼表示)，例如： "Start"："15%" 或
+  * 時間戳記 (如果以 HH:MM:SS... format。 例如 "Start"："00:01:00"
+    
     您可以隨意混合使用標記法。
     
     此外，Start 也支援特殊的巨集 (即 {Best})，它會嘗試判斷第一個「有趣」的內容畫面。附註：(Start 設為 {Best} 時，會忽略 Step 與 Range)
-    
-    - 預設值：Start:{Best}
-- 必須明確地提供每個影像格式的輸出格式：Jpg/Png/BmpFormat。 顯示時，AMS 會讓 JpgVideo 與 JpgFormat 相符，依此類推。 OutputFormat 引進了新的影像轉碼器特定巨集 (即 {Index})，必須針對影像輸出格式提供一次 (只需一次)。
+  * 預設值：Start:{Best}
+* 必須明確地提供每個影像格式的輸出格式：Jpg/Png/BmpFormat。 顯示時，AMS 會讓 JpgVideo 與 JpgFormat 相符，依此類推。 OutputFormat 引進了新的影像轉碼器特定巨集 (即 {Index})，必須針對影像輸出格式提供一次 (只需一次)。
 
-##<a name="<a-id="trim_video"></a>trim-a-video-(clipping)"></a><a id="trim_video"></a>修剪視訊 (裁剪)
-
+## <a name="<a-id="trim_video"></a>trim-a-video-(clipping)"></a><a id="trim_video"></a>修剪視訊 (裁剪)
 本節說明修改編碼器預設值，以裁剪或修剪其輸入為所謂的夾層檔或隨選檔的輸入視訊。 編碼器也可以用來裁剪或修剪從即時串流擷取或封存的資產 – [此部落格](https://azure.microsoft.com/blog/sub-clipping-and-live-archive-extraction-with-media-encoder-standard/)提供詳細資料。
 
 若要修剪您的影片，您可以使用 [這裡](https://msdn.microsoft.com/library/mt269960.aspx) 記載的任何 MES 預設值，並修改 **Sources** 元素 (如下所示)。 StartTime 值必須符合輸入視訊的絕對時間戳記。 例如，如果輸入視訊的第一個畫面有 12:00:10.000 的時間戳記，則 StartTime 至少應該為 12:00:10.000 以上。 在下列範例中，我們假設輸入視訊的開始時間戳記為零。 請注意， **Sources** 應位於結構描述頂端。 
- 
-###<a name="<a-id="json"></a>json-preset"></a><a id="json"></a>JSON 預設值
-    
+
+### <a name="<a-id="json"></a>json-preset"></a><a id="json"></a>JSON 預設值
     {
       "Version": 1.0,
       "Sources": [
@@ -568,8 +555,7 @@
       ]
     } 
 
-###<a name="xml-preset"></a>XML 預設值
-    
+### <a name="xml-preset"></a>XML 預設值
 若要修剪您的影片，您可以使用 [這裡](https://msdn.microsoft.com/library/mt269960.aspx) 記載的任何 MES 預設值，並修改 **Sources** 元素 (如下所示)。
 
     <?xml version="1.0" encoding="utf-16"?>
@@ -687,22 +673,23 @@
       </Outputs>
     </Preset>
 
-##<a name="<a-id="overlay"></a>create-an-overlay"></a><a id="overlay"></a>建立疊加層
-
+## <a name="<a-id="overlay"></a>create-an-overlay"></a><a id="overlay"></a>建立疊加層
 Media Encoder Standard 可讓您在現有影片上疊加影像。 目前支援下列格式：png、jpg、gif 及 bmp。 下面定義的預設值為視訊疊加層的基本範例。
 
 除了定義預設檔案之外，您還必須讓媒體服務知道資產中哪個檔案是疊加影像，以及哪個檔案是您要在上面疊加影像的來源影片。 視訊檔案必須是「主要」  檔案。 
 
 上述 .NET 範例定義兩個函式：**UploadMediaFilesFromFolder** 和 **EncodeWithOverlay**。 UploadMediaFilesFromFolder 函式會上傳資料夾中的檔案 (例如，BigBuckBunny.mp4 和 Image001.png)，並將 mp4 檔案設定為資產中的主要檔案。 **EncodeWithOverlay** 函式會使用傳遞給它的自訂預設值檔案 (例如後續的預設值) 建立編碼工作。 
 
->[AZURE.NOTE]目前限制：
->
->不支援疊加不透明度設定。
->
->您的來源影片檔案和疊加檔案必須位於相同的資產。
+> [!NOTE]
+> 目前限制：
+> 
+> 不支援疊加不透明度設定。
+> 
+> 您的來源影片檔案和疊加檔案必須位於相同的資產。
+> 
+> 
 
-###<a name="json-preset"></a>JSON 預設值
-    
+### <a name="json-preset"></a>JSON 預設值
     {
       "Version": 1.0,
       "Sources": [
@@ -778,8 +765,7 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。 目前支援�
       ]
     }
 
-###<a name="xml-preset"></a>XML 預設值
-    
+### <a name="xml-preset"></a>XML 預設值
     <?xml version="1.0" encoding="utf-16"?>
     <Preset xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="1.0" xmlns="http://www.windowsazure.com/media/encoding/Preset/2014/03">
       <Sources>
@@ -841,16 +827,14 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。 目前支援�
       </Outputs>
     </Preset>
 
-##<a name="<a-id="silent_audio"></a>insert-a-silent-audio-track-when-input-has-no-audio"></a><a id="silent_audio"></a>在輸入不含音訊時插入靜音曲目
-
+## <a name="<a-id="silent_audio"></a>insert-a-silent-audio-track-when-input-has-no-audio"></a><a id="silent_audio"></a>在輸入不含音訊時插入靜音曲目
 依照預設，如果您傳送僅包含視訊不含音訊的輸入到編碼器，輸出資產將包含僅含視訊資料的檔案。 某些播放器可能無法處理此類型輸出資料流。 您可以在該案例中使用此設定來強制編碼器將靜音曲目新增至輸出。
 
 若要強制編碼器在輸入不含音訊時產生包含靜音曲目的資產，請指定 "InsertSilenceIfNoAudio" 值。
 
 您可以使用 [這裡](https://msdn.microsoft.com/library/mt269960.aspx)記載的任何 MES 預設值，並執行以下修改：
 
-###<a name="json-preset"></a>JSON 預設值
-
+### <a name="json-preset"></a>JSON 預設值
     {
       "Channels": 2,
       "SamplingRate": 44100,
@@ -859,22 +843,19 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。 目前支援�
       "Condition": "InsertSilenceIfNoAudio"
     }
 
-###<a name="xml-preset"></a>XML 預設值
-
+### <a name="xml-preset"></a>XML 預設值
     <AACAudio Condition="InsertSilenceIfNoAudio">
       <Channels>2</Channels>
       <SamplingRate>44100</SamplingRate>
       <Bitrate>96</Bitrate>
     </AACAudio>
 
-##<a name="<a-id="deinterlacing"></a>disable-auto-de-interlacing"></a><a id="deinterlacing"></a>停用自動去交錯
-
+## <a name="<a-id="deinterlacing"></a>disable-auto-de-interlacing"></a><a id="deinterlacing"></a>停用自動去交錯
 如果客戶想要將交錯內容自動去交錯，就不需要採取任何動作。 當自動去交錯開啟 (預設) 時，MES 會自動偵測交錯式畫面，並且只會將標示為交錯式的畫面去交錯。
 
 您可以關閉自動去交錯。 但不建議您這樣做。
 
-###<a name="json-preset"></a>JSON 預設值
-    
+### <a name="json-preset"></a>JSON 預設值
     "Sources": [
     {
      "Filters": {
@@ -885,8 +866,7 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。 目前支援�
     }
     ]
 
-###<a name="xml-preset"></a>XML 預設值
-    
+### <a name="xml-preset"></a>XML 預設值
     <Sources>
     <Source>
       <Filters>
@@ -898,12 +878,10 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。 目前支援�
     </Sources>
 
 
-##<a name="<a-id="audio_only"></a>audio-only-presets"></a><a id="audio_only"></a>純音訊預設值
-
+## <a name="<a-id="audio_only"></a>audio-only-presets"></a><a id="audio_only"></a>純音訊預設值
 本節示範兩個純音訊的 MES 預設值︰AAC 音訊和 AAC 好品質音訊。
 
-###<a name="aac-audio"></a>AAC 音訊 
-
+### <a name="aac-audio"></a>AAC 音訊
     {
       "Version": 1.0,
       "Codecs": [
@@ -925,8 +903,7 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。 目前支援�
       ]
     }
 
-###<a name="aac-good-quality-audio"></a>AAC 好品質音訊
-
+### <a name="aac-good-quality-audio"></a>AAC 好品質音訊
     {
       "Version": 1.0,
       "Codecs": [
@@ -948,19 +925,14 @@ Media Encoder Standard 可讓您在現有影片上疊加影像。 目前支援�
       ]
     }
 
-##<a name="media-services-learning-paths"></a>媒體服務學習路徑
+## <a name="media-services-learning-paths"></a>媒體服務學習路徑
+[!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-[AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
+## <a name="provide-feedback"></a>提供意見反應
+[!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-##<a name="provide-feedback"></a>提供意見反應
-
-[AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
-
-##<a name="see-also"></a>另請參閱 
-
+## <a name="see-also"></a>另請參閱
 [媒體服務編碼概觀](media-services-encode-asset.md)
-
-
 
 <!--HONumber=Oct16_HO2-->
 

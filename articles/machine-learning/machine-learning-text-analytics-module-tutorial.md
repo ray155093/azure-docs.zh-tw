@@ -1,33 +1,31 @@
-<properties
-	pageTitle="在 Azure Machine Learning Studio 中建立文字分析模型 | Microsoft Azure"
-	description="如何在 Azure Machine Learning Studio 使用文字前置處理、N-Gram 或特徵雜湊來建立文字分析模型"
-	services="machine-learning"
-	documentationCenter=""
-	authors="rastala"
-	manager="jhubbard"
-	editor=""/>
+---
+title: 在 Azure Machine Learning Studio 中建立文字分析模型 | Microsoft Docs
+description: 如何在 Azure Machine Learning Studio 使用文字前置處理、N-Gram 或特徵雜湊來建立文字分析模型
+services: machine-learning
+documentationcenter: ''
+author: rastala
+manager: jhubbard
+editor: ''
 
-<tags
-	ms.service="machine-learning"
-	ms.workload="data-services"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/06/2016"
-	ms.author="roastala" />
+ms.service: machine-learning
+ms.workload: data-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/06/2016
+ms.author: roastala
 
-
-#在 Azure Machine Learning Studio 中建立文字分析模型
-
+---
+# 在 Azure Machine Learning Studio 中建立文字分析模型
 您可以使用 Azure Machine Learning 來建置和實行文字分析模型。這些模型可協助您解決問題，例如，文件分類或情緒分析問題。
 
 在文字分析實驗中，您通常需要︰
 
- 1. 清理和前置處理文字資料集
- 2. 從已前置處理的文字擷取數值特徵向量
- 3. 定型分類或迴歸模型
- 4. 評分和驗證模型
- 5. 模型部署到生產環境
+1. 清理和前置處理文字資料集
+2. 從已前置處理的文字擷取數值特徵向量
+3. 定型分類或迴歸模型
+4. 評分和驗證模型
+5. 模型部署到生產環境
 
 在此教學課程中，當我們使用「Amazon 書籍評論」資料集逐步解說情緒分析模型時，您會學到這些步驟 (請參閱研究報告 “Biographies, Bollywood, Boom-boxes and Blenders: Domain Adaptation for Sentiment Classification”，作者：Association of Computational Linguistics (ACL) 的 John Blitzer、Mark Dredze 和 Fernando Pereira，2007 年)。 此資料集是由評論分數 (1-2 或 4-5) 和自由格式文字所組成。目標是要預測評論分數︰低 (1-2) 或高 (4-5)。
 
@@ -38,7 +36,6 @@
 [預測書籍評論 - 預測性實驗](https://gallery.cortanaintelligence.com/Experiment/Predict-Book-Reviews-Predictive-Experiment-1)
 
 ## 步驟 1：清理和前置處理文字資料集
-
 一開始我們先將評論分數分為低與高兩類，以將問題公式化為雙類別分類。我們使用[編輯中繼資料](https://msdn.microsoft.com/library/azure/dn905986.aspx)和[群組類別值](https://msdn.microsoft.com/library/azure/dn906014.aspx)模組。
 
 ![建立標籤](./media/machine-learning-text-analytics-module-tutorial/create-label.png)
@@ -52,7 +49,6 @@
 在前置處理完成之後，我們會將資料分成定型和測試集。
 
 ## 步驟 2：從已前置處理的文字擷取數值特徵向量
-
 若要建置文字資料的模型，您通常需要將自由格式的文字轉換成數值特徵向量。在此範例中，我們使用[從文字擷取 N-Gram 特徵](https://msdn.microsoft.com/library/azure/mt762916.aspx)模組，將文字資料轉換為這種格式。此模組會採用以空格分隔單字的資料行，並計算出現在您資料集中的單字字典或單字的 N-Gram。然後，它會計算每個單字或 N-Gram 出現在每筆記錄的次數，並從這些計數建立特徵向量。在本教學課程中，我們將 N-Gram 大小設為 2，因此我們的特徵向量包含一個單字和兩個後續單字的組合。
 
 ![擷取 N-Gram](./media/machine-learning-text-analytics-module-tutorial/extract-ngrams.png)
@@ -66,7 +62,6 @@
 另一個方法是使用「擷取 N-Gram 特徵」，您就可以使用「特徵雜湊」模組。但請注意，[特徵雜湊](https://msdn.microsoft.com/library/azure/dn906018.aspx)沒有內建的特徵選取功能或 TF*IDF 加權。
 
 ## 步驟 3：定型分類或迴歸模型
-
 現在文字已轉換為數值特徵資料行。資料集仍包含上一階段中的字串資料行，因此我們使用「選取資料集中的資料行」來排除它們。
 
 接著使用[二元羅吉斯迴歸](https://msdn.microsoft.com/library/azure/dn905994.aspx)預測我們的目標︰高或低的評論分數。此時，文字分析問題已轉換成一般分類問題。您可以使用 Azure Machine Learning 中可用的工具來改善模型。例如，您可以試驗不同的分類器以了解它們所提供結果的精確度，或使用超參數調整改善精確度。
@@ -74,13 +69,11 @@
 ![定型和評分](./media/machine-learning-text-analytics-module-tutorial/scoring-text.png)
 
 ## 步驟 4：評分和驗證模型
-
 如何驗證定型的模型？ 我們會對照測試資料集來評分，並評估精確度。不過，此模型已從了解定型資料集學到 N-Gram 和其加權的詞彙。因此，在從測試資料擷取特徵時，我們應該使用該詞彙和這些加權，而不是重新建立詞彙。因此，我們在實驗評分分支加入「擷取 N-Gram 特徵」模組、從定型分支連接輸出詞彙，並將詞彙模式設定為唯讀。我們也透過將最小值設為 1 個執行個體、最大值設為 100% 來停用依頻率篩選 N-Gram，並關閉特徵選取。
 
 在測試資料中的文字資料行轉換成數值特徵資料行之後，我們會排除先前階段 (例如在定型分支中) 中的字串資料行。接著使用「評分模型」模組進行預測，並使用「評估模型」模組來評估精確度。
 
 ## 步驟 5：將模型部署到生產環境
-
 模型已幾乎可立即部署到生產環境。部署為 Web 服務時，它會採用自由格式的文字字串做為輸入，並傳回「高」或「低」的預測。 它會使用學習到的 N-Gram 詞彙將文字轉換成特徵，並使用定型的羅吉斯迴歸模型，從這些特徵進行預測。
 
 為設定預測性實驗，我們先儲存 N-Gram 詞彙做為資料集，並使用實驗的定型分支中的定型羅吉斯迴歸模型。接著我們使用「另存新檔」儲存實驗，為預測性實驗建立實驗圖形。我們從實驗中移除「分割資料」模組和定型分支。我們再將先前儲存的 N-Gram 詞彙和模型分別連接到「擷取 N-Gram 特徵」和「評分模型」模組。我們也會移除「評估模型」模組。
@@ -92,7 +85,6 @@
 現在我們有一個實驗可以發行為 Web 服務，並使用要求-回應或批次執行 API 進行呼叫。
 
 ## 後續步驟
-
 從 [MSDN 文件](https://msdn.microsoft.com/library/azure/dn905886.aspx)深入了解文字分析模組。
 
 <!---HONumber=AcomDC_0914_2016-->

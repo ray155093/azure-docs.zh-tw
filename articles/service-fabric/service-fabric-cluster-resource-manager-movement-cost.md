@@ -1,21 +1,21 @@
-<properties
-   pageTitle="Service Fabric 叢集資源管理員：移動成本 | Microsoft Azure"
-   description="Service Fabric 服務的移動成本概觀"
-   services="service-fabric"
-   documentationCenter=".net"
-   authors="masnider"
-   manager="timlt"
-   editor=""/>
+---
+title: Service Fabric 叢集資源管理員：移動成本 | Microsoft Docs
+description: Service Fabric 服務的移動成本概觀
+services: service-fabric
+documentationcenter: .net
+author: masnider
+manager: timlt
+editor: ''
 
-<tags
-   ms.service="Service-Fabric"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="NA"
-   ms.date="08/19/2016"
-   ms.author="masnider"/>
+ms.service: Service-Fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 08/19/2016
+ms.author: masnider
 
+---
 # 影響叢集資源管理員選擇的服務移動成本
 當我們在嘗試判斷要對叢集和解決方案的分數進行哪些變更時，要納入考量的一個重要因素是達成該解決方案的整體成本。
 
@@ -40,13 +40,13 @@ MoveCost 有四個層級：零、低、中和高。除了零之外，這些值�
 
 MoveCost 可協助您在達成對等的平衡時，尋找整體導致最少中斷且最容易達成的解決方案。服務的成本概念可相對於許多事項。計算您的移動成本時最常見的因素為：
 
-- 服務必須移動的狀態或資料量。
-- 用戶端中斷連線的成本。移動主要複本的成本通常高於移動次要複本的成本。
-- 中斷執行中作業的成本。某些資料存放區層級的作業，或是執行以回應用戶端呼叫的作業，它們的成本都很高。在某個特定點之後，除非必要否則您不會想要停止它們。因此，在作業持續期間，您可以提高成本以降低服務複本或執行個體移動的可能性。當作業完成之後，您可以讓它回復正常。
+* 服務必須移動的狀態或資料量。
+* 用戶端中斷連線的成本。移動主要複本的成本通常高於移動次要複本的成本。
+* 中斷執行中作業的成本。某些資料存放區層級的作業，或是執行以回應用戶端呼叫的作業，它們的成本都很高。在某個特定點之後，除非必要否則您不會想要停止它們。因此，在作業持續期間，您可以提高成本以降低服務複本或執行個體移動的可能性。當作業完成之後，您可以讓它回復正常。
 
 ## 後續步驟
-- Service Fabric 叢集資源管理員會使用度量來管理叢集中的耗用量和容量。若要深入了解度量及設定度量的方式，請參閱[在 Service Fabric 中使用度量管理資源耗用量和負載](service-fabric-cluster-resource-manager-metrics.md)。
-- 若要深入了解叢集資源管理員如何在叢集中進行管理和負載平衡，請查看[平衡 Service Fabric 叢集](service-fabric-cluster-resource-manager-balancing.md)。
+* Service Fabric 叢集資源管理員會使用度量來管理叢集中的耗用量和容量。若要深入了解度量及設定度量的方式，請參閱[在 Service Fabric 中使用度量管理資源耗用量和負載](service-fabric-cluster-resource-manager-metrics.md)。
+* 若要深入了解叢集資源管理員如何在叢集中進行管理和負載平衡，請查看[平衡 Service Fabric 叢集](service-fabric-cluster-resource-manager-balancing.md)。
 
 [Image1]: ./media/service-fabric-cluster-resource-manager-movement-cost/service-most-cost-example.png
 

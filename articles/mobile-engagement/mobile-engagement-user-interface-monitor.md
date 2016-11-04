@@ -1,38 +1,37 @@
-<properties
-   pageTitle="Azure Mobile Engagement 使用者介面 - 監視"
-   description="了解如何使用 Azure Mobile Engagement 監視應用程式的即時資料"
-   services="mobile-engagement"
-   documentationCenter=""
-   authors="piyushjo"
-   manager="dwrede"
-   editor=""/>
+---
+title: Azure Mobile Engagement 使用者介面 - 監視
+description: 了解如何使用 Azure Mobile Engagement 監視應用程式的即時資料
+services: mobile-engagement
+documentationcenter: ''
+author: piyushjo
+manager: dwrede
+editor: ''
 
-<tags
-   ms.service="mobile-engagement"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="mobile-multiple"
-   ms.workload="mobile"
-   ms.date="08/19/2016"
-   ms.author="piyushjo"/>
+ms.service: mobile-engagement
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: mobile-multiple
+ms.workload: mobile
+ms.date: 08/19/2016
+ms.author: piyushjo
 
+---
 # 如何監視應用程式的即時資料
-
 本文說明 **Mobile Engagement** 入口網站的 [監視] 索引標籤。使用 **Mobile Engagement** 入口網站可監視與管理您的行動應用程式。請注意，若要開始使用入口網站，您必須先建立 **Azure Mobile Engagement** 帳戶。
-
 
 UI 的 [監視] 區段提供即時分析資訊，並可讓您設定在 UI 之 [分析](mobile-engagement-user-interface-analytics.md)區段中過去可用的大多數相同功能達到臨界值時發出警示。請參閱[概念](http://go.microsoft.com/fwlink/?LinkId=525555)主題中的**詞彙**﹐了解「分析和監視」中術語和縮寫的定義 (例如：「作用中使用者」、「新增使用者」、「保留使用者」、「工作階段」、「使用者路徑圖表」、「使用者地圖」、「追蹤 URL」、「趨勢」、「活動」、「事件」、「工作」、「錯誤」、「額外資訊」、「損毀」和「應用程式資訊」)。
 
->[AZURE.NOTE] 許多 **Mobile Engagement** 入口網站 UI 的區段含有 [顯示說明] 按鈕。按下此按鈕，以獲得關於區段的詳細內容資訊。
+> [!NOTE]
+> 許多 **Mobile Engagement** 入口網站 UI 的區段含有 [顯示說明] 按鈕。按下此按鈕，以獲得關於區段的詳細內容資訊。
+> 
+> 
 
 ## 監視 - 工作階段、工作、事件、錯誤和損毀
-
 您可以看到工作階段中和特定螢幕上目前有多少位使用者，或是目前有多少位使用者執行特定動作。您可以檢視除以「工作階段」、「工作」、「事件」、「錯誤」和「損毀」的使用者活動。您可以查看目前的資訊，並顯示最後一個小時、一天或一週的資訊。您可以查看每種類別中的所有資訊，或依特定「工作階段」、「工作」、「事件」、「錯誤」和「損毀」中進行排序。即時監視適用於在事件 (例如推播行銷活動) 期間用來查看傳送推播通知後是否有立即作用的報升。
 
 ![Monitor1][14]
 
 ## 監視 - 事件 - 詳細資料疑難排解
-
 從測試裝置產生應用程式中的事件以及在 [監視 - 事件 - 詳細資料] 中尋找它是一種最簡單的方法，可尋找測試裝置的裝置識別碼，以及確認 Azure Mobile Engagement 分析、監視和區段整合可以從您的應用程式運作。測試裝置的裝置識別碼之後，即可在 [我的帳戶 - 裝置] 中將它加入測試裝置。如果您無法產生事件，請確定已使用 SDK 將 Azure Mobile Engagement 正確地整合到 Android/iOS/Web/Windows/Windows Phone 應用程式。
 
 如需詳細資訊，請參閱 [SDK 文件][Link 5]。
@@ -40,7 +39,6 @@ UI 的 [監視] 區段提供即時分析資訊，並可讓您設定在 UI 之 [�
 ![Monitor2][15]
 
 ## 監視 - 損毀 - 詳細資料疑難排解
-
 您可以從 [監視 - 損毀 - 詳細資料] 檢閱應用程式的損毀資訊，以協助判斷您應用程式的損毀原因。您也應該在 Android/iOS/Web/Windows/Windows Phone 之每個 SDK 版本的版本資訊中，查閱每個 SDK 版本的已知問題。
 
 如需詳細資訊，請參閱 [SDK 文件 - 版本資訊][Link 5]
@@ -54,11 +52,9 @@ UI 的 [監視] 區段提供即時分析資訊，並可讓您設定在 UI 之 [�
 
 ![Monitor4][17]
 
-
 ## 另請參閱
-
-- [概念][Link 6]
-- [疑難排解指南服務][Link 24]
+* [概念][Link 6]
+* [疑難排解指南服務][Link 24]
 
 <!--Image references-->
 [1]: ./media/mobile-engagement-user-interface-navigation/navigation1.png

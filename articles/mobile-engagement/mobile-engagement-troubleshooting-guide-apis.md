@@ -1,65 +1,56 @@
-<properties 
-   pageTitle="Azure Mobile Engagement 疑難排解指南 - API" 
-   description="Azure Mobile Engagement 疑難排解指南 - API" 
-   services="mobile-engagement" 
-   documentationCenter="" 
-   authors="piyushjo" 
-   manager="dwrede" 
-   editor=""/>
+---
+title: Azure Mobile Engagement 疑難排解指南 - API
+description: Azure Mobile Engagement 疑難排解指南 - API
+services: mobile-engagement
+documentationcenter: ''
+author: piyushjo
+manager: dwrede
+editor: ''
 
-<tags
-   ms.service="mobile-engagement"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="mobile-multiple"
-   ms.workload="mobile" 
-   ms.date="08/19/2016"
-   ms.author="piyushjo"/>
+ms.service: mobile-engagement
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: mobile-multiple
+ms.workload: mobile
+ms.date: 08/19/2016
+ms.author: piyushjo
 
+---
 # API 問題的疑難排解指南
-
 以下是您可能遇到，有關系統管理員如何透過 API 與 Azure Mobile Engagement 互動的問題。
 
 ## 語法問題
-
 ### 問題
-- 使用 API 的語法錯誤 (或非預期的行為)。
+* 使用 API 的語法錯誤 (或非預期的行為)。
 
 ### 原因
-
-- 語法問題：
-    - 請務必檢查您正在使用之特定 API 的語法，以確認該選項可以使用。
-    - API 使用方式的一個常見問題是將觸達 API 與推送 API 混淆 (大部分工作應該是使用觸達 API 來執行，而不是使用推送 API 來執行)。
-    - SDK 整合與 API 使用方式的另一個常見問題是將 SDK 金鑰和 API 金鑰混淆。
-    - 連接到 API 的指令碼必須至少每 10 分鐘傳送一次資料，否則連線會逾時 (這在接聽資料的監視 API 指令碼中特別常見)。若要避免逾時，請讓您的指令碼每 10 分鐘傳送一個 XMPP ping，以保持伺服器工作階段運作。
+* 語法問題：
+  * 請務必檢查您正在使用之特定 API 的語法，以確認該選項可以使用。
+  * API 使用方式的一個常見問題是將觸達 API 與推送 API 混淆 (大部分工作應該是使用觸達 API 來執行，而不是使用推送 API 來執行)。
+  * SDK 整合與 API 使用方式的另一個常見問題是將 SDK 金鑰和 API 金鑰混淆。
+  * 連接到 API 的指令碼必須至少每 10 分鐘傳送一次資料，否則連線會逾時 (這在接聽資料的監視 API 指令碼中特別常見)。若要避免逾時，請讓您的指令碼每 10 分鐘傳送一個 XMPP ping，以保持伺服器工作階段運作。
 
 ### 另請參閱
- 
-- [API 文件][Link 4]
-- [XMPP 通訊協定資訊](http://xmpp.org/extensions/xep-0199.html)
- 
+* [API 文件][Link 4]
+* [XMPP 通訊協定資訊](http://xmpp.org/extensions/xep-0199.html)
+
 ## 無法使用 API 執行 Azure Mobile Engagement UI 中可用的相同動作
-
 ### 問題
-- 可從 Azure Mobile Engagement UI 運作的動作，無法從相關的 Azure Mobile Engagement API 運作。
+* 可從 Azure Mobile Engagement UI 運作的動作，無法從相關的 Azure Mobile Engagement API 運作。
 
 ### 原因
-
-- 確認您可以從 Azure Mobile Engagement UI 執行相同的動作之後，即表示您已正確地將 Azure Mobile Engagement 的這項功能與 SDK 整合。
+* 確認您可以從 Azure Mobile Engagement UI 執行相同的動作之後，即表示您已正確地將 Azure Mobile Engagement 的這項功能與 SDK 整合。
 
 ### 另請參閱
- 
-- [UI 文件][Link 1]
- 
-## 錯誤訊息
+* [UI 文件][Link 1]
 
+## 錯誤訊息
 ### 問題
-- 使用 API 時在執行階段或記錄檔中顯示的錯誤碼。
+* 使用 API 時在執行階段或記錄檔中顯示的錯誤碼。
 
 ### 原因
-
-- 以下是供參考和初步疑難排解使用之一般 API 狀態碼號碼的複合清單：
-
+* 以下是供參考和初步疑難排解使用之一般 API 狀態碼號碼的複合清單：
+  
         200        Success.
         200        Account updated: device registered, associated, updated, or removed from the current account.
         200        Returns a list of projects as a JSON object or an authentication token generated and returned in the response’s body.
@@ -81,23 +72,19 @@
         504        The server was not able to handle your request in a reasonable time (if you make multiple calls to an API very quickly, try to make one call at a time and spread the calls out over time).
 
 ### 另請參閱
+* [API 文件 - 適用於每個特定 API 的詳細錯誤][Link 4]
 
-- [API 文件 - 適用於每個特定 API 的詳細錯誤][Link 4]
- 
 ## 無訊息失敗
-
 ### 問題
-- API 動作失敗，但執行階段或記錄檔中沒有顯示任何錯誤訊息。
+* API 動作失敗，但執行階段或記錄檔中沒有顯示任何錯誤訊息。
 
 ### 原因
-
-- 如果項目整合不正確，Azure Mobile Engagement UI 中的許多項目將會停用，但會從 API 以無訊息方式發生失敗，因此請記得從 UI 測試相同功能，以查看功能是否正常運作。
-- Azure Mobile Engagement 以及許多您嘗試使用的 Azure Mobile Engagement 進階功能，都需要使用 SDK 以獨立步驟方式個別整合到您的應用程式中，您才能使用它們。
+* 如果項目整合不正確，Azure Mobile Engagement UI 中的許多項目將會停用，但會從 API 以無訊息方式發生失敗，因此請記得從 UI 測試相同功能，以查看功能是否正常運作。
+* Azure Mobile Engagement 以及許多您嘗試使用的 Azure Mobile Engagement 進階功能，都需要使用 SDK 以獨立步驟方式個別整合到您的應用程式中，您才能使用它們。
 
 ### 另請參閱
+* [疑難排解指南 - SDK][Link 25]
 
-- [疑難排解指南 - SDK][Link 25]
- 
 <!--Link references-->
 [Link 1]: mobile-engagement-user-interface.md
 [Link 2]: mobile-engagement-troubleshooting-guide.md
@@ -128,6 +115,6 @@
 [Link 27]: mobile-engagement-user-interface-reach-campaign.md
 [Link 28]: mobile-engagement-user-interface-reach-criterion.md
 [Link 29]: mobile-engagement-user-interface-reach-content.md
- 
+
 
 <!---HONumber=AcomDC_0824_2016-->

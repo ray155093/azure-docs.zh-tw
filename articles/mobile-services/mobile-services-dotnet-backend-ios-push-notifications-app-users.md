@@ -1,44 +1,44 @@
-<properties
-	pageTitle="傳送推播通知給已驗證的使用者 (.NET 後端)"
-	description="了解如何將推播通知傳送給特定"
-	services="mobile-services,notification-hubs"
-	documentationCenter="ios"
-	authors="krisragh"
-	manager="dwrede"
-	editor=""/>
+---
+title: 傳送推播通知給已驗證的使用者 (.NET 後端)
+description: 了解如何將推播通知傳送給特定
+services: mobile-services,notification-hubs
+documentationcenter: ios
+author: krisragh
+manager: dwrede
+editor: ''
 
-<tags
-	ms.service="mobile-services"
-	ms.workload="mobile"
-	ms.tgt_pltfrm="mobile-ios"
-	ms.devlang="objective-c"
-	ms.topic="article"
-	ms.date="07/21/2016"
-	ms.author="krisragh"/>
+ms.service: mobile-services
+ms.workload: mobile
+ms.tgt_pltfrm: mobile-ios
+ms.devlang: objective-c
+ms.topic: article
+ms.date: 07/21/2016
+ms.author: krisragh
 
+---
 # 傳送推播通知給已驗證的使用者
-[AZURE.INCLUDE [mobile-services-selector-push-users](../../includes/mobile-services-selector-push-users.md)]
+[!INCLUDE [mobile-services-selector-push-users](../../includes/mobile-services-selector-push-users.md)]
 
 &nbsp;
 
-[AZURE.INCLUDE [mobile-service-note-mobile-apps](../../includes/mobile-services-note-mobile-apps.md)]
+[!INCLUDE [mobile-service-note-mobile-apps](../../includes/mobile-services-note-mobile-apps.md)]
+
 > 如需本主題的對等 Mobile Apps 版本，請參閱[做法：傳送推播通知給已驗證的使用者](../app-service-mobile/app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#push-user)。
+> 
+> 
 
 在本主題中，您將了解如何將推播通知傳送給 iOS 上已驗證的使用者。開始本教學課程之前，請先完成[開始使用驗證]和[開始使用推播通知]。
 
 在本教學課程中，您會要求使用者先進行驗證、向通知中心註冊進行推播通知，以及更新伺服器指令碼以傳送這些通知給已驗證的使用者。
 
-##<a name="register"></a>更新服務以要求註冊所需的驗證
+## <a name="register"></a>更新服務以要求註冊所需的驗證
+[!INCLUDE [mobile-services-dotnet-backend-push-notifications-app-users](../../includes/mobile-services-dotnet-backend-push-notifications-app-users.md)]
 
-[AZURE.INCLUDE [mobile-services-dotnet-backend-push-notifications-app-users](../../includes/mobile-services-dotnet-backend-push-notifications-app-users.md)]
+## <a name="update-app"></a>更新應用程式以在註冊前先登入
+[!INCLUDE [mobile-services-ios-push-notifications-app-users-login](../../includes/mobile-services-ios-push-notifications-app-users-login.md)]
 
-##<a name="update-app"></a>更新應用程式以在註冊前先登入
-
-[AZURE.INCLUDE [mobile-services-ios-push-notifications-app-users-login](../../includes/mobile-services-ios-push-notifications-app-users-login.md)]
-
-##<a name="test"></a>測試應用程式
-
-[AZURE.INCLUDE [mobile-services-ios-push-notifications-app-users-test-app](../../includes/mobile-services-ios-push-notifications-app-users-test-app.md)]
+## <a name="test"></a>測試應用程式
+[!INCLUDE [mobile-services-ios-push-notifications-app-users-test-app](../../includes/mobile-services-ios-push-notifications-app-users-test-app.md)]
 
 <!-- Anchors. -->
 [Updating the service to require authentication for registration]: #register

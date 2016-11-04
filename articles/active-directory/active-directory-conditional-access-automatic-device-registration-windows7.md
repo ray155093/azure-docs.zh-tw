@@ -1,30 +1,30 @@
-<properties
-	pageTitle="# 為加入網域的 Windows 7 裝置設定自動註冊裝置 | Microsoft Azure"
-	description="設定加入網域的 Windows 7 裝置自動向 Azure AD 註冊的步驟。使用軟體發佈系統 (例如 System Center Configuration Manager) 將裝置註冊軟體套件部署到加入網域的 Windows 7 裝置的步驟。"
-	services="active-directory"
-	documentationCenter=""
-	authors="femila"
-	manager="swadhwa"
-	editor=""/>
+---
+title: '# 為加入網域的 Windows 7 裝置設定自動註冊裝置 | Microsoft Docs'
+description: 設定加入網域的 Windows 7 裝置自動向 Azure AD 註冊的步驟。使用軟體發佈系統 (例如 System Center Configuration Manager) 將裝置註冊軟體套件部署到加入網域的 Windows 7 裝置的步驟。
+services: active-directory
+documentationcenter: ''
+author: femila
+manager: swadhwa
+editor: ''
 
-<tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/21/2016"
-	ms.author="MarkVi"/>
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/21/2016
+ms.author: MarkVi
 
+---
 # 為加入網域的 Windows 7 裝置設定自動註冊裝置
-
 身為 IT 管理員，您可以設定加入網域的 Windows 7 裝置自動向 Azure AD 註冊。若要這樣做，您必須使用軟體發佈系統，例如 System Center Configuration Manager，將裝置註冊軟體套件部署到加入網域的 Windows 7 裝置。請務必詳細閱讀並完成「自動向 Azure Active Directory 註冊已加入網域的 Windows 裝置」中所列的必要條件。
 
->[AZURE.NOTE]
- 如需有關如何設定自動裝置註冊的最新指示，請參閱[如何設定讓已加入網域的 Windows 裝置自動向 Azure Active Directory 註冊](active-directory-conditional-access-automatic-device-registration-setup.md)。
+> [!NOTE]
+> 如需有關如何設定自動裝置註冊的最新指示，請參閱[如何設定讓已加入網域的 Windows 裝置自動向 Azure Active Directory 註冊](active-directory-conditional-access-automatic-device-registration-setup.md)。
+> 
+> 
 
-##在加入網域的 Windows 7 裝置上安裝裝置註冊軟體套件
-
+## 在加入網域的 Windows 7 裝置上安裝裝置註冊軟體套件
 Windows 7 的裝置註冊是[可下載的 MSI 套件](https://connect.microsoft.com/site1164)。此套件必須安裝在加入 Active Directory 網域的 Windows 7 電腦上。您應該使用軟體發佈系統 (例如 System Center Configuration Manager) 來部署此套件。MSI 套件使用 /quiet 參數，支援標準的無訊息安裝選項。您可以從 [Microsoft Connect 網站](https://connect.microsoft.com/site1164)下載此軟體套件。您可以在這裡選取並下載 Workplace Join for Windows 7。
 
 ![](./media/active-directory-conditional-access/device-registration-process-windows7.gif)
@@ -37,30 +37,30 @@ Windows 7 的裝置註冊是[可下載的 MSI 套件](https://connect.microsoft.
 ![](./media/active-directory-conditional-access/automatic-device-registration-windows7.png)
 
 1. 使用者 (資訊工作者) 使用 Active Directory 網域認證登入 Windows 7 用戶端電腦。
-1. 執行「加入工作場所」排定的工作。
-1. 使用者使用 Windows 整合式驗證以無訊息方式向 AD FS 驗證。
-1. Windows 7 電腦註冊給 Azure AD 中的使用者。
-1. Azure AD 中建立裝置物件和憑證。此物件代表 user@device。
-1. 「加入工作場所」憑證儲存在電腦上。
+2. 執行「加入工作場所」排定的工作。
+3. 使用者使用 Windows 整合式驗證以無訊息方式向 AD FS 驗證。
+4. Windows 7 電腦註冊給 Azure AD 中的使用者。
+5. Azure AD 中建立裝置物件和憑證。此物件代表 user@device。
+6. 「加入工作場所」憑證儲存在電腦上。
 
 ## 取消註冊加入網域的 Windows 7 裝置
-
 您可以選擇取消註冊您加入網域的 Windows 7 裝置，方式如下：使用軟體發佈系統 (例如 System Center Configuration Manager)，從已加入網域的 Windows 7 裝置中解除安裝「加入工作場所」軟體套件。
 
 然後在 Windows 7 電腦上開啟命令提示字元，執行下列命令來取消註冊裝置：
 
     %ProgramFiles%\Microsoft Workplace Join\AutoWorkplace.exe /leave
 
->[AZURE.NOTE]
-此命令必須在已登入電腦的每個網域使用者的環境下執行。事件檢視器和已加入網域的 Windows 7 裝置的錯誤。
+> [!NOTE]
+> 此命令必須在已登入電腦的每個網域使用者的環境下執行。事件檢視器和已加入網域的 Windows 7 裝置的錯誤。
+> 
+> 
 
 Windows 7 電腦上的 Windows 事件記錄檔會顯示與「加入工作場所」相關的訊息。您可以找到「加入工作場所」成功及失敗事件的訊息。事件記錄檔可以在 [事件檢視器] 的 [應用程式及服務記錄檔] > [Microsoft 加入工作場所] 下找到。
 
 ## 其他主題
-
-- [Azure Active Directory 裝置註冊概觀](active-directory-conditional-access-device-registration-overview.md)
-- [自動向 Azure Active Directory 註冊加入網域的 Windows 裝置](active-directory-conditional-access-automatic-device-registration.md)
-- [為加入網域的 Windows 8.1 裝置設定自動註冊裝置](active-directory-conditional-access-automatic-device-registration-windows-8-1.md)
-- [自動向 Azure Active Directory 註冊加入網域的 Windows 10 裝置](active-directory-azureadjoin-devices-group-policy.md)
+* [Azure Active Directory 裝置註冊概觀](active-directory-conditional-access-device-registration-overview.md)
+* [自動向 Azure Active Directory 註冊加入網域的 Windows 裝置](active-directory-conditional-access-automatic-device-registration.md)
+* [為加入網域的 Windows 8.1 裝置設定自動註冊裝置](active-directory-conditional-access-automatic-device-registration-windows-8-1.md)
+* [自動向 Azure Active Directory 註冊加入網域的 Windows 10 裝置](active-directory-azureadjoin-devices-group-policy.md)
 
 <!---HONumber=AcomDC_0928_2016-->

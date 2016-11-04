@@ -1,6 +1,5 @@
 
 ## 資源
-
 * [WebJobs 資源完整清單](../articles/app-service-web/websites-webjobs-resources.md)
 * [開始使用 Azure WebJobs SDK](../articles/app-service-web/websites-dotnet-webjobs-sdk-get-started.md)
 * [如何透過 WebJobs SDK 使用 Azure 佇列儲存體 (英文)](../articles/app-service-web/websites-dotnet-webjobs-sdk-storage-queues-how-to.md)
@@ -18,7 +17,6 @@
 * [WebJobs 的遠端偵錯](../articles/app-service-web/web-sites-dotnet-troubleshoot-visual-studio.md#remotedebugwj)
 
 ## 影片
-
 * [WebJobs 和 WebJobs SDK (英文)](http://channel9.msdn.com/Shows/Cloud+Cover/Episode-153-WebJobs-with-Pranav-Rastogi?utm_source=dlvr.it&utm_medium=twitter)
 * [Channel 9 上的 Azure WebJobs 影片系列 (英文)](http://channel9.msdn.com/Tags/azurefridaywebjobs)
 * [Visual Studio 的 WebJobs 工具簡介 (英文)](http://channel9.msdn.com/Shows/Web+Camps+TV/Introducing-WebJobs-Tooling-for-Visual-Studio-with-Brady-Gaster)

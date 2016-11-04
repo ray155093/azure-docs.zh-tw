@@ -1,36 +1,32 @@
-<properties
-    pageTitle="如何使用適用於 Azure Mobile Apps 的 JavaScript SDK"
-    description="如何使用適用於 Azure Mobile Apps 的 v"
-    services="app-service\mobile"
-    documentationCenter="javascript"
-    authors="adrianhall"
-    manager="erikre"
-    editor=""/>
+---
+title: 如何使用適用於 Azure Mobile Apps 的 JavaScript SDK
+description: 如何使用適用於 Azure Mobile Apps 的 v
+services: app-service\mobile
+documentationcenter: javascript
+author: adrianhall
+manager: erikre
+editor: ''
 
-<tags
-    ms.service="app-service-mobile"
-    ms.workload="mobile"
-    ms.tgt_pltfrm="html"
-    ms.devlang="javascript"
-    ms.topic="article"
-    ms.date="10/01/2016"
-    ms.author="adrianha"/>
+ms.service: app-service-mobile
+ms.workload: mobile
+ms.tgt_pltfrm: html
+ms.devlang: javascript
+ms.topic: article
+ms.date: 10/01/2016
+ms.author: adrianha
 
-
+---
 # <a name="how-to-use-the-javascript-client-library-for-azure-mobile-apps"></a>如何使用適用於 Azure Mobile Apps 的 JavaScript 用戶端程式庫
-
-[AZURE.INCLUDE [app-service-mobile-selector-client-library](../../includes/app-service-mobile-selector-client-library.md)]
+[!INCLUDE [app-service-mobile-selector-client-library](../../includes/app-service-mobile-selector-client-library.md)]
 
 本指南將教導您使用最新的 [適用於 Azure Mobile Apps 的 JavaScript SDK]執行一般案例。 如果您不熟悉 Azure Mobile Apps，請先完成 [Azure 行動應用程式快速入門] 建立後端，並建立資料表。 在本指南中，我們會著重在使用 HTML/JavaScript Web 應用程式中的行動後端。
 
 ## <a name="supported-platforms"></a>支援的平台
-
 我們將瀏覽器支援限制在下列主要瀏覽器的當前最新版本：Google Chrome、Microsoft Edge、Microsoft Internet Explorer 和 Mozilla Firefox。  我們預期 SDK 可與任何相對近期的瀏覽器搭配運作。
 
 套件會以通用 JavaScript 模組的形式來散發，因此能夠支援全域、AMD 和 CommonJS 格式。
 
-##<a name="<a-name="setup"></a>setup-and-prerequisites"></a><a name="Setup"></a>設定和必要條件
-
+## <a name="<a-name="setup"></a>setup-and-prerequisites"></a><a name="Setup"></a>設定和必要條件
 本指南假設您已建立包含資料表的後端。 本指南假設資料表的結構描述與這些教學課程中的資料表相同。
 
 安裝 Azure Mobile Apps JavaScript SDK 可透過 `npm` 命令完成︰
@@ -54,18 +50,16 @@ var WindowsAzure = require('azure-mobile-apps-client');
 import * as WindowsAzure from 'azure-mobile-apps-client';
 ```
 
-[AZURE.INCLUDE [app-service-mobile-html-js-library](../../includes/app-service-mobile-html-js-library.md)]
+[!INCLUDE [app-service-mobile-html-js-library](../../includes/app-service-mobile-html-js-library.md)]
 
-##<a name="<a-name="auth"></a>how-to:-authenticate-users"></a><a name="auth"></a>作法：驗證使用者
-
+## <a name="<a-name="auth"></a>how-to:-authenticate-users"></a><a name="auth"></a>作法：驗證使用者
 Azure App Service 支援使用各種外部識別提供者 (Facebook、Google、Microsoft 帳戶及 Twitter) 來驗證與授權應用程式使用者。 您可以在資料表上設定權限，以限制僅有通過驗證使用者可以存取特定操作。 您也可以在伺服器指令碼中，使用驗證的使用者的身分識別來實作授權規則。 如需詳細資訊，請參閱 [開始使用驗證] 教學課程。
 
 支援兩個驗證流程：伺服器流程和用戶端流程。  由於伺服器流程採用提供者的 Web 驗證介面，因此所提供的驗證體驗也最為簡單。 用戶端流程依賴提供者專屬的 SDK，可以與裝置特有的功能深入整合，例如單一登入。
 
-[AZURE.INCLUDE [app-service-mobile-html-js-auth-library](../../includes/app-service-mobile-html-js-auth-library.md)]
+[!INCLUDE [app-service-mobile-html-js-auth-library](../../includes/app-service-mobile-html-js-auth-library.md)]
 
-###<a name="<a-name="configure-external-redirect-urls"></a>how-to:-configure-your-mobile-app-service-for-external-redirect-urls."></a><a name="configure-external-redirect-urls"></a>做法︰設定行動 App Service 以使用外部重新導向 URL。
-
+### <a name="<a-name="configure-external-redirect-urls"></a>how-to:-configure-your-mobile-app-service-for-external-redirect-urls."></a><a name="configure-external-redirect-urls"></a>做法︰設定行動 App Service 以使用外部重新導向 URL。
 有數種類型的 JavaScript 應用程式會使用回送功能來處理 OAuth UI 流程。  這些功能包括：
 
 * 在本機執行服務
@@ -81,14 +75,13 @@ Azure App Service 支援使用各種外部識別提供者 (Facebook、Google、M
 5. 展開應用程式的 [config]  >  [authsettings] 節點。
 6. 按一下 [編輯]  按鈕來啟用資源的編輯。
 7. 尋找 **allowedExternalRedirectUrls** 元素，此元素應該是 null。 在陣列中新增 URL：
-
+   
          "allowedExternalRedirectUrls": [
              "http://localhost:3000",
              "https://localhost:3000"
          ],
-
+   
     使用您服務的 URL 取代陣列中的 URL，在此範例中為本機 Node.js 範例服務的 `http://localhost:3000` 。 根據您應用程式的設定方式而定，您也可以使用 Ripple 服務的 `http://localhost:4400` 或一些其他的 URL。
-
 8. 在頁面頂端，按一下 [讀取/寫入]，然後按一下 [PUT] 以儲存您的更新。
 
 您還需要將相同的回送 URL 加入至 CORS 白名單設定：
@@ -98,7 +91,7 @@ Azure App Service 支援使用各種外部識別提供者 (Facebook、Google、M
 3. 按一下 [API] 功能表中的 [CORS]。
 4. 在空的 [允許的原點]  文字方塊中輸入每一個 URL。  隨即會建立新的文字方塊。
 5. 按一下 [儲存] 
-    
+
 後端更新之後，您就可以在應用程式中使用新的回送 URL。
 
 <!-- URLs. -->

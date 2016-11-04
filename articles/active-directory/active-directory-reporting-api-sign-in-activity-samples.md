@@ -1,42 +1,37 @@
-<properties
-    pageTitle="Azure Active Directory 登入活動報告 API 範例 | Microsoft Azure"
-    description="如何開始使用 Azure Active Directory 報告 API"
-    services="active-directory"
-    documentationCenter=""
-    authors="dhanyahk"
-    manager="femila"
-    editor=""/>
+---
+title: Azure Active Directory 登入活動報告 API 範例 | Microsoft Docs
+description: 如何開始使用 Azure Active Directory 報告 API
+services: active-directory
+documentationcenter: ''
+author: dhanyahk
+manager: femila
+editor: ''
 
-<tags
-    ms.service="active-directory"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.tgt_pltfrm="na"
-    ms.workload="identity"
-    ms.date="09/25/2016"
-    ms.author="dhanyahk;markvi"/>
+ms.service: active-directory
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: identity
+ms.date: 09/25/2016
+ms.author: dhanyahk;markvi
 
-
+---
 # <a name="azure-active-directory-sign-in-activity-report-api-samples"></a>Azure Active Directory 登入活動報告 API 範例
-
 本主題是 Azure Active Directory 報告 API 相關主題集合的一部分。  
 Azure AD 報告提供的 API 可讓您使用程式碼或相關工具來存取登入活動資料。  
 本主題的範疇是為您提供 **登入活動 API**的範例程式碼。
 
 請參閱：
 
-- [稽核記錄](active-directory-reporting-azure-portal.md#audit-logs)以取得詳細概念資訊
-- [開始使用 Azure Active Directory 報告 API](active-directory-reporting-api-getting-started.md) 以取得報告 API 的詳細資訊。
+* [稽核記錄](active-directory-reporting-azure-portal.md#audit-logs)以取得詳細概念資訊
+* [開始使用 Azure Active Directory 報告 API](active-directory-reporting-api-getting-started.md) 以取得報告 API 的詳細資訊。
 
 如有相關疑問、問題或意見，請連絡 [AAD 報告協助](mailto:aadreportinghelp@microsoft.com)。
-
 
 ## <a name="prerequisites"></a>必要條件
 您必須先完成 [存取 Azure AD 報告 API 的必要條件](active-directory-reporting-api-prerequisites.md)，才能使用本主題中的範例。  
 
-
-##<a name="powershell-script"></a>PowerShell 指令碼
-
+## <a name="powershell-script"></a>PowerShell 指令碼
     # This script will require the Web Application and permissions setup in Azure Active Directory
     $ClientID       = "<clientId>"             # Should be a ~35 character string insert your info here
     $ClientSecret   = "<clientSecret>"         # Should be a ~44 character string insert your info here
@@ -58,9 +53,9 @@ Azure AD 報告提供的 API 可讓您使用程式碼或相關工具來存取登
     $headerParams = @{'Authorization'="$($oauth.token_type) $($oauth.access_token)"}
 
     $url = "https://graph.windows.net/$tenantdomain/activities/signinEvents?api-version=beta&`$filter=signinDateTime ge $7daysago"
-    
+
     $i=0
-    
+
     Do{
         Write-Output "Fetching data using Uri: $url"
         $myReport = (Invoke-WebRequest -UseBasicParsing -Headers $headerParams -Uri $url)
@@ -72,7 +67,7 @@ Azure AD 報告提供的 API 可讓您使用程式碼或相關工具來存取登
     } while($url -ne $null)
 
     } else {
-    
+
         Write-Host "ERROR: No Access Token"
     }
 
@@ -84,16 +79,10 @@ Azure AD 報告提供的 API 可讓您使用程式碼或相關工具來存取登
 
 指令碼會以 JSON 格式傳回登入報告的輸出。 它也會建立具有相同輸出的 `SigninActivities.json` 檔案。 您可透過修改指令碼以從其他報告傳回資料來進行實驗，以及取消註解您不需要的輸出格式。
 
-
-
 ## <a name="next-steps"></a>後續步驟
-
-- 您要自訂本主題中的範例嗎？ 請查看 [Azure Active Directory 登入活動 API 參考](active-directory-reporting-api-sign-in-activity-reference.md)。 
-
-- 如果您想要查看使用 Azure Active Directory 報告 API 的完整概觀，請參閱 [開始使用 Azure Active Directory 報告 API](active-directory-reporting-api-getting-started.md)。
-
-- 如果您想要深入了解 Azure Active Directory 報告，請參閱 [Azure Active Directory 報告指南](active-directory-reporting-guide.md)。  
-
+* 您要自訂本主題中的範例嗎？ 請查看 [Azure Active Directory 登入活動 API 參考](active-directory-reporting-api-sign-in-activity-reference.md)。 
+* 如果您想要查看使用 Azure Active Directory 報告 API 的完整概觀，請參閱 [開始使用 Azure Active Directory 報告 API](active-directory-reporting-api-getting-started.md)。
+* 如果您想要深入了解 Azure Active Directory 報告，請參閱 [Azure Active Directory 報告指南](active-directory-reporting-guide.md)。  
 
 <!--HONumber=Oct16_HO2-->
 

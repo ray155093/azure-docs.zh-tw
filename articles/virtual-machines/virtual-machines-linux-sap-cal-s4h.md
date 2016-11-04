@@ -1,34 +1,30 @@
-<properties 
-pageTitle="在 Azure VM 上部署 S/4 HANA 或 BW/4 HANA | Microsoft Azure" 
-description="在 Azure VM 上部署 S/4 HANA 或 BW/4 HANA" 
-services="virtual-machines-linux" 
-documentationCenter="" 
-authors="hermanndms" 
-manager="timlt" 
-editor="" 
-tags="azure-resource-manager" 
-  keywords=""/> 
-<tags 
-  ms.service="virtual-machines-linux" 
-  ms.devlang="na" 
-  ms.topic="article" 
-  ms.tgt_pltfrm="vm-linux" 
-  ms.workload="infrastructure-services" 
-  ms.date="09/15/2016" 
-  ms.author="hermannd"/> 
+---
+title: 在 Azure VM 上部署 S/4 HANA 或 BW/4 HANA | Microsoft Docs
+description: 在 Azure VM 上部署 S/4 HANA 或 BW/4 HANA
+services: virtual-machines-linux
+documentationcenter: ''
+author: hermanndms
+manager: timlt
+editor: ''
+tags: azure-resource-manager
+keywords: ''
 
+ms.service: virtual-machines-linux
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: vm-linux
+ms.workload: infrastructure-services
+ms.date: 09/15/2016
+ms.author: hermannd
 
-
-# <a name="deploying-s/4-hana-or-bw/4-hana-on-microsoft-azure"></a>在 Microsoft Azure 上部署 S/4 HANA 或 BW/4 HANA 
-
+---
+# <a name="deploying-s/4-hana-or-bw/4-hana-on-microsoft-azure"></a>在 Microsoft Azure 上部署 S/4 HANA 或 BW/4 HANA
 本文說明如何透過 SAP Cloud Appliance Library 3.0 在 Microsoft Azure 上部署 S/4 HANA。
 螢幕擷取畫面會逐步顯示此程序。 從程序觀點來看，部署其他以 SAP HANA 為基礎的解決方案 (如 BW/4 HANA) 的方式相同。 使用者只需選取不同的解決方案。
 
 若要開始使用 SAP Cloud Appliance Library (SAP CAL)，請前往 [這裡](https://cal.sap.com/)。 SAP 提供了有關全新 [SAP Cloud Appliance Library 3.0](http://scn.sap.com/community/cloud-appliance-library/blog/2016/05/27/sap-cloud-appliance-library-30-came-with-a-new-user-experience)的部落格。 
 
-
 下列螢幕擷取畫面逐步顯示如何在 Microsoft Azure 上部署 S/4 HANA。 對於 BW/4 HANA 等其他解決方案，此程序的運作方式相同。
-
 
 ![](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic-1b.jpg)
 
@@ -92,15 +88,6 @@ SAP CAL 尚未針對這個新的模型進行調整，仍需要「傳統」模型
 ![](./media/virtual-machines-linux-sap-cal-s4h/s4h-pic15.jpg)
 
 另一個選項是登入用戶端 Windows VM，並啟動預先設定的 SAP GUI (舉例來說)。
-
-
-
-
-
-
-
-
-
 
 <!--HONumber=Oct16_HO2-->
 

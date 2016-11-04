@@ -1,50 +1,47 @@
-<properties
-	pageTitle="教學課程：Azure Active Directory 與 Showpad 整合 | Microsoft Azure"
-	description="了解如何設定 Azure Active Directory 與 Showpad 之間的單一登入。"
-	services="active-directory"
-	documentationCenter=""
-	authors="jeevansd"
-	manager="femila"
-	editor=""/>
+---
+title: 教學課程：Azure Active Directory 與 Showpad 整合 | Microsoft Docs
+description: 了解如何設定 Azure Active Directory 與 Showpad 之間的單一登入。
+services: active-directory
+documentationcenter: ''
+author: jeevansd
+manager: femila
+editor: ''
 
-<tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/01/2016"
-	ms.author="jeedes"/>
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/01/2016
+ms.author: jeedes
 
-
+---
 # 教學課程：Azure Active Directory 與 Showpad 整合
-
 本教學課程旨在說明如何整合 Showpad 與 Azure Active Directory (Azure AD)。
 
 Showpad 與 Azure AD 整合提供下列優點：
 
-- 您可以在 Azure AD 中控制可存取 Showpad 的人員
-- 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Showpad (單一登入)
-- 您可以在 Azure Active Directory 入口網站集中管理您的帳戶。
+* 您可以在 Azure AD 中控制可存取 Showpad 的人員
+* 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Showpad (單一登入)
+* 您可以在 Azure Active Directory 入口網站集中管理您的帳戶。
 
 若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
 
 ## 必要條件
-
 若要設定 Azure AD 與 Showpad 的整合，您需要下列項目：
 
-- Azure AD 訂用帳戶
-- Showpad 訂用帳戶
+* Azure AD 訂用帳戶
+* Showpad 訂用帳戶
 
-
-> [AZURE.NOTE] 若要測試本教學課程中的步驟，我們不建議使用生產環境。
-
+> [!NOTE]
+> 若要測試本教學課程中的步驟，我們不建議使用生產環境。
+> 
+> 
 
 若要測試本教學課程中的步驟，您應該遵循這些建議：
 
-- 除非必要，否則您不應使用生產環境，。
-- 如果您沒有 Azure AD 試用環境，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
-
+* 除非必要，否則您不應使用生產環境，。
+* 如果您沒有 Azure AD 試用環境，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
 
 ## 案例描述
 此教學課程的目標是讓您在測試環境中測試 Azure AD 單一登入。
@@ -54,39 +51,32 @@ Showpad 與 Azure AD 整合提供下列優點：
 1. 從資源庫新增 Showpad
 2. 設定並測試 Azure AD 單一登入
 
-
 ## 從資源庫新增 Showpad
 若要設定將 Showpad 整合到 Azure AD 中，您需要從資源庫將 Showpad 新增到受管理的 SaaS 應用程式清單。
 
 **若要從資源庫新增 Showpad，請執行下列步驟：**
 
 1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
-
-	![應用程式][1]
-
+   
+    ![應用程式][1]
 2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
-
 3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]。
-
-	![應用程式][2]
-
+   
+    ![應用程式][2]
 4. 按一下頁面底部的 [新增]。
-
-	![應用程式][3]
-
+   
+    ![應用程式][3]
 5. 在 [欲執行動作] 對話方塊中，按一下 [從資源庫新增應用程式]。
- 
-	![應用程式][4]
-
+   
+    ![應用程式][4]
 6. 在 [搜尋方塊]中，輸入 **Showpad**。
-
-	![應用程式](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_01.png)
-
+   
+    ![應用程式](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_01.png)
 7. 在結果窗格中，選取 [Showpad]，然後按一下 [完成] 加入應用程式。
+   
+    ![應用程式](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_02.png)
 
-	![應用程式](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_02.png)
-
-##  設定並測試 Azure AD 單一登入
+## 設定並測試 Azure AD 單一登入
 本節目標是說明如何以名為 "Britta Simon" 的測試使用者為基礎，設定及測試對 Showpad 的 Azure AD 單一登入。
 
 若要讓單一登入運作，Azure AD 必須知道 Showpad 與 Azure AD 中互相對應的使用者。換句話說，必須要建立某位 Azure AD 使用者與 Showpad 中相關使用者之間的連結關聯性。
@@ -102,80 +92,60 @@ Showpad 與 Azure AD 整合提供下列優點：
 5. **[測試單一登入](#testing-single-sign-on)** - 驗證組態是否能運作。
 
 ### 設定 Azure AD 單一登入
-
 本節的目標是在 Azure 傳統入口網站中啟用 Azure AD 單一登入，並在您的 Showpad 應用程式中設定單一登入。
-
-
 
 **若要使用 Showpad 設定 Azure AD 單一登入，請執行下列步驟：**
 
 1. 在 Azure 傳統入口網站的 **Showpad** 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
-
-	![設定單一登入][6]
-
+   
+    ![設定單一登入][6]
 2. 在 [要如何讓使用者登入 Showpad] 頁面上，選取 [Azure AD 單一登入]，然後按 [下一步]。
-
-	![設定單一登入](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_03.png)
-
+   
+    ![設定單一登入](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_03.png)
 3. 在 [設定應用程式設定] 對話方塊頁面上，執行下列步驟，然後按 [下一步]：
-
-	![設定單一登入](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_04.png)
-
+   
+    ![設定單一登入](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_04.png)
 
     a.在 [登入 URL] 文字方塊中，使用以下模式輸入使用者登入您的 Showpad 應用程式時所使用的 URL：`https://<company name>.showpad.biz/login`
 
-	b.在 [識別碼] 文字方塊中，以下列模式輸入 URL：`https://<company name>.showpad.biz`
+    b.在 [識別碼] 文字方塊中，以下列模式輸入 URL：`https://<company name>.showpad.biz`
 
-	c.按 [下一步]
+    c.按 [下一步]
 
 
-4. 在 [設定在 Showpad 單一登入] 頁面上，執行下列步驟，然後按 [下一步]：
-
-	![設定單一登入](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_05.png)
-
+1. 在 [設定在 Showpad 單一登入] 頁面上，執行下列步驟，然後按 [下一步]：
+   
+    ![設定單一登入](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_05.png)
+   
     a.按一下 [下載中繼資料]，然後將檔案儲存在您的電腦上。
-
+   
     b.按 [下一步]。
-
-
-5. 以系統管理員身分登入 Showpad 租用戶。
-
-6. 在頂端的功能表中，按一下 [設定]。
-
-	![在應用程式端設定單一登入](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_001.png)
-
-7. 瀏覽至 [單一登入]，然後按一下 [啟用]。
- 
-	![在應用程式端設定單一登入](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_002.png)
-
-8. 在 [新增 SAML 2.0 服務] 對話方塊中，執行下列步驟：
-
-	![在應用程式端設定單一登入](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_003.png)
-
-	a.在 [名稱] 文字方塊中，輸入識別碼提供者的名稱 (例如：您的公司名稱)。
-
-	b.對於 [中繼資料來源]，選取 [XML]。
-
-	c.複製下載的中繼資料 XML 檔案內容，然後貼到 [中繼資料 XML] 文字方塊中。
-
-	d.選取 [在新使用者登入時自動佈建帳戶]。
-
-	e.按一下 [提交]。
-
-
-10. 在 Azure 傳統入口網站中，選取單一登入設定確認項目，然後按一下 [下一步]。
-
-	![Azure AD 單一登入][10]
-
-
-11. 在 [單一登入確認] 頁面上，按一下 [完成]。
-  
-	![Azure AD 單一登入][11]
-
-
-
-
-
+2. 以系統管理員身分登入 Showpad 租用戶。
+3. 在頂端的功能表中，按一下 [設定]。
+   
+    ![在應用程式端設定單一登入](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_001.png)
+4. 瀏覽至 [單一登入]，然後按一下 [啟用]。
+   
+    ![在應用程式端設定單一登入](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_002.png)
+5. 在 [新增 SAML 2.0 服務] 對話方塊中，執行下列步驟：
+   
+    ![在應用程式端設定單一登入](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_003.png)
+   
+    a.在 [名稱] 文字方塊中，輸入識別碼提供者的名稱 (例如：您的公司名稱)。
+   
+    b.對於 [中繼資料來源]，選取 [XML]。
+   
+    c.複製下載的中繼資料 XML 檔案內容，然後貼到 [中繼資料 XML] 文字方塊中。
+   
+    d.選取 [在新使用者登入時自動佈建帳戶]。
+   
+    e.按一下 [提交]。
+6. 在 Azure 傳統入口網站中，選取單一登入設定確認項目，然後按一下 [下一步]。
+   
+   ![Azure AD 單一登入][10]
+7. 在 [單一登入確認] 頁面上，按一下 [完成]。
+   
+   ![Azure AD 單一登入][11]
 
 ### 建立 Azure AD 測試使用者
 本節的目標是要在 Azure 傳統入口網站中建立一個名為 Britta Simon 的測試使用者。
@@ -185,67 +155,54 @@ Showpad 與 Azure AD 整合提供下列優點：
 **若要在 Azure AD 中建立 Showpad 測試使用者，請執行下列步驟：**
 
 1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
-
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-showpad-tutorial/create_aaduser_09.png)
-
+   
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-showpad-tutorial/create_aaduser_09.png)
 2. 從 [目錄] 清單中，選取要啟用目錄整合的目錄。
-
 3. 若要顯示使用者清單，請按一下頂端功能表中的 [使用者]。
-
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-showpad-tutorial/create_aaduser_03.png)
-
+   
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-showpad-tutorial/create_aaduser_03.png)
 4. 若要開啟 [加入使用者] 對話方塊，請按一下底部工具列中的 [加入使用者]。
-
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-showpad-tutorial/create_aaduser_04.png)
-
+   
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-showpad-tutorial/create_aaduser_04.png)
 5. 在 [告訴我們這位使用者] 對話方塊頁面上，執行下列步驟：
-
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-showpad-tutorial/create_aaduser_05.png)
-
+   
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-showpad-tutorial/create_aaduser_05.png)
+   
     a.在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
-
+   
     b.按 [下一步]。
-
-6.  在 [使用者設定檔]對話方塊頁面上，執行下列步驟：
-
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-showpad-tutorial/create_aaduser_06.png)
-
-    a.在 [名字] 文字方塊中，輸入 **Britta**。
-
-    b.在 [姓氏] 文字方塊中，輸入 **Simon**。
-
-    c.在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
-
-    d.針對 [角色]，選取 [使用者]。
-
-    e.按 [下一步]。
-
+6. 在 [使用者設定檔]對話方塊頁面上，執行下列步驟：
+   
+   ![建立 Azure AD 測試使用者](./media/active-directory-saas-showpad-tutorial/create_aaduser_06.png)
+   
+   a.在 [名字] 文字方塊中，輸入 **Britta**。
+   
+   b.在 [姓氏] 文字方塊中，輸入 **Simon**。
+   
+   c.在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
+   
+   d.針對 [角色]，選取 [使用者]。
+   
+   e.按 [下一步]。
 7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
-
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-showpad-tutorial/create_aaduser_07.png)
-
+   
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-showpad-tutorial/create_aaduser_07.png)
 8. 在 [取得暫時密碼] 對話方塊頁面上，執行下列步驟：
-
-	![建立 Azure AD 測試使用者](./media/active-directory-saas-showpad-tutorial/create_aaduser_08.png)
-
+   
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-showpad-tutorial/create_aaduser_08.png)
+   
     a.記下 [新密碼] 的值。
-
+   
     b.按一下 [完成]。
 
-
 ### 建立 Showpad 測試使用者
-
 本節的目標是在 Showpad 中建立名為 Britta Simon 的使用者。
 
 Showpad 支援 Just-in-Time 佈建。您已在**[設定 Azure AD 單一登入](#configuring-azure-ad-single-single-sign-on)**中啟用佈建。
 
 在這一節沒有您需要進行的動作項目。
 
-
-
-
 ### 指派 Azure AD 測試使用者
-
 本節的目標是授與 Britta Simon 對 Showpad 的存取權，讓她能夠使用 Azure 單一登入。
 
 ![指派使用者][200]
@@ -253,38 +210,27 @@ Showpad 支援 Just-in-Time 佈建。您已在**[設定 Azure AD 單一登入](#
 **若要將 Britta Simon 指派給 Showpad，請執行下列步驟：**
 
 1. 在 Azure 傳統入口網站中，按一下頂端功能表中的 [應用程式]。
-
-	![指派使用者][201]
-
+   
+    ![指派使用者][201]
 2. 在應用程式清單中，按一下 [Showpad]。
-
-	![設定單一登入](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_50.png)
-
-1. 在頂端的功能表中，按一下 [使用者]。
-
-	![指派使用者][203]
-
-1. 在 [使用者] 清單中，選取 [Britta Simon]。
-
-2. 在底部的工具列中，按一下 [指派]。
-
-	![指派使用者][205]
-
-
-
+   
+    ![設定單一登入](./media/active-directory-saas-showpad-tutorial/tutorial_showpad_50.png)
+3. 在頂端的功能表中，按一下 [使用者]。
+   
+    ![指派使用者][203]
+4. 在 [使用者] 清單中，選取 [Britta Simon]。
+5. 在底部的工具列中，按一下 [指派]。
+   
+    ![指派使用者][205]
 
 ### 測試單一登入
-
 本節的目標是要使用存取面板來測試您的 Azure AD 單一登入組態。
 
 當您在存取面板中按一下 [Showpad] 圖格時，應該會自動登入您的 Showpad 應用程式。
 
-
 ## 其他資源
-
 * [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
 * [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
-
 
 <!--Image references-->
 

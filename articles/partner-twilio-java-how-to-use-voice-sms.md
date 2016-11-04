@@ -1,23 +1,22 @@
-<properties 
-	pageTitle="如何使用 Twilio for Voice and SMS (Java) | Microsoft Azure" 
-	description="了解如何在 Azure 上使用 Twilio API 服務撥打電話及傳送簡訊。程式碼範例以 Java 撰寫。" 
-	services="" 
-	documentationCenter="java" 
-	authors="devinrader" 
-	manager="twilio" 
-	editor="mollybos"/>
+---
+title: 如何使用 Twilio for Voice and SMS (Java) | Microsoft Docs
+description: 了解如何在 Azure 上使用 Twilio API 服務撥打電話及傳送簡訊。程式碼範例以 Java 撰寫。
+services: ''
+documentationcenter: java
+author: devinrader
+manager: twilio
+editor: mollybos
 
-<tags 
-	ms.service="multiple" 
-	ms.workload="na" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="Java" 
-	ms.topic="article" 
-	ms.date="11/25/2014" 
-	ms.author="microsofthelp@twilio.com"/>
+ms.service: multiple
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: Java
+ms.topic: article
+ms.date: 11/25/2014
+ms.author: microsofthelp@twilio.com
 
+---
 # 如何在 Java 中透過 Twilio 使用語音和簡訊功能
-
 本指南示範如何在 Azure 上透過 Twilio API 服務執行常見的程式設計工作。涵蓋的案例包括打電話和傳送簡訊 (SMS)。如需有關如何在應用程式中使用 Twilio 語音和 SMS 的詳細資訊，請參閱[後續步驟](#NextSteps)一節。
 
 ## <a id="WhatIs"></a>什麼是 Twilio？
@@ -144,14 +143,14 @@ TwiML 是以 Twilio 動詞為基礎的一組 XML 指令，可指示 Twilio 如�
 
     // Send an SMS message.
     MessageFactory messageFactory = account.getMessageFactory();
-    
+
     List<NameValuePair> params = new ArrayList<NameValuePair>();
     params.add(new BasicNameValuePair("To", "+14159352345")); // Replace with a valid phone number for your account.
     params.add(new BasicNameValuePair("From", "+14158141829")); // Replace with a valid phone number for your account.
     params.add(new BasicNameValuePair("Body", "Where's Wallace?"));
-    
+
     Message sms = messageFactory.create(params);
-        
+
 如需 **SmsFactory.create** 方法中傳遞之參數的詳細資訊，請參閱 [http://www.twilio.com/docs/api/rest/sending-sms][twilio_rest_sending_sms] \(英文)。
 
 ## <a id="howto_provide_twiml_responses"></a>作法：從您自己的網站提供 TwiML 回應
@@ -167,7 +166,6 @@ TwiML 是以 Twilio 動詞為基礎的一組 XML 指令，可指示 Twilio 如�
     </Response>
 
 下列 JSP 頁面將引起 TwiML 有以下回應：說出一些文字、停頓數次，然後說出 Twilio API 版本和 Azure 角色名稱資訊。
-
 
     <%@ page contentType="text/xml" %>
     <Response> 

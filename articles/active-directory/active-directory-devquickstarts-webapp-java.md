@@ -1,32 +1,31 @@
-<properties
-	pageTitle="開始使用 Azure AD Java | Microsoft Azure"
-	description="如何建置可使用工作或學校帳戶登入使用者的 Java Web 應用程式。"
-	services="active-directory"
-	documentationCenter="java"
-	authors="brandwe"
-	manager="mbaldwin"
-	editor=""/>
+---
+title: 開始使用 Azure AD Java | Microsoft Docs
+description: 如何建置可使用工作或學校帳戶登入使用者的 Java Web 應用程式。
+services: active-directory
+documentationcenter: java
+author: brandwe
+manager: mbaldwin
+editor: ''
 
-<tags
-	ms.service="active-directory"
-	ms.workload="identity"
-  ms.tgt_pltfrm="na"
-	ms.devlang="java"
-	ms.topic="article"
-	ms.date="09/16/2016"
-	ms.author="brandwe"/>
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: java
+ms.topic: article
+ms.date: 09/16/2016
+ms.author: brandwe
 
-
+---
 # 使用 Azure AD 進行 Java Web 應用程式登入與登出
-
-[AZURE.INCLUDE [active-directory-devguide](../../includes/active-directory-devguide.md)]
+[!INCLUDE [active-directory-devguide](../../includes/active-directory-devguide.md)]
 
 Azure AD 讓您外包 Web 應用程式的身分識別管理變得既簡單又直接，只需幾行的程式碼便可提供單一登入和登出。在 Java Web 應用程式中，您可以使用 Microsoft 的 ADAL4J 社群導向實作來完成這項作業。
 
   我們將在此處使用 ADAL4J 來執行下列動作：
-- 使用 Azure AD 做為身分識別提供者，將使用者登入應用程式。
-- 顯示使用者的一些相關資訊。
-- 讓使用者登出 App。
+
+* 使用 Azure AD 做為身分識別提供者，將使用者登入應用程式。
+* 顯示使用者的一些相關資訊。
+* 讓使用者登出 App。
 
 為執行此作業，您必須執行下列動作：
 
@@ -35,134 +34,133 @@ Azure AD 讓您外包 Web 應用程式的身分識別管理變得既簡單又直
 3. 使用 ADAL4J 程式庫向 Azure AD 發出登入和登出要求。
 4. 列印出使用者的相關資料。
 
-若要開始使用，請[下載應用程式基本架構](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect/archive/skeleton.zip)或[下載完整的範例](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect\/archive/complete.zip)。您還需要一個可以註冊應用程式的 Azure AD 租用戶。如果您還沒有租用戶，[了解如何取得租用戶](active-directory-howto-tenant.md)。
+若要開始使用，請[下載應用程式基本架構](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect/archive/skeleton.zip)或[下載完整的範例](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect\\/archive/complete.zip)。您還需要一個可以註冊應用程式的 Azure AD 租用戶。如果您還沒有租用戶，[了解如何取得租用戶](active-directory-howto-tenant.md)。
 
 ## 1\.向 Azure AD 註冊應用程式
 若要啟用應用程式來驗證使用者，您必須先要在您的租用戶中註冊這個新的應用程式。
 
-- 登入 Azure 管理入口網站。
-- 在左側導覽中按一下 **Active Directory**。
-- 選取您要註冊應用程式的租用戶。
-- 按一下 [**應用程式**] 索引標籤，然後按一下最下面抽屜的 [新增]。
-- 遵照提示進行，並建立新的 **Web 應用程式和/或 WebAPI**。
-    - 應用程式的 [**名稱**] 將對使用者說明您的應用程式
-    - [**登入 URL**] 是指應用程式的基底 URL。基本架構的預設值是 `http://localhost:8080/adal4jsample/`。
-    - [**應用程式識別碼 URI**] 是指應用程式的唯一識別碼。慣例會使用 `https://<tenant-domain>/<app-name>`，例如：`http://localhost:8080/adal4jsample/`
-- 完成註冊後，AAD 會為您的應用程式指派一個唯一用戶端識別碼。您在後續章節中將會用到這個值，所以請從 [設定] 索引標籤中複製此值。
+* 登入 Azure 管理入口網站。
+* 在左側導覽中按一下 **Active Directory**。
+* 選取您要註冊應用程式的租用戶。
+* 按一下 [**應用程式**] 索引標籤，然後按一下最下面抽屜的 [新增]。
+* 遵照提示進行，並建立新的 **Web 應用程式和/或 WebAPI**。
+  * 應用程式的 [**名稱**] 將對使用者說明您的應用程式
+  * [**登入 URL**] 是指應用程式的基底 URL。基本架構的預設值是 `http://localhost:8080/adal4jsample/`。
+  * [**應用程式識別碼 URI**] 是指應用程式的唯一識別碼。慣例會使用 `https://<tenant-domain>/<app-name>`，例如：`http://localhost:8080/adal4jsample/`
+* 完成註冊後，AAD 會為您的應用程式指派一個唯一用戶端識別碼。您在後續章節中將會用到這個值，所以請從 [設定] 索引標籤中複製此值。
 
 進入入口網站後，為您的應用程式建立「應用程式密碼」並複製下來。稍後您將會用到此資訊。
-
 
 ## 2\.使用 Maven 設定您的應用程式以使用 ADAL4J 程式庫和必要條件
 在這裡，我們將設定 ADAL4J 以使用 OpenID Connect 驗證通訊協定。ADAL4J 將用來發出登入和登出要求、管理使用者的工作階段，以及取得使用者相關資訊等其他作業。
 
--	在您的專案根目錄中，開啟/建立 `pom.xml` 並找到 `// TODO: provide dependencies for Maven`，然後以下列取代：
+* 在您的專案根目錄中，開啟/建立 `pom.xml` 並找到 `// TODO: provide dependencies for Maven`，然後以下列取代：
 
 ```Java
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.microsoft.azure</groupId>
-	<artifactId>adal4jsample</artifactId>
-	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>adal4jsample</name>
-	<url>http://maven.apache.org</url>
-	<properties>
-		<spring.version>3.0.5.RELEASE</spring.version>
-	</properties>
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.microsoft.azure</groupId>
+    <artifactId>adal4jsample</artifactId>
+    <packaging>war</packaging>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>adal4jsample</name>
+    <url>http://maven.apache.org</url>
+    <properties>
+        <spring.version>3.0.5.RELEASE</spring.version>
+    </properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>com.microsoft.azure</groupId>
-			<artifactId>adal4j</artifactId>
-			<version>1.1.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.nimbusds</groupId>
-			<artifactId>oauth2-oidc-sdk</artifactId>
-			<version>4.5</version>
-		</dependency>
-		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>20090211</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>3.0.1</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.7.5</version>
-		</dependency>
-		<!-- Spring 3 dependencies -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-	</dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>com.microsoft.azure</groupId>
+            <artifactId>adal4j</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.nimbusds</groupId>
+            <artifactId>oauth2-oidc-sdk</artifactId>
+            <version>4.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20090211</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.5</version>
+        </dependency>
+        <!-- Spring 3 dependencies -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+    </dependencies>
 
-	<build>
-		<finalName>sample-for-adal4j</finalName>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
-					<encoding>UTF-8</encoding>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.4</version>
-				<configuration>
-					<warName>${project.artifactId}</warName>
-					<source>${project.basedir}\src</source>
-					<target>${maven.compiler.target}</target>
-					<encoding>utf-8</encoding>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>install</id>
-						<phase>install</phase>
-						<goals>
-							<goal>sources</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>2.5</version>
-				<configuration>
-					<encoding>UTF-8</encoding>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+    <build>
+        <finalName>sample-for-adal4j</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <warName>${project.artifactId}</warName>
+                    <source>${project.basedir}\src</source>
+                    <target>${maven.compiler.target}</target>
+                    <encoding>utf-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>install</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>sources</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
 
@@ -170,102 +168,103 @@ Azure AD 讓您外包 Web 應用程式的身分識別管理變得既簡單又直
 
 
 ## 3\.建立 Java Web 應用程式檔案 (WEB-INF)
-
 在這裡，我們將設定 Java Web 應用程式使用 OpenID Connect 驗證通訊協定。ADAL4J 程式庫將用來發出登入和登出要求、管理使用者的工作階段，以及取得使用者相關資訊等其他作業。
 
--	若要開始，請開啟 `\webapp\WEB-INF` 下的 `web.xml` 檔案，並在 XML 中輸入應用程式的組態值。
+* 若要開始，請開啟 `\webapp\WEB-INF` 下的 `web.xml` 檔案，並在 XML 中輸入應用程式的組態值。
 
 檔案看起來應該如下所示：
 
 ```xml
 <?xml version="1.0"?>
 <web-app id="WebApp_ID" version="2.4"
-	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+    xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
     http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
-	<display-name>Archetype Created Web Application</display-name>
-	<context-param>
-		<param-name>authority</param-name>
-		<param-value>https://login.windows.net/</param-value>
-	</context-param>
-	<context-param>
-		<param-name>tenant</param-name>
-		<param-value>YOUR_TENANT_NAME</param-value>
-	</context-param>
+    <display-name>Archetype Created Web Application</display-name>
+    <context-param>
+        <param-name>authority</param-name>
+        <param-value>https://login.windows.net/</param-value>
+    </context-param>
+    <context-param>
+        <param-name>tenant</param-name>
+        <param-value>YOUR_TENANT_NAME</param-value>
+    </context-param>
 
-	<filter>
-		<filter-name>BasicFilter</filter-name>
-		<filter-class>com.microsoft.aad.adal4jsample.BasicFilter</filter-class>
-		<init-param>
-			<param-name>client_id</param-name>
-			<param-value>YOUR_CLIENT_ID</param-value>
-		</init-param>
-		<init-param>
-			<param-name>secret_key</param-name>
-			<param-value>YOUR_CLIENT_SECRET</param-value>
-		</init-param>
-	</filter>
-	<filter-mapping>
-		<filter-name>BasicFilter</filter-name>
-		<url-pattern>/secure/*</url-pattern>
-	</filter-mapping>
+    <filter>
+        <filter-name>BasicFilter</filter-name>
+        <filter-class>com.microsoft.aad.adal4jsample.BasicFilter</filter-class>
+        <init-param>
+            <param-name>client_id</param-name>
+            <param-value>YOUR_CLIENT_ID</param-value>
+        </init-param>
+        <init-param>
+            <param-name>secret_key</param-name>
+            <param-value>YOUR_CLIENT_SECRET</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>BasicFilter</filter-name>
+        <url-pattern>/secure/*</url-pattern>
+    </filter-mapping>
 
-	<servlet>
-		<servlet-name>mvc-dispatcher</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
+    <servlet>
+        <servlet-name>mvc-dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
 
-	<servlet-mapping>
-		<servlet-name>mvc-dispatcher</servlet-name>
-		<url-pattern>/</url-pattern>
-	</servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>mvc-dispatcher</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
 
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/mvc-dispatcher-servlet.xml</param-value>
-	</context-param>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/mvc-dispatcher-servlet.xml</param-value>
+    </context-param>
 
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
 </web-app>
 
 ```
 
 
-    -	The `YOUR_CLIENT_ID` is the **Application Id** assigned to your app in the registration portal.
-    -	The `YOUR_CLIENT_SECRET` is the **Application Secret**  you created in the portal.
+    -    The `YOUR_CLIENT_ID` is the **Application Id** assigned to your app in the registration portal.
+    -    The `YOUR_CLIENT_SECRET` is the **Application Secret**  you created in the portal.
     - The `YOUR_TENANT_NAME` is the **tenant name** of your app, e.g. contoso.onmicrosoft.com
 
 接受其餘的組態參數。
 
-> [AZURE.NOTE]
-您可以從 XML 檔案中看到，我們要編寫一個名為 `mvc-dispatcher` 的 JSP/Servlet Web 應用程式，該應用程式會在我們瀏覽 /secure URL 時使用 `BasicFilter`。您會在我們編寫的其餘相同程式碼中看到我們使用 /secure 做為受保護內容的所在的位置，並且將會強制向 Azure Active Directory 進行驗證。
+> [!NOTE]
+> 您可以從 XML 檔案中看到，我們要編寫一個名為 `mvc-dispatcher` 的 JSP/Servlet Web 應用程式，該應用程式會在我們瀏覽 /secure URL 時使用 `BasicFilter`。您會在我們編寫的其餘相同程式碼中看到我們使用 /secure 做為受保護內容的所在的位置，並且將會強制向 Azure Active Directory 進行驗證。
+> 
+> 
 
--	接下來，在 `\webapp\WEB-INF` 下建立 `mvc-dispatcher-servlet.xml` 檔案，並輸入下列：
+* 接下來，在 `\webapp\WEB-INF` 下建立 `mvc-dispatcher-servlet.xml` 檔案，並輸入下列：
 
 ```xml
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
         http://www.springframework.org/schema/beans     
         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<context:component-scan base-package="com.microsoft.aad.adal4jsample" />
+    <context:component-scan base-package="com.microsoft.aad.adal4jsample" />
 
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix">
-			<value>/</value>
-		</property>
-		<property name="suffix">
-			<value>.jsp</value>
-		</property>
-	</bean>
+    <bean
+        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix">
+            <value>/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
 
 </beans>
 ```
@@ -273,22 +272,21 @@ Azure AD 讓您外包 Web 應用程式的身分識別管理變得既簡單又直
 這會告知 Web 應用程式使用 Spring 以及到哪裡尋找我們在以下撰寫的 .jsp 檔案。
 
 ## 4\.建立 Java JSP 檢視檔案 (適用於 BasicFilter MVC)
-
 我們在 WEB-INF 中 Web 應用程式的設定目前只完成了一半。接下來，我們必須建立 Web 應用程式將會執行的實際 Java Server Pages 檔案 (已經在組態中提示)。
 
 如果您記得，我們已在 XML 組態檔案中告知 Java，我們有個應該載入 .jsp 檔案的 `/` 資源，以及應該通過稱為 `BasicFilter` 之篩選器的 `/secure` 資源。
 
 我們現在來製作那些項目。
 
--	首先，請在 `\webapp` 下建立 `index.jsp` 檔案，並剪下/貼上下列內容：
+* 首先，請在 `\webapp` 下建立 `index.jsp` 檔案，並剪下/貼上下列內容：
 
 ```jsp
 <html>
 <body>
-	<h2>Hello World!</h2>
-	<ul>
-	<li><a href="secure/aad">Secure Page</a></li>
-	</ul>
+    <h2>Hello World!</h2>
+    <ul>
+    <li><a href="secure/aad">Secure Page</a></li>
+    </ul>
 </body>
 </html>
 
@@ -296,25 +294,24 @@ Azure AD 讓您外包 Web 應用程式的身分識別管理變得既簡單又直
 
 這只會重新導向至我們的篩選條件保護的安全的頁面。
 
-- 接下來，在相同的目錄中建立 `error.jsp` 檔案，以攔截可能會發生的任何錯誤：
+* 接下來，在相同的目錄中建立 `error.jsp` 檔案，以攔截可能會發生的任何錯誤：
 
 ```jsp
 <html>
 <body>
-	<h2>ERROR PAGE!</h2>
-	<p>
-		Exception -
-		<%=request.getAttribute("error")%></p>
-	<ul>
-		<li><a href="<%=request.getContextPath()%>/index.jsp">Go Home</a></li>
-	</ul>
+    <h2>ERROR PAGE!</h2>
+    <p>
+        Exception -
+        <%=request.getAttribute("error")%></p>
+    <ul>
+        <li><a href="<%=request.getContextPath()%>/index.jsp">Go Home</a></li>
+    </ul>
 </body>
 </html>
 ```
 
-- 最後，在 `\webapp` 下建立稱為 `\secure` 的資料夾，以建立我們需要的安全網頁，如此一來，目錄即為 `\webapp\secure`。
-
-- 在此目錄內，接著建立 `aad.jsp` 檔案，並剪下/貼上下列內容：
+* 最後，在 `\webapp` 下建立稱為 `\secure` 的資料夾，以建立我們需要的安全網頁，如此一來，目錄即為 `\webapp\secure`。
+* 在此目錄內，接著建立 `aad.jsp` 檔案，並剪下/貼上下列內容：
 
 ```jsp
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -325,20 +322,20 @@ Azure AD 讓您外包 Web 應用程式的身分識別管理變得既簡單又直
 </head>
 <body>
 
-	<h1>Directory - Users List</h1>
-	<p>${users}</p>
+    <h1>Directory - Users List</h1>
+    <p>${users}</p>
 
-	<ul>
-		<li><a href="<%=request.getContextPath()%>/secure/aad?cc=1">Get
-				new Access Token via Client Credentials</a></li>
-	</ul>
-	<ul>
-		<li><a href="<%=request.getContextPath()%>/secure/aad?refresh=1">Get
-				new Access Token via Refresh Token</a></li>
-	</ul>
-	<ul>
-		<li><a href="<%=request.getContextPath()%>/index.jsp">Go Home</a></li>
-	</ul>
+    <ul>
+        <li><a href="<%=request.getContextPath()%>/secure/aad?cc=1">Get
+                new Access Token via Client Credentials</a></li>
+    </ul>
+    <ul>
+        <li><a href="<%=request.getContextPath()%>/secure/aad?refresh=1">Get
+                new Access Token via Refresh Token</a></li>
+    </ul>
+    <ul>
+        <li><a href="<%=request.getContextPath()%>/index.jsp">Go Home</a></li>
+    </ul>
 </body>
 </html>
 ```
@@ -348,14 +345,15 @@ Azure AD 讓您外包 Web 應用程式的身分識別管理變得既簡單又直
 當然，我們現在需要設定我們的 Java 檔案，以便 Servlet 可以執行其工作。
 
 ## 5\.建立一些 Java 協助程式檔案 (適用於 BasicFilter MVC)
-
 我們的目標是要建立將一些 Java 檔案，這些檔案能夠：
 
 1. 允許使用者登入和登出
 2. 取得使用者的一些相關資料。
 
-> [AZURE.NOTE] 
-為了取得使用者的相關資料，我們必須使用來自 Azure Active Directory 的圖形 API。圖形 API 是安全的 Web 服務，可讓您用來擷取有關組織 (包括個別使用者) 的資料。這優於預先在權杖中填入機密資料，因為它可確保要求資料的使用者已獲授權，而且可能抓取權杖的任何人 (從越獄電話或桌面上的 Web 瀏覽器快取) 都不會取得一堆有關使用者或組織的重要詳細資料。
+> [!NOTE]
+> 為了取得使用者的相關資料，我們必須使用來自 Azure Active Directory 的圖形 API。圖形 API 是安全的 Web 服務，可讓您用來擷取有關組織 (包括個別使用者) 的資料。這優於預先在權杖中填入機密資料，因為它可確保要求資料的使用者已獲授權，而且可能抓取權杖的任何人 (從越獄電話或桌面上的 Web 瀏覽器快取) 都不會取得一堆有關使用者或組織的重要詳細資料。
+> 
+> 
 
 讓我們編寫一些 Java 檔案，為我們執行這項工作：
 
@@ -363,7 +361,7 @@ Azure AD 讓您外包 Web 應用程式的身分識別管理變得既簡單又直
 
 我們將在 Java 檔案中使用命名空間 `com.microsoft.aad.adal4jsample`。大部分的 IDE 會為此建立巢狀的資料夾結構 (例如 `/com/microsoft/aad/adal4jsample`)。您可以隨意這樣做，但不必要。
 
-2. 在這個資料夾內，建立名為 `JSONHelper.java` 的檔案，我們會用它來幫助剖析來自我們的權杖的 JSON 資料。您可以從下面剪下/貼上：
+1. 在這個資料夾內，建立名為 `JSONHelper.java` 的檔案，我們會用它來幫助剖析來自我們的權杖的 JSON 資料。您可以從下面剪下/貼上：
 
 ```Java
 
@@ -586,7 +584,7 @@ public class JSONHelper {
 
 ```
 
-3. 下一步，建立名為 `HttpClientHelper.java` 的檔案，我們會用它來幫助剖析來自我們的 AAD 端點的 HTTP 資料。您可以從下面剪下/貼上：
+1. 下一步，建立名為 `HttpClientHelper.java` 的檔案，我們會用它來幫助剖析來自我們的 AAD 端點的 HTTP 資料。您可以從下面剪下/貼上：
 
 ```Java
 
@@ -743,7 +741,6 @@ public class HttpClientHelper {
 ```
 
 ## 6\.建立 Java 圖形 API 模型檔案 (適用於 BasicFilter MVC)
-
 如以上所述，我們將使用圖形 API 來取得有關所登入使用者的資料。為了讓我們順利進行，我們應該建立一個代表**目錄物件**的檔案以及一個代表**使用者**的個別檔案，如此便可以使用 Java 的 OO 模式。
 
 1. 建立名為 `DirectoryObject.java` 的檔案，我們將用它來儲存有關任何 DirectoryObject 的基本資料 (您稍後可以隨意使用它執行任何其他圖形查詢)。您可以從下面剪下/貼上：
@@ -757,51 +754,51 @@ package com.microsoft.aad.adal4jsample;
  *
  */
 public abstract class DirectoryObject {
-	
-	public DirectoryObject() {
-		super();
-	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public abstract String getObjectId();
-	
-	/**
-	 * @param objectId
-	 */
-	public abstract void setObjectId(String objectId);
 
-	/**
-	 * 
-	 * @return
-	 */
-	public abstract String getObjectType();
+    public DirectoryObject() {
+        super();
+    }
 
-	/**
-	 * 
-	 * @param objectType
-	 */
-	public abstract void setObjectType(String objectType);
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public abstract String getDisplayName();
+    /**
+     * 
+     * @return
+     */
+    public abstract String getObjectId();
 
-	/**
-	 * 
-	 * @param displayName
-	 */
-	public abstract void setDisplayName(String displayName);
+    /**
+     * @param objectId
+     */
+    public abstract void setObjectId(String objectId);
+
+    /**
+     * 
+     * @return
+     */
+    public abstract String getObjectType();
+
+    /**
+     * 
+     * @param objectType
+     */
+    public abstract void setObjectType(String objectType);
+
+    /**
+     * 
+     * @return
+     */
+    public abstract String getDisplayName();
+
+    /**
+     * 
+     * @param displayName
+     */
+    public abstract void setDisplayName(String displayName);
 
 }
 
 ```
 
-2. 建立名為 `User.java` 的檔案，我們將用它來儲存有關目錄中的任何使用者的基本資料。重申，這是用於目錄資料的基本 getter/setter，因此您可以從下面剪下/貼上：
+1. 建立名為 `User.java` 的檔案，我們將用它來儲存有關目錄中的任何使用者的基本資料。重申，這是用於目錄資料的基本 getter/setter，因此您可以從下面剪下/貼上：
 
 ```Java
 
@@ -820,463 +817,463 @@ import org.json.JSONObject;
  */
 @XmlRootElement
 public class User extends DirectoryObject{
-	
-	// The following are the individual private members of a User object that holds
-	// a particular simple attribute of an User object.
-	protected String objectId;
-	protected String objectType;
-	protected String accountEnabled;
-	protected String city;
-	protected String country;
-	protected String department;
-	protected String dirSyncEnabled;
-	protected String displayName;
-	protected String facsimileTelephoneNumber;
-	protected String givenName;
-	protected String jobTitle;
-	protected String lastDirSyncTime;
-	protected String mail;
-	protected String mailNickname;
-	protected String mobile;
-	protected String password;
-	protected String passwordPolicies;
-	protected String physicalDeliveryOfficeName;
-	protected String postalCode;
-	protected String preferredLanguage;
-	protected String state;
-	protected String streetAddress;
-	protected String surname;
-	protected String telephoneNumber;
-	protected String usageLocation;
-	protected String userPrincipalName;
-	protected boolean isDeleted;  // this will move to dto
 
-	/**
-	 * below 4 properties are for future use
-	 */
-	// managerDisplayname of this user
-	protected String managerDisplayname;
-	
-	// The directReports holds a list of directReports
-	private ArrayList<User> directReports;
-	
-	// The groups holds a list of group entity this user belongs to. 
-	private ArrayList<Group> groups;
-	
-	// The roles holds a list of role entity this user belongs to. 
-	private ArrayList<Group> roles;
-	
-	
-	/**
-	 * The constructor for the User class. Initializes the dynamic lists and managerDisplayname variables.
-	 */
-	public User(){
-		directReports = null;
-		groups = new ArrayList<Group>();
-		roles = new ArrayList<Group>();
-		managerDisplayname = null;
-	}
-//	
-//	public User(String displayName, String objectId){
-//		setDisplayName(displayName);
-//		setObjectId(objectId);
-//	}
-//	
-//	public User(String displayName, String objectId, String userPrincipalName, String accountEnabled){
-//		setDisplayName(displayName);
-//		setObjectId(objectId);
-//		setUserPrincipalName(userPrincipalName);
-//		setAccountEnabled(accountEnabled);
-//	}
-//	
+    // The following are the individual private members of a User object that holds
+    // a particular simple attribute of an User object.
+    protected String objectId;
+    protected String objectType;
+    protected String accountEnabled;
+    protected String city;
+    protected String country;
+    protected String department;
+    protected String dirSyncEnabled;
+    protected String displayName;
+    protected String facsimileTelephoneNumber;
+    protected String givenName;
+    protected String jobTitle;
+    protected String lastDirSyncTime;
+    protected String mail;
+    protected String mailNickname;
+    protected String mobile;
+    protected String password;
+    protected String passwordPolicies;
+    protected String physicalDeliveryOfficeName;
+    protected String postalCode;
+    protected String preferredLanguage;
+    protected String state;
+    protected String streetAddress;
+    protected String surname;
+    protected String telephoneNumber;
+    protected String usageLocation;
+    protected String userPrincipalName;
+    protected boolean isDeleted;  // this will move to dto
 
-	/**
-	 * @return The objectId of this user.
-	 */
-	public String getObjectId() {
-		return objectId;
-	}
-	
-	/**
-	 * @param objectId The objectId to set to this User object.
-	 */
-	public void setObjectId(String objectId) {
-		this.objectId = objectId;
-	}
+    /**
+     * below 4 properties are for future use
+     */
+    // managerDisplayname of this user
+    protected String managerDisplayname;
+
+    // The directReports holds a list of directReports
+    private ArrayList<User> directReports;
+
+    // The groups holds a list of group entity this user belongs to. 
+    private ArrayList<Group> groups;
+
+    // The roles holds a list of role entity this user belongs to. 
+    private ArrayList<Group> roles;
 
 
-	/**
-	 * @return The objectType of this User.
-	 */
-	public String getObjectType() {
-		return objectType;
-	}
+    /**
+     * The constructor for the User class. Initializes the dynamic lists and managerDisplayname variables.
+     */
+    public User(){
+        directReports = null;
+        groups = new ArrayList<Group>();
+        roles = new ArrayList<Group>();
+        managerDisplayname = null;
+    }
+//    
+//    public User(String displayName, String objectId){
+//        setDisplayName(displayName);
+//        setObjectId(objectId);
+//    }
+//    
+//    public User(String displayName, String objectId, String userPrincipalName, String accountEnabled){
+//        setDisplayName(displayName);
+//        setObjectId(objectId);
+//        setUserPrincipalName(userPrincipalName);
+//        setAccountEnabled(accountEnabled);
+//    }
+//    
 
-	/**
-	 * @param objectType The objectType to set to this User object.
-	 */
-	public void setObjectType(String objectType) {
-		this.objectType = objectType;
-	}
+    /**
+     * @return The objectId of this user.
+     */
+    public String getObjectId() {
+        return objectId;
+    }
 
-	/**
-	 * @return The userPrincipalName of this User.
-	 */
-	public String getUserPrincipalName() {
-		return userPrincipalName;
-	}
-
-	/**
-	 * @param userPrincipalName The userPrincipalName to set to this User object.
-	 */
-	public void setUserPrincipalName(String userPrincipalName) {
-		this.userPrincipalName = userPrincipalName;
-	}
-
-	
-	/**
-	 * @return The usageLocation of this User.
-	 */
-	public String getUsageLocation() {
-		return usageLocation;
-	}
-
-	/**
-	 * @param usageLocation The usageLocation to set to this User object.
-	 */
-	public void setUsageLocation(String usageLocation) {
-		this.usageLocation = usageLocation;
-	}
-
-	/**
-	 * @return The telephoneNumber of this User.
-	 */
-	public String getTelephoneNumber() {
-		return telephoneNumber;
-	}
-
-	/**
-	 * @param telephoneNumber The telephoneNumber to set to this User object.
-	 */
-	public void setTelephoneNumber(String telephoneNumber) {
-		this.telephoneNumber = telephoneNumber;
-	}
-
-	/**
-	 * @return The surname of this User.
-	 */
-	public String getSurname() {
-		return surname;
-	}
-
-	/**
-	 * @param surname The surname to set to this User Object.
-	 */
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-
-	/**
-	 * @return The streetAddress of this User.
-	 */
-	public String getStreetAddress() {
-		return streetAddress;
-	}
-
-	/**
-	 * @param streetAddress The streetAddress to set to this User.
-	 */
-	public void setStreetAddress(String streetAddress) {
-		this.streetAddress = streetAddress;
-	}
-
-	/**
-	 * @return The state of this User.
-	 */
-	public String getState() {
-		return state;
-	}
-
-	/**
-	 * @param state The state to set to this User object.
-	 */
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	/**
-	 * @return The preferredLanguage of this User.
-	 */
-	public String getPreferredLanguage() {
-		return preferredLanguage;
-	}
-
-	/**
-	 * @param preferredLanguage The preferredLanguage to set to this User.
-	 */
-	public void setPreferredLanguage(String preferredLanguage) {
-		this.preferredLanguage = preferredLanguage;
-	}
-
-	/**
-	 * @return The postalCode of this User.
-	 */
-	public String getPostalCode() {
-		return postalCode;
-	}
-
-	/**
-	 * @param postalCode The postalCode to set to this User.
-	 */
-	public void setPostalCode(String postalCode) {
-		this.postalCode = postalCode;
-	}
-
-	/**
-	 * @return The physicalDeliveryOfficeName of this User.
-	 */
-	public String getPhysicalDeliveryOfficeName() {
-		return physicalDeliveryOfficeName;
-	}
-
-	/**
-	 * @param physicalDeliveryOfficeName The physicalDeliveryOfficeName to set to this User Object.
-	 */
-	public void setPhysicalDeliveryOfficeName(String physicalDeliveryOfficeName) {
-		this.physicalDeliveryOfficeName = physicalDeliveryOfficeName;
-	}
-
-	/**
-	 * @return The passwordPolicies of this User.
-	 */
-	public String getPasswordPolicies() {
-		return passwordPolicies;
-	}
-
-	/**
-	 * @param passwordPolicies The passwordPolicies to set to this User object.
-	 */
-	public void setPasswordPolicies(String passwordPolicies) {
-		this.passwordPolicies = passwordPolicies;
-	}
-
-	/**
-	 * @return The mobile of this User.
-	 */
-	public String getMobile() {
-		return mobile;
-	}
-
-	/**
-	 * @param mobile The mobile to set to this User object.
-	 */
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
-	}
-	
-	/**
-	 * @return The Password of this User.
-	 */
-	public String getPassword() {
-		return password;
-	}
-
-	/**
-	 * @param password The mobile to set to this User object.
-	 */
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	/**
-	 * @return The mail of this User.
-	 */
-	public String getMail() {
-		return mail;
-	}
-
-	/**
-	 * @param mail The mail to set to this User object.
-	 */
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
-	
-	/**
-	 * @return The MailNickname of this User.
-	 */
-	public String getMailNickname() {
-		return mailNickname;
-	}
-
-	/**
-	 * @param mail The MailNickname to set to this User object.
-	 */
-	public void setMailNickname(String mailNickname) {
-		this.mailNickname = mailNickname;
-	}
+    /**
+     * @param objectId The objectId to set to this User object.
+     */
+    public void setObjectId(String objectId) {
+        this.objectId = objectId;
+    }
 
 
-	/**
-	 * @return The jobTitle of this User.
-	 */
-	public String getJobTitle() {
-		return jobTitle;
-	}
+    /**
+     * @return The objectType of this User.
+     */
+    public String getObjectType() {
+        return objectType;
+    }
 
-	/**
-	 * @param jobTitle The jobTitle to set to this User Object.
-	 */
-	public void setJobTitle(String jobTitle) {
-		this.jobTitle = jobTitle;
-	}
+    /**
+     * @param objectType The objectType to set to this User object.
+     */
+    public void setObjectType(String objectType) {
+        this.objectType = objectType;
+    }
 
-	/**
-	 * @return The givenName of this User.
-	 */
-	public String getGivenName() {
-		return givenName;
-	}
+    /**
+     * @return The userPrincipalName of this User.
+     */
+    public String getUserPrincipalName() {
+        return userPrincipalName;
+    }
 
-	/**
-	 * @param givenName The givenName to set to this User.
-	 */
-	public void setGivenName(String givenName) {
-		this.givenName = givenName;
-	}
+    /**
+     * @param userPrincipalName The userPrincipalName to set to this User object.
+     */
+    public void setUserPrincipalName(String userPrincipalName) {
+        this.userPrincipalName = userPrincipalName;
+    }
 
-	/**
-	 * @return The facsimileTelephoneNumber of this User.
-	 */
-	public String getFacsimileTelephoneNumber() {
-		return facsimileTelephoneNumber;
-	}
 
-	/**
-	 * @param facsimileTelephoneNumber The facsimileTelephoneNumber to set to this User Object.
-	 */
-	public void setFacsimileTelephoneNumber(String facsimileTelephoneNumber) {
-		this.facsimileTelephoneNumber = facsimileTelephoneNumber;
-	}
+    /**
+     * @return The usageLocation of this User.
+     */
+    public String getUsageLocation() {
+        return usageLocation;
+    }
 
-	/**
-	 * @return The displayName of this User.
-	 */
-	public String getDisplayName() {
-		return displayName;
-	}
+    /**
+     * @param usageLocation The usageLocation to set to this User object.
+     */
+    public void setUsageLocation(String usageLocation) {
+        this.usageLocation = usageLocation;
+    }
 
-	/**
-	 * @param displayName The displayName to set to this User Object.
-	 */
-	public void setDisplayName(String displayName) {
-		this.displayName = displayName;
-	}
+    /**
+     * @return The telephoneNumber of this User.
+     */
+    public String getTelephoneNumber() {
+        return telephoneNumber;
+    }
 
-	/**
-	 * @return The dirSyncEnabled of this User.
-	 */
-	public String getDirSyncEnabled() {
-		return dirSyncEnabled;
-	}
+    /**
+     * @param telephoneNumber The telephoneNumber to set to this User object.
+     */
+    public void setTelephoneNumber(String telephoneNumber) {
+        this.telephoneNumber = telephoneNumber;
+    }
 
-	/**
-	 * @param dirSyncEnabled The dirSyncEnabled to set to this User.
-	 */
-	public void setDirSyncEnabled(String dirSyncEnabled) {
-		this.dirSyncEnabled = dirSyncEnabled;
-	}
+    /**
+     * @return The surname of this User.
+     */
+    public String getSurname() {
+        return surname;
+    }
 
-	/**
-	 * @return The department of this User.
-	 */
-	public String getDepartment() {
-		return department;
-	}
+    /**
+     * @param surname The surname to set to this User Object.
+     */
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
 
-	/**
-	 * @param department The department to set to this User.
-	 */
-	public void setDepartment(String department) {
-		this.department = department;
-	}
+    /**
+     * @return The streetAddress of this User.
+     */
+    public String getStreetAddress() {
+        return streetAddress;
+    }
 
-	/**
-	 * @return The lastDirSyncTime of this User.
-	 */
-	public String getLastDirSyncTime() {
-		return lastDirSyncTime;
-	}
+    /**
+     * @param streetAddress The streetAddress to set to this User.
+     */
+    public void setStreetAddress(String streetAddress) {
+        this.streetAddress = streetAddress;
+    }
 
-	/**
-	 * @param lastDirSyncTime The lastDirSyncTime to set to this User.
-	 */
-	public void setLastDirSyncTime(String lastDirSyncTime) {
-		this.lastDirSyncTime = lastDirSyncTime;
-	}
+    /**
+     * @return The state of this User.
+     */
+    public String getState() {
+        return state;
+    }
 
-	/**
-	 * @return The country of this User.
-	 */
-	public String getCountry() {
-		return country;
-	}
+    /**
+     * @param state The state to set to this User object.
+     */
+    public void setState(String state) {
+        this.state = state;
+    }
 
-	/**
-	 * @param country The country to set to this User.
-	 */
-	public void setCountry(String country) {
-		this.country = country;
-	}
+    /**
+     * @return The preferredLanguage of this User.
+     */
+    public String getPreferredLanguage() {
+        return preferredLanguage;
+    }
 
-	/**
-	 * @return The city of this User.
-	 */
-	public String getCity() {
-		return city;
-	}
+    /**
+     * @param preferredLanguage The preferredLanguage to set to this User.
+     */
+    public void setPreferredLanguage(String preferredLanguage) {
+        this.preferredLanguage = preferredLanguage;
+    }
 
-	/**
-	 * @param city The city to set to this User.
-	 */
-	public void setCity(String city) {
-		this.city = city;
-	}
+    /**
+     * @return The postalCode of this User.
+     */
+    public String getPostalCode() {
+        return postalCode;
+    }
 
-	/**
-	 * @return The accountEnabled attribute of this User.
-	 */
-	public String getAccountEnabled() {
-		return accountEnabled;
-	}
+    /**
+     * @param postalCode The postalCode to set to this User.
+     */
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
 
-	/**
-	 * @param accountEnabled The accountEnabled to set to this User.
-	 */
-	public void setAccountEnabled(String accountEnabled) {
-		this.accountEnabled = accountEnabled;
-	}
-	
-	public boolean isIsDeleted() {
-		return this.isDeleted;
-	}
+    /**
+     * @return The physicalDeliveryOfficeName of this User.
+     */
+    public String getPhysicalDeliveryOfficeName() {
+        return physicalDeliveryOfficeName;
+    }
 
-	public void setIsDeleted(boolean isDeleted) {
-		this.isDeleted = isDeleted;
-	}
+    /**
+     * @param physicalDeliveryOfficeName The physicalDeliveryOfficeName to set to this User Object.
+     */
+    public void setPhysicalDeliveryOfficeName(String physicalDeliveryOfficeName) {
+        this.physicalDeliveryOfficeName = physicalDeliveryOfficeName;
+    }
 
-	@Override
-	public String toString() {
-		return new JSONObject(this).toString();
-	}
-	
-	public String getManagerDisplayname(){
-		return managerDisplayname;
-	}
-	
-	public void setManagerDisplayname(String managerDisplayname){
-		this.managerDisplayname = managerDisplayname;
-	}
+    /**
+     * @return The passwordPolicies of this User.
+     */
+    public String getPasswordPolicies() {
+        return passwordPolicies;
+    }
+
+    /**
+     * @param passwordPolicies The passwordPolicies to set to this User object.
+     */
+    public void setPasswordPolicies(String passwordPolicies) {
+        this.passwordPolicies = passwordPolicies;
+    }
+
+    /**
+     * @return The mobile of this User.
+     */
+    public String getMobile() {
+        return mobile;
+    }
+
+    /**
+     * @param mobile The mobile to set to this User object.
+     */
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    /**
+     * @return The Password of this User.
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password The mobile to set to this User object.
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    /**
+     * @return The mail of this User.
+     */
+    public String getMail() {
+        return mail;
+    }
+
+    /**
+     * @param mail The mail to set to this User object.
+     */
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    /**
+     * @return The MailNickname of this User.
+     */
+    public String getMailNickname() {
+        return mailNickname;
+    }
+
+    /**
+     * @param mail The MailNickname to set to this User object.
+     */
+    public void setMailNickname(String mailNickname) {
+        this.mailNickname = mailNickname;
+    }
+
+
+    /**
+     * @return The jobTitle of this User.
+     */
+    public String getJobTitle() {
+        return jobTitle;
+    }
+
+    /**
+     * @param jobTitle The jobTitle to set to this User Object.
+     */
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
+    }
+
+    /**
+     * @return The givenName of this User.
+     */
+    public String getGivenName() {
+        return givenName;
+    }
+
+    /**
+     * @param givenName The givenName to set to this User.
+     */
+    public void setGivenName(String givenName) {
+        this.givenName = givenName;
+    }
+
+    /**
+     * @return The facsimileTelephoneNumber of this User.
+     */
+    public String getFacsimileTelephoneNumber() {
+        return facsimileTelephoneNumber;
+    }
+
+    /**
+     * @param facsimileTelephoneNumber The facsimileTelephoneNumber to set to this User Object.
+     */
+    public void setFacsimileTelephoneNumber(String facsimileTelephoneNumber) {
+        this.facsimileTelephoneNumber = facsimileTelephoneNumber;
+    }
+
+    /**
+     * @return The displayName of this User.
+     */
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    /**
+     * @param displayName The displayName to set to this User Object.
+     */
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    /**
+     * @return The dirSyncEnabled of this User.
+     */
+    public String getDirSyncEnabled() {
+        return dirSyncEnabled;
+    }
+
+    /**
+     * @param dirSyncEnabled The dirSyncEnabled to set to this User.
+     */
+    public void setDirSyncEnabled(String dirSyncEnabled) {
+        this.dirSyncEnabled = dirSyncEnabled;
+    }
+
+    /**
+     * @return The department of this User.
+     */
+    public String getDepartment() {
+        return department;
+    }
+
+    /**
+     * @param department The department to set to this User.
+     */
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    /**
+     * @return The lastDirSyncTime of this User.
+     */
+    public String getLastDirSyncTime() {
+        return lastDirSyncTime;
+    }
+
+    /**
+     * @param lastDirSyncTime The lastDirSyncTime to set to this User.
+     */
+    public void setLastDirSyncTime(String lastDirSyncTime) {
+        this.lastDirSyncTime = lastDirSyncTime;
+    }
+
+    /**
+     * @return The country of this User.
+     */
+    public String getCountry() {
+        return country;
+    }
+
+    /**
+     * @param country The country to set to this User.
+     */
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    /**
+     * @return The city of this User.
+     */
+    public String getCity() {
+        return city;
+    }
+
+    /**
+     * @param city The city to set to this User.
+     */
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    /**
+     * @return The accountEnabled attribute of this User.
+     */
+    public String getAccountEnabled() {
+        return accountEnabled;
+    }
+
+    /**
+     * @param accountEnabled The accountEnabled to set to this User.
+     */
+    public void setAccountEnabled(String accountEnabled) {
+        this.accountEnabled = accountEnabled;
+    }
+
+    public boolean isIsDeleted() {
+        return this.isDeleted;
+    }
+
+    public void setIsDeleted(boolean isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+
+    @Override
+    public String toString() {
+        return new JSONObject(this).toString();
+    }
+
+    public String getManagerDisplayname(){
+        return managerDisplayname;
+    }
+
+    public void setManagerDisplayname(String managerDisplayname){
+        this.managerDisplayname = managerDisplayname;
+    }
 }
 
 
@@ -1287,47 +1284,46 @@ public class User extends DirectoryObject{
  */
 //class DirectReport extends User{
 //
-//	private String displayName;
-//	private String objectId;
-//	 
-//	/**
-//	 * Two arguments Constructor for the DirectReport Class.
-//	 * @param displayName
-//	 * @param objectId
-//	 */
-//	public DirectReport(String displayName, String objectId){
-//		this.displayName = displayName;
-//		this.objectId = objectId;
-//	}
+//    private String displayName;
+//    private String objectId;
+//     
+//    /**
+//     * Two arguments Constructor for the DirectReport Class.
+//     * @param displayName
+//     * @param objectId
+//     */
+//    public DirectReport(String displayName, String objectId){
+//        this.displayName = displayName;
+//        this.objectId = objectId;
+//    }
 //
-//	/**
-//	 * @return The diaplayName of this direct report entry.
-//	 */
-//	public String getDisplayName() {
-//		return displayName;
-//	}
+//    /**
+//     * @return The diaplayName of this direct report entry.
+//     */
+//    public String getDisplayName() {
+//        return displayName;
+//    }
 //
-//	
-//	/**
-//	 *  @return The objectId of this direct report entry. 
-//	 */
-//	public String getObjectId() {
-//		return objectId;
-//	}
+//    
+//    /**
+//     *  @return The objectId of this direct report entry. 
+//     */
+//    public String getObjectId() {
+//        return objectId;
+//    }
 //
 //}
 
 ```
 
 ## 7\.建立驗證模型/控制器檔案 (適用於 BasicFilter)
-
 沒錯，Java 有些累贅，但我們就快完成了。在進行最後一個步驟之前，先編寫更多 `ADAL4J` 程式庫所需的協助程式檔案，再編寫 BasicFilter Servlet 來處理我們的要求。
 
 1. 建立名為 `AuthHelper.java` 的檔案，這可提供我們用來判斷登入的使用者狀態的方法。其中包含：
 
-- `isAuthenticated()` 方法，可傳回使用者是否登入
-- `containsAuthenticationData()`，可告訴我們是否權杖是否具有資料
-- `isAuthenticationSuccessful()`，可告訴我們是否成功驗證使用者。
+* `isAuthenticated()` 方法，可傳回使用者是否登入
+* `containsAuthenticationData()`，可告訴我們是否權杖是否具有資料
+* `isAuthenticationSuccessful()`，可告訴我們是否成功驗證使用者。
 
 剪下/貼上下列程式碼：
 
@@ -1377,7 +1373,7 @@ public final class AuthHelper {
 }
 ```
 
-2. 建立名為 `AuthParameterNames.java` 的檔案，這可提供我們一些 `ADAL4J` 將會需要的不可變變數。剪下/貼上下列內容：
+1. 建立名為 `AuthParameterNames.java` 的檔案，這可提供我們一些 `ADAL4J` 將會需要的不可變變數。剪下/貼上下列內容：
 
 ```Java
 package com.microsoft.aad.adal4jsample;
@@ -1395,7 +1391,7 @@ public final class AuthParameterNames {
 }
 ```
 
-3. 最後，建立名為 `AadController.java` 的檔案，這是我們 MVC 模式的控制器，它將提供我們 JSP 控制器，並公開我們的應用程式 `secure/aad` URL 端點。此外，我們也會將圖形查詢放在這個檔案中。
+1. 最後，建立名為 `AadController.java` 的檔案，這是我們 MVC 模式的控制器，它將提供我們 JSP 控制器，並公開我們的應用程式 `secure/aad` URL 端點。此外，我們也會將圖形查詢放在這個檔案中。
 
 剪下/貼上下列項目：
 
@@ -1475,7 +1471,6 @@ public class AadController {
 ```
 
 ## 8\.建立 BasicFilter 檔案 (適用於 BasicFilter MVC)
-
 最後，我們準備要建立 BasicFilter 檔案，以從我們的檢視 (JSP 檔案) 處理我們的要求。
 
 建立名為 `BasicFilter.java` 的檔案，其中包含下列內容：
@@ -1722,14 +1717,13 @@ public class BasicFilter implements Filter {
 
 此 Servlet 會公開 `ADAL4J` 預期來自我們的應用程式用以執行的所有方法。其中包括：
 
-- `getAccessTokenFromClientCredentials()` - 從我們的密碼取得存取權杖
-- `getAccessTokenFromRefreshToken()` - 從重新整理權杖中取得存取權杖
-- `getAccessToken()` - 從我們所使用的 OpenID Connect 流程取得存取權杖
-- `createSessionPrincipal()` - 建立我們使用圖形 API 存取的主體
-- `getRedirectUrl()` - 取得重新導向 URL，以將它與您在入口網站輸入的值相比較。
+* `getAccessTokenFromClientCredentials()` - 從我們的密碼取得存取權杖
+* `getAccessTokenFromRefreshToken()` - 從重新整理權杖中取得存取權杖
+* `getAccessToken()` - 從我們所使用的 OpenID Connect 流程取得存取權杖
+* `createSessionPrincipal()` - 建立我們使用圖形 API 存取的主體
+* `getRedirectUrl()` - 取得重新導向 URL，以將它與您在入口網站輸入的值相比較。
 
-##在 Tomcat 中編譯和執行範例
-
+## 在 Tomcat 中編譯和執行範例
 變更回根目錄，並執行下列命令來建置您剛剛使用 `maven` 組成的範例。這將會使用您針對相依性所撰寫的 `pom.xml` 檔案。
 
 `$ mvn package`
@@ -1738,12 +1732,12 @@ public class BasicFilter implements Filter {
 
 `http://localhost:8080/adal4jsample/`
 
+> [!NOTE]
+> 使用最新的 Tomcat 伺服器部署 WAR 非常容易。只要瀏覽至 `http://localhost:8080/manager/` 並遵循上傳您的 '`adal4jsample.war` 檔案的指示即可。它會為您自動部署正確的端點。
+> 
+> 
 
-> [AZURE.NOTE] 
-使用最新的 Tomcat 伺服器部署 WAR 非常容易。只要瀏覽至 `http://localhost:8080/manager/` 並遵循上傳您的 '`adal4jsample.war` 檔案的指示即可。它會為您自動部署正確的端點。
-
-##後續步驟
-
+## 後續步驟
 恭喜！ 您現在有一個可運作的 Java 應用程式，能夠驗證使用者、使用 OAuth 2.0 安全地呼叫 Web API，以及取得使用者的基本資訊。如果您還沒有這麼做，現在是將一些使用者植入租用戶的時候。
 
 如需參考，[此處以 .zip 格式提供](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect/archive/complete.zip)完整範例 (不含您的組態值)，您也可以從 GitHub 將其複製：

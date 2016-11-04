@@ -1,26 +1,23 @@
-<properties 
-   pageTitle="Azure DNS 概觀 | Microsoft Azure" 
-   description="在 Microsoft Azure 上裝載 Azure DNS 服務的概觀在 Microsoft Azure 上裝載您的網域。" 
-   services="dns" 
-   documentationCenter="na" 
-   authors="cherylmc" 
-   manager="carmonm" 
-   editor=""/>
+---
+title: Azure DNS 概觀 | Microsoft Docs
+description: 在 Microsoft Azure 上裝載 Azure DNS 服務的概觀在 Microsoft Azure 上裝載您的網域。
+services: dns
+documentationcenter: na
+author: cherylmc
+manager: carmonm
+editor: ''
 
-<tags
-   ms.service="dns"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="infrastructure-services" 
-   ms.date="08/16/2016"
-   ms.author="cherylmc"/>
+ms.service: dns
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 08/16/2016
+ms.author: cherylmc
 
+---
 # Azure DNS 概觀
-
-
 網域名稱系統 (DNS) 負責將網站或服務名稱轉譯 (或解析) 為其 IP 位址。Azure DNS 是 DNS 網域的主機服務，採用 Microsoft Azure 基礎結構提供名稱解析。只要將您的網域裝載於 Azure，就可以像管理其他 Azure 服務一樣，使用相同的認證、API、工具和計費方式來管理 DNS 記錄。
-
 
 Azure DNS 中的 DNS 網域裝載於 Azure 的 DNS 名稱伺服器全球網路。我們使用「任一傳播」網路，所以每個 DNS 查詢是由最接近的可用 DNS 伺服器回答。這為您的網域提供快速的效能與高可用性。
 
@@ -28,14 +25,7 @@ Azure DNS 是以 Azure Resource Manager (ARM) 為基礎。這樣，它就可得�
 
 Azure DNS 目前不支援購買網域名稱。若想要購買網域，必須洽詢第三方網域名稱註冊機構。註冊機構通常會收取些微年費。然後便可以在 Azure DNS 裝載這些網域來管理 DNS 記錄。如需詳細資訊，請參閱[將網域委派給 Azure DNS](dns-domain-delegation.md)。
 
-
 ## 後續步驟
-
 [建立 DNS 區域](dns-getstarted-create-dnszone-portal.md)
-
-
-
-
- 
 
 <!---HONumber=AcomDC_0817_2016-->

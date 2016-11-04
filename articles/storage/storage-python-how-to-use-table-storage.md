@@ -1,39 +1,34 @@
-<properties
-    pageTitle="如何使用 Python 的資料表儲存體 | Microsoft Azure"
-    description="使用 Azure 表格儲存體 (NoSQL 資料存放區) 將結構化的資料儲存在雲端。"
-    services="storage"
-    documentationCenter="python"
-    authors="tamram"
-    manager="carmonm"
-    editor="tysonn"/>
+---
+title: 如何使用 Python 的資料表儲存體 | Microsoft Docs
+description: 使用 Azure 表格儲存體 (NoSQL 資料存放區) 將結構化的資料儲存在雲端。
+services: storage
+documentationcenter: python
+author: tamram
+manager: carmonm
+editor: tysonn
 
-<tags
-    ms.service="storage"
-    ms.workload="storage"
-    ms.tgt_pltfrm="na"
-    ms.devlang="python"
-    ms.topic="article"
-    ms.date="10/18/2016"
-    ms.author="tamram"/>
+ms.service: storage
+ms.workload: storage
+ms.tgt_pltfrm: na
+ms.devlang: python
+ms.topic: article
+ms.date: 10/18/2016
+ms.author: tamram
 
-
-
+---
 # <a name="how-to-use-table-storage-from-python"></a>如何使用 Python 的資料表儲存體
+[!INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)]
 
-[AZURE.INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)]
-<br/>
-[AZURE.INCLUDE [storage-try-azure-tools-tables](../../includes/storage-try-azure-tools-tables.md)]
+[!INCLUDE [storage-try-azure-tools-tables](../../includes/storage-try-azure-tools-tables.md)]
 
 ## <a name="overview"></a>Overview
-
 本指南說明如何使用 Azure 資料表儲存體服務執行一般案例。 這些範例是以 Python 所撰寫，並使用 [Microsoft Azure Storage SDK for Python (適用於 Python 的 Microsoft Azure 儲存體 SDK)]。 除了「在資料表中插入及查詢實體」外，所涵蓋的案例還包括「建立和刪除資料表」。
 
-[AZURE.INCLUDE [storage-table-concepts-include](../../includes/storage-table-concepts-include.md)]
+[!INCLUDE [storage-table-concepts-include](../../includes/storage-table-concepts-include.md)]
 
-[AZURE.INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
+[!INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
 
 ## <a name="create-a-table"></a>建立資料表
-
 **TableService** 物件可讓您操作資料表服務。 下列程式碼將建立 **TableService** 物件。 將程式碼新增至您想要在其中以程式設計方式存取 Azure 儲存體之任何 Python 檔案內的頂端附近：
 
     from azure.storage.table import TableService, Entity
@@ -45,7 +40,6 @@
     table_service.create_table('tasktable')
 
 ## <a name="add-an-entity-to-a-table"></a>將實體加入至資料表
-
 若要新增實體，請先建立字典或定義實體屬性名稱和值的實體。 請注意，您必須為每個實體指定 **PartitionKey** 及 **RowKey**。 這些是您的實體的唯一識別碼。 比起查詢其他屬性，您可以使用這些值更快地查詢。 系統使用 **PartitionKey** 自動將資料表的實體分散在許多儲存體節點上。
 具有相同 **PartitionKey** 的實體會儲存在相同節點上。 **RowKey** 是實體在其所屬資料分割內的唯一識別碼。
 
@@ -64,7 +58,6 @@
     table_service.insert_entity('tasktable', task)
 
 ## <a name="update-an-entity"></a>更新實體
-
 此程式碼說明如何以更新版本取代舊版本的現有實體。
 
     task = {'PartitionKey': 'tasksSeattle', 'RowKey': '1', 'description' : 'Take out the garbage', 'priority' : 250}
@@ -80,7 +73,6 @@
     table_service.insert_or_replace_entity('tasktable', 'tasksSeattle', '1', task, content_type='application/atom+xml')
 
 ## <a name="change-a-group-of-entities"></a>變更一組實體
-
 有時候批次提交多個操作是有意義的，可以確保伺服器會進行不可部分完成的處理。 若要完成此操作，您可以使用 **TableBatch** 類別。 當您真的想提交批次時，請呼叫 **commit\_batch**。 請注意，所有實體都必須位於相同的資料分割中，才能以批次方式進行變更。 以下範例在一個批次中同時新增兩個實體。
 
     from azure.storage.table import TableBatch
@@ -102,7 +94,6 @@ Batch 也可以與內容管理員語法搭配使用：
 
 
 ## <a name="query-for-an-entity"></a>查詢實體
-
 若要查詢資料表中的實體，請使用 **get\_entity** 方法，傳遞 **PartitionKey** 和 **RowKey**。
 
     task = table_service.get_entity('tasktable', 'tasksSeattle', '1')
@@ -110,7 +101,6 @@ Batch 也可以與內容管理員語法搭配使用：
     print(task.priority)
 
 ## <a name="query-a-set-of-entities"></a>查詢實體集合
-
 此範例會根據 **PartitionKey**找到在西雅圖的所有工作。
 
     tasks = table_service.query_entities('tasktable', filter="PartitionKey eq 'tasksSeattle'")
@@ -119,7 +109,6 @@ Batch 也可以與內容管理員語法搭配使用：
         print(task.priority)
 
 ## <a name="query-a-subset-of-entity-properties"></a>查詢實體屬性的子集
-
 一項資料表查詢可以只擷取實體的少數屬性。
 這項稱為「投射」 的技術可減少頻寬並提高查詢效能 (尤其是對大型實體而言)。 使用 **select** 參數並傳遞您要帶到用戶端的屬性名稱。
 
@@ -132,25 +121,22 @@ Batch 也可以與內容管理員語法搭配使用：
         print(task.description)
 
 ## <a name="delete-an-entity"></a>刪除實體
-
 您可以使用實體的資料分割和資料列索引鍵來刪除實體。
 
     table_service.delete_entity('tasktable', 'tasksSeattle', '1')
 
 ## <a name="delete-a-table"></a>刪除資料表
-
 下列程式碼會從儲存體帳戶刪除資料表。
 
     table_service.delete_table('tasktable')
 
 ## <a name="next-steps"></a>後續步驟
-
 了解表格儲存體的基本概念之後，請使用下列連結深入了解。
 
-- [Python 開發人員中心](/develop/python/)
-- [Azure 儲存體服務 REST API](http://msdn.microsoft.com/library/azure/dd179355)
-- [Azure 儲存體團隊部落格]
-- [Microsoft Azure Storage SDK for Python]
+* [Python 開發人員中心](/develop/python/)
+* [Azure 儲存體服務 REST API](http://msdn.microsoft.com/library/azure/dd179355)
+* [Azure 儲存體團隊部落格]
+* [Microsoft Azure Storage SDK for Python]
 
 [Azure Storage Team blog]: http://blogs.msdn.com/b/windowsazurestorage/
 [Microsoft Azure Storage SDK for Python]: https://github.com/Azure/azure-storage-python

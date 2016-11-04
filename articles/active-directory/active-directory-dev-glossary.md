@@ -1,48 +1,48 @@
-<properties
-   pageTitle="Azure Active Directory 開發人員詞彙 | Microsoft Azure"
-   description="常用 Azure Active Directory 開發人員概念與功能的詞彙清單。"
-   services="active-directory"
-   documentationCenter=""
-   authors="bryanla"
-   manager="mbaldwin"
-   editor=""/>
+---
+title: Azure Active Directory 開發人員詞彙 | Microsoft Docs
+description: 常用 Azure Active Directory 開發人員概念與功能的詞彙清單。
+services: active-directory
+documentationcenter: ''
+author: bryanla
+manager: mbaldwin
+editor: ''
 
-<tags
-   ms.service="active-directory"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="identity"
-   ms.date="08/31/2016"
-   ms.author="bryanla"/>
+ms.service: active-directory
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: identity
+ms.date: 08/31/2016
+ms.author: bryanla
 
+---
 # Azure Active Directory 開發人員詞彙
 本文包含某些核心 Azure Active Directory (AD) 開發人員概念的定義，以協助您了解 Azure AD 的應用程式開發。
 
-## 存取權杖 
+## 存取權杖
 由[授權伺服器](#authorization-server)所簽發的一種[安全性權杖](#security-token)，可供[用戶端應用程式](#client-application)用來存取[受保護的資源伺服器](#resource-server)。此權杖的形式通常是 [JSON Web 權杖 (JWT)][JWT]，其內含[資源擁有者](#resource-owner)授與用戶端的授權，以便獲得所要求的存取層級。此權杖中會包含所有適用的主體相關[宣告](#claim)，可讓用戶端應用程式以它做為某種形式的認證以存取給定的資源。這也可讓資源擁有者不必對用戶端公開認證。
 
 根據所提供的認證而定，存取權杖有時會稱為「使用者 + 應用程式」或「僅限應用程式」。例如，當用戶端應用程式使用：
 
-- [「授權程式碼」授權授與](#authorization-grant)，使用者會先驗證為資源擁有者，將授權委派給用戶端來存取資源。之後，用戶端會在取得存取權杖時進行驗證。權杖有時可以更明確地稱為「使用者 + 應用程式」權杖，因為它同時代表授權用戶端應用程式的使用者，以及應用程式。
-- [「用戶端認證」授權授與](#authorization-grant)，用戶端會提供唯一的驗證，在沒有資源擁有者驗證/授權的情況下運作，因此這個權杖有時可以稱為「僅限應用程式」權杖。
+* [「授權程式碼」授權授與](#authorization-grant)，使用者會先驗證為資源擁有者，將授權委派給用戶端來存取資源。之後，用戶端會在取得存取權杖時進行驗證。權杖有時可以更明確地稱為「使用者 + 應用程式」權杖，因為它同時代表授權用戶端應用程式的使用者，以及應用程式。
+* [「用戶端認證」授權授與](#authorization-grant)，用戶端會提供唯一的驗證，在沒有資源擁有者驗證/授權的情況下運作，因此這個權杖有時可以稱為「僅限應用程式」權杖。
 
 如需詳細資訊，請參閱 [Azure AD 權杖參考][AAD-Tokens-Claims]。
 
-## 應用程式資訊清單  
+## 應用程式資訊清單
 [Azure 傳統入口網站][AZURE-classic-portal]所提供的功能，這會產生以 JSON 表示的應用程式身分識別組態，以做為其相關聯[應用程式][AAD-Graph-App-Entity]實體和 [ServicePrincipal][AAD-Graph-Sp-Entity] 實體的更新機制。如需詳細資訊，請參閱[了解 Azure Active Directory 應用程式資訊清單][AAD-App-Manifest]。
 
-## 應用程式物件  
+## 應用程式物件
 當您在 [Azure 傳統入口網站][AZURE-classic-portal]註冊/更新應用程式時，入口網站會為租用戶同時建立/更新應用程式物件和對應的[服務主體物件](#service-principal-object)。應用程式物件可全域 (在其能夠存取的所有租用戶中)「定義」應用程式的身分識別組態，並提供範本來「衍生」出其對應的服務主體物件，以在執行階段於本機 (在特定租用戶) 使用。
 
 如需詳細資訊，請參閱[應用程式物件和服務主體物件][AAD-App-SP-Objects]。
 
-## 應用程式註冊  
+## 應用程式註冊
 為了讓應用程式能夠整合身分識別和存取管理功能，並將這些功能委派給 Azure AD，您必須向 Azure AD [租用戶](#tenant)註冊應用程式。當您向 Azure AD 註冊應用程式時，您必須提供應用程式的身分識別組態，以允許它與 Azure AD 整合，並使用如下功能︰
 
-- 使用 Azure AD 身分識別管理和 [OpenID Connect][OpenIDConnect] 通訊協定實作，健全地管理單一登入
-- 透過 Azure AD 的 OAuth 2.0 [授權伺服器](#authorization-server)實作，由[用戶端應用程式](#client-application)以代理方式存取[受保護的資源](#resource-server)
-- [同意架構](#consent)，根據資源擁有者授權來管理用戶端對受保護資源的存取權。
+* 使用 Azure AD 身分識別管理和 [OpenID Connect][OpenIDConnect] 通訊協定實作，健全地管理單一登入
+* 透過 Azure AD 的 OAuth 2.0 [授權伺服器](#authorization-server)實作，由[用戶端應用程式](#client-application)以代理方式存取[受保護的資源](#resource-server)
+* [同意架構](#consent)，根據資源擁有者授權來管理用戶端對受保護資源的存取權。
 
 如需詳細資訊，請參閱[整合應用程式與 Azure Active Directory][AAD-Integrating-Apps]。
 
@@ -52,8 +52,8 @@
 ## 授權
 授與已驗證的安全性主體權限以執行某些工作的動作。在 Azure AD 程式設計模型中有兩大使用案例︰
 
-- 在 [OAuth2 授權授與](#authorization-grant)流程期間︰當[資源擁有者](#resource-owner)授與授權給[用戶端應用程式](#client-application)，以允許用戶端存取資源擁有者的資源。
-- 在用戶端存取資源期間︰和[資源伺服器](#resource-server)所實作的一樣，使用[存取權杖](#access-token)所提供的[宣告](#claim)值來據以做出存取控制決定。
+* 在 [OAuth2 授權授與](#authorization-grant)流程期間︰當[資源擁有者](#resource-owner)授與授權給[用戶端應用程式](#client-application)，以允許用戶端存取資源擁有者的資源。
+* 在用戶端存取資源期間︰和[資源伺服器](#resource-server)所實作的一樣，使用[存取權杖](#access-token)所提供的[宣告](#claim)值來據以做出存取控制決定。
 
 ## 授權碼
 在四個 OAuth2 [授權授與](#authorization-grant)之一的「授權碼」流程中，由[授權端點](#authorization-endpoint)提供給[用戶端應用程式](#client-application)的短暫「權杖」。為回應[資源擁有者](#resource-owner)的驗證，會將授權碼傳回給用戶端應用程式，以指出資源擁有者已委派存取所要求資源的授權。在流程進行期間稍後的時候，會將授權碼兌換為[存取權杖](#access-token)。
@@ -76,7 +76,7 @@
 
 如需詳細資訊，請參閱 [Azure AD 權杖參考][AAD-Tokens-Claims]。
 
-## 用戶端應用程式  
+## 用戶端應用程式
 如 [OAuth2 授權架構][OAuth2-Role-Def]所定義，這是代表[資源擁有者](#resource-owner)提出受保護資源要求的應用程式。「用戶端」一詞並不代表任何特定的硬體實作特性 (例如，應用程式執行於伺服器、桌面還是其他裝置)。
 
 用戶端應用程式會向資源擁有者要求[授權](#authorization)，以參與 [OAuth2 授權授與](#authorization-grant)流程，並可代表資源擁有者存取 API/資料。OAuth2 授權架構會根據用戶端是否能夠維護其認證的機密性，[定義兩種類型的用戶端][OAuth2-Client-Types]：「機密」和「公用」。應用程式可實作在 Web 伺服器上執行的 [Web 用戶端 (機密)](#web-client)、安裝在裝置上的[原生用戶端 (公用)](#native-client)，或在裝置的瀏覽器中執行的[使用者代理程式型用戶端 (公用)](#user-agent-based-client)。
@@ -100,8 +100,8 @@
 ## 權限
 透過宣告權限要求來取得[資源伺服器](#resource-server)存取權的[用戶端應用程式](#client-application)。其可用類型有兩種︰
 
-- 「委派」權限，其可依據登入的[資源擁有者](#resource-owner)的委派授權要求[範圍型](#scopes)存取，而在執行階段會以用戶端[存取權杖](#access-token)中的 ["scp" 宣告](#claim)形式顯示給資源。
-- 「應用程式」權限，其可依據用戶端應用程式的認證/身分識別要求[角色型](#roles)存取，而在執行階段會以用戶端存取權杖中的[「角色」宣告](#claim)形式顯示給資源。
+* 「委派」權限，其可依據登入的[資源擁有者](#resource-owner)的委派授權要求[範圍型](#scopes)存取，而在執行階段會以用戶端[存取權杖](#access-token)中的 ["scp" 宣告](#claim)形式顯示給資源。
+* 「應用程式」權限，其可依據用戶端應用程式的認證/身分識別要求[角色型](#roles)存取，而在執行階段會以用戶端存取權杖中的[「角色」宣告](#claim)形式顯示給資源。
 
 權限也會在[同意](#consent)程序期間出現，讓系統管理員或資源擁有者有機會允許/拒絕用戶端對其租用戶中的資源進行存取。
 
@@ -150,9 +150,9 @@
 ## tenant
 Azure AD 目錄的執行個體會稱為 Azure AD 租用戶。它可提供各種功能，包括︰
 
-- 整合式應用程式的登錄服務
-- 驗證使用者帳戶和已註冊的應用程式
-- 支援各種通訊協定 (包括 OAuth2 和 SAML) 所需的 REST 端點包括[授權端點](#authorization-endpoint)、[權杖端點](#token-endpoint)以及[多租用戶應用程式](#multi-tenant-application)所使用的「通用」端點。
+* 整合式應用程式的登錄服務
+* 驗證使用者帳戶和已註冊的應用程式
+* 支援各種通訊協定 (包括 OAuth2 和 SAML) 所需的 REST 端點包括[授權端點](#authorization-endpoint)、[權杖端點](#token-endpoint)以及[多租用戶應用程式](#multi-tenant-application)所使用的「通用」端點。
 
 租用戶也會在訂用帳戶佈建期間與 Azure AD 或 Office 365 訂用帳戶產生關聯，並提供身分識別的身分識別和存取管理功能。如需各種可存取租用戶之方式的詳細資訊，請參閱[如何取得 Azure Active Directory 租用戶][AAD-How-To-Tenant]。如需訂用帳戶與 Azure AD 租用戶之間關聯性的詳細資訊，請參閱 [Azure 訂用帳戶如何與 Azure Active Directory 產生關聯][AAD-How-Subscriptions-Assoc]。
 

@@ -1,24 +1,23 @@
-<properties 
-	pageTitle="安全地從 App Service 環境連接到後端資源" 
-	description="了解如何安全地從 App Service 環境連接到後端資源。" 
-	services="app-service" 
-	documentationCenter="" 
-	authors="ccompy" 
-	manager="wpickett" 
-	editor=""/>
+---
+title: 安全地從 App Service 環境連接到後端資源
+description: 了解如何安全地從 App Service 環境連接到後端資源。
+services: app-service
+documentationcenter: ''
+author: ccompy
+manager: wpickett
+editor: ''
 
-<tags 
-	ms.service="app-service" 
-	ms.workload="na" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="07/11/2016" 
-	ms.author="stefsch"/>
+ms.service: app-service
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 07/11/2016
+ms.author: stefsch
 
-# 安全地從 App Service 環境連接到後端資源 #
-
-## 概觀 ##
+---
+# 安全地從 App Service 環境連接到後端資源
+## 概觀
 因為 App Service 環境一律會在 Azure Resource Manager 虛擬網路或者傳統式部署模型[虛擬網路][virtualnetwork]兩者之一中建立，從 App Service 環境傳出至其他後端資源的連線可以獨佔方式透過虛擬網路傳送。在 2016 年 6 月所進行的最新變更之後，ASE 也可以部署到使用公用位址範圍或 RFC1918 位址空間 (也就是私人位址) 的虛擬網路。
 
 例如，SQL Server 可能會在已鎖定連接埠 1433 的虛擬機器叢集上執行。此端點可能已納入 ACL，只允許從相同虛擬網路上的其他資源進行存取。
@@ -29,9 +28,9 @@
 
 從 App Service 環境輸出至虛擬網路內端點的流量有一點值得注意。App Service 環境無法連線到與 App Service 環境位於「相同」子網路的虛擬機器端點。只要 App Service 環境是部署到保留給 App Service 環境專用的子網路中，這通常應該不致於構成問題。
 
-[AZURE.INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
+[!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
-## 輸出連線和 DNS 需求 ##
+## 輸出連線和 DNS 需求
 為了讓 App Service 環境正確運作，它需要不同端點的輸出存取權。[ExpressRoute 的網路組態](app-service-app-service-environment-network-configuration-expressroute.md#required-network-connectivity)文章的＜需要的網路連線＞一節中有提供 ASE 所使用的外部端點完整清單。
 
 App Service 環境需要針對虛擬網路設定的有效 DNS 基礎結構。如果 DNS 設定在建立 App Service 環境之後因為任何原因而變更，開發人員可以強制 App Service 環境挑選新的 DNS 組態。使用位於入口網站中 [App Service 環境管理] 刀鋒視窗頂端的 [重新啟動] 圖示觸發輪流環境重新開機，會導致環境挑選新的 DNS 組態。
@@ -45,14 +44,10 @@ App Service 環境需要針對虛擬網路設定的有效 DNS 基礎結構。如
 
 有兩種方法可限制送至此端點的流量：
 
-
-- [網路存取控制清單][NetworkAccessControlLists] \(網路 ACL)
-
-- [網路安全性群組][NetworkSecurityGroups]
-
+* [網路存取控制清單][NetworkAccessControlLists] \(網路 ACL)
+* [網路安全性群組][NetworkSecurityGroups]
 
 ## 利用網路 ACL 限制存取
-
 使用網路存取控制清單可以保護連接埠 1433。下列範例將源自虛擬網路內部的用戶端位址列入白名單，並封鎖對所有其他用戶端的存取。
 
 ![網路存取控制清單範例][NetworkAccessControlListExample]
@@ -79,11 +74,10 @@ App Service 環境需要針對虛擬網路設定的有效 DNS 基礎結構。如
 下列範例將網路安全性群組套用至包含的子網路：
 
     Get-AzureNetworkSecurityGroup -Name "testNSGExample" | Set-AzureNetworkSecurityGroupToSubnet -VirtualNetworkName 'testVNet' -SubnetName 'Subnet-1'
-    
+
 最終結果是一組可封鎖外部存取，同時允許 VNet 內部存取的安全性規則：
 
 ![預設網路安全性規則][DefaultNetworkSecurityRules]
-
 
 ## 開始使用
 您可以在 [應用程式服務環境的讀我檔案](../app-service/app-service-app-service-environments-readme.md)中取得 App Service 環境的所有相關文章與做法。
@@ -94,10 +88,9 @@ App Service 環境需要針對虛擬網路設定的有效 DNS 基礎結構。如
 
 如需有關 Azure App Service 平台的詳細資訊，請參閱 [Azure App Service][AzureAppService]。
 
-[AZURE.INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
+[!INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
 
-[AZURE.INCLUDE [app-service-web-try-app-service](../../includes/app-service-web-try-app-service.md)]
- 
+[!INCLUDE [app-service-web-try-app-service](../../includes/app-service-web-try-app-service.md)]
 
 <!-- LINKS -->
 [virtualnetwork]: https://azure.microsoft.com/documentation/articles/virtual-networks-faq/

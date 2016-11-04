@@ -1,62 +1,60 @@
-<properties 
-    pageTitle="DocumentDB 索引編製原則 | Microsoft Azure" 
-    description="了解 DocumentDB 中索引的運作方式，以及了解如何設定及變更編製索引原則。 設定在 DocumentDB 中的編製索引原則，以便自動編製索引和追求更高效能。" 
-    keywords="編製索引運作方式, 自動編製索引, 為資料庫編製索引, how indexing works, automatic indexing, indexing database, documentdb, azure, Microsoft azure"
-    services="documentdb" 
-    documentationCenter="" 
-    authors="arramac" 
-    manager="jhubbard" 
-    editor="monicar"/>
+---
+title: DocumentDB 索引編製原則 | Microsoft Docs
+description: 了解 DocumentDB 中索引的運作方式，以及了解如何設定及變更編製索引原則。 設定在 DocumentDB 中的編製索引原則，以便自動編製索引和追求更高效能。
+keywords: 編製索引運作方式, 自動編製索引, 為資料庫編製索引, how indexing works, automatic indexing, indexing database, documentdb, azure, Microsoft azure
+services: documentdb
+documentationcenter: ''
+author: arramac
+manager: jhubbard
+editor: monicar
 
-<tags 
-    ms.service="documentdb" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.tgt_pltfrm="na" 
-    ms.workload="data-services" 
-    ms.date="08/08/2016" 
-    ms.author="arramac"/>
+ms.service: documentdb
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: data-services
+ms.date: 08/08/2016
+ms.author: arramac
 
-
-
+---
 # <a name="documentdb-indexing-policies"></a>DocumentDB 索引編製原則
-
 雖然許多客戶都很樂意讓 Azure DocumentDB 自動處理 [索引編製的所有層面](documentdb-indexing.md)，但是 DocumentDB 也支援在建立期間指定集合的自訂 **索引編製原則** 。 相較於其他資料庫平台所提供的次要索引，DocumentDB 中的索引編製原則在彈性和功能上都更為強大，因為後者可讓您設計和自訂索引的圖形，而不會犧牲結構描述的靈活度。 若要了解索引如何在 DocumentDB 內運作，您必須了解透過管理編製索引原則，在索引儲存空間負荷、寫入和查詢的輸送量，以及查詢一致性之間進行細微的取捨。  
 
 在本文中，我們會深入探討 DocumentDB 索引編製原則、自訂索引編製原則的方式，以及相關聯的取捨。 
 
 閱讀本文後，您將能夠回答下列問題：
 
-- 如何覆寫要在索引編製中包含或排除的屬性？
-- 我要如何設定最終更新的索引？
-- 如何設定索引編製來執行 Order By 或範圍查詢？
-- 如何變更集合的索引編製原則？
-- 如何比較不同索引編製原則的儲存空間和效能？
+* 如何覆寫要在索引編製中包含或排除的屬性？
+* 我要如何設定最終更新的索引？
+* 如何設定索引編製來執行 Order By 或範圍查詢？
+* 如何變更集合的索引編製原則？
+* 如何比較不同索引編製原則的儲存空間和效能？
 
-##<a name="<a-id="customizingindexingpolicy"></a>-customizing-the-indexing-policy-of-a-collection"></a><a id="CustomizingIndexingPolicy"></a> 自訂集合的索引編製原則
-
+## <a name="<a-id="customizingindexingpolicy"></a>-customizing-the-indexing-policy-of-a-collection"></a><a id="CustomizingIndexingPolicy"></a> 自訂集合的索引編製原則
 開發人員可以透過覆寫 DocumentDB 集合上的預設索引編製原則，並設定下列各方面，以自訂儲存空間、寫入/查詢效能，以及查詢一致性之間的取捨。
 
-- **在索引中包含/排除文件和路徑**。 開發人員可以在集合中插入或取代文件時，選擇要在索引中排除或包含的特定文件。 開發人員也可以選擇要包含或排除特定 JSON 屬性 (亦稱為 路徑，包括萬用字元模式)，以便跨索引中包含的文件編製索引。
-- **設定各種索引類型**。 開發人員也可以針對每個包含的路徑，根據其資料和預期的查詢工作負載以及每個路徑的數值/字串「精確度」，指定它們在集合上所需的索引類型。
-- **設定索引更新模式**。 DocumentDB 支援三個索引編製模式，這些模式可以透過 DocumentDB 集合的索引編製原則設定：[一致]、[延遲] 和 [無]。 
+* **在索引中包含/排除文件和路徑**。 開發人員可以在集合中插入或取代文件時，選擇要在索引中排除或包含的特定文件。 開發人員也可以選擇要包含或排除特定 JSON 屬性 (亦稱為 路徑，包括萬用字元模式)，以便跨索引中包含的文件編製索引。
+* **設定各種索引類型**。 開發人員也可以針對每個包含的路徑，根據其資料和預期的查詢工作負載以及每個路徑的數值/字串「精確度」，指定它們在集合上所需的索引類型。
+* **設定索引更新模式**。 DocumentDB 支援三個索引編製模式，這些模式可以透過 DocumentDB 集合的索引編製原則設定：[一致]、[延遲] 和 [無]。 
 
 下列.NET 程式碼片段示範如何在集合建立期間設定自訂索引原則。 在這裡，我們會以最大精確度及字串和數字的範圍索引來設定原則。 此原則可讓我們對字串執行 Order By 查詢。
 
     DocumentCollection collection = new DocumentCollection { Id = "myCollection" };
-    
+
     collection.IndexingPolicy = new IndexingPolicy(new RangeIndex(DataType.String) { Precision = -1 });
     collection.IndexingPolicy.IndexingMode = IndexingMode.Consistent;
-    
+
     await client.CreateDocumentCollectionAsync(UriFactory.CreateDatabaseUri("db"), collection);   
 
 
->[AZURE.NOTE] 索引編製原則的 JSON 結構描述已隨著 REST API 2015-06-03 版的發行而變更，以支援字串的範圍索引。 .NET SDK 1.2.0 及 Java、Python 和 Node.js SDKs 1.1.0 支援新的原則結構描述。 較舊的 SDK 使用 REST API 2015-04-08 版，並支援舊版的索引編製原則結構描述。
->
->根據預設，DocumentDB 會使用雜湊索引為文件內的所有字串屬性一致地編製索引，並使用範圍索引為數值屬性編製索引。  
+> [!NOTE]
+> 索引編製原則的 JSON 結構描述已隨著 REST API 2015-06-03 版的發行而變更，以支援字串的範圍索引。 .NET SDK 1.2.0 及 Java、Python 和 Node.js SDKs 1.1.0 支援新的原則結構描述。 較舊的 SDK 使用 REST API 2015-04-08 版，並支援舊版的索引編製原則結構描述。
+> 
+> 根據預設，DocumentDB 會使用雜湊索引為文件內的所有字串屬性一致地編製索引，並使用範圍索引為數值屬性編製索引。  
+> 
+> 
 
 ### <a name="database-indexing-modes"></a>資料庫編製索引模式
-
 DocumentDB 支援三個索引編製模式，這些模式可以透過 DocumentDB 集合的索引編製原則設定：[一致]、[延遲] 和 [無]。
 
 **一致**：如果 DocumentDB 集合的原則指定為「一致」，指定 DocumentDB 集合上的查詢會依照與針對讀數所指定的相同一致性層級 (也就是「增強式」、「界限-陳舊」、「工作階段」和「最終」) 進行。 索引會在文件更新 (亦即，在 DocumentDB 集合中插入、取代、更新和刪除文件) 時同步更新。  一致的索引編製支援一致的查詢，但代價可能是減少寫入輸送量。 這指的是減少需要編製索引的唯一路徑以及「一致性層級」的功能。 一致的索引編製模式是針對「快速寫入、立即查詢」工作負載而設計。
@@ -65,7 +63,10 @@ DocumentDB 支援三個索引編製模式，這些模式可以透過 DocumentDB 
 
 **無**：標示為「無」索引模式的集合沒有任何與其相關聯的索引。 如果將 DocumentDB 做為索引鍵-值儲存體，且只能依據文件的 ID 屬性來存取文件，便常會使用此選項。 
 
->[AZURE.NOTE] 將索引編製原則設定為「無」時，對於捨棄任何現有的索引具有副作用。 如果您的存取模式只需要「識別碼」及/或「自我連結」，請使用此選項。
+> [!NOTE]
+> 將索引編製原則設定為「無」時，對於捨棄任何現有的索引具有副作用。 如果您的存取模式只需要「識別碼」及/或「自我連結」，請使用此選項。
+> 
+> 
 
 下列範例示範如何搭配使用 .NET SDK 與一致自動編製索引，以在插入所有文件時建立 DocumentDB 集合。
 
@@ -263,16 +264,15 @@ DocumentDB 會針對在集合上所進行、且索引模式為 [無] 的查詢�
      // Default collection creates a hash index for all string and numeric    
      // fields. Hash indexes are compact and offer efficient
      // performance for equality queries.
-     
+
      var collection = new DocumentCollection { Id ="defaultCollection" };
-     
+
      collection.IndexingPolicy.IndexingMode = IndexingMode.Consistent;
-     
+
      collection = await client.CreateDocumentCollectionAsync(UriFactory.CreateDatabaseUri("mydb"), collection);
 
 
 ### <a name="index-paths"></a>索引路徑
-
 DocumentDB 會將 JSON 文件和索引塑造為樹狀結構，並可讓您調整為樹狀結構中的路徑原則。 如需更多詳細資料，請參閱本 [DocumentDB 索引編製簡介](documentdb-indexing.md)。 您可以選擇編製索引時必須包含或排除文件內的哪些路徑。 針對事先知道查詢模式的情況，這將可改善寫入效能並降低索引儲存。
 
 索引路徑的開頭為根 (/)，且通常結尾為 ? 萬用字元運算子，代表有多個可能的首碼值。 例如，若要為 SELECT * FROM Families F WHERE F.familyName = "Andersen" 提供服務，您必須在集合的索引原則中包含 /familyName/? 的索引路徑。
@@ -392,12 +392,15 @@ SELECT * FROM collection c ORDER BY c.prop.subprop </p>
     </tbody>
 </table>
 
->[AZURE.NOTE] 設定自訂的索引路徑時，您必須為由特殊路徑 "/" 所表示的整份文件樹狀目錄指定預設的索引規則。 
+> [!NOTE]
+> 設定自訂的索引路徑時，您必須為由特殊路徑 "/" 所表示的整份文件樹狀目錄指定預設的索引規則。 
+> 
+> 
 
 下列範例會設定一個採用範圍索引編製且自訂的有效位數值為 20 個位元組：
 
     var collection = new DocumentCollection { Id = "rangeSinglePathCollection" };    
-    
+
     collection.IndexingPolicy.IncludedPaths.Add(
         new IncludedPath { 
             Path = "/Title/?", 
@@ -414,30 +417,31 @@ SELECT * FROM collection c ORDER BY c.prop.subprop </p>
                 new RangeIndex(DataType.Number) { Precision = -1 } 
             }
         });
-        
+
     collection = await client.CreateDocumentCollectionAsync(UriFactory.CreateDatabaseUri("db"), pathRange);
 
 
 ### <a name="index-data-types,-kinds-and-precisions"></a>索引資料類型、類型和精確度
-
 探討如何指定路徑之後，讓我們看看我們可以使用那些選項來設定路徑的編製索引原則。 您可以為每個路徑指定一或多個編製索引的定義：
 
-- 資料類型：**字串**、**數字** 或 **點** (每個路徑每個資料類型只能包含一個項目)。 私人預覽中支援**多邊形**和 **LineString**
-- 索引類型：**雜湊** (相等查詢)、**範圍** (相等、範圍或 Order By 查詢) 或**空間** (空間查詢) 
-- 精確度：數字為 1-8 或 -1 (最大精確度)；字串為 1-100 (最大精確度)
+* 資料類型：**字串**、**數字** 或 **點** (每個路徑每個資料類型只能包含一個項目)。 私人預覽中支援**多邊形**和 **LineString**
+* 索引類型：**雜湊** (相等查詢)、**範圍** (相等、範圍或 Order By 查詢) 或**空間** (空間查詢) 
+* 精確度：數字為 1-8 或 -1 (最大精確度)；字串為 1-100 (最大精確度)
 
 #### <a name="index-kind"></a>索引類型
-
 DocumentDB 支援每個路徑的雜湊和範圍索引種類 (可針對字串、數字或兩者進行設定)。
 
-- **雜湊** 支援有效率的相等查詢和 JOIN 查詢。 針對大多數使用案例，雜湊索引並不需要比預設值 (3 個位元組) 更高的精確度。
-- **範圍**支援有效率的相等查詢、範圍查詢 (使用 >、<、>=、<=、!=) 和 Order By 查詢。 根據預設，Order By 查詢也需要最大索引精確度 (-1)。
+* **雜湊** 支援有效率的相等查詢和 JOIN 查詢。 針對大多數使用案例，雜湊索引並不需要比預設值 (3 個位元組) 更高的精確度。
+* **範圍**支援有效率的相等查詢、範圍查詢 (使用 >、<、>=、<=、!=) 和 Order By 查詢。 根據預設，Order By 查詢也需要最大索引精確度 (-1)。
 
 DocumentDB 也支援每個路徑的空間索引類型 (可針對點資料類型加以指定)。 位於指定路徑的值必須是有效的 GeoJSON 點，例如 `{"type": "Point", "coordinates": [0.0, 10.0]}`。
 
-- **空間** 支援有效率的空間 (內部和距離) 查詢。
+* **空間** 支援有效率的空間 (內部和距離) 查詢。
 
->[AZURE.NOTE] DocumentDB 支援點、多邊形 (私人預覽) 和 Linestring (私人預覽) 的自動編製索引。 若要存取預覽，請寄送電子郵件到 askdocdb@microsoft.com,，或透過 Azure 支援與我們連絡。
+> [!NOTE]
+> DocumentDB 支援點、多邊形 (私人預覽) 和 Linestring (私人預覽) 的自動編製索引。 若要存取預覽，請寄送電子郵件到 askdocdb@microsoft.com,，或透過 Azure 支援與我們連絡。
+> 
+> 
 
 以下是支援的索引種類和可用來處理的查詢的範例：
 
@@ -493,7 +497,6 @@ Range over /prop/? (or /*) 可用來有效率地處理下列查詢：SELECT * FR
 相同的規則適用於空間查詢。 根據預設，如果沒有空間索引，而且沒有可從索引提供服務的其他篩選，則會針對空間查詢傳回錯誤。 您可以使用 x-ms-documentdb-enable-scan/EnableScanInQuery 將它們執行為掃描。
 
 #### <a name="index-precision"></a>索引精確度
-
 索引精確度可讓您在索引儲存空間額外負荷和查詢效能之間取捨。 對於數字，建議使用預設精準度組態 -1 (「最大值」)。 因為數字在 JSON 中為 8 個位元組，相當於 8 個位元組的組態。 挑選較低值的精準度，例如 1-7，表示在某個範圍內的值可對應至相同的索引項目。 因此，您將會減少索引儲存空間，但查詢執行可能必須處理更多文件，並且耗用更多輸送量，也就是要求單位。
 
 索引精準度組態對於字串範圍有更實際的應用。 因為字串可以是任意長度，索引精準度的選擇可能會影響字串範圍查詢的效能，並影響所需的索引儲存空間量。 字串範圍索引可以設定為 1-100 或 -1 (「最大值」)。 如果您想要針對字串屬性執行 Order By 查詢，則必須為對應的路徑，將精確度指定為 -1。
@@ -505,27 +508,29 @@ Range over /prop/? (or /*) 可用來有效率地處理下列查詢：SELECT * FR
 **使用自訂索引精確度建立集合**
 
     var rangeDefault = new DocumentCollection { Id = "rangeCollection" };
-    
+
     // Override the default policy for Strings to range indexing and "max" (-1) precision
     rangeDefault.IndexingPolicy = new IndexingPolicy(new RangeIndex(DataType.String) { Precision = -1 });
 
     await client.CreateDocumentCollectionAsync(UriFactory.CreateDatabaseUri("db"), rangeDefault);   
 
 
-> [AZURE.NOTE] 當查詢使用 Order By，但沒有針對所查詢之路徑的最大精確度的範圍索引時，DocumentDB 就會傳回錯誤。 
+> [!NOTE]
+> 當查詢使用 Order By，但沒有針對所查詢之路徑的最大精確度的範圍索引時，DocumentDB 就會傳回錯誤。 
+> 
+> 
 
 同樣地，可以從索引編製完全排除路徑。 下一個範例示範如何使用 "*" 萬用字元將文件 (也稱為 樹狀子目錄) 的整個區段自索引編製作業中排除。
 
     var collection = new DocumentCollection { Id = "excludedPathCollection" };
     collection.IndexingPolicy.IncludedPaths.Add(new IncludedPath { Path = "/*" });
     collection.IndexingPolicy.ExcludedPaths.Add(new ExcludedPath { Path = "/nonIndexedContent/*");
-    
+
     collection = await client.CreateDocumentCollectionAsync(UriFactory.CreateDatabaseUri("db"), excluded);
 
 
 
 ## <a name="opting-in-and-opting-out-of-indexing"></a>開啟和關閉索引編製
-
 您可以選擇是否要讓集合自動編製所有文件的索引。 根據預設，會自動索引所有文件，但您可以選擇將它關閉。 關閉索引編製功能時，便只能透過文件自己的連結或使用識別碼透過查詢來存取文件。
 
 在關閉自動索引編製功能的情況下，您仍然可以選擇性地只將特定的文件新增到索引中。 相反地，您也可以讓自動索引編製功能保持開啟，並選擇性地只排除特定的文件。 當您只需要查詢文件的子集時，索引編製功能開/關組態相當有用。
@@ -540,7 +545,6 @@ Range over /prop/? (or /*) 可用來有效率地處理下列查詢：SELECT * FR
         new RequestOptions { IndexingDirective = IndexingDirective.Include });
 
 ## <a name="modifying-the-indexing-policy-of-a-collection"></a>修改集合的索引編製原則
-
 DocumentDB 可讓您即時對集合的索引編製原則進行變更。 DocumentDB 集合的索引編製原則如有變更，可能會導致索引圖形變更，包括可以編製索引的路徑、其精確度，以及索引本身的一致性模型。 因此，索引編製原則變更時，需要將舊的索引有效率地轉換成新的索引。 
 
 **線上索引轉換**
@@ -557,8 +561,8 @@ DocumentDB 可讓您即時對集合的索引編製原則進行變更。 Document
 
 不過，您可以在轉換進行時，移到「延遲」或「無」索引編製模式。 
 
-- 當您移到「延遲」時，所進行的索引原則變更會立即生效，而且 DocumentDB 會開始以非同步方式重新建立索引。 
-- 當您移到「無」時，索引會立即失效。 當您想要取消進行中的轉換，並重新開始其他索引編製原則時，移至「無」相當實用。 
+* 當您移到「延遲」時，所進行的索引原則變更會立即生效，而且 DocumentDB 會開始以非同步方式重新建立索引。 
+* 當您移到「無」時，索引會立即失效。 當您想要取消進行中的轉換，並重新開始其他索引編製原則時，移至「無」相當實用。 
 
 如果您要使用 .NET SDK，可以使用新的 **ReplaceDocumentCollectionAsync** 方法，開始進行索引編製原則變更，並使用 **ReadDocumentCollectionAsync** 呼叫中的 **IndexTransformationProgress** 回應屬性，追蹤索引轉換進度百分比。 其他 SDK 和 REST API 支援對等屬性和方法，以進行索引編製原則變更。
 
@@ -604,17 +608,19 @@ DocumentDB 可讓您即時對集合的索引編製原則進行變更。 Document
 
 您什麼時候會對 DocumentDB 集合進行索引編製原則變更？ 以下是最常見的使用案例：
 
-- 在正常操作期間提供一致的結果，但在大量資料匯入期間，改回延遲索引編製
-- 開始使用目前 DocumentDB 集合上的新索引編製功能，例如需要空間索引類型的地理空間查詢，或者需要字串範圍索引類型的 Order By/字串範圍查詢
-- 手動選取要編製索引的屬性，並在一段時間後變更
-- 調整索引編製精確度，以改善查詢效能或減少耗用的儲存空間
+* 在正常操作期間提供一致的結果，但在大量資料匯入期間，改回延遲索引編製
+* 開始使用目前 DocumentDB 集合上的新索引編製功能，例如需要空間索引類型的地理空間查詢，或者需要字串範圍索引類型的 Order By/字串範圍查詢
+* 手動選取要編製索引的屬性，並在一段時間後變更
+* 調整索引編製精確度，以改善查詢效能或減少耗用的儲存空間
 
->[AZURE.NOTE] 若要使用 ReplaceDocumentCollectionAsync 修改索引編製原則，您需要 .NET SDK 1.3.0 版或更新版本
->
+> [!NOTE]
+> 若要使用 ReplaceDocumentCollectionAsync 修改索引編製原則，您需要 .NET SDK 1.3.0 版或更新版本
+> 
 > 為使索引轉換順利完成，您必須確定集合上有足夠的可用儲存空間。 如果集合已達到其儲存配額，將會暫停索引轉換。 一旦有可用的儲存空間 (例如您刪除某些文件)，索引轉換會自動繼續。
+> 
+> 
 
 ## <a name="performance-tuning"></a>效能微調
-
 DocumentDB API 會提供效能度量 (像是已使用的索引儲存體)，以及每個作業的輸送量成本 (要求單位) 等相關資訊。 這項資訊可以用來比較各種編製索引的原則以及用來微調效能。
 
 若要檢查集合的儲存體配額和使用量，請對集合資源執行 HEAD 或 GET 要求，並檢查 x-ms-request-quota 和 x-ms-request-usage 標頭。 在 .NET SDK 中，[ResourceResponse<T\>](http://msdn.microsoft.com/library/dn799209.aspx) 中的 [DocumentSizeQuota](http://msdn.microsoft.com/library/dn850325.aspx) 和 [DocumentSizeUsage](http://msdn.microsoft.com/library/azure/dn850324.aspx) 屬性包含這些對應的值。
@@ -630,7 +636,7 @@ DocumentDB API 會提供效能度量 (像是已使用的索引儲存體)，以�
      // Measure the performance (request units) of writes.     
      ResourceResponse<Document> response = await client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri("db", "coll"), myDocument);              
      Console.WriteLine("Insert of document consumed {0} request units", response.RequestCharge);
-     
+
      // Measure the performance (request units) of queries.    
      IDocumentQuery<dynamic> queryable =  client.CreateDocumentQuery(UriFactory.CreateDocumentCollectionUri("db", "coll"), queryString).AsDocumentQuery();
 
@@ -641,7 +647,7 @@ DocumentDB API 會提供效能度量 (像是已使用的索引儲存體)，以�
         Console.WriteLine("Query batch consumed {0} request units",queryResponse.RequestCharge);
         totalRequestCharge += queryResponse.RequestCharge;
      }
-     
+
      Console.WriteLine("Query consumed {0} request units in total", totalRequestCharge);
 
 ## <a name="changes-to-the-indexing-policy-specification"></a>索引編製原則規格的變更
@@ -649,11 +655,11 @@ DocumentDB API 會提供效能度量 (像是已使用的索引儲存體)，以�
 
 在 JSON 規格中實作下列變更：
 
-- 索引編製原則支援字串的範圍索引
-- 每個路徑可以有多個索引定義，一個定義用於一種資料類型
-- 索引編製精確度針對數字支援 1-8、針對字串支援 1-100 和支援 -1 (最大精確度)
-- 路徑區段不需要雙引號來逸出每個路徑。 例如，您可以針對 /title/? 新增路徑，而不是 /"title"/?
-- 代表「所有路徑」的根路徑可以表示為 /* (除了 / 以外)
+* 索引編製原則支援字串的範圍索引
+* 每個路徑可以有多個索引定義，一個定義用於一種資料類型
+* 索引編製精確度針對數字支援 1-8、針對字串支援 1-100 和支援 -1 (最大精確度)
+* 路徑區段不需要雙引號來逸出每個路徑。 例如，您可以針對 /title/? 新增路徑，而不是 /"title"/?
+* 代表「所有路徑」的根路徑可以表示為 /* (除了 / 以外)
 
 如果您有程式碼，會佈建具有以 .NET SDK 1.1.0 版或較舊的版本撰寫的自訂索引編製原則的集合，您必須變更您的應用程式程式碼，處理這些變更以移至 SDK 1.2.0 版。 如果您沒有會設定索引編製原則的程式碼，或打算繼續使用舊的 SDK 版本，則不需要任何變更。
 
@@ -707,17 +713,11 @@ DocumentDB API 會提供效能度量 (像是已使用的索引儲存體)，以�
     }
 
 ## <a name="next-steps"></a>後續步驟
-
 請遵循下列連結以取得索引原則管理範例，以及深入了解 DocumentDB 的查詢語言。
 
-1.  [DocumentDB .NET 索引管理程式碼範例](https://github.com/Azure/azure-documentdb-net/blob/master/samples/code-samples/IndexManagement/Program.cs)
-2.  [DocumentDB REST API 集合作業](https://msdn.microsoft.com/library/azure/dn782195.aspx)
-3.  [使用 DocumentDB SQL 進行查詢](documentdb-sql-query.md)
-
- 
-
-
-
+1. [DocumentDB .NET 索引管理程式碼範例](https://github.com/Azure/azure-documentdb-net/blob/master/samples/code-samples/IndexManagement/Program.cs)
+2. [DocumentDB REST API 集合作業](https://msdn.microsoft.com/library/azure/dn782195.aspx)
+3. [使用 DocumentDB SQL 進行查詢](documentdb-sql-query.md)
 
 <!--HONumber=Oct16_HO2-->
 

@@ -1,49 +1,47 @@
-<properties
-	pageTitle="Azure Functions HTTP 和 Webhook 繫結 | Microsoft Azure"
-	description="了解如何在 Azure Functions 中使用 HTTP 和 Webhook 觸發程序與繫結。"
-	services="functions"
-	documentationCenter="na"
-	authors="christopheranderson"
-	manager="erikre"
-	editor=""
-	tags=""
-	keywords="azure functions, 函式, 事件處理, webhook, 動態計算, 無伺服器架構"/>
+---
+title: Azure Functions HTTP 和 Webhook 繫結 | Microsoft Docs
+description: 了解如何在 Azure Functions 中使用 HTTP 和 Webhook 觸發程序與繫結。
+services: functions
+documentationcenter: na
+author: christopheranderson
+manager: erikre
+editor: ''
+tags: ''
+keywords: azure functions, 函式, 事件處理, webhook, 動態計算, 無伺服器架構
 
-<tags
-	ms.service="functions"
-	ms.devlang="multiple"
-	ms.topic="reference"
-	ms.tgt_pltfrm="multiple"
-	ms.workload="na"
-	ms.date="08/22/2016"
-	ms.author="chrande"/>
+ms.service: functions
+ms.devlang: multiple
+ms.topic: reference
+ms.tgt_pltfrm: multiple
+ms.workload: na
+ms.date: 08/22/2016
+ms.author: chrande
 
+---
 # Azure Functions HTTP 和 Webhook 繫結
-
-[AZURE.INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
+[!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
 這篇文章說明如何在 Azure Functions 中為 HTTP 和 Webhook 觸發程序與繫結進行設定及撰寫程式碼。
 
-[AZURE.INCLUDE [簡介](../../includes/functions-bindings-intro.md)]
+[!INCLUDE [簡介](../../includes/functions-bindings-intro.md)]
 
 ## HTTP 和 Webhook 繫結的 function.json
-
 「function.json」檔案會提供要求和回應的相關內容。
 
 HTTP 要求的屬性︰
 
-- `name`︰函式程式碼中用於要求物件 (或是在 Node.js 函式的情況下，則是要求本文) 的變數名稱。
-- `type`︰必須設定為「httpTrigger」。
-- `direction`：必須設為「in」。
-- `webHookType`︰就 WebHook 觸發程序而言，有效值為「github」、「slack」及「genericJson」。對於非 WebHook 的 HTTP 觸發程序，會將這個屬性設為空字串。如需有關 Webhook 的詳細資訊，請參閱接下來的 [WebHook 觸發程序](#webhook-triggers)一節。
-- `authLevel`︰不適用於 WebHook 觸發程序。設定為 [function] 要求 API 金鑰、[anonymous] 以拖放 API 金鑰需求，或 [admin] 要求主要 API 金鑰。如需詳細資訊，請參閱 [API 金鑰](#apikeys)。
+* `name`︰函式程式碼中用於要求物件 (或是在 Node.js 函式的情況下，則是要求本文) 的變數名稱。
+* `type`︰必須設定為「httpTrigger」。
+* `direction`：必須設為「in」。
+* `webHookType`︰就 WebHook 觸發程序而言，有效值為「github」、「slack」及「genericJson」。對於非 WebHook 的 HTTP 觸發程序，會將這個屬性設為空字串。如需有關 Webhook 的詳細資訊，請參閱接下來的 [WebHook 觸發程序](#webhook-triggers)一節。
+* `authLevel`︰不適用於 WebHook 觸發程序。設定為 [function] 要求 API 金鑰、[anonymous] 以拖放 API 金鑰需求，或 [admin] 要求主要 API 金鑰。如需詳細資訊，請參閱 [API 金鑰](#apikeys)。
 
 HTTP 回應的屬性︰
 
-- `name`︰函式程式碼中用於回應物件的變數名稱。
-- `type`：必須設定為「http」。
-- `direction`：必須設為「out」。
- 
+* `name`︰函式程式碼中用於回應物件的變數名稱。
+* `type`：必須設定為「http」。
+* `direction`：必須設為「out」。
+
 範例「function.json」：
 
 ```json
@@ -67,7 +65,6 @@ HTTP 回應的屬性︰
 ```
 
 ## WebHook 觸發程序
-
 WebHook 觸發程序是一種 HTTP 觸發程序，具有下列專為 Webhook 而設計的功能︰
 
 * 對於特定 WebHook 提供者 (目前支援 GitHub 和 Slack)，Functions 執行階段會驗證提供者的簽章。
@@ -77,7 +74,6 @@ WebHook 觸發程序是一種 HTTP 觸發程序，具有下列專為 Webhook 而
 如需有關如何設定 GitHub WebHook 的資訊，請參閱 [GitHub 開發人員 - 建立 Webhook](http://go.microsoft.com/fwlink/?LinkID=761099&clcid=0x409)。
 
 ## 用來觸發函數的 URL
-
 若要觸發函數，您需傳送 HTTP 要求給 URL，此要求是函數應用程式 URL 與函數名稱的組合：
 
 ```
@@ -85,7 +81,6 @@ WebHook 觸發程序是一種 HTTP 觸發程序，具有下列專為 Webhook 而
 ```
 
 ## API 金鑰
-
 根據預設，API 金鑰必須包含在 HTTP 要求之中，才能觸發 HTTP 或 WebHook 函式。金鑰可以包含在名為 `code` 的查詢字串變數中，或包含在 `x-functions-key` HTTP 標頭。對於非 WebHook 函式，您可以在 function.json 檔案中將 `authLevel` 屬性設為 [anonymous]，以將 API 金鑰指定為非必要。
 
 您可以在函式應用程式的檔案系統中，於 D:\\home\\data\\Functions\\secrets 中找到 API 金鑰值。主要金鑰和函式金鑰均設定於 host.json 檔案之中，如此範例所示。
@@ -107,10 +102,12 @@ host.json 的函式鍵可用來觸發任何函式，但不會觸發已停用的�
 }
 ```
 
-> [AZURE.NOTE] 設定 WebHook 觸發程序時，請不要與 WebHook 提供者共用主要金鑰。使用只適用於處理 WebHook 的函式。主要金鑰可用來觸發任何函式，即使已停用的函式亦然。
+> [!NOTE]
+> 設定 WebHook 觸發程序時，請不要與 WebHook 提供者共用主要金鑰。使用只適用於處理 WebHook 的函式。主要金鑰可用來觸發任何函式，即使已停用的函式亦然。
+> 
+> 
 
-## HTTP 觸發程序函式的 C# 程式碼範例 
-
+## HTTP 觸發程序函式的 C# 程式碼範例
 程式碼範例會尋找 `name` 參數，其位於查詢字串或 HTTP 要求的主體。
 
 ```csharp
@@ -139,7 +136,6 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
 ```
 
 ## HTTP 觸發程序函式的 F# 程式碼範例
-
 程式碼範例會尋找 `name` 參數，其位於查詢字串或 HTTP 要求的主體。
 
 ```fsharp
@@ -181,8 +177,7 @@ let Run(req: HttpRequestMessage) =
 
 這會使用 NuGet 來擷取相依性，並會在指令碼中加以參考。
 
-## HTTP 觸發程序函式的 Node.js 程式碼範例 
-
+## HTTP 觸發程序函式的 Node.js 程式碼範例
 此程式碼範例會尋找 `name` 參數，其位於查詢字串或 HTTP 要求的主體。
 
 ```javascript
@@ -205,8 +200,7 @@ module.exports = function(context, req) {
 };
 ```
 
-## GitHub WebHook 函式的 C# 程式碼範例 
-
+## GitHub WebHook 函式的 C# 程式碼範例
 此程式碼範例會記錄 GitHub 問題註解。
 
 ```csharp
@@ -231,7 +225,6 @@ public static async Task<object> Run(HttpRequestMessage req, TraceWriter log)
 ```
 
 ## GitHub WebHook 函式的 F# 程式碼範例
-
 此程式碼範例會記錄 GitHub 問題註解。
 
 ```fsharp
@@ -255,8 +248,7 @@ let Run(req: HttpRequestMessage, log: TraceWriter) =
     } |> Async.StartAsTask
 ```
 
-## GitHub WebHook 函式的 Node.js 程式碼範例 
-
+## GitHub WebHook 函式的 Node.js 程式碼範例
 此程式碼範例會記錄 GitHub 問題註解。
 
 ```javascript
@@ -268,7 +260,6 @@ module.exports = function (context, data) {
 ```
 
 ## 後續步驟
-
-[AZURE.INCLUDE [後續步驟](../../includes/functions-bindings-next-steps.md)]
+[!INCLUDE [後續步驟](../../includes/functions-bindings-next-steps.md)]
 
 <!---HONumber=AcomDC_0921_2016-->

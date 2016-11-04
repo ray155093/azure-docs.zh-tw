@@ -1,25 +1,23 @@
-<properties
-    pageTitle="Resource Manager 模式中的 Azure CLI 命令 | Microsoft Azure"
-    description="在 Resource Manager 部署模型中管理資源的 Azure 命令列介面 (CLI) 命令"
-    services="virtual-machines-linux,virtual-machines-windows,virtual-network,mobile-services,cloud-services"
-    documentationCenter=""
-    authors="dlepow"
-    manager="timlt"
-    editor=""
-    tags="azure-resource-manager"/>
+---
+title: Resource Manager 模式中的 Azure CLI 命令 | Microsoft Docs
+description: 在 Resource Manager 部署模型中管理資源的 Azure 命令列介面 (CLI) 命令
+services: virtual-machines-linux,virtual-machines-windows,virtual-network,mobile-services,cloud-services
+documentationcenter: ''
+author: dlepow
+manager: timlt
+editor: ''
+tags: azure-resource-manager
 
-<tags
-    ms.service="multiple"
-    ms.workload="multiple"
-    ms.tgt_pltfrm="command-line-interface"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/05/2016"
-    ms.author="danlep"/>
+ms.service: multiple
+ms.workload: multiple
+ms.tgt_pltfrm: command-line-interface
+ms.devlang: na
+ms.topic: article
+ms.date: 08/05/2016
+ms.author: danlep
 
-
+---
 # <a name="azure-cli-commands-in-resource-manager-mode"></a>Resource Manager 模式中的 Azure CLI 命令
-
 本文提供在 Azure Resource Manager 部署模型中建立和管理 Azure 資源時，常用的 Azure 命令列介面 (CLI) 命令的語法和選項。 您可以在 Resource Manager (ARM) 模式中執行 CLI 來存取這些命令。 這不是完整的參考，您的 CLI 版本可能會顯示稍微不同的命令或參數。 如需 Azure 資源及資源群組的一般概觀，請參閱 [Azure Resource Manager 概觀](../resource-group-overview.md)。  
 
 若要開始，首先[安裝 Azure CLI](../xplat-cli-install.md)，並使用工作或學校帳戶或 Microsoft 帳戶身分識別[連接到 Azure 訂用帳戶](../xplat-cli-connect.md)。
@@ -31,13 +29,14 @@
 除了本文所述的命令特定選用參數，還有三個選用參數可用來顯示詳細輸出，例如要求選項和狀態碼。 `-v` 參數提供詳細資訊輸出，而 `-vv` 參數提供更詳細的詳細資訊輸出。 `--json` 選項將以原始 json 格式輸出結果。
 
 ## <a name="setting-the-resource-manager-mode"></a>設定 Resource Manager 模式
-
 如有需要，請使用下列命令來啟用 Azure CLI Resource Manager 模式的命令。
 
     azure config mode arm
 
->[AZURE.NOTE] CLI 的 Azure Resource Manager 模式與 Azure 服務管理模式是互斥的。 亦即，任一模式所建立的資源，將無法由另一種模式來管理。
-
+> [!NOTE]
+> CLI 的 Azure Resource Manager 模式與 Azure 服務管理模式是互斥的。 亦即，任一模式所建立的資源，將無法由另一種模式來管理。
+> 
+> 
 
 ## <a name="azure-account:-manage-your-account-information"></a>azure account：用來管理帳戶資訊
 此工具會使用您的 Azure 訂閱資訊來連線至您的帳戶。
@@ -67,7 +66,6 @@
     account env delete [options] [environment]
 
 ## <a name="azure-ad:-commands-to-display-active-directory-objects"></a>azure ad：用來顯示 Active Directory 物件的命令
-
 **用來顯示 Active Directory 應用程式的命令**
 
     ad app create [options]
@@ -95,7 +93,6 @@
     ad user show [options]
 
 ## <a name="azure-availset:-commands-to-manage-your-availability-sets"></a>azure availset：用來管理可用性設定組的命令
-
 **在資源群組內建立可用性設定組**
 
     availset create [options] <resource-group> <name> <location> [tags]
@@ -113,7 +110,6 @@
     availset delete [options] <resource-group> <name>
 
 ## <a name="azure-config:-commands-to-manage-your-local-settings"></a>azure config：用來管理本機設定的命令
-
 **列出 Azure CLI 組態設定**
 
     config list [options]
@@ -132,7 +128,6 @@
 
 
 ## <a name="azure-feature:-commands-to-manage-account-features"></a>azure feature：用來管理帳戶功能的命令
-
 **列出您訂用帳戶可用的所有功能**
 
     feature list [options]
@@ -146,7 +141,6 @@
     feature register [options] <providerName> <featureName>
 
 ## <a name="azure-group:-commands-to-manage-your-resource-groups"></a>azure group：用來管理資源群組的命令
-
 **建立資源群組**
 
     group create [options] <name> <location>
@@ -186,7 +180,6 @@
     group template validate [options] <resource-group>
 
 ## <a name="azure-hdinsight:-commands-to-manage-your-hdinsight-clusters"></a>azure hdinsight：用來管理 HDInsight 叢集的命令
-
 **用來建立或新增至叢集組態檔的命令**
 
     hdinsight config create [options] <configFilePath> <overwrite>
@@ -305,24 +298,20 @@
     hdinsight cluster disable-rdp-access [options] <clusterName>
 
 ## <a name="azure-insights:-commands-related-to-monitoring-insights-(events,-alert-rules,-autoscale-settings,-metrics)"></a>azure insights：用來監視 Insights (事件、警示規則、自動調整設定和度量) 的命令
-
 **擷取訂用帳戶、CorrelationID、資源群組、資源或資源提供者的作業記錄**
 
     insights logs list [options]
 
 ## <a name="azure-location:-commands-to-get-the-available-locations-for-all-resource-types"></a>azure location：用來取得所有資源類型可用位置的命令
-
 **列出可用的位置**
 
     location list [options]
 
 ## <a name="azure-network:-commands-to-manage-network-resources"></a>azure network：用來管理網路資源的命令
-
 **用來管理虛擬網路的命令**
 
     network vnet create [options] <resource-group> <name> <location>
 建立虛擬網路。 在下列範例中，我們會針對美國西部區域中的 myresourcegroup 資源群組，建立名為 newvnet 的虛擬網路。
-
 
     azure network vnet create myresourcegroup newvnet "west us"
     info:    Executing command network vnet create
@@ -415,7 +404,6 @@
 
 此命令可列出資源群組中的所有虛擬網路。
 
-
     C:\>azure network vnet list myresourcegroup
 
     info:    Executing command network vnet list
@@ -429,7 +417,6 @@
     info:    network vnet list command OK
 
 參數選項：
-
 
       -h, --help                             output usage information
       -v, --verbose                          use verbose output
@@ -520,7 +507,6 @@
     network vnet subnet set [options] <resource-group> <vnet-name> <name>
 
 設定資源群組內的特定虛擬網路子網路。
-
 
     C:\>azure network vnet subnet set -g myresourcegroup --vnet-name newvnet -n subnet1
 
@@ -1206,7 +1192,6 @@
 
 在下列範例中，我們建立前端 IP (先前使用 "azure network frontend-ip" 命令定義的 IP) 的 NAT 規則，具有負載平衡器用來傳送網路流量的輸入接聽連接埠與輸出連接埠。
 
-
     azure network lb inbound-nat-rule create -g myresourcegroup -l mylb -n myinboundnat -p tcp -f 80 -b 8080 -i myfrontendip
 
     info:    Executing command network lb inbound-nat-rule create
@@ -1590,7 +1575,6 @@
     network gateway list [options] <resource-group>
 
 ## <a name="azure-provider:-commands-to-manage-resource-provider-registrations"></a>azure provider：用來管理資源提供者註冊的命令
-
 **列出 Resource Manager 中目前已註冊的提供者**
 
     provider list [options]
@@ -1608,7 +1592,6 @@
     provider unregister [options] <namespace>
 
 ## <a name="azure-resource:-commands-to-manage-your-resources"></a>azure resource：用來管理資源的命令
-
 **建立資源群組中的資源**
 
     resource create [options] <resource-group> <name> <resource-type> <location> <api-version>
@@ -1630,7 +1613,6 @@
     resource delete [options] <resource-group> <name> <resource-type> <api-version>
 
 ## <a name="azure-role:-commands-to-manage-your-azure-roles"></a>azure role：用來管理 Azure 角色的命令
-
 **取得所有可用的角色定義**
 
     role list [options]
@@ -1646,7 +1628,6 @@
     role assignment delete [options] [objectId] [upn] [mail] [spn] [role] [scope] [resource-group] [resource-type] [resource-name]
 
 ## <a name="azure-storage:-commands-to-manage-your-storage-objects"></a>azure storage：用來管理儲存體物件的命令
-
 **用來管理儲存體帳戶的命令**
 
     storage account list [options]
@@ -1770,7 +1751,6 @@
     storage table policy delete [options] [table] [name]
 
 ## <a name="azure-tag:-commands-to-manage-your-resource-manager-tag"></a>azure tag：用來管理資源管理員標記的命令
-
 **新增標記**
 
     tag create [options] <name> <value>
@@ -1788,7 +1768,6 @@
     tag show [options] [name]
 
 ## <a name="azure-vm:-commands-to-manage-your-azure-virtual-machines"></a>azure vm：用來管理 Azure 虛擬機器的命令
-
 **建立 VM**
 
     vm create [options] <resource-group> <name> <location> <os-type>
@@ -1796,8 +1775,11 @@
 **建立使用預設資源的 VM**
 
     vm quick-create [options] <resource-group> <name> <location> <os-type> <image-urn> <admin-username> <admin-password
-    
->[AZURE.TIP]從 CLI 0.10 版開始，對於某些受歡迎的 Marketplace 映像，您可以在 `image-urn` 中提供簡短的別名，例如 "UbuntuLTS" 或 "Win2012R2Datacenter"。 執行 `azure help vm quick-create` 以取得選項。 此外，從 0.10 版開始， `azure vm quick-create` 依預設會使用進階儲存體 (如果可在所選區域中使用)。
+
+> [!TIP]
+> 從 CLI 0.10 版開始，對於某些受歡迎的 Marketplace 映像，您可以在 `image-urn` 中提供簡短的別名，例如 "UbuntuLTS" 或 "Win2012R2Datacenter"。 執行 `azure help vm quick-create` 以取得選項。 此外，從 0.10 版開始， `azure vm quick-create` 依預設會使用進階儲存體 (如果可在所選區域中使用)。
+> 
+> 
 
 **列出帳戶內的虛擬機器**
 

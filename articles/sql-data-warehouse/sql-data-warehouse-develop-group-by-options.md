@@ -1,29 +1,29 @@
-<properties
-   pageTitle="根據 SQL 資料倉儲中的選項分組 | Microsoft Azure"
-   description="根據 Azure SQL 資料倉儲中的選項實作群組以便開發解決方案的秘訣。"
-   services="sql-data-warehouse"
-   documentationCenter="NA"
-   authors="jrowlandjones"
-   manager="barbkess"
-   editor=""/>
+---
+title: 根據 SQL 資料倉儲中的選項分組 | Microsoft Docs
+description: 根據 Azure SQL 資料倉儲中的選項實作群組以便開發解決方案的秘訣。
+services: sql-data-warehouse
+documentationcenter: NA
+author: jrowlandjones
+manager: barbkess
+editor: ''
 
-<tags
-   ms.service="sql-data-warehouse"
-   ms.devlang="NA"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="data-services"
-   ms.date="06/14/2016"
-   ms.author="jrj;barbkess;sonyama"/>
+ms.service: sql-data-warehouse
+ms.devlang: NA
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: data-services
+ms.date: 06/14/2016
+ms.author: jrj;barbkess;sonyama
 
+---
 # 根據 SQL 資料倉儲中的選項分組
-
-[GROUP BY][] 子句可用來彙總資料以摘要一組資料列。它也具有一些擴充其功能的選項，這些選項都需要克服，因為 Azure SQL 資料倉儲並不直接支援這些選項。
+[GROUP BY][GROUP BY] 子句可用來彙總資料以摘要一組資料列。它也具有一些擴充其功能的選項，這些選項都需要克服，因為 Azure SQL 資料倉儲並不直接支援這些選項。
 
 可用選項包括
-- GROUP BY 搭配 ROLLUP
-- GROUPING SETS
-- GROUP BY 搭配 CUBE
+
+* GROUP BY 搭配 ROLLUP
+* GROUPING SETS
+* GROUP BY 搭配 CUBE
 
 ## Rollup 和 grouping sets 選項
 此處最簡單的選項是改為使用 `UNION ALL` 來執行彙總，而不是依賴明確的語法。應該會出現幾乎相同的結果
@@ -44,9 +44,10 @@ GROUP BY ROLLUP (
 ```
 
 藉由使用 ROLLUP，我們要求下列彙總：
-- 國家及區域
-- 國家 (地區)
-- 總計
+
+* 國家及區域
+* 國家 (地區)
+* 總計
 
 若要將其取代，您必須使用 `UNION ALL`；指定彙總明確需要傳回相同的結果：
 
@@ -175,9 +176,8 @@ ORDER BY 1,2,3
 
 將程式碼分成區段，並產生迴圈建構，程式碼就會變得更容易管理及維護。
 
-
 ## 後續步驟
-如需更多開發祕訣，請參閱[開發概觀][]。
+如需更多開發祕訣，請參閱[開發概觀][開發概觀]。
 
 <!--Image references-->
 [1]: media/sql-data-warehouse-develop-group-by-options/sql-data-warehouse-develop-group-by-cube.png

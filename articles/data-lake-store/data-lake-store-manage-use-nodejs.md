@@ -1,60 +1,56 @@
-<properties 
-   pageTitle="使用 Azure SDK for Node.js 管理 Azure Data Lake Store | Microsoft Azure"
-   description="了解如何管理資料湖存放區帳戶以及檔案系統。" 
-   services="data-lake-store" 
-   documentationCenter="" 
-   authors="nitinme" 
-   manager="jhubbard" 
-   editor="cgronlun"/>
- 
-<tags
-   ms.service="data-lake-store"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="big-data" 
-   ms.date="09/13/2016"
-   ms.author="nitinme"/>
+---
+title: 使用 Azure SDK for Node.js 管理 Azure Data Lake Store | Microsoft Docs
+description: 了解如何管理資料湖存放區帳戶以及檔案系統。
+services: data-lake-store
+documentationcenter: ''
+author: nitinme
+manager: jhubbard
+editor: cgronlun
 
+ms.service: data-lake-store
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: big-data
+ms.date: 09/13/2016
+ms.author: nitinme
+
+---
 # 使用 Node.js 的 Azure SDK 管理 Azure 資料湖存放區
-
-> [AZURE.SELECTOR]
-- [入口網站](data-lake-store-get-started-portal.md)
-- [PowerShell](data-lake-store-get-started-powershell.md)
-- [.NET SDK](data-lake-store-get-started-net-sdk.md)
-- [Java SDK](data-lake-store-get-started-java-sdk.md)
-- [REST API](data-lake-store-get-started-rest-api.md)
-- [Azure CLI](data-lake-store-get-started-cli.md)
-- [Node.js](data-lake-store-manage-use-nodejs.md)
-
+> [!div class="op_single_selector"]
+> * [入口網站](data-lake-store-get-started-portal.md)
+> * [PowerShell](data-lake-store-get-started-powershell.md)
+> * [.NET SDK](data-lake-store-get-started-net-sdk.md)
+> * [Java SDK](data-lake-store-get-started-java-sdk.md)
+> * [REST API](data-lake-store-get-started-rest-api.md)
+> * [Azure CLI](data-lake-store-get-started-cli.md)
+> * [Node.js](data-lake-store-manage-use-nodejs.md)
+> 
+> 
 
 Azure SDK for Node.js 可用於管理 Azure Data Lake Store 帳戶以及檔案系統作業。
 
 它目前支援︰
 
-  *  **Node.js 版本：0.10.0 或更高版本**
-  *  **帳戶的 REST API 版本：2015-10-01-preview**
-  *  **檔案系統的 REST API 版本：2015-10-01-preview**
+* **Node.js 版本：0.10.0 或更高版本**
+* **帳戶的 REST API 版本：2015-10-01-preview**
+* **檔案系統的 REST API 版本：2015-10-01-preview**
 
-##必要條件
-
+## 必要條件
 開始閱讀本文之前，您必須符合下列必要條件：
 
-- **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
+* **Azure 訂用帳戶**。請參閱[取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
 ## 特性
-
-- 帳戶管理：建立、取得、列出、更新及刪除。
-- 檔案系統管理：建立、取得、上傳、附加、下載、讀取、刪除、列出。
+* 帳戶管理：建立、取得、列出、更新及刪除。
+* 檔案系統管理：建立、取得、上傳、附加、下載、讀取、刪除、列出。
 
 ## 如何安裝
-
 ```bash
 npm install azure-arm-datalake-store
 ```
 
 ## 使用 Azure Active Directory 進行驗證
-
  ```javascript
  var msrestAzure = require('ms-rest-azure');
  //user authentication
@@ -64,7 +60,6 @@ npm install azure-arm-datalake-store
  ```
 
 ## 建立 Data Lake Analytics 用戶端
-
 ```javascript
 var adlsManagement = require("azure-arm-datalake-store");
 var acccountClient = new adlsManagement.DataLakeStoreAccountClient(credentials, "your-subscription-id");
@@ -72,7 +67,6 @@ var filesystemClient = new adlsManagement.DataLakeStoreFileSystemClient(credenti
 ```
 
 ## 建立 Data Lake Store 帳戶
-
 ```javascript
 var util = require('util');
 var resourceGroupName = 'testrg';
@@ -128,7 +122,6 @@ filesystemClient.fileSystem.listFileStatus(accountName, fileToCreate, options, f
 ```
 
 ## 取得檔案和資料夾的清單
-
 ```javascript
 var util = require('util');
 var accountName = 'testadlsacct';
@@ -143,8 +136,7 @@ filesystemClient.fileSystem.listFileStatus(accountName, pathToEnumerate, functio
 ```
 
 ## 另請參閱
-
-- [Microsoft Azure SDK for Node.js](https://github.com/azure/azure-sdk-for-node)
-- [Microsoft Azure SDK for Node.js - Data Lake Analytics 管理](https://www.npmjs.com/package/azure-arm-datalake-analytics)
+* [Microsoft Azure SDK for Node.js](https://github.com/azure/azure-sdk-for-node)
+* [Microsoft Azure SDK for Node.js - Data Lake Analytics 管理](https://www.npmjs.com/package/azure-arm-datalake-analytics)
 
 <!---HONumber=AcomDC_0914_2016-->

@@ -1,43 +1,41 @@
-<properties
-	pageTitle="將推播通知新增至應用程式 (iOS) | .NET 後端"
-	description="了解如何使用 Azure 行動服務傳送推播通知至 iOS 應用程式。"
-	services="mobile-services,notification-hubs"
-	documentationCenter="ios"
-	manager="dwrede"
-	editor=""
-	authors="krisragh"/>
+---
+title: 將推播通知新增至應用程式 (iOS) | Microsoft Docs
+description: 了解如何使用 Azure 行動服務傳送推播通知至 iOS 應用程式。
+services: mobile-services,notification-hubs
+documentationcenter: ios
+manager: dwrede
+editor: ''
+author: krisragh
 
-<tags
-	ms.service="mobile-services"
-	ms.workload="mobile"
-	ms.tgt_pltfrm="ios"
-	ms.devlang="objective-c"
-	ms.topic="article"
-	ms.date="07/21/2016"
-	ms.author="krisragh"/>
+ms.service: mobile-services
+ms.workload: mobile
+ms.tgt_pltfrm: ios
+ms.devlang: objective-c
+ms.topic: article
+ms.date: 07/21/2016
+ms.author: krisragh
 
-
+---
 # 將推播通知新增至 iOS 應用程式和 .NET 後端
-
-[AZURE.INCLUDE [mobile-services-selector-get-started-push](../../includes/mobile-services-selector-get-started-push.md)]
+[!INCLUDE [mobile-services-selector-get-started-push](../../includes/mobile-services-selector-get-started-push.md)]
 
 &nbsp;
 
-[AZURE.INCLUDE [mobile-service-note-mobile-apps](../../includes/mobile-services-note-mobile-apps.md)]
+[!INCLUDE [mobile-service-note-mobile-apps](../../includes/mobile-services-note-mobile-apps.md)]
+
 > 如需本主題的對等 Mobile Apps 版本，請參閱[將推播通知新增至您的 iOS 應用程式](../app-service-mobile/app-service-mobile-ios-get-started-push.md)。
+> 
+> 
 
 本主題說明如何新增推播通知給[快速入門專案](mobile-services-dotnet-backend-ios-get-started.md)，以讓行動服務在每次插入一筆記錄時傳送推播通知。您必須先完成[開始使用行動服務]。
 
-[AZURE.INCLUDE [啟用 Apple 推播通知](../../includes/enable-apple-push-notifications.md)]
+[!INCLUDE [啟用 Apple 推播通知](../../includes/enable-apple-push-notifications.md)]
 
 ## <a id="configure"></a>設定 Azure 來傳送推播通知
+[!INCLUDE [在 Azure 行動服務中設定推播通知](../../includes/mobile-services-apns-configure-push.md)]
 
-[AZURE.INCLUDE [在 Azure 行動服務中設定推播通知](../../includes/mobile-services-apns-configure-push.md)]
-
-##<a id="update-server"></a>更新後端程式碼以傳送推播通知
-
+## <a id="update-server"></a>更新後端程式碼以傳送推播通知
 * 開啟 Visual Studio 專案 > Controllers 資料夾 > TodoItemController.cs > 方法`PostTodoItem`。使用下列項目來取代此方法。在插入 todo 項目時，此程式碼會傳送推播通知 (含項目文字)。如果發生錯誤，程式碼會新增可透過入口網站的 [記錄] 區段檢視的錯誤記錄項目。
-
 
 ```
         public async Task<IHttpActionResult> PostTodoItem(TodoItem item)
@@ -59,13 +57,12 @@
         }
 ```
 
-##<a name="publish-the-service"></a>將行動服務發佈至 Azure
+## <a name="publish-the-service"></a>將行動服務發佈至 Azure
+[!INCLUDE [mobile-services-dotnet-backend-publish-service](../../includes/mobile-services-dotnet-backend-publish-service.md)]
 
-[AZURE.INCLUDE [mobile-services-dotnet-backend-publish-service](../../includes/mobile-services-dotnet-backend-publish-service.md)]
+[!INCLUDE [新增推播通知至應用程式](../../includes/add-push-notifications-to-app.md)]
 
-[AZURE.INCLUDE [新增推播通知至應用程式](../../includes/add-push-notifications-to-app.md)]
-
-[AZURE.INCLUDE [在應用程式中測試推播通知](../../includes/test-push-notifications-in-app.md)]
+[!INCLUDE [在應用程式中測試推播通知](../../includes/test-push-notifications-in-app.md)]
 
 <!-- Anchors.  -->
 [Generate the certificate signing request]: #certificates

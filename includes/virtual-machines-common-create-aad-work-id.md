@@ -1,12 +1,14 @@
 
 <br>
 
-> [AZURE.NOTE] 如果系統管理員已提供給您使用者名稱與密碼，很有可能您已經有工作或學校識別碼 (有時也稱做「組織識別碼」)。如果是這樣，您可以立即開始使用您的 Azure 帳戶來存取需要該帳戶的 Azure資源。如果您發現無法使用這些資源，您可能需要返回本文以尋求協助。如需詳細資訊，請參閱[您可以用來登入的帳戶](https://msdn.microsoft.com/library/azure/dn629581.aspx#BKMK_SignInAccounts)及 [Azure 訂用帳戶與 Azure AD 的關係](https://msdn.microsoft.com/library/azure/dn629581.aspx#BKMK_SubRelationToDir)。
+> [!NOTE]
+> 如果系統管理員已提供給您使用者名稱與密碼，很有可能您已經有工作或學校識別碼 (有時也稱做「組織識別碼」)。如果是這樣，您可以立即開始使用您的 Azure 帳戶來存取需要該帳戶的 Azure資源。如果您發現無法使用這些資源，您可能需要返回本文以尋求協助。如需詳細資訊，請參閱[您可以用來登入的帳戶](https://msdn.microsoft.com/library/azure/dn629581.aspx#BKMK_SignInAccounts)及 [Azure 訂用帳戶與 Azure AD 的關係](https://msdn.microsoft.com/library/azure/dn629581.aspx#BKMK_SubRelationToDir)。
+> 
+> 
 
 步驟很簡單。您必須在 Azure 傳統入口網站中找到您已註冊的身分識別、找出您的預設 Azure Active Directory 網域，然後以 Azure 共同管理員的身分新增網域的新使用者。
 
 ## 在 Azure 傳統入口網站中找到您的預設目錄
-
 一開始先使用您個人的 Microsoft 帳戶身分識別登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。登入後，向下捲動左側的藍色面板，然後按一下 [ACTIVE DIRECTORY]。
 
 ![Azure Active Directory](./media/virtual-machines-common-create-aad-work-id/azureactivedirectorywidget.png)
@@ -26,7 +28,6 @@
 您應該能夠在這裡看到 Azure 帳戶的建立時間，以及 Azure Active Directory 建立了個人的預設網域，此網域是用來做為 onmicrosoft.com 子網域的個人識別碼雜湊值 (這是從文字字串中產生的數字)。這是您現在要新增新使用者的網域。
 
 ## 在預設網域中建立新的使用者
-
 按一下 [使用者]，然後尋找您的單一個人帳戶。您應該會在 [源自] 欄中看到其為 **Microsoft 帳戶**。我們想要在您的預設 .onmicrosoft.com Azure Active Directory 網域中建立使用者。
 
 ![](./media/virtual-machines-common-create-aad-work-id/defaultdirectoryuserslisting.png)
@@ -58,7 +59,6 @@
 ![](./media/virtual-machines-common-create-aad-work-id/emailreceivedfromnewusercreation.png)
 
 ## 為訂用帳戶新增 Azure 的共同管理員權限
-
 現在您必須將新的使用者新增成為訂用帳戶的共同管理員，新的使用者才能夠登入管理入口網站。若要這樣做，請在左下角面板中按一下 [設定]。
 
 ![](./media/virtual-machines-common-create-aad-work-id/thesettingswidget.png)
@@ -72,7 +72,6 @@
 ![](./media/virtual-machines-common-create-aad-work-id/newuseraddedascoadministrator.png)
 
 ## 登入並變更新使用者的密碼
-
 以您建立的新使用者身分登入。
 
 ![](./media/virtual-machines-common-create-aad-work-id/signinginwithnewuser.png)
@@ -85,9 +84,7 @@
 
 ![](./media/virtual-machines-common-create-aad-work-id/successtourdialog.png)
 
-
 ## 後續步驟
-
 您現在可以使用新的 Azure Active Directory 身分識別來使用 [Azure 資源群組範本](../articles/xplat-cli-azure-resource-manager.md)。
 
     azure login

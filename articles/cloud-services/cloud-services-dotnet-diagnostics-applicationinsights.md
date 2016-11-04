@@ -1,27 +1,25 @@
-<properties
-   pageTitle="使用 Application Insights 疑難排解雲端服務 | Microsoft Azure"
-   description="了解如何使用 Application Insights 疑難排解雲端服務問題，以處理 Azure 診斷的資料。"
-   services="cloud-services"
-   documentationCenter=".net"
-   authors="sbtron"
-   manager="timlt"
-   editor="tysonn" />
-<tags
-   ms.service="cloud-services"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="12/15/2015"
-   ms.author="saurabh" />
+---
+title: 使用 Application Insights 疑難排解雲端服務 | Microsoft Docs
+description: 了解如何使用 Application Insights 疑難排解雲端服務問題，以處理 Azure 診斷的資料。
+services: cloud-services
+documentationcenter: .net
+author: sbtron
+manager: timlt
+editor: tysonn
 
+ms.service: cloud-services
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 12/15/2015
+ms.author: saurabh
 
+---
 # 使用 Application Insights 疑難排解雲端服務
-
 使用 [Azure SDK 2.8](https://azure.microsoft.com/downloads/) 和 Azure 診斷延伸模組 1.5，您現在可以將雲端服務的 Azure 診斷資料直接傳送至 Application Insights。Azure 診斷收集的各種記錄檔 (包括應用程式記錄檔、Windows 事件記錄檔、ETW 記錄檔和效能計數器) 現在可以傳送至 Application Insights，並在 Application Insights 入口網站 UI 中視覺化。搭配 Application Insights SDK 使用時，您現在可以深入了解來自您的應用程式和系統的計量和記錄檔，以及來自 Azure 診斷的基礎結構層級資料。
 
 ## 設定 Azure 診斷將資料傳送至 Application Insights
-
 請遵循下列步驟來設定雲端服務專案將 Azure 診斷資料傳送至 Application Insights。
 
 1) 在 Visual Studio [方案總管] 中，以滑鼠右鍵按一下角色，然後選取 [屬性] 以開啟角色設計工具。
@@ -51,24 +49,22 @@ Azure 診斷遙測會顯示在為您的雲端服務設定的 Application Insight
 
 以下說明各種 Azure 診斷記錄檔類型如何對應 Application Insights 概念：
 
--  效能計數器在 Application Insights 中會顯示為自訂計量
--  Windows 事件記錄檔在 Application Insights 中會顯示為追蹤和自訂事件
--  應用程式記錄檔、ETW 記錄檔和任何診斷基礎結構記錄檔在 Application Insights 中會顯示為追蹤。
+* 效能計數器在 Application Insights 中會顯示為自訂計量
+* Windows 事件記錄檔在 Application Insights 中會顯示為追蹤和自訂事件
+* 應用程式記錄檔、ETW 記錄檔和任何診斷基礎結構記錄檔在 Application Insights 中會顯示為追蹤。
 
 若要在 Application Insights 中檢視 Azure 診斷資料：
 
-- 使用[計量瀏覽器](../application-insights/app-insights-metrics-explorer.md)以視覺化方式檢視任何自訂的效能計數器，或是不同類型的 Windows 事件記錄檔事件的計數。
+* 使用[計量瀏覽器](../application-insights/app-insights-metrics-explorer.md)以視覺化方式檢視任何自訂的效能計數器，或是不同類型的 Windows 事件記錄檔事件的計數。
 
 ![[計量瀏覽器] 中的自訂計量][5]
 
-- 使用[搜尋](../application-insights/app-insights-diagnostic-search.md)在各種 Azure 診斷傳送的追蹤記錄檔中搜尋。例如，如果您的角色中有未處理的例外狀況造成該角色當機和回收，該資訊會顯示在 [*Windows 事件記錄檔*] 的 [*應用程式*] 通道。您可以使用搜尋功能來查看 Windows 事件記錄檔錯誤並取得例外狀況的完整堆疊追蹤，讓您尋找問題的根本原因。
+* 使用[搜尋](../application-insights/app-insights-diagnostic-search.md)在各種 Azure 診斷傳送的追蹤記錄檔中搜尋。例如，如果您的角色中有未處理的例外狀況造成該角色當機和回收，該資訊會顯示在 [*Windows 事件記錄檔*] 的 [*應用程式*] 通道。您可以使用搜尋功能來查看 Windows 事件記錄檔錯誤並取得例外狀況的完整堆疊追蹤，讓您尋找問題的根本原因。
 
 ![搜尋追蹤][6]
 
 ## 後續步驟
-
-- [將 Application Insights SDK 加入您的雲端服務](../application-insights/app-insights-cloudservices.md)，從您的應用程式傳送有關要求、例外狀況、相依性及任何自訂遙測的資料。與 Azure 診斷資料結合，您可以在相同的 Application Insight 資源中取得應用程式和系統的完整檢視。  
-
+* [將 Application Insights SDK 加入您的雲端服務](../application-insights/app-insights-cloudservices.md)，從您的應用程式傳送有關要求、例外狀況、相依性及任何自訂遙測的資料。與 Azure 診斷資料結合，您可以在相同的 Application Insight 資源中取得應用程式和系統的完整檢視。  
 
 <!--Image references-->
 [1]: ./media/cloud-services-dotnet-diagnostics-applicationinsights/solution-explorer-properties.png

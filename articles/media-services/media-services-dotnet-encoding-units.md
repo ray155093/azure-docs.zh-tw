@@ -1,81 +1,69 @@
-<properties 
-	pageTitle="如何新增編碼單元" 
-	description="了解如何使用 .NET 新增編碼單元"  
-	services="media-services" 
-	documentationCenter="" 
-	authors="juliako" 
-	manager="erikre" 
-	editor=""/>
+---
+title: 如何新增編碼單元
+description: 了解如何使用 .NET 新增編碼單元
+services: media-services
+documentationcenter: ''
+author: juliako
+manager: erikre
+editor: ''
 
-<tags 
-	ms.service="media-services" 
-	ms.workload="media" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
- 	ms.date="09/01/2016"
-	ms.author="juliako;milangada;gtrifonov"/>
+ms.service: media-services
+ms.workload: media
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/01/2016
+ms.author: juliako;milangada;gtrifonov
 
+---
+# 如何使用 .NET SDK 調整編碼
+> [!div class="op_single_selector"]
+> * [入口網站](media-services-portal-scale-media-processing.md)
+> * [.NET](media-services-dotnet-encoding-units.md)
+> * [REST](https://msdn.microsoft.com/library/azure/dn859236.aspx)
+> * [Java](https://github.com/southworkscom/azure-sdk-for-media-services-java-samples)
+> * [PHP](https://github.com/Azure/azure-sdk-for-php/tree/master/examples/MediaServices)
+> 
+> 
 
-#如何使用 .NET SDK 調整編碼
+## Overview
+> [!IMPORTANT]
+> 請務必檢閱[概觀](media-services-scale-media-processing-overview.md)主題，以取得調整媒體處理主題的詳細資訊。
+> 
+> 
 
-> [AZURE.SELECTOR]
-- [入口網站](media-services-portal-scale-media-processing.md)
-- [.NET](media-services-dotnet-encoding-units.md)
-- [REST](https://msdn.microsoft.com/library/azure/dn859236.aspx)
-- [Java](https://github.com/southworkscom/azure-sdk-for-media-services-java-samples)
-- [PHP](https://github.com/Azure/azure-sdk-for-php/tree/master/examples/MediaServices)
-
-##Overview
-
->[AZURE.IMPORTANT] 請務必檢閱[概觀](media-services-scale-media-processing-overview.md)主題，以取得調整媒體處理主題的詳細資訊。
- 
 若要使用 .NET SDK　變更保留單元類型以及編碼保留單元數目，請執行下列動作：
 
-	IEncodingReservedUnit encodingS1ReservedUnit = _context.EncodingReservedUnits.FirstOrDefault();
-	encodingS1ReservedUnit.ReservedUnitType = ReservedUnitType.Basic; // Corresponds to S1
-	encodingS1ReservedUnit.Update();
-	Console.WriteLine("Reserved Unit Type: {0}", encodingS1ReservedUnit.ReservedUnitType);
-	
-	encodingS1ReservedUnit.CurrentReservedUnits = 2;
-	encodingS1ReservedUnit.Update();
-	
-	Console.WriteLine("Number of reserved units: {0}", encodingS1ReservedUnit.CurrentReservedUnits);
+    IEncodingReservedUnit encodingS1ReservedUnit = _context.EncodingReservedUnits.FirstOrDefault();
+    encodingS1ReservedUnit.ReservedUnitType = ReservedUnitType.Basic; // Corresponds to S1
+    encodingS1ReservedUnit.Update();
+    Console.WriteLine("Reserved Unit Type: {0}", encodingS1ReservedUnit.ReservedUnitType);
 
-##建立支援票證
+    encodingS1ReservedUnit.CurrentReservedUnits = 2;
+    encodingS1ReservedUnit.Update();
 
+    Console.WriteLine("Number of reserved units: {0}", encodingS1ReservedUnit.CurrentReservedUnits);
+
+## 建立支援票證
 依預設，每一個媒體服務帳戶可調整為最多 25 個編碼保留單元和 5 個隨選串流保留單元。您可以建立支援票證來要求更高的限制。
 
-###開啟支援票證
-
+### 開啟支援票證
 若要建立支援票證，請執行下列動作：
 
 1. 按一下[取得支援](https://manage.windowsazure.com/?getsupport=true)。如果您未登入，系統會提示您輸入認證。
+2. 選取您的訂用帳戶。
+3. 在支援類型下，選取 [技術]。
+4. 按一下 [建立票證]。
+5. 在下一頁顯示的產品清單中，選取 [Azure 媒體服務]。
+6. 選取適合您的問題的 [問題類型]。
+7. 按一下 [繼續]。
+8. 遵循下一頁的指示，然後輸入問題的詳細資訊。
+9. 按一下 [提交] 來建立票證。
 
-1. 選取您的訂用帳戶。
+## 媒體服務學習路徑
+[!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-1. 在支援類型下，選取 [技術]。
-
-1. 按一下 [建立票證]。
-
-1. 在下一頁顯示的產品清單中，選取 [Azure 媒體服務]。
-
-1. 選取適合您的問題的 [問題類型]。
-
-1. 按一下 [繼續]。
-
-1. 遵循下一頁的指示，然後輸入問題的詳細資訊。
-
-1. 按一下 [提交] 來建立票證。
-
-
-
-##媒體服務學習路徑
-
-[AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
-
-##提供意見反應
-
-[AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
+## 提供意見反應
+[!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 <!----HONumber=AcomDC_0907_2016-->

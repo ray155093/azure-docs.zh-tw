@@ -7,18 +7,16 @@
 **從 PowerShell 資源庫安裝模組**
 
 1. 若要直接從資源庫安裝資源管理員模組，請以系統管理員身分開啟 Windows PowerShell 並輸入下列命令：
-
-		Install-Module AzureRM
-		Install-AzureRM
-
+   
+        Install-Module AzureRM
+        Install-AzureRM
 2. 安裝模組之後，您必須匯入模組，才能加以使用：
-
-		Import-AzureRM
+   
+        Import-AzureRM
 
 **使用 Web Platform Installer 來安裝模組**
 
-- 您可以使用 [Web Platform Installer](http://aka.ms/webpi-azps) 來安裝模組。按一下連結時，便會啟動安裝程式。
-
-- 如果使用 Web Platform Installer 時收到錯誤，可能是因為您已使用資源庫安裝舊版的 Cmdlet。請參閱此[部落格文章](https://azure.microsoft.com/blog/azps-1-0/)，它可協助您移除舊版的模組，並讓您恢復並執行。一般錯誤發生在您使用 Web Platform Installer 並切換至資源庫 (或反向) 時。移除先前安裝的模組可解決這個問題，之後您就可以從新位置安裝。
+* 您可以使用 [Web Platform Installer](http://aka.ms/webpi-azps) 來安裝模組。按一下連結時，便會啟動安裝程式。
+* 如果使用 Web Platform Installer 時收到錯誤，可能是因為您已使用資源庫安裝舊版的 Cmdlet。請參閱此[部落格文章](https://azure.microsoft.com/blog/azps-1-0/)，它可協助您移除舊版的模組，並讓您恢復並執行。一般錯誤發生在您使用 Web Platform Installer 並切換至資源庫 (或反向) 時。移除先前安裝的模組可解決這個問題，之後您就可以從新位置安裝。
 
 <!---HONumber=AcomDC_0218_2016-->

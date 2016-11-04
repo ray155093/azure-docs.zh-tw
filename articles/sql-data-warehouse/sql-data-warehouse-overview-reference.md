@@ -1,34 +1,31 @@
-<properties
-   pageTitle="SQL 資料倉儲參考主題 |Microsoft Azure"
-   description="SQL 資料倉儲的參考內容連結。"
-   services="sql-data-warehouse"
-   documentationCenter="NA"
-   authors="barbkess"
-   manager="jhubbard"
-   editor=""/>
+---
+title: SQL 資料倉儲參考主題 | Microsoft Docs
+description: SQL 資料倉儲的參考內容連結。
+services: sql-data-warehouse
+documentationcenter: NA
+author: barbkess
+manager: jhubbard
+editor: ''
 
-<tags
-   ms.service="sql-data-warehouse"
-   ms.devlang="NA"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="data-services"
-   ms.date="08/08/2016"
-   ms.author="barbkess;sonyama"/>
+ms.service: sql-data-warehouse
+ms.devlang: NA
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: data-services
+ms.date: 08/08/2016
+ms.author: barbkess;sonyama
 
+---
 # SQL 資料倉儲的參考主題
-
 這些文章包含 SQL 資料倉儲的參考資訊。
 
-- [Transact-SQL 語言元素][]
-- [Transact-SQL 陳述式][]
-- [Transact-SQL 系統檢視][]
-- [PowerShell Cmdlet][]
-
-
+* [Transact-SQL 語言元素][Transact-SQL 語言元素]
+* [Transact-SQL 陳述式][Transact-SQL 陳述式]
+* [Transact-SQL 系統檢視][Transact-SQL 系統檢視]
+* [PowerShell Cmdlet][PowerShell Cmdlet]
 
 ## 後續步驟
-如需開發資訊，請參閱[開發概觀][]。
+如需開發資訊，請參閱[開發概觀][開發概觀]。
 
 <!--Image references-->
 

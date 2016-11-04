@@ -1,30 +1,31 @@
 
-<properties
-	pageTitle="以批次方式取得建議：機器學習服務的建議 API | Microsoft Azure"
-	description="Azure 機器學習服務建議 - 以批次方式取得建議"
-	services="cognitive-services"
-	documentationCenter=""
-	authors="luiscabrer"
-	manager="jhubbard"
-	editor="cgronlun"/>
+---
+title: 以批次方式取得建議：機器學習服務的建議 API | Microsoft Docs
+description: Azure 機器學習服務建議 - 以批次方式取得建議
+services: cognitive-services
+documentationcenter: ''
+author: luiscabrer
+manager: jhubbard
+editor: cgronlun
 
-<tags
-	ms.service="cognitive-services"
-	ms.workload="data-services"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/17/2016"
-	ms.author="luisca"/>
+ms.service: cognitive-services
+ms.workload: data-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/17/2016
+ms.author: luisca
 
+---
 # 以批次方式取得建議
-
->[AZURE.NOTE] 相較於一次取得一個建議，以批次方式取得建議會比較複雜。查看 API，以取得如何針對單一要求取得建議的相關資訊︰
-
+> [!NOTE]
+> 相較於一次取得一個建議，以批次方式取得建議會比較複雜。查看 API，以取得如何針對單一要求取得建議的相關資訊︰
+> 
 > [項目對項目的建議](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3d4)<br> [使用者對項目的建議](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3dd)
->
+> 
 > 批次計分僅適用於在 2016 年 7 月 21 日之後建立的組建。
-
+> 
+> 
 
 也有些情況是您需要一次取得對多個項目的建議。例如，您可能想要建立建議快取，或甚至分析您所取得的建議類型。
 
@@ -32,16 +33,15 @@
 
 以下列出要遵循的步驟，以求更精確地說明︰
 
-1.	如果您還沒有 Azure 儲存體容器，請加以建立。
-2.	將描述您每個建議要求的輸入檔上傳至 Azure Blob 儲存體。
-3.	開始進行評分的批次作業。
-4.	等候非同步作業完成。
-5.	作業完成後，請從 Azure Blob 儲存體收集結果。
+1. 如果您還沒有 Azure 儲存體容器，請加以建立。
+2. 將描述您每個建議要求的輸入檔上傳至 Azure Blob 儲存體。
+3. 開始進行評分的批次作業。
+4. 等候非同步作業完成。
+5. 作業完成後，請從 Azure Blob 儲存體收集結果。
 
 我們將逐步解說各個步驟。
 
 ## 如果您還沒有儲存體容器，請建立一個
-
 如果您還沒有新的儲存體帳戶，請前往 [Azure 入口網站](https://portal.azure.com)並建立一個新的儲存體帳戶。若要這麼做，請瀏覽至 [新增] > [資料 + 儲存體] > [儲存體帳戶]。
 
 有儲存體帳戶之後，您需要建立 Blob 容器，用以儲存批次執行的輸入和輸出。
@@ -68,7 +68,6 @@
 如您所見，此檔案是 JSON 檔案，其中每個要求都有傳送建議要求所需的資訊。為您必須完成的要求建立類似的 JSON 檔案，並複製到剛才在 Blob 儲存體建立的容器。
 
 ## 開始進行批次作業
-
 下一步是提交新的批次作業。如需詳細資訊，請查看 [API 參考](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/)。
 
 API 要求本文必須定義須儲存輸入、輸出及錯誤檔的位置。也需要定義存取這些位置所需的認證。此外，您必須指定一些適用於整個批次的參數 (要求的建議類型、要使用的模型/組建、每次呼叫的結果數目等等)。
@@ -106,18 +105,14 @@ API 要求本文必須定義須儲存輸入、輸出及錯誤檔的位置。也�
 
 有一些重點值得注意：
 
--	目前 **uthenticationType** 應一律設為 **PublicOrSas**。
-
--	您必須取得共用存取簽章 (SAS) 權杖，以允許 Recommendations API 讀取和寫入自/至您的 Blob 儲存體帳戶。如需如何產生 SAS 權杖的詳細資訊，請參閱[](../storage/storage-dotnet-shared-access-signature-part-1.md)。
-
--	目前唯一支援的 **apiName** 是用於項目對項目建議的 **ItemRecommend**。批次處理目前不支援使用者對項目的建議。
+* 目前 **uthenticationType** 應一律設為 **PublicOrSas**。
+* 您必須取得共用存取簽章 (SAS) 權杖，以允許 Recommendations API 讀取和寫入自/至您的 Blob 儲存體帳戶。如需如何產生 SAS 權杖的詳細資訊，請參閱[](../storage/storage-dotnet-shared-access-signature-part-1.md)。
+* 目前唯一支援的 **apiName** 是用於項目對項目建議的 **ItemRecommend**。批次處理目前不支援使用者對項目的建議。
 
 ## 等候非同步作業完成。
-
 當您啟動批次作業時，回應會傳回「作業 - 位置」標頭，以提供追蹤作業所需的資訊。您可以和追蹤組建作業一樣，使用 [擷取作業狀態 API](https://westus.dev.cognitive.microsoft.com/docs/services/Recommendations.V4.0/operations/56f30d77eda5650db055a3da) 來追蹤作業。
 
 ## 取得結果
-
 作業完成後，假設沒有任何錯誤，您就可以從輸出 Blob 儲存體收集結果。
 
 以下範例顯示輸出的大致外觀。在此範例中，為求簡單明瞭，我們顯示只有兩個要求的批次結果。
@@ -194,8 +189,7 @@ API 要求本文必須定義須儲存輸入、輸出及錯誤檔的位置。也�
 
 
 ## 了解限制
-
--	每個訂用帳戶一次只能呼叫一個批次作業。
--	批次作業輸入檔不能超過 2 MB。
+* 每個訂用帳戶一次只能呼叫一個批次作業。
+* 批次作業輸入檔不能超過 2 MB。
 
 <!---HONumber=AcomDC_0914_2016-->

@@ -1,58 +1,54 @@
-<properties
-	pageTitle="在入口網站中自動調整雲端服務 | Microsoft Azure"
-	description="了解如何使用入口網站在 Azure 中設定雲端服務 web 角色或背景工作角色的自動調整規則。"
-	services="cloud-services"
-	documentationCenter=""
-	authors="Thraka"
-	manager="timlt"
-	editor=""/>
+---
+title: 在入口網站中自動調整雲端服務 | Microsoft Docs
+description: 了解如何使用入口網站在 Azure 中設定雲端服務 web 角色或背景工作角色的自動調整規則。
+services: cloud-services
+documentationcenter: ''
+author: Thraka
+manager: timlt
+editor: ''
 
-<tags
-	ms.service="cloud-services"
-	ms.workload="tbd"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/06/2016"
-	ms.author="adegeo"/>
+ms.service: cloud-services
+ms.workload: tbd
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/06/2016
+ms.author: adegeo
 
-
+---
 # 如何自動調整雲端服務
-
-> [AZURE.SELECTOR]
-- [Azure 入口網站](cloud-services-how-to-scale-portal.md)
-- [Azure 傳統入口網站](cloud-services-how-to-scale.md)
+> [!div class="op_single_selector"]
+> * [Azure 入口網站](cloud-services-how-to-scale-portal.md)
+> * [Azure 傳統入口網站](cloud-services-how-to-scale.md)
+> 
+> 
 
 針對雲端服務背景工作角色設定條件，以觸發相應縮小或相應放大作業。適用於角色的條件可以 CPU、磁碟或角色的網路負載為根據。您也可以根據訊息佇列或一些與您訂用帳戶相關聯的其他 Azure 資源的計量來設定條件。
 
->[AZURE.NOTE] 本文著重於雲端服務 web 和背景工作角色。當您直接建立虛擬機器 (傳統) 時，它會裝載於雲端服務中。您可以藉由將標準虛擬機器與[可用性設定組](../virtual-machines/virtual-machines-windows-classic-configure-availability.md)產生關聯來調整，並手動開啟或關閉它們。
+> [!NOTE]
+> 本文著重於雲端服務 web 和背景工作角色。當您直接建立虛擬機器 (傳統) 時，它會裝載於雲端服務中。您可以藉由將標準虛擬機器與[可用性設定組](../virtual-machines/virtual-machines-windows-classic-configure-availability.md)產生關聯來調整，並手動開啟或關閉它們。
+> 
+> 
 
 ## 考量
-
 在設定應用程式的調整之前，您應該先考量下列資訊：
 
-- 調整受到核心使用量影響。較大型的角色執行個體會使用較多核心。您只能在訂用帳戶的核心限制內調整應用程式。例如，如果您的訂用帳戶設有二十個核心的限制，而您使用兩個中型大小的雲端服務來執行應用程式 (總計四個核心)，則您最多只能在訂用帳戶中相應增加十六個核心的其他雲端服務部署。如需關於大小的詳細資訊，請參閱[雲端服務的大小](cloud-services-sizes-specs.md)。
-
-- 您可以依據佇列訊息臨界值來調整。如需如何使用佇列的詳細資訊，請參閱[如何使用佇列儲存體服務](../storage/storage-dotnet-how-to-use-queues.md)。
-
-- 您也可以調整與您訂用帳戶相關聯的其他資源。
-
-- 若要對應用程式啟用高可用性，您應該確定應用程式是以兩個以上的角色執行個體來部署。如需詳細資訊，請參閱[服務等級協定](https://azure.microsoft.com/support/legal/sla/)。
+* 調整受到核心使用量影響。較大型的角色執行個體會使用較多核心。您只能在訂用帳戶的核心限制內調整應用程式。例如，如果您的訂用帳戶設有二十個核心的限制，而您使用兩個中型大小的雲端服務來執行應用程式 (總計四個核心)，則您最多只能在訂用帳戶中相應增加十六個核心的其他雲端服務部署。如需關於大小的詳細資訊，請參閱[雲端服務的大小](cloud-services-sizes-specs.md)。
+* 您可以依據佇列訊息臨界值來調整。如需如何使用佇列的詳細資訊，請參閱[如何使用佇列儲存體服務](../storage/storage-dotnet-how-to-use-queues.md)。
+* 您也可以調整與您訂用帳戶相關聯的其他資源。
+* 若要對應用程式啟用高可用性，您應該確定應用程式是以兩個以上的角色執行個體來部署。如需詳細資訊，請參閱[服務等級協定](https://azure.microsoft.com/support/legal/sla/)。
 
 ## 調整所在之處
-
 當您選取雲端服務之後，應該會看見雲端服務刀鋒視窗。
 
 1. 在雲端服務刀鋒視窗的 [角色和執行個體] 圖格上，選取雲端服務的名稱。**重要**︰請務必按一下雲端服務角色，而不是角色底下的角色執行個體。
-
+   
     ![](./media/cloud-services-how-to-scale-portal/roles-instances.png)
-
 2. 選取 [調整] 磚。
-
+   
     ![](./media/cloud-services-how-to-scale-portal/scale-tile.png)
 
 ## 自動調整
-
 您可以使用下列任一種模式來設定角色的調整規模設定：**手動**或**自動**。「手動」是您預期的模式，您會設定執行個體的絕對計數。但是，「自動」讓您能夠設定規則來控制您應該調整的方式和程度。
 
 將 [調整規模依據] 選項設定為 [排程及效能規則]。
@@ -68,31 +64,27 @@
 當您設定設定檔與規則之後，請選取頂端的 [儲存] 圖示。
 
 #### 設定檔
-
 設定檔會設定調整規模的最小和最大執行個體個數，而且也會在此調整範圍作用中時。
 
 * **一律**
-
+  
     一律讓此範圍的執行個體個數保持可用狀態。
-
+  
     ![一律調整的雲端服務](./media/cloud-services-how-to-scale-portal/select-always.png)
-    
 * **週期性**
-
+  
     選擇一組要調整的一週天數。
-
+  
     ![具有週期性排程的雲端服務調整規模](./media/cloud-services-how-to-scale-portal/select-recurrence.png)
-    
 * **固定日期**
-
+  
     要調整角色的固定日期範圍。
-
+  
     ![具有固定日期的雲端服務調整規模](./media/cloud-services-how-to-scale-portal/select-fixed.png)
 
 當您設定設定檔之後，請選取設定檔刀鋒視窗底部的 [確定] 按鈕。
 
 #### 規則
-
 規則會新增至設定檔，並顯示將觸發調整規模的條件。
 
 規則觸發程序是以雲端服務的計量 (CPU 使用量、磁碟活動或網路活動) 為依據，您可以在其中新增條件值。此外，您可以根據訊息佇列或一些與您訂用帳戶相關聯的其他 Azure 資源的計量來設定觸發程序。
@@ -102,7 +94,6 @@
 當您設定規則之後，請選取規則刀鋒視窗底部的 [確定] 按鈕。
 
 ## 回到手動調整
-
 瀏覽至[調整規模設定](#where-scale-is-located)，並將 [調整規模依據] 選項設定為 [手動輸入的執行個體計數]。
 
 ![具有設定檔與規則的雲端服務調整規模設定](./media/cloud-services-how-to-scale-portal/manual-basics.png)

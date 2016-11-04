@@ -1,25 +1,23 @@
-<properties
-	pageTitle="下載 Azure SDK for PHP"
-	description="了解如何下載和安裝 Azure SDK for PHP。"
-	documentationCenter="php"
-	services="app-service\web"
-	authors="allclark"
-	manager="douge"
-	editor=""/>
+---
+title: 下載 Azure SDK for PHP
+description: 了解如何下載和安裝 Azure SDK for PHP。
+documentationcenter: php
+services: app-service\web
+author: allclark
+manager: douge
+editor: ''
 
-<tags
-	ms.service="app-service-web"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="PHP"
-	ms.topic="article"
-	ms.date="06/01/2016"
-	ms.author="allclark;yaqiyang"/>
+ms.service: app-service-web
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: PHP
+ms.topic: article
+ms.date: 06/01/2016
+ms.author: allclark;yaqiyang
 
-#下載 Azure SDK for PHP
-
+---
+# 下載 Azure SDK for PHP
 ## 概觀
-
 Azure SDK for PHP 內含的元件可讓您開發、部署及管理適用於 Azure 的 PHP 應用程式。尤其是 Azure SDK for PHP 包含下列各項：
 
 * **適用於 Azure 的 PHP 用戶端程式庫**。這些類別庫所提供的介面可供存取 Azure 功能，例如資料管理服務和雲端服務。  
@@ -31,51 +29,45 @@ Azure SDK for PHP 內含的元件可讓您開發、部署及管理適用於 Azur
 
 本主題中的指示假設您已安裝 [PHP][install-php]。
 
-> [AZURE.NOTE] 您必須有 PHP 5.5 或更新版本，才能使用適用於 Azure 的 PHP 用戶端程式庫。
+> [!NOTE]
+> 您必須有 PHP 5.5 或更新版本，才能使用適用於 Azure 的 PHP 用戶端程式庫。
+> 
+> 
 
-##適用於 Azure 的 PHP 用戶端程式庫
-
+## 適用於 Azure 的 PHP 用戶端程式庫
 適用於 Azure 的 PHP 用戶端程式庫提供了一個介面，以便從任何作業系統存取 Azure 功能，例如資料管理服務和雲端服務。您可以透過編輯器安裝這些程式庫。
 
 如需有關如何使用適用於 Azure 的 PHP 用戶端程式庫的詳細資訊，請參閱[如何從 PHP 使用 Blob 服務][blob-service] \(英文)、[如何從 PHP 使用資料表服務][table-service] \(英文) 及 [如何從 PHP 使用佇列服務][queue-service] \(英文)。
 
-###透過編輯器安裝
-
+### 透過編輯器安裝
 1. [安裝 Git][install-git]。
 
+    > [AZURE.NOTE] 在 Windows 中，您也需要將 Git 可執行檔新增至 PATH 環境變數。
 
-	> [AZURE.NOTE] 在 Windows 中，您也需要將 Git 可執行檔新增至 PATH 環境變數。
-
-2. 在專案的根目錄中建立名為 **composer.json** 的檔案，並新增下列程式碼：
-
+1. 在專案的根目錄中建立名為 **composer.json** 的檔案，並新增下列程式碼：
+   
         {
-			"require": {
-				"microsoft/windowsazure": "^0.4"
-			}
+            "require": {
+                "microsoft/windowsazure": "^0.4"
+            }
         }
+2. 將 **[composer.phar][composer-phar]** 下載到專案根目錄中。
+3. 開啟命令提示字元，在專案根目錄中執行此命令
+   
+        php composer.phar install
 
-3. 將 **[composer.phar][composer-phar]** 下載到專案根目錄中。
-
-4. 開啟命令提示字元，在專案根目錄中執行此命令
-
-		php composer.phar install
-
-##Azure PowerShell 和 Azure 模擬器
-
+## Azure PowerShell 和 Azure 模擬器
 Azure PowerShell 是一組 PowerShell Cmdlet，可用於部署和管理 Azure 服務 (例如雲端服務和虛擬機器)。Azure 模擬器是雲端服務和資料管理服務的模擬器，可讓您在本機測試應用程式。只有 Windows 支援這些元件。
 
 安裝 Azure PowerShell 和 Azure 模擬器的建議方式就是使用 [Microsoft Web Platform Installer][download-wpi]。請注意，您也可以選擇安裝其他開發元件，例如 PHP、SQL Server、適用於 SQL Server for PHP 的 Microsoft 驅動程式和 WebMatrix。
 
 如需有關如何使用 Azure PowerShell 的詳細資訊，請參閱[如何安裝及設定 Azure PowerShell][powershell-tools] \(英文)。
 
-##Azure CLI
-
+## Azure CLI
 Azure CLI 是一組命令，可用於部署和管理 Azure 服務，例如 Azure 網站和 Azure 虛擬機器。如需安裝 Azure CLI 的相關資訊，請參閱[安裝 Azure CLI](xplat-cli-install.md)。
 
 ## 後續步驟
-
 如需詳細資訊，請參閱 [PHP 開發人員中心](/develop/php/)。
-
 
 [install-php]: http://www.php.net/manual/en/install.php
 [composer-github]: https://github.com/composer/composer

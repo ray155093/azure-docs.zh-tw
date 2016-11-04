@@ -1,28 +1,30 @@
-<properties
-	pageTitle="將 Twitter API 新增至 PowerApps Enterprise| Microsoft Azure"
-	description="在您組織的 App Service 環境中建立或設定新的 Twitter API"
-	services=""
-    suite="powerapps"
-	documentationCenter="" 
-	authors="rajeshramabathiran"
-	manager="dwrede"
-	editor=""/>
+---
+title: 將 Twitter API 新增至 PowerApps Enterprise| Microsoft Docs
+description: 在您組織的 App Service 環境中建立或設定新的 Twitter API
+services: ''
+suite: powerapps
+documentationcenter: ''
+author: rajeshramabathiran
+manager: dwrede
+editor: ''
 
-<tags
-   ms.service="powerapps"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na" 
-   ms.date="05/02/2016"
-   ms.author="litran"/>
+ms.service: powerapps
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 05/02/2016
+ms.author: litran
 
+---
 # 在 PowerApps Enterprise 中建立新的 Twitter API
-
-> [AZURE.IMPORTANT] 本主題已經封存，並且很快就會移除。請到全新的 [PowerApps](https://powerapps.microsoft.com) 來看看我們在忙些什麼。
+> [!IMPORTANT]
+> 本主題已經封存，並且很快就會移除。請到全新的 [PowerApps](https://powerapps.microsoft.com) 來看看我們在忙些什麼。
 > 
-> - 若要深入了解 PowerApps 並開始使用，請移至 [PowerApps](https://powerapps.microsoft.com)。  
-> - 若要深入了解 PowerApps 中可用的連接，請前往[可用連接](https://powerapps.microsoft.com/tutorials/connections-list/)。 
+> * 若要深入了解 PowerApps 並開始使用，請移至 [PowerApps](https://powerapps.microsoft.com)。  
+> * 若要深入了解 PowerApps 中可用的連接，請前往[可用連接](https://powerapps.microsoft.com/tutorials/connections-list/)。 
+> 
+> 
 
 <!--Archived
 Add the Twitter API to your organization's (tenant) app service environment. 
@@ -44,7 +46,7 @@ Add the Twitter API to your organization's (tenant) app service environment.
 ![Add API][2]
 
 6. Enter a descriptive **name** for your API.  
-	
+
 7. In **Source**, select **Available APIs** to select the pre-built APIs, and select **Twitter**:  
 ![select Twitter api][3]
 
@@ -53,7 +55,7 @@ Add the Twitter API to your organization's (tenant) app service environment.
 
 9. Enter the *Consumer Key* and *Consumer Secret* of your Twitter application. If you don't have one, see the "Register a Twitter app for use with PowerApps" section in this topic to create the key and secret values you need.  
 
-	> [AZURE.IMPORTANT] Save the **redirect URL**. You may need this value later in this topic.
+    > [AZURE.IMPORTANT] Save the **redirect URL**. You may need this value later in this topic.
 
 10. Select **OK** to complete the steps.
 
@@ -70,14 +72,14 @@ If you don't have an existing Twitter app with the key and secret values, then u
 ![Twitter apps page][6]
 
 3. In **Create an application**:  
-   
-	1. Enter a value for **Name**.  
-	2. Enter a value for **Description**.  
-	3. Enter a value for **Website**.  
-	4. Set the **Callback url** to the redirect URL you received when you added the new Twitter API in the Azure Portal (in this topic).  
-	5. Agree to the developer agreement and select **Create your Twitter application**.  
 
-	![Twitter app create][7]
+    1. Enter a value for **Name**.  
+    2. Enter a value for **Description**.  
+    3. Enter a value for **Website**.  
+    4. Set the **Callback url** to the redirect URL you received when you added the new Twitter API in the Azure Portal (in this topic).  
+    5. Agree to the developer agreement and select **Create your Twitter application**.  
+
+    ![Twitter app create][7]
 
 4. On successful app creation, you are redirected to the app page.
 

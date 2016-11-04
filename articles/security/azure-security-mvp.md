@@ -1,23 +1,22 @@
-<properties
-   pageTitle="Azure 安全性 MVP 計畫 | Microsoft Azure"
-   description="本文章提供 MVP 計畫中 Azure 安全性貢獻領域的概觀。"
-   services="security"
-   documentationCenter="na"
-   authors="TomShinder"
-   manager="StevenPo"
-   editor="TomSh"/>
+---
+title: Azure 安全性 MVP 計畫 | Microsoft Docs
+description: 本文章提供 MVP 計畫中 Azure 安全性貢獻領域的概觀。
+services: security
+documentationcenter: na
+author: TomShinder
+manager: StevenPo
+editor: TomSh
 
-<tags
-   ms.service="security"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="08/02/2016"
-   ms.author="yurid"/>
+ms.service: security
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 08/02/2016
+ms.author: yurid
 
+---
 # Azure 安全性 MVP 計畫
-
 Microsoft Most Valuable Professionals (Microsoft 最有價值專家，MVP) 是社群領導者，他們是在協助其他人充分利用 Microsoft 技術之經驗的最佳典範。他們和社群及 Microsoft 分享了他們超乎常人的熱情、實用的知識以及技術專長。
 
 我們很高興地宣布，Microsoft Azure 現在會認可在 Azure 安全性方面具有特殊專業知識的社群專家。Microsoft MVP 可以獲頒 Microsoft Azure 在 Azure 安全性貢獻領域的 MVP。

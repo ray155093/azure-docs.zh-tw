@@ -1,42 +1,39 @@
-<properties
-    pageTitle="使用 Azure AD 共用帳戶 | Microsoft Azure"
-    description="描述 Azure Active Directory 如何讓組織安全地共用內部部署應用程式和取用者雲端服務的帳戶。"
-    services="active-directory"
-    documentationCenter=""
-    authors="msStevenPo"
-    manager="femila"
-    editor=""/>
+---
+title: 使用 Azure AD 共用帳戶 | Microsoft Docs
+description: 描述 Azure Active Directory 如何讓組織安全地共用內部部署應用程式和取用者雲端服務的帳戶。
+services: active-directory
+documentationcenter: ''
+author: msStevenPo
+manager: femila
+editor: ''
 
- <tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="02/09/2016"  
-    ms.author="stevenpo"/>
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 02/09/2016
+ms.author: stevenpo
 
-
+---
 # <a name="sharing-accounts-with-azure-ad"></a>使用 Azure AD 共用帳戶
-
 ## <a name="overview"></a>Overview
 有時候組織需要針對多人使用單一使用者名稱和密碼。 這通常發生在兩個情況下：
 
-- 每個使用者必須使用唯一的登入和密碼存取應用程式時 (無論是內部部署的應用程式或取用者雲端服務，例如公司的社交媒體帳戶)。
-- 建立多個使用者環境時。 您可能有具備較高權限的單一本機帳戶可用來執行核心安裝、管理及復原活動 (例如 Office 365 的本機「全域系統管理員」帳戶或 Salesforce 中的根帳戶)。
+* 每個使用者必須使用唯一的登入和密碼存取應用程式時 (無論是內部部署的應用程式或取用者雲端服務，例如公司的社交媒體帳戶)。
+* 建立多個使用者環境時。 您可能有具備較高權限的單一本機帳戶可用來執行核心安裝、管理及復原活動 (例如 Office 365 的本機「全域系統管理員」帳戶或 Salesforce 中的根帳戶)。
 
 傳統上，這些帳戶的共用方式是透過將認證 (使用者名稱/密碼) 散發給適當的人員，或是將認證儲存在多個受信任的代理人可以存取的共用位置。
 
 傳統共用模型有幾個缺點：
 
-- 您必須將認證散發給需要存取新應用程式的所有人，他們才能進行存取。
-- 每個共用的應用程式可能都需要唯一的一組共用認證，使用者必須記住許多組認證。 當使用者必須記住許多認證時，他們會依靠有風險的做法，風險因此會增加。 (例如寫下密碼。)
-- 您不知道誰有權存取應用程式。
-- 您不知道誰 *存取* 了應用程式。
-- 當您需要移除某個應用程式的存取權時，您必須更新認證，並將認證重新散發給需要存取該應用程式的所有人。
+* 您必須將認證散發給需要存取新應用程式的所有人，他們才能進行存取。
+* 每個共用的應用程式可能都需要唯一的一組共用認證，使用者必須記住許多組認證。 當使用者必須記住許多認證時，他們會依靠有風險的做法，風險因此會增加。 (例如寫下密碼。)
+* 您不知道誰有權存取應用程式。
+* 您不知道誰 *存取* 了應用程式。
+* 當您需要移除某個應用程式的存取權時，您必須更新認證，並將認證重新散發給需要存取該應用程式的所有人。
 
 ## <a name="azure-active-directory-account-sharing"></a>Azure Active Directory 帳戶共用
-
 Azure AD 提供使用共用帳戶的新方法，可以消除這些缺點。
 
 透過使用「存取面板」並選擇最適合該應用程式的單一登入類型，Azure AD 系統管理員可以設定使用者可以存取的應用程式。 其中的「密碼單一登入」 類型在該應用程式的登入程序期間，可讓 Azure AD 做為一種「代理程式」。
@@ -49,32 +46,29 @@ Azure AD 支援的共用帳戶適用於任何Enterprise Mobility Suite (EMS)、�
 
 啟用帳戶共用的 Azure AD 功能包括：
 
-- [密碼單一登入](active-directory-appssoaccess-whatis.md#password-based-single-sign-on)
-- 密碼單一登入代理程式
-- [群組指派](active-directory-accessmanagement-self-service-group-management.md)
-- 自訂密碼應用程式
-- [應用程式使用量儀表板/報告](active-directory-passwords-get-insights.md)
-- 使用者存取入口網站
-- [應用程式 proxy](active-directory-application-proxy-get-started.md)
-- [Active Directory 市集](https://azure.microsoft.com/marketplace/active-directory/all/)
+* [密碼單一登入](active-directory-appssoaccess-whatis.md#password-based-single-sign-on)
+* 密碼單一登入代理程式
+* [群組指派](active-directory-accessmanagement-self-service-group-management.md)
+* 自訂密碼應用程式
+* [應用程式使用量儀表板/報告](active-directory-passwords-get-insights.md)
+* 使用者存取入口網站
+* [應用程式 proxy](active-directory-application-proxy-get-started.md)
+* [Active Directory 市集](https://azure.microsoft.com/marketplace/active-directory/all/)
 
 ## <a name="sharing-an-account"></a>共用帳戶
 若要使用 Azure AD 來共用帳戶，您必須：
 
-- 新增應用程式[應用程式庫](https://azure.microsoft.com/marketplace/active-directory/)或[自訂應用程式](http://blogs.technet.com/b/ad/archive/2015/06/17/bring-your-own-app-with-azure-ad-self-service-saml-configuration-gt-now-in-preview.aspx)
-- 設定應用程式使用密碼單一登入 (SSO)
-- 使用 [以群組為基礎的指派](active-directory-accessmanagement-group-saasapps.md) ，並選取輸入共用認證的選項
-- 選擇性：在某些應用程式 (例如 Facebook、Twitter 或 LinkedIn) 中，您可以啟用 [Azure AD 自動變換密碼](http://blogs.technet.com/b/ad/archive/2015/02/20/azure-ad-automated-password-roll-over-for-facebook-twitter-and-linkedin-now-in-preview.aspx)
+* 新增應用程式[應用程式庫](https://azure.microsoft.com/marketplace/active-directory/)或[自訂應用程式](http://blogs.technet.com/b/ad/archive/2015/06/17/bring-your-own-app-with-azure-ad-self-service-saml-configuration-gt-now-in-preview.aspx)
+* 設定應用程式使用密碼單一登入 (SSO)
+* 使用 [以群組為基礎的指派](active-directory-accessmanagement-group-saasapps.md) ，並選取輸入共用認證的選項
+* 選擇性：在某些應用程式 (例如 Facebook、Twitter 或 LinkedIn) 中，您可以啟用 [Azure AD 自動變換密碼](http://blogs.technet.com/b/ad/archive/2015/02/20/azure-ad-automated-password-roll-over-for-facebook-twitter-and-linkedin-now-in-preview.aspx)
 
 使用 Azure AD，可以透過 Multi-Factor Authentication (MFA) 讓您的共用帳戶更安全 (深入了解[使用 Azure AD 保護應用程式](../multi-factor-authentication/multi-factor-authentication-get-started.md))，並可使用 [Azure AD 自助式](active-directory-accessmanagement-self-service-group-management.md)群組管理來委派管理誰有權存取應用程式。
 
 ## <a name="related-articles"></a>相關文章
-
-- [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
-- [使用條件式存取來保護應用程式](active-directory-conditional-access.md)
-- [自助式群組管理/SSAA](active-directory-accessmanagement-self-service-group-management.md)
-
-
+* [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
+* [使用條件式存取來保護應用程式](active-directory-conditional-access.md)
+* [自助式群組管理/SSAA](active-directory-accessmanagement-self-service-group-management.md)
 
 <!--HONumber=Oct16_HO2-->
 

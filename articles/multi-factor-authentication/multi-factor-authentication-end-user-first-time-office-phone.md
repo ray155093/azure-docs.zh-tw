@@ -1,28 +1,27 @@
-<properties
-	pageTitle="搭配 Azure MFA 使用辦公室電話做為連絡方式"
-	description="此頁面會顯示使用者如何使用辦公室電話做為 Azure MFA 的主要連絡方式。"
-	services="multi-factor-authentication"
-	documentationCenter=""
-	authors="kgremban"
-	manager="femila"
-	editor="curtland"/>
+---
+title: 搭配 Azure MFA 使用辦公室電話做為連絡方式
+description: 此頁面會顯示使用者如何使用辦公室電話做為 Azure MFA 的主要連絡方式。
+services: multi-factor-authentication
+documentationcenter: ''
+author: kgremban
+manager: femila
+editor: curtland
 
-<tags
-	ms.service="multi-factor-authentication"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/04/2016"
-	ms.author="kgremban"/>
+ms.service: multi-factor-authentication
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/04/2016
+ms.author: kgremban
 
+---
 # 搭配 Azure Multi-Factor Authentication 使用辦公室電話做為連絡方式
-
 如果您要使用辦公室電話做為主要連絡方式，您可以使用這份文件。它會引導您設定 Multi-Factor Authentication，以利用辦公室電話撥打電話做為連絡方式。
 
 ## 使用辦公室電話做為連絡方式
-
 <ol>
+
 <li>從下拉式清單中選取辦公室電話</li>
 
 <center>![Setup](./media/multi-factor-authentication-end-user-first-time-office-phone/office.png)</center>

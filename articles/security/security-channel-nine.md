@@ -1,23 +1,22 @@
-<properties
-   pageTitle="Channel 9 上的 Azure 安全性影片 | Microsoft Azure"
-   description="本文提供 Channel 9 上策劃的 Azure 安全性簡報清單。Channel 9 是一個社群，連繫使用我們產品的人員與我們產品的工作人員。"
-   services="security"
-   documentationCenter="na"
-   authors="TomShinder"
-   manager="MBaldwin"
-   editor="TomSh"/>
+---
+title: Channel 9 上的 Azure 安全性影片 | Microsoft Docs
+description: 本文提供 Channel 9 上策劃的 Azure 安全性簡報清單。Channel 9 是一個社群，連繫使用我們產品的人員與我們產品的工作人員。
+services: security
+documentationcenter: na
+author: TomShinder
+manager: MBaldwin
+editor: TomSh
 
-<tags
-   ms.service="security"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="08/09/2016"
-   ms.author="terrylan"/>
+ms.service: security
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 08/09/2016
+ms.author: terrylan
 
+---
 # Channel 9 上的 Azure 安全性影片
-
 [Channel 9](https://channel9.msdn.com/) 是讓產品幕後功臣露面，並讓他們與客戶保持聯繫的社群。
 
 他們認為並且高興軟體有不錯的未來。Channel 9 是參與進行中交談的社群。
@@ -46,9 +45,9 @@ Jack Richins 教導 [Scott](https://channel9.msdn.com/Niners/Glucose) 如何輕�
 
 本影片涵蓋的區域：
 
-- 了解加密和 SQL Server
-- 了解 Data Protection API、主要金鑰和憑證
-- 使用 SQL 命令來建立主要金鑰和憑證，並加密資料庫
+* 了解加密和 SQL Server
+* 了解 Data Protection API、主要金鑰和憑證
+* 使用 SQL 命令來建立主要金鑰和憑證，並加密資料庫
 
 [如何在 DevTest 實驗室中設定安全性](https://channel9.msdn.com/Blogs/Windows-Azure/How-to-set-security-in-your-DevTest-Lab)
 
@@ -66,11 +65,11 @@ Jack Richins 教導 [Scott](https://channel9.msdn.com/Niners/Glucose) 如何輕�
 
 Azure Active Directory (AD) Privileged Identity Management 是高階功能，可讓您探索、限制和監視特殊權限的身分識別和其對資源的存取。此功能也可在需要時強制執行隨選的即時管理存取。了解：
 
-- 管理 Office 365 工作負載特定系統管理角色的保護
-- 設定 Azure Multi-Factor Authentication (MFA) 以啟用特殊權限的角色
-- 測量和改善您的租用戶安全性狀態
-- 監視和修正安全性調查結果
-- 檢閱誰基於定期重新認證工作流程而需要保留特殊權限角色
+* 管理 Office 365 工作負載特定系統管理角色的保護
+* 設定 Azure Multi-Factor Authentication (MFA) 以啟用特殊權限的角色
+* 測量和改善您的租用戶安全性狀態
+* 監視和修正安全性調查結果
+* 檢閱誰基於定期重新認證工作流程而需要保留特殊權限角色
 
 [Azure 金鑰保存庫 (Amit Bapat)](https://channel9.msdn.com/Shows/Azure-Friday/Azure-Key-Vault-with-Amit-Bapat)
 

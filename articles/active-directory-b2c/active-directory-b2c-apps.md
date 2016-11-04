@@ -1,31 +1,30 @@
-<properties
-	pageTitle="Azure AD B2C | Microsoft Azure"
-	description="您在 Azure Active Directory B2C 中可建置的應用程式類型。"
-	services="active-directory-b2c"
-	documentationCenter=""
-	authors="dstrockis"
-	manager="msmbaldwin"
-	editor=""/>
+---
+title: Azure AD B2C | Microsoft Docs
+description: 您在 Azure Active Directory B2C 中可建置的應用程式類型。
+services: active-directory-b2c
+documentationcenter: ''
+author: dstrockis
+manager: msmbaldwin
+editor: ''
 
-<tags
-	ms.service="active-directory-b2c"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="hero-article"
-	ms.date="07/22/2016"
-	ms.author="dastrock"/>
+ms.service: active-directory-b2c
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: hero-article
+ms.date: 07/22/2016
+ms.author: dastrock
 
+---
 # Azure Active Directory B2C：應用程式類型
-
 Azure Active Directory (Azure AD) B2C 支援各種現代應用程式架構的驗證。全部都以產業標準通訊協定 [OAuth 2.0](active-directory-b2c-reference-protocols.md) 或 [OpenID Connect](active-directory-b2c-reference-protocols.md) 為基礎。此文件簡要描述您可以建置的應用程式類型，不涉及您慣用的語言或平台。在您[開始建立應用程式](active-directory-b2c-overview.md#getting-started)之前，也可協助您先了解一些高階案例。
 
 ## 基本概念
 每個使用 Azure AD B2C 的應用程式都必須透過 [Azure 入口網站](https://portal.azure.com/)，註冊在 [B2C 目錄](active-directory-b2c-get-started.md)中。應用程式註冊程序會收集與指派一些值給您的應用程式：
 
-- 可唯一識別應用程式的**應用程式識別碼**。
-- 可用來將回應導回至應用程式的**重新導向 URI**。
-- 案例特有的其他任何值。如需詳細資訊，請瞭解如何[註冊應用程式](active-directory-b2c-app-registration.md)。
+* 可唯一識別應用程式的**應用程式識別碼**。
+* 可用來將回應導回至應用程式的**重新導向 URI**。
+* 案例特有的其他任何值。如需詳細資訊，請瞭解如何[註冊應用程式](active-directory-b2c-app-registration.md)。
 
 註冊應用程式之後，應用程式即會向 Azure AD v2.0 端點傳送要求，以與 Azure AD 通訊：
 
@@ -40,10 +39,10 @@ https://login.microsoftonline.com/common/oauth2/v2.0/token
 
 1. 應用程式會將使用者導向至 v2.0 端點以執行[原則](active-directory-b2c-reference-policies.md)。
 2. 使用者完成根據原則定義來完成原則。
-4. 應用程式會從 v2.0 端點接收某種安全性權杖。
-5. 應用程式使用此安全性權杖存取受保護的資訊或受保護的資源。
-6. 資源伺服器會驗證安全性權杖，以確認可以授與存取權。
-7. 應用程式會定期重新整理安全性權杖。
+3. 應用程式會從 v2.0 端點接收某種安全性權杖。
+4. 應用程式使用此安全性權杖存取受保護的資訊或受保護的資源。
+5. 資源伺服器會驗證安全性權杖，以確認可以授與存取權。
+6. 應用程式會定期重新整理安全性權杖。
 
 <!-- TODO: Need a page for libraries to link to -->
 根據您要建置的應用程式類型而定，這些步驟可能稍有不同。開放原始碼程式庫可以為您處理細節。
@@ -57,10 +56,10 @@ eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImtyaU1QZG1Cd...
 
 // Partial content of a decoded id_token
 {
-	"name": "John Smith",
-	"email": "john.smith@gmail.com",
-	"oid": "d9674823-dffc-4e3f-a6eb-62fe4bd48a58"
-	...
+    "name": "John Smith",
+    "email": "john.smith@gmail.com",
+    "oid": "d9674823-dffc-4e3f-a6eb-62fe4bd48a58"
+    ...
 }
 ```
 
@@ -91,8 +90,10 @@ Accept: application/json
 
 然後，Web API 會使用這個權杖來驗證 API 呼叫端的身分識別，並從編碼在權杖中的宣告擷取呼叫端的相關資訊。請參閱 [Azure AD B2C 權杖參考](active-directory-b2c-reference-tokens.md)，以深入了解應用程式可用的權杖和宣告類型。
 
-> [AZURE.NOTE]
-	Azure AD B2C 目前僅支援以各自已知的用戶端存取的 Web API。例如，完整的應用程式可能包括 iOS 應用程式、Android 應用程式和後端 Web API。完全支援這種架構。目前不支援協力廠商用戶端 (例如另一個 iOS 應用程式) 存取相同的 Web API。完整應用程式的所有元件必須共用單一應用程式識別碼。
+> [!NOTE]
+> Azure AD B2C 目前僅支援以各自已知的用戶端存取的 Web API。例如，完整的應用程式可能包括 iOS 應用程式、Android 應用程式和後端 Web API。完全支援這種架構。目前不支援協力廠商用戶端 (例如另一個 iOS 應用程式) 存取相同的 Web API。完整應用程式的所有元件必須共用單一應用程式識別碼。
+> 
+> 
 
 Web API 接收的權杖可以來自許多類型的應用程式，包括 Web 應用程式、桌面和行動應用程式、單一頁面應用程式、伺服器端精靈，以及其他 Web API。以下是 Web 應用程式呼叫 Web API 的完整流程範例：
 
@@ -107,8 +108,10 @@ Web API 接收的權杖可以來自許多類型的應用程式，包括 Web 應�
 
 在此流程中，應用程式會執行[原則](active-directory-b2c-reference-policies.md)，並在使用者完成原則之後，從 Azure AD 接收 `authorization_code`。`authorization_code` 代表應用程式有權限代替目前登入的使用者呼叫後端服務。然後應用程式就可以在背景中以 `authorization_code` 來兌換 `id_token` 和 `refresh_token`。應用程式可以在 HTTP 要求中使用 `id_token` 向後端 Web API 驗證。它也可以使用 `refresh_token` 來取得新的 `id_token` (當舊的已過期時)。
 
-> [AZURE.NOTE]
-	Azure AD B2C 目前僅支援用來存取應用程式本身的後端 Web 服務的權杖。例如，完整的應用程式可能包括 iOS 應用程式、Android 應用程式和後端 Web API。完全支援這種架構。目前不支援 iOS 應用程式使用 OAuth 2.0 存取權杖來存取協力廠商 Web API。完整應用程式的所有元件必須共用單一應用程式識別碼。
+> [!NOTE]
+> Azure AD B2C 目前僅支援用來存取應用程式本身的後端 Web 服務的權杖。例如，完整的應用程式可能包括 iOS 應用程式、Android 應用程式和後端 Web API。完全支援這種架構。目前不支援 iOS 應用程式使用 OAuth 2.0 存取權杖來存取協力廠商 Web API。完整應用程式的所有元件必須共用單一應用程式識別碼。
+> 
+> 
 
 ![原生應用程式泳道映像](./media/active-directory-b2c-apps/native.png)
 

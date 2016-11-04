@@ -1,54 +1,49 @@
-<properties
-    pageTitle="Azure AD 網域服務：比較 Azure AD 網域服務與 DIY 網域控制器 | Microsoft Azure"
-    description="比較 Azure Active Directory Domain Services 與 DIY 網域控制器"
-    services="active-directory-ds"
-    documentationCenter=""
-    authors="mahesh-unnikrishnan"
-    manager="stevenpo"
-    editor="curtand"/>
+---
+title: Azure AD 網域服務：比較 Azure AD 網域服務與 DIY 網域控制器 | Microsoft Docs
+description: 比較 Azure Active Directory Domain Services 與 DIY 網域控制器
+services: active-directory-ds
+documentationcenter: ''
+author: mahesh-unnikrishnan
+manager: stevenpo
+editor: curtand
 
-<tags
-    ms.service="active-directory-ds"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="10/01/2016"
-    ms.author="maheshu"/>
+ms.service: active-directory-ds
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 10/01/2016
+ms.author: maheshu
 
-
+---
 # <a name="how-to-decide-if-azure-ad-domain-services-is-right-for-your-use-case"></a>如何判斷 Azure AD 網域服務是否適合您的使用案例
 Azure AD 網域服務可讓您在 Azure 基礎結構服務中部署工作負載，而不必擔心要維護您的身分識別基礎結構。 此受管理的服務不同於您自行部署及管理的典型 Windows Server Active Directory 部署。 此服務專為容易部署、自動化健全狀況監視和補救，以及雲端的簡單身分識別基礎結構所設計。 我們持續不斷地提升該服務，以新增常見部署案例的支援。
 
 若要判斷是否使用 Azure AD 網域服務或在 Azure AD 中加速和管理自己的 AD 基礎結構 (自己動手做)︰
 
-- 請參閱 [Azure AD 網域服務所提供的功能](active-directory-ds-features.md)清單。
-
-- 檢閱常見 [Azure AD 網域服務的部署案例](active-directory-ds-scenarios.md)。
-
-- 最後， [比較 Azure AD 網域服務與自己動手做 AD 選項](active-directory-ds-comparison.md#compare-azure-ad-domain-services-to-diy-ad-domain-in-azure)。
-
+* 請參閱 [Azure AD 網域服務所提供的功能](active-directory-ds-features.md)清單。
+* 檢閱常見 [Azure AD 網域服務的部署案例](active-directory-ds-scenarios.md)。
+* 最後， [比較 Azure AD 網域服務與自己動手做 AD 選項](active-directory-ds-comparison.md#compare-azure-ad-domain-services-to-diy-ad-domain-in-azure)。
 
 ## <a name="compare-azure-ad-domain-services-to-diy-ad-domain-in-azure"></a>比較 Azure AD 網域服務與 Azure 中的 DIY AD 網域
 下表可協助您決定使用 Azure AD 網域服務或在 Azure 中管理自己的 AD 基礎結構。
 
-|**功能**|**Azure AD 網域服務**|**Azure VM 中的「自己動手做」AD**|
-|---|:---:|:---:|
-|[**受管理的服務**](active-directory-ds-comparison.md#managed-service)|**&#x2713;**|**&#x2715;**|
-|[**安全的部署**](active-directory-ds-comparison.md#secure-deployments)|**&#x2713;**|系統管理員必須確保部署安全。|
-|[**DNS 伺服器**](active-directory-ds-comparison.md#dns-server)|**&#x2713;** (受管理的服務)|**&#x2713;**|
-|[**Domain or Enterprise administrator privileges**](active-directory-ds-comparison.md#domain-or-enterprise-administrator-privileges)|**&#x2715;**|**&#x2713;**|
-|[**加入網域**](active-directory-ds-comparison.md#domain-join)|**&#x2713;**|**&#x2713;**|
-|[**使用 NTLM 和 Kerberos 的網域驗證**](active-directory-ds-comparison.md#domain-authentication-using-ntlm-and-kerberos)|**&#x2713;**|**&#x2713;**|
-|[**自訂 OU 結構**](active-directory-ds-comparison.md#custom-ou-structure)|**&#x2713;**|**&#x2713;**|
-|[**結構描述延伸模組**](active-directory-ds-comparison.md#schema-extensions)|**&#x2715;**|**&#x2713;**|
-|[**AD 網域/樹系信任**](active-directory-ds-comparison.md#ad-domain-or-forest-trusts)|**&#x2715;**|**&#x2713;**|
-|[**LDAP read**](active-directory-ds-comparison.md#ldap-read)|**&#x2713;**|**&#x2713;**|
-|[**安全的 LDAP (LDAPS)**](active-directory-ds-comparison.md#secure-ldap)|**&#x2713;**|**&#x2713;**|
-|[**LDAP write**](active-directory-ds-comparison.md#ldap-write)|**&#x2715;**|**&#x2713;**|
-|[**Group Policy**](active-directory-ds-comparison.md#group-policy)|簡單|完整|
-|[**地理位置分散部署**](active-directory-ds-comparison.md#geo-dispersed-deployments)|**&#x2715;**|**&#x2713;**|
-
+| **功能** | **Azure AD 網域服務** | **Azure VM 中的「自己動手做」AD** |
+| --- |:---:|:---:|
+| [**受管理的服務**](active-directory-ds-comparison.md#managed-service) |**&#x2713;** |**&#x2715;** |
+| [**安全的部署**](active-directory-ds-comparison.md#secure-deployments) |**&#x2713;** |系統管理員必須確保部署安全。 |
+| [**DNS 伺服器**](active-directory-ds-comparison.md#dns-server) |**&#x2713;** (受管理的服務) |**&#x2713;** |
+| [**Domain or Enterprise administrator privileges**](active-directory-ds-comparison.md#domain-or-enterprise-administrator-privileges) |**&#x2715;** |**&#x2713;** |
+| [**加入網域**](active-directory-ds-comparison.md#domain-join) |**&#x2713;** |**&#x2713;** |
+| [**使用 NTLM 和 Kerberos 的網域驗證**](active-directory-ds-comparison.md#domain-authentication-using-ntlm-and-kerberos) |**&#x2713;** |**&#x2713;** |
+| [**自訂 OU 結構**](active-directory-ds-comparison.md#custom-ou-structure) |**&#x2713;** |**&#x2713;** |
+| [**結構描述延伸模組**](active-directory-ds-comparison.md#schema-extensions) |**&#x2715;** |**&#x2713;** |
+| [**AD 網域/樹系信任**](active-directory-ds-comparison.md#ad-domain-or-forest-trusts) |**&#x2715;** |**&#x2713;** |
+| [**LDAP read**](active-directory-ds-comparison.md#ldap-read) |**&#x2713;** |**&#x2713;** |
+| [**安全的 LDAP (LDAPS)**](active-directory-ds-comparison.md#secure-ldap) |**&#x2713;** |**&#x2713;** |
+| [**LDAP write**](active-directory-ds-comparison.md#ldap-write) |**&#x2715;** |**&#x2713;** |
+| [**Group Policy**](active-directory-ds-comparison.md#group-policy) |簡單 |完整 |
+| [**地理位置分散部署**](active-directory-ds-comparison.md#geo-dispersed-deployments) |**&#x2715;** |**&#x2713;** |
 
 #### <a name="managed-service"></a>受管理的服務
 Azure AD 網域服務網域是由 Microsoft 管理。 您不必擔憂修補、更新、監視、備份，以及確保網域的可用性。 這些管理工作是 Microsoft Azure 針對受管理網域提供的服務。
@@ -92,29 +87,24 @@ AAD-DS 受管理的網域不支援複雜的群組原則建構。 例如，您無
 #### <a name="geo-dispersed-deployments"></a>分散各地的部署
 Azure AD 網域服務受管理網域可以在Azure 的單一虛擬網路中使用。 在世界各地多個 Azure 區域中都需要可用網域控制站的案例中，在 Azure IaaS VM 中設定網域控制站可能是更好的替代方法。
 
-
 ## <a name="'do-it-yourself'-(diy)-ad-deployment-options"></a>「自己動手做」(DIY) AD 部署選項
 在有些部署使用案例中，您可能需要 Windows Server AD 安裝所提供的一些功能。 在這些情況下，請考慮下列其中一個自己動手做 (DIY) 選項︰
 
-- **獨立雲端網域︰** 您可以使用已設定為網域控制站的 Azure 虛擬機器來設定獨立「雲端網域」。 此基礎結構不會與內部部署 AD 環境整合。 此選項需要一組不同的「雲端認證」才能登入/管理雲端中的 VM。
+* **獨立雲端網域︰** 您可以使用已設定為網域控制站的 Azure 虛擬機器來設定獨立「雲端網域」。 此基礎結構不會與內部部署 AD 環境整合。 此選項需要一組不同的「雲端認證」才能登入/管理雲端中的 VM。
+* **資源樹系部署︰** 您可以使用設定為網域控制站的 Azure 虛擬機器，在資源樹系拓撲中設定網域。 接下來，您可以設定與內部部署 AD 環境的 AD 信任關係。 您可以將電腦 (Azure VM) 的網域加入至雲端中的這個資源樹系。 使用者驗證會透過內部部署目錄的 VPN/ExpressRoute 連線發生。
+* **將內部部署網域擴充至 Azure︰** 您可以使用 VPN/ExpressRoute 連線將 Azure 虛擬網路連接到內部部署網路，以便 Azure VM 聯結至內部部署 AD。 另一個替代方法是在 Azure 中將內部部署網域的複本網域控制站升級為 VM。 您可以接著將它設定為透過 VPN/ExpressRoute 連線複寫到內部部署目錄。 此部署模式有效地將內部部署網域擴充至 Azure。
 
-- **資源樹系部署︰** 您可以使用設定為網域控制站的 Azure 虛擬機器，在資源樹系拓撲中設定網域。 接下來，您可以設定與內部部署 AD 環境的 AD 信任關係。 您可以將電腦 (Azure VM) 的網域加入至雲端中的這個資源樹系。 使用者驗證會透過內部部署目錄的 VPN/ExpressRoute 連線發生。
-
-- **將內部部署網域擴充至 Azure︰** 您可以使用 VPN/ExpressRoute 連線將 Azure 虛擬網路連接到內部部署網路，以便 Azure VM 聯結至內部部署 AD。 另一個替代方法是在 Azure 中將內部部署網域的複本網域控制站升級為 VM。 您可以接著將它設定為透過 VPN/ExpressRoute 連線複寫到內部部署目錄。 此部署模式有效地將內部部署網域擴充至 Azure。
-
-> [AZURE.NOTE] 您可能認為 DIY 選項比較適合您的部署使用案例。 請考慮 [分享意見反應](active-directory-ds-contact-us.md) ，幫助我們了解哪些功能可協助您在未來選擇 Azure AD 網域服務。 此意見反應協助我們提升服務，使其更符合您的部署需求和使用案例。
+> [!NOTE]
+> 您可能認為 DIY 選項比較適合您的部署使用案例。 請考慮 [分享意見反應](active-directory-ds-contact-us.md) ，幫助我們了解哪些功能可協助您在未來選擇 Azure AD 網域服務。 此意見反應協助我們提升服務，使其更符合您的部署需求和使用案例。
+> 
+> 
 
 我們已發行 [在 Azure 虛擬機器上部署 Windows Server Active Directory 的指導方針](https://msdn.microsoft.com/library/azure/jj156090.aspx) ，讓 DIY 安裝變得更容易。
 
-
 ## <a name="related-content"></a>相關內容
-- [功能 - Azure AD 網域服務](active-directory-ds-features.md)
-
-- [部署案例 - Azure AD 網域服務](active-directory-ds-scenarios.md)
-
-- [在 Azure 虛擬機器上部署 Windows Server Active Directory 的指導方針](https://msdn.microsoft.com/library/azure/jj156090.aspx)
-
-
+* [功能 - Azure AD 網域服務](active-directory-ds-features.md)
+* [部署案例 - Azure AD 網域服務](active-directory-ds-scenarios.md)
+* [在 Azure 虛擬機器上部署 Windows Server Active Directory 的指導方針](https://msdn.microsoft.com/library/azure/jj156090.aspx)
 
 <!--HONumber=Oct16_HO2-->
 

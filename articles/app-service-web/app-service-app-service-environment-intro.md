@@ -1,30 +1,29 @@
-<properties 
-	pageTitle="App Service Environment 簡介" 
-	description="了解可提供安全、VNet 聯結、專用延展單位的 App Service 環境功能，以便執行您所有的應用程式。" 
-	services="app-service" 
-	documentationCenter="" 
-	authors="ccompy" 
-	manager="wpickett" 
-	editor=""/>
+---
+title: App Service Environment 簡介
+description: 了解可提供安全、VNet 聯結、專用延展單位的 App Service 環境功能，以便執行您所有的應用程式。
+services: app-service
+documentationcenter: ''
+author: ccompy
+manager: wpickett
+editor: ''
 
-<tags 
-	ms.service="app-service" 
-	ms.workload="na" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="07/11/2016"
-	ms.author="stefsch"/>
+ms.service: app-service
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 07/11/2016
+ms.author: stefsch
 
+---
 # App Service Environment 簡介
-
-## Overview ##
+## Overview
 App Service 環境是 Azure App Service 的[高階][PremiumTier]服務方案選項，可提供完全隔離的專用環境，以便安全地以高延展性執行 Azure App Service 應用程式，包括 [Web 應用程式][WebApps]、[行動應用程式][MobileApps]和 [API 應用程式][APIApps]。
 
 適合應用程式工作負載的 App Service 環境需要：
 
-- 非常高的延展性
-- 隔離和安全的網路存取
+* 非常高的延展性
+* 隔離和安全的網路存取
 
 客戶可以在單一 Azure 區域，以及跨多個 Azure 區域中建立多個 App Service 環境。這使得 App Service 環境很適合用來水平調整無狀態應用程式層的規模，以支援高 RPS 工作負載。
 
@@ -40,9 +39,9 @@ App Service 環境已經過隔離，可執行只有單一客戶的應用程式�
 
 在 App Service 環境中執行之應用程式的存取權可能會受到 Web 應用程式防火牆 (WAF) 等上游裝置的管制。[設定 App Service Environment 的 WAF](app-service-app-service-environment-web-application-firewall.md) 上的文章將說明這種情況。
 
-[AZURE.INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
+[!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
-## 專用計算資源 ##
+## 專用計算資源
 App Service Environment 中的所有計算資源皆專屬於單一訂用帳戶，且 App Service Environment可以設定最多五十 (50) 個計算資源，讓單一應用程式獨佔使用。
 
 App Service Environment 是由前端計算資源集區，以及一到三個背景工作計算資源集區所組成。
@@ -57,7 +56,7 @@ App Service Environment 是由前端計算資源集區，以及一到三個背�
 
 如需 App Service Environment 中支援的可用計算資源大小的詳細資訊，請參閱 [ App Service 定價][AppServicePricing]頁面，並檢閱 Premium 定價層中 App Service Environment可用的選項。
 
-## 虛擬網路支援 ##
+## 虛擬網路支援
 App Service Environment 可以在 Azure Resource Manager 虛擬網路或者傳統式部署模型虛擬網路其中之一中建立 ([更多有關虛擬網路的資訊][MoreInfoOnVirtualNetworks])。因為 App Service Environment 一律存在於虛擬網路中，而且更精確來說是在虛擬網路的子網路內，所以您可以運用虛擬網路的安全性功能來控制傳入和傳出網路通訊。
 
 您可以使用[網路安全性群組][NetworkSecurityGroups]將傳入網路通訊限制為 App Service Environment 所在的子網路。這可讓您在上游裝置和服務 (例如 Ｗeb 應用程式防火牆和網路 SaaS 提供者) 背後執行應用程式。
@@ -67,7 +66,6 @@ App Service Environment 可以在 Azure Resource Manager 虛擬網路或者傳�
 如需 App Service Environment 如何搭配虛擬網路和內部部署網路使用的詳細資訊，請參閱下列文章：[網路架構][NetworkArchitectureOverview]、[控制輸入流量][ControllingInboundTraffic]和[安全地連接到後端][SecurelyConnectingToBackends]。
 
 ## 開始使用
-
 若要開始使用 App Service Environment，請參閱[如何建立 App Service Environment][HowToCreateAnAppServiceEnvironment]
 
 您可以在 [應用程式服務環境的讀我檔案](../app-service/app-service-app-service-environments-readme.md)中取得 App Service 環境的所有相關文章與做法。
@@ -78,9 +76,9 @@ App Service Environment 可以在 Azure Resource Manager 虛擬網路或者傳�
 
 如需搭配 ExpressRoute 使用 App Service Environment 的詳細資訊，請參閱 [Express Route 與 App Service Environment][NetworkConfigDetailsForExpressRoute]一文。
 
-[AZURE.INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
+[!INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
 
-[AZURE.INCLUDE [app-service-web-try-app-service](../../includes/app-service-web-try-app-service.md)]
+[!INCLUDE [app-service-web-try-app-service](../../includes/app-service-web-try-app-service.md)]
 
 <!-- LINKS -->
 [PremiumTier]: http://azure.microsoft.com/pricing/details/app-service/
@@ -106,6 +104,6 @@ App Service Environment 可以在 Azure Resource Manager 虛擬網路或者傳�
 
 <!-- IMAGES -->
 
- 
+
 
 <!---HONumber=AcomDC_0810_2016------>

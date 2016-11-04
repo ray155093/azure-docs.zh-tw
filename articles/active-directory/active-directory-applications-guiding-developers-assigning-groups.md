@@ -1,21 +1,21 @@
-<properties
-	pageTitle="Azure AD 和應用程式：將群組指派給應用程式 | Microsoft Azure"
-	description="如何為 Azure 應用程式實作群組指派。"
-	services="active-directory"
-	documentationCenter=""
-	authors="IHenkel"
-	manager="femila"
-	editor=""/>
+---
+title: Azure AD 和應用程式：將群組指派給應用程式 | Microsoft Docs
+description: 如何為 Azure 應用程式實作群組指派。
+services: active-directory
+documentationcenter: ''
+author: IHenkel
+manager: femila
+editor: ''
 
-<tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="12/03/2015"
-	ms.author="inhenk"/>
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 12/03/2015
+ms.author: inhenk
 
+---
 # Azure AD 和應用程式：將群組指派給應用程式
 在將使用者和群組指派給應用程式之前，您必須先要求使用者指派。若要了解如何要求使用者指派，請參閱 [Azure AD 和應用程式：要求使用者指派](active-directory-applications-guiding-developers-requiring-user-assignment.md)一文。
 
@@ -34,6 +34,6 @@
 10. 出現提示時，按一下 [**是**]。
 
 ## 後續步驟
-[AZURE.INCLUDE [active-directory-applications-guiding-developers-for-lob-applications-toc.md](../../includes/active-directory-applications-guiding-developers-for-lob-applications-toc.md)]
+[!INCLUDE [active-directory-applications-guiding-developers-for-lob-applications-toc.md](../../includes/active-directory-applications-guiding-developers-for-lob-applications-toc.md)]
 
 <!---HONumber=AcomDC_0928_2016-->

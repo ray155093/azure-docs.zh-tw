@@ -1,25 +1,24 @@
-<properties
-   pageTitle="Azure 資料目錄必要條件 | Microsoft Azure"
-   description="Azure 資料目錄必要條件 - 開始使用 Azure 資料目錄所需的項目。"
-   services="data-catalog"
-   documentationCenter=""
-   authors="steelanddata"
-   manager="NA"
-   editor=""
-   tags=""/>
-<tags
-   ms.service="data-catalog"
-   ms.devlang="NA"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="data-catalog"
-   ms.date="09/21/2016"
-   ms.author="maroche"/>
+---
+title: Azure 資料目錄必要條件 | Microsoft Docs
+description: Azure 資料目錄必要條件 - 開始使用 Azure 資料目錄所需的項目。
+services: data-catalog
+documentationcenter: ''
+author: steelanddata
+manager: NA
+editor: ''
+tags: ''
 
+ms.service: data-catalog
+ms.devlang: NA
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: data-catalog
+ms.date: 09/21/2016
+ms.author: maroche
+
+---
 # Azure 資料目錄必要條件
-
 ## 我需要什麼才能開始使用 Azure 資料目錄？
-
 您必須注意幾件事，才能設定 **Azure 資料目錄**。別擔心 – 不會很久！
 
 ## Azure 訂用帳戶
@@ -32,10 +31,12 @@ Azure 訂用帳戶可協助您組織雲端服務資源的存取權，例如 Azur
 
 Azure Active Directory (Azure AD) 為您的企業提供在雲端和內部部署中，輕鬆管理身分識別和存取的方式。使用者可以使用單一公司帳戶或學校帳戶，以單一登入方法登入任何雲端和內部部署 Web 應用程式。Azure 資料目錄採用 Azure AD 來驗證登入。若要深入了解，請參閱[什麼是 Azure Active Directory](../active-directory/active-directory-whatis.md)。
 
-> [AZURE.NOTE] [Azure 入口網站](http://portal.azure.com/)可讓使用者使用個人 Microsoft 帳戶或 Azure Active Directory 工作或學校帳戶進行登入。若要使用 Azure 入口網站或[資料目錄入口網站](http://www.azuredatacatalog.com)設定 Azure 資料目錄，您必須使用 Azure Active Directory 帳戶而非個人帳戶來登入。
+> [!NOTE]
+> [Azure 入口網站](http://portal.azure.com/)可讓使用者使用個人 Microsoft 帳戶或 Azure Active Directory 工作或學校帳戶進行登入。若要使用 Azure 入口網站或[資料目錄入口網站](http://www.azuredatacatalog.com)設定 Azure 資料目錄，您必須使用 Azure Active Directory 帳戶而非個人帳戶來登入。
+> 
+> 
 
 ## Active Directory 原則組態
-
 使用者可能會遇到一種情況，他們可以登入「Azure 資料目錄」入口網站，但在嘗試登入資料來源註冊工具時卻遇到錯誤訊息，導致無法登入。僅在使用者處於公司網路或是從公司網路外部連接時，才會發生此問題行為。
 
 資料來源註冊工具使用「表單驗證」，以根據 Active Directory 驗證使用者登入。Active Directory 系統管理員必須在全域驗證原則中啟用表單驗證，登入才會成功。

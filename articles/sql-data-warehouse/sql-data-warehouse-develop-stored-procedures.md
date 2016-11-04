@@ -1,23 +1,22 @@
-<properties
-   pageTitle="SQL 資料倉儲中的預存程序 | Microsoft Azure"
-   description="在 Azure SQL 資料倉儲中實作預存程序以便開發解決方案的秘訣。"
-   services="sql-data-warehouse"
-   documentationCenter="NA"
-   authors="jrowlandjones"
-   manager="barbkess"
-   editor=""/>
+---
+title: SQL 資料倉儲中的預存程序 | Microsoft Docs
+description: 在 Azure SQL 資料倉儲中實作預存程序以便開發解決方案的秘訣。
+services: sql-data-warehouse
+documentationcenter: NA
+author: jrowlandjones
+manager: barbkess
+editor: ''
 
-<tags
-   ms.service="sql-data-warehouse"
-   ms.devlang="NA"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="data-services"
-   ms.date="06/30/2016"
-   ms.author="jrj;barbkess;sonyama"/>
+ms.service: sql-data-warehouse
+ms.devlang: NA
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: data-services
+ms.date: 06/30/2016
+ms.author: jrj;barbkess;sonyama
 
+---
 # SQL 資料倉儲中的預存程序
-
 SQL 資料倉儲支援許多 SQL Server 中具備的 TRANSACT-SQL 功能。更重要的是，我們會想要運用相應放大特定功能，將解決方案的效能最大化。
 
 不過，為了維護 SQL 資料倉儲的規模和效能，還有一些具有行為差異的功能以及其他不支援的功能。
@@ -42,6 +41,7 @@ SQL 資料倉儲最多支援 8 個巢狀層級。這與 SQL Server 稍有不同�
 EXEC prc_nesting
 ```
 如果預存程序也會進行另一個 EXEC 呼叫，則這會將巢狀層級提高到 2
+
 ```sql
 CREATE PROCEDURE prc_nesting
 AS
@@ -50,6 +50,7 @@ GO
 EXEC prc_nesting
 ```
 如果第二個程序接著會執行一些動態 SQL，則這會將巢狀層級提高到 3
+
 ```sql
 CREATE PROCEDURE prc_nesting_2
 AS
@@ -66,25 +67,24 @@ SQL 資料倉儲不允許您透過 INSERT 陳述式取用預存程序的結果�
 如需如何這麼做的範例，請參閱有關[暫存資料表]的文章。
 
 ## 限制
-
 在 SQL 資料倉儲中不會實作 TRANSACT-SQL 預存程序的有些層面。
 
 如下：
 
-- 暫存預存程序
-- 編號預存程序
-- 擴充預存程序
-- CLR 預存程序
-- 加密選項
-- 複寫選項
-- 資料表值參數
-- 唯讀參數
-- 預設參數
-- 執行內容
-- return 陳述式
+* 暫存預存程序
+* 編號預存程序
+* 擴充預存程序
+* CLR 預存程序
+* 加密選項
+* 複寫選項
+* 資料表值參數
+* 唯讀參數
+* 預設參數
+* 執行內容
+* return 陳述式
 
 ## 後續步驟
-如需更多開發祕訣，請參閱[開發概觀][]。
+如需更多開發祕訣，請參閱[開發概觀][開發概觀]。
 
 <!--Image references-->
 

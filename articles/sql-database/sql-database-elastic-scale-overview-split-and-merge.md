@@ -1,22 +1,21 @@
-<properties 
-    pageTitle="在向外延展的雲端資料庫之間移動資料 | Microsoft Azure" 
-    description="說明如何使用彈性資料庫 API 透過自我託管服務操作分區和移動資料。" 
-    services="sql-database" 
-    documentationCenter="" 
-    manager="jhubbard" 
-    authors="ddove"/>
+---
+title: 在向外延展的雲端資料庫之間移動資料 | Microsoft Docs
+description: 說明如何使用彈性資料庫 API 透過自我託管服務操作分區和移動資料。
+services: sql-database
+documentationcenter: ''
+manager: jhubbard
+author: ddove
 
-<tags 
-    ms.service="sql-database" 
-    ms.workload="sql-database" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="05/27/2016" 
-    ms.author="ddove" />
+ms.service: sql-database
+ms.workload: sql-database
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 05/27/2016
+ms.author: ddove
 
+---
 # 在向外延展的雲端資料庫之間移動資料
-
 如果您是軟體服務開發人員，您的應用程式突然出現巨量需求，您需要因應這種成長。所以，您加入了更多的資料庫 (分區)。您該如何將資料重新發佈到新的資料庫，卻不打斷資料的完整性？ 使用**分割合併工具**將資料從受條件約束的資料庫移到新的資料庫。
 
 分割合併工具執行的方式如同 Azure Web 服務。系統管理員或開發人員使用工具在不同的資料庫 (分區) 之間移動 Shardlet (分區的資料)。此工具會使用分區對應管理來維護服務中繼資料資料庫，並確保一致的對應。
@@ -26,18 +25,16 @@
 ## 下載
 [Microsoft.Azure.SqlDatabase.ElasticScale.Service.SplitMerge](http://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Service.SplitMerge/)
 
-
 ## 文件
 1. [彈性資料庫分割合併工具教學課程](sql-database-elastic-scale-configure-deploy-split-and-merge.md)
-* [Split-Merge 安全性設定](sql-database-elastic-scale-split-merge-security-configuration.md)
-* [分割合併安全性考量](sql-database-elastic-scale-split-merge-security-configuration.md)
-* [分區對應管理](sql-database-elastic-scale-shard-map-management.md)
-* [轉換現有的資料庫以使用彈性資料庫工具](sql-database-elastic-convert-to-use-elastic-tools.md)
-* [彈性資料庫功能概觀](sql-database-elastic-scale-introduction.md)
-* [彈性資料庫工具字彙](sql-database-elastic-scale-glossary.md)
+2. [Split-Merge 安全性設定](sql-database-elastic-scale-split-merge-security-configuration.md)
+3. [分割合併安全性考量](sql-database-elastic-scale-split-merge-security-configuration.md)
+4. [分區對應管理](sql-database-elastic-scale-shard-map-management.md)
+5. [轉換現有的資料庫以使用彈性資料庫工具](sql-database-elastic-convert-to-use-elastic-tools.md)
+6. [彈性資料庫功能概觀](sql-database-elastic-scale-introduction.md)
+7. [彈性資料庫工具字彙](sql-database-elastic-scale-glossary.md)
 
 ## 為何使用分割合併工具？
-
 **彈性**
 
 應用程式需要靈活地伸展，才能超越單一 Azure SQL DB 資料庫的限制。使用工具依需要將資料移至新的資料庫，同時保有完整性。
@@ -55,7 +52,6 @@
 在每個資料庫有多個租用戶的情況下，分區的 Shardlet 配置可能造成某些分區出現容量瓶頸。這需要重新配置 Shardlet，或將忙碌的 Shardlet 移到新的或較少使用的分區。
 
 ## 概念和重要功能
-
 **客戶主控式服務**
 
 分割合併提供為客戶主控式服務。您必須將服務部署並裝載於 Microsoft Azure 訂用帳戶中。您從 NuGet 下載的封裝包含設定範本，可加入您特定部署的資訊而使之完備。如需詳細資訊，請參閱[分割合併教學課程](sql-database-elastic-scale-configure-deploy-split-and-merge.md)。因為服務是在您的 Azure 訂用帳戶中執行，您可以控制和設定服務的大部分安全性層面。預設範本包含設定 SSL、以憑證為基礎的用戶端驗證、加密儲存的認證、DoS 防護及 IP 限制等選項。您可以在下列文件中找到安全性層面的詳細資訊：[分割合併安全性組態](sql-database-elastic-scale-split-merge-security-configuration.md)。
@@ -83,9 +79,7 @@
 分割合併服務會區別 (1) 分區化資料表、(2) 參考資料表和 (3) 一般資料表。分割/合併移動作業的語意視使用的資料表類型而定，定義如下：
 
 * **分區化資料表**：分割、合併和移動作業會將 Shardlet 從來源移至目標分區。成功完成整體要求之後，這些 Shardlet 就不存在於來源。請注意，目標資料表必須存在於目標分區，而且在處理作業之前不能包含目標範圍中的資料。 
-
 * **參考資料表**：對於參考資料表，分割、合併和移動作業會將資料從來源複製到目標分區。但是請注意，若目標上給定資料表中已存在任何資料列，則此資料表的目標分區不會發生任何變更。資料表必須是空的，才會處理任何參考資料表複製作業。
-
 * **其他資料表**：分割和合併作業的來源或目標上可以存在其他資料表。在任何資料移動或複製作業中，分割合併服務會忽略這些資料表。但是請注意，在有條件約束時，它們會干擾這些作業。
 
 分區對應的 **SchemaInfo** API 提供參考資料表與分區化資料表的比較資訊。下列範例說明如何在給定的分區對應管理員物件 smm 上使用這些 API：
@@ -114,99 +108,71 @@
 
 失敗時，分割合併服務會在任何中斷之後繼續作業，以完成任何進行中的要求。不過，可能有無法復原的情況，例如，當目標分區遺失或損壞到無法修復的程度。在這些情況下，原本要移動的一些 Shardlet 可能繼續留在來源分區。服務可以確保只有當必要的資料成功複製到目標之後，才會更新 Shardlet 對應。只有當所有資料都已複製到目標，並已成功更新對應的對應之後，才會在來源刪除 Shardlet。當範圍在目標分區上已上線時，刪除作業會在幕後執行。分割合併服務永遠確保儲存在分區對應中的對應的正確性。
 
-
 ## 分割合併使用者介面
-
 分割合併 Service Pack 包含背景工作角色和 Web 角色。Web 角色用互動方式提交分割合併要求。使用者介面的主要元件如下：
 
--    作業類型：作業類型是選項按鈕，控制服務針對此要求所執行的作業類型。您可以選擇分割、合併和移動案例。您也可以取消先前提交的作業。您可以在範圍分區對應中使用分割、合併和移動等要求。清單分區對應僅支援移動作業。
+* 作業類型：作業類型是選項按鈕，控制服務針對此要求所執行的作業類型。您可以選擇分割、合併和移動案例。您也可以取消先前提交的作業。您可以在範圍分區對應中使用分割、合併和移動等要求。清單分區對應僅支援移動作業。
+* 分區對應：下一節的要求參數討論分區對應和主控分區對應之資料庫的相關資訊。特別的是，您需要提供 Azure SQL Database 伺服器名稱和裝載 shardmap 的資料庫名稱、用以連接到分區對應資料庫的認證，以及分區對應名稱的名稱。目前，此作業只接受一組認證。這些認證必須有足夠權限來變更分區對應及分區上的使用者資料。
+* 來源範圍 (分割和合併)：分割及合併作業會採用其低和高索引鍵處理該範圍。若要指定無限制高索引鍵值的作業，請勾選 [高索引鍵為最大值] 核取方塊，並將高索引鍵欄位留空。指定的範圍索引鍵值不需要精確地符合分區對應中的對應及其界限。如果您未指定任何範圍界限，此服務將會自動為您推斷最接近的範圍。您可以使用 GetMappings.ps1 PowerShell 指令碼來擷取給定分區對應中目前的對應。
+* 分割來源行為 (分割)：在分割作業中，定義來源範圍中要分割的點。您可以提供想要從何處分割的分區化索引鍵。請使用選項按鈕指定要移動範圍的下半部 (不含分割索引鍵)，還是要移動上半部 (包括分割索引鍵)。
+* 來源 Shardlet (移動)：移動作業不同於分割或合併作業，它們不需要範圍來描述來源。使用您打算移動的分區化索引鍵值，即可識別移動的來源。
+* 目標分區 (分割)：提供分割作業的來源相關資訊之後，您需要提供目標的 Azure SQL Db 伺服器和資料庫名稱，以定義您想要將資料複製到何處。
+* 目標範圍 (合併)：合併作業會將 Shardlet 移至現有的分區。您可以提供想要合併的現有範圍的範圍界限，以識別現有的分區。
+* 批次大小：批次大小控制資料移動期間會一次離線的 Shardlet 數目。這是整數值，當您無法忍受長時間沒有 Shardlet 可用時，您可以使用較小的值。較大的值會延長給定 Shardlet 離線的時間，但可改善效能。
+* 作業識別碼 (取消)：如果您不再需要某個進行中的作業，您可以在此欄位中提供其作業識別碼來取消作業。您可以從要求狀態資料表 (請參閱 8.1 節)，或從您提交要求的網頁瀏覽器中的輸出，擷取作業識別碼。
 
--    分區對應：下一節的要求參數討論分區對應和主控分區對應之資料庫的相關資訊。特別的是，您需要提供 Azure SQL Database 伺服器名稱和裝載 shardmap 的資料庫名稱、用以連接到分區對應資料庫的認證，以及分區對應名稱的名稱。目前，此作業只接受一組認證。這些認證必須有足夠權限來變更分區對應及分區上的使用者資料。
-
--    來源範圍 (分割和合併)：分割及合併作業會採用其低和高索引鍵處理該範圍。若要指定無限制高索引鍵值的作業，請勾選 [高索引鍵為最大值] 核取方塊，並將高索引鍵欄位留空。指定的範圍索引鍵值不需要精確地符合分區對應中的對應及其界限。如果您未指定任何範圍界限，此服務將會自動為您推斷最接近的範圍。您可以使用 GetMappings.ps1 PowerShell 指令碼來擷取給定分區對應中目前的對應。
-
--    分割來源行為 (分割)：在分割作業中，定義來源範圍中要分割的點。您可以提供想要從何處分割的分區化索引鍵。請使用選項按鈕指定要移動範圍的下半部 (不含分割索引鍵)，還是要移動上半部 (包括分割索引鍵)。
-
--    來源 Shardlet (移動)：移動作業不同於分割或合併作業，它們不需要範圍來描述來源。使用您打算移動的分區化索引鍵值，即可識別移動的來源。
-
--    目標分區 (分割)：提供分割作業的來源相關資訊之後，您需要提供目標的 Azure SQL Db 伺服器和資料庫名稱，以定義您想要將資料複製到何處。
-
--    目標範圍 (合併)：合併作業會將 Shardlet 移至現有的分區。您可以提供想要合併的現有範圍的範圍界限，以識別現有的分區。
-
--    批次大小：批次大小控制資料移動期間會一次離線的 Shardlet 數目。這是整數值，當您無法忍受長時間沒有 Shardlet 可用時，您可以使用較小的值。較大的值會延長給定 Shardlet 離線的時間，但可改善效能。
-
--    作業識別碼 (取消)：如果您不再需要某個進行中的作業，您可以在此欄位中提供其作業識別碼來取消作業。您可以從要求狀態資料表 (請參閱 8.1 節)，或從您提交要求的網頁瀏覽器中的輸出，擷取作業識別碼。
-
-
-## 需求和限制 
-
+## 需求和限制
 目前的分割合併服務實作有下列需求和限制：
 
 * 分區必須存在且在分區對應中註冊，才能對這些分區執行分割合併作業。 
-
 * 服務不會在其作業中自動建立資料表或其他任何資料庫物件。這表示執行任何分割/合併/移動作業之前，所有分區化資料表和參考資料表的結構描述必須存在於目標分區。尤其，在由分割/合併/移動作業加入新 Shardlet 的範圍中，分區化資料表必須是空的。否則，作業無法通過目標分區上的初始一致性檢查。另請注意，只有當參考資料表是空的時，才會複製參考資料，而對於參考資料表上的其他並行寫入作業，也無法保證一致性。我們建議 – 在執行分割/合併作業時，沒有其他寫入作業在變更參考資料表。
-
 * 服務依賴唯一索引或索引鍵 (包含分區化索引鍵) 所建立的資料列識別，以改善大型 Shardlet 的效能和可靠性。這可讓服務移動比分區化索引鍵值更精細的資料。這有助於減少作業期間所需的記錄檔空間和鎖定數目上限。如果您想要透過分割/合併/移動要求來使用特定的資料表，請考慮在此資料表上建立唯一索引或主索引鍵 (包含分區化索引鍵)。基於效能考量，分區化索引鍵應該為索引鍵或索引中的開頭資料行。
-
 * 要求處理期間，某些 Shardlet 資料可能會同時出現在來源和目標分區。為了防止 Shardlet 移動期間失敗，這是必要的。分割合併與分區對應的整合，可確保在分區對應上透過資料相依路由 API 使用 **OpenConnectionForKey** 方法來連線時，不會出現任何不一致的過渡狀態。不過，當連線到來源或目標分區不是使用 **OpenConnectionForKey** 方法時，則在分割/合併/移動要求進行時，可能會出現不一致的過渡狀態。這些連接可能會顯示不完整或重複的結果，視連接之下的時間或分區而定。這項限制目前包括 Elastic Scale 多分區查詢所建立的連接。
-
 * 不同角色之間不可共用分割合併服務的中繼資料資料庫。例如，在預備環境中執行分割合併服務的角色，必須指向與生產角色不同的中繼資料資料庫。
- 
 
-## 計費 
-
+## 計費
 分割合併服務是以 Microsoft Azure 訂用帳戶中的雲端服務執行。因此會對您的服務執行個體收取雲端服務的費用。除非您經常執行分割/合併/移動作業，否則建議您刪除分割合併雲端服務。這可以節省執行中或已部署的雲端服務執行個體的成本。每當您需要執行分割或合併作業時，您可以重新部署和啟動可立即運作的組態。
- 
-## 監視 
-### 狀態資料表 
 
+## 監視
+### 狀態資料表
 分割合併服務在中繼資料儲存資料庫中提供 **RequestStatus** 資料表，以監視已完成和進行中的要求。已提交至這個分割合併服務執行個體的每一個分割合併要求，在此資料表中都會列出一個資料列。它針對每個要求提供以下的資訊：
 
 * **Timestamp**：要求開始的時間和日期。
-
 * **OperationId**：唯一識別要求的 GUID。這項要求也可用來取消仍在進行中的作業。
-
 * **Status**：要求的目前狀態。對於持續進行的要求，它也列出要求目前所處的階段。
-
 * **CancelRequest**：旗標，指出是否已取消要求。
-
 * **Progress**：作業完成的估計百分比。值為 50 表示作業已完成大約 50%。
-
 * **Details**：XML 值，提供更詳細的進度報表。隨著資料列從來源複製到目標，進度報表會定期更新。如果發生錯誤或例外狀況，此資料行也包含失敗的詳細資訊。
 
-
 ### Azure 診斷
-
 分割合併服務會根據 Azure SDK 2.5 使用 Azure 診斷來監控與診斷。您可以如這裡所述控制診斷組態：[在 Azure 雲端服務和虛擬機器中啟用診斷](../cloud-services/cloud-services-dotnet-diagnostics.md)。下載封裝包含兩個診斷組態 – 一個用於 Web 角色，另一個用於背景工作角色。這些服務診斷組態遵循 [Microsoft Azure 雲端服務基本概念](https://code.msdn.microsoft.com/windowsazure/Cloud-Service-Fundamentals-4ca72649)中的指引。其中包含定義來記錄效能計數器、IIS 記錄檔、Windows 事件記錄檔，以及分割合併應用程式事件記錄檔。
 
-## 部署診斷 
-
+## 部署診斷
 針對 NuGet 封裝所提供的 Web 和背景工作角色，若要使用診斷組態啟用監視和診斷，請使用 Azure PowerShell 執行下列命令：
 
     $storage_name = "<YourAzureStorageAccount>" 
-    
+
     $key = "<YourAzureStorageAccountKey" 
-    
+
     $storageContext = New-AzureStorageContext -StorageAccountName $storage_name -StorageAccountKey $key  
-    
-    
+
+
     $config_path = "<YourFilePath>\SplitMergeWebContent.diagnostics.xml" 
-    
+
     $service_name = "<YourCloudServiceName>" 
-    
+
     Set-AzureServiceDiagnosticsExtension -StorageContext $storageContext -DiagnosticsConfigurationPath $config_path -ServiceName $service_name -Slot Production -Role "SplitMergeWeb" 
-    
-    
+
+
     $config_path = "<YourFilePath>\SplitMergeWorkerContent.diagnostics.xml" 
-    
+
     $service_name = "<YourCloudServiceName>" 
-    
+
     Set-AzureServiceDiagnosticsExtension -StorageContext $storageContext -DiagnosticsConfigurationPath $config_path -ServiceName $service_name -Slot Production -Role "SplitMergeWorker" 
 
 您可以在這裡找到有關如何設定和部署診斷設定的詳細資訊：[在 Azure 雲端服務和虛擬機器中啟用診斷](../cloud-services/cloud-services-dotnet-diagnostics.md)。
 
-## 擷取診斷 
-
+## 擷取診斷
 從 Visual Studio 伺服器總管，您可以在伺服器總管樹狀目錄的 Azure 部分中輕鬆存取診斷。開啟 Visual Studio 執行個體，在功能表列按一下 [檢視] 和 [伺服器總管]。按一下 [Azure] 圖示，連接至您的 Azure 訂用帳戶。然後瀏覽至 [Azure] -> [儲存體] -> <your storage account> -> [資料表] -> [WADLogsTable]。如需詳細資訊，請參閱[使用伺服器總管瀏覽儲存體資源](http://msdn.microsoft.com/library/azure/ff683677.aspx)。
 
 ![WADLogsTable][2]
@@ -215,9 +181,7 @@
 
 ![組態][3]
 
-
 ## 效能
-
 一般而言，Azure SQL Database 中越高階、越有效能的服務層，預期會有較佳的效能。越高的服務層使用越高的 IO、CPU 和記憶體配置，有利於分割合併服務使用的大量複製和刪除作業。基於這個理由，請只針對這些資料庫，在一段已定義的有限期間內增加服務層。
 
 服務在其正常作業中也會執行驗證查詢。這些驗證查詢會檢查目標範圍中是否存在非預期的資料，並確保任何分割/合併/移動作業是從一致的狀態開始。這些查詢全部都會檢查作業領域所定義的分區化索引鍵範圍，以及要求定義中所提供的批次大小。當索引存在且以分區化索引鍵做為開頭資料行時，這些查詢的表現最好。
@@ -225,7 +189,6 @@
 此外，以分區化索引鍵做為開頭資料行的唯一性屬性，可讓服務使用最佳化方法來限制記錄檔空間和記憶體方面的資源消耗。移動大型資料時 (通常超過 1 GB) 需要這個唯一性屬性。
 
 ## 如何升級
-
 1. 請遵循[部署分割-合併服務](sql-database-elastic-scale-configure-deploy-split-and-merge.md)中的步驟執行。
 2. 變更分割合併部署的雲端服務組態檔，以反映新的組態參數。新的必要參數是用於加密的憑證相關資訊。若要這樣做，一個簡單方法是將下載的新組態範本檔案與現有組態進行比較。請確定您新增 Web 和背景工作角色的 "DataEncryptionPrimaryCertificateThumbprint" 和 "DataEncryptionPrimary" 設定。
 3. 將更新部署至 Azure 之前，請確定目前執行的所有分割合併作業都已完成。作法很簡單，您可以針對進行中的要求，查詢分割合併中繼資料資料庫中的 RequestStatus 和 PendingWorkflows 資料表。
@@ -234,22 +197,19 @@
 您無需佈建新的中繼資料資料庫，即可升級分割合併。新的版本會自動將現有的中繼資料資料庫升級到新的版本。
 
 ## 最佳作法和疑難排解
- 
--    定義測試租用戶，並在數個分區上對測試租用戶練習您最重要的分割/合併/移動作業。確定分區對應中定義的所有中繼資料都正確，且作業未違反條件約束或外部索引鍵。
--    將測試租用戶資料大小保持大於您最大租用戶的最大資料大小，以確保不會發生資料大小的相關問題。這有助於您評估移動單一租用戶所花費的時間上限。 
--    請確定您的結構描述允許刪除動作。一旦資料成功複製到目標，分割合併服務必須能夠從來源分區移除資料。例如，**刪除觸發程序**可能防止服務刪除來源上的資料，也可能造成作業失敗。
--    分區化索引鍵應該為主索引鍵或唯一索引定義中的開頭資料行。如此可確保分割或合併驗證查詢，以及永遠在分區化索引鍵範圍上執行的實際資料移動和刪除作業，獲得最佳效能。
--    將分割合併服務共置在您的資料庫所在的區域和資料中心。 
+* 定義測試租用戶，並在數個分區上對測試租用戶練習您最重要的分割/合併/移動作業。確定分區對應中定義的所有中繼資料都正確，且作業未違反條件約束或外部索引鍵。
+* 將測試租用戶資料大小保持大於您最大租用戶的最大資料大小，以確保不會發生資料大小的相關問題。這有助於您評估移動單一租用戶所花費的時間上限。 
+* 請確定您的結構描述允許刪除動作。一旦資料成功複製到目標，分割合併服務必須能夠從來源分區移除資料。例如，**刪除觸發程序**可能防止服務刪除來源上的資料，也可能造成作業失敗。
+* 分區化索引鍵應該為主索引鍵或唯一索引定義中的開頭資料行。如此可確保分割或合併驗證查詢，以及永遠在分區化索引鍵範圍上執行的實際資料移動和刪除作業，獲得最佳效能。
+* 將分割合併服務共置在您的資料庫所在的區域和資料中心。 
 
-[AZURE.INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
-
-
+[!INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
 
 <!--Anchors-->
 <!--Image references-->
 [1]: ./media/sql-database-elastic-scale-overview-split-and-merge/split-merge-overview.png
 [2]: ./media/sql-database-elastic-scale-overview-split-and-merge/diagnostics.png
 [3]: ./media/sql-database-elastic-scale-overview-split-and-merge/diagnostics-config.png
- 
+
 
 <!---HONumber=AcomDC_0601_2016-->

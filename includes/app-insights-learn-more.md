@@ -1,6 +1,4 @@
-﻿## Application Insights - 深入了解
-
-
+## Application Insights - 深入了解
 <table width="100%"><tr valign="top"><td>
 
 概觀

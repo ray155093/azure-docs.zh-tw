@@ -3,22 +3,20 @@
 在本節中，我們將探討如何處理這個問題。
 
 ### 要求 Wheel
-
 如果封裝安裝需要編譯器，您應該嘗試連絡封裝擁有者，要求提供適用於封裝的 Wheel。
 
-透過最近上市的 [Microsoft Visual C++ Compiler for Python 2.7][]，現在建置擁有 Python 2.7 原生程式碼的封裝更容易。
+透過最近上市的 [Microsoft Visual C++ Compiler for Python 2.7][Microsoft Visual C++ Compiler for Python 2.7]，現在建置擁有 Python 2.7 原生程式碼的封裝更容易。
 
 ### 建置 Wheel (需要 Windows)
-
 注意：使用此選項時，請務必使用符合 Azure App Service 中 Web 應用程式上使用之平台/架構/版本 (Windows/32 位元/2.7 或 3.4) 的 Python 環境編譯封裝。
 
 如果封裝因為需要編譯器而無法安裝，您可以在本機電腦上安裝編譯器，並建置封裝的 Wheel，然後將其包含在您的儲存機制中。
 
-Mac/Linux 使用者：如果您無法存取 Windows 電腦，請參閱[建立執行 Windows 的虛擬機器][]，了解如何在 Azure 上建立虛擬機器。您可以使用該虛擬機器建置 Wheel、將它們加入至儲存機制，以及在您想要捨棄虛擬機器時捨棄。
+Mac/Linux 使用者：如果您無法存取 Windows 電腦，請參閱[建立執行 Windows 的虛擬機器][建立執行 Windows 的虛擬機器]，了解如何在 Azure 上建立虛擬機器。您可以使用該虛擬機器建置 Wheel、將它們加入至儲存機制，以及在您想要捨棄虛擬機器時捨棄。
 
-對於 Python 2.7，您可以安裝 [Microsoft Visual C++ Compiler for Python 2.7][]。
+對於 Python 2.7，您可以安裝 [Microsoft Visual C++ Compiler for Python 2.7][Microsoft Visual C++ Compiler for Python 2.7]。
 
-對於 Python 3.4，您可以安裝 [Microsoft Visual C++ 2010 Express][]。
+對於 Python 3.4，您可以安裝 [Microsoft Visual C++ 2010 Express][Microsoft Visual C++ 2010 Express]。
 
 若要建置 Wheel，您需要有 Wheel 封裝：
 
@@ -40,7 +38,6 @@ Mac/Linux 使用者：如果您無法存取 Windows 電腦，請參閱[建立執
     --no-index
 
 ### 自訂安裝
-
 您可以自訂部署指令碼，以使用替代的安裝程式 (例如 easy\_install) 在虛擬環境中安裝封裝。如需已標成註解的範例，請參閱 deploy.cmd。請確定這類封裝未列在 requirements.txt 中，以避免 PIP 安裝這類封裝。
 
 將以下加入至部署指令碼：
@@ -54,7 +51,6 @@ Mac/Linux 使用者：如果您無法存取 Windows 電腦，請參閱[建立執
     env\scripts\easy_install "%DEPLOYMENT_SOURCE%\installers\somepackage.exe"
 
 ### 在儲存機制中包含虛擬環境 (需要有 Windows)
-
 注意：使用此選項時，請務必使用符合 Azure App Service 中 Web 應用程式上使用之平台/架構/版本 (Windows/32 位元/2.7 或 3.4) 的虛擬環境。
 
 如果您在儲存機制中包含虛擬環境，可以防止部署指令碼透過建立空白檔案，在 Azure 上管理虛擬環境：
@@ -62,7 +58,6 @@ Mac/Linux 使用者：如果您無法存取 Windows 電腦，請參閱[建立執
     .skipPythonDeployment
 
 建議您刪除應用程式上現有的虛擬環境，以防止在自動管理虛擬環境時遺留檔案。
-
 
 [建立執行 Windows 的虛擬機器]: http://azure.microsoft.com/documentation/articles/virtual-machines-windows-hero-tutorial/
 [Microsoft Visual C++ Compiler for Python 2.7]: http://aka.ms/vcpython27

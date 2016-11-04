@@ -1,39 +1,35 @@
-<properties
-   pageTitle="Azure SQL Database 學習與調整"
-   description="了解 SQL Database 如何學習與調整"
-   keywords=""
-   services="sql-database"
-   documentationCenter=""
-   authors="CarlRabeler"
-   manager="jhubbard"
-   editor=""/>
+---
+title: Azure SQL Database 學習與調整
+description: 了解 SQL Database 如何學習與調整
+keywords: ''
+services: sql-database
+documentationcenter: ''
+author: CarlRabeler
+manager: jhubbard
+editor: ''
 
-<tags
-   ms.service="sql-database"
-   ms.devlang="NA"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="data-management"
-   ms.date="07/19/2016"
-   ms.author="carlrab"/>
+ms.service: sql-database
+ms.devlang: NA
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: data-management
+ms.date: 07/19/2016
+ms.author: carlrab
 
+---
 # Azure SQL Database 學習與調整
-
-
 ## Azure SQL Database 如何學習、調整，並隨著您的應用程式成長
-
 Azure SQL Database 每天管理數十億筆交易以及數百萬個資料庫。其重要功能之一是 SQL Database 隨時都在隨著您的應用程式學習與調整。如此一來，您可以動態地發揮最大效能、可靠性和資料安全性，完全不費吹灰之力。
 
 ![learn-and-adapt](./media/sql-database-learn-and-adapt/sql-database-learn-and-adapt.png)
 
-## 威脅偵測及警示  
+## 威脅偵測及警示
 透過威脅與異常偵測，SQL Database 內建行為分析、即時警示，可設定的威脅原則、稽核記錄和智慧型方式來偵測並修正不尋常的模式。
 
 [閱讀文件](sql-database-threat-detection-get-started.md)
 
 ## 自動微調
 SQL Database 可以讓應用程式發揮最佳效能。藉由持續學習應用程式的模式、彈性自我微調它的效能，並在什麼都不用做的情況下自動調整，因為我們知道這是最省時的方法。
-
 
 [閱讀文件](http://go.microsoft.com/fwlink/?LinkID=787566)
 
@@ -50,13 +46,11 @@ SQL Database 提供您的應用程式需要的自動系統管理和資料保護�
 請移至首頁，查看 SQL Database 還提供哪些項目。[了解相關資訊](https://azure.microsoft.com/services/sql-database/)
 
 ## 後續步驟
-
 取得[免費 Azure 訂用帳戶](https://azure.microsoft.com/get-started/)與[建立您的第一個 Azure SQL Database](sql-database-get-started.md)。
 
 ## 其他資源
-
 瀏覽所有 [SQL Database 的能力](https://azure.microsoft.com/services/sql-database/)。
- 
+
 檢閱 [SQL Database 的技術概觀](sql-database-technical-overview.md)。
 
 <!---HONumber=AcomDC_0803_2016-->

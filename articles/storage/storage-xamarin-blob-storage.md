@@ -1,36 +1,32 @@
-<properties
-    pageTitle="如何使用 Xamarin 的 Blob 儲存體 | Microsoft Azure"
-    description="適用於 Xamarin 的 Azure 儲存體用戶端程式庫可讓開發人員使用其原生的使用者介面以建立 iOS、Android 和 Windows 市集應用程式。 本教學課程示範如何使用 Xamarin 來建立使用 Azure Blob 儲存體的應用程式。"
-    services="storage"
-    documentationCenter="xamarin"
-    authors="micurd"
-    manager="jahogg"
-    editor="tysonn"/>
+---
+title: 如何使用 Xamarin 的 Blob 儲存體 | Microsoft Docs
+description: 適用於 Xamarin 的 Azure 儲存體用戶端程式庫可讓開發人員使用其原生的使用者介面以建立 iOS、Android 和 Windows 市集應用程式。 本教學課程示範如何使用 Xamarin 來建立使用 Azure Blob 儲存體的應用程式。
+services: storage
+documentationcenter: xamarin
+author: micurd
+manager: jahogg
+editor: tysonn
 
-<tags
-    ms.service="storage"
-    ms.workload="storage"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="10/08/2016"
-    ms.author="micurd"/>
+ms.service: storage
+ms.workload: storage
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 10/08/2016
+ms.author: micurd
 
-
+---
 # <a name="how-to-use-blob-storage-from-xamarin"></a>如何使用 Xamarin 的 Blob 儲存體
-
-[AZURE.INCLUDE [storage-selector-blob-include](../../includes/storage-selector-blob-include.md)]
+[!INCLUDE [storage-selector-blob-include](../../includes/storage-selector-blob-include.md)]
 
 ## <a name="overview"></a>Overview
-
 Xamarin 可讓開發人員使用共用的 C# 程式碼基底，使用其原生的使用者介面以建立 iOS、Android 和 Windows 市集應用程式。 本教學課程會示範如何搭配 Xamarin 應用程式使用 Azure Blob 儲存體。 如果您想要深入了解 Azure 儲存體，在一頭栽進程式碼之前，請先參閱 [Microsoft Azure 儲存體簡介](storage-introduction.md)。
 
-[AZURE.INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
+[!INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
 
-[AZURE.INCLUDE [storage-mobile-authentication-guidance](../../includes/storage-mobile-authentication-guidance.md)]
+[!INCLUDE [storage-mobile-authentication-guidance](../../includes/storage-mobile-authentication-guidance.md)]
 
 ## <a name="create-a-new-xamarin-application"></a>建立新的 Xamarin 應用程式
-
 針對此快速入門，我們將建立以 Android、iOS 和 Windows 為目標的應用程式。 此應用程式只會建立容器，並將 blob 上傳到此容器。 針對此快速入門，我們將在 Windows 上使用 Visual Studio，但是在 Mac OS 上建立使用 Xamarin Studio 的應用程式時，可以套用相同的做法。
 
 請遵循下列步驟來建立應用程式：
@@ -42,10 +38,12 @@ Xamarin 可讓開發人員使用共用的 C# 程式碼基底，使用其原生�
 
 您現在應該有一個應用程式，在您按一下按鈕時就會遞增計數器。
 
-> [AZURE.NOTE] Xamarin 的 Azure 儲存體用戶端程式庫目前支援下列專案類型︰原生共用、Xamarin.Forms 共用、 Xamarin.Android 及 Xamarin.iOS。
+> [!NOTE]
+> Xamarin 的 Azure 儲存體用戶端程式庫目前支援下列專案類型︰原生共用、Xamarin.Forms 共用、 Xamarin.Android 及 Xamarin.iOS。
+> 
+> 
 
 ## <a name="create-container-and-upload-blob"></a>建立容器並上傳 blob
-
 接下來，您需要新增一些程式碼到共用類別 `MyClass.cs` 以建立一個容器，並將 blob 上傳到此容器。 `MyClass.cs` 看起來應該如下所示︰
 
     using Microsoft.WindowsAzure.Storage;
@@ -86,7 +84,6 @@ Xamarin 可讓開發人員使用共用的 C# 程式碼基底，使用其原生�
 務必將 "your_account_name_here" 和 "your_account_key_here" 取代為您的實際帳戶名稱和帳戶金鑰。 然後，您可以在您的 iOS、Android 和 Windows Phone 應用程式中使用此共用類別。 您可以直接將 `MyClass.createContainerAndUpload()` 加入每個專案。 例如：
 
 ### <a name="xamarinapp.droid->-mainactivity.cs"></a>XamarinApp.Droid > MainActivity.cs
-
     using Android.App;
     using Android.Widget;
     using Android.OS;
@@ -119,7 +116,6 @@ Xamarin 可讓開發人員使用共用的 C# 程式碼基底，使用其原生�
     }
 
 ### <a name="xamarinapp.ios->-viewcontroller.cs"></a>XamarinApp.iOS > ViewController.cs
-
     using System;
     using UIKit;
 
@@ -155,7 +151,6 @@ Xamarin 可讓開發人員使用共用的 C# 程式碼基底，使用其原生�
     }
 
 ### <a name="xamarinapp.winphone->-mainpage.xaml->-mainpage.xaml.cs"></a>XamarinApp.WinPhone > MainPage.xaml > MainPage.xaml.cs
-
     using Windows.UI.Xaml.Controls;
     using Windows.UI.Xaml.Navigation;
 
@@ -203,22 +198,19 @@ Xamarin 可讓開發人員使用共用的 C# 程式碼基底，使用其原生�
 
 
 ## <a name="run-the-application"></a>執行應用程式
-
 您現在可以在 Android 或 Windows Phone 模擬器中執行這個應用程式。 您也可以在 iOS 模擬器中執行此應用程式，但這需要 Mac 作業系統。 如需具體的做法指示，請閱讀 [將 Visual Studio 連接到 Mac](https://developer.xamarin.com/guides/ios/getting_started/installation/windows/connecting-to-mac/)
 
 一旦您執行應用程式，它會在您的儲存體帳戶中建立 `mycontainer` 容器。 它應該包含 blob `myblob`，其具有文字 `Hello, world!`。 您可以使用 [Microsoft Azure 儲存體總管](http://storageexplorer.com/)來驗證。
 
 ## <a name="next-steps"></a>後續步驟
-
 在此快速入門中，您已學會如何在使用 Azure 儲存體的 Xamarin 中建立跨平台的應用程式。 此快速入門具體的重點是 Blob 儲存體中的一個案例。 不過，除了 Blob 儲存體以外，您還可以處理更多，例如資料表、檔案和佇列儲存體。 若要深入了解，請參閱下列文章：
-- [以 .NET 開始使用 Azure Blob 儲存體](storage-dotnet-how-to-use-blobs.md)
-- [以 .NET 開始使用 Azure 資料表儲存體](storage-dotnet-how-to-use-tables.md)
-- [以 .NET 開始使用 Azure 佇列儲存體](storage-dotnet-how-to-use-queues.md)
-- [在 Windows 上開始使用 Azure 檔案儲存體](storage-dotnet-how-to-use-files.md)
 
-[AZURE.INCLUDE [storage-try-azure-tools-blobs](../../includes/storage-try-azure-tools-blobs.md)]
+* [以 .NET 開始使用 Azure Blob 儲存體](storage-dotnet-how-to-use-blobs.md)
+* [以 .NET 開始使用 Azure 資料表儲存體](storage-dotnet-how-to-use-tables.md)
+* [以 .NET 開始使用 Azure 佇列儲存體](storage-dotnet-how-to-use-queues.md)
+* [在 Windows 上開始使用 Azure 檔案儲存體](storage-dotnet-how-to-use-files.md)
 
-
+[!INCLUDE [storage-try-azure-tools-blobs](../../includes/storage-try-azure-tools-blobs.md)]
 
 <!--HONumber=Oct16_HO2-->
 

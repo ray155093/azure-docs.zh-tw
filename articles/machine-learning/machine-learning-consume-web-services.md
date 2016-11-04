@@ -1,27 +1,23 @@
-<properties
-    pageTitle="使用 Machine Learning Web 服務 | Microsoft Azure"
-    description="部署機器學習服務之後，就可以使用 RESTFul Web 服務做為要求-回應服務或批次執行服務。"
-    services="machine-learning"
-    documentationCenter=""
-    authors="garyericson"
-    manager="jhubbard"
-    editor="cgronlun" />
+---
+title: 使用 Machine Learning Web 服務 | Microsoft Docs
+description: 部署機器學習服務之後，就可以使用 RESTFul Web 服務做為要求-回應服務或批次執行服務。
+services: machine-learning
+documentationcenter: ''
+author: garyericson
+manager: jhubbard
+editor: cgronlun
 
-<tags
-    ms.service="machine-learning"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.tgt_pltfrm="na"
-    ms.workload="tbd"
-    ms.date="10/04/2016"
-    ms.author="garye" />
+ms.service: machine-learning
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: tbd
+ms.date: 10/04/2016
+ms.author: garye
 
-
-
+---
 # <a name="how-to-consume-an-azure-machine-learning-web-service-that-has-been-deployed-from-a-machine-learning-experiment"></a>如何使用已從機器學習實驗部署的 Azure Machine Learning Web 服務
-
 ## <a name="introduction"></a>簡介
-
 部署為 Web 服務時，Azure Machine Learning 實驗所提供的 REST API 和 JSON 格式化訊息，可供各種裝置和平台使用。 Azure Machine Learning 入口網站提供的程式碼可用來呼叫 R、C# 和 Python 的 Web 服務。 
 
 要能夠使用任何程式設計語言並從任何裝置呼叫這些服務，必須滿足三個準則：
@@ -30,11 +26,14 @@
 * 具備執行 HTTPS 要求的 SSL 功能
 * 可以剖析 JSON (藉由手動或支援程式庫)
 
-[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]  
+[!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 使用 Azure Machine Learning Web 服務有兩種方式，可以做為要求-回應服務或批次執行服務。 在這兩個案例中，一旦部署實驗後，就可以使用透過 RESTFul Web 服務提供的功能。
 
-> [AZURE.TIP] 如需建立 Web 應用程式以存取您的預測 Web 服務的簡單方式，請參閱 [使用 Azure Machine Learning Web 服務與 Web 應用程式範本](machine-learning-consume-web-service-with-web-app-template.md)。
+> [!TIP]
+> 如需建立 Web 應用程式以存取您的預測 Web 服務的簡單方式，請參閱 [使用 Azure Machine Learning Web 服務與 Web 應用程式範本](machine-learning-consume-web-service-with-web-app-template.md)。
+> 
+> 
 
 <!-- When this article gets published, fix the link and uncomment
 For more information on how to manage Azure Machine Learning Web service endpoints using the REST API, see **Azure machine learning Web service endpoints**.
@@ -43,22 +42,18 @@ For more information on how to manage Azure Machine Learning Web service endpoin
 如需如何建立及部署 Azure Machine Learning Web 服務的相關資訊，請參閱[部署 Azure Machine Learning Web 服務][publish]。 如需建立機器學習實驗和部署實驗的逐步解說，請參閱[使用 Azure Machine Learning 開發預測解決方案][walkthrough]。
 
 ## <a name="request-response-service-(rrs)"></a>要求回應服務 (RRS)
-
 「要求回應服務 (RRS)」是一種低延遲、高度可調整的 Web 服務，可用來為從 Azure Machine Learning Studio 實驗建立並部署的無狀態模型提供介面。 此服務能讓消費端應用程式要求即時回應。
 
 RRS 可接受輸入參數的單一資料列或多個資料列，且可產生單一資料列或多個資料列做為輸出。 輸出資料列可包含多個資料行。
 
 RRS 範例驗證應用程式的真確性。 您可以將絕大多數應用程式安裝為此種狀況。 當應用程式啟動時，它會使用相關輸入呼叫 RRS 服務。 然後應用程式會接收來自服務的驗證回應，允許或封鎖應用程式執行。
 
-
 ## <a name="batch-execution-service-(bes)"></a>批次執行服務 (BES)
-
 「批次執行服務 (BES)」是一種可為大量的一批資料記錄進行非同步計分的服務。 BES 的輸入包含來自各種來源 (例如 blob、Azure 中的表格、SQL Azure、HDInsight (例如 Hive 查詢的結果) 和 HTTP 來源) 的一批記錄。 BES 的輸出則包含計分的結果。 結果會輸出至位於 Azure blob 儲存體中的檔案，並在回應中傳回儲存體端點的資料。
 
 當您不需要立即收到回應時 (例如為個人或物聯網 (IOT) 裝置定期排程計分)，BES 就很有用。
 
 ## <a name="examples"></a>範例
-
 為了同時顯示 RRS 和 BES 兩者如何運作，我們使用 Azure Web 服務範例。 此服務將用於 IOT (Internet Of Things) 案例。 為了簡單起見，我們的裝置只會傳送一個值， `cog_speed`，並取得單一的回應。
 
 部署實驗後，我們需要四種資訊才能呼叫 RRS 或 BES 服務。
@@ -70,8 +65,7 @@ RRS 範例驗證應用程式的真確性。 您可以將絕大多數應用程式
 
 您用來尋找此資訊的方式取決於您部署的服務類型︰新的 Web 服務或傳統 Web 服務。
 
-### <a name="information-location-in-the-azure-machine-learning-web-services-portal"></a>Azure Machine Learning Web 服務入口網站中的資訊位置 
-
+### <a name="information-location-in-the-azure-machine-learning-web-services-portal"></a>Azure Machine Learning Web 服務入口網站中的資訊位置
 若要尋找所需的資訊︰
 
 1. 登入 [Azure Machine Learning Web 服務][webservicesportal]入口網站。
@@ -86,7 +80,6 @@ RRS 範例驗證應用程式的真確性。 您可以將絕大多數應用程式
 * 預期的 API **要求標頭**、**回應標頭**和**主體** 可在 [Swagger API] 頁面取得
 
 ### <a name="information-locations-in-machine-learning-studio-(classic-web-service-only)"></a>Machine Learning Studio 中的資訊位置 (僅限傳統 Web 服務)
-
 您可以從兩個位置找到所需的資訊︰Machine Learning Studio 或 Azure Machine Learning Web 服務入口網站。
 
 若要在 Machine Learning Studio 中尋找所需的資訊︰
@@ -100,7 +93,6 @@ RRS 範例驗證應用程式的真確性。 您可以將絕大多數應用程式
 * **API 金鑰**可在服務**儀表板**取得 
 * **要求 URI** 可在 API 說明頁面取得
 * 預期的 API **要求標頭**、**回應標頭**和**主體** 可在 API 說明頁面取得
-
 
 若要存取 API 說明頁面，請視您的工作情況按一下 [要求/回應] 或 [批次執行] 連結。
 
@@ -120,9 +112,6 @@ RRS 範例驗證應用程式的真確性。 您可以將絕大多數應用程式
 在下列兩個範例中，我們使用 C# 語言說明所需的程式碼。
 
 ### <a name="rrs-example"></a>RRS 範例
-
-
-
 下列範例要求顯示 API 輸入，也就是我們的範例服務的 API 呼叫承載。 對於傳統 Web 服務，您可以在 **API 說明頁面**或在 Machine Learning Web 服務入口網站的 [Swagger API] 頁面上找到承載範例。 對於新的 Web 服務，您可以在 Machine Learning Web 服務入口網站的 [Swagger API] 頁面上找到承載範例。
 
 **範例要求**
@@ -261,16 +250,16 @@ RRS 範例驗證應用程式的真確性。 您可以將絕大多數應用程式
           * @return response from the REST API
           */    
         public static String rrsHttpPost() {
-        
+
             HttpPost post;
             HttpClient client;
             StringEntity entity;
-        
+
             try {
                     // create HttpPost and HttpClient object
                     post = new HttpPost(apiurl);
                     client = HttpClientBuilder.create().build();
-            
+
                     // setup output message by copying JSON body into 
                     // apache StringEntity object along with content type
                     entity = new StringEntity(jsonBody, HTTP.UTF_8);
@@ -280,35 +269,34 @@ RRS 範例驗證應用程式的真確性。 您可以將絕大多數應用程式
                     // add HTTP headers
                     post.setHeader("Accept", "text/json");
                     post.setHeader("Accept-Charset", "UTF-8");
-        
+
                     // set Authorization header based on the API key
                     post.setHeader("Authorization", ("Bearer "+apikey));
                     post.setEntity(entity);
 
                     // Call REST API and retrieve response content
                     HttpResponse authResponse = client.execute(post);
-            
+
                     return EntityUtils.toString(authResponse.getEntity());
-            
+
             }
             catch (Exception e) {
-            
+
                     return e.toString();
             }
-    
+
         }
-    
-        
- 
+
+
+
 
 ### <a name="bes-example"></a>BES 範例
-
 與 RRS 服務不同，BES 服務是非同步的。 這表示 BES API 只是將要執行的工作排入佇列，而呼叫者會輪詢工作的狀態以查看工作何時完成。 以下是目前支援的批次工作作業：
 
 1. 建立 (提交) 批次工作
-1. 啟動此批次工作
-1. 取得批次工作的狀態或結果
-1. 取消執行中的批次工作
+2. 啟動此批次工作
+3. 取得批次工作的狀態或結果
+4. 取消執行中的批次工作
 
 **1.建立批次執行工作**
 
@@ -317,11 +305,12 @@ RRS 範例驗證應用程式的真確性。 您可以將絕大多數應用程式
 * **Input**：代表儲存批次作業輸入所在位置的 Blob 參考。
 * **GlobalParameters**：代表您可針對實驗定義的一組全域參數。 Azure Machine Learning 實驗可以具有必要和選用參數，以自訂服務的執行，而呼叫者預期會提供所有必要的參數 (如果有這些參數)。 這些參數會以索引鍵-值組的集合形式來指定。
 * **Outputs**：如果服務已定義一或多個輸出，則呼叫端可將任一輸出重新導向到某個 Azure Blob 位置。 設定此參數，您即可以可預測的名稱，將服務的輸出儲存在慣用位置，否則會隨機產生輸出 Blob 名稱。 
-
+  
     服務預期輸出內容 (依其類型) 會儲存為支援的格式：
-  - 資料集輸出：可以儲存為 **.csv、.tsv、.arff**
-  - 定型模型輸出：必須儲存為 **.ilearner**
-
+  
+  * 資料集輸出：可以儲存為 **.csv、.tsv、.arff**
+  * 定型模型輸出：必須儲存為 **.ilearner**
+    
     您可將輸出位置覆寫指定為輸出名稱或 Blob 參考組的集合。 「輸出名稱」 是特定輸出節點的使用者定義名稱，而「Blob 參考」則是 Azure Blob 位置的參考，也就是輸出要重新導向的位置。 「輸出名稱」服務的 API 說明頁面上。
 
 視您的服務性質而定，所有作業建立參數均可選擇性地使用。 例如，沒有定義輸入節點的服務不需要傳入 *Input* 參數。 同樣地，輸出位置覆寫功能為選擇性功能，因為如果不使用，輸出也會儲存在您針對 Azure Machine Learning 工作區所設定的預設儲存體帳戶中。 以下是針對只提供輸入資訊的服務所示範的要求承載：
@@ -401,7 +390,6 @@ RRS 範例驗證應用程式的真確性。 您可以將絕大多數應用程式
 呼叫指定的 *CancelJob* API 並傳入作業 ID，即可隨時取消執行中的批次作業。 您可能會基於各種原因而進行取消，例如作業花太長時間而無法完成。
 
 #### <a name="using-the-bes-sdk"></a>使用 BES SDK
-
 [BES SDK Nuget 套件](http://www.nuget.org/packages/Microsoft.Azure.MachineLearning/)提供可以批次模式簡化呼叫 BES 來進行評分的功能。 若要安裝 Nuget 套件，請在 Visual Studio 的 [工具] 功能表中，選取 [Nuget 套件管理員]，然後按一下 [套件管理員主控台]。
 
 Azure Machine Learning 實驗已部署為可包含 Web 服務輸入模型的 Web 服務。 這表示 Web 服務輸入是以 Blob 位置參考的形式透過 Web 服務來提供。 您也可以選擇不使用 Web 服務輸入模組，而改用「匯入資料」模組。 在此情況下，「匯入資料」模組會在執行階段使用查詢從資料來源 (例如 SQL DB) 進行讀取。 Web 服務參數可用來動態指向其他伺服器或資料表等。SDK 支援以上兩種模式。
@@ -409,7 +397,6 @@ Azure Machine Learning 實驗已部署為可包含 Web 服務輸入模型的 Web
 下列程式碼範例示範如何使用 BES SDK，針對 Azure Machine Learning 服務提交和監視批次作業。 註解包含設定和呼叫的詳細資訊。
 
 #### <a name="**sample-code**"></a>**範例程式碼**
-
     // This code requires the Nuget package Microsoft.Azure.MachineLearning to be installed.
     // Instructions for doing this in Visual Studio:
     // Tools -> Nuget Package Manager -> Package Manager Console
@@ -537,9 +524,7 @@ Azure Machine Learning 實驗已部署為可包含 Web 服務輸入模型的 Web
     }
 
 #### <a name="sample-code-in-java-for-bes"></a>Java 中適用於 BES 的範例程式碼
-
 批次執行服務 REST API 會採用包含輸入範例 csv 和輸出範例 csv 的參考的 JSON (如下列範例所示)，並在 Azure ML 中建立作業以執行批次預測。 您可以在 [Github](https://github.com/nk773/AzureML_BESApp/tree/master/src/azureml_besapp)中檢視完整的程式碼。 此 Java 範例需要使用 [apache http 用戶端程式庫](https://hc.apache.org/downloads.cgi)。 
-
 
     { "GlobalParameters": {}, 
         "Inputs": { "input1": { "ConnectionString":     "DefaultEndpointsProtocol=https;
@@ -551,57 +536,55 @@ Azure Machine Learning 實驗已部署為可包含 Web 服務輸入模型的 Web
     } 
 
 
-##### <a name="create-a-bes-job"></a>建立 BES 工作  
-        
+##### <a name="create-a-bes-job"></a>建立 BES 工作
         /**
          * Call REST API to create a job to Azure ML 
          * for batch predictions
          * @return response from the REST API
          */ 
         public static String besCreateJob() {
-            
+
             HttpPost post;
             HttpClient client;
             StringEntity entity;
-            
+
             try {
                 // create HttpPost and HttpClient object
                 post = new HttpPost(apiurl);
                 client = HttpClientBuilder.create().build();
-                
+
                 // setup output message by copying JSON body into 
                 // apache StringEntity object along with content type
                 entity = new StringEntity(jsonBody, HTTP.UTF_8);
                 entity.setContentEncoding(HTTP.UTF_8);
                 entity.setContentType("text/json");
-    
+
                 // add HTTP headers
                 post.setHeader("Accept", "text/json");
                 post.setHeader("Accept-Charset", "UTF-8");
-            
+
                 // set Authorization header based on the API key
                 // note a space after the word "Bearer " - don't miss that
                 post.setHeader("Authorization", ("Bearer "+apikey));
                 post.setEntity(entity);
-    
+
                 // Call REST API and retrieve response content
                 HttpResponse authResponse = client.execute(post);
-                
+
                 jobId = EntityUtils.toString(authResponse.getEntity()).replaceAll("\"", "");
-                
-                
+
+
                 return jobId;
-                
+
             }
             catch (Exception e) {
-                
+
                 return e.toString();
             }
-        
+
         }
-        
-##### <a name="start-a-previously-created-bes-job"></a>啟動先前建立的 BES 工作        
-    
+
+##### <a name="start-a-previously-created-bes-job"></a>啟動先前建立的 BES 工作
         /**
          * Call REST API for starting prediction job previously submitted 
          * 
@@ -612,37 +595,36 @@ Azure Machine Learning 實驗已部署為可包含 Web 服務輸入模型的 Web
             HttpPost post;
             HttpClient client;
             StringEntity entity;
-            
+
             try {
                 // create HttpPost and HttpClient object
                 post = new HttpPost(startJobUrl+"/"+job+"/start?api-version=2.0");
                 client = HttpClientBuilder.create().build();
-             
+
                 // add HTTP headers
                 post.setHeader("Accept", "text/json");
                 post.setHeader("Accept-Charset", "UTF-8");
-            
+
                 // set Authorization header based on the API key
                 post.setHeader("Authorization", ("Bearer "+apikey));
-    
+
                 // Call REST API and retrieve response content
                 HttpResponse authResponse = client.execute(post);
-                
+
                 if (authResponse.getEntity()==null)
                 {
                     return authResponse.getStatusLine().toString();
                 }
-                
+
                 return EntityUtils.toString(authResponse.getEntity());
-                
+
             }
             catch (Exception e) {
-                
+
                 return e.toString();
             }
         }
 ##### <a name="cancel-a-previously-created-bes-job"></a>取消先前建立的 BES 工作
-        
         /**
          * Call REST API for canceling the batch job 
          * 
@@ -653,37 +635,36 @@ Azure Machine Learning 實驗已部署為可包含 Web 服務輸入模型的 Web
             HttpDelete post;
             HttpClient client;
             StringEntity entity;
-            
+
             try {
                 // create HttpPost and HttpClient object
                 post = new HttpDelete(startJobUrl+job);
                 client = HttpClientBuilder.create().build();
-             
+
                 // add HTTP headers
                 post.setHeader("Accept", "text/json");
                 post.setHeader("Accept-Charset", "UTF-8");
-            
+
                 // set Authorization header based on the API key
                 post.setHeader("Authorization", ("Bearer "+apikey));
-    
+
                 // Call REST API and retrieve response content
                 HttpResponse authResponse = client.execute(post);
-             
+
                 if (authResponse.getEntity()==null)
                 {
                     return authResponse.getStatusLine().toString();
                 }
                 return EntityUtils.toString(authResponse.getEntity());
-                
+
             }
             catch (Exception e) {
-                
+
                 return e.toString();
             }
         }
-        
-### <a name="other-programming-environments"></a>其他程式設計環境
 
+### <a name="other-programming-environments"></a>其他程式設計環境
 您也可以依照 [swagger.io](http://swagger.io/) 網站所提供的指示，產生其他許多種語言的程式碼。 對於傳統 Web 服務，您可以取得 swagger 文件︰
 
 * 從 API 說明頁面 
@@ -717,7 +698,6 @@ Azure Machine Learning 實驗已部署為可包含 Web 服務輸入模型的 Web
 
 **範例 API 說明頁面**
 
-
     {
       "swagger": "2.0",
       "info": {
@@ -742,7 +722,7 @@ Azure Machine Learning 實驗已部署為可包含 Web 服務輸入模型的 Web
           "get": {
             "summary": "Get swagger API document for the Web service",
             "operationId": "getSwaggerDocument",
-            
+
 <!-- Relative Links -->
 
 [publish]: machine-learning-publish-a-machine-learning-web-service.md

@@ -1,31 +1,27 @@
-<properties 
-    pageTitle="透過 Azure PowerShell Cmdlet 監視和管理串流分析工作 | Microsoft Azure" 
-    description="了解如何透過 Azure PowerShell 和 Cmdlet 監視及管理串流分析工作。" 
-    keywords="azure powershell, azure powershell cmdlet, powershell 命令, powershell 指令碼" 
-    services="stream-analytics" 
-    documentationCenter="" 
-    authors="jeffstokes72" 
-    manager="jhubbard" 
-    editor="cgronlun"/>
+---
+title: 透過 Azure PowerShell Cmdlet 監視和管理串流分析工作 | Microsoft Docs
+description: 了解如何透過 Azure PowerShell 和 Cmdlet 監視及管理串流分析工作。
+keywords: azure powershell, azure powershell cmdlet, powershell 命令, powershell 指令碼
+services: stream-analytics
+documentationcenter: ''
+author: jeffstokes72
+manager: jhubbard
+editor: cgronlun
 
-<tags 
-    ms.service="stream-analytics" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.tgt_pltfrm="na" 
-    ms.workload="data-services" 
-    ms.date="09/26/2016" 
-    ms.author="jeffstok"/>
+ms.service: stream-analytics
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: data-services
+ms.date: 09/26/2016
+ms.author: jeffstok
 
-
-
+---
 # <a name="monitor-and-manage-stream-analytics-jobs-with-azure-powershell-cmdlets"></a>透過 Azure PowerShell Cmdlet 監視和管理串流分析工作
-
 了解如何透過執行基本串流分析工作的 Azure PowerShell Cmdlet 及 PowerShell 指令碼，來監視及管理串流分析的資源。
 
 ## <a name="prerequisites-for-running-azure-powershell-cmdlets-for-stream-analytics"></a>執行 Azure PowerShell Cmdlet 進行串流分析的必要條件
-
- - 在您的訂用帳戶中建立「Azure 資源群組」。 下列是 PowerShell 指令碼範例。 如需 Azure PowerShell 資訊，請參閱 [安裝並設定 Azure PowerShell](../powershell-install-configure.md)。  
+* 在您的訂用帳戶中建立「Azure 資源群組」。 下列是 PowerShell 指令碼範例。 如需 Azure PowerShell 資訊，請參閱 [安裝並設定 Azure PowerShell](../powershell-install-configure.md)。  
 
 Azure PowerShell 0.9.8：  
 
@@ -34,7 +30,7 @@ Azure PowerShell 0.9.8：
 
         # Select the Azure subscription you want to use to create the resource group if you have more than one subscription on your account.
         Select-AzureSubscription -SubscriptionName <subscription name>
- 
+
         # If Stream Analytics has not been registered to the subscription, remove remark symbol below (#) to run the Register-AzureProvider cmdlet to register the provider namespace.
         #Register-AzureProvider -Force -ProviderNamespace 'Microsoft.StreamAnalytics'
 
@@ -51,13 +47,16 @@ Azure PowerShell 1.0：
 
         # If Stream Analytics has not been registered to the subscription, remove remark symbol below (#) to run the Register-AzureProvider cmdlet to register the provider namespace.
         #Register-AzureRmResourceProvider -Force -ProviderNamespace 'Microsoft.StreamAnalytics'
-        
+
         # Create an Azure resource group
         New-AzureRMResourceGroup -Name <YOUR RESOURCE GROUP NAME> -Location <LOCATION>
-        
 
 
-> [AZURE.NOTE] 以程式控制方式建立的串流分析工作預設不會啟用監視功能。  您可以在 Azure 入口網站中瀏覽到該工作的 [監視] 頁面，然後按一下 [啟用] 按鈕來手動啟用監視，或是按照 [Azure 串流分析 - 以程式設計方式監視串流分析工作](stream-analytics-monitor-jobs.md)中的步驟進行。
+
+> [!NOTE]
+> 以程式控制方式建立的串流分析工作預設不會啟用監視功能。  您可以在 Azure 入口網站中瀏覽到該工作的 [監視] 頁面，然後按一下 [啟用] 按鈕來手動啟用監視，或是按照 [Azure 串流分析 - 以程式設計方式監視串流分析工作](stream-analytics-monitor-jobs.md)中的步驟進行。
+> 
+> 
 
 ## <a name="azure-powershell-cmdlets-for-stream-analytics"></a>用於串流分析的 Azure PowerShell Cmdlet
 下表列出可用來監視和管理 Azure 串流分析工作的 Azure PowerShell Cmdlet。 請注意，Azure PowerShell 有不同的版本。 
@@ -188,7 +187,7 @@ Azure PowerShell 1.0：
 
 ### <a name="new-azurestreamanalyticsinput-|-new-azurermstreamanalyticsinput"></a>New-AzureStreamAnalyticsInput | New-AzureRMStreamAnalyticsInput
 在串流分析工作內建立新的輸入，或更新現有的指定輸入。
-  
+
 您可以在 .json 檔案中或命令列上指定輸入的名稱。 若兩者皆指定，命令列上的名稱必須與檔案中的名稱相同。
 
 如果您指定已存在的輸入，而且沒有指定 –Force 參數，Cmdlet 會詢問是否要取代現有的輸入。
@@ -305,7 +304,7 @@ Azure PowerShell 1.0：
 
 ### <a name="new-azurestreamanalyticstransformation-|-new-azurermstreamanalyticstransformation"></a>New-AzureStreamAnalyticsTransformation | New-AzureRMStreamAnalyticsTransformation
 在串流分析工作內建立新的轉換，或更新現有的轉換。
-  
+
 您可以在 .json 檔案中或命令列上指定轉換的名稱。 若兩者皆指定，命令列上的名稱必須與檔案中的名稱相同。
 
 如果您指定已存在的轉換，而且沒有指定 –Force 參數，Cmdlet 會詢問是否要取代現有的轉換。
@@ -401,7 +400,6 @@ Azure PowerShell 1.0：
 
 此 PowerShell 命令會啟動自訂輸出開始時間設為 2012 年 12 月 12 日 12:12:12 UTC 的 StreamingJob 工作。
 
-
 ### <a name="stop-azurestreamanalyticsjob-|-stop-azurermstreamanalyticsjob"></a>Stop-AzureStreamAnalyticsJob | Stop-AzureRMStreamAnalyticsJob
 以非同步方式停止在 Microsoft Azure 中執行 Stream Analytics 作業，並取消配置正在使用的資源。 透過 Azure 入口網站和管理 API 仍可使用訂用帳戶內的該工作定義與中繼資料，也因此可以編輯和重新啟動工作。 您將不需要對處於已停止狀態的工作支付費用。
 
@@ -432,7 +430,7 @@ Azure PowerShell 1.0：
 
 此 PowerShell 命令會測試 StreamingJob 中 EntryStream 輸入的連接狀態。  
 
-###<a name="test-azurestreamanalyticsoutput-|-test-azurermstreamanalyticsoutput"></a>Test-AzureStreamAnalyticsOutput | Test-AzureRMStreamAnalyticsOutput
+### <a name="test-azurestreamanalyticsoutput-|-test-azurermstreamanalyticsoutput"></a>Test-AzureStreamAnalyticsOutput | Test-AzureRMStreamAnalyticsOutput
 測試 Stream Analytics 連線到指定輸出的能力。
 
 **範例 1**
@@ -450,17 +448,12 @@ Azure PowerShell 1.0：
 ## <a name="get-support"></a>取得支援
 如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)。 
 
-
 ## <a name="next-steps"></a>後續步驟
-
-- [Azure Stream Analytics 介紹](stream-analytics-introduction.md)
-- [開始使用 Azure Stream Analytics](stream-analytics-get-started.md)
-- [調整 Azure Stream Analytics 工作](stream-analytics-scale-jobs.md)
-- [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
-- [Azure 串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
- 
-
-
+* [Azure Stream Analytics 介紹](stream-analytics-introduction.md)
+* [開始使用 Azure Stream Analytics](stream-analytics-get-started.md)
+* [調整 Azure Stream Analytics 工作](stream-analytics-scale-jobs.md)
+* [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
+* [Azure 串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
 
 [msdn-switch-azuremode]: http://msdn.microsoft.com/library/dn722470.aspx
 [powershell-install]: http://azure.microsoft.com/documentation/articles/powershell-install-configure/
@@ -475,7 +468,7 @@ Azure PowerShell 1.0：
 [stream.analytics.scale.jobs]: stream-analytics-scale-jobs.md
 [stream.analytics.query.language.reference]: http://go.microsoft.com/fwlink/?LinkID=513299
 [stream.analytics.rest.api.reference]: http://go.microsoft.com/fwlink/?LinkId=517301
- 
+
 
 
 

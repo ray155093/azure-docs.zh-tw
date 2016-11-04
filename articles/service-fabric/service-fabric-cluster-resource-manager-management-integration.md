@@ -1,22 +1,21 @@
-<properties
-   pageTitle="Service Fabric 叢集資源管理員 - 管理整合 | Microsoft Azure"
-   description="叢集資源管理員和 Service Fabric 管理之間的整合點概觀。"
-   services="service-fabric"
-   documentationCenter=".net"
-   authors="masnider"
-   manager="timlt"
-   editor=""/>
+---
+title: Service Fabric 叢集資源管理員 - 管理整合 | Microsoft Docs
+description: 叢集資源管理員和 Service Fabric 管理之間的整合點概觀。
+services: service-fabric
+documentationcenter: .net
+author: masnider
+manager: timlt
+editor: ''
 
-<tags
-   ms.service="Service-Fabric"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="NA"
-   ms.date="08/19/2016"
-   ms.author="masnider"/>
+ms.service: Service-Fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 08/19/2016
+ms.author: masnider
 
-
+---
 # 叢集資源管理員與 Service Fabric 叢集管理整合
 Service Fabric 叢集 Resource Manager 不是負責處理管理作業 (如應用程式升級) 的主要 Service Fabric 元件，但它會涉入其中。叢集資源管理員協助管理的第一個方法是從資源和平衡的角度，從中追蹤想要的叢集和服務的狀態，並且在它無法將叢集放入想要的組態時傳送出健康狀態報告 (範例為容量不足時，或服務應放置位置的規則衝突時)。整合的另一部分與升級運作方式有關：在升級期間，叢集資源管理員會改變其行為。我們將在下面討論這兩者。
 
@@ -69,29 +68,29 @@ HealthEvents          :
 
 以下是此健康狀態訊息要告訴我們的事情︰
 
-1.	所有複本本身的狀態都很好 (這是 Service Fabric 的首要之務)
-2.	目前違反升級網域發佈條件約束 (意味者特定升級網域擁有過多的磁碟分割複本)
-3.	哪個節點包含造成違規的複本 (具有下列識別碼的節點︰3d1a4a68b2592f55125328cd0f8ed477)
-4.	何時發生這種情形 (2015 年 8 月 10 日下午 7:13:02)
+1. 所有複本本身的狀態都很好 (這是 Service Fabric 的首要之務)
+2. 目前違反升級網域發佈條件約束 (意味者特定升級網域擁有過多的磁碟分割複本)
+3. 哪個節點包含造成違規的複本 (具有下列識別碼的節點︰3d1a4a68b2592f55125328cd0f8ed477)
+4. 何時發生這種情形 (2015 年 8 月 10 日下午 7:13:02)
 
 這是在生產環境中觸發之警示的絕佳資料，可讓您知道已發生問題，而您可能想要查看一下。比方說，在此情況下，我們會想查看是否可以找出 Resource Manager 為何不覺得除了將複本封裝到升級網域中，還有任何選擇。這可能是因為其他升級網域中的所有節點都已關閉，而且沒有足夠的其他備用網域，或者如果有足夠的網域開啟，但其他項目導致這些升級網域中的節點無效 (例如，服務上的一些放置原則或容量不足)。
 
 不過，假設您想要建立服務，或資源管理員正嘗試尋找一個位置來放置某些服務，但似乎沒有任何可行的解決方案。原因有很多，但通常是由於下列兩種情況之一︰
 
-1.	某個暫時性情況導致無法正確地放置此服務執行個體或複本
-2.	此服務的需求設定錯誤，以致無法滿足其需求。
+1. 某個暫時性情況導致無法正確地放置此服務執行個體或複本
+2. 此服務的需求設定錯誤，以致無法滿足其需求。
 
 在每種情況中，您都會看見叢集資源管理員所提供的健康狀態報告，其中包含可協助您判斷目前的狀況以及為何無法放置服務的資訊。我們將此程序稱為「條件約束消除序列」。在此期間，系統會逐步解說會影響服務與記錄的已設定條件約束，以及它們所消除的項目。如此一來，當項目無法放置時，您可以看到哪些節點已經消除及消除原因。
 
 ## 條件約束類型
 讓我們接著討論您可以在這些健康狀態報告中看見的各種條件約束，以及其所檢查的內容。請注意，大部分的情況下，您不會看到部分的這些條件約束消除節點，因為條件約束預設位於軟式或最佳化層級 (本文後面內容中有提供條件約束優先順序的相關詳細資訊)。但是，您可以看到和條件約束有關的健康情況訊息，了解它們是否是設定為硬式條件約束，或它們是否在極少見的情況下確實造成節點被消除，所以我們在這裡提供這些健康情況訊息以提供完整資訊：
 
--	ReplicaExclusionStatic 和 ReplicaExclusionDynamic – 這是內部條件約束，表示在搜尋過程中，我們遇到來自相同分割區的兩個具狀態複本，或無狀態執行個體必須放置在相同節點上 (不允許這麼做) 的情況。ReplicaExclusionStatic 和 ReplicaExclusionDynamic 幾乎是完全相同的規則。ReplicaExclusionDynamic 條件約束表示「我們無法將這個複本放在這裡，因為唯一提議的解決方案已在這裡放置一個複本」。這與 ReplicaExclusionStatic 排除不同，其指出不是提議的衝突，而是實際的衝突 – 節點上已經有一個複本。這會令人混淆嗎？ 是。是否很重要？ 否。您只要知道，如果您看到的條件約束消除序列包含 ReplicaExclusionStatic 或 ReplicaExclusionDynamic 條件約束，叢集資源管理員就會認為沒有足夠的節點可放置所有複本。進一步的條件約束通常會告訴我們，一開始節點太少會有何結果。
--	PlacementConstraint︰如果您看到此訊息，就表示我們已消除一些節點，因為它們不符合服務的放置條件約束。我們會在此此訊息中描繪出目前所設定的放置條件約束。如果您有提供任何放置條件約束，這通常就是正常的，但是，如果放置條件約束中有錯誤，造成排除太多節點，您就會在這裡看到該項結果。
--	NodeCapacity︰如果您看到這個條件約束，就表示我們無法將複本放在指定的節點上，因為這樣會導致節點超出容量。
--	Affinity︰這個條件約束表示我們無法將複本放在受影響的節點上，因為這會導致違反同質性條件約束。
--	FaultDomain 和 UpgradeDomain︰如果將複本放在指定的節點上會導致複本封裝在特定的容錯或升級網域中，此條件約束就會消除節點。[容錯與升級網域條件約束及產生的行為](service-fabric-cluster-resource-manager-cluster-description.md)中的主題有提供幾個討論此條件約束的範例
--	PreferredLocation︰您通常不會看到這個條件約束導致節點從解決方案中移除，因為該條件約束預設僅限用於最佳化。此外，慣用的位置條件約束通常只會出現在升級期間 (當它用於將複本移回到開始升級時的位置)，然而也有可能。
+* ReplicaExclusionStatic 和 ReplicaExclusionDynamic – 這是內部條件約束，表示在搜尋過程中，我們遇到來自相同分割區的兩個具狀態複本，或無狀態執行個體必須放置在相同節點上 (不允許這麼做) 的情況。ReplicaExclusionStatic 和 ReplicaExclusionDynamic 幾乎是完全相同的規則。ReplicaExclusionDynamic 條件約束表示「我們無法將這個複本放在這裡，因為唯一提議的解決方案已在這裡放置一個複本」。這與 ReplicaExclusionStatic 排除不同，其指出不是提議的衝突，而是實際的衝突 – 節點上已經有一個複本。這會令人混淆嗎？ 是。是否很重要？ 否。您只要知道，如果您看到的條件約束消除序列包含 ReplicaExclusionStatic 或 ReplicaExclusionDynamic 條件約束，叢集資源管理員就會認為沒有足夠的節點可放置所有複本。進一步的條件約束通常會告訴我們，一開始節點太少會有何結果。
+* PlacementConstraint︰如果您看到此訊息，就表示我們已消除一些節點，因為它們不符合服務的放置條件約束。我們會在此此訊息中描繪出目前所設定的放置條件約束。如果您有提供任何放置條件約束，這通常就是正常的，但是，如果放置條件約束中有錯誤，造成排除太多節點，您就會在這裡看到該項結果。
+* NodeCapacity︰如果您看到這個條件約束，就表示我們無法將複本放在指定的節點上，因為這樣會導致節點超出容量。
+* Affinity︰這個條件約束表示我們無法將複本放在受影響的節點上，因為這會導致違反同質性條件約束。
+* FaultDomain 和 UpgradeDomain︰如果將複本放在指定的節點上會導致複本封裝在特定的容錯或升級網域中，此條件約束就會消除節點。[容錯與升級網域條件約束及產生的行為](service-fabric-cluster-resource-manager-cluster-description.md)中的主題有提供幾個討論此條件約束的範例
+* PreferredLocation︰您通常不會看到這個條件約束導致節點從解決方案中移除，因為該條件約束預設僅限用於最佳化。此外，慣用的位置條件約束通常只會出現在升級期間 (當它用於將複本移回到開始升級時的位置)，然而也有可能。
 
 ### 條件約束優先順序
 在所有條件約束中，您可能會想：「嘿 – 我認為放置條件約束是我的系統中最重要的事。我願意違反其他條件約束，甚至是像同質和容量的事項，如果它可確保不會違反放置條件約束。」
@@ -135,6 +134,6 @@ PreferredLocation 條件約束有點不同，因此它是唯一設為「最佳�
 在升級期間，即使叢集整體相當受限或已滿，您通常還是會想完成升級。在升級期間能夠管理叢集容量甚至比叢集升級期間通常有 5% 到 20% 的容量關閉更為重要，而且該工作負載通常必須移到某個位置。這就是[緩衝處理的容量](service-fabric-cluster-resource-manager-cluster-description.md#buffered-capacity)的概念真正派上用場的地方 – 雖然在正常作業期間會遵守緩衝容量 (保持一些額外負荷)，但叢集資源管理員將在升級期間填滿總容量 (佔用緩衝區)。
 
 ## 後續步驟
-- 從頭開始，並[取得 Service Fabric 叢集資源管理員的簡介](service-fabric-cluster-resource-manager-introduction.md)
+* 從頭開始，並[取得 Service Fabric 叢集資源管理員的簡介](service-fabric-cluster-resource-manager-introduction.md)
 
 <!---HONumber=AcomDC_0824_2016-->

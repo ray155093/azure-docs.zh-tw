@@ -1,21 +1,21 @@
-<properties
-pageTitle="Azure Active Directory 應用程式和服務主體物件 | Microsoft Azure"
-description="Azure Active Directory 中的應用程式物件和服務主體物件之間的關聯性討論"
-documentationCenter="dev-center-name"
-authors="bryanla"
-manager="mbaldwin"
-services="active-directory"
-editor=""/>
+---
+title: Azure Active Directory 應用程式和服務主體物件 | Microsoft Docs
+description: Azure Active Directory 中的應用程式物件和服務主體物件之間的關聯性討論
+documentationcenter: dev-center-name
+author: bryanla
+manager: mbaldwin
+services: active-directory
+editor: ''
 
-<tags
-ms.service="active-directory"
-ms.devlang="na"
-ms.topic="article"
-ms.tgt_pltfrm="na"
-ms.workload="identity"
-ms.date="08/10/2016"
-ms.author="bryanla;mbaldwin"/>
+ms.service: active-directory
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: identity
+ms.date: 08/10/2016
+ms.author: bryanla;mbaldwin
 
+---
 # Azure Active Directory 中的應用程式和服務主體物件
 當您在閱讀有關 Azure Active Directory (AD)「應用程式」的文章時，其內容不一定能清楚表達究竟作者所指為何。本文的目的是要藉由定義 Azure AD 應用程式整合的概念和具體層面，並舉例說明如何註冊和同意[多租用戶應用程式](active-directory-dev-glossary.md#multi-tenant-application)，提供更清楚的說明。
 
@@ -35,14 +35,17 @@ Azure AD 應用程式是由其唯一一個應用程式物件所「定義」，�
 
 在每個租用戶中，只要其應用程式使用方式執行個體必須被代表，就必須要有服務主體物件，這樣才能安全地存取該租用戶的使用者帳戶所擁有的資源。單一租用戶應用程式將只有一個服務主體 (在其主要租用戶中)。多租用戶 [Web 應用程式](active-directory-dev-glossary.md#web-client)在租用戶的系統管理員或使用者已表示同意的每個租用戶中也會有一個服務主體，使其可以存取他們的資源。在同意之後，未來的授權要求都會參考服務主體物件。
 
-> [AZURE.NOTE] 您對應用程式物件所做的任何變更也只會反映於它在應用程式的主要租用戶 (其註冊所在租用戶) 中的服務主體物件。就多租用戶應用程式而言，對應用程式物件所做的變更必須等到取用者租用戶移除存取權後再重新授與存取權，才會反映在任何取用者租用戶的服務主體物件上。
+> [!NOTE]
+> 您對應用程式物件所做的任何變更也只會反映於它在應用程式的主要租用戶 (其註冊所在租用戶) 中的服務主體物件。就多租用戶應用程式而言，對應用程式物件所做的變更必須等到取用者租用戶移除存取權後再重新授與存取權，才會反映在任何取用者租用戶的服務主體物件上。
+> 
+> 
 
 ## 範例
 下圖說明應用程式的應用程式物件與對應的服務主體物件之間的關係，是以一個稱為「HR 應用程式」的範例多租用戶應用程式為背景。此案例中有三個 Azure AD 租用戶︰
 
-- **Adatum** - 開發 **HR 應用程式**之公司所使用的租用戶
-- **Contoso** - Contoso 組織所使用的租用戶，其為 **HR 應用程式**的取用者
-- **Fabrikam** - Fabrikam 組織所使用的租用戶，其亦會取用 **HR 應用程式**
+* **Adatum** - 開發 **HR 應用程式**之公司所使用的租用戶
+* **Contoso** - Contoso 組織所使用的租用戶，其為 **HR 應用程式**的取用者
+* **Fabrikam** - Fabrikam 組織所使用的租用戶，其亦會取用 **HR 應用程式**
 
 ![應用程式物件和服務主體物件之間的關聯性](./media/active-directory-application-objects/application-objects-relationship.png)
 
@@ -56,8 +59,6 @@ Azure AD 應用程式是由其唯一一個應用程式物件所「定義」，�
 若要存取應用程式的應用程式物件，可以透過 Azure AD Graph API 來存取 (如其 OData 的[應用程式實體][AAD-Graph-App-Entity]所代表)
 
 若要存取應用程式的服務主體物件，可以透過 Azure AD Graph API 來存取 (如其 OData 的 [ServicePrincipal 實體][AAD-Graph-Sp-Entity]所代表)
-
-
 
 <!--Image references-->
 

@@ -1,41 +1,38 @@
 ## 典型輸出
-
 下列範例是 Hello World 範例寫入記錄檔中的輸出。已加入新行和 Tab 字元以利閱讀︰
 
 ```
 [{
-	"time": "Mon Apr 11 13:48:07 2016",
-	"content": "Log started"
+    "time": "Mon Apr 11 13:48:07 2016",
+    "content": "Log started"
 }, {
-	"time": "Mon Apr 11 13:48:48 2016",
-	"properties": {
-		"helloWorld": "from Azure IoT Gateway SDK simple sample!"
-	},
-	"content": "aGVsbG8gd29ybGQ="
+    "time": "Mon Apr 11 13:48:48 2016",
+    "properties": {
+        "helloWorld": "from Azure IoT Gateway SDK simple sample!"
+    },
+    "content": "aGVsbG8gd29ybGQ="
 }, {
-	"time": "Mon Apr 11 13:48:55 2016",
-	"properties": {
-		"helloWorld": "from Azure IoT Gateway SDK simple sample!"
-	},
-	"content": "aGVsbG8gd29ybGQ="
+    "time": "Mon Apr 11 13:48:55 2016",
+    "properties": {
+        "helloWorld": "from Azure IoT Gateway SDK simple sample!"
+    },
+    "content": "aGVsbG8gd29ybGQ="
 }, {
-	"time": "Mon Apr 11 13:49:01 2016",
-	"properties": {
-		"helloWorld": "from Azure IoT Gateway SDK simple sample!"
-	},
-	"content": "aGVsbG8gd29ybGQ="
+    "time": "Mon Apr 11 13:49:01 2016",
+    "properties": {
+        "helloWorld": "from Azure IoT Gateway SDK simple sample!"
+    },
+    "content": "aGVsbG8gd29ybGQ="
 }, {
-	"time": "Mon Apr 11 13:49:04 2016",
-	"content": "Log stopped"
+    "time": "Mon Apr 11 13:49:04 2016",
+    "content": "Log stopped"
 }]
 ```
 
 ## 程式碼片段
-
 本節探討 Hello World 範例中程式碼的一些重要部分。
 
 ### 建立閘道
-
 開發人員必須撰寫「閘道程序」。此程式會建立內部基礎結構 (訊息代理程式)、載入模組，以及設定所有項目才能正確運作。SDK 提供 **Gateway\_Create\_From\_JSON** 函式可讓您從 JSON 檔案啟動閘道。若要使用 **Gateway\_Create\_From\_JSON** 函式，您必須將它傳遞到 JSON 檔案的路徑，而 JSON 檔案指定要載入的模組。
 
 在 [main.c][lnk-main-c] 檔案中，您可以找到 Hello World 範例中閘道程序的程式碼。下列程式碼片段顯示精簡版本的閘道程序程式碼，以利閱讀。此程式會建立閘道，然後先等待使用者按下 **ENTER** 鍵，再終止閘道。
@@ -55,19 +52,20 @@ int main(int argc, char** argv)
         (void)getchar();
         Gateway_LL_Destroy(gateway);
     }
-	return 0;
+    return 0;
 }
 ```
 
 JSON 設定檔案包含要載入之模組的清單。每個模組都必須指定：
 
-- **module\_name**：模組的唯一名稱。
-- **module\_path**︰包含模組之程式庫的路徑。在 Linux 上，這是 .so 檔案，在 Windows 上，這是 .dll 檔案。
-- **args**：模組所需的任何組態資訊。
+* **module\_name**：模組的唯一名稱。
+* **module\_path**︰包含模組之程式庫的路徑。在 Linux 上，這是 .so 檔案，在 Windows 上，這是 .dll 檔案。
+* **args**：模組所需的任何組態資訊。
 
 JSON 檔案也包含將會傳遞給訊息代理程式之模組之間的連結。連結有兩個屬性︰
-- **來源**︰來自 `modules` 區段的模組名稱，或 "*"。
-- **接收**︰來自 `modules` 區段的模組名稱
+
+* **來源**︰來自 `modules` 區段的模組名稱，或 "*"。
+* **接收**︰來自 `modules` 區段的模組名稱
 
 每個連結都會定義訊息路由和方向。來自模組 `source` 的訊息會傳遞給模組 `sink`。`source` 可能會設定為 "*"，代表來自任何模組的訊息都會由 `sink` 接收。
 
@@ -85,7 +83,7 @@ JSON 檔案也包含將會傳遞給訊息代理程式之模組之間的連結。
         {
             "module name" : "hello_world",
             "module path" : "./modules/hello_world/libhello_world_hl.so",
-			"args" : null
+            "args" : null
         }
     ],
     "links" :
@@ -99,7 +97,6 @@ JSON 檔案也包含將會傳遞給訊息代理程式之模組之間的連結。
 ```
 
 ### Hello World 模組訊息發佈
-
 您可以在 ['hello\_world.c'][lnk-helloworld-c] 檔案中找到 "hello world" 模組所使用的程式碼來發佈訊息。下列程式碼片段所示範的修改過版本已移除其他註解和一些錯誤處理程式碼，以利閱讀︰
 
 ```
@@ -109,7 +106,7 @@ int helloWorldThread(void *param)
     HELLOWORLD_HANDLE_DATA* handleData = param;
     MESSAGE_CONFIG msgConfig;
     MAP_HANDLE propertiesMap = Map_Create(NULL);
-    
+
     // add a property named "helloWorld" with a value of "from Azure IoT
     // Gateway SDK simple sample!" to a set of message properties that
     // will be appended to the message before publishing it. 
@@ -121,7 +118,7 @@ int helloWorldThread(void *param)
 
     // set the properties for the message
     msgConfig.sourceProperties = propertiesMap;
-    
+
     // create a message based on the msgConfig structure
     MESSAGE_HANDLE helloWorldMessage = Message_Create(&msgConfig);
 
@@ -149,7 +146,6 @@ int helloWorldThread(void *param)
 ```
 
 ### Hello World 模組訊息處理
-
 Hello World 模組永遠不需要處理其他模組發佈至訊息代理程式的任何訊息。這樣會將 Hello World 模組中的訊息回呼實作設為無作業函式。
 
 ```
@@ -160,7 +156,6 @@ static void HelloWorld_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messag
 ```
 
 ### Logger 模組訊息發佈和處理
-
 Logger 模組會接收來自訊息代理程式的訊息，並將它們寫入檔案。此模組永遠不會發佈任何訊息。因此，Logger 模組的程式碼永遠不會呼叫 **Broker\_Publish** 函式。
 
 [logger.c][lnk-logger-c] 檔案中的 **Logger\_Recieve** 函式是訊息代理程式所叫用的回呼，以將訊息傳遞到 Logger 模組。下列程式碼片段所示範的修改過版本已移除其他註解和一些錯誤處理程式碼，以利閱讀︰
@@ -205,11 +200,10 @@ static void Logger_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messageHan
 ```
 
 ## 後續步驟
-
 若要了解如何使用閘道 SDK，請參閱下列項目︰
 
-- [IoT 閘道 SDK – 搭配使用模擬裝置與 Linux 來傳送裝置到雲端訊息][lnk-gateway-simulated]。
-- GitHub 上的 [Azure IoT 閘道 SDK][lnk-gateway-sdk]。
+* [IoT 閘道 SDK – 搭配使用模擬裝置與 Linux 來傳送裝置到雲端訊息][lnk-gateway-simulated]。
+* GitHub 上的 [Azure IoT 閘道 SDK][lnk-gateway-sdk]。
 
 <!-- Links -->
 [lnk-main-c]: https://github.com/Azure/azure-iot-gateway-sdk/blob/master/samples/hello_world/src/main.c

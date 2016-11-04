@@ -1,31 +1,28 @@
-<properties
-	pageTitle="為您的 Microsoft Azure 訂用帳戶設定帳單通知 | Microsoft Azure"
-	description="描述如何設定您的 Azure 帳單上的警示，以避免計費出現意外的狀況。"
-	services=""
-	documentationCenter=""
-	authors="vikdesai"
-	manager="msmbaldwin"
-	editor=""
-	tags="billing"
-	/>
+---
+title: 為您的 Microsoft Azure 訂用帳戶設定帳單通知 | Microsoft Docs
+description: 描述如何設定您的 Azure 帳單上的警示，以避免計費出現意外的狀況。
+services: ''
+documentationcenter: ''
+author: vikdesai
+manager: msmbaldwin
+editor: ''
+tags: billing
 
-<tags
-	ms.service="billing"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/18/2016"
-	ms.author="vikdesai"/>
+ms.service: billing
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/18/2016
+ms.author: vikdesai
 
+---
 # 為您的 Microsoft Azure 訂用帳戶設定帳單通知
-
 您在乎您的 Azure 訂用帳戶每個月花費多少錢嗎？ 如果您是 Azure 訂用帳戶的帳戶管理員，您可以使用「Azure 計費警示服務」來建立自訂計費警示，以協助您監視和管理您 Azure 帳戶的計費活動。
 
 這項服務是預覽服務，因此您需要做的第一件事就是註冊。請瀏覽 Azure 帳戶管理入口網站中的[預覽功能頁面](https://account.windowsazure.com/PreviewFeatures)來啟用這項功能。
 
 ## 設定警示閾值與電子郵件收件者
-
 在收到已為您的訂用帳戶開啟計費服務的電子郵件確認之後，請瀏覽帳戶入口網站中的[訂用帳戶頁面](https://account.windowsazure.com/Subscriptions)。按一下您想要監視的訂用帳戶，然後按一下 [警示]。
 
 ![][Image1]
@@ -41,7 +38,6 @@
 Azure 支援任何電子郵件地址，但不會驗證電子郵件地址是否有效，所以請仔細檢查是否有錯字。
 
 ## 檢查您的通知
-
 設定警示之後，[帳戶中心] 會列出這些警示，並顯示您還可以設定多少個警示。針對每個警示，您會看到其傳送日期和時間 (不論是 [計費總計] 還是 [貨幣信用額度] 警示)，以及您所設定的限制。日期和時間格式是 24 小時制的世界標準時間 (UTC)，而日期為 yyyy-mm-dd 格式。您可以按一下清單中某個警示的加號來編輯該警示，或按一下資源回收筒圖示來將它刪除。
 
 [Image1]: ./media/azure-billing-set-up-alerts/billingalert1.png

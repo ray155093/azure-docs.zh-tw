@@ -1,29 +1,26 @@
-<properties
-	pageTitle="在 Azure API 管理中管理您的第一個 API| Microsoft Azure"
-	description="了解如何建立 API、加入作業，以及開始使用 API 管理。"
-	services="api-management"
-	documentationCenter=""
-	authors="steved0x"
-	manager="erikre"
-	editor=""/>
+---
+title: 在 Azure API 管理中管理您的第一個 API| Microsoft Docs
+description: 了解如何建立 API、加入作業，以及開始使用 API 管理。
+services: api-management
+documentationcenter: ''
+author: steved0x
+manager: erikre
+editor: ''
 
-<tags
-	ms.service="api-management"
-	ms.workload="mobile"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="hero-article"
-	ms.date="08/24/2016"
-	ms.author="sdanie"/>
+ms.service: api-management
+ms.workload: mobile
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: hero-article
+ms.date: 08/24/2016
+ms.author: sdanie
 
+---
 # 在 Azure API 管理中管理您的第一個 API
-
 ## <a name="overview"> </a>概觀
-
 本指南示範如何快速開始使用 Azure API 管理，以及進行您的第一個 API 呼叫。
 
 ## <a name="concepts"> </a>什麼是 Azure API 管理？
-
 您可以使用 Azure API 管理來取得任何後端，並根據該後端來啟用完善的 API 方案。
 
 常見案例包括：
@@ -32,36 +29,37 @@
 * 透過開發人員入口網站讓合作夥伴快速上手，並建置 API 外觀來減少還不適合合作夥伴使用的內部實作，進而**促成 ISV 合作夥伴生態系統**。
 * 提供集中的位置讓組織能夠用來討論 API 的可用性和最新變更，並以 API 閘道和後端之間的安全通道為基礎，依據組織帳戶來控制存取，藉此**執行內部 API 方案**。
 
-
 系統是由下列元件所組成：
 
 * **API 閘道**是可執行以下作業的端點：
+  
   * 接受 API 呼叫，並將這些呼叫路由傳送到您的後端。
   * 驗證 API 金鑰、JWT 權杖、憑證和其他認證。
   * 強制採用使用量配額和頻率限制。
   * 即時轉換您的 API 且不需修改程式碼。
   * 快取設定的後端回應。
   * 記錄呼叫中繼資料以供分析使用。
-
 * **發行者入口網站**是您設定 API 方案的管理介面。使用方式：
-	* 定義或匯入 API 結構描述。
-	* 將 API 封裝至產品。
-	* 設定原則，例如 API 的配額或轉換。
-	* 從分析中取得見解。
-	* 管理使用者。
-
+  
+  * 定義或匯入 API 結構描述。
+  * 將 API 封裝至產品。
+  * 設定原則，例如 API 的配額或轉換。
+  * 從分析中取得見解。
+  * 管理使用者。
 * **開發人員入口網站**是供開發人員執行以下作業的主要網站空間：
-	* 閱讀 API 文件。
-	* 透過互動式主控台試用 API。
-	* 建立帳戶，並訂閱以取得 API 金鑰。
-	* 存取他們的使用量分析資料。
-
+  
+  * 閱讀 API 文件。
+  * 透過互動式主控台試用 API。
+  * 建立帳戶，並訂閱以取得 API 金鑰。
+  * 存取他們的使用量分析資料。
 
 ## <a name="create-service-instance"> </a>建立 API 管理執行個體
+> [!NOTE]
+> 若要完成此教學課程，您需要 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費帳戶。如需詳細資訊，請參閱 [Azure 免費試用][Azure 免費試用]。
+> 
+> 
 
->[AZURE.NOTE] 若要完成此教學課程，您需要 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費帳戶。如需詳細資訊，請參閱 [Azure 免費試用][]。
-
-使用 API 管理的第一個步驟是建立服務執行個體。登入 [Azure 傳統入口網站][]，然後按一下 [新增] > [應用程式服務] > [API 管理] > [建立]。
+使用 API 管理的第一個步驟是建立服務執行個體。登入 [Azure 傳統入口網站][Azure 傳統入口網站]，然後按一下 [新增] > [應用程式服務] > [API 管理] > [建立]。
 
 ![API Management new instance][api-management-create-instance-menu]
 
@@ -73,13 +71,19 @@
 
 輸入 **Contoso Ltd.** 做為 [組織名稱]，然後在 [管理員電子郵件] 欄位中輸入您的電子郵件地址。
 
->[AZURE.NOTE] 此電子郵件地址將用於自 API 管理系統傳送通知。如需詳細資訊，請參閱[如何在 Azure API 管理中設定通知和電子郵件範本][]。
+> [!NOTE]
+> 此電子郵件地址將用於自 API 管理系統傳送通知。如需詳細資訊，請參閱[如何在 Azure API 管理中設定通知和電子郵件範本][如何在 Azure API 管理中設定通知和電子郵件範本]。
+> 
+> 
 
 ![New API Management service][api-management-create-instance-step2]
 
 API 管理服務執行個體共有三種層次：開發人員、標準和高階。根據預設，會使用開發人員階層來建立新的 API 管理服務執行個體。若要選取標準或高階階層，可勾選 [進階設定] 核取方塊，然後在接下來的畫面中選取所需的階層。
 
->[AZURE.NOTE] 開發人員階層可用來針對不注重高可用性的 API 程式進行開發、測試及試驗。在「標準」和「高階」層次中，您可以調整保留的單位計數以處理更多流量。「標準」和「高階」層次可為您的 API 管理服務提供最高的處理能力和效能。您可以使用任何階層來完成本教學課程。如需關於 API 管理層次的詳細資訊，請參閱 [API 管理定價][]。
+> [!NOTE]
+> 開發人員階層可用來針對不注重高可用性的 API 程式進行開發、測試及試驗。在「標準」和「高階」層次中，您可以調整保留的單位計數以處理更多流量。「標準」和「高階」層次可為您的 API 管理服務提供最高的處理能力和效能。您可以使用任何階層來完成本教學課程。如需關於 API 管理層次的詳細資訊，請參閱 [API 管理定價][API 管理定價]。
+> 
+> 
 
 按一下核取方塊來建立您的服務執行個體。
 
@@ -88,12 +92,14 @@ API 管理服務執行個體共有三種層次：開發人員、標準和高階�
 建立服務執行個體之後，下一步是建立或匯入 API。
 
 ## <a name="create-api"> </a>匯入 API
-
 API 包含可自用戶端應用程式叫用的一組作業。API 作業會代理到現有的 Web 服務。
 
 您可以手動建立 API (並可加入作業)，或是匯入這兩者。在本教學課程中，我們將針對由 Microsoft 所提供且裝載在 Azure 上的範例計算機 Web 服務來匯入 API。
 
->[AZURE.NOTE] 如需建立 API 和手動加入作業的指引，請參閱[如何建立 API](api-management-howto-create-apis.md) 和[如何將作業加入至 API](api-management-howto-add-operations.md)。
+> [!NOTE]
+> 如需建立 API 和手動加入作業的指引，請參閱[如何建立 API](api-management-howto-create-apis.md) 和[如何將作業加入至 API](api-management-howto-add-operations.md)。
+> 
+> 
 
 API 是從發佈者入口網站所設定，您可以透過 Azure 傳統入口網站存取此入口網站。若要存取發佈者入口網站，請在 Azure 傳統入口網站中，針對您的 API 管理服務按一下 [管理]。
 
@@ -112,7 +118,10 @@ API 是從發佈者入口網站所設定，您可以透過 Azure 傳統入口網
 
 ![Add new API][api-management-import-new-api]
 
->[AZURE.NOTE] API 管理目前支援 1.2 和 2.0 版本的 Swagger 文件以供下載。請確定即使 [Swagger 2.0 規格](http://swagger.io/specification)說明 `host`、`basePath` 和 `schemes` 是選擇性的屬性，您的 Swagger 2.0 文件「必須」包含這些屬性；否則無法匯入。
+> [!NOTE]
+> API 管理目前支援 1.2 和 2.0 版本的 Swagger 文件以供下載。請確定即使 [Swagger 2.0 規格](http://swagger.io/specification)說明 `host`、`basePath` 和 `schemes` 是選擇性的屬性，您的 Swagger 2.0 文件「必須」包含這些屬性；否則無法匯入。
+> 
+> 
 
 匯入 API 之後，API 的摘要頁面隨即會顯示在發行者入口網站中。
 
@@ -122,15 +131,14 @@ API 區段有一些索引標籤。[摘要] 索引標籤會顯示 API 的基本�
 
 依預設，每個 API 管理執行個體會隨附兩個範例產品：
 
--	**入門**
--	**無限制**
+* **入門**
+* **無限制**
 
 在本教學課程中，Basic Calculator API 已在匯入 API 時加入至「入門」產品。
 
 若要呼叫 API，開發人員必須先訂閱能夠讓他們存取 API 的產品。開發人員可以在開發人員入口網站中訂閱產品，或者管理員也可以在發行者入口網站中為開發人員訂閱產品。由於您在先前的教學課程步驟中建立了 API 管理執行個體，因此您是管理員，且已根據預設訂閱了所有產品。
 
 ## <a name="call-operation"> </a>從開發人員入口網站呼叫作業
-
 您可以從開發人員入口網站直接呼叫作業，以便檢視和測試 API 的操作。在本教學課程步驟中，您將會呼叫 Basic Calculator API 的 **Add two integers** 作業。從發行者入口網站右上角的功能表中，按一下 [**開發人員入口網站**]。
 
 ![開發人員入口網站][api-management-developer-portal-menu]
@@ -154,7 +162,6 @@ API 區段有一些索引標籤。[摘要] 索引標籤會顯示 API 的基本�
 ![Response][api-management-invoke-get-response]
 
 ## <a name="view-analytics"> </a>檢視分析
-
 若要檢視 Basic Calculator 的分析，可從開發人員入口網站右上角的功能表中選取 [管理]，以切換回發行者入口網站。
 
 ![管理][api-management-manage-menu]
@@ -165,7 +172,10 @@ API 區段有一些索引標籤。[摘要] 索引標籤會顯示 API 的基本�
 
 將滑鼠游標移到 **Basic Calculator** 的圖表上，以查看指定時段中 API 使用量的特定度量。
 
->[AZURE.NOTE] 如果您在圖表上看不見任何線條，請切換回開發人員入口網站，並對 API 進行一些呼叫，等候片刻，然後返回儀表板。
+> [!NOTE]
+> 如果您在圖表上看不見任何線條，請切換回開發人員入口網站，並對 API 進行一些呼叫，等候片刻，然後返回儀表板。
+> 
+> 
 
 按一下 [檢視詳細資料] 來檢視 API 的摘要頁面，包括已顯示度量的較大版本。
 
@@ -179,14 +189,13 @@ API 區段有一些索引標籤。[摘要] 索引標籤會顯示 API 的基本�
 
 [分析] 區段具有下列四個索引標籤：
 
--	[快速概覽] 提供整體的使用量和健康情況度量，以及名列前茅的開發人員、產品、API 和作業等相關資訊。
--	[使用量] 提供 API 呼叫和頻寬的深入檢視，包括地理區域的呈現。
--	**Health** 著重在狀態碼、快取成功率、回應時間，以及 API 與服務回應時間。
--	**Activity** 提供的報告依開發人員、產品、API 和作業向下鑽研特定活動。
+* [快速概覽] 提供整體的使用量和健康情況度量，以及名列前茅的開發人員、產品、API 和作業等相關資訊。
+* [使用量] 提供 API 呼叫和頻寬的深入檢視，包括地理區域的呈現。
+* **Health** 著重在狀態碼、快取成功率、回應時間，以及 API 與服務回應時間。
+* **Activity** 提供的報告依開發人員、產品、API 和作業向下鑽研特定活動。
 
 ## <a name="next-steps"> </a>後續步驟
-
-- 了解[以頻率限制保護您的 API](api-management-howto-product-with-rules.md)。
+* 了解[以頻率限制保護您的 API](api-management-howto-product-with-rules.md)。
 
 [Azure 免費試用]: http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=api_management_hero_a
 

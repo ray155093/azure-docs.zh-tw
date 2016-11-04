@@ -1,23 +1,21 @@
-<properties
-    pageTitle="Azure AD Connect 同步處理：了解宣告式佈建運算式 | Microsoft Azure"
-    description="說明宣告式佈建運算式。"
-    services="active-directory"
-    documentationCenter=""
-    authors="andkjell"
-    manager="femila"
-    editor=""/>
+---
+title: Azure AD Connect 同步處理：了解宣告式佈建運算式 | Microsoft Docs
+description: 說明宣告式佈建運算式。
+services: active-directory
+documentationcenter: ''
+author: andkjell
+manager: femila
+editor: ''
 
-<tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/31/2016"
-    ms.author="markusvi;andkjell"/>
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/31/2016
+ms.author: markusvi;andkjell
 
-
-
+---
 # <a name="azure-ad-connect-sync:-understanding-declarative-provisioning-expressions"></a>Azure AD Connect 同步處理：了解宣告式佈建運算式
 Azure AD Connect 同步處理是以 Forefront Identity Manager 2010 中最先引進的宣告式佈建為基礎。 它可讓您實作完整的身分識別整合商務邏輯，而不需要撰寫已編譯的程式碼。
 
@@ -28,14 +26,13 @@ Azure AD Connect 同步處理是以 Forefront Identity Manager 2010 中最先引
 屬性是強型別。 函式只會接受正確類型的屬性。 它也區分大小寫。 函式名稱和屬性名稱兩者都必須有正確的大小寫，否則會擲回錯誤。
 
 ## <a name="language-definitions-and-identifiers"></a>語言定義和識別項
-
-- 函式名稱後面接著以括弧括住的引數：FunctionName(argument 1, argument N)。
-- 屬性以方括弧識別：[attributeName]
-- 參數以百分比符號識別：%ParameterName%
-- 字串常數以引號括住：例如 "Contoso" (注意：必須使用一般引號 ""，而非智慧引號 “”)
-- 數值不加引號，而且必須是十進位。 十六進位值前面會加上 &H。 例如，98052、&HFF
-- 布林值以兩個常數表示：True、False。
-- 內建常數和常值只以其名稱表示：NULL、CRLF、IgnoreThisFlow
+* 函式名稱後面接著以括弧括住的引數：FunctionName(argument 1, argument N)。
+* 屬性以方括弧識別：[attributeName]
+* 參數以百分比符號識別：%ParameterName%
+* 字串常數以引號括住：例如 "Contoso" (注意：必須使用一般引號 ""，而非智慧引號 “”)
+* 數值不加引號，而且必須是十進位。 十六進位值前面會加上 &H。 例如，98052、&HFF
+* 布林值以兩個常數表示：True、False。
+* 內建常數和常值只以其名稱表示：NULL、CRLF、IgnoreThisFlow
 
 ### <a name="functions"></a>Functions
 宣告式佈建會使用許多函式，來啟用轉換屬性值的可能性。 這些函式可以是巢狀的，因此，來自某一個函式的結果會傳遞到另一個函式。
@@ -51,12 +48,12 @@ Active Directory 連接器對於輸入同步處理規則提供下列參數：
 
 | 參數名稱 | 註解 |
 | --- | --- |
-| Domain.Netbios | 目前正在匯入之網域的 NetBIOS 格式，例如 FABRIKAMSALES |
-| Domain.FQDN | 目前正在匯入之網域的 FQDN 格式，例如 sales.fabrikam.com |
-| Domain.LDAP | 目前正在匯入之網域的 LDAP 格式，例如 DC=sales,DC=fabrikam,DC=com |
-| Forest.Netbios | 目前正在匯入之樹系名稱的 Netbios 格式，例如 FABRIKAMCORP |
-| Forest.FQDN | 目前正在匯入之樹系名稱的 FQDN 格式，例如 fabrikam.com |
-| Forest.LDAP | 目前正在匯入之樹系名稱的 LDAP 格式，例如 DC=fabrikam,DC=com |
+| Domain.Netbios |目前正在匯入之網域的 NetBIOS 格式，例如 FABRIKAMSALES |
+| Domain.FQDN |目前正在匯入之網域的 FQDN 格式，例如 sales.fabrikam.com |
+| Domain.LDAP |目前正在匯入之網域的 LDAP 格式，例如 DC=sales,DC=fabrikam,DC=com |
+| Forest.Netbios |目前正在匯入之樹系名稱的 Netbios 格式，例如 FABRIKAMCORP |
+| Forest.FQDN |目前正在匯入之樹系名稱的 FQDN 格式，例如 fabrikam.com |
+| Forest.LDAP |目前正在匯入之樹系名稱的 LDAP 格式，例如 DC=fabrikam,DC=com |
 
 系統會提供下列參數，用來取得目前正在執行之連接器的識別碼：  
 `Connector.ID`
@@ -67,11 +64,11 @@ Active Directory 連接器對於輸入同步處理規則提供下列參數：
 ### <a name="operators"></a>運算子
 可以使用下列運算子：
 
-- **比較**：<、<=、<>、=、>、>=
-- **數學**：+、-、\*、-
-- **字串**：& (串連)
-- **邏輯**：&& (且)、|| (或)
-- **評估順序**：( )
+* **比較**：<、<=、<>、=、>、>=
+* **數學**：+、-、\*、-
+* **字串**：& (串連)
+* **邏輯**：&& (且)、|| (或)
+* **評估順序**：( )
 
 運算子會由左至右進行評估，且具有相同的評估優先順序。 也就是，不會在 - (減號) 之前評估 \* (乘數)。 2\*(5+3) 與 2\*5+3 不同。 若由左至右的評估順序不適當，則可使用括弧 () 來變更評估順序。
 
@@ -84,21 +81,18 @@ Active Directory 連接器對於輸入同步處理規則提供下列參數：
 `IIF(InStr([proxyAddresses],"SIP:")=1,NULL,[proxyAddresses])` 尋找 SIP 位址並從各值中移除。
 
 ## <a name="next-steps"></a>後續步驟
-
-- 如需組態模型的詳細資訊，請參閱 [了解宣告式佈建](active-directory-aadconnectsync-understanding-declarative-provisioning.md)。
-- 如需了解如何立即使用宣告式佈建，請參閱 [了解預設組態](active-directory-aadconnectsync-understanding-default-configuration.md)。
-- 如需了解如何使用宣告式佈建進行實際變更，請參閱 [如何變更預設組態](active-directory-aadconnectsync-change-the-configuration.md)。
+* 如需組態模型的詳細資訊，請參閱 [了解宣告式佈建](active-directory-aadconnectsync-understanding-declarative-provisioning.md)。
+* 如需了解如何立即使用宣告式佈建，請參閱 [了解預設組態](active-directory-aadconnectsync-understanding-default-configuration.md)。
+* 如需了解如何使用宣告式佈建進行實際變更，請參閱 [如何變更預設組態](active-directory-aadconnectsync-change-the-configuration.md)。
 
 **概觀主題**
 
-- [Azure AD Connect 同步處理：了解及自訂同步處理](active-directory-aadconnectsync-whatis.md)
-- [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
+* [Azure AD Connect 同步處理：了解及自訂同步處理](active-directory-aadconnectsync-whatis.md)
+* [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
 **參考主題**
 
-- [Azure AD Connect 同步處理：函式參考](active-directory-aadconnectsync-functions-reference.md)
-
-
+* [Azure AD Connect 同步處理：函式參考](active-directory-aadconnectsync-functions-reference.md)
 
 <!--HONumber=Oct16_HO2-->
 

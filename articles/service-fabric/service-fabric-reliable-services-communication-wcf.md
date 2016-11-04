@@ -1,21 +1,21 @@
-<properties
-   pageTitle="Reliable Services WCF 通訊堆疊 | Microsoft Azure"
-   description="Service Fabric 內建的 WCF 通訊堆疊提供 Reliable Services 專用的用戶端服務 WCF 通訊。"
-   services="service-fabric"
-   documentationCenter=".net"
-   authors="BharatNarasimman"
-   manager="timlt"
-   editor="vturecek"/>
+---
+title: Reliable Services WCF 通訊堆疊 | Microsoft Docs
+description: Service Fabric 內建的 WCF 通訊堆疊提供 Reliable Services 專用的用戶端服務 WCF 通訊。
+services: service-fabric
+documentationcenter: .net
+author: BharatNarasimman
+manager: timlt
+editor: vturecek
 
-<tags
-   ms.service="service-fabric"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="required"
-   ms.date="07/26/2016"
-   ms.author="bharatn"/>
+ms.service: service-fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: required
+ms.date: 07/26/2016
+ms.author: bharatn
 
+---
 # 適用於 Reliable Services 的 WCF 式通訊堆疊
 Reliable Services 架構允許服務作者選擇其想要針對服務使用的通訊堆疊。他們可以透過從 [CreateServiceReplicaListeners 或 CreateServiceInstanceListeners](service-fabric-reliable-services-communication.md) 方法傳回的 **ICommunicationListener**，來外掛所選擇的通訊堆疊。服務作者如果想要使用 Windows Communication Foundation (WCF) 式通訊，架構可提供以 WCF 式實作的通訊堆疊。
 
@@ -113,13 +113,14 @@ var result = calculatorServiceCommunicationClient.InvokeWithRetryAsync(
                 client => client.Channel.Add(2, 3)).Result;
 
 ```
->[AZURE.NOTE] 預設 ServicePartitionResolver 假設用戶端正在與服務相同的叢集中執行。如果不是這樣，請建立 ServicePartitionResolver 物件，並傳入叢集連接端點。
+> [!NOTE]
+> 預設 ServicePartitionResolver 假設用戶端正在與服務相同的叢集中執行。如果不是這樣，請建立 ServicePartitionResolver 物件，並傳入叢集連接端點。
+> 
+> 
 
 ## 後續步驟
 * [使用 Reliable Services 遠端服務進行遠端程序呼叫](service-fabric-reliable-services-communication-remoting.md)
-
 * [在 Reliable Services 中搭配 OWIN 使用 Web API](service-fabric-reliable-services-communication-webapi.md)
-
 * [Reliable Services 的安全通訊](service-fabric-reliable-services-secure-communication.md)
 
 <!---HONumber=AcomDC_0727_2016-->

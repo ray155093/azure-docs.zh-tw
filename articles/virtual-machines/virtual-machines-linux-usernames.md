@@ -1,27 +1,24 @@
-<properties 
-	pageTitle="選取 Linux 的使用者名稱 | Microsoft Azure" 
-	description="了解如何在 Azure 中選取適用於 Linux 虛擬機器的使用者名稱。" 
-	services="virtual-machines-linux" 
-	documentationCenter="" 
-	authors="szarkos" 
-	manager="timlt" 
-	editor=""
-	tags="azure-service-management,azure-resource-manager" />
+---
+title: 選取 Linux 的使用者名稱 | Microsoft Docs
+description: 了解如何在 Azure 中選取適用於 Linux 虛擬機器的使用者名稱。
+services: virtual-machines-linux
+documentationcenter: ''
+author: szarkos
+manager: timlt
+editor: ''
+tags: azure-service-management,azure-resource-manager
 
-<tags 
-	ms.service="virtual-machines-linux" 
-	ms.workload="infrastructure-services" 
-	ms.tgt_pltfrm="vm-linux" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="07/13/2016" 
-	ms.author="szark"/>
+ms.service: virtual-machines-linux
+ms.workload: infrastructure-services
+ms.tgt_pltfrm: vm-linux
+ms.devlang: na
+ms.topic: article
+ms.date: 07/13/2016
+ms.author: szark
 
-
-
-#在 Azure 上選取適用於 Linux 的使用者名稱#
-
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
+---
+# 在 Azure 上選取適用於 Linux 的使用者名稱
+[!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
 在 Azure 上佈建 Linux 虛擬機器時，您必須指定非根使用者的名稱供稍後使用，以使用登入 VM。您可以選擇新使用者的名稱；如果是透過 Azure 傳統入口網站佈建，可以使用預設名稱「azureuser」。
 
@@ -29,123 +26,119 @@
 
 **不過**，Linux 會定義一組不應該使用的使用者名稱。如果您嘗試使用現有的系統使用者 (定義為具有 UID 0-99 的使用者) 佈建 Linux VM，佈建程序將**失敗**。常見的範例是 `root` 使用者，其 UID 為 0。
 
- - 另請參閱：[Linux 標準基礎 - 使用者 ID 範圍](http://refspecs.linuxfoundation.org/LSB_4.1.0/LSB-Core-generic/LSB-Core-generic/uidrange.html)
+* 另請參閱：[Linux 標準基礎 - 使用者 ID 範圍](http://refspecs.linuxfoundation.org/LSB_4.1.0/LSB-Core-generic/LSB-Core-generic/uidrange.html)
 
 以下是在 Azure 上佈建 Linux 虛擬機器時應避免使用的 CentOS 和 Ubuntu 常見內建系統使用者清單。此清單只是範例，請參閱散發套件的文件，以確保您所選擇的使用者名稱沒有與現有的系統使用者衝突。
 
-
 ## CentOS
-- abrt
-- adm
-- audio
-- bin
-- cdrom
-- cgred
-- daemon
-- dbus
-- dialout
-- dip
-- disk
-- floppy
-- ftp
-- ftp
-- games
-- gopher
-- haldaemon
-- halt
-- kmem
-- lock
-- lp
-- mail
-- man
-- mem
-- nfsnobody
-- nobody
-- ntp
-- operator
-- oprofile
-- postdrop
-- postfix
-- qpidd
-- root
-- rpc
-- rpcuser
-- saslauth
-- shutdown
-- slocate
-- sshd
-- stapdev
-- stapusr
-- sync
-- sys
-- tape
-- test
-- tcpdump
-- tty
-- users
-- utempter
-- utmp
-- uucp
-- vcsa
-- video
-- wheel
-
+* abrt
+* adm
+* audio
+* bin
+* cdrom
+* cgred
+* daemon
+* dbus
+* dialout
+* dip
+* disk
+* floppy
+* ftp
+* ftp
+* games
+* gopher
+* haldaemon
+* halt
+* kmem
+* lock
+* lp
+* mail
+* man
+* mem
+* nfsnobody
+* nobody
+* ntp
+* operator
+* oprofile
+* postdrop
+* postfix
+* qpidd
+* root
+* rpc
+* rpcuser
+* saslauth
+* shutdown
+* slocate
+* sshd
+* stapdev
+* stapusr
+* sync
+* sys
+* tape
+* test
+* tcpdump
+* tty
+* users
+* utempter
+* utmp
+* uucp
+* vcsa
+* video
+* wheel
 
 ## Ubuntu
-- adm
-- admin
-- audio
-- backup
-- bin
-- cdrom
-- crontab
-- daemon
-- dialout
-- dip
-- disk
-- fax
-- floppy
-- fuse
-- games
-- gnats
-- irc
-- kmem
-- landscape
-- libuuid
-- list
-- lp
-- mail
-- man
-- messagebus
-- mlocate
-- netdev
-- news
-- nobody
-- nogroup
-- operator
-- plugdev
-- proxy
-- root
-- sasl
-- shadow
-- src
-- ssh
-- sshd
-- staff
-- sudo
-- sync
-- sys
-- syslog
-- tape
-- tty
-- users
-- utmp
-- uucp
-- video
-- voice
-- whoopsie
-- www-data
-
- 
+* adm
+* admin
+* audio
+* backup
+* bin
+* cdrom
+* crontab
+* daemon
+* dialout
+* dip
+* disk
+* fax
+* floppy
+* fuse
+* games
+* gnats
+* irc
+* kmem
+* landscape
+* libuuid
+* list
+* lp
+* mail
+* man
+* messagebus
+* mlocate
+* netdev
+* news
+* nobody
+* nogroup
+* operator
+* plugdev
+* proxy
+* root
+* sasl
+* shadow
+* src
+* ssh
+* sshd
+* staff
+* sudo
+* sync
+* sys
+* syslog
+* tape
+* tty
+* users
+* utmp
+* uucp
+* video
+* voice
+* whoopsie
+* www-data
 
 <!---HONumber=AcomDC_0713_2016-->

@@ -1,62 +1,66 @@
-<properties 
-	pageTitle="DocumentDB 階層式資源模型和概念 | Microsoft Azure" 
-	description="深入了解 DocumentDB 資料庫的階層式模型、集合、使用者定義函數 (UDF)、文件、權限，以便管理資源等。"
-	keywords="階層式模型, Hierarchical model, documentdb, azure, Microsoft azure"	
-	services="documentdb" 
-	documentationCenter="" 
-	authors="AndrewHoh" 
-	manager="jhubbard" 
-	editor="monicar"/>
+---
+title: DocumentDB 階層式資源模型和概念 | Microsoft Docs
+description: 深入了解 DocumentDB 資料庫的階層式模型、集合、使用者定義函數 (UDF)、文件、權限，以便管理資源等。
+keywords: 階層式模型, Hierarchical model, documentdb, azure, Microsoft azure
+services: documentdb
+documentationcenter: ''
+author: AndrewHoh
+manager: jhubbard
+editor: monicar
 
-<tags 
-	ms.service="documentdb" 
-	ms.workload="data-services" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="09/15/2016" 
-	ms.author="anhoh"/>
+ms.service: documentdb
+ms.workload: data-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/15/2016
+ms.author: anhoh
 
+---
 # DocumentDB 階層式資源模型和概念
-
 DocumentDB 管理的資料庫實體稱為**資源**。每個資源可透過邏輯 URI 唯一識別。您可以使用標準 HTTP 動詞命令、要求/回應標頭和狀態碼來與資源互動。
 
 閱讀本文後，您將能夠回答下列問題：
 
-- 什麼是 DocumentDB 的資源模型？
-- 什麼是系統定義的資源？與使用者定義的資源有何差異？
-- 如何處理資源？
-- 如何使用集合？
-- 如何使用預存程序、觸發程序和使用者定義函數 (UDF)？
+* 什麼是 DocumentDB 的資源模型？
+* 什麼是系統定義的資源？與使用者定義的資源有何差異？
+* 如何處理資源？
+* 如何使用集合？
+* 如何使用預存程序、觸發程序和使用者定義函數 (UDF)？
 
 ## 階層式資源模型
 如下圖所示，DocumentDB 的階層式**資源模型**包含某個資料庫帳戶下的多組資源，而每組資源都可透過邏輯和穩定 URI 加以定址。在本文中，一組資源稱為**摘要**。
 
->[AZURE.NOTE] DocumentDB 提供高效率的 TCP 通訊協定，此 TCP 通訊協定在通訊模型中也符合 REST 限制，並且可以透過 [.NET 用戶端 SDK](https://msdn.microsoft.com/library/azure/dn781482.aspx) 取得。
+> [!NOTE]
+> DocumentDB 提供高效率的 TCP 通訊協定，此 TCP 通訊協定在通訊模型中也符合 REST 限制，並且可以透過 [.NET 用戶端 SDK](https://msdn.microsoft.com/library/azure/dn781482.aspx) 取得。
+> 
+> 
 
 ![DocumentDB 階層式資源模型][1]
 **階層式資源模型**
 
 若要開始使用資源，您必須使用 Azure 訂用帳戶[建立 DocumentDB 資料庫帳戶](documentdb-create-account.md)。資料庫帳戶可以由一組**資料庫**組成，每個資料庫都包含多個**集合**，而每個集合又依序包含**預存程序、觸發程序、UDF、文件**及相關**附件** (預覽功能)。資料庫也有相關聯的**使用者**，每位使用者都有一組可存取集合、預存程序、觸發程序、UDF、文件或附件的**權限**。雖然資料庫、使用者、權限和集合都是具有已知結構描述的系統定義資源，但是文件和附件包含任意使用者定義 JSON 內容。
 
-|資源 |說明
-|-----------|-----------
-|資料庫帳戶 |資料庫帳戶會與一組資料庫及附件之固定數目的 Blob 儲存體相關聯 (預覽功能)。您可以使用 Azure 訂用帳戶建立一或多個資料庫帳戶。如需詳細資訊，請瀏覽我們的[定價頁面](https://azure.microsoft.com/pricing/details/documentdb/)。
-|資料庫 |資料庫是分割給多個集合之文件儲存體的邏輯容器。同時也是使用者容器。
-|User |範圍權限的邏輯命名空間。 
-|權限 |與使用者相關聯的授權權杖，可讓使用者用於存取特定資源。
-|集合 |集合是 JSON 文件和相關聯 JavaScript 應用程式邏輯的容器。集合是計費實體，其中的[成本](documentdb-performance-levels.md)是由與集合相關聯的效能層級所決定。集合可以跨越一或多個資料分割/伺服器，也可以進行調整以處理幾乎無限量的儲存體或輸送量。
-|預存程序 |以 JavaScript 撰寫的應用程式邏輯，會向集合註冊並透過交易方式在資料庫引擎內執行。
-|觸發程序 |以 JavaScript 撰寫的應用程式邏輯，會在插入、取代或刪除作業之前或之後執行。
-|UDF |以 JavaScript 撰寫的應用程式邏輯。UDF 可讓您建立自訂查詢運算子的模型，進而擴充核心 DocumentDB 查詢語言。
-|文件 |使用者定義的 (任意) JSON 內容。依照預設，不是不需要定義任何結構描述，就是需要提供所有新增至集合之文件的次要索引。
-|(預覽) 附件 |附件是含有外部 Blob/媒體之參考資料和相關聯中繼資料的特殊文件。開發人員可以選擇讓 DocumentDB 管理 Blob，或使用外部 Blob 服務提供者 (例如 OneDrive、Dropbox 等) 儲存 Blob。 
-
+| 資源 | 說明 |
+| --- | --- |
+| 資料庫帳戶 |資料庫帳戶會與一組資料庫及附件之固定數目的 Blob 儲存體相關聯 (預覽功能)。您可以使用 Azure 訂用帳戶建立一或多個資料庫帳戶。如需詳細資訊，請瀏覽我們的[定價頁面](https://azure.microsoft.com/pricing/details/documentdb/)。 |
+| 資料庫 |資料庫是分割給多個集合之文件儲存體的邏輯容器。同時也是使用者容器。 |
+| User |範圍權限的邏輯命名空間。 |
+| 權限 |與使用者相關聯的授權權杖，可讓使用者用於存取特定資源。 |
+| 集合 |集合是 JSON 文件和相關聯 JavaScript 應用程式邏輯的容器。集合是計費實體，其中的[成本](documentdb-performance-levels.md)是由與集合相關聯的效能層級所決定。集合可以跨越一或多個資料分割/伺服器，也可以進行調整以處理幾乎無限量的儲存體或輸送量。 |
+| 預存程序 |以 JavaScript 撰寫的應用程式邏輯，會向集合註冊並透過交易方式在資料庫引擎內執行。 |
+| 觸發程序 |以 JavaScript 撰寫的應用程式邏輯，會在插入、取代或刪除作業之前或之後執行。 |
+| UDF |以 JavaScript 撰寫的應用程式邏輯。UDF 可讓您建立自訂查詢運算子的模型，進而擴充核心 DocumentDB 查詢語言。 |
+| 文件 |使用者定義的 (任意) JSON 內容。依照預設，不是不需要定義任何結構描述，就是需要提供所有新增至集合之文件的次要索引。 |
+| (預覽) 附件 |附件是含有外部 Blob/媒體之參考資料和相關聯中繼資料的特殊文件。開發人員可以選擇讓 DocumentDB 管理 Blob，或使用外部 Blob 服務提供者 (例如 OneDrive、Dropbox 等) 儲存 Blob。 |
 
 ## 系統與使用者定義的資源
 資料庫帳戶、資料庫、集合、使用者、權限、預存程序、觸發程序和 UDF 等資源的結構描述都是固定不變的，因此稱為「系統資源」。相反地，文件和附件等資源則是「使用者定義的資源」的範例，因為這些資源的結構描述沒有任何限制。在 DocumentDB 中，系統和使用者定義資源都會呈現和管理為標準相符 JSON。所有資源 (不論是系統定義的還是使用者定義的) 都具有下列共同屬性。
 
-> [AZURE.NOTE] 請注意，系統產生的資源屬性在以 JSON 形式表示時，前面都會加上底線 (\_)。
+> [!NOTE]
+> 請注意，系統產生的資源屬性在以 JSON 形式表示時，前面都會加上底線 (\_)。
+> 
+> 
 
 <table>
     <tbody>
@@ -95,23 +99,23 @@ DocumentDB 管理的資料庫實體稱為**資源**。每個資源可透過邏�
 
 ### 以線路表示資源
 DocumentDB 不會要求您提供用於 JSON 標準或特殊編碼的專屬延伸模組；DocumentDB 本身就能處理符合 JSON 標準的文件。
- 
+
 ### 資源定址
 所有資源都能以 URI 定址。資源的 **\_self** 屬性值代表資源的相對 URI。URI 的格式是由 /<feed>/{\_rid} 路徑片段所組成：
 
-|\_self 的值 |說明
-|-------------------|-----------
-|/dbs |資料庫帳戶下的資料庫摘要
-|/dbs/{dbName} |具有符合值 {dbName} 的識別碼的資料庫
-|/dbs/{dbName}/colls/ |在資料庫底下的集合摘要
-|/dbs/{dbName}/colls/{collName} |具有符合值 {collName} 的識別碼的集合
-|/dbs/{dbName}/colls/{collName}/docs |在集合底下的文件摘要
-|/dbs/{dbName}/colls/{collName}/docs/{docId} |具有符合值 {doc} 的識別碼的文件
-|/dbs/{dbName}/users/ |在資料庫底下的使用者摘要
-|/dbs/{dbName}/users/{userId} |具有符合值 {user} 的識別碼的使用者
-|/dbs/{dbName}/users/{userId}/permissions |在使用者底下的權限摘要
-|/dbs/{dbName}/users/{userId}/permissions/{permissionId} |具有符合值 {permission} 的識別碼的權限
-  
+| \_self 的值 | 說明 |
+| --- | --- |
+| /dbs |資料庫帳戶下的資料庫摘要 |
+| /dbs/{dbName} |具有符合值 {dbName} 的識別碼的資料庫 |
+| /dbs/{dbName}/colls/ |在資料庫底下的集合摘要 |
+| /dbs/{dbName}/colls/{collName} |具有符合值 {collName} 的識別碼的集合 |
+| /dbs/{dbName}/colls/{collName}/docs |在集合底下的文件摘要 |
+| /dbs/{dbName}/colls/{collName}/docs/{docId} |具有符合值 {doc} 的識別碼的文件 |
+| /dbs/{dbName}/users/ |在資料庫底下的使用者摘要 |
+| /dbs/{dbName}/users/{userId} |具有符合值 {user} 的識別碼的使用者 |
+| /dbs/{dbName}/users/{userId}/permissions |在使用者底下的權限摘要 |
+| /dbs/{dbName}/users/{userId}/permissions/{permissionId} |具有符合值 {permission} 的識別碼的權限 |
+
 每項資源都具有一個使用者所定義的不重複名稱，並會透過 id 屬性公開。注意：對於文件，如果使用者未指定識別碼，則系統會自動產生文件的唯一識別碼。id 是使用者定義的字串，最多 256 個字元，且在特定父系資源的內容中會是唯一的。
 
 每個資源還會有系統產生的階層式資源識別碼 (也稱為 RID)，其可透過 \_rid 屬性取得。RID 會對指定資源的整個階層進行編碼，此內部表示法十分方便，可透過分散方式強制執行參考完整性。RID 在資料庫帳戶內不會重複。DocumentDB 會在內部使用 RID，完全無須跨資料分割進行查閱，就能有效率地進行路由。\_self 和 \_rid 屬性值都是用來表示資源的標準方法，並可互相替代。
@@ -160,7 +164,7 @@ DocumentDB 資料庫預設是彈性的 – 範圍從幾 GB 到數 PB 的 SSD 支
 您可以依據供應項目，在資料庫中建立任意數目的集合。視選取的效能層而定，每個集合都有為您佈建的 SSD-backed 儲存體和輸出量。
 
 DocumentDB 資料庫同時也是使用者的容器。使用者因此是一組權限的邏輯命名空間，可針對集合、文件和附件提供微調的授權和存取權。
- 
+
 與 DocumentDB 資源模型中的其他資源相同，使用 [Azure DocumentDB REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx) 或任何[用戶端 SDK](https://msdn.microsoft.com/library/azure/dn781482.aspx)，即可輕鬆地建立、取代、刪除、讀取或列舉資料庫。DocumentDB 保證讀取或查詢資料庫資源之中繼資料的強式一致性。刪除資料庫會自動確定您無法存取其內所含的任何集合或使用者。
 
 ## 集合
@@ -175,33 +179,36 @@ DocumentDB 是真正無結構描述資料庫系統。它不會假設或不需要
 ### 設定集合的索引原則
 每個集合的索引原則都可讓您進行與索引相關聯的效能和儲存體取捨。下列是可供您在進行索引組態時使用的選項：
 
--	選擇集合是否自動編製所有文件的索引。預設會自動編製所有文件的索引。您可以選擇關閉自動編製索引，並選擇性地僅將特定文件新增至索引。相反地，您可以選擇性地選擇僅排除特定文件。做法是在集合的 indexingPolicy 上將自動屬性設定為 true 或 false，以及在插入、取代或刪除文件時使用 [x-ms-indexingdirective] 要求標頭。  
--	選擇在文件中包括還是排除索引中的特定路徑或模式。做法是分別在集合的 indexingPolicy 上設定 includedPaths 和 excludedPaths。您也可以針對特定路徑模式的範圍和雜湊查詢，設定儲存體和效能取捨。 
--	選擇同步 (一致) 與非同步 (緩慢) 索引更新。每次在集合中插入、取代或刪除文件時，預設會同步更新索引。這個行為讓查詢能夠使用與文件的讀取相同的一致性層級。雖然 DocumentDB 的寫入已經過最佳化處理，並支援持續的文件寫入數量以及同步索引維護和提供一致的查詢，但是您還是可以設定特定集合，讓集合的索引更新速度變慢。緩慢索引會進一步地促進寫入效能，而且適合在主要進行大量讀取集合時大量擷取案例。
+* 選擇集合是否自動編製所有文件的索引。預設會自動編製所有文件的索引。您可以選擇關閉自動編製索引，並選擇性地僅將特定文件新增至索引。相反地，您可以選擇性地選擇僅排除特定文件。做法是在集合的 indexingPolicy 上將自動屬性設定為 true 或 false，以及在插入、取代或刪除文件時使用 [x-ms-indexingdirective] 要求標頭。  
+* 選擇在文件中包括還是排除索引中的特定路徑或模式。做法是分別在集合的 indexingPolicy 上設定 includedPaths 和 excludedPaths。您也可以針對特定路徑模式的範圍和雜湊查詢，設定儲存體和效能取捨。 
+* 選擇同步 (一致) 與非同步 (緩慢) 索引更新。每次在集合中插入、取代或刪除文件時，預設會同步更新索引。這個行為讓查詢能夠使用與文件的讀取相同的一致性層級。雖然 DocumentDB 的寫入已經過最佳化處理，並支援持續的文件寫入數量以及同步索引維護和提供一致的查詢，但是您還是可以設定特定集合，讓集合的索引更新速度變慢。緩慢索引會進一步地促進寫入效能，而且適合在主要進行大量讀取集合時大量擷取案例。
 
 在集合上執行 PUT 即可變更索引原則。透過[用戶端 SDK](https://msdn.microsoft.com/library/azure/dn781482.aspx)、[Azure 入口網站](https://portal.azure.com)或 [Azure DocumentDB REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx) 即可達成。
 
 ### 查詢集合
 集合內的文件可以有任意結構描述，而且您可以查詢集合內的文件，而不需要預先提供任何結構描述或次要索引。您可以利用 [DocumentDB SQL 語法](https://msdn.microsoft.com/library/azure/dn782250.aspx)，透過使用 JavaScript 之 UDF 所提供的豐富階層式及關聯式空間運算子與擴充能力來查詢集合。JSON 文法允許用於將 JSON 文件建模為標籤做為樹狀節點的樹狀目錄。這會同時應用 DocumentDB 的自動編製索引技術與 DocumentDB 的 SQL 方言。DocumentDB 查詢語言包含三個主要部分：
 
-1.	本質上對應至樹狀結構的較小一組查詢作業 (包括階層式查詢和投射)。 
-2.	關聯式作業 (包括複合、篩選、投射、彙總和自我聯結) 的子集。 
-3.	可與 (1) 和 (2) 搭配使用的純 JavaScript 型 UDF。  
+1. 本質上對應至樹狀結構的較小一組查詢作業 (包括階層式查詢和投射)。 
+2. 關聯式作業 (包括複合、篩選、投射、彙總和自我聯結) 的子集。 
+3. 可與 (1) 和 (2) 搭配使用的純 JavaScript 型 UDF。  
 
 DocumentDB 查詢模型嘗試打破功能、效率和簡易性之間的平衡。DocumentDB 資料庫引擎會原生編譯和執行 SQL 查詢陳述式。您可以使用 [Azure DocumentDB REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx) 或任何[用戶端 SDK](https://msdn.microsoft.com/library/azure/dn781482.aspx) 來查詢集合。.NET SDK 隨附於 LINQ 提供者。
 
-> [AZURE.TIP] 您可以試試 DocumentDB，並在[查詢遊樂場](https://www.documentdb.com/sql/demo)中針對我們的資料集執行 SQL 查詢。
+> [!TIP]
+> 您可以試試 DocumentDB，並在[查詢遊樂場](https://www.documentdb.com/sql/demo)中針對我們的資料集執行 SQL 查詢。
+> 
+> 
 
 ### 多文件交易
 資料庫交易提供安全且可預測的程式設計模型來處理同時的資料變更。在 RDBMS 中，撰寫商務邏輯的傳統方式是撰寫「預存程序」和/或「觸發程序」，並將它傳送至資料庫伺服器以進行交易式執行。在 RDBMS 中，需要有應用程式設計人員，才能處理兩個不同的程式設計語言：
 
-- (非交易式) 應用程式程式設計語言 (例如 JavaScript、Python、C#、Java 等等)
-- T-SQL 是交易式程式設計語言，專門由資料庫執行
+* (非交易式) 應用程式程式設計語言 (例如 JavaScript、Python、C#、Java 等等)
+* T-SQL 是交易式程式設計語言，專門由資料庫執行
 
 透過直接在資料庫引擎內深入承諾 JavaScript 和 JSON，DocumentDB 提供直覺式程式設計模型，以透過預存程序和觸發程序直接在集合上執行 JavaScript 型應用程式邏輯。這會允許下列兩項動作：
 
-- 直接在資料庫引擎中，有效率地實作 JSON 物件圖形的並行存取控制、復原、自動編製索引
-- 在 JavaScript 程式設計語言方面，直接自然表達資料庫交易的控制流程、變數範圍、指派和整合例外狀況處理基本項目
+* 直接在資料庫引擎中，有效率地實作 JSON 物件圖形的並行存取控制、復原、自動編製索引
+* 在 JavaScript 程式設計語言方面，直接自然表達資料庫交易的控制流程、變數範圍、指派和整合例外狀況處理基本項目
 
 在集合層級註冊的 JavaScript 邏輯接著可以對給定集合的文件發出資料庫作業。DocumentDB 可以跨集合內的文件，隱含地在具有快照隔離的環境 ACID 交易內包裝 JavaScript 型預存程序和觸發程序。在執行期間，如果 JavaScript 擲回例外狀況，則會中止整個交易。產生的程式設計模型極為簡單，但功能強大。JavaScript 開發人員會取得「持續性」程式設計模型，同時仍然使用其熟悉的語言建構和程式庫基本。
 
@@ -209,51 +216,51 @@ DocumentDB 查詢模型嘗試打破功能、效率和簡易性之間的平衡。
 
 建立集合之後，就可以使用 [Azure DocumentDB REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx) 或任何[用戶端 SDK](https://msdn.microsoft.com/library/azure/dn781482.aspx)，向集合註冊預存程序、觸發程序和 UDF。註冊之後，您就可以參考和執行它們。您可以考慮使用下列完全以 JavaScript 撰寫的預存程序。下列程式碼採用兩個引數 (書籍名稱和作者名稱) 建立新文件，接著再查詢文件，然後加以更新。這些作業全都會在隱含的 ACID 交易中進行。在執行期間的任何時間點，如果擲回 JavaScript 例外狀況，整個交易便會中止。
 
-	function businessLogic(name, author) {
-	    var context = getContext();
-	    var collectionManager = context.getCollection();        
-	    var collectionLink = collectionManager.getSelfLink()
-	        
-	    // create a new document.
-	    collectionManager.createDocument(collectionLink,
-	        {id: name, author: author},
-	        function(err, documentCreated) {
-	            if(err) throw new Error(err.message);
-	            
-	            // filter documents by author
-	            var filterQuery = "SELECT * from root r WHERE r.author = 'George R.'";
-	            collectionManager.queryDocuments(collectionLink,
-	                filterQuery,
-	                function(err, matchingDocuments) {
-	                    if(err) throw new Error(err.message);
-	                    
-	                    context.getResponse().setBody(matchingDocuments.length);
-	                   
-	                    // Replace the author name for all documents that satisfied the query.
-	                    for (var i = 0; i < matchingDocuments.length; i++) {
-	                        matchingDocuments[i].author = "George R. R. Martin";
-	                        // we don’t need to execute a callback because they are in parallel
-	                        collectionManager.replaceDocument(matchingDocuments[i]._self,
-	                            matchingDocuments[i]);   
-	                    }
-	                })
-	        })
-	};
+    function businessLogic(name, author) {
+        var context = getContext();
+        var collectionManager = context.getCollection();        
+        var collectionLink = collectionManager.getSelfLink()
+
+        // create a new document.
+        collectionManager.createDocument(collectionLink,
+            {id: name, author: author},
+            function(err, documentCreated) {
+                if(err) throw new Error(err.message);
+
+                // filter documents by author
+                var filterQuery = "SELECT * from root r WHERE r.author = 'George R.'";
+                collectionManager.queryDocuments(collectionLink,
+                    filterQuery,
+                    function(err, matchingDocuments) {
+                        if(err) throw new Error(err.message);
+
+                        context.getResponse().setBody(matchingDocuments.length);
+
+                        // Replace the author name for all documents that satisfied the query.
+                        for (var i = 0; i < matchingDocuments.length; i++) {
+                            matchingDocuments[i].author = "George R. R. Martin";
+                            // we don’t need to execute a callback because they are in parallel
+                            collectionManager.replaceDocument(matchingDocuments[i]._self,
+                                matchingDocuments[i]);   
+                        }
+                    })
+            })
+    };
 
 用戶端可以將上面的 JavaScript 邏輯「傳送」至資料庫，以透過 HTTP POST 進行交易式執行。如需關於使用 HTTP 方法的詳細資訊，請參閱[與 DocumentDB 資源進行 RESTful 互動](https://msdn.microsoft.com/library/azure/mt622086.aspx)。
 
-	client.createStoredProcedureAsync(collection._self, {id: "CRUDProc", body: businessLogic})
-	   .then(function(createdStoredProcedure) {
-	        return client.executeStoredProcedureAsync(createdStoredProcedure.resource._self,
-	            "NoSQL Distilled",
-	            "Martin Fowler");
-	    })
-	    .then(function(result) {
-	        console.log(result);
-	    },
-	    function(error) {
-	        console.log(error);
-	    });
+    client.createStoredProcedureAsync(collection._self, {id: "CRUDProc", body: businessLogic})
+       .then(function(createdStoredProcedure) {
+            return client.executeStoredProcedureAsync(createdStoredProcedure.resource._self,
+                "NoSQL Distilled",
+                "Martin Fowler");
+        })
+        .then(function(result) {
+            console.log(result);
+        },
+        function(error) {
+            console.log(error);
+        });
 
 
 請注意，因為資料庫原本就了解 JSON 和 JavaScript，所以不會有類型系統不符、沒有「OR 對應」或不需要程式碼產生魔術。
@@ -268,128 +275,128 @@ DocumentDB 查詢模型嘗試打破功能、效率和簡易性之間的平衡。
 ### 註冊預存程序
 透過 HTTP POST 在集合上建立新的預存程序資源，即可註冊預存程序。
 
-	var storedProc = {
-	    id: "validateAndCreate",
-	    body: function (documentToCreate) {
-	        documentToCreate.id = documentToCreate.id.toUpperCase();
-	        
-	        var collectionManager = getContext().getCollection();
-	        collectionManager.createDocument(collectionManager.getSelfLink(),
-	            documentToCreate,
-	            function(err, documentCreated) {
-	                if(err) throw new Error('Error while creating document: ' + err.message;
-	                getContext().getResponse().setBody('success - created ' + 
-	                        documentCreated.name);
-	            });
-	    }
-	};
-	
-	client.createStoredProcedureAsync(collection._self, storedProc)
-	    .then(function (createdStoredProcedure) {
-	        console.log("Successfully created stored procedure");
-	    }, function(error) {
-	        console.log("Error");
-	    });
+    var storedProc = {
+        id: "validateAndCreate",
+        body: function (documentToCreate) {
+            documentToCreate.id = documentToCreate.id.toUpperCase();
+
+            var collectionManager = getContext().getCollection();
+            collectionManager.createDocument(collectionManager.getSelfLink(),
+                documentToCreate,
+                function(err, documentCreated) {
+                    if(err) throw new Error('Error while creating document: ' + err.message;
+                    getContext().getResponse().setBody('success - created ' + 
+                            documentCreated.name);
+                });
+        }
+    };
+
+    client.createStoredProcedureAsync(collection._self, storedProc)
+        .then(function (createdStoredProcedure) {
+            console.log("Successfully created stored procedure");
+        }, function(error) {
+            console.log("Error");
+        });
 
 ### 執行預存程序
 透過將參數傳遞給要求本文中的程序，以對現有預存程序資源發出 HTTP POST，即可執行預存程序。
 
-	var inputDocument = {id : "document1", author: "G. G. Marquez"};
-	client.executeStoredProcedureAsync(createdStoredProcedure.resource._self, inputDocument)
-	    .then(function(executionResult) {
-	        assert.equal(executionResult, "success - created DOCUMENT1");
-	    }, function(error) {
-	        console.log("Error");
-	    });
+    var inputDocument = {id : "document1", author: "G. G. Marquez"};
+    client.executeStoredProcedureAsync(createdStoredProcedure.resource._self, inputDocument)
+        .then(function(executionResult) {
+            assert.equal(executionResult, "success - created DOCUMENT1");
+        }, function(error) {
+            console.log("Error");
+        });
 
 ### 取消註冊預存程序
 只要對現有預存程序資源發出 HTTP DELETE，即可取消註冊預存程序。
 
-	client.deleteStoredProcedureAsync(createdStoredProcedure.resource._self)
-	    .then(function (response) {
-	        return;
-	    }, function(error) {
-	        console.log("Error");
-	    });
+    client.deleteStoredProcedureAsync(createdStoredProcedure.resource._self)
+        .then(function (response) {
+            return;
+        }, function(error) {
+            console.log("Error");
+        });
 
 
 ### 註冊預先觸發程序
 透過 HTTP POST 在集合上建立新的觸發程序資源，即可註冊觸發程序。您可以指定觸發程序是預先觸發程序還是後續觸發程序，以及可與之相關聯的作業類型 (例如，[建立]、[取代]、[刪除] 或 [全部])。
 
-	var preTrigger = {
-	    id: "upperCaseId",
-	    body: function() {
-	            var item = getContext().getRequest().getBody();
-	            item.id = item.id.toUpperCase();
-	            getContext().getRequest().setBody(item);
-	    },
-	    triggerType: TriggerType.Pre,
-	    triggerOperation: TriggerOperation.All
-	}
-	
-	client.createTriggerAsync(collection._self, preTrigger)
-	    .then(function (createdPreTrigger) {
-	        console.log("Successfully created trigger");
-	    }, function(error) {
-	        console.log("Error");
-	    });
+    var preTrigger = {
+        id: "upperCaseId",
+        body: function() {
+                var item = getContext().getRequest().getBody();
+                item.id = item.id.toUpperCase();
+                getContext().getRequest().setBody(item);
+        },
+        triggerType: TriggerType.Pre,
+        triggerOperation: TriggerOperation.All
+    }
+
+    client.createTriggerAsync(collection._self, preTrigger)
+        .then(function (createdPreTrigger) {
+            console.log("Successfully created trigger");
+        }, function(error) {
+            console.log("Error");
+        });
 
 ### 執行預先觸發程序
 透過要求標頭發出文件資源的 POST/PUT/DELETE 要求時指定現有觸發程序名稱，即可執行觸發程序。
- 
-	client.createDocumentAsync(collection._self, { id: "doc1", key: "Love in the Time of Cholera" }, { preTriggerInclude: "upperCaseId" })
-	    .then(function(createdDocument) {
-	        assert.equal(createdDocument.resource.id, "DOC1");
-	    }, function(error) {
-	        console.log("Error");
-	    });
+
+    client.createDocumentAsync(collection._self, { id: "doc1", key: "Love in the Time of Cholera" }, { preTriggerInclude: "upperCaseId" })
+        .then(function(createdDocument) {
+            assert.equal(createdDocument.resource.id, "DOC1");
+        }, function(error) {
+            console.log("Error");
+        });
 
 ### 取消註冊預先觸發程序
 只要對現有觸發程序資源發出 HTTP DELETE，即可取消註冊觸發程序。
 
-	client.deleteTriggerAsync(createdPreTrigger._self);
-	    .then(function(response) {
-	        return;
-	    }, function(error) {
-	        console.log("Error");
-	    });
+    client.deleteTriggerAsync(createdPreTrigger._self);
+        .then(function(response) {
+            return;
+        }, function(error) {
+            console.log("Error");
+        });
 
 ### 註冊 UDF
 透過 HTTP POST 在集合上建立新的 UDF 資源，即可註冊 UDF。
 
-	var udf = { 
-	    id: "mathSqrt",
-	    body: function(number) {
-	            return Math.sqrt(number);
-	    },
-	};
-	client.createUserDefinedFunctionAsync(collection._self, udf)
-	    .then(function (createdUdf) {
-	        console.log("Successfully created stored procedure");
-	    }, function(error) {
-	        console.log("Error");
-	    });
+    var udf = { 
+        id: "mathSqrt",
+        body: function(number) {
+                return Math.sqrt(number);
+        },
+    };
+    client.createUserDefinedFunctionAsync(collection._self, udf)
+        .then(function (createdUdf) {
+            console.log("Successfully created stored procedure");
+        }, function(error) {
+            console.log("Error");
+        });
 
 ### 將 UDF 執行為查詢的一部分
 UDF 可以指定為部分 SQL 查詢，也可做為一種擴充 [Document DB 的核心 SQL 查詢語言](https://msdn.microsoft.com/library/azure/dn782250.aspx)的方法。
 
-	var filterQuery = "SELECT udf.mathSqrt(r.Age) AS sqrtAge FROM root r WHERE r.FirstName='John'";
-	client.queryDocuments(collection._self, filterQuery).toArrayAsync();
-	    .then(function(queryResponse) {
-	        var queryResponseDocuments = queryResponse.feed;
-	    }, function(error) {
-	        console.log("Error");
-	    });
+    var filterQuery = "SELECT udf.mathSqrt(r.Age) AS sqrtAge FROM root r WHERE r.FirstName='John'";
+    client.queryDocuments(collection._self, filterQuery).toArrayAsync();
+        .then(function(queryResponse) {
+            var queryResponseDocuments = queryResponse.feed;
+        }, function(error) {
+            console.log("Error");
+        });
 
-### 取消註冊 UDF 
+### 取消註冊 UDF
 只要對現有 UDF 資源發出 HTTP DELETE，即可取消註冊 UDF。
 
-	client.deleteUserDefinedFunctionAsync(createdUdf._self)
-	    .then(function(response) {
-	        return;
-	    }, function(error) {
-	        console.log("Error");
-	    });
+    client.deleteUserDefinedFunctionAsync(createdUdf._self)
+        .then(function(response) {
+            return;
+        }, function(error) {
+            console.log("Error");
+        });
 
 雖然上面的程式碼片段僅顯示透過 [DocumentDB JavaScript SDK](https://github.com/Azure/azure-documentdb-js) 的註冊 (POST)、取消註冊 (PUT)、讀取/列出 (GET) 和執行 (POST)，但是您也可以使用 [REST API](https://msdn.microsoft.com/library/azure/dn781481.aspx) 或其他[用戶端 SDK](https://msdn.microsoft.com/library/azure/dn781482.aspx)。
 
@@ -397,25 +404,29 @@ UDF 可以指定為部分 SQL 查詢，也可做為一種擴充 [Document DB 的
 您可以在集合中插入、取代、刪除、讀取、列舉和查詢任意 JSON 文件。DocumentDB 不會託管任何結構描述，而且不需要次要索引，就支援逐一查詢集合中的文件。
 
 DocumentDB 是真正開放的資料庫服務，不會發明 JSON 文件的任何特殊資料類型 (例如日期時間) 或特定編碼。請注意，DocumentDB 無須遵循任何特殊 JSON 慣例，即可編寫各種文件之間的關聯性。DocumentDB 的 SQL 語法提供有效率的階層式和關係查詢運算子，讓您可以用於查詢及保護文件，不僅無須任何特殊註釋，也無須使用不同的屬性來編寫文件之間的關聯性。
- 
+
 與所有其他資源相同，使用 REST API 或任何[用戶端 SDK](https://msdn.microsoft.com/library/azure/dn781482.aspx)，即可輕鬆地建立、取代、刪除、讀取、列舉或查詢文件。刪除文件時會立即清出對應至所有巢狀附件的配額。文件的讀取一致性層級會遵循資料庫帳戶的一致性原則。根據您應用程式的資料一致性需求，可以覆寫每個要求的這個原則。查詢文件時，讀取一致性會遵循集合上所設定的索引模式。為求「一致」，這會遵循帳戶的一致性原則。
 
 ## 附件和媒體
->[AZURE.NOTE] 附件和媒體資源都是預覽功能。
- 
+> [!NOTE]
+> 附件和媒體資源都是預覽功能。
+> 
+> 
+
 DocumentDB 可讓您將二進位 Blob/媒體儲存至 DocumentDB 或您自己的遠端媒體存放區。它也可讓您透過特殊文件 (稱為附件) 來呈現媒體的中繼資料。DocumentDB 中的附件是一種特殊 (JSON) 文件，可參考儲存在其他位置的媒體/Blob。附件只是特殊文件，可擷取遠端媒體存放裝置中所儲存媒體的中繼資料 (例如位置、作者等)。
 
 請考慮使用社交閱讀應用程式，其使用 DocumentDB 儲存手寫註釋，以及與給定使用者電子書相關聯的中繼資料 (包括註解、醒目提示、書籤、評比、喜歡/不喜歡等)。
 
--	書籍本身的內容儲存在媒體存放裝置 (做為 DocumentDB 資料庫帳戶的一部分) 或遠端媒體存放區中。 
--	應用程式可能會將每個使用者的中繼資料儲存為不同的文件 (例如 Joe 的 book1 中繼資料儲存在 /colls/joe/docs/book1 所參考的文件中)。 
--	指向使用者給定書籍之內容頁面的附件，儲存在對應的文件中 (例如 /colls/joe/docs/book1/chapter1、/colls/joe/docs/book1/chapter2 等)。 
+* 書籍本身的內容儲存在媒體存放裝置 (做為 DocumentDB 資料庫帳戶的一部分) 或遠端媒體存放區中。 
+* 應用程式可能會將每個使用者的中繼資料儲存為不同的文件 (例如 Joe 的 book1 中繼資料儲存在 /colls/joe/docs/book1 所參考的文件中)。 
+* 指向使用者給定書籍之內容頁面的附件，儲存在對應的文件中 (例如 /colls/joe/docs/book1/chapter1、/colls/joe/docs/book1/chapter2 等)。 
 
 請注意，上述範例會使用易記 ID 來傳達資源階層。資源是透過 REST API 以根據唯一資源 ID 進行存取。
 
 針對 DocumentDB 所管理的媒體，附件的 \_media 屬性將會依媒體的 URI 來參考媒體。DocumentDB 將會在捨棄所有未完成的參考時，確保回收媒體的記憶體，如果您上傳新的媒體並填入 \_media 以指向新增的媒體，則 DocumentDB 會自動產生附件。如果您選擇將媒體儲存在您所管理的遠端 Blob 存放區中 (例如 OneDrive、Azure Storage、DropBox 等)，則還是可以使用附件來參考媒體。在此情況下，您將自行建立附件，並填入其 \_media 屬性中。
 
 與所有其他資源相同，使用 REST API 或任何用戶端 SDK，即可輕鬆地建立、取代、刪除、讀取或列舉附件。與文件相同，附件的讀取一致性層級會遵循資料庫帳戶的一致性原則。根據您應用程式的資料一致性需求，可以覆寫每個要求的這個原則。查詢附件時，讀取一致性會遵循集合上所設定的索引模式。為求「一致」，這會遵循帳戶的一致性原則。 
+
 ## 使用者
 DocumentDB 使用者代表用於分組權限的邏輯命名空間。DocumentDB 使用者可能對應至身份識別管理系統或預先定義應用程式角色中的使用者。對於 DocumentDB，使用者只代表抽象以分組資料庫下的一組權限。
 
@@ -423,10 +434,10 @@ DocumentDB 使用者代表用於分組權限的邏輯命名空間。DocumentDB �
 
 應用程式需要隨著使用者成長而調整時，您可以採用各種方式來共用資料。您可以建立每位使用者的模型，如下所示：
 
--	每個使用者都對應至資料庫。
--	每個使用者都對應至集合。 
--	將對應至多位使用者的文件移至專用的集合。 
--	將對應至多位使用者的文件移至一組的集合。   
+* 每個使用者都對應至資料庫。
+* 每個使用者都對應至集合。 
+* 將對應至多位使用者的文件移至專用的集合。 
+* 將對應至多位使用者的文件移至一組的集合。   
 
 不論您選擇的特定分區化策略為何，您可以將實際使用者建模為 DocumentDB 資料庫中的使用者，並將微調權限關聯至每個使用者。
 
@@ -444,7 +455,6 @@ DocumentDB 使用者代表用於分組權限的邏輯命名空間。DocumentDB �
 
 ## 後續步驟
 深入了解如何使用 HTTP 命令來使用資源，請參閱[與 DocumentDB 資源進行 RESTful 互動](https://msdn.microsoft.com/library/azure/mt622086.aspx)。
-
 
 [1]: media/documentdb-resources/resources1.png
 [2]: media/documentdb-resources/resources2.png

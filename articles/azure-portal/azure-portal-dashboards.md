@@ -1,33 +1,30 @@
-<properties
-   pageTitle="Azure 入口網站儀表板 | Microsoft Azure"
-   description="本文說明如何在 Azure 入口網站建立和編輯儀表板。"
-   services="azure-portal"
-   documentationCenter=""
-   authors="sewatson"
-   manager="timlt"
-   editor="tysonn"/>
+---
+title: Azure 入口網站儀表板 | Microsoft Docs
+description: 本文說明如何在 Azure 入口網站建立和編輯儀表板。
+services: azure-portal
+documentationcenter: ''
+author: sewatson
+manager: timlt
+editor: tysonn
 
-<tags
-   ms.service="multiple"
-   ms.devlang="NA"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="na"
-   ms.date="09/06/2016"
-   ms.author="sewatson"/>
+ms.service: multiple
+ms.devlang: NA
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: na
+ms.date: 09/06/2016
+ms.author: sewatson
 
+---
 # 在 Azure 入口網站建立和共用儀表板
-
 您可以建立多個儀表板，並與可存取您 Azure 訂用帳戶的其他人共用。本文會講述建立/編輯、發佈和管理儀表板存取權的基本概念。
 
 ## 自訂儀表板與刀鋒視窗
-
 自從幾個月前啟動儀表板後，自訂刀鋒視窗的數量便穩定下滑，自訂儀表板的數量則快速增加。此一強烈的使用趨勢顯示，使用者對於自訂儀表板的偏好勝過刀鋒視窗。為了支持該趨勢，我們將會移除自訂刀鋒視窗的功能，並致力於強化儀表板功能。如果您先前自訂了刀鋒視窗，該項自訂很快就會遭到移除。若要保留該項自訂，請將自訂的圖格釘選到儀表板。只要以滑鼠右鍵按一下該圖格，然後選取 [釘選到儀表板] 即可，如下圖所示。
 
 ![儲存自訂圖格](./media/azure-portal-dashboards/save-customization.png)
 
 ## 建立儀表板
-
 若要建立儀表板，請選取目前的儀表板名稱旁的 [新增儀表板] 按鈕。
 
 ![建立儀表板](./media/azure-portal-dashboards/new-dashboard.png)
@@ -43,7 +40,6 @@
 ![新增 Markdown](./media/azure-portal-dashboards/add-markdown.png)
 
 ## 編輯儀表板
-
 建立儀表板之後，您可以從圖格庫或以圖格表示的刀鋒視窗釘選圖格。釘選資源群組表示方法。您可以在瀏覽項目時釘選，或從資源群組刀鋒視窗釘選。這兩種方法都會釘選以圖格表示的資源群組。
 
 ![釘選到儀表板](./media/azure-portal-dashboards/pin-to-dashboard.png)
@@ -57,7 +53,7 @@
 藉由將滑鼠游標停留在 "..." 並加以選取或是對圖格按一下滑鼠右鍵，您就可以看到該圖格的所有關聯式命令。預設會有兩個項目：
 
 1. **從儀表板取消釘選** – 從儀表板移除圖格
-2.	**自訂** – 進入自訂模式
+2. **自訂** – 進入自訂模式
 
 ![自訂圖格](./media/azure-portal-dashboards/customize-tile.png)
 
@@ -76,7 +72,6 @@
 在儀表板完成自訂後，只需選取 [完成自訂] 來結束自訂模式，或按一下滑鼠右鍵並從關聯式功能表選取 [完成自訂]。
 
 ## 發佈儀表板和管理存取控制
-
 當您建立儀表板時，它預設是私人用途，這表示只有您會看得到。若要讓其他人也能看見，請使用與其他儀表板命令一同出現的 [共用] 按鈕。
 
 ![共用儀表板](./media/azure-portal-dashboards/share-dashboard.png)
@@ -98,8 +93,7 @@
 ![管理存取控制](./media/azure-portal-dashboards/manage-access.png)
 
 ## 後續步驟
-
-- 若要管理資源，請參閱[透過入口網站管理 Azure 資源](resource-group-portal.md)。
-- 若要部署資源，請參閱[使用 Resource Manager 範本與 Azure 入口網站來部署資源](../resource-group-template-deploy-portal.md)。
+* 若要管理資源，請參閱[透過入口網站管理 Azure 資源](resource-group-portal.md)。
+* 若要部署資源，請參閱[使用 Resource Manager 範本與 Azure 入口網站來部署資源](../resource-group-template-deploy-portal.md)。
 
 <!----HONumber=AcomDC_0907_2016-->

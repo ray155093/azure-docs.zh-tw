@@ -1,30 +1,28 @@
-<properties
-    pageTitle="v2.0 端點限制 | Microsoft Azure"
-    description="Azure AD v2.0 端點的限制清單。"
-    services="active-directory"
-    documentationCenter=""
-    authors="dstrockis"
-    manager="mbaldwin"
-    editor=""/>
+---
+title: v2.0 端點限制 | Microsoft Docs
+description: Azure AD v2.0 端點的限制清單。
+services: active-directory
+documentationcenter: ''
+author: dstrockis
+manager: mbaldwin
+editor: ''
 
-<tags
-    ms.service="active-directory"
-    ms.workload="identity"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/30/2016"
-    ms.author="dastrock"/>
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/30/2016
+ms.author: dastrock
 
-
+---
 # <a name="should-i-use-the-v2.0-endpoint?"></a>我應該使用 v2.0 端點嗎？
-
 在建立與 Azure Active Directory 整合的應用程式時，您必須判斷 v2.0 端點和驗證通訊協定是否符合您的需求。  仍然完整支援原始的 Azure AD 端點，而且在某些方面比 v2.0 的功能更豐富。  不過，v2.0 端點為開發人員 [帶來極大的好處](active-directory-v2-compare.md) ， 可能吸引您採用新的程式設計模型。
 
 在這個時間點，我們對於使用 v2.0 端點的建議如下︰
 
-- 如果您想要在應用程式中支援個人 Microsoft 帳戶，您應該使用 v2.0 端點。  但請務必了解本文所列的限制，尤其是特別屬於工作和學校帳戶的限制。
-- 如果您的應用程式只需支援工作和學校帳戶，您應該使用[原始的 Azure AD 端點](active-directory-developers-guide.md)。
+* 如果您想要在應用程式中支援個人 Microsoft 帳戶，您應該使用 v2.0 端點。  但請務必了解本文所列的限制，尤其是特別屬於工作和學校帳戶的限制。
+* 如果您的應用程式只需支援工作和學校帳戶，您應該使用[原始的 Azure AD 端點](active-directory-developers-guide.md)。
 
 隨著時間經過，v2.0 端點會成長到排除此處所列的限制，屆時您只需要使用 v2.0 端點即可。  在此同時，本文旨在協助您判斷 v2.0 端點是否適合您。  我們將持續更新本文，以反映 v2.0 端點目前的狀態，請記得回來重新評估您對於 v2.0 功能的需求。
 
@@ -50,10 +48,10 @@ v2.0 端點目前不支援下列類型的應用程式。  如需受支援的應�
 
 此外，在 [apps.dev.microsoft.com](https://apps.dev.microsoft.com) 建立的應用程式註冊必須注意下列幾點︰
 
-- 不支援**首頁**屬性，也稱為**登入 URL**。  沒有首頁，這些應用程式就不會顯示在 Office MyApps 面板中。
-- 目前每個應用程式識別碼只允許兩個應用程式密碼。
-- 應用程式註冊只能由單一開發人員帳戶檢視和管理。  不能在多位開發人員之間共用。
-- redirect_uri 允許的格式有幾項限制。  請參閱下一節以瞭解更多詳細資訊。
+* 不支援**首頁**屬性，也稱為**登入 URL**。  沒有首頁，這些應用程式就不會顯示在 Office MyApps 面板中。
+* 目前每個應用程式識別碼只允許兩個應用程式密碼。
+* 應用程式註冊只能由單一開發人員帳戶檢視和管理。  不能在多位開發人員之間共用。
+* redirect_uri 允許的格式有幾項限制。  請參閱下一節以瞭解更多詳細資訊。
 
 ## <a name="restrictions-on-redirect-uris"></a>重新導向 URI 的限制
 在新的應用程式註冊入口網站中註冊的應用程式，目前僅限一組受限的 redirect_uri 值。  Web 應用程式和服務的 redirect_uri 必須以配置 `https` 開頭，而所有 redirect_uri 值必須共用單一 DNS 網域。  例如，不可以登錄具有具有 redirect_uri 的 Web 應用程式︰
@@ -63,8 +61,8 @@ v2.0 端點目前不支援下列類型的應用程式。  如需受支援的應�
 
 註冊系統會比較現有 redirect_uri 的完整 DNS 名稱與您要新增的 redirect_uri 的 DNS 名稱。 如果符合下列任一條件，則新增 DNS 名稱的要求會失敗︰  
 
-- 如果新 redirect_uri 的完整 DNS 名稱不符合現有 redirect_uri 的 DNS 名稱
-- 如果新 redirect_uri 的完整 DNS 名稱不是現有 redirect_uri 的子網域
+* 如果新 redirect_uri 的完整 DNS 名稱不符合現有 redirect_uri 的 DNS 名稱
+* 如果新 redirect_uri 的完整 DNS 名稱不是現有 redirect_uri 的子網域
 
 例如，如果應用程式目前有 redirect_uri：
 
@@ -91,29 +89,29 @@ v2.0 端點目前不支援下列類型的應用程式。  如需受支援的應�
 ## <a name="restrictions-on-services-&-apis"></a>服務和 API 的限制
 v2.0 端點目前支援登入所有在新的應用程式註冊入口網站註冊的應用程式，如 [支援的驗證流程](active-directory-v2-flows.md)清單所列。  不過，這些應用程式將只能取得 OAuth 2.0 存取權杖，獲得非常有限的資源。  v2.0 端點只會為下列項目發行 access_token：
 
-- 要求權杖的應用程式。  如果邏輯應用程式是由數個不同的元件或層級組成，應用程式就可以為自己取得 access_token。  若要查看此案例的執行狀況，請參閱 [使用者入門](active-directory-appmodel-v2-overview.md#getting-started) 教學課程。
-- Outlook 郵件、行事曆和連絡人 REST API 全都位於 https://outlook.office.com。  若要了解如何撰寫存取這些 API 的應用程式，請參閱 [Office 使用者入門](https://www.msdn.com/office/office365/howto/authenticate-Office-365-APIs-using-v2) 教學課程。
-- Microsoft Graph API。  若要了解 Microsoft Graph 和可用的所有資料，請造訪 [https://graph.microsoft.io](https://graph.microsoft.io)。
+* 要求權杖的應用程式。  如果邏輯應用程式是由數個不同的元件或層級組成，應用程式就可以為自己取得 access_token。  若要查看此案例的執行狀況，請參閱 [使用者入門](active-directory-appmodel-v2-overview.md#getting-started) 教學課程。
+* Outlook 郵件、行事曆和連絡人 REST API 全都位於 https://outlook.office.com。  若要了解如何撰寫存取這些 API 的應用程式，請參閱 [Office 使用者入門](https://www.msdn.com/office/office365/howto/authenticate-Office-365-APIs-using-v2) 教學課程。
+* Microsoft Graph API。  若要了解 Microsoft Graph 和可用的所有資料，請造訪 [https://graph.microsoft.io](https://graph.microsoft.io)。
 
 目前不支援其他服務。  未來將增加更多 Microsoft Online 服務，並支援您自己的自訂建置 Web API 和服務。
 
 ## <a name="restrictions-on-libraries-&-sdks"></a>程式庫與 SDK 的限制
 此時，v2.0 端點的程式庫支援相當有限。  如果您想要在實際執行應用程式中使用 v2.0 端點，您有下列選項：
 
-- 如果您要建置 Web 應用程式，您可以安心地使用我們正式運作的伺服器端中介軟體來執行登入和權杖驗證。  其中包括適用於 ASP.NET 的 OWIN Open ID Connect 中介軟體和我們的 NodeJS Passport 外掛程式。  [開始使用](active-directory-appmodel-v2-overview.md#getting-started) 一節也提供使用中介軟體的範例程式碼。
-- 至於其他平台及原生與行動應用程式，您也可以直接在應用程式程式碼中傳送和接收通訊協定訊息，以便與 v2.0 端點整合。  v2.0 OpenID Connect 和 OAuth 通訊協定 [有明確的說明文件](active-directory-v2-protocols.md) ，可協助您執行這種整合。
-- 最後，您可以使用開放原始碼 Open ID Connect 和 OAuth 程式庫來與 v2.0 端點整合。  v2.0 通訊協定與許多開放原始碼通訊協定程式庫都應該相容，而不需要重大變更。  這類程式庫的可用性依語言和平台而不同，[Open ID Connect](http://openid.net/connect/) 和 [OAuth 2.0](http://oauth.net/2/) 網站維護一份常用的實作清單。 如需更多詳細資訊，以及已利用 v2.0 端點測試的開放原始碼用戶端程式庫和範例清單，請參閱 [Azure Active Directory (AD) v2.0 和驗證程式庫](active-directory-v2-libraries.md) 。
+* 如果您要建置 Web 應用程式，您可以安心地使用我們正式運作的伺服器端中介軟體來執行登入和權杖驗證。  其中包括適用於 ASP.NET 的 OWIN Open ID Connect 中介軟體和我們的 NodeJS Passport 外掛程式。  [開始使用](active-directory-appmodel-v2-overview.md#getting-started) 一節也提供使用中介軟體的範例程式碼。
+* 至於其他平台及原生與行動應用程式，您也可以直接在應用程式程式碼中傳送和接收通訊協定訊息，以便與 v2.0 端點整合。  v2.0 OpenID Connect 和 OAuth 通訊協定 [有明確的說明文件](active-directory-v2-protocols.md) ，可協助您執行這種整合。
+* 最後，您可以使用開放原始碼 Open ID Connect 和 OAuth 程式庫來與 v2.0 端點整合。  v2.0 通訊協定與許多開放原始碼通訊協定程式庫都應該相容，而不需要重大變更。  這類程式庫的可用性依語言和平台而不同，[Open ID Connect](http://openid.net/connect/) 和 [OAuth 2.0](http://oauth.net/2/) 網站維護一份常用的實作清單。 如需更多詳細資訊，以及已利用 v2.0 端點測試的開放原始碼用戶端程式庫和範例清單，請參閱 [Azure Active Directory (AD) v2.0 和驗證程式庫](active-directory-v2-libraries.md) 。
 
 我們也已發行 [Microsoft Authentication Library (MSAL)](https://github.com/AzureAD/microsoft-authentication-library-for-dotnet) 的初始預覽版本 (僅限 .NET)。  歡迎您在 .NET 用戶端和伺服器應用程式中試用此程式庫，但這是預覽程式庫，所以還不會提供 GA 品質的支援。
 
 ## <a name="restrictions-on-protocols"></a>通訊協定的限制
 v2.0 端點僅支援 Open ID Connect 和 OAuth 2.0。  不過，並非每個通訊協定的所有特性與功能都已納入到 v2.0 端點，包括：
 
-- OpenID Connect `end_session_endpoint`，可讓應用程式結束使用者的 v2.0 端點工作階段。
-- v2.0 端點所發出的 id_tokens 只包含使用者的成對識別碼。  這表示兩個不同的應用程式會針對相同使用者收到不同的識別碼。  請注意，藉由查詢 Microsoft Graph `/me` 端點，您就能夠取得可用於各應用程式的使用者相關識別碼。
-- 即使您向使用者取得檢視其電子郵件的權限，v2.0 端點所發出的 id_tokens 目前並不包含使用者的 `email` 宣告。
-- OpenID Connect 使用者資訊端點。 目前未在 v2.0 端點上實作使用者資訊端點。  不過，從 Microsoft Graph `/me` 端點可取得您可能會在此端點收到的所有使用者設定檔資料。
-- 角色和群組宣告。  此時，v2.0 端點不支援在 id_tokens 中發出角色或群組宣告。
+* OpenID Connect `end_session_endpoint`，可讓應用程式結束使用者的 v2.0 端點工作階段。
+* v2.0 端點所發出的 id_tokens 只包含使用者的成對識別碼。  這表示兩個不同的應用程式會針對相同使用者收到不同的識別碼。  請注意，藉由查詢 Microsoft Graph `/me` 端點，您就能夠取得可用於各應用程式的使用者相關識別碼。
+* 即使您向使用者取得檢視其電子郵件的權限，v2.0 端點所發出的 id_tokens 目前並不包含使用者的 `email` 宣告。
+* OpenID Connect 使用者資訊端點。 目前未在 v2.0 端點上實作使用者資訊端點。  不過，從 Microsoft Graph `/me` 端點可取得您可能會在此端點收到的所有使用者設定檔資料。
+* 角色和群組宣告。  此時，v2.0 端點不支援在 id_tokens 中發出角色或群組宣告。
 
 若要進一步了解 v2.0 端點支援的通訊協定功能範圍，請參閱 [OpenID Connect 與 OAuth 2.0 通訊協定參照](active-directory-v2-protocols.md)。
 
@@ -127,8 +125,6 @@ V2.0 端點尚未支援行動和原生應用程式的裝置驗證，例如在 iO
 
 ##### <a name="windows-integrated-authentication-for-federated-tenants"></a>同盟租用戶的 Windows 整合式驗證
 如果您已在 Windows 應用程式中使用 ADAL (以及原始的 Azure AD 端點)，您可能已利用所謂的 SAML 判斷提示授與。  此授與可讓同盟 Azure AD 租用戶的使用者使用其內部部署 Active Directory 執行個體以無訊息模式進行驗證，而不需要輸入其認證。  v2.0 端點目前不支援 SAML 判斷提示授與。
-
-
 
 <!--HONumber=Oct16_HO2-->
 

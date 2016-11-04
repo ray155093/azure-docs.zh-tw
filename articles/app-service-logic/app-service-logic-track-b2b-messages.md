@@ -1,25 +1,23 @@
-<properties 
-   pageTitle="在 Azure App Service 的 Logic Apps 中追蹤 B2B 訊息 | Microsoft Azure" 
-   description="本主題說明 B2B 處理的追蹤" 
-   services="logic-apps" 
-   documentationCenter=".net,nodejs,java" 
-   authors="rajram" 
-   manager="erikre" 
-   editor=""/>
+---
+title: 在 Azure App Service 的 Logic Apps 中追蹤 B2B 訊息 | Microsoft Docs
+description: 本主題說明 B2B 處理的追蹤
+services: logic-apps
+documentationcenter: .net,nodejs,java
+author: rajram
+manager: erikre
+editor: ''
 
-<tags
-   ms.service="logic-apps"
-   ms.devlang="multiple"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="integration" 
-   ms.date="04/20/2016"
-   ms.author="rajram"/>
+ms.service: logic-apps
+ms.devlang: multiple
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: integration
+ms.date: 04/20/2016
+ms.author: rajram
 
-
+---
 # 追蹤 B2B 訊息
-
-[AZURE.INCLUDE [app-service-logic-version-message](../../includes/app-service-logic-version-message.md)]
+[!INCLUDE [app-service-logic-version-message](../../includes/app-service-logic-version-message.md)]
 
 ## B2B 追蹤資訊
 B2B 通訊牽涉到交易夥伴之間的訊息處理。關聯性定義為兩個交易夥伴之間的協議。建立通訊後，必須以適當方式監視通訊是否如預期般執行。

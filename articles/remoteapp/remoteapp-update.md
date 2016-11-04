@@ -1,25 +1,26 @@
-<properties
-   pageTitle="更新 Azure RemoteApp 服務 | Microsoft Azure"
-   description="了解如何更新 Azure RemoteApp 收藏"
-   services="remoteapp"
-   documentationCenter=""
-   authors="lizap"
-   manager="mbaldwin"
-   editor=""/>
+---
+title: 更新 Azure RemoteApp 服務 | Microsoft Docs
+description: 了解如何更新 Azure RemoteApp 收藏
+services: remoteapp
+documentationcenter: ''
+author: lizap
+manager: mbaldwin
+editor: ''
 
-<tags
-   ms.service="remoteapp"
-   ms.devlang="NA"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="compute"
-   ms.date="08/15/2016"
-   ms.author="elizapo"/>
+ms.service: remoteapp
+ms.devlang: NA
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: compute
+ms.date: 08/15/2016
+ms.author: elizapo
 
+---
 # 更新 Azure RemoteApp 中的收藏
-
-> [AZURE.IMPORTANT]
-Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+> [!IMPORTANT]
+> Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+> 
+> 
 
 無可避免地，總會有一次，您需要更新 Azure RemoteApp 收藏中的應用程式或映像。如果您是使用 Azure RemoteApp 訂用帳戶隨附的其中一個映像，則在雲端或混合式收藏中，任何和所有的更新都是由 Azure RemoteApp 本身處理，因此您可以放手不管。
 
@@ -31,10 +32,10 @@ Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go
 2. 將該映像[上傳](remoteapp-uploadimage.md)或[匯入](remoteapp-image-on-azurevm.md)至 RemoteApp。
 3. 現在，在 [收藏] 頁面上，按一下 [**更新**]。
 4. 從 [**範本映像**] 清單中選擇新的映像。
-4. 以下是麻煩的部分 - 您必須決定如何處理任何目前正在使用收藏中應用程式的使用者。您有下列選擇：
-	- **更新後給與使用者 60 分鐘**。一完成更新，Azure RemoteApp 就會顯示訊息給任何作用中使用者，告訴他們儲存工作並登出，然後重新登入。60 分鐘之後，任何未登出的作用中使用者將自動登出。使用者可以立即重新登入。
-	- **立即登出使用者**。一完成更新，就會自動登出所有使用者，而且沒有任何警告。如果您選擇此選項，使用者可能會遺失資料。不過，它們可以立即重新連接至應用程式。
-
-1. 按一下核取記號以啟動更新。
+5. 以下是麻煩的部分 - 您必須決定如何處理任何目前正在使用收藏中應用程式的使用者。您有下列選擇：
+   
+   * **更新後給與使用者 60 分鐘**。一完成更新，Azure RemoteApp 就會顯示訊息給任何作用中使用者，告訴他們儲存工作並登出，然後重新登入。60 分鐘之後，任何未登出的作用中使用者將自動登出。使用者可以立即重新登入。
+   * **立即登出使用者**。一完成更新，就會自動登出所有使用者，而且沒有任何警告。如果您選擇此選項，使用者可能會遺失資料。不過，它們可以立即重新連接至應用程式。
+6. 按一下核取記號以啟動更新。
 
 <!---HONumber=AcomDC_0817_2016-->

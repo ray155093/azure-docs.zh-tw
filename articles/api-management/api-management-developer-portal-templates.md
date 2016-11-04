@@ -1,28 +1,25 @@
-<properties 
-	pageTitle="如何使用範本自訂 Azure API 管理開發人員入口網站 | Microsoft Azure" 
-	description="了解如何使用範本自訂 Azure API 管理開發人員入口網站。" 
-	services="api-management" 
-	documentationCenter="" 
-	authors="steved0x" 
-	manager="erikre" 
-	editor=""/>
+---
+title: 如何使用範本自訂 Azure API 管理開發人員入口網站 | Microsoft Docs
+description: 了解如何使用範本自訂 Azure API 管理開發人員入口網站。
+services: api-management
+documentationcenter: ''
+author: steved0x
+manager: erikre
+editor: ''
 
-<tags 
-	ms.service="api-management" 
-	ms.workload="mobile" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="08/09/2016" 
-	ms.author="sdanie"/>
+ms.service: api-management
+ms.workload: mobile
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/09/2016
+ms.author: sdanie
 
-
+---
 # 如何使用範本自訂 Azure API 管理開發人員入口網站。
-
 Azure API 管理提供許多自訂功能，允許系統管理員 [自訂開發人員入口網站的外觀與風格](api-management-customize-portal.md)，以及使用一組設定網頁本身內容的範本來自訂開發人員入口網站頁面的內容。使用 [DotLiquid](http://dotliquidmarkup.org/) 語法及一組提供的當地語系化字串資源、圖示和頁面控制項，您可以使用這些範本依照您的想法自由靈活地設定頁面內容。
 
 ## 開發人員入口網站範本概觀
-
 開發人員入口網站的範本，都是由 API 管理服務執行個體的系統管理員，在開發人員入口網站中加以管理。若要管理開發人員範本，請瀏覽至 Azure 傳統入口網站的 API 管理服務執行個體，然後按一下 [瀏覽]。
 
 ![開發人員入口網站][api-management-browse]
@@ -59,68 +56,67 @@ Azure API 管理提供許多自訂功能，允許系統管理員 [自訂開發�
 
 上述範例在開發人員入口網站中顯示了兩項產品，擷取自 [範本資料] 窗格顯示的資料，如下例所示。
 
-	{
-		"Paging": {
-			"Page": 1,
-			"PageSize": 10,
-			"TotalItemCount": 2,
-			"ShowAll": false,
-			"PageCount": 1
-		},
-		"Filtering": {
-			"Pattern": null,
-			"Placeholder": "Search products"
-		},
-		"Products": [
-			{
-				"Id": "56ec64c380ed850042060001",
-				"Title": "Starter",
-				"Description": "Subscribers will be able to run 5 calls/minute up to a maximum of 100 calls/week.",
-				"Terms": "",
-				"ProductState": 1,
-				"AllowMultipleSubscriptions": false,
-				"MultipleSubscriptionsCount": 1
-			},
-			{
-				"Id": "56ec64c380ed850042060002",
-				"Title": "Unlimited",
-				"Description": "Subscribers have completely unlimited access to the API. Administrator approval is required.",
-				"Terms": null,
-				"ProductState": 1,
-				"AllowMultipleSubscriptions": false,
-				"MultipleSubscriptionsCount": 1
-			}
-		]
-	}
+    {
+        "Paging": {
+            "Page": 1,
+            "PageSize": 10,
+            "TotalItemCount": 2,
+            "ShowAll": false,
+            "PageCount": 1
+        },
+        "Filtering": {
+            "Pattern": null,
+            "Placeholder": "Search products"
+        },
+        "Products": [
+            {
+                "Id": "56ec64c380ed850042060001",
+                "Title": "Starter",
+                "Description": "Subscribers will be able to run 5 calls/minute up to a maximum of 100 calls/week.",
+                "Terms": "",
+                "ProductState": 1,
+                "AllowMultipleSubscriptions": false,
+                "MultipleSubscriptionsCount": 1
+            },
+            {
+                "Id": "56ec64c380ed850042060002",
+                "Title": "Unlimited",
+                "Description": "Subscribers have completely unlimited access to the API. Administrator approval is required.",
+                "Terms": null,
+                "ProductState": 1,
+                "AllowMultipleSubscriptions": false,
+                "MultipleSubscriptionsCount": 1
+            }
+        ]
+    }
 
 **產品清單**範本中的標記會處理資料，逐一查看產品集合，顯示每項個別產品的資訊和連結，來提供所需的輸出。請注意標記中的 `<search-control>` 和 `<page-control>` 元素。這些控制項會顯示頁面的搜尋和分頁控制項。`ProductsStrings|PageTitleProducts` 是當地語系化的字串參考，包含頁面的 `h2` 頁首文字。如需字串資源、頁面控制項和開發人員入口網站範本可用圖示的清單，請參閱 [API 管理開發人員入口網站範本參考](https://msdn.microsoft.com/library/azure/mt697540.aspx)。
 
-	<search-control></search-control>
-	<div class="row">
-	    <div class="col-md-9">
-	        <h2>{% localized "ProductsStrings|PageTitleProducts" %}</h2>
-	    </div>
-	</div>
-	<div class="row">
-	    <div class="col-md-12">
-		{% if products.size > 0 %}
-		<ul class="list-unstyled">
-		{% for product in products %}
-			<li>
-				<h3><a href="/products/{{product.id}}">{{product.title}}</a></h3>
-				{{product.description}}
-			</li>	
-		{% endfor %}
-		</ul>
-		<paging-control></paging-control>
-		{% else %}
-		{% localized "CommonResources|NoItemsToDisplay" %}
-		{% endif %}
-		</div>
-	</div>
+    <search-control></search-control>
+    <div class="row">
+        <div class="col-md-9">
+            <h2>{% localized "ProductsStrings|PageTitleProducts" %}</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+        {% if products.size > 0 %}
+        <ul class="list-unstyled">
+        {% for product in products %}
+            <li>
+                <h3><a href="/products/{{product.id}}">{{product.title}}</a></h3>
+                {{product.description}}
+            </li>    
+        {% endfor %}
+        </ul>
+        <paging-control></paging-control>
+        {% else %}
+        {% localized "CommonResources|NoItemsToDisplay" %}
+        {% endif %}
+        </div>
+    </div>
 
 ## 儲存範本
-
 若要儲存範本，請按一下範本編輯器的 [儲存]。
 
 ![儲存範本][api-management-save-template]
@@ -128,7 +124,6 @@ Azure API 管理提供許多自訂功能，允許系統管理員 [自訂開發�
 儲存的變更不會即時顯示在開發人員入口網站中，要發佈後才會顯示。
 
 ## 發佈範本
-
 儲存的範本可以個別或一起發佈。若要發佈個別的範本，請按一下範本編輯器的 [發佈]。
 
 ![發佈範本][api-management-publish-template]
@@ -148,7 +143,6 @@ Azure API 管理提供許多自訂功能，允許系統管理員 [自訂開發�
 新發佈的範本在開發人員入口網站中會立即生效。
 
 ## 將範本還原成先前的版本
-
 若要將範本還原為先前發佈的版本，請按一下範本編輯器的 [還原]。
 
 ![還原範本][api-management-revert-template]
@@ -160,7 +154,6 @@ Azure API 管理提供許多自訂功能，允許系統管理員 [自訂開發�
 還原作業一完成，先前發佈的範本版本就會立即顯示在開發人員入口網站中。
 
 ## 將範本還原成預設的版本
-
 將範本還原成預設版本的程序有兩個步驟。首先必須還原範本，然後一定要發佈還原的版本。
 
 若要還原單一範本的預設版本，請按一下範本編輯器的 [還原]。
@@ -178,15 +171,14 @@ Azure API 管理提供許多自訂功能，允許系統管理員 [自訂開發�
 已還原的範本必須個別發佈，或依照[發佈範本](#to-publish-a-template)的步驟一次全部發佈。
 
 ## 開發人員入口網站範本參考
-
 如需開發人員入口網站範本、字串資源、圖示和頁面控制項的參考資訊，請參閱 [API 管理開發人員入口網站範本參考](https://msdn.microsoft.com/library/azure/mt697540.aspx)。
 
 ## 觀看影片概觀
-
 請觀看以下影片，了解如何使用範本在開發人員入口網站的 API 和操作頁面中加入討論區和評等。
 
-> [AZURE.VIDEO adding-developer-portal-functionality-using-templates-in-azure-api-management]
-
+> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Adding-Developer-Portal-functionality-using-Templates-in-Azure-API-Management/player]
+> 
+> 
 
 [api-management-customize-menu]: ./media/api-management-developer-portal-templates/api-management-customize-menu.png
 [api-management-templates-menu]: ./media/api-management-developer-portal-templates/api-management-templates-menu.png

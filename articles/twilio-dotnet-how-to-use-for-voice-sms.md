@@ -1,23 +1,22 @@
-<properties
-	pageTitle="如何使用 Twilio 來進行語音交談和傳送簡訊 (.NET) | Microsoft Azure"
-	description="了解如何在 Azure 上使用 Twilio API 服務撥打電話及傳送簡訊。程式碼範例以 .NET 撰寫。"
-	services=""
-	documentationCenter=".net"
-	authors="devinrader"
-	manager="twilio"
-	editor=""/>
+---
+title: 如何使用 Twilio 來進行語音交談和傳送簡訊 (.NET) | Microsoft Docs
+description: 了解如何在 Azure 上使用 Twilio API 服務撥打電話及傳送簡訊。程式碼範例以 .NET 撰寫。
+services: ''
+documentationcenter: .net
+author: devinrader
+manager: twilio
+editor: ''
 
-<tags
-	ms.service="multiple"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="dotnet"
-	ms.topic="article"
-	ms.date="04/24/2015"
-	ms.author="devinrader"/>
+ms.service: multiple
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: dotnet
+ms.topic: article
+ms.date: 04/24/2015
+ms.author: devinrader
 
+---
 # 如何透過 Twilio 來使用 Azure 的語音和簡訊功能
-
 本指南示範如何在 Azure 上透過 Twilio API 服務執行常見的程式設計工作。涵蓋的案例包括打電話和傳送簡訊 (SMS)。如需有關如何在應用程式中使用 Twilio 語音和 SMS 的詳細資訊，請參閱＜[後續步驟](#NextSteps)＞一節。
 
 ## <a id="WhatIs"></a>什麼是 Twilio？
@@ -93,17 +92,18 @@ Twilio.Client.Capability|包含適用於 Twilio 用戶端 JavaScript SDK 的功�
 
 依預設，Microsoft Visual Studio 2010 會安裝 NuGet 1.2 版。安裝 Twilio 程式庫需要有 NuGet 1.6 版或更新版本。如需有關安裝或更新 NuGet 的詳細資訊，請參閱 [http://nuget.org/][nuget]。
 
-> [AZURE.NOTE] 若要安裝最新版的 NuGet，您必須先使用 Visual Studio 擴充功能管理員來解除安裝已載入的版本。若要這麼做，您必須以系統管理員身分執行 Visual Studio。否則，[解除安裝] 按鈕會停用。
+> [!NOTE]
+> 若要安裝最新版的 NuGet，您必須先使用 Visual Studio 擴充功能管理員來解除安裝已載入的版本。若要這麼做，您必須以系統管理員身分執行 Visual Studio。否則，[解除安裝] 按鈕會停用。
+> 
+> 
 
 ### <a id="use_nuget"></a>將 Twilio 程式庫新增至 Visual Studio 專案：
-
-1.  在 Visual Studio 中開啟方案。
-2.  以滑鼠右鍵按一下 [參考]。
-3.  按一下 [管理 NuGet 套件...]。
-4.  按一下 [線上]。
-5.  在搜尋線上方塊中，輸入 *twilio*。
-6.  在 Twilio 套件上按一下 [安裝]。
-
+1. 在 Visual Studio 中開啟方案。
+2. 以滑鼠右鍵按一下 [參考]。
+3. 按一下 [管理 NuGet 套件...]。
+4. 按一下 [線上]。
+5. 在搜尋線上方塊中，輸入 *twilio*。
+6. 在 Twilio 套件上按一下 [安裝]。
 
 ## <a id="howto_make_call"></a>作法：撥出電話
 以下顯示如何使用 **TwilioRestClient** 類別來撥出電話。此程式碼也使用 Twilio 提供的網站來傳回 Twilio 標記語言 (TwiML) 回應。請將 **From** 和 **To** 電話號碼換成您的值，在執行程式碼之前，請記得先驗證 Twilio 帳戶的 **From** 電話號碼。
@@ -164,7 +164,10 @@ Twilio.Client.Capability|包含適用於 Twilio 用戶端 JavaScript SDK 的功�
 ## <a id="howto_provide_twiml_responses"></a>作法：從您自己的網站提供 TwiML 回應
 當應用程式開始呼叫 Twilio API 時 (例如，透過 **client.InitiateOutboundCall** 方法)，Twilio 會傳送要求至 URL，然後應該會傳回 TwiML 回應。[作法：撥出電話](#howto_make_call)中的範例使用 Twilio 提供的 URL [http://twimlets.com/message][twimlet_message_url] 傳回回應。
 
-> [AZURE.NOTE] 雖然 TwiML 是專供 Web 服務使用，但您也可以在瀏覽器中檢視 TwiML。例如，按一下 [http://twimlets.com/message](twimlet_message_url) 可查看空白 &lt;Response&gt; 元素，又例如，按一下 [http://twimlets.com/message?Message%5B0%5D=Hello%20World](twimlet_message_url_hello_world) 可查看包含 &lt;Say&gt; 元素的 &lt;Response&gt; 元素。
+> [!NOTE]
+> 雖然 TwiML 是專供 Web 服務使用，但您也可以在瀏覽器中檢視 TwiML。例如，按一下 [http://twimlets.com/message](twimlet_message_url.md) 可查看空白 &lt;Response&gt; 元素，又例如，按一下 [http://twimlets.com/message?Message%5B0%5D=Hello%20World](twimlet_message_url_hello_world.md) 可查看包含 &lt;Say&gt; 元素的 &lt;Response&gt; 元素。
+> 
+> 
 
 除了依賴 Twilio 提供的 URL，您也可以建立自己的 URL 網站來傳回 HTTP 回應。您可以使用任何可傳回 HTTP 回應的語言來建立網站。本主題假設您從 ASP.NET 通用處理常式來裝載 URL。
 
@@ -255,11 +258,7 @@ Twilio.Client.Capability|包含適用於 Twilio 用戶端 JavaScript SDK 的功�
 
 如需有關在 Azure with ASP.NET 上使用 Twilio 的詳細資訊，請參閱＜[如何在 Azure 的 Web 角色中使用 Twilio 來撥打電話][howto_phonecall_dotnet]＞。
 
-[AZURE.INCLUDE [twilio-additional-services-and-next-steps](../includes/twilio-additional-services-and-next-steps.md)]
-
-
-
-
+[!INCLUDE [twilio-additional-services-and-next-steps](../includes/twilio-additional-services-and-next-steps.md)]
 
 [howto_phonecall_dotnet]: partner-twilio-cloud-services-dotnet-phone-call-web-role.md
 

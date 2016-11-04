@@ -1,31 +1,28 @@
-<properties 
-	pageTitle="對遊戲應用程式實作 Azure Mobile Engagement"
-	description="對遊戲應用程式實作 Azure Mobile Engagement 的案例" 
-	services="mobile-engagement" 
-	documentationCenter="mobile" 
-	authors="piyushjo"
-	manager="dwrede"
-	editor=""/>
+---
+title: 對遊戲應用程式實作 Azure Mobile Engagement
+description: 對遊戲應用程式實作 Azure Mobile Engagement 的案例
+services: mobile-engagement
+documentationcenter: mobile
+author: piyushjo
+manager: dwrede
+editor: ''
 
-<tags
-	ms.service="mobile-engagement"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.tgt_pltfrm="mobile-multiple"
-	ms.workload="mobile" 
-	ms.date="08/19/2016"
-	ms.author="piyushjo"/>
+ms.service: mobile-engagement
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: mobile-multiple
+ms.workload: mobile
+ms.date: 08/19/2016
+ms.author: piyushjo
 
-#對遊戲應用程式實作 Mobile Engagement
-
+---
+# 對遊戲應用程式實作 Mobile Engagement
 ## Overview
-
 某家新創遊戲公司推出了一款新的釣魚角色扮演/策略遊戲應用程式。該遊戲已上線運作 6 個月之久，所創造的成績非常優異，下載人數已達數百萬，且相較於其他新創公司所推出的遊戲應用程式，這款遊戲的保留期相當高。在每季檢討會議中，重要關係人一致認為他們需要增加每位使用者的平均營收 (ARPU)。他們在遊戲中提供高階套件做為特殊優惠。這些遊戲套件可讓使用者升級他們在遊戲中所用釣線和誘餌或釣具的外觀和效果。不過，這些套件的銷售成績非常差。因此他們決定先使用分析工具分析客戶在玩遊戲時的體驗，然後發展業務開發計劃，透過進一步劃分玩家來增加銷售額。
 
 他們根據 [Azure Mobile Engagement - 入門指南與最佳作法](mobile-engagement-getting-started-best-practices.md)建構了業務開發策略。
 
-##目標和 KPI
-
+## 目標和 KPI
 該遊戲的重要關係人齊聚一堂。所有人都同意一個主要目標，那就是將高階套件的銷售量增加 15%。他們建立起業務關鍵效能指標 (KPI)，以便測量和推動這個目標。
 
 * 使用者會在到達哪個遊戲等級時購買這些套件？
@@ -51,7 +48,6 @@
 行動裝置產品經理針對每個 KPI 指定她需要的資料，以及其在腳本中的位置。
 
 ## 業務開發計劃和整合
-
 在建置進階業務開發計劃之前，負責該項專案的行動裝置專案主任應該先深入了解使用者使用產品的方式和時間。
 
 3 個月過後，行動裝置專案主任已收集足夠的資料，可以加強他的應用程式內推播通知銷售額。他發現到：

@@ -1,54 +1,49 @@
-<properties
-	pageTitle="Azure Active Directory B2C | Microsoft Azure"
-	description="如何使用 Azure Active Directory B2C 來建置包含登入、註冊及設定檔管理功能的 Windows 桌面應用程式。"
-	services="active-directory-b2c"
-	documentationCenter=".net"
-	authors="dstrockis"
-	manager="msmbaldwin"
-	editor=""/>
+---
+title: Azure Active Directory B2C | Microsoft Docs
+description: 如何使用 Azure Active Directory B2C 來建置包含登入、註冊及設定檔管理功能的 Windows 桌面應用程式。
+services: active-directory-b2c
+documentationcenter: .net
+author: dstrockis
+manager: msmbaldwin
+editor: ''
 
-<tags
-	ms.service="active-directory-b2c"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="dotnet"
-	ms.topic="article"
-	ms.date="07/22/2016"
-	ms.author="dastrock"/>
+ms.service: active-directory-b2c
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: dotnet
+ms.topic: article
+ms.date: 07/22/2016
+ms.author: dastrock
 
+---
 # Azure AD B2C：建置 Windows 桌面應用程式
-
 如果您利用 Azure Active Directory (Azure AD) B2C，只要幾個簡短的步驟，就在您的桌面應用程式中新增功能強大的自助式身分識別管理功能。本文章說明如何建立 .NET Windows Presentation Foundation (WPF)「待辦事項清單」應用程式，其中包含使用者註冊、登入和設定檔管理的功能。該應用程式將支援以使用者名稱或電子郵件來註冊及登入的功能。它也會支援以社交帳戶 (例如 Facebook 和 Google) 來註冊及登入。
 
 ## 取得 Azure AD B2C 目錄
-
 您必須先建立目錄或租用戶，才可使用 Azure AD B2C。目錄是適用於所有使用者、app、群組等項目的容器。如果您還沒有此資源，請先[建立 B2C 目錄](active-directory-b2c-get-started.md)，再繼續進行本指南。
 
 ## 建立應用程式
-
 接著，您必須在 B2C 目錄中建立應用程式。這會提供必要資訊給 Azure AD，讓它與應用程式安全地通訊。若要建立應用程式，請遵循[這些指示](active-directory-b2c-app-registration.md)。請務必：
 
-- 在應用程式中加入**原生用戶端**。
-- 複製 [重新導向 URI] `urn:ietf:wg:oauth:2.0:oob`。這是此程式碼範例的預設 URL。
-- 複製指派給您的應用程式的**應用程式識別碼**。稍後您將會用到此資訊。
+* 在應用程式中加入**原生用戶端**。
+* 複製 [重新導向 URI] `urn:ietf:wg:oauth:2.0:oob`。這是此程式碼範例的預設 URL。
+* 複製指派給您的應用程式的**應用程式識別碼**。稍後您將會用到此資訊。
 
-[AZURE.INCLUDE [active-directory-b2c-devquickstarts-v2-apps](../../includes/active-directory-b2c-devquickstarts-v2-apps.md)]
+[!INCLUDE [active-directory-b2c-devquickstarts-v2-apps](../../includes/active-directory-b2c-devquickstarts-v2-apps.md)]
 
 ## 建立您的原則
-
 在 Azure AD B2C 中，每個使用者經驗皆由[原則](active-directory-b2c-reference-policies.md)所定義。此程式碼範例包含三種身分識別體驗：註冊、登入和編輯設定檔。您必須為每個類型建立一個原則，如[原則參考文章](active-directory-b2c-reference-policies.md#how-to-create-a-sign-up-policy)中所述。建立這三個原則時，請務必：
 
-- 在身分識別提供者刀鋒視窗中，選擇 [使用者識別碼註冊] 或 [電子郵件註冊]。
-- 在註冊原則中，選擇 [顯示名稱] 和其他註冊屬性。
-- 針對每個原則選擇 [顯示名稱] 和 [物件識別碼] 宣告做為應用程式宣告。您也可以選擇其他宣告。
-- 在您建立每個原則之後，請複製原則的 [名稱]。其前置詞應該為 `b2c_1_`。稍後您將需要這些原則名稱。
+* 在身分識別提供者刀鋒視窗中，選擇 [使用者識別碼註冊] 或 [電子郵件註冊]。
+* 在註冊原則中，選擇 [顯示名稱] 和其他註冊屬性。
+* 針對每個原則選擇 [顯示名稱] 和 [物件識別碼] 宣告做為應用程式宣告。您也可以選擇其他宣告。
+* 在您建立每個原則之後，請複製原則的 [名稱]。其前置詞應該為 `b2c_1_`。稍後您將需要這些原則名稱。
 
-[AZURE.INCLUDE [active-directory-b2c-devquickstarts-policy](../../includes/active-directory-b2c-devquickstarts-policy.md)]
+[!INCLUDE [active-directory-b2c-devquickstarts-policy](../../includes/active-directory-b2c-devquickstarts-policy.md)]
 
 當您成功建立這三個原則之後，就可以開始建置您的 app。
 
 ## 下載程式碼
-
 本教學課程的程式碼保留在 [GitHub](https://github.com/AzureADQuickStarts/B2C-NativeClient-DotNet)。如要依照指示建置範例，請[下載 .zip 檔案格式的基本架構專案](https://github.com/AzureADQuickStarts/B2C-NativeClient-DotNet/archive/skeleton.zip)。您也可以複製基本架構：
 
 ```
@@ -90,8 +85,7 @@ public static class Globals
 }
 ```
 
-[AZURE.INCLUDE [active-directory-b2c-devquickstarts-tenant-name](../../includes/active-directory-b2c-devquickstarts-tenant-name.md)]
-
+[!INCLUDE [active-directory-b2c-devquickstarts-tenant-name](../../includes/active-directory-b2c-devquickstarts-tenant-name.md)]
 
 ### 建立 PublicClientApplication
 MSAL 的主要類別是 `PublicClientApplication`。此類別代表您在 Azure AD B2C 系統中的應用程式。當應用程式初始化時，請在 `MainWindow.xaml.cs` 中建立 `PublicClientApplication` 的執行個體。這可用在整個視窗上。
@@ -107,7 +101,7 @@ protected async override void OnInitialized(EventArgs e)
         // we've extended the MSAL TokenCache and created a simple FileCache in this app.
         UserTokenCache = new FileCache(),
     };
-    
+
     ...
 ```
 
@@ -168,13 +162,13 @@ private async void SignUp(object sender, RoutedEventArgs e)
 ```C#
 private async void SignIn(object sender = null, RoutedEventArgs args = null)
 {
-	AuthenticationResult result = null;
-	try
-	{
-		result = await pca.AcquireTokenAsync(new string[] { Globals.clientId },
+    AuthenticationResult result = null;
+    try
+    {
+        result = await pca.AcquireTokenAsync(new string[] { Globals.clientId },
                     string.Empty, UiOptions.ForceLogin, null, null, Globals.authority,
                     Globals.signInPolicy);
-		...
+        ...
 ```
 
 ### 起始編輯設定檔流程
@@ -183,16 +177,15 @@ private async void SignIn(object sender = null, RoutedEventArgs args = null)
 ```C#
 private async void EditProfile(object sender, RoutedEventArgs e)
 {
-	AuthenticationResult result = null;
-	try
-	{
-		result = await pca.AcquireTokenAsync(new string[] { Globals.clientId },
+    AuthenticationResult result = null;
+    try
+    {
+        result = await pca.AcquireTokenAsync(new string[] { Globals.clientId },
                     string.Empty, UiOptions.ForceLogin, null, null, Globals.authority,
                     Globals.editProfilePolicy);
 ```
 
 在所有這些案例中，MSAL 會傳回 `AuthenticationResult` 中的權杖，或是擲回例外狀況。每次從 MSAL 取得權杖時，您都可以使用 `AuthenticationResult.User` 物件來更新應用程式中的使用者資料，例如 UI。ADAL 也會快取權杖，以供應用程式的其他部分使用。
-
 
 ### 在應用程式啟動時檢查權杖
 您也可以使用 MSAL 來追蹤使用者的登入狀態。在此應用程式中，我們想要讓使用者在關閉應用程式再予以重新開啟後仍保持登入狀態。回到 `OnInitialized` 覆寫，使用 MSAL 的 `AcquireTokenSilent` 方法來檢查已快取的權杖︰
@@ -276,19 +269,19 @@ private async void GetTodoList()
 
         return;
     }
-	...
+    ...
 ```
 
 當您成功呼叫 `AcquireTokenSilentAsync(...)`，且在快取中找到權杖之後，便可以將該權杖加入 HTTP 要求的 `Authorization` 標頭中。工作 Web API 會使用此標頭來驗證讀取使用者待辦事項清單的要求︰
 
 ```C#
-	...
-	// Once the token has been returned by MSAL, add it to the http authorization header, before making the call to access the To Do list service.
+    ...
+    // Once the token has been returned by MSAL, add it to the http authorization header, before making the call to access the To Do list service.
     httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", result.Token);
 
     // Call the To Do list service.
     HttpResponseMessage response = await httpClient.GetAsync(Globals.taskServiceUrl + "/api/tasks");
-	...
+    ...
 ```
 
 ## 登出使用者
@@ -314,19 +307,17 @@ private void SignOut(object sender, RoutedEventArgs e)
 ```
 
 ## 執行範例應用程式
-
 最後，建置並執行範例。使用電子郵件地址或使用者名稱來註冊應用程式。登出，再以相同的使用者身分重新登入。編輯該使用者的設定檔。請登出，然後以不同的使用者身分登入。
 
 ## 新增社交 IDP
-
 目前，應用程式僅支援使用者以**本機帳戶**來註冊及登入。這些是儲存在 B2C 目錄中使用使用者名稱和密碼的帳戶。藉由使用 Azure AD B2C，您可以新增對其他身分識別提供者 (IDP) 的支援，但不需變更任何程式碼。
 
 若要將社交 IDP 加入至應用程式，請依照下列文章中的詳細指示開始。針對您想要支援的每個 IDP，您必須在該系統中註冊應用程式並取得用戶端識別碼。
 
-- [將 Facebook 設定為 IDP](active-directory-b2c-setup-fb-app.md)
-- [將 Google 設定為 IDP](active-directory-b2c-setup-goog-app.md)
-- [將 Amazon 設定為 IDP](active-directory-b2c-setup-amzn-app.md)
-- [將 LinkedIn 設定為 IDP](active-directory-b2c-setup-li-app.md)
+* [將 Facebook 設定為 IDP](active-directory-b2c-setup-fb-app.md)
+* [將 Google 設定為 IDP](active-directory-b2c-setup-goog-app.md)
+* [將 Amazon 設定為 IDP](active-directory-b2c-setup-amzn-app.md)
+* [將 LinkedIn 設定為 IDP](active-directory-b2c-setup-li-app.md)
 
 當您將身分識別提供者新增到 B2C 目錄之後，就必須分別編輯您的三個原則來包含新的 IDP，如[原則參考文章](active-directory-b2c-reference-policies.md)中所述。儲存您的原則之後，重新執行應用程式。在每一次的身分識別體驗中，您應該會看到新的 IDP 已加入成為登入和註冊選項。
 

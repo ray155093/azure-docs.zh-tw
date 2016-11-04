@@ -1,25 +1,22 @@
-<properties
-   pageTitle="使用 CLI 與 Service Fabric 叢集互動 | Microsoft Azure"
-   description="如何使用 Azure CLI 與 Service Fabric 叢集互動"
-   services="service-fabric"
-   documentationCenter=".net"
-   authors="mani-ramaswamy"
-   manager="timlt"
-   editor=""/>
+---
+title: 使用 CLI 與 Service Fabric 叢集互動 | Microsoft Docs
+description: 如何使用 Azure CLI 與 Service Fabric 叢集互動
+services: service-fabric
+documentationcenter: .net
+author: mani-ramaswamy
+manager: timlt
+editor: ''
 
-<tags
-   ms.service="service-fabric"
-   ms.devlang="dotNet"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="NA"
-   ms.date="09/24/2016"
-   ms.author="subramar"/>
+ms.service: service-fabric
+ms.devlang: dotNet
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 09/24/2016
+ms.author: subramar
 
-
-
+---
 # <a name="using-the-azure-cli-to-interact-with-a-service-fabric-cluster"></a>使用 Azure CLI 與 Service Fabric 叢集互動
-
 您可以從 Linux 電腦使用 Azure CLI on Linux 來與 Service Fabric 叢集互動。
 
 第一個步驟是從 git rep 取得最新版本的 CLI，並使用下列命令將它設定在您的路徑中︰
@@ -82,39 +79,35 @@ source ~/azure.completion.sh
 
 **警告︰** 這些叢集不安全，因此，您可能因為在叢集資訊清單中新增公用 IP 位址，而造成單機系統門戶洞開。
 
-
-
 ## <a name="using-the-azure-cli-to-connect-to-a-service-fabric-cluster"></a>使用 Azure CLI 連線至 Service Fabric 叢集
-
 下列 Azure CLI 命令說明如何連線到安全的叢集。 憑證詳細資料必須與叢集節點上的憑證相符。
 
 ```
 azure servicefabric cluster connect --connection-endpoint http://ip:19080 --client-key-path /tmp/key --client-cert-path /tmp/cert
 ```
- 
+
 如果您的憑證有憑證授權單位 (CA)，則您需要新增 --ca-cert-path 參數，如下所示︰ 
 
 ```
  azure servicefabric cluster connect --connection-endpoint http://ip:19080 --client-key-path /tmp/key --client-cert-path /tmp/cert --ca-cert-path /tmp/ca1,/tmp/ca2 
 ```
 如果您有多個 CA，請使用逗號做為分隔符號。
- 
+
 如果憑證中的一般名稱不符合連接端點，您可以使用 `--strict-ssl` 參數略過驗證，如下列命令所示︰ 
 
 ```
 azure servicefabric cluster connect --connection-endpoint http://ip:19080 --client-key-path /tmp/key --client-cert-path /tmp/cert --strict-ssl false 
 ```
- 
+
 如果您想要跳過 CA 驗證，您可以新增 --reject-unauthorized 參數，如下列命令所示︰ 
 
 ```
 azure servicefabric cluster connect --connection-endpoint http://ip:19080 --client-key-path /tmp/key --client-cert-path /tmp/cert --reject-unauthorized false 
 ```
- 
+
 連線之後，您應該能夠執行其他 CLI 命令來與叢集互動。 
 
 ## <a name="deploying-your-service-fabric-application"></a>部署 Service Fabric 應用程式
-
 執行下列命令來複製、註冊和啟動 Service Fabric 應用程式︰
 
 ```
@@ -125,7 +118,6 @@ azure servicefabric application create [applicationName] [applicationTypeName] [
 
 
 ## <a name="upgrading-your-application"></a>升級您的應用程式
-
 處理程序類似於 [Windows 中的處理程序](service-fabric-application-upgrade-tutorial-powershell.md))。
 
 從專案根目錄中建置、複製、註冊和建立您的應用程式。 如果您的應用程式執行個體名為 fabric:/MySFApp，且類型為 MySFApp，則命令如下所示︰
@@ -154,9 +146,7 @@ azure servicefabric application create [applicationName] [applicationTypeName] [
 您現在可以使用 SFX 來監視應用程式升級。 應用程式在幾分鐘內會完成更新。  您也可以用錯誤動作來測試已更新的應用程式，並檢查 Service Fabric 中的自動回復功能。
 
 ## <a name="troubleshooting"></a>疑難排解
-
 ### <a name="copying-of-the-application-package-does-not-succeed"></a>未成功複製應用程式封裝
-
 檢查是否已安裝 `openssh` 。 根據預設，Ubuntu 桌面不會安裝此軟體。 使用下列命令安裝它：
 
 ```
@@ -182,12 +172,8 @@ azure servicefabric application create [applicationName] [applicationTypeName] [
 ```
 尚不支援使用金鑰 (而不是密碼) 進行 ssh 驗證 (因為平台會使用 ssh 來複製套件)，請改為使用密碼驗證。
 
-
 ## <a name="next-steps"></a>後續步驟
-
 設定開發環境，並將 Service Fabric 應用程式部署到 Linux 叢集。
-
-
 
 <!--HONumber=Oct16_HO2-->
 

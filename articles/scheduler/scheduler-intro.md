@@ -1,22 +1,22 @@
-<properties
- pageTitle="何謂 Azure 排程器？| Microsoft Azure"
- description="Azure 排程器可讓您以宣告方式描述在雲端中執行的動作。然後它會排程這些動作並且自動執行。"
- services="scheduler"
- documentationCenter=".NET"
- authors="derek1ee"
- manager="kevinlam1"
- editor=""/>
-<tags
- ms.service="scheduler"
- ms.workload="infrastructure-services"
- ms.tgt_pltfrm="na"
- ms.devlang="dotnet"
- ms.topic="hero-article"
- ms.date="08/18/2016"
- ms.author="deli"/>
+---
+title: 何謂 Azure 排程器？| Microsoft Docs
+description: Azure 排程器可讓您以宣告方式描述在雲端中執行的動作。然後它會排程這些動作並且自動執行。
+services: scheduler
+documentationcenter: .NET
+author: derek1ee
+manager: kevinlam1
+editor: ''
 
+ms.service: scheduler
+ms.workload: infrastructure-services
+ms.tgt_pltfrm: na
+ms.devlang: dotnet
+ms.topic: hero-article
+ms.date: 08/18/2016
+ms.author: deli
+
+---
 # 何謂 Azure 排程器？
-
 Azure 排程器可讓您以宣告方式描述在雲端中執行的動作。然後它會排程這些動作並且自動執行。排程器會使用 [Azure 入口網站](scheduler-get-started-portal.md)、程式碼、[REST API](https://msdn.microsoft.com/library/mt629143.aspx) 或 Azure PowerShell 來完成這個動作。
 
 排程器會建立、 維護和叫用已排程的工作。排程器不會裝載任何工作負載或執行任何程式碼。它只會叫用其他位置裝載的程式碼：裝載於 Azure、內部部署或另一個提供者。它會透過 HTTP、HTTPS、儲存體佇列、服務匯流排佇列或服務匯流排主題叫用。
@@ -25,13 +25,12 @@ Azure 排程器可讓您以宣告方式描述在雲端中執行的動作。然�
 
 需要使用排程器的案例有幾個。例如：
 
-+ 週期性應用程式動作：定期將 Twitter 中的資料收集到摘要中。
-+ 每日維護：每日剪除記錄、執行備份及其他維護工作。例如，系統管理員可以選擇接下來的九個月，每天早上 1:00 備份資料庫。
+* 週期性應用程式動作：定期將 Twitter 中的資料收集到摘要中。
+* 每日維護：每日剪除記錄、執行備份及其他維護工作。例如，系統管理員可以選擇接下來的九個月，每天早上 1:00 備份資料庫。
 
 排程器可讓您使用指令碼，在入口網站中以程式設計方式建立、更新、刪除、檢視及管理工作和[工作集合](scheduler-concepts-terms.md)。
 
 ## 另請參閱
-
  [Azure 排程器概念、術語及實體階層](scheduler-concepts-terms.md)
 
  [在 Azure 入口網站中開始使用排程器](scheduler-get-started-portal.md)

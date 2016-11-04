@@ -1,25 +1,23 @@
-<properties
-    pageTitle="建立及上傳自訂 Linux 映像 | Microsoft Azure"
-    description="使用 Resource Manager 部署模型搭配自訂 Linux 映像，來建立虛擬硬碟 (VHD) 並上傳至 Azure。"
-    services="virtual-machines-linux"
-    documentationCenter=""
-    authors="iainfoulds"
-    manager="timlt"
-    editor="tysonn"
-    tags="azure-resource-manager"/>
+---
+title: 建立及上傳自訂 Linux 映像 | Microsoft Docs
+description: 使用 Resource Manager 部署模型搭配自訂 Linux 映像，來建立虛擬硬碟 (VHD) 並上傳至 Azure。
+services: virtual-machines-linux
+documentationcenter: ''
+author: iainfoulds
+manager: timlt
+editor: tysonn
+tags: azure-resource-manager
 
-<tags
-    ms.service="virtual-machines-linux"
-    ms.workload="infrastructure-services"
-    ms.tgt_pltfrm="vm-linux"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="10/10/2016"
-    ms.author="iainfou"/>
+ms.service: virtual-machines-linux
+ms.workload: infrastructure-services
+ms.tgt_pltfrm: vm-linux
+ms.devlang: na
+ms.topic: article
+ms.date: 10/10/2016
+ms.author: iainfou
 
-
+---
 # <a name="upload-and-create-a-linux-vm-from-custom-disk-image"></a>上傳自訂磁碟映像並從這個映像建立 Linux VM
-
 本文說明如何使用 Resource Manager 部署模型，將虛擬硬碟 (VHD) 上傳至 Azure，並從這個自訂映像建立 Linux VM。 這項功能可讓您安裝和設定 Linux 散發版本以符合您的需求，然後使用該 VHD 快速建立 Azure 虛擬機器 (VM)。
 
 ## <a name="quick-commands"></a>快速命令
@@ -78,15 +76,18 @@ azure vm create myVM -l "WestUS" --resource-group myResourceGroup \
 ## <a name="requirements"></a>需求
 若要完成下列步驟，您需要：
 
-- **以 .vhd 檔案安裝的 Linux 作業系統** - 以 VHD 格式將 [Azure 背書的 Linux 散發套件](virtual-machines-linux-endorsed-distros.md) (或參閱[非背書散發套件的資訊](virtual-machines-linux-create-upload-generic.md)) 安裝到虛擬磁碟。 有多項工具可用來建立 VM 和 VHD：
-    - 安裝和設定 [QEMU](https://en.wikibooks.org/wiki/QEMU/Installing_QEMU) 或 [KVM](http://www.linux-kvm.org/page/RunningKVM)，並小心使用 VHD 做為您的映像格式。 如有需要，您可以使用 `qemu-img convert` 來[轉換映像](https://en.wikibooks.org/wiki/QEMU/Images#Converting_image_formats)。
-    - 您也可以在 [Windows 10](https://msdn.microsoft.com/virtualization/hyperv_on_windows/quick_start/walkthrough_install) 或 [Windows Server 2012/2012 R2](https://technet.microsoft.com/library/hh846766.aspx) 上使用 Hyper-V。
+* **以 .vhd 檔案安裝的 Linux 作業系統** - 以 VHD 格式將 [Azure 背書的 Linux 散發套件](virtual-machines-linux-endorsed-distros.md) (或參閱[非背書散發套件的資訊](virtual-machines-linux-create-upload-generic.md)) 安裝到虛擬磁碟。 有多項工具可用來建立 VM 和 VHD：
+  * 安裝和設定 [QEMU](https://en.wikibooks.org/wiki/QEMU/Installing_QEMU) 或 [KVM](http://www.linux-kvm.org/page/RunningKVM)，並小心使用 VHD 做為您的映像格式。 如有需要，您可以使用 `qemu-img convert` 來[轉換映像](https://en.wikibooks.org/wiki/QEMU/Images#Converting_image_formats)。
+  * 您也可以在 [Windows 10](https://msdn.microsoft.com/virtualization/hyperv_on_windows/quick_start/walkthrough_install) 或 [Windows Server 2012/2012 R2](https://technet.microsoft.com/library/hh846766.aspx) 上使用 Hyper-V。
 
-> [AZURE.NOTE] Azure 不支援較新的 VHDX 格式。 當您建立 VM 時，請指定 VHD 做為格式。 如有需要，您可以使用 [`qemu-img convert`](https://en.wikibooks.org/wiki/QEMU/Images#Converting_image_formats) 或 [`Convert-VHD`](https://technet.microsoft.com/library/hh848454.aspx) PowerShell Cmdlet 將 VHDX 磁碟轉換為 VHD。 此外，Azure 不支援上傳動態 VHD，因此您必須將此類磁碟轉換成靜態 VHD 再上傳。 您可以在上傳至 Azure 的期間使用 [適用於 GO 的 Azure VHD 公用程式](https://github.com/Microsoft/azure-vhd-utils-for-go) 之類的工具來轉換動態磁碟。
+> [!NOTE]
+> Azure 不支援較新的 VHDX 格式。 當您建立 VM 時，請指定 VHD 做為格式。 如有需要，您可以使用 [`qemu-img convert`](https://en.wikibooks.org/wiki/QEMU/Images#Converting_image_formats) 或 [`Convert-VHD`](https://technet.microsoft.com/library/hh848454.aspx) PowerShell Cmdlet 將 VHDX 磁碟轉換為 VHD。 此外，Azure 不支援上傳動態 VHD，因此您必須將此類磁碟轉換成靜態 VHD 再上傳。 您可以在上傳至 Azure 的期間使用 [適用於 GO 的 Azure VHD 公用程式](https://github.com/Microsoft/azure-vhd-utils-for-go) 之類的工具來轉換動態磁碟。
+> 
+> 
 
-- 從自訂映像建立的 VM 必須位於與映像本身相同的儲存體帳戶中
-    - 建立儲存體帳戶和容器來存放您的自訂映像和所建立的 VM
-    - 建立所有 VM 之後，您即可放心地刪除您的映像
+* 從自訂映像建立的 VM 必須位於與映像本身相同的儲存體帳戶中
+  * 建立儲存體帳戶和容器來存放您的自訂映像和所建立的 VM
+  * 建立所有 VM 之後，您即可放心地刪除您的映像
 
 確定您已登入 [Azure CLI](../xplat-cli-install.md)，並且使用的是 Resource Manager 模式：
 
@@ -96,24 +97,25 @@ azure config mode arm
 
 在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包含 `myResourceGroup`、`mystorageaccount` 和 `myimages`。
 
-
 <a id="prepimage"> </a>
-## <a name="prepare-the-image-to-be-uploaded"></a>備妥要上傳的映像
 
+## <a name="prepare-the-image-to-be-uploaded"></a>備妥要上傳的映像
 Azure 支援各種 Linux 散發套件 (請參閱 [背書的散發套件](virtual-machines-linux-endorsed-distros.md))。 下列文章會逐步引導您了解如何準備 Azure 上支援的各種 Linux 散發套件：
 
-- **[CentOS 型散發套件](virtual-machines-linux-create-upload-centos.md)**
-- **[Debian Linux](virtual-machines-linux-debian-create-upload-vhd.md)**
-- **[Oracle Linux](virtual-machines-linux-oracle-create-upload-vhd.md)**
-- **[Red Hat Enterprise Linux](virtual-machines-linux-redhat-create-upload-vhd.md)**
-- **[SLES 和 openSUSE](virtual-machines-linux-suse-create-upload-vhd.md)**
-- **[Ubuntu](virtual-machines-linux-create-upload-ubuntu.md)**
-- **[其他：非背書散發套件](virtual-machines-linux-create-upload-generic.md)**
+* **[CentOS 型散發套件](virtual-machines-linux-create-upload-centos.md)**
+* **[Debian Linux](virtual-machines-linux-debian-create-upload-vhd.md)**
+* **[Oracle Linux](virtual-machines-linux-oracle-create-upload-vhd.md)**
+* **[Red Hat Enterprise Linux](virtual-machines-linux-redhat-create-upload-vhd.md)**
+* **[SLES 和 openSUSE](virtual-machines-linux-suse-create-upload-vhd.md)**
+* **[Ubuntu](virtual-machines-linux-create-upload-ubuntu.md)**
+* **[其他：非背書散發套件](virtual-machines-linux-create-upload-generic.md)**
 
 如需有關為 Azure 準備 Linux 映像的更多一般秘訣，另請參閱 **[Linux 安裝注意事項](virtual-machines-linux-create-upload-generic.md#general-linux-installation-notes)**。
 
-> [AZURE.NOTE] 只有在搭配[經 Azure 背書之 Linux 散發套件](virtual-machines-linux-endorsed-distros.md)中＜支援的版本＞下指定的組態詳細資料來使用其中一個經背書的散發套件時，[Azure 平台 SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/) 才適用於執行 Linux 的虛擬機器。
-
+> [!NOTE]
+> 只有在搭配[經 Azure 背書之 Linux 散發套件](virtual-machines-linux-endorsed-distros.md)中＜支援的版本＞下指定的組態詳細資料來使用其中一個經背書的散發套件時，[Azure 平台 SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines/) 才適用於執行 Linux 的虛擬機器。
+> 
+> 
 
 ## <a name="create-a-resource-group"></a>建立資源群組
 資源群組會以邏輯方式將所有 Azure 資源 (例如虛擬網路和儲存體) 結合在一起以支援您的虛擬機器。 從 [這裡](../resource-group-overview.md)深入了解 Azure 資源群組。 在上傳您的自訂磁碟映像並建立 VM 之前，您必須先建立資源群組。 
@@ -180,7 +182,6 @@ azure storage blob upload --blobtype page --account-name mystorageaccount \
 ## <a name="create-vm-from-custom-image"></a>從自訂映像建立 VM
 當您從自訂磁碟映像建立 VM 時，請指定磁碟映像的 URI。 請確保目的地儲存體帳戶與儲存您自訂磁碟映像的儲存體帳戶相符。 您可以使用 Azure CLI 或 Resource Manager JSON 範本來建立 VM。
 
-
 ### <a name="create-a-vm-using-the-azure-cli"></a>使用 Azure CLI 來建立 VM
 您需搭配 `azure vm create` 命令指定 `--image-urn` 參數，以指向您的自訂磁碟映像。 請確保 `--storage-account-name` 與儲存您自訂磁碟映像的儲存體帳戶相符。 您不需使用與自訂磁碟映像相同的容器來儲存您的 VM。 上傳您的自訂磁碟映像之前，請確定會使用與先前步驟中相同的方式來建立任何額外的容器。
 
@@ -234,7 +235,6 @@ azure group deployment create --resource-group myResourceGroup
 
 ## <a name="next-steps"></a>後續步驟
 在您備妥並上傳自訂虛擬磁碟之後，您可以深入了解如何 [使用 Resource Manager 和範本](../resource-group-overview.md)。 您也可以 [將資料磁碟新增](virtual-machines-linux-add-disk.md) 至您的新 VM。 如果您需要存取在您的 VM 上執行的應用程式，請務必 [開啟連接埠和端點](virtual-machines-linux-nsg-quickstart.md)。
-
 
 <!--HONumber=Oct16_HO2-->
 

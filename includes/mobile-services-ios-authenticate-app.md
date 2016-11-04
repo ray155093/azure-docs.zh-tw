@@ -1,4 +1,4 @@
-* 開啟 **QSTodoListViewController.m**，並加入下列方法：如果您不使用 Facebook 作為識別提供者，請將 _facebook_ 變更為 _microsoftaccount_、_twitter_、_google_ 或 _windowsazureactivedirectory_。
+* 開啟 **QSTodoListViewController.m**，並加入下列方法：如果您不使用 Facebook 作為識別提供者，請將 *facebook* 變更為 *microsoftaccount*、*twitter*、*google* 或 *windowsazureactivedirectory*。
 
 ```
         - (void) loginAndGetData

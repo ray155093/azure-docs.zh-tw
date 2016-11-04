@@ -1,30 +1,28 @@
-<properties
-    pageTitle="Azure 計算選項 - 雲端服務 | Microsoft Azure"
-    description="了解 Azure 計算裝載選項以及其運作方式：App Service、雲端服務和虛擬機器"
-    services="cloud-services"
-    documentationCenter=""
-    authors="Thraka"
-    manager="timlt"/>
+---
+title: Azure 計算選項 - 雲端服務 | Microsoft Docs
+description: 了解 Azure 計算裝載選項以及其運作方式：App Service、雲端服務和虛擬機器
+services: cloud-services
+documentationcenter: ''
+author: Thraka
+manager: timlt
 
-<tags
-    ms.service="multiple"
-    ms.workload="multiple"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="10/11/2016"
-    ms.author="adegeo"/>
+ms.service: multiple
+ms.workload: multiple
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 10/11/2016
+ms.author: adegeo
 
-
+---
 # <a name="should-i-choose-cloud-services-or-something-else?"></a>我該選擇雲端服務還是其他服務？
-
 Azure 雲端服務適合您嗎？ Azure 對於執行的應用程式提供不同的裝載模型。 每個模型都提供不同的服務集，因此請根據您要執行的工作選擇服務集。
 
-[AZURE.INCLUDE [compute-table](../../includes/compute-options-table.md)]
+[!INCLUDE [compute-table](../../includes/compute-options-table.md)]
 
 <a name="tellmecs"></a>
-## <a name="tell-me-about-cloud-services"></a>我想了解雲端服務
 
+## <a name="tell-me-about-cloud-services"></a>我想了解雲端服務
 雲端服務是 [平台即服務 (PaaS)](https://azure.microsoft.com/overview/what-is-paas/) 的一個範例。 這項技術如同 [App Service](../app-service-web/app-service-web-overview.md)，是專為支援可調整、穩定可靠且操作成本低的應用程式而設計。 雲端服務也如同 App Service 在 VM 上託管，不過，雲端服務更易於透過 VM 控制。 您可以在雲端服務 VM 上安裝您自己的軟體，並且可從遠端加以操控。
 
 ![cs_diagram](./media/cloud-services-choose-me/diagram.png)
@@ -37,11 +35,10 @@ Azure 雲端服務適合您嗎？ Azure 對於執行的應用程式提供不同�
 
 * **Web 角色**  
   執行 Windows Server，且您的 Web 應用程式會自動部署至 IIS。
-
 * **背景工作角色**  
   執行不含 IIS 的 Windows Server。
 
-例如，簡單的應用程式可以只使用 Web 角色，而較複雜的應用程式可以使用 Web 角色處理使用者的連入要求，然後將這些要求產生的工作傳送給背景工作角色進行處理。 (此通訊會使用[服務匯流排](../service-bus-messaging/service-bus-fundamentals-hybrid-solutions.md)或 [Azure 佇列](../storage/storage-introduction.md))。
+例如，簡單的應用程式可以只使用 Web 角色，而較複雜的應用程式可以使用 Web 角色處理使用者的連入要求，然後將這些要求產生的工作傳送給背景工作角色進行處理。 (此通訊會使用[服務匯流排](../service-bus/service-bus-fundamentals-hybrid-solutions.md)或 [Azure 佇列](../storage/storage-introduction.md))。
 
 如上圖所示，單一應用程式中的所有 VM 都會在同一個雲端服務中執行。 因此，使用者可以透過單一公用 IP 位址存取應用程式，並且可在應用程式的 VM 之間自動進行要求的負載平衡。 該平台會在雲端服務應用程式中 [調整和部署](cloud-services-how-to-scale.md) 所有VM，藉此避免發生單一硬體失敗點。
 
@@ -62,8 +59,6 @@ Azure 雲端服務適合您嗎？ Azure 對於執行的應用程式提供不同�
 [在 Node.js 中建立雲端服務應用程式](cloud-services-nodejs-develop-deploy-app.md)  
 [在 PHP 中建立雲端服務應用程式](../cloud-services-php-create-web-role.md)  
 [在 Python 中建立雲端服務應用程式](cloud-services-python-ptvs.md)
-
-
 
 <!--HONumber=Oct16_HO2-->
 

@@ -1,33 +1,32 @@
-<properties
-	pageTitle="使用 PowerShell 部署和管理 Windows Server/用戶端的備份 | Microsoft Azure"
-	description="了解如何使用 PowerShell 部署和管理 Azure 備份"
-	services="backup"
-	documentationCenter=""
-	authors="saurabhsensharma"
-	manager="shivamg"
-	editor=""/>
+---
+title: 使用 PowerShell 部署和管理 Windows Server/用戶端的備份 | Microsoft Docs
+description: 了解如何使用 PowerShell 部署和管理 Azure 備份
+services: backup
+documentationcenter: ''
+author: saurabhsensharma
+manager: shivamg
+editor: ''
 
-<tags
-	ms.service="backup"
-	ms.workload="storage-backup-recovery"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/01/2016"
-	ms.author="saurabhsensharma;markgal;jimpark;nkolli;trinadhk"/>
+ms.service: backup
+ms.workload: storage-backup-recovery
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/01/2016
+ms.author: saurabhsensharma;markgal;jimpark;nkolli;trinadhk
 
-
+---
 # 使用 PowerShell 部署和管理 Windows Server/Windows 用戶端的 Azure 備份
-
-> [AZURE.SELECTOR]
-- [ARM](backup-client-automation.md)
-- [傳統](backup-client-automation-classic.md)
+> [!div class="op_single_selector"]
+> * [ARM](backup-client-automation.md)
+> * [傳統](backup-client-automation-classic.md)
+> 
+> 
 
 本文說明如何使用 PowerShell 在 Windows Server 或 Windows 用戶端上設定 Azure 備份，以及管理備份和復原。
 
 ## 安裝 Azure PowerShell
-
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-include.md)]
+[!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-include.md)]
 
 本文著重於可讓您在資源群組中使用復原服務保存庫的 Azure Resource Manager (ARM) PowerShell Cmdlet。
 
@@ -37,35 +36,33 @@
 
 [下載最新版 PowerShell](https://github.com/Azure/azure-powershell/releases) (所需的最低版本為：1.0.0)
 
-
-[AZURE.INCLUDE [arm-getting-setup-powershell](../../includes/arm-getting-setup-powershell.md)]
+[!INCLUDE [arm-getting-setup-powershell](../../includes/arm-getting-setup-powershell.md)]
 
 ## 建立復原服務保存庫。
-
 下列步驟將引導您完成建立復原服務保存庫。復原服務保存庫不同於備份保存庫。
 
 1. 如果您是第一次使用 Azure 備份，您必須使用 **Register-AzureRMResourceProvider** Cmdlet 利用您的訂用帳戶來註冊 Azure 復原服務提供者。
-
+   
     ```
     PS C:\> Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.RecoveryServices"
     ```
-
 2. 復原服務保存庫是 ARM 資源，因此您必須將它放在資源群組內。您可以使用現有的資源群組，或建立一個新的群組。建立新的資源群組時，請指定資源群組的名稱和位置。
-
+   
     ```
     PS C:\> New-AzureRmResourceGroup –Name "test-rg" –Location "West US"
     ```
-
 3. 使用 **New-AzureRmRecoveryServicesVault** Cmdlet 來建立新的保存庫。請務必為保存庫指定與用於資源群組相同的位置。
-
+   
     ```
     PS C:\> New-AzureRmRecoveryServicesVault -Name "testvault" -ResourceGroupName " test-rg" -Location "West US"
     ```
-
 4. 請指定要使用之儲存體備援的類型；您可以使用[本地備援儲存體 (LRS)](../storage/storage-redundancy.md#locally-redundant-storage) 或[異地備援儲存體 (GRS)](../storage/storage-redundancy.md#geo-redundant-storage)。以下範例示範 testVault 設定為 GeoRedundant 的 BackupStorageRedundancy 選項。
-
-    > [AZURE.TIP] 許多 Azure 備份 Cmdlet 都需要將復原服務保存庫物件當做輸入。基於這個理由，將備份復原服務保存庫物件儲存在變數中會是方便的做法。
-
+   
+   > [!TIP]
+   > 許多 Azure 備份 Cmdlet 都需要將復原服務保存庫物件當做輸入。基於這個理由，將備份復原服務保存庫物件儲存在變數中會是方便的做法。
+   > 
+   > 
+   
     ```
     PS C:\> $vault1 = Get-AzureRmRecoveryServicesVault –Name "testVault"
     PS C:\> Set-AzureRmRecoveryServicesBackupProperties  -vault $vault1 -BackupStorageRedundancy GeoRedundant
@@ -104,7 +101,6 @@ PS C:\> MARSAgentInstaller.exe /q
 ![已安裝代理程式](./media/backup-client-automation/installed-agent-listing.png)
 
 ### 安裝選項
-
 若要查看所有可透過命令列執行的選項，請使用下列命令：
 
 ```
@@ -114,21 +110,19 @@ PS C:\> MARSAgentInstaller.exe /?
 可用的選項包括：
 
 | 選項 | 詳細資料 | 預設值 |
-| ---- | ----- | ----- |
-| /q | 無訊息安裝 | - | 
-| /p:"location" | Azure 備份代理程式的安裝資料夾路徑。 | C:\\Program Files\\Microsoft Azure Recovery Services Agent | 
-| /s:"location" | Azure 備份代理程式的快取資料夾路徑。 | C:\\Program Files\\Microsoft Azure Recovery Services Agent\\Scratch | 
-| /m | 選擇加入 Microsoft Update | - | 
-| /nu | 安裝完成後不要檢查更新 | - | 
-| /d | 解除安裝 Microsoft Azure 復原服務代理程式 | - | 
-| /ph | Proxy 主機位址 | - | 
-| /po | Proxy 主機連接埠號碼 | - | 
-| /pu | Proxy 主機使用者名稱 | - | 
-| /pw | Proxy 密碼 | - |
-
+| --- | --- | --- |
+| /q |無訊息安裝 |- |
+| /p:"location" |Azure 備份代理程式的安裝資料夾路徑。 |C:\\Program Files\\Microsoft Azure Recovery Services Agent |
+| /s:"location" |Azure 備份代理程式的快取資料夾路徑。 |C:\\Program Files\\Microsoft Azure Recovery Services Agent\\Scratch |
+| /m |選擇加入 Microsoft Update |- |
+| /nu |安裝完成後不要檢查更新 |- |
+| /d |解除安裝 Microsoft Azure 復原服務代理程式 |- |
+| /ph |Proxy 主機位址 |- |
+| /po |Proxy 主機連接埠號碼 |- |
+| /pu |Proxy 主機使用者名稱 |- |
+| /pw |Proxy 密碼 |- |
 
 ## 向復原服務保存庫註冊 Windows Server 或 Windows 用戶端電腦
-
 建立復原服務保存庫之後，請下載最新版本的代理程式和保存庫認證，並將它們儲存在方便的位置 (如 C:\\Downloads)。
 
 ```
@@ -149,7 +143,10 @@ Region              :West US
 Machine registration succeeded.
 ```
 
-> [AZURE.IMPORTANT] 請勿使用相對路徑來指定保存庫認證檔。您必須提供絕對路徑做為 Cmdlet 的輸入。
+> [!IMPORTANT]
+> 請勿使用相對路徑來指定保存庫認證檔。您必須提供絕對路徑做為 Cmdlet 的輸入。
+> 
+> 
 
 ## 網路設定
 若 Windows 電腦是透過 Proxy 伺服器連線到網際網路，您也可以提供 Proxy 設定給代理程式。本範例未使用 Proxy 伺服器，因此會明確地清除任何 Proxy 相關資訊。
@@ -174,7 +171,10 @@ PS C:\> ConvertTo-SecureString -String "Complex!123_STRING" -AsPlainText -Force 
 Server properties updated successfully
 ```
 
-> [AZURE.IMPORTANT] 一旦設定，就請保管好此複雜密碼。若沒有此複雜密碼，您將無法從 Azure 還原資料。
+> [!IMPORTANT]
+> 一旦設定，就請保管好此複雜密碼。若沒有此複雜密碼，您將無法從 Azure 還原資料。
+> 
+> 
 
 ## 備份檔案和資料夾
 Windows Server 和用戶端的所有 Azure 備份都是由原則來掌管。原則包含三個部分：
@@ -194,8 +194,8 @@ PS C:\> $newpolicy = New-OBPolicy
 ### 設定備份排程
 原則 3 部分的第 1 個部分是備份排程，請使用 [New-OBSchedule](https://technet.microsoft.com/library/hh770401) Cmdlet 建立。備份排程會定義何時需要進行備份。建立排程時，您需要指定 2 個輸入參數：
 
-- **星期幾**要執行備份。您可以只選一天或選擇一週的每天都執行備份工作，或任意選取要一週的哪幾天。
-- 要執行備份的**時段**。您可以定義多達一天 3 個不同時段來觸發備份。
+* **星期幾**要執行備份。您可以只選一天或選擇一週的每天都執行備份工作，或任意選取要一週的哪幾天。
+* 要執行備份的**時段**。您可以定義多達一天 3 個不同時段來觸發備份。
 
 例如，您可以設定每週六和日下午 4 點執行備份原則。
 
@@ -243,9 +243,9 @@ PolicyState     : Valid
 ### 包含及排除要備份的檔案
 ```OBFileSpec``` 物件會定義備份中要包含與排除的檔案。此組規則可劃分出電腦上要保護的檔案和資料夾。您可以設定所需數量的檔案包含或排除規則，並建立其與原則的關聯。建立新的 OBFileSpec 物件時，您可以：
 
-- 指定要包含的檔案和資料夾
-- 指定要排除的檔案和資料夾
-- 指定要遞迴備份資料夾中的資料，或是否僅備份指定資料夾中最上層的檔案。
+* 指定要包含的檔案和資料夾
+* 指定要排除的檔案和資料夾
+* 指定要遞迴備份資料夾中的資料，或是否僅備份指定資料夾中最上層的檔案。
 
 後者可利用在 New-OBFileSpec 命令中使用 -NonRecursive 旗標來達成。
 
@@ -379,7 +379,7 @@ DsList : {DataSource
          FileSpec:D:\
          IsExclude:False
          IsRecursive:True
-	}
+    }
 PolicyName : c2eb6568-8a06-49f4-a20e-3019ae411bac
 RetentionPolicy : Retention Days : 7
               WeeklyLTRSchedule :
@@ -579,9 +579,9 @@ PS C:\> .\MARSAgentInstaller.exe /d /q
 
 若要從電腦解除安裝代理程式二進位檔，請考量下列後果：
 
-- 這會從電腦移除檔案篩選器，並停止追蹤變更。
-- 會從電腦移除所有原則資訊，但服務中會繼續保存這些原則資訊。
-- 會移除所有備份排程，且不再進行任何備份。
+* 這會從電腦移除檔案篩選器，並停止追蹤變更。
+* 會從電腦移除所有原則資訊，但服務中會繼續保存這些原則資訊。
+* 會移除所有備份排程，且不再進行任何備份。
 
 不過，Azure 中儲存的資料會留著，根據您所設定的保留原則設定予以保留。較舊的時間點會自動過時。
 
@@ -624,7 +624,7 @@ PS C:\> Invoke-Command -Session $s -Script { param($d, $a) Start-Process -FilePa
 ## 後續步驟
 如需 Windows Server/用戶端的 Azure 備份詳細資訊，請參閱
 
-- [Azure 備份的簡介](backup-introduction-to-azure-backup.md)
-- [備份 Windows 伺服器](backup-configure-vault.md)
+* [Azure 備份的簡介](backup-introduction-to-azure-backup.md)
+* [備份 Windows 伺服器](backup-configure-vault.md)
 
 <!----HONumber=AcomDC_0907_2016-->

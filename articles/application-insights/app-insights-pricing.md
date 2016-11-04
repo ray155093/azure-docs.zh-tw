@@ -1,22 +1,21 @@
-<properties 
-	pageTitle="管理 Application Insights 的定價和配額" 
-	description="選擇您需要的價格方案" 
-	services="application-insights" 
-    documentationCenter=""
-	authors="alancameronwills" 
-	manager="douge"/>
+---
+title: 管理 Application Insights 的定價和配額
+description: 選擇您需要的價格方案
+services: application-insights
+documentationcenter: ''
+author: alancameronwills
+manager: douge
 
-<tags 
-	ms.service="application-insights" 
-	ms.workload="tbd" 
-	ms.tgt_pltfrm="ibiza" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="08/27/2016" 
-	ms.author="awills"/>
+ms.service: application-insights
+ms.workload: tbd
+ms.tgt_pltfrm: ibiza
+ms.devlang: na
+ms.topic: article
+ms.date: 08/27/2016
+ms.author: awills
 
+---
 # 管理 Application Insights 的定價和配額
-
 *Application Insights 目前僅供預覽。*
 
 [Visual Studio Application Insights][start] 的[定價][pricing]是根據每個應用程式的資料量而定。我們提供實質的免費層，讓您在該層次中使用大部分的功能，但會有一些限制。
@@ -26,7 +25,6 @@
 [請參閱定價機制][pricing]。
 
 ## 檢視 Application Insights 資源的配額和價格方案
-
 您可以在應用程式資源的 [設定] 中開啟 [配額 + 定價] 刀鋒視窗。
 
 ![依序選擇 [設定]、[配額 + 定價]。](./media/app-insights-pricing/01-pricing.png)
@@ -40,45 +38,39 @@
 這些限制會分別為每個 Application Insights 資源加以設定。
 
 ### 免費試用高階
-
 當您第一次建立新的 Application Insights 資源時，會先從免費層開始。
 
 您可以隨時切換成免費試用 30 天的高階版。如此便可體驗高階層的優點。30 天之後，如果您未明確選擇另一個層次，它會自動還原到您之前所在的任一層次。您可以在試用期間隨時選取想要的層次，但在 30 天的期限結束前，您仍可以免費試用。
 
-
 ## 每月配額
-
 * 您的應用程式每月最多可以將指定的遙測資料量上傳至 Application Insights。目前免費定價層的配額是每個月 5 百萬個資料點，而其他訂價配置會提供多出許多的配額。如果您的配額用完了，可以購買更多的配額。如需實際數字，請參閱[定價機制][pricing]。
 * 配額取決於您所選擇的定價層。
 * 配額的計算是從每個月第一天的午夜起 (UTC)。
 * 資料點圖表會顯示您這個月已使用多少配額。
 * 配額是以資料點來進行測量。 不論您的程式碼，或其中一個標準遙測模組是否有明確呼叫，單一資料點都是其中一種追蹤方法的呼叫。它可以有多個附加的屬性和度量。
 * 產生資料點的項目：
- * 會自動收集資料的 [SDK 模組](app-insights-configuration-with-applicationinsights-config.md)，例如用來回報要求或損毀，或是測量效能。
- * 您編寫的 [API](app-insights-api-custom-events-metrics.md) `Track...` 呼叫，例如 `TrackEvent` 或 `trackPageView`。
- * 您已設定的[可用性 Web 測試](app-insights-monitor-web-app-availability.md)。
+  * 會自動收集資料的 [SDK 模組](app-insights-configuration-with-applicationinsights-config.md)，例如用來回報要求或損毀，或是測量效能。
+  * 您編寫的 [API](app-insights-api-custom-events-metrics.md) `Track...` 呼叫，例如 `TrackEvent` 或 `trackPageView`。
+  * 您已設定的[可用性 Web 測試](app-insights-monitor-web-app-availability.md)。
 * 當您偵錯時，可以在 Visual Studio 的輸出視窗中看到從您應用程式所傳送的資料點。只要開啟您瀏覽器的偵錯窗格 (通常是 F12) 中的 [網路] 索引標籤，就能看到用戶端事件。
 * 工作階段資料不會計入配額。這包括使用者、工作階段、環境和裝置資料的計數。
 * 如果您要透過檢查來計算資料點的總數，可以在各種不同位置找到資料點：
- * 您在[診斷搜尋](app-insights-diagnostic-search.md)中看到的每個項目，包括 HTTP 要求、例外狀況、記錄追蹤、頁面檢視、相依性事件，及自訂事件。
- * [度量](app-insights-metrics-explorer.md) (例如效能計數器) 的每個原始測量資料。(您在圖表看到的點通常是多個原始資料點的彙總)。
- * Web 可用性圖表上的每個點，也都是幾個資料點的彙總。
+  * 您在[診斷搜尋](app-insights-diagnostic-search.md)中看到的每個項目，包括 HTTP 要求、例外狀況、記錄追蹤、頁面檢視、相依性事件，及自訂事件。
+  * [度量](app-insights-metrics-explorer.md) (例如效能計數器) 的每個原始測量資料。(您在圖表看到的點通常是多個原始資料點的彙總)。
+  * Web 可用性圖表上的每個點，也都是幾個資料點的彙總。
 * 您也可以在偵錯時，在來源檢查個別的資料點：
- * 如果您在 Visual Studio 的偵錯模式中執行應用程式，資料點會記錄在輸出視窗中。
- * 若要查看用戶端資料點，請開啟瀏覽器的偵錯窗格 (通常是 F12)，然後開啟 [網路] 索引標籤。
+  * 如果您在 Visual Studio 的偵錯模式中執行應用程式，資料點會記錄在輸出視窗中。
+  * 若要查看用戶端資料點，請開啟瀏覽器的偵錯窗格 (通常是 F12)，然後開啟 [網路] 索引標籤。
 * 資料速率 (預設) 可能會依[調適性取樣](app-insights-sampling.md)降低。這表示，隨著應用程式使用頻率的增加，遙測速率不會如像您預期一般增加。
 
 ### 超額部分
-
 如果您的應用程式傳送的配額超過每月上限，您可以：
 
 * 為額外的資料付費：如需詳細資料，請參閱[定價機制][pricing]。您可以預先選擇此選項。免費定價層中沒有此選項。
 * 升級定價層。
 * 不做任何動作。系統仍會繼續記錄工作階段資料，但診斷搜尋或計量瀏覽器中將不會顯示其他資料。
 
-
 ## 正在傳送多少資料？
-
 [價格] 刀鋒視窗底部的圖表中，會依資料點數量分組，顯示您應用程式的資料點使用量。(您也可以在 [計量瀏覽器] 中建立此圖表。)
 
 ![位於 [定價] 刀鋒視窗底部](./media/app-insights-pricing/03-allocation.png)
@@ -89,9 +81,7 @@
 
 如果資料量達到每月配額，則圖表上會出現註解。
 
-
 ## 資料速率
-
 除了每月配額，還有資料速率的節流限制。對於免費[價格層][pricing]，此限制是平均每 5 分鐘 200 個資料點/秒；對於付費層，則為平均每 1 分鐘 500 個資料點/秒。
 
 有三個個別計數的貯體：
@@ -99,8 +89,6 @@
 * [TrackTrace 呼叫](app-insights-api-custom-events-metrics.md#track-trace)和[擷取的記錄檔](app-insights-asp-net-trace-logs.md)
 * [例外狀況](app-insights-api-custom-events-metrics.md#track-exception)，限制為 50 點/秒。
 * 所有其他遙測 (頁面檢視、工作階段、要求、相依性、度量、自訂事件、Web 測試結果)。
-
-
 
 *如果應用程式超過每秒速率，會發生什麼事？*
 
@@ -113,9 +101,7 @@
 * 開啟 [設定/配額與定價] 查看 [資料數量] 圖表。
 * 或在 [計量瀏覽器] 中，新增新的圖表，然後選取 [資料點數量] 做為其計量。切換群組，並依 [**資料類型**] 分組。
 
-
 ## 降低資料速率
-
 如果您遇到節流限制，以下是您可以執行的一些事項：
 
 * 使用[取樣](app-insights-sampling.md)。這項技術可減少資料率而不會曲解您的計量，且不會中斷在 [搜尋] 中於相關項目之間瀏覽的能力。
@@ -123,9 +109,7 @@
 * 藉由[編輯 ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md) 來關閉您不需要的集合模組。例如，您可能會決定效能計數器或相依性資料是不必要的。
 * 預先彙總度量。如果您在應用程式中呼叫 TrackMetric，您可以使用接受批次測量之平均及標準差計算的多載來減少流量。您也可以使用[預先彙總套件](https://www.myget.org/gallery/applicationinsights-sdk-labs)。
 
-
 ## 取樣
-
 [取樣](app-insights-sampling.md)可以降低將遙測傳送到您 App 的速率，同時仍保留在診斷搜尋時尋找相關事件的功能，並保有正確的事件計數。
 
 取樣可有效減少費用並維持在每月配額內。取樣演算法會保留遙測的相關項目，例如：使用「搜尋」時，可以找到與特定例外狀況相關的要求。此演算法也會保留正確的計數，方便您在計量瀏覽器中查看正確的要求率、例外狀況率，以及其他計數等數值。
@@ -139,10 +123,13 @@
 
 ![在 [配額和價格] 刀鋒視窗中，按一下 [範例] 磚，然後選取取樣分數。](./media/app-insights-pricing/04.png)
 
-> [AZURE.WARNING] [保留的樣本] 圖格上顯示的值只會指出您為擷取取樣所設定的值。它不會顯示在您應用程式中的 SDK 運作的取樣率。
+> [!WARNING]
+> [保留的樣本] 圖格上顯示的值只會指出您為擷取取樣所設定的值。它不會顯示在您應用程式中的 SDK 運作的取樣率。
 > 
 > 如果已在 SDK 進行連入遙測的取樣，則不適用擷取取樣。
- 
+> 
+> 
+
 若要找出實際的取樣率 (不論是否已套用)，請使用如下所示的[分析查詢](app-insights-analytics.md)︰
 
     requests | where timestamp > ago(1d)
@@ -152,25 +139,19 @@
 在每筆保留的記錄中，`itemCount` 表示它所代表的原始記錄筆數，其等於 1 + 先前捨棄的記錄筆數。
 
 ## 檢視 Azure 訂用帳戶的帳單
-
 Application Insights 費用會加到您的 Azure 帳單中。您可以在 Azure 入口網站中的 [帳務] 區段中，或在 [Azure 計費入口網站](https://account.windowsazure.com/Subscriptions)中，查看 Azure 帳單的詳細資料。
 
 ![選擇側邊功能表中的 [帳務]。](./media/app-insights-pricing/02-billing.png)
 
-
-
 ## 名稱限制
-
-1.	您的應用程式具有最多 200 個唯一度量名稱和 200 個唯一屬性名稱。度量包括透過 TrackMetric 傳送的資料，以及其他資料類型 (例如事件) 的度量資料 。每個檢測金鑰的[計量和屬性名稱][api]是全域的。
-2.	只有在每個屬性具有少於 100 個唯一值時，[屬性][apiproperties]才能用於篩選和分組依據。唯一值的數目超過 100 個之後，您仍可以搜尋屬性，但無法再用於篩選或分組依據。
-3.	標準屬性，例如要求名稱和網頁 URL 會限制為每週 1000 個唯一值。超過 1000 個唯一值之後，額外值都會標示為「其他值」。 原始值仍然可以用於全文檢索搜尋和篩選。
+1. 您的應用程式具有最多 200 個唯一度量名稱和 200 個唯一屬性名稱。度量包括透過 TrackMetric 傳送的資料，以及其他資料類型 (例如事件) 的度量資料 。每個檢測金鑰的[計量和屬性名稱][api]是全域的。
+2. 只有在每個屬性具有少於 100 個唯一值時，[屬性][apiproperties]才能用於篩選和分組依據。唯一值的數目超過 100 個之後，您仍可以搜尋屬性，但無法再用於篩選或分組依據。
+3. 標準屬性，例如要求名稱和網頁 URL 會限制為每週 1000 個唯一值。超過 1000 個唯一值之後，額外值都會標示為「其他值」。 原始值仍然可以用於全文檢索搜尋和篩選。
 
 如果您發現您的應用程式超過這些限制，請考慮依照不同的檢測金鑰來分割您的資料 - 也就是[建立新的 Application Insights 資源](app-insights-create-new-resource.md)，並將部分資料傳送至新的檢測金鑰。您可能會發現結果更具結構化。您可以使用[儀表板](app-insights-dashboards.md#dashboards)將不同的度量呈現在相同的畫面上，如此，這種方法就不會妨礙您比較不同的度量。
 
 ## 限制摘要
-
-[AZURE.INCLUDE [application-insights-limits](../../includes/application-insights-limits.md)]
-
+[!INCLUDE [application-insights-limits](../../includes/application-insights-limits.md)]
 
 <!--Link references-->
 
@@ -179,6 +160,6 @@ Application Insights 費用會加到您的 Azure 帳單中。您可以在 Azure 
 [start]: app-insights-overview.md
 [pricing]: http://azure.microsoft.com/pricing/details/application-insights/
 
- 
+
 
 <!---HONumber=AcomDC_0831_2016-->

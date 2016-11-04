@@ -77,5 +77,3 @@
 
 <sup>4</sup> Locators are not designed for managing per-user access control. To give different access rights to individual users, use Digital Rights Management (DRM) solutions.
 
-
-

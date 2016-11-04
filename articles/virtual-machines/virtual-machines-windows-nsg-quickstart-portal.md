@@ -1,23 +1,23 @@
-<properties
-   pageTitle="使用 Azure 入口網站對 VM 開啟連接埠 |Microsoft Azure"
-   description="了解如何在 Azure 入口網站中使用 Resource Manager 部署模型對 Windows VM 開啟連接埠 / 建立端點"
-   services="virtual-machines-windows"
-   documentationCenter=""
-   authors="iainfoulds"
-   manager="timlt"
-   editor=""/>
+---
+title: 使用 Azure 入口網站對 VM 開啟連接埠 | Microsoft Docs
+description: 了解如何在 Azure 入口網站中使用 Resource Manager 部署模型對 Windows VM 開啟連接埠 / 建立端點
+services: virtual-machines-windows
+documentationcenter: ''
+author: iainfoulds
+manager: timlt
+editor: ''
 
-<tags
-   ms.service="virtual-machines-windows"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="vm-windows"
-   ms.workload="infrastructure-services"
-   ms.date="08/08/2016"
-   ms.author="iainfou"/>
+ms.service: virtual-machines-windows
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: vm-windows
+ms.workload: infrastructure-services
+ms.date: 08/08/2016
+ms.author: iainfou
 
+---
 # 使用 Azure 入口網站對 Azure 中的 VM 開啟連接埠
-[AZURE.INCLUDE [virtual-machines-common-nsg-quickstart](../../includes/virtual-machines-common-nsg-quickstart.md)]
+[!INCLUDE [virtual-machines-common-nsg-quickstart](../../includes/virtual-machines-common-nsg-quickstart.md)]
 
 ## 快速命令
 您也可以[使用 Azure PowerShell 來執行這些步驟](virtual-machines-windows-nsg-quickstart-powershell.md)。
@@ -48,7 +48,6 @@
 
 您現在已建立「網路安全性群組」、已建立允許連接埠 80 上流量的輸入規則，並且已將它與子網路建立關聯。透過連接埠 80 可連線到您連接到該子網路的所有 VM。
 
-
 ## 網路安全性群組的詳細資訊
 這裡的快速命令可讓您使流向您 VM 的流量開始正常運作。「網路安全性群組」提供許多絕佳的功能和細微性來控制對您資源的存取。您可以深入了解[建立網路安全性群組和 ACL 規則](../virtual-network/virtual-networks-create-nsg-arm-ps.md)。
 
@@ -59,8 +58,8 @@
 ## 後續步驟
 在此範例中，您建立了簡單的規則來允許 HTTP 流量。您可以從下列文章中，找到有關建立更詳細環境的資訊︰
 
-- [Azure 資源管理員概觀](../resource-group-overview.md)
-- [什麼是網路安全性群組 (NSG)？](../virtual-network/virtual-networks-nsg.md)
-- [負載平衡器的 Azure Resource Manager 概觀](../load-balancer/load-balancer-arm.md)
+* [Azure 資源管理員概觀](../resource-group-overview.md)
+* [什麼是網路安全性群組 (NSG)？](../virtual-network/virtual-networks-nsg.md)
+* [負載平衡器的 Azure Resource Manager 概觀](../load-balancer/load-balancer-arm.md)
 
 <!----HONumber=AcomDC_0907_2016-->

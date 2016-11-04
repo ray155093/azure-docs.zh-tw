@@ -1,25 +1,24 @@
-<properties 
-	pageTitle="搭配使用彈性資料庫用戶端程式庫與 Entity Framework | Microsoft Azure" 
-	description="使用彈性資料庫用戶端程式庫與和 Entity Framework 來編寫資料庫" 
-	services="sql-database" 
-	documentationCenter="" 
-	manager="jhubbard" 
-	authors="torsteng" 
-	editor=""/>
+---
+title: 搭配使用彈性資料庫用戶端程式庫與 Entity Framework | Microsoft Docs
+description: 使用彈性資料庫用戶端程式庫與和 Entity Framework 來編寫資料庫
+services: sql-database
+documentationcenter: ''
+manager: jhubbard
+author: torsteng
+editor: ''
 
-<tags 
-	ms.service="sql-database" 
-	ms.workload="sql-database" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="05/27/2016" 
-	ms.author="torsteng"/>
+ms.service: sql-database
+ms.workload: sql-database
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 05/27/2016
+ms.author: torsteng
 
-# 搭配使用彈性資料庫用戶端程式庫與 Entity Framework 
- 
+---
+# 搭配使用彈性資料庫用戶端程式庫與 Entity Framework
 這份文件說明 Entity Framework 應用程式為了要與[彈性資料庫工具](sql-database-elastic-scale-introduction.md)整合所需做的變更。重點在於使用 Entity Framework **Code First** 方法來編寫[分區對應管理](sql-database-elastic-scale-shard-map-management.md)和[資料相依路由](sql-database-elastic-scale-data-dependent-routing.md)。整份文件中以 EF 的 [Code First – 新的資料庫](http://msdn.microsoft.com/data/jj193542.aspx)教學課程作為執行範例。本文所附的範例程式碼取自於 Visual Studio 程式碼範例中的彈性資料庫工具範例集。
-  
+
 ## 下載並執行範例程式碼
 若要下載本文的程式碼：
 
@@ -27,9 +26,9 @@
 * 啟動 Visual Studio。 
 * 在 Visual Studio 中，選取 [檔案] -> [新增專案]。 
 * 在 [新增專案] 對話方塊中，瀏覽至 [**Visual C#**] 的 [**線上範例**]，然後在右上方的搜尋方塊中輸入 "elastic db"。
-    
+  
     ![Entity Framework 和彈性資料庫範例應用程式][1]
-
+  
     選取範例 [**Elastic DB Tools for Azure SQL – Entity Framework Integration**]。接受授權之後，就會載入範例。
 
 若要執行範例，您在 Azure SQL Database 中需要建立三個空的資料庫：
@@ -40,8 +39,7 @@
 
 建立這些資料庫後，在 **Program.cs** 的預留位置中，填入您的 Azure SQL DB 伺服器名稱、資料庫名稱及用來連接到資料庫的認證。在 Visual Studio 中建置方案。在建置過程中，Visual Studio 會下載彈性資料庫用戶端程式庫、Entity Framework 和暫時性錯誤處理所需的 NuGet 封裝。請確定您的解決方案已啟用還原 NuGet 封裝。您可以用滑鼠右鍵按一下 Visual Studio [方案總管] 中的方案檔來啟用這個設定。
 
-## Entity Framework 工作流程 
-
+## Entity Framework 工作流程
 Entity Framework 開發人員依賴下列四種工作流程來建置應用程式，以及確保應用程式物件的持續性：
 
 * **Code First (新的資料庫)**：EF 開發人員在應用程式碼中建立模型，然後 EF 從它產生資料庫。 
@@ -51,31 +49,24 @@ Entity Framework 開發人員依賴下列四種工作流程來建置應用程式
 
 這些方法都依賴 DbContext 類別來自動管理應用程式的資料庫連接和資料庫結構描述。我們將在本文稍後詳細討論，DbContext 基底類別的不同建構函式允許在不同程度上控制連接建立、資料庫啟動載入和結構描述建立。問題主要起因於 EF 所提供的資料庫連接管理，與彈性資料庫用戶端程式庫所提供的資料相依路由介面的連接管理功能，兩者交錯。
 
-## 彈性資料庫工具假設 
-
+## 彈性資料庫工具假設
 關於詞彙定義，請參閱[彈性資料庫工具字彙](sql-database-elastic-scale-glossary.md)。
 
 在彈性資料庫用戶端程式庫中，您會定義應用程式資料的資料分割，稱為 Shardlet。Shardlet 以分區化索引鍵來識別，而且會對應到特定的資料庫。根據目前的商務需求，應用程式可依需要而有無數個資料庫，並散發 Shardlet 來提供足夠的容量或效能。分區化索引鍵值到資料庫的對應，由彈性資料庫用戶端 API 所提供的分區對應來儲存。我們將這項功能稱為**分區對應管理**，簡稱為 SMM。對於攜帶分區化索引鍵的要求，分區對應也充當資料庫連接的代理人。我們將這項功能稱為**資料相依路由**。
- 
+
 分區對應管理員可防止使用者檢視 Shardlet 資料時出現不一致，這種情況發生在並行 Shardlet 管理作業中 (例如將資料從一個分區重新放置到另一個分區)。在作法上，用戶端程式庫所管理的分區對應會代理應用程式的資料庫連接。這可讓分區對應功能在分區管理作業可能影響已建立連接的 Shardlet 時，自動終止資料庫連接。這種方法需要與一些 EF 功能整合，例如從現有連接建立新的連接以檢查資料庫是否存在。一般而言，我們觀察是只有在已關閉的資料庫連接上 (EF 工作可安心複製)，標準 DbContext 建構函式才能可靠地運作。彈性資料庫的設計原則只是代理已開啟的連接。有人可能會認為先關閉用戶端程式庫所代理的連接，再交給 EF DbContext，就可以解決這個問題。不過，若關閉連接並依賴 EF 來重新開啟它，就等於放棄程式庫所執行的驗證和一致性檢查。不過，EF 的移轉功能會使用這些連接，在應用程式不知情的情況下管理基礎資料庫結構描述。在理想的情況下，我們希望在相同的應用程式中保留並結合彈性資料庫用戶端程式庫和 EF 提供的所有這些功能。下一節詳細討論這些屬性和需求。
 
-
-## 需求 
-
+## 需求
 當使用彈性資料庫用戶端程式庫和 Entity Framework API 時，我們希望保留下列屬性：
 
 * **相應放大**：我們想要依需要在分區化應用程式資料層中新增或移除資料庫，以滿足應用程式的容量需求。這表示控制資料庫的建立和刪除，以及使用彈性資料庫分區對應管理員 API 來管理資料庫，還有 Shardlet 的對應。 
-
 * **一致性**：應用程式採用分區化，並且使用用戶端程式庫的資料相依路由功能。為了避免查詢結果損毀或錯誤，由分區對應管理員來代理連接。這也會保留驗證和一致性。
- 
 * **Code First**：保留 EF code first 典範的便利性。在 Code First 中，應用程式中的類別直接對應至基礎資料庫結構。應用程式碼與 DbSets 互動，DbSets 將基礎資料庫處理所需的大部分工作隱藏起來。
- 
 * **結構描述**：Entity Framework 會處理建立初始資料庫結構描述，以及結構描述後續透過移轉的演進。只要保留這些功能，就可輕鬆隨著資料演進來調整您的應用程式。
 
 下列指導方針指示如何使用彈性資料庫工具，以滿足 Code First 應用程式的這些需求。
 
-## 使用 EF DbContext 的資料相依路由 
-
+## 使用 EF DbContext 的資料相依路由
 資料庫與 Entity Framework 的連接通常是透過 **DbContext** 的子類別管理。從 **DbContext** 衍生來建立這些子類別。您在此定義 **DbSets**，為您的應用程式實作 CLR 物件的資料庫支援集合。就資料相依路由來說，我們可以識別其他 EF Code First 應用程式案例中不一定支援的幾個實用的屬性：
 
 * 資料庫已經存在，而且已在彈性資料庫分區對應中註冊。 
@@ -124,16 +115,16 @@ Entity Framework 開發人員依賴下列四種工作流程來建置應用程式
 ## 重點
 * 新的建構函式取代 DbContext 子類別的預設建構函式 
 * 新的建構函式接受透過彈性資料庫用戶端程式庫的資料相依路由所需的引數：
-    * 用來存取資料相依路由介面的分區對應，
-    * 用來識別 Shardlet 的分區化索引鍵，
-    * 分區的資料相依路由連接所需的連接字串和認證。 
- 
-* 基底類別建構函式的呼叫會繞道至靜態方法，以執行資料相依路由所需的所有步驟。
-   * 它會在分區對應上使用彈性資料庫用戶端介面的 OpenConnectionForKey 呼叫，以建立開啟的連接。
-   * 分區對應會對分區建立開啟的連接，此分區保留給定分區化索引鍵的 Shardlet。
-   * 這個開啟的連接會傳回給 DbContext 的基底類別建構函式，以指出此連接要給 EF 使用，而不要讓 EF 自動建立新的連接。如此一來，連接已具有彈性資料庫用戶端 API 的性質，將可以保證分區對應管理作業時的一致性。
- 
   
+  * 用來存取資料相依路由介面的分區對應，
+  * 用來識別 Shardlet 的分區化索引鍵，
+  * 分區的資料相依路由連接所需的連接字串和認證。 
+* 基底類別建構函式的呼叫會繞道至靜態方法，以執行資料相依路由所需的所有步驟。
+  
+  * 它會在分區對應上使用彈性資料庫用戶端介面的 OpenConnectionForKey 呼叫，以建立開啟的連接。
+  * 分區對應會對分區建立開啟的連接，此分區保留給定分區化索引鍵的 Shardlet。
+  * 這個開啟的連接會傳回給 DbContext 的基底類別建構函式，以指出此連接要給 EF 使用，而不要讓 EF 自動建立新的連接。如此一來，連接已具有彈性資料庫用戶端 API 的性質，將可以保證分區對應管理作業時的一致性。
+
 在您的程式碼中使用 DbContext 子類別的新建構函式，而不是預設建構函式。下列是一個範例：
 
     // Create and save a new blog.
@@ -185,19 +176,17 @@ Microsoft 模式和作法小組已發佈[暫時性錯誤處理應用程式區塊
 #### 建構函式重寫
 上述程式碼範例說明應用程式所需的預設建構函式重寫，以便使用資料相依路由與 Entity Framework。下表將這個方法擴及其他建構函式。
 
+| 目前的建構函式 | 重寫的資料建構函式 | 基底建構函式 | 注意事項 |
+| --- | --- | --- | --- |
+| MyContext() |ElasticScaleContext(ShardMap, TKey) |DbContext(DbConnection, bool) |連接必須是分區對應和資料相依路由索引鍵的函數。您需要略過由 EF 自動建立連接，改用分區對應來代理連接。 |
+| MyContext(string) |ElasticScaleContext(ShardMap, TKey) |DbContext(DbConnection, bool) |連接是分區對應和資料相依路由索引鍵的函數。固定的資料庫名稱或連接字串無法運作，因為它們會略過分區對應所執行的驗證。 |
+| MyContext(DbCompiledModel) |ElasticScaleContext(ShardMap, TKey, DbCompiledModel) |DbContext(DbConnection, DbCompiledModel, bool) |將使用提供的模型建立給定分區對應和分區化索引鍵的連接。編譯的模型將會傳遞給基底 c'tor。 |
+| MyContext(DbConnection, bool) |ElasticScaleContext(ShardMap, TKey, bool) |DbContext(DbConnection, bool) |連接必須是從分區對應和索引鍵推斷的函數。無法提供它做為輸入 (除非該輸入已經使用分區對應和索引鍵)。將傳遞布林值。 |
+| MyContext(string, DbCompiledModel) |ElasticScaleContext(ShardMap, TKey, DbCompiledModel) |DbContext(DbConnection, DbCompiledModel, bool) |連接必須是從分區對應和索引鍵推斷的函數。無法提供它做為輸入 (除非該輸入使用分區對應和索引鍵)。將傳遞編譯的模型。 |
+| MyContext(ObjectContext, bool) |ElasticScaleContext(ShardMap, TKey, ObjectContext, bool) |DbContext(ObjectContext, bool) |新的建構函式必須確定在 ObjectContext 中做為輸入傳遞的任何連接，都會重新路由至 Elastic Scale 所管理的連接。ObjectContexts 類別的詳細討論已超出本文的範圍。 |
+| MyContext(DbConnection, DbCompiledModel,bool) |ElasticScaleContext(ShardMap, TKey, DbCompiledModel, bool) |DbContext(DbConnection, DbCompiledModel, bool); |連接必須是從分區對應和索引鍵推斷的函數。無法提供連接做為輸入 (除非該輸入已經使用分區對應和索引鍵)。模型和布林值會傳遞至基底類別建構函式。 |
 
-目前的建構函式 | 重寫的資料建構函式 | 基底建構函式 | 注意事項
----------- | ----------- | ------------|----------
-MyContext() |ElasticScaleContext(ShardMap, TKey) |DbContext(DbConnection, bool) |連接必須是分區對應和資料相依路由索引鍵的函數。您需要略過由 EF 自動建立連接，改用分區對應來代理連接。 
-MyContext(string)|ElasticScaleContext(ShardMap, TKey) |DbContext(DbConnection, bool) |連接是分區對應和資料相依路由索引鍵的函數。固定的資料庫名稱或連接字串無法運作，因為它們會略過分區對應所執行的驗證。 
-MyContext(DbCompiledModel) |ElasticScaleContext(ShardMap, TKey, DbCompiledModel) |DbContext(DbConnection, DbCompiledModel, bool) |將使用提供的模型建立給定分區對應和分區化索引鍵的連接。編譯的模型將會傳遞給基底 c'tor。
-MyContext(DbConnection, bool) |ElasticScaleContext(ShardMap, TKey, bool) |DbContext(DbConnection, bool) |連接必須是從分區對應和索引鍵推斷的函數。無法提供它做為輸入 (除非該輸入已經使用分區對應和索引鍵)。將傳遞布林值。 
-MyContext(string, DbCompiledModel) |ElasticScaleContext(ShardMap, TKey, DbCompiledModel) |DbContext(DbConnection, DbCompiledModel, bool) |連接必須是從分區對應和索引鍵推斷的函數。無法提供它做為輸入 (除非該輸入使用分區對應和索引鍵)。將傳遞編譯的模型。 
-MyContext(ObjectContext, bool) |ElasticScaleContext(ShardMap, TKey, ObjectContext, bool) |DbContext(ObjectContext, bool) |新的建構函式必須確定在 ObjectContext 中做為輸入傳遞的任何連接，都會重新路由至 Elastic Scale 所管理的連接。ObjectContexts 類別的詳細討論已超出本文的範圍。
-MyContext(DbConnection, DbCompiledModel,bool) |ElasticScaleContext(ShardMap, TKey, DbCompiledModel, bool)| DbContext(DbConnection, DbCompiledModel, bool); |連接必須是從分區對應和索引鍵推斷的函數。無法提供連接做為輸入 (除非該輸入已經使用分區對應和索引鍵)。模型和布林值會傳遞至基底類別建構函式。 
-
-## 透過 EF 移轉的分區結構描述部署 
-
+## 透過 EF 移轉的分區結構描述部署
 自動結構描述管理是 Entity Framework 所提供的便利性。就使用彈性資料庫工具的應用程式來說，我們希望保留這項功能，以便資料庫加入至分區化應用程式時，自動將結構描述佈建至新建立的分區。主要使用案例是針對使用 EF 的分區化應用程式，在資料層增加容量。依賴 EF 的功能來管理結構描述，可減輕以 EF 建置的分區化應用程式所需的資料庫管理工作。
 
 透過 EF 移轉的結構描述部署在**未開啟的連接**上表現最好。這與資料相依路由的情況相反，它依賴彈性資料庫用戶端 API 所提供的已開啟連接。另一個差異是一致性需求：雖然希望確保所有資料相依路由連接的一致性，以防止並行分區對應操作，但這無關於最初將結構描述部署到尚未在分區對應中註冊且尚未配置來保留 Shardlet 的新資料庫。因此，我們在此案例中可依賴一般資料庫連接，而不是資料相依路由。
@@ -236,10 +225,9 @@ MyContext(DbConnection, DbCompiledModel,bool) |ElasticScaleContext(ShardMap, TKe
 
             this.ShardMap.CreatePointMapping(key, shard); 
         } 
- 
+
 
 這個範例示範 **RegisterNewShard** 方法，此方法會在分區對應中註冊分區、透過 EF 移轉部署結構描述，並將分區化索引鍵的對應儲存至分區。它依賴 **DbContext** 子類別 (範例中的 **ElasticScaleContext**) 的建構函式 (接受 SQL 連接字串做為輸入)。這個建構函式的程式碼簡單易懂，如下列範例所示：
-
 
         // C'tor to deploy schema and migrations to a new shard 
         protected internal ElasticScaleContext(string connectionString) 
@@ -256,29 +244,23 @@ MyContext(DbConnection, DbCompiledModel,bool) |ElasticScaleContext(ShardMap, TKe
 
             return connnectionString; 
         } 
- 
+
 您可能使用繼承自基底類別的建構函式版本。但是，程式碼必須確定連接時使用 EF 的預設初始設定式。因此，在以連接字串呼叫基底類別建構函式之前，先稍微繞道至靜態方法。請注意，分區的註冊應該在不同的應用程式定義域或程序中執行，以確保 EF 的初始設定式設定不會發生衝突。
 
-
-## 限制 
-
+## 限制
 這份文件中所述的方法有幾個限制：
 
 * 使用 **LocalDb** 的 EF 應用程式必須先移轉至一般 SQL Server 資料庫，才能使用彈性資料庫用戶端程式庫。使用 **LocalDb** 時，無法透過分區化與 Elastic Scale 來相應放大應用程式。請注意，仍可使用 **LocalDb** 來開發。 
-
 * 應用程式中涉及資料庫結構描述變更的任何變更，都必須在所有分區上經過 EF 移轉。這份文件的範例程式碼不示範此作法。請考慮使用 Update-Database 搭配 ConnectionString 參數，以逐一查看所有分區，或使用 Update-Database 搭配 –Script 選項，以擷取暫止移轉的 T-SQL 指令碼，並將 T-SQL 指令碼套用至您的分區。
-
 * 提出要求時，將會假定所有資料庫處理都包含在要求所提供的分區化索引鍵所識別的單一分區內。不過，這項假設不一定永遠成立。例如，有時無法提供分區化索引鍵。為了解決這個問題，用戶端程式庫提供 **MultiShardQuery** 類別，此類別實作連接抽象來查詢數個分區。學習搭配 EF 來使用 **MultiShardQuery** 已超出本文的範圍
 
 ## 結論
-
 透過本文件中所述的步驟，EF 應用程式可以使用彈性資料庫用戶端程式庫的資料相依路由功能，重構 EF 應用程式中使用的 **DbContext** 子類別的建構函式。已存在 **DbContext** 類別的地方不需要做太多變更。此外，EF 應用程式可以結合叫用必要 EF 移轉的步驟，以及將新的分區和對應註冊在分區對應中的步驟，以繼續受益於自動結構描述部署。
 
-
-[AZURE.INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
+[!INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
 
 <!--Image references-->
 [1]: ./media/sql-database-elastic-scale-use-entity-framework-applications-visual-studio/sample.png
- 
+
 
 <!---HONumber=AcomDC_0601_2016-->

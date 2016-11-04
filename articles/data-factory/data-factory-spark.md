@@ -1,21 +1,21 @@
-<properties 
-	pageTitle="從 Azure Data Factory 叫用 Spark 程式" 
-	description="了解如何從 Azure Data Factory 使用 MapReduce 活動叫用 Spark 程式。" 
-	services="data-factory" 
-	documentationCenter="" 
-	authors="spelluru" 
-	manager="jhubbard" 
-	editor="monicar"/>
+---
+title: 從 Azure Data Factory 叫用 Spark 程式
+description: 了解如何從 Azure Data Factory 使用 MapReduce 活動叫用 Spark 程式。
+services: data-factory
+documentationcenter: ''
+author: spelluru
+manager: jhubbard
+editor: monicar
 
-<tags 
-	ms.service="data-factory" 
-	ms.workload="data-services" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="08/25/2016" 
-	ms.author="spelluru"/>
+ms.service: data-factory
+ms.workload: data-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/25/2016
+ms.author: spelluru
 
+---
 # 從 Data Factory 叫用 Spark 程式
 ## 簡介
 您可以使用 Data Factory 管線的 MapReduce 活動，在 HDInsight Spark 叢集上執行 Spark 程式。如需有關使用活動的詳細資訊，請在閱讀本文之前先參閱 [MapReduce 活動](data-factory-map-reduce.md)一文。
@@ -34,17 +34,18 @@
 
 MapReduce 活動被設定為叫用 Azure 儲存體之 **adflibs** 容器中的 **com.adf.sparklauncher.jar** (在 StorageLinkedService.json 中指定)。這個程式的原始程式碼位於 Spark-ADF/src/main/java/com/adf/ 資料夾中，它會呼叫 spark-submit 並執行 Spark 作業。
 
-> [AZURE.IMPORTANT] 
-在使用範例之前，請先詳閱 [README.TXT](https://github.com/Azure/Azure-DataFactory/blob/master/Samples/Spark/README.txt) 以了解最新資訊及其他資訊。
->  
+> [!IMPORTANT]
+> 在使用範例之前，請先詳閱 [README.TXT](https://github.com/Azure/Azure-DataFactory/blob/master/Samples/Spark/README.txt) 以了解最新資訊及其他資訊。
+> 
 > 請搭配這個方法使用您自己的 HDInsight Spark 叢集，以使用 MapReduce 活動來叫用 Spark 程式。不支援使用隨選 HDInsight 叢集。
-
+> 
+> 
 
 ## 另請參閱
-- [Hive 活動](data-factory-hive-activity.md)
-- [Pig 活動](data-factory-pig-activity.md)
-- [MapReduce 活動](data-factory-map-reduce.md)
-- [Hadoop 串流活動](data-factory-hadoop-streaming-activity.md)
-- [叫用 R 指令碼](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)
+* [Hive 活動](data-factory-hive-activity.md)
+* [Pig 活動](data-factory-pig-activity.md)
+* [MapReduce 活動](data-factory-map-reduce.md)
+* [Hadoop 串流活動](data-factory-hadoop-streaming-activity.md)
+* [叫用 R 指令碼](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)
 
 <!---HONumber=AcomDC_0831_2016-->

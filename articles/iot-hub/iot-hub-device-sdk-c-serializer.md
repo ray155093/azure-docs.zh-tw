@@ -1,23 +1,22 @@
-<properties
-	pageTitle="適用於 C 的 Azure IoT 裝置 SDK - 序列化程式 | Microsoft Azure"
-	description="深入了解在適用於 C 的 Azure IoT 裝置 SDK 中使用序列化程式程式庫"
-	services="iot-hub"
-	documentationCenter=""
-	authors="olivierbloch"
-	manager="timlt"
-	editor=""/>
+---
+title: 適用於 C 的 Azure IoT 裝置 SDK - 序列化程式 | Microsoft Docs
+description: 深入了解在適用於 C 的 Azure IoT 裝置 SDK 中使用序列化程式程式庫
+services: iot-hub
+documentationcenter: ''
+author: olivierbloch
+manager: timlt
+editor: ''
 
-<tags
-     ms.service="iot-hub"
-     ms.devlang="cpp"
-     ms.topic="article"
-     ms.tgt_pltfrm="na"
-     ms.workload="na"
-     ms.date="09/06/2016"
-     ms.author="obloch"/>
+ms.service: iot-hub
+ms.devlang: cpp
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 09/06/2016
+ms.author: obloch
 
+---
 # Microsoft Azure IoT 裝置 SDK (適用於 C) – 深入了解序列化程式
-
 本系列的[第一篇文章](iot-hub-device-sdk-c-intro.md)介紹 **Azure IoT 裝置 SDK for C**。下一篇文章提供 [**IoTHubClient**](iot-hub-device-sdk-c-iothubclient.md) 的更詳細描述。本文將提供「序列化程式」程式庫這個最後元件的更詳細描述，來完成 SDK 的涵蓋範圍。
 
 本簡介文章描述如何使用「序列化程式」程式庫將事件傳送至 IoT 中樞，以及接收來自 IoT 中樞的訊息。在本文中，我們將更完整說明如何利用「序列化程式」巨集語言來建立資料模型，以延伸該討論。本文也包含更多有關程式庫如何將訊息序列化 (以及在某些情況下，如何控制序列化行為) 的詳細資料。我們也將描述您可以修改以判斷您所建立之模型大小的某些參數。
@@ -29,7 +28,6 @@
 您可以尋找 [Microsoft Azure IoT SDK](https://github.com/Azure/azure-iot-sdks) GitHub 儲存機制中的**適用於 C 的 Azure IoT 裝置 SDK**，並在 [C API 參考資料](http://azure.github.io/azure-iot-sdks/c/api_reference/index.html)中檢視 API 的詳細資料。
 
 ## 模型化語言
-
 本系列中的[簡介文章](iot-hub-device-sdk-c-intro.md)透過 **simplesample\_amqp** 應用程式提供的範例介紹 **Azure IoT 裝置 SDK for C** 模型化語言：
 
 ```
@@ -54,28 +52,30 @@ END_NAMESPACE(WeatherStation);
 
 此範例中並未示範 SDK 支援的其他資料類型。我們將在稍後討論。
 
-> [AZURE.NOTE] IoT 中樞會將裝置傳送給它的資料視為「事件」，而模型化語言則是會將其視為「資料」(使用 **WITH\_DATA** 來定義)。同樣地，IoT 中樞會將您傳送給裝置的資料視為「訊息」，而模型化語言則是會將其視為「動作」(使用 **WITH\_ACTION** 來定義)。請注意，在本文中可能會交替使用這些詞彙。
+> [!NOTE]
+> IoT 中樞會將裝置傳送給它的資料視為「事件」，而模型化語言則是會將其視為「資料」(使用 **WITH\_DATA** 來定義)。同樣地，IoT 中樞會將您傳送給裝置的資料視為「訊息」，而模型化語言則是會將其視為「動作」(使用 **WITH\_ACTION** 來定義)。請注意，在本文中可能會交替使用這些詞彙。
+> 
+> 
 
 ### 支援的資料類型
-
 利用**序列化程式**程式庫建立的模型支援下列資料類型：
 
 | 類型 | 說明 |
-|-------------------------|----------------------------------------|
-| double | 雙精確度浮點數 |
-| int | 32 位元整數 |
-| float | 單精確度浮點數 |
-| long | 長整數 |
-| int8\_t | 8 位元整數 |
-| int16\_t | 16 位元整數 |
-| int32\_t | 32 位元整數 |
-| int64\_t | 64 位元整數 |
-| 布林 | 布林值 |
-| ascii\_char\_ptr | ASCII 字串 |
-| EDM\_DATE\_TIME\_OFFSET | 日期時間位移 |
-| EDM\_GUID | GUID |
-| EDM\_BINARY | binary |
-| DECLARE\_STRUCT | 複雜資料類型 |
+| --- | --- |
+| double |雙精確度浮點數 |
+| int |32 位元整數 |
+| float |單精確度浮點數 |
+| long |長整數 |
+| int8\_t |8 位元整數 |
+| int16\_t |16 位元整數 |
+| int32\_t |32 位元整數 |
+| int64\_t |64 位元整數 |
+| 布林 |布林值 |
+| ascii\_char\_ptr |ASCII 字串 |
+| EDM\_DATE\_TIME\_OFFSET |日期時間位移 |
+| EDM\_GUID |GUID |
+| EDM\_BINARY |binary |
+| DECLARE\_STRUCT |複雜資料類型 |
 
 我們先從最後一個資料類型開始討論。**DECLARE\_STRUCT** 可讓您定義複雜資料類型，也就是其他基本類型的群組。這些群組可讓我們定義看起來像這樣的模型：
 
@@ -140,27 +140,27 @@ SendAsync(iotHubClientHandle, (const void*)&(testModel->Test));
 ```
 void SendAsync(IOTHUB_CLIENT_LL_HANDLE iotHubClientHandle, const void *dataEvent)
 {
-	unsigned char* destination;
-	size_t destinationSize;
-	if (SERIALIZE(&destination, &destinationSize, *(const unsigned char*)dataEvent) ==
-	{
-		// null terminate the string
-		char* destinationAsString = (char*)malloc(destinationSize + 1);
-		if (destinationAsString != NULL)
-		{
-			memcpy(destinationAsString, destination, destinationSize);
-			destinationAsString[destinationSize] = '\0';
-			IOTHUB_MESSAGE_HANDLE messageHandle = IoTHubMessage_CreateFromString(destinationAsString);
-			if (messageHandle != NULL)
-			{
-				IoTHubClient_SendEventAsync(iotHubClientHandle, messageHandle, sendCallback, (void*)0);
+    unsigned char* destination;
+    size_t destinationSize;
+    if (SERIALIZE(&destination, &destinationSize, *(const unsigned char*)dataEvent) ==
+    {
+        // null terminate the string
+        char* destinationAsString = (char*)malloc(destinationSize + 1);
+        if (destinationAsString != NULL)
+        {
+            memcpy(destinationAsString, destination, destinationSize);
+            destinationAsString[destinationSize] = '\0';
+            IOTHUB_MESSAGE_HANDLE messageHandle = IoTHubMessage_CreateFromString(destinationAsString);
+            if (messageHandle != NULL)
+            {
+                IoTHubClient_SendEventAsync(iotHubClientHandle, messageHandle, sendCallback, (void*)0);
 
-				IoTHubMessage_Destroy(messageHandle);
-			}
-			free(destinationAsString);
-		}
-		free(destination);
-	}
+                IoTHubMessage_Destroy(messageHandle);
+            }
+            free(destinationAsString);
+        }
+        free(destination);
+    }
 }
 ```
 
@@ -171,16 +171,16 @@ void SendAsync(IOTHUB_CLIENT_LL_HANDLE iotHubClientHandle, const void *dataEvent
 ```
 EDM_DATE_TIME_OFFSET GetDateTimeOffset(time_t time)
 {
-	struct tm newTime;
-	gmtime_s(&newTime, &time);
-	EDM_DATE_TIME_OFFSET dateTimeOffset;
-	dateTimeOffset.dateTime = newTime;
-	dateTimeOffset.fractionalSecond = 0;
-	dateTimeOffset.hasFractionalSecond = 0;
-	dateTimeOffset.hasTimeZone = 0;
-	dateTimeOffset.timeZoneHour = 0;
-	dateTimeOffset.timeZoneMinute = 0;
-	return dateTimeOffset;
+    struct tm newTime;
+    gmtime_s(&newTime, &time);
+    EDM_DATE_TIME_OFFSET dateTimeOffset;
+    dateTimeOffset.dateTime = newTime;
+    dateTimeOffset.fractionalSecond = 0;
+    dateTimeOffset.hasFractionalSecond = 0;
+    dateTimeOffset.hasTimeZone = 0;
+    dateTimeOffset.timeZoneHour = 0;
+    dateTimeOffset.timeZoneMinute = 0;
+    return dateTimeOffset;
 }
 ```
 
@@ -197,7 +197,6 @@ EDM_DATE_TIME_OFFSET GetDateTimeOffset(time_t time)
 有了這項資訊，我們便可以定義包含支援之資料類型範圍的模型，這些資料類型包括複雜類型 (我們甚至可以包含其他複雜類型內的複雜類型)。不過，上述範例所產生的序列化 JSON 突顯了一個重點。我們*如何*利用**序列化程式**程式庫傳送資料，可完全決定 JSON 如何形成。此特點就是我們接下來要討論的內容。
 
 ## 深入了解序列化
-
 上一節強調**序列化程式**程式庫所產生的輸出範例。在本節中，我們將說明程式庫如何將資料序列化，以及如何使用序列化 API 來控制該行為。
 
 為了進一步討論序列化，我們將使用以控溫器為基礎的新模型。首先，讓我們針對所要嘗試處理的案例提供一些背景。
@@ -207,7 +206,6 @@ EDM_DATE_TIME_OFFSET GetDateTimeOffset(time_t time)
 在這個案例中，我們將示範兩種不同的資料模型化方式，並將說明該模型化對序列化輸出的影響。
 
 ### 模型 1
-
 以下是支援先前案例的第一版模型：
 
 ```
@@ -300,7 +298,6 @@ if (SERIALIZE(&destination, &destinationSize, thermostat->Humidity) == IOT_AGENT
 現在，我們要修改模型，讓它包含相同的資料，但具有不同的結構。
 
 ### 模型 2
-
 請考慮上述模型的替代模型：
 
 ```
@@ -444,7 +441,6 @@ if (SERIALIZE(&destination, &destinationSize, thermostat->Temperature, thermosta
 沒有絕對正確或錯誤的方法。請務必了解**序列化程式**程式庫的運作方式，並挑選最適合您需求的模型化方法。
 
 ## 訊息處理
-
 到目前為止，本文只討論傳送事件到 IoT 中樞，尚未處理接收訊息。這是因為有關接收訊息的相關內容在[先前的文章](iot-hub-device-sdk-c-intro.md)中已涵蓋大部分資訊。請從那篇文章回憶，您是藉由註冊訊息回呼函式來處理訊息：
 
 ```
@@ -529,7 +525,6 @@ EXECUTE_COMMAND_RESULT SetAirResistance(ContosoAnemometer* device, int Position)
 本節說明使用**序列化程式**程式庫來傳送事件及接收訊息時的一切資訊。在繼續討論之前，讓我們先討論一些您可以設定以控制模型大小的參數。
 
 ## 巨集組態
-
 如果您使用**序列化程式**程式庫，需注意的 SDK 重點位於 azure-c-shared-utility 程式庫中。如果您已經利用 --recursive 選項，從 GitHub 複製 Azure-iot-sdks 儲存機制，您將可在以下位置找到這個共用公用程式庫：
 
 ```
@@ -560,9 +555,8 @@ azure-c-shared-utility\\macro\_utils\_h\_generator.
 
 這些值是 SDK 隨附的預設參數。每個參數都具有下列意義：
 
--   nMacroParameters – 控制您在一個 DECLARE\_MODEL 巨集定義中所擁有的參數數目。
-
--   nArithmetic – 控制模型中允許的成員總數。
+* nMacroParameters – 控制您在一個 DECLARE\_MODEL 巨集定義中所擁有的參數數目。
+* nArithmetic – 控制模型中允許的成員總數。
 
 這些參數之所以重要，是因為它們控制您模型的大小。例如，請考慮以此模型定義：
 
@@ -589,6 +583,8 @@ WITH_DATA(int, MyData)
 然後將此專案新增到您的 Visual Studio 解決方案：
 
 > .\\c\\serializer\\build\\windows\\serializer.vcxproj
+> 
+> 
 
 完成時，解決方案應該如下所示：
 
@@ -601,37 +597,29 @@ WITH_DATA(int, MyData)
 到目前為止，我們幾乎已經討論了如何使用**序列化程式**程式庫撰寫程式碼所必須知道的一切內容。在做出結論之前，讓我們先從先前的文章中回顧一些您可能想知道的主題。
 
 ## 較低層級的 API
-
 本文著重的範例應用程式是 **simplesample\_amqp**。這個範例使用較高層級 (非 "LL") API 來傳送事件和接收訊息。如果您使用這些 API，將會執行背景執行緒來處理事件傳送和訊息接收。不過，您可以使用較低層級 (LL) API 來消除這個背景執行緒，並明確掌控傳送事件或從雲端接收訊息的時機。
 
 如[前一篇文章](iot-hub-device-sdk-c-iothubclient.md)所述，有一組由較高層級 API 組成的函式：
 
--   IoTHubClient\_CreateFromConnectionString
-
--   IoTHubClient\_SendEventAsync
-
--   IoTHubClient\_SetMessageCallback
-
--   IoTHubClient\_Destroy
+* IoTHubClient\_CreateFromConnectionString
+* IoTHubClient\_SendEventAsync
+* IoTHubClient\_SetMessageCallback
+* IoTHubClient\_Destroy
 
 這些 API 會在 **simplesample\_amqp** 中示範。
 
 此外，也有一組類似的較低層級 API。
 
--   IoTHubClient\_LL\_CreateFromConnectionString
-
--   IoTHubClient\_LL\_SendEventAsync
-
--   IoTHubClient\_LL\_SetMessageCallback
-
--   IoTHubClient\_LL\_Destroy
+* IoTHubClient\_LL\_CreateFromConnectionString
+* IoTHubClient\_LL\_SendEventAsync
+* IoTHubClient\_LL\_SetMessageCallback
+* IoTHubClient\_LL\_Destroy
 
 請注意，較低層級 API 的運作方式與先前文章中所述的完全相同。如果您想要背景執行緒以處理事件傳送和訊息接收，您可以使用第一組 API。如果您想要掌握與 IoT 中樞之間傳送和接收資料時的明確控制權，您可以使用第二組 API。任何一組 API 使用**序列化程式**程式庫的效果都相同。
 
 如需有關如何將較低層級 API 與「序列化程式」程式庫搭配使用的範例，請參考 **simplesample\_http** 應用程式。
 
 ## 其他主題
-
 幾個其他值得再次一提的主題包括屬性處理、使用替代裝置認證及組態選項。這些都是[先前的文章](iot-hub-device-sdk-c-iothubclient.md)中所涵蓋的主題。重點在於，所有這些功能不論是與**序列化程式**程式庫搭配，還是與 **IoTHubClient** 程式庫搭配，其運作方式均相同。例如，如果您想要從模型將屬性附加至事件，您需透過前述的相同方式，使用 **IoTHubMessage\_Properties** 和 **Map**\_**AddorUpdate**：
 
 ```
@@ -663,20 +651,18 @@ serializer_deinit();
 除此之外，上面列出的所有其他功能在**序列化程式**程式庫中的運作方式，皆與在 **IoTHubClient** 程式庫中的運作方式相同。如需有關任何這些主題的詳細資訊，請參閱本系列中的[前一篇文章](iot-hub-device-sdk-c-iothubclient.md)。
 
 ## 後續步驟
-
 本文詳細說明 **Azure IoT 裝置 SDK (適用於 C)**中所含**序列化程式**程式庫的獨特層面。透過文中提供的資訊，您應該能充分了解如何使用模型來傳送事件和接收來自 IoT 中樞的訊息。
 
 在此也將結束本系列有關如何使用**Azure IoT 裝置 SDK (適用於 C)**開發應用程式的三部曲。這些資訊應該不僅足以讓您入門，還能讓您徹底了解 API 的運作方式。如需其他資訊，還有一些 SDK 中的範例未涵蓋在本文中。除此之外，[SDK 文件](https://github.com/Azure/azure-iot-sdks)也是取得其他資訊的絕佳資源。
-
 
 若要深入了解如何開發 IoT 中樞，請參閱 [IoT 中樞 SDK][lnk-sdks]。
 
 若要進一步探索 IoT 中樞的功能，請參閱︰
 
-- [設計您的解決方案][lnk-design]
-- [使用範例 UI 探索裝置管理][lnk-dmui]
-- [使用閘道 SDK 模擬裝置][lnk-gateway]
-- [使用 Azure 入口網站管理 IoT 中樞][lnk-portal]
+* [設計您的解決方案][lnk-design]
+* [使用範例 UI 探索裝置管理][lnk-dmui]
+* [使用閘道 SDK 模擬裝置][lnk-gateway]
+* [使用 Azure 入口網站管理 IoT 中樞][lnk-portal]
 
 [lnk-sdks]: iot-hub-sdks-summary.md
 

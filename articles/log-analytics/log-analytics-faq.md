@@ -1,28 +1,25 @@
-<properties
-    pageTitle="Log Analytics 常見問題集 | Microsoft Azure"
-    description="Log Analytics 服務的相關常見問題的解答。"
-    services="log-analytics"
-    documentationCenter=""
-    authors="bandersmsft"
-    manager="jwhit"
-    editor=""/>
+---
+title: Log Analytics 常見問題集 | Microsoft Docs
+description: Log Analytics 服務的相關常見問題的解答。
+services: log-analytics
+documentationcenter: ''
+author: bandersmsft
+manager: jwhit
+editor: ''
 
-<tags
-    ms.service="log-analytics"
-    ms.workload="na"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="10/10/2016"
-    ms.author="banders"/>
+ms.service: log-analytics
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 10/10/2016
+ms.author: banders
 
-
+---
 # <a name="log-analytics-faq"></a>Log Analytics 常見問題集
-
 此 Microsoft 常見問題集是 Microsoft Operations Management Suite (OMS) 中 Log Analytics 常見問題的清單。 若您有任何關於 Log Analytics 的其他問題，請前往 [論壇](https://social.msdn.microsoft.com/Forums/azure/home?forum=opinsights) 並張貼您的問題。 我們社群的服務人員將協助您找到答案。 若遇到常見問題，我們會將其加入此文章，以便您可以快速且輕鬆地找到。
 
 ## <a name="general"></a>一般
-
 **問：AD 和 SQL 評估解決方案會執行哪些檢查？**
 
 A. 下列查詢會顯示目前執行的所有檢查的描述：
@@ -58,7 +55,7 @@ A. Log Analytics 服務以 Azure 為建置基礎，而端點會接收 [Microsoft
 
 **問：我可以使用 ExpressRoute 連接到 Azure。我的 Log Analytics 流量是否會使用我的 ExpressRoute 連線？**  
 
-A. [ExpressRoute 文件](./expressroute/expressroute-faqs.md#supported-services)中描述不同類型的 ExpressRoute 流量。
+A. [ExpressRoute 文件](../expressroute/expressroute-faqs.md#supported-services)中描述不同類型的 ExpressRoute 流量。
 
 通往 Log Analytics 的流量都會使用公用互連 ExpressRoute 電路。
 
@@ -90,7 +87,6 @@ A. `Move-AzureRmResource` 指令程式可讓您將 Log Analytics 工作區及自
 在 **Azure Log Analytics (OMS)** 下，移除所有列出的工作區。
 
 ## <a name="agent-data"></a>代理程式資料
-
 **問：我可以透過代理程式傳送多少資料到 Log Analytics？是否有每位客戶最大的資料量？**  
 A. 免費方案每個工作區的每日容量設定為 500 MB。 標準和進階計畫對於所上傳的資料量沒有限制。 做為一項雲端服務，OMS 中的 Log Analytics 的設計可自動相應增加，以處理來自客戶的資料量 - 即使是每日數 TB。
 
@@ -106,9 +102,9 @@ A. 頻寬是關於傳送的資料量的功能。 透過網路傳送資料時，�
 
 A. 這主要是取決於：
 
-- 您已啟用的解決方案
-- 記錄檔和要收集的效能計數器的數目
-- 記錄檔中的資料量
+* 您已啟用的解決方案
+* 記錄檔和要收集的效能計數器的數目
+* 記錄檔中的資料量
 
 免費定價層是將數個伺服器上架和量測典型資料量的好方法。 [使用量]  頁面會顯示整體使用方式。
 對於可執行 WireData 代理程式的電腦，您可以使用下列查詢查看正在傳送的資料量：
@@ -120,10 +116,7 @@ Type=WireData (ProcessName="C:\\Program Files\\Microsoft Monitoring Agent\\Agent
 
 
 ## <a name="next-steps"></a>後續步驟
-
-- [開始使用 Log Analytics](log-analytics-get-started.md) 以深入了解 Log Analytics，並幾分鐘內就啟動並執行。
-
-
+* [開始使用 Log Analytics](log-analytics-get-started.md) 以深入了解 Log Analytics，並幾分鐘內就啟動並執行。
 
 <!--HONumber=Oct16_HO2-->
 

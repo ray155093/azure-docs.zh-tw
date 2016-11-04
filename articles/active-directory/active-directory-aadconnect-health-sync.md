@@ -1,22 +1,22 @@
 
-<properties
-	pageTitle="使用 Azure AD Connect Health 進行同步處理 | Microsoft Azure"
-	description="這是 Azure AD Connect Health 頁面，其中討論如何監視 Azure AD Connect 同步處理。"
-	services="active-directory"
-	documentationCenter=""
-	authors="billmath"
-	manager="femila"
-	editor="curtand"/>
+---
+title: 使用 Azure AD Connect Health 進行同步處理 | Microsoft Docs
+description: 這是 Azure AD Connect Health 頁面，其中討論如何監視 Azure AD Connect 同步處理。
+services: active-directory
+documentationcenter: ''
+author: billmath
+manager: femila
+editor: curtand
 
-<tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="get-started-article"
-	ms.date="08/08/2016"
-	ms.author="billmath"/>
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: get-started-article
+ms.date: 08/08/2016
+ms.author: billmath
 
+---
 # 使用適用於同步處理的 Azure AD Connect Health
 下列文件適用於使用 Azure AD Connect Health 來監視 Azure AD Connect (同步處理)。如需使用 Azure AD Connect Health 來監視 AD FS 的詳細資訊，請參閱[在 AD FS 使用 Azure AD Connect Health](active-directory-aadconnect-health-adfs.md)。此外，如需使用 Azure AD Connect Health 來監視 Active Directory 網域服務的詳細資訊，請參閱 [在 AD DS 使用 Azure AD Connect Health](active-directory-aadconnect-health-adds.md)。
 
@@ -43,8 +43,8 @@
 ## 同步處理深入了解
 藉由適用於同步處理的 Azure AD Connect Health 的最新版本，新增了下列新功能：
 
-- 同步處理作業的延遲
-- 物件變更趨勢
+* 同步處理作業的延遲
+* 物件變更趨勢
 
 ### 同步處理延遲
 這項功能提供連接器同步處理作業 (匯入、匯出等) 延遲的圖形化趨勢。這提供快速且輕鬆的方式，讓您了解不僅僅作業的延遲 (如果您會發生大量變更也很好)，還提供一個方式來偵測延遲中可能需要進一步調查的異常行為。
@@ -59,7 +59,6 @@
 ![同步處理延遲](./media/active-directory-aadconnect-health-sync/syncobjectchanges.png)
 
 ## 相關連結
-
 * [Azure AD Connect Health](active-directory-aadconnect-health.md)
 * [Azure AD Connect Health 代理程式安裝](active-directory-aadconnect-health-agent-install.md)
 * [Azure AD Connect Health 操作](active-directory-aadconnect-health-operations.md)

@@ -1,25 +1,28 @@
-<properties
-   pageTitle="在 Windows VM 上設定多個 NIC |Microsoft Azure"
-   description="了解如何使用 Azure PowerShell 或 Resource Manager 範本，來建立連接多個 NIC 的 VM。"
-   services="virtual-machines-windows"
-   documentationCenter=""
-   authors="iainfoulds"
-   manager="timlt"
-   editor=""/>
+---
+title: 在 Windows VM 上設定多個 NIC | Microsoft Docs
+description: 了解如何使用 Azure PowerShell 或 Resource Manager 範本，來建立連接多個 NIC 的 VM。
+services: virtual-machines-windows
+documentationcenter: ''
+author: iainfoulds
+manager: timlt
+editor: ''
 
-<tags
-   ms.service="virtual-machines-windows"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="vm-windows"
-   ms.workload="infrastructure"
-   ms.date="08/04/2016"
-   ms.author="iainfou"/>
+ms.service: virtual-machines-windows
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: vm-windows
+ms.workload: infrastructure
+ms.date: 08/04/2016
+ms.author: iainfou
 
+---
 # 建立具有多個 NIC 的 VM
 您可以在 Azure 中，建立連接多個虛擬網路介面 (NIC) 的虛擬機器 (VM)。常見案例是有不同的子網路可用於前端和後端連線，或者專門用來監視或備份解決方案的網路。本文提供快速命令來建立連接多個 NIC 的 VM。如需詳細資訊，包括如何在自己的 PowerShell 指令碼內建立多個 NIC，請深入了解[部署多個 NIC 的 VM](../virtual-network/virtual-network-deploy-multinic-arm-ps.md)。不同的 [VM 大小](virtual-machines-windows-sizes.md)支援不同數量的 NIC，因此可據以調整您的 VM。
 
->[AZURE.WARNING] 當您建立 VM 時，必須連接多個 NIC - 您無法在現有的 VM 中新增 NIC。您可以[根據原始虛擬磁碟建立新的 VM](virtual-machines-windows-specialized-image.md)，並且在部署 VM 時建立多個 NIC。
+> [!WARNING]
+> 當您建立 VM 時，必須連接多個 NIC - 您無法在現有的 VM 中新增 NIC。您可以[根據原始虛擬磁碟建立新的 VM](virtual-machines-windows-specialized-image.md)，並且在部署 VM 時建立多個 NIC。
+> 
+> 
 
 ## 建立核心資源
 確定您已[安裝並執行最新的 Azure PowerShell](../powershell-install-configure.md)。
@@ -67,7 +70,6 @@ $NIC2 = New-AzureRmNetworkInterface -Name NIC2 -ResourceGroupName TestRG `
 ```
 
 通常您也可以建立[網路安全性群組](../virtual-network/virtual-networks-nsg.md)或[負載平衡器](../load-balancer/load-balancer-overview.md)來協助管理，以及將流量分散到您的 VM。這篇有關[多個 NIC 的 VM](../virtual-network/virtual-network-deploy-multinic-arm-ps.md) 的更詳盡文章可逐步引導您建立網路安全性群組並指派 NIC。
-
 
 ## 建立虛擬機器
 現在開始建置您的 VM 組態。在每個 VM 大小中，您可以新增至 VM 的 NIC 總數是有限制的。深入了解 [Windows VM 大小](virtual-machines-windows-sizes.md)。下列範例使用最多支援兩個 NIC 的 VM 大小 (`Standard_DS2_v2`)：

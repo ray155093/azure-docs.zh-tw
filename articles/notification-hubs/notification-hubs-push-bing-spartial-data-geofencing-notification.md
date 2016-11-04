@@ -1,37 +1,38 @@
-<properties
-	pageTitle="使用 Azure 通知中樞和 Bing 空間資料為推播通知加上地理柵欄 | Microsoft Azure"
-	description="在本教學課程中，您將學習如何使用 Azure 通知中樞和 Bing 空間資料來傳遞以位置為基礎的推播通知。"
-	services="notification-hubs"
-	documentationCenter="windows"
-    keywords="推播通知,推播通知"
-	authors="dend"
-	manager="yuaxu"
-	editor="dend"/>
+---
+title: 使用 Azure 通知中樞和 Bing 空間資料為推播通知加上地理柵欄 | Microsoft Docs
+description: 在本教學課程中，您將學習如何使用 Azure 通知中樞和 Bing 空間資料來傳遞以位置為基礎的推播通知。
+services: notification-hubs
+documentationcenter: windows
+keywords: 推播通知,推播通知
+author: dend
+manager: yuaxu
+editor: dend
 
-<tags
-	ms.service="notification-hubs"
-	ms.workload="mobile"
-	ms.tgt_pltfrm="mobile-windows-phone"
-	ms.devlang="dotnet"
-	ms.topic="hero-article"
-	ms.date="05/31/2016"
-	ms.author="dendeli"/>
-    
+ms.service: notification-hubs
+ms.workload: mobile
+ms.tgt_pltfrm: mobile-windows-phone
+ms.devlang: dotnet
+ms.topic: hero-article
+ms.date: 05/31/2016
+ms.author: dendeli
+
+---
 # 使用 Azure 通知中樞和 Bing 空間資料為推播通知加上地理柵欄
- 
- > [AZURE.NOTE] 若要完成此教學課程，您必須具備有效的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02)。
+> [!NOTE]
+> 若要完成此教學課程，您必須具備有效的 Azure 帳戶。如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02)。
+> 
+> 
 
 在本教學課程中，您將學習如何從通用 Windows 平台應用程式，運用 Azure 通知中樞和 Bing 空間資料來傳遞以位置為基礎的推播通知。
 
-##必要條件
+## 必要條件
 首先，您必須確定您擁有所有必要的軟體和服務︰
 
 * [Visual Studio 2015 Update 1](https://www.visualstudio.com/zh-TW/downloads/download-visual-studio-vs.aspx) 或更新版本 ([Community Edition](https://go.microsoft.com/fwlink/?LinkId=691978&clcid=0x409) 也行)。 
 * 最新版的 [Azure SDK](https://azure.microsoft.com/downloads/)。 
 * [Bing 地圖服務開發人員中心帳戶](https://www.bingmapsportal.com/) (您可以免費建立帳戶並將此帳戶關聯到您的 Microsoft 帳戶)。 
 
-##開始使用
-
+## 開始使用
 一開始請先建立專案。在 Visual Studio 中，開始 [空白應用程式 (通用 Windows)] 類型的新專案。
 
 ![](./media/notification-hubs-geofence/notification-hubs-create-blank-app.png)
@@ -39,17 +40,16 @@
 建立好專案之後，您應該就能控管應用程式本身。現在讓我們來進行地理柵欄基礎結構的各項設定。由於我們會使用 Bing 服務來進行這項作業，因此會有可供我們查詢特定位置框架的公用 REST API 端點︰
 
     http://spatial.virtualearth.net/REST/v1/data/
-    
+
 您必須指定下列參數以讓端點開始運作︰
 
 * **資料來源識別碼**和**資料來源名稱** – 在 Bing 地圖服務 API 中，資料來源包含了各種分門別類的中繼資料，例如營業據點和營業時間。您可以在此了解其相關資訊。 
 * **實體名稱** – 您想要作為通知參考點的實體。 
 * **Bing 地圖服務 API 金鑰** – 這是您稍早建立 Bing 開發人員中心帳戶時取得的金鑰。
- 
+
 接著讓我們來深入了解上述各個項目的設定。
 
-##設定資料來源
-
+## 設定資料來源
 您可以在 Bing 地圖服務開發人員中心進行此設定。請直接按一下上方導覽列中的 [資料來源]，然後選取 [管理資料來源]。
 
 ![](./media/notification-hubs-geofence/bing-maps-manage-data.png)
@@ -63,14 +63,17 @@
     Bing Spatial Data Services, 1.0, TestBoundaries
     EntityID(Edm.String,primaryKey)|Name(Edm.String)|Longitude(Edm.Double)|Latitude(Edm.Double)|Boundary(Edm.Geography)
     1|SanFranciscoPier|||POLYGON ((-122.389825 37.776598,-122.389438 37.773087,-122.381885 37.771849,-122.382186 37.777022,-122.389825 37.776598))
-    
+
 上述程式碼代表以下實體︰
 
 ![](./media/notification-hubs-geofence/bing-maps-geofence.png)
 
 直接將上述字串複製並貼到新檔案、將它另存為 **NotificationHubsGeofence.pipe**，然後上傳到 Bing 開發人員中心。
 
->[AZURE.NOTE]您可能會收到提示，要求您為 [主要金鑰] 指定不同於 [查詢金鑰] 的新金鑰。請直接透過儀表板建立新的金鑰，然後重新整理資料來源上傳頁面。
+> [!NOTE]
+> 您可能會收到提示，要求您為 [主要金鑰] 指定不同於 [查詢金鑰] 的新金鑰。請直接透過儀表板建立新的金鑰，然後重新整理資料來源上傳頁面。
+> 
+> 
 
 上傳資料檔案後，您必須確實發佈資料來源。
 
@@ -100,8 +103,7 @@
 
 ![](./media/notification-hubs-geofence/bing-maps-nores.png)
 
-##設定 UWP 應用程式
-
+## 設定 UWP 應用程式
 現在我們已經備妥資料來源，接下來我們可以開始處理稍早啟動的 UWP 應用程式。
 
 首先，我們必須啟用應用程式的位置服務。若要這樣做，請按兩下 [方案總管]中的 `Package.appxmanifest` 檔案。
@@ -198,8 +200,7 @@
         });
     }
 
-##設定後端
-
+## 設定後端
 從 GitHub 下載 [.NET 後端範例](https://github.com/Azure/azure-notificationhubs-samples/tree/master/dotnet/NotifyUsers)。下載完成後，依序開啟 `NotifyUsers` 資料夾和 `NotifyUsers.sln` 檔案。
 
 將 `AppBackend` 專案設定為 [啟始專案] 並加以啟動。
@@ -275,7 +276,10 @@
         }
     }
 
->[AZURE.NOTE] 請務必將 API 端點替換為您稍早從 Bing 開發人員中心取得的查詢 URL (API 金鑰也要如此處理)。
+> [!NOTE]
+> 請務必將 API 端點替換為您稍早從 Bing 開發人員中心取得的查詢 URL (API 金鑰也要如此處理)。
+> 
+> 
 
 如果查詢後有得到結果，這表示指定位置點位於地理柵欄邊界內，因此我們會傳回 `true`。如果查詢不到任何結果，Bing 就會告訴我們位置點位於查閱框架外部，因此我們會傳回 `false`。
 
@@ -302,8 +306,7 @@
 
 這樣一來，就只會在位置點位於邊界內時才傳送通知。
 
-##在 UWP 應用程式中測試推播通知
-
+## 在 UWP 應用程式中測試推播通知
 回到 UWP 應用程式，現在我們應該能夠測試通知了。在 `LocationHelper` 類別內建立新函式 `SendLocationToBackend`：
 
     public static async Task SendLocationToBackend(string pns, string userTag, string message, string latitude, string longitude)
@@ -325,7 +328,10 @@
         }
     }
 
->[AZURE.NOTE] 將 `POST_URL` 替換為我們在上一節建立的所部署 Web 應用程式的位置。現在您可以在本機加以執行，但是由於您要著手部署公用版本，因此您必須使用外部提供者來進行裝載。
+> [!NOTE]
+> 將 `POST_URL` 替換為我們在上一節建立的所部署 Web 應用程式的位置。現在您可以在本機加以執行，但是由於您要著手部署公用版本，因此您必須使用外部提供者來進行裝載。
+> 
+> 
 
 現在，讓我們來確實為 UWP 應用程式註冊推播通知。在 Visual Studio 中，按一下 [專案] > [市集] > [將應用程式與市集建立關聯]。
 
@@ -370,8 +376,7 @@
 
 ![](./media/notification-hubs-geofence/notification-hubs-test-notification.png)
 
-##後續步驟
-
+## 後續步驟
 除了上述步驟外，您可能還需要遵循幾個步驟以確定方案已可用於生產環境。
 
 首先，您可能需要確保地理柵欄是動態的。這需要對 Bing API 進行一些額外處理，才能在現有資料來源內上傳新邊界。如需這方面的詳細資訊，請參閱 [Bing 空間資料服務 API 說明文件](https://msdn.microsoft.com/library/ff701734.aspx)。

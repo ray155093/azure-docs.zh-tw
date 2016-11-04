@@ -3,16 +3,16 @@
 請依照下列步驟來建立傳送訊息動作：  
 
 1. 選取 [+ 新步驟] 來新增動作。  
-- 選取 [新增動作]。這會開啟搜尋方塊，您可以在其中搜尋任何想要採取的動作。以這個範例來說，感興趣的動作是「服務匯流排」動作。  
-![服務匯流排動作圖像 1](./media/connectors-create-api-servicebus/action-1.png)  
-- 輸入「服務匯流排」。  
-- 選取 [服務匯流排 - 傳送訊息] 做為要採取的動作。  
-![服務匯流排動作圖像 2](./media/connectors-create-api-servicebus/action-2.png)  
-- 輸入訊息的內容。這是必填欄位。  
-- 輸入將做為訊息傳送目的地的佇列或主題名稱。這也是必填欄位。  
-- 提供訊息的其他相關詳細資料。這是選擇性的。  
-![服務匯流排動作圖像 3](./media/connectors-create-api-servicebus/action-3.png)  
-- 儲存對您工作流程所做的變更。  
-![服務匯流排動作圖像 4](./media/connectors-create-api-servicebus/action-4.png)  
+2. 選取 [新增動作]。這會開啟搜尋方塊，您可以在其中搜尋任何想要採取的動作。以這個範例來說，感興趣的動作是「服務匯流排」動作。  
+   ![服務匯流排動作圖像 1](./media/connectors-create-api-servicebus/action-1.png)  
+3. 輸入「服務匯流排」。  
+4. 選取 [服務匯流排 - 傳送訊息] 做為要採取的動作。  
+   ![服務匯流排動作圖像 2](./media/connectors-create-api-servicebus/action-2.png)  
+5. 輸入訊息的內容。這是必填欄位。  
+6. 輸入將做為訊息傳送目的地的佇列或主題名稱。這也是必填欄位。  
+7. 提供訊息的其他相關詳細資料。這是選擇性的。  
+   ![服務匯流排動作圖像 3](./media/connectors-create-api-servicebus/action-3.png)  
+8. 儲存對您工作流程所做的變更。  
+   ![服務匯流排動作圖像 4](./media/connectors-create-api-servicebus/action-4.png)  
 
 <!---HONumber=AcomDC_0810_2016------>

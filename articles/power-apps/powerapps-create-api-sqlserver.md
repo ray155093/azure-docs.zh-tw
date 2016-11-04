@@ -1,30 +1,30 @@
-<properties
-	pageTitle="將 SQL Server API 加入 PowerApps Enterprise 中 | Microsoft Azure"
-	description="在貴組織的 App Service 環境中建立或設定新的 SQL Server API，並加入內部部署資料的連接"
-	services=""
-    suite="powerapps"
-	documentationCenter="" 
-	authors="linhtranms"
-	manager="dwrede"
-	editor=""/>
+---
+title: 將 SQL Server API 加入 PowerApps Enterprise 中 | Microsoft Docs
+description: 在貴組織的 App Service 環境中建立或設定新的 SQL Server API，並加入內部部署資料的連接
+services: ''
+suite: powerapps
+documentationcenter: ''
+author: linhtranms
+manager: dwrede
+editor: ''
 
+ms.service: powerapps
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 05/02/2016
+ms.author: litran
 
-<tags
-   ms.service="powerapps"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na" 
-   ms.date="05/02/2016"
-   ms.author="litran"/>
-
-
+---
 # 在 PowerApps Enterprise 中建立新的 SQL Server API
-
-> [AZURE.IMPORTANT] 本主題已經封存，並且很快就會移除。請到全新的 [PowerApps](https://powerapps.microsoft.com) 來看看我們在忙些什麼。
+> [!IMPORTANT]
+> 本主題已經封存，並且很快就會移除。請到全新的 [PowerApps](https://powerapps.microsoft.com) 來看看我們在忙些什麼。
 > 
-> - 若要深入了解 PowerApps 並開始使用，請移至 [PowerApps](https://powerapps.microsoft.com)。  
-> - 若要深入了解 PowerApps 中可用的連線，請瀏覽 [List of available connections (可用連線清單)](https://powerapps.microsoft.com/tutorials/connections-list/)。 
+> * 若要深入了解 PowerApps 並開始使用，請移至 [PowerApps](https://powerapps.microsoft.com)。  
+> * 若要深入了解 PowerApps 中可用的連線，請瀏覽 [List of available connections (可用連線清單)](https://powerapps.microsoft.com/tutorials/connections-list/)。 
+> 
+> 
 
 <!--Archived
 Add the SQL Server API to your organization's (tenant) app service environment. 
@@ -38,7 +38,7 @@ Add the SQL Server API to your organization's (tenant) app service environment.
 ![][15]  
 4. In **PowerApps**, select **Manage APIs**.
 5. In **Manage APIs**, select **Add** to add the new API.
-6. Enter a descriptive **name** for your API. For example, you're adding the SQL Server API for demo, you can name it *SQLServerDemo*.  	
+6. Enter a descriptive **name** for your API. For example, you're adding the SQL Server API for demo, you can name it *SQLServerDemo*.      
 7. In **Source**, select **Available APIs** to select the pre-built APIs, and select **SQL Server**. 
 8. Select **OK** to complete the steps.
 
@@ -52,11 +52,11 @@ You can connect to SQL Server on-premises. To establish this hybrid connectivity
 - [Site-to-site VPN](../vpn-gateway/vpn-gateway-create-site-to-site-rm-powershell.md)
 - [Point-to-site connectivity](../vpn-gateway/vpn-gateway-point-to-site-create.md)  
 
-	> [AZURE.NOTE]  Every app service environment has a virtual  network associated with it. You can establish this network connectivity to this virtual network.  
+    > [AZURE.NOTE]  Every app service environment has a virtual  network associated with it. You can establish this network connectivity to this virtual network.  
 - [Hybrid connections](../app-service-web/web-sites-hybrid-connection-get-started.md)  
 
-	> [AZURE.NOTE]  Every registered API in your app service environment has a corresponding web app. You can establish hybrid connections from this web app just like you can from any other web app.
-	
+    > [AZURE.NOTE]  Every registered API in your app service environment has a corresponding web app. You can establish hybrid connections from this web app just like you can from any other web app.
+
 The following example shows how to create a hybrid connection:  
 
 1. Select the SQL Server API you just created and select the Resource group. In this example, select the API called *sqlconnectordemo*, and select the *DedicatedAses* Resource Group:  

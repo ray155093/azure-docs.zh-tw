@@ -1,30 +1,28 @@
-<properties
-    pageTitle="分析平台：Apache Storm 與串流分析之間的比較 | Microsoft Azure"
-    description="本文將使用 Apache Storm 與串流分析之間的比較，提供您選擇雲端分析平台的指引。 了解功能和差異。"
-    keywords="分析平台, 分析平台, 雲端分析平台, storm 比較"
-    services="stream-analytics"
-    documentationCenter=""
-    authors="jeffstokes72"
-    manager="jhubbard"
-    editor="cgronlun"/>
+---
+title: 分析平台：Apache Storm 與串流分析之間的比較 | Microsoft Docs
+description: 本文將使用 Apache Storm 與串流分析之間的比較，提供您選擇雲端分析平台的指引。 了解功能和差異。
+keywords: 分析平台, 分析平台, 雲端分析平台, storm 比較
+services: stream-analytics
+documentationcenter: ''
+author: jeffstokes72
+manager: jhubbard
+editor: cgronlun
 
-<tags
-    ms.service="stream-analytics"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.tgt_pltfrm="na"
-    ms.workload="big-data"
-    ms.date="09/26/2016"
-    ms.author="jeffstok"/>
+ms.service: stream-analytics
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: big-data
+ms.date: 09/26/2016
+ms.author: jeffstok
 
-
+---
 # <a name="help-choosing-a-streaming-analytics-platform:-apache-storm-comparison-to-azure-stream-analytics"></a>協助您選擇串流分析平台：Apache Storm 與 Azure 串流分析之間的比較
-
 本文將使用 Apache Storm 與 Azure 串流分析之間的比較，提供您選擇雲端分析平台的指引。 您必須了解串流分析和 Apache Storm 在做為 Azure HDInsight 中的管理服務時，兩者分別的價值主張，才能為您的商務使用案例選擇合適的解決方案。
 
 雖然這兩個分析平台都提供 PaaS 解決方案的優點，但它們之間還是有幾個重要的功能差異。 我們在下面列出這兩個服務的功能及限制，以協助您選擇達成目標所需的方案。
 
-## <a name="storm-comparison-to-stream-analytics:-general-features"></a>Storm 與串流分析的比較：一般功能 ##
+## <a name="storm-comparison-to-stream-analytics:-general-features"></a>Storm 與串流分析的比較：一般功能
 <table border="1" cellspacing="0" cellpadding="0">
     <tbody>
         <tr>

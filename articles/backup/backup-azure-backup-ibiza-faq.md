@@ -1,27 +1,28 @@
-<properties
-   pageTitle="復原服務保存庫常見問題集 | Microsoft Azure"
-   description="此版本的常見問題集支援公開預覽版本的 Azure 備份服務。關於備份代理程式、備份和保留、復原、安全性，以及 Azure 備份解決方案其他常見問題的常見問題集答案。"
-   services="backup"
-   documentationCenter=""
-   authors="markgalioto"
-   manager="jwhit"
-   editor=""
-   keywords="備份解決方案；備份服務"/>
+---
+title: 復原服務保存庫常見問題集 | Microsoft Docs
+description: 此版本的常見問題集支援公開預覽版本的 Azure 備份服務。關於備份代理程式、備份和保留、復原、安全性，以及 Azure 備份解決方案其他常見問題的常見問題集答案。
+services: backup
+documentationcenter: ''
+author: markgalioto
+manager: jwhit
+editor: ''
+keywords: 備份解決方案；備份服務
 
-<tags
-   ms.service="backup"
-   ms.workload="storage-backup-recovery"
-	 ms.tgt_pltfrm="na"
-	 ms.devlang="na"
-	 ms.topic="get-started-article"
-	 ms.date="08/21/2016"
-	 ms.author="trinadhk; markgal; jimpark;"/>
+ms.service: backup
+ms.workload: storage-backup-recovery
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: get-started-article
+ms.date: 08/21/2016
+ms.author: trinadhk; markgal; jimpark;
 
+---
 # 復原服務保存庫 - 常見問題集
-
-> [AZURE.SELECTOR]
-- [傳統模式的備份常見問題集](backup-azure-backup-faq.md)
-- [Resource Manager 模式的備份常見問題集](backup-azure-backup-ibiza-faq.md)
+> [!div class="op_single_selector"]
+> * [傳統模式的備份常見問題集](backup-azure-backup-faq.md)
+> * [Resource Manager 模式的備份常見問題集](backup-azure-backup-ibiza-faq.md)
+> 
+> 
 
 本文提供復原服務保存庫特有資訊，並補充說明 [Azure 備份常見問題集](backup-azure-backup-faq.md)。Azure 備份常見問題集提供一組關於 Azure 備份服務的完整問答。
 

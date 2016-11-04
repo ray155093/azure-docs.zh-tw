@@ -1,33 +1,30 @@
 
-<properties 
-    pageTitle="Azure RemoteApp 的 Azure AD + Active Directory 需求 | Microsoft Azure" 
-    description="了解如何設定 Active Directory 以使用 Azure RemoteApp。" 
-    services="remoteapp" 
-	documentationCenter="" 
-    authors="lizap" 
-    manager="mbaldwin" />
+---
+title: Azure RemoteApp 的 Azure AD + Active Directory 需求 | Microsoft Docs
+description: 了解如何設定 Active Directory 以使用 Azure RemoteApp。
+services: remoteapp
+documentationcenter: ''
+author: lizap
+manager: mbaldwin
 
-<tags 
-    ms.service="remoteapp" 
-    ms.workload="compute" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="08/15/2016" 
-    ms.author="elizapo" />
+ms.service: remoteapp
+ms.workload: compute
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/15/2016
+ms.author: elizapo
 
-
-
+---
 # Azure RemoteApp 的 Azure AD + Active Directory 需求
-
-> [AZURE.IMPORTANT]
-Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
-
+> [!IMPORTANT]
+> Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+> 
+> 
 
 針對 Azure RemoteApp 混合式集合，或您要使用 AD Connect 建立同盟的雲端集合，您必須執行下列動作。
 
 ### 連接 Azure AD 和 Active Directory
-
 如果您要連接 Azure AD 租用戶和內部部署的 Active Directory 環境，請使用 AD Connect。您只要[按 4 下](https://blogs.technet.microsoft.com/enterprisemobility/2014/08/04/connecting-ad-and-azure-ad-only-4-clicks-with-azure-ad-connect/)即可連接兩個目錄。
 
 注意 - 混合式集合需使用目錄同步處理。
@@ -42,8 +39,8 @@ Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go
 ### 建立 Azure RemoteApp 的物件
 您也必須建立下列內部部署 Active Directory 物件：
 
-- 服務帳戶，以透過將 RDSH 端點加入內部部署的網域，提供 RemoteApp 程式的網域資源存取權。
-- 組織單位 (OU)，以包含 RemoteApp 電腦物件。建議您使用 OU (但非必要) 來隔離帳戶與將用於 RemoteApp 的原則。
+* 服務帳戶，以透過將 RDSH 端點加入內部部署的網域，提供 RemoteApp 程式的網域資源存取權。
+* 組織單位 (OU)，以包含 RemoteApp 電腦物件。建議您使用 OU (但非必要) 來隔離帳戶與將用於 RemoteApp 的原則。
 
 當您建立 RemoteApp 集合時，您會需要這兩個物件，因此請務必先執行這些步驟。
 

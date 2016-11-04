@@ -1,46 +1,43 @@
-<properties 
-    pageTitle="利用 Media Encoder Premium Workflow 進行進階編碼 | Microsoft Azure" 
-    description="了解如何使用 Media Encoder Premium Workflow 進行編碼。 程式碼範例以 C# 撰寫，並使用 Media Services SDK for .NET。" 
-    services="media-services" 
-    documentationCenter="" 
-    authors="juliako" 
-    manager="erikre" 
-    editor=""/>
+---
+title: 利用 Media Encoder Premium Workflow 進行進階編碼 | Microsoft Docs
+description: 了解如何使用 Media Encoder Premium Workflow 進行編碼。 程式碼範例以 C# 撰寫，並使用 Media Services SDK for .NET。
+services: media-services
+documentationcenter: ''
+author: juliako
+manager: erikre
+editor: ''
 
-<tags 
-    ms.service="media-services" 
-    ms.workload="media" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="09/26/2016" 
-    ms.author="juliako"/>
+ms.service: media-services
+ms.workload: media
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/26/2016
+ms.author: juliako
 
-
-#<a name="advanced-encoding-with-media-encoder-premium-workflow"></a>使用 Media Encoder Premium Workflow 進行進階編碼
-
->[AZURE.NOTE] 本主題中討論的媒體編碼器高階工作流程媒體處理器無法在中國使用。
+---
+# <a name="advanced-encoding-with-media-encoder-premium-workflow"></a>使用 Media Encoder Premium Workflow 進行進階編碼
+> [!NOTE]
+> 本主題中討論的媒體編碼器高階工作流程媒體處理器無法在中國使用。
+> 
+> 
 
 如有進階編碼器的問題，請傳送電子郵件到 mepd@Microsoft.com。
 
-##<a name="overview"></a>Overview
-
+## <a name="overview"></a>Overview
 Microsoft Azure 媒體服務推出 **Media Encoder Premium Workflow** 媒體處理器。 此處理器為高階隨選工作流程提供先進的編碼功能。 
 
 以下主題說明 **Media Encoder Premium Workflow**的相關詳細資料： 
 
-- [Media Encoder Premium Workflow 支援的格式](media-services-premium-workflow-encoder-formats.md) – 討論 **Media Encoder Premium Workflow**支援的檔案格式和轉碼器。
-
-- [比較編碼器](media-services-encode-asset.md#compare_encoders)一節比較**媒體編碼器高階工作流程**和**媒體編碼器標準**的編碼功能。
+* [Media Encoder Premium Workflow 支援的格式](media-services-premium-workflow-encoder-formats.md) – 討論 **Media Encoder Premium Workflow**支援的檔案格式和轉碼器。
+* [比較編碼器](media-services-encode-asset.md#compare_encoders)一節比較**媒體編碼器高階工作流程**和**媒體編碼器標準**的編碼功能。
 
 本主題示範如何使用 .NET 以 **Media Encoder Premium Workflow** 進行編碼。
 
 **Media Encoder Premium Workflow** 的編碼工作需要個別的組態檔，這稱為工作流程檔案。 這些檔案具有 .workflow 副檔名，並且使用 [工作流程設計工具](media-services-workflow-designer.md) 工具建立。
 
-##<a name="encode"></a>編碼
-
+## <a name="encode"></a>編碼
 **Media Encoder Premium Workflow** 的編碼工作需要個別的組態檔，這稱為工作流程檔案。 這些檔案具有 .workflow 副檔名，並且使用 [工作流程設計工具](media-services-workflow-designer.md) 工具建立。
-
 
 您也可以在 [這裡](https://github.com/Azure/azure-media-services-samples/tree/master/Encoding%20Presets/VoD/MediaEncoderPremiumWorkfows)取得預設的工作流程檔案。 資料夾也包含這些檔案的說明。
 
@@ -49,25 +46,23 @@ Microsoft Azure 媒體服務推出 **Media Encoder Premium Workflow** 媒體處�
 下列範例示範如何使用 **Media Encoder Premium Workflow**進行編碼。 
 
 會執行下列步驟： 
- 
+
 1. 建立資產並上傳工作流程檔案。 
 2. 建立資產並上傳來源媒體檔案。
 3. 取得“Media Encoder Premium Workflow”媒體處理器。
 4. 建立工作 (Job) 和工作 (Task)。 
-
+   
     在大部分情況下，工作的組態字串是空的 (如下列範例)。 在一些進階的案例 (會要求您動態設定執行階段屬性) 情況下，您可以提供 XML 字串給編碼工作。 這類案例的範例包括：建立疊加、平行或循序的媒體編結、顯示字幕。
 5. 將兩個輸入資產加入工作 (Task)。
-    
+   
     a. 第一個 – 工作流程資產。
-
+   
     b. 第二個 – 視訊資產。
-    
+   
     **注意**：加入媒體資產前，必須先加入工作流程資產至工作 (Task)。 這項工作 (Task) 的組態字串應該是空的。 
-
 6. 提交編碼工作 (Job)。
 
 以下是完整的範例。 如需如何使用媒體服務 .NET 開發進行設定的相關資訊，請參閱 [使用 .NET 進行媒體服務開發](media-services-dotnet-how-to-use.md)。
-
 
     using System; 
     using System.Linq;
@@ -79,7 +74,7 @@ Microsoft Azure 媒體服務推出 **Media Encoder Premium Workflow** 媒體處�
     using System.Collections.Generic;
     using Microsoft.WindowsAzure;
     using Microsoft.WindowsAzure.MediaServices.Client;
-    
+
     namespace MediaEncoderPremiumWorkflowSample
     {
         class Program
@@ -89,64 +84,64 @@ Microsoft Azure 媒體服務推出 **Media Encoder Premium Workflow** 媒體處�
                 ConfigurationManager.AppSettings["MediaServicesAccountName"];
             private static readonly string _mediaServicesAccountKey =
                 ConfigurationManager.AppSettings["MediaServicesAccountKey"];
-    
+
             // Field for service context.
             private static CloudMediaContext _context = null;
             private static MediaServicesCredentials _cachedCredentials = null;
-    
+
             private static readonly string _supportFiles =
                 Path.GetFullPath(@"../..\Media");
-    
+
             private static readonly string _workflowFilePath =
                 Path.GetFullPath(_supportFiles + @"\H264 Progressive Download MP4.workflow");
-            
+
             private static readonly string _singleMP4InputFilePath =
                 Path.GetFullPath(_supportFiles + @"\BigBuckBunny.mp4");
-    
-    
+
+
             static void Main(string[] args)
             {
                 // Create and cache the Media Services credentials in a static class variable.
                 _cachedCredentials = new MediaServicesCredentials(
                                 _mediaServicesAccountName,
                                 _mediaServicesAccountKey);
-    
+
                 // Used the cached credentials to create CloudMediaContext.
                 _context = new CloudMediaContext(_cachedCredentials);
-    
+
                 var workflowAsset = CreateAssetAndUploadSingleFile(_workflowFilePath);
                 var videoAsset = CreateAssetAndUploadSingleFile(_singleMP4InputFilePath);
                 IAsset outputAsset = CreateEncodingJob(workflowAsset, videoAsset); 
-    
+
             }
-    
+
             static public IAsset CreateAssetAndUploadSingleFile(string singleFilePath)
             {
                 var assetName = "UploadSingleFile_" + DateTime.UtcNow.ToString();
                 var asset = _context.Assets.Create(assetName, AssetCreationOptions.None);
-    
+
                 var fileName = Path.GetFileName(singleFilePath);
-    
+
                 var assetFile = asset.AssetFiles.Create(fileName);
-    
+
                 Console.WriteLine("Created assetFile {0}", assetFile.Name);
-    
+
                 var accessPolicy = _context.AccessPolicies.Create(assetName, TimeSpan.FromDays(30),
                                                                     AccessPermissions.Write | AccessPermissions.List);
-    
+
                 var locator = _context.Locators.CreateLocator(LocatorType.Sas, asset, accessPolicy);
-    
+
                 Console.WriteLine("Upload {0}", assetFile.Name);
-    
+
                 assetFile.Upload(singleFilePath);
                 Console.WriteLine("Done uploading {0}", assetFile.Name);
-    
+
                 locator.Delete();
                 accessPolicy.Delete();
-    
+
                 return asset;
             }
-    
+
             static public IAsset CreateEncodingJob(IAsset workflow, IAsset video)
             {
                 // Declare a new job.
@@ -154,13 +149,13 @@ Microsoft Azure 媒體服務推出 **Media Encoder Premium Workflow** 媒體處�
                 // Get a media processor reference, and pass to it the name of the 
                 // processor to use for the specific task.
                 IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Premium Workflow");
-    
+
                 // Create a task with the encoding details, using a string preset.
                 ITask task = job.Tasks.AddNew("Premium Workflow encoding task",
                     processor,
                     "",
                     TaskOptions.None);
-    
+
                 // Specify the input asset to be encoded.
                 task.InputAssets.Add(workflow);
                 task.InputAssets.Add(video); // we add one asset
@@ -169,18 +164,18 @@ Microsoft Azure 媒體服務推出 **Media Encoder Premium Workflow** 媒體處�
                 // means the output asset is not encrypted. 
                 task.OutputAssets.AddNew("Output asset",
                     AssetCreationOptions.None);
-    
+
                 // Use the following event handler to check job progress.  
                 job.StateChanged += new
                         EventHandler<JobStateChangedEventArgs>(StateChanged);
-    
+
                 // Launch the job.
                 job.Submit();
-    
+
                 // Check job execution and wait for job to finish. 
                 Task progressJobTask = job.GetExecutionProgressTask(CancellationToken.None);
                 progressJobTask.Wait();
-    
+
                 // If job state is Error the event handling 
                 // method for job progress should log errors.  Here we check 
                 // for error state and exit if needed.
@@ -188,16 +183,16 @@ Microsoft Azure 媒體服務推出 **Media Encoder Premium Workflow** 媒體處�
                 {
                     throw new Exception("\nExiting method due to job error.");
                 }
-    
+
                 return job.OutputMediaAssets[0];
             }
-    
+
             static private void StateChanged(object sender, JobStateChangedEventArgs e)
             {
                 Console.WriteLine("Job state changed event:");
                 Console.WriteLine("  Previous state: " + e.PreviousState);
                 Console.WriteLine("  Current state: " + e.CurrentState);
-    
+
                 switch (e.CurrentState)
                 {
                     case JobState.Finished:
@@ -222,12 +217,12 @@ Microsoft Azure 媒體服務推出 **Media Encoder Premium Workflow** 媒體處�
                         break;
                 }
             }
-    
+
             static private void LogJobStop(string jobId)
             {
                 StringBuilder builder = new StringBuilder();
                 IJob job = _context.Jobs.Where(j => j.Id == jobId).FirstOrDefault();
-    
+
                 builder.AppendLine("\nThe job stopped due to cancellation or an error.");
                 builder.AppendLine("***************************");
                 builder.AppendLine("Job ID: " + job.Id);
@@ -250,19 +245,19 @@ Microsoft Azure 媒體服務推出 **Media Encoder Premium Workflow** 媒體處�
                     }
                 }
                 builder.AppendLine("***************************\n");
-    
+
                 Console.Write(builder.ToString());
             }
-    
-    
+
+
             static private IMediaProcessor GetLatestMediaProcessorByName(string mediaProcessorName)
             {
                 var processor = _context.MediaProcessors.Where(p => p.Name == mediaProcessorName).
                     ToList().OrderBy(p => new Version(p.Version)).LastOrDefault();
-    
+
                 if (processor == null)
                     throw new ArgumentException(string.Format("Unknown media processor", mediaProcessorName));
-    
+
                 return processor;
             }
         }
@@ -271,15 +266,11 @@ Microsoft Azure 媒體服務推出 **Media Encoder Premium Workflow** 媒體處�
 
 如有進階編碼器的問題，請傳送電子郵件到 mepd@Microsoft.com。
 
-##<a name="media-services-learning-paths"></a>媒體服務學習路徑
+## <a name="media-services-learning-paths"></a>媒體服務學習路徑
+[!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-[AZURE.INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
-
-##<a name="provide-feedback"></a>提供意見反應
-
-[AZURE.INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
-
-
+## <a name="provide-feedback"></a>提供意見反應
+[!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 <!--HONumber=Oct16_HO2-->
 

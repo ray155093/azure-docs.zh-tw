@@ -5,7 +5,6 @@
 我們將說明範本中的每個參數。
 
 ### logicAppName
-
 要建立之邏輯應用程式的名稱。
 
     "logicAppName": {

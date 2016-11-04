@@ -1,24 +1,22 @@
-<properties
-    pageTitle="使用 Resource Manager 範本建立度量警示 | Microsoft Azure"
-    description="了解如何使用 Resource Manager 範本來建立度量警示，以接收電子郵件或 webhook 的通知。"
-    authors="johnkemnetz"
-    manager="rboucher"
-    editor=""
-    services="monitoring-and-diagnostics"
-    documentationCenter="monitoring-and-diagnostics"/>
+---
+title: 使用 Resource Manager 範本建立度量警示 | Microsoft Docs
+description: 了解如何使用 Resource Manager 範本來建立度量警示，以接收電子郵件或 webhook 的通知。
+author: johnkemnetz
+manager: rboucher
+editor: ''
+services: monitoring-and-diagnostics
+documentationcenter: monitoring-and-diagnostics
 
-<tags
-    ms.service="monitoring-and-diagnostics"
-    ms.workload="na"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="09/26/2016"
-    ms.author="johnkem"/>
+ms.service: monitoring-and-diagnostics
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/26/2016
+ms.author: johnkem
 
-
+---
 # <a name="create-a-metric-alert-with-a-resource-manager-template"></a>使用 Resource Manager 範本建立度量警示
-
 本文章將說明如何使用 [Azure Resource Manager 範本](../resource-group-authoring-templates.md) 設定 Azure 度量警示。 這可讓您在建立警示以確保正確地監視所有資源時，自動在您的資源上設定警示。
 
 基本步驟如下：
@@ -29,7 +27,6 @@
 下面我們會先單獨針對警示，然後針對建立其他資源期間的警示，描述如何建立 Resource Manager 範本。
 
 ## <a name="resource-manager-template-for-a-metric-alert"></a>度量警示的 Resource Manager 範本
-
 若要使用 Resource Manager 範本建立警示，您要建立 `Microsoft.Insights/alertRules` 類型的資源，並填入所有相關的屬性。 以下是建立警示規則的範本。
 
 ```json
@@ -180,7 +177,6 @@
 警示規則的結構描述和屬性說明 [請見這裡](https://msdn.microsoft.com/library/azure/dn933805.aspx)。
 
 ## <a name="resource-manager-template-for-a-resource-with-an-alert"></a>具有警示之資源的 Resource Manager 範本
-
 在建立資源時建立警示，Resource Manager 範本上的警示通常很有用。 例如，您可能想要確保在每次部署虛擬機器時設定 “CPU % > 80” 規則。 若要這樣做，在 VM 範本的資源陣列中將警示規則新增為資源，並使用 `dependsOn` 屬性將相依性新增至 VM 資源識別碼。 以下是建立 Windows VM，並在 CPU 使用率高於 80% 時新增警示以通知訂用帳戶管理員的範例完整。
 
 ```json
@@ -401,10 +397,8 @@
 ```
 
 ## <a name="next-steps"></a>後續步驟
-- [深入了解警示](./insights-receive-alert-notifications.md)
-- [將診斷設定新增](./monitoring-enable-diagnostic-logs-using-template.md) 至您的 Resource Manager 範本
-
-
+* [深入了解警示](../azure-portal/insights-receive-alert-notifications.md)
+* [將診斷設定新增](monitoring-enable-diagnostic-logs-using-template.md) 至您的 Resource Manager 範本
 
 <!--HONumber=Oct16_HO2-->
 

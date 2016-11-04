@@ -1,22 +1,21 @@
-<properties
-	pageTitle="SQL Database 開發概觀 | Microsoft Azure"
-	description="深入了解連接至 SQL Database 的應用程式的可用連線庫和最佳作法。"
-	services="sql-database"
-	documentationCenter=""
-	authors="annemill"
-	manager="jhubbard"
-	editor="genemi"/>
+---
+title: SQL Database 開發概觀 | Microsoft Docs
+description: 深入了解連接至 SQL Database 的應用程式的可用連線庫和最佳作法。
+services: sql-database
+documentationcenter: ''
+author: annemill
+manager: jhubbard
+editor: genemi
 
+ms.service: sql-database
+ms.workload: data-management
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/17/2016
+ms.author: annemill
 
-<tags
-	ms.service="sql-database"
-	ms.workload="data-management"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/17/2016"
-	ms.author="annemill"/>
-
+---
 # SQL Database 開發概觀
 本文將逐步解說開發人員在撰寫程式碼以連接到 Azure SQL Database 時應注意的基本考量事項。
 
@@ -64,7 +63,6 @@ Elastic Scale 會簡化相應放大 (和相應縮小) 的程序。
 * [開始使用 Azure SQL Database Elastic Scale 預覽](sql-database-elastic-scale-get-started.md)
 
 ## 後續步驟
-
 瀏覽 [SQL Database 的所有功能](https://azure.microsoft.com/services/sql-database/)。
 
 <!---HONumber=AcomDC_0817_2016-->

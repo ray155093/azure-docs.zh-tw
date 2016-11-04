@@ -1,23 +1,21 @@
-<properties 
-	pageTitle="BizTalk 服務在每個狀態下可執行的工作 | Microsoft Azure" 
-	description="不同 MABS 狀態允許的動作/作業：停止、啟動、重新啟動、暫停、繼續、刪除、調整、更新組態和備份" 
-	services="biztalk-services" 
-	documentationCenter="" 
-	authors="MandiOhlinger" 
-	manager="erikre" 
-	editor=""/>
+---
+title: BizTalk 服務在每個狀態下可執行的工作 | Microsoft Docs
+description: 不同 MABS 狀態允許的動作/作業：停止、啟動、重新啟動、暫停、繼續、刪除、調整、更新組態和備份
+services: biztalk-services
+documentationcenter: ''
+author: MandiOhlinger
+manager: erikre
+editor: ''
 
-<tags 
-	ms.service="biztalk-services" 
-	ms.workload="integration" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="08/15/2016" 
-	ms.author="mandia"/>
+ms.service: biztalk-services
+ms.workload: integration
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/15/2016
+ms.author: mandia
 
-
-
+---
 # BizTalk 服務：服務狀態圖
 視 BizTalk 服務的目前狀態而定，有些作業是可以或無法在 BizTalk 服務上執行。
 
@@ -256,15 +254,12 @@
 </table>
 
 ## 另請參閱
-- [BizTalk 服務：使用 Azure 傳統入口網站進行佈建](http://go.microsoft.com/fwlink/p/?LinkID=302280)<br/>
-- [BizTalk 服務：儀表板、監視和調整索引標籤](http://go.microsoft.com/fwlink/p/?LinkID=302281)<br/>
-- [BizTalk 服務：開發人員、基本、標準和高級版本圖表](http://go.microsoft.com/fwlink/p/?LinkID=302279)<br/>
-- [BizTalk 服務：備份與還原](http://go.microsoft.com/fwlink/p/?LinkID=329873)<br/>
-- [BizTalk 服務：節流](http://go.microsoft.com/fwlink/p/?LinkID=302282)<br/>
-- [BizTalk 服務：簽發者名稱和簽發者金鑰](http://go.microsoft.com/fwlink/p/?LinkID=303941)<br/>
-- [如何開始使用 Azure BizTalk 服務 SDK](http://go.microsoft.com/fwlink/p/?LinkID=302335)
-
-
- 
+* [BizTalk 服務：使用 Azure 傳統入口網站進行佈建](http://go.microsoft.com/fwlink/p/?LinkID=302280)<br/>
+* [BizTalk 服務：儀表板、監視和調整索引標籤](http://go.microsoft.com/fwlink/p/?LinkID=302281)<br/>
+* [BizTalk 服務：開發人員、基本、標準和高級版本圖表](http://go.microsoft.com/fwlink/p/?LinkID=302279)<br/>
+* [BizTalk 服務：備份與還原](http://go.microsoft.com/fwlink/p/?LinkID=329873)<br/>
+* [BizTalk 服務：節流](http://go.microsoft.com/fwlink/p/?LinkID=302282)<br/>
+* [BizTalk 服務：簽發者名稱和簽發者金鑰](http://go.microsoft.com/fwlink/p/?LinkID=303941)<br/>
+* [如何開始使用 Azure BizTalk 服務 SDK](http://go.microsoft.com/fwlink/p/?LinkID=302335)
 
 <!---HONumber=AcomDC_0817_2016-->

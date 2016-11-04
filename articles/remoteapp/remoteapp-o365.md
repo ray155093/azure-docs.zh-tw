@@ -1,25 +1,26 @@
 
-<properties
-    pageTitle="使用 Office 與 Azure RemoteApp 搭配 | Microsoft Azure" 
-    description="了解 Office 和 Azure RemoteApp 如何共同運作"
-    services="remoteapp"
-    documentationCenter=""
-    authors="lizap"
-    manager="mbaldwin" />
+---
+title: 使用 Office 與 Azure RemoteApp 搭配 | Microsoft Docs
+description: 了解 Office 和 Azure RemoteApp 如何共同運作
+services: remoteapp
+documentationcenter: ''
+author: lizap
+manager: mbaldwin
 
-<tags
-    ms.service="remoteapp"
-    ms.workload="compute"
-    ms.tgt_pltfrm="na"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/15/2016"
-    ms.author="elizapo" />
+ms.service: remoteapp
+ms.workload: compute
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/15/2016
+ms.author: elizapo
 
+---
 # 使用 Office 與 Azure RemoteApp 搭配
-
-> [AZURE.IMPORTANT]
-Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+> [!IMPORTANT]
+> Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+> 
+> 
 
 在 Azure RemoteApp 中裝載 Office 應用程式有兩個選項：Office 365 ProPlus 或 Office 2013 Professional Plus 試用版。
 
@@ -34,7 +35,6 @@ RemoteApp 支援 Office 365 共用電腦啟用。當您啟用「共用電腦啟�
 
 您可以在 [Office 365 管理入口網站](https://portal.office365.com/)中管理使用者的 Office 365 授權。閱讀更多關於 [Office 365 服務方案](http://technet.microsoft.com/library/office-365-plan-options.aspx)的資訊。
 
-
 ## Office 2013 Professional Plus 試用版
 在 RemoteApp 30 天的試用版期間，您可以使用 Office 2013 Professional Plus (試用版) 範本映像來建立 RemoteApp 收藏。您可以透過使用者的 Azure Active Directory 工作帳戶或 Microsoft 帳戶，將他們指派至這個試用版收藏。不需再另外訂閱。
 
@@ -45,10 +45,9 @@ RemoteApp 支援 Office 365 共用電腦啟用。當您啟用「共用電腦啟�
 
 啟用帳戶後，將會影響您帳戶中的所有 RemoteApp 收藏。
 
-- 透過 Windows Server 2012 R2 或 Office 365 ProPlus 範本映像執行的收藏將順利地轉換成實際執行。所有使用者資料與設定 (包括進行中的工作階段) 都將維持不變。
-- 如果您已上傳自訂範本映像，使用這些映像的收藏也將順利轉換。
-- Office 2013 Professional Plus (試用版) 範本映像僅適用於評估。透過此範本映像執行的收藏無法轉換成實際執行。它們會成為「停用」狀態。
-
+* 透過 Windows Server 2012 R2 或 Office 365 ProPlus 範本映像執行的收藏將順利地轉換成實際執行。所有使用者資料與設定 (包括進行中的工作階段) 都將維持不變。
+* 如果您已上傳自訂範本映像，使用這些映像的收藏也將順利轉換。
+* Office 2013 Professional Plus (試用版) 範本映像僅適用於評估。透過此範本映像執行的收藏無法轉換成實際執行。它們會成為「停用」狀態。
 
 如果您在試用期過後還未轉換成實際執行模式，將會停用您的 RemoteApp 收藏。別擔心，您的設定和使用者資料會持續儲存 90 天，因此，您仍可以啟用您的服務和切換到實際執行模式，不會遺失任何資料。
 

@@ -1,29 +1,28 @@
-<properties
-	pageTitle="在 Linux 虛擬機器上部署 LAMP | Microsoft Azure"
-	description="了解如何在 Linux VM 上安裝 LAMP 堆疊"
-	services="virtual-machines-linux"
-	documentationCenter="virtual-machines"
-	authors="jluk"
-	manager="timlt"
-	editor=""
-	tags="azure-resource-manager"/>
+---
+title: 在 Linux 虛擬機器上部署 LAMP | Microsoft Docs
+description: 了解如何在 Linux VM 上安裝 LAMP 堆疊
+services: virtual-machines-linux
+documentationcenter: virtual-machines
+author: jluk
+manager: timlt
+editor: ''
+tags: azure-resource-manager
 
-<tags
-	ms.service="virtual-machines-linux"
-	ms.workload="infrastructure-services"
-	ms.tgt_pltfrm="vm-linux"
-	ms.devlang="NA"
-	ms.topic="article"
-	ms.date="06/07/2016"
-	ms.author="jluk"/>
+ms.service: virtual-machines-linux
+ms.workload: infrastructure-services
+ms.tgt_pltfrm: vm-linux
+ms.devlang: NA
+ms.topic: article
+ms.date: 06/07/2016
+ms.author: jluk
 
+---
 # 在 Azure 上部署 LAMP 堆疊
 本文將逐步引導您在 Azure 上部署 Apache 網頁伺服器、MySQL 和 PHP (LAMP 堆疊)。您需要 Azure 帳戶 ([取得免費試用](https://azure.microsoft.com/pricing/free-trial/)) 和 [Azure CLI](../xplat-cli-install.md)，也就是[連線到您的 Azure 帳戶](../xplat-cli-connect.md)。
 
 本文涵蓋兩種用於安裝 LAMP 的方法︰
 
 ## 快速命令摘要
-
 1) 在新的 VM 上部署 LAMP
 
 ```
@@ -40,7 +39,6 @@ user@ubuntu$ sudo apt-get install apache2 mysql-server php5 php5-mysql
 ```
 
 ## 在新的 VM 上部署 LAMP 逐步解說
-
 首先，您可以從建立包含 VM 的新[資源群組](../resource-group-overview.md)：
 
     $ azure group create uniqueResourceGroup westus
@@ -97,21 +95,19 @@ user@ubuntu$ sudo apt-get install apache2 mysql-server php5 php5-mysql
 您現在已建立安裝了 LAMP 的 Linux VM。如果您希望，您可以向下跳到 [確認 LAMP 安裝成功] 來確認安裝。
 
 ## 在現有 VM 上部署 LAMP 逐步解說
-
-如果您需要建立 Linux VM 的說明，您可以前往[這裡以了解如何建立 Linux VM](./virtual-machines-linux-quick-create-cli.md)。接下來，您將需要透過 SSH 登入 Linux VM。如果您需要建立 SSH 金鑰的說明，您可以前往[這裡以了解如何在 Linux/Mac 上建立 SSH 金鑰](./virtual-machines-linux-mac-create-ssh-keys.md)。如果您已經有 SSH 金鑰，請繼續進行並透過 SSH 使用 `ssh username@uniqueDNS` 登入 Linux VM。
+如果您需要建立 Linux VM 的說明，您可以前往[這裡以了解如何建立 Linux VM](virtual-machines-linux-quick-create-cli.md)。接下來，您將需要透過 SSH 登入 Linux VM。如果您需要建立 SSH 金鑰的說明，您可以前往[這裡以了解如何在 Linux/Mac 上建立 SSH 金鑰](virtual-machines-linux-mac-create-ssh-keys.md)。如果您已經有 SSH 金鑰，請繼續進行並透過 SSH 使用 `ssh username@uniqueDNS` 登入 Linux VM。
 
 您現在要使用 Linux VM，我們將逐步引導您在以 Debian 為基礎的散發版本上安裝 LAMP 堆疊。其他 Linux 散發版本的確切命令可能會有所不同。
 
 #### 安裝在 Debian/Ubuntu 上
-
 您需要安裝下列封裝：`apache2`、`mysql-server`、`php5` 和 `php5-mysql`。直接擷取這些封裝或使用 Tasksel，即可安裝這些項目。這兩個選項的指示如下所列。安裝之前，您必須下載及更新封裝清單。
 
     user@ubuntu$ sudo apt-get update
-    
+
 ##### 個別封裝
 使用 apt-get：
 
-	user@ubuntu$ sudo apt-get install apache2 mysql-server php5 php5-mysql
+    user@ubuntu$ sudo apt-get install apache2 mysql-server php5 php5-mysql
 
 ##### 使用 Tasksel
 或者，您也可以下載 Tasksel，這是一個 Debian/Ubuntu 工具，以協調工作的方式安裝多個相關套件到您的系統上。
@@ -125,11 +121,10 @@ user@ubuntu$ sudo apt-get install apache2 mysql-server php5 php5-mysql
 
 請執行下列命令，以查看可以封裝形式提供的其他 PHP 擴充功能：
 
-	user@ubuntu$ apt-cache search php5
+    user@ubuntu$ apt-cache search php5
 
 
 #### 建立 info.php 文件
-
 您現在應可透過命令列輸入 `apache2 -v`、`mysql -v` 或 `php -v`，檢查您有哪個版本的 Apache、MySQL 和 PHP。
 
 如果您想要進一步測試，您可以建立快速 PHP 資訊頁面，以在瀏覽器中檢視。透過以下命令，使用 Nano 文字編輯器建立新的檔案︰
@@ -149,7 +144,6 @@ user@ubuntu$ sudo apt-get install apache2 mysql-server php5 php5-mysql
     user@ubuntu$ sudo service apache2 restart
 
 ## 確認 LAMP 安裝成功
-
 您現在可以移至 http://youruniqueDNS/info.php，以在瀏覽器中檢查您剛建立的 PHP 資訊頁面 (看起來應該如下所示)。
 
 ![][2]
@@ -161,10 +155,9 @@ user@ubuntu$ sudo apt-get install apache2 mysql-server php5 php5-mysql
 恭喜，您剛已在 Azure VM 上安裝 LAMP 堆疊！
 
 ## 後續步驟
-
 請查看 LAMP 堆疊上的 Ubuntu 文件︰
 
-- [https://help.ubuntu.com/community/ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP)
+* [https://help.ubuntu.com/community/ApacheMySQLPHP](https://help.ubuntu.com/community/ApacheMySQLPHP)
 
 [1]: ./media/virtual-machines-linux-deploy-lamp-stack/configmysqlpassword-small.png
 [2]: ./media/virtual-machines-linux-deploy-lamp-stack/phpsuccesspage.png

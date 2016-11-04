@@ -1,29 +1,31 @@
-<properties
-	pageTitle="在 PowerApps Enterprise 中建立及設定 Microsoft 管理的與 IT 管理的 API |Microsoft Azure"
-	description="深入了解 PowerApps 中可用的 API 及如何在 Azure 入口網站中註冊它們"
-	services=""
-    suite="powerapps"
-	documentationCenter="" 
-	authors="MandiOhlinger"
-	manager="dwrede"
-	editor=""/>
+---
+title: 在 PowerApps Enterprise 中建立及設定 Microsoft 管理的與 IT 管理的 API | Microsoft Docs
+description: 深入了解 PowerApps 中可用的 API 及如何在 Azure 入口網站中註冊它們
+services: ''
+suite: powerapps
+documentationcenter: ''
+author: MandiOhlinger
+manager: dwrede
+editor: ''
 
-<tags
-   ms.service="powerapps"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na" 
-   ms.date="05/02/2016"
-   ms.author="guayan"/>
+ms.service: powerapps
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 05/02/2016
+ms.author: guayan
 
+---
 # 註冊 Microsoft 管理的 API 或 IT 管理的 API
-
-> [AZURE.IMPORTANT] 本主題已經封存，並且很快就會移除。請到全新的 [PowerApps](https://powerapps.microsoft.com) 來看看我們在忙些什麼。
+> [!IMPORTANT]
+> 本主題已經封存，並且很快就會移除。請到全新的 [PowerApps](https://powerapps.microsoft.com) 來看看我們在忙些什麼。
 > 
-> - 若要深入了解 PowerApps 並開始使用，請移至 [PowerApps](https://powerapps.microsoft.com)。  
-> - 若要深入了解 PowerApps 中可用的連線，請瀏覽 [List of available connections (可用連線清單)](https://powerapps.microsoft.com/tutorials/connections-list/)。  
-> - 若要深入了解 PowerApps 中的自訂 API，請前往 [What are Custom APIs (什麼是自訂 API)](https://powerapps.microsoft.com/tutorials/register-custom-api/)。 
+> * 若要深入了解 PowerApps 並開始使用，請移至 [PowerApps](https://powerapps.microsoft.com)。  
+> * 若要深入了解 PowerApps 中可用的連線，請瀏覽 [List of available connections (可用連線清單)](https://powerapps.microsoft.com/tutorials/connections-list/)。  
+> * 若要深入了解 PowerApps 中的自訂 API，請前往 [What are Custom APIs (什麼是自訂 API)](https://powerapps.microsoft.com/tutorials/register-custom-api/)。 
+> 
+> 
 
 <!--Archived
 There are **Microsoft managed** and **IT managed** APIs. When you enable PowerApps Enterprise, the Microsoft managed APIs are available to you automatically. The memory, connectivity, trust, and more are also automatically managed for you. Your next step is to enter any specific user settings, like a Twitter account and password. 
@@ -121,9 +123,9 @@ The following table compares the capabilities of the Microsoft managed and IT ma
 ![][18]  
 4. In **Add API**, enter the API properties:  
 
-	- In **Name**, enter a name for your API. Notice that the name you enter is included in the runtime URL of the API. Make the name meaningful and unique within your organization.
-	- In **Source**, select **From available APIs**:  
-	![][19]
+    - In **Name**, enter a name for your API. Notice that the name you enter is included in the runtime URL of the API. Make the name meaningful and unique within your organization.
+    - In **Source**, select **From available APIs**:  
+    ![][19]
 5. Select **API** and then choose the API you want to register:  
 ![][20]
 6. Select your specific API and add any configurable properties.

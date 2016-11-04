@@ -1,44 +1,42 @@
-<properties
-   pageTitle="詢問您可以使用資料回答的問題 - 制訂問題 | Microsoft Azure"
-   description="了解如何在「適用於初學者的資料科學」影片 3 中制訂資料科學問題。包含分類和迴歸問題的比較。"
-   keywords="選取問題, 資料科學問題, 制訂一個問題, 制訂問題, 迴歸問題, 分類問題, 明確的問題"
-   services="machine-learning"
-   documentationCenter="na"
-   authors="brohrer-ms"
-   manager="jhubbard"
-   editor="cjgronlund"/>
+---
+title: 詢問您可以使用資料回答的問題 - 制訂問題 | Microsoft Docs
+description: 了解如何在「適用於初學者的資料科學」影片 3 中制訂資料科學問題。包含分類和迴歸問題的比較。
+keywords: 選取問題, 資料科學問題, 制訂一個問題, 制訂問題, 迴歸問題, 分類問題, 明確的問題
+services: machine-learning
+documentationcenter: na
+author: brohrer-ms
+manager: jhubbard
+editor: cjgronlund
 
-<tags
-   ms.service="machine-learning"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na"
-   ms.date="07/15/2016"
-   ms.author="cgronlun;brohrer;garye"/>
+ms.service: machine-learning
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 07/15/2016
+ms.author: cgronlun;brohrer;garye
 
+---
 # 詢問您可以使用資料回答的問題
-
 ## 影片 3：適用於初學者的資料科學系列
-
 了解如何在「適用於初學者的資料科學」影片 3 中制訂資料科學問題。這個影片包含適用於分類和迴歸演算法的問題比較。
 
 若要充分運用這系列影片，請依序觀賞它們。[瀏覽影片清單](#other-videos-in-this-series)
 
-> [AZURE.VIDEO data-science-for-beginners-ask-a-question-you-can-answer-with-data]
+> [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Data-science-for-beginners-Ask-a-question-you-can-answer-with-data/player]
+> 
+> 
 
 ## 系列中的其他影片
-
 「適用於初學者的資料科學」是一個資料科學的快速簡介，包含五個簡短影片。
 
-  * 影片 1：[資料科學可以回答的 5 個問題](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) (5 分 14 秒)
-  * 影片 2：[您的資料已經可以進行資料科學了嗎？](machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science.md) (4 分 56 秒)
-  * 影片 3：詢問您可以使用資料回答的問題
-  * 影片 4：[利用簡單模型預測答案](machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model.md) (7 分 42 秒)
-  * 影片 5：[複製其他人的工作進行資料科學](machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md) (3 分 18 秒)
+* 影片 1：[資料科學可以回答的 5 個問題](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) (5 分 14 秒)
+* 影片 2：[您的資料已經可以進行資料科學了嗎？](machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science.md) (4 分 56 秒)
+* 影片 3：詢問您可以使用資料回答的問題
+* 影片 4：[利用簡單模型預測答案](machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model.md) (7 分 42 秒)
+* 影片 5：[複製其他人的工作進行資料科學](machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md) (3 分 18 秒)
 
 ## 文字記錄：詢問您可以使用資料回答的問題
-
 歡迎觀賞「適用於初學者的資料科學」系列的第三個影片。
 
 您可以從這個影片中獲得一些秘訣，在制訂可以使用資料回答的問題時使用。
@@ -46,7 +44,6 @@
 如果您已先觀賞過本系列中的前兩個影片，則可從這個影片中獲得更多資訊：「5 個資訊科學可以回答的問題」和「已備妥資料來進行資料科學嗎？」
 
 ## 詢問明確的問題
-
 我們已經討論過資料科學是一個程序，可使用名稱 (亦稱為類別或標籤) 和數字來預測問題的答案，但不能只是任意的問題，它必須是「明確的問題」。
 
 含糊不清的問題不需要使用名稱或數字來回答。必須是明確的問題。
@@ -58,7 +55,6 @@
 但如果您詢問明確的問題，例如「我的股票下週售價是多少？」，精靈就不得不給您一個特定的答案並預測銷售價格。
 
 ## 您的答案範例︰目標資料
-
 一旦制定問題之後，請檢查資料中是否有答案的範例。
 
 如果問題是「我的股票下週售價是多少？」，則我們必須確定資料包含股票價格記錄。
@@ -72,7 +68,6 @@
 如果您沒有任何目標資料，就必須取得一些資料。沒有這類資料，您將無法回答問題。
 
 ## 重新制訂您的問題
-
 有時候您可以重寫問題，以取得更有用的答案。
 
 「這個資料點是 A 或 B？」的問題會預測某個項目的類別 (或名稱或標籤)。我們使用「分類演算法」來回答問題。
@@ -95,10 +90,8 @@
 
 請務必查看 Microsoft Azure Machine Learning 中「適用於初學者的資料科學」的其他影片。
 
-
 ## 後續步驟
-
-  * [嘗試使用 Azure Machine Learning 進行您的第一個資料科學實驗](machine-learning-create-experiment.md)
-  * [在 Microsoft Azure 上取得 Machine Learning 簡介](machine-learning-what-is-machine-learning.md)
+* [嘗試使用 Azure Machine Learning 進行您的第一個資料科學實驗](machine-learning-create-experiment.md)
+* [在 Microsoft Azure 上取得 Machine Learning 簡介](machine-learning-what-is-machine-learning.md)
 
 <!---HONumber=AcomDC_0914_2016-->

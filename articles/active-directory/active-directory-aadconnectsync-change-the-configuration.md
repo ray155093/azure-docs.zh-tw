@@ -1,22 +1,21 @@
-<properties
-	pageTitle="Azure AD Connect 同步處理：如何變更預設組態 | Microsoft Azure"
-	description="逐步解說如何對 Azure AD Connect 同步處理中的組態進行變更。"
-	services="active-directory"
-	documentationCenter=""
-	authors="andkjell"
-	manager="femila"
-	editor=""/>
+---
+title: Azure AD Connect 同步處理：如何變更預設組態 | Microsoft Docs
+description: 逐步解說如何對 Azure AD Connect 同步處理中的組態進行變更。
+services: active-directory
+documentationcenter: ''
+author: andkjell
+manager: femila
+editor: ''
 
-<tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/31/2016"
-	ms.author="andkjell"/>
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/31/2016
+ms.author: andkjell
 
-
+---
 # Azure AD Connect 同步處理：如何變更預設組態
 本主題的目的在於逐步解說如何對 Azure AD Connect 同步處理中的預設組態進行變更。其中提供一些常見案例的步驟。具備此知識，您應該能夠根據自己的商務規則對自己的組態進行一些簡單的變更。
 
@@ -43,16 +42,15 @@
 ![停用排程器](./media/active-directory-aadconnectsync-change-the-configuration/schedulerdisable.png)
 
 ### 建立規則
-
 1. 按一下 [新增規則]。
 2. 在 [說明] 頁面上輸入下列各項：![輸入規則篩選](./media/active-directory-aadconnectsync-change-the-configuration/description2.png)
-	- 名稱：賦予規則描述性名稱。
-	- 描述︰讓其他人可以了解規則用途的一些說明。
-	- 連接的系統︰可在其中找到物件的系統。在此情況下，我們會選取 Active Directory 連接器。
-	- 已連線的系統/Metaverse 物件類型︰分別選取 [使用者] 和 [人員]。
-	- 連結類型︰將此值變更為 [聯結]。
-	- 優先順序︰提供在系統中是唯一的值。較低的數值表示優先順序較高。
-	- 標籤︰保留空白。只有 Microsoft 提供的現成可用規則應該在此方塊中填入值。
+   * 名稱：賦予規則描述性名稱。
+   * 描述︰讓其他人可以了解規則用途的一些說明。
+   * 連接的系統︰可在其中找到物件的系統。在此情況下，我們會選取 Active Directory 連接器。
+   * 已連線的系統/Metaverse 物件類型︰分別選取 [使用者] 和 [人員]。
+   * 連結類型︰將此值變更為 [聯結]。
+   * 優先順序︰提供在系統中是唯一的值。較低的數值表示優先順序較高。
+   * 標籤︰保留空白。只有 Microsoft 提供的現成可用規則應該在此方塊中填入值。
 3. 在 [範圍篩選器] 頁面上，輸入 **givenName ISNOTNULL**。![輸入規則範圍篩選器](./media/active-directory-aadconnectsync-change-the-configuration/scopingfilter.png) 此區段用來定義應套用規則的物件。如果保留空白，規則會套用到所有的使用者物件。但會包括會議室、服務帳戶，以及其他非人員的使用者物件。
 4. 在 [聯結規則] 上，將它保留空白。
 5. 在 [轉換] 頁面上，將 FlowType 變更為 [運算式]。選取目標屬性 **givenName**，並在 [來源] 中輸入 `PCase([givenName])`。![輸入規則轉換](./media/active-directory-aadconnectsync-change-the-configuration/transformations.png) 同步處理引擎會區分函式名稱和屬性名稱的大小寫。如果您輸入錯誤，您會在新增規則時看到警告。編輯器可讓您儲存並繼續進行，因此您必須重新開啟規則並予以更正。
@@ -69,10 +67,10 @@
 從 [開始] 功能表啟動 [同步處理服務]。本節中的步驟全都在此工具中執行。
 
 1. **在所有物件上執行完整同步處理** 選取位於頂端的 [連接器]。識別您在前一節中進行變更的連接器，在此例中為 Active Directory 網域服務，並加以選取。從 [動作] 中選取 [執行]，然後選取 [完整同步處理] 和 [確定]。![完整同步處理](./media/active-directory-aadconnectsync-change-the-configuration/fullsync.png)物件現已在 Metaverse 中更新。您現在想要查看 Metaverse 中的物件。
-
 2. **在單一物件上執行預覽和完整同步處理** 選取位於頂端的 [連接器]。識別您在前一節中進行變更的連接器，在此例中為 Active Directory 網域服務，並加以選取。選取 [搜尋連接器空間]。使用範圍來尋找您要用來測試變更的物件。選取物件，然後按一下 [預覽]。在新的畫面中，選取 [認可預覽]。![認可預覽](./media/active-directory-aadconnectsync-change-the-configuration/commitpreview.png) 變更現已認可至 Metaverse。
 
 **查看 Metaverse 中的物件** 您現在可挑選幾個範例物件，確定這是預期的值並已套用規則。從頂端選取 [Metaverse 搜尋]。新增您需要的任何篩選，以尋找相關的物件。從搜尋結果中，開啟物件。查看屬性值，同時在 [同步處理規則] 資料行中確認已如預期套用規則。![Metaverse 搜尋](./media/active-directory-aadconnectsync-change-the-configuration/mvsearch.png)
+
 ### 停用排程器
 如果一切如同預期，您可以再次啟用排程器。從 PowerShell，執行 `Set-ADSyncScheduler -SyncCycleEnabled $true`。
 
@@ -86,14 +84,14 @@ Fabrikam 中有對名字、姓氏和顯示名稱使用當地字母的樹系。�
 
 若要建立具有其他屬性流程的規則，請執行下列作業：
 
-- 從 [開始] 功能表啟動 [同步處理規則編輯器]。
-- 在左側依然選取 [輸入] 的情況下，按一下 [新增規則] 按鈕。
-- 賦予規則名稱和描述。選取內部部署 Active Directory 和相關的物件類型。在 [連結類型] 中，選取 [聯結]。為優先順序挑選一個其他規則還沒使用的數字。現成可用的規則是從 100 開始，因此此範例可以使用 50 這個值。![屬性流程 2](./media/active-directory-aadconnectsync-change-the-configuration/attributeflowjp2.png)
-- 將範圍留空 (也就是，應該套用到樹系中的所有使用者物件)。
-- 將聯結規則留空 (也就是，讓現成可用的規則處理任何聯結)。
-- 在 [轉換] 中，建立下列流程：![屬性流程 3](./media/active-directory-aadconnectsync-change-the-configuration/attributeflowjp3.png)
-- 按一下 [新增] 以儲存規則。
-- 移至 [同步處理服務管理員]。在 [連接器] 上，選取我們已在其中新增規則的連接器。依序選取 [執行] 和 [完整同步處理]。完整同步處理會使用目前的規則重新計算所有物件。
+* 從 [開始] 功能表啟動 [同步處理規則編輯器]。
+* 在左側依然選取 [輸入] 的情況下，按一下 [新增規則] 按鈕。
+* 賦予規則名稱和描述。選取內部部署 Active Directory 和相關的物件類型。在 [連結類型] 中，選取 [聯結]。為優先順序挑選一個其他規則還沒使用的數字。現成可用的規則是從 100 開始，因此此範例可以使用 50 這個值。![屬性流程 2](./media/active-directory-aadconnectsync-change-the-configuration/attributeflowjp2.png)
+* 將範圍留空 (也就是，應該套用到樹系中的所有使用者物件)。
+* 將聯結規則留空 (也就是，讓現成可用的規則處理任何聯結)。
+* 在 [轉換] 中，建立下列流程：![屬性流程 3](./media/active-directory-aadconnectsync-change-the-configuration/attributeflowjp3.png)
+* 按一下 [新增] 以儲存規則。
+* 移至 [同步處理服務管理員]。在 [連接器] 上，選取我們已在其中新增規則的連接器。依序選取 [執行] 和 [完整同步處理]。完整同步處理會使用目前的規則重新計算所有物件。
 
 這是具有此自訂規則之相同物件的結果：![屬性流程 4](./media/active-directory-aadconnectsync-change-the-configuration/attributeflowjp4.png)
 
@@ -119,19 +117,18 @@ Active Directory 中的某些屬性在結構描述中是多重值，但是在 [A
 
 在 Fabrikam，我們在同步處理到雲端的屬性中發現了一些不應該存在的屬性。我們想要確定這些屬性會從 Azure AD 中移除。![不正確的擴充屬性](./media/active-directory-aadconnectsync-change-the-configuration/badextensionattribute.png)
 
-- 建立新的輸入同步處理規則並填入說明 ![說明](./media/active-directory-aadconnectsync-change-the-configuration/syncruledescription.png)
-- 建立類型為 **Expression** 且來源為 **AuthoritativeNull** 的屬性流程。即使優先順序較低的同步處理規則會嘗試填入值，常值 **AuthoritativeNull** 還是會指出 MV 中的值應該是空的。 ![擴充屬性的轉換](./media/active-directory-aadconnectsync-change-the-configuration/syncruletransformations.png)
-- 儲存同步處理規則。啟動 [同步處理服務]、尋找連接器、選取 [執行] 和 [完整同步處理]。此步驟會重新計算所有屬性流程。
-- 藉由搜尋連接器空間，來確認即將匯出所需的變更。![分段刪除](./media/active-directory-aadconnectsync-change-the-configuration/deletetobeexported.png)
+* 建立新的輸入同步處理規則並填入說明 ![說明](./media/active-directory-aadconnectsync-change-the-configuration/syncruledescription.png)
+* 建立類型為 **Expression** 且來源為 **AuthoritativeNull** 的屬性流程。即使優先順序較低的同步處理規則會嘗試填入值，常值 **AuthoritativeNull** 還是會指出 MV 中的值應該是空的。 ![擴充屬性的轉換](./media/active-directory-aadconnectsync-change-the-configuration/syncruletransformations.png)
+* 儲存同步處理規則。啟動 [同步處理服務]、尋找連接器、選取 [執行] 和 [完整同步處理]。此步驟會重新計算所有屬性流程。
+* 藉由搜尋連接器空間，來確認即將匯出所需的變更。![分段刪除](./media/active-directory-aadconnectsync-change-the-configuration/deletetobeexported.png)
 
 ## 後續步驟
-
-- 如需組態模型的詳細資訊，請參閱[了解宣告式佈建](active-directory-aadconnectsync-understanding-declarative-provisioning.md)。
-- 如需運算式語言的詳細資訊，請參閱[了解宣告式佈建運算式](active-directory-aadconnectsync-understanding-declarative-provisioning-expressions.md)。
+* 如需組態模型的詳細資訊，請參閱[了解宣告式佈建](active-directory-aadconnectsync-understanding-declarative-provisioning.md)。
+* 如需運算式語言的詳細資訊，請參閱[了解宣告式佈建運算式](active-directory-aadconnectsync-understanding-declarative-provisioning-expressions.md)。
 
 **概觀主題**
 
-- [Azure AD Connect 同步處理：了解及自訂同步處理](active-directory-aadconnectsync-whatis.md)
-- [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
+* [Azure AD Connect 同步處理：了解及自訂同步處理](active-directory-aadconnectsync-whatis.md)
+* [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)
 
 <!---HONumber=AcomDC_0914_2016-->

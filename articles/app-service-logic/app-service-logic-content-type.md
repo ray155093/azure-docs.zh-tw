@@ -1,31 +1,28 @@
-<properties
-   pageTitle="Logic Apps 內容類型處理 | Microsoft Azure"
-   description="了解 Logic Apps 如何在設計階段與執行階段處理內容類型"
-   services="logic-apps"
-   documentationCenter=".net,nodejs,java"
-   authors="jeffhollan"
-   manager="dwrede"
-   editor=""/>
+---
+title: Logic Apps 內容類型處理 | Microsoft Docs
+description: 了解 Logic Apps 如何在設計階段與執行階段處理內容類型
+services: logic-apps
+documentationcenter: .net,nodejs,java
+author: jeffhollan
+manager: dwrede
+editor: ''
 
-<tags
-   ms.service="logic-apps"
-   ms.devlang="multiple"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="integration"
-   ms.date="05/03/2016"
-   ms.author="jehollan"/>
+ms.service: logic-apps
+ms.devlang: multiple
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: integration
+ms.date: 05/03/2016
+ms.author: jehollan
 
+---
 # Logic Apps 內容類型處理
-
 有許多不同類型的內容可以在整個邏輯應用程式中流動 (包括 JSON、XML、一般檔案及二進位資料)儘管所有內容類型都受到支援，但有些是透過 Logic Apps 引擎進行原生了解，而有些則可能要視需要進行轉型或轉換。下列文章將說明引擎如何處理不同的內容類型，以及如何能夠視需要正確處理它們。
 
 ## Content-Type 標頭
-
 從簡單的開始，讓我們看看下列這兩個 `Content-Types`，它們不需要任何轉換或轉型，就能在邏輯應用程式中使用 - `application/json` 和 `text/plain`。
 
 ### Application/json
-
 工作流程引擎依賴來自 HTTP 呼叫的 `Content-Type` 標頭來決定適當的處理。內容類型為 `application/json` 的任何要求都會以 JSON 物件的形式儲存並加以處理。此外，JSON 內容預設就能剖析，不需要任何轉換。因此 content-type 標頭為 `application/json ` 的要求如下所示︰
 
 ```
@@ -40,7 +37,6 @@
 可以在工作流程中使用運算式 (例如 `@body('myAction')['foo'][0]`) 進行剖析來取得值 (在此案例中為 `bar`)。不需要任何額外的轉換。如果您正在使用格式為 JSON 的資料，但並未指定標頭，則可使用 `@json()` 函數手動將它轉換為 JSON (例如︰`@json(triggerBody())['foo']`)。
 
 ### Text/plain
-
 類似於 `application/json`，若所收到的 HTTP 訊息中 `Content-Type` 標頭為 `text/plain`，就會以它的原始格式來儲存。此外，如果要求包含於後續動作中而不需任何轉換，則它將會與 `Content-Type`: `text/plain` 標頭一同送出。例如，如果使用一般檔案，您可能會收到下列 HTTP 內容︰
 
 ```
@@ -51,7 +47,6 @@ Oct-1,Frank,123 Ave.
 (以 `text/plain` 形式)。如果在下一個動作中，您將它做為另一個要求的主體 (`@body('flatfile')`) 來傳送，則要求必須含有 `text/plain` Content-type 標頭。如果您正在使用格式為純文字的資料，但並未指定標頭，則可使用 `@string()` 函數手動將它轉換為文字 (例如︰`@string(triggerBody())`)。
 
 ### Application/xml 和 Application/octet-stream 以及轉換器函數
-
 邏輯應用程式引擎一律會保留在 HTTP 要求或回應上接收到的 `Content-Type`。這表示如果收到 `Content-Type` 為 `application/octet-stream` 的內容，在後續不會執行轉換的動作中包括該內容將會產生含有 `Content-Type`: `application/octet-stream` 的要求。如此一來，引擎就可以保證資料在整個工作流程中移動時不會遺失。不過，當它流經整個工作流程時，動作狀態 (輸入及輸出) 會儲存於 JSON 物件中。這表示為了保留某些資料類型，引擎會將內容轉換為二進位 Base64 編碼的字串，並包含保留 `$content` 和 `$content-type` 的適當中繼資料 - 它將會自動轉換。您也可以使用內建的轉換函數，手動在內容類型之間進行轉換︰
 
 * `@json()` - 將資料轉換為 `application/json`
@@ -74,7 +69,6 @@ Oct-1,Frank,123 Ave.
 我可以轉換，並且可在稍後搭配像是 `@xml(triggerBody())` 的項目使用，或者在像是 `@xpath(xml(triggerBody()), '/CustomerName')` 的函數內使用。
 
 ### 其他內容類型
-
 有其他內容類型也受到支援，而且可與邏輯應用程式一起運作，但是可能需要藉由解碼 `$content` 來手動擷取訊息本文。例如，如果我觸發了看起來如下的 `application/x-www-url-formencoded` 要求︰
 
 ```

@@ -1,27 +1,28 @@
-<properties
-   pageTitle="SQL 資料倉儲中的檢視 | Microsoft Azure"
-   description="在 Azure SQL 資料倉儲中使用 Transact-SQL 檢視開發解決方案的秘訣。"
-   services="sql-data-warehouse"
-   documentationCenter="NA"
-   authors="jrowlandjones"
-   manager="barbkess"
-   editor=""/>
+---
+title: SQL 資料倉儲中的檢視 | Microsoft Docs
+description: 在 Azure SQL 資料倉儲中使用 Transact-SQL 檢視開發解決方案的秘訣。
+services: sql-data-warehouse
+documentationcenter: NA
+author: jrowlandjones
+manager: barbkess
+editor: ''
 
-<tags
-   ms.service="sql-data-warehouse"
-   ms.devlang="NA"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="data-services"
-   ms.date="07/01/2016"
-   ms.author="jrj;barbkess;sonyama"/>
+ms.service: sql-data-warehouse
+ms.devlang: NA
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: data-services
+ms.date: 07/01/2016
+ms.author: jrj;barbkess;sonyama
 
-
+---
 # SQL 資料倉儲中的檢視
-
 在 SQL 資料倉儲中檢視特別有用。以許多不同的方式使用，可以提升您的方案品質。本文特別強調幾個範例，說明如何以檢視來豐富您的解決方案，以及需要考量的限制。
 
-> [AZURE.NOTE] 本文中不會討論 `CREATE VIEW` 的語法。如需此參考資訊，請參閱 MSDN 上的 [CREATE VIEW][] 文章。
+> [!NOTE]
+> 本文中不會討論 `CREATE VIEW` 的語法。如需此參考資訊，請參閱 MSDN 上的 [CREATE VIEW][CREATE VIEW] 文章。
+> 
+> 
 
 ## 架構抽象概念
 極為常見的應用程式模式就是在載入資料時，使用後面接著物件重新命名模式的 CREATE TABLE AS SELECT (CTAS) 來重建資料表。
@@ -54,15 +55,14 @@ RENAME OBJECT DimDate_New TO DimDate;
 ## 限制
 SQL 資料倉儲中的檢視僅限中繼資料使用。因此無法使用下列選項︰
 
-- 	沒有結構描述繫結選項
-- 	無法透過檢視更新基底資料表
-- 	無法在暫存資料表上建立檢視
-- 	不支援 EXPAND / NOEXPAND 提示
-- 	SQL 資料倉儲中沒有索引檢視表
-
+* 沒有結構描述繫結選項
+* 無法透過檢視更新基底資料表
+* 無法在暫存資料表上建立檢視
+* 不支援 EXPAND / NOEXPAND 提示
+* SQL 資料倉儲中沒有索引檢視表
 
 ## 後續步驟
-如需更多開發秘訣，請參閱 [SQL 資料倉儲開發概觀][]。如需 `CREATE VIEW` 語法，請參閱 [CREATE VIEW][]。
+如需更多開發秘訣，請參閱 [SQL 資料倉儲開發概觀][SQL 資料倉儲開發概觀]。如需 `CREATE VIEW` 語法，請參閱 [CREATE VIEW][CREATE VIEW]。
 
 <!--Image references-->
 

@@ -1,25 +1,26 @@
 
-<properties 
-    pageTitle="Estimate Azure RemoteApp network bandwidth usage (評估 Azure RemoteApp 網路頻寬使用量) | Microsoft Azure"
-	description="深入了解 Azure RemoteApp 集合和應用程式的網路頻寬需求。"
-	services="remoteapp"
-	documentationCenter="" 
-	authors="lizap" 
-	manager="mbaldwin" />
+---
+title: Estimate Azure RemoteApp network bandwidth usage (評估 Azure RemoteApp 網路頻寬使用量) | Microsoft Docs
+description: 深入了解 Azure RemoteApp 集合和應用程式的網路頻寬需求。
+services: remoteapp
+documentationcenter: ''
+author: lizap
+manager: mbaldwin
 
-<tags 
-    ms.service="remoteapp" 
-    ms.workload="compute" 
-    ms.tgt_pltfrm="na" 
-    ms.devlang="na" 
-    ms.topic="article" 
-    ms.date="08/15/2016" 
-    ms.author="elizapo" />
+ms.service: remoteapp
+ms.workload: compute
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/15/2016
+ms.author: elizapo
 
-# Estimate Azure RemoteApp network bandwidth usage (評估 Azure RemoteApp 網路頻寬使用量) 
-
-> [AZURE.IMPORTANT]
-Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+---
+# Estimate Azure RemoteApp network bandwidth usage (評估 Azure RemoteApp 網路頻寬使用量)
+> [!IMPORTANT]
+> Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+> 
+> 
 
 Azure RemoteApp 使用遠端桌面通訊協定 (RDP)，在 Azure 雲端中執行的應用程式與您的使用者之間進行通訊。本文提供一些基本指導方針，可用來評估該網路使用量，也可能評估每位 Azure RemoteApp 使用者的網路頻寬使用量。
 
@@ -29,13 +30,11 @@ Azure RemoteApp 使用遠端桌面通訊協定 (RDP)，在 Azure 雲端中執行
 
 現在，請參閱下列文章來取得詳細資料 (包括要考量的因素、基準建議，以及未包含在我們的估計值中的項目)。
 
-- [How do network bandwidth and quality of experience work together? (如何兼顧網路頻寬和體驗品質？)](remoteapp-bandwidthexperience.md)
-- [Testing your network bandwidth usage with some common scenarios (利用一些常見案例測試您的網路頻寬使用量)](remoteapp-bandwidthtests.md)
-- [Quick guidelines if you don't have the time or ability to test (沒有時間或測試能力時的快速指導方針)](remoteapp-bandwidthguidelines.md)
-
+* [How do network bandwidth and quality of experience work together? (如何兼顧網路頻寬和體驗品質？)](remoteapp-bandwidthexperience.md)
+* [Testing your network bandwidth usage with some common scenarios (利用一些常見案例測試您的網路頻寬使用量)](remoteapp-bandwidthtests.md)
+* [Quick guidelines if you don't have the time or ability to test (沒有時間或測試能力時的快速指導方針)](remoteapp-bandwidthguidelines.md)
 
 ## 未包含的內容
-
 當您檢閱建議的測試和我們的整體 (和公認的一般) 建議時，請注意有數個我們未考慮到的因素。例如，上傳與下載頻寬的不對稱本質所提供的使用者體驗難題。大部分 Wi-Fi 網路的不對稱本質會額外影響效能和使用者體驗觀感。在互動式案例中，下游流量的優先順序低於上游，而這可能會增加遺失視訊或音訊框架數目，因此影響使用者對串流體驗的觀感。您可以進行您自己的實驗，了解什麼最適合您的特定使用案例和網路。
 
 雖然我們討論裝置重新導向，但是我們未考慮已連接裝置 (例如儲存體、印表機、掃描器、網路攝影機和其他 USB 裝置) 所造成之網路流量的頻寬影響。這些裝置通常會暫時導致頻寬需求變高，並在工作完成時回復正常。但是，如果經常這樣做，則頻寬需求可能會相當可觀。

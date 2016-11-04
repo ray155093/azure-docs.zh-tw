@@ -1,24 +1,22 @@
-<properties
-	pageTitle="使用 Machine Learning Studio 中的範例資料集 | Microsoft Azure"
-	description="ML Studio 中包含的範例模型所使用之資料集的描述。您可以為您的實驗使用這些範例資料集。"
-	services="machine-learning"
-	documentationCenter=""
-	authors="garyericson"
-	manager="jhubbard"
-	editor="cgronlun"/>
+---
+title: 使用 Machine Learning Studio 中的範例資料集 | Microsoft Docs
+description: ML Studio 中包含的範例模型所使用之資料集的描述。您可以為您的實驗使用這些範例資料集。
+services: machine-learning
+documentationcenter: ''
+author: garyericson
+manager: jhubbard
+editor: cgronlun
 
-<tags
-	ms.service="machine-learning"
-	ms.workload="data-services"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/16/2016"
-	ms.author="garye"/>
+ms.service: machine-learning
+ms.workload: data-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/16/2016
+ms.author: garye
 
-
+---
 # 在 Azure Machine Learning Studio 中使用範例資料集
-
 [top]: #machine-learning-sample-datasets
 
 在 Azure Machine Learning 中建立新的工作區時，預設會包含一些範例資料集和實驗。其中的許多範例資料集會由 [Azure Cortana Intelligence 資源庫](http://gallery.cortanaintelligence.com/)中的範例模型所使用，其他則是包含做為機器學習中經常會使用的各種類型資料的範例。
@@ -27,15 +25,13 @@
 
 在 ML Studio 中開啟或建立新實驗時，實驗畫布左側的模組調色盤中**儲存的資料集**底下會列出其餘的範例資料集。您可以將資料集拖曳到您的實驗畫布上，在自己的實驗中使用任一資料集。
 
-
 <!--
 For a list of sample experiments available in ML Studio, see [Machine Learning Sample Experiments][sample-experiments].
 
 [sample-experiments]: machine-learning-sample-experiments.md
 -->
 
-[AZURE.INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
-
+[!INCLUDE [電腦-學習-免費-試用](../../includes/machine-learning-free-trial.md)]
 
 <table>
 

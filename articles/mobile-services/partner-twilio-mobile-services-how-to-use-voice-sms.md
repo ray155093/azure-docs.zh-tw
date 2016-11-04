@@ -1,24 +1,22 @@
-<properties
-	pageTitle="使用 Twilio for Voice and SMS 功能 | Microsoft Azure"
-	description="了解如何使用 Twilio API 和 Azure 行動服務執行一般工作。"
-	services="mobile-services"
-	documentationCenter=""
-	authors="devinrader"
-	manager="dwrede"
-	editor=""/>
+---
+title: 使用 Twilio for Voice and SMS 功能 | Microsoft Docs
+description: 了解如何使用 Twilio API 和 Azure 行動服務執行一般工作。
+services: mobile-services
+documentationcenter: ''
+author: devinrader
+manager: dwrede
+editor: ''
 
-<tags
-	ms.service="mobile-services"
-	ms.workload="mobile"
-	ms.tgt_pltfrm="na"
-	ms.devlang="multiple"
-	ms.topic="article"
-	ms.date="07/21/2016"
-	ms.author="glenga"/>
+ms.service: mobile-services
+ms.workload: mobile
+ms.tgt_pltfrm: na
+ms.devlang: multiple
+ms.topic: article
+ms.date: 07/21/2016
+ms.author: glenga
 
-
+---
 # 如何從行動服務透過 Twilio 使用語音和簡訊功能
-
 本主題將說明如何使用 Twilio API 和 Azure 行動服務執行一般工作。在本教學課程中，您將了解如何建立自訂 API 指令碼，以使用 Twilio API 起始電話及傳送簡訊 (SMS)。
 
 ## <a id="WhatIs"></a>什麼是 Twilio？
@@ -80,36 +78,36 @@ Twilio 所提供的 Node.js 程式庫封裝了 Twilio 的各種組件，讓您�
 若要在行動服務中使用 Twilio node.js 程式庫，您必須利用行動服務 npm 模組支援 (只要將您的指令碼儲存在來源控制中，即可支援)。
 
 1. 完成[在原始檔控制中儲存指令碼](mobile-services-store-scripts-source-control.md)教學課程。這會逐步帶您設定行動服務的原始檔控制，並在 Git 儲存機制中儲存您的伺服器指令碼。
-
 2. 為行動服務設定原始檔控制後，請在您的本機電腦上開啟儲存機制，瀏覽至 `\services` 子資料夾，在文字編輯器中開啟 package.json 檔案，再將下列欄位新增至 **dependencies** 物件：
-
-		"twilio": "~1.7.0"
-
+   
+        "twilio": "~1.7.0"
 3. 在新增 **dependencies** 物件的 Twilio 封裝參考之後，package.json 檔案看起來應該如下所示：
-
-		{
-		  "name": "todolist",
-		  "version": "1.0.0",
-		  "description": "todolist - hosted on Azure Mobile Services",
-		  "main": "server.js",
-		  "engines": {
-		    "node": ">= 0.8.19"
-		  },
-		  "dependencies": {
-			"twilio": "~1.7.0"
-		  },
-		  "devDependencies": {},
-		  "scripts": {},
-		  "author": "unknown",
-		  "licenses": [],
-		  "keywords":[]
-		}
-
-	>[AZURE.NOTE]應將 Twilio 的相依性新增為 `"twilio": "~1.7.0"`，包含 (~)。不支援使用插入號 (^) 的參考。
-
+   
+        {
+          "name": "todolist",
+          "version": "1.0.0",
+          "description": "todolist - hosted on Azure Mobile Services",
+          "main": "server.js",
+          "engines": {
+            "node": ">= 0.8.19"
+          },
+          "dependencies": {
+            "twilio": "~1.7.0"
+          },
+          "devDependencies": {},
+          "scripts": {},
+          "author": "unknown",
+          "licenses": [],
+          "keywords":[]
+        }
+   
+   > [!NOTE]
+   > 應將 Twilio 的相依性新增為 `"twilio": "~1.7.0"`，包含 (~)。不支援使用插入號 (^) 的參考。
+   > 
+   > 
 4. 認可此檔案更新，並將更新推回行動服務。
-
-	此項 package.json 檔案更新會重新啟動您的行動服務。
+   
+    此項 package.json 檔案更新會重新啟動您的行動服務。
 
 行動服務現在會安裝並載入 Twilio 封裝，以便您可以在自訂的 API 和資料表指令碼中參考及使用 Twilio 程式庫。
 
@@ -167,10 +165,12 @@ Twilio 所提供的 Node.js 程式庫封裝了 Twilio 的各種組件，讓您�
 
 
 ## <a id="howto_provide_twiml_responses"></a>作法：從您自己的網站提供 TwiML 回應
-
 當應用程式開始呼叫 Twilio API 時 (例如，透過 client.InitiateOutboundCall 方法)，Twilio 會傳送要求至 URL，然後應該會傳回 TwiML 回應。在＜作法：撥出電話＞中的範例使用 Twilio 提供的 URL http://twimlets.com/message 來傳回回應。
 
-> [AZURE.NOTE] 雖然 TwiML 是專供 Web 服務使用，但您也可以在瀏覽器中檢視 TwiML。例如，您可以按一下 [twimlet\_message\_url](http://twimlets.com/message) 以檢視空的 &lt;Response&gt; 元素，或按一下 [twimlet\_message\_url\_hello\_world](http://twimlets.com/message?Message%5B0%5D=Hello%20World) 以檢視包含 &lt;Say&gt; 元素的 &lt;Response&gt; 元素。
+> [!NOTE]
+> 雖然 TwiML 是專供 Web 服務使用，但您也可以在瀏覽器中檢視 TwiML。例如，您可以按一下 [twimlet\_message\_url](http://twimlets.com/message) 以檢視空的 &lt;Response&gt; 元素，或按一下 [twimlet\_message\_url\_hello\_world](http://twimlets.com/message?Message%5B0%5D=Hello%20World) 以檢視包含 &lt;Say&gt; 元素的 &lt;Response&gt; 元素。
+> 
+> 
 
 除了依賴 Twilio 提供的 URL，您也可以建立自己的 URL 網站來傳回 HTTP 回應。您可以使用任何可傳回 HTTP 回應的語言來建立網站。本主題假設您從 ASP.NET 通用處理常式來裝載 URL。
 
@@ -207,8 +207,7 @@ Twilio 所提供的 Node.js 程式庫封裝了 Twilio 的各種組件，讓您�
         });
     };
 
-[AZURE.INCLUDE [twilio-additional-services-and-next-steps](../../includes/twilio-additional-services-and-next-steps.md)]
-
+[!INCLUDE [twilio-additional-services-and-next-steps](../../includes/twilio-additional-services-and-next-steps.md)]
 
 [twilio_rest_making_calls]: http://www.twilio.com/docs/api/rest/making-calls
 

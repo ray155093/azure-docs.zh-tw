@@ -1,39 +1,37 @@
-<properties 
-	pageTitle="開始使用 MFA Server Mobile App Web 服務"
-	description="Azure Multi-Factor Authentication 應用程式提供額外的頻外驗證選項。它可以讓 MFA Server 將通知推播給使用者。"
-	services="multi-factor-authentication"
-	documentationCenter=""
-	authors="kgremban"
-	manager="femila"
-	editor="curtland"/>
+---
+title: 開始使用 MFA Server Mobile App Web 服務
+description: Azure Multi-Factor Authentication 應用程式提供額外的頻外驗證選項。它可以讓 MFA Server 將通知推播給使用者。
+services: multi-factor-authentication
+documentationcenter: ''
+author: kgremban
+manager: femila
+editor: curtland
 
-<tags
-	ms.service="multi-factor-authentication"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="get-started-article"
-	ms.date="08/04/2016"
-	ms.author="kgremban"/>
+ms.service: multi-factor-authentication
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: get-started-article
+ms.date: 08/04/2016
+ms.author: kgremban
 
+---
 # 開始使用 MFA Server Mobile App Web 服務
-
 Azure Multi-Factor Authentication 應用程式提供額外的頻外驗證選項。Azure Multi-Factor Authentication 會將通知推送到使用者智慧型手機或平板電腦上的 Azure Multi-Factor Authentication 應用程式，取代在登入時撥打自動電話或傳送 SMS 給使用者。使用者只需要在應用程式中點選 [驗證] \(或輸入 PIN 再點選 [驗證]) 即可登入。
 
 若要使用 Azure Multi-Factor Authentication 應用程式，使用者必須滿足以下條件，應用程式才能與 Mobile App Web 服務成功通訊：
 
-- 如需硬體和軟體需求，請參閱＜硬體和軟體需求＞
-- 您必須使用 Azure Multi-Factor Authentication Server 6.0 或更高版本
-- 必須將 Mobile App Web 服務安裝在執行 Microsoft® Internet Information Services (IIS) IIS 7.x 或更高版本的網際網路對向 Web 伺服器上。如需 IIS 的詳細資訊，請參閱 [IIS.NET](http://www.iis.net/)。
-- 請確定 ASP.NET v4.0.30319 已安裝、註冊並設定為 [已允許]
-- 所需的角色服務包括 ASP.NET 和 IIS 6 Metabase 相容性
-- Mobile App Web 服務必須可透過公用 URL 存取
-- Mobile App Web 服務必須受到 SSL 憑證保護。
-- 必須以 IIS 7.x 或更高版本將 Azure Multi-Factor Authentication Web 服務 SDK 安裝在 Azure Multi-Factor Authentication Server 所安裝的伺服器上。
-- Azure Multi-Factor Authentication Web 服務 SDK 必須受到 SSL 憑證保護。
-- Mobile App Web 服務必須要能透過 SSL 連接 Azure Multi-Factor Authentication Web 服務 SDK。
-- 行動裝置應用程式 Web 服務必須要能使用隸屬於 "PhoneFactor Admins" 安全性群組之服務帳戶的認證驗證 Azure Multi-Factor Authentication Web 服務 SDK。如果 Azure Multi-Factor Authentication Server 在加入網域的伺服器上執行，此服務帳戶和群組也會存在於 Active Directory 中。如果伺服器未加入網域，此服務帳戶和群組會存在於 Azure Multi-Factor Authentication Server 本機。
-
+* 如需硬體和軟體需求，請參閱＜硬體和軟體需求＞
+* 您必須使用 Azure Multi-Factor Authentication Server 6.0 或更高版本
+* 必須將 Mobile App Web 服務安裝在執行 Microsoft® Internet Information Services (IIS) IIS 7.x 或更高版本的網際網路對向 Web 伺服器上。如需 IIS 的詳細資訊，請參閱 [IIS.NET](http://www.iis.net/)。
+* 請確定 ASP.NET v4.0.30319 已安裝、註冊並設定為 [已允許]
+* 所需的角色服務包括 ASP.NET 和 IIS 6 Metabase 相容性
+* Mobile App Web 服務必須可透過公用 URL 存取
+* Mobile App Web 服務必須受到 SSL 憑證保護。
+* 必須以 IIS 7.x 或更高版本將 Azure Multi-Factor Authentication Web 服務 SDK 安裝在 Azure Multi-Factor Authentication Server 所安裝的伺服器上。
+* Azure Multi-Factor Authentication Web 服務 SDK 必須受到 SSL 憑證保護。
+* Mobile App Web 服務必須要能透過 SSL 連接 Azure Multi-Factor Authentication Web 服務 SDK。
+* 行動裝置應用程式 Web 服務必須要能使用隸屬於 "PhoneFactor Admins" 安全性群組之服務帳戶的認證驗證 Azure Multi-Factor Authentication Web 服務 SDK。如果 Azure Multi-Factor Authentication Server 在加入網域的伺服器上執行，此服務帳戶和群組也會存在於 Active Directory 中。如果伺服器未加入網域，此服務帳戶和群組會存在於 Azure Multi-Factor Authentication Server 本機。
 
 若要將使用者入口網站安裝在 Azure Multi-Factor Authentication Server 以外的伺服器上，您必須進行以下三個步驟：
 
@@ -43,7 +41,6 @@ Azure Multi-Factor Authentication 應用程式提供額外的頻外驗證選項�
 4. 為使用者啟用 Azure Multi-Factor Authentication 應用程式
 
 ## 安裝 Web 服務 SDK
-
 如果您尚未將 Azure Multi-Factor Authentication Web 服務 SDK 安裝在 Azure Multi-Factor Authentication Server 上，請移至該伺服器，然後開啟 Azure Multi-Factor Authentication Server。按一下 [Web 服務 SDK] 圖示，再按一下 [安裝 Web 服務 SDK...] 按鈕，然後遵循畫面呈現的指示。Web 服務 SDK 必須受到 SSL 憑證保護。自我簽署憑證適用於此目的，不過您必須將它匯入使用者入口網站 Web 伺服器上本機電腦帳戶的「信任的根憑證授權」存放區，這樣它才會在起始 SSL 連接時信任該憑證。
 
 <center>![Setup](./media/multi-factor-authentication-get-started-server-webservice/sdk.png)</center>
@@ -51,13 +48,13 @@ Azure Multi-Factor Authentication 應用程式提供額外的頻外驗證選項�
 ## 安裝 Mobile App Web 服務
 在安裝 Mobile App Web 服務之前，請注意下列各項：
 
-- 如果您已將 Azure Multi-Factor Authentication 使用者入口網站安裝在網際網路對向伺服器上，可以從使用者入口網站的 web.config 檔案將使用者名稱、密碼及 URL 複製到 Web 服務 SDK。
-- 在網際網路對向 Web 伺服器上開啟網頁瀏覽器，並瀏覽至輸入 web.config 檔案中的 Web 服務 SDK URL，如此將有所幫助。如果瀏覽器可以順利連接 Web 服務，它應該會提示您輸入認證。輸入使用者名稱和密碼 (與輸入 web.config 檔案中的使用者名稱和密碼完全相同)。確定未出現任何憑證警告或錯誤。
-- 如果反向 Proxy 或防火牆座落於 Mobile App Web 服務 Web 伺服器之前，而且正在執行 SSL 卸載，您可以編輯 Mobile App Web 服務的 web.config 檔案，並將下列機碼新增至 <appSettings> 區段，讓 Mobile App Web 服務可以使用 http，而不是 https。不過，從 Mobile App 到防火牆/反向 Proxy 仍然需要 SSL。<add key="SSL\_REQUIRED" value="false"/>
+* 如果您已將 Azure Multi-Factor Authentication 使用者入口網站安裝在網際網路對向伺服器上，可以從使用者入口網站的 web.config 檔案將使用者名稱、密碼及 URL 複製到 Web 服務 SDK。
+* 在網際網路對向 Web 伺服器上開啟網頁瀏覽器，並瀏覽至輸入 web.config 檔案中的 Web 服務 SDK URL，如此將有所幫助。如果瀏覽器可以順利連接 Web 服務，它應該會提示您輸入認證。輸入使用者名稱和密碼 (與輸入 web.config 檔案中的使用者名稱和密碼完全相同)。確定未出現任何憑證警告或錯誤。
+* 如果反向 Proxy 或防火牆座落於 Mobile App Web 服務 Web 伺服器之前，而且正在執行 SSL 卸載，您可以編輯 Mobile App Web 服務的 web.config 檔案，並將下列機碼新增至 <appSettings> 區段，讓 Mobile App Web 服務可以使用 http，而不是 https。不過，從 Mobile App 到防火牆/反向 Proxy 仍然需要 SSL。<add key="SSL\_REQUIRED" value="false"/>
 
 ### 安裝 Mobile App Web 服務
-
 <ol>
+
 <li>在 Azure Multi-Factor Authentication 伺服器上開啟 Windows 檔案總管，接著瀏覽至安裝 Azure Multi-Factor Authentication Server 的資料夾 (如 C:\Program Files\Azure Multi-Factor Authentication)。視需要針對要安裝 Mobile App Web 服務的伺服器選擇 32 位元或 64 位元版本的 Azure Multi-Factor AuthenticationPhoneAppWebServiceSetup 安裝檔案。將安裝檔案複製到網際網路對向伺服器。</li>
 
 <li>在網際網路對向 Web 伺服器上，您必須以系統管理員權限執行安裝程式檔案。若要這樣做，最簡單的方式是以系統管理員身分開啟命令提示字元，再瀏覽至複製安裝檔案的位置。</li>  
@@ -78,14 +75,11 @@ Azure Multi-Factor Authentication 應用程式提供額外的頻外驗證選項�
 既然 Mobile App Web 服務已安裝完成，您需要設定 Azure Multi-Factor Authentication Server，使其與入口網站搭配運作。
 
 #### 在 Azure Multi-Factor Authentication Server 中配置行動應用程式設定
-
 1. 在 Azure Multi-Factor Authentication Server 中，按一下 [使用者入口網站] 圖示。如果您允許使用者控制其驗證方法，請在 [設定] 索引標籤之 [允許使用者選取方法] 下方勾選 [行動應用程式]。若未啟用這個功能，使用者就必須連絡技術支援人員來完成行動應用程式啟用。
 2. 勾選 [允許使用者啟用行動應用程式] 方塊。
 3. 勾選 [允許使用者註冊] 方塊。
 4. 按一下 [行動應用程式] 圖示。
 5. 輸入安裝 Azure Multi-Factor AuthenticationMobileAppWebServiceSetup 時建立之虛擬目錄搭配使用的 URL。您可以在提供的空間內輸入帳戶名稱。此處的公司名稱會顯示在行動應用程式中。如果保留空白，系統會改為顯示在 Azure 管理入口網站中建立的 Multi-Factor Auth Provider 名稱。
-
-
 
 <center>![Setup](./media/multi-factor-authentication-get-started-server-webservice/mobile.png)</center>
 

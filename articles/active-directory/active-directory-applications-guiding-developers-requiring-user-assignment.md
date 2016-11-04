@@ -1,23 +1,22 @@
-<properties
-	pageTitle="Azure AD 和應用程式：要求使用者指派 | Microsoft Azure"
-	description="如何要求 Azure 應用程式的使用者指派。"
-	services="active-directory"
-	documentationCenter=""
-	authors="IHenkel"
-	manager="femila"
-	editor=""/>
+---
+title: Azure AD 和應用程式：要求使用者指派 | Microsoft Docs
+description: 如何要求 Azure 應用程式的使用者指派。
+services: active-directory
+documentationcenter: ''
+author: IHenkel
+manager: femila
+editor: ''
 
-<tags
-	ms.service="active-directory"
-	ms.workload="identity"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="10/09/2015"
-	ms.author="inhenk"/>
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 10/09/2015
+ms.author: inhenk
 
+---
 # Azure AD 和應用程式：要求使用者指派
-
 ## 要求使用者指派
 1. 使用系統管理員帳戶登入 Azure 入口網站。
 2. 在主功能表中按一下 [**所有項目**] 項目。
@@ -31,6 +30,6 @@
 現在您需要將使用者及/或群組指派給應用程式。請參閱[將使用者指派至應用程式](active-directory-applications-guiding-developers-assigning-users.md)和[將群組指派給應用程式](active-directory-applications-guiding-developers-assigning-groups.md)。
 
 ## 後續步驟
-[AZURE.INCLUDE [active-directory-applications-guiding-developers-for-lob-applications-toc.md](../../includes/active-directory-applications-guiding-developers-for-lob-applications-toc.md)]
+[!INCLUDE [active-directory-applications-guiding-developers-for-lob-applications-toc.md](../../includes/active-directory-applications-guiding-developers-for-lob-applications-toc.md)]
 
 <!---HONumber=AcomDC_0928_2016-->

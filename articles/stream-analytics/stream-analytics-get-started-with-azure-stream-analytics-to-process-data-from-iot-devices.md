@@ -1,36 +1,30 @@
-<properties
-    pageTitle="開始使用 Azure 串流分析來處理 IoT 裝置的資料。 | Microsoft Azure"
-    description="IoT 感應器標記和具有串流分析的資料串流與即時資料處理"
-    keywords="IoT 解決方案，開始使用 IoT"
-    services="stream-analytics"
-    documentationCenter=""
-    authors="jeffstokes72"
-    manager="jhubbard"
-    editor="cgronlun"
-/>
+---
+title: 開始使用 Azure 串流分析來處理 IoT 裝置的資料。 | Microsoft Docs
+description: IoT 感應器標記和具有串流分析的資料串流與即時資料處理
+keywords: IoT 解決方案，開始使用 IoT
+services: stream-analytics
+documentationcenter: ''
+author: jeffstokes72
+manager: jhubbard
+editor: cgronlun
 
-<tags
-    ms.service="stream-analytics"
-    ms.devlang="na"
-    ms.topic="hero-article"
-    ms.tgt_pltfrm="na"
-    ms.workload="data-services"
-    ms.date="09/26/2016"
-    ms.author="jeffstok"
-/>
+ms.service: stream-analytics
+ms.devlang: na
+ms.topic: hero-article
+ms.tgt_pltfrm: na
+ms.workload: data-services
+ms.date: 09/26/2016
+ms.author: jeffstok
 
-
+---
 # <a name="get-started-with-azure-stream-analytics-to-process-data-from-iot-devices"></a>開始使用 Azure 串流分析來處理 IoT 裝置的資料
-
 在本教學課程中，您將學習如何建立串流處理邏輯，以從物聯網 (IoT) 裝置收集資料。 我們將使用真實世界的物聯網 (IoT) 使用案例以示範如何快速且經濟地建置您的解決方案。
 
 ## <a name="prerequisites"></a>必要條件
-
--   [Azure 訂用帳戶](https://azure.microsoft.com/pricing/free-trial/)
--   範例查詢和資料檔案可從 [GitHub](https://aka.ms/azure-stream-analytics-get-started-iot)
+* [Azure 訂用帳戶](https://azure.microsoft.com/pricing/free-trial/)
+* 範例查詢和資料檔案可從 [GitHub](https://aka.ms/azure-stream-analytics-get-started-iot)
 
 ## <a name="scenario"></a>案例
-
 Contoso 是一家工業自動化空間的公司，他們已完全自動化其製造程序。 這家製造廠的機械裝置具有感應器，可以發出即時資料串流。 在此案例中，生產現場經理想要取得感應器資料的即時深入資訊，來尋找模式並且對其採取動作。 我們將對感應器資料使用串流分析查詢語言 (SAQL)，以從內送資料串流中找出感興趣的模式。
 
 這裡的資料是從 Texas Instrument 的感應器標籤裝置產生。
@@ -38,7 +32,6 @@ Contoso 是一家工業自動化空間的公司，他們已完全自動化其製
 ![Texas Instruments 的感應器標籤](./media/stream-analytics-get-started-with-iot-devices/stream-analytics-get-started-with-iot-devices-01.jpg)
 
 資料的承載格式是 JSON，如下所示：
-
 
     {
         "time": "2016-01-26T20:47:53.0000000",  
@@ -52,27 +45,24 @@ Contoso 是一家工業自動化空間的公司，他們已完全自動化其製
 為了方便使用，本入門指南會提供擷取自實際感應器標籤裝置的範例資料檔。 您可以對範例資料執行查詢，然後查看結果。 在後續教學課程中，您將了解如何將您的作業連接至輸入和輸出，並將它們部署到 Azure 服務。
 
 ## <a name="create-a-stream-analytics-job"></a>建立串流分析工作
-
 1. 在 [Azure 入口網站](http://manage.windowsazure.com)中按一下 [串流分析]，然後按一下頁面左下角的 [新增] 來建立新的分析作業。
-
+   
     ![建立新的串流分析作業](./media/stream-analytics-get-started-with-iot-devices/stream-analytics-get-started-with-iot-devices-02.png)
-
 2. 按一下 [快速建立] 。
-
 3. 對於 [區域監視儲存體帳戶] 設定，按一下 [建立新的儲存體帳戶]，並給它一個唯一的名稱。 Azure 串流分析會使用此帳戶來儲存您未來所有工作的監視資訊。
-
-    > [AZURE.NOTE] 每個區域只應該建立一次此儲存體帳戶。 此儲存體會供該區域中建立的所有串流分析作業共用。
-
+   
+   > [!NOTE]
+   > 每個區域只應該建立一次此儲存體帳戶。 此儲存體會供該區域中建立的所有串流分析作業共用。
+   > 
+   > 
 4. 按一下頁面底部的 [建立串流分析作業]  。
-
+   
     ![儲存體帳戶組態](./media/stream-analytics-get-started-with-iot-devices/stream-analytics-get-started-with-iot-devices-03.jpg)
 
 ## <a name="azure-stream-analytics-query"></a>Azure 串流分析查詢
-
 按一下 [查詢] 索引標籤以移至查詢編輯器。 [查詢] 索引標籤包含會針對傳入事件資料進行轉換的 T-SQL 查詢。
 
 ## <a name="archive-your-raw-data"></a>封存未經處理資料
-
 形式最簡單的查詢是傳遞查詢，其會將所有輸入資料封存至其指定的輸出。
 
 ![封存作業查詢](./media/stream-analytics-get-started-with-iot-devices/stream-analytics-get-started-with-iot-devices-04.png)
@@ -88,7 +78,6 @@ Contoso 是一家工業自動化空間的公司，他們已完全自動化其製
 ![測試結果](./media/stream-analytics-get-started-with-iot-devices/stream-analytics-get-started-with-iot-devices-07.png)
 
 ## <a name="filter-the-data-based-on-a-condition"></a>根據條件篩選資料
-
 讓我們試著根據條件篩選結果。 我們想要僅針對來自 “sensorA” 的事件顯示結果。 查詢位於 Filtering.txt 檔案中。
 
 ![篩選資料串流](./media/stream-analytics-get-started-with-iot-devices/stream-analytics-get-started-with-iot-devices-08.png)
@@ -98,7 +87,6 @@ Contoso 是一家工業自動化空間的公司，他們已完全自動化其製
 ![查詢測試的第二個輸出結果](./media/stream-analytics-get-started-with-iot-devices/stream-analytics-get-started-with-iot-devices-09.png)
 
 ## <a name="alert-to-trigger-a-business-workflow"></a>觸發商務工作流程的警示
-
 讓我們的查詢變得更為詳細。 對於每一個類型的感應器，我們想要監視每 30 秒時段的平均溫度，並且只顯示平均溫度高於 100 度的結果。 我們會撰寫下列查詢，然後按一下 [重新執行] 來查看結果。 查詢位於 ThresholdAlerting.txt 檔案中。
 
 ![30 秒篩選查詢](./media/stream-analytics-get-started-with-iot-devices/stream-analytics-get-started-with-iot-devices-10.png)
@@ -108,7 +96,6 @@ Contoso 是一家工業自動化空間的公司，他們已完全自動化其製
 ![溫度超過 100](./media/stream-analytics-get-started-with-iot-devices/stream-analytics-get-started-with-iot-devices-11.png)
 
 ## <a name="detect-absence-of-events"></a>偵測不存在的事件
-
 我們要如何撰寫查詢來尋找輸入不足事件？ 讓我們找出上次感應器在傳送資料後，但是接下來一分鐘未傳送事件的情形。 查詢位於 AbsenseOfEvent.txt 檔案中。
 
 ![偵測不存在的事件](./media/stream-analytics-get-started-with-iot-devices/stream-analytics-get-started-with-iot-devices-12.png)
@@ -118,10 +105,7 @@ Contoso 是一家工業自動化空間的公司，他們已完全自動化其製
 ![聯結結果](./media/stream-analytics-get-started-with-iot-devices/stream-analytics-get-started-with-iot-devices-13.png)
 
 ## <a name="conclusion"></a>結論
-
-本教學課程的目的在於示範如何撰寫不同的串流分析查詢語言查詢，並在瀏覽器中查看結果。 但是，這只是剛開始。 您還可以使用串流分析執行更多功能。 串流分析支援各種輸入和輸出，並甚至可以使用 Azure Machine Learning 中的函式，使其成為分析資料串流的健全工具。 您可以使用我們的[學習地圖](https://azure.microsoft.com/documentation/learning-paths/stream-analytics/)開始深入探索串流分析。 如需如何撰寫查詢的詳細資訊，請閱讀有關[常見查詢模式](./stream-analytics-stream-analytics-query-patterns.md)的文章。
-
-
+本教學課程的目的在於示範如何撰寫不同的串流分析查詢語言查詢，並在瀏覽器中查看結果。 但是，這只是剛開始。 您還可以使用串流分析執行更多功能。 串流分析支援各種輸入和輸出，並甚至可以使用 Azure Machine Learning 中的函式，使其成為分析資料串流的健全工具。 您可以使用我們的[學習地圖](https://azure.microsoft.com/documentation/learning-paths/stream-analytics/)開始深入探索串流分析。 如需如何撰寫查詢的詳細資訊，請閱讀有關[常見查詢模式](stream-analytics-stream-analytics-query-patterns.md)的文章。
 
 <!--HONumber=Oct16_HO2-->
 

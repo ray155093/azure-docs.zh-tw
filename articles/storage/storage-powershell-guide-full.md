@@ -1,24 +1,22 @@
-<properties
-	pageTitle="將 Azure PowerShell 與 Azure 儲存體搭配使用 | Microsoft Azure"
-	description="了解如何使用適用於 Azure 儲存體的 Azure PowerShell Cmdlet 建立和管理儲存體帳戶；使用 Blob、資料表、佇列和檔案；設定和查詢儲存體分析，並建立共用存取簽章。"
-	services="storage"
-	documentationCenter="na"
-	authors="robinsh"
-	manager="carmonm"/>
+---
+title: 將 Azure PowerShell 與 Azure 儲存體搭配使用 | Microsoft Docs
+description: 了解如何使用適用於 Azure 儲存體的 Azure PowerShell Cmdlet 建立和管理儲存體帳戶；使用 Blob、資料表、佇列和檔案；設定和查詢儲存體分析，並建立共用存取簽章。
+services: storage
+documentationcenter: na
+author: robinsh
+manager: carmonm
 
-<tags
-	ms.service="storage"
-	ms.workload="storage"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="08/03/2016"
-	ms.author="micurd;robinsh"/>
+ms.service: storage
+ms.workload: storage
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/03/2016
+ms.author: micurd;robinsh
 
+---
 # 搭配使用 Azure PowerShell 與 Azure 儲存體
-
 ## Overview
-
 Azure PowerShell 是個模組，其提供了各種 Cmdlet 來透過 Windows PowerShell 管理 Azure。它是以工作為基礎的命令列殼層和指令碼語言，特別為系統管理所設計。使用 PowerShell，您可以輕鬆控制和自動執行 Azure 服務和應用程式的管理。例如，您可透過 [Azure 入口網站](https://portal.azure.com)執行的工作，大多也可使用 Cmdlet 來執行。
 
 在本指南中，我們將探討如何使用 [Azure 儲存體 Cmdlet](https://msdn.microsoft.com/library/azure/mt269418.aspx)，以 Azure 儲存體執行各種開發和管理工作。
@@ -27,9 +25,7 @@ Azure PowerShell 是個模組，其提供了各種 Cmdlet 來透過 Windows Powe
 
 本指南的第一節提供 Azure 儲存體和 PowerShell 的快速概覽。如需詳細資訊和指示，請從[搭配使用 Azure PowerShell 與 Azure 儲存體的先決條件](#prerequisites-for-using-azure-powershell-with-azure-storage)開始閱讀。
 
-
 ## 在 5 分鐘內開始使用 Azure 儲存體和 PowerShell
-
 本節說明如何在 5 分鐘內透過 PowerShell 存取 Azure 儲存體。
 
 **Azure 新手：**取得 Microsoft Azure 訂用帳戶和與該訂用帳戶相關聯的 Microsoft 帳戶。如需 Azure 購買選項的資訊，請參閱[免費試用](https://azure.microsoft.com/pricing/free-trial/)、[購買選項](https://azure.microsoft.com/pricing/purchase-options/)和[會員優惠](https://azure.microsoft.com/pricing/member-offers/) (適用於 MSDN、Microsoft 合作夥伴網路、BizSpark 和其他 Microsoft 方案的成員)。
@@ -38,100 +34,95 @@ Azure PowerShell 是個模組，其提供了各種 Cmdlet 來透過 Windows Powe
 
 **建立 Microsoft Azure 訂用帳戶和帳戶之後：**
 
-1.	下載並安裝 [Azure PowerShell](http://go.microsoft.com/?linkid=9811175&clcid=0x409)。
-2.	啟動 Windows PowerShell 整合式指令碼環境 (ISE)：在本機電腦中移至 [開始]功能表。鍵入**系統管理工具**，然後按一下以執行。在 [系統管理工具] 視窗中，以滑鼠右鍵按一下 [Windows PowerShell ISE]，按一下 [以系統管理員身分執行]。
-3.	在 [Windows PowerShell ISE] 中，按一下 [檔案] > [新增]，建立新的指令碼檔。
-4.	現在，我們將提供簡單的指令碼，顯示用以存取 Azure 儲存體的基本 PowerShell 命令。此指令碼會先要求您的 Azure 帳戶認證，以將您的 Azure 帳戶新增到本機 PowerShell 環境。然後，指令碼會設定預設 Azure 訂用帳戶，並在 Azure 中建立新的儲存體帳戶。接著，指令碼將在這個新的儲存體帳戶中建立新容器，並將現有的映像檔案 (Blob) 上傳至該容器。指令碼列出該容器中的所有 Blob 之後，它會在本機電腦中建立新的目的地目錄並下載映像檔。
-5.	在下列程式碼區段中，選取 **#begin** 和 **#end** 備註之間的指令碼。按 CTRL+C 將它複製到剪貼簿。
-
-    	#begin
-    	# Update with the name of your subscription.
-    	$SubscriptionName = "YourSubscriptionName"
-
-    	# Give a name to your new storage account. It must be lowercase!
-    	$StorageAccountName = "yourstorageaccountname"
-
-    	# Choose "West US" as an example.
-    	$Location = "West US"
-
-    	# Give a name to your new container.
-    	$ContainerName = "imagecontainer"
-
-    	# Have an image file and a source directory in your local computer.
-    	$ImageToUpload = "C:\Images\HelloWorld.png"
-
-    	# A destination directory in your local computer.
-    	$DestinationFolder = "C:\DownloadImages"
-
-    	# Add your Azure account to the local PowerShell environment.
-    	Add-AzureAccount
-
-    	# Set a default Azure subscription.
-    	Select-AzureSubscription -SubscriptionName $SubscriptionName –Default
-
-    	# Create a new storage account.
-    	New-AzureStorageAccount –StorageAccountName $StorageAccountName -Location $Location
-
-    	# Set a default storage account.
-    	Set-AzureSubscription -CurrentStorageAccountName $StorageAccountName -SubscriptionName $SubscriptionName
-
-    	# Create a new container.
-    	New-AzureStorageContainer -Name $ContainerName -Permission Off
-
-    	# Upload a blob into a container.
-    	Set-AzureStorageBlobContent -Container $ContainerName -File $ImageToUpload
-
-    	# List all blobs in a container.
-    	Get-AzureStorageBlob -Container $ContainerName
-
-    	# Download blobs from the container:
-    	# Get a reference to a list of all blobs in a container.
-    	$blobs = Get-AzureStorageBlob -Container $ContainerName
-
-    	# Create the destination directory.
-    	New-Item -Path $DestinationFolder -ItemType Directory -Force  
-
-    	# Download blobs into the local destination directory.
-    	$blobs | Get-AzureStorageBlobContent –Destination $DestinationFolder
-    	#end
-
-5.	在 [Windows PowerShell ISE] 中，按 CTRL+V 以複製指令碼。按一下 [檔案] > [儲存]。在 [另存新檔] 對話方塊視窗中，鍵入指令碼檔的名稱，例如 "mystoragescript"。按一下 [儲存]。
-
-6.	現在，您需要根據您的組態設定更新指令碼變數。您必須使用自己的訂用帳戶更新 **$SubscriptionName** 變數。您可以保留指令碼中指定的其他變數或視需要予以更新。
-
-	- **$SubscriptionName：**您必須使用自己的訂用帳戶名稱更新此變數。依照下列其中一個方式執行，即可找出您的訂用帳戶名稱：
-
-		a.在 [Windows PowerShell ISE] 中，按一下 [檔案] > [新增]，建立新的指令碼檔。將下列指令碼複製到新的指令碼檔，然後按一下 [偵錯] > [執行]。下列指令碼會先要求您的 Azure 帳戶認證，以將您的 Azure 帳戶新增到本機 PowerShell 環境，然後顯示連接到本機 PowerShell 工作階段的所有訂用帳戶。請記下遵循此教學課程時，您所要使用的訂用帳戶名稱：
-
-			Add-AzureAccount
-				Get-AzureSubscription | Format-Table SubscriptionName, IsDefault, IsCurrent, CurrentStorageAccountName
-
-		b.若要在 [Azure 入口網站](https://portal.azure.com)中尋找並複製您的訂用帳戶名稱，請按一下左側 [中樞] 功能表，再按一下 [訂用帳戶]。複製您想要在執行本指南中的指令碼時使用的訂用帳戶名稱。
-
-		![Azure 入口網站][Image2]
-
-		c.若要在 [Azure 傳統入口網站](https://manage.windowsazure.com/)中尋找並複製您的訂用帳戶名稱，請向下捲動並按一下入口網站左側的 [設定]。按一下 [訂用帳戶] 以查看您的訂用帳戶清單。複製您想要在執行本指南中提供的指令碼時使用的訂用帳戶名稱。
-
-		![Azure 傳統入口網站][Image1]
-
-	- **$StorageAccountName：**使用指令碼中的指定名稱，或是為儲存體帳戶輸入新名稱。**重要事項：**儲存體帳戶的名稱在 Azure 中必須是唯一的名稱。而且必須是小寫字母！
-
-	- **$Location：**使用指令碼中指定的「美國西部」，或選擇其他的 Azure 地點，例如美國東部、北歐等。
-
-	- **$ContainerName：**使用指令碼中的指定名稱，或是為容器輸入新名稱。
-
-	- **$ImageToUpload：**輸入位於本機電腦上的圖片路徑，例如 "C:\\Images\\HelloWorld.png"。
-
-	- **$DestinationFolder：**輸入本機目錄的路徑，以儲存從 Azure 儲存體下載的檔案，例如 “C:\\DownloadImages”。
-
-7.	更新 "mystoragescript.ps1" 檔案中的指令碼變數之後，請按一下 [檔案] > [儲存]。然後按一下 [偵錯] > [執行]，或按 **F5** 以執行指令碼。
+1. 下載並安裝 [Azure PowerShell](http://go.microsoft.com/?linkid=9811175&clcid=0x409)。
+2. 啟動 Windows PowerShell 整合式指令碼環境 (ISE)：在本機電腦中移至 [開始]功能表。鍵入**系統管理工具**，然後按一下以執行。在 [系統管理工具] 視窗中，以滑鼠右鍵按一下 [Windows PowerShell ISE]，按一下 [以系統管理員身分執行]。
+3. 在 [Windows PowerShell ISE] 中，按一下 [檔案] > [新增]，建立新的指令碼檔。
+4. 現在，我們將提供簡單的指令碼，顯示用以存取 Azure 儲存體的基本 PowerShell 命令。此指令碼會先要求您的 Azure 帳戶認證，以將您的 Azure 帳戶新增到本機 PowerShell 環境。然後，指令碼會設定預設 Azure 訂用帳戶，並在 Azure 中建立新的儲存體帳戶。接著，指令碼將在這個新的儲存體帳戶中建立新容器，並將現有的映像檔案 (Blob) 上傳至該容器。指令碼列出該容器中的所有 Blob 之後，它會在本機電腦中建立新的目的地目錄並下載映像檔。
+5. 在下列程式碼區段中，選取 **#begin** 和 **#end** 備註之間的指令碼。按 CTRL+C 將它複製到剪貼簿。
+   
+   # begin
+   # Update with the name of your subscription.
+     $SubscriptionName = "YourSubscriptionName"
+   
+   # Give a name to your new storage account. It must be lowercase!
+     $StorageAccountName = "yourstorageaccountname"
+   
+   # Choose "West US" as an example.
+     $Location = "West US"
+   
+   # Give a name to your new container.
+     $ContainerName = "imagecontainer"
+   
+   # Have an image file and a source directory in your local computer.
+     $ImageToUpload = "C:\Images\HelloWorld.png"
+   
+   # A destination directory in your local computer.
+     $DestinationFolder = "C:\DownloadImages"
+   
+   # Add your Azure account to the local PowerShell environment.
+     Add-AzureAccount
+   
+   # Set a default Azure subscription.
+     Select-AzureSubscription -SubscriptionName $SubscriptionName –Default
+   
+   # Create a new storage account.
+     New-AzureStorageAccount –StorageAccountName $StorageAccountName -Location $Location
+   
+   # Set a default storage account.
+     Set-AzureSubscription -CurrentStorageAccountName $StorageAccountName -SubscriptionName $SubscriptionName
+   
+   # Create a new container.
+     New-AzureStorageContainer -Name $ContainerName -Permission Off
+   
+   # Upload a blob into a container.
+     Set-AzureStorageBlobContent -Container $ContainerName -File $ImageToUpload
+   
+   # List all blobs in a container.
+     Get-AzureStorageBlob -Container $ContainerName
+   
+   # Download blobs from the container:
+   # Get a reference to a list of all blobs in a container.
+     $blobs = Get-AzureStorageBlob -Container $ContainerName
+   
+   # Create the destination directory.
+     New-Item -Path $DestinationFolder -ItemType Directory -Force  
+   
+   # Download blobs into the local destination directory.
+     $blobs | Get-AzureStorageBlobContent –Destination $DestinationFolder
+   
+   # end
+6. 在 [Windows PowerShell ISE] 中，按 CTRL+V 以複製指令碼。按一下 [檔案] > [儲存]。在 [另存新檔] 對話方塊視窗中，鍵入指令碼檔的名稱，例如 "mystoragescript"。按一下 [儲存]。
+7. 現在，您需要根據您的組態設定更新指令碼變數。您必須使用自己的訂用帳戶更新 **$SubscriptionName** 變數。您可以保留指令碼中指定的其他變數或視需要予以更新。
+   
+   * **$SubscriptionName：**您必須使用自己的訂用帳戶名稱更新此變數。依照下列其中一個方式執行，即可找出您的訂用帳戶名稱：
+     
+     a.在 [Windows PowerShell ISE] 中，按一下 [檔案] > [新增]，建立新的指令碼檔。將下列指令碼複製到新的指令碼檔，然後按一下 [偵錯] > [執行]。下列指令碼會先要求您的 Azure 帳戶認證，以將您的 Azure 帳戶新增到本機 PowerShell 環境，然後顯示連接到本機 PowerShell 工作階段的所有訂用帳戶。請記下遵循此教學課程時，您所要使用的訂用帳戶名稱：
+     
+         Add-AzureAccount
+             Get-AzureSubscription | Format-Table SubscriptionName, IsDefault, IsCurrent, CurrentStorageAccountName
+     
+     b.若要在 [Azure 入口網站](https://portal.azure.com)中尋找並複製您的訂用帳戶名稱，請按一下左側 [中樞] 功能表，再按一下 [訂用帳戶]。複製您想要在執行本指南中的指令碼時使用的訂用帳戶名稱。
+     
+     ![Azure 入口網站][Image2]
+     
+     c.若要在 [Azure 傳統入口網站](https://manage.windowsazure.com/)中尋找並複製您的訂用帳戶名稱，請向下捲動並按一下入口網站左側的 [設定]。按一下 [訂用帳戶] 以查看您的訂用帳戶清單。複製您想要在執行本指南中提供的指令碼時使用的訂用帳戶名稱。
+     
+     ![Azure 傳統入口網站][Image1]
+   * **$StorageAccountName：**使用指令碼中的指定名稱，或是為儲存體帳戶輸入新名稱。**重要事項：**儲存體帳戶的名稱在 Azure 中必須是唯一的名稱。而且必須是小寫字母！
+   * **$Location：**使用指令碼中指定的「美國西部」，或選擇其他的 Azure 地點，例如美國東部、北歐等。
+   * **$ContainerName：**使用指令碼中的指定名稱，或是為容器輸入新名稱。
+   * **$ImageToUpload：**輸入位於本機電腦上的圖片路徑，例如 "C:\\Images\\HelloWorld.png"。
+   * **$DestinationFolder：**輸入本機目錄的路徑，以儲存從 Azure 儲存體下載的檔案，例如 “C:\\DownloadImages”。
+8. 更新 "mystoragescript.ps1" 檔案中的指令碼變數之後，請按一下 [檔案] > [儲存]。然後按一下 [偵錯] > [執行]，或按 **F5** 以執行指令碼。
 
 在指令碼執行之後，您應該有包含下載的映像檔案的本機目的資料夾。以下螢幕擷取畫面顯示範例輸出︰
 
 ![下載 Blob][Image3]
 
-
-> [AZURE.NOTE] 「在 5 分鐘內開始使用 Azure 儲存體和 PowerShell」一節提供有關如何搭配使用 Azure PowerShell 與 Azure 儲存體的快速簡介。如需詳細資訊和指示，我們鼓勵您閱讀下列各節。
+> [!NOTE]
+> 「在 5 分鐘內開始使用 Azure 儲存體和 PowerShell」一節提供有關如何搭配使用 Azure PowerShell 與 Azure 儲存體的快速簡介。如需詳細資訊和指示，我們鼓勵您閱讀下列各節。
+> 
+> 
 
 ## 搭配使用 Azure PowerShell 與 Azure 儲存體的先決條件
 您需要有 Azure 訂用帳戶和帳戶，才能如上面說明的方法執行本指南提供的 PowerShell Cmdlet。
@@ -141,64 +132,58 @@ Azure PowerShell 是個模組，其提供了各種 Cmdlet 來透過 Windows Powe
 您可以在標準 Windows PowerShell 主控台，或是 Windows PowerShell 整合式指令碼環境 (ISE) 中執行 Cmdlet。若要開啟 [Windows PowerShell ISE]，請移至 [開始] 功能表、輸入「系統管理工具」，然後按一下加以執行。在 [系統管理工具] 視窗中，以滑鼠右鍵按一下 [Windows PowerShell ISE]，按一下 [以系統管理員身分執行]。
 
 ## 如何在 Azure 中管理儲存體帳戶
-
 ### 如何設定預設 Azure 訂用帳戶
 若要使用 Azure PowerShell 管理 Azure 儲存體，您需要透過 Azure Active Directory 驗證或憑證型驗證向 Azure 驗證用戶端環境。如需詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 教學課程。本指南使用 Azure Active Directory 驗證。
 
-1.	在 Windows PowerShell ISE 中，輸入下列命令，將您的 Azure 帳戶新增到本機的 PowerShell 環境：
-
-    `Add-AzureAccount`
-
-2.	在 [登入 Microsoft Azure] 視窗中，輸入與您的帳戶相關聯的電子郵件地址和密碼。Azure 會驗證並儲存認證資訊，然後關閉視窗。
-
-3.	接著，執行下列命令以檢視本機 PowerShell 環境的 Azure 帳戶，並確認您的帳戶已列出：
-
-	`Get-AzureAccount`
-
-4.	然後，執行下列 Cmdlet 可檢視已連接到本機 PowerShell 工作階段的所有訂用帳戶，並確認您的訂用帳戶已列出：
-
-	`Get-AzureSubscription | Format-Table SubscriptionName, IsDefault, IsCurrent, CurrentStorageAccountName`
-
-5.	若要設定預設 Azure 訂用帳戶，請執行 Select-azuresubscription Cmdlet：
-
-	    $SubscriptionName = 'Your subscription Name'
-    	Select-AzureSubscription -SubscriptionName $SubscriptionName –Default
-
-6.	執行 Get-azuresubscription Cmdlet 來確認預設訂用帳戶的名稱：
-
-	`Get-AzureSubscription -Default`
-
-7.	若要查看 Azure 儲存體的所有可用 PowerShell Cmdlet，請執行：
-
-	`Get-Command -Module Azure -Noun *Storage*`
+1. 在 Windows PowerShell ISE 中，輸入下列命令，將您的 Azure 帳戶新增到本機的 PowerShell 環境：
+   
+   `Add-AzureAccount`
+2. 在 [登入 Microsoft Azure] 視窗中，輸入與您的帳戶相關聯的電子郵件地址和密碼。Azure 會驗證並儲存認證資訊，然後關閉視窗。
+3. 接著，執行下列命令以檢視本機 PowerShell 環境的 Azure 帳戶，並確認您的帳戶已列出：
+   
+   `Get-AzureAccount`
+4. 然後，執行下列 Cmdlet 可檢視已連接到本機 PowerShell 工作階段的所有訂用帳戶，並確認您的訂用帳戶已列出：
+   
+   `Get-AzureSubscription | Format-Table SubscriptionName, IsDefault, IsCurrent, CurrentStorageAccountName`
+5. 若要設定預設 Azure 訂用帳戶，請執行 Select-azuresubscription Cmdlet：
+   
+     $SubscriptionName = 'Your subscription Name'
+     Select-AzureSubscription -SubscriptionName $SubscriptionName –Default
+6. 執行 Get-azuresubscription Cmdlet 來確認預設訂用帳戶的名稱：
+   
+   `Get-AzureSubscription -Default`
+7. 若要查看 Azure 儲存體的所有可用 PowerShell Cmdlet，請執行：
+   
+   `Get-Command -Module Azure -Noun *Storage*`
 
 ### 如何建立新的 Azure 儲存體帳戶
 若要使用 Azure 儲存體，您將需要儲存體帳戶。設定電腦以連接至您的訂用帳戶之後，您可以建立新的 Azure 儲存體帳戶。
 
-1.	執行 Get-azurelocation Cmdlet 來尋找所有可用的資料中心位置：
+1. 執行 Get-azurelocation Cmdlet 來尋找所有可用的資料中心位置：
+   
+   `Get-AzureLocation | Format-Table -Property Name, AvailableServices, StorageAccountTypes`
+2. 接著，執行 New-AzureStorageAccount Cmdlet 來建立新的儲存體帳戶。下列範例會在「美國西部」資料中心建立新的儲存體帳戶。
+   
+     $location = "West US"
+     $StorageAccountName = "yourstorageaccount"
+     New-AzureStorageAccount –StorageAccountName $StorageAccountName -Location $location
 
-    `Get-AzureLocation | Format-Table -Property Name, AvailableServices, StorageAccountTypes`
-
-2.	接著，執行 New-AzureStorageAccount Cmdlet 來建立新的儲存體帳戶。下列範例會在「美國西部」資料中心建立新的儲存體帳戶。
-
-    	$location = "West US"
-	    $StorageAccountName = "yourstorageaccount"
-	    New-AzureStorageAccount –StorageAccountName $StorageAccountName -Location $location
-
-> [AZURE.IMPORTANT] 儲存體帳戶的名稱在 Azure 中必須是獨一無二的且必須小寫。如需命名慣例與限制，請參閱[關於 Azure 儲存體帳戶](storage-create-storage-account.md)和[命名和參考容器、Blob 及中繼資料](http://msdn.microsoft.com/library/azure/dd135715.aspx)。
+> [!IMPORTANT]
+> 儲存體帳戶的名稱在 Azure 中必須是獨一無二的且必須小寫。如需命名慣例與限制，請參閱[關於 Azure 儲存體帳戶](storage-create-storage-account.md)和[命名和參考容器、Blob 及中繼資料](http://msdn.microsoft.com/library/azure/dd135715.aspx)。
+> 
+> 
 
 ### 如何設定預設 Azure 儲存體帳戶
 您可以在訂用帳戶中有多個儲存體帳戶。您可以選擇其中一個儲存體帳戶，並將它設為相同 PowerShell 工作階段中所有儲存體命令的預設儲存體帳戶。這可讓您執行 Azure PowerShell 儲存體命令，而不需明確指定儲存體內容。
 
-1.	若要設定您的訂用帳戶的預設儲存體帳戶，您可以執行 Set-azuresubscription Cmdlet。
-
-		$SubscriptionName = "Your subscription name"
-     	$StorageAccountName = "yourstorageaccount"  
-    	Set-AzureSubscription -CurrentStorageAccountName $StorageAccountName -SubscriptionName $SubscriptionName
-
-2.	接著，執行 Get-azuresubscription Cmdlet 來確認儲存體帳戶與預設訂用帳戶相關聯。這個命令會傳回目前訂用帳戶的訂用帳戶屬性，包括其目前的儲存體帳戶。
-
-	    Get-AzureSubscription –Current
+1. 若要設定您的訂用帳戶的預設儲存體帳戶，您可以執行 Set-azuresubscription Cmdlet。
+   
+     $SubscriptionName = "Your subscription name"
+      $StorageAccountName = "yourstorageaccount"  
+     Set-AzureSubscription -CurrentStorageAccountName $StorageAccountName -SubscriptionName $SubscriptionName
+2. 接著，執行 Get-azuresubscription Cmdlet 來確認儲存體帳戶與預設訂用帳戶相關聯。這個命令會傳回目前訂用帳戶的訂用帳戶屬性，包括其目前的儲存體帳戶。
+   
+     Get-AzureSubscription –Current
 
 ### 如何列出訂用帳戶中的所有 Azure 儲存體帳戶
 每個 Azure 訂用帳戶可以擁有高達 100 個儲存體帳戶。如需最新的限制資訊，請參閱 [Azure 訂用帳戶和服務限制、配額及條件約束](../azure-subscription-service-limits.md)。
@@ -212,46 +197,42 @@ Azure 儲存體內容是 PowerShell 中用以封裝儲存體認證的物件。�
 
 使用下列三種方式之一來建立儲存體內容：
 
-- 執行 [Get-AzureStorageKey](http://msdn.microsoft.com/library/azure/dn495235.aspx) Cmdlet 可找出 Azure 儲存體帳戶的主要儲存體存取金鑰。接著，呼叫 [New-AzureStorageContext](http://msdn.microsoft.com/library/azure/dn806380.aspx) Cmdlet，以建立儲存體內容：
-
-    	$StorageAccountName = "yourstorageaccount"
-    	$StorageAccountKey = Get-AzureStorageKey -StorageAccountName $StorageAccountName
-    	$Ctx = New-AzureStorageContext $StorageAccountName -StorageAccountKey $StorageAccountKey.Primary
-
-
-- 產生 Azure 儲存體容器的共用存取簽章權杖，並用來它建立儲存體內容：
-
-    	$sasToken = New-AzureStorageContainerSASToken -Container abc -Permission rl
-    	$Ctx = New-AzureStorageContext -StorageAccountName $StorageAccountName -SasToken $sasToken
-
-	如需詳細資訊，請參閱 [New-AzureStorageContainerSASToken](http://msdn.microsoft.com/library/azure/dn806416.aspx) 和[使用共用存取簽章 (SAS)](storage-dotnet-shared-access-signature-part-1.md)。
-
-- 在某些情況下，您可能想要在建立新的儲存體內容時指定服務端點。當您向 Blob 服務註冊儲存體帳戶的自訂網域名稱，或想要使用共用存取簽章存取儲存體資源時，這可能是必要作業。在連接字串中設定服務端點，並用來建立新的儲存體內容，如下所示：
-
-    	$ConnectionString = "DefaultEndpointsProtocol=http;BlobEndpoint=<blobEndpoint>;QueueEndpoint=<QueueEndpoint>;TableEndpoint=<TableEndpoint>;AccountName=<AccountName>;AccountKey=<AccountKey>"
-    	$Ctx = New-AzureStorageContext -ConnectionString $ConnectionString
+* 執行 [Get-AzureStorageKey](http://msdn.microsoft.com/library/azure/dn495235.aspx) Cmdlet 可找出 Azure 儲存體帳戶的主要儲存體存取金鑰。接著，呼叫 [New-AzureStorageContext](http://msdn.microsoft.com/library/azure/dn806380.aspx) Cmdlet，以建立儲存體內容：
+  
+        $StorageAccountName = "yourstorageaccount"
+        $StorageAccountKey = Get-AzureStorageKey -StorageAccountName $StorageAccountName
+        $Ctx = New-AzureStorageContext $StorageAccountName -StorageAccountKey $StorageAccountKey.Primary
+* 產生 Azure 儲存體容器的共用存取簽章權杖，並用來它建立儲存體內容：
+  
+        $sasToken = New-AzureStorageContainerSASToken -Container abc -Permission rl
+        $Ctx = New-AzureStorageContext -StorageAccountName $StorageAccountName -SasToken $sasToken
+  
+    如需詳細資訊，請參閱 [New-AzureStorageContainerSASToken](http://msdn.microsoft.com/library/azure/dn806416.aspx) 和[使用共用存取簽章 (SAS)](storage-dotnet-shared-access-signature-part-1.md)。
+* 在某些情況下，您可能想要在建立新的儲存體內容時指定服務端點。當您向 Blob 服務註冊儲存體帳戶的自訂網域名稱，或想要使用共用存取簽章存取儲存體資源時，這可能是必要作業。在連接字串中設定服務端點，並用來建立新的儲存體內容，如下所示：
+  
+        $ConnectionString = "DefaultEndpointsProtocol=http;BlobEndpoint=<blobEndpoint>;QueueEndpoint=<QueueEndpoint>;TableEndpoint=<TableEndpoint>;AccountName=<AccountName>;AccountKey=<AccountKey>"
+        $Ctx = New-AzureStorageContext -ConnectionString $ConnectionString
 
 如需如何設定儲存體連接字串的詳細資訊，請參閱[設定連接字串](storage-configure-connection-string.md)。
 
 您現已設定您的電腦並學會如何使用 Azure PowerShell 管理訂用帳戶和儲存體帳戶，請移至下一節，以了解如何管理 Azure Blob 和 Blob 快照集。
 
 ### 如何擷取和重新產生 Azure 儲存體金鑰
-
 Azure 儲存體帳戶會隨附兩個帳戶金鑰。您可以使用下列 Cmdlet 來擷取您的金鑰。
 
-	Get-AzureStorageKey -StorageAccountName "yourstorageaccount"
+    Get-AzureStorageKey -StorageAccountName "yourstorageaccount"
 
 使用下列 Cmdlet 來擷取特定的金鑰。有效值為 Primary 和 Secondary。
 
-	(Get-AzureStorageKey -StorageAccountName $StorageAccountName).Primary
+    (Get-AzureStorageKey -StorageAccountName $StorageAccountName).Primary
 
-	(Get-AzureStorageKey -StorageAccountName $StorageAccountName).Secondary
+    (Get-AzureStorageKey -StorageAccountName $StorageAccountName).Secondary
 
 如果您想要重新產生金鑰，請使用下列 Cmdlet。-KeyType 的有效值為 "Primary" 和 "Secondary"
 
-	New-AzureStorageKey -StorageAccountName $StorageAccountName -KeyType “Primary”
+    New-AzureStorageKey -StorageAccountName $StorageAccountName -KeyType “Primary”
 
-	New-AzureStorageKey -StorageAccountName $StorageAccountName -KeyType “Secondary”
+    New-AzureStorageKey -StorageAccountName $StorageAccountName -KeyType “Secondary”
 
 ## 如何管理 Azure blob
 Azure Blob 儲存體是一項儲存大量非結構化資料的服務 (例如文字或二進位資料)，全球任何地方都可透過 HTTP 或 HTTPS 來存取這些資料。本節假設您已熟悉 Azure Blob 儲存體服務概念。如需詳細資訊，請參閱[以 .NET 開始使用 Blob 儲存體](storage-dotnet-how-to-use-blobs.md)和 [Blob 服務概念](http://msdn.microsoft.com/library/azure/dd179376.aspx)。
@@ -262,7 +243,10 @@ Azure 儲存體中的每個 Blob 必須位於一個容器中。您可以使用 N
     $StorageContainerName = "yourcontainername"
     New-AzureStorageContainer -Name $StorageContainerName -Permission Off
 
-> [AZURE.NOTE] 匿名讀取權限有三個層級：**Off**、**Blob** 和 **Container**。若要防止匿名存取 Blob，請將 Permission 參數設定為 **Off**。新容器預設為私人，且只能由帳戶擁有者存取。若要允許 Blob 資源的匿名公開讀取權限，但不允許容器中繼資料或容器中 Blob 清單的匿名公開讀取權限，請將 Permission 參數設定為 **Blob**。若要允許 Blob 資源、容器中繼資料或容器中 Blob 清單的完整公開讀取權限，請將 Permission 參數設定為 **Container**。如需詳細資訊，請參閱[管理對容器與 Blob 的匿名讀取權限](storage-manage-access-to-resources.md)。
+> [!NOTE]
+> 匿名讀取權限有三個層級：**Off**、**Blob** 和 **Container**。若要防止匿名存取 Blob，請將 Permission 參數設定為 **Off**。新容器預設為私人，且只能由帳戶擁有者存取。若要允許 Blob 資源的匿名公開讀取權限，但不允許容器中繼資料或容器中 Blob 清單的匿名公開讀取權限，請將 Permission 參數設定為 **Blob**。若要允許 Blob 資源、容器中繼資料或容器中 Blob 清單的完整公開讀取權限，請將 Permission 參數設定為 **Container**。如需詳細資訊，請參閱[管理對容器與 Blob 的匿名讀取權限](storage-manage-access-to-resources.md)。
+> 
+> 
 
 ### 如何將 Blob 上傳到容器中
 Azure Blob 儲存體支援區塊 Blob 和頁面 Blob。如需詳細資訊，請參閱[了解區塊 Blob、附加 Blob 和分頁 Blob](http://msdn.microsoft.com/library/azure/ee691964.aspx)。
@@ -429,8 +413,8 @@ Azure 資料表儲存體服務是 NoSQL 資料存放區，您可以用來儲存�
 #### 如何新增資料表實體
 若要將實體新增至資料表，請先建立一個可定義實體屬性的物件。實體最多可有 255 個屬性，包括 3 個系統屬性：**PartitionKey**、**RowKey** 和 **Timestamp**。您需負責插入及更新 **PartitionKey** 和 **RowKey** 的值。伺服器會管理 **Timestamp** 的值，該值無法予以修改。**PartitionKey** 和 **RowKey** 的組合可唯一識別資料表內的每個實體。
 
--	**PartitionKey**：決定儲存實體的資料分割。
--	**RowKey**：在資料分割內唯一地識別實體。
+* **PartitionKey**：決定儲存實體的資料分割。
+* **RowKey**：在資料分割內唯一地識別實體。
 
 您可以為每個實體最多定義 252 個自訂屬性。如需詳細資訊，請參閱[了解表格服務資料模型](http://msdn.microsoft.com/library/azure/dd179338.aspx)。
 
@@ -623,14 +607,14 @@ Azure 檔案儲存體為使用標準 SMB 通訊協定的應用程式提供共用
 ## 如何管理共用存取簽章 (SAS) 和預存的存取原則
 對於任何使用 Azure 儲存體的應用程式而言，共用存取簽章是安全性模型不可或缺的一部分。若要提供您儲存體帳戶的有限權限給沒有帳戶金鑰的用戶端，它們是非常有用的方式。根據預設，只有儲存體帳戶的擁有者可以存取該帳戶內的 Blob、資料表和佇列。如果您的服務或應用程式需要將這些資源提供給其他用戶端使用，而不共用存取金鑰，您會有下列三個選項：
 
-- 設定容器的權限，以允許對容器及其 Blob 進行匿名的讀取存取。這不適用於資料表或佇列。
-- 使用共用存取簽章，可針對特定的時間間隔，授與容器、Blob、佇列和資料表有限的存取權限。
-- 使用預存的存取原則，針對容器或其 Blob、佇列或資料表的共用存取簽章取得一層額外控制。預存的存取原則讓您能夠變更開始時間、到期時間或簽章的權限，或者在發出之後將它撤銷。
+* 設定容器的權限，以允許對容器及其 Blob 進行匿名的讀取存取。這不適用於資料表或佇列。
+* 使用共用存取簽章，可針對特定的時間間隔，授與容器、Blob、佇列和資料表有限的存取權限。
+* 使用預存的存取原則，針對容器或其 Blob、佇列或資料表的共用存取簽章取得一層額外控制。預存的存取原則讓您能夠變更開始時間、到期時間或簽章的權限，或者在發出之後將它撤銷。
 
 共用存取簽章可以是下列其中一種格式：
 
-- **臨機操作 SAS**：當您建立臨機操作的 SAS 時，SAS 的開始時間、到期時間和權限全都標示在 SAS URI 上。您可以在容器、Blob、資料表或佇列上建立此類型的 SAS，而且無法撤銷它。
-- **具有預存存取原則的 SAS**：預存存取原則是在資源容器、Blob 容器、資料表或佇列中定義，且可用來管理一或多個共用存取簽章的條件約束。當您將 SAS 與預存存取原則建立關聯時，SAS 會繼承為該預存存取原則所定義的限制 (開始時間、過期時間和權限)。這種類型的 SAS 是可撤銷的。
+* **臨機操作 SAS**：當您建立臨機操作的 SAS 時，SAS 的開始時間、到期時間和權限全都標示在 SAS URI 上。您可以在容器、Blob、資料表或佇列上建立此類型的 SAS，而且無法撤銷它。
+* **具有預存存取原則的 SAS**：預存存取原則是在資源容器、Blob 容器、資料表或佇列中定義，且可用來管理一或多個共用存取簽章的條件約束。當您將 SAS 與預存存取原則建立關聯時，SAS 會繼承為該預存存取原則所定義的限制 (開始時間、過期時間和權限)。這種類型的 SAS 是可撤銷的。
 
 如需詳細資訊，請參閱[使用共用存取簽章 (SAS)](storage-dotnet-shared-access-signature-part-1.md) 和[管理對容器與 Blob 的匿名讀取權限](storage-manage-access-to-resources.md)。
 
@@ -670,43 +654,39 @@ Azure 環境是 Microsoft Azure 的獨立部署，例如[適用於美國政府�
 
 若要搭配使用 Azure 儲存體與 AzureChinaCloud，您需要建立與 AzureChinaCloud 相關聯的儲存體內容。遵循下列步驟，以便開始使用產品：
 
-1.	執行 [Get-AzureEnvironment](https://msdn.microsoft.com/library/azure/dn790368.aspx) Cmdlet，查看可用的 Azure 環境：
-
-    `Get-AzureEnvironment`
-
-2.	將 Azure China 帳戶新增至 Windows PowerShell：
-
-    `Add-AzureAccount –Environment AzureChinaCloud`
-
-3.	建立 AzureChinaCloud 帳戶的儲存體內容：
-
-    	$Ctx = New-AzureStorageContext -StorageAccountName $AccountName -StorageAccountKey $AccountKey> -Environment AzureChinaCloud
+1. 執行 [Get-AzureEnvironment](https://msdn.microsoft.com/library/azure/dn790368.aspx) Cmdlet，查看可用的 Azure 環境：
+   
+   `Get-AzureEnvironment`
+2. 將 Azure China 帳戶新增至 Windows PowerShell：
+   
+   `Add-AzureAccount –Environment AzureChinaCloud`
+3. 建立 AzureChinaCloud 帳戶的儲存體內容：
+   
+     $Ctx = New-AzureStorageContext -StorageAccountName $AccountName -StorageAccountKey $AccountKey> -Environment AzureChinaCloud
 
 若要將 Azure 儲存體與[適用於美國政府的 Azure Government ](https://azure.microsoft.com/features/gov/) 搭配使用，請定義一個新環境，然後在此環境中建立新的儲存體內容：
 
-1.	執行 [Get-AzureEnvironment](https://msdn.microsoft.com/library/azure/dn790368.aspx) Cmdlet，查看可用的 Azure 環境：
-
-    `Get-AzureEnvironment`
-
-2.	將 Azure 美國政府帳戶新增至 Windows PowerShell：
-
-    `Add-AzureAccount –Environment AzureUSGovernment`
-
-3.	建立 AzureUSGovernment 帳戶的儲存體內容：
-
-    	$Ctx = New-AzureStorageContext -StorageAccountName $AccountName -StorageAccountKey $AccountKey> -Environment AzureUSGovernment
+1. 執行 [Get-AzureEnvironment](https://msdn.microsoft.com/library/azure/dn790368.aspx) Cmdlet，查看可用的 Azure 環境：
+   
+   `Get-AzureEnvironment`
+2. 將 Azure 美國政府帳戶新增至 Windows PowerShell：
+   
+   `Add-AzureAccount –Environment AzureUSGovernment`
+3. 建立 AzureUSGovernment 帳戶的儲存體內容：
+   
+     $Ctx = New-AzureStorageContext -StorageAccountName $AccountName -StorageAccountKey $AccountKey> -Environment AzureUSGovernment
 
 如需詳細資訊，請參閱：
 
-- [Microsoft Azure Government 開發人員指南](../azure-government-developer-guide.md)。
-- [在 China 服務上建立應用程式時差異的概觀](https://msdn.microsoft.com/library/azure/dn578439.aspx)
+* [Microsoft Azure Government 開發人員指南](../azure-government-developer-guide.md)。
+* [在 China 服務上建立應用程式時差異的概觀](https://msdn.microsoft.com/library/azure/dn578439.aspx)
 
 ## 後續步驟
 在本指南，您已了解如何使用 Azure PowerShell 管理 Azure 儲存體。以下是有助於您深入了解的一些相關文章和資源。
 
-- [Azure 儲存體文件](https://azure.microsoft.com/documentation/services/storage/)
-- [Azure 儲存體 PowerShell Cmdlet](http://msdn.microsoft.com/library/azure/dn806401.aspx)
-- [Windows PowerShell 參考](https://msdn.microsoft.com/library/ms714469.aspx)
+* [Azure 儲存體文件](https://azure.microsoft.com/documentation/services/storage/)
+* [Azure 儲存體 PowerShell Cmdlet](http://msdn.microsoft.com/library/azure/dn806401.aspx)
+* [Windows PowerShell 參考](https://msdn.microsoft.com/library/ms714469.aspx)
 
 [Image1]: ./media/storage-powershell-guide-full/Subscription_currentportal.png
 [Image2]: ./media/storage-powershell-guide-full/Subscription_Previewportal.png

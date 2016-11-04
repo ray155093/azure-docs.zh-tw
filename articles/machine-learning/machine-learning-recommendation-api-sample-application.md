@@ -1,36 +1,35 @@
-<properties 
-	pageTitle="Machine Learning Recommendations API 中的常見作業 | Microsoft Azure" 
-	description="Azure ML Recommendation 範例應用程式" 
-	services="machine-learning" 
-	documentationCenter="" 
-	authors="LuisCabrer" 
-	manager="jhubbard" 
-	editor="cgronlun"/>
+---
+title: Machine Learning Recommendations API 中的常見作業 | Microsoft Docs
+description: Azure ML Recommendation 範例應用程式
+services: machine-learning
+documentationcenter: ''
+author: LuisCabrer
+manager: jhubbard
+editor: cgronlun
 
-<tags 
-	ms.service="machine-learning" 
-	ms.workload="data-services" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="09/08/2016" 
-	ms.author="luisca"/>
+ms.service: machine-learning
+ms.workload: data-services
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/08/2016
+ms.author: luisca
 
-
+---
 # 建議 API 範例應用程式逐步解說
+> [!NOTE]
+> 您應該開始使用 Recommendations API 的 Cognitive Service，而不是此版本。Recommendations 的 Cognitive Service 將會取代這個服務，而所有的新特徵都會在其中進行開發。它會提供新功能，例如，批次支援、更好的 API 總管、更簡潔的 API 介面、更一致的註冊/計費體驗等。深入了解[移轉到新的 Cognitive Service](http://aka.ms/recomigrate)
+> 
+> 
 
->[AZURE.NOTE] 您應該開始使用 Recommendations API 的 Cognitive Service，而不是此版本。Recommendations 的 Cognitive Service 將會取代這個服務，而所有的新特徵都會在其中進行開發。它會提供新功能，例如，批次支援、更好的 API 總管、更簡潔的 API 介面、更一致的註冊/計費體驗等。深入了解[移轉到新的 Cognitive Service](http://aka.ms/recomigrate)
-
-##目的
-
+## 目的
 本文件透過[範例應用程式](https://code.msdn.microsoft.com/Recommendations-144df403)說明一些 Azure Machine Learning Recommendations API 的使用方式。
 
 此應用程式並非預期要包含完整的功能，也不會使用所有的 API。它會示範一些常見的作業，以在您第一次想要試試機器學習服務建議服務時執行。
 
-[AZURE.INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
+[!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-##機器學習服務建議服務簡介
-
+## 機器學習服務建議服務簡介
 當您根據下列資料建立建議模型時，會啟用透過機器學習服務建議服務的 Recommendations：
 
 * 您想要建議的項目的儲存機制，也就是類別目錄
@@ -56,18 +55,15 @@
 
 您通常會在特定期間叫用「取得建議」。在該段時間，您可以將使用量資料重新導向至機器學習服務建議系統，它會將此資料加入至指定的模型容器。當您有足夠的使用量資料時，您可以建立新的建議模型，其中包含額外的使用量資料。
 
-##必要條件
-
+## 必要條件
 * Visual Studio 2013
 * 網際網路存取
 * Recommendations API 訂用帳戶 (https://datamarket.azure.com/dataset/amla/recommendations。
 
-##Azure Machine Learning 範例 App 方案
-
+## Azure Machine Learning 範例 App 方案
 這個方案包含原始程式碼、範例使用、目錄檔案及指示詞，以下載編譯所需的套件。
 
-##使用的 API
-
+## 使用的 API
 應用程式會透過可用 API 的子集使用機器學習服務建議功能。應用程式中會示範下列 API：
 
 * 建立模型：建立邏輯容器以保存資料和建議模型。模型是以名稱識別，而您無法建立同名的模型超過一次。
@@ -83,13 +79,11 @@
 **附註**：一個模型經過一段時間 (非同時) 可以有數個組建。每個組建會使用相同或更新的目錄和其他使用量資料建立。
 
 ## 常見陷阱
-
 * 您必須提供您的使用者名稱和您的 Microsoft Azure Marketplace 主要帳戶金鑰來執行範例 App。
 * 連續執行範例應用程式將會失敗。應用程式流程可能包括從預先定義之模型建立、上傳、建置監視器及取得建議，因此如果您未在引動之間變更模型名稱，它就無法連續執行。
 * Recommendations 可能不會傳回任何資料。範例應用程式會使用非常小的目錄和使用方式檔案。因此，類別目錄中的某些項目將不會有任何建議的項目。
 
 ## 免責聲明
 範例應用程式並非預期在實際執行環境中執行。目錄中提供的資料太小，而且它將不會提供有意義的建議模型。提供資料基於示範目的。
- 
 
 <!---HONumber=AcomDC_0914_2016-->

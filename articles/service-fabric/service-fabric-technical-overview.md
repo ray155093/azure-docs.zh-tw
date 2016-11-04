@@ -1,23 +1,22 @@
-<properties
-   pageTitle="Service Fabric 術語概觀 | Microsoft Azure"
-   description="Service Fabric 的術語概觀討論重要術語概念和文件其餘部分中使用的詞彙。"
-   services="service-fabric"
-   documentationCenter=".net"
-   authors="rwike77"
-   manager="timlt"
-   editor="chackdan;subramar"/>
+---
+title: Service Fabric 術語概觀 | Microsoft Docs
+description: Service Fabric 的術語概觀討論重要術語概念和文件其餘部分中使用的詞彙。
+services: service-fabric
+documentationcenter: .net
+author: rwike77
+manager: timlt
+editor: chackdan;subramar
 
-<tags
-   ms.service="service-fabric"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="NA"
-   ms.date="08/25/2016"
-   ms.author="ryanwi"/>
+ms.service: service-fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 08/25/2016
+ms.author: ryanwi
 
+---
 # Service Fabric 術語概觀
-
 Service Fabric 是分散式系統平台，可讓您輕鬆封裝、部署及管理可調整和可信賴的微服務。本主題詳細說明 Service Fabric 中所使用的術語，以利您了解文件中使用的詞彙。
 
 ## 基礎結構概念
@@ -40,9 +39,8 @@ Service Fabric 是分散式系統平台，可讓您輕鬆封裝、部署及管�
 
 服務分為兩種：
 
-- **無狀態：**當服務的持續狀態是儲存在 Azure 儲存體、Azure SQL Database、Azure DocumentDB 等外部儲存服務時，使用無狀態服務。當服務完全沒有持續性儲存體時，請使用無狀態服務。以計算機服務為例，首先要傳遞值給服務，然後服務用這些值執行計算並傳回結果。
-
-- **具狀態：**當您要讓 Service Fabric 透過其 Reliable Collections 或 Reliable Actors 程式設計模型管理您的服務狀態，則使用具狀態服務。請指定您在建立具名服務時，想要讓狀態分散到多少個資料分割 (提供延展性)。也請指定跨節點覆寫狀態的次數 (提供可靠性)。每個具名服務都有一個主要複本和多個次要複本。您可以透過寫入主要複本來修改具名服務的狀態。然後，Service Fabric 會將此狀態複寫至所有次要複本以保持狀態同步。當主要複本失敗時，Service Fabric 會自動偵測到此狀況，並將現有的次要複本升級為主要複本。然後 Service Fabric 會建立新的次要複本。
+* **無狀態：**當服務的持續狀態是儲存在 Azure 儲存體、Azure SQL Database、Azure DocumentDB 等外部儲存服務時，使用無狀態服務。當服務完全沒有持續性儲存體時，請使用無狀態服務。以計算機服務為例，首先要傳遞值給服務，然後服務用這些值執行計算並傳回結果。
+* **具狀態：**當您要讓 Service Fabric 透過其 Reliable Collections 或 Reliable Actors 程式設計模型管理您的服務狀態，則使用具狀態服務。請指定您在建立具名服務時，想要讓狀態分散到多少個資料分割 (提供延展性)。也請指定跨節點覆寫狀態的次數 (提供可靠性)。每個具名服務都有一個主要複本和多個次要複本。您可以透過寫入主要複本來修改具名服務的狀態。然後，Service Fabric 會將此狀態複寫至所有次要複本以保持狀態同步。當主要複本失敗時，Service Fabric 會自動偵測到此狀況，並將現有的次要複本升級為主要複本。然後 Service Fabric 會建立新的次要複本。
 
 **服務封裝**：磁碟目錄，包含此服務類型的 `ServiceManifest.xml` 檔案。這個檔案會參考此服務類型的程式碼、靜態資料和組態封裝。此應用程式類型的 `ApplicationManifest.xml` 檔會參考此服務封裝目錄中的檔案。例如，服務套件可能會參考構成資料庫服務的程式碼、靜態資料和組態封裝。
 
@@ -50,9 +48,8 @@ Service Fabric 是分散式系統平台，可讓您輕鬆封裝、部署及管�
 
 **程式碼封裝**：磁碟目錄，包含此服務類型的執行檔 (通常是 EXE/DLL 檔)。此服務類型的 `ServiceManifest.xml` 檔會參考此程式碼封裝目錄中的檔案。建立具名服務時，程式碼封裝會複製到一或多個選取用來執行具名服務的節點。然後程式碼會開始執行。程式碼封裝執行檔分成兩種：
 
-- **來賓執行檔**：在主機作業系統 (Windows 或 Linux) 上以原樣執行的執行檔。也就是說，這些執行檔未連結至或參考任何 Service Fabric 執行階段檔案作業，因此不會使用任何 Service Fabric 程式設計模型。這些可執行檔無法使用某些 Service Fabric 功能，例如端點探索的命名服務。來賓可執行檔無法報告每個服務執行個體特定的負載度量。
-
-- **服務主機執行檔**：藉由連結至 Service Fabric 執行階段檔案的方式使用 Service Fabric 程式設計模型，以支援 Service Fabric 功能的執行檔。例如，具名服務執行個體可以在 Service Fabric 命名服務註冊端點，也可以報告負載度量。
+* **來賓執行檔**：在主機作業系統 (Windows 或 Linux) 上以原樣執行的執行檔。也就是說，這些執行檔未連結至或參考任何 Service Fabric 執行階段檔案作業，因此不會使用任何 Service Fabric 程式設計模型。這些可執行檔無法使用某些 Service Fabric 功能，例如端點探索的命名服務。來賓可執行檔無法報告每個服務執行個體特定的負載度量。
+* **服務主機執行檔**：藉由連結至 Service Fabric 執行階段檔案的方式使用 Service Fabric 程式設計模型，以支援 Service Fabric 功能的執行檔。例如，具名服務執行個體可以在 Service Fabric 命名服務註冊端點，也可以報告負載度量。
 
 **資料封裝**：磁碟目錄，包含此服務類型的靜態唯讀資料檔 (通常是相片、音訊和視訊檔)。此服務類型的 `ServiceManifest.xml` 檔會參考此資料封裝目錄中的檔案。建立具名服務時，資料封裝會複製到一或多個選取用來執行具名服務的節點。程式碼會開始執行，此時即可存取資料檔案。
 
@@ -86,8 +83,8 @@ Service Fabric 是分散式系統平台，可讓您輕鬆封裝、部署及管�
 ## 後續步驟
 若要深入了解 Service Fabric：
 
-- [Service Fabric 概觀](service-fabric-overview.md)
-- [為何要用微服務方式建置應用程式？](service-fabric-overview-microservices.md)
-- [應用程式案例](service-fabric-application-scenarios.md)
+* [Service Fabric 概觀](service-fabric-overview.md)
+* [為何要用微服務方式建置應用程式？](service-fabric-overview-microservices.md)
+* [應用程式案例](service-fabric-application-scenarios.md)
 
 <!---HONumber=AcomDC_0831_2016-->

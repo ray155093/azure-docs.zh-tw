@@ -1,37 +1,35 @@
-<properties
-	pageTitle="藉由使用 PowerShell 自動化 Service Fabric 應用程式管理 | Microsoft Azure"
-	description="藉由使用 PowerShell 來部署、升級、測試和移除 Service Fabric 應用程式。"
-	services="service-fabric"
-	documentationCenter=".net"
-	authors="rwike77"
-	manager="timlt"
-	editor=""/>
+---
+title: 藉由使用 PowerShell 自動化 Service Fabric 應用程式管理 | Microsoft Docs
+description: 藉由使用 PowerShell 來部署、升級、測試和移除 Service Fabric 應用程式。
+services: service-fabric
+documentationcenter: .net
+author: rwike77
+manager: timlt
+editor: ''
 
-<tags
-	ms.service="service-fabric"
-	ms.workload="na"
-	ms.tgt_pltfrm="na"
-	ms.devlang="dotnet"
-	ms.topic="article"
-	ms.date="08/25/2016"
-	ms.author="ryanwi"/>
+ms.service: service-fabric
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: dotnet
+ms.topic: article
+ms.date: 08/25/2016
+ms.author: ryanwi
 
+---
 # 使用 PowerShell 自動化應用程式生命週期
-
 [Service Fabric 應用程式生命週期](service-fabric-application-lifecycle.md)的許多層面都可以自動化。本文示範如何使用 Powershell，自動化部署、升級、移除和測試 Azure Service Fabric 應用程式的常見工作。也可使用應用程式管理的 Managed 和 HTTP API。如需詳細資訊，請參閱[應用程式生命週期](service-fabric-application-lifecycle.md)。
 
 ## 必要條件
 在您移至本文中的工作之前，請務必︰
 
-+ 熟悉 [Service Fabric 技術概觀](service-fabric-technical-overview.md)中所述的 Service Fabric 概念。
-+ [安裝執行階段、SDK 和工具](service-fabric-get-started.md)，這也會安裝 **ServiceFabric** PowerShell 模組。
-+ [啟用 PowerShell 指令碼執行](service-fabric-get-started.md#enable-powershell-script-execution)。
-+ 啟動本機叢集。以系統管理員身分啟動新的 PowerShell 視窗，然後從 SDK 資料夾執行叢集安裝指令碼 ︰`& "$ENV:ProgramFiles\Microsoft SDKs\Service Fabric\ClusterSetup\DevClusterSetup.ps1"`
-+ 在您執行本文中的任何 PowerShell 命令之前，請先使用 [Connect-ServiceFabricCluster](https://msdn.microsoft.com/library/azure/mt125938.aspx) 連接至本機 Service Fabric 叢集：`Connect-ServiceFabricCluster localhost:19000`
-+ 下列工作需要 v1 應用程式封裝才能部署，並需要 v2 應用程式封裝才能進行升級。下載 [**WordCount** 範例應用程式](http://aka.ms/servicefabricsamples) (位於快速入門範例)。在 Visual Studio 中建置並封裝此應用程式 (以滑鼠右鍵按一下方案總管中的 [WordCount]，然後選取 [封裝])。將 `C:\ServiceFabricSamples\Services\WordCount\WordCount\pkg\Debug` 中的 v1 封裝複製到 `C:\Temp\WordCount`。將 `C:\Temp\WordCount` 複製到 `C:\Temp\WordCountV2`，並建立 v2 應用程式封裝以便升級。在文字編輯器中開啟 `C:\Temp\WordCountV2\ApplicationManifest.xml`。在 **ApplicationManifest** 元素中，將 **ApplicationTypeVersion** 屬性從 "1.0.0" 變更為 "2.0.0" 以更新應用程式版本號碼。儲存已變更的 ApplicationManifest.xml 檔案。
+* 熟悉 [Service Fabric 技術概觀](service-fabric-technical-overview.md)中所述的 Service Fabric 概念。
+* [安裝執行階段、SDK 和工具](service-fabric-get-started.md)，這也會安裝 **ServiceFabric** PowerShell 模組。
+* [啟用 PowerShell 指令碼執行](service-fabric-get-started.md#enable-powershell-script-execution)。
+* 啟動本機叢集。以系統管理員身分啟動新的 PowerShell 視窗，然後從 SDK 資料夾執行叢集安裝指令碼 ︰`& "$ENV:ProgramFiles\Microsoft SDKs\Service Fabric\ClusterSetup\DevClusterSetup.ps1"`
+* 在您執行本文中的任何 PowerShell 命令之前，請先使用 [Connect-ServiceFabricCluster](https://msdn.microsoft.com/library/azure/mt125938.aspx) 連接至本機 Service Fabric 叢集：`Connect-ServiceFabricCluster localhost:19000`
+* 下列工作需要 v1 應用程式封裝才能部署，並需要 v2 應用程式封裝才能進行升級。下載 [**WordCount** 範例應用程式](http://aka.ms/servicefabricsamples) (位於快速入門範例)。在 Visual Studio 中建置並封裝此應用程式 (以滑鼠右鍵按一下方案總管中的 [WordCount]，然後選取 [封裝])。將 `C:\ServiceFabricSamples\Services\WordCount\WordCount\pkg\Debug` 中的 v1 封裝複製到 `C:\Temp\WordCount`。將 `C:\Temp\WordCount` 複製到 `C:\Temp\WordCountV2`，並建立 v2 應用程式封裝以便升級。在文字編輯器中開啟 `C:\Temp\WordCountV2\ApplicationManifest.xml`。在 **ApplicationManifest** 元素中，將 **ApplicationTypeVersion** 屬性從 "1.0.0" 變更為 "2.0.0" 以更新應用程式版本號碼。儲存已變更的 ApplicationManifest.xml 檔案。
 
 ## 工作：部署 Service Fabric 應用程式
-
 在您建置並封裝應用程式 (或下載應用程式封裝) 之後，您可以將應用程式部署至本機 Service Fabric 叢集。部署牽涉到上傳應用程式封裝、註冊應用程式類型，以及建立應用程式執行個體。使用本節中的指示，將新的應用程式部署至叢集。
 
 ### 步驟 1：上傳應用程式封裝
@@ -110,7 +108,6 @@ Get-ServiceFabricApplicationUpgrade fabric:/WordCount
 幾分鐘後，[Get-ServiceFabricApplicationUpgrade](https://msdn.microsoft.com/library/azure/mt125988.aspx) Cmdlet 會顯示已升級 (完成) 所有升級網域。
 
 ## 工作：測試 Service Fabric 應用程式
-
 為了撰寫高品質的服務，開發人員必須能夠產生這類不可靠的基礎結構錯誤，才能測試其服務的穩定性。Service Fabric 讓開發人員可以引發錯誤動作，並且藉由使用混亂和容錯移轉的測試案例以測試失敗情況下的服務。詳閱[可測試性概觀](service-fabric-testability-overview.md)以取得詳細資訊。
 
 ### 步驟 1：執行混亂測試案例

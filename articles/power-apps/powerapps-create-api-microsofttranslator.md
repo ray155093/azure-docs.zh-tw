@@ -1,28 +1,30 @@
-<properties
-	pageTitle="新增 Microsoft Translator API 至 PowerApps Enterprise | Microsoft Azure"
-	description="在您組織的應用程式服務環境中建立或設定新的 Microsoft Translator API"
-	services=""
-    suite="powerapps"
-	documentationCenter="" 
-	authors="linhtranms"
-	manager="dwrede"
-	editor=""/>
+---
+title: 新增 Microsoft Translator API 至 PowerApps Enterprise | Microsoft Docs
+description: 在您組織的應用程式服務環境中建立或設定新的 Microsoft Translator API
+services: ''
+suite: powerapps
+documentationcenter: ''
+author: linhtranms
+manager: dwrede
+editor: ''
 
-<tags
-   ms.service="powerapps"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="na" 
-   ms.date="05/02/2016"
-   ms.author="litran"/>
+ms.service: powerapps
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 05/02/2016
+ms.author: litran
 
+---
 # 在 PowerApps Enterprise 中建立新的 Microsoft Translator API
-
-> [AZURE.IMPORTANT] 本主題已經封存，並且很快就會移除。請到全新的 [PowerApps](https://powerapps.microsoft.com) 來看看我們在忙些什麼。
+> [!IMPORTANT]
+> 本主題已經封存，並且很快就會移除。請到全新的 [PowerApps](https://powerapps.microsoft.com) 來看看我們在忙些什麼。
 > 
-> - 若要深入了解 PowerApps 並開始使用，請移至 [PowerApps](https://powerapps.microsoft.com)。  
-> - 若要深入了解 PowerApps 中可用的連接，請前往[可用連接](https://powerapps.microsoft.com/tutorials/connections-list/)。 
+> * 若要深入了解 PowerApps 並開始使用，請移至 [PowerApps](https://powerapps.microsoft.com)。  
+> * 若要深入了解 PowerApps 中可用的連接，請前往[可用連接](https://powerapps.microsoft.com/tutorials/connections-list/)。 
+> 
+> 
 
 <!--Archived
 Add the Microsoft Translator API to your organization's (tenant) app service environment. 
@@ -30,7 +32,7 @@ Add the Microsoft Translator API to your organization's (tenant) app service env
 ## Create the API in the Azure portal
 
 1. In the [Azure portal](https://portal.azure.com/), sign-in with your work account. For example, sign-in with *yourUserName*@*YourCompany*.com. When you do this, you are automatically signed in to your company subscription.
- 
+
 2. Select **Browse** in the task bar:  
 ![][7]
 
@@ -44,7 +46,7 @@ Add the Microsoft Translator API to your organization's (tenant) app service env
 ![Add API][2]
 
 6. Enter a descriptive **name** for your API.  
-	
+
 7. In **Source**, select **Available APIs** to select the pre-built APIs, and select **Microsoft Translator**:  
 ![select Microsoft Translator api][3]
 
@@ -69,13 +71,13 @@ If you don't have an existing Microsoft Translator app with the ID and secret va
 
 3. In **Register your application**:  
 
-	1. Enter a value for **Client Id**.  
-	2. Enter the **name** of your application.  
-	3. Enter a dummy value for **redirect url**. For example, enter *https://contosoredirecturl*.  
-	4. Enter a **description**.  
-	5. Select **Create**.  
+    1. Enter a value for **Client Id**.  
+    2. Enter the **name** of your application.  
+    3. Enter a dummy value for **redirect url**. For example, enter *https://contosoredirecturl*.  
+    4. Enter a **description**.  
+    5. Select **Create**.  
 
-	![Register your application][6]
+    ![Register your application][6]
 
 A new Microsoft Translator app is created. You can use this app in your Microsoft Translator API configuration in the Azure portal. 
 

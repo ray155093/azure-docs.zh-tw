@@ -1,21 +1,21 @@
-<properties 
-	pageTitle="雲端服務和管理憑證 | Microsoft Azure" 
-	description="了解如何建立憑證並搭配 Microsoft Azure 使用" 
-	services="cloud-services" 
-	documentationCenter=".net" 
-	authors="Thraka" 
-	manager="timlt" 
-	editor=""/>
+---
+title: 雲端服務和管理憑證 | Microsoft Docs
+description: 了解如何建立憑證並搭配 Microsoft Azure 使用
+services: cloud-services
+documentationcenter: .net
+author: Thraka
+manager: timlt
+editor: ''
 
-<tags 
-	ms.service="cloud-services" 
-	ms.workload="tbd" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="07/05/2016"
-	ms.author="adegeo"/>
+ms.service: cloud-services
+ms.workload: tbd
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 07/05/2016
+ms.author: adegeo
 
+---
 # Azure 雲端服務的憑證概觀
 Azure 中的憑證用於雲端服務 ([服務憑證](#what-are-service-certificates)) 及用於向管理 API 進行驗證 (使用 Azure 傳統入口網站而非 ARM 時[管理憑證](#what-are-management-certificates))。本主題提供兩種憑證類型的一般概觀、如何[建立](#create)這些憑證類型，以及如何將其[部署](#deploy)到 Azure。
 
@@ -33,15 +33,18 @@ Azure 所使用的憑證可以包含私密或公開金鑰。憑證具有指紋�
 ## 什麼是管理憑證？
 管理憑證可讓您使用 Azure 傳統所提供的服務管理 API 進行驗證。許多程式和工具 (例如 Visual Studio 或 Azure SDK) 會使用這些憑證，將各種 Azure 服務的設定與部署自動化。這些並不是真的與雲端服務相關。
 
->[AZURE.WARNING] 請務必小心！ 這些憑證類型允許使用它們進行驗證的任何人管理與他們相關聯的訂用帳戶。
+> [!WARNING]
+> 請務必小心！ 這些憑證類型允許使用它們進行驗證的任何人管理與他們相關聯的訂用帳戶。
+> 
+> 
 
 ### 限制
 每個訂用帳戶有 100 個管理憑證的限制。此外，在特定服務管理員的使用者識別碼底下的所有訂用帳戶也有 100 個管理憑證的限制。如果帳戶系統管理員的使用者識別碼已經用來加入 100 個管理憑證，而且還需要有更多憑證，您可以新增共同管理員來加入其他憑證。
 
 加入超過 100 個憑證之前，請查看您是否可以重複使用現有的憑證。使用共同管理員會對您的憑證管理程序增加可能不必要的複雜性。
 
-
 <a name="create"></a>
+
 ## 建立新的自我簽署憑證
 您可以使用任何可用的工具建立自我簽署的憑證，前提是，這些憑證遵守以下設定：
 
@@ -56,19 +59,19 @@ Azure 所使用的憑證可以包含私密或公開金鑰。憑證具有指紋�
 在 Windows 上建立憑證有兩個簡單的方法：使用 `makecert.exe` 公用程式或 IIS。
 
 ### Makecert.exe
-
 此公用程式已被取代，此處不再說明。如需詳細資訊，請參閱[這篇 MSDN 文章](https://msdn.microsoft.com/library/windows/desktop/aa386968)。
 
 ### PowerShell
-
 ```powershell
 $cert = New-SelfSignedCertificate -DnsName yourdomain.cloudapp.net -CertStoreLocation "cert:\LocalMachine\My"
 $password = ConvertTo-SecureString -String "your-password" -Force -AsPlainText
 Export-PfxCertificate -Cert $cert -FilePath ".\my-cert-file.pfx" -Password $password
 ```
 
->[AZURE.NOTE] 如果您想要搭配 IP 位址 (而不是網域) 來使用憑證，請在 -DnsName 參數中使用 IP 位址。
-
+> [!NOTE]
+> 如果您想要搭配 IP 位址 (而不是網域) 來使用憑證，請在 -DnsName 參數中使用 IP 位址。
+> 
+> 
 
 如果您想要使用這個[憑證搭配管理入口網站](../azure-api-management-certs.md)，請將它匯出至 **.cer** 檔案：
 
@@ -77,7 +80,6 @@ Export-Certificate -Type CERT -Cert $cert -FilePath .\my-cert-file.cer
 ```
 
 ### 網際網路資訊服務 (IIS)
-
 在網際網路上有許多涵蓋如何使用 IIS 執行這項操作的網頁。[這裡](https://www.sslshopper.com/article-how-to-create-a-self-signed-certificate-in-iis-7.html)是我找到的其中一個我認為說明得很好的網頁。
 
 ### Java
@@ -87,11 +89,13 @@ Export-Certificate -Type CERT -Cert $cert -FilePath .\my-cert-file.cer
 [本文](../virtual-machines/virtual-machines-linux-mac-create-ssh-keys.md)說明如何使用 SSH 建立憑證。
 
 ## 後續步驟
-
 [將服務憑證上傳至 Azure 傳統入口網站](cloud-services-configure-ssl-certificate.md) (或 [Azure 入口網站](cloud-services-configure-ssl-certificate-portal.md))。
 
 將[管理 API 憑證](../azure-api-management-certs.md)上傳至 Azure 傳統入口網站。
 
->[AZURE.NOTE] Azure 入口網站不會使用管理憑證存取 API，但是會使用使用者帳戶。
+> [!NOTE]
+> Azure 入口網站不會使用管理憑證存取 API，但是會使用使用者帳戶。
+> 
+> 
 
 <!---HONumber=AcomDC_0914_2016-->

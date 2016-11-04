@@ -1,39 +1,34 @@
-<properties
-	pageTitle="在 OpenSUSE VM 上安裝 MySQL | Microsoft Azure"
-	description="了解如何在 Azure 中的 OpenSUSE Linux 虛擬機器上安裝 MySQL。"
-	services="virtual-machines-linux"
-	documentationCenter=""
-	authors="cynthn"
-	manager="timlt"
-	editor=""
-	tags="azure-service-management"/>
+---
+title: 在 OpenSUSE VM 上安裝 MySQL | Microsoft Docs
+description: 了解如何在 Azure 中的 OpenSUSE Linux 虛擬機器上安裝 MySQL。
+services: virtual-machines-linux
+documentationcenter: ''
+author: cynthn
+manager: timlt
+editor: ''
+tags: azure-service-management
 
-<tags
-	ms.service="virtual-machines-linux"
-	ms.workload="infrastructure-services"
-	ms.tgt_pltfrm="vm-linux"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="07/19/2016"
-	ms.author="cynthn"/>
+ms.service: virtual-machines-linux
+ms.workload: infrastructure-services
+ms.tgt_pltfrm: vm-linux
+ms.devlang: na
+ms.topic: article
+ms.date: 07/19/2016
+ms.author: cynthn
 
+---
 # 在 Azure 中執行 OpenSUSE Linux 的虛擬機器上安裝 MySQL
-
 [MySQL][MySQL] 是一種很受歡迎的開放原始碼 SQL 資料庫。本教學課程會示範如何建立執行 OpenSUSE Linux 的虛擬機器，然後安裝 MySQL。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
-
+[!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
 <br>
 
-
 ## 建立執行 OpenSUSE Linux 的虛擬機器
-
-[AZURE.INCLUDE [create-and-configure-opensuse-vm-in-portal](../../includes/create-and-configure-opensuse-vm-in-portal.md)]
+[!INCLUDE [create-and-configure-opensuse-vm-in-portal](../../includes/create-and-configure-opensuse-vm-in-portal.md)]
 
 ## 在虛擬機器上安裝和執行 MySQL
-
-[AZURE.INCLUDE [install-and-run-mysql-on-opensuse-vm](../../includes/install-and-run-mysql-on-opensuse-vm.md)]
+[!INCLUDE [install-and-run-mysql-on-opensuse-vm](../../includes/install-and-run-mysql-on-opensuse-vm.md)]
 
 ## 後續步驟
 如需 MySQL 的詳細資訊，請參閱 [MySQL 文件][MySQLDocs]。

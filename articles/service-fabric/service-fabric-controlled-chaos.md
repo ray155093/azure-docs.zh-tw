@@ -1,21 +1,21 @@
-<properties
-   pageTitle="在 Service Fabric 叢集中引發混亂 | Microsoft Azure"
-   description="使用錯誤注射與叢集分析服務的 API 來管理叢集中的混亂。"
-   services="service-fabric"
-   documentationCenter=".net"
-   authors="motanv"
-   manager="rsinha"
-   editor="toddabel"/>
+---
+title: 在 Service Fabric 叢集中引發混亂 | Microsoft Docs
+description: 使用錯誤注射與叢集分析服務的 API 來管理叢集中的混亂。
+services: service-fabric
+documentationcenter: .net
+author: motanv
+manager: rsinha
+editor: toddabel
 
-<tags
-   ms.service="service-fabric"
-   ms.devlang="dotnet"
-   ms.topic="article"
-   ms.tgt_pltfrm="NA"
-   ms.workload="NA"
-   ms.date="09/19/2016"
-   ms.author="motanv"/>
+ms.service: service-fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 09/19/2016
+ms.author: motanv
 
+---
 # 在 Service Fabric 叢集中引發受控制的混亂
 雲端基礎結構之類的大型分散式系統本身並不可靠。Azure Service Fabric 可讓開發人員在不可靠的基礎結構上面撰寫可靠的服務。為了撰寫強健的服務，開發人員必須能夠針對這類不可靠的基礎結構引發錯誤，才能測試其服務的穩定性。
 
@@ -24,12 +24,12 @@
 ## 混亂中引發的錯誤
 混亂會在整個 Service Fabric 叢集中產生錯誤，並將在幾個月或幾年內看到的錯誤壓縮成幾小時。交錯錯誤和高錯誤率的組合，可以找到會在其他情形下被遺漏的極端狀況。這個混亂練習可以大幅提升服務的程式碼品質。混亂會引發下列類別的錯誤︰
 
- - 重新啟動節點
- - 重新啟動已部署的程式碼封裝
- - 移除複本
- - 重新啟動複本
- - 移動主要複本 (可設定)
- - 移動次要複本 (可設定)
+* 重新啟動節點
+* 重新啟動已部署的程式碼封裝
+* 移除複本
+* 重新啟動複本
+* 移動主要複本 (可設定)
+* 移動次要複本 (可設定)
 
 混亂會多次反覆執行；每次反覆運算都包含指定期間的錯誤和叢集驗證。讓叢集穩定和驗證成功的所需時間可以設定。如果在叢集驗證中發現失敗，則混亂會產生並保留一個 ValidationFailedEvent，包含 UTC 時間戳記與失敗詳細資料。
 
@@ -38,16 +38,16 @@
 目前來說，混亂只會引發安全的錯誤，這表示如果沒有外部錯誤，絕不會發生仲裁遺失或資料遺失。
 
 ## 重要的組態選項
- - **TimeToRun**：混亂在成功完成前的總執行時間。混亂在執行 TimeToRun 這段時間之前可以透過 StopChaos API 停止。
- - **MaxClusterStabilizationTimeout**︰再檢查一次之前等候叢集健康狀態變得良好的最長時間，這樣的等候是為了減少復原時叢集上的負載。執行的檢查為
-    - 叢集健康狀態是否正常
-    - 服務健康狀態正常
-    - 服務分割區達到目標複本集大小
-    - 沒有 InBuild 複本存在
- - **MaxConcurrentFaults**：每個反覆運算中引發的最大並行錯誤數。數目越大，混亂會越積極，因此導致更複雜的容錯移轉和轉換組合。無論此組態的值多高，混亂都能保證在沒有外部錯誤的狀況下都不會發生仲裁或資料遺失。
- - **EnableMoveReplicaFaults**：啟用或停用造成主要或次要複本移動的錯誤。預設會停用這些錯誤。
- - **WaitTimeBetweenIterations**：反覆運算之間 (也就是在一輪的錯誤與對應的驗證後等待下一輪) 的等待時間長度。
- - **WaitTimeBetweenFaults**︰反覆運算中兩個連續錯誤之間的等候時間長度。
+* **TimeToRun**：混亂在成功完成前的總執行時間。混亂在執行 TimeToRun 這段時間之前可以透過 StopChaos API 停止。
+* **MaxClusterStabilizationTimeout**︰再檢查一次之前等候叢集健康狀態變得良好的最長時間，這樣的等候是為了減少復原時叢集上的負載。執行的檢查為
+  * 叢集健康狀態是否正常
+  * 服務健康狀態正常
+  * 服務分割區達到目標複本集大小
+  * 沒有 InBuild 複本存在
+* **MaxConcurrentFaults**：每個反覆運算中引發的最大並行錯誤數。數目越大，混亂會越積極，因此導致更複雜的容錯移轉和轉換組合。無論此組態的值多高，混亂都能保證在沒有外部錯誤的狀況下都不會發生仲裁或資料遺失。
+* **EnableMoveReplicaFaults**：啟用或停用造成主要或次要複本移動的錯誤。預設會停用這些錯誤。
+* **WaitTimeBetweenIterations**：反覆運算之間 (也就是在一輪的錯誤與對應的驗證後等待下一輪) 的等待時間長度。
+* **WaitTimeBetweenFaults**︰反覆運算中兩個連續錯誤之間的等候時間長度。
 
 ## 如何執行混亂
 C# 範例

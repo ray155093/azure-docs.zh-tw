@@ -1,21 +1,21 @@
-<properties
-   pageTitle="如何建置可讓任何 Azure Active Directory 使用者登入的應用程式 | Microsoft Azure"
-   description="如何建置可讓使用者從任何 Azure Active Directory 租用戶登入之應用程式 (也稱為多租用戶應用程式) 的逐步解說。"
-   services="active-directory"
-   documentationCenter=""
-   authors="skwan"
-   manager="mbaldwin"
-   editor=""/>
+---
+title: 如何建置可讓任何 Azure Active Directory 使用者登入的應用程式 | Microsoft Docs
+description: 如何建置可讓使用者從任何 Azure Active Directory 租用戶登入之應用程式 (也稱為多租用戶應用程式) 的逐步解說。
+services: active-directory
+documentationcenter: ''
+author: skwan
+manager: mbaldwin
+editor: ''
 
-<tags
-   ms.service="active-directory"
-   ms.devlang="na"
-   ms.topic="article"
-   ms.tgt_pltfrm="na"
-   ms.workload="identity"
-   ms.date="07/25/2016"
-   ms.author="skwan;bryanla"/>
+ms.service: active-directory
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: identity
+ms.date: 07/25/2016
+ms.author: skwan;bryanla
 
+---
 # 如何使用多租用戶應用程式模式登入任何 Azure Active Directory (AD) 使用者
 如果您提供「軟體即服務」應用程式給許多公司，您可以將您的應用程式設定為可接受來自任何 Azure AD 租用戶的登入。在 Azure AD 中，這稱為讓您的應用程式成為多租用戶應用程式。任何 Azure AD 租用戶中的使用者在同意搭配您的應用程式使用其帳戶之後，便可登入您的應用程式。
 
@@ -23,15 +23,14 @@
 
 [![[登入] 按鈕][AAD-Sign-In]][AAD-App-Branding]
 
-
 本文假設您已經熟悉如何為 Azure AD 建置單一租用戶應用程式。如果並非如此，請返回[開發人員指南首頁][AAD-Dev-Guide]，然後試試其中一個快速入門！
 
 將您的應用程式轉換成 Azure AD 多租用戶應用程式包含四個簡單的步驟︰
 
-1.	將您的應用程式註冊更新成多租用戶
-2.	將您的程式碼更新成將要求傳送給 /common 端點
-3.	將您的程式碼更新成可處理多個簽發者值
-4.	了解使用者和系統管理員的同意意向並進行適當的程式碼變更
+1. 將您的應用程式註冊更新成多租用戶
+2. 將您的程式碼更新成將要求傳送給 /common 端點
+3. 將您的程式碼更新成可處理多個簽發者值
+4. 了解使用者和系統管理員的同意意向並進行適當的程式碼變更
 
 讓我們仔細看看每個步驟。您也可以直接跳到[這份多租用戶範例清單][AAD-Samples-MT]。
 
@@ -64,7 +63,10 @@ Azure AD 中的 Web 應用程式/API 註冊預設是單一租用戶。您只要�
 ## 將您的程式碼更新成可處理多個簽發者值
 Web 應用程式和 Web API 會接收並驗證來自 Azure AD 的權杖。
 
-> [AZURE.NOTE] 雖然原生用戶端應用程式會要求並接收來自 Azure AD 的權杖，但它們這麼做是為了將權杖傳送給 API 來進行驗證。原生應用程式不會驗證權杖，而且必須將它們視為不透明。
+> [!NOTE]
+> 雖然原生用戶端應用程式會要求並接收來自 Azure AD 的權杖，但它們這麼做是為了將權杖傳送給 API 來進行驗證。原生應用程式不會驗證權杖，而且必須將它們視為不透明。
+> 
+> 
 
 讓我們看看應用程式如何驗證它從 Azure AD 接收的權杖。單一租用戶應用程式通常會採用類似以下的端點值：
 
@@ -103,8 +105,8 @@ Web 應用程式和 Web API 會接收並驗證來自 Azure AD 的權杖。
 
 這個同意體驗會受到應用程式所要求的權限影響。Azure AD 支援兩種類型的權限，即僅限應用程式的權限和委派的權限︰
 
-- 委派的權限可讓應用程式能夠充當登入的使用者來執行該使用者所能執行的一部分操作。例如，您可以授與應用程式委派的權限來讀取登入之使用者的行事曆。
-- 僅限應用程式的權限會直接授與應用程式的識別身分。例如，您可以將僅限應用程式的權限授與應用程式來讀取租用戶中的使用者清單，而且不論是誰登入此應用程式，此應用程式都將能夠執行這項操作。
+* 委派的權限可讓應用程式能夠充當登入的使用者來執行該使用者所能執行的一部分操作。例如，您可以授與應用程式委派的權限來讀取登入之使用者的行事曆。
+* 僅限應用程式的權限會直接授與應用程式的識別身分。例如，您可以將僅限應用程式的權限授與應用程式來讀取租用戶中的使用者清單，而且不論是誰登入此應用程式，此應用程式都將能夠執行這項操作。
 
 有些權限可以由一般使用者同意，有些則需要租用戶系統管理員的同意。
 
@@ -121,7 +123,10 @@ Web 應用程式和 Web API 會接收並驗證來自 Azure AD 的權杖。
 
 租用戶系統管理員可以停用一般使用者對應用程式行使同意權的能力。如果停用這項功能，就一律需要系統管理員同意，才能在租用戶中設定應用程式。如果您想要在停用一般使用者同意的情況下測試您的應用程式，您可以在 [Azure 傳統入口網站][AZURE-classic-portal]的 Azure AD 租用戶設定區段中找到設定參數。
 
-> [AZURE.NOTE] 有些應用程式想要提供一種體驗，讓一般使用者能夠一開始即表示同意，之後應用程式即可讓系統管理員參與操作並要求需要系統管理員同意的權限。目前在 Azure AD 中還沒有任何方法可以使用單一應用程式註冊來達到這個目的。即將推出 Azure AD v2 端點將可允許應用程式在執行階段 (而不是在註冊階段) 要求權限，這將使得此情況變成可行。如需詳細資訊，請參閱 [Azure AD 應用程式模型 v2 開發人員指南][AAD-V2-Dev-Guide]。
+> [!NOTE]
+> 有些應用程式想要提供一種體驗，讓一般使用者能夠一開始即表示同意，之後應用程式即可讓系統管理員參與操作並要求需要系統管理員同意的權限。目前在 Azure AD 中還沒有任何方法可以使用單一應用程式註冊來達到這個目的。即將推出 Azure AD v2 端點將可允許應用程式在執行階段 (而不是在註冊階段) 要求權限，這將使得此情況變成可行。如需詳細資訊，請參閱 [Azure AD 應用程式模型 v2 開發人員指南][AAD-V2-Dev-Guide]。
+> 
+> 
 
 ### 同意和多層應用程式
 您的應用程式可能會有多層，每一層皆由它自己在 Azure AD 中的註冊代表。例如，一個呼叫 Web API 的原生應用程式，或是一個呼叫 Web API 的 Web 應用程式。在這兩種情況下，用戶端 (原生應用程式或 Web 應用程式) 都會要求可呼叫資源 (Web API) 的權限。若要讓用戶端順利獲得客戶同意新增到其租用戶中，則它要求權限的所有資源必須都已經存在於客戶的租用戶中。如果不符合此條件，Azuer AD 將會傳回錯誤，指出必須先新增資源。
@@ -143,8 +148,8 @@ Web 應用程式和 Web API 會接收並驗證來自 Azure AD 的權杖。
 ### 撤銷同意
 使用者和系統管理員可以隨時撤銷對您應用程式的同意：
 
-- 使用者可藉由將個別應用程式從其[存取面板應用程式][AAD-Access-Panel]清單中移除，來撤銷對這些應用程式的存取權。
-- 系統管理員可藉由使用 [Azure 傳統入口網站][AZURE-classic-portal]的 Azure AD 管理區段，將應用程式從 Azure AD 中移除，來撤銷對這些應用程式的存取權。
+* 使用者可藉由將個別應用程式從其[存取面板應用程式][AAD-Access-Panel]清單中移除，來撤銷對這些應用程式的存取權。
+* 系統管理員可藉由使用 [Azure 傳統入口網站][AZURE-classic-portal]的 Azure AD 管理區段，將應用程式從 Azure AD 中移除，來撤銷對這些應用程式的存取權。
 
 如果是由系統管理員代表租用戶中的所有使用者對應用程式行使同意權，使用者就不能個別撤銷存取權。只有系統管理員才能撤銷存取權，並且只能針對整個應用程式撤銷。
 
@@ -155,15 +160,14 @@ Web 應用程式和 Web API 會接收並驗證來自 Azure AD 的權杖。
 多租用戶應用程式也可以取得存取權杖來呼叫受 Azure AD 保護的 API。搭配多租用戶應用程式使用 Active Directory Authentication Library (ADAL) 時有一個常見的錯誤，就是一開始即使用 /common 來為使用者要求權杖、接收回應，然後也使用 /common 來為該相同使用者要求後續的權杖。由於從 Azure AD 傳回的回應是來自租用戶而非 /common，因此 ADAL 快取權杖時會將它視為來自租用戶。後續為了為使用者取得存取權杖而進行的 /common 呼叫會遺漏快取項目，因此系統會再次提示使用者登入。為了避免遺漏快取，請確定後續為已登入之使用者進行的呼叫是對租用戶的端點發出。
 
 ## 相關內容
-
-- [多租用戶應用程式範例][AAD-Samples-MT]
-- [應用程式的商標指導方針][AAD-App-Branding]
-- [Azure AD 開發人員指南][AAD-Dev-Guide]
-- [應用程式物件和服務主體物件][AAD-App-SP-Objects]
-- [整合應用程式與 Azure Active Directory][AAD-Integrating-Apps]
-- [同意架構的概觀][AAD-Consent-Overview]
-- [Microsoft Graph API 權限範圍][MSFT-Graph-AAD]
-- [Azure AD Graph API 權限範圍][AAD-Graph-Perm-Scopes]
+* [多租用戶應用程式範例][AAD-Samples-MT]
+* [應用程式的商標指導方針][AAD-App-Branding]
+* [Azure AD 開發人員指南][AAD-Dev-Guide]
+* [應用程式物件和服務主體物件][AAD-App-SP-Objects]
+* [整合應用程式與 Azure Active Directory][AAD-Integrating-Apps]
+* [同意架構的概觀][AAD-Consent-Overview]
+* [Microsoft Graph API 權限範圍][MSFT-Graph-AAD]
+* [Azure AD Graph API 權限範圍][AAD-Graph-Perm-Scopes]
 
 請使用下方的 Disqus 註解區段來提供意見反應，並協助我們改善及設計我們的內容。
 

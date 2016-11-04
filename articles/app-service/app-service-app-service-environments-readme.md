@@ -1,30 +1,29 @@
-<properties 
-	pageTitle="App Service 環境 | Microsoft Azure" 
-	description="何謂 Azure App Service 環境？ App Service 環境簡介。" 
-	keywords="azure app service 環境, 虛擬網路, 安全網路"
-	services="app-service" 
-	documentationCenter="" 
-	authors="yochay" 
-	manager="wpickett" 
-	editor=""/>
+---
+title: App Service 環境 | Microsoft Docs
+description: 何謂 Azure App Service 環境？ App Service 環境簡介。
+keywords: azure app service 環境, 虛擬網路, 安全網路
+services: app-service
+documentationcenter: ''
+author: yochay
+manager: wpickett
+editor: ''
 
-<tags 
-	ms.service="app-service" 
-	ms.workload="na" 
-	ms.tgt_pltfrm="na" 
-	ms.devlang="na" 
-	ms.topic="article" 
-	ms.date="07/15/2016" 
-	ms.author="stefsch"/>
+ms.service: app-service
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 07/15/2016
+ms.author: stefsch
 
+---
 # App Service 環境文件
-
 App Service 環境是 Azure App Service 的[高階][PremiumTier]服務方案選項，可提供完全隔離的專用環境，以便安全地以高延展性執行 Azure App Service 應用程式，包括 [Web Apps][WebApps]、[行動應用程式][MobileApps]和 [API 應用程式][APIApps]。
 
 適合應用程式工作負載的 App Service 環境需要：
 
-- 非常高的延展性
-- 隔離和安全的網路存取
+* 非常高的延展性
+* 隔離和安全的網路存取
 
 客戶可以在單一 Azure 區域，以及跨多個 Azure 區域中建立多個 App Service 環境。這使得 App Service 環境很適合用來水平調整無狀態應用程式層的規模，以支援高 RPS 工作負載。
 
@@ -41,14 +40,14 @@ App Service 環境已經過隔離，可執行只有單一客戶的應用程式�
 * [網路安全性與架構](../app-service-web/app-service-app-service-environment-network-architecture-overview.md)
 
 ## 作法
-
-[AZURE.INCLUDE [app-service-blueprint-app-service-environment](../../includes/app-service-blueprint-app-service-environment.md)]
-
+[!INCLUDE [app-service-blueprint-app-service-environment](../../includes/app-service-blueprint-app-service-environment.md)]
 
 ## 影片
-[AZURE.VIDEO azurecon-2015-deploying-highly-scalable-and-secure-web-and-mobile-apps]
+[!VIDEO https://channel9.msdn.com/Events/Microsoft-Azure/AzureCon-2015/ACON325/player]
 
-[AZURE.VIDEO microsoft-ignite-2015-running-enterprise-web-and-mobile-apps-on-azure-app-service]
+
+[!VIDEO https://channel9.msdn.com/Events/Ignite/2015/BRK3715/player]
+
 
 
 <!-- LINKS -->

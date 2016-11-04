@@ -2,7 +2,10 @@
 
 ![Create cache](media/redis-cache-premium-create/redis-cache-new-cache-menu.png)
 
->[AZURE.NOTE] 除了在 Azure 入口網站中建立快取，您也可以使用 Resource Manager 範本、PowerShell 或 Azure CLI 來建立。如需詳細資訊，請參閱[建立快取](../articles/redis-cache/cache-dotnet-how-to-use-azure-redis-cache.md#create-a-cache)。
+> [!NOTE]
+> 除了在 Azure 入口網站中建立快取，您也可以使用 Resource Manager 範本、PowerShell 或 Azure CLI 來建立。如需詳細資訊，請參閱[建立快取](../articles/redis-cache/cache-dotnet-how-to-use-azure-redis-cache.md#create-a-cache)。
+> 
+> 
 
 若要設定進階功能，請先在 [選擇定價層] 刀鋒視窗中選取其中一個進階定價層。
 

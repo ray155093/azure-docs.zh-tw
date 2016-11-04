@@ -1,23 +1,22 @@
-<properties
-	pageTitle="Mobile Engagement 概念 | Microsoft Azure"
-	description="Azure Mobile Engagement 概念"
-	services="mobile-engagement"
-	documentationCenter="mobile"
-	authors="piyushjo"
-	manager="dwrede"
-	editor="" />
+---
+title: Mobile Engagement 概念 | Microsoft Docs
+description: Azure Mobile Engagement 概念
+services: mobile-engagement
+documentationcenter: mobile
+author: piyushjo
+manager: dwrede
+editor: ''
 
-<tags
-	ms.service="mobile-engagement"
-	ms.workload="mobile"
-	ms.tgt_pltfrm="mobile-android"
-	ms.devlang="na"
-	ms.topic="get-started-article"
-	ms.date="08/19/2016"
-	ms.author="piyushjo" />
+ms.service: mobile-engagement
+ms.workload: mobile
+ms.tgt_pltfrm: mobile-android
+ms.devlang: na
+ms.topic: get-started-article
+ms.date: 08/19/2016
+ms.author: piyushjo
 
+---
 # Azure Mobile Engagement 概念
-
 Mobile Engagement 定義所有支援平台共同的一些概念。本文會簡短說明這些概念。
 
 如果您不熟悉 Mobile Engagement，本文會是一個不錯的起點。也請務必閱讀您所使用平台的專屬文件，因為它會精簡本文中所述概念的更多詳細資料和範例，以及可能的限制。
@@ -79,10 +78,9 @@ Mobile Engagement 藉由為每台裝置產生唯一識別碼來識別使用者�
 索引鍵/值組的整個樹狀結構會儲存為 JSON 物件。不過，只有索引鍵/值的第一個層級會分解以便可供一些進階的函式直接存取，例如 Segments (例如，您可以輕鬆地定義稱為 "SciFi fans" 的區段，它是由上個月傳送至少 10 次事件名為 "content\_viewed" 事件的所有使用者所構成，且額外的索引鍵 "content\_type" 設定為 "scifi" 值)。因此強烈建議只傳送使用純量值 (例如字串、日期、整數或布林值) 的索引鍵/值組簡單清單所組成的額外項目。
 
 ## 後續步驟
-
-- [適用於 Azure Mobile Engagement 的 Windows 通用 SDK 概觀](mobile-engagement-windows-store-sdk-overview.md)
-- [適用於 Azure Mobile Engagement 的 Windows Phone Silverlight SDK 概觀](mobile-engagement-windows-phone-sdk-overview.md)
-- [Azure Mobile Engagement iOS SDK](mobile-engagement-ios-sdk-overview.md)
-- [適用於 Azure Mobile Engagement 的 Android SDK](mobile-engagement-android-sdk-overview.md)
+* [適用於 Azure Mobile Engagement 的 Windows 通用 SDK 概觀](mobile-engagement-windows-store-sdk-overview.md)
+* [適用於 Azure Mobile Engagement 的 Windows Phone Silverlight SDK 概觀](mobile-engagement-windows-phone-sdk-overview.md)
+* [Azure Mobile Engagement iOS SDK](mobile-engagement-ios-sdk-overview.md)
+* [適用於 Azure Mobile Engagement 的 Android SDK](mobile-engagement-android-sdk-overview.md)
 
 <!---HONumber=AcomDC_0824_2016-->

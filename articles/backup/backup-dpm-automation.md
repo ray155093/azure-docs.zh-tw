@@ -1,33 +1,32 @@
-<properties
-	pageTitle="Azure 備份 - 使用 PowerShell 部署和管理 DPM 的備份 | Microsoft Azure"
-	description="了解如何使用 PowerShell 部署和管理 Data Protection Manager (DPM) 的 Azure 備份"
-	services="backup"
-	documentationCenter=""
-	authors="NKolli1"
-	manager="shreeshd"
-	editor=""/>
+---
+title: Azure 備份 - 使用 PowerShell 部署和管理 DPM 的備份 | Microsoft Docs
+description: 了解如何使用 PowerShell 部署和管理 Data Protection Manager (DPM) 的 Azure 備份
+services: backup
+documentationcenter: ''
+author: NKolli1
+manager: shreeshd
+editor: ''
 
-<tags
-	ms.service="backup"
-	ms.workload="storage-backup-recovery"
-	ms.tgt_pltfrm="na"
-	ms.devlang="na"
-	ms.topic="article"
-	ms.date="09/01/2016"
-	ms.author="jimpark; anuragm;trinadhk;markgal"/>
+ms.service: backup
+ms.workload: storage-backup-recovery
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 09/01/2016
+ms.author: jimpark; anuragm;trinadhk;markgal
 
-
+---
 # 使用 PowerShell 部署和管理 Data Protection Manager (DPM) 伺服器的 Azure 備份
-
-> [AZURE.SELECTOR]
-- [ARM](backup-dpm-automation.md)
-- [傳統](backup-dpm-automation-classic.md)
+> [!div class="op_single_selector"]
+> * [ARM](backup-dpm-automation.md)
+> * [傳統](backup-dpm-automation-classic.md)
+> 
+> 
 
 本文說明如何使用 PowerShell 來設定 DPM 伺服器上的 Azure 備份以及管理備份和復原。
 
 ## 設定 PowerShell 環境
-
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-include.md)]
+[!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-include.md)]
 
 在可以使用 PowerShell 來管理 Data Protection Manager 的 Azure 備份之前，您必須在 PowerShell 中具備適當的環境。在 PowerShell 工作階段開始時，請確定您執行下列命令來匯入正確的模組並可讓您正確地參考 DPM Cmdlet：
 
@@ -56,44 +55,41 @@ PS C:\> Switch-AzureMode AzureResourceManager
 
 PowerShell 可以自動化下列設定和註冊工作：
 
-- 建立復原服務保存庫
-- 安裝 Azure 備份代理程式
-- 向 Azure 備份服務進行註冊
-- 網路設定
-- 加密設定
+* 建立復原服務保存庫
+* 安裝 Azure 備份代理程式
+* 向 Azure 備份服務進行註冊
+* 網路設定
+* 加密設定
 
 ## 建立復原服務保存庫。
-
 下列步驟將引導您完成建立復原服務保存庫。復原服務保存庫不同於備份保存庫。
 
 1. 如果您是第一次使用 Azure 備份，您必須使用 **Register-AzureRMResourceProvider** Cmdlet 利用您的訂用帳戶來註冊 Azure 復原服務提供者。
-
+   
     ```
     PS C:\> Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.RecoveryServices"
     ```
-
 2. 復原服務保存庫是 ARM 資源，因此您必須將它放在資源群組內。您可以使用現有的資源群組，或建立一個新的群組。建立新的資源群組時，請指定資源群組的名稱和位置。
-
+   
     ```
     PS C:\> New-AzureRmResourceGroup –Name "test-rg" –Location "West US"
     ```
-
 3. 使用 **New-AzureRmRecoveryServicesVault** Cmdlet 來建立新的保存庫。請務必為保存庫指定與用於資源群組相同的位置。
-
+   
     ```
     PS C:\> New-AzureRmRecoveryServicesVault -Name "testvault" -ResourceGroupName " test-rg" -Location "West US"
     ```
-
 4. 請指定要使用之儲存體備援的類型；您可以使用[本地備援儲存體 (LRS)](../storage/storage-redundancy.md#locally-redundant-storage) 或[異地備援儲存體 (GRS)](../storage/storage-redundancy.md#geo-redundant-storage)。以下範例示範 testVault 設定為 GeoRedundant 的 BackupStorageRedundancy 選項。
-
-    > [AZURE.TIP] 許多 Azure 備份 Cmdlet 都需要將復原服務保存庫物件當做輸入。基於這個理由，將備份復原服務保存庫物件儲存在變數中會是方便的做法。
-
+   
+   > [!TIP]
+   > 許多 Azure 備份 Cmdlet 都需要將復原服務保存庫物件當做輸入。基於這個理由，將備份復原服務保存庫物件儲存在變數中會是方便的做法。
+   > 
+   > 
+   
     ```
     PS C:\> $vault1 = Get-AzureRmRecoveryServicesVault –Name "testVault"
     PS C:\> Set-AzureRmRecoveryServicesBackupProperties  -vault $vault1 -BackupStorageRedundancy GeoRedundant
     ```
-
-
 
 ## 在訂用帳戶中檢視保存庫
 使用 **Get-AzureRmRecoveryServicesVault** 來檢視目前訂用帳戶中所有保存庫的清單。您可以使用此命令來檢查是否已建立新的保存庫，或查看訂用帳戶中有哪些保存庫可用。
@@ -137,20 +133,19 @@ PS C:\> MARSAgentInstaller.exe /?
 可用的選項包括：
 
 | 選項 | 詳細資料 | 預設值 |
-| ---- | ----- | ----- |
-| /q | 無訊息安裝 | - | 
-| /p:"location" | Azure 備份代理程式的安裝資料夾路徑。 | C:\\Program Files\\Microsoft Azure Recovery Services Agent | 
-| /s:"location" | Azure 備份代理程式的快取資料夾路徑。 | C:\\Program Files\\Microsoft Azure Recovery Services Agent\\Scratch | 
-| /m | 選擇加入 Microsoft Update | - | 
-| /nu | 安裝完成後不要檢查更新 | - | 
-| /d | 解除安裝 Microsoft Azure 復原服務代理程式 | - | 
-| /ph | Proxy 主機位址 | - | 
-| /po | Proxy 主機連接埠號碼 | - | 
-| /pu | Proxy 主機使用者名稱 | - | 
-| /pw | Proxy 密碼 | - |
+| --- | --- | --- |
+| /q |無訊息安裝 |- |
+| /p:"location" |Azure 備份代理程式的安裝資料夾路徑。 |C:\\Program Files\\Microsoft Azure Recovery Services Agent |
+| /s:"location" |Azure 備份代理程式的快取資料夾路徑。 |C:\\Program Files\\Microsoft Azure Recovery Services Agent\\Scratch |
+| /m |選擇加入 Microsoft Update |- |
+| /nu |安裝完成後不要檢查更新 |- |
+| /d |解除安裝 Microsoft Azure 復原服務代理程式 |- |
+| /ph |Proxy 主機位址 |- |
+| /po |Proxy 主機連接埠號碼 |- |
+| /pu |Proxy 主機使用者名稱 |- |
+| /pw |Proxy 密碼 |- |
 
 ## 向復原服務保存庫註冊 DPM
-
 建立復原服務保存庫之後，請下載最新版本的代理程式和保存庫認證，並將它們儲存在方便的位置 (如 C:\\Downloads)。
 
 ```
@@ -207,7 +202,6 @@ PS C:\> Set-DPMCloudSubscriptionSetting -DPMServerName "TestingServer" -Subscrip
 
 在上述範例中，臨時區域將在 PowerShell 物件 ```$setting``` 中設定為 *C:\\StagingArea*。請確保指定的資料夾已經存在，否則訂用帳戶設定的最終認可將會失敗。
 
-
 ### 加密設定
 傳送至 Azure 備份的備份資料會進行加密來保護資料的機密性。加密複雜密碼是在還原時用來解密資料的「密碼」。一旦設定，就請務必保管好這項資訊。
 
@@ -219,7 +213,10 @@ PS C:\> $Passphrase = ConvertTo-SecureString -string "passphrase123456789" -AsPl
 PS C:\> Set-DPMCloudSubscriptionSetting -DPMServerName "TestingServer" -SubscriptionSetting $setting -EncryptionPassphrase $Passphrase
 ```
 
-> [AZURE.IMPORTANT] 一旦設定，就請保管好此複雜密碼。若沒有此複雜密碼，您將無法從 Azure 還原資料。
+> [!IMPORTANT]
+> 一旦設定，就請保管好此複雜密碼。若沒有此複雜密碼，您將無法從 Azure 還原資料。
+> 
+> 
 
 此時，您應該已對 ```$setting``` 物件進行所有必要的變更。記得要認可變更。
 
@@ -338,9 +335,10 @@ PS C:\> Set-DPMProtectionGroup -ProtectionGroup $MPG
 ```
 ## 檢視備份點
 您可以使用 [Get-DPMRecoveryPoint](https://technet.microsoft.com/library/hh881746) Cmdlet 來取得資料來源所有復原點的清單。在此範例中，我們將會：
-- 擷取 DPM 伺服器上以及儲存在 ```$PG``` 陣列中的所有 PG
-- 取得與 ```$PG[0]``` 對應的資料來源
-- 取得資料來源的所有復原點。
+
+* 擷取 DPM 伺服器上以及儲存在 ```$PG``` 陣列中的所有 PG
+* 取得與 ```$PG[0]``` 對應的資料來源
+* 取得資料來源的所有復原點。
 
 ```
 PS C:\> $PG = Get-DPMProtectionGroup –DPMServerName "TestingServer"
@@ -353,9 +351,9 @@ PS C:\> $RecoveryPoints = Get-DPMRecoverypoint -Datasource $DS[0] -Online
 
 在下列範例中，我們將示範如何透過結合備份點與復原目標從 Azure 備份還原 Hyper-V 虛擬機器。這個範例包含︰
 
-- 使用 [New-DPMRecoveryOption](https://technet.microsoft.com/library/hh881592) Cmdlet 建立復原選項。
-- 使用 ```Get-DPMRecoveryPoint``` Cmdlet 擷取備份點的陣列。
-- 選擇要從中還原的備份點。
+* 使用 [New-DPMRecoveryOption](https://technet.microsoft.com/library/hh881592) Cmdlet 建立復原選項。
+* 使用 ```Get-DPMRecoveryPoint``` Cmdlet 擷取備份點的陣列。
+* 選擇要從中還原的備份點。
 
 ```
 PS C:\> $RecoveryOption = New-DPMRecoveryOption -HyperVDatasource -TargetServer "HVDCenter02" -RecoveryLocation AlternateHyperVServer -RecoveryType Recover -TargetLocation “C:\VMRecovery”
@@ -370,7 +368,6 @@ PS C:\> Restore-DPMRecoverableItem -RecoverableItem $RecoveryPoints[0] -Recovery
 命令可以很容易地針對任何資料來源類型擴充。
 
 ## 後續步驟
-
-- 如需 DPM 至 Azure 備份的詳細資訊，請參閱 [DPM 備份簡介](backup-azure-dpm-introduction.md)
+* 如需 DPM 至 Azure 備份的詳細資訊，請參閱 [DPM 備份簡介](backup-azure-dpm-introduction.md)
 
 <!----HONumber=AcomDC_0907_2016-->

@@ -1,57 +1,51 @@
-<properties
-    pageTitle="Linux 的背書散發套件 | Microsoft Azure"
-    description="了解在 Azure 背書散發套件上的 Linux，包括 Ubuntu、Oracle、OpenLogic 和 SUSE 的準則。"
-    services="virtual-machines-linux"
-    documentationCenter=""
-    authors="szarkos"
-    manager="timlt"
-    editor="tysonn"
-    tags="azure-service-management,azure-resource-manager"
-    />
+---
+title: Linux 的背書散發套件 | Microsoft Docs
+description: 了解在 Azure 背書散發套件上的 Linux，包括 Ubuntu、Oracle、OpenLogic 和 SUSE 的準則。
+services: virtual-machines-linux
+documentationcenter: ''
+author: szarkos
+manager: timlt
+editor: tysonn
+tags: azure-service-management,azure-resource-manager
 
-<tags
-    ms.service="virtual-machines-linux"
-    ms.workload="infrastructure-services"
-    ms.tgt_pltfrm="vm-linux"
-    ms.devlang="na"
-    ms.topic="article"
-    ms.date="08/24/2016"
-    ms.author="szark"/>
+ms.service: virtual-machines-linux
+ms.workload: infrastructure-services
+ms.tgt_pltfrm: vm-linux
+ms.devlang: na
+ms.topic: article
+ms.date: 08/24/2016
+ms.author: szark
 
-
-
-
-#<a name="linux-on-azure-endorsed-distributions"></a>經 Azure 背書之配送映像上的 Linux
-
-> [AZURE.NOTE] 若能耽擱您一些時間，請透過回答這個針對您經驗的 [簡短問卷](https://aka.ms/linuxdocsurvey) ，來協助我們改善 Azure Linux VM 文件。 每個答案都有助於我們協助您完成工作。
+---
+# <a name="linux-on-azure-endorsed-distributions"></a>經 Azure 背書之配送映像上的 Linux
+> [!NOTE]
+> 若能耽擱您一些時間，請透過回答這個針對您經驗的 [簡短問卷](https://aka.ms/linuxdocsurvey) ，來協助我們改善 Azure Linux VM 文件。 每個答案都有助於我們協助您完成工作。
+> 
+> 
 
 Azure 映像庫或 Marketplace 中的 Linux 映像是由許多合作夥伴所提供，而我們仍繼續與不同的 Linux 社群合作，為經過背書的散發套件清單新增更多標註。 同時，針對映像庫中未提供的散發套件，您可以隨時依照 [本頁](virtual-machines-linux-classic-create-upload-vhd.md)上的方針，自備您自己的 Linux。
 
-[AZURE.INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
+[!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
-
-## <a name="supported-distributions-&-versions"></a>支援的散發套件和版本 ##
-
+## <a name="supported-distributions-&-versions"></a>支援的散發套件和版本
 下表列出 Azure 上支援的 Linux 散發套件和版本。 如需詳細資訊，另請參閱 [Microsoft Azure 中的 Linux 映像支援](https://support.microsoft.com/en-us/kb/2941892)。
 
 適用於 Hyper-V 和 Azure 的 Linux Integration Services (LIS) 驅動程式是核心模組，Microsoft 會直接提供給上游 Linux Kernel。  LIS 驅動程式預設會內建於散發套件的核心，或者，如果是較舊的以 RHEL/CentOS 為基礎的散發套件，可從 [這裡](http://go.microsoft.com/fwlink/?LinkID=403033&clcid=0x409)個別下載。  如需關於 LIS 驅動程式的詳細資訊，請參閱 [這篇文章](virtual-machines-linux-create-upload-generic.md#linux-kernel-requirements) 。
 
 Azure Linux 代理程式已預先安裝於 Azure 組件庫映像上，而且通常可透過散發套件的封裝儲存機制來取得。  您可以在 [GitHub](https://github.com/azure/walinuxagent)上找到原始程式碼。
 
-配送映像|版本|驅動程式|代理程式
----|---|---|---
-OpenLogic 的 CentOS | CentOS 6.3+、7.0+ | CentOS 6.3：[LIS 下載](http://go.microsoft.com/fwlink/?LinkID=403033&clcid=0x409)<p>CentOS 6.4 +：在核心中 | 封裝：在 "WALinuxAgent" 下的 [OpenLogic 儲存機制](http://olcentgbl.trafficmanager.net/openlogic/6/openlogic/x86_64/RPMS/)中 <br/>原始程式碼： [GitHub](https://github.com/Azure/WALinuxAgent)
-[CoreOS](https://coreos.com/docs/running-coreos/cloud-providers/azure/) | 494.4.0+ | 在核心中 | 原始程式碼： [GitHub](https://github.com/coreos/coreos-overlay/tree/master/app-emulation/wa-linux-agent)
-Debian | Debian 7.9+、8.2+ | 在核心中 | 套件：在「waagent」下的儲存機制中  <br/>原始程式碼： [GitHub](https://github.com/Azure/WALinuxAgent)
-Oracle Linux | 6.4+、7.0+ | 在核心中 | 套件：在「WALinuxAgent」下的儲存機制中  <br/>原始程式碼： [GitHub](http://go.microsoft.com/fwlink/p/?LinkID=250998)
-Red Hat Enterprise Linux | RHEL 6.7+、7.1+ | 在核心中|套件：在「WALinuxAgent」下的儲存機制中  <br/>原始程式碼： [GitHub](https://github.com/Azure/WALinuxAgent)
-SUSE Linux Enterprise | SLES 11 SP4、SLES 12+ 和  <p>  SLES for SAP 11.3+ | 在核心中 | 封裝：在 "python-azure-agent" 下的[雲端：工具](https://build.opensuse.org/project/show/Cloud:Tools)儲存機制中 <br/>原始程式碼： [GitHub](http://go.microsoft.com/fwlink/p/?LinkID=250998)
-openSUSE | openSUSE 13.2+ | 在核心中 | 封裝：在 "python-azure-agent" 下的[雲端：工具](https://build.opensuse.org/project/show/Cloud:Tools)儲存機制中 <br/>原始程式碼： [GitHub](https://github.com/Azure/WALinuxAgent)
-Ubuntu|Ubuntu 12.04、14.04 和 16.04 | 在核心中 | 封裝：在 "python-azure-agent" 下的儲存機制中 <br/>原始程式碼： [GitHub](https://github.com/Azure/WALinuxAgent)
-
+| 配送映像 | 版本 | 驅動程式 | 代理程式 |
+| --- | --- | --- | --- |
+| OpenLogic 的 CentOS |CentOS 6.3+、7.0+ |CentOS 6.3：[LIS 下載](http://go.microsoft.com/fwlink/?LinkID=403033&clcid=0x409)<p>CentOS 6.4 +：在核心中 |封裝：在 "WALinuxAgent" 下的 [OpenLogic 儲存機制](http://olcentgbl.trafficmanager.net/openlogic/6/openlogic/x86_64/RPMS/)中 <br/>原始程式碼： [GitHub](https://github.com/Azure/WALinuxAgent) |
+| [CoreOS](https://coreos.com/docs/running-coreos/cloud-providers/azure/) |494.4.0+ |在核心中 |原始程式碼： [GitHub](https://github.com/coreos/coreos-overlay/tree/master/app-emulation/wa-linux-agent) |
+| Debian |Debian 7.9+、8.2+ |在核心中 |套件：在「waagent」下的儲存機制中  <br/>原始程式碼： [GitHub](https://github.com/Azure/WALinuxAgent) |
+| Oracle Linux |6.4+、7.0+ |在核心中 |套件：在「WALinuxAgent」下的儲存機制中  <br/>原始程式碼： [GitHub](http://go.microsoft.com/fwlink/p/?LinkID=250998) |
+| Red Hat Enterprise Linux |RHEL 6.7+、7.1+ |在核心中 |套件：在「WALinuxAgent」下的儲存機制中  <br/>原始程式碼： [GitHub](https://github.com/Azure/WALinuxAgent) |
+| SUSE Linux Enterprise |SLES 11 SP4、SLES 12+ 和  <p>  SLES for SAP 11.3+ |在核心中 |封裝：在 "python-azure-agent" 下的[雲端：工具](https://build.opensuse.org/project/show/Cloud:Tools)儲存機制中 <br/>原始程式碼： [GitHub](http://go.microsoft.com/fwlink/p/?LinkID=250998) |
+| openSUSE |openSUSE 13.2+ |在核心中 |封裝：在 "python-azure-agent" 下的[雲端：工具](https://build.opensuse.org/project/show/Cloud:Tools)儲存機制中 <br/>原始程式碼： [GitHub](https://github.com/Azure/WALinuxAgent) |
+| Ubuntu |Ubuntu 12.04、14.04 和 16.04 |在核心中 |封裝：在 "python-azure-agent" 下的儲存機制中 <br/>原始程式碼： [GitHub](https://github.com/Azure/WALinuxAgent) |
 
 ## <a name="partners"></a>合作夥伴
-
 ### <a name="openlogic"></a>OpenLogic
 [http://www.openlogic.com/azure](http://www.openlogic.com/azure)
 
@@ -63,7 +57,6 @@ Ubuntu|Ubuntu 12.04、14.04 和 16.04 | 在核心中 | 封裝：在 "python-azur
 從 CoreOS 網站：
 
 *CoreOS 是專為安全性、一致性和可靠性所設計。CoreOS 不會透過 yum 或 apt 安裝封裝，而是在較高層級的抽象概念中，使用 Linux 容器來管理您的服務。單一服務的程式碼和所有相依性都封裝於容器內，可在一或多部 CoreOS 機器上執行。*
-
 
 ### <a name="credativ"></a>Credativ
 [http://www.credativ.co.uk/credativ-blog/debian-images-microsoft-azure](http://www.credativ.co.uk/credativ-blog/debian-images-microsoft-azure)
@@ -91,9 +84,6 @@ Azure 上的 SUSE Linux Enterprise Server 是一個經證實可為雲端運算�
 Canonical 對工程與開放社群的治理推動了 Ubuntu 在用戶端、伺服器和雲端運算 (包括消費者的個人雲端服務) 方面的成功。 Canonical 對 Ubuntu 的願景是，透過對手機、平板電腦、電視和桌上型電腦而言皆風格一致的一系列介面，成為從手機到雲端皆適用的統一免費平台，讓 Ubuntu 成為從公用雲端供應商到消費性電子產品製造商等各種機構眼中的首選，並成為個人技術人員的愛用平台。
 
 Canonical 在全球各地皆有開發人員和工程中心，此獨特的地位使其能和硬體製造商、內容供應商和軟體開發商合作，將 Ubuntu 解決方案帶到從電腦、伺服器到掌上型裝置等等的市場。
-
-
-
 
 <!--HONumber=Oct16_HO2-->
 
