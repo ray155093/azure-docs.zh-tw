@@ -57,3 +57,8 @@
 ## [Setup PostMan to call API Management APIs](http://www.bizbert.com/bizbert/2015/07/08/Setting+Up+PostMan+To+Call+The+Azure+Management+APIs.aspx)
 ## [API Management plugin for SmartBear Ready! API](http://smartbear.com/plugins/microsoft-azure-api-management-plugin/)
 # Related
+
+
+<!--HONumber=Nov16_HO2-->
+
+

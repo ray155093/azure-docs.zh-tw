@@ -126,3 +126,8 @@
 ## [VPN Gateway](https://azure.microsoft.com/documentation/services/vpn-gateway)
 ## [ExpressRoute](https://azure.microsoft.com/documentation/services/expressroute)
 
+
+
+<!--HONumber=Nov16_HO2-->
+
+

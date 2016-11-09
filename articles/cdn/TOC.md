@@ -53,5 +53,9 @@
 # Related
 
 # Resources
-## [Best practices](best-practices-cdn.md)
 ## [Azure CDN POP Locations](cdn-pop-locations.md)
+
+
+<!--HONumber=Nov16_HO2-->
+
+

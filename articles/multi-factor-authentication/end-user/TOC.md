@@ -12,3 +12,8 @@
 ## Use the Microsoft Authenticator app
 ### [Get started](../multi-factor-authentication-microsoft-authenticator.md?toc=%2fazure&2fmulti-factor-authentication%2fend-user%2ftoc.json)
 ### [FAQs](../multi-factor-authentication-app-faq.md?toc=%2fazure&2fmulti-factor-authentication%2fend-user%2ftoc.json)
+
+
+<!--HONumber=Nov16_HO2-->
+
+

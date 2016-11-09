@@ -54,3 +54,7 @@
 ## [Virtual Machines](https://azure.microsoft.com/documentation/services/virtual-machines/)
 ## [Load Balancer](https://azure.microsoft.com/documentation/services/load-balancer/)
 ## [Traffic Manager](https://azure.microsoft.com/documentation/services/traffic-manager/)
+
+<!--HONumber=Nov16_HO2-->
+
+

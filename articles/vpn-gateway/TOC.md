@@ -60,3 +60,7 @@
 ## [ExpressRoute](https://azure.microsoft.com/documentation/services/expressroute) 
 # Resources
 ## [Networking Blog](https://azure.microsoft.com/blog/topics/networking)
+
+<!--HONumber=Nov16_HO2-->
+
+

@@ -99,3 +99,8 @@
 ## [Single sign-on](../active-directory-single-sign-on-protocol-reference.md?toc=%2fazure%2factive-directory%2fdevelop%2ftoc.json)
 ## [Single sign-out](../active-directory-single-sign-out-protocol-reference.md?toc=%2fazure%2factive-directory%2fdevelop%2ftoc.json)
 ## [Tokens and claims](../active-directory-token-and-claims.md?toc=%2fazure%2factive-directory%2fdevelop%2ftoc.json)
+
+
+<!--HONumber=Nov16_HO2-->
+
+

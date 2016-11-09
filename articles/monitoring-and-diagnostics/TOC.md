@@ -47,3 +47,8 @@
 ## [Azure CLI examples](../monitoring-and-diagnostics/insights-cli-samples.md)
 ## [Azure PowerShell cmdlet examples](../monitoring-and-diagnostics/insights-powershell-samples.md)
 ## [.NET SDK reference](https://msdn.microsoft.com/library/azure/dn802153)
+
+
+<!--HONumber=Nov16_HO2-->
+
+

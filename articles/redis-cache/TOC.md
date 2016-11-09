@@ -48,3 +48,7 @@
 ## [Redis commands](http://redis.io/commands#)
 #Resources
 ## [Redis cache samples](cache-redis-samples.md)
+
+<!--HONumber=Nov16_HO2-->
+
+

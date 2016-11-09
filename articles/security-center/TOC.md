@@ -63,3 +63,8 @@
 
 # Resources
 ## [Azure Security, Privacy, & Compliance blog](http://blogs.msdn.com/b/azuresecurity/)
+
+
+<!--HONumber=Nov16_HO2-->
+
+
