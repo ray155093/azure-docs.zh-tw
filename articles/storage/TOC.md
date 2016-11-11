@@ -1,14 +1,14 @@
-# Overview
+# 概觀
 
-## [Introduction](storage-introduction.md)
-## [Storage pricing](https://azure.microsoft.com/pricing/details/storage/blobs/)
+## [簡介](storage-introduction.md)
+## [儲存體的定價](https://azure.microsoft.com/pricing/details/storage/blobs/)
 
-# Get Started
+# 開始使用
 
-## [Quick start guide](storage-getting-started-guide.md)
-## [Create a storage account](storage-create-storage-account.md)
+## [快速入門指南](storage-getting-started-guide.md)
+## [建立儲存體帳戶](storage-create-storage-account.md)
 
-## Blob Storage
+## Blob 儲存體
 ### [.NET](storage-dotnet-how-to-use-blobs.md)
 ### [Java](storage-java-how-to-use-blob-storage.md)
 ### [Node.js](storage-nodejs-how-to-use-blob-storage.md)
@@ -19,14 +19,14 @@
 ### [iOS](storage-ios-how-to-use-blob-storage.md)
 ### [Xamarin](storage-xamarin-blob-storage.md)
 
-## File Storage
-### [Windows, .NET, PowerShell](storage-dotnet-how-to-use-files.md)
+## 檔案儲存體
+### [Windows、.NET、PowerShell](storage-dotnet-how-to-use-files.md)
 ### [Linux](storage-how-to-use-files-linux.md)
 ### [Java](storage-java-how-to-use-file-storage.md)
 ### [C++](storage-c-plus-plus-how-to-use-files.md)
 ### [Python](storage-python-how-to-use-file-storage.md)
 
-## Queue Storage
+## 佇列儲存體
 ### [.NET](storage-dotnet-how-to-use-queues.md)
 ### [Java](storage-java-how-to-use-queue-storage.md)
 ### [Node.js](storage-nodejs-how-to-use-queues.md)
@@ -35,7 +35,7 @@
 ### [PHP](storage-php-how-to-use-queues.md)
 ### [Ruby](storage-ruby-how-to-use-queue-storage.md)
 
-## Table Storage
+## 資料表儲存體
 ### [.NET](storage-dotnet-how-to-use-tables.md)
 ### [Java](storage-java-how-to-use-table-storage.md)
 ### [Node.js](storage-nodejs-how-to-use-table-storage.md)
@@ -44,21 +44,21 @@
 ### [PHP](storage-php-how-to-use-table-storage.md)
 ### [Ruby](storage-ruby-how-to-use-table-storage.md)
 
-## [Storage samples](storage-samples.md)
+## [儲存體範例](storage-samples.md)
 
-# How To
-
-
-## Storage Accounts
-### [General storage accounts](storage-create-storage-account.md)
-### [Blob storage accounts](storage-blob-storage-tiers.md)
-### [Premium Storage accounts](storage-premium-storage.md)
+# 作法：
 
 
-## Blob Storage
+## 儲存體帳戶
+### [一般儲存體帳戶](storage-create-storage-account.md)
+### [Blob 儲存體帳戶](storage-blob-storage-tiers.md)
+### [進階儲存體帳戶](storage-premium-storage.md)
 
 
-### Tutorials
+## Blob 儲存體
+
+
+### 教學課程
 #### [.NET](storage-dotnet-how-to-use-blobs.md)
 #### [Java](storage-java-how-to-use-blob-storage.md)
 #### [Node.js](storage-nodejs-how-to-use-blob-storage.md)
@@ -69,20 +69,20 @@
 #### [iOS](storage-ios-how-to-use-blob-storage.md)
 #### [Xamarin](storage-xamarin-blob-storage.md)
 
-### Concepts
-#### [Service overview](https://msdn.microsoft.com/library/dd179376.aspx)
-#### [Hot and cool tiers](storage-blob-storage-tiers.md)
-#### [Custom domains](storage-custom-domain-name.md)
-#### [Import/Export service for Blob storage](storage-import-export-service.md)
-#### [Anonymous access to blobs](storage-manage-access-to-resources.md)
+### 概念
+#### [服務概觀](https://msdn.microsoft.com/library/dd179376.aspx)
+#### [經常性存取和非經常性存取層級](storage-blob-storage-tiers.md)
+#### [自訂網域](storage-custom-domain-name.md)
+#### [Blob 儲存體的匯入/匯出服務](storage-import-export-service.md)
+#### [匿名存取 Blob](storage-manage-access-to-resources.md)
 
-### [Samples](https://azure.microsoft.com/documentation/samples/?service=storage&term=blob)
-
-
-## Queue Storage
+### [範例](https://azure.microsoft.com/documentation/samples/?service=storage&term=blob)
 
 
-### Tutorials
+## 佇列儲存體
+
+
+### 教學課程
 #### [.NET](storage-dotnet-how-to-use-queues.md)
 #### [Java](storage-java-how-to-use-queue-storage.md)
 #### [Node.js](storage-nodejs-how-to-use-queues.md)
@@ -91,15 +91,15 @@
 #### [PHP](storage-php-how-to-use-queues.md)
 #### [Ruby](storage-ruby-how-to-use-queue-storage.md)
 
-### [Concepts](https://msdn.microsoft.com/library/dd179353.aspx)
+### [概念](https://msdn.microsoft.com/library/dd179353.aspx)
 
-### [Samples](https://azure.microsoft.com/documentation/samples/?service=storage&term=queue)
-
-
-## Table Storage
+### [範例](https://azure.microsoft.com/documentation/samples/?service=storage&term=queue)
 
 
-### Tutorials
+## 資料表儲存體
+
+
+### 教學課程
 #### [.NET](storage-dotnet-how-to-use-tables.md)
 #### [Java](storage-java-how-to-use-table-storage.md)
 #### [Node.js](storage-nodejs-how-to-use-table-storage.md)
@@ -108,160 +108,160 @@
 #### [PHP](storage-php-how-to-use-table-storage.md)
 #### [Ruby](storage-ruby-how-to-use-table-storage.md)
 
-### Concepts
-#### [Service overview](https://msdn.microsoft.com/library/dd179463.aspx)
-#### [Table design guide](storage-table-design-guide.md)
+### 概念
+#### [服務概觀](https://msdn.microsoft.com/library/dd179463.aspx)
+#### [資料表設計指南](storage-table-design-guide.md)
 
-### [Samples](https://azure.microsoft.com/documentation/samples/?service=storage&term=table)
-
-
-## File Storage
+### [範例](https://azure.microsoft.com/documentation/samples/?service=storage&term=table)
 
 
-### Tutorials
-#### [Windows, .NET, PowerShell](storage-dotnet-how-to-use-files.md)
+## 檔案儲存體
+
+
+### 教學課程
+#### [Windows、.NET、PowerShell](storage-dotnet-how-to-use-files.md)
 #### [Linux](storage-how-to-use-files-linux.md)
 #### [Java](storage-java-how-to-use-file-storage.md)
 #### [C++](storage-c-plus-plus-how-to-use-files.md)
 #### [Python](storage-python-how-to-use-file-storage.md)
 
-### Concepts
-#### [Service overview](https://msdn.microsoft.com/en-us/library/dn166972.aspx)
-#### [Troubleshoot Azure Files](storage-troubleshoot-file-connection-problems.md)
+### 概念
+#### [服務概觀](https://msdn.microsoft.com/en-us/library/dn166972.aspx)
+#### [針對 Azure 檔案進行疑難排解](storage-troubleshoot-file-connection-problems.md)
 
-### [Samples](https://azure.microsoft.com/documentation/samples/?service=storage&term=file)
-
-
-## Virtual Machine Disks
-
-### Premium Storage
-#### [High-performance storage for VM workloads](storage-premium-storage.md)
-#### [Migrating to Premium Storage](storage-migration-to-premium-storage.md)
-#### [Design for high performance](storage-premium-storage-performance.md)
-
-### Standard Storage
-#### Troubleshoot disk deletion errors
-##### [In a Resource Manager deployment](storage-resource-manager-cannot-delete-storage-account-container-vhd.md)
-##### [In a classic deployment](storage-cannot-delete-storage-account-container-vhd.md)
-#### [Back up VM disks with incremental snapshots](storage-incremental-snapshots.md)
+### [範例](https://azure.microsoft.com/documentation/samples/?service=storage&term=file)
 
 
-## Develop with Storage
+## 虛擬機器磁碟
 
-### [Samples](storage-samples.md)
-### General development
-#### [Configure connection strings](storage-configure-connection-string.md)
-#### [Use the Storage Emulator](storage-use-emulator.md)
-#### [Set and retrieve properties and metadata](storage-properties-metadata.md)
+### 進階儲存體
+#### [VM 工作負載適用的高效能儲存體](storage-premium-storage.md)
+#### [移轉至進階儲存體](storage-migration-to-premium-storage.md)
+#### [為高效能而設計](storage-premium-storage-performance.md)
+
+### 標準儲存體
+#### 針對磁碟刪除錯誤進行疑難排解
+##### [在 Resource Manager 中](storage-resource-manager-cannot-delete-storage-account-container-vhd.md)
+##### [在傳統部署中](storage-cannot-delete-storage-account-container-vhd.md)
+#### [以遞增快照備份 VM 磁碟](storage-incremental-snapshots.md)
 
 
-## Manage Storage
+## 使用儲存體進行開發
+
+### [範例](storage-samples.md)
+### 一般開發
+#### [設定連接字串](storage-configure-connection-string.md)
+#### [使用儲存體模擬器](storage-use-emulator.md)
+#### [設定並擷取屬性和中繼資料](storage-properties-metadata.md)
+
+
+## 管理儲存體
 
 ### [Azure PowerShell](storage-powershell-guide-full.md)
 ### [Azure CLI](storage-azure-cli.md)
-### [Azure Automation](automation-manage-storage.md)
+### [Azure 自動化](automation-manage-storage.md)
 
 
-## Performance & Availability
+## 效能和可用性
 
-### [Replication](storage-redundancy.md)
-### [Scalability and performance targets](storage-scalability-targets.md)
-### [Performance and scalability checklist](storage-performance-checklist.md)
-### [Concurrency](storage-concurrency.md)
+### [複寫](storage-redundancy.md)
+### [擴充和效能目標](storage-scalability-targets.md)
+### [效能和延展性檢查清單](storage-performance-checklist.md)
+### [並行](storage-concurrency.md)
 
 
-## Security
+## 安全性
 
-### [Storage security guide](storage-security-guide.md)
-### [Encryption for data at rest](storage-service-encryption.md)
-### Client-side encryption
-#### [Azure Key Vault](storage-client-side-encryption.md)
+### [儲存體安全性指南](storage-security-guide.md)
+### [待用資料的加密](storage-service-encryption.md)
+### 用戶端加密
+#### [Azure 金鑰保存庫](storage-client-side-encryption.md)
 #### [Java](storage-client-side-encryption-java.md)
 #### [Python](storage-client-side-encryption-python.md)
-#### [Tutorial: Encrypt and decrypt blobs using Azure Key Vault](storage-encrypt-decrypt-blobs-key-vault.md)
+#### [教學課程：使用 Azure 金鑰保存庫加密及解密 Blob](storage-encrypt-decrypt-blobs-key-vault.md)
 
-### [Shared key authentication](https://msdn.microsoft.com/library/dd179428.aspx)
-### [Shared access signatures (SAS)](storage-dotnet-shared-access-signature-part-1.md)
-### [Anonymous access to blobs](storage-manage-access-to-resources.md)
+### [共用金鑰驗證](https://msdn.microsoft.com/library/dd179428.aspx)
+### [共用存取簽章 (SAS)](storage-dotnet-shared-access-signature-part-1.md)
+### [匿名存取 Blob](storage-manage-access-to-resources.md)
 
 
-## Monitor & Troubleshoot
+## 監視與疑難排解
 
-### Metrics & Logging
+### 計量與記錄
 #### [Storage Analytics](storage-analytics.md)
-#### [Enable and view metrics](storage-enable-and-view-metrics.md)
-#### [Monitor, diagnose, and troubleshoot](storage-monitoring-diagnosing-troubleshooting.md)
-#### [Troubleshooting tutorial](storage-e2e-troubleshooting.md)
+#### [啟用和檢視計量](storage-enable-and-view-metrics.md)
+#### [監控、診斷及疑難排解](storage-monitoring-diagnosing-troubleshooting.md)
+#### [疑難排解教學課程](storage-e2e-troubleshooting.md)
 
-### Troubleshoot disk deletion errors
-#### [In a Resource Manager deployment](storage-resource-manager-cannot-delete-storage-account-container-vhd.md)
-#### [In a classic deployment](storage-cannot-delete-storage-account-container-vhd.md)
+### 針對磁碟刪除錯誤進行疑難排解
+#### [在 Resource Manager 中](storage-resource-manager-cannot-delete-storage-account-container-vhd.md)
+#### [在傳統部署中](storage-cannot-delete-storage-account-container-vhd.md)
 
-### [Troubleshoot File storage](storage-troubleshoot-file-connection-problems.md)
-### [Disaster recovery guidance](storage-disaster-recovery-guidance.md)
-
-
-## Transfer Data
-
-### [Move data to and from Storage](storage-moving-data.md)
-### [AzCopy command-line utility](storage-use-azcopy.md)
-### [Import/Export service for Blob storage](storage-import-export-service.md)
+### [針對檔案儲存體進行疑難排解](storage-troubleshoot-file-connection-problems.md)
+### [災害復原指引](storage-disaster-recovery-guidance.md)
 
 
+## 傳送資料
 
-# Reference
+### [將資料移入和移出儲存體](storage-moving-data.md)
+### [AzCopy 命令列公用程式](storage-use-azcopy.md)
+### [Blob 儲存體的匯入/匯出服務](storage-import-export-service.md)
 
-## REST APIs
-### [Blob, Queue, Table, and File](https://msdn.microsoft.com/library/azure/dd179355.aspx)
-### [Resource Provider](https://docs.microsoft.com/rest/api/storage/)
-### [Import/Export](https://msdn.microsoft.com/library/azure/dn529096.aspx)
 
-## .NET APIs
-### [Blob, Queue, Table, and File](https://docs.microsoft.com/dotnet/api/)
-### [Resource Provider](https://docs.microsoft.com/dotnet/api/)
-### [Data Movement](https://docs.microsoft.com/dotnet/api/)
+
+# 參考
+
+## REST API
+### [Blob、佇列、資料表及檔案](https://msdn.microsoft.com/library/azure/dd179355.aspx)
+### [資源提供者](https://docs.microsoft.com/rest/api/storage/)
+### [匯入/匯出](https://msdn.microsoft.com/library/azure/dn529096.aspx)
+
+## .NET API
+### [Blob、佇列、資料表及檔案](https://docs.microsoft.com/dotnet/api/)
+### [資源提供者](https://docs.microsoft.com/dotnet/api/)
+### [資料移動](https://docs.microsoft.com/dotnet/api/)
 
 ## [Node.js API](http://azure.github.io/azure-storage-node/)
 ## [Java API](https://docs.microsoft.com/java/api/index)
 ## [C++ API](http://azure.github.io/azure-storage-cpp/)
-## [PowerShell Reference](https://docs.microsoft.com/powershell/)
-## [Azure CLI Reference](https://docs.microsoft.com/cli/azure/storage)
+## [PowerShell 參考](https://docs.microsoft.com/powershell/)
+## [Azure CLI 參考](https://docs.microsoft.com/cli/azure/storage)
 
 
 
-# Related
+# 相關參考
 
-## Classic Portal
-### [Create storage account](storage-create-storage-account-classic-portal.md)
-### [Enable and view metrics](storage-enable-and-view-metrics-classic-portal.md)
-### [Monitor, diagnose, and troubleshoot](storage-monitoring-diagnosing-troubleshooting-classic-portal.md)
-### [Troubleshooting tutorial](storage-e2e-troubleshooting-classic-portal.md)
+## 傳統入口網站
+### [建立儲存體帳戶](storage-create-storage-account-classic-portal.md)
+### [啟用和檢視計量](storage-enable-and-view-metrics-classic-portal.md)
+### [監控、診斷及疑難排解](storage-monitoring-diagnosing-troubleshooting-classic-portal.md)
+### [疑難排解教學課程](storage-e2e-troubleshooting-classic-portal.md)
 
 
 
-# Resources
+# 資源
 
-## Azure Storage Explorer
-### [Storage Explorer (Preview)](../vs-azure-tools-storage-manage-with-storage-explorer.md)
-### [Manage blobs with Storage Explorer (Preview)](../vs-azure-tools-storage-explorer-blobs.md)
+## Azure 儲存體總管
+### [儲存體總管 (預覽)](../vs-azure-tools-storage-manage-with-storage-explorer.md)
+### [使用儲存體總管來管理 Blob (預覽)](../vs-azure-tools-storage-explorer-blobs.md)
 
-## [Azure Storage client tools](storage-explorers.md)
+## [Azure 儲存體用戶端工具](storage-explorers.md)
 
-## Community support
+## 社群支援
 ### [Stack Overflow](http://stackoverflow.com/questions/tagged/windows-azure-storage)
-### [MSDN Forums](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazuredata)
+### [MSDN 論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazuredata)
 
-## Nuget packages
-### [Azure Storage Client Library for .NET](https://www.nuget.org/packages/WindowsAzure.Storage/)
-### [Azure Storage Data Movement Library](https://www.nuget.org/packages/Microsoft.Azure.Storage.DataMovement/)
-### [Azure Configuration Manager](https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager/)
+## NuGet 封裝
+### [適用於 .NET 的 Azure 儲存體用戶端程式庫](https://www.nuget.org/packages/WindowsAzure.Storage/)
+### [Azure 儲存體資料移動程式庫](https://www.nuget.org/packages/Microsoft.Azure.Storage.DataMovement/)
+### [Azure 資源管理員](https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager/)
 
-## Source code
+## 原始程式碼
 
 ### .NET
-#### [Blob, Queue, Table, and File](https://docs.microsoft.com/dotnet/api/)
-#### [Data Movement](https://docs.microsoft.com/dotnet/api/)
-#### [Resource Provider](https://docs.microsoft.com/dotnet/api/)
+#### [Blob、佇列、資料表及檔案](https://docs.microsoft.com/dotnet/api/)
+#### [資料移動](https://docs.microsoft.com/dotnet/api/)
+#### [資源提供者](https://docs.microsoft.com/dotnet/api/)
 
 ### [Node.js](http://azure.github.io/azure-storage-node/)
 ### [Java](https://github.com/Azure/azure-storage-java)

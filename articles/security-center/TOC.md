@@ -1,68 +1,68 @@
 # Overview
-## [What is Azure Security Center?](security-center-intro.md)
-## [Service overview](https://azure.microsoft.com/services/security-center/)
-## [Pricing](security-center-pricing.md)
-## [FAQ](security-center-faq.md)
-## [Get insights with Power BI](security-center-powerbi.md)
-## [Data security](security-center-data-security.md)
-## Common scenarios
-### [Incident response](security-center-incident-response.md)
+## [什麼是 Azure 資訊安全中心？](security-center-intro.md)
+## [服務概觀](https://azure.microsoft.com/services/security-center/)
+## [價格](security-center-pricing.md)
+## [常見問題集](security-center-faq.md)
+## [透過 Power BI 取得深入解析](security-center-powerbi.md)
+## [資料安全性](security-center-data-security.md)
+## 常見案例
+### [事件回應](security-center-incident-response.md)
 
-# Get started
-## [Quick start](security-center-get-started.md)
-## [Planning and operations](security-center-planning-and-operations-guide.md)
-## [Security Center and SQL Database](security-center-sql-database.md)
+# 開始使用
+## [快速入門](security-center-get-started.md)
+## [規劃與作業](security-center-planning-and-operations-guide.md)
+## [資訊安全中心與 SQL Database](security-center-sql-database.md)
 
-# How to
+# 作法
 
-## Prevent
-### [Set security policies](security-center-policies.md)
-### [Implement security recommendations](security-center-recommendations.md)
-### [Application recommendations](security-center-application-recommendations.md)
-### [Network recommendations](security-center-network-recommendations.md)
-### [SQL service recommendations](security-center-sql-service-recommendations.md)
-### [Virtual machine recommendations](security-center-virtual-machine-recommendations.md)
-### [Monitor security health](security-center-monitoring.md)
-### [Monitor partner solutions](security-center-partner-solutions.md)
+## 防止
+### [設定安全性原則](security-center-policies.md)
+### [實作安全性建議](security-center-recommendations.md)
+### [應用程式建議](security-center-application-recommendations.md)
+### [網路建議](security-center-network-recommendations.md)
+### [SQL 服務建議](security-center-sql-service-recommendations.md)
+### [虛擬機器建議](security-center-virtual-machine-recommendations.md)
+### [監視安全性健康狀態](security-center-monitoring.md)
+### [監視合作夥伴解決方案](security-center-partner-solutions.md)
 
-## Detect and Respond
-### [Detection capabilities](security-center-detection-capabilities.md)
-### [Manage security alerts](security-center-managing-and-responding-alerts.md)
-### [Manage security incidents](security-center-incident.md)
-### [Azure log integration](security-center-integrating-alerts-with-log-integration.md)
-### [Vulnerability assessment](security-center-vulnerability-assessment-recommendations.md)
-### [Types of security alerts](security-center-alerts-type.md)
-### [Threat intelligence report](security-center-threat-report.md)
+## 偵測及回應
+### [偵測功能](security-center-detection-capabilities.md)
+### [管理安全性警示](security-center-managing-and-responding-alerts.md)
+### [管理安全性事件](security-center-incident.md)
+### [Azure 記錄整合](security-center-integrating-alerts-with-log-integration.md)
+### [弱點評估](security-center-vulnerability-assessment-recommendations.md)
+### [安全性警示的類型](security-center-alerts-type.md)
+### [威脅情報報告](security-center-threat-report.md)
 
-### Manage security alerts
-#### [Add a next generation firewall](security-center-add-next-generation-firewall.md)
-#### [Add a web application firewall](security-center-add-web-application-firewall.md)
-#### [Apply disk encryption](security-center-apply-disk-encryption.md)
-#### [Apply system updates](security-center-apply-system-updates.md)
-#### [Enable auditing on SQL databases](security-center-enable-auditing-on-sql-databases.md)
-#### [Enable auditing on SQL servers](security-center-enable-auditing-on-sql-servers.md)
-#### [Enable data collection](security-center-enable-data-collection.md)
-#### [Enable Network Security Groups](security-center-enable-network-security-groups.md)
-#### [Enable Transparent Data Encryption](security-center-enable-transparent-data-encryption.md)
-#### [Enable VM Agent](security-center-enable-vm-agent.md)
-#### [Install Endpoint Protection](security-center-install-endpoint-protection.md)
-#### [Provide security contact details](security-center-provide-security-contact-details.md)
-#### [Remediate OS vulnerabilities](security-center-remediate-os-vulnerabilities.md)
-#### [Resolve endpoint protection health alerts](security-center-resolve-endpoint-protection-health-alerts.md)
-#### [Restrict access through Internet-facing endpoints](security-center-restrict-access-through-internet-facing-endpoints.md)
-#### [Update OS version](security-center-update-os-version.md)
+### 管理安全性警示
+#### [新增新一代防火牆](security-center-add-next-generation-firewall.md)
+#### [新增 Web 應用程式防火牆](security-center-add-web-application-firewall.md)
+#### [套用磁碟加密](security-center-apply-disk-encryption.md)
+#### [套用系統更新](security-center-apply-system-updates.md)
+#### [在 SQL Database 上啟用稽核](security-center-enable-auditing-on-sql-databases.md)
+#### [在 SQL Server 上啟用稽核](security-center-enable-auditing-on-sql-servers.md)
+#### [啟用資料收集](security-center-enable-data-collection.md)
+#### [啟用網路安全性群組](security-center-enable-network-security-groups.md)
+#### [啟用透明資料加密](security-center-enable-transparent-data-encryption.md)
+#### [啟用 VM 代理程式](security-center-enable-vm-agent.md)
+#### [安裝端點保護](security-center-install-endpoint-protection.md)
+#### [提供安全性連絡人詳細資料](security-center-provide-security-contact-details.md)
+#### [修復 OS 弱點](security-center-remediate-os-vulnerabilities.md)
+#### [解決端點保護健全狀況警示](security-center-resolve-endpoint-protection-health-alerts.md)
+#### [透過網際網路面向端點限制存取](security-center-restrict-access-through-internet-facing-endpoints.md)
+#### [更新作業系統版本](security-center-update-os-version.md)
 
-## Troubleshoot
-### [Troubleshooting guide](security-center-troubleshooting-guide.md)
+## 疑難排解
+### [疑難排解指南](security-center-troubleshooting-guide.md)
 
-# Reference
+# 參考
 ## [REST API](https://msdn.microsoft.com/en-US/library/mt704034(Azure.100).aspx)
 
-# Related
-## [Azure Security Information](../security/azure-security-getting-started.md)
+# 相關參考
+## [Azure 資訊安全資訊](../security/azure-security-getting-started.md)
 
-# Resources
-## [Azure Security, Privacy, & Compliance blog](http://blogs.msdn.com/b/azuresecurity/)
+# 資源
+## [Azure 安全性、隱私權和合規性部落格](http://blogs.msdn.com/b/azuresecurity/)
 
 
 <!--HONumber=Nov16_HO2-->

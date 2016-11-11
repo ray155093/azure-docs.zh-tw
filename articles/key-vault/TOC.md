@@ -1,50 +1,50 @@
-# Overview
-## [What is Key Vault?](key-vault-whatis.md)
-## [Pricing](https://azure.microsoft.com/pricing/details/key-vault/)
-## [Service overview](https://azure.microsoft.com/services/key-vault/)
+# 概觀
+## [什麼是金鑰保存庫？](key-vault-whatis.md)
+## [價格](https://azure.microsoft.com/pricing/details/key-vault/)
+## [服務概觀](https://azure.microsoft.com/services/key-vault/)
 
-# Get started
-## [Get started with Key Vault](key-vault-get-started.md)
-## [Set up key rotation and auditing](key-vault-key-rotation-log-monitoring.md)
-## [Use Key Vault from a web app](key-vault-use-from-web-application.md)
+# 開始使用
+## [開始使用金鑰保存庫](key-vault-get-started.md)
+## [設定金鑰輪換和稽核](key-vault-key-rotation-log-monitoring.md)
+## [從 Web 應用程式使用金鑰保存庫](key-vault-use-from-web-application.md)
 
-# How to
-## Develop
-### [Developer quick start video](http://channel9.msdn.com/Blogs/Windows-Azure/Azure-Key-Vault-Developer-Quick-Start)
-### [Key Vault developer's guide](key-vault-developers-guide.md)
-### [Service limits](key-vault-service-limits.md)
-### [HSM-protected keys](key-vault-hsm-protected-keys.md)
-### [Migrate to .NET 2.0](key-vault-dotnet2api-release-notes.md)
+# 作法
+## 開發
+### [開發人員快速入門影片](http://channel9.msdn.com/Blogs/Windows-Azure/Azure-Key-Vault-Developer-Quick-Start)
+### [金鑰保存庫開發人員指南](key-vault-developers-guide.md)
+### [服務限制](key-vault-service-limits.md)
+### [受 HSM 保護的金鑰](key-vault-hsm-protected-keys.md)
+### [移轉到 .NET 2.0](key-vault-dotnet2api-release-notes.md)
 
-## Manage
-### [Azure Key Vault Logging](key-vault-logging.md)
-### [Access behind firewalls](key-vault-access-behind-firewall.md)
-### [Change tenant ID](key-vault-subscription-move-fix.md)
-### [Availability and redundancy](key-vault-disaster-recovery-guidance.md)
-### [Secure your key vault](key-vault-secure-your-key-vault.md)
+## 管理
+### [Azure 金鑰保存庫記錄](key-vault-logging.md)
+### [防火牆後的存取](key-vault-access-behind-firewall.md)
+### [變更租用戶識別碼](key-vault-subscription-move-fix.md)
+### [可用性與備援](key-vault-disaster-recovery-guidance.md)
+### [保護您的金鑰保存庫](key-vault-secure-your-key-vault.md)
 
-## Automate
-### [Azure Automation](automation-manage-key-vault.md)
-### [Create and Manage using CLI](key-vault-manage-with-cli.md)
+## 自動化
+### [Azure 自動化](automation-manage-key-vault.md)
+### [使用 CLI 建立和管理](key-vault-manage-with-cli.md)
 
-# Reference
-## [About Keys and Secrets](https://msdn.microsoft.com/en-us/library/azure/dn903623)
-## [Code Samples](https://www.microsoft.com/download/details.aspx?id=45343)
-## [.NET for Key Vault](https://msdn.microsoft.com/en-us/library/azure/mt430941)
-## [REST for Key Vault](https://msdn.microsoft.com/en-us/library/azure/dn903609)
-## [Node.js for Key Vault](http://azure.github.io/azure-sdk-for-node/azure-arm-keyvault/latest/)
-## [Key Vault cmdlets](https://msdn.microsoft.com/en-us/library/azure/dn868052)
+# 參考
+## [關於金鑰和密碼](https://msdn.microsoft.com/en-us/library/azure/dn903623)
+## [程式碼範例](https://www.microsoft.com/download/details.aspx?id=45343)
+## [金鑰保存庫的 .NET](https://msdn.microsoft.com/en-us/library/azure/mt430941)
+## [金鑰保存庫的 REST](https://msdn.microsoft.com/en-us/library/azure/dn903609)
+## [金鑰保存庫的 Node.js](http://azure.github.io/azure-sdk-for-node/azure-arm-keyvault/latest/)
+## [金鑰保存庫 Cmdlet](https://msdn.microsoft.com/en-us/library/azure/dn868052)
 ## [Microsoft Azure PowerShell](https://msdn.microsoft.com/en-us/library/azure/jj156055.aspx)
 
-# Related
+# 相關參考
 ## [Azure Active Directory](https://azure.microsoft.com/documentation/services/active-directory/)
 ## [Azure Rights Management](https://technet.microsoft.com/en-US/dn175750)
-## [Extensible key management using Key Vault](https://msdn.microsoft.com/en-us/library/azure/dn198405)
+## [使用金鑰保存庫的可延伸金鑰管理](https://msdn.microsoft.com/en-us/library/azure/dn198405)
 ## [Multi-Factor Authentication](https://azure.microsoft.com/documentation/services/multi-factor-authentication/)
 
-# Resources
-## [Blog](http://blogs.technet.com/b/kv/)
-## [Forums](https://social.msdn.microsoft.com/forums/azure/en-US/home?forum=AzureKeyVault)
+# 資源
+## [部落格](http://blogs.technet.com/b/kv/)
+## [論壇](https://social.msdn.microsoft.com/forums/azure/en-US/home?forum=AzureKeyVault)
 
 
 <!--HONumber=Nov16_HO2-->

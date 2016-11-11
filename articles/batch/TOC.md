@@ -1,44 +1,44 @@
 # Overview
-## [Batch basics](batch-technical-overview.md)
-## [Batch feature overview](batch-api-basics.md)
-## [Batch quotas and limits](batch-quota-limit.md)
-# Get Started
-## [Create a Batch account](batch-account-create-portal.md)
-## [Batch .NET tutorial](batch-dotnet-get-started.md)
-## [Batch Python tutorial](batch-python-tutorial.md)
-# How To
-## Develop
-### [Application packages](batch-application-packages.md)
-### [Autoscale compute nodes](batch-automatic-scaling.md)
-### [Concurrent node tasks](batch-parallel-node-tasks.md)
-### [Efficient list queries](batch-efficient-list-queries.md)
-### [Job preparation and completion tasks](batch-job-prep-release.md)
-### [Linux compute nodes](batch-linux-nodes.md)
-### [Manage Batch accounts with Batch Management .NET](batch-management-dotnet.md)
-### [Persist job and task output](batch-task-output.md)
-### [Run MPI jobs in Batch](batch-mpi.md)
-### [Task dependencies](batch-task-dependencies.md)
-### [Visual Studio project templates for Batch](batch-visual-studio-templates.md)
-## Manage
+## [Batch 基本概念](batch-technical-overview.md)
+## [Batch 功能概觀](batch-api-basics.md)
+## [Batch 配額與限制](batch-quota-limit.md)
+# 開始使用
+## [建立 Batch 帳戶](batch-account-create-portal.md)
+## [Batch .NET 教學課程](batch-dotnet-get-started.md)
+## [Batch Python 教學課程](batch-python-tutorial.md)
+# 作法：
+## 開發
+### [應用程式封裝](batch-application-packages.md)
+### [自動調整計算節點的規模](batch-automatic-scaling.md)
+### [並行節點工作](batch-parallel-node-tasks.md)
+### [有效率的清單查詢](batch-efficient-list-queries.md)
+### [作業的準備與完成工作](batch-job-prep-release.md)
+### [Linux 計算節點](batch-linux-nodes.md)
+### [使用 Batch Management .NET 管理 Batch 帳戶](batch-management-dotnet.md)
+### [持續作業及工作輸出](batch-task-output.md)
+### [在 Batch 中執行 MPI 作業](batch-mpi.md)
+### [作業相依性](batch-task-dependencies.md)
+### [Batch 的 Visual Studio 專案範本](batch-visual-studio-templates.md)
+## 管理
 ### [Batch CLI](batch-cli-get-started.md)
-### [Batch PowerShell cmdlets](batch-powershell-cmdlets-get-started.md)
-### [Batch diagnostic logs](batch-diagnostics.md)
-# Reference
-## [Batch REST API reference](https://go.microsoft.com/fwlink/p/?linkid=833492)
-## [Batch .NET reference](https://go.microsoft.com/fwlink/p/?linkid=833494)
-## [Batch Python reference](https://go.microsoft.com/fwlink/p/?linkid=833496)
-## [Batch Node.js reference](https://go.microsoft.com/fwlink/p/?linkid=833544)
-## [Batch Java reference](https://go.microsoft.com/fwlink/p/?linkid=833497)
-## [Batch Management .NET reference](https://go.microsoft.com/fwlink/p/?linkid=833498)
-## [Batch PowerShell reference](https://go.microsoft.com/fwlink/p/?linkid=833500)
-# Related
-## [Batch and HPC solutions in the Azure cloud](batch-hpc-solutions.md)
-## [Big Compute in Azure: Technical resources](big-compute-resources.md)
-# Resources
-## [Service Updates](https://azure.microsoft.com/updates/?product=batch&updatetype=&platform=))
-## [MSDN Forum](https://social.msdn.microsoft.com/Forums/home?forum=azurebatch)
-## [Batch C# code samples](https://github.com/Azure/azure-batch-samples/tree/master/CSharp/)
-## [Batch Python code samples](https://github.com/Azure/azure-batch-samples/tree/master/Python/Batch)
+### [Batch PowerShell Cmdlet](batch-powershell-cmdlets-get-started.md)
+### [Batch 診斷記錄](batch-diagnostics.md)
+# 參考
+## [Batch REST API 參考](https://go.microsoft.com/fwlink/p/?linkid=833492)
+## [Batch .NET 參考](https://go.microsoft.com/fwlink/p/?linkid=833494)
+## [Batch Python 參考](https://go.microsoft.com/fwlink/p/?linkid=833496)
+## [Batch Node.js 參考](https://go.microsoft.com/fwlink/p/?linkid=833544)
+## [Batch Java 參考](https://go.microsoft.com/fwlink/p/?linkid=833497)
+## [Batch Management .NET 參考](https://go.microsoft.com/fwlink/p/?linkid=833498)
+## [Batch PowerShell 參考](https://go.microsoft.com/fwlink/p/?linkid=833500)
+# 相關參考
+## [Azure 雲端中的 Batch 和 HPC 解決方案](batch-hpc-solutions.md)
+## [Azure 的大量運算︰技術資源](big-compute-resources.md)
+# 資源
+## [服務更新](https://azure.microsoft.com/updates/?product=batch&updatetype=&platform=))
+## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/home?forum=azurebatch)
+## [Batch C# 程式碼範例](https://github.com/Azure/azure-batch-samples/tree/master/CSharp/)
+## [Batch Python 程式碼範例](https://github.com/Azure/azure-batch-samples/tree/master/Python/Batch)
 ## [Batch Shipyard](https://github.com/Azure/batch-shipyard)
 
 

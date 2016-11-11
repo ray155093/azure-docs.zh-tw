@@ -1,164 +1,156 @@
-# Overview
-## [What is Application Insights?](app-insights-overview.md)
-## [Detect, triage, and diagnose issues in web apps](app-insights-detect-triage-diagnose.md)
+# 概觀
+## [什麼是 Application Insights？](app-insights-overview.md)
+## [運作方式](app-insights-detect-triage-diagnose.md)
 
-# Get Started
-## Azure
-### [Azure web apps](app-insights-azure-web-apps.md)
-### [Azure Cloud Services](app-insights-cloudservices.md)
+# 開始使用
+## 監視 Azure
+### [Azure Web 應用程式](app-insights-azure-web-apps.md)
+### [Azure 雲端服務](app-insights-cloudservices.md)
 
-## ASP.NET
-### [Web apps](app-insights-asp-net.md)
-### [Web apps already live](app-insights-monitor-performance-live-website-now.md)
-### [Windows services](app-insights-windows-services.md)
-### [Windows desktop](app-insights-windows-desktop.md)
+## 監視 ASP.NET 應用程式
+### [Web 應用程式](app-insights-asp-net.md)
+### [Web 應用程式已上市](app-insights-monitor-performance-live-website-now.md)
+### [Windows 服務](app-insights-windows-services.md)
+### [Windows 桌面](app-insights-windows-desktop.md)
 
-## Java
-### [Web apps](app-insights-java-get-started.md)
-### [Web apps - runtime](app-insights-java-live.md)
-### [Docker apps](app-insights-docker.md)
+## 監視 Java 應用程式
+### [Web 應用程式](app-insights-java-get-started.md)
+### [Web 應用程式 - 執行階段](app-insights-java-live.md)
+### [Docker 應用程式](app-insights-docker.md)
 
-## Web pages
+## 監視網頁
 ### [JavaScript](app-insights-javascript.md)
 
-## Other platforms
-### [Node.js apps](app-insights-nodejs.md)
-### [SharePoint sites](app-insights-sharepoint.md)
-### [More platforms](app-insights-platforms.md)
+## 監視其他平台
+### [Node.js 應用程式](app-insights-nodejs.md)
+### [SharePoint 網站](app-insights-sharepoint.md)
+### [其他平台](app-insights-platforms.md)
 
+## [ASP.NET 的常見問題集](app-insights-troubleshoot-faq.md)
 
-# How To
+# 作法
+## 規劃和設計
 
-## Configure
+### [深入診斷 Web 應用程式和服務](app-insights-devops.md)
+### [使用 Application Insights 和 HockeyApp 的開發人員分析](app-insights-developer-analytics.md)
+### [監視 Web 應用程式的效能](app-insights-web-monitor-performance.md)
+### [使用 Application Insights 進行使用量分析](app-insights-overview-usage.md)
+### [分隔 Application Insights 資源](app-insights-separate-resources.md)
+### [我如何在 Application Insights 中...？](app-insights-how-do-i.md)
+
+## 設定
 
 ### Azure
-#### [Diagnostics](app-insights-azure-diagnostics.md)
+#### [診斷](app-insights-azure-diagnostics.md)
 
 ### ASP.NET
-#### [Collect more telemetry](app-insights-asp-net-more.md)
-#### [Exceptions](app-insights-asp-net-exceptions.md)
-#### [Log traces](app-insights-asp-net-trace-logs.md)
-#### [Performance counters](app-insights-performance-counters.md)
-#### [Dependencies](app-insights-asp-net-dependencies.md)
-#### [Release annotations](app-insights-annotations.md)
+#### [收集更多的遙測](app-insights-asp-net-more.md)
+#### [例外狀況](app-insights-asp-net-exceptions.md)
+#### [記錄追蹤](app-insights-asp-net-trace-logs.md)
+#### [效能計數器](app-insights-performance-counters.md)
+#### [相依項目](app-insights-asp-net-dependencies.md)
+#### [版本註解](app-insights-annotations.md)
 
 
 ### J2EE
-#### [Log traces](app-insights-java-trace-logs.md)
-#### [Unix metrics](app-insights-java-collectd.md)
-#### [Dependencies](app-insights-java-agent.md)
+#### [記錄追蹤](app-insights-java-trace-logs.md)
+#### [Unix 計量](app-insights-java-collectd.md)
+#### [相依項目](app-insights-java-agent.md)
 
 ### Alerts
 
 #### [Availability](app-insights-monitor-web-app-availability.md)
-#### [Metric Alerts](app-insights-alerts.md)
+#### [計量警示](app-insights-alerts.md)
 
-### [Smart detection](app-insights-proactive-diagnostics.md)
-#### [Failure detection](app-insights-proactive-failure-diagnostics.md)
-#### [Anomaly detection](app-insights-proactive-performance-diagnostics.md)
+### [智慧型偵測](app-insights-proactive-diagnostics.md)
+#### [失敗偵測](app-insights-proactive-failure-diagnostics.md)
+#### [異常偵測](app-insights-proactive-performance-diagnostics.md)
 
-## Analyze
+## 分析
 
-### Application Insights portal
+### Application Insights 入口網站
 
-#### [Dashboards](app-insights-dashboards.md)
+#### [儀表板](app-insights-dashboards.md)
 #### [Search](app-insights-diagnostic-search.md)
-#### [Metrics](app-insights-metrics-explorer.md)
+#### [計量](app-insights-metrics-explorer.md)
 #### Analytics
 
-##### [Analytics](app-insights-analytics.md)
-##### [A tour of Analytics](app-insights-analytics-tour.md)
-##### [Using Analytics](app-insights-analytics-using.md)
+##### [分析](app-insights-analytics.md)
+##### [分析的教學課程](app-insights-analytics-tour.md)
+##### [使用分析](app-insights-analytics-using.md)
 
-#### [Application Map](app-insights-app-map.md)
-#### [HockeyApp data](app-insights-hockeyapp-bridge-app.md)
-#### [Create a resource](app-insights-create-new-resource.md)
-
-
+#### [應用程式對應](app-insights-app-map.md)
+#### [HockeyApp 資料](app-insights-hockeyapp-bridge-app.md)
+#### [建立資源](app-insights-create-new-resource.md)
 
 ### Visual Studio
 
-#### [F5 insights](app-insights-visual-studio.md)
-#### [Trends](app-insights-visual-studio-trends.md)
+#### [F5 深入解析](app-insights-visual-studio.md)
+#### [趨勢](app-insights-visual-studio-trends.md)
 #### [CodeLens](app-insights-visual-studio-codelens.md)
 
+## 自動化
 
-## Automate
-
-### [PowerShell configuration](app-insights-powershell.md)
-### [Create resources](app-insights-powershell-script-create-resource.md)
-### [Set alerts](app-insights-powershell-alerts.md)
-### [Get Azure diagnostics](app-insights-powershell-azure-diagnostics.md)
-
-
-## Integrate
-
-### [Continuous export](app-insights-export-telemetry.md)
-### [Export to Power BI](app-insights-export-power-bi.md)
+### [PowerShell 組態](app-insights-powershell.md)
+### [建立資源](app-insights-powershell-script-create-resource.md)
+### [設定警示](app-insights-powershell-alerts.md)
+### [取得 Azure 診斷](app-insights-powershell-azure-diagnostics.md)
 
 
-## Develop
+## 整合
 
-### [API for custom events and metrics ](app-insights-api-custom-events-metrics.md)
-### [Filtering and preprocessing telemetry](app-insights-api-filtering-sampling.md)
+### [連續匯出](app-insights-export-telemetry.md)
+### [匯出至 Power BI](app-insights-export-power-bi.md)
+
+
+## 開發
+
+### [自訂事件和計量的 API](app-insights-api-custom-events-metrics.md)
+### [篩選及前置處理遙測](app-insights-api-filtering-sampling.md)
 ### [ASP.NET Core](app-insights-asp-net-core.md)
 
 
-## Plan and design
+## 管理
 
-### [Deep diagnostics for web apps and services](app-insights-devops.md)
-### [Developer Analytics with Application Insights and HockeyApp](app-insights-developer-analytics.md)
-### [Monitor performance in web applications](app-insights-web-monitor-performance.md)
-### [Usage analysis with Application Insights](app-insights-overview-usage.md)
-### [Separating Application Insights resources](app-insights-separate-resources.md)
-### [How do I ... in Application Insights?](app-insights-how-do-i.md)
-
-## Manage
-
-### [Manage pricing and quota](app-insights-pricing.md)
-### [Application Performance Monitoring using Application Insights for SCOM](app-insights-scom.md)
+### [管理價格與配額](app-insights-pricing.md)
+### [使用 SCOM 的 Application Insights 進行應用程式效能監視](app-insights-scom.md)
 
 
-## Secure
+## 安全
 
-### [Data collection, retention and storage](app-insights-data-retention-privacy.md)
-### [Resources, roles, and access control](app-insights-resources-roles-access-control.md)
+### [資料收集、保留和儲存](app-insights-data-retention-privacy.md)
+### [資源、角色和存取控制](app-insights-resources-roles-access-control.md)
 
 
-## Troubleshoot
+## 疑難排解
+### [沒有 .NET 的資料](app-insights-asp-net-troubleshoot-no-data.md)
+### [分析](app-insights-analytics-troubleshooting.md)
+### [Java](app-insights-java-troubleshoot.md)
 
-### [Troubleshooting no data - Application Insights for .NET](app-insights-asp-net-troubleshoot-no-data.md)
-### [Questions - Application Insights for ASP.NET](app-insights-troubleshoot-faq.md)
-### [Troubleshoot Analytics in Application Insights](app-insights-analytics-troubleshooting.md)
-### [Troubleshooting and Q and A for Application Insights for Java](app-insights-java-troubleshoot.md)
+# 參考
 
-# Reference
-
-## [Analytics reference](app-insights-analytics-reference.md)
-## [Sampling](app-insights-sampling.md)
-## [IP addresses](app-insights-ip-addresses.md)
+## [分析](app-insights-analytics-reference.md)
+## [取樣](app-insights-sampling.md)
+## [IP 位址](app-insights-ip-addresses.md)
 ## [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md)
-## [Export Data Model](app-insights-export-data-model.md)
+## [匯出資料模型](app-insights-export-data-model.md)
 ## [REST API](https://dev.applicationinsights.io/)
 ## [JavaScript API](https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md)
 ## [Java SDK API](http://dl.windowsazure.com/applicationinsights/javadoc/)
-## [Migration from Azure Endpoint Monitoring to Availability tests](app-insights-migrate-azure-endpoint-tests.md)
+## [從 Azure 端點監視移轉到可用性測試](app-insights-migrate-azure-endpoint-tests.md)
+## [開發人員分析：語言、平台和整合](app-insights-platforms.md)
+### [範例和逐步解說](app-insights-code-samples.md)
 
-### [Samples and walkthroughs](app-insights-code-samples.md)
+#### [逐步解說：啟用 Microsoft Dynamics CRM Online 遙測](app-insights-sample-mscrm.md)
+#### [逐步解說：使用串流分析匯出至 SQL](app-insights-code-sample-export-sql-stream-analytics.md)
+#### [程式碼範例︰剖析匯出的資料](app-insights-code-sample-export-telemetry-sql-database.md)
+## [適用於 Windows Phone 和市集的 Application Insights SDK 版本資訊](app-insights-release-notes-windows.md)
+## [開發人員分析工具的版本資訊](app-insights-release-notes-vsix.md)
+## [SDK 版本資訊 Application Insights](app-insights-release-notes.md)
 
-#### [Walkthrough: Enabling Telemetry for Microsoft Dynamics CRM Online](app-insights-sample-mscrm.md)
-#### [Walkthrough: Export to SQL using Stream Analytics](app-insights-code-sample-export-sql-stream-analytics.md)
-#### [Code sample: Parse exported data](app-insights-code-sample-export-telemetry-sql-database.md)
+# 資源
+## [支援](app-insights-get-dev-support.md)
 
-
-# Related
-
-# Resources
-## [Developer analytics: languages, platforms, and integrations](app-insights-platforms.md)
-## [How to get technical support from Application Insights development team](app-insights-get-dev-support.md)
-## [Release Notes for Application Insights SDK for Windows Phone and Store](app-insights-release-notes-windows.md)
-## [Release Notes for Developer Analytics Tools](app-insights-release-notes-vsix.md)
-## [SDK Release Notes - Application Insights](app-insights-release-notes.md)
 
 
 <!--HONumber=Nov16_HO2-->
