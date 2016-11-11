@@ -1,38 +1,38 @@
-# Overview 
-## [Azure portal overview](azure-portal-overview.md)
-## [Azure resource manager overview](resource-group-overview.md)
+# 概觀 
+## [Azure 入口網站概觀](azure-portal-overview.md)
+## [Azure Resource Manager 概觀](resource-group-overview.md)
 
-# Get Started
-## [Deploy using resource manager template](resource-group-template-deploy.md)
+# 開始使用
+## [使用 Resource Manager 範本進行部署](resource-group-template-deploy.md)
 
-# How To
-## Deploy
-### [Troubleshooting resource group deployments in Azure](resource-group-deploy-debug.md)
-### [Authoring Azure resource manager templates](resource-group-authoring-templates.md)
-### [Azure resource manager template functions](resource-group-template-functions.md)
-### [Deploy resources using .NET libraries and a template](arm-template-deployment.md)
-### [Advanced template operations](resource-group-advanced-template.md)
-## Manage
-### [Use preview portal to manage resources](resource-group-portal.md)
-### [Manage and audit access to resources](resource-group-rbac.md)
-### [Role based access control in the preview portal](role-based-access-control-configure.md)
-### [Use tags to organize resources](resource-group-using-tags.md)
-### [How to scale your resources](insights-how-to-scale.md)
-### [Create a new Azure service principal using the Azure portal](resource-group-create-service-principal-portal.md)
-## Monitor
-### [Monitor service metrics](insights-how-to-customize-monitoring.md)
-### [Enable monitoring and diagnostics](insights-how-to-use-diagnostics.md)
-### [Monitor availability and responsiveness of any web site](app-insights-monitor-web-app-availability.md)
-### [Monitor application performance](app-insights-azure-web-apps.md)
-### [View events and audit logs](insights-debugging-with-events.md)
-### [Receive alert notifications](insights-receive-alert-notifications.md)
-### [Best practices for Autoscale](insights-autoscale-best-practices.md)
-### [Common metrics for Autoscale](insights-autoscale-common-metrics.md)
-### [Webhooks for Autoscale notifications](insights-autoscale-to-webhook-email.md)
-### [Webhooks for alerts on audit logs](insights-auditlog-to-webhook-email.md)
-### [Webhooks for alerts on metrics](insights-webhooks-alerts.md)
-### [Azure Insights PowerShell quick start samples](insights-powershell-samples.md)
-### [Azure Insights CLI quick start samples](insights-cli-samples.md)
+# 作法：
+## 部署
+### [在 Azure 中疑難排解資源群組部署](resource-group-deploy-debug.md)
+### [編寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)
+### [Azure Resource Manager 範本函式](resource-group-template-functions.md)
+### [使用 .NET 程式庫和範本部署資源](arm-template-deployment.md)
+### [進階範本作業](resource-group-advanced-template.md)
+## 管理
+### [使用預覽入口網站管理資源](resource-group-portal.md)
+### [管理與稽核資源的存取](resource-group-rbac.md)
+### [預覽入口網站中的角色型存取控制](role-based-access-control-configure.md)
+### [使用標籤來整理資源](resource-group-using-tags.md)
+### [如何擴充資源](insights-how-to-scale.md)
+### [使用 Azure 入口網站建立新的 Azure 服務主體](resource-group-create-service-principal-portal.md)
+## 監視
+### [監視服務計量](insights-how-to-customize-monitoring.md)
+### [啟用監視和診斷](insights-how-to-use-diagnostics.md)
+### [監視任何網站的可用性和回應性](app-insights-monitor-web-app-availability.md)
+### [監視應用程式的效能](app-insights-azure-web-apps.md)
+### [檢視事件和稽核記錄檔](insights-debugging-with-events.md)
+### [接收警示通知](insights-receive-alert-notifications.md)
+### [自動調整的最佳做法](insights-autoscale-best-practices.md)
+### [自動調整規模的常用計量](insights-autoscale-common-metrics.md)
+### [自動調整規模通知的 Webhook](insights-autoscale-to-webhook-email.md)
+### [稽核記錄警示的 Webhook](insights-auditlog-to-webhook-email.md)
+### [計量警示的 Webhook](insights-webhooks-alerts.md)
+### [Azure Insights PowerShell 快速入門範例](insights-powershell-samples.md)
+### [Azure Insights CLI 快速入門範例](insights-cli-samples.md)
 
 
 <!--HONumber=Nov16_HO2-->

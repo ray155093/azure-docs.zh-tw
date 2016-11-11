@@ -1,155 +1,146 @@
-# Overview
+# 概觀
 
-## [What is SQL Data Warehouse?](sql-data-warehouse-overview-what-is.md)
-## [How does pricing work?](https://azure.microsoft.com/pricing/details/sql-data-warehouse/)
-## Learn
+## [什麼是 SQL 資料倉儲？](sql-data-warehouse-overview-what-is.md)
+## [資料倉儲工作負載](sql-data-warehouse-overview-workload.md)
+## [分散式資料](sql-data-warehouse-distributed-data.md)
 
-### [Data warehouse workload](sql-data-warehouse-overview-workload.md)
-### [Distributed data](sql-data-warehouse-distributed-data.md)
+# 開始使用
 
-# Get Started
+## 建立 SQL 資料倉儲
+### [Azure 入口網站](sql-data-warehouse-get-started-provision.md)
+### [PowerShell](sql-data-warehouse-get-started-provision-powershell.md)
+### [T-SQL](sql-data-warehouse-get-started-create-database-tsql.md)
+## [最佳作法](sql-data-warehouse-best-practices.md)
+## [管理](sql-data-warehouse-overview-manage.md)
+## [取得支援](sql-data-warehouse-get-started-create-support-ticket.md)
 
-## Create
+# 作法：
 
-### [Create - portal](sql-data-warehouse-get-started-provision.md)
-### [Create - PowerShell](sql-data-warehouse-get-started-provision-powershell.md)
-### [Create - T-SQL](sql-data-warehouse-get-started-create-database-tsql.md)
+## 備份與還原
 
-## [Connect](sql-data-warehouse-query-ssms.md)
-## [Best practices](sql-data-warehouse-best-practices.md)
-## [Develop](sql-data-warehouse-overview-develop.md)
-## [Manage](sql-data-warehouse-overview-manage.md)
-## [Get support](sql-data-warehouse-get-started-create-support-ticket.md)
+### [備份概觀](sql-data-warehouse-backups.md)
+### [還原概觀](sql-data-warehouse-restore-database-overview.md)
+#### [Azure 入口網站](sql-data-warehouse-restore-database-portal.md)
+#### [PowerShell](sql-data-warehouse-restore-database-powershell.md)
+#### [REST](sql-data-warehouse-restore-database-rest-api.md)
 
-# How To
+## 連線
 
-## Backup and restore
+### [概觀](sql-data-warehouse-connect-overview.md)
+### [連接字串](sql-data-warehouse-connection-strings.md)
+### 查詢
+#### [sqlcmd](sql-data-warehouse-get-started-connect-sqlcmd.md)
+#### [SSMS](sql-data-warehouse-query-ssms.md)
+#### [Visual Studio](sql-data-warehouse-query-visual-studio.md)
+### [安裝 Visual Studio](sql-data-warehouse-install-visual-studio.md)
 
-### [Backup Overview](sql-data-warehouse-backups.md)
-### [Restore Overview](sql-data-warehouse-restore-database-overview.md)
-### [Restore - Portal](sql-data-warehouse-restore-database-portal.md)
-### [Restore - PowerShell](sql-data-warehouse-restore-database-powershell.md)
-### [Restore - REST](sql-data-warehouse-restore-database-rest-api.md)
+## 開發
 
-## Connect
+### [概觀](sql-data-warehouse-overview-develop.md)
 
-### [Overview](sql-data-warehouse-connect-overview.md)
-### [Connection strings](sql-data-warehouse-connection-strings.md)
-### [Connect - sqlcmd](sql-data-warehouse-get-started-connect-sqlcmd.md)
-### [Connect - SSMS](sql-data-warehouse-query-ssms.md)
-### [Connect - Visual Studio](sql-data-warehouse-query-visual-studio.md)
-### [Install Visual Studio](sql-data-warehouse-install-visual-studio.md)
+### 資料表
 
-## Develop
-
-### [Overview](sql-data-warehouse-overview-develop.md)
-
-### Tables
-
-#### [Overview](sql-data-warehouse-tables-overview.md)
+#### [概觀](sql-data-warehouse-tables-overview.md)
 #### [CTAS](sql-data-warehouse-develop-ctas.md)
-#### [Data types](sql-data-warehouse-tables-data-types.md)
-#### [Distributed tables](sql-data-warehouse-tables-distribute.md)
-#### [Indexes](sql-data-warehouse-tables-index.md)
-#### [Partitions](sql-data-warehouse-tables-partition.md)
-#### [Statistics](sql-data-warehouse-tables-statistics.md)
-#### [Temporary](sql-data-warehouse-tables-temporary.md)
+#### [資料類型](sql-data-warehouse-tables-data-types.md)
+#### [分散式資料表](sql-data-warehouse-tables-distribute.md)
+#### [索引數](sql-data-warehouse-tables-index.md)
+#### [分割數](sql-data-warehouse-tables-partition.md)
+#### [統計資料](sql-data-warehouse-tables-statistics.md)
+#### [暫存](sql-data-warehouse-tables-temporary.md)
 
-### Queries
+### 查詢
 
-#### [Dynamic SQL](sql-data-warehouse-develop-dynamic-sql.md)
-#### [Group by options](sql-data-warehouse-develop-group-by-options.md)
-#### [Labels](sql-data-warehouse-develop-label.md)
+#### [動態 SQL](sql-data-warehouse-develop-dynamic-sql.md)
+#### [依據選項分組](sql-data-warehouse-develop-group-by-options.md)
+#### [標籤](sql-data-warehouse-develop-label.md)
 
-### T-SQL language elements
+### T-SQL 語言元素
 
-#### [Loops](sql-data-warehouse-develop-loops.md)
-#### [Stored procedures](sql-data-warehouse-develop-stored-procedures.md)
-#### [Transactions](sql-data-warehouse-develop-transactions.md)
-#### [Transactions Best Practices](sql-data-warehouse-develop-best-practices-transactions.md)
-#### [User-defined schemas](sql-data-warehouse-develop-user-defined-schemas.md)
-#### [Variable assignment](sql-data-warehouse-develop-variable-assignment.md)
-#### [Views](sql-data-warehouse-develop-views.md)
+#### [迴圈](sql-data-warehouse-develop-loops.md)
+#### [預存程序](sql-data-warehouse-develop-stored-procedures.md)
+#### [交易](sql-data-warehouse-develop-transactions.md)
+#### [交易的最佳做法](sql-data-warehouse-develop-best-practices-transactions.md)
+#### [使用者定義的結構描述](sql-data-warehouse-develop-user-defined-schemas.md)
+#### [變數指派](sql-data-warehouse-develop-variable-assignment.md)
+#### [檢視](sql-data-warehouse-develop-views.md)
 
-## Integrate
+## 整合
 
-### [Overview](sql-data-warehouse-overview-integrate.md)
+### [概觀](sql-data-warehouse-overview-integrate.md)
 ### [Data Factory](sql-data-warehouse-integrate-azure-data-factory.md)
-### [Machine Learning](sql-data-warehouse-integrate-azure-machine-learning.md)
-### [Machine Learning tutorial](sql-data-warehouse-get-started-analyze-with-azure-machine-learning.md)
+### [機器學習服務](sql-data-warehouse-integrate-azure-machine-learning.md)
+### [機器學習服務教學課程](sql-data-warehouse-get-started-analyze-with-azure-machine-learning.md)
 ### [Power BI](sql-data-warehouse-integrate-power-bi.md)
-### [Power BI visualization](sql-data-warehouse-get-started-visualize-with-power-bi.md)
-### [Stream Analytics](sql-data-warehouse-integrate-azure-stream-analytics.md)
+### [Power BI 視覺效果](sql-data-warehouse-get-started-visualize-with-power-bi.md)
+### [串流分析](sql-data-warehouse-integrate-azure-stream-analytics.md)
 
-## Load
+## 載入
 
-### [Overview](sql-data-warehouse-overview-load.md)
-### [Sample data](sql-data-warehouse-load-sample-databases.md)
-### [Load - AZCopy](sql-data-warehouse-load-from-sql-server-with-azcopy.md)
-### [Load - bcp](sql-data-warehouse-load-with-bcp.md)
-### [Load - bcp from SQL Server](sql-data-warehouse-load-from-sql-server-with-bcp.md)
-### [Load - Data Factory](sql-data-warehouse-get-started-load-with-azure-data-factory.md)
-### [Load - Data Factory from blob storage](sql-data-warehouse-load-from-azure-blob-storage-with-data-factory.md)
-### [Load - PolyBase](sql-data-warehouse-get-started-load-with-polybase.md)
-### [Load - PolyBase guidance](sql-data-warehouse-load-polybase-guide.md)
-### [Load - PolyBase from blob storage](sql-data-warehouse-load-from-azure-blob-storage-with-polybase.md)
-### [Load - PolyBase from SQL Server](sql-data-warehouse-load-from-sql-server-with-polybase.md)
-### [Load - RedGate](sql-data-warehouse-load-with-redgate.md)
-### [Load - SSIS](sql-data-warehouse-load-from-sql-server-with-integration-services.md)
+### [概觀](sql-data-warehouse-overview-load.md)
+### [範例資料](sql-data-warehouse-load-sample-databases.md)
+### [AZCopy](sql-data-warehouse-load-from-sql-server-with-azcopy.md)
+### [BCP](sql-data-warehouse-load-with-bcp.md)
+### [從 SQL Server 載入 BCP](sql-data-warehouse-load-from-sql-server-with-bcp.md)
+### [Data Factory](sql-data-warehouse-get-started-load-with-azure-data-factory.md)
+### [從 Blob 儲存體載入 Data Factory](sql-data-warehouse-load-from-azure-blob-storage-with-data-factory.md)
+### [PolyBase](sql-data-warehouse-get-started-load-with-polybase.md)
+### [PolyBase 指導](sql-data-warehouse-load-polybase-guide.md)
+### [來自 Blob 儲存體的 PolyBase](sql-data-warehouse-load-from-azure-blob-storage-with-polybase.md)
+### [從 SQL Server 載入 PolyBase](sql-data-warehouse-load-from-sql-server-with-polybase.md)
+### [RedGate](sql-data-warehouse-load-with-redgate.md)
+### [SSIS](sql-data-warehouse-load-from-sql-server-with-integration-services.md)
 
-## Migrate
+## 移轉
 
-### [Overview](sql-data-warehouse-overview-migrate.md)
-### [Migration Utility](sql-data-warehouse-migrate-migration-utility.md)
-### [Migrate schema](sql-data-warehouse-migrate-schema.md)
-### [Migrate code](sql-data-warehouse-migrate-code.md)
-### [Migrate data](sql-data-warehouse-migrate-data.md)
-### [Migrate to premium storage](sql-data-warehouse-migrate-to-premium-storage.md)
+### [概觀](sql-data-warehouse-overview-migrate.md)
+### [移轉公用程式](sql-data-warehouse-migrate-migration-utility.md)
+### [移轉結構描述](sql-data-warehouse-migrate-schema.md)
+### [移轉程式碼](sql-data-warehouse-migrate-code.md)
+### [移轉資料](sql-data-warehouse-migrate-data.md)
+### [移轉至進階儲存體](sql-data-warehouse-migrate-to-premium-storage.md)
 
-## Pause and scale
+## 暫停並縮放
 
-### [Overview](sql-data-warehouse-manage-compute-overview.md)
-### [Pause and scale - portal](sql-data-warehouse-manage-compute-portal.md)
-### [Pause and scale - PowerShell](sql-data-warehouse-manage-compute-powershell.md)
-### [Pause and scale - REST API](sql-data-warehouse-manage-compute-rest-api.md)
-### [Pause and scale - T-SQL](sql-data-warehouse-manage-compute-tsql.md)
+### [概觀](sql-data-warehouse-manage-compute-overview.md)
+### [Azure 入口網站](sql-data-warehouse-manage-compute-portal.md)
+### [PowerShell](sql-data-warehouse-manage-compute-powershell.md)
+### [REST API](sql-data-warehouse-manage-compute-rest-api.md)
+### [T-SQL](sql-data-warehouse-manage-compute-tsql.md)
 
-## Performance
+## 效能
 
-### [Overview](sql-data-warehouse-overview-manage-user-queries.md)
-### [Queries](sql-data-warehouse-manage-monitor.md)
-### [Workload](sql-data-warehouse-develop-concurrency.md)
-### [Troubleshoot](sql-data-warehouse-troubleshoot.md)
+### [概觀](sql-data-warehouse-overview-manage-user-queries.md)
+### [查詢](sql-data-warehouse-manage-monitor.md)
+### [工作負載](sql-data-warehouse-develop-concurrency.md)
+### [疑難排解](sql-data-warehouse-troubleshoot.md)
 
-## Security
+## 安全性
 
-### [Overview](sql-data-warehouse-overview-manage-security.md)
-### [Auditing](sql-data-warehouse-auditing-overview.md)
-### [Auditing for down-level clients](sql-data-warehouse-auditing-downlevel-clients.md)
-### [Authentication](sql-data-warehouse-authentication.md)
-### [Encryption](sql-data-warehouse-encryption-tde.md)
-### [Encryption with T-SQL](sql-data-warehouse-encryption-tde-tsql.md)
-### [Threat detection](sql-data-warehouse-security-threat-detection.md)
+### [概觀](sql-data-warehouse-overview-manage-security.md)
+### [稽核](sql-data-warehouse-auditing-overview.md)
+### [稽核下層用戶端](sql-data-warehouse-auditing-downlevel-clients.md)
+### [驗證](sql-data-warehouse-authentication.md)
+### [加密](sql-data-warehouse-encryption-tde.md)
+### [使用 T-SQL 加密](sql-data-warehouse-encryption-tde-tsql.md)
+### [威脅偵測](sql-data-warehouse-security-threat-detection.md)
 
-# Reference
+# 參考
 
-## [Overview](sql-data-warehouse-overview-reference.md)
-## [Capacity limits](sql-data-warehouse-service-capacity-limits.md)
-## [T-SQL language elements](sql-data-warehouse-reference-tsql-language-elements.md)
-## [T-SQL statements](sql-data-warehouse-reference-tsql-statements.md)
-## [T-SQL system views](sql-data-warehouse-reference-tsql-system-views.md)
-## [PowerShell cmdlets](sql-data-warehouse-reference-powershell-cmdlets.md)
+## [容量限制](sql-data-warehouse-service-capacity-limits.md)
+## [T-SQL 語言元素](sql-data-warehouse-reference-tsql-language-elements.md)
+## [T-SQL 陳述式](sql-data-warehouse-reference-tsql-statements.md)
+## [T-SQL 系統檢視](sql-data-warehouse-reference-tsql-system-views.md)
+## [PowerShell Cmdlet](sql-data-warehouse-reference-powershell-cmdlets.md)
 
-# Resources
+# 資源
+## [價格](https://azure.microsoft.com/pricing/details/sql-data-warehouse/)
+## [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-sqldw/)
 
-## Partners
-
-### [Business intelligence](sql-data-warehouse-partner-business-intelligence.md)
-### [Data integration](sql-data-warehouse-partner-data-integration.md)
-### [Data management](sql-data-warehouse-partner-data-management.md)
-
-
-
+## 合作夥伴
+### [商業智慧](sql-data-warehouse-partner-business-intelligence.md)
+### [資料整合](sql-data-warehouse-partner-data-integration.md)
+### [資料管理](sql-data-warehouse-partner-data-management.md)
 
 
 <!--HONumber=Nov16_HO2-->

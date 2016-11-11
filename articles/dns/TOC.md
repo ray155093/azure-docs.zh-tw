@@ -1,48 +1,48 @@
-# Overview
-## [What is Azure DNS?](dns-overview.md)
-## [DNS zones and records](dns-zones-records.md)
+# 概觀
+## [什麼是 Azure DNS？](dns-overview.md)
+## [DNS 區域和記錄](dns-zones-records.md)
 
-# Get Started
+# 開始使用
 
-## [Create a DNS zone](dns-getstarted-create-dnszone-portal.md)
-### [Create a DNS zone (PowerShell)](dns-getstarted-create-dnszone.md)
-### [Create a DNS zone (CLI)](dns-getstarted-create-dnszone-cli.md)
+## [建立 DNS 區域](dns-getstarted-create-dnszone-portal.md)
+### [建立 DNS 區域 (PowerShell)](dns-getstarted-create-dnszone.md)
+### [建立 DNS 區域 (CLI)](dns-getstarted-create-dnszone-cli.md)
 
-## [Create DNS records](dns-getstarted-create-recordset-portal.md)
-### [Create DNS records (PowerShell)](dns-getstarted-create-recordset.md)
-### [Create DNS records (CLI)](dns-getstarted-create-recordset-cli.md)
+## [建立 DNS 記錄](dns-getstarted-create-recordset-portal.md)
+### [建立 DNS 記錄 (PowerShell)](dns-getstarted-create-recordset.md)
+### [建立 DNS 記錄 (CLI)](dns-getstarted-create-recordset-cli.md)
 
-## [Delegate your domain to Azure DNS](dns-domain-delegation.md)
+## [將您的網域委派給 Azure DNS](dns-domain-delegation.md)
 
-# How to
+# 作法
 
-## [Manage DNS zones](dns-operations-dnszones.md)
-### [Manage DNS zones (CLI)](dns-operations-dnszones.md)
+## [管理 DNS 區域](dns-operations-dnszones.md)
+### [管理 DNS 區域 (CLI)](dns-operations-dnszones.md)
 
-## [Manage DNS records](dns-operations-recordsets-portal.md)
-### [Manage DNS records (PowerShell)](dns-operations-recordsets.md)
-### [Manage DNS records (CLI)](dns-operations-recordsets-cli.md)
+## [管理 DNS 記錄](dns-operations-recordsets-portal.md)
+### [管理 DNS 記錄 (PowerShell)](dns-operations-recordsets.md)
+### [管理 DNS 記錄 (CLI)](dns-operations-recordsets-cli.md)
 
-## [Manage reverse DNS records](dns-reverse-dns-record-operations-ps.md)
-### [Manage reverse DNS records (CLI)](dns-reverse-dns-record-operations-cli.md)
-### [Manage reverse DNS records (Classic PS)](dns-reverse-dns-record-operations-classic-ps.md)
+## [管理反向 DNS 記錄](dns-reverse-dns-record-operations-ps.md)
+### [管理反向 DNS 記錄 (CLI)](dns-reverse-dns-record-operations-cli.md)
+### [管理反向 DNS 記錄 (傳統 PS)](dns-reverse-dns-record-operations-classic-ps.md)
 
-## [Import and export a DNS zone file](dns-import-export.md)
-## [Using Azure DNS with other Azure services](dns-for-azure-services.md)
-## [Protect DNS zones and records](dns-protect-zones-recordsets.md)
-## [Automate DNS operations with the DNS.NET SDK](dns-sdk.md)
+## [匯入和匯出 DNS 區域檔案](dns-import-export.md)
+## [使用 Azure DNS 搭配其他 Azure 服務](dns-for-azure-services.md)
+## [保護 DNS 區域和記錄](dns-protect-zones-recordsets.md)
+## [使用 DNS.NET SDK 自動執行 DNS 作業](dns-sdk.md)
 
-# References
-## [PowerShell cmdlets](https://msdn.microsoft.com/en-us/library/azure/mt126288(v=azure.300))
+# 參考
+## [PowerShell Cmdlet](https://msdn.microsoft.com/en-us/library/azure/mt126288(v=azure.300))
 ## [REST APIs](https://msdn.microsoft.com/library/azure/mt163862)
 
-# Related
-## [Application Gateway](/azure/application-gateway/)
-## [Virtual Network](/azure/virtual-network/)
-## [Virtual Machine](/azure/virtual-machines/)
-## [Load Balancer](/azure/load-balancer/)
-## [Traffic Manager](/azure/traffic-manager/)
-## [Web apps](/azure/app-service/web/)
+# 相關參考
+## [應用程式閘道](/azure/application-gateway/)
+## [虛擬網路](/azure/virtual-network/)
+## [虛擬機器](/azure/virtual-machines/)
+## [負載平衡器](/azure/load-balancer/)
+## [流量管理員](/azure/traffic-manager/)
+## [Web 應用程式](/azure/app-service/web/)
 
 
 <!--HONumber=Nov16_HO2-->
