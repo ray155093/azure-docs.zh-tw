@@ -1,29 +1,33 @@
 
 
-# Overview
-## [What is Scheduler?](scheduler-intro.md)
-## [Concepts and terminology](scheduler-concepts-terms.md)
+# 概觀
+## [排程器是什麼？](scheduler-intro.md)
 
-# Get started
-## [Create and manage jobs in portal](scheduler-get-started-portal.md)
+# 開始使用
+## [建立和管理作業](scheduler-get-started-portal.md)
 
-# How to 
-## Plan and design
-### [Plans and billing](scheduler-plans-billing.md)
-### [Quotas and limits](scheduler-limits-defaults-errors.md)
-### [High-availability and reliability](scheduler-high-availability-reliability.md)
+# 作法
+## 規劃和設計
+### [方案和計費](scheduler-plans-billing.md)
+### [配額和限制](scheduler-limits-defaults-errors.md)
+### [高度可用性與可靠性](scheduler-high-availability-reliability.md)
 
-## Develop
-### [Complex schedules using REST API](scheduler-advanced-complexity.md)
+## 開發
+### [使用 REST API 進行複雜排程](scheduler-advanced-complexity.md)
 
-## Secure
-### [Outbound authentication](scheduler-outbound-authentication.md)
+## 安全
+### [輸出驗證](scheduler-outbound-authentication.md)
 
-# Reference
-## [REST API reference](https://msdn.microsoft.com/en-us/library/azure/mt629143)
-## [PowerShell Reference](scheduler-powershell-reference.md)
+# 參考
+## [概念與術語](scheduler-concepts-terms.md)
+## [REST API](https://msdn.microsoft.com/library/azure/mt629143)
+## [PowerShell Cmdlet](scheduler-powershell-reference.md)
 
-# Related 
+# 資源
+## [排程器影片](https://azure.microsoft.com/documentation/videos/index/?services=scheduler)
+## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-scheduler)
 
-# Resources
-## [Scheduler Videos](https://azure.microsoft.com/documentation/videos/index/?services=scheduler)
+
+<!--HONumber=Nov16_HO2-->
+
+

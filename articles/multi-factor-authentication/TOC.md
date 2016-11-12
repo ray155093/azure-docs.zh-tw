@@ -1,46 +1,51 @@
-# Overview
-## [What is Azure Multi-Factor Authentication?](multi-factor-authentication.md)
-## [How it Works](multi-factor-authentication-how-it-works.md)
+# 概觀
+## [什麼是 Azure Multi-Factor Authentication？](multi-factor-authentication.md)
+## [運作方式](multi-factor-authentication-how-it-works.md)
 
-# Get started
-## [Choose where to deploy](multi-factor-authentication-get-started.md)
-## [MFA in the cloud](multi-factor-authentication-get-started-cloud.md)
-## [MFA on-premises](multi-factor-authentication-get-started-server.md)
-## [MFA for O365 users](https://support.office.com/article/Set-up-multi-factor-authentication-for-Office-365-users-8f0454b2-f51a-4d9c-bcde-2c48e41621c6)
-## [Security best practices](multi-factor-authentication-security-best-practices.md)
+# 開始使用
+## [選擇部署位置](multi-factor-authentication-get-started.md)
+## [雲端 MFA](multi-factor-authentication-get-started-cloud.md)
+## [MFA 內部部署](multi-factor-authentication-get-started-server.md)
+## [O365 使用者的 MFA](https://support.office.com/article/Set-up-multi-factor-authentication-for-Office-365-users-8f0454b2-f51a-4d9c-bcde-2c48e41621c6)
+## [安全性最佳作法](multi-factor-authentication-security-best-practices.md)
 
-# How to
-## Deploy and use
-### [Create an Auth Provider](multi-factor-authentication-get-started-auth-provider.md)
-### [Configure settings](multi-factor-authentication-whats-next.md)
-### [Reports in MFA](multi-factor-authentication-manage-reports.md)
-### Azure MFA on-premises
-#### [Install the users portal](multi-factor-authentication-get-started-portal.md)
-#### [Advanced VPN Configurations](multi-factor-authentication-advanced-vpn-configurations.md)
-#### [Mobile App Web Service](multi-factor-authentication-get-started-server-webservice.md)
-#### [Windows Authentication](multi-factor-authentication-get-started-server-windows.md)
-#### [Upgrade from PhoneFactor](multi-factor-authentication-get-started-server-upgrade.md)
+# 作法
+## 部署與使用
+### [建立驗證提供者](multi-factor-authentication-get-started-auth-provider.md)
+### [配置設定](multi-factor-authentication-whats-next.md)
+### [MFA 中的報告](multi-factor-authentication-manage-reports.md)
+### Azure MFA 內部部署
+#### [安裝使用者入口網站](multi-factor-authentication-get-started-portal.md)
+#### [進階 VPN 設定](multi-factor-authentication-advanced-vpn-configurations.md)
+#### [Mobile App Web 服務](multi-factor-authentication-get-started-server-webservice.md)
+#### [Windows 驗證](multi-factor-authentication-get-started-server-windows.md)
+#### [從 PhoneFactor 升級](multi-factor-authentication-get-started-server-upgrade.md)
 
-## Manage users
-### [Assign licenses](multi-factor-authentication-get-started-assign-licenses.md)
-### [Enable or disable MFA](multi-factor-authentication-get-started-user-states.md)
-### [User and device settings](multi-factor-authentication-manage-users-and-devices.md)
+## 管理使用者
+### [指派授權](multi-factor-authentication-get-started-assign-licenses.md)
+### [啟用或停用 MFA](multi-factor-authentication-get-started-user-states.md)
+### [使用者與裝置設定](multi-factor-authentication-manage-users-and-devices.md)
 
-## Integrate
-### [Federation Services](multi-factor-authentication-get-started-adfs.md)
-#### [Use AD FS](multi-factor-authentication-get-started-adfs-cloud.md)
-#### [Use AD FS 2.0](multi-factor-authentication-get-started-adfs-adfs2.md)
-#### [Use Windows Server 2012 R2 AD FS](multi-factor-authentication-get-started-adfs-w2k12.md)
-### Directories
-#### [LDAP Authentication](multi-factor-authentication-get-started-server-ldap.md)
-#### [RADIUS Authentication](multi-factor-authentication-get-started-server-radius.md)
+## 整合
+### [同盟服務](multi-factor-authentication-get-started-adfs.md)
+#### [使用 AD FS](multi-factor-authentication-get-started-adfs-cloud.md)
+#### [使用 AD FS 2.0](multi-factor-authentication-get-started-adfs-adfs2.md)
+#### [使用 Windows Server 2012 R2 AD FS](multi-factor-authentication-get-started-adfs-w2k12.md)
+### 目錄
+#### [LDAP 驗證](multi-factor-authentication-get-started-server-ldap.md)
+#### [RADIUS 驗證](multi-factor-authentication-get-started-server-radius.md)
 #### [Active Directory](multi-factor-authentication-get-started-server-dirint.md)
-### [IIS web apps](multi-factor-authentication-get-started-server-iis.md)
-### [Remote Desktop Gateway](multi-factor-authentication-get-started-server-rdg.md)
+### [IIS Web Apps](multi-factor-authentication-get-started-server-iis.md)
+### [遠端桌面閘道器](multi-factor-authentication-get-started-server-rdg.md)
 
-## Develop applications
-### [Building into Custom Apps (SDK)](multi-factor-authentication-sdk.md)
+## 開發應用程式
+### [建置於自訂應用程式 (SDK)](multi-factor-authentication-sdk.md)
 
-## Troubleshoot
-### [FAQ](multi-factor-authentication-faq.md)
-### [Ask a question](https://social.msdn.microsoft.com/Forums/newthread?category=windowsazureplatform&forum=windowsazureactiveauthentication&prof=required)
+## 疑難排解
+### [常見問題集](multi-factor-authentication-faq.md)
+### [詢問問題](https://social.msdn.microsoft.com/Forums/newthread?category=windowsazureplatform&forum=windowsazureactiveauthentication&prof=required)
+
+
+<!--HONumber=Nov16_HO2-->
+
+

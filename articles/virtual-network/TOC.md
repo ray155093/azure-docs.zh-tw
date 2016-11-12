@@ -1,128 +1,133 @@
-# Overview
-## [Virtual networks](virtual-networks-overview.md)
-## [Network security groups](virtual-networks-nsg.md)
-## [User-defined routes and IP forwarding](virtual-networks-udr-overview.md)
-## IP addressing
-### [Resource Manager](virtual-network-ip-addresses-overview-arm.md)
-### [Classic](virtual-network-ip-addresses-overview-classic.md)
-## [Virtual network peering](virtual-network-peering-overview.md)
-## Virtual machines
-### [Network interfaces](virtual-network-network-interface-overview.md)
-### [Name resolution](virtual-networks-name-resolution-for-vms-and-role-instances.md)
-## [Business continuity](virtual-network-disaster-recovery-guidance.md)
-## [Pricing](https://azure.microsoft.com/pricing/details/virtual-network)
+# 概觀
+## [虛擬網路](virtual-networks-overview.md)
+## [網路安全性群組](virtual-networks-nsg.md)
+## [使用者定義的路由和 IP 轉送](virtual-networks-udr-overview.md)
+## IP 位址
+### [資源管理員](virtual-network-ip-addresses-overview-arm.md)
+### [傳統](virtual-network-ip-addresses-overview-classic.md)
+## [虛擬網路對等互連](virtual-network-peering-overview.md)
+## 虛擬機器
+### [網路介面](virtual-network-network-interface-overview.md)
+### [名稱解析](virtual-networks-name-resolution-for-vms-and-role-instances.md)
+## [商務持續性](virtual-network-disaster-recovery-guidance.md)
+## [價格](https://azure.microsoft.com/pricing/details/virtual-network)
 
-# Get Started
-## [Create a virtual network](virtual-networks-create-vnet-arm-pportal.md)
-## [Deploy a VM to a virtual network](../virtual-machines/virtual-machines-windows-hero-tutorial.md)
+# 開始使用
+## [建立虛擬網路](virtual-networks-create-vnet-arm-pportal.md)
+## [將 VM 部署至虛擬網路](../virtual-machines/virtual-machines-windows-hero-tutorial.md)
 
-# How To
-## Plan and design
-### [Virtual networks](virtual-network-vnet-plan-design-arm.md)
-### [Network security groups](virtual-networks-nsg.md)
+# 作法：
+## 規劃和設計
+### [虛擬網路](virtual-network-vnet-plan-design-arm.md)
+### [網路安全性群組](virtual-networks-nsg.md)
 
-## Deploy
-### Virtual networks
-#### [Portal](virtual-networks-create-vnet-arm-pportal.md)
+## 部署
+### 虛擬網路
+#### [入口網站](virtual-networks-create-vnet-arm-pportal.md)
 #### [PowerShell](virtual-networks-create-vnet-arm-ps.md)
 #### [CLI](virtual-networks-create-vnet-arm-cli.md)
-#### [Template](virtual-networks-create-vnet-arm-template-click.md)
-#### [Portal (Classic)](virtual-networks-create-vnet-classic-pportal.md)
-#### [PowerShell (Classic)](virtual-networks-create-vnet-classic-netcfg-ps.md)
-#### [CLI (Classic)](virtual-networks-create-vnet-classic-cli.md)
+#### [範本](virtual-networks-create-vnet-arm-template-click.md)
+#### [入口網站 (傳統)](virtual-networks-create-vnet-classic-pportal.md)
+#### [PowerShell (傳統)](virtual-networks-create-vnet-classic-netcfg-ps.md)
+#### [CLI (傳統)](virtual-networks-create-vnet-classic-cli.md)
 
-### Network security groups
-#### [Portal](virtual-networks-create-nsg-arm-portal.md)
+### 網路安全性群組
+#### [入口網站](virtual-networks-create-nsg-arm-portal.md)
 #### [PowerShell](virtual-networks-create-nsg-arm-ps.md)
 #### [CLI](virtual-networks-create-nsg-arm-cli.md)
-#### [Template](virtual-networks-create-nsg-arm-template.md)
-#### [PowerShell (Classic)](virtual-networks-create-nsg-classic-ps.md)
-#### [CLI (Classic)](virtual-networks-create-nsg-classic-cli.md)
+#### [範本](virtual-networks-create-nsg-arm-template.md)
+#### [PowerShell (傳統)](virtual-networks-create-nsg-classic-ps.md)
+#### [CLI (傳統)](virtual-networks-create-nsg-classic-cli.md)
 
-### User-defined routes
+### 使用者定義的路由
 #### [PowerShell](virtual-network-create-udr-arm-ps.md)
 #### [CLI](virtual-network-create-udr-arm-cli.md)
-#### [Template](virtual-network-create-udr-arm-template.md)
-#### [PowerShell (Classic)](virtual-network-create-udr-classic-ps.md)
-#### [CLI (Classic)](virtual-network-create-udr-classic-cli.md)
+#### [範本](virtual-network-create-udr-arm-template.md)
+#### [PowerShell (傳統)](virtual-network-create-udr-classic-ps.md)
+#### [CLI (傳統)](virtual-network-create-udr-classic-cli.md)
 
-### Virtual network peering
-#### [Portal](virtual-networks-create-vnetpeering-arm-portal.md)
+### 虛擬網路對等互連
+#### [入口網站](virtual-networks-create-vnetpeering-arm-portal.md)
 #### [PowerShell](virtual-networks-create-vnetpeering-arm-ps.md)
-#### [Template](virtual-networks-create-vnetpeering-arm-template-click.md)
+#### [範本](virtual-networks-create-vnetpeering-arm-template-click.md)
 
-### Virtual machines
+### 虛擬機器
 
-#### Static public IP addresses
-##### [Portal](virtual-network-deploy-static-pip-arm-portal.md)
+#### 靜態公用 IP 位址
+##### [入口網站](virtual-network-deploy-static-pip-arm-portal.md)
 ##### [PowerShell](virtual-network-deploy-static-pip-arm-ps.md)
 ##### [CLI](virtual-network-deploy-static-pip-arm-cli.md)
-##### [Template](virtual-network-deploy-static-pip-arm-template.md)
-##### [PowerShell (Classic)](virtual-networks-reserved-public-ip.md)
+##### [範本](virtual-network-deploy-static-pip-arm-template.md)
+##### [PowerShell (傳統)](virtual-networks-reserved-public-ip.md)
 
-#### Static private IP addresses
-##### [Portal](virtual-networks-static-private-ip-arm-pportal.md)
+#### 靜態私人 IP 位址
+##### [入口網站](virtual-networks-static-private-ip-arm-pportal.md)
 ##### [PowerShell](virtual-networks-static-private-ip-arm-ps.md)
 ##### [CLI](virtual-networks-static-private-ip-arm-cli.md)
-##### [Portal (Classic)](virtual-networks-static-private-ip-classic-pportal.md)
-##### [PowerShell (Classic)](virtual-networks-static-private-ip-classic-ps.md)
-##### [CLI (Classic)](virtual-networks-static-private-ip-classic-cli.md)
+##### [入口網站 (傳統)](virtual-networks-static-private-ip-classic-pportal.md)
+##### [PowerShell (傳統)](virtual-networks-static-private-ip-classic-ps.md)
+##### [CLI (傳統)](virtual-networks-static-private-ip-classic-cli.md)
 
-#### Multiple network interfaces
+#### 多個網路介面
 ##### [PowerShell](virtual-network-deploy-multinic-arm-ps.md)
 ##### [CLI](virtual-network-deploy-multinic-arm-cli.md)
-##### [Template](virtual-network-deploy-multinic-arm-template.md)
-##### [PowerShell (Classic)](virtual-network-deploy-multinic-classic-ps.md)
-##### [CLI (Classic)](virtual-network-deploy-multinic-classic-cli.md)
+##### [範本](virtual-network-deploy-multinic-arm-template.md)
+##### [PowerShell (傳統)](virtual-network-deploy-multinic-classic-ps.md)
+##### [CLI (傳統)](virtual-network-deploy-multinic-classic-cli.md)
 
-#### [Multiple IP addresses](virtual-network-multiple-ip-addresses-powershell.md)
+#### [多個 IP 位址](virtual-network-multiple-ip-addresses-powershell.md)
 
-### Connectivity scenarios
-#### [Virtual network (VNet) to VNet](../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
-#### [VNet (Resource Manager) to a VNet (Classic)](../vpn-gateway/vpn-gateway-connect-different-deployment-models-portal.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
-#### [VNet to on-premises network (VPN)](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
-#### [VNet to on-premises network (ExpressRoute)](../expressroute/expressroute-howto-linkvnet-portal-resource-manager.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
-#### [Highly available hybrid network architecture](../guidance/guidance-hybrid-network-expressroute-vpn-failover.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
+### 連線能力案例
+#### [虛擬網路 (VNet) 至 VNet](../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
+#### [VNet (Resource Manager) 至 VNet (傳統)](../vpn-gateway/vpn-gateway-connect-different-deployment-models-portal.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
+#### [VNet 至內部部署網路 (VPN)](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
+#### [VNet 至內部部署網路 (ExpressRoute)](../expressroute/expressroute-howto-linkvnet-portal-resource-manager.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
+#### [高可用性的混合式網路架構](../guidance/guidance-hybrid-network-expressroute-vpn-failover.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
 
-### Security scenarios
-#### [Secure networks with virtual appliances](virtual-network-scenario-udr-gw-nva.md)
-#### [DMZ between Azure and the Internet](../guidance/guidance-iaas-ra-secure-vnet-dmz.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
-#### [Cloud service and network security](../best-practices-network-security.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
-##### [Simple DMZ with NSGs](virtual-networks-dmz-nsg-asm.md)
-##### [DMZ with firewall and NSGs](virtual-networks-dmz-nsg-fw-asm.md)
-##### [DMZ with firewall, UDR, and NSGs](virtual-networks-dmz-nsg-fw-udr-asm.md)
-##### [Sample application](virtual-networks-sample-app.md)
+### 安全性案例
+#### [使用虛擬設備維護網路安全](virtual-network-scenario-udr-gw-nva.md)
+#### [Azure 和網際網路之間的 DMZ](../guidance/guidance-iaas-ra-secure-vnet-dmz.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
+#### [雲端服務和網路安全性](../best-practices-network-security.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
+##### [具有 NSG 的簡單 DMZ](virtual-networks-dmz-nsg-asm.md)
+##### [具有 NSG 和防火牆的 DMZ](virtual-networks-dmz-nsg-fw-asm.md)
+##### [具有防火牆、UDR 和 NSG 的 DMZ](virtual-networks-dmz-nsg-fw-udr-asm.md)
+##### [範例應用程式](virtual-networks-sample-app.md)
 
-## Manage
-### Network security groups
-#### [Portal](virtual-network-manage-nsg-arm-portal.md)
+## 管理
+### 網路安全性群組
+#### [入口網站](virtual-network-manage-nsg-arm-portal.md)
 #### [PowerShell](virtual-network-manage-nsg-arm-ps.md)
 #### [CLI](virtual-network-manage-nsg-arm-cli.md)
-#### [Logs](virtual-network-nsg-manage-log.md)
-#### Troubleshoot
-##### [Portal](virtual-network-nsg-troubleshoot-portal.md)
+#### [記錄檔](virtual-network-nsg-manage-log.md)
+#### 疑難排解
+##### [入口網站](virtual-network-nsg-troubleshoot-portal.md)
 ##### [PowerShell](virtual-network-nsg-troubleshoot-powershell.md)
-### Troubleshoot routes
-#### [Portal](virtual-network-routes-troubleshoot-portal.md)
+### 路由疑難排解
+#### [入口網站](virtual-network-routes-troubleshoot-portal.md)
 #### [PowerShell](virtual-network-routes-troubleshoot-powershell.md)
-### Virtual machines
-#### [View and modify hostnames](virtual-networks-viewing-and-modifying-hostnames.md)
-#### [Move a VM to a different subnet](virtual-networks-move-vm-role-to-subnet.md)
+### 虛擬機器
+#### [檢視及修改主機名稱](virtual-networks-viewing-and-modifying-hostnames.md)
+#### [將 VM 移至不同的子網路](virtual-networks-move-vm-role-to-subnet.md)
 
-# Reference
-## [PowerShell cmdlets (Resource manager)](https://msdn.microsoft.com/library/mt163510(v=azure.300))
-## [PowerShell cmdlets (Classic)](https://msdn.microsoft.com/library/mt270335(v=azure.300))
-## [APIs (Resource Manager)](https://msdn.microsoft.com/library/mt163658.aspx)
-## [APIs (Classic)](https://msdn.microsoft.com/library/jj157182.aspx)
-## [Networking blog](http://azure.microsoft.com/blog/topics/networking)
-## [Frequently asked questions](virtual-networks-faq.md)
+# 參考
+## [PowerShell Cmdlet (Resource Manager)](https://msdn.microsoft.com/library/mt163510(v=azure.300))
+## [PowerShell Cmdlet (傳統)](https://msdn.microsoft.com/library/mt270335(v=azure.300))
+## [API (Resource Manager)](https://msdn.microsoft.com/library/mt163658.aspx)
+## [API (傳統)](https://msdn.microsoft.com/library/jj157182.aspx)
+## [網路部落格](http://azure.microsoft.com/blog/topics/networking)
+## [常見問題集](virtual-networks-faq.md)
 
-# Related
-## [Virtual Machines](https://azure.microsoft.com/documentation/services/virtual-machines)
-## [Application Gateway](https://azure.microsoft.com/documentation/services/application-gateway)
+# 相關參考
+## [虛擬機器](https://azure.microsoft.com/documentation/services/virtual-machines)
+## [應用程式閘道](https://azure.microsoft.com/documentation/services/application-gateway)
 ## [Azure DNS](https://azure.microsoft.com/documentation/services/dns)
-## [Traffic Manager](https://azure.microsoft.com/documentation/services/traffic-manager)
-## [Load Balancer](https://azure.microsoft.com/documentation/services/load-balancer)
-## [VPN Gateway](https://azure.microsoft.com/documentation/services/vpn-gateway)
+## [流量管理員](https://azure.microsoft.com/documentation/services/traffic-manager)
+## [負載平衡器](https://azure.microsoft.com/documentation/services/load-balancer)
+## [VPN 閘道](https://azure.microsoft.com/documentation/services/vpn-gateway)
 ## [ExpressRoute](https://azure.microsoft.com/documentation/services/expressroute)
+
+
+
+<!--HONumber=Nov16_HO2-->
+
 

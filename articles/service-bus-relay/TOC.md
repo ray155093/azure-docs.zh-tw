@@ -1,25 +1,32 @@
 # Overview
-## [What is Relay?](service-bus-relay-overview.md)
-## [Pricing](https://azure.microsoft.com/pricing/details/service-bus/)
-## [Learning path](https://azure.microsoft.com/documentation/learning-paths/service-bus/)
-## [FAQ](../service-bus-messaging/service-bus-faq.md)
-# Get Started
-## [How to use Relay](service-bus-dotnet-how-to-use-relay.md)
-## [Shared Access Signatures (SAS)](../service-bus-messaging/service-bus-sas-overview.md)
-## [An on-premises/cloud hybrid application using Service Bus Relay](service-bus-dotnet-hybrid-app-using-service-bus-relay.md)
-## [Relay .NET tutorial](service-bus-relay-tutorial.md)
-## [Relay REST tutorial](service-bus-relay-rest-tutorial.md)
+## [什麼是轉送？](service-bus-relay-overview.md)
+## [常見問題集](../service-bus-messaging/service-bus-faq.md?toc=%2fazure%2fservice-bus-relay%2ftoc.json)
 
-# How To
-## Develop
-### [Service Bus authentication and authorization](../service-bus-messaging/service-bus-authentication-and-authorization.md)
-### [Handling Service Bus outages and disasters](../service-bus-messaging/service-bus-outages-disasters.md)
-# Reference
-## [Samples](service-bus-relay-samples.md)
-## [.NET API reference](https://msdn.microsoft.com/library/azure/jj933424)
-## [Exceptions](../service-bus-messaging/service-bus-messaging-exceptions.md)
-## [Quotas](../service-bus-messaging/service-bus-quotas.md)
-# Resources
-## [Blog](https://blogs.msdn.microsoft.com/servicebus/)
+# 開始使用
+## [如何使用轉送](service-bus-dotnet-how-to-use-relay.md)
+## [共用存取簽章](../service-bus-messaging/service-bus-sas-overview.md?toc=%2fazure%2fservice-bus-relay%2ftoc.json)
+## [使用服務匯流排轉送建置混合式應用程式](service-bus-dotnet-hybrid-app-using-service-bus-relay.md)
+## [轉送 .NET 教學課程](service-bus-relay-tutorial.md)
+## [轉送 REST 教學課程](service-bus-relay-rest-tutorial.md)
+
+# 作法：
+## [驗證和授權](../service-bus-messaging/service-bus-authentication-and-authorization.md?toc=%2fazure%2fservice-bus-relay%2ftoc.json)
+## [針對中斷與災害進行計畫](../service-bus-messaging/service-bus-outages-disasters.md?toc=%2fazure%2fservice-bus-relay%2ftoc.json)
+
+# 參考
+## [範例](service-bus-relay-samples.md)
+## [.NET API 參考](https://msdn.microsoft.com/library/azure/jj933424)
+## [例外狀況](../service-bus-messaging/service-bus-messaging-exceptions.md?toc=%2fazure%2fservice-bus-relay%2ftoc.json)
+## [配額](../service-bus-messaging/service-bus-quotas.md?toc=%2fazure%2fservice-bus-relay%2ftoc.json)
+
+# 資源
+## [部落格](https://blogs.msdn.microsoft.com/servicebus/)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/servicebus)
-## [MSDN forums](https://social.msdn.microsoft.com/forums/home?forum=servbus)
+## [MSDN 論壇](https://social.msdn.microsoft.com/forums/home?forum=servbus)
+## [價格](https://azure.microsoft.com/pricing/details/service-bus/)
+## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/service-bus/)
+
+
+<!--HONumber=Nov16_HO2-->
+
+

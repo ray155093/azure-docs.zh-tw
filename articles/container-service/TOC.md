@@ -1,29 +1,35 @@
 # Overview
-## [ACS introduction](container-service-intro.md)
-# Get Started
+## [ACS 簡介](container-service-intro.md)
+# 開始使用
 
-## [Deploy an ACS cluster](container-service-deployment.md)
-## [Connect with an ACS cluster](container-service-connect.md)
-## [Scale an ACS cluster](container-service-scale.md)
+## [部署 ACS 叢集](container-service-deployment.md)
+## [與 ACS 叢集連接](container-service-connect.md)
+## [調整 ACS 叢集的規模](container-service-scale.md)
 
-# How To
+# 作法：
 
-## DC/OS
-### [Container management - DC/OS web UI](container-service-mesos-marathon-ui.md)
-### [Container management - DC/OS REST API](container-service-mesos-marathon-rest.md)
-### [DC/OS Agent pools](container-service-dcos-agents.md)
-### [Enable DC/OS public access](container-service-enable-public-access.md)
-### [Load balance containers in DC/OS](container-service-load-balancing.md)
-### [App/User Specific Orchestrator in DC/OS](container-service-application-specific-marathon.md)
-### [Monitor with Datadog (DC/OS)](container-service-monitoring.md)
-### [Monitor with Sysdig (DC/OS)](container-service-monitoring-sysdig.md)
-## Docker Swarm
-### [Docker Swarm Overview](container-service-docker-swarm.md)
+## 以 DC/OS 管理
+### [管理容器 - DC/OS Web UI](container-service-mesos-marathon-ui.md)
+### [管理容器 - DC/OS REST API](container-service-mesos-marathon-rest.md)
+### [DC/OS 代理程式集區](container-service-dcos-agents.md)
+### [啟用 DC/OS 公用存取](container-service-enable-public-access.md)
+### [DC/OS 中的負載平衡容器](container-service-load-balancing.md)
+### [DC/OS 中的應用程式/使用者特定協調者](container-service-application-specific-marathon.md)
+### [透過 Datadog 進行監視 (DC/OS)](container-service-monitoring.md)
+### [透過 Sysdig 進行監視 (DC/OS)](container-service-monitoring-sysdig.md)
+## 使用 Docker Swarm 管理
+### [Docker Swarm 概觀](container-service-docker-swarm.md)
 
-# Reference
+# 參考
 
 ## [REST API](https://go.microsoft.com/fwlink/p/?linkid=833499)
 
-# Resources
+# 資源
 
-## [Region availability](https://azure.microsoft.com/regions/services/)
+## [區域可用性](https://azure.microsoft.com/regions/services/)
+## [服務更新](https://azure.microsoft.com/en-us/updates/?product=container-service&updatetype=&platform=)
+
+
+<!--HONumber=Nov16_HO2-->
+
+

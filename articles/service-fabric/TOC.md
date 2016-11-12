@@ -1,193 +1,200 @@
 # Overview
-## [Service Fabric overview](service-fabric-overview.md)
-## [Understand microservices](service-fabric-overview-microservices.md)
-## [Service Fabric terminology](service-fabric-technical-overview.md)
-## [Service Fabric applications](service-fabric-application-scenarios.md)
-## [Service Fabric architecture](service-fabric-architecture.md)
+## [什麼是 Service Fabric？](service-fabric-overview.md)
+## [了解微服務](service-fabric-overview-microservices.md)
+## [應用程式案例](service-fabric-application-scenarios.md)
+## [架構](service-fabric-architecture.md)
 
-# Get Started
-## [Learning path for Service Fabric](https://azure.microsoft.com/documentation/learning-paths/service-fabric/)
-## Set up your development environment
+# 開始使用
+## 設定開發環境
 ### [Windows](service-fabric-get-started.md)
 ### [Linux](service-fabric-get-started-linux.md)
 ### [Mac OS](service-fabric-get-started-mac.md)
-## Create your first application
-### [Using C# on Windows](service-fabric-create-your-first-application-in-visual-studio.md)
-### [Using Java on Linux](service-fabric-create-your-first-linux-application-with-java.md)
-### [Using C# on Linux](service-fabric-create-your-first-linux-application-with-csharp.md)
-## [Deploy and upgrade your application on a local cluster](service-fabric-get-started-with-a-local-cluster.md)
+## 建立您的第一個應用程式
+### [Windows 上的 C# ](service-fabric-create-your-first-application-in-visual-studio.md)
+### [在 Linux 上使用 Java](service-fabric-create-your-first-linux-application-with-java.md)
+### [Linux 上的 C](service-fabric-create-your-first-linux-application-with-csharp.md)
+## [在本機叢集上部署應用程式](service-fabric-get-started-with-a-local-cluster.md)
 
-# How To
-## Build an application
-### Basics
-#### [Programming model overview](service-fabric-choose-framework.md)
-#### [Application model overview](service-fabric-application-model.md)
-#### [Service communication overview](service-fabric-connect-and-communicate-with-services.md)
-#### [Tools to develop your application](service-fabric-manage-application-in-visual-studio.md)
-#### [Build a web front-end for your application](service-fabric-reliable-services-communication-webapi.md)
-#### [Debug your application](service-fabric-debugging-your-application.md)
-#### Monitor and diagnose services locally
+# 作法：
+## 建置應用程式
+### 基本概念
+#### [程式設計模型](service-fabric-choose-framework.md)
+#### [應用程式模型](service-fabric-application-model.md)
+#### [服務通訊](service-fabric-connect-and-communicate-with-services.md)
+#### [工具](service-fabric-manage-application-in-visual-studio.md)
+#### [偵錯](service-fabric-debugging-your-application.md)
+#### 監視與診斷
 ##### [Windows](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)
 ##### [Linux](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally-linux.md)
-#### [Configure security policies for your application](service-fabric-application-runas-security.md)
-#### [Configure your application for multiple environments](service-fabric-manage-multiple-environment-app-configuration.md)
+#### [設定應用程式的安全性原則](service-fabric-application-runas-security.md)
+#### [針對多種環境設定您的應用程式](service-fabric-manage-multiple-environment-app-configuration.md)
 
-### Reliable Service application
-#### [Reliable Services overview](service-fabric-reliable-services-introduction.md)
-#### Get started with Reliable Services
-##### [Using C# on Windows](service-fabric-reliable-services-quick-start.md)
-##### [Using Java on Linux](service-fabric-reliable-services-quick-start-java.md)
-#### [Reliable Services architecture](service-fabric-reliable-services-platform-architecture.md)
-#### [Reliable Collections overview](service-fabric-reliable-services-reliable-collections.md)
-#### [Use Reliable Collections](service-fabric-work-with-reliable-collections.md)
-#### [Configure Reliable Collections](service-fabric-reliable-services-configuration.md)
-#### [Notifications in Reliable Collections](service-fabric-reliable-services-notifications.md)
-#### [Backup and restore Reliable Collections](service-fabric-reliable-services-backup-restore.md)
-#### [Communicate with Reliable Services](service-fabric-reliable-services-communication.md)
-#### [Communicate using ASP.NET](service-fabric-reliable-services-communication-webapi.md)
-#### [Communicate using Service Remoting](service-fabric-reliable-services-communication-remoting.md)
-#### [Communicate using WCF](service-fabric-reliable-services-communication-wcf.md)
-#### [Communicate using Service Fabric Reverse Proxy](service-fabric-reverseproxy.md)
-#### [Reliable Services advanced usage](service-fabric-reliable-services-advanced-usage.md)
+### Reliable Services 應用程式
+#### [概觀](service-fabric-reliable-services-introduction.md)
+#### 開始使用
+##### [Windows 上的 C# ](service-fabric-reliable-services-quick-start.md)
+##### [在 Linux 上使用 Java](service-fabric-reliable-services-quick-start-java.md)
+#### [架構](service-fabric-reliable-services-platform-architecture.md)
+#### [可靠集合](service-fabric-reliable-services-reliable-collections.md)
+#### [使用 Reliable Collections](service-fabric-work-with-reliable-collections.md)
+#### [設定](service-fabric-reliable-services-configuration.md)
+#### [Notifications](service-fabric-reliable-services-notifications.md)
+#### [備份與還原](service-fabric-reliable-services-backup-restore.md)
+#### [與 Reliable Services 通訊](service-fabric-reliable-services-communication.md)
+##### [ASP.NET](service-fabric-reliable-services-communication-webapi.md)
+##### [服務遠端處理](service-fabric-reliable-services-communication-remoting.md)
+##### [WCF](service-fabric-reliable-services-communication-wcf.md)
+##### [反向 proxy](service-fabric-reverseproxy.md)
+#### [進階用量](service-fabric-reliable-services-advanced-usage.md)
 
-### Reliable Actor application
-#### [Reliable Actors overview](service-fabric-reliable-actors-introduction.md)
-#### Get Started with Reliable Actors
-##### [Using C# on Windows](service-fabric-reliable-actors-get-started.md)
-##### [Using Java on Linux](service-fabric-reliable-actors-get-started-java.md)
-#### [Reliable Actors architecture](service-fabric-reliable-actors-platform.md)
-#### [Lifecycle and garbage collection](service-fabric-reliable-actors-lifecycle.md)
-#### [Polymorphism in Reliable Actors](service-fabric-reliable-actors-polymorphism.md)
-#### [Reentrancy in Reliable Actors](service-fabric-reliable-actors-reentrancy.md)
-#### [Timers and reminders in Reliable Actors](service-fabric-reliable-actors-timers-reminders.md)
-#### [Events in Reliable Actors](service-fabric-reliable-actors-events.md)
-#### [State management in Reliable Actors](service-fabric-reliable-actors-state-management.md)
-#### [Configure Reliable Actors state provider](service-fabric-reliable-actors-kvsactorstateprovider-configuration.md)
-#### [Type serialization in Reliable Actors](service-fabric-reliable-actors-notes-on-actor-type-serialization.md)
+### Reliable Actor 應用程式
+#### [概觀](service-fabric-reliable-actors-introduction.md)
+#### 開始使用
+##### [Windows 上的 C# ](service-fabric-reliable-actors-get-started.md)
+##### [在 Linux 上使用 Java](service-fabric-reliable-actors-get-started-java.md)
+#### [架構](service-fabric-reliable-actors-platform.md)
+#### [生命週期與記憶體回收](service-fabric-reliable-actors-lifecycle.md)
+#### [Polymorphism](service-fabric-reliable-actors-polymorphism.md)
+#### [重新進入](service-fabric-reliable-actors-reentrancy.md)
+#### [計時器和提醒](service-fabric-reliable-actors-timers-reminders.md)
+#### [事件](service-fabric-reliable-actors-events.md)
+#### [狀態管理](service-fabric-reliable-actors-state-management.md)
+#### [設定狀態供應器](service-fabric-reliable-actors-kvsactorstateprovider-configuration.md)
+#### [類型序列化](service-fabric-reliable-actors-notes-on-actor-type-serialization.md)
 
-### Guest executable application
-#### [Deploy a guest executable](service-fabric-deploy-existing-app.md)
-#### [Deploy multiple guest executables](service-fabric-deploy-multiple-apps.md)
+### 來賓可執行檔應用程式
+#### [部署來賓可執行檔](service-fabric-deploy-existing-app.md)
+#### [部署多個來賓可執行檔](service-fabric-deploy-multiple-apps.md)
 
-### Container application
-#### [Containers overview](service-fabric-containers-overview.md)
-#### Get started with containers
-##### [Deploy Windows container](service-fabric-deploy-container.md)
-##### [Deploy Docker container](service-fabric-deploy-container-linux.md)
+### 容器應用程式
+#### [概觀](service-fabric-containers-overview.md)
+#### [部署 Windows 容器](service-fabric-deploy-container.md)
+#### [部署 Docker 容器](service-fabric-deploy-container-linux.md)
 
-## Migrate from Cloud Services
-### [Compare Cloud Services with Service Fabric](service-fabric-cloud-services-migration-differences.md)
-### [Migrate from Cloud Services to Service Fabric](service-fabric-cloud-services-migration-worker-role-stateless-service.md)
+## 從雲端服務移轉
+### [比較雲端服務與 Service Fabric](service-fabric-cloud-services-migration-differences.md)
+### [移轉室 Service Fabric](service-fabric-cloud-services-migration-worker-role-stateless-service.md)
 
-## Create and manage clusters
+## 建立和管理叢集
 
-### Basics
-#### [Cluster overview](service-fabric-deploy-anywhere.md)
-#### [Describe a cluster](service-fabric-cluster-resource-manager-cluster-description.md)
-#### [Cluster capacity planning](service-fabric-cluster-capacity.md)
-#### [Visualize a cluster with Service Fabric Explorer](service-fabric-visualizing-your-cluster.md)
-#### [Connect to a secure cluster](service-fabric-connect-to-secure-cluster.md)
-#### [Cluster security](service-fabric-cluster-security.md)
-#### [Cluster disaster recovery](service-fabric-disaster-recovery.md)
+### 基本概念
+#### [概觀](service-fabric-deploy-anywhere.md)
+#### [描述叢集](service-fabric-cluster-resource-manager-cluster-description.md)
+#### [容量規劃](service-fabric-cluster-capacity.md)
+#### [視覺化叢集](service-fabric-visualizing-your-cluster.md)
+#### [連線到安全的叢集](service-fabric-connect-to-secure-cluster.md)
+#### [安全性](service-fabric-cluster-security.md)
+#### [災害復原](service-fabric-disaster-recovery.md)
 
-### Clusters on Azure
-#### Create a cluster on Azure
-##### [Using Azure portal](service-fabric-cluster-creation-via-portal.md)
-##### [Using Azure Resource Manager](service-fabric-cluster-creation-via-arm.md)
-#### [Node types and VM Scale Sets in the cluster](service-fabric-cluster-nodetypes.md)
-#### [Scale the cluster up or down](service-fabric-cluster-scale-up-down.md)
-#### [Upgrade the cluster](service-fabric-cluster-upgrade.md)
-#### [Delete the cluster](service-fabric-cluster-delete.md)
-#### [Access control for the cluster](service-fabric-cluster-security-roles.md)
-#### [Configure the cluster](service-fabric-cluster-fabric-settings.md)
-#### [Try a Party Cluster on Azure for free](http://aka.ms/tryservicefabric)
+### Azure 上的叢集
+#### 在 Azure 上建立叢集
+##### [Azure 入口網站](service-fabric-cluster-creation-via-portal.md)
+##### [Azure Resource Manager](service-fabric-cluster-creation-via-arm.md)
+#### [節點類型與 VM 擴展集](service-fabric-cluster-nodetypes.md)
+#### [調整叢集](service-fabric-cluster-scale-up-down.md)
+#### [升級叢集](service-fabric-cluster-upgrade.md)
+#### [刪除叢集](service-fabric-cluster-delete.md)
+#### [存取控制](service-fabric-cluster-security-roles.md)
+#### [設定叢集](service-fabric-cluster-fabric-settings.md)
+#### [免費試用 Party Cluster](http://aka.ms/tryservicefabric)
 
-### Standalone clusters
-#### [Create a standalone cluster](service-fabric-cluster-creation-for-windows-server.md)
-#### [Scale the cluster in and out](service-fabric-cluster-windows-server-add-remove-nodes.md)
-#### [Upgrade the cluster](service-fabric-cluster-upgrade-windows-server.md)
-#### [Secure the cluster](service-fabric-windows-cluster-x509-security.md)
-#### [Access control for the cluster](service-fabric-cluster-security-roles.md)
-#### [Configure the cluster](service-fabric-cluster-manifest.md)
+### 獨立叢集
+#### [建立獨立叢集](service-fabric-cluster-creation-for-windows-server.md)
+#### [調整叢集](service-fabric-cluster-windows-server-add-remove-nodes.md)
+#### [升級叢集](service-fabric-cluster-upgrade-windows-server.md)
+#### [保護叢集](service-fabric-windows-cluster-x509-security.md)
+#### [存取控制](service-fabric-cluster-security-roles.md)
+#### [設定叢集](service-fabric-cluster-manifest.md)
 
-## Manage and orchestrate cluster resources
-### [Cluster Resource Manager overview](service-fabric-cluster-resource-manager-introduction.md)
-### [Cluster Resource Manager architecture](service-fabric-cluster-resource-manager-architecture.md)
-### [Describe a cluster](service-fabric-cluster-resource-manager-cluster-description.md)
-### [Application groups overview](service-fabric-cluster-resource-manager-application-groups.md)
-### [Configure Cluster Resource Manager settings](service-fabric-cluster-resource-manager-configure-services.md)
-### [Resource consumption metrics](service-fabric-cluster-resource-manager-metrics.md)
-### [Use service affinity](service-fabric-cluster-resource-manager-advanced-placement-rules-affinity.md)
-### [Service placement policies](service-fabric-cluster-resource-manager-advanced-placement-rules-placement-policies.md)
-### [Manage cluster using Cluster Resource Manager](service-fabric-cluster-resource-manager-management-integration.md)
-### [Cluster defragmentation](service-fabric-cluster-resource-manager-defragmentation-metrics.md)
-### [Balance your cluster](service-fabric-cluster-resource-manager-balancing.md)
-### [Throttling in Cluster Resource Manager](service-fabric-cluster-resource-manager-advanced-throttling.md)
-### [Service movement using Cluster Resource Manager](service-fabric-cluster-resource-manager-movement-cost.md)
+## 管理和組織叢集資源
+### [叢集資源管理員概觀](service-fabric-cluster-resource-manager-introduction.md)
+### [叢集資源管理員架構](service-fabric-cluster-resource-manager-architecture.md)
+### [描述叢集](service-fabric-cluster-resource-manager-cluster-description.md)
+### [應用程式群組概觀](service-fabric-cluster-resource-manager-application-groups.md)
+### [設定叢集資源管理員的設定](service-fabric-cluster-resource-manager-configure-services.md)
+### [資源耗用計量](service-fabric-cluster-resource-manager-metrics.md)
+### [使用服務親和性](service-fabric-cluster-resource-manager-advanced-placement-rules-affinity.md)
+### [服務放置原則](service-fabric-cluster-resource-manager-advanced-placement-rules-placement-policies.md)
+### [管理叢集](service-fabric-cluster-resource-manager-management-integration.md)
+### [叢集磁碟重組](service-fabric-cluster-resource-manager-defragmentation-metrics.md)
+### [平衡叢集](service-fabric-cluster-resource-manager-balancing.md)
+### [節流](service-fabric-cluster-resource-manager-advanced-throttling.md)
+### [服務動作](service-fabric-cluster-resource-manager-movement-cost.md)
 
-## Manage application lifecycle
-### [Application lifecycle overview](service-fabric-application-lifecycle.md)
-### [Setup continuous integration](service-fabric-set-up-continuous-integration.md)
-### Deploy or remove applications
-#### [Using PowerShell](service-fabric-deploy-remove-applications.md)
-#### [Using Visual Studio](service-fabric-publish-app-remote-cluster.md)
-### [Application upgrade overview](service-fabric-application-upgrade.md)
-### [Configure application upgrade](service-fabric-visualstudio-configure-upgrade.md)
-### [Application upgrade parameters](service-fabric-application-upgrade-parameters.md)
-### Upgrade an application
-#### [Using PowerShell](service-fabric-application-upgrade-tutorial-powershell.md)
-#### [Using Visual Studio](service-fabric-application-upgrade-tutorial.md)
-### [Troubleshoot application upgrades](service-fabric-application-upgrade-troubleshooting.md)
-### [Data serialization in application upgrades](service-fabric-application-upgrade-data-serialization.md)
-### [Application upgrades advanced topics](service-fabric-application-upgrade-advanced.md)
-### [REST-based application lifecycle sample](service-fabric-rest-based-application-lifecycle-sample.md)
+## 管理應用程式生命週期
+### [概觀](service-fabric-application-lifecycle.md)
+### [設定連續整合](service-fabric-set-up-continuous-integration.md)
+### 部署或移除應用程式
+#### [PowerShell](service-fabric-deploy-remove-applications.md)
+#### [Visual Studio](service-fabric-publish-app-remote-cluster.md)
+### [應用程式升級概觀](service-fabric-application-upgrade.md)
+### [設定應用程式升級](service-fabric-visualstudio-configure-upgrade.md)
+### [應用程式升級參數](service-fabric-application-upgrade-parameters.md)
+### 升級應用程式
+#### [PowerShell](service-fabric-application-upgrade-tutorial-powershell.md)
+#### [Visual Studio](service-fabric-application-upgrade-tutorial.md)
+### [疑難排解應用程式升級](service-fabric-application-upgrade-troubleshooting.md)
+### [應用程式升級的資料序列化](service-fabric-application-upgrade-data-serialization.md)
+### [應用程式升級進階主題](service-fabric-application-upgrade-advanced.md)
+### [REST 架構應用程式生命週期範例](service-fabric-rest-based-application-lifecycle-sample.md)
 
-## Inspect application and cluster health
-### [Monitor Service Fabric health](service-fabric-health-introduction.md)
-### [Report and check service health](service-fabric-diagnostics-how-to-report-and-check-service-health.md)
-### [Add custom health reports](service-fabric-report-health.md)
-### [Troubleshoot with system health reports](service-fabric-understand-and-troubleshoot-with-system-health-reports.md)
-### [View health reports](service-fabric-view-entities-aggregated-health.md)
+## 檢查應用程式與叢集健全狀況
+### [監視 Service Fabric 健全狀況](service-fabric-health-introduction.md)
+### [回報和檢查服務健全狀況](service-fabric-diagnostics-how-to-report-and-check-service-health.md)
+### [新增自訂健全狀況報表](service-fabric-report-health.md)
+### [使用系統健全狀況報表進行疑難排解](service-fabric-understand-and-troubleshoot-with-system-health-reports.md)
+### [檢視健全狀況報表](service-fabric-view-entities-aggregated-health.md)
 
-## Monitor and diagnose
-### Monitor and diagnose services locally
+## 監視與診斷
+### 在本機上監視及診斷服務
 #### [Windows](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)
 #### [Linux](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally-linux.md)
-### Azure Diagnostics logs
+### Azure 診斷記錄檔
 #### [Windows](service-fabric-diagnostics-how-to-setup-wad.md)
 #### [Linux](service-fabric-diagnostics-how-to-setup-lad.md)
-### [Service Fabric application trace](service-fabric-diagnostic-how-to-use-elasticsearch.md)
-### [Diagnostics in Reliable Actors](service-fabric-reliable-actors-diagnostics.md)
-### [Diagnostics in stateful Reliable Services](service-fabric-reliable-services-diagnostics.md)
-### [Troubleshoot your local cluster](service-fabric-troubleshoot-local-cluster-setup.md)
-### [Troubleshoot common issues](service-fabric-diagnostics-troubleshoot-common-scenarios.md)
+### [Service Fabric 應用程式追蹤](service-fabric-diagnostic-how-to-use-elasticsearch.md)
+### [Reliable Actors 中的診斷](service-fabric-reliable-actors-diagnostics.md)
+### [可設定狀態 Reliable Services 中的診斷](service-fabric-reliable-services-diagnostics.md)
+### [針對本機叢集進行疑難排解](service-fabric-troubleshoot-local-cluster-setup.md)
+### [針對常見問題進行疑難排解](service-fabric-diagnostics-troubleshoot-common-scenarios.md)
 
-## Scale applications
-### [Partition Reliable Services](service-fabric-concepts-partitioning.md)
-### [Availability of services](service-fabric-availability-services.md)
-### [Scale applications](service-fabric-concepts-scalability.md)
-### [Plan capacity of applications](service-fabric-capacity-planning.md)
+## 調整應用程式
+### [磁碟分割 Reliable Services](service-fabric-concepts-partitioning.md)
+### [服務可用性](service-fabric-availability-services.md)
+### [調整應用程式](service-fabric-concepts-scalability.md)
+### [規劃應用程式容量](service-fabric-capacity-planning.md)
 
-## Test applications and services
-### [Fault Analysis overview](service-fabric-testability-overview.md)
-### [Test service to service communication](service-fabric-testability-scenarios-service-communication.md)
-### Simulate failures
-#### [Using controlled Chaos](service-fabric-controlled-chaos.md)
-#### [Using Test actions](service-fabric-testability-actions.md)
-#### [During workloads](service-fabric-testability-workload-tests.md)
-#### [By invoking data loss](service-fabric-use-data-loss-api.md)
-#### [Using Test scenarios](service-fabric-testability-scenarios.md)
-### [Load test your application](service-fabric-vso-load-test.md)
+## 測試應用程式與服務
+### [錯誤分析概觀](service-fabric-testability-overview.md)
+### [測試服務對服務的通訊](service-fabric-testability-scenarios-service-communication.md)
+### 模擬失敗
+#### [使用受控的混亂](service-fabric-controlled-chaos.md)
+#### [使用測試動作](service-fabric-testability-actions.md)
+#### [工作負載期間](service-fabric-testability-workload-tests.md)
+#### [藉由叫用資料遺失](service-fabric-use-data-loss-api.md)
+#### [使用測試案例](service-fabric-testability-scenarios.md)
+### [進行應用程式負載測試](service-fabric-vso-load-test.md)
 
-# Reference
-## [Reliable Actors managed reference](https://go.microsoft.com/fwlink/p/?linkid=833398)
-## [Reliable Actors WCF managed reference](https://go.microsoft.com/fwlink/p/?linkid=833401)
-## [Reliable Services managed reference](https://go.microsoft.com/fwlink/p/?linkid=833402)
-## [Reliable Services WCF managed reference](https://go.microsoft.com/fwlink/p/?linkid=833403)
-## [Data managed reference](https://go.microsoft.com/fwlink/p/?linkid=833404)
-## [Data Interfaces managed reference](https://go.microsoft.com/fwlink/p/?linkid=833406)
-## [System managed reference](https://go.microsoft.com/fwlink/p/?linkid=833407)
-## [PowerShell reference](https://go.microsoft.com/fwlink/p/?linkid=833408)
-## [REST API reference](https://go.microsoft.com/fwlink/p/?LinkID=532910)
-## [Java API Reference](https://go.microsoft.com/fwlink/p/?linkid=833410)
-## [Sample code](http://aka.ms/servicefabricsamples)
+# 參考
+## [術語](service-fabric-technical-overview.md)
+## [Reliable Actors](https://go.microsoft.com/fwlink/p/?linkid=833398)
+## [Reliable Actors WCF](https://go.microsoft.com/fwlink/p/?linkid=833401)
+## [Reliable Services](https://go.microsoft.com/fwlink/p/?linkid=833402)
+## [Reliable Services WCF](https://go.microsoft.com/fwlink/p/?linkid=833403)
+## [資料](https://go.microsoft.com/fwlink/p/?linkid=833404)
+## [資料介面](https://go.microsoft.com/fwlink/p/?linkid=833406)
+## [系統](https://go.microsoft.com/fwlink/p/?linkid=833407)
+## [PowerShell](https://go.microsoft.com/fwlink/p/?linkid=833408)
+## [REST API](https://go.microsoft.com/fwlink/p/?LinkID=532910)
+## [Java API](https://go.microsoft.com/fwlink/p/?linkid=833410)
+## [範例程式碼](http://aka.ms/servicefabricsamples)
+
+# 資源
+## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/service-fabric/)
+## [服務更新](https://azure.microsoft.com/updates/?product=service-fabric&updatetype=&platform=)
+## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/home?forum=AzureServiceFabric)
+
+
+<!--HONumber=Nov16_HO2-->
+
+

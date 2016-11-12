@@ -1,50 +1,54 @@
 # Overview
-##[Why use Redis cache](https://azure.microsoft.com/services/cache/)
-##[Pricing](https://azure.microsoft.com/pricing/details/cache/)
-##[Redis Cache FAQ](cache-faq.md)
-##[Explore premium tier features](cache-premium-tier-intro.md)
-# Get started
+##[為何使用 Redis 快取](https://azure.microsoft.com/services/cache/)
+##[價格](https://azure.microsoft.com/pricing/details/cache/)
+##[Redis 快取常見問題集](cache-faq.md)
+##[探索進階層功能](cache-premium-tier-intro.md)
+# 開始使用
 ##[ASP.NET](cache-web-app-howto.md)
 ##[.NET](cache-dotnet-how-to-use-azure-redis-cache.md)
 ##[WordPress](../app-service-web/web-sites-connect-to-redis-using-memcache-protocol.md?toc=%2fazure%2fredis-cache%2ftoc.json)
 ##[Node](cache-nodejs-get-started.md)
 ##[Java](cache-java-get-started.md)
 ##[Python](cache-python-get-started.md)
-# How to
-## Plan
-###[Choose a cache tier](cache-faq.md#what-redis-cache-offering-and-size-should-i-use)
-###[Persist your cache with Redis data persistence](cache-how-to-premium-persistence.md)
-###[Secure your cache with a virtual network](cache-how-to-premium-vnet.md)
-###[Distribute your cache with clustering](cache-how-to-premium-clustering.md)
-## Common scenarios
-###[Access items in a cache](cache-dotnet-how-to-use-azure-redis-cache.md#add-and-retrieve-objects-from-the-cache)
-###[Configure high availability](https://azure.microsoft.com/pricing/details/cache/)
-###[Connect securely using SSL](cache-dotnet-how-to-use-azure-redis-cache.md#connect-to-the-cache)
-###[Migrate from Managed Cache Service](cache-migrate-to-redis.md)
-###[Patterns & Practices Caching guidance](../best-practices-caching.md?toc=%2fazure%2fredis-cache%2ftoc.json)
-## Automate
-###[Deploy and manage using Powershell](cache-howto-manage-redis-cache-powershell.md)
-###[Deploy and Manage using Azure CLI](cache-manage-cli.md)
-###[Provision a Redis Cache](cache-redis-cache-arm-provision.md)
-###[Provision a Web App with Redis Cache](cache-web-app-arm-with-redis-cache-provision.md)
-## ASP.NET integration
-###[Session state provider](cache-aspnet-session-state-provider.md)
-###[Output cache provider](cache-aspnet-output-cache-provider.md)
-## Manage
-###[Configure in the portal](cache-configure.md)
-###[Import/Export data](cache-how-to-import-export-data.md)
-###[Reboot](cache-administration.md#reboot)
-###[Schedule updates](cache-administration.md#schedule-updates
-## Monitor and troubleshoot
-###[Monitor in the portal](cache-how-to-monitor.md)
-###[Troubleshoot cache issues](cache-how-to-troubleshoot.md)
-###[Set alerts for exceptions](cache-how-to-monitor.md#operations-and-alerts)
-## Scale
-###[Update to a different size and tier](cache-how-to-scale.md)
-###[Use Redis cluster to scale in/out](cache-how-to-premium-clustering.md)
-#Reference
-## [PowerShell cmdlet reference](https://msdn.microsoft.com/en-us/library/azure/mt634513.aspx)
-## [Redis clients](http://redis.io/clients)
-## [Redis commands](http://redis.io/commands#)
-#Resources
-## [Redis cache samples](cache-redis-samples.md)
+# 作法
+## 規劃
+###[選擇快取層](cache-faq.md#what-redis-cache-offering-and-size-should-i-use)
+###[利用 Redis 資料永續性來留存您的快取](cache-how-to-premium-persistence.md)
+###[使用虛擬網路保護快取](cache-how-to-premium-vnet.md)
+###[利用叢集來散發您的快取](cache-how-to-premium-clustering.md)
+## 常見案例
+###[存取快取中的項目](cache-dotnet-how-to-use-azure-redis-cache.md#add-and-retrieve-objects-from-the-cache)
+###[設定高可用性](https://azure.microsoft.com/pricing/details/cache/)
+###[使用 SSL 安全連線](cache-dotnet-how-to-use-azure-redis-cache.md#connect-to-the-cache)
+###[從受管理的快取服務遷移](cache-migrate-to-redis.md)
+###[模式與作法快取指導方針](../best-practices-caching.md?toc=%2fazure%2fredis-cache%2ftoc.json)
+## 自動化
+###[使用 Powershell 進行部署和管理](cache-howto-manage-redis-cache-powershell.md)
+###[使用 Azure CLI 進行部署和管理](cache-manage-cli.md)
+###[佈建 Redis 快取](cache-redis-cache-arm-provision.md)
+###[佈建 Web 應用程式和 Redis 快取](cache-web-app-arm-with-redis-cache-provision.md)
+## ASP.NET 整合
+###[工作階段狀態提供者](cache-aspnet-session-state-provider.md)
+###[輸出快取提供者](cache-aspnet-output-cache-provider.md)
+## 管理
+###[在入口網站中設定](cache-configure.md)
+###[匯入/匯出資料](cache-how-to-import-export-data.md)
+###[重新啟動](cache-administration.md#reboot)
+###[排程更新](cache-administration.md#schedule-updates
+## 監視及疑難排解
+###[在入口網站中監視](cache-how-to-monitor.md)
+###[快取問題進行疑難排解](cache-how-to-troubleshoot.md)
+###[為例外狀況設定警示](cache-how-to-monitor.md#operations-and-alerts)
+## 調整
+###[更新至不同的大小與階層](cache-how-to-scale.md)
+###[使用 Redis 叢集進行相應縮小/放大](cache-how-to-premium-clustering.md)
+#參考
+## [PowerShell Cmdlet 參考](https://msdn.microsoft.com/en-us/library/azure/mt634513.aspx)
+## [Redis 用戶端](http://redis.io/clients)
+## [Redis 命令](http://redis.io/commands#)
+#資源
+## [Redis 快取範例](cache-redis-samples.md)
+
+<!--HONumber=Nov16_HO2-->
+
+

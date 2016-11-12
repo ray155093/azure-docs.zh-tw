@@ -1,77 +1,81 @@
 # Overview
-## [Logic App overview](../app-service-logic/app-service-logic-what-are-logic-apps.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-## [Connectors list](../connectors/apis-list.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-## [Enterprise Integration Pack](../app-service-logic/app-service-logic-enterprise-integration-overview.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+## [邏輯應用程式概觀](../app-service-logic/app-service-logic-what-are-logic-apps.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+## [連接器清單](../connectors/apis-list.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+## [企業整合套件](../app-service-logic/app-service-logic-enterprise-integration-overview.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 
-# Get started
-## [Create a logic app](../app-service-logic/app-service-logic-create-a-logic-app.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-## [Use logic app features](../app-service-logic/app-service-logic-use-logic-app-features.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-## [Templates Overview](../app-service-logic/app-service-logic-use-logic-app-templates.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-## [Create a custom template](../app-service-logic/app-service-logic-arm-provision.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-## [Examples and scenarios](../app-service-logic/app-service-logic-examples-and-scenarios.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-## [Service Bus scenario](../app-service-logic/app-service-logic-scenario-function-sb-trigger.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-## [B2B processing](../app-service-logic/app-service-logic-enterprise-integration-b2b.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-## [XML processing](../app-service-logic/app-service-logic-enterprise-integration-xml.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+# 開始使用
+## [建立邏輯應用程式](../app-service-logic/app-service-logic-create-a-logic-app.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+## [使用邏輯應用程式功能](../app-service-logic/app-service-logic-use-logic-app-features.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+## [範本概觀](../app-service-logic/app-service-logic-use-logic-app-templates.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+## [建立自訂範本](../app-service-logic/app-service-logic-arm-provision.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+## [範例和案例](../app-service-logic/app-service-logic-examples-and-scenarios.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+## [服務匯流排案例](../app-service-logic/app-service-logic-scenario-function-sb-trigger.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+## [B2B 處理](../app-service-logic/app-service-logic-enterprise-integration-b2b.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+## [XML 處理](../app-service-logic/app-service-logic-enterprise-integration-xml.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 
-# How To
-## Build
-### [Create a connector](../app-service-logic/app-service-logic-create-api-app.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [Visual Studio tools](../app-service-logic/app-service-logic-deploy-from-vs.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [Using Azure functions](../app-service-logic/app-service-logic-azure-functions.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [Logic apps as callable endpoints](../app-service-logic/app-service-logic-http-endpoint.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [Using your custom API](../app-service-logic/app-service-logic-custom-hosted-api.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [Exception handling](../app-service-logic/app-service-logic-exception-handling.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [Exception handling scenario](../app-service-logic/app-service-logic-scenario-error-and-exception-handling.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [Handling content types](../app-service-logic/app-service-logic-content-type.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [Workflow definition](../app-service-logic/app-service-logic-author-definitions.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [Troubleshooting tips](../app-service-logic/app-service-logic-diagnosing-failures.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [Limits and config](../app-service-logic/app-service-logic-limits-and-config.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+# 作法：
+## 建置
+### [建立連接器](../app-service-logic/app-service-logic-create-api-app.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [Visual Studio 工具](../app-service-logic/app-service-logic-deploy-from-vs.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [使用 Azure Functions](../app-service-logic/app-service-logic-azure-functions.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [做為可呼叫端點的邏輯應用程式](../app-service-logic/app-service-logic-http-endpoint.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [使用您的自訂 API](../app-service-logic/app-service-logic-custom-hosted-api.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [例外狀況處理](../app-service-logic/app-service-logic-exception-handling.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [例外狀況處理案例](../app-service-logic/app-service-logic-scenario-error-and-exception-handling.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [處理內容類型](../app-service-logic/app-service-logic-content-type.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [工作流程定義](../app-service-logic/app-service-logic-author-definitions.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [疑難排解秘訣](../app-service-logic/app-service-logic-diagnosing-failures.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [限制和設定](../app-service-logic/app-service-logic-limits-and-config.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 
-## Enterprise Integration Pack (EIP)
-### [Enterprise Integration Pack](../app-service-logic/app-service-logic-enterprise-integration-overview.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [Integration accounts overview](../app-service-logic/app-service-logic-enterprise-integration-create-integration-account.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [Agreements](../app-service-logic/app-service-logic-enterprise-integration-agreements.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [B2B processing](../app-service-logic/app-service-logic-enterprise-integration-b2b.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [XML processing](../app-service-logic/app-service-logic-enterprise-integration-xml.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [Flat file processing](../app-service-logic/app-service-logic-enterprise-integration-flatfile.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [Add XSLT maps](../app-service-logic/app-service-logic-enterprise-integration-maps.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [Transform XML](../app-service-logic/app-service-logic-enterprise-integration-transform.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [Validate XML](../app-service-logic/app-service-logic-enterprise-integration-xml-validation.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [Using certificates](../app-service-logic/app-service-logic-enterprise-integration-certificates.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [Add partners](../app-service-logic/app-service-logic-enterprise-integration-partners.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [Add schemas](../app-service-logic/app-service-logic-enterprise-integration-schemas.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [AS2 integration](../app-service-logic/app-service-logic-enterprise-integration-as2.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [AS2 encoding](../app-service-logic/app-service-logic-enterprise-integration-as2-encode.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [AS2 decoding](../app-service-logic/app-service-logic-enterprise-integration-as2-decode.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [EDIFACT integration](../app-service-logic/app-service-logic-enterprise-integration-edifact.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [EDIFACT encoding](../app-service-logic/app-service-logic-enterprise-integration-edifact-encode.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [EDIFACT decoding](../app-service-logic/app-service-logic-enterprise-integration-edifact-decode.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [X12 integration](../app-service-logic/app-service-logic-enterprise-integration-x12.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [X12 encoding](../app-service-logic/app-service-logic-enterprise-integration-x12-encode.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [X12 decoding](../app-service-logic/app-service-logic-enterprise-integration-x12-decode.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [Track B2B](../app-service-logic/app-service-logic-track-b2b-message.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [AS2 tracking schemas](../app-service-logic/app-service-logic-track-integration-account-as2-tracking-shemas.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [X12 tracking schemas](../app-service-logic/app-service-logic-track-integration-account-x12-tracking-shemas.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [Custom tracking schema](../app-service-logic/app-service-logic-track-integration-account-custom-tracking-shema.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+## 企業整合套件 (EIP)
+### [企業整合套件](../app-service-logic/app-service-logic-enterprise-integration-overview.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [整合帳戶概觀](../app-service-logic/app-service-logic-enterprise-integration-create-integration-account.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [合約](../app-service-logic/app-service-logic-enterprise-integration-agreements.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [B2B 處理](../app-service-logic/app-service-logic-enterprise-integration-b2b.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [XML 處理](../app-service-logic/app-service-logic-enterprise-integration-xml.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [一般檔案處理](../app-service-logic/app-service-logic-enterprise-integration-flatfile.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [新增 XSLT 對應](../app-service-logic/app-service-logic-enterprise-integration-maps.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [轉換 XML](../app-service-logic/app-service-logic-enterprise-integration-transform.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [驗證 XML](../app-service-logic/app-service-logic-enterprise-integration-xml-validation.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [使用憑證](../app-service-logic/app-service-logic-enterprise-integration-certificates.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [新增合作夥伴](../app-service-logic/app-service-logic-enterprise-integration-partners.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [新增結構描述](../app-service-logic/app-service-logic-enterprise-integration-schemas.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [AS2 整合](../app-service-logic/app-service-logic-enterprise-integration-as2.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [AS2 編碼](../app-service-logic/app-service-logic-enterprise-integration-as2-encode.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [AS2 解碼](../app-service-logic/app-service-logic-enterprise-integration-as2-decode.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [EDIFACT 整合](../app-service-logic/app-service-logic-enterprise-integration-edifact.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [EDIFACT 編碼](../app-service-logic/app-service-logic-enterprise-integration-edifact-encode.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [EDIFACT 解碼](../app-service-logic/app-service-logic-enterprise-integration-edifact-decode.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [X12 整合](../app-service-logic/app-service-logic-enterprise-integration-x12.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [X12 編碼](../app-service-logic/app-service-logic-enterprise-integration-x12-encode.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [X12 解碼](../app-service-logic/app-service-logic-enterprise-integration-x12-decode.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [追蹤 B2B](../app-service-logic/app-service-logic-track-b2b-message.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [AS2 追蹤結構描述](../app-service-logic/app-service-logic-track-integration-account-as2-tracking-shemas.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [X12 追蹤結構描述](../app-service-logic/app-service-logic-track-integration-account-x12-tracking-shemas.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [自訂追蹤結構描述](../app-service-logic/app-service-logic-track-integration-account-custom-tracking-shema.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 
-## Gateway
-### [Connect on-premises](../app-service-logic/app-service-logic-gateway-connection.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [Install](../app-service-logic/app-service-logic-gateway-install.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+## 閘道器
+### [連接內部部署](../app-service-logic/app-service-logic-gateway-connection.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [安裝](../app-service-logic/app-service-logic-gateway-install.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 
-## Publish
-### [Automation template](../app-service-logic/app-service-logic-create-deploy-template.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [Publish from VS](../app-service-logic/app-service-logic-deploy-from-vs.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+## 發佈
+### [自動化範本](../app-service-logic/app-service-logic-create-deploy-template.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [從 VS 發佈](../app-service-logic/app-service-logic-deploy-from-vs.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 
-## Manage
-### [Monitor logic apps](../app-service-logic/app-service-logic-monitor-your-logic-apps.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [Integration accounts](../app-service-logic/app-service-logic-enterprise-integration-accounts.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [Pricing](../app-service-logic/app-service-logic-pricing.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+## 管理
+### [監視邏輯應用程式](../app-service-logic/app-service-logic-monitor-your-logic-apps.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [整合帳戶](../app-service-logic/app-service-logic-enterprise-integration-accounts.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [價格](../app-service-logic/app-service-logic-pricing.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 
-# Reference
-## Schema History
+# 參考
+## 結構描述歷程記錄
 ### [GA](../app-service-logic/app-service-logic-schema-2016-04-01.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [Preview](../app-service-logic/app-service-logic-schema-2015-08-01.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [預覽](../app-service-logic/app-service-logic-schema-2015-08-01.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 
-## 2014 schema (before GA)
-### [Azure Resource connector](../app-service-logic/app-service-logic-connector-azure-resource.md?toc=%2fazure%2flogic-apps%2ftoc.json)
-### [File connector](../app-service-logic/app-service-logic-connector-file.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+## 2014 結構描述 (在 GA 之前)
+### [Azure 資源連接器](../app-service-logic/app-service-logic-connector-azure-resource.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+### [檔案連接器](../app-service-logic/app-service-logic-connector-file.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+
+<!--HONumber=Nov16_HO2-->
+
+

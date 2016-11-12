@@ -1,62 +1,66 @@
 # Overview
-## [About VPN Gateway](vpn-gateway-about-vpngateways.md)
-## [VPN Gateway FAQ](vpn-gateway-vpn-faq.md)
-## [Pricing](https://azure.microsoft.com/pricing/details/vpn-gateway)
+## [關於 VPN 閘道](vpn-gateway-about-vpngateways.md)
+## [VPN 閘道常見問題集](vpn-gateway-vpn-faq.md)
+## [價格](https://azure.microsoft.com/pricing/details/vpn-gateway)
 ## [SLA](https://azure.microsoft.com/support/legal/sla)
-## [Subscription and Service Limits](../azure-subscription-service-limits.md)
-# Get Started
-## [Planning and design for VPN Gateway](vpn-gateway-plan-design.md)
-## [About VPN Gateway settings](vpn-gateway-about-vpn-gateway-settings.md)
-## [About VPN devices for Site-to-Site VPN Gateway connections](vpn-gateway-about-vpn-devices.md)
-## [About BGP and VPN Gateway](vpn-gateway-bgp-overview.md)
-## [About highly available connections](vpn-gateway-highlyavailable.md)
-# How To
-## Site-to-Site
-### [Configure a Site-to-Site connection using the Azure portal](vpn-gateway-howto-site-to-site-resource-manager-portal.md)
-### [Configure a Site-to-Site connection using PowerShell](vpn-gateway-create-site-to-site-rm-powershell.md)
-### [Configure a Site-to-Site connection using the Azure classic portal (Classic)](vpn-gateway-site-to-site-create.md)
-## Point-to-Site
-### [Configure a Point-to-Site connection to a VNet using the Azure portal](vpn-gateway-howto-point-to-site-resource-manager-portal.md)
-### [Configure a Point-to-Site connection to a VNet using PowerShell](vpn-gateway-howto-point-to-site-rm-ps.md)
-### [Configure a Point-to-Site connection to a VNet using the Azure portal (Classic)](vpn-gateway-howto-point-to-site-classic-azure-portal.md)
-### [Configure a Point-to-Site connection to a VNet using the classic portal (Classic)](vpn-gateway-point-to-site-create.md)
-## VNet-to-VNet
-### [Configure a VNet-to-VNet connection using the Azure portal](vpn-gateway-howto-vnet-vnet-resource-manager-portal.md)
-### [Configure a VNet-to-VNet connection using PowerShell](vpn-gateway-vnet-vnet-rm-ps.md)
-### [Configure a VNet-to-VNet connection (Classic)](virtual-networks-configure-vnet-to-vnet-connection.md)
-## VNet-to-VNet connections between the Resource Manager and classic deployment models
-### [Connect virtual networks from different deployment models in the portal](vpn-gateway-connect-different-deployment-models-portal.md)
-### [Connect virtual networks from different deployment models using PowerShell](vpn-gateway-connect-different-deployment-models-powershell.md)
-## Site-to-Site and ExpressRoute coexisting connections
-### [Create Site-to-Site and ExpressRoute coexisting connections](../expressroute/expressroute-howto-coexist-resource-manager.md?toc=%2fazure%2fvpn-gateway%2ftoc.json)
-### [Create Site-to-Site and ExpressRoute coexisting connections (Classic)](../expressroute/expressroute-howto-coexist-classic.md?toc=%2fazure%2fvpn-gateway%2ftoc.json)
-## Forced tunneling
-### [Configure forced tunneling](vpn-gateway-forced-tunneling-rm.md)
-### [Configure forced tunneling (Classic)](vpn-gateway-about-forced-tunneling.md)
-## Multiple Site-to-Site connections
-### [Add multiple Site-to-Site connections to a VPN gateway](vpn-gateway-howto-multi-site-to-site-resource-manager-portal.md)
-### [Add multiple Site-to-Site connections to a VPN gateway (Classic)](vpn-gateway-multi-site.md)
-## [Configure BGP for Azure VPN Gateways using PowerShell](vpn-gateway-bgp-resource-manager-ps.md)
-## [Configure highly available active-active connections](vpn-gateway-activeactive-rm-powershell.md)
-## [Modify local network gateway settings using PowerShell](vpn-gateway-modify-local-network-gateway.md)
-## [Verify a gateway connection](vpn-gateway-verify-connection-resource-manager.md)
-## [Reset an Azure VPN Gateway using PowerShell](vpn-gateway-resetgw-classic.md)
-## [How to work with self-signed certificates for Point-to-Site connections](vpn-gateway-certificates-point-to-site.md)
-## [Configure a VPN gateway (Classic)](vpn-gateway-configure-vpn-gateway-mp.md)
-# Reference
-## REST APIs
-### [REST API Reference (Resource Manager)](https://msdn.microsoft.com/library/mt163859)
-### [REST API Reference (Classic)](https://msdn.microsoft.com/library/jj154113)
-## PowerShell cmdlets
-### [PowerShell cmdlets (Resource Manager)](https://msdn.microsoft.com/library/mt163510(v=azure.300))
-### [PowerShell cmdlets (Classic)](https://msdn.microsoft.com/library/mt270335(v=azure.300))
-# Related 
-## [Virtual Machines](https://azure.microsoft.com/documentation/services/virtual-machines) 
-## [Application Gateway](https://azure.microsoft.com/documentation/services/application-gateway)
+## [訂用帳戶與服務限制](../azure-subscription-service-limits.md)
+# 開始使用
+## [規劃與設計 VPN 閘道](vpn-gateway-plan-design.md)
+## [關於 VPN 閘道設定](vpn-gateway-about-vpn-gateway-settings.md)
+## [關於站對站 VPN 閘道連線的 VPN 裝置](vpn-gateway-about-vpn-devices.md)
+## [關於 BGP 和 VPN 閘道](vpn-gateway-bgp-overview.md)
+## [關於高可用性連線](vpn-gateway-highlyavailable.md)
+# 作法：
+## 網站間
+### [使用 Azure 入口網站設定站對站連線](vpn-gateway-howto-site-to-site-resource-manager-portal.md)
+### [使用 PowerShell 設定站對站連線](vpn-gateway-create-site-to-site-rm-powershell.md)
+### [使用 Azure 傳統入口網站設定站對站連線 (傳統)](vpn-gateway-site-to-site-create.md)
+## 點對站
+### [使用 Azure 入口網站設定 VNet 的點對站連線](vpn-gateway-howto-point-to-site-resource-manager-portal.md)
+### [使用 PowerShell 設定 VNet 的點對站連線](vpn-gateway-howto-point-to-site-rm-ps.md)
+### [使用 Azure 入口網站設定 VNet 的點對站連線 (傳統)](vpn-gateway-howto-point-to-site-classic-azure-portal.md)
+### [使用傳統入口網站設定 VNet 的點對站連線 (傳統)](vpn-gateway-point-to-site-create.md)
+## VNet 對 VNet
+### [使用 Azure 入口網站設定 VNet 對 VNet 連接](vpn-gateway-howto-vnet-vnet-resource-manager-portal.md)
+### [使用 PowerShell 設定 VNet 對 VNet 連接](vpn-gateway-vnet-vnet-rm-ps.md)
+### [設定 VNet 對 VNet 連接 (傳統)](virtual-networks-configure-vnet-to-vnet-connection.md)
+## Resource Manager 與傳統部署模型之間的 VNet 至 VNet 連線
+### [在入口網站中從不同的部署模型連接虛擬網路](vpn-gateway-connect-different-deployment-models-portal.md)
+### [使用 PowerShell 從不同的部署模型連接虛擬網路](vpn-gateway-connect-different-deployment-models-powershell.md)
+## 站對站及 ExpressRoute 並存連線
+### [建立站對站及 ExpressRoute 並存連線](../expressroute/expressroute-howto-coexist-resource-manager.md?toc=%2fazure%2fvpn-gateway%2ftoc.json)
+### [建立站對站及 ExpressRoute 並存連線 (傳統)](../expressroute/expressroute-howto-coexist-classic.md?toc=%2fazure%2fvpn-gateway%2ftoc.json)
+## 強制通道
+### [設定強制通道](vpn-gateway-forced-tunneling-rm.md)
+### [設定強制通道 (傳統)](vpn-gateway-about-forced-tunneling.md)
+## 多個站對站連接
+### [將多個站對站連線新增至 VPN 閘道](vpn-gateway-howto-multi-site-to-site-resource-manager-portal.md)
+### [將多個站對站連線新增至 VPN 閘道 (傳統)](vpn-gateway-multi-site.md)
+## [用 PowerShell 設定 Azure VPN 閘道 BGP](vpn-gateway-bgp-resource-manager-ps.md)
+## [設定高可用性的主動-主動連線](vpn-gateway-activeactive-rm-powershell.md)
+## [使用 PowerShell 修改區域網路閘道設定](vpn-gateway-modify-local-network-gateway.md)
+## [驗證閘道連線](vpn-gateway-verify-connection-resource-manager.md)
+## [使用 PowerShell 重設 Azure VPN 閘道](vpn-gateway-resetgw-classic.md)
+## [如何使用點對站連線的自我簽署憑證](vpn-gateway-certificates-point-to-site.md)
+## [設定 VPN 閘道 (傳統)](vpn-gateway-configure-vpn-gateway-mp.md)
+# 參考
+## REST API
+### [REST API 參考 (Resource Manager)](https://msdn.microsoft.com/library/mt163859)
+### [REST API 參考 (傳統)](https://msdn.microsoft.com/library/jj154113)
+## PowerShell Cmdlet
+### [PowerShell Cmdlet (Resource Manager)](https://msdn.microsoft.com/library/mt163510(v=azure.300))
+### [PowerShell Cmdlet (傳統)](https://msdn.microsoft.com/library/mt270335(v=azure.300))
+# 相關參考 
+## [虛擬機器](https://azure.microsoft.com/documentation/services/virtual-machines) 
+## [應用程式閘道](https://azure.microsoft.com/documentation/services/application-gateway)
 ## [Azure DNS](https://azure.microsoft.com/documentation/services/dns)
-## [Traffic Manager](https://azure.microsoft.com/documentation/services/traffic-manager)
-## [Load Balancer](https://azure.microsoft.com/documentation/services/load-balancer)
-## [VPN Gateway](https://azure.microsoft.com/documentation/services/vpn-gateway)
+## [流量管理員](https://azure.microsoft.com/documentation/services/traffic-manager)
+## [負載平衡器](https://azure.microsoft.com/documentation/services/load-balancer)
+## [VPN 閘道](https://azure.microsoft.com/documentation/services/vpn-gateway)
 ## [ExpressRoute](https://azure.microsoft.com/documentation/services/expressroute) 
-# Resources
-## [Networking Blog](https://azure.microsoft.com/blog/topics/networking)
+# 資源
+## [網路部落格](https://azure.microsoft.com/blog/topics/networking)
+
+<!--HONumber=Nov16_HO2-->
+
+
