@@ -1,13 +1,13 @@
 ---
-title: Sending push notifications to Android with Azure Notification Hubs | Microsoft Docs
-description: In this tutorial, you learn how to use Azure Notification Hubs to push notifications to Android devices.
+title: "使用 Azure 通知中樞將推播通知傳送至 Android | Microsoft Docs"
+description: "在本教學課程中，您會了解如何使用 Azure 通知中樞，推播通知到 Android 裝置。"
 services: notification-hubs
 documentationcenter: android
-keywords: push notifications,push notification,android push notification
+keywords: "推播通知,推播通知,android 推播通知"
 author: ysxu
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 8268c6ef-af63-433c-b14e-a20b04a0342a
 ms.service: notification-hubs
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-android
@@ -15,65 +15,69 @@ ms.devlang: java
 ms.topic: hero-article
 ms.date: 07/05/2016
 ms.author: yuaxu
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: f9ce6c56598e2318821c2e81a1bab1b876d6a866
+
 
 ---
-# <a name="sending-push-notifications-to-android-with-azure-notification-hubs"></a>Sending push notifications to Android with Azure Notification Hubs
+# <a name="sending-push-notifications-to-android-with-azure-notification-hubs"></a>使用 Azure 通知中樞將推播通知傳送至 Android
 [!INCLUDE [notification-hubs-selector-get-started](../../includes/notification-hubs-selector-get-started.md)]
 
-## <a name="overview"></a>Overview
+## <a name="overview"></a>概觀
 > [!IMPORTANT]
-> This topic demonstrates push notifications with Google Cloud Messaging (GCM). If you are using Google's Firebase Cloud Messaging (FCM), see [Sending push notifications to Android with Azure Notification Hubs and FCM](notification-hubs-android-push-notification-google-fcm-get-started.md).
+> 本主題示範使用 Google 雲端通訊 (GCM) 的推播通知。 如果您是使用 Google 的 Firebase 雲端通訊 (FCM)，請參閱 [使用 Azure 通知中樞和 FCM 將推播通知傳送至 Android](notification-hubs-android-push-notification-google-fcm-get-started.md)。
 > 
 > 
 
-This tutorial shows you how to use Azure Notification Hubs to send push notifications to an Android application.
-You'll create a blank Android app that receives push notifications by using Google Cloud Messaging (GCM).
+本教學課程說明如何使用 Azure 通知中樞傳送推播通知到 Android 應用程式。
+您將建立可使用 Google Cloud Messaging (GCM) 接收推播通知的空白 Android app。
 
 [!INCLUDE [notification-hubs-hero-slug](../../includes/notification-hubs-hero-slug.md)]
 
-The completed code for this tutorial can be downloaded from GitHub [here](https://github.com/Azure/azure-notificationhubs-samples/tree/master/Android/GetStarted).
+您可以從 [此處](https://github.com/Azure/azure-notificationhubs-samples/tree/master/Android/GetStarted)的 GitHub 下載本教學課程的完整程式碼。
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>必要條件
 > [!IMPORTANT]
-> To complete this tutorial, you must have an active Azure account. If you don't have an account, you can create a free trial account in just a couple of minutes. For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A643EE910&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fnotification-hubs-android-get-started).
+> 若要完成此教學課程，您必須具備有效的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資料，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A643EE910&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fnotification-hubs-android-get-started)。
 > 
 > 
 
-In addition to an active Azure account mentioned above, this tutorial only requires the latest version of [Android Studio](http://go.microsoft.com/fwlink/?LinkId=389797).
+除了上述的作用中 Azure 帳戶，本教學課程只需要最新版的 [Android Studio](http://go.microsoft.com/fwlink/?LinkId=389797)。
 
-Completing this tutorial is a prerequisite for all other Notification Hubs tutorials for Android apps.
+完成本教學課程是 Android app 所有其他通知中樞教學課程的先決條件。
 
-## <a name="creating-a-project-that-supports-google-cloud-messaging"></a>Creating a project that supports Google Cloud Messaging
+## <a name="creating-a-project-that-supports-google-cloud-messaging"></a>建立支援 Google 雲端通訊的專案
 [!INCLUDE [mobile-services-enable-Google-cloud-messaging](../../includes/mobile-services-enable-google-cloud-messaging.md)]
 
-## <a name="configure-a-new-notification-hub"></a>Configure a new notification hub
+## <a name="configure-a-new-notification-hub"></a>設定新的通知中樞
 [!INCLUDE [notification-hubs-portal-create-new-hub](../../includes/notification-hubs-portal-create-new-hub.md)]
 
-&emsp;&emsp;6.   In the **Settings** blade, select **Notification Services** and then **Google (GCM)**. Enter the API key and click **Save**.
+&emsp;&emsp;6. 在 [設定] 刀鋒視窗中，選取 [通知服務]，然後選取 [Google (GCM)]。 輸入 API 金鑰，然後按一下 [儲存]。
 
-&emsp;&emsp;![Azure Notification Hubs - Google (GCM)](./media/notification-hubs-android-get-started/notification-hubs-gcm-api.png)
+&emsp;&emsp;![Azure 通知中樞 - Google (GCM)](./media/notification-hubs-android-get-started/notification-hubs-gcm-api.png)
 
-Your notification hub is now configured to work with GCM, and you have the connection strings to both register your app to receive and send push notifications.
+現在已將您的通知中樞設定成使用 GCM，而且您已擁有可用來註冊應用程式以接收和傳送推播通知的連接字串。
 
-## <a name="<a-id="connecting-app"></a>connect-your-app-to-the-notification-hub"></a><a id="connecting-app"></a>Connect your app to the notification hub
-### <a name="create-a-new-android-project"></a>Create a new Android project
-1. In Android Studio, start a new Android Studio project.
+## <a name="a-idconnectingappaconnect-your-app-to-the-notification-hub"></a><a id="connecting-app"></a>將您的應用程式連接到通知中樞
+### <a name="create-a-new-android-project"></a>建立新的 Android 專案
+1. 在 Android Studio 中，啟動新的 Android Studio 專案。
    
-    ![Android Studio - new project][13]
-2. Choose the **Phone and Tablet** form factor and the **Minimum SDK** that you want to support. Then click **Next**.
+       ![Android Studio - new project][13]
+2. 選擇 [電話和平板電腦] 板型規格和您要支援的 [Minimum SDK]。 然後按 [下一步] 。
    
-    ![Android Studio - project creation workflow][14]
-3. Choose **Empty Activity** for the main activity, click **Next**, and then click **Finish**.
+       ![Android Studio - project creation workflow][14]
+3. 為主要活動選擇 [空白活動]，並按 [下一步]，然後按一下 [完成]。
 
-### <a name="add-google-play-services-to-the-project"></a>Add Google Play services to the project
+### <a name="add-google-play-services-to-the-project"></a>新增 Google Play 服務至專案
 [!INCLUDE [Add Play Services](../../includes/notification-hubs-android-studio-add-google-play-services.md)]
 
-### <a name="adding-azure-notification-hubs-libraries"></a>Adding Azure Notification Hubs libraries
-1. In the `Build.Gradle` file for the **app**, add the following lines in the **dependencies** section.
+### <a name="adding-azure-notification-hubs-libraries"></a>新增 Azure 通知中樞程式庫
+1. 在 **app** 的 `Build.Gradle` 檔案中，於 **dependencies** 區段中新增下列數行。
    
         compile 'com.microsoft.azure:notification-hubs-android-sdk:0.4@aar'
         compile 'com.microsoft.azure:azure-notifications-handler:1.0.1@aar'
-2. Add the following repository after the **dependencies** section.
+2. 加入下列儲存機制到 **dependencies** 一節之後。
    
         repositories {
             maven {
@@ -81,25 +85,25 @@ Your notification hub is now configured to work with GCM, and you have the conne
             }
         }
 
-### <a name="updating-the-androidmanifest.xml."></a>Updating the AndroidManifest.xml.
-1. To support GCM, we must implement a Instance ID listener service in our code which is used to [obtain registration tokens](https://developers.google.com/cloud-messaging/android/client#sample-register) using [Google's Instance ID API](https://developers.google.com/instance-id/). In this tutorial we will name the class `MyInstanceIDService`. 
+### <a name="updating-the-androidmanifestxml"></a>更新 AndroidManifest.xml。
+1. 若要支援 GCM，我們必須在程式碼中實作執行個體識別碼接聽程式服務，以便使用 [Google 的執行個體識別碼 API](https://developers.google.com/instance-id/) 來[取得註冊權杖](https://developers.google.com/cloud-messaging/android/client#sample-register)。 在本教學課程中，我們將此類別命名為 `MyInstanceIDService`。 
    
-    Add the following service definition to the AndroidManifest.xml file, inside the `<application>` tag. Replace the `<your package>` placeholder with the your actual package name shown at the top of the `AndroidManifest.xml` file.
+    將下列服務定義新增至 AndroidManifest.xml 檔案的 `<application>` 標籤內。 以 `AndroidManifest.xml` 檔案頂端顯示的實際封裝名稱取代 `<your package>` 預留位置。
    
         <service android:name="<your package>.MyInstanceIDService" android:exported="false">
             <intent-filter>
                 <action android:name="com.google.android.gms.iid.InstanceID"/>
             </intent-filter>
         </service>
-2. Once we have received our GCM registration token from the Instance ID API, we will use it to [register with the Azure Notification Hub](notification-hubs-push-notification-registration-management.md). We will support this registration in the background using an `IntentService` named `RegistrationIntentService`. This service will also be responsible for [refreshing our GCM registration token](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens).
+2. 一旦從執行個體識別碼 API 收到 GCM 註冊權杖，我們會將它用來 [向 Azure 通知中樞註冊](notification-hubs-push-notification-registration-management.md)。 我們將使用名為 `RegistrationIntentService` 的 `IntentService` 在背景支援此註冊。 此服務也會負責 [重新整理我們的 GCM 註冊權杖](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens)。
    
-    Add the following service definition to the AndroidManifest.xml file, inside the `<application>` tag. Replace the `<your package>` placeholder with the your actual package name shown at the top of the `AndroidManifest.xml` file. 
+    將下列服務定義新增至 AndroidManifest.xml 檔案的 `<application>` 標籤內。 以 `AndroidManifest.xml` 檔案頂端顯示的實際封裝名稱取代 `<your package>` 預留位置。 
    
         <service
             android:name="<your package>.RegistrationIntentService"
             android:exported="false">
         </service>
-3. We will also define a receiver to receive notifications. Add the following receiver definition to the AndroidManifest.xml file, inside the `<application>` tag. Replace the `<your package>` placeholder with the your actual package name shown at the top of the `AndroidManifest.xml` file.
+3. 我們也會定義要接收通知的接收者。 將下列接收者定義新增至 AndroidManifest.xml 檔案的 `<application>` 標籤內。 以 `AndroidManifest.xml` 檔案頂端顯示的實際封裝名稱取代 `<your package>` 預留位置。
    
         <receiver android:name="com.microsoft.windowsazure.notifications.NotificationsBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND">
@@ -108,9 +112,9 @@ Your notification hub is now configured to work with GCM, and you have the conne
                 <category android:name="<your package name>" />
             </intent-filter>
         </receiver>
-4. Add the following necessary GCM related permissions below the  `</application>` tag. Make sure to replace `<your package>` with the package name shown at the top of the `AndroidManifest.xml` file.
+4. 在 `</application>` 標籤下面新增下列必要的 GCM 相關權限。 請務必以 `AndroidManifest.xml` 檔案頂端顯示的封裝名稱取代 `<your package>`。
    
-    For more information on these permissions, see [Setup a GCM Client app for Android](https://developers.google.com/cloud-messaging/android/client#manifest).
+    如需這些權限的詳細資訊，請參閱 [設定適用於 Android 的 GCM 用戶端應用程式](https://developers.google.com/cloud-messaging/android/client#manifest)。
    
         <uses-permission android:name="android.permission.INTERNET"/>
         <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
@@ -120,18 +124,18 @@ Your notification hub is now configured to work with GCM, and you have the conne
         <permission android:name="<your package>.permission.C2D_MESSAGE" android:protectionLevel="signature" />
         <uses-permission android:name="<your package>.permission.C2D_MESSAGE"/>
 
-### <a name="adding-code"></a>Adding code
-1. In the Project View, expand **app** > **src** > **main** > **java**. Right-click your package folder under **java**, click **New**, and then click **Java Class**. Add a new class named `NotificationSettings`. 
+### <a name="adding-code"></a>加入程式碼
+1. 在 [專案檢視] 中，展開 [app] > [src] > [main] > [java]。 以滑鼠右鍵按一下 **java** 底下您的套件資料夾，並按一下 [新增]，然後按一下 [Java 類別]。 新增名為 `NotificationSettings` 的新類別。 
    
-    ![Android Studio - new Java class][6]
+    ![Android Studio - 新增 Java 類別][6]
    
-    Make sure to update the these three placeholders in the following code for the `NotificationSettings` class:
+    請務必在 `NotificationSettings` 類別的下列程式碼中更新這三個預留位置：
    
-   * **SenderId**: The project number you obtained earlier in the [Google Cloud Console](http://cloud.google.com/console).
-   * **HubListenConnectionString**: The **DefaultListenAccessSignature** connection string for your hub. You can copy that connection string by clicking **Access Policies** on the **Settings** blade of your hub on the [Azure Portal].
-   * **HubName**: Use the name of your notification hub that appears in the hub blade in the [Azure Portal].
+   * **SenderId**：您稍早在 [Google Cloud Console](http://cloud.google.com/console)中取得的專案編號。
+   * **HubListenConnectionString**：中樞的 **DefaultListenAccessSignature** 連接字串。 在 [Azure 入口網站]中，按一下中樞 [設定] 刀鋒視窗上的 [存取原則]，即可複製該連接字串。
+   * **HubName**︰使用出現在 [Azure 入口網站]中樞刀鋒視窗中的通知中樞名稱。
      
-     `NotificationSettings` code:
+     `NotificationSettings` 程式碼︰
      
        public class NotificationSettings {
      
@@ -139,9 +143,9 @@ Your notification hub is now configured to work with GCM, and you have the conne
            public static String HubName = "<Your HubName>";
            public static String HubListenConnectionString = "<Your default listen connection string>";
        }
-2. Using the steps above, add another new class named `MyInstanceIDService`. This will be our Instance ID listener service implementation.
+2. 使用上述步驟，加入另一個名為 `MyInstanceIDService`的新類別。 這會是我們的執行個體識別碼接聽程式服務實作。
    
-    The code for this class will call our `IntentService` to [refresh the GCM token](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens) in the background.
+    此類別的程式碼會呼叫 `IntentService` 以在背景 [重新整理 GCM 權杖](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens) 。
    
         import android.content.Intent;
         import android.util.Log;
@@ -162,9 +166,9 @@ Your notification hub is now configured to work with GCM, and you have the conne
         };
 
 
-1. Add another new class to your project named, `RegistrationIntentService`. This will be the implementation for our `IntentService` that will handle [refreshing the GCM token](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens) and [registering with the notification hub](notification-hubs-push-notification-registration-management.md).
+1. 將另一個新類別新增至名為 `RegistrationIntentService`的專案。 這會是我們的 `IntentService` 實作，以便處理[重新整理 GCM 權杖](https://developers.google.com/instance-id/guides/android-implementation#refresh_tokens)和[向通知中樞註冊](notification-hubs-push-notification-registration-management.md)。
    
-    Use the following code for this class.
+    針對此類別使用下列程式碼。
    
         import android.app.IntentService;
         import android.content.Intent;
@@ -187,7 +191,7 @@ Your notification hub is now configured to work with GCM, and you have the conne
             }
    
             @Override
-            protected void onHandleIntent(Intent intent) {      
+            protected void onHandleIntent(Intent intent) {        
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
                 String resultString = null;
                 String regID = null;
@@ -201,7 +205,7 @@ Your notification hub is now configured to work with GCM, and you have the conne
                     // Storing the registration id that indicates whether the generated token has been
                     // sent to your server. If it is not stored, send the token to your server,
                     // otherwise your server should have already received the token.
-                    if ((regID=sharedPreferences.getString("registrationID", null)) == null) {      
+                    if ((regID=sharedPreferences.getString("registrationID", null)) == null) {        
                         NotificationHub hub = new NotificationHub(NotificationSettings.HubName,
                                 NotificationSettings.HubListenConnectionString, this);
                         Log.i(TAG, "Attempting to register with NH using token : " + token);
@@ -213,7 +217,7 @@ Your notification hub is now configured to work with GCM, and you have the conne
                         // regID = hub.register(token, "tag1", "tag2").getRegistrationId();
    
                         resultString = "Registered Successfully - RegId : " + regID;
-                        Log.i(TAG, resultString);       
+                        Log.i(TAG, resultString);        
                         sharedPreferences.edit().putString("registrationID", regID ).apply();
                     } else {
                         resultString = "Previously Registered Successfully - RegId : " + regID;
@@ -230,7 +234,7 @@ Your notification hub is now configured to work with GCM, and you have the conne
                 }
             }
         }
-2. In your `MainActivity` class, add the following `import` statements above the class declaration.
+2. 在 `MainActivity` 類別中，在類別宣告上面新增下列 `import` 陳述式。
    
         import com.google.android.gms.common.ConnectionResult;
         import com.google.android.gms.common.GoogleApiAvailability;
@@ -239,13 +243,13 @@ Your notification hub is now configured to work with GCM, and you have the conne
         import android.util.Log;
         import android.widget.TextView;
         import android.widget.Toast;
-3. Add the following private members at the top of the class. We will use these [check the availability of Google Play Services as recommended by Google](https://developers.google.com/android/guides/setup#ensure_devices_have_the_google_play_services_apk).
+3. 在類別頂端新增下列 Private 成員。 我們將使用這些來 [檢查 Google 所建議的 Google Play 服務可用性](https://developers.google.com/android/guides/setup#ensure_devices_have_the_google_play_services_apk)。
    
         public static MainActivity mainActivity;
         public static Boolean isVisible = false;    
         private GoogleCloudMessaging gcm;
         private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
-4. In your `MainActivity` class, add the following method to the availability of Google Play Services. 
+4. 在 `MainActivity` 類別中，將下列方法新增至 Google Play 服務的可用性。 
    
         /**
          * Check the device to make sure it has the Google Play Services APK. If
@@ -268,7 +272,7 @@ Your notification hub is now configured to work with GCM, and you have the conne
             }
             return true;
         }
-5. In your `MainActivity` class, add the following code that will check for Google Play Services before calling your `IntentService` to get your GCM registration token and register with your notification hub.
+5. 在 `MainActivity` 類別中加入下列程式碼，以在呼叫 `IntentService` 之前檢查 Google Play 服務，進而取得 GCM 註冊權杖並向通知中樞註冊。
    
         public void registerWithNotificationHubs()
         {
@@ -280,7 +284,7 @@ Your notification hub is now configured to work with GCM, and you have the conne
                 startService(intent);
             }
         }
-6. In the `OnCreate` method of the `MainActivity` class, add the following code to start the registration process when activity is created.
+6. 在 `MainActivity` 類別的 `OnCreate` 方法中，加入下列程式碼以便在活動建立時開始註冊程序。
    
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -291,7 +295,7 @@ Your notification hub is now configured to work with GCM, and you have the conne
             NotificationsManager.handleNotifications(this, NotificationSettings.SenderId, MyHandler.class);
             registerWithNotificationHubs();
         }
-7. Add these additional methods to the `MainActivity` to verify app state and report status in your app.
+7. 將上述其他方法新增至 `MainActivity` ，以驗證應用程式狀態及報告您的應用程式狀態。
    
         @Override
         protected void onStart() {
@@ -327,11 +331,11 @@ Your notification hub is now configured to work with GCM, and you have the conne
                 }
             });
         }
-8. The `ToastNotify` method uses the *"Hello World"* `TextView` control to report status and notifications persistently in the app. In your activity_main.xml layout, add the following id for that control.
+8. `ToastNotify` 方法會使用 *"Hello World"* `TextView` 控制項持續在應用程式中報告狀態和通知。 在 activity_main.xml 配置中，為該控制項加入下列識別碼。
    
        android:id="@+id/text_hello"
-9. Next we will add a subclass for our receiver we defined in the AndroidManifest.xml. Add another new class to your project named `MyHandler`.
-10. Add the following import statements at the top of `MyHandler.java`:
+9. 接下來，我們將為在 AndroidManifest.xml 中定義的接收者加入一個子類別。 將另一個新類別新增至名為 `MyHandler`的專案。
+10. 在 `MyHandler.java` 頂端新增下列 import 陳述式：
     
         import android.app.NotificationManager;
         import android.app.PendingIntent;
@@ -340,9 +344,9 @@ Your notification hub is now configured to work with GCM, and you have the conne
         import android.os.Bundle;
         import android.support.v4.app.NotificationCompat;
         import com.microsoft.windowsazure.notifications.NotificationsHandler;
-11. Add the following code for the `MyHandler` class making it a subclass of `com.microsoft.windowsazure.notifications.NotificationsHandler`.
+11. 在 `MyHandler` 類別中新增下列程式碼，使其成為 `com.microsoft.windowsazure.notifications.NotificationsHandler` 的子類別。
     
-    This code overrides the `OnReceive` method, so the handler will report notifications that are received. The handler also sends the push notification to the Android notification manager by using the `sendNotification()` method. The `sendNotification()` method should be executed when the app is not running and a notification is received.
+    此程式碼會覆寫 `OnReceive` 方法，所以處理常式會報告所收到的通知。 處理常式也會使用 `sendNotification()` 方法，將推播通知傳送給 Android 通知管理員。 當應用程式不在執行中並收到通知時，應該執行 `sendNotification()` 方法。
     
         public class MyHandler extends NotificationsHandler {
             public static final int NOTIFICATION_ID = 1;
@@ -385,19 +389,19 @@ Your notification hub is now configured to work with GCM, and you have the conne
                 mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
             }
         }
-12. In Android Studio on the menu bar, click **Build** > **Rebuild Project** to make sure that no errors are present in your code.
+12. 在 Android Studio 的功能表列上，按一下 [建置] > [重新建置專案]，確保您的程式碼中未沒有任何錯誤。
 
-## <a name="sending-push-notifications"></a>Sending push notifications
-You can test receiving push notifications in your app by sending them via the [Azure Portal] - look for the **Troubleshooting** Section in the hub blade, as shown below.
+## <a name="sending-push-notifications"></a>傳送推播通知
+透過 [Azure 入口網站]傳送推播通知，即可在您的應用程式中測試接收推播通知 - 尋找中樞刀鋒視窗中的 [疑難排解] 區段。
 
-![Azure Notification Hubs - Test Send](./media/notification-hubs-android-get-started/notification-hubs-test-send.png)
+![Azure 通知中樞 - 測試傳送](./media/notification-hubs-android-get-started/notification-hubs-test-send.png)
 
 [!INCLUDE [notification-hubs-sending-notifications-from-the-portal](../../includes/notification-hubs-sending-notifications-from-the-portal.md)]
 
-## <a name="(optional)-send-push-notifications-directly-from-the-app"></a>(Optional) Send push notifications directly from the app
-Normally, you would send notifications using a backend server. For some cases, you might want to be able to send push notifications directly from the client application. This section explains how to send notifications from the client using the [Azure Notification Hub REST API](https://msdn.microsoft.com/library/azure/dn223264.aspx).
+## <a name="optional-send-push-notifications-directly-from-the-app"></a>(選擇性) 從應用程式直接傳送推播通知
+一般來說，您會使用後端伺服器傳送通知。 在某些情況下，您可能希望能夠直接從用戶端應用程式傳送推播通知。 本節說明如何使用 [Azure 通知中樞 REST API](https://msdn.microsoft.com/library/azure/dn223264.aspx)從用戶端傳送通知。
 
-1. In Android Studio Project View, expand **App** > **src** > **main** > **res** > **layout**. Open the `activity_main.xml` layout file and click the **Text** tab to update the text contents of the file. Update it with the code below, which adds new `Button` and `EditText` controls for sending push notification messages to the notification hub. Add this code at the bottom, just before `</RelativeLayout>`.
+1. 在 [Android Studio 專案檢視] 中，展開 [App] > [src] > [main] > [res] > [layout]。 開啟 `activity_main.xml` 配置檔案，然後按一下 [文字] 索引標籤以更新檔案的文字內容。 以下列程式碼進行更新，這會加入新的 `Button` 和 `EditText` 控制項，以便將推播通知訊息傳送至通知中樞。 在底部將此程式碼加在 `</RelativeLayout>`之前。
    
         <Button
         android:layout_width="wrap_content"
@@ -416,16 +420,16 @@ Normally, you would send notifications using a backend server. For some cases, y
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="42dp"
         android:hint="@string/notification_message_hint" />
-2. In Android Studio Project View, expand **App** > **src** > **main** > **res** > **values**. Open the `strings.xml` file and add the string values that are referenced by the new `Button` and `EditText` controls. Add these at the bottom of the file, just before `</resources>`.
+2. 在 [Android Studio 專案檢視] 中，展開 [App] > [src] > [main] > [res] > [values]。 開啟 `strings.xml` 檔案並加入新的 `Button` 和 `EditText` 控制項所參考的字串值。 在檔案底部將這些值加在 `</resources>`之前。
    
         <string name="send_button">Send Notification</string>
         <string name="notification_message_hint">Enter notification message text</string>
-3. In your `NotificationSetting.java` file, add the following setting to the `NotificationSettings` class.
+3. 在 `NotificationSetting.java` 檔案中，將下列設定新增至 `NotificationSettings` 類別。
    
-    Update `HubFullAccess` with the **DefaultFullSharedAccessSignature** connection string for your hub. This connection string can be copied from the [Azure Portal] by clicking **Access Policies** on the **Settings** blade for your notification hub.
+    使用中樞的 **DefaultFullSharedAccessSignature** 連接字串更新 `HubFullAccess`。 按一下通知中樞 [設定] 刀鋒視窗上的 [存取原則]，即可從 [Azure 入口網站]複製此連接字串。
    
         public static String HubFullAccess = "<Enter Your DefaultFullSharedAccess Connection string>";
-4. In your `MainActivity.java` file, add the following `import` statements above the `MainActivity` class.
+4. 在 `MainActivity.java` 檔案中，將下列 `import` 陳述式加在 `MainActivity` 類別之上。
    
         import java.io.BufferedOutputStream;
         import java.io.BufferedReader;
@@ -439,14 +443,14 @@ Normally, you would send notifications using a backend server. For some cases, y
         import android.util.Base64;
         import android.view.View;
         import android.widget.EditText;
-5. In your `MainActivity.java` file, add the following members at the top of the `MainActivity` class.  
+5. 在 `MainActivity.java` 檔案中，將下列成員加在 `MainActivity` 類別的最上方。    
    
         private String HubEndpoint = null;
         private String HubSasKeyName = null;
         private String HubSasKeyValue = null;
-6. You must create a Software Access Signature (SaS) token to authenticate a POST request to send messages to your notification hub. This is done by parsing the key data from the connection string and then creating the SaS token, as mentioned in the [Common Concepts](http://msdn.microsoft.com/library/azure/dn495627.aspx) REST API reference. The following code is an example implementation.
+6. 您必須建立軟體存取簽章 (SaS) 權杖來驗證 POST 要求，以將訊息傳送至您的通知中樞。 剖析連接字串中的金鑰資料，然後建立 [一般概念](http://msdn.microsoft.com/library/azure/dn495627.aspx) REST API 參考中所提的 SaS Token，即可完成此作業。 下列程式碼是範例實作。
    
-    In `MainActivity.java`, add the following method to the `MainActivity` class to parse your connection string.
+    在 `MainActivity.java` 中，將下列方法加入至 `MainActivity` 類別，以剖析連接字串。
    
         /**
          * Example code from http://msdn.microsoft.com/library/azure/dn495627.aspx
@@ -473,7 +477,7 @@ Normally, you would send notifications using a backend server. For some cases, y
                 }
             }
         }
-7. In `MainActivity.java`, add the following method to the `MainActivity` class to create a SaS authentication token.
+7. 在 `MainActivity.java` 中，將下列方法加入至 `MainActivity` 類別，以建立 SaS 驗證權杖。
    
         /**
          * Example code from http://msdn.microsoft.com/library/azure/dn495627.aspx to
@@ -526,7 +530,7 @@ Normally, you would send notifications using a backend server. For some cases, y
    
             return token;
         }
-8. In `MainActivity.java`, add the following method to the `MainActivity` class to handle the **Send Notification** button click and send the push notification message to the hub by using the built-in REST API.
+8. 在 `MainActivity.java` 中，將下列方法新增至 `MainActivity` 類別，以使用內建 REST API 處理 [傳送通知] 按鈕點選，並將推播通知訊息傳送至中樞。
    
         /**
          * Send Notification button click handler. This method parses the
@@ -570,7 +574,7 @@ Normally, you would send notifications using a backend server. For some cases, y
                             // Example below targets 3 specific tags
                             // Refer to : https://azure.microsoft.com/en-us/documentation/articles/notification-hubs-routing-tag-expressions/
                             // urlConnection.setRequestProperty("ServiceBusNotification-Tags", 
-                            //      "tag1 || tag2 || tag3");
+                            //        "tag1 || tag2 || tag3");
    
                             // Send notification message
                             urlConnection.setFixedLengthStreamingMode(json.length());
@@ -606,29 +610,29 @@ Normally, you would send notifications using a backend server. For some cases, y
             }.start();
         }
 
-## <a name="testing-your-app"></a>Testing your app
-#### <a name="push-notifications-in-the-emulator"></a>Push notifications in the emulator
-If you want to test push notifications inside an emulator, make sure that your emulator image supports the Google API level that you chose for your app. If your image doesn't support native Google APIs, you will end up with the **SERVICE\_NOT\_AVAILABLE** exception.
+## <a name="testing-your-app"></a>測試應用程式
+#### <a name="push-notifications-in-the-emulator"></a>在模擬器中測試推播通知
+如果您要在模擬器中測試推播通知，請確定您的模擬器映像支援您為應用程式選擇的 Google API 層級。 如果您的映像不支援原生 Google API，最後會發生 **SERVICE\_NOT\_AVAILABLE** 例外狀況。
 
-In addition to the above, ensure that you have added your Google account to your running emulator under **Settings** > **Accounts**. Otherwise, your attempts to register with GCM may result in the **AUTHENTICATION\_FAILED** exception.
+除此之外，請確定已將 Google 帳戶新增至執行中模擬器的 [設定] > [帳戶] 之下。 否則，嘗試向 GCM 註冊可能會導致 **AUTHENTICATION\_FAILED** 例外狀況。
 
-#### <a name="running-the-application"></a>Running the application
-1. Run the app and notice that the registration ID is reported for a successful registration.
+#### <a name="running-the-application"></a>執行應用程式
+1. 執行 app，並注意已回報註冊成功的註冊識別碼。
    
-    ![Testing on Android - Channel registration][18]
-2. Enter a notification message to be sent to all Android devices that have registered with the hub.
+       ![Testing on Android - Channel registration][18]
+2. 輸入通知訊息，以傳送給已向中心註冊的所有 Android 裝置。
    
-    ![Testing on Android - sending a message][19]
-3. Press **Send Notification**. Any devices that have the app running will show an `AlertDialog` instance with the push notification message. Devices that don't have the app running but were previously registered for push notifications will receive a notification in the Android Notification Manager. Those can be viewed by swiping down from the upper-left corner.
+       ![Testing on Android - sending a message][19]
+3. 按 [ **傳送通知**]。 任何執行應用程式的裝置都會顯示含推播通知訊息的 `AlertDialog` 執行個體。 未執行應用程式但先前已註冊推播通知的裝置，將會收到 Android 通知管理員的通知。 從左上角往下撥動，即可檢視通知。
    
-    ![Testing on Android - notifications][21]
+       ![Testing on Android - notifications][21]
 
-## <a name="next-steps"></a>Next steps
-We recommend the [Use Notification Hubs to push notifications to users] tutorial as the next step. It will show you how to send notifications from an ASP.NET backend using tags to target specific users.
+## <a name="next-steps"></a>後續步驟
+我們建議以 [使用通知中樞將通知推播給使用者] 教學課程做為下一個步驟。 它會示範如何使用標記以特定使用者為目標，從 ASP.NET 後端傳送通知。
 
-If you want to segment your users by interest groups, check out the [Use Notification Hubs to send breaking news] tutorial.
+如果您想要依興趣群組分隔使用者，請查看 [使用通知中樞傳送即時新聞] 教學課程。
 
-To learn more general information about Notification Hubs, see our [Notification Hubs Guidance].
+若要深入了解通知中樞的一般資訊，請參閱 [通知中樞指引]。
 
 <!-- Images. -->
 [6]: ./media/notification-hubs-android-get-started/notification-hub-android-new-class.png
@@ -656,17 +660,17 @@ To learn more general information about Notification Hubs, see our [Notification
 
 
 <!-- URLs. -->
-[Get started with push notifications in Mobile Services]: ../mobile-services-javascript-backend-android-get-started-push.md  
-[Mobile Services Android SDK]: https://go.microsoft.com/fwLink/?LinkID=280126&clcid=0x409
-[Referencing a library project]: http://go.microsoft.com/fwlink/?LinkId=389800
-[Azure Classic Portal]: https://manage.windowsazure.com/
-[Notification Hubs Guidance]: http://msdn.microsoft.com/library/jj927170.aspx
-[Use Notification Hubs to push notifications to users]: notification-hubs-aspnet-backend-gcm-android-push-to-user-google-notification.md
-[Use Notification Hubs to send breaking news]: notification-hubs-aspnet-backend-android-xplat-segmented-gcm-push-notification.md
-[Azure Portal]: https://portal.azure.com
+[開始在行動服務中使用推播通知]: ../mobile-services-javascript-backend-android-get-started-push.md  
+[行動服務 Android SDK]: https://go.microsoft.com/fwLink/?LinkID=280126&clcid=0x409
+[參考程式庫專案]: http://go.microsoft.com/fwlink/?LinkId=389800
+[Azure 傳統入口網站]: https://manage.windowsazure.com/
+[通知中樞指引]: http://msdn.microsoft.com/library/jj927170.aspx
+[使用通知中樞將通知推播給使用者]: notification-hubs-aspnet-backend-gcm-android-push-to-user-google-notification.md
+[使用通知中樞傳送即時新聞]: notification-hubs-aspnet-backend-android-xplat-segmented-gcm-push-notification.md
+[Azure 入口網站]: https://portal.azure.com
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

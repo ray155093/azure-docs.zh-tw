@@ -1,14 +1,14 @@
 ---
-title: 連接到 Azure 容器服務叢集 | Microsoft Docs
-description: 使用 SSH 通道連接到 Azure 容器服務叢集。
+title: "連接到Azure Container Service 叢集 | Microsoft Docs"
+description: "使用 SSH 通道連接到 Azure 容器服務叢集。"
 services: container-service
-documentationcenter: ''
+documentationcenter: 
 author: rgardler
 manager: timlt
-editor: ''
+editor: 
 tags: acs, azure-container-service
-keywords: Docker, 容器, 微服務, DC/OS, Azure
-
+keywords: "Docker, 容器, 微服務, DC/OS, Azure"
+ms.assetid: ff8d9e32-20d2-4658-829f-590dec89603d
 ms.service: container-service
 ms.devlang: na
 ms.topic: get-started-article
@@ -16,24 +16,32 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/13/2016
 ms.author: rogardle
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 97f74f845e19ae99cf6c5abbb9f076c7c5171993
+
 
 ---
-# 連接到 Azure 容器服務叢集
-Azure 容器服務部署的 DC/OS 和 Docker Swarm 叢集公開了一些 REST 端點。不過，這些端點並不開放給外界。為了管理這些端點，您必須建立 安全殼層 (SSH) 通道。建立 SSH 通道後，您可以對叢集端點執行命令，並透過您自己系統上的 UI 瀏覽器來檢視叢集。本文會逐步引導您從 Linux、OSX 和 Windows 建立 SSH 通道。
+# <a name="connect-to-an-azure-container-service-cluster"></a>連接到 Azure 容器服務叢集
+Azure 容器服務部署的 DC/OS 和 Docker Swarm 叢集公開了一些 REST 端點。 不過，這些端點並不開放給外界。 為了管理這些端點，您必須建立 安全殼層 (SSH) 通道。 建立 SSH 通道後，您可以對叢集端點執行命令，並透過您自己系統上的 UI 瀏覽器來檢視叢集。 本文會逐步引導您從 Linux、OSX 和 Windows 建立 SSH 通道。
 
 > [!NOTE]
-> 您可以建立與叢集管理系統的 SSH 工作階段。但不建議這樣做。直接使用管理系統可能會不小心變更組態。
+> 您可以建立與叢集管理系統的 SSH 工作階段。 但不建議這樣做。 直接使用管理系統可能會不小心變更組態。   
 > 
 > 
 
-## 在 Linux 或 OSX 上建立 SSH 通道
-在 Linux 或 OS X 上建立 SSH 通道時，您所做的第一件事就是找出負載平衡主機的公用 DNS 名稱。若要這樣做，請展開資源群組以便顯示每個資源。找出並選取主機的公用 IP 位址。這會開啟一個刀鋒視窗，其中包含公用 IP 位址的相關資訊 (包含 DNS 名稱)。儲存這個名稱供稍後使用。<br />
+## <a name="create-an-ssh-tunnel-on-linux-or-os-x"></a>在 Linux 或 OSX 上建立 SSH 通道
+在 Linux 或 OS X 上建立 SSH 通道時，您所做的第一件事就是找出負載平衡主機的公用 DNS 名稱。 若要這樣做，請展開資源群組以便顯示每個資源。 找出並選取主機的公用 IP 位址。 這會開啟一個刀鋒視窗，其中包含公用 IP 位址的相關資訊 (包含 DNS 名稱)。 儲存這個名稱供稍後使用。 <br />
 
 ![公用 DNS 名稱](media/pubdns.png)
 
 現在開啟殼層並執行下列命令，其中：
 
-**PORT** 是您想要公開之端點的連接埠。以 Swarm 來說是 2375。若為 DC/OS，則使用連接埠 80。**USERNAME** 是您部署叢集時提供的使用者名稱。**DNSPREFIX** 是您部署叢集時提供的 DNS 首碼。**REGION** 是資源群組所在的區域。**PATH\_TO\_PRIVATE\_KEY** [選用] 是與您建立容器服務叢集時所提供的公開金鑰對應的私密金鑰之路徑。搭配使用此選項與 -i 旗標。
+**PORT** 是您想要公開之端點的連接埠。 以 Swarm 來說是 2375。 若為 DC/OS，則使用連接埠 80。  
+**USERNAME** 是您部署叢集時提供的使用者名稱。  
+**DNSPREFIX** 是您部署叢集時提供的 DNS 首碼。  
+**REGION** 是資源群組所在的區域。  
+**PATH_TO_PRIVATE_KEY** [選用] 是與您建立容器服務叢集時所提供的公開金鑰對應的私密金鑰之路徑。 搭配使用此選項與 -i 旗標。
 
 ```bash
 ssh -L PORT:localhost:PORT -f -N [USERNAME]@[DNSPREFIX]mgmt.[REGION].cloudapp.azure.com -p 2200
@@ -42,7 +50,7 @@ ssh -L PORT:localhost:PORT -f -N [USERNAME]@[DNSPREFIX]mgmt.[REGION].cloudapp.az
 > 
 > 
 
-## DC/OS 通道
+## <a name="dcos-tunnel"></a>DC/OS 通道
 若要開啟 DC/OS 相關端點的通道，請執行類似下列的命令：
 
 ```bash
@@ -51,42 +59,42 @@ sudo ssh -L 80:localhost:80 -f -N azureuser@acsexamplemgmt.japaneast.cloudapp.az
 
 您現在可以在下列位址存取 DC/OS 相關端點：
 
-* DC/OS：`http://localhost/`
-* Marathon：`http://localhost/marathon`
-* Mesos：`http://localhost/mesos`
+* DC/OS： `http://localhost/`
+* Marathon： `http://localhost/marathon`
+* Mesos： `http://localhost/mesos`
 
 同樣地，您可以透過此通道到達每個應用程式的 REST API。
 
-## Swarm 通道
+## <a name="swarm-tunnel"></a>Swarm 通道
 若要開啟 Swarm 端點的通道，請執行類似下列的命令：
 
 ```bash
 ssh -L 2375:localhost:2375 -f -N azureuser@acsexamplemgmt.japaneast.cloudapp.azure.com -p 2200
 ```
 
-現在您可以設定 DOCKER\_HOST 環境變數，如下所示。您可以繼續正常使用 Docker 命令列介面 (CLI)。
+現在您可以設定 DOCKER_HOST 環境變數，如下所示。 您可以繼續正常使用 Docker 命令列介面 (CLI)。
 
 ```bash
 export DOCKER_HOST=:2375
 ```
 
-## 在 Windows 上建立 SSH 通道
-在 Windows 上建立 SSH 通道有很多選項。本文件將說明如何使用 PuTTY 來執行這項操作。
+## <a name="create-an-ssh-tunnel-on-windows"></a>在 Windows 上建立 SSH 通道
+在 Windows 上建立 SSH 通道有很多選項。 本文件將說明如何使用 PuTTY 來執行這項操作。
 
 將 PuTTY 下載到 Windows 系統，並執行此應用程式。
 
-輸入叢集中第一個主機的主機名稱，由叢集系統管理員使用者名稱和公用 DNS 名稱所組成。[主機名稱] 看起來像這樣：`adminuser@PublicDNS`。輸入 2200 作為 [連接埠]。
+輸入叢集中第一個主機的主機名稱，由叢集系統管理員使用者名稱和公用 DNS 名稱所組成。 [主機名稱] 看起來像這樣：`adminuser@PublicDNS`。 輸入 2200 作為 [連接埠] 。
 
 ![PuTTY 組態 1](media/putty1.png)
 
-選取 [SSH] 和 [驗證]。加入用於驗證的私密金鑰檔。
+選取 [SSH] 和 [驗證]。 加入用於驗證的私密金鑰檔。
 
 ![PuTTY 組態 2](media/putty2.png)
 
-選取 [通道] 並設定下列已轉送的連接埠：
+選取 [通道]  並設定下列已轉送的連接埠：
 
-* **來源連接埠：**您的喜好設定--DC/OS 使用 80 或 Swarm 使用 2375。
-* **目的地：**DC/OS 使用 localhost:80 或 Swarm 使用 localhost:2375。
+* **來源連接埠：** 您的喜好設定--DC/OS 使用 80 或 Swarm 使用 2375。
+* **目的地：** DC/OS 使用 localhost:80 或 Swarm 使用 localhost:2375。
 
 下列範例是針對 DC/OS 而設定，但對於 Docker Swarm 而言也很類似。
 
@@ -97,22 +105,27 @@ export DOCKER_HOST=:2375
 
 ![PuTTY 組態 3](media/putty3.png)
 
-完成時，儲存連接設定，並連接 PuTTY 工作階段。連接時，可以在 PuTTY 事件記錄檔中看到連接埠設定。
+完成時，儲存連接設定，並連接 PuTTY 工作階段。 連接時，可以在 PuTTY 事件記錄檔中看到連接埠設定。
 
 ![PuTTY 事件記錄檔](media/putty4.png)
 
 設定 DC/OS 的通道之後，您即可在下列位址存取相關的端點：
 
-* DC/OS：`http://localhost/`
-* Marathon：`http://localhost/marathon`
-* Mesos：`http://localhost/mesos`
+* DC/OS： `http://localhost/`
+* Marathon： `http://localhost/marathon`
+* Mesos： `http://localhost/mesos`
 
-設定 Docker Swarm 的通道之後，您即可透過 Docker CLI 存取 Swarm 叢集。您必須先使用值 ` :2375` 設定名稱為 `DOCKER_HOST` 的 Windows 環境變數。
+設定 Docker Swarm 的通道之後，您即可透過 Docker CLI 存取 Swarm 叢集。 您必須先使用值 ` :2375` 設定名稱為 `DOCKER_HOST` 的 Windows 環境變數。
 
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 使用 DC/OS 或 Swarm 來部署及管理容器：
 
 * [使用 Azure 容器服務和 DC/OS](container-service-mesos-marathon-rest.md)
 * [使用 Azure 容器服務和 Docker Swarm](container-service-docker-swarm.md)
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+
+<!--HONumber=Nov16_HO2-->
+
+

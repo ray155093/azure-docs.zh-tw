@@ -1,12 +1,12 @@
 ---
-title: Operations Management Suite (OMS) 架構 | Microsoft Docs
-description: Microsoft Operations Management Suite (OMS) 是 Microsoft 的雲端型 IT 管理解決方案，可協助您管理並保護內部部署和雲端基礎結構。  本文會說明 OMS 中包含的各種服務，並提供其詳細內容的連結。
+title: "Operations Management Suite (OMS) 架構 | Microsoft Docs"
+description: "Microsoft Operations Management Suite (OMS) 是 Microsoft 的雲端型 IT 管理解決方案，可協助您管理並保護內部部署和雲端基礎結構。  本文會說明 OMS 中包含的各種服務，並提供其詳細內容的連結。"
 services: operations-management-suite
-documentationcenter: ''
+documentationcenter: 
 author: bwren
 manager: jwhit
 editor: tysonn
-
+ms.assetid: 40e41686-7e35-4d85-bbe8-edbcb295a534
 ms.service: operations-management-suite
 ms.devlang: na
 ms.topic: get-started-article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/27/2016
 ms.author: bwren
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 88c0bd67562111baa5aa5882b7c1a4ef52bc6dd2
+
 
 ---
 # <a name="oms-architecture"></a>OMS 架構
@@ -80,6 +84,9 @@ Azure Site Recovery 有三種基本複寫案例。
 * 了解 [Azure 備份](http://azure.microsoft.com/documentation/services/backup)。
 * 了解 [Azure Site Recovery](http://azure.microsoft.com/documentation/services/site-recovery)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

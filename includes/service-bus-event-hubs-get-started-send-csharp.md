@@ -1,11 +1,11 @@
-## 將訊息傳送至事件中心
+## <a name="send-messages-to-event-hubs"></a>將訊息傳送至事件中心
 在本節中，您將撰寫一個 Windows 主控台應用程式，以將事件傳送至事件中心。
 
-1. 在 Visual Studio 中，使用**主控台應用程式**專案範本建立新的「Visual C# 桌面應用程式」專案。將專案命名為 **Sender**。
+1. 在 Visual Studio 中，使用**主控台應用程式**專案範本建立新的「Visual C# 桌面應用程式」專案。 將專案命名為 **Sender**。
    
     ![](./media/service-bus-event-hubs-getstarted-send-csharp/create-sender-csharp1.png)
-2. 在 [方案總管] 中，以滑鼠右鍵按一下方案，然後按一下 [管理方案的 NuGet 封裝]。
-3. 按一下 [瀏覽] 索引標籤，然後搜尋 `Microsoft Azure Service Bus`。確定已在 [版本] 方塊中指定專案名稱 (傳送者)。按一下 [安裝] 並接受使用條款。
+2. 在 [方案總管] 中，以滑鼠右鍵按一下方案，然後按一下 [管理方案的 NuGet 封裝] 。 
+3. 按一下 [瀏覽] 索引標籤，然後搜尋 `Microsoft Azure Service Bus`。 確定已在 [版本] 方塊中指定專案名稱 (傳送者)。 按一下 [安裝] 並接受使用條款。 
    
     ![](./media/service-bus-event-hubs-getstarted-send-csharp/create-sender-csharp2.png)
    
@@ -58,4 +58,8 @@
     SendingRandomMessages();
     ```
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+<!--HONumber=Nov16_HO2-->
+
+

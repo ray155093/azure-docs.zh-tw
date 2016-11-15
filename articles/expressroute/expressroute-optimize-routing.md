@@ -1,12 +1,12 @@
 ---
-title: 最佳化 ExpressRoute 路由 | Microsoft Docs
-description: 此頁面提供當客戶有一個以上的 ExpressRoute 線路連接 Microsoft 與客戶的公司網路時，如何最佳化路由的詳細資訊。
+title: "最佳化 ExpressRoute 路由 | Microsoft Docs"
+description: "此頁面提供當客戶有一個以上的 ExpressRoute 線路連接 Microsoft 與客戶的公司網路時，如何最佳化路由的詳細資訊。"
 documentationcenter: na
 services: expressroute
 author: charwen
 manager: carmonm
-editor: ''
-
+editor: 
+ms.assetid: fca53249-d9c3-4cff-8916-f8749386a4dd
 ms.service: expressroute
 ms.devlang: na
 ms.topic: get-started-article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/10/2016
 ms.author: charwen
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 26f0992e734f0aae96ac6e8b7040d661d5fb063c
+
 
 ---
 # <a name="optimize-expressroute-routing"></a>最佳化 ExpressRoute 路由
@@ -24,7 +28,7 @@ ms.author: charwen
 
 ![](./media/expressroute-optimize-routing/expressroute-case1-problem.png)
 
-### <a name="solution:-use-bgp-communities"></a>解決方法︰使用 BGP 社群
+### <a name="solution-use-bgp-communities"></a>解決方法︰使用 BGP 社群
 若要為這兩個辦公室的使用者最佳化路由，您需要知道哪個前置詞來自 Azure 美國西部以及哪個前置詞來自 Azure 美國東部。 我們使用 [BGP 社群值](expressroute-routing.md)來編碼這項資訊。 我們已將唯一的 BGP 社群值指派給每個 Azure 區域，例如"12076:51004" 適用於美國東部，"12076:51006" 適用於美國西部。 您現在知道哪個前置詞來自哪個 Azure 區域，即可設定應優先使用哪個 ExpressRoute 線路。 因為我們使用 BGP 來交換路由資訊，您可以使用 BGP 的本機喜好設定來影響路由。 在我們的範例中，您可以指派比美國東部還要高的本機喜好設定值給美國西部的 13.100.0.0/16，同樣地，指派比美國西部還要高的本機喜好設定值給美國東部的 23.100.0.0/16。 此組態可確保當Microsoft 的兩個路徑都可用時，洛杉磯的使用者將經由美國西部的 ExpressRoute 線路連接到 Azure 美國西部，而紐約的使用者會經由美國東部的 ExpressRoute 線路連接到 Azure 美國東部。 這兩端的路由均已最佳化。 
 
 ![](./media/expressroute-optimize-routing/expressroute-case1-solution.png)
@@ -34,7 +38,7 @@ ms.author: charwen
 
 ![](./media/expressroute-optimize-routing/expressroute-case2-problem.png)
 
-### <a name="solution:-use-as-path-prepending"></a>解決方案︰使用 AS PATH 前置
+### <a name="solution-use-as-path-prepending"></a>解決方案︰使用 AS PATH 前置
 這個問題有兩個解決方案。 第一個解決方案是您只需告知在美國西部 ExpressRoute 線路上洛杉磯辦公室的內部部署前置詞 (177.2.0.0/31)，以及美國東部 ExpressRoute 線路上紐約辦公室的內部部署前置詞 (177.2.0.2/31)。 如此一來，只有一個路徑可供 Microsoft 連接到每個辦公室。 沒有模稜兩可的狀況，而且路由已最佳化。 利用這個設計，您需要考慮您的容錯移轉策略。 在經由 ExpressRoute 的 Microsoft 路徑已損毀的事件中，您需要確定 Exchange Online 仍可連線至內部部署伺服器。 
 
 第二個解決方案是您繼續告知兩個 ExpressRoute 線路上的兩個前置詞，此外請提供哪個前置詞接近哪個辦公室的提示。 因為我們支援 BGP AS PATH 前置，所以您可以設定前置詞的 AS PATH 來影響路由。 在此範例中，您可以延長美國東部 172.2.0.0/31 的 AS PATH，以致我們偏好將美國西部的 ExpressRoute 線路用於以此前置詞為目的地的流量 (因為我們的網路會認為此前置詞的路徑在西部比較短)。 同樣地，您可以延長美國西部 172.2.0.2/31 的 AS PATH，以致我們偏好美國東部的 ExpressRoute 線路。 這兩個辦公室的路由均已最佳化。 採用這個設計，如果一個 ExpressRoute 路線已中斷，Exchange Online 仍可透過另一個 ExpressRoute 線路和您的 WAN 來觸達您。 
@@ -51,6 +55,9 @@ ms.author: charwen
 > 
 > 
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

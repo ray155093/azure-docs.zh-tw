@@ -1,12 +1,12 @@
 ---
-title: Operations Management Suite 安全性和稽核基準評估 | Microsoft Docs
-description: 本文件說明如何針對相容性和安全性目的，使用 OMS 安全性和稽核解決方案來執行所有受監視電腦的基準評估。
+title: "Operations Management Suite 安全性和稽核解決方案基準 | Microsoft Docs"
+description: "本文件說明如何針對相容性和安全性目的，使用 OMS 安全性和稽核解決方案來執行所有受監視電腦的基準評估。"
 services: operations-management-suite
 documentationcenter: na
 author: YuriDio
 manager: swadhwa
-editor: ''
-
+editor: 
+ms.assetid: 17837c8b-3e79-47c0-9b83-a51c6ca44ca6
 ms.service: operations-management-suite
 ms.devlang: na
 ms.topic: hero-article
@@ -14,12 +14,16 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/08/2016
 ms.author: yurid
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 1c3e2cf86a33f9bbe6b34f4f52b82a078b91661f
+
 
 ---
 # <a name="baseline-assessment-in-operations-management-suite-security-and-audit-solution"></a>Operations Management Suite 安全性和稽核解決方案中的基準評估
 本文件協助您使用 [Operations Management Suite (OMS) 安全性和稽核解決方案](operations-management-suite-overview.md)的基準評估功能，存取受監視資源的安全狀態。
 
-## <a name="what-is-baseline-assessment?"></a>什麼是基準評估？
+## <a name="what-is-baseline-assessment"></a>什麼是基準評估？
 Microsoft 與全球產業和政府組織共同定義可代表高度安全伺服器部署的 Windows 組態。 此組態是一組登錄機碼、稽核原則設定和安全性原則設定，以及 Microsoft 對於這些設定的建議值。 這組規則也稱為安全性基準。 OMS 安全性和稽核基準評估功能可以順暢地掃描所有電腦的相容性。 
 
 規則類型有三種：
@@ -80,6 +84,9 @@ OMS 支援 Windows Server 2008 R2 至 Windows Server 2012 R2 的網域成員基�
 * [在 Operations Management Suite 安全性和稽核內監視及回應安全性警示](oms-security-responding-alerts.md)
 * [在 Operations Management Suite 安全性和稽核解決方案內監視資源](oms-security-monitoring-resources.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

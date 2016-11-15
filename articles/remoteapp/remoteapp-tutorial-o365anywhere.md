@@ -1,12 +1,12 @@
 ---
-title: 在任何具有 Azure RemoteApp 的裝置上取得相同的 Office 365 體驗 | Microsoft Docs
-description: 了解如何使用 Azure RemoteApp 與使用者共用任何 Office 365 應用程式。
+title: "在任何具有 Azure RemoteApp 的裝置上取得相同的 Office 365 體驗 | Microsoft Docs"
+description: "了解如何使用 Azure RemoteApp 與使用者共用任何 Office 365 應用程式。"
 services: remoteapp
-documentationcenter: ''
+documentationcenter: 
 author: guscatalano
 manager: mbaldwin
-editor: ''
-
+editor: 
+ms.assetid: 0c971ce9-7d45-4cfb-9737-15b6706047e8
 ms.service: remoteapp
 ms.devlang: na
 ms.topic: hero-article
@@ -14,39 +14,47 @@ ms.tgt_pltfrm: na
 ms.workload: compute
 ms.date: 08/15/2016
 ms.author: guscatal;elizapo
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 0146ee4516ee54c3507567c25183e212db1ba7d2
+
 
 ---
-# 在任何具有 Azure RemoteApp 的裝置上取得相同的 Office 365 體驗
+# <a name="get-the-same-office-365-experience-on-any-device-with-azure-remoteapp"></a>在任何具有 Azure RemoteApp 的裝置上取得相同的 Office 365 體驗
 > [!IMPORTANT]
-> Azure RemoteApp 即將中止。如需詳細資訊，請參閱[公告](https://go.microsoft.com/fwlink/?linkid=821148)。
+> Azure RemoteApp 即將中止。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
 > 
 > 
 
-本文涵蓋如何在公司的任何裝置上部署 Office 365。您的使用者可以在 Android、Apple 和 Windows 上取得相同的功能和 UI 體驗。
+本文涵蓋如何在公司的任何裝置上部署 Office 365。 您的使用者可以在 Android、Apple 和 Windows 上取得相同的功能和 UI 體驗。
 
-在 Azure 中使用者可連接的可調整虛擬機器上裝載 Office 365，即可使用 Azure RemoteApp 完成這項作業。這組虛擬機器稱為「雲端收藏」。
+在 Azure 中使用者可連接的可調整虛擬機器上裝載 Office 365，即可使用 Azure RemoteApp 完成這項作業。 這組虛擬機器稱為「雲端收藏」。
 
-## 建立雲端收藏
-首先，建立 Azure 帳戶之後，請按一下左側的連結，以瀏覽至 **RemoteApp**。![在 Azure 入口網站上顯示 Azure RemoteApp](./media/remoteapp-tutorial-o365anywhere/1-menu.png)
+## <a name="create-a-cloud-collection"></a>建立雲端收藏
+首先，建立 Azure 帳戶之後，請按一下左側的連結，以瀏覽至 **RemoteApp** 。
+![在 Azure 入口網站上顯示 Azure RemoteApp](./media/remoteapp-tutorial-o365anywhere/1-menu.png)
 
-然後，按一下底部的 [**新增**] 並「快速建立」收藏，以繼續進行。提供所提供的名稱、區域、訂用帳戶、計畫和映像 "Office Proffesional 2013"。![建立對話方塊](./media/remoteapp-tutorial-o365anywhere/2-quickcreate.png)
+然後，按一下底部的 [ **新增** ] 並「快速建立」收藏，以繼續進行。 提供所提供的名稱、區域、訂用帳戶、計畫和映像 "Office Proffesional 2013"。
+![建立對話方塊](./media/remoteapp-tutorial-o365anywhere/2-quickcreate.png)
 
-完成表單之後，應該會啟動集合建立程序。這可能需要一個小時左右。
+完成表單之後，應該會啟動集合建立程序。 這可能需要一個小時左右。
 
 ![等候](./media/remoteapp-tutorial-o365anywhere/3-waiting.png)
 
-完成程序之後，結果會與以下範例類似。如果按一下 [發佈]，可以看到已發佈大部分的 Office 應用程式。![已建立集合](./media/remoteapp-tutorial-o365anywhere/4-done.png)
+完成程序之後，結果會與以下範例類似。 如果按一下 [發佈]  ，可以看到已發佈大部分的 Office 應用程式。
+![已建立集合](./media/remoteapp-tutorial-o365anywhere/4-done.png)
 
 ![已發佈的應用程式](./media/remoteapp-tutorial-o365anywhere/5-publish.png)
 
-此時，按一下 [使用者存取]，也可以加入可存取此收藏的更多使用者。![設定使用者存取](./media/remoteapp-tutorial-o365anywhere/6-user.png)
+此時，按一下 [使用者存取] ，也可以加入可存取此收藏的更多使用者。
+![設定使用者存取](./media/remoteapp-tutorial-o365anywhere/6-user.png)
 
 現在讓我們嘗試連接至 Office 365！
 
-## 連接至 Office 365
-我們將會前往 [https://www.remoteapp.windowsazure.com/](https://www.remoteapp.windowsazure.com/)，向下捲動並按一下 [**下載用戶端**]，以在您所在的裝置上安裝 Azure RemoteApp 用戶端。下面的螢幕擷取畫面適用於 Windows。
+## <a name="connect-to-office-365"></a>連接至 Office 365
+我們將會前往 [https://www.remoteapp.windowsazure.com/](https://www.remoteapp.windowsazure.com/)，向下捲動並按一下 [下載用戶端]，以在您所在的裝置上安裝 Azure RemoteApp 用戶端。 下面的螢幕擷取畫面適用於 Windows。
 
-啟動應用程式之後，系統會要求您使用 Microsoft 帳戶 (先前稱為 Live ID) 登入，請現在使用相同的 Live ID 做為您的 Azure 帳戶。登入時，您應該會看到有關新邀請的通知，而按一下該處，您應該會看到與下面類似的清單。請接受符合您 Azure 帳戶擁有者電子郵件的邀請。
+啟動應用程式之後，系統會要求您使用 Microsoft 帳戶 (先前稱為 Live ID) 登入，請現在使用相同的 Live ID 做為您的 Azure 帳戶。 登入時，您應該會看到有關新邀請的通知，而按一下該處，您應該會看到與下面類似的清單。 請接受符合您 Azure 帳戶擁有者電子郵件的邀請。
 
 ![新的邀請](./media/remoteapp-tutorial-o365anywhere/7-araclient.png)
 
@@ -64,4 +72,9 @@ ms.author: guscatal;elizapo
 
 ![powerpoint](./media/remoteapp-tutorial-o365anywhere/11-pp.png)
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+
+<!--HONumber=Nov16_HO2-->
+
+

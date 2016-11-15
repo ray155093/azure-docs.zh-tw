@@ -1,20 +1,24 @@
 ---
-title: Azure 虛擬機器上的 SQL Server 概觀 | Microsoft Docs
-description: 深入了解如何在 Azure 虛擬機器上執行完整的 SQL Server 版本。 取得所有 SQL Server VM 映像和相關內容的直接連結。
+title: "Azure 虛擬機器上的 SQL Server 概觀 | Microsoft Docs"
+description: "深入了解如何在 Azure 虛擬機器上執行完整的 SQL Server 版本。 取得所有 SQL Server VM 映像和相關內容的直接連結。"
 services: virtual-machines-windows
-documentationcenter: ''
+documentationcenter: 
 author: rothja
 manager: jhubbard
-editor: ''
+editor: 
 tags: azure-service-management
-
+ms.assetid: c505089e-6bbf-4d14-af0e-dd39a1872767
 ms.service: virtual-machines-windows
 ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: infrastructure-services
-ms.date: 10/11/2016
+ms.date: 10/19/2016
 ms.author: jroth
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: fcc2883ae52bb3d4be098ce741bbf5f5047777d2
+
 
 ---
 # <a name="overview-of-sql-server-on-azure-virtual-machines"></a>Azure 虛擬機器上的 SQL Server 概觀
@@ -51,19 +55,10 @@ ms.author: jroth
 > 
 > 
 
-## <a name="understand-your-options"></a>了解您的選項
+## <a name="scenarios"></a>案例
 可能會有許多原因讓您選擇主控 Azure 中的資料。 如果您的應用程式移至 Azure，則也會改善移動資料的效能。 但是還有其他好處。 您會自動取得多個資料中心的存取權，以獲得全域支援和災害復原。 資料也是高度安全且具有持久性。
 
-在 Azure VM 上執行的 SQL Server，是用來將關聯式資料儲存到 Azure 的選項之一。 下表提供 Azure 上的 SQL 產品簡短摘要。
-
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | SQL 供應項目 | 說明 |
-| ---:| --- | --- |
-| ![Azure 虛擬機器上的 SQL Server](./media/virtual-machines-windows-sql-server-iaas-overview/sql-server-virtual-machine.png) |[Azure 虛擬機器上的 SQL Server](https://azure.microsoft.com/services/virtual-machines/sql-server/) |在 Azure 虛擬機器上執行 SQL Server (本主題之重點)。 在零售版 SQL Server 上直接管理虛擬機器，並執行您的資料庫。 |
-| ![SQL Database](./media/virtual-machines-windows-sql-server-iaas-overview/azure-sql-database.png) |[SQL Database](https://azure.microsoft.com/services/sql-database/) |使用 SQL Database 服務來存取及調整您的資料庫，而無需管理基礎結構。 |
-| ![SQL 資料倉儲](./media/virtual-machines-windows-sql-server-iaas-overview/azure-sql-data-warehouse.png) |[SQL 資料倉儲](https://azure.microsoft.com/en-us/services/sql-data-warehouse/) |使用 Azure SQL 資料倉儲來處理大量的關聯式與非關聯式資料。 提供可調整的資料倉儲功能，做為一項服務。 |
-| ![SQL Server Stretch Database](./media/virtual-machines-windows-sql-server-iaas-overview/sql-server-stretch-database.png) |[SQL Server Stretch Database](https://azure.microsoft.com/en-us/services/sql-server-stretch-database/) |以動態方式將內部部署交易資料從 Microsoft SQL Server 2016 延展到 Azure。 |
-
-有了這些不同的選項，在 Azure VM 上執行的 SQL Server 對於幾個案例而言會是很好的選擇。 例如，您可能要盡可能以類似方法將 Azure VM 設定為內部部署 SQL Server 的電腦。 或者，您可能要在相同的資料庫伺服器上執行其他應用程式和服務。 有兩個資源可協助您仔細思考更多的決策因素︰
+在 Azure VM 上執行的 SQL Server，是用來將關聯式資料儲存到 Azure 的選項之一。 它在數個案例中是很好的選擇。 例如，您可能要盡可能以類似方法將 Azure VM 設定為內部部署 SQL Server 的電腦。 或者，您可能要在相同的資料庫伺服器上執行其他應用程式和服務。 有兩個主要資源可協助您思考更多的案例和考量︰
 
 * [Azure 虛擬機器上的 SQL Server](https://azure.microsoft.com/services/virtual-machines/sql-server/) 提供在 Azure VM 上使用 SQL Server 的最佳案例概觀。 
 * [選擇雲端 SQL Server 選項：Azure SQL (PaaS) Database 或 Azure VM 上的 SQL Server (IaaS)](../sql-database/sql-database-paas-vs-sql-server-iaas.md) 可提供 SQL Database 和在 VM 上執行之 SQL Server 的完整比較。
@@ -73,7 +68,7 @@ ms.author: jroth
 
 在[在 Azure 入口網站中佈建 SQL Server 虛擬機器](virtual-machines-windows-portal-sql-server-provision.md)教學課程中尋找此程序的逐步指引。 此外，檢閱 [SQL Server VM 的效能最佳作法](virtual-machines-windows-sql-performance.md)，該文說明如何選取適當的機器大小和佈建期間其他可用的功能。
 
-## <a name="option-1:-create-a-sql-vm-with-per-minute-licensing"></a>選項 1︰利用每分鐘授權建立 SQL VM
+## <a name="option-1-create-a-sql-vm-with-perminute-licensing"></a>選項 1︰利用每分鐘授權建立 SQL VM
 下表提供虛擬機器資源庫中的可用 SQL Server 映像比較。 按一下任何連結，即可開始建立採用您指定的版本和作業系統的新 SQL VM。
 
 | 版本 | 作業系統 | 版本 |
@@ -87,7 +82,7 @@ ms.author: jroth
 | **SQL 2008 R2 SP3** |Windows Server 2008 R2 |[Enterprise](https://portal.azure.com/#create/Microsoft.SQLServer2008R2SP3EnterpriseWindowsServer2008R2)、[Standard](https://portal.azure.com/#create/Microsoft.SQLServer2008R2SP3StandardWindowsServer2008R2)、[Web](https://portal.azure.com/#create/Microsoft.SQLServer2008R2SP3WebWindowsServer2008R2) |
 | **SQL 2008 R2 SP3** |Windows Server 2012 |[Express](https://portal.azure.com/#create/Microsoft.SQLServer2008R2SP3ExpressWindowsServer2012) |
 
-## <a name="option-2:-create-a-sql-vm-with-an-existing-license"></a>選項 2︰利用現有授權建立 SQL VM
+## <a name="option-2-create-a-sql-vm-with-an-existing-license"></a>選項 2︰利用現有授權建立 SQL VM
 您也可以自備授權 (BYOL)。 在此案例中，您只需支付 VM 費用，而 SQL Server 授權不需任何額外的費用。 若要使用自己的授權，請使用 SQL Server 版本及下列作業系統的矩陣。 在入口網站中，這些映像名稱前面會加上 **{BYOL}**。
 
 | 版本 | 作業系統 | 版本 |
@@ -121,7 +116,7 @@ Azure VM 可以利用 [自動備份](virtual-machines-windows-sql-automated-back
 ### <a name="automate-updates"></a>自動更新
 Azure VM 可以使用 [自動修補](virtual-machines-windows-sql-automated-patching.md) 來排程維護期間，以便自動安裝重要的 Windows 和 SQL Server 更新。
 
-### <a name="customer-experience-improvement-program-(ceip)"></a>客戶經驗改進計畫 (CEIP)
+### <a name="customer-experience-improvement-program-ceip"></a>客戶經驗改進計畫 (CEIP)
 預設會啟用「客戶經驗改進計畫」(CEIP)。 這會定期將報表傳送至 Microsoft 以協助改進 SQL Server。 CEIP 不需要管理工作，除非您要在佈建之後將它停用。 您可以透過遠端桌面連接到 VM，以自訂或停用 CEIP。 然後執行 [SQL Server 錯誤和使用情況報告]  公用程式。 請遵循指示來停用報告功能。 
 
 如需詳細資訊，請參閱[接受授權條款](https://msdn.microsoft.com/library/ms143343.aspx) CEIP 一節。 
@@ -131,6 +126,9 @@ Azure VM 可以使用 [自動修補](virtual-machines-windows-sql-automated-patc
 
 其他問題？ 請先參閱 [Azure 虛擬機器上的 SQL Server 常見問題集](virtual-machines-windows-sql-server-iaas-faq.md)。 也請將您的問題或意見加入任何 SQL VM 主題的底部來與 Microsoft 和社群互動。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

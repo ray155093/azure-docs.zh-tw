@@ -1,20 +1,24 @@
 ---
-title: 使用 PowerShell 建立虛擬機器擴展集 | Microsoft Docs
-description: 使用 Powershell 建立虛擬機器擴展集
+title: "使用 PowerShell 建立虛擬機器擴展集 | Microsoft Docs"
+description: "使用 Powershell 建立虛擬機器擴展集"
 services: virtual-machine-scale-sets
-documentationcenter: ''
+documentationcenter: 
 author: davidmu1
 manager: timlt
-editor: ''
+editor: 
 tags: azure-resource-manager
-
+ms.assetid: 7bb03323-8bcc-4ee4-9a3e-144ca6d644e2
 ms.service: virtual-machine-scale-sets
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 10/10/2016
+ms.date: 10/18/2016
 ms.author: davidmu
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 6d70338ebf918a3f9178a4f633dd46a607d72b1c
+
 
 ---
 # <a name="create-a-windows-virtual-machine-scale-set-using-azure-powershell"></a>使用 Azure PowerShell 建立 Windows 虛擬機器擴展集
@@ -22,41 +26,18 @@ ms.author: davidmu
 
 執行本文中的步驟應該大約 30 分鐘的時間。
 
-## <a name="step-1:-install-azure-powershell"></a>步驟 1：安裝 Azure PowerShell
+## <a name="step-1-install-azure-powershell"></a>步驟 1：安裝 Azure PowerShell
 如需如何安裝最新版 Azure PowerShell、選取訂用帳戶，以及登入帳戶的相關資訊，請參閱[如何安裝和設定 Azure PowerShell](../powershell-install-configure.md)。
 
-## <a name="step-2:-create-resources"></a>步驟 2：建立資源
+## <a name="step-2-create-resources"></a>步驟 2：建立資源
 建立新的擴展集所需要的資源。
 
 ### <a name="resource-group"></a>資源群組
 虛擬機器擴展集必須包含在資源群組中。
 
-1. 取得可用位置和支援服務的清單︰
+1. 取得您可以放置資源的可用位置清單：
    
-        Get-AzureLocation | Sort Name | Select Name, AvailableServices
-   
-    您應該會看到如下列範例的結果：
-   
-        Name                AvailableServices
-        ----                -----------------
-        Australia East      {Compute, Storage, PersistentVMRole, HighMemory}
-        Australia Southeast {Compute, Storage, PersistentVMRole, HighMemory}
-        Brazil South        {Compute, Storage, PersistentVMRole, HighMemory}
-        Central India       {Compute, Storage, PersistentVMRole, HighMemory}
-        Central US          {Compute, Storage, PersistentVMRole, HighMemory}
-        East Asia           {Compute, Storage, PersistentVMRole, HighMemory}
-        East US             {Compute, Storage, PersistentVMRole, HighMemory}
-        East US 2           {Compute, Storage, PersistentVMRole, HighMemory}
-        Japan East          {Compute, Storage, PersistentVMRole, HighMemory}
-        Japan West          {Compute, Storage, PersistentVMRole, HighMemory}
-        North Central US    {Compute, Storage, PersistentVMRole, HighMemory}
-        North Europe        {Compute, Storage, PersistentVMRole, HighMemory}
-        South Central US    {Compute, Storage, PersistentVMRole, HighMemory}
-        South India         {Compute, Storage, PersistentVMRole, HighMemory}
-        Southeast Asia      {Compute, Storage, PersistentVMRole, HighMemory}
-        West Europe         {Compute, Storage, PersistentVMRole, HighMemory}
-        West India          {Compute, Storage, PersistentVMRole, HighMemory}
-        West US             {Compute, Storage, PersistentVMRole, HighMemory}
+        Get-AzureLocation | Sort Name | Select Name
 2. 挑選最適合您的位置，使用該位置的名稱取代 **$locName** 的值，然後建立變數︰
    
         $locName = "location name from the list, such as Central US"
@@ -132,36 +113,6 @@ ms.author: davidmu
 4. 建立虛擬網路：
    
         $vnet = New-AzureRmVirtualNetwork -Name $netName -ResourceGroupName $rgName -Location $locName -AddressPrefix 10.0.0.0/16 -Subnet $subnet
-
-### <a name="public-ip-address"></a>公用 IP 位址
-您必須先建立公用 IP 位址，再建立網路介面。
-
-1. 以您要用於公用 IP 位址的網域名稱標籤取代 **$domName** 的值，然後建立變數︰  
-   
-        $domName = "domain name label"
-   
-    標籤只能包含字母、數字和連字號，而最後一個字元必須是字母或數字。
-2. 測試名稱是否是唯一的名稱︰
-   
-        Test-AzureRmDnsAvailability -DomainQualifiedName $domName -Location $locName
-   
-    如果答案是 **True**，表示您設定的名稱是唯一的。
-3. 以您要用於公用 IP 位址的名稱取代 **$pipName** 的值，然後建立變數。 
-   
-        $pipName = "public ip address name"
-4. 建立公用 IP 位址：
-   
-        $pip = New-AzureRmPublicIpAddress -Name $pipName -ResourceGroupName $rgName -Location $locName -AllocationMethod Dynamic -DomainNameLabel $domName
-
-### <a name="network-interface"></a>網路介面
-有了公用 IP 位址之後，您就可以建立網路介面。
-
-1. 以您要用於網路介面的名稱取代 **$nicName** 的值，然後建立變數︰ 
-   
-        $nicName = "network interface name"
-2. 建立網路介面：
-   
-        $nic = New-AzureRmNetworkInterface -Name $nicName -ResourceGroupName $rgName -Location $locName -SubnetId $vnet.Subnets[0].Id -PublicIpAddressId $pip.Id
 
 ### <a name="configuration-of-the-scale-set"></a>擴展集的組態
 您具備擴展集組態所需的所有資源，讓我們開始建立。  
@@ -253,7 +204,7 @@ ms.author: davidmu
         Location              : centralus
         Tags                  :
 
-## <a name="step-3:-explore-resources"></a>步驟 3︰瀏覽資源
+## <a name="step-3-explore-resources"></a>步驟 3︰瀏覽資源
 請使用這些資源瀏覽您建立的虛擬機器擴展集：
 
 * Azure 入口網站 - 使用入口網站可以取得的有限資訊。
@@ -271,6 +222,9 @@ ms.author: davidmu
 * 請考慮使用 [自動調整與虛擬機器擴展集](virtual-machine-scale-sets-autoscale-overview.md)
 * 檢閱 [使用虛擬機器擴展集垂直自動調整](virtual-machine-scale-sets-vertical-scale-reprovision.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

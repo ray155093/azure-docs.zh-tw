@@ -1,25 +1,29 @@
 ---
-title: ExpressRoute 位置 | Microsoft Docs
-description: 本文提供提供服務所在位置以及如何連線到 Azure 區域的詳細概觀。
+title: "ExpressRoute 位置 | Microsoft Docs"
+description: "本文提供提供服務所在位置以及如何連線到 Azure 區域的詳細概觀。"
 services: expressroute
 documentationcenter: na
 author: cherylmc
 manager: carmonm
-editor: ''
-
+editor: 
+ms.assetid: c878513a-d594-42ad-8b0e-403efd0c4b25
 ms.service: expressroute
 ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/12/2016
+ms.date: 11/02/2016
 ms.author: cherylmc
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 4aa1e62b4758481b40c4b1c8a632c8bb72ab4ce6
+
 
 ---
 # <a name="expressroute-partners-and-peering-locations"></a>ExpressRoute 合作夥伴和對等互連位置
 本文中的資料表會提供有關 ExpressRoute 連線提供者、ExpressRoute 地理涵蓋範圍、透過 ExpressRoute 支援的 Microsoft 雲端服務，以及 ExpressRoute 系統整合者 (SI) 的資訊。
 
-## <a name="<a-name="partners"></a>expressroute-connectivity-providers"></a><a name="partners"></a>ExpressRoute 連線提供者
+## <a name="a-namepartnersaexpressroute-connectivity-providers"></a><a name="partners"></a>ExpressRoute 連線提供者
 所有的 Azure 區域和位置都支援 ExpressRoute。 以下地圖提供了 Azure 區域和 ExpressRoute 位置的清單。 ExpressRoute 位置是指 Microsoft 與數個服務提供者對等互連的位置。
 
 ![位置圖][0]
@@ -57,7 +61,7 @@ ms.author: cherylmc
 | **服務提供者** | **Microsoft Azure** | **Office 365 和 CRM Online** | **位置** |
 | --- | --- | --- | --- |
 | **AARNet** |支援 |支援 |墨爾本、雪梨 |
-| **[Aryaka Networks](http://www.aryaka.com/)** |支援 |支援 |阿姆斯特丹、矽谷、新加坡、東京、華盛頓特區 |
+| **[Aryaka Networks](http://www.aryaka.com/)** |支援 |支援 |阿姆斯特丹、達拉斯、矽谷、新加坡、東京、華盛頓特區 |
 | **[AT&T NetBond](https://www.synaptic.att.com/clouduser/html/productdetail/ATT_NetBond.htm)** |支援 |支援 |阿姆斯特丹、芝加哥、達拉斯、倫敦、矽谷、新加坡、雪梨、華盛頓特區 |
 | **[British Telecom](http://www.globalservices.bt.com/uk/en/news/bt_to_provide_connectivity_to_microsoft_azure)** |支援 |支援 |阿姆斯特丹、香港、倫敦、矽谷、新加坡、雪梨、東京、華盛頓特區 |
 | **CenturyLink** |敬請期待 |敬請期待 |矽谷 |
@@ -66,28 +70,30 @@ ms.author: cherylmc
 | **[Colt](http://www.colt.net/uk/en/news/colt-announces-dedicated-cloud-access-for-microsoft-azure-services-en.htm)** |支援 |支援 |阿姆斯特丹、都柏林、倫敦、東京 |
 | **Comcast** |支援 |支援 |芝加哥、矽谷、華盛頓特區 |
 | **[CoreSite](http://www.coresite.com/solutions/cloud-services/public-cloud-providers/microsoft-azure-expressroute)** |支援 |支援 |洛杉磯 |
-| **[Equinix](http://www.equinix.com/partners/microsoft-azure/)** |支援 |支援 |阿姆斯特丹、亞特蘭大、芝加哥、達拉斯、香港、倫敦、洛杉磯、墨爾本、紐約、大阪、聖保羅、西雅圖、矽谷、新加坡、雪梨、東京、多倫多、華盛頓特區 |
+| **[Equinix](http://www.equinix.com/partners/microsoft-azure/)** |支援 |支援 |阿姆斯特丹、亞特蘭大、芝加哥、達拉斯、香港、倫敦、洛杉磯、墨爾本、紐約、大阪、巴黎+、聖保羅、西雅圖、矽谷、新加坡、雪梨、東京、多倫多、華盛頓特區 |
 | **euNetworks** |支援 |支援 |阿姆斯特丹 |
 | **GÉANT** |支援 |支援 |阿姆斯特丹 |
 | **[Internet Initiative Japan Inc. - IIJ](http://www.iij.ad.jp/en/news/pressrelease/2015/1216-2.html)** |支援 |支援 |大阪、東京 |
 | **[InterCloud](https://www.intercloud.com/)** |支援 |支援 |阿姆斯特丹、倫敦、新加坡、華盛頓特區 |
 | **Internet Solutions - Cloud Connect** |支援 |支援 |阿姆斯特丹、倫敦 |
 | **[Interxion](http://www.interxion.com/why-interxion/colocate-with-the-clouds/colocated-hybrid-cloud/microsoft-azure/)** |支援 |支援 |阿姆斯特丹、倫敦、巴黎 |
-| **Jisc** |敬請期待 |敬請期待 |倫敦+ |
+| **Jisc** |支援 |支援 |倫敦 |
 | **[Level 3 Communications](http://your.level3.com/LP=882?WT.tsrc=02192014LP882AzureVanityAzureText)** |支援 |支援 |阿姆斯特丹、芝加哥、達拉斯、拉斯維加斯+、倫敦、西雅圖、矽谷、華盛頓特區 |
 | **Megaport** |支援 |支援 |達拉斯、香港、拉斯維加斯、洛杉磯、墨爾本、紐約、西雅圖、新加坡、雪梨、華盛頓特區 |
 | **MTN** |支援 |支援 |倫敦 |
+| **新一代資料** |敬請期待 |敬請期待 |Newport(Wales)+ |
 | **NEXTDC** |支援 |支援 |墨爾本、雪梨 |
-| **NTT Communications** |支援 |支援 |倫敦、洛杉磯、大阪、東京 |
+| **NTT Communications** |支援 |支援 |倫敦、洛杉磯、大阪、新加坡、東京、華盛頓特區 |
 | **[Orange](http://www.orange-business.com/en/products/business-vpn-galerie)** |支援 |支援 |阿姆斯特丹、香港、倫敦、矽谷、新加坡、雪梨、華盛頓特區 |
 | **PCCW Global Limited** |支援 |支援 |香港 |
+| **SIFY** |支援 |支援 |辰內 |
 | **[SingTel](http://info.singtel.com/about-us/news-releases/singtel-provide-secure-private-access-microsoft-azure-public-cloud)** |支援 |支援 |新加坡 |
 | **Softbank** |支援 |支援 |大阪、東京 |
 | **[Tata Communications](http://www.tatacommunications.com/lp/izo/azure/azure_index.html)** |支援 |支援 |阿姆斯特丹、辰內、香港、倫敦、孟買、矽谷、新加坡、華盛頓特區 |
 | **[TeleCity Group](http://www.telecitygroup.com/investor-centre/news_details.htm?locid=03100500400b00d&xml)** |支援 |支援 |阿姆斯特丹、都柏林、倫敦 |
 | **Telefonica** |支援 |支援 |聖保羅 |
 | **Telenor** |支援 |支援 |阿姆斯特丹、倫敦 |
-| **[Telstra Corporation](http://www.telstra.com.au/business-enterprise/network-services/networks/cloud-direct-connect/)** |支援 |敬請期待 |墨爾本、雪梨 |
+| **[Telstra Corporation](http://www.telstra.com.au/business-enterprise/network-services/networks/cloud-direct-connect/)** |支援 |支援 |墨爾本、雪梨 |
 | **[Verizon](http://www.verizonenterprise.com/products/networking/secure-cloud-interconnect/)** |支援 |支援 |阿姆斯特丹、香港、倫敦、矽谷、新加坡、雪梨、東京、華盛頓特區 |
 | **Vodafone** |支援 |不支援 |倫敦 |
 | **[Zayo Group](http://www.zayo.com/solutions/industries/connect-to-cloud-data-centers/cloud-connectivity/microsoft-expressroute/)** |支援 |支援 |芝加哥、洛杉磯、紐約、矽谷、多倫多、華盛頓特區 |
@@ -101,7 +107,7 @@ ms.author: cherylmc
 | **[AT&T NetBond](https://www.synaptic.att.com/clouduser/html/productdetail/ATT_NetBond.htm)** |支援 |支援 |芝加哥、華盛頓特區 |
 | **[Equinix](http://www.equinix.com/partners/microsoft-azure/)** |支援 |支援 |芝加哥、達拉斯、紐約、華盛頓特區 |
 | **[Level 3 Communications](http://your.level3.com/LP=882?WT.tsrc=02192014LP882AzureVanityAzureText)** |支援 |支援 |芝加哥、紐約+、華盛頓特區 |
-| **[Verizon](http://news.verizonenterprise.com/2014/04/secure-cloud-interconnect-solutions-enterprise/)** |支援 |支援 |芝加哥、達拉斯+、紐約、華盛頓特區 |
+| **[Verizon](http://news.verizonenterprise.com/2014/04/secure-cloud-interconnect-solutions-enterprise/)** |支援 |支援 |芝加哥、達拉斯、紐約、華盛頓特區 |
 
 #### <a name="china"></a>中國
 | **服務提供者** | **Microsoft Azure** | **Office 365** | **位置** |
@@ -113,12 +119,12 @@ ms.author: cherylmc
 #### <a name="germany"></a>德國
 | **服務提供者** | **Microsoft Azure** | **Office 365** | **位置** |
 | --- | --- | --- | --- |
-| **[Colt](http://www.colt.net/uk/en/news/colt-announces-dedicated-cloud-access-for-microsoft-azure-services-en.htm)** |支援 |不支援 |柏林、法蘭克福 |
+| **[Colt](http://www.colt.net/uk/en/news/colt-announces-dedicated-cloud-access-for-microsoft-azure-services-en.htm)** |支援 |不支援 |柏林+、法蘭克福 |
 | **[Equinix](http://www.equinix.com/partners/microsoft-azure/)** |支援 |不支援 |法蘭克福 |
 | **e-shelter** |支援 |不支援 |柏林 |
 | **Interxion** |支援 |不支援 |法蘭克福 |
 
-## <a name="<a-name="nonpartners"></a>connectivity-through-service-providers-not-listed"></a><a name="nonpartners"></a>透過未列出的服務提供者連線
+## <a name="a-namenonpartnersaconnectivity-through-service-providers-not-listed"></a><a name="nonpartners"></a>透過未列出的服務提供者連線
 如果上一節中未列出您的連線提供者，您仍然可以建立連線。
 
 * 請洽詢您的連線提供者，以了解他們是否連線到上方表格中列出的任何 Exchange 提供者。 您可以檢查下列連結，以收集 Exchange 提供者所提供之服務的相關詳細資訊。 已有數個連線提供者連線到乙太網路 Exchange。
@@ -162,6 +168,6 @@ ms.author: cherylmc
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

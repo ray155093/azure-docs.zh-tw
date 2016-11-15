@@ -1,13 +1,13 @@
 ---
-title: Send push notifications to Chrome apps with Azure Notification Hubs | Microsoft Docs
-description: Learn how to use Azure Notification Hubs to send push notifications to a Chrome App.
+title: "使用 Azure 通知中樞將推播通知傳送至 Chrome 應用程式 | Microsoft Docs"
+description: "了解如何使用 Azure 通知中樞將推播通知傳送至 Chrome 應用程式。"
 services: notification-hubs
-keywords: mobile push notifications,push notifications,push notification,chrome push notifications
-documentationcenter: ''
+keywords: "行動推播通知,推播通知,推播通知,chrome 推播通知"
+documentationcenter: 
 author: ysxu
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 75d4ff59-d04a-455f-bd44-0130a68e641f
 ms.service: notification-hubs
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-chrome
@@ -15,75 +15,79 @@ ms.devlang: JavaScript
 ms.topic: hero-article
 ms.date: 10/03/2016
 ms.author: yuaxu
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 600b1b7e5f3987c9a0acc33b7049f7118442b931
+
 
 ---
-# <a name="send-push-notifications-to-chrome-apps-with-azure-notification-hubs"></a>Send push notifications to Chrome apps with Azure Notification Hubs
+# <a name="send-push-notifications-to-chrome-apps-with-azure-notification-hubs"></a>使用 Azure 通知中樞將推播通知傳送至 Chrome 應用程式
 [!INCLUDE [notification-hubs-selector-get-started](../../includes/notification-hubs-selector-get-started.md)]
 
-This topic shows you how to use Azure Notification Hubs to send push notifications to a Chrome App, which will be displayed within the context of the Google Chrome browser. In this tutorial, we will create a Chrome app that receives push notifications by using [Google Cloud Messaging (GCM)](https://developers.google.com/cloud-messaging/). 
+本主題說明如何使用 Azure 通知中樞將推播通知傳送至 Chrome 應用程式，以顯示於 Google Chrome 瀏覽器的內容中。 在本教學課程中，我們將建立可使用 [Google 雲端通訊 (GCM)](https://developers.google.com/cloud-messaging/)接收推播通知的 Chrome 應用程式。 
 
 > [!NOTE]
-> To complete this tutorial, you must have an active Azure account. If you don't have an account, you can create a free trial account in just a couple of minutes. For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%notification-hubs-chrome-get-started%2F).
+> 若要完成此教學課程，您必須具備有效的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資料，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%notification-hubs-chrome-get-started%2F)。
 > 
 > 
 
-The tutorial walks you through these basic steps to enable push notifications:
+本教學課程將逐步引導您完成下列啟用推播通知的基本步驟：
 
-* [Enable Google Cloud Messaging](#register)
-* [Configure your notification hub](#configure-hub)
-* [Connect your Chrome App to the notification hub](#connect-app)
-* [Send a push notification to your Chrome App](#send)
-* [Additional functionality & capabilities](#next-steps)
+* [啟用 Google Cloud Messaging](#register)
+* [設定您的通知中樞](#configure-hub)
+* [將您的 Chrome 應用程式連接到通知中樞](#connect-app)
+* [傳送推播通知給您的 Chrome 應用程式](#send)
+* [其他功能與能力](#next-steps)
 
 > [!NOTE]
-> Chrome app push notifications are not generic in-browser notifications - they are specific to the browser extensibility model (see [Chrome Apps Overview] for details). In addition to the desktop browser, Chrome apps run on mobile (Android and iOS) through Apache Cordova. See [Chrome Apps on Mobile] to learn more.
+> Chrome 應用程式的推播通知不是一般的瀏覽器中通知，而是瀏覽器擴充性模型所特有 (如需詳細資訊，請參閱 [Chrome 應用程式概觀] )。 Chrome 應用程式除了在桌面瀏覽器中執行外，也可透過 Apache Cordova 在行動裝置 (Android 和 iOS) 上執行。 若要深入了解，請參閱 [行動裝置上的 Chrome 應用程式] 。
 > 
 > 
 
-Configuring GCM and Azure Notification Hubs is identical to configuring for Android, since [Google Cloud Messaging for Chrome] has been deprecated and the same GCM now supports both Android devices and Chrome instances.
+設定 GCM 和 Azure 通知中樞的程序與 Android 的設定程序相同，因為 [Google Cloud Messaging for Chrome] 已停用，而相同的 GCM 現在可同時支援 Android 裝置和 Chrome 執行個體。
 
-## <a name="<a-id="register"></a>enable-google-cloud-messaging"></a><a id="register"></a>Enable Google Cloud Messaging
-1. Navigate to the [Google Cloud Console] website, sign in with your Google account credentials, and then click the **Create Project** button. Provide an appropriate **Project Name**, and then click the **Create** button.
+## <a name="a-idregisteraenable-google-cloud-messaging"></a><a id="register"></a>啟用 Google Cloud Messaging
+1. 瀏覽至 [Google 雲端主控台]網站，並使用 Google 帳戶認證登入，然後按一下 [建立專案] 按鈕。 提供適當的 [專案名稱]，然後按一下 [建立] 按鈕。
    
-    ![Google Cloud Console - Create Project][1]
-2. Make a note of the **Project Number** on the **Projects** page for the project that you just created. You will use this as the **GCM Sender ID** in the Chrome App to register with GCM.
+       ![Google Cloud Console - Create Project][1]
+2. 在 [專案] 頁面上，記下您剛才建立之專案的 [專案編號]。 您將以此編號做為 Chrome 應用程式中的 [GCM 寄件者識別碼]  ，向 GCM 註冊。
    
-    ![Google Cloud Console - Project Number][2]
-3. In the left pane, click **APIs & auth**, and then scroll down and click the toggle to enable **Google Cloud Messaging for Android**. You don't have to enable **Google Cloud Messaging for Chrome**.
+       ![Google Cloud Console - Project Number][2]
+3. 在左窗格中按一下 [API 與驗證]，然後向下捲動並按一下切換開關，以啟用 [Google Cloud Messaging for Android]。 您不需要啟用 [Google Cloud Messaging for Chrome] 。
    
-    ![Google Cloud Console - Server Key][3]
-4. In the left pane, click **Credentials** > **Create New Key** > **Server Key** > **Create**.
+       ![Google Cloud Console - Server Key][3]
+4. 在左窗格中，按一下 [認證] > [建立新的金鑰] > [伺服器金鑰] > [建立]。
    
-    ![Google Cloud Console - Credentials][4]
-5. Make a note of the server **API Key**. You will configure this in your notification hub next, to enable it to send push notifications to GCM.
+       ![Google Cloud Console - Credentials][4]
+5. 記下伺服器的 [API 金鑰] 。 您後續將會在通知中樞裡設定此金鑰，讓它能夠將推播通知傳送至 GCM。
    
-    ![Google Cloud Console - API Key][5]
+       ![Google Cloud Console - API Key][5]
 
-## <a name="<a-id="configure-hub"></a>configure-your-notification-hub"></a><a id="configure-hub"></a>Configure your notification hub
+## <a name="a-idconfigurehubaconfigure-your-notification-hub"></a><a id="configure-hub"></a>設定您的通知中樞
 [!INCLUDE [notification-hubs-portal-create-new-hub](../../includes/notification-hubs-portal-create-new-hub.md)]
 
-&emsp;&emsp;6.   In the **Settings** blade, select **Notification Services** and then **Google (GCM)**. Enter the API key and save.
+&emsp;&emsp;6. 在 [設定] 刀鋒視窗中，選取 [通知服務]，然後選取 [Google (GCM)]。 輸入 API 金鑰並儲存。
 
-&emsp;&emsp;![Azure Notification Hubs - Google (GCM)](./media/notification-hubs-android-get-started/notification-hubs-gcm-api.png)
+&emsp;&emsp;![Azure 通知中樞 - Google (GCM)](./media/notification-hubs-android-get-started/notification-hubs-gcm-api.png)
 
-## <a name="<a-id="connect-app"></a>connect-your-chrome-app-to-the-notification-hub"></a><a id="connect-app"></a>Connect your Chrome App to the notification hub
-Your notification hub is now configured to work with GCM, and you have the connection strings to register your app to both receive and send push notifications. LK
+## <a name="a-idconnectappaconnect-your-chrome-app-to-the-notification-hub"></a><a id="connect-app"></a>將您的 Chrome 應用程式連接到通知中樞
+現在已將您的通知中樞設定成使用 GCM，而且您已擁有可用來註冊應用程式以接收和傳送推播通知的連接字串。 LK
 
-### <a name="create-a-new-chrome-app"></a>Create a new Chrome App
-The sample below is based on the [Chrome App GCM Sample] and uses the recommended way to create a Chrome App. We will highlight the steps specifically related to Azure Notification Hubs. 
+### <a name="create-a-new-chrome-app"></a>建立新的 Chrome 應用程式
+下列範例以 [Chrome 應用程式 GCM 範例] 為基礎，並使用建議的方式建立 Chrome 應用程式。 我們將加強說明 Azure 通知中樞的相關具體步驟。 
 
 > [!NOTE]
-> We recommend that you download the source for this Chrome App from [Chrome App Notification Hub Sample].
+> 我們建議您從 [Chrome 應用程式通知中樞範例]下載此 Chrome 應用程式的原始碼。
 > 
 > 
 
-The Chrome App is created via JavaScript, and you can use any of your preferred word editors for creating it. Below is what this Chrome App will look like.
+Chrome 應用程式是透過 JavaScript 建立的，您可以使用任何慣用的文字編輯器加以建立。 此 Chrome 應用程式如下所示。
 
-![Google Chrome App][15]
+![Google Chrome 應用程式][15]
 
-1. Create a folder and name it `ChromePushApp`. Of course, the name is arbitrary - if you name it something different, make sure you substitute the path in the required code segments.
-2. Download the [crypto-js library] in the folder you created in the second step. This library folder will contain two subfolders: `components` and `rollups`.
-3. Create a `manifest.json` file. All Chrome Apps are backed by a manifest file that contains the app metadata and, most importantly, all permissions that are granted to the app when the user installs it.
+1. 建立資料夾，並將其命名為 `ChromePushApp`。 當然，您不一定要取為這個名稱，但如果您將其命名為不同名稱，請務必要替換掉必要程式碼片段中的路徑。
+2. 在第二個步驟建立的資料夾中，下載 [crypto-js 程式庫] 。 此程式庫資料夾將包含兩個子資料夾：`components` 和 `rollups`。
+3. 建立 `manifest.json` 檔案。 所有 Chrome 應用程式都會受到包含應用程式中繼資料的資訊清單檔案，以及最重要的是，使用者安裝應用程式時授與應用程式的所有權限所支援。
    
         {
           "name": "NH-GCM Notifications",
@@ -99,9 +103,9 @@ The Chrome App is created via JavaScript, and you can use any of your preferred 
           "icons": { "128": "gcm_128.png" }
         }
    
-    Notice the `permissions` element, which specifies that this Chrome App will be able to receive push notifications from GCM. It must also specify the Azure Notification Hubs URI where the Chrome App will make a REST call to register.
-    Our sample app also uses an icon file, `gcm_128.png`, that you will find at the source that's reused from the original GCM sample. You can substitute it for any image that fits the [icon criteria](https://developer.chrome.com/apps/manifest/icons).
-4. Create a file called `background.js` with the following code:
+    請留意 `permissions` 元素，它會指定此 Chrome 應用程式能夠從 GCM 接收推播通知。 它也必須指定 Azure 通知中樞 URI，其中 Chrome 應用程式將呼叫 REST 以進行註冊。
+    我們的範例應用程式也會使用圖示檔案 `gcm_128.png`，您會在取自原始 GCM 範例的重複使用原始碼中發現此檔案。 您可以用此圖示檔案來替換任何符合 [圖示準則](https://developer.chrome.com/apps/manifest/icons)的影像。
+4. 建立名為 `background.js` 的檔案並加入下列程式碼：
    
         // Returns a new notification ID used in the notification.
         function getNotificationId() {
@@ -155,11 +159,11 @@ The Chrome App is created via JavaScript, and you can use any of your preferred 
         chrome.runtime.onInstalled.addListener(firstTimeRegistration);
         chrome.runtime.onStartup.addListener(firstTimeRegistration);
    
-    This is the file that pops up the Chrome App window HTML (**register.html**) and also defines the handler **messageReceived** to handle the incoming push notification.
-5. Create a file called `register.html` - this defines the UI of the Chrome App. 
+    這是快顯 Chrome 應用程式視窗 HTML (**register.html**) 的檔案，且該檔案也會定義處理常式 **messageReceived** 來處理內送的推播通知。
+5. 建立名為 `register.html` 的檔案，此檔案會定義 Chrome 應用程式的 UI。 
    
    > [!NOTE]
-   > This sample uses **CryptoJS v3.1.2**. If you downloaded another version of the library, make sure you properly substitute the version in the `src` path.
+   > 此範例使用 **CryptoJS v3.1.2**。 如果您下載了另一個版本的程式庫，請務必要正確替換 `src` 路徑中的版本。
    > 
    > 
    
@@ -195,7 +199,7 @@ The Chrome App is created via JavaScript, and you can use any of your preferred 
         </body>
    
         </html>
-6. Create a file called `register.js` with the code below. This file specifies the script behind `register.html`. Chrome Apps do not allow inline execution, so you have to create a separate backing script for your UI.
+6. 使用下列程式碼，建立名為 `register.js` 的檔案。 此檔案會指定 `register.html`後面的指令碼。 Chrome 應用程式並不允許內嵌執行，因此您必須為 UI 建立個別的備份指令碼。
    
         var registrationId = "";
         var hubName        = "", connectionString = "";
@@ -342,56 +346,56 @@ The Chrome App is created via JavaScript, and you can use any of your preferred 
           }
         }
    
-    The above script has the following key parameters:
+    上述指令碼具有下列重要參數：
    
-   * **window.onload** defines the button-click events of the two buttons on the UI. One registers with GCM, and the other uses the registration ID that's returned after registration with GCM to register with Azure Notification Hubs.
-   * **updateLog** is the function that allows us to handle simple logging capabilities.
-   * **registerWithGCM** is the first button-click handler, which makes the `chrome.gcm.register` call to GCM to register the current Chrome App instance.
-   * **registerCallback** is the callback function that gets called when the GCM registration call returns.
-   * **registerWithNH** is the second button-click handler, which registers with Notification Hubs. It gets `hubName` and `connectionString` (which the user has specified) and crafts the Notification Hubs Registration REST API call.
-   * **splitConnectionString** and **generateSaSToken** are helpers that represent the JavaScript implementation of a SaS token creation process, that must be used in all REST API calls. For more information, see [Common Concepts](http://msdn.microsoft.com/library/dn495627.aspx).
-   * **sendNHRegistrationRequest** is the function that makes a HTTP REST call to Azure Notification Hubs.
-   * **registrationPayload** defines the registration XML payload. For more information, see [Create Registration NH REST API]. We update the registration ID in it with what we received from GCM.
-   * **client** is an instance of **XMLHttpRequest** that we use to make the HTTP POST request. Note that we update the `Authorization` header with `sasToken`. Successful completion of this call will register this Chrome App instance with Azure Notification Hubs.
+   * **window.onload** 會在 UI 上定義兩個按鈕的按鈕點擊事件。 其中一個向 GCM 註冊，另一個使用向 GCM 註冊後所傳回的註冊識別碼來向 Azure 通知中樞註冊。
+   * **updateLog** 是可讓我們處理簡單記錄功能的函式。
+   * **registerWithGCM** 是第一個按鈕點擊處理常式，可向 GCM 進行 `chrome.gcm.register` 呼叫，以註冊目前的 Chrome 應用程式執行個體。
+   * **registerCallback** 是回呼函數，會在 GCM 註冊呼叫傳回時受到呼叫。
+   * **registerWithNH** 是第二個按鈕點擊處理常式，會向通知中樞進行註冊。 它會取得使用者已指定的 `hubName` 和 `connectionString`，並製作通知中樞註冊 REST API 呼叫。
+   * **splitConnectionString** 和 **generateSaSToken** 是代表 SaS 權杖建立程序之 JavaScript 實作的協助程式，其必須用於所有 REST API 呼叫中。 如需詳細資訊，請參閱 [一般概念](http://msdn.microsoft.com/library/dn495627.aspx)。
+   * **sendNHRegistrationRequest** 是對 Azure 通知中樞發出 HTTP REST 呼叫的函式。
+   * **registrationPayload** 會定義註冊 XML 裝載。 如需詳細資訊，請參閱 [建立註冊 NH REST API]。 我們會以接收自 GCM 的項目來更新其中的註冊識別碼。
+   * **client** 是我們用來發出 HTTP POST 要求的 **XMLHttpRequest** 執行個體。 請注意，我們會使用 `sasToken` 更新 `Authorization` 標頭。 成功完成此呼叫後，即會向 Azure 通知中樞註冊此 Chrome 應用程式執行個體。
 
-The overall folder structure for this project should resemble this:     ![Google Chrome App - Folder Structure][21]
+此專案的整體資料夾結構應該會與下圖類似︰       ![Google Chrome 應用程式 - 資料夾結構][21]
 
-### <a name="set-up-and-test-your-chrome-app"></a>Set up and test your Chrome App
-1. Open your Chrome browser. Open **Chrome extensions** and enable **Developer mode**.
+### <a name="set-up-and-test-your-chrome-app"></a>設定和測試 Chrome 應用程式
+1. 開啟 Chrome 瀏覽器。 開啟 [Chrome 擴充功能]，並啟用 [開發人員模式]。
    
-    ![Google Chrome - Enable Developer Mode][16]
-2. Click **Load unpacked extension** and navigate to the folder where you created the files. You can also optionally use the **Chrome Apps & Extensions Developer Tool**. This tool is a Chrome App in itself (installed from the Chrome Web Store) and provides advanced debugging capabilities for your Chrome App development.
+       ![Google Chrome - Enable Developer Mode][16]
+2. 按一下 [載入未封裝的擴充功能]，並瀏覽至您在其中建立檔案的資料夾。 您也可以選擇性地使用 **Chrome Apps & Extensions Developer Tool**。 此工具本身為 Chrome 應用程式 (從 Chrome 線上應用程式商店進行安裝)，且提供 Chrome 應用程式開發進階偵錯功能。
    
-    ![Google Chrome - Load Unpacked Extension][17]
-3. If the Chrome App is created without any errors, then you will see your Chrome App show up.
+       ![Google Chrome - Load Unpacked Extension][17]
+3. 如果該 Chrome 應用程式在建立時未發生任何錯誤，則您將會看見該應用程式顯示。
    
-    ![Google Chrome - Chrome App Display][18]
-4. Enter the **Project Number** that you got earlier from the **Google Cloud Console** as the sender ID, and click **Register with GCM**. You must see the message **Registration with GCM succeeded.**
+       ![Google Chrome - Chrome App Display][18]
+4. 輸入您先前從 [Google 雲端主控台] 取得的 [專案編號]，做為寄件者識別碼，然後按一下 [向 GCM 註冊]。 您必須看見 **Registration with GCM succeeded.** 訊息。
    
-    ![Google Chrome - Chrome App Customization][19]
-5. Enter your **Notification Hub Name** and the **DefaultListenSharedAccessSignature** that you obtained from the portal earlier, and click **Register with Azure Notification Hub**. You must see the message **Notification Hub Registration successful!** and the details of the registration response, which contains the Azure Notification Hubs registration ID.
+       ![Google Chrome - Chrome App Customization][19]
+5. 輸入您先前從 Azure 傳統入口網站取得的 [通知中樞名稱] 和 [DefaultListenSharedAccessSignature]，然後按一下 [向 Azure 通知中樞註冊]。 您必須看見 **Registration with GCM succeeded.** 訊息 和註冊回應的詳細資料，其中包含 Azure 通知中樞註冊識別碼。
    
-    ![Google Chrome - Specify Notification Hub Details][20]  
+       ![Google Chrome - Specify Notification Hub Details][20]  
 
-## <a name="<a-name="send"></a>send-a-notification-to-your-chrome-app"></a><a name="send"></a>Send a notification to your Chrome App
-For testing purposes, we will send Chrome push notifications by using a .NET console application. 
+## <a name="a-namesendasend-a-notification-to-your-chrome-app"></a><a name="send"></a>傳送通知給您的 Chrome 應用程式
+為了進行測試，我們會使用 .NET 主控台應用程式傳送 Chrome 推播通知。 
 
 > [!NOTE]
-> You can send push notifications with Notification Hubs from any backend via our public <a href="http://msdn.microsoft.com/library/windowsazure/dn223264.aspx">REST interface</a>. Check out our [documentation portal](https://azure.microsoft.com/documentation/services/notification-hubs/) for more cross-platform examples.
+> 您可以透過公用 <a href="http://msdn.microsoft.com/library/windowsazure/dn223264.aspx">REST 介面</a>，使用通知中樞從任何後端傳送推播通知。 如需其他跨平台範例，請查看我們的 [說明文件入口網站](https://azure.microsoft.com/documentation/services/notification-hubs/) 。
 > 
 > 
 
-1. In Visual Studio, from the **File** menu, select **New** and then **Project**. Under **Visual C#**, click **Windows** and **Console Application**, and then click **OK**.  This creates a new console application project.
-2. From the **Tools** menu, click **Library Package Manager** and then **Package Manager Console**. This displays the Package Manager Console.
-3. In the console window, execute the following command:
+1. 在 Visual Studio 的 [檔案] 功能表中，選取 [新增]，然後選取 [專案]。 在 [Visual C#] 下方，按一下 [Windows] 和 [主控台應用程式]，然後按一下 [確定]。  這會建立新的主控台應用程式專案。
+2. 在 [工具] 功能表中，依序按一下 [程式庫套件管理員] 和 [套件管理器主控台]。 這會顯示 [Package Manager Console]。
+3. 在主控台視窗中，執行下列命令：
    
         Install-Package Microsoft.Azure.NotificationHubs
    
-    This adds a reference to the Azure Service Bus SDK with the <a href="http://nuget.org/packages/  WindowsAzure.ServiceBus/">WindowsAzure.ServiceBus NuGet package</a>.
-4. Open `Program.cs` and add the following `using` statement:
+       This adds a reference to the Azure Service Bus SDK with the <a href="http://nuget.org/packages/  WindowsAzure.ServiceBus/">WindowsAzure.ServiceBus NuGet package</a>.
+4. 開啟 `Program.cs` 並新增下列 `using` 陳述式：
    
         using Microsoft.Azure.NotificationHubs;
-5. In the `Program` class, add the following method:
+5. 在 `Program` 類別中，新增下列方法：
    
         private static async void SendNotificationAsync()
         {
@@ -400,35 +404,35 @@ For testing purposes, we will send Chrome push notifications by using a .NET con
             await hub.SendGcmNativeNotificationAsync(message);
         }
    
-    Make sure to replace the `<hub name>` placeholder with the name of the notification hub that appears in the [portal](https://portal.azure.com) in your Notification Hub blade. Also, replace the connection string placeholder with the connection string called `DefaultFullSharedAccessSignature` that you obtained in the notification hub configuration section.
+       Make sure to replace the `<hub name>` placeholder with the name of the notification hub that appears in the [portal](https://portal.azure.com) in your Notification Hub blade. Also, replace the connection string placeholder with the connection string called `DefaultFullSharedAccessSignature` that you obtained in the notification hub configuration section.
    
    > [!NOTE]
-   > Make sure that you use the connection string with **Full** access, not **Listen** access. The **Listen** access connection string does not grant permissions to send push notifications.
+   > 請確定您使用的連接字串具有 [完整] 存取權，而非 [接聽] 存取權。 [接聽]  存取權連接字串未授與傳送推播通知的權限。
    > 
    > 
-6. Add the following calls in the `Main` method:
+6. 在 `Main` 方法中新增下列呼叫︰
    
          SendNotificationAsync();
          Console.ReadLine();
-7. Make sure that Chrome is running, and run the console application.
-8. You should see the following notification pop up on your desktop.
+7. 確定 Chrome 正在執行，並執行主控台應用程式。
+8. 您應該會在桌面上看見下列通知快顯視窗。
    
-    ![Google Chrome - Notification][13]
-9. You can also see all your notifications by using the Chrome Notifications window in the taskbar (in Windows) when Chrome is running.
+       ![Google Chrome - Notification][13]
+9. 當 Chrome 執行時，您也可以使用工作列 (在 Windows 中) 內的 [Chrome 通知] 視窗來查看所有的通知。
    
-    ![Google Chrome - Notifications List][14]
+       ![Google Chrome - Notifications List][14]
 
 > [!NOTE]
-> You don't need to have the Chrome App running or open in the browser (though the Chrome browser itself must be running). You also get a consolidated view of all your notifications in the Chrome Notifications window.
+> 您不需要執行 Chrome 應用程式，也不需要在瀏覽器中開啟 (但 Chrome 瀏覽器本身必須為執行狀態)。 您也可以在 [Chrome 通知] 視窗中整合檢視您所有的通知。
 > 
 > 
 
-## <a name="<a-name="next-steps">-</a>next-steps"></a><a name="next-steps"> </a>Next steps
-Learn more about Notification Hubs in [Notification Hubs Overview].
+## <a name="next-steps"> </a>後續步驟
+請在 [通知中樞概觀]中進一步了解通知中樞。
 
-To target specific users, refer to the [Azure Notification Hubs Notify Users] tutorial. 
+若要針對特定使用者，請參閱 [Azure 通知中樞通知使用者] 教學課程。 
 
-If you want to segment your users by interest groups, you can follow the [Azure Notification Hubs breaking news] tutorial.
+如果您想要按興趣群組分隔使用者，可按照 [Azure 通知中樞即時新聞] 教學課程的指示進行。
 
 <!-- Images. -->
 [1]: ./media/notification-hubs-chrome-get-started/GoogleConsoleCreateProject.PNG
@@ -454,23 +458,23 @@ If you want to segment your users by interest groups, you can follow the [Azure 
 [21]: ./media/notification-hubs-chrome-get-started/FinalFolderView.png
 
 <!-- URLs. -->
-[Chrome App Notification Hub Sample]: https://github.com/Azure/azure-notificationhubs-samples/tree/master/PushToChromeApps
-[Google Cloud Console]: http://cloud.google.com/console
-[Azure Classic Portal]: https://manage.windowsazure.com/
-[Notification Hubs Overview]: notification-hubs-push-notification-overview.md
-[Chrome Apps Overview]: https://developer.chrome.com/apps/about_apps
-[Chrome App GCM Sample]: https://github.com/GoogleChrome/chrome-app-samples/tree/master/samples/gcm-notifications
-[Installable Web Apps]: https://developers.google.com/chrome/apps/docs/
-[Chrome Apps on Mobile]: https://developer.chrome.com/apps/chrome_apps_on_mobile
-[Create Registration NH REST API]: http://msdn.microsoft.com/library/azure/dn223265.aspx
-[crypto-js library]: http://code.google.com/p/crypto-js/
-[GCM with Chrome Apps]: https://developer.chrome.com/apps/cloudMessaging
+[Chrome 應用程式通知中樞範例]: https://github.com/Azure/azure-notificationhubs-samples/tree/master/PushToChromeApps
+[Google 雲端主控台]: http://cloud.google.com/console
+[Azure 傳統入口網站]: https://manage.windowsazure.com/
+[通知中樞概觀]: notification-hubs-push-notification-overview.md
+[Chrome 應用程式概觀]: https://developer.chrome.com/apps/about_apps
+[Chrome 應用程式 GCM 範例]: https://github.com/GoogleChrome/chrome-app-samples/tree/master/samples/gcm-notifications
+[可安裝的 Web Apps]: https://developers.google.com/chrome/apps/docs/
+[行動裝置上的 Chrome 應用程式]: https://developer.chrome.com/apps/chrome_apps_on_mobile
+[建立註冊 NH REST API]: http://msdn.microsoft.com/library/azure/dn223265.aspx
+[crypto-js 程式庫]: http://code.google.com/p/crypto-js/
+[使用 Chrome 應用程式的 GCM]: https://developer.chrome.com/apps/cloudMessaging
 [Google Cloud Messaging for Chrome]: https://developer.chrome.com/apps/cloudMessagingV1
-[Azure Notification Hubs Notify Users]: notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md
-[Azure Notification Hubs breaking news]: notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md
+[Azure 通知中樞通知使用者]: notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md
+[Azure 通知中樞即時新聞]: notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

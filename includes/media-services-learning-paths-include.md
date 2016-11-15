@@ -3,4 +3,8 @@
 * [AMS 即時資料流工作流程](https://azure.microsoft.com/documentation/learning-paths/media-services-streaming-live/)
 * [AMS 隨選資料流工作流程](https://azure.microsoft.com/documentation/learning-paths/media-services-streaming-on-demand/)
 
-<!---HONumber=AcomDC_0128_2016-->
+
+
+<!--HONumber=Nov16_HO2-->
+
+

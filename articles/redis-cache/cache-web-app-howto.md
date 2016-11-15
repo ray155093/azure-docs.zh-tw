@@ -1,12 +1,12 @@
 ---
-title: 如何使用 Redis 快取建立 Web 應用程式 | Microsoft Docs
-description: 了解如何使用 Redis 快取建立 Web 應用程式
+title: "如何使用 Redis 快取建立 Web 應用程式 | Microsoft Docs"
+description: "了解如何使用 Redis 快取建立 Web 應用程式"
 services: redis-cache
-documentationcenter: ''
+documentationcenter: 
 author: steved0x
 manager: douge
-editor: ''
-
+editor: 
+ms.assetid: 454e23d7-a99b-4e6e-8dd7-156451d2da7c
 ms.service: cache
 ms.workload: tbd
 ms.tgt_pltfrm: cache-redis
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 10/11/2016
 ms.author: sdanie
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 425729dde12d8477b7b8ecd6394b31b7c5a5e92b
+
 
 ---
 # <a name="how-to-create-a-web-app-with-redis-cache"></a>如何使用 Redis 快取建立 Web 應用程式
@@ -49,7 +53,7 @@ ms.author: sdanie
 * [免費申請 Azure 帳戶](/pricing/free-trial/?WT.mc_id=redis_cache_hero)。 您將獲得能用來試用 Azure 付費服務的額度。 即使在額度用完後，您仍可保留帳戶並使用免費的 Azure 服務和功能。
 * [啟用 Visual Studio 訂閱者權益](/pricing/member-offers/msdn-benefits-details/?WT.mc_id=redis_cache_hero)。 您的 MSDN 訂用帳戶每月會提供您額度，您可以用在 Azure 付費服務。
 
-### <a name="visual-studio-2015-with-the-azure-sdk-for-.net"></a>Visual Studio 2015 (含 Azure SDK for .NET)
+### <a name="visual-studio-2015-with-the-azure-sdk-for-net"></a>Visual Studio 2015 (含 Azure SDK for .NET)
 本教學課程是特別為 Visual Studio 2015 (含 [Azure SDK for .NET](../dotnet-sdk.md) 2.8.2 或更新版本) 所撰寫。 [在此下載最新的 Azure SDK for Visual Studio 2015](http://go.microsoft.com/fwlink/?linkid=518003)。 如果您沒有 Visual Studio，它會自動與 SDK 一起安裝。
 
 如果您有 Visual Studio 2013，您可以 [下載最新的 Azure SDK for Visual Studio 2013](http://go.microsoft.com/fwlink/?LinkID=324322)。 有些畫面看起來可能與本教學課程所示插圖不同。
@@ -69,7 +73,7 @@ ms.author: sdanie
     ![選取專案範本][cache-select-template]
 4. 按一下 [確定]  以建立專案。
 
-## <a name="create-the-asp.net-mvc-application"></a>建立 ASP.NET MVC 應用程式
+## <a name="create-the-aspnet-mvc-application"></a>建立 ASP.NET MVC 應用程式
 在本教學課程的這一節當中，您將會建立可從資料庫讀取並顯示隊伍統計資料的基本應用程式。
 
 * [新增模型](#add-the-model)
@@ -174,7 +178,7 @@ ms.author: sdanie
         <connectionStrings>
             <add name="DefaultConnection" connectionString="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-ContosoTeamStats-20160216120918.mdf;Initial Catalog=aspnet-ContosoTeamStats-20160216120918;Integrated Security=True"
                 providerName="System.Data.SqlClient" />
-            <add name="TeamContext" connectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Teams.mdf;Integrated Security=True"  providerName="System.Data.SqlClient" />
+            <add name="TeamContext" connectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Teams.mdf;Integrated Security=True"     providerName="System.Data.SqlClient" />
         </connectionStrings>
 
 ### <a name="add-the-controller"></a>新增控制器
@@ -241,7 +245,7 @@ ms.author: sdanie
 * [更新用來使用快取的建立、編輯和刪除方法](#update-the-create-edit-and-delete-methods-to-work-with-the-cache)
 * [更新用來使用快取的隊伍索引檢視](#update-the-teams-index-view-to-work-with-the-cache)
 
-### <a name="configure-the-application-to-use-stackexchange.redis"></a>設定應用程式以使用 StackExchange.Redis
+### <a name="configure-the-application-to-use-stackexchangeredis"></a>設定應用程式以使用 StackExchange.Redis
 1. 若要在 Visual Studio 中使用 StackExchange.Redis NuGet 套件來設定用戶端應用程式，請在 [方案總管] 中的專案上按一下滑鼠右鍵，然後選擇 [管理 NuGet 套件]。 
    
     ![Manage NuGet packages][redis-cache-manage-nuget-menu]
@@ -513,7 +517,7 @@ ms.author: sdanie
         }
 
 
-### <a name="update-the-create,-edit,-and-delete-methods-to-work-with-the-cache"></a>更新用來使用快取的建立、編輯和刪除方法
+### <a name="update-the-create-edit-and-delete-methods-to-work-with-the-cache"></a>更新用來使用快取的建立、編輯和刪除方法
 此範例進行過程所產生的樣板程式碼包括用來新增、編輯和刪除隊伍的方法。 每當您加入、編輯或移除隊伍時，快取中的資料就會變得過時。 在本節中，您將會修改這三種方法來清除已快取的隊伍，讓快取不會與資料庫失去同步。
 
 1. 瀏覽至 `TeamsController` 類別中的 `Create(Team team)` 方法。 在 `ClearCachedTeams` 方法中新增呼叫，如下列範例所示。
@@ -804,6 +808,6 @@ ms.author: sdanie
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

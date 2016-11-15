@@ -1,12 +1,12 @@
 ---
-title: SQL 資料倉儲中的 PolyBase 教學課程 | Microsoft Docs
-description: 瞭解 PolyBase 是什麼及如何用於資料倉儲案例。
+title: "SQL 資料倉儲中的 PolyBase 教學課程 | Microsoft Docs"
+description: "瞭解 PolyBase 是什麼及如何用於資料倉儲案例。"
 services: sql-data-warehouse
 documentationcenter: NA
 author: ckarst
 manager: barbkess
-editor: ''
-
+editor: 
+ms.assetid: 0a0103b4-ddd6-4d1e-87be-4965d6e99f3f
 ms.service: sql-data-warehouse
 ms.devlang: NA
 ms.topic: get-started-article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: cakarst;barbkess
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 936bfcb7d4e7d2a901304f31a58b31e6cd14498a
+
 
 ---
 # <a name="load-data-with-polybase-in-sql-data-warehouse"></a>在 SQL 資料倉儲中使用 PolyBase 載入資料
@@ -40,7 +44,7 @@ ms.author: cakarst;barbkess
 
 * SQL 資料倉儲資料庫。
 * 類型為標準本地備援儲存體 (標準 LRS)、標準異地備援儲存體 (標準 GRS) 或標準讀取存取異地備援儲存體 (標準 RAGRS) 的 Azure 儲存體帳戶。
-* AzCopy 命令列公用程式。 下載並安裝 [最新版 AzCopy][最新版 AzCopy] ，此公用程式會隨 Microsoft Azure 儲存體工具一起安裝。
+* AzCopy 命令列公用程式。 下載並安裝 [最新版 AzCopy][最新版 AzCopy]，此公用程式會隨 Microsoft Azure 儲存體工具一起安裝。
   
     ![Azure 儲存體工具](./media/sql-data-warehouse-get-started-load-with-polybase/install-azcopy.png)
 
@@ -103,7 +107,7 @@ ms.author: cakarst;barbkess
     .\AzCopy.exe /Source:C:\Temp\ /Dest:<blob service endpoint URL> /datacontainer/datedimension/ /DestKey:<azure_storage_account_key> /Pattern:DimDate2.txt
     ```
 
-另請參閱 [開始使用 AzCopy 命令列公用程式][開始使用 AzCopy 命令列公用程式]。
+另請參閱[開始使用 AzCopy 命令列公用程式][開始使用 AzCopy 命令列公用程式]。
 
 ### <a name="e-explore-your-blob-storage-container"></a>E. 瀏覽 Blob 儲存體容器
 若要查看您上傳至 Blob 儲存體的檔案：
@@ -123,11 +127,11 @@ PolyBase 使用外部資料表存取 Azure Blob 儲存體中的資料。 因為�
 
 此步驟中的範例使用這些 Transact-SQL 陳述式建立外部資料表。
 
-* [建立主要金鑰 (Transact-SQL)][] 以加密資料庫範圍認證的密碼。
-* [建立資料庫範圍認證 (Transact-SQL)][] 以指定 Azure 儲存體帳戶的驗證資訊。
-* [建立外部資料來源 (Transact-SQL)][] 以指定 Azure Blob 儲存體的位置。
-* [建立外部檔案格式 (Transact-SQL)][] 以指定資料的格式。
-* [建立外部資料表 (Transact-SQL)][] 以指定資料表定義和資料的位置。
+* [建立主要金鑰 (Transact-SQL)][建立主要金鑰 (Transact-SQL)] 以加密資料庫範圍認證的密碼。
+* [建立資料庫範圍認證 (Transact-SQL)][建立資料庫範圍認證 (Transact-SQL)] 以指定 Azure 儲存體帳戶的驗證資訊。
+* [建立外部資料來源 (Transact-SQL)][建立外部資料來源 (Transact-SQL)] 以指定 Azure Blob 儲存體的位置。
+* [建立外部檔案格式 (Transact-SQL)][建立外部檔案格式 (Transact-SQL)] 以指定您資料的格式。
+* [建立外部資料表 (Transact-SQL)][建立外部資料表 (Transact-SQL)] 以指定資料表定義和資料的位置。
 
 對 SQL 資料倉儲資料庫執行這個查詢。 它會在 dbo 結構描述中建立指向 Azure Blob 儲存體中 DimDate2.txt 範例資料的外部資料表 (名稱為 DimDate2External)。
 
@@ -234,10 +238,10 @@ CREATE STATISTICS [CalendarQuarter] on [DimDate2] ([CalendarQuarter]);
 CREATE STATISTICS [FiscalQuarter] on [DimDate2] ([FiscalQuarter]);
 ```
 
-若要深入了解，請參閱 [統計資料][統計資料]。  
+若要深入了解，請參閱[統計資料][統計資料]。  
 
 ## <a name="next-steps"></a>後續步驟
-請參閱 [PolyBase 指南][PolyBase 指南] ，以取得開發使用 PolyBase 的解決方案時，您應該知道的進一步資訊。
+請參閱 [PolyBase 指南][PolyBase 指南]，以取得開發使用 PolyBase 的解決方案時，您應該知道的進一步資訊。
 
 <!--Image references-->
 
@@ -274,6 +278,6 @@ CREATE STATISTICS [FiscalQuarter] on [DimDate2] ([FiscalQuarter]);
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

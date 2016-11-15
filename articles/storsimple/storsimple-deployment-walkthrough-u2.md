@@ -1,24 +1,28 @@
 ---
-title: 部署 StorSimple 裝置 (Update 2) | Microsoft Docs
-description: 描述部署 StorSimple Update 2 裝置和服務的步驟與最佳做法。
+title: "部署 StorSimple 裝置 (Update 2) | Microsoft Docs"
+description: "描述部署 StorSimple Update 2 裝置和服務的步驟與最佳做法。"
 services: storsimple
 documentationcenter: NA
 author: alkohli
 manager: carmonm
-editor: ''
-
+editor: 
+ms.assetid: 7dff0612-617b-4fc8-a3fe-994c24bc7c51
 ms.service: storsimple
 ms.devlang: NA
 ms.topic: hero-article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 10/11/2016
+ms.date: 10/24/2016
 ms.author: alkohli
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 636b4ca48d242edfad2770a29f73f7a76edca034
+
 
 ---
-# <a name="deploy-your-on-premises-storsimple-device-(update-2)"></a>部署您的內部部署 StorSimple 裝置 (Update 2)
+# <a name="deploy-your-onpremises-storsimple-device-update-2"></a>部署您的內部部署 StorSimple 裝置 (Update 2)
 > [!div class="op_single_selector"]
-> * [Update 2](storsimple-deployment-walkthrough-u2.md)
+> * [Update 2 和更新版本](storsimple-deployment-walkthrough-u2.md)
 > * [Update 1](storsimple-deployment-walkthrough-u1.md)
 > * [GA 版本](storsimple-deployment-walkthrough.md)
 > 
@@ -91,10 +95,10 @@ ms.author: alkohli
 
 * 資料中心防火牆中的連接埠已開放，以允許 iSCSI 和雲端流量，如 [StorSimple 裝置的網路需求](storsimple-system-requirements.md#networking-requirements-for-your-storsimple-device)中所述。
 
-## <a name="step-by-step-deployment"></a>逐步部署
+## <a name="stepbystep-deployment"></a>逐步部署
 請在資料中心使用下列逐步指示來部署 StorSimple 裝置。
 
-## <a name="step-1:-create-a-new-service"></a>步驟 1：建立新的服務
+## <a name="step-1-create-a-new-service"></a>步驟 1：建立新的服務
 StorSimple Manager 服務可以管理多個 StorSimple 裝置。 請執行下列步驟以建立 StorSimple Manager 服務的新執行個體。
 
 [!INCLUDE [storsimple-create-new-service](../../includes/storsimple-create-new-service.md)]
@@ -107,19 +111,19 @@ StorSimple Manager 服務可以管理多個 StorSimple 裝置。 請執行下列
 > 
 > 
 
-## <a name="step-2:-get-the-service-registration-key"></a>步驟 2：取得服務註冊金鑰
+## <a name="step-2-get-the-service-registration-key"></a>步驟 2：取得服務註冊金鑰
 當 StorSimple Manager 服務啟動後處於執行中時，您就必須取得服務註冊金鑰。 這個金鑰是用來註冊和將 StorSimple 裝置與服務連接。
 
 請在管理入口網站中執行下列步驟。
 
 [!INCLUDE [storsimple-get-service-registration-key](../../includes/storsimple-get-service-registration-key.md)]
 
-## <a name="step-3:-configure-and-register-the-device-through-windows-powershell-for-storsimple"></a>步驟 3：透過 Windows PowerShell for StorSimple 設定和註冊裝置
+## <a name="step-3-configure-and-register-the-device-through-windows-powershell-for-storsimple"></a>步驟 3：透過 Windows PowerShell for StorSimple 設定和註冊裝置
 您可以使用 Windows PowerShell for StorSimple 來完成 StorSimple 裝置的初始安裝，如下列程序所述。 您必須使用終端機模擬軟體來完成這個步驟。 如需詳細資訊，請參閱 [使用 PuTTY 連接到裝置序列主控台](#use-putty-to-connect-to-the-device-serial-console)。
 
 [!INCLUDE [storsimple-configure-and-register-device-u1](../../includes/storsimple-configure-and-register-device-u1.md)]
 
-## <a name="step-4:-complete-minimum-device-setup"></a>步驟 4：完成最小量裝置設定
+## <a name="step-4-complete-minimum-device-setup"></a>步驟 4：完成最小量裝置設定
 為完成 StorSimple 裝置的最小量裝置設定，您必須： 
 
 * 設定次要 DNS 伺服器。
@@ -130,14 +134,14 @@ StorSimple Manager 服務可以管理多個 StorSimple 裝置。 請執行下列
 
 [!INCLUDE [storsimple-complete-minimum-device-setup](../../includes/storsimple-complete-minimum-device-setup-u1.md)]
 
-## <a name="step-5:-create-a-volume-container"></a>步驟 5：建立磁碟區容器
+## <a name="step-5-create-a-volume-container"></a>步驟 5：建立磁碟區容器
 磁碟區容器具有其中所含之所有磁碟區的儲存體帳戶、頻寬及加密設定。 您必須建立磁碟區容器，才能開始在 StorSimple 裝置上佈建磁碟區。 
 
 請在管理入口網站中執行下列步驟，以建立磁碟區容器。
 
 [!INCLUDE [storsimple-create-volume-container](../../includes/storsimple-create-volume-container.md)]
 
-## <a name="step-6:-create-a-volume"></a>步驟 6：建立磁碟區
+## <a name="step-6-create-a-volume"></a>步驟 6：建立磁碟區
 建立磁碟區容器之後，您就可以為伺服器在 StorSimple 裝置上佈建存放磁碟區。 請在管理入口網站中執行下列步驟，以建立磁碟區。
 
 > [!IMPORTANT]
@@ -147,7 +151,7 @@ StorSimple Manager 服務可以管理多個 StorSimple 裝置。 請執行下列
 
 [!INCLUDE [storsimple-create-volume](../../includes/storsimple-create-volume-u2.md)]
 
-## <a name="step-7:-mount,-initialize,-and-format-a-volume"></a>步驟 7：掛接、初始化及格式化磁碟區
+## <a name="step-7-mount-initialize-and-format-a-volume"></a>步驟 7：掛接、初始化及格式化磁碟區
 在 Windows Server 主機上執行下列步驟。 
 
 > [!IMPORTANT]
@@ -161,7 +165,7 @@ StorSimple Manager 服務可以管理多個 StorSimple 裝置。 請執行下列
 
 [!INCLUDE [storsimple-mount-initialize-format-volume](../../includes/storsimple-mount-initialize-format-volume.md)]
 
-## <a name="step-8:-take-a-backup"></a>步驟 8：進行備份
+## <a name="step-8-take-a-backup"></a>步驟 8：進行備份
 備份可提供磁碟區的時間點保護，並改善復原能力，同時讓還原時間降至最低。 您可以在 StorSimple 裝置上進行兩種備份類型：本機快照與雲端快照。 每一種備份類型都可以是 [排程] 或 [手動]。 
 
 請在管理入口網站中執行下列步驟，以建立排程備份。
@@ -217,6 +221,9 @@ StorSimple Manager 服務可以管理多個 StorSimple 裝置。 請執行下列
 * 設定 [虛擬裝置](storsimple-virtual-device-u2.md)。
 * 使用 [StorSimple Manager 服務](storsimple-manager-service-administration.md) 以管理 StorSimple 裝置。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

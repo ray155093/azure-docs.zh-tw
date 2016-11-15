@@ -1,12 +1,12 @@
 ---
-title: Operations Management Suite 安全性和稽核解決方案資料安全性 | Microsoft Docs
-description: 本文件說明如何在 Operations Management Suite 安全性和稽核解決方案中管理和保護資料。
+title: "Operations Management Suite 安全性和稽核解決方案資料安全性 | Microsoft Docs"
+description: "本文件說明如何在 Operations Management Suite 安全性和稽核解決方案中管理和保護資料。"
 services: operations-management-suite
 documentationcenter: na
 author: YuriDio
 manager: swadhwa
-editor: ''
-
+editor: 
+ms.assetid: 9cdf7deb-2a30-4672-b89f-71179ee8326a
 ms.service: operations-management-suite
 ms.devlang: na
 ms.topic: hero-article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/15/2016
 ms.author: yurid
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: d81d3ff9c91d0056c69f5f190d3dfaa507c1e340
+
 
 ---
 # <a name="operations-management-suite-security-and-audit-solution-data-security"></a>Operations Management Suite 安全性和稽核解決方案資料安全性
@@ -54,6 +58,9 @@ OMS 安全性和稽核解決方案會分析來自虛擬機器和 OM 代理程式
 * [在 Operations Management Suite 安全性和稽核內監視及回應安全性警示](oms-security-responding-alerts.md)
 * [在 Operations Management Suite 安全性和稽核解決方案內監視資源](oms-security-monitoring-resources.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

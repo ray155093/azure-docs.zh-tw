@@ -1,13 +1,13 @@
 ---
-title: SQL Database 效能和選項：服務層 | Microsoft Docs
-description: 比較服務層的 SQL Database 效能和商務持續性功能，適當地平衡成本與功能。
-keywords: 資料庫選項, 資料庫效能
+title: "SQL Database 效能和選項：服務層 | Microsoft Docs"
+description: "比較服務層的 SQL Database 效能和商務持續性功能，適當地平衡成本與功能。"
+keywords: "資料庫選項, 資料庫效能"
 services: sql-database
-documentationcenter: ''
+documentationcenter: 
 author: CarlRabeler
 manager: jhubbard
 editor: CarlRabeler
-
+ms.assetid: f5c5c596-cd1e-451f-92a7-b70d4916e974
 ms.service: sql-database
 ms.devlang: na
 ms.topic: get-started-article
@@ -15,9 +15,13 @@ ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 08/10/2016
 ms.author: carlrab
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 9ecbee74bc0559aa632304b0a0428abb36606597
+
 
 ---
-# <a name="sql-database-options-and-performance:-understand-what's-available-in-each-service-tier"></a>SQL Database 選項和效能：了解每個服務層中可用的項目
+# <a name="sql-database-options-and-performance-understand-whats-available-in-each-service-tier"></a>SQL Database 選項和效能：了解每個服務層中可用的項目
 [Azure SQL Database](sql-database-technical-overview.md) 提供三個服務層以及多個效能等級來處理不同的工作負載。 每個效能等級都提供越來越多的資源集，旨在提供愈來愈高的輸送量。 您可以在資料庫自己的 [服務層](sql-database-service-tiers.md#standalone-database-service-tiers-and-performance-levels) 及自己的效能等級管理每個資料庫。 您也可以在具有一組共用資源的 [彈性集區](sql-database-service-tiers.md#elastic-pool-service-tiers-and-performance-in-edtus) 中管理多個資料庫。 獨立資料庫可用的資源會以資料庫交易單位 (DTU) 表示，而彈性集區可用的資源則會以彈性 DTU 或 eDTU 表示。 如需 DTU 和 eDTU 的詳細資訊，請參閱[何謂 DTU](sql-database-what-is-a-dtu.md)。 
 
 在這兩種情況下，服務層包含[基本]、[標準] 和 [高階]。 這些層中的資料庫選項類似於獨立資料庫和彈性集區，但彈性集區有其他考量。 本文會提供獨立資料庫和彈性資料庫的服務層詳細資料。
@@ -70,7 +74,7 @@ ms.author: carlrab
 
 一旦決定 SQL Database 版本之後，接下來要決定資料庫的效能層級 (DTU 數目)。 如同您所猜測，然後根據實際經驗 [動態相應增加或減少](sql-database-scale-up.md) 。 也可以使用 [DTU 計算機](http://dtucalculator.azurewebsites.net/) 估計所需的 DTU 數目。 
 
-### <a name="choosing-a-service-tier-for-an-elastic-database-pool."></a>選擇彈性資料庫集區的服務層。
+### <a name="choosing-a-service-tier-for-an-elastic-database-pool"></a>選擇彈性資料庫集區的服務層。
 若要決定彈性資料庫集區的服務層，先判斷您需要的資料庫功能以選擇集區的服務層。
 
 * 資料庫大小 (基本 2 GB、標準 250 GB、進階 500 GB)
@@ -90,6 +94,9 @@ ms.author: carlrab
 * [使用 Azure SQL Database 設計多租用戶 SaaS 應用程式的模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)
 * [有關 Azure SQL Database 中彈性資料庫功能的 Microsoft Virtual Academy 視訊課程](https://mva.microsoft.com/en-US/training-courses/elastic-database-capabilities-with-azure-sql-db-16554)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: 開始使用 Windows 通用 App Azure Mobile Engagement
-description: 了解如何使用適用於 Windows 通用 App 的 Azure Mobile Engagement 執行分析和傳送推播通知。
+title: "開始使用 Windows 通用 App Azure Mobile Engagement"
+description: "了解如何使用適用於 Windows 通用 App 的 Azure Mobile Engagement 執行分析和傳送推播通知。"
 services: mobile-engagement
 documentationcenter: windows
 author: piyushjo
 manager: dwrede
-editor: ''
-
+editor: 
+ms.assetid: 48103867-7f64-4646-b019-42bd797d38e2
 ms.service: mobile-engagement
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-windows-store
@@ -14,6 +14,10 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 08/12/2016
 ms.author: piyushjo;ricksal
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 59a4c270be4bb9a0d247ce81da548b58ce4baf3f
+
 
 ---
 # <a name="get-started-with-azure-mobile-engagement-for-windows-universal-apps"></a>開始使用適用於 Windows 通用 App 的 Azure Mobile Engagement
@@ -28,7 +32,7 @@ ms.author: piyushjo;ricksal
 ## <a name="set-up-mobile-engagement-for-your-windows-universal-app"></a>設定 Windows 通用應用程式的 Mobile Engagement
 [!INCLUDE [Create Mobile Engagement App in Portal](../../includes/mobile-engagement-create-app-in-portal-new.md)]
 
-## <a name="<a-id="connecting-app"></a>connect-your-app-to-the-mobile-engagement-backend"></a><a id="connecting-app"></a>將您的應用程式連線至 Mobile Engagement 後端
+## <a name="a-idconnectingappaconnect-your-app-to-the-mobile-engagement-backend"></a><a id="connecting-app"></a>將您的應用程式連線至 Mobile Engagement 後端
 本教學課程將說明「基本整合」，這是收集資料及傳送推播通知所需的最低設定。 您可以在 [Mobile Engagement Windows 通用 SDK 整合](mobile-engagement-windows-store-sdk-overview.md)中找到完整的整合文件。
 
 您使用 Visual Studio 建立基本應用程式來示範整合。
@@ -53,12 +57,12 @@ ms.author: piyushjo;ricksal
 3. 現在複製您稍早為 Mobile Engagement App 複製的連接字串，並將該字串貼在 `Resources\EngagementConfiguration.xml` 檔案中的 `<connectionString>` 和 `</connectionString>` 標記之間：
    
     ![][3]
-   
-   > [!TIP]
-   > 如果您的應用程式以 Windows 和 Windows Phone 兩個平台為目標，那麼您仍應該建立兩個 Mobile Engagment 應用程式，讓每個支援的平台各使用一個。 建立兩個應用程式可以確保您建立正確的對象區隔，以及正確地針對各平台傳送目標式通知。
-   > 
-   > 
-4. 在 `App.xaml.cs` 檔案中：
+
+    >[AZURE.TIP] 如果您的應用程式以 Windows 和 Windows Phone 兩個平台為目標，那麼您仍應該建立兩個 Mobile Engagment 應用程式，讓每個支援的平台各使用一個。 建立兩個應用程式可以確保您建立正確的對象區隔，以及正確地針對各平台傳送目標式通知。
+
+    > [AZURE.IMPORTANT] NuGet 目前不會自動複製 Windows 10 UWP 應用程式中的 SDK 資源。 在安裝 Nuget 套件時，您必須遵循顯示的步驟 (readme.txt) 手動進行。  
+
+1. 在 `App.xaml.cs` 檔案中：
    
     a. 新增 `using` 陳述式：
    
@@ -91,12 +95,12 @@ ms.author: piyushjo;ricksal
               //... rest of the code
             }
 
-## <a name="<a-id="monitor"></a>enable-real-time-monitoring"></a><a id="monitor"></a>啟用即時監視
+## <a name="a-idmonitoraenable-realtime-monitoring"></a><a id="monitor"></a>啟用即時監視
 若要開始傳送資料並確定使用者正在使用，您必須至少傳送一個畫面 (活動) 到 Mobile Engagement 後端。
 
 1. 在 **MainPage.xaml.cs`using` 中，新增下列 ** 陳述式：
    
-       using Microsoft.Azure.Engagement.Overlay;
+    using Microsoft.Azure.Engagement.Overlay;
 2. 將 **MainPage** 的基底類別從 **Page** 變更為 **EngagementPageOverlay**：
    
         class MainPage : EngagementPageOverlay
@@ -111,12 +115,15 @@ ms.author: piyushjo;ricksal
 > [!IMPORTANT]
 > 如果您的頁面會覆寫 `OnNavigatedTo` 方法，請務必呼叫 `base.OnNavigatedTo(e)`。 否則不會報告活動 (`EngagementPage` 會在其 `OnNavigatedTo` 方法內呼叫 `StartActivity`)。 這在預設範本含有 `OnNavigatedTo` 方法的 Windows Phone 專案中特別重要。
 > 
+> [!IMPORTANT]
+> 對於 **Windows 10 通用應用程式**，請使用[此建議方法](mobile-engagement-windows-store-advanced-reporting.md#recommended-method-overload-your-codepagecode-classes)，而非先前所述方法。
+> 
 > 
 
-## <a name="<a-id="monitor"></a>connect-app-with-real-time-monitoring"></a><a id="monitor"></a>將 App 與即時監視連接
+## <a name="a-idmonitoraconnect-app-with-realtime-monitoring"></a><a id="monitor"></a>將 App 與即時監視連接
 [!INCLUDE [Connect app with real-time monitoring](../../includes/mobile-engagement-connect-app-with-monitor.md)]
 
-## <a name="<a-id="integrate-push"></a>enable-push-notifications-and-in-app-messaging"></a><a id="integrate-push"></a>啟用推播通知與 App 內傳訊
+## <a name="a-idintegratepushaenable-push-notifications-and-inapp-messaging"></a><a id="integrate-push"></a>啟用推播通知與 App 內傳訊
 Mobile Engagement 可讓您透過推播通知和應用程式內傳訊，於活動進行時與使用者互動和觸達。 此模組在 Mobile Engagement 入口網站中稱為觸達 (REACH)。
 以下各節將設定您的用程式來接收它們。
 
@@ -159,7 +166,7 @@ Mobile Engagement 可讓您透過推播通知和應用程式內傳訊，於活�
 8. 最後確定您的 Visual Studio 應用程式與在應用程式市集中建立的此應用程式相關聯。 按一下 Visual Studio 中的 [建立應用程式與市集關聯]  。
     ![][7]
 
-## <a name="<a-id="send"></a>send-a-notification-to-your-app"></a><a id="send"></a>傳送通知至應用程式
+## <a name="a-idsendasend-a-notification-to-your-app"></a><a id="send"></a>傳送通知至應用程式
 [!INCLUDE [Create Windows Push campaign](../../includes/mobile-engagement-windows-push-campaign.md)]
 
 如果應用程式正在執行，您會看到應用程式內通知。 如果應用程式已關閉，則會看到快顯通知。
@@ -189,6 +196,6 @@ Mobile Engagement 可讓您透過推播通知和應用程式內傳訊，於活�
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

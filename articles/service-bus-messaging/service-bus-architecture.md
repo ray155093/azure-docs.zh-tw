@@ -1,12 +1,12 @@
 ---
-title: Service Bus architecture | Microsoft Docs
-description: Describes the message and relay processing architecture of Azure Service Bus.
+title: "服務匯流排架構 | Microsoft Docs"
+description: "描述 Azure 服務匯流排的訊息和轉送處理架構。"
 services: service-bus
 documentationcenter: na
 author: sethmanheim
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: baf94c2d-0e58-4d5d-a588-767f996ccf7f
 ms.service: service-bus
 ms.devlang: na
 ms.topic: get-started-article
@@ -14,43 +14,50 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/11/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 3c69783341eaed67ac29ab63d2127a4038bc0f6d
+
 
 ---
-# <a name="service-bus-architecture"></a>Service Bus architecture
-This article describes the message and relay processing architecture of Azure Service Bus.
+# <a name="service-bus-architecture"></a>服務匯流排架構
+本文描述 Azure 服務匯流排的訊息和轉送處理架構。
 
-## <a name="service-bus-scale-units"></a>Service Bus scale units
-Service Bus is organized by *scale units*. A scale unit is a unit of deployment and contains all components required run the service. Each region deploys one or more Service Bus scale units.
+## <a name="service-bus-scale-units"></a>服務匯流排縮放單位
+服務匯流排依 *縮放單位*組織。 縮放單位是部署單位，並包含執行服務所需的所有元件。 每個區域都會部署一或多個服務匯流排縮放單位。
 
-A Service Bus namespace is mapped to a scale unit. The scale unit handles all types of Service Bus entities: relays and brokered messaging entities (queues, topics, subscriptions). A Service Bus scale unit consists of the following components:
+服務匯流排命名空間會對應到一個縮放單位。 縮放單位會處理所有類型的服務匯流排實體：轉送和代理傳訊實體 (佇列、主題、訂用帳戶)。 服務匯流排縮放單位是由下列元件所組成：
 
-* **A set of gateway nodes.** Gateway nodes authenticate incoming requests and handle relay requests. Each gateway node has a public IP address.
-* **A set of messaging broker nodes.** Messaging broker nodes process requests concerning messaging entities.
-* **One gateway store.** The gateway store holds the data for every entity that is defined in this scale unit. The gateway store is implemented on top of a SQL Azure database.
-* **Multiple messaging stores.** Messaging stores hold the messages of all queues, topics and subscriptions that are defined in this scale unit. It also contains all subscription data. Unless [partitioned messaging entities](service-bus-partitioning.md) is enabled, a queue or topic is mapped to one messaging store. Subscriptions are stored in the same messaging store as their parent topic. Except for Service Bus [Premium Messaging](service-bus-premium-messaging.md), the messaging stores are implemented on top of SQL Azure databases.
+* **一組閘道器節點。**  閘道節點會驗證傳入要求並處理轉送要求。 每個閘道器節點都有一個公用 IP 位址。
+* **一組訊息代理程式節點。**  訊息代理程式節點會處理關於訊息實體的要求。
+* **一個閘道器存放區。**  閘道器存放區會保存此縮放單位中定義的每個實體的資料。 閘道器存放區是在 SQL Azure 資料庫上實作。
+* **多個訊息存放區。**  訊息存放區會保存此縮放單位中定義的所有佇列、主題和訂用帳戶的訊息。 它也包含所有訂用帳戶資料。 除非啟用了[分割訊息實體](service-bus-partitioning.md)，佇列或主題才會對應至一個訊息存放區。 訂用帳戶是儲存在與父項主題相同的訊息存放區。 除了服務匯流排[進階傳訊](service-bus-premium-messaging.md)以外，訊息存放區會在 SQL Azure 資料庫之上實作。
 
-## <a name="containers"></a>Containers
-Each messaging entity is assigned a specific container. A container is a logical construct that uses exactly one messaging store to store all relevant data for this container. Each container is assigned to a messaging broker node. Typically, there are more containers than messaging broker nodes. Therefore, each messaging broker node loads multiple containers. The distribution of containers to a messaging broker node is organized such that all messaging broker nodes are equally loaded. If the load pattern changes (for example, one of the containers gets very busy), or if a messaging broker node becomes temporarily unavailable, the containers are redistributed among the messaging broker nodes.
+## <a name="containers"></a>容器
+每個訊息實體都會指派給特定的容器。 容器是一種邏輯建構，僅使用一個訊息存放區來儲存此容器所有相關資料。 每個容器都會被指派至訊息代理程式節點。 通常，容器較訊息代理程式節點多。 因此，每個訊息代理程式節點會載入多個容器。 訊息代理程式節點的容器分配會經過組織，使得平均地載入所有的訊息代理程式節點。 如果載入模式變更 (例如其中一個容器變得十分忙碌)，或訊息代理程式節點會變成暫時無法使用，容器會在訊息代理程式節點間重新分配。
 
-## <a name="processing-of-incoming-messaging-requests"></a>Processing of incoming messaging requests
-When a client sends a request to Service Bus, the Azure load balancer routes it to any of the gateway nodes. The gateway node authorizes the request. If the request concerns a messaging entity (queue, topic, subscription), the gateway node looks up the entity in the gateway store and determines in which messaging store the entity is located. It then looks up which messaging broker node is currently servicing this container, and sends the request to that messaging broker node. The messaging broker node processes the request and updates the entity state in the container store. The messaging broker node then sends the response back to the gateway node, which sends an appropriate response back to the client that issued the original request.
+## <a name="processing-of-incoming-messaging-requests"></a>處理內送訊息要求
+當用戶端傳送要求至服務匯流排時，Azure 負載平衡器會將其路由到任何一個閘道器節點。 閘道器節點會授權要求。 如果要求考量訊息實體 (佇列、主題、訂用帳戶)，則閘道器節點會在閘道器存放區中在尋找實體，並判斷實體位在哪個訊息存放區。 它接著會查詢哪些訊息代理程式節點目前正在服務此容器，並將要求傳送至該訊息代理程式節點。 訊息代理程式節點會處理要求並更新容器存放區中的實體狀態。 訊息代理程式節點接著會傳送回應給閘道器節點，閘道器節點會傳送適當的回應給發出原始要求的用戶端。
 
-![Processing of Incoming Messaging Requests](./media/service-bus-architecture/IC690644.png)
+![處理內送訊息要求](./media/service-bus-architecture/IC690644.png)
 
-## <a name="processing-of-incoming-relay-requests"></a>Processing of incoming relay requests
-When a client sends a request to Service Bus, the Azure load balancer routes it to any of the gateway nodes. If the request is a listening request, the gateway node creates a new relay. If the request is a connection request to a specific relay, the gateway node forwards the connection request to the gateway node that owns the relay. The gateway node that owns the relay sends a rendezvous request to the listening client, asking the listener to create a temporary channel to the gateway node that received the connection request.
+## <a name="processing-of-incoming-relay-requests"></a>處理內送轉送要求
+當用戶端傳送要求至服務匯流排時，Azure 負載平衡器會將其路由到任何一個閘道器節點。 如果要求為接聽要求，閘道器節點會建立新的轉送。 如果要求為特定轉送的連線要求，閘道器節點會轉送連線要求給擁有轉送的閘道器節點。 擁有轉送的閘道器節點會傳送會合要求到接聽用戶端，要求接聽程式建立接收連線要求的閘道器節點的暫時通道。
 
-When the relay connection is established, the clients can exchange messages via the gateway node that is used for the rendezvous.
+建立轉送連線時，用戶端可以透過用來會合的閘道節點交換訊息。
 
-![Processing of Incoming Relay Requests](./media/service-bus-architecture/IC690645.png)
+![處理內送 WCF 轉送要求](./media/service-bus-architecture/IC690645.png)
 
-## <a name="next-steps"></a>Next steps
-Now that you've read an overview of Service Bus architecture, to get started visit the following links:
+## <a name="next-steps"></a>後續步驟
+既然您已閱讀服務匯流排架構的概觀，若要開始使用，請瀏覽下列連結：
 
-* [Service Bus messaging overview](service-bus-messaging-overview.md)
-* [Service Bus fundamentals](../service-bus/service-bus-fundamentals-hybrid-solutions.md)
-* [A queued messaging solution using Service Bus queues](service-bus-dotnet-multi-tier-app-using-service-bus-queues.md)
+* [服務匯流排訊息概觀](service-bus-messaging-overview.md)
+* [服務匯流排基本概念](service-bus-fundamentals-hybrid-solutions.md)
+* [使用服務匯流排佇列的佇列訊息解決方案](service-bus-dotnet-multi-tier-app-using-service-bus-queues.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

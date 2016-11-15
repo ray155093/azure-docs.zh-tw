@@ -1,12 +1,12 @@
 ---
-title: 開始使用 Operations Management Suite 安全性和稽核解決方案 | Microsoft Docs
-description: 本文協助您開始使用 Operations Management Suite 安全性和稽核解決方案功能來監視混合式雲端。
+title: "開始使用 Operations Management Suite 安全性和稽核解決方案 | Microsoft Docs"
+description: "本文協助您開始使用 Operations Management Suite 安全性和稽核解決方案功能來監視混合式雲端。"
 services: operations-management-suite
 documentationcenter: na
 author: YuriDio
 manager: swadhwa
-editor: ''
-
+editor: 
+ms.assetid: 754796ef-a43e-468a-86c9-04a2eda55b5b
 ms.service: operations-management-suite
 ms.topic: get-started-article
 ms.devlang: na
@@ -14,12 +14,16 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/20/2016
 ms.author: yurid
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: fe043cd4438612ada9a31ae895aae75b913b0a37
+
 
 ---
 # <a name="getting-started-with-operations-management-suite-security-and-audit-solution"></a>開始使用 Operations Management Suite 安全性和稽核解決方案
 本文帶領您認識每個選項，協助您快速開始使用 Operations Management Suite (OMS) 安全性和稽核解決方案功能。
 
-## <a name="what-is-oms?"></a>何謂 OMS？
+## <a name="what-is-oms"></a>何謂 OMS？
 Microsoft Operations Management Suite (OMS) 是 Microsoft 的雲端型 IT 管理解決方案，可協助您管理並保護內部部署和雲端基礎結構。 如需 OMS 的詳細資訊，請閱讀 [Operations Management Suite](https://technet.microsoft.com/library/mt484091.aspx)一文。
 
 ## <a name="oms-security-and-audit-dashboard"></a>OMS 安全性和稽核儀表板
@@ -65,7 +69,7 @@ OMS 安全性和稽核儀表板分為四個主要類別︰
 
 ![一段時間的安全性記錄](./media/oms-security-getting-started/oms-getting-started-fig2.JPG)
 
-當您按一下此圖格時，[搜尋] 刀鋒視窗會開啟，並根據過去七天的資料顯示 [安全性事件](類型=SecurityEvents.md) 的查詢結果，如下所示︰
+當您按一下此圖格時，[搜尋] 刀鋒視窗會開啟，並根據過去七天的資料顯示 [安全性事件] (類型=SecurityEvents) 的查詢結果，如下所示︰
 
 ![一段時間的安全性記錄](./media/oms-security-getting-started/oms-getting-started-fig3.JPG)
 
@@ -139,7 +143,7 @@ OMS 安全性和稽核儀表板分為四個主要類別︰
 
 您可以看到這些問題已涵蓋於 [安全性網域]  群組的不同領域中，以強調此檢視的用意︰從單一位置以視覺化方式呈現您的環境中最重要的問題。
 
-## <a name="detections-(preview)"></a>偵測 (預覽)
+## <a name="detections-preview"></a>偵測 (預覽)
 這個選項的主要目的是讓 IT 能藉由威脅的嚴重性，快速識別其環境的潛在威脅。
 
 ![威脅情報](./media/oms-security-getting-started/oms-getting-started-fig12.png)
@@ -179,6 +183,9 @@ OMS 安全性和稽核儀表板分為四個主要類別︰
 * [在 Operations Management Suite 安全性和稽核內監視及回應安全性警示](oms-security-responding-alerts.md)
 * [在 Operations Management Suite 安全性和稽核解決方案內監視資源](oms-security-monitoring-resources.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

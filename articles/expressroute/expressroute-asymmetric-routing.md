@@ -1,12 +1,12 @@
 ---
-title: 非對稱式路由 | Microsoft Docs
-description: 本文逐步解說在有多個連結連至一個目的地的網路中，客戶可能會面對的非對稱式路由問題。
+title: "非對稱式路由 | Microsoft Docs"
+description: "本文逐步解說在有多個連結連至一個目的地的網路中，客戶可能會面對的非對稱式路由問題。"
 documentationcenter: na
 services: expressroute
 author: osamazia
 manager: carmonm
-editor: ''
-
+editor: 
+ms.assetid: a754bff9-95c9-44b5-9796-377fc21e8322
 ms.service: expressroute
 ms.devlang: na
 ms.topic: get-started-article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/10/2016
 ms.author: osamazia
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: cebf1a1712b6ba7f1f6125369703694ba19d0244
+
 
 ---
 # <a name="asymmetric-routing-with-multiple-network-paths"></a>非對稱式路由與多個網路路徑
@@ -60,7 +64,7 @@ ms.author: osamazia
 
 如果您想要使用 ExpressRoute 進行驗證，請確定您是透過 ExpressRoute (未經 NAT) 通告 ADFS 公用 IP 位址。 如此一來，源自 Microsoft 並前往內部部署 AD FS 伺服器的流量會經過 ExpressRoute 。 從客戶到 Microsoft 的回傳流量會使用 ExpressRoute，因為這是透過網際網路慣用的路由。
 
-### <a name="source-based-nat"></a>以來源為基礎的 NAT
+### <a name="sourcebased-nat"></a>以來源為基礎的 NAT
 解決非對稱式路由問題的另一種方式是使用 NAT。 例如，您尚未透過 ExpressRoute 通告內部部署簡易郵件傳送通訊協定 (SMTP) 伺服器的公用 IP 位址，因為您傾向於使用網際網路進行這類型的通訊。 由 Microsoft 向您的內部部署 SMTP 伺服器提出的要求會周遊網際網路。 您會對內部 IP 位址的連入要求進行 NAT 處理。 來自 SMTP 伺服器的反向流量會前往邊緣防火牆 (您用於進行 NAT)，而不是透過 ExpressRoute。 回傳流量會透過網際網路返回。
 
 ![以來源為基礎的 NAT 網路組態](./media/expressroute-asymmetric-routing/AsymmetricRouting2.png)
@@ -68,6 +72,9 @@ ms.author: osamazia
 ## <a name="asymmetric-routing-detection"></a>非對稱式路由偵測
 路徑追蹤是確保網路流量會周遊預期路徑的最佳方式。 如果您預期從內部部署 SMTP 伺服器至 Microsoft 的流量會採用網際網路路徑，則預期的路徑追蹤是從 SMTP 伺服器至 Office 365。 結果會驗證流量確實離開您的網路朝向網際網路，而不是朝向 ExpressRoute。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

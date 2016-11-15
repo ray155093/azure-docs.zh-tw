@@ -1,23 +1,27 @@
 ---
-title: 使用 Azure 入口網站在 Resource Manager 中建立網際網路面向的負載平衡器 | Microsoft Docs
-description: 了解如何使用 Azure 入口網站在 Resource Manager 中建立網際網路面向的負載平衡器
+title: "使用 Azure 入口網站在 Resource Manager 中建立網際網路面向的負載平衡器 | Microsoft Docs"
+description: "了解如何使用 Azure 入口網站在 Resource Manager 中建立網際網路面向的負載平衡器"
 services: load-balancer
 documentationcenter: na
 author: anavinahar
 manager: narayan
-editor: ''
+editor: 
 tags: azure-resource-manager
-
+ms.assetid: aa9d26ca-3d8a-4a99-83b7-c410dd20b9d0
 ms.service: load-balancer
 ms.devlang: na
-ms.topic: article
+ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 09/14/2016
 ms.author: annahar
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: d9e27ce132a837ec26a92de0c38b3e1c23b706c1
+
 
 ---
-# <a name="creating-an-internet-facing-load-balancer-using-the-azure-portal"></a>使用 Azure 入口網站建立網際網路面向的負載平衡器
+# <a name="creating-an-internetfacing-load-balancer-using-the-azure-portal"></a>使用 Azure 入口網站建立網際網路面向的負載平衡器
 [!INCLUDE [load-balancer-get-started-internet-arm-selectors-include.md](../../includes/load-balancer-get-started-internet-arm-selectors-include.md)]
 
 [!INCLUDE [load-balancer-get-started-internet-intro-include.md](../../includes/load-balancer-get-started-internet-intro-include.md)]
@@ -30,7 +34,7 @@ ms.author: annahar
 
 這會說明必須完成才能建立負載平衡器的個別工作順序，並詳細說明若要達到此目標需要做些什麼。
 
-## <a name="what-is-required-to-create-an-internet-facing-load-balancer?"></a>若要建立網際網路面向的負載平衡器，需要哪些項目？
+## <a name="what-is-required-to-create-an-internetfacing-load-balancer"></a>若要建立網際網路面向的負載平衡器，需要哪些項目？
 您需要建立和設定下列物件以部署負載平衡器。
 
 * 前端 IP 組態 - 包含傳入網路流量的公用 IP 位址。
@@ -56,14 +60,14 @@ ms.author: annahar
 
 ![更新負載平衡器的資源群組](./media/load-balancer-get-started-internet-portal/1-load-balancer.png)
 
-## <a name="create-a-back-end-address-pool"></a>建立後端位址集區
+## <a name="create-a-backend-address-pool"></a>建立後端位址集區
 1. 順利部署負載平衡器之後，請從資源內加以選取。 在 [設定] 底下選取 [後端集區]。 輸入後端集區的名稱。 然後按一下出現的刀鋒視窗中靠近上方的 [新增]  按鈕。
 2. 按一下 [新增後端集區] 刀鋒視窗中的 [新增虛擬機器]。  選取 [可用性設定組] 底下的 [選擇可用性設定組]，然後選取 [myAvailSet]。 接下來，選取刀鋒視窗的 [虛擬機器] 區段底下的 [選擇虛擬機器]，然後按一下 [web1] 和 [web2]，隨即會建立兩個用於負載平衡的 VM。 請確定這兩個 VM 左邊都有藍色核取記號，如下圖所示。 然後，依序按一下該刀鋒視窗中的 [選取]、[選擇虛擬機器] 刀鋒視窗中的 [確定]，以及 [新增後端集區] 刀鋒視窗中的 [確定]。
    
     ![新增至後端位址集區 ](./media/load-balancer-get-started-internet-portal/3-load-balancer-backend-02.png)
 3. 檢查確定您的通知下拉式清單中有關於儲存負載平衡器後端集區的更新，以及會更新 **web1** 和 **web2** 這兩部 VM 的網路介面。
 
-## <a name="create-a-probe,-lb-rule,-and-nat-rules"></a>建立探查、LB 規則和 NAT 規則
+## <a name="create-a-probe-lb-rule-and-nat-rules"></a>建立探查、LB 規則和 NAT 規則
 1. 建立健全狀況探查。
    
     在負載平衡器的 [設定] 底下選取 [探查]。 然後按一下位於刀鋒視窗頂端的 [新增]  。
@@ -97,6 +101,9 @@ ms.author: annahar
 
 [設定負載平衡器的閒置 TCP 逾時設定](load-balancer-tcp-idle-timeout.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

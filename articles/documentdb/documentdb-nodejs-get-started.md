@@ -1,13 +1,13 @@
 ---
-title: DocumentDB 的 NoSQL Node.js 教學課程 | Microsoft Docs
-description: NoSQL Node.js 教學課程，將使用 DocumentDB Node.js SDK 來建立節點資料庫以及主控台應用程式。DocumentDB 是 JSON 的 NoSQL 資料庫。
-keywords: node.js 教學課程，節點資料庫
+title: "DocumentDB 的 NoSQL Node.js 教學課程 | Microsoft Docs"
+description: "NoSQL Node.js 教學課程，將使用 DocumentDB Node.js SDK 來建立節點資料庫以及主控台應用程式。 DocumentDB 是 JSON 的 NoSQL 資料庫。"
+keywords: "node.js 教學課程，節點資料庫"
 services: documentdb
 documentationcenter: node.js
 author: AndrewHoh
 manager: jhubbard
 editor: monicar
-
+ms.assetid: 14d52110-1dce-4ac0-9dd9-f936afccd550
 ms.service: documentdb
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -15,9 +15,13 @@ ms.devlang: node
 ms.topic: hero-article
 ms.date: 08/11/2016
 ms.author: anhoh
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 06707b45944ee6b0810fbd45abbf69dccc1e00e1
+
 
 ---
-# NoSQL Node.js 教學課程：DocumentDB Node.js 主控台應用程式
+# <a name="nosql-nodejs-tutorial-documentdb-nodejs-console-application"></a>NoSQL Node.js 教學課程：DocumentDB Node.js 主控台應用程式
 > [!div class="op_single_selector"]
 > * [.NET](documentdb-get-started.md)
 > * [Node.js](documentdb-nodejs-get-started.md)
@@ -38,24 +42,24 @@ ms.author: anhoh
 * 刪除文件
 * 刪除節點資料庫
 
-沒有時間嗎？ 別擔心！ 您可以在 [GitHub](https://github.com/Azure-Samples/documentdb-node-getting-started) 上找到完整的方案。請參閱[取得完整的解決方案](#GetSolution)，以取得簡要指示。
+沒有時間嗎？ 別擔心！ 您可以在 [GitHub](https://github.com/Azure-Samples/documentdb-node-getting-started)上找到完整的方案。 請參閱 [取得完整的解決方案](#GetSolution) ，以取得簡要指示。
 
-完成 Node.js 教學課程之後，請使用此頁面頂端和底部的投票按鈕來提供意見。如果想要我們直接與您連絡，歡迎在留言中留下電子郵件地址。
+完成 Node.js 教學課程之後，請使用此頁面頂端和底部的投票按鈕來提供意見。 如果想要我們直接與您連絡，歡迎在留言中留下電子郵件地址。
 
 讓我們開始吧！
 
-## Node.js 教學課程的必要條件
+## <a name="prerequisites-for-the-nodejs-tutorial"></a>Node.js 教學課程的必要條件
 請確定您具有下列項目：
 
-* 使用中的 Azure 帳戶。如果您沒有帳戶，您可以註冊[免費 Azure 試用](https://azure.microsoft.com/pricing/free-trial/)。
+* 使用中的 Azure 帳戶。 如果您沒有帳戶，您可以註冊 [免費 Azure 試用](https://azure.microsoft.com/pricing/free-trial/)。
 * [Node.js](https://nodejs.org/) v0.10.29 版或更高版本。
 
-## 步驟 1：建立 DocumentDB 帳戶
-讓我們建立 DocumentDB 帳戶。如果您已經擁有想要使用的帳戶，就可以跳到[設定您的 Node.js 應用程式](#SetupNode)。
+## <a name="step-1-create-a-documentdb-account"></a>步驟 1：建立 DocumentDB 帳戶
+讓我們建立 DocumentDB 帳戶。 如果您已經擁有想要使用的帳戶，就可以跳到 [設定您的 Node.js 應用程式](#SetupNode)。
 
 [!INCLUDE [documentdb-create-dbaccount](../../includes/documentdb-create-dbaccount.md)]
 
-## <a id="SetupNode"></a>步驟 2：設定您的 Node.js 應用程式
+## <a name="a-idsetupnodeastep-2-setup-your-nodejs-application"></a><a id="SetupNode"></a>步驟 2：設定您的 Node.js 應用程式
 1. 開啟您偏好的終端機。
 2. 找出您想儲存 Node.js 應用程式的資料夾或目錄位置。
 3. 使用下列命令，建立兩個空白的 JavaScript 檔案：
@@ -65,15 +69,15 @@ ms.author: anhoh
    * Linux/OS X：
      * ```touch app.js```
        * ```touch config.js```
-4. 透過 npm 安裝 documentdb 模組。使用下列命令：
+4. 透過 npm 安裝 documentdb 模組。 使用下列命令：
    * ```npm install documentdb --save```
 
 太棒了！ 現在已完成安裝程式，讓我們開始撰寫一些程式碼。
 
-## <a id="Config"></a>步驟 3：設定您的應用程式設定
+## <a name="a-idconfigastep-3-set-your-apps-configurations"></a><a id="Config"></a>步驟 3：設定您的應用程式設定
 在您慣用的文字編輯器中開啟 ```config.js```。
 
-然後，複製並貼上以下的程式碼片段，以及將屬性 ```config.endpoint``` 和 ```config.primaryKey``` 設定為您的 DocumentDB 端點 uri 和主要金鑰。您可以在 [Azure 入口網站](https://portal.azure.com)找到這兩個設定。
+然後，複製並貼上以下的程式碼片段，以及將屬性 ```config.endpoint``` 和 ```config.primaryKey``` 設定為您的 DocumentDB 端點 uri 和主要金鑰。 您可以在 [Azure 入口網站](https://portal.azure.com)找到這兩個設定。
 
 ![node.js 教學課程 - 顯示 DocumentDB 帳戶的 Azure 入口網站螢幕擷取畫面，內含反白顯示的 [主動式] 集線器、[DocumentDB 帳戶] 刀鋒視窗上反白顯示的 [金鑰] 按鈕、[金鑰] 刀鋒視窗上反白顯示的 [URI]、[主要金鑰] 和 [次要金鑰] 值 - 節點資料庫][keys]
 
@@ -83,7 +87,7 @@ ms.author: anhoh
     config.endpoint = "~your DocumentDB endpoint uri here~";
     config.primaryKey = "~your primary key here~";
 
-在您設定 ```config.endpoint``` 和 ```config.authKey``` 屬性的位置下面，複製 ```database id```、```collection id``` 和 ```JSON documents``` 並貼到您的 ```config``` 物件。如果您已經有想要儲存於資料庫中的資料，就可以使用 DocumentDB 的[資料移轉工具](documentdb-import-data.md)，而不用新增文件定義。
+在您設定 ```config.endpoint``` 和 ```config.authKey``` 屬性的位置下面，複製 ```database id```、```collection id``` 和 ```JSON documents``` 並貼到您的 ```config``` 物件。 如果您已經有想要儲存於資料庫中的資料，就可以使用 DocumentDB 的 [資料移轉工具](documentdb-import-data.md) ，而不用新增文件定義。
 
     config.endpoint = "~your DocumentDB endpoint uri here~";
     config.primaryKey = "~your primary key here~";
@@ -167,8 +171,8 @@ ms.author: anhoh
     // ADD THIS PART TO YOUR CODE
     module.exports = config;
 
-## <a id="Connect"></a> 步驟 4：連接到 DocumentDB 帳戶
-在文字編輯器中開啟您的空白 ```app.js``` 檔案。複製並貼上以下的程式碼，以匯入 ```documentdb``` 模組和新建的 ```config``` 模組。
+## <a name="a-idconnecta-step-4-connect-to-a-documentdb-account"></a><a id="Connect"></a> 步驟 4：連接到 DocumentDB 帳戶
+在文字編輯器中開啟您的空白 ```app.js``` 檔案。 複製並貼上以下的程式碼，以匯入 ```documentdb``` 模組和新建的 ```config``` 模組。
 
     // ADD THIS PART TO YOUR CODE
     "use strict";
@@ -187,8 +191,8 @@ ms.author: anhoh
 
 您現在有程式碼可初始化 documentdb，讓我們看看如何使用 DocumentDB 資源。
 
-## 步驟 5：建立節點資料庫
-複製並貼上以下的程式碼，以設定 [找不到] 的HTTP 狀態、資料庫 url 和集合 url。這些 url 可讓 DocumentDB 用戶端尋找正確的資料庫和集合。
+## <a name="step-5-create-a-node-database"></a>步驟 5：建立節點資料庫
+複製並貼上以下的程式碼，以設定 [找不到] 的HTTP 狀態、資料庫 url 和集合 url。 這些 url 可讓 DocumentDB 用戶端尋找正確的資料庫和集合。
 
     var client = new documentClient(config.endpoint, { "masterKey": config.primaryKey });
 
@@ -197,9 +201,9 @@ ms.author: anhoh
     var databaseUrl = `dbs/${config.database.id}`;
     var collectionUrl = `${databaseUrl}/colls/${config.collection.id}`;
 
-可以使用 **DocumentClient** 類別的 [createDatabase](https://azure.github.io/azure-documentdb-node/DocumentClient.html) 函數來建立[資料庫](documentdb-resources.md#databases)。資料庫是分割給多個集合之文件儲存體的邏輯容器。
+可以使用 **DocumentClient** 類別的 [createDatabase](https://azure.github.io/azure-documentdb-node/DocumentClient.html) 函式來建立[資料庫](documentdb-resources.md#databases)。 資料庫是分割給多個集合之文件儲存體的邏輯容器。
 
-複製並貼上 **getDatabase** 函數，以 ```config``` 物件中指定的 ```id```，在 app.js 檔案中加入建立新資料庫的函數。此函數會檢查具有相同 ```FamilyRegistry``` 識別碼的資料庫不存在。如果存在，我們會傳回該資料庫，而不會建立新資料庫。
+複製並貼上 **getDatabase** 函式，以 ```config``` 物件中指定的 ```id```，在 app.js 檔案中加入建立新資料庫的函式。 此函數會檢查具有相同 ```FamilyRegistry``` 識別碼的資料庫不存在。 如果存在，我們會傳回該資料庫，而不會建立新資料庫。
 
     var collectionUrl = `${databaseUrl}/colls/${config.collection.id}`;
 
@@ -225,7 +229,7 @@ ms.author: anhoh
         });
     }
 
-複製並貼上以下的程式碼，以設定 **getDatabase** 函數來加入協助程式函數**exit**，該函數會列印結束訊息和呼叫 **getDatabase** 函數。
+複製並貼上以下的程式碼，以設定 **getDatabase** 函式來加入協助程式函式 **exit**，該函式會列印結束訊息和呼叫 **getDatabase** 函式。
 
                 } else {
                     resolve(result);
@@ -251,15 +255,15 @@ ms.author: anhoh
 
 恭喜！ 您已成功建立 DocumentDB 資料庫。
 
-## <a id="CreateColl"></a>步驟 6：建立集合
+## <a name="a-idcreatecollastep-6-create-a-collection"></a><a id="CreateColl"></a>步驟 6：建立集合
 > [!WARNING]
-> **CreateDocumentCollectionAsync** 會建立具有定價含意的新集合。如需詳細資訊，請造訪[定價頁面](https://azure.microsoft.com/pricing/details/documentdb/)。
+> **CreateDocumentCollectionAsync** 會建立具有定價含意的新集合。 如需詳細資訊，請造訪 [定價頁面](https://azure.microsoft.com/pricing/details/documentdb/)。
 > 
 > 
 
-可以使用 **DocumentClient** 類別的 [createCollection](https://azure.github.io/azure-documentdb-node/DocumentClient.html) 函數建立[集合](documentdb-resources.md#collections)。集合是 JSON 文件和相關聯 JavaScript 應用程式邏輯的容器。
+可以使用 **DocumentClient** 類別的 [createCollection](https://azure.github.io/azure-documentdb-node/DocumentClient.html) 函式建立[集合](documentdb-resources.md#collections)。 集合是 JSON 文件和相關聯 JavaScript 應用程式邏輯的容器。
 
-將 **getCollection** 函數複製並貼到 **getDatabase** 函數之下，以 ```config``` 物件中指定的 ```id``` 建立新的集合。同樣地，我們會檢查確定具有相同 ```FamilyCollection``` 識別碼的集合不存在。如果存在，我們會傳回該集合，而不會建立新集合。
+將 **getCollection** 函式複製並貼到 **getDatabase** 函式之下，以 ```config``` 物件中指定的 ```id``` 建立新的集合。 同樣地，我們會檢查確定具有相同 ```FamilyCollection``` 識別碼的集合不存在。 如果存在，我們會傳回該集合，而不會建立新集合。
 
                 } else {
                     resolve(result);
@@ -290,7 +294,7 @@ ms.author: anhoh
         });
     }
 
-將以下的程式碼複製並貼到對 **getDatabase** 的呼叫之下，以執行 **getCollection** 函數。
+將以下的程式碼複製並貼到對 **getDatabase** 的呼叫之下，以執行 **getCollection** 函式。
 
     getDatabase()
 
@@ -305,10 +309,10 @@ ms.author: anhoh
 
 恭喜！ 您已成功建立 DocumentDB 集合。
 
-## <a id="CreateDoc"></a>步驟 7：建立文件
-可以使用 **DocumentClient** 類別的 [createDocument](https://azure.github.io/azure-documentdb-node/DocumentClient.html) 函數來建立[文件](documentdb-resources.md#documents)。文件會是使用者定義的 (任意) JSON 內容。您現在可以將文件插入至 DocumentDB。
+## <a name="a-idcreatedocastep-7-create-a-document"></a><a id="CreateDoc"></a>步驟 7：建立文件
+可以使用 **DocumentClient** 類別的 [createDocument](https://azure.github.io/azure-documentdb-node/DocumentClient.html) 函式來建立[文件](documentdb-resources.md#documents)。 文件會是使用者定義的 (任意) JSON 內容。 您現在可以將文件插入至 DocumentDB。
 
-將 **getFamilyDocument** 函數複製並貼到 **getCollection** 函數之下，以便建立包含 ```config``` 物件中儲存之 JSON 資料文件。同樣地，我們會檢查以確定具有相同識別碼的文件不存在。
+將 **getFamilyDocument** 函式複製並貼到 **getCollection** 函式之下，以便建立包含 ```config``` 物件中儲存之 JSON 資料文件。 同樣地，我們會檢查以確定具有相同識別碼的文件不存在。
 
                 } else {
                     resolve(result);
@@ -340,7 +344,7 @@ ms.author: anhoh
         });
     };
 
-將以下的程式碼複製並貼到對 **getCollection** 的呼叫之下，以執行 **getFamilyDocument** 函數。
+將以下的程式碼複製並貼到對 **getCollection** 的呼叫之下，以執行 **getFamilyDocument** 函式。
 
     getDatabase()
     .then(() => getCollection())
@@ -359,10 +363,10 @@ ms.author: anhoh
 
 ![node.js 教學課程 - 說明帳戶、資料庫、集合和文件之間階層式關聯性的圖表 - 節點資料庫](./media/documentdb-nodejs-get-started/node-js-tutorial-account-database.png)
 
-## <a id="Query"></a>步驟 8：查詢 DocumentDB 資源
-DocumentDB 支援對儲存於每個集合的 JSON 文件進行[豐富查詢](documentdb-sql-query.md)。下列範例程式碼示範您可以針對集合中之文件執行的查詢。
+## <a name="a-idqueryastep-8-query-documentdb-resources"></a><a id="Query"></a>步驟 8：查詢 DocumentDB 資源
+DocumentDB 支援對儲存於每個集合的 JSON 文件進行 [豐富查詢](documentdb-sql-query.md) 。 下列範例程式碼示範您可以針對集合中之文件執行的查詢。
 
-將 **queryCollection** 函數複製並貼到 **getFamilyDocument** 函數之下。DocumentDB 支援類 SQL 查詢，如下所示。如需建立複雜查詢的詳細資訊，請參閱[查詢遊樂場](https://www.documentdb.com/sql/demo)和[查詢文件](documentdb-sql-query.md)。
+將 **queryCollection** 函式複製並貼到 **getFamilyDocument** 函式之下。 DocumentDB 支援類 SQL 查詢，如下所示。 如需建立複雜查詢的詳細資訊，請參閱[查詢遊樂場](https://www.documentdb.com/sql/demo)和[查詢文件](documentdb-sql-query.md)。
 
                 } else {
                     resolve(result);
@@ -398,9 +402,9 @@ DocumentDB 支援對儲存於每個集合的 JSON 文件進行[豐富查詢](doc
 
 ![node.js 教學課程 - 說明查詢範圍和意義的圖表 - 節點資料庫](./media/documentdb-nodejs-get-started/node-js-tutorial-collection-documents.png)
 
-因為 DocumentDB 查詢已侷限於單一集合，所以查詢中的 [FROM](documentdb-sql-query.md#from-clause) 關鍵字是選擇性的。因此，"FROM Families f" 可以換成 "FROM root r"，或您選擇的任何其他變數名稱。依預設，DocumentDB 會推斷該系列、根或您選擇的變數名稱來參考目前的集合。
+因為 DocumentDB 查詢已侷限於單一集合，所以查詢中的 [FROM](documentdb-sql-query.md#from-clause) 關鍵字是選擇性的。 因此，"FROM Families f" 可以換成 "FROM root r"，或您選擇的任何其他變數名稱。 依預設，DocumentDB 會推斷該系列、根或您選擇的變數名稱來參考目前的集合。
 
-將以下的程式碼複製並貼到對 **getFamilyDocument** 的呼叫之下，以執行 **queryCollection** 函數。
+將以下的程式碼複製並貼到對 **getFamilyDocument** 的呼叫之下，以執行 **queryCollection** 函式。
 
     .then(() => getFamilyDocument(config.documents.Andersen))
     .then(() => getFamilyDocument(config.documents.Wakefield))
@@ -416,10 +420,10 @@ DocumentDB 支援對儲存於每個集合的 JSON 文件進行[豐富查詢](doc
 
 恭喜！ 您已成功建立查詢的 DocumentDB 文件。
 
-## <a id="ReplaceDocument"></a>步驟 9：取代文件
+## <a name="a-idreplacedocumentastep-9-replace-a-document"></a><a id="ReplaceDocument"></a>步驟 9：取代文件
 DocumentDB 支援取代 JSON 文件。
 
-將 **replaceDocument** 函數複製並貼到 **queryCollection** 函數之下。
+將 **replaceDocument** 函式複製並貼到 **queryCollection** 函式之下。
 
                     }
                     console.log();
@@ -445,7 +449,7 @@ DocumentDB 支援取代 JSON 文件。
         });
     };
 
-將以下的程式碼複製並貼到對 **queryCollection** 的呼叫之下，以執行 **replaceDocument** 函數。此外，再次將此程式碼加入至 **queryCollection** 呼叫，確認已成功變更文件。
+將以下的程式碼複製並貼到對 **queryCollection** 的呼叫之下，以執行 **replaceDocument** 函式。 此外，再次將此程式碼加入至 **queryCollection** 呼叫，確認已成功變更文件。
 
     .then(() => getFamilyDocument(config.documents.Andersen))
     .then(() => getFamilyDocument(config.documents.Wakefield))
@@ -463,10 +467,10 @@ DocumentDB 支援取代 JSON 文件。
 
 恭喜！ 您已成功取代 DocumentDB 文件。
 
-## <a id="DeleteDocument"></a>步驟 10︰刪除文件
+## <a name="a-iddeletedocumentastep-10-delete-a-document"></a><a id="DeleteDocument"></a>步驟 10︰刪除文件
 DocumentDB 支援刪除 JSON 文件。
 
-將 **deleteDocument** 函數複製並貼到 **replaceDocument** 函數之下。
+將 **deleteDocument** 函式複製並貼到 **replaceDocument** 函式之下。
 
                 else {
                     resolve(result);
@@ -490,7 +494,7 @@ DocumentDB 支援刪除 JSON 文件。
         });
     };
 
-將以下的程式碼複製並貼到對 **queryCollection** 的呼叫之下，以執行 **deleteDocument** 函數。
+將以下的程式碼複製並貼到對 **queryCollection** 的呼叫之下，以執行 **deleteDocument** 函式。
 
     .then(() => queryCollection())
     .then(() => replaceFamilyDocument(config.documents.Andersen))
@@ -507,10 +511,10 @@ DocumentDB 支援刪除 JSON 文件。
 
 恭喜！ 您已成功刪除 DocumentDB 文件。
 
-## <a id="DeleteDatabase"></a>步驟 11：刪除節點資料庫
+## <a name="a-iddeletedatabaseastep-11-delete-the-node-database"></a><a id="DeleteDatabase"></a>步驟 11：刪除節點資料庫
 刪除已建立的資料庫將會移除資料庫和所有子系資源 (集合、文件等)。
 
-複製並貼上下列程式碼片段 (**cleanup** 函數)，以移除資料庫和所有的子系資源。
+複製並貼上下列程式碼片段 ( **cleanup**函數)，以移除資料庫和所有的子系資源。
 
                 else {
                     resolve(result);
@@ -531,7 +535,7 @@ DocumentDB 支援刪除 JSON 文件。
         });
     }
 
-將以下的程式碼複製並貼到對 **deleteDocument** 的呼叫之下，以執行 **cleanup** 函數。
+將以下的程式碼複製並貼到對 **deleteDocument** 的呼叫之下，以執行 **cleanup** 函式。
 
     .then(() => deleteFamilyDocument(config.documents.Andersen))
 
@@ -542,7 +546,7 @@ DocumentDB 支援刪除 JSON 文件。
     .then(() => { exit(`Completed successfully`); })
     .catch((error) => { exit(`Completed with error ${JSON.stringify(error)}`) });
 
-## <a id="Run"></a>步驟 12：一起執行您的 Node.js 應用程式！
+## <a name="a-idrunastep-12-run-your-nodejs-application-all-together"></a><a id="Run"></a>步驟 12：一起執行您的 Node.js 應用程式！
 總之，呼叫您的函數的順序應如下所示︰
 
     getDatabase()
@@ -559,7 +563,7 @@ DocumentDB 支援刪除 JSON 文件。
 
 在終端機中，找到您的 ```app.js``` 檔案並執行命令：```node app.js```
 
-您應該可以看到入門應用程式的輸出。輸出應該會與下列範例文字相符。
+您應該可以看到入門應用程式的輸出。 輸出應該會與下列範例文字相符。
 
     Getting database:
     FamilyDB
@@ -593,22 +597,22 @@ DocumentDB 支援刪除 JSON 文件。
 
 恭喜！ 您已完成 Node.js 教學課程，和擁有您的第一個 DocumentDB 主控台應用程式！
 
-## <a id="GetSolution"></a>取得完整的 Node.js 教學課程方案
+## <a name="a-idgetsolutionaget-the-complete-nodejs-tutorial-solution"></a><a id="GetSolution"></a>取得完整的 Node.js 教學課程方案
 若要建置包含本文中所有範例的 GetStarted 方案，您將需要下列項目：
 
 * [DocumentDB 帳戶][documentdb-create-account]。
 * 您可以在 GitHub 上找到 [GetStarted](https://github.com/Azure-Samples/documentdb-node-getting-started) 方案。
 
-透過 npm 安裝 **documentdb** 模組。使用下列命令：
+透過 npm 安裝 **documentdb** 模組。 使用下列命令：
 
 * ```npm install documentdb --save```
 
-接下來，將 ```config.js``` 檔案中的 config.endpoint 和 config.authKey 的值更新為如[步驟 3：設定您的應用程式組態](#Config)中所述。
+接下來，將 ```config.js``` 檔案中的 config.endpoint 和 config.authKey 的值更新為如 [步驟 3：設定您的應用程式組態](#Config)中所述。
 
-## 後續步驟
-* 需要更複雜的 Node.js 範例嗎？ 請參閱[使用 DocumentDB 建置 Node.js Web 應用程式](documentdb-nodejs-application.md)。
-* 了解如何[監視 DocumentDB 帳戶](documentdb-monitor-accounts.md) (英文)。
-* 在 [Query Playground](https://www.documentdb.com/sql/demo) 中，針對範例資料集執行查詢。
+## <a name="next-steps"></a>後續步驟
+* 需要更複雜的 Node.js 範例嗎？ 請參閱 [使用 DocumentDB 建置 Node.js Web 應用程式](documentdb-nodejs-application.md)。
+* 了解如何 [監視 DocumentDB 帳戶](documentdb-monitor-accounts.md)(英文)。
+* 在 [Query Playground](https://www.documentdb.com/sql/demo)中，針對範例資料集執行查詢。
 * 如需深入了解程式設計模型，請參閱 [DocumentDB 文件頁面](https://azure.microsoft.com/documentation/services/documentdb/)中的＜開發＞一節。
 
 [documentdb-create-account]: documentdb-create-account.md
@@ -616,4 +620,8 @@ DocumentDB 支援刪除 JSON 文件。
 
 [keys]: media/documentdb-nodejs-get-started/node-js-tutorial-keys.png
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Nov16_HO2-->
+
+

@@ -1,4 +1,4 @@
-### 基本服務層
+### <a name="basic-service-tier"></a>基本服務層
 |  |  |
 | --- | --- |
 | 最大 DTU |5 |
@@ -10,7 +10,7 @@
 | 還原時間點 |過去 7 天內任何一點 |
 | 災害復原 |主動式異地複寫 |
 
-### 標準服務層
+### <a name="standard-service-tier"></a>標準服務層
 |  |  |
 | --- |:---:|
 | **S0** &nbsp;&nbsp;&nbsp;&nbsp; **S1** &nbsp;&nbsp;&nbsp;&nbsp; **S2** &nbsp;&nbsp;&nbsp; **S3** | |
@@ -23,7 +23,7 @@
 | 還原時間點 |過去 35 天內任何一點 |
 | 災害復原 |主動式異地複寫 |
 
-### 高階服務層
+### <a name="premium-service-tier"></a>高階服務層
 |  |  |
 | --- |:---:|
 | **P1** &nbsp;&nbsp;&nbsp;&nbsp; **P2** &nbsp;&nbsp;&nbsp;&nbsp; **P4** &nbsp;&nbsp;&nbsp; **P6/P3** &nbsp;&nbsp; **P11** &nbsp;&nbsp; **P15** | |
@@ -36,4 +36,8 @@
 | 還原時間點 |過去 35 天內任何一點 |
 | 災害復原 |主動式異地複寫 |
 
-<!----HONumber=AcomDC_0907_2016-->
+
+
+<!--HONumber=Nov16_HO2-->
+
+

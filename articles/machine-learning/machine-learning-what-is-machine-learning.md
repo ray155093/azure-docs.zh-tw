@@ -1,13 +1,13 @@
 ---
-title: 什麼是 Azure Machine Learning？| Microsoft Docs
-description: 說明雲端中的機器學習服務基本概念，描述它的使用用途，並定義機器學習服務詞彙。
-keywords: 什麼是機器學習服務, 機器學習服務詞彙, 預測, 什麼是預測性分析, 操作性
+title: "什麼是 Azure Machine Learning？| Microsoft Docs"
+description: "說明雲端中的機器學習服務基本概念，描述它的使用用途，並定義機器學習服務詞彙。"
+keywords: "什麼是機器學習服務, 機器學習服務詞彙, 預測, 什麼是預測性分析, 操作性"
 services: machine-learning
-documentationcenter: ''
+documentationcenter: 
 author: cjgronlund
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: eaee083e-eaa1-4408-838b-93e51423d159
 ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -15,17 +15,21 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/17/2016
 ms.author: cgronlun;tedway;olgali
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: a0415a3a07a1334f1947ff89e79bc710332de113
+
 
 ---
 # <a name="introduction-to-machine-learning-in-the-cloud"></a>雲端的機器學習服務簡介
-## <a name="what-is-machine-learning?"></a>什麼是機器學習？
+## <a name="what-is-machine-learning"></a>什麼是機器學習？
 機器學習服務是一項資料科學技術，協助電腦從現有的資料學習，以便預測未來的行為、結果和趨勢。  
 
 機器學習服務的這些預測可讓應用程式和裝置更聰明。 當您線上購物時，機器學習服務可根據您已經購買的產品，協助推薦其他產品。 當您的信用卡被刷過時，機器學習服務可將該筆交易與交易資料庫進行比對，協助偵測詐騙。 當您的真空吸塵器機器人清潔房間時，機器學習服務可協助它判斷作業是否完成。
 
 如需簡短的概觀，請觀賞 [初學者的資料科學](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md)系列影片。 初學者的資料科學為您介紹機器學習服務，不使用專業術語或數學運算，並引導您完成簡單的預測模型。
 
-## <a name="what-is-machine-learning-in-the-microsoft-azure-cloud?"></a>什麼是 Microsoft Azure 雲端中的 Machine Learning？
+## <a name="what-is-machine-learning-in-the-microsoft-azure-cloud"></a>什麼是 Microsoft Azure 雲端中的 Machine Learning？
 Azure Machine Learning 是強大的雲端架構預測性分析服務，可讓您快速地建立預測模型，並將其部署為分析解決方案。 當您使用 Azure 雲端來執行機器學習服務實驗或建置解決方案時，不需要購買昂貴的硬體或基礎結構。
 
 ![什麼是機器學習？ Azure Machine Learning 上操作性預測性分析的基本工作流程。](./media/machine-learning-what-is-machine-learning/machine-learning-service-parts-and-workflow.png)
@@ -34,7 +38,7 @@ Azure Machine Learning 不僅提供可建立預測性分析模型的工具，也
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-## <a name="what-is-predictive-analytics?"></a>什麼是預測性分析？
+## <a name="what-is-predictive-analytics"></a>什麼是預測性分析？
 預測性分析使用稱為演算法的各種數學公式，可分析過往或目前的資料以找出模式或趨勢，以便預測未來的事件。
 
 Azure Machine Learning 是特別強大的預測性分析方式：您可以使用現成的演算法程式庫、在連線到網際網路的電腦上使用演算法建立模型，以及快速地部署預測解決方案。 若要快速取得結果，可以從 [Cortana 智慧資源庫](http://gallery.cortanaintelligence.com/)中的現成範例和解決方案開始。
@@ -42,17 +46,17 @@ Azure Machine Learning 是特別強大的預測性分析方式：您可以使用
 ## <a name="build-complete-machine-learning-solutions-in-the-cloud"></a>在雲端上建置完整的機器學習服務解決方案
 Azure Machine Learning 具備在雲端上建立預測性分析解決方案所需的一切功能，從大型演算法程式庫、用於建置模型的 Studio，到可將模型部署為 Web 服務的簡單方法。
 
-### <a name="machine-learning-studio:-create-predictive-models"></a>Machine Learning Studio：建立預測模型
+### <a name="machine-learning-studio-create-predictive-models"></a>Machine Learning Studio：建立預測模型
 在 [Machine Learning Studio](machine-learning-what-is-ml-studio.md)中，您可以透過拖放和連接模組快速建立預測模型。 讓您能輕鬆試驗不同的組合，並提供 [免費試用](https://studio.azureml.net/?selectAccess=true&o=2)。
 
-![什麼是預測性分析：Azure Machine Learning Studio 中的預測性分析實驗範例](./media/machine-learning-what-is-machine-learning/azure-machine-learning-studio-predictive-score-experiment.png)
-
 * 在 [Cortana 智慧資源庫](machine-learning-gallery-how-to-use-contribute-publish.md)中，您可以嘗試其他人所撰寫的分析解決方案，或提供您自己的方案。 在社群張貼關於實驗的問題或意見，或透過 LinkedIn 和 Twitter 等社交網路分享實驗的連結。
+  
+  ![在 Azure Cortana Intelligence Gallery 資源庫中試做預測實驗或提供您自己的實驗](./media/machine-learning-what-is-machine-learning/machine-learning-cortana-intelligence-gallery.png)
 * 使用 Machine Learning Studio 中之 [機器學習服務演算法和模組](https://msdn.microsoft.com/library/azure/f5c746fd-dcea-4929-ba50-2a79c4c067d7) 的大型程式庫，開始建立您的預測模型。 從範例實驗、R 和 Python 套件，以及 Xbox 和 Bing 等 Microsoft 公司的一流演算法中選擇。 使用您自訂的 [R](machine-learning-r-quickstart.md) 和 [Python](machine-learning-execute-python-scripts.md) 指令碼來擴充 Studio 模組。
+  
+  ![什麼是預測性分析：Azure Machine Learning Studio 中的預測性分析實驗範例](./media/machine-learning-what-is-machine-learning/azure-machine-learning-studio-predictive-score-experiment.png)
 
-    ![在 Azure Cortana Intelligence Gallery 資源庫中試做預測實驗或提供您自己的實驗](./media/machine-learning-what-is-machine-learning/machine-learning-cortana-intelligence-gallery.png)
-
-### <a name="operationalize-predictive-analytics-solutions:-purchase-web-services-or-publish-your-own"></a>操作預測性分析解決方案：購買 Web 服務或發佈您自己的服務
+### <a name="operationalize-predictive-analytics-solutions-purchase-web-services-or-publish-your-own"></a>操作預測性分析解決方案：購買 Web 服務或發佈您自己的服務
 * 向 [Microsoft Azure Marketplace](https://datamarket.azure.com/browse?query=machine+learning)購買現成的 Web 服務，例如建議、文字分析和異常偵測。
 * 操作您的預測性分析模型：
   
@@ -65,7 +69,7 @@ Azure Machine Learning 具備在雲端上建立預測性分析解決方案所需
 ## <a name="key-machine-learning-terms-and-concepts"></a>機器學習服務的重要詞彙和概念
 機器學習服務的詞彙易使人混淆。 以下提供您重要詞彙的定義。 使用下方註解讓我們知道其他您想要定義的詞彙。
 
-### <a name="data-exploration,-descriptive-analytics,-and-predictive-analytics"></a>資料探索、描述性分析和預測性分析
+### <a name="data-exploration-descriptive-analytics-and-predictive-analytics"></a>資料探索、描述性分析和預測性分析
 **資料探索** 是收集大量且通常非結構化資料集的相關資訊，以便找出要進行重點分析之特性的程序。 **資料採礦** 是指自動資料探索。
 
 **描述性分析** 是分析資料集以便彙總狀況的程序。 大部分商務分析 (例如銷售報表、網路指標和社交網路分析) 都具描述性。
@@ -111,6 +115,6 @@ Azure Machine Learning 具備在雲端上建立預測性分析解決方案所需
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 
