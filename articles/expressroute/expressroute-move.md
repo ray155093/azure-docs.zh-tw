@@ -1,12 +1,12 @@
 ---
-title: 將 ExpressRoute 線路從傳統部署模型移至 Resource Manager | Microsoft Docs
-description: 此頁面提供銜接傳統與 Resource Manager 部署模型的相關概觀。
+title: "將 ExpressRoute 線路從傳統部署模型移至 Resource Manager | Microsoft Docs"
+description: "此頁面提供銜接傳統與 Resource Manager 部署模型的相關概觀。"
 documentationcenter: na
 services: expressroute
 author: ganesr
 manager: carmonm
-editor: ''
-
+editor: 
+ms.assetid: bdf01217-1a98-4ec0-a08e-d84fd37f78af
 ms.service: expressroute
 ms.devlang: na
 ms.topic: get-started-article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/10/2016
 ms.author: ganesr
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 945923d9858ec0ed31272c23268b263f77b5c7a4
+
 
 ---
 # <a name="moving-expressroute-circuits-from-the-classic-to-the-resource-manager-deployment-model"></a>將 ExpressRoute 線路從傳統部署模型移至 Resource Manager 部署模型
@@ -74,7 +78,7 @@ ExpressRoute 線路的作用就像是傳統與 Resource Manager 部署模型之�
 ## <a name="access-to-azure-public-and-microsoft-peering-resources"></a>Azure 公用和 Microsoft 對等資源的存取權
 您可以繼續存取通常可透過 Azure 公用對等和 Microsoft 對等存取的資源，而不需要中斷。  
 
-## <a name="what's-supported"></a>支援的項目
+## <a name="whats-supported"></a>支援的項目
 本節說明 ExpressRoute 線路會支援的功能：
 
 * 您可以使用單一 ExpressRoute 線路來存取在傳統和 Resource Manager 部署模型中部署的虛擬網路。
@@ -84,7 +88,7 @@ ExpressRoute 線路的作用就像是傳統與 Resource Manager 部署模型之�
 * ExpressRoute 線路的作用就像是傳統與 Resource Manager 部署模型之間的橋樑。 如果傳統部署模型的虛擬網路中的虛擬機器與 Resource Manager deployment 部署模型的虛擬網路中的虛擬機器連結至相同的 ExpressRoute 線路，這兩種虛擬機器之間的流量會流經 ExpressRoute。
 * 傳統和 Resource Manager 部署模型中都支援跨訂用帳戶連線。
 
-## <a name="what's-not-supported"></a>不支援的內容
+## <a name="whats-not-supported"></a>不支援的內容
 本節說明 ExpressRoute 線路不會支援的功能：
 
 * 將線路連結、閘道和虛擬網路從傳統部署模型移至 Resource Manager 部署模型。
@@ -102,6 +106,9 @@ ExpressRoute 線路的作用就像是傳統與 Resource Manager 部署模型之�
   * [設定路由](expressroute-howto-routing-arm.md)
   * [將虛擬網路連結到 ExpressRoute 線路](expressroute-howto-linkvnet-arm.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

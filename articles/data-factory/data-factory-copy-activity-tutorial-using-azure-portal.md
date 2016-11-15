@@ -1,12 +1,12 @@
 ---
-title: 教學課程：使用 Azure 入口網站建立具有複製活動的管線 | Microsoft Docs
-description: 在本教學課程中，您會使用 Azure 入口網站中的 Data Factory 編輯器，建立具有複製活動的 Azure Data Factory 管線。
+title: "教學課程：使用 Azure 入口網站建立具有複製活動的管線 | Microsoft Docs"
+description: "在本教學課程中，您會使用 Azure 入口網站中的 Data Factory 編輯器，建立具有複製活動的 Azure Data Factory 管線。"
 services: data-factory
-documentationcenter: ''
+documentationcenter: 
 author: spelluru
 manager: jhubbard
 editor: monicar
-
+ms.assetid: d9317652-0170-4fd3-b9b2-37711272162b
 ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 09/16/2016
 ms.author: spelluru
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: cee537753b025ed5119c116dfcc644101be3271f
+
 
 ---
-# <a name="tutorial:-create-a-pipeline-with-copy-activity-using-azure-portal"></a>教學課程：使用 Azure 入口網站建立具有複製活動的管線
+# <a name="tutorial-create-a-pipeline-with-copy-activity-using-azure-portal"></a>教學課程：使用 Azure 入口網站建立具有複製活動的管線
 > [!div class="op_single_selector"]
 > * [概觀和必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
 > * [複製精靈](data-factory-copy-data-wizard-tutorial.md)
@@ -49,12 +53,12 @@ ms.author: spelluru
 
 1. 登入 [Azure 入口網站](https://portal.azure.com/)之後，按一下 [新增]，選取 [智慧 + 分析]，然後按一下 [Data Factory]。 
    
-   ![新增->DataFactory](./media/data-factory-copy-activity-tutorial-using-azure-portal/NewDataFactoryMenu.png)  
+   ![新增->DataFactory](./media/data-factory-copy-activity-tutorial-using-azure-portal/NewDataFactoryMenu.png)    
 2. 在 [ **新增 Data Factory** ] 刀鋒視窗中：
    
    1. 輸入 **ADFTutorialDataFactory** 做為**名稱**。 
       
-       ![新增 Data Factory 刀鋒視窗](./media/data-factory-copy-activity-tutorial-using-azure-portal/getstarted-new-data-factory.png)
+         ![新增 Data Factory 刀鋒視窗](./media/data-factory-copy-activity-tutorial-using-azure-portal/getstarted-new-data-factory.png)
       
        Azure Data Factory 的名稱必須是 **全域唯一的**。 如果您收到錯誤，請變更 Data Factory 名稱 (例如 yournameADFTutorialDataFactory)，然後試著重新建立。 請參閱 [Data Factory - 命名規則](data-factory-naming-rules.md) 主題，以了解 Data Factory 成品的命名規則。
       
@@ -67,7 +71,7 @@ ms.author: spelluru
       1. 選取 [使用現有的] ，然後從下拉式清單選取現有的資源群組。 
       2. 選取 [建立新的] ，然後輸入資源群組的名稱。   
          
-          本教學課程的某些步驟是假設您使用 **ADFTutorialResourceGroup** 做為資源群組名稱。 若要了解資源群組，請參閱 [使用資源群組管理您的 Azure 資源](../resource-group-overview.md)。  
+          本教學課程的某些步驟是假設您使用 **ADFTutorialResourceGroup** 做為資源群組名稱。 若要了解資源群組，請參閱 [使用資源群組管理您的 Azure 資源](../azure-resource-manager/resource-group-overview.md)。  
    4. 選取 Data Factory 的 [位置]  。 下拉式清單中只會顯示 Data Factory 服務支援的區域。
    5. 選取 [ **釘選到「開始面板」**]。     
    6. 按一下 [建立] 。
@@ -75,7 +79,7 @@ ms.author: spelluru
       > [!IMPORTANT]
       > 若要建立 Data Factory 執行個體，您必須是訂用帳戶/資源群組層級的 [Data Factory 參與者](../active-directory/role-based-access-built-in-roles.md#data-factory-contributor) 角色成員。
       > 
-      > Data Factory 的名稱未來可能會註冊為 DNS 名稱，因此會變成公開可見的名稱。              
+      > Data Factory 的名稱未來可能會註冊為 DNS 名稱，因此會變成公開可見的名稱。                
       > 
       > 
 3. 若要查看狀態/通知訊息，請按一下工具列上的鈴鐺圖示。 
@@ -99,7 +103,7 @@ ms.author: spelluru
     ![編輯器 [新增資料存放區] 按鈕](./media/data-factory-copy-activity-tutorial-using-azure-portal/getstarted-editor-newdatastore-button.png)    
 3. 將 `<accountname>` 和 `<accountkey>` 取代為 Azure 儲存體帳戶的帳戶名稱和帳戶金鑰值。 
    
-    ![編輯器 Blob 儲存體 JSON](./media/data-factory-copy-activity-tutorial-using-azure-portal/getstarted-editor-blob-storage-json.png) 
+    ![編輯器 Blob 儲存體 JSON](./media/data-factory-copy-activity-tutorial-using-azure-portal/getstarted-editor-blob-storage-json.png)    
 4. 按一下工具列上的 [部署]。 您現在應該會在樹狀檢視中看到已部署的 **AzureStorageLinkedService**。 
    
     ![編輯器 Blob 儲存體部署](./media/data-factory-copy-activity-tutorial-using-azure-portal/getstarted-editor-blob-storage-deploy.png)
@@ -168,7 +172,7 @@ ms.author: spelluru
    * **linkedServiceName** 設為 **AzureStorageLinkedService**。 您已在步驟 2 中建立此連結服務。
    * **folderPath** 設為 **adftutorial** 容器。 您也可以使用 **fileName** 屬性指定資料夾內 Blob 的名稱。 由於您未指定 Blob 的名稱，容器中所有 Blob 的資料都會被視為輸入資料。  
    * 格式 **type** 設為 **TextFormat**
-   * 文字檔中有兩個欄位 (**FirstName** 和 **LastName**)，以逗號字元分隔 (**columnDelimiter**) 
+   * 文字檔中有兩個欄位 (**FirstName** 和 **LastName**)，以逗號字元分隔 (**columnDelimiter**)    
    * **availability** 設定為**每小時**，且 (**frequency** 設定為**小時**，**interval** 設定為 **1**)。 因此，Data Factory 會每小時都在您指定之 Blob 容器 (**adftutorial**) 的根資料夾中尋找輸入資料。 
      
      如果您未指定**輸入**資料集的 **fileName**，則輸入資料夾 (**folderPath**) 中的所有檔案/Blob 都會被視為輸入。 如果您在 JSON 中指定 fileName，則只有指定的檔案/Blob 會被視為輸入。
@@ -326,7 +330,7 @@ ms.author: spelluru
 ### <a name="monitor-pipeline-using-diagram-view"></a>使用圖表檢視監視管線
 1. 按一下 **X** 關閉 [圖表] 檢視，以查看 Data Factory 首頁上的 Data Factory。 如果您已關閉網頁瀏覽器，請執行下列步驟︰ 
    1. 瀏覽至 [Azure 入口網站](https://portal.azure.com/)。 
-   2. 按兩下 [開始面板] 上的 [ADFTutorialDataFactory](或.md) 按一下左側功能表上的 [Data Factory]，然後搜尋 ADFTutorialDataFactory。 
+   2. 按兩下 [開始面板] 上的 [ADFTutorialDataFactory] (或) 按一下左側功能表上的 [Data Factory]，然後搜尋 ADFTutorialDataFactory。 
 2. 您應該會看到您在此分頁上建立之資料表和管線的計數和名稱。
    
     ![含名稱的首頁](./media/data-factory-copy-activity-tutorial-using-azure-portal/getstarted-datafactory-home-page-pipeline-tables.png)
@@ -369,7 +373,7 @@ ms.author: spelluru
     
     ![SQL 查詢結果](./media/data-factory-copy-activity-tutorial-using-azure-portal/getstarted-sql-query-results.png)
 
-### <a name="monitor-pipeline-using-monitor-&-manage-app"></a>使用監視及管理應用程式來監視管線
+### <a name="monitor-pipeline-using-monitor-manage-app"></a>使用監視及管理應用程式來監視管線
 您也可以使用「監視及管理應用程式」來監視您的管線。 如需使用此應用程式的詳細資訊，請參閱 [使用監視及管理應用程式來監視和管理 Azure Data Factory 管線](data-factory-monitor-manage-app.md)。
 
 1. 在 Data Factory 首頁上按一下 [監視及管理] 圖格。
@@ -386,7 +390,7 @@ ms.author: spelluru
 
 1. 建立 Azure **Data Factory**。
 2. 建立 **連結服務**：
-   1. **Azure 儲存體** 連結服務可連結保留輸入資料的 Azure 儲存體帳戶。    
+   1. **Azure 儲存體** 連結服務可連結保留輸入資料的 Azure 儲存體帳戶。     
    2. **Azure SQL** 連結服務可連結保留輸出資料的 Azure SQL Database。 
 3. 建立可描述管線輸入資料和輸出資料的 **資料集** 。
 4. 建立具有**複製活動**的**管線**，以 **BlobSource** 做為來源並以 **SqlSink** 做為接收器。  
@@ -400,6 +404,9 @@ ms.author: spelluru
 | [資料集](data-factory-create-datasets.md) |本文協助您了解 Azure Data Factory 中的資料集。 |
 | [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) |本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 |
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 
