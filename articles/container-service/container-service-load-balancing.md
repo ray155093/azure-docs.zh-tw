@@ -1,14 +1,14 @@
 ---
-title: Azure Container Service 叢集中容器的負載平衡 | Microsoft Docs
-description: Azure Container Service 叢集中多個容器的負載平衡。
+title: "Azure Container Service 叢集中容器的負載平衡 | Microsoft Docs"
+description: "Azure Container Service 叢集中多個容器的負載平衡。"
 services: container-service
-documentationcenter: ''
+documentationcenter: 
 author: rgardler
 manager: timlt
-editor: ''
+editor: 
 tags: acs, azure-container-service
-keywords: 容器, 微服務, DC/OS, Azure
-
+keywords: "容器, 微服務, DC/OS, Azure"
+ms.assetid: f0ab5645-2636-42de-b23b-4c3a7e3aa8bb
 ms.service: container-service
 ms.devlang: na
 ms.topic: get-started-article
@@ -16,6 +16,10 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/11/2016
 ms.author: rogardle
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: cf255856302ad5bdb1f6022d231833610acbcac5
+
 
 ---
 # <a name="load-balance-containers-in-an-azure-container-service-cluster"></a>Azure Container Service 叢集中容器的負載平衡
@@ -35,14 +39,14 @@ Marathon Load Balancer 會根據您所部署的容器以動態方式重新設定
 
 若要安裝 Marathon 負載平衡器，您可以使用 DC/OS Web UI 或命令列。
 
-### <a name="install-marathon-lb-using-dc/os-web-ui"></a>使用 DC/OS Web UI 安裝 Marathon-LB
+### <a name="install-marathonlb-using-dcos-web-ui"></a>使用 DC/OS Web UI 安裝 Marathon-LB
 1. 按一下 'Universe'
 2. 搜尋 'Marathon-LB'
 3. 按一下 'Install'
 
 ![透過 DC/OS Web 介面安裝 marathon-lb](./media/dcos/marathon-lb-install.png)
 
-### <a name="install-marathon-lb-using-the-dc/os-cli"></a>使用 DC/OS CLI 安裝 Marathon-LB
+### <a name="install-marathonlb-using-the-dcos-cli"></a>使用 DC/OS CLI 安裝 Marathon-LB
 安裝 DC/OS CLI 並確保您可以連接至叢集之後，請從用戶端電腦執行下列命令︰
 
 ```bash
@@ -97,13 +101,13 @@ dcos package install marathon-lb
 
 值得注意的是，Marathon 預設會部署到私人叢集，這表示只能透過您的負載平衡器存取上述部署，而這通常是我們想進行的行為。
 
-### <a name="deploy-using-the-dc/os-web-ui"></a>使用 DC/OS Web UI 進行部署
+### <a name="deploy-using-the-dcos-web-ui"></a>使用 DC/OS Web UI 進行部署
 1. 請造訪位於 http://localhost/marathon 的 Marathon 頁面 (設定您的 [SSH 通道](container-service-connect.md)之後) 並按一下 `Create Appliction`
 2. 在 `New Application` 對話方塊中，按一下右上角的 `JSON Mode`
 3. 將上述 JSON 貼到編輯器中
 4. 按一下 `Create Appliction`
 
-### <a name="deploy-using-the-dc/os-cli"></a>使用 DC/OS CLI 進行部署
+### <a name="deploy-using-the-dcos-cli"></a>使用 DC/OS CLI 進行部署
 若要使用 DC/OS CLI 部署此應用程式，只要將上述 JSON 複製到名為 `hello-web.json` 的檔案，並執行︰
 
 ```bash
@@ -129,6 +133,9 @@ Azure lb:8080 -> marathon-lb:1002 -> mycontainer2:33432
 ## <a name="next-steps"></a>後續步驟
 如需 [marathon-lb](https://dcos.io/docs/1.7/usage/service-discovery/marathon-lb/)的詳細資訊，請參閱 DC/OS 文件。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: 在 Azure App Service 中開始使用 Node.js Web 應用程式
-description: 了解如何將 Node.js 應用程式部署到 Azure App Service 中的 Web 應用程式。
+title: "在 Azure App Service 中開始使用 Node.js Web 應用程式"
+description: "了解如何將 Node.js 應用程式部署到 Azure App Service 中的 Web 應用程式。"
 services: app-service\web
 documentationcenter: nodejs
 author: cephalin
 manager: wpickett
-editor: ''
-
+editor: 
+ms.assetid: fb2b90c8-02b6-4700-929b-5de9a35d67cc
 ms.service: app-service-web
 ms.workload: web
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: nodejs
 ms.topic: get-started-article
 ms.date: 07/01/2016
 ms.author: cephalin
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 5c61d7a04d7d3e7f82ca8636dcd5d222e1a37a96
+
 
 ---
-# <a name="get-started-with-node.js-web-apps-in-azure-app-service"></a>在 Azure App Service 中開始使用 Node.js Web 應用程式
+# <a name="get-started-with-nodejs-web-apps-in-azure-app-service"></a>在 Azure App Service 中開始使用 Node.js Web 應用程式
 [!INCLUDE [tabs](../../includes/app-service-web-get-started-nav-tabs.md)]
 
 本教學課程示範如何建立簡單的 [Node.js] 應用程式，並透過 cmd.exe 或 bash 之類的命令列環境將其部署至 [Azure App Service]。 本教學課程中的指示可運用在任何能夠執行 Node.js 應用程式的作業系統上。
@@ -35,7 +39,7 @@ ms.author: cephalin
 * [Azure CLI]
 * Microsoft Azure 帳戶。 如果您沒有這類帳戶，可以[申請免費試用]，或是[啟用自己的 Visual Studio 訂閱者權益]。
 
-## <a name="create-and-deploy-a-simple-node.js-web-app"></a>建立和部署簡單的 Node.js Web 應用程式
+## <a name="create-and-deploy-a-simple-nodejs-web-app"></a>建立和部署簡單的 Node.js Web 應用程式
 1. 開啟您選擇的命令列終端機，並安裝 [適用於 Yeoman 的 Express 產生器]。
    
         npm install -g generator-express
@@ -99,10 +103,10 @@ ms.author: cephalin
    
     ![瀏覽至已部署的應用程式的範例。][deployed-express-app]
 
-## <a name="update-your-node.js-web-app"></a>更新您的 Node.js Web 應用程式
+## <a name="update-your-nodejs-web-app"></a>更新您的 Node.js Web 應用程式
 若要更新在 App Service 中執行的 Node.js Web 應用程式，只需和您最初部署 Web 應用程式時一樣執行 `git add`、`git commit` 和 `git push`。
 
-## <a name="how-app-service-deploys-your-node.js-app"></a>App Service 如何部署您的 Node.js 應用程式
+## <a name="how-app-service-deploys-your-nodejs-app"></a>App Service 如何部署您的 Node.js 應用程式
 Azure App Service 使用 [iisnode] 來執行 Node.js 應用程式。 Azure CLI 和 Kudu 引擎 (Git 部署) 會一同合作，讓您在透過命令列開發和部署 Node.js 應用程式時獲得流暢的體驗。 
 
 * `azure site create --git` 會辨識 server.js 或 app.js 的常見 Node.js 模式，並在根目錄中建立 iisnode.yml。 您可以使用這個檔案來自訂 iisnode。
@@ -112,7 +116,7 @@ Azure App Service 使用 [iisnode] 來執行 Node.js 應用程式。 Azure CLI �
   * 為 iisnode 產生指向 package.json 中的啟動指令碼的 Web.config (例如 server.js 或 app.js)。
   * 自訂 Web.config 以讓應用程式準備好使用節點偵測器進行偵錯。
 
-## <a name="use-a-node.js-framework"></a>使用 Node.js 架構
+## <a name="use-a-nodejs-framework"></a>使用 Node.js 架構
 如果您使用熱門的 Node.js 架構 (例如 [Sails.js][SAILSJS] 或 [MEAN.js][MEANJS]) 來開發應用程式，您可以將這些應用程式部署到 App Service。 熱門的 Node.js 架構有其特定的行為模式，而且其封裝相依性會不斷更新。 不過，App Service 可提供 stdout 和 stderr 記錄給您，讓您確實了解應用程式發生了什麼事並據以變更。 如需詳細資訊，請參閱 [從 iisnode 取得 stdout 和 stderr 記錄](#iisnodelog)。
 
 下列教學課程將為您示範如何在 App Service 中使用特定架構：
@@ -123,7 +127,7 @@ Azure App Service 使用 [iisnode] 來執行 Node.js 應用程式。 Azure CLI �
 
 <a name="version"></a>
 
-## <a name="use-a-specific-node.js-engine"></a>使用特定的 Node.js 引擎
+## <a name="use-a-specific-nodejs-engine"></a>使用特定的 Node.js 引擎
 和平常在 package.json 中的方式一樣，您可以在一般工作流程中告知 App Service 使用特定的 Node.js 引擎。
 例如：
 
@@ -182,7 +186,7 @@ Kudu 部署引擎會依下列順序決定要使用哪個 Node.js 引擎︰
    
     ![檢查 iisnode 記錄檔。][iislog-kudu-console-read]
 
-## <a name="debug-your-app-with-node-inspector"></a>使用節點偵測器偵錯應用程式
+## <a name="debug-your-app-with-nodeinspector"></a>使用節點偵測器偵錯應用程式
 如果您使用節點偵測器來偵錯 Node.js 應用程式，您可以將它用於您的即時 App Service 應用程式。 節點偵測器會預先安裝在 App Service 的 iisnode 安裝中。 如果您透過 Git 部署，則從 Kudu 自動產生的 Web.config 已包含啟用節點偵測器所需的所有組態。
 
 若要啟用節點偵測器，請遵循下列步驟︰
@@ -243,6 +247,6 @@ Kudu 部署引擎會依下列順序決定要使用哪個 Node.js 引擎︰
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

@@ -1,5 +1,5 @@
 > [!IMPORTANT]
-> 若要透過 Mobile Engagement 接收推播通知，您必須在應用程式中啟用 `Silent Remote Notifications`。您需要將遠端通知值新增到 Info.plist 檔案中的 UIBackgroundModes 陣列。
+> 若要透過 Mobile Engagement 接收推播通知，您必須在應用程式中啟用 `Silent Remote Notifications`。 您需要將遠端通知值新增到 Info.plist 檔案中的 UIBackgroundModes 陣列。
 > 
 > 
 
@@ -24,4 +24,8 @@
    
    * 在 [目標] > [目標名稱] > [功能]，啟用 [推播通知]。
 
-<!---HONumber=Oct15_HO3-->
+
+
+<!--HONumber=Nov16_HO2-->
+
+

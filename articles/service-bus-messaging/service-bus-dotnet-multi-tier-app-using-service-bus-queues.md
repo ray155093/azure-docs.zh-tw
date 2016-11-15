@@ -1,12 +1,12 @@
 ---
-title: .NET 多層應用程式 | Microsoft Docs
-description: 協助您在 Azure 中開發多層式應用程式，以使用服務匯流排佇列在各層之間進行通訊的 .NET 教學課程。
+title: ".NET 多層應用程式 | Microsoft Docs"
+description: "協助您在 Azure 中開發多層式應用程式，以使用服務匯流排佇列在各層之間進行通訊的 .NET 教學課程。"
 services: service-bus
 documentationcenter: .net
 author: sethmanheim
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 1b8608ca-aa5a-4700-b400-54d65b02615c
 ms.service: service-bus
 ms.workload: tbd
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: dotnet
 ms.topic: get-started-article
 ms.date: 09/01/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 60ed71eac1a233a08414edb8c89b196401895cd8
+
 
 ---
-# <a name=".net-multi-tier-application-using-azure-service-bus-queues"></a>使用 Azure 服務匯流排佇列的 .NET 多層應用程式
+# <a name="net-multitier-application-using-azure-service-bus-queues"></a>使用 Azure 服務匯流排佇列的 .NET 多層應用程式
 ## <a name="introduction"></a>簡介
 使用 Visual Studio 和免費 Azure SDK for .NET 開發 Microsoft Azure 很容易。 本教學課程將逐步引導您完成相關步驟，以建立在本機環境中執行、使用多個 Azure 資源的應用程式。 這些步驟假設您從未使用過 Azure。
 
@@ -35,7 +39,7 @@ ms.author: sethm
 
 ![][0]
 
-## <a name="scenario-overview:-inter-role-communication"></a>案例概觀：內部角色通訊
+## <a name="scenario-overview-interrole-communication"></a>案例概觀：內部角色通訊
 為了提交訂單進行處理，Web 角色中執行的前端 UI 元件必須與背景工作角色中執行的中間層互動。 此範例使用由服務匯流排代理的傳訊，在各層之間進行通訊。
 
 在 Web 層與中間層之間使用代理的通訊，可使這兩個元件彼此脫鉤。 相較於直接傳訊 (亦即，TCP 或 HTTP)，Web 層不會直接連線至中間層，而是透過訊息的形式，將工作單位推播至服務匯流排，而後者會可靠地保管工作單位，直到中間層準備好取用並處理這些工作單位為止。
@@ -57,7 +61,7 @@ ms.author: sethm
 ## <a name="set-up-the-development-environment"></a>設定開發環境
 在開始開發 Azure 應用程式之前，請取得工具，並設定開發環境：
 
-1. 安裝位於[取得工具和 SDK][] 的 Azure SDK for .NET。
+1. 在[取得工具和 SDK][取得工具和 SDK] 安裝 Azure SDK for .NET。
 2. 按一下您所使用 Visual Studio 版本的 [安裝 SDK]。 本教學課程中的步驟使用 Visual Studio 2015。
 3. 當系統提示您執行或儲存安裝程式時，按一下 [執行]。
 4. 在 **Web Platform Installer** 中，按一下 [安裝] 並繼續進行安裝。
@@ -368,7 +372,7 @@ ms.author: sethm
 [0]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-01.png
 [1]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-100.png
 [2]: ./media/service-bus-dotnet-multi-tier-app-using-service-bus-queues/getting-started-multi-tier-101.png
-[取得工具和 SDK (英文)]: http://go.microsoft.com/fwlink/?LinkId=271920
+[取得工具和 SDK]: http://go.microsoft.com/fwlink/?LinkId=271920
 
 
 [GetSetting]: https://msdn.microsoft.com/library/azure/microsoft.windowsazure.cloudconfigurationmanager.getsetting.aspx
@@ -406,6 +410,6 @@ ms.author: sethm
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: How to create a support ticket for SQL Data Warehouse | Microsoft Docs
-description: How to create a support ticket in Azure SQL Data Warehouse.
+title: "如何為 SQL 資料倉儲建立支援票證 | Microsoft Docs"
+description: "如何在 Azure SQL 資料倉儲中建立支援票證。"
 services: sql-data-warehouse
 documentationcenter: NA
 author: barbkess
 manager: jhubbard
-editor: ''
-
+editor: 
+ms.assetid: a91d1f53-03cb-464b-9d5b-4a9c1a194ed3
 ms.service: sql-data-warehouse
 ms.devlang: NA
 ms.topic: get-started-article
@@ -14,62 +14,66 @@ ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: barbkess
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: ede330870f451bd1e0ed6805fa937e74438fd644
+
 
 ---
-# <a name="how-to-create-a-support-ticket-for-sql-data-warehouse"></a>How to create a support ticket for SQL Data Warehouse
-If you having any issues with your SQL Data Warehouse, please create a support ticket so that our engineering team can assist you.
+# <a name="how-to-create-a-support-ticket-for-sql-data-warehouse"></a>如何為 SQL 資料倉儲建立支援票證
+如果您的 SQL 資料倉儲有任何問題，請建立支援票證，以便我們的工程小組協助您。
 
-## <a name="create-a-support-ticket"></a>Create a support ticket
-1. Open the [Azure portal][Azure portal].
-2. On the Home screen, click the **Help + support** tile.
+## <a name="create-a-support-ticket"></a>建立支援票證
+1. 開啟 [Azure 入口網站][Azure 入口網站]。
+2. 在 [首頁] 畫面上，按一下 [說明 + 支援]  圖格。
    
-    ![Help + support](./media/sql-data-warehouse-get-started-create-support-ticket/help-support.png)
-3. On the Help + Support blade, click **Create support request**.
+    ![說明 + 支援](./media/sql-data-warehouse-get-started-create-support-ticket/help-support.png)
+3. 在 [說明 + 支援] 刀鋒視窗上，按一下 [建立支援要求] 。
    
-    ![New support request](./media/sql-data-warehouse-get-started-create-support-ticket/create-support-request.png)
+    ![新的支援要求](./media/sql-data-warehouse-get-started-create-support-ticket/create-support-request.png)
    
     <a name="request-quota-change"></a> 
-4. Select the **Request Type**.
+4. 選取 [要求類型] 。
    
-    ![Request type](./media/sql-data-warehouse-get-started-create-support-ticket/request-type.png)
+    ![要求類型](./media/sql-data-warehouse-get-started-create-support-ticket/request-type.png)
    
    > [!NOTE]
-   > By default, each SQL server (e.g. myserver.database.windows.net) has a **DTU Quota** of 45,000. This quota is simply a safety limit. You can increase your quota by creating a support ticket and selecting *Quota* as the request type. To calculate your DTU needs, multiply the 7.5 by the total [DWU][DWU] needed. For example, you would like to host two DW6000s on one SQL server, then you should request a DTU quota of 90,000.  You can view your current DTU consumption from the SQL server blade in the portal. Both paused and un-paused databases count toward the DTU quota. 
+   > 根據預設，每個 SQL Server (例如 myserver.database.windows.net) 的 **DTU 配額** 為 45,000。 此配額僅是安全限制。 您可以藉由建立支援票證，並選取 [配額]  做為要求類型來增加配額。 若要計算 DTU 需求，將所需的總 [DWU][DWU] 乘以 7.5。 例如，如果您想要在一個 SQL Server 上裝載兩個 DW6000，則應該要求 90,000 的 DTU 配額。  您可以在入口網站的 [SQL Server] 刀鋒視窗中檢視目前的 DTU 耗用量。 已暫停和未暫停的資料庫都會計入 DTU 配額。 
    > 
    > 
-5. Select the **Subscription** that hosts the database with the problem you are reporting.
+5. 選取主控您回報發生問題之資料庫的 [訂用帳戶]  。
    
-    ![Subscription](./media/sql-data-warehouse-get-started-create-support-ticket/subscription.png)
-6. Select **SQL Data Warehouse** as the Resource.
+    ![訂閱](./media/sql-data-warehouse-get-started-create-support-ticket/subscription.png)
+6. 選取 [SQL 資料倉儲]  做為資源。
    
-    ![Resource](./media/sql-data-warehouse-get-started-create-support-ticket/resource.png)
-7. Select your [Azure support plan][Azure support plan].
+    ![資源](./media/sql-data-warehouse-get-started-create-support-ticket/resource.png)
+7. 選取 [Azure 支援計劃][Azure 支援計劃]。
    
-   * **Billing, quota and subscription management** support is available at all support levels.
-   * **Break-fix** support is provided through [Developer][Developer], [Standard][Standard], [Professional Direct][Professional Direct] or [Premier][Premier] support. Break-fix issues are problems experienced by customers while using Azure where there is a reasonable expectation that Microsoft caused the problem.
-   * **Developer mentoring** and **advisory services** are available at the [Professional Direct][Professional Direct] and [Premier][Premier] support levels. 
+   * **帳單、配額及訂用帳戶管理** 支援。
+   * **協助修正**支援則透過[開發人員][開發人員]、[標準][標準]、[專業指導][專業指導]支援或[頂級][頂級] 客戶在使用 Azure 期間如果遇到可合理認為是 Microsoft 所造成的問題，這類問題即屬於可協助修正的問題。
+   * [專業指導][專業指導]和[頂級][頂級]支援層級可提供**開發顧問**和**諮詢服務**。 
      
-     If you have a Premier support plan, you can also report SQL Data Warehouse related issues on the [Microsoft Premier online portal][Microsoft Premier online portal].  See [Azure support plans][Azure support plan] to learn more about the various support plans, including scope, response times, pricing, etc.  For frequently asked questions about Azure support, see [Azure support FAQs][Azure support FAQs].  
+     如果您有頂級支援計劃，您也可以在 [Microsoft Premier 線上入口網站][Microsoft Premier 線上入口網站]回報 SQL 資料倉儲的相關問題。  請參閱 [Azure 支援計畫][Azure 支援計畫]，進一步了解包括範圍、回應時間、價格等各種 Azure 支援計畫。如需有關 Azure 支援的常見問題集，請參閱 [Azure 支援常見問題集][Azure 支援常見問題集]。  
      
-     ![Support plan](./media/sql-data-warehouse-get-started-create-support-ticket/support-plan.png)
-8. Select the **Problem Type** and **Category**.
+     ![支援計劃](./media/sql-data-warehouse-get-started-create-support-ticket/support-plan.png)
+8. 選取**問題類型**和**類別**。
    
-    ![Problem type category](./media/sql-data-warehouse-get-started-create-support-ticket/problem-type-category.png)
-9. Describe the problem and choose the level of business impact.
+    ![問題類型類別](./media/sql-data-warehouse-get-started-create-support-ticket/problem-type-category.png)
+9. 描述問題並選擇商業影響層級。
    
-    ![Problem description](./media/sql-data-warehouse-get-started-create-support-ticket/problem-description.png)
-10. Your **contact information** for this support ticket will be pre-filled. Update this if necessary.
+    ![問題說明](./media/sql-data-warehouse-get-started-create-support-ticket/problem-description.png)
+10. 將預先填入此支援票證的您的 **連絡資訊** 。 必要時更新此項目。
     
-    ![Contact info](./media/sql-data-warehouse-get-started-create-support-ticket/contact-info.png)
-11. Click **Create** to submit the support request.
+    ![連絡資訊](./media/sql-data-warehouse-get-started-create-support-ticket/contact-info.png)
+11. 按一下 [建立]  提交支援要求。
 
-## <a name="monitor-a-support-ticket"></a>Monitor a support ticket
-After you have submitted the support request, the Azure support team will contact you. To check your request status and details, click **Manage support requests** on the dashboard.
+## <a name="monitor-a-support-ticket"></a>監視支援票證
+在您提交支援要求之後，Azure 支援小組會與您連絡。 若要檢查您的要求狀態和詳細資料，請在儀表板上按一下 [管理支援要求]  。
 
-![Check status](./media/sql-data-warehouse-get-started-create-support-ticket/check-status.png)
+![檢查狀態](./media/sql-data-warehouse-get-started-create-support-ticket/check-status.png)
 
-## <a name="other-resources"></a>Other Resources
-Additionally, you can connect with the SQL Data Warehouse community on [Stack Overflow][Stack Overflow] or on the [Azure SQL Data Warehouse MSDN forum][Azure SQL Data Warehouse MSDN forum].
+## <a name="other-resources"></a>其他資源
+此外，您可以在 [Stack Overflow][Stack Overflow] 或在 [Azure SQL 資料倉儲 MSDN 論壇][Azure SQL 資料倉儲 MSDN 論壇]上與 SQL 資料倉儲社群聯繫。
 
 <!--Image references--> 
 
@@ -79,20 +83,20 @@ Additionally, you can connect with the SQL Data Warehouse community on [Stack Ov
 <!--MSDN references--> 
 
 <!--Other web references--> 
-[Azure portal]: https://portal.azure.com/
-[Azure support plan]: https://azure.microsoft.com/support/plans/?WT.mc_id=Support_Plan_510979/  
-[Developer]: https://azure.microsoft.com/support/plans/developer/  
-[Standard]: https://azure.microsoft.com/support/plans/standard/  
-[Professional Direct]: https://azure.microsoft.com/support/plans/prodirect/  
-[Premier]: https://azure.microsoft.com/support/plans/premier/  
-[Azure support FAQs]: https://azure.microsoft.com/support/faq/
-[Microsoft Premier online portal]: https://premier.microsoft.com/
+[Azure 入口網站]: https://portal.azure.com/
+[Azure 支援計劃]: https://azure.microsoft.com/support/plans/?WT.mc_id=Support_Plan_510979/  
+[開發人員]: https://azure.microsoft.com/support/plans/developer/  
+[標準]: https://azure.microsoft.com/support/plans/standard/  
+[專業指導]: https://azure.microsoft.com/support/plans/prodirect/  
+[頂級]: https://azure.microsoft.com/support/plans/premier/  
+[Azure 支援常見問題集]: https://azure.microsoft.com/support/faq/
+[Microsoft Premier Online 入口網站]: https://premier.microsoft.com/
 [Stack Overflow]: https://stackoverflow.com/questions/tagged/azure-sqldw/
-[Azure SQL Data Warehouse MSDN forum]: https://social.msdn.microsoft.com/Forums/home?forum=AzureSQLDataWarehouse/
+[Azure SQL 資料倉儲 MSDN 論壇]: https://social.msdn.microsoft.com/Forums/home?forum=AzureSQLDataWarehouse/
 
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 
