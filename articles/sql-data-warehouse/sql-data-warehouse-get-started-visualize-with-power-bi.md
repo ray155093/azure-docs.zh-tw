@@ -1,27 +1,32 @@
 ---
-title: 使用 Power BI 來將 SQL 資料倉儲資料視覺化 | Microsoft Docs
-description: 使用 Power BI 視覺化 SQL 資料倉儲資料
+title: "使用 Power BI 來將 SQL 資料倉儲資料視覺化 | Microsoft Azure"
+description: "使用 Power BI 視覺化 SQL 資料倉儲資料"
 services: sql-data-warehouse
 documentationcenter: NA
-author: lodipalm
-manager: barbkess
-editor: ''
-
+author: barbkess
+manager: jhubbard
+editor: 
+ms.assetid: d7fb89d1-da1d-4788-a111-68d0e3fda799
 ms.service: sql-data-warehouse
 ms.devlang: NA
 ms.topic: get-started-article
 ms.tgt_pltfrm: NA
 ms.workload: data-services
-ms.date: 06/16/2016
-ms.author: lodipalm;barbkess;sonyama
+ms.date: 10/31/2016
+ms.author: barbkess
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: f498f4546e8c23f2141d8d30160a360fa0fc2514
+
 
 ---
-# 使用 Power BI 視覺化資料
+# <a name="visualize-data-with-power-bi"></a>使用 Power BI 視覺化資料
 > [!div class="op_single_selector"]
 > * [Power BI](sql-data-warehouse-get-started-visualize-with-power-bi.md)
 > * [Azure Machine Learning](sql-data-warehouse-get-started-analyze-with-azure-machine-learning.md)
 > * [Visual Studio](sql-data-warehouse-query-visual-studio.md)
 > * [sqlcmd](sql-data-warehouse-get-started-connect-sqlcmd.md) 
+> * [SSMS](sql-data-warehouse-query-ssms.md)
 > 
 > 
 
@@ -31,49 +36,49 @@ ms.author: lodipalm;barbkess;sonyama
 > 
 > 
 
-## 必要條件
+## <a name="prerequisites"></a>必要條件
 若要逐步執行本教學課程，您需要：
 
-* 預先載入 AdventureWorksDW 資料庫的 SQL 資料倉儲。若要進行佈建，請參閱[建立 SQL 資料倉儲][建立 SQL 資料倉儲]並選擇載入範例資料。如果您已經有資料倉儲但沒有範例資料，您可以[手動載入範例資料][手動載入範例資料]。
+* 預先載入 AdventureWorksDW 資料庫的 SQL 資料倉儲。 若要進行佈建，請參閱 [建立 SQL 資料倉儲][建立 SQL 資料倉儲] 並選擇載入範例資料。 如果您已經有資料倉儲但沒有範例資料，您可以[手動載入範例資料][手動載入範例資料]。
 
-## 1\.連接到您的資料庫
+## <a name="1-connect-to-your-database"></a>1.連接到您的資料庫
 若要開啟 Power BI 並連接到您的 AdventureWorksDW 資料庫：
 
-1. 登入 [Azure 入口網站][Azure 入口網站]。
-2. 按一下 [SQL 資料庫]，並選擇您的 AdventureWorks SQL 資料倉儲資料庫。
+1. 移至 [Azure 入口網站][Azure 入口網站]。
+2. 按一下 [SQL 資料庫]  ，並選擇您的 AdventureWorks SQL 資料倉儲資料庫。
    
     ![尋找您的資料庫][1]
 3. 按一下 [在 Power BI 中開啟] 按鈕。
    
     ![Power BI 按鈕][2]
-4. 您現在應該會看到 SQL 資料倉儲連接頁面顯示您的資料庫網址。按 [下一步]。
+4. 您現在應該會看到 SQL 資料倉儲連接頁面顯示您的資料庫網址。 按 [下一步]。
    
     ![Power BI 連接][3]
 5. 輸入您的 Azure SQL Server 使用者名稱和密碼，隨後會將您完全連接到 SQL 資料倉儲資料庫。
    
     ![Power BI 登入][4]
-6. 一旦登入了 Power BI，請在左刀鋒視窗上按一下 AdventureWorksDW 資料集。這會開啟資料庫。
+6. 一旦登入了 Power BI，請在左刀鋒視窗上按一下  AdventureWorksDW 資料集。 這會開啟資料庫。
    
     ![Power BI 開啟 AdventureWorksDW][5]
 
-## 2\.建立報表
-您現在已準備好使用 Power BI 來分析 AdventureWorksDW 範例資料。為了執行分析，AdventureWorksDW 有一個稱為 AggregateSales 的檢視。這個檢視包含用來分析公司銷售的一些重要指標。
+## <a name="2-create-a-report"></a>2.建立報表
+您現在已準備好使用 Power BI 來分析 AdventureWorksDW 範例資料。 為了執行分析，AdventureWorksDW 有一個稱為 AggregateSales 的檢視。 這個檢視包含用來分析公司銷售的一些重要指標。
 
-1. 若要根據郵遞區號建立銷售金額的對應圖，請在右手邊欄位窗格中按一下 AggregateSales 檢視以展開它。按一下 [PostalCode] 和 [SalesAmount] 資料行來選取它們。
+1. 若要根據郵遞區號建立銷售金額的對應圖，請在右手邊欄位窗格中按一下 AggregateSales 檢視以展開它。 按一下 [PostalCode] 和 [SalesAmount] 資料行來選取它們。
    
     ![Power BI 選取 AggregateSales][6]
    
     Power BI 會自動將此辨識為地理資料，並將它放入地圖中。
    
     ![Power BI 對應圖][7]
-2. 這個步驟會建立橫條圖，顯示每個客戶收入的銷售金額。若要建立此項，請移至展開的 AggregateSales 檢視。按一下 [SalesAmount] 欄位。將 [客戶收入] 欄位向左拖放到座標軸。
+2. 這個步驟會建立橫條圖，顯示每個客戶收入的銷售金額。 若要建立此項，請移至展開的 AggregateSales 檢視。 按一下 [SalesAmount] 欄位。 將 [客戶收入] 欄位向左拖放到座標軸。
    
     ![Power BI 選取軸][8]
    
     我們已將橫條圖移到左邊。
    
     ![Power BI 長條圖][9]
-3. 這個步驟會建立折線圖，顯示每個訂單日期的銷售金額。若要建立此項，請移至展開的 AggregateSales 檢視。按一下 [SalesAmount] 和 [OrderDate]。在 [視覺效果] 資料行中按一下 [折線圖] 圖示；這是視覺效果下第二行中的第一個圖示。
+3. 這個步驟會建立折線圖，顯示每個訂單日期的銷售金額。 若要建立此項，請移至展開的 AggregateSales 檢視。 按一下 [SalesAmount] 和 [OrderDate]。 在 [視覺效果] 資料行中按一下 [折線圖] 圖示；這是視覺效果下第二行中的第一個圖示。
    
     ![Power BI 選取折線圖][10]
    
@@ -83,8 +88,8 @@ ms.author: lodipalm;barbkess;sonyama
 
 您也可以隨時按一下 [檔案]，並選取 [儲存] 來儲存您的進度。
 
-## 後續步驟
-既然我們已經提供您一些時間，讓您利用範例資料進入狀況，接著請查看如何進行[開發][開發]、[載入][載入]或[移轉][移轉]。或者，看一下 [Power BI 網站][Power BI 網站]。
+## <a name="next-steps"></a>後續步驟
+既然我們已經提供您一些時間，讓您利用範例資料進入狀況，接著請查看如何進行[開發][開發]、[載入][載入]或[移轉][移轉]。 或者，看一下 [Power BI 網站][Power BI 網站]。
 
 <!--Image references-->
 [1]: media/sql-data-warehouse-get-started-visualize-with-power-bi/pbi-find-database.png
@@ -105,11 +110,15 @@ ms.author: lodipalm;barbkess;sonyama
 [開發]: sql-data-warehouse-overview-develop.md
 [載入]: sql-data-warehouse-overview-load.md
 [手動載入範例資料]: sql-data-warehouse-load-sample-databases.md
-[connecting to SQL Data Warehouse]: sql-data-warehouse-integrate-power-bi.md
+[連線到 SQL 資料倉儲]: sql-data-warehouse-integrate-power-bi.md
 [建立 SQL 資料倉儲]: sql-data-warehouse-get-started-provision.md
 
 <!--Other-->
 [Azure 入口網站]: https://portal.azure.com/
 [Power BI 網站]: http://www.powerbi.com/
 
-<!---HONumber=AcomDC_0622_2016-->
+
+
+<!--HONumber=Nov16_HO2-->
+
+

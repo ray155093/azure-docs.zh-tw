@@ -1,40 +1,44 @@
 ---
-title: 使用 Java 傳遞點播內容入門 | Microsoft Docs
-description: 說明如何使用 Azure 媒體服務執行一般工作，包括資源的編碼、加密和串流。
+title: "使用 Java 傳遞點播內容入門 | Microsoft Docs"
+description: "說明如何使用 Azure 媒體服務執行一般工作，包括資源的編碼、加密和串流。"
 services: media-services
 documentationcenter: java
-author: rmcmurray
-manager: wpickett
-editor: jimbe
-
+author: juliako
+manager: erikre
+editor: 
+ms.assetid: b884bd61-dbdb-42ea-b170-8fb02e7fded7
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
-ms.devlang: na
+ms.devlang: java
 ms.topic: get-started-article
-ms.date: 08/17/2016
-ms.author: robmcm
+ms.date: 10/19/2016
+ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 97af28a2f225fa7f5db2086687c38c64e03ebc8f
+
 
 ---
-# 使用 Java 傳遞點播內容入門
+# <a name="get-started-with-delivering-content-on-demand-using-java"></a>使用 Java 傳遞點播內容入門
 [!INCLUDE [media-services-selector-get-started](../../includes/media-services-selector-get-started.md)]
 
-## 設定媒體服務的 Azure 帳戶
-若要設定媒體服務帳戶，請使用 Azure 傳統入口網站。請參閱主題[如何建立媒體服務帳戶](media-services-create-account.md)。當您在 Azure 傳統入口網站中建立帳戶之後，就可開始設定您的電腦進行媒體服務開發。
+## <a name="setting-up-an-azure-account-for-media-services"></a>設定媒體服務的 Azure 帳戶
+若要設定媒體服務帳戶，請使用 Azure 傳統入口網站。 請參閱主題 [如何建立媒體服務帳戶](media-services-portal-create-account.md)。 當您在 Azure 傳統入口網站中建立帳戶之後，就可開始設定您的電腦進行媒體服務開發。
 
-## 設定媒體服務開發
+## <a name="setting-up-for-media-services-development"></a>設定媒體服務開發
 本節包含使用 Media Services SDK for Java 進行媒體服務開發的一般必要條件。
 
-### 必要條件
-* 新的或現有 Azure 訂閱中的媒體服務帳戶。請參閱主題[如何建立媒體服務帳戶](media-services-create-account.md)。
-* Azure Libraries for Java，可從＜[Azure Java 開發人員中心][Azure Java 開發人員中心]＞(英文) 進行安裝。
+### <a name="prerequisites"></a>必要條件
+* 新的或現有 Azure 訂用帳戶中的媒體服務帳戶。 請參閱主題 [如何建立媒體服務帳戶](media-services-portal-create-account.md)。
+* Azure Libraries for Java，可從 [Azure Java 開發人員中心][Azure Java 開發人員中心]進行安裝。
 
-## 如何：搭配使用媒體服務和 Java
+## <a name="how-to-use-media-services-with-java"></a>如何：搭配使用媒體服務和 Java
 下列程式碼將示範如何建立資產、上傳媒體檔案到資產、使用工作 (Task) 執行作業 (Job) 來轉換此資產，以及建立定位器以便串流您的影片。
 
-使用此程式碼前，您必須先設定媒體服務帳戶。如需設定帳戶的相關資訊，請參閱[如何建立媒體服務帳戶](media-services-create-account.md) (英文)。
+使用此程式碼前，您必須先設定媒體服務帳戶。 如需設定帳戶的相關資訊，請參閱[如何建立媒體服務帳戶](media-services-portal-create-account.md)。
 
-請將 'clientId' 和 'clientSecret' 變數換成您的值。此程式碼還需要用到儲存在本機的檔案。您必須提供您自己的檔案以供使用。
+請將 'clientId' 和 'clientSecret' 變數換成您的值。 此程式碼還需要用到儲存在本機的檔案。 您必須提供您自己的檔案以供使用。
 
     import java.io.*;
     import java.security.NoSuchAlgorithmException;
@@ -63,7 +67,6 @@ ms.author: robmcm
     import com.microsoft.windowsazure.services.media.models.MediaProcessor;
     import com.microsoft.windowsazure.services.media.models.MediaProcessorInfo;
     import com.microsoft.windowsazure.services.media.models.Task;
-
 
     public class HelloMediaServices
     {
@@ -178,8 +181,8 @@ ms.author: robmcm
             // Create a task with the specified Media Processor
             String outputAssetName = String.format("%s as %s", assetToEncode.getName(), encodingPreset);
             String taskXml = "<taskBody><inputAsset>JobInputAsset(0)</inputAsset>"
-                    + "<outputAsset assetCreationOptions="0"" // AssetCreationOptions.None
-                    + " assetName="" + outputAssetName + "">JobOutputAsset(0)</outputAsset></taskBody>";
+                    + "<outputAsset assetCreationOptions=\"0\"" // AssetCreationOptions.None
+                    + " assetName=\"" + outputAssetName + "\">JobOutputAsset(0)</outputAsset></taskBody>";
 
             Task.CreateBatchOperation task = Task.create(mediaProcessor.getId(), taskXml)
                     .setConfiguration(encodingPreset).setName("Encoding");
@@ -250,21 +253,23 @@ ms.author: robmcm
     }
 
 
-## 媒體服務學習路徑
+## <a name="media-services-learning-paths"></a>媒體服務學習路徑
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## 提供意見反應
+## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-## 其他資源
-如需媒體服務 Javadoc 文件，請參閱 [Azure Libraries for Java 文件][Azure Libraries for Java 文件] \(英文)。
+## <a name="additional-resources"></a>其他資源
+如需媒體服務 Javadoc 文件，請參閱 [Azure Libraries for Java 文件][Azure Libraries for Java 文件]。
 
 <!-- URLs. -->
 
 [Azure Java 開發人員中心]: http://azure.microsoft.com/develop/java/
 [Azure Libraries for Java 文件]: http://dl.windowsazure.com/javadoc/
-[Media Services Client Development]: http://msdn.microsoft.com/library/windowsazure/dn223283.aspx
+[媒體服務用戶端開發]: http://msdn.microsoft.com/library/windowsazure/dn223283.aspx
 
 
 
-<!---HONumber=AcomDC_0824_2016-->
+<!--HONumber=Nov16_HO2-->
+
+

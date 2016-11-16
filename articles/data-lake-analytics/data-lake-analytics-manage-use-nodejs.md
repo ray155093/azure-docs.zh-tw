@@ -1,12 +1,12 @@
 ---
-title: 使用 Node.js | Microsoft Docs
-description: 了解如何使用 Node.js 的 Azure SDK，管理資料湖分析帳戶、資料來源、工作與使用者
+title: "使用 Node.js 的 Azure SDK 管理 Azure Data Lake Analytics | Microsoft Docs"
+description: "了解如何使用 Node.js 的 Azure SDK，管理資料湖分析帳戶、資料來源、工作與使用者"
 services: data-lake-analytics
-documentationcenter: ''
+documentationcenter: 
 author: edmacauley
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: 9de1bcf4-b15b-4d0b-9284-8889ecf0c438
 ms.service: data-lake-analytics
 ms.devlang: na
 ms.topic: get-started-article
@@ -14,12 +14,16 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/16/2016
 ms.author: edmaca
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 10ec0b63e1867f5f62d30d879a4497c0880d9494
+
 
 ---
-# 使用 Node.js 的 Azure SDK 管理 Azure 資料湖分析
+# <a name="manage-azure-data-lake-analytics-using-azure-sdk-for-nodejs"></a>使用 Node.js 的 Azure SDK 管理 Azure 資料湖分析
 [!INCLUDE [manage-selector](../../includes/data-lake-analytics-selector-manage.md)]
 
-Node.js 的 Azure SDK 可用於管理 Azure Data Lake Analytics 帳戶、作業與目錄。若要使用其他工具查看管理主題，請按一下上方選取的索引標籤。
+Node.js 的 Azure SDK 可用於管理 Azure Data Lake Analytics 帳戶、作業與目錄。 若要使用其他工具查看管理主題，請按一下上方選取的索引標籤。
 
 它目前支援︰
 
@@ -28,17 +32,17 @@ Node.js 的 Azure SDK 可用於管理 Azure Data Lake Analytics 帳戶、作業�
 * **目錄的 REST API 版本：2015-10-01-preview**
 * **作業的 REST API 版本：2016-03-20-preview**
 
-## 特性
+## <a name="features"></a>特性
 * 帳戶管理：建立、取得、列出、更新及刪除。
 * 作業管理︰提交、取得、列出、取消。
 * 目錄管理︰取得、列出、建立 (密碼)、更新 (密碼)、刪除 (密碼)。
 
-## 如何安裝
+## <a name="how-to-install"></a>如何安裝
 ```bash
 npm install azure-arm-datalake-analytics
 ```
 
-## 使用 Azure Active Directory 進行驗證
+## <a name="authenticate-using-azure-active-directory"></a>使用 Azure Active Directory 進行驗證
  ```javascript
  var msrestAzure = require('ms-rest-azure');
  //user authentication
@@ -47,7 +51,7 @@ npm install azure-arm-datalake-analytics
  var credentials = new msRestAzure.ApplicationTokenCredentials('your-client-id', 'your-domain', 'your-secret');
  ```
 
-## 建立 Data Lake Analytics 用戶端
+## <a name="create-the-data-lake-analytics-client"></a>建立 Data Lake Analytics 用戶端
 ```javascript
 var adlaManagement = require("azure-arm-datalake-analytics");
 var acccountClient = new adlaManagement.DataLakeAnalyticsAccountClient(credentials, 'your-subscription-id');
@@ -55,7 +59,7 @@ var jobClient = new adlaManagement.DataLakeAnalyticsJobClient(credentials, 'azur
 var catalogClient = new adlaManagement.DataLakeAnalyticsCatalogClient(credentials, 'azuredatalakeanalytics.net');
 ```
 
-## 建立 Data Lake Analytics 帳戶
+## <a name="create-a-data-lake-analytics-account"></a>建立 Data Lake Analytics 帳戶
 ```javascript
 var util = require('util');
 var resourceGroupName = 'testrg';
@@ -104,7 +108,7 @@ client.account.create(resourceGroupName, accountName, accountToCreate, function 
 });
 ```
 
-## 取得作業清單
+## <a name="get-a-list-of-jobs"></a>取得作業清單
 ```javascript
 var util = require('util');
 var accountName = 'testadlaacct';
@@ -117,7 +121,7 @@ jobClient.job.list(accountName, function (err, result, request, response) {
 });
 ```
 
-## 取得 Data Lake Analytics 目錄中的資料庫清單
+## <a name="get-a-list-of-databases-in-the-data-lake-analytics-catalog"></a>取得 Data Lake Analytics 目錄中的資料庫清單
 ```javascript
 var util = require('util');
 var accountName = 'testadlaacct';
@@ -130,8 +134,13 @@ catalogClient.catalog.listDatabases(accountName, function (err, result, request,
 });
 ```
 
-## 另請參閱
+## <a name="see-also"></a>另請參閱
 * [Microsoft Azure SDK for Node.js](https://github.com/azure/azure-sdk-for-node)
 * [Microsoft Azure SDK for Node.js - Data Lake Store 管理](https://github.com/Azure/azure-sdk-for-node/tree/autorest/lib/services/dataLake.Store)
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+
+<!--HONumber=Nov16_HO2-->
+
+

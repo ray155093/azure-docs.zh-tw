@@ -1,12 +1,12 @@
 ---
-title: Azure 事件中樞概觀 | Microsoft Docs
-description: Azure 事件中樞的簡介和概觀。
+title: "Azure 事件中樞概觀 | Microsoft Docs"
+description: "Azure 事件中樞的簡介和概觀。"
 services: event-hubs
 documentationcenter: na
 author: sethmanheim
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: f0e0dd20-f745-49c7-bfca-30ea1c46e873
 ms.service: event-hubs
 ms.devlang: na
 ms.topic: get-started-article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/16/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: df9897894a2a2a09735b0947fd335959e81a46cd
+
 
 ---
 # <a name="azure-event-hubs-overview"></a>Azure 事件中樞概觀
@@ -25,7 +29,7 @@ Azure 事件中樞是事件處理服務，它能提供大規模進入雲端的�
 
 事件中樞建立於事件中樞命名空間層級，類似於服務匯流排佇列和主題。 事件中樞使用 AMQP 和 HTTP 來做為主要的 API 介面。 下圖指出事件中樞與服務匯流排之間的關係。
 
-![事件中樞](./media/event-hubs-overview/IC741188.png)
+![事件中樞](./media/event-hubs-overview/ehoverview2.png)
 
 ## <a name="conceptual-overview"></a>概念概觀
 事件中樞可透過分割取用者模式提供訊息串流。 佇列和主題使用 [競爭取用者](https://msdn.microsoft.com/library/dn568101.aspx) 模型，在該模型內每一位取用者都會嘗試讀取相同的佇列或資源。 這樣子的資源競爭最終會導致串流處理應用程式過於複雜且規模受限。 事件中樞使用分割取用者模式，在該模式中每位取用者只會讀取訊息串流的特定子集或資料分割。 此模式能水平擴充事件處理規模，並提供佇列和主題缺少的其他串流導向功能。
@@ -48,13 +52,13 @@ Azure 事件中樞是事件處理服務，它能提供大規模進入雲端的�
 ## <a name="event-publisher"></a>事件發佈者
 將事件或資料傳送到事件中樞的任何實體都是*事件發佈者*。 事件發佈者可以使用 HTTPS 或 AMQP 1.0 發佈事件。 事件發佈者使用共用存取簽章 (SAS) 權杖來向事件中樞辨識自己的身分，而且可以擁有唯一的身分識別。它也根據案例需求使用一般 SAS 權杖。
 
-如需使用 SAS 的詳細資訊，請參閱[使用服務匯流排的共用存取簽章驗證](../service-bus/service-bus-shared-access-signature-authentication.md)。
+如需使用 SAS 的詳細資訊，請參閱[使用服務匯流排的共用存取簽章驗證](../service-bus-messaging/service-bus-shared-access-signature-authentication.md)。
 
 ### <a name="common-publisher-tasks"></a>常見的發佈者工作
 本節描述常見的事件發佈者工作。
 
 #### <a name="acquire-a-sas-token"></a>取得 SAS 權杖
-共用存取簽章 (SAS) 是事件中樞的驗證機制。 服務匯流排能在命名空間和事件中樞層級提供 SAS 原則。 SAS 權杖可自 SAS 金鑰產生，它是經過特定格式編碼的 URL SHA 雜湊。 透過金鑰 (原則) 的名稱和權杖，服務匯流排可以重新產生雜湊，藉此驗證傳送者。 一般而言，建立的事件發佈者 SAS 權杖只具備特定事件中樞的 **傳送** 權限。 此 SAS 權杖 URL 機制是導入發佈者原則之發佈者識別的基礎。 如需使用 SAS 的詳細資訊，請參閱[使用服務匯流排的共用存取簽章驗證](../service-bus/service-bus-shared-access-signature-authentication.md)。
+共用存取簽章 (SAS) 是事件中樞的驗證機制。 服務匯流排能在命名空間和事件中樞層級提供 SAS 原則。 SAS 權杖可自 SAS 金鑰產生，它是經過特定格式編碼的 URL SHA 雜湊。 透過金鑰 (原則) 的名稱和權杖，服務匯流排可以重新產生雜湊，藉此驗證傳送者。 一般而言，建立的事件發佈者 SAS 權杖只具備特定事件中樞的 **傳送** 權限。 此 SAS 權杖 URL 機制是導入發佈者原則之發佈者識別的基礎。 如需使用 SAS 的詳細資訊，請參閱[使用服務匯流排的共用存取簽章驗證](../service-bus-messaging/service-bus-shared-access-signature-authentication.md)。
 
 #### <a name="publishing-an-event"></a>發佈事件
 您可以透過 AMQP 1.0 或 HTTPS 來發佈事件。 服務匯流排提供 [EventHubClient](https://msdn.microsoft.com/library/microsoft.servicebus.messaging.eventhubclient.aspx) 類別，以供您從 .NET 用戶端將事件發佈到事件中樞。 對於其他執行階段和平台，您可以使用任何 AMQP 1.0 用戶端 (如 [Apache Qpid](http://qpid.apache.org/))。 您可以單獨發佈事件，或以批次方式進行。 不論是單一事件或批次，單次發行 (事件資料執行個體) 的上限為 256KB。 發佈大於此限制的事件會導致錯誤。 發佈者最好別顧慮事件中樞內的資料分割，他們只需要指定 *資料分割索引鍵* (下一節將加以介紹)，或透過其 SAS 權杖指定身分識別即可。
@@ -130,7 +134,7 @@ Azure 事件中樞是事件處理服務，它能提供大規模進入雲端的�
 
     //<my namespace>.servicebus.windows.net/<event hub name>/publishers/<my publisher name>
 
-您不需要事先建立發佈者名稱，不過這些名稱必須符合發佈事件時使用的 SAS 權杖，以確保發佈者身分識別是獨立的。 如需 SAS 的詳細資訊，請參閱[使用服務匯流排的共用存取簽章驗證](../service-bus/service-bus-shared-access-signature-authentication.md)。 在使用發佈者原則時，系統會將 **PartitionKey** 值設定為發佈者名稱。 為了正常運作，這些值必須相符。
+您不需要事先建立發佈者名稱，不過這些名稱必須符合發佈事件時使用的 SAS 權杖，以確保發佈者身分識別是獨立的。 如需 SAS 的詳細資訊，請參閱[使用服務匯流排的共用存取簽章驗證](../service-bus-messaging/service-bus-shared-access-signature-authentication.md)。 在使用發佈者原則時，系統會將 **PartitionKey** 值設定為發佈者名稱。 為了正常運作，這些值必須相符。
 
 ## <a name="summary"></a>摘要
 Azure 事件中樞提供超規模事件和遙測處理服務，該服務適用於任何規模的通用應用程式和使用者工作流程監視。 藉由提供大規模的低延遲發佈訂閱功能，事件中樞能成為引進巨量資料的途徑。 透過以發佈者為基礎的身分識別和撤銷清單，您可以將這些功能延伸到一般的物聯網案例。 如需開發事件中樞應用程式的詳細資訊。請參閱[事件中樞程式設計指南](event-hubs-programming-guide.md)。
@@ -147,6 +151,6 @@ Azure 事件中樞提供超規模事件和遙測處理服務，該服務適用�
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

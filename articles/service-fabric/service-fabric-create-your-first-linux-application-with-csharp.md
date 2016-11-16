@@ -1,12 +1,12 @@
 ---
-title: Create your first Service Fabric application on Linux using C#| Microsoft Docs
-description: Create and deploy a Service Fabric application using C#
+title: "在 Linux 上使用 C# 建立第一個 Service Fabric 應用程式 | Microsoft Docs"
+description: "使用 C 建立和部署 Service Fabric 應用程式#"
 services: service-fabric
 documentationcenter: csharp
 author: mani-ramaswamy
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 5a96d21d-fa4a-4dc2-abe8-a830a3482fb1
 ms.service: service-fabric
 ms.devlang: csharp
 ms.topic: hero-article
@@ -14,9 +14,13 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 10/04/2016
 ms.author: subramar
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 9486fcb56b05b22120aef5a8373c6558b2d88d6c
+
 
 ---
-# <a name="create-your-first-azure-service-fabric-application"></a>Create your first Azure Service Fabric application
+# <a name="create-your-first-azure-service-fabric-application"></a>建立第一個 Azure Service Fabric 應用程式
 > [!div class="op_single_selector"]
 > * [C# - Windows](service-fabric-create-your-first-application-in-visual-studio.md)
 > * [Java - Linux](service-fabric-create-your-first-linux-application-with-java.md)
@@ -24,66 +28,66 @@ ms.author: subramar
 > 
 > 
 
-Service Fabric provides SDKs for building services on Linux in both .NET Core and Java. In this tutorial, we look at how to create an application for Linux and build a service using C# (.NET Core).
+Service Fabric 提供了在 Linux 上建置服務的 .NET Core 和 Java SDK。 在本教學課程中，我們會探討如何建立適用於 Linux 的應用程式以及使用 C# (.NET Core) 建置服務。
 
-## <a name="prerequisites"></a>Prerequisites
-Before you get started, make sure that you have [set up your Linux development environment](service-fabric-get-started-linux.md). If you are using Mac OS X, you can [set up a Linux one-box environment in a virtual machine using Vagrant](service-fabric-get-started-mac.md).
+## <a name="prerequisites"></a>必要條件
+開始之前，請確定您已 [設定 Linux 開發環境](service-fabric-get-started-linux.md)。 如果您使用 Mac OS X，您可以 [使用 Vagrant 在虛擬機器中設定 Linux 一整體環境](service-fabric-get-started-mac.md)。
 
-## <a name="create-the-application"></a>Create the application
-A Service Fabric application can contain one or more services, each with a specific role in delivering the application's functionality. The Service Fabric SDK for Linux includes a [Yeoman](http://yeoman.io/) generator that makes it easy to create your first service and to add more later. Let's use Yeoman to create an application with a single service.
+## <a name="create-the-application"></a>建立應用程式
+Service Fabric 應用程式可以包含一或多個服務，而每個服務在提供應用程式的功能時都有特定角色。 適用於 Linux 的 Service Fabric SDK 包含 [Yeoman](http://yeoman.io/) 產生器，可讓您輕鬆建立第一個服務且稍後新增更多服務。 讓我們使用 Yeoman 來建立具有單一服務的應用程式。
 
-1. In a terminal, type the following command to start building the scaffolding: `yo azuresfcsharp`
-2. Name your application.
-3. Choose the type of your first service and name it. For the purposes of this tutorial, we choose a Reliable Actor Service.
+1. 在終端機中，輸入下列命令以開始建置樣板︰`yo azuresfcsharp`
+2. 為您的應用程式命名。
+3. 選擇第一個服務的類型並加以命名。 基於本教學課程的用途，我們會選擇 Reliable Actor 服務。
    
-   ![Service Fabric Yeoman generator for C#][sf-yeoman]
+   ![適用於 C 的 Service Fabric Yeoman 產生器#][sf-yeoman]
 
 > [!NOTE]
-> For more information about the options, see [Service Fabric programming model overview](service-fabric-choose-framework.md).
+> 如需選項的詳細資訊，請參閱 [Service Fabric 程式設計模型概觀](service-fabric-choose-framework.md)。
 > 
 > 
 
-## <a name="build-the-application"></a>Build the application
-The Service Fabric Yeoman templates include a build script that you can use to build the app from the terminal (after navigating to the application folder).
+## <a name="build-the-application"></a>建置應用程式
+Service Fabric Yeoman 範本包含建置指令碼，可用來從終端機建置應用程式 (在瀏覽至應用程式資料夾後)。
 
   ```bash
  cd myapp 
  ./build.sh 
   ```
 
-## <a name="deploy-the-application"></a>Deploy the application
-Once the application is built, you can deploy it to the local cluster using the Azure CLI.
+## <a name="deploy-the-application"></a>部署應用程式
+建置應用程式後，可以使用 Azure CLI 將它部署到本機叢集。
 
-1. Connect to the local Service Fabric cluster.
+1. 連接到本機 Service Fabric 叢集。
    
     ```bash
     azure servicefabric cluster connect
     ```
-2. Use the install script provided in the template to copy the application package to the cluster's image store, register the application type, and create an instance of the application.
+2. 使用範本中所提供的安裝指令碼，將應用程式套件複製到叢集的映像存放區、註冊應用程式類型，以及建立應用程式的執行個體。
    
     ```bash
     ./install.sh
     ```
-3. Open a browser and navigate to Service Fabric Explorer at http://localhost:19080/Explorer (replace localhost with the private IP of the VM if using Vagrant on Mac OS X).
-4. Expand the Applications node and note that there is now an entry for your application type and another for the first instance of that type.
+3. 開啟瀏覽器並瀏覽至位於 http://localhost:19080/Explorer 的 Service Fabric Explorer (如果在 Mac OS X 上使用 Vagrant，請以 VM 的私人 IP 取代 localhost)。
+4. 展開 [應用程式] 節點，請注意，您的應用程式類型現在有一個項目，而另一個則是該類型的第一個執行個體。
 
-## <a name="start-the-test-client-and-perform-a-failover"></a>Start the test client and perform a failover
-Actor projects do not do anything on their own. They require another service or client to send them messages. The actor template includes a simple test script that you can use to interact with the actor service.
+## <a name="start-the-test-client-and-perform-a-failover"></a>啟動測試用戶端並執行容錯移轉
+動作項目專案沒有任何屬於自己的項目。 它們需要其他服務或用戶端傳送訊息給它們。 動作項目範本包含簡單的測試指令碼，您可以用來與動作項目服務互動。
 
-1. Run the script using the watch utility to see the output of the actor service.
+1. 使用監看式公用程式執行指令碼，以查看動作項目服務的輸出。
    
     ```bash
     cd myactorsvcTestClient
     watch -n 1 ./testclient.sh
     ```
-2. In Service Fabric Explorer, locate node hosting the primary replica for the actor service. In the screenshot below, it is node 3.
+2. 在 Service Fabric Explorer 中，找出裝載動作項目服務主要複本的節點。 在以下的螢幕擷取畫面中是節點 3。
    
-    ![Finding the primary replica in Service Fabric Explorer][sfx-primary]
-3. Click the node you found in the previous step, then select **Deactivate (restart)** from the Actions menu. This action restarts one of the five nodes in your local cluster forcing a failover to a secondary replica running on another node. As you perform this action, pay attention to the output from the test client and note that the counter continues to increment despite the failover.
+    ![在 Service Fabric Explorer 中尋找主要複本][sfx-primary]
+3. 按一下您在上一個步驟中找到的節點，然後從 [動作] 功能表選取 [停用 (重新啟動)]  。 這個動作會重新啟動本機叢集中五個節點的其中一個，強制容錯移轉至在另一個節點上執行的次要複本。 當您執行這個動作時，請留意測試用戶端的輸出，並注意儘管是容錯移轉，計數器仍會繼續增加。
 
-## <a name="next-steps"></a>Next steps
-* [Learn more about Reliable Actors](service-fabric-reliable-actors-introduction.md)
-* [Interacting with Service Fabric clusters using the Azure CLI](service-fabric-azure-cli.md)
+## <a name="next-steps"></a>後續步驟
+* [深入了解 Reliable Actors](service-fabric-reliable-actors-introduction.md)
+* [使用 Azure CLI 與 Service Fabric 叢集互動](service-fabric-azure-cli.md)
 
 <!-- Images -->
 [sf-yeoman]: ./media/service-fabric-create-your-first-linux-application-with-csharp/yeoman-csharp.png
@@ -91,6 +95,6 @@ Actor projects do not do anything on their own. They require another service or 
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

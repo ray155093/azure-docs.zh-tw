@@ -1,12 +1,12 @@
 ---
-title: 服務匯流排轉送概觀 | Microsoft Docs
-description: 服務匯流排轉送概觀。
+title: "服務匯流排轉送概觀 | Microsoft Docs"
+description: "服務匯流排轉送概觀。"
 services: service-bus
 documentationcenter: .net
 author: sethmanheim
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 1038a2d8-5def-4f48-8703-cb0070fc5f10
 ms.service: service-bus
 ms.workload: na
 ms.tgt_pltfrm: na
@@ -14,12 +14,16 @@ ms.devlang: multiple
 ms.topic: get-started-article
 ms.date: 09/01/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 0482096cbec6a5e4b7b13ea662a180cd9b96e85f
+
 
 ---
 # <a name="overview-of-service-bus-relay"></a>服務匯流排轉送概觀
 服務匯流排的主要元件是一種集中式 (但高度負載平衡)「轉送」服務，能讓您建立一個可在 Azure 資料中心和您自己的內部部署企業環境中執行的混合式應用程式。  服務匯流排轉送支援各種不同的傳輸通訊協定和 Web 服務標準。 這包括 SOAP、WS-*，甚至是 REST。 轉送服務可執行您的混合式應用程式，方法是讓您以安全的方式，向公用雲端公開位於企業網路內部的 Windows Communication Foundation (WCF) 服務，而無需開啟防火牆連線或要求對企業網路基礎結構的進行侵入式變更。 
 
-![轉送概念](./media/service-bus-relay-overview/sb-relay-01.png)
+![WCF 轉送概念](./media/service-bus-relay-overview/sb-relay-01.png)
 
 轉送服務支援傳統的單向訊息、要求/回應訊息，以及對等式訊息。 它也支援網際網路範圍內的事件散發，以啟用發佈/訂閱案例和雙向通訊端通訊來提高點對點效率。 
 
@@ -30,9 +34,12 @@ ms.author: sethm
 ## <a name="next-steps"></a>後續步驟
 如需服務匯流排轉送的詳細資訊，請參閱下列主題。
 
-* [Azure 服務匯流排架構概觀](../service-bus/service-bus-fundamentals-hybrid-solutions.md)
-* [如何使用服務匯流排轉送服務](service-bus-dotnet-how-to-use-relay.md)
+* [Azure 服務匯流排架構概觀](../service-bus-messaging/service-bus-fundamentals-hybrid-solutions.md)
+* [如何使用服務匯流排 WCF 轉送服務](service-bus-dotnet-how-to-use-relay.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

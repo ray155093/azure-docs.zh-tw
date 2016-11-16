@@ -1,13 +1,13 @@
 ---
-title: 試用 SQL Database：使用 C# 建立 SQL Database | Microsoft Docs
-description: 嘗試用 SQL Database 開發 SQL 和 C# 應用程式，然後使用 SQL Database Library for .NET 以 C# 建立 Azure SQL Database。
-keywords: 試用 sql、sql c#
+title: "試用 SQL Database：使用 C# 建立 SQL Database | Microsoft Docs"
+description: "嘗試用 SQL Database 開發 SQL 和 C# 應用程式，然後使用 SQL Database Library for .NET 以 C# 建立 Azure SQL Database。"
+keywords: "試用 sql、sql c#"
 services: sql-database
-documentationcenter: ''
+documentationcenter: 
 author: stevestein
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: cfff2299-a474-4054-8d99-759af1ae5188
 ms.service: sql-database
 ms.devlang: NA
 ms.topic: hero-article
@@ -15,9 +15,13 @@ ms.tgt_pltfrm: csharp
 ms.workload: data-management
 ms.date: 10/04/2016
 ms.author: sstein
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 0ffe433d9899610d5ff83c66b6cdaaecd16e9c57
+
 
 ---
-# <a name="try-sql-database:-use-c#-to-create-a-sql-database-with-the-sql-database-library-for-.net"></a>試用 SQL Database：透過 SQL Database Library for .NET 使用 C#; 建立 SQL Database
+# <a name="try-sql-database-use-c-to-create-a-sql-database-with-the-sql-database-library-for-net"></a>試用 SQL Database：透過 SQL Database Library for .NET 使用 C#; 建立 SQL Database
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](sql-database-get-started.md)
 > * [C#](sql-database-get-started-csharp.md)
@@ -27,10 +31,10 @@ ms.author: sstein
 
 了解如何使用 C# 透過 [Microsoft Azure SQL Management Library for .NET](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql) 建立 Azure SQL Database。 本文說明如何使用 SQL 和 C# 建立單一資料庫。 若要建立彈性資料庫集區，請參閱 [建立彈性資料庫集區](sql-database-elastic-pool-create-csharp.md)。
 
-Azure SQL Database Management Library for .NET 提供 [Azure Resource Manager](../resource-group-overview.md) 式 API，它會包裝 [Resource Manager 式 SQL Database REST API](https://msdn.microsoft.com/library/azure/mt163571.aspx)。
+Azure SQL Database Management Library for .NET 提供 [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) 式 API，它會包裝 [Resource Manager 式 SQL Database REST API](https://msdn.microsoft.com/library/azure/mt163571.aspx)。
 
 > [!NOTE]
-> SQL Database 的許多新功能只有在使用 [Azure Resource Manager 部署模型](../resource-group-overview.md)時才支援，所以您應該一律使用最新的**適用於 .NET ([docs](https://msdn.microsoft.com/library/azure/mt349017.aspx) | [NuGet Package](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql)) 的 Azure SQL Database Management Library**。 支援較舊的[以傳統部署模型為基礎的程式庫](https://www.nuget.org/packages/Microsoft.WindowsAzure.Management.Sql)，以提供回溯相容性，因此我們建議您使用較新的以 Resource Manager 為基礎的程式庫。
+> SQL Database 的許多新功能只有在使用 [Azure Resource Manager 部署模型](../azure-resource-manager/resource-group-overview.md)時才支援，所以您應該一律使用最新的**適用於 .NET ([docs](https://msdn.microsoft.com/library/azure/mt349017.aspx) | [NuGet Package](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql)) 的 Azure SQL Database Management Library**。 支援較舊的[以傳統部署模型為基礎的程式庫](https://www.nuget.org/packages/Microsoft.WindowsAzure.Management.Sql)，以提供回溯相容性，因此我們建議您使用較新的以 Resource Manager 為基礎的程式庫。
 > 
 > 
 
@@ -61,7 +65,7 @@ Azure SQL Database Management Library for .NET 提供 [Azure Resource Manager](.
 > 
 > 
 
-## <a name="create-a-sql-database-server,-firewall-rule,-and-sql-database---c#-example"></a>建立 SQL Database 伺服器、防火牆規則和 SQL Database - C# 範例
+## <a name="create-a-sql-database-server-firewall-rule-and-sql-database-c-example"></a>建立 SQL Database 伺服器、防火牆規則和 SQL Database - C# 範例
 下列範例會建立資源群組、伺服器、防火牆規則和 SQL Database。 請參閱[建立用來存取資源的服務主體](#create-a-service-principal-to-access-resources)以取得 `_subscriptionId, _tenantId, _applicationId, and _applicationSecret` 變數。
 
 以下列內容取代 **Program.cs** 的內容，並以您應用程式的值更新 `{variables}` (請勿包含 `{}`)。
@@ -288,6 +292,6 @@ Azure SQL Database Management Library for .NET 提供 [Azure Resource Manager](.
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

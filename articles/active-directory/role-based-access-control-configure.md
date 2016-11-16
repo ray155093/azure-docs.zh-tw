@@ -1,12 +1,12 @@
 ---
-title: 在 Azure 入口網站中使用角色型存取控制 | Microsoft Docs
-description: 在 Azure 入口網站中使用角色型存取控制開始進行存取管理。 使用角色指派將權限指派給您的資源。
+title: "在 Azure 入口網站中使用角色型存取控制 | Microsoft Docs"
+description: "在 Azure 入口網站中使用角色型存取控制開始進行存取管理。 使用角色指派將權限指派給您的資源。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: kgremban
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 8078f366-a2c4-4fbb-a44b-fc39fd89df81
 ms.service: active-directory
 ms.devlang: na
 ms.topic: get-started-article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 10/10/2016
 ms.author: kgremban
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: b930fe0a4a47cffebb579be43a77e87548549cfd
+
 
 ---
 # <a name="use-role-assignments-to-manage-access-to-your-azure-subscription-resources"></a>使用角色指派來管理 Azure 訂用帳戶資源的存取權
@@ -78,6 +82,9 @@ Azure 角色型存取控制 (RBAC) 可以對 Azure 進行更細緻的存取權�
 * 請參閱 [RBAC 內建角色](role-based-access-built-in-roles.md)
 * 定義您自己的 [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

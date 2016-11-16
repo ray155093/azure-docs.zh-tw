@@ -1,123 +1,137 @@
 ---
-title: 疑難排解︰您無法從這裡完成 | Microsoft Docs
-description: 本主題可協助您找出可供依循的補救步驟來取得應用程式的存取權。
+title: "針對 Azure Active Directory 存取問題進行疑難排解 | Microsoft Docs"
+description: "了解存取組織線上資源發生問題時可採取的解決步驟。"
 services: active-directory
-keywords: 裝置型條件式存取、裝置註冊、啟用裝置註冊、裝置註冊和 MDM
-documentationcenter: ''
-author: markusvi
+keywords: "裝置型條件式存取、裝置註冊、啟用裝置註冊、裝置註冊和 MDM"
+documentationcenter: 
+author: MarkusVi
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 8ad0156c-0812-4855-8563-6fbff6194174
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 08/23/2016
+ms.date: 11/11/2016
 ms.author: markvi
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: fd2076f22c6048fda83d6da3b069e2805afb453f
+
 
 ---
-# 疑難排解︰您無法從這裡完成
-您在存取應用程式 (例如 SharePoint Online) 時遭到拒絕存取。現在，該怎麼辦？
+# <a name="troubleshooting-for-azure-active-directory-access-issues"></a>針對 Azure Active Directory 存取問題進行疑難排解
+您嘗試存取組織的 SharePoint Online 內部網路，出現 [拒絕存取] 錯誤訊息。 您該怎麼辦？
 
-本指南可協助您找出可供依循的補救步驟來取得應用程式的存取權。
 
-您的裝置在哪個裝置平台上執行？ 此問題的答案可為您判斷本主題中的適當區段︰
+本文章涵蓋存取組織線上資源發生問題時可協助解決的補救步驟。
+
+有關解決 Azure Active Directory (Azure AD) 存取問題的說明，請移至文章中適合您的裝置平台的那一節︰
 
 * Windows 裝置
-* iOS 裝置 (iPhone 或 iPad)
-* Android 裝置
+* iOS 裝置 (即將推出 iPhone 和 iPad 方面的協助。)
+* Android 裝置 (即將推出 Android 手機和平板電腦方面的協助。)
 
-## 從 Windows 裝置存取
-如果您的裝置執行 Windows 10、Windows 8.1、Windows 8.0、Windows 7、Windows Server 2016、Windows Server 2012 R2、Windows Server 2012 或 Windows Server 2008 R2，請識別您在嘗試存取應用程式時所到達的頁面以選擇適當的原因。
+## <a name="access-from-a-windows-device"></a>從 Windows 裝置存取
+如果您的裝置在下列其中一個平台上執行，請在後續幾節中查閱嘗試存取應用程式或服務時所顯示的錯誤訊息︰
 
-### 裝置未註冊
-如果未向 Azure Active Directory (Azure AD) 應用程式註冊您的裝置且應用程式受裝置原則保護，您可能會看到含有下列內容的頁面︰
+* Windows 10
+* Windows 8.1
+* Windows 8
+* Windows 7
+* Windows Server 2016
+* Windows Server 2012 R2
+* Windows Server 2012
+* Windows Server 2008 R2
 
-![未註冊的裝置的「您無法從這裡完成」訊息](./media/active-directory-conditional-access-device-remediation/01.png "案例")
+### <a name="device-is-not-registered"></a>裝置未註冊
+如果未向 Azure AD 註冊您的裝置，且應用程式受裝置型原則所保護，您可能會看一個頁面顯示下列其中一個錯誤訊息︰
 
-如果您的裝置已加入您組織中的 Active Directory 網域，您可以嘗試下列作業︰
+![因裝置未註冊而顯示的「您無法從這裡完成」訊息](./media/active-directory-conditional-access-device-remediation/01.png "Scenario")
 
-1. 確定您已使用工作帳戶 (Active Directory 帳戶) 登入 Windows。
-2. 透過 VPN 或 DirectAccess 連接到公司網路。
-3. 連線後，請使用 Windows 鍵 + L 鍵來鎖定您的 Windows 工作階段。
-4. 輸入您的工作帳戶認證，以解除鎖定 Windows 工作階段。
-5. 等候一分鐘，然後再次嘗試存取應用程式。
-6. 如果您看到相同的頁面，請連絡您的系統管理員，按一下 [更多詳細資料] 連結，然後提供詳細資料。
+如果您的裝置已加入組織中的 Active Directory 網域，請嘗試下列做法︰
 
-如果您的裝置未加入網域並執行 Windows 10，您有兩個選項︰
+1. 確定您使用工作帳戶 (Active Directory 帳戶) 登入 Windows。
+2. 透過虛擬私人網路 (VPN) 或 DirectAccess 連接到公司網路。
+3. 連接之後，按 Windows 標誌鍵 + L 鍵來鎖定您的 Windows 工作階段。
+4. 輸入您的工作帳戶認證，將 Windows 工作階段解除鎖定。
+5. 等候一分鐘，然後再次嘗試存取應用程式或服務。
+6. 如果您看到相同的頁面，請按一下 [更多詳細資料] 連結，然後備妥詳細資料來連絡您的系統管理員。
 
-* 執行 Azure AD Join。
-* 將您的工作或學校帳戶新增至 Windows。
+如果您的裝置未加入網域且執行的是 Windows 10，您有兩個選項︰
 
-如需有關兩者之間差異的資訊，請參閱[在您的工作場所中使用 Windows 10 裝置](active-directory-azureadjoin-windows10-devices.md)。
+* 執行 Azure AD Join
+* 將您的工作帳戶或學校帳戶新增至 Windows
 
-若要執行 Azure AD Join，請執行下列步驟 (不適用於 Windows Phone)︰
+如需這些選項有何差異的相關資訊，請參閱[在您的工作場所中使用 Windows 10 裝置](active-directory-azureadjoin-windows10-devices.md)。
+
+若要執行加入 Azure AD，請在執行裝置的平台上執行下列步驟 (Windows Phone 上無法使用加入 Azure AD)。
 
 **Windows 10 年度更新版**
 
-1. 開啟 [Settings] 應用程式。
-2. 按一下 [帳戶] > [取工作或學校]。
-3. 按一下 [連接]。
-4. 按一下頁面底部的 [將此裝置加入至 Azure AD]。
-5. 向您的組織驗證、視需要提供 Multi-Factor Authentication 證明，然後遵循相關步驟，直到完成為止。
+1. 開啟 [設定]  應用程式。
+2. 按一下 [帳戶] > [存取工作或學校]。
+3. 按一下 [ **連接**]。
+4. 按一下 [將此裝置加入 Azure AD]。
+5. 向您的組織驗證、提供多重要素驗證 (若提示的話)，然後依照顯示的步驟進行。
 6. 登出，然後使用您的工作帳戶登入。
 7. 再次嘗試存取應用程式。
 
 **Windows 10 2015 年 11 月更新**
 
-1. 開啟 [Settings] 應用程式。
+1. 開啟 [設定]  應用程式。
 2. 按一下 [系統] > [關於]。
-3. 按一下 [加入 Azure AD]。
-4. 向您的組織驗證、視需要提供 Multi-Factor Authentication 證明，然後遵循相關步驟，直到完成為止。
+3. 按一下 [加入 Azure AD] 。
+4. 向您的組織驗證、提供多重要素驗證 (若提示的話)，然後依照顯示的步驟進行。
 5. 登出，然後使用您的工作帳戶 (Azure AD 帳戶) 登入。
 6. 再次嘗試存取應用程式。
 
-若要新增您的工作或學校帳戶，請執行下列步驟︰
+若要新增您的工作帳戶或學校帳戶，請執行下列步驟︰
 
 **Windows 10 年度更新版**
 
-1. 開啟 [Settings] 應用程式。
-2. 按一下 [帳戶] > [取工作或學校]。
-3. 按一下 [連接]。
-4. 向您的組織驗證、視需要提供 Multi-Factor Authentication 證明，然後遵循相關步驟，直到完成為止。
+1. 開啟 [設定]  應用程式。
+2. 按一下 [帳戶] > [存取工作或學校]。
+3. 按一下 [ **連接**]。
+4. 向您的組織驗證、提供多重要素驗證 (若提示的話)，然後依照顯示的步驟進行。
 5. 再次嘗試存取應用程式。
 
 **Windows 10 2015 年 11 月更新**
 
-1. 開啟 [Settings] 應用程式。
+1. 開啟 [設定]  應用程式。
 2. 按一下 [帳戶] > [您的帳戶]。
-3. 按一下 [新增工作或學校帳戶]。
-4. 向您的組織驗證、視需要提供 Multi-Factor Authentication 證明，然後遵循相關步驟，直到完成為止。
+3. 按一下 [新增工作或學校帳戶] 。
+4. 向您的組織驗證、提供多重要素驗證 (若提示的話)，然後依照顯示的步驟進行。
 5. 再次嘗試存取應用程式。
 
-如果您的裝置未加入網域並執行 Windows 8.1，您可以執行下列步驟，進行 [加入工作場所] 並註冊 Microsoft Intune︰
+如果您的裝置未加入網域且執行的是 Windows 8.1，若要執行 [加入工作場所] 並在 Microsoft Intune 中註冊，請執行下列步驟：
 
-1. 開啟 [電腦設定]。
+1. 開啟 [電腦設定] 。
 2. 按一下 [網路] > [工作場所]。
-3. 按一下 [**加入**]。
-4. 向您的組織驗證、視需要提供 Multi-Factor Authentication 證明，然後遵循相關步驟，直到完成為止。
-5. 按一下 [開啟]。
-6. 等到完成為止。
-7. 再次嘗試存取應用程式。
+3. 按一下 [ **加入**]。
+4. 向您的組織驗證、提供多重要素驗證 (若提示的話)，然後依照顯示的步驟進行。
+5. 按一下 [開啟] 。
+6. 再次嘗試存取應用程式。
 
-## 不支援的瀏覽器
-如果您是從下列瀏覽器存取應用程式，您將會看到類似先前所示的頁面︰
+### <a name="browser-is-not-supported"></a>不支援瀏覽器
+如果您嘗試使用下列其中一個瀏覽器來存取應用程式或服務，可能會拒絕存取︰
 
-* Chrome、Firefox 或不是 Windows 10 或 Windows Server 2016 中 Microsoft Edge 或 Microsoft Internet Explorer 的其他瀏覽器。
-* Windows 8.1、Windows 7、Windows Server 2012 R2、Windows Server 2012 或 Windows Server 2008 R2 中的 Firefox。
+* 在 Windows 10 或 Windows Server 2016 中使用 Chrome、Firefox 或其他任何非 Microsoft Edge 與 Microsoft Internet Explorer 的瀏覽器
+* 在 Windows 8.1、Windows 7、Windows Server 2012 R2、Windows Server 2012 或 Windows Server 2008 R2 中使用 Firefox
 
-![不支援的瀏覽器的「您無法從這裡完成」訊息](./media/active-directory-conditional-access-device-remediation/02.png "案例")
+您會看到如下所示的錯誤頁面︰
 
-唯一的補救方式是使用應用程式針對您的裝置平台支援的瀏覽器。
+![因瀏覽器不受支援而顯示的「您無法從這裡完成」訊息](./media/active-directory-conditional-access-device-remediation/02.png "Scenario")
 
-## 從 iOS 裝置存取
-稍後再查看 iPhone 或 iPad 的指示。
+唯一的補救方式是根據您的裝置平台來使用應用程式所支援的瀏覽器。
 
-## 從 Android 裝置存取
-稍後再查看 Android 電話或平板電腦的指示。
-
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 [Azure Active Directory 條件式存取](active-directory-conditional-access.md)
 
-<!---HONumber=AcomDC_0831_2016--->
+
+
+
+<!--HONumber=Nov16_HO2-->
+
+

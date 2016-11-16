@@ -1,13 +1,13 @@
 ---
-title: Azure AD Connect：整合內部部署身分識別與 Azure Active Directory。 | Microsoft Docs
-description: Azure AD Connect 會整合您的內部部署目錄與 Azure Active Directory。 這可讓您為與 Azure AD 整合的 Office 365、Azure 和 SaaS 應用程式提供通用身分識別。
-keywords: Azure AD Connect 簡介, Azure AD Connect 概觀, 何謂 Azure AD Connect, 安裝 active directory
+title: "Azure AD Connect：整合內部部署身分識別與 Azure Active Directory。 | Microsoft Docs"
+description: "Azure AD Connect 會整合您的內部部署目錄與 Azure Active Directory。 這可讓您為與 Azure AD 整合的 Office 365、Azure 和 SaaS 應用程式提供通用身分識別。"
+keywords: "Azure AD Connect 簡介, Azure AD Connect 概觀, 何謂 Azure AD Connect, 安裝 active directory"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: billmath
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 59bd209e-30d7-4a89-ae7a-e415969825ea
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -15,15 +15,17 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 10/04/2016
 ms.author: billmath
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: eedb788b2a174d01a2ef661cf4093ff938649bce
+
 
 ---
-# <a name="integrating-your-on-premises-identities-with-azure-active-directory"></a>整合內部部署身分識別與 Azure Active Directory
+# <a name="integrating-your-onpremises-identities-with-azure-active-directory"></a>整合內部部署身分識別與 Azure Active Directory
 Azure AD Connect 會整合您的內部部署目錄與 Azure Active Directory。 這可讓您為與 Azure AD 整合之 Office 365、Azure 和 SaaS 應用程式的使用者提供通用身分識別。 本主題將引導您完成規劃、部署和作業步驟。 其中集結了與此領域相關的主題連結。
 
-<!-- The hardcoded link is a workaround for campaign ids not working in acom links-->
-
 > [!IMPORTANT]
-> [Azure AD Connect 是連接內部部署目錄與 Azure AD 和 Office 365 的最佳方式。 這是將 Azure AD Connect 從 Microsoft Azure Active Directory Sync (DirSync) 或 Azure AD Sync 升級的最佳時機，因為這些工具現在已淘汰，而且會在 2017 年 4 月 13 日結束支援。]active-directory-aadconnect-dirsync-deprecated.md)
+> [Azure AD Connect 是連接內部部署目錄與 Azure AD 和 Office 365 的最佳方式。這是將 Azure AD Connect 從 Windows Azure Active Directory Sync (DirSync) 或 Azure AD Sync 升級的最佳時機，因為這些工具現在已淘汰，而且會在 2017 年 4 月 13 日結束支援。](active-directory-aadconnect-dirsync-deprecated.md)
 > 
 > 
 
@@ -52,9 +54,9 @@ Azure Active Directory Connect 由三個主要元件組成︰同步處理服務�
 | 方案 | 案例 |
 | --- | --- |
 | 開始之前 - [硬體和必要條件](active-directory-aadconnect-prerequisites.md) |<li>開始安裝 Azure AD Connect 之前所應完成的步驟。</li> |
-| [快速設定](active-directory-aadconnect-get-started-express.md) |<li>如果您有單一樹系 AD，則這是建議使用的選項。</li> <li>使用密碼同步處理以相同的密碼進行使用者登入。</li> |
-| [自訂設定](active-directory-aadconnect-get-started-custom.md) |<li>有多個樹系時使用。 支援許多內部部署[拓撲](active-directory-aadconnect-topologies.md)。</li> <li>自訂您登入的選項，例如同盟的 ADFS 或使用第三方身分識別提供者。</li> <li>自訂同步處理功能，例如篩選和回寫。</li> |
-| [從 DirSync 升級](active-directory-aadconnect-dirsync-upgrade-get-started.md) |<li>在您有已在執行中的現有 DirSync 伺服器時使用。</li> |
+| [快速設定](connect/active-directory-aadconnect-get-started-express.md) |<li>如果您有單一樹系 AD，則這是建議使用的選項。</li> <li>使用密碼同步處理以相同的密碼進行使用者登入。</li> |
+| [自訂設定](connect/active-directory-aadconnect-get-started-custom.md) |<li>有多個樹系時使用。 支援許多內部部署[拓撲](active-directory-aadconnect-topologies.md)。</li> <li>自訂您登入的選項，例如同盟的 ADFS 或使用第三方身分識別提供者。</li> <li>自訂同步處理功能，例如篩選和回寫。</li> |
+| [從 DirSync 升級](connect/active-directory-aadconnect-dirsync-upgrade-get-started.md) |<li>在您有已在執行中的現有 DirSync 伺服器時使用。</li> |
 | [從 Azure AD Sync 或 Azure AD Connect 升級](active-directory-aadconnect-upgrade-previous-version.md) |<li>視您的偏好而定會有數種不同的方法。</li> |
 
 [安裝後](active-directory-aadconnect-whats-next.md) ，您應該確認它是依照預期方式運作，並將授權指派給使用者。
@@ -154,6 +156,9 @@ ADFS 可以設定為支援 [多個網域](active-directory-aadconnect-multiple-d
 > 
 > 
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

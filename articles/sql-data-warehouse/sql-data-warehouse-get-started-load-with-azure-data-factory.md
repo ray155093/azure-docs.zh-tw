@@ -1,13 +1,13 @@
 ---
-title: 使用 Azure Data Factory 載入資料 | Microsoft Docs
-description: 了解如何使用 Azure Data Factory 載入資料
+title: "使用 Azure Data Factory 載入資料 | Microsoft Docs"
+description: "了解如何使用 Azure Data Factory 載入資料"
 services: sql-data-warehouse
 documentationcenter: NA
 author: twounder
 manager: jhubbard
-editor: ''
+editor: 
 tags: azure-sql-data-warehouse
-
+ms.assetid: ac7ddaa7-a3a5-4e15-b3cf-c696d2d105df
 ms.service: sql-data-warehouse
 ms.devlang: NA
 ms.topic: get-started-article
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: mausher;barbkess
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 960225117a1c9b0802004455353fb9015a80b07b
+
 
 ---
 # <a name="load-data-with-azure-data-factory"></a>使用 Azure Data Factory 載入資料
@@ -42,7 +46,7 @@ ms.author: mausher;barbkess
 ### <a name="create-or-identify-resources"></a>建立或識別資源
 開始進行本教學課程之前，您需要有下列資源：
 
-* **Azure 儲存體 Blob**：本教學課程使用 Azure 儲存體 Blob 做為 Azure Data Factory 管線的資料來源，因此您需要有此資源來儲存範例資料。 如果您沒有此資源，請了解如何 [建立儲存體帳戶][建立儲存體帳戶]。
+* **Azure 儲存體 Blob**：本教學課程使用 Azure 儲存體 Blob 做為 Azure Data Factory 管線的資料來源，因此您需要有此資源來儲存範例資料。 如果您沒有此資源，請了解如何[建立儲存體帳戶][建立儲存體帳戶]。
 * **SQL 資料倉儲**：本教學課程會將資料從 Azure 儲存體 Blob 移至 SQL 資料倉儲，因此需要有線上的資料倉儲且已載入 AdventureWorksDW 範例資料。 如果您還沒有資料倉儲，請了解如何[佈建資料倉儲][建立 SQL 資料倉儲]。 如果有資料倉儲但其中未佈建範例資料，您可以[手動載入它][將範例資料載入 SQL 資料倉儲]。
 * **Azure Data Factory**：Azure Data Factory 會完成實際的負載，因此您必須擁有一個以便用來建置資料移動管線。 如果您還未擁有，請在[開始使用 Azure Data Factory (Data Factory 編輯器)][開始使用 Azure Data Factory (Data Factory 編輯器)] 的步驟 1 中了解如何建立一個。
 * **AZCopy**：您需要有 AZCopy 將本機用戶端的範例資料複製到您的 Azure 儲存體 Blob。 如需安裝指示，請參閱 [AZCopy 文件][AZCopy 文件]。
@@ -50,7 +54,7 @@ ms.author: mausher;barbkess
 ## <a name="step-1-copy-sample-data-to-azure-storage-blob"></a>步驟 1：將範例資料複製到 Azure 儲存體 Blob
 一切就緒時，您就可以開始將範例資料複製到您的 Azure 儲存體 Blob。
 
-1. [載入範例資料][載入範例資料]。 這項資料會將另外三年份的銷售資料新增至 AdventureWorksDW 範例資料。
+1. [下載範例資料][下載範例資料]。 這項資料會將另外三年份的銷售資料新增至 AdventureWorksDW 範例資料。
 2. 使用此 AZCopy 命令，將三年份的資料複製到您的 Azure 儲存體 Blob。
    
     ````
@@ -60,7 +64,7 @@ ms.author: mausher;barbkess
 ## <a name="step-2-connect-resources-to-azure-data-factory"></a>步驟 2：將資源連接到 Azure Data Factory
 既然已備妥資料，我們可以開始建立 Azure Data Factory 管線，將資料從 Azure Blob 儲存體移至 SQL 資料倉儲。
 
-首先，請開啟 [Azure 入口網站][Azure 入口網站] ，從左側功能表中選取您的 Data Factory。
+首先，請開啟 [Azure 入口網站][Azure 入口網站]，從左側功能表中選取您的 Data Factory。
 
 ### <a name="step-21-create-linked-service"></a>步驟 2.1：建立連結服務
 將您的 Azure 儲存體帳戶和 SQL 資料倉儲連結到您的 Data Factory。  
@@ -192,7 +196,7 @@ ms.author: mausher;barbkess
 ## <a name="next-steps"></a>後續步驟
 若要深入了解，首先請檢視：
 
-* [Azure Data Factory 的學習路徑][Azure Data Factory 的學習路徑]。
+* [Azure Data Factory 學習路徑][Azure Data Factory 學習路徑]。
 * [Azure SQL 資料倉儲連接器][Azure SQL 資料倉儲連接器]。 這是搭配使用 Azure Data Factory 與 Azure SQL 資料倉儲的核心參考主題。
 
 這些主題提供 Azure Data Factory 的詳細資訊。 其中討論 Azure SQL Database 或 HDInsight，但資訊也適用於 Azure SQL 資料倉儲。
@@ -220,12 +224,12 @@ ms.author: mausher;barbkess
 <!--MSDN references-->
 
 <!--Other Web references-->
-[Azure Data Factory 的學習路徑]: https://azure.microsoft.com/documentation/learning-paths/data-factory
+[Azure Data Factory 學習路徑]: https://azure.microsoft.com/documentation/learning-paths/data-factory
 [Azure 入口網站]: https://portal.azure.com
-[載入範例資料]: https://migrhoststorage.blob.core.windows.net/adfsample/FactInternetSales.csv
+[下載範例資料]: https://migrhoststorage.blob.core.windows.net/adfsample/FactInternetSales.csv
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

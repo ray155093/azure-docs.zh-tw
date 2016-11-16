@@ -1,14 +1,14 @@
 ---
-title: 在 Azure App Service Mobile Apps 上建立 Cordova 應用程式 | Microsoft Docs
-description: 請依照此教學課程中的說明，開始使用 Azure 行動應用程式後端來進行 Apache Cordova 開發
+title: "在 Azure App Service Mobile Apps 上建立 Cordova 應用程式 | Microsoft Docs"
+description: "請依照此教學課程中的說明，開始使用 Azure 行動應用程式後端來進行 Apache Cordova 開發"
 services: app-service\mobile
 documentationcenter: javascript
 author: adrianhall
 manager: erikre
-editor: ''
-tags: ''
-keywords: cordova, javascript, mobile, 用戶端
-
+editor: 
+tags: 
+keywords: "cordova, javascript, mobile, 用戶端"
+ms.assetid: 0b08fc12-0a80-42d3-9cc1-9b3f8d3e3a3f
 ms.service: app-service-mobile
 ms.workload: na
 ms.tgt_pltfrm: mobile-html
@@ -16,41 +16,45 @@ ms.devlang: javascript
 ms.topic: hero-article
 ms.date: 10/01/2016
 ms.author: adrianha
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: e8a51979c5444d1e1b454d8f434b421f9cc17c24
+
 
 ---
-# 建立 Apache Cordova 應用程式
+# <a name="create-an-apache-cordova-app"></a>建立 Apache Cordova 應用程式
 [!INCLUDE [app-service-mobile-selector-get-started](../../includes/app-service-mobile-selector-get-started.md)]
 
-## 概觀
-本教學課程示範如何使用 Azure 行動應用程式後端，將雲端式後端服務新增到 Apache Cordova 行動應用程式。您將建立一個新的行動應用程式後端，以及一個將應用程式資料儲存在 Azure 中的簡易「待辦事項清單」Apache Cordova 應用程式。
+## <a name="overview"></a>概觀
+本教學課程示範如何使用 Azure 行動應用程式後端，將雲端式後端服務新增到 Apache Cordova 行動應用程式。  您將建立新的行動應用程式後端，以及可在 Azure 中儲存應用程式資料的簡易「待辦事項清單」 Apache Cordova 應用程式。
 
 所有其他 Apache Cordova 教學課程只要是與使用 Azure App Service 中的 Mobile Apps 功能相關，都必須先完成本教學課程。
 
-## 先決條件
+## <a name="prerequisites"></a>先決條件
 若要完成此教學課程，您需要下列項目：
 
 * 具有 [Visual Studio Community 2015] 或更新版本的電腦。
 * [Visual Studio Tools for Apache Cordova]。
 * 有效的 [Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)。
 
-您也可以略過 Visual Studio 而直接使用 Apache Cordova 命令列。在 Mac 電腦上完成本教學課程時，這會相當有用。本教學課程未涵蓋使用命令列來編譯 Apache Cordova 用戶端應用程式。
+您也可以略過 Visual Studio 而直接使用 Apache Cordova 命令列。  在 Mac 電腦上完成本教學課程時，這會相當有用。  本教學課程未涵蓋使用命令列來編譯 Apache Cordova 用戶端應用程式。
 
-## 建立新的 Azure 行動應用程式後端
+## <a name="create-a-new-azure-mobile-app-backend"></a>建立新的 Azure 行動應用程式後端
 [!INCLUDE [app-service-mobile-dotnet-backend-create-new-service](../../includes/app-service-mobile-dotnet-backend-create-new-service.md)]
 
 [觀看示範類似步驟的影片](https://channel9.msdn.com/series/Azure-connected-services-with-Cordova/Azure-connected-services-task-1-Create-an-Azure-Mobile-App)
 
-## 設定伺服器專案
+## <a name="configure-the-server-project"></a>設定伺服器專案
 [!INCLUDE [app-service-mobile-configure-new-backend.md](../../includes/app-service-mobile-configure-new-backend.md)]
 
-## 下載並執行 Apache Cordova 應用程式
+## <a name="download-and-run-the-apache-cordova-app"></a>下載並執行 Apache Cordova 應用程式
 [!INCLUDE [app-service-mobile-cordova-run-app](../../includes/app-service-mobile-cordova-run-app.md)]
 
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 您現在已經完成本快速入門教學課程，請繼續進行下列其中一個教學課程：
 
-* [新增驗證]至您的 Apache Cordova 應用程式。
-* [新增推播通知]至您的 Apache Cordova 應用程式。
+* [新增驗證] 至您的 Apache Cordova 應用程式。
+* [新增推播通知] 至您的 Apache Cordova 應用程式。
 
 深入了解使用 Azure App Service 的相關重要概念。
 
@@ -66,9 +70,9 @@ ms.author: adrianha
 <!-- Images. -->
 
 <!-- URLs -->
-[Azure portal]: https://portal.azure.com/
+[Azure 入口網站]: https://portal.azure.com/
 [Visual Studio Community 2015]: http://www.visualstudio.com/
-[Visual Studio Tools for Apache Cordova]: https://www.visualstudio.com/zh-TW/features/cordova-vs.aspx
+[Visual Studio Tools for Apache Cordova]: https://www.visualstudio.com/en-us/features/cordova-vs.aspx
 [新增驗證]: app-service-mobile-cordova-get-started-users.md
 [新增推播通知]: app-service-mobile-cordova-get-started-push.md
 [驗證]: app-service-mobile-auth.md
@@ -77,4 +81,8 @@ ms.author: adrianha
 [ASP.NET Server SDK]: app-service-mobile-dotnet-backend-how-to-use-server-sdk.md
 [Node.js Server SDK]: app-service-mobile-node-backend-how-to-use-server-sdk.md
 
-<!---HONumber=AcomDC_1005_2016-->
+
+
+<!--HONumber=Nov16_HO2-->
+
+

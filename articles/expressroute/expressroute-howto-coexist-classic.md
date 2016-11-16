@@ -1,13 +1,13 @@
 ---
-title: 設定可以並存的 ExpressRoute 和站對站 VPN 連線 | Microsoft Docs
-description: 本文會引導您針對傳統部署模型設定可以並存的 ExpressRoute 和站對站 VPN 連線。
+title: "設定可以並存的 ExpressRoute 和站對站 VPN 連線 | Microsoft Docs"
+description: "本文會引導您針對傳統部署模型設定可以並存的 ExpressRoute 和站對站 VPN 連線。"
 documentationcenter: na
 services: expressroute
 author: charwen
 manager: carmonm
-editor: ''
+editor: 
 tags: azure-service-management
-
+ms.assetid: dcf1a5af-a289-466a-b812-0bfedbd2bda0
 ms.service: expressroute
 ms.devlang: na
 ms.topic: get-started-article
@@ -15,9 +15,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/10/2016
 ms.author: charwen
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: f03701746cb36838c7db7055f5dd98f77e1adfbd
+
 
 ---
-# <a name="configure-expressroute-and-site-to-site-coexisting-connections-for-the-classic-deployment-model"></a>為傳統部署模型設定 ExpressRoute 和站對站並存連線
+# <a name="configure-expressroute-and-sitetosite-coexisting-connections-for-the-classic-deployment-model"></a>為傳統部署模型設定 ExpressRoute 和站對站並存連線
 > [!div class="op_single_selector"]
 > * [PowerShell - 資源管理員](expressroute-howto-coexist-resource-manager.md)
 > * [PowerShell - 傳統](expressroute-howto-coexist-classic.md)
@@ -45,12 +49,12 @@ ms.author: charwen
 * **必須先設定 ExpressRoute 閘道。** 您必須先建立 ExpressRoute 閘道器，才能新增站對站 VPN 閘道。
 
 ## <a name="configuration-designs"></a>組態設計
-### <a name="configure-a-site-to-site-vpn-as-a-failover-path-for-expressroute"></a>設定站對站 VPN 作為 ExpressRoute 的容錯移轉路徑
+### <a name="configure-a-sitetosite-vpn-as-a-failover-path-for-expressroute"></a>設定站對站 VPN 作為 ExpressRoute 的容錯移轉路徑
 您可以設定站對站 VPN 連線作為 ExpressRoute 的備用連線。 這僅適用於連結至 Azure 私用對等路徑的虛擬網路。 對於可透過 Azure 公用和 Microsoft 對等存取的服務，沒有 VPN 架構的容錯移轉解決方案。 ExpressRoute 線路一律為主要連結。 只有在 ExpressRoute 線路故障時，資料才能流經站對站 VPN 路徑。 
 
 ![並存](media/expressroute-howto-coexist-classic/scenario1.jpg)
 
-### <a name="configure-a-site-to-site-vpn-to-connect-to-sites-not-connected-through-expressroute"></a>設定站對站 VPN 來連線到未透過 ExpressRoute 連接的網站
+### <a name="configure-a-sitetosite-vpn-to-connect-to-sites-not-connected-through-expressroute"></a>設定站對站 VPN 來連線到未透過 ExpressRoute 連接的網站
 您可以將網路設定成有些網站透過站對站 VPN 直接連線到 Azure，而有些網站透過 ExpressRoute 來連線。 
 
 ![並存](media/expressroute-howto-coexist-classic/scenario2.jpg)
@@ -72,7 +76,7 @@ ms.author: charwen
   
     在此程序中，建立可以並存的連線將會要求您刪除閘道器，然後設定新的閘道器。 這表示當您刪除和重新建立閘道器與連線時，將會有跨設備連線的停機時間，但您不需要將任何 VM 或服務移轉至新的虛擬網路。 您的 VM 和服務仍能透過負載平衡器對外通訊，而您能夠在這兩者設定為這樣做時進行閘道器設定。
 
-## <a name="<a-name="new"></a>to-create-a-new-virtual-network-and-coexisting-connections"></a><a name="new"></a>建立新的虛擬網路和並存的連線
+## <a name="a-namenewato-create-a-new-virtual-network-and-coexisting-connections"></a><a name="new"></a>建立新的虛擬網路和並存的連線
 此程序會引導您建立 VNet，並建立將並存的站對站和 ExpressRoute 連線。
 
 1. 您必須安裝最新版的 Azure PowerShell Cmdlet。 如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 。 請注意，您將針對此組態使用的 Cmdlet 可能與您熟悉的 Cmdlet 有些微不同。 請務必使用這些指示中指定的 Cmdlet。 
@@ -178,7 +182,7 @@ ms.author: charwen
 
         New-AzureVirtualNetworkGatewayConnection -connectedEntityId <local-network-gateway-id> -gatewayConnectionName Azure2Local -gatewayConnectionType IPsec -sharedKey abc123 -virtualNetworkGatewayId <azure-s2s-vpn-gateway-id>
 
-## <a name="<a-name="add"></a>to-configure-coexsiting-connections-for-an-already-existing-vnet"></a><a name="add"></a>為已經存在的 VNet 設定並存的連線
+## <a name="a-nameaddato-configure-coexsiting-connections-for-an-already-existing-vnet"></a><a name="add"></a>為已經存在的 VNet 設定並存的連線
 如果您有現有的虛擬網路，請檢查閘道器子網路大小。 如果閘道器子網路是/28 或/29，您必須先刪除虛擬網路閘道器，並增加閘道器子網路大小。 本節中的步驟將示範如何執行該作業。
 
 如果閘道器子網路是/27 以上且虛擬網路是透過 ExpressRoute 連線，則可以略過下列步驟，並且繼續進行上一節中的 [「步驟 6 - 建立站對站 VPN 閘道」](#vpngw) 。
@@ -219,6 +223,9 @@ ms.author: charwen
 ## <a name="next-steps"></a>後續步驟
 如需有關 ExpressRoute 的詳細資訊，請參閱 [ExpressRoute 常見問題集](expressroute-faqs.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

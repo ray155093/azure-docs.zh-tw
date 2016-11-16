@@ -1,12 +1,12 @@
 ---
-title: 教學課程：使用 Azure PowerShell 建立具有複製活動的管線 | Microsoft Docs
-description: 在本教學課程中，您會使用 Azure PowerShell，建立具有複製活動的 Azure Data Factory 管線。
+title: "教學課程：使用 Azure PowerShell 建立具有複製活動的管線 | Microsoft Docs"
+description: "在本教學課程中，您會使用 Azure PowerShell，建立具有複製活動的 Azure Data Factory 管線。"
 services: data-factory
-documentationcenter: ''
+documentationcenter: 
 author: spelluru
 manager: jhubbard
 editor: monicar
-
+ms.assetid: 71087349-9365-4e95-9847-170658216ed8
 ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 09/16/2016
 ms.author: spelluru
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 3247a5004198eedcf40cb3aa38de767a08e545a8
+
 
 ---
-# <a name="tutorial:-create-a-pipeline-with-copy-activity-using-azure-powershell"></a>教學課程：使用 Azure PowerShell 建立具有複製活動的管線
+# <a name="tutorial-create-a-pipeline-with-copy-activity-using-azure-powershell"></a>教學課程：使用 Azure PowerShell 建立具有複製活動的管線
 > [!div class="op_single_selector"]
 > * [概觀和必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
 > * [複製精靈](data-factory-copy-data-wizard-tutorial.md)
@@ -103,48 +107,48 @@ ms.author: spelluru
 ### <a name="create-a-linked-service-for-an-azure-storage-account"></a>建立 Azure 儲存體帳戶的連結服務
 1. 在 **C:\ADFGetStartedPSH** 中，使用以下內容建立名為 **StorageLinkedService.json** 的 JSON 檔案。 建立 ADFGetStartedPSH 資料夾 (如果不存在)。
    
-           {
+         {
                "name": "StorageLinkedService",
                "properties": {
-                   "type": "AzureStorage",
-                   "typeProperties": {
+                 "type": "AzureStorage",
+                 "typeProperties": {
                        "connectionString": "DefaultEndpointsProtocol=https;AccountName=<accountname>;AccountKey=<accountkey>"
-                   }
+                 }
                }
-           }
+         }
    
    以 Azure 儲存體帳戶的名稱和金鑰取代 **accountname** 和 **accountkey**。
 2. 在 **Azure PowerShell** 中，切換到 **ADFGetStartedPSH** 資料夾。 
 3. 您可以使用 **New-AzureRmDataFactoryLinkedService** Cmdlet 建立連結服務。 此 Cmdlet 和您在本教學課程中使用的其他 Data Factory Cmdlet，皆需要您將值傳給 **ResourceGroupName** 和 **DataFactoryName** 參數。 或者，您可以使用 **Get-AzureRmDataFactory** 取得 DataFactory 物件，並傳遞此物件，就不需要在每次執行 Cmdlet 時輸入 ResourceGroupName 和 DataFactoryName。 執行以下命令，將 **Get-AzureRmDataFactory** Cmdlet 的輸出指派給變數 **$df**： 
    
-       $df=Get-AzureRmDataFactory -ResourceGroupName ADFTutorialResourceGroup -Name ADFTutorialDataFactoryPSH
+     $df=Get-AzureRmDataFactory -ResourceGroupName ADFTutorialResourceGroup -Name ADFTutorialDataFactoryPSH
 4. 現在，執行 **New-AzureRmDataFactoryLinkedService** Cmdlet 建立連結的服務：**StorageLinkedService**。 
    
-       New-AzureRmDataFactoryLinkedService $df -File .\StorageLinkedService.json
+     New-AzureRmDataFactoryLinkedService $df -File .\StorageLinkedService.json
    
    如果您還沒執行 **Get-AzureRmDataFactory** Cmdlet 和指派輸出給 **$df** 變數，您就必須指定 ResourceGroupName 和 DataFactoryName 參數的值，如下所示。   
    
-       New-AzureRmDataFactoryLinkedService -ResourceGroupName ADFTutorialResourceGroup -DataFactoryName ADFTutorialDataFactoryPSH -File .\StorageLinkedService.json
+     New-AzureRmDataFactoryLinkedService -ResourceGroupName ADFTutorialResourceGroup -DataFactoryName ADFTutorialDataFactoryPSH -File .\StorageLinkedService.json
    
    如果您在教學課程的中途關閉 Azure PowerShell，則下次啟動 Azure PowerShell 時必須執行 Get-AzureRmDataFactory Cmdlet，才能完成教學課程。
 
 ### <a name="create-a-linked-service-for-an-azure-sql-database"></a>建立 Azure SQL Database 的連結服務
 1. 使用以下內容建立名為 AzureSqlLinkedService.json 的 JSON 檔案：
    
-           {
-               "name": "AzureSqlLinkedService",
-               "properties": {
-                   "type": "AzureSqlDatabase",
-                   "typeProperties": {
+         {
+             "name": "AzureSqlLinkedService",
+             "properties": {
+                 "type": "AzureSqlDatabase",
+                 "typeProperties": {
                        "connectionString": "Server=tcp:<server>.database.windows.net,1433;Database=<databasename>;User ID=<user>@<server>;Password=<password>;Trusted_Connection=False;Encrypt=True;Connection Timeout=30"
-                   }
+                 }
                }
-           }
+         }
    
    將 **servername**、**databasename**、**username@servername** 和 **password** 替換為您的 Azure SQL 伺服器名稱、資料庫名稱、使用者帳戶和密碼。
 2. 執行以下命令建立連結服務： 
    
-       New-AzureRmDataFactoryLinkedService $df -File .\AzureSqlLinkedService.json
+     New-AzureRmDataFactoryLinkedService $df -File .\AzureSqlLinkedService.json
    
    確認 Azure SQL Server 已開啟 [允許存取 Azure 服務]  設定。 若要確認並開啟此設定，請執行下列步驟：
    
@@ -196,36 +200,36 @@ ms.author: spelluru
 
 1. 在 **C:\ADFGetStartedPSH** 資料夾中，使用下列內容建立名為 **EmpBlobTable.json** 的 JSON 檔案：
    
-           {
-             "name": "EmpTableFromBlob",
-             "properties": {
-               "structure": [
-                 {
-                   "name": "FirstName",
-                   "type": "String"
-                 },
-                 {
-                   "name": "LastName",
-                   "type": "String"
-                 }
-               ],
-               "type": "AzureBlob",
-               "linkedServiceName": "StorageLinkedService",
-               "typeProperties": {
-                 "fileName": "emp.txt",
-                 "folderPath": "adftutorial/",
-                 "format": {
-                   "type": "TextFormat",
-                   "columnDelimiter": ","
-                 }
+         {
+           "name": "EmpTableFromBlob",
+           "properties": {
+             "structure": [
+               {
+                 "name": "FirstName",
+                 "type": "String"
                },
-               "external": true,
-               "availability": {
-                 "frequency": "Hour",
-                 "interval": 1
+               {
+                 "name": "LastName",
+                 "type": "String"
                }
+             ],
+             "type": "AzureBlob",
+             "linkedServiceName": "StorageLinkedService",
+             "typeProperties": {
+               "fileName": "emp.txt",
+               "folderPath": "adftutorial/",
+               "format": {
+                 "type": "TextFormat",
+                 "columnDelimiter": ","
+               }
+             },
+             "external": true,
+             "availability": {
+               "frequency": "Hour",
+               "interval": 1
              }
            }
+         }
    
    請注意下列幾點： 
    
@@ -234,7 +238,7 @@ ms.author: spelluru
    * **folderPath** 設為 **adftutorial** 容器。 
    * **fileName** 設為 **emp.txt**。 如果您未指定 Blob 的名稱，容器中所有 Blob 的資料都會被視為輸入資料。  
    * 格式 **type** 設為 **TextFormat**
-   * 文字檔中有兩個欄位 (**FirstName** 和 **LastName**)，以逗號字元分隔 (**columnDelimiter**) 
+   * 文字檔中有兩個欄位 (**FirstName** 和 **LastName**)，以逗號字元分隔 (**columnDelimiter**)    
    * **availability** 設定為**每小時**，且 (**frequency** 設定為**小時**，**interval** 設定為 **1**)。 因此，Data Factory 會每小時在 Blob 容器 (**adftutorial**) 的根資料夾中尋找輸入資料。
    
    如果您沒有指定**輸入** **資料表**的 **fileName**，則輸入資料夾 (**folderPath**) 中的所有檔案/Blob 都會視為輸入。 如果您在 JSON 中指定 fileName，則只有指定的檔案/Blob 會被視為輸入。 
@@ -243,52 +247,52 @@ ms.author: spelluru
    
    若要根據 **SliceStart** 時間動態設定 **folderPath** 和 **fileName**，請使用 **partitionedBy** 屬性。 在下列範例中，folderPath 使用 SliceStart (所處理配量的開始時間) 中的年、月和日，fileName 使用 SliceStart 中的小時。 例如，如果配量產生於 2016-10-20T08:00:00，folderName 設定為 wikidatagateway/wikisampledataout/2016/10/20，而 fileName 設定為 08.csv。 
    
-           "folderPath": "wikidatagateway/wikisampledataout/{Year}/{Month}/{Day}",
-           "fileName": "{Hour}.csv",
-           "partitionedBy": 
-           [
-               { "name": "Year", "value": { "type": "DateTime", "date": "SliceStart", "format": "yyyy" } },
-               { "name": "Month", "value": { "type": "DateTime", "date": "SliceStart", "format": "MM" } }, 
-               { "name": "Day", "value": { "type": "DateTime", "date": "SliceStart", "format": "dd" } }, 
-               { "name": "Hour", "value": { "type": "DateTime", "date": "SliceStart", "format": "hh" } } 
-           ],
+         "folderPath": "wikidatagateway/wikisampledataout/{Year}/{Month}/{Day}",
+         "fileName": "{Hour}.csv",
+         "partitionedBy": 
+         [
+             { "name": "Year", "value": { "type": "DateTime", "date": "SliceStart", "format": "yyyy" } },
+             { "name": "Month", "value": { "type": "DateTime", "date": "SliceStart", "format": "MM" } }, 
+             { "name": "Day", "value": { "type": "DateTime", "date": "SliceStart", "format": "dd" } }, 
+             { "name": "Hour", "value": { "type": "DateTime", "date": "SliceStart", "format": "hh" } } 
+         ],
    
    如需 JSON 屬性的詳細資料，請參閱 [JSON 指令碼參考](http://go.microsoft.com/fwlink/?LinkId=516971) 。
 2. 執行以下命令建立 Data Factory 資料集。
    
-       New-AzureRmDataFactoryDataset $df -File .\EmpBlobTable.json
+     New-AzureRmDataFactoryDataset $df -File .\EmpBlobTable.json
 
 ### <a name="create-output-dataset"></a>建立輸出資料集
 在此步驟中，您會建立名為 **EmpSQLTable**的輸出資料集。 此資料集指向 Azure SQL Database 中 **AzureSqlLinkedService** 所代表的 SQL 資料表 (**emp**)。 管線會將輸入 Blob 中的資料複製到 **emp** 資料表。 
 
 1. 在 **C:\ADFGetStartedPSH** 資料夾中，使用下列內容建立名為 **EmpSQLTable.json** 的 JSON 檔案：
    
-           {
-             "name": "EmpSQLTable",
-             "properties": {
-               "structure": [
-                 {
-                   "name": "FirstName",
-                   "type": "String"
-                 },
-                 {
-                   "name": "LastName",
-                   "type": "String"
-                 }
-               ],
-               "type": "AzureSqlTable",
-               "linkedServiceName": "AzureSqlLinkedService",
-               "typeProperties": {
-                 "tableName": "emp"
+         {
+           "name": "EmpSQLTable",
+           "properties": {
+             "structure": [
+               {
+                 "name": "FirstName",
+                 "type": "String"
                },
-               "availability": {
-                 "frequency": "Hour",
-                 "interval": 1
+               {
+                 "name": "LastName",
+                 "type": "String"
                }
+             ],
+             "type": "AzureSqlTable",
+             "linkedServiceName": "AzureSqlLinkedService",
+             "typeProperties": {
+               "tableName": "emp"
+             },
+             "availability": {
+               "frequency": "Hour",
+               "interval": 1
              }
            }
+         }
    
-    請注意下列幾點： 
+   請注意下列幾點： 
    
    * 資料集 **type** 設為 **AzureSqlTable**。
    * **linkedServiceName** 設為 **AzureSqlLinkedService**。
@@ -297,54 +301,54 @@ ms.author: spelluru
    * **availability** 設定為**每小時**，且 (**frequency** 設定為**小時**，**interval** 設定為 **1**)。  Data Factory 服務會每隔一小時在 Azure SQL Database 的 **emp** 資料表中產生輸出資料配量。
 2. 執行以下命令建立 Data Factory 資料集。 
    
-       New-AzureRmDataFactoryDataset $df -File .\EmpSQLTable.json
+     New-AzureRmDataFactoryDataset $df -File .\EmpSQLTable.json
 
 ## <a name="create-pipeline"></a>建立管線
 在此步驟中，您會建立管線，其中含有使用 **EmpTableFromBlob** 做為輸入和使用 **EmpSQLTable** 做為輸出的**複製活動**。
 
 1. 在 **C:\ADFGetStartedPSH** 資料夾中，使用下列內容建立名為 **ADFTutorialPipeline.json** 的 JSON 檔案： 
    
-            {
-             "name": "ADFTutorialPipeline",
-             "properties": {
-               "description": "Copy data from a blob to Azure SQL table",
-               "activities": [
-                 {
-                   "name": "CopyFromBlobToSQL",
-                   "description": "Push Regional Effectiveness Campaign data to Azure SQL database",
-                   "type": "Copy",
-                   "inputs": [
-                     {
-                       "name": "EmpTableFromBlob"
-                     }
-                   ],
-                   "outputs": [
-                     {
-                       "name": "EmpSQLTable"
-                     }
-                   ],
-                   "typeProperties": {
-                     "source": {
-                       "type": "BlobSource"
-                     },
-                     "sink": {
-                       "type": "SqlSink"
-                     }
-                   },
-                   "Policy": {
-                     "concurrency": 1,
-                     "executionPriorityOrder": "NewestFirst",
-                     "style": "StartOfInterval",
-                     "retry": 0,
-                     "timeout": "01:00:00"
+          {
+           "name": "ADFTutorialPipeline",
+           "properties": {
+             "description": "Copy data from a blob to Azure SQL table",
+             "activities": [
+               {
+                 "name": "CopyFromBlobToSQL",
+                 "description": "Push Regional Effectiveness Campaign data to Azure SQL database",
+                 "type": "Copy",
+                 "inputs": [
+                   {
+                     "name": "EmpTableFromBlob"
                    }
+                 ],
+                 "outputs": [
+                   {
+                     "name": "EmpSQLTable"
+                   }
+                 ],
+                 "typeProperties": {
+                   "source": {
+                     "type": "BlobSource"
+                   },
+                   "sink": {
+                     "type": "SqlSink"
+                   }
+                 },
+                 "Policy": {
+                   "concurrency": 1,
+                   "executionPriorityOrder": "NewestFirst",
+                   "style": "StartOfInterval",
+                   "retry": 0,
+                   "timeout": "01:00:00"
                  }
-               ],
-               "start": "2016-08-09T00:00:00Z",
-               "end": "2016-08-10T00:00:00Z",
-               "isPaused": false
-             }
+               }
+             ],
+             "start": "2016-08-09T00:00:00Z",
+             "end": "2016-08-10T00:00:00Z",
+             "isPaused": false
            }
+         }
    
    請注意下列幾點：
    
@@ -361,7 +365,7 @@ ms.author: spelluru
    如需 JSON 屬性的詳細資料，請參閱 [JSON 指令碼參考](http://go.microsoft.com/fwlink/?LinkId=516971) 。
 2. 執行以下命令建立 Data Factory 資料表。 
    
-       New-AzureRmDataFactoryPipeline $df -File .\ADFTutorialPipeline.json
+     New-AzureRmDataFactoryPipeline $df -File .\ADFTutorialPipeline.json
 
 **恭喜！**  您已成功建立 Azure Data Factory、連結服務、資料表和管線，以及排定的管線。
 
@@ -370,10 +374,10 @@ ms.author: spelluru
 
 1. 執行 **Get-AzureRmDataFactory** 並指派輸出給變數 $df。
    
-       $df=Get-AzureRmDataFactory -ResourceGroupName ADFTutorialResourceGroup -Name ADFTutorialDataFactoryPSH
+     $df=Get-AzureRmDataFactory -ResourceGroupName ADFTutorialResourceGroup -Name ADFTutorialDataFactoryPSH
 2. 執行 **Get-AzureRmDataFactorySlice**，以取得 **EmpSQLTable** (管線的輸出資料表) 所有配量的詳細資料。  
    
-       Get-AzureRmDataFactorySlice $df -DatasetName EmpSQLTable -StartDateTime 2016-08-09T00:00:00
+     Get-AzureRmDataFactorySlice $df -DatasetName EmpSQLTable -StartDateTime 2016-08-09T00:00:00
    
    以目前的年、月、日，取代 **StartDateTime** 參數的年、月、日部分。 此設定應符合管線 JSON 中的 **Start** 值。 
    
@@ -381,38 +385,14 @@ ms.author: spelluru
    
    **範例輸出：**
    
-       ResourceGroupName : ADFTutorialResourceGroup
-       DataFactoryName   : ADFTutorialDataFactoryPSH
-       TableName         : EmpSQLTable
-       Start             : 8/9/2016 12:00:00 AM
-       End               : 8/9/2016 1:00:00 AM
-       RetryCount        : 0
-       Status            : Waiting
-       LatencyStatus     :
-       LongRetryCount    : 0
+     ResourceGroupName : ADFTutorialResourceGroup   DataFactoryName   : ADFTutorialDataFactoryPSH   TableName         : EmpSQLTable   Start             : 8/9/2016 12:00:00 AM   End               : 8/9/2016 1:00:00 AM   RetryCount        : 0   Status            : Waiting   LatencyStatus     :   LongRetryCount    : 0
 3. 執行 **Get-AzureRmDataFactoryRun**，以取得**特定**配量的活動執行詳細資料。 變更 **StartDateTime** 參數的值，以符合輸出中配量的 **Start** 時間。 **StartDateTime** 的值必須是 [ISO 格式](http://en.wikipedia.org/wiki/ISO_8601)。 
    
-       Get-AzureRmDataFactoryRun $df -DatasetName EmpSQLTable -StartDateTime 2016-08-09T00:00:00
+     Get-AzureRmDataFactoryRun $df -DatasetName EmpSQLTable -StartDateTime 2016-08-09T00:00:00
    
    您應該會看到類似下列範例輸出的輸出：
    
-       Id                  : 3404c187-c889-4f88-933b-2a2f5cd84e90_635614488000000000_635614524000000000_EmpSQLTable
-       ResourceGroupName   : ADFTutorialResourceGroup
-       DataFactoryName     : ADFTutorialDataFactoryPSH
-       TableName           : EmpSQLTable
-       ProcessingStartTime : 8/9/2016 11:03:28 PM
-       ProcessingEndTime   : 8/9/2016 11:04:36 PM
-       PercentComplete     : 100
-       DataSliceStart      : 8/9/2016 10:00:00 PM
-       DataSliceEnd        : 8/9/2016 11:00:00 PM
-       Status              : Succeeded
-       Timestamp           : 8/9/2016 11:03:28 PM
-       RetryAttempt        : 0
-       Properties          : {}
-       ErrorMessage        :
-       ActivityName        : CopyFromBlobToSQL
-       PipelineName        : ADFTutorialPipeline
-       Type                : Copy
+     Id                  : 3404c187-c889-4f88-933b-2a2f5cd84e90_635614488000000000_635614524000000000_EmpSQLTable   ResourceGroupName   : ADFTutorialResourceGroup   DataFactoryName     : ADFTutorialDataFactoryPSH   TableName           : EmpSQLTable   ProcessingStartTime : 8/9/2016 11:03:28 PM   ProcessingEndTime   : 8/9/2016 11:04:36 PM   PercentComplete     : 100   DataSliceStart      : 8/9/2016 10:00:00 PM   DataSliceEnd        : 8/9/2016 11:00:00 PM   Status              : Succeeded   Timestamp           : 8/9/2016 11:03:28 PM   RetryAttempt        : 0   Properties          : {}   ErrorMessage        :   ActivityName        : CopyFromBlobToSQL   PipelineName        : ADFTutorialPipeline   Type                : Copy
 
 如需 Data Factory Cmdlet 的完整文件，請參閱 [Data Factory Cmdlet 參考][cmdlet-reference]。 
 
@@ -421,7 +401,7 @@ ms.author: spelluru
 
 1. 建立 Azure **Data Factory**。
 2. 建立 **連結服務**：
-   1. **Azure 儲存體** 連結服務可連結保留輸入資料的 Azure 儲存體帳戶。    
+   1. **Azure 儲存體** 連結服務可連結保留輸入資料的 Azure 儲存體帳戶。     
    2. **Azure SQL** 連結服務可連結保留輸出資料的 Azure SQL Database。 
 3. 建立可描述管線輸入資料和輸出資料的 **資料集** 。
 4. 建立具有**複製活動**的**管線**，以 **BlobSource** 做為來源並以 **SqlSink** 做為接收器。 
@@ -453,6 +433,6 @@ ms.author: spelluru
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

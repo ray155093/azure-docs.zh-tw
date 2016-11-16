@@ -1,12 +1,12 @@
 ---
-title: 在應用程式閘道上裝載多個站台 | Microsoft Docs
-description: 本頁面提供「應用程式閘道」多站台支援的概觀。
+title: "在應用程式閘道上裝載多個站台 | Microsoft Docs"
+description: "本頁面提供「應用程式閘道」多站台支援的概觀。"
 documentationcenter: na
 services: application-gateway
 author: amsriva
 manager: rossort
 editor: amsriva
-
+ms.assetid: 49993fd2-87e5-4a66-b386-8d22056a616d
 ms.service: application-gateway
 ms.devlang: na
 ms.topic: hero-article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/25/2016
 ms.author: amsriva
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 85fc1315f32811873c577fe75d88eb08a2bbac26
+
 
 ---
 # <a name="application-gateway-multiple-site-hosting"></a>應用程式閘道多站台裝載
@@ -25,7 +29,7 @@ ms.author: amsriva
 
 同樣地，相同父系網域的兩個子網域也可以裝載在相同的應用程式閘道部署上。 使用子網域的範例可能包括單一應用程式閘道部署上裝載的 http://blog.contoso.com 和 http://app.contoso.com。
 
-## <a name="host-headers-and-server-name-indication-(sni)"></a>主機標頭和伺服器名稱指示 (SNI)
+## <a name="host-headers-and-server-name-indication-sni"></a>主機標頭和伺服器名稱指示 (SNI)
 有三個常見的機制可允許在相同的基礎結構上進行多站台裝載。
 
 1. 將多個 Web 應用程式分別裝載在一個唯一的 IP 位址上。
@@ -117,6 +121,9 @@ ms.author: amsriva
 ## <a name="next-steps"></a>後續步驟
 了解多站台裝載之後，請移至 [使用多站台裝載建立應用程式閘道](application-gateway-create-multisite-azureresourcemanager-powershell.md) ，以建立能夠支援多個 Web 應用程式的應用程式閘道。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

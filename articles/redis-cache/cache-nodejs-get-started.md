@@ -1,22 +1,26 @@
 ---
-title: 如何搭配使用 Azure Redis 快取與 Node.js | Microsoft Docs
-description: 開始搭配使用 Azure Redis 快取與 Node.js 和 node_redis。
+title: "如何搭配使用 Azure Redis 快取與 Node.js | Microsoft Docs"
+description: "開始搭配使用 Azure Redis 快取與 Node.js 和 node_redis。"
 services: redis-cache
-documentationcenter: ''
+documentationcenter: 
 author: steved0x
 manager: douge
 editor: v-lincan
-
+ms.assetid: 06fddc95-8029-4a8d-83f5-ebd5016891d9
 ms.service: cache
 ms.devlang: nodejs
 ms.topic: hero-article
 ms.tgt_pltfrm: cache-redis
 ms.workload: tbd
-ms.date: 08/16/2016
+ms.date: 10/25/2016
 ms.author: sdanie
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 66188b904d9f573e88bc99f185cd1275de31b0c1
+
 
 ---
-# 如何搭配使用 Azure Redis 快取與 Node.js
+# <a name="how-to-use-azure-redis-cache-with-nodejs"></a>如何搭配使用 Azure Redis 快取與 Node.js
 > [!div class="op_single_selector"]
 > * [.NET](cache-dotnet-how-to-use-azure-redis-cache.md)
 > * [ASP.NET](cache-web-app-howto.md)
@@ -26,25 +30,25 @@ ms.author: sdanie
 > 
 > 
 
-Azure Redis 快取可讓您存取 Microsoft 所管理的專用安全 Redis 快取。從 Microsoft Azure 內的任何應用程式都可以存取您的快取。
+Azure Redis 快取可讓您存取 Microsoft 所管理的專用安全 Redis 快取。 從 Microsoft Azure 內的任何應用程式都可以存取您的快取。
 
-本主題說明如何開始搭配使用 Azure Redis 快取與 Node.js。如需搭配使用 Azure Redis 快取與 Node.js 的另一個範例，請參閱[在 Azure 網站上使用 Socket.IO 建置 Node.js 聊天應用程式](../app-service-web/web-sites-nodejs-chat-app-socketio.md)。
+本主題說明如何開始搭配使用 Azure Redis 快取與 Node.js。 如需搭配使用 Azure Redis 快取與 Node.js 的另一個範例，請參閱 [在 Azure 網站上使用 Socket.IO 建置 Node.js 聊天應用程式](../app-service-web/web-sites-nodejs-chat-app-socketio.md)。
 
-## 必要條件
-安裝 [node\_redis](https://github.com/mranney/node_redis)：
+## <a name="prerequisites"></a>必要條件
+安裝 [node_redis](https://github.com/mranney/node_redis)：
 
     npm install redis
 
-本教學課程使用 [node\_redis](https://github.com/mranney/node_redis)。如需使用其他 Node.js 用戶端的範例，請參閱列在 [Node.js Redis 用戶端](http://redis.io/clients#nodejs)之 Node.js 用戶端的個別文件。
+本教學課程使用 [node_redis](https://github.com/mranney/node_redis)。 如需使用其他 Node.js 用戶端的範例，請參閱列在 [Node.js Redis 用戶端](http://redis.io/clients#nodejs)之 Node.js 用戶端的個別文件。
 
-## 在 Azure 上建立 Redis 快取
+## <a name="create-a-redis-cache-on-azure"></a>在 Azure 上建立 Redis 快取
 [!INCLUDE [redis-cache-create](../../includes/redis-cache-create.md)]
 
-## 擷取主機名稱和存取金鑰
+## <a name="retrieve-the-host-name-and-access-keys"></a>擷取主機名稱和存取金鑰
 [!INCLUDE [redis-cache-create](../../includes/redis-cache-access-keys.md)]
 
-## 使用 SSL 安全地連接到快取
-[node\_redis](https://github.com/mranney/node_redis) 的最新組建提供了使用 SSL 連接到 Azure Redis 快取的支援。下列範例示範如何使用 6380 的 SSL 端點連接到 Azure Redis 快取。以您的快取名稱取代 `<name>`，並以先前[擷取主機名稱和存取金鑰](#retrieve-the-host-name-and-access-keys)一節中所述的主要或次要金鑰取代 `<key>`。
+## <a name="connect-to-the-cache-securely-using-ssl"></a>使用 SSL 安全地連接到快取
+[node_redis](https://github.com/mranney/node_redis) 的最新組建提供了使用 SSL 連接到 Azure Redis 快取的支援。 下列範例示範如何使用 6380 的 SSL 端點連接到 Azure Redis 快取。 以您的快取名稱取代 `<name>`，並以先前[擷取主機名稱和存取金鑰](#retrieve-the-host-name-and-access-keys)一節中所述的主要或次要金鑰取代 `<key>`。
 
      var redis = require("redis");
 
@@ -52,8 +56,8 @@ Azure Redis 快取可讓您存取 Microsoft 所管理的專用安全 Redis 快�
     var client = redis.createClient(6380,'<name>.redis.cache.windows.net', {auth_pass: '<key>', tls: {servername: '<name>.redis.cache.windows.net'}});
 
 
-## 在快取中加入項目並擷取該項目
-下列範例示範如何連接到 Azure Redis 快取執行個體，以及儲存和擷取快取中的項目。如需更多搭配使用 Redis 與 [node\_redis](https://github.com/mranney/node_redis) 用戶端的範例，請參閱 [http://redis.js.org/](http://redis.js.org/)。
+## <a name="add-something-to-the-cache-and-retrieve-it"></a>在快取中加入項目並擷取該項目
+下列範例示範如何連接到 Azure Redis 快取執行個體，以及儲存和擷取快取中的項目。 如需更多搭配使用 Redis 與 [node_redis](https://github.com/mranney/node_redis) 用戶端的範例，請參閱 [http://redis.js.org/](http://redis.js.org/)。
 
      var redis = require("redis");
 
@@ -74,8 +78,13 @@ Azure Redis 快取可讓您存取 Microsoft 所管理的專用安全 Redis 快�
     value
 
 
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 * [啟用快取診斷](cache-how-to-monitor.md#enable-cache-diagnostics)，以[監視](cache-how-to-monitor.md)您快取的健全狀況。
 * 閱讀官方 [Redis 文件](http://redis.io/documentation)。
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+
+<!--HONumber=Nov16_HO2-->
+
+

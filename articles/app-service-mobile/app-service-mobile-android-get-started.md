@@ -1,12 +1,12 @@
 ---
-title: Create an Android app on Azure App Service Mobile Apps | Microsoft Docs
-description: Follow this tutorial to get started with using Azure mobile app backends for Android development
+title: "在 Azure App Service Mobile Apps 上建立 Android 應用程式 | Microsoft Docs"
+description: "請遵循此教學課程，以開始使用 Azure 行動應用程式後端進行 Android 開發"
 services: app-service\mobile
 documentationcenter: android
 author: ysxu
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 355f0959-aa7f-472c-a6c7-9eecea3a34a9
 ms.service: app-service-mobile
 ms.workload: na
 ms.tgt_pltfrm: mobile-android
@@ -14,38 +14,42 @@ ms.devlang: java
 ms.topic: hero-article
 ms.date: 10/01/2016
 ms.author: yuaxu
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: e4aa29329242a7397fdb5939fa7b5b04340b53c5
+
 
 ---
-# <a name="create-an-android-app"></a>Create an Android app
+# <a name="create-an-android-app"></a>建立 Android 應用程式
 [!INCLUDE [app-service-mobile-selector-get-started](../../includes/app-service-mobile-selector-get-started.md)]
 
 ## <a name="overview"></a>Overview
-This tutorial shows you how to add a cloud-based backend service to an Android mobile app by using an Azure mobile app backend.  You will create both a new mobile app backend and a simple *Todo list* Android app that stores app data in Azure.
+本教學課程將示範如何使用 Azure 行動應用程式後端，將雲端式後端服務加入 Android 行動應用程式。  您將建立新的行動應用程式後端，以及可在 Azure 中儲存應用程式資料的簡易「待辦事項清單」 Android 應用程式。
 
-Completing this tutorial is a prerequisite for all other Android tutorials about using the Mobile Apps feature in Azure App Service.
+對於在 Azure App Service 中使用 Mobile Apps 功能的所有其他 Android 教學課程，完成本教學課程是必要條件。
 
-## <a name="prerequisites"></a>Prerequisites
-To complete this tutorial, you need the following:
+## <a name="prerequisites"></a>必要條件
+若要完成此教學課程，您需要下列項目：
 
-* [Android Developer Tools](https://developer.android.com/sdk/index.html), which includes the Android Studio integrated development environment, and the latest Android platform.
-* Azure Mobile Android SDK, which is automatically referenced as part of the quickstart project you download.
-* An [active Azure account](https://azure.microsoft.com/pricing/free-trial/).
+* [Android Developer Tools](https://developer.android.com/sdk/index.html)，其中包括 Android Studio 整合式開發環境，以及最新的 Android 平台。
+* Azure Mobile Android SDK，會自動受到參考，包含在您下載的快速入門專案中。
+* 有效的 [Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)。
 
-## <a name="create-a-new-azure-mobile-app-backend"></a>Create a new Azure mobile app backend
+## <a name="create-a-new-azure-mobile-app-backend"></a>建立新的 Azure 行動應用程式後端
 [!INCLUDE [app-service-mobile-dotnet-backend-create-new-service](../../includes/app-service-mobile-dotnet-backend-create-new-service.md)]
 
-## <a name="configure-the-server-project"></a>Configure the server project
+## <a name="configure-the-server-project"></a>設定伺服器專案
 [!INCLUDE [app-service-mobile-configure-new-backend.md](../../includes/app-service-mobile-configure-new-backend.md)]
 
-## <a name="download-and-run-the-android-app"></a>Download and run the Android app
+## <a name="download-and-run-the-android-app"></a>下載並執行 Android 應用程式
 [!INCLUDE [app-service-mobile-android-run-app](../../includes/app-service-mobile-android-run-app.md)]
 
 <!-- URLs -->
-[Azure portal]: https://portal.azure.com/
+[Azure 入口網站]: https://portal.azure.com/
 [Visual Studio Community 2013]: https://go.microsoft.com/fwLink/p/?LinkID=534203
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

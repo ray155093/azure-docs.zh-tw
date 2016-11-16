@@ -1,12 +1,12 @@
 ---
-title: 開始使用適用於 Xamarin.Android 的 Azure Mobile Engagement
-description: 了解如何使用 Xamarin.Android 應用程式的 Azure Mobile Engagement 與分析和推播通知。
+title: "開始使用適用於 Xamarin.Android 的 Azure Mobile Engagement"
+description: "了解如何使用 Xamarin.Android 應用程式的 Azure Mobile Engagement 與分析和推播通知。"
 services: mobile-engagement
 documentationcenter: xamarin
 author: piyushjo
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: fb68cf98-08a2-41b5-8e59-757469de3fe7
 ms.service: mobile-engagement
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-xamarin-android
@@ -14,9 +14,13 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 06/16/2016
 ms.author: piyushjo
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 3580bf0712d704e46e785aa95ef0ab6b54f0ba10
+
 
 ---
-# <a name="get-started-with-azure-mobile-engagement-for-xamarin.android-apps"></a>開始使用適用於 Xamarin.Android 應用程式的 Azure Mobile Engagement
+# <a name="get-started-with-azure-mobile-engagement-for-xamarinandroid-apps"></a>開始使用適用於 Xamarin.Android 應用程式的 Azure Mobile Engagement
 [!INCLUDE [Hero tutorial switcher](../../includes/mobile-engagement-hero-tutorial-switcher.md)]
 
 本主題說明如何使用 Azure Mobile Engagement 來了解您應用程式的使用情形，以及如何傳送推播通知給 Xamarin.Android 應用程式的區隔使用者。
@@ -32,15 +36,15 @@ ms.author: piyushjo
 > 
 > 
 
-## <a name="<a-id="setup-azme"></a>setup-mobile-engagement-for-your-android-app"></a><a id="setup-azme"></a>為您的 Android 應用程式設定 Mobile Engagement
+## <a name="a-idsetupazmeasetup-mobile-engagement-for-your-android-app"></a><a id="setup-azme"></a>為您的 Android 應用程式設定 Mobile Engagement
 [!INCLUDE [Create Mobile Engagement App in Portal](../../includes/mobile-engagement-create-app-in-portal-new.md)]
 
-## <a name="<a-id="connecting-app"></a>connect-your-app-to-the-mobile-engagement-backend"></a><a id="connecting-app"></a>將您的應用程式連線至 Mobile Engagement 後端
+## <a name="a-idconnectingappaconnect-your-app-to-the-mobile-engagement-backend"></a><a id="connecting-app"></a>將您的應用程式連線至 Mobile Engagement 後端
 本教學課程將說明「基本整合」，這是收集資料及傳送推播通知時必要的最低設定。 
 
 我們將會使用 Xamarin Studio 建立基本應用程式來示範整合。
 
-### <a name="create-a-new-xamarin.android-project"></a>建立新的 Xamarin.Android 專案
+### <a name="create-a-new-xamarinandroid-project"></a>建立新的 Xamarin.Android 專案
 1. 啟動 [Xamarin Studio]，移至 [檔案] -> [新增] -> [方案] 
    
     ![][1]
@@ -86,10 +90,10 @@ Xamarin Studio 會建立應用程式，我們將在其中整合 Mobile Engagemen
 3. 在 `<application>` 和 `</application>` 標記之間加入下列內容，宣告代理程式服務：
    
         <service
-            android:name="com.microsoft.azure.engagement.service.EngagementService"
-            android:exported="false"
-            android:label="<Your application name>"
-            android:process=":Engagement"/>
+             android:name="com.microsoft.azure.engagement.service.EngagementService"
+             android:exported="false"
+             android:label="<Your application name>"
+             android:process=":Engagement"/>
 4. 在您剛貼上的程式碼中，更換標籤中的 `"<Your application name>"`。 這會顯示於 [設定]  功能表，使用者可在其中看到裝置上正在執行的服務。 例如，您可以在該標籤中加入「服務」這個字。
 
 ### <a name="send-a-screen-to-mobile-engagement"></a>傳送畫面到 Mobile Engagement
@@ -111,10 +115,10 @@ Xamarin Studio 會建立應用程式，我們將在其中整合 Mobile Engagemen
                 base.OnPause();            
             }
 
-## <a name="<a-id="monitor"></a>connect-app-with-real-time-monitoring"></a><a id="monitor"></a>將 App 與即時監視連接
+## <a name="a-idmonitoraconnect-app-with-realtime-monitoring"></a><a id="monitor"></a>將 App 與即時監視連接
 [!INCLUDE [Connect app with real-time monitoring](../../includes/mobile-engagement-connect-app-with-monitor.md)]
 
-## <a name="<a-id="integrate-push"></a>enable-push-notifications-and-in-app-messaging"></a><a id="integrate-push"></a>啟用推播通知與應用程式內傳訊的功能
+## <a name="a-idintegratepushaenable-push-notifications-and-inapp-messaging"></a><a id="integrate-push"></a>啟用推播通知與應用程式內傳訊的功能
 Mobile Engagement 可讓您透過「推播通知」和「應用程式內傳訊」，於活動進行時與使用者互動和「觸達」。 此模組在 Mobile Engagement 入口網站中稱為觸達 (REACH)。
 以下各節將設定您的應用程式來接收它們。
 
@@ -134,6 +138,6 @@ Mobile Engagement 可讓您透過「推播通知」和「應用程式內傳訊�
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

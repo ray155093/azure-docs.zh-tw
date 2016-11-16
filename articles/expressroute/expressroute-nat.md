@@ -1,12 +1,12 @@
 ---
-title: ExpressRoute 線路的 NAT 需求 | Microsoft Docs
-description: 此頁面提供為 ExpressRoute 線路設定和管理 NAT 的詳細需求。
+title: "ExpressRoute 線路的 NAT 需求 | Microsoft Docs"
+description: "此頁面提供為 ExpressRoute 線路設定和管理 NAT 的詳細需求。"
 documentationcenter: na
 services: expressroute
 author: cherylmc
 manager: carmonm
-editor: ''
-
+editor: 
+ms.assetid: 867bf936-c851-485f-84c8-d8d6e33fee9f
 ms.service: expressroute
 ms.devlang: na
 ms.topic: get-started-article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/10/2016
 ms.author: cherylmc
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: d16326340f668285e185a6e8adb1a8316d8bd0eb
+
 
 ---
 # <a name="expressroute-nat-requirements"></a>ExpressRoute NAT 需求
@@ -61,8 +65,11 @@ Microsoft 對等路徑可讓您連接到不支援透過 Azure 公用對等路徑
   
   * [建立 ExpressRoute 線路](expressroute-howto-circuit-classic.md)
   * [設定路由](expressroute-howto-routing-classic.md)
-  * [將 VNet 連結到 ExpressRoute 循環](expressroute-howto-linkvnet-classic.md)
+  * [將 VNet 連結到 ExpressRoute 線路](expressroute-howto-linkvnet-classic.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

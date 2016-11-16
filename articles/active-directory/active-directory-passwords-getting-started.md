@@ -1,13 +1,13 @@
 ---
-title: 開始使用：Azure AD 密碼管理 | Microsoft Docs
-description: 讓使用者重設自己的密碼、探索密碼重設的先決條件，以及啟用密碼回寫以管理 Active Directory 中的內部部署密碼。
+title: "開始使用：Azure AD 密碼管理 |Microsoft Docs"
+description: "讓使用者重設自己的密碼、探索密碼重設的先決條件，以及啟用密碼回寫以管理 Active Directory 中的內部部署密碼。"
 services: active-directory
-keywords: Active directory 密碼管理, 密碼管理, 重設 Azure AD 密碼
-documentationcenter: ''
+keywords: "Active directory 密碼管理, 密碼管理, 重設 Azure AD 密碼"
+documentationcenter: 
 author: asteen
 manager: femila
 editor: curtand
-
+ms.assetid: bde8799f-0b42-446a-ad95-7ebb374c3bec
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -15,6 +15,10 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 10/05/2016
 ms.author: asteen
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 77ca34a56a827e8a69ab9a2b60d14cc7c7a71bfc
+
 
 ---
 # <a name="getting-started-with-password-management"></a>開始使用密碼管理
@@ -61,7 +65,7 @@ ms.author: asteen
 * 在 AAD 目錄中建立至少一個系統管理員帳戶和一個使用者帳戶。
 * 將 AAD Premium、Basic 或 O365 付費的授權指派給您所建立的系統管理員和使用者帳戶。
 
-### <a name="step-1:-configure-password-reset-policy"></a>步驟 1：設定密碼重設原則
+### <a name="step-1-configure-password-reset-policy"></a>步驟 1：設定密碼重設原則
 若要設定使用者密碼重設原則，請完成下列步驟：
 
 1. 開啟您選擇的瀏覽器並瀏覽至 [Azure 傳統入口網站](https://manage.windowsazure.com)。
@@ -94,7 +98,7 @@ ms.author: asteen
    
    ![][006]
 
-### <a name="step-2:-add-contact-data-for-your-test-user"></a>步驟 2：為您的測試使用者加入連絡人資料
+### <a name="step-2-add-contact-data-for-your-test-user"></a>步驟 2：為您的測試使用者加入連絡人資料
 您有幾個選項可用於指定要用於密碼重設的組織中使用者資料。
 
 * 在 [Azure 傳統入口網站](https://manage.windowsazure.com)或 [Office 365 系統管理入口網站](https://portal.microsoftonline.com)編輯使用者
@@ -119,10 +123,10 @@ ms.author: asteen
    
    ![][010]
 
-### <a name="step-3:-reset-your-azure-ad-password-as-a-user"></a>步驟 3：以使用者的身分重設您的 Azure AD 密碼
+### <a name="step-3-reset-your-azure-ad-password-as-a-user"></a>步驟 3：以使用者的身分重設您的 Azure AD 密碼
 您已經設定使用者重設原則，並指定使用者的連絡人詳細資料，這位使用者可以執行自助式密碼重設。
 
-#### <a name="to-perform-a-self-service-password-reset"></a>執行自助式密碼重設
+#### <a name="to-perform-a-selfservice-password-reset"></a>執行自助式密碼重設
 1. 如果您移至像是 [**portal.microsoftonline.com**](http://portal.microsoftonline.com) 的網站，您會看到如下的登入畫面。  按一下 [ **無法存取您的帳戶？** ] 連結，以測試密碼重設 UI。
    
    ![][011]
@@ -194,7 +198,7 @@ ms.author: asteen
   > 
   > 
 
-### <a name="step-1:-download-the-latest-version-of-azure-ad-connect"></a>步驟 1：下載最新版本的 Azure AD Connect
+### <a name="step-1-download-the-latest-version-of-azure-ad-connect"></a>步驟 1：下載最新版本的 Azure AD Connect
 密碼回寫可以在 Azure AD Connect 版本或具有版本號碼 **1.0.0419.0911** 或更高版本的 Azure AD Sync 工具中使用。  具有自動帳戶解除鎖定的密碼回寫可以在 Azure AD Connect 版本或具有版本號碼 **1.0.0485.0222** 或更高版本的 Azure AD Sync 工具中使用。 如果您執行較舊的版本，請至少升級至此版本，再繼續作業。 [按一下這裡以下載最新版本的 Azure AD Connect](active-directory-aadconnect.md#install-azure-ad-connect)。
 
 #### <a name="to-check-the-version-of-azure-ad-sync"></a>檢查 Azure AD Sync 的版本
@@ -213,7 +217,7 @@ ms.author: asteen
 > 
 > 
 
-### <a name="step-2:-enable-password-writeback-in-azure-ad-connect"></a>步驟 2：在 Azure AD Connect 中啟用密碼回寫
+### <a name="step-2-enable-password-writeback-in-azure-ad-connect"></a>步驟 2：在 Azure AD Connect 中啟用密碼回寫
 您已下載 Azure AD Connect 工具，已準備就緒可以啟用密碼回寫。  您可以使用下列兩種方式之一來執行這個動作。  您可以在 Azure AD Connect 安裝精靈的選用功能畫面中啟用密碼回寫，或者您可以透過 Windows PowerShell 啟用它。
 
 #### <a name="to-enable-password-writeback-in-the-configuration-wizard"></a>在組態精靈中啟用密碼回寫
@@ -237,7 +241,7 @@ ms.author: asteen
 5. 執行下列 Cmdlet，以啟用密碼回寫：`Set-ADSyncAADPasswordResetConfiguration –Connector $aadConnectorName.name –Enable $true`
 
 > [!NOTE]
-> 如果系統提示輸入認證，請確定您為 AzureADCredential 指定的系統管理員帳戶是**雲端系統管理員帳戶 (在 Azure AD 中建立)**，不是同盟帳戶 (在內部部署 AD 中建立並且同步處理至 Azure AD。
+> 如果系統提示輸入認證，請確定您為 AzureADCredential 指定的系統管理員帳戶是 **雲端系統管理員帳戶 (在 Azure AD 中建立)**，不是同盟帳戶 (在內部部署 AD 中建立並且同步處理至 Azure AD。
 > 
 > [!NOTE]
 > 您可以透過 PowerShell 停用密碼回寫，方法是重複上述的相同指示，但是在步驟中傳遞 `$false`，或者將 [Azure 傳統入口網站](https://manage.windowsazure.com)中目錄的 [設定] 索引標籤的 [使用者密碼重設原則] 區段的 [將密碼回寫至內部部署目錄] 設為 [否]。
@@ -251,7 +255,7 @@ ms.author: asteen
 
   ![][023]
 
-### <a name="step-3:-configure-your-firewall"></a>步驟 3：設定您的防火牆
+### <a name="step-3-configure-your-firewall"></a>步驟 3：設定您的防火牆
 您已在 Azure AD Connect 工具中啟用密碼回寫之後，您必須確定服務可以連線至雲端。
 
 1. 一旦安裝完成之後，如果您在環境中封鎖不明的輸出連線，您也必須將下列規則加入至您的防火牆。 請確定重新啟動 AAD Connect 電腦，再進行這些變更：
@@ -259,7 +263,7 @@ ms.author: asteen
    * 允許對 https://ssprsbprodncu-sb.accesscontrol.windows.net/ 的輸出連線
    * 當使用 Proxy 或有一般連線問題時，允許透過連接埠 9350-9354 和連接埠 5671 TCP 的輸出連線
 
-### <a name="step-4:-set-up-the-appropriate-active-directory-permissions"></a>步驟 4：設定適當的 Active Directory 權限
+### <a name="step-4-set-up-the-appropriate-active-directory-permissions"></a>步驟 4：設定適當的 Active Directory 權限
 對於包含使用者 (其密碼將會重設) 的每個樹系，如果 X 為組態精靈 (初始組態期間) 中針對該樹系指定的帳戶，則必須為 X 指定**重設密碼**、**變更密碼**、`lockoutTime` 的**寫入權限**和 `pwdLastSet` 的**寫入權限**、該樹系中每個網域之根物件的擴充權限。 權限應該標示為由所有使用者物件繼承。  
 
 如果您不確定上述指的是哪些帳戶，請開啟 Azure Active Directory Connect 組態 UI，並按一下 [ **檢閱您的方案** ] 選項。  您需要新增權限的帳戶會有紅色底線，如下列螢幕擷取畫面所示。
@@ -295,7 +299,7 @@ ms.author: asteen
    ![][028]
 10. 然後在所有開啟的對話方塊中按一下 [ **套用/確定** ]。
 
-### <a name="step-5:-reset-your-ad-password-as-a-user"></a>步驟 5：以使用者的身分重設您的 AD 密碼
+### <a name="step-5-reset-your-ad-password-as-a-user"></a>步驟 5：以使用者的身分重設您的 AD 密碼
 現在已啟用密碼回寫，您可以測試它是否正常運作，方法是對已同步處理至您的雲端租用戶的使用者帳戶重設密碼。
 
 #### <a name="to-verify-password-writeback-is-working-properly"></a>確認密碼回寫是否正常運作
@@ -361,6 +365,6 @@ ms.author: asteen
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

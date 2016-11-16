@@ -1,12 +1,12 @@
 ---
-title: 適用於 ExpressRoute 的 QoS 需求 | Microsoft Docs
-description: 此頁面提供用來設定和管理適用於 ExpressRoute 循環之 QoS 的詳細需求。
+title: "適用於 ExpressRoute 的 QoS 需求 |Microsoft Docs"
+description: "此頁面提供用來設定和管理適用於 ExpressRoute 循環之 QoS 的詳細需求。"
 documentationcenter: na
 services: expressroute
 author: cherylmc
 manager: carmonm
-editor: ''
-
+editor: 
+ms.assetid: db1c1447-0283-4a09-907b-ae481adc40c7
 ms.service: expressroute
 ms.devlang: na
 ms.topic: get-started-article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/10/2016
 ms.author: cherylmc
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 9e74127e3140ec9973753fb5f29151c406326c36
+
 
 ---
 # <a name="expressroute-qos-requirements"></a>ExpressRoute QoS 需求
@@ -46,8 +50,11 @@ ms.author: cherylmc
   
   * [建立 ExpressRoute 線路](expressroute-howto-circuit-classic.md)
   * [設定路由](expressroute-howto-routing-classic.md)
-  * [將 VNet 連結到 ExpressRoute 循環](expressroute-howto-linkvnet-classic.md)
+  * [將 VNet 連結到 ExpressRoute 線路](expressroute-howto-linkvnet-classic.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

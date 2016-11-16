@@ -1,12 +1,12 @@
 ---
-title: 什麼是連接器和 BizTalk API 應用程式
-description: 了解 API 應用程式、連接器和 BizTalk API 應用程式
+title: "什麼是連接器和 BizTalk API 應用程式"
+description: "了解 API 應用程式、連接器和 BizTalk API 應用程式"
 services: logic-apps
-documentationcenter: ''
+documentationcenter: 
 author: MandiOhlinger
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 1295ea9c-30e0-4b5c-931e-51aefae2d4fe
 ms.service: logic-apps
 ms.workload: integration
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 09/01/2016
 ms.author: mandia
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: c89b0714a5c6e606cf8517a40be62cc856d5959c
+
 
 ---
 # <a name="what-are-connectors-and-biztalk-api-apps"></a>什麼是連接器和 BizTalk API 應用程式
@@ -45,6 +49,9 @@ ms.author: mandia
 ## <a name="connector-and-api-app-list"></a>連接器和 API 應用程式清單
 請參閱 [連接器和 API 應用程式清單](app-service-logic-connectors-list.md) ，以取得各類別內含的完整連接器和 API 應用程式清單，包括標準連接器、BizTalk EAI、高階連接器等。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

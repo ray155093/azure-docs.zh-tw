@@ -1,12 +1,12 @@
 ---
-title: 教學課程：使用複製精靈建立管線 | Microsoft Docs
-description: 在本教學課程中，您會使用 Data Factory 所支援的複製精靈，建立具有複製活動的 Azure Data Factory 管線。
+title: "教學課程：使用複製精靈建立管線 | Microsoft Docs"
+description: "在本教學課程中，您會使用 Data Factory 所支援的複製精靈，建立具有複製活動的 Azure Data Factory 管線。"
 services: data-factory
-documentationcenter: ''
+documentationcenter: 
 author: spelluru
 manager: jhubbard
 editor: monicar
-
+ms.assetid: b87afb8e-53b7-4e1b-905b-0343dd096198
 ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 09/16/2016
 ms.author: spelluru
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: d47c43201b15a3452871d662038a1246ea403f02
+
 
 ---
-# <a name="tutorial:-create-a-pipeline-with-copy-activity-using-data-factory-copy-wizard"></a>教學課程：使用 Data Factory 複製精靈建立具有複製活動的管線
+# <a name="tutorial-create-a-pipeline-with-copy-activity-using-data-factory-copy-wizard"></a>教學課程：使用 Data Factory 複製精靈建立具有複製活動的管線
 > [!div class="op_single_selector"]
 > * [概觀和必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
 > * [複製精靈](data-factory-copy-data-wizard-tutorial.md)
@@ -53,21 +57,23 @@ Azure Data Factory 的 [複製精靈] 可讓您輕鬆快速地建立管線，以
       > Data Factory 的名稱未來可能會註冊為 DNS 名稱，因此會變成公開可見的名稱。
       > 
       > 
-3. 選取您的 Azure **訂用帳戶**。
-4. 針對資源群組，請執行下列其中一個步驟︰1. 選取 [使用現有的] 以選取現有的資源群組。
-5. 選取 [建立新的] 以輸入資源群組的名稱。
-   
-            Some of the steps in this tutorial assume that you use the name: **ADFTutorialResourceGroup** for the resource group. To learn about resource groups, see [Using resource groups to manage your Azure resources](../azure-resource-manager/resource-group-overview.md).
-   1. 選取 Data Factory 的 [位置]。
-   2. 選取刀鋒視窗底部的 [釘選到儀表板] 核取方塊。  
-   3. 按一下 [建立] 。
+   2. 選取您的 Azure **訂用帳戶**。
+   3. 針對資源群組，請執行下列其中一個步驟︰ 
       
-       ![新增 Data Factory 刀鋒視窗](media/data-factory-copy-data-wizard-tutorial/new-data-factory-blade.png)          
-6. 建立完成之後，您會看到 [Data Factory] 刀鋒視窗，如下圖所示：
+      1. 選取 [使用現有的] 以選取現有的資源群組。
+      2. 選取 [建立新的] 以輸入資源群組的名稱。
+         
+          本教學課程的某些步驟是假設您使用 **ADFTutorialResourceGroup** 做為資源群組名稱。 若要了解資源群組，請參閱 [使用資源群組管理您的 Azure 資源](../azure-resource-manager/resource-group-overview.md)。
+   4. 選取 Data Factory 的 [位置]。
+   5. 選取刀鋒視窗底部的 [釘選到儀表板] 核取方塊。  
+   6. 按一下 [建立] 。
+      
+       ![新增 Data Factory 刀鋒視窗](media/data-factory-copy-data-wizard-tutorial/new-data-factory-blade.png)            
+3. 建立完成之後，您會看到 [Data Factory] 刀鋒視窗，如下圖所示：
    
    ![Data Factory 首頁](./media/data-factory-copy-data-wizard-tutorial/getstarted-data-factory-home-page.png)
 
-## <a name="launch-and-use-copy-wizard"></a>啟動並使用複製精靈
+## <a name="launch-copy-wizard"></a>啟動複製精靈
 1. 在 Data Factory 首頁，按一下 [資料複製] 圖格以啟動 [複製精靈]。 
    
    > [!NOTE]
@@ -154,6 +160,9 @@ Azure Data Factory 的 [複製精靈] 可讓您輕鬆快速地建立管線，以
 | [資料集](data-factory-create-datasets.md) |本文協助您了解 Azure Data Factory 中的資料集。 |
 | [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) |本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 |
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

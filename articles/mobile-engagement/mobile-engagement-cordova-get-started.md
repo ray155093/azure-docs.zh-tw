@@ -1,12 +1,12 @@
 ---
-title: 開始使用 Azure Mobile Engagement for Cordova/Phonegap
-description: 了解如何使用 Cordova/Phonegap 應用程式的 Azure Mobile Engagement 與分析和推播通知。
+title: "開始使用 Azure Mobile Engagement for Cordova/Phonegap"
+description: "了解如何使用 Cordova/Phonegap 應用程式的 Azure Mobile Engagement 與分析和推播通知。"
 services: mobile-engagement
 documentationcenter: Mobile
 author: piyushjo
 manager: dwrede
-editor: ''
-
+editor: 
+ms.assetid: 54fe9113-e239-4ed7-9fd1-a502d7ac7f47
 ms.service: mobile-engagement
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-phonegap
@@ -14,9 +14,13 @@ ms.devlang: js
 ms.topic: hero-article
 ms.date: 08/19/2016
 ms.author: piyushjo
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 86e6597340867ffd620eac38a55de9113f571880
+
 
 ---
-# <a name="get-started-with-azure-mobile-engagement-for-cordova/phonegap"></a>開始使用 Azure Mobile Engagement for Cordova/Phonegap
+# <a name="get-started-with-azure-mobile-engagement-for-cordovaphonegap"></a>開始使用 Azure Mobile Engagement for Cordova/Phonegap
 [!INCLUDE [Hero tutorial switcher](../../includes/mobile-engagement-hero-tutorial-switcher.md)]
 
 此主題說明如何使用 Azure Mobile Engagement 了解您的應用程式使用狀況，以及傳送推播通知給以 Cordova 開發之行動應用程式的特定使用者。
@@ -41,10 +45,10 @@ ms.author: piyushjo
 > 
 > 
 
-## <a name="<a-id="setup-azme"></a>setup-mobile-engagement-for-your-cordova-app"></a><a id="setup-azme"></a>為您的 Cordova App 設定 Mobile Engagement
+## <a name="a-idsetupazmeasetup-mobile-engagement-for-your-cordova-app"></a><a id="setup-azme"></a>為您的 Cordova App 設定 Mobile Engagement
 [!INCLUDE [Create Mobile Engagement App in Portal](../../includes/mobile-engagement-create-app-in-portal-new.md)]
 
-## <a name="<a-id="connecting-app"></a>connecting-your-app-to-the-mobile-engagement-backend"></a><a id="connecting-app"></a>將您的應用程式連接至 Mobile Engagement 後端
+## <a name="a-idconnectingappaconnecting-your-app-to-the-mobile-engagement-backend"></a><a id="connecting-app"></a>將您的應用程式連接至 Mobile Engagement 後端
 本教學課程將說明「基本整合」，這是收集資料及傳送推播通知時必要的最低設定。 
 
 我們將會使用 Cordova 建立基本應用程式來示範整合：
@@ -64,13 +68,13 @@ ms.author: piyushjo
         $ cordova run android
 4. 新增 Cordova 主控台外掛程式。 
    
-       $ cordova plugin add cordova-plugin-console 
+    $ cordova plugin add cordova-plugin-console 
 
 ### <a name="connect-your-app-to-mobile-engagement-backend"></a>將您的應用程式連線至 Mobile Engagement 後端
 1. 安裝 Azure Mobile Engagement Cordova 外掛程式，同時提供變數值以設定外掛程式：
    
         cordova plugin add cordova-plugin-ms-azure-mobile-engagement    
-            --variable AZME_IOS_CONNECTION_STRING=<iOS Connection String> 
+             --variable AZME_IOS_CONNECTION_STRING=<iOS Connection String> 
             --variable AZME_IOS_REACH_ICON=... (icon name WITH extension) 
             --variable AZME_ANDROID_CONNECTION_STRING=<Android Connection String> 
             --variable AZME_ANDROID_REACH_ICON=... (icon name WITHOUT extension)       
@@ -83,7 +87,7 @@ ms.author: piyushjo
 
 *iOS 觸達圖示*：必須是具有副檔名的資源名稱 (例如：mynotificationicon.png)，而且必須將圖示檔新增到含有 XCode 的 iOS 專案 (使用 [新增檔案] 功能表)
 
-## <a name="<a-id="monitor"></a>enabling-real-time-monitoring"></a><a id="monitor"></a>啟用即時監視
+## <a name="a-idmonitoraenabling-realtime-monitoring"></a><a id="monitor"></a>啟用即時監視
 1. 在 Cordova 專案中，編輯 **www/js/index.js** ，將呼叫加入至 Mobile Engagement，以便在收到 *deviceReady* 事件之後宣告新活動。
    
          onDeviceReady: function() {
@@ -110,10 +114,10 @@ ms.author: piyushjo
         [Engagement] Connection: Sent: startSession
         [Engagement] Connection: Sent: activity name='myPage'
 
-## <a name="<a-id="monitor"></a>connect-app-with-real-time-monitoring"></a><a id="monitor"></a>將 App 與即時監視連接
+## <a name="a-idmonitoraconnect-app-with-realtime-monitoring"></a><a id="monitor"></a>將 App 與即時監視連接
 [!INCLUDE [Connect app with real-time monitoring](../../includes/mobile-engagement-connect-app-with-monitor.md)]
 
-## <a name="<a-id="integrate-push"></a>enabling-push-notifications-and-in-app-messaging"></a><a id="integrate-push"></a>啟用推播通知與應用程式內傳訊
+## <a name="a-idintegratepushaenabling-push-notifications-and-inapp-messaging"></a><a id="integrate-push"></a>啟用推播通知與應用程式內傳訊
 Mobile Engagement 可讓您使用「推播通知」和「應用程式內傳訊」，於活動進行時與使用者互動。 此模組在 Mobile Engagement 入口網站中稱為觸達 (REACH)。
 以下各節將設定您的應用程式來接收它們。
 
@@ -145,10 +149,10 @@ Mobile Engagement 可讓您使用「推播通知」和「應用程式內傳訊�
 
      onDeviceReady: function() {
            Engagement.initializeReach(  
-                // on OpenUrl  
-                function(_url) {   
-                alert(_url);   
-                });  
+                 // on OpenUrl  
+                 function(_url) {   
+                 alert(_url);   
+                 });  
             Engagement.startActivity("myPage",{});  
         }
 
@@ -165,7 +169,7 @@ Mobile Engagement 可讓您使用「推播通知」和「應用程式內傳訊�
 
     cordova run android
 
-## <a name="<a-id="send"></a>send-a-notification-to-your-app"></a><a id="send"></a>傳送通知至應用程式
+## <a name="a-idsendasend-a-notification-to-your-app"></a><a id="send"></a>傳送通知至應用程式
 現在，我們將建立簡單的推播通知行銷活動，它會傳送推播到裝置上執行中的應用程式：
 
 1. 瀏覽至您的 Mobile Engagement 入口網站中的 [觸達]  索引標籤
@@ -199,7 +203,7 @@ Mobile Engagement 可讓您使用「推播通知」和「應用程式內傳訊�
     ![][10]
 9. 您現在應該會在裝置或模擬器上看到推播通知，做為此行銷活動的一部分。 
 
-## <a name="<a-id="next-steps"></a>next-steps"></a><a id="next-steps"></a>後續步驟
+## <a name="a-idnextstepsanext-steps"></a><a id="next-steps"></a>後續步驟
 [可用於 Cordova Mobile Engagement SDK 之所有方法的概觀](https://github.com/Azure/azure-mobile-engagement-cordova)
 
 <!-- Images. -->
@@ -217,6 +221,6 @@ Mobile Engagement 可讓您使用「推播通知」和「應用程式內傳訊�
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: 搭配 .NET 使用服務匯流排主題 | Microsoft Docs
-description: 了解如何在 Azure 中搭配 .NET 使用服務匯流排主題及訂用帳戶。 程式碼範例專為 .NET 應用程式撰寫。
+title: "搭配 .NET 使用服務匯流排主題 | Microsoft Docs"
+description: "了解如何在 Azure 中搭配 .NET 使用服務匯流排主題及訂用帳戶。 程式碼範例專為 .NET 應用程式撰寫。"
 services: service-bus
 documentationcenter: .net
 author: sethmanheim
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 31d0bc29-6524-4b1b-9c7f-aa15d5a9d3b4
 ms.service: service-bus
 ms.workload: na
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: dotnet
 ms.topic: get-started-article
 ms.date: 09/16/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: b90d2b49807b39bb7a71315877a8e84550efc9cc
+
 
 ---
 # <a name="how-to-use-service-bus-topics-and-subscriptions"></a>如何使用服務匯流排主題和訂用帳戶
@@ -151,7 +155,7 @@ if (!namespaceManager.TopicExists("TestTopic"))
 > 
 > 
 
-### <a name="create-a-subscription-with-the-default-(matchall)-filter"></a>使用預設 (MatchAll) 篩選器建立訂用帳戶
+### <a name="create-a-subscription-with-the-default-matchall-filter"></a>使用預設 (MatchAll) 篩選器建立訂用帳戶
 如果在建立新的訂用帳戶時未指定篩選器，**MatchAll** 篩選器就會是預設使用的篩選器。 使用 **MatchAll** 篩選器時，所有發佈至主題的訊息都會被置於訂用帳戶的虛擬佇列中。 下列範例將建立名為 ‘AllMessages’ 的訂用帳戶，並使用預設的 **MatchAll** 篩選器。
 
 ```
@@ -170,7 +174,7 @@ if (!namespaceManager.SubscriptionExists("TestTopic", "AllMessages"))
 ### <a name="create-subscriptions-with-filters"></a>使用篩選器建立訂用帳戶
 您也可以設定篩選器，讓您指定傳送至主題的哪些訊息應出現在特定主題訂用帳戶中。
 
-訂用帳戶所支援的最具彈性篩選器類型是實作 SQL92 子集的 [SqlFilter][SqlFilter] 類別。 SQL 篩選器會對發佈至主題之訊息的屬性運作。 如需可與 SQL 篩選器搭配使用的運算式詳細資訊，請參閱 [SqlFilter.SqlExpression][SqlFilter.SqlExpression] 語法。
+訂用帳戶所支援的最具彈性篩選器類型是實作 SQL92 子集的 [SqlFilter][SqlFilter] 類別。 SQL 篩選器會對發佈至主題之訊息的屬性運作。 如需可與 SQL 篩選器搭配使用之運算式的詳細資訊，請參閱 [SqlFilter.SqlExpression][SqlFilter.SqlExpression] 語法。
 
 以下範例將建立名為 **HighMessages** 的訂用帳戶，其帶有只選取自訂 **MessageNumber** 屬性大於 3 之訊息的 [SqlFilter][SqlFilter] 物件。
 
@@ -303,17 +307,17 @@ namespaceManager.DeleteSubscription("TestTopic", "HighMessages");
 ## <a name="next-steps"></a>後續步驟
 了解基本的服務匯流排主題和訂用帳戶之後，請參考下列連結以取得更多資訊。
 
-* [佇列、主題和訂用帳戶][佇列、主題和訂用帳戶]。
+* [佇列、主題和訂閱][佇列、主題和訂閱]。
 * [主題篩選器範例][主題篩選器範例]
 * [SqlFilter][SqlFilter] 的 API 參考資料。
 * 建立一個可行的應用程式，往返傳送或接收服務匯流排佇列的訊息：[服務匯流排代理傳訊 .NET 教學課程][服務匯流排代理傳訊 .NET 教學課程]。
-* 服務匯流排範例：從 [Azure 範例][Azure 範例]下載，或參閱[概觀](../service-bus/service-bus-samples.md)。
+* 服務匯流排範例：從 [Azure 範例]下載[Azure 範例]，或參閱[概觀](service-bus-samples.md)。
 
 [Azure 入口網站]: https://portal.azure.com
 
 [7]: ./media/service-bus-dotnet-how-to-use-topics-subscriptions/getting-started-multi-tier-13.png
 
-[佇列、主題和訂用帳戶]: service-bus-queues-topics-subscriptions.md
+[佇列、主題和訂閱]: service-bus-queues-topics-subscriptions.md
 [主題篩選器範例]: https://github.com/Azure-Samples/azure-servicebus-messaging-samples/tree/master/TopicFilters
 [SqlFilter]: http://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.sqlfilter.aspx
 [SqlFilter.SqlExpression]: https://msdn.microsoft.com/library/azure/microsoft.servicebus.messaging.sqlfilter.sqlexpression.aspx
@@ -322,6 +326,6 @@ namespaceManager.DeleteSubscription("TestTopic", "HighMessages");
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

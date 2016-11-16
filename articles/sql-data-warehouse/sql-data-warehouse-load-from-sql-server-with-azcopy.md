@@ -1,12 +1,12 @@
 ---
-title: Load data from SQL Server into Azure SQL Data Warehouse (PolyBase) | Microsoft Docs
-description: Uses bcp to export data from SQL Server to flat files, AZCopy to import data to Azure blob storage, and PolyBase to ingest the data into Azure SQL Data Warehouse.
+title: "將資料從 SQL Server 載入 Azure SQL 資料倉儲 (PolyBase) | Microsoft Docs"
+description: "使用 bcp 將資料從 SQL Server 匯出到一般檔案、使用 AZCopy 將資料匯入至 Azure Blob 儲存體，以及使用 PolyBase 將資料擷取到 Azure SQL 資料倉儲中。"
 services: sql-data-warehouse
 documentationcenter: NA
 author: ckarst
 manager: barbkess
-editor: ''
-
+editor: 
+ms.assetid: 4d42786a-fb28-43c9-9c3b-72d19c0ecc11
 ms.service: sql-data-warehouse
 ms.devlang: NA
 ms.topic: get-started-article
@@ -14,28 +14,32 @@ ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: cakarst;barbkess
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: f3a4ad30d1aa0ec273b6b875b0d2d037005ac159
+
 
 ---
-# <a name="load-data-from-sql-server-into-azure-sql-data-warehouse-azcopy"></a>Load data from SQL Server into Azure SQL Data Warehouse (AZCopy)
-Use bcp and AZCopy command-line utilities to load data from SQL Server to Azure blob storage. Then use PolyBase or Azure Data Factory to load the data into Azure SQL Data Warehouse. 
+# <a name="load-data-from-sql-server-into-azure-sql-data-warehouse-azcopy"></a>將資料從 SQL Server 載入 Azure SQL 資料倉儲 (AZCopy)
+使用 bcp 和 AZCopy 命令列公用程式，將資料從 SQL Server 載入至 Azure Blob 儲存體。 然後使用 PolyBase 或 Azure Data Factory 將資料載入 Azure SQL 資料倉儲中。 
 
-## <a name="prerequisites"></a>Prerequisites
-To step through this tutorial, you need:
+## <a name="prerequisites"></a>必要條件
+若要逐步執行本教學課程，您需要：
 
-* A SQL Data Warehouse database
-* The bcp command line utility installed
-* The SQLCMD command line utility installed
+* SQL 資料倉儲資料庫
+* 已安裝的 bcp 命令列公用程式
+* 已安裝的 SQLCMD 命令列公用程式
 
 > [!NOTE]
-> You can download the bcp and sqlcmd utilities from the [Microsoft Download Center][Microsoft Download Center].
+> 您可以從 [Microsoft 下載中心][Microsoft 下載中心]下載 bcp 和 sqlcmd 公用程式。
 > 
 > 
 
-## <a name="import-data-into-sql-data-warehouse"></a>Import data into SQL Data Warehouse
-In this tutorial, you will create a table in Azure SQL Data Warehouse and import data into the table.
+## <a name="import-data-into-sql-data-warehouse"></a>將資料匯入 SQL 資料倉儲
+在本教學課程中，您將在 Azure SQL 資料倉儲中建立資料表，並將資料匯入資料表。
 
-### <a name="step-1-create-a-table-in-azure-sql-data-warehouse"></a>Step 1: Create a table in Azure SQL Data Warehouse
-From a command prompt, use sqlcmd to run the following query to create a table on your instance:
+### <a name="step-1-create-a-table-in-azure-sql-data-warehouse"></a>步驟 1：在 Azure SQL 資料倉儲中建立資料表
+從命令提示字元，使用 sqlcmd 執行下列查詢，以在您的執行個體上建立資料表︰
 
 ```sql
 sqlcmd.exe -S <server name> -d <database name> -U <username> -P <password> -I -Q "
@@ -54,12 +58,12 @@ sqlcmd.exe -S <server name> -d <database name> -U <username> -P <password> -I -Q
 ```
 
 > [!NOTE]
-> See [Table Overview][Table Overview] or [CREATE TABLE syntax][CREATE TABLE syntax] for more information about creating a table on SQL Data Warehouse and the  options available in the WITH clause.
+> 如需有關在 SQL 資料倉儲上建立資料表和 WITH 子句中可用選項的詳細資訊，請參閱[資料表概觀][資料表概觀]或 [CREATE TABLE 語法][CREATE TABLE 語法]。
 > 
 > 
 
-### <a name="step-2-create-a-source-data-file"></a>Step 2: Create a source data file
-Open Notepad and copy the following lines of data into a new text file and then save this file to your local temp directory, C:\Temp\DimDate2.txt.
+### <a name="step-2-create-a-source-data-file"></a>步驟 2：建立來源資料檔
+開啟 [記事本]，將下列幾行資料複製到新的文字檔，然後將此檔案儲存到本機暫存目錄 C:\Temp\DimDate2.txt。
 
 ```
 20150301,1,3
@@ -77,24 +81,24 @@ Open Notepad and copy the following lines of data into a new text file and then 
 ```
 
 > [!NOTE]
-> It is important to remember that bcp.exe does not support the UTF-8 file encoding. Please use ASCII files or UTF-16 encoded files when using bcp.exe.
+> 請務必記得 bcp.exe 不支援 UTF-8 檔案編碼。 使用 bcp.exe 時，請使用 ASCII 檔案或 UTF-16 編碼的檔案。
 > 
 > 
 
-### <a name="step-3-connect-and-import-the-data"></a>Step 3: Connect and import the data
-Using bcp, you can connect and import the data using the following command replacing the values as appropriate:
+### <a name="step-3-connect-and-import-the-data"></a>步驟 3：連接並匯入資料
+在 bcp 中，您可以使用下列命令來連接並匯入資料 (請適當地取代其中的值)：
 
 ```sql
 bcp DimDate2 in C:\Temp\DimDate2.txt -S <Server Name> -d <Database Name> -U <Username> -P <password> -q -c -t  ','
 ```
 
-You can verify the data was loaded by running the following query using sqlcmd:
+您可以使用 sqlcmd 執行下列查詢以確認資料已載入︰
 
 ```sql
 sqlcmd.exe -S <server name> -d <database name> -U <username> -P <password> -I -Q "SELECT * FROM DimDate2 ORDER BY 1;"
 ```
 
-This should return the following results:
+這應該會傳回下列結果：
 
 | DateId | CalendarQuarter | FiscalQuarter |
 | --- | --- | --- |
@@ -111,10 +115,10 @@ This should return the following results:
 | 20151101 |4 |2 |
 | 20151201 |4 |2 |
 
-### <a name="step-4-create-statistics-on-your-newly-loaded-data"></a>Step 4: Create Statistics on your newly loaded data
-Azure SQL Data Warehouse does not yet support auto create or auto update statistics. In order to get the best performance from your queries, it's important that statistics be created on all columns of all tables after the first load or any substantial changes occur in the data. For a detailed explanation of statistics, see the [Statistics][Statistics] topic in the Develop group of topics. Below is a quick example of how to create statistics on the tabled loaded in this example
+### <a name="step-4-create-statistics-on-your-newly-loaded-data"></a>步驟 4：建立新載入資料的統計資料
+Azure 資料倉儲尚未支援自動建立或自動更新統計資料。 為了獲得查詢的最佳效能，在首次載入資料，或是資料中發生重大變更之後，建立所有資料表的所有資料行統計資料非常重要。 如需統計資料的詳細說明，請參閱「開發」主題群組中的「[統計資料][統計資料]」主題。 以下是快速範例，說明如何在此範例中建立載入資料表的統計資料
 
-Execute the following CREATE STATISTICS statements from a sqlcmd prompt:
+在 sqlcmd 提示字元中執行下列 CREATE STATISTICS 陳述式：
 
 ```sql
 sqlcmd.exe -S <server name> -d <database name> -U <username> -P <password> -I -Q "
@@ -124,16 +128,16 @@ sqlcmd.exe -S <server name> -d <database name> -U <username> -P <password> -I -Q
 "
 ```
 
-## <a name="export-data-from-sql-data-warehouse"></a>Export data from SQL Data Warehouse
-In this tutorial, you will create a data file from a table in SQL Data Warehouse. We will export the data we created above to a new data file called DimDate2_export.txt.
+## <a name="export-data-from-sql-data-warehouse"></a>從 SQL 資料倉儲匯出資料
+在本教學課程中，您將從 Azure SQL 資料倉儲中的資料表建立資料檔案。 我們會將上面建立的資料匯出至新的資料檔案，稱為 DimDate2_export.txt。
 
-### <a name="step-1-export-the-data"></a>Step 1: Export the data
-Using the bcp utility, you can connect and export data using the following command replacing the values as appropriate:
+### <a name="step-1-export-the-data"></a>步驟 1：匯出資料
+在 bcp 公用程式中，您可以使用下列命令來連接並匯出資料 (請適當地取代其中的值)：
 
 ```sql
 bcp DimDate2 out C:\Temp\DimDate2_export.txt -S <Server Name> -d <Database Name> -U <Username> -P <password> -q -c -t ','
 ```
-You can verify the data was exported correctly by opening the new file. The data in the file should match the text below:
+您可以開啟新的檔案來確認資料已正確匯出。 檔案中的資料應該符合以下文字：
 
 ```
 20150301,1,3
@@ -151,32 +155,32 @@ You can verify the data was exported correctly by opening the new file. The data
 ```
 
 > [!NOTE]
-> Due to the nature of distributed systems, the data order may not be the same across SQL Data Warehouse databases. Another option is to use the **queryout** function of bcp to write a query extract rather than export the entire table.
+> 由於分散式系統的本質，資料順序在不同 SQL 資料倉儲資料庫中可能不相同。 另一個選項是使用 bcp 的 **queryout** 函式來撰寫查詢擷取，而不是匯出整個資料表。
 > 
 > 
 
-## <a name="next-steps"></a>Next steps
-For an overview of loading, see [Load data into SQL Data Warehouse][Load data into SQL Data Warehouse].
-For more development tips, see [SQL Data Warehouse development overview][SQL Data Warehouse development overview].
+## <a name="next-steps"></a>後續步驟
+如需載入的概觀，請參閱[將資料載入 SQL 資料倉儲][將資料載入 SQL 資料倉儲]。
+如需更多開發秘訣，請參閱 [SQL 資料倉儲開發概觀][SQL 資料倉儲開發概觀]。
 
 <!--Image references-->
 
 <!--Article references-->
 
-[Load data into SQL Data Warehouse]: ./sql-data-warehouse-overview-load.md
-[SQL Data Warehouse development overview]: ./sql-data-warehouse-overview-develop.md
-[Table Overview]: ./sql-data-warehouse-tables-overview.md
-[Statistics]: ./sql-data-warehouse-tables-statistics.md
+[將資料載入 SQL 資料倉儲]: ./sql-data-warehouse-overview-load.md
+[SQL 資料倉儲開發概觀]: ./sql-data-warehouse-overview-develop.md
+[資料表概觀]: ./sql-data-warehouse-tables-overview.md
+[統計資料]: ./sql-data-warehouse-tables-statistics.md
 
 <!--MSDN references-->
 [bcp]: https://msdn.microsoft.com/library/ms162802.aspx
-[CREATE TABLE syntax]: https://msdn.microsoft.com/library/mt203953.aspx
+[CREATE TABLE 語法]: https://msdn.microsoft.com/library/mt203953.aspx
 
 <!--Other Web references-->
-[Microsoft Download Center]: https://www.microsoft.com/download/details.aspx?id=36433
+[Microsoft 下載中心]: https://www.microsoft.com/download/details.aspx?id=36433
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

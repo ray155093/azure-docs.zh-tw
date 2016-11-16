@@ -1,12 +1,12 @@
 ---
-title: Resource Manager Template Walkthrough | Microsoft Docs
-description: A step by step walkthrough of a resource manager template provisioning a basic Azure IaaS architecture.
+title: "Resource Manager 範本逐步解說 | Microsoft Docs"
+description: "佈建基本 Azure IaaS 架構的 Resource Manager 範本逐步解說。"
 services: azure-resource-manager
 documentationcenter: na
 author: navalev
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: f1cfd704-f6e1-47d5-8094-b439c279c13f
 ms.service: azure-resource-manager
 ms.devlang: na
 ms.topic: get-started-article
@@ -14,32 +14,36 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/04/2016
 ms.author: navale;tomfitz
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 8dcfe27b87cd76ea7b8f75c3c36f0115131eb6ae
+
 
 ---
-# <a name="resource-manager-template-walkthrough"></a>Resource Manager template walkthrough
-One of the first questions when creating a template is "how to start?". One can start from a blank template, following the basic structure described in [Authoring Template article](resource-group-authoring-templates.md#template-format), and add the resources and appropriate parameters and variables. A good alternative would be to start by going through the [quickstart gallery](https://github.com/Azure/azure-quickstart-templates) and look for similar scenarios to the one you are trying to create. You can merge several templates or edit an existing one to suit your own specific scenario. 
+# <a name="resource-manager-template-walkthrough"></a>Resource Manager 範本逐步解說
+建立範本時的第一個問題是「如何開始？」。 您可以從空白範本著手，遵循[撰寫範本](resource-group-authoring-templates.md#template-format)一文中所述的基本結構，並新增資源和適當的參數和變數。 理想的替代方法會是從瀏覽[快速入門資源庫](https://github.com/Azure/azure-quickstart-templates)著手，並尋找類似您嘗試建立的案例。 您可以合併數個範本或編輯現有的範本，以符合您自己的特定案例。 
 
-Let's take a look at a common infrastructure:
+讓我們來看一下常見基礎結構：
 
-* Two virtual machines that use the same storage account, are in the same availability set, and on the same subnet of a virtual network.
-* A single NIC and VM IP address for each virtual machine.
-* A load balancer with a load balancing rule on port 80
+* 兩部虛擬機器，它們使用相同的儲存體帳戶、位於相同的可用性設定組中，且位於同一個虛擬網路的子網路上。
+* 適用於每部虛擬機器的單一 NIC 和 VM IP 位址。
+* 連接埠 80 上具有負載平衡規則的負載平衡器
 
-![architecture](./media/resource-group-overview/arm_arch.png)
+![架構](./media/resource-group-overview/arm_arch.png)
 
-This topic walks you through the steps of creating a Resource Manager template for that infrastructure. The final template you create is based on a Quickstart template called [2 VMs in a Load Balancer and load balancing rules](https://azure.microsoft.com/documentation/templates/201-2-vms-loadbalancer-lbrules/).
+本主題將逐步引導您完成針對該基礎結構建立 Resource Manager 範本的步驟。 您建立的最後一個範本是以名為 [負載平衡器和負載平衡規則中的 2 部 VM](https://azure.microsoft.com/documentation/templates/201-2-vms-loadbalancer-lbrules/)的「快速入門」範本為基礎。
 
-But, that's a lot to build all at once, so let's first create a storage account and deploy it. After you have mastered creating the storage account, you will add the other resources and re-deploy the template to complete the infrastructure.
+但是，一次要建置很多項目，讓我們先建立儲存體帳戶並加以部署。 在您已熟悉如何建立儲存體帳戶之後，您將新增其他資源並重新部署範本來完成基礎結構。
 
 > [!NOTE]
-> You can use any type of editor when creating the template. Visual Studio provides tools that simplify template development, but you do not need Visual Studio to complete this tutorial. For a tutorial on using Visual Studio to create a Web App and SQL Database deployment, see [Creating and deploying Azure resource groups through Visual Studio](vs-azure-tools-resource-groups-deployment-projects-create-deploy.md). 
+> 您可以在建立範本時，使用任何類型的編輯器。 Visual Studio 提供了可簡化範本開發的工具，但您不需要 Visual Studio 即可完成本教學課程。 如需有關使用 Visual Studio 建立 Web 應用程式和 SQL Database 部署的教學課程，請參閱 [透過 Visual Studio 建立和部署 Azure 資源群組](vs-azure-tools-resource-groups-deployment-projects-create-deploy.md)。 
 > 
 > 
 
-## <a name="create-the-resource-manager-template"></a>Create the Resource Manager template
-The template is a JSON file that defines all of the resources you will deploy. It also permits you to define parameters that are specified during deployment, variables that constructed from other values and expressions, and outputs from the deployment. 
+## <a name="create-the-resource-manager-template"></a>建立 Resource Manager 範本
+此範本是 JSON 檔案，可定義您將部署的所有資源。 此外，還允許您定義在部署期間指定的參數、從其他值和運算式建構而來的變數，以及部署的輸出。 
 
-Let's start with the simplest template:
+我們從最簡單的範本開始討論：
 
 ```json
     {
@@ -52,10 +56,10 @@ Let's start with the simplest template:
     }
  ```
 
-Save this file as **azuredeploy.json** (note that the template can have any name you want, just that it must be a json file).
+將此檔案儲存為 **azuredeploy.json** (請注意，範本可以有任何您想要的名稱，只是它必須是 json 檔案)。
 
-## <a name="create-a-storage-account"></a>Create a storage account
-Within the **resources** section, add an object that defines the storage account, as shown below. 
+## <a name="create-a-storage-account"></a>建立儲存體帳戶
+在 **resources** 區段內，新增可定義儲存體帳戶的物件，如下所示。 
 
 ```json
 "resources": [
@@ -71,11 +75,11 @@ Within the **resources** section, add an object that defines the storage account
 ]
 ```
 
-You may be wondering where these properties and values come from. The properties **type**, **name**, **apiVersion**, and **location** are standard elements that are available for all resource types. You can learn about the common elements at [Resources](resource-group-authoring-templates.md#resources). **name** is set to a parameter value that you pass in during deployment and **location** as the location used by the resource group. We'll look at how you determine **type** and **apiVersion** in the sections below.
+您可能想知道這些屬性和值來自何處。 **type**、**name**、**apiVersion** 和 **location** 屬性都是可供所有資源類型使用的標準元素。 您可以在 [資源](resource-group-authoring-templates.md#resources)了解通用元素。 [name] 會設為您在部署期間傳入的參數值，而 [location] 會設為資源群組所使用的位置。 我們將在下面各節探討如何決定 [type] 和 [apiVersion] 。
 
-The **properties** section contains all of the properties that are unique to a particular resource type. The values you specify in this section exactly match the PUT operation in the REST API for creating that resource type. When creating a storage account, you must provide an **accountType**. Notice in the [REST API for creating a Storage account](https://msdn.microsoft.com/library/azure/mt163564.aspx) that the properties section of the REST operation also contains an **accountType** property, and the permitted values are documented. In this example, the account type is set to **Standard_LRS**, but you could specify some other value or permit users to pass in the account type as a parameter.
+**properties** 區段包含特定資源類型獨有的所有屬性。 您在此區段中指定的值完全符合 REST API 中可供建立該資源類型的 PUT 作業。 建立儲存體帳戶時，您必須提供 **accountType**。 請注意，在 [可供建立儲存體帳戶的 REST API](https://msdn.microsoft.com/library/azure/mt163564.aspx) 中，REST 作業的 properties 區段也包含 **accountType** 屬性，而且會記載允許的值。 在此範例中，帳戶類型會設定為 **Standard_LRS**，但您可以指定其他值或允許使用者傳入帳戶類型做為參數。
 
-Now let's jump back to the **parameters** section, and see how you define the name of the storage account. You can learn more about the use of parameters at [Parameters](resource-group-authoring-templates.md#parameters). 
+現在讓我們跳回 **parameters** 區段，並查看如何定義儲存體帳戶的名稱。 您可以在 [參數](resource-group-authoring-templates.md#parameters)深入了解如何使用參數。 
 
 ```json
 "parameters" : {
@@ -87,10 +91,10 @@ Now let's jump back to the **parameters** section, and see how you define the na
     }
 }
 ```
-Here you defined a parameter of type string that will hold the name of the storage account. The value for this parameter will be provided during template deployment.
+您會在這裡定義字串類型的參數，以保留儲存體帳戶的名稱。 在範本部署期間，將會提供這個參數的值。
 
-## <a name="deploying-the-template"></a>Deploying the template
-We have a full template for creating a new storage account. As you recall, the template was saved in  **azuredeploy.json** file:
+## <a name="deploying-the-template"></a>部署範本
+我們有可供建立新儲存體帳戶的完整範本。 您應該還記得，範本會儲存在 **azuredeploy.json** 檔案中︰
 
 ```json
 {
@@ -118,30 +122,31 @@ We have a full template for creating a new storage account. As you recall, the t
 }
 ```
 
-There are quite a few ways to deploy a template, as you can see in the [Resource Deployment article](resource-group-template-deploy.md). To deploy the template using Azure PowerShell, use:
+如您在 [資源部署](resource-group-template-deploy.md)一文所見，有很多方式可部署範本。 若要使用 Azure PowerShell 部署範本，請使用：
 
 ```powershell
 # create a new resource group
 New-AzureRmResourceGroup -Name ExampleResourceGroup -Location "West Europe"
 
 # deploy the template to the resource group
-New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName ExampleResourceGroup -TemplateFile azuredeploy.json
+New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName ExampleResourceGroup `
+  -TemplateFile azuredeploy.json
 ```
 
-Or, to deploy the template using Azure CLI, use:
+弱者，若要使用 Azure CLI 部署範本，請使用：
 
-```
+```azurecli
 azure group create -n ExampleResourceGroup -l "West Europe"
 
 azure group deployment create -f azuredeploy.json -g ExampleResourceGroup -n ExampleDeployment
 ```
 
-You are now the proud owner of a storage account!
+您現在已是儲存體帳戶的擁有者！
 
-The next steps will be to add all the resources required to deploy the architecture described in the start of this tutorial. You will add these resources in the same template you have been working on.
+後續步驟將會新增部署本教學課程開頭所述架構所需的全部資源。 您會在您一直使用的相同範本中新增這些資源。
 
-## <a name="availability-set"></a>Availability Set
-After the definition for the storage account, add an availably set for the virtual machines. In this case, there are no additional properties required, so its definition is fairly simple. See the [REST API for creating an Availability Set](https://msdn.microsoft.com/library/azure/mt163607.aspx) for the full properties section, in case you want to define the update domain count and fault domain count values.
+## <a name="availability-set"></a>可用性設定組
+在儲存體帳戶的定義之後，加入虛擬機器的可用性設定組。 在此情況下，不需要其他屬性，因此其定義相當簡單。 如果您想要定義更新網域計數和容錯網域計數值，請參閱 [可供建立可用性設定組的 REST API](https://msdn.microsoft.com/library/azure/mt163607.aspx) 中的完整 properties 區段。
 
 ```json
 {
@@ -153,41 +158,41 @@ After the definition for the storage account, add an availably set for the virtu
 }
 ```
 
-Notice that the **name** is set to the value of a variable. For this template, the name of the availability set is needed in a few different places. You can more easily maintain your template by defining that value once and using it in multiple places.
+請注意，[name]  已設為某個變數的值。 在此範本中，在幾個不同的地方需要可用性設定組的名稱。 定義該值一次並在多個位置使用它，即可更加輕鬆地維護您的範本。
 
-The value you specify for **type** contains both the resource provider and the resource type. For availability sets, the resource provider is **Microsoft.Compute** and the resource type is **availabilitySets**. You can get the list of available resource providers by running the following PowerShell command:
+您為 [type] 指定的值同時包含資源提供者和資源類型。 在可用性設定組中，資源提供者為 **Microsoft.Compute**，而資源類型為 **availabilitySets**。 執行下列 PowerShell 命令，即可取得可用的資源提供者清單：
 
 ```powershell
     Get-AzureRmResourceProvider -ListAvailable
 ```
 
-Or, if you are using Azure CLI, you can run the following command:
+或者，如果您使用 Azure CLI，可以執行下列命令：
 
-```
+```azurecli
     azure provider list
 ```
-Given that in this topic you are creating with storage accounts, virtual machines, and virtual networking, you will work with:
+在本主題中，假設您要建立儲存體帳戶、虛擬機器和虛擬網路，您將使用︰
 
 * Microsoft.Storage
 * Microsoft.Compute
 * Microsoft.Network
 
-To see the resource types for a particular provider, run the following PowerShell command:
+若要查看特定提供者的資源類型，請執行下列 PowerShell 命令︰
 
 ```powershell
     (Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Compute).ResourceTypes
 ```
 
-Or, for Azure CLI, the following command will return the available types in JSON format and save it to a file.
+或者，在 Azure CLI 中，下列命令將以 JSON 格式傳回可用的類型，並將它儲存到檔案。
 
-```
+```azurecli
     azure provider show Microsoft.Compute --json > c:\temp.json
 ```
 
-You should see **availabilitySets** as one of the types within **Microsoft.Compute**. The full name of the type is **Microsoft.Compute/availabilitySets**. You can determine the resource type name for any of the resources in you template.
+您應會看到 **availabilitySets** 成為 **Microsoft.Compute** 內的其中一個類型。 類型的完整名稱為 **Microsoft.Compute/availabilitySets**。 您可以在範本中決定任何資源的資源類型名稱。
 
-## <a name="public-ip"></a>Public IP
-Define a public IP address. Again, look at the [REST API for public IP addresses](https://msdn.microsoft.com/library/azure/mt163590.aspx) for the properties to set.
+## <a name="public-ip"></a>公用 IP
+定義公用 IP 位址。 同樣地，查看 [公用 IP 位址的 REST API](https://msdn.microsoft.com/library/azure/mt163590.aspx) 中要設定的屬性。
 
 ```json
 {
@@ -204,25 +209,25 @@ Define a public IP address. Again, look at the [REST API for public IP addresses
 }
 ```
 
-The allocation method is set to **Dynamic** but you could set it to the value you need or set it to accept a parameter value. You have enabled users of your template to pass in a value for the domain name label.
+配置方法會設為 [動態]  ，但您可以將它設定為您需要的值或將它設定成接受參數值。 您已讓範本的使用者能夠傳入網域名稱標籤的值。
 
-Now, let's look at how you determine the **apiVersion**. The value you specify simply matches the version of the REST API that you want to use when creating the resource. So, you can look at the REST API documentation for that resource type. Or, you can run the following PowerShell command for a particular type.
+現在，讓我們看看如何決定 **apiVersion**。 您指定的值僅符合您在建立資源時所要使用的 REST API 版本。 因此，您可以查看該資源類型的 REST API 文件。 或者，您可以對特定類型執行下列 PowerShell 命令。
 
 ```powershell
     ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Network).ResourceTypes | Where-Object ResourceTypeName -eq publicIPAddresses).ApiVersions
 ```
-Which returns the following values:
+它會傳回下列值︰
 
     2015-06-15
     2015-05-01-preview
     2014-12-01-preview
 
-To see the API versions with Azure CLI, run the same **azure provider show** command shown previously.
+若要查看使用 Azure CLI 的 API 版本，請執行先前所示的相同 **azure provider show** 命令。
 
-When creating a new template, pick the most recent API version.
+建立新範本時，請挑選最新的 API 版本。
 
-## <a name="virtual-network-and-subnet"></a>Virtual network and subnet
-Create a virtual network with one subnet. Look at the [REST API for virtual networks](https://msdn.microsoft.com/library/azure/mt163661.aspx) for all the properties to set.
+## <a name="virtual-network-and-subnet"></a>虛擬網路和子網路
+建立具有一個子網路的虛擬網路。 查看 [虛擬網路的 REST API](https://msdn.microsoft.com/library/azure/mt163661.aspx) 中要設定的所有屬性。
 
 ```json
 {
@@ -248,10 +253,10 @@ Create a virtual network with one subnet. Look at the [REST API for virtual netw
 }
 ```
 
-## <a name="load-balancer"></a>Load balancer
-Now you will create an external facing load balancer. Because this load balancer uses the public IP address, you must declare a dependency on the public IP address in the **dependsOn** section. This means the load balancer will not get deployed until the public IP address has finished deploying. Without defining this dependency, you will receive an error because Resource Manager will attempt to deploy the resources in parallel, and will try to set the load balancer to public IP address that doesn't exist yet. 
+## <a name="load-balancer"></a>負載平衡器
+您現在將建立一個外部面向的負載平衡器。 因為此負載平衡器使用公用 IP 位址，所以您必須在 **dependsOn** 區段中宣告公用 IP 位址的相依性。 這表示在公用 IP 位址完成部署後，才會部署負載平衡器。 若未定義此相依性，您會收到錯誤，因為 Resource Manager 會嘗試以平行方式部署資源，而且會嘗試將負載平衡器設定為尚未存在的公用 IP 位址。 
 
-You will also create a backend address pool, a couple of inbound NAT rules to RDP into the VMs, and a load balancing rule with a tcp probe on port 80 in this resource definition. Checkout the [REST API for load balancer](https://msdn.microsoft.com/library/azure/mt163574.aspx) for all the properties.
+您也會在此資源定義中建立後端位址集區、一些要 RDP 到 VM 中的輸入 NAT 規則，以及一個負載平衡規則 (連接埠 80 上的 TCP 探查)。 查看 [負載平衡器的 REST API](https://msdn.microsoft.com/library/azure/mt163574.aspx) 中的所有屬性。
 
 ```json
 {
@@ -340,9 +345,9 @@ You will also create a backend address pool, a couple of inbound NAT rules to RD
 }
 ```
 
-## <a name="network-interface"></a>Network interface
-You will create 2 network interfaces, one for each VM. Rather than having to include duplicate entries for the network interfaces, you can use the [copyIndex() function](resource-group-create-multiple.md) to iterate over the copy loop (referred to as nicLoop) and create the number network interfaces as defined in the `numberOfInstances` variables. The network interface depends on creation of the virtual network and the load balancer. It uses the subnet defined in the virtual network creation, and the load balancer id to configure the load balancer address pool and the inbound NAT rules.
-Look at the [REST API for network interfaces](https://msdn.microsoft.com/library/azure/mt163668.aspx) for all the properties.
+## <a name="network-interface"></a>網路介面
+您將建立 2 個網路介面，每個 VM 各用一個。 您可以使用 [copyIndex() 函式](resource-group-create-multiple.md)來反覆運算複製迴圈 (稱為 nicLoop)，並建立如 `numberOfInstances` 變數中定義的網路介面個數，而不必包含重複的網路介面項目。 網路介面取決於虛擬網路和負載平衡器的建立。 它會使用建立虛擬網路時所定義的子網路，以及負載平衡器識別碼來設定負載平衡器位址集區和輸入 NAT 規則。
+看看 [網路介面的 REST API](https://msdn.microsoft.com/library/azure/mt163668.aspx) 中的所有屬性。
 
 ```json
 {
@@ -384,11 +389,11 @@ Look at the [REST API for network interfaces](https://msdn.microsoft.com/library
 }
 ```
 
-## <a name="virtual-machine"></a>Virtual machine
-You will create 2 virtual machines, using copyIndex() function, as you did in creation of the [network interfaces](#network-interface).
-The VM creation depends on the storage account, network interface and availability set. This VM will be created from a marketplace image, as defined in the `storageProfile` property - `imageReference` is used to define the image publisher, offer, sku and version. Finally, a diagnostic profile is configured to enable diagnostics for the VM. 
+## <a name="virtual-machine"></a>虛擬機器
+如同在建立 [網路介面](#network-interface)時一樣，您將使用 copyIndex() 函數建立 2 部虛擬機器。
+VM 的建立取決於儲存體帳戶、網路介面和可用性設定組。 如 `storageProfile` 屬性所定義，將從 Marketplace 映像建立此 VM - `imageReference` 用來定義映像發行者、優惠、sku 和版本。 最後，診斷設定檔已設定成啟用 VM 的診斷功能。 
 
-To find the relevant properties for a marketplace image, follow the [select Linux virtual machine images](virtual-machines/virtual-machines-linux-cli-ps-findimage.md) or [select Windows virtual machine images](virtual-machines/virtual-machines-windows-cli-ps-findimage.md) articles.
+若要尋找 Marketplace 映像的相關屬性，請依照[選取 Linux 虛擬機器映像](virtual-machines/virtual-machines-linux-cli-ps-findimage.md)或[選取 Windows 虛擬機器映像](virtual-machines/virtual-machines-windows-cli-ps-findimage.md)文章執行。
 
 ```json
 {
@@ -450,14 +455,14 @@ To find the relevant properties for a marketplace image, follow the [select Linu
 ```
 
 > [!NOTE]
-> For images published by **3rd party vendors**, you will need to specify another property named `plan`. An example can be found in [this template](https://github.com/Azure/azure-quickstart-templates/tree/master/checkpoint-single-nic) from the quickstart gallery. 
+> 對於**第三方廠商**所提供的映像，您必須指定另一個名為 `plan` 的屬性。 從快速入門資源庫的 [此範本](https://github.com/Azure/azure-quickstart-templates/tree/master/checkpoint-single-nic) 中可找到範例。 
 > 
 > 
 
-You have finished defining the resources for your template.
+您已定義好範本的資源。
 
-## <a name="parameters"></a>Parameters
-In the parameters section, define the values that can be specified when deploying the template. Only define parameters for values that you think should be varied during deployment. You can provide a default value for a parameter that is used if one is not provided during deployment. You can also define the allowed values as shown for the **imageSKU** parameter.
+## <a name="parameters"></a>parameters
+在 parameters 區段中，定義可在部署範本時指定的值。 只針對您認為應在部署期間變動的值，定義參數。 如果部署期間並未提供預設值，您可以為所用的參數提供預設值。 如 **imageSKU** 參數所示，您也可以定義允許的值。
 
 ```json
 "parameters": {
@@ -556,8 +561,8 @@ In the parameters section, define the values that can be specified when deployin
   }
 ```
 
-## <a name="variables"></a>Variables
-In the variables section, you can define values that are used in more than one place in your template, or values that are constructed from other expressions or variables. Variables are frequently used to simplify the syntax of your template.
+## <a name="variables"></a>變數
+在 variables 區段中，您可以定義在範本中多處使用的值，或從其他運算式或變數建構的值。 變數經常用來簡化範本的語法。
 
 ```json
 "variables": {
@@ -574,15 +579,19 @@ In the variables section, you can define values that are used in more than one p
   }
 ```
 
-You have completed the template! You can compare your template against the full template in the [quickstart gallery](https://github.com/Azure/azure-quickstart-templates) under [2 VMs with load balancer and load balancer rules template](https://github.com/Azure/azure-quickstart-templates/tree/master/201-2-vms-loadbalancer-lbrules). Your template might be slightly different based on using different version numbers. 
+您已完成此範本！ 您可以比較您的範本與[具有負載平衡器和負載平衡器規則範本的 2 部 VM](https://github.com/Azure/azure-quickstart-templates/tree/master/201-2-vms-loadbalancer-lbrules) 之下[快速入門資源庫](https://github.com/Azure/azure-quickstart-templates)中的完整範本。 根據使用的版本號碼不同，您的範本可能會稍有不同。 
 
-You can re-deploy the template by using the same commands you used when deploying the storage account. You do not need to delete the storage account before re-deploying because Resource Manager will skip re-creating resources that already exist and have not changed.
+您可以使用在部署儲存體帳戶時所用的相同命令，重新部署範本。 在重新部署前，您不需要刪除儲存體帳戶，因為 Resource Manager 會略過重建已經存在且未變更的資源。
 
-## <a name="next-steps"></a>Next steps
-* [Azure Resource Manager Template Visualizer (ARMViz)](http://armviz.io/#/) is a great tool to visualize ARM templates, as they might become too large to understand just from reading the json file.
-* To learn more about the structure of a template, see [Authoring Azure Resource Manager templates](resource-group-authoring-templates.md).
-* To learn about deploying a template, see [Deploy a Resource Group with Azure Resource Manager template](resource-group-template-deploy.md)
+## <a name="next-steps"></a>後續步驟
+* [Azure Resource Manager 範本視覺化檢視](http://armviz.io/#/) 是很棒的工具，可以視覺化方式檢視 Resource Manager 範本，因為範本可能會變得太大，以致無法僅從讀取 json 檔案了解。
+* 若要深入了解範本的結構，請參閱 [編寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)。
+* 若要了解如何部署範本，請參閱 [使用 Azure Resource Manager 範本部署資源群組](resource-group-template-deploy.md)
+* 如需關於自動化部署的四部分系列，請參閱[自動化應用程式部署至 Azure 虛擬機器](virtual-machines/virtual-machines-windows-dotnet-core-1-landing.md)。 這個系列涵蓋應用程式架構、存取與安全性、可用性與級別，以及應用程式部署。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

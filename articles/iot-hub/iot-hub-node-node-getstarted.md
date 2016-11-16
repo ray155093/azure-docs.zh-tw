@@ -1,12 +1,12 @@
 ---
-title: 適用於 Node.js 的 Azure IoT 中樞快速入門 | Microsoft Docs
-description: 採用 Node.js 的 Azure IoT 中樞快速入門教學課程。 使用 Azure IoT 中樞與 Node.js 搭配 Microsoft Azure IoT SDK 來實作物聯網解決方案。
+title: "適用於 Node.js 的 Azure IoT 中樞快速入門 | Microsoft Docs"
+description: "採用 Node.js 的 Azure IoT 中樞快速入門教學課程。 使用 Azure IoT 中樞與 Node.js 搭配 Microsoft Azure IoT SDK 來實作物聯網解決方案。"
 services: iot-hub
 documentationcenter: nodejs
 author: dominicbetts
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 56618522-9a31-42c6-94bf-55e2233b39ac
 ms.service: iot-hub
 ms.devlang: javascript
 ms.topic: hero-article
@@ -14,16 +14,20 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/12/2016
 ms.author: dobett
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 7ddd9c1ed88e30eaaa200dc6b83d34746da14aa8
+
 
 ---
-# <a name="get-started-with-azure-iot-hub-for-node.js"></a>開始使用適用於 Node.js 的 Azure IoT 中樞
+# <a name="get-started-with-azure-iot-hub-for-nodejs"></a>開始使用適用於 Node.js 的 Azure IoT 中樞
 [!INCLUDE [iot-hub-selector-get-started](../../includes/iot-hub-selector-get-started.md)]
 
 在本教學課程結尾處，您會有三個 Node.js 主控台應用程式：
 
 * **CreateDeviceIdentity.js**，這會建立裝置識別和相關聯的安全性金鑰，來連線您的模擬裝置。
 * **ReadDEviceToCloudMessages.js**，其中顯示模擬的裝置所傳送的遙測。
-* **SimulatedDevice.js**，這會使用先前建立的裝置識別連接到您的 IoT 中樞，並使用 AMQPS 通訊協定每秒傳送遙測訊息。
+* **SimulatedDevice.js**，這會使用先前建立的裝置識別連接到您的 IoT 中樞，並使用 AMQP 通訊協定每秒傳送遙測訊息。
 
 > [!NOTE]
 > 文章 [IoT 中樞 SDK][lnk-hub-sdks] 提供可讓您可以用來建置兩個應用程式，以在裝置和您的方案後端上執行的各種 SDK 的相關資訊。
@@ -33,7 +37,7 @@ ms.author: dobett
 若要完成此教學課程，您需要下列項目：
 
 * Node.js 0.10.x 版或更新版本。
-* 使用中的 Azure 帳戶。 (如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資訊，請參閱 [Azure 免費試用][lnk-free-trial]。)
+* 使用中的 Azure 帳戶。 (如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。)
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
@@ -101,11 +105,11 @@ ms.author: dobett
 > 
 > 
 
-## <a name="receive-device-to-cloud-messages"></a>接收裝置到雲端的訊息
+## <a name="receive-devicetocloud-messages"></a>接收裝置到雲端的訊息
 在本節中，您會建立 Node.js 主控台應用程式，以讀取來自 IoT 中樞的裝置到雲端訊息。 IoT 中樞會公開與[事件中樞][lnk-event-hubs-overview]相容的端點以讓您讀取裝置到雲端訊息。 為了簡單起見，本教學課程會建立的基本讀取器不適合用於高輸送量部署。 [處理裝置到雲端的訊息][lnk-process-d2c-tutorial]教學課程會說明如何大規模處理裝置到雲端的訊息。 [開始使用事件中樞][lnk-eventhubs-tutorial]教學課程則會提供進一步資訊，說明如何處理來自事件中樞的訊息，而且此教學課程也適用於 IoT 中樞事件中樞相容端點。
 
 > [!NOTE]
-> 用於讀取裝置到雲端訊息的事件中樞相容端點一律會使用 AMQPS 通訊協定。
+> 用於讀取裝置到雲端訊息的事件中樞相容端點一律會使用 AMQP 通訊協定。
 > 
 > 
 
@@ -257,13 +261,13 @@ ms.author: dobett
     ![顯示傳送到 IoT 中樞之訊息數目的 Azure 入口網站使用量圖格][43]
 
 ## <a name="next-steps"></a>後續步驟
-在本教學課程中，您在入口網站中設定了新的 IoT 中樞，然後在中樞的身分識別登錄中建立了裝置識別。 您會將此裝置識別用於啟用模擬的裝置應用程式，以將裝置對雲端訊息傳送至中樞。 您也會建立一個應用程式來顯示中樞所接收的訊息。 
+在本教學課程中，您在 Azure 入口網站中設定了新的 IoT 中樞，然後在中樞的身分識別登錄中建立了裝置識別。 您會將此裝置識別用於啟用模擬的裝置應用程式，以將裝置對雲端訊息傳送至中樞。 您也會建立一個應用程式來顯示中樞所接收的訊息。 
 
 若要繼續開始使用 IoT 中樞並瀏覽其他 IoT 案例，請參閱︰
 
 * [連接您的裝置][lnk-connect-device]
 * [開始使用裝置管理][lnk-device-management]
-* [開始使用閘道 SDK][lnk-gateway-SDK]
+* [開始使用 IoT 閘道 SDK][lnk-gateway-SDK]
 
 若要了解如何擴充您的 IoT 解決方案及大規模處理裝置對雲端訊息，請參閱[處理裝置對雲端訊息][lnk-process-d2c-tutorial]教學課程。
 
@@ -292,6 +296,6 @@ ms.author: dobett
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 
