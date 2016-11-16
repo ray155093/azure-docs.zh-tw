@@ -1,5 +1,5 @@
-# Overview
-## [Resource Manager 概觀](resource-group-overview.md)
+# 概觀
+## [什麼是 Resource Manager？](resource-group-overview.md)
 ## [支援的服務、區域以及 API 版本](../resource-manager-supported-services.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
 ## [了解 Resource Manager 與傳統部署](../resource-manager-deployment-model.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
 ## [規定的訂用帳戶治理](../resource-manager-subscription-governance.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
@@ -10,8 +10,8 @@
 ## [搭配 Resource Manager 使用 Visual Studio](../vs-azure-tools-resource-groups-deployment-projects-create-deploy.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
 ## [搭配 Resource Manager 的 VS Code](../resource-manager-vs-code.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
 
-# 作法：
-## 範本
+# 作法
+## 建立範本
 ### [範本的最佳做法](../resource-manager-template-best-practices.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
 ### [撰寫範本](../resource-group-authoring-templates.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
 ### [範本函式](../resource-group-template-functions.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
@@ -52,12 +52,21 @@
 ### [使用 Azure CLI 來檢視部署作業](../resource-manager-troubleshoot-deployments-cli.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
 ### [使用 REST API 檢視部署作業](../resource-manager-troubleshoot-deployments-rest.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
 # 參考
+## [PowerShell Cmdlet](/powershell/azureps-cmdlets-docs/)
+## [Azure CLI](/cli/azure)
+## [Java](/java/api)
+## [.NET API](/dotnet/api)
 ## [範本結構描述](https://github.com/Azure/azure-resource-manager-schemas)
-## [適用於 Resource Manager 的 PowerShell Cmdlet](https://msdn.microsoft.com/library/dn757692(v=azure.200).aspx)
-## [適用於 Resource Manager 的 REST API](https://msdn.microsoft.com/en-us/library/azure/dn790568)
-## [適用於 Resource Manager 的 .NET 用戶端程式庫](https://msdn.microsoft.com/en-us/library/azure/mt418626)
+## [適用於 Resource Manager 的 PowerShell Cmdlet](/powershell/resourcemanager/azurerm.resources/v3.2.0/azurerm.resources)
+## [適用於 Resource Manager 的 REST API](/rest/api/resources/)
+## [適用於 Resource Manager 的 .NET 用戶端程式庫](/dotnet/api/microsoft.azure.management.resourcemanager)
 ## [節流要求](../resource-manager-request-limits.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
+## [REST](/rest/api/resources/)
 
+# 資源
+## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-resource-manager)
+## [影片](https://azure.microsoft.com/documentation/videos/index/?services=azure-resource-manager)
+## [服務更新](https://azure.microsoft.com/updates/?product=azure-resource-manager) 
 
 <!--HONumber=Nov16_HO2-->
 

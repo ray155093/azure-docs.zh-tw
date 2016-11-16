@@ -22,7 +22,7 @@
 ### [Ruby](service-bus-ruby-how-to-use-topics-subscriptions.md)
 ## [產生共用存取簽章](service-bus-sas-overview.md)
 
-# 作法：
+# 作法
 ## 規劃和設計
 ### [效能最佳化](service-bus-performance-improvements.md)
 ### [非同步傳訊模式與高可用性](service-bus-async-messaging.md)
@@ -53,10 +53,10 @@
 # 參考
 ## [價格詳細資料](service-bus-pricing-billing.md)
 ## [範例](service-bus-samples.md)
-## [.NET API 參考](https://msdn.microsoft.com/library/azure/jj933424)
-## [REST API 參考資料](https://msdn.microsoft.com/library/azure/hh780717)
 ## [例外狀況](service-bus-messaging-exceptions.md)
 ## [配額](service-bus-quotas.md)
+## [.NET](/dotnet/api/)
+## [REST](/rest/api/servicebus/)
 
 # 資源
 ## [部落格](https://blogs.msdn.microsoft.com/servicebus/)
@@ -65,6 +65,8 @@
 ## [價格](https://azure.microsoft.com/pricing/details/service-bus/)
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/service-bus/)
 ## [服務匯流排總管](https://github.com/paolosalvatori/ServiceBusExplorer)
+## [服務更新](https://azure.microsoft.com/updates/?product=service-bus)
+## [影片](https://azure.microsoft.com/documentation/videos/index/?services=service-bus)
 
 
 <!--HONumber=Nov16_HO2-->

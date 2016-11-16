@@ -137,7 +137,7 @@
 #### [Web + SQL ](../app-service-web/app-service-web-arm-with-sql-database-provision.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 #### [使用自訂主機名稱與 SSL 憑證的 MSDeploy](../app-service-web/app-service-web-arm-with-msdeploy-provision.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 ### Powershell
-#### [自動備份和還原](../app-service/app-service-powershell-backup.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
+#### [自動化備份和還原](../app-service/app-service-powershell-backup.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 #### [應用程式複製](../app-service-web/app-service-web-app-cloning.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 #### [SSL 憑證繫結](../app-service-web/app-service-web-app-powershell-ssl-binding.md?toc=%2fazure%2fapp-service-api%2ftoc.json)
 #### [使用包含 PowerShell 的 Azure Resource Manager](../app-service-web/app-service-web-app-azure-resource-manager-powershell.md?toc=%2fazure%2fapp-service-api%2ftoc.json)

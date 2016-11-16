@@ -1,20 +1,20 @@
 # [概觀](media-services-overview.md)
 ## [概念](media-services-concepts.md)
-## [價格](https://azure.microsoft.com/pricing/details/media-services/)
-## [版本資訊](media-services-release-notes.md)
+
+
 # 開始使用
 ## [建立和管理帳戶](media-services-portal-create-account.md)
 ## [設定開發環境](media-services-set-up-computer.md)
-## 隨選影片
+## 傳遞隨選影片
 ### [入口網站](media-services-portal-vod-get-started.md)
 ### [.NET SDK](media-services-dotnet-get-started.md)
 ### [Java](media-services-java-how-to-use.md)
 ### [REST](media-services-rest-get-started.md)
-## 即時串流
+## 執行即時串流
 ### [入口網站](media-services-portal-live-passthrough-get-started.md)
 ### [.NET](media-services-dotnet-live-encode-with-onpremises-encoders.md)
 
-# 作法：
+# 作法
 ## 管理
 ### [在入口網站中管理串流端點](media-services-portal-manage-streaming-endpoints.md)
 ### 管理實體
@@ -166,12 +166,14 @@
 ###[重試邏輯](media-services-retry-logic-in-dotnet-sdk.md)
 
 # 參考
-## [媒體服務 .NET SDK](media-services-dotnet-how-to-use.md)
-## [媒體服務 REST API](media-services-rest-how-to-use.md)
+## [版本資訊](media-services-release-notes.md)
+## [.NET](media-services-dotnet-how-to-use.md)
+## [REST](media-services-rest-how-to-use.md)
 ## [Media Encoder Premium Workflow 格式和轉碼器](media-services-premium-workflow-encoder-formats.md)
 ## [媒體編碼器標準格式和轉碼器](media-services-media-encoder-standard-formats.md)
 
-# 相關參考
+# 資源
+## [價格](https://azure.microsoft.com/pricing/details/media-services/)
 ## [Azure 媒體服務社群](media-services-community.md)
 
 

@@ -91,8 +91,12 @@
 ### [對 Data Factory 問題進行疑難排解](data-factory-troubleshoot.md)
 ### [使用資料管理閘道針對問題進行疑難排解](data-factory-troubleshoot-gateway-issues.md)
 ### [使用 Azure Resource Manager 範本進行部署](data-factory-how-to-use-resource-manager-templates.md)
-# 參考 
+
+# 參考
 ## [Azure Data Factory 開發人員參考](data-factory-sdks.md)
+## [PowerShell](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/)
+## [.NET](https://docs.microsoft.com/dotnet/api)
+## [REST](https://docs.microsoft.com/rest/api/datafactory/)
 
 # 資源：
 ## [個案研究](data-factory-customer-case-studies.md)
@@ -103,13 +107,6 @@
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureDataFactory)
 ## [要求功能](https://feedback.azure.com/forums/270578-azure-data-factory)
 ## [資料管理閘道的版本資訊](data-factory-gateway-release-notes.md)
-
-
-
-
-
-
-
 
 
 <!--HONumber=Nov16_HO2-->

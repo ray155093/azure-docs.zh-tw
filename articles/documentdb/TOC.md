@@ -26,7 +26,7 @@
 
 
 
-# 作法：
+# 作法
 
 ## 管理 
 ### [匯入資料](documentdb-import-data.md)
@@ -96,8 +96,10 @@
 
 # 資源
 ## [價格](https://azure.microsoft.com/pricing/details/documentdb/)
-## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-documentdb)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/forums/azure/en-US/home?forum=AzureDocumentDB)
+## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-documentdb)
+## [影片](https://azure.microsoft.com/documentation/videos/index/?services=documentdb) 
+## [服務更新](https://azure.microsoft.com/updates/?product=documentdb) 
 ## [詢問 DocumentDB](documentdb-community.md#contact-the-team)
 ## [社群入口網站](documentdb-community.md)
 ## [活動和記錄](documentdb-community.md#events-and-recordings)

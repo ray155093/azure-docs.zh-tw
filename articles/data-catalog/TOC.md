@@ -30,9 +30,11 @@
 ## [Azure 資料目錄的鍵盤快速鍵](data-catalog-keyboard-shortcuts.md)
 ## [術語](data-catalog-terminology.md)
 ## [版本資訊](data-catalog-release-notes.md)
+## [REST](https://docs.microsoft.com/rest/api/datacatalog/)
 
 # 資源
 ## [價格](https://azure.microsoft.com/pricing/details/data-catalog/)
+
 
 <!--HONumber=Nov16_HO2-->
 

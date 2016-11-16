@@ -55,14 +55,18 @@
 ### [多語言搜尋](search-language-support.md)
 
 # 參考
-## [.NET SDK](https://msdn.microsoft.com/library/azure/dn951165)
-## [服務 REST API](https://msdn.microsoft.com/library/azure/dn798935)
-## [服務 REST API (預覽版)](search-api-2015-02-28-preview.md)
-## [管理 REST API](https://msdn.microsoft.com/library/azure/dn832684)
 ## [API 版本](search-api-versions.md)
+## [Java](/java/api/)
+## [.NET](/dotnet/api/)
 ## [Lucene 查詢語法](https://msdn.microsoft.com/library/azure/mt589323)
 ## [簡單查詢語法](https://msdn.microsoft.com/library/azure/dn798920)
+## [服務 REST](/rest/api/searchservice/)
+## [服務 REST (預覽)](search-api-2015-02-28-preview.md)
+## [管理 REST](/rest/api/searchmanagement/)
+
 # 資源
+## [服務更新](https://azure.microsoft.com/updates/?product=search)
+## [價格](https://azure.microsoft.com/pricing/details/search/)
 ## 示範網站
 ### [作業列表應用程式](http://aka.ms/azjobsdemo)
 ### [即時示範應用程式](https://searchsamples.azurewebsites.net/)
@@ -73,7 +77,7 @@
 ## 合作夥伴與社群
 ### [模型關聯式資料](http://blogs.technet.com/b/onsearch/archive/2015/09/08/modeling-the-adventureworks-inventory-database-for-azure-search.aspx)
 ### [多層級 Facet](http://blogs.technet.com/b/onsearch/archive/2015/09/09/multi-level-taxonomy-facets-in-azure-search.aspx)
-### [MSDN 論壇](https://social.msdn.microsoft.com/forums/azure/en-US/home?forum=AzureSearch)
+### [論壇](https://social.msdn.microsoft.com/forums/azure/en-US/home?forum=AzureSearch)
 ### [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-search)
 ### [Azure 搜尋服務 Github](https://github.com/Azure-Samples/?utf8=%E2%9C%93&query=search)
 

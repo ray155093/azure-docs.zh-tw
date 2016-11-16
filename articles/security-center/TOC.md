@@ -1,17 +1,14 @@
-# Overview
+# 概觀
 ## [什麼是 Azure 資訊安全中心？](security-center-intro.md)
-## [服務概觀](https://azure.microsoft.com/services/security-center/)
-## [價格](security-center-pricing.md)
-## [常見問題集](security-center-faq.md)
 ## [透過 Power BI 取得深入解析](security-center-powerbi.md)
 ## [資料安全性](security-center-data-security.md)
-## 常見案例
+## 案例
 ### [事件回應](security-center-incident-response.md)
 
 # 開始使用
 ## [快速入門](security-center-get-started.md)
 ## [規劃與作業](security-center-planning-and-operations-guide.md)
-## [資訊安全中心與 SQL Database](security-center-sql-database.md)
+## [常見問題集](security-center-faq.md)
 
 # 作法
 
@@ -59,10 +56,14 @@
 ## [REST API](https://msdn.microsoft.com/en-US/library/mt704034(Azure.100).aspx)
 
 # 相關參考
-## [Azure 資訊安全資訊](../security/azure-security-getting-started.md)
+## [Azure 安全性](/azure/security/)
 
 # 資源
 ## [Azure 安全性、隱私權和合規性部落格](http://blogs.msdn.com/b/azuresecurity/)
+## [價格](security-center-pricing.md)
+## [服務概觀](https://azure.microsoft.com/services/security-center/)
+## [服務更新](https://azure.microsoft.com/updates/?product=security-center)
+## [影片](https://azure.microsoft.com/documentation/videos/index/?services=security-center)
 
 
 <!--HONumber=Nov16_HO2-->

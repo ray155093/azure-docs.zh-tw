@@ -5,7 +5,6 @@
 ## [常見問題集](../../virtual-machines-linux-classic-faq.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 
 # [開始使用](../../virtual-machines-linux-opensource-links.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
-## [免費帳戶](https://azure.microsoft.com/pricing/free-trial/)
 ## [使用入口網站建立 Linux VM](../../virtual-machines-linux-classic-createportal.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 ## [安裝 Azure CLI](../../../xplat-cli-install.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 ## [建立 SSH 金鑰](../../virtual-machines-linux-mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
@@ -24,7 +23,7 @@
 ### [使用入口網站建立 Docker 主機](../../virtual-machines-linux-classic-portal-use-docker.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 ### [如何搭配swarm 使用 Docker](../../virtual-machines-linux-docker-swarm.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 
-## 儲存體
+## 使用儲存體
 ### [連接資料磁碟](../../virtual-machines-linux-classic-attach-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 ### [卸離與資料磁碟](../../virtual-machines-linux-classic-detach-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 
@@ -32,12 +31,12 @@
 ### [開啟連接埠連接到您的 VM](../../virtual-machines-linux-classic-setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 ### [連接 VM 與虛擬網路或雲端服務](../../virtual-machines-linux-classic-connect-vms.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 
-## 映像
+## 部署映像
 ### [建立和上傳 VHD](../../virtual-machines-linux-classic-create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 ### [建立並上傳 FreeBSD VHD](../../virtual-machines-linux-classic-freebsd-create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 ### [Oracle VM 映像清單](../../virtual-machines-linux-classic-oracle-images.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 
-## 工作負載
+## 管理工作負載
 ### [SAP](../../virtual-machines-linux-classic-sap-get-started.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 ### MySQL 和 MariaDB
 #### [MariaDB 叢集教學課程](../../virtual-machines-linux-classic-mariadb-mysql-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
@@ -45,7 +44,7 @@
 #### [使用負載平衡集合將 MySQL 叢集化](../../virtual-machines-linux-classic-mysql-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 #### [最佳化 MySQL 效能](../../virtual-machines-linux-classic-optimize-mysql.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 
-## 應用程式
+## 執行應用程式
 ### [Rails Web 應用程式上的 Ruby](virtual-machines-linux-classic-ruby-rails-web-app.md)
 ### [Cassandra 和 Node.js 用戶端](../../virtual-machines-linux-classic-cassandra-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 ### [LAMP 堆疊](../../virtual-machines-linux-classic-lamp-script.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
@@ -56,29 +55,32 @@
 ### [如何搭配使用 Azure 從屬外掛程式與 Jenkins](../../virtual-machines-azure-slave-plugin-for-jenkins.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 
 ## HPC Pack
-### [執行 MPI 應用程式的 Windows RDMA 叢集 (包括 HPC Pack)](../../virtual-machines-linux-classic-hpcpack-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
-### [帶有 HPC Pack IaaS 部署指令碼的 Windows 高效能運算 (HPC) 叢集](../../virtual-machines-linux-classic-hpcpack-cluster-starccm.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+### [用以執行 MPI 應用程式的 Windows RDMA 叢集](../../virtual-machines-linux-classic-hpcpack-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+### [使用 HPC Pack IaaS 部署指令碼的 Windows HPC 叢集](../../virtual-machines-linux-classic-hpcpack-cluster-starccm.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 ### [管理計算節點的數目和可用性](../../virtual-machines-linux-classic-hpcpack-cluster-powershell-script.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
-### [將隨選節點新增至 HPC Pack 叢集](../../virtual-machines-linux-classic-hpcpack-cluster-openfoam.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
-### [自動擴增和縮減 HPC Pack 叢集資源](../../virtual-machines-linux-classic-hpcpack-cluster-namd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+### [新增隨選節點](../../virtual-machines-linux-classic-hpcpack-cluster-openfoam.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+### [自動調整資源](../../virtual-machines-linux-classic-hpcpack-cluster-namd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 
 ## 疑難排解
 ### [VM 部署](../../virtual-machines-linux-classic-troubleshoot-deployment-new-vm.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 ### [重新啟動 VM 或調整 VM 的大小](../../virtual-machines-linux-classic-restart-resize-error-troubleshooting.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 
 # 參考
-## [Azure CLI](https://docs.microsoft.com/cli/azure/vm)
-## [Java SDK](https://azure.microsoft.com/develop/java/)
-## [Node.js SDK](https://azure.microsoft.com/develop/nodejs/)
-## [Python SDK](https://azure.microsoft.com/develop/python/)
-## [計算 REST API](https://docs.microsoft.com/rest/azure/api/compute/2016-03-30#Virtual-Machines)
-## [網路 REST API](https://docs.microsoft.com/rest/azure/api/network/2016-09-01#)
-## [儲存體 REST API](https://docs.microsoft.com/rest/azure/api/storage/2016-01-01)
+## [Azure CLI](/cli/azure/vm)
+## [Java](/java/api/)
+## [製作 Resource Manager 範本](../../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 ## [社群範本](https://azure.microsoft.com/documentation/templates/)
+## [計算 REST](/rest/api/compute/)
+## [網路 REST](/rest/api/)
+## [儲存體 REST](/rest/api/storageservices/)
+
 
 # 資源
 ## [價格](https://azure.microsoft.com/pricing/details/virtual-machines/#Linux)
 ## [區域可用性](https://azure.microsoft.com/regions/services/)
+## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-virtual-machine)
+## [影片](https://azure.microsoft.com/documentation/videos/index/?services=virtual-machines)
+
 
 <!--HONumber=Nov16_HO2-->
 

@@ -1,5 +1,4 @@
 # 概觀
-## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/iot-hub/)
 ## [Azure 和 IoT](iot-hub-what-is-azure-iot.md)
 ## [何謂 Azure IoT 中樞？](iot-hub-what-is-iot-hub.md)
 ## [裝置管理概觀](iot-hub-device-management-overview.md)
@@ -28,22 +27,23 @@
 ### [疑難排解](iot-hub-raspberry-pi-kit-node-troubleshooting.md)
 ## [開始使用閘道器 SDK (Linux)](iot-hub-linux-gateway-sdk-get-started.md)
 ## [開始使用閘道器 SDK (Windows)](iot-hub-windows-gateway-sdk-get-started.md)
+## 教學課程
+### [處理裝置到雲端訊息教學課程 (.NET)](iot-hub-csharp-csharp-process-d2c.md)
+### [處理裝置到雲端訊息教學課程 (.NET)](iot-hub-java-java-process-d2c.md)
+### [從裝置上傳檔案教學課程](iot-hub-csharp-csharp-file-upload.md)
+### [傳送雲端到裝置的訊息 (.NET)](iot-hub-csharp-csharp-c2d.md)
+### [傳送雲端到裝置的訊息 (Java)](iot-hub-java-java-c2d.md)
+### [傳送雲端到裝置的訊息 (節點)](iot-hub-node-node-c2d.md)
+### [開始使用攣生裝置](iot-hub-node-node-twin-getstarted.md)
+### [使用攣生實體的方式](iot-hub-node-node-twin-how-to-configure.md)
 
-# 作法：
-## [處理裝置到雲端訊息教學課程 (.NET)](iot-hub-csharp-csharp-process-d2c.md)
-## [處理裝置到雲端訊息教學課程 (.NET)](iot-hub-java-java-process-d2c.md)
-## [從裝置上傳檔案教學課程](iot-hub-csharp-csharp-file-upload.md)
-## [傳送雲端到裝置的訊息 (.NET)](iot-hub-csharp-csharp-c2d.md)
-## [傳送雲端到裝置的訊息 (Java)](iot-hub-java-java-c2d.md)
-## [傳送雲端到裝置的訊息 (節點)](iot-hub-node-node-c2d.md)
-## [開始使用攣生裝置](iot-hub-node-node-twin-getstarted.md)
-## [使用攣生實體的方式](iot-hub-node-node-twin-how-to-configure.md)
+# 作法
 ## 規劃您的部署
 ### [比較 IoT 中樞與事件中樞](iot-hub-compare-event-hubs.md)
 ### [調整您的解決方案規模](iot-hub-scaling.md)
 ### [高可用性和災害復原](iot-hub-ha-dr.md)
 ### [支援其他通訊協定](iot-hub-protocol-gateway.md)
-## 開發人員指南
+## 開發
 ### [簡介](iot-hub-devguide.md)
 ### [傳送及接收訊息](iot-hub-devguide-messaging.md)
 ### [從裝置上傳檔案](iot-hub-devguide-file-upload.md)
@@ -69,26 +69,27 @@
 ### [用量度量](iot-hub-metrics.md)
 ### [作業監視](iot-hub-operations-monitoring.md)
 
-## 安全性
+## 安全
 ### [從頭建立安全性](iot-hub-security-ground-up.md)
 ### [安全性最佳做法](iot-hub-security-best-practices.md)
 ### [安全性架構](iot-hub-security-architecture.md)
 ### [保護您的 IoT 部署](iot-hub-security-deployment.md)
+
+
+# 參考
+## [Azure CLI](https://docs.microsoft.com/cli/azure)
+## [Java](https://docs.microsoft.com/java/api)
+## [.NET API](https://docs.microsoft.com/dotnet/api)
 ## 閘道器 SDK
 ### [使用閘道器 SDK 教學課程模擬裝置 (Linux)](iot-hub-linux-gateway-sdk-simulated-device.md)
 ### [使用閘道器 SDK 教學課程模擬裝置 (Windows)](iot-hub-windows-gateway-sdk-simulated-device.md)
 ### [透過閘道器 SDK 教學課程從實際裝置傳送訊息](iot-hub-gateway-sdk-physical-device.md)
-
-# 參考
-## [用戶端和裝置 .NET API](https://msdn.microsoft.com/library/mt488521.aspx)
-## [資源提供者 REST API](https://docs.microsoft.com/rest/api/iothub/iothubresource)
-## [裝置身分識別 REST API](https://go.microsoft.com/fwlink/p/?linkid=833394)
-## [裝置傳訊 REST API](https://go.microsoft.com/fwlink/p/?linkid=833395)
 ## [裝置 SDK API](http://azure.github.io/azure-iot-sdks/)
 ## [閘道器 SDK API](http://azure.github.io/azure-iot-gateway-sdk)
 ## [C 適用的 Azure IoT 裝置 SDK 簡介](iot-hub-device-sdk-c-intro.md)
 ## [C 適用的 IoT 裝置 SDK - 深入了解 IoTHubClient](iot-hub-device-sdk-c-iothubclient.md)
 ## [C 適用的 IoT 裝置 SDK - 深入了解序列化程式](iot-hub-device-sdk-c-serializer.md)
+## [REST](https://docs.microsoft.com/en-us/rest/api/iothub/)
 
 # 相關參考
 ## [Azure IoT 套件](https://azure.microsoft.com/documentation/suites/iot-suite/)
@@ -97,9 +98,15 @@
 ## [機器學習服務](https://azure.microsoft.com/documentation/services/machine-learning/)
 
 # 資源
+## [價格](https://azure.microsoft.com/pricing/details/iot-hub/)
+## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=azureiothub) 
+## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-iot-hub)
+## [影片](https://azure.microsoft.com/documentation/videos/index/?services=iot-hub) 
+## [服務更新](https://azure.microsoft.com/updates/?product=iot-hub) 
+## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/iot-hub/)
 ## [Azure IoT 開發人員中心](https://azure.microsoft.com/develop/iot/)
 ## [Azure IoT 認證裝置目錄](https://catalog.azureiotsuite.com/)
-## [定價資訊](https://azure.microsoft.com/pricing/details/iot-hub/)
+
 
 
 <!--HONumber=Nov16_HO2-->

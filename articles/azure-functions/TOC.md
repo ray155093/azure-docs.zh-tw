@@ -1,11 +1,11 @@
-# [概觀](functions-overview.md)
-
+# 概觀
+## [什麼是 Azure Functions？](functions-overview.md)
 # 開始使用
 ## [建立您的第一個函式](functions-create-first-azure-function.md)
 ## [建立 Webhook 函式](functions-create-a-web-hook-or-api-function.md)
 ## [建立連接 Azure 的函式](functions-create-an-azure-connected-function.md)
 ## [建立事件處理函式](functions-create-an-event-processing-function.md)
-# 作法：
+# 作法
 ## 規劃和設計
 ### [在 Flow、Logic Apps、函式和 WebJobs 之間做選擇](functions-compare-logic-apps-ms-flow-webjobs.md)
 ### [在耗用量和 App Service 方案間做選擇](functions-scale.md)
@@ -38,10 +38,14 @@
 ## 部署
 ### [Azure Functions 的持續部署](functions-continuous-deployment.md)
 
+# 參考
+## [.NET API](https://msdn.microsoft.com/library/azure/dn961176.aspx)
 
 # 資源
-## [服務更新](https://azure.microsoft.com/en-us/updates/?product=functions&updatetype=&platform=)
+## [價格](https://azure.microsoft.com/pricing/details/functions/)  
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureFunctions)
+## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-functions)
+## [服務更新](https://azure.microsoft.com/en-us/updates/?product=functions&updatetype=&platform=)
 
 
 <!--HONumber=Nov16_HO2-->

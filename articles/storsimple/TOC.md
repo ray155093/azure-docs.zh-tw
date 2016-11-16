@@ -57,7 +57,7 @@
 #### [打開包裝、堆疊並為 8600 佈纜線](storsimple-8600-hardware-installation.md)
 #### [支援 10 GbE 網路介面的硬體](storsimple-supported-hardware-for-10-gbe-network-interfaces.md)
 
-### 部署 
+### 部署
 #### [StorSimple Manager 服務](storsimple-manage-service.md)
 #### [Azure 中的實體裝置 - 目前](storsimple-deployment-walkthrough-u2.md)
 ##### [Azure 中的實體裝置 - Update 1](storsimple-deployment-walkthrough-u1.md)
@@ -68,7 +68,7 @@
 #### [StorSimple Adapter for SharePoint](storsimple-adapter-for-sharepoint.md)
 
 ## 作法
-### 管理 
+### 管理
 #### [使用 StorSimple Manager 服務](storsimple-manager-service-administration.md)
 ##### [從備份還原](storsimple-restore-from-backup-set-u2.md)
 ###### [從備份還原](storsimple-restore-from-backup-set.md)
@@ -160,18 +160,20 @@
 ### [Release - GA](storsimple-july-2014-release-notes.md)
 
 ## 參考
-### [Azure PowerShell Cmdlet 參考](https://msdn.microsoft.com/en-us/library/azure/dn920427)
-### [Windows PowerShell for StorSimple Cmdlet 參考](https://technet.microsoft.com/library/dn688168.aspx)
+### [PowerShell](/powershell/servicemanagement/)
 
-# [StorSimple 5000-7000 系列](http://onlinehelp.storsimple.com)
+# 相關參考
+## [StorSimple 5000-7000 系列](http://onlinehelp.storsimple.com)
 
 # 資源
-## [Azure 部落格](https://azure.microsoft.com/blog/)
 ## [論壇](https://social.msdn.microsoft.com/Forums/azure/home?forum=StorSimple)
 ## [行銷部落格](http://blogs.technet.com/b/cis/)
-## [行銷](https://www.microsoft.com/en-us/server-cloud/products/storsimple/explore.aspx)
+## [行銷](https://www.microsoft.com/server-cloud/products/storsimple/explore.aspx)
 ## [支援部落格](http://blogs.msdn.com/b/storsimple/)
 ## [協力廠商通知](http://download.microsoft.com/download/2/0/0/2003271D-69D5-4143-85A2-F1D8EA058F52/StorSimple TPNs.zip)
+## [服務更新](https://azure.microsoft.com/updates/?product=storsimple)
+## [價格](https://azure.microsoft.com/pricing/details/storsimple/)
+## [影片](https://azure.microsoft.com/documentation/videos/index/?services=storsimple)
 
 
 <!--HONumber=Nov16_HO2-->

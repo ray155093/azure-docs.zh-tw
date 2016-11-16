@@ -38,7 +38,7 @@
 ### [IIS Web Apps](multi-factor-authentication-get-started-server-iis.md)
 ### [遠端桌面閘道器](multi-factor-authentication-get-started-server-rdg.md)
 
-## 開發應用程式
+## 開發 
 ### [建置於自訂應用程式 (SDK)](multi-factor-authentication-sdk.md)
 
 ## 疑難排解

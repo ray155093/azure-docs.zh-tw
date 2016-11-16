@@ -1,9 +1,13 @@
 ---
 layout: LandingPage
----
-#Event Hubs Documentation
+translationtype: Human Translation
+ms.sourcegitcommit: 69ae7c09af46b933899692e81d60e040a1c02eb5
+ms.openlocfilehash: f7d40ef2fdfbed7ab9be633637aafbfd7963b232
 
-Event Hubs is a highly scalable data ingress service that can ingest millions of events per second so that you can process and analyze the massive amounts of data produced by your connected devices and applications. Event Hubs acts as the "front door" for an event pipeline, and once data is collected into an event hub, it can be transformed and stored using any real-time analytics provider or any batching or storage adapter.
+---
+#<a name="event-hubs-documentation"></a>事件中樞文件
+
+事件中樞是可高度調整的資料輸入服務，每秒可擷取數百萬個事件，可讓您處理和分析連接的裝置和應用程式所產生的大量資料。 事件中樞能做為事件管線的「大門」，一旦收集的資料進入事件中樞，它可以使用任何即時分析提供者或任何批次或儲存體配接器轉換及儲存資料。
 
 <ul class="panelContent cardsFTitle">
      <li>
@@ -17,7 +21,7 @@ Event Hubs is a highly scalable data ingress service that can ingest millions of
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Learn about Azure Event Hubs</h3>
+                        <h3>了解 Azure 事件中樞</h3>
                     </div>
                 </div>
             </div>
@@ -35,7 +39,7 @@ Event Hubs is a highly scalable data ingress service that can ingest millions of
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure Event Hubs Video Library</h3>
+                        <h3>Azure 事件中樞影片庫</h3>
                     </div>
                 </div>
             </div>
@@ -53,7 +57,7 @@ Event Hubs is a highly scalable data ingress service that can ingest millions of
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Get Started with the Event Hubs programming guide</h3>
+                        <h3>開始使用事件中樞程式設計指南</h3>
                     </div>
                 </div>
             </div>
@@ -71,7 +75,7 @@ Event Hubs is a highly scalable data ingress service that can ingest millions of
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Get Started with Event Hubs using the Azure portal</h3>
+                        <h3>利用 Azure 入口網站開始使用事件中樞</h3>
                     </div>
                 </div>
             </div>
@@ -82,16 +86,16 @@ Event Hubs is a highly scalable data ingress service that can ingest millions of
 
 ---
 
-##Reference
+##<a name="reference"></a>參考
 
-###.NET
-[.NET Managed Reference](/dotnet/api)
+###<a name="net"></a>.NET
+[.NET 受管理的參考](/dotnet/api)
 
-###AMQP 
-[AMQP 1.0 protocol guide](/azure/service-bus-messaging/service-bus-amqp-protocol-guide)
+###<a name="amqp"></a>AMQP 
+[AMQP 1.0 通訊協定指南](/azure/service-bus-messaging/service-bus-amqp-protocol-guide)
 
-###REST
-[Event Hubs REST API Reference](/rest/api/eventhub)
+###<a name="rest"></a>REST
+[事件中樞 REST API 參考](/rest/api/eventhub)
 
 
 
@@ -99,7 +103,12 @@ Event Hubs is a highly scalable data ingress service that can ingest millions of
     <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/event-hubs.pdf">
         <div class="img"></div>
         <div class="text">
-            Download Event Hubs Documentation
-        </div>
+下載事件中樞文件 </div>
     </a>
 </div>
+
+
+
+<!--HONumber=Nov16_HO2-->
+
+

@@ -1,9 +1,13 @@
 ---
 layout: LandingPage
----
-#Redis Cache Documentation
+translationtype: Human Translation
+ms.sourcegitcommit: cd96f7ea32696ea920cd1622ae6d08692b4f8f4c
+ms.openlocfilehash: a244eaf8dff788354caab1c327a22cb5c5b423cf
 
-Azure Redis Cache is based on the popular open-source Redis Cache. It gives you access to a secure dedicated Redis cache managed by Microsoft and accessible from any application within Azure. Azure Redis Cache provides high throughput and consistent low-latency data access to power fast, scalable Azure applications.
+---
+#<a name="redis-cache-documentation"></a>Redis 快取文件
+
+Azure Redis 快取採用熱門的開放原始碼「Redis 快取」。 它可讓您從 Azure 內的任何應用程式存取由 Microsoft 管理的安全、專用 Redis 快取。 Azure Redis 快取可提供高輸送量且一致的低延遲資料存取，讓您建置速度快，並可靈活調整的 Azure 應用程式。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -17,7 +21,7 @@ Azure Redis Cache is based on the popular open-source Redis Cache. It gives you 
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Learn about Azure Redis Cache Premium tier</h3>
+                        <h3>了解 Azure Redis 快取進階層</h3>
                     </div>
                 </div>
             </div>
@@ -34,7 +38,7 @@ Azure Redis Cache is based on the popular open-source Redis Cache. It gives you 
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure Redis Cache Video Library</h3>
+                        <h3>Azure Redis 快取影片庫</h3>
                     </div>
                 </div>
             </div>
@@ -52,7 +56,7 @@ Azure Redis Cache is based on the popular open-source Redis Cache. It gives you 
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Get Started with Redis Cache using .NET</h3>
+                        <h3>使用 .NET 開始使用 Redis 快取</h3>
                     </div>
                 </div>
             </div>
@@ -70,7 +74,7 @@ Azure Redis Cache is based on the popular open-source Redis Cache. It gives you 
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Get Started with Redis Cache using ASP.NET MVC</h3>
+                        <h3>使用 ASP.NET MVC 開始使用 Redis 快取</h3>
                     </div>
                 </div>
             </div>
@@ -88,7 +92,7 @@ Azure Redis Cache is based on the popular open-source Redis Cache. It gives you 
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Get Started with Redis Cache using Node.js</h3>
+                        <h3>使用 Node.js 開始使用 Redis 快取</h3>
                     </div>
                 </div>
             </div>
@@ -106,7 +110,7 @@ Azure Redis Cache is based on the popular open-source Redis Cache. It gives you 
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Get Started with Redis Cache using Java</h3>
+                        <h3>使用 Java 開始使用 Redis 快取</h3>
                     </div>
                 </div>
             </div>
@@ -124,7 +128,7 @@ Azure Redis Cache is based on the popular open-source Redis Cache. It gives you 
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Get Started with Redis Cache using Python</h3>
+                        <h3>使用 Python 開始使用 Redis 快取</h3>
                     </div>
                 </div>
             </div>
@@ -135,29 +139,34 @@ Azure Redis Cache is based on the popular open-source Redis Cache. It gives you 
 
 ---
 
-##Reference
+##<a name="reference"></a>參考
 
-###PowerShell
-[Azure PowerShell reference](/powershell/azureps-cmdlets-docs)
+###<a name="powershell"></a>PowerShell
+[Azure PowerShell 參考](/powershell/azureps-cmdlets-docs)
 
-###Azure CLI
-[Redis Cache with Azure CLI](/cli/azure/redis) 
+###<a name="azure-cli"></a>Azure CLI
+[Redis 快取與 Azure CLI](/cli/azure/redis) 
 
-###.NET 
-[Redis Cache Managed Reference API](/dotnet/api/) 
+###<a name="net"></a>.NET 
+[Redis 快取受管理的參考 API](/dotnet/api/) 
 
-###Java 
+###<a name="java"></a>Java 
 [Azure Java SDK](/java/api/)
 
-###REST 
-[Redis Cache REST API Reference](/rest/api/)  
+###<a name="rest"></a>REST 
+[Redis 快取 REST API 參考](/rest/api/)  
 
 
 <div class="downloadHolder">
     <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/redis-cache.pdf">
         <div class="img"></div>
         <div class="text">
-            Download Redis Cache Documentation
-        </div>
+下載 Redis 快取文件 </div>
     </a>
 </div>
+
+
+
+<!--HONumber=Nov16_HO2-->
+
+

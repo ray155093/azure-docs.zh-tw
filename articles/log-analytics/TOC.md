@@ -1,12 +1,13 @@
 # 概觀
 ## [什麼是 Log Analytics？](log-analytics-overview.md)
 ## [資料安全性](log-analytics-security.md)
-## [Log Analytics 常見問題集](log-analytics-faq.md)
+
 # 開始使用
 ## [註冊 Log Analytics](log-analytics-get-started.md)
 ## [管理存取權](log-analytics-manage-access.md)
 ## [Proxy 與防火牆](log-analytics-proxy-firewall.md)
 ## [使用狀況資料](log-analytics-usage.md)
+## [Log Analytics 常見問題集](log-analytics-faq.md)
 
 # 作法：
 ## 整合
@@ -48,7 +49,6 @@
 #### [SQL 評估](log-analytics-sql-assessment.md)
 #### [Surface Hub](log-analytics-surface-hubs.md)
 #### [系統更新評估](log-analytics-system-update.md)
-#### [Upgrade Analytics](https://technet.microsoft.com/itpro/windows/deploy/manage-windows-upgrades-with-upgrade-analytics)
 #### [VMware](log-analytics-vmware.md)
 #### [連線資料](log-analytics-wire-data.md)
 ## 分析
@@ -60,9 +60,9 @@
 ### [PowerShell Cmdlet](log-analytics-powershell-workspace-configuration.md)
 ### [記錄檔搜尋 API](log-analytics-log-search-api.md)
 ### [警示 API](log-analytics-api-alerts.md)
-# 參考
-# 相關參考
+
 # 資源
+## [Upgrade Analytics](https://technet.microsoft.com/itpro/windows/deploy/manage-windows-upgrades-with-upgrade-analytics)
 
 
 

@@ -1,16 +1,13 @@
 # [概觀](cdn-overview.md)
-## [Azure CDN 最佳做法](../best-practices-cdn.md?toc=%2fazure%2fcdn%2ftoc.json)
+## [什麼是 Azure CDN？](../best-practices-cdn.md?toc=%2fazure%2fcdn%2ftoc.json)
 # 開始使用
-## [使用 Azure CDN](cdn-create-new-endpoint.md)
-## 開始使用 Azure CDN 開發
-### [.NET](cdn-app-dev-net.md)
-### [Node.js](cdn-app-dev-node.md)
+## [啟用 Azure CDN](cdn-create-new-endpoint.md)
 
-# 作法：
+# 作法
 ## 整合
-### [與 Web Apps 整合](../app-service-web/cdn-websites-with-cdn.md?toc=%2fazure%2fcdn%2ftoc.json)
-### [與雲端服務整合](cdn-cloud-service-with-cdn.md)
-### [與儲存體整合](cdn-create-a-storage-account-with-cdn.md)
+### [Web Apps](../app-service-web/cdn-websites-with-cdn.md?toc=%2fazure%2fcdn%2ftoc.json)
+### [雲端服務](cdn-cloud-service-with-cdn.md)
+### [儲存體](cdn-create-a-storage-account-with-cdn.md)
 ### [跨原始資源共用](cdn-cors.md)
 
 ## 管理
@@ -29,9 +26,6 @@
 ### [使用規則覆寫行為](cdn-rules-engine.md)
 ### [取得即時警示](cdn-real-time-alerts.md)
 
-## 自動化
-### [以 PowerShell 管理](cdn-manage-powershell.md)
-
 ## 分析
 ### [分析使用模式](cdn-analyze-usage-patterns.md)
 ### [產生進階 HTTP 報告](cdn-advanced-http-reports.md)
@@ -39,21 +33,25 @@
 ### [分析邊緣效能](cdn-edge-performance.md)
 
 ## 開發
-### 開始使用 Azure CDN 開發
-#### [.NET](cdn-app-dev-net.md)
-#### [Node.js](cdn-app-dev-node.md)
+### [.NET](cdn-app-dev-net.md)
+### [Node.js](cdn-app-dev-node.md)
 
 ## 疑難排解
-### [針對 404 狀態進行疑難排解](cdn-troubleshoot-endpoint.md)
-### [針對檔案壓縮進行疑難排解](cdn-troubleshoot-compression.md)
+### [404 狀態](cdn-troubleshoot-endpoint.md)
+### [檔案壓縮](cdn-troubleshoot-compression.md)
 
 # 參考
-## [REST API 參考資料](https://msdn.microsoft.com/library/mt634456.aspx)
-
-# 相關參考
+## [PowerShell Cmdlet](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/)
+## [.NET API](https://docs.microsoft.com/dotnet/api)
+## [Azure CDN 的 POP 位置](cdn-pop-locations.md)
+## [REST](https://msdn.microsoft.com/library/mt634456.aspx)
 
 # 資源
-## [Azure CDN 的 POP 位置](cdn-pop-locations.md)
+## [價格](https://azure.microsoft.com/pricing/details/cdn/)
+## [MSDN 論壇](https://social.msdn.microsoft.com/forums/home?forum=azurecdn)
+## [影片](https://azure.microsoft.com/documentation/videos/index/?services=cdn)
+## [服務更新](https://azure.microsoft.com/updates/?product=cdn)
+
 
 
 <!--HONumber=Nov16_HO2-->

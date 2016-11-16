@@ -1,5 +1,6 @@
-# [概觀](app-service-how-works-readme.md)
+# 概觀
 ## [何謂 App Service](app-service-value-prop-what-is.md)
+## [運作方式](app-service-how-works-readme.md)
 ## [App Service 方案](azure-web-sites-web-hosting-plans-in-depth-overview.md)
 
 # 開始使用
@@ -82,7 +83,7 @@
 ### [Azure 虛擬網路](../app-service-web/web-sites-integrate-with-vnet.md?toc=%2fazure%2fapp-service%2ftoc.json)
 ### [進階組態](../app-service-web/web-sites-transform-extend.md?toc=%2fazure%2fapp-service%2ftoc.json)
 ### [資源群組](../app-service-web/app-service-move-resources.md?toc=%2fazure%2fapp-service%2ftoc.json)
-### [Web 工作](app-service-webjobs-readme.md)
+### [Web Jobs](app-service-webjobs-readme.md)
 #### [使用 WebJob 執行背景工作](../app-service-web/web-sites-create-web-jobs.md?toc=%2fazure%2fapp-service%2ftoc.json)
 
 ### [App Service 環境](app-service-app-service-environments-readme.md)
@@ -149,15 +150,14 @@
 ## [App Service 參考](../app-service-web/app-service-changes-existing-services.md?toc=%2fazure%2fapp-service%2ftoc.json)
 ## [最佳作法](../app-service-web/app-service-best-practices.md?toc=%2fazure%2fapp-service%2ftoc.json)
 ## [WebJob 資源](../app-service-web/websites-webjobs-resources.md?toc=%2fazure%2fapp-service%2ftoc.json)
-
-# 相關參考
 ## [WebJobs SDK](../app-service-web/websites-dotnet-webjobs-sdk-get-started.md?toc=%2fazure%2fapp-service%2ftoc.json)
+## [REST](https://docs.microsoft.com/rest/api/appservice/)
 
-
-
-
-
-
+# 資源
+## [價格](https://azure.microsoft.com/pricing/details/app-service/)  
+## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=windowsazurewebsitespreview)  
+## [影片](https://azure.microsoft.com/documentation/videos/index/?services=app-service) 
+## [服務更新](https://azure.microsoft.com/updates/?product=app-service) 
 
 <!--HONumber=Nov16_HO2-->
 

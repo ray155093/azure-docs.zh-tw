@@ -55,6 +55,9 @@
 ## 開發
 ### [在您的第一個 Web 應用程式中新增功能](app-service-web-get-started-2.md)
 ### [在 Linux 上建立 Web 應用程式](app-service-linux-how-to-create-a-web-app.md)
+### [App Service 參考](app-service-changes-existing-services.md)
+### [Azure 入口網站](app-service-web-app-azure-portal.md)
+### [WebJobs SDK](websites-dotnet-webjobs-sdk-get-started.md)
 
 ### ASP.NET 應用程式
 #### [在 5 分鐘內，將您的第一個 .NET Web 應用程式部署到 Azure](app-service-web-get-started-dotnet.md)
@@ -243,9 +246,10 @@
 ### [針對 Web 應用程式效能問題進行疑難排解](app-service-web-troubleshoot-performance-degradation.md)
 
 # 參考
-## [App Service 參考](app-service-changes-existing-services.md)
-## [Azure 入口網站](app-service-web-app-azure-portal.md)
-## [WebJobs SDK](websites-dotnet-webjobs-sdk-get-started.md)
+## [Azure CLI](/cli/azure/)
+## [Java](/java/api/)
+## [.NET](/dotnet/api)
+## [REST](/rest/api/appservice)
 
 # 相關參考
 ## [Azure SDK for .NET 版本資訊](azure-sdk-dotnet-release-notes.md)

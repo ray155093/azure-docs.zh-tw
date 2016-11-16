@@ -2,7 +2,7 @@
 ## [Azure 和 IoT](iot-suite-what-is-azure-iot.md)
 ## [什麼是 IoT 套件？](iot-suite-overview.md)
 ## [什麼是預先設定的解決方案？](iot-suite-what-are-preconfigured-solutions.md)
-## [IoT 套件的學習路徑](https://azure.microsoft.com/documentation/learning-paths/iot-suite/)
+
 
 # 開始使用
 ## [開始使用預先設定的解決方案](iot-suite-getstarted-preconfigured-solutions.md)
@@ -28,13 +28,14 @@
 ## [從頭建立安全性](securing-iot-ground-up.md)
 
 # 相關參考
-## [串流分析](https://azure.microsoft.com/services/stream-analytics/)
-## [事件中樞](https://azure.microsoft.com/services/event-hubs/)
-## [IoT 中心](https://azure.microsoft.com/services/iot-hub/)
-## [機器學習服務](https://azure.microsoft.com/services/machine-learning/)
+## [串流分析](/azure/stream-analytics/)
+## [事件中樞](/azure/event-hubs/)
+## [IoT 中心](/azure/iot-hub/)
+## [機器學習服務](/azure/machine-learning/)
 
 # 資源
 ## [常見問題集](iot-suite-faq.md)
+## [IoT 套件的學習路徑](https://azure.microsoft.com/documentation/learning-paths/iot-suite/)
 
 
 

@@ -15,26 +15,27 @@
 ### [資料安全性](oms-security-data-security.md)
 
 # 作法
-## 深入解析與分析
+## 分析
 ### [Log Analytics](../log-analytics/log-analytics-overview.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
 ### [監視產品比較](operations-management-suite-monitoring-product-comparison.md)
 ### [管理警示](operations-management-suite-monitoring-alerts.md)
-## 自動化與控制
+## 管理
+### [規劃和部署](operations-management-suite-solutions-creating.md)
+### [自動化資源](operations-management-suite-solutions-resources-automation.md)
+### [檢視](operations-management-suite-solutions-resources-views.md)
+## 自動化
 ### [Azure 自動化概觀](../automation/automation-intro.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
-## 保護和復原
+## 備份
 ### [備份概觀](../backup/backup-introduction-to-azure-backup.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
 ### [Site Recovery 概觀](../site-recovery/site-recovery-overview.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
-## 安全性與法規遵循
+## 安全
 ### [監視資源](oms-security-monitoring-resources.md)
 ### [回應安全性警示](oms-security-responding-alerts.md)
 ### [基準評估](oms-security-baseline.md)
 ### [惡意程式碼評估](../log-analytics/log-analytics-malware.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
 ### [系統更新評估](../log-analytics/log-analytics-system-update.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
 ## [與 OMS 整合](operations-management-suite-integration.md)
-## 管理解決方案
-### [規劃和部署](operations-management-suite-solutions-creating.md)
-### [自動化資源](operations-management-suite-solutions-resources-automation.md)
-### [檢視](operations-management-suite-solutions-resources-views.md)
+
 
 # 參考
 ## [SDK](operations-management-suite-sdk.md)
@@ -60,6 +61,7 @@
 #### [更新管理](oms-solution-update-management.md)
 ### 安全性與法規遵循
 #### [反惡意程式碼評估](../log-analytics/log-analytics-malware.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
+
 
 
 <!--HONumber=Nov16_HO2-->

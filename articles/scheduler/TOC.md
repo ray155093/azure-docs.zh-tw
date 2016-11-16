@@ -14,18 +14,22 @@
 
 ## 開發
 ### [使用 REST API 進行複雜排程](scheduler-advanced-complexity.md)
+### [概念與術語](scheduler-concepts-terms.md)
 
 ## 安全
 ### [輸出驗證](scheduler-outbound-authentication.md)
 
 # 參考
-## [概念與術語](scheduler-concepts-terms.md)
-## [REST API](https://msdn.microsoft.com/library/azure/mt629143)
-## [PowerShell Cmdlet](scheduler-powershell-reference.md)
+## [Azure 排程器 PowerShell Cmdlet](https://msdn.microsoft.com/en-us/library/mt490138(v=azure.200).aspx)
+## [.NET](/dotnet/api)
+## [REST](/rest/api/scheduler/)
 
 # 資源
-## [排程器影片](https://azure.microsoft.com/documentation/videos/index/?services=scheduler)
+## [論壇](https://social.msdn.microsoft.com/Forums/home?forum=azurescheduler)
+## [服務更新](https://azure.microsoft.com/updates/?product=scheduler)
+## [價格](https://azure.microsoft.com/pricing/details/scheduler/)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-scheduler)
+## [影片](https://azure.microsoft.com/documentation/videos/index/?services=scheduler)
 
 
 <!--HONumber=Nov16_HO2-->

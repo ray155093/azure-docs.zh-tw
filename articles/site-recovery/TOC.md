@@ -9,7 +9,7 @@
 # 開始使用
 ## [準備部署](site-recovery-best-practices.md)
 
-# 作法：
+# 作法
 ## 規劃
 ### [容量規劃](site-recovery-capacity-planner.md)
 ### [效能與規模測試結果](site-recovery-performance-and-scaling-testing-on-premises-to-on-premises.md)
@@ -48,6 +48,10 @@
 ### [容錯回復 VMware VM 和實體伺服器](site-recovery-failback-azure-to-vmware.md)
 ## [監視及疑難排解](site-recovery-monitoring-and-troubleshooting.md)
 
+# 參考
+## [PowerShell](/powershell/azureps-cmdlets-docs/)
+## [PowerShell 傳統](/powershell/servicemanagement/)
+
 # 相關參考
 ## [Azure 自動化](/azure/automation/)
 
@@ -56,6 +60,7 @@
 ## [論壇](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=hypervrecovmgr)
 ## [部落格](http://azure.microsoft.com/blog/tag/azure-site-recovery/)
 ## [價格](https://azure.microsoft.com/pricing/details/site-recovery/)
+## [服務更新](https://azure.microsoft.com/updates/?product=site-recovery)
 
 
 <!--HONumber=Nov16_HO2-->
