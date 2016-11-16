@@ -1,13 +1,13 @@
 ---
-title: Apache Storm on HDInsight 簡介 | Microsoft Docs
-description: 取得 Apache Storm 的簡介，並了解如何使用 Storm on HDInsight 在雲端中建置即時資料分析解決方案。
+title: "Apache Storm on HDInsight 簡介 | Microsoft Docs"
+description: "取得 Apache Storm 的簡介，並了解如何使用 Storm on HDInsight 在雲端中建置即時資料分析解決方案。"
 services: hdinsight
-documentationcenter: ''
+documentationcenter: 
 author: Blackmist
 manager: jhubbard
 editor: cgronlun
 tags: azure-portal
-
+ms.assetid: 72d54080-1e48-4a5e-aa50-cce4ffc85077
 ms.service: hdinsight
 ms.devlang: na
 ms.topic: get-started-article
@@ -15,15 +15,19 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 10/11/2016
 ms.author: larryfr
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: e2fa11046adf828497b142e1043ac1c2a15443ef
+
 
 ---
-# <a name="introduction-to-apache-storm-on-hdinsight:-real-time-analytics-for-hadoop"></a>Apache Storm on HDInsight 簡介：Hadoop 的即時分析
+# <a name="introduction-to-apache-storm-on-hdinsight-realtime-analytics-for-hadoop"></a>Apache Storm on HDInsight 簡介：Hadoop 的即時分析
 Apache Storm on HDInsight 可讓您使用 [Apache Hadoop](http://hadoop.apache.org)，在 Azure 環境中建立分散式的即時分析解決方案。
 
-## <a name="what-is-apache-storm?"></a>什麼是 Apache Storm？
+## <a name="what-is-apache-storm"></a>什麼是 Apache Storm？
 Apache Storm 是一個容錯的分散式開放原始碼計算系統，可讓您使用 Hadoop 即時處理資料。 Storm 解決方案也能夠重播最初未成功處理的資料，保證一定會處理資料。
 
-## <a name="why-use-storm-on-hdinsight?"></a>為何使用 Storm on HDInsight？
+## <a name="why-use-storm-on-hdinsight"></a>為何使用 Storm on HDInsight？
 Apache Storm on HDInsight 是已和 Azure 環境整合的受管理叢集。 它具有以下主要優勢：
 
 * 可做為受管理服務執行，且具有 99.9% 運作時間的 SLA
@@ -103,7 +107,7 @@ Apache Storm 的預設組態只有一個 Nimbus 節點。 Storm on HDInsight 會
 ### <a name="support"></a>支援
 Storm on HDInsight 隨附完整的企業級全年無休支援。 Storm on HDInsight 也有 99.9% 的 SLA。 這表示我們保證叢集至少 99.9% 的時間具有外部連線能力。
 
-## <a name="common-use-cases-for-real-time-analytics"></a>即時分析的常見使用案例
+## <a name="common-use-cases-for-realtime-analytics"></a>即時分析的常見使用案例
 以下是一些 Apache storm on HDInsight 可能的常見使用案例。 如需真實案例的相關資訊，請參閱 [公司如何使用 Storm](https://storm.apache.org/documentation/Powered-By.html)(英文)。
 
 * 物聯網 (IoT)
@@ -114,7 +118,7 @@ Storm on HDInsight 隨附完整的企業級全年無休支援。 Storm on HDInsi
 * 搜尋
 * Mobile Engagement
 
-## <a name="how-is-data-in-hdinsight-storm-processed?"></a>如何處理 HDInsight Storm 中的資料？
+## <a name="how-is-data-in-hdinsight-storm-processed"></a>如何處理 HDInsight Storm 中的資料？
 Apache Storm 會執行 **拓撲** ，而不是您在 HDInsight 或 Hadoop 中可能熟悉的 MapReduce 工作。 Storm on HDInsight 叢集包含兩種節點：執行 **Nimbus** 的前端節點和執行**監督員**的背景工作節點。
 
 * **Nimbus**：類似 Hadoop 中的 JobTracker，負責將程式碼散發到整個叢集、指派工作給虛擬機器及監控失敗情況。 HDInsight 提供兩個 Nimbus 節點，所以 Storm on HDInsight 不會有單一失敗點。
@@ -136,10 +140,10 @@ Apache Storm 會執行 **拓撲** ，而不是您在 HDInsight 或 Hadoop 中可
 
 如需關於 Storm 元件的詳細資訊，請參閱 apache.org 上的 [Storm 教學課程][apachetutorial]。
 
-## <a name="what-programming-languages-can-i-use?"></a>我可以使用哪些程式設計語言？
+## <a name="what-programming-languages-can-i-use"></a>我可以使用哪些程式設計語言？
 Storm on HDInsight 叢集支援 C#、Java 和 Python。
 
-### <a name="c&#35;"></a>C&#35;
+### <a name="c35"></a>C&#35;
 HDInsight Tools for Visual Studio 可讓 .NET 開發人員以 C# 設計和實作拓撲。 您也可以建立使用 Java 和 C# 元件的混合式拓撲。
 
 如需詳細資訊，請參閱 [使用 Visual Studio 開發 Apache Storm on HDInsight 的 C# 拓撲](hdinsight-storm-develop-csharp-visual-studio-topology.md)。
@@ -153,7 +157,7 @@ HDInsight Tools for Visual Studio 可讓 .NET 開發人員以 C# 設計和實作
 
 Storm-Starter 範例位於 Linux 叢集上的 ** /usr/hdp/current/storm-client/contrib/storm-starter** 目錄和 Windows 叢集上的 **%storm_home%\contrib\storm-starter** 目錄。
 
-## <a name="what-are-some-common-development-patterns?"></a>有哪些常見的開發模式？
+## <a name="what-are-some-common-development-patterns"></a>有哪些常見的開發模式？
 ### <a name="guaranteed-message-processing"></a>保證處理訊息
 Storm 可以提供不同程度的訊息處理保證。 例如，基本的 Storm 應用程式可以保證至少處理一次，而 Trident 可以保證只處理一次。
 
@@ -184,7 +188,7 @@ Storm 可以提供不同程度的訊息處理保證。 例如，基本的 Storm 
 
 如需相關範例，請參閱 [RollingTopWords](https://github.com/nathanmarz/storm-starter/blob/master/src/jvm/storm/starter/RollingTopWords.java) 範例。
 
-## <a name="what-type-of-logging-does-storm-use?"></a>Storm 使用何種類型的記錄？
+## <a name="what-type-of-logging-does-storm-use"></a>Storm 使用何種類型的記錄？
 Storm 使用 Apache Log4j 來記錄資訊。 預設會記錄大量的資料，因此難以排序整個資訊。 您可以將記錄組態檔納入 Storm 拓撲的一部分，以便控制記錄行為。
 
 如需示範如何設定記錄的拓撲範例，請參閱 Storm on HDInsight 的 [以 Java 為基礎的 WordCount](hdinsight-storm-develop-java-topology.md) 範例。
@@ -202,6 +206,6 @@ Storm 使用 Apache Log4j 來記錄資訊。 預設會記錄大量的資料，�
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: 開始使用 Android 應用程式 Azure Mobile Engagement
-description: 了解如何使用 Android 應用程式的 Azure Mobile Engagement 與分析和推播通知。
+title: "開始使用 Android 應用程式 Azure Mobile Engagement"
+description: "了解如何使用 Android 應用程式的 Azure Mobile Engagement 與分析和推播通知。"
 services: mobile-engagement
 documentationcenter: android
 author: piyushjo
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 3c286c6d-cfef-4e3e-9b2c-715429fe82db
 ms.service: mobile-engagement
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-android
@@ -14,6 +14,10 @@ ms.devlang: Java
 ms.topic: hero-article
 ms.date: 08/10/2016
 ms.author: piyushjo;ricksal
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: a4b9ab47969c95aa9940e044b426cf2811e23f61
+
 
 ---
 # <a name="get-started-with-azure-mobile-engagement-for-android-apps"></a>開始使用適用於 Android 應用程式的 Azure Mobile Engagement
@@ -106,10 +110,10 @@ Android Studio 現在要建立會和 Mobile Engagement 整合的示範應用程�
 2. 若要宣告代理程式服務，在 `<application>` 和 `</application>` 標籤之間新增此程式碼：
    
         <service
-            android:name="com.microsoft.azure.engagement.service.EngagementService"
-            android:exported="false"
-            android:label="<Your application name>"
-            android:process=":Engagement"/>
+             android:name="com.microsoft.azure.engagement.service.EngagementService"
+             android:exported="false"
+             android:label="<Your application name>"
+             android:process=":Engagement"/>
 3. 在您貼上的程式碼內，取代標籤中的 `"<Your application name>"`，標籤會顯示在 [設定] 功能表中，該處可以看到裝置上執行的服務。 例如，您可以在該標籤中加入「服務」這個字。
 
 ### <a name="send-a-screen-to-mobile-engagement"></a>傳送畫面到 Mobile Engagement
@@ -130,10 +134,10 @@ Android Studio 現在要建立會和 Mobile Engagement 整合的示範應用程�
 
 如果您想要將 `ActionBar` 保留在應用程式中，請參閱 [進階 Android 報告](mobile-engagement-android-advanced-reporting.md#modifying-your-codeactivitycode-classes)。
 
-## <a name="connect-app-with-real-time-monitoring"></a>將應用程式與即時監視連接
+## <a name="connect-app-with-realtime-monitoring"></a>將應用程式與即時監視連接
 [!INCLUDE [Connect app with real-time monitoring](../../includes/mobile-engagement-connect-app-with-monitor.md)]
 
-## <a name="enable-push-notifications-and-in-app-messaging"></a>啟用推播通知與應用程式內傳訊
+## <a name="enable-push-notifications-and-inapp-messaging"></a>啟用推播通知與應用程式內傳訊
 活動進行期間，Mobile Engagement 可讓您透過推播通知和應用程式內傳訊與使用者互動和「觸達」。 此模組在 Mobile Engagement 入口網站中稱為觸達 (REACH)。
 接下來的一節將設定您的應用程式來接收它們。
 
@@ -169,6 +173,6 @@ Android Studio 現在要建立會和 Mobile Engagement 整合的示範應用程�
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

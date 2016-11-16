@@ -1,19 +1,23 @@
 ---
-title: 在 Log Analytics 中設定 Proxy 和防火牆設定 | Microsoft Docs
-description: 當您的代理程式或 OMS 服務需要使用特定連接埠時，請設定 Proxy 和防火牆設定。
+title: "在 Log Analytics 中設定 Proxy 和防火牆設定 | Microsoft Docs"
+description: "當您的代理程式或 OMS 服務需要使用特定連接埠時，請設定 Proxy 和防火牆設定。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: bandersmsft
 manager: jwhit
-editor: ''
-
+editor: 
+ms.assetid: b55ebd80-efd4-4220-971b-c18aea1b1ab2
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 08/23/2016
+ms.date: 11/11/2016
 ms.author: banders;magoedte
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 36c8f482a55135623865814bd384ac98ae214fa3
+
 
 ---
 # <a name="configure-proxy-and-firewall-settings-in-log-analytics"></a>在 Log Analytics 中設定 Proxy 和防火牆設定
@@ -78,8 +82,8 @@ Operations Manager 管理群組必須能夠存取您的網域和 URL 的連接�
 
 > [!NOTE]
 > 部分的下列資源提及 Advisor 和 Operational Insights，兩者均為 OMS 的先前版本。 不過，列出的資源將會在未來變更。
-> 
-> 
+>
+>
 
 以下是代理程式資源和連接埠的清單︰<br>
 
@@ -171,6 +175,8 @@ Operations Manager 管理群組必須能夠存取您的網域和 URL 的連接�
 * [從方案庫加入 Log Analytics 方案](log-analytics-add-solutions.md) ，以加入功能和收集資料。
 * 熟悉 [記錄搜尋](log-analytics-log-searches.md) 以檢視方案所收集的詳細資訊。
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO2-->
 
 

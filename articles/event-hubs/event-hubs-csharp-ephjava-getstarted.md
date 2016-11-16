@@ -1,12 +1,12 @@
 ---
-title: 開始使用以 C# 撰寫的事件中樞 | Microsoft Docs
-description: 遵循此教學課程，以開始使用 Azure 事件中樞；以 C# 傳送事件並使用 EventProcessorHost 以 Java 接收事件。
+title: "開始使用以 C# 撰寫的事件中樞 | Microsoft Docs"
+description: "遵循此教學課程，以開始使用 Azure 事件中樞；以 C# 傳送事件並使用 EventProcessorHost 以 Java 接收事件。"
 services: event-hubs
-documentationcenter: ''
+documentationcenter: 
 author: jtaubensee
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 059fb733-a397-400e-8e43-0c7ea5930b8b
 ms.service: event-hubs
 ms.workload: na
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 09/27/2016
 ms.author: jotaub;sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 51d880650ab8059f3346b5c1272c232b49be33e9
+
 
 ---
 # <a name="get-started-with-event-hubs"></a>開始使用事件中心
@@ -27,7 +31,7 @@ ms.author: jotaub;sethm
 若要完成此教學課程，您需要下列項目：
 
 * [Microsoft Visual Studio](http://visualstudio.com)
-* 使用中的 Azure 帳戶。 <br/>如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費帳戶。 如需詳細資料，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdevelop%2Fmobile%2Ftutorials%2Fget-started%2F target="_blank")。
+* 使用中的 Azure 帳戶。 <br/>如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdevelop%2Fmobile%2Ftutorials%2Fget-started%2F target="_blank")。
 
 [!INCLUDE [event-hubs-create-event-hub](../../includes/event-hubs-create-event-hub.md)]
 
@@ -48,9 +52,9 @@ ms.author: jotaub;sethm
 ## <a name="next-steps"></a>後續步驟
 您已經建置工作應用程式，可建立「事件中樞」和傳送及接收資料，接下來可進行下列案例：
 
-* [使用事件中樞的完整範例應用程式][使用事件中樞的完整範例應用程式]。
-* [使用「事件中樞」相應放大事件處理][使用「事件中樞」相應放大事件處理] 範例。
-* [事件中心概觀][]
+* 完整的[使用「事件中樞」的範例應用程式][使用「事件中樞」的範例應用程式]。
+* [使用「事件中樞」相應放大事件處理][使用「事件中樞」相應放大事件處理]範例。
+* [事件中樞概觀][事件中樞概觀]
 
 <!-- Images. -->
 [21]: ./media/event-hubs-csharp-ephjava-getstarted/ephjava.png
@@ -59,11 +63,11 @@ ms.author: jotaub;sethm
 <!-- Links -->
 [Azure 傳統入口網站]: https://manage.windowsazure.com/
 [事件中樞概觀]: event-hubs-overview.md
-[使用事件中樞的完整範例應用程式]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-286fd097
+[使用「事件中樞」的範例應用程式]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-286fd097
 [使用「事件中樞」相應放大事件處理]: https://code.msdn.microsoft.com/Service-Bus-Event-Hub-45f43fc3
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

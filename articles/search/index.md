@@ -1,9 +1,13 @@
 ---
 layout: LandingPage
----
-# Azure Search Documentation
+translationtype: Human Translation
+ms.sourcegitcommit: cdfe04908d68292d07eeb9c20a4772d11fa30eff
+ms.openlocfilehash: d3ef28f2cb1459410ec90982fff94fbbced55f72
 
-Azure Search is a cloud search-as-a-service solution that delegates server and infrastructure management to Microsoft, leaving you with a ready-to-use service that you can populate with your data and then use to add search to your web or mobile application. Azure Search allows you to easily add a robust search experience to your applications using a simple REST API or .NET SDK without managing search infrastructure or becoming an expert in search.
+---
+# <a name="azure-search-documentation"></a>Azure 搜尋服務文件
+
+Azure 搜尋服務是一項雲端搜尋即服務解決方案，可將伺服器和基礎結構管理委託給 Microsoft，讓您利用立即可用的服務來填入搜尋資料，然後用來在 Web 或行動應用程式中新增搜尋。 Azure 搜尋服務可讓您使用簡單的 REST API 或 .NET SDK，輕鬆地將強大的搜尋經驗新增至應用程式，而不需要管理搜尋基礎結構或成為搜尋專家。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -17,7 +21,7 @@ Azure Search is a cloud search-as-a-service solution that delegates server and i
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Learn about Azure Search</h3>
+                        <h3>了解 Azure 搜尋服務</h3>
                     </div>
                 </div>
             </div>
@@ -35,7 +39,7 @@ Azure Search is a cloud search-as-a-service solution that delegates server and i
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure Search Video Library</h3>
+                        <h3>Azure 搜尋服務影片庫</h3>
                     </div>
                 </div>
             </div>
@@ -53,7 +57,7 @@ Azure Search is a cloud search-as-a-service solution that delegates server and i
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Get Started with Azure Search using the Azure Portal</h3>
+                        <h3>利用 Azure 入口網站開始使用 Azure 搜尋服務</h3>
                     </div>
                 </div>
             </div>
@@ -71,7 +75,7 @@ Azure Search is a cloud search-as-a-service solution that delegates server and i
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Create an Azure Search Index</h3>
+                        <h3>建立 Azure 搜尋服務索引</h3>
                     </div>
                 </div>
             </div>
@@ -83,19 +87,24 @@ Azure Search is a cloud search-as-a-service solution that delegates server and i
 
 ---
 
-## Reference
+## <a name="reference"></a>參考
 
-### .NET 
-[.NET Managed Reference API](/dotnet/api/) 
+### <a name="net"></a>.NET 
+[.NET 受管理的參考 API](/dotnet/api/) 
 
-### REST 
-[Search REST API Reference](/rest/api/searchmanagement/) 
+### <a name="rest"></a>REST 
+[搜尋 REST API 參考](/rest/api/searchmanagement/) 
 
 <div class="downloadHolder">
     <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/search.pdf">
         <div class="img"></div>
         <div class="text">
-            Download Azure Search Documentation
-        </div>
+下載 Azure 搜尋服務文件 </div>
     </a>
 </div>
+
+
+
+<!--HONumber=Nov16_HO2-->
+
+

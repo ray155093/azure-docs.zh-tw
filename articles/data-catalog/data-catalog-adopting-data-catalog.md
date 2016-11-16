@@ -1,13 +1,13 @@
 ---
-title: 採用 Azure 資料目錄 | Microsoft Docs
-description: 本文將為考慮採用 Azure 資料目錄的組織介紹一種方法和程序，包括定義願景、找出重要的商業使用案例，以及選擇試驗專案。
+title: "採用 Azure 資料目錄 | Microsoft Docs"
+description: "本文將為考慮採用 Azure 資料目錄的組織介紹一種方法和程序，包括定義願景、找出重要的商業使用案例，以及選擇試驗專案。"
 services: data-catalog
-documentationcenter: ''
+documentationcenter: 
 author: steelanddata
 manager: NA
-editor: ''
-tags: ''
-
+editor: 
+tags: 
+ms.assetid: 0c771e7a-6fcd-417f-9247-897177719567
 ms.service: data-catalog
 ms.devlang: NA
 ms.topic: hero-article
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 10/11/2016
 ms.author: maroche
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 6299c6eaab1e62281e23d2dd43c14fbb9769a316
+
 
 ---
 # <a name="adopting-azure-data-catalog"></a>採用 Azure 資料目錄
@@ -163,6 +167,9 @@ ms.author: maroche
 * [註解資料來源](data-catalog-get-started.md#exercise-4-annotating-registered-data-sources)
 * [將中繼資料群眾外包](data-catalog-get-started.md#exercise-5-crowdsourcing-metadata)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: 在離峰期間啟動/停止 VM [預覽] 方案 | Microsoft Docs
-description: VM 管理方案會依照排程啟動和停止 Azure Resource Manager 虛擬機器，並從 Log Analytics 主動監視。
+title: "在離峰期間啟動/停止 VM [預覽] 方案 | Microsoft Docs"
+description: "VM 管理方案會依照排程啟動和停止 Azure Resource Manager 虛擬機器，並從 Log Analytics 主動監視。"
 services: automation
-documentationcenter: ''
+documentationcenter: 
 author: MGoedtel
 manager: jwhit
-editor: ''
-
+editor: 
+ms.assetid: 06c27f72-ac4c-4923-90a6-21f46db21883
 ms.service: automation
 ms.workload: tbd
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 10/07/2016
 ms.author: magoedte
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: b0fec06e4a167e615381fca17def46923d9f0f1b
+
 
 ---
-# <a name="start/stop-vms-during-off-hours-[preview]-solution-in-automation"></a>自動化中的在離峰期間啟動/停止 VM [預覽] 方案
+# <a name="startstop-vms-during-offhours-preview-solution-in-automation"></a>自動化中的在離峰期間啟動/停止 VM [預覽] 方案
 在離峰期間啟動/停止 VM [預覽] 方案會依照使用者定義的排程啟動和停止 Azure Resource Manager 虛擬機器，並透過 OMS Log Analytics 提供成功啟動和停止虛擬機器的自動化作業深入解析。  
 
 ## <a name="prerequisites"></a>必要條件
@@ -121,7 +125,7 @@ ms.author: magoedte
 
 您也可以從這裡開啟 OMS 工作區，並進行進一步的工作記錄分析。  只需按一下 [所有設定]，在 [設定] 刀鋒視窗中選取 [快速入門]，然後在 [快速入門] 刀鋒視窗中選取 [OMS 入口網站]。   這樣會開啟新的索引標籤或新的瀏覽器工作階段，並顯示與您的自動化帳戶和訂用帳戶相關聯的 OMS 工作區。  
 
-### <a name="configuring-e-mail-notifications"></a>設定電子郵件通知
+### <a name="configuring-email-notifications"></a>設定電子郵件通知
 若要在啟動和停止 VM Runbook 完成時啟用電子郵件通知，您必須修改 **O365Credential** 認證以及至少下列的變數︰
 
 * SendMailO365-IsSendEmail-MS-Mgmt
@@ -160,8 +164,8 @@ ms.author: magoedte
 | ResourceGroup |指定 Runbook 作業的資源群組名稱。 |
 | ResourceProvider |指定 Azure 服務，以提供您可部署及管理的資源。  對自動化來說，此值是 Azure 自動化。 |
 | ResourceType |指定 Azure 中的資源類型。  對自動化來說，該值是與 Runbook 相關聯的自動化帳戶。 |
-| resultType |Runbook 作業的狀態。  可能的值包括：<br>- Started<br>- Stopped<br>- Suspended<br>- Failed<br>- Succeeded |
-| resultDescription |說明 Runbook 作業的結果狀態。  可能的值包括：<br>- Job is started<br>- Job Failed<br>- Job Completed |
+| resultType |Runbook 作業的狀態。  可能的值包括：<br>- Started (已啟動)<br>- Stopped (已停止)<br>- Suspended (暫止)<br>- Failed (失敗)<br>- Succeeded |
+| resultDescription |說明 Runbook 作業的結果狀態。  可能的值包括：<br>- Job is started (工作已啟動)<br>- Job Failed (工作失敗)<br>- Job Completed |
 | RunbookName |指定 Runbook 的名稱。 |
 | SourceSystem |指定所提交資料的來源系統。  對自動化來說，此值會是 :OpsManager |
 | StreamType |指定事件的類型。 可能的值包括：<br>- Verbose<br>- Output<br>- Error<br>- Warning |
@@ -183,7 +187,7 @@ ms.author: magoedte
 | resultDescription |包含來自 Runbook 的輸出串流。 |
 | RunbookName |Runbook 的名稱。 |
 | SourceSystem |指定所提交資料的來源系統。  對自動化來說，此值會是 OpsManager |
-| StreamType |作業串流的類型。 可能的值包括：<br>-Progress<br>- Output<br>- Warning<br>- Error<br>- Debug<br>- Verbose |
+| StreamType |作業串流的類型。 可能的值包括：<br>-Progress (進度)<br>- Output (輸出)<br>- Warning (警告)<br>- Error (錯誤)<br>- Debug (偵錯)<br>- Verbose |
 | 時間 |Runbook 作業的執行日期和時間。 |
 
 當您執行的記錄檔搜尋傳回記錄 **JobLogs** 或 **JobStreams** 類別的目錄時，您可以選取 **JobLogs** 或 **JobStreams** 檢視，其中顯示一組彙總搜尋所傳回更新的圖格。
@@ -202,6 +206,9 @@ ms.author: magoedte
 * 若要深入了解 Runbook 執行方式、如何監視 Runbook 工作，以及其他技術性詳細資料，請參閱 [追蹤 Runbook 工作](automation-runbook-execution.md)
 * 若要深入了解 OMS Log Analytics 和資料收集來源，請參閱 [在 Log Analytics 中收集 Azure 儲存體資料概觀](../log-analytics/log-analytics-azure-storage.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

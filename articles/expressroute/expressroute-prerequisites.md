@@ -1,12 +1,12 @@
 ---
-title: 採用 ExpressRoute 的必要條件 | Microsoft Docs
-description: 本頁面提供在您可以訂購 Azure ExpressRoute 電路之前必須符合的需求清單。
+title: "採用 ExpressRoute 的必要條件 | Microsoft Docs"
+description: "本頁面提供在您可以訂購 Azure ExpressRoute 電路之前必須符合的需求清單。"
 documentationcenter: na
 services: expressroute
 author: cherylmc
 manager: carmonm
-editor: ''
-
+editor: 
+ms.assetid: f872d25e-acfd-405d-9d1b-dcb9f323a2ff
 ms.service: expressroute
 ms.devlang: na
 ms.topic: get-started-article
@@ -14,9 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/10/2016
 ms.author: cherylmc
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: a582941b06fa7f81d7db188f2a9feba837b9bfd8
+
 
 ---
-# <a name="expressroute-prerequisites-&-checklist"></a>ExpressRoute 必要條件和檢查清單
+# <a name="expressroute-prerequisites-checklist"></a>ExpressRoute 必要條件和檢查清單
 若要使用 ExpressRoute 連線到 Microsoft 雲端服務，您必須確認是否符合以下各節中所列的下列需求。
 
 [!INCLUDE [expressroute-office365-include](../../includes/expressroute-office365-include.md)]
@@ -58,8 +62,11 @@ ms.author: cherylmc
 * 設定 ExpressRoute 連線。
   * [建立 ExpressRoute 線路](expressroute-howto-circuit-classic.md)
   * [設定路由](expressroute-howto-routing-classic.md)
-  * [將 VNet 連結到 ExpressRoute 循環](expressroute-howto-linkvnet-classic.md)
+  * [將 VNet 連結到 ExpressRoute 線路](expressroute-howto-linkvnet-classic.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

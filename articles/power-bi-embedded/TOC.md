@@ -5,8 +5,9 @@
 # 開始使用
 ## [開始使用 Power BI Embedded](power-bi-embedded-get-started.md)
 ## [開始使用範例](power-bi-embedded-get-started-sample.md)
+## [常見問題集](power-bi-embedded-faq.md)
 
-# 作法 
+# 作法
 ## 規劃和設計
 ### [常見案例](power-bi-embedded-scenarios.md)
 
@@ -20,19 +21,17 @@
 ### [Power BI Embedded 的資料列層級安全性](power-bi-embedded-rls.md)
 
 # 參考
-## [.NET API 參考](https://msdn.microsoft.com/en-us/library/azure/mt669800)
-## [JavaScript SDK](https://github.com/Microsoft/PowerBI-JavaScript)
-## [REST API 參考資料](https://msdn.microsoft.com/en-us/library/azure/mt712303)
+## [PowerShell](/powershell/resourcemanager/)
+## [.NET](/dotnet/api/)
 ## [.NET SDK 下載](https://www.nuget.org/profiles/powerbi)
+## [JavaScript](https://github.com/Microsoft/PowerBI-JavaScript)
+## [REST](/rest/api/powerbiembedded/)
 
-# 相關參考 
 
 # 資源
-## [常見問題集](power-bi-embedded-faq.md)
 ## [範例](https://github.com/Azure-Samples/power-bi-embedded-integrate-report-into-web-app/)
 ## [Power BI 社群](http://community.powerbi.com/t5/Developer/bd-p/Developer)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/powerbi)
-
 
 
 <!--HONumber=Nov16_HO2-->

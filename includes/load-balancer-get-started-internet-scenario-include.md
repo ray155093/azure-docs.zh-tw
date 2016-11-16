@@ -6,4 +6,7 @@
 
 ![負載平衡器案例](./media/load-balancer-get-started-internet-scenario-include/scenario-classic.png)
 
-<!---HONumber=AcomDC_0914_2016-->
+
+<!--HONumber=Nov16_HO2-->
+
+

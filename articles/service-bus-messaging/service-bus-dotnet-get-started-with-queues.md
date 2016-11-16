@@ -1,12 +1,12 @@
 ---
-title: 開始使用服務匯流排佇列 | Microsoft Docs
-description: 如何撰寫用於服務匯流排訊息的 C# 主控台應用程式
+title: "開始使用服務匯流排佇列 | Microsoft Docs"
+description: "如何撰寫用於服務匯流排訊息的 C# 主控台應用程式"
 services: service-bus
 documentationcenter: .net
 author: jtaubensee
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 68a34c00-5600-43f6-bbcc-fea599d500da
 ms.service: service-bus
 ms.devlang: tbd
 ms.topic: hero-article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: dotnet
 ms.workload: na
 ms.date: 08/23/2016
 ms.author: jotaub;sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: c6405a6353cfcc56c79a6f842c6b150d10db75ee
+
 
 ---
 # <a name="get-started-with-service-bus-queues"></a>開始使用服務匯流排佇列
@@ -33,17 +37,17 @@ ms.author: jotaub;sethm
 
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
-## <a name="1.-create-a-namespace-using-the-azure-portal"></a>1.使用 Azure 入口網站建立命名空間
+## <a name="1-create-a-namespace-using-the-azure-portal"></a>1.使用 Azure 入口網站建立命名空間
 如果您已經建立服務匯流排命名空間，請跳至[使用 Azure 入口網站建立佇列](#2-create-a-queue-using-the-azure-portal)一節。
 
 [!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
-## <a name="2.-create-a-queue-using-the-azure-portal"></a>2.使用 Azure 入口網站建立佇列
+## <a name="2-create-a-queue-using-the-azure-portal"></a>2.使用 Azure 入口網站建立佇列
 如果您已經建立服務匯流排佇列，請跳至[將訊息傳送到佇列](#3-send-messages-to-the-queue)一節。
 
 [!INCLUDE [service-bus-create-queue-portal](../../includes/service-bus-create-queue-portal.md)]
 
-## <a name="3.-send-messages-to-the-queue"></a>3.將訊息傳送到佇列
+## <a name="3-send-messages-to-the-queue"></a>3.將訊息傳送到佇列
 為了將訊息傳送到佇列，我們會使用 Visual Studio 撰寫 C# 主控台應用程式。
 
 ### <a name="create-a-console-application"></a>建立主控台應用程式
@@ -99,7 +103,7 @@ ms.author: jotaub;sethm
    
       ![訊息計數][queue-message]
 
-## <a name="4.-receive-messages-from-the-queue"></a>4.從佇列接收訊息
+## <a name="4-receive-messages-from-the-queue"></a>4.從佇列接收訊息
 1. 建立新的主控台應用程式，並和上面的傳送應用程式類似，新增服務匯流排 NuGet 封裝的參考。
 2. 在 Program.cs 檔案開頭處新增以下 `using` 陳述式。
    
@@ -172,6 +176,7 @@ ms.author: jotaub;sethm
 [github-samples]: https://github.com/Azure-Samples/azure-servicebus-messaging-samples
 
 
-<!--HONumber=Oct16_HO2-->
+
+<!--HONumber=Nov16_HO2-->
 
 

@@ -1,12 +1,12 @@
-# Overview
-## [ACS 簡介](container-service-intro.md)
+# 概觀
+## [什麼是 Azure Container Service？](container-service-intro.md)
 # 開始使用
 
 ## [部署 ACS 叢集](container-service-deployment.md)
 ## [與 ACS 叢集連接](container-service-connect.md)
 ## [調整 ACS 叢集的規模](container-service-scale.md)
 
-# 作法：
+# 作法
 
 ## 以 DC/OS 管理
 ### [管理容器 - DC/OS Web UI](container-service-mesos-marathon-ui.md)
@@ -21,12 +21,11 @@
 ### [Docker Swarm 概觀](container-service-docker-swarm.md)
 
 # 參考
-
-## [REST API](https://go.microsoft.com/fwlink/p/?linkid=833499)
+## [REST API](https://docs.microsoft.com/rest/api/compute/containerservices/)
 
 # 資源
-
 ## [區域可用性](https://azure.microsoft.com/regions/services/)
+## [價格](https://azure.microsoft.com/pricing/details/container-service/)
 ## [服務更新](https://azure.microsoft.com/en-us/updates/?product=container-service&updatetype=&platform=)
 
 

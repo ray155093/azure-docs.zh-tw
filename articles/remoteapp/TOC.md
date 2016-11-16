@@ -22,7 +22,7 @@
 ### [在任何裝置上執行任何應用程式](remoteapp-anyapp.md)
 ### [在任何裝置上執行 Office 365](remoteapp-tutorial-o365anywhere.md)
 
-# 作法：
+# 作法
 
 ## 建立 RemoteApp 集合
 ### [您需要哪一種收藏？](remoteapp-collections.md)
@@ -63,6 +63,12 @@
 ## 疑難排解
 ### [針對混合式收藏進行疑難排解](remoteapp-hybridtrouble.md)
 ### [針對雲端收藏進行疑難排解](remoteapp-cloudtrouble.md)
+
+# 資源
+## [服務更新](https://azure.microsoft.com/updates/?product=remoteapp)
+## [價格](https://azure.microsoft.com/pricing/details/remoteapp/)
+## [論壇](https://social.msdn.microsoft.com/Forums/home?forum=AzureRemoteApp)
+## [影片](https://azure.microsoft.com/documentation/videos/index/?services=remoteapp)
 
 
 <!--HONumber=Nov16_HO2-->

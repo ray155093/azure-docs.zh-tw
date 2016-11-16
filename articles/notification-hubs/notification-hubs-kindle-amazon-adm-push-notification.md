@@ -1,12 +1,12 @@
 ---
-title: Get started with Azure Notification Hubs for Kindle apps | Microsoft Docs
-description: In this tutorial, you learn how to use Azure Notification Hubs to send push notifications to a Kindle application.
+title: "開始使用適用於 Kindle 應用程式的 Azure 通知中樞 | Microsoft Docs"
+description: "在本教學課程中，您會了解如何使用 Azure 通知中樞將推播通知傳送至 Kindle 應用程式。"
 services: notification-hubs
-documentationcenter: ''
+documentationcenter: 
 author: ysxu
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 346fc8e5-294b-4e4f-9f27-7a82d9626e93
 ms.service: notification-hubs
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-kindle
@@ -14,73 +14,77 @@ ms.devlang: Java
 ms.topic: hero-article
 ms.date: 06/29/2016
 ms.author: yuaxu
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 7206f152ed7270abc62536a9ee164f7227833bcc
+
 
 ---
-# <a name="get-started-with-notification-hubs-for-kindle-apps"></a>Get started with Notification Hubs for Kindle apps
+# <a name="get-started-with-notification-hubs-for-kindle-apps"></a>開始使用適用於 Kindle 應用程式的通知中樞
 [!INCLUDE [notification-hubs-selector-get-started](../../includes/notification-hubs-selector-get-started.md)]
 
-## <a name="overview"></a>Overview
-This tutorial shows you how to use Azure Notification Hubs to send push notifications to a Kindle application.
-You'll create a blank Kindle app that receives push notifications by using Amazon Device Messaging (ADM).
+## <a name="overview"></a>概觀
+本教學課程將說明如何使用 Azure 通知中樞將推播通知傳送至 Kindle 應用程式。
+您將使用 Amazon 裝置傳訊 (ADM)，建立可接收推播通知的空白 Kindle app。
 
-## <a name="prerequisites"></a>Prerequisites
-This tutorial requires the following:
+## <a name="prerequisites"></a>先決條件
+本教學課程需要下列各項：
 
-* Get the Android SDK (we assume that you will use Eclipse) from the <a href="http://go.microsoft.com/fwlink/?LinkId=389797">Android site</a>.
-* Follow the steps in <a href="https://developer.amazon.com/appsandservices/resources/development-tools/ide-tools/tech-docs/01-setting-up-your-development-environment">Setting Up Your Development Environment</a> to set up your development environment for Kindle.
+* 從 <a href="http://go.microsoft.com/fwlink/?LinkId=389797">Android 網站</a>取得 Android SDK (我們假設您將使用 Eclipse)。
+* 依照<a href="https://developer.amazon.com/appsandservices/resources/development-tools/ide-tools/tech-docs/01-setting-up-your-development-environment">設定開發環境</a>中的步驟，為 Kindle 設定您的開發環境。
 
-## <a name="add-a-new-app-to-the-developer-portal"></a>Add a new app to the developer portal
-1. First, create an app in the [Amazon developer portal].
+## <a name="add-a-new-app-to-the-developer-portal"></a>將新的應用程式新增至開發人員入口網站
+1. 首先，在 [Amazon 開發人員入口網站]中建立 app。
    
     ![][0]
-2. Copy the **Application Key**.
+2. 複製 [應用程式金鑰] 。
    
     ![][1]
-3. In the portal, click the name of your app, and then click the **Device Messaging** tab.
+3. 在入口網站中，按一下您的 app 名稱，然後按一下 [Device Messaging]  索引標籤。
    
     ![][2]
-4. Click **Create a New Security Profile**, and then create a new security profile (for example, **TestAdm security profile**). Then click **Save**.
+4. 按一下 [建立新的安全性設定檔]，然後建立新的安全性設定檔 (例如 **TestAdm 安全性設定檔**)。 然後按一下 [儲存] 。
    
     ![][3]
-5. Click **Security Profiles** to view the security profile that you just created. Copy the **Client ID** and **Client Secret** values for later use.
+5. 按一下 [Security Profiles]  以檢視您剛建立的安全性設定檔。 複製 [用戶端識別碼] 和 [用戶端密碼] 值，以供後續使用。
    
     ![][4]
 
-## <a name="create-an-api-key"></a>Create an API key
-1. Open a command prompt with administrator privileges.
-2. Navigate to the Android SDK folder.
-3. Enter the following command:
+## <a name="create-an-api-key"></a>建立 API 金鑰
+1. 以系統管理員權限開啟命令提示字元。
+2. 導覽至 Android SDK 資料夾。
+3. 輸入下列命令：
    
         keytool -list -v -alias androiddebugkey -keystore ./debug.keystore
    
     ![][5]
-4. For the **keystore** password, type **android**.
-5. Copy the **MD5** fingerprint.
-6. Back in the developer portal, on the **Messaging** tab, click **Android/Kindle** and enter the name of the package for your app (for example, **com.sample.notificationhubtest**) and the **MD5** value, and then click **Generate API Key**.
+4. 輸入 **android** 做為 [金鑰存放區] 密碼。
+5. 複製 **MD5** 指模。
+6. 返回開發人員入口網站，在 [訊息] 索引標籤中按一下 [Android/Kindle]，然後輸入您應用程式的套件名稱 (例如 **com.sample.notificationhubtest**)、[MD5] 值，然後按一下 [產生 API 金鑰]。
 
-## <a name="add-credentials-to-the-hub"></a>Add credentials to the hub
-In the portal, add the client secret and client ID to the **Configure** tab of your notification hub.
+## <a name="add-credentials-to-the-hub"></a>將認證新增至中樞
+在入口網站中，將用戶端密碼和用戶端 ID 新增至通知中樞的 [設定]  索引標籤。
 
-## <a name="set-up-your-application"></a>Set up your application
+## <a name="set-up-your-application"></a>設定您的應用程式
 > [!NOTE]
-> When you're creating an application, use at least API Level 17.
+> 建立應用程式時，至少應使用 API 層級 17。
 > 
 > 
 
-Add the ADM libraries to your Eclipse project:
+將 ADM 程式庫新增至您的 Eclipse 專案：
 
-1. To obtain the ADM library, [download the SDK]. Extract the SDK zip file.
-2. In Eclipse, right-click your project, and then click **Properties**. Select **Java Build Path** on the left, and then select the **Libraries **tab at the top. Click **Add External Jar**, and select the file `\SDK\Android\DeviceMessaging\lib\amazon-device-messaging-*.jar` from the directory in which you extracted the Amazon SDK.
-3. Download the NotificationHubs Android SDK (link).
-4. Unzip the package, and then drag the file `notification-hubs-sdk.jar` into the `libs` folder in Eclipse.
+1. 若要取得 ADM 程式庫，請 [下載 SDK]。 將 SDK zip 檔案解壓縮。
+2. 在 Eclipse 中，以滑鼠右鍵按一下您的專案，然後按一下 [屬性] 。 選取左側的 [Java 組建路徑]，然後選取頂端的 [程式庫] 索引標籤。 按一下 [新增外部 Jar]，然後從您解壓縮 Amazon SDK 的目錄中選取 `\SDK\Android\DeviceMessaging\lib\amazon-device-messaging-*.jar` 檔案。
+3. 下載 NotificationHubs Android SDK (連結)。
+4. 將封裝解壓縮，然後將 `notification-hubs-sdk.jar` 檔案拖曳到 Eclipse 的 `libs` 資料夾中。
 
-Edit your app manifest to support ADM:
+編輯您支援 ADM 的應用程式資訊清單：
 
-1. Add the Amazon namespace in the root manifest element:
+1. 在根資訊清單元素中新增 Amazon 命名空間：
 
         xmlns:amazon="http://schemas.amazon.com/apk/res/android"
 
-1. Add permissions as the first element under the manifest element. Substitute **[YOUR PACKAGE NAME]** with the package that you used to create your app.
+1. 在資訊清單元素下，將權限新增為第一個元素。 將 **[YOUR PACKAGE NAME]** 取代為您用來建立 app 的封裝。
    
         <permission
          android:name="[YOUR PACKAGE NAME].permission.RECEIVE_ADM_MESSAGE"
@@ -96,7 +100,7 @@ Edit your app manifest to support ADM:
    
         <!-- ADM uses WAKE_LOCK to keep the processor from sleeping when a message is received. -->
         <uses-permission android:name="android.permission.WAKE_LOCK" />
-2. Insert the following element as the first child of the application element. Remember to substitute **[YOUR SERVICE NAME]** with the name of your ADM message handler that you create in the next section (including the package), and replace **[YOUR PACKAGE NAME]** with the package name with which you created your app.
+2. 插入下列元素，做為應用程式元素的第一個子項。 請務必將 **[YOUR SERVICE NAME]** 取代為您在下一節中建立的 ADM 訊息處理常式的名稱 (包括封裝)，並將 **[YOUR PACKAGE NAME]** 取代為您用來建立應用程式的封裝名稱。
    
         <amazon:enable-feature
               android:name="com.amazon.device.messaging"
@@ -121,11 +125,11 @@ Edit your app manifest to support ADM:
             </intent-filter>
         </receiver>
 
-## <a name="create-your-adm-message-handler"></a>Create your ADM message handler
-1. Create a new class that inherits from `com.amazon.device.messaging.ADMMessageHandlerBase` and name it `MyADMMessageHandler`, as shown in the following figure:
+## <a name="create-your-adm-message-handler"></a>建立您的 ADM 訊息處理常式
+1. 建立繼承自 `com.amazon.device.messaging.ADMMessageHandlerBase` 的新類別，並將其命名為 `MyADMMessageHandler`，如下圖所示：
    
     ![][6]
-2. Add the following `import` statements:
+2. 新增下列 `import` 陳述式：
    
         import android.app.NotificationManager;
         import android.app.PendingIntent;
@@ -134,12 +138,12 @@ Edit your app manifest to support ADM:
         import android.support.v4.app.NotificationCompat;
         import com.amazon.device.messaging.ADMMessageReceiver;
         import com.microsoft.windowsazure.messaging.NotificationHub
-3. Add the following code in the class that you created. Remember to substitute the hub name and connection string (listen):
+3. 在您建立的類別中新增下列程式碼。 請務必取代中心名稱和連接字串 (接聽)：
    
         public static final int NOTIFICATION_ID = 1;
         private NotificationManager mNotificationManager;
         NotificationCompat.Builder builder;
-        private static NotificationHub hub;
+          private static NotificationHub hub;
         public static NotificationHub getNotificationHub(Context context) {
             Log.v("com.wa.hellokindlefire", "getNotificationHub");
             if (hub == null) {
@@ -163,45 +167,45 @@ Edit your app manifest to support ADM:
             private void sendNotification(String msg) {
                 Context ctx = getApplicationContext();
    
-             mNotificationManager = (NotificationManager)
+                mNotificationManager = (NotificationManager)
                     ctx.getSystemService(Context.NOTIFICATION_SERVICE);
    
             PendingIntent contentIntent = PendingIntent.getActivity(ctx, 0,
-                new Intent(ctx, MainActivity.class), 0);
+                  new Intent(ctx, MainActivity.class), 0);
    
             NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(ctx)
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("Notification Hub Demo")
-                .setStyle(new NotificationCompat.BigTextStyle()
+                  new NotificationCompat.Builder(ctx)
+                  .setSmallIcon(R.mipmap.ic_launcher)
+                  .setContentTitle("Notification Hub Demo")
+                  .setStyle(new NotificationCompat.BigTextStyle()
                          .bigText(msg))
-                .setContentText(msg);
+                  .setContentText(msg);
    
-            mBuilder.setContentIntent(contentIntent);
-            mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
+             mBuilder.setContentIntent(contentIntent);
+             mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
         }
-4. Add the following code to the `OnMessage()` method:
+4. 將下列程式碼新增至 `OnMessage()` 方法：
    
         String nhMessage = intent.getExtras().getString("msg");
         sendNotification(nhMessage);
-5. Add the following code to the `OnRegistered` method:
+5. 將下列程式碼新增至 `OnRegistered` 方法：
    
             try {
         getNotificationHub(getApplicationContext()).register(registrationId);
             } catch (Exception e) {
         Log.e("[your package name]", "Fail onRegister: " + e.getMessage(), e);
             }
-6. Add the following code to the `OnUnregistered` method:
+6. 將下列程式碼新增至 `OnUnregistered` 方法：
    
-           try {
-               getNotificationHub(getApplicationContext()).unregister();
-           } catch (Exception e) {
-               Log.e("[your package name]", "Fail onUnregister: " + e.getMessage(), e);
-           }
-7. In the `MainActivity` method, add the following import statement:
+         try {
+             getNotificationHub(getApplicationContext()).unregister();
+         } catch (Exception e) {
+             Log.e("[your package name]", "Fail onUnregister: " + e.getMessage(), e);
+         }
+7. 在 `MainActivity` 方法中新增下列 import 陳述式：
    
         import com.amazon.device.messaging.ADM;
-8. Add the following code at the end of the `OnCreate` method:
+8. 在 `OnCreate` 方法的結尾新增下列程式碼：
    
         final ADM adm = new ADM(this);
         if (adm.getRegistrationId() == null)
@@ -211,7 +215,7 @@ Edit your app manifest to support ADM:
             new AsyncTask() {
                   @Override
                   protected Object doInBackground(Object... params) {
-                     try {                       MyADMMessageHandler.getNotificationHub(getApplicationContext()).register(adm.getRegistrationId());
+                     try {                         MyADMMessageHandler.getNotificationHub(getApplicationContext()).register(adm.getRegistrationId());
                      } catch (Exception e) {
                          Log.e("com.wa.hellokindlefire", "Failed registration with hub", e);
                          return e;
@@ -221,24 +225,24 @@ Edit your app manifest to support ADM:
                }.execute(null, null, null);
         }
 
-## <a name="add-your-api-key-to-your-app"></a>Add your API key to your app
-1. In Eclipse, create a new file named **api_key.txt** in the directory assets of your project.
-2. Open the file and copy the API key that you generated in the Amazon developer portal.
+## <a name="add-your-api-key-to-your-app"></a>將您的 API 金鑰新增至 app
+1. 在 Eclipse 中，在您專案的目錄資產中建立名為 **api_key.txt** 的新檔案。
+2. 開啟該檔案，並複製您在 Amazon 開發人員入口網站中產生的 API 金鑰。
 
-## <a name="run-the-app"></a>Run the app
-1. Start the emulator.
-2. In the emulator, swipe from the top and click **Settings**, and then click **My account** and register with a valid Amazon account.
-3. In Eclipse, run the app.
+## <a name="run-the-app"></a>執行應用程式
+1. 啟動模擬器。
+2. 在模擬器中，從頂端撥動，然後按一下 [設定]，並按一下 [我的帳戶]，然後使用有效的 Amazon 帳戶進行註冊。
+3. 在 Eclipse 中執行應用程式。
 
 > [!NOTE]
-> If a problem occurs, check the time of the emulator (or device). The time value must be accurate. To change the time of the Kindle emulator, you can run the following command from your Android SDK platform-tools directory:
+> 如果發生問題，請檢查模擬器 (或裝置) 的時間。 時間值必須是正確的。 若要變更 Kindle 模擬器的時間，您可以從 Android SDK platform-tools 目錄執行下列命令：
 > 
 > 
 
         adb shell  date -s "yyyymmdd.hhmmss"
 
-## <a name="send-a-message"></a>Send a message
-To send a message by using .NET:
+## <a name="send-a-message"></a>傳送訊息
+使用 .NET 傳送訊息：
 
         static void Main(string[] args)
         {
@@ -250,8 +254,8 @@ To send a message by using .NET:
 ![][7]
 
 <!-- URLs. -->
-[Amazon developer portal]: https://developer.amazon.com/home.html
-[download the SDK]: https://developer.amazon.com/public/resources/development-tools/sdk
+[Amazon 開發人員入口網站]: https://developer.amazon.com/home.html
+[下載 SDK]: https://developer.amazon.com/public/resources/development-tools/sdk
 
 [0]: ./media/notification-hubs-kindle-get-started/notification-hub-kindle-portal1.png
 [1]: ./media/notification-hubs-kindle-get-started/notification-hub-kindle-portal2.png
@@ -264,6 +268,6 @@ To send a message by using .NET:
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

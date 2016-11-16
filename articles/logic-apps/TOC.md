@@ -1,4 +1,4 @@
-# Overview
+# 概觀
 ## [邏輯應用程式概觀](../app-service-logic/app-service-logic-what-are-logic-apps.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 ## [連接器清單](../connectors/apis-list.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 ## [企業整合套件](../app-service-logic/app-service-logic-enterprise-integration-overview.md?toc=%2fazure%2flogic-apps%2ftoc.json)
@@ -13,7 +13,7 @@
 ## [B2B 處理](../app-service-logic/app-service-logic-enterprise-integration-b2b.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 ## [XML 處理](../app-service-logic/app-service-logic-enterprise-integration-xml.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 
-# 作法：
+# 作法
 ## 建置
 ### [建立連接器](../app-service-logic/app-service-logic-create-api-app.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 ### [Visual Studio 工具](../app-service-logic/app-service-logic-deploy-from-vs.md?toc=%2fazure%2flogic-apps%2ftoc.json)
@@ -27,7 +27,7 @@
 ### [疑難排解秘訣](../app-service-logic/app-service-logic-diagnosing-failures.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 ### [限制和設定](../app-service-logic/app-service-logic-limits-and-config.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 
-## 企業整合套件 (EIP)
+## 使用企業整合套件 (EIP)
 ### [企業整合套件](../app-service-logic/app-service-logic-enterprise-integration-overview.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 ### [整合帳戶概觀](../app-service-logic/app-service-logic-enterprise-integration-create-integration-account.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 ### [合約](../app-service-logic/app-service-logic-enterprise-integration-agreements.md?toc=%2fazure%2flogic-apps%2ftoc.json)
@@ -54,11 +54,11 @@
 ### [X12 追蹤結構描述](../app-service-logic/app-service-logic-track-integration-account-x12-tracking-shemas.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 ### [自訂追蹤結構描述](../app-service-logic/app-service-logic-track-integration-account-custom-tracking-shema.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 
-## 閘道器
+## 使用閘道
 ### [連接內部部署](../app-service-logic/app-service-logic-gateway-connection.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 ### [安裝](../app-service-logic/app-service-logic-gateway-install.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 
-## 發佈
+## 自動化
 ### [自動化範本](../app-service-logic/app-service-logic-create-deploy-template.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 ### [從 VS 發佈](../app-service-logic/app-service-logic-deploy-from-vs.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 
@@ -72,9 +72,21 @@
 ### [GA](../app-service-logic/app-service-logic-schema-2016-04-01.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 ### [預覽](../app-service-logic/app-service-logic-schema-2015-08-01.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 
+## [PowerShell Cmdlet](/powershell/resourcemanager/)
+## [.NET](https://msdn.microsoft.com/library/azure/mt416943)
+## [REST API](/rest/api/logic/)
+
 ## 2014 結構描述 (在 GA 之前)
 ### [Azure 資源連接器](../app-service-logic/app-service-logic-connector-azure-resource.md?toc=%2fazure%2flogic-apps%2ftoc.json)
 ### [檔案連接器](../app-service-logic/app-service-logic-connector-file.md?toc=%2fazure%2flogic-apps%2ftoc.json)
+
+# 資源
+## [價格](https://azure.microsoft.com/pricing/details/logic-apps/)  
+## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=azurelogicapps) 
+## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-logic-apps)
+## [服務更新](https://azure.microsoft.com/updates/?product=logic-apps) 
+
+
 
 <!--HONumber=Nov16_HO2-->
 

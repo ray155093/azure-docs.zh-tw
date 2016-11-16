@@ -1,19 +1,23 @@
 ---
-title: Web Apps 概觀 | Microsoft Docs
-description: 了解 Azure App Service 如何協助您開發和裝載 Web 應用程式
+title: "Web Apps 概觀 | Microsoft Docs"
+description: "了解 Azure App Service 如何協助您開發和裝載 Web 應用程式"
 services: app-service\web
-documentationcenter: ''
-author: jaime-espinosa
-manager: wpickett
-editor: ''
-
+documentationcenter: 
+author: cephalin
+manager: erikre
+editor: 
+ms.assetid: 94af2caf-a2ec-4415-a097-f60694b860b3
 ms.service: app-service-web
 ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 08/26/2016
-ms.author: rachelap
+ms.date: 10/28/2016
+ms.author: cephalin
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: d366fc36e2731be34d70fd4e4fa082370c452d63
+
 
 ---
 # <a name="web-apps-overview"></a>Web 應用程式概觀
@@ -21,14 +25,15 @@ ms.author: rachelap
 
 下列的 5 分鐘影片將介紹 Azure App Service Web Apps。
 
-[!VIDEO https://channel9.msdn.com/Shows/Azure-Friday/Azure-App-Service-Web-Apps-with-Yochay-Kiriaty/player]
-
+>[!VIDEO https://channel9.msdn.com/Shows/Azure-Friday/Azure-App-Service-Web-Apps-with-Yochay-Kiriaty/player]
+>
+>
 
 > [!INCLUDE [app-service-linux](../../includes/app-service-linux.md)]
 > 
 > 
 
-## <a name="what-is-a-web-app-in-app-service?"></a>什麼是 App Service 中的 Web 應用程式？
+## <a name="what-is-a-web-app-in-app-service"></a>什麼是 App Service 中的 Web 應用程式？
 在 App Service 中，「Web 應用程式」  是 Azure 提供用來裝載網站或 Web 應用程式的計算資源。  
 
 計算資源可能位於共用或專用的虛擬機器 (VM)，一切視您選擇的定價層而定。 應用程式的程式碼會在與其他客戶隔離開來的受管理 VM 中執行。
@@ -37,12 +42,12 @@ ms.author: rachelap
 
 如需可使用 Web Apps 的典型應用程式案例的範例，請參閱 [Web 應用程式案例](https://azure.microsoft.com/documentation/scenarios/web-app/)和 [Azure App Service、雲端服務、虛擬機器及 Service Fabric 的比較](choose-web-site-cloud-service-vm.md#scenarios)的**案例和建議**一節。
 
-## <a name="why-use-web-apps?"></a>為何要使用 Web Apps？
+## <a name="why-use-web-apps"></a>為何要使用 Web Apps？
 以下是 App Service 適用於 Web Apps 的一些主要功能︰
 
 * **多種語言和架構** - App Service有 ASP.NET、Node.js、Java、PHP 和 Python 的頂級支援。 您也可以在 App Service VM 上執行 [PowerShell 和其他指令碼或可執行檔](web-sites-create-web-jobs.md) 。
 * **DevOps 最佳化** - 使用 Visual Studio Team Services、GitHub 或 BitBucket 設定 [持續整合和部署](app-service-continuous-deployment.md) 。 透過 [測試和預備環境](web-sites-staged-publishing.md)升級更新。 執行 [A/B 測試](app-service-web-test-in-production-get-start.md)。 使用 [Azure PowerShell](../powershell-install-configure.md) 或[跨平台命令列介面 (CLI)](../xplat-cli-install.md)，在 App Service 中管理您的應用程式。
-* **具高可用性的全域調整** - 以手動或自動方式相應[增加](web-sites-scale.md)或[放大](../azure-portal/insights-how-to-scale.md)。 在 Microsoft 的通用資料中心基礎結構中隨處裝載您的應用程式，而 App Service [SLA](https://azure.microsoft.com/support/legal/sla/app-service/) 會承諾高可用性。
+* **具高可用性的全域調整** - 以手動或自動方式相應[增加](web-sites-scale.md)或[放大](../monitoring-and-diagnostics/insights-how-to-scale.md)。 在 Microsoft 的通用資料中心基礎結構中隨處裝載您的應用程式，而 App Service [SLA](https://azure.microsoft.com/support/legal/sla/app-service/) 會承諾高可用性。
 * **SaaS 平台和內部部署資料的連線** - 有超過 50 種適用於企業系統 (例如 SAP、Siebel 和 Oracle)、SaaS 服務 (例如 Salesforce 和 Office 365)，以及網際網路服務 (例如 Facebook 和 Twitter) 的 [連接器](../connectors/apis-list.md) 可供選擇。 使用[混合式連線](../biztalk-services/integration-hybrid-connection-overview.md)和 [Azure 虛擬網路](web-sites-integrate-with-vnet.md)存取內部部署資料。
 * **安全性和法規遵循** - App Service 為 [ISO、SOC 和 PCI 相容](https://www.microsoft.com/TrustCenter/)。
 * **應用程式範本** - 從 [Azure Marketplace](https://azure.microsoft.com/marketplace/) 中的廣泛應用程式範本清單中進行選擇，以便使用精靈來安裝受歡迎的開放原始碼軟體，例如 WordPress、Joomla 和 Drupal。
@@ -57,6 +62,9 @@ ms.author: rachelap
 
 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；沒有承諾。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

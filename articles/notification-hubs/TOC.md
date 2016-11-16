@@ -1,4 +1,5 @@
-# [概觀](notification-hubs-push-notification-overview.md)
+# 概觀
+## [什麼是 Azure 通知中樞？](notification-hubs-push-notification-overview.md)
 # 開始使用
 ## [Android (FCM)](notification-hubs-android-push-notification-google-fcm-get-started.md)
 ## [Baidu](notification-hubs-baidu-china-android-notifications-get-started.md)
@@ -9,9 +10,9 @@
 ## [Windows Phone](notification-hubs-windows-mobile-push-notifications-mpns.md)
 ## [Xamarin.Android](xamarin-notification-hubs-push-notifications-android-gcm.md)
 ## [Xamarin.iOS](xamarin-notification-hubs-ios-push-notification-apns-get-started.md)
+## [常見問題集](notification-hubs-push-notification-faq.md)
 
-# 作法：
-
+# 作法
 ## 規劃和設計
 ### [企業推送架構指引](notification-hubs-enterprise-push-notification-architecture.md)
 
@@ -48,24 +49,26 @@
 ### 安全推播
 #### [Android](notification-hubs-aspnet-backend-android-secure-google-gcm-push-notification.md)
 #### [iOS](notification-hubs-aspnet-backend-ios-push-apple-apns-secure-notification.md)
-#### [Windowsh](notification-hubs-aspnet-backend-windows-dotnet-wns-secure-push-notification.md)
-
-
+#### [Windows](notification-hubs-aspnet-backend-windows-dotnet-wns-secure-push-notification.md)
 
 ## 自動化
 ### [使用 PowerShell 來部署和管理通知中樞](notification-hubs-deploy-and-manage-powershell.md)
 ### [傳送排定通知](notification-hubs-send-push-notifications-scheduled.md)
 
-
 ## 疑難排解
 ### [診斷指導方針](notification-hubs-push-notification-fixer.md)
 
 # 參考
-
-# 相關參考
+## [PowerShell Cmdlet](/powershell/resourcemanager/)
+## [.NET](/dotnet/api/)
+## [REST](/rest/api/notificationhubs/)
 
 # 資源
-## [常見問題集](notification-hubs-push-notification-faq.md)
+## [價格](https://azure.microsoft.com/pricing/details/notification-hubs/)
+## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=notificationhubs)
+## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-notificationhub)
+## [影片](https://azure.microsoft.com/documentation/videos/index/?services=notification-hubs)
+## [服務更新](https://azure.microsoft.com/updates/?product=notification-hubs)
 
 
 <!--HONumber=Nov16_HO2-->

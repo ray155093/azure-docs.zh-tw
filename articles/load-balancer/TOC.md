@@ -32,18 +32,25 @@
 ## [為雲端服務設定多個 IP 位址](load-balancer-multivip.md)
 ## [Azure 負載平衡器的記錄檔分析](load-balancer-monitor-log.md)
 ## [設定 Linux VM 的 DHCPv6](load-balancer-ipv6-for-linux.md)
+
 # 參考
+## [PowerShell](https://go.microsoft.com/fwlink/p/?LinkId=536407)
+## [.NET](https://docs.microsoft.com/dotnet/api/)
 ## [Resource Manager API](https://go.microsoft.com/fwlink/p/?LinkId=536405)
-## [Resource Manager PowerShell CmdLet](https://go.microsoft.com/fwlink/p/?LinkId=536407)
 ## [使用網路資源](https://go.microsoft.com/fwlink/p/?LinkId=536403)
+
 # 相關參考
-## [應用程式閘道](https://azure.microsoft.com/documentation/services/application-gateway/)
-## [ExpressRoute](https://azure.microsoft.com/documentation/services/expressroute/)
-## [虛擬網路](https://azure.microsoft.com/documentation/services/virtual-network/)
-## [VPN 閘道](https://azure.microsoft.com/documentation/services/vpn-gateway/)
-## [虛擬機器](https://azure.microsoft.com/documentation/services/virtual-machines/)
-## [流量管理員](https://azure.microsoft.com/documentation/services/traffic-manager/)
-## [DNS](https://azure.microsoft.com/documentation/services/dns/)
+## [應用程式閘道](/azure/application-gateway/)
+## [ExpressRoute](/azure/expressroute/)
+## [虛擬網路](/azure/virtual-network/)
+## [VPN 閘道](/azure/vpn-gateway/)
+## [虛擬機器](/azure/virtual-machines/)
+## [流量管理員](/azure/traffic-manager/)
+## [DNS](/azure/dns/)
+
+# 資源
+## [價格](https://azure.microsoft.com/pricing/details/load-balancer/) 
+## [服務更新](https://azure.microsoft.com/updates/?product=load-balancer) 
 
 
 <!--HONumber=Nov16_HO2-->

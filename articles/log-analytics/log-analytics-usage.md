@@ -1,12 +1,12 @@
 ---
-title: 在 Log Analytics 中分析資料使用量 | Microsoft Docs
-description: 您可以在 Log Analytics 中使用 [使用量] 頁面，檢視正在傳送給 OMS 服務的資料量。
+title: "在 Log Analytics 中分析資料使用量 | Microsoft Docs"
+description: "您可以在 Log Analytics 中使用 [使用量] 頁面，檢視正在傳送給 OMS 服務的資料量。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: bandersmsft
 manager: jwhit
-editor: ''
-
+editor: 
+ms.assetid: 74d0adcb-4dc2-425e-8b62-c65537cef270
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/11/2016
 ms.author: banders
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 4c1d0319e768eec69718d8b49db30069ec1331d9
+
 
 ---
 # <a name="analyze-data-usage-in-log-analytics"></a>在 Log Analytics 中分析資料使用量
@@ -65,6 +69,9 @@ Operations Management Suite (OMS) 中的 Log Analytics 會收集資料，並定�
 ## <a name="next-steps"></a>後續步驟
 * 請參閱 [Log Analytics 中的記錄搜尋](log-analytics-log-searches.md) 以檢視方案所收集的詳細資訊。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

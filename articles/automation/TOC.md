@@ -1,4 +1,4 @@
-# Overview
+# 概觀
 ## [什麼是 Azure 自動化？](automation-intro.md)
 ## [Azure 自動化的安全性](automation-security-overview.md)
 
@@ -73,6 +73,11 @@
 ## [傳統部署 Rest](https://msdn.microsoft.com/library/azure/mt163781)
 
 # 資源
+## [價格](https://azure.microsoft.com/pricing/details/automation/)  
+## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=azureautomation)  
+## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-automation)
+## [影片](https://azure.microsoft.com/documentation/videos/index/?services=automation) 
+## [服務更新](https://azure.microsoft.com/updates/?product=automation) 
 ## [Azure 自動化訓練](https://www.microsoftvirtualacademy.com/en-US/training-courses/automating-the-cloud-with-azure-automation-8323)
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/automation/)
 ## [自動化簡介影片](https://azure.microsoft.com/documentation/videos/azure-automation-101-with-powershell-and-eamon-o-reilly/)

@@ -1,12 +1,12 @@
 ---
-title: 開始使用適用於 Xamarin.iOS 的 Azure Mobile Engagement
-description: 了解如何使用 Xamarin.iOS 應用程式的 Azure Mobile Engagement 與分析和推播通知。
+title: "開始使用適用於 Xamarin.iOS 的 Azure Mobile Engagement"
+description: "了解如何使用 Xamarin.iOS 應用程式的 Azure Mobile Engagement 與分析和推播通知。"
 services: mobile-engagement
 documentationcenter: xamarin
 author: piyushjo
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 0448209e-fff6-47bd-985c-2cf074bac12f
 ms.service: mobile-engagement
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-xamarin-ios
@@ -14,9 +14,13 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 08/19/2016
 ms.author: piyushjo
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 300403fb483818e5eb1851968ef7f36ff0507fb8
+
 
 ---
-# <a name="get-started-with-azure-mobile-engagement-for-xamarin.ios-apps"></a>開始使用適用於 Xamarin.iOS 應用程式的 Azure Mobile Engagement
+# <a name="get-started-with-azure-mobile-engagement-for-xamarinios-apps"></a>開始使用適用於 Xamarin.iOS 應用程式的 Azure Mobile Engagement
 [!INCLUDE [Hero tutorial switcher](../../includes/mobile-engagement-hero-tutorial-switcher.md)]
 
 本主題說明如何使用 Azure Mobile Engagement 來了解您的應用程式使用量，並傳送推播通知給 Xamarin.iOS 應用程式的區隔使用者。
@@ -32,15 +36,15 @@ ms.author: piyushjo
 > 
 > 
 
-## <a name="<a-id="setup-azme"></a>setup-mobile-engagement-for-your-ios-app"></a><a id="setup-azme"></a>為您的 iOS 應用程式設定 Mobile Engagement
+## <a name="a-idsetupazmeasetup-mobile-engagement-for-your-ios-app"></a><a id="setup-azme"></a>為您的 iOS 應用程式設定 Mobile Engagement
 [!INCLUDE [Create Mobile Engagement App in Portal](../../includes/mobile-engagement-create-app-in-portal-new.md)]
 
-## <a name="<a-id="connecting-app"></a>connect-your-app-to-the-mobile-engagement-backend"></a><a id="connecting-app"></a>將您的應用程式連線至 Mobile Engagement 後端
+## <a name="a-idconnectingappaconnect-your-app-to-the-mobile-engagement-backend"></a><a id="connecting-app"></a>將您的應用程式連線至 Mobile Engagement 後端
 本教學課程將說明「基本整合」，這是收集資料及傳送推播通知時必要的最低設定。
 
 我們將會使用 Xamarin 建立基本應用程式來示範整合：
 
-### <a name="create-a-new-xamarin.ios-project"></a>建立新的 Xamarin.iOS 專案
+### <a name="create-a-new-xamarinios-project"></a>建立新的 Xamarin.iOS 專案
 1. 啟動 Xamarin Studio。 移至 [檔案] -> ] -> 方案] 
    
     ![][1]
@@ -79,7 +83,7 @@ Xamarin Studio 會建立示範應用程式，我們將在其中整合 Mobile Eng
                     };
         EngagementAgent.Init (config);
 
-## <a name="<a-id="monitor"></a>enabling-real-time-monitoring"></a><a id="monitor"></a>啟用即時監視
+## <a name="a-idmonitoraenabling-realtime-monitoring"></a><a id="monitor"></a>啟用即時監視
 若要開始傳送資料並確定使用者正在使用，您必須至少傳送一個螢幕到 Mobile Engagement 後端。
 
 1. 開啟 **ViewController.cs** 並新增以下 using 陳述式：
@@ -87,10 +91,10 @@ Xamarin Studio 會建立示範應用程式，我們將在其中整合 Mobile Eng
         using Microsoft.Azure.Engagement.Xamarin;
 2. 取代 `ViewController` 從 `UIViewController` 繼承到 `EngagementViewController` 的類別。 
 
-## <a name="<a-id="monitor"></a>connect-app-with-real-time-monitoring"></a><a id="monitor"></a>將 App 與即時監視連接
+## <a name="a-idmonitoraconnect-app-with-realtime-monitoring"></a><a id="monitor"></a>將 App 與即時監視連接
 [!INCLUDE [Connect app with real-time monitoring](../../includes/mobile-engagement-connect-app-with-monitor.md)]
 
-## <a name="<a-id="integrate-push"></a>enable-push-notifications-and-in-app-messaging"></a><a id="integrate-push"></a>啟用推播通知與 App 內傳訊
+## <a name="a-idintegratepushaenable-push-notifications-and-inapp-messaging"></a><a id="integrate-push"></a>啟用推播通知與 App 內傳訊
 Mobile Engagement 可讓您透過「推播通知」和「應用程式內傳訊」，於活動進行時與使用者互動和觸達 (REACH)。 此模組在 Mobile Engagement 入口網站中稱為觸達 (REACH)。
 以下各節將設定您的用程式來接收它們。
 
@@ -140,7 +144,7 @@ Mobile Engagement 可讓您透過「推播通知」和「應用程式內傳訊�
     ![][7]
 5. 在同一個 **Info.plist** 檔案中，確定您已核取 [啟用背景模式] 和 [遠端通知]。 
    
-    ![][8]
+     ![][8]
 6. 在與此發行設定檔相關聯的裝置上執行應用程式。 
 
 [!INCLUDE [mobile-engagement-ios-send-push-push](../../includes/mobile-engagement-ios-send-push.md)]
@@ -157,6 +161,6 @@ Mobile Engagement 可讓您透過「推播通知」和「應用程式內傳訊�
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

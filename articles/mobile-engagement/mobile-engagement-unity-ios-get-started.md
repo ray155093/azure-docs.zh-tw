@@ -1,12 +1,12 @@
 ---
-title: 開始使用適用於 Unity iOS 部署的 Azure Mobile Engagement
-description: 了解如何使用 Azure Mobile Engagement 搭配分析和推播通知，以便將 Unity 應用程式部署至 iOS 裝置。
+title: "開始使用適用於 Unity iOS 部署的 Azure Mobile Engagement"
+description: "了解如何使用 Azure Mobile Engagement 搭配分析和推播通知，以便將 Unity 應用程式部署至 iOS 裝置。"
 services: mobile-engagement
 documentationcenter: unity
 author: piyushjo
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 7ddfbac3-8d13-4ebe-b061-c865f357297f
 ms.service: mobile-engagement
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-unity-ios
@@ -14,6 +14,10 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 08/19/2016
 ms.author: piyushjo
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: c8f50404771965ec636065346ac04e059d264c3d
+
 
 ---
 # <a name="get-started-with-azure-mobile-engagement-for-unity-ios-deployment"></a>開始使用適用於 Unity iOS 部署的 Azure Mobile Engagement
@@ -33,10 +37,10 @@ ms.author: piyushjo
 > 
 > 
 
-## <a name="<a-id="setup-azme"></a>setup-mobile-engagement-for-your-ios-app"></a><a id="setup-azme"></a>為您的 iOS 應用程式設定 Mobile Engagement
+## <a name="a-idsetupazmeasetup-mobile-engagement-for-your-ios-app"></a><a id="setup-azme"></a>為您的 iOS 應用程式設定 Mobile Engagement
 [!INCLUDE [Create Mobile Engagement App in Portal](../../includes/mobile-engagement-create-app-in-portal-new.md)]
 
-## <a name="<a-id="connecting-app"></a>connect-your-app-to-the-mobile-engagement-backend"></a><a id="connecting-app"></a>將您的應用程式連線至 Mobile Engagement 後端
+## <a name="a-idconnectingappaconnect-your-app-to-the-mobile-engagement-backend"></a><a id="connecting-app"></a>將您的應用程式連線至 Mobile Engagement 後端
 ### <a name="import-the-unity-package"></a>匯入 Unity 封裝
 1. 下載 [Mobile Engagement Unity 封裝](https://aka.ms/azmeunitysdk) 並將它儲存到本機電腦。 
 2. 移至 [資產] -> [匯入套件] -> [自訂套件]，然後選取您在上一個步驟中下載的套件。 
@@ -90,10 +94,10 @@ ms.author: piyushjo
     ![][75]
 9. 現在在 XCode 中執行應用程式，封裝就會部署到您連接的裝置，您應該會在電話上看到您的 Unity 遊戲！ 
 
-## <a name="<a-id="monitor"></a>connect-app-with-real-time-monitoring"></a><a id="monitor"></a>將應用程式與即時監視連接
+## <a name="a-idmonitoraconnect-app-with-realtime-monitoring"></a><a id="monitor"></a>將應用程式與即時監視連接
 [!INCLUDE [Connect app with real-time monitoring](../../includes/mobile-engagement-connect-app-with-monitor.md)]
 
-## <a name="<a-id="integrate-push"></a>enable-push-notifications-and-in-app-messaging"></a><a id="integrate-push"></a>啟用推播通知與 App 內傳訊
+## <a name="a-idintegratepushaenable-push-notifications-and-inapp-messaging"></a><a id="integrate-push"></a>啟用推播通知與 App 內傳訊
 Mobile Engagement 可讓您透過「推播通知」和「應用程式內傳訊」，於活動進行時與使用者互動和觸達 (REACH)。 此模組在 Mobile Engagement 入口網站中稱為 REACH。
 您不必在您的應用程式中做任何額外的設定來接收通知，它早已設定好了。
 
@@ -115,6 +119,6 @@ Mobile Engagement 可讓您透過「推播通知」和「應用程式內傳訊�
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

@@ -1,13 +1,13 @@
 ---
-title: 如何使用 Azure 入口網站設定 ExpressRoute 線路的路由 | Microsoft Docs
-description: 本文將逐步引導您為 ExpressRoute 線路建立和佈建私用、公用及 Microsoft 對等。 本文也示範如何檢查狀態、更新或刪除線路的對等。
+title: "如何使用 Azure 入口網站設定 ExpressRoute 線路的路由 | Microsoft Docs"
+description: "本文將逐步引導您為 ExpressRoute 線路建立和佈建私用、公用及 Microsoft 對等。 本文也示範如何檢查狀態、更新或刪除線路的對等。"
 documentationcenter: na
 services: expressroute
 author: cherylmc
 manager: carmonm
-editor: ''
+editor: 
 tags: azure-resource-manager
-
+ms.assetid: 8c2a7ed2-ae5c-4e49-81f6-77cf9f2b2ac9
 ms.service: expressroute
 ms.devlang: na
 ms.topic: hero-article
@@ -15,9 +15,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/10/2016
 ms.author: cherylmc
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 1d78bdb6cbb9870298b050207fd1fa9c5e71d674
+
 
 ---
-# <a name="create-and-modify-routing-for-an-expressroute-circuit"></a>建立和修改 ExpressRoute 線路的路由
+# <a name="create-and-modify-routing-for-an-expressroute-circuit"></a>建立和修改 ExpressRoute 電路的路由
 > [!div class="op_single_selector"]
 > [Azure 入口網站 - Resource Manager](expressroute-howto-routing-portal-resource-manager.md)
 > [PowerShell - Resource Manager](expressroute-howto-routing-arm.md)
@@ -148,11 +152,11 @@ ms.author: cherylmc
    ![](./media/expressroute-howto-routing-portal-resource-manager/rmicrosoft2.png)
 5. 指定所有參數後，請儲存組態。 
    
-    如果您的電路取得所需的驗證狀態 (如下所示)，您必須開啟支援票證，向我們的支援小組出示首碼擁有權的證明。  
+    如果您的電路取得所需的驗證狀態 (如下所示)，您必須開啟支援票證，向我們的支援小組出示首碼擁有權的證明。    
    
     ![](./media/expressroute-howto-routing-portal-resource-manager/rmicrosoft5.png)
 
-    您可以直接從入口網站開啟支援票證，如下所示。   
+    您可以直接從入口網站開啟支援票證，如下所示。     
 
     ![](./media/expressroute-howto-routing-portal-resource-manager/rmicrosoft6.png)
 
@@ -183,6 +187,9 @@ ms.author: cherylmc
 * 如需線路對等的詳細資訊，請參閱 [ExpressRoute 線路和路由網域](expressroute-circuit-peerings.md)。
 * 如需使用虛擬網路的詳細資訊，請參閱 [虛擬網路概觀](../virtual-network/virtual-networks-overview.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

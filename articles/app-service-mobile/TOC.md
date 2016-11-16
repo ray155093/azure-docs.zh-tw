@@ -1,10 +1,11 @@
-# [概觀](../app-service/app-service-how-works-readme.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
+# 概觀
 ## [什麼是 Mobile Apps？](app-service-mobile-value-prop.md)
-## [何謂 App Service](../app-service/app-service-value-prop-what-is.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
+## [什麼是 App Service？](../app-service/app-service-value-prop-what-is.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
+## [運作方式](../app-service/app-service-how-works-readme.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 ## [App Service 方案](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 
 # 開始使用
-## 行動應用程式
+## 建立行動應用程式
 ### [Android](app-service-mobile-android-get-started.md)
 ### [Cordova](app-service-mobile-cordova-get-started.md)
 ### [iOS](app-service-mobile-ios-get-started.md)
@@ -13,13 +14,13 @@
 ### [Xamarin.Forms](app-service-mobile-xamarin-forms-get-started.md)
 ### [Xamarin.iOS](app-service-mobile-xamarin-ios-get-started.md)
 
-## API 應用程式
+## 建立 API 應用程式
 ### [.NET](../app-service-api/app-service-api-dotnet-get-started.md)
 ### [Java](../app-service-api/app-service-api-java-api-app.md)
 ### [Node.js](../app-service-api/app-service-api-nodejs-api-app.md)
 ### [CORS](../app-service-api/app-service-api-cors-consume-javascript.md)
 
-## Web Apps
+## 建立 Web 應用程式
 ### [.NET](../app-service-web/web-sites-dotnet-get-started.md)
 ### [Node.js](../app-service-web/app-service-web-nodejs-get-started.md)
 ### [Python](../app-service-web/web-sites-python-ptvs-django-mysql.md)
@@ -27,7 +28,7 @@
 ### [Marketplace 應用程式](../app-service-web/web-sites-php-web-site-gallery.md)
 ### [PHP](../app-service-web/app-service-web-php-get-started.md)    
 
-# 作法：
+# 作法
 
 ## 計劃與設計
 ### [Azure Mobile Apps 中的驗證與授權](app-service-mobile-auth.md)
@@ -186,7 +187,7 @@
 #### [Web + SQL ](../app-service-web/app-service-web-arm-with-sql-database-provision.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 #### [使用自訂主機名稱與 SSL 憑證的 MSDeploy](../app-service-web/app-service-web-arm-with-msdeploy-provision.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 ### Powershell
-#### [自動備份和還原](../app-service/app-service-powershell-backup.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
+#### [自動化備份和還原](../app-service/app-service-powershell-backup.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 #### [應用程式複製](../app-service-web/app-service-web-app-cloning.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 #### [SSL 憑證繫結](../app-service-web/app-service-web-app-powershell-ssl-binding.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 #### [使用包含 PowerShell 的 Azure Resource Manager](../app-service-web/app-service-web-app-azure-resource-manager-powershell.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
@@ -206,14 +207,17 @@
 ### [使用 Visual Studio 進行疑難排解](../app-service-web/web-sites-dotnet-troubleshoot-visual-studio.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 
 # 參考
+## [.NET API](https://msdn.microsoft.com/library/azure/dn961176.aspx)
 ## [Azure 入口網站](../app-service-web/app-service-web-app-azure-portal.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 ## [App Service 參考](../app-service-web/app-service-changes-existing-services.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 ## [WebJobs SDK](../app-service-web/websites-dotnet-webjobs-sdk-get-started.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 
-# 相關參考
-
 # 資源
-## [Azure Mobile 論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=azuremobile)
+## [價格](https://azure.microsoft.com/en-us/pricing/details/app-service/)  
+## [MSDN 論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=azuremobile)  
+## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-mobile-services)  
+## [影片](https://azure.microsoft.com/documentation/videos/index/?services=mobile-services) 
+## [服務更新](https://azure.microsoft.com/updates/?product=mobile-services)
 ## [App Service 最佳做法](../app-service-web/app-service-best-practices.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 ## [WebJob 資源清單](../app-service-web/websites-webjobs-resources.md?toc=%2fazure%2fapp-service-mobile%2ftoc.json)
 

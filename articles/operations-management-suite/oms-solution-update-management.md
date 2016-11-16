@@ -1,22 +1,26 @@
 ---
-title: OMS 中的更新管理方案 | Microsoft Docs
-description: 本文旨在協助您了解，如何使用這個方案管理 Windows 和 Linux 電腦的更新。
+title: "OMS 中的更新管理方案 | Microsoft Docs"
+description: "本文旨在協助您了解，如何使用這個方案管理 Windows 和 Linux 電腦的更新。"
 services: operations-management-suite
-documentationcenter: ''
+documentationcenter: 
 author: MGoedtel
 manager: jwhit
-editor: ''
-
+editor: 
+ms.assetid: e33ce6f9-d9b0-4a03-b94e-8ddedcc595d2
 ms.service: operations-management-suite
 ms.workload: tbd
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 09/28/2016
+ms.date: 10/14/2016
 ms.author: magoedte
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 4bd1e84fd9af1273f95f70d941c3a4535984c8a9
+
 
 ---
-# <a name="![update-management-solution-in-oms](./media/oms-solution-update-management/update-management-solution-icon.png)-update-management-solution-in-oms"></a>![OMS 中的更新管理方案](./media/oms-solution-update-management/update-management-solution-icon.png) OMS 中的更新管理方案
+# <a name="update-management-solution-in-omsmediaomssolutionupdatemanagementupdatemanagementsolutioniconpng-update-management-solution-in-oms"></a>![OMS 中的更新管理方案](./media/oms-solution-update-management/update-management-solution-icon.png) OMS 中的更新管理方案
 OMS 中的更新管理方案可讓您管理 Windows 和 Linux 電腦的更新。  您可以快速評估所有代理程式電腦上可用更新的狀態，並起始為伺服器安裝必要更新的程序。 
 
 ## <a name="prerequisites"></a>必要條件
@@ -35,15 +39,13 @@ OMS 中的更新管理方案可讓您管理 Windows 和 Linux 電腦的更新。
 2. 在 OMS 入口網站中，依序選取 [設定] 和 [連接的來源]。  記下 [工作區識別碼] 和 [主要金鑰] 或 [次要金鑰]。
 3. 為每一部 Linux 電腦執行下列步驟。
    
-   a.  執行下列命令，安裝最新版 OMS Agent for Linux。  以工作區識別碼取代 <Workspace ID>主要或次要金鑰取代 <Key>。
+   a.    執行下列命令，安裝最新版 OMS Agent for Linux。  以工作區識別碼取代 <Workspace ID>主要或次要金鑰取代 <Key>。
    
-       cd ~
-       wget https://github.com/Microsoft/OMS-Agent-for-Linux/releases/download/v1.2.0-75/omsagent-1.2.0-75.universal.x64.sh
-       sudo bash omsagent-1.2.0-75.universal.x64.sh --upgrade -w <Workspace ID> -s <Key>
+     cd ~   wget https://github.com/Microsoft/OMS-Agent-for-Linux/releases/download/v1.2.0-75/omsagent-1.2.0-75.universal.x64.sh   sudo bash omsagent-1.2.0-75.universal.x64.sh --upgrade -w <Workspace ID> -s <Key>
    
-    b. 若要移除代理程式，請執行下列命令。
+   b.這是另一個 C# 主控台應用程式。 若要移除代理程式，請執行下列命令。
    
-       sudo bash omsagent-1.2.0-75.universal.x64.sh --purge
+     sudo bash omsagent-1.2.0-75.universal.x64.sh --purge
 
 ## <a name="management-packs"></a>管理組件
 如果 System Center Operations Manager 管理群組已連線到 OMS 工作區，當您新增此方案時，下列管理組件會安裝在 Operations Manager 中。 這些管理組件不需要任何設定或維護。 
@@ -95,7 +97,7 @@ OMS 中的更新管理方案可讓您管理 Windows 和 Linux 電腦的更新。
 ![更新管理儀表板套件檢視](./media/oms-solution-update-management/update-management-assessment-package-view.png)<br>  
 
 ## <a name="installing-updates"></a>安裝更新
-環境中的所有電腦皆進行過更新評估後，您可以建立「更新部署」來安裝必要的更新。  更新部署會排定為一或多部 Windows 電腦安裝必要的更新。  除了應該包含的電腦或電腦群組外，您還要指定部署的日期和時間。  
+環境中的所有 Windows 電腦皆進行過更新評估後，您可以建立「更新部署」來安裝必要的更新。  更新部署會排定為一或多部 Windows 電腦安裝必要的更新。  除了應該包含的電腦或電腦群組外，您還要指定部署的日期和時間。  
 
 在 Azure 自動化中，會由 Runbook 安裝更新。  您目前無法檢視這些 Runbook，而且它們也不需要進行任何設定。  更新部署在建立後便會建立排程，以在指定時間為所包含的電腦啟動主要更新 Runbook。  這個主要 Runbook 會在每個 Windows 代理程式上啟動子 Runbook，以安裝必要的更新。  
 
@@ -237,6 +239,9 @@ OMS 中的更新管理方案可讓您管理 Windows 和 Linux 電腦的更新。
 * [建立您自己的儀表板](../log-analytics/log-analytics-dashboards.md)，其中會顯示受管理電腦的更新相容性。
 * 在偵測到電腦遺漏重大更新或電腦已停用自動更新時[建立警示](../log-analytics/log-analytics-alerts.md)。  
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

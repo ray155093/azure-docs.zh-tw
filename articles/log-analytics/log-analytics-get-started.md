@@ -1,12 +1,12 @@
 ---
-title: 開始使用 Log Analytics | Microsoft Docs
-description: 您可以使用 Microsoft Operations Management Suite (OMS) 在幾分鐘內啟動並執行 Log Analytics。
+title: "開始使用 Log Analytics | Microsoft Docs"
+description: "您可以使用 Microsoft Operations Management Suite (OMS) 在幾分鐘內啟動並執行 Log Analytics。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: bandersmsft
 manager: jwhit
-editor: ''
-
+editor: 
+ms.assetid: 508716de-72d3-4c06-9218-1ede631f23a6
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 10/10/2016
 ms.author: banders
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 2f8defce183e61825d9df3397ea1082dbdb4b11a
+
 
 ---
 # <a name="get-started-with-log-analytics"></a>開始使用 Log Analytics
@@ -95,7 +99,7 @@ ms.author: banders
    
     ![收集資料](./media/log-analytics-get-started/oms-onboard-logs.png)    
 
-## <a name="optionally,-connect-servers-directly-to-the-operations-management-suite-by-installing-an-agent"></a>(選擇性) 藉由安裝代理程式來直接連接伺服器和 Operations Management Suite
+## <a name="optionally-connect-servers-directly-to-the-operations-management-suite-by-installing-an-agent"></a>(選擇性) 藉由安裝代理程式來直接連接伺服器和 Operations Management Suite
 下列範例示範如何安裝 Windows 代理程式。
 
 1. 依序按一下 [設定] 圖格、[連接的來源] 索引標籤、您要新增的來源類型索引標籤，然後下載代理程式或了解如何啟用代理程式。 例如，按一下 [下載 Windows 代理程式 (64 位元)]。 對於 Windows 代理程式，您只能將代理程式安裝在 Windows Server 2008 SP1 或更新版本，亦或是 Windows 7 SP1 或更新版本。
@@ -119,7 +123,7 @@ ms.author: banders
 
 若要深入了解將代理程式連接到 Operations Management Suite 的資訊，請參閱 [將 Windows 電腦連接到 Log Analytics](log-analytics-windows-agents.md)。
 
-## <a name="optionally,-connect-servers-using-system-center-operations-manager"></a>(選擇性) 使用 System Center Operations Manager 連接伺服器
+## <a name="optionally-connect-servers-using-system-center-operations-manager"></a>(選擇性) 使用 System Center Operations Manager 連接伺服器
 1. 在 Operations Manager 主控台內選取 [管理] 。
 2. 展開 [Operational Insights] 節點，然後選取 [Operational Insights 連接]。
    
@@ -133,7 +137,7 @@ ms.author: banders
 
 若要深入了解將 Operations Manager 連接到 Operations Management Suite 的資訊，請參閱[將 Operations Manager 連接至 Log Analytics](log-analytics-om-agents.md)。
 
-## <a name="optionally,-analyze-data-from-cloud-services-in-microsoft-azure"></a>(選擇性) 分析 Microsoft Azure 之雲端服務的資料
+## <a name="optionally-analyze-data-from-cloud-services-in-microsoft-azure"></a>(選擇性) 分析 Microsoft Azure 之雲端服務的資料
 利用 Operations Management Suite，您可以啟用 Azure 雲端服務診斷來快速搜尋雲端服務和虛擬機器的事件和 IIS 記錄檔。 您也可以安裝 Microsoft Monitoring Agent，取得有關 Azure 虛擬機器的額外見解。 若要深入了解如何設定 Azure 環境以使用 Operations Management Suite 的資訊，請參閱 [將 Azure 儲存體連接至 Log Analytics](log-analytics-azure-storage.md)。
 
 ## <a name="next-steps"></a>後續步驟
@@ -141,6 +145,9 @@ ms.author: banders
 * 熟悉 [記錄檔搜尋](log-analytics-log-searches.md) 以檢視方案所收集的詳細資訊。
 * 使用 [儀表板](log-analytics-dashboards.md) 以儲存和顯示您自己的自訂搜尋。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

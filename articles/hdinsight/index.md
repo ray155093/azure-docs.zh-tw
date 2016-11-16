@@ -1,9 +1,13 @@
 ---
 layout: LandingPage
----
-#Azure HDInsight Documentation
+translationtype: Human Translation
+ms.sourcegitcommit: 1b5f6156de634d3e32dd848518d4433a5d2e4b5c
+ms.openlocfilehash: 050d31a70a7dddff1f840235002f9b233dee9059
 
-Azure HDInsight is an Apache Hadoop distribution powered by the cloud.  Azure HDInsight makes the Hadoop components from the Hortonworks Data Platform (HDP) distribution available in the cloud, and deploys and provisions managed clusters with reliability and availability.  Azure HDInsight provides cluster configurations for Apache Hadoop, Spark, HBase, and Storm.  You can also use custom clusters with script actions.  
+---
+#<a name="azure-hdinsight-documentation"></a>Azure HDInsight 文件
+
+Azure HDInsight 是採用雲端技術的 Apache Hadoop 散發套件。  Azure HDInsight 讓 Hortonworks 資料平台 (HDP) 散發中的 Hadoop 元件可在雲端取得，還可部署及佈建具備可靠性和可用性的受管理叢集。  Azure HDInsight 提供 Apache Hadoop、 Spark、HBase 和 Storm 的叢集設定。  您也可以使用自訂叢集搭配指令碼動作。  
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -17,7 +21,7 @@ Azure HDInsight is an Apache Hadoop distribution powered by the cloud.  Azure HD
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Learn about Azure HDInsight</h3>
+                        <h3>了解 Azure HDInsight</h3>
                     </div>
                 </div>
             </div>
@@ -35,7 +39,7 @@ Azure HDInsight is an Apache Hadoop distribution powered by the cloud.  Azure HD
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure HDInsight Video Library</h3>
+                        <h3>Azure HDInsight 影片庫</h3>
                     </div>
                 </div>
             </div>
@@ -53,7 +57,7 @@ Azure HDInsight is an Apache Hadoop distribution powered by the cloud.  Azure HD
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Get Started with HDInsight using a Linux-based Hadoop cluster</h3>
+                        <h3>利用以 Linux 為基礎的 Hadoop 叢集開始使用 HDInsight</h3>
                     </div>
                 </div>
             </div>
@@ -71,7 +75,7 @@ Azure HDInsight is an Apache Hadoop distribution powered by the cloud.  Azure HD
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Get Started with HDInsight using a Spark cluster with R Server</h3>
+                        <h3>利用 Spark 叢集搭配 R 伺服器開始使用 HDInsight</h3>
                     </div>
                 </div>
             </div>
@@ -89,7 +93,7 @@ Azure HDInsight is an Apache Hadoop distribution powered by the cloud.  Azure HD
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Get Started with HDInsight using an HBase cluster</h3>
+                        <h3>利用 HBase 叢集開始使用 HDInsight</h3>
                     </div>
                 </div>
             </div>
@@ -107,7 +111,7 @@ Azure HDInsight is an Apache Hadoop distribution powered by the cloud.  Azure HD
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Get Started with HDInsight using an Apache Storm cluster</h3>
+                        <h3>利用 Apache Storm 叢集開始使用 HDInsight</h3>
                     </div>
                 </div>
             </div>
@@ -119,23 +123,28 @@ Azure HDInsight is an Apache Hadoop distribution powered by the cloud.  Azure HD
 
 ---
 
-##Reference
+##<a name="reference"></a>參考
 
-###PowerShell
-[Azure PowerShell Reference](/powershell/azureps-cmdlets-docs)
+###<a name="powershell"></a>PowerShell
+[Azure PowerShell 參考](/powershell/azureps-cmdlets-docs)
 
-###REST
-[HDInsight REST API Reference](/rest/api/hdinsight)
-[Spark for HDInsight REST API Reference](/rest/api/hdinsightspark)
+###<a name="rest"></a>REST
+[HDInsight REST API 參考](/rest/api/hdinsight)
+[Spark for HDInsight REST API 參考](/rest/api/hdinsightspark)
 
-###.NET
-[HDInsight Managed Reference](https://msdn.microsoft.com/library/azure/mt271028)
+###<a name="net"></a>.NET
+[HDInsight 受管理的參考](https://msdn.microsoft.com/library/azure/mt271028)
 
 <div class="downloadHolder">
     <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/hdinsight.pdf">
         <div class="img"></div>
         <div class="text">
-            Download HDInsight Documentation
-        </div>
+下載 HDInsight 文件 </div>
     </a>
 </div>
+
+
+
+<!--HONumber=Nov16_HO2-->
+
+

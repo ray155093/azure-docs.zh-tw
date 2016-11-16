@@ -1,12 +1,12 @@
 ---
-title: 服務匯流排代理傳訊 .NET 教學課程 | Microsoft Docs
-description: 代理傳訊 .NET 教學課程。
+title: "服務匯流排代理傳訊 .NET 教學課程 | Microsoft Docs"
+description: "代理傳訊 .NET 教學課程。"
 services: service-bus
 documentationcenter: na
 author: sethmanheim
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 964e019a-8abe-42f3-8314-867010cb2608
 ms.service: service-bus
 ms.devlang: na
 ms.topic: get-started-article
@@ -14,14 +14,18 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/27/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 3127a84f4d4cd9881de56a6d199cfb1780cd8189
+
 
 ---
-# <a name="service-bus-brokered-messaging-.net-tutorial"></a>服務匯流排代理傳訊 .NET 教學課程
+# <a name="service-bus-brokered-messaging-net-tutorial"></a>服務匯流排代理傳訊 .NET 教學課程
 Azure 服務匯流排提供兩種全方位訊息解決方案 – 其中一個透過在雲端執行的集中式「轉送」服務，支援各種不同的傳輸通訊協定和 Web 服務標準，包括 SOAP、WS-* 和 REST。 用戶端不需要直接連線到內部部署服務，也不需要知道服務所在的位置，而且內部部署服務不需要在防火牆上開啟任何輸入連接埠。
 
 第二個訊息解決方案可提供「代理」傳訊功能。 這些代理傳訊功能可以視為非同步的低耦合訊息功能，可使用服務匯流排傳訊基礎結構來支援發佈-訂閱、時脈解離及負載平衡案例。 低耦合通訊有許多優點︰例如，用戶端和伺服器可視需要連接並以非同步方式執行其作業。
 
-本教學課程主要為了提供佇列 (服務匯流排代理傳訊的其中一個核心元件) 的概觀及實作經驗。 在您逐步完成本教學課程中的各個主題之後，您必須有應用程式可填入訊息清單、建立佇列，並將訊息傳送至該佇列。 最後，應用程式會接收並顯示佇列中的訊息，然後清除其資源並結束。 如需說明如何建置使用服務匯流排轉送之應用程式的對應教學課程，請參閱[服務匯流排轉送傳訊教學課程](../service-bus-relay/service-bus-relay-tutorial.md)。
+本教學課程主要為了提供佇列 (服務匯流排代理傳訊的其中一個核心元件) 的概觀及實作經驗。 在您逐步完成本教學課程中的各個主題之後，您必須有應用程式可填入訊息清單、建立佇列，並將訊息傳送至該佇列。 最後，應用程式會接收並顯示佇列中的訊息，然後清除其資源並結束。 如需說明如何建置使用服務匯流排 WCF 轉送之應用程式的對應教學課程，請參閱[服務匯流排轉送傳訊教學課程](../service-bus-relay/service-bus-relay-tutorial.md)。
 
 ## <a name="introduction-and-prerequisites"></a>簡介和必要條件
 如果有一或多個競爭取用者，佇列會採取先進先出 (FIFO) 訊息傳遞機制。 FIFO 表示通常預期由接收者依訊息加入佇列的時間順序來接收和處理訊息，而且每則訊息只能由一個訊息取用者接收和處理。 使用佇列的主要優點是達成應用程式元件的「時脈解離」︰換句話說，產生者和取用者不需同時傳送和接收訊息，因為訊息會長期儲存在佇列中。 相關的優點是「負載調節」，這可讓產生者和取用者以不同的速率傳送和接收訊息。
@@ -29,7 +33,7 @@ Azure 服務匯流排提供兩種全方位訊息解決方案 – 其中一個透
 以下是您在開始本教學課程之前所應遵循的一些管理和先決步驟。 第一步是建立服務命名空間，並取得共用存取簽章 (SAS) 金鑰。 命名空間會為每個透過服務匯流排公開的應用程式提供應用程式界限。 建立服務命名空間時，系統會自動產生 SAS 金鑰。 服務命名空間與 SAS 金鑰的結合提供了一個認證，以供服務匯流排驗證對應用程式的存取權。
 
 ### <a name="create-a-service-namespace-and-obtain-a-sas-key"></a>建立服務命名空間並取得 SAS 金鑰
-第一步是建立服務命名空間，並取得[共用存取簽章](../service-bus/service-bus-sas-overview.md) (SAS) 金鑰。 命名空間會為每個透過服務匯流排公開的應用程式提供應用程式界限。 建立服務命名空間時，系統會自動產生 SAS 金鑰。 服務命名空間與 SAS 金鑰的結合提供了一個認證，供服務匯流排驗證對應用程式的存取權。
+第一步是建立服務命名空間，並取得[共用存取簽章](service-bus-sas-overview.md) (SAS) 金鑰。 命名空間會為每個透過服務匯流排公開的應用程式提供應用程式界限。 建立服務命名空間時，系統會自動產生 SAS 金鑰。 服務命名空間與 SAS 金鑰的結合提供了一個認證，供服務匯流排驗證對應用程式的存取權。
 
 [!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
@@ -37,7 +41,7 @@ Azure 服務匯流排提供兩種全方位訊息解決方案 – 其中一個透
 
 ### <a name="create-a-visual-studio-project"></a>建立 Visual Studio 專案
 1. 以系統管理員身分開啟 Visual Studio：以滑鼠右鍵按一下 [開始] 功能表中的程式，然後按一下 [以系統管理員身分執行]。
-2. 這會建立新的主控台應用程式專案。 按一下 [檔案] 功能表，選取 [新增]，然後按一下 [專案]。 在 [新增專案] 對話方塊中，按一下 [Visual C#](如果 \[Visual C.md#\] 未出現，請查看 \[其他語言\] 下方)，按一下 [主控台應用程式] 範本，並將它命名為 **QueueSample**。 使用預設 [位置]。 按一下 [確定]  以建立專案。
+2. 這會建立新的主控台應用程式專案。 按一下 [檔案] 功能表，選取 [新增]，然後按一下 [專案]。 在 [新增專案] 對話方塊中，按一下 [Visual C#] (如果 [Visual C#] 未出現，請查看 [其他語言] 下方)，按一下 [主控台應用程式] 範本，並將它命名為 **QueueSample**。 使用預設 [位置]。 按一下 [確定]  以建立專案。
 3. 使用 NuGet 套件管理員將服務匯流排程式庫新增至您的專案︰
    
    1. 在 [方案總管] 中，以滑鼠右鍵按一下 **QueueSample** 專案，然後按一下 [管理 NuGet 套件]。
@@ -611,14 +615,17 @@ namespace Microsoft.ServiceBus.Samples
 在 Visual Studio 中，按一下 [建置] 功能表中的 [建置方案]，或按 **Ctrl+Shift+B**。 如果您遇到錯誤，請根據上一步結尾顯示的完整範例，確認您的程式碼正確無誤。
 
 ## <a name="next-steps"></a>後續步驟
-本教學課程示範了如何使用服務匯流排代理傳訊功能，建置服務匯流排用戶端應用程式和服務。 如需使用服務匯流排[轉送](service-bus-messaging-overview.md#Relayed-messaging)的類似教學課程，請參閱[服務匯流排轉送傳訊教學課程](../service-bus-relay/service-bus-relay-tutorial.md)。
+本教學課程示範了如何使用服務匯流排代理傳訊功能，建置服務匯流排用戶端應用程式和服務。 如需使用服務匯流排 [WCF 轉送](service-bus-messaging-overview.md#Relayed-messaging)的類似教學課程，請參閱[服務匯流排轉送傳訊教學課程](../service-bus-relay/service-bus-relay-tutorial.md)。
 
 若要深入了解 [服務匯流排](https://azure.microsoft.com/services/service-bus/)，請參閱下列主題。
 
 * [服務匯流排訊息概觀](service-bus-messaging-overview.md)
-* [服務匯流排基本概念](../service-bus/service-bus-fundamentals-hybrid-solutions.md)
-* [服務匯流排架構](../service-bus/service-bus-architecture.md)
+* [服務匯流排基本概念](service-bus-fundamentals-hybrid-solutions.md)
+* [服務匯流排架構](service-bus-architecture.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

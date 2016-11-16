@@ -1,4 +1,4 @@
-# Overview
+# 概觀
 ## [什麼是 API 管理？](api-management-key-concepts.md)
 # 開始使用
 ## [管理第一個 API](api-management-get-started.md)
@@ -40,11 +40,11 @@
 ### [使用自動化管理](automation-manage-api-management.md)
 ### [使用 Git 進行設定](api-management-configuration-repository-git.md)
 #參考
-## [範本](https://msdn.microsoft.com/en-us/library/azure/mt697540)
-## [服務部署 PowerShell Cmdlet 參考](https://msdn.microsoft.com/en-us/library/azure/mt619282)
+## [資源管理 PowerShell cmdlet]/powershell/resourcemanager()
+## [傳統部署 PowerShell Cmdlet 參考](https://msdn.microsoft.com/en-us/library/azure/mt613507)
+## [REST API](/rest/api/apimanagement/)
 ## [原則](https://msdn.microsoft.com/en-us/library/azure/dn894081)
-## [REST API](https://msdn.microsoft.com/en-us/library/azure/dn776326)
-## [服務管理 PowerShell Cmdlet](https://msdn.microsoft.com/en-us/library/azure/mt613507)
+## [範本](https://msdn.microsoft.com/en-us/library/azure/mt697540)
 #資源
 ## [價格](https://azure.microsoft.com/pricing/details/api-management/)
 ## [白皮書：雲端架構的 API 管理](http://j.mp/ms-apim-whitepaper)

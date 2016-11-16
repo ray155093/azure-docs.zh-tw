@@ -1,12 +1,12 @@
 ---
-title: 可用的連接器和 API 應用程式清單 | Microsoft Docs
-description: 閱讀 Azure App Service 中的連接器和 API 應用程式相關資訊
+title: "可用的連接器和 API Apps 清單 | Microsoft Docs"
+description: "閱讀 Azure App Service 中的連接器和 API 應用程式相關資訊"
 services: logic-apps
-documentationcenter: ''
+documentationcenter: 
 author: MandiOhlinger
 manager: erikre
 editor: cgronlun
-
+ms.assetid: 984a425d-ba64-48cc-90dc-bb624411e0f0
 ms.service: logic-apps
 ms.workload: integration
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 09/01/2016
 ms.author: mandia
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 6028fc53661978f63bbac89be6214ffebdc22405
+
 
 ---
 # <a name="list-of-connectors-and-api-apps-to-use-in-your-logic-apps"></a>要於 Logic Apps 中使用的連接器和 API Apps 清單
@@ -72,6 +76,9 @@ ms.author: mandia
 [在 Azure App Service 中使用混合連線管理員](app-service-logic-hybrid-connection-manager.md)  
 [管理和監視內建 API Apps 和連接器](app-service-logic-monitor-your-connectors.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

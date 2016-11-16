@@ -1,12 +1,12 @@
 ---
-title: Get started by running the Enable Database for Stretch Wizard | Microsoft Docs
-description: Learn how to configure a database for Stretch Database by running the Enable Database for Stretch Wizard.
+title: "開始執行為資料庫啟用延伸功能精靈 | Microsoft Docs"
+description: "了解如何透過執行 [為資料庫啟用延伸功能] 精靈，為資料庫設定 Stretch Database。"
 services: sql-server-stretch-database
-documentationcenter: ''
+documentationcenter: 
 author: douglaslMS
 manager: jhubbard
-editor: ''
-
+editor: 
+ms.assetid: 1189ab95-ba84-459c-bfb1-57cdf36ee111
 ms.service: sql-server-stretch-database
 ms.workload: data-management
 ms.tgt_pltfrm: na
@@ -14,156 +14,160 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 08/05/2016
 ms.author: douglasl
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 0c171da72bbdbfc8c15c6e39fcc8d5000f6be087
+
 
 ---
-# <a name="get-started-by-running-the-enable-database-for-stretch-wizard"></a>Get started by running the Enable Database for Stretch Wizard
-To configure a database for Stretch Database, run the Enable Database for Stretch Wizard.  This topic describes the info that you have to enter and the choices that you have to make in the wizard.
+# <a name="get-started-by-running-the-enable-database-for-stretch-wizard"></a>開始執行為資料庫啟用延伸功能精靈
+若要為資料庫設定 Stretch Database，請執行 [為資料庫啟用延伸功能] 精靈。  本主題說明您在精靈中必須輸入及做出選擇之項目的資訊。
 
-To learn more about Stretch Database, see [Stretch Database](sql-server-stretch-database-overview.md).
+若要深入了解 Stretch Database，請參閱 [Stretch Database](sql-server-stretch-database-overview.md)。
 
 > [!NOTE]
-> Later, if you disable Stretch Database, remember that disabling Stretch Database for a table or for a database does not delete the remote object. If you want to delete the remote table or the remote database, you have to drop it by using the Azure management portal. The remote objects continue to incur Azure costs until you delete them manually. 
+> 之後，如果您停用 Stretch Database，請記得停用資料表或資料庫的 Stretch Database 並不會刪除遠端物件。 如果您想要刪除遠端資料表或遠端資料庫，您必須使用 Azure 管理入口網站加以卸除。 遠端物件會繼續產生 Azure 成本，直到您手動刪除它們為止。 
 > 
 > 
 
-## <a name="launch-the-wizard"></a>Launch the wizard
-1. In SQL Server Management Studio, in Object Explorer, select the database on which you want to enable Stretch.
-2. Right\-click and select **Tasks**, and then select **Stretch**, and then select **Enable** to launch the wizard.
+## <a name="launch-the-wizard"></a>啟動精靈
+1. 在 SQL Server Management Studio 中，請選取 [物件總管] 中想要啟用延伸功能的資料庫。
+2. 以滑鼠右鍵按一下並選取 [工作]，然後選取 [Stretch]，並選取 [啟用] 以啟動精靈。
 
-## <a name="<a-name="intro"></a>introduction"></a><a name="Intro"></a>Introduction
-Review the purpose of the wizard and the prerequisites.
+## <a name="a-nameintroaintroduction"></a><a name="Intro"></a>簡介
+檢閱精靈的用途及必要條件。
 
-The important prerequisites include the following:
+重要先決條件包含下列各項：
 
-* You have to be an administrator to change database settings.
-* You have to have a Microsoft Azure subscription.
-* Your SQL Server has to be able to communicate with the remote Azure server.
+* 您必須是系統管理員才能變更資料庫設定。
+* 您必須有 Microsoft Azure 訂用帳戶。
+* 您的 SQL Server 必須能與遠端 Azure 伺服器通訊。
 
-![Introduction page of the Stretch Database wizard][StretchWizardImage1]
+![[Stretch Database 精靈] 的 [簡介] 頁面][StretchWizardImage1]
 
-## <a name="<a-name="tables"></a>select-tables"></a><a name="Tables"></a>Select tables
-Select the tables that you want to enable for Stretch.
+## <a name="a-nametablesaselect-tables"></a><a name="Tables"></a>選取資料表
+選取想要啟用延伸功能的資料表。
 
-Tables with lots of rows appear at the top of the sorted list. Before the Wizard displays the list of tables, it analyzes them for data types that are not currently supported by Stretch Database.
+有大量資料列的資料表會出現在已排序的清單頂端。 在顯示資料表清單之前，精靈會先分析資料表中是否有 Stretch Database 目前不支援的資料類型。
 
-![Select tables page of the Stretch Database wizard][StretchWizardImage2]
+![[Stretch Database 精靈] 的 [選取資料表] 頁面][StretchWizardImage2]
 
-| Column | Description |
+| 資料欄 | 說明 |
 | --- | --- |
-| (no title) |Check the check box in this column to enable the selected table for Stretch. |
-| **Name** |Specifies the name of the column in the table. |
-| (no title) |A symbol in this column may represent a warning that doesn\'t prevent you from enabling the selected table for Stretch. It may also represent a blocking issue that prevents you from enabling the selected table for Stretch \- for example, because the table uses an unsupported data type. Hover over the symbol to display more info in a tooltip. For more info, see [Limitations for Stretch Database](sql-server-stretch-database-limitations.md). |
-| **Stretched** |Indicates whether the table is already enabled for Stretch. |
-| **Migrate** |You can migrate an entire table (**Entire Table**) or you can specify a filter on an existing column in the table. If you want to use a different filter function to select rows to migrate, run the ALTER TABLE statement to specify the filter function after you exit the wizard. For more info about the filter function, see [Select rows to migrate by using a filter function](sql-server-stretch-database-predicate-function.md). For more info about how to apply the function, see [Enable Stretch Database for a table](sql-server-stretch-database-enable-table.md) or [ALTER TABLE (Transact-SQL)](https://msdn.microsoft.com/library/ms190273.aspx). |
-| **Rows** |Specifies the number of rows in the table. |
-| **Size (KB)** |Specifies the size of the table in KB. |
+| (沒有標題) |請勾選此資料欄的核取方塊，以為選取的資料表啟用延伸功能。 |
+| **名稱** |指定資料表中的資料欄名稱。 |
+| (沒有標題) |此資料行中的符號可能代表不會阻止您針對 Stretch 啟用所選資料表的警告。 它也可能代表會阻止您針對 Stretch 啟用所選資料表的封鎖問題 \- 例如，因為資料表使用不支援的資料類型。 以滑鼠暫留在符號上，以在工作提示中顯示更多資訊。 如需詳細資訊，請參閱 [Stretch Database 的限制](sql-server-stretch-database-limitations.md)。 |
+| **已延伸** |指出資料表是否已啟用 Stretch。 |
+| **移轉** |您可以移轉整個資料表 (**整個資料表**)，也可以指定依據資料表中的現有資料行篩選。 如果您想要使用不同的篩選函式來選取要移轉的資料列，請執行 ALTER TABLE 陳述式以在結束精靈後指定篩選函式。 如需有關篩選函式的詳細資訊，請參閱 [使用篩選函式來選取要移轉的資料列](sql-server-stretch-database-predicate-function.md)。 如需如何套用函式的詳細資訊，請參閱[為資料表啟用 Stretch Database](sql-server-stretch-database-enable-table.md) 或 [ALTER TABLE (Transact-SQL)](https://msdn.microsoft.com/library/ms190273.aspx)。 |
+| **列** |指定資料表中的資料列數目。 |
+| **大小 (KB)** |指定資料表的大小 (以 KB 為單位)。 |
 
-## <a name="<a-name="filter"></a>optionally-provide-a-row-filter"></a><a name="Filter"></a>Optionally provide a row filter
-If you want to provide a filter function to select rows to migrate, do the following things on the **Select tables** page.
+## <a name="a-namefilteraoptionally-provide-a-row-filter"></a><a name="Filter"></a>選擇性地提供資料列篩選
+如果您想要提供篩選函式來選取要移轉的資料列，請在 [選取資料表]  頁面上執行下列作業。
 
-1. In the **Select the tables you want to stretch** list, click **Entire Table** in the row for the table. The **Select rows to stretch** dialog box opens.
+1. 在 [選取要延展的資料表] 清單中，按一下資料表的資料列中的 [整個資料表]。 [選取要延展的資料列]  對話方塊隨即開啟。
    
-   ![Define a filter function][StretchWizardImage2a]
-2. In the **Select rows to stretch** dialog box, select **Choose Rows**.
-3. In the **Name field**, provide a name for the filter function.
-4. For the **Where** clause, pick a column from the table, pick an operator, and provide a value.
-5. Click **Check** to test the function. If the function returns results from the table - that is, if there are rows to migrate that satisfy the condition - the test reports **Success**.
+   ![定義篩選函式][StretchWizardImage2a]
+2. 在 [選取要延展的資料列] 對話方塊中，選取 [選擇資料列]。
+3. 在 [名稱] 欄位中，提供篩選函式的名稱。
+4. 針對 **Where** 子句，從資料表中挑選資料行、挑選一個運算子，以及提供一個值。
+5. 按一下 [檢查]  來測試函式。 如果函式傳回資料表的結果 (也就是有要移轉的資料列滿足條件)，則測試會報告 [成功] 。
    
    > [!NOTE]
-   > The textbox that displays the filter query is read-only. You can't edit the query in the textbox.
+   > 顯示篩選查詢的文字方塊是唯讀的。 您無法在文字方塊中編輯查詢。
    > 
    > 
-6. Click Done to return to the **Select tables** page.
+6. 按一下 [完成] 回到 [選取資料表]  頁面。
 
-The filter function is created in SQL Server only when you finish the wizard. Until then, you can return to the **Select tables** page to change or rename the filter function.
+只有在您完成精靈時，篩選函式才會建立於 SQL Server 中。 屆時，您可以回到 [選取資料表]  頁面，以變更或重新命名篩選函式。
 
-![Select Tables page after defining a filter function][StretchWizardImage2b]
+![在定義篩選函式後選取 [資料表] 頁面][StretchWizardImage2b]
 
-If you want to use a different type of filter function to select rows to migrate, do one of the following things.  
+如果您想要使用不同類型的篩選函式來選取要移轉的資料列，請執行下列其中一項操作。  
 
-* Exit the wizard and run the ALTER TABLE statement to enable Stretch for the table and to specify a filter function. For more info, see [Enable Stretch Database for a table](sql-server-stretch-database-enable-table.md).  
-* Run the ALTER TABLE statement to specify a filter function after you exit the wizard. For the required steps, see [Add a filter function after running the Wizard](sql-server-stretch-database-predicate-function.md#addafterwiz).
+* 結束精靈，然後執行 ALTER TABLE 陳述式來啟用資料表的 Stretch 以及指定函式。 如需詳細資訊，請參閱 [為資料表啟用 Stretch Database](sql-server-stretch-database-enable-table.md)。  
+* 結束精靈之後，請執行 ALTER TABLE 陳述式來指定函式。 如需必要步驟，請參閱 [在執行精靈後新增篩選函式](sql-server-stretch-database-predicate-function.md#addafterwiz)。
 
-## <a name="<a-name="configure"></a>configure-azure-deployment"></a><a name="Configure"></a>Configure Azure deployment
-1. Sign in to Microsoft Azure with a Microsoft account.
+## <a name="a-nameconfigureaconfigure-azure-deployment"></a><a name="Configure"></a>設定 Azure 部署
+1. 使用 Microsoft 帳戶登入 Microsoft Azure。
    
-   ![Sign in to Azure - Stretch Database wizard][StretchWizardImage3]
-2. Select the existing Azure subscription to use for Stretch Database.
-3. Select an Azure region.
+   ![登入 Azure - [Stretch Database 精靈]][StretchWizardImage3]
+2. 選取要用於 Stretch Database 的現有 Azure 訂用帳戶。
+3. 選取 Azure 區域。
    
-   * If you create a new server, the server is created in this region.  
-   * If you have existing servers in the selected region, the wizard lists them when you choose **Existing server**.
+   * 如果您建立新伺服器，該伺服器將會建立於此區域。  
+   * 如果您在所選區域中有現有的伺服器，精靈會在您選擇 [現有伺服器] 時列出這些伺服器。
    
-   To minimize latency, pick the Azure region in which your SQL Server is located. For more info about regions, see [Azure Regions](https://azure.microsoft.com/regions/).
-4. Specify whether you want to use an existing server or create a new Azure server.
+   若要將延遲降到最低，請選擇您的 SQL Server 所位於之區域做為 Azure 區域。 如需區域的詳細資訊，請參閱 [Azure 區域](https://azure.microsoft.com/regions/)。
+4. 指定您是否要使用現有伺服器，還是建立新的 Azure 伺服器。
    
-   If the Active Directory on your SQL Server is federated with Azure Active Directory, you can optionally use a federated service account for SQL Server to communicate with the remote Azure server. For more info about the requirements for this option, see [ALTER DATABASE SET Options (Transact-SQL)](https://msdn.microsoft.com/library/bb522682.aspx).
+   如果您 SQL Server 上的 Active Directory 為與 Azure Active Directory 同盟，您可以選擇性地使用同盟服務帳戶，讓 SQL Server 可以和遠端 Azure 伺服器通訊。 如需此選項之需求的詳細資訊，請參閱 [ALTER DATABASE SET 選項 (Transact-SQL)](https://msdn.microsoft.com/library/bb522682.aspx)。
    
-   * **Create new server**
+   * **建立新伺服器**
      
-     1. Create a login and password for the server administrator.
-     2. Optionally, use a federated service account for SQL Server to communicate with the remote Azure server.
+     1. 為伺服器系統管理員建立登入和密碼。
+     2. (選擇性) 使用同盟服務帳戶，讓 SQL Server 可以和遠端 Azure 伺服器通訊。
      
-     ![Create new Azure server - Stretch Database wizard][StretchWizardImage4]
-   * **Existing server**
+     ![建立新的 Azure 伺服器 - [Stretch Database 精靈]][StretchWizardImage4]
+   * **現有伺服器**
      
-     1. Select the existing Azure server.
-     2. Select the authentication method.
+     1. 選取現有的 Azure 伺服器。
+     2. 選取驗證方法。
         
-        * If you select **SQL Server Authentication**, provide the administrator login and password.
-        * Select **Active Directory Integrated Authentication** to use a federated service account for SQL Server to communicate with the remote Azure server. If the selected server is not integrated with Azure Active Directory, this option doesn't appear.
+        * 如果您選取 [SQL Server 驗證] ，請提供系統管理員登入和密碼。
+        * 選取 [Active Directory 整合式驗證]  以使用同盟服務帳戶，讓 SQL Server 可以和遠端 Azure 伺服器通訊。 如果選取的伺服器未與 Azure Active Directory 整合，此選項就不會出現。
      
-     ![Select existing Azure server - Stretch Database wizard][StretchWizardImage5]
+     ![選取現有的 Azure 伺服器 - [Stretch Database 精靈]][StretchWizardImage5]
 
-## <a name="<a-name="credentials"></a>secure-credentials"></a><a name="Credentials"></a>Secure credentials
-You have to have a database master key to secure the credentials that Stretch Database uses to connect to the remote database.  
+## <a name="a-namecredentialsasecure-credentials"></a><a name="Credentials"></a>安全認證
+您必須擁有資料庫主要金鑰，以保護 Stretch Database 用來連線到遠端資料庫的認證。  
 
-If a database master key already exists, enter the password for it.  
+如果資料庫主要金鑰已存在，請輸入它的密碼。  
 
-![Secure credentials page of the Stretch Database wizard][StretchWizardImage6b]
+![[Stretch Database 精靈] 的 [安全認證] 頁面][StretchWizardImage6b]
 
-If the database does not have an existing master key, enter a strong password to create a database master key.  
+如果資料庫沒有現有的主要金鑰，請輸入強式密碼以建立資料庫主要金鑰。  
 
-![Secure credentials page of the Stretch Database wizard][StretchWizardImage6]
+![[Stretch Database 精靈] 的 [安全認證] 頁面][StretchWizardImage6]
 
-For more info about the database master key, see [CREATE MASTER KEY (Transact-SQL)](https://msdn.microsoft.com/library/ms174382.aspx) and [Create a Database Master Key](https://msdn.microsoft.com/library/aa337551.aspx). For more info about the credential that the wizard creates,  see [CREATE DATABASE SCOPED CREDENTIAL (Transact-SQL)](https://msdn.microsoft.com/library/mt270260.aspx).
+如需資料庫主要金鑰的詳細資訊，請參閱 [CREATE MASTER KEY (Transact-SQL)](https://msdn.microsoft.com/library/ms174382.aspx) 和[建立資料庫主要金鑰](https://msdn.microsoft.com/library/aa337551.aspx)。 如需由精靈建立之認證的詳細資訊，請參閱 [CREATE DATABASE SCOPED CREDENTIAL (Transact-SQL)](https://msdn.microsoft.com/library/mt270260.aspx)。
 
-## <a name="<a-name="network"></a>select-ip-address"></a><a name="Network"></a>Select IP address
-Use the subnet IP address range (recommended), or the public IP address of your SQL Server, to create a firewall rule on Azure that lets SQL Server communicate with the remote Azure server.
+## <a name="a-namenetworkaselect-ip-address"></a><a name="Network"></a>選取 IP 位址
+請使用子網路 IP 位址範圍 (建議)，或您 SQL Server 的公用 IP 位址，以在 Azure 上建立能讓 SQL Server 與遠端 Azure 伺服器通訊的防火牆規則。
 
-The IP address or addresses that you provide on this page tell the Azure server to allow incoming data, queries, and management operations initiated by SQL Server to pass through the Azure firewall. The wizard doesn't change anything in the firewall settings on the SQL Server.
+您在此頁面提供的一或多個 IP 位址會告訴 Azure 伺服器允許 SQL Server 起始的傳入資料、查詢和管理作業通過 Azure 防火牆。 此精靈不會變更 SQL Server 防火牆設定中的任何項目。
 
-![Select IP address page of the Stretch Database wizard][StretchWizardImage7]
+![[Stretch Database 精靈] 的 [選取 IP 位址] 頁面][StretchWizardImage7]
 
-## <a name="<a-name="summary"></a>summary"></a><a name="Summary"></a>Summary
-Review the values that you entered and the options that you selected in the wizard and the estimated costs on Azure. Then select **Finish** to enable Stretch.
+## <a name="a-namesummaryasummary"></a><a name="Summary"></a>摘要
+檢閱您輸入的值，以及您在精靈中選取的選項和 Azure 的預估成本。 然後選取 [完成]  以啟用 Stretch。
 
-![Summary page of the Stretch Database wizard][StretchWizardImage8]
+![[Stretch Database 精靈] 的 [摘要] 頁面][StretchWizardImage8]
 
-## <a name="<a-name="results"></a>results"></a><a name="Results"></a>Results
-Review the results.
+## <a name="a-nameresultsaresults"></a><a name="Results"></a>結果
+檢閱結果。
 
-To monitor the status of data migration, see [Monitor and troubleshoot data migration (Stretch Database)](sql-server-stretch-database-monitor.md).
+若要監視資料移轉的狀態，請參閱 [資料移轉的監視及疑難排解 (Stretch Database)](sql-server-stretch-database-monitor.md)。
 
-![Results page of the Stretch Database wizard][StretchWizardImage9]
+![[Stretch Database 精靈] 的 [結果] 頁面][StretchWizardImage9]
 
-## <a name="<a-name="knownissues"></a>troubleshooting-the-wizard"></a><a name="KnownIssues"></a>Troubleshooting the wizard
-**The Stretch Database wizard failed.**
-If Stretch Database is not yet enabled at the server level, and you run the wizard without the system administrator permissions to enable it, the wizard fails. Ask the  system administrator to enable Stretch Database on the local server instance, and then run the wizard again. For more info, see [Prerequisite: Permission to enable Stretch Database on the server](sql-server-stretch-database-enable-database.md#EnableTSQLServer).
+## <a name="a-nameknownissuesatroubleshooting-the-wizard"></a><a name="KnownIssues"></a>針對精靈進行疑難排解
+**Stretch Database 精靈失敗。**
+ 如果 Stretch Database 尚未在伺服器層級啟用，且您在沒有能啟用它之系統管理員權限的情況下執行精靈，則精靈將會失敗。 請要求系統管理員在本機伺服器執行個體上啟用 Stretch Database，然後再次執行精靈。 如需詳細資訊，請參閱 [必要條件：在伺服器上啟用 Stretch Database 的權限](sql-server-stretch-database-enable-database.md#EnableTSQLServer)。
 
-## <a name="next-steps"></a>Next steps
-Enable additional tables for Stretch Database. Monitor data migration and manage Stretch\-enabled databases and tables.
+## <a name="next-steps"></a>後續步驟
+為其他資料表啟用 Stretch Database。 監視資料移轉並管理已啟用 Stretch 的資料庫和資料表。
 
-* [Enable Stretch Database for a table](sql-server-stretch-database-enable-table.md) to enable additional tables.
-* [Monitor and troubleshoot data migration](sql-server-stretch-database-monitor.md) to see the status of data migration.
-* [Pause and resume Stretch Database](sql-server-stretch-database-pause.md)
-* [Manage and troubleshoot Stretch Database](sql-server-stretch-database-manage.md)
-* [Backup Stretch-enabled databases](sql-server-stretch-database-backup.md)
+* [為資料表啟用 Stretch Database](sql-server-stretch-database-enable-table.md) 以啟用其他資料表。
+* [監視及針對移轉進行疑難排解資料](sql-server-stretch-database-monitor.md) 以查看資料移轉的狀態。
+* [Pause and resume Stretch Database (暫停和繼續 Stretch Database)](sql-server-stretch-database-pause.md)
+* [Manage and troubleshoot Stretch Database (Stretch Database 的管理和疑難排解)](sql-server-stretch-database-manage.md)
+* [備份已啟用 Stretch 的資料庫](sql-server-stretch-database-backup.md)
 
-## <a name="see-also"></a>See also
-[Enable Stretch Database for a database](sql-server-stretch-database-enable-database.md)
+## <a name="see-also"></a>另請參閱
+[為資料庫啟用 Stretch Database](sql-server-stretch-database-enable-database.md)
 
-[Enable Stretch Database for a table](sql-server-stretch-database-enable-table.md)
+[為資料表啟用 Stretch Database](sql-server-stretch-database-enable-table.md)
 
 [StretchWizardImage1]: ./media/sql-server-stretch-database-wizard/stretchwiz1.png
 [StretchWizardImage2]: ./media/sql-server-stretch-database-wizard/stretchwiz2.png
@@ -180,6 +184,6 @@ Enable additional tables for Stretch Database. Monitor data migration and manage
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

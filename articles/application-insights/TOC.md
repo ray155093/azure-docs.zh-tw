@@ -128,27 +128,31 @@
 ### [Java](app-insights-java-troubleshoot.md)
 
 # 參考
-
+## [Java](http://dl.windowsazure.com/applicationinsights/javadoc/)
+## [.NET API](https://docs.microsoft.com/dotnet/api)
+## [JavaScript API](https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md)
 ## [分析](app-insights-analytics-reference.md)
 ## [取樣](app-insights-sampling.md)
 ## [IP 位址](app-insights-ip-addresses.md)
 ## [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md)
 ## [匯出資料模型](app-insights-export-data-model.md)
-## [REST API](https://dev.applicationinsights.io/)
-## [JavaScript API](https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md)
-## [Java SDK API](http://dl.windowsazure.com/applicationinsights/javadoc/)
 ## [從 Azure 端點監視移轉到可用性測試](app-insights-migrate-azure-endpoint-tests.md)
 ## [開發人員分析：語言、平台和整合](app-insights-platforms.md)
 ### [範例和逐步解說](app-insights-code-samples.md)
-
 #### [逐步解說：啟用 Microsoft Dynamics CRM Online 遙測](app-insights-sample-mscrm.md)
 #### [逐步解說：使用串流分析匯出至 SQL](app-insights-code-sample-export-sql-stream-analytics.md)
 #### [程式碼範例︰剖析匯出的資料](app-insights-code-sample-export-telemetry-sql-database.md)
 ## [適用於 Windows Phone 和市集的 Application Insights SDK 版本資訊](app-insights-release-notes-windows.md)
 ## [開發人員分析工具的版本資訊](app-insights-release-notes-vsix.md)
 ## [SDK 版本資訊 Application Insights](app-insights-release-notes.md)
+## [REST API](https://dev.applicationinsights.io/)
 
 # 資源
+## [價格](https://azure.microsoft.com/pricing/details/application-insights/)  
+## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=ApplicationInsights)  
+## [Stack Overflow](http://stackoverflow.com/questions/tagged/az-application-insights)
+## [影片](https://azure.microsoft.com/documentation/videos/index/?services=application-insights) 
+## [服務更新](https://azure.microsoft.com/en-us/updates/?product=application-insights) 
 ## [支援](app-insights-get-dev-support.md)
 
 

@@ -26,11 +26,12 @@
 ### [針對自動調整進行疑難排解](virtual-machine-scale-sets-troubleshoot.md)
 
 # 參考
+## [PowerShell](/powershell/azureps-cmdlets-docs/)
 ## [Azure CLI](../virtual-machines/azure-cli-arm-commands.md)
-## [擴展集 REST API](/rest/api/compute/virtualmachinescalesets)
-## [擴展集 VM REST API](/rest/api/compute/virtualmachinescalesetvms)
-## [Azure PowerShell](/powershell/resourcemanager/)
-## [Azure 範本](https://azure.microsoft.com/documentation/templates/?term=vmss)
+## [REST](/rest/api/compute/)
+
+# 資源
+## [價格](https://azure.microsoft.com/pricing/details/virtual-machine-scale-sets/linux/)
 
 
 <!--HONumber=Nov16_HO2-->

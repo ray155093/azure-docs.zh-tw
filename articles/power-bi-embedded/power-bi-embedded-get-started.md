@@ -1,13 +1,13 @@
 ---
-title: 開始使用 Microsoft Power BI Embedded
-description: 對於 Power BI Embedded，將互動式 Power BI 報告加入至您的商務智慧應用程式
+title: "開始使用 Microsoft Power BI Embedded"
+description: "對於 Power BI Embedded，將互動式 Power BI 報告加入至您的商務智慧應用程式"
 services: power-bi-embedded
-documentationcenter: ''
+documentationcenter: 
 author: guyinacube
 manager: erikre
-editor: ''
-tags: ''
-
+editor: 
+tags: 
+ms.assetid: 4787cf44-5d1c-4bc3-b3fd-bf396e5c1176
 ms.service: power-bi-embedded
 ms.devlang: NA
 ms.topic: hero-article
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 10/04/2016
 ms.author: asaxton
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: b8748ffac2159661d9496b7033b510e6e584fe0f
+
 
 ---
 # <a name="get-started-with-microsoft-power-bi-embedded"></a>開始使用 Microsoft Power BI Embedded
@@ -100,6 +104,9 @@ ms.author: asaxton
 * [使用 Power BI Embedded 驗證和授權](power-bi-embedded-app-token-flow.md)
 * [Power BI 桌面](https://powerbi.microsoft.com/documentation/powerbi-desktop-get-the-desktop/)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

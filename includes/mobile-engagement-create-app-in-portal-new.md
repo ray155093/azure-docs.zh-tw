@@ -10,7 +10,7 @@
    * **名稱**：*應用程式集合*的名稱 
    * **平台**︰在將會開啟的 [平台] 刀鋒視窗上，選取應用程式的目標平台。 例如 如果您想要同時適用於 iOS 和 Android 的應用程式，則請選擇這兩種平台，然後就會在此應用程式集合底下建立兩個應用程式。 
      
-     ![](./media/mobile-engagement-create-app-in-portal-new/choose-platform.png)
+      ![](./media/mobile-engagement-create-app-in-portal-new/choose-platform.png)
    * **訂用帳戶**：選取 Azure 訂用帳戶。 
    * **資源群組**︰選取想要用來放置此 Azure 資源 (Mobile Engagement 應用程式集合) 的 Azure 資源群組。 您可以選擇建立新的資源群組。  
    * **位置**：用來儲存此應用程式集合和應用程式的相關資料的區域。
@@ -30,6 +30,8 @@
    
     ![](./media/mobile-engagement-create-app-in-portal-new/app-connection-info.png)
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO2-->
 
 

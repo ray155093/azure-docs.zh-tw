@@ -1,22 +1,21 @@
 # 概觀
 ## [虛擬網路](virtual-networks-overview.md)
-## [網路安全性群組](virtual-networks-nsg.md)
 ## [使用者定義的路由和 IP 轉送](virtual-networks-udr-overview.md)
+## [虛擬網路對等互連](virtual-network-peering-overview.md)
+## [商務持續性](virtual-network-disaster-recovery-guidance.md)
+## [常見問題集](virtual-networks-faq.md)
 ## IP 位址
 ### [資源管理員](virtual-network-ip-addresses-overview-arm.md)
 ### [傳統](virtual-network-ip-addresses-overview-classic.md)
-## [虛擬網路對等互連](virtual-network-peering-overview.md)
 ## 虛擬機器
 ### [網路介面](virtual-network-network-interface-overview.md)
 ### [名稱解析](virtual-networks-name-resolution-for-vms-and-role-instances.md)
-## [商務持續性](virtual-network-disaster-recovery-guidance.md)
-## [價格](https://azure.microsoft.com/pricing/details/virtual-network)
 
 # 開始使用
 ## [建立虛擬網路](virtual-networks-create-vnet-arm-pportal.md)
 ## [將 VM 部署至虛擬網路](../virtual-machines/virtual-machines-windows-hero-tutorial.md)
 
-# 作法：
+# 作法
 ## 規劃和設計
 ### [虛擬網路](virtual-network-vnet-plan-design-arm.md)
 ### [網路安全性群組](virtual-networks-nsg.md)
@@ -32,7 +31,7 @@
 #### [CLI (傳統)](virtual-networks-create-vnet-classic-cli.md)
 
 ### 網路安全性群組
-#### [入口網站](virtual-networks-create-nsg-arm-portal.md)
+#### [入口網站](virtual-networks-create-nsg-arm-pportal.md)
 #### [PowerShell](virtual-networks-create-nsg-arm-ps.md)
 #### [CLI](virtual-networks-create-nsg-arm-cli.md)
 #### [範本](virtual-networks-create-nsg-arm-template.md)
@@ -75,7 +74,9 @@
 ##### [PowerShell (傳統)](virtual-network-deploy-multinic-classic-ps.md)
 ##### [CLI (傳統)](virtual-network-deploy-multinic-classic-cli.md)
 
-#### [多個 IP 位址](virtual-network-multiple-ip-addresses-powershell.md)
+#### 多個 IP 位址
+##### [Azure 入口網站](virtual-network-multiple-ip-addresses-portal.md)
+##### [PowerShell](virtual-network-multiple-ip-addresses-powershell.md)
 
 ### 連線能力案例
 #### [虛擬網路 (VNet) 至 VNet](../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
@@ -92,6 +93,14 @@
 ##### [具有 NSG 和防火牆的 DMZ](virtual-networks-dmz-nsg-fw-asm.md)
 ##### [具有防火牆、UDR 和 NSG 的 DMZ](virtual-networks-dmz-nsg-fw-udr-asm.md)
 ##### [範例應用程式](virtual-networks-sample-app.md)
+
+## 設定
+### 加速網路
+#### [Azure 入口網站](virtual-network-accelerated-networking-portal.md)
+#### [PowerShell](virtual-network-accelerated-networking-powershell.md)
+### 存取控制清單
+#### [傳統入口網站](virtual-networks-acl.md)
+#### [PowerShell](virtual-networks-acl-powershell.md)
 
 ## 管理
 ### 網路安全性群組
@@ -110,22 +119,28 @@
 #### [將 VM 移至不同的子網路](virtual-networks-move-vm-role-to-subnet.md)
 
 # 參考
-## [PowerShell Cmdlet (Resource Manager)](https://msdn.microsoft.com/library/mt163510(v=azure.300))
-## [PowerShell Cmdlet (傳統)](https://msdn.microsoft.com/library/mt270335(v=azure.300))
-## [API (Resource Manager)](https://msdn.microsoft.com/library/mt163658.aspx)
-## [API (傳統)](https://msdn.microsoft.com/library/jj157182.aspx)
-## [網路部落格](http://azure.microsoft.com/blog/topics/networking)
-## [常見問題集](virtual-networks-faq.md)
+## [PowerShell (Resource Manager)](https://msdn.microsoft.com/library/mt163510(v=azure.300))
+## [PowerShell (傳統)](https://msdn.microsoft.com/library/mt270335(v=azure.300))
+## [Azure CLI](/cli/azure/)
+## [Java](/java/api/)
+## [REST (Resource Manager)](https://msdn.microsoft.com/library/mt163658.aspx)
+## [REST (傳統)](https://msdn.microsoft.com/library/jj157182.aspx)
+
 
 # 相關參考
-## [虛擬機器](https://azure.microsoft.com/documentation/services/virtual-machines)
-## [應用程式閘道](https://azure.microsoft.com/documentation/services/application-gateway)
-## [Azure DNS](https://azure.microsoft.com/documentation/services/dns)
-## [流量管理員](https://azure.microsoft.com/documentation/services/traffic-manager)
-## [負載平衡器](https://azure.microsoft.com/documentation/services/load-balancer)
-## [VPN 閘道](https://azure.microsoft.com/documentation/services/vpn-gateway)
-## [ExpressRoute](https://azure.microsoft.com/documentation/services/expressroute)
+## [虛擬機器](/azure/virtual-machines/)
+## [應用程式閘道](/azure/application-gateway/)
+## [Azure DNS](/azure/dns/)
+## [流量管理員](/azure/traffic-manager/)
+## [負載平衡器](/azure/load-balancer/)
+## [VPN 閘道](/azure/vpn-gateway/)
+## [ExpressRoute](/azure/expressroute/)
 
+# 資源
+## [網路部落格](http://azure.microsoft.com/blog/topics/networking)
+## [網路論壇](https://social.msdn.microsoft.com/Forums/azure/home?forum=WAVirtualMachinesVirtualNetwork)
+## [價格](https://azure.microsoft.com/pricing/details/virtual-network)
+## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-virtual-network)
 
 
 <!--HONumber=Nov16_HO2-->

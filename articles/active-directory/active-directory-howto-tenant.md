@@ -1,12 +1,12 @@
 ---
-title: 如何取得 Azure AD 租用戶 | Microsoft Docs
-description: 如何取得 Azure Active Directory 租用戶，以供註冊及建置應用程式使用。
+title: "如何取得 Azure AD 租用戶 | Microsoft Docs"
+description: "如何取得 Azure Active Directory 租用戶，以供註冊及建置應用程式使用。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: dstrockis
 manager: terrylan
-editor: ''
-
+editor: 
+ms.assetid: 1f4b24eb-ab4d-4baa-a717-2a0e5b8d27cd
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 09/28/2015
 ms.author: dastrock
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: b72271ca68df3b4b11c41f208fd1e3dd75b5e727
+
 
 ---
 # <a name="how-to-get-an-azure-active-directory-tenant"></a>如何取得 Azure Active Directory 租用戶
@@ -60,6 +64,9 @@ ms.author: dastrock
 
 註冊 Azure 的過程中，您將需要提供信用卡的詳細資料。  您可以放心繼續執行，您將不會被收取在 Azure AD 中發佈應用程式或建立新租用戶的費用。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

@@ -1,110 +1,119 @@
 ---
-title: 如何使用 Azure 媒體服務執行即時串流，以使用 .NET 建立多位元速率串流 | Microsoft Docs
-description: 本教學課程將逐步引導您使用 .NET SDK 建立通道，以接收單一位元速率即時串流，並將其編碼為多位元速率串流。
+title: "如何使用 Azure 媒體服務執行即時串流，以使用 .NET 建立多位元速率串流 | Microsoft Docs"
+description: "本教學課程將逐步引導您使用 .NET SDK 建立通道，以接收單一位元速率即時串流，並將其編碼為多位元速率串流。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: anilmur
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 4df5e690-ff63-47cc-879b-9c57cb8ec240
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 09/15/2016
+ms.date: 10/12/2016
 ms.author: juliako;anilmur
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 98498da5a8aaf10e37c355f05d6f6d83fd4df584
+
 
 ---
-# 如何使用 Azure 媒體服務執行即時串流，以使用 .NET 建立多位元速率串流
+# <a name="how-to-perform-live-streaming-using-azure-media-services-to-create-multibitrate-streams-with-net"></a>如何使用 Azure 媒體服務執行即時串流，以使用 .NET 建立多位元速率串流
 > [!div class="op_single_selector"]
-> * [Portal](media-services-portal-creating-live-encoder-enabled-channel.md)
+> * [入口網站](media-services-portal-creating-live-encoder-enabled-channel.md)
 > * [.NET](media-services-dotnet-creating-live-encoder-enabled-channel.md)
 > * [REST API](https://msdn.microsoft.com/library/azure/dn783458.aspx)
 > 
 > [!NOTE]
-> 若要完成此教學課程，您需要 Azure 帳戶。如需詳細資訊，請參閱 [Azure 免費試用](/pricing/free-trial/?WT.mc_id=A261C142F)。
+> 若要完成此教學課程，您需要 Azure 帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](/pricing/free-trial/?WT.mc_id=A261C142F)。
 > 
 > 
 
-## 概觀
-本教學課程將逐步引導您建立**通道**，可接收單一位元速率的即時串流，並將其編碼為多位元速率串流。
+## <a name="overview"></a>Overview
+本教學課程將逐步引導您建立 **通道** ，可接收單一位元速率的即時串流，並將其編碼為多位元速率串流。
 
-如需為即時編碼啟用之通道相關的詳細概念資訊，請參閱[使用 Azure 媒體服務的即時串流，以建立多位元速率串流](media-services-manage-live-encoder-enabled-channels.md)。
+如需為即時編碼啟用之通道相關的詳細概念資訊，請參閱 [使用 Azure 媒體服務的即時串流，以建立多位元速率串流](media-services-manage-live-encoder-enabled-channels.md)。
 
-## 常見即時串流案例
+## <a name="common-live-streaming-scenario"></a>常見即時串流案例
 下列步驟描述當我們建立一般即時資料流應用程式時，會涉及到的各種工作。
 
 > [!NOTE]
-> 目前，即時事件的最大建議持續時間是 8 小時。如果您需要較長的時間來執行通道，請連絡 amslived@Microsoft.com。
+> 目前，即時事件的最大建議持續時間是 8 小時。 如果您需要較長的時間來執行通道，請連絡 amslived@Microsoft.com。
 > 
 > 
 
-1. 將攝影機連接到電腦。啟動和設定可使用下列其中一種通訊協定輸出單一位元速率串流的內部部署即時編碼器：RTMP、Smooth Streaming 或 RTP (MPEG-TS)。如需詳細資訊，請參閱 [Azure 媒體服務 RTMP 支援和即時編碼器](http://go.microsoft.com/fwlink/?LinkId=532824)。
-   
-    此步驟也可以在您建立通道之後執行。
-2. 建立並啟動通道。
-3. 擷取通道內嵌 URL。
-   
-    內嵌 URL 可供即時編碼器用來傳送串流到通道。
-4. 擷取通道預覽 URL。
-   
-    使用此 URL 來確認您的通道會正確接收即時串流。
-5. 建立資產。
-6. 如果您想要在播放期間動態加密資產，請執行下列動作：
-7. 建立內容金鑰。
-8. 設定內容金鑰的授權原則。
-9. 設定資產傳遞原則 (供動態封裝和動態加密使用)。
-10. 建立程式，並指定使用您所建立的資產。
-11. 藉由建立 OnDemand 定位器，發行與程式相關聯的資產。
-    
-     請確定在您想串流內容的串流端點上至少有一個串流保留的單元。
-12. 當您準備好開始串流和封存時，請啟動程式。
-13. 即時編碼器會收到啟動公告的信號 (選擇性)。公告會插入輸出串流中。
-14. 每當您想要停止串流處理和封存事件時，請停止程式。
-15. 刪除程式 (並選擇性地刪除資產)。
+1. 將攝影機連接到電腦。 啟動和設定可使用下列其中一種通訊協定輸出單一位元速率串流的內部部署即時編碼器：RTMP、Smooth Streaming 或 RTP (MPEG-TS)。 如需詳細資訊，請參閱 [Azure 媒體服務 RTMP 支援和即時編碼器](http://go.microsoft.com/fwlink/?LinkId=532824)。
 
-## 您將學到什麼
-本主題示範如何使用 Media Services.NET SDK 在通道上執行不同的作業和程式。因為許多作業會長時間執行，所以會使用管理長時間執行作業的 .NET API。
+此步驟也可以在您建立通道之後執行。
+
+1. 建立並啟動通道。
+2. 擷取通道內嵌 URL。
+
+內嵌 URL 可供即時編碼器用來傳送串流到通道。
+
+1. 擷取通道預覽 URL。
+
+使用此 URL 來確認您的通道會正確接收即時串流。
+
+1. 建立資產。
+2. 如果您想要在播放期間動態加密資產，請執行下列動作：
+3. 建立內容金鑰。
+4. 設定內容金鑰的授權原則。
+5. 設定資產傳遞原則 (供動態封裝和動態加密使用)。
+6. 建立程式，並指定使用您所建立的資產。
+7. 藉由建立 OnDemand 定位器，發行與程式相關聯的資產。
+
+請確定在您想串流內容的串流端點上至少有一個串流保留的單元。
+
+1. 當您準備好開始串流和封存時，請啟動程式。
+2. 即時編碼器會收到啟動公告的信號 (選擇性)。 公告會插入輸出串流中。
+3. 每當您想要停止串流處理和封存事件時，請停止程式。
+4. 刪除程式 (並選擇性地刪除資產)。
+
+## <a name="what-youll-learn"></a>您將學到什麼
+本主題示範如何使用 Media Services.NET SDK 在通道上執行不同的作業和程式。 因為許多作業會長時間執行，所以會使用管理長時間執行作業的 .NET API。
 
 本主題示範如何執行下列動作：
 
-1. 建立並啟動通道。使用長時間執行的 API。
-2. 取得通道內嵌 (輸入) 端點。此端點應該提供給可以傳送單一位元速率即時串流的編碼器。
-3. 取得預覽端點。此端點可用來預覽您的串流。
-4. 建立將用來儲存內容的資產。資產傳遞原則也應該另外設定，如此範例中所示。
-5. 建立程式，並指定使用稍早建立的資產。啟動程式。使用長時間執行的 API。
+1. 建立並啟動通道。 使用長時間執行的 API。
+2. 取得通道內嵌 (輸入) 端點。 此端點應該提供給可以傳送單一位元速率即時串流的編碼器。
+3. 取得預覽端點。 此端點可用來預覽您的串流。
+4. 建立將用來儲存內容的資產。 資產傳遞原則也應該另外設定，如此範例中所示。
+5. 建立程式，並指定使用稍早建立的資產。 啟動程式。 使用長時間執行的 API。
 6. 建立資產的定位器，讓內容發行，並且可以串流至用戶端。
-7. 顯示和隱藏 slate。啟動和停止公告。使用長時間執行的 API。
+7. 顯示和隱藏 slate。 啟動和停止公告。 使用長時間執行的 API。
 8. 清除您的通道和所有相關聯的資源。
 
-## 必要條件
+## <a name="prerequisites"></a>必要條件
 需要有下列項目，才能完成教學課程。
 
 * 若要完成此教學課程，您需要 Azure 帳戶。
-  
-    如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。如需詳細資訊，請參閱 [Azure 免費試用](/pricing/free-trial/?WT.mc_id=A261C142F)。您將獲得能用來試用 Azure 付費服務的額度。即使在額度用完後，您仍可保留帳戶，並使用免費的 Azure 服務和功能，例如 Azure App Service 中的 Web Apps 功能。
-* 媒體服務帳戶。若要建立媒體服務帳號，請參閱[建立帳戶](media-services-create-account.md)。
+
+如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](/pricing/free-trial/?WT.mc_id=A261C142F)。 您將獲得能用來試用 Azure 付費服務的額度。 即使在額度用完後，您仍可保留帳戶，並使用免費的 Azure 服務和功能，例如 Azure App Service 中的 Web Apps 功能。
+
+* 媒體服務帳戶。 若要建立媒體服務帳戶，請參閱 [建立帳戶](media-services-portal-create-account.md)。
 * Visual Studio 2010 SP1 (Professional、Premium、Ultimate 或 Express) 或較新版本。
 * 您必須使用媒體服務 .NET SDK 3.2.0.0 版或更新版本。
 * 網路攝影機以及可以傳送單一位元速率即時串流的編碼器。
 
-## 考量
-* 目前，即時事件的最大建議持續時間是 8 小時。如果您需要較長的時間來執行通道，請連絡 amslived@Microsoft.com。
-* 確定負責傳送內容的串流端點上，至少有一個串流保留單位。
+## <a name="considerations"></a>考量
+* 目前，即時事件的最大建議持續時間是 8 小時。 如果您需要較長的時間來執行通道，請連絡 amslived@Microsoft.com。
+* 請確定在您想串流內容的串流端點上至少有一個串流保留的單元。
 
-## 下載範例
-從[這裡](https://azure.microsoft.com/documentation/samples/media-services-dotnet-encode-live-stream-with-ams-clear/)取得並執行範例。
+## <a name="download-sample"></a>下載範例
+從 [這裡](https://azure.microsoft.com/documentation/samples/media-services-dotnet-encode-live-stream-with-ams-clear/)取得並執行範例。
 
-## 設定使用媒體服務 SDK for.NET 的開發
+## <a name="set-up-for-development-with-media-services-sdk-for-net"></a>設定使用媒體服務 SDK for.NET 的開發
 1. 使用 Visual Studio 建立主控台應用程式。
 2. 使用媒體服務 NuGet 封裝，將媒體服務 SDK for.NET 新增至您的主控台應用程式。
 
-## 連線到媒體服務
+## <a name="connect-to-media-services"></a>連線到媒體服務
 您的最佳做法是使用 app.config 檔案來儲存媒體服務名稱和帳戶金鑰。
 
 > [!NOTE]
-> 若要尋找名稱和金鑰值，請移至 Azure 傳統入口網站，並選取您的媒體服務帳戶，然後按一下入口網站視窗底部的「管理金鑰」圖示。按一下每個文字方塊旁邊的圖示，會將值複製到系統剪貼簿。
+> 若要尋找名稱和金鑰值，請移至 Azure 入口網站，然後選取您的帳戶。 [設定] 視窗隨即出現在右邊。 在 [設定] 視窗中，選取 [金鑰]。 按一下每個文字方塊旁邊的圖示，會將值複製到系統剪貼簿。
 > 
 > 
 
@@ -119,7 +128,7 @@ ms.author: juliako;anilmur
     </configuration>
 
 
-## 程式碼範例
+## <a name="code-example"></a>程式碼範例
     using System;
     using System.Collections.Generic;
     using System.Configuration;
@@ -507,15 +516,20 @@ ms.author: juliako;anilmur
     }    
 
 
-## 後續步驟
+## <a name="next-step"></a>後續步驟
 檢閱媒體服務學習路徑。
 
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## 提供意見反應
+## <a name="provide-feedback"></a>提供意見反應
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-### 尋找其他內容嗎？
+### <a name="looking-for-something-else"></a>尋找其他內容嗎？
 如果本主題未包含您預期的內容、缺少部分內容，或者提供了一些其他不符合您需求的方式，請在下方提供您使用 Disqus 執行緒的意見反應給我們。
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+
+<!--HONumber=Nov16_HO2-->
+
+

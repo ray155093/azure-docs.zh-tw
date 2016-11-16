@@ -1,25 +1,29 @@
 ---
-title: ExpressRoute 位置 | Microsoft Docs
-description: 本文提供提供服務所在位置以及如何連線到 Azure 區域的詳細概觀。
+title: "ExpressRoute 位置 | Microsoft Docs"
+description: "本文提供提供服務所在位置以及如何連線到 Azure 區域的詳細概觀。"
 services: expressroute
 documentationcenter: na
 author: cherylmc
 manager: carmonm
-editor: ''
-
+editor: 
+ms.assetid: feb67da3-5abc-4acb-bad4-f78e3c541ded
 ms.service: expressroute
 ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 10/12/2016
+ms.date: 11/02/2016
 ms.author: cherylmc
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 86b7d396307761acb8baee5761f08a3e1120cddc
+
 
 ---
 # <a name="expressroute-partners-and-peering-locations"></a>ExpressRoute 合作夥伴和對等互連位置
 本文中的資料表會提供有關 ExpressRoute 連線提供者、ExpressRoute 地理涵蓋範圍、透過 ExpressRoute 支援的 Microsoft 雲端服務，以及 ExpressRoute 系統整合者 (SI) 的資訊。
 
-## <a name="<a-name="partners"></a>expressroute-connectivity-providers"></a><a name="partners"></a>ExpressRoute 連線提供者
+## <a name="a-namepartnersaexpressroute-connectivity-providers"></a><a name="partners"></a>ExpressRoute 連線提供者
 所有的 Azure 區域和位置都支援 ExpressRoute。 以下地圖提供了 Azure 區域和 ExpressRoute 位置的清單。 ExpressRoute 位置是指 Microsoft 與數個服務提供者對等互連的位置。
 
 ![位置圖][0]
@@ -58,28 +62,29 @@ ms.author: cherylmc
 | --- | --- |
 | **阿姆斯特丹** |Aryaka Networks、AT&T NetBond、British Telecom、Colt、Equinix、euNetworks、GÉANT、InterCloud、Internet Solutions - Cloud Connect、Interxion、Level 3 Communications、Orange、Tata Communications、TeleCity Group、Telenor、Verizon |
 | **亞特蘭大** |Equinix |
-| **辰內** |Tata Communications |
+| **辰內** |SIFY、Tata Communications |
 | **芝加哥** |AT&T NetBond、Comcast、Equinix、Level 3 Communications、Zayo Group |
-| **達拉斯** |AT&T NetBond、Cologix、Equinix、Level 3 Communications、Megaport |
+| **達拉斯** |Aryaka Networks、AT&T NetBond、Cologix、Equinix、Level 3 Communications、Megaport |
 | **都柏林** |Colt、Telecity Group |
 | **香港** |British Telecom、China Telecom Global、Equinix、Megaport、Orange、PCCW Global Limited、Tata Communications、Verizon |
-| **倫敦** |AT&T NetBond、British Telecom、Colt、Equinix、InterCloud、Internet Solutions - Cloud Connect、Interxion、Jisc+、Level 3 Communications、MTN、NTT Communications、Orange、Tata Communications、Telecity Group、Telenor、Verizon、Vodafone |
+| **倫敦** |AT&T NetBond、British Telecom、Colt、Equinix、InterCloud、Internet Solutions - Cloud Connect、Interxion、Jisc、Level 3 Communications、MTN、NTT Communications、Orange、Tata Communications、Telecity Group、Telenor、Verizon、Vodafone |
 | **拉斯維加斯** |Level 3 Communications+、Megaport |
 | **洛杉磯** |CoreSite、Equinix、Megaport、NTT、Zayo Group |
 | **墨爾本** |AARNet、Equinix、Megaport、NEXTDC、Telstra Corporation |
 | **紐約** |Equinix、Megaport、Zayo Group |
+| **Newport(Wales)+** |新一代資料+ |
 | **蒙特婁** |Cologix+ |
 | **孟買** |Tata Communications |
 | **大阪** |Equinix、Internet Initiative Japan Inc. - IIJ、NTT Communications、Softbank |
-| **巴黎** |Interxion |
+| **巴黎** |Interxion、Equinix+ |
 | **聖保羅** |Equinix、Telefonica |
 | **Seattle** |Equinix、Level 3 Communications、Megaport |
 | **矽谷** |Aryaka Networks、AT&T NetBond、British Telecom、CenturyLink+、Comcast、Equinix、Level 3 Communications、Orange、Tata Communications、Verizon、Zayo Group |
-| **新加坡** |Aryaka Networks、AT&T NetBond、British Telecom、Equinix、InterCloud、Megaport、Orange、SingTel、Tata Communications、Verizon |
+| **新加坡** |Aryaka Networks、AT&T NetBond、British Telecom、Equinix、InterCloud、Megaport、NTT Communications、Orange、SingTel、Tata Communications、Verizon |
 | **雪梨** |AARNet、AT&T NetBond、British Telecom、Equinix、Megaport、NEXTDC、Orange、Telstra Corporation、Verizon |
 | **東京** |Aryaka Networks、British Telecom、Colt、Equinix、Internet Initiative Japan Inc. - IIJ、NTT Communications、Softbank、Verizon |
 | **多倫多** |Cologix、Equinix、Zayo Group |
-| **華盛頓** |Aryaka Networks、AT&T NetBond、British Telecom、Comcast、Equinix、InterCloud、Level 3 Communications、Megaport、Orange、Tata Communications、Verizon、Zayo Group |
+| **華盛頓** |Aryaka Networks、AT&T NetBond、British Telecom、Comcast、Equinix、InterCloud、Level 3 Communications、Megaport、NTT Communications、Orange、Tata Communications、Verizon、Zayo Group |
 
  **+** 表示即將推出
 
@@ -88,7 +93,7 @@ ms.author: cherylmc
 | **位置** | **服務提供者** |
 | --- | --- |
 | **芝加哥** |AT&T NetBond、Equinix、Level 3 Communications、Verizon |
-| **達拉斯** |Equinix、Verizon+ |
+| **達拉斯** |Equinix、Verizon |
 | **紐約** |Equinix、Level 3 Communications+、Verizon |
 | **華盛頓** |AT&T NetBond、Equinix、Level 3 Communications、Verizon |
 
@@ -103,10 +108,10 @@ ms.author: cherylmc
 #### <a name="germany"></a>德國
 | **位置** | **服務提供者** |
 | --- | --- |
-| **柏林** |Colt、e-shelter |
+| **柏林** |Colt+、e-shelter |
 | **法蘭克福** |Colt、Equinix、Interxion |
 
-## <a name="<a-name="nonpartners"></a>connectivity-through-service-providers-not-listed"></a><a name="nonpartners"></a>透過未列出的服務提供者連線
+## <a name="a-namenonpartnersaconnectivity-through-service-providers-not-listed"></a><a name="nonpartners"></a>透過未列出的服務提供者連線
 如果上一節中未列出您的連線提供者，您仍然可以建立連線。
 
 * 請洽詢您的連線提供者，以了解他們是否連線到上方表格中列出的任何 Exchange 提供者。 您可以檢查下列連結，以收集 Exchange 提供者所提供之服務的相關詳細資訊。 已有數個連線提供者連線到乙太網路 Exchange。
@@ -148,6 +153,6 @@ ms.author: cherylmc
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

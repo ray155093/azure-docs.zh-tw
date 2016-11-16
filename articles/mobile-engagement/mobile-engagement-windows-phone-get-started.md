@@ -1,12 +1,12 @@
 ---
-title: 開始使用適用於 Windows Phone Silverlight 應用程式的 Azure Mobile Engagement
-description: 了解如何使用適用於 Windows Phone Silverlight 應用程式的 Azure Mobile Engagement 執行分析和傳送推播通知。
+title: "開始使用適用於 Windows Phone Silverlight 應用程式的 Azure Mobile Engagement"
+description: "了解如何使用適用於 Windows Phone Silverlight 應用程式的 Azure Mobile Engagement 執行分析和傳送推播通知。"
 services: mobile-engagement
 documentationcenter: windows
 author: piyushjo
 manager: dwrede
-editor: ''
-
+editor: 
+ms.assetid: aa34692f-87f7-47c6-a20c-a1972750bc25
 ms.service: mobile-engagement
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-windows-phone
@@ -14,6 +14,10 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 08/19/2016
 ms.author: piyushjo
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: fc6f97db04ae9dc547beb5a1fa3ee0c8c61885a6
+
 
 ---
 # <a name="get-started-with-azure-mobile-engagement-for-windows-phone-silverlight-apps"></a>開始使用適用於 Windows Phone Silverlight 應用程式的 Azure Mobile Engagement
@@ -37,10 +41,10 @@ ms.author: piyushjo
 > 
 > 
 
-## <a name="<a-id="setup-azme"></a>setup-mobile-engagement-for-your-windows-phone-app"></a><a id="setup-azme"></a>設定 Windows Phone 應用程式的 Mobile Engagement
+## <a name="a-idsetupazmeasetup-mobile-engagement-for-your-windows-phone-app"></a><a id="setup-azme"></a>設定 Windows Phone 應用程式的 Mobile Engagement
 [!INCLUDE [Create Mobile Engagement App in Portal](../../includes/mobile-engagement-create-app-in-portal-new.md)]
 
-## <a name="<a-id="connecting-app"></a>connect-your-app-to-the-mobile-engagement-backend"></a><a id="connecting-app"></a>將您的應用程式連線至 Mobile Engagement 後端
+## <a name="a-idconnectingappaconnect-your-app-to-the-mobile-engagement-backend"></a><a id="connecting-app"></a>將您的應用程式連線至 Mobile Engagement 後端
 本教學課程將說明「基本整合」，這是收集資料及傳送推播通知時必要的最低設定。 您可以在 [Mobile Engagement Windows Phone SDK 整合](mobile-engagement-windows-phone-sdk-overview.md)
 
 我們將會使用 Visual Studio 建立基本應用程式來示範整合。
@@ -87,7 +91,7 @@ ms.author: piyushjo
                EngagementAgent.Instance.OnActivated(e);
             }
 
-## <a name="<a-id="monitor"></a>enable-real-time-monitoring"></a><a id="monitor"></a>啟用即時監視
+## <a name="a-idmonitoraenable-realtime-monitoring"></a><a id="monitor"></a>啟用即時監視
 若要開始傳送資料並確定使用者正在使用，您必須至少傳送一個畫面 (活動) 到 Mobile Engagement 後端。
 
 1. 在 MainPage.xaml.cs 中，加入 `using` 陳述式：
@@ -100,14 +104,14 @@ ms.author: piyushjo
    
     a. 新增命名空間宣告：
    
-         xmlns:engagement="clr-namespace:Microsoft.Azure.Engagement;assembly=Microsoft.Azure.Engagement.EngagementAgent.WP"
+            xmlns:engagement="clr-namespace:Microsoft.Azure.Engagement;assembly=Microsoft.Azure.Engagement.EngagementAgent.WP"
    
     b. 以 `engagement:EngagementPage` 取代 XML 標記名稱內的 `phone:PhoneApplicationPage`。
 
-## <a name="<a-id="monitor"></a>connect-app-with-real-time-monitoring"></a><a id="monitor"></a>將 App 與即時監視連接
+## <a name="a-idmonitoraconnect-app-with-realtime-monitoring"></a><a id="monitor"></a>將 App 與即時監視連接
 [!INCLUDE [Connect app with real-time monitoring](../../includes/mobile-engagement-connect-app-with-monitor.md)]
 
-## <a name="<a-id="integrate-push"></a>enable-push-notifications-and-in-app-messaging"></a><a id="integrate-push"></a>啟用推播通知與應用程式內傳訊
+## <a name="a-idintegratepushaenable-push-notifications-and-inapp-messaging"></a><a id="integrate-push"></a>啟用推播通知與應用程式內傳訊
 Mobile Engagement 可讓您透過「推播通知」和「應用程式內傳訊」，於活動進行時與使用者互動和觸達。 此模組在 Mobile Engagement 入口網站中稱為觸達 (REACH)。
 以下各節將設定您的用程式來接收它們。
 
@@ -137,7 +141,7 @@ Mobile Engagement 可讓您透過「推播通知」和「應用程式內傳訊�
 
 您全都準備好了。 現在我們要驗證您已正確完成這項基本整合。
 
-## <a name="<a-id="send"></a>send-a-notification-to-your-app"></a><a id="send"></a>傳送通知至應用程式
+## <a name="a-idsendasend-a-notification-to-your-app"></a><a id="send"></a>傳送通知至應用程式
 [!INCLUDE [Create Windows Push campaign](../../includes/mobile-engagement-windows-push-campaign.md)]
 
 您現在應該會在裝置上看到通知，其會顯示為應用程式內通知 (如果應用程式已開啟)，否則會顯示為快顯通知，如下所示： 
@@ -157,6 +161,6 @@ Mobile Engagement 可讓您透過「推播通知」和「應用程式內傳訊�
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

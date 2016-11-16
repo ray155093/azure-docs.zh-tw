@@ -14,7 +14,7 @@
 ## [管理](sql-data-warehouse-overview-manage.md)
 ## [取得支援](sql-data-warehouse-get-started-create-support-ticket.md)
 
-# 作法：
+# 作法
 
 ## 備份與還原
 
@@ -136,6 +136,9 @@
 # 資源
 ## [價格](https://azure.microsoft.com/pricing/details/sql-data-warehouse/)
 ## [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-sqldw/)
+## [服務更新](https://azure.microsoft.com/updates/?product=sql-data-warehouse)
+## [論壇](https://social.msdn.microsoft.com/Forums/home?forum=AzureSQLDataWarehouse)
+## [影片](https://azure.microsoft.com/documentation/videos/index/?services=sql-data-warehouse)
 
 ## 合作夥伴
 ### [商業智慧](sql-data-warehouse-partner-business-intelligence.md)

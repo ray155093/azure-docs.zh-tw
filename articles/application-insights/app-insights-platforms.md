@@ -1,11 +1,11 @@
 ---
-title: Application Insights：語言、平台和整合| Microsoft Docs
-description: 適用於 Application Insights 的語言、平台和整合
+title: "Application Insights：語言、平台和整合 | Microsoft Docs"
+description: "適用於 Application Insights 的語言、平台和整合"
 services: application-insights
-documentationcenter: ''
+documentationcenter: 
 author: OlegAnaniev-MSFT
 manager: douge
-
+ms.assetid: 974db106-54ff-4318-9f8b-f7b3a869e536
 ms.service: application-insights
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
@@ -13,12 +13,16 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 09/01/2016
 ms.author: awills
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: fa0fe7ee7b0a24b679b86dece2a3294004b57815
+
 
 ---
-# 開發人員分析：語言、平台和整合
+# <a name="developer-analytics-languages-platforms-and-integrations"></a>開發人員分析：語言、平台和整合
 這些項目是我們曾聽過的 [Application Insights](app-insights-overview.md) 實作，包括一些協力廠商提供的實作。
 
-## 語言
+## <a name="languages"></a>語言
 * [C#|VB (.NET)](app-insights-asp-net.md)
 * [Java](app-insights-java-get-started.md)
 * [JavaScript web pages](app-insights-web-track-usage.md)
@@ -28,14 +32,14 @@ ms.author: awills
 * [Ruby](https://rubygems.org/gems/application_insights)
 * [任何其他項目](#projects)
 
-## 平台和架構
+## <a name="platforms-and-frameworks"></a>平台和架構
 * [Angular](https://www.npmjs.com/package/angular-applicationinsights)
 * [ASP.NET](app-insights-asp-net.md)
 * [ASP.NET - 適用於即時應用程式](app-insights-monitor-performance-live-website-now.md)
 * [ASP.NET 5](app-insights-asp-net-core.md)
 * [Android](https://github.com/Microsoft/ApplicationInsights-Android) (HockeyApp)
 * [Azure Web Apps 和 VM](app-insights-azure-web-apps.md)
-* [Azure 雲端服務](app-insights-cloudservices.md)：同時包含 Web 與背景工作角色
+* [Azure 雲端服務](app-insights-cloudservices.md)&#151;同時包含 Web 與背景工作角色
 * [Microsoft Dynamics 的 CRM Online](app-insights-sample-mscrm.md)
 * [Docker](app-insights-docker.md)
 * [Glimpse](https://azure.microsoft.com/blog/glimpse-application-insights/)
@@ -53,26 +57,32 @@ ms.author: awills
 * [Windows 桌面應用程式、服務和背景工作角色](app-insights-windows-desktop.md)
 * [任何其他項目](#projects)
 
-## 記錄架構
+## <a name="logging-frameworks"></a>記錄架構
 * [Log4Net、NLog 或 System.Diagnostics.Trace](app-insights-diagnostic-search.md)
 * [Java、Log4J 或 Logback](app-insights-java-trace-logs.md)
-* [語意記錄 (SLAB)](https://github.com/fidmor89/SLAB_AppInsights)：與[語意記錄應用程式區塊](https://msdn.microsoft.com/library/dn440729.aspx)整合
+* [語意記錄 (SLAB)](https://github.com/fidmor89/SLAB_AppInsights)&#151;與[語意記錄應用程式區塊](https://msdn.microsoft.com/library/dn440729.aspx)整合
 * [雲端式負載測試](http://blogs.msdn.com/b/visualstudioalm/archive/2015/07/30/getting-application-insights-counters-with-cloud-based-load-testing.aspx)
+* [LogStash 外掛程式](https://github.com/Azure/azure-diagnostics-tools/tree/master/Logstash/logstash-output-applicationinsights)
 
-## 內容管理系統
+## <a name="content-management-systems"></a>內容管理系統
 * [Concrete](https://github.com/fidmor89/appInsights-Concrete)
 * [Drupal](https://github.com/fidmor89/AppInsights-Drupal)
 * [Joomla](https://github.com/fidmor89/AppInsights-Joomla)
-* [Orchard](https://orchardazureappinsights.codeplex.com)
+* [Orchard](https://orchardazureappinsights.codeplex.com) 
 * [SharePoint](app-insights-sharepoint.md)
 * [WordPress](https://wordpress.org/plugins/application-insights/)
 
-## 匯出和資料分析
+## <a name="export-and-data-analysis"></a>匯出和資料分析
 * [Alooma](https://www.alooma.com/blog/application-insights-amazon-redshift)
 * [Power BI](http://blogs.msdn.com/b/powerbi/archive/2015/11/04/explore-your-application-insights-data-with-power-bi.aspx)
 * [串流分析](app-insights-export-power-bi.md)
 
-## <a name="projects"></a> 建置您自己的 SDK
+## <a name="a-nameprojectsa-build-your-own-sdk"></a><a name="projects"></a> 建置您自己的 SDK
 如果您的語言或平台中還沒有 SDK，您會想要建置一個嗎？ 查看 [GitHub 上之 Application Insights SDK 專案](https://github.com/Microsoft/AppInsights-Home)中列出的現有 SDK 程式碼。
 
-<!---HONumber=AcomDC_0914_2016-->
+
+
+
+<!--HONumber=Nov16_HO2-->
+
+

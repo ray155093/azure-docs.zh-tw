@@ -1,19 +1,23 @@
 ---
-title: 在 Visual Studio 中建立第一個 Service Fabric 應用程式 | Microsoft Docs
-description: 使用 Visual Studio 建立、部署和偵錯 Service Fabric 應用程式
+title: "在 Visual Studio 中建立第一個 Service Fabric 應用程式 | Microsoft Docs"
+description: "使用 Visual Studio 建立、部署和偵錯 Service Fabric 應用程式"
 services: service-fabric
 documentationcenter: .net
 author: rwike77
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: c3655b7b-de78-4eac-99eb-012f8e042109
 ms.service: service-fabric
 ms.devlang: dotNet
 ms.topic: hero-article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 09/28/2016
+ms.date: 10/26/2016
 ms.author: ryanwi
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 037dc010a6dc60eb49ad4fdad2861e8653e36199
+
 
 ---
 # <a name="create-your-first-azure-service-fabric-application"></a>建立第一個 Azure Service Fabric 應用程式
@@ -71,11 +75,11 @@ Service Fabric 應用程式可以包含一或多個服務，而每個服務在�
 1. 在 Visual Studio 中按 F5，部署應用程式以供偵錯。
    
    > [!NOTE]
-   > 第一次部署需要一些時間，因為 Visual Studio 正在建立本機叢集進行開發。 本機叢集會只會在一部電腦上執行您將在多部電腦的叢集中建置的相同平台程式碼。 叢集建立狀態會顯示在 Visual Studio 輸出視窗中。
+   > 第一次部署需要一些時間，因為 Visual Studio 正在建立本機叢集進行開發。 本機叢集會只會在一部電腦上執行您在多部電腦的叢集中建置的相同平台程式碼。 叢集建立狀態會顯示在 Visual Studio 輸出視窗中。
    > 
    > 
    
-    備妥叢集時，您將會收到來自 SDK 隨附的本機叢集系統匣管理員應用程式的通知。
+    備妥叢集時，您會收到來自 SDK 隨附的本機叢集系統匣管理員應用程式的通知。
    
     ![本機叢集系統匣通知][4]
 2. 啟動應用程式後，Visual Studio 會自動顯示 [診斷事件檢視器]，以便查看服務的追蹤輸出。
@@ -96,7 +100,7 @@ Service Fabric 應用程式可以包含一或多個服務，而每個服務在�
 4. 在您的服務專案中尋找衍生自 StatefulService 的類別 (例如 MyStatefulService)，以及在 `RunAsync` 方法的第一行上設定中斷點。
    
     ![具狀態服務 RunAsync 方法的中斷點][7]
-5. 以滑鼠右鍵按一下 [本機叢集管理員] 系統匣應用程式並選擇 [管理本機叢集]  ，以啟動 Service Fabric Explorer。
+5. 以滑鼠右鍵按一下 [本機叢集管理員] 系統匣應用程式並選擇 [管理本機叢集]，以啟動 Service Fabric Explorer。
    
     ![從本機叢集管理員啟動 Service Fabric Explorer][systray-launch-sfx]
    
@@ -107,7 +111,7 @@ Service Fabric 應用程式可以包含一或多個服務，而每個服務在�
     ![在 Service Fabric Explorer 中停止節點][sfx-stop-node]
    
     您應該會在 Visual Studio 中短暫看見達到您的中斷點，因為您一個節點上所做的計算完美地容錯移轉至另一個節點。
-8. 返回 [診斷事件檢視器] 並觀察訊息。 請注意，計數器已繼續遞增，即使事件實際上來自不同的節點。
+8. 返回 [診斷事件檢視器] 並觀察訊息。 計數器已繼續遞增，即使事件實際上來自不同的節點。
    
     ![容錯移轉之後的診斷事件檢視器][diagnostic-events-viewer-detail-post-failover]
 
@@ -116,13 +120,13 @@ Service Fabric 應用程式可以包含一或多個服務，而每個服務在�
 
 ![切換叢集模式][switch-cluster-mode]
 
-當您變更叢集模式時，開發叢集會重設，而且將移除在此叢集上佈建或執行的所有應用程式。
+當您變更叢集模式時，開發叢集會重設，而且會移除在此叢集上佈建或執行的所有應用程式。
 
 ## <a name="cleaning-up"></a>清除
   在我們做結論之前，請務必記得本機叢集非常真實。 停止偵錯工具將會移除應用程式執行個體，並取消註冊應用程式類型。 但叢集會繼續在背景中執行。 您有數個選項可管理叢集：
 
 1. 若要關閉叢集，但保留應用程式資料及追蹤，請按一下系統匣應用程式中的 [停止本機叢集]  。
-2. 若要完全刪除叢集，請按一下系統匣應用程式中的 [移除本機叢集]  。 請注意，此選項會導致下次您在 Visual Studio 中按 F5 鍵時發生其他緩慢部署。 唯有您打算停用本機叢集一陣子或需要回收資源時，再刪除叢集。
+2. 若要完全刪除叢集，請按一下系統匣應用程式中的 [移除本機叢集]  。 此選項會導致下次您在 Visual Studio 中按 F5 鍵時發生其他緩慢部署。 唯有您打算停用本機叢集一陣子或需要回收資源時，再刪除叢集。
 
 ## <a name="next-steps"></a>後續步驟
 * 了解如何[在 Azure 中建立叢集](service-fabric-cluster-creation-via-portal.md)或[在 Windows 上建立獨立叢集](service-fabric-cluster-creation-for-windows-server.md)。
@@ -147,6 +151,6 @@ Service Fabric 應用程式可以包含一或多個服務，而每個服務在�
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

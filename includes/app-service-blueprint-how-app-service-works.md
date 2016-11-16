@@ -10,7 +10,11 @@
   * [演練：建立 App Service 環境](../articles/app-service-web/app-service-web-how-to-create-an-app-service-environment.md)
 * [Azure App Service 開發堆疊支援](/blog/windows-azure-websites-development-stacks-support/)
 
-## 影片
+## <a name="videos"></a>影片
 * [Azure App Service 架構](/documentation/videos/why-azure-web-sites-plus-architecture/)
 
-<!---HONumber=AcomDC_0224_2016-->
+
+
+<!--HONumber=Nov16_HO2-->
+
+

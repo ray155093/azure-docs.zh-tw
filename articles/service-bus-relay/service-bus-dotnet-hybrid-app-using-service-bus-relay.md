@@ -1,12 +1,12 @@
 ---
-title: 混合式內部部署/雲端應用程式 (.NET) | Microsoft Docs
-description: 了解如何使用 Azure 服務匯流排轉送建立 .NET 內部部署/雲端混合式應用程式。
+title: "混合式內部部署/雲端應用程式 (.NET) | Microsoft Docs"
+description: "了解如何使用 Azure 服務匯流排轉送建立 .NET 內部部署/雲端混合式應用程式。"
 services: service-bus
 documentationcenter: .net
 author: sethmanheim
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 9ed02f7c-ebfb-4f39-9c97-b7dc15bcb4c1
 ms.service: service-bus
 ms.workload: tbd
 ms.tgt_pltfrm: na
@@ -14,16 +14,20 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 09/16/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 3c9d542edf04c119f5d97f80eacdfd0521acd77d
+
 
 ---
-# <a name=".net-on-premises/cloud-hybrid-application-using-azure-service-bus-relay"></a>使用 Azure 服務匯流排轉送的 .NET 內部部署/雲端混合式應用程式
+# <a name="net-onpremisescloud-hybrid-application-using-azure-service-bus-wcf-relay"></a>使用 Azure 服務匯流排 WCF 轉送的 .NET 內部部署/雲端混合式應用程式
 ## <a name="introduction"></a>簡介
 本文說明如何使用 Microsoft Azure 和 Visual Studio 建置混合式雲端應用程式。 本教學課程假設您先前沒有使用 Azure 的經驗。 不用 30 分鐘，您就會獲得一個使用多個 Azure 資源，於雲端上啟動並執行的應用程式。
 
 您將了解：
 
 * 如何建立 Web 服務或調整現有的 Web 服務，以供 Web 方案使用。
-* 如何使用 Azure 服務匯流排轉送服務，在 Azure 應用程式與其他位置託管的 Web 服務之間共用資料。
+* 如何使用 Azure 服務匯流排 WCF 轉送服務，在 Azure 應用程式與其他位置託管的 Web 服務之間共用資料。
 
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
@@ -32,7 +36,7 @@ ms.author: sethm
 
 眾多方案架構爭相開始使用雲端，以期能夠更輕鬆地處理擴充需求並降低操作成本。 在這麼做之後，它們發現想要運用作為其方案建置組塊的現有服務資產是在公司防火牆內，無法供雲端方案輕易存取。 許多內部服務並不是以可輕易在公司網路邊緣公開的方式建置或主控。
 
-「服務匯流排轉送」是針對採取現有 Windows Communication Foundation (WCF) Web 服務，並使那些服務可供公司週邊外之解決方案安全存取的使用案例而設計的，不需要進行會干擾公司網路基礎結構的變更。 這類服務匯流排轉送服務仍然裝載在其現有的環境，但它們會委派接聽連入工作階段和雲端裝載的服務匯流排的要求。 服務匯流排也可使用[共用存取簽章](../service-bus/service-bus-sas-overview.md) (SAS) 驗證，保護這些服務免受未經授權的存取。
+「服務匯流排轉送」是針對採取現有 Windows Communication Foundation (WCF) Web 服務，並使那些服務可供公司週邊外之解決方案安全存取的使用案例而設計的，不需要進行會干擾公司網路基礎結構的變更。 這類服務匯流排轉送服務仍然裝載在其現有的環境，但它們會委派接聽連入工作階段和雲端裝載的服務匯流排的要求。 服務匯流排也可使用[共用存取簽章](../service-bus-messaging/service-bus-sas-overview.md) (SAS) 驗證，保護這些服務免受未經授權的存取。
 
 ## <a name="solution-scenario"></a>解決方案案例
 在本教學課程中，您將建立 ASP.NET 網站，讓您可在產品庫存頁面上看到產品清單。
@@ -48,7 +52,7 @@ ms.author: sethm
 ## <a name="set-up-the-development-environment"></a>設定開發環境
 在開始開發 Azure 應用程式之前，請取得工具，並設定開發環境：
 
-1. 從[取得工具和 SDK][] 頁面安裝 Azure SDK for .NET。
+1. 從[取得工具和 SDK][取得工具和 SDK] 頁面安裝 Azure SDK for .NET。
 2. 按一下您所使用 Visual Studio 版本的 [安裝 SDK]。 本教學課程中的步驟使用 Visual Studio 2015。
 3. 當系統提示您執行或儲存安裝程式時，按一下 [執行]。
 4. 在 **Web Platform Installer** 中，按一下 [安裝] 並繼續進行安裝。
@@ -59,7 +63,7 @@ ms.author: sethm
 
 [!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
-## <a name="create-an-on-premises-server"></a>建立內部部署伺服器
+## <a name="create-an-onpremises-server"></a>建立內部部署伺服器
 首先，您將建置 (模擬) 內部部署產品目錄系統。 此作業相當簡單；您可將它看成是呈現實際內部部署產品目錄系統，此系統具有我們正在嘗試整合的完整服務面。
 
 此專案是 Visual Studio 主控台應用程式，會使用 [Azure 服務匯流排 NuGet 套件](https://www.nuget.org/packages/WindowsAzure.ServiceBus/)來納入服務匯流排程式庫和組態設定。
@@ -71,7 +75,7 @@ ms.author: sethm
    
    ![][11]
 4. 按一下 [確定] 以建立 **ProductsServer** 專案。
-5. 如果已安裝 Visual Studio 的 NuGet 封裝管理員，請跳至下一個步驟。 否則，請造訪 [NuGet][NuGet] (英文)，然後按一下 [[安裝 NuGet](http://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c)](英文.md)。 按照提示安裝 NuGet 封裝管理員，然後重新啟動 Visual Studio。
+5. 如果已安裝 Visual Studio 的 NuGet 封裝管理員，請跳至下一個步驟。 否則，請造訪 [NuGet][NuGet] (英文)，然後按一下 [安裝 NuGet][](http://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) (英文)。 按照提示安裝 NuGet 封裝管理員，然後重新啟動 Visual Studio。
 6. 在 [方案總管] 中，以滑鼠右鍵按一下 **ProductsServer** 專案，然後按一下 [管理 NuGet 套件]。
 7. 按一下 [瀏覽] 索引標籤，然後搜尋 `Microsoft Azure Service Bus`。 按一下 [安裝] 並接受使用條款。
    
@@ -197,14 +201,14 @@ ms.author: sethm
     
     ```
     <appSettings>
-    <!-- Service Bus specific app settings for messaging connections -->
-    <add key="Microsoft.ServiceBus.ConnectionString"
+       <!-- Service Bus specific app settings for messaging connections -->
+       <add key="Microsoft.ServiceBus.ConnectionString"
            value="Endpoint=sb://yourNamespace.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=yourKey"/>
     </appSettings>
     ```
 14. 按 **Ctrl+Shift+B**，或從 [建置] 功能表中按一下 [建置方案] 來建置應用程式並驗證您的工作到目前為止是否正確無誤。
 
-## <a name="create-an-asp.net-application"></a>建立 ASP.NET 應用程式
+## <a name="create-an-aspnet-application"></a>建立 ASP.NET 應用程式
 在本節中，您將建置簡單的 ASP.NET 應用程式，來顯示從產品服務擷取的資料。
 
 ### <a name="create-the-project"></a>建立專案
@@ -234,7 +238,7 @@ ms.author: sethm
    
    ```
    // Declare properties for the products inventory.
-   namespace ProductsWeb.Models
+    namespace ProductsWeb.Models
    {
        public class Product
        {
@@ -278,31 +282,31 @@ ms.author: sethm
    @model IEnumerable<ProductsWeb.Models.Product>
    
    @{
-           ViewBag.Title = "Index";
+            ViewBag.Title = "Index";
    }
    
    <h2>Prod Inventory</h2>
    
    <table>
-           <tr>
-               <th>
-                   @Html.DisplayNameFor(model => model.Name)
-               </th>
+             <tr>
+                 <th>
+                     @Html.DisplayNameFor(model => model.Name)
+                 </th>
                  <th></th>
-               <th>
-                   @Html.DisplayNameFor(model => model.Quantity)
-               </th>
-           </tr>
+                 <th>
+                     @Html.DisplayNameFor(model => model.Quantity)
+                 </th>
+             </tr>
    
    @foreach (var item in Model) {
-           <tr>
-               <td>
-                   @Html.DisplayFor(modelItem => item.Name)
-               </td>
-               <td>
-                   @Html.DisplayFor(modelItem => item.Quantity)
-               </td>
-           </tr>
+             <tr>
+                 <td>
+                     @Html.DisplayFor(modelItem => item.Name)
+                 </td>
+                 <td>
+                     @Html.DisplayFor(modelItem => item.Quantity)
+                 </td>
+             </tr>
    }
    
    </table>
@@ -437,7 +441,7 @@ ms.author: sethm
 
 [0]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/hybrid.png
 [1]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/App2.png
-[取得工具和 SDK (英文)]: http://go.microsoft.com/fwlink/?LinkId=271920
+[取得工具和 SDK]: http://go.microsoft.com/fwlink/?LinkId=271920
 [NuGet]: http://nuget.org
 
 [11]: ./media/service-bus-dotnet-hybrid-app-using-service-bus-relay/hy-con-1.png
@@ -469,6 +473,6 @@ ms.author: sethm
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

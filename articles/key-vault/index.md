@@ -1,9 +1,13 @@
 ---
 layout: LandingPage
----
-# Key Vault Documentation
+translationtype: Human Translation
+ms.sourcegitcommit: d6059070f8cb8765986763a2ae52068ab692d41d
+ms.openlocfilehash: 9614778d6c7502f16639d2ccb2f259a98be5b0c9
 
-Azure Key Vault helps safeguard cryptographic keys and secrets used by cloud applications and services. By using Key Vault, you can encrypt keys and secrets (such as authentication keys, storage account keys, data encryption keys, .PFX files, and passwords) by using keys that are protected by hardware security modules (HSMs). For added assurance, you can import or generate keys in HSMs.
+---
+# <a name="key-vault-documentation"></a>金鑰保存庫文件
+
+Azure 金鑰保存庫可協助保護雲端應用程式和服務所使用的密碼編譯金鑰和密碼。 使用金鑰保存庫之後，您可以加密金鑰和密碼 (例如驗證金鑰、儲存體帳戶金鑰、資料加密金鑰、.PFX 檔案和密碼)，方法是使用受硬體安全模組 (HSM) 保護的金鑰。 為了加強保證，您可以在 HSM 中匯入或產生金鑰。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -17,7 +21,7 @@ Azure Key Vault helps safeguard cryptographic keys and secrets used by cloud app
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Learn about Key Vault</h3>
+                        <h3>了解金鑰保存庫</h3>
                     </div>
                 </div>
             </div>
@@ -35,7 +39,7 @@ Azure Key Vault helps safeguard cryptographic keys and secrets used by cloud app
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Key Vault Video Library</h3>
+                        <h3>金鑰保存庫影片庫</h3>
                     </div>
                 </div>
             </div>
@@ -53,7 +57,7 @@ Azure Key Vault helps safeguard cryptographic keys and secrets used by cloud app
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Get Started with Key Vault</h3>
+                        <h3>開始使用金鑰保存庫</h3>
                     </div>
                 </div>
             </div>
@@ -71,7 +75,7 @@ Azure Key Vault helps safeguard cryptographic keys and secrets used by cloud app
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Get Started with Key Vault from a Web Application</h3>
+                        <h3>從 Web 應用程式開始使用金鑰保存庫</h3>
                     </div>
                 </div>
             </div>
@@ -89,7 +93,7 @@ Azure Key Vault helps safeguard cryptographic keys and secrets used by cloud app
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Set up Azure Key Vault with end-to-end key rotation and auditing</h3>
+                        <h3>使用端對端金鑰輪替和稽核設定 Azure 金鑰保存庫</h3>
                     </div>
                 </div>
             </div>
@@ -100,22 +104,22 @@ Azure Key Vault helps safeguard cryptographic keys and secrets used by cloud app
 
 ---
 
-## Reference
+## <a name="reference"></a>參考
 
-### PowerShell
-[Azure PowerShell Reference](/PowerShell/azureps-cmdlets-docs)
+### <a name="powershell"></a>PowerShell
+[Azure PowerShell 參考](/PowerShell/azureps-cmdlets-docs)
 
-### Azure CLI 
-[Key Vault using Azure CLI](/cli/azure/keyvault)
+### <a name="azure-cli"></a>Azure CLI 
+[使用 Azure CLI 的金鑰保存庫](/cli/azure/keyvault)
 
-### Java 
-[Key Vault in Java Reference](/java/api/)
+### <a name="java"></a>Java 
+[Java 金鑰保存庫參考](/java/api/)
 
-### .NET 
-[Key Vault Managed Reference API](/dotnet/api/) 
+### <a name="net"></a>.NET 
+[金鑰保存庫受管理的參考 API](/dotnet/api/) 
 
-### REST 
-[Key Vault REST API Reference](/rest/api/keyvault) 
+### <a name="rest"></a>REST 
+[金鑰保存庫 REST API 參考](/rest/api/keyvault) 
 
 ---
 
@@ -123,7 +127,12 @@ Azure Key Vault helps safeguard cryptographic keys and secrets used by cloud app
     <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/key-vault.pdf">
         <div class="img"></div>
         <div class="text">
-            Download Key Vault Documentation
-        </div>
+下載金鑰保存庫文件 </div>
     </a>
 </div>
+
+
+
+<!--HONumber=Nov16_HO2-->
+
+

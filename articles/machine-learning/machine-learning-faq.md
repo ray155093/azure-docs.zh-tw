@@ -1,23 +1,27 @@
 ---
-title: Azure Machine Learning 常見問題集 | Microsoft Docs
-description: Azure Machine Learning 簡介：常見問題集，涵蓋計費、功能，以及適用於簡化預測性模型化之雲端服務的限制。
-keywords: 機器學習服務簡介,建立預測模型,什麼是機器學習服務
+title: "Azure Machine Learning 常見問題集 | Microsoft Docs"
+description: "Azure Machine Learning 簡介：常見問題集，涵蓋計費、功能，以及適用於簡化預測性模型化之雲端服務的限制。"
+keywords: "機器學習服務簡介,建立預測模型,什麼是機器學習服務"
 services: machine-learning
-documentationcenter: ''
+documentationcenter: 
 author: garyericson
 manager: paulettm
 editor: cgronlun
-
+ms.assetid: a4a32a06-dbed-4727-a857-c10da774ce66
 ms.service: machine-learning
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 07/14/2016
+ms.date: 10/26/2016
 ms.author: garye
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 36fd6b01dae6aa9a48985a252766d3f2d0b19342
+
 
 ---
-# <a name="azure-machine-learning-frequently-asked-questions-(faq):-billing,-capabilities,-limitations,-and-support"></a>Azure Machine Learning 常見問題集 (FAQ)：計費、功能、限制及支援
+# <a name="azure-machine-learning-frequently-asked-questions-faq-billing-capabilities-limitations-and-support"></a>Azure Machine Learning 常見問題集 (FAQ)：計費、功能、限制及支援
 此常見問題集針對 Azure Machine Learning 問題提供解答，Azure Machine Learning 是適合透過 Web 服務開發預測性模型和運作方案的雲端服務。 這個常見問題集涵蓋使用服務的相關問題，包括計費模型、功能、限制及支援。
 
 ## <a name="general-questions"></a>一般問題
@@ -41,12 +45,14 @@ Machine Learning API 服務可讓您將預測模型 (例如 Machine Learning Stu
 
 **傳統 Web 服務會在哪裡列出？新的 Azure Resource Manager 架構 Web 服務會在哪裡列出？**
 
-傳統的 Web 服務會在 [Web 服務] 索引標籤的 [Machine Learning Studio](http://studio.azureml.net) 中列出。 新的 Azure Resource Manager 架構 Web 服務則會在 [Microsoft Azure Machine Learning Web 服務](https://services.azureml.net/) 入口網站中列出。 未提供交叉清單。
+傳統 Web 服務和新的 Azure Resource Manager 架構 Web 服務會在 [Microsoft Azure Machine Learning Web 服務](https://services.azureml.net/)入口網站中列出。 
+
+傳統 Web 服務也會在 [Web 服務] 索引標籤的 [Machine Learning Studio](http://studio.azureml.net) 中列出。
 
 ## <a name="microsoft-azure-machine-learning-web-service-questions"></a>Microsoft Azure Machine Learning Web 服務的問題
-**什麼是 Azure ML Web 服務？**
+**Azure Machine Learning Web 服務是什麼？**
 
-使用 Azure Machine Learning Web 服務，外部應用程式會即時與機器學習服務工作流程計分模型通訊。 機器學習 Web 服務呼叫會將預測結果傳回外部應用程式。 若要進行 Machine Learning Web 服務呼叫，您可以傳遞部署 Web 服務時所建立的 API 金鑰。 機器學習服務 Web 服務以 REST 為基礎，這是一種常見的 Web 程式設計專案架構。
+Machine Learning Web 服務可在應用程式與機器學習服務工作流程計分模型之間提供介面。 使用 Azure Machine Learning Web 服務，外部應用程式可即時與機器學習服務工作流程計分模型通訊。 機器學習 Web 服務呼叫會將預測結果傳回外部應用程式。 若要進行 Machine Learning Web 服務呼叫，您可以傳遞部署 Web 服務時所建立的 API 金鑰。 機器學習服務 Web 服務以 REST 為基礎，這是一種常見的 Web 程式設計專案架構。
 
 Azure Machine Learning 有兩種類型的服務：
 
@@ -55,7 +61,8 @@ Azure Machine Learning 有兩種類型的服務：
 
 有數種方法可以使用 REST API 和存取 Web 服務。 例如，您可以使用當您部署 Web 服務時為您產生的範例程式碼，在 C#、R 或 Python 中寫入應用程式。
 
-可用的範例程式碼位於：Machine Learning Web 服務入口網站中 Web 服務的 [取用] 頁面、Machine Learning Studio 中 Web 服務儀表板中的 [API 說明] 頁面。
+可用的範例程式碼位於：Azure Machine Learning Web 服務入口網站中 Web 服務的 [取用] 頁面。
+Machine Learning Studio 中 Web 服務儀表板中的 [API 說明] 頁面。
 
 或者您可以使用為您建立的範例 Microsoft Excel 活頁簿 (也可以在 Studio 中的 Web 服務儀表板取得)。
 
@@ -64,23 +71,12 @@ Azure Machine Learning 有兩種類型的服務：
 如需新的 Azure Machine Learning Web 服務的詳細資訊，請參閱 [相關文件](machine-learning-whats-new.md)。
 
 ## <a name="machine-learning-studio-questions"></a>Machine Learning Studio 問題
-### <a name="creating-an-experiment"></a>建立實驗
-**實驗圖形有版本控制或 Git 整合嗎？**
-
-沒有，不過 Machine Learning Studio 會保留其他使用者無法修改的每個實驗反覆運算。
-如需詳細資訊，請參閱 [在 Machine Learning Studio 中管理實驗反覆運算](machine-learning-manage-experiment-iterations.md)。
-
-### <a name="deploying-an-experiment"></a>部署實驗
-**如果我已將預測性實驗部署為傳統 Web 服務，是否可以將它部署為新的 (Azure Resource Manager 架構) Web 服務？**
-
-否，您無法部署先前已部署為傳統 Web 服務的實驗。 您必須改為建立新的預測性實驗並加以部署。
-
 ### <a name="importing-and-exporting-data-for-machine-learning"></a>匯入和匯出機器學習服務的資料
 **機器學習服務支援何種資料來源？**
 
 將資料載入 Machine Learning Studio 實驗中的方法有三種︰上傳本機檔案做為資料集、使用模組從雲端資料服務匯入資料，或從另一個實驗匯入儲存的資料集。 若要深入了解支援的檔案格式，請參閱 [將訓練資料匯入 Azure Machine Learning Studio](machine-learning-data-science-import-data.md)。
 
-#### <a name="<a-id="modulelimit"></a>how-large-can-the-data-set-be-for-my-modules?"></a><a id="ModuleLimit"></a>我的模組適用多大的資料集？
+#### <a name="a-idmodulelimitahow-large-can-the-data-set-be-for-my-modules"></a><a id="ModuleLimit"></a>我的模組適用多大的資料集？
 Machine Learning Studio 中的模組對常見使用案例支援最多 10 GB 的密集數值資料的資料集。 如果模組接受一個以上的輸入，10 GB 是所有輸入的大小總計。 您也可以取樣較大型資料集，方法是透過 Hive 或 Azure SQL Database 查詢，或在擷取前透過依計數學習前置處理。  
 
 下列資料類型可以在功能正規化期間擴充為較大型資料集，並限制在小於 10 GB：
@@ -100,7 +96,7 @@ Machine Learning Studio 中的模組對常見使用案例支援最多 10 GB 的�
 
 針對大於幾 GB 的資料集，您應該將資料上傳至 Azure 儲存體或 Azure SQL Database，或是使用 HDInsight，而不要直接從本機檔案上傳。
 
-#### <a name="<a-id="uploadlimit"></a>what-are-the-limits-for-data-upload?"></a><a id="UploadLimit"></a>資料上傳的限制為何？
+#### <a name="a-iduploadlimitawhat-are-the-limits-for-data-upload"></a><a id="UploadLimit"></a>資料上傳的限制為何？
 針對大於 2 GB 的資料集，請將資料上傳至 Azure 儲存體或 Azure SQL Database，或是使用 HDInsight，而不要直接從本機檔案上傳。
 
 **可以從 Amazon S3 讀取資料嗎？**
@@ -224,7 +220,7 @@ Machine Learning Studio 目前支援 400 個以上的 CRAN 套件，以下是所
 
 **如何監控部署在實際執行環境中的 Web 服務？**
 
-部署預測模型之後，您可以從 Azure 傳統入口網站進行監控。 每個已部署的服務都有其本身的儀表板，您可以在此處檢視該服務的監控資訊。 如需管理所部署 Web 服務的詳細資訊，請參閱 [管理 Azure Machine Learning 工作區](machine-learning-manage-workspace.md)。
+部署預測模型之後，您可以從 Azure 傳統入口網站 (僅限傳統 Web 服務) 或 Azure Machine Learning Web 服務入口網站加以監視。 每個已部署的服務都有其本身的儀表板，您可以在此處檢視該服務的監控資訊。 如需如何管理已部署之 Web 服務的詳細資訊，請參閱[使用 Azure Machine Learning Web 服務入口網站管理 Web 服務](machine-learning-manage-new-webservice.md)和[管理 Azure Machine Learning 工作區](machine-learning-manage-workspace.md)。
 
 **是否有哪個位置，可讓我查看我的 RRS/BES 輸出？**
 
@@ -436,7 +432,7 @@ Azure ML 的新 Web 服務提供多個層級供您佈建計費方案。 開發/�
 
 是。 不同區域有不同的方案價格。 當您將 Web 服務部署到其他區域時，您必須對服務指派該區域特定的方案。
 
-### <a name="new-web-services---overages"></a>新的 Web 服務 - 超額
+### <a name="new-web-services-overages"></a>新的 Web 服務 - 超額
 **如何檢查 Web 服務使用量是否超額？**
 
 您可以在 Azure Machine Learning Web 服務入口網站的 [方案] 頁面，檢視所有方案的使用量。 請登入該入口網站，然後按一下 [方案] 功能表選項。
@@ -549,6 +545,6 @@ Azure ML API 服務會根據它是傳統 Web 服務還是新的 Web 服務來收
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

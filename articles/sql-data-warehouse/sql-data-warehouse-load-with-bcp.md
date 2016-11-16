@@ -1,12 +1,12 @@
 ---
-title: 使用 bcp 將資料載入 SQL 資料倉儲 | Microsoft Docs
-description: 瞭解 bcp 是什麼及如何用於資料倉儲案例。
+title: "使用 bcp 將資料載入 SQL 資料倉儲 | Microsoft Docs"
+description: "瞭解 bcp 是什麼及如何用於資料倉儲案例。"
 services: sql-data-warehouse
 documentationcenter: NA
 author: twounder
 manager: barbkess
-editor: ''
-
+editor: 
+ms.assetid: f9467d11-fcd6-4131-a65a-2022d2c32d24
 ms.service: sql-data-warehouse
 ms.devlang: NA
 ms.topic: get-started-article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: mausher;barbkess
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 5a0519a0fdbfc428530e5b30a3f8e4e8bcdaa50b
+
 
 ---
 # <a name="load-data-with-bcp"></a>使用 bcp 載入資料
@@ -43,7 +47,7 @@ bcp 是將較小的資料集移入和移出 SQL 資料倉儲資料庫的一種�
 > 
 > 
 
-## <a name="prerequisites"></a>先決條件
+## <a name="prerequisites"></a>必要條件
 若要逐步執行本教學課程，您需要：
 
 * SQL 資料倉儲資料庫
@@ -136,7 +140,7 @@ sqlcmd.exe -S <server name> -d <database name> -U <username> -P <password> -I -Q
 | 20151201 |4 |2 |
 
 ### <a name="step-4-create-statistics-on-your-newly-loaded-data"></a>步驟 4：建立新載入資料的統計資料
-Azure 資料倉儲尚未支援自動建立或自動更新統計資料。 為了獲得查詢的最佳效能，在首次載入資料，或是資料中發生重大變更之後，建立所有資料表的所有資料行統計資料非常重要。 如需統計資料的詳細說明，請參閱「開發」主題群組中的「 [統計資料][統計資料] 」主題。 以下是快速範例，說明如何在此範例中建立載入資料表的統計資料
+Azure 資料倉儲尚未支援自動建立或自動更新統計資料。 為了獲得查詢的最佳效能，在首次載入資料，或是資料中發生重大變更之後，建立所有資料表的所有資料行統計資料非常重要。 如需統計資料的詳細說明，請參閱「開發」主題群組中的「[統計資料][統計資料]」主題。 以下是快速範例，說明如何在此範例中建立載入資料表的統計資料
 
 在 sqlcmd 提示字元中執行下列 CREATE STATISTICS 陳述式：
 
@@ -180,7 +184,7 @@ bcp DimDate2 out C:\Temp\DimDate2_export.txt -S <Server Name> -d <Database Name>
 > 
 
 ## <a name="next-steps"></a>後續步驟
-如需載入的概觀，請參閱 [將資料載入 SQL 資料倉儲][將資料載入 SQL 資料倉儲]。
+如需載入的概觀，請參閱[將資料載入 SQL 資料倉儲][將資料載入 SQL 資料倉儲]。
 如需更多開發秘訣，請參閱 [SQL 資料倉儲開發概觀][SQL 資料倉儲開發概觀]。
 
 <!--Image references-->
@@ -201,6 +205,6 @@ bcp DimDate2 out C:\Temp\DimDate2_export.txt -S <Server Name> -d <Database Name>
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: 教學課程：使用 REST API 建立具有複製活動的管線 | Microsoft Docs
-description: 在本教學課程中，您會使用 REST API，建立具有複製活動的 Azure Data Factory 管線。
+title: "教學課程：使用 REST API 建立具有複製活動的管線 | Microsoft Docs"
+description: "在本教學課程中，您會使用 REST API，建立具有複製活動的 Azure Data Factory 管線。"
 services: data-factory
-documentationcenter: ''
+documentationcenter: 
 author: spelluru
 manager: jhubbard
 editor: monicar
-
+ms.assetid: 1704cdf8-30ad-49bc-a71c-4057e26e7350
 ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 09/16/2016
 ms.author: spelluru
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: e3c045d652c04a8a03525753d9c18c3017c04f08
+
 
 ---
-# <a name="tutorial:-create-a-pipeline-with-copy-activity-using-rest-api"></a>教學課程：使用 REST API 建立具有複製活動的管線
+# <a name="tutorial-create-a-pipeline-with-copy-activity-using-rest-api"></a>教學課程：使用 REST API 建立具有複製活動的管線
 > [!div class="op_single_selector"]
 > * [概觀和必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
 > * [複製精靈](data-factory-copy-data-wizard-tutorial.md)
@@ -67,7 +71,7 @@ ms.author: spelluru
 ## <a name="create-json-definitions"></a>建立 JSON 定義
 在 curl.exe 所在的資料夾中建立下列 JSON 檔案。 
 
-### <a name="datafactory.json"></a>datafactory.json
+### <a name="datafactoryjson"></a>datafactory.json
 > [!IMPORTANT]
 > 名稱必須是全域唯一的，所以建議您使用 ADFCopyTutorialDF 做為前置詞/後置詞，使其成為唯一的名稱。 
 > 
@@ -78,7 +82,7 @@ ms.author: spelluru
         "location": "WestUS"
     }  
 
-### <a name="azurestoragelinkedservice.json"></a>azurestoragelinkedservice.json
+### <a name="azurestoragelinkedservicejson"></a>azurestoragelinkedservice.json
 > [!IMPORTANT]
 > 以 Azure 儲存體帳戶的名稱和金鑰取代 **accountname** 和 **accountkey**。 若要了解如何取得儲存體存取金鑰，請參閱 [檢視、複製和重新產生儲存體存取金鑰](../storage/storage-create-storage-account.md#view-copy-and-regenerate-storage-access-keys)
 > 
@@ -94,7 +98,7 @@ ms.author: spelluru
         }
     }
 
-### <a name="azuersqllinkedservice.json"></a>azuersqllinkedservice.json
+### <a name="azuersqllinkedservicejson"></a>azuersqllinkedservice.json
 > [!IMPORTANT]
 > 將 **servername**、**databasename**、**username** 和 **password** 替換為您的 Azure SQL Server 名稱、SQL Database 名稱、使用者帳戶及帳戶的密碼。  
 > 
@@ -112,7 +116,7 @@ ms.author: spelluru
     }
 
 
-### <a name="inputdataset.json"></a>inputdataset.json
+### <a name="inputdatasetjson"></a>inputdataset.json
     {
       "name": "AzureBlobInput",
       "properties": {
@@ -152,7 +156,7 @@ JSON 定義會定義名為 **AzureBlobInput**的資料集，以表示管線中�
 * **linkedServiceName** 設為 **AzureStorageLinkedService**。 
 * **folderPath** 設為 **adftutorial** 容器，而 **fileName** 設為 **emp.txt**。  
 * 格式 **type** 設為 **TextFormat**
-* 文字檔中有兩個欄位 (**FirstName** 和 **LastName**)，以逗號字元分隔 (**columnDelimiter**) 
+* 文字檔中有兩個欄位 (**FirstName** 和 **LastName**)，以逗號字元分隔 (**columnDelimiter**)    
 * **availability** 設定為**每小時**，且 (frequency 設定為小時，interval 設定為 1)。 因此，Data Factory 會每小時都在指定之 Blob 容器 (**adftutorial**) 的根資料夾中尋找輸入資料。 
 
 如果您未指定輸入資料集的 **fileName**，則輸入資料夾 (**folderPath**) 中的所有檔案/Blob 都會被視為輸入。 如果您在 JSON 中指定 fileName，則只有指定的檔案/Blob 會被視為輸入。
@@ -161,7 +165,7 @@ JSON 定義會定義名為 **AzureBlobInput**的資料集，以表示管線中�
 
 若要根據 **SliceStart** 時間動態設定 **folderPath** 和 **fileName**，請使用 **partitionedBy** 屬性。 在下列範例中，folderPath 使用 SliceStart (所處理配量的開始時間) 中的年、月和日，fileName 使用 SliceStart 中的小時。 例如，如果配量產生於 2014-10-20T08:00:00，folderName 設定為 wikidatagateway/wikisampledataout/2014/10/20，而 fileName 設定為 08.csv。 
 
-    "folderPath": "wikidatagateway/wikisampledataout/{Year}/{Month}/{Day}",
+      "folderPath": "wikidatagateway/wikisampledataout/{Year}/{Month}/{Day}",
     "fileName": "{Hour}.csv",
     "partitionedBy": 
     [
@@ -172,7 +176,7 @@ JSON 定義會定義名為 **AzureBlobInput**的資料集，以表示管線中�
     ],
 
 
-### <a name="outputdataset.json"></a>outputdataset.json
+### <a name="outputdatasetjson"></a>outputdataset.json
     {
       "name": "AzureSqlOutput",
       "properties": {
@@ -209,7 +213,7 @@ JSON 定義會定義名為 **AzureSqlOutput**的資料集，以表示管線中�
 * 資料庫的 emp 資料表中有三個資料行 – **ID**、**FirstName** 和 **LastName**。 ID 是識別資料行，所以您只需在此指定 **FirstName** 和 **LastName**。
 * **availability** 設定為**每小時**，且 (**frequency** 設定為**小時**，**interval** 設定為 **1**)。  Data Factory 服務會每隔一小時在 Azure SQL Database 的 **emp** 資料表中產生輸出資料配量。
 
-### <a name="pipeline.json"></a>pipeline.json
+### <a name="pipelinejson"></a>pipeline.json
     {
       "name": "ADFTutorialPipeline",
       "properties": {
@@ -468,7 +472,7 @@ JSON 定義會定義名為 **AzureSqlOutput**的資料集，以表示管線中�
 
 1. 建立 Azure **Data Factory**。
 2. 建立 **連結服務**：
-   1. Azure 儲存體連結服務可連結保留輸入資料的 Azure 儲存體帳戶。    
+   1. Azure 儲存體連結服務可連結保留輸入資料的 Azure 儲存體帳戶。     
    2. Azure SQL 連結服務可連結保留輸出資料的 Azure SQL Database。 
 3. 建立可描述管線輸入資料和輸出資料的 **資料集**。
 4. 建立具有複製活動的 **管線** ，以 BlobSource 做為來源並以 SqlSink 做為接收器。 
@@ -500,6 +504,6 @@ JSON 定義會定義名為 **AzureSqlOutput**的資料集，以表示管線中�
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

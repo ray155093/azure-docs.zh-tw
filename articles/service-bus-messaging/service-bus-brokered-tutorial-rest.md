@@ -1,12 +1,12 @@
 ---
-title: 服務匯流排代理傳訊 REST 教學課程 | Microsoft Docs
-description: 代理傳訊 REST 教學課程。
+title: "服務匯流排代理傳訊 REST 教學課程 | Microsoft Docs"
+description: "代理傳訊 REST 教學課程。"
 services: service-bus
 documentationcenter: na
 author: sethmanheim
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 9b7a8147-a1b1-42fc-b30e-f52e79a902b5
 ms.service: service-bus
 ms.devlang: na
 ms.topic: get-started-article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/27/2016
 ms.author: sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 45b72037e2de01b9201edf3e4ebee7e80d996383
+
 
 ---
 # <a name="service-bus-brokered-messaging-rest-tutorial"></a>服務匯流排代理傳訊 REST 教學課程
@@ -22,7 +26,7 @@ ms.author: sethm
 本教學課程示範如何建立基本的 REST 型 Azure 服務匯流排佇列和主題/訂用帳戶。
 
 ## <a name="create-a-namespace"></a>建立命名空間
-第一步是建立服務命名空間，並取得[共用存取簽章](../service-bus/service-bus-sas-overview.md) (SAS) 金鑰。 命名空間會為每個透過服務匯流排公開的應用程式提供應用程式界限。 建立服務命名空間時，系統會自動產生 SAS 金鑰。 服務命名空間與 SAS 金鑰的結合提供了一個認證，供服務匯流排驗證對應用程式的存取權。
+第一步是建立服務命名空間，並取得[共用存取簽章](service-bus-sas-overview.md) (SAS) 金鑰。 命名空間會為每個透過服務匯流排公開的應用程式提供應用程式界限。 建立服務命名空間時，系統會自動產生 SAS 金鑰。 服務命名空間與 SAS 金鑰的結合提供了一個認證，供服務匯流排驗證對應用程式的存取權。
 
 [!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
@@ -31,7 +35,7 @@ ms.author: sethm
 
 本教學課程中的程式碼會執行下列動作：
 
-* 使用您的命名空間和[共用存取簽章](../service-bus/service-bus-sas-overview.md) (SAS) 金鑰，取得您的服務匯流排命名空間資源的存取權。
+* 使用您的命名空間和[共用存取簽章](service-bus-sas-overview.md) (SAS) 金鑰，取得您的服務匯流排命名空間資源的存取權。
 * 建立佇列、將訊息傳送至佇列，並讀取佇列中的訊息。
 * 建立主題、該主題的訂用帳戶，以及從訂用帳戶傳送和讀取訊息。
 * 從服務匯流排擷取所有的佇列、主題和訂用帳戶資訊，包括訂用帳戶規則。
@@ -139,7 +143,7 @@ ms.author: sethm
 ## <a name="create-management-credentials"></a>建立管理認證
 下一個步驟是撰寫一個方法，以處理您在上一個步驟中輸入的命名空間和 SAS 金鑰，並傳回 SAS 權杖。 這個範例會建立有效期限為一小時的 SAS 權杖。
 
-### <a name="create-a-getsastoken()-method"></a>建立 GetSASToken() 方法
+### <a name="create-a-getsastoken-method"></a>建立 GetSASToken() 方法
 在 `Program` 類別中，將下列程式碼貼在 `Main()` 方法之後︰
 
 ```
@@ -594,9 +598,12 @@ namespace Microsoft.ServiceBus.Samples
 若要深入了解，請參閱下列文章：
 
 * [服務匯流排訊息概觀](service-bus-messaging-overview.md)
-* [Azure 服務匯流排基本概念](../service-bus/service-bus-fundamentals-hybrid-solutions.md)
+* [Azure 服務匯流排基本概念](service-bus-fundamentals-hybrid-solutions.md)
 * [服務匯流排轉送 REST 教學課程](../service-bus-relay/service-bus-relay-rest-tutorial.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

@@ -1,11 +1,12 @@
-# Overview
-## [什麼是 Hadoop？](hdinsight-hadoop-introduction.md)
-## [什麼是 R 伺服器？](hdinsight-hadoop-r-server-overview.md)
-## [什麼是 Spark？](hdinsight-apache-spark-overview.md)
-## [什麼是 HBase？](hdinsight-hbase-overview.md)
-## [什麼是 Storm？](hdinsight-storm-overview.md)
-## [什麼是已加入網域的 HDInsight 預覽？](hdinsight-domain-joined-introduction.md)
+# 概觀
+## [Hadoop](hdinsight-hadoop-introduction.md)
 ## [HDInsight 上的 Hadoop 元件](hdinsight-component-versioning.md)
+## [R 伺服器](hdinsight-hadoop-r-server-overview.md)
+## [Apache Spark](hdinsight-apache-spark-overview.md)
+## [HBase](hdinsight-hbase-overview.md)
+## [Apache Storm](hdinsight-storm-overview.md)
+## [已加入網域的 HDInsight 預覽](hdinsight-domain-joined-introduction.md)
+
 # 開始使用
 ## [開始使用 Hadoop](hdinsight-hadoop-linux-tutorial-get-started.md)
 ## [開始使用互動式 Hive 預覽](hdinsight-hadoop-use-interactive-hive.md)
@@ -13,14 +14,13 @@
 ## [開始使用 Spark](hdinsight-apache-spark-jupyter-spark-sql.md)
 ## [開始使用 HBase 與 NoSQL](hdinsight-hbase-tutorial-get-started-linux.md)
 ## [開始使用 Storm](hdinsight-apache-storm-tutorial-get-started-linux.md)
-## [刪除叢集](hdinsight-delete-cluster.md)
 ## [Hadoop 沙箱](hdinsight-hadoop-emulator-get-started.md)
 ## [Data Lake 工具與 Hortonworks 沙箱](hdinsight-hadoop-emulator-visual-studio.md)
 ## [Visual Studio 適用的工具](hdinsight-hadoop-visual-studio-tools-get-started.md)
 ## [使用 Blob 儲存體](hdinsight-hadoop-use-blob-storage.md)
-## [學習路徑](https://azure.microsoft.com/en-us/documentation/learning-paths/hdinsight-self-guided-hadoop-training/)
-# 作法：
-## Hadoop：Batch 查詢
+
+# 作法
+## 使用 Hadoop 進行批次查詢
 ### [使用 Hadoop 的 Hive](hdinsight-use-hive.md)
 #### [使用 Hive 檢視](hdinsight-hadoop-use-hive-ambari-view.md)
 #### [使用 SSH](hdinsight-hadoop-use-hive-ssh.md)
@@ -32,13 +32,13 @@
 #### [使用遠端桌面](hdinsight-hadoop-use-hive-remote-desktop.md)
 #### [使用查詢主控台](hdinsight-hadoop-use-hive-query-console.md)
 ### [搭配使用 Java UDF 與 Hive](hdinsight-hadoop-hive-java-udf.md)
-### [使用 Hadoop 的 MapReduce](hdinsight-use-mapreduce.md)
+### [搭配使用 MapReduce 與 Hadoop](hdinsight-use-mapreduce.md)
 #### [使用遠端桌面](hdinsight-hadoop-use-mapreduce-remote-desktop.md)
 #### [使用 SSH](hdinsight-hadoop-use-mapreduce-ssh.md)
 #### [使用 cURL](hdinsight-hadoop-use-mapreduce-curl.md)
 #### [使用 PowerShell](hdinsight-hadoop-use-mapreduce-powershell.md)
-### [MapReduce 範例](hdinsight-hadoop-run-samples-linux.md)
-### [使用 Hadoop 的 Pig](hdinsight-use-pig.md)
+### [執行 MapReduce 範例](hdinsight-hadoop-run-samples-linux.md)
+### [搭配 Hadoop 使用 Pig](hdinsight-use-pig.md)
 #### [使用遠端桌面](hdinsight-hadoop-use-pig-remote-desktop.md)
 #### [使用 SSH 和 Pig](hdinsight-hadoop-use-pig-ssh.md)
 #### [使用 PowerShell](hdinsight-hadoop-use-pig-powershell.md)
@@ -51,7 +51,7 @@
 ### [儲存體選項](hdinsight-hadoop-r-server-storage.md)
 ### [安裝 RStudi](hdinsight-hadoop-r-server-install-r-studio.md)
 ### [計算內容](hdinsight-hadoop-r-server-compute-contexts.md)
-## Spark：記憶體中的處理
+## 使用 Spark 進行記憶體中的處理
 ### [並用 BI 工具](hdinsight-apache-spark-use-bi-tools.md)
 ### [獨立應用程式](hdinsight-apache-spark-create-standalone-application.md)
 ### [處理串流事件](hdinsight-apache-spark-eventhub-streaming.md)
@@ -67,7 +67,7 @@
 ### [管理資源](hdinsight-apache-spark-resource-manager.md)
 ### [追蹤和偵錯作業](hdinsight-apache-spark-job-debugging.md)
 ### [已知問題](hdinsight-apache-spark-known-issues.md)
-## HBase：NoSQL
+## 使用 HBase
 ### [使用 Phoenix 和 SQLLine](hdinsight-hbase-phoenix-squirrel-linux.md)
 ### [分析即時推文](hdinsight-hbase-analyze-twitter-sentiment.md)
 ### [在虛擬網路上建立叢集](hdinsight-hbase-provision-vnet.md)
@@ -75,7 +75,7 @@
 ### [設定 DNS 伺服器](hdinsight-hbase-geo-replication-configure-dns.md)
 ### [設定 HBase 異地複寫](hdinsight-hbase-geo-replication.md)
 ### [使用 Java 開發應用程式](hdinsight-hbase-build-java-maven-linux.md)
-## Storm：串流查詢
+## 使用 Storm
 ### [部署和管理拓撲](hdinsight-storm-deploy-monitor-topology-linux.md)
 ### [開發 SCP 中的資料處理應用程式](hdinsight-storm-scp-programming-guide.md)
 ### [Storm 範例](hdinsight-storm-example-topology.md)
@@ -90,7 +90,7 @@
 #### [處理車輛感應器資料](hdinsight-storm-iot-eventhub-documentdb.md)
 #### [相互關聯一段時間的事件](hdinsight-storm-correlation-topology.md)
 #### [使用 Python 開發拓撲](hdinsight-storm-develop-python-topology.md)
-## 已加入網域的 HDInsight 預覽
+## 使用已加入網域的 HDInsight 預覽
 ### [設定](hdinsight-domain-joined-configure.md)
 ### [管理](hdinsight-domain-joined-manage.md)
 ### [設定 Hive 原則](hdinsight-domain-joined-run-hive.md)
@@ -104,7 +104,7 @@
 ### [Avro Library 的資料序列化](hdinsight-dotnet-avro-serialization.md)
 ### [使用 C# 使用者定義函式](hdinsight-hadoop-hive-pig-udf-dotnet-csharp.md)
 ### [搭配 Hive 與 Pig 來使用 Python](hdinsight-python.md)
-## 巨量資料解決方案
+## 分析巨量資料
 ### [使用 Power Query 進行分析](hdinsight-connect-excel-power-query.md)
 ### [將 Excel 連接到 Hadoop](hdinsight-connect-excel-hive-odbc-driver.md)
 ### [使用 Hive JDBC 驅動程式進行連線](hdinsight-connect-hive-jdbc-driver.md)
@@ -125,12 +125,12 @@
 ### [使用 Solr](hdinsight-hadoop-solr-install-linux.md)
 ### [使用虛擬網路](hdinsight-extend-hadoop-virtual-network.md)
 ### [使用 Zeppelin](hdinsight-apache-spark-use-zeppelin-notebook.md)
-### HDInsight 應用程式
+### 建置 HDInsight 應用程式
 #### [安裝 HDInsight 應用程式](hdinsight-apps-install-applications.md)
 #### [安裝自訂應用程式](hdinsight-apps-install-custom-applications.md)
 #### [使用 REST 安裝應用程式](https://msdn.microsoft.com/library/mt706515.aspx)
 #### [將 HDInsight 應用程式發佈到 Azure Marketplace](hdinsight-apps-publish-applications.md)
-## 安全性
+## 安全
 ### [使用 SSH 通道](hdinsight-linux-ambari-ssh-tunnel.md)
 ### [從 Linux、Unix、OS X 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)
 ### [從 Windows OS 使用 SSH](hdinsight-hadoop-linux-use-ssh-windows.md)
@@ -172,6 +172,7 @@
 #### [記憶體不足錯誤的 Hive 設定修正](hdinsight-hadoop-hive-out-of-memory-error-oom.md)
 #### [最佳化 Hive 查詢](hdinsight-hadoop-optimize-hive-query.md)
 #### [Hive 查詢效能](https://blogs.msdn.microsoft.com/bigdatasupport/2015/08/13/troubleshooting-hive-query-performance-in-hdinsight-hadoop-cluster/)
+
 # 參考
 ## [REST API 參考資料](https://msdn.microsoft.com/library/mt622197.aspx)
 ## [適用於遠端工作的 Spark REST API](https://msdn.microsoft.com/library/mt613023.aspx)
@@ -179,8 +180,8 @@
 ## [.NET SDK for Hadoop](https://msdn.microsoft.com/library/mt271028.aspx)
 ## [HBase 適用的 .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/)
 ## [Avro 適用的 .NET 程式庫](https://hadoopsdk.codeplex.com/wikipage?title=Avro%20Library)
-# 資源
-## [在論壇上取得協助](https://social.msdn.microsoft.com/forums/azure/en-US/home?forum=hdinsight)
+
+# 相關參考
 ## Windows 叢集
 ### [將 Windows 叢集移轉到 Linux 叢集](hdinsight-migrate-from-windows-to-linux.md)
 ### [開始使用 Hadoop](hdinsight-hadoop-tutorial-get-started-windows.md)
@@ -210,6 +211,11 @@
 ### [分析 Twitter 資料](hdinsight-analyze-twitter-data.md)
 ### [使用 Azure 入口網站管理叢集](hdinsight-administer-use-management-portal.md)
 ### [使用 Ambari API 監視叢集](hdinsight-monitor-use-ambari-api.md)
+
+# 資源
+## [在論壇上取得協助](https://social.msdn.microsoft.com/forums/azure/en-US/home?forum=hdinsight)
+## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/hdinsight-self-guided-hadoop-training/)
+
 
 <!--HONumber=Nov16_HO2-->
 

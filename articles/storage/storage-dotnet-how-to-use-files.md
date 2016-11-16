@@ -1,12 +1,12 @@
 ---
-title: 在 Windows 上開始使用 Azure 檔案儲存體 | Microsoft Docs
-description: 使用 Azure 檔案儲存體在雲端中儲存檔案資料，並從 Azure 虛擬機器 (VM) 或執行 Windows 的內部部署應用程式掛接雲端檔案共用。
+title: "在 Windows 上開始使用 Azure 檔案儲存體 | Microsoft Docs"
+description: "使用 Azure 檔案儲存體在雲端中儲存檔案資料，並從 Azure 虛擬機器 (VM) 或執行 Windows 的內部部署應用程式掛接雲端檔案共用。"
 services: storage
 documentationcenter: .net
 author: mine-msft
 manager: aungoo
 editor: tysonn
-
+ms.assetid: 6a889ee1-1e60-46ec-a592-ae854f9fb8b6
 ms.service: storage
 ms.workload: storage
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 10/18/2016
 ms.author: minet
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: af7b1c3d302282920ce9b347a7686903d1c6fe03
+
 
 ---
 # <a name="get-started-with-azure-file-storage-on-windows"></a>在 Windows 上開始使用 Azure 檔案儲存體
@@ -31,7 +35,7 @@ ms.author: minet
 
 [!INCLUDE [storage-file-concepts-include](../../includes/storage-file-concepts-include.md)]
 
-## <a name="video:-using-azure-file-storage-with-windows"></a>影片：搭配 Windows 使用 Azure 檔案儲存體
+## <a name="video-using-azure-file-storage-with-windows"></a>影片：搭配 Windows 使用 Azure 檔案儲存體
 以下影片示範如何在 Windows 上建立和使用 Azure 檔案共用。
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Azure-File-Storage-with-Windows/player]
@@ -128,14 +132,18 @@ ms.author: minet
 
 使用下列範例中的儲存體帳戶名稱和金鑰來取代 `storage-account-name` 和 `storage-account-key`。
 
+```powershell
     # create a context for account and key
     $ctx=New-AzureStorageContext storage-account-name storage-account-key
+```
 
 ### <a name="create-a-new-file-share"></a>建立新的檔案共用
 接著，建立名為 `logs` 的新共用。
 
+```powershell
     # create a new share
     $s = New-AzureStorageShare logs -Context $ctx
+```
 
 現在，您的檔案儲存體中便有一個檔案共用。 接下來，我們將新增目錄和檔案。
 
@@ -147,31 +155,39 @@ ms.author: minet
 ### <a name="create-a-directory-in-the-file-share"></a>在檔案共用中建立目錄
 接下來，我們將在共用中建立目錄。 在下列範例中，目錄的名稱為 `CustomLogs`。
 
+```powershell
     # create a directory in the share
     New-AzureStorageDirectory -Share $s -Path CustomLogs
+```
 
 ### <a name="upload-a-local-file-to-the-directory"></a>上傳本機檔案至目錄
 現在，請上傳本機檔案至目錄。 下列範例會從 `C:\temp\Log1.txt` 上傳檔案。 編輯檔案路徑，以指向本機機器上的有效檔案。
 
+```powershell
     # upload a local file to the new directory
     Set-AzureStorageFileContent -Share $s -Source C:\temp\Log1.txt -Path CustomLogs
+```
 
 ### <a name="list-the-files-in-the-directory"></a>列出目錄中的檔案
 若要查看目錄中的檔案，您可以列出目錄的所有檔案。 此命令會傳回 CustomLogs 目錄中的檔案和子目錄 (如果有的話)。
 
+```powershell
     # list files in the new directory
     Get-AzureStorageFile -Share $s -Path CustomLogs | Get-AzureStorageFile
+```
 
 Get-AzureStorageFile 會傳回已傳入任何目錄物件的檔案和目錄清單。 "Get-AzureStorageFile -Share $s" 會傳回根目錄中的檔案和目錄清單。 若要取得子目錄中的檔案清單，您必須將子目錄傳遞至 Get-AzureStorageFile。 這就是其作用 -- 命令的第一個部分 (由管道決定) 會傳回 CustomLogs 子目錄的目錄執行個體。 然後該執行個體會傳入 Get-AzureStorageFile，進而傳回 CustomLogs 中的檔案和目錄。
 
 ### <a name="copy-files"></a>複製檔案
 從 Azure PowerShell 0.9.7 版開始，您可以將檔案複製到另一個檔案、將檔案複製到 Blob 或將 Blob 複製到檔案。 下列示範如何使用 PowerShell Cmdlet 執行這些複製作業。
 
+```powershell
     # copy a file to the new directory
     Start-AzureStorageFileCopy -SrcShareName srcshare -SrcFilePath srcdir/hello.txt -DestShareName destshare -DestFilePath destdir/hellocopy.txt -Context $srcCtx -DestContext $destCtx
 
     # copy a blob to a file directory
     Start-AzureStorageFileCopy -SrcContainerName srcctn -SrcBlobName hello2.txt -DestShareName hello -DestFilePath hellodir/hello2copy.txt -DestContext $ctx -Context $ctx
+```
 
 ## <a name="mount-the-file-share"></a>掛接檔案共用
 利用對 SMB 3.0 的支援，檔案儲存體現在支援來自 SMB 3.0 用戶端的加密和永續性處理常式。 支援加密表示 SMB 3.0 用戶端可以從任何位置掛接檔案共用，包括來自：
@@ -226,7 +242,7 @@ Windows 現在便可在虛擬機器重新開機時重新連線到檔案共用。
 
 您也可以從在 Azure 雲端服務上執行的角色來掛接檔案共用，方法是透過遠端進入此角色。
 
-### <a name="mount-the-file-share-from-an-on-premises-client-running-windows"></a>從執行 Windows 的內部部署用戶端掛接檔案共用
+### <a name="mount-the-file-share-from-an-onpremises-client-running-windows"></a>從執行 Windows 的內部部署用戶端掛接檔案共用
 若要從內部部署用戶端掛接檔案共用，您必須先進行下列步驟：
 
 * 安裝支援 SMB 3.0 的 Windows 版本。 Windows 將利用 SMB 3.0 加密來安全地在內部部署用戶端與雲端中的 Azure 檔案共用之間傳輸資料。
@@ -253,7 +269,7 @@ Windows 現在便可在虛擬機器重新開機時重新連線到檔案共用。
 
 是否使用 Azure Configuration Manager 可由您選擇。 您也可以使用 API，例如 .NET Framework 的 [ConfigurationManager 類別](https://msdn.microsoft.com/library/system.configuration.configurationmanager.aspx)。
 
-### <a name="save-your-storage-account-credentials-to-the-app.config-file"></a>將您的儲存體帳戶認證儲存到 app.config 檔案
+### <a name="save-your-storage-account-credentials-to-the-appconfig-file"></a>將您的儲存體帳戶認證儲存到 app.config 檔案
 接著，將您的認證儲存到專案的 app.config 檔案。 編輯 app.config 檔案，使其看起來類似下列範例，並使用您的儲存體帳戶名稱來取代 `myaccount`，以及使用您的儲存體帳戶金鑰來取代 `mykey`。
 
     <?xml version="1.0" encoding="utf-8" ?>
@@ -275,16 +291,19 @@ Windows 現在便可在虛擬機器重新開機時重新連線到檔案共用。
 ### <a name="add-namespace-declarations"></a>新增命名空間宣告
 在 [方案總管] 中開啟 `program.cs` 檔案，並在檔案的開頭處加入下列命名空間宣告。
 
+```csharp
     using Microsoft.Azure; // Namespace for Azure Configuration Manager
     using Microsoft.WindowsAzure.Storage; // Namespace for Storage Client Library
     using Microsoft.WindowsAzure.Storage.Blob; // Namespace for Blob storage
     using Microsoft.WindowsAzure.Storage.File; // Namespace for File storage
+```
 
 [!INCLUDE [storage-cloud-configuration-manager-include](../../includes/storage-cloud-configuration-manager-include.md)]
 
 ### <a name="access-the-file-share-programmatically"></a>以程式設計方式存取檔案共用
 接著，在 `Main()` 方法 (上述程式碼後面) 加入下列程式碼，以擷取連接字串。 此程式碼會取得稍早所建立檔案的參考，並將其內容輸出到主控台視窗。
 
+```csharp
     // Create a CloudFileClient object for credentialed access to File storage.
     CloudFileClient fileClient = storageAccount.CreateCloudFileClient();
 
@@ -314,6 +333,7 @@ Windows 現在便可在虛擬機器重新開機時重新連線到檔案共用。
             }
         }
     }
+```
 
 執行主控台應用程式以查看此輸出。
 
@@ -324,6 +344,7 @@ Windows 現在便可在虛擬機器重新開機時重新連線到檔案共用。
 
 下列範例示範如何檢查共用的目前使用狀況，以及如何設定共用的配額。
 
+```csharp
     // Parse the connection string for the storage account.
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
         Microsoft.Azure.CloudConfigurationManager.GetSetting("StorageConnectionString"));
@@ -351,12 +372,14 @@ Windows 現在便可在虛擬機器重新開機時重新連線到檔案共用。
         share.FetchAttributes();
         Console.WriteLine("Current share quota: {0} GB", share.Properties.Quota);
     }
+```
 
 ### <a name="generate-a-shared-access-signature-for-a-file-or-file-share"></a>產生檔案或檔案共用的共用存取簽章
 從 Azure 儲存體用戶端程式庫 5.x 版開始，您可以產生檔案共用或個別檔案的共用存取簽章 (SAS)。 您也可以在檔案共用上建立共用存取原則，以管理共用存取簽章。 建議您建立共用存取原則，因為如果必須洩漏 SAS，它提供了一種撤銷 SAS 的方式。
 
 下列範例會在共用上建立共用存取原則，然後使用該原則為共用中檔案上的 SAS 提供條件約束。
 
+```csharp
     // Parse the connection string for the storage account.
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
         Microsoft.Azure.CloudConfigurationManager.GetSetting("StorageConnectionString"));
@@ -398,6 +421,7 @@ Windows 現在便可在虛擬機器重新開機時重新連線到檔案共用。
         fileSas.UploadText("This write operation is authenticated via SAS.");
         Console.WriteLine(fileSas.DownloadText());
     }
+```
 
 如需建立與使用共用存取簽章的詳細資訊，請參閱[共用存取簽章 (SAS)](storage-dotnet-shared-access-signature-part-1.md)和[透過 Blob 儲存體建立與使用 SAS](storage-dotnet-shared-access-signature-part-2.md)。
 
@@ -415,6 +439,7 @@ Windows 現在便可在虛擬機器重新開機時重新連線到檔案共用。
 
 下列範例會將檔案複製到相同共用中的另一個檔案。 由於此複製作業是在相同儲存體帳戶中的檔案間進行複製，所以您可以使用共用金鑰驗證執行複製。
 
+```csharp
     // Parse the connection string for the storage account.
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
         Microsoft.Azure.CloudConfigurationManager.GetSetting("StorageConnectionString"));
@@ -454,12 +479,13 @@ Windows 現在便可在虛擬機器重新開機時重新連線到檔案共用。
             }
         }
     }
-
+```
 
 **將檔案複製到 Blob**
 
 下列範例會建立檔案，並將其複製到相同儲存體帳戶內的 Blob。 此範例會建立來源檔案的 SAS，供服務用來在複製作業期間驗證來源檔案存取權。
 
+```csharp
     // Parse the connection string for the storage account.
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
         Microsoft.Azure.CloudConfigurationManager.GetSetting("StorageConnectionString"));
@@ -501,6 +527,7 @@ Windows 現在便可在虛擬機器重新開機時重新連線到檔案共用。
     // Write the contents of the file to the console window.
     Console.WriteLine("Source file contents: {0}", sourceFile.DownloadText());
     Console.WriteLine("Destination blob contents: {0}", destBlob.DownloadText());
+```
 
 您可以用相同方式將 Blob 複製到檔案。 如果來源物件為 Blob，則請建立 SAS，以便在複製作業期間驗證該 Blob 存取權。
 
@@ -513,11 +540,14 @@ Azure 儲存體分析現在支援檔案儲存體的度量。 利用度量資料�
 
 首先，將下列 `using` 陳述式加入您的 program.cs 檔案中，連同上述所加入的陳述式︰
 
+```csharp
     using Microsoft.WindowsAzure.Storage.File.Protocol;
     using Microsoft.WindowsAzure.Storage.Shared.Protocol;
+```
 
 請注意，雖然 Blob、表格以及佇列儲存體會在 `Microsoft.WindowsAzure.Storage.Shared.Protocol` 命名空間中使用共用的 `ServiceProperties` 類型，但檔案儲存體會使用自己的類型，其會在 `Microsoft.WindowsAzure.Storage.File.Protocol` 命名空間中使用 `FileServiceProperties` 類型。 不過，這兩個命名空間都必須從您的程式碼加以參考，以供下列程式碼進行編譯。
 
+```csharp
     // Parse your storage connection string from your application's configuration file.
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
             Microsoft.Azure.CloudConfigurationManager.GetSetting("StorageConnectionString"));
@@ -556,7 +586,9 @@ Azure 儲存體分析現在支援檔案儲存體的度量。 利用度量資料�
     Console.WriteLine(serviceProperties.MinuteMetrics.MetricsLevel);
     Console.WriteLine(serviceProperties.MinuteMetrics.RetentionDays);
     Console.WriteLine(serviceProperties.MinuteMetrics.Version);
+```
 
+此外，您可以參考 [Azure 檔案疑難排解文章](storage-troubleshoot-file-connection-problems.md)以取得端對端疑難排解指引。 
 
 ## <a name="file-storage-faq"></a>檔案儲存體常見問題集
 1. **檔案儲存體是否支援 Active Directory 式的驗證？**
@@ -603,6 +635,9 @@ Azure 儲存體分析現在支援檔案儲存體的度量。 利用度量資料�
 14. **搭配 IBM MQ 使用 Azure 檔案儲存體**
     
     IBM 已發行文件來指引 IBM MQ 客戶設定 Azure 檔案儲存體與其服務。 如需詳細資訊，請查看 [如何使用 Microsoft Azure 檔案服務來設定 IBM MQ 多重執行個體佇列管理員](https://github.com/ibm-messaging/mq-azure/wiki/How-to-setup-IBM-MQ-Multi-instance-queue-manager-with-Microsoft-Azure-File-Service)。
+15. **我要如何疑難排解 Azure 檔案儲存體錯誤？**
+    
+    您可以參考 [Azure 檔案疑難排解文章](storage-troubleshoot-file-connection-problems.md)以取得端對端疑難排解指引。               
 
 ## <a name="next-steps"></a>後續步驟
 請參閱這些連結以取得 Azure 檔案儲存體的相關詳細資訊。
@@ -626,6 +661,9 @@ Azure 儲存體分析現在支援檔案儲存體的度量。 利用度量資料�
 * [Microsoft Azure 檔案服務簡介](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/12/introducing-microsoft-azure-file-service.aspx)
 * [保留與 Microsoft Azure 檔案的連線](http://blogs.msdn.com/b/windowsazurestorage/archive/2014/05/27/persisting-connections-to-microsoft-azure-files.aspx)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

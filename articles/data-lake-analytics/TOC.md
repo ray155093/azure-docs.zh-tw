@@ -1,4 +1,4 @@
-# Overview
+# 概觀
 ## [何謂 Data Lake Analytics？](data-lake-analytics-overview.md)
 
 # 開始使用
@@ -37,11 +37,13 @@
 ### [使用頂點執行檢視](data-lake-analytics-data-lake-tools-use-vertex-execution-view.md)
 
 # 參考
-## [.NET SDK](https://msdn.microsoft.com/library/azure/mt572197(Azure.100).aspx)
-## [PowerShell Cmdlet](https://msdn.microsoft.com/library/azure/mt607124.aspx)
-## [U-SQL 語言參考](https://msdn.microsoft.com/library/azure/mt591959(Azure.100).aspx)
-## [Node.js](https://www.npmjs.com/package/azure-arm-datalake-analytics)
 
+## [PowerShell](/powershell/resourcemanager/)
+## [Java](/java/api/)
+## [.NET](https://docs.microsoft.com/dotnet/api)
+## [U-SQL](https://msdn.microsoft.com/library/azure/mt591959(Azure.100))
+## [Node.js](https://www.npmjs.com/package/azure-arm-datalake-analytics)
+## [REST](/rest/api/datalakeanalytics/)
 
 # 資源
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/home?forum=AzureDataLake)

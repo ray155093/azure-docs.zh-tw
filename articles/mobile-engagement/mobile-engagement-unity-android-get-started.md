@@ -1,12 +1,12 @@
 ---
-title: 開始使用適用於 Unity Android 部署的 Azure Mobile Engagement
-description: 了解如何使用 Azure Mobile Engagement 搭配分析和推播通知，以便將 Unity 應用程式部署至 iOS 裝置。
+title: "開始使用適用於 Unity Android 部署的 Azure Mobile Engagement"
+description: "了解如何使用 Azure Mobile Engagement 搭配分析和推播通知，以便將 Unity 應用程式部署至 iOS 裝置。"
 services: mobile-engagement
 documentationcenter: unity
 author: piyushjo
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: d5f0ef79-be00-4cec-97a5-a0b2fdaa380e
 ms.service: mobile-engagement
 ms.workload: mobile
 ms.tgt_pltfrm: mobile-unity-android
@@ -14,6 +14,10 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 08/19/2016
 ms.author: piyushjo
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: bf0b758159d475b4ed7eadb84227e4824e11ba86
+
 
 ---
 # <a name="get-started-with-azure-mobile-engagement-for-unity-android-deployment"></a>開始使用適用於 Unity Android 部署的 Azure Mobile Engagement
@@ -33,10 +37,10 @@ ms.author: piyushjo
 > 
 > 
 
-## <a name="<a-id="setup-azme"></a>setup-mobile-engagement-for-your-android-app"></a><a id="setup-azme"></a>為您的 Android 應用程式設定 Mobile Engagement
+## <a name="a-idsetupazmeasetup-mobile-engagement-for-your-android-app"></a><a id="setup-azme"></a>為您的 Android 應用程式設定 Mobile Engagement
 [!INCLUDE [Create Mobile Engagement App in Portal](../../includes/mobile-engagement-create-app-in-portal-new.md)]
 
-## <a name="<a-id="connecting-app"></a>connect-your-app-to-the-mobile-engagement-backend"></a><a id="connecting-app"></a>將您的應用程式連線至 Mobile Engagement 後端
+## <a name="a-idconnectingappaconnect-your-app-to-the-mobile-engagement-backend"></a><a id="connecting-app"></a>將您的應用程式連線至 Mobile Engagement 後端
 ### <a name="import-the-unity-package"></a>匯入 Unity 封裝
 1. 下載 [Mobile Engagement Unity 封裝](https://aka.ms/azmeunitysdk) 並將它儲存到本機電腦。 
 2. 移至 [資產] -> [匯入套件] -> [自訂套件]，然後選取您在上一個步驟中下載的套件。 
@@ -94,10 +98,10 @@ ms.author: piyushjo
 6. 系統可能會要求您提供用來儲存 Android 封裝的資料夾名稱。 
 7. 如果一切正常，封裝就會部署到您連接的裝置，您應該會在電話上看到您的 Unity 遊戲！ 
 
-## <a name="<a-id="monitor"></a>connect-app-with-real-time-monitoring"></a><a id="monitor"></a>將應用程式與即時監視連接
+## <a name="a-idmonitoraconnect-app-with-realtime-monitoring"></a><a id="monitor"></a>將應用程式與即時監視連接
 [!INCLUDE [Connect app with real-time monitoring](../../includes/mobile-engagement-connect-app-with-monitor.md)]
 
-## <a name="<a-id="integrate-push"></a>enable-push-notifications-and-in-app-messaging"></a><a id="integrate-push"></a>啟用推播通知與 App 內傳訊
+## <a name="a-idintegratepushaenable-push-notifications-and-inapp-messaging"></a><a id="integrate-push"></a>啟用推播通知與 App 內傳訊
 [!INCLUDE [Enable Google Cloud Messaging](../../includes/mobile-engagement-enable-google-cloud-messaging.md)]
 
 ### <a name="update-the-engagementconfiguration"></a>更新 EngagementConfiguration
@@ -133,6 +137,6 @@ ms.author: piyushjo
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

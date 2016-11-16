@@ -1,54 +1,58 @@
 ---
-title: Azure Multi-Factor Authentication - 開始使用
-description: 藉由提出我要保護什麼和使用者所在位置等問題，選擇最合適的 Multi-Factor Authentication 安全性解決方案。然後選擇雲端、MFA Server 或 AD FS。
+title: "Azure MFA 雲端與伺服器 | Microsoft Docs"
+description: "藉由提出我要保護什麼和使用者所在位置等問題，選擇最合適的 Multi-Factor Authentication 安全性解決方案。  然後選擇雲端、MFA Server 或 AD FS。"
 services: multi-factor-authentication
-documentationcenter: ''
+documentationcenter: 
 author: kgremban
 manager: femila
-editor: curtland
-
+editor: yossib
+ms.assetid: ec2270ea-13d7-4ebc-8a00-fa75ce6c746d
 ms.service: multi-factor-authentication
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 08/15/2016
+ms.date: 10/14/2016
 ms.author: kgremban
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 72347099d980f2ca73f39f984787197e1f87e45a
+
 
 ---
-# 選擇合適的多重因素安全性解決方案
-因為 Azure Multi-Factor Authentication 的種類繁多，我們必須從幾個重點來判斷，以便找出最合適的版本。這些重點包括：
+# <a name="choose-the-azure-multifactor-authentication-solution-for-you"></a>選擇您的 Azure Multi-Factor Authentication 方案
+因為 Azure Multi-Factor Authentication (MFA) 的種類繁多，我們必須回答幾個問題，以找出最合適的版本。  這些問題如下：
 
-* <a href="#-1">我要保護什麼</a>
-* <a href="#-2">使用者位於何處</a>
+* [我要保護什麼](#what-am-i-trying-to-secure)
+* [使用者位於何處](#where-are-the-users-located)
+* [我需要哪些功能？](#what-featured-do-i-need)
 
-下列小節將提供如何判斷以上重點的指引。
+下列各節會提供如何確定以上問題之答案的指引。
 
-<h2 id="-1">我要保護什麼？</h2>
-
-為了判斷出正確的 Multi-Factor Authentication 解決方案，首先我們必須回答一個問題：您試圖使用第二個驗證方法來保護什麼？它是 Azure 中的應用程式嗎？ 或者是遠端存取系統之類的系統。藉由判斷我們嘗試保護的東西，我們可以找出該在何處啟用 Multi-Factor Authentication 這個問題的答案。
+## <a name="what-am-i-trying-to-secure"></a>我要保護什麼？
+為了判斷出正確的雙步驟驗證方案，首先我們必須回答一個問題：您試圖使用第二個驗證方法來保護什麼？  它是 Azure 中的應用程式嗎？  或是遠端存取系統？  藉由判斷我們嘗試保護的東西，我們可以對該在何處啟用 Multi-Factor Authentication 這個問題做出回答。  
 
 | 您想要保護什麼 | 雲端中的 Multi-Factor Authentication | Multi-Factor Authentication Server |
 | --- |:---:|:---:|
-| 第一方 Microsoft 應用程式 |* |* |
-| 應用程式資源庫中的 Saas 應用程式 |* |* |
-| 透過 Azure AD App Proxy 發佈的 IIS 應用程式 |* |* |
-| 非透過 Azure AD App Proxy 發佈的 IIS 應用程式 | |* |
-| VPN、RDG 等遠端存取 | |* |
+| 第一方 Microsoft 應用程式 |● |● |
+| 應用程式資源庫中的 SaaS 應用程式 |● |● |
+| 透過 Azure AD App Proxy 發佈的 IIS 應用程式 |● |● |
+| 非透過 Azure AD App Proxy 發佈的 IIS 應用程式 | |● |
+| VPN、RDG 等遠端存取 | |● |
 
-<h2 id="-2">使用者位於何處</h2>
+## <a name="where-are-the-users-located"></a>使用者位於何處
+接下來，查看使用者的所在位置有助於判斷出合適的解決方案，不論是雲端中或使用 MFA Server 的內部部署。
 
-接下來，不論是雲端中的 Multi-Factor Authentication 或使用 MFA Server 的內部部署 Multi-Factor Authentication，只要根據使用者的所在位置，我們就可以判斷出合適的解決方案。
+| 使用者位置 | 雲端中的 Multi-Factor Authentication | Multi-Factor Authentication Server |
+| --- |:---:|:---:|
+| Azure Active Directory |● | |
+| Azure AD 和使用 AD FS 同盟的內部部署 AD |● |● |
+| Azure AD 和使用 DirSync、Azure AD Sync、Azure AD Connect 的內部部署 AD - 而沒有密碼同步 |● |● |
+| Azure AD 和使用 DirSync、Azure AD Sync、Azure AD Connect 的內部部署 AD - 使用密碼同步 |● | |
+| 內部部署 Active Directory | |● |
 
-| 使用者位置 | 方案 |
-| --- |:--- |
-| Azure Active Directory |雲端中的 Multi-Factor Authentication |
-| Azure AD 和使用 AD FS 同盟的內部部署 AD |雲端中的 MFA 和 MFA Server 都是可用選項 |
-| Azure AD 和使用 DirSync、Azure AD Sync、Azure AD Connect 的內部部署 AD - 而沒有密碼同步 |雲端中的 MFA 和 MFA Server 都是可用選項 |
-| Azure AD 和使用 DirSync、Azure AD Sync、Azure AD Connect 的內部部署 AD - 使用密碼同步 |雲端中的 Multi-Factor Authentication |
-| 內部部署 Active Directory |Multi-Factor Authentication Server |
-
-下表是雲端中 Multi-Factor Authentication 和 Multi-factor Authentication Server 的功能比較。
+## <a name="what-features-do-i-need"></a>我需要哪些功能？
+下表是雲端中 Multi-Factor Authentication 和 Multi-factor Authentication Server 的可用功能比較。
 
 | 雲端中的 Multi-Factor Authentication | Multi-Factor Authentication Server |
 | --- |:---:|:---:|
@@ -71,8 +75,18 @@ ms.author: kgremban
 | 條件式存取 |● |
 | 快取 | |
 
-既然我們已判斷出要使用雲端 Multi-Factor Authentication 或內部部署 MFA Server，接下來可以開始設定及使用 Azure Multi-Factor Authentication。**選取代表您案例的圖示！**
+既然我們已判斷出要使用雲端 Multi-Factor Authentication 或內部部署 MFA Server，接下來可以開始設定及使用 Azure Multi-Factor Authentication。 **選取代表您案例的圖示！**
 
-<center> [![Cloud](./media/multi-factor-authentication-get-started/cloud2.png)](multi-factor-authentication-get-started-cloud.md) &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;[![Proofup](./media/multi-factor-authentication-get-started/server2.png)](multi-factor-authentication-get-started-server.md) &#160;&#160;&#160;&#160;&#160; </center>
+<center>
 
-<!---HONumber=AcomDC_0928_2016-->
+
+
+
+[![雲端](./media/multi-factor-authentication-get-started/cloud2.png)](multi-factor-authentication-get-started-cloud.md)  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[![Proofup](./media/multi-factor-authentication-get-started/server2.png)](multi-factor-authentication-get-started-server.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</center>
+
+
+
+<!--HONumber=Nov16_HO2-->
+
+

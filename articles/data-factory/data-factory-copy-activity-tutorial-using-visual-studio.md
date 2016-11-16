@@ -1,12 +1,12 @@
 ---
-title: 教學課程：使用 Visual Studio 建立具有複製活動的管線 | Microsoft Docs
-description: 在本教學課程中，您會使用 Visual Studio，建立具有複製活動的 Azure Data Factory 管線。
+title: "教學課程：使用 Visual Studio 建立具有複製活動的管線 | Microsoft Docs"
+description: "在本教學課程中，您會使用 Visual Studio，建立具有複製活動的 Azure Data Factory 管線。"
 services: data-factory
-documentationcenter: ''
+documentationcenter: 
 author: spelluru
 manager: jhubbard
 editor: monicar
-
+ms.assetid: 1751185b-ce0a-4ab2-a9c3-e37b4d149ca3
 ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 10/17/2016
 ms.author: spelluru
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: b3381396ce198fbcaf13d63510ef12b225735a49
+
 
 ---
-# <a name="tutorial:-create-a-pipeline-with-copy-activity-using-visual-studio"></a>教學課程：使用 Visual Studio 建立具有複製活動的管線
+# <a name="tutorial-create-a-pipeline-with-copy-activity-using-visual-studio"></a>教學課程：使用 Visual Studio 建立具有複製活動的管線
 > [!div class="op_single_selector"]
 > * [概觀和必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
 > * [複製精靈](data-factory-copy-data-wizard-tutorial.md)
@@ -59,7 +63,7 @@ ms.author: spelluru
     ![[新增專案] 對話方塊](./media/data-factory-copy-activity-tutorial-using-visual-studio/new-project-dialog.png)
 3. 輸入專案的**名稱**、**位置**和**方案**的名稱，然後按一下 [確定]。
    
-    ![Solution Explorer](./media/data-factory-copy-activity-tutorial-using-visual-studio/solution-explorer.png) 
+    ![Solution Explorer](./media/data-factory-copy-activity-tutorial-using-visual-studio/solution-explorer.png)    
 
 ## <a name="create-linked-services"></a>建立連結服務
 連結服務會將資料存放區或計算服務連結至 Azure Data Factory。 如需複製活動支援的所有來源和接收，請參閱 [支援的資料存放區](data-factory-data-movement-activities.md##supported-data-stores-and-formats) 。 如需 Data Factory 支援的計算服務清單，請參閱 [計算連結服務](data-factory-compute-linked-services.md) 。 在本教學課程中，您不會使用任何計算服務。 
@@ -137,7 +141,7 @@ ms.author: spelluru
    * **linkedServiceName** 設為 **AzureStorageLinkedService**。 您已在步驟 2 中建立此連結服務。
    * **folderPath** 設為 **adftutorial** 容器。 您也可以使用 **fileName** 屬性指定資料夾內 Blob 的名稱。 由於您未指定 Blob 的名稱，容器中所有 Blob 的資料都會被視為輸入資料。  
    * 格式 **type** 設為 **TextFormat**
-   * 文字檔中有兩個欄位 (**FirstName** 和 **LastName**)，以逗號字元分隔 (**columnDelimiter**) 
+   * 文字檔中有兩個欄位 (**FirstName** 和 **LastName**)，以逗號字元分隔 (**columnDelimiter**)    
    * **availability** 設定為**每小時**，且 (**frequency** 設定為**小時**，**interval** 設定為 **1**)。 因此，Data Factory 會每小時都在您指定之 Blob 容器 (**adftutorial**) 的根資料夾中尋找輸入資料。 
    
    如果您未指定**輸入**資料集的 **fileName**，則輸入資料夾 (**folderPath**) 中的所有檔案/Blob 都會被視為輸入。 如果您在 JSON 中指定 fileName，則只有指定的檔案/Blob 會被視為輸入。
@@ -269,7 +273,7 @@ ms.author: spelluru
    
    在上述範例中，由於每小時即產生一個資料配量，共會有 24 個資料配量。
 
-## <a name="publish/deploy-data-factory-entities"></a>發佈/部署 Data Factory 實體
+## <a name="publishdeploy-data-factory-entities"></a>發佈/部署 Data Factory 實體
 在此步驟中，您會發佈稍早建立的 Data Factory 實體 (連結的服務、資料集和管線)。 您也可以指定要建立來保存這些實體的新 Data Factory 名稱。  
 
 1. 在 [方案總管] 中，以滑鼠右鍵按一下專案，再按一下 [發佈] 。 
@@ -283,24 +287,27 @@ ms.author: spelluru
    2. 針對 [名稱] 輸入 **VSTutorialFactory**。  
       
       > [!IMPORTANT]
-      > Azure Data Factory 的名稱在全域必須是唯一的。 如果您在發佈時收到與 Data Factory 名稱有關的錯誤，請變更 Data Factory 的名稱 (例如 yournameVSTutorialFactory) 並嘗試再發佈一次。 請參閱 [Data Factory - 命名規則](data-factory-naming-rules.md) 主題，以了解 Data Factory 成品的命名規則。     
-      > 3.針對 [訂用帳戶]  欄位選取您的 Azure 訂用帳戶。
+      > Azure Data Factory 的名稱在全域必須是唯一的。 如果您在發佈時收到與 Data Factory 名稱有關的錯誤，請變更 Data Factory 的名稱 (例如 yournameVSTutorialFactory) 並嘗試再發佈一次。 請參閱 [Data Factory - 命名規則](data-factory-naming-rules.md) 主題，以了解 Data Factory 成品的命名規則。        
       > 
+      > 
+   3. 針對 [訂用帳戶]  欄位選取您的 Azure 訂用帳戶。
+      
       > [!IMPORTANT]
       > 如果看不到任何訂用帳戶，請確定您是使用訂用帳戶的管理員或共同管理員的帳戶進行登入。  
-      > 4.針對要建立的 Data Factory 選取 [資源群組]  。 5. 選取 Data Factory 的 [區域]  。 下拉式清單中只會顯示 Data Factory 服務支援的區域。
       > 
       > 
-5. 按 [下一步]，切換至 [發佈項目] 頁面。
-   
-        ![設定 Data Factory 頁面](media/data-factory-copy-activity-tutorial-using-visual-studio/configure-data-factory-page.png)   
-6. 在 [發佈項目] 頁面上，確認所有 Data Factory 實體都已選取，並按 [下一步] 切換至 [摘要] 頁面。
+   4. 針對要建立的 Data Factory 選取 [資源群組]  。 
+   5. 選取 Data Factory 的 [區域]  。 下拉式清單中只會顯示 Data Factory 服務支援的區域。
+   6. 按 [下一步]，切換至 [發佈項目] 頁面。
+      
+       ![設定 Data Factory 頁面](media/data-factory-copy-activity-tutorial-using-visual-studio/configure-data-factory-page.png)   
+5. 在 [發佈項目] 頁面上，確認所有 Data Factory 實體都已選取，並按 [下一步] 切換至 [摘要] 頁面。
    
    ![發佈項目頁面](media/data-factory-copy-activity-tutorial-using-visual-studio/publish-items-page.png)     
-7. 檢閱摘要，然後按 [下一步] 開始部署程序，並檢視 [部署狀態]。
+6. 檢閱摘要，然後按 [下一步] 開始部署程序，並檢視 [部署狀態]。
    
    ![發佈摘要頁面](media/data-factory-copy-activity-tutorial-using-visual-studio/publish-summary-page.png)
-8. 在 [部署狀態]  頁面上，您應該會看到部署程序的狀態。 部署完成後按一下 [完成]。 
+7. 在 [部署狀態]  頁面上，您應該會看到部署程序的狀態。 部署完成後按一下 [完成]。 
    ![部署狀態頁面](media/data-factory-copy-activity-tutorial-using-visual-studio/deployment-status.png) 請注意下列幾點： 
 
 * 如果您收到錯誤：「此訂用帳戶未註冊為使用命名空間 Microsoft.DataFactory」，請執行下列其中一項，然後嘗試再次發佈︰ 
@@ -325,7 +332,7 @@ ms.author: spelluru
 
 1. 建立 Azure **Data Factory**。
 2. 建立 **連結服務**：
-   1. **Azure 儲存體** 連結服務可連結保留輸入資料的 Azure 儲存體帳戶。    
+   1. **Azure 儲存體** 連結服務可連結保留輸入資料的 Azure 儲存體帳戶。     
    2. **Azure SQL** 連結服務可連結保留輸出資料的 Azure SQL Database。 
 3. 建立可描述管線輸入資料和輸出資料的 **資料集**。
 4. 建立具有**複製活動**的**管線**，以 **BlobSource** 做為來源並以 **SqlSink** 做為接收器。 
@@ -355,6 +362,9 @@ ms.author: spelluru
 | [資料集](data-factory-create-datasets.md) |本文協助您了解 Azure Data Factory 中的資料集。 |
 | [使用監視應用程式來監視和管理管線](data-factory-monitor-manage-app.md) |本文說明如何使用監視及管理應用程式，來監視、管理管線及進行偵錯。 |
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

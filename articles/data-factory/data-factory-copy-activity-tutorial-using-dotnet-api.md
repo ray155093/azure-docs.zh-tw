@@ -1,22 +1,26 @@
 ---
-title: 教學課程：使用 .NET API 建立具有複製活動的管線 | Microsoft Docs
-description: 在本教學課程中，您會使用 .NET API，建立具有複製活動的 Azure Data Factory 管線。
+title: "教學課程：使用 .NET API 建立具有複製活動的管線 | Microsoft Docs"
+description: "在本教學課程中，您會使用 .NET API，建立具有複製活動的 Azure Data Factory 管線。"
 services: data-factory
-documentationcenter: ''
+documentationcenter: 
 author: spelluru
 manager: jhubbard
 editor: monicar
-
+ms.assetid: 58fc4007-b46d-4c8e-a279-cb9e479b3e2b
 ms.service: data-factory
 ms.workload: data-services
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 09/16/2016
+ms.date: 10/27/2016
 ms.author: spelluru
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 629ff68b11df0d17629ca101e5a80a396cfd0fb9
+
 
 ---
-# <a name="tutorial:-create-a-pipeline-with-copy-activity-using-.net-api"></a>教學課程：使用 .NET API 建立具有複製活動的管線
+# <a name="tutorial-create-a-pipeline-with-copy-activity-using-net-api"></a>教學課程：使用 .NET API 建立具有複製活動的管線
 > [!div class="op_single_selector"]
 > * [概觀和必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
 > * [複製精靈](data-factory-copy-data-wizard-tutorial.md)
@@ -105,25 +109,29 @@ ms.author: spelluru
    6. 在 [位置] 中選取 **C:\ADFGetStarted**。
    7. 按一下 [確定]  以建立專案。
 2. 按一下 [工具]，指向 [Nuget 套件管理員]，然後按一下 [套件管理員主控台]。
-3. 在 [封裝管理員主控台] 中，逐一執行下列命令。 
-   
-       Install-Package Microsoft.Azure.Management.DataFactories
-       Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -Version 2.19.208020213
+3. 在 [Package Manager Console] 中，輸入下列命令： 
+   1. 執行以下命令安裝 Data Factory 套件：`Install-Package Microsoft.Azure.Management.DataFactories`        
+   2. 執行下列命令安裝 Azure Active Directory 套件 (您在程式碼中使用 Active Directory API)︰`Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory -Version 2.19.208020213`
 4. 將下列 **appSetttings** 區段新增 **App.config** 檔案。 以下 Helper 方法會使用這些設定： **Microsoft.identitymodel.waad.preview.graph.graphinterface**。 
    
     以您自己的值取代**&lt;應用程式識別碼&gt;**、**&lt;密碼&gt;**、**&lt;訂用帳戶識別碼&gt;****&lt;租用戶識別碼&gt;**的值。 
    
-        <appSettings>
-            <add key="ActiveDirectoryEndpoint" value="https://login.windows.net/" />
-            <add key="ResourceManagerEndpoint" value="https://management.azure.com/" />
-            <add key="WindowsManagementUri" value="https://management.core.windows.net/" />
+        <?xml version="1.0" encoding="utf-8" ?>
+        <configuration>
+            <startup> 
+                <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5.2" />
+            </startup>
+            <appSettings>
+                <add key="ActiveDirectoryEndpoint" value="https://login.windows.net/" />
+                <add key="ResourceManagerEndpoint" value="https://management.azure.com/" />
+                <add key="WindowsManagementUri" value="https://management.core.windows.net/" />
    
-            <!-- Replace the following values with your own -->
-            <add key="ApplicationId" value="<Application ID>" />
-            <add key="Password" value="<Password>" />    
-            <add key="SubscriptionId" value= "Subscription ID" />
-            <add key="ActiveDirectoryTenantId" value="tenant ID" />
-        </appSettings>
+                <add key="ApplicationId" value="your application ID" />
+                <add key="Password" value="Password you used while creating the AAD application" />
+                <add key="SubscriptionId" value= "Subscription ID" />
+                <add key="ActiveDirectoryTenantId" value="Tenant ID" />
+            </appSettings>
+        </configuration>
 5. 將下列 **using** 陳述式加入專案的原始程式檔 (Program.cs) 中。
    
         using System.Threading;
@@ -345,7 +353,7 @@ ms.author: spelluru
                            },
                        }
                    }
-               }); 
+               });    
 2. 將下列程式碼加入 **Main** 方法中，以取得輸出資料集的資料配量狀態。 在此範例中只預期有配量。   
    
            // Pulling status within a timeout threshold
@@ -453,12 +461,15 @@ ms.author: spelluru
    * 連結服務：**LinkedService_AzureStorage** 
    * 資料集：**DatasetBlobSource** 和 **DatasetBlobDestination**。
    * 管線： **PipelineBlobSample** 
-10. 確認輸出檔案已建立在 **adftutorial** 容器的 "**apifactoryoutput**" 資料夾中。
+10. 確認在指定 Azure SQL Database 的 "**emp**" 資料表中建立兩筆員工記錄。
 
 ## <a name="next-steps"></a>後續步驟
 * 詳閱 [資料移動活動](data-factory-data-movement-activities.md) 一文，其提供您在本教學課程中使用的複製活動詳細資訊。
 * 請參閱 [Data Factory .NET API 參考](https://msdn.microsoft.com/library/mt415893.aspx) ，以取得有關 Data Factory .NET SDK 的詳細資料。 這篇文章並未涵蓋所有的 Data Factory .NET API。 
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

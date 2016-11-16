@@ -1,8 +1,8 @@
-## 使用 PowerShell 部署 ARM 範本
+## <a name="deploy-the-arm-template-by-using-powershell"></a>使用 PowerShell 部署 ARM 範本
 若要使用 PowerShell 部署您下載的 ARM 範本，請依照下列步驟執行。
 
-1. 如果您從未用過 Azure PowerShell，請參閱[如何安裝和設定 Azure PowerShell](../articles/powershell-install-configure.md)，並遵循其中的所有指示登入 Azure，然後選取您的訂用帳戶。
-2. 如有必要，請執行 **`New-AzureRmResourceGroup`** Cmdlet，以建立新的資源群組。下列命令會在「美國中部」Azure 區域中，建立名為 *TestRG* 的資源群組。如需資源群組的詳細資訊，請造訪 [Azure 資源管理員概觀](../articles/resource-group-overview.md)。
+1. 如果您從未用過 Azure PowerShell，請參閱 [如何安裝和設定 Azure PowerShell](../articles/powershell-install-configure.md) ，並遵循其中的所有指示登入 Azure，然後選取您的訂用帳戶。
+2. 如有必要，請執行 **`New-AzureRmResourceGroup`** Cmdlet，以建立新的資源群組。 下列命令會在「美國中部」Azure 區域中，建立名為 *TestRG* 的資源群組。 如需資源群組的詳細資訊，請造訪 [Azure 資源管理員概觀](../articles/azure-resource-manager/resource-group-overview.md)。
    
         New-AzureRmResourceGroup -Name TestRG -Location centralus
    
@@ -67,7 +67,7 @@
         Subnets           : [
                               {
                                 "Name": "FrontEnd",
-                                "Etag": "W/"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"",
+                                "Etag": "W/\"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\"",
                                 "Id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/TestRG/providers/Microsoft.Network/virtualNetworks/TestVNet/subnets/FrontEnd",
                                 "AddressPrefix": "192.168.1.0/24",
                                 "IpConfigurations": [],
@@ -77,7 +77,7 @@
                               },
                               {
                                 "Name": "BackEnd",
-                                "Etag": "W/"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"",
+                                "Etag": "W/\"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\"",
                                 "Id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/TestRG/providers/Microsoft.Network/virtualNetworks/TestVNet/subnets/BackEnd",
                                 "AddressPrefix": "192.168.2.0/24",
                                 "IpConfigurations": [],
@@ -87,4 +87,6 @@
                               }
                             ]
 
-<!---HONumber=AcomDC_0323_2016-->
+<!--HONumber=Nov16_HO2-->
+
+

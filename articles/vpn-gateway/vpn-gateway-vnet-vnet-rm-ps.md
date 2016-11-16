@@ -1,13 +1,13 @@
 ---
-title: 使用 VPN 閘道和 PowerShell 連接 Azure VNet | Microsoft Docs
-description: 本文將逐步引導您使用 Azure 資源管理員和 PowerShell，將虛擬網路連接在一起。
+title: "使用 VPN 閘道和 PowerShell 連接 Azure VNet | Microsoft Docs"
+description: "本文將逐步引導您使用 Azure 資源管理員和 PowerShell，將虛擬網路連接在一起。"
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
 manager: carmonm
-editor: ''
+editor: 
 tags: azure-resource-manager
-
+ms.assetid: 0683c664-9c03-40a4-b198-a6529bf1ce8b
 ms.service: vpn-gateway
 ms.devlang: na
 ms.topic: get-started-article
@@ -15,10 +15,15 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/31/2016
 ms.author: cherylmc
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 636606f5f5f651c10d174854de8471b5dd060dce
+
 
 ---
-# <a name="configure-a-vnet-to-vnet-connection-for-resource-manager-using-powershell"></a>使用 PowerShell 設定 Resource Manager 的 VNet 對 VNet 連線
+# <a name="configure-a-vnettovnet-connection-for-resource-manager-using-powershell"></a>使用 PowerShell 設定 Resource Manager 的 VNet 對 VNet 連線
 > [!div class="op_single_selector"]
+> * [Resource Manager - Azure 入口網站](vpn-gateway-howto-vnet-vnet-resource-manager-portal.md)
 > * [Resource Manager - PowerShell](vpn-gateway-vnet-vnet-rm-ps.md)
 > * [傳統 - 傳統入口網站](virtual-networks-configure-vnet-to-vnet-connection.md)
 > 
@@ -28,22 +33,22 @@ ms.author: cherylmc
 
 ![v2v 圖表](./media/vpn-gateway-vnet-vnet-rm-ps/v2vrmps.png)
 
-### <a name="deployment-models-and-methods-for-vnet-to-vnet"></a>VNet 對 VNet 的部署模型和方法
-[!INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
+### <a name="deployment-models-and-methods-for-vnettovnet-connections"></a>VNet 對 VNet 連線的部署模型和方法
+[!INCLUDE [deployment models](../../includes/vpn-gateway-deployment-models-include.md)]
 
-可以在這兩種部署模型中，使用不同的工具，設定 VNet 至 VNet 的連接。 當此組態有新文章和額外工具可以使用時，我們就會更新下表。 當文章可用時，我們會直接從資料表連結至該文章。<br><br>
+下表顯示 VNet 對 VNet 組態目前可用的部署模型和方法。 當包含設定的文章推出時，我們會直接從此資料表連結至該文章。
 
 [!INCLUDE [vpn-gateway-table-vnet-vnet](../../includes/vpn-gateway-table-vnet-to-vnet-include.md)]
 
 #### <a name="vnet-peering"></a>VNet 對等互連
 [!INCLUDE [vpn-gateway-vnetpeeringlink](../../includes/vpn-gateway-vnetpeeringlink-include.md)]
 
-## <a name="about-vnet-to-vnet-connections"></a>關於 VNet 對 VNet 連線
+## <a name="about-vnettovnet-connections"></a>關於 VNet 對 VNet 連線
 將虛擬網路連接至另一個虛擬網路 (VNet 對 VNet)，類似於將 VNet 連接至內部部署網站位置。 這兩種連線類型都使用 Azure VPN 閘道提供使用 IPsec/IKE 的安全通道。 您所連接的 VNet 可位於不同的區域。 或位於不同的訂用帳戶。 您甚至可以將多網站組態與 VNet 對 VNet 通訊結合。 這可讓您建立使用內部虛擬網路連線結合跨單位連線的網路拓撲，如下圖所示：
 
 ![關於連線](./media/vpn-gateway-vnet-vnet-rm-ps/aboutconnections.png)
 
-### <a name="why-connect-virtual-networks?"></a>為什麼要連接虛擬網路？
+### <a name="why-connect-virtual-networks"></a>為什麼要連接虛擬網路？
 針對下列原因，您可能希望連接虛擬網路：
 
 * **跨區域的異地備援和異地目前狀態**
@@ -54,23 +59,23 @@ ms.author: cherylmc
   
   * 在相同區域中，您可以因為隔離或管理需求，設定將多層式應用程式與多個虛擬網路連線在一起。
 
-### <a name="vnet-to-vnet-faq"></a>VNet 對 VNet 常見問題集
+### <a name="vnettovnet-faq"></a>VNet 對 VNet 常見問題集
 [!INCLUDE [vpn-gateway-vnet-vnet-faq](../../includes/vpn-gateway-vnet-vnet-faq-include.md)]
 
-## <a name="which-set-of-steps-should-i-use?"></a>我應該使用哪個步驟集？
+## <a name="which-set-of-steps-should-i-use"></a>我應該使用哪個步驟集？
 在本文中，您會看到兩組不同的步驟。 一組步驟適用於[位於相同訂用帳戶中的 VNet](#samesub)，而另一組步驟則適用於[位於不同訂用帳戶中的 VNet](#difsub)。 兩組之間的主要差異在於您是否可以在相同的 PowerShell 工作階段內建立和設定所有的虛擬網路和閘道資源。
 
 本文中的步驟會使用在每個區段開頭宣告的變數。 如果您已經使用現有的 VNet，請修改變數，以在自己的環境中反映設定。 
 
 ![兩個連線](./media/vpn-gateway-vnet-vnet-rm-ps/differentsubscription.png)
 
-## <a name="<a-name="samesub"></a>how-to-connect-vnets-that-are-in-the-same-subscription"></a><a name="samesub"></a>如何連接相同訂用帳戶中的 VNet
+## <a name="a-namesamesubahow-to-connect-vnets-that-are-in-the-same-subscription"></a><a name="samesub"></a>如何連接相同訂用帳戶中的 VNet
 ![v2v 圖表](./media/vpn-gateway-vnet-vnet-rm-ps/v2vrmps.png)
 
 ### <a name="before-you-begin"></a>開始之前
 開始之前，您必須先安裝 Azure Resource Manager PowerShell Cmdlet。 如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](../powershell-install-configure.md) 。
 
-### <a name="<a-name="step1"></a>step-1---plan-your-ip-address-ranges"></a><a name="Step1"></a>步驟 1 - 規劃 IP 位址範圍
+### <a name="a-namestep1astep-1-plan-your-ip-address-ranges"></a><a name="Step1"></a>步驟 1 - 規劃 IP 位址範圍
 在下列步驟中，我們會建立兩個虛擬網路，以及它們各自的閘道子網路和組態。 接著建立這兩個 VNet 之間的 VPN 連線。 請務必規劃您的網路組態的 IP 位址範圍。 請記住，您必須先確定您的 VNet 範圍或區域網路範圍沒有以任何方式重疊。
 
 我們會在範例中使用下列值：
@@ -108,7 +113,7 @@ ms.author: cherylmc
 * 連線︰VNet4toVNet1
 * ConnectionType：VNet2VNet
 
-### <a name="<a-name="step2"></a>step-2---create-and-configure-testvnet1"></a><a name="Step2"></a>步驟 2 - 建立及設定 TestVNet1
+### <a name="a-namestep2astep-2-create-and-configure-testvnet1"></a><a name="Step2"></a>步驟 2 - 建立及設定 TestVNet1
 1. 宣告變數
    
     由宣告變數開始。 下列範例會使用此練習中的值來宣告變數。 在大部分的情況下，您應將值取代為您自己的值。 不過，若您執行這些步驟是為了熟悉此類型的設定，則可以使用這些變數。 視需要修改變數，然後將其複製並貼到您的 PowerShell 主控台中。
@@ -182,7 +187,7 @@ ms.author: cherylmc
         -Location $Location1 -IpConfigurations $gwipconf1 -GatewayType Vpn `
         -VpnType RouteBased -GatewaySku Standard
 
-### <a name="step-3---create-and-configure-testvnet4"></a>步驟 3 - 建立及設定 TestVNet4
+### <a name="step-3-create-and-configure-testvnet4"></a>步驟 3 - 建立及設定 TestVNet4
 設定 TestVNet1 後，請建立 TestVNet4。 遵循下方步驟，視需要替換成您自己的值。 此步驟可以在相同的 PowerShell 工作階段中完成，因為其位於相同的訂用帳戶中。
 
 1. 宣告變數
@@ -234,7 +239,7 @@ ms.author: cherylmc
         -Location $Location4 -IpConfigurations $gwipconf4 -GatewayType Vpn `
         -VpnType RouteBased -GatewaySku Standard
 
-### <a name="step-4---connect-the-gateways"></a>步驟 4 - 連接閘道
+### <a name="step-4-connect-the-gateways"></a>步驟 4 - 連接閘道
 1. 取得這兩個虛擬網路閘道
    
     在此範例中，由於這兩個閘道皆位於相同的訂用帳戶中，因此這個步驟可以在相同的 PowerShell 工作階段中完成。
@@ -259,7 +264,7 @@ ms.author: cherylmc
     請稍候幾分鐘，應該就會建立連線。
 4. 確認您的連線。 請參閱 [如何驗證您的連線](#verify)一節。
 
-## <a name="<a-name="difsub"></a>how-to-connect-vnets-that-are-in-different-subscriptions"></a><a name="difsub"></a>如何連接不同訂用帳戶中的 VNet
+## <a name="a-namedifsubahow-to-connect-vnets-that-are-in-different-subscriptions"></a><a name="difsub"></a>如何連接不同訂用帳戶中的 VNet
 ![v2v 圖表](./media/vpn-gateway-vnet-vnet-rm-ps/v2vdiffsub.png)
 
 在此案例中，我們會連接 TestVNet1 和 TestVNet5。 TestVNet1 和 TestVNet5 位於不同的訂用帳戶中。 此設定的步驟會加入其他的 VNet 對 VNet 連線，以便將 TestVNet1 連接到 TestVNet5。 
@@ -268,7 +273,7 @@ ms.author: cherylmc
 
 以下指示延續自從上面所列的先前步驟。 您必須完成[步驟 1](#Step1) 和[步驟 2](#Step2)，以建立並設定 TestVNet1 和 TestVNet1 的 VPN 閘道。 完成步驟 1 和步驟 2 後，繼續進行步驟 5 以建立 TestVNet5。
 
-### <a name="step-5---verify-the-additional-ip-address-ranges"></a>步驟 5 - 驗證其他 IP 位址範圍
+### <a name="step-5-verify-the-additional-ip-address-ranges"></a>步驟 5 - 驗證其他 IP 位址範圍
 請務必確定新虛擬網路的 IP 位址空間 TestVNet5 不會與任何 VNet 範圍或區域網路閘道範圍重疊。 
 
 在此範例中，虛擬網路可能屬於不同的組織。 在這個練習中，您可以對 TestVNet5 使用下列的值：
@@ -293,7 +298,7 @@ ms.author: cherylmc
 
 * 連線︰VNet1toVNet5
 
-### <a name="step-6---create-and-configure-testvnet5"></a>步驟 6 - 建立及設定 TestVNet5
+### <a name="step-6-create-and-configure-testvnet5"></a>步驟 6 - 建立及設定 TestVNet5
 在新訂用帳戶的內容中，必須完成這個步驟。 此部分可能會由不同組織中擁有訂用帳戶的系統管理員執行。
 
 1. 宣告變數
@@ -356,7 +361,7 @@ ms.author: cherylmc
         New-AzureRmVirtualNetworkGateway -Name $GWName5 -ResourceGroupName $RG5 -Location $Location5 `
         -IpConfigurations $gwipconf5 -GatewayType Vpn -VpnType RouteBased -GatewaySku Standard
 
-### <a name="step-7---connecting-the-gateways"></a>步驟 7 - 連接閘道
+### <a name="step-7-connecting-the-gateways"></a>步驟 7 - 連接閘道
 在此範例中，因為閘道會在不同的訂用帳戶中，所以我們已將此步驟分作兩個 PowerShell 工作階段，其標示為 [訂用帳戶 1] 和 [訂用帳戶 5]。
 
 1. **[訂用帳戶 1]** 取得訂用帳戶 1 的虛擬網路閘道
@@ -415,7 +420,7 @@ ms.author: cherylmc
         $vnet1gw.Id = "/subscriptions/b636ca99-6f88-4df4-a7c3-2f8dc4545509/resourceGroups/TestRG1/providers/Microsoft.Network/virtualNetworkGateways/VNet1GW "
         New-AzureRmVirtualNetworkGatewayConnection -Name $Connection51 -ResourceGroupName $RG5 -VirtualNetworkGateway1 $vnet5gw -VirtualNetworkGateway2 $vnet1gw -Location $Location5 -ConnectionType Vnet2Vnet -SharedKey 'AzureA1b2C3'
 
-## <a name="<a-name="verify"></a>how-to-verify-a-connection"></a><a name="verify"></a>驗證連線
+## <a name="a-nameverifyahow-to-verify-a-connection"></a><a name="verify"></a>驗證連線
 [!INCLUDE [vpn-gateway-no-nsg-include](../../includes/vpn-gateway-no-nsg-include.md)]
 
 [!INCLUDE [verify connection powershell](../../includes/vpn-gateway-verify-connection-ps-rm-include.md)]
@@ -424,6 +429,9 @@ ms.author: cherylmc
 * 一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。 請參閱 [建立網站的虛擬機器](../virtual-machines/virtual-machines-windows-hero-tutorial.md) 以取得相關步驟。
 * 如需 BGP 的相關資訊，請參閱 [BGP 概觀](vpn-gateway-bgp-overview.md)和[如何設定 BGP](vpn-gateway-bgp-resource-manager-ps.md)。 
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 

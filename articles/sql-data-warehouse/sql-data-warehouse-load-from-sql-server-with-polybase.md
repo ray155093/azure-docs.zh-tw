@@ -1,12 +1,12 @@
 ---
-title: Load data from SQL Server into Azure SQL Data Warehouse (PolyBase) | Microsoft Docs
-description: Uses bcp to export data from SQL Server to flat files, AZCopy to import data to Azure blob storage, and PolyBase to ingest the data into Azure SQL Data Warehouse.
+title: "將資料從 SQL Server 載入 Azure SQL 資料倉儲 (PolyBase) | Microsoft Docs"
+description: "使用 bcp 將資料從 SQL Server 匯出到一般檔案、使用 AZCopy 將資料匯入至 Azure Blob 儲存體，以及使用 PolyBase 將資料擷取到 Azure SQL 資料倉儲中。"
 services: sql-data-warehouse
 documentationcenter: NA
 author: ckarst
 manager: jhubbard
-editor: ''
-
+editor: 
+ms.assetid: 860c86e0-90f7-492c-9a84-1bdd3d1735cd
 ms.service: sql-data-warehouse
 ms.devlang: NA
 ms.topic: get-started-article
@@ -14,9 +14,13 @@ ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: cakarst;barbkess
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 33c100dc471bf76230d068bf52f4a96b6123dab0
+
 
 ---
-# <a name="load-data-with-polybase-in-sql-data-warehouse"></a>Load data with PolyBase in SQL Data Warehouse
+# <a name="load-data-with-polybase-in-sql-data-warehouse"></a>在 SQL 資料倉儲中使用 PolyBase 載入資料
 > [!div class="op_single_selector"]
 > * [SSIS](sql-data-warehouse-load-from-sql-server-with-integration-services.md)
 > * [PolyBase](sql-data-warehouse-load-from-sql-server-with-polybase.md)
@@ -24,32 +28,32 @@ ms.author: cakarst;barbkess
 > 
 > 
 
-This tutorial shows how to load data into SQL Data Warehouse by using AzCopy and PolyBase. When finished, you will know how to:
+本教學課程示範如何使用 AzCopy 和 PolyBase 將資料載入 SQL 資料倉儲。 課程結束後，您將了解如何：
 
-* Use AzCopy to copy data to Azure blob storage
-* Create database objects to define the data
-* Run a T-SQL query to load the data
+* 使用 AzCopy 將資料複製到 Azure Blob 儲存體
+* 建立資料庫物件以定義資料
+* 執行 T-SQL 查詢以載入資料
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Loading-data-with-PolyBase-in-Azure-SQL-Data-Warehouse/player]
 > 
 > 
 
-## <a name="prerequisites"></a>Prerequisites
-To step through this tutorial, you need
+## <a name="prerequisites"></a>必要條件
+若要逐步執行本教學課程，您需要
 
-* A SQL Data Warehouse database.
-* An Azure storage account of type Standard Locally Redundant Storage (Standard-LRS), Standard Geo-Redundant Storage (Standard-GRS), or Standard Read-Access Geo-Redundant Storage (Standard-RAGRS).
-* AzCopy Command-Line Utility. Download and install the [latest version of AzCopy][latest version of AzCopy] which is installed with the Microsoft Azure Storage Tools.
+* SQL 資料倉儲資料庫。
+* 類型為標準本地備援儲存體 (標準 LRS)、標準異地備援儲存體 (標準 GRS) 或標準讀取存取異地備援儲存體 (標準 RAGRS) 的 Azure 儲存體帳戶。
+* AzCopy 命令列公用程式。 下載並安裝 [最新版 AzCopy][最新版 AzCopy]，此公用程式會隨 Microsoft Azure 儲存體工具一起安裝。
   
-    ![Azure Storage Tools](./media/sql-data-warehouse-get-started-load-with-polybase/install-azcopy.png)
+    ![Azure 儲存體工具](./media/sql-data-warehouse-get-started-load-with-polybase/install-azcopy.png)
 
-## <a name="step-1-add-sample-data-to-azure-blob-storage"></a>Step 1: Add sample data to Azure blob storage
-In order to load data, we need to put some sample data into an Azure blob storage. In this step we populate an Azure Storage blob with sample data. Later, we will use PolyBase to load this sample data into your SQL Data Warehouse database.
+## <a name="step-1-add-sample-data-to-azure-blob-storage"></a>步驟 1：將範例資料新增至 Azure Blob 儲存體
+為了載入資料，我們需要在 Azure Blob 儲存體中放入一些範例資料。 在此步驟中，我們會在 Azure 儲存體 Blob 中填入範例資料。 稍後，我們將使用 PolyBase 將此範例資料載入 SQL 資料倉儲資料庫。
 
-### <a name="a-prepare-a-sample-text-file"></a>A. Prepare a sample text file
-To prepare a sample text file:
+### <a name="a-prepare-a-sample-text-file"></a>A. 準備範例文字檔
+若要準備範例文字檔：
 
-1. Open Notepad and copy the following lines of data into a new file. Save this to your local temp directory as %temp%\DimDate2.txt.
+1. 開啟 [記事本]，並將下列幾行資料複製到新的檔案。 將此檔案儲存到本機暫存目錄 %temp%\DimDate2.txt。
 
 ```
 20150301,1,3
@@ -66,69 +70,69 @@ To prepare a sample text file:
 20150101,1,3
 ```
 
-### <a name="b-find-your-blob-service-endpoint"></a>B. Find your blob service endpoint
-To find your blob service endpoint:
+### <a name="b-find-your-blob-service-endpoint"></a>B. 尋找您的 Blob 服務端點
+若要尋找您的 Blob 服務端點：
 
-1. From the Azure Portal select **Browse** > **Storage Accounts**.
-2. Click the storage account you want to use.
-3. In the Storage account blade, click Blobs
+1. 從 Azure 入口網站選取 [瀏覽] > [儲存體帳戶]。
+2. 按一下您要使用的儲存體帳戶。
+3. 在儲存體帳戶刀鋒視窗中，按一下 [Blob]。
    
-    ![Click Blobs](./media/sql-data-warehouse-get-started-load-with-polybase/click-blobs.png)
-4. Save your blob service endpoint URL for later.
+    ![按一下 Blob](./media/sql-data-warehouse-get-started-load-with-polybase/click-blobs.png)
+4. 儲存您的 Blob 服務端點 URL，以供稍後使用。
    
-    ![Blob service endpoint](./media/sql-data-warehouse-get-started-load-with-polybase/blob-service.png)
+    ![Blob 服務端點](./media/sql-data-warehouse-get-started-load-with-polybase/blob-service.png)
 
-### <a name="c-find-your-azure-storage-key"></a>C. Find your Azure storage key
-To find your Azure storage key:
+### <a name="c-find-your-azure-storage-key"></a>C. 找出您的 Azure 儲存體金鑰
+若要找出您的 Azure 儲存體金鑰：
 
-1. From the Azure Portal, select **Browse** > **Storage Accounts**.
-2. Click on the storage account you want to use.
-3. Select **All settings** > **Access keys**.
-4. Click the copy box to copy one of your access keys to the clipboard.
+1. 從 Azure 入口網站選取 [瀏覽] > [儲存體帳戶]。
+2. 按一下您要使用的儲存體帳戶。
+3. 選取 [所有設定] > [存取金鑰]。
+4. 按一下複製方塊，將其中一個存取金鑰複製到剪貼簿。
    
-    ![Copy Azure storage key](./media/sql-data-warehouse-get-started-load-with-polybase/access-key.png)
+    ![複製 Azure 儲存體金鑰](./media/sql-data-warehouse-get-started-load-with-polybase/access-key.png)
 
-### <a name="d-copy-the-sample-file-to-azure-blob-storage"></a>D. Copy the sample file to Azure blob storage
-To copy your data to Azure blob storage:
+### <a name="d-copy-the-sample-file-to-azure-blob-storage"></a>D. 將範例檔案複製到 Azure Blob 儲存體
+若要將資料複製到 Azure Blob 儲存體：
 
-1. Open a command prompt, and change directories to the AzCopy installation directory. This command changes to the default installation directory on a 64-bit Windows client.
+1. 開啟命令提示字元，切換至 AzCopy 安裝目錄。 此命令會切換至 64 位元 Windows 用戶端上的預設安裝目錄。
    
     ```
     cd /d "%ProgramFiles(x86)%\Microsoft SDKs\Azure\AzCopy"
     ```
-2. Run the following command to upload the file. Specify your blob service endpoint URL for <blob service endpoint URL> and your Azure storage account key for <azure_storage_account_key>.
+2. 執行下列命令以上傳檔案。 針對 <blob service endpoint URL> 指定 Blob 服務端點 URL，並針對 <azure_storage_account_key> 指定 Azure 儲存體帳戶金鑰。
    
     ```
     .\AzCopy.exe /Source:C:\Temp\ /Dest:<blob service endpoint URL> /datacontainer/datedimension/ /DestKey:<azure_storage_account_key> /Pattern:DimDate2.txt
     ```
 
-See also [Getting Started with the AzCopy Command-Line Utility][latest version of AzCopy].
+另請參閱 [開始使用 AzCopy 命令列公用程式][最新版 AzCopy]。
 
-### <a name="e-explore-your-blob-storage-container"></a>E. Explore your blob storage container
-To see the file you uploaded to blob storage:
+### <a name="e-explore-your-blob-storage-container"></a>E. 瀏覽 Blob 儲存體容器
+若要查看您上傳至 Blob 儲存體的檔案：
 
-1. Go back to your Blob service blade.
-2. Under Containers, double-click **datacontainer**.
-3. To explore the path to your data, click the folder **datedimension** and you will see your uploaded file **DimDate2.txt**.
-4. To view properties, click **DimDate2.txt**.
-5. Note that in the Blob properties blade, you can download or delete the file.
+1. 回到您的 [Blob 服務] 刀鋒視窗。
+2. 在 [容器] 下，按兩下 [資料容器] 。
+3. 若要瀏覽資料路徑，請按一下 **datedimension** 資料夾，然後您就會看到所上傳的檔案 **DimDate2.txt**。
+4. 若要檢視屬性，請按一下 [DimDate2.txt] 。
+5. 請注意，在 [Blob 屬性] 刀鋒視窗中，您可以下載或刪除此檔案。
    
-    ![View Azure storage blob](./media/sql-data-warehouse-get-started-load-with-polybase/view-blob.png)
+    ![檢視 Azure 儲存體 Blob](./media/sql-data-warehouse-get-started-load-with-polybase/view-blob.png)
 
-## <a name="step-2-create-an-external-table-for-the-sample-data"></a>Step 2: Create an external table for the sample data
-In this section we create an external table that defines the sample data.
+## <a name="step-2-create-an-external-table-for-the-sample-data"></a>步驟 2：為範例資料建立外部資料表
+本節中，我們會建立外部資料表來定義範例資料。
 
-PolyBase uses external tables to access data in Azure blob storage. Since the data is not stored within SQL Data Warehouse, PolyBase handles authentication to the external data by using a database-scoped credential.
+PolyBase 使用外部資料表存取 Azure Blob 儲存體中的資料。 因為資料不會儲存在 SQL 資料倉儲內，PolyBase 使用資料庫範圍認證來處理外部資料的驗證。
 
-The example in this step uses these Transact-SQL statements to create an external table.
+此步驟中的範例使用這些 Transact-SQL 陳述式建立外部資料表。
 
-* [Create Master Key (Transact-SQL)][Create Master Key (Transact-SQL)] to encrypt the secret of your database scoped credential.
-* [Create Database Scoped Credential (Transact-SQL)][Create Database Scoped Credential (Transact-SQL)] to specify authentication information for your Azure storage account.
-* [Create External Data Source (Transact-SQL)][Create External Data Source (Transact-SQL)] to specify the location of your Azure blob storage.
-* [Create External File Format (Transact-SQL)][Create External File Format (Transact-SQL)] to specify the format of your data.
-* [Create External Table (Transact-SQL)][Create External Table (Transact-SQL)] to specify the table definition and location of the data.
+* [建立主要金鑰 (Transact-SQL)][建立主要金鑰 (Transact-SQL)] 以加密資料庫範圍認證的密碼。
+* [建立資料庫範圍認證 (Transact-SQL)][建立資料庫範圍認證 (Transact-SQL)] 以指定 Azure 儲存體帳戶的驗證資訊。
+* [建立外部資料來源 (Transact-SQL)][建立外部資料來源 (Transact-SQL)] 以指定 Azure Blob 儲存體的位置。
+* [建立外部檔案格式 (Transact-SQL)][建立外部檔案格式 (Transact-SQL)] 以指定您資料的格式。
+* [建立外部資料表 (Transact-SQL)][建立外部資料表 (Transact-SQL)] 以指定資料表定義和資料的位置。
 
-Run this query against your SQL Data Warehouse database. It will create an external table named DimDate2External in the dbo schema that points to the DimDate2.txt sample data in the Azure blob storage.
+對 SQL 資料倉儲資料庫執行這個查詢。 它會在 dbo 結構描述中建立指向 Azure Blob 儲存體中 DimDate2.txt 範例資料的外部資料表 (名稱為 DimDate2External)。
 
 ```sql
 -- A: Create a master key.
@@ -199,15 +203,15 @@ SELECT count(*) FROM dbo.DimDate2External;
 ```
 
 
-In SQL Server Object Explorer in Visual Studio, you can see the external file format, external data source, and the DimDate2External table.
+在 Visual Studio 的 [SQL Server 物件總管] 內，您可以看到外部檔案格式、外部資料來源和 DimDate2External 資料表。
 
-![View external table](./media/sql-data-warehouse-get-started-load-with-polybase/external-table.png)
+![檢視外部資料表](./media/sql-data-warehouse-get-started-load-with-polybase/external-table.png)
 
-## <a name="step-3-load-data-into-sql-data-warehouse"></a>Step 3: Load data into SQL Data Warehouse
-Once the external table is created, you can either load the data into a new table or insert it into an existing table.
+## <a name="step-3-load-data-into-sql-data-warehouse"></a>步驟 3：將資料載入 SQL 資料倉儲
+外部資料表建立好後，您可以將資料載入至新資料表，或將其插入到現有資料表。
 
-* To load the data into a new table, run the [CREATE TABLE AS SELECT (Transact-SQL)][CREATE TABLE AS SELECT (Transact-SQL)] statement. The new table will have the columns named in the query. The data types of the columns will match the data types in the external table definition.
-* To load the data into an existing table, use the [INSERT...SELECT (Transact-SQL)][INSERT...SELECT (Transact-SQL)] statement.
+* 若要將資料載入至新資料表，請執行 [CREATE TABLE AS SELECT (Transact-SQL)][CREATE TABLE AS SELECT (Transact-SQL)] 陳述式。 新資料表會擁有查詢中指名的資料行。 資料行的資料類型會符合外部資料表定義中的資料類型。
+* 若要將資料載入至現有資料表，請使用 [INSERT...SELECT (Transact-SQL)][INSERT...SELECT (Transact-SQL)] 陳述式。
 
 ```sql
 -- Load the data from Azure blob storage to SQL Data Warehouse
@@ -222,10 +226,10 @@ AS
 SELECT * FROM [dbo].[DimDate2External];
 ```
 
-## <a name="step-4-create-statistics-on-your-newly-loaded-data"></a>Step 4: Create statistics on your newly loaded data
-SQL Data Warehouse does not auto-create or auto-update statistics. Therefore, to achieve high query performance, it's important to create statistics on each column of each table after the first load. It's also important to update statistics after substantial changes in the data.
+## <a name="step-4-create-statistics-on-your-newly-loaded-data"></a>步驟 4：建立新載入資料的統計資料
+SQL 資料倉儲不會自動建立或自動更新統計資料。 因此，若要達到高查詢效能，請務必在第一次載入後，於每個資料表的每個資料行上建立統計資料。 另外，也請務必在大幅變更資料後更新統計資料。
 
-This example creates single-column statistics on the new DimDate2 table.
+本範例會在新的 DimDate2 資料表上建立單一資料行統計資料。
 
 ```sql
 CREATE STATISTICS [DateId] on [DimDate2] ([DateId]);
@@ -233,25 +237,25 @@ CREATE STATISTICS [CalendarQuarter] on [DimDate2] ([CalendarQuarter]);
 CREATE STATISTICS [FiscalQuarter] on [DimDate2] ([FiscalQuarter]);
 ```
 
-To learn more, see [Statistics][Statistics].  
+若要深入了解，請參閱[統計資料][統計資料]。  
 
-## <a name="next-steps"></a>Next steps
-See the [PolyBase guide][PolyBase guide] for further information you should know as you develop a solution that uses PolyBase.
+## <a name="next-steps"></a>後續步驟
+請參閱 [PolyBase 指南][PolyBase 指南]，以取得開發使用 PolyBase 的解決方案時，您應該知道的進一步資訊。
 
 <!--Image references-->
 
 
 <!--Article references-->
-[PolyBase in SQL Data Warehouse Tutorial]: ./sql-data-warehouse-get-started-load-with-polybase.md
-[Load data with bcp]: ./sql-data-warehouse-load-with-bcp.md
-[Statistics]: ./sql-data-warehouse-tables-statistics.md
-[PolyBase guide]: ./sql-data-warehouse-load-polybase-guide.md
-[latest version of AzCopy]: ../storage/storage-use-azcopy.md
+[SQL 資料倉儲中的 PolyBase 教學課程]: ./sql-data-warehouse-get-started-load-with-polybase.md
+[使用 bcp 載入資料]: ./sql-data-warehouse-load-with-bcp.md
+[統計資料]: ./sql-data-warehouse-tables-statistics.md
+[PolyBase 指南]: ./sql-data-warehouse-load-polybase-guide.md
+[最新版 AzCopy]: ../storage/storage-use-azcopy.md
 
 <!--External references-->
-[supported source/sink]: https://msdn.microsoft.com/library/dn894007.aspx
-[copy activity]: https://msdn.microsoft.com/library/dn835035.aspx
-[SQL Server destination adapter]: https://msdn.microsoft.com/library/ms141095.aspx
+[支援的來源/接收]: https://msdn.microsoft.com/library/dn894007.aspx
+[複製活動]: https://msdn.microsoft.com/library/dn835035.aspx
+[SQL Server 目的地配接器]: https://msdn.microsoft.com/library/ms141095.aspx
 [SSIS]: https://msdn.microsoft.com/library/ms141026.aspx
 
 
@@ -272,6 +276,6 @@ See the [PolyBase guide][PolyBase guide] for further information you should know
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO2-->
 
 

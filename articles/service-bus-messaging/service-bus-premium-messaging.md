@@ -1,12 +1,12 @@
 ---
-title: 服務匯流排進階和標準傳訊定價層概觀 | Microsoft Docs
-description: 服務匯流排進階和標準傳訊
+title: "服務匯流排進階和標準傳訊定價層概觀 | Microsoft Docs"
+description: "服務匯流排進階和標準傳訊"
 services: service-bus
 documentationcenter: .net
 author: djrosanova
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: e211774d-821c-4d79-8563-57472d746c58
 ms.service: service-bus
 ms.workload: na
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 09/02/2016
 ms.author: darosa;sethm
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 5f4fccdafd9b47794bf625ac51dc650b6e8752f1
+
 
 ---
 # <a name="service-bus-premium-and-standard-messaging-tiers"></a>服務匯流排進階和標準傳訊層級
@@ -52,6 +56,9 @@ ms.author: darosa;sethm
 * [服務匯流排訊息概觀](service-bus-messaging-overview.md)
 * [如何使用服務匯流排佇列](service-bus-dotnet-get-started-with-queues.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO2-->
 
 
