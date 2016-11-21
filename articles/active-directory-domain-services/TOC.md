@@ -1,6 +1,5 @@
 # Overview
-## [何謂 Azure AD 網域服務？](https://azure.microsoft.com/services/active-directory-ds/)
-## [運作方式](active-directory-ds-overview.md)
+## [何謂 Azure AD 網域服務？](active-directory-ds-overview.md)
 ## [適合您嗎？](active-directory-ds-comparison.md)
 ## [特性](active-directory-ds-features.md)
 ## [案例](active-directory-ds-scenarios.md)
@@ -36,9 +35,11 @@
 
 # 資源 
 ## [價格](https://azure.microsoft.com/pricing/details/active-directory-ds/)
-## [與我們連絡](active-directory-ds-contact-us.md)
 ## [Azure 意見反應論壇](https://feedback.azure.com/forums/169401-azure-active-directory)
+## [服務更新](https://azure.microsoft.com/updates/?product=active-directory-ds)
+## [與我們連絡](active-directory-ds-contact-us.md)
 
-<!--HONumber=Nov16_HO2-->
+
+<!--HONumber=Nov16_HO3-->
 
 

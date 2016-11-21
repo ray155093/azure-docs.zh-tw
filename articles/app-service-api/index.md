@@ -1,10 +1,14 @@
 ---
 layout: LandingPage
+translationtype: Human Translation
+ms.sourcegitcommit: 84efac2879c77ea2ba71127db8a05970649f6863
+ms.openlocfilehash: 078421d67ae2b2f0854b6f31bb97d146224ef685
+
 
 ---
-# App Service - API Apps Documentation
+# <a name="app-service-api-apps-documentation"></a>App Service - API Apps 文件
 
-Azure App Service is a cloud service that's designed to solve the practical problems that engineers face today. API apps in Azure App Service offer features that make it easier to develop, host, and consume APIs in the cloud and on-premises. With API apps, you get enterprise grade security, simple access control, hybrid connectivity, automatic SDK generation, and seamless integration with Logic Apps. Azure App Service is a fully managed platform for web, mobile, and integration scenarios. API Apps is one of four app types offered by Azure App Service.
+API Apps 是 Azure App Service 提供的四個應用程式類型之一。 Azure App Service 中的 API Apps 提供豐富的功能，讓您在雲端和內部部署當中開發、裝載和使用 API。 Azure App Service 是一個完全受管理的平台，適用於 Web、行動和整合案例。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -14,11 +18,11 @@ Azure App Service is a cloud service that's designed to solve the practical prob
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="media/index/placeholder.svg" alt="" />
+                            <img src="media/index/app-service-api.svg" alt="" />
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Learn about API Apps</h3>
+                        <h3>深入了解 API Apps</h3>
                     </div>
                 </div>
             </div>
@@ -32,11 +36,11 @@ Azure App Service is a cloud service that's designed to solve the practical prob
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="media/index/placeholder.svg" alt="" />
+                            <img src="media/index/video-library.svg" alt="" />
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>App Service Video Library</h3>
+                        <h3>App Service 影片庫</h3>
                     </div>
                 </div>
             </div>
@@ -50,11 +54,11 @@ Azure App Service is a cloud service that's designed to solve the practical prob
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="media/index/placeholder.svg" alt="" />
+                            <img src="media/index/dotnet.svg" alt="" />
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Get started with API Apps, ASP.NET adn Swagger in Azure App Service</h3>
+                        <h3>在 Azure App Service 中開始使用 API Apps、ASP.NET 和 Swagger</h3>
                     </div>
                 </div>
             </div>
@@ -68,11 +72,11 @@ Azure App Service is a cloud service that's designed to solve the practical prob
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="media/index/placeholder.svg" alt="" />
+                            <img src="media/index/java.svg" alt="" />
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Create a Java API app in Azure App Service</h3>
+                        <h3>在 Azure App Service 中開始建立 Java API 應用程式</h3>
                     </div>
                 </div>
             </div>
@@ -86,11 +90,11 @@ Azure App Service is a cloud service that's designed to solve the practical prob
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="media/index/placeholder.svg" alt="" />
+                            <img src="media/index/nodejs.svg" alt="" />
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Create a Node.js API</h3>
+                        <h3>開始建立 Node.js API</h3>
                     </div>
                 </div>
             </div>
@@ -104,11 +108,11 @@ Azure App Service is a cloud service that's designed to solve the practical prob
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="media/index/placeholder.svg" alt="" />
+                            <img src="media/index/tutorial.svg" alt="" />
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Create an API app from JavaScript using CORS</h3>
+                        <h3>使用 CORS 從 JavaScript 開始建立 API 應用程式</h3>
                     </div>
                 </div>
             </div>
@@ -123,7 +127,12 @@ Azure App Service is a cloud service that's designed to solve the practical prob
     <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/app-service-api.pdf">
         <div class="img"></div>
         <div class="text">
-            Download Mobile Apps Documentation
-        </div>
+下載 Mobile Apps 文件 </div>
     </a>
 </div>
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

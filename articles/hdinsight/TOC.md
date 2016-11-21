@@ -6,6 +6,7 @@
 ## [HBase](hdinsight-hbase-overview.md)
 ## [Apache Storm](hdinsight-storm-overview.md)
 ## [已加入網域的 HDInsight 預覽](hdinsight-domain-joined-introduction.md)
+## [Kafka 預覽](hdinsight-apache-kafka-introduction.md)
 
 # 開始使用
 ## [開始使用 Hadoop](hdinsight-hadoop-linux-tutorial-get-started.md)
@@ -14,6 +15,7 @@
 ## [開始使用 Spark](hdinsight-apache-spark-jupyter-spark-sql.md)
 ## [開始使用 HBase 與 NoSQL](hdinsight-hbase-tutorial-get-started-linux.md)
 ## [開始使用 Storm](hdinsight-apache-storm-tutorial-get-started-linux.md)
+## [開始使用 Kafka 預覽](hdinsight-apache-kafka-get-started.md )
 ## [Hadoop 沙箱](hdinsight-hadoop-emulator-get-started.md)
 ## [Data Lake 工具與 Hortonworks 沙箱](hdinsight-hadoop-emulator-visual-studio.md)
 ## [Visual Studio 適用的工具](hdinsight-hadoop-visual-studio-tools-get-started.md)
@@ -94,6 +96,10 @@
 ### [設定](hdinsight-domain-joined-configure.md)
 ### [管理](hdinsight-domain-joined-manage.md)
 ### [設定 Hive 原則](hdinsight-domain-joined-run-hive.md)
+## 使用 Kafka 預覽
+### [複寫 Kafka 資料](hdinsight-apache-kafka-mirroring.md)
+### [使用 Spark](hdinsight-apache-spark-with-kafka.md)
+### [使用 Storm](hdinsight-apache-storm-with-kafka.md)
 ## 開發
 ### [開發 Java MapReduce 程式](hdinsight-develop-deploy-java-mapreduce-linux.md)
 ### [開發 Scalding MapReduce 工作](hdinsight-hadoop-mapreduce-scalding.md)
@@ -217,6 +223,6 @@
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/hdinsight-self-guided-hadoop-training/)
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,27 +1,28 @@
 ---
 layout: LandingPage
 translationtype: Human Translation
-ms.sourcegitcommit: 87b9d22ec066108adb282606305315919b901ea0
-ms.openlocfilehash: 4d856b71ced1f1b9c6c1469bee4f23b84865c7d1
+ms.sourcegitcommit: 42be91bb4ddf87671ed9c3c5b2e5e640b0c5b059
+ms.openlocfilehash: fe9ee140084f0ab659e9db519098bbeb03305470
 
 ---
-# <a name="scheduler-documentation"></a>排程器文件
 
-Azure 排程器可讓您以宣告方式描述在雲端中執行的動作。  然後它會排程這些動作並且自動執行。  排程器會維護一個可以檢閱的作業執行結果歷程記錄。
+# <a name="azure-container-registry-documentation"></a>Azure Container Registry 文件
+
+Azure Container Registry (預覽) 是用於裝載容器映像的私用登錄。 您可以使用 Azure Container Registry，針對所有類型的容器部署來儲存 Docker 格式化映像。 Azure Container Registry 與 Azure Container Service 中裝載的 orchestrators 整合良好，包括 Docker Swarm、DC/OS 和 Kubernetes。 
 
 <ul class="panelContent cardsFTitle">
     <li>
-        <a href="/azure/scheduler/scheduler-intro">
+        <a href="/azure/container-registry/container-registry-intro">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="media/index/scheduler.svg" alt="" />
+                            <img src="./media/index/container-registry.svg" alt="" />
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>深入了解排程器</h3>
+                        <h3>深入了解 Azure Container Registry</h3>
                     </div>
                 </div>
             </div>
@@ -29,17 +30,17 @@ Azure 排程器可讓您以宣告方式描述在雲端中執行的動作。  然
         </a>
     </li>
     <li>
-        <a href="https://azure.microsoft.com/en-us/documentation/videos/index/?services=scheduler">
+        <a href="/azure/container-registry/container-registry-get-started-portal">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="media/index/video-library.svg" alt="" />
+                            <img src="./media/index/portal.svg" alt="" />
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure 排程器影片庫</h3>
+                        <h3>使用入口網站開始建立登錄</h3>
                     </div>
                 </div>
             </div>
@@ -47,17 +48,17 @@ Azure 排程器可讓您以宣告方式描述在雲端中執行的動作。  然
         </a>
     </li>
     <li>
-        <a href="/azure/scheduler/scheduler-get-started-portal">
+        <a href="/azure/container-registry/container-registry-get-started-azure-cli">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="media/index/get-started.svg" alt="" />
+                            <img src="./media/index/cli.svg" alt="" />
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>開始使用 Azure 排程器</h3>
+                        <h3>使用 CLI 開始建立登錄</h3>
                     </div>
                 </div>
             </div>
@@ -66,19 +67,17 @@ Azure 排程器可讓您以宣告方式描述在雲端中執行的動作。  然
     </li>
 </ul>
 
----
-
 ## <a name="reference"></a>參考
 
 <ul class="panelContent cardsW">
     <li>
-        <a href="https://msdn.microsoft.com/en-us/library/mt490138(v=azure.200).aspx">
+        <a href="/cli/azure/acr">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>PowerShell</h3>
-                        <p>Azure 排程器 PowerShell Cmdlet</p>
+                        <h3>CLI</h3>
+                        <p>CLI 參考</p>
                     </div>
                 </div>
             </div>
@@ -86,42 +85,21 @@ Azure 排程器可讓您以宣告方式描述在雲端中執行的動作。  然
         </a>
     </li>
     <li>
-        <a href="/dotnet/api">
-        <div class="cardSize">
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>.NET</h3>
-                        <p>排程器受管理的參考</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </a>
-    </li>
-    <li>
-        <a href="/rest/api/scheduler/">
+        <a href="/rest/api/containerregistry">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p>排程器 REST API 參考</p>
+                        <p>REST API 參考資料</p>
                     </div>
                 </div>
             </div>
         </div>
         </a>
     </li>
-<ul>
+</ul>
 
-<div class="downloadHolder">
-    <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/scheduler.pdf">
-        <div class="img"></div>
-        <div class="text">
-下載排程器文件 </div>
-    </a>
-</div>
 
 
 <!--HONumber=Nov16_HO3-->

@@ -1,9 +1,13 @@
 ---
 layout: LandingPage
----
-#Data Catalog Documentation
+translationtype: Human Translation
+ms.sourcegitcommit: 87b9d22ec066108adb282606305315919b901ea0
+ms.openlocfilehash: f9c998b6d6431fe08a1b6e6332f992be1446f0c7
 
-Data Catalog is a distributed systems platform that makes it easy to package, deploy, and manage scalable and reliable microservices and addresses the significant challenges in developing and managing cloud applications.  Data Catalog represents the next-generation middleware platform for building and managing these enterprise-class, Tier-1 cloud-scale applications.
+---
+#<a name="data-catalog-documentation"></a>資料目錄文件
+
+資料目錄是分散式系統平台，可讓您輕鬆封裝、部署及管理可調整和可信賴的微服務，並解決開發與管理雲端應用程式時遭遇的重大挑戰。  資料目錄代表新一代的中介軟體平台，可建置與管理這些企業級的 Tier-1 雲端規模應用程式。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -17,7 +21,7 @@ Data Catalog is a distributed systems platform that makes it easy to package, de
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Data Catalog Getting Started Samples</h3>
+                        <h3>資料目錄開始使用範例</h3>
                     </div>
                 </div>
             </div>
@@ -35,7 +39,7 @@ Data Catalog is a distributed systems platform that makes it easy to package, de
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Azure Data Catalog Party Cluster</h3>
+                        <h3>Azure 資料目錄合作對象叢集</h3>
                     </div>
                 </div>
             </div>
@@ -53,7 +57,7 @@ Data Catalog is a distributed systems platform that makes it easy to package, de
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Getting started with Data Catalog with .NET Core</h3>
+                        <h3>使用 .NET Core 開始使用資料目錄</h3>
                     </div>
                 </div>
             </div>
@@ -64,19 +68,50 @@ Data Catalog is a distributed systems platform that makes it easy to package, de
 
 ---
 
-##Reference
+## <a name="reference"></a>參考
 
-###REST
-[Data Catalog REST API Reference](/rest/api/)
+<ul class="panelContent cardsW">
+    <li>
+        <a href="/rest/api/">
+        <div class="cardSize">
+            <div class="cardPadding">
+                <div class="card">
+                    <div class="cardText">
+                        <h3>REST</h3>
+                        <p>資料目錄 REST API 參考</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </a>
+    </li>
 
-###.NET
-[Data Catalog Managed Reference](https://msdn.microsoft.com/library/azure/mt416943)
+    <li>
+        <a href="https://msdn.microsoft.com/library/azure/mt416943">
+        <div class="cardSize">
+            <div class="cardPadding">
+                <div class="card">
+                    <div class="cardText">
+                        <h3>.NET</h3>
+                        <p>資料目錄受管理的參考</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </a>
+    </li>
+</ul>
+
 
 <div class="downloadHolder">
     <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/data-catalog.pdf">
         <div class="img"></div>
         <div class="text">
-            Download Data Catalog Documentation
-        </div>
+下載資料目錄文件 </div>
     </a>
 </div>
+
+
+<!--HONumber=Nov16_HO3-->
+
+

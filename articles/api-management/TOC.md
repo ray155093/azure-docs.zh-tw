@@ -40,13 +40,17 @@
 ### [使用自動化管理](automation-manage-api-management.md)
 ### [使用 Git 進行設定](api-management-configuration-repository-git.md)
 #參考
-## [資源管理 PowerShell cmdlet]/powershell/resourcemanager()
-## [傳統部署 PowerShell Cmdlet 參考](https://msdn.microsoft.com/en-us/library/azure/mt613507)
-## [REST API](/rest/api/apimanagement/)
-## [原則](https://msdn.microsoft.com/en-us/library/azure/dn894081)
-## [範本](https://msdn.microsoft.com/en-us/library/azure/mt697540)
+## [PowerShell](/powershell/azureps-cmdlets-docs)
+## [傳統 PowerShell](https://msdn.microsoft.com/library/azure/mt613507)
+## [REST](/rest/api/apimanagement/)
+## [原則](https://msdn.microsoft.com/library/azure/dn894081)
+## [範本](https://msdn.microsoft.com/library/azure/mt697540)
 #資源
 ## [價格](https://azure.microsoft.com/pricing/details/api-management/)
+## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=azureapimgmt)
+## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-api-management)
+## [影片](https://azure.microsoft.com/documentation/videos/index/?services=api-management) 
+## [服務更新](https://azure.microsoft.com/updates/?product=api-management)
 ## [白皮書：雲端架構的 API 管理](http://j.mp/ms-apim-whitepaper)
 ## [API 設計指引](../best-practices-api-design.md?toc=%2fazure%2fapi-management%2ftoc.json)
 ## [API 實作指引](../best-practices-api-implementation.md?toc=%2fazure%2fapi-management%2ftoc.json)
@@ -59,6 +63,6 @@
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

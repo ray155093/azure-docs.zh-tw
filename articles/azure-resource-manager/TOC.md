@@ -4,6 +4,7 @@
 ## [了解 Resource Manager 與傳統部署](../resource-manager-deployment-model.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
 ## [規定的訂用帳戶治理](../resource-manager-subscription-governance.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
 ## [企業的治理範例](../resource-manager-subscription-examples.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
+
 # 開始使用
 ## [匯出範本](../resource-manager-export-template.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
 ## [範本逐步解說](../resource-manager-template-walkthrough.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
@@ -51,23 +52,22 @@
 ### [使用 PowerShell 檢視部署作業](../resource-manager-troubleshoot-deployments-powershell.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
 ### [使用 Azure CLI 來檢視部署作業](../resource-manager-troubleshoot-deployments-cli.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
 ### [使用 REST API 檢視部署作業](../resource-manager-troubleshoot-deployments-rest.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
+
 # 參考
-## [PowerShell Cmdlet](/powershell/azureps-cmdlets-docs/)
+## [PowerShell](/powershell/resourcemanager/azurerm.resources/v3.2.0/azurerm.resources)
 ## [Azure CLI](/cli/azure)
 ## [Java](/java/api)
-## [.NET API](/dotnet/api)
+## [.NET](/dotnet/api/microsoft.azure.management.resourcemanager)
 ## [範本結構描述](https://github.com/Azure/azure-resource-manager-schemas)
-## [適用於 Resource Manager 的 PowerShell Cmdlet](/powershell/resourcemanager/azurerm.resources/v3.2.0/azurerm.resources)
-## [適用於 Resource Manager 的 REST API](/rest/api/resources/)
-## [適用於 Resource Manager 的 .NET 用戶端程式庫](/dotnet/api/microsoft.azure.management.resourcemanager)
 ## [節流要求](../resource-manager-request-limits.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
 ## [REST](/rest/api/resources/)
 
 # 資源
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-resource-manager)
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=azure-resource-manager)
-## [服務更新](https://azure.microsoft.com/updates/?product=azure-resource-manager) 
+## [服務更新](https://azure.microsoft.com/updates/?product=azure-resource-manager)
 
-<!--HONumber=Nov16_HO2-->
+
+<!--HONumber=Nov16_HO3-->
 
 

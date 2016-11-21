@@ -1,11 +1,11 @@
 # 概觀
-## [什麼是 Azure Government？](../azure-government-overview.md?toc=%@Fazure%2fazure-government%2ftoc.json)
+## [什麼是 Azure Government？](../azure-government-overview.md?toc=%2fazure%2fazure-government%2ftoc.json)
 ## [ITAR](documentation-government-overview-itar.md)
 ## [司法與公共安全](documentation-government-overview-jps.md)
 ## [美國國防部](documentation-government-overview-dod.md)
 
 # 開始使用
-## [開發人員指南](../azure-government-developer-guide.md?toc=%@Fazure%2fazure-government%2ftoc.json)
+## [開發人員指南](../azure-government-developer-guide.md?toc=%2fazure%2fazure-government%2ftoc.json)
 
 # 作法
 ## 規劃
@@ -28,10 +28,12 @@
 ### [監視 + 管理](documentation-government-services-monitoringandmanagement.md)
 
 # 資源
-## [試用版](https://azuregov.microsoft.com/trial/azuregovtrial)
 ## [價格](https://azure.microsoft.com/pricing/)
+## [試用版](https://azuregov.microsoft.com/trial/azuregovtrial)
 
 
-<!--HONumber=Nov16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

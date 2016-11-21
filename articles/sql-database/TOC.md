@@ -1,6 +1,6 @@
 # 概觀
 ## [什麼是 SQL Database？](sql-database-technical-overview.md)
-## [SQL Database 常見問題集](sql-database-faq.md)
+
 ## 特性
 ### [服務層](sql-database-service-tiers.md)
 ### [資料庫交易單位](sql-database-what-is-a-dtu.md)
@@ -75,6 +75,7 @@
 ## [建立和管理存取與權限](sql-database-get-started-security.md)
 ## [記憶體內部最佳化](sql-database-in-memory.md)
 ## [資料同步](sql-database-get-started-sql-data-sync.md)
+## [SQL Database 常見問題集](sql-database-faq.md)
 
 # 作法
 
@@ -264,12 +265,12 @@
 ### [移動資料庫](sql-database-troubleshoot-moving-data.md)
 
 # 參考
-## [PowerShell](/powershell/azureps-cmdlets-docs/)
+## [PowerShell](/powershell/azureps-cmdlets-docs)
 ## [PowerShell 傳統](/powershell/servicemanagement/)
 ## [Java](/java/api/)
 ## [.NET](/dotnet/api/)
 ## [T-SQL](https://msdn.microsoft.com/library/azure/bb510741.aspx)
-## [Azure SQL Database Cmdlets](https://msdn.microsoft.com/library/azure/mt574084(v=azure.300\).aspx)
+## [Azure SQL Database Cmdlet](/powershell/resourcemanager/AzureRM.Sql/v1.0.12/AzureRM.Sql)
 ## [SQL Server Cmdlets](https://msdn.microsoft.com/library/mt740629.aspx)
 ## [REST](/rest/api/sql/)
 
@@ -287,6 +288,9 @@
 
 # 資源
 ## [價格](https://azure.microsoft.com/pricing/details/sql-database/)
+## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/home?forum=ssdsgetstarted)
+## [Stack Overflow](http://stackoverflow.com/questions/tagged/sql-azure)
+## [影片](https://azure.microsoft.com/documentation/videos/index/?services=sql-database)
 ## [服務更新](https://azure.microsoft.com/updates/?service=sql-database)
 ## [SQL Server 工具](https://msdn.microsoft.com/library/mt238365.aspx)
 ## [SQL Server Management Studio (SSMS)](https://msdn.microsoft.com/library/mt238290.aspx)
@@ -294,10 +298,10 @@
 ## [BCP](https://msdn.microsoft.com/library/ms162802.aspx)
 ## [sqlcmd](https://msdn.microsoft.com/library/ms162773.aspx)
 ## [SqlPackage](https://msdn.microsoft.com/hh550080.aspx)
-## [論壇](https://social.msdn.microsoft.com/Forums/home?forum=ssdsgetstarted)
-## [影片](https://azure.microsoft.com/documentation/videos/index/?services=sql-database)
 
 
-<!--HONumber=Nov16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,26 +1,11 @@
 # 概觀
 ## [機器學習是什麼？](machine-learning-what-is-machine-learning.md)
-## [有哪些新功能？](machine-learning-whats-new.md)
-## [從即時聊天取得協助](machine-learning-live-chat.md)
-## Machine Learning Studio
-### [Studio 是什麼？](machine-learning-what-is-ml-studio.md)
-### [Studio 容量](machine-learning-studio-overview-diagram.md)
-### [資訊圖：ML 基本知識](machine-learning-basics-infographic-with-algorithm-examples.md)
-## Team Data Science Process
-### [概觀](http://aka.ms/datascienceprocess)
-### [生命週期](data-science-process-overview.md)
-### [工具和公用程式](machine-learning-data-science-environment-setup.md)
-### [逐步解說](data-science-process-walkthroughs.md)
+## [Machine Learning Studio](machine-learning-what-is-ml-studio.md)
 ## [確認情節](machine-learning-data-science-plan-your-environment.md)
-## [範例案例](machine-learning-data-science-plan-sample-scenarios.md)
 ## 範例
 ### [實驗範例](machine-learning-sample-experiments.md)
 ### [範例資料集](machine-learning-use-sample-datasets.md)
 ### [客戶流失範例](machine-learning-azure-ml-customer-churn-scenario.md)
-## API
-### [異常偵測](machine-learning-apps-anomaly-detection.md)
-### [文字分析](machine-learning-apps-text-analytics.md)
-### [Cognitive Services](https://azure.microsoft.com/services/cognitive-services/)
 ### 建議
 #### [概觀](machine-learning-recommendation-api-sample-application.md)
 #### [快速入門](machine-learning-recommendation-api-quick-start-guide.md)
@@ -28,19 +13,12 @@
 #### [使用 JavaScript](machine-learning-recommendation-api-javascript-integration.md)
 #### [常見問題集](machine-learning-recommendation-api-faq.md)
 ## Cortana Analytics
-### 預測性維護
-#### [概觀](cortana-analytics-playbook-predictive-maintenance.md)
+### [預測性維護](cortana-analytics-playbook-predictive-maintenance.md)
 #### [架構](cortana-analytics-architecture-predictive-maintenance.md)
 #### [技術指南](cortana-analytics-technical-guide-predictive-maintenance.md)
-### 車輛遙測
-#### [概觀](cortana-analytics-playbook-vehicle-telemetry.md)
+### [車輛遙測](cortana-analytics-playbook-vehicle-telemetry.md)
 #### [腳本](cortana-analytics-playbook-vehicle-telemetry-deep-dive.md)
 #### [設定](cortana-analytics-playbook-vehicle-telemetry-powerbi.md)
-## 資料科學程序
-### [Hadoop 叢集](machine-learning-data-science-process-hive-walkthrough.md)
-### [使用含 1TB 的 Hadoop](machine-learning-data-science-process-hive-criteo-walkthrough.md)
-### [使用 SQL Server](machine-learning-data-science-process-sql-walkthrough.md)
-### [使用 SQL 資料倉儲](machine-learning-data-science-process-sqldw-walkthrough.md)
 ## Web 服務
 ### [使用 R 的範例](machine-learning-r-csharp-web-service-examples.md)
 ### [二元分類器](machine-learning-r-csharp-binary-classifier.md)
@@ -57,6 +35,7 @@
 ### [Marketplace 常見問題集](machine-learning-marketplace-faq.md)
 
 # 開始使用
+## [範例案例](machine-learning-data-science-plan-sample-scenarios.md)
 ## [建立您的第一個實驗](machine-learning-create-experiment.md)
 ## [建立預測解決方案](machine-learning-walkthrough-develop-predictive-solution.md)
 ### [1：建立工作區](machine-learning-walkthrough-1-create-ml-workspace.md)
@@ -72,9 +51,17 @@
 ### [4：預測解答](machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model.md)
 ### [5：複製其他人的工作](machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md)
 ## [常見問題集](machine-learning-faq.md)
+## Team Data Science Process
+### [生命週期](data-science-process-overview.md)
+### [工具和公用程式](machine-learning-data-science-environment-setup.md)
+### [逐步解說](data-science-process-walkthroughs.md)
+#### [Hadoop 叢集](machine-learning-data-science-process-hive-walkthrough.md)
+#### [使用含 1TB 的 Hadoop](machine-learning-data-science-process-hive-criteo-walkthrough.md)
+#### [使用 SQL Server](machine-learning-data-science-process-sql-walkthrough.md)
+#### [使用 SQL 資料倉儲](machine-learning-data-science-process-sqldw-walkthrough.md)
 
 # 作法
-## 安裝工具 
+## 安裝工具
 ### [設定環境](machine-learning-data-science-environment-setup.md)
 ### [設定虛擬機器](machine-learning-data-science-virtual-machines.md)
 ### [自訂 Hadoop](machine-learning-data-science-customize-hadoop-cluster.md)
@@ -190,11 +177,13 @@
 #### [使用 Web 應用程式範本](machine-learning-consume-web-service-with-web-app-template.md)
 
 #參考
-## [R 快速入門](machine-learning-r-quickstart.md)
+## [版本資訊](machine-learning-whats-new.md)
+## [PowerShell](/powershell/azureps-cmdlets-docs)
 ## [PowerShell 概觀](machine-learning-powershell-module.md)
 ## [使用 PowerShell 建立模型](machine-learning-create-models-and-endpoints-with-powershell.md)
-## [Web 服務 REST API](https://msdn.microsoft.com/library/azure/dn950030.aspx)
+## [R 快速入門](machine-learning-r-quickstart.md)
 ## [Net# 神經網路語言](machine-learning-azure-ml-netsharp-reference-guide.md)
+## [REST](/rest/api/machinelearning/)
 
 # 相關參考
 ## Cortana Intelligence Gallery
@@ -210,10 +199,23 @@
 ### [自訂模組](machine-learning-gallery-custom-modules.md)
 
 # 資源
+## [學習路徑](http://aka.ms/datascienceprocess)
+## [價格](https://azure.microsoft.com/pricing/details/machine-learning/)
+## [服務更新](https://azure.microsoft.com/updates/?product=machine-learning)
 ## [部落格](http://blogs.technet.com/b/machinelearning/)
-## [論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=MachineLearning)
+## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=MachineLearning)
+## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-machine-learning)
+## [影片](https://azure.microsoft.com/resources/videos/index/?services=machine-learning)
+## [從即時聊天取得協助](machine-learning-live-chat.md)
+## 可下載的圖表
+### [Studio 容量](machine-learning-studio-overview-diagram.md)
+### [資訊圖：ML 基本知識](machine-learning-basics-infographic-with-algorithm-examples.md)
+## API
+### [異常偵測](machine-learning-apps-anomaly-detection.md)
+### [文字分析](machine-learning-apps-text-analytics.md)
+### [Cognitive Services](https://azure.microsoft.com/services/cognitive-services/)
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

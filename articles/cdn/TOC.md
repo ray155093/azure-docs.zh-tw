@@ -1,5 +1,6 @@
 # [概觀](cdn-overview.md)
 ## [什麼是 Azure CDN？](../best-practices-cdn.md?toc=%2fazure%2fcdn%2ftoc.json)
+
 # 開始使用
 ## [啟用 Azure CDN](cdn-create-new-endpoint.md)
 
@@ -41,19 +42,19 @@
 ### [檔案壓縮](cdn-troubleshoot-compression.md)
 
 # 參考
-## [PowerShell Cmdlet](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/)
-## [.NET API](https://docs.microsoft.com/dotnet/api)
+## [PowerShell](/powershell/azureps-cmdlets-docs)
+## [.NET](/dotnet/api/)
 ## [Azure CDN 的 POP 位置](cdn-pop-locations.md)
-## [REST](https://msdn.microsoft.com/library/mt634456.aspx)
+## [REST](/rest/api/cdn/)
 
 # 資源
-## [價格](https://azure.microsoft.com/pricing/details/cdn/)
-## [MSDN 論壇](https://social.msdn.microsoft.com/forums/home?forum=azurecdn)
-## [影片](https://azure.microsoft.com/documentation/videos/index/?services=cdn)
 ## [服務更新](https://azure.microsoft.com/updates/?product=cdn)
+## [價格](https://azure.microsoft.com/pricing/details/cdn/)
+## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurecdn)
+## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-cdn)
+## [影片](https://azure.microsoft.com/documentation/videos/index/?services=cdn)
 
 
-
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

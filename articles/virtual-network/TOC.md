@@ -13,7 +13,7 @@
 
 # 開始使用
 ## [建立虛擬網路](virtual-networks-create-vnet-arm-pportal.md)
-## [將 VM 部署至虛擬網路](../virtual-machines/virtual-machines-windows-hero-tutorial.md)
+## [將 VM 部署至虛擬網路](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-network%2ftoc.json)
 
 # 作法
 ## 規劃和設計
@@ -143,6 +143,6 @@
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-virtual-network)
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

@@ -38,7 +38,6 @@
 #### [警示管理](log-analytics-solution-alert-management.md)
 #### [產能管理](log-analytics-capacity.md)
 #### [變更追蹤](log-analytics-change-tracking.md)
-#### [組態評估](log-analytics-configuration-assessment.md)
 #### [容器](log-analytics-containers.md)
 #### [金鑰保存庫](log-analytics-azure-key-vault.md)
 #### [惡意程式碼評估](log-analytics-malware.md)
@@ -48,7 +47,6 @@
 #### [Service Fabric](log-analytics-service-fabric.md)
 #### [SQL 評估](log-analytics-sql-assessment.md)
 #### [Surface Hub](log-analytics-surface-hubs.md)
-#### [系統更新評估](log-analytics-system-update.md)
 #### [VMware](log-analytics-vmware.md)
 #### [連線資料](log-analytics-wire-data.md)
 ## 分析
@@ -63,11 +61,10 @@
 
 # 資源
 ## [Upgrade Analytics](https://technet.microsoft.com/itpro/windows/deploy/manage-windows-upgrades-with-upgrade-analytics)
+## [價格](https://azure.microsoft.com/pricing/details/log-analytics/)
+## [服務更新](https://azure.microsoft.com/updates/?product=log-analytics)
 
 
-
-
-
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

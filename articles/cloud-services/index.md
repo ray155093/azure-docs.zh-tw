@@ -1,9 +1,13 @@
 ---
 layout: LandingPage
----
-#Cloud Services Documentation
+translationtype: Human Translation
+ms.sourcegitcommit: 87b9d22ec066108adb282606305315919b901ea0
+ms.openlocfilehash: af0eb3ce49e509992ab582558a342933f950afdb
 
-Cloud Services is an example of a Platform-as-a-Service (PaaS) implementation. It is designed to support applications that are scalable, reliable, and cost-effective to operate. With Cloud Services, you have the benefit of virtualization, but you also have control over the virtual machine to configure, patch, and install software.  
+---
+#<a name="cloud-services-documentation"></a>雲端服務文件
+
+雲端服務是平台即服務 (PaaS) 實作的一個範例。 它能夠支援可調整、可靠且具有操作成本效益的應用程式。 使用雲端服務，您擁有虛擬化的優點，但您也可以控制虛擬機器以設定、修補和安裝軟體。  
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -17,7 +21,7 @@ Cloud Services is an example of a Platform-as-a-Service (PaaS) implementation. I
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Learn about Cloud Services</h3>
+                        <h3>深入了解雲端服務</h3>
                     </div>
                 </div>
             </div>
@@ -35,7 +39,7 @@ Cloud Services is an example of a Platform-as-a-Service (PaaS) implementation. I
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Cloud Services Video Library</h3>
+                        <h3>雲端服務影片庫</h3>
                     </div>
                 </div>
             </div>
@@ -53,7 +57,7 @@ Cloud Services is an example of a Platform-as-a-Service (PaaS) implementation. I
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Create your first .NET app with Cloud Services</h3>
+                        <h3>使用 .NET 開始使用雲端服務</h3>
                     </div>
                 </div>
             </div>
@@ -71,7 +75,7 @@ Cloud Services is an example of a Platform-as-a-Service (PaaS) implementation. I
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Create a Python app </h3>
+                        <h3>使用 Python 開始使用雲端服務</h3>
                     </div>
                 </div>
             </div>
@@ -82,20 +86,61 @@ Cloud Services is an example of a Platform-as-a-Service (PaaS) implementation. I
 
 ---
 
-##Reference
+## <a name="reference"></a>參考
 
-###REST
-[Cloud Services REST API Reference](https://msdn.microsoft.com/library/azure/ee460812.aspx)
+<ul class="panelContent cardsW">
+    <li>
+        <a href="https://msdn.microsoft.com/library/azure/ee460812">
+        <div class="cardSize">
+            <div class="cardPadding">
+                <div class="card">
+                    <div class="cardText">
+                        <h3>REST</h3>
+                        <p>雲端服務 REST API 參考</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </a>
+    </li>
 
-###.Schemas
-[Cloud Services Definition Schema](https://msdn.microsoft.com/en-us/library/azure/ee758711.aspx)
-[Cloud Services Configuration Schema](https://msdn.microsoft.com/en-us/library/azure/ee758710.aspx)
+    <li>
+        <a href="https://msdn.microsoft.com/en-us/library/azure/ee758711">
+        <div class="cardSize">
+            <div class="cardPadding">
+                <div class="card">
+                    <div class="cardText">
+                        <h3>結構描述</h3>
+                        <p>雲端服務定義結構描述</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </a>
+        <a href="https://msdn.microsoft.com/en-us/library/azure/ee758710">
+        <div class="cardSize">
+            <div class="cardPadding">
+                <div class="card">
+                    <div class="cardText">
+                        <p>雲端服務組態結構描述</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </a>
+    </li>
+</ul>
 
 <div class="downloadHolder">
     <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/cloud-services.pdf">
         <div class="img"></div>
         <div class="text">
-            Download Cloud Services Documentation
-        </div>
+下載雲端服務文件 </div>
     </a>
 </div>
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+
