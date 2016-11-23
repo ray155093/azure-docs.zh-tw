@@ -112,6 +112,6 @@ Azure Analysis Services 利用經實證的 Microsoft SQL Server Analysis Service
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

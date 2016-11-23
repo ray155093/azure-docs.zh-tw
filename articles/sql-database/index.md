@@ -189,6 +189,6 @@ Azure SQL Database 是位於雲端的關聯式資料庫服務，其具備以 Mic
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

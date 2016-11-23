@@ -147,6 +147,6 @@ StorSimple 與 Microsoft Azure 提供了獨一無二完整的主要儲存體封�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

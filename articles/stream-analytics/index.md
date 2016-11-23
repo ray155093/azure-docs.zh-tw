@@ -193,6 +193,6 @@ Azure 串流分析是完全受管理的即時事件處理引擎，可協助解�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

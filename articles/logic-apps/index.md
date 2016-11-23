@@ -162,6 +162,6 @@ Logic Apps 是設計工具，將處理程序模型化和自動化至工作流程
 </div>
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

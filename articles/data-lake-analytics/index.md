@@ -252,6 +252,6 @@ Azure 資料湖分析是一個全新的服務，其目的是為了讓巨量資�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

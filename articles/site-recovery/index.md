@@ -107,6 +107,6 @@ Azure Site Recovery 可藉由協調內部部署虛擬機器與實體伺服器的
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

@@ -122,6 +122,6 @@ Azure 虛擬機器讓您能夠有彈性地進行虛擬化，而不需購買並�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

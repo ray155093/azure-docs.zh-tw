@@ -6,7 +6,7 @@ ms.openlocfilehash: 078421d67ae2b2f0854b6f31bb97d146224ef685
 
 
 ---
-# <a name="app-service-api-apps-documentation"></a>App Service - API Apps 文件
+# <a name="app-service---api-apps-documentation"></a>App Service - API Apps 文件
 
 API Apps 是 Azure App Service 提供的四個應用程式類型之一。 Azure App Service 中的 API Apps 提供豐富的功能，讓您在雲端和內部部署當中開發、裝載和使用 API。 Azure App Service 是一個完全受管理的平台，適用於 Web、行動和整合案例。
 
@@ -133,6 +133,6 @@ API Apps 是 Azure App Service 提供的四個應用程式類型之一。 Azure 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

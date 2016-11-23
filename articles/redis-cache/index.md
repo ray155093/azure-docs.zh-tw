@@ -225,6 +225,6 @@ Azure Redis 快取採用熱門的開放原始碼「Redis 快取」。 它可讓�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

@@ -187,6 +187,6 @@ Azure Mobile Engagement 是軟體即服務 (SaaS) 的使用者參與平台，可
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

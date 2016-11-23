@@ -148,6 +148,6 @@ Azure 備份是一項雲端服務，您可用來備份 (或保護) 和還原 Mic
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

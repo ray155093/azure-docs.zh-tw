@@ -216,6 +216,6 @@ Azure 媒體服務是一個可延伸的雲端型平台，供開發人員建置�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

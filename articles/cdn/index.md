@@ -112,6 +112,6 @@ Azure 內容傳遞網路 (CDN) 為開發人員提供一套傳遞高頻寬內容 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

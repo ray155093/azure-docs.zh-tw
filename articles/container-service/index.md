@@ -110,6 +110,6 @@ Azure Container Service 可讓您輕鬆建立、設定及管理虛擬機器的�
 </div>
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

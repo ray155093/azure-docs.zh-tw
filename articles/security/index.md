@@ -114,6 +114,6 @@ Azure 的基礎結構設計涵蓋設備與應用程式，可同時裝載數以�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

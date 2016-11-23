@@ -147,6 +147,6 @@ Azure Data Factory 是雲端架構資料整合服務，用來自動移動和轉�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

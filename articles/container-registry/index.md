@@ -102,6 +102,6 @@ Azure Container Registry (預覽) 是用於裝載容器映像的私用登錄。 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

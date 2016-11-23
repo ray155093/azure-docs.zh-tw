@@ -181,6 +181,6 @@ Azure 自動化可讓使用者將執行於雲端環境中的手動、長時間�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

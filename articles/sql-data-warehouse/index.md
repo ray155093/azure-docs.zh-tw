@@ -110,6 +110,6 @@ Azure SQL 資料倉儲結合 SQL Server 關聯式資料庫與 Azure 雲端相應
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

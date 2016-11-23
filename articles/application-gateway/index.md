@@ -190,6 +190,6 @@ Azure 應用程式閘道提供應用程式傳遞控制站 (ADC) 服務。  它�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

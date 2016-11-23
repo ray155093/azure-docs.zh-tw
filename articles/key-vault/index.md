@@ -194,6 +194,6 @@ Azure 金鑰保存庫可協助保護雲端應用程式和服務所使用的密�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

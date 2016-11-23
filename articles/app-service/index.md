@@ -131,6 +131,6 @@ App Service 是 Microsoft Azure 的平台即服務 (PaaS) 產品。 建立適用
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

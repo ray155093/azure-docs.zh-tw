@@ -77,6 +77,6 @@ BizTalk 服務可以為 SAP、Oracle EBS、SQL Server 及 PeopleSoft 內部部�
 </div>
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

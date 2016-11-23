@@ -124,6 +124,6 @@ Azure 排程器可讓您以宣告方式描述在雲端中執行的動作。  然
 </div>
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

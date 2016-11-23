@@ -115,6 +115,6 @@ Azure Functions 是可在雲端輕鬆執行程式碼 (「函式」) 片段的解
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

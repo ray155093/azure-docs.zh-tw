@@ -96,6 +96,6 @@ SQL Server Stretch Database 能以無訊息方式安全地將冷資料移轉到 
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

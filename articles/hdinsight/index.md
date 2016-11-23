@@ -193,6 +193,6 @@ Azure HDInsight 是採用雲端技術的 Apache Hadoop 散發套件。  Azure HD
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 
