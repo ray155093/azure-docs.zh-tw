@@ -1,12 +1,12 @@
 ---
-title: Azure AD Connect：帳戶與權限 | Microsoft Docs
-description: 本主題描述使用和建立的帳戶以及所需的權限。
+title: "Azure AD Connect：帳戶與權限 | Microsoft 文件"
+description: "本主題描述使用和建立的帳戶以及所需的權限。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: billmath
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: b93e595b-354a-479d-85ec-a95553dd9cc2
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/04/2016
 ms.author: billmath
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: b2baa9ea093a36cadb2251bbd1f4390552d8ec0e
+
 
 ---
-# <a name="azure-ad-connect:-accounts-and-permissions"></a>Azure AD Connect：帳戶與權限
+# <a name="azure-ad-connect-accounts-and-permissions"></a>Azure AD Connect：帳戶與權限
 Azure AD Connect 安裝精靈提供兩個不同的路徑：
 
 * 在快速設定中，精靈需要更多權限，以便在不需要建立使用者或個別設定權限的情況下，輕鬆設定您的組態。
@@ -125,8 +129,11 @@ Azure AD Connect 安裝精靈提供兩個不同的路徑：
 ![AD 帳戶角色](./media/active-directory-aadconnect-accounts-permissions/aadsyncserviceaccountrole.png)
 
 ## <a name="next-steps"></a>後續步驟
-深入了解[整合內部部署身分識別與 Azure Active Directory](../active-directory-aadconnect.md)。
+深入了解 [整合內部部署身分識別與 Azure Active Directory](../active-directory-aadconnect.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 
