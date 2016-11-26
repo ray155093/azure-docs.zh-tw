@@ -28,7 +28,7 @@
 ### [Marketplace 應用程式](../app-service-web/web-sites-php-web-site-gallery.md)
 ### [PHP](../app-service-web/app-service-web-php-get-started.md)    
 
-# 作法：
+# 作法
 
 ## 計劃與設計
 ### [變更的項目](app-service-api-whats-changed.md)
@@ -167,6 +167,6 @@
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

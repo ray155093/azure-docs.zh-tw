@@ -1,13 +1,13 @@
 ---
 layout: LandingPage
 translationtype: Human Translation
-ms.sourcegitcommit: 2bb861bf0e2d3505b3e2eeeb3ce779ab718e7013
-ms.openlocfilehash: 53f98b140cd1daa82b71a2924312cb0c2b3ac553
+ms.sourcegitcommit: 9e86ae23b3fe3b8134f4725035c03837425cc0c4
+ms.openlocfilehash: 9a05d78edbf2c186d4a4d84f38eb6deff0cdafc5
 
 ---
 #<a name="traffic-manager-documentation"></a>流量管理員文件
 
-Azure 流量管理員可讓您控制使用者流量，將流量分散到不同資料中心的服務端點。  流量管理員會使用網域名稱系統 (DNS)，根據流量路由方法和端點的健全狀況，將用戶端要求導向到最適當的端點，給予您的應用程式大規模應用程式需求的可用性和回應性。
+Azure 流量管理員可讓您控制使用者流量，將流量分散到不同區域的服務端點。 流量管理員會使用網域名稱系統 (DNS)，根據選取的流量路由方法和端點的健全狀況，將用戶端要求導向到最適當的端點，給予您的應用程式更高的可用性和回應性。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -123,12 +123,12 @@ Azure 流量管理員可讓您控制使用者流量，將流量分散到不同�
     <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/traffic-manager.pdf">
         <div class="img"></div>
         <div class="text">
-下載 Service Fabric 文件 </div>
+下載流量管理員文件 </div>
     </a>
 </div>
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

@@ -68,20 +68,17 @@
 ## [管理更新](azure-stack-updates.md)
 ## [開發 Azure Stack](azure-stack-developer.md)
 ## 部署 SQL 或 MySQL 資源提供者
-### [在 Azure Stack 上使用 MySQL 資料庫做為 PaaS](azure-stack-mysql-rp-deploy-short.md)
-### [在 Azure Stack 上部署 SQL Server 資源提供者配接器](azure-stack-sql-rp-deploy-long.md)
-### [在 Azure Stack 上使用 SQL Database](azure-stack-sql-rp-deploy-short.md)
+### [在 Azure Stack 上使用 MySQL 資料庫做為 PaaS](azure-stack-mysql-resource-provider-deploy.md)
+### [在 Azure Stack 上部署 SQL Server 資源提供者配接器](azure-stack-sql-resource-provider-deploy.md)
 
-## 規劃和部署 Web Apps
-### [Azure Stack Web Apps 概觀](azure-stack-webapps-overview.md)
-### [開始使用 Azure Stack Web Apps 之前](azure-stack-webapps-before-you-get-started.md)
-### [在 Azure Stack 上部署 MySQL 資源提供者以搭配 Web Apps 使用](azure-stack-mysql-rp-deploy-long.md)
+## 規劃和部署 App Service
+### [Azure Stack Web Apps 概觀](azure-stack-app-service-overview.md)
+### [開始使用 Azure Stack Web Apps 之前](azure-stack-app-service-before-you-get-started.md)
 ### [Web Apps：新增更多 Web 背景工作角色](azure-stack-webapps-add-worker-roles.md)
-### [將 Web Apps 資源提供者新增到 Azure Stack](azure-stack-webapps-deploy.md)
+### [將 Web Apps 資源提供者新增到 Azure Stack](azure-stack-app-service-deploy.md)
 
 # 疑難排解
 ## [針對 Azure Stack 進行移難排解](azure-stack-troubleshooting.md)
-## [從失敗步驟重新執行部署](azure-stack-rerun-deploy.md)
 ## [Web Apps 資源提供者](azure-stack-webapps-troubleshoot-known-issues.md)
 
 # 資源
@@ -90,6 +87,6 @@
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-stack)
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

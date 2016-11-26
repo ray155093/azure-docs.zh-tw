@@ -5,6 +5,7 @@
 
 # 開始使用
 ## [建立和管理作業](scheduler-get-started-portal.md)
+## [概念與術語](scheduler-concepts-terms.md)
 
 # 作法
 ## 規劃和設計
@@ -14,7 +15,7 @@
 
 ## 開發
 ### [使用 REST API 進行複雜排程](scheduler-advanced-complexity.md)
-### [概念與術語](scheduler-concepts-terms.md)
+
 
 ## 安全
 ### [輸出驗證](scheduler-outbound-authentication.md)
@@ -25,13 +26,16 @@
 ## [REST](/rest/api/scheduler/)
 
 # 資源
-## [論壇](https://social.msdn.microsoft.com/Forums/home?forum=azurescheduler)
-## [服務更新](https://azure.microsoft.com/updates/?product=scheduler)
 ## [價格](https://azure.microsoft.com/pricing/details/scheduler/)
+## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/home?forum=azurescheduler)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-scheduler)
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=scheduler)
+## [服務更新](https://azure.microsoft.com/updates/?product=scheduler)
 
 
-<!--HONumber=Nov16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO4-->
 
 

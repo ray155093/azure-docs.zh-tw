@@ -1,6 +1,6 @@
 # 概觀
 ## [什麼是 Application Insights？](app-insights-overview.md)
-## [運作方式](app-insights-detect-triage-diagnose.md)
+## [devOps 週期的效能監視](app-insights-detect-triage-diagnose.md)
 
 # 開始使用
 ## 監視 Azure
@@ -63,8 +63,8 @@
 #### [計量警示](app-insights-alerts.md)
 
 ### [智慧型偵測](app-insights-proactive-diagnostics.md)
-#### [失敗偵測](app-insights-proactive-failure-diagnostics.md)
-#### [異常偵測](app-insights-proactive-performance-diagnostics.md)
+#### [失敗的異常](app-insights-proactive-failure-diagnostics.md)
+#### [效能異常](app-insights-proactive-performance-diagnostics.md)
 
 ## 分析
 
@@ -128,10 +128,10 @@
 ### [Java](app-insights-java-troubleshoot.md)
 
 # 參考
-## [Java](http://dl.windowsazure.com/applicationinsights/javadoc/)
+## [Java API](http://dl.windowsazure.com/applicationinsights/javadoc/)
 ## [.NET API](https://docs.microsoft.com/dotnet/api)
 ## [JavaScript API](https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md)
-## [分析](app-insights-analytics-reference.md)
+## [分析參考](app-insights-analytics-reference.md)
 ## [取樣](app-insights-sampling.md)
 ## [IP 位址](app-insights-ip-addresses.md)
 ## [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md)
@@ -145,7 +145,7 @@
 ## [適用於 Windows Phone 和市集的 Application Insights SDK 版本資訊](app-insights-release-notes-windows.md)
 ## [開發人員分析工具的版本資訊](app-insights-release-notes-vsix.md)
 ## [SDK 版本資訊 Application Insights](app-insights-release-notes.md)
-## [REST API](https://dev.applicationinsights.io/)
+## [資料存取 REST API](https://dev.applicationinsights.io/)
 
 # 資源
 ## [價格](https://azure.microsoft.com/pricing/details/application-insights/)  
@@ -157,6 +157,6 @@
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

@@ -1,8 +1,8 @@
 ---
 layout: LandingPage
 translationtype: Human Translation
-ms.sourcegitcommit: 87b9d22ec066108adb282606305315919b901ea0
-ms.openlocfilehash: 47f4cef5a2307e3b5a0c2f700f62727ee47b986a
+ms.sourcegitcommit: 2b15ee71010c4c2aa66621e9ac84c0b90c19ca51
+ms.openlocfilehash: 2ab86738ccbc48c39b6357c62b73de3053d13c75
 
 ---
 #<a name="azure-machine-learning-documentation"></a>Azure Machine Learning 文件
@@ -47,7 +47,7 @@ Azure Machine Learning 提供可建立預測性分析模型的工具，也提供
         </a>
     </li>
     <li>
-        <a href="/azure/machine-learning/machine-learning-data-science-for-beginnings-the-5-questions-data-science-answers">
+        <a href="/azure/machine-learning/machine-learning-data-science-for-beginners-the-5-questions-data-science-answers">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -118,13 +118,13 @@ Azure Machine Learning 提供可建立預測性分析模型的工具，也提供
         </a>
     </li>
     <li>
-        <a href="/azure/machine-learning/machine-learning-azure-ml-netsharp-reference-guide">
+        <a href="https://msdn.microsoft.com/library/azure/dn905974.aspx">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>Net#</h3>
-                        <p>Net# 神經網路語言參考</p>
+                        <h3>演算法</h3>
+                        <p>演算法和模組參考</p>
                     </div>
                 </div>
             </div>
@@ -143,6 +143,6 @@ Azure Machine Learning 提供可建立預測性分析模型的工具，也提供
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

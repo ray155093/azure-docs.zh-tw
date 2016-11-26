@@ -24,6 +24,8 @@
 #### [進階層](cdn-query-string-premium.md)
 ### [清除快取的資產](cdn-purge-endpoint.md)
 ### [預先載入快取資產](cdn-preload-endpoint.md)
+### [權杖驗證](cdn-token-auth.md)
+### [監視資源](cdn-resource-health.md)
 ### [使用規則覆寫行為](cdn-rules-engine.md)
 ### [取得即時警示](cdn-real-time-alerts.md)
 
@@ -55,6 +57,6 @@
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=cdn)
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

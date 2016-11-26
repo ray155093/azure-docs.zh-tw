@@ -5,12 +5,11 @@
 ## 案例
 ### [一般使用案例](documentdb-use-cases.md)
 ### [使用 DocumentDB 進行社交活動](documentdb-social-media-apps.md)
-### [多租用戶](http://blogs.msdn.com/b/documentdb/archive/2014/12/03/scaling-a-multi-tenant-application-with-azure-documentdb.aspx)
-
 
 # 開始使用
 ## 撰寫您的第一個應用程式
 ### [.NET 主控台應用程式](documentdb-get-started.md)
+### [.NET 核心主控台應用程式](documentdb-dotnetcore-get-started.md)
 ### [控台應用程式](documentdb-nodejs-get-started.md)
 ### [C++ 主控台應用程式](documentdb-cpp-get-started.md)
 ## 建置 Web 應用程式
@@ -18,6 +17,7 @@
 ### [Node.js Web 應用程式](documentdb-nodejs-application.md)
 ### [Java Web 應用程式](documentdb-java-application.md)
 ### [Python Flask Web 應用程式](documentdb-python-application.md)
+## [本機開發](documentdb-nosql-local-emulator.md)
 ## [常見問題集](documentdb-faq.md)
 
 # 作法
@@ -85,6 +85,7 @@
 # 參考
 ## [Java SDK](documentdb-sdk-java.md)
 ## [.NET SDK](documentdb-sdk-dotnet.md)
+## [.NET 核心 SDK](documentdb-sdk-dotnet-core.md)
 ## [.NET 範例](documentdb-dotnet-samples.md)
 ## [Node.js SDK](documentdb-sdk-node.md)
 ## [Node.js 範例](documentdb-nodejs-samples.md)
@@ -109,6 +110,6 @@
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

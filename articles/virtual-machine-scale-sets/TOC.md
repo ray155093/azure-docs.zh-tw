@@ -20,7 +20,7 @@
 ### [自動調整與擴展集](virtual-machine-scale-sets-autoscale-overview.md)
 ### [擴展集內的垂直縮放比例](virtual-machine-scale-sets-vertical-scale-reprovision.md)
 ### [擴展集的升級](virtual-machine-scale-sets-upgrade-scale-set.md)
-### [進階自動調整](virtual-machine-scale-sets-advanced-autoscale.md)
+### [進階自動調整](../monitoring-and-diagnostics/insights-advanced-autoscale-virtual-machine-scale-sets.md)
 ### [DSC 與擴展集](virtual-machine-scale-sets-dsc.md)
 
 ## 疑難排解
@@ -38,6 +38,6 @@
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-vm-scale-set)
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

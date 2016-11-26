@@ -18,6 +18,7 @@
 #### [Azure 儲存體](log-analytics-azure-storage.md)
 #### [Operations Manager](log-analytics-om-agents.md)
 #### [組態管理員](log-analytics-sccm.md)
+#### [OMS 閘道](log-analytics-oms-gateway.md)
 ### 資料來源
 #### [資料來源概觀](log-analytics-data-sources.md)
 #### [Windows 事件](log-analytics-data-sources-windows-events.md)
@@ -49,6 +50,7 @@
 #### [Surface Hub](log-analytics-surface-hubs.md)
 #### [VMware](log-analytics-vmware.md)
 #### [連線資料](log-analytics-wire-data.md)
+#### [SCOM 評估](log-analytics-scom-assessment.md)
 ## 分析
 ### [儀表板](log-analytics-dashboards.md)
 ### [檢視設計工具](log-analytics-view-designer.md)

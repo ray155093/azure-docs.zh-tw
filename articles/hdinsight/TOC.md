@@ -11,11 +11,11 @@
 # 開始使用
 ## [開始使用 Hadoop](hdinsight-hadoop-linux-tutorial-get-started.md)
 ## [開始使用互動式 Hive 預覽](hdinsight-hadoop-use-interactive-hive.md)
-## [開始使用 R 伺服器預覽](hdinsight-hadoop-r-server-get-started.md)
+## [以 R 伺服器開始](hdinsight-hadoop-r-server-get-started.md)
 ## [開始使用 Spark](hdinsight-apache-spark-jupyter-spark-sql.md)
 ## [開始使用 HBase 與 NoSQL](hdinsight-hbase-tutorial-get-started-linux.md)
 ## [開始使用 Storm](hdinsight-apache-storm-tutorial-get-started-linux.md)
-## [開始使用 Kafka 預覽](hdinsight-apache-kafka-get-started.md )
+## [開始使用 Kafka 預覽](hdinsight-apache-kafka-get-started.md)
 ## [Hadoop 沙箱](hdinsight-hadoop-emulator-get-started.md)
 ## [Data Lake 工具與 Hortonworks 沙箱](hdinsight-hadoop-emulator-visual-studio.md)
 ## [Visual Studio 適用的工具](hdinsight-hadoop-visual-studio-tools-get-started.md)
@@ -49,11 +49,12 @@
 ### [搭配使用 DataFu 與 Pig](hdinsight-hadoop-use-pig-datafu-udf.md)
 ### [隨選叢集](hdinsight-hadoop-create-linux-clusters-adf.md)
 ### [提交 Hadoop 工作](hdinsight-submit-hadoop-jobs-programmatically.md)
-## R 伺服器預覽
+## 使用 R 伺服器
 ### [儲存體選項](hdinsight-hadoop-r-server-storage.md)
 ### [安裝 RStudi](hdinsight-hadoop-r-server-install-r-studio.md)
 ### [計算內容](hdinsight-hadoop-r-server-compute-contexts.md)
 ## 使用 Spark 進行記憶體中的處理
+### [搭配 Data Lake Store](hdinsight-apache-spark-use-with-data-lake-store.md)
 ### [並用 BI 工具](hdinsight-apache-spark-use-bi-tools.md)
 ### [獨立應用程式](hdinsight-apache-spark-create-standalone-application.md)
 ### [處理串流事件](hdinsight-apache-spark-eventhub-streaming.md)
@@ -180,12 +181,12 @@
 #### [Hive 查詢效能](https://blogs.msdn.microsoft.com/bigdatasupport/2015/08/13/troubleshooting-hive-query-performance-in-hdinsight-hadoop-cluster/)
 
 # 參考
-## [REST API 參考資料](https://msdn.microsoft.com/library/mt622197.aspx)
-## [適用於遠端工作的 Spark REST API](https://msdn.microsoft.com/library/mt613023.aspx)
-## [PowerShell Cmdlet](https://msdn.microsoft.com/library/mt438705.aspx)
+## [PowerShell Cmdlet](/powershell/resourcemanager/azurerm.hdinsight/v2.2.0/azurerm.hdinsight)
 ## [.NET SDK for Hadoop](https://msdn.microsoft.com/library/mt271028.aspx)
 ## [HBase 適用的 .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/)
 ## [Avro 適用的 .NET 程式庫](https://hadoopsdk.codeplex.com/wikipage?title=Avro%20Library)
+## [REST API 參考資料](/rest/api/hdinsight/)
+## [適用於遠端工作的 Spark REST API](/rest/api/hdinsightspark/)
 
 # 相關參考
 ## Windows 叢集
@@ -223,6 +224,6 @@
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/hdinsight-self-guided-hadoop-training/)
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

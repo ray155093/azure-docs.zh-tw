@@ -1,13 +1,13 @@
 ---
 layout: LandingPage
 translationtype: Human Translation
-ms.sourcegitcommit: d299d9b2d08086fa7a5946d8270437f652edd746
-ms.openlocfilehash: d5a866740ed977f091d750767825ab30eda71c64
+ms.sourcegitcommit: 965b96507d66f3880bdf3b38362d1eb026afdb51
+ms.openlocfilehash: e72557a87088ba66a669d37ba0033da951e7fdb8
 
 ---
 #<a name="storage-documentation"></a>儲存體文件
 
-Azure 儲存體是現代應用程式的雲端儲存體解決方案，這些應用程式仰賴持續性、可用性和可調整性來滿足其客戶的需求。  它可高度擴充、富有彈性並可從全球各地存取，而且會自動根據流量平衡您的資料負載。  Azure 儲存體提供以下四個服務：Blob 儲存體、表格儲存體、佇列儲存體和檔案儲存體。
+Azure 儲存體是現代應用程式的雲端儲存體解決方案，這些應用程式仰賴持續性、可用性和可調整性來滿足其客戶的需求。  它可高度擴充、富有彈性並可從全球各地存取，而且會自動根據流量平衡您的資料負載。  Azure 儲存體提供以下四個服務：Blob 儲存體、表格儲存體、佇列儲存體、磁碟儲存體和檔案儲存體。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -182,6 +182,6 @@ Azure 儲存體是現代應用程式的雲端儲存體解決方案，這些應�
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 
