@@ -88,18 +88,18 @@ Azure 儲存體帳戶可讓您存取 Azure 儲存體中的 Azure Blob、佇列�
 
 例如，如果您的儲存體帳戶名為 *mystorageaccount*，則儲存體帳戶的預設端點將是：
 
-* Blob 服務：http://mystorageaccount.blob.core.windows.net
-* 表格服務：http://mystorageaccount.table.core.windows.net
-* 佇列服務：http://mystorageaccount.queue.core.windows.net
-* 檔案服務：http://mystorageaccount.file.core.windows.net
+* Blob 服務：http://*mystorageaccount*.blob.core.windows.net
+* 表格服務：http://*mystorageaccount*.table.core.windows.net
+* 佇列服務：http://*mystorageaccount*.queue.core.windows.net
+* 檔案服務：http://*mystorageaccount*.file.core.windows.net
 
 帳戶建立後，您可以使用 [Azure 傳統入口網站](https://manage.windowsazure.com) 中的儲存體儀表板來檢視儲存體帳戶的端點。
 
-用以存取儲存體帳戶中某物件的 URL，可藉由在端點後附加該物件在儲存體帳戶中的位置來建置。 例如，blob 位址可能會有如下格式︰http://mystorageaccount.blob.core.windows.net/mycontainer/myblob。
+用以存取儲存體帳戶中某物件的 URL，可藉由在端點後附加該物件在儲存體帳戶中的位置來建置。 例如，blob 位址可能會有如下格式︰http://*mystorageaccount*.blob.core.windows.net/mycontainer/myblob。
 
 您也可以設定與儲存體帳戶搭配使用的自訂網域名稱。 如需詳細資訊，請參閱 [針對 Blob 儲存體端點設定自訂網域名稱](storage-custom-domain-name.md) 。
 
-### <a name="service-colocation-with-an-affinity-group"></a>使用同質群組讓服務位於相同位置
+### <a name="service-co-location-with-an-affinity-group"></a>使用同質群組讓服務位於相同位置
 「同質群組」  是將您的 Azure 服務和 VM 與 Azure 儲存體帳戶依地理位置而形成的群組。 同質群組會將電腦工作負載置於相同的資料中心內或目標使用者對象附近，因而能改善服務效能。 此外，當您儲存體帳戶中的資料是由同一同質群組中的服務存取時，出口流量並不會產生任何費用。
 
 > [!NOTE]
