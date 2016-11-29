@@ -45,7 +45,7 @@ Machine Learning Studio 讓資料科學、預測分析、雲端資源和您的�
 ## <a name="get-started-with-machine-learning-studio"></a>開始使用 Machine Learning Studio
 第一次進入 [Machine Learning Studio](https://studio.azureml.net) 時，您會看到 [首頁]。 您可以從這裡檢視文件、影片、網路研討會，以及尋找其他重要資源。
 
-頂端有三個索引標籤：[首頁] (您開始的位置)、[Studio] 和 [資源庫]。
+頂端有三個索引標籤：**[首頁]** \(您開始的位置)、[Studio] 和 [資源庫]。
 
 ### <a name="studio"></a>Studio
 按一下 [Studio]  索引標籤，會要求您使用您的 Microsoft 帳戶，或是公司帳戶或學校帳戶登入。 登入之後，您會在左邊看到下列索引標籤：
