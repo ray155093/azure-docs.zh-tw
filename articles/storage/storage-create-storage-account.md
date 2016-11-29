@@ -43,17 +43,17 @@ Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲�
 
 例如，如果您的儲存體帳戶名為 *mystorageaccount*，則儲存體帳戶的預設端點將是：
 
-* Blob 服務：http://mystorageaccount.blob.core.windows.net
-* 表格服務：http://mystorageaccount.table.core.windows.net
-* 佇列服務：http://mystorageaccount.queue.core.windows.net
-* 檔案服務：http://mystorageaccount.file.core.windows.net
+* Blob 服務：http://*mystorageaccount*.blob.core.windows.net
+* 表格服務：http://*mystorageaccount*.table.core.windows.net
+* 佇列服務：http://*mystorageaccount*.queue.core.windows.net
+* 檔案服務：http://*http://mystorageaccount.file.core.windows.net*.file.core.windows.net
 
 > [!NOTE]
 > Blob 儲存體帳戶只會公開 Blob 服務端點。
 > 
 > 
 
-用以存取儲存體帳戶中某物件的 URL，可藉由在端點後附加該物件在儲存體帳戶中的位置來建置。 例如，blob 位址可能會有如下格式︰http://mystorageaccount.blob.core.windows.net/mycontainer/myblob。
+用以存取儲存體帳戶中某物件的 URL，可藉由在端點後附加該物件在儲存體帳戶中的位置來建置。 例如，blob 位址可能會有如下格式︰http://*mystorageaccount*.blob.core.windows.net/mycontainer/myblob。
 
 您也可以設定與儲存體帳戶搭配使用的自訂網域名稱。 對於傳統儲存體帳戶，如需詳細資訊，請參閱 [針對 Blob 儲存體端點設定自訂網域名稱](storage-custom-domain-name.md) 。 對於 Resource Manager 儲存體帳戶，這項功能尚未加入至 [Azure 入口網站](https://portal.azure.com) ，但是您可以使用 PowerShell 設定它。 如需詳細資訊，請參閱 [Set-AzureRmStorageAccount](https://msdn.microsoft.com/library/mt607146.aspx) cmdlet。  
 

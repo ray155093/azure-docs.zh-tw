@@ -15,12 +15,12 @@ ms.workload: big-data
 ms.date: 05/16/2016
 ms.author: edmaca
 translationtype: Human Translation
-ms.sourcegitcommit: 73d3e5577d0702a93b7f4edf3bf4e29f55a053ed
-ms.openlocfilehash: 7450400920517bed56f608fd74c62238f2fb9eab
+ms.sourcegitcommit: bfc8a774ebaaae7dbf1018614681134a5b10a769
+ms.openlocfilehash: 7938e0c2f0363bcce51375ddab9c68e8e8068186
 
 
 ---
-# <a name="tutorial-develop-usql-scripts-using-data-lake-tools-for-visual-studio"></a>教學課程：使用適用於 Visual Studio 的資料湖工具開發 U-SQL 指令碼
+# <a name="tutorial-develop-u-sql-scripts-using-data-lake-tools-for-visual-studio"></a>教學課程：使用適用於 Visual Studio 的資料湖工具開發 U-SQL 指令碼
 [!INCLUDE [get-started-selector](../../includes/data-lake-analytics-selector-get-started.md)]
 
 了解如何安裝適用於 Visual Studio 的資料湖工具，和使用適用於 Visual Studio 的資料湖工具來撰寫和測試 U-SQL 指令碼。
@@ -72,7 +72,7 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
 4. 瀏覽至您要上傳檔案的資料夾，
 5. 以滑鼠右鍵按一下任何空白區域，然後按一下 [上傳] 。
 
-## <a name="develop-usql-scripts"></a>開發 U-SQL 指令碼
+## <a name="develop-u-sql-scripts"></a>開發 U-SQL 指令碼
 資料湖分析工作是以 U-SQL 語言撰寫。 若要深入了解 U-SQL，請參閱[開始使用 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)和 [U-SQL 語言參考](http://go.microsoft.com/fwlink/?LinkId=691348)。
 
 **建立並提交資料湖分析工作**
@@ -146,7 +146,7 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
        適用於 Visual Studio 的資料湖工具能夠在您撰寫指令碼時自動縮排運算式。 這項功能預設會停用，使用者需要透過檢查 [U-SQL] -> [選項和設定] -> [切換] -> [啟用智慧縮排] 來啟用它。
    * **移至定義並尋找所有參考**
 
-       以滑鼠右鍵按一下資料列集/參數/資料行/UDO 等的名稱，然後按一下 [移至定義] (F12) 可讓您瀏覽至其定義。 按一下 [尋找所有參考] (Shift + F12) 會顯示所有參考。
+       以滑鼠右鍵按一下資料列集/參數/資料行/UDO 等的名稱，然後按一下 [移至定義] \(F12) 可讓您瀏覽至其定義。 按一下 [尋找所有參考] \(Shift + F12) 會顯示所有參考。
    * **插入 Azure 路徑**
 
        並非在撰寫指令碼時記住 Azure 檔案路徑並且手動輸入，適用於 Visual Studio 的 Data Lake 工具提供簡單的方法：在編輯器中按一下滑鼠右鍵，按一下 [插入 Azure 路徑]。 瀏覽至 Azure Blob 瀏覽器對話方塊中的檔案。 按一下 [確定] 。 檔案路徑就會插入您的程式碼。
@@ -195,7 +195,7 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
 ### <a name="heat-map"></a>熱度圖
 適用於 Visual Studio 的資料湖工具提供使用者可選取的工作檢視色彩覆疊，以表示每個階段的進度、資料 I/O、執行時間、I/O 輸送量。 透過此方法，使用者可以直接且直覺地找出潛在的問題和工作屬性的分佈。 您可以選擇要從下拉式清單中顯示的資料來源。  
 
-## <a name="run-usql-locally"></a>在本機執行 U-SQL
+## <a name="run-u-sql-locally"></a>在本機執行 U-SQL
 在 Visual Studio 中使用 U-SQL 本機執行體驗，您可以：
 
 * 在本機執行 U-SQL 指令碼以及 C# 組件。
@@ -225,7 +225,7 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
 
     針對在 Data Lake 服務上執行的指令碼，預設儲存體帳戶將用來做為根資料夾，並據以進行搜尋。
 
-### <a name="test-usql-scripts-locally"></a>在本機測試 U-SQL 指令碼
+### <a name="test-u-sql-scripts-locally"></a>在本機測試 U-SQL 指令碼
 如需開發 U-SQL 指令碼的指示，請參閱 [開發 U-SQL 指令碼](#develop-and-test-u-sql-scripts)。 若要在本機建置並執行 U-SQL 指令碼，請在叢集下拉式清單中選取 [(本機)]，然後按一下 [提交]。 請確定您已參考正確的資料：參考絕對路徑，或是將資料放置於 DataRoot 資料夾下。
 
 ![在本機提交 U-SQL Visual Studio 專案](./media/data-lake-analytics-data-lake-tools-get-started/data-lake-analytics-data-lake-tools-submit-job-local-run.png)
@@ -255,7 +255,10 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
 1. 建立 C# 組件專案，並建置它來產生輸出 dll。
 2. 使用 U-SQL 陳述式來註冊 dll：
 
-     CREATE ASSEMBLY assemblyname FROM @"..\..\path\to\output\.dll";
+    ```
+    CREATE ASSEMBLY assemblyname FROM @"..\..\path\to\output\.dll";
+    ```
+    
 3. 在 C# 程式碼中設定中斷點。
 4. 按下 **F5** 以便在本機為參考 C# dll 的指令碼偵錯。  
 
@@ -274,7 +277,7 @@ U-SQL 是高度可擴充、高度可延伸的語言，用來準備、轉換和�
 * [開始使用 Azure 資料湖分析 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)
 * [針對資料湖分析工作開發 U-SQL 使用者定義運算子](data-lake-analytics-u-sql-develop-user-defined-operators.md)
 
-## <a name="appxa-powershell-sample-for-preparing-the-tutorial"></a>附錄 A：準備教學課程所需的 PowerShell 範例
+## <a name="appx-a-powershell-sample-for-preparing-the-tutorial"></a>附錄 A：準備教學課程所需的 PowerShell 範例
 下列 PowerShell 指令碼會為您準備 Azure Data Lake Analytics 帳戶和來源資料，讓您可以跳到 [開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md#develop-u-sql-scripts)一節。
 
     #region - used for creating Azure service names
