@@ -417,7 +417,7 @@ ms.openlocfilehash: 968e24b0441575be7ef17aac8ffaddb8fd16d3c6
 5. 建置專案並確認一切正確無誤。
 
 > [!NOTE]
-> 如果您在 Xcode7 中遇到有關 Bitcode 支援的建置錯誤，您應該在 Xcode 中將 [建置設定] > [啟用 Bitcode] (ENABLE_BITCODE) 變更為 [否]。 通知中樞 SDK 目前不支援 Bitcode。 
+> 如果您在 Xcode7 中遇到有關 Bitcode 支援的建置錯誤，您應該在 Xcode 中將 [建置設定] > [啟用 Bitcode] \(ENABLE_BITCODE) 變更為 [否]。 通知中樞 SDK 目前不支援 Bitcode。 
 > 
 > 
 
