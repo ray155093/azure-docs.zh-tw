@@ -16,6 +16,7 @@
 ### [Marketplace](documentation-government-manage-marketplace.md)
 ### [適用於合作夥伴的 Marketplace](documentation-government-manage-marketplace-partners.md)
 ### [資源管理員](documentation-government-manage-azure-resource-manager.md)
+### [Operations Management Suite](documentation-government-manage-oms.md)
 ### [訂用帳戶](documentation-government-manage-subscriptions.md)
 
 # 參考

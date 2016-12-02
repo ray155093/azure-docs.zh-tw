@@ -1,7 +1,6 @@
 # [概觀](media-services-overview.md)
 ## [概念](media-services-concepts.md)
 
-
 # 開始使用
 ## [建立和管理帳戶](media-services-portal-create-account.md)
 ## [設定開發環境](media-services-set-up-computer.md)
@@ -16,20 +15,18 @@
 
 # 作法
 ## 管理
-### [在入口網站中管理串流端點](media-services-portal-manage-streaming-endpoints.md)
+### 管理帳戶
+#### [PowerShell](media-services-manage-with-powershell.md)
+#### [REST](/rest/api/media/mediaservice)
 ### 管理實體
 #### [.NET](media-services-dotnet-manage-entities.md)
 #### [REST](media-services-rest-manage-entities.md)
-### [以 PowerShell 管理帳戶](media-services-manage-with-powershell.md)
-### [以 Media Encoder Standard 裁剪影片](media-services-crop-video.md)
-### [如何：更換儲存體存取金鑰之後更新媒體服務](media-services-roll-storage-access-keys.md)
-### [配額和限制](media-services-quotas-and-limitations.md)
-### 篩選器
-#### [使用 Azure 媒體服務 .NET SDK 建立篩選器](media-services-dotnet-dynamic-manifest.md)
-#### [如何使用媒體編碼器標準為資產編碼](media-services-rest-encode-asset.md)
 ### 以程式設計方式連線
 #### [.NET](media-services-dotnet-connect-programmatically.md)
 #### [REST](media-services-rest-connect-programmatically.md)
+### [在入口網站中管理串流端點](media-services-portal-manage-streaming-endpoints.md)
+### [如何：更換儲存體存取金鑰之後更新媒體服務](media-services-roll-storage-access-keys.md)
+### [配額和限制](media-services-quotas-and-limitations.md)
 
 ## 上傳內容
 ### 將檔案上傳至帳戶
@@ -38,49 +35,74 @@
 #### [REST](media-services-rest-upload-files.md)
 ### [複製現有的 Blob](media-services-copying-existing-blob.md)
 
-## 編碼
-### [內容](media-services-encode-asset.md)
-#### 使用媒體編碼器標準為資產編碼
+## [編碼內容](media-services-encode-asset.md)
+### [比較編碼器](media-services-compare-encoders.md)
+### [錯誤碼](media-services-encoding-error-codes.md)
+### 媒體編碼器標準 (MES)
+#### [媒體編碼器標準格式和轉碼器](media-services-media-encoder-standard-formats.md)
+#### MES 結構描述
+##### [媒體編碼器標準結構描述](media-services-mes-schema.md)
+##### [輸入中繼資料](media-services-input-metadata-schema.md)
+##### [輸出中繼資料](media-services-output-metadata-schema.md)
+#### MES 預設值 
+##### [H264 多重位元速率 1080p 音訊 5.1](media-services-mes-preset-H264-Multiple-Bitrate-1080p-Audio-5.1.md)
+##### [H264 多重位元速率 1080p](media-services-mes-preset-H264-Multiple-Bitrate-1080p.md)
+##### [H264 多重位元速率 16x9 SD 音訊 5.1](media-services-mes-preset-H264-Multiple-Bitrate-16x9-SD-Audio-5.1.md)
+##### [H264 多重位元速率 16x9 SD](media-services-mes-preset-H264-Multiple-Bitrate-16x9-SD.md)
+##### [H264 多重位元速率 16x9 (iOS 適用)](media-services-mes-preset-H264-Multiple-Bitrate-16x9-for-iOS.md)
+##### [H264 多重位元速率 4K 音訊 5.1](media-services-mes-preset-H264-Multiple-Bitrate-4K-Audio-5.1.md)
+##### [H264 多重位元速率 4K](media-services-mes-preset-H264-Multiple-Bitrate-4K.md)
+##### [H264 多重位元速率 4x3 SD 音訊 5.1](media-services-mes-preset-H264-Multiple-Bitrate-4x3-SD-Audio-5.1.md)
+##### [H264 多重位元速率 4x3 SD](media-services-mes-preset-H264-Multiple-Bitrate-4x3-SD.md)
+##### [H264 多重位元速率 4x3 (適用於 iOS)](media-services-mes-preset-H264-Multiple-Bitrate-4x3-for-iOS.md)
+##### [H264 多重位元速率 720p 音訊 5.1](media-services-mes-preset-H264-Multiple-Bitrate-720p-Audio-5.1.md)
+##### [H264 多重位元速率 720p](media-services-mes-preset-H264-Multiple-Bitrate-720p.md)
+##### [H264 單一位元速率 1080p 音訊 5.1](media-services-mes-preset-H264-Single-Bitrate-1080p-Audio-5.1.md)
+##### [H264 單一位元速率 1080p](media-services-mes-preset-H264-Single-Bitrate-1080p.md)
+##### [H264 單一位元速率 16x9 SD 音訊 5.1](media-services-mes-preset-H264-Single-Bitrate-16x9-SD-Audio-5.1.md)
+##### [H264 單一位元速率 16x9 SD](media-services-mes-preset-H264-Single-Bitrate-16x9-SD.md)
+##### [H264 單一位元速率 4K 音訊 5.1](media-services-mes-preset-H264-Single-Bitrate-4K-Audio-5.1.md)
+##### [H264 單一位元速率 4K](media-services-mes-preset-H264-Single-Bitrate-4K.md)
+##### [H264 單一位元速率 4x3 SD 音訊 5.1](media-services-mes-preset-H264-Single-Bitrate-4x3-SD-Audio-5.1.md)
+##### [H264 單一位元速率 4x3 SD](media-services-mes-preset-H264-Single-Bitrate-4x3-SD.md)
+##### [H264 單一位元速率 720p 音訊 5.1](media-services-mes-preset-H264-Single-Bitrate-720p-Audio-5.1.md)
+##### [H264 單一位元速率 720p](media-services-mes-preset-H264-Single-Bitrate-720p.md)
+##### [H264 單一位元速率 720p (適用於 Android)](media-services-mes-preset-H264-Single-Bitrate-720p-for-Android.md)
+##### [H264 單一位元速率高品質 SD (適用於 Android)](media-services-mes-preset-H264-Single-Bitrate-High-Quality-SD-for-Android.md)
+##### [H264 單一位元速率低品質 SD (適用於 Android)](media-services-mes-preset-H264-Single-Bitrate-Low-Quality-SD-for-Android.md)
+#### 以媒體編碼器標準編碼
 ##### [入口網站](media-services-portal-encode.md)
 ##### [.NET](media-services-dotnet-encode-with-media-encoder-standard.md)
-#### [如何搭配 .NET 使用媒體編碼器標準產生縮圖](media-services-dotnet-generate-thumbnail-with-mes.md)
-#### [進階編碼](media-services-advanced-encoding-with-mes.md)
+##### [REST](media-services-rest-encode-asset.md)
+#### [使用 MES 進階編碼](media-services-advanced-encoding-with-mes.md)
+##### [如何搭配 .NET 使用媒體編碼器標準產生縮圖](media-services-dotnet-generate-thumbnail-with-mes.md)
+##### [以 Media Encoder Standard 裁剪影片](media-services-crop-video.md)
+### Media Encoder Premium Workflow
+#### [Media Encoder Premium Workflow 格式和轉碼器](media-services-premium-workflow-encoder-formats.md)
+#### 使用 Media Encoder Premium Workflow 進行編碼
 ##### [媒體編碼器高階工作流程](media-services-encode-with-premium-workflow.md)
 ##### [媒體編碼器高階工作流程教學課程](media-services-media-encoder-premium-workflow-tutorials.md)
 ##### [使用工作流程設計工具建立進階編碼工作流程](media-services-workflow-designer.md)
 ##### [進階工作流程與多個輸入](media-services-media-encoder-premium-workflow-multiplefilesinput.md)
-
-#### 結構描述 
-#####[媒體編碼器標準](media-services-mes-schema.md)
-#####[輸入中繼資料](media-services-input-metadata-schema.md)
-#####[輸出中繼資料](media-services-output-metadata-schema.md)
-
-#### 舊式編碼器
-##### [使用 Azure 媒體封裝工具](media-services-static-packaging.md)
-
-### [即時串流](media-services-manage-channels-overview.md)
-#### [內部部署編碼器](media-services-live-streaming-with-onprem-encoders.md)
-#### 內部部署編碼器教學課程
-##### [入口網站](media-services-portal-live-passthrough-get-started.md)
-##### [.NET](media-services-dotnet-live-encode-with-onpremises-encoders.md)
-#### [使用雲端編碼器即時串流](media-services-manage-live-encoder-enabled-channels.md)
-#### 雲端編碼器教學課程
-##### [入口網站](media-services-portal-creating-live-encoder-enabled-channel.md)
-##### [.NET](media-services-dotnet-creating-live-encoder-enabled-channel.md)
-#### [設定內部部署編碼器與雲端編碼器搭配運作](media-services-live-encoders-overview.md)
-#### [處理長時間執行的作業](media-services-dotnet-long-operations.md)
-#### [分散式 MP4 即時內嵌規格](media-services-fmp4-live-ingest-overview.md)
-#### [動態封裝](media-services-dynamic-packaging-overview.md)
-
-### 媒體處理
+### 媒體處理器
 #### [.NET](media-services-get-media-processor.md)
 #### [REST](media-services-rest-get-media-processor.md)
+### 取代
+#### [靜態封裝和加密](media-services-static-packaging.md)
 
-### 設定單一位元速率即時串流的編碼器
+## [即時串流](media-services-manage-channels-overview.md)
+### [內部部署編碼器](media-services-live-streaming-with-onprem-encoders.md)
+### [使用雲端編碼器即時串流](media-services-manage-live-encoder-enabled-channels.md)
+### 雲端編碼器教學課程
+#### [入口網站](media-services-portal-creating-live-encoder-enabled-channel.md)
+#### [.NET](media-services-dotnet-creating-live-encoder-enabled-channel.md)
+### [設定內部部署編碼器與雲端編碼器搭配運作](media-services-live-encoders-overview.md)
 #### [Elemental Live 編碼器](media-services-configure-elemental-live-encoder.md)
 #### [FMLE 編碼器](media-services-configure-fmle-live-encoder.md)
 #### [NewTek TriCaster 編碼器](media-services-configure-tricaster-live-encoder.md)
 #### [Wirecast 編碼器](media-services-configure-wirecast-live-encoder.md)
+### [處理長時間執行的作業](media-services-dotnet-long-operations.md)
+### [分散式 MP4 即時內嵌規格](media-services-fmp4-live-ingest-overview.md)
 
 ## [保護](media-services-content-protection-overview.md)
 ### [在入口網站中設定內容保護](media-services-portal-protect-content.md)
@@ -106,14 +128,20 @@
 #### [REST](media-services-rest-configure-content-key-auth-policy.md)
 
 ## [分析](media-services-analytics-overview.md)
+### [使用入口網站分析媒體](media-services-portal-analyze.md)
 ### [利用索引器 2 處理](media-services-process-content-with-indexer2.md)
 ### [利用索引器處理](media-services-index-content.md)
 ### [利用 Hyperlapse 處理](media-services-hyperlapse-content.md)
 ### [利用臉部偵測器處理](media-services-face-and-emotion-detection.md)
 ### [利用動態偵測器處理](media-services-motion-detection.md)
 ### [利用臉部修訂處理](media-services-face-redaction.md)
+#### [臉部修訂逐步解說](media-services-redactor-walkthrough.md)
 ### [利用視訊縮圖處理](media-services-video-summarization.md)
 ### [利用 OCR 處理](media-services-video-optical-character-recognition.md)
+
+## [設定遙測](media-services-telemetry-overview.md)
+###[.NET](media-services-dotnet-telemetry.md)
+###[REST](media-services-rest-telemetry.md)
 
 ## 調整
 ### [媒體處理](media-services-scale-media-processing-overview.md)
@@ -124,6 +152,7 @@
 #### [入口網站](media-services-portal-scale-streaming-endpoints.md)
 
 ## [傳遞內容](media-services-deliver-content-overview.md)
+### [動態封裝](media-services-dynamic-packaging-overview.md)
 ### [篩選器和動態資訊清單概觀](media-services-dynamic-manifest-overview.md)
 ### 建立篩選器
 #### [.NET](media-services-dotnet-dynamic-manifest.md)
@@ -162,30 +191,20 @@
 ## 疑難排解
 ### [常見問題集](media-services-frequently-asked-questions.md)
 ### [即時串流的疑難排解指南](media-services-troubleshooting-live-streaming.md)
-###[錯誤碼](media-services-error-codes.md)
-###[重試邏輯](media-services-retry-logic-in-dotnet-sdk.md)
+### [錯誤碼](media-services-error-codes.md)
+### [重試邏輯](media-services-retry-logic-in-dotnet-sdk.md)
 
 # 參考
 ## [版本資訊](media-services-release-notes.md)
 ## [.NET](media-services-dotnet-how-to-use.md)
 ## [REST](media-services-rest-how-to-use.md)
-## [Media Encoder Premium Workflow 格式和轉碼器](media-services-premium-workflow-encoder-formats.md)
-## [媒體編碼器標準格式和轉碼器](media-services-media-encoder-standard-formats.md)
 
 # 資源
 ## [價格](https://azure.microsoft.com/pricing/details/media-services/)
 ## [Azure 媒體服務社群](media-services-community.md)
+## [影片](https://azure.microsoft.com/resources/videos/index/?services=media-services)
 
 
-
-
-
-
-
-
-
-
-
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Nov16_HO5-->
 
 

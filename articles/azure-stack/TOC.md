@@ -79,7 +79,6 @@
 
 # 疑難排解
 ## [針對 Azure Stack 進行移難排解](azure-stack-troubleshooting.md)
-## [Web Apps 資源提供者](azure-stack-webapps-troubleshoot-known-issues.md)
 
 # 資源
 ## [工具](azure-stack-tools-paas-services.md)

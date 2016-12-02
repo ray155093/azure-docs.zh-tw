@@ -47,7 +47,7 @@
 ### [配對的命名空間](service-bus-paired-namespaces.md)
 ### [建立實體與自動轉寄的鏈結](service-bus-auto-forwarding.md)
 ## 管理
-### [使用 ARM 範本](service-bus-resource-manager-overview.md)
+### [使用 Azure Resource Manager 範本](service-bus-resource-manager-overview.md)
 ### [使用 PowerShell 佈建實體](service-bus-powershell-how-to-provision.md)
 
 # 參考
@@ -57,6 +57,10 @@
 ## [配額](service-bus-quotas.md)
 ## [.NET](/dotnet/api/)
 ## [REST](/rest/api/servicebus/)
+## [SQLFilter 語法](service-bus-messaging-sql-filter.md)
+## [SQLRuleAction 語法](service-bus-messaging-sql-rule-action.md)
+## [AMQP1.0 通訊協定指南](service-bus-amqp-protocol-guide.md)
+### [AMQP 1.0 以要求與回應為基礎的作業](service-bus-amqp-request-response.md)
 
 # 資源
 ## [部落格](https://blogs.msdn.microsoft.com/servicebus/)
@@ -69,6 +73,6 @@
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=service-bus)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Nov16_HO5-->
 
 

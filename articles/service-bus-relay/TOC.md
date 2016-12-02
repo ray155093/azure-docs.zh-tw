@@ -21,7 +21,7 @@
 ## [範例](service-bus-relay-samples.md)
 ## [混合式連線 .NET API](/dotnet/api/microsoft.servicebus)
 ## [WCF 轉送的 .NET API](/dotnet/api/microsoft.servicebus)
-
+## [連接埠設定](service-bus-relay-port-settings.md)
 
 # 資源
 ## [部落格](https://blogs.msdn.microsoft.com/servicebus/)
@@ -33,6 +33,6 @@
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=service-bus)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Nov16_HO5-->
 
 

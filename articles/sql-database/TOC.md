@@ -111,7 +111,7 @@
 ### 學習
 #### [概觀](sql-database-business-continuity.md)
 #### [資料庫備份](sql-database-automated-backups.md)
-#### [長期保留](sql-database-long-term-retention.md) 
+#### [長期保留](sql-database-long-term-retention.md)
 #### [使用備份進行資料庫復原](sql-database-recovery-using-backups.md)
 #### [災害復原的驗證需求](sql-database-geo-replication-security-config.md)
 #### [商務持續性設計案例](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
@@ -358,8 +358,6 @@
 ## [BCP](https://msdn.microsoft.com/library/ms162802.aspx)
 ## [sqlcmd](https://msdn.microsoft.com/library/ms162773.aspx)
 ## [SqlPackage](https://msdn.microsoft.com/hh550080.aspx)
-
-
 
 
 <!--HONumber=Nov16_HO4-->

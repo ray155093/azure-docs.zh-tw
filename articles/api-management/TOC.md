@@ -13,7 +13,7 @@
 ### [匯入 API 定義](api-management-howto-import-api.md)
 ## 保護您的後端
 ### [使用 AAD 保護 Web API 後端](api-management-howto-protect-backend-with-aad.md)
-### [透過 VPN 或 ExpressRoute 連接](api-management-howto-setup-vpn.md)
+### [連接到虛擬網路](api-management-using-with-vnet.md)
 ### [相互憑證驗證](api-management-howto-mutual-certificates.md)
 ## 設定原則
 ### [自訂快取](api-management-sample-cache-by-key.md)
@@ -63,6 +63,6 @@
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Nov16_HO5-->
 
 
