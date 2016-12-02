@@ -1,5 +1,5 @@
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
-2. 在 Jumpbar 中，按一下 [新增]，按一下 [資料 + 儲存體]，然後按一下 [DocumentDB (NoSQL)]。
+2. 在 Jumpbar 中，按一下 [新增]，按一下 [資料庫]，然後按一下 [NoSQL (DocumentDB)]。
    
    ![Azure 入口網站的螢幕擷取畫面，其中反白顯示 [其他服務] 和 DocumentDB (NoSQL)](./media/documentdb-create-dbaccount/create-nosql-db-databases-json-tutorial-1.png)  
 3. 在 [新增帳戶]  刀鋒視窗中，指定想要的 DocumentDB 帳戶組態。
@@ -16,11 +16,11 @@
    ![快速建立資料庫 - 通知中樞的螢幕擷取畫面，顯示正在建立 DocumentDB 帳戶](./media/documentdb-create-dbaccount/create-nosql-db-databases-json-tutorial-4.png)  
    
    ![通知中樞的螢幕擷取畫面，顯示已成功建立 DocumentDB 帳戶並部署到資源群組 - 線上資料庫建立者通知](./media/documentdb-create-dbaccount/create-nosql-db-databases-json-tutorial-5.png)
-5. 建立好的 DocumentDB 帳戶可立即以預設值來使用。 DocumentDB 帳戶的預設一致性會設定為 [工作階段] 。  您可以藉由按一下資源功能表中的 [預設一致性]  ，調整預設一致性。 若要深入了解 DocumentDB 所提供的一致性層級，請參閱 [DocumentDB 中的一致性層級](../articles/documentdb/documentdb-consistency-levels.md)。
-   
-   ![[資源群組] 刀鋒視窗的螢幕擷取畫面 - 開始進行應用程式開發](./media/documentdb-create-dbaccount/create-nosql-db-databases-json-tutorial-6.png)  
-   
-   ![一致性層級刀鋒視窗的螢幕擷取畫面 - 工作階段一致性](./media/documentdb-create-dbaccount/create-nosql-db-databases-json-tutorial-7.png)  
+5. 建立好的 DocumentDB 帳戶可立即以預設值來使用。 若要檢閱預設設定，請按一下 Jumpbar 中的 [NoSQL (DocumentDB)] 圖示，按一下您的新帳戶，然後按一下 [資源] 功能表中的 [預設一致性]。
+
+   ![螢幕擷取畫面顯示如何在 Azure 入口網站中開啟您的 Azure DocumentDB 資料庫帳戶](./media/documentdb-create-dbaccount/azure-documentdb-database-open-account-portal.png)  
+
+   DocumentDB 帳戶的預設一致性會設定為 [工作階段] 。  您可以藉由按一下資源功能表中的 [預設一致性]  ，調整預設一致性。 若要深入了解 DocumentDB 所提供的一致性層級，請參閱 [DocumentDB 中的一致性層級](../articles/documentdb/documentdb-consistency-levels.md)。
 
 [作法：建立 DocumentDB 帳戶]: #Howto
 [後續步驟]: #NextSteps
