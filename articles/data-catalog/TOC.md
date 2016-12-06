@@ -2,15 +2,14 @@
 ## [什麼是資料目錄？](data-catalog-what-is-data-catalog.md)
 ## [常見案例](data-catalog-common-scenarios.md)
 ## [支援的資料來源](data-catalog-dsr.md)
-## [新功能](data-catalog-whats-new.md)
 
 # 開始使用
 ## [開始使用 Azure 資料目錄](data-catalog-get-started.md)
 ## [採用 Azure 資料目錄](data-catalog-adopting-data-catalog.md)
-## [Azure 資料目錄必要條件](data-catalog-prerequisites.md)
+## [必要條件](data-catalog-prerequisites.md)
 ## [常見問題集](data-catalog-frequently-asked-questions.md)
 
-# 作法：
+# 作法
 ## [註冊資料來源](data-catalog-how-to-register.md)
 ## [探索資料來源](data-catalog-how-to-discover.md)
 ## [註解資料來源](data-catalog-how-to-annotate.md)
@@ -30,12 +29,16 @@
 ## [Azure 資料目錄的鍵盤快速鍵](data-catalog-keyboard-shortcuts.md)
 ## [術語](data-catalog-terminology.md)
 ## [版本資訊](data-catalog-release-notes.md)
-## [REST](https://docs.microsoft.com/rest/api/datacatalog/)
+## [REST](/rest/api/datacatalog/)
 
 # 資源
+## [版本資訊](data-catalog-whats-new.md)
+## [服務更新](https://azure.microsoft.com/updates/?product=data-catalog)
 ## [價格](https://azure.microsoft.com/pricing/details/data-catalog/)
+## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azuredatacatalog)
+## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-data-catalog)
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

@@ -1,8 +1,8 @@
 ---
 layout: LandingPage
 translationtype: Human Translation
-ms.sourcegitcommit: 29794682e0258a6d30c9b2ac96b6e58272bc3f48
-ms.openlocfilehash: 97a0f22bf72b30e6adc92e9b8d7e58a25e67c14b
+ms.sourcegitcommit: 87b9d22ec066108adb282606305315919b901ea0
+ms.openlocfilehash: 38ae37f4892fb32422ca8d7880a7b38674f29610
 
 ---
 # <a name="azure-web-apps-documentation"></a>Azure Web Apps 文件
@@ -75,43 +75,25 @@ App Service Web Apps 是受到完整管理的計算平台，非常適合用來�
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>使用 Visual Studio 建立 ASP.NET Web 應用程式</h3>
+                        <h3>使用 ASP.NET 和 Visual Studio 中開始使用 Web Apps</h3>
                     </div>
                 </div>
             </div>
         </div>
         </a>
-    </li>
-    <li>
-        <a href="/azure/app-service-web/web-sites-dotnet-get-started">
+    </li> 
+     <li>
+        <a href="/azure/app-service-web/web-sites-java-get-started">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="media/index/dotnet.svg" alt="" />
+                            <img src="media/index/java.svg" alt="" />
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>使用 Visual Studio 建立 ASP.NET Web 應用程式</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </a>
-    </li>
-    <li>
-        <a href="/azure/app-service-web/web-sites-dotnet-get-started">
-        <div class="cardSize">
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="media/index/dotnet.svg" alt="" />
-                        </div>
-                    </div>
-                    <div class="cardText">
-                        <h3>使用 Visual Studio 建立 ASP.NET Web 應用程式</h3>
+                        <h3>開始使用以 Java 撰寫的 Web Apps</h3>
                     </div>
                 </div>
             </div>
@@ -129,7 +111,7 @@ App Service Web Apps 是受到完整管理的計算平台，非常適合用來�
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>在 Azure App Service 中開始使用 Node.js Web 應用程式</h3>
+                        <h3>開始使用以 Node.js 撰寫的 Web Apps </h3>
                     </div>
                 </div>
             </div>
@@ -147,25 +129,26 @@ App Service Web Apps 是受到完整管理的計算平台，非常適合用來�
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>使用 Python Tools 2.2 建立 Web 應用程式</h3>
+                        <h3>開始使用以 Python Tools 2.2 撰寫的 Web Apps</h3>
                     </div>
                 </div>
             </div>
         </div>
         </a>
     </li>
-    <li>
-        <a href="/azure/app-service-web/web-sites-java-get-started">
+   
+     <li>
+        <a href="/azure/app-service-web/app-service-web-php-get-started">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardImageOuter">
                         <div class="cardImage">
-                            <img src="media/index/java.svg" alt="" />
+                            <img src="media/index/tutorial.svg" alt="" />
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>在 Azure App Service 中建立 Java Web 應用程式</h3>
+                        <h3>開始使用以 PHP 撰寫的 Web Apps</h3>
                     </div>
                 </div>
             </div>
@@ -183,7 +166,29 @@ App Service Web Apps 是受到完整管理的計算平台，非常適合用來�
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>在 Azure App Service 中建立 WordPress Web 應用程式</h3>
+                        <h3>在 Azure App Service 中開始使用 WordPress</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </a>
+    </li>
+   
+</ul>
+
+---
+
+## <a name="reference"></a>參考
+
+<ul class="panelContent cardsW">
+    <li>
+        <a href="/cli/azure/appservice/web">
+        <div class="cardSize">
+            <div class="cardPadding">
+                <div class="card">
+                    <div class="cardText">
+                        <h3>Azure CLI</h3>
+                        <p>Web Apps Azure CLI 參考</p>
                     </div>
                 </div>
             </div>
@@ -191,40 +196,49 @@ App Service Web Apps 是受到完整管理的計算平台，非常適合用來�
         </a>
     </li>
     <li>
-        <a href="/azure/app-service-web/app-service-web-php-get-started">
+        <a href="/java/api/">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
-                    <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="media/index/tutorial.svg" alt="" />
-                        </div>
-                    </div>
                     <div class="cardText">
-                        <h3>建立、設定 PHP Web 應用應式並且部署至 Azure</h3>
+                        <h3>Java</h3>
+                        <p>Java API 參考</p>
                     </div>
                 </div>
             </div>
         </div>
         </a>
     </li>
-</ul>
-
----
-
-## <a name="reference"></a>參考
-
-### <a name="azure-cli"></a>Azure CLI
-[Web Apps Azure CLI 參考](/cli/azure/)
-
-### <a name="java"></a>Java
-[Web AppsJava API 參考](/java/api/)
-
-### <a name="net"></a>.NET
-[Web Apps 受管理的參考](/dotnet/api)
-
-### <a name="rest"></a>REST
-[Web Apps REST API 參考](/rest/api/appservice)
+     <li>
+        <a href="/dotnet/api">
+        <div class="cardSize">
+            <div class="cardPadding">
+                <div class="card">
+                    <div class="cardText">
+                        <h3>.NET</h3>
+                        <p>.NET 受管理的參考</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </a>
+    </li>
+     <li>
+        <a href="/rest/api/appservice">
+        <div class="cardSize">
+            <div class="cardPadding">
+                <div class="card">
+                    <div class="cardText">
+                        <h3>REST</h3>
+                        <p>Web Apps REST API 參考</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </a>
+    </li>
+    </ul>
+    
 
 <div class="downloadHolder">
     <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/app-service-web.pdf">
@@ -235,6 +249,7 @@ App Service Web Apps 是受到完整管理的計算平台，非常適合用來�
 </div>
 
 
-<!--HONumber=Nov16_HO2-->
+
+<!--HONumber=Nov16_HO4-->
 
 

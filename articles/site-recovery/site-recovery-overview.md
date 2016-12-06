@@ -15,8 +15,8 @@ ms.workload: storage-backup-recovery
 ms.date: 10/30/2016
 ms.author: raynew
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 64d085bff08d9a824204851d32504fac3e79024c
+ms.sourcegitcommit: 7455d6f99ed8ceb401224f98105f7b651f55c724
+ms.openlocfilehash: 98bf94960c39565243995a1c4dd45787478b8f40
 
 
 ---
@@ -30,7 +30,7 @@ Site Recovery 可藉由協調虛擬機器與實體伺服器內部部署的複寫
 當主要網站發生故障時，您會容錯移轉至次要網站，讓工作負載保持可供存取和使用。 當它恢復正常作業時，容錯回復至您的主要位置。
 
 ## <a name="site-recovery-in-the-azure-portal"></a>Azure 入口網站中的 Site Recovery
-Azure 有二種用來建立和處理資源的不同[部署模型](../resource-manager-deployment-model.md)。 Azure Resource Manager 模型和傳統的服務管理模型。 Azure 同時也有兩個入口網站。 [Azure 傳統入口網站](https://manage.windowsazure.com/)，以及 [Azure 入口網站](https://portal.azure.com)。
+Azure 有二種用來建立和處理資源的不同[部署模型](../azure-resource-manager/resource-manager-deployment-model.md)。 Azure Resource Manager 模型和傳統的服務管理模型。 Azure 同時也有兩個入口網站。 [Azure 傳統入口網站](https://manage.windowsazure.com/)，以及 [Azure 入口網站](https://portal.azure.com)。
 
 * 在傳統入口網站和 Azure 入口網站中都可部署 Site Recovery。
 * 在 Azure 傳統入口網站中，您可以支援搭配傳統服務管理模型的 Site Recovery。
@@ -79,6 +79,6 @@ Site Recovery 提供應用程式感知複寫，讓工作負載和應用程式在
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

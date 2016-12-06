@@ -21,7 +21,7 @@ ms.openlocfilehash: dc946619fa3134594d3891ffdf78417d054293e3
 
 
 ---
-# <a name="geofenced-push-notifications-with-azure-notification-hubs-and-bing-spatial-data"></a>使用 Azure 通知中樞和 Bing 空間資料為推播通知加上地理柵欄
+# <a name="geo-fenced-push-notifications-with-azure-notification-hubs-and-bing-spatial-data"></a>使用 Azure 通知中樞和 Bing 空間資料為推播通知加上地理柵欄
 > [!NOTE]
 > 若要完成此教學課程，您必須具備有效的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02)。
 > 
@@ -81,7 +81,7 @@ ms.openlocfilehash: dc946619fa3134594d3891ffdf78417d054293e3
 
 上傳資料檔案後，您必須確實發佈資料來源。 
 
-移至 [管理資料來源] (方法同前)、在清單中找到您的資料來源，然後按一下 [動作] 欄中的 [發佈]。 不用多久，您應該就會在 [已發佈的資料來源]  索引標籤中看到您的資料來源︰
+移至 **[管理資料來源]** \(方法同前)、在清單中找到您的資料來源，然後按一下 [動作] 欄中的 [發佈]。 不用多久，您應該就會在 [已發佈的資料來源]  索引標籤中看到您的資料來源︰
 
 ![](./media/notification-hubs-geofence/bing-maps-published-data.png)
 

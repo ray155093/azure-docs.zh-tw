@@ -4,45 +4,44 @@
 ## [訂用帳戶與服務限制](../azure-subscription-service-limits.md)
 
 # 開始使用
-## [規劃和設計](vpn-gateway-plan-design.md)
-## [設定](vpn-gateway-about-vpn-gateway-settings.md)
-## [網站間連線的 VPN 裝置](vpn-gateway-about-vpn-devices.md)
-# [BGP 和 VPN 閘道](vpn-gateway-bgp-overview.md)
-## [高度可用的連線](vpn-gateway-highlyavailable.md)
+## [規劃與設計 VPN 閘道](vpn-gateway-plan-design.md)
+## [關於 VPN 閘道設定](vpn-gateway-about-vpn-gateway-settings.md)
+## [關於站對站 VPN 閘道連線的 VPN 裝置](vpn-gateway-about-vpn-devices.md)
+## [關於 BGP 和 VPN 閘道](vpn-gateway-bgp-overview.md)
+## [關於高可用性連線](vpn-gateway-highlyavailable.md)
 
-# 作法
-## 設定連線
-### 網站間
-#### [Azure 入口網站](vpn-gateway-howto-site-to-site-resource-manager-portal.md)
-#### [PowerShell](vpn-gateway-create-site-to-site-rm-powershell.md)
-#### [傳統入口網站](vpn-gateway-site-to-site-create.md)
-### 點對站
-### [Azure 入口網站](vpn-gateway-howto-point-to-site-resource-manager-portal.md)
-#### [Azure 入口網站 (傳統)](vpn-gateway-howto-point-to-site-classic-azure-portal.md)
-#### [PowerShell](vpn-gateway-howto-point-to-site-rm-ps.md)
-#### [傳統入口網站](vpn-gateway-point-to-site-create.md)
-### VNet 對 VNet
-#### [Azure 入口網站](vpn-gateway-howto-vnet-vnet-resource-manager-portal.md)
-#### [PowerShell](vpn-gateway-vnet-vnet-rm-ps.md)
-#### [傳統入口網站](virtual-networks-configure-vnet-to-vnet-connection.md)
-### 不同部署模型之間的 VNet 對 VNet 連線
-#### [Azure 入口網站](vpn-gateway-connect-different-deployment-models-portal.md)
-#### [PowerShell](vpn-gateway-connect-different-deployment-models-powershell.md)
-### 網站間和 ExpressRoute 並存連線
-#### [PowerShell](../expressroute/expressroute-howto-coexist-resource-manager.md?toc=%2fazure%2fvpn-gateway%2ftoc.json)
-#### [PowerShell (傳統)](../expressroute/expressroute-howto-coexist-classic.md?toc=%2fazure%2fvpn-gateway%2ftoc.json)
-### 多個網站間連線
-#### [Azure 入口網站](vpn-gateway-howto-multi-site-to-site-resource-manager-portal.md)
-#### [PowerShell](vpn-gateway-multi-site.md)
-### 強制通道
-#### [PowerShell](vpn-gateway-forced-tunneling-rm.md)
-#### [PowerShell (傳統)](vpn-gateway-about-forced-tunneling.md)
+# 作法：
+## 網站間
+### [使用 Azure 入口網站設定站對站連線](vpn-gateway-howto-site-to-site-resource-manager-portal.md)
+### [使用 PowerShell 設定站對站連線](vpn-gateway-create-site-to-site-rm-powershell.md)
+### [使用 Azure 傳統入口網站設定站對站連線 (傳統)](vpn-gateway-site-to-site-create.md)
+## 點對站
+### [使用 Azure 入口網站設定 VNet 的點對站連線](vpn-gateway-howto-point-to-site-resource-manager-portal.md)
+### [使用 PowerShell 設定 VNet 的點對站連線](vpn-gateway-howto-point-to-site-rm-ps.md)
+### [使用 Azure 入口網站設定 VNet 的點對站連線 (傳統)](vpn-gateway-howto-point-to-site-classic-azure-portal.md)
+### [使用傳統入口網站設定 VNet 的點對站連線 (傳統)](vpn-gateway-point-to-site-create.md)
+## VNet 對 VNet
+### [使用 Azure 入口網站設定 VNet 對 VNet 連接](vpn-gateway-howto-vnet-vnet-resource-manager-portal.md)
+### [使用 PowerShell 設定 VNet 對 VNet 連接](vpn-gateway-vnet-vnet-rm-ps.md)
+### [設定 VNet 對 VNet 連接 (傳統)](virtual-networks-configure-vnet-to-vnet-connection.md)
+## Resource Manager 與傳統部署模型之間的 VNet 至 VNet 連線
+### [在入口網站中從不同的部署模型連接虛擬網路](vpn-gateway-connect-different-deployment-models-portal.md)
+### [使用 PowerShell 從不同的部署模型連接虛擬網路](vpn-gateway-connect-different-deployment-models-powershell.md)
+## 站對站及 ExpressRoute 並存連線
+### [建立站對站及 ExpressRoute 並存連線](../expressroute/expressroute-howto-coexist-resource-manager.md?toc=%2fazure%2fvpn-gateway%2ftoc.json)
+### [建立站對站及 ExpressRoute 並存連線 (傳統)](../expressroute/expressroute-howto-coexist-classic.md?toc=%2fazure%2fvpn-gateway%2ftoc.json)
+## 強制通道
+### [設定強制通道](vpn-gateway-forced-tunneling-rm.md)
+### [設定強制通道 (傳統)](vpn-gateway-about-forced-tunneling.md)
+## 多個站對站連接
+### [將多個站對站連線新增至 VPN 閘道](vpn-gateway-howto-multi-site-to-site-resource-manager-portal.md)
+### [將多個站對站連線新增至 VPN 閘道 (傳統)](vpn-gateway-multi-site.md)
 ## [用 PowerShell 設定 Azure VPN 閘道 BGP](vpn-gateway-bgp-resource-manager-ps.md)
 ## [設定高可用性的主動-主動連線](vpn-gateway-activeactive-rm-powershell.md)
 ## [使用 PowerShell 修改區域網路閘道設定](vpn-gateway-modify-local-network-gateway.md)
 ## [驗證閘道連線](vpn-gateway-verify-connection-resource-manager.md)
 ## [使用 PowerShell 重設 Azure VPN 閘道](vpn-gateway-resetgw-classic.md)
-## [管理點對站連線的自我簽署憑證](vpn-gateway-certificates-point-to-site.md)
+## [如何使用點對站連線的自我簽署憑證](vpn-gateway-certificates-point-to-site.md)
 ## [設定 VPN 閘道 (傳統)](vpn-gateway-configure-vpn-gateway-mp.md)
 
 # 參考
@@ -59,6 +58,7 @@
 ## [負載平衡器](/azure/load-balancer/)
 ## [VPN 閘道](/azure/vpn-gateway/)
 ## [ExpressRoute](/azure/expressroute/)
+
 # 資源
 ## [部落格](https://azure.microsoft.com/blog/topics/networking)
 ## [論壇](https://social.msdn.microsoft.com/Forums/azure/home?forum=WAVirtualMachinesVirtualNetwork)
@@ -67,6 +67,6 @@
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=vpn-gateway)
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

@@ -2,8 +2,8 @@
 layout: LandingPage
 toc_rel: breadcrumb.json
 translationtype: Human Translation
-ms.sourcegitcommit: 4d6fd9344eaee31de4ee1e614ae558ce159c9245
-ms.openlocfilehash: ca5d39641a251dcbc650907d08ce11c6c7124f66
+ms.sourcegitcommit: 87b9d22ec066108adb282606305315919b901ea0
+ms.openlocfilehash: 334336cb8d5da4761d5c1fa53c8c63cfbdb850a6
 
 ---
 #<a name="virtual-machines-documentation"></a>虛擬機器文件
@@ -51,19 +51,66 @@ Azure 虛擬機器讓您能夠有彈性地進行虛擬化，而不需購買並�
 
 ---
 
-##<a name="reference"></a>參考
+## <a name="reference"></a>參考
 
-###<a name="net"></a>.NET 
-[虛擬機器受管理的參考 API](/dotnet/api/) 
-
-###<a name="rest"></a>REST 
-[虛擬機器 REST API 參考](/rest/api/) 
-
-###<a name="azure-cli"></a>Azure CLI 
-[適用於虛擬機器的 Azure CLI](/cli/azure/)
-
-###<a name="java"></a>Java 
-[虛擬機器 PowerShell Cmdlet](/java/api/)
+<ul class="panelContent cardsW">
+    <li>
+        <a href="/dotnet/api/">
+        <div class="cardSize">
+            <div class="cardPadding">
+                <div class="card">
+                    <div class="cardText">
+                        <h3>.NET</h3>
+                        <p>虛擬機器受管理的參考 API</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </a>
+    </li>
+    <li>
+        <a href="/rest/api/">
+        <div class="cardSize">
+            <div class="cardPadding">
+                <div class="card">
+                    <div class="cardText">
+                        <h3>REST</h3>
+                        <p>虛擬機器 REST API 參考</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </a>
+    </li>
+    <li>
+        <a href="/cli/azure/">
+        <div class="cardSize">
+            <div class="cardPadding">
+                <div class="card">
+                    <div class="cardText">
+                        <h3>Azure CLI</h3>
+                        <p>虛擬機器可使用的 Azure CLI</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </a>
+    </li>
+    <li>
+        <a href="/java/api/">
+        <div class="cardSize">
+            <div class="cardPadding">
+                <div class="card">
+                    <div class="cardText">
+                        <h3>Java</h3>
+                        <p>虛擬機器的 PowerShell Cmdlet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </a>
+    </li>
+</ul>
 
 <div class="downloadHolder">
     <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/virtual-machines.pdf">
@@ -75,6 +122,6 @@ Azure 虛擬機器讓您能夠有彈性地進行虛擬化，而不需購買並�
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

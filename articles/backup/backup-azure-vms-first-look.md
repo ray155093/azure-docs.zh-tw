@@ -47,7 +47,7 @@ ms.openlocfilehash: b8f62d1fab4b9132f35e2fab632968cf001c832d
 >
 >
 
-## <a name="step-1-create-a-backup-vault-for-a-vm"></a>步驟 1 - 為 VM 建立備份保存庫
+## <a name="step-1---create-a-backup-vault-for-a-vm"></a>步驟 1 - 為 VM 建立備份保存庫
 備份保存庫是一個實體，會儲存歷來建立的所有備份和復原點。 備份保存庫也包含備份虛擬機器時將套用的備份原則。
 
 1. 登入 [Azure 傳統入口網站](http://manage.windowsazure.com/)。
@@ -86,7 +86,7 @@ ms.openlocfilehash: b8f62d1fab4b9132f35e2fab632968cf001c832d
 
 選擇好保存庫的儲存體選項後，就可以開始建立 VM 與保存庫的關聯。 若要開始關聯，請探索及註冊 Azure 虛擬機器。
 
-## <a name="step-2-discover-and-register-azure-virtual-machines"></a>步驟 2 - 探索及註冊 Azure 虛擬機器
+## <a name="step-2---discover-and-register-azure-virtual-machines"></a>步驟 2 - 探索及註冊 Azure 虛擬機器
 向保存庫註冊 VM 前，請執行探索程序以識別任何新的 VM。 這會傳回訂用帳戶中的虛擬機器清單以及其他資訊，例如雲端服務名稱和區域。
 
 1. 登入 [Azure 傳統入口網站](http://manage.windowsazure.com/)
@@ -133,12 +133,12 @@ ms.openlocfilehash: b8f62d1fab4b9132f35e2fab632968cf001c832d
 
     ![註冊狀態 2](./media/backup-azure-vms/register-status02.png)
 
-## <a name="step-3-install-the-vm-agent-on-the-virtual-machine"></a>步驟 3 - 在虛擬機器中安裝 VM 代理程式
+## <a name="step-3---install-the-vm-agent-on-the-virtual-machine"></a>步驟 3 - 在虛擬機器中安裝 VM 代理程式
 Azure VM 代理程式必須安裝在 Azure 虛擬機器上，備份擴充功能才能運作。 如果 VM 是建立自 Azure 資源庫，則 VM 代理程式已存在於 VM 上。 您可以跳到 [保護您的 VM](backup-azure-vms-first-look.md#step-4---create-the-backup-policy)。
 
 如果您的 VM 是從內部部署資料中心進行移轉，VM 可能還未安裝 VM 代理程式。 您必須先在虛擬機器上安裝 VM 代理程式，再繼續進行保護 VM。 如需安裝 VM 代理程式的詳細步驟，請參閱 [《備份 VM》文章的＜VM 代理程式＞一節](backup-azure-vms-prepare.md#vm-agent)。
 
-## <a name="step-4-create-the-backup-policy"></a>步驟 4 - 建立備份原則
+## <a name="step-4---create-the-backup-policy"></a>步驟 4 - 建立備份原則
 觸發初始備份作業之前，請先設定備份快照擷取時間排程。 備份快照擷取時間排程以及快照保留時間長度是備份原則。 保留資訊是以 Grandfather-father-son 備份輪替配置為基礎。
 
 1. 在 Azure 傳統入口網站中，瀏覽至 [復原服務] 下的備份保存庫，然後按一下 [註冊的項目]。
@@ -175,7 +175,7 @@ Azure VM 代理程式必須安裝在 Azure 虛擬機器上，備份擴充功能�
 
     現在您已建立原則，接下來請移至下一個步驟，並執行初始備份。
 
-## <a name="step-5-initial-backup"></a>步驟 5 - 初始備份
+## <a name="step-5---initial-backup"></a>步驟 5 - 初始備份
 在虛擬機器受到原則保護後，您可以在 [受保護項目]  索引標籤上檢視該關聯性。 在執行初始備份前，[保護狀態] 會顯示為 [受保護 - (待執行初始備份)]。 根據預設，第一個排定的備份是 *初始備份*。
 
 ![待備份](./media/backup-azure-vms-first-look/protection-pending-border.png)

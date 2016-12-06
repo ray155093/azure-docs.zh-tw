@@ -153,6 +153,7 @@
 ### [內部部署連線](web-sites-hybrid-connection-get-started.md)
 ### [Azure 虛擬網路](web-sites-integrate-with-vnet.md)
 ### [進階組態](web-sites-transform-extend.md)
+### [在 Linux 上設定適用於 App Service 的容器](app-service-linux-using-custom-docker-image.md)
 ### [資源群組](app-service-move-resources.md)
 ### [將 WordPress 轉換成 Multisite](web-sites-php-convert-wordpress-multisite.md) 
 
@@ -265,6 +266,6 @@
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

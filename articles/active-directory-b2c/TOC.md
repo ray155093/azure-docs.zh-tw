@@ -1,6 +1,5 @@
-# Overview
-## [什麼是 Azure AD B2C](https://azure.microsoft.com/services/active-directory-b2c/)
-## [運作方式](active-directory-b2c-overview.md)
+# 概觀
+## [概觀](active-directory-b2c-overview.md)
 ## [應用程式類型](active-directory-b2c-apps.md)
 ## [生產級別租用戶與預覽 B2C 租用戶](active-directory-b2c-reference-tenant-type.md)
 
@@ -51,10 +50,12 @@
 ## [Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md)
 
 # 資源
-## [支援](active-directory-b2c-support.md)
 ## [價格](https://azure.microsoft.com/pricing/details/active-directory-b2c/)
 ## [Azure 意見反應論壇](http://feedback.azure.com/forums/169401-azure-active-directory)
+## [影片](https://azure.microsoft.com/documentation/videos/index/?services=active-directory-b2c) 
+## [服務更新](https://azure.microsoft.com/updates/?product=active-directory-b2c)
+## [支援](active-directory-b2c-support.md)
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

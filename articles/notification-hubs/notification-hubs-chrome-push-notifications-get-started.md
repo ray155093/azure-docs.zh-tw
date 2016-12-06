@@ -47,13 +47,13 @@ ms.openlocfilehash: 600b1b7e5f3987c9a0acc33b7049f7118442b931
 設定 GCM 和 Azure 通知中樞的程序與 Android 的設定程序相同，因為 [Google Cloud Messaging for Chrome] 已停用，而相同的 GCM 現在可同時支援 Android 裝置和 Chrome 執行個體。
 
 ## <a name="a-idregisteraenable-google-cloud-messaging"></a><a id="register"></a>啟用 Google Cloud Messaging
-1. 瀏覽至 [Google 雲端主控台]網站，並使用 Google 帳戶認證登入，然後按一下 [建立專案] 按鈕。 提供適當的 [專案名稱]，然後按一下 [建立] 按鈕。
+1. 瀏覽至 [Google 雲端主控台]網站，並使用 Google 帳戶認證登入，然後按一下 **[建立專案]** 按鈕。 提供適當的 [專案名稱]，然後按一下 [建立] 按鈕。
    
        ![Google Cloud Console - Create Project][1]
 2. 在 [專案] 頁面上，記下您剛才建立之專案的 [專案編號]。 您將以此編號做為 Chrome 應用程式中的 [GCM 寄件者識別碼]  ，向 GCM 註冊。
    
        ![Google Cloud Console - Project Number][2]
-3. 在左窗格中按一下 [API 與驗證]，然後向下捲動並按一下切換開關，以啟用 [Google Cloud Messaging for Android]。 您不需要啟用 [Google Cloud Messaging for Chrome] 。
+3. 在左窗格中按一下 [API 與驗證]，然後向下捲動並按一下切換開關，以啟用 [Google Cloud Messaging for Android]。 您不需要啟用 Google Cloud Messaging for Chrome 。
    
        ![Google Cloud Console - Server Key][3]
 4. 在左窗格中，按一下 [認證] > [建立新的金鑰] > [伺服器金鑰] > [建立]。
@@ -63,14 +63,14 @@ ms.openlocfilehash: 600b1b7e5f3987c9a0acc33b7049f7118442b931
    
        ![Google Cloud Console - API Key][5]
 
-## <a name="a-idconfigurehubaconfigure-your-notification-hub"></a><a id="configure-hub"></a>設定您的通知中樞
+## <a name="a-idconfigure-hubaconfigure-your-notification-hub"></a><a id="configure-hub"></a>設定您的通知中樞
 [!INCLUDE [notification-hubs-portal-create-new-hub](../../includes/notification-hubs-portal-create-new-hub.md)]
 
 &emsp;&emsp;6. 在 [設定] 刀鋒視窗中，選取 [通知服務]，然後選取 [Google (GCM)]。 輸入 API 金鑰並儲存。
 
 &emsp;&emsp;![Azure 通知中樞 - Google (GCM)](./media/notification-hubs-android-get-started/notification-hubs-gcm-api.png)
 
-## <a name="a-idconnectappaconnect-your-chrome-app-to-the-notification-hub"></a><a id="connect-app"></a>將您的 Chrome 應用程式連接到通知中樞
+## <a name="a-idconnect-appaconnect-your-chrome-app-to-the-notification-hub"></a><a id="connect-app"></a>將您的 Chrome 應用程式連接到通知中樞
 現在已將您的通知中樞設定成使用 GCM，而且您已擁有可用來註冊應用程式以接收和傳送推播通知的連接字串。 LK
 
 ### <a name="create-a-new-chrome-app"></a>建立新的 Chrome 應用程式
@@ -370,7 +370,7 @@ Chrome 應用程式是透過 JavaScript 建立的，您可以使用任何慣用�
 3. 如果該 Chrome 應用程式在建立時未發生任何錯誤，則您將會看見該應用程式顯示。
    
        ![Google Chrome - Chrome App Display][18]
-4. 輸入您先前從 [Google 雲端主控台] 取得的 [專案編號]，做為寄件者識別碼，然後按一下 [向 GCM 註冊]。 您必須看見 **Registration with GCM succeeded.** 訊息。
+4. 輸入您先前從 **Google 雲端主控台** 取得的 **[專案編號]**，做為寄件者識別碼，然後按一下 **[向 GCM 註冊]**。 您必須看見 **Registration with GCM succeeded.** 訊息。
    
        ![Google Chrome - Chrome App Customization][19]
 5. 輸入您先前從 Azure 傳統入口網站取得的 [通知中樞名稱] 和 [DefaultListenSharedAccessSignature]，然後按一下 [向 Azure 通知中樞註冊]。 您必須看見 **Registration with GCM succeeded.** 訊息 和註冊回應的詳細資料，其中包含 Azure 通知中樞註冊識別碼。

@@ -8,31 +8,31 @@
 # 作法
 ## 規劃和設計
 ### [系統管理和開發人員工作清單](biztalk-services-administration-and-development-task-list.md)
-
 ## [備份與還原](biztalk-backup-restore.md)
-
 ## 設定
 ### [節流](biztalk-throttling-thresholds.md)
 ### [服務設定和監視](biztalk-dashboard-monitor-scale-tabs.md)
-
 ## 整合
 ### [混合式連線](integration-hybrid-connection-create-manage.md)
-
 ## 移轉
 ### [BizTalk Server EDI 解決方案至 BizTalk 服務](biztalk-migrating-to-edi-guide.md)
-
 ## 監視
 ### [相依於服務狀態的工作](biztalk-service-state-chart.md)
-
 ## 安全
 ### [存取控制](biztalk-issuer-name-issuer-key.md)
-
 ## [疑難排解](biztalk-troubleshoot-using-ops-logs.md)
 
 # 參考
 ## [版本資訊](biztalk-release-notes.md)
 
+# 資源
+## [服務更新](https://azure.microsoft.com/updates/?product=biztalk-services)
+## [價格](https://azure.microsoft.com/pricing/details/biztalk-services/)
+## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurebiztalksvcs)
+## [Stack Overflow](http://stackoverflow.com/questions/tagged/biztalk-services)
+## [影片](https://azure.microsoft.com/documentation/videos/index/?services=biztalk-services)
 
-<!--HONumber=Nov16_HO2-->
+
+<!--HONumber=Nov16_HO4-->
 
 

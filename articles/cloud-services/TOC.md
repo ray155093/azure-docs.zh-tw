@@ -98,9 +98,9 @@
 ### [雲端服務常見問題集](cloud-services-faq.md)
 
 # 參考
-## [.NET](https://msdn.microsoft.com/library)
 ## [.csdef XMLSchema](https://msdn.microsoft.com/library/azure/ee758711)
 ## [.cscfg XMLSchema](https://msdn.microsoft.com/library/azure/ee758710)
+## [REST](https://msdn.microsoft.com/library/azure/ee460812)
 ## [客體 OS 修補程式](cloud-services-guestos-msrc-releases.md)
 ## 客體 OS 淘汰
 ### [淘汰原則](cloud-services-guestos-retirement-policy.md)
@@ -116,6 +116,6 @@
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/cloud-services/)
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

@@ -16,12 +16,12 @@ ms.topic: get-started-article
 ms.date: 10/19/2016
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: ecac06a51bee157d88634a13c5749dc16f4b505a
+ms.sourcegitcommit: 9cf1faabe3ea12af0ee5fd8a825975e30947b03a
+ms.openlocfilehash: bf4e77ab2678d3cb74373fd3b3cfd2a5f69d7292
 
 
 ---
-# <a name="hbase-tutorial-get-started-using-apache-hbase-with-linuxbased-hadoop-in-hdinsight"></a>HBase 教學課程：開始在 HDInsight 中搭配以 Linux 為基礎的 Hadoop 使用 Apache HBase
+# <a name="hbase-tutorial-get-started-using-apache-hbase-with-linux-based-hadoop-in-hdinsight"></a>HBase 教學課程：開始在 HDInsight 中搭配以 Linux 為基礎的 Hadoop 使用 Apache HBase
 [!INCLUDE [hbase-selector](../../includes/hdinsight-hbase-selector.md)]
 
 了解如何使用 Hive 在 HDInsight 中建立 HBase 叢集、建立 HBase 資料表，以及查詢資料表。 如需一般 HBase 資訊，請參閱 [HDInsight HBase 概觀][hdinsight-hbase-overview]。
@@ -113,16 +113,16 @@ HBase 包含數個將資料載入資料表的方法。  如需詳細資訊，請
 
 範例資料檔案已上傳到公用 Blob 容器：*wasbs://hbasecontacts@hditutorialdata.blob.core.windows.net/contacts.txt*。  資料檔案的內容：
 
-    8396    Calvin Raji        230-555-0191    230-555-0191    5415 San Gabriel Dr.
-    16600    Karen Wu        646-555-0113    230-555-0192    9265 La Paz
-    4324    Karl Xie        508-555-0163    230-555-0193    4912 La Vuelta
-    16891    Jonn Jackson    674-555-0110    230-555-0194    40 Ellis St.
+    8396    Calvin Raji      230-555-0191    230-555-0191    5415 San Gabriel Dr.
+    16600   Karen Wu         646-555-0113    230-555-0192    9265 La Paz
+    4324    Karl Xie         508-555-0163    230-555-0193    4912 La Vuelta
+    16891   Jonn Jackson     674-555-0110    230-555-0194    40 Ellis St.
     3273    Miguel Miller    397-555-0155    230-555-0195    6696 Anchor Drive
-    3588    Osa Agbonile    592-555-0152    230-555-0196    1873 Lion Circle
-    10272    Julia Lee        870-555-0110    230-555-0197    3148 Rose Street
-    4868    Jose Hayes        599-555-0171    230-555-0198    793 Crawford Street
-    4761    Caleb Alexander    670-555-0141    230-555-0199    4775 Kentucky Dr.
-    16443    Terry Chander    998-555-0171    230-555-0200    771 Northridge Drive
+    3588    Osa Agbonile     592-555-0152    230-555-0196    1873 Lion Circle
+    10272   Julia Lee        870-555-0110    230-555-0197    3148 Rose Street
+    4868    Jose Hayes       599-555-0171    230-555-0198    793 Crawford Street
+    4761    Caleb Alexander  670-555-0141    230-555-0199    4775 Kentucky Dr.
+    16443   Terry Chander    998-555-0171    230-555-0200    771 Northridge Drive
 
 您可以建立文字檔，並將檔案上載至自己的儲存體帳戶 (如果您要的話)。 如需指示，請參閱[在 HDInsight 中將 Hadoop 作業的資料上傳][hdinsight-upload-data]。
 
@@ -232,7 +232,7 @@ SSH 也可用來建立通道以將本機要求 (例如 Web 要求) 傳送到 HDI
 3. 在 [類別] 中，按一下 [工作階段]。
 4. 從您 PuTTY 工作階段螢幕的基本選項，輸入下列值：
    
-   * **主機名稱**：請在 [主機名稱] (或 [IP 位址]) 欄位中，輸入您 HDInsight 伺服器的 SSH 位址。 SSH 位址是叢集名稱加上 **-ssh.azurehdinsight.net**。 例如， *mycluster-ssh.azurehdinsight.net*。
+   * **主機名稱**：請在 [主機名稱] \(或 [IP 位址]) 欄位中，輸入您 HDInsight 伺服器的 SSH 位址。 SSH 位址是叢集名稱加上 **-ssh.azurehdinsight.net**。 例如， *mycluster-ssh.azurehdinsight.net*。
    * **連接埠**：22。 主要前端節點上的 SSH 連接埠為 22。  
 5. 在對話方塊左側的 [類別] 區段中，依序展開 [連線] 和 [SSH]，然後按一下 [通道]。
 6. 在 [控制 SSH 連接埠轉送的選項] 表單中提供下列資訊：
@@ -310,6 +310,6 @@ SSH 也可用來建立通道以將本機要求 (例如 Web 要求) 傳送到 HDI
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

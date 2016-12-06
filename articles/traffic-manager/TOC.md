@@ -17,10 +17,11 @@
 ## [設定路由方法](traffic-manager-configure-routing-method.md)
 ## [測試您的設定](traffic-manager-testing-settings.md)
 ## [針對降級的端點進行疑難排解](traffic-manager-troubleshooting-degraded.md)
-## [使用網路資源](../virtual-network/resource-groups-networking.md)
+## [合併負載平衡服務](traffic-manager-load-balancing-azure.md)
+## [使用網路資源](../virtual-network/resource-groups-networking.md?toc=%2fazure%2ftraffic-manager%2ftoc.json)
 
 # 參考
-## [PowerShell](/powershell/azureps-cmdlets-docs/)
+## [PowerShell](/powershell/azureps-cmdlets-docs)
 ## [PowerShell (傳統)](/powershell/servicemanagement/)
 ## [REST](https://msdn.microsoft.com/library/mt163667.aspx)
 
@@ -30,14 +31,15 @@
 ## [Azure DNS](/azure/dns/)
 
 # 資源
-##[價格](https://azure.microsoft.com/pricing/details/traffic-manager/)
-##[SLA](https://azure.microsoft.com/support/legal/sla/traffic-manager/)
-##[服務限制](../azure-subscription-service-limits.md#traffic-manager-limits)
+## [價格](https://azure.microsoft.com/pricing/details/traffic-manager/)
+## [SLA](https://azure.microsoft.com/support/legal/sla/traffic-manager/)
+## [服務限制](../azure-subscription-service-limits.md#traffic-manager-limits)
 ## [部落格](https://azure.microsoft.com/blog/topics/networking/)
-## [論壇](https://social.msdn.microsoft.com/Forums/azure/home?forum=WAVirtualMachinesVirtualNetwork)
+## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=WAVirtualMachinesVirtualNetwork)
 ## [服務更新](https://azure.microsoft.com/updates/?product=traffic-manager)
+## [影片](https://azure.microsoft.com/resources/videos/index/?services=traffic-manager)
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

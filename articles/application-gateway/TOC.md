@@ -5,38 +5,39 @@
 ## [URL 路由](application-gateway-url-route-overview.md)
 ## [多網站](application-gateway-multi-site-overview.md)
 ## [端對端 SSL](application-gateway-backend-ssl.md)
-## [Websocket](application-gateway-websocket.md)
-## [訂用帳戶與服務限制](../azure-subscription-service-limits.md#application-gateway-limits.md)
+## [WebSocket](application-gateway-websocket.md)
+## [服務限制](../azure-subscription-service-limits.md#application-gateway-limits?toc=%2fazure%2fapplication-gateway%2ftoc.json)
 # 開始使用
 ## 建立應用程式閘道
 ### 公眾對應
 #### [入口網站](application-gateway-create-gateway-portal.md)
 #### [PowerShell](application-gateway-create-gateway-arm.md)
 #### [Resource Manager 範本](application-gateway-create-gateway-arm-template.md)
-#### [CLI](application-gateway-create-gateway-arm-template.md)
-#### [PowerShell (傳統)](application-gateway-create-gateway-arm-template.md)
+#### [CLI](application-gateway-create-gateway-cli.md)
+#### [PowerShell (傳統)](application-gateway-create-gateway.md)
 ### 內部對向
 #### [PowerShell](application-gateway-ilb-arm.md)
 #### [PowerShell (傳統)](application-gateway-ilb.md)
 # 作法
-## 建立 Web 應用程式防火牆
+## 設定 Web 應用程式防火牆
 ### [入口網站](application-gateway-web-application-firewall-portal.md)
 ### [PowerShell](application-gateway-web-application-firewall-powershell.md)
-## 設定 SSL
+## 設定 SSL 卸載
 ### [入口網站](application-gateway-ssl-portal.md)
 ### [PowerShell](application-gateway-ssl-arm.md)
 ### [PowerShell (傳統)](application-gateway-ssl.md)
 ### [原則和端對端](application-gateway-end-to-end-ssl-powershell.md)
-## 建立 URL 路徑型路由
+## 設定 URL 路徑型路由
 ### [入口網站](application-gateway-create-url-route-portal.md)
 ### [PowerShell](application-gateway-create-url-route-arm-ps.md)
-## 設定多網站主機
+## 設定多網站主控
 ### [入口網站](application-gateway-create-multisite-portal.md)
 ### [PowerShell](application-gateway-create-multisite-azureresourcemanager-powershell.md)
-## 建立健全狀態探查
+## 設定健全狀態探查
 ### [入口網站](application-gateway-create-probe-portal.md)
 ### [PowerShell](application-gateway-create-probe-ps.md)
 ### [PowerShell (傳統)](application-gateway-create-probe-classic-ps.md)
+## [合併負載平衡服務](../traffic-manager/traffic-manager-load-balancing-azure.md?toc=%2fazure%2fapplication-gateway%2ftoc.json)
 ## 管理
 ### [診斷](application-gateway-diagnostics.md)
 ### [疑難排解](application-gateway-troubleshooting-502.md)
@@ -54,11 +55,12 @@
 ## [流量管理員](/azure/traffic-manager/)
 # 資源
 ## [價格](https://azure.microsoft.com/pricing/details/application-gateway/)
-## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-application-gateway)  
+## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=WAVirtualMachinesVirtualNetwork)
+## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-application-gateway)
 ## [服務更新](https://azure.microsoft.com/updates/?product=application-gateway)
 ## [SLA](https://azure.microsoft.com/support/legal/sla/)
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

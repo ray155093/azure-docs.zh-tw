@@ -25,7 +25,7 @@
 ### [Batch 診斷記錄](batch-diagnostics.md)
 
 # 參考
-## [PowerShell Cmdlet](https://docs.microsoft.com/en-us/powershell/azureps-cmdlets-docs/)
+## [PowerShell Cmdlet](https://docs.microsoft.com/en-us/powershell/azureps-cmdlets-docs)
 ## [Java](https://docs.microsoft.com/java/api)
 ## [.NET API](https://docs.microsoft.com/dotnet/api)
 ## [Python SDK](https://go.microsoft.com/fwlink/p/?linkid=833496)
@@ -43,11 +43,11 @@
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-batch)
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=batch)
 ## [服務更新](https://azure.microsoft.com/updates/?product=batch&updatetype=&platform=)
-## [Batch C# 程式碼範例](https://github.com/Azure/azure-batch-samples/tree/master/CSharp/)
-## [Batch Python 程式碼範例](https://github.com/Azure/azure-batch-samples/tree/master/Python/Batch)
+## [C# 程式碼範例](https://github.com/Azure/azure-batch-samples/tree/master/CSharp/)
+## [Python 程式碼範例](https://github.com/Azure/azure-batch-samples/tree/master/Python/Batch)
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

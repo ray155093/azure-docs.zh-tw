@@ -1,10 +1,10 @@
 # 概觀
 ## [何謂 Azure 備份？](backup-introduction-to-azure-backup.md)
 # 開始使用
-## [常見問題集](backup-azure-backup-faq.md)
 ## [備份檔案和資料夾](backup-try-azure-backup-in-10-mins.md)
 ## [備份 Azure 虛擬機器](backup-azure-vms-first-look.md)
 ## [保護 Azure VM](backup-azure-vms-first-look-arm.md)
+## [常見問題集](backup-azure-backup-faq.md)
 # 作法
 ## 使用 PowerShell 自動進行備份
 ### [Azure 入口網站中的 Azure VM](backup-azure-vms-automation.md)
@@ -52,7 +52,13 @@
 ### [Azure VM 備份失敗︰無法與 VM 代理程式通訊來取得快照集狀態 - 快照集 VM 子工作已逾時](backup-azure-troubleshoot-vm-backup-fails-snapshot-timeout.md)
 ### [Azure 備份中的檔案和資料夾備份速度緩慢](backup-azure-troubleshoot-slow-backup-performance-issue.md)
 
+# 資源
+## [價格](https://azure.microsoft.com/pricing/details/backup/)
+## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=windowsazureonlinebackup) 
+## [影片](https://azure.microsoft.com/documentation/videos/index/?services=backup) 
+## [服務更新](https://azure.microsoft.com/updates/?product=backup)
 
-<!--HONumber=Nov16_HO2-->
+
+<!--HONumber=Nov16_HO4-->
 
 

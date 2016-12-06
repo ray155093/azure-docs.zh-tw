@@ -20,7 +20,7 @@ ms.openlocfilehash: 1c57047f9a7eefcc0c4dbf08e705c3193e89f9a7
 
 
 ---
-# <a name="ldap-authentication-and-azure-multifactor-authentication-server"></a>LDAP 驗證和 Azure Multi-Factor Authentication Server
+# <a name="ldap-authentication-and-azure-multi-factor-authentication-server"></a>LDAP 驗證和 Azure Multi-Factor Authentication Server
 根據預設，Azure Multi-Factor Authentication Server 會設定為從 Active Directory 匯入或同步處理使用者。 不過，它可以設定為繫結至不同 LDAP 目錄 (例如 ADAM 目錄) 或特定的 Active Directory 網域控制站。 當設定為透過 LDAP 連線到目錄時，可以設定 Azure Multi-Factor Authentication Server 做為 LDAP Proxy 來執行驗證。 也支援使用 LDAP 繫結做為 RADIUS 目標、使用 IIS 驗證時預先驗證使用者，或 Azure Multi-Factor Authentication 使用者入口網站中的主要驗證。
 
 當使用 Azure Multi-Factor Authentication 做為 LDAP Proxy 時，Azure Multi-Factor Authentication Server 會插入在 LDAP 用戶端 (例如 VPN 應用裝置、應用程式) 和 LDAP 目錄伺服器之間，以新增多因素驗證。 為了讓 Azure Multi-Factor Authentication 運作，Azure Multi-Factor Authentication Server 必須設定為能夠與用戶端伺服器和 LDAP 目錄進行通訊。 在此組態中，Azure Multi-Factor Authentication Server 接受來自用戶端伺服器和應用程式的 LDAP 要求，然後轉送至目標 LDAP 目錄伺服器來驗證主要認證。 如果來自 LDAP 目錄的回應顯示主要認證有效，Azure Multi-Factor Authentication 會執行第二因素驗證，然後將回應傳回給 LDAP 用戶端。 只有當 LDAP 伺服器的驗證和雙因素驗證都成功時，整個驗證才會成功。
@@ -33,7 +33,7 @@ ms.openlocfilehash: 1c57047f9a7eefcc0c4dbf08e705c3193e89f9a7
 3. 如果 Azure Multi-Factor Authentication LDAP 服務應該繫結到非標準連接埠，以接聽將設定的用戶端的 LDAP 要求，請在 [用戶端] 索引標籤上變更 TCP 連接埠和 SSL 連接埠。
 4. 如果您打算在用戶端到 Azure Multi-Factor Authentication Server 之間使用 LDAPS，則必須在執行「伺服器」的伺服器上安裝 SSL 憑證。 按一下 SSL 憑證方塊旁邊的 [瀏覽...] 按鈕，選取將用於安全連接的已安裝憑證。
 5. 按一下 [新增...]  按鈕。
-6. 在 [新增 LDAP 用戶端] 對話方塊中，輸入要向「伺服器」驗證的應用裝置、伺服器或應用程式的 IP 位址，以及 [應用程式名稱] (選擇性)。 應用程式名稱會出現在 Azure Multi-Factor Authentication 報表中，而且可能顯示在簡訊或行動應用程式驗證訊息內。
+6. 在 [新增 LDAP 用戶端] 對話方塊中，輸入要向「伺服器」驗證的應用裝置、伺服器或應用程式的 IP 位址，以及 [應用程式名稱] \(選擇性)。 應用程式名稱會出現在 Azure Multi-Factor Authentication 報表中，而且可能顯示在簡訊或行動應用程式驗證訊息內。
 7. 如果所有使用者都已經或將要匯入到「伺服器」，且必須接受多因素驗證，請核取 [需要進行 Azure Multi-Factor Authentication 使用者比對] 方塊。 如果有大量使用者尚未匯入到「伺服器」，且/或將免除多因素驗證，請勿核取此方塊。 如需此功能的其他資訊，請參閱說明檔。
 8. 您可以重複步驟 5 到 7，新增其他 LDAP 用戶端。
 9. 當 Azure Multi-Factor Authentication 設定為接受 LDAP 驗證時，它必須將這些驗證交由 LDAP 目錄代理。 因此，[目標] 索引標籤只會顯示灰色的單一選項來使用 LDAP 目標。 若要設定 LDAP 目錄連線，請按一下 [目錄整合] 圖示。

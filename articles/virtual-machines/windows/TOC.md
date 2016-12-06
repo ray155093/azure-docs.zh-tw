@@ -176,13 +176,15 @@
 ### [重新部署 VM](../virtual-machines-windows-redeploy-to-new-node.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 # 參考
+## [PowerShell](/powershell/azureps-cmdlets-docs)
 ## [Azure CLI](/cli/azure/vm)
-## [Java](/java/api/)
+## [Java](/java/api)
+## [.NET](/dotnet/api/microsoft.azure.management.compute)
 ## [製作 Resource Manager 範本](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-## [社群範本](https://azure.microsoft.com/documentation/templates/)
-## [計算 REST](/rest/api/compute/)
-## [網路 REST](/rest/api/)
-## [儲存體 REST](/rest/api/storageservices/)
+## [社群範本](https://azure.microsoft.com/documentation/templates)
+## [計算 REST](/rest/api/compute)
+## [網路 REST](/rest/api)
+## [儲存體 REST](/rest/api/storageservices)
 
 # 資源
 ## [價格](https://azure.microsoft.com/pricing/details/#Windows)
@@ -191,6 +193,6 @@
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=virtual-machines)
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

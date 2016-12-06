@@ -1,13 +1,17 @@
 ---
 layout: LandingPage
----
-# Azure Billing Documentation
+translationtype: Human Translation
+ms.sourcegitcommit: 4a2f8753e38d3d7f88b9af9bc588b544f33c0ae4
+ms.openlocfilehash: ab71026ce41ba387092f1de719818c0236173e59
 
-Customers and partners require the ability to accurately predict and manage their Azure costs. As they move from a Capex to an Opex model, they also need the ability to do showback vs. chargeback analysis, as well as provide mode fidelity in estimation and billing, especially for large cloud deployments.
+---
+# <a name="azure-billing-documentation"></a>Azure 計費文件
+
+客戶和合作夥伴必須能夠準確地預測並管理其 Azure 成本。 當它們從 Capex 移至 Opex 模型時，它們也必須能夠進行回報 vs. 計費分析，並提供估計和計費的模式可靠性，特別是大型的雲端部署。
 
 <ul class="panelContent cardsFTitle">
     <li>
-        <a href="/azure/billing-usage-rate-card-overview">
+        <a href="/azure/billing/billing-understand-your-bill">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -17,7 +21,7 @@ Customers and partners require the ability to accurately predict and manage thei
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Learn about Azure Billing</h3>
+                        <h3>了解 Azure 計費</h3>
                     </div>
                 </div>
             </div>
@@ -25,7 +29,7 @@ Customers and partners require the ability to accurately predict and manage thei
         </a>
     </li>
     <li>
-        <a href="https://azure.microsoft.com/en-us/free/">
+        <a href="https://azure.microsoft.com/free">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -35,7 +39,7 @@ Customers and partners require the ability to accurately predict and manage thei
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Create a free account</h3>
+                        <h3>建立免費帳戶</h3>
                     </div>
                 </div>
             </div>
@@ -53,7 +57,7 @@ Customers and partners require the ability to accurately predict and manage thei
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Download invoice and usage</h3>
+                        <h3>下載發票與使用方式</h3>
                     </div>
                 </div>
             </div>
@@ -64,10 +68,24 @@ Customers and partners require the ability to accurately predict and manage thei
 
 ---
 
-## Reference
+## <a name="reference"></a>參考
 
-### REST
-[Billing REST API Reference](https://msdn.microsoft.com/en-us/library/azure/1ea5b323-54bb-423d-916f-190de96c6a3c)
+<ul class="panelContent cardsW">
+    <li>
+        <a href="https://msdn.microsoft.com/en-us/library/azure/1ea5b323-54bb-423d-916f-190de96c6a3c">
+        <div class="cardSize">
+            <div class="cardPadding">
+                <div class="card">
+                    <div class="cardText">
+                        <h3>REST</h3>
+                        <p>計費 REST API 參考</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </a>
+    </li>
+</ul>
 
 ---
 
@@ -75,7 +93,11 @@ Customers and partners require the ability to accurately predict and manage thei
     <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/billing.pdf">
         <div class="img"></div>
         <div class="text">
-            Download Billing Documentation
-        </div>
+下載計費文件 </div>
     </a>
 </div>
+
+
+<!--HONumber=Nov16_HO4-->
+
+

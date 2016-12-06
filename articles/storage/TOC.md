@@ -102,7 +102,7 @@
 ### [共用存取簽章 (SAS)](storage-dotnet-shared-access-signature-part-1.md)
 ### [教學課程：使用 Azure 金鑰保存庫加密及解密 Blob](storage-encrypt-decrypt-blobs-key-vault.md)
 ### 用戶端加密
-#### [Azure 金鑰保存庫](storage-client-side-encryption.md)
+#### [.NET](storage-client-side-encryption.md)
 #### [Java](storage-client-side-encryption-java.md)
 #### [Python](storage-client-side-encryption-python.md)
 
@@ -181,6 +181,6 @@
 ### [iOS](https://github.com/Azure/azure-storage-ios)
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

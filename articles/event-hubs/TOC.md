@@ -24,22 +24,22 @@
 ### [使用 Python 啟用事件中樞封存](event-hubs-archive-python.md)
 
 # 參考
-## [AMQP1.0 通訊協定指南](../service-bus-messaging/service-bus-amqp-protocol-guide.md)
-## [事件中樞 REST API 參考](https://msdn.microsoft.com/library/azure/dn790674)
-## [事件中樞 .NET API 參考](https://msdn.microsoft.com/library/azure/jj933424)
-## [事件處理器主機 API 參考](https://msdn.microsoft.com/library/microsoft.servicebus.messaging(v=azure.95).aspx)
 ## [配額和限制](event-hubs-quotas.md)
-## [事件中樞傳訊例外狀況](event-hubs-messaging-exceptions.md)
+## [傳訊例外狀況](event-hubs-messaging-exceptions.md)
+## [Java](/java/api)
+## [.NET](/dotnet/api)
+## [AMQP1.0 通訊協定指南](../service-bus-messaging/service-bus-amqp-protocol-guide.md)
+## [REST](/rest/api/eventhub)
 
 # 資源
+## [價格](https://azure.microsoft.com/en-us/pricing/details/event-hubs/)
+## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/event-hubs/)
+## [服務匯流排總管](https://code.msdn.microsoft.com/Service-Bus-Explorer-f2abca5a)
+## [服務更新](https://azure.microsoft.com/updates/?product=event-hubs)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-eventhub)
-## [MSDN 論壇](https://social.msdn.microsoft.com/forums/home?forum=servbus)
-## [以服務匯流排總管來管理服務匯流排和事件中樞資源](https://code.msdn.microsoft.com/Service-Bus-Explorer-f2abca5a)
-## [事件中樞學習路徑](https://azure.microsoft.com/documentation/learning-paths/event-hubs/)
+## [影片](https://azure.microsoft.com/documentation/videos/index/?services=event-hubs)
 
 
-
-
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

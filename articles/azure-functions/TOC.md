@@ -8,7 +8,7 @@
 # 作法
 ## 規劃和設計
 ### [在 Flow、Logic Apps、函式和 WebJobs 之間做選擇](functions-compare-logic-apps-ms-flow-webjobs.md)
-### [在耗用量和 App Service 方案間做選擇](functions-scale.md)
+### [在主控方案間選擇](functions-scale.md)
 
 ## 開發
 ### [開發函式應用程式](functions-reference.md)
@@ -21,7 +21,7 @@
 #### [Mobile Apps 繫結](functions-bindings-mobile-apps.md)
 #### [通知中樞輸出繫結](functions-bindings-notification-hubs.md)
 #### [佇列和主題的服務匯流排觸發程序和繫結](functions-bindings-service-bus.md)
-#### 儲存體
+#### 儲存體繫結
 ##### [Blod 繫結](functions-bindings-storage-blob.md)
 ##### [佇列繫結](functions-bindings-storage-queue.md)
 ##### [資料表繫結](functions-bindings-storage-table.md)
@@ -30,6 +30,7 @@
 ### [從 Azure 入口網站建立函式](functions-create-first-azure-function-azure-portal.md)
 ### [測試 Azure Functions](functions-test-a-function.md)
 ### [在本機開發及偵錯](functions-run-local.md)
+### [Azure Functions 的最佳做法](functions-best-practices.md)
 ### [使用 Azure Functions 執行排程的清除工作](functions-scenario-database-table-cleanup.md)
 
 ## 管理
@@ -38,8 +39,8 @@
 ## 部署
 ### [Azure Functions 的持續部署](functions-continuous-deployment.md)
 
-# 參考
-## [.NET API](https://msdn.microsoft.com/library/azure/dn961176.aspx)
+## 監視
+### [監視 Azure Functions](functions-monitoring.md)
 
 # 資源
 ## [價格](https://azure.microsoft.com/pricing/details/functions/)  
@@ -48,6 +49,6 @@
 ## [服務更新](https://azure.microsoft.com/en-us/updates/?product=functions&updatetype=&platform=)
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

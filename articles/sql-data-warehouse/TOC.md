@@ -28,10 +28,9 @@
 
 ### [概觀](sql-data-warehouse-connect-overview.md)
 ### [連接字串](sql-data-warehouse-connection-strings.md)
-### 查詢
-#### [sqlcmd](sql-data-warehouse-get-started-connect-sqlcmd.md)
-#### [SSMS](sql-data-warehouse-query-ssms.md)
-#### [Visual Studio](sql-data-warehouse-query-visual-studio.md)
+### [sqlcmd](sql-data-warehouse-get-started-connect-sqlcmd.md)
+### [SSMS](sql-data-warehouse-query-ssms.md)
+### [Visual Studio](sql-data-warehouse-query-visual-studio.md)
 ### [安裝 Visual Studio](sql-data-warehouse-install-visual-studio.md)
 
 ## 開發
@@ -82,8 +81,7 @@
 ### [AZCopy](sql-data-warehouse-load-from-sql-server-with-azcopy.md)
 ### [BCP](sql-data-warehouse-load-with-bcp.md)
 ### [從 SQL Server 載入 BCP](sql-data-warehouse-load-from-sql-server-with-bcp.md)
-### [Data Factory](sql-data-warehouse-get-started-load-with-azure-data-factory.md)
-### [從 Blob 儲存體載入 Data Factory](sql-data-warehouse-load-from-azure-blob-storage-with-data-factory.md)
+### [Data Factory](sql-data-warehouse-load-with-data-factory.md)
 ### [PolyBase](sql-data-warehouse-get-started-load-with-polybase.md)
 ### [PolyBase 指導](sql-data-warehouse-load-polybase-guide.md)
 ### [來自 Blob 儲存體的 PolyBase](sql-data-warehouse-load-from-azure-blob-storage-with-polybase.md)
@@ -111,6 +109,7 @@
 ## 效能
 
 ### [概觀](sql-data-warehouse-overview-manage-user-queries.md)
+### [資料行存放區壓縮](sql-data-warehouse-memory-optimizations-for-columnstore-compression.md)
 ### [查詢](sql-data-warehouse-manage-monitor.md)
 ### [工作負載](sql-data-warehouse-develop-concurrency.md)
 ### [疑難排解](sql-data-warehouse-troubleshoot.md)
@@ -146,6 +145,6 @@
 ### [資料管理](sql-data-warehouse-partner-data-management.md)
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

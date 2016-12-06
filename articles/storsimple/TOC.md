@@ -1,7 +1,4 @@
-# StorSimple 概觀
-
 # StorSimple Virtual Array
-
 ## 概觀
 ### [解決方案為何？](storsimple-ova-overview.md)
 
@@ -10,16 +7,41 @@
 #### [檢閱需求](storsimple-ova-system-requirements.md)
 #### [了解限制](storsimple-ova-limits.md)
 #### [檢閱最佳作法](storsimple-ova-best-practices.md)
-### 部署
+
+### 部署 (Azure 入口網站)
+#### [準備部署](storsimple-virtual-array-deploy1-portal-prep.md)
+##### [部署 StorSimple Manager 服務](storsimple-virtual-array-manage-service.md)
+#### [在 Hyper-V 中佈建](storsimple-virtual-array-deploy2-provision-hyperv.md)
+#### [在 VMware 中佈建](storsimple-virtual-array-deploy2-provision-vmware.md)
+#### [設定為檔案伺服器](storsimple-virtual-array-deploy3-fs-setup.md)
+#### [設定為 iSCSI 伺服器](storsimple-virtual-array-deploy3-iscsi-setup.md)
+
+### 部署 (傳統入口網站)
 #### [準備部署](storsimple-ova-deploy1-portal-prep.md)
-#### [部署 StorSimple Manager 服務](storsimple-ova-manage-service.md)
+##### [部署 StorSimple Manager 服務](storsimple-ova-manage-service.md)
 #### [在 Hyper-V 中佈建](storsimple-ova-deploy2-provision-hyperv.md)
 #### [在 VMware 中佈建](storsimple-ova-deploy2-provision-vmware.md)
 #### [設定為檔案伺服器](storsimple-ova-deploy3-fs-setup.md)
 #### [設定為 iSCSI 伺服器](storsimple-ova-deploy3-iscsi-setup.md)
 
 ## 作法
-### [透過 Azure 入口網站管理](storsimple-ova-manager-service-administration.md)
+### [透過 Azure 入口網站管理](storsimple-virtual-array-manager-service-administration.md)
+#### [安裝最新的更新](storsimple-virtual-array-install-update.md)
+#### [建立和管理備份](storsimple-virtual-array-backup.md)
+#### [從備份複製](storsimple-virtual-array-clone.md)
+#### [容錯移轉與 DR](storsimple-virtual-array-failover-dr.md)
+#### [停用與刪除](storsimple-virtual-array-deactivate-and-delete-device.md)
+#### [管理共用](storsimple-virtual-array-manage-shares.md)
+#### [管理磁碟區](storsimple-virtual-array-manage-volumes.md)
+#### [檢視服務摘要](storsimple-virtual-array-service-summary.md)
+#### [檢視裝置摘要](storsimple-virtual-array-device-summary.md)
+#### [管理儲存體帳戶](storsimple-virtual-array-manage-storage-accounts.md)
+#### [管理 ACR](storsimple-virtual-array-manage-acrs.md)
+#### [管理工作](storsimple-virtual-array-manage-jobs.md)
+#### [變更裝置密碼](storsimple-virtual-array-change-device-admin-password.md)
+#### [在 Windows Server 主機上設定 MPIO](storsimple-virtual-array-configure-mpio-windows-server.md)
+
+### [透過 Azure 傳統入口網站管理](storsimple-ova-manager-service-administration.md)
 #### [安裝最新的更新](storsimple-ova-install-update-01.md)
 #### [建立和管理備份](storsimple-ova-backup.md)
 #### [從備份還原](storsimple-ova-restore.md)
@@ -54,6 +76,7 @@
 ### Install
 #### [檢閱安全性](storsimple-safety.md)
 #### [打開包裝、堆疊並為 8100 佈纜線](storsimple-8100-hardware-installation.md)
+
 #### [打開包裝、堆疊並為 8600 佈纜線](storsimple-8600-hardware-installation.md)
 #### [支援 10 GbE 網路介面的硬體](storsimple-supported-hardware-for-10-gbe-network-interfaces.md)
 
@@ -63,6 +86,7 @@
 ##### [Azure 中的實體裝置 - Update 1](storsimple-deployment-walkthrough-u1.md)
 ##### [Azure 中的實體裝置 - GA](storsimple-deployment-walkthrough.md)
 #### [政府服務入口網站中的實體裝置 - 目前](storsimple-deployment-walkthrough-gov-u2.md)
+##### [政府服務入口網站中的實體裝置 - Update 1](storsimple-deployment-walkthrough-gov.md)
 #### [Azure 中的虛擬裝置](storsimple-virtual-device-u2.md)
 #### [StorSimple Snapshot Manager](storsimple-snapshot-manager-deployment.md)
 #### [StorSimple Adapter for SharePoint](storsimple-adapter-for-sharepoint.md)
@@ -114,9 +138,11 @@
 ##### [在 StorSimple Snapshot Manager 中使用 MMC 動作](storsimple-snapshot-manager-mmc-menu.md)
 
 ### 建置解決方案
-#### [分散式全域命名空間](https://www.microsoft.com/download/details.aspx?id=45507)
 #### [自動化檔案伺服器 DR 到 Azure](storsimple-disaster-recovery-using-azure-site-recovery.md)
 #### [StorSimple 與 Express Route](https://gallery.technet.microsoft.com/STORESIMPLE-CONFIGURATION-86c04c3b/view/Discussions#content)
+#### [StorSimple 與 VMware](https://gallery.technet.microsoft.com/VMWARE-DEPLOYMENT-WITH-2921b463)
+#### [StorSimple 與 Hyper-V](https://gallery.technet.microsoft.com/Deploy-Hyper-V-with-Azure-0d1c6df6)
+#### [分散式全域命名空間](https://www.microsoft.com/download/details.aspx?id=45507)
 
 ### 監視
 #### [使用服務儀表板](storsimple-service-dashboard.md)
@@ -139,7 +165,7 @@
 ##### [建立支援套件](storsimple-create-manage-support-package.md)
 
 ### 移轉
-#### [從 5000-7000 系列](https://gallery.technet.microsoft.com/Azure-StorSimple-50007000-19253270)
+#### [從 5000-7000 系列](https://gallery.technet.microsoft.com/Azure-StorSimple-50007000-c1a0460b)
 #### [從其他存放裝置](http://download.microsoft.com/download/9/4/A/94AB8165-CCC4-430B-801B-9FD40C8DA340/Migrating Data to StorSimple Volumes_09-02-15.pdf)
 
 ### 更新
@@ -160,22 +186,37 @@
 ### [Release - GA](storsimple-july-2014-release-notes.md)
 
 ## 參考
-### [PowerShell](/powershell/servicemanagement/)
+### [Azure PowerShell](/powershell/servicemanagement)
+### [Windows PowerShell for StorSimple Cmdlet](https://technet.microsoft.com/library/dn688168.aspx)
+
+# StorSimple Data Manager (私人預覽)
+
+## 概觀
+### [解決方案為何？](storsimple-data-manager-overview.md)
+
+## 開始使用
+### [使用 StorSimple Data Manager](storsimple-data-manager-ui.md)
+
+## 作法
+### [使用 .NET 來轉換資料](storsimple-data-manager-dotnet-jobs.md)
 
 # 相關參考
 ## [StorSimple 5000-7000 系列](http://onlinehelp.storsimple.com)
 
 # 資源
-## [論壇](https://social.msdn.microsoft.com/Forums/azure/home?forum=StorSimple)
+## [價格](https://azure.microsoft.com/pricing/details/storsimple/)
+## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/home?forum=StorSimple)
+## [影片](https://azure.microsoft.com/documentation/videos/index/?services=storsimple)
+## [服務更新](https://azure.microsoft.com/updates/?product=storsimple)
 ## [行銷部落格](http://blogs.technet.com/b/cis/)
 ## [行銷](https://www.microsoft.com/server-cloud/products/storsimple/explore.aspx)
 ## [支援部落格](http://blogs.msdn.com/b/storsimple/)
 ## [協力廠商通知](http://download.microsoft.com/download/2/0/0/2003271D-69D5-4143-85A2-F1D8EA058F52/StorSimple TPNs.zip)
-## [服務更新](https://azure.microsoft.com/updates/?product=storsimple)
-## [價格](https://azure.microsoft.com/pricing/details/storsimple/)
-## [影片](https://azure.microsoft.com/documentation/videos/index/?services=storsimple)
 
 
-<!--HONumber=Nov16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO5-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: 準備 Site Recovery 部署 | Microsoft Docs
-description: 本文說明如何準備利用 Azure Site Recovery 部署複寫。
+title: "準備 Site Recovery 部署 | Microsoft Docs"
+description: "本文說明如何準備利用 Azure Site Recovery 部署複寫。"
 services: site-recovery
-documentationcenter: ''
+documentationcenter: 
 author: rayne-wiselman
 manager: jwhit
 editor: tysonn
-
+ms.assetid: e24eea6c-50a7-4cd5-aab4-2c5c4d72ee2d
 ms.service: site-recovery
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 10/05/2016
 ms.author: raynew
+translationtype: Human Translation
+ms.sourcegitcommit: 5614c39d914d5ae6fde2de9c0d9941e7b93fc10f
+ms.openlocfilehash: 8a4d265694e5eef438b0560a42ea5a95c04f9b02
+
 
 ---
 # <a name="prepare-for-azure-site-recovery-deployment"></a>準備 Azure Site Recovery 部署
@@ -22,12 +26,12 @@ ms.author: raynew
 在閱讀本文之後，請在本文下方或 [Azure Recovery Services Forum (Azure 復原服務論壇)](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)張貼任何意見或問題。
 
 ## <a name="overview"></a>Overview
-組織需要 BCDR 策略，以決定應用程式、工作負載和資料如何在規劃與未規劃停機期間維持運作，並儘速復原到正常運作的情況。 BCDR 策略應保護商務資料安全且可復原，並確保發生災害時工作負載仍持續可用。 
+組織需要 BCDR 策略，以決定應用程式、工作負載和資料如何在規劃與未規劃停機期間維持運作，並儘速復原到正常運作的情況。 BCDR 策略應保護商務資料安全且可復原，並確保發生災害時工作負載仍持續可用。
 
 Site Recovery 是一項 Azure 服務，可藉由將內部部署實體伺服器和虛擬機器的複寫協調至雲端 (Azure) 或次要資料中心，協助您的 BCDR 策略。 當您的主要位置發生故障時，您容錯移轉至次要位置，讓應用程式和工作負載保持可用。 當它恢復正常作業時，容錯回復至您的主要位置。 深入了解 [什麼是 Site Recovery？](site-recovery-overview.md)
 
 ## <a name="select-your-deployment-model"></a>選取您的部署模型
-Azure 有兩種不同的 [部署模型](../resource-manager-deployment-model.md) 來建立和使用資源：Azure Resource Manager 模型和傳統服務管理模型。 Azure 也有兩個入口網站 – 支援傳統部署模型的 [Azure 傳統入口網站](https://manage.windowsazure.com/)，以及支援兩種部署模型的 [Azure 入口網站](https://ms.portal.azure.com/)。
+Azure 有兩種不同的 [部署模型](../resource-manager-deployment-model.md) 來建立和使用資源：Azure Resource Manager 模型和傳統服務管理模型。 Azure 也有兩個入口網站 – 支援傳統部署模型的 [Azure 傳統入口網站](https://manage.windowsazure.com/)，以及同時支援兩種部署模型的 [Azure 入口網站](https://ms.portal.azure.com/)。
 
 在傳統入口網站和 Azure 入口網站中都有提供 Site Recovery。 在 Azure 傳統入口網站中，您可以支援搭配傳統服務管理模型的 Site Recovery。 在 Azure 入口網站中，您可以支援傳統模型或 Resource Manager 部署。 [深入了解](site-recovery-overview.md#site-recovery-in-the-azure-portal) 如何使用 Azure 入口網站進行部署。
 
@@ -57,7 +61,7 @@ Azure 有兩種不同的 [部署模型](../resource-manager-deployment-model.md)
 | **Azure 儲存體** |複寫的資料會儲存在 Azure 儲存體，而在容錯移轉時會建立 Azure VM。 若要複寫至 Azure，您將需要 [Azure 儲存體帳戶](../storage/storage-introduction.md)。<br/><br/>如果您是在傳統入口網站中部署 Site Recovery，您將需要一或多個[標準 GRS 儲存體帳戶](../storage/storage-redundancy.md#geo-redundant-storage)。<br/><br/> 如果您是在 Azure 入口網站中進行部署，則可以使用 GRS 或 LRS 儲存體。<br/><br/> 如果您是在 Azure 入口網站中複寫 VMware VM 或實體伺服器，則支援進階儲存體。 請注意，如果您要使用進階儲存體帳戶，就也需要標準儲存體帳戶來儲存複寫記錄檔，這些記錄檔會擷取內部部署資料的進行中變更。 [進階儲存體](../storage/storage-premium-storage.md)通常是用於需要持續高 IO 效能和低延遲性以裝載 IO 密集型工作負載的虛擬機器。<br/><br/> 如果您想要使用進階帳戶來儲存複寫的資料，就也需要標準儲存體帳戶來儲存複寫記錄檔，這些記錄檔會擷取內部部署資料的進行中變更。 |
 | **Azure 網路** |若要複寫至 Azure，您將需要一個在容錯移轉後建立 Azure VM 時，Azure VM 將連線的 Azure 網路。<br/><br/> 如果您是在傳統入口網站中進行部署，您將會使用傳統網路。 如果您是在 Azure 入口網站中進行部署，則可以使用傳統網路或 Resource Manager 網路。<br/><br/> 此網路必須位於與保存庫相同的區域中。 |
 | **網路對應 (VMM 至 Azure)** |如果您是從 VMM 複寫至 Azure，[網路對應](site-recovery-network-mapping.md)可確保 Azure VM 在容錯移轉之後會連線到正確的網路。<br/><br/> 若要設定網路對應，您將需要在 VMM 入口網站中設定 VM 網路。 |
-| **內部部署** |**VMware VM**︰您將需要有執行 Site Recovery 元件的內部部署電腦、VMware vSphere 主機/vCenter 伺服器，以及您想要複寫的 VM。 [閱讀更多資訊](site-recovery-vmware-to-azure.md#configuration-server-prerequisites)。<br/><br/> **實體伺服器**︰如果您要複寫實體伺服器，您將需要有執行 Site Recovery 元件的內部部署電腦，以及您想要複寫的實體伺服器。 [閱讀更多資訊](site-recovery-vmware-to-azure.md#configuration-server-prerequisites)。 如果您想要在容錯移轉至 Azure 後進行[容錯回復](site-recovery-failback-azure-to-vmware.md)，您將需要有 VMware 基礎結構，才能這麼做。<br/><br/> **Hyper-V VM**︰如果您想要複寫 VMM 雲端中的 Hyper-V VM，您將需要 VMM 伺服器，以及您想要保護的 VM 所在的 Hyper-V 主機。 [閱讀更多資訊](site-recovery-vmm-to-azure.md#on-premises-prerequisites)。<br/><br/> 如果您想要複寫不使用 VMM 的 Hyper-V VM，您將需要 VM 所在的 Hyper-V 主機。 [閱讀更多資訊](site-recovery-hyper-v-site-to-azure.md#on-premises-prerequisites)。 |
+| **內部部署** |**VMware VM**︰您將需要有執行 Site Recovery 元件的內部部署電腦、VMware vSphere 主機/vCenter 伺服器，以及您想要複寫的 VM。 [閱讀更多資訊](site-recovery-vmware-to-azure.md#configuration-server-or-additional-process-server-prerequisites)。<br/><br/> **實體伺服器**︰如果您要複寫實體伺服器，您將需要有執行 Site Recovery 元件的內部部署電腦，以及您想要複寫的實體伺服器。 [閱讀更多資訊](site-recovery-vmware-to-azure.md#configuration-server-or-additional-process-server-prerequisites)。 如果您想要在容錯移轉至 Azure 後進行[容錯回復](site-recovery-failback-azure-to-vmware.md)，您將需要有 VMware 基礎結構，才能這麼做。<br/><br/> **Hyper-V VM**︰如果您想要複寫 VMM 雲端中的 Hyper-V VM，您將需要 VMM 伺服器，以及您想要保護的 VM 所在的 Hyper-V 主機。 [閱讀更多資訊](site-recovery-vmm-to-azure.md#on-premises-prerequisites)。<br/><br/> 如果您想要複寫不使用 VMM 的 Hyper-V VM，您將需要 VM 所在的 Hyper-V 主機。 [閱讀更多資訊](site-recovery-hyper-v-site-to-azure.md#on-premises-prerequisites)。 |
 | **受保護的機器** |將複寫至 Azure 的受保護機器必須符合下述的 [Azure 必要條件](#azure-virtual-machine-requirements) 。 |
 
 ### <a name="replicate-to-a-secondary-site"></a>複寫至次要站台
@@ -143,6 +147,8 @@ Azure 有兩種不同的 [部署模型](../resource-manager-deployment-model.md)
 * [利用 SAN 將 Hyper-V VM 複寫至次要站台](site-recovery-vmm-san.md)
 * [利用單一 VMM 伺服器複寫 Hyper-V VM](site-recovery-single-vmm.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,10 +1,16 @@
-> [!div class="op_single_selector"]
-> * [概觀和設定](../articles/machine-learning/machine-learning-data-science-spark-overview.md)
-> * [資料探索和模型化](../articles/machine-learning/machine-learning-data-science-spark-data-exploration-modeling.md)
-> * [評分和耗用量](../articles/machine-learning/machine-learning-data-science-spark-model-consumption.md)
-> * [進階模型化](../articles/machine-learning/machine-learning-data-science-spark-advanced-data-exploration-modeling.md)
-> * [使用 Scala 的資料科學](../articles/machine-learning/machine-learning-data-science-process-scala-walkthrough.md)
-> 
-> 
+<!-- On the new DOCS platform, this is a dropdown, not tabs, which doesn't work well in this context. So I'm just removing it for now.
 
-<!---HONumber=AcomDC_0803_2016-->
+> [!div class="op_single_selector"]
+> * [Overview & Setup](../articles/machine-learning/machine-learning-data-science-spark-overview.md)
+> * [Data Exploration and Modeling](../articles/machine-learning/machine-learning-data-science-spark-data-exploration-modeling.md)
+> * [Scoring & Consumption](../articles/machine-learning/machine-learning-data-science-spark-model-consumption.md)
+> * [Advanced Modeling](../articles/machine-learning/machine-learning-data-science-spark-advanced-data-exploration-modeling.md)
+> * [Data Science with Scala](../articles/machine-learning/machine-learning-data-science-process-scala-walkthrough.md)
+> 
+> 
+-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

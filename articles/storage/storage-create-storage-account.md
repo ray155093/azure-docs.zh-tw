@@ -15,8 +15,8 @@ ms.topic: get-started-article
 ms.date: 07/26/2016
 ms.author: robinsh
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: d5b24b28f82c53b880e025dc43169aaad49e8434
+ms.sourcegitcommit: 7455d6f99ed8ceb401224f98105f7b651f55c724
+ms.openlocfilehash: fd5ca2dfb12b7527f49d32d9642a91df9e590b14
 
 
 ---
@@ -43,17 +43,17 @@ Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲�
 
 例如，如果您的儲存體帳戶名為 *mystorageaccount*，則儲存體帳戶的預設端點將是：
 
-* Blob 服務：http://mystorageaccount.blob.core.windows.net
-* 表格服務：http://mystorageaccount.table.core.windows.net
-* 佇列服務：http://mystorageaccount.queue.core.windows.net
-* 檔案服務：http://mystorageaccount.file.core.windows.net
+* Blob 服務：http://*mystorageaccount*.blob.core.windows.net
+* 表格服務：http://*mystorageaccount*.table.core.windows.net
+* 佇列服務：http://*mystorageaccount*.queue.core.windows.net
+* 檔案服務：http://*mystorageaccount.file.core.windows.net*.file.core.windows.net
 
 > [!NOTE]
 > Blob 儲存體帳戶只會公開 Blob 服務端點。
 > 
 > 
 
-用以存取儲存體帳戶中某物件的 URL，可藉由在端點後附加該物件在儲存體帳戶中的位置來建置。 例如，blob 位址可能會有如下格式︰http://mystorageaccount.blob.core.windows.net/mycontainer/myblob。
+用以存取儲存體帳戶中某物件的 URL，可藉由在端點後附加該物件在儲存體帳戶中的位置來建置。 例如，blob 位址可能會有如下格式︰http://*mystorageaccount*.blob.core.windows.net/*mycontainer*/*myblob*。
 
 您也可以設定與儲存體帳戶搭配使用的自訂網域名稱。 對於傳統儲存體帳戶，如需詳細資訊，請參閱 [針對 Blob 儲存體端點設定自訂網域名稱](storage-custom-domain-name.md) 。 對於 Resource Manager 儲存體帳戶，這項功能尚未加入至 [Azure 入口網站](https://portal.azure.com) ，但是您可以使用 PowerShell 設定它。 如需詳細資訊，請參閱 [Set-AzureRmStorageAccount](https://msdn.microsoft.com/library/mt607146.aspx) cmdlet。  
 
@@ -68,7 +68,7 @@ Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲�
    > 儲存體帳戶名稱必須在 Azure 中是獨一無二的。 Azure 入口網站會指出您選取的儲存體帳戶名稱是否已在使用中。
    > 
    > 
-4. 指定所要使用的部署模型：[Resource Manager] 或 [傳統]。  是建議的部署模型。 如需詳細資訊，請參閱 [了解資源管理員部署和傳統部署](../resource-manager-deployment-model.md)。
+4. 指定所要使用的部署模型：[Resource Manager] 或 [傳統]。  是建議的部署模型。 如需詳細資訊，請參閱 [了解資源管理員部署和傳統部署](../azure-resource-manager/resource-manager-deployment-model.md)。
    
    > [!NOTE]
    > 僅可使用資源管理員部署模型來建立 Blob 儲存體帳戶。
@@ -162,6 +162,6 @@ Azure 儲存體帳戶提供唯一命名空間來儲存及存取您的 Azure 儲�
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

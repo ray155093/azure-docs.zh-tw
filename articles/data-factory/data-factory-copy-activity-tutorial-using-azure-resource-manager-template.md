@@ -310,7 +310,7 @@ ms.openlocfilehash: 535eb3c22dad35da3c1dbc10be5a7c11c6bb8d00
 
 ## <a name="monitor-pipeline"></a>監視管線
 1. 使用您的 Azure 帳戶登入 [Azure 入口網站](https://portal.azure.com)。
-2. 按一下左功能表的 [Data Factory] (或) 按一下 [更多服務] 然後按一下 [智慧 + 分析] 類別下的 [Data Factory]。
+2. 按一下左功能表的 [Data Factory] \(或) 按一下 [更多服務] 然後按一下 [智慧 + 分析] 類別下的 [Data Factory]。
    
     ![Data Factory 功能表](media/data-factory-copy-activity-tutorial-using-azure-resource-manager-template/data-factories-menu.png)
 3. 在 [Data factory] 頁面上，搜尋並尋找您的 Data Factory。 

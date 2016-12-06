@@ -47,7 +47,7 @@ ms.openlocfilehash: 333babec567a4700ca0882c883e4460442d844e1
 4. 按一下資料庫刀鋒視窗頂端的 [工具]  按鈕：
    
     ![新增查詢。 連接到 SQL Database 伺服器：SQL Server Management Studio](./media/sql-database-connect-query/tools.png)
-5. 按一下 [在 Visual Studio 中開啟]  (如果您需要 Visual Studio，請按一下下載連結)︰
+5. 按一下 ** [在 Visual Studio 中開啟]** \(如果您需要 Visual Studio，請按一下下載連結)︰
    
     ![新增查詢。 連接到 SQL Database 伺服器：SQL Server Management Studio](./media/sql-database-connect-query/open-in-vs.png)
 6. Visual Studio 隨即開啟，其 [連接到伺服器]  視窗已設定為連接到您在入口網站中選取的伺服器和資料庫。  (按一下 [選項] 以確認連接已設為正確的資料庫)。輸入您的伺服器系統管理員密碼，然後按一下 [連接]。

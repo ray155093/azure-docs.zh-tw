@@ -1,34 +1,34 @@
 # 概觀
 ## [什麼是 DocumentDB？](documentdb-introduction.md)
 ## [核心概念](documentdb-resources.md)
-## [儲存體與效能](documentdb-manage.md)
-## [資料分割與調整規模](documentdb-partition-data.md)
 ## [全球發佈](documentdb-distribute-data-globally.md)
-## [一致性](documentdb-consistency-levels.md)
-## [SQL query](documentdb-sql-query.md)
-## [NoSQL 與 SQL](documentdb-nosql-vs-sql.md)
 ## 案例
 ### [一般使用案例](documentdb-use-cases.md)
 ### [使用 DocumentDB 進行社交活動](documentdb-social-media-apps.md)
-### [多租用戶](http://blogs.msdn.com/b/documentdb/archive/2014/12/03/scaling-a-multi-tenant-application-with-azure-documentdb.aspx)
-
 
 # 開始使用
 ## 撰寫您的第一個應用程式
 ### [.NET 主控台應用程式](documentdb-get-started.md)
+### [.NET 核心主控台應用程式](documentdb-dotnetcore-get-started.md)
 ### [控台應用程式](documentdb-nodejs-get-started.md)
+### [C++ 主控台應用程式](documentdb-cpp-get-started.md)
 ## 建置 Web 應用程式
 ### [.NET Web 應用程式](documentdb-dotnet-application.md)
 ### [Node.js Web 應用程式](documentdb-nodejs-application.md)
 ### [Java Web 應用程式](documentdb-java-application.md)
 ### [Python Flask Web 應用程式](documentdb-python-application.md)
+## [本機開發](documentdb-nosql-local-emulator.md)
 ## [常見問題集](documentdb-faq.md)
-
-
 
 # 作法
 
-## 管理 
+## 規劃
+### [儲存體與效能](documentdb-manage.md)
+### [資料分割與調整規模](documentdb-partition-data.md)
+### [一致性](documentdb-consistency-levels.md)
+### [NoSQL 與 SQL](documentdb-nosql-vs-sql.md)
+
+## 管理
 ### [匯入資料](documentdb-import-data.md)
 ### [模型化資料](documentdb-modeling-data.md)
 ### [使用地理空間資料](documentdb-geospatial.md)
@@ -46,17 +46,18 @@
 ### [加速填滿帳戶](documentdb-supercharge-your-account.md)
 
 ## 開發
+### [SQL query](documentdb-sql-query.md)
 ### [預存程序、觸發程序和 UDF](documentdb-programming.md)
 ### [效能測試](documentdb-performance-testing.md)
 ### [效能秘訣](documentdb-performance-tips.md)
 ### 適用於 MongoDB 開發人員的 DocumentDB
-#### [何謂 MongoDB 的通訊協定支援？](documentdb-protocol-mongodb.md)
+#### [MongoDB 的通訊協定支援](documentdb-protocol-mongodb.md)
 #### [建立帳戶](documentdb-create-mongodb-account.md)
 #### [連接至您的帳戶](documentdb-connect-mongodb-account.md)
 #### [使用 MongoChef](documentdb-mongodb-mongochef.md)
 #### [通訊協定支援範本](documentdb-mongodb-samples.md)
 
-## 使用入口網站 
+## 使用入口網站
 ### [建立資料庫帳戶](documentdb-create-account.md)
 ### [建立集合](documentdb-create-collection.md)
 ### [新增全域複寫](documentdb-portal-global-replication.md)
@@ -75,34 +76,33 @@
 ### [以 Hadoop 分析資料](documentdb-run-hadoop-with-hdinsight.md)
 ### [與 Azure 搜尋服務整合](documentdb-search-indexer.md)
 ### [使用 Azure Data Factory 移動資料](../data-factory/data-factory-azure-documentdb-connector.md)
-### [使用 Azure 串流分析來分析即時資料](../stream-analytics/stream-analytics-define-outputs.md#documentdb.md)
+### [使用 Azure 串流分析來分析即時資料](../stream-analytics/stream-analytics-define-outputs.md#documentdb)
 ### [使用 Logic Apps 取得通知](documentdb-change-notification.md)
 ### [即時處理感應器資料](../hdinsight/hdinsight-storm-iot-eventhub-documentdb.md)
 ### [使用 Power BI 將資料視覺化](documentdb-powerbi-visualize.md)
 
 
 # 參考
-## [.NET SDK](documentdb-sdk-dotnet.md)
-## [.NET 範例](documentdb-dotnet-samples.md)
 ## [Java SDK](documentdb-sdk-java.md)
+## [.NET SDK](documentdb-sdk-dotnet.md)
+## [.NET 核心 SDK](documentdb-sdk-dotnet-core.md)
+## [.NET 範例](documentdb-dotnet-samples.md)
 ## [Node.js SDK](documentdb-sdk-node.md)
 ## [Node.js 範例](documentdb-nodejs-samples.md)
-## [Python](documentdb-sdk-python.md)
+## [Python SDK](documentdb-sdk-python.md)
 ## [Python 範例](documentdb-python-samples.md)
-## [REST](https://msdn.microsoft.com/library/azure/dn781481.aspx) 
 ## [SQL](https://msdn.microsoft.com/library/azure/dn782250.aspx)
 ## [SQL 語法功能提要](documentdb-sql-query-cheat-sheet.md)
-
+## [REST](/rest/api/documentdb/)
+## [REST 資源提供者](/rest/api/documentdbresourceprovider/)
 
 # 資源
 ## [價格](https://azure.microsoft.com/pricing/details/documentdb/)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/forums/azure/en-US/home?forum=AzureDocumentDB)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-documentdb)
-## [影片](https://azure.microsoft.com/documentation/videos/index/?services=documentdb) 
-## [服務更新](https://azure.microsoft.com/updates/?product=documentdb) 
-## [詢問 DocumentDB](documentdb-community.md#contact-the-team)
+## [影片](https://azure.microsoft.com/documentation/videos/index/?services=documentdb)
+## [服務更新](https://azure.microsoft.com/updates/?product=documentdb)
 ## [社群入口網站](documentdb-community.md)
-## [活動和記錄](documentdb-community.md#events-and-recordings)
 ## [查詢遊樂場](https://www.documentdb.com/sql/demo)
 ## [結構描述無從驗證索引文件](http://www.vldb.org/pvldb/vol8/p1668-shukla.pdf)
 ## [透過棒球說明資料一致性](http://research.microsoft.com/apps/pubs/default.aspx?id=206913)
@@ -110,23 +110,6 @@
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/documentdb/)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

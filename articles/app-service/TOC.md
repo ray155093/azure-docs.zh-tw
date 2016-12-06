@@ -159,6 +159,6 @@
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=app-service) 
 ## [服務更新](https://azure.microsoft.com/updates/?product=app-service) 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 
