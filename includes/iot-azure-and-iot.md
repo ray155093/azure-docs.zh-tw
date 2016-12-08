@@ -30,9 +30,9 @@ IoT 專案所面臨的其中一個最大挑戰，就是如何可靠且安全地�
 * 可能需要使用專屬、自訂或業界特定的應用程式通訊協定。
 * 可以使用一組大型常見的硬體和軟體平台來建立。
 
-除了上述需求之外，任何 IoT 解決方案也必須提供調整、安全性和可靠性。 使用傳統技術 (例如 Web 容器和傳訊代理程式) 實作連線需求的結果是困難且耗時的。 Azure IoT 中樞和 IoT 裝置 SDK 讓您更輕鬆地實作符合其需求的解決方案。
+除了上述需求之外，任何 IoT 解決方案也必須提供調整、安全性和可靠性。 使用傳統技術 (例如 Web 容器和傳訊代理程式) 實作連線需求的結果是困難且耗時的。 Azure IoT 中樞和 Azure IoT 裝置 SDK 讓您更輕鬆地實作符合其需求的解決方案。
 
-裝置可以直接與雲端閘道端點通訊，或如果裝置無法使用任何雲端閘道支援的通訊協定，則可以透過中繼閘道連線。 例如，[Azure IoT 通訊協定閘道][lnk-protocol-gateway]可以在裝置無法使用 IoT 中樞支援的任何通訊協定時，執行通訊協定轉譯。
+裝置可以直接與雲端閘道端點通訊，或如果裝置無法使用任何雲端閘道支援的通訊協定，則可以透過中繼閘道連線。 例如，[Azure IoT 通訊協定閘道][lnk-protocol-gateway]可以在裝置不能使用 IoT 中樞支援的任何通訊協定時，執行通訊協定轉譯。
 
 ### <a name="data-processing-and-analytics"></a>資料處理和分析
 在雲端中，IoT 解決方案後端是進行資料處理的位置，例如篩選及彙總遙測，以及將其路由到其他服務。 IoT 解決方案後端：
@@ -55,11 +55,11 @@ IoT 解決方案可以包含自動意見反應迴圈。 例如，後端中的分
 [img-dashboard]: ./media/iot-azure-and-iot/iot-suite.png
 
 [lnk-machinelearning]: http://azure.microsoft.com/documentation/services/machine-learning/
-[Azure IoT 套件]: http://azure.microsoft.com/solutions/iot
+[Azure IoT Suite]: http://azure.microsoft.com/solutions/iot
 [lnk-protocol-gateway]:  ../articles/iot-hub/iot-hub-protocol-gateway.md
 [lnk-refarch]: http://download.microsoft.com/download/A/4/D/A4DAD253-BC21-41D3-B9D9-87D2AE6F0719/Microsoft_Azure_IoT_Reference_Architecture.pdf
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO5-->
 
 

@@ -7,7 +7,7 @@ author: rgardler
 manager: timlt
 editor: 
 tags: acs, azure-container-service
-keywords: "Docker、容器、微服務、Mesos、Azure"
+keywords: Docker, Containers, Micro-services, Mesos, Azure, dcos, swarm, kubernetes, azure container service, acs
 ms.assetid: 696a736f-9299-4613-88c6-7177089cfc23
 ms.service: container-service
 ms.devlang: na
@@ -17,13 +17,13 @@ ms.workload: na
 ms.date: 09/13/2016
 ms.author: rogardle
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: c8c06906a5f99890295ff2b2433ff6f7e02dece5
+ms.sourcegitcommit: a7d957fd4be4c823077b1220dfb8ed91070a0e97
+ms.openlocfilehash: d056b9489eba1f97e8fb87f231b03d104c4cab66
 
 
 ---
 # <a name="deploy-an-azure-container-service-cluster"></a>部署 Azure 容器服務叢集
-Azure 容器服務支援快速部署常用的開放原始碼容器叢集和協調流程解決方案。 透過 Azure 容器服務，您可以使用 Azure Resource Manager 範本或 Azure 入口網站來部署 DC/OS 和 Docker Swarm 叢集。 您會使用 Azure 虛擬機器擴展集來部署這些叢集，而這些叢集會利用 Azure 網路功能與儲存體供應項目。 若要存取 Azure 容器服務，您需要有 Azure 訂用帳戶。 如果您沒有帳戶，您可以註冊 [免費試用](http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=AA4C1C935)。
+Azure 容器服務支援快速部署常用的開放原始碼容器叢集和協調流程解決方案。 透過 Azure Container Service，您可以使用 Azure Resource Manager 範本或 Azure 入口網站來部署 DC/OS、Kubernetes 和 Docker Swarm 叢集。 您會使用 Azure 虛擬機器擴展集來部署這些叢集，而這些叢集會利用 Azure 網路功能與儲存體供應項目。 若要存取 Azure 容器服務，您需要有 Azure 訂用帳戶。 如果您沒有帳戶，您可以註冊 [免費試用](http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=AA4C1C935)。
 
 本文件會逐步引導您使用 [Azure 入口網站](#creating-a-service-using-the-azure-portal)、[Azure 命令列介面 (CLI)](#creating-a-service-using-the-azure-cli) 和 [Azure PowerShell 模組](#creating-a-service-using-powershell)來部署 Azure 容器服務叢集。  
 
@@ -52,15 +52,21 @@ Azure 容器服務支援快速部署常用的開放原始碼容器叢集和協�
 
 * **DC/OS**：部署 DC/OS 叢集。
 * **Swarm**：部署 Docker Swarm 叢集。
+* **Kubernetes**：部署 Kubernetes 叢集。
 
 準備好繼續時請按一下 [確定]  。
 
-![建立部署 4](media/acs-portal4.png)  <br />
+![建立部署 4](media/acs-portal4-new.png)  <br />
+
+如果在下拉式清單中選取 [Kubernetes]，您將需要輸入服務主體用戶端識別碼和服務主體用戶端密碼。
+若要深入了解如何建立服務主體，請造訪[此](https://github.com/Azure/acs-engine/blob/master/docs/serviceprincipal.md)頁面 
+
+![建立部署 4.5](media/acs-portal10.PNG)  <br />
 
 輸入以下資訊：
 
-* **主要主機計數**：叢集中主要主機的數目。
-* **代理程式計數**：若為 Docker Swarm，這會是代理程式調整集內的初始代理程式數目。 若為 DC/OS，這會是私人調整集內的初始代理程式數目。 此外，也會建立包含預先決定的代理程式數目的公用調整集。 此公用調整集內的代理程式數目是由叢集中已建立的主要主機數目來決定：一個主要主機需要一個公用代理程式，三或五個主要主機則需要兩個公用代理程式。
+* **主要主機計數**：叢集中主要主機的數目。 如果選取了 [Kubernetes]，主要主機數目會設定為預設值 1
+* **代理程式計數**：若為 Docker Swarm 和 Kubernetes，這會是代理程式擴展集內的初始代理程式數目。 若為 DC/OS，這會是私人調整集內的初始代理程式數目。 此外，也會建立包含預先決定的代理程式數目的公用調整集。 此公用調整集內的代理程式數目是由叢集中已建立的主要主機數目來決定：一個主要主機需要一個公用代理程式，三或五個主要主機則需要兩個公用代理程式。
 * **代理程式虛擬機器大小**：代理程式虛擬機器的大小。
 * **DNS 前置詞**：全球唯一的名稱，將用來做為服務之完整網域名稱的主要前置部分。
 
@@ -85,10 +91,11 @@ Azure 容器服務支援快速部署常用的開放原始碼容器叢集和協�
 ## <a name="create-a-service-by-using-the-azure-cli"></a>使用 Azure CLI 建立服務
 若要使用命令列建立 Azure 容器服務的執行個體，您需要有 Azure 訂用帳戶。 如果您沒有帳戶，您可以註冊 [免費試用](http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=AA4C1C935)。 您也必須[安裝](../xplat-cli-install.md)並[設定](../xplat-cli-connect.md) Azure CLI。
 
-若要部署 DC/OS 或 Docker Swarm 叢集，請從 GitHub 選取下列其中一個範本。 請注意，除了預設的 Orchestrator 選項有所不同外，下列兩個範本完全相同。
+若要部署 DC/OS 或 Docker Swarm 或 Kubernetes 叢集，請從 GitHub 選取下列其中一個範本。 
 
 * [DC/OS 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-dcos)
 * [Swarm 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-swarm)
+* [Kubernetes 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-kubernetes)
 
 接下來，請確定 Azure CLI 已連線至 Azure 訂用帳戶。 您可以使用下列命令來達成目的：
 
@@ -140,10 +147,11 @@ azure group deployment create RESOURCE_GROUP DEPLOYMENT_NAME --template-uri TEMP
 ## <a name="create-a-service-by-using-powershell"></a>使用 PowerShell 建立服務
 您也可以使用 PowerShell 部署 Azure 容器服務叢集。 這份文件以 1.0 版的 [Azure PowerShell 模組](https://azure.microsoft.com/blog/azps-1-0/)為基礎。
 
-若要部署 DC/OS 或 Docker Swarm 叢集，請選取下列其中一個範本。 請注意，除了預設的 Orchestrator 選項有所不同外，下列兩個範本完全相同。
+若要部署 DC/OS 或 Docker Swarm 或 Kubernetes 叢集，請選取下列其中一個範本。 請注意，除了預設的 Orchestrator 選項有所不同外，下列兩個範本完全相同。
 
 * [DC/OS 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-dcos)
 * [Swarm 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-swarm)
+* [Kubernetes 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-kubernetes)
 
 在 Azure 訂用帳戶中建立叢集之前，請確認您的 PowerShell 工作階段已登入 Azure。 您若要這麼做，可透過 `Get-AzureRMSubscription` 命令：
 
@@ -184,10 +192,11 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName RESOURCE_GROUP_NAME-Templa
 * [連接到 Azure 容器服務叢集](container-service-connect.md)
 * [使用 Azure 容器服務和 DC/OS](container-service-mesos-marathon-rest.md)
 * [使用 Azure 容器服務和 Docker Swarm](container-service-docker-swarm.md)
+* [使用 Azure Container Service 和 Kubernetes](container-service-kubernetes-walkthrough.md)
 
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO5-->
 
 

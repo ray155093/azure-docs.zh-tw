@@ -13,11 +13,11 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 10/19/2016
+ms.date: 11/23/2016
 ms.author: jgao
 translationtype: Human Translation
-ms.sourcegitcommit: 9cf1faabe3ea12af0ee5fd8a825975e30947b03a
-ms.openlocfilehash: bf4e77ab2678d3cb74373fd3b3cfd2a5f69d7292
+ms.sourcegitcommit: 2c7b46521c5da3290af244652b5ac20d4c309d5d
+ms.openlocfilehash: 5ec4b260ce82ec78b614ae442d3f14063ce590b5
 
 
 ---
@@ -74,7 +74,7 @@ ms.openlocfilehash: bf4e77ab2678d3cb74373fd3b3cfd2a5f69d7292
 
 在實作 BigTable 的 HBase 中，相同的資料看起來像：
 
-![HDInsight HBase bigtable 資料][img-hbase-sample-data-bigtable]
+![HDInsight HBase BigTable 資料][img-hbase-sample-data-bigtable]
 
 下一個程序完成後，您對此會有更深的理解。  
 
@@ -95,7 +95,7 @@ ms.openlocfilehash: bf4e77ab2678d3cb74373fd3b3cfd2a5f69d7292
         put 'Contacts', '1000', 'Office:Address', '1111 San Gabriel Dr.'
         scan 'Contacts'
    
-    ![hdinsight hadoop hbase shell][img-hbase-shell]
+    ![HDInsight Hadoop HBase 殼層][img-hbase-shell]
 4. 取得單一資料列
    
         get 'Contacts', '1000'
@@ -142,11 +142,19 @@ HBase 包含數個將資料載入資料表的方法。  如需詳細資訊，請
 ## <a name="use-hive-to-query-hbase"></a>使用 Hive 查詢 HBase
 您可以使用 Hive 查詢 HBase 資料表中的資料。 本節將建立對應至 HBase 資料表的 Hive 資料表，並用以查詢您 HBase 資料表中的資料。
 
+> [!NOTE]
+> 如果 Hive 和 HBase 位於相同 VNet 中的不同叢集，您必須在叫用 Hive 殼層時傳遞 zookeeper 仲裁：
+>
+>       hive --hiveconf hbase.zookeeper.quorum=zk0-xxxx.xxxxxxxxxxxxxxxxxxxxxxx.cx.internal.cloudapp.net,zk1-xxxx.xxxxxxxxxxxxxxxxxxxxxxx.cx.internal.cloudapp.net,zk2-xxxx.xxxxxxxxxxxxxxxxxxxxxxx.cx.internal.cloudapp.net --hiveconf zookeeper.znode.parent=/hbase-unsecure  
+>
+>
+
 1. 開啟 **PuTTY**，然後連線到叢集。  請參閱先前程序中的指示。
 2. 開啟 Hive 殼層。
    
        hive
-3. 執行下列 HiveQL 指令碼，建立對應到 HBase 資料表的 Hive 資料表。 在執行此陳述式前，請確定您已使用 HBase Shell 建立參考先前本教學課程的範例資料表。
+       
+3. 執行下列 HiveQL 指令碼以建立對應到 HBase 資料表的 Hive 資料表。 在執行此陳述式前，請確定您已使用 HBase Shell 建立參考先前本教學課程的範例資料表。
    
         CREATE EXTERNAL TABLE hbasecontacts(rowkey STRING, name STRING, homephone STRING, officephone STRING, officeaddress STRING)
         STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
@@ -221,53 +229,21 @@ HBase 包含數個將資料載入資料表的方法。  如需詳細資訊，請
 ## <a name="check-cluster-status"></a>檢查叢集狀態
 HDInsight 中的 HBase 隨附於 Web UI，以供監視叢集。 使用 Web UI，您可要求關於區域的統計資料或資訊。
 
-SSH 也可用來建立通道以將本機要求 (例如 Web 要求) 傳送到 HDInsight 叢集。 要求便會路由至要求的資源，彷彿要求是在 HDInsight 叢集前端節點上產生。 如需詳細資訊，請參閱 [從 Windows 在 HDInsight 上搭配使用 SSH 與以 Linux 為基礎的 Hadoop](hdinsight-hadoop-linux-use-ssh-windows.md#tunnel)。
+**存取 HBase 主要 UI**
 
-**建立 SSH 通道工作階段**
+1. 開啟 Ambari Web UI (https://&lt;Clustername>.azurehdinsight.net)。
+2. 按一下左側功能表的 [HBase]。
+3. 按一下頁面頂端的 [快速連結]，指向使用中的 Zookeeper 節點連結，然後按一下 [HBase 主要 UI]。  UI 會在另一個瀏覽器索引標籤中開啟：
 
-1. 開啟 **PuTTY**。  
-2. 如果您在建立期間，於建立使用者帳戶時提供 SSH 金鑰，您就必須執行下列步驟來選取要在驗證叢集時使用的私密金鑰：
-   
-    在 [類別] 中，依序展開 [連接] 和 [SSH]，然後選取 [驗證]。 最後，按一下 [ **瀏覽** ]，然後選取內含私密金鑰的 .ppk 檔案。
-3. 在 [類別] 中，按一下 [工作階段]。
-4. 從您 PuTTY 工作階段螢幕的基本選項，輸入下列值：
-   
-   * **主機名稱**：請在 [主機名稱] \(或 [IP 位址]) 欄位中，輸入您 HDInsight 伺服器的 SSH 位址。 SSH 位址是叢集名稱加上 **-ssh.azurehdinsight.net**。 例如， *mycluster-ssh.azurehdinsight.net*。
-   * **連接埠**：22。 主要前端節點上的 SSH 連接埠為 22。  
-5. 在對話方塊左側的 [類別] 區段中，依序展開 [連線] 和 [SSH]，然後按一下 [通道]。
-6. 在 [控制 SSH 連接埠轉送的選項] 表單中提供下列資訊：
-   
-   * **來源連接埠** - 您想要轉送之用戶端上的連接埠。 例如 9876。
-   * **動態** - 啟用動態 SOCKS Proxy 路由。
-7. 按一下 [新增]  來新增設定。
-8. 按一下對話方塊底部的 [開啟]  來開啟 SSH 連線。
-9. 出現提示時，使用 SSH 帳戶登入伺服器。 這會建立 SSH 工作階段，並啟用通道。
+  ![HDInsight HBase HMaster UI](./media/hdinsight-hbase-tutorial-get-started-linux/hdinsight-hbase-hmaster-ui.png)
 
-**使用 Ambari 尋找 zookeeper 的 FQDN**
+  HBase 主要 UI 包含下列區段：
 
-1. 瀏覽至 https://<ClusterName>.azurehdinsight.net/。
-2. 輸入您的叢集使用者帳戶認證兩次。
-3. 從左側功能表中，按一下 [zookeeper] 。
-4. 從 [摘要] 清單中，按一下三個 **ZooKeeper 伺服器** 連結中的一個。
-5. 複製 **主機名稱**。 例如，zk0-CLUSTERNAME.xxxxxxxxxxxxxxxxxxxx.cx.internal.cloudapp.net。
-
-**設定用戶端程式 (Firefox) 並檢查叢集狀態**
-
-1. 開啟 Firefox。
-2. 按一下 [開啟功能表]  按鈕。
-3. 按一下 [選項] 。
-4. 依序按一下 [進階]、[網路] 及 [設定]。
-5. 選取 [手動 Proxy 組態] 。
-6. 輸入下列值：
-   
-   * **Socks 主機**：localhost
-   * **連接埠**：使用您在 Putty SSH 通道中設定的相同連接埠。  例如 9876。
-   * **SOCKS v5**：(已選取)
-   * **遠端 DNS**：(已選取)
-7. 按一下 [確定]  儲存變更。
-8. 瀏覽至 http://&lt;ZooKeeper 的 FQDN>:60010/master-status。
-
-在高可用性叢集中，您會找到目前使用中之 HBase 主要節點 (其正在主控 WebUI) 的連結。
+  - 區域伺服器
+  - 備份主機
+  - tables
+  - 工作
+  - 軟體屬性
 
 ## <a name="delete-the-cluster"></a>刪除叢集
 為了避免不一致，建議您在刪除叢集之前，先停用 HBase 資料表。
@@ -310,6 +286,6 @@ SSH 也可用來建立通道以將本機要求 (例如 Web 要求) 傳送到 HDI
 
 
 
-<!--HONumber=Nov16_HO3-->
+<!--HONumber=Nov16_HO4-->
 
 

@@ -15,15 +15,15 @@ ms.workload: big-data
 ms.date: 11/02/2016
 ms.author: nitinme
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 84d644e07036f511e685b0fd020cdf8c310fd969
+ms.sourcegitcommit: f426cf4b91941f19714c33abc21ef0c777f5b233
+ms.openlocfilehash: 38f3ca24b7fa136bdb4b64b6cae77078b7ea3c97
 
 
 ---
 # <a name="frequently-asked-questions-for-azure-data-lake-store"></a>Azure Data Lake Store 常見問題集
 在本文中，您將了解 Azure Data Lake Store 的相關常見問題集。
 
-## <a name="how-do-i-handle-disaster-recovery-and-data-corruption-for-my-azure-data-lake-store-account"></a>該如何處理 Azure Data Lake Store 帳戶的災害復原和資料損毀？
+## <a name="how-can-i-further-protect-my-data-from-region-wide-disasters-or-accidental-deletions"></a>如何進一步保護我的資料以防止區域全面性災害或意外刪除？
 透過自動化複本，Azure Data Lake Store 帳戶中的資料可彈性應對區域內發生的暫時性硬體故障。 這可確保持久性和高可用性，符合 Azure Data Lake Store 的 SLA。 以下提供了一些指引，說明如何進一步保護資料，使其不受罕見的全區停電或意外刪除事件影響。
 
 ### <a name="disaster-recovery-guidance"></a>災害復原指引
@@ -35,7 +35,7 @@ ms.openlocfilehash: 84d644e07036f511e685b0fd020cdf8c310fd969
 #### <a name="best-practices"></a>最佳作法
 我們建議您以符合災害復原計畫需求的頻率，將重要資料複製到位於其他區域的另一個 Data Lake Store 帳戶。 您可以使用各種方法來複製資料，包括 [ADLCopy](data-lake-store-copy-data-azure-storage-blob.md)、[Azure PowerShell](data-lake-store-get-started-powershell.md) 或 [Azure Data Factory](../data-factory/data-factory-azure-datalake-connector.md)。 Azure Data Factory 這項服務很適合用來反覆建立和部署資料移動管線。
 
-發生區域性停電時，您就可以從資料所複製到的區域存取資料。您可以監視 [Azure 服務健全狀況儀表板](https://azure.microsoft.com/status/)以確定全球各地 Azure 服務的狀態。
+發生區域性停電時，您可以立即從資料所複製到的區域存取資料。您可以監視 [Azure 服務健康狀況儀表板](https://azure.microsoft.com/status/)以判斷全球各地 Azure 服務的狀態。
 
 ### <a name="data-corruption-or-accidental-deletion-recovery-guidance"></a>資料損毀或意外刪除復原指引
 雖然 Azure Data Lake Store 可透過自動化複本提供資料恢復，但這無法防止應用程式 (或開發人員/使用者) 的資料遭到損毀或意外刪除。
@@ -52,6 +52,6 @@ ms.openlocfilehash: 84d644e07036f511e685b0fd020cdf8c310fd969
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO5-->
 
 

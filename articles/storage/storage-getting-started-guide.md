@@ -12,11 +12,11 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: get-started-article
-ms.date: 10/18/2016
+ms.date: 11/17/2016
 ms.author: tamram
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 369e45ed8303735976813c1224ce74842f886536
+ms.sourcegitcommit: 1a6d1497dee72a49705e15bd2907a42f744bd3b5
+ms.openlocfilehash: 8b32412b2dcfb20f3cb1f858fa4ae4230d72c7cd
 
 
 ---
@@ -47,10 +47,9 @@ ms.openlocfilehash: 369e45ed8303735976813c1224ce74842f886536
 3. 在 [新增專案] 對話方塊中，按一下 [已安裝] > [範本] > [Visual C#] > [雲端] > [快速入門] > [資料服務]。
     a. 選擇下列其中一個範本：**Azure 儲存體：Blob**、**Azure 儲存體：檔案**、**Azure 儲存體：佇列**或 **Azure 儲存體：資料表**。
     b. 確定已選取 [.NET Framework 4.5.2] 來做為目標架構。
-   
-   * 3.c. 指定您專案的名稱，並建立新的 Visual Studio 方案，如下所示：
+    c. 指定您專案的名稱，並建立新的 Visual Studio 方案，如下所示：
      
-     ![Azure 快速入門][Image1]
+    ![Azure 快速入門][Image1]
 
 您可能想要在執行應用程式前檢閱原始程式碼。 若要檢閱程式碼，請在 Visual Studio 中選取 [檢視] 功能表上的 [方案總管]。 然後，按兩下 Program.cs 檔案。
 
@@ -59,7 +58,10 @@ ms.openlocfilehash: 369e45ed8303735976813c1224ce74842f886536
 1. 在 Visual Studio 中，選取 [檢視] 功能表上的 [方案總管]。 開啟 App.config 檔案並註解化 Azure 儲存體模擬器的連接字串：
    
    `<!--<add key="StorageConnectionString" value = "UseDevelopmentStorage=true;"/>-->`
-2. 取消註解 Azure 儲存體服務的連接字串，並提供 App.config 檔案中的儲存體帳戶名稱和存取金鑰： `<add key="StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=[AccountName];AccountKey=[AccountKey]"`
+
+2. 取消註解 Azure 儲存體服務的連接字串，並提供 App.config 檔案中的儲存體帳戶名稱和存取金鑰：
+   
+   `<add key="StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=[AccountName];AccountKey=[AccountKey]"`
    
    若要擷取儲存體帳戶存取金鑰，請參閱 [管理儲存體存取金鑰](storage-create-storage-account.md#manage-your-storage-access-keys)。
 3. 提供 App.config 檔案中的儲存體帳戶名稱和存取金鑰之後，在 [檔案] 功能表上，按一下 [全部儲存] 以儲存所有的專案檔案。
@@ -79,6 +81,7 @@ ms.openlocfilehash: 369e45ed8303735976813c1224ce74842f886536
     c. 指定您專案的名稱，並建立新的 Visual Studio 方案，如下所示：
    
     ![Azure 快速入門][Image1]
+
 4. 在 Visual Studio 中，選取 [檢視] 功能表上的 [方案總管]。 如果您已經新增其中一個，請開啟 App.config 檔案，並註解化 Azure 儲存體帳戶的連接字串。 然後取消註解化 Azure 儲存體模擬器的連接字串：
    
    `<add key="StorageConnectionString" value = "UseDevelopmentStorage=true;"/>`
@@ -109,6 +112,6 @@ ms.openlocfilehash: 369e45ed8303735976813c1224ce74842f886536
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

@@ -15,8 +15,8 @@ ms.topic: hero-article
 ms.date: 10/07/2016
 ms.author: ambapat
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 5d58210a155666642cec8c180249c4e43b69fb9c
+ms.sourcegitcommit: a31a1b7909ea7440780c9a7af4cb908c9aa6a449
+ms.openlocfilehash: 5557dbef45d8599010a909635eebf399a5bcd2c8
 
 
 ---
@@ -71,7 +71,7 @@ Azure 金鑰保存庫是一項可透過 Azure Resource Manager 部署模型取�
 ## <a name="management-plane-access-control"></a>管理平面存取控制
 管理平面是由會影響金鑰保存庫本身的作業所組成。 例如，您可以建立或刪除金鑰保存庫。 您可以取得訂用帳戶中的保存庫清單。 您可以擷取金鑰保存庫屬性 (例如 SKU、標籤)，並設定金鑰保存庫存取原則來控制可存取金鑰保存庫中金鑰和密碼的使用者和應用程式。 管理平面存取控制會使用 RBAC。 請參閱上一節的資料表中，可透過管理平面執行的金鑰保存庫作業完整清單。 
 
-### <a name="rolebased-access-control-rbac"></a>角色型存取控制 (RBAC)
+### <a name="role-based-access-control-rbac"></a>角色型存取控制 (RBAC)
 每一個 Azure 訂用帳戶都具有 Azure Active Directory。 您可以為來自該目錄的使用者、群組和應用程式授與存取權，以便在使用 Azure Resource Manager 部署模型的 Azure 訂用帳戶中管理資源。 這種存取控制稱為角色型存取控制 (RBAC)。 若要管理此存取權，您可以使用 [Azure 入口網站](https://portal.azure.com/)、[Azure CLI 工具](../xplat-cli-install.md)、[PowerShell](../powershell-install-configure.md) 或 [Azure Resource Manager REST API](https://msdn.microsoft.com/library/azure/dn906885.aspx)。
 
 透過 Azure Resource Manager 模型，您可以在資源群組中建立金鑰保存庫，並使用 Azure Active Directory 來控制此金鑰保存庫之管理平面的存取權。 例如，您可以對使用者或群組授與在特定資源群組中管理金鑰保存庫的能力。
@@ -210,7 +210,7 @@ Set-AzureRmKeyVaultAccessPolicy -VaultName ContosoKeyVault -ObjectId (Get-AzureR
 * [RBAC：內建角色](../active-directory/role-based-access-built-in-roles.md)
   
   本文詳細說明 RBAC 中所有可用的內建角色。
-* [了解資源管理員部署和傳統部署](../resource-manager-deployment-model.md)
+* [了解資源管理員部署和傳統部署](../azure-resource-manager/resource-manager-deployment-model.md)
   
   本文說明資源管理員部署和傳統部署模型，並說明使用資源管理員和資源群組的優點
 * [使用 Azure PowerShell 管理角色型存取控制](../active-directory/role-based-access-control-manage-access-powershell.md)
@@ -253,6 +253,6 @@ Set-AzureRmKeyVaultAccessPolicy -VaultName ContosoKeyVault -ObjectId (Get-AzureR
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

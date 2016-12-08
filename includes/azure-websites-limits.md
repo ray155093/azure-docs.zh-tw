@@ -6,7 +6,7 @@
 | 計算執行個體類型 |共用 |共用 |專用<sup>3</sup> |專用<sup>3</sup> |專用<sup>3</sup></p> |
 | [相應放大](../articles/app-service-web/web-sites-scale.md) (執行個體上限) |1 個共用 |1 個共用 |3 個專用<sup>3</sup> |10 個專用<sup>3</sup> |20 個專案 (ASE 中 50 個)<sup>3、4</sup> |
 | 儲存體<sup>5</sup> |1 GB<sup>5</sup> |1 GB<sup>5</sup> |10 GB<sup>5</sup> |50 GB<sup>5</sup> |500 GB<sup>4,5</sup></p> |
-| CPU 時間 (短)<sup>6</sup> |3 分鐘 |3 分鐘 |無限制，以標準[費率](https://azure.microsoft.com/pricing/details/app-service/)付費</a> |無限制，以標準費率付費 |無限制，以標準費率付費 |
+| CPU 時間 (5 分鐘)<sup>6</sup> |3 分鐘 |3 分鐘 |無限制，以標準[費率](https://azure.microsoft.com/pricing/details/app-service/)付費</a> |無限制，以標準費率付費 |無限制，以標準費率付費 |
 | CPU 時間 (天)<sup>6</sup> |60 Minuten |240 Minuten |無限制，以標準[費率](https://azure.microsoft.com/pricing/details/app-service/)付費</a> |無限制，以標準費率付費 |無限制，以標準費率付費 |
 | 記憶體 (1 小時) |每個 App Service 方案 1024 MB |每個應用程式 1024 MB |N/A |N/A |N/A |
 | 頻寬 |165 MB |無限制，套用 [資料傳輸費率](https://azure.microsoft.com/pricing/details/data-transfers/) |無限制，套用資料傳輸費率 |無限制，套用資料傳輸費率 |無限制，套用資料傳輸費率 |
@@ -38,6 +38,8 @@
 <sup>9</sup>在您的 App Service 執行個體中，以背景工作的方式隨選、依照排程或連續執行自訂可執行檔和/或指令碼。 若要連續執行 WebJobs，「永遠開啟」是必要選項。 若是排程 WebJobs，則 Azure 排程器免費或標準版本是必要項目。 可在 App Service 執行個體中執行的 WebJob 數目沒有任何預先定義的限制，實際限制取決於應用程式程式碼嘗試執行的工作。   
 <sup>10</sup>為部署提供的 99.95% 的 SLA，適用於使用專為容錯移轉設定 Azure 流量管理員的多個執行個體。  
 
-<!--HONumber=Oct16_HO2-->
+
+
+<!--HONumber=Nov16_HO5-->
 
 

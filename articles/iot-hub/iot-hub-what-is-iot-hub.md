@@ -12,23 +12,26 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 08/25/2016
+ms.date: 11/23/2016
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 9e718ceadc229d7207a5be66d6d7cdd443275b4e
+ms.sourcegitcommit: 00746fa67292fa6858980e364c88921d60b29460
+ms.openlocfilehash: b00aab7ea1eac8d34b9b535db2056c7b0ec41354
 
 
 ---
 # <a name="what-is-azure-iot-hub"></a>何謂 Azure IoT 中心？
 歡迎使用 Azure IoT 中樞。 本文提供 Azure IoT 中樞的概觀，並描述在實作物聯網 (IoT) 解決方案時，您應該使用此服務的原因。 Azure IoT 中樞是一項完全受管理的服務，可在數百萬個 IoT 裝置和一個解決方案後端之間啟用可靠且安全的雙向通訊。 Azure IoT 中樞：
 
-* 提供可靠的裝置到雲端和雲端到裝置的大規模傳訊。
-* 使用每一裝置的安全性認證和存取控制來啟用安全通訊。
+* 提供多個裝置到雲端和雲端到裝置通訊選項，包括單向傳訊、檔案傳輸，以及要求-回覆方法。
+* 針對裝置中繼資料與同步化狀態資訊提供可查詢儲存空間。
+* 使用每一裝置的安全性金鑰或 X.509 憑證啟用安全通訊與存取控制。
 * 可廣泛監視裝置的連線情況和裝置的身分識別管理事件。
 * 包括適用於最受歡迎的語言和平台的裝置程式庫。
 
 [IoT 中樞和事件中樞的比較][lnk-compare]一文描述這兩個服務之間的主要差異，並強調說明在 IoT 解決方案中使用 IoT 中樞的優點。
+
+如需有關 Azure 與 IoT 中樞如何協助保護您 IoT 解決方案安全的資訊，請參閱[徹底保護物聯網安全性][lnk-security-ground-up]。
 
 ![Azure IoT 中樞做為物聯網解決方案中的雲端閘道][img-architecture]
 
@@ -37,7 +40,7 @@ ms.openlocfilehash: 9e718ceadc229d7207a5be66d6d7cdd443275b4e
 > 
 > 
 
-## <a name="iot-deviceconnectivity-challenges"></a>IoT 裝置連線能力面臨的挑戰
+## <a name="iot-device-connectivity-challenges"></a>IoT 裝置連線能力面臨的挑戰
 對於以可靠且安全的方法將裝置連線到解決方案後端的挑戰，IoT 中樞和裝置程式庫可以協助解決。 IoT 裝置：
 
 * 通常是無人操作的嵌入式系統。
@@ -51,32 +54,27 @@ ms.openlocfilehash: 9e718ceadc229d7207a5be66d6d7cdd443275b4e
 除了上述需求之外，任何 IoT 解決方案也必須提供調整、安全性和可靠性。 當您使用傳統技術 (例如 Web 容器和傳訊代理程式) 時，實作連線需求的結果是困難且耗時的。
 
 ## <a name="why-use-azure-iot-hub"></a>為何使用 Azure IoT 中心
-Azure IoT 中樞會以下列方式解決裝置連線能力面臨的挑戰：
+除了一組豐富的[裝置到雲端][lnk-d2c-guidance]與[雲端到裝置][lnk-c2d-guidance]通訊選項 (包含傳訊、檔案傳輸與要求-回覆方法) 之外，Azure IoT 中樞會以下列方式處理裝置連線問題：
 
-* **每一裝置的驗證和安全連線能力**。 您可以提供每個裝置獨有的[安全性金鑰][lnk-devguide-security]讓它連線到 IoT 中樞。 [IoT 中樞身分識別註冊][lnk-devguide-identityregistry]會在解決方案中儲存裝置身分識別和金鑰。 解決方案後端可將個別裝置加入允許或拒絕清單，以達到完全控制裝置存取權。
+* **裝置對應項**。 使用[裝置對應項][lnk-twins]，您可以儲存、同步處理，以及查詢裝置中繼資料與狀態資訊。 「裝置對應項」是存放裝置狀態資訊 (中繼資料、組態和條件) 的 JSON 文件。 IoT 中樞會為連線到 IoT 中樞的每個裝置保存裝置對應項。 
+* **每一裝置的驗證和安全連線能力**。 您可以提供每個裝置獨有的[安全性金鑰][lnk-devguide-security]讓它連線到 IoT 中樞。 [IoT 中樞身分識別登錄][lnk-devguide-identityregistry]會在解決方案中儲存裝置身分識別與金鑰。 解決方案後端可將個別裝置加入允許或拒絕清單，以達到完全控制裝置存取權。
 * **裝置連線作業的監視**。 您可以收到有關裝置身分識別管理作業與裝置連線事件的詳細作業記錄檔。 此監視功能可讓 IoT 解決方案找出連線問題，例如，嘗試使用錯誤認證來連線的裝置、訊息傳送太頻繁，或拒絕所有雲端到裝置的訊息。
-* **一組廣泛的裝置程式庫**。 [Azure IoT 裝置 SDK][lnk-device-sdks] 可供各種語言和平台使用並受其支援：C 表示許多 Linux 散發套件、Windows 和即時作業系統。 Azure IoT 裝置 SDK 也支援 C#、Java 和 JavaScript 等 Managed 語言。
+* **一組廣泛的裝置程式庫**。 [Azure IoT 裝置 SDK][lnk-device-sdks] 可供各種語言和平台使用並受其支援，例如許多 Linux 發行版本都支援的 C、Windows 和即時作業系統。 Azure IoT 裝置 SDK 也支援 C#、Java 和 JavaScript 等 Managed 語言。
 * **IoT 通訊協定和擴充性**。 如果您的解決方案不能使用裝置程式庫，Azure IoT 中樞會公開可讓裝置以原生方式使用 MQTT v3.1.1、HTTP 1.1 或 AMQP 1.0 通訊協定的公用通訊協定。 您也可以擴充 IoT 中樞以提供自訂通訊協定支援，方法如下：
   
   * 使用 [Azure IoT 閘道 SDK][lnk-gateway-sdk] 建立領域閘道，以將自訂通訊協定轉換成 IoT 中樞所理解的三種通訊協定之一。 
   * 自訂 [Azure IoT 通訊協定閘道][protocol-gateway]，這是在雲端執行的開放原始碼元件。
 * **規模**。 Azure IoT 中樞會調整為數百萬個同時連接的裝置，以及每秒數百萬個事件。
 
-對於許多通訊模式這些優點都是通用的。 IoT 中樞目前可讓您實作下列特定的通訊模式：
-
-* **以事件為基礎的裝置到雲端擷取。**  IoT 中樞可以從您的裝置每秒可靠地收到數百萬個事件。 它可以接著使用事件處理器引擎，在最忙碌路徑上處理這些事件。 也可以將它們儲存在冷路徑上以供分析。 IoT 中樞可保留最多 7 天的事件資料，以保證可靠的處理並吸收負載尖峰。
-* **可靠的雲端到裝置傳訊 (或「命令」**)。解決方案後端可以使用 IoT 中樞傳送訊息給個別裝置 (含至少一次的傳遞保證)。 每個訊息都有個別的存留時間設定，且後端可以要求傳遞和到期的回條。 這些回條可確保雲端到裝置訊息之生命週期的完整可見度。 您就可以實作包含在裝置上執行之作業的商務邏輯。
-* **將檔案和快取的感應器資料上傳至雲端。**  裝置可以使用 IoT 中樞為您管理的 SAS URI 將檔案上傳至 Azure 儲存體。 IoT 中樞可在檔案到達雲端時產生通知，以讓後端處理這些檔案。
-
 ## <a name="gateways"></a>閘道
-IoT 解決方案中的閘道通常是部署於雲端中的[通訊協定閘道][lnk-gateway]或使用您的裝置本機部署的[領域閘道][lnk-field-gateway]。 通訊協定閘道會執行通訊協定轉譯，例如 AMQP 到 MQTT。 領域閘道可以在邊緣上執行分析、進行可降低延遲的時效性決策、提供裝置管理服務、強制執行安全性和隱私權條件約束，也可以執行通訊協定轉譯。 這兩種閘道器可做為您的裝置與 IoT 中樞之間的媒介。
+IoT 解決方案中的閘道通常是部署於雲端中的[通訊協定閘道][lnk-gateway]或隨您的裝置部署在本機的[領域閘道][lnk-field-gateway]。 通訊協定閘道會執行通訊協定轉譯，例如 AMQP 到 MQTT。 領域閘道可以在邊緣上執行分析、進行可降低延遲的時效性決策、提供裝置管理服務、強制執行安全性和隱私權條件約束，也可以執行通訊協定轉譯。 這兩種閘道器可做為您的裝置與 IoT 中樞之間的媒介。
 
 現場閘道器與簡單的流量路由裝置 (例如網路位址轉譯裝置或防火牆) 不同，因為它通常會在解決方案內管理存取和資訊流程中扮演主動的角色。
 
 解決方案可以同時包含通訊協定閘道和領域閘道。
 
 ## <a name="how-does-iot-hub-work"></a>IoT 中樞如何運作？
-Azure IoT 中樞會在實作[服務輔助通訊][lnk-service-assisted-pattern]模式時，調節您的裝置與解決方案後端之間的互動。 服務輔助通訊的目標是要在控制系統 (例如 IoT 中樞) 以及特殊用途裝置 (部署在不可信任的實體空間中) 之間，建立可信任的雙向通訊路徑。 該模式會建立下列原則：
+Azure IoT 中樞會實作[服務輔助通訊][lnk-service-assisted-pattern]模式，以調節您的裝置與解決方案後端之間的互動。 服務輔助通訊的目標是要在控制系統 (例如 IoT 中樞) 以及特殊用途裝置 (部署在不可信任的實體空間中) 之間，建立可信任的雙向通訊路徑。 該模式會建立下列原則：
 
 * 安全性的優先順序高於所有其他功能。
 * 裝置不會接受未經要求的網路資訊。 裝置會以僅限輸出方式建立所有連接和路由。 若要讓裝置從後端接收命令，裝置必須定期初始連接以檢查有沒有任何暫止的命令要處理。
@@ -91,9 +89,9 @@ Azure IoT 中樞會在實作[服務輔助通訊][lnk-service-assisted-pattern]�
 ExpressRoute 的公用對等互連路徑支援 IoT 中樞。
 
 ## <a name="next-steps"></a>後續步驟
-若要了解 Azure IoT 中樞如何啟用標準型裝置管理，以便您遠端管理、設定和更新您的裝置，請參閱 [IoT 中樞的裝置管理概觀][lnk-device-management]。
+若要了解 Azure IoT 中樞如何啟用標準型裝置管理，以便您遠端管理、設定及更新您的裝置，請參閱 [IoT 中樞的裝置管理概觀][lnk-device-management]。
 
-您可以使用 IoT 裝置 SDK 來實作用戶端應用程式，以便在各式各樣的裝置硬體平台和作業系統上執行。 IoT 裝置 SDK 包含程式庫，可協助將遙測傳送至 IoT 中樞，並接收雲端到裝置的命令。 當您使用 SDK 時，您可從各種網路通訊協定中選擇，以便與 IoT 中樞通訊。 若要深入了解，請參閱[裝置 SDK 的相關資訊][lnk-device-sdks]。
+您可以使用 Azure IoT 裝置 SDK 來實作用戶端應用程式，以便在各式各樣的裝置硬體平台與作業系統上執行。 裝置 SDK 包含程式庫，可協助將遙測傳送至 IoT 中樞，並接收雲端到裝置命令。 當您使用裝置 SDK 時，您可從各種網路通訊協定中選擇，以便與 IoT 中樞通訊。 若要深入了解，請參閱[裝置 SDK 的相關資訊][lnk-device-sdks]。
 
 若要開始撰寫一些程式碼和執行一些範例，請參閱[開始使用 IoT 中樞][lnk-get-started]教學課程。
 
@@ -102,7 +100,7 @@ ExpressRoute 的公用對等互連路徑支援 IoT 中樞。
 
 [lnk-get-started]: iot-hub-csharp-csharp-getstarted.md
 [protocol-gateway]: https://github.com/Azure/azure-iot-protocol-gateway/blob/master/README.md
-[lnk-service-assisted-pattern]: http://blogs.msdn.com/b/clemensv/archive/2014/02/10/service-assisted-communication-for-connected-devices.aspx "服務輔助通訊，由 Clemens Vasters 撰寫的部落格文章"
+[lnk-service-assisted-pattern]: http://blogs.msdn.com/b/clemensv/archive/2014/02/10/service-assisted-communication-for-connected-devices.aspx "服務輔助通訊 (由 Clemens Vasters 撰寫的部落格文章)"
 [lnk-compare]: iot-hub-compare-event-hubs.md
 [lnk-gateway]: iot-hub-protocol-gateway.md
 [lnk-field-gateway]: iot-hub-devguide-endpoints.md#field-gateways
@@ -116,8 +114,13 @@ ExpressRoute 的公用對等互連路徑支援 IoT 中樞。
 [lnk-gateway-sdk]: https://github.com/Azure/azure-iot-gateway-sdk
 [lnk-device-management]: iot-hub-device-management-overview.md
 
+[lnk-twins]: iot-hub-devguide-device-twins.md
+[lnk-c2d-guidance]: iot-hub-devguide-c2d-guidance.md
+[lnk-d2c-guidance]: iot-hub-devguide-d2c-guidance.md
+
+[lnk-security-ground-up]: iot-hub-security-ground-up.md
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO5-->
 
 

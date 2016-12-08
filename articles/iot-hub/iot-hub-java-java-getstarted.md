@@ -1,6 +1,6 @@
 ---
 title: "適用於 Java 的 Azure IoT 中樞快速入門 | Microsoft Docs"
-description: "採用 Java 的 Azure IoT 中樞快速入門教學課程。 使用 Azure IoT 中樞與 Java 搭配 Microsoft Azure IoT SDK 來實作物聯網解決方案。"
+description: "採用 Java 的 Azure IoT 中樞快速入門教學課程。 使用 Azure IoT 中樞與 Java 搭配 Azure IoT SDK 來實作物聯網解決方案。"
 services: iot-hub
 documentationcenter: java
 author: dominicbetts
@@ -12,11 +12,11 @@ ms.devlang: java
 ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 08/11/2016
+ms.date: 11/23/2016
 ms.author: dobett
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 7913033d0812d6f6c2ff9a413862cb63c1e5a59e
+ms.sourcegitcommit: ce514e19370d2b42fb16b4e96b66f212d5fa999c
+ms.openlocfilehash: ae4727b27281be62a79f9387715eccd6b61e8e12
 
 
 ---
@@ -25,12 +25,12 @@ ms.openlocfilehash: 7913033d0812d6f6c2ff9a413862cb63c1e5a59e
 
 在本教學課程結尾處，您會有三個 Java 主控台應用程式：
 
-* **create-device-identity**，這會建立裝置身分識別和相關聯的安全性金鑰，來連線您的模擬裝置。
-* **read-d2c-messages**，其中顯示模擬的裝置所傳送的遙測。
+* **create-device-identity**，這會建立裝置身分識別和相關聯的安全性金鑰，來連線到您的模擬裝置應用程式。
+* **read-d2c-messages**，其中顯示模擬裝置應用程式所傳送的遙測。
 * **simulated-device**，這會使用先前建立的裝置身分識別連接到您的 IoT 中樞，並使用 AMQP 通訊協定每秒傳送遙測訊息。
 
 > [!NOTE]
-> 文章 [IoT 中樞 SDK][lnk-hub-sdks] 提供可讓您可以用來建置兩個應用程式，以在裝置和您的方案後端上執行的各種 SDK 的相關資訊。
+> [Azure IoT SDK][lnk-hub-sdks] 一文提供 Azure IoT SDK (可讓您同時建置在裝置與您的解決方案後端執行的兩個應用程式) 的相關資訊。
 > 
 > 
 
@@ -49,21 +49,21 @@ ms.openlocfilehash: 7913033d0812d6f6c2ff9a413862cb63c1e5a59e
 您現在已經建立 IoT 中樞，並擁有完成本教學課程所需的 IoT 中樞主機名稱、IoT 中樞連接字串、IoT 中樞主要金鑰、事件中樞相容名稱和事件中樞相容端點。
 
 ## <a name="create-a-device-identity"></a>建立裝置識別
-在本節中，您會建立 Java 主控台應用程式，它會在 IoT 中樞的身分識別登錄中建立新的裝置身分識別。 裝置無法連線到 IoT 中樞，除非它在裝置識別登錄中具有項目。 如需詳細資訊，請參閱 [IoT 中樞開發人員指南][lnk-devguide-identity]的**裝置識別登錄**一節。 執行這個主控台應用程式時，它會產生唯一的裝置識別碼及金鑰，當裝置向 IoT 中樞傳送裝置對雲端訊息時，可以用來識別裝置本身。
+在本節中，您會建立 Java 主控台應用程式，它會在 IoT 中樞的身分識別登錄中建立裝置識別。 裝置無法連線到 IoT 中樞，除非它在身分識別登錄中具有項目。 如需詳細資訊，請參閱 [IoT 中樞開發人員指南][lnk-devguide-identity]的＜身分識別登錄＞一節。 執行這個主控台應用程式時，它會產生唯一的裝置識別碼及金鑰，當裝置向 IoT 中樞傳送裝置對雲端訊息時，可以用來識別裝置本身。
 
-1. 建立稱為 iot-java-get-started 的新的空資料夾。 在 iot-java-get-started 資料夾的命令提示字元下，使用下列命令建立名為 **create-device-identity** 的新 Maven 專案。 注意，這是一個單一且非常長的命令：
+1. 建立稱為 iot-java-get-started 的空資料夾。 在 iot-java-get-started 資料夾的命令提示字元下，使用下列命令建立名為 **create-device-identity** 的 Maven 專案。 注意，這是一個單一且非常長的命令：
    
     ```
     mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=create-device-identity -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
     ```
-2. 在命令提示字元中，瀏覽到新的 create-device-identity 資料夾。
-3. 使用文字編輯器，在 create-device-identity 資料夾中開啟 pom.xml 檔案，並對 [相依性]  節點新增下列相依性。 這可讓您在應用程式中使用 iothub-service-sdk 封裝：
+2. 在命令提示字元中，瀏覽到 create-device-identity 資料夾。
+3. 使用文字編輯器，在 create-device-identity 資料夾中開啟 pom.xml 檔案，並對 [相依性]  節點新增下列相依性。 這個相依性可讓您在應用程式中使用 iothub-service-sdk 套件：
    
     ```
     <dependency>
       <groupId>com.microsoft.azure.iothub-java-client</groupId>
       <artifactId>iothub-java-service-client</artifactId>
-      <version>1.0.9</version>
+      <version>1.0.10</version>
     </dependency>
     ```
 4. 儲存並關閉 pom.xml 檔案。
@@ -119,34 +119,34 @@ ms.openlocfilehash: 7913033d0812d6f6c2ff9a413862cb63c1e5a59e
     ```
     mvn exec:java -Dexec.mainClass="com.mycompany.app.App"
     ```
-13. 記下**裝置識別碼**和**裝置金鑰**。 稍後在建立連線至做為裝置之 IoT 中樞的應用程式時，會需要這些資料。
+13. 記下**裝置識別碼**和**裝置金鑰**。 稍後在建立連線至做為裝置之 IoT 中樞的應用程式時，您會需要這些值。
 
 > [!NOTE]
-> IoT 中樞身分識別登錄只會儲存裝置身分識別，以啟用對中樞的安全存取。 它會儲存裝置識別碼和金鑰來做為安全性認證，以及啟用或停用旗標，讓您用來停用個別裝置的存取。 如果您的應用程式需要儲存其他裝置特定的中繼資料，它應該使用應用程式專用的存放區。 如需詳細資訊，請參閱 [IoT 中樞開發人員指南][lnk-devguide-identity]。
+> IoT 中樞身分識別登錄只會儲存裝置身分識別，以啟用對 IoT 中樞的安全存取。 它會儲存裝置識別碼和金鑰來做為安全性認證，以及啟用或停用旗標，讓您用來停用個別裝置的存取。 如果您的應用程式需要儲存其他裝置特定中繼資料，它應該使用應用程式特定存放區。 如需詳細資訊，請參閱 [IoT 中樞開發人員指南][lnk-devguide-identity]。
 > 
 > 
 
-## <a name="receive-devicetocloud-messages"></a>接收裝置到雲端的訊息
-在本節中，您會建立 Java 主控台應用程式，以讀取來自 IoT 中樞的裝置到雲端訊息。 IoT 中樞會公開與[事件中樞][lnk-event-hubs-overview]相容的端點以讓您讀取裝置到雲端訊息。 為了簡單起見，本教學課程會建立的基本讀取器不適合用於高輸送量部署。 [處理裝置到雲端的訊息][lnk-process-d2c-tutorial]教學課程會說明如何大規模處理裝置到雲端的訊息。 [開始使用事件中樞][lnk-eventhubs-tutorial]教學課程則會提供進一步資訊，說明如何處理來自事件中樞的訊息，而且此教學課程也適用於 IoT 中樞事件中樞相容端點。
+## <a name="receive-device-to-cloud-messages"></a>接收裝置到雲端的訊息
+在本節中，您會建立 Java 主控台應用程式，以讀取來自 IoT 中樞的裝置到雲端訊息。 IoT 中樞會公開與[事件中樞][lnk-event-hubs-overview]相容的端點，讓您讀取裝置到雲端訊息。 為了簡單起見，本教學課程會建立的基本讀取器不適合用於高輸送量部署。 [處理裝置到雲端訊息][lnk-process-d2c-tutorial]教學課程會說明如何大規模處理裝置到雲端訊息。 [開始使用事件中樞][lnk-eventhubs-tutorial]教學課程提供進一步的資訊，說明如何處理來自事件中樞的訊息，而且此教學課程也適用於 IoT 中樞事件中樞相容端點。
 
 > [!NOTE]
 > 用於讀取裝置到雲端訊息的事件中樞相容端點一律會使用 AMQP 通訊協定。
 > 
 > 
 
-1. 在「建立裝置識別」  一節所建立的 iot-java-get-started 資料夾中，於命令提示字元下使用下列命令建立名為 **read-d2c-messages** 的新 Maven 專案。 注意，這是一個單一且非常長的命令：
+1. 在「建立裝置識別」一節所建立的 iot-java-get-started 資料夾中，於命令提示字元下使用下列命令建立名為 **read-d2c-messages** 的 Maven 專案。 注意，這是一個單一且非常長的命令：
    
     ```
     mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=read-d2c-messages -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
     ```
-2. 在命令提示字元中，瀏覽到新的 read-d2c-messages 資料夾。
-3. 使用文字編輯器，在 read-d2c-messages 資料夾中開啟 pom.xml 檔案，並對 [相依性]  節點新增下列相依性。 這可讓您在應用程式中使用 eventhubs-client 封裝，以從事件中樞相容端點進行讀取：
+2. 在命令提示字元中，瀏覽到 read-d2c-messages 資料夾。
+3. 使用文字編輯器，在 read-d2c-messages 資料夾中開啟 pom.xml 檔案，並對 [相依性]  節點新增下列相依性。 這個相依性可讓您在應用程式中使用 eventhubs-client 套件，以從事件中樞相容端點進行讀取：
    
     ```
     <dependency> 
         <groupId>com.microsoft.azure</groupId> 
         <artifactId>azure-eventhubs</artifactId> 
-        <version>0.8.2</version> 
+        <version>0.7.8</version> 
     </dependency>
     ```
 4. 儲存並關閉 pom.xml 檔案。
@@ -171,7 +171,7 @@ ms.openlocfilehash: 7913033d0812d6f6c2ff9a413862cb63c1e5a59e
     ```
     private static String connStr = "Endpoint={youreventhubcompatibleendpoint};EntityPath={youreventhubcompatiblename};SharedAccessKeyName=iothubowner;SharedAccessKey={youriothubkey}";
     ```
-8. 在 **App** 類別中新增下列 **receiveMessages** 方法。 這個方法會建立 **EventHubClient** 執行個體以連線至事件中樞相容的端點，然後以非同步方式建立 **PartitionReceiver** 執行個體以讀取事件中樞資料分割。 它會不斷地重複，並列印訊息的詳細資料，直到應用程式終至為止。
+8. 在 **App** 類別中新增下列 **receiveMessages** 方法。 這個方法會建立 **EventHubClient** 執行個體以連線至事件中樞相容的端點，然後以非同步方式建立 **PartitionReceiver** 執行個體以讀取事件中樞資料分割。 它會不斷地重複，並列印訊息的詳細資料，直到應用程式終止為止。
    
     ```
     private static EventHubClient receiveMessages(final String partitionId)
@@ -230,7 +230,7 @@ ms.openlocfilehash: 7913033d0812d6f6c2ff9a413862cb63c1e5a59e
     ```
    
    > [!NOTE]
-   > 在建立開始執行後只會讀取傳送到 IoT 中樞之訊息的收件者時，這個方法會使用篩選器。 這很適合測試環境，因為如此一來您就可以看到目前的訊息集。 在生產環境中，您的程式碼應該要確定它能處理所有訊息；如需詳細資訊，請參閱[如何處理 IoT 中樞裝置到雲端的訊息][lnk-process-d2c-tutorial]教學課程。
+   > 在建立開始執行後只會讀取傳送到 IoT 中樞之訊息的收件者時，這個方法會使用篩選器。 這項技術很適合測試環境，因為如此一來您就可以看到目前的訊息集。 在生產環境中，您的程式碼應該要確定它能處理所有訊息；如需詳細資訊，請參閱[如何處理 IoT 中樞裝置到雲端訊息][lnk-process-d2c-tutorial]教學課程。
    > 
    > 
 9. 修改 **main** 方法的簽章，以加入如下所示的例外狀況：
@@ -238,7 +238,7 @@ ms.openlocfilehash: 7913033d0812d6f6c2ff9a413862cb63c1e5a59e
     ```
     public static void main( String[] args ) throws IOException
     ```
-10. 在 **App** 類別中對 **main** 方法新增下列程式碼。 此程式碼會建立兩個 **EventHubClient** 和 **PartitionReceiver** 執行個體，並可讓您在訊息處理完成時關閉應用程式︰
+10. 在 **App** 類別中對 **main** 方法新增下列程式碼。 此程式碼會建立兩個 **EventHubClient** 與 **PartitionReceiver** 執行個體，並可讓您在訊息處理完成時關閉應用程式︰
     
     ```
     EventHubClient client0 = receiveMessages("0");
@@ -271,19 +271,19 @@ ms.openlocfilehash: 7913033d0812d6f6c2ff9a413862cb63c1e5a59e
 ## <a name="create-a-simulated-device-app"></a>建立模擬裝置應用程式
 在本節中，您會撰寫 Java 主控台應用程式，模擬裝置傳送裝置對雲端訊息至 IoT 中樞。
 
-1. 在「建立裝置識別」  一節所建立的 iot-java-get-started 資料夾中，於命令提示字元下使用下列命令建立稱為 **simulated-device** 的新 Maven 專案。 注意，這是一個單一且非常長的命令：
+1. 在「建立裝置識別」一節所建立的 iot-java-get-started 資料夾中，於命令提示字元下使用下列命令建立稱為 **simulated-device** 的 Maven 專案。 注意，這是一個單一且非常長的命令：
    
     ```
     mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=simulated-device -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
     ```
-2. 在命令提示字元中，瀏覽到新的 simulated-device 資料夾。
-3. 使用文字編輯器，在 simulated-device 資料夾中開啟 pom.xml 檔案，並對 [相依性]  節點新增下列相依性。 這可讓您使用應用程式中的 iothub-java-client 封裝與 IoT 中樞通訊，以及將 Java 物件序列化為 JSON：
+2. 在命令提示字元中，瀏覽到 simulated-device 資料夾。
+3. 使用文字編輯器，在 simulated-device 資料夾中開啟 pom.xml 檔案，並對 [相依性]  節點新增下列相依性。 這個相依性可讓您在應用程式中使用 iothub-java-client 套件與 IoT 中樞通訊，以及將 Java 物件序列化為 JSON：
    
     ```
     <dependency>
       <groupId>com.microsoft.azure.iothub-java-client</groupId>
       <artifactId>iothub-java-device-client</artifactId>
-      <version>1.0.14</version>
+      <version>1.0.15</version>
     </dependency>
     <dependency>
       <groupId>com.google.code.gson</groupId>
@@ -309,11 +309,11 @@ ms.openlocfilehash: 7913033d0812d6f6c2ff9a413862cb63c1e5a59e
     import java.util.concurrent.Executors;
     import java.util.concurrent.ExecutorService;
     ```
-7. 將下列類別層級變數新增至 **App** 類別，將 **{youriothubname}** 取代為 IoT 中樞名稱，並將 **{yourdevicekey}** 取代為您在「建立裝置識別」一節中產生的裝置金鑰值：
+7. 將下列類別層級變數新增到 **App** 類別中。 將 **{youriothubname}** 取代為 IoT 中樞名稱，並將 **{yourdevicekey}** 取代為您在「建立裝置識別」一節中產生的裝置金鑰值：
    
     ```
     private static String connString = "HostName={youriothubname}.azure-devices.net;DeviceId=myFirstJavaDevice;SharedAccessKey={yourdevicekey}";
-    private static IotHubClientProtocol protocol = IotHubClientProtocol.AMQP;
+    private static IotHubClientProtocol protocol = IotHubClientProtocol.AMQPS;
     private static String deviceId = "myFirstJavaDevice";
     private static DeviceClient client;
     ```
@@ -332,7 +332,7 @@ ms.openlocfilehash: 7913033d0812d6f6c2ff9a413862cb63c1e5a59e
       }
     }
     ```
-9. 在 **App** 類別內新增下列巢狀 **EventCallback** 類別，以顯示 IoT 中樞在處理來自模擬裝置的訊息時，所傳回的認可狀態。 這個方法也會在處理訊息時通知應用程式中的主執行緒：
+9. 在 **App** 類別內新增下列巢狀 **EventCallback** 類別，以顯示 IoT 中樞在處理來自模擬裝置應用程式的訊息時，所傳回的認可狀態。 這個方法也會在處理訊息時通知應用程式中的主執行緒：
    
     ```
     private static class EventCallback implements IotHubEventCallback
@@ -416,8 +416,8 @@ ms.openlocfilehash: 7913033d0812d6f6c2ff9a413862cb63c1e5a59e
 > 
 > 
 
-## <a name="run-the-applications"></a>執行應用程式
-現在您已經準備好執行應用程式。
+## <a name="run-the-apps"></a>執行應用程式
+您現在可以開始執行應用程式。
 
 1. 在 read-d2c 資料夾的命令提示字元中，執行下列命令以開始監視 IoT 中樞內的第一個資料分割：
    
@@ -433,12 +433,12 @@ ms.openlocfilehash: 7913033d0812d6f6c2ff9a413862cb63c1e5a59e
     ```
    
     ![用來傳送裝置到雲端訊息的 Java IoT 中樞裝置用戶端應用程式][8]
-3. [Azure 入口網站][lnk-portal]中的 [使用量] 圖格會顯示傳送至中樞的訊息數目︰
+3. [Azure 入口網站][lnk-portal]中的 [使用量] 圖格會顯示傳送至 IoT 中樞的訊息數目︰
    
     ![顯示傳送到 IoT 中樞之訊息數目的 Azure 入口網站使用量圖格][43]
 
 ## <a name="next-steps"></a>後續步驟
-在本教學課程中，您在 Azure 入口網站中設定了新的 IoT 中樞，然後在中樞的身分識別登錄中建立了裝置識別。 您會將此裝置識別用於啟用模擬的裝置應用程式，以將裝置對雲端訊息傳送至中樞。 您也會建立一個應用程式來顯示中樞所接收的訊息。 
+在此教學課程中，您在 Azure 入口網站中設定了新的 IoT 中樞，然後在 IoT 中樞的身分識別登錄中建立了裝置身分識別。 您會將此裝置身分識別用於啟用模擬裝置應用程式，以將裝置到雲端訊息傳送至 IoT 中樞。 您也會建立一個應用程式來顯示 IoT 中樞所接收的訊息。 
 
 若要繼續開始使用 IoT 中樞並瀏覽其他 IoT 案例，請參閱︰
 
@@ -446,7 +446,7 @@ ms.openlocfilehash: 7913033d0812d6f6c2ff9a413862cb63c1e5a59e
 * [開始使用裝置管理][lnk-device-management]
 * [開始使用 IoT 閘道 SDK][lnk-gateway-SDK]
 
-若要了解如何擴充您的 IoT 解決方案及大規模處理裝置對雲端訊息，請參閱[處理裝置對雲端訊息][lnk-process-d2c-tutorial]教學課程。
+若要了解如何擴充您的 IoT 解決方案及大規模處理裝置到雲端訊息，請參閱[處理裝置到雲端訊息][lnk-process-d2c-tutorial]教學課程。
 
 <!-- Images. -->
 [6]: ./media/iot-hub-java-java-getstarted/create-iot-hub6.png
@@ -468,12 +468,12 @@ ms.openlocfilehash: 7913033d0812d6f6c2ff9a413862cb63c1e5a59e
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [lnk-portal]: https://portal.azure.com/
 
-[lnk-device-management]: iot-hub-device-management-get-started.md
+[lnk-device-management]: iot-hub-node-node-device-management-get-started.md
 [lnk-gateway-SDK]: iot-hub-linux-gateway-sdk-get-started.md
 [lnk-connect-device]: https://azure.microsoft.com/develop/iot/
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO5-->
 
 

@@ -1,30 +1,28 @@
-每個應用程式 (亦即每個檢測金鑰) 都有一些度量和事件的數目限制。
+每個應用程式 (亦即每個檢測金鑰) 都有一些度量和事件的數目限制。 
 
-限制取決於您選擇的[定價層](https://azure.microsoft.com/pricing/details/application-insights/)。
+限制取決於您選擇的[定價方案](https://azure.microsoft.com/pricing/details/application-insights/)。
 
-| **Resource** | **預設限制** | **上限** |
+| **Resource** | **預設限制** | **注意**
 | --- | --- | --- |
-| 每個月的工作階段資料點<sup>1、2</sup> |無限制 | |
-| 要求、事件、相依性、追蹤、例外狀況及頁面檢視的每月資料點總數 |5 百萬 |5 千萬<sup>3</sup> |
-| [追蹤與記錄](../articles/application-insights/app-insights-search-diagnostic-logs.md)資料速率 |200 dp/s |500 dp/s |
-| [例外狀況](../articles/application-insights/app-insights-asp-net-exceptions.md)資料速率 |50 dp/s |50 dp/s |
-| 要求、事件、相依性及頁面檢視遙測的總資料速率 |200 dp/s |500 dp/s |
-| [搜尋](../articles/application-insights/app-insights-diagnostic-search.md)和[分析](../articles/application-insights/app-insights-analytics.md)的未經處理資料保留 |7 天 | |
-| [計量瀏覽器](../articles/application-insights/app-insights-metrics-explorer.md)的彙總資料保留 |90 天 | |
-| [屬性](../articles/application-insights/app-insights-api-custom-events-metrics.md#properties)名稱計數 |100 | |
-| 屬性名稱長度 |150 | |
-| 屬性值長度 |8192 | |
-| 追蹤和例外狀況的訊息長度 |10000 | |
-| [度量](../articles/application-insights/app-insights-api-custom-events-metrics.md#properties)名稱計數 |100 | |
-| 度量名稱長度 |150 | |
-| [可用性測試](../articles/application-insights/app-insights-monitor-web-app-availability.md) |10 | |
+| 每日資料總量 | 100 GB | 您可以設定上限來減量。
+| 每月免費的資料量<br/> (基本定價方案) | 1 GB | 每 GB 收費的額外資料量
+| 資料保留 | 90 天 | 適用於[搜尋](../articles/application-insights/app-insights-diagnostic-search.md)、[分析](../articles/application-insights/app-insights-analytics.md)和[計量瀏覽器](../articles/application-insights/app-insights-metrics-explorer.md)
+| [可用性多步驟測試](../articles/application-insights/app-insights-monitor-web-app-availability.md#multi-step-web-tests)詳述的結果保留期 | 30 天 | 每個步驟的詳細結果
+| [屬性](../articles/application-insights/app-insights-api-custom-events-metrics.md#properties)和[度量](../articles/application-insights/app-insights-api-custom-events-metrics.md#properties)<sup>2</sup> 名稱計數 | 200 | 
+| 屬性和度量名稱長度 | 150 |
+| 屬性值字串長度 | 8192 |
+| 屬性<sup>3、4</sup> 的相異值 | 100 | > 100 => 不能使用屬性做為計量瀏覽器中的篩選條件
+| 追蹤和例外狀況的訊息長度 | 10000 |
+| 每個應用程式的[可用性測試](../articles/application-insights/app-insights-monitor-web-app-availability.md)計數  | 10 |
 
-<sup>1</sup> 資料點是個別的度量值或事件，具有附加的屬性和測量值。
+1. 所有的這些數字是屬於每個檢測金鑰。
+2. 度量名稱會定義於 TrackMetric 和其他 Track*() 呼叫的測量參數中。 每個檢測金鑰的度量名稱都是全域的。
+3. 只有在每個屬性具有少於 100 個唯一值時，屬性才能用於篩選和分組依據。 唯一值的數目超過 100 個之後，您仍可以搜尋屬性，但無法再用於篩選或分組依據。
+4. 標準屬性，例如要求名稱和網頁 URL 會限制為每週 1000 個唯一值。 超過 1000 個唯一值之後，額外值都會標示為「其他值」。 原始值仍然可以用於全文檢索搜尋和篩選。
 
-<sup>2</sup> 工作階段資料點會記錄工作階段的開始或結束，以及記錄使用者身分識別。
-
-<sup>3</sup> 您可以購買超過 5 千萬的額外容量。
 
 [關於 Application Insights 中的定價和配額](../articles/application-insights/app-insights-pricing.md)
 
-<!---HONumber=AcomDC_0803_2016-->
+<!--HONumber=Nov16_HO5-->
+
+

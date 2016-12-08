@@ -17,12 +17,52 @@ ms.workload: na
 ms.date: 09/13/2016
 ms.author: rogardle
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 97f74f845e19ae99cf6c5abbb9f076c7c5171993
+ms.sourcegitcommit: a4882b6fcd75ecaa826cdda3e25ee690b85a0670
+ms.openlocfilehash: 34450e25941e0be97b72c1ba30ee348d73f4bc67
 
 
 ---
 # <a name="connect-to-an-azure-container-service-cluster"></a>連接到 Azure 容器服務叢集
+部署了 Azure Container Service 的 DC/OS、Kubernetes 和 Docker Swarm 叢集都會公開 REST 端點。  針對 Kubernetes，此端點會在網際網路上安全地公開，而您可以從連線到網際網路的任何電腦直接存取該端點。 針對 DC/OS 和 Docker Swarm，您必須建立 SSH 通道，才能安全地連線到 REST 端點。 以下說明每一個連線。
+
+## <a name="connecting-to-a-kubernetes-cluster"></a>連線到 Kubernetes 叢集。
+若要連線到 Kubernetes 叢集，您需要安裝 `kubectl` 命令列工具。  安裝此工具最簡單的方法是使用 Azure 2.0 `az` 命令列工具。
+
+```console
+az acs kubernetes install cli [--install-location=/some/directory]
+```
+
+或者，您可以直接從[發行頁面](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG.md#downloads-for-v146)下載用戶端
+
+安裝 `kubectl` 之後，您必須將叢集認證複製到您的電腦。  要這樣做最簡單的方式是再次使用 `az` 命令列工具：
+
+```console
+az acs kubernetes get-credentials --dns-prefix=<some-prefix> --location=<some-location>
+```
+
+這會將叢集認證下載到 `$HOME/.kube/config`，這是 `kubectl` 預期會找到它的位置。
+
+或者，您可以使用 `scp` 以安全地將檔案從主要 VM 上的 `$HOME/.kube/config` 複製到您的本機電腦。
+
+```console
+mkdir $HOME/.kube/config
+scp azureuser@<master-dns-name>:.kube/config $HOME/.kube/config
+```
+
+如果您使用 Windows，您將需要使用 Windows 上 Ubuntu 的 Bash 或 Putty 'pscp' 工具。
+
+一旦 `kubectl` 設定之後，您可以使用以下方法測試：
+
+```console
+kubectl get nodes
+```
+
+這應該會顯示您叢集中的節點。
+
+如需進一步的指示，您可以參閱 [Kubernetes 快速入門](http://kubernetes.io/docs/user-guide/quick-start/) (英文)
+
+## <a name="connecting-to-a-dcos-or-swarm-cluster"></a>連線到 DC/OS 或 Swarm 叢集
+
 Azure 容器服務部署的 DC/OS 和 Docker Swarm 叢集公開了一些 REST 端點。 不過，這些端點並不開放給外界。 為了管理這些端點，您必須建立 安全殼層 (SSH) 通道。 建立 SSH 通道後，您可以對叢集端點執行命令，並透過您自己系統上的 UI 瀏覽器來檢視叢集。 本文會逐步引導您從 Linux、OSX 和 Windows 建立 SSH 通道。
 
 > [!NOTE]
@@ -126,6 +166,6 @@ export DOCKER_HOST=:2375
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

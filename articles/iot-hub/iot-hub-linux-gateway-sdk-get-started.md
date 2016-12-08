@@ -12,15 +12,15 @@ ms.devlang: cpp
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 08/25/2016
+ms.date: 11/23/2016
 ms.author: andbuc
 translationtype: Human Translation
-ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
-ms.openlocfilehash: 23176a9251a90a985a5d2fbce23ceeb9d0925234
+ms.sourcegitcommit: a76320718f0cefa015728cb79df944e0d34bbf74
+ms.openlocfilehash: cbb909adc2d29f9b80a4c97d06176fe74b64a75a
 
 
 ---
-# <a name="azure-iot-gateway-sdk-beta-get-started-using-linux"></a>Azure IoT 閘道 SDK (Beta) - 開始使用 Linux
+# <a name="azure-iot-gateway-sdk---get-started-using-linux"></a>Azure IoT 閘道 SDK - 開始使用 Linux
 [!INCLUDE [iot-hub-gateway-sdk-getstarted-selector](../../includes/iot-hub-gateway-sdk-getstarted-selector.md)]
 
 ## <a name="how-to-build-the-sample"></a>如何建置範例
@@ -38,45 +38,48 @@ ms.openlocfilehash: 23176a9251a90a985a5d2fbce23ceeb9d0925234
 ## <a name="how-to-run-the-sample"></a>如何執行範例
 1. **build.sh** 指令碼會在 **azure-iot-gateway-sdk** 儲存機制本機複本的 **build** 資料夾中產生其輸出。 這包含在此範例中使用的兩個模組。
    
-    build 指令碼會將 **liblogger_hl.so** 放在 **build/modules/logger/** 資料夾中，並將 **libhello_world_hl.so** 放在 **build/modules/hello_world/** 資料夾中。 使用這些路徑作為「模組路徑」  值 (如下面的 JSON 設定檔案中所示)。
-2. **samples/hello_world/src** 資料夾中的 **hello_world_lin.json** 檔案是適用於 Linux 且可用來執行範例的範例 JSON 設定檔案。 下面顯示的範例 JSON 設定假設您將從 **azure-iot-gateway-sdk** 儲存機制本機複本的根資料夾執行範例。
-3. 針對 **logger_hl** 模組，在 **args** 區段中，將 **filename** 值設定為包含記錄資料的檔案名稱和路徑。
-   
-    這是適用於 Linux 且將 **log.txt** 寫入您執行範例之資料夾的 JSON 設定檔案範例。
+    build 指令碼會將 **liblogger.so** 放在 **build/modules/logger/** 資料夾中，並將 **libhello_world.so** 放在 **build/modules/hello_world/** 資料夾中。 使用這些路徑作為「模組路徑」  值 (如下面的 JSON 設定檔案中所示)。
+2. Hello_world_sample 程序會採用 JSON 組態檔的路徑，並做為命令列的引數。 我們已在 **azure-iot-gateway-sdk/samples/hello_world/src/hello_world_win.json** 以部分儲存機制的形式提供範例 JSON，其複製如下。 除非您修改 build 指令碼以將模組或範例可執行檔放置在非預設位置，否則它將保有原始功能。
+
+   > [!NOTE]
+   > 模組路徑是 hello_world_sample 可執行檔啟動之目前工作目錄的相對路徑，不是可執行檔所在的目錄。 範例 JSON 組態檔的預設值為在目前的工作目錄中寫入 'log.txt'。
    
     ```
     {
-      "modules" :
-      [ 
-        {
-          "module name" : "logger_hl",
-          "loading args": {
-            "module path" : "./build/modules/logger/liblogger_hl.so"
-          },
-          "args" : 
-          {
-            "filename":"./log.txt"
-          }
-        },
-        {
-          "module name" : "hello_world",
-          "loading args": {
-            "module path" : "./build/modules/hello_world/libhello_world_hl.so"
-          },
-          "args" : null
-        }
-      ],
-      "links" :
-      [
-        {
-          "source": "hello_world",
-          "sink": "logger_hl"
-        }
-      ]
+        "modules" :
+        [
+            {
+              "name" : "logger",
+              "loader": {
+                "name": "native",
+                "entrypoint": {
+                  "module.path": "./modules/logger/liblogger.so"
+                }
+              },
+              "args" : {"filename":"log.txt"}
+            },
+            {
+                "name" : "hello_world",
+              "loader": {
+                "name": "native",
+                "entrypoint": {
+                  "module.path": "./modules/hello_world/libhello_world.so"
+                }
+              },
+                "args" : null
+            }
+        ],
+        "links": 
+        [
+            {
+                "source": "hello_world",
+                "sink": "logger"
+            }
+        ]
     }
     ```
-4. 在您的殼層中，瀏覽至 **azure-iot-gateway-sdk** 資料夾。
-5. 執行以下命令：
+3. 瀏覽至 **azure-iot-gateway-sdk** 資料夾。
+4. 執行以下命令：
    
    ```
    ./build/samples/hello_world/hello_world_sample ./samples/hello_world/src/hello_world_lin.json
@@ -89,6 +92,6 @@ ms.openlocfilehash: 23176a9251a90a985a5d2fbce23ceeb9d0925234
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO4-->
 
 

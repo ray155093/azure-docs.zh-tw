@@ -13,19 +13,19 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 10/21/2016
+ms.date: 11/16/2016
 ms.author: trinadhk; giridham; arunak; markgal; jimpark;
 translationtype: Human Translation
-ms.sourcegitcommit: e29891dc03f8a864ecacc893fd1cc0d3cc1436cb
-ms.openlocfilehash: f85b3210fc1bdab65da29c3355ed3e1eb35da2ab
+ms.sourcegitcommit: be06f1eca1848ff6d00661cfc1166797649a98a4
+ms.openlocfilehash: cb45e7113073d19c1dc3e305d7b69373bd38d84f
 
 
 ---
-# <a name="azure-backup-service-faq"></a>Azure 備份服務常見問題集
+# <a name="azure-backup-service--faq"></a>Azure 備份服務常見問題集
 這篇文章是關於 Azure 備份服務的常見問題 (和個別答案) 清單。 我們的社群會快速回覆，如果是經常詢問的問題，我們會將它加入至這份文件。 問題的答案通常會提供參考或支援資訊。 您可以在本文件或相關文件的 Disqus 一節中詢問有關 Azure 備份的問題。 您也可以在 [論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazureonlinebackup)中張貼有關 Azure 備份服務的問題。
 
 ## <a name="what-is-the-list-of-supported-operating-systems-from-which-i-can-back-up-to-azure-using-azure-backup-br"></a>若我要使用 Azure 備份來備份至 Azure，受支援的作業系統清單為何？ <br/>
-Azure 備份支援下列作業系統使用 Azure 備份伺服器和 SCDPM，進行檔案-資料夾備份和應用程式備份。
+Azure 備份支援下列作業系統清單來備份：使用 Azure 備份伺服器和 SCDPM 保護的檔案、資料夾及工作負載應用程式。
 
 | 作業系統 | 平台 | SKU |
 |:--- | --- |:--- |
@@ -43,7 +43,7 @@ Azure 備份支援下列作業系統使用 Azure 備份伺服器和 SCDPM，進�
 
 Azure VM 備份：
 
-* **Linux**：Azure 備份支援 [Azure 所背書的散發套件清單](../virtual-machines/virtual-machines-linux-endorsed-distros.md)，但核心作業系統 Linux 除外。  只要虛擬機器上有 VM 代理程式並且可支援 Python，其他「攜帶您自己的 Linux」散發套件可能也可以運作。
+* **Linux**：Azure 備份支援 [Azure 所背書的散發套件清單](../virtual-machines/virtual-machines-linux-endorsed-distros.md) ，但核心作業系統 Linux 除外。  只要虛擬機器上有 VM 代理程式並且可支援 Python，其他「攜帶您自己的 Linux」散發套件可能也可以運作。
 * **Windows Server**：不支援比 Windows Server 2008 R2 更舊的版本。
 
 ## <a name="where-can-i-download-the-latest-azure-backup-agent-br"></a>哪裡可以下載最新的 Azure 備份代理程式？ <br/>
@@ -56,17 +56,17 @@ Azure VM 備份：
 是，保存庫認證將於 48 小時後過期。 若檔案已過期，請登入 Azure 入口網站，並從您的保存庫下載保存庫認證檔。
 
 ## <a name="is-there-any-limit-on-the-number-of-vaults-that-can-be-created-in-each-azure-subscription-br"></a>每個 Azure 訂用帳戶中可以建立的保存庫數目是否有任何限制？ <br/>
- 是。 自 2016 年 9 月起，您可以為每個訂用帳戶建立 25 個備份保存庫。 您可以為每個訂用帳戶的每個 Azure 備份支援區域，最多建立 25 個復原服務保存庫。 若您需要更多的保存庫，請建立新的訂用帳戶。
+ 是。 自 2016 年 9 月起，您可以為每個訂用帳戶建立 25 個備份保存庫。 您可以為每個訂用帳戶的每個 Azure 備份支援區域，最多建立 25 個復原服務保存庫。 如果您需要其他保存庫，請建立新的訂用帳戶。
 
 ## <a name="are-there-any-limits-on-the-number-of-serversmachines-that-can-be-registered-against-each-vault-br"></a>針對每個保存庫註冊的伺服器/電腦具有任何數目限制嗎？ <br/>
-是，您可以針對每個保存庫註冊最多 50 個電腦。 對於 Azure IaaS 虛擬機器，限制為每個保存庫 200 個 VM。 若您需要註冊更多電腦，請建立新的保存庫。
+是，您可以針對每個保存庫註冊最多 50 個電腦。 對於 Azure IaaS 虛擬機器，限制為每個保存庫 200 個 VM。 如果您需要註冊更多電腦，請建立其他保存庫。
 
 ## <a name="how-do-i-register-my-server-to-another-datacenterbr"></a>我如何向其他資料中心註冊我的伺服器？<br/>
 備份資料會傳送至保存庫的資料中心以進行註冊。 若要變更資料中心，最簡單的方式是將代理程式解除安裝並重新安裝，然後向所需資料中心的新保存庫進行註冊。
 
 ## <a name="what-happens-if-i-rename-a-windows-server-that-is-backing-up-data-to-azurebr"></a>若重新命名正在將資料備份至 Azure 的 Windows 伺服器，則會發生什麼情況？<br/>
 當您重新命名伺服器時，所有目前設定的備份都會停止。
-您必須向備份保存庫註冊伺服器的新名稱。 當您建立新的註冊時，第一次備份作業是完整備份，而非增量備份。 如果您需要復原先前備份到採用舊伺服器名稱之保存庫的資料，您可以使用 [復原資料] 精靈中 [[其他伺服器](backup-azure-restore-windows-server.md#recover-to-an-alternate-machine)] 選項來復原該資料。
+向備份保存庫註冊伺服器的新名稱。 當您向保存庫註冊新名稱時，第一個備份作業是*完整*備份。 如果您需要復原先前備份到採用舊伺服器名稱之保存庫的資料，您可以使用 [復原資料] 精靈中 [[其他伺服器](backup-azure-restore-windows-server.md#recover-to-an-alternate-machine)] 選項來復原該資料。
 
 ## <a name="what-types-of-drives-can-i-backup-files-and-folders-from-br"></a>我可以從何種類型的磁碟機備份檔案和資料夾？ <br/>
 下列的磁碟機/磁碟區組合無法進行備份：
@@ -105,9 +105,9 @@ Azure VM 備份：
 是。 當代理程式服務準備備份作業時，會將重複資料刪除的資料轉換成一般資料。 它接著會最佳化資料以備份，加密資料，然後將加密的資料傳送至線上備份服務。
 
 ## <a name="if-i-cancel-a-backup-job-once-it-has-started-is-the-transferred-backup-data-deleted-br"></a>如果我在備份作業開始後予以取消，是否會刪除已傳輸的備份資料？ <br/>
-否。 備份保存庫會儲存取消點之前已傳輸的備份資料。 Azure 備份會使用檢查點機制，在備份期間偶爾將檢查點加入至備份資料。 因為備份資料中有檢查點，所以下一個備份程序才可驗證檔案的完整性。 下次觸發的備份會隨先前經備份的資料遞增。 遞增備份可提供較佳的頻寬使用率，讓您不需要重複傳輸相同的資料。
+不用。 傳輸到保存庫的所有資料在取消之前均會保留於保存庫中。 Azure 備份會使用檢查點機制，在備份期間偶爾將檢查點加入至備份資料。 因為備份資料中有檢查點，所以下一個備份程序才可驗證檔案的完整性。 下一個備份工作將會增量到先前備份的資料。 增量備份只會傳輸新資料或變更的資料，相當於具有較佳的頻寬使用率。
 
-以 Azure VM 備份而言，取消作業後，傳輸的資料會被忽略，而全新的備份會從先前成功的備份作業傳輸增量資料。
+如果您取消 Azure VM 的備份工作，則會忽略任何傳輸的資料。 下一個備份工作會傳輸自最後一個成功備份工作之後的增量資料。
 
 ## <a name="why-am-i-seeing-the-warning-azure-backups-have-not-been-configured-for-this-server-even-though-i-had-scheduled-regular-backups-previously-br"></a>為什麼出現「Azure 備份尚未針對此伺服器設定」警告，即使我之前已排定定期備份亦然？ <br/>
 當本機伺服器儲存的備份排程設定與備份保存庫儲存的設定不同時，會發生此警告。 當伺服器或設定已復原至已知的良好狀態時，備份排程可能會失去同步處理。 如果您收到此警告，請[重新設定備份原則](backup-azure-manage-windows-server.md)，然後 [立即執行備份] 以重新同步處理本機伺服器與 Azure。
@@ -122,16 +122,16 @@ Azure VM 備份：
 * \*.windows.net
 
 ## <a name="can-i-install-the-azure-backup-agent-on-an-azure-vm-already-backed-by-the-azure-backup-service-using-the-vm-extension-br"></a>我可以在已由 Azure 備份服務所備份的 Azure VM 上使用 VM 擴充功能來安裝 Azure 備份代理程式嗎？ <br/>
-當然。 Azure 備份使用 VM 擴充功能為 Azure VM 提供 VM 層級備份。 您可以在客體 Windows 作業系統上安裝 Azure 備份代理程式，以保護該客體 OS 上的檔案和資料夾。
+當然。 Azure 備份使用 VM 擴充功能為 Azure VM 提供 VM 層級備份。 在客體 Windows OS 上安裝 Azure 備份代理程式，以保護該客體 OS 上的檔案和資料夾。
 
 ## <a name="can-i-install-the-azure-backup-agent-on-an-azure-vm-to-back-up-files-and-folders-present-on-temporary-storage-provided-by-the-azure-vm-br"></a>我可以在 Azure VM 上安裝 Azure 備份代理程式來備份 Azure VM 所提供的暫存儲存體中存在的檔案和資料夾嗎？ <br/>
-您可以在客體 Windows 作業系統上安裝 Azure 備份代理程式，並將檔案和資料夾備份至暫存儲存體。 但請注意，一旦抹除暫存儲存體資料，備份就會失敗。 此外，如果暫存儲存體資料已遭刪除，您只能還原至非變動性儲存體。
+是。 在客體 Windows OS 上安裝 Azure 備份代理程式，並將檔案和資料夾備份至暫存儲存體。 但請注意，一旦抹除暫存儲存體資料，備份就會失敗。 此外，如果暫存儲存體資料已遭刪除，您只能還原至非變動性儲存體。
 
-## <a name="i-have-installed-azure-backup-agent-to-protect-my-files-and-folders-can-i-now-install-scdpm-to-work-with-azure-backup-agent-to-protect-onpremises-applicationvm-workloads-to-azure-br"></a>我已安裝 Azure 備份代理程式來保護我的檔案和資料夾。 現在可以安裝 SCDPM 來與 Azure 備份代理程式搭配使用，以保護內部部署應用程式/VM 對 Azure 的工作負載嗎？ <br/>
-若要搭配使用 Azure 備份與 SCDPM，建議您先安裝 SCDPM，然後只安裝 Azure 備份代理程式。 這可確保 Azure 備份代理程式能與 SCDPM 緊密整合，並可讓您直接從 SCDPM 的管理主控台保護針對 Azure 的檔案/資料夾、應用程式工作負載及 VM。 不建議、也不支援在安裝 Azure 備份代理程式之後，為了前述目的安裝 SCDPM。
+## <a name="i-have-installed-azure-backup-agent-to-protect-my-files-and-folders-can-i-now-install-scdpm-to-work-with-azure-backup-agent-to-protect-on-premises-applicationvm-workloads-to-azure-br"></a>我已安裝 Azure 備份代理程式來保護我的檔案和資料夾。 現在可以安裝 SCDPM 來與 Azure 備份代理程式搭配使用，以保護內部部署應用程式/VM 對 Azure 的工作負載嗎？ <br/>
+若要搭配 System Center Data Protection Manager (DPM) 使用 Azure 備份，請先安裝 DPM，然後安裝 Azure 備份代理程式。 依此順序安裝 Azure 備份元件，可確保 Azure 備份代理程式將會與 DPM 搭配使用。 不建議或支援在安裝 DPM 之前安裝 Azure 備份代理程式。
 
 ## <a name="what-is-the-length-of-file-path-that-can-be-specified-as-part-of-azure-backup-policy-using-azure-backup-agent-br"></a>使用 Azure 備份代理程式時，可將多長的檔案路徑指定為 Azure 備份原則的一部分？ <br/>
-Azure 備份代理程式依存於 NTFS。 [檔案路徑長度規格受限於 Windows API](https://msdn.microsoft.com/library/aa365247.aspx#fully_qualified_vs._relative_paths)。 在備份檔案路徑長度大於 Windows API 所指定長度的檔案時，客戶可以選擇備份備份檔案的父資料夾或磁碟機。  
+Azure 備份代理程式依存於 NTFS。 [檔案路徑長度規格受限於 Windows API](https://msdn.microsoft.com/library/aa365247.aspx#fully_qualified_vs._relative_paths)。 當備份檔案的檔案路徑長度超過 Windows API 所允許時，您可以選擇將備份檔案的父資料夾或磁碟機備份。  
 
 ## <a name="what-characters-are-allowed-in-file-path-of-azure-backup-policy-using-azure-backup-agent-br"></a>使用 Azure 備份代理程式時，Azure 備份原則的檔案路徑中允許哪些字元？ <br>
  Azure 備份代理程式依存於 NTFS。 它可讓 [NTFS 支援的字元](https://msdn.microsoft.com/library/aa365247.aspx#naming_conventions) 成為檔案規格的一部分。  
@@ -143,12 +143,12 @@ Azure 備份代理程式依存於 NTFS。 [檔案路徑長度規格受限於 Win
 是，備份服務有多個可與 PowerShell 指令碼搭配使用的事件型警示。 如需完整說明，請參閱 [警示通知](backup-azure-monitor-vms.md#configure-notifications)
 
 ## <a name="is-there-a-limit-on-the-size-of-each-data-source-being-backed-up-br"></a>正在備份的每個資料來源是否有大小限制？ <br/>
-雖然在保存庫層級，您可以備份的資料數量沒有限制，但 Azure 備份的確會對資料來源的大小上限設限 (就所有實際用途而言，這些限制都非常高)。 截至 2015 年 8 月，適用於支援的作業系統的資料來源大小上限
+您可備份到保存庫的資料量並無任何限制。 Azure 備份會限制資料來源的大小上限，不過，這些限制相當大。 截至 2015 年 8 月，適用於支援作業系統的資料來源大小上限為：
 
 | S.No | 作業系統 | 資料來源的大小上限 |
 |:---:|:--- |:--- |
-| 1 |Windows Server 2012 或更新版本 |54400 GB |
-| 2 |Windows 8 或更新版本 |54400 GB |
+| 1 |Windows Server 2012 或更新版本 |54,400 GB |
+| 2 |Windows 8 或更新版本 |54,400 GB |
 | 3 |Windows Server 2008、Windows Server 2008 R2 |1700 GB |
 | 4 |Windows 7 |1700 GB |
 
@@ -197,7 +197,7 @@ Azure 備份代理程式依存於 NTFS。 [檔案路徑長度規格受限於 Win
  從 Azure 備份代理程式、SCDPM 或 Azure 備份伺服器備份的所有資料都會在傳輸之前，經過壓縮和加密。 一旦套用壓縮和加密，備份保存庫中的資料會縮小 30-40%。
 
 ## <a name="is-there-a-way-to-adjust-the-amount-of-bandwidth-used-by-the-backup-servicebr"></a>是否有辦法調整備份服務所使用的頻寬量？<br/>
- 是，使用備份代理程式中的 [變更屬性]  選項來調整頻寬。 調整頻寬量以及您使用該頻寬的時間。 如需詳細資訊，請參閱[使用 Resource Manager 部署模型將 Windows Server 或用戶端備份至 Azure](backup-configure-vault.md)中的「啟用網路節流 (選擇性)」。
+ 是，使用備份代理程式中的 [變更屬性]  選項來調整頻寬。 您可以調整頻寬量以及使用該頻寬的時間。 如需逐步指示，請參閱＜使用 Resource Manager 部署模型將 Windows Server 或用戶端備份至 Azure＞文章中的**[啟用網路節流](backup-configure-vault.md#enable-network-throttling)**。
 
 ## <a name="my-internet-bandwidth-is-limited-for-the-amount-of-data-i-need-to-back-up-is-there-a-way-i-can-move-data-to-a-certain-location-with-a-large-network-pipe-and-push-that-data-into-azure-br"></a>我的網際網路頻寬有限，不適用於我需要備份的資料量。 是否有方法可將資料移動到網路頻寬較大的特定位置，再將該資料推送到 Azure 中？ <br/>
 您可以透過標準的線上備份程序將資料備份到 Azure ，或是使用 Azure 匯入/匯出服務將資料傳輸到 Azure 中的 Blob 儲存體。 沒有其他方法可將資料備份到 Azure 儲存體。 如需如何搭配使用 Azure 匯入/匯出服務與 Azure 備份的相關資訊，請參閱 [離線備份工作流程](backup-azure-backup-import-export.md) 一文。
@@ -212,7 +212,7 @@ Azure 備份代理程式依存於 NTFS。 [檔案路徑長度規格受限於 Win
 是。 資料會使用 AES256 在內部部署伺服器/用戶端/SCDPM 電腦上進行加密，且資料會透過安全的 HTTPS 連結進行傳送。
 
 ## <a name="is-the-backup-data-on-azure-encrypted-as-wellbr"></a>位於 Azure 的備份資料也會經過加密嗎？<br/>
-  是。 傳送至 Azure 的資料仍會維持加密 (靜止) 狀態。 Microsoft 不會解密在任何時間點所備份的資料。 對於 Azure VM 備份，Azure 備份依賴虛擬機器的加密，亦即若使用 Azure 磁碟加密或其他一些加密技術來加密您的 VM，Azure 備份會使用加密來保護您的資料。
+  是。 傳送至 Azure 的資料仍會維持加密 (靜止) 狀態。 Microsoft 不會解密在任何時間點所備份的資料。 備份 Azure VM 時，Azure 備份會依賴虛擬機器的加密。 例如，如果使用 Azure 磁碟加密或一些其他加密技術來加密您的 VM，Azure 備份會使用該加密來保護您的資料。
 
 ## <a name="what-is-the-minimum-length-of-encryption-key-used-to-encrypt-backup-data-br"></a>什麼是用來加密備份資料之加密金鑰的最小長度？ <br/>
  加密金鑰應該至少包含 16 個字元。
@@ -221,7 +221,7 @@ Azure 備份代理程式依存於 NTFS。 [檔案路徑長度規格受限於 Win
 用來加密備份資料的金鑰僅存在於客戶組織內部。 Microsoft 不會維護 Azure 中的複本，且無法存取金鑰。 若客戶錯置金鑰，則 Microsoft 無法復原備份資料。
 
 ## <a name="how-do-i-change-the-cache-location-specified-for-the-azure-backup-agentbr"></a>如何變更為 Azure 備份代理程式指定的快取位置？<br/>
- 請依序查看以下項目符號清單來變更快取位置。
+ 依序執行下列項目符號清單以變更快取位置。
 
 * 在提高權限的命令提示字元中執行下列命令以停止備份引擎：
 
@@ -240,13 +240,13 @@ Azure 備份代理程式依存於 NTFS。 [檔案路徑長度規格受限於 Win
 
   一旦在新的快取位置成功完成備份建立，您就可以移除原始的快取資料夾。
 
-## <a name="where-can-i-put-the-cachefolder-for-the-azure-backup-agent-to-work-as-expectedbr"></a>我可以把快取資料夾放在何處，以讓 Azure 備份代理程式如預期般運作？<br/>
+## <a name="where-can-i-put-the-cache-folder-for-the-azure-backup-agent-to-work-as-expectedbr"></a>我可以把快取資料夾放在何處，以讓 Azure 備份代理程式如預期般運作？<br/>
 快取資料夾不建議使用下列位置︰
 
 * 網路共用或卸除式媒體︰快取資料夾必須是在需要使用線上備份進行備份之伺服器的本機位置。 不支援網路位置或卸除式媒體，例如 USB 磁碟機。
 * 離線磁碟區︰快取資料夾必須在線上才能使用 Azure 備份代理程式進行預期的備份。
 
-## <a name="are-there-any-attributes-of-the-cachefolder-that-are-not-supportedbr"></a>快取資料夾是否有任何不受支援的屬性？<br/>
+## <a name="are-there-any-attributes-of-the-cache-folder-that-are-not-supportedbr"></a>快取資料夾是否有任何不受支援的屬性？<br/>
  快取資料夾不支援下列屬性或其組合︰
 
 * 已加密
@@ -255,10 +255,26 @@ Azure 備份代理程式依存於 NTFS。 [檔案路徑長度規格受限於 Win
 * 疏鬆
 * 重新分析點
 
-快取資料夾和中繼資料 VHD 都不建議有上述屬性，以便 Azure 備份代理程式能如預期般運作。
+快取資料夾和中繼資料 VHD 都不具有 Azure 備份代理程式所需的屬性。
+
+## <a name="recovery-services-vaults-are-resource-manager-based-are-backup-vaults-classic-mode-still-supported-br"></a>復原服務保存庫是以 Resource Manager 為基礎。 備份保存庫 (傳統模式) 是否仍受支援？ <br/>
+是，仍然支援備份保存庫。 在 [傳統入口網站](https://manage.windowsazure.com)中建立備份保存庫。 在 [Azure 入口網站](https://portal.azure.com)中建立復原服務保存庫。 不過，強烈建議您建立復原服務保存庫，因為所有未來的增強功能僅可用於復原服務保存庫中。
+
+## <a name="can-i-migrate-a-backup-vault-to-a-recovery-services-vault-br"></a>是否可以將備份保存庫移轉至復原服務保存庫？ <br/>
+很遺憾，不行，目前無法將備份保存庫的內容移轉至復原服務保存庫。 我們正著手新增這項功能，但目前仍未提供。
+
+## <a name="do-recovery-services-vaults-support-classic-vms-or-resource-manager-based-vms-br"></a>復原服務保存庫是否支援傳統 VM 或以 Resource Manager 為基礎的 VM？ <br/>
+復原服務保存庫支援兩種模式。  您可以將傳統 VM (建立於傳統入口網站中) 或 Resource Manager VM (建立於 Azure 入口網站中) 備份至復原服務保存庫。
+
+## <a name="i-have-backed-up-my-classic-vms-in-a-backup-vault-can-i-migrate-my-vms-from-classic-mode-to-resource-manager-mode-and-protect-them-in-a-recovery-services-vault"></a>我已經在備份保存庫中備份我的傳統 VM。 我可以將我的 VM 從傳統模式移轉至 Resource Manager 模式，並在復原服務保存庫中保護它們嗎？
+當您將 VM 從傳統模式移至 Resource Manager 模式時，備份保存庫中的傳統 VM 復原點不會自動移轉至復原服務保存庫。 請遵循下列步驟來傳輸您的 VM 備份：
+
+1. 在備份保存庫中，移至 [受保護的項目] 索引標籤，然後選取 VM。 按一下 [停止保護](backup-azure-manage-vms-classic.md#stop-protecting-virtual-machines)。 讓 [刪除相關聯的備份資料] 選項保持 [未核取] 狀態。
+2. 將虛擬機器從傳統模式移轉至 Resource Manager 模式。 確定虛擬機器對應的儲存體和網路也會移轉至 Resource Manager 模式。
+3. 建立復原服務保存庫，並使用保存庫儀表板上方的 [備份] 動作，在移轉的虛擬機器上設定備份。 如需將 VM 備份至復原服務保存庫的詳細資訊，請參閱[使用復原服務保存庫保護 Azure VM](backup-azure-vms-first-look-arm.md) 文章。
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 
