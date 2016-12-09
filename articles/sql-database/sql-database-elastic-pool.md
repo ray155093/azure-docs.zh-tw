@@ -1,38 +1,42 @@
 ---
-title: 什麼是 Azure 彈性集區？ | Microsoft Docs
-description: 使用集區管理數百或數千個資料庫。 針對一組效能單位的一個價格可以分散在集區。 您可以隨意將資料庫移入或移出。
-keywords: 彈性資料庫、sql 資料庫
+title: "什麼是 Azure 彈性集區？ | Microsoft Docs"
+description: "使用集區管理數百或數千個資料庫。 針對一組效能單位的一個價格可以分散在集區。 您可以隨意將資料庫移入或移出。"
+keywords: "彈性資料庫、sql 資料庫"
 services: sql-database
-documentationcenter: ''
+documentationcenter: 
 author: CarlRabeler
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: b46e7fdc-2238-4b3b-a944-8ab36c5bdb8e
 ms.service: sql-database
 ms.devlang: NA
-ms.date: 07/12/2016
+ms.date: 11/15/2016
 ms.author: CarlRabeler
 ms.workload: data-management
 ms.topic: article
 ms.tgt_pltfrm: NA
+translationtype: Human Translation
+ms.sourcegitcommit: 5b800e157264764d69b4fed94d960120a2395367
+ms.openlocfilehash: 316d40aebdfff379aa007f56472a6596f9eb808d
+
 
 ---
-# <a name="what-is-an-azure-elastic-pool?"></a>什麼是 Azure 彈性集區？
+# <a name="what-is-an-azure-elastic-pool"></a>什麼是 Azure 彈性集區？
 SQL DB 彈性集區提供符合成本效益的簡單解決方案，以管理多個不同且具備無法預測的使用模式資料庫的效能目標。
 
 > [!NOTE]
 > 彈性集區已在所有 Azure 區域中正式運作 (GA)，但印度西部除外，此區域目前提供預覽版。  我們將儘速在此區域提供彈性集區的 GA。
-> 
-> 
+>
+>
 
 ## <a name="how-it-works"></a>運作方式
 常見的 SaaS 應用程式模式是單一租用戶資料庫模型︰每個客戶會被授與他們自己的資料庫。 每個客戶 (資料庫) 針對記憶體、IO 和 CPU，都有無法預期的資源需求。 由於需求有高有低，您該如何以有效率且符合成本效益的方式配置資源？ 您通常有兩個選項：(1) 根據尖峰使用量額外佈建資源並額外付款，或是 (2) 少量佈建來節省成本，但會降低在尖峰期間的效能和客戶滿意度。 彈性集區可藉由確保資料庫會在需要時取得它們所需的效能資源，來解決此問題。 它們會在可預測的預算內提供簡單的資源配置機制。 若要深入了解使用彈性集區的 SaaS 應用程式的設計模式，請參閱 [採用 Azure SQL Database 的多租用戶 SaaS 應用程式的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)。
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Windows-Azure/Elastic-databases-helps-SaaS-developers-tame-explosive-growth/player]
-> 
-> 
+>
+>
 
-在 SQL Database 中，資料庫處理資源需求的能力相對量值就單一資料庫而言是以「資料庫交易單位」(DTU) 表示，就彈性集區中的彈性資料庫而言則是以彈性 DTU (eDTU) 表示。 如需深入了解 DTU 和 eDTU 的資訊，請參閱 [SQL Database 簡介](sql-database-technical-overview.md#understand-dtus) 。
+在 SQL Database 中，資料庫處理資源需求的能力相對量值就單一資料庫而言是以「資料庫交易單位」(DTU) 表示，就彈性集區中的彈性資料庫而言則是以彈性 DTU (eDTU) 表示。 如需深入了解 DTU 和 eDTU 的資訊，請參閱 [SQL Database 簡介](sql-database-technical-overview.md)。
 
 集區以固定價格提供固定數目的 eDTU。 在集區內，會給予個別資料庫彈性以在設定的參數內自動調整。 負載量大時，資料庫可以取用更多的 eDTU 以滿足需求。 負載較輕的資料庫取用較少的 eDTU，而完全無負載的資料庫不會取用任何 eDTU。 針對整個集區佈建資源，而不是針對單一資料庫佈建資源，可簡化管理工作。 此外，您還可以有可預測的集區預算。
 
@@ -40,19 +44,25 @@ SQL DB 彈性集區提供符合成本效益的簡單解決方案，以管理多�
 
 您也可以在集區加入或減少資料庫。 如果可以預測資料庫使用少量資源，則將它移出。
 
-## <a name="which-databases-go-in-a-pool?"></a>哪個資料庫會進入集區？
+## <a name="which-databases-go-in-a-pool"></a>哪個資料庫會進入集區？
 ![在彈性資料庫集區中共用 eDTU 的 SQL 資料庫。][1]
 
 最適合加入彈性集區的資料庫通常是有時活躍、有時閒置的資料庫。 在上述範例中，您可以看到單一資料庫的活動、4 個資料庫的活動，最後則是具有 20 個資料庫的彈性集區的活動。 活動隨時間而不同的資料庫很適合加入至彈性集區，因為它們不是永遠都在使用中，而且可以共用 eDTU。 並非所有資料庫都符合這個模式。 有些資料庫的資源需求比較固定，這類資料庫較適合基本、標準和進階服務層，在這些服務層中會個別指派資源。
 
 [彈性集區的價格和效能考量](sql-database-elastic-pool-guidance.md)。
 
-## <a name="edtu-and-storage-limits-for-elastic-pools-and-elastic-databases."></a>彈性集區及彈性資料庫的 eDTU 和儲存體限制。
+## <a name="edtu-and-storage-limits-for-elastic-pools-and-elastic-databases"></a>彈性集區和彈性資料庫的 eDTU 和儲存體限制
+
+下表說明基本、標準和高階彈性資料庫集區的特性。
+
 [!INCLUDE [SQL DB service tiers table for elastic databases](../../includes/sql-database-service-tiers-table-elastic-db-pools.md)]
 
 如果彈性集區的所有 DTU 均已使用，則集區中的每個資料庫會收到等量的資源以處理查詢。  SQL Database 服務藉由確保運算時間的均等配量，提供資料庫之間的資源共用公平性。 彈性集區資源共用公平性不包括任何資源數量，否則當每個資料庫的最小 DTU 數設為非零的值時，便會對每個資料庫保證資源數量。
 
 ## <a name="elastic-pool-and-elastic-database-properties"></a>彈性集區和彈性資料庫屬性
+
+下表說明彈性集區和彈性資料庫的限制。
+
 ### <a name="limits-for-elastic-pools"></a>彈性集區的限制
 | 屬性 | 說明 |
 |:--- |:--- |
@@ -74,7 +84,7 @@ SQL DB 彈性集區提供符合成本效益的簡單解決方案，以管理多�
 ## <a name="elastic-database-jobs"></a>彈性資料庫工作
 使用集區，只要在**[彈性作業](sql-database-elastic-jobs-overview.md)**中執行指令碼，就能簡化管理工作。 彈性資料庫工作會消除與大量資料庫相關聯的冗長工作。 若要開始，請參閱 [開始使用彈性資料庫工作](sql-database-elastic-jobs-getting-started.md)。
 
-如需其他工具的詳細資訊，請參閱 [彈性資料庫工具學習地圖](https://azure.microsoft.com/documentation/learning-paths/sql-database-elastic-scale/)。
+如需其他彈性資料庫工具的詳細資訊，請參閱[使用Azure SQL Database 向上調整](sql-database-elastic-scale-introduction.md)。
 
 ## <a name="business-continuity-features-for-databases-in-a-pool"></a>集區中資料庫的業務續航力功能
 彈性資料庫通常會支援 V12 伺服器上單一資料庫可用的相同 [商務持續性功能](sql-database-business-continuity.md) 。
@@ -83,19 +93,19 @@ SQL DB 彈性集區提供符合成本效益的簡單解決方案，以管理多�
 還原時間點會自動備份資料庫，以將集區中的資料庫復原到特定的時間點。 請參閱 [還原時間點](sql-database-recovery-using-backups.md#point-in-time-restore)
 
 ### <a name="geo-restore"></a>異地還原
-異地還原會在資料庫因裝載區域中的事件而無法使用時，提供預設復原選項。 請參閱 [還原 Azure SQL Database 或容錯移轉到次要資料庫](sql-database-disaster-recovery.md) 
+異地還原會在資料庫因裝載區域中的事件而無法使用時，提供預設復原選項。 請參閱 [還原 Azure SQL Database 或容錯移轉到次要資料庫](sql-database-disaster-recovery.md)
 
 ### <a name="active-geo-replication"></a>主動式異地複寫
 針對比異地還原具有更積極復原需求的應用程式，請使用 [Azure 入口網站](sql-database-geo-replication-portal.md)、[PowerShell](sql-database-geo-replication-powershell.md) 或 [Transact-SQL](sql-database-geo-replication-transact-sql.md) 來設定主動式異地複寫。
 
 ## <a name="additional-resources"></a>其他資源
-* [有關彈性資料庫功能的 Microsoft Virtual Academy 視訊課程](https://mva.microsoft.com/en-US/training-courses/elastic-database-capabilities-with-azure-sql-db-16554) 
+* [有關彈性資料庫功能的 Microsoft Virtual Academy 視訊課程](https://mva.microsoft.com/en-US/training-courses/elastic-database-capabilities-with-azure-sql-db-16554)
 
 <!--Image references-->
 [1]: ./media/sql-database-elastic-pool/databases.png
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 
