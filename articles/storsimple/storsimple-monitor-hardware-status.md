@@ -1,12 +1,12 @@
 ---
-title: StorSimple 硬體元件和狀態 | Microsoft Docs
-description: 了解如何透過 StorSimple Manager 服務監視 StorSimple 裝置的硬體元件。
+title: "StorSimple 硬體元件和狀態 | Microsoft Docs"
+description: "了解如何透過 StorSimple Manager 服務監視 StorSimple 裝置的硬體元件。"
 services: storsimple
-documentationcenter: ''
+documentationcenter: 
 author: alkohli
 manager: carmonm
-editor: ''
-
+editor: 
+ms.assetid: 0d56a2ba-daf0-45ad-9610-8b8712dd5750
 ms.service: storsimple
 ms.devlang: na
 ms.topic: article
@@ -14,13 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/18/2016
 ms.author: alkohli
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 0544cb9aaf9ec03c16cc07f2974b6b8d90b3c61d
+
 
 ---
-# 使用 StorSimple Manager 服務監視硬體元件和狀態
-## Overview
-本文描述內部部署 StorSimple 裝置中的各種實體和邏輯元件。它也會說明如何使用 StorSimple Manager 服務中的 [維護] 頁面監視裝置元件狀態。
+# <a name="use-the-storsimple-manager-service-to-monitor-hardware-components-and-status"></a>使用 StorSimple Manager 服務監視硬體元件和狀態
+## <a name="overview"></a>Overview
+本文描述內部部署 StorSimple 裝置中的各種實體和邏輯元件。 它也會說明如何使用 StorSimple Manager 服務中的 [維護]  頁面監視裝置元件狀態。 
 
-[**維護**] 頁面會顯示所有 StorSimple 裝置元件的硬體狀態。
+[ **維護** ] 頁面會顯示所有 StorSimple 裝置元件的硬體狀態。 
 
 在 8100 的元件清單下，有三個區段描述：
 
@@ -28,7 +32,7 @@ ms.author: alkohli
 * **控制器 0 元件** – 位於控制器 0 的元件，例如控制器、SAS 擴展器和連接器、控制器溫度感應器和不同的網路介面。
 * **控制器 1 元件** – 構成控制器 1 的元件，類似於控制器 0 的詳細元件。
 
-8600 裝置有對應至磁碟擴充群 (EBOD) 機箱的其他元件。在元件清單中，有五個區段。其中有三個區段包含主要機箱中的元件，並且和 8100 所述元件相同。 EBOD 機箱有兩個其他區段在描述：
+8600 裝置有對應至磁碟擴充群 (EBOD) 機箱的其他元件。 在元件清單中，有五個區段。 其中有三個區段包含主要機箱中的元件，並且和 8100 所述元件相同。 EBOD 機箱有兩個其他區段在描述：
 
 * **EBOD 機箱共用元件** – EBOD 機箱和不屬於 EBOD 控制器的 PCM 中呈現的元件。
 * **EBOD 控制器 0 元件** – 位於 EBOD 機箱 0 的元件，例如 EBOD 控制器、SAS 擴展器和連接器、以及控制器溫度感應器。
@@ -39,20 +43,20 @@ ms.author: alkohli
 > 
 > 
 
-## 監視硬體狀態
+## <a name="monitor-the-hardware-status"></a>監視硬體狀態
 執行下列步驟來檢視裝置元件的硬體狀態：
 
-1. 瀏覽至**裝置**，選取特定的 StorSimple 裝置。按一下以進入裝置層級功能表，然後按一下 [維護]。
-2. 找出 [**硬體狀態**] 區段並選擇可用的元件 (如上所述)。只要按一下元件標籤之前的箭號即可展開清單並檢視各種裝置元件的狀態。請參閱[主要機箱的詳細元件清單](#component-list-for-primary-enclosure-of-storsimple-device)和 [EBOD 機箱的詳細元件清單](#component-list-for-ebod-enclosure-of-storsimple-device)。
+1. 瀏覽至 **裝置**，選取特定的 StorSimple 裝置。 按一下以進入裝置層級功能表，然後按一下 [維護] 。 
+2. 找出 [ **硬體狀態** ] 區段並選擇可用的元件 (如上所述)。 只要按一下元件標籤之前的箭號即可展開清單並檢視各種裝置元件的狀態。 請參閱[主要機箱的詳細元件清單](#component-list-for-primary-enclosure-of-storsimple-device)和 [EBOD 機箱的詳細元件清單](#component-list-for-ebod-enclosure-of-storsimple-device)。
 3. 您可以使用下列色彩編碼配置來解譯元件狀態：
    
    * **綠色核取符號** – 代表**狀況良好**或**確定**元件。
    * **黃色** – 代表**警告**狀態中的元件。
    * **紅色驚嘆號** – 代表狀態為**失敗**或**需要注意**的元件。
    * **白底黑字** – 代表不存在的元件。
-4. 如果您遇到狀態不是「狀況良好」的元件，請連絡 Microsoft 支援服務。如果您的裝置上啟用警示，您會收到電子郵件警示。如果您必須更換失敗的硬體元件，請參閱 [StorSimple 硬體元件更換](storsimple-hardware-component-replacement.md)。
+4. 如果您遇到狀態不是「狀況良好」  的元件，請連絡 Microsoft 支援服務。 如果您的裝置上啟用警示，您會收到電子郵件警示。 如果您必須更換失敗的硬體元件，請參閱 [StorSimple 硬體元件更換](storsimple-hardware-component-replacement.md)。
 
-## StorSimple 裝置之主要機箱的元件清單
+## <a name="component-list-for-primary-enclosure-of-storsimple-device"></a>StorSimple 裝置之主要機箱的元件清單
 下表摘要列出您內部部署 StorSimple 裝置之主要機箱中包含的實體和邏輯元件。
 
 | 元件 | 模組 | 類型 | 位置 | 現場可更換單位 (FRU)？ | 說明 |
@@ -83,7 +87,7 @@ ms.author: alkohli
 | SSD 儲存體集區 |N/A |邏輯 |共用 |N/A |顯示從裝置 SSD 建立之邏輯儲存體集區的狀態。 |
 | 控制器 [0-1] [狀態] |I/O |實體 |Controller |是 |顯示控制器的狀態，以及它在底座內是作用中或待命模式。 |
 | 控制器中的溫度感應器 |I/O |實體 |Controller |否 |I/O 模組、CPU 溫度、DIMM 和 PCIe 感應器等許多溫度感應器都會顯示其狀態，指出溫度是否在容許範圍內。 |
-| SAS 擴展器 |I/O |實體 |Controller |否 |指出序列連接 SCSI (SAS) 擴展器的狀態，此擴展器用來連接到控制器的整合式儲存體。 |
+| ﻿SAS 擴展器 |I/O |實體 |Controller |否 |指出序列連接 SCSI (SAS) 擴展器的狀態，此擴展器用來連接到控制器的整合式儲存體。 |
 | SAS 連接器 [0-1] |I/O |實體 |Controller |否 |指出每個 SAS 連接器的狀態，用來將整合式儲存體連接到 SAS 擴展器。 |
 | SBB 中間板相互連接 |I/O |實體 |Controller |否 |指出中間板連接器的狀態，用來連接到中間板的每個控制器。 |
 | 處理器核心 |I/O |實體 |Controller |否 |指出每個控制器內的處理器核心狀態。 |
@@ -91,9 +95,9 @@ ms.author: alkohli
 | 機箱電子裝置診斷 |I/O |實體 |Controller |否 |指出控制器所提供的診斷子系統狀態。 |
 | 基礎板管理控制器 (BMC) |I/O |實體 |Controller |否 |指出基礎板管理控制器 (BMC) 的狀態，也就是特殊服務處理器，可透過感應器監視硬體裝置並與系統管理員透過獨立連接進行通訊。 |
 | 乙太網路 |I/O |實體 |Controller |否 |指出每個網路介面的狀態，也就是控制器上提供的管理和資料連接埠。 |
-| NVRAM |I/O |實體 |Controller |否 |指出 NVRAM 的狀態，也就是由電池備份的競態隨機存取記憶體，用來在 電源中斷時保留關鍵應用程式資訊。 |
+| NVRAM |I/O |實體 |Controller |否 |指出 NVRAM 的狀態，也就是由電池備份的競態隨機存取記憶體，用來在 	電源中斷時保留關鍵應用程式資訊。 |
 
-## StorSimple 裝置之 EBOD 機箱的元件清單
+## <a name="component-list-for-ebod-enclosure-of-storsimple-device"></a>StorSimple 裝置之 EBOD 機箱的元件清單
 下表摘要列出您內部部署 StorSimple 裝置之 EBOD 機箱中包含的實體和邏輯元件。
 
 | 元件 | 模組 | 類型 | 位置 | FRU？ | 說明 |
@@ -112,17 +116,22 @@ ms.author: alkohli
 | 本機儲存體 [HDD] |N/A |邏輯 |共用 |N/A |顯示從裝置 HDD 建立之邏輯儲存體集區的狀態。 |
 | 控制器 [0-1] [狀態] |I/O |實體 |Controller |是 |EBOD 模組中會顯示控制器的狀態。 |
 | EBOD 中的溫度感應器 |I/O |實體 |Controller |否 |來自每部控制器的許多溫度感應器都會顯示其狀態，其指出溫度是否在容許範圍內。 |
-| SAS 擴展器 |I/O |實體 |Controller |否 |指出 SAS 擴展器的狀態，此擴展器用來連接到控制器的整合式儲存體。 |
+| ﻿SAS 擴展器 |I/O |實體 |Controller |否 |指出 SAS 擴展器的狀態，此擴展器用來連接到控制器的整合式儲存體。 |
 | SAS 連接器 [0-2] |I/O |實體 |Controller |否 |指出每個 SAS 連接器的狀態，用來將整合式儲存體連接到 SAS 擴展器。 |
 | SBB 中間板相互連接 |I/O |實體 |Controller |否 |指出中間板連接器的狀態，用來連接到中間板的每個控制器。 |
 | 機箱電子裝置電源 |I/O |實體 |Controller |否 |指出機箱所使用的電源系統狀態。 |
 | 機箱電子裝置診斷 |I/O |實體 |Controller |否 |指出控制器所提供的診斷子系統狀態。 |
 | 裝置控制器的連接 |I/O |實體 |Controller |否 |指出 EBOD I/O 模組和裝置控制器之間的連接狀態。 |
 
-## 後續步驟
-* 若要使用 StorSimple Manager 服務來管理裝置，請參閱[使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
-* 如果您需要疑難排解降級或失敗狀態的裝置元件，請參閱 [StorSimple 監視指示器](storsimple-monitoring-indicators.md)。
+## <a name="next-steps"></a>後續步驟
+* 若要使用 StorSimple Manager 服務來管理裝置，請參閱 [使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
+* 如果您需要疑難排解降級或失敗狀態的裝置元件，請參閱 [StorSimple 監視指示器](storsimple-monitoring-indicators.md)。 
 * 若要更換故障的硬體元件，請參閱 [StorSimple 硬體元件更換](storsimple-hardware-component-replacement.md)。
-* 如果持續發生裝置問題，請[連絡 Microsoft 支援服務](storsimple-contact-microsoft-support.md)。
+* 如果持續發生裝置問題，請 [連絡 Microsoft 支援服務](storsimple-contact-microsoft-support.md)。
 
-<!---HONumber=AcomDC_0831_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

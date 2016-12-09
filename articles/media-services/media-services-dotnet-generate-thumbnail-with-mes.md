@@ -1,12 +1,12 @@
 ---
-title: 如何搭配 .NET 使用 Media Encoder Standard 產生縮圖
-description: 本主題說明如何使用 .NET 編碼資產，並同時使用 Media Encoder Standard 產生縮圖。
+title: "如何搭配 .NET 使用 Media Encoder Standard 產生縮圖"
+description: "本主題說明如何使用 .NET 編碼資產，並同時使用 Media Encoder Standard 產生縮圖。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: b8dab73a-1d91-4b6d-9741-a92ad39fc3f7
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/10/2016
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 1c28e756548b69d336b7f66ae9fbfa3c9259f787
+
 
 ---
-# <a name="how-to-generate-thumbnails-using-media-encoder-standard-with-.net"></a>如何搭配 .NET 使用 Media Encoder Standard 產生縮圖
+# <a name="how-to-generate-thumbnails-using-media-encoder-standard-with-net"></a>如何搭配 .NET 使用 Media Encoder Standard 產生縮圖
 本主題示範如何使用 Media Services .NET SDK 編碼資產，並使用 Media Encoder Standard 產生縮圖。 本主題定義 XML 和 JSON 縮圖預設，可讓您用來建立工作，以同時執行編碼及產生縮圖。 [這份文件](https://msdn.microsoft.com/library/mt269962.aspx) 包含這些預設所使用的項目說明。
 
 請務必閱讀 [考量](media-services-dotnet-generate-thumbnail-with-mes.md#considerations) 一節。
@@ -168,7 +172,7 @@ ms.author: juliako
             }
         }
 
-## <a name="<a-id="json"></a>thumbnail-json-preset"></a><a id="json"></a>縮圖 JSON 預設
+## <a name="a-idjsonathumbnail-json-preset"></a><a id="json"></a>縮圖 JSON 預設
 如需結構描述的資訊，請參閱 [這個主題](https://msdn.microsoft.com/library/mt269962.aspx) 。
 
     {
@@ -270,7 +274,7 @@ ms.author: juliako
     }
 
 
-## <a name="<a-id="xml"></a>thumbnail-xml-preset"></a><a id="xml"></a>縮圖 XML 預設
+## <a name="a-idxmlathumbnail-xml-preset"></a><a id="xml"></a>縮圖 XML 預設
 如需結構描述的資訊，請參閱 [這個主題](https://msdn.microsoft.com/library/mt269962.aspx) 。
 
     <?xml version="1.0" encoding="utf-16"?>
@@ -357,7 +361,7 @@ ms.author: juliako
     
     您可以隨意混合使用標記法。
     
-    此外，Start 也支援特殊的巨集 (即 {Best})，它會嘗試判斷第一個「有趣」的內容畫面。附註：(Start 設為 {Best} 時，會忽略 Step 與 Range)
+    此外， Start 也支援特殊的巨集 (即 {Best})，它會嘗試判斷第一個「 有趣 」的內容畫面。附註：(Start 設為 {Best} 時，會忽略 Step 與 Range)
   * 預設值：Start:{Best}
 * 必須明確地提供每個影像格式的輸出格式：Jpg/Png/BmpFormat。 顯示時，AMS 會讓 JpgVideo 與 JpgFormat 相符，依此類推。 OutputFormat 引進了新的影像轉碼器特定巨集 (即 {Index})，必須針對影像輸出格式提供一次 (只需一次)。
 
@@ -370,6 +374,9 @@ ms.author: juliako
 ## <a name="see-also"></a>另請參閱
 [媒體服務編碼概觀](media-services-encode-asset.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

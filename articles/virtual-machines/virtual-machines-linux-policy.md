@@ -1,13 +1,13 @@
 ---
-title: 將原則套用至 Azure Resource Manager 虛擬機器 | Microsoft Docs
-description: 如何將原則套用至 Azure Resource Manager Linux 虛擬機器
+title: "將原則套用至 Azure Resource Manager 虛擬機器 | Microsoft Docs"
+description: "如何將原則套用至 Azure Resource Manager  Linux 虛擬機器"
 services: virtual-machines-linux
-documentationcenter: ''
+documentationcenter: 
 author: singhkays
 manager: timlt
-editor: ''
+editor: 
 tags: azure-resource-manager
-
+ms.assetid: 06778ab4-f8ff-4eed-ae10-26a276fc3faa
 ms.service: virtual-machines-linux
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
@@ -15,10 +15,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/13/2016
 ms.author: singhkay
+translationtype: Human Translation
+ms.sourcegitcommit: f06747c35f12802f54b44774dff7f92280ba0dc9
+ms.openlocfilehash: b1c66c14fbf5b0361831bb987df3dc01131abc88
+
 
 ---
-# 將原則套用至 Azure Resource Manager 虛擬機器
-藉由使用原則，組織可以強制執行整個企業的各種慣例和規則。強制執行所要的行為有助於降低風險，同時促進組織的成功。在本文中，我們將說明如何使用 Azure Resource Manager 原則來定義您組織虛擬機器所要的行為。
+# <a name="apply-policies-to-azure-resource-manager-virtual-machines"></a>將原則套用至 Azure Resource Manager 虛擬機器
+藉由使用原則，組織可以強制執行整個企業的各種慣例和規則。 強制執行所要的行為有助於降低風險，同時促進組織的成功。 在本文中，我們將說明如何使用 Azure Resource Manager 原則來定義您組織虛擬機器所要的行為。
 
 完成此作業的步驟大致如下
 
@@ -27,13 +31,14 @@ ms.author: singhkay
 3. 建立原則
 4. 套用原則
 
-## Azure Resource Manager 原則入門
-若要開始使用 Azure Resource Manager 原則，建議閱讀下文，然後繼續進行本文中的步驟。下文描述原則的基本定義和結構、如何評估原則，並提供原則定義的各種範例。
+## <a name="azure-resource-manager-policy-101"></a>Azure Resource Manager 原則入門
+若要開始使用 Azure Resource Manager 原則，建議閱讀下文，然後繼續進行本文中的步驟。 下文描述原則的基本定義和結構、如何評估原則，並提供原則定義的各種範例。
 
 * [使用原則來管理資源和控制存取](../resource-manager-policy.md)
 
-## 定義虛擬機器的原則
-其中一個常見的企業案例可能是只允許其使用者從特定作業系統建立虛擬機器，而這些作業系統已經測試可與 LOB 應用程式相容。使用 Azure Resource Manager 原則可以透過幾個步驟完成這項工作。在此原則範例中，我們將只允許建立 Ubuntu 14.04.2-LTS 虛擬機器。原則定義如下所示。
+## <a name="define-a-policy-for-your-virtual-machine"></a>定義虛擬機器的原則
+其中一個常見的企業案例可能是只允許其使用者從特定作業系統建立虛擬機器，而這些作業系統已經測試可與 LOB 應用程式相容。 使用 Azure Resource Manager 原則可以透過幾個步驟完成這項工作。
+在此原則範例中，我們將只允許建立 Ubuntu 14.04.2-LTS 虛擬機器。 原則定義如下所示。
 
 ```
 "if": {
@@ -76,10 +81,8 @@ ms.author: singhkay
 }
 ```
 
-#### 虛擬機器屬性欄位
-下表描述可用作您原則定義中欄位的虛擬機器屬性。如需原則欄位的詳細資訊，請參閱下文︰
-
-* [欄位和來源](../resource-manager-policy.md#fields-and-sources)
+#### <a name="virtual-machine-property-fields"></a>虛擬機器屬性欄位
+下表描述可用作您原則定義中欄位的虛擬機器屬性。 如需有關原則的詳細資訊，請參閱[使用原則來管理資源和控制存取](../resource-manager-policy.md#fields)。
 
 | 欄位名稱 | 說明 |
 | --- | --- |
@@ -88,14 +91,14 @@ ms.author: singhkay
 | imageSku |指定所選擇優惠的 SKU |
 | imageVersion |指定所選擇 SKU 的映像版本 |
 
-## 建立原則
-直接使用 REST API 或 PowerShell Cmdlet 可以輕鬆地建立原則。如需建立原則的詳細資訊，請參閱下文︰
+## <a name="create-the-policy"></a>建立原則
+直接使用 REST API 或 PowerShell Cmdlet 可以輕鬆地建立原則。 您可以深入了解[建立並指派原則](../resource-manager-policy.md#create-and-assign-a-policy)。
 
-* [建立原則](../resource-manager-policy.md#creating-a-policy)
+## <a name="apply-the-policy"></a>套用原則
+建立原則之後，您需要為定義的範圍加以套用。 範圍可以是訂用帳戶、資源群組，甚至是資源。 您可以深入了解[建立並指派原則](../resource-manager-policy.md#create-and-assign-a-policy)。
 
-## 套用原則
-建立原則之後，您需要為定義的範圍加以套用。範圍可以是訂用帳戶、資源群組，甚至是資源。如需套用原則的詳細資訊，請參閱下文︰
 
-* [建立原則](../resource-manager-policy.md#applying-a-policy)
 
-<!---HONumber=AcomDC_0824_2016-->
+<!--HONumber=Nov16_HO3-->
+
+

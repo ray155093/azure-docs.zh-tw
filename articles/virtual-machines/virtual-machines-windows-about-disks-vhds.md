@@ -1,24 +1,28 @@
 ---
-title: 有關 Windows VM 的磁碟和 VHD | Microsoft Docs
-description: 了解 Azure 中 Windows 虛擬機器的磁碟和 VHD 的基本知識。
+title: "有關 Windows VM 的磁碟和 VHD | Microsoft Docs"
+description: "了解 Azure 中 Windows 虛擬機器的磁碟和 VHD 的基本知識。"
 services: virtual-machines-windows
-documentationcenter: ''
+documentationcenter: 
 author: cynthn
 manager: timlt
 editor: tysonn
 tags: azure-resource-manager,azure-service-management
-
+ms.assetid: 0142c64d-5e8c-4d62-aa6f-06d6261f485a
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: article
-ms.date: 09/27/2016
+ms.date: 11/18/2016
 ms.author: cynthn
+translationtype: Human Translation
+ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
+ms.openlocfilehash: a800d23208c190a381689a2417bbe9952343bc16
+
 
 ---
 # <a name="about-disks-and-vhds-for-azure-virtual-machines"></a>有關 Azure 虛擬機器的磁碟和 VHD
-就像任何其他電腦，Azure 中的虛擬機器會使用磁碟做為儲存作業系統、應用程式和資料的位置。 所有 Azure 虛擬機器都至少有兩個磁碟 - 一個 Windows 作業系統磁碟和一個暫存磁碟。 作業系統磁碟是從映像建立，且作業系統磁碟與該映像都是儲存在 Azure 儲存體帳戶中的虛擬硬碟 (VHD)。 虛擬機器也可以有一或多個資料磁碟，而這些磁碟也會儲存成 VHD。 本文也適用於 [Linux 虛擬機器](virtual-machines-linux-about-disks-vhds.md)。
+就像任何其他電腦，Azure 中的虛擬機器會使用磁碟做為儲存作業系統、應用程式和資料的位置。 所有 Azure 虛擬機器都至少有兩個磁碟 - 一個 Windows 作業系統磁碟和一個暫存磁碟。 作業系統磁碟是從映像建立，且作業系統磁碟與該映像都是儲存在 Azure 儲存體帳戶中的虛擬硬碟 (VHD)。 虛擬機器也可以有一或多個資料磁碟，而這些磁碟也會儲存成 VHD。 本文也適用於 [Linux 虛擬機器](virtual-machines-linux-about-disks-vhds.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
@@ -28,10 +32,10 @@ ms.author: cynthn
 ## <a name="temporary-disk"></a>暫存磁碟
 系統會自動為您建立暫存磁碟。 暫存磁碟預設會標示為 D: 磁碟機，並用於儲存 pagefile.sys。 
 
-暫存磁碟的大小會依據虛擬機器的大小而改變。 如需詳細資訊，請參閱 [Windows 虛擬機器的大小](virtual-machines-windows-sizes.md)。
+暫存磁碟的大小會依據虛擬機器的大小而改變。 如需詳細資訊，請參閱 [Windows 虛擬機器的大小](virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 > [!WARNING]
-> 請勿在暫存磁碟上儲存資料。 它提供應用程式和處理程序暫時的儲存空間，且其用意僅為儲存分頁檔等資料。 若要將此磁碟重新對應至不同的磁碟機代號，請參閱 [變更 Windows 暫存磁碟的磁碟機代號](virtual-machines-windows-classic-change-drive-letter.md)。
+> 請勿在暫存磁碟上儲存資料。 它提供應用程式和處理程序暫時的儲存空間，且其用意僅為儲存分頁檔等資料。 若要將此磁碟重新對應至不同的磁碟機代號，請參閱 [變更 Windows 暫存磁碟的磁碟機代號](virtual-machines-windows-classic-change-drive-letter.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 > 
 > 
 
@@ -41,7 +45,7 @@ ms.author: cynthn
 資料磁碟是連接至虛擬機器的 VHD，用來儲存應用程式資料或其他您需要保留的資料。 資料磁碟註冊為 SCSI 磁碟機，並以您選擇的字母標示。  每個資料磁碟的最大容量為 1023 GB。 虛擬機器的大小會決定您可以連接之磁碟的數量，以及您可以用來裝載磁碟的儲存體類型。
 
 > [!NOTE]
-> 如需有關虛擬機器容量的詳細資訊，請參閱 [Windows 虛擬機器的大小](virtual-machines-windows-sizes.md)。
+> 如需有關虛擬機器容量的詳細資訊，請參閱 [Windows 虛擬機器的大小](virtual-machines-windows-sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 > 
 > 
 
@@ -66,10 +70,13 @@ Azure 中所有您想要做為來源以建立磁碟或映像的 .vhd 檔案，�
 > 
 
 ## <a name="next-steps"></a>後續步驟
-* [連接磁碟](virtual-machines-windows-attach-disk-portal.md) 來為您的 VM 新增額外的儲存空間。
-* [將 Windows VM 映像上傳至 Azure](virtual-machines-windows-upload-image.md) ，以在建立新的 VM 時使用。
-* [變更 Windows 暫存磁碟的磁碟機代號](virtual-machines-windows-classic-change-drive-letter.md) ，讓您的應用程式可以使用 D: 磁碟機來儲存資料。
+* [連接磁碟](virtual-machines-windows-attach-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 來為您的 VM 新增額外的儲存空間。
+* [將 Windows VM 映像上傳至 Azure](virtual-machines-windows-upload-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) ，以在建立新的 VM 時使用。
+* [變更 Windows 暫存磁碟的磁碟機代號](virtual-machines-windows-classic-change-drive-letter.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) ，讓您的應用程式可以使用 D: 磁碟機來儲存資料。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

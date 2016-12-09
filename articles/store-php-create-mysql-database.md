@@ -1,20 +1,24 @@
 ---
-title: 在 Azure 中建立 MySQL 資料庫並連接到此資料庫
-description: 了解如何使用 Azure 入口網站來建立 MySQL 資料庫，然後從 Azure 中的 PHP Web 應用程式連接到該資料庫。
+title: "在 Azure 中建立 MySQL 資料庫並連接到此資料庫"
+description: "了解如何使用 Azure 入口網站來建立 MySQL 資料庫，然後從 Azure 中的 PHP Web 應用程式連接到該資料庫。"
 documentationcenter: php
 services: app-service\web
 author: cephalin
-manager: wpickett
-editor: ''
+manager: erikre
+editor: 
 tags: mysql
-
+ms.assetid: 55465a9a-7e65-4fd9-8a65-dd83ee41f3e5
 ms.service: multiple
 ms.workload: data-management
 ms.tgt_pltfrm: na
 ms.devlang: PHP
 ms.topic: article
-ms.date: 08/11/2016
+ms.date: 11/01/2016
 ms.author: robmcm;cephalin
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: b5f828f90c73f5fd0356fde4e71c11d4d27ec794
+
 
 ---
 # <a name="create-and-connect-to-a-mysql-database-in-azure"></a>在 Azure 中建立 MySQL 資料庫並連接到此資料庫
@@ -37,7 +41,7 @@ ms.author: robmcm;cephalin
    * **資料庫名稱**︰輸入可唯一識別的名稱
    * **訂用帳戶**：選擇要使用的訂用帳戶
    * **資料庫類型**︰針對低成本或免費層，請選取 [共用]，或選取 [專用] 以取得專用資源。 
-   * **資源群組**：將 MySQL 資料庫新增到現有的 [資源群組](resource-group-overview.md) ，或將它放在新的資源群組中。 相同群組中的資源可以方便一起管理。
+   * **資源群組**：將 MySQL 資料庫新增到現有的 [資源群組](azure-resource-manager/resource-group-overview.md) ，或將它放在新的資源群組中。 相同群組中的資源可以方便一起管理。
    * **位置**：選擇靠近您的位置。 當新增到現有的資源群組時，您會被鎖定到該資源群組的位置。
    * **定價層**︰按一下 [定價層]，然後選取定價選項 ([水星] 層是免費的)，然後按一下 [選取]。 
    * **法律條款**︰按一下 [法律條款]、檢閱購買詳細資料，然後按一下 [購買]。
@@ -64,7 +68,7 @@ ms.author: robmcm;cephalin
 
 您現在已可以在任何 Web 應用程式中使用該連接資訊。 [這裡](https://github.com/WindowsAzure/azure-sdk-for-php-samples/tree/master/tasklist-mysql)提供範例，示範如何使用來自簡單 PHP 應用程式的連接資訊。
 
-## <a name="connect-a-laravel-web-app-(from-the-php-get-started-tutorial)"></a>連接 Laravel Web 應用程式 (來自開始使用 PHP 教學課程)
+## <a name="connect-a-laravel-web-app-from-the-php-get-started-tutorial"></a>連接 Laravel Web 應用程式 (來自開始使用 PHP 教學課程)
 假設您剛完成[建立、設定 PHP Web 應用程式並部署到 Azure](app-service-web/app-service-web-php-get-started.md) 教學課程，並且擁有一個在 Azure 中執行的 [Laravel](https://www.laravel.com/) Web 應用程式。 您可以將資料庫功能輕鬆新增到您的 Laravel 應用程式。 只要依照下列步驟操作即可：
 
 > [!NOTE]
@@ -82,12 +86,13 @@ ms.author: robmcm;cephalin
         DB_PASSWORD=<PASSWORD_from_properties_blade>
    
    > [!NOTE]
-   > 在 [屬性] 刀鋒視窗中，MySQL 資料庫的名稱可能是也可能不是 [資料庫名稱] 欄位中顯示的名稱。 最好是檢查 [連接字串]  欄位中的 Database 參數。 
+   > 在 [屬性] 刀鋒視窗中，MySQL 資料庫的名稱可能是也可能不是 [資料庫名稱] 欄位中顯示的名稱。 最好是檢查 [連接字串]  欄位中的 Database 參數。    
    > 
    > ![在 Azure 中建立 MySQL 資料庫 - 進行中](./media/store-php-create-mysql-database/connect-db-1-database-name.png)
    > 
    > 
-2. 確認您現在是否具備 MySQL 存取權的最快方式是使用 [Laravel 的預設驗證架構](https://laravel.com/docs/5.2/authentication#authentication-quickstart)。 請在命令列終端機中，從您 Laravel 應用程式的根目錄執行下列命令︰
+2. 確認您現在是否具備 MySQL 存取權的最快方式是使用 [Laravel 的預設驗證架構](https://laravel.com/docs/5.2/authentication#authentication-quickstart)。 
+   請在命令列終端機中，從您 Laravel 應用程式的根目錄執行下列命令︰
    
          php artisan migrate
          php artisan make:auth
@@ -136,6 +141,9 @@ ms.author: robmcm;cephalin
 ## <a name="next-steps"></a>後續步驟
 如需詳細資訊，請參閱 [PHP 開發人員中心](/develop/php/)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

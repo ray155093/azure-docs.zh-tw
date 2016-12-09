@@ -1,12 +1,12 @@
 ---
-title: 使用 AMS REST API 以儲存體加密來加密您的內容
-description: 了解如何使用 AMS REST API 以儲存體加密來加密您的內容。
+title: "使用 AMS REST API 以儲存體加密來加密您的內容"
+description: "了解如何使用 AMS REST API 以儲存體加密來加密您的內容。"
 services: media-services
-documentationcenter: ''
+documentationcenter: 
 author: Juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: a0a79f3d-76a1-4994-9202-59b91a2230e0
 ms.service: media-services
 ms.workload: media
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 8b0758e1fa5f12dc49d8548b733aefdf1f43d6f0
+
 
 ---
 # <a name="encrypting-your-content-with-storage-encryption-using-ams-rest-api"></a>使用 AMS REST API 以儲存體加密來加密您的內容
@@ -92,7 +96,7 @@ AMS 儲存體加密會將 **AES-CTR** 模式加密套用至整個檔案。  AES 
 
     對於儲存體加密，要求本文中應該包含下列屬性。
 
-    要求本文屬性   | 說明
+    要求本文屬性    | 說明
     ---|---
     識別碼 | 我們使用下列格式自行產生的 ContentKey 識別碼："nb:kid:UUID:<NEW GUID>"。
     ContentKeyType | 這是針對此內容金鑰以整數表示的內容金鑰類型。 我們會傳遞值 1 來進行儲存體加密。
@@ -364,6 +368,6 @@ AMS 儲存體加密會將 **AES-CTR** 模式加密套用至整個檔案。  AES 
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

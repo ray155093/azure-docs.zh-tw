@@ -1,13 +1,13 @@
 ---
-title: 擷取 Azure Windows VM 的映像 | Microsoft Docs
-description: 擷取以傳統部署模型建立之 Azure Windows 虛擬機器的映像。
+title: "擷取 Azure Windows VM 的映像 | Microsoft Docs"
+description: "擷取以傳統部署模型建立之 Azure Windows 虛擬機器的映像。"
 services: virtual-machines-windows
-documentationcenter: ''
+documentationcenter: 
 author: cynthn
 manager: timlt
 editor: tysonn
 tags: azure-service-management
-
+ms.assetid: a5986eac-4cf3-40bd-9b79-7c811806b880
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
@@ -15,22 +15,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: cynthn
+translationtype: Human Translation
+ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
+ms.openlocfilehash: 760c713d9729ba81fbac52f1eff80f956e82d83f
+
 
 ---
-# <a name="capture-an-image-of-an-azure-windows-virtual-machine-created-with-the-classic-deployment-model."></a>擷取以傳統部署模型建立之 Azure Windows 虛擬機器的映像。
+# <a name="capture-an-image-of-an-azure-windows-virtual-machine-created-with-the-classic-deployment-model"></a>擷取以傳統部署模型建立之 Azure Windows 虛擬機器的映像。
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
 
-如需 Resource Manager 模型資訊，請參閱[建立在 Azure 中執行的複本 Windows VM](virtual-machines-windows-vhd-copy.md)。
+如需 Resource Manager 模型資訊，請參閱[建立在 Azure 中執行的複本 Windows VM](virtual-machines-windows-vhd-copy.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 本文說明如何擷取執行 Windows 的 Azure 虛擬機器，以便用它作為映像來建立其他虛擬機器。 此映像包括作業系統磁碟和任何連結至虛擬機器的資料磁碟。 它並不包含網路組態，因此當您建立其他使用此映像的虛擬機器時，將需要設定這些組態。
 
-Azure 會將映像儲存在 [我的映像] 之下。 這個位置與您已上傳映像的任何儲存位置相同。 如需映像的詳細資訊，請參閱 [有關虛擬機器的映像](virtual-machines-linux-classic-about-images.md)。
+Azure 會將映像儲存在 [我的映像] 之下。 這個位置與您已上傳映像的任何儲存位置相同。 如需映像的詳細資訊，請參閱 [有關虛擬機器的映像](virtual-machines-linux-classic-about-images.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。
 
-## <a name="before-you-begin##"></a>開始之前
+## <a name="before-you-begin"></a>開始之前
 這些步驟假設您已建立 Azure 虛擬機器且設定好作業系統，包括連接任何資料磁碟。 如果您還沒這麼做，請參閱下列指示：
 
-* [從映像建立虛擬機器](virtual-machines-windows-classic-createportal.md)
-* [如何將資料磁碟連結至虛擬機器](virtual-machines-windows-classic-attach-disk.md)
+* [從映像建立虛擬機器](virtual-machines-windows-classic-createportal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+* [如何將資料磁碟連結至虛擬機器](virtual-machines-windows-classic-attach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 * 請確定 Sysprep 支援伺服器角色。 如需詳細資訊，請參閱 [Sysprep Support for Server Roles (伺服器角色的 Sysprep 支援)](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles)。
 
 > [!WARNING]
@@ -46,7 +50,7 @@ Azure 會將映像儲存在 [我的映像] 之下。 這個位置與您已上傳
 3. 切換至 `%windir%\system32\sysprep`目錄，然後執行 sysprep.exe。
 4. [系統準備工具]  對話方塊隨即出現。 執行下列動作：
    
-   * 在 [系統清理動作] 中選取 [Enter System Out-of-Box Experience (OOBE)]，並確認 [一般化] 已勾選。 如需 Sysprep 的詳細用法，請參閱 [如何使用 Sysprep：簡介][如何使用 Sysprep：簡介]。
+   * 在 [系統清理動作] 中選取 [Enter System Out-of-Box Experience (OOBE)]，並確認 [一般化] 已勾選。 如需 Sysprep 的詳細用法，請參閱[如何使用 Sysprep：簡介][如何使用 Sysprep：簡介]。
    * 在 [關機選項] 中選取 [關機]。
    * 按一下 [確定] 。
    
@@ -65,7 +69,7 @@ Azure 會將映像儲存在 [我的映像] 之下。 這個位置與您已上傳
     ![Image capture successful](./media/virtual-machines-windows-classic-capture-image/VMCapturedImageAvailable.png)
 
 ## <a name="next-steps"></a>後續步驟
-映像已準備好用來建立虛擬機器。 若要這麼做，您將需要使用 [ **從資源庫** ] 功能表項目並選取您剛建立的映像，來建立虛擬機器。 如需指示，請參閱 [從映像建立虛擬機器](virtual-machines-windows-classic-createportal.md)。
+映像已準備好用來建立虛擬機器。 若要這麼做，您將需要使用 [ **從資源庫** ] 功能表項目並選取您剛建立的映像，來建立虛擬機器。 如需指示，請參閱 [從映像建立虛擬機器](virtual-machines-windows-classic-createportal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 
 [如何登入執行 Windows Server 的虛擬機器]: virtual-machines-windows-classic-connect-logon.md
 [如何使用 Sysprep：簡介]: http://technet.microsoft.com/library/bb457073.aspx
@@ -79,6 +83,6 @@ Azure 會將映像儲存在 [我的映像] 之下。 這個位置與您已上傳
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

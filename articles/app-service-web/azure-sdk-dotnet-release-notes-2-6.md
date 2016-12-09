@@ -1,12 +1,12 @@
 ---
-title: Azure SDK for .NET 2.6 版本資訊
-description: Azure SDK for .NET 2.6 版本資訊
+title: "Azure SDK for .NET 2.6 版本資訊"
+description: "Azure SDK for .NET 2.6 版本資訊"
 services: app-service/web
 documentationcenter: .net
 author: Juliako
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: b45853d5-a2b8-4962-a22d-579cb36ae14c
 ms.service: app-service
 ms.devlang: multiple
 ms.topic: article
@@ -14,9 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 10/17/2016
 ms.author: juliako
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 01db792077bbb464400de1c00117d97443b4c2dc
+
 
 ---
-# <a name="azure-sdk-for-.net-2.6-release-notes"></a>Azure SDK for .NET 2.6 版本資訊
+# <a name="azure-sdk-for-net-26-release-notes"></a>Azure SDK for .NET 2.6 版本資訊
 本文件包含 Azure SDK for .NET 2.6 版的版本資訊。 
 
 您可以使用 Azure SDK 2.6 開發以 .NET 4.5.2 或.NET 4.6 為目標的雲端服務應用程式 (PaaS)，前提是您必須在雲端服務角色上手動安裝目標 .NET Framework。 請參閱 [在雲端服務角色上安裝 .NET](http://go.microsoft.com/fwlink/?LinkID=309796)。
@@ -95,6 +99,9 @@ Azure SDK 2.6 重新提供針對收集 Azure 計算模擬器中的診斷記錄�
 ## <a name="see-also"></a>另請參閱
 [Azure SDK for .NET 和 API 的支援和停用資訊](https://msdn.microsoft.com/library/azure/dn479282.aspx/)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

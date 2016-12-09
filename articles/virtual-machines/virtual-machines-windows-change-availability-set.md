@@ -1,14 +1,14 @@
 ---
-title: 變更 VM 可用性設定組 | Microsoft Docs
-description: 了解如何使用 Azure PowerShell 和 Resource Manager 部署模型來變更虛擬機器的可用性設定組。
-keywords: ''
+title: "變更 VM 可用性設定組 | Microsoft Docs"
+description: "了解如何使用 Azure PowerShell 和 Resource Manager 部署模型來變更虛擬機器的可用性設定組。"
+keywords: 
 services: virtual-machines-windows
-documentationcenter: ''
+documentationcenter: 
 author: Drewm3
 manager: timlt
-editor: ''
+editor: 
 tags: azure-resource-manager
-
+ms.assetid: 44c90f90-bc9a-4260-a36f-5465e2a1ef94
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
@@ -16,12 +16,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/15/2016
 ms.author: drewm
+translationtype: Human Translation
+ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
+ms.openlocfilehash: 947369fe8d93cb5a7ecf2624a0192d8aa1ea8524
+
 
 ---
-# 變更 Windows VM 的可用性設定組
-下列步驟說明如何使用 Azure PowerShell 來變更 VM 的可用性設定組。只有在建立 VM 時，才能將 VM 新增到可用性設定組中。若要變更可用性設定組，您必須將虛擬機器刪除後再重新建立。
+# <a name="change-the-availability-set-for-a-windows-vm"></a>變更 Windows VM 的可用性設定組
+下列步驟說明如何使用 Azure PowerShell 來變更 VM 的可用性設定組。 只有在建立 VM 時，才能將 VM 新增到可用性設定組中。 若要變更可用性設定組，您必須將虛擬機器刪除後再重新建立。 
 
-## 使用 PowerShell 來變更可用性設定組
+## <a name="change-the-availability-set-using-powershell"></a>使用 PowerShell 來變更可用性設定組
 1. 從要修改的 VM 中擷取下列主要詳細資料。
    
     VM 的名稱
@@ -51,14 +55,14 @@ ms.author: drewm
     $vm.StorageProfile.OsDisk.Vhd.Uri
     ```
    
-    每個資料磁碟的磁碟設定檔
+    每個資料磁碟的磁碟設定檔 
    
     ```powershell
     $vm.StorageProfile.DataDisks[<index>].Lun
     $vm.StorageProfile.DataDisks[<index>].Vhd.Uri
     ```
    
-    已安裝的 VM 延伸模組
+    已安裝的 VM 延伸模組 
    
     ```powershell
     $vm.Extensions
@@ -84,9 +88,9 @@ ms.author: drewm
    
     New-AzureRmVM -ResourceGroupName <resourceGroupName> -Location <location> -VM <vmConfig>
     ``` 
-5. 新增資料磁碟和延伸模組。如需詳細資訊，請參閱[將資料磁碟連結到 VM](virtual-machines-windows-attach-disk-portal.md) 和[延伸模組組態範例](virtual-machines-windows-extensions-configuration-samples.md)。您可以使用 PowerShell 或 Azure CLI 將資料磁碟和延伸模組新增到 VM 中。
+5. 新增資料磁碟和延伸模組。 如需詳細資訊，請參閱[將資料磁碟連結到 VM](virtual-machines-windows-attach-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 和[延伸模組組態範例](virtual-machines-windows-extensions-configuration-samples.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 您可以使用 PowerShell 或 Azure CLI 將資料磁碟和延伸模組新增到 VM 中。
 
-## 範例指令碼
+## <a name="example-script"></a>範例指令碼
 下列指令碼提供一個範例，此範例會收集必要資訊、刪除原始 VM，然後在新的可用性設定組中重新建立 VM。
 
 ```powershell
@@ -150,7 +154,12 @@ ms.author: drewm
     New-AzureRmVM -ResourceGroupName $rg -Location $OriginalVM.Location -VM $NewVM -DisableBginfoExtension
 ```
 
-## 後續步驟
-透過新增額外的[資料磁碟](virtual-machines-windows-attach-disk-portal.md)，將額外的儲存體新增到您的 VM。
+## <a name="next-steps"></a>後續步驟
+透過新增額外 [資料磁碟](virtual-machines-windows-attach-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，將額外的存放裝置新增到您的 VM。
 
-<!---HONumber=AcomDC_0921_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

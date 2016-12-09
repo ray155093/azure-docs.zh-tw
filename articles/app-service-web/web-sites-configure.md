@@ -1,19 +1,23 @@
 ---
-title: 在 Azure App Service 中設定 Web 應用程式
-description: 如何在 Azure App Service 中設定 Web 應用程式
+title: "在 Azure App Service 中設定 Web 應用程式"
+description: "如何在 Azure App Service 中設定 Web 應用程式"
 services: app-service\web
-documentationcenter: ''
+documentationcenter: 
 author: rmcmurray
-manager: wpickett
-editor: ''
-
+manager: erikre
+editor: 
+ms.assetid: 9af8a367-7d39-4399-9941-b80cbc5f39a0
 ms.service: app-service
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/11/2016
+ms.date: 11/01/2016
 ms.author: robmcm
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 8ee1f42cd54e191fa30813d972a664208124c971
+
 
 ---
 # <a name="configure-web-apps-in-azure-app-service"></a>在 Azure App Service 中設定 Web 應用程式
@@ -50,7 +54,7 @@ ms.author: robmcm
 
 **受管理的管線版本**。 設定 IIS [管線模式]。 除非您擁有的舊版應用程式需要舊版 IIS，否則請保留 [整合 (預設值)] 的設定。
 
-**自動交換**。 如果您針對部署位置啟用「自動交換」，當您將更新推送到該位置時，App Service 就會將 Web 應用程式自動交換至生產位置。 如需詳細資訊，請參閱 [將 Azure App Service 中的 Web 應用程式部署至預備位置](web-sites-staged-publishing.m)。
+**自動交換**。 如果您針對部署位置啟用「自動交換」，當您將更新推送到該位置時，App Service 就會將 Web 應用程式自動交換至生產位置。 如需詳細資訊，請參閱 [將 Azure App Service 中的 Web 應用程式部署至預備位置](web-sites-staged-publishing.md)。
 
 ### <a name="debugging"></a>Debugging
 **遠端偵錯**。 啟用遠端偵錯。 一經啟用，您就可以使用 Visual Studio 中的遠端偵錯工具，直接連接到您的 Web 應用程式。 遠端偵錯將保持啟用達 48 小時。 
@@ -157,7 +161,7 @@ Web 應用程式可能會使用根據 URL 路由傳送的模組，而非處理�
 <!-- URL List -->
 
 [ASP.NET SignalR]: http://www.asp.net/signalr
-[在 Azure App Service 中建立 Web 應用程式]: https://portal.azure.com/
+[Azure 入口網站]: https://portal.azure.com/
 [在 Azure App Service 中設定自訂網域名稱]: ./web-sites-custom-domain-name.md
 [將 Azure App Service 中的 Web Apps 部署至預備環境]: ./web-sites-staged-publishing.md
 [針對 Azure App Service 中的 App 啟用 HTTPS]: ./web-sites-configure-ssl-certificate.md
@@ -176,6 +180,6 @@ Web 應用程式可能會使用根據 URL 路由傳送的模組，而非處理�
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

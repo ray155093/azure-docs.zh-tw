@@ -1,13 +1,13 @@
 ---
-title: 關於 VM 的 Linux 映像 | Microsoft Docs
-description: 了解如何將 Linux 映像與 Azure 中的虛擬機器搭配使用。
+title: "關於 VM 的 Linux 映像 | Microsoft Docs"
+description: "了解如何將 Linux 映像與 Azure 中的虛擬機器搭配使用。"
 services: virtual-machines-linux
-documentationcenter: ''
+documentationcenter: 
 author: cynthn
 manager: timlt
 editor: tysonn
 tags: azure-service-management
-
+ms.assetid: e6ea8adc-4e7a-467a-9394-cd05e67898b7
 ms.service: virtual-machines-linux
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
@@ -15,19 +15,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/21/2016
 ms.author: cynthn
+translationtype: Human Translation
+ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
+ms.openlocfilehash: 0c2c9a68be71b929e52b94209f0ef63e6763b49f
+
 
 ---
-# 關於 Linux 虛擬機器的映像
+# <a name="about-images-for-linux-virtual-machines"></a>關於 Linux 虛擬機器的映像
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-classic-include.md)]
+
+如需使用 Resource Manager 模型的映像的詳細資訊，請參閱[這裡](virtual-machines-linux-cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 [!INCLUDE [virtual-machines-common-classic-about-images](../../includes/virtual-machines-common-classic-about-images.md)]
 
-## 使用映像
-您可以使用適用於 Mac、Linux 和 Windows 的「Azure 命令列介面」(CLI) 來管理您 Azure 訂用帳戶可使用的映像。您也可以使用 Azure 傳統入口網站進行部分映像工作，但命令列則提供您更多選項。
+## <a name="working-with-images"></a>使用映像
+您可以使用適用於 Mac、Linux 和 Windows 的「Azure 命令列介面」(CLI) 來管理您 Azure 訂用帳戶可使用的映像。 您也可以使用 Azure 傳統入口網站進行部分映像工作，但命令列則提供您更多選項。
 
-如需工具使用範例，請參閱 [Linux 和 Mac 上的常用 Azure CLI 命令](virtual-machines-linux-cli-manage.md)。
+如需工具使用範例，請參閱 [Linux 和 Mac 上的常用 Azure CLI 命令](virtual-machines-linux-cli-manage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
-## 後續步驟
-您也可以[上傳自己的映像](virtual-machines-linux-classic-create-upload-vhd.md)。
+## <a name="next-steps"></a>後續步驟
+您也可以[上傳自己的映像](virtual-machines-linux-classic-create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。
 
-<!---HONumber=AcomDC_0727_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+
