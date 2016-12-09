@@ -1,99 +1,103 @@
 ---
-title: 建立 PHP-SQL Web 應用程式並使用 Git 部署至 Azure App Service
-description: 示範如何建立 PHP Web 應用程式將資料儲存於 Azure SQL Database 以及使用 Git 部署至 Azure App Service 的教學課程。
+title: "建立 PHP-SQL Web 應用程式並使用 Git 部署至 Azure App Service"
+description: "示範如何建立 PHP Web 應用程式將資料儲存於 Azure SQL Database 以及使用 Git 部署至 Azure App Service 的教學課程。"
 services: app-service\web, sql-database
 documentationcenter: php
 author: rmcmurray
-manager: wpickett
-editor: ''
-
+manager: erikre
+editor: 
+ms.assetid: 6b090bf6-31d8-4b74-81eb-050ef95929ca
 ms.service: app-service-web
 ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: PHP
 ms.topic: article
-ms.date: 08/11/2016
+ms.date: 11/01/2016
 ms.author: robmcm
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 58791f5362182596de8b792c408e392d8d6cbb95
+
 
 ---
-# 建立 PHP-SQL Web 應用程式並使用 Git 部署至 Azure App Service
-本教學課程會示範如何在 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 中建立連線到 Azure SQL Database 的 PHP Web 應用程式，以及如何使用 Git 來部署它。本教學課程假設您的電腦上已安裝 [PHP][install-php]、[SQL Server Express][install-SQLExpress]、[Microsoft Drivers for SQL Server for PHP](http://www.microsoft.com/download/en/details.aspx?id=20098)，和 [Git][install-git]。完成本指南的步驟後，您將擁有在 Azure 上運作的 PHP-SQL Web 應用程式。
+# <a name="create-a-php-sql-web-app-and-deploy-to-azure-app-service-using-git"></a>建立 PHP-SQL Web 應用程式並使用 Git 部署至 Azure App Service
+本教學課程會示範如何在 [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 中建立連線到 Azure SQL Database 的 PHP Web 應用程式，以及如何使用 Git 來部署它。 本教學課程假設您已在電腦上安裝 [PHP][install-php]、[SQL Server Express][install-SQLExpress]、[Microsoft Drivers for SQL Server for PHP](http://www.microsoft.com/download/en/details.aspx?id=20098) 和 [Git][install-git]。 完成本指南的步驟後，您將擁有在 Azure 上運作的 PHP-SQL Web 應用程式。
 
 > [!NOTE]
-> 您可以使用 [Microsoft Web Platform Installer](http://www.microsoft.com/web/downloads/platform.aspx) 來安裝和設定 PHP、SQL Server Express，和 Microsoft Drivers for SQL Server for PHP。
+> 您可以使用 [Microsoft Web Platform Installer](http://www.microsoft.com/web/downloads/platform.aspx)來安裝和設定 PHP、SQL Server Express，和 Microsoft Drivers for SQL Server for PHP。
 > 
 > 
 
 您將了解：
 
-* 如何使用 [Azure 入口網站](http://go.microsoft.com/fwlink/?LinkId=529715)建立 Azure Web 應用程式和 SQL Database。由於預設會在 App Service Web Apps 上啟用 PHP，因此您不需要執行任何特殊步驟就能執行 PHP 程式碼。
+* 如何使用 [Azure 入口網站](http://go.microsoft.com/fwlink/?LinkId=529715)建立 Azure Web 應用程式和 SQL Database。 由於預設會在 App Service Web Apps 上啟用 PHP，因此您不需要執行任何特殊步驟就能執行 PHP 程式碼。
 * 如何使用 Git 來發行與重新發行應用程式到 Azure。
 
-依照本教學課程進行，您將以 PHP 語法建構一個簡單的註冊網頁應用程式。該應用程式將在 Azure 網站中託管。完成之應用程式的螢幕擷取畫面如下：
+依照本教學課程進行，您將以 PHP 語法建構一個簡單的註冊網頁應用程式。 該應用程式將在 Azure 網站中託管。 完成之應用程式的螢幕擷取畫面如下：
 
 ![Azure PHP Web Site](./media/web-sites-php-sql-database-deploy-use-git/running_app_3.png)
 
 [!INCLUDE [create-account-and-websites-note](../../includes/create-account-and-websites-note.md)]
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；無需承諾。
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；無需承諾。
 > 
 > 
 
-## 建立 Azure Web 應用程式並設定 Git 發行功能
+## <a name="create-an-azure-web-app-and-set-up-git-publishing"></a>建立 Azure Web 應用程式並設定 Git 發行功能
 請遵循以下步驟來建立 Azure Web 應用程式與 SQL Database：
 
 1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 2. 按一下儀表板左上方的 [新增] 圖示開啟 Azure Marketplace，然後按一下 Marketplace 旁的 [全選] 並選取 [Web + 行動]。
-3. 在 Marketplace 中，選取 [Web + 行動]。
-4. 按一下 [Web 應用程式 + SQL] 圖示。
-5. 讀取 Web 應用程式 + SQL 應用程式的描述之後，選取 [建立]。
+3. 在 Marketplace 中，選取 [Web + 行動] 。
+4. 按一下 [Web 應用程式 + SQL]  圖示。
+5. 讀取 Web 應用程式 + SQL 應用程式的描述之後，選取 [建立] 。
 6. 按一下每個部分 ([資源群組]、[Web 應用程式]、[資料庫] 以及 [訂用帳戶])，然後輸入或選取必填欄位的值：
    
-   * 輸入您選擇的 URL 名稱
+   * 輸入您選擇的 URL 名稱    
    * 設定資料庫伺服器認證
    * 選取最靠近您的區域
      
      ![configure your app](./media/web-sites-php-sql-database-deploy-use-git/configure-db-settings.png)
-7. 定義 Web 應用程式完成之後，按一下 [建立]。
+7. 定義 Web 應用程式完成之後，按一下 [建立] 。
    
-    建立 Web 應用程式後，[通知] 按鈕便會閃爍綠色**成功**並開啟資源群組分頁，以顯示群組中的 Web 應用程式與 SQL 資料庫。
+    建立 Web 應用程式後，[通知] 按鈕便會閃爍綠色**成功**並開啟資源群組刀鋒視窗，以顯示群組中的 Web 應用程式與 SQL 資料庫。
 8. 按一下資源群組分頁中的 Web 應用程式圖示，開啟 Web 應用程式分頁。
    
     ![Web 應用程式的資源群組](./media/web-sites-php-sql-database-deploy-use-git/resource-group-blade.png)
-9. 在 [設定] 中按一下 [繼續部署] > [設定必要設定]。選取 [本機 Git 儲存機制]，按一下 [確定]。
+9. 在 [設定] 中按一下 [繼續部署] > [設定必要設定]。 選取 [本機 Git 儲存機制]，按一下 [確定]。
    
     ![where is your source code](./media/web-sites-php-sql-database-deploy-use-git/setup-local-git.png)
    
-    如果您從未設定 Git 儲存機制，則必須提供使用者名稱和密碼。若要這樣做，請按一下 Web 應用程式刀鋒視窗中的 [設定] > [部署認證]。
+    如果您從未設定 Git 儲存機制，則必須提供使用者名稱和密碼。 若要這樣做，請按一下 Web 應用程式刀鋒視窗中的 [設定] > [部署認證]。
    
     ![](./media/web-sites-php-sql-database-deploy-use-git/deployment-credentials.png)
 10. 在 [設定] 中按一下 [屬性] 以查看稍後部署 PHP 應用程式時需要使用的 Git 遠端 URL。
 
-## 取得 SQL Database 連線資訊
-若要連線到連結至 Web 應用程式的 SQL Database 執行個體，您將會需要在建立資料庫時所指定的連線資訊。若要取得 SQL Database 連接資訊，請依照下列步驟進行：
+## <a name="get-sql-database-connection-information"></a>取得 SQL Database 連線資訊
+若要連線到連結至 Web 應用程式的 SQL Database 執行個體，您將會需要在建立資料庫時所指定的連線資訊。 若要取得 SQL Database 連接資訊，請依照下列步驟進行：
 
 1. 回到資源群組分頁，按一下 SQL 資料庫的圖示。
-2. 在 SQL 資料庫刀鋒視窗中，按一下 [設定] > [屬性]，然後按一下 [顯示資料庫連線字串]。
+2. 在 SQL 資料庫刀鋒視窗中，按一下 [設定] > [屬性]，然後按一下 [顯示資料庫連線字串]。 
    
     ![檢視資料庫屬性](./media/web-sites-php-sql-database-deploy-use-git/view-database-properties.png)
-3. 從所產生對話方塊的 [PHP] 區段中，請記下 `Server`、`SQL Database` 和 `User Name` 的值。稍後將 PHP Web 應用程式發行至 Azure App Service 時，您將使用這些值。
+3. 從所產生對話方塊的 [PHP]**PHP** 區段中，請記下 `Server`、`SQL Database` 和 `User Name` 的值。 稍後將 PHP Web 應用程式發行至 Azure App Service 時，您將使用這些值。
 
-## 在本機建置與測試您的應用程式
-註冊應用程式是一項簡單的 PHP 應用程式，您只需提供名稱與電子郵件地址就能註冊活動。先前的註冊者相關資訊會顯示在資料表中。註冊資訊會儲存在 SQL Database 執行個體中。該應用程式包含兩個檔案 (複製/貼上以下提供的程式碼)：
+## <a name="build-and-test-your-application-locally"></a>在本機建置與測試您的應用程式
+註冊應用程式是一項簡單的 PHP 應用程式，您只需提供名稱與電子郵件地址就能註冊活動。 先前的註冊者相關資訊會顯示在資料表中。 註冊資訊會儲存在 SQL Database 執行個體中。 該應用程式包含兩個檔案 (複製/貼上以下提供的程式碼)：
 
 * **index.php**：顯示註冊表單，以及內含註冊者資訊的資料表。
-* **createtable.php**：為應用程式建立 SQL 資料表。只會使用一次此檔案。
+* **createtable.php**：為應用程式建立 SQL 資料表。 只會使用一次此檔案。
 
-若要在本機執行應用程式，請遵循下列步驟。請注意，這些步驟假設您的本機電腦上已設定 PHP、SQL Server Express，且您已啟用 [SQL Server 的 PDO 延伸模組][pdo-sqlsrv]。
+若要在本機執行應用程式，請遵循下列步驟。 請注意，這些步驟假設您的本機電腦上已設定 PHP、SQL Server Express，且您已啟用 [SQL Server 的 PDO 延伸模組][pdo-sqlsrv]。
 
-1. 建立名為 `registration` 的 SQL Server 資料庫。您可以從 `sqlcmd` 命令提示字元中使用下列命令來建立此資料庫：
+1. 建立名為 `registration`的 SQL Server 資料庫。 您可以從 `sqlcmd` 命令提示字元中使用下列命令來建立此資料庫：
    
         >sqlcmd -S localhost\sqlexpress -U <local user name> -P <local password>
         1> create database registration
         2> GO    
 2. 在應用程式根目錄中建立兩個檔案，一個名為 `createtable.php`，另一個名為 `index.php`。
-3. 在文字編輯器或 IDE 中開啟 `createtable.php` 檔案，加入下列程式碼。此程式碼將會在 `registration` 資料庫中用於建立 `registration_tbl` 資料表。
+3. 在文字編輯器或 IDE 中開啟 `createtable.php` 檔案，加入下列程式碼。 此程式碼將會在 `registration` 資料庫中用於建立 `registration_tbl` 資料表。
    
         <?php
         // DB connection info
@@ -118,11 +122,11 @@ ms.author: robmcm
         echo "<h3>Table created.</h3>";
         ?>
    
-    請注意，您需要將 <code>$user</code> 和 <code>$pwd</code> 的值，更新為您的本機 SQL Server 使用者名稱和密碼。
+    請注意，您需要將 <code>$user</code> 和 <code>$pwd</code> 的值更新為您的本機 SQL Server 使用者名稱和密碼。
 4. 在終端機中，於應用程式的根目錄輸入下列命令：
    
         php -S localhost:8000
-5. 開啟網頁瀏覽器並瀏覽至 **http://localhost:8000/createtable.php**。這會在資料庫中建立 `registration_tbl` 資料表。
+5. 開啟網頁瀏覽器並瀏覽至 **http://localhost:8000/createtable.php**。 這會在資料庫中建立 `registration_tbl` 資料表。
 6. 在文字編輯器或 IDE 中開啟 **index.php** 檔案，加入頁面的基本 HTML 和 CSS 程式碼 (稍後的步驟中將加入 PHP 程式碼)。
    
         <html>
@@ -171,7 +175,7 @@ ms.author: robmcm
             die(var_dump($e));
         }
    
-    同樣地，您需要將 <code>$user</code> 和 <code>$pwd</code> 的值，更新為您的本機 MySQL 使用者名稱和密碼。
+    同樣地，您需要將 <code>$user</code> 和 <code>$pwd</code> 的值更新為您的本機 MySQL 使用者名稱和密碼。
 8. 在資料庫連接程式碼後面，加入可將登錄資訊插入至資料庫的程式碼。
    
         if(!empty($_POST)) {
@@ -216,8 +220,8 @@ ms.author: robmcm
 
 您現在可以瀏覽至 **http://localhost:8000/index.php** 測試應用程式。
 
-## 發行您的應用程式
-當您在本機完成應用程式測試之後，就可以使用 Git 將其發行至 App Service Web Apps。不過，首先您需要更新應用程式中的資料庫連線資訊。使用您稍早取得的資料庫連線資訊 (在＜取得 SQL Database 連線資訊＞一節中)，將 `createdatabase.php` 和 `index.php`「兩者」檔案中的下列資訊都更新為適當的值：
+## <a name="publish-your-application"></a>發行您的應用程式
+當您在本機完成應用程式測試之後，就可以使用 Git 將其發行至 App Service Web Apps。 不過，首先您需要更新應用程式中的資料庫連線資訊。 使用您稍早取得的資料庫連線資訊 (在＜**取得 SQL Database 連線資訊**＞一節中)，將 `createdatabase.php` 和 `index.php`**「兩者」**檔案中的下列資訊都更新為適當的值：
 
     // DB connection info
     $host = "tcp:<value of Server>";
@@ -226,18 +230,18 @@ ms.author: robmcm
     $db = "<value of SQL Database>";
 
 > [!NOTE]
-> 在 <code>$host</code> 中，伺服器的值的前面必須加上 <code>tcp:</code>。
+> <code>$host</code>中，SERVER 的值前面必須加上 <code>tcp:</code>。
 > 
 > 
 
 現在，您可以準備設定 Git 發行，並發行應用程式。
 
 > [!NOTE]
-> 這些步驟與前述＜建立 Azure Web 應用程式並設定 Git 發行功能＞一節中最後面的步驟相同。
+> 這些步驟與前述＜**建立 Azure Web 應用程式並設定 Git 發行功能**＞一節中最後面的步驟相同。
 > 
 > 
 
-1. 開啟 GitBash (如果 Git 位於您的 `PATH`，則為終端機)，將目錄變更為應用程式的根目錄 (**registration** 目錄)，並執行下列命令：
+1. 開啟 GitBash (如果 Git 位於您的 `PATH`，則為終端機)，將目錄變更為應用程式的根目錄 ( **registration** 目錄)，並執行下列命令：
    
         git init
         git add .
@@ -246,12 +250,12 @@ ms.author: robmcm
         git push azure master
    
     系統會提示您輸入先前建立的密碼。
-2. 瀏覽至 **http://[web 應用程式名稱].azurewebsites.net/createtable.php**，建立應用程式的 SQL Database 資料表。
+2. 瀏覽至 **http://[web 應用程式名稱].azurewebsites.net/createtable.php**，建立應用程式的 SQL 資料庫資料表。
 3. 瀏覽至 **http://[web 應用程式名稱].azurewebsites.net/index.php**，開始使用應用程式。
 
-發行應用程式之後，您可以開始對其進行變更，並使用 Git 來發行它們。
+發行應用程式之後，您可以開始對其進行變更，並使用 Git 來發行它們。 
 
-## 將變更發行至您的應用程式
+## <a name="publish-changes-to-your-application"></a>將變更發行至您的應用程式
 若要將變更發行至應用程式，請依照以下步驟進行：
 
 1. 在本機對您的應用程式進行變更。
@@ -264,8 +268,8 @@ ms.author: robmcm
     系統會提示您輸入先前建立的密碼。
 3. 瀏覽至 **http://[web 應用程式名稱].azurewebsites.net/index.php** 以查看您的變更。
 
-## 變更的項目
-* 如需從網站變更為 App Service 的指南，請參閱：[Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
+## <a name="whats-changed"></a>變更的項目
+* 如需從網站變更為 App Service 的指南，請參閱： [Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 [install-php]: http://www.php.net/manual/en/install.php
 [install-SQLExpress]: http://www.microsoft.com/download/details.aspx?id=29062
@@ -274,4 +278,8 @@ ms.author: robmcm
 [pdo-sqlsrv]: http://php.net/pdo_sqlsrv
 
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+

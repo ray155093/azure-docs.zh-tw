@@ -1,13 +1,13 @@
 ---
-title: 重設 Windows VM 上的密碼或遠端桌面組態 | Microsoft Docs
-description: 了解如何使用 Azure 入口網站或 Azure PowerShell 來重設 Windows VM 上的帳戶密碼或「遠端桌面」服務。
+title: "重設 Windows VM 上的密碼或遠端桌面組態 | Microsoft Docs"
+description: "了解如何使用 Azure 入口網站或 Azure PowerShell 來重設 Windows VM 上的帳戶密碼或「遠端桌面」服務。"
 services: virtual-machines-windows
-documentationcenter: ''
+documentationcenter: 
 author: iainfoulds
 manager: timlt
-editor: ''
+editor: 
 tags: azure-resource-manager
-
+ms.assetid: 45c69812-d3e4-48de-a98d-39a0f5675777
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
@@ -15,6 +15,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/01/2016
 ms.author: iainfou
+translationtype: Human Translation
+ms.sourcegitcommit: 5919c477502767a32c535ace4ae4e9dffae4f44b
+ms.openlocfilehash: bf172c781ff11cfee4f88d73ab8647b4298f5afa
+
 
 ---
 # <a name="how-to-reset-the-remote-desktop-service-or-its-login-password-in-a-windows-vm"></a>如何在 Windows VM 中重設遠端桌面服務或其登入密碼
@@ -38,7 +42,7 @@ ms.author: iainfou
 ### <a name="vmaccess-extension-and-powershell"></a>VMAccess 延伸模組和 PowerShell
 確認您已安裝 Azure PowerShell 1.0 或更新版本，並且已使用 `Login-AzureRmAccount` Cmdlet 登入帳戶。
 
-#### <a name="**reset-the-local-administrator-account-password**"></a>**重設本機系統管理員帳戶密碼**
+#### <a name="reset-the-local-administrator-account-password"></a>**重設本機系統管理員帳戶密碼**
 您可以使用 [Set-AzureRmVMAccessExtension](https://msdn.microsoft.com/library/mt619447.aspx) PowerShell 命令來重設系統管理員密碼或使用者名稱。
 
 使用下列命令來建立本機系統管理員帳戶認證︰
@@ -56,7 +60,7 @@ ms.author: iainfou
 
 使用與您設定相關的值來取代 `myRG`、`myVM`、`myVMAccess` 及位置。
 
-#### <a name="**reset-the-remote-desktop-service-configuration**"></a>**重設遠端桌面服務組態**
+#### <a name="reset-the-remote-desktop-service-configuration"></a>**重設遠端桌面服務組態**
 您可以使用 [Set-AzureRmVMExtension](https://msdn.microsoft.com/library/mt603745.aspx) 或 [Set-AzureRmVMAccessExtension](https://msdn.microsoft.com/library/mt619447.aspx) 來重設 VM 的遠端存取，如下所示。 (將 `myRG`、`myVM`、`myVMAccess` 和 Location 取代為您自己的值)。
 
     Set-AzureRmVMExtension -ResourceGroupName "myRG" -VMName "myVM" `
@@ -74,7 +78,7 @@ ms.author: iainfou
 > 
 > 
 
-如果您仍然無法從遠端連接虛擬機器，請參閱 [針對以 Windows 為基礎之 Azure 虛擬機器的遠端桌面連線進行疑難排解](virtual-machines-windows-troubleshoot-rdp-connection.md)，以取得其他值得一試的步驟。
+如果您仍然無法從遠端連接虛擬機器，請參閱 [針對以 Windows 為基礎之 Azure 虛擬機器的遠端桌面連線進行疑難排解](virtual-machines-windows-troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，以取得其他值得一試的步驟。
 
 ## <a name="windows-vms-in-the-classic-deployment-model"></a>傳統部署模型中的 Windows VM
 ### <a name="azure-portal"></a>Azure 入口網站
@@ -102,7 +106,7 @@ ms.author: iainfou
 
 此命令可避免在後續步驟中執行 **Set-AzureVMExtension** 命令時發生下列錯誤：「必須先在 VM 物件啟用佈建客體代理程式，才能設定 IaaS VM 存取延伸模組」。
 
-#### <a name="**reset-the-local-administrator-account-password**"></a>**重設本機系統管理員帳戶密碼**
+#### <a name="reset-the-local-administrator-account-password"></a>**重設本機系統管理員帳戶密碼**
 使用目前的本機系統管理員帳戶名稱和新密碼建立登入認證，然後執行 `Set-AzureVMAccessExtension` ，如下所示。
 
     $cred=Get-Credential
@@ -113,7 +117,7 @@ ms.author: iainfou
 
 這些命令也會重設遠端桌面服務組態。
 
-#### <a name="**reset-the-remote-desktop-service-configuration**"></a>**重設遠端桌面服務組態**
+#### <a name="reset-the-remote-desktop-service-configuration"></a>**重設遠端桌面服務組態**
 若要重設遠端桌面服務組態，請執行下列命令：
 
     Set-AzureVMAccessExtension –vm $vm | Update-AzureVM
@@ -129,14 +133,17 @@ VMAccess 擴充功能會在虛擬機器上執行兩個命令：
 此命令會將 fDenyTSConnections 登錄值設為 0，以啟用遠端桌面連線。
 
 ## <a name="next-steps"></a>後續步驟
-如果 Azure VM 存取延伸項目沒有回應，而且您無法重設密碼，可以[離線重設本機 Windows 密碼](virtual-machines-windows-reset-local-password-without-agent.md)。 此方法是更進階的程序，會要求您將有問題的 VM 之中的虛擬硬碟連接至另一個 VM。 請先依照這篇文章中說明的步驟進行，並且只在最後無計可施時才嘗試離線密碼重設方法。
+如果 Azure VM 存取延伸項目沒有回應，而且您無法重設密碼，可以[離線重設本機 Windows 密碼](virtual-machines-windows-reset-local-password-without-agent.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 此方法是更進階的程序，會要求您將有問題的 VM 之中的虛擬硬碟連接至另一個 VM。 請先依照這篇文章中說明的步驟進行，並且只在最後無計可施時才嘗試離線密碼重設方法。
 
-[Azure VM 延伸模組與功能](virtual-machines-windows-extensions-features.md)
+[Azure VM 延伸模組與功能](virtual-machines-windows-extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 [透過 RDP 或 SSH 連接至 Azure 虛擬機器](http://msdn.microsoft.com/library/azure/dn535788.aspx)
 
-[疑難排解以 Windows 為基礎之 Azure 虛擬機器的遠端桌面連線](virtual-machines-windows-troubleshoot-rdp-connection.md)
+[疑難排解以 Windows 為基礎之 Azure 虛擬機器的遠端桌面連線](virtual-machines-windows-troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,48 +1,51 @@
 ---
-title: 在 Azure 應用程式服務中建立 PHP-MySQL Web 應用程式並使用 Git 部署
-description: 示範如何建立 PHP Web 應用程式，將資料儲存於 MySQL 中並對 Azure 使用 Git 部署的教學課程。
-;": ''
+title: "在 Azure 應用程式服務中建立 PHP-MySQL Web 應用程式並使用 Git 部署"
+description: "示範如何建立 PHP Web 應用程式，將資料儲存於 MySQL 中並對 Azure 使用 Git 部署的教學課程。&quot;"
 services: app-service\web
 documentationcenter: php
 author: rmcmurray
-manager: wpickett
-editor: ''
+manager: erikre
+editor: 
 tags: mysql
-
+ms.assetid: 7454475f-e275-4bc7-9f09-1ef07382e5da
 ms.service: app-service-web
 ms.workload: web
 ms.tgt_pltfrm: na
 ms.devlang: PHP
 ms.topic: article
-ms.date: 08/11/2016
+ms.date: 11/01/2016
 ms.author: robmcm
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 7cb11ffd583afa75bfd4e76c7f543a81a6ebdcde
+
 
 ---
-# 在 Azure 應用程式服務中建立 PHP-MySQL Web 應用程式並使用 Git 部署
-本教學課程說明如何建立 PHP-MySQL Web 應用程式，以及如何使用 Git 將其部署至 [App Service](http://go.microsoft.com/fwlink/?LinkId=529714)。您會使用 [PHP][install-php]、MySQL 命令列工具 ([MySQL][install-mysql] 的一部分)，以及安裝在您的電腦上的 [Git][install-git]。本教學課程裡的說明可運用在包括 Windows、Mac 與 Linux 的任何作業系統上。看完本指南後，您將擁有可在 Azure 上執行的 PHP/MySQL Web 應用程式。
+# <a name="create-a-php-mysql-web-app-in-azure-app-service-and-deploy-using-git"></a>在 Azure 應用程式服務中建立 PHP-MySQL Web 應用程式並使用 Git 部署
+本教學課程說明如何建立 PHP-MySQL Web 應用程式，以及如何使用 Git 將其部署至 [App Service](http://go.microsoft.com/fwlink/?LinkId=529714) 。 您會使用 [PHP][install-php]、MySQL 命令列工具 ([MySQL][install-mysql] 裡的一項工具)，以及安裝在您的電腦上的 [Git][install-git]。 本教學課程裡的說明可運用在包括 Windows、Mac 與 Linux 的任何作業系統上。 看完本指南後，您將擁有可在 Azure 上執行的 PHP/MySQL Web 應用程式。
 
 您將了解：
 
-* 如何使用 [Azure 入口網站][management-portal]建立 Web 應用程式和 MySQL 資料庫。由於預設會在 [App Service Web Apps](http://go.microsoft.com/fwlink/?LinkId=529714) 上啟用 PHP，因此您不需要執行任何特殊步驟就能執行 PHP 程式碼。
+* 如何使用 [Azure 入口網站][management-portal]建立 Web 應用程式和 MySQL 資料庫。 由於預設會在 [App Service Web Apps](http://go.microsoft.com/fwlink/?LinkId=529714) 上啟用 PHP，因此您不需要執行任何特殊步驟就能執行 PHP 程式碼。
 * 如何使用 Git 來發行與重新發行應用程式到 Azure。
-* 如何啟用編輯器延伸模組以在每個 `git push` 自動執行編輯器工作。
+* 如何啟用編輯器延伸模組以在每個 `git push`自動執行編輯器工作。
 
-依照本教學課程進行，您將使用 PHP 建置一個簡易的註冊 Web 應用程式。此應用程式將裝載於 Web Apps 中。完成之應用程式的螢幕擷取畫面如下：
+依照本教學課程進行，您將使用 PHP 建置一個簡易的註冊 Web 應用程式。 此應用程式將裝載於 Web Apps 中。 完成之應用程式的螢幕擷取畫面如下：
 
 ![Azure PHP web site][running-app]
 
-## 設定開發環境
-本教學課程假設您已經具備 [PHP][install-php]、MySQL 命令列工具 ([MySQL][install-mysql] 的一項工具)，以及安裝在您的電腦上的 [Git][install-git]。
+## <a name="set-up-the-development-environment"></a>設定開發環境
+本教學課程假設您已經具備安裝於電腦上的 [PHP][install-php]、MySQL 命令列工具 ([MySQL][install-mysql] 的一部分)，以及 [Git][install-git]。
 
 <a id="create-web-site-and-set-up-git"></a>
 
-## 建立 Web 應用程式並設定 Git 發行
+## <a name="create-a-web-app-and-set-up-git-publishing"></a>建立 Web 應用程式並設定 Git 發行
 請遵循以下步驟來建立 Web 應用程式與 MySQL 資料庫：
 
 1. 登入 [Azure 入口網站][management-portal]。
-2. 按一下 [新增] 圖示。
-3. 按一下 [Marketplace] 旁的 [查看全部]。
-4. 依序按一下 [Web + 行動] 和 [Web 應用程式 + MySQL]。然後按一下 [建立]。
+2. 按一下 [新增]  圖示。
+3. 按一下 [Marketplace] 旁的 [查看全部]。 
+4. 依序按一下 [Web + 行動] 和 [Web 應用程式 + MySQL]。 然後按一下 [建立] 。
 5. 輸入資源群組的有效名稱。
    
     ![設定資源群組名稱][resource-group]
@@ -56,15 +59,15 @@ ms.author: robmcm
 9. 在 [設定] 中按一下 [繼續部署]，然後按一下 [設定必要設定]。
    
     ![設定 Git 發佈][setup-publishing]
-10. 針對來源選取 [本機 Git 儲存機制]。
+10. 針對來源選取 [本機 Git 儲存機制]  。
     
      ![設定 Git 儲存機制][setup-repository]
-11. 若要啟用 Git 發佈，您必須提供使用者名稱和密碼。請寫下您建立的使用者名稱與密碼(如果您之前設定過 Git 儲存機制，系統將會略過此步驟。)
+11. 若要啟用 Git 發佈，您必須提供使用者名稱和密碼。 請寫下您建立的使用者名稱與密碼(如果您之前設定過 Git 儲存機制，系統將會略過此步驟。 )
     
      ![建立發佈認證][credentials]
 
-## 取得遠端 MySQL 連線資訊
-若要連接至在 Web Apps 中執行的 MySQL 資料庫，您需要連線資訊。若要取得 MySQL 連線資訊，請依照以下步驟執行：
+## <a name="get-remote-mysql-connection-information"></a>取得遠端 MySQL 連線資訊
+若要連接至在 Web Apps 中執行的 MySQL 資料庫，您需要連線資訊。 若要取得 MySQL 連線資訊，請依照以下步驟執行：
 
 1. 從資源群組中，按一下資料庫：
    
@@ -76,14 +79,14 @@ ms.author: robmcm
    
     ![注意屬性][note-properties]
 
-## 在本機建置及測試您的應用程式
+## <a name="build-and-test-your-app-locally"></a>在本機建置及測試您的應用程式
 現在您已經建立了 Web 應用程式，您可以在本機開發自己的應用程式，並在測試後進行部署。
 
-註冊應用程式是一項簡單的 PHP 應用程式，您只需提供名稱與電子郵件地址就能註冊活動。先前的註冊者相關資訊會顯示在資料表中。註冊資訊會存放在 MySQL 資料庫。該應用程式包含一個檔案 (複製/貼上以下提供的程式碼)：
+註冊應用程式是一項簡單的 PHP 應用程式，您只需提供名稱與電子郵件地址就能註冊活動。 先前的註冊者相關資訊會顯示在資料表中。 註冊資訊會存放在 MySQL 資料庫。 該應用程式包含一個檔案 (複製/貼上以下提供的程式碼)：
 
 * **index.php**：顯示註冊表單，以及內含註冊者資訊的資料表。
 
-若要在本機建置與執行應用程式，請遵循下列步驟。請注意，這些步驟假設您已經在本機電腦上設定 PHP 和 MySQL 命令列工具 (MySQL 的一部分)，且您已經啟用 [MySQL 的 PDO 延伸功能][pdo-mysql]。
+若要在本機建置與執行應用程式，請遵循下列步驟。 請注意，這些步驟假設您已經在本機電腦上設定 PHP 和 MySQL 命令列工具 (MySQL 的一部分)，且您已經啟用 [MySQL 的 PDO 延伸功能][pdo-mysql]。
 
 1. 使用您先前擷取的 `Data Source`、`User Id`、`Password` 和 `Database` 值，連線到遠端 MySQL 伺服器：
    
@@ -187,8 +190,8 @@ ms.author: robmcm
 
 您現在可以瀏覽至 **http://localhost:8000/** 測試應用程式。
 
-## 發佈您的應用程式
-當您在本機完成應用程式測試之後，可以使用 Git 將其發佈至 Web Apps。您將初始化本機 Git 儲存機制並發行該應用程式。
+## <a name="publish-your-app"></a>發佈您的應用程式
+當您在本機完成應用程式測試之後，可以使用 Git 將其發佈至 Web Apps。 您將初始化本機 Git 儲存機制並發行該應用程式。
 
 > [!NOTE]
 > 這些步驟與上述「建立 Web 應用程式並設定 Git 發行」小節結尾處的 Azure 入口網站中所示的步驟相同。
@@ -207,13 +210,13 @@ ms.author: robmcm
     系統會提示您輸入先前建立的密碼。
    
     ![透過 Git 初始發送至 Azure][git-initial-push]
-3. 瀏覽至 **http://[site 名稱].azurewebsites.net/index.php** 以開始使用該應用程式 (此項資訊將儲存在您的帳戶儀表板上)：
+3. 瀏覽至 **http://[網站名稱].azurewebsites.net/index.php** 以開始使用該應用程式 (此項資訊將儲存在您的帳戶儀表板上)：
    
     ![Azure PHP web site][running-app]
 
 發佈應用程式之後，您可以開始對其進行變更，並使用 Git 來發佈它們。
 
-## 將變更發佈至應用程式
+## <a name="publish-changes-to-your-app"></a>將變更發佈至應用程式
 若要將變更發佈至應用程式，請依照以下步驟進行：
 
 1. 在本機對應用程式進行變更。
@@ -226,19 +229,19 @@ ms.author: robmcm
     系統會提示您輸入先前建立的密碼。
    
     ![透過 Git 將網站變更發送至 Azure][git-change-push]
-3. 瀏覽至 **http://[site 名稱].azurewebsites.net/index.php** 以查看您的應用程式以及您所做的任何變更：
+3. 瀏覽至 **http://[網站名稱].azurewebsites.net/index.php** 以查看您的應用程式以及您所做的任何變更：
    
     ![Azure PHP web site][running-app]
 
 > [!NOTE]
-> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至[試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。不需要信用卡；無需承諾。
+> 如果您想在註冊 Azure 帳戶前開始使用 Azure App Service，請移至 [試用 App Service](http://go.microsoft.com/fwlink/?LinkId=523751)，即可在 App Service 中立即建立短期入門 Web 應用程式。 不需要信用卡；無需承諾。
 > 
 > 
 
 <a name="composer"></a>
 
-## 利用編輯器延伸模組啟用編輯器自動化功能
-根據預設，App Service 中的 git 部署程序不會對您在 PHP 專案中擁有的 composer.json 執行任何操作。若想在 `git push` 期間啟用 composer.json 處理，您可以透過啟用編輯器擴充功能來達成。
+## <a name="enable-composer-automation-with-the-composer-extension"></a>利用編輯器延伸模組啟用編輯器自動化功能
+根據預設，App Service 中的 git 部署程序不會對您在 PHP 專案中擁有的 composer.json 執行任何操作。 若想在 `git push` 期間啟用 composer.json 處理，您可以透過啟用編輯器擴充功能來達成。
 
 1. 在 [Azure 入口網站][management-portal]的 PHP Web 應用程式刀鋒視窗中，按一下 [工具] > [擴充功能]。
    
@@ -246,14 +249,15 @@ ms.author: robmcm
 2. 按一下 [新增]，然後按一下 [編輯器]。
    
     ![編輯器擴充功能新增][composer-extension-add]
-3. 按一下 [確定] 以接受法律條款。再按一次 [確定] 以新增擴充功能。
+3. 按一下 [確定]  以接受法律條款。 再按一次 [確定]  以新增擴充功能。
    
-    [已安裝的擴充功能] 刀鋒視窗現在將顯示編輯器擴充功能。![編輯器擴充功能檢視][composer-extension-view]
-4. 現在，和上一節一樣執行 `git add`、`git commit` 和 `git push`。您就會立即看到編輯器正在安裝 composer.json 中定義的相依性。
+    [已安裝的擴充功能]  刀鋒視窗現在將顯示編輯器擴充功能。  
+    ![編輯器擴充功能檢視][composer-extension-view]
+4. 現在，和上一節一樣執行 `git add`、`git commit` 和 `git push`。 您就會立即看到編輯器正在安裝 composer.json 中定義的相依性。
    
     ![編輯器擴充功能成功][composer-extension-success]
 
-## 後續步驟
+## <a name="next-steps"></a>後續步驟
 如需詳細資訊，請參閱 [PHP 開發人員中心](/develop/php/)。
 
 <!-- URL List -->
@@ -293,4 +297,8 @@ ms.author: robmcm
 [composer-extension-view]: ./media/web-sites-php-mysql-deploy-use-git/composer-extension-view.png
 [composer-extension-success]: ./media/web-sites-php-mysql-deploy-use-git/composer-extension-success.png
 
-<!---HONumber=AcomDC_0817_2016-->
+
+
+<!--HONumber=Nov16_HO3-->
+
+
