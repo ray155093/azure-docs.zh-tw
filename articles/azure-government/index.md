@@ -1,8 +1,8 @@
 ---
 layout: LandingPage
 translationtype: Human Translation
-ms.sourcegitcommit: f6a1d50752043e74cd5b8adadfcb5ff41d0716d0
-ms.openlocfilehash: e93f2197c677a7e64a18646ddece38c48a200056
+ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
+ms.openlocfilehash: d166ca607b89d0da24d42d4f6f70f97e2c9e7f81
 
 ---
 #<a name="azure-government-documentation"></a>Azure Government 文件
@@ -12,7 +12,7 @@ Microsoft Azure Government 提供的雲端平台以安全性、隱私權和控�
 
 <ul class="panelContent cardsFTitle">
     <li>
-        <a href="../azure-government-overview?toc=%2fazure%2fazure-government%2ftoc.json">
+        <a href="../azure-government-overview.md?toc=%2fazure%2fazure-government%2ftoc.json">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -61,7 +61,7 @@ Microsoft Azure Government 提供的雲端平台以安全性、隱私權和控�
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p>Azure Government REST API 參考</p>
+                        <p>Azure Government REST API</p>
                     </div>
                 </div>
             </div>
@@ -95,6 +95,6 @@ Microsoft Azure Government 提供的雲端平台以安全性、隱私權和控�
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

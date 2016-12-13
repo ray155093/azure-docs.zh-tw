@@ -45,21 +45,21 @@
 ###[更新至不同的大小與階層](cache-how-to-scale.md)
 ###[使用 Redis 叢集進行相應縮小/放大](cache-how-to-premium-clustering.md)
 
-#參考
-## [PowerShell](https://docs.microsoft.com/powershell/azureps-cmdlets-docs)
-## [Azure CLI](https://docs.microsoft.com/cli/azure/)
-## [Java](https://docs.microsoft.com/java/api/)
-## [.NET](https://docs.microsoft.com/dotnet/api/)
+# 參考
+## [PowerShell](/powershell/resourcemanager/azurerm.rediscache/v2.3.0/azurerm.rediscache)
+## [Azure CLI 2.0 Preview](/cli/azure/redis)
+## [.NET](/dotnet/api/microsoft.azure.management.redis)
+## [Java](/java/api/com.microsoft.azure.management.redis._redis_cache)
 ## [Redis 用戶端](http://redis.io/clients)
 ## [Redis 命令](http://redis.io/commands#)
 ## [REST](https://docs.microsoft.com/rest/api/redis/)
+
+# 資源
 ## [Redis 快取範例](cache-redis-samples.md)
-
-#資源
-##[價格](https://azure.microsoft.com/pricing/details/cache/)
+## [價格](https://azure.microsoft.com/pricing/details/cache/)
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

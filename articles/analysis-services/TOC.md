@@ -12,8 +12,12 @@
 ###[內部部署資料閘道](analysis-services-gateway.md)
 
 # 參考
+##[PowerShell](/powershell/resourcemanager)
+##[REST](/rest/api/analysisservices/)
+
+# 相關參考
 ##[資料來源連線](analysis-services-datasource.md)
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -1,5 +1,5 @@
 # 概觀
-## [機器學習是什麼？](machine-learning-what-is-machine-learning.md)
+## [Machine Learning 是什麼？](machine-learning-what-is-machine-learning.md)
 ## Machine Learning Studio
 ### [Studio 是什麼？](machine-learning-what-is-ml-studio.md)
 ### [Studio 容量](machine-learning-studio-overview-diagram.md)
@@ -26,6 +26,10 @@
 ### [3：詢問正確問題](machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data.md)
 ### [4：預測解答](machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model.md)
 ### [5：複製其他人的工作](machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md)
+
+## [R 快速入門](machine-learning-r-quickstart.md)
+
+
 # 作法
 ## 設定工具和公用程式
 ### [設定環境](machine-learning-data-science-environment-setup.md)
@@ -92,7 +96,7 @@
 ##### [進階資料探索](machine-learning-data-science-spark-advanced-data-exploration-modeling.md)
 ##### [使用 Scala 和 Spark](machine-learning-data-science-process-scala-walkthrough.md)
 ## 開發模型
-### 設計並選取功能
+### 設計製造並選取功能
 #### [概觀](machine-learning-data-science-create-features.md)
 #### [使用 Pandas](machine-learning-data-science-create-features-blob.md)
 #### [使用 SQL+Python](machine-learning-data-science-create-features-sql-server.md)
@@ -167,14 +171,15 @@
 #### [常態分佈套件](machine-learning-r-csharp-normal-distribution.md)
 #### [二項分配套件](machine-learning-r-csharp-binomial-distribution.md)
 #### [Marketplace 常見問題集](machine-learning-marketplace-faq.md)
+
 # 參考
-## [PowerShell](/powershell/azureps-cmdlets-docs)
+## [PowerShell](/azure/machine-learning/machine-learning-powershell-module)
 ## [適用於 Machine Learning 的 PowerShell 模組](machine-learning-powershell-module.md)
-## [演算法參考](https://msdn.microsoft.com/library/azure/dn905974.aspx)
-## [R 快速入門](machine-learning-r-quickstart.md)
-## [Net# 神經網路語言](machine-learning-azure-ml-netsharp-reference-guide.md)
-## [管理 REST API](/rest/api/machinelearning/index)
+## [演算法和模組參考](https://msdn.microsoft.com/library/azure/dn905974.aspx)
+## [REST](/rest/api/machinelearning)
+
 # 相關參考
+
 ## Cortana Intelligence Gallery
 ### [概觀](machine-learning-gallery-how-to-use-contribute-publish.md)
 ### [產業](machine-learning-gallery-industries.md)
@@ -190,7 +195,7 @@
 ### API
 #### [異常偵測](machine-learning-apps-anomaly-detection.md)
 #### [文字分析](machine-learning-apps-text-analytics.md)
-#### [Cognitive Services](https://azure.microsoft.com/services/cognitive-services/)
+#### [辨識服務](https://azure.microsoft.com/services/cognitive-services/)
 #### 建議
 ##### [概觀](machine-learning-recommendation-api-sample-application.md)
 ##### [快速入門](machine-learning-recommendation-api-quick-start-guide.md)
@@ -205,7 +210,10 @@
 ##### [概觀](cortana-analytics-playbook-vehicle-telemetry.md)
 ##### [腳本](cortana-analytics-playbook-vehicle-telemetry-deep-dive.md)
 ##### [設定](cortana-analytics-playbook-vehicle-telemetry-powerbi.md)
+
 # 資源
+## [Machine Learning REST 錯誤碼](/machine-learning/machine-learning-web-service-error-codes)
+## [Net# 神經網路語言](machine-learning-azure-ml-netsharp-reference-guide.md)
 ## [價格](https://azure.microsoft.com/pricing/details/machine-learning/)
 ## [服務更新](https://azure.microsoft.com/updates/?product=machine-learning)
 ## [部落格](http://blogs.technet.com/b/machinelearning/)
@@ -214,6 +222,7 @@
 ## [影片](https://azure.microsoft.com/resources/videos/index/?services=machine-learning)
 ## [從即時聊天取得協助](machine-learning-live-chat.md)
 
-<!--HONumber=Nov16_HO4-->
+
+<!--HONumber=Dec16_HO1-->
 
 

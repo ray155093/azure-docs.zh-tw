@@ -46,10 +46,11 @@
 ### [使用 Docker Machine 搭配 Azure](../virtual-machines-linux-docker-machine.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 ### [使用 Azure Docker VM 擴充功能建立 Docker 主機](../virtual-machines-linux-dockerextension.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 ### [使用 Docker Compose 搭配 Azure](../virtual-machines-linux-docker-compose-quickstart.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-### [在 Azure 上部署您自己的私用 Docker Registry](../virtual-machines-linux-docker-registry-in-blob-storage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+### [使用 Azure 容器登錄](/azure/container-registry/?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ## 使用儲存體
 ### [磁碟與 VHD](../virtual-machines-linux-about-disks-vhds.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+### [延伸 OS 磁碟](../virtual-machines-linux-expand-disks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 ### [磁碟加密](../virtual-machines-linux-encrypt-disks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 ### [設定軟體 RAID](../virtual-machines-linux-configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 ### [設定 LVM](../virtual-machines-linux-configure-lvm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
@@ -66,6 +67,8 @@
 ### [建立靜態公用 IP](../../virtual-network/virtual-network-deploy-static-pip-arm-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 ### [將傳統 VNet 連接到 Resource Manager VNet](../../vpn-gateway/vpn-gateway-connect-different-deployment-models-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 ### [DNS 名稱解析選項](../virtual-machines-linux-azure-dns.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+### [搭配 VM 使用 Azure DNS](../../dns/dns-for-azure-services.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+### [搭配 VM 使用 Azure 流量管理員](../../traffic-manager/traffic-manager-endpoint-types.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 ## 部署
 ### [複製 VM](../virtual-machines-linux-copy-vm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
@@ -121,7 +124,7 @@
 ### [常見的移轉錯誤](../virtual-machines-migration-errors.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ## 規劃
-### [執行 VM 的最佳作法](../../guidance/guidance-compute-single-vm-linux.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+### [執行 VM 的最佳做法](../../guidance/guidance-compute-single-vm-linux.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 ### [基礎結構方針](../virtual-machines-linux-infrastructure-virtual-machine-guidelines.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 ### [訂用帳戶與帳戶](../virtual-machines-linux-infrastructure-subscription-accounts-guidelines.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 ### [命名](../virtual-machines-linux-infrastructure-naming-guidelines.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
@@ -166,24 +169,22 @@
 
 # 參考
 ## [PowerShell](/powershell/azureps-cmdlets-docs)
-## [Azure CLI](/cli/azure/vm)
-## [Java](/java/api)
+## [Azure CLI 2.0 (Preview)](/cli/azure/vm)
 ## [.NET](/dotnet/api/microsoft.azure.management.compute)
-## [製作 Resource Manager 範本](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-## [社群範本](https://azure.microsoft.com/documentation/templates)
-## [計算 REST](/rest/api/compute)
-## [網路 REST](/rest/api)
-## [儲存體 REST](/rest/api/storageservices)
-
-
+## [Java](/java/api)
+## [Node.js](https://azure.microsoft.com/en-us/develop/nodejs/#azure-sdk)
+## [Python](http://azure-sdk-for-python.readthedocs.io/en/latest/ref/azure.mgmt.compute.html)
+## [REST](/rest/api/compute)
 
 # 資源
+## [製作 Resource Manager 範本](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+## [社群範本](https://azure.microsoft.com/documentation/templates)
 ## [價格](https://azure.microsoft.com/pricing/details/#Linux)
 ## [區域可用性](https://azure.microsoft.com/regions/services/)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-virtual-machine)
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=virtual-machines)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

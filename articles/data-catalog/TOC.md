@@ -26,19 +26,20 @@
 ### [開發人員範例](data-catalog-samples.md)
 
 # 參考
-## [Azure 資料目錄的鍵盤快速鍵](data-catalog-keyboard-shortcuts.md)
-## [術語](data-catalog-terminology.md)
-## [版本資訊](data-catalog-release-notes.md)
 ## [REST](/rest/api/datacatalog/)
 
 # 資源
-## [版本資訊](data-catalog-whats-new.md)
+## [Azure 資料目錄的鍵盤快速鍵](data-catalog-keyboard-shortcuts.md)
+## [術語](data-catalog-terminology.md)
+## 版本資訊
+### [版本資訊 - 新](data-catalog-whats-new.md)
+### [版本資訊](data-catalog-release-notes.md)
 ## [服務更新](https://azure.microsoft.com/updates/?product=data-catalog)
 ## [價格](https://azure.microsoft.com/pricing/details/data-catalog/)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azuredatacatalog)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-data-catalog)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

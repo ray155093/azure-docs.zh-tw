@@ -55,19 +55,20 @@
 
 # 參考
 ## [PowerShell](/powershell/resourcemanager/azurerm.resources/v3.2.0/azurerm.resources)
-## [Azure CLI](/cli/azure)
-## [Java](/java/api)
+## [Azure 2.0 CLI (Preview)](/cli/azure/resource)
 ## [.NET](/dotnet/api/microsoft.azure.management.resourcemanager)
+## [Java](/java/api/com.microsoft.azure.management.resources)
+## [Python](http://azure-sdk-for-python.readthedocs.io/en/latest/resourcemanagement.html)
 ## [範本結構描述](https://github.com/Azure/azure-resource-manager-schemas)
-## [節流要求](resource-manager-request-limits.md)
 ## [REST](/rest/api/resources/)
 
 # 資源
+## [節流要求](resource-manager-request-limits.md)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-resource-manager)
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=azure-resource-manager)
 ## [服務更新](https://azure.microsoft.com/updates/?product=azure-resource-manager)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

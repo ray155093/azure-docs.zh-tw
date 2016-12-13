@@ -5,7 +5,7 @@ services: backup
 documentationcenter: 
 author: markgalioto
 manager: cfreeman
-editor: tysonn
+editor: 
 keywords: "備份與還原；復原服務；備份解決方案"
 ms.assetid: 0d2a7f08-8ade-443a-93af-440cbf7c36c4
 ms.service: backup
@@ -13,11 +13,11 @@ ms.workload: storage-backup-recovery
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 10/31/2016
+ms.date: 12/6/2016
 ms.author: jimpark; trinadhk
 translationtype: Human Translation
-ms.sourcegitcommit: e29891dc03f8a864ecacc893fd1cc0d3cc1436cb
-ms.openlocfilehash: c827c37ae4164ebd9cd2a971e94f073de8c59b46
+ms.sourcegitcommit: b9737c3da308aecf25d5f18088f96c319edeafd5
+ms.openlocfilehash: 76ec51a75240710b24c0e91042d6229e60eeada9
 
 
 ---
@@ -44,7 +44,7 @@ Azure 備份是您可用來備份 (或保護) 和還原 Microsoft Cloud 資料�
 
 **應用程式一致備份** - 無論是備份檔案伺服器、虛擬機器或 SQL Database，您都需要知道復原點具有所有必要的資料來還原備份的複本。 Azure 備份提供應用程式一致備份，確保資料還原不需要其他修正程式。 還原應用程式一致的資料會減少還原時間，讓您能夠快速回到執行狀態。
 
-**長期保留** -您可以將資料備份至 Azure 達 99 年。 您可以使用 Azure 短期與長期保留，取代將備份複本從磁碟切換到磁帶，然後再將磁帶移至長期儲存的離站位置。
+**長期保留** - 將資料備份至 Azure 達 99 年。 您可以使用 Azure 短期與長期保留，取代將備份複本從磁碟切換到磁帶，然後再將磁帶移至長期儲存的離站位置。
 
 ## <a name="which-azure-backup-components-should-i-use"></a>我該使用哪一個 Azure 備份元件？
 如果您不確定哪一個 Azure 備份元件適用於您的需求，請參閱下表以了解每個元件的防護相關資訊。 Azure 入口網站提供內建的精靈，可引導您選擇要下載和部署的元件。 精靈是建立復原服務保存庫的一部分，可引導您逐步選取備份目標，以及選擇要防護的資料或應用程式。
@@ -52,9 +52,9 @@ Azure 備份是您可用來備份 (或保護) 和還原 Microsoft Cloud 資料�
 | 元件 | 優點 | 限制 | 什麼會受到保護？ | 備份會儲存在哪裡？ |
 | --- | --- | --- | --- | --- |
 | Azure 備份 (MARS) 代理程式 |<li>備份的檔案和資料夾儲存在實體或虛擬 Windows OS (VM 可以位於內部部署或 Azure 中)<li>不需任何個別的備份伺服器。 |<li>每天備份 3 次 <li>不會感知應用程式；僅有檔案、資料夾和磁碟區層級還原， <li>  不支援 Linux。 |<li>檔案、 <li>資料夾 |Azure 備份保存庫 |
-| System Center DPM |<li>應用程式感知快照集 (VSS)<li>具有隨時備份的彈性<li>復原細微度 (全部)<li>可使用 Azure 備份保存庫<li>Linux 支援 (如果裝載於 Hyper-V) |缺乏異質支援 (VMware VM 備份、Oracle 工作負載備份)。 |<li>檔案、 <li>資料夾、<li> 磁碟區、 <li>VM、<li> 應用程式、<li> 工作負載 |<li>Azure 備份保存庫、<li> 本機連接的磁碟、<li>  磁帶 (僅限內部部署) |
-| Azure 備份伺服器 |<li>應用程式感知快照集 (VSS)<li>具有隨時備份的彈性<li>復原細微度 (全部)<li>可使用 Azure 備份保存庫<li>Linux 支援 (如果裝載於 Hyper-V)<li>不需要 System Center 授權 |<li>缺乏異質支援 (VMware VM 備份、Oracle 工作負載備份)。<li>一律需要即時 Azure 訂用帳戶<li>不支援磁帶備份 |<li>檔案、 <li>資料夾、<li> 磁碟區、 <li>VM、<li> 應用程式、<li> 工作負載 |<li>Azure 備份保存庫、<li> 本機連接的磁碟 |
-| Azure IaaS VM 備份 |<li>適用於 Windows/Linux 的原生備份<li>不需使用特定代理程式安裝<li>不需要備份基礎結構的網狀架構層級備份 |<li>一天備份一次/磁碟層級還原<li>無法備份內部部署 |<li>VM、 <li>所有磁碟 (使用 PowerShell) |<p>Azure 備份保存庫</p> |
+| System Center DPM |<li>應用程式感知快照集 (VSS)<li>具有隨時備份的彈性<li>復原細微度 (全部)<li>可使用 Azure 備份保存庫<li>Hyper-V 和 VMware VM 的 Linux 支援 <li>使用 DPM 2012 R2 保護 VMware VM |無法備份 Oracle 工作負載。|<li>檔案、 <li>資料夾、<li> 磁碟區、 <li>VM、<li> 應用程式、<li> 工作負載 |<li>Azure 備份保存庫、<li> 本機連接的磁碟、<li>  磁帶 (僅限內部部署) |
+| Azure 備份伺服器 |<li>應用程式感知快照集 (VSS)<li>具有隨時備份的彈性<li>復原細微度 (全部)<li>可使用 Azure 備份保存庫<li>Linux 支援 (如果裝載於 Hyper-V)<li>使用 DPM 2012 R2 保護 VMware VM<li>不需要 System Center 授權 |<li>無法備份 Oracle 工作負載。<li>一律需要即時 Azure 訂用帳戶<li>不支援磁帶備份 |<li>檔案、 <li>資料夾、<li> 磁碟區、 <li>VM、<li> 應用程式、<li> 工作負載 |<li>Azure 備份保存庫、<li> 本機連接的磁碟 |
+| Azure IaaS VM 備份 |<li>適用於 Windows/Linux 的原生備份<li>不需使用特定代理程式安裝<li>不需要備份基礎結構的網狀架構層級備份 |<li>VM 每天備份一次 <li>只在磁碟層級還原 VM<li>無法備份內部部署 |<li>VM、 <li>所有磁碟 (使用 PowerShell) |<p>Azure 備份保存庫</p> |
 
 ## <a name="what-are-the-deployment-scenarios-for-each-component"></a>每個元件的部署案例為何？
 | 元件 | 可以在 Azure 中部署嗎？ | 可以在內部部署嗎？ | 支援的目標儲存體 |
@@ -95,7 +95,7 @@ Azure 備份是您可用來備份 (或保護) 和還原 Microsoft Cloud 資料�
 Azure 備份可保護進階儲存體 VM。 Azure 進階儲存體是一個以固態硬碟 (SSD) 為基礎的儲存體產品，專門設計用來支援需大量 I/O 的工作負載。 進階儲存體非常適合用於虛擬機器 (VM) 工作負載。 如需有關進階儲存體的詳細資訊，請參閱此文章：[進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體](../storage/storage-premium-storage.md)
 
 ### <a name="back-up-premium-storage-vms"></a>備份進階儲存體 VM
-在備份進階儲存體 VM 時，備份服務會在進階儲存體帳戶中建立臨時預備位置。 名為「AzureBackup-」的預備位置等於連接至 VM 之進階磁碟的資料大小總計。
+在備份進階儲存體 VM 時，備份服務會在進階儲存體帳戶中建立臨時預備位置。 名為「AzureBackup-」的預備位置等於連接至 VM 之進階磁碟的資料大小總計。 檢查儲存體帳戶中是否有足夠的臨時預備位置可用空間。 如需詳細資訊，請參閱文章[進階儲存體限制](../storage/storage-premium-storage.md#premium-storage-scalability-and-performance-targets)。
 
 > [!NOTE]
 > 請勿修改或編輯預備位置。
@@ -122,10 +122,10 @@ Azure 備份可保護進階儲存體 VM。 Azure 進階儲存體是一個以固�
 
 ![資料表索引鍵](./media/backup-introduction-to-azure-backup/table-key.png)
 
-備份保存庫是所有元件慣用的儲存體目標。 System Center DPM 和備份伺服器也提供產生本機磁碟複本的選項。 不過，System Center DPM 會提供將資料寫入磁帶儲存裝置的選項。
+備份保存庫是所有元件慣用的儲存體目標。 System Center DPM 和 Azure 備份伺服器也提供產生本機磁碟複本的選項。 不過，System Center DPM 會提供將資料寫入磁帶儲存裝置的選項。
 
 #### <a name="compression"></a>壓縮
-備份會經過壓縮以減少所需的儲存空間。 唯一不進行壓縮的元件為 VM 延伸模組。 當使用 VM 延伸模組時，所有備份資料會從您的儲存體帳戶複製到相同區域中的備份保存庫，且不加以壓縮。 使用未壓縮的備份會需要稍微多一點儲存體空間。 不過，儲存未經壓縮的資料可讓還原時間加快。
+備份會經過壓縮以減少所需的儲存空間。 唯一不進行壓縮的元件為 VM 延伸模組。 VM 延伸模組會將所有備份資料從您的儲存體帳戶複製到相同區域中的備份保存庫。 傳輸資料時，不使用任何壓縮。 傳輸資料而不壓縮會需要稍微多一點儲存體空間。 不過，儲存未經壓縮的資料可讓還原時間加快，您需要該復原點。
 
 #### <a name="incremental-backup"></a>增量備份
 不論目標儲存體 (磁碟、磁帶、備份保存庫) 為何，每個元件都支援增量備份。 增量備份可確保備份符合儲存和時間效率，因為它只會傳輸自上次備份後所做的變更。
@@ -169,24 +169,27 @@ Azure 備份可保護進階儲存體 VM。 Azure 進階儲存體是一個以固�
 
 VM 延伸模組 (在 IaaS VM 上) 會透過儲存體網路直接從 Azure 儲存體帳戶讀取資料，所以不需要壓縮此流量。
 
-如果您要將資料備份到 System Center DPM 或 Azure 備份伺服器，請壓縮從主要伺服器到備份伺服器的資料。 此舉可以節省頻寬。
+如果您要將資料備份到 System Center DPM 或 Azure 備份伺服器，請壓縮從主要伺服器到備份伺服器的資料。 將資料備份到 DPM 或 Azure 備份伺服器之前壓縮資料以節省頻寬。
 
 #### <a name="network-throttling"></a>網路節流
 Azure 備份代理程式提供網路節流，可讓您控制在資料傳輸期間使用網路頻寬的方式。 如果您需要在上班時間內備份資料，但不希望備份程序干擾其他網際網路流量，節流會很有幫助。 資料傳輸的節流適用於備份和還原活動。
 
 ### <a name="backup-and-retention"></a>備份和保留
+
+Azure 備份每個備份保存庫的上限為 9999 個復原點 (也稱為備份複本或快照集)。 下表顯示每個元件的最大備份頻率 (至保存庫)。 備份原則設定決定您多快會用完復原點。 比方說，如果您每天建立復原點，則在用完之前可以保留復原點 27 年。 如果您採取每月建立復原點，則在用完之前可以保留復原點 833 年。 備份服務不會對復原點設定到期時間限制。
+
 |  | Azure 備份代理程式 | System Center DPM | Azure 備份伺服器 | Azure IaaS VM 備份 |
 | --- | --- | --- | --- | --- |
 | 備份頻率<br/> (至備份保存庫) |每天備份 3 次 |每天備份 2 次 |每天備份 2 次 |每天備份 1 次 |
 | 備份頻率<br/> (至磁碟) |不適用 |<li>每隔 15 分鐘 (SQL Server) <li>每隔 1 小時 (其他工作負載) |<li>每隔 15 分鐘 (SQL Server) <li>每隔 1 小時 (其他工作負載)</p> |不適用 |
 | 保留選項 |每日、每週、每月、每年 |每日、每週、每月、每年 |每日、每週、每月、每年 |每日、每週、每月、每年 |
-| 保留期限 |最多 99 年 |最多 99 年 |最多 99 年 |最多 99 年 |
-| 備份保存庫中的復原點 |無限 |無限 |無限 |無限 |
+| 每個伺服器的最大復原點 |9999|9999|9999|9999|
+| 最大保留期間 |依照備份頻率而定 |依照備份頻率而定 |依照備份頻率而定 |依照備份頻率而定 |
 | 本機磁碟上的復原點 |不適用 |<li>64 (檔案伺服器)、<li>448 (應用程式伺服器) |<li>64 (檔案伺服器)、<li>448 (應用程式伺服器) |不適用 |
 | 磁帶上的復原點 |不適用 |無限 |不適用 |不適用 |
 
 ## <a name="what-is-the-vault-credential-file"></a>什麼是保存庫認證檔？
-保存庫認證檔是入口網站針對每個備份保存庫所產生的憑證。 入口網站接著會將公開金鑰上傳至「存取控制服務」(ACS)。 並在下載認證時，提供私密金鑰給您。 您可以用來註冊您要保護的電腦。 私密金鑰是可讓您驗證伺服器或電腦，以將備份資料傳送至特定的備份保存庫。
+保存庫認證檔是入口網站針對每個備份保存庫所產生的憑證。 入口網站接著會將公開金鑰上傳至「存取控制服務」(ACS)。 並在下載認證時，提供私密金鑰給您。 使用它來註冊您要保護的電腦。 私密金鑰是可讓您驗證伺服器或電腦，以將備份資料傳送至特定的備份保存庫。
 
 您只需使用保存庫認證來註冊伺服器或電腦。 不過，請妥善保存庫認證，如果遺失或遭他人取得，則可用來針對相同的保存庫註冊其他電腦。 因為備份資料使用了只有您能存取的複雜密碼進行加密，所以現有的備份資料不會遭到洩漏。 保存庫認證將於 48 小時後過期。 雖然您可以頻繁地多次下載備份保存庫的保存庫認證，但只有最新的認證可用於註冊。
 
@@ -207,7 +210,7 @@ Azure 備份會在內部部署和雲端保護資料。 Azure Site Recovery 可�
 下列教學課程可以獲取詳細的逐步指示，協助您保護 Windows Server 上的資料，或在 Azure 中保護虛擬機器 (VM)︰
 
 * [備份檔案和資料夾](backup-try-azure-backup-in-10-mins.md)
-* [備份 Azure 虛擬機器](backup-azure-vms-first-look.md)
+* [備份 Azure 虛擬機器](backup-azure-vms-first-look-arm.md)
 
 如需保護其他工作負載的詳細資訊，請參閱這些文件︰
 
@@ -215,12 +218,12 @@ Azure 備份會在內部部署和雲端保護資料。 Azure Site Recovery 可�
 * [備份應用程式工作負載](backup-azure-microsoft-azure-backup.md)
 * [備份 Azure IaaS VM](backup-azure-vms-prepare.md)
 
-[綠色]: ./media/backup-introduction-to-azure-backup/green.png
-[黃色]: ./media/backup-introduction-to-azure-backup/yellow.png
-[紅色]: ./media/backup-introduction-to-azure-backup/red.png
+[green]: ./media/backup-introduction-to-azure-backup/green.png
+[yellow]: ./media/backup-introduction-to-azure-backup/yellow.png
+[red]: ./media/backup-introduction-to-azure-backup/red.png
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

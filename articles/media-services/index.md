@@ -1,8 +1,8 @@
 ---
 layout: LandingPage
 translationtype: Human Translation
-ms.sourcegitcommit: 54d90fa8d337b95a8bb03938ae6f3ce7c4e2de85
-ms.openlocfilehash: a7eda833f1bbaaa64ebfb1a26925dc42cbf6cb9c
+ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
+ms.openlocfilehash: 877d92deebfda835eef37cdc8dc1bca21520d892
 
 ---
 # <a name="media-services-documentation"></a>媒體服務文件
@@ -197,7 +197,7 @@ Azure 媒體服務是一個可延伸的雲端型平台，供開發人員建置�
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p>Azure 媒體服務 REST API 參考</p>
+                        <p>媒體服務 REST API</p>
                     </div>
                 </div>
             </div>
@@ -216,6 +216,6 @@ Azure 媒體服務是一個可延伸的雲端型平台，供開發人員建置�
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

@@ -40,7 +40,7 @@
 ### [路由設定安裝範例](expressroute-config-samples-routing.md)
 ### [NAT 的路由設定範例](expressroute-config-samples-nat.md)
 
-## 最佳作法
+## 最佳做法
 ### [網路安全性與雲端服務的最佳做法](../best-practices-network-security.md)
 ### [非對稱式路由](expressroute-asymmetric-routing.md)
 
@@ -51,7 +51,7 @@
 
 # 參考
 ## [PowerShell](https://docs.microsoft.com/powershell/azureps-cmdlets-docs)
-## [REST (資源管理員)](https://msdn.microsoft.com/library/azure/mt586720)
+## [REST](https://msdn.microsoft.com/library/azure/mt586720)
 ## [REST (傳統)](https://msdn.microsoft.com/library/azure/dn606310)
 
 # 相關參考
@@ -80,6 +80,6 @@
 ## [服務更新](https://azure.microsoft.com/updates/?product=expressroute)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

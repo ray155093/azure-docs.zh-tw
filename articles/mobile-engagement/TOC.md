@@ -17,7 +17,7 @@
 
 # 作法
 ## 規劃和設計
-### [最佳作法](mobile-engagement-getting-started-best-practices.md)
+### [最佳做法](mobile-engagement-getting-started-best-practices.md)
 ### [概念](mobile-engagement-concepts.md)
 ### [定義您的 Engagement 策略](mobile-engagement-define-your-mobile-engagement-strategy.md)
 ### 案例
@@ -117,20 +117,23 @@
 
 # 參考
 ## [.NET](https://www.nuget.org/packages/Microsoft.Azure.Management.Engagement)
+
+
+
+# 相關參考
 ## SDK 內容
 ### [Android SDK](mobile-engagement-android-sdk-content.md)
 ### [iOS SDK](mobile-engagement-ios-sdk-content.md)
 ### [Windows 通用應用程式 SDK](mobile-engagement-windows-store-sdk-content.md)
 ### [Windows Phone Silverlight SDK](mobile-engagement-windows-phone-sdk-content.md)
+
+# 資源
 ## 版本資訊
 ### [Android SDK](mobile-engagement-android-release-notes.md)
 ### [iOS SDK](mobile-engagement-ios-release-notes.md)
 ### [Web SDK](mobile-engagement-web-release-notes.md)
 ### [Windows 通用應用程式 SDK](mobile-engagement-windows-store-release-notes.md)
 ### [Windows Phone Silverlight SDK](mobile-engagement-windows-phone-release-notes.md)
-
-
-# 資源
 ## [價格](https://azure.microsoft.com/pricing/details/mobile-engagement/)
 ## [範例示範應用程式](mobile-engagement-demo-apps.md)
 ## [.NET API 範例](mobile-engagement-dotnet-sdk-service-api.md)
@@ -146,6 +149,6 @@
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

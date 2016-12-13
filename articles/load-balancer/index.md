@@ -1,8 +1,8 @@
 ---
 layout: LandingPage
 translationtype: Human Translation
-ms.sourcegitcommit: 9a3c37b481761af546060e36b4a51e7d96dd4646
-ms.openlocfilehash: 7814791b5308152fa2b7d6d640401079b1a46107
+ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
+ms.openlocfilehash: 4c909a151ec60d62ae472e24617b28fc71342eae
 
 ---
 #<a name="load-balancer-documentation"></a>負載平衡器文件
@@ -156,7 +156,7 @@ Azure Load Balancer 可為您的應用程式提供高可用性和網路效能。
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p>Load Balancer REST API 參考</p>
+                        <p>負載平衡器 REST API</p>
                     </div>
                 </div>
             </div>
@@ -175,6 +175,6 @@ Azure Load Balancer 可為您的應用程式提供高可用性和網路效能。
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

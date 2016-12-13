@@ -1,13 +1,13 @@
 ---
 layout: LandingPage
 translationtype: Human Translation
-ms.sourcegitcommit: 5ddeaf6f2049983f80618d9e2294f82c60fe9af5
-ms.openlocfilehash: 2948011d1d321d0371928bbdf7a9a9414036589c
+ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
+ms.openlocfilehash: d26d0f965ad1195ab41e04e870ead1b335ff513e
 
 ---
 # <a name="data-lake-store-documentation"></a>Data Lake Store 文件
 
-Azure Data Lake Store 是適用於巨量資料分析工作負載的超大規模儲存機制。 Azure 資料湖可讓您在單一位置擷取任何大小、類型和擷取速度的資料，以便進行運作和探究分析。  使用 WebHDFS 相容的案例，可以從 Hadoop (HDInsight 叢集所提供) 存取 Azure Data Lake Store。 它包含所有企業級功能：安全性、管理性、延展性、可靠性和可用性。
+Azure Data Lake Store 是適用於巨量資料分析工作負載的超大規模儲存機制。 Azure Data Lake 可讓您在單一位置擷取任何大小、類型和擷取速度的資料，以便進行運作和探究分析。  使用 WebHDFS 相容的案例，可以從 Hadoop (HDInsight 叢集所提供) 存取 Azure Data Lake Store。 它包含所有企業級功能：安全性、管理性、延展性、可靠性和可用性。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -157,68 +157,48 @@ Azure Data Lake Store 是適用於巨量資料分析工作負載的超大規模�
 </ul>
 
 ---
-
-## <a name="reference"></a>參考
-
+ 
+<h2>參考</h2>
 <ul class="panelContent cardsW">
     <li>
-        <a href="/powershell/azureps-cmdlets-docs">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>PowerShell</h3>
-                        <p>PowerShell 參考</p>
+                        <h3>命令列</h3>
+                        <p><a href="/powershell/resourcemanager/azurerm.datalakestore/v3.1.0/azurerm.datalakestore">PowerShell</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
-
- <li>
-        <a href="/dotnet/api">
-        <div class="cardSize">
+    <li>
+        <div class="cardSize"><p />
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>.NET</h3>
-                        <p>.NET 受管理的參考</p>
+                        <h3>語言</h3>
+                        <p><a href="/dotnet/api/microsoft.azure.management.datalake.store">.NET</a></p>
+                        <p><a href="/java/api/com.microsoft.azure.datalake.store">Java</a></p>
+                        <p><a href="https://www.npmjs.com/package/azure-arm-datalake-store">Node.js</a></p>
+                        <p><a href="http://azure-sdk-for-python.readthedocs.io/en/latest/sample_azure-mgmt-datalake-store.html">Python (帳戶管理)</a></p>
+                        <p><a href="http://azure-datalake-store.readthedocs.io/en/latest">Python (檔案系統管理)</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
-
- <li>
-        <a href="/java/api">
-        <div class="cardSize">
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>Java</h3>
-                        <p>Java SDK 參考</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </a>
-    </li>
-
-<li>
-        <a href="/rest/api/datalakestore">
-        <div class="cardSize">
+    <li>
+        <div class="cardSize"><p />
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p>Data Lake Store REST API 參考</p>
+                        <p><a href="/rest/api/datalakestore">REST API</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
 </ul>
 
@@ -231,6 +211,6 @@ Azure Data Lake Store 是適用於巨量資料分析工作負載的超大規模�
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

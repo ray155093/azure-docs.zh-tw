@@ -9,7 +9,7 @@
 ## [使用狀況資料](log-analytics-usage.md)
 ## [Log Analytics 常見問題集](log-analytics-faq.md)
 
-# 作法：
+# 作法
 ## 整合
 ### 連接的來源
 #### [Windows 代理程式](log-analytics-windows-agents.md)
@@ -61,12 +61,15 @@
 ### [記錄檔搜尋 API](log-analytics-log-search-api.md)
 ### [警示 API](log-analytics-api-alerts.md)
 
+# 參考
+## [PowerShell](/powershell/resourcemanager/azurerm.operationalinsights/v2.3.0/azurerm.operationalinsights)
+
 # 資源
 ## [Upgrade Analytics](https://technet.microsoft.com/itpro/windows/deploy/manage-windows-upgrades-with-upgrade-analytics)
 ## [價格](https://azure.microsoft.com/pricing/details/log-analytics/)
 ## [服務更新](https://azure.microsoft.com/updates/?product=log-analytics)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

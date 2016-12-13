@@ -7,7 +7,7 @@
 ## [建立事件處理函式](functions-create-an-event-processing-function.md)
 # 作法
 ## 規劃和設計
-### [在 Flow、Logic Apps、函式和 WebJobs 之間做選擇](functions-compare-logic-apps-ms-flow-webjobs.md)
+### [在 Flow、Logic Apps、函式和 WebJob 之間做選擇](functions-compare-logic-apps-ms-flow-webjobs.md)
 ### [在主控方案間選擇](functions-scale.md)
 
 ## 開發
@@ -16,6 +16,7 @@
 #### [Node.js](functions-reference-node.md)
 #### [F#](functions-reference-fsharp.md)
 ### [使用觸發程序和繫結文章](functions-triggers-bindings.md)
+#### [DocumentDB 繫結](functions-bindings-documentdb.md)
 #### [事件中樞繫結](functions-bindings-event-hubs.md)
 #### [HTTP 和 Webhook 繫結](functions-bindings-http-webhook.md)
 #### [Mobile Apps 繫結](functions-bindings-mobile-apps.md)
@@ -49,6 +50,6 @@
 ## [服務更新](https://azure.microsoft.com/en-us/updates/?product=functions&updatetype=&platform=)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

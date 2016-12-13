@@ -40,14 +40,17 @@
 ## [為雲端服務設定多個 IP 位址](load-balancer-multivip.md)
 ## [合併負載平衡服務](../traffic-manager/traffic-manager-load-balancing-azure.md?toc=%2fazure%2fload-balancer%2ftoc.json)
 ## [使用多個 IP 組態](load-balancer-multiple-ip.md)
-## [Azure 負載平衡器的記錄檔分析](load-balancer-monitor-log.md)
+## [Azure 負載平衡器的 Log Analytics](load-balancer-monitor-log.md)
 ## [設定 Linux VM 的 DHCPv6](load-balancer-ipv6-for-linux.md)
 
 # 參考
-## [PowerShell](/powershell/azureps-cmdlets-docs)
-## [Azure CLI](/cli/azure/network/lb)
-## [Java](/java/api)
-## [.NET](/dotnet/api)
+## [PowerShell](/powershell/resourcemanager/azurerm.network/v3.1.0/azurerm.network)
+## [Azure CLI 2.0 (Preview)](/cli/azure/network/lb)
+## [.NET](/dotnet/api/microsoft.azure.management.network.models)
+## [Java](/java/api/com.microsoft.azure.management.network)
+## [Node.js](http://azure.github.io/azure-sdk-for-node/azure-arm-network/latest/LoadBalancers.html)
+## [Ruby](http://www.rubydoc.info/gems/azure_mgmt_network/Azure/ARM/Network/LoadBalancers)
+## [Python](http://azure-sdk-for-python.readthedocs.io/en/latest/ref/azure.mgmt.network.operations.html#azure.mgmt.network.operations.LoadBalancersOperations)
 ## [REST](https://msdn.microsoft.com/library/azure/mt163651.aspx)
 
 # 相關參考
@@ -64,6 +67,6 @@
 ## [服務更新](https://azure.microsoft.com/updates/?product=load-balancer)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

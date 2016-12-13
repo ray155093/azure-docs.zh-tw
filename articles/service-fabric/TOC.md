@@ -1,8 +1,9 @@
-# Overview
+# 概觀
 ## [什麼是 Service Fabric？](service-fabric-overview.md)
 ## [了解微服務](service-fabric-overview-microservices.md)
 ## [應用程式案例](service-fabric-application-scenarios.md)
 ## [架構](service-fabric-architecture.md)
+## [術語](service-fabric-technical-overview.md)
 
 # 開始使用
 ## 設定開發環境
@@ -15,7 +16,7 @@
 ### [Linux 上的 C](service-fabric-create-your-first-linux-application-with-csharp.md)
 ## [在本機叢集上部署應用程式](service-fabric-get-started-with-a-local-cluster.md)
 
-# 作法：
+# 作法
 ## 建置應用程式
 ### 基本概念
 #### [程式設計模型](service-fabric-choose-framework.md)
@@ -38,7 +39,7 @@
 #### [可靠集合](service-fabric-reliable-services-reliable-collections.md)
 #### [使用 Reliable Collections](service-fabric-work-with-reliable-collections.md)
 #### [設定](service-fabric-reliable-services-configuration.md)
-#### [Notifications](service-fabric-reliable-services-notifications.md)
+#### [通知](service-fabric-reliable-services-notifications.md)
 #### [備份與還原](service-fabric-reliable-services-backup-restore.md)
 #### [與 Reliable Services 通訊](service-fabric-reliable-services-communication.md)
 ##### [ASP.NET](service-fabric-reliable-services-communication-webapi.md)
@@ -176,21 +177,13 @@
 ### [進行應用程式負載測試](service-fabric-vso-load-test.md)
 
 # 參考
-## [術語](service-fabric-technical-overview.md)
-## [Reliable Actors](https://go.microsoft.com/fwlink/p/?linkid=833398)
-## [Reliable Actors WCF](https://go.microsoft.com/fwlink/p/?linkid=833401)
-## [Reliable Services](https://go.microsoft.com/fwlink/p/?linkid=833402)
-## [Reliable Services WCF](https://go.microsoft.com/fwlink/p/?linkid=833403)
-## [資料](https://go.microsoft.com/fwlink/p/?linkid=833404)
-## [資料介面](https://go.microsoft.com/fwlink/p/?linkid=833406)
-## [系統](https://go.microsoft.com/fwlink/p/?linkid=833407)
-## [範例程式碼](http://aka.ms/servicefabricsamples)
-## [PowerShell](/powershell/servicefabric/vlatest/servicefabric)
-## [Java API](https://go.microsoft.com/fwlink/p/?linkid=833410)
-## [.NET](/dotnet/api)
-## [REST](/rest/api/servicefabric/)
+## [PowerShell](//powershell/servicefabric/vlatest/servicefabric)
+## [Java API](/java/api/microsoft.servicefabric.services)
+## [.NET](/dotnet/api/microsoft.servicefabric.services)
+## [REST](/rest/api/servicefabric)
 
 # 資源
+## [範例程式碼](http://aka.ms/servicefabricsamples)
 ## [學習路徑](https://azure.microsoft.com/documentation/learning-paths/service-fabric/)
 ## [價格](https://azure.microsoft.com/pricing/details/service-fabric/)
 ## [服務更新](https://azure.microsoft.com/updates/?product=service-fabric)
@@ -198,6 +191,6 @@
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=service-fabric)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

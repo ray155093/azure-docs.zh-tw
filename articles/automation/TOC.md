@@ -1,14 +1,11 @@
 # 概觀
 ## [什麼是 Azure 自動化？](automation-intro.md)
 ## [Azure 自動化的安全性](automation-security-overview.md)
-
 # 開始使用
 ## [建立 Runbook](automation-first-runbook-graphical.md)
 ## [建立 PowerShell Runbook](automation-first-runbook-textual-powershell.md)
 ## [建立 PowerShell 工作流程 Runbook](automation-first-runbook-textual.md)
 ## [管理角色型存取控制](automation-role-based-access-control.md)
-
-
 # 作法
 ## 建立 Runbook
 ### [Runbook 類型](automation-runbook-types.md)
@@ -55,26 +52,22 @@
 ### [使用 JSON 標籤來啟動/停止 VM](automation-scenario-start-stop-vm-wjson-tags.md)
 ### [移除資源群組](automation-scenario-remove-resourcegroup.md)
 ### [於下班時間開始/停止 VM](automation-solution-vm-management.md)
-
+### [搭配 GitHub Enterprise 的原始檔控制整合](automation-scenario-source-control-integration-with-github-ent.md)
 ## [監視](automation-manage-send-joblogs-log-analytics.md)
-
 ## 移轉
 ### [從 Orchestrator 移轉](automation-orchestrator-migration.md)
 ### [移動自動化帳戶](automation-migrate-account-subscription.md)
-
 ## 疑難排解
-### [針對常見錯誤進行疑難排解。](automation-troubleshooting-automation-errors.md)
+### [針對常見錯誤進行疑難排解](automation-troubleshooting-automation-errors.md)
 ### [Runbook 作業已暫停](automation-troubleshooting-hrw-runbook-terminates-suspended.md)
-
 # 參考
-## [PowerShell](/powershell/azureps-cmdlets-docs)
-## [傳統 PowerShell](/powershell/servicemanagement)
-## [.NET](/dotnet/api)
+## [PowerShell](/powershell/resourcemanager/azurerm.automation/v2.3.0/azurerm.automation)
+## [PowerShell (傳統)](/powershell/servicemanagement/azure.automation/v3.1.0/azure.automation)
+## [.NET](/dotnet/api/microsoft.azure.management.automation)
 ## [REST](https://msdn.microsoft.com/library/azure/mt662285.aspx)
-## [傳統 REST](https://msdn.microsoft.com/library/azure/mt163781)
-## [版本資訊](https://azure.microsoft.com/updates/?product=automation)
-
+## [REST (傳統)](https://msdn.microsoft.com/library/azure/mt163781)
 # 資源
+## [版本資訊](https://azure.microsoft.com/updates/?product=automation)
 ## [價格](https://azure.microsoft.com/pricing/details/automation/)  
 ## [MSDN 論壇](https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=azureautomation)  
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-automation)
@@ -85,6 +78,6 @@
 ## [自動化簡介影片](https://azure.microsoft.com/documentation/videos/azure-automation-101-with-powershell-and-eamon-o-reilly/)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -51,18 +51,20 @@
 ### [使用 PowerShell 佈建實體](service-bus-powershell-how-to-provision.md)
 
 # 參考
-## [價格詳細資料](service-bus-pricing-billing.md)
-## [範例](service-bus-samples.md)
-## [例外狀況](service-bus-messaging-exceptions.md)
-## [配額](service-bus-quotas.md)
-## [.NET](/dotnet/api/)
-## [REST](/rest/api/servicebus/)
+## [PowerShell](/powershell/resourcemanager/azurerm.scheduler/v0.11.1/azurerm.scheduler)
+## [.NET](/dotnet/api/microsoft.azure.management.servicebus)
+## [Java](/java/api/com.microsoft.azure.servicebus.amqp)
+## [REST](/rest/api/servicebus)
+
+# 資源
 ## [SQLFilter 語法](service-bus-messaging-sql-filter.md)
 ## [SQLRuleAction 語法](service-bus-messaging-sql-rule-action.md)
 ## [AMQP1.0 通訊協定指南](service-bus-amqp-protocol-guide.md)
 ### [AMQP 1.0 以要求與回應為基礎的作業](service-bus-amqp-request-response.md)
-
-# 資源
+## [價格詳細資料](service-bus-pricing-billing.md)
+## [範例](service-bus-samples.md)
+## [例外狀況](service-bus-messaging-exceptions.md)
+## [配額](service-bus-quotas.md)
 ## [部落格](https://blogs.msdn.microsoft.com/servicebus/)
 ## [Stack Overflow](http://stackoverflow.com/questions/tagged/servicebus)
 ## [MSDN 論壇](https://social.msdn.microsoft.com/forums/home?forum=servbus)
@@ -73,6 +75,6 @@
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=service-bus)
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO2-->
 
 

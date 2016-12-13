@@ -1,13 +1,13 @@
 ---
 layout: LandingPage
 translationtype: Human Translation
-ms.sourcegitcommit: 87b9d22ec066108adb282606305315919b901ea0
-ms.openlocfilehash: 1513c4d2b658efff20095a293cec2a9687ebeabf
+ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
+ms.openlocfilehash: 28b6ebfae16a5c2e119fc4f1af0dcee6a348d47f
 
 ---
 #<a name="azure-hdinsight-documentation"></a>Azure HDInsight 文件
 
-Azure HDInsight 是採用雲端技術的 Apache Hadoop 散發套件。  Azure HDInsight 讓 Hortonworks 資料平台 (HDP) 散發中的 Hadoop 元件可在雲端取得，還可部署及佈建具備可靠性和可用性的受管理叢集。  Azure HDInsight 提供 Apache Hadoop、 Spark、HBase 和 Storm 的叢集設定。  您也可以使用自訂叢集搭配指令碼動作。  
+Azure HDInsight 是採用雲端技術的 Apache Hadoop 散發套件。  Azure HDInsight 讓 Hortonworks 資料平台 (HDP) 散發中的 Hadoop 元件可在雲端取得，還可部署及佈建具備可靠性和可用性的受管理叢集。  Azure HDInsight 提供 Apache Hadoop、Spark、HBase 和 Storm 的叢集設定。  您也可以使用自訂叢集搭配指令碼動作。  
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -122,64 +122,47 @@ Azure HDInsight 是採用雲端技術的 Apache Hadoop 散發套件。  Azure HD
 </ul>
 
 ---
-
-## <a name="reference"></a>參考
-
+ 
+<h2>參考</h2>
 <ul class="panelContent cardsW">
     <li>
-        <a href="/powershell/azureps-cmdlets-docs">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>PowerShell</h3>
-                        <p>Azure PowerShell 參考</p>
+                        <h3>命令列</h3>
+                        <p><a href="/powershell/resourcemanager/azurerm.hdinsight/v2.3.0/azurerm.hdinsight">PowerShell</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
-
- <li>
-        <a href="/rest/api/hdinsight">
-        <div class="cardSize">
+    <li>
+        <div class="cardSize"><p />
+            <div class="cardPadding">
+                <div class="card">
+                    <div class="cardText">
+                        <h3>語言</h3>
+                        <p><a href="https://msdn.microsoft.com/library/mt271028.aspx">.NET (Hadoop)</a></p>
+                        <p><a href="https://www.nuget.org/packages/Microsoft.HBase.Client/">.NET (HBase)</a></p>
+                        <p><a href="https://hadoopsdk.codeplex.com/wikipage?title=Avro%20Library">.NET (Avro)</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+    <li>
+        <div class="cardSize"><p />
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p>HDInsight REST API 參考</p>
+                        <p><a href="/rest/api/hdinsight/">REST API</a></p>
+                        <p><a href="/rest/api/hdinsightspark/">REST API (Spark)</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
-         <a href="/rest/api/hdinsightspark">
-        <div class="cardSize">
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardText">
-                        <p>HDInsight REST API 參考的 Spark</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </a>
-    </li>
-
-    <li>
-        <a href="https://msdn.microsoft.com/library/azure/mt271028">
-        <div class="cardSize">
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>.NET</h3>
-                        <p>HDInsight 受管理的參考</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </a>
     </li>
 </ul>
 
@@ -193,6 +176,6 @@ Azure HDInsight 是採用雲端技術的 Apache Hadoop 散發套件。  Azure HD
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

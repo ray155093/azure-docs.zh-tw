@@ -1,8 +1,8 @@
 ---
 layout: LandingPage
 translationtype: Human Translation
-ms.sourcegitcommit: c5ed66f3a060dcd1bac9c04c70c493dcebcf9df8
-ms.openlocfilehash: 7b5078165e008819baed1c1e38d1c1a677648955
+ms.sourcegitcommit: f368f2700bd349e106169d1828af7a148daa5cc2
+ms.openlocfilehash: f87947ed5f072ba4f0927ade1b1d3ec0e1424f3c
 
 ---
 #<a name="linux-virtual-machine-documentation"></a>Linux 虛擬機器文件
@@ -85,110 +85,50 @@ ms.openlocfilehash: 7b5078165e008819baed1c1e38d1c1a677648955
 </ul>
 
 ---
-
-##<a name="reference"></a>參考
-
+ 
+<h2>參考</h2>
 <ul class="panelContent cardsW">
     <li>
-        <a href="/powershell/azureps-cmdlets-docs">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>PowerShell</h3>
-                        <p>PowerShell Cmdlet</p>
+                        <h3>命令列</h3>
+                        <p><a href="/powershell/azureps-cmdlets-docs">PowerShell</a></p>
+                        <p><a href="/cli/azure/vm">Azure CLI</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
     <li>
-        <a href="/cli/azure/install-az-cli2">
-        <div class="cardSize">
+        <div class="cardSize"><p />
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>Azure CLI</h3>
-                        <p>安裝 Azure CLI</p>
+                        <h3>語言</h3>
+                        <p><a href="/dotnet/api/microsoft.azure.management.compute">.NET</a></p>
+                        <p><a href="/java/api">Java</a></p>
+                        <p><a href="https://azure.microsoft.com/en-us/develop/nodejs/#azure-sdk">Node.js</a></p>
+                        <p><a href="http://azure-sdk-for-python.readthedocs.io/en/latest/ref/azure.mgmt.compute.html">Python</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
     <li>
-        <a href="/dotnet/api">
-        <div class="cardSize">
+        <div class="cardSize"><p />
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>.NET</h3>
-                        <p>.NET 受管理的參考 API</p>
+                        <h3>REST</h3>
+                        <p><a href="/rest/api/compute">REST API 參考</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
-    </li>
-    <li>
-        <a href="/java/api">
-        <div class="cardSize">
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>Java SDK</h3>
-                        <p>Java API 參考</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </a>
-    </li>
-    <li>
-        <a href="/rest/api/compute">
-        <div class="cardSize">
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>REST (計算)</h3>
-                        <p>計算 REST API 參考</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </a>
-    </li>
-    <li>
-        <a href="https://msdn.microsoft.com/library/mt163658">
-        <div class="cardSize">
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>REST (網路)</h3>
-                        <p>網路 REST API 參考</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </a>
-    </li>
-    <li>
-        <a href="/rest/api/storage">
-        <div class="cardSize">
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>REST (儲存體)</h3>
-                        <p>儲存體 REST API 參考</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </a>
     </li>
 </ul>
-    
 
 <div class="downloadHolder">
     <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/virtual-machines/linux.pdf">
@@ -200,6 +140,6 @@ ms.openlocfilehash: 7b5078165e008819baed1c1e38d1c1a677648955
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

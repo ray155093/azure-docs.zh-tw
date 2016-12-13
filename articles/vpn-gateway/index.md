@@ -1,8 +1,8 @@
 ---
 layout: LandingPage
 translationtype: Human Translation
-ms.sourcegitcommit: dca0fb0b2de4943b9a031d2759756654a0c7280f
-ms.openlocfilehash: 6a72b28f95338ebe04e764d7f83e8db3e3e91b78
+ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
+ms.openlocfilehash: 844a2bb0bc702cf8e81684267677db8a8803208f
 
 ---
 #<a name="vpn-gateway-documentation"></a>VPN 閘道文件
@@ -188,7 +188,7 @@ Azure VPN 閘道是虛擬私人網路 (VPN)，用途在傳送 Azure 虛擬網路
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p>VPN 閘道 REST API 參考</p>
+                        <p>VPN 閘道 REST API</p>
                     </div>
                 </div>
             </div>
@@ -207,6 +207,6 @@ Azure VPN 閘道是虛擬私人網路 (VPN)，用途在傳送 Azure 虛擬網路
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 

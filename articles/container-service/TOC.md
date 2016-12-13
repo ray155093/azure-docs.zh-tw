@@ -5,9 +5,7 @@
 ## [使用 Azure CLI 2.0 部署至 ACS 預覽](container-service-create-acs-cluster-cli.md)
 ## [與 ACS 叢集連接](container-service-connect.md)
 ## [調整 ACS 叢集的規模](container-service-scale.md)
-
 # 作法
-
 ## 以 DC/OS 管理
 ### [管理容器 - DC/OS Web UI](container-service-mesos-marathon-ui.md)
 ### [管理容器 - DC/OS REST API](container-service-mesos-marathon-rest.md)
@@ -21,16 +19,16 @@
 ### [透過 Sysdig 進行監視 (DC/OS)](container-service-monitoring-sysdig.md)
 ## [使用 Kubernetes 管理](container-service-kubernetes-walkthrough.md)
 ## [使用 Docker Swarm 管理](container-service-docker-swarm.md)
-
 # 參考
-## [REST API](/rest/api/compute/containerservices)
-
+## [PowerShell](/powershell/resourcemanager/azurerm.compute/v2.3.0/azurerm.compute)
+## [.NET](/dotnet/api/microsoft.azure.management.compute.models)
+## [REST](/rest/api/compute/containerservices)
 # 資源
 ## [區域可用性](https://azure.microsoft.com/regions/services/)
 ## [價格](https://azure.microsoft.com/pricing/details/container-service/)
 ## [服務更新](https://azure.microsoft.com/en-us/updates/?product=container-service&updatetype=&platform=)
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

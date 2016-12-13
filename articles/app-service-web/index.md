@@ -1,13 +1,13 @@
 ---
 layout: LandingPage
 translationtype: Human Translation
-ms.sourcegitcommit: 87b9d22ec066108adb282606305315919b901ea0
-ms.openlocfilehash: 38ae37f4892fb32422ca8d7880a7b38674f29610
+ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
+ms.openlocfilehash: d513f059bdf85bd727e9ec3e712a6a83698795bb
 
 ---
 # <a name="azure-web-apps-documentation"></a>Azure Web Apps 文件
 
-App Service Web Apps 是受到完整管理的計算平台，非常適合用來裝載網站和 Web 應用程式。 Microsoft Azure 的這項平台即服務 (PaaS) 產品可讓您專注於商務邏輯，而讓 Azure 負責處理用來執行及調整應用程式的基礎結構。
+App Service Web Apps 是受到完整管理的計算平台，非常適合用來裝載網站和 Web Apps。 Microsoft Azure 的這項平台即服務 (PaaS) 產品可讓您專注於商務邏輯，而讓 Azure 負責處理用來執行及調整應用程式的基礎結構。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -178,67 +178,46 @@ App Service Web Apps 是受到完整管理的計算平台，非常適合用來�
 
 ---
 
-## <a name="reference"></a>參考
-
+<h2>參考</h2>
 <ul class="panelContent cardsW">
     <li>
-        <a href="/cli/azure/appservice/web">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>Azure CLI</h3>
-                        <p>Web Apps Azure CLI 參考</p>
+                        <h3>命令列</h3>
+                        <p><a href="/cli/azure/">Azure CLI</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
     <li>
-        <a href="/java/api/">
-        <div class="cardSize">
+        <div class="cardSize"><p />
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>Java</h3>
-                        <p>Java API 參考</p>
+                        <h3>語言</h3>
+                        <p><a href="/dotnet/api">.NET</a></p>
+                        <p><a href="/java/api/">Java</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
-     <li>
-        <a href="/dotnet/api">
-        <div class="cardSize">
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>.NET</h3>
-                        <p>.NET 受管理的參考</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </a>
-    </li>
-     <li>
-        <a href="/rest/api/appservice">
-        <div class="cardSize">
+    <li>
+        <div class="cardSize"><p />
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
                         <h3>REST</h3>
-                        <p>Web Apps REST API 參考</p>
+                        <p><a href="/rest/api/appservice">REST API</a></p>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
     </li>
-    </ul>
-    
+</ul>
 
 <div class="downloadHolder">
     <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/app-service-web.pdf">
@@ -250,6 +229,6 @@ App Service Web Apps 是受到完整管理的計算平台，非常適合用來�
 
 
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO2-->
 
 
