@@ -29,7 +29,7 @@ Azure 自動化可讓使用者將執行於雲端環境中的手動、長時間�
         </a>
     </li>
     <li>
-        <a href="https://azure.microsoft.com/en-us/documentation/videos/index/?services=automation">
+        <a href="https://azure.microsoft.com/documentation/videos/index/?services=automation">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -139,7 +139,7 @@ Azure 自動化可讓使用者將執行於雲端環境中的手動、長時間�
         </div>
     </li>
     <li>
-        <div class="cardSize"><p />
+        <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
@@ -151,7 +151,7 @@ Azure 自動化可讓使用者將執行於雲端環境中的手動、長時間�
         </div>
     </li>
     <li>
-        <div class="cardSize"><p />
+        <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">

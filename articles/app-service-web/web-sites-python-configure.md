@@ -270,7 +270,7 @@ Python 3.4 的 `web.config` 範例：
             except: 
                 log('ptvsd.enable_attach failed\n')
         except ImportError:
-            log('error importing ptvsd.\n');
+            log('error importing ptvsd.\n')
 
     def get_wsgi_handler(handler_name):
         if not handler_name:

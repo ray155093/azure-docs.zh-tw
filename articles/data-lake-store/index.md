@@ -173,7 +173,7 @@ Azure Data Lake Store 是適用於巨量資料分析工作負載的超大規模�
         </div>
     </li>
     <li>
-        <div class="cardSize"><p />
+        <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
@@ -189,7 +189,7 @@ Azure Data Lake Store 是適用於巨量資料分析工作負載的超大規模�
         </div>
     </li>
     <li>
-        <div class="cardSize"><p />
+        <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">

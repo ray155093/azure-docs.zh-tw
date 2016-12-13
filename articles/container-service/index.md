@@ -66,7 +66,7 @@ Azure Container Service 可讓您輕鬆建立、設定及管理虛擬機器的�
         </div>
     </li>
     <li>
-        <div class="cardSize"><p />
+        <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
@@ -78,7 +78,7 @@ Azure Container Service 可讓您輕鬆建立、設定及管理虛擬機器的�
         </div>
     </li>
     <li>
-        <div class="cardSize"><p />
+        <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">

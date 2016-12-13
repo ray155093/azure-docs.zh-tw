@@ -29,7 +29,7 @@ Azure AD 網域服務 (DS) 提供受管理的網域服務，例如：加入網�
         </a>
     </li>
     <li>
-        <a href="https://azure.microsoft.com/en-us/documentation/videos/index/?services=active-directory">
+        <a href="https://azure.microsoft.com/documentation/videos/index/?services=active-directory">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">

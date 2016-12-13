@@ -12,7 +12,7 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 09/27/2016
+ms.date: 12/12/2016
 ms.author: sethm
 translationtype: Human Translation
 ms.sourcegitcommit: 9ace119de3676bcda45d524961ebea27ab093415
@@ -50,7 +50,7 @@ ms.openlocfilehash: b2cd9e5db765aa2ffbb00063ae193e39ffe9de4e
 2. 這會建立新的主控台應用程式專案。 依序按一下 [檔案] 功能表、[新增] 和 [專案]。 在 [新增專案] 對話方塊中，按一下 **Visual C#** (如果 **Visual C#** 未出現，請在 [其他語言] 中尋找)，選取 [主控台應用程式] 範本，並將它命名為 **Microsoft.ServiceBus.Samples**。 使用預設位置。 按一下 [確定]  以建立專案。
 3. 在 Program.cs 中，確定您的 `using` 陳述式如下所示：
    
-    ```
+    ```csharp
     using System;
     using System.Globalization;
     using System.IO;
@@ -62,7 +62,7 @@ ms.openlocfilehash: b2cd9e5db765aa2ffbb00063ae193e39ffe9de4e
 4. 如有需要，將程式的命名空間從 Visual Studio 預設值重新命名為 `Microsoft.ServiceBus.Samples`。
 5. 在 `Program` 類別中，新增下列全域變數：
    
-    ```
+    ```csharp
     static string serviceNamespace;
     static string baseAddress;
     static string token;
@@ -70,7 +70,7 @@ ms.openlocfilehash: b2cd9e5db765aa2ffbb00063ae193e39ffe9de4e
     ```
 6. 在 `Main()` 內，貼上下列程式碼：
    
-    ```
+    ```csharp
     Console.Write("Enter your service namespace: ");
     serviceNamespace = Console.ReadLine();
    
@@ -146,7 +146,7 @@ ms.openlocfilehash: b2cd9e5db765aa2ffbb00063ae193e39ffe9de4e
 ### <a name="create-a-getsastoken-method"></a>建立 GetSASToken() 方法
 在 `Program` 類別中，將下列程式碼貼在 `Main()` 方法之後︰
 
-```
+```csharp
 private static string GetSASToken(string SASKeyName, string SASKeyValue)
 {
   TimeSpan fromEpochStart = DateTime.UtcNow - new DateTime(1970, 1, 1);
@@ -165,7 +165,7 @@ private static string GetSASToken(string SASKeyName, string SASKeyValue)
 
 將下列程式碼直接貼在您在上一個步驟中新增的 `GetSASToken()` 程式碼之後︰
 
-```
+```csharp
 // Uses HTTP PUT to create the queue
 private static string CreateQueue(string queueName, string token)
 {
@@ -193,7 +193,7 @@ private static string CreateQueue(string queueName, string token)
 
 1. 將下列程式碼直接貼在您在上一個步驟中新增的 `CreateQueue()` 程式碼之後︰
    
-    ```
+    ```csharp
     // Sends a message to the "queueName" queue, given the name and the value to enqueue
     // Uses an HTTP POST request.
     private static void SendMessage(string queueName, string body)
@@ -208,7 +208,7 @@ private static string CreateQueue(string queueName, string token)
     ```
 2. 標準代理訊息屬性會放在 `BrokerProperties` HTTP 標頭中。 代理人屬性必須以 JSON 格式進行序列化。 若要指定 30 秒的 **TimeToLive** 值，並將訊息標籤 "M1" 新增至訊息，請將下列程式碼直接加在前一個範例所示的 `webClient.UploadData()` 呼叫前面：
    
-    ```
+    ```csharp
     // Add brokered message properties "TimeToLive" and "Label"
     webClient.Headers.Add("BrokerProperties", "{ \"TimeToLive\":30, \"Label\":\"M1\"}");
     ```
@@ -216,7 +216,7 @@ private static string CreateQueue(string queueName, string token)
     請注意，從前和以後都會新增代理訊息屬性。 因此，傳送要求指定的 API 版本必須支援屬於此要求的一部分的所有代理訊息屬性。 如果指定的 API 版本不支援代理訊息屬性，則會忽略該屬性。
 3. 自訂訊息屬性會定義為一組機碼值組。 每個自訂屬性都會儲存在自己的 TPPT 標頭中。 若要新增自訂屬性 "Priority" 和 "Customer"，請將下列程式碼直接加在前一個範例所示的 `webClient.UploadData()` 呼叫前面：
    
-    ```
+    ```csharp
     // Add custom properties "Priority" and "Customer".
     webClient.Headers.Add("Priority", "High");
     webClient.Headers.Add("Customer", "12345");
@@ -227,7 +227,7 @@ private static string CreateQueue(string queueName, string token)
 
 將下列程式碼直接貼在您在上一個步驟中新增的 `SendMessage()` 程式碼之後︰
 
-```
+```csharp
 // Receives and deletes the next message from the given resource (queue, topic, or subscription)
 // using the resourceName and an HTTP DELETE request
 private static string ReceiveAndDeleteMessage(string resourceName)
@@ -251,7 +251,7 @@ private static string ReceiveAndDeleteMessage(string resourceName)
 ### <a name="create-a-topic"></a>建立主題
 將下列程式碼直接貼在您在上一個步驟中新增的 `ReceiveAndDeleteMessage()` 程式碼之後︰
 
-```
+```csharp
 // Using an HTTP PUT request.
 private static string CreateTopic(string topicName)
 {
@@ -276,7 +276,7 @@ private static string CreateTopic(string topicName)
 ### <a name="create-a-subscription"></a>建立訂用帳戶
 下列程式碼會建立您在上一個步驟中建立之主題的訂用帳戶。 將下列程式碼直接加在 `CreateTopic()` 定義之後：
 
-```
+```csharp
 private static string CreateSubscription(string topicName, string subscriptionName)
 {
     var subscriptionAddress = baseAddress + topicName + "/Subscriptions/" + subscriptionName;
@@ -303,7 +303,7 @@ private static string CreateSubscription(string topicName, string subscriptionNa
 ### <a name="retrieve-an-atom-feed-with-the-specified-resources"></a>擷取含有指定資源的 Atom 摘要
 將下列程式碼直接加在您在上一個步驟中新增的 `CreateSubscription()` 方法之後︰
 
-```
+```csharp
 private static string GetResources(string resourceAddress)
 {
     string fullAddress = baseAddress + resourceAddress;
@@ -317,7 +317,7 @@ private static string GetResources(string resourceAddress)
 ### <a name="delete-messaging-entities"></a>刪除訊息實體
 將下列程式碼直接加在您在上一個步驟中新增的程式碼之後︰
 
-```
+```csharp
 private static string DeleteResource(string resourceName)
 {
     string fullAddress = baseAddress + resourceName;
@@ -333,7 +333,7 @@ private static string DeleteResource(string resourceName)
 ### <a name="format-the-atom-feed"></a>格式化 Atom 摘要
 `GetResources()` 方法包含呼叫 `FormatXml()` 方法，可將擷取的 Atom 摘要重新格式化為更容易讀取的內容。 以下是 `FormatXml()` 的定義；將下列程式碼直接加在您在上一節中新增的 `DeleteResource()` 程式碼之後︰
 
-```
+```csharp
 // Formats the XML string to be more human-readable; intended for display purposes
 private static string FormatXml(string inputXml)
 {
@@ -360,7 +360,7 @@ private static string FormatXml(string inputXml)
 ### <a name="example"></a>範例
 下列範例是完整的程式碼，其應在完成本教學課程中所有步驟之後顯示。
 
-```
+```csharp
 using System;
 using System.Globalization;
 using System.IO;

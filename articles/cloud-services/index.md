@@ -5,7 +5,7 @@ ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
 ms.openlocfilehash: 4985185ad8cb4a21e05d4668458e82411cd88ee0
 
 ---
-#<a name="cloud-services-documentation"></a>雲端服務文件
+# <a name="cloud-services-documentation"></a>雲端服務文件
 
 雲端服務是平台即服務 (PaaS) 實作的一個範例。 它能夠支援可調整、可靠且具有操作成本效益的應用程式。 使用雲端服務，您擁有虛擬化的優點，但您也可以控制虛擬機器以設定、修補和安裝軟體。  
 
@@ -89,8 +89,7 @@ ms.openlocfilehash: 4985185ad8cb4a21e05d4668458e82411cd88ee0
 <h2>參考</h2>
 <ul class="panelContent cardsW">
     <li>
-    <li>
-        <div class="cardSize"><p />
+        <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
@@ -103,7 +102,7 @@ ms.openlocfilehash: 4985185ad8cb4a21e05d4668458e82411cd88ee0
         </div>
     </li>
     <li>
-        <div class="cardSize"><p />
+        <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">

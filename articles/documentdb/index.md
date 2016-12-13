@@ -195,7 +195,7 @@ Azure DocumentDB 是完全受管理的 NoSQL 資料庫服務，其建置目的�
         </div>
     </li>
     <li>
-        <div class="cardSize"><p />
+        <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">

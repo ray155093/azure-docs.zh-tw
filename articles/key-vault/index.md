@@ -29,7 +29,7 @@ Azure 金鑰保存庫可協助保護雲端應用程式和服務所使用的密�
         </a>
     </li>
     <li>
-        <a href="https://azure.microsoft.com/en-us/documentation/videos/index/?services=key-vault">
+        <a href="https://azure.microsoft.com/documentation/videos/index/?services=key-vault">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -120,7 +120,7 @@ Azure 金鑰保存庫可協助保護雲端應用程式和服務所使用的密�
         </div>
     </li>
     <li>
-        <div class="cardSize"><p />
+        <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
@@ -135,7 +135,7 @@ Azure 金鑰保存庫可協助保護雲端應用程式和服務所使用的密�
         </div>
     </li>
     <li>
-        <div class="cardSize"><p />
+        <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">

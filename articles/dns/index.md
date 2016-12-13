@@ -88,7 +88,8 @@ Azure DNS (網域名稱系統) 是 DNS 網域的服務，採用 Microsoft Azure 
 
 <h2>參考</h2>
 <ul class="panelContent cardsW">
-<li><div class="cardSize">
+<li>
+    <div class="cardSize"><p />
         <div class="cardPadding">
             <div class="card">
                 <div class="cardText">
@@ -101,7 +102,7 @@ Azure DNS (網域名稱系統) 是 DNS 網域的服務，採用 Microsoft Azure 
     </div>
 </li>
 <li>
-    <div class="cardSize"><p />
+    <div class="cardSize">
         <div class="cardPadding">
             <div class="card">
                 <div class="cardText">
@@ -117,7 +118,7 @@ Azure DNS (網域名稱系統) 是 DNS 網域的服務，採用 Microsoft Azure 
     </div>
 </li>
 <li>
-    <div class="cardSize"><p />
+    <div class="cardSize">
         <div class="cardPadding">
             <div class="card">
                 <div class="cardText">

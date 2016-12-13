@@ -119,7 +119,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個 IoT 裝�
         </div>
     </li>
     <li>
-        <div class="cardSize"><p />
+        <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
@@ -136,7 +136,7 @@ Azure IoT 中樞是一項完全受管理的服務，可在數百萬個 IoT 裝�
         </div>
     </li>
     <li>
-        <div class="cardSize"><p />
+        <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">

@@ -29,7 +29,7 @@ Application Insights 是適用於 Web 開發人員的可延伸應用程式效能
         </a>
     </li>
     <li>
-        <a href="https://azure.microsoft.com/en-us/documentation/videos/index/?services=application-insights">
+        <a href="https://azure.microsoft.com/documentation/videos/index/?services=application-insights">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -131,7 +131,7 @@ Application Insights 是適用於 Web 開發人員的可延伸應用程式效能
                     <div class="cardText">
                         <h3>語言</h3>
                         <p><a href="/dotnet/api/microsoft.applicationinsights">.NET</a></p>
-                        <p><a href="http://dl.windowsazure.com/applicationinsights/javadoc/">Java</a></p>
+                        <p><a href="/java/api/com.microsoft.applicationinsights">Java</a></p>
                         <p><a href="https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md">JavaScript</a></p>
                         <p><a href="/azure/application-insights/app-insights-analytics-reference">分析參考</a></p>
                     </div>
@@ -140,7 +140,7 @@ Application Insights 是適用於 Web 開發人員的可延伸應用程式效能
         </div>
     </li>
     <li>
-        <div class="cardSize"><p />
+        <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">

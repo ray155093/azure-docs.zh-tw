@@ -29,7 +29,7 @@ Azure Data Lake Analytics 是一個全新的服務，其目的是為了讓巨量
         </a>
     </li>
     <li>
-        <a href="https://azure.microsoft.com/en-us/documentation/videos/index/?services=data-lake-analytics">
+        <a href="https://azure.microsoft.com/documentation/videos/index/?services=data-lake-analytics">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
@@ -191,7 +191,7 @@ Azure Data Lake Analytics 是一個全新的服務，其目的是為了讓巨量
         </div>
     </li>
     <li>
-        <div class="cardSize"><p />
+        <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
@@ -206,7 +206,7 @@ Azure Data Lake Analytics 是一個全新的服務，其目的是為了讓巨量
         </div>
     </li>
     <li>
-        <div class="cardSize"><p />
+        <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">

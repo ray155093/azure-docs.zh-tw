@@ -84,7 +84,7 @@ Azure Container Registry (預覽) 是用於裝載容器映像的私用登錄。 
         </div>
     </li>
     <li>
-        <div class="cardSize"><p />
+        <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
