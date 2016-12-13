@@ -120,7 +120,7 @@ Azure 虛擬機器 (VM) 是由 Azure 所提供的隨選且可調整的數種運�
         </div>
     </li>
     <li>
-        <div class="cardSize"><p />
+        <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
@@ -135,7 +135,7 @@ Azure 虛擬機器 (VM) 是由 Azure 所提供的隨選且可調整的數種運�
         </div>
     </li>
     <li>
-        <div class="cardSize"><p />
+        <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">

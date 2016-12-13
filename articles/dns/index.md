@@ -5,7 +5,7 @@ ms.sourcegitcommit: 3752a677351518195773a86c3824078a5aff6d03
 ms.openlocfilehash: e32393348fc26fa4cb0a5221695a9bf8bb4d36e1
 
 ---
-#<a name="dns-documentation"></a>DNS 文件
+# <a name="dns-documentation"></a>DNS 文件
 
 Azure DNS (網域名稱系統) 是 DNS 網域的服務，採用 Microsoft Azure 基礎結構提供名稱解析。  只要將您的網域裝載於 Azure，就可以像管理其他 Azure 服務一樣，使用相同的認證、API、工具和計費方式來管理 DNS 記錄。
 
@@ -89,7 +89,7 @@ Azure DNS (網域名稱系統) 是 DNS 網域的服務，採用 Microsoft Azure 
 <h2>參考</h2>
 <ul class="panelContent cardsW">
 <li>
-    <div class="cardSize"><p />
+    <div class="cardSize">
         <div class="cardPadding">
             <div class="card">
                 <div class="cardText">
