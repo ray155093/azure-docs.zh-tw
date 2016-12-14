@@ -14,7 +14,7 @@ ms.tgt_pltfrm: na
 ms.devlang: python
 ms.topic: article
 ms.date: 07/07/2016
-ms.author: huguesv
+ms.author: huvalo
 translationtype: Human Translation
 ms.sourcegitcommit: 154d2cd9b7f4ea51d3fd4c1995b67a25816b28a2
 ms.openlocfilehash: 9abb70b1e0442071325fdc93a503478ba8d10b0f
