@@ -22,11 +22,11 @@
 
    DocumentDB 帳戶的預設一致性會設定為 [工作階段] 。  您可以藉由按一下資源功能表中的 [預設一致性]  ，調整預設一致性。 若要深入了解 DocumentDB 所提供的一致性層級，請參閱 [DocumentDB 中的一致性層級](../articles/documentdb/documentdb-consistency-levels.md)。
 
-[作法：建立 DocumentDB 帳戶]: #Howto
-[後續步驟]: #NextSteps
+[How to: Create a DocumentDB account]: #Howto
+[Next steps]: #NextSteps
 [documentdb-manage]:../articles/documentdb/documentdb-manage.md
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

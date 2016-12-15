@@ -60,9 +60,9 @@ JSON 設定檔包含要載入的模組清單以及模組之間的連結。
 每個模組都必須指定：
 
 * **名稱**：模組的唯一名稱。
-* **載入器**︰知道如何載入所需模組的載入器。  載入器是一個用來載入不同模組類型的擴充點。 我們提供可與以原生 C、Node.js、Java 和 .Net 撰寫的模組搭配使用的載入器。 Hello World 範例只會使用「原生」載入器，因為此範例中的所有模組都是以 C 撰寫的動態程式庫。如需使用以不同語言撰寫的模組的詳細資訊，請參閱[節點](https://github.com/Azure/azure-iot-gateway-sdk/blob/develop/samples/nodejs_simple_sample/)、[Java](https://github.com/Azure/azure-iot-gateway-sdk/tree/develop/samples/java_sample) 或 [.Net](https://github.com/Azure/azure-iot-gateway-sdk/tree/develop/samples/dotnet_binding_sample) 範例。
+* **載入器**︰知道如何載入所需模組的載入器。  載入器是一個用來載入不同模組類型的擴充點。 我們提供可與以原生 C、Node.js、Java 和 .NET 撰寫的模組搭配使用的載入器。 Hello World 範例只會使用「原生」載入器，因為此範例中的所有模組都是以 C 撰寫的動態程式庫。如需使用以不同語言撰寫的模組的詳細資訊，請參閱 [Node.js](https://github.com/Azure/azure-iot-gateway-sdk/blob/develop/samples/nodejs_simple_sample/)、[Java](https://github.com/Azure/azure-iot-gateway-sdk/tree/develop/samples/java_sample) 或 [.NET](https://github.com/Azure/azure-iot-gateway-sdk/tree/develop/samples/dotnet_binding_sample) 範例。
     * **名稱**︰用來載入模組的載入器名稱。  
-    * **進入點**：包含模組之程式庫的路徑。 在 Linux 上，這是 .so 檔案，在 Windows 上，這是 .dll 檔案。 請注意，此進入點是要使用的載入器類型特定的。 例如，Node.js 載入器的進入點是 .js 檔案、Java 載入器的進入點是類別路徑 + 類別名稱，而 .Net 載入器的進入點是組件名稱 + 類別名稱。
+    * **進入點**：包含模組之程式庫的路徑。 在 Linux 上，這是 .so 檔案，在 Windows 上，這是 .dll 檔案。 請注意，此進入點是要使用的載入器類型特定的。 例如，Node.js 載入器的進入點是 .js 檔案、Java 載入器的進入點是類別路徑 + 類別名稱，而 .NET 載入器的進入點是組件名稱 + 類別名稱。
 
 * **args**：模組所需的任何組態資訊。
 
@@ -229,6 +229,6 @@ static void Logger_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messageHan
 [lnk-gateway-sdk]: https://github.com/Azure/azure-iot-gateway-sdk/
 [lnk-gateway-simulated]: ../articles/iot-hub/iot-hub-linux-gateway-sdk-simulated-device.md
 
-<!--HONumber=Nov16_HO4-->
+<!--HONumber=Dec16_HO1-->
 
 

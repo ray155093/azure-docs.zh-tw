@@ -19,7 +19,7 @@
 5. 成功建立 IoT 中樞時，請按一下 Azure 入口網站中您的 IoT 中樞的新圖格，以開啟新 IoT 中樞的刀鋒視窗。 請記下**主機名稱**，然後按一下 [共用存取原則]。
    
     ![新增 IoT 中樞刀鋒視窗][4]
-6. 在 [共用存取原則] 刀鋒視窗中，按一下 [iothubowner] 原則，然後複製並記下 [iothubowner] 刀鋒視窗中的連接字串。 如需詳細資訊，請參閱《Azure IoT 中樞開發人員指南》中的[存取控制][lnk-access-control]。
+6. 在 [共用存取原則] 刀鋒視窗中，按一下 [iothubowner] 原則，然後複製並記下 [iothubowner] 刀鋒視窗中的 IoT 中樞連接字串。 如需詳細資訊，請參閱《IoT 中樞開發人員指南》中的[存取控制][lnk-access-control]。
    
     ![共用存取原則刀鋒視窗][5]
 
@@ -37,6 +37,6 @@
 [lnk-access-control]: ../articles/iot-hub/iot-hub-devguide-security.md
 
 
-<!--HONumber=Nov16_HO5-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -15,12 +15,12 @@ ms.workload: identity
 ms.date: 10/31/2016
 ms.author: markvi
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 96784e006b5986cbc6dfd4f264b22bd1d1bf208d
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: e082470c8ad3ee02c528a4ca6e3326e5be4752a3
 
 
 ---
-# <a name="azure-active-directory-reporting-preview"></a>Azure Active Directory 報告 - 預覽版
+# <a name="azure-active-directory-reporting---preview"></a>Azure Active Directory 報告 - 預覽版
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](active-directory-reporting-azure-portal.md)
 > * [Azure 傳統入口網站](active-directory-reporting-guide.md)
@@ -38,8 +38,8 @@ ms.openlocfilehash: 96784e006b5986cbc6dfd4f264b22bd1d1bf208d
 
 視您所尋找的資料範圍而定，按一下 [Azure 入口網站](https://portal.azure.com)的服務清單中的 [使用者和群組] 或 [企業應用程式]，即可存取這些報告。
 
-## <a name="signin-activities"></a>登入活動
-### <a name="user-signin-activities"></a>使用者登入活動
+## <a name="sign-in-activities"></a>登入活動
+### <a name="user-sign-in-activities"></a>使用者登入活動
 利用使用者登入報告所提供的資訊，您可以找到下列問題的解答︰
 
 * 使用者的登入模式為何？
@@ -97,7 +97,7 @@ ms.openlocfilehash: 96784e006b5986cbc6dfd4f264b22bd1d1bf208d
 
 ![報告](./media/active-directory-reporting-azure-portal/column_chooser.png "Reporting")
 
-### <a name="filtering-signins"></a>篩選登入
+### <a name="filtering-sign-ins"></a>篩選登入
 您可以篩選登入，以使用下列欄位限制顯示的資料量：
 
 * 日期和時間 
@@ -203,6 +203,6 @@ Azure 入口網站中有三個主要類別可稽核相關活動︰
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

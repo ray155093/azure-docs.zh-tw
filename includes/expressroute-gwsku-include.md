@@ -6,11 +6,8 @@ ExpressRoute 虛擬網路閘道可以使用下列 SKU：
 * HighPerformance
 * UltraPerformance
 
-> [!IMPORTANT]
-> ExpressRoute UltraPerformance 閘道目前已在美國中西部與美國中部地區提供使用，且可以連結到位於芝加哥和達拉斯的 ExpressRoute 循環。 在未來幾週內，會有更多 Azure 區域和 ExpressRoute 位置提供使用。 
-> 
-> 
 
-<!--HONumber=Oct16_HO2-->
+
+<!--HONumber=Dec16_HO1-->
 
 

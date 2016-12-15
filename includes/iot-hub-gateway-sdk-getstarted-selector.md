@@ -4,7 +4,7 @@
 > 
 > 
 
-本文提供 [Hello World 範例程式碼][lnk-helloworld-sample]的詳細逐步解說，來說明 [Azure IoT 閘道 SDK][lnk-gateway-sdk] 架構的基本元件。 此範例使用 IoT 中樞閘道 SDK，建置每五秒即將 "hello world" 訊息記錄到檔案的簡單閘道。
+本文提供 [Hello World 範例程式碼][lnk-helloworld-sample]的詳細逐步解說，來說明 [Azure IoT 閘道 SDK][lnk-gateway-sdk] 架構的基本元件。 此範例使用 Azure IoT 閘道 SDK，建置每五秒即將 "hello world" 訊息記錄到檔案的簡單閘道。
 
 本逐步解說涵蓋下列項目：
 
@@ -72,6 +72,6 @@ Logger 模組只會取用來自訊息代理程式的訊息，永遠不會對訊�
 [lnk-helloworld-sample]: https://github.com/Azure/azure-iot-gateway-sdk/tree/master/samples/hello_world
 [lnk-gateway-sdk]: https://github.com/Azure/azure-iot-gateway-sdk
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO1-->
 
 

@@ -15,12 +15,12 @@ ms.topic: get-started-article
 ms.date: 10/17/2016
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: d7d909184eb129e46ffc350505101e68c1426c46
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: c6fe00b72d95a3eb40d91f6f7989b7163518c46f
 
 
 ---
-# <a name="getting-started-with-azure-multifactor-authentication-in-the-cloud"></a>開始在雲端中使用 Azure Multi-Factor Authentication
+# <a name="getting-started-with-azure-multi-factor-authentication-in-the-cloud"></a>開始在雲端中使用 Azure Multi-Factor Authentication
 本文將帶領您逐步了解如何在雲端中開始使用 Azure Multi-Factor Authentication。
 
 > [!NOTE]
@@ -41,12 +41,12 @@ ms.openlocfilehash: d7d909184eb129e46ffc350505101e68c1426c46
 > 
 > 
 
-## <a name="turn-on-twostep-verification-for-users"></a>對使用者開啟雙步驟驗證
+## <a name="turn-on-two-step-verification-for-users"></a>對使用者開啟雙步驟驗證
 若要開始對使用者要求雙步驟驗證，請將使用者的狀態從停用變更為啟用。  如需使用者狀態的詳細資訊，請參閱 [Azure Multi-Factor Authentication 中的使用者狀態](multi-factor-authentication-get-started-user-states.md)
 
 您可以使用下列程序為使用者啟用 MFA。
 
-### <a name="to-turn-on-multifactor-authentication"></a>開啟 Multi-Factor Authentication
+### <a name="to-turn-on-multi-factor-authentication"></a>開啟 Multi-Factor Authentication
 1. 以系統管理員身分登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
 2. 在左側按一下 [Active Directory] 。
 3. 在 [目錄] 下方，針對要啟用的使用者選取目錄。
@@ -66,8 +66,8 @@ ms.openlocfilehash: d7d909184eb129e46ffc350505101e68c1426c46
 
 在您啟用您的使用者後，請透過電子郵件通知他們。 下次他們嘗試登入時，系統會要求他們針對雙步驟驗證註冊帳戶。 開始使用雙步驟驗證後，他們還需要設定應用程式密碼，以避免遭到鎖定而無法使用非瀏覽器應用程式。
 
-## <a name="use-powershell-to-automate-turning-on-twostep-verification"></a>使用 PowerShell 自動開啟雙步驟驗證
-若要使用 [Azure AD PowerShell](../powershell-install-configure.md) 變更[狀態](multi-factor-authentication-whats-next.md)，您可以使用下列程式碼。  您可以將 `$st.State` 變更為下列其中一個狀態：
+## <a name="use-powershell-to-automate-turning-on-two-step-verification"></a>使用 PowerShell 自動開啟雙步驟驗證
+若要使用 [Azure AD PowerShell](/powershell/azureps-cmdlets-docs) 變更[狀態](multi-factor-authentication-whats-next.md)，您可以使用下列程式碼。  您可以將 `$st.State` 變更為下列其中一個狀態：
 
 * 已啟用
 * 已強制
@@ -107,6 +107,6 @@ ms.openlocfilehash: d7d909184eb129e46ffc350505101e68c1426c46
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

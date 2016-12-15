@@ -16,8 +16,8 @@ ms.topic: get-started-article
 ms.date: 10/05/2016
 ms.author: asteen
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 77ca34a56a827e8a69ab9a2b60d14cc7c7a71bfc
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 93e02bc36c0502623316d6b896dd802ac8bdc284
 
 
 ---
@@ -126,7 +126,7 @@ ms.openlocfilehash: 77ca34a56a827e8a69ab9a2b60d14cc7c7a71bfc
 ### <a name="step-3-reset-your-azure-ad-password-as-a-user"></a>步驟 3：以使用者的身分重設您的 Azure AD 密碼
 您已經設定使用者重設原則，並指定使用者的連絡人詳細資料，這位使用者可以執行自助式密碼重設。
 
-#### <a name="to-perform-a-selfservice-password-reset"></a>執行自助式密碼重設
+#### <a name="to-perform-a-self-service-password-reset"></a>執行自助式密碼重設
 1. 如果您移至像是 [**portal.microsoftonline.com**](http://portal.microsoftonline.com) 的網站，您會看到如下的登入畫面。  按一下 [ **無法存取您的帳戶？** ] 連結，以測試密碼重設 UI。
    
    ![][011]
@@ -365,6 +365,6 @@ ms.openlocfilehash: 77ca34a56a827e8a69ab9a2b60d14cc7c7a71bfc
 
 
 
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 

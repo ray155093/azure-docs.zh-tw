@@ -15,18 +15,18 @@ ms.topic: get-started-article
 ms.date: 10/14/2016
 ms.author: kgremban
 translationtype: Human Translation
-ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
-ms.openlocfilehash: 20aefd2c94bca03653f11a91c5ade173cb6da9bf
+ms.sourcegitcommit: dcda8b30adde930ab373a087d6955b900365c4cc
+ms.openlocfilehash: 0a9ab0aca1a77245f360d0d8976aa9b8f59f15a0
 
 
 ---
-# <a name="securing-cloud-resources-with-azure-multifactor-authentication-and-ad-fs"></a>使用 Azure Multi-Factor Authentication 與 AD FS 保護雲端資源
+# <a name="securing-cloud-resources-with-azure-multi-factor-authentication-and-ad-fs"></a>使用 Azure Multi-Factor Authentication 與 AD FS 保護雲端資源
 如果您的組織與 Azure Active Directory 同盟，請使用 Azure Multi-factor Authentication 或 Active Directory Federation Services 來保護 Azure AD 存取的資源。 使用下列程序可利用 Azure Multi-Factor Authentication 或 Active Directory Federation Services 來保護 Azure Active Directory 資源。
 
 ## <a name="secure-azure-ad-resources-using-ad-fs"></a>使用 AD FS 保護 Azure AD 資源
 若要保護雲端資源，請先為使用者啟用帳戶，然後設定宣告規則。 遵循此程序來逐步執行各個步驟︰
 
-1. 使用[為使用者開啟 Multi-Factor Authentication](multi-factor-authentication-get-started-cloud.md#turn-on-multi-factor-authentication-for-users) 中概述的步驟來啟用帳戶。
+1. 使用[為使用者開啟 Multi-Factor Authentication](multi-factor-authentication-get-started-cloud.md#turn-on-two-step-verification-for-users) 中概述的步驟來啟用帳戶。
 2. 啟動 AD FS 管理主控台。
    ![雲端](./media/multi-factor-authentication-get-started-adfs-cloud/adfs1.png)
 3. 瀏覽至 [信賴憑證者信任]，並以滑鼠右鍵按一下 [信賴憑證者信任]。 選取 [編輯宣告規則...]
@@ -34,13 +34,13 @@ ms.openlocfilehash: 20aefd2c94bca03653f11a91c5ade173cb6da9bf
 5. 從下拉式清單中，選取 [使用自訂規則傳送宣告] 並按 [下一步]。
 6. 輸入宣告規則的名稱。
 7. 在自訂規則之下：新增下列文字：
-   
+
     ```
     => issue(Type = "http://schemas.microsoft.com/claims/authnmethodsreferences", Value = "http://schemas.microsoft.com/claims/multipleauthn");
     ```
-   
+
     對應宣告：
-   
+
     ```
     <saml:Attribute AttributeName="authnmethodsreferences" AttributeNamespace="http://schemas.microsoft.com/claims">
     <saml:AttributeValue>http://schemas.microsoft.com/claims/multipleauthn</saml:AttributeValue>
@@ -74,7 +74,7 @@ ms.openlocfilehash: 20aefd2c94bca03653f11a91c5ade173cb6da9bf
 10. 在 [新增轉換宣告規則精靈] 上，從下拉式清單選取 [使用自訂規則傳送宣告]，然後按 [下一步]。
 11. 在 [宣告規則名稱] 下的方塊中：輸入「保持使用者登入」。
 12. 在 [自訂規則] 方塊中輸入：
-    
+
         c:[Type == "http://schemas.microsoft.com/2014/03/psso"]
             => issue(claim = c);
     ![雲端](./media/multi-factor-authentication-get-started-adfs-cloud/trustedip5.png)
@@ -83,7 +83,7 @@ ms.openlocfilehash: 20aefd2c94bca03653f11a91c5ade173cb6da9bf
 15. 按一下 [ **確定**]。
 16. 關閉 [AD FS 管理]。
 
-### <a name="configure-azure-multifactor-authentication-trusted-ips-with-federated-users"></a>搭配同盟使用者設定 Azure Multi-Factor Authentication 信任的 IP
+### <a name="configure-azure-multi-factor-authentication-trusted-ips-with-federated-users"></a>搭配同盟使用者設定 Azure Multi-Factor Authentication 信任的 IP
 既然已經有宣告，我們可以開始設定信任的 IP。
 
 1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
@@ -100,7 +100,6 @@ ms.openlocfilehash: 20aefd2c94bca03653f11a91c5ade173cb6da9bf
 
 
 
-
-<!--HONumber=Nov16_HO2-->
+<!--HONumber=Dec16_HO2-->
 
 
