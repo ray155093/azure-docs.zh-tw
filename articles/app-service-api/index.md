@@ -121,8 +121,6 @@ API Apps 是 Azure App Service 提供的四個應用程式類型之一。 Azure 
     </li>     
 </ul>
 
----
-
 <div class="downloadHolder">
     <a href="https://opbuildstorageprod.blob.core.windows.net/output-pdf-files/en-us/Azure.azure-documents/live/app-service-api.pdf">
         <div class="img"></div>
