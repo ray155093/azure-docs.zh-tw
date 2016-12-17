@@ -12,7 +12,7 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 11/16/2016
+ms.date: 12/16/2016
 ms.author: amsriva
 translationtype: Human Translation
 ms.sourcegitcommit: 3a8e5583f213c6d35f8e41dd31fe2ccad7389977
@@ -27,6 +27,7 @@ ms.openlocfilehash: a3c0aaae014619fb3f4a2fffa6063a473da691e1
 後端伺服器必須回應應用程式閘道探查， [健全狀態探查概觀](application-gateway-probe-overview.md) 一節中會有所說明。 應用程式閘道健全狀態探查僅限使用 HTTP/HTTPS，這表示每一部後端伺服器都必須回應 HTTP 探查，應用程式閘道才能將 WebSocket 流量路由傳送至伺服器。
 
 ## <a name="listener-configuration-element"></a>接聽程式組態元素
+
 現有的 HTTPListener 可用來支援 WebSocket。 以下是來自範例範本檔案中 HttpListeners 元素的程式碼片段。 您必須同時擁有 HTTP 和 HTTPS 接聽程式才能支援 WebSocket 和保護 WebSocket 流量。 同樣地，您可以使用[入口網站](application-gateway-create-gateway-portal.md)或 [PowerShell](application-gateway-create-gateway-arm.md) 在連接埠 80/443 上建立具有接聽程式的應用程式閘道，才能支援 WebSocket 流量。
 
 ```json
@@ -62,6 +63,7 @@ ms.openlocfilehash: a3c0aaae014619fb3f4a2fffa6063a473da691e1
 ```
 
 ## <a name="backendaddresspool-backendhttpsetting-and-routing-rule-configuration"></a>BackendAddressPool、BackendHttpSetting 和路由規則組態
+
 若後端集區具有已啟用 WebSocket 的伺服器，應以 BackendAddressPool 加以定義。 BackendHttpSetting 只應該使用後端連接埠 80/443 進行定義。 Cookie 型同質性和 requestTimeouts 的屬性與 WebSocket 流量無關。 無須在路由規則中進行任何變更。 應該繼續使用路由規則 'Basic'，以將適當的接聽程式繫結到對應的後端位址集區。 
 
 ```json
@@ -99,8 +101,10 @@ ms.openlocfilehash: a3c0aaae014619fb3f4a2fffa6063a473da691e1
 ```
 
 ## <a name="websocket-enabled-backend"></a>已啟用 WebSocket 的後端
+
 後端必須在設定的連接埠 (通常是 80/443) 上執行 HTTP/HTTPS Web 伺服器，WebSocket 才能運作。 此需求是因為 WebSocket 通訊協定要求初始交握必須是 HTTP，並以升級為 WebSocket 通訊協定做為標頭欄位。
 
+```
     GET /chat HTTP/1.1
     Host: server.example.com
     Upgrade: websocket
@@ -109,10 +113,12 @@ ms.openlocfilehash: a3c0aaae014619fb3f4a2fffa6063a473da691e1
     Origin: http://example.com
     Sec-WebSocket-Protocol: chat, superchat
     Sec-WebSocket-Version: 13
+```
 
 另一個原因是該應用程式閘道後端健全狀態探查只支援 HTTP/HTTPS 通訊協定。 如果後端伺服器未回應 HTTP/HTTPS 探查，就會將它移出後端集區，而且包括 WebSocket 要求在內的要求都將無法到達此後端。
 
 ## <a name="next-steps"></a>後續步驟
+
 在了解 WebSocket 支援之後，請移至 [建立應用程式閘道](application-gateway-create-gateway.md) 以開始使用已啟用 WebSocket 的 Web 應用程式。
 
 
