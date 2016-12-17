@@ -1,12 +1,12 @@
 ---
-title: Azure AD Connect 同步處理服務功能與組態 | Microsoft Docs
-description: 描述 Azure AD Connect 同步處理服務的服務端功能。
+title: "Azure AD Connect 同步服務功能與組態 | Microsoft Docs"
+description: "描述 Azure AD Connect 同步處理服務的服務端功能。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: andkjell
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 213aab20-0a61-434a-9545-c4637628da81
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/22/2016
 ms.author: andkjell;markvi
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 70f6596ec85f8662efecd99679fde6b7e9a29aae
+
 
 ---
 # <a name="azure-ad-connect-sync-service-features"></a>Azure AD Connect 同步處理服務功能
@@ -104,6 +108,9 @@ Set-MsolDirSyncFeature -Feature SynchronizeUpnForManagedUsers -Enable $true
 * [Azure AD Connect 同步處理](active-directory-aadconnectsync-whatis.md)
 * [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: Azure AD Connect Health 操作。
-description: 本文說明可以在您部署 Azure AD Connect Health 之後執行的其他操作。
+title: "Azure AD Connect Health 操作。"
+description: "本文說明可以在您部署 Azure AD Connect Health 之後執行的其他操作。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: karavar
 manager: samueld
 editor: curtand
-
+ms.assetid: 86cc3840-60fb-43f9-8b2a-8598a9df5c94
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/18/2016
 ms.author: vakarand
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: cc78c6059ff96608c181c8d3d9f8dc2df6a5cd8e
+
 
 ---
 # <a name="azure-ad-connect-health-operations"></a>Azure AD Connect Health 操作
@@ -106,10 +110,10 @@ Azure AD Connect 支援兩個層級的管理存取：
 如果使用者有權存取目錄或服務執行個體層級，則會被授與權限。
 
 ### <a name="how-to-allow-users-or-groups-access-to-azure-ad-connect-health"></a>如何允許使用者或群組存取 Azure AD Connect Health
-#### <a name="steps-1:-select-the-appropriate-access-scope"></a>步驟 1：選取適當的存取範圍
+#### <a name="steps-1-select-the-appropriate-access-scope"></a>步驟 1：選取適當的存取範圍
 若要允許 Azure AD Connect Health 內的*所有服務執行個體*層級使用者存取，請開啟 Azure AD Connect Health 中的主要刀鋒視窗。<br>
 
-#### <a name="step-2:-add-users,-groups-and-assign-roles"></a>步驟 2：新增使用者、群組及指派角色
+#### <a name="step-2-add-users-groups-and-assign-roles"></a>步驟 2：新增使用者、群組及指派角色
 1. 按一下 [設定] 區段中的 [使用者] 部分。<br>
    ![Azure AD Connect Health RBAC 主要刀鋒視窗](./media/active-directory-aadconnect-health/RBAC_main_blade.png)
 2. 選取 [新增]
@@ -129,7 +133,7 @@ Azure AD Connect 支援兩個層級的管理存取：
 > 
 > 
 
-#### <a name="step-3:-share-the-blade-location-with-users-or-groups"></a>步驟 3：與使用者或群組共用刀鋒視窗位置
+#### <a name="step-3-share-the-blade-location-with-users-or-groups"></a>步驟 3：與使用者或群組共用刀鋒視窗位置
 1. 指派權限之後，使用者可以前往 [http://aka.ms/aadconnecthealth](http://aka.ms/aadconnecthealth)以存取 Azure AD Connect Health。
 2. 在刀鋒視窗上，使用者可以釘選刀鋒視窗或其他組件到儀表板，只要按一下 [釘選到儀表板] 即可<br>
    ![Azure AD Connect Health RBAC 釘選刀鋒視窗](./media/active-directory-aadconnect-health/RBAC_pin_blade.png)
@@ -139,7 +143,7 @@ Azure AD Connect 支援兩個層級的管理存取：
 > 
 > 
 
-### <a name="remove-users-and/or-groups"></a>移除使用者和/或群組
+### <a name="remove-users-andor-groups"></a>移除使用者和/或群組
 您可以移除新增到 Azure AD Connect Health 角色型存取控制組件的使用者或群組，方法是以滑鼠右鍵按一下並選取 [移除]。<br>
 ![Azure AD Connect Health RBAC 移除使用者](./media/active-directory-aadconnect-health/RBAC_remove.png)
 
@@ -154,6 +158,9 @@ Azure AD Connect 支援兩個層級的管理存取：
 * [Azure AD Connect Health 常見問題集](active-directory-aadconnect-health-faq.md)
 * [Azure AD Connect Health 版本歷程記錄](active-directory-aadconnect-health-version-history.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

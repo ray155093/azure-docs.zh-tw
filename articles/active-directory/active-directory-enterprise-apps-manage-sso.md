@@ -1,12 +1,12 @@
 ---
-title: 在 Azure Active Directory 預覽版中管理企業應用程式的單一登入 | Microsoft Docs
-description: 了解如何使用 Azure Active Directory 管理企業應用程式的單一登入
+title: "在 Azure Active Directory 預覽版中管理企業應用程式的單一登入 |Microsoft Docs"
+description: "了解如何使用 Azure Active Directory 管理企業應用程式的單一登入"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: asmalser
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: bcc954d3-ddbe-4ec2-96cc-3df996cbc899
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -14,9 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 09/30/2016
 ms.author: asmalser
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 0d523630e39d2dbeba2b3c11e19fc775032b23e7
+
 
 ---
-# <a name="preview:-managing-single-sign-on-for-enterprise-apps-in-the-new-azure-portal"></a>預覽︰在新的 Azure 入口網站中管理企業應用程式的單一登入
+# <a name="preview-managing-single-sign-on-for-enterprise-apps-in-the-new-azure-portal"></a>預覽︰在新的 Azure 入口網站中管理企業應用程式的單一登入
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](active-directory-enterprise-apps-manage-sso.md)
 > * [Azure 傳統入口網站](active-directory-sso-integrate-saas-apps.md)
@@ -41,7 +45,7 @@ ms.author: asmalser
 ## <a name="single-sign-on-modes"></a>單一登入模式
 [單一登入] 刀鋒視窗一開始是 [模式] 功能表，可在此設定單一登入模式。 可用的選項包括：
 
-* **SAML 型登入** - 如果應用程式支援使用 SAML 2.0 通訊協定的 Azure Active Directory 完整同盟單一登入，便可使用此選項。 此
+* **SAML 型登入** - 如果應用程式支援使用 SAML 2.0 通訊協定的 Azure Active Directory 完整同盟單一登入，便可使用此選項。
 * **密碼型登入** - 如果 Azure AD 支援此應用程式的密碼表單填入，便可使用此選項。
 * **連結型登入** - 之前稱為「現有單一登入」，此選項可讓管理員將此應用程式的連結放在其使用者的 Azure AD 存取面板或 Office 365 應用程式啟動程式中。
 
@@ -100,6 +104,6 @@ ms.author: asmalser
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: Azure Active Directory 混合式身分識別設計考量 - 判斷混合式身分識別管理工作| Microsoft Docs
-description: 透過條件式存取控制，Azure Active Directory 會在驗證使用者時以及允許存取應用程式之前，檢查您挑選的特定條件。 一旦符合這些條件，就會驗證使用者並允許存取應用程式。
-documentationcenter: ''
+title: "Azure Active Directory 混合式身分識別設計考量 - 判斷混合式身分識別管理工作|Microsoft Docs"
+description: "透過條件式存取控制，Azure Active Directory 會在驗證使用者時以及允許存取應用程式之前，檢查您挑選的特定條件。 一旦符合這些條件，就會驗證使用者並允許存取應用程式。"
+documentationcenter: 
 services: active-directory
 author: billmath
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 65f80aea-0426-4072-83e1-faf5b76df034
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 08/08/2016
 ms.author: billmath
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: c290266a09bf6f75ab7eb9247120b921c7f841fb
+
 
 ---
 # <a name="plan-for-hybrid-identity-lifecycle"></a>規劃混合式身分識別生命週期
@@ -53,9 +57,9 @@ ms.author: billmath
 ## <a name="synchronization-management"></a>同步處理管理
 身分識別管理員的目標之一，是要能夠啟用所有身分識別提供者，並保持其同步處理狀態。 您可以根據授權的主要身分識別提供者，保持資料的同步處理狀態。 在混合式身分識別案例中，您可以透過同步處理的管理模型，在內部部署伺服器中管理所有的使用者和裝置身分識別，並將帳戶同步處理至雲端 (和選擇性地同步處理密碼)。 使用者在內部部署中輸入的密碼與雲端相同，且在登入時，身分識別解決方案會驗證密碼。 此模型會使用目錄同步處理工具。
 
-![](./media/hybrid-id-design-considerations/Directory_synchronization.png) 要適當設計混合式身分識別解決方案的同步處理，請確實回答下列問題：• 適用於混合式身分識別解決方案的同步處理解決方案為何？
-• 可用的單一登入功能為何？
-• B2B 和 B2C 之間的身分識別同盟選項為何？
+![](./media/hybrid-id-design-considerations/Directory_synchronization.png) 若要適當設計混合式身分識別解決方案的同步處理，請確實回答下列問題：•    有哪些可供混合式身分識別解決方案使用的同步處理解決方案？
+•    有哪些可用的單一登入功能？
+•    B2B 與 B2C 之間有哪些身分識別同盟選項？
 
 ## <a name="next-steps"></a>後續步驟
 [判斷混合式身分識別管理採用策略](active-directory-hybrid-identity-design-considerations-lifecycle-adoption-strategy.md)
@@ -63,6 +67,9 @@ ms.author: billmath
 ## <a name="see-also"></a>另請參閱
 [設計考量概觀](active-directory-hybrid-identity-design-considerations-overview.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

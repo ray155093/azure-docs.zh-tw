@@ -1,12 +1,12 @@
 ---
-title: How to Deploy the Access Panel Extension for Internet Explorer using Group Policy | Microsoft Docs
-description: How to use group policy to deploy the Internet Explorer add-on for the My Apps portal.
+title: "如何使用群組原則部署 Internet Explorer 的存取面板延伸模組 | Microsoft Docs"
+description: "如何使用群組原則針對我的 app 入口網站部署 Internet Explorer 附加元件。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: MarkusVi
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 7c2d49c8-5be0-4e7e-abac-332f9dfda736
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
@@ -14,152 +14,159 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 10/31/2016
 ms.author: markvi
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: b312e1a37b15e170847fae02e40bae26103b6d6d
+
 
 ---
-# <a name="how-to-deploy-the-access-panel-extension-for-internet-explorer-using-group-policy"></a>How to Deploy the Access Panel Extension for Internet Explorer using Group Policy
-This tutorial shows how to use group policy to remotely install the Access Panel extension for Internet Explorer on your users' machines. This extension is required for Internet Explorer users who need to sign into apps that are configured using [password-based single sign-on](active-directory-appssoaccess-whatis.md#password-based-single-sign-on).
+# <a name="how-to-deploy-the-access-panel-extension-for-internet-explorer-using-group-policy"></a>如何使用群組原則部署 Internet Explorer 的存取面板延伸模組
+本教學課程示範如何使用群組原則，在您的使用者電腦上遠端安裝 Internet Explorer 的存取面板延伸模組。 需要登入使用 [密碼單一登入](active-directory-appssoaccess-whatis.md#password-based-single-sign-on)設定的應用程式的 Internet Explorer 使用者，都需要此延伸模組。
 
-It is recommended that admins automate the deployment of this extension. Otherwise, users will have to download and install the extension themselves, which is prone to user error and requires administrator permissions. This tutorial covers one method of automating software deployments by using group policy. [Learn more about group policy.](https://technet.microsoft.com/windowsserver/bb310732.aspx)
+我們建議系統管理員自動化部署這個延伸模組。 否則，使用者必須自行下載並安裝延伸模組，這樣很容易發生使用者錯誤，而且需要系統管理員權限。 本教學課程涵蓋使用群組原則自動化軟體部署的一種方法。 [深入了解群組原則。](https://technet.microsoft.com/windowsserver/bb310732.aspx)
 
-The Access Panel extension is also available for [Chrome](https://go.microsoft.com/fwLink/?LinkID=311859) and [Firefox](https://go.microsoft.com/fwLink/?LinkID=626998), neither of which require administrator permissions to install.
+存取面板延伸模組也可供 [Chrome](https://go.microsoft.com/fwLink/?LinkID=311859) 和 [Firefox](https://go.microsoft.com/fwLink/?LinkID=626998) 使用，兩者都不需要系統管理員權限即可安裝。
 
-## <a name="prerequisites"></a>Prerequisites
-* You have set up [Active Directory Domain Services](https://msdn.microsoft.com/library/aa362244%28v=vs.85%29.aspx), and you have joined your users' machines to your domain.
-* You must have the "Edit settings" permission in order to edit Group Policy Objects (GPOs). By default, members of the following security groups have this permission: Domain Administrators, Enterprise Administrators, and Group Policy Creator Owners. [Learn more.](https://technet.microsoft.com/library/cc781991%28v=ws.10%29.aspx)
+## <a name="prerequisites"></a>必要條件
+* 您已設定了 [Active Directory 網域服務](https://msdn.microsoft.com/library/aa362244%28v=vs.85%29.aspx)，並且已將使用者的電腦加入網域。
+* 您必須擁有 [編輯設定] 權限，才能編輯群組原則物件 (GPO)。 根據預設，下列安全性群組的成員擁有此權限：網域系統管理員、企業系統管理員及群組原則建立者擁有者。 [深入了解。](https://technet.microsoft.com/library/cc781991%28v=ws.10%29.aspx)
 
-## <a name="step-1-create-the-distribution-point"></a>Step 1: Create the Distribution Point
-First, you must place the installer package on a network location that can be accessed from all of the machines that you wish to remotely install the extension on. To do this, follow these steps:
+## <a name="step-1-create-the-distribution-point"></a>步驟 1：建立發佈點
+首先，您必須將安裝程式套件放在網路位置上，該位置可以從您要在上面遠端安裝延伸模組的所有電腦存取。 若要這樣做，請遵循下列步驟：
 
-1. Log on to the server as an administrator
-2. In the **Server Manager** window, go to **Files and Storage Services**.
+1. 以系統管理員身分登入伺服器
+2. 在 [伺服器管理員] 視窗中，移至 [檔案和存放服務]。
    
-    ![Open Files and Storage Services](./media/active-directory-saas-ie-group-policy/files-services.png)
-3. Go to the **Shares** tab. Then click on **Tasks** > **New Share...**
+    ![開啟檔案和存放服務](./media/active-directory-saas-ie-group-policy/files-services.png)
+3. 移至 [共用]  索引標籤。 然後按一下 [工作]  >  [新增共用...]
    
-    ![Open Files and Storage Services](./media/active-directory-saas-ie-group-policy/shares.png)
-4. Complete the **New Share Wizard** and set permissions to ensure that it can be accessed from your users' machines. [Learn more about shares.](https://technet.microsoft.com/library/cc753175.aspx)
-5. Download the following Microsoft Windows Installer package (.msi file): [Access Panel Extension.msi](https://account.activedirectory.windowsazure.com/Applications/Installers/x64/Access Panel Extension.msi)
-6. Copy the installer package to a desired location on the share.
+    ![開啟檔案和存放服務](./media/active-directory-saas-ie-group-policy/shares.png)
+4. 完成 [新增共用精靈]  並設定權限以確保可以從您的使用者電腦存取該精靈。 [深入了解共用。](https://technet.microsoft.com/library/cc753175.aspx)
+5. 下載下列 Microsoft Windows 安裝程式套件 (.msi file)：[Access Panel Extension.msi](https://account.activedirectory.windowsazure.com/Applications/Installers/x64/Access Panel Extension.msi)
+6. 將安裝程式套件複製到共用上想要的位置。
    
-    ![Copy the .msi file to your the share.](./media/active-directory-saas-ie-group-policy/copy-package.png)
-7. Verify that your client machines are able to access the installer package from the share. 
+    ![將 .msi 檔案複製到您的共用。](./media/active-directory-saas-ie-group-policy/copy-package.png)
+7. 確認用戶端電腦能夠從共用存取安裝程式套件。 
 
-## <a name="step-2-create-the-group-policy-object"></a>Step 2: Create the Group Policy Object
-1. Log on to the server that hosts your Active Directory Domain Services (AD DS) installation.
-2. In the Server Manager, go to **Tools** > **Group Policy Management**.
+## <a name="step-2-create-the-group-policy-object"></a>步驟 2：建立群組原則物件
+1. 登入裝載 Active Directory 網域服務 (AD DS) 安裝的伺服器。
+2. 在 [伺服器管理員] 中，移至 [工具]  >  [群組原則管理]。
    
-    ![Go to Tools > Group Policy Managment](./media/active-directory-saas-ie-group-policy/tools-gpm.png)
-3. In the left pane of the **Group Policy Management** window, view your Organizational Unit (OU) hierarchy and determine at which scope you would like to apply the group policy. For instance, you may decide to pick a small OU to deploy to a few users for testing, or you may pick a top-level OU to deploy to your entire organization.
+    ![移至工具 > 群組原則管理](./media/active-directory-saas-ie-group-policy/tools-gpm.png)
+3. 在 [群組原則管理]  視窗的左窗格中，檢視您的組織單位 (OU) 階層並決定您想要套用群組原則的範圍。 例如，您可能決定針對測試挑選小型 OU 以部署到少數使用者，或者您可能會挑選最上層 OU 以部署到整個組織。
    
    > [!NOTE]
-   > If you would like to create or edit your Organization Units (OUs), switch back to the Server Manager and go to **Tools** > **Active Directory Users and Computers**.
+   > 如果您想要建立或編輯您的組織單位 (OU)，切換回 [伺服器管理員]，然後移至 [工具]  >  [Active Directory 使用者和電腦]。
    > 
    > 
-4. Once you have selected an OU, right-click on it and select **Create a GPO in this domain, and Link it here...**
+4. 一旦您選取 OU，以滑鼠右鍵按一下它然後選取 [在這個網域中建立 GPO 並連結到...] 
    
-    ![Create a new GPO](./media/active-directory-saas-ie-group-policy/create-gpo.png)
-5. In the **New GPO** prompt, type in a name for the new Group Policy Object.
+    ![建立新的 GPO](./media/active-directory-saas-ie-group-policy/create-gpo.png)
+5. 在 [新增 GPO]  提示中，輸入新的群組原則物件的名稱。
    
-    ![Name the new GPO](./media/active-directory-saas-ie-group-policy/name-gpo.png)
-6. Right-click on the Group Policy Object that you just created, and select **Edit**.
+    ![命名新的 GPO](./media/active-directory-saas-ie-group-policy/name-gpo.png)
+6. 以滑鼠右鍵按一下您剛才建立的群組原則物件，然後選取 [編輯] 。
    
-    ![Edit the new GPO](./media/active-directory-saas-ie-group-policy/edit-gpo.png)
+    ![編輯新的 GPO](./media/active-directory-saas-ie-group-policy/edit-gpo.png)
 
-## <a name="step-3-assign-the-installation-package"></a>Step 3: Assign the Installation Package
-1. Determine whether you would like to deploy the extension based on **Computer Configuration** or **User Configuration**. When using [computer configuration](https://technet.microsoft.com/library/cc736413%28v=ws.10%29.aspx), the extension will be installed on the computer regardless of which users log on to it. On the other hand, with [user configuration](https://technet.microsoft.com/library/cc781953%28v=ws.10%29.aspx), users will have the extension installed for them regardless of which computers they log on to.
-2. In the left pane of the **Group Policy Management Editor** window, go to either of the following folder paths, depending on which type of configuration you chose:
+## <a name="step-3-assign-the-installation-package"></a>步驟 3：指派安裝套件
+1. 決定您想要根據 [電腦設定] 或 [使用者設定] 部署延伸模組。 當使用 [電腦設定](https://technet.microsoft.com/library/cc736413%28v=ws.10%29.aspx)時，不論哪一個使用者登入電腦，都會在電腦上安裝延伸模組。 相反地，使用 [使用者設定](https://technet.microsoft.com/library/cc781953%28v=ws.10%29.aspx)時，無論使用者登入哪一台電腦，都會在該電腦上安裝延伸模組。
+2. 在 [群組原則管理編輯器]  視窗的左窗格中，移至下列其中一個資料夾路徑，根據您選擇的設定類型而定：
    
    * `Computer Configuration/Policies/Software Settings/`
    * `User Configuration/Policies/Software Settings/`
-3. Right-click on **Software installation**, then select **New** > **Package...**
+3. 以滑鼠右鍵按一下 [軟體安裝]，然後選取 [新增]  >  [套件...]
    
-    ![Create a new software installation package](./media/active-directory-saas-ie-group-policy/new-package.png)
-4. Go to the shared folder that contains the installer package from [Step 1: Create the Distribution Point](#step-1-create-the-distribution-point), select the .msi file, and click **Open**.
+    ![建立新的軟體安裝套件](./media/active-directory-saas-ie-group-policy/new-package.png)
+4. 移至共用資料夾，該資料夾包含[步驟 1：建立發佈點](#step-1-create-the-distribution-point)的安裝程式套件，選取 .msi 檔案，然後按一下 [開啟]。
    
    > [!IMPORTANT]
-   > If the share is located on this same server, verify that you are accessing the .msi through the network file path, rather than the local file path.
+   > 如果共用位於相同的伺服器上，確認您是透過網路檔案路徑存取此 .msi，，而不是本機檔案路徑。
    > 
    > 
    
-    ![Select the installation package from the shared folder.](./media/active-directory-saas-ie-group-policy/select-package.png)
-5. In the **Deploy Software** prompt, select **Assigned** for your deployment method. Then click **OK**.
+    ![從共用資料夾中選取安裝套件。](./media/active-directory-saas-ie-group-policy/select-package.png)
+5. 在 [部署軟體] 提示中，針對您的部署方法選取 [已指派]。 然後按一下 [確定] 。
    
-    ![Select Assigned, then click OK.](./media/active-directory-saas-ie-group-policy/deployment-method.png)
+    ![選取 [已指派]，然後按一下 [確定]。](./media/active-directory-saas-ie-group-policy/deployment-method.png)
 
-The extension is now deployed to the OU that you selected. [Learn more about Group Policy Software Installation.](https://technet.microsoft.com/library/cc738858%28v=ws.10%29.aspx)
+延伸模組現在已部署至您所選取的 OU。 [深入了解群組原則軟體安裝。](https://technet.microsoft.com/library/cc738858%28v=ws.10%29.aspx)
 
-## <a name="step-4-autoenable-the-extension-for-internet-explorer"></a>Step 4: Auto-Enable the Extension for Internet Explorer
-In addition to running the installer, every extension for Internet Explorer must be explicitly enabled before it can be used. Follow the steps below to enable the Access Panel Extension using group policy:
+## <a name="step-4-auto-enable-the-extension-for-internet-explorer"></a>步驟 4：自動啟用 Internet Explorer 的延伸模組
+除了執行安裝程式之外，Internet Explorer 的每個延伸模組必須明確啟用才能使用。 遵循下列步驟以使用群組原則啟用存取面板延伸模組：
 
-1. In the **Group Policy Management Editor** window, go to either of the following paths, depending on which type of configuration you chose in [Step 3: Assign the Installation Package](#step-3-assign-the-installation-package):
+1. 在 [群組原則管理編輯器]  視窗中，移至下列其中一個路徑，根據您在 [步驟 3：指派安裝套件](#step-3-assign-the-installation-package)中選擇的設定類型而定：
    
    * `Computer Configuration/Policies/Administrative Templates/Windows Components/Internet Explorer/Security Features/Add-on Management`
    * `User Configuration/Policies/Administrative Templates/Windows Components/Internet Explorer/Security Features/Add-on Management`
-2. Right-click on **Add-on List**, and select **Edit**.
-    ![Edit Add-on List.](./media/active-directory-saas-ie-group-policy/edit-add-on-list.png)
-3. In the **Add-on List** window, select **Enabled**. Then, under the **Options** section, click **Show...**.
+2. 以滑鼠右鍵按一下 [附加元件清單]，然後選取 [編輯]。
+    ![編輯附加元件清單。](./media/active-directory-saas-ie-group-policy/edit-add-on-list.png)
+3. 在 [附加元件清單] 視窗中，選取 [已啟用]。 然後，在 [選項] 區段中，按一下 [顯示...]。
    
-    ![Click Enable, then click Show...](./media/active-directory-saas-ie-group-policy/edit-add-on-list-window.png)
-4. In the **Show Contents** window, perform the following steps:
+    ![按一下 [啟用]，然後按一下 [顯示...]](./media/active-directory-saas-ie-group-policy/edit-add-on-list-window.png)
+4. 在 [顯示內容]  視窗中，執行下列步驟：
    
-   1. For the first column (the **Value Name** field), copy and paste the following Class ID: `{030E9A3F-7B18-4122-9A60-B87235E4F59E}`
-   2. For the second column (the **Value** field), type in the following value: `1`
-   3. Click **OK** to close the **Show Contents** window.
+   1. 對於第一個資料行 ([值名稱] 欄位)，複製和貼上以下類別識別碼：`{030E9A3F-7B18-4122-9A60-B87235E4F59E}`
+   2. 對於第二個資料行 ([值] 欄位)，輸入下列值：`1`
+   3. 按一下 [確定] 關閉 [顯示內容] 視窗。
       
-      ![Fill out the values as specified above.](./media/active-directory-saas-ie-group-policy/show-contents.png)
-5. Click **OK** to apply your changes and close the **Add-on List** window.
+      ![填寫值，如上述步驟所指定。](./media/active-directory-saas-ie-group-policy/show-contents.png)
+5. 按一下 [確定] 以套用變更並關閉 [附加元件清單] 視窗。
 
-The extension should now be enabled for the machines in the selected OU. [Learn more about using group policy to enable or disable Internet Explorer add-ons.](https://technet.microsoft.com/library/dn454941.aspx)
+延伸模組現在應該已在所選 OU 中的機器啟用。 [深入了解使用群組原則啟用或停用 Internet Explorer 附加元件。](https://technet.microsoft.com/library/dn454941.aspx)
 
-## <a name="step-5-optional-disable-remember-password-prompt"></a>Step 5 (Optional): Disable "Remember Password" Prompt
-When users sign-in to websites using the Access Panel Extension, Internet Explorer may show the following prompt asking "Would you like to store your password?"
+## <a name="step-5-optional-disable-remember-password-prompt"></a>步驟 5 (選用)：停用 [記住密碼] 提示
+當使用者登入使用存取面板擴充功能的網站時，Internet Explorer 可能會顯示下列提示詢問「是否要儲存密碼？」
 
 ![](./media/active-directory-saas-ie-group-policy/remember-password-prompt.png)
 
-If you wish to prevent your users from seeing this prompt, then follow the steps below to prevent auto-complete from remembering passwords:
+如果不想使用者看到此提示，請依照下列步驟防止自動完成記住密碼：
 
-1. In the **Group Policy Management Editor** window, go to the path listed below. Note that this configuration setting is only available under **User Configuration**.
+1. 在 [群組原則管理編輯器]  視窗中，移至下文列出的路徑。 請注意，這項組態設定僅提供於 [使用者設定] 。
    
    * `User Configuration/Policies/Administrative Templates/Windows Components/Internet Explorer/`
-2. Find the setting named **Turn on the auto-complete feature for user names and passwords on forms**.
+2. 尋找名為 [開啟表單上使用者名稱和密碼的自動完成功能] 的設定。
    
    > [!NOTE]
-   > Previous versions of Active Directory may list this setting with the name **Do not allow auto-complete to save passwords**. The configuration for that setting differs from the setting described in this tutorial.
+   > 舊版的 Active Directory 可能會列出這項設定，但名為 [不允許以自動完成儲存密碼]。 該設定的組態不同於本教學課程中所描述的設定。
    > 
    > 
    
-    ![Remember to look for this under User Settings.](./media/active-directory-saas-ie-group-policy/disable-auto-complete.png)
-3. Right click on the above setting, and select **Edit**.
-4. In the window titled **Turn on the auto-complete feature for user names and passwords on forms**, select **Disabled**.
+    ![記得要在 [使用者設定] 下尋找此項目。](./media/active-directory-saas-ie-group-policy/disable-auto-complete.png)
+3. 以滑鼠右鍵按一下上述設定，然後選取 [編輯] 。
+4. 在標題為 [開啟表單上使用者名稱和密碼的自動完成功能] 的視窗中選取 [停用]。
    
-    ![Select Disable](./media/active-directory-saas-ie-group-policy/disable-passwords.png)
-5. Click **OK** to apply these changes and close the window.
+    ![選取 [停用]](./media/active-directory-saas-ie-group-policy/disable-passwords.png)
+5. 按一下 [確定]  套用這些變更並關閉視窗。
 
-Users will no longer be able to store their credentials or use auto-complete to access previously stored credentials. However, this policy does allow users to continue to use auto-complete for other types of form fields, such as search fields.
+使用者不能再繼續儲存其認證，或使用自動完成來存取之前儲存的認證。 不過，這項原則允許使用者對其他類型的表單欄位可繼續使用自動完成，例如搜尋欄位。
 
 > [!WARNING]
-> If this policy is enabled after users have chosen to store some credentials, this policy will *not* clear the credentials that have already been stored.
+> 如果在使用者選擇儲存某些認證之後才啟用這項原則，此原則 *不* 會清除已儲存的認證。
 > 
 > 
 
-## <a name="step-6-testing-the-deployment"></a>Step 6: Testing the Deployment
-Follow the steps below to verify if the extension deployment was successful:
+## <a name="step-6-testing-the-deployment"></a>步驟 6：測試部署
+請遵循下列步驟以確認延伸模組是否成功部署：
 
-1. If you deployed using **Computer Configuration**, sign into a client machine that belongs to the OU that you selected in [Step 2: Create the Group Policy Object](#step-2-create-the-group-policy-object). If you deployed using **User Configuration**, make sure to sign in as a user who belongs to that OU.
-2. It may take a couple sign ins for the group policy changes to fully update with this machine. To force the update, open a **Command Prompt** window and run the following command: `gpupdate /force`
-3. You will need to restart the machine for the installation to take place. Bootup may take significantly more time than usual while the extension installs.
-4. After restarting, open **Internet Explorer**. On the upper-right corner of the window, click on **Tools** (the gear icon), and then select **Manage add-ons**.
+1. 如果您使用 [電腦組態] 進行部署，請登入屬於您在 [步驟 2：建立群組原則物件](#step-2-create-the-group-policy-object)中選取之 OU 的用戶端電腦。 如果您使用 [使用者組態] 進行部署，請務必以屬於該 OU 的使用者身分登入。
+2. 可能要登入好幾次才能讓群組原則變更完全更新至此電腦。 若要強制更新，開啟 [命令提示字元] 視窗，然後執行下列命令：`gpupdate /force`
+3. 您必須重新啟動電腦才能進行安裝。 安裝延伸模組時，開機可能需要比平常更多的時間。
+4. 重新開機之後，開啟 **Internet Explorer**。 在視窗的右上角按一下 [工具] 的齒輪圖示，然後選取 [管理附加元件]。
    
-    ![Go to Tools > Manage Add-Ons](./media/active-directory-saas-ie-group-policy/manage-add-ons.png)
-5. In the **Manage Add-ons** window, verify that the **Access Panel Extension** has been installed and that its **Status** has been set to **Enabled**.
+    ![移至工具 > 管理附加元件](./media/active-directory-saas-ie-group-policy/manage-add-ons.png)
+5. 在 [管理附加元件] 視窗中，確認 [存取面板擴充功能] 已安裝且其 [狀態] 已設為 [已啟用]。
    
-    ![Verify that the Access Panel Extension is installed and enabled.](./media/active-directory-saas-ie-group-policy/verify-install.png)
+    ![確認存取面板延伸模組已安裝並啟用。](./media/active-directory-saas-ie-group-policy/verify-install.png)
 
-## <a name="related-articles"></a>Related Articles
-* [Article Index for Application Management in Azure Active Directory](active-directory-apps-index.md)
-* [Application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md)
-* [Troubleshooting the Access Panel Extension for Internet Explorer](active-directory-saas-ie-troubleshooting.md)
+## <a name="related-articles"></a>相關文章
+* [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](active-directory-apps-index.md)
+* [搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)
+* [疑難排解 Internet explorer 的存取面板擴充功能](active-directory-saas-ie-troubleshooting.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

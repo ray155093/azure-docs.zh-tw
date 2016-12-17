@@ -1,23 +1,27 @@
 ---
-title: 在 Azure AD 中自動化 SaaS 應用程式使用者佈建 | Microsoft Docs
-description: 簡介如何使用 Azure AD 自動佈建、解除佈建，以及跨多個協力廠商 SaaS 應用程式持續更新使用者帳戶。
+title: "在 Azure AD 中自動化 SaaS 應用程式使用者佈建 |Microsoft Docs"
+description: "簡介如何使用 Azure AD 自動佈建、解除佈建，以及跨多個協力廠商 SaaS 應用程式持續更新使用者帳戶。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: asmalser-msft
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 58c5fa2d-bb33-4fba-8742-4441adf2cb62
 ms.service: active-directory
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 02/09/2016
-ms.author: asmalser-msft
+ms.author: asmalser
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 6a8b4a5b3293d379844d6456494f71b51265d2e8
+
 
 ---
 # <a name="automate-user-provisioning-and-deprovisioning-to-saas-applications-with-azure-active-directory"></a>自動化使用 Azure Active Directory 對於 SaaS 應用程式的使用者佈建和解除佈建
-## <a name="what-is-automated-user-provisioning-for-saas-apps?"></a>SaaS 應用程式的自動化使用者佈建是什麼？
+## <a name="what-is-automated-user-provisioning-for-saas-apps"></a>SaaS 應用程式的自動化使用者佈建是什麼？
 Azure Active Directory (Azure AD) 可讓您自動化在雲端 ([SaaS](https://azure.microsoft.com/overview/what-is-saas/)) 應用程式中建立、維護和移除使用者身分識別，例如 Dropbox、Salesforce、ServiceNow 等等。
 
 **以下是這項功能可讓您執行的一些範例：**
@@ -34,7 +38,7 @@ Azure Active Directory (Azure AD) 可讓您自動化在雲端 ([SaaS](https://az
 * 佈建錯誤的選用電子郵件警示。
 * 報告和活動記錄檔，協助監視與疑難排解。
 
-## <a name="why-use-automated-provisioning?"></a>為何要使用自動化佈建？
+## <a name="why-use-automated-provisioning"></a>為何要使用自動化佈建？
 一些使用這項功能的常見動機包括：
 
 * 為了避免成本、效率不彰，以及與手動佈建程序相關聯的人為錯誤。
@@ -67,7 +71,7 @@ Azure AD 每隔五到十分鐘就會檢查變更。 如果 SaaS 應用程式傳�
 
 請透過 [Azure Active Directory 意見反應論壇](https://feedback.azure.com/forums/169401-azure-active-directory/)與我們連絡。
 
-## <a name="how-does-automated-provisioning-work?"></a>自動化佈建如何運作？
+## <a name="how-does-automated-provisioning-work"></a>自動化佈建如何運作？
 Azure AD 會藉由連接到每個應用程式廠商所提供的佈建端點，將使用者佈建至 SaaS 應用程式。 這些端點可以讓 Azure AD 以程式設計方式建立、更新和移除使用者。 以下是 Azure AD 進行自動化佈建的不同步驟的簡短概觀。
 
 1. 當您第一次對應用程式啟用佈建時，會執行下列動作：
@@ -109,6 +113,9 @@ Azure AD 會藉由連接到每個應用程式廠商所提供的佈建端點，�
 * [帳戶佈建通知](active-directory-saas-account-provisioning-notifications.md)
 * [如何整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

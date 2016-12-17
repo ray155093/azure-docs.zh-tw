@@ -1,12 +1,12 @@
 ---
-title: 教學課程：Azure Active Directory 與 Trello 整合 | Microsoft Docs
-description: 了解如何設定 Azure Active Directory 與 Trello 之間的單一登入。
+title: "教學課程：Azure Active Directory 與 Trello 整合 | Microsoft Docs"
+description: "了解如何設定 Azure Active Directory 與 Trello 之間的單一登入。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: jeevansd
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: cd5ae365-9ed6-43a6-920b-f7814b993949
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,9 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: jeedes
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 5af430daa609f1838c640949f535f1d84cbe5f13
+
 
 ---
-# <a name="tutorial:-azure-active-directory-integration-with-trello"></a>教學課程：Azure Active Directory 與 Trello 整合
+# <a name="tutorial-azure-active-directory-integration-with-trello"></a>教學課程：Azure Active Directory 與 Trello 整合
 在本教學課程中，您將了解如何整合 Trello 與 Azure Active Directory (Azure AD)。
 
 Trello 與 Azure AD 整合提供下列優點：
@@ -100,11 +104,11 @@ Trello 應用程式預期 SAML 判斷提示會包含特定屬性。 請設定此
     ![設定單一登入][5]
 2. 在 [SAML Token 屬性]  對話方塊上，針對下表中顯示的每一列執行下列步驟：
 
-      | 屬性名稱 | 屬性值 |
-      | --- | --- |    
-      | User.Email | user.mail |
-      | User.FirstName | user.givenname |
-      | User.LastName | user.surname |
+    | 屬性名稱 | 屬性值 |
+    | --- | --- |    
+    | User.Email | user.mail |
+    | User.FirstName | user.givenname |
+    | User.LastName | user.surname |
 
     a. 按一下 [新增使用者屬性] 來開啟 [新增使用者屬性] 對話方塊。
 
@@ -114,7 +118,7 @@ Trello 應用程式預期 SAML 判斷提示會包含特定屬性。 請設定此
 
     c. 在 [屬性值] 清單中，選取該資料列所顯示的值。
 
-    d. 按一下頁面底部的 [新增] ****。 然後，按一下頁面底部的 [套用變更]。
+    d. 按一下頁面底部的 [新增] 。 然後，按一下頁面底部的 [套用變更]。
 
 1. 按一下頂端功能表中的 [快速啟動] 。
    
@@ -204,7 +208,7 @@ Trello 應用程式預期 SAML 判斷提示會包含特定屬性。 請設定此
    
     a. 記下 [新密碼] 的值。
    
-    b. 按一下頁面底部的 [新增] ****。   
+    b. 按一下頁面底部的 [新增] 。   
 
 ### <a name="creating-a-trello-test-user"></a>建立 Trello 測試使用者
 在本節中，您會在 Trello 中建立名為 Britta Simon 的使用者。 在本節中，您會在 Trello 中建立名為 Britta Simon 的使用者。 Trello 支援即時佈建，而且會在您第一次從 Azure AD 登入時建立新的帳戶。
@@ -262,6 +266,6 @@ Trello 應用程式預期 SAML 判斷提示會包含特定屬性。 請設定此
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

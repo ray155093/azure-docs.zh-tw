@@ -1,12 +1,12 @@
 ---
-title: 'Tutorial: Azure Active Directory integration with Lifesize Cloud | Microsoft Docs'
-description: Learn how to configure single sign-on between Azure Active Directory and Lifesize Cloud.
+title: "教學課程：Azure Active Directory 與 Lifesize Cloud 整合 | Microsoft Docs"
+description: "了解如何設定 Azure Active Directory 與 Lifesize Cloud 之間的單一登入。"
 services: active-directory
-documentationcenter: ''
+documentationcenter: 
 author: jeevansd
 manager: femila
-editor: ''
-
+editor: 
+ms.assetid: 75fab335-fdcd-4066-b42c-cc738fcb6513
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,249 +14,253 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/04/2016
 ms.author: jeedes
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: faa41c24c08a1e4f47b448210d882269c4c5a742
+
 
 ---
-# <a name="tutorial:-azure-active-directory-integration-with-lifesize-cloud"></a>Tutorial: Azure Active Directory integration with Lifesize Cloud
-In this tutorial, you learn how to integrate Lifesize Cloud with Azure Active Directory (Azure AD).
+# <a name="tutorial-azure-active-directory-integration-with-lifesize-cloud"></a>教學課程：Azure Active Directory 與 Lifesize Cloud 整合
+在本教學課程中，您會了解如何整合 Lifesize Cloud 與 Azure Active Directory (Azure AD)。
 
-Integrating Lifesize Cloud with Azure AD provides you with the following benefits:
+Lifesize Cloud 與 Azure AD 整合提供下列優點：
 
-* You can control in Azure AD who has access to Lifesize Cloud
-* You can enable your users to automatically get signed-on to Lifesize Cloud (Single Sign-On) with their Azure AD accounts
-* You can manage your accounts in one central location - the Azure classic portal
+* 您可以在 Azure AD 中控制可存取 Lifesize Cloud 的人員
+* 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Lifesize Cloud (單一登入)
+* 您可以在 Azure 傳統入口網站中集中管理您的帳戶
 
-If you want to know more details about SaaS app integration with Azure AD, see [What is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).
+若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱 [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
 
-## <a name="prerequisites"></a>Prerequisites
-To configure Azure AD integration with Lifesize Cloud, you need the following items:
+## <a name="prerequisites"></a>必要條件
+若要設定 Azure AD 與 Lifesize Cloud 整合，您需要下列項目：
 
-* An Azure AD subscription
-* A Lifesize Cloud single-sign on enabled subscription
+* Azure AD 訂用帳戶
+* 已啟用 Lifesize Cloud 單一登入的訂用帳戶
 
 > [!NOTE]
-> To test the steps in this tutorial, we do not recommend using a production environment.
+> 若要測試本教學課程中的步驟，我們不建議使用生產環境。
 > 
 > 
 
-To test the steps in this tutorial, you should follow these recommendations:
+若要測試本教學課程中的步驟，您應該遵循這些建議：
 
-* You should not use your production environment, unless this is necessary.
-* If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).
+* 除非必要，否則您不應使用生產環境，。
+* 如果您沒有 Azure AD 試用環境，您可以在 [這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
 
-## <a name="scenario-description"></a>Scenario description
-In this tutorial, you test Azure AD single sign-on in a test environment.
+## <a name="scenario-description"></a>案例描述
+在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。
 
-The scenario outlined in this tutorial consists of two main building blocks:
+本教學課程中說明的案例由二個主要建置組塊組成：
 
-1. Adding Lifesize Cloud from the gallery
-2. Configuring and testing Azure AD single sign-on
+1. 從資源庫新增 Lifesize Cloud
+2. 設定並測試 Azure AD 單一登入
 
-## <a name="adding-lifesize-cloud-from-the-gallery"></a>Adding Lifesize Cloud from the gallery
-To configure the integration of Lifesize Cloud into Azure AD, you need to add Lifesize Cloud from the gallery to your list of managed SaaS apps.
+## <a name="adding-lifesize-cloud-from-the-gallery"></a>從資源庫新增 Lifesize Cloud
+若要設定將 Lifesize Cloud 整合到 Azure AD 中，您需要從資源庫將 Lifesize Cloud 新增到受管理的 SaaS 應用程式清單。
 
-**To add Lifesize Cloud from the gallery, perform the following steps:**
+**若要從資源庫新增 Lifesize Cloud，請執行下列步驟：**
 
-1. In the **Azure classic portal**, on the left navigation pane, click **Active Directory**.
+1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
    
     ![Active Directory][1]
-2. From the **Directory** list, select the directory for which you want to enable directory integration.
-3. To open the applications view, in the directory view, click **Applications** in the top menu.
+2. 從 [目錄]  清單中，選取要啟用目錄整合的目錄。
+3. 若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
    
-    ![Applications][2]
-4. Click **Add** at the bottom of the page.
+    ![應用程式][2]
+4. 按一下頁面底部的 [新增]  。
    
-    ![Applications][3]
-5. On the **What do you want to do** dialog, click **Add an application from the gallery**.
+    ![應用程式][3]
+5. 在 [欲執行動作] 對話方塊上，按一下 [從資源庫中新增應用程式]。
    
-    ![Applications][4]
-6. In the search box, type **Lifesize Cloud**.
+    ![應用程式][4]
+6. 在搜尋方塊中，輸入 **Lifesize Cloud**。
    
-    ![Creating an Azure AD test user](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_01.png)
-7. In the results pane, select **Lifesize Cloud**, and then click **Complete** to add the application.
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_01.png)
+7. 在結果窗格中，選取 [Lifesize Cloud]，然後按一下 [完成] 以新增應用程式。
    
-    ![Creating an Azure AD test user](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_02.png)
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_02.png)
 
-## <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuring and testing Azure AD single sign-on
-In this section, you configure and test Azure AD single sign-on with Lifesize Cloud based on a test user called "Britta Simon".
+## <a name="configuring-and-testing-azure-ad-single-sign-on"></a>設定並測試 Azure AD 單一登入
+在本節中，您會以名為 "Britta Simon" 的測試使用者為基礎，設定及測試與 Lifesize Cloud 搭配運作的 Azure AD 單一登入。
 
-For single sign-on to work, Azure AD needs to know what the counterpart user in Lifesize Cloud is to a user in Azure AD. In other words, a link relationship between an Azure AD user and the related user in Lifesize Cloud needs to be established.
+若要讓單一登入能夠運作，Azure AD 必須知道 Lifesize Cloud 與 Azure AD 中互相對應的使用者。 換句話說，必須在 Azure AD 使用者與 Lifesize Cloud 中的相關使用者之間建立連結關聯性。
 
-This link relationship is established by assigning the value of the **user name** in Azure AD as the value of the **Username** in Lifesize Cloud.
+建立此連結關聯性的方法是指派 Azure AD 中**使用者名稱**的值做為 Lifesize Cloud 中 **Username** 的值。
 
-To configure and test Azure AD single sign-on with Lifesize Cloud, you need to complete the following building blocks:
+若要設定及測試與 Lifesize Cloud 搭配運作的 Azure AD 單一登入，您需要完成下列構成要素：
 
-1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.
-2. **[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.
-3. **[Creating a Lifesize Cloud test user](#creating-a-lifesize-cloud-test-user)** - to have a counterpart of Britta Simon in Lifesize Cloud that is linked to the Azure AD representation of her.
-4. **[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.
-5. **[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.
+1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-sign-on)** - 讓您的使用者能夠使用此功能。
+2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
+3. **[建立 Lifesize Cloud 測試使用者](#creating-a-lifesize-cloud-test-user)** - 在 Lifesize Cloud 中建立一個與 Azure AD 中代表 Britta Simon 的項目連結的 Britta Simon 對應項目。
+4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
+5. **[Testing Single Sign-On](#testing-single-sign-on)** - 驗證組態是否能運作。
 
-### <a name="configuring-azure-ad-single-sign-on"></a>Configuring Azure AD single sign-on
-In this section, you enable Azure AD single sign-on in the classic portal and configure single sign-on in your Lifesize Cloud application.
+### <a name="configuring-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
+在本節中，您會在傳統入口網站中啟用 Azure AD 單一登入，然後在您的 Lifesize Cloud 應用程式中設定單一登入。
 
-**To configure Azure AD single sign-on with Lifesize Cloud, perform the following steps:**
+**若要使用 Lifesize Cloud 設定 Azure AD 單一登入，請執行下列步驟：**
 
-1. In the classic portal, on the **Lifesize Cloud** application integration page, click **Configure single sign-on** to open the **Configure Single Sign-On**  dialog.
+1. 在傳統入口網站的 **Lifesize Cloud** 應用程式整合頁面上，按一下 [設定單一登入] 來開啟 [設定單一登入] 對話方塊。
    
-    ![Configure Single Sign-On][6] 
-2. On the **How would you like users to sign on to Lifesize Cloud** page, select **Azure AD Single Sign-On**, and then click **Next**.
+    ![設定單一登入][6] 
+2. 在 [您希望使用者如何登入 Lifesize Cloud] 頁面上，選取 [Azure AD 單一登入]，然後按 [下一步]。 
    
-    ![Configure Single Sign-On](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_03.png) 
-3. On the **Configure App Settings** dialog page, perform the following steps:
+    ![設定單一登入](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_03.png) 
+3. 在 [設定 App 設定]  對話方塊頁面執行下列步驟：
    
-    ![Configure Single Sign-On](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_04.png) 
+    ![設定單一登入](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_04.png) 
    
-    a. In the **Sign On URL** textbox, type the URL used by your users to sign-on to your Lifesize Cloud application using the following pattern: **https://login.lifesizecloud.com/ls/?acs**.
+    a. 在 [登入 URL] 文字方塊中，使用以下模式輸入您的使用者用來登入 Lifesize Cloud 應用程式的 URL：**https://login.lifesizecloud.com/ls/?acs**。
    
-    b. click **Next**
-4. On the **Configure single sign-on at Lifesize Cloud** page, perform the following steps:
+    b. 按一下 [下一步] 
+4. 在 [設定在 Litmos 單一登入] 頁面上，執行下列步驟： 
    
-    ![Configure Single Sign-On](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_05.png)
+    ![設定單一登入](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_05.png)
    
-    a. Click **Download certificate**, and then save the file on your computer.
+    a. 按一下 [下載憑證]，然後將檔案儲存在您的電腦上。
    
-    b. Click **Next**.
-5. To get SSO configured for your application, login into the Lifesize Cloud application with Admin privileges.
-6. In the top right corner click on your name and then click on the **Advance Settings**
+    b. 按一下頁面底部的 [新增] 來單一登入應用程式。
+5. 若要取得為您的應用程式設定的 SSO，請使用系統管理員權限登入 Lifesize Cloud 應用程式。
+6. 在頁面按一下您的名稱，然後按一下 [進階設定]
    
-    ![Configure Single Sign-On](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_06.png)
-7. In the Advance Settings now click on the **SSO Configuration** link. This will open the SSO Configuration page for your instance.
+    ![設定單一登入](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_06.png)
+7. 在 [進階設定] 中，現在按一下 [SSO 組態] 連結。 這會開啟您的執行個體的 SSO 組態頁面。
    
-    ![Configure Single Sign-On](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_07.png)
-8. Now configure the following values in the SSO configuration UI.    
+    ![設定單一登入](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_07.png)
+8. 現在設定 SSO 組態 UI 中的下列值。    
    
-    ![Configure Single Sign-On](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_08.png)
+    ![設定單一登入](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_08.png)
    
-    • Copy the value of Issuer URL from Azure AD and paste that in **Identity Provider Issuer** textbox.
+    • 從 Azure AD 複製簽發者 URL 的值，並貼到 [識別提供者簽發者] 文字方塊。
    
-    • Copy the value of Remote Login URL from Azure AD and paste that in **Login URL** textbox.
+    • 從 Azure AD 複製遠端登入 URL 的值，並貼到 [登入 URL] 文字方塊。
    
-    • Open the downloaded certificate in notepad and copy the content of certificate, excluding the Begin Certificate and End Certificate lines, paste this in the **X.509 Certificate** textbox.
+    • 在記事本中開啟已下載的憑證並複製憑證的內容 (不包括開頭和結尾憑證的行)，將此內容貼到 [X.509 憑證] 文字方塊。
    
-    • In the SAML Attribute mapping for the **First Name** text box enter the value as **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname**
+    • 在 [名字] 文字方塊的 SAML 屬性對應 中，輸入以下格式的值：**http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname**
    
-    • In the SAML Attribute mapping for the **Last Name** text box enter the value as **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname**
+    • 在 [姓氏] 文字方塊的 SAML 屬性對應 中，輸入以下格式的值：**http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname**
    
-    • In the SAML Attribute mapping for the **Email** text box enter the value as **http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress**
-9. To check the configuration you can click on the **Test** button.
+    • 在 [電子郵件] 文字方塊的 SAML 屬性對應 中，輸入以下格式的值：**http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress**
+9. 若要檢查組態，您可以按一下 [測試] 按鈕。
    
    > [!NOTE]
-   > For successful testing you need to complete the configuration wizard in Azure AD and also provide access to users or groups who can perform the test.
+   > 為使測試成功，您需要在 Azure AD 中完成組態精靈，同時提供存取權給可執行測試的使用者或群組。
    > 
    > 
-10. Enable the SSO by checking on the **Enable SSO** button.
-11. Now click on the **Update** button so that all the settings are saved. This will generate the RelayState value. Copy the RelayState value which is generated in the text box. We will need this value in the next steps.
-12. In the classic portal, select the single sign-on configuration confirmation, and then click **Next**.
+10. 檢查 [啟用 SSO] 按鈕以啟用 SSO。
+11. 現在按一下 [更新] 按鈕，以儲存所有設定。 這會產生 RelayState 值。 複製在文字方塊中所產生的 RelayState 值。 接下來的步驟將需要此值。
+12. 在傳統入口網站中，選取單一登入設定確認，然後按 [下一步] 。
     
-    ![Azure AD Single Sign-On][10]
-13. On the **Single sign-on confirmation** page, click **Complete**.  
+    ![Azure AD 單一登入][10]
+13. 在 [單一登入確認] 頁面上，按一下 [完成]。  
     
-    ![Azure AD Single Sign-On][11]
-14. Now login into the Azure Management Portal **https://portal.azure.com** using the admin credentials
-15. Click on **More Services** link in the left navigation pane
+    ![Azure AD 單一登入][11]
+14. 現在，使用系統管理員認證登入 Azure 管理入口網站 **https://portal.azure.com**
+15. 在左導覽窗格中，按一下 [更多服務]
     
-    ![Configure Single Sign-On](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_09.png)
-16. Search for Azure Active Directory and Click on the **Azure Active Directory** Link
+    ![設定單一登入](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_09.png)
+16. 搜尋 Azure Active Directory，然後按一下 [Azure Active Directory] 連結
     
-    ![Configure Single Sign-On](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_10.png)
-17. You will find all your SaaS applications under the **Enterprise Applications** button.
+    ![設定單一登入](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_10.png)
+17. 您會在 [企業應用程式] 按鈕下方發現所有 SaaS 應用程式。
     
-    ![Configure Single Sign-On](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_11.png)
-18. Now click on **All Applications** link in the next blade
+    ![設定單一登入](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_11.png)
+18. 現在，按一下下一個刀鋒視窗中的 [所有應用程式] 連結
     
-    ![Configure Single Sign-On](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_12.png)
-19. Search for Lifesize application for which you want to setup the RelayState. 
+    ![設定單一登入](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_12.png)
+19. 搜尋您要安裝 RelayState 的 Lifesize 應用程式。 
     
-    ![Configure Single Sign-On](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_13.png)
-20. Now Click **Single sign-on** link in the blade
+    ![設定單一登入](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_13.png)
+20. 現在，按一下刀鋒視窗中的 [單一登入] 連結
     
-    ![Configure Single Sign-On](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_14.png)
-21. You will see the **Show advanced URL settings** check box. Click the check box.
+    ![設定單一登入](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_14.png)
+21. 您會看到 [顯示進階 URL 設定] 核取方塊。 按一下該核取方塊。
     
-    ![Configure Single Sign-On](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_15.png)
-22. Now configure the RelayState for the application, which you see in the Lifesize application SSO configuration page. 
+    ![設定單一登入](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_15.png)
+22. 現在，設定應用程式的 RelayState，即在 Lifesize 應用程式的 SSO 組態頁面中看到的值。 
     
-    ![Configure Single Sign-On](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_16.png)
-23. Save the settings.
+    ![設定單一登入](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_16.png)
+23. 儲存設定。
 
-### <a name="creating-an-azure-ad-test-user"></a>Creating an Azure AD test user
-In this section, you create a test user in the classic portal called Britta Simon.
+### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
+在本節中，您會在傳統入口網站中建立名稱為 Britta Simon 的測試使用者。
 
-![Create Azure AD User][20]
+![建立 Azure AD 使用者][20]
 
-**To create a test user in Azure AD, perform the following steps:**
+**若要在 Azure AD 中建立測試使用者，請執行下列步驟：**
 
-1. In the **Azure classic portal**, on the left navigation pane, click **Active Directory**.
+1. 在 **Azure 傳統入口網站**中，按一下左方瀏覽窗格的 [Active Directory]。
    
-    ![Creating an Azure AD test user](./media/active-directory-saas-lifesize-cloud-tutorial/create_aaduser_09.png) 
-2. From the **Directory** list, select the directory for which you want to enable directory integration.
-3. To display the list of users, in the menu on the top, click **Users**.
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-lifesize-cloud-tutorial/create_aaduser_09.png) 
+2. 從 [目錄]  清單中，選取要啟用目錄整合的目錄。
+3. 若要顯示使用者清單，請按一下頂端功能表的 [使用者] 。
    
-    ![Creating an Azure AD test user](./media/active-directory-saas-lifesize-cloud-tutorial/create_aaduser_03.png) 
-4. To open the **Add User** dialog, in the toolbar on the bottom, click **Add User**.
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-lifesize-cloud-tutorial/create_aaduser_03.png) 
+4. 若要開啟 [新增使用者] 對話方塊，請按一下底部工具列上的 [新增使用者]。
    
-    ![Creating an Azure AD test user](./media/active-directory-saas-lifesize-cloud-tutorial/create_aaduser_04.png) 
-5. On the **Tell us about this user** dialog page, perform the following steps:  ![Creating an Azure AD test user](./media/active-directory-saas-lifesize-cloud-tutorial/create_aaduser_05.png) 
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-lifesize-cloud-tutorial/create_aaduser_04.png) 
+5. 在 [告訴我們這位使用者] 對話方塊頁面上，執行下列步驟： ![建立 Azure AD 測試使用者](./media/active-directory-saas-lifesize-cloud-tutorial/create_aaduser_05.png) 
    
-    a. As Type Of User, select New user in your organization.
+    a. 針對 [使用者類型]，選取 [您組織中的新使用者]。
    
-    b. In the User Name **textbox**, type **BrittaSimon**.
+    b. 在 [使用者名稱] 文字方塊中，輸入 **BrittaSimon**。
    
-    c. Click **Next**.
-6. On the **User Profile** dialog page, perform the following steps: ![Creating an Azure AD test user](./media/active-directory-saas-lifesize-cloud-tutorial/create_aaduser_06.png) 
+    c. 按 [下一步] 。
+6. 在 [使用者設定檔] 對話方塊頁面上，執行下列步驟：![建立 Azure AD 測試使用者](./media/active-directory-saas-lifesize-cloud-tutorial/create_aaduser_06.png) 
    
-   a. In the **First Name** textbox, type **Britta**.  
+   a. 在 [名字] 文字方塊中，輸入 **Britta**。  
    
-   b. In the **Last Name** textbox, type, **Simon**.
+   b. 在 [姓氏] 文字方塊中，輸入 **Simon**。
    
-   c. In the **Display Name** textbox, type **Britta Simon**.
+   c. 在 [顯示名稱] 文字方塊中，輸入 **Britta Simon**。
    
-   d. In the **Role** list, select **User**.
+   d. 在 [角色] 清單中選取 [使用者]。
    
-   e. Click **Next**.
-7. On the **Get temporary password** dialog page, click **create**.
+   e. 按 [下一步] 。
+7. 在 [取得暫時密碼] 對話方塊頁面上，按一下 [建立]。
    
-    ![Creating an Azure AD test user](./media/active-directory-saas-lifesize-cloud-tutorial/create_aaduser_07.png) 
-8. On the **Get temporary password** dialog page, perform the following steps:
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-lifesize-cloud-tutorial/create_aaduser_07.png) 
+8. 在 [取得暫時密碼]  對話方塊頁面上，執行下列步驟：
    
-    ![Creating an Azure AD test user](./media/active-directory-saas-lifesize-cloud-tutorial/create_aaduser_08.png) 
+    ![建立 Azure AD 測試使用者](./media/active-directory-saas-lifesize-cloud-tutorial/create_aaduser_08.png) 
    
-    a. Write down the value of the **New Password**.
+    a. 記下 [新密碼] 的值。
    
-    b. Click **Complete**.   
+    b. 按一下頁面底部的 [新增] 。   
 
-### <a name="creating-an-lifesize-cloud-test-user"></a>Creating an Lifesize Cloud test user
-In this section, you create a user called Britta Simon in Lifesize Cloud. Lifesize cloud does support automatic user provisioning. After successful authentication at Azure AD, the user will be automatically provisioned in the application. 
+### <a name="creating-an-lifesize-cloud-test-user"></a>建立 Lifesize Cloud 測試使用者
+在本節中，您要在 Lifesize Cloud 中建立名為 Britta Simon 的使用者。 Lifesize Cloud 支援自動使用者佈建。 在 Azure AD 驗證成功後，使用者將自動佈建於應用程式中。 
 
-### <a name="assigning-the-azure-ad-test-user"></a>Assigning the Azure AD test user
-In this section, you enable Britta Simon to use Azure single sign-on by granting her access to Lifesize Cloud.
+### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
+在本節中，您會將 Lifesize Cloud 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
 
-![Assign User][200] 
+![指派使用者][200] 
 
-**To assign Britta Simon to Lifesize Cloud, perform the following steps:**
+**若要將 Britta Simon 指派給 Lifesize Cloud，請執行下列步驟：**
 
-1. On the classic portal, to open the applications view, in the directory view, click **Applications** in the top menu.
+1. 在傳統入口網站中，若要開啟應用程式檢視，請在目錄檢視中，按一下頂端功能表中的 [應用程式]  。
    
-    ![Assign User][201] 
-2. In the applications list, select **Lifesize Cloud**.
+    ![指派使用者][201] 
+2. 在應用程式清單中，選取 [Lifesize Cloud]。 
    
-    ![Configure Single Sign-On](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_50.png) 
-3. In the menu on the top, click **Users**.
+    ![設定單一登入](./media/active-directory-saas-lifesize-cloud-tutorial/tutorial_lifesizecloud_50.png) 
+3. 在頂端的功能表中，按一下 [使用者] 。
    
-    ![Assign User][203]
-4. In the Users list, select **Britta Simon**.
-5. In the toolbar on the bottom, click **Assign**.
+    ![指派使用者][203]
+4. 在 [使用者] 清單中，選取 [Britta Simon] 。
+5. 在底部的工具列中，按一下 [指派] 。
    
-    ![Assign User][205]
+    ![指派使用者][205]
 
-### <a name="testing-single-sign-on"></a>Testing Single Sign-On
-In this section, you test your Azure AD single sign-on configuration using the Access Panel.
+### <a name="testing-single-sign-on"></a>測試單一登入
+在本節中，您會使用存取面板來測試您的 Azure AD 單一登入設定。
 
-When you click the Lifesize Cloud tile in the Access Panel, you should get automatically signed-on to your Lifesize Cloud application.
+當您在存取面板中按一下 [Lifesize Cloud] 磚時，應該會自動登入您的 Lifesize Cloud 應用程式。
 
-## <a name="additional-resources"></a>Additional resources
-* [List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory](active-directory-saas-tutorial-list.md)
-* [What is application access and single sign-on with Azure Active Directory?](active-directory-appssoaccess-whatis.md)
+## <a name="additional-resources"></a>其他資源
+* [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
+* [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->
 
@@ -278,6 +282,6 @@ When you click the Lifesize Cloud tile in the Access Panel, you should get autom
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

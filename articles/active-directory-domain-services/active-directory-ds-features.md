@@ -1,12 +1,12 @@
 ---
-title: Azure Active Directory Domain Services：功能 | Microsoft Docs
-description: Azure Active Directory 網域服務的功能
+title: "Azure Active Directory Domain Services：功能 | Microsoft Docs"
+description: "Azure Active Directory 網域服務的功能"
 services: active-directory-ds
-documentationcenter: ''
+documentationcenter: 
 author: mahesh-unnikrishnan
 manager: stevenpo
 editor: curtand
-
+ms.assetid: 8d1c3eb3-1022-4add-a919-c98cc6584af1
 ms.service: active-directory-ds
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/07/2016
 ms.author: maheshu
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 18c3400063097cdf70398a95e9e39e9097e27992
+
 
 ---
 # <a name="azure-ad-domain-services"></a>Azure AD 網域服務
@@ -36,6 +40,9 @@ ms.author: maheshu
 * **高可用性：** Azure AD 網域服務可針對您的網域提供高可用性。 此功能提供了對於更高的服務運作時間以及失敗恢復措施的保證。 內建的狀況監控功能可提供失敗的自動補救措施，做法是啟動新的執行個體來取代失敗的執行個體，並為您的網域提供繼續執行的服務。
 * **使用熟悉的管理工具：**您可以使用 Active Directory 管理中心或 PowerShell 的 Active Directory 等熟悉的 Windows Server Active Directory 管理工具，管理受管理的網域。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

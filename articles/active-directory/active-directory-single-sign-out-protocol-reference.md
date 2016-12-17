@@ -1,12 +1,12 @@
 ---
-title: Azure 單一登出 SAML 通訊協定 | Microsoft Docs
-description: 本文說明 Azure Active Directory 中的單一登出 SAML 通訊協定
+title: "Azure 單一登出 SAML 通訊協定 | Microsoft Docs"
+description: "本文說明 Azure Active Directory 中的單一登出 SAML 通訊協定"
 services: active-directory
 documentationcenter: .net
 author: priyamohanram
 manager: mbaldwin
-editor: ''
-
+editor: 
+ms.assetid: 0e4aa75d-d1ad-4bde-a94c-d8a41fb0abe6
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/03/2016
 ms.author: priyamo
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: d05ab5c4bd813b5f371be27605a9096b0b9c9656
+
 
 ---
 # <a name="single-sign-out-saml-protocol"></a>單一登出 SAML 通訊協定
@@ -72,6 +76,9 @@ Azure AD 會將此值設為 `https://login.microsoftonline.com/<TenantIdGUID>/`�
 ### <a name="status"></a>狀態
 Azure AD 使用 `Status` 元素中的 `StatusCode` 元素，來指出登出成功或失敗。 登出嘗試失敗時， `StatusCode` 元素也可包含自訂錯誤訊息。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 
