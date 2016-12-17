@@ -1,22 +1,26 @@
 ---
-title: 與 Operations Management Suite (OMS) 進行整合 | Microsoft Docs
-description: 除了使用 OMS 的標準功能，您還可以將它與其他管理應用程式和服務進行整合，以提供混合式管理環境、提供您環境的唯一自訂管理案例，或為您的客戶提供自訂管理體驗。  本文提供與 OMS 進行整合的不同選項及提供詳細技術資訊文章連結的概觀。
+title: "與 Operations Management Suite (OMS) 進行整合 | Microsoft Docs"
+description: "除了使用 OMS 的標準功能，您還可以將它與其他管理應用程式和服務進行整合，以提供混合式管理環境、提供您環境的唯一自訂管理案例，或為您的客戶提供自訂管理體驗。  本文提供與 OMS 進行整合的不同選項及提供詳細技術資訊文章連結的概觀。"
 services: operations-management-suite
-documentationcenter: ''
+documentationcenter: 
 author: bwren
 manager: jwhit
 editor: tysonn
-
+ms.assetid: fc5f3a8a-77f7-4103-bd7e-744c15ffcca7
 ms.service: operations-management-suite
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 09/23/2016
+ms.date: 12/09/2016
 ms.author: bwren
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 31291a9b0f452adeae42f744a976c14e61a4b303
+
 
 ---
-# <a name="integrating-with-operations-management-suite-(oms)"></a>與 Operations Management Suite (OMS) 進行整合
+# <a name="integrating-with-operations-management-suite-oms"></a>與 Operations Management Suite (OMS) 進行整合
 Operations Management Suite 是 Microsoft 的雲端型 IT 管理解決方案，可協助您管理並保護內部部署和雲端基礎結構。  除了使用 OMS 的標準功能，您還可以將它與其他管理應用程式和服務進行整合，以提供混合式管理環境、提供您環境的唯一自訂管理案例，或為您的客戶提供自訂管理體驗。  本文提供與 OMS 服務進行整合的不同選項及提供詳細技術資訊文章連結的概觀。 
 
 ## <a name="log-analytics"></a>Log Analytics
@@ -102,6 +106,9 @@ Azure 備份與 Site Recovery 提供保護您企業資料，並確認伺服器�
 ## <a name="next-steps"></a>後續步驟
 * 參考 [OMS SDK](operations-management-suite-sdk.md) 以取得關於自動化 OMS 服務的技術資訊。  
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,12 +1,12 @@
 ---
-title: 在獨立 Service Fabric 叢集中新增或移除節點 | Microsoft Docs
-description: 了解如何在執行 Windows Server 的實體或虛擬電腦上 (無論是在內部部署或任何雲端) 對 Azure Service Fabric 叢集新增或移除節點。
+title: "在獨立 Service Fabric 叢集中新增或移除節點 | Microsoft Docs"
+description: "了解如何在執行 Windows Server 的實體或虛擬電腦上 (無論是在內部部署或任何雲端) 對 Azure Service Fabric 叢集新增或移除節點。"
 services: service-fabric
 documentationcenter: .net
 author: dsk-2015
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: bc6b8fc0-d2af-42f8-a164-58538be38d02
 ms.service: service-fabric
 ms.devlang: dotnet
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 09/20/2016
 ms.author: dkshir;chackdan
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 335ab9d3746b089e9e7a8d640a89a2d381295b46
+
 
 ---
 # <a name="add-or-remove-nodes-to-a-standalone-service-fabric-cluster-running-on-windows-server"></a>在執行於 Windows Server 上的獨立 Service Fabric 叢集中新增或移除節點
@@ -38,13 +42,18 @@ ms.author: dkshir;chackdan
 3. 以遠端桌面 (RDP) 登入到您想要從叢集移除的 VM/電腦。
 4. 複製或 [下載適用於 Windows Server 的 Service Fabric 獨立封裝](http://go.microsoft.com/fwlink/?LinkId=730690) ，然後將此封裝解壓縮到此 VM/電腦。
 5. 以系統管理員身分執行 PowerShell，然後瀏覽至解壓縮封裝的位置。
-6. 執行「RemoveNode.ps1」  PowerShell。 下列範例會從叢集移除目前的節點。 「ExistingClusterConnectionEndPoint」  是已在現有叢集中之節點的 Connect Endpoint。 對於此端點，您必須選擇叢集中「任何」  **其他節點** 的 IP 位址。
+6. 在 PowerShell 中執行 *RemoveNode.ps1*。 下列範例會從叢集移除目前的節點。 ExistingClientConnectionEndpoint 是將會留在叢集中之任何節點的用戶端連接端點。 選擇叢集中「任何」**其他節點**的 IP 位址和端點連接埠。 此**其他節點**會接著更新所移除節點的叢集組態。 
 
 ```
-.\RemoveNode.ps1 -ExistingClusterConnectionEndPoint 182.17.34.50:19000
+.\RemoveNode.ps1 -ExistingClientConnectionEndpoint 182.17.34.50:19000
 ```
 
-下一版將修復的已知缺失 - 即使在移除節點後，節點在查詢和 SFX 中仍顯示為已關閉。 
+> [!NOTE]
+> 某些節點可能不會因為系統服務相依性移除。 這些節點是主要節點，而且可以藉由使用 `Get-ServiceFabricClusterManifest` 查詢叢集資訊清單，以及尋找標示為 `IsSeedNode=”true”` 的節點項目加以識別。 
+> 
+> 
+
+即使在移除節點之後，查詢和 SFX 中仍可能會顯示為已關閉，請注意這是已知的缺失。 這個問題將於即將推出的版本中獲得修正。 
 
 ## <a name="next-steps"></a>後續步驟
 * [獨立 Windows 叢集的組態設定](service-fabric-cluster-manifest.md)
@@ -52,6 +61,9 @@ ms.author: dkshir;chackdan
 * [使用 X509 憑證保護 Windows 上的獨立叢集](service-fabric-windows-cluster-x509-security.md)
 * [建立具有執行 Windows 之 Azure VM 的獨立 Service Fabric 叢集](service-fabric-cluster-creation-with-windows-azure-vms.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

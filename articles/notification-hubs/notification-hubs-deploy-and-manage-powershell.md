@@ -1,12 +1,12 @@
 ---
-title: 使用 PowerShell 來部署和管理通知中樞
-description: 如何使用 PowerShell 來進行自動化的通知中樞建立和管理
+title: "使用 PowerShell 來部署和管理通知中樞"
+description: "如何使用 PowerShell 來進行自動化的通知中樞建立和管理"
 services: notification-hubs
-documentationcenter: ''
+documentationcenter: 
 author: ysxu
 manager: erikre
-editor: ''
-
+editor: 
+ms.assetid: 7c58f2c8-0399-42bc-9e1e-a7f073426451
 ms.service: notification-hubs
 ms.workload: mobile
 ms.tgt_pltfrm: powershell
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/29/2016
 ms.author: yuaxu
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: aa0b90781d10be6a87fdad6f04c8630317efd4e4
+
 
 ---
 # <a name="deploy-and-manage-notification-hubs-using-powershell"></a>使用 PowerShell 來部署和管理通知中樞
@@ -23,18 +27,18 @@ ms.author: yuaxu
 * 建立通知中樞
 * 設定認證
 
-如果您也需要為通知中樞建立新服務匯流排命名空間，請參閱 [使用 PowerShell 管理服務匯流排](../service-bus/service-bus-powershell-how-to-provision.md)。
+如果您也需要為通知中樞建立新服務匯流排命名空間，請參閱 [使用 PowerShell 管理服務匯流排](../service-bus-messaging/service-bus-powershell-how-to-provision.md)。
 
 Azure PowerShell 隨附的 Cmdlet 無法直接支援「管理通知中樞」。 從 PowerShell 進行的最佳方法，是參考 Microsoft.Azure.NotificationHubs.dll 組件。 組件隨附於 [Microsoft Azure 通知中樞 NuGet 套件](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/)。
 
 ## <a name="prerequisites"></a>必要條件
 開始閱讀本文之前，您必須符合下列必要條件：
 
-* Azure 訂用帳戶。 Azure 是訂用帳戶型平台。 如需取得訂用帳戶的詳細資訊，請參閱[購買選項]、[成員優惠]或[免費使用]。
+* Azure 訂用帳戶。 Azure 是訂閱型平台。 如需取得訂用帳戶的詳細資訊，請參閱[購買選項]、[成員優惠]或[免費試用版]。
 * 具備 Azure PowerShell 的電腦。 如需指示，請參閱 [安裝並設定 Azure PowerShell]。
 * 大致了解 PowerShell 指令碼、NuGet 封裝和 .NET Framework。
 
-## <a name="including-a-reference-to-the-.net-assembly-for-service-bus"></a>包括對服務匯流排之 .NET 組件的參考
+## <a name="including-a-reference-to-the-net-assembly-for-service-bus"></a>包括對服務匯流排之 .NET 組件的參考
 Azure PowerShell 中的 PowerShell Cmdlet 尚未提供「管理 Azure 通知中樞」。 若要佈建通知中樞，可以使用 [Microsoft Azure 通知中樞 NuGet 套件](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/)中所提供的 .NET 用戶端。
 
 首先，請確定指令碼可以找到 **Microsoft.Azure.NotificationHubs.dll** 組件，其在 Visual Studio 專案中會以 NuGet 套件的形式安裝。 為了要有使用彈性，指令碼會執行這些步驟：
@@ -142,7 +146,7 @@ else
 
 
 ## <a name="additional-resources"></a>其他資源
-* [使用 PowerShell 管理服務匯流排](../service-bus/service-bus-powershell-how-to-provision.md)
+* [使用 PowerShell 管理服務匯流排](../service-bus-messaging/service-bus-powershell-how-to-provision.md)
 * [如何使用 PowerShell 指令碼來建立服務匯流排佇列、主題及訂用帳戶](http://blogs.msdn.com/b/paolos/archive/2014/12/02/how-to-create-a-service-bus-queues-topics-and-subscriptions-using-a-powershell-script.aspx)
 * [如何使用 PowerShell 指令碼來建立服務匯流排命名空間與事件中樞](http://blogs.msdn.com/b/paolos/archive/2014/12/01/how-to-create-a-service-bus-namespace-and-an-event-hub-using-a-powershell-script.aspx)
 
@@ -162,6 +166,6 @@ else
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

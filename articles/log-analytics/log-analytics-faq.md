@@ -1,12 +1,12 @@
 ---
-title: Log Analytics 常見問題集 | Microsoft Docs
-description: Log Analytics 服務的相關常見問題的解答。
+title: "Log Analytics 常見問題集 | Microsoft Docs"
+description: "Log Analytics 服務的相關常見問題的解答。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: bandersmsft
 manager: jwhit
-editor: ''
-
+editor: 
+ms.assetid: ad536ff7-2c60-4850-a46d-230bc9e1ab45
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/10/2016
 ms.author: banders
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: e24e6f9cc383be77dc631a0dd67db099906dccc0
+
 
 ---
 # <a name="log-analytics-faq"></a>Log Analytics 常見問題集
@@ -45,7 +49,7 @@ A. 下列查詢會顯示目前執行的所有檢查的描述：
 ## <a name="configuration"></a>組態
 **問：可以變更用來從 Azure 診斷 (WAD) 讀取的資料表/Blob 容器的名稱嗎？**  
 
-答：  不行，這目前不可行，但對未來版本有規劃。
+答：    不行，這目前不可行，但對未來版本有規劃。
 
 **問：OMS 服務使用哪些 IP 位址？如何確保我的防火牆只允許對 OMS 服務的流量？**  
 
@@ -118,6 +122,9 @@ Type=WireData (ProcessName="C:\\Program Files\\Microsoft Monitoring Agent\\Agent
 ## <a name="next-steps"></a>後續步驟
 * [開始使用 Log Analytics](log-analytics-get-started.md) 以深入了解 Log Analytics，並幾分鐘內就啟動並執行。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

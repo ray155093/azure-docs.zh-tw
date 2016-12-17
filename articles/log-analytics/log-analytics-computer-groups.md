@@ -1,19 +1,23 @@
 ---
-title: Log Analytics 記錄檔搜尋中的電腦群組 | Microsoft Docs
-description: Log Analytics 中的電腦群組可讓您將記錄檔搜尋範圍限於一組特定的電腦。  這篇文章說明可用來建立電腦群組的不同方法，以及如何將它們用在記錄檔搜尋中。
+title: "Log Analytics 記錄檔搜尋中的電腦群組 | Microsoft Docs"
+description: "Log Analytics 中的電腦群組可讓您將記錄檔搜尋範圍限於一組特定的電腦。  這篇文章說明可用來建立電腦群組的不同方法，以及如何將它們用在記錄檔搜尋中。"
 services: log-analytics
-documentationcenter: ''
+documentationcenter: 
 author: bwren
 manager: jwhit
-editor: ''
-
+editor: 
+ms.assetid: a28b9e8a-6761-4ead-aa61-c8451ca90125
 ms.service: log-analytics
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 09/06/2016
+ms.date: 12/09/2016
 ms.author: bwren
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 6c0affd0f5ea600f979cfcc87e2435658c8dab14
+
 
 ---
 # <a name="computer-groups-in-log-analytics-log-searches"></a>Log Analytics 記錄檔搜尋中的電腦群組
@@ -103,6 +107,9 @@ Log Analytics 中的電腦群組中可讓您將[記錄檔搜尋](log-analytics-l
 ## <a name="next-steps"></a>後續步驟
 * 了解 [記錄搜尋](log-analytics-log-searches.md) ，其可分析從資料來源和方案所收集的資料。  
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,8 +1,11 @@
-Copyright (c) Microsoft Corporation.依以下條款散布：
+Copyright (c) Microsoft Corporation。  根據下列條款散佈：
 
-1.Microsoft 及本專案全部著作人，基於各自擁有之著作權，依據「共享創意授權條款 3.0 美國授權 (Creative Commons Attribution 3.0 United States License)」(http://creativecommons.org/licenses/by/3.0/us/legalcode)，分別授權予 Microsoft Azure Documentation 用戶。此外，針對文件中包含之所有示範碼，Microsoft 及本專案全部著作人就其擁有智慧財產權之項目，額外授權　貴用戶得利用示範碼為 Microsoft Azure 開發或設計軟體。
+1. Microsoft 和這個專案的任何參與者都會根據個別授權，將 [Creative Commons Attribution 3.0 United States License](http://creativecommons.org/licenses/by/3.0/us/legalcode) 下的 Microsoft Azure Documentation 授權授與您。  此外，對於文件中所包含的任何範例程式碼，Microsoft 和任何這類參與者都會根據個別智慧財產權，授與您額外的授權以使用程式碼來開發或設計 Microsoft Azure 的軟體。
+2. Microsoft、Windows、Microsoft Azure 以及 (或) 文件中所參考的其他 Microsoft 產品和服務可能是 Microsoft 在美國及 (或) 其他國家/地區的商標或註冊商標。 這個授權未授與您使用任何名稱、標誌或商標的權限。 如需 Microsoft 的一般商標指導方針，請移至 [http://go.microsoft.com/fwlink/?LinkID=254653](http://go.microsoft.com/fwlink/?LinkID=254653)。
+3. Microsoft 和任何參與者都會根據著作權、專利權或商標或者以隱含的、禁止反悔的或其他方式來保留所有權限。
 
-2.文件中所提及之 Microsoft、Windows、Microsoft Azure 及/或其他 Microsoft 產品及服務，為 Microsoft 在美國及/或其他國家/地區之商標或註冊商標。本授權未授與　貴用戶使用任何名稱、標誌或商標之權利。Microsoft 一般商標準則，請參閱 [http://go.microsoft.com/fwlink/?LinkID=254653](http://go.microsoft.com/fwlink/?LinkID=254653)。
 
-3.Microsoft 及全部著作人保留所有其他權利，無論是著作權、專利或商標的權利，或者是以默示、禁止翻供或其他方式授與之權利。
+
+<!--HONumber=Nov16_HO3-->
+
 

@@ -1,12 +1,12 @@
 ---
-title: 在 Azure 虛擬機器上設定從 Azure 搜尋服務索引子到 SQL Server 的連線 | Microsoft Docs
-description: 啟用加密的連線並設定防火牆，以允許在 Azure 虛擬機器 (VM) 上從 Azure 搜尋服務的索引子連接到 SQL Server。
+title: "在 Azure 虛擬機器上設定從 Azure 搜尋服務索引子到 SQL Server 的連接 | Microsoft Docs"
+description: "啟用加密的連線並設定防火牆，以允許在 Azure 虛擬機器 (VM) 上從 Azure 搜尋服務的索引子連接到 SQL Server。"
 services: search
-documentationcenter: ''
+documentationcenter: 
 author: jack4it
 manager: pablocas
-editor: ''
-
+editor: 
+ms.assetid: 46e42e0e-c8de-4fec-b11a-ed132db7e7bc
 ms.service: search
 ms.devlang: rest-api
 ms.workload: search
@@ -14,10 +14,14 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 09/26/2016
 ms.author: jackma
+translationtype: Human Translation
+ms.sourcegitcommit: ee34a7ebd48879448e126c1c9c46c751e477c406
+ms.openlocfilehash: cfd53c8240244ffbcf34380acb25657fcc8c9562
+
 
 ---
 # <a name="configure-a-connection-from-an-azure-search-indexer-to-sql-server-on-an-azure-vm"></a>在 Azure VM 上設定從 Azure 搜尋服務索引子到 SQL Server 的連線
-如[使用索引子將 Azure SQL Database 連接至 Azure 搜尋服務](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers-2015-02-28.md#frequently-asked-questions)中所述，Azure 搜尋服務支援針對 **Azure VM 上的 SQL Server** (或簡稱 **SQL Azure VM**) 建立索引子，但必須先處理幾個安全性相關的必要條件。 
+如[使用索引子將 Azure SQL Database 連接至 Azure 搜尋服務](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md#frequently-asked-questions)中所述，Azure 搜尋服務支援針對 **Azure VM 上的 SQL Server** (或簡稱 **SQL Azure VM**) 建立索引子，但必須先處理幾個安全性相關的必要條件。 
 
 **工作持續時間︰** 約 30 分鐘，假設您已經在 VM 上安裝憑證。
 
@@ -46,12 +50,12 @@ Azure 搜尋服務會針對透過公用網際網路連接的所有索引子要�
 ## <a name="configure-sql-server-connectivity-in-the-vm"></a>在 VM 中設定 SQL Server 連線
 在您設定由 Azure 搜尋服務所要求的加密連接之後，Azure VM 上的 SQL Server 內建函式會有額外設定步驟。 如果您尚未這麼做，則下一個步驟是使用這些文件其中之一來完成設定︰
 
-* 若為 **Resource Manager** VM，請參閱 [使用 Resource Manager 連接到 Azure 上的 SQL Server 虛擬機器](../virtual-machines/virtual-machines-windows-sql-connect.md)。 
-* 若為 **傳統** VM，請參閱 [連線到 Azure 上的 SQL Server 虛擬機器](../virtual-machines/virtual-machines-windows-classic-sql-connect.md)。
+* 若為 **Resource Manager** VM，請參閱 [使用 Resource Manager 連接到 Azure 上的 SQL Server 虛擬機器](../virtual-machines/virtual-machines-windows-sql-connect.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 
+* 若為 **傳統** VM，請參閱 [連線到 Azure 上的 SQL Server 虛擬機器](../virtual-machines/virtual-machines-windows-classic-sql-connect.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)。
 
 特別是，檢閱每個文章中的「透過網際網路連接」一節。
 
-## <a name="configure-the-network-security-group-(nsg)"></a>設定網路安全性群組 (NSG)
+## <a name="configure-the-network-security-group-nsg"></a>設定網路安全性群組 (NSG)
 設定 NSG 與相對應的 Azure 端點或存取控制清單 (ACL)，讓他人能夠存取您的 Azure VM。 您很可能過去已完成此設定，允許自己的應用程式邏輯連接至您的 SQL Azure VM。 這和 Azure 搜尋服務連線至 SQL Azure VM 並無不同。 
 
 下列連結提供 VM 部署的 NSG 組態相關指示。 使用下列 Azure 搜尋服務端點根據其 IP 位址的 ACL 指示。
@@ -82,8 +86,11 @@ IP 位址可能會造成一些挑戰，如果您知道問題和可能的因應�
 如果您使用 Azure 入口網站建立索引子，Azure 搜尋服務入口網站邏輯也需要在建立期間存取您的 SQL Azure VM。 Ping `stamp2.search.ext.azure.com`，即可找到 Azure 搜尋服務入口網站 IP 位址。
 
 ## <a name="next-steps"></a>後續步驟
-解決組態之後，您現在就可以在 Azure VM 指定 SQL Server 作為 Azure 搜尋服務索引子的資料來源。 如需詳細資訊，請參閱 [使用索引子將 Azure SQL Database 連接至 Azure 搜尋服務](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers-2015-02-28.md) 。
+解決組態之後，您現在就可以在 Azure VM 指定 SQL Server 作為 Azure 搜尋服務索引子的資料來源。 如需詳細資訊，請參閱 [使用索引子將 Azure SQL Database 連接至 Azure 搜尋服務](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md) 。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

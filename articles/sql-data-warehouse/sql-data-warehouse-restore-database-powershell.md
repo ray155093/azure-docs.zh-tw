@@ -1,12 +1,12 @@
 ---
-title: 還原 Azure SQL 資料倉儲 (PowerShell) | Microsoft Docs
-description: 還原 Azure SQL 資料倉儲的 PowerShell 工作。
+title: "還原 Azure SQL 資料倉儲 (PowerShell) | Microsoft Docs"
+description: "還原 Azure SQL 資料倉儲的 PowerShell 工作。"
 services: sql-data-warehouse
 documentationcenter: NA
 author: Lakshmi1812
 manager: jhubbard
-editor: ''
-
+editor: 
+ms.assetid: ac62f154-c8b0-4c33-9c42-f480808aa1d2
 ms.service: sql-data-warehouse
 ms.devlang: NA
 ms.topic: article
@@ -14,6 +14,10 @@ ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.date: 10/31/2016
 ms.author: lakshmir;barbkess
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 3f642b5b5b19887ebe373d1c0df809873abde503
+
 
 ---
 # <a name="restore-an-azure-sql-data-warehouse-powershell"></a>還原 Azure SQL 資料倉儲 (PowerShell)
@@ -28,10 +32,10 @@ ms.author: lakshmir;barbkess
 在本文中，您將了解如何使用 PowerShell 來還原 Azure SQL 資料倉儲。
 
 ## <a name="before-you-begin"></a>開始之前
-**請驗證您的 DTU 容量。**  每個 SQL 資料倉儲均由具有預設 DTU 配額的 SQL 伺服器裝載 (例如 myserver.database.windows.net)。  在您還原 SQL 資料倉儲之前，請確認您的 SQL 伺服器有足夠的剩餘 DTU 配額供要還原的資料庫使用。 若要了解如何計算所需 DTU 或要求更多 DTU，請參閱 [要求 DTU 配額變更][要求 DTU 配額變更]。
+**請驗證您的 DTU 容量。**  每個 SQL 資料倉儲均由具有預設 DTU 配額的 SQL 伺服器裝載 (例如 myserver.database.windows.net)。  在您還原 SQL 資料倉儲之前，請確認您的 SQL 伺服器有足夠的剩餘 DTU 配額供要還原的資料庫使用。 若要了解如何計算所需 DTU 或要求更多 DTU，請參閱[要求 DTU 配額變更][要求 DTU 配額變更]。
 
 ### <a name="install-powershell"></a>安裝 PowerShell
-若要搭配使用 Azure Powershell 與 SQL 資料倉儲，您需要安裝 Azure PowerShell 1.0 版或更高版本。  您可以執行 **Get-Module -ListAvailable -Name AzureRM**來檢查您的版本。  可透過 [Microsoft Web Platform Installer][Microsoft Web Platform Installer]安裝最新的版本。  如需安裝最新版本的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell][如何安裝和設定 Azure PowerShell]。
+若要搭配使用 Azure Powershell 與 SQL 資料倉儲，您需要安裝 Azure PowerShell 1.0 版或更高版本。  您可以執行 **Get-Module -ListAvailable -Name AzureRM**來檢查您的版本。  可透過 [Microsoft Web Platform Installer][Microsoft Web Platform Installer] 安裝最新的版本。  如需安裝最新版本的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell][如何安裝和設定 Azure PowerShell]。
 
 ## <a name="restore-an-active-or-paused-database"></a>還原作用中或已暫停的資料庫
 若要從快照還原資料庫，請使用 [Restore-AzureRmSqlDatabase][Restore-AzureRmSqlDatabase] PowerShell Cmdlet。
@@ -77,12 +81,12 @@ $RestoredDatabase.status
 ```
 
 > [!NOTE]
-> 還原完成後，您可以遵循 [在復原之後設定資料庫][在復原之後設定資料庫]來設定復原的資料庫。
+> 還原完成後，您可以遵循[在復原之後設定資料庫][在復原之後設定資料庫]來設定復原的資料庫。
 > 
 > 
 
 ## <a name="restore-a-deleted-database"></a>還原已刪除的資料庫
-若要還原已刪除的資料庫，請使用 [Restore-AzureRmSqlDatabase][Restore-AzureRmSqlDatabase] Cmdlet。
+若要還原刪除的資料庫，請使用 [Restore-AzureRmSqlDatabase][Restore-AzureRmSqlDatabase] Cmdlet。
 
 1. 開啟 Windows PowerShell。
 2. 連接到您的 Azure 帳戶，然後列出與您帳戶關聯的所有訂用帳戶。
@@ -113,7 +117,7 @@ $RestoredDatabase.status
 ```
 
 > [!NOTE]
-> 還原完成後，您可以遵循 [在復原之後設定資料庫][在復原之後設定資料庫]來設定復原的資料庫。
+> 還原完成後，您可以遵循[在復原之後設定資料庫][在復原之後設定資料庫]來設定復原的資料庫。
 > 
 > 
 
@@ -143,7 +147,7 @@ $GeoRestoredDatabase.status
 ```
 
 > [!NOTE]
-> 若要在還原完成之後設定資料庫，請參閱 [在復原之後設定資料庫][在復原之後設定資料庫]。 
+> 若要在還原完成之後設定資料庫，請參閱[在復原之後設定資料庫][在復原之後設定資料庫]。
 > 
 > 
 
@@ -155,15 +159,15 @@ $GeoRestoredDatabase.status
 <!--Image references-->
 
 <!--Article references-->
-[Azure SQL Database 商務持續性概觀]: sql-database-business-continuity.md
+[Azure SQL Database 商務持續性概觀]: ../sql-database/sql-database-business-continuity.md
 [要求 DTU 配額變更]: ./sql-data-warehouse-get-started-create-support-ticket.md#request-quota-change
-[在復原之後設定資料庫]: ./sql-database-disaster-recovery.md#configure-your-database-after-recovery
-[如何安裝和設定 Azure PowerShell]: powershell-install-configure.md
+[在復原之後設定資料庫]: ../sql-database/sql-database-disaster-recovery.md#configure-your-database-after-recovery
+[如何安裝和設定 Azure PowerShell]: ../powershell-install-configure.md
 [概觀]: ./sql-data-warehouse-restore-database-overview.md
 [入口網站]: ./sql-data-warehouse-restore-database-portal.md
 [PowerShell]: ./sql-data-warehouse-restore-database-powershell.md
 [REST]: ./sql-data-warehouse-restore-database-rest-api.md
-[在復原之後設定資料庫]: ./sql-database-disaster-recovery.md#configure-your-database-after-recovery
+[在復原之後設定資料庫]: ../sql-database/sql-database-disaster-recovery.md#configure-your-database-after-recovery
 
 <!--MSDN references-->
 [Restore-AzureRmSqlDatabase]: https://msdn.microsoft.com/library/mt693390.aspx
@@ -174,6 +178,6 @@ $GeoRestoredDatabase.status
 
 
 
-<!--HONumber=Oct16_HO2-->
+<!--HONumber=Nov16_HO3-->
 
 

@@ -1,34 +1,38 @@
 ---
-title: 在 Linux 上使用 C 連接裝置| Microsoft Docs
-description: 描述如何在 Linux 上使用已寫入 C 的應用程式，將裝置連接至 Azure IoT Suite 預先設定遠端監視方案。
-services: ''
+title: "在 Linux 上使用 C 連接裝置| Microsoft Docs"
+description: "描述如何在 Linux 上使用已寫入 C 的應用程式，將裝置連接至 Azure IoT Suite 預先設定遠端監視方案。"
+services: 
 suite: iot-suite
 documentationcenter: na
 author: dominicbetts
 manager: timlt
-editor: ''
-
+editor: 
+ms.assetid: 0c7c8039-0bbf-4bb5-9e79-ed8cff433629
 ms.service: iot-suite
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 07/14/2016
+ms.date: 10/05/2016
 ms.author: dobett
+translationtype: Human Translation
+ms.sourcegitcommit: 6fdcdc323cff07d7debd46ab10b17ba7e9d8781a
+ms.openlocfilehash: d1a6ffe59c5cb4fd0575ba02aa9768548461b869
+
 
 ---
-# 將裝置連接至遠端監視預先設定方案 (Linux)
+# <a name="connect-your-device-to-the-remote-monitoring-preconfigured-solution-linux"></a>將裝置連接至遠端監視預先設定方案 (Linux)
 [!INCLUDE [iot-suite-selector-connecting](../../includes/iot-suite-selector-connecting.md)]
 
-## 建置並執行範例 C 用戶端 Linux
-下列程序示範如何以 C 撰寫來建立簡單的用戶端應用程式，在 Ubuntu Linux 上建置並執行，與遠端監視預先設定的方案通訊。若要完成這些步驟，您需要執行 Ubuntu 版本 15.04 或 15.10 的裝置。繼續之前，使用下列命令在 Ubuntu 裝置上安裝的必要條件封裝：
+## <a name="build-and-run-a-sample-c-client-linux"></a>建置並執行範例 C 用戶端 Linux
+下列程序示範如何以 C 撰寫來建立用戶端應用程式，在 Ubuntu Linux 上建置並執行，與遠端監視預先設定的解決方案通訊。 若要完成這些步驟，您需要執行 Ubuntu 版本 15.04 或 15.10 的裝置。 繼續之前，使用下列命令在 Ubuntu 裝置上安裝的必要條件封裝：
 
 ```
 sudo apt-get install cmake gcc g++
 ```
 
-## 在裝置上安裝用戶端程式庫
-Azure IoT 中樞用戶端程式庫可當成封裝來使用，而您可以使用 **apt get** 命令在 Ubuntu 裝置上安裝這類封裝。完成下列步驟來安裝封裝，其中包含您 Ubuntu 電腦上的 IoT 中樞用戶端程式庫和標頭檔：
+## <a name="install-the-client-libraries-on-your-device"></a>在裝置上安裝用戶端程式庫
+Azure IoT 中樞用戶端程式庫可當成封裝來使用，而您可以使用 **apt get** 命令在 Ubuntu 裝置上安裝這類封裝。 完成下列步驟來安裝封裝，其中包含您 Ubuntu 電腦上的 IoT 中樞用戶端程式庫和標頭檔：
 
 1. 將 AzureIoT 儲存機制新增至電腦：
    
@@ -42,12 +46,12 @@ Azure IoT 中樞用戶端程式庫可當成封裝來使用，而您可以使用 
     sudo apt-get install -y azure-iot-sdk-c-dev
     ```
 
-## 新增程式碼以指定裝置的行為
-在 Ubuntu 電腦上，建立名為 **remote\_monitoring** 的資料夾。在 **remote\_monitoring** 資料夾中建立四個檔案︰**main.c**、**remote\_monitoring.c**、**remote\_monitoring.h** 和 **CMakeLists.txt**。
+## <a name="add-code-to-specify-the-behavior-of-the-device"></a>新增程式碼以指定裝置的行為
+在 Ubuntu 電腦上，建立稱為 **remote\_monitoring** 的資料夾。 在 **remote\_monitoring** 資料夾中建立四個檔案︰**main.c**、**remote\_monitoring.c**、**remote\_monitoring.h** 和 **CMakeLists.txt**。
 
-IoT 中樞序列化程式用戶端程式庫使用模型，來指定裝置傳送到 IoT 中樞的訊息格式，或裝置所回應的 IoT 中樞命令格式。
+IoT 中樞序列化程式用戶端程式庫使用模型來指定裝置傳送至 IoT 中樞之訊息的格式，或裝置接收自 IoT 中樞之命令的格式。
 
-1. 在文字編輯器中，開啟 **remote\_monitoring.c** 檔案。新增下列 `#include` 陳述式：
+1. 在文字編輯器中，開啟 **remote\_monitoring.c** 檔案。 新增下列 `#include` 陳述式：
    
     ```
     #include "iothubtransportamqp.h"
@@ -58,7 +62,7 @@ IoT 中樞序列化程式用戶端程式庫使用模型，來指定裝置傳送�
     #include "azure_c_shared_utility/threadapi.h"
     #include "azure_c_shared_utility/platform.h"
     ```
-2. 在 `#include` 陳述式之後新增下列變數宣告。從遠端監視方案的儀表板將 [Device Id] 和 [Device Key] 這兩個預留位置值取代為裝置的值。使用儀表板中的 IoT 中樞主機名稱取代 [IoTHub Name]。例如，若您的 IoT 中樞主機名稱是 **contoso.azure-devices.net**，請使用 **contoso** 取代 [IoTHub Name]：
+2. 在 `#include` 陳述式之後新增下列變數宣告。 從遠端監視方案的儀表板將 [Device Id] 和 [Device Key] 這兩個預留位置值取代為裝置的值。 使用儀表板中的 IoT 中樞主機名稱取代 [IoTHub Name]。 例如，若您的 IoT 中樞主機名稱是 **contoso.azure-devices.net**，請使用 **contoso** 取代 [IoTHub Name]：
    
     ```
     static const char* deviceId = "[Device Id]";
@@ -66,7 +70,7 @@ IoT 中樞序列化程式用戶端程式庫使用模型，來指定裝置傳送�
     static const char* hubName = "IoTHub Name]";
     static const char* hubSuffix = "azure-devices.net";
     ```
-3. 新增下列程式碼以定義可讓裝置與 IoT 中樞通訊的模型。此模型指定裝置會傳送溫度、外部溫度、濕度和裝置識別碼做為遙測。裝置也會傳送與該裝置有關的中繼資料到 IoT 中樞，包括裝置支援的命令清單。這個裝置會回應 **SetTemperature** 和 **SetHumidity** 命令：
+3. 新增下列程式碼以定義可讓裝置與 IoT 中樞通訊的模型。 此模型指定裝置會傳送溫度、外部溫度、濕度和裝置識別碼做為遙測。 裝置也會傳送與該裝置有關的中繼資料到 IoT 中樞，包括裝置支援的命令清單。 這個裝置會回應 **SetTemperature** 和 **SetHumidity** 命令：
    
     ```
     // Define the Model
@@ -105,7 +109,7 @@ IoT 中樞序列化程式用戶端程式庫使用模型，來指定裝置傳送�
     END_NAMESPACE(Contoso);
     ```
 
-### 新增程式碼以實作裝置的行為
+### <a name="add-code-to-implement-the-behavior-of-the-device"></a>新增程式碼以實作裝置的行為
 新增裝置收到中樞傳來的命令時要執行的函式，以及用來將模擬遙測傳送到中樞的程式碼。
 
 1. 新增下列會在裝置收到模型中所定義的 **SetTemperature** 和 **SetHumidity** 命令時執行的函式：
@@ -188,7 +192,7 @@ IoT 中樞序列化程式用戶端程式庫使用模型，來指定裝置傳送�
       return result;
     }
     ```
-4. 新增下列函式以連線到 IoT 中樞、傳送和接收訊息，以及與中樞中斷連線。請注意，裝置一旦連線就會將與本身有關的中繼資料 (包括其支援的命令) 傳送到 IoT 中樞 - 這可讓方案將儀表板上的裝置狀態更新為 [執行中]：
+4. 新增下列函式以連線到 IoT 中樞、傳送和接收訊息，以及與中樞中斷連線。 請注意裝置如何在連接時將其中繼資料 (包含它支援的命令) 傳送至 IoT 中樞。 這個中繼資料可讓解決方案將儀表板上的裝置狀態更新成 [執行中]︰
    
     ```
     void remote_monitoring_run(void)
@@ -350,14 +354,14 @@ IoT 中樞序列化程式用戶端程式庫使用模型，來指定裝置傳送�
     }
     ```
 
-### 新增程式碼來叫用 remote\_monitoring\_run 函式
-在文字編輯器中，開啟 **remote\_monitoring.h** 檔案。新增下列程式碼：
+### <a name="add-code-to-invoke-the-remotemonitoringrun-function"></a>新增程式碼來叫用 remote_monitoring_run 函式
+在文字編輯器中，開啟 **remote_monitoring.h** 檔案。 新增下列程式碼：
 
 ```
 void remote_monitoring_run(void);
 ```
 
-在文字編輯器中，開啟 **main.c** 檔案。新增下列程式碼：
+在文字編輯器中，開啟 **main.c** 檔案。 新增下列程式碼：
 
 ```
 #include "remote_monitoring.h"
@@ -370,10 +374,10 @@ int main(void)
 }
 ```
 
-## 使用 CMake 建置用戶端應用程式
+## <a name="use-cmake-to-build-the-client-application"></a>使用 CMake 建置用戶端應用程式
 下列步驟說明如何使用 *CMake* 建置用戶端應用程式。
 
-1. 在文字編輯器中，開啟 **remote\_monitoring** 資料夾中的 **CMakeLists.txt** 檔案。
+1. 在文字編輯器中，開啟 **remote_monitoring** 資料夾中的 **CMakeLists.txt** 檔案。
 2. 新增下列指示來定義如何建置用戶端應用程式：
    
     ```
@@ -404,9 +408,10 @@ int main(void)
         curl
         ssl
         crypto
+        m
     )
     ```
-3. 在 **remote\_monitoring** 資料夾中，建立資料夾來儲存 CMake 產生的 *make* 檔案，然後執行 **cmake** 和 **make** 命令，如下所示：
+3. 在 **remote_monitoring** 資料夾中，建立資料夾來儲存 CMake 產生的 *make* 檔案，然後執行 **cmake** 和 **make** 命令，如下所示：
    
     ```
     mkdir cmake
@@ -422,4 +427,9 @@ int main(void)
 
 [!INCLUDE [iot-suite-visualize-connecting](../../includes/iot-suite-visualize-connecting.md)]
 
-<!---HONumber=AcomDC_0720_2016-->
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+
