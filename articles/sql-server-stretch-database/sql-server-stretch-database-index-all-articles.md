@@ -1,12 +1,12 @@
 ---
-title: 所有 SQL Server Stretch Database 服務的主題 | Microsoft Docs
-description: http://azure.microsoft.com/documentation/articles/ 上名為 SQL Server Stretch Database 的 Azure 服務之所有主題的表格 (標題與說明)。
+title: "所有 SQL Server Stretch Database 服務的主題 | Microsoft Docs"
+description: "http://azure.microsoft.com/documentation/articles/ 上名為 SQL Server Stretch Database 的 Azure 服務之所有主題的表格 (標題與說明)。"
 services: sql-server-stretch-database
-documentationcenter: ''
+documentationcenter: 
 author: DouglasL
 manager: jhubbard
 editor: MightyPen
-
+ms.assetid: b1718024-84d6-4f5c-a912-3a99edb3f632
 ms.service: sql-server-stretch-database
 ms.workload: sql-server-stretch-database
 ms.tgt_pltfrm: na
@@ -14,6 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/05/2016
 ms.author: DouglasL
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 33f23d324a843165d7fe6016ee626e369acfc958
+
 
 ---
 # <a name="all-topics-for-azure-sql-server-stretch-database-service"></a>所有 Azure SQL Server Stretch Database 服務的主題
@@ -54,6 +58,9 @@ ms.author: DouglasL
 | 14 |[備份已啟用 Stretch 的資料庫](sql-server-stretch-database-backup.md) |了解如何備份已啟用 Stretch 的資料庫。\- |
 | 15 |[還原已啟用延展功能的資料庫](sql-server-stretch-database-restore.md) |了解如何還原已啟用 Stretch 的資料庫。\- |
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

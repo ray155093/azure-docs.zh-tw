@@ -1,13 +1,13 @@
 ---
-title: 使用 Azure Machine Learning 函式調整串流分析作業 | Microsoft Docs
-description: 了解如何在使用 Azure Machine Learning 函式時適當地調整串流分析作業 (資料分割、SU 數量等)。
-keywords: ''
-documentationcenter: ''
+title: "使用 Azure Machine Learning 函式調整串流分析作業 | Microsoft Docs"
+description: "了解如何在使用 Azure Machine Learning 函式時適當地調整串流分析作業 (資料分割、SU 數量等)。"
+keywords: 
+documentationcenter: 
 services: stream-analytics
 author: jeffstokes72
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: 47ce7c5e-1de1-41ca-9a26-b5ecce814743
 ms.service: stream-analytics
 ms.devlang: na
 ms.topic: article
@@ -15,12 +15,16 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 09/26/2016
 ms.author: jeffstok
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: ad7ac0056cead32332b63add61655dbc1d2cb37c
+
 
 ---
 # <a name="scale-your-stream-analytics-job-with-azure-machine-learning-functions"></a>使用 Azure Machine Learning 函式調整串流分析作業
 設定串流分析作業並透過它執行一些範例資料通常是很容易。 當我們需要以較高的資料量來執行相同的作業時，我們該怎麼辦？ 我們必須了解如何設定串流分析作業，以便進行調整。 本文件的重點在於使用 Machine Learning 函式調整串流分析作業的特殊層面。 如需有關如何調整串流分析作業的一般資訊，請參閱 [調整作業](stream-analytics-scale-jobs.md)文章。
 
-## <a name="what-is-an-azure-machine-learning-function-in-stream-analytics?"></a>什麼是串流分析中的 Azure Machine Learning 函式？
+## <a name="what-is-an-azure-machine-learning-function-in-stream-analytics"></a>什麼是串流分析中的 Azure Machine Learning 函式？
 串流分析中的 Machine Learning 函式可如同一般函式呼叫使用於串流分析查詢語言中。 不過，在幕後，函式呼叫實際上是 Azure Machine Learning Web 服務要求。 Machine Learning Web 服務在相同的 Web 服務 API 呼叫中支援「批次處理」多個資料列 (稱之為迷你批次)，以改善整體輸送量。 如需詳細資訊，請參閱下列文章：[串流分析中的 Azure Machine Learning 函式](https://blogs.technet.microsoft.com/machinelearning/2015/12/10/azure-ml-now-available-as-a-function-in-azure-stream-analytics/)和 [Azure Machine Learning Web 服務](../machine-learning/machine-learning-consume-web-services.md#request-response-service-rrs)。
 
 ## <a name="configure-a-stream-analytics-job-with-machine-learning-functions"></a>使用 Machine Learning 函式設定串流分析作業
@@ -42,7 +46,7 @@ ms.author: jeffstok
 
 如需此設定的詳細資訊，請參閱 [Machine Learning Web 服務的調整文章](../machine-learning/machine-learning-scaling-webservice.md)。
 
-## <a name="example-–-sentiment-analysis"></a>範例 – 情感分析
+## <a name="example-sentiment-analysis"></a>範例 – 情感分析
 以下範例包含具有情感分析 Machine Learning 函式的串流分析作業，如 [串流分析 Machine Learning 整合教學課程](stream-analytics-machine-learning-integration-tutorial.md)所述。
 
 此查詢是一個簡單的完全分割查詢，其後接著 **sentiment** 函式，如下所示︰
@@ -73,18 +77,16 @@ ms.author: jeffstok
 
 下表是不同 SU 和批次大小的串流分析作業輸送量 (以每秒的事件數目表示)。
 
-| SU |  |  |  | 批次大小 (ML 延遲) |  |
+| 批次大小 (ML 延遲) | 500 (200 毫秒) | 1,000 (200 毫秒) | 5,000 (250 毫秒) | 10,000 (300 毫秒) | 25,000 (500 毫秒) |
 | --- | --- | --- | --- | --- | --- |
-|  | | | | | |
-| 500 (200 毫秒) |1,000 (200 毫秒) |5,000 (250 毫秒) |10,000 (300 毫秒) |25,000 (500 毫秒) | |
-| 1 SU |2,500 |5,000 |20,000 |30,000 |50,000 |
-| 3 SU |2,500 |5,000 |20,000 |30,000 |50,000 |
-| 6 SU |2,500 |5,000 |20,000 |30,000 |50,000 |
-| 12 SU |5,000 |10,000 |40,000 |60,000 |100,000 |
-| 18 SU |7,500 |15,000 |60,000 |90,000 |150,000 |
-| 24 SU |10,000 |20,000 |80,000 |120,000 |200,000 |
-| … |… |… |… |… |… |
-| 60 SU |25,000 |50,000 |200,000 |300,000 |500,000 |
+| **1 SU** |2,500 |5,000 |20,000 |30,000 |50,000 |
+| **3 SU** |2,500 |5,000 |20,000 |30,000 |50,000 |
+| **6 SU** |2,500 |5,000 |20,000 |30,000 |50,000 |
+| **12 SU** |5,000 |10,000 |40,000 |60,000 |100,000 |
+| **18 SU** |7,500 |15,000 |60,000 |90,000 |150,000 |
+| **24 SU** |10,000 |20,000 |80,000 |120,000 |200,000 |
+| **…** |… |… |… |… |… |
+| **60 SU** |25,000 |50,000 |200,000 |300,000 |500,000 |
 
 現在，您應該已充分了解串流分析中 Machine Learning 函式的運作方式。 您可能也了解串流分析作業會從資料來源「提取」資料，而且每次「提取」會傳回一批事件以供串流分析作業處理。 此提取模型如何影響 Machine Learning Web 服務要求？
 
@@ -120,6 +122,9 @@ ms.author: jeffstok
 * [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 * [Azure 串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

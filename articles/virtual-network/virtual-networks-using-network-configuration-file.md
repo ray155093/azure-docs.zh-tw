@@ -1,12 +1,12 @@
 ---
-title: 使用網路組態檔設定虛擬網路
-description: 將網路組態檔匯出和匯入至 Azure 管理入口網站以建立或修改虛擬網路的指示。
+title: "使用網路組態檔設定虛擬網路"
+description: "將網路組態檔匯出和匯入至 Azure 管理入口網站以建立或修改虛擬網路的指示。 "
 services: virtual-network
-documentationcenter: ''
+documentationcenter: 
 author: jimdial
 manager: carmonm
 editor: tysonn
-
+ms.assetid: c29b9059-22b0-444e-bbfe-3e35f83cde2f
 ms.service: virtual-network
 ms.devlang: na
 ms.topic: article
@@ -14,35 +14,44 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 8a29f94cf0b6f8da70a5a18dde1dcbdca68bf284
+
 
 ---
-# 使用網路組態檔設定虛擬網路
+# <a name="configure-a-virtual-network-using-a-network-configuration-file"></a>使用網路組態檔設定虛擬網路
 您可以使用 Azure 管理入口網站，或使用網路組態檔來設定虛擬網路 (VNet)。
 
-## 建立和修改網路設定檔
+## <a name="creating-and-modifying-a-network-configuration-file"></a>建立和修改網路設定檔
 若要撰寫網路組態檔，最簡單的方式是從現有的虛擬網路組態匯出網路設定，然後修改檔案，以包含設定虛擬網路所需的設定。
 
-若要編輯網路組態檔，您可以直接開啟該檔案，並進行適當的變更，然後儲存檔案。您可以使用任何 *xml* 編輯器來變更網路組態檔。
+若要編輯網路組態檔，您可以直接開啟該檔案，並進行適當的變更，然後儲存檔案。 您可以使用任何 *xml* 編輯器來變更網路組態檔。 
 
-您應該確實遵循〈[網路組態檔結構描述設定](https://msdn.microsoft.com/library/azure/jj157100.aspx)〉的指引。
+您應該確實遵循〈 [網路組態檔結構描述設定](https://msdn.microsoft.com/library/azure/jj157100.aspx)〉的指引。 
 
-Azure 會將已部署的子網路視為**使用中**。使用中的子網路無法加以修改。在修改之前，請將已部署到不同子網路的任何內容移到不修改的子網路。請參閱〈[將 VM 或角色執行個體移至不同的子網路](virtual-networks-move-vm-role-to-subnet.md)〉。
+Azure 會將已部署的子網路視為 **使用中**。 使用中的子網路無法加以修改。 在修改之前，請將已部署到不同子網路的任何內容移到不修改的子網路。   請參閱〈 [將 VM 或角色執行個體移至不同的子網路](virtual-networks-move-vm-role-to-subnet.md)〉。
 
-## 使用管理入口網站匯出和匯入虛擬網路設定
-您可以使用 PowerShell 或管理入口網站匯入和匯出網路組態檔中包含的網路組態設定。下列指示將協助您使用管理入口網站匯出和匯入。
+## <a name="export-and-import-virtual-network-settings-using-the-management-portal"></a>使用管理入口網站匯出和匯入虛擬網路設定
+您可以使用 PowerShell 或管理入口網站匯入和匯出網路組態檔中包含的網路組態設定。 下列指示將協助您使用管理入口網站匯出和匯入。 
 
-### 若要匯出網路設定
-匯出時，訂閱中虛擬網路所有的設定將寫入至 .xml 檔。
+### <a name="to-export-your-network-settings"></a>若要匯出網路設定
+匯出時，訂閱中虛擬網路所有的設定將寫入至 .xml 檔。 
 
-1. 登入**管理入口網站**。
-2. 在管理入口網站的 [**網路**] 頁面底部，按一下 [**匯出**]。
-3. 在 [**匯出網路組態**] 視窗中，確認您已選取要匯出網路設定的訂用帳戶。然後，按一下右下方的核取記號。
+1. 登入 **管理入口網站**。
+2. 在管理入口網站的 [網路] 頁面底部，按一下 [匯出]。 
+3. 在 [ **匯出網路組態** ] 視窗中，確認您已選取要匯出網路設定的訂用帳戶。 然後，按一下右下方的核取記號。 
 4. 當提示出現時，將 *NetworkConfig.xml* 檔案儲存到您選擇的位置。
 
-### 若要匯入網路設定
-1. 在**管理入口網站**左下方的導覽窗格中，按一下 [**新增**]。
-2. 按一下 [**網路服務**] -> [**虛擬網路**] -> [**匯入組態**]。
-3. 在 [**匯入網路組態檔**] 頁面上，瀏覽至您的網路組態檔，然後按一下 [**下一步**] 箭號。
-4. 在 [**建置您的網路**] 頁面上，您會看見畫面上的資訊顯示將變更或建立的網路組態區段。如果變更正確無誤，請按一下核取記號繼續更新或建立虛擬網路。
+### <a name="to-import-your-network-settings"></a>若要匯入網路設定
+1. 在 [管理入口網站] 左下方的導覽窗格中，按一下 [新增]。
+2. 按一下 [網路服務]  ->  [虛擬網路]  ->  [匯入組態]。
+3. 在 [匯入網路組態檔] 頁面上，瀏覽至您的網路組態檔，然後按一下 [下一步] 箭號。
+4. 在 [ **建置您的網路** ] 頁面上，您會看見畫面上的資訊顯示將變更或建立的網路組態區段。 如果變更正確無誤，請按一下核取記號繼續更新或建立虛擬網路。 
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

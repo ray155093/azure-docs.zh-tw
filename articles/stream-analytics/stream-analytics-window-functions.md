@@ -1,13 +1,13 @@
 ---
-title: 串流分析時間範圍函式簡介 | Microsoft Docs
-description: 深入了解串流分析中的三個時間範圍函式 (輪轉、跳動、滑動)。
-keywords: 輪轉時間範圍、滑動時間範圍、跳動時間範圍
-documentationcenter: ''
+title: "串流分析時間範圍函式簡介 | Microsoft Docs"
+description: "深入了解串流分析中的三個時間範圍函式 (輪轉、跳動、滑動)。"
+keywords: "輪轉時間範圍、滑動時間範圍、跳動時間範圍"
+documentationcenter: 
 services: stream-analytics
 author: jeffstokes72
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: 0d8d8717-5d23-43f0-b475-af078ab4627d
 ms.service: stream-analytics
 ms.devlang: na
 ms.topic: article
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 09/26/2016
 ms.author: jeffstok
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 561a3b3f9c90274cfff95ab27c6cd745582f15e0
+
 
 ---
 # <a name="introduction-to-stream-analytics-window-functions"></a>串流分析時間範圍函式簡介
@@ -47,6 +51,9 @@ ms.author: jeffstok
 * [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 * [Azure 串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

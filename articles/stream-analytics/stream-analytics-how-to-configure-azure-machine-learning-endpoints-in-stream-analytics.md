@@ -1,13 +1,13 @@
 ---
-title: 如何在串流分析中設定 Azure Machine Learning 端點 | Microsoft Docs
-description: 串流分析中的機器語言使用者定義函式
-keywords: ''
-documentationcenter: ''
+title: "如何在串流分析中設定 Azure Machine Learning 端點 | Microsoft Docs"
+description: "串流分析中的機器語言使用者定義函式"
+keywords: 
+documentationcenter: 
 services: stream-analytics
 author: jeffstokes72
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: 406b258f-b8c2-4e55-953c-b7f84e8e5354
 ms.service: stream-analytics
 ms.devlang: na
 ms.topic: article
@@ -15,12 +15,16 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 09/26/2016
 ms.author: jeffstok
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: ce7dd546ce534ede6901444d5fe441493ac2fc45
+
 
 ---
 # <a name="machine-learning-integration-in-stream-analytics"></a>在串流分析中整合機器學習服務
 串流分析支援對外呼叫 Azure Machine Learning 端點的使用者定義函式。 [串流分析 REST API 程式庫](https://msdn.microsoft.com/library/azure/dn835031.aspx)中會詳細說明此功能的 REST API 支援。 本文提供要在串流分析中成功實作這項功能所需的補充資訊。 您也可以在 [這裡](stream-analytics-machine-learning-integration-tutorial.md)取得已發佈的教學課程。
 
-## <a name="overview:-azure-machine-learning-terminology"></a>概觀：Azure Machine Learning 術語
+## <a name="overview-azure-machine-learning-terminology"></a>概觀：Azure Machine Learning 術語
 Microsoft Azure Machine Learning 提供可共同作業的拖放工具，供您依據資料來建置、測試及部署預測性分析解決方案。 此工具稱為 *Azure Machine Learning Studio*。 您可以利用此 Studio 來與機器學習服務資源互動，並輕鬆地建置、測試和反覆調整設計。 這些資源和其定義如下。
 
 * **工作區**： *工作區* 這個容器中會保有其他所有機器學習服務資源，以便集中管理和控制。
@@ -30,7 +34,7 @@ Microsoft Azure Machine Learning 提供可共同作業的拖放工具，供您�
 
 每個端點都有適用於批次執行和同步執行的 API。 串流分析使用同步執行。 該特定服務在 AzureML Studio 中的名稱為 [要求/回應服務](../machine-learning/machine-learning-consume-web-services.md#request-response-service-rrs) 。
 
-## <a name="machine-learning-resources-that-needed-for-stream-analytics-jobs"></a>串流分析作業所需的機器學習服務資源
+## <a name="machine-learning-resources-needed-for-stream-analytics-jobs"></a>串流分析作業所需的機器學習服務資源
 為了處理串流分析作業，必須要有要求/回應端點、 [apikey](../machine-learning/machine-learning-connect-to-azure-machine-learning-web-service.md#get-an-azure-machine-learning-authorization-key)和 swagger 定義才能順利執行。 串流分析有其他端點可建構 swagger 端點的 URL、查閱介面，以及將預設 UDF 定義傳回給使用者。
 
 ## <a name="configure-a-stream-analytics-and-machine-learning-udf-via-rest-api"></a>透過 REST API 設定串流分析和機器學習服務 UDF
@@ -200,6 +204,9 @@ PATCH : /subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>/providers
 * [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)
 * [Azure 串流分析管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn835031.aspx)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

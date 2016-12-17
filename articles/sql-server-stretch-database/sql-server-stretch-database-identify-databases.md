@@ -1,12 +1,12 @@
 ---
-title: Identify databases and tables for Stretch Database by running Stretch Database Advisor | Microsoft Docs
-description: Learn how to identify databases and tables that are candidates for Stretch Database.
+title: "透過執行 Stretch Database Advisor 為資料庫和資料表識別 Stretch Database | Microsoft Docs"
+description: "了解如何識別可做為 Stretch Database 候選對象的資料庫和資料表。"
 services: sql-server-stretch-database
-documentationcenter: ''
+documentationcenter: 
 author: douglaslMS
 manager: jhubbard
-editor: ''
-
+editor: 
+ms.assetid: 9253c5a2-f135-4782-95ec-8ff39454c2c0
 ms.service: sql-server-stretch-database
 ms.workload: data-management
 ms.tgt_pltfrm: na
@@ -14,46 +14,53 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/14/2016
 ms.author: douglasl
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: 1c59343393ca49e11765fdae0fd0fa7620ec08af
+
 
 ---
-# <a name="identify-databases-and-tables-for-stretch-database-by-running-stretch-database-advisor"></a>Identify databases and tables for Stretch Database by running Stretch Database Advisor
-To identify databases and tables that are candidates for Stretch Database, download SQL Server 2016 Upgrade Advisor, and run the Stretch Database Advisor. Stretch Database Advisor also identifies blocking issues.
+# <a name="identify-databases-and-tables-for-stretch-database-by-running-stretch-database-advisor"></a>透過執行 Stretch Database Advisor 為資料庫和資料表識別 Stretch Database
+若要識別可做為 Stretch Database 候選對象的資料庫和資料表，請下載 SQL Server 2016 Upgrade Advisor，並執行 Stretch Database Advisor。 Stretch Database Advisor 也能找出阻礙問題。
 
-## <a name="download-and-install-upgrade-advisor"></a>Download and install Upgrade Advisor
-Download and install Upgrade Advisor from [here](http://go.microsoft.com/fwlink/?LinkID=613421). This tool is not included on the SQL Server installation media.
+## <a name="download-and-install-upgrade-advisor"></a>下載並安裝 Upgrade Advisor
+從 [這裡](http://go.microsoft.com/fwlink/?LinkID=613421)下載並安裝 Upgrade Advisor。 此工具並不包含 SQL Server 安裝媒體。
 
-## <a name="run-the-stretch-database-advisor"></a>Run the Stretch Database Advisor
-1. Run Upgrade Advisor.
-2. Select **Scenarios**, and then select **RUN STRETCH DATABASE ADVISOR**.
-3. On the **Run Stretch Database Advisor** blade, click **SELECT DATABASES TO ANALYZE**.
-4. On the **Select databases** blade, enter or select the server name and the authentication info. Click **Connect**.
-5. A list of databases on the selected server appears. Select the databases that you want to analyze. Click **Select**.
-6. On the **Run Stretch Database Advisor** blade, click **Run**.  The analysis runs.
+## <a name="run-the-stretch-database-advisor"></a>執行 Stretch Database Advisor
+1. 執行 Upgrade Advisor。
+2. 選取 [案例]，然後選取 [執行 Stretch Database Advisor]。
+3. 在 [執行 Stretch Database Advisor] 刀鋒視窗上，按一下 [選取要分析的資料庫]。
+4. 在 [選取資料庫]  刀鋒視窗上，輸入或選取伺服器名稱和驗證資訊。 按一下 [連接] 。
+5. 隨即出現所選取伺服器上的資料庫清單。 選取您想要分析的資料庫。 按一下 [選取] 。
+6. 在 [執行 Stretch Database Advisor] 刀鋒視窗上，按一下 [執行]。  分析將會執行。
 
-## <a name="review-the-results"></a>Review the results
-1. When the analysis is finished, on the **Analyzed databases** blade, select one of the databases that you analyzed to display the **Analysis results** blade.
+## <a name="review-the-results"></a>檢閱結果
+1. 當分析完成時，在 [分析資料庫] 刀鋒視窗上，選取您已分析的其中一個資料庫以顯示 [分析結果] 刀鋒視窗。
    
-   The **Analysis results** blade lists recommended tables in the selected database that match the default recommendation criteria.
-2. In the list of tables on the **Analysis results** blade, select one of the recommended tables to display the **Table results** blade.
+   [分析結果]  刀鋒視窗會列出所選取資料庫中符合預設建議準則的建議資料表。
+2. 在 [分析結果] 刀鋒視窗上的資料表清單中，選取其中一個建議資料表以顯示 [資料表結果] 刀鋒視窗。
    
-   If there are blocking issues, the **Table results** blade lists the blocking issues for the selected table. For information about blocking issues detected by Stretch Database Advisor, see [Limitations for Stretch Database](sql-server-stretch-database-limitations.md).
-3. In the list of blocking issues on the **Table results** blade, select one of the issues to display more info about the selected issue and proposes mitigation steps. Implement the suggested mitigation steps if you want to configure the selected table for Stretch Database.
+   如果發生封鎖問題，[資料表結果]  刀鋒視窗就會列出所選取資料表的封鎖問題。 如需 Stretch Database Advisor 所偵測到的封鎖問題相關資訊，請參閱 [Stretch Database 的限制](sql-server-stretch-database-limitations.md)。
+3. 在 [資料表結果]  刀鋒視窗中的封鎖問題清單中，選取其中一個問題以顯示所選取問題的詳細資訊，以及建議的因應步驟。 如果您想要為選取的資料表設定 Stretch Database，請實作建議的風險降低步驟。
 
-## <a name="next-step"></a>Next step
-Enable Stretch Database.
+## <a name="next-step"></a>後續步驟
+啟用 Stretch Database。
 
-* To enable Stretch Database on a **database**, see [Enable Stretch Database for a database](sql-server-stretch-database-enable-database.md).
-* To enable Stretch Database on another **table**, when Stretch is already enabled on the database, see [Enable Stretch Database for a table](sql-server-stretch-database-enable-table.md).
+* 若要在 **資料庫**上啟用 Stretch Database，請參閱 [為資料庫啟用 Stretch Database](sql-server-stretch-database-enable-database.md)。
+* 若要在已於該資料庫上啟用 Stretch 的情況下，於另一個 **資料表**上啟用 Stretch Database，請參閱 [為資料表啟用 Stretch Database](sql-server-stretch-database-enable-table.md)。
 
-## <a name="see-also"></a>See also
-[Limitations for Stretch Database](sql-server-stretch-database-limitations.md)
+## <a name="see-also"></a>另請參閱
+[Stretch Database 的限制](sql-server-stretch-database-limitations.md)
 
-[Enable Stretch Database for a database](sql-server-stretch-database-enable-database.md)
+[為資料庫啟用 Stretch Database](sql-server-stretch-database-enable-database.md)
 
-[Enable Stretch Database for a table](sql-server-stretch-database-enable-table.md)
+[為資料表啟用 Stretch Database](sql-server-stretch-database-enable-table.md)
 
-[All topics for Azure SQL Server Stretch Database service](sql-server-stretch-database-index-all-articles.md)
+[所有 Azure SQL Server Stretch Database 服務的主題](sql-server-stretch-database-index-all-articles.md)
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

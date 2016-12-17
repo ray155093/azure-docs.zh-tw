@@ -1,13 +1,13 @@
 ---
-title: 如何在 ARM 模式中使用 Azure CLI 建立 NSG | Microsoft Docs
-description: 了解如何在 ARM 中使用 Azure CLI 建立和部署 NSG
+title: "如何在 ARM 模式中使用 Azure CLI 建立 NSG | Microsoft Docs"
+description: "了解如何在 ARM 中使用  Azure CLI 建立和部署 NSG"
 services: virtual-network
 documentationcenter: na
 author: jimdial
 manager: carmonm
 editor: tysonn
 tags: azure-resource-manager
-
+ms.assetid: 9ea82c09-f4a6-4268-88bc-fc439db40c48
 ms.service: virtual-network
 ms.devlang: na
 ms.topic: article
@@ -15,25 +15,29 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
+translationtype: Human Translation
+ms.sourcegitcommit: 2ea002938d69ad34aff421fa0eb753e449724a8f
+ms.openlocfilehash: d740926f6e372e46001b5a093c7fb25b47bc4f36
+
 
 ---
-# 如何在 Azure CLI 中建立 NSG
+# <a name="how-to-create-nsgs-in-the-azure-cli"></a>如何在 Azure CLI 中建立 NSG
 [!INCLUDE [virtual-networks-create-nsg-selectors-arm-include](../../includes/virtual-networks-create-nsg-selectors-arm-include.md)]
 
 [!INCLUDE [virtual-networks-create-nsg-intro-include](../../includes/virtual-networks-create-nsg-intro-include.md)]
 
 [!INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]
 
-本文涵蓋之內容包括資源管理員部署模型。您也可以[在傳統部署模型中建立 NSG](virtual-networks-create-nsg-classic-cli.md)。
+本文涵蓋之內容包括資源管理員部署模型。 您也可以 [在傳統部署模型中建立 NSG](virtual-networks-create-nsg-classic-cli.md)。
 
 [!INCLUDE [virtual-networks-create-nsg-scenario-include](../../includes/virtual-networks-create-nsg-scenario-include.md)]
 
-以下的範例 Azure CLI 命令是假設您已根據上述案例建立簡單的環境。如果您想要以本文件顯示的方式執行命令，請先依照下列方式建置測試環境：部署[此本範](http://github.com/telmosampaio/azure-templates/tree/master/201-IaaS-WebFrontEnd-SQLBackEnd)，按一下 [部署至 Azure]，視情況取代預設參數值，再依循入口網站中的指示。
+以下的範例 Azure CLI 命令是假設您已根據上述案例建立簡單的環境。 如果您想要以本文件顯示的方式執行命令，請先依照下列方式建置測試環境：部署[此本範](http://github.com/telmosampaio/azure-templates/tree/master/201-IaaS-WebFrontEnd-SQLBackEnd)，按一下 [部署至 Azure]，視情況取代預設參數值，再依循入口網站中的指示。
 
-## 如何建立前端子網路的 NSG
+## <a name="how-to-create-the-nsg-for-the-front-end-subnet"></a>如何建立前端子網路的 NSG
 若要根據上述案例建立名為 *NSG-FrontEnd* 的 NSG，請依照下列步驟執行。
 
-1. 如果您從未使用過 Azure CLI，請參閱[安裝和設定 Azure CLI](../xplat-cli-install.md)，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶。
+1. 如果您從未使用過 Azure CLI，請參閱 [安裝和設定 Azure CLI](../xplat-cli-install.md) ，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶。
 2. 執行 **azure config mode** 命令，以切換為 Azure 資源管理員模式，如下所示。
    
         azure config mode arm
@@ -69,9 +73,9 @@ ms.author: jdial
    
     參數：
    
-   * **-g (or --resource-group)**。將會在當中建立 NSG 之資源群組的名稱。在本文案例中為 *TestRG*。
-   * **-l (或 --location)**。將要建立新 NSG 的 Azure 區域。在本文案例中為 *westus*。
-   * **-n (或 --name)**。新 NSG 的名稱。在本文案例中為 *NSG-FrontEnd*。
+   * **-g (or --resource-group)**。 將會在當中建立 NSG 之資源群組的名稱。 在本文案例中為 *TestRG*。
+   * **-l (或 --location)**。 將要建立新 NSG 的 Azure 區域。 在本文案例中為 *westus*。
+   * **-n (或 --name)**。 新 NSG 的名稱。 在本文案例中為 *NSG-FrontEnd*。
 4. 執行 **azure network nsg rule create** 命令來建立允許從網際網路存取連接埠 3389 (RDP) 的規則。
    
         azure network nsg rule create -g TestRG -a NSG-FrontEnd -n rdp-rule -c Allow -p Tcp -r Inbound -y 100 -f Internet -o * -e * -u 3389
@@ -100,16 +104,16 @@ ms.author: jdial
    
     參數：
    
-   * **-a (或 --nsg-name)**。將在其中建立規則之 NSG 的名稱。在本文案例中為 *NSG-FrontEnd*。
-   * **-n (或 --name)**。新規則的名稱。在本文案例中為 *rdp-rule*。
-   * **-c (或 --access)**。規則 (拒絕或允許) 的存取層級。
-   * **-p (或 --protocol)**。規則的通訊協定 (TCP、UDP 或 *)。
-   * **-r (或 --direction)**。連線 (輸入或輸出) 的方向。
-   * **-y (或 --priority)**。規則的優先順序。
-   * **-f (或 --source-address-prefix)**。CIDR 中的來源位址首碼或使用預設標記。
-   * **-o (或 --source-port-range)**。來源連接埠，或連接埠範圍。
-   * **-e (或 --destination-address-prefix)**。CIDR 中的目的地位址首碼或使用預設標記。
-   * **-u (或 --destination-port-range)**。目的地連接埠，或連接埠範圍。
+   * **-a (或 --nsg-name)**。 將在其中建立規則之 NSG 的名稱。 在本文案例中為 *NSG-FrontEnd*。
+   * **-n (或 --name)**。 新規則的名稱。 在本文案例中為 *rdp-rule*。
+   * **-c (或 --access)**。 規則 (拒絕或允許) 的存取層級。
+   * **-p (或 --protocol)**。 規則的通訊協定 (TCP、UDP 或 *)。
+   * **-r (或 --direction)**。 連線 (輸入或輸出) 的方向。
+   * **-y (或 --priority)**。 規則的優先順序。
+   * **-f (或 --source-address-prefix)**。 CIDR 中的來源位址首碼或使用預設標記。
+   * **-o (或 --source-port-range)**。 來源連接埠，或連接埠範圍。
+   * **-e (或 --destination-address-prefix)**。 CIDR 中的目的地位址首碼或使用預設標記。
+   * **-u (或 --destination-port-range)**。 目的地連接埠，或連接埠範圍。    
 5. 執行 **azure network nsg rule create** 命令來建立允許從網際網路存取連接埠 80 (HTTP) 的規則。
    
         azure network nsg rule create -g TestRG -a NSG-FrontEnd -n web-rule -c Allow -p Tcp -r Inbound -y 200 -f Internet -o * -e * -u 80
@@ -160,7 +164,7 @@ ms.author: jdial
         data:    
         info:    network vnet subnet set command OK
 
-## 如何建立後端子網路的 NSG
+## <a name="how-to-create-the-nsg-for-the-back-end-subnet"></a>如何建立後端子網路的 NSG
 若要根據上述案例建立名為 *NSG-BackEnd* 的 NSG，請依照下列步驟執行。
 
 1. 執行 **azure network nsg create** 命令以建立 NSG。
@@ -263,4 +267,9 @@ ms.author: jdial
         data:    
         info:    network vnet subnet set command OK
 
-<!---HONumber=AcomDC_0810_2016------>
+
+
+
+<!--HONumber=Nov16_HO3-->
+
+

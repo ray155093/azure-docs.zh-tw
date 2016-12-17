@@ -1,13 +1,13 @@
 ---
-title: 重設 Azure VPN 閘道 | Microsoft Docs
-description: 本文將引導您重設您的 Azure VPN 閘道。 本文章適用於傳統，和 Resource Manager 部署模型兩者的 VPN 閘道。
+title: "重設 Azure VPN 閘道 | Microsoft Docs"
+description: "本文將引導您重設您的 Azure VPN 閘道。 本文章適用於傳統，和 Resource Manager 部署模型兩者的 VPN 閘道。"
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
 manager: carmonm
-editor: ''
+editor: 
 tags: azure-resource-manager,azure-service-management
-
+ms.assetid: 79d77cb8-d175-4273-93ac-712d7d45b1fe
 ms.service: vpn-gateway
 ms.devlang: na
 ms.topic: article
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 09/23/2016
 ms.author: cherylmc
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: 97ee3599f2eded9800dbb441af7299547c502397
+
 
 ---
 # <a name="reset-an-azure-vpn-gateway-using-powershell"></a>使用 PowerShell 重設 Azure VPN 閘道
@@ -63,6 +67,9 @@ ms.author: cherylmc
 ## <a name="next-steps"></a>後續步驟
 如需詳細資訊請參閱 [PowerShell Service Management Cmdlet 參考](https://msdn.microsoft.com/library/azure/mt617104.aspx)和 [PowerShell Resource Manager Cmdlet 參考](http://go.microsoft.com/fwlink/?LinkId=828732)。
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 

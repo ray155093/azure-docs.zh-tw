@@ -1,13 +1,13 @@
 ---
-title: 使用 Azure 串流分析和 Azure Machine Learning 的情緒分析 | Microsoft Docs
-description: 如何在串流分析工作中使用使用者定義的函數和機器學習服務
-keywords: ''
-documentationcenter: ''
+title: "使用 Azure 串流分析和 Azure Machine Learning 的情緒分析 | Microsoft Docs"
+description: "如何在串流分析工作中使用使用者定義的函數和機器學習服務"
+keywords: 
+documentationcenter: 
 services: stream-analytics
 author: jeffstokes72
 manager: jhubbard
 editor: cgronlun
-
+ms.assetid: cfced01f-ccaa-4bc6-81e2-c03d1470a7a2
 ms.service: stream-analytics
 ms.devlang: na
 ms.topic: article
@@ -15,6 +15,10 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 10/04/2016
 ms.author: jeffstok
+translationtype: Human Translation
+ms.sourcegitcommit: 219dcbfdca145bedb570eb9ef747ee00cc0342eb
+ms.openlocfilehash: fd5d7e2bf8d9cf68f1c3e9fe98656a8cfe0d1f15
+
 
 ---
 # <a name="sentiment-analysis-by-using-azure-stream-analytics-and-azure-machine-learning"></a>使用 Azure 串流分析和 Azure Machine Learning 的情緒分析
@@ -96,7 +100,7 @@ ms.author: jeffstok
     
     ```
     WITH subquery AS (  
-        SELECT text, sentiment(text) as result from input  
+      SELECT text, sentiment(text) as result from input  
     )  
     
     Select text, result.[Scored Labels]  
@@ -127,6 +131,9 @@ ms.author: jeffstok
   
     ![串流分析機器學習服務, Machine Learning 監視器檢視](./media/stream-analytics-machine-learning-integration-tutorial/stream-analytics-machine-learning-integration-tutorial-ml-monitor-view.png)  
 
-<!--HONumber=Oct16_HO2-->
+
+
+
+<!--HONumber=Nov16_HO3-->
 
 
